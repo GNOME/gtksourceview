@@ -1,15 +1,15 @@
 # German GtkSourceView translation.
-# Copyright (C) 2002-2004 Free Software Foundation, Inc.
+# Copyright (C) 2002-2005 Free Software Foundation, Inc.
 # This file is distributed under the same license as the GtkSourceView package.
 # Christian Neumair <chris@gnome-de.org>, 2003, 2004.
-#
+# 
 msgid ""
 msgstr ""
-"Project-Id-Version: GtkSourceView 1.0.0\n"
+"Project-Id-Version: GtkSourceView\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-12 00:08+0100\n"
-"PO-Revision-Date: 2004-08-13 17:47+0200\n"
-"Last-Translator: Christian Neumair <chris@gnome-de.org>\n"
+"POT-Creation-Date: 2005-01-15 20:57+0100\n"
+"PO-Revision-Date: 2005-01-15 20:57+0100\n"
+"Last-Translator: Frank Arnold <frank@scirocco-5v-turbo.de>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -377,12 +377,11 @@ msgstr ""
 
 #: gtksourceview/gtksourceview.c:276
 msgid "Highlight current line"
-msgstr ""
+msgstr "Aktuelle Zeile hervorheben"
 
 #: gtksourceview/gtksourceview.c:277
-#, fuzzy
 msgid "Whether to highlight the current line"
-msgstr "Soll die Syntax im Puffer hervorgehoben werden?"
+msgstr "Gibt an, ob die aktuelle Zeile hervorgehoben werden soll"
 
 #: gtksourceview/language-specs/ada.lang.h:1
 msgid "Ada"
@@ -823,7 +822,7 @@ msgstr "Sectional"
 
 #: gtksourceview/language-specs/ini.lang.h:1
 msgid ".ini"
-msgstr ""
+msgstr ".ini"
 
 #: gtksourceview/language-specs/ini.lang.h:3
 #: gtksourceview/language-specs/verilog.lang.h:3
@@ -833,19 +832,16 @@ msgstr "Dezimalzahl"
 #: gtksourceview/language-specs/ini.lang.h:4
 #: gtksourceview/language-specs/R.lang.h:3
 #: gtksourceview/language-specs/gtkrc.lang.h:2
-#, fuzzy
 msgid "Double Quote String"
 msgstr "Zeichenkette in doppelten Anführungszeichen"
 
 #: gtksourceview/language-specs/ini.lang.h:6
-#, fuzzy
 msgid "Integer"
-msgstr "Ganzzahl zur Basis N"
+msgstr "Ganzzahl"
 
 #: gtksourceview/language-specs/ini.lang.h:11
 #: gtksourceview/language-specs/R.lang.h:11
 #: gtksourceview/language-specs/gtkrc.lang.h:10
-#, fuzzy
 msgid "Single Quote String"
 msgstr "Zeichenkette in einfachen Anführungszeichen"
 
@@ -1064,9 +1060,8 @@ msgid "Preprocessor Defines"
 msgstr "Präprozessor-Definitionen"
 
 #: gtksourceview/language-specs/pascal.lang.h:19
-#, fuzzy
 msgid "Type, Class and Object Keywords"
-msgstr "Typklassen und Objektschlüsselwörter"
+msgstr "Typ-, Klassen- und Objektschlüsselwörter"
 
 #: gtksourceview/language-specs/perl.lang.h:1
 msgid "Function Call"
@@ -1078,7 +1073,7 @@ msgstr "Methodenaufruf"
 
 #: gtksourceview/language-specs/perl.lang.h:5
 msgid "POD"
-msgstr ""
+msgstr "POD"
 
 #: gtksourceview/language-specs/perl.lang.h:6
 msgid "Perl"
@@ -1225,37 +1220,32 @@ msgid "Ruby"
 msgstr "Ruby"
 
 #: gtksourceview/language-specs/sh.lang.h:2
-#, fuzzy
 msgid "Built-in Commands"
-msgstr "Mitgelieferte Funktionen"
+msgstr "Mitgelieferte Befehle"
 
 #: gtksourceview/language-specs/sh.lang.h:3
-#, fuzzy
 msgid "Common Commands"
-msgstr "Meistverwendete Befehle"
+msgstr "Allgemeine Befehle"
 
 #: gtksourceview/language-specs/sh.lang.h:10
-#, fuzzy
 msgid "Redirections"
-msgstr "Definitionen"
+msgstr "Umleitungen"
 
 #: gtksourceview/language-specs/sh.lang.h:12
 msgid "Self"
 msgstr "Selbst"
 
 #: gtksourceview/language-specs/sh.lang.h:15
-#, fuzzy
 msgid "Variable1"
-msgstr "Variable"
+msgstr "Variable1"
 
 #: gtksourceview/language-specs/sh.lang.h:16
-#, fuzzy
 msgid "Variable2"
-msgstr "Variable"
+msgstr "Variable2"
 
 #: gtksourceview/language-specs/sh.lang.h:17
 msgid "sh"
-msgstr ""
+msgstr "sh"
 
 #: gtksourceview/language-specs/sql.lang.h:1
 msgid "ANSI Datatypes"
@@ -1449,84 +1439,72 @@ msgid "VB.NET"
 msgstr "VB.NET"
 
 #: gtksourceview/language-specs/nemerle.lang.h:4
-#, fuzzy
 msgid "Core Keywords"
-msgstr "Fluss-Schlüsselwörter"
+msgstr "Kern-Schlüsselwörter"
 
 #: gtksourceview/language-specs/nemerle.lang.h:5
-#, fuzzy
 msgid "Core Types"
-msgstr "Typen"
+msgstr "Kern-Typen"
 
 #: gtksourceview/language-specs/nemerle.lang.h:9
 msgid "Keywords Defined by Macros"
-msgstr ""
+msgstr "Von Makros definierte Schlüsselwörter"
 
 #: gtksourceview/language-specs/nemerle.lang.h:11
-#, fuzzy
 msgid "Nemerle"
-msgstr "Zahl"
+msgstr "Nemerle"
 
 #: gtksourceview/language-specs/tcl.lang.h:6
 msgid "Tcl"
-msgstr ""
+msgstr "Tcl"
 
 #: gtksourceview/language-specs/vhdl.lang.h:7
-#, fuzzy
 msgid "True and False"
-msgstr "Wahr und falsch"
+msgstr "Wahr und Falsch"
 
 #: gtksourceview/language-specs/vhdl.lang.h:8
-#, fuzzy
 msgid "Type"
-msgstr "Typen"
+msgstr "Typ"
 
 #: gtksourceview/language-specs/vhdl.lang.h:9
 msgid "VHDL"
-msgstr ""
+msgstr "VHDL"
 
 #: gtksourceview/language-specs/R.lang.h:1
-#, fuzzy
 msgid "Assign operator"
-msgstr "Feldoperatoren"
+msgstr "Zuweisungsoperator"
 
 #: gtksourceview/language-specs/R.lang.h:2
-#, fuzzy
 msgid "Delimiter"
-msgstr "Unbegrenzt"
+msgstr "Trennzeichen"
 
 #: gtksourceview/language-specs/R.lang.h:5
-#, fuzzy
 msgid "Integer Number"
-msgstr "Binärzahl"
+msgstr "Ganzzahl"
 
 #: gtksourceview/language-specs/R.lang.h:8
-#, fuzzy
 msgid "Reserved class"
-msgstr "Reservierte ANSI-Wörter"
+msgstr "Reservierte Klasse"
 
 #: gtksourceview/language-specs/R.lang.h:9
-#, fuzzy
 msgid "Reserved constant"
-msgstr "Generierter Inhalt"
+msgstr "Reservierte Konstante"
 
 #: gtksourceview/language-specs/gtkrc.lang.h:3
 msgid "GtkRC"
-msgstr ""
+msgstr "GtkRC"
 
 #: gtksourceview/language-specs/gtkrc.lang.h:4
 msgid "Include Directive"
-msgstr ""
+msgstr "Include-Anweisung"
 
 #: gtksourceview/language-specs/gtkrc.lang.h:5
-#, fuzzy
 msgid "Keysymbol"
-msgstr "Tastensymbole"
+msgstr "Schlüsselsymbol"
 
 #: gtksourceview/language-specs/gtkrc.lang.h:11
-#, fuzzy
 msgid "State"
-msgstr "Gatter"
+msgstr "Status"
 
 #~ msgid "Plain Old Documentation"
 #~ msgstr "Dokumentation"
