@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
-"POT-Creation-Date: 2003-08-01 17:48+0200\n"
+"POT-Creation-Date: 2003-08-02 02:58+0800\n"
 "PO-Revision-Date: 2003-08-01 17:48+0200\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
@@ -48,6 +48,7 @@ msgid "Number of undo levels for the buffer"
 msgstr "Antal ångrandenivåer för bufferten"
 
 #: gtksourceview/gtksourcebuffer.c:317
+#: gtksourceview/language-specs/desktop.lang.h:6
 msgid "Language"
 msgstr "Språk"
 
@@ -159,6 +160,8 @@ msgid "Character"
 msgstr "Tecken"
 
 #: gtksourceview/gtksourcestylescheme.c:247
+#: gtksourceview/language-specs/latex.lang.h:1
+#: gtksourceview/language-specs/po.lang.h:1
 msgid "Comment"
 msgstr "Kommentar"
 
@@ -167,10 +170,13 @@ msgid "Data Type"
 msgstr "Datatyp"
 
 #: gtksourceview/gtksourcestylescheme.c:257
+#: gtksourceview/language-specs/ada.lang.h:3
 msgid "Function"
 msgstr "Funktion"
 
 #: gtksourceview/gtksourcestylescheme.c:262
+#: gtksourceview/language-specs/c.lang.h:6
+#: gtksourceview/language-specs/cpp.lang.h:6
 msgid "Decimal"
 msgstr "Decimal"
 
@@ -179,6 +185,8 @@ msgid "Floating Point"
 msgstr "Flyttal"
 
 #: gtksourceview/gtksourcestylescheme.c:272
+#: gtksourceview/language-specs/latex.lang.h:3
+#: gtksourceview/language-specs/po.lang.h:3
 msgid "Keyword"
 msgstr "Nyckelord"
 
@@ -187,6 +195,16 @@ msgid "Preprocessor"
 msgstr "Preprocessor"
 
 #: gtksourceview/gtksourcestylescheme.c:282
+#: gtksourceview/language-specs/ada.lang.h:9
+#: gtksourceview/language-specs/c.lang.h:15
+#: gtksourceview/language-specs/cpp.lang.h:15
+#: gtksourceview/language-specs/html.lang.h:8
+#: gtksourceview/language-specs/idl.lang.h:8
+#: gtksourceview/language-specs/java.lang.h:11
+#: gtksourceview/language-specs/perl.lang.h:6
+#: gtksourceview/language-specs/po.lang.h:6
+#: gtksourceview/language-specs/python.lang.h:11
+#: gtksourceview/language-specs/xml.lang.h:8
 msgid "String"
 msgstr "Sträng"
 
@@ -195,6 +213,9 @@ msgid "Specials"
 msgstr "Specialtecken"
 
 #: gtksourceview/gtksourcestylescheme.c:292
+#: gtksourceview/language-specs/desktop.lang.h:10
+#: gtksourceview/language-specs/diff.lang.h:7
+#: gtksourceview/language-specs/po.lang.h:5
 msgid "Others"
 msgstr "Andra"
 
@@ -286,8 +307,339 @@ msgstr ""
 "HOME- och END-tangenterna flyttar till första/sista tecknen på raden innan "
 "de går till början/slutet på raden"
 
-#~ msgid "Tag"
-#~ msgstr "Tagg"
+#: gtksourceview/language-specs/ada.lang.h:1
+msgid "Ada"
+msgstr "Ada"
+
+#: gtksourceview/language-specs/ada.lang.h:2
+#: gtksourceview/language-specs/c.lang.h:4
+#: gtksourceview/language-specs/cpp.lang.h:4
+msgid "Character Constant"
+msgstr "Teckenkonstant"
+
+#: gtksourceview/language-specs/ada.lang.h:4
+#: gtksourceview/language-specs/c.lang.h:10
+#: gtksourceview/language-specs/cpp.lang.h:10
+#: gtksourceview/language-specs/idl.lang.h:4
+#: gtksourceview/language-specs/perl.lang.h:2
+#: gtksourceview/language-specs/python.lang.h:3
+msgid "Keywords"
+msgstr "Nyckelord"
+
+#: gtksourceview/language-specs/ada.lang.h:5
+#: gtksourceview/language-specs/c.lang.h:11
+#: gtksourceview/language-specs/cpp.lang.h:11
+#: gtksourceview/language-specs/desktop.lang.h:7
+#: gtksourceview/language-specs/diff.lang.h:5
+#: gtksourceview/language-specs/java.lang.h:5
+#: gtksourceview/language-specs/perl.lang.h:3
+#: gtksourceview/language-specs/python.lang.h:4
+msgid "Line Comment"
+msgstr "Radkommentar"
+
+#: gtksourceview/language-specs/ada.lang.h:6
+#: gtksourceview/language-specs/desktop.lang.h:9
+msgid "Number"
+msgstr "Tal"
+
+#: gtksourceview/language-specs/ada.lang.h:7
+msgid "Preprocessor Keywords"
+msgstr "Preprocessor-nyckelord"
+
+#: gtksourceview/language-specs/ada.lang.h:8
+#: gtksourceview/language-specs/c.lang.h:14
+#: gtksourceview/language-specs/cpp.lang.h:14
+#: gtksourceview/language-specs/idl.lang.h:7
+#: gtksourceview/language-specs/java.lang.h:10
+msgid "Sources"
+msgstr "Källkoder"
+
+#: gtksourceview/language-specs/ada.lang.h:10
+msgid "True And False"
+msgstr "Sant och falskt"
+
+#: gtksourceview/language-specs/ada.lang.h:11
+#: gtksourceview/language-specs/c.lang.h:16
+#: gtksourceview/language-specs/cpp.lang.h:16
+#: gtksourceview/language-specs/idl.lang.h:9
+msgid "Types"
+msgstr "Typer"
+
+#: gtksourceview/language-specs/c.lang.h:1
+#: gtksourceview/language-specs/cpp.lang.h:1
+msgid "'#if 0' Comment"
+msgstr "\"#if 0\"-kommentar"
+
+#: gtksourceview/language-specs/c.lang.h:2
+#: gtksourceview/language-specs/cpp.lang.h:2
+#: gtksourceview/language-specs/html.lang.h:2
+#: gtksourceview/language-specs/idl.lang.h:1
+#: gtksourceview/language-specs/java.lang.h:1
+#: gtksourceview/language-specs/xml.lang.h:2
+msgid "Block Comment"
+msgstr "Blockkommentar"
+
+#: gtksourceview/language-specs/c.lang.h:3
+msgid "C"
+msgstr "C"
+
+#: gtksourceview/language-specs/c.lang.h:5
+#: gtksourceview/language-specs/cpp.lang.h:5
+msgid "Common Macro"
+msgstr "Gemensamt makro"
+
+#: gtksourceview/language-specs/c.lang.h:7
+#: gtksourceview/language-specs/cpp.lang.h:7
+msgid "Floating Point Number"
+msgstr "Flyttal"
+
+#: gtksourceview/language-specs/c.lang.h:8
+#: gtksourceview/language-specs/cpp.lang.h:8
+msgid "Hex Number"
+msgstr "Hexadecimalt tal"
+
+#: gtksourceview/language-specs/c.lang.h:9
+#: gtksourceview/language-specs/cpp.lang.h:9
+#: gtksourceview/language-specs/idl.lang.h:3
+msgid "Include/Pragma"
+msgstr "Inkludering/Pragma"
+
+#: gtksourceview/language-specs/c.lang.h:12
+#: gtksourceview/language-specs/cpp.lang.h:12
+msgid "Octal Number"
+msgstr "Oktalt tal"
+
+#: gtksourceview/language-specs/c.lang.h:13
+#: gtksourceview/language-specs/cpp.lang.h:13
+#: gtksourceview/language-specs/idl.lang.h:5
+msgid "Preprocessor Definitions"
+msgstr "Preprocessor-definitioner"
+
+#: gtksourceview/language-specs/cpp.lang.h:3
+msgid "C++"
+msgstr "C++"
+
+#: gtksourceview/language-specs/desktop.lang.h:1
+msgid ".desktop"
+msgstr ".desktop"
+
+#: gtksourceview/language-specs/desktop.lang.h:2
+msgid "Boolean Value"
+msgstr "Booleskt värde"
+
+#: gtksourceview/language-specs/desktop.lang.h:3
+msgid "Encoding"
+msgstr "Kodning"
+
+#: gtksourceview/language-specs/desktop.lang.h:4
+msgid "Exec Parameter"
+msgstr "Exekveringsparameter"
+
+#: gtksourceview/language-specs/desktop.lang.h:5
+msgid "Group"
+msgstr "Grupp"
+
+#: gtksourceview/language-specs/desktop.lang.h:8
+msgid "Non Standard Key"
+msgstr "Nyckel som inte är standard"
+
+#: gtksourceview/language-specs/desktop.lang.h:11
+msgid "Standard Key"
+msgstr "Standardnyckel"
+
+#: gtksourceview/language-specs/diff.lang.h:1
+msgid "Added line"
+msgstr "Tillagd rad"
+
+#: gtksourceview/language-specs/diff.lang.h:2
+msgid "Changed line"
+msgstr "Ändrad rad"
+
+#: gtksourceview/language-specs/diff.lang.h:3
+msgid "Diff"
+msgstr "Diff"
+
+#: gtksourceview/language-specs/diff.lang.h:4
+msgid "Diff file"
+msgstr "Diff-fil"
+
+#: gtksourceview/language-specs/diff.lang.h:6
+#: gtksourceview/language-specs/po.lang.h:4
+msgid "Location"
+msgstr "Plats"
+
+#: gtksourceview/language-specs/diff.lang.h:8
+msgid "Removed line"
+msgstr "Borttagen rad"
+
+#: gtksourceview/language-specs/diff.lang.h:9
+msgid "Special case"
+msgstr "Specialfall"
+
+#: gtksourceview/language-specs/html.lang.h:1
+#: gtksourceview/language-specs/xml.lang.h:1
+msgid "Attributes"
+msgstr "Attribut"
+
+#: gtksourceview/language-specs/html.lang.h:3
+#: gtksourceview/language-specs/xml.lang.h:3
+msgid "Closing Bracket"
+msgstr "Avslutande klammer"
+
+#: gtksourceview/language-specs/html.lang.h:4
+#: gtksourceview/language-specs/xml.lang.h:4
+msgid "DTD"
+msgstr "DTD"
+
+#: gtksourceview/language-specs/html.lang.h:5
+#: gtksourceview/language-specs/xml.lang.h:5
+msgid "Entity"
+msgstr "Entitet"
+
+#: gtksourceview/language-specs/html.lang.h:6
+msgid "HTML"
+msgstr "HTML"
+
+#: gtksourceview/language-specs/html.lang.h:7
+#: gtksourceview/language-specs/latex.lang.h:5
+#: gtksourceview/language-specs/xml.lang.h:7
+msgid "Markup"
+msgstr "Markup"
+
+#: gtksourceview/language-specs/html.lang.h:9
+msgid "Tags"
+msgstr "Taggar"
+
+#: gtksourceview/language-specs/idl.lang.h:2
+msgid "IDL"
+msgstr "IDL"
+
+#: gtksourceview/language-specs/idl.lang.h:6
+msgid "Sectional"
+msgstr "Sektionsrelaterat"
+
+#: gtksourceview/language-specs/java.lang.h:2
+msgid "Declarations"
+msgstr "Deklarationer"
+
+#: gtksourceview/language-specs/java.lang.h:3
+msgid "Flow"
+msgstr "Flöde"
+
+#: gtksourceview/language-specs/java.lang.h:4
+msgid "Java"
+msgstr "Java"
+
+#: gtksourceview/language-specs/java.lang.h:6
+msgid "Memory"
+msgstr "Minne"
+
+#: gtksourceview/language-specs/java.lang.h:7
+msgid "Modifiers"
+msgstr "Modifierare"
+
+#: gtksourceview/language-specs/java.lang.h:8
+msgid "Numeric"
+msgstr "Numeriskt"
+
+#: gtksourceview/language-specs/java.lang.h:9
+msgid "Primitives"
+msgstr "Primitiver"
+
+#: gtksourceview/language-specs/java.lang.h:12
+#: gtksourceview/language-specs/python.lang.h:12
+#: gtksourceview/language-specs/xml.lang.h:9
+msgid "String 2"
+msgstr "Sträng 2"
+
+#: gtksourceview/language-specs/latex.lang.h:2
+msgid "Include"
+msgstr "Inkludering"
+
+#: gtksourceview/language-specs/latex.lang.h:4
+msgid "Latex"
+msgstr "Latex"
+
+#: gtksourceview/language-specs/latex.lang.h:6
+msgid "Math"
+msgstr "Metematik"
+
+#: gtksourceview/language-specs/latex.lang.h:7
+msgid "Most Used Commands"
+msgstr "Mest använda kommandon"
+
+#: gtksourceview/language-specs/perl.lang.h:1
+msgid "Function Call"
+msgstr "Funktionsanrop"
+
+#: gtksourceview/language-specs/perl.lang.h:4
+msgid "Perl"
+msgstr "Perl"
+
+#: gtksourceview/language-specs/perl.lang.h:5
+#: gtksourceview/language-specs/python.lang.h:9
+msgid "Scripts"
+msgstr "Skript"
+
+#: gtksourceview/language-specs/perl.lang.h:7
+msgid "String2"
+msgstr "Sträng2"
+
+#: gtksourceview/language-specs/perl.lang.h:8
+msgid "String3"
+msgstr "Sträng3"
+
+#: gtksourceview/language-specs/perl.lang.h:9
+msgid "Variables"
+msgstr "Variabler"
+
+#: gtksourceview/language-specs/po.lang.h:2
+msgid "Format"
+msgstr "Format"
+
+#: gtksourceview/language-specs/po.lang.h:7
+msgid "gettext translation"
+msgstr "gettext-översättning"
+
+#: gtksourceview/language-specs/python.lang.h:1
+msgid "Builtins"
+msgstr "Inbyggda"
+
+#: gtksourceview/language-specs/python.lang.h:2
+msgid "Functions"
+msgstr "Funktioner"
+
+#: gtksourceview/language-specs/python.lang.h:5
+msgid "Module Handler"
+msgstr "Modulhanterare"
+
+#: gtksourceview/language-specs/python.lang.h:6
+msgid "Multiline String"
+msgstr "Flerradig sträng"
+
+#: gtksourceview/language-specs/python.lang.h:7
+msgid "Multiline String 2"
+msgstr "Flerradig sträng 2"
+
+#: gtksourceview/language-specs/python.lang.h:8
+msgid "Python"
+msgstr "Python"
+
+#: gtksourceview/language-specs/python.lang.h:10
+msgid "Self"
+msgstr "Själv"
+
+#: gtksourceview/language-specs/xml.lang.h:6
+msgid "Hexadecimal"
+msgstr "Hexadecimalt"
+
+#: gtksourceview/language-specs/xml.lang.h:10
+msgid "Tag"
+msgstr "Tagg"
+
+#: gtksourceview/language-specs/xml.lang.h:11
+msgid "XML"
+msgstr "XML"
 
 #~ msgid "Header & Footer Font"
 #~ msgstr "Typsnitt för sidhuvud och sidfot"
@@ -321,236 +673,23 @@ msgstr ""
 #~ msgid "Highlighting"
 #~ msgstr "Färgmarkering"
 
-#~ msgid "Block Comment"
-#~ msgstr "Blockkommentar"
-
-#~ msgid "Boolean Value"
-#~ msgstr "Booleskt värde"
-
-#~ msgid "Builtins"
-#~ msgstr "Inbyggda"
-
-#~ msgid "Character Constant"
-#~ msgstr "Teckenkonstant"
-
-#~ msgid "Common Macro"
-#~ msgstr "Gemensamt makro"
-
-#~ msgid "Declarations"
-#~ msgstr "Deklarationer"
-
 #~ msgid "Declaration"
 #~ msgstr "Deklaration"
-
-#~ msgid "Diff file"
-#~ msgstr "Diff-fil"
-
-#~ msgid "Encoding"
-#~ msgstr "Kodning"
-
-#~ msgid "Exec Parameter"
-#~ msgstr "Exekveringsparameter"
-
-#~ msgid "Floating Point Number"
-#~ msgstr "Flyttal"
-
-#~ msgid "Flow"
-#~ msgstr "Flöde"
-
-#~ msgid "Function Call"
-#~ msgstr "Funktionsanrop"
 
 #~ msgid "Function Calls"
 #~ msgstr "Funktionsanrop"
 
-#~ msgid "Functions"
-#~ msgstr "Funktioner"
-
-#~ msgid "Group"
-#~ msgstr "Grupp"
-
-#~ msgid "Hex Number"
-#~ msgstr "Hexadecimalt tal"
-
-#~ msgid "Include/Pragma"
-#~ msgstr "Inkludering/Pragma"
-
-#~ msgid "Keywords"
-#~ msgstr "Nyckelord"
-
-#~ msgid "Line Comment"
-#~ msgstr "Radkommentar"
-
-#~ msgid "Location"
-#~ msgstr "Plats"
-
-#~ msgid "Math"
-#~ msgstr "Metematik"
-
 #~ msgid "Mathemathics"
 #~ msgstr "Metematik"
-
-#~ msgid "Memory"
-#~ msgstr "Minne"
-
-#~ msgid "Modifiers"
-#~ msgstr "Modifierare"
-
-#~ msgid "Module Handler"
-#~ msgstr "Modulhanterare"
-
-#~ msgid "Multiline String 2"
-#~ msgstr "Flerradig sträng 2"
-
-#~ msgid "Multiline String"
-#~ msgstr "Flerradig sträng"
-
-#~ msgid "Non Standard Key"
-#~ msgstr "Nyckel som inte är standard"
-
-#~ msgid "Numeric"
-#~ msgstr "Numeriskt"
-
-#~ msgid "Octal Number"
-#~ msgstr "Oktalt tal"
-
-#~ msgid "Preprocessor Definitions"
-#~ msgstr "Preprocessor-definitioner"
-
-#~ msgid "Preprocessor Keywords"
-#~ msgstr "Preprocessor-nyckelord"
-
-#~ msgid "Primitives"
-#~ msgstr "Primitiver"
-
-#~ msgid "Sectional"
-#~ msgstr "Sektionsrelaterat"
-
-#~ msgid "Self"
-#~ msgstr "Själv"
-
-#~ msgid "Special case"
-#~ msgstr "Specialfall"
-
-#~ msgid "Standard Key"
-#~ msgstr "Standardnyckel"
-
-#~ msgid "String 2"
-#~ msgstr "Sträng 2"
-
-#~ msgid "String2"
-#~ msgstr "Sträng2"
-
-#~ msgid "String3"
-#~ msgstr "Sträng3"
-
-#~ msgid "True And False"
-#~ msgstr "Sant och falskt"
-
-#~ msgid "Types"
-#~ msgstr "Typer"
-
-#~ msgid "Variables"
-#~ msgstr "Variabler"
 
 #~ msgid "Variable"
 #~ msgstr "Variabel"
 
-#~ msgid "Hexadecimal"
-#~ msgstr "Hexadecimalt"
-
-#~ msgid "Added line"
-#~ msgstr "Tillagd rad"
-
-#~ msgid "Attributes"
-#~ msgstr "Attribut"
-
-#~ msgid "Changed line"
-#~ msgstr "Ändrad rad"
-
-#~ msgid "Closing Bracket"
-#~ msgstr "Avslutande klammer"
-
-#~ msgid "DTD"
-#~ msgstr "DTD"
-
-#~ msgid "Entity"
-#~ msgstr "Entitet"
-
-#~ msgid "Markup"
-#~ msgstr "Markup"
-
-#~ msgid "Include"
-#~ msgstr "Inkludering"
-
-#~ msgid "Most Used Commands"
-#~ msgstr "Mest använda kommandon"
-
-#~ msgid "Scripts"
-#~ msgstr "Skript"
-
-#~ msgid "Removed line"
-#~ msgstr "Borttagen rad"
-
-#~ msgid "Ada"
-#~ msgstr "Ada"
-
-#~ msgid "Number"
-#~ msgstr "Tal"
-
-#~ msgid "Sources"
-#~ msgstr "Källkoder"
-
-#~ msgid "'#if 0' Comment"
-#~ msgstr "\"#if 0\"-kommentar"
-
 #~ msgid "Comments"
 #~ msgstr "Kommentarer"
-
-#~ msgid "C"
-#~ msgstr "C"
-
-#~ msgid "C++"
-#~ msgstr "C++"
-
-#~ msgid ".desktop"
-#~ msgstr ".desktop"
-
-#~ msgid "Diff"
-#~ msgstr "Diff"
-
-#~ msgid "HTML"
-#~ msgstr "HTML"
-
-#~ msgid "Tags"
-#~ msgstr "Taggar"
-
-#~ msgid "IDL"
-#~ msgstr "IDL"
-
-#~ msgid "Java"
-#~ msgstr "Java"
-
-#~ msgid "Latex"
-#~ msgstr "Latex"
-
-#~ msgid "Perl"
-#~ msgstr "Perl"
-
-#~ msgid "Format"
-#~ msgstr "Format"
-
-#~ msgid "gettext translation"
-#~ msgstr "gettext-översättning"
 
 #~ msgid "Translation"
 #~ msgstr "Översättning"
 
 #~ msgid "Translations"
 #~ msgstr "Översättningar"
-
-#~ msgid "Python"
-#~ msgstr "Python"
-
-#~ msgid "XML"
-#~ msgstr "XML"
