@@ -199,9 +199,11 @@ main (int argc, char *argv[])
   gtk_signal_connect(GTK_OBJECT(button),"clicked",GTK_SIGNAL_FUNC(cb_toggle), tw);
 
   pixbuf = gdk_pixbuf_new_from_file("/usr/share/pixmaps/detach-menu.xpm", NULL);
-  for(i = 1; i < 1000; i += 10)
+  gtk_source_view_add_pixbuf(GTK_SOURCE_VIEW(tw), "detach", pixbuf, FALSE);
+
+  for(i = 1; i < 200; i += 20)
   {
-      gtk_source_view_set_line_pixmap(GTK_SOURCE_VIEW(tw), i, pixbuf, FALSE);
+      gtk_source_buffer_set_line_marker(GTK_SOURCE_BUFFER(GTK_TEXT_VIEW(tw)->buffer), i, "detach", FALSE);
   }
 
   gtk_widget_set_usize(window, 400, 500);

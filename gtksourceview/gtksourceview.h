@@ -43,7 +43,7 @@ struct _GtkSourceView
   gint show_line_numbers :1;
   gint line_number_space;
   guint show_line_pixmaps :1;
-  GHashTable *line_pixmaps;
+  GHashTable *pixmap_cache;
 
   gchar *delete;
 };
@@ -66,23 +66,13 @@ gboolean gtk_source_view_get_show_line_numbers(GtkSourceView *view);
 void gtk_source_view_set_show_line_pixmaps(GtkSourceView *view, gboolean show);
 gboolean gtk_source_view_get_show_line_pixmaps(GtkSourceView *view);
 
-/*
-   return value is the new pixbuf if the one you gave it was too big...recoment keeping it around
-   for subsequent adds so we dont have to create a new one each time.
-   You should g_object_ref() it if it does stay around.
-*/
-GdkPixbuf *gtk_source_view_set_line_pixmap(GtkSourceView *view, gint line, GdkPixbuf *pixbuf, gboolean overwrite);
-GdkPixbuf *gtk_source_view_line_has_pixmap(GtkSourceView *view, gint line);
-/* return value is the number removed *.
-/* pass -1 for start and end to remove all */
-gint gtk_source_view_remove_all_pixmaps(GtkSourceView *view, gint line_start, gint line_end);
-
 void gtk_source_view_set_tab_stop(GtkSourceView *view, gint tab_stop);
 gint gtk_source_view_get_tab_stop(GtkSourceView *view);
-
 /* Get the width in pixels */
 gint gtk_source_view_get_tab_stop_width(GtkSourceView *view);
 
+gboolean gtk_source_view_add_pixbuf(GtkSourceView *view, const gchar *key, GdkPixbuf *pixbuf, gboolean overwrite);
+GdkPixbuf *gtk_source_view_get_pixbuf(GtkSourceView *view, const gchar *key);
 #ifdef __cplusplus
 }
 #endif

@@ -29,6 +29,8 @@
 
 static void gtk_source_buffer_class_init(GtkSourceBufferClass *_class);
 static void gtk_source_buffer_init(GtkSourceBuffer *_class);
+static void gtk_source_buffer_finalize(GObject *object);
+static void hash_remove_func(gpointer key, gpointer value, gpointer user_data);
 
 static void move_cursor(GtkTextBuffer *buf, GtkTextIter *iter, GtkTextMark *mark, gpointer data);
 static void property_text_insert(GtkTextBuffer *buf, GtkTextIter *iter, const gchar *txt, gint len);
@@ -86,6 +88,7 @@ gtk_source_buffer_class_init(GtkSourceBufferClass *_class)
     GtkWidgetClass *widget_class;
   
     object_class = (GObjectClass*) _class;
+    object_class->finalize = gtk_source_buffer_finalize;
     widget_class = (GtkWidgetClass*) _class;
     parent_class = gtk_type_class(GTK_TYPE_TEXT_BUFFER);
 }
@@ -109,6 +112,7 @@ gtk_source_buffer_init(GtkSourceBuffer *text)
     g_signal_connect_closure(G_OBJECT(text),"begin_user_action", g_cclosure_new((GCallback)begin_user_action,NULL,NULL), FALSE);	
     g_signal_connect_closure(G_OBJECT(text),"end_user_action", g_cclosure_new((GCallback)end_user_action,NULL,NULL), FALSE);	
     g_signal_connect_closure(G_OBJECT(text),"mark_set", g_cclosure_new((GCallback)move_cursor, NULL, NULL), TRUE);
+    text->line_markers = g_hash_table_new(NULL, NULL);
 }
 
 GtkTextBuffer *
@@ -131,6 +135,28 @@ gtk_source_buffer_new(GtkTextTagTable *table)
     g_object_set(G_OBJECT(GTK_SOURCE_BUFFER(text)->bracket_match_tag), "background_gdk", "gray", NULL);
     gtk_text_tag_table_add(GTK_TEXT_BUFFER(text)->tag_table, GTK_SOURCE_BUFFER(text)->bracket_match_tag);
     return GTK_TEXT_BUFFER(text);
+}
+
+static void
+gtk_source_buffer_finalize(GObject *object)
+{
+    GtkSourceBuffer *buffer;
+
+    g_return_if_fail(object != NULL);
+    g_return_if_fail(GTK_IS_SOURCE_BUFFER(object));
+
+    buffer = GTK_SOURCE_BUFFER(object);
+    if(buffer->line_markers)
+    {
+        g_hash_table_foreach_remove(buffer->line_markers, (GHRFunc)hash_remove_func, NULL);
+        g_hash_table_destroy(buffer->line_markers);
+    }
+}
+
+static void
+hash_remove_func(gpointer key, gpointer value, gpointer user_data)
+{
+    g_free(value);
 }
 
 void
@@ -1217,36 +1243,65 @@ gtk_source_buffer_convert_to_html(GtkSourceBuffer *buf, const gchar *htmltitle)
     return g_string_free(str, FALSE);
 }
 
-GtkTextTag *
-gtk_text_tag_copy(GtkTextTag *old)
+void
+gtk_source_buffer_set_line_marker(GtkSourceBuffer *buffer, gint line, const gchar *marker, gboolean overwrite)
 {
-    GtkTextTag *new;
+    gint line_count = 0;
+    gpointer data = NULL;
+    gboolean scaled = FALSE;
+    gchar *new;
 
-    if(!old) return(NULL);    
+    g_return_if_fail(buffer != NULL);
+    g_return_if_fail(GTK_IS_SOURCE_BUFFER(buffer));
 
-    new = gtk_text_tag_new(old->name);
-    new->values = gtk_text_attributes_copy(old->values);
+    line_count = gtk_text_buffer_get_line_count(GTK_TEXT_BUFFER(buffer));
+    if(line > line_count) return;
+    data = g_hash_table_lookup(buffer->line_markers, GINT_TO_POINTER(line));
+    if(data && !overwrite) return;
 
-    new->bg_color_set = old->bg_color_set;
-    new->bg_stipple_set = old->bg_stipple_set;
-    new->fg_color_set = old->fg_color_set;
-    new->scale_set = old->scale_set;
-    new->fg_stipple_set = old->fg_stipple_set;
-    new->justification_set = old->justification_set;
-    new->left_margin_set = old->left_margin_set;
-    new->indent_set = old->indent_set;
-    new->rise_set = old->rise_set;
-    new->strikethrough_set = old->strikethrough_set;
-    new->right_margin_set = old->right_margin_set;
-    new->pixels_above_lines_set = old->pixels_above_lines_set;
-    new->pixels_below_lines_set = old->pixels_below_lines_set;
-    new->pixels_inside_wrap_set = old->pixels_inside_wrap_set;
-    new->tabs_set = old->tabs_set;
-    new->underline_set = old->underline_set;
-    new->wrap_mode_set = old->wrap_mode_set;
-    new->bg_full_height_set = old->bg_full_height_set;
-    new->invisible_set = old->invisible_set;
-    new->editable_set = old->editable_set;
-    new->language_set = old->language_set;
-    return(new);
+    if(data)
+    {
+        g_hash_table_remove(buffer->line_markers, GINT_TO_POINTER(line));
+        g_free(data);
+    }
+    if(marker)
+    {
+        new = g_strdup(marker);
+        g_hash_table_insert(buffer->line_markers, GINT_TO_POINTER(line), (gpointer)marker);
+    }
+}
+
+const gchar *
+gtk_source_buffer_line_has_marker(GtkSourceBuffer *buffer, gint line)
+{
+    g_return_val_if_fail(buffer != NULL, NULL);
+    g_return_val_if_fail(GTK_IS_SOURCE_BUFFER(buffer), NULL);
+
+    return((const gchar *)g_hash_table_lookup(buffer->line_markers, GINT_TO_POINTER(line)));
+}
+
+gint
+gtk_source_buffer_remove_all_markers(GtkSourceBuffer *buffer, gint line_start, gint line_end)
+{
+    gchar *data = NULL;
+    gint remove_count = 0;
+    gint line_count;
+    gint counter;
+
+    g_return_val_if_fail(buffer != NULL, 0);
+    g_return_val_if_fail(GTK_IS_SOURCE_BUFFER(buffer), 0);
+
+    line_count = gtk_text_buffer_get_line_count(GTK_TEXT_BUFFER(buffer));
+    line_start = line_start < 0 ? 0 : line_start;
+    line_end = line_end > line_count ? line_count : line_end;
+    for(counter = line_start; counter <= line_end; counter++)
+    {
+        data = (gchar *)g_hash_table_lookup(buffer->line_markers, GINT_TO_POINTER(counter));
+        if(data)
+        {
+            g_hash_table_remove(buffer->line_markers, GINT_TO_POINTER(counter));
+            g_free(data);
+            remove_count++;
+        }
+    }
 }

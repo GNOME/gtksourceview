@@ -1,3 +1,17 @@
+Thu Dec 06 02:25:29 AM PST 2001 Chris Phelps <chicane@reninet.com>
+   * split the line pixmap code up between the view and buffer implementations.
+     you can now have multiple views of a buffer that will show different pixmaps,
+     but in the same places...unneeded flexibility, but I thought it was a good idea.
+     (It was Dave Camp's)
+
+Thu Dec 06 01:14:40 AM PST 2001 Chris Phelps <chicane@reninet.com>
+   * Fixed a bug in the line number drawing code to allow for drawing the line number
+     on the final line of the view even if it is empty.
+
+Thu Dec 06 01:13:42 AM PST 2001 Chris Phelps <chicane@reninet.com>
+   * I have resurected this module and put it to use in Glimmer, and 
+     Dave Camp is playing with it in Dryad as a test bed for gnome-debug
+
 Sat Feb 17  13:19:53 2001 CET Mikael Hermansson<mikeh@bahnhof.se>
 
 * Realesing 0.0.3

@@ -57,7 +57,7 @@ typedef struct _GtkSourceBuffer
 
   GtkTextTag *bracket_match_tag;
   GtkTextMark *mark;
-  
+  GHashTable *line_markers;
   /* Undo coding */
   gint undo_max;
   GList *undo_redo;
@@ -117,7 +117,12 @@ gint gtk_source_buffer_undo_get_max(GtkSourceBuffer *buf);
 gboolean gtk_source_buffer_undo_set_max(GtkSourceBuffer *buf, gint max);
 void gtk_source_buffer_undo_clear_all(GtkSourceBuffer *buf);
 
-GtkTextTag *gtk_text_tag_copy(GtkTextTag *old);
+void gtk_source_buffer_set_line_marker(GtkSourceBuffer *buffer, gint line, const gchar *marker, gboolean overwrite);
+const gchar *gtk_source_buffer_line_has_marker(GtkSourceBuffer *view, gint line);
+/* return value is the number removed *.
+/* pass -1 for start and end to remove all */
+gint gtk_source_view_remove_all_pixmaps(GtkSourceBuffer *buffer, gint line_start, gint line_end);
+
 #ifdef __cplusplus
 }
 #endif

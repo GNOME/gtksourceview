@@ -127,7 +127,7 @@ gtk_source_view_init(GtkSourceView *view)
     view->show_line_numbers = TRUE;
     view->show_line_pixmaps = TRUE;
     view->line_number_space = 0;
-    view->line_pixmaps = g_hash_table_new(g_direct_hash, g_direct_equal);
+    view->pixmap_cache = g_hash_table_new(g_str_hash, g_str_equal);
 }
 
 GtkWidget *
@@ -153,7 +153,7 @@ gtk_source_view_new_with_buffer(GtkSourceBuffer *buffer)
     return(view);
 }
 
-void
+static void
 gtk_source_view_finalize(GObject *object)
 {
     GtkSourceView *view;
@@ -162,10 +162,10 @@ gtk_source_view_finalize(GObject *object)
     g_return_if_fail(GTK_IS_SOURCE_VIEW(object));
 
     view = GTK_SOURCE_VIEW(object);
-    if(view->line_pixmaps)
+    if(view->pixmap_cache)
     {
-        g_hash_table_foreach_remove(view->line_pixmaps, (GHRFunc)hash_remove_func, NULL);
-        g_hash_table_destroy(view->line_pixmaps);
+        g_hash_table_foreach_remove(view->pixmap_cache, (GHRFunc)hash_remove_func, NULL);
+        g_hash_table_destroy(view->pixmap_cache);
     }
 }
 
@@ -205,10 +205,12 @@ gtk_source_view_expose(GtkWidget *widget, GdkEventExpose *ev)
     GtkTextView *tw = GTK_TEXT_VIEW(widget);
     GtkSourceView *view = GTK_SOURCE_VIEW(widget);
     PangoLayout *layout = NULL;
+    GdkPixbuf *pixbuf;
     gchar *str = NULL;
     gint lines = 0;
     gint window_width = 0;
     gint text_width = 0;
+    const gchar *marker;
 
     win = gtk_text_view_get_window (tw, GTK_TEXT_WINDOW_LEFT);
     if(ev->window != win || !GTK_SOURCE_VIEW(tw)->show_line_numbers)
@@ -242,10 +244,8 @@ gtk_source_view_expose(GtkWidget *widget, GdkEventExpose *ev)
             }
             if(view->show_line_pixmaps)
             {
-                GdkPixbuf *pixbuf;
-
-                pixbuf = g_hash_table_lookup(view->line_pixmaps, GINT_TO_POINTER(num+1));
-                if(pixbuf)
+                marker = gtk_source_buffer_line_has_marker(GTK_SOURCE_BUFFER(tw->buffer), num + 1);
+                if(marker && (pixbuf = gtk_source_view_get_pixbuf(view, marker)))
                 {
                     if(gdk_pixbuf_get_has_alpha(pixbuf))
                         gdk_pixbuf_render_to_drawable_alpha(pixbuf, GDK_DRAWABLE(win), 0, 0,
@@ -325,85 +325,6 @@ gtk_source_view_get_show_line_pixmaps(GtkSourceView *view)
     g_return_val_if_fail(GTK_IS_SOURCE_VIEW(view), FALSE);
 
     return(view->show_line_pixmaps);
-}
-
-GdkPixbuf *
-gtk_source_view_set_line_pixmap(GtkSourceView *view, gint line, GdkPixbuf *pixbuf, gboolean overwrite)
-{
-    GtkTextBuffer *buffer = NULL;
-    gint line_count = 0;
-    gpointer data = NULL;
-    gboolean scaled = FALSE;
-
-    g_return_val_if_fail(view != NULL, NULL);
-    g_return_val_if_fail(GTK_IS_SOURCE_VIEW(view), NULL);
-
-    buffer = GTK_TEXT_VIEW(view)->buffer;
-    line_count = gtk_text_buffer_get_line_count(buffer);
-    if(line > line_count) return(NULL);
-    data = g_hash_table_lookup(view->line_pixmaps, GINT_TO_POINTER(line));
-    if(data && overwrite)
-    {
-        g_hash_table_remove(view->line_pixmaps, GINT_TO_POINTER(line));
-        g_object_unref(G_OBJECT(data));
-    }
-    if(pixbuf && GDK_IS_PIXBUF(pixbuf))
-    {
-        gint width;
-        gint height;
-
-        width = gdk_pixbuf_get_width(pixbuf);
-        height = gdk_pixbuf_get_height(pixbuf);
-        if(width > GUTTER_PIXMAP || height > GUTTER_PIXMAP)
-        {
-            if(width > GUTTER_PIXMAP) width = GUTTER_PIXMAP;
-            if(height > GUTTER_PIXMAP) height = GUTTER_PIXMAP;
-            pixbuf = gdk_pixbuf_scale_simple(pixbuf, width, height, GDK_INTERP_NEAREST);
-            scaled = TRUE;
-        }
-        g_object_ref(G_OBJECT(pixbuf));
-        g_hash_table_insert(view->line_pixmaps, GINT_TO_POINTER(line), (gpointer)pixbuf);
-    }
-    return(scaled ? pixbuf : NULL);
-}
-
-GdkPixbuf *
-gtk_source_view_line_has_pixmap(GtkSourceView *view, gint line)
-{
-    GtkTextBuffer *buffer = NULL;
-    gint line_count = 0;
-    GdkPixbuf *data = NULL;
-
-    g_return_val_if_fail(view != NULL, NULL);
-    g_return_val_if_fail(GTK_IS_SOURCE_VIEW(view), NULL);
-
-    data = (GdkPixbuf *)g_hash_table_lookup(view->line_pixmaps, GINT_TO_POINTER(line));
-    return(data);
-}
-
-gint
-gtk_source_view_remove_all_pixmaps(GtkSourceView *view, gint line_start, gint line_end)
-{
-    GtkTextBuffer *buffer = NULL;
-    GdkPixbuf *data = NULL;
-    gint remove_count = 0;
-    gint line_count;
-    gint counter;
-
-    buffer = GTK_TEXT_VIEW(view)->buffer;
-    line_count = gtk_text_buffer_get_line_count(buffer);
-    line_start = line_start < 0 ? 0 : line_start;
-    line_end = line_end > line_count ? line_count : line_end;
-    for(counter = line_start; counter <= line_end; counter++)
-    {
-        data = (GdkPixbuf *)g_hash_table_lookup(view->line_pixmaps, GINT_TO_POINTER(counter));
-        if(data)
-        {
-            g_hash_table_remove(view->line_pixmaps, GINT_TO_POINTER(counter));
-            g_object_unref(G_OBJECT(data));
-            remove_count++;
-        }
-    }
 }
 
 void
@@ -499,17 +420,17 @@ get_lines (GtkTextView  *text_view, gint first_y, gint last_y, GArray *buffer_co
     count = 0;
     size = 0;
 
-    num = gtk_text_iter_get_line (&iter);
-    while (!gtk_text_iter_is_end (&iter))
+    num = gtk_text_iter_get_line(&iter);
+    do
     {
         gint y;
         gint height;
-        gtk_text_view_get_line_yrange (text_view, &iter, &y, &height);
+        gtk_text_view_get_line_yrange(text_view, &iter, &y, &height);
         g_array_append_val (buffer_coords, y);
-        ++count;
+        count++;
         if ((y + height) >= last_y) break;
         gtk_text_iter_forward_line (&iter);
-    }
+    } while(!gtk_text_iter_is_end (&iter));
     *countp = count;
     return(num);
 }
@@ -613,4 +534,49 @@ check_line_change_delete_cb_after(GtkTextBuffer *buffer, GtkTextIter *start, Gtk
     }
     if(slice) g_free(slice);
     GTK_SOURCE_VIEW(view)->delete = NULL;
+}
+
+gboolean
+gtk_source_view_add_pixbuf(GtkSourceView *view, const gchar *key, GdkPixbuf *pixbuf, gboolean overwrite)
+{
+    GtkTextBuffer *buffer = NULL;
+    gint line_count = 0;
+    gpointer data = NULL;
+    gboolean replaced = FALSE;
+
+    g_return_val_if_fail(view != NULL, FALSE);
+    g_return_val_if_fail(GTK_IS_SOURCE_VIEW(view), FALSE);
+
+    data = g_hash_table_lookup(view->pixmap_cache, key);
+    if(data && !overwrite) return(FALSE);
+
+    if(data)
+    {
+        g_hash_table_remove(view->pixmap_cache, key);
+        g_object_unref(G_OBJECT(data));
+        replaced = TRUE;
+    }
+    if(pixbuf && GDK_IS_PIXBUF(pixbuf))
+    {
+        gint width;
+        gint height;
+
+        width = gdk_pixbuf_get_width(pixbuf);
+        height = gdk_pixbuf_get_height(pixbuf);
+        if(width > GUTTER_PIXMAP || height > GUTTER_PIXMAP)
+        {
+            if(width > GUTTER_PIXMAP) width = GUTTER_PIXMAP;
+            if(height > GUTTER_PIXMAP) height = GUTTER_PIXMAP;
+            pixbuf = gdk_pixbuf_scale_simple(pixbuf, width, height, GDK_INTERP_NEAREST);
+        }
+        g_object_ref(G_OBJECT(pixbuf));
+        g_hash_table_insert(view->pixmap_cache, (gchar *)key, (gpointer)pixbuf);
+    }
+    return(replaced);
+}
+
+GdkPixbuf *
+gtk_source_view_get_pixbuf(GtkSourceView *view, const gchar *key)
+{
+   return(g_hash_table_lookup(view->pixmap_cache, key));
 }
