@@ -11,6 +11,7 @@ EXTRA_DIST = 			\
 	haskell.lang		\
 	html.lang		\
 	idl.lang		\
+	ini.lang		\
 	java.lang		\
 	javascript.lang		\
 	latex.lang		\
