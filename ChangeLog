@@ -1,3 +1,16 @@
+2003-05-24  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+
+	* gtksourceview/language-specs/ada.lang: 
+	* gtksourceview/language-specs/c.lang: 
+	* gtksourceview/language-specs/cpp.lang: Changed pattern for
+	matching character constants (patch by Michael Terry, bug #113498)
+
+	* gtksourceview/language-specs/desktop.lang: Added missing
+	'GenericName' keyword (bug #113467)
+
+	* TODO:
+	* README: Updated
+
 2003-05-22  Miloslav Trmac  <mitr@volny.cz>
 
 	* configure.in: Added cs (Czech) to ALL_LINGUAS.

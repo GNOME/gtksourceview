@@ -69,9 +69,10 @@
 		<keyword>volatile</keyword>
 	</keyword-list>
 
-	<pattern-item name = "Character String" style = "Character">
-		<regex>&apos;\\?[][a-zA-Z0-9_\\()#@!$%^&amp;*-=+&quot;{}&lt;&gt;]&apos;</regex>
-	</pattern-item>
+	<string name = "Character Constant" style = "String" end-at-line-end = "TRUE">
+		<start-regex>&apos;</start-regex>
+		<end-regex>&apos;</end-regex>
+	</string>
 
 	<pattern-item name = "Decimal" style = "Decimal">
 		<regex>\b([1-9][0-9]*|0)([Uu]([Ll]|LL|ll)?|([Ll]|LL|ll)[Uu]?)?\b</regex>

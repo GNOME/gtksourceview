@@ -11,9 +11,10 @@
 		<end-regex>&quot;</end-regex>
 	</string>
 
-	<pattern-item name = "Character String" style = "Character">
-		<regex>&apos;\\?[a-zA-Z0-9_\\()#@!$%^&amp;*-=+&quot;{}&lt;&gt;]&apos;</regex>
-	</pattern-item>
+	<string name = "Character Constant" style = "String" end-at-line-end = "TRUE">
+		<start-regex>&apos;</start-regex>
+		<end-regex>&apos;</end-regex>
+	</string>
 
 	<keyword-list name = "Preprocessor Keywords" style = "Preprocessor" case-sensitive="FALSE">
 		<keyword>package</keyword>
