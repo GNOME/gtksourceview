@@ -78,6 +78,10 @@ gint             gtk_source_buffer_get_tag_start       (GtkTextIter *iter);
 gint             gtk_source_buffer_get_tag_end         (GtkTextIter *iter);
 GtkSyntaxTag    *gtk_source_buffer_iter_has_syntax_tag (GtkTextIter *iter);
 
+void             gtk_source_buffer_highlight_region    (GtkSourceBuffer *sbuf,
+							GtkTextIter     *start,
+							GtkTextIter     *end);
+
 /* Regex methods. */
 gint             gtk_source_buffer_regex_search (const gchar          *text,
 						 gint                  pos,
@@ -137,7 +141,7 @@ gint             gtk_source_buffer_line_has_markers    (GtkSourceBuffer *buffer,
 gint             gtk_source_buffer_line_remove_markers (GtkSourceBuffer *buffer,
 							gint             line);
 GList           *gtk_source_buffer_get_all_markers     (GtkSourceBuffer *buffer);
-gint             gtk_source_view_remove_all_markers    (GtkSourceBuffer *buffer,
+gint             gtk_source_buffer_remove_all_markers  (GtkSourceBuffer *buffer,
 							gint             line_start,
 							gint             line_end);
 

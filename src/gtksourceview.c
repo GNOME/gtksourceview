@@ -67,9 +67,8 @@ static void gtk_source_view_get_lines (GtkTextView  *text_view,
 				       GArray       *buffer_coords,
 				       GArray       *numbers,
 				       gint         *countp);
-static gint gtk_source_view_expose (GtkWidget      *widget,
-				    GdkEventExpose *event,
-				    gpointer        user_data);
+static gint     gtk_source_view_expose (GtkWidget      *widget,
+					GdkEventExpose *event);
 
 
 static gint gtk_source_view_calculate_tab_stop_width (GtkWidget *widget,
@@ -83,12 +82,15 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	GObjectClass   *object_class;
 	GtkTextViewClass *textview_class;
 	GtkBindingSet    *binding_set;
-
+	GtkWidgetClass *widget_class;
+	
 	object_class = (GObjectClass *) klass;
 	textview_class = GTK_TEXT_VIEW_CLASS (klass);
 	parent_class = g_type_class_peek_parent (klass);
-
+	widget_class = GTK_WIDGET_CLASS (klass);
+	
 	object_class->finalize = gtk_source_view_finalize;
+	widget_class->expose_event = gtk_source_view_expose;
 	textview_class->populate_popup = gtk_source_view_populate_popup;
 	klass->undo = gtk_source_view_undo;
 	klass->redo = gtk_source_view_redo;
@@ -358,12 +360,10 @@ gtk_source_view_get_lines (GtkTextView  *text_view,
 	*countp = count;
 }
 
-static gint
-gtk_source_view_expose (GtkWidget      *widget,
-			GdkEventExpose *event,
-			gpointer        user_data)
+static void
+gtk_source_view_paint_margin (GtkSourceView *view,
+			      GdkEventExpose *event)
 {
-	GtkSourceView *view;
 	GtkTextView *text_view;
 	GdkWindow *win;
 	PangoLayout *layout;
@@ -377,14 +377,10 @@ gtk_source_view_expose (GtkWidget      *widget,
 	gint text_width;
 	gint i;
 
-	view = GTK_SOURCE_VIEW (user_data);
-	text_view = GTK_TEXT_VIEW (widget);
+	text_view = GTK_TEXT_VIEW (view);
 
 	win = gtk_text_view_get_window (text_view,
 					GTK_TEXT_WINDOW_LEFT);
-
-	if (event->window != win)
-		return FALSE;
 
 	y1 = event->area.y;
 	y2 = y1 + event->area.height;
@@ -415,7 +411,7 @@ gtk_source_view_expose (GtkWidget      *widget,
 				   numbers,
 				   &count);
 
-	layout = gtk_widget_create_pango_layout (widget, "");
+	layout = gtk_widget_create_pango_layout (GTK_WIDGET (view), "");
 
 	/* set size. */
 	str = g_strdup_printf ("%d", MAX (999,
@@ -440,13 +436,9 @@ gtk_source_view_expose (GtkWidget      *widget,
 	gtk_text_view_set_border_window_size (GTK_TEXT_VIEW (text_view),
 					      GTK_TEXT_WINDOW_LEFT,
 					      margin_width);
-
-	if (margin_width == 0) {
-		g_signal_handlers_disconnect_by_func (G_OBJECT (view),
-						      G_CALLBACK (gtk_source_view_expose),
-						      view);
-		return FALSE;
-	}
+	
+	if (margin_width == 0)
+		return;
 
 	i = 0;
 	while (i < count) {
@@ -464,12 +456,12 @@ gtk_source_view_expose (GtkWidget      *widget,
 
 			pango_layout_set_text (layout, str, -1);
 
-			gtk_paint_layout (widget->style,
+			gtk_paint_layout (GTK_WIDGET (view)->style,
 					  win,
-					  GTK_WIDGET_STATE (widget),
+					  GTK_WIDGET_STATE (view),
 					  FALSE,
 					  NULL,
-					  widget,
+					  GTK_WIDGET (view),
 					  NULL,
 					  text_width + 2, pos,
 					  layout);
@@ -497,8 +489,63 @@ gtk_source_view_expose (GtkWidget      *widget,
 	g_array_free (numbers, TRUE);
 
 	g_object_unref (G_OBJECT (layout));
+}
 
-	return TRUE;
+static gint
+gtk_source_view_expose (GtkWidget      *widget,
+			GdkEventExpose *event)
+{
+	GtkSourceView *view;
+	GtkTextView *text_view;
+	gboolean event_handled;
+	
+	view = GTK_SOURCE_VIEW (widget);
+	text_view = GTK_TEXT_VIEW (widget);
+
+	event_handled = FALSE;
+	
+	/* check if the expose event is for the text window first, and
+	 * highlight the exposed region */
+	if (event->window == gtk_text_view_get_window (text_view, GTK_TEXT_WINDOW_TEXT)) {
+		GtkTextIter iter1, iter2;
+		gint y;
+		
+		/* make sure the exposed area is highlighted */
+		gtk_text_view_window_to_buffer_coords (text_view,
+						       GTK_TEXT_WINDOW_TEXT,
+						       0,
+						       event->area.y,
+						       NULL,
+						       &y);
+		gtk_text_view_get_line_at_y (text_view, &iter1, y, NULL);
+		gtk_text_iter_backward_line (&iter1);
+		
+		gtk_text_view_window_to_buffer_coords (text_view,
+						       GTK_TEXT_WINDOW_TEXT,
+						       0,
+						       event->area.y + event->area.height,
+						       NULL,
+						       &y);
+		gtk_text_view_get_line_at_y (text_view, &iter2, y, NULL);
+		gtk_text_iter_forward_line (&iter2);
+
+		gtk_source_buffer_highlight_region (GTK_SOURCE_BUFFER (text_view->buffer),
+						    &iter1, &iter2);
+	}
+	
+	/* now check for the left window, which contains the margin */
+	if (event->window == gtk_text_view_get_window (text_view,
+						       GTK_TEXT_WINDOW_LEFT)) {
+		gtk_source_view_paint_margin (view, event);
+		event_handled = TRUE;
+	} else {
+		if (GTK_WIDGET_CLASS (parent_class)->expose_event)
+			event_handled = 
+				(* GTK_WIDGET_CLASS (parent_class)->expose_event)
+				(widget, event);
+	}
+	
+	return event_handled;	
 }
 
 /*
@@ -626,19 +673,16 @@ gtk_source_view_set_show_line_numbers (GtkSourceView *view,
 			else
 				gtk_widget_queue_draw (GTK_WIDGET (view));
 
-			if (!view->show_line_pixmaps)
-				g_signal_connect (G_OBJECT (view),
-						  "expose_event",
-						  G_CALLBACK (gtk_source_view_expose),
-						  view);
-
-			view->show_line_numbers = visible;		}	} else {
+			view->show_line_numbers = visible;
+		}
+	} else {
 		if (view->show_line_numbers) {
 			view->show_line_numbers = visible;
 
 			/* force expose event, which will adjust margin. */
 			gtk_widget_queue_draw (GTK_WIDGET (view));
-		}	}
+		}
+	}
 }
 
 gboolean
@@ -669,13 +713,9 @@ gtk_source_view_set_show_line_pixmaps (GtkSourceView *view,
 			else
 				gtk_widget_queue_draw (GTK_WIDGET (view));
 
-			if (!view->show_line_numbers)
-				g_signal_connect (G_OBJECT (view),
-						  "expose_event",
-						  G_CALLBACK (gtk_source_view_expose),
-						  view);
-
-			view->show_line_pixmaps = visible;		}	} else {
+			view->show_line_pixmaps = visible;
+		}
+	} else {
 		if (view->show_line_pixmaps) {
 			view->show_line_pixmaps = visible;
 

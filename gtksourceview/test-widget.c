@@ -43,11 +43,6 @@ test_source (GtkSourceBuffer *buffer)
 	g_object_set (G_OBJECT (tag), "foreground", "blue", NULL);
 	list = g_list_append (list, (gpointer) tag);
 
-	tag = gtk_pattern_tag_new ("defs",
-				   "^#[ \t]*\\(include\\|if\\|ifdef\\|ifndef\\|else\\|elif\\|define\\|endif\\|pragma\\)\\b");
-	g_object_set (G_OBJECT (tag), "foreground", "tomato3", NULL);
-	list = g_list_append (list, (gpointer) tag);
-
 	tag = gtk_pattern_tag_new ("numbers", "\\b[0-9]+\\.?\\b");
 	g_object_set (G_OBJECT (tag), "weight", PANGO_WEIGHT_BOLD, NULL);
 	list = g_list_append (list, (gpointer) tag);
@@ -88,6 +83,11 @@ test_source (GtkSourceBuffer *buffer)
 	g_object_set (G_OBJECT (tag), "foreground", "orange", NULL);
 	list = g_list_append (list, (gpointer) tag);
 
+	tag = gtk_pattern_tag_new ("defs",
+				   "^#[ \t]*\\(include\\|if\\|ifdef\\|ifndef\\|else\\|elif\\|define\\|endif\\|pragma\\|undef\\)\\b");
+	g_object_set (G_OBJECT (tag), "foreground", "tomato3", NULL);
+	list = g_list_append (list, (gpointer) tag);
+
 	tag = gtk_syntax_tag_new ("comment", "//", "\n");
 	g_object_set (G_OBJECT (tag), "foreground", "gray", "style", PANGO_STYLE_ITALIC, NULL);
 	list = g_list_append (list, (gpointer) tag);
@@ -103,7 +103,12 @@ test_source (GtkSourceBuffer *buffer)
 	gtk_source_buffer_install_regex_tags (buffer, list);
 	g_list_free (list);
 
+#if 0
 	gtk_source_buffer_load (buffer, "test-widget.c", &err);
+#else
+	gtk_source_buffer_load (buffer, "gtksourcebuffer.c", &err);
+#endif
+	
 #ifdef OLD
 	if (g_file_get_contents ("gtksourcebuffer.c", &txt, &len, &error)) {
 		gtk_text_buffer_set_text (GTK_TEXT_BUFFER (buffer), txt, len);
@@ -120,7 +125,7 @@ test_source (GtkSourceBuffer *buffer)
 
 	return GTK_TEXT_BUFFER (buffer);
 }
-gboolean
+static gboolean
 cb_func(GtkTextIter *iter1, GtkTextIter *iter2, gpointer data)
 {
   gtk_text_buffer_delete(GTK_TEXT_BUFFER(gtk_text_iter_get_buffer(iter1)), iter1, iter2);
@@ -132,7 +137,7 @@ cb_func(GtkTextIter *iter1, GtkTextIter *iter2, gpointer data)
   return FALSE;
 }
 
-void
+static void
 cb_entry_activate (GtkWidget *widget, gpointer data)
 {
   GtkTextSearch *search;
@@ -152,7 +157,7 @@ cb_entry_activate (GtkWidget *widget, gpointer data)
   g_free(txt);
 }
 
-void
+static void
 cb_convert (GtkWidget *widget, gpointer data)
 {
 	FILE *hf;
@@ -167,21 +172,21 @@ cb_convert (GtkWidget *widget, gpointer data)
 	g_free (txt);
 }
 
-void
+static void
 cb_toggle (GtkWidget *widget, gpointer data)
 {
 	gtk_source_view_set_show_line_pixmaps (GTK_SOURCE_VIEW (data),
 					       !GTK_SOURCE_VIEW (data)->show_line_pixmaps);
 }
 
-void
+static void
 cb_line_numbers_toggle (GtkWidget *widget, gpointer data)
 {
 	gtk_source_view_set_show_line_numbers (GTK_SOURCE_VIEW (data),
 					       !GTK_SOURCE_VIEW (data)->show_line_numbers);
 }
 
-void
+static void
 cb_move_cursor (GtkTextBuffer *b, GtkTextIter *cursoriter, GtkTextMark *mark, gpointer data)
 {
 	char buf[64];
@@ -208,6 +213,7 @@ main (int argc, char *argv[])
 	GtkWidget *tw;
 	GdkPixbuf *pixbuf;
 	int i;
+	PangoFontDescription *font_desc = NULL;
 
 	gtk_init (&argc, &argv);
 
@@ -240,6 +246,13 @@ main (int argc, char *argv[])
 	gtk_source_view_set_show_line_numbers (GTK_SOURCE_VIEW (tw), TRUE);
 	gtk_source_view_set_show_line_pixmaps (GTK_SOURCE_VIEW (tw), TRUE);
 	gtk_source_view_set_tab_stop (GTK_SOURCE_VIEW (tw), 8);
+
+	font_desc = pango_font_description_from_string ("monospace 10");
+	if (font_desc != NULL) {
+		gtk_widget_modify_font (tw, font_desc);
+		pango_font_description_free (font_desc);
+	}
+
 	gtk_container_add (GTK_CONTAINER (scrolled), tw);
 
 	button = gtk_button_new_with_label ("Toggle line pixmaps");

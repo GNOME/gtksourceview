@@ -1,3 +1,33 @@
+2003-01-02  Gustavo Giraldez  <gustavo.giraldez@gmx.net>
+
+	* autogen.sh: Changed to standard gnome2 autogen.sh 
+	* ltmain.sh: Removed, since it's installed by libtoolize.
+	* configure.in: Updated required Gtk+ version.
+	* src/Makefile.am: Added gtktextregion.[ch] and testregion test
+	program
+	* src/gtktextregion.h, src/gtktextregion.c: New files for doing
+	text region operations in a GtkTextBuffer.
+	* src/testregion.c: Test program for GtkTextRegion.
+	* src/gtksourcebuffer.c (idle_refresh_handler, refresh_range,
+	gtk_source_buffer_highligth_region) Implemented incremental
+	highlighting
+	(check_pattern): Changed iteration strategy from trying to match
+	each character with each pattern, to, for each pattern search the
+	whole region for a match (thus making use of the compiled regex
+	fastmap)
+	(get_tag_start): Use faster gtk_text_backward_to_tag_toggle
+	instead of interating with a while loop.
+	(get_tag_end): Idem.
+	* src/gtksourcebuffer.h: New prototype
+	gtk_source_buffer_highlight_region.
+	* src/gtksourceview.c: Changed expose handler from a signal hook
+	to a virtual override in the class.  Expose also now handles the
+	highlighting of the region that's about to be drawn.
+	(gtk_source_view_paint_margin): New function: separated left
+	margin painting from the expose handler.
+	* src/test-widget.c: Set a monospaced font instead of using the
+	default theme font.
+	
 2002-09-22  Jeroen Zwartepoorte  <jeroen@xs4all.nl>
 
 	* src/gtksourcebuffer.h:

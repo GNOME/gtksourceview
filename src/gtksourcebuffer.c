@@ -25,10 +25,26 @@
 #include <libgnome/gnome-i18n.h>
 #include "gtkundomanager.h"
 #include "gtksourceview-marshal.h"
+#include "gtktextregion.h"
+
+#undef ENABLE_DEBUG
+
+#ifdef ENABLE_DEBUG
+#define DEBUG(x) (x)
+#else
+#define DEBUG(x)
+#endif
 
 #define UNDO_TYPE_INSERT_TEXT 1
 #define UNDO_TYPE_REMOVE_RANGE 2
 #define SEARCH_CASE_INSENSITIVE 3
+
+/* how many lines will the refresh idle handler process at a time */
+#define DEFAULT_IDLE_REFRESH_LINES_PER_RUN  100
+#define MINIMUM_IDLE_REFRESH_LINES_PER_RUN  20
+/* in milliseconds */
+#define IDLE_REFRESH_TIME_SLICE             100
+
 
 typedef struct _SearchInfo {
 	const gchar *searchfor;
@@ -45,8 +61,6 @@ typedef struct _MarkerSubList {
 struct _GtkSourceBufferPrivate {
 	gint            highlight : 1;
 	gint            check_brackets : 1;
-	gint            refresh_start;
-	gint            refresh_length;
 	GtkTextTag     *bracket_match_tag;
 	GtkTextMark    *mark;
 	GHashTable     *line_markers;
@@ -60,6 +74,11 @@ struct _GtkSourceBufferPrivate {
 	GList          *embedded_items;
 	Regex           reg_syntax_all;
 
+	/* region covering the unhighlighted text */
+	GtkTextRegion  *refresh_region;
+	guint           refresh_idle_handler;
+	guint           refresh_lines;
+	
 	GtkUndoManager *undo_manager;
 };
 
@@ -127,6 +146,10 @@ static gboolean read_loop (GtkTextBuffer *buffer,
 			   GError       **error);
 
 
+/* ----------------------------------------------------------------------
+   Private functions
+   ---------------------------------------------------------------------- */
+
 static void
 gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 {
@@ -179,7 +202,6 @@ gtk_source_buffer_init (GtkSourceBuffer *buffer)
 	priv->undo_manager = gtk_undo_manager_new (buffer);
 
 	priv->check_brackets = FALSE;
-	priv->highlight = TRUE;
 	priv->mark = NULL;
 	priv->undo_redo = NULL;
 	priv->undo_level = 0;
@@ -187,6 +209,12 @@ gtk_source_buffer_init (GtkSourceBuffer *buffer)
 	priv->undo_redo_processing = FALSE;
 	priv->line_markers = g_hash_table_new (NULL, NULL);
 
+	/* highlight data */
+	priv->highlight = TRUE;
+	priv->refresh_idle_handler = 0;
+	priv->refresh_region = gtk_text_region_new (GTK_TEXT_BUFFER (buffer));
+	priv->refresh_lines = DEFAULT_IDLE_REFRESH_LINES_PER_RUN;
+	
 	g_signal_connect_closure (G_OBJECT (buffer),
 				  "mark_set",
 				  g_cclosure_new (G_CALLBACK (move_cursor),
@@ -214,11 +242,18 @@ gtk_source_buffer_finalize (GObject *object)
 
 	buffer = GTK_SOURCE_BUFFER (object);
 
-	if (buffer->priv->line_markers) {
-		g_hash_table_foreach_remove (buffer->priv->line_markers,
-					     (GHRFunc) hash_remove_func,
-					     NULL);
-		g_hash_table_destroy (buffer->priv->line_markers);
+	if (buffer->priv) {
+		if (buffer->priv->line_markers) {
+			g_hash_table_foreach_remove (buffer->priv->line_markers,
+						     (GHRFunc) hash_remove_func,
+						     NULL);
+			g_hash_table_destroy (buffer->priv->line_markers);
+		}
+
+		gtk_text_region_destroy (buffer->priv->refresh_region);
+		
+		g_free (buffer->priv);
+		buffer->priv = NULL;
 	}
 }
 
@@ -268,30 +303,28 @@ static gint
 get_tag_start (GtkTextTag  *tag,
 	       GtkTextIter *iter)
 {
-	gint count = 0;
+	gint oldoff;
 
-	do {
-		count++;
-		if (gtk_text_iter_begins_tag (iter, tag))
-			break;
-	} while (gtk_text_iter_backward_char (iter));
-
-	return count;
+	if (gtk_text_iter_begins_tag (iter, tag))
+		return 0;
+		
+	oldoff = gtk_text_iter_get_offset (iter);
+	gtk_text_iter_backward_to_tag_toggle (iter, tag);
+	return oldoff - gtk_text_iter_get_offset (iter);
 }
 
 static gint
 get_tag_end (GtkTextTag  *tag,
 	     GtkTextIter *iter)
 {
-	gint count = 0;
+	gint oldoff;
 
-	do {
-		count++;
-		if (gtk_text_iter_ends_tag (iter, tag))
-			break;
-	} while (gtk_text_iter_forward_char (iter));
-
-	return count;
+	if (gtk_text_iter_ends_tag (iter, tag))
+		return 0;
+		
+	oldoff = gtk_text_iter_get_offset (iter);
+	gtk_text_iter_forward_to_tag_toggle (iter, tag);
+	return gtk_text_iter_get_offset (iter) - oldoff;
 }
 
 static void
@@ -353,6 +386,90 @@ move_cursor (GtkTextBuffer *buffer,
 	}
 }
 
+static gboolean
+idle_refresh_handler (GtkSourceBuffer *sbuf)
+{
+	GtkTextIter start, end;
+	GtkSourceBufferPrivate *priv;
+	GtkTextBuffer *buffer;
+	gboolean retval;
+	
+	g_return_val_if_fail (sbuf != NULL, FALSE);
+	
+	priv = sbuf->priv;
+	buffer = GTK_TEXT_BUFFER (sbuf);
+	retval = TRUE;
+	
+	/* make sure the region contains valid data */
+	gtk_text_region_clear_zero_length_subregions (priv->refresh_region);
+
+	if (!priv->highlight || gtk_text_region_subregions (priv->refresh_region) == 0) {
+		/* nothing to do */
+		retval = FALSE;
+	} else {
+		GTimer *timer;
+		gulong  slice;
+		
+		/* get us some work to do */
+		gtk_text_region_nth_subregion (priv->refresh_region, 0, &start, &end);
+
+		if (gtk_text_iter_get_line (&end) - gtk_text_iter_get_line (&start)
+		    > priv->refresh_lines) {
+			/* region too big, reduce it */
+			end = start;
+			gtk_text_iter_forward_lines (&end, priv->refresh_lines);
+		}
+	
+		/* profile syntax highlighting */
+		timer = g_timer_new ();
+		g_timer_start (timer);
+
+		check_embedded (sbuf, &start, &end);
+
+		g_timer_stop (timer);
+		g_timer_elapsed (timer, &slice);
+		g_timer_destroy (timer);
+
+		/* assume elapsed time is linear with number of lines
+                   and make our best guess for next run */
+		priv->refresh_lines = (IDLE_REFRESH_TIME_SLICE * 1000
+				       * priv->refresh_lines) / slice;
+		priv->refresh_lines = MAX (priv->refresh_lines, MINIMUM_IDLE_REFRESH_LINES_PER_RUN);
+		
+		/* region done */
+		gtk_text_region_substract (priv->refresh_region, &start, &end);
+	}
+	
+	if (!retval || gtk_text_region_subregions (priv->refresh_region) == 0) {
+		/* nothing else to do */
+		retval = FALSE;
+
+		/* handler will be removed */
+		priv->refresh_idle_handler = 0;
+	}
+
+	return retval;
+}
+
+static void
+refresh_range (GtkSourceBuffer *sbuf,
+	       GtkTextIter     *start,
+	       GtkTextIter     *end)
+{
+	g_return_if_fail (sbuf && GTK_IS_SOURCE_BUFFER (sbuf));
+
+	/* add the region to the refresh region */
+	gtk_text_region_add (sbuf->priv->refresh_region, start, end);
+	
+	if (sbuf->priv->highlight && !sbuf->priv->refresh_idle_handler) {
+		/* now add the idle handler if one was not running */
+		sbuf->priv->refresh_idle_handler = g_idle_add_full (
+			G_PRIORITY_DEFAULT_IDLE,
+			(GSourceFunc) idle_refresh_handler,
+			sbuf, NULL);
+	}
+}
+
 static void
 gtk_source_buffer_real_insert_text (GtkTextBuffer *buffer,
 				    GtkTextIter   *iter,
@@ -363,7 +480,8 @@ gtk_source_buffer_real_insert_text (GtkTextBuffer *buffer,
 	GtkTextIter start, end;
 	GtkSourceBuffer *sbuf;
 	GtkSourceBufferPrivate *priv;
-
+	gint soff, eoff;
+	
 	g_return_if_fail (buffer != NULL);
 	g_return_if_fail (GTK_IS_SOURCE_BUFFER (buffer));
 
@@ -406,29 +524,18 @@ gtk_source_buffer_real_insert_text (GtkTextBuffer *buffer,
 		gtk_text_buffer_get_bounds (buffer, &start, &end);
 
 	gtk_text_buffer_remove_all_tags (buffer, &start, &end);
-	priv->refresh_start = gtk_text_iter_get_offset (&start);
-	priv->refresh_length = gtk_text_iter_get_offset (&end) - priv->refresh_start;
-	if (priv->refresh_length < len)
-		priv->refresh_length = len;
-
+	soff = gtk_text_iter_get_offset (&start);
+	eoff = gtk_text_iter_get_offset (&end) + len;
+	
 	parent_class->insert_text (buffer, iter, text, len);
-
-	start = end = *iter;
-	gtk_text_iter_backward_chars (&start, len);
 
 	/* FIXME */
 	/*gtk_source_buffer_undo_insert (sbuf, UNDO_TYPE_REMOVE_RANGE, &start, &end);*/
 
-	if (!priv->refresh_length)
-		return;
-
-	gtk_text_iter_set_offset (&start, priv->refresh_start);
-	end = start;
-	gtk_text_iter_forward_chars (&end, priv->refresh_length);
-	priv->refresh_start = 0;
-	priv->refresh_length = 0;
-
-	check_embedded (sbuf, &start, &end);
+	gtk_text_buffer_get_iter_at_offset (buffer, &start, soff);
+	gtk_text_buffer_get_iter_at_offset (buffer, &end, eoff);
+	
+	refresh_range (sbuf, &start, &end);
 }
 
 static void
@@ -441,7 +548,8 @@ gtk_source_buffer_real_delete_range (GtkTextBuffer *buffer,
 	GtkSyntaxTag *tag;
 	GtkSourceBuffer *sbuf;
 	GtkSourceBufferPrivate *priv;
-
+	gint refresh_start, refresh_length;
+	
 	sbuf = GTK_SOURCE_BUFFER (buffer);
 	priv = sbuf->priv;
 	start = *iter;
@@ -479,29 +587,26 @@ gtk_source_buffer_real_delete_range (GtkTextBuffer *buffer,
 			scount = get_tag_start (GTK_TEXT_TAG (tag), &start);
 			ecount = get_tag_end (GTK_TEXT_TAG (tag), &end);
 			if (scount > tag->reg_start.len && ecount > tag->reg_end.len)  {
-                	parent_class->delete_range (buffer, iter, iter2);
+				parent_class->delete_range (buffer, iter, iter2);
 				return;
-              }
+			}
 		}
 	}
 
-	priv->refresh_start = gtk_text_iter_get_offset (&start);
-	priv->refresh_length = gtk_text_iter_get_offset (&end) - priv->refresh_start;
+	refresh_start = gtk_text_iter_get_offset (&start);
+	refresh_length = gtk_text_iter_get_offset (&end) - refresh_start;
 	gtk_text_buffer_remove_all_tags (buffer, &start, &end);
 
 	parent_class->delete_range (buffer, iter, iter2);
 
-	if (!priv->refresh_length)
+	if (!refresh_length)
 		return;
 
-	start = *iter;
-	gtk_text_iter_set_offset (&start, priv->refresh_start);
+	gtk_text_buffer_get_iter_at_offset (buffer, &start, refresh_start);
 	end = start;
-	gtk_text_iter_forward_chars (&end, priv->refresh_length);
+	gtk_text_iter_forward_chars (&end, refresh_length);
 
-	priv->refresh_start = 0;
-	priv->refresh_length = 0;
-	check_embedded (sbuf, &start, &end);
+	refresh_range (sbuf, &start, &end);
 }
 
 
@@ -531,6 +636,10 @@ check_embedded (GtkSourceBuffer *sbuf,
 	gint nlen = 0;
 	gint i = 0;
 	gint j = 0;
+
+	DEBUG (g_message ("check_embedded (%d, %d)",
+			  gtk_text_iter_get_offset (iter1),
+			  gtk_text_iter_get_offset (iter2)));
 
 	buf = GTK_TEXT_BUFFER (sbuf);
 	list = gtk_source_buffer_get_embedded_entries (sbuf);
@@ -563,17 +672,17 @@ check_embedded (GtkSourceBuffer *sbuf,
 						g_print ("Embedded item found at position %d with length %d.\n", j, nlen);
 						gtk_text_buffer_apply_tag (buf, GTK_TEXT_TAG (tag),
 									   &cur_iter, &end_iter);
-						// we're about to j++ so make sure we compensate now
+						/* we're about to j++ so make sure we compensate now */
 						j += (nlen - 1);
-						// dont compensate here tho
+						/* dont compensate here tho */
 						gtk_text_iter_forward_chars (&cur_iter, nlen);
 					} else {
 						gtk_text_iter_forward_char (&cur_iter);
 					}
 				}
 			}
-			gtk_text_iter_forward_char (&start_iter);
 		}
+		gtk_text_iter_forward_char (&start_iter);
 	}
 	g_free (text);
 	check_syntax (sbuf, iter1, iter2);
@@ -682,44 +791,54 @@ check_pattern (GtkSourceBuffer *sbuf,
 	       GtkTextIter     *iter)
 {
 	GtkTextBuffer *buf;
-	GList *list = NULL;
+	GList *patterns = NULL, *l;
 	GtkTextIter start_iter;
 	GtkTextIter end_iter;
 	GtkPatternTag *tag = NULL;
-	gint max_length = 0;
 	gint i = 0;
-	gint len = 0;
-
+	
 	buf = GTK_TEXT_BUFFER (sbuf);
-	list = gtk_source_buffer_get_pattern_entries (sbuf);
-	if (!list)
+	patterns = gtk_source_buffer_get_pattern_entries (sbuf);
+	if (!patterns)
 		return;
 
-	max_length = gtk_text_buffer_get_char_count (buf);
-	if (len > max_length)
-		len = strlen (text);
+	for (l = patterns; l; l = l->next) {
+		tag = GTK_PATTERN_TAG (l->data);
+		start_iter = *iter;
 
-	start_iter = *iter;
-
-	for (i = 0; i < length; i++) {
-		for (list = gtk_source_buffer_get_pattern_entries (sbuf); list; list = list->next) {
-			tag = GTK_PATTERN_TAG (list->data);
-			if ((len =
-			     gtk_source_buffer_regex_match (text, i, length,
-							    &tag->reg_pattern)) > 0) {
+		i = 0;
+		while (i < length && i >= 0) {
+			i = re_search (&tag->reg_pattern.buf,
+				       text,
+				       length,
+				       i,
+				       (length - i),
+				       &tag->reg_pattern.reg);
+			
+			if (i >= 0) {
+				if (tag->reg_pattern.reg.end [0] == i) {
+					g_warning ("Zero length regex match.  "
+					           "Probably a buggy syntax specification.");
+					i++;
+					continue;
+				}
+				
+				gtk_text_iter_set_offset (
+					&start_iter,
+					gtk_text_iter_get_offset (iter) + i);
 				end_iter = start_iter;
-				gtk_text_iter_forward_chars (&end_iter, len);
-				/* g_print("applied pattern tag [] at startpos %d endpos %d\n", pos, endpos + pos); */
-				gtk_text_buffer_apply_tag (buf, GTK_TEXT_TAG (tag), &start_iter,
+				gtk_text_iter_forward_chars (
+					&end_iter, tag->reg_pattern.reg.end [0] - i);
+				
+				gtk_text_buffer_apply_tag (buf, GTK_TEXT_TAG (tag),
+							   &start_iter,
 							   &end_iter);
-				// compensate for the i++ that will happen in a moment by using len-1
-				i += (len - 1);
-				gtk_text_iter_forward_chars (&start_iter, len - 1);
+				i = tag->reg_pattern.reg.end [0];
 			}
 		}
-		gtk_text_iter_forward_char (&start_iter);
 	}
 }
+
 
 static gint
 get_syntax_end (const gchar          *text,
@@ -921,6 +1040,39 @@ gtk_source_buffer_attach_to_view (GtkSourceBuffer *buffer,
 				priv->bracket_match_tag);
 }
 
+void 
+gtk_source_buffer_highlight_region (GtkSourceBuffer *sbuf,
+				    GtkTextIter     *start,
+				    GtkTextIter     *end)
+{
+	GtkTextRegion *region;
+	
+	g_return_if_fail (sbuf != NULL && start != NULL && end != NULL);
+
+	if (!sbuf->priv->highlight)
+		return;
+
+	/* get the subregions not yet highlighted */
+	region = gtk_text_region_intersect (sbuf->priv->refresh_region, start, end);
+	if (region) {
+		GtkTextIter iter1, iter2;
+		gint i;
+		
+		/* highlight all subregions from the intersection.
+                   hopefully this will only be one subregion */
+		for (i = 0; i < gtk_text_region_subregions (region); i++) {
+			gtk_text_region_nth_subregion (region, i, &iter1, &iter2);
+			DEBUG (g_message ("Actually hightlighting from %d to %d",
+					  gtk_text_iter_get_offset (&iter1),
+					  gtk_text_iter_get_offset (&iter2)));
+			check_embedded (sbuf, &iter1, &iter2);
+		}
+		gtk_text_region_destroy (region);
+		/* remove the just highlighted region */
+		gtk_text_region_substract (sbuf->priv->refresh_region, start, end);
+	}
+}
+
 gint
 gtk_source_buffer_regex_search (const gchar          *text,
 				gint                  pos,
@@ -1052,6 +1204,8 @@ gtk_source_buffer_install_regex_tags (GtkSourceBuffer *buffer,
 			priv->pattern_items = g_list_append (priv->pattern_items, cur->data);
 			gtk_text_tag_table_add (GTK_TEXT_BUFFER (buffer)->tag_table,
 						GTK_TEXT_TAG (cur->data));
+			/* lower priority for pattern tags */
+			gtk_text_tag_set_priority (GTK_TEXT_TAG (cur->data), 0);
 		} else if (GTK_IS_EMBEDDED_TAG (cur->data)) {
 			priv->embedded_items = g_list_append (priv->embedded_items, cur->data);
 			gtk_text_tag_table_add (GTK_TEXT_BUFFER (buffer)->tag_table,
@@ -1619,11 +1773,16 @@ gtk_source_buffer_set_highlight (GtkSourceBuffer *buffer,
 	gtk_text_buffer_get_bounds (GTK_TEXT_BUFFER (buffer), &iter1, &iter2);
 
 	if (highlight)
-		check_embedded (buffer, &iter1, &iter2);
-	else
+		refresh_range (buffer, &iter1, &iter2);
+	else {
+		if (buffer->priv->refresh_idle_handler) {
+			g_source_remove (buffer->priv->refresh_idle_handler);
+			buffer->priv->refresh_idle_handler = 0;
+		}
 		gtk_text_buffer_remove_all_tags (GTK_TEXT_BUFFER (buffer),
 						 &iter1,
 						 &iter2);
+	}
 }
 
 gboolean
@@ -1825,3 +1984,5 @@ gtk_source_buffer_save_with_character_encoding (GtkSourceBuffer *buffer,
 
 	return TRUE;
 }
+
+	

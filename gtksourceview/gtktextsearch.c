@@ -128,7 +128,7 @@ gtk_text_search_set_interval (GtkTextSearch *text_search,
   gtk_text_search_set (text_search, buffer, start, NULL, 0, end);
 }
 
-gboolean
+static gboolean
 gtk_source_buffer_compare_unichar (gunichar ch,  gpointer data)
 {
   GtkTextSearch *si;

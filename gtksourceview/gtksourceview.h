@@ -13,8 +13,10 @@
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU Library General Public License for more details.
  *
- *  You should have received a copy of the GNU Library General Public License*  along with this program; if not, write to the Free Software
- *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+ *  You should have received a copy of the GNU Library General Public
+ *  License* along with this program; if not, write to the Free
+ *  Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+ *  02111-1307, USA.
  */
 
 #ifndef __GTK_SOURCE_VIEW_H__
@@ -56,9 +58,9 @@ struct _GtkSourceViewClass
   void (*redo) ();
 };
 
-GType gtk_source_view_get_type();
+GType gtk_source_view_get_type(void);
 
-GtkWidget *gtk_source_view_new();
+GtkWidget *gtk_source_view_new(void);
 GtkWidget *gtk_source_view_new_with_buffer(GtkSourceBuffer *buffer);
 
 void gtk_source_view_set_show_line_numbers(GtkSourceView *view, gboolean show);

@@ -1,11 +1,12 @@
 INCLUDES = \
+	$(WARN_CFLAGS) \
 	-DG_LOG_DOMAIN=\"GtkSourceView\" \
 	-I$(top_srcdir) \
 	-I$(top_srcdir)/src \
 	@DEP_CFLAGS@
 
 # testing executable
-noinst_PROGRAMS = test-widget
+noinst_PROGRAMS = test-widget testregion
 
 # libs
 lib_LTLIBRARIES = libgtksourceview.la
@@ -28,7 +29,9 @@ libgtksourceview_la_SOURCES = \
 	gtkundomanager.h \
 	gtkundomanager.c \
 	gtksourceview-marshal.h \
-	gtksourceview-marshal.c
+	gtksourceview-marshal.c \
+	gtktextregion.h \
+	gtktextregion.c
 
 libgtksourceview_la_LIBADD = @DEP_LIBS@
 
@@ -58,5 +61,12 @@ test_widget_SOURCES = test-widget.c
 test_widget_LDADD = \
 	libgtksourceview.la \
 	@DEP_LIBS@
+
+testregion_SOURCES = testregion.c
+
+testregion_LDADD = \
+	libgtksourceview.la \
+	@DEP_LIBS@
+
 
 EXTRA_DIST=gtksourceview-marshal.list

@@ -64,7 +64,8 @@ struct _GtkTextSearchClass
     
 };
 
-GType gtk_text_search_get_type ();
+GType gtk_text_search_get_type (void);
+
 GtkTextSearch * gtk_text_search_new (GtkTextBuffer *buffer, const GtkTextIter *start, 
                                               const char *search,
                                                 GtkETextSearchFlags sflags, 
@@ -75,7 +76,7 @@ void gtk_text_search_set (GtkTextSearch *search,
                                     const char *searchfor,  
                                    GtkETextSearchFlags sflags, 
                                                 const GtkTextIter *limit);
-void gtk_text_searh_set_interval (GtkTextSearch *search, GtkTextBuffer *buffer, const GtkTextIter *start, const GtkTextIter *end);
+void gtk_text_search_set_interval (GtkTextSearch *search, GtkTextBuffer *buffer, const GtkTextIter *start, const GtkTextIter *end);
 
 gboolean gtk_text_search_forward (GtkTextSearch *search, GtkTextIter *match_start, GtkTextIter *match_end);
 gboolean gtk_text_search_backward (GtkTextSearch *search, GtkTextIter *match_start, GtkTextIter *match_end);
