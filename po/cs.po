@@ -1,0 +1,188 @@
+# Czech translation of gtksourceview.
+# Copyright (C) 2003 gtksourceview's COPYRIGHT HOLDER
+# This file is distributed under the same license as the gtksourceview package.
+# Miloslav Trmac <mitr@volny.cz>, 2003.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gtksourceview VERSION\n"
+"POT-Creation-Date: 2003-05-22 12:49+0200\n"
+"PO-Revision-Date: 2003-05-22 18:59+0200\n"
+"Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
+"Language-Team: Czech <cs@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: gtksourceview/gtksourceview.c:207
+msgid "Show Line Numbers"
+msgstr "Zobrazovat čísla řádků"
+
+#: gtksourceview/gtksourceview.c:208
+msgid "Whether to display line numbers"
+msgstr "Jestli zobrazovat čísla řádků"
+
+#: gtksourceview/gtksourceview.c:215
+msgid "Show Line Markers"
+msgstr "Zobrazovat značky řádků"
+
+#: gtksourceview/gtksourceview.c:216
+msgid "Whether to display line marker pixbufs"
+msgstr "Jestli zobrazovat pixbufy značek řádků"
+
+#: gtksourceview/gtksourceview.c:223 gtksourceview/gtksourceview.c:224
+msgid "Tabs Width"
+msgstr "Šířka tabelátorů"
+
+#: gtksourceview/gtksourceview.c:233
+msgid "Auto Indentation"
+msgstr "Automatické odsazování"
+
+#: gtksourceview/gtksourceview.c:234
+msgid "Whether to enable auto indentation"
+msgstr "Jestli povolit automatické odsazování"
+
+#: gtksourceview/gtksourceview.c:240
+msgid "Insert Spaces Instead of Tabs"
+msgstr "Vkládat mezery místo tabelátorů"
+
+#: gtksourceview/gtksourceview.c:241
+msgid "Whether to insert spaces instead of tabs"
+msgstr "Jestli vkládat mezery místo tabelátorů"
+
+#: gtksourceview/gtksourceview.c:248
+msgid "Show Right Margin"
+msgstr "Zobrazovat pravý okraj"
+
+#: gtksourceview/gtksourceview.c:249
+msgid "Whether to display the right margin"
+msgstr "Jestli zobrazovat pravý okraj"
+
+#: gtksourceview/gtksourceview.c:256
+msgid "Margin position"
+msgstr "Pozice okraje"
+
+#: gtksourceview/gtksourceview.c:257
+msgid "Position of the right margin"
+msgstr "Pozice pravého okraje"
+
+#: gtksourceview/gtksourceview.c:266
+msgid "Use smart home/end"
+msgstr "Používat chytré home/end"
+
+#: gtksourceview/gtksourceview.c:267
+msgid ""
+"HOME and END keys move to first/last characters on line first before going "
+"to the start/end of the line"
+msgstr ""
+"Klávesy HOME a END jdou nejdřív na první/poslední znak řádku a až potom na "
+"začátek/konec řádku"
+
+#: gtksourceview/gtksourcebuffer.c:277
+msgid "Escape Character"
+msgstr "Znak escape"
+
+#: gtksourceview/gtksourcebuffer.c:278
+msgid "Escaping character for syntax delimiters"
+msgstr "Znak escape pro označovače syntaxe"
+
+#: gtksourceview/gtksourcebuffer.c:286
+msgid "Check Brackets"
+msgstr "Kontrolovat závorky"
+
+#: gtksourceview/gtksourcebuffer.c:287
+msgid "Whether to check and highlight matching brackets"
+msgstr "Jestli kontrolovat a zvýrazňovat odpovídající si závorky"
+
+#: gtksourceview/gtksourcebuffer.c:295
+msgid "Highlight"
+msgstr "Zvýrazňovat"
+
+#: gtksourceview/gtksourcebuffer.c:296
+msgid "Whether to syntax highlight the buffer"
+msgstr "Jestli zvýrazňovat syntaxi v bufferu"
+
+#: gtksourceview/gtksourcebuffer.c:304
+msgid "Maximum Undo Levels"
+msgstr "Maximum úrovní vracení zpět"
+
+#: gtksourceview/gtksourcebuffer.c:305
+msgid "Number of undo levels for the buffer"
+msgstr "Počet úrovní vracení zpět v bufferu"
+
+#: gtksourceview/gtksourcebuffer.c:315
+msgid "Language"
+msgstr "Jazk"
+
+#: gtksourceview/gtksourcebuffer.c:316
+msgid "Language object to get highlighting rules from"
+msgstr "Objekt jazyka, ze kterého brát zvýrazňovací pravidla"
+
+#: gtksourceview/gtksourcelanguagesmanager.c:119
+msgid "Language spefications directories"
+msgstr "Adresáře specifikací jazyků"
+
+#: gtksourceview/gtksourcelanguagesmanager.c:120
+msgid ""
+"List of directories where the language spefication files (.lang) are located"
+msgstr "Seznam adresářů, kde jsou umístěny soubory specifikace jazyka (.lang)"
+
+#: gtksourceview/gtksourcestylescheme.c:222
+msgid "Base-N Integer"
+msgstr "Celé číslo o základu N"
+
+#: gtksourceview/gtksourcestylescheme.c:227
+msgid "Character"
+msgstr "Znak"
+
+#: gtksourceview/gtksourcestylescheme.c:232
+msgid "Comment"
+msgstr "Poznámka"
+
+#: gtksourceview/gtksourcestylescheme.c:237
+msgid "Data Type"
+msgstr "Datový typ"
+
+#: gtksourceview/gtksourcestylescheme.c:242
+msgid "Function"
+msgstr "Funkce"
+
+#: gtksourceview/gtksourcestylescheme.c:247
+msgid "Decimal"
+msgstr "Desítkové"
+
+#: gtksourceview/gtksourcestylescheme.c:252
+msgid "Floating Point"
+msgstr "S plovoucí řádovou čárkou"
+
+#: gtksourceview/gtksourcestylescheme.c:257
+msgid "Keyword"
+msgstr "Klíčové slovo"
+
+#: gtksourceview/gtksourcestylescheme.c:262
+msgid "Preprocessor"
+msgstr "Preprocesor"
+
+#: gtksourceview/gtksourcestylescheme.c:267
+msgid "String"
+msgstr "Řetězec"
+
+#: gtksourceview/gtksourcestylescheme.c:272
+msgid "Specials"
+msgstr "Speciální"
+
+#: gtksourceview/gtksourcestylescheme.c:277
+msgid "Others"
+msgstr "Jiné"
+
+#: gtksourceview/gtksourcestylescheme.c:282
+msgid "Others 2"
+msgstr "Jiné 2"
+
+#: gtksourceview/gtksourcestylescheme.c:287
+msgid "Others 3"
+msgstr "Jiné 3"
+
+#: gtksourceview/gtksourcestylescheme.c:324
+msgid "Default"
+msgstr "Implicitní"
