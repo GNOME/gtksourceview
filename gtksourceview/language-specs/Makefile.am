@@ -6,6 +6,7 @@ EXTRA_DIST = 			\
 	cpp.lang		\
 	diff.lang		\
 	desktop.lang		\
+	haskell.lang		\
 	html.lang		\
 	idl.lang		\
 	java.lang		\
