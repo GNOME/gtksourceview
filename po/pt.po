@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 2.4\n"
 "Report-Msgid-Bugs-To: Duarte Loreto <happyguy_pt@hotmail.com>\n"
-"POT-Creation-Date: 2003-08-04 20:39+0200\n"
-"PO-Revision-Date: 2003-08-04 23:50+0000\n"
+"POT-Creation-Date: 2003-09-27 16:08+0100\n"
+"PO-Revision-Date: 2003-09-27 16:10+0000\n"
 "Last-Translator: Duarte Loreto <happyguy_pt@hotmail.com>\n"
 "Language-Team: Portuguese <gnome_pt@hotmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -202,7 +202,7 @@ msgstr "Pré-processador"
 #: gtksourceview/language-specs/cpp.lang.h:15
 #: gtksourceview/language-specs/html.lang.h:8
 #: gtksourceview/language-specs/idl.lang.h:8
-#: gtksourceview/language-specs/java.lang.h:11
+#: gtksourceview/language-specs/java.lang.h:12
 #: gtksourceview/language-specs/perl.lang.h:6
 #: gtksourceview/language-specs/po.lang.h:6
 #: gtksourceview/language-specs/python.lang.h:11
@@ -333,7 +333,7 @@ msgstr "Palavras-Chave"
 #: gtksourceview/language-specs/cpp.lang.h:11
 #: gtksourceview/language-specs/desktop.lang.h:7
 #: gtksourceview/language-specs/diff.lang.h:5
-#: gtksourceview/language-specs/java.lang.h:5
+#: gtksourceview/language-specs/java.lang.h:7
 #: gtksourceview/language-specs/perl.lang.h:3
 #: gtksourceview/language-specs/python.lang.h:4
 msgid "Line Comment"
@@ -352,7 +352,7 @@ msgstr "Palavra-Chave de Pré-Processador"
 #: gtksourceview/language-specs/c.lang.h:14
 #: gtksourceview/language-specs/cpp.lang.h:14
 #: gtksourceview/language-specs/idl.lang.h:7
-#: gtksourceview/language-specs/java.lang.h:10
+#: gtksourceview/language-specs/java.lang.h:11
 msgid "Sources"
 msgstr "Código Fonte"
 
@@ -392,6 +392,7 @@ msgstr "Macro Comum"
 
 #: gtksourceview/language-specs/c.lang.h:7
 #: gtksourceview/language-specs/cpp.lang.h:7
+#: gtksourceview/language-specs/java.lang.h:3
 msgid "Floating Point Number"
 msgstr "Número Virgula Flutuante"
 
@@ -524,31 +525,31 @@ msgstr "Seccional"
 msgid "Declarations"
 msgstr "Declarações"
 
-#: gtksourceview/language-specs/java.lang.h:3
+#: gtksourceview/language-specs/java.lang.h:4
 msgid "Flow"
 msgstr "Fluxo"
 
-#: gtksourceview/language-specs/java.lang.h:4
+#: gtksourceview/language-specs/java.lang.h:5
+msgid "Integer"
+msgstr "Inteiro"
+
+#: gtksourceview/language-specs/java.lang.h:6
 msgid "Java"
 msgstr "Java"
 
-#: gtksourceview/language-specs/java.lang.h:6
+#: gtksourceview/language-specs/java.lang.h:8
 msgid "Memory"
 msgstr "Memória"
 
-#: gtksourceview/language-specs/java.lang.h:7
+#: gtksourceview/language-specs/java.lang.h:9
 msgid "Modifiers"
 msgstr "Modificadores"
 
-#: gtksourceview/language-specs/java.lang.h:8
-msgid "Numeric"
-msgstr "Numérico"
-
-#: gtksourceview/language-specs/java.lang.h:9
+#: gtksourceview/language-specs/java.lang.h:10
 msgid "Primitives"
 msgstr "Primitivas"
 
-#: gtksourceview/language-specs/java.lang.h:12
+#: gtksourceview/language-specs/java.lang.h:13
 #: gtksourceview/language-specs/python.lang.h:12
 #: gtksourceview/language-specs/xml.lang.h:9
 msgid "String 2"
@@ -642,3 +643,6 @@ msgstr "Etiqueta"
 #: gtksourceview/language-specs/xml.lang.h:11
 msgid "XML"
 msgstr "XML"
+
+#~ msgid "Numeric"
+#~ msgstr "Numérico"
