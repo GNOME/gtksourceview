@@ -1,0 +1,274 @@
+# Gtksourceview Dutch translation.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Jan-Willem Harmanny <jwharmanny@hotmail.com>, 2003.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2003-06-26 21:16+0200\n"
+"PO-Revision-Date: 2003-06-26 23:09+0100\n"
+"Last-Translator: Jan-Willem Harmanny <jwharmanny@hotmail.com>\n"
+"Language-Team: Dutch <nl@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: gtksourceview/gtksourcebuffer.c:279
+msgid "Escape Character"
+msgstr "Escape karakter"
+
+#: gtksourceview/gtksourcebuffer.c:280
+msgid "Escaping character for syntax patterns"
+msgstr "Escate karakter voor syntaxis patronen"
+
+#: gtksourceview/gtksourcebuffer.c:288
+msgid "Check Brackets"
+msgstr "Haakjes controleren"
+
+#: gtksourceview/gtksourcebuffer.c:289
+msgid "Whether to check and highlight matching brackets"
+msgstr "Of de haakjes moeten worden gecontroleerd en oplichten"
+
+#: gtksourceview/gtksourcebuffer.c:297 gtksourceview/gtksourceprintjob.c:303
+msgid "Highlight"
+msgstr "Oplichten"
+
+#: gtksourceview/gtksourcebuffer.c:298
+msgid "Whether to highlight syntax in the buffer"
+msgstr "Of syntaxis in de buffer moet oplichten"
+
+#: gtksourceview/gtksourcebuffer.c:306
+msgid "Maximum Undo Levels"
+msgstr "Maximaal aantal keren Ongedaan maken"
+
+#: gtksourceview/gtksourcebuffer.c:307
+msgid "Number of undo levels for the buffer"
+msgstr "Hoe vaak er in de buffer iets ongedaan kan worden gemaakt"
+
+#: gtksourceview/gtksourcebuffer.c:317
+msgid "Language"
+msgstr "Taal"
+
+#: gtksourceview/gtksourcebuffer.c:318
+msgid "Language object to get highlighting patterns from"
+msgstr "Het taal object waar de oplichtpartronen vandaan komen"
+
+#: gtksourceview/gtksourcelanguagesmanager.c:119
+msgid "Language specification directories"
+msgstr "Taal specificatie mappen"
+
+#: gtksourceview/gtksourcelanguagesmanager.c:120
+msgid ""
+"List of directories where the language specification files (.lang) are "
+"located"
+msgstr ""
+"Een lijst van mappen waarin de taal specificatiebestanden (.lang) zich "
+"bevinden"
+
+#: gtksourceview/gtksourceprintjob.c:272
+msgid "Configuration"
+msgstr "Configuratie"
+
+#: gtksourceview/gtksourceprintjob.c:273
+msgid "Configuration options for the print job"
+msgstr "Configuratie opties voor de afdrukopdracht"
+
+#: gtksourceview/gtksourceprintjob.c:280
+msgid "Source Buffer"
+msgstr "Bron buffer"
+
+#: gtksourceview/gtksourceprintjob.c:281
+msgid "GtkSourceBuffer object to print"
+msgstr "GtkSourceBuffer object om af te drukken"
+
+#: gtksourceview/gtksourceprintjob.c:287 gtksourceview/gtksourceview.c:223
+#: gtksourceview/gtksourceview.c:224
+msgid "Tabs Width"
+msgstr "Tabs breedte"
+
+#: gtksourceview/gtksourceprintjob.c:288
+msgid "Width in equivalent space characters of tabs"
+msgstr "Breedte van de tabs, uitgedrukt in aantal spaties"
+
+#: gtksourceview/gtksourceprintjob.c:295
+msgid "Wrap Mode"
+msgstr "Terugloop modus"
+
+#: gtksourceview/gtksourceprintjob.c:296
+msgid "Word wrapping mode"
+msgstr "Tekst terugloop modus"
+
+#: gtksourceview/gtksourceprintjob.c:304
+msgid "Whether to print the document with highlighted syntax"
+msgstr "Of het document met opgelichte syntaxis moet worden afgedrukt"
+
+#: gtksourceview/gtksourceprintjob.c:312
+msgid "Font"
+msgstr "Lettertype"
+
+#: gtksourceview/gtksourceprintjob.c:313
+msgid "Font name to use for the document text"
+msgstr "Lettertypenaam om voor de documenttekst te gebruiken"
+
+#: gtksourceview/gtksourceprintjob.c:320
+msgid "Numbers Font"
+msgstr "Nummers lettertype"
+
+#: gtksourceview/gtksourceprintjob.c:321
+msgid "Font name to use for the line numbers"
+msgstr "Lettertypenaam om voor de regelnummers te gebruiken"
+
+#: gtksourceview/gtksourceprintjob.c:328
+msgid "Print Line Numbers"
+msgstr "Regelnummers afdrukken"
+
+#: gtksourceview/gtksourceprintjob.c:329
+msgid "Interval of printed line numbers (0 means no numbers)"
+msgstr ""
+"Interval tussen aantal afgedrukte regelnummers (0 betekent geen nummers)"
+
+#: gtksourceview/gtksourceprintjob.c:336
+msgid "Print Header"
+msgstr "Koptekst afdrukken"
+
+#: gtksourceview/gtksourceprintjob.c:337
+msgid "Whether to print a header in each page"
+msgstr "Of er een koptekst op iedere pagina moet worden afgedrukt"
+
+#: gtksourceview/gtksourceprintjob.c:344
+msgid "Print Footer"
+msgstr "Voettekst afdrukken"
+
+#: gtksourceview/gtksourceprintjob.c:345
+msgid "Whether to print a footer in each page"
+msgstr "Of er een voettekst op iedere pagina moet worden afgedrukt"
+
+#: gtksourceview/gtksourceprintjob.c:352
+msgid "Header and Footer Font"
+msgstr "Kop- en voettekst lettertype"
+
+#: gtksourceview/gtksourceprintjob.c:353
+msgid "Font name to use for the header and footer"
+msgstr "Lettertypenaam om voor de kop- en voettekst te gebruiken"
+
+#: gtksourceview/gtksourcestylescheme.c:222
+msgid "Base-N Integer"
+msgstr "Base-N Integer"
+
+#: gtksourceview/gtksourcestylescheme.c:227
+msgid "Character"
+msgstr "Karakter"
+
+#: gtksourceview/gtksourcestylescheme.c:232
+msgid "Comment"
+msgstr "Commentaar"
+
+#: gtksourceview/gtksourcestylescheme.c:237
+msgid "Data Type"
+msgstr "Gegevenstype"
+
+#: gtksourceview/gtksourcestylescheme.c:242
+msgid "Function"
+msgstr "Functie"
+
+#: gtksourceview/gtksourcestylescheme.c:247
+msgid "Decimal"
+msgstr "Decimaal getal"
+
+#: gtksourceview/gtksourcestylescheme.c:252
+msgid "Floating Point"
+msgstr "Floating point getal"
+
+#: gtksourceview/gtksourcestylescheme.c:257
+msgid "Keyword"
+msgstr "Sleutelwoord"
+
+#: gtksourceview/gtksourcestylescheme.c:262
+msgid "Preprocessor"
+msgstr "Preprocessor"
+
+#: gtksourceview/gtksourcestylescheme.c:267
+msgid "String"
+msgstr "String"
+
+#: gtksourceview/gtksourcestylescheme.c:272
+msgid "Specials"
+msgstr "Speciale tekens"
+
+#: gtksourceview/gtksourcestylescheme.c:277
+msgid "Others"
+msgstr "Andere"
+
+#: gtksourceview/gtksourcestylescheme.c:282
+msgid "Others 2"
+msgstr "Andere 2"
+
+#: gtksourceview/gtksourcestylescheme.c:287
+msgid "Others 3"
+msgstr "Andere 3"
+
+#: gtksourceview/gtksourcestylescheme.c:324
+msgid "Default"
+msgstr "Standaard"
+
+#: gtksourceview/gtksourceview.c:207
+msgid "Show Line Numbers"
+msgstr "Regelnummers weergeven"
+
+#: gtksourceview/gtksourceview.c:208
+msgid "Whether to display line numbers"
+msgstr "Of de regelnummers worden weergegeven"
+
+#: gtksourceview/gtksourceview.c:215
+msgid "Show Line Markers"
+msgstr "Regelmarkeringen weergeven"
+
+#: gtksourceview/gtksourceview.c:216
+msgid "Whether to display line marker pixbufs"
+msgstr "Of regelmarkering pixbufs worden weergegeven"
+
+#: gtksourceview/gtksourceview.c:233
+msgid "Auto Indentation"
+msgstr "Automatisch inspringen"
+
+#: gtksourceview/gtksourceview.c:234
+msgid "Whether to enable auto indentation"
+msgstr "Of er automatisch moet worden ingesprongen"
+
+#: gtksourceview/gtksourceview.c:240
+msgid "Insert Spaces Instead of Tabs"
+msgstr "Spaties in plaats van tabs gebruiken"
+
+#: gtksourceview/gtksourceview.c:241
+msgid "Whether to insert spaces instead of tabs"
+msgstr "Of er spaties moeten worden gebruikt in plaats van tabs"
+
+#: gtksourceview/gtksourceview.c:248
+msgid "Show Right Margin"
+msgstr "Rechtermarge weergeven"
+
+#: gtksourceview/gtksourceview.c:249
+msgid "Whether to display the right margin"
+msgstr "Of de rechtermarge moet worden weergegeven"
+
+#: gtksourceview/gtksourceview.c:256
+msgid "Margin position"
+msgstr "Margepositie"
+
+#: gtksourceview/gtksourceview.c:257
+msgid "Position of the right margin"
+msgstr "De positie van de rechter marge"
+
+#: gtksourceview/gtksourceview.c:266
+msgid "Use smart home/end"
+msgstr "Slimme home/end gebruiken"
+
+#: gtksourceview/gtksourceview.c:267
+msgid ""
+"HOME and END keys move to first/last characters on line first before going "
+"to the start/end of the line"
+msgstr ""
+"De HOME en END toetsen eerst naar de eerste/laatste karakters van de regel "
+"verplaatsen, voordat ze naar het echte regelbegin/einde gaan"
