@@ -3,16 +3,20 @@ EXTRA_DIST = 			\
 	ada.lang		\
 	c.lang			\
 	csharp.lang		\
+	css.lang		\
 	cpp.lang		\
 	diff.lang		\
 	desktop.lang		\
+	fortran.lang		\
 	haskell.lang		\
 	html.lang		\
 	idl.lang		\
 	java.lang		\
+	javascript.lang		\
 	latex.lang		\
 	lua.lang		\
 	msil.lang		\
+	pascal.lang		\
 	perl.lang		\
 	php.lang		\
 	po.lang			\
