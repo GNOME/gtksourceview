@@ -177,10 +177,10 @@ unblock_signals (GtkSourceTagTable *tt)
 
 /**
  * gtk_source_tag_table_add_tags:
- * @table: a #GtkSourceTagTable
- * @tags: a #GSList containing #GtkTextTag objects 
+ * @table: a #GtkSourceTagTable.
+ * @tags: a #GSList containing #GtkTextTag objects.
  *
- * Add a list of tag to the table. The added tags are assigned the highest priority
+ * Adds a list of tag to the table. The added tags are assigned the highest priority
  * in the table.
  *
  * If a tag is already present in table or has the same name as an already-added tag,
@@ -223,9 +223,9 @@ foreach_remove_tag (GtkTextTag *tag, gpointer data)
 
 /**
  * gtk_source_tag_table_remove_source_tags:
- * @table: a #GtkSourceTagTable
+ * @table: a #GtkSourceTagTable.
  * 
- * Remove all the source tags from the table. This will remove the table's
+ * Removes all the source tags from the table. This will remove the table's
  * reference to the tags, so be careful - tags will end
  * up destroyed if you don't have a reference to them.
  **/

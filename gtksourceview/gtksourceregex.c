@@ -103,11 +103,11 @@ gtk_source_regex_destroy (GtkSourceRegex *regex)
 
 /**
  * gtk_source_regex_search:
- * @regex: Regular expression object (GtkSourceRegex)
- * @text: Buffer to search
- * @pos: Offset position (i.e. character offset, not byte offset)
- * @length: Length in bytes; -1 for the full text length
- * @match: (optional) Where to return match information
+ * @regex: Regular expression object (#GtkSourceRegex).
+ * @text: Buffer to search.
+ * @pos: Offset position (i.e. character offset, not byte offset).
+ * @length: Length in bytes; -1 for the full text length.
+ * @match: (optional) Where to return match information.
  * 
  * Return value: the offset where a match occurred, or less than 0 for
  * errors or no match.

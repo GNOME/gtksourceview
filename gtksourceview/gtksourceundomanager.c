@@ -899,14 +899,14 @@ gtk_source_undo_manager_check_list_size (GtkSourceUndoManager *um)
 
 /**
  * gtk_source_undo_manager_merge_action:
- * @um: a #GtkSourceUndoManager 
- * @undo_action: 
+ * @um: a #GtkSourceUndoManager. 
+ * @undo_action: a #GtkSourceUndoAction.
  * 
  * This function tries to merge the undo action at the top of
  * the stack with a new undo action. So when we undo for example
- * typing, we can undo the whole word and not each letter by itself
+ * typing, we can undo the whole word and not each letter by itself.
  * 
- * Return Value: TRUE is merge was sucessful, FALSE otherwise
+ * Return Value: %TRUE is merge was sucessful, %FALSE otherwise.²
  **/
 static gboolean 
 gtk_source_undo_manager_merge_action (GtkSourceUndoManager 	*um, 

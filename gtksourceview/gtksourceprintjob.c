@@ -1420,7 +1420,7 @@ paginate_text (GtkSourcePrintJob *job)
 	}
 
 	/* FIXME: do we have any error condition which can force us to
-	 * return FALSE? - Gustavo */
+	 * return %FALSE? - Gustavo */
 	return TRUE;
 }
 
@@ -1668,7 +1668,7 @@ gtk_source_print_job_new (GnomePrintConfig  *config)
 /**
  * gtk_source_print_job_new_with_buffer:
  * @config: an optional #GnomePrintConfig.
- * @buffer: the #GtkSourceBuffer to print (might be NULL).
+ * @buffer: the #GtkSourceBuffer to print (might be %NULL).
  * 
  * Creates a new print job to print @buffer.
  * 
@@ -1775,7 +1775,7 @@ gtk_source_print_job_set_buffer (GtkSourcePrintJob *job,
  * @job: a #GtkSourcePrintJob.
  * 
  * Gets the #GtkSourceBuffer the print job would print.  The returned
- * object reference (if non NULL) is owned by the job object and
+ * object reference (if non %NULL) is owned by the job object and
  * should not be unreferenced.
  * 
  * Return value: the #GtkSourceBuffer to print.
@@ -1875,7 +1875,7 @@ gtk_source_print_job_get_wrap_mode (GtkSourcePrintJob *job)
 /**
  * gtk_source_print_job_set_highlight:
  * @job: a #GtkSourcePrintJob.
- * @highlight: TRUE if the printed text should be highlighted.
+ * @highlight: %TRUE if the printed text should be highlighted.
  * 
  * Sets whether the printed text will be highlighted according to the
  * buffer rules.  Both color and font style are applied.
@@ -1905,7 +1905,7 @@ gtk_source_print_job_set_highlight (GtkSourcePrintJob *job,
  * with colors and font styles.  Note that highlighting will happen
  * only if the buffer to print has highlighting activated.
  * 
- * Return value: TRUE if the printed output will be highlighted.
+ * Return value: %TRUE if the printed output will be highlighted.
  **/
 gboolean 
 gtk_source_print_job_get_highlight (GtkSourcePrintJob *job)
@@ -2087,10 +2087,10 @@ gtk_source_print_job_set_numbers_font_desc (GtkSourcePrintJob    *job,
 /**
  * gtk_source_print_job_set_numbers_font:
  * @job: a #GtkSourcePrintJob.
- * @font_name: the full name of the font for line numbers, or NULL.
+ * @font_name: the full name of the font for line numbers, or %NULL.
  * 
  * Sets the font for printing line numbers on the left margin.  If
- * NULL is supplied, the default font (i.e. the one being used for the
+ * %NULL is supplied, the default font (i.e. the one being used for the
  * text) will be used instead.
  *
  * Note that @font_name is a #GnomeFont name not a Pango font
@@ -2125,10 +2125,10 @@ gtk_source_print_job_set_numbers_font (GtkSourcePrintJob *job,
  * @job: a #GtkSourcePrintJob.
  * 
  * Determines the font to be used for the line numbers. This function
- * might return NULL if a specific font for numbers has not been set.
+ * might return %NULL if a specific font for numbers has not been set.
  * 
- * Return value: the line numbers font description or NULL. This value is
- *  owned by the job and must not be modified or freed.
+ * Return value: the line numbers font description or %NULL. This value is
+ * owned by the job and must not be modified or freed.
  **/
 PangoFontDescription *
 gtk_source_print_job_get_numbers_font_desc (GtkSourcePrintJob *job)
@@ -2146,7 +2146,7 @@ gtk_source_print_job_get_numbers_font_desc (GtkSourcePrintJob *job)
  * string is of the form &quot;Fontfamily Style Size&quot;, for
  * example &quot;Monospace Regular 10.0&quot;.  The returned value
  * should be freed when no longer needed.  This function might return
- * NULL if a specific font for numbers has not been set.
+ * %NULL if a specific font for numbers has not been set.
  * 
  * Note that the result is a #GnomeFont name not a Pango font
  * description string. This function is deprecated since #GnomeFont is
@@ -2154,7 +2154,7 @@ gtk_source_print_job_get_numbers_font_desc (GtkSourcePrintJob *job)
  * should use gtk_source_print_job_get_numbers_font_desc() instead.
  *
  * Return value: a newly allocated string with the name of the current
- * line numbers font, or NULL.
+ * line numbers font, or %NULL.
  **/
 gchar *
 gtk_source_print_job_get_numbers_font (GtkSourcePrintJob *job)
@@ -2258,10 +2258,10 @@ gtk_source_print_job_set_text_margins (GtkSourcePrintJob *job,
  * @left: a pointer to a #gdouble to return the left margin.
  * @right: a pointer to a #gdouble to return the right margin.
  * 
- * Determine the user set margins for the job.  This function
+ * Determines the user set margins for the job.  This function
  * retrieves the values previously set by
  * gtk_source_print_job_set_text_margins().  The default for all four
- * margins is 0.  Any of the pointers can be NULL if you want to
+ * margins is 0.  Any of the pointers can be %NULL if you want to
  * ignore that value.
  **/
 void 
@@ -2340,7 +2340,7 @@ gtk_source_print_job_prepare (GtkSourcePrintJob *job,
  * can be printed again with different settings.
  * 
  * Return value: a closed #GnomePrintJob with the printed document, or
- * NULL if printing could not be completed.
+ * %NULL if printing could not be completed.
  **/
 GnomePrintJob *
 gtk_source_print_job_print (GtkSourcePrintJob *job)
@@ -2367,7 +2367,7 @@ gtk_source_print_job_print (GtkSourcePrintJob *job)
  * out of order.
  * 
  * Return value: a closed #GnomePrintJob with the text from @start to
- * @end printed, or NULL if @job could not print.
+ * @end printed, or %NULL if @job could not print.
  **/
 GnomePrintJob *
 gtk_source_print_job_print_range (GtkSourcePrintJob *job,
@@ -2421,7 +2421,7 @@ gtk_source_print_job_print_range (GtkSourcePrintJob *job,
  * resulting #GnomePrintJob with gtk_source_print_job_get_print_job().
  * You may cancel the job with gtk_source_print_job_cancel().
  *
- * Return value: TRUE if the print started.
+ * Return value: %TRUE if the print started.
  **/
 gboolean 
 gtk_source_print_job_print_range_async (GtkSourcePrintJob *job,
@@ -2511,7 +2511,7 @@ gtk_source_print_job_cancel (GtkSourcePrintJob *job)
  * signal is emitted.
  * 
  * Return value: a new reference to the @job's #GnomePrintJob, or
- * NULL.
+ * %NULL.
  **/
 GnomePrintJob *
 gtk_source_print_job_get_print_job (GtkSourcePrintJob *job)
@@ -2820,7 +2820,7 @@ default_print_footer (GtkSourcePrintJob *job,
 /**
  * gtk_source_print_job_set_print_header:
  * @job: a #GtkSourcePrintJob.
- * @setting: TRUE if you want the header to be printed.
+ * @setting: %TRUE if you want the header to be printed.
  * 
  * Sets whether you want to print a header in each page.  The default
  * header consists of three pieces of text and an optional line
@@ -2852,11 +2852,11 @@ gtk_source_print_job_set_print_header (GtkSourcePrintJob *job,
  * @job: a #GtkSourcePrintJob.
  * 
  * Determines if a header is set to be printed for each page.  A
- * header will be printed if this function returns TRUE
+ * header will be printed if this function returns %TRUE
  * <emphasis>and</emphasis> some format strings have been specified
  * with gtk_source_print_job_set_header_format().
  * 
- * Return value: TRUE if the header is set to be printed.
+ * Return value: %TRUE if the header is set to be printed.
  **/
 gboolean 
 gtk_source_print_job_get_print_header (GtkSourcePrintJob *job)
@@ -2869,7 +2869,7 @@ gtk_source_print_job_get_print_header (GtkSourcePrintJob *job)
 /**
  * gtk_source_print_job_set_print_footer:
  * @job: a #GtkSourcePrintJob.
- * @setting: TRUE if you want the footer to be printed.
+ * @setting: %TRUE if you want the footer to be printed.
  * 
  * Sets whether you want to print a footer in each page.  The default
  * footer consists of three pieces of text and an optional line
@@ -2901,11 +2901,11 @@ gtk_source_print_job_set_print_footer (GtkSourcePrintJob *job,
  * @job: a #GtkSourcePrintJob.
  * 
  * Determines if a footer is set to be printed for each page.  A
- * footer will be printed if this function returns TRUE
+ * footer will be printed if this function returns %TRUE
  * <emphasis>and</emphasis> some format strings have been specified
  * with gtk_source_print_job_set_footer_format().
  * 
- * Return value: TRUE if the footer is set to be printed.
+ * Return value: %TRUE if the footer is set to be printed.
  **/
 gboolean 
 gtk_source_print_job_get_print_footer (GtkSourcePrintJob *job)
@@ -2945,9 +2945,9 @@ gtk_source_print_job_set_header_footer_font_desc (GtkSourcePrintJob    *job,
 /**
  * gtk_source_print_job_set_header_footer_font:
  * @job: a #GtkSourcePrintJob.
- * @font_name: the full name of the font to be used in headers and footers, or NULL.
+ * @font_name: the full name of the font to be used in headers and footers, or %NULL.
  * 
- * Sets the font for printing headers and footers.  If NULL is
+ * Sets the font for printing headers and footers.  If %NULL is
  * supplied, the default font (i.e. the one being used for the text)
  * will be used instead.
  *
@@ -2983,10 +2983,10 @@ gtk_source_print_job_set_header_footer_font (GtkSourcePrintJob *job,
  * @job: a #GtkSourcePrintJob.
  * 
  * Determines the font to be used for the header and footer.  This function
- * might return NULL if a specific font has not been set.
+ * might return %NULL if a specific font has not been set.
  * 
- * Return value: the header and footer font description or NULL. This value is
- *  owned by the job and must not be modified or freed.
+ * Return value: the header and footer font description or %NULL. This value is
+ * owned by the job and must not be modified or freed.
  **/
 PangoFontDescription *
 gtk_source_print_job_get_header_footer_font_desc (GtkSourcePrintJob *job)
@@ -3004,7 +3004,7 @@ gtk_source_print_job_get_header_footer_font_desc (GtkSourcePrintJob *job)
  * returned string is of the form &quot;Fontfamily Style Size&quot;,
  * for example &quot;Monospace Regular 10.0&quot;.  The returned value
  * should be freed when no longer needed.  This function might return
- * NULL if a specific font has not been set.
+ * %NULL if a specific font has not been set.
  * 
  * Note that the result is a #GnomeFont name not a Pango font
  * description string. This function is deprecated since #GnomeFont is
@@ -3012,7 +3012,7 @@ gtk_source_print_job_get_header_footer_font_desc (GtkSourcePrintJob *job)
  * should use gtk_source_print_job_get_header_footer_font_desc() instead.
  *
  * Return value: a newly allocated string with the name of the current
- * header and footer font, or NULL.
+ * header and footer font, or %NULL.
  **/
 gchar *
 gtk_source_print_job_get_header_footer_font (GtkSourcePrintJob *job)
@@ -3031,7 +3031,7 @@ gtk_source_print_job_get_header_footer_font (GtkSourcePrintJob *job)
  * @left: a format string to print on the left of the header.
  * @center: a format string to print on the center of the header.
  * @right: a format string to print on the right of the header.
- * @separator: TRUE if you want a separator line to be printed.
+ * @separator: %TRUE if you want a separator line to be printed.
  * 
  * Sets strftime like header format strings, to be printed on the
  * left, center and right of the top of each page.  The strings may
@@ -3042,7 +3042,7 @@ gtk_source_print_job_get_header_footer_font (GtkSourcePrintJob *job)
  * @separator specifies if a solid line should be drawn to separate
  * the header from the document text.
  *
- * If NULL is given for any of the three arguments, that particular
+ * If %NULL is given for any of the three arguments, that particular
  * string will not be printed.  For the header to be printed, in
  * addition to specifying format strings, you need to enable header
  * printing with gtk_source_print_job_set_print_header().
@@ -3073,7 +3073,7 @@ gtk_source_print_job_set_header_format (GtkSourcePrintJob *job,
  * @left: a format string to print on the left of the footer.
  * @center: a format string to print on the center of the footer.
  * @right: a format string to print on the right of the footer.
- * @separator: TRUE if you want a separator line to be printed.
+ * @separator: %TRUE if you want a separator line to be printed.
  * 
  * Like gtk_source_print_job_set_header_format(), but for the footer.
  **/

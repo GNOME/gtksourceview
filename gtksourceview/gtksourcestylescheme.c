@@ -69,6 +69,15 @@ gtk_source_style_scheme_base_init (gpointer g_class)
     	}
 }
 
+/**
+ * gtk_source_style_scheme_get_tag_style:
+ * @scheme: a #GtkSourceStyleScheme.
+ * @style_name: the name of a style.
+ *
+ * Gets the tag associated with the given @style_name in the style @scheme.
+ *
+ * Return value: a #GtkSourceTagStyle.
+ **/
 GtkSourceTagStyle *
 gtk_source_style_scheme_get_tag_style (GtkSourceStyleScheme *scheme,
 				       const gchar          *style_name)
@@ -79,6 +88,14 @@ gtk_source_style_scheme_get_tag_style (GtkSourceStyleScheme *scheme,
 	return GTK_SOURCE_STYLE_SCHEME_GET_CLASS (scheme)->get_tag_style (scheme, style_name);
 }
 
+/**
+ * gtk_source_style_scheme_get_name:
+ * @scheme: a #GtkSourceStyleScheme.
+ *
+ * Gets the name of the given style @scheme.
+ *
+ * Return value: the name of the style scheme.
+ **/
 const gchar *
 gtk_source_style_scheme_get_name (GtkSourceStyleScheme *scheme)
 {
@@ -87,6 +104,14 @@ gtk_source_style_scheme_get_name (GtkSourceStyleScheme *scheme)
 	return GTK_SOURCE_STYLE_SCHEME_GET_CLASS (scheme)->get_name (scheme);
 }
 
+/**
+ * gtk_source_style_scheme_get_style_names:
+ * @scheme: a #GtkSourceStyleScheme.
+ *
+ * Gets a list of style names in the given style @scheme.
+ *
+ * Return value: a list of 
+ **/
 GSList *
 gtk_source_style_scheme_get_style_names (GtkSourceStyleScheme *scheme)
 {
@@ -368,6 +393,13 @@ gtk_source_default_style_scheme_get_style_names (GtkSourceStyleScheme *scheme)
 
 static GtkSourceStyleScheme* default_style_scheme = NULL;
 
+/**
+ * gtk_source_style_scheme_get_default:
+ *
+ * Gets the default style scheme.
+ *
+ * Return value: a #GtkSourceStyleScheme.
+ **/
 GtkSourceStyleScheme *
 gtk_source_style_scheme_get_default (void)
 {

@@ -62,6 +62,14 @@ gtk_source_marker_set_marker_type (GtkSourceMarker *marker,
 	_gtk_source_marker_changed (marker);
 }
 
+/**
+ * gtk_source_marker_get_marker_type:
+ * @marker: a #GtkSourceMarker.
+ * 
+ * Gets the marker type of this @marker.
+ * 
+ * Return value: the marker type.
+ **/
 gchar *
 gtk_source_marker_get_marker_type (GtkSourceMarker *marker)
 {
@@ -71,6 +79,14 @@ gtk_source_marker_get_marker_type (GtkSourceMarker *marker)
 	return g_strdup (g_object_get_qdata (G_OBJECT (marker), quark_marker_type));
 }
 
+/**
+ * gtk_source_marker_get_line:
+ * @marker: a #GtkSourceMarker.
+ * 
+ * Gets the line number of this @marker.
+ * 
+ * Return value: the line number.
+ **/
 gint
 gtk_source_marker_get_line (GtkSourceMarker *marker)
 {
@@ -86,6 +102,14 @@ gtk_source_marker_get_line (GtkSourceMarker *marker)
 	return gtk_text_iter_get_line (&iter);
 }
 
+/**
+ * gtk_source_marker_get_name:
+ * @marker: a #GtkSourceMarker.
+ * 
+ * Gets the name of this @marker.
+ * 
+ * Return value: the name.
+ **/
 G_CONST_RETURN gchar *
 gtk_source_marker_get_name (GtkSourceMarker *marker)
 {
@@ -95,6 +119,14 @@ gtk_source_marker_get_name (GtkSourceMarker *marker)
 	return gtk_text_mark_get_name (GTK_TEXT_MARK (marker));
 }
  
+/**
+ * gtk_source_marker_get_buffer:
+ * @marker: a #GtkSourceMarker.
+ * 
+ * Gets the buffer associated with this @marker.
+ * 
+ * Return value: the #GtkSourceBuffer.
+ **/
 GtkSourceBuffer *
 gtk_source_marker_get_buffer (GtkSourceMarker *marker)
 {
@@ -189,6 +221,14 @@ _gtk_source_marker_unlink (GtkSourceMarker *marker)
 		g_object_set_qdata (G_OBJECT (m2), quark_prev_marker, m1);
 }
 
+/**
+ * gtk_source_marker_next:
+ * @marker: a #GtkSourceMarker.
+ * 
+ * Gets the next marker after @marker.
+ * 
+ * Return value: a #GtkSourceMarker.
+ **/
 GtkSourceMarker *
 gtk_source_marker_next (GtkSourceMarker *marker)
 {
@@ -198,6 +238,14 @@ gtk_source_marker_next (GtkSourceMarker *marker)
 	return g_object_get_qdata (G_OBJECT (marker), quark_next_marker);
 }
 
+/**
+ * gtk_source_marker_prev:
+ * @marker: a #GtkSourceMarker.
+ * 
+ * Gets the previous marker before @marker.
+ * 
+ * Return value: a #GtkSourceMarker.
+ **/
 GtkSourceMarker *
 gtk_source_marker_prev (GtkSourceMarker *marker)
 {

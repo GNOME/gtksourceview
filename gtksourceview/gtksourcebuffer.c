@@ -643,7 +643,7 @@ gtk_source_buffer_get_property (GObject    *object,
 
 /**
  * gtk_source_buffer_new:
- * @table: a #GtkSourceTagTable, or NULL to create a new one.
+ * @table: a #GtkSourceTagTable, or %NULL to create a new one.
  * 
  * Creates a new source buffer.
  * 
@@ -1149,7 +1149,7 @@ gtk_source_buffer_find_bracket_match_real (GtkTextIter *orig, gint max_chars)
  *
  * @iter must be a #GtkTextIter belonging to a #GtkSourceBuffer.
  * 
- * Return value: TRUE if the matching bracket was found and the @iter
+ * Return value: %TRUE if the matching bracket was found and the @iter
  * iter moved.
  **/
 gboolean
@@ -1166,7 +1166,7 @@ gtk_source_iter_find_matching_bracket (GtkTextIter *iter)
  * 
  * Determines whether a source buffer can undo the last action.
  * 
- * Return value: TRUE if it's possible to undo the last action.
+ * Return value: %TRUE if it's possible to undo the last action.
  **/
 gboolean
 gtk_source_buffer_can_undo (GtkSourceBuffer *buffer)
@@ -1183,7 +1183,7 @@ gtk_source_buffer_can_undo (GtkSourceBuffer *buffer)
  * Determines whether a source buffer can redo the last action
  * (i.e. if the last operation was an undo).
  * 
- * Return value: TRUE if a redo is possible.
+ * Return value: %TRUE if a redo is possible.
  **/
 gboolean
 gtk_source_buffer_can_redo (GtkSourceBuffer *buffer)
@@ -1323,7 +1323,7 @@ gtk_source_buffer_end_not_undoable_action (GtkSourceBuffer *buffer)
  * Determines whether bracket match highlighting is activated for the
  * source buffer.
  * 
- * Return value: TRUE if the source buffer will highlight matching
+ * Return value: %TRUE if the source buffer will highlight matching
  * brackets.
  **/
 gboolean
@@ -1337,7 +1337,7 @@ gtk_source_buffer_get_check_brackets (GtkSourceBuffer *buffer)
 /**
  * gtk_source_buffer_set_check_brackets:
  * @buffer: a #GtkSourceBuffer.
- * @check_brackets: TRUE if you want matching brackets highlighted.
+ * @check_brackets: %TRUE if you want matching brackets highlighted.
  * 
  * Controls the bracket match highlighting function in the buffer.  If
  * activated, when you position your cursor over a bracket character
@@ -1428,7 +1428,7 @@ gtk_source_buffer_set_bracket_match_style (GtkSourceBuffer         *source_buffe
  * Determines whether text highlighting is activated in the source
  * buffer.
  * 
- * Return value: TRUE if highlighting is enabled.
+ * Return value: %TRUE if highlighting is enabled.
  **/
 gboolean
 gtk_source_buffer_get_highlight (GtkSourceBuffer *buffer)
@@ -1441,10 +1441,10 @@ gtk_source_buffer_get_highlight (GtkSourceBuffer *buffer)
 /**
  * gtk_source_buffer_set_highlight:
  * @buffer: a #GtkSourceBuffer.
- * @highlight: TRUE if you want to activate highlighting.
+ * @highlight: %TRUE if you want to activate highlighting.
  * 
  * Controls whether text is highlighted in the buffer.  If @highlight
- * is TRUE, the text will be highlighted according to the patterns
+ * is %TRUE, the text will be highlighted according to the patterns
  * installed in the buffer (either set with
  * gtk_source_buffer_set_language() or by adding individual
  * #GtkSourceTag tags to the buffer's tag table).  Otherwise, any
@@ -1833,12 +1833,12 @@ delimiter_is_equal (SyntaxDelimiter *d1, SyntaxDelimiter *d2)
 
 /**
  * next_syntax_region:
- * @source_buffer: the GtkSourceBuffer to work on
- * @state: the current SyntaxDelimiter
- * @head: text to analyze
- * @head_length: length in bytes of @head
- * @head_offset: offset in the buffer where @head starts
- * @match: GtkSourceBufferMatch object to get the results
+ * @source_buffer: the #GtkSourceBuffer to work on.
+ * @state: the current #SyntaxDelimiter.
+ * @head: text to analyze.
+ * @head_length: length in bytes of @head.
+ * @head_offset: offset in the buffer where @head starts.
+ * @match: a #GtkSourceBufferMatch object to get the results.
  * 
  * This function can be seen as a single iteration in the analyzing
  * process.  It takes the current @state, searches for the next syntax
@@ -1846,7 +1846,7 @@ delimiter_is_equal (SyntaxDelimiter *d1, SyntaxDelimiter *d2)
  * @state to reflect the new state.  @match is also filled with the
  * matching bounds.
  * 
- * Return value: TRUE if a syntax pattern was found in @head.
+ * Return value: %TRUE if a syntax pattern was found in @head.
  **/
 static gboolean 
 next_syntax_region (GtkSourceBuffer      *source_buffer,
@@ -2328,12 +2328,12 @@ update_syntax_regions (GtkSourceBuffer *source_buffer,
 
 /**
  * search_patterns:
- * @matches: the starting list of matches to work from (can be NULL)
- * @text: the text which will be searched for
- * @length: the length (in bytes) of @text
- * @offset: the offset the beginning of @text is at
- * @index: an index to add the match indexes (usually: @text - base_text)
- * @patterns: additional patterns (can be NULL)
+ * @matches: the starting list of matches to work from (can be %NULL).
+ * @text: the text which will be searched for.
+ * @length: the length (in bytes) of @text.
+ * @offset: the offset the beginning of @text is at.
+ * @index: an index to add the match indexes (usually: @text - base_text).
+ * @patterns: additional patterns (can be %NULL).
  * 
  * This function will fill and return a list of PatternMatch
  * structures ordered by match position in @text.  The initial list to
@@ -2741,9 +2741,9 @@ pointer_cmp (gconstpointer a, gconstpointer b)
 
 /**
  * gtk_source_buffer_remove_all_source_tags:
- * @buffer: a #GtkSourceBuffer
- * @start: one bound of range to be untagged
- * @end: other bound of range to be untagged
+ * @buffer: a #GtkSourceBuffer.
+ * @start: one bound of range to be untagged.
+ * @end: other bound of range to be untagged.
  * 
  * Removes all tags in the range between @start and @end.  Be careful
  * with this function; it could remove tags added in code unrelated to
@@ -2876,7 +2876,7 @@ gtk_source_buffer_remove_all_source_tags (GtkSourceBuffer   *buffer,
 /**
  * gtk_source_buffer_set_language:
  * @buffer: a #GtkSourceBuffer.
- * @language: a #GtkSourceLanguage to set, or NULL.
+ * @language: a #GtkSourceLanguage to set, or %NULL.
  * 
  * Sets the #GtkSourceLanguage the source buffer will use, adding
  * #GtkSourceTag tags with the language's patterns and setting the
@@ -2933,7 +2933,7 @@ gtk_source_buffer_set_language (GtkSourceBuffer   *buffer,
  * object should not be unreferenced by the user.
  * 
  * Return value: the #GtkSourceLanguage set by
- * gtk_source_buffer_set_language(), or NULL.
+ * gtk_source_buffer_set_language(), or %NULL.
  **/
 GtkSourceLanguage *
 gtk_source_buffer_get_language (GtkSourceBuffer *buffer)
@@ -2995,9 +2995,9 @@ gtk_source_buffer_set_escape_char (GtkSourceBuffer *buffer,
 
 /**
  * markers_binary_search:
- * @buffer: the GtkSourceBuffer where the markers are
- * @iter: the position to search for
- * @last_cmp: where to return the value of the last comparision made (optional)
+ * @buffer: the GtkSourceBuffer where the markers are.
+ * @iter: the position to search for.
+ * @last_cmp: where to return the value of the last comparision made (optional).
  * 
  * Performs a binary search among the markers in @buffer for the
  * position of the @iter.  Returns the nearest matching marker (its
@@ -3005,7 +3005,7 @@ gtk_source_buffer_set_escape_char (GtkSourceBuffer *buffer,
  * comparision between the returned marker and the given iter.
  * 
  * Return value: an index in the markers array or -1 if the array is
- * empty
+ * empty.
  **/
 static gint
 markers_binary_search (GtkSourceBuffer *buffer, GtkTextIter *iter, gint *last_cmp)
@@ -3050,14 +3050,14 @@ markers_binary_search (GtkSourceBuffer *buffer, GtkTextIter *iter, gint *last_cm
 
 /**
  * markers_linear_lookup:
- * @buffer: the source buffer where the markers are
- * @marker: which marker to search for
- * @start: index from where to start looking
- * @direction: direction to search for
+ * @buffer: the source buffer where the markers are.
+ * @marker: which marker to search for.
+ * @start: index from where to start looking.
+ * @direction: direction to search for.
  * 
- * Search the markers array of @buffer starting from @start for
+ * Searches the markers array of @buffer starting from @start for
  * markers at the same position as the one at @start.  If @marker is
- * non-NULL search for that marker specifically, otherwise return the
+ * non-%NULL search for that marker specifically, otherwise return the
  * first or the last marker at the staring position, depending on
  * @direction.
  *
@@ -3065,7 +3065,7 @@ markers_binary_search (GtkSourceBuffer *buffer, GtkTextIter *iter, gint *last_cm
  * 0 means both and is mostly useful when looking for a specific
  * @marker.
  * 
- * Return value: the index of the searched marker
+ * Return value: the index of the searched marker.
  **/
 static gint 
 markers_linear_lookup (GtkSourceBuffer *buffer,
@@ -3190,8 +3190,8 @@ markers_insert (GtkSourceBuffer *buffer, GtkSourceMarker *marker)
 /**
  * gtk_source_buffer_create_marker:
  * @buffer: a #GtkSourceBuffer.
- * @name: the name of the marker, or NULL.
- * @type: a string defining the marker type, or NULL.
+ * @name: the name of the marker, or %NULL.
+ * @type: a string defining the marker type, or %NULL.
  * @where: location to place the marker.
  * 
  * Creates a marker in the @buffer of type @type.  A marker is
@@ -3208,7 +3208,7 @@ markers_insert (GtkSourceBuffer *buffer, GtkSourceMarker *marker)
  * emissions.
  *
  * Like a #GtkTextMark, a #GtkSourceMarker can be anonymous if the
- * passed @name is NULL.  Also, the buffer owns the markers so you
+ * passed @name is %NULL.  Also, the buffer owns the markers so you
  * shouldn't unreference it.
  *
  * Markers always have left gravity and are moved to the beginning of
@@ -3354,9 +3354,9 @@ gtk_source_buffer_delete_marker (GtkSourceBuffer *buffer,
  * @name: name of the marker to retrieve.
  * 
  * Looks up the #GtkSourceMarker named @name in @buffer, returning
- * NULL if it doesn't exists.
+ * %NULL if it doesn't exists.
  * 
- * Return value: the #GtkSourceMarker whose name is @name, or NULL.
+ * Return value: the #GtkSourceMarker whose name is @name, or %NULL.
  **/
 GtkSourceMarker *
 gtk_source_buffer_get_marker (GtkSourceBuffer *buffer,
@@ -3520,7 +3520,7 @@ gtk_source_buffer_get_markers_in_region (GtkSourceBuffer   *buffer,
  * Returns the first (nearest to the top of the buffer) marker in
  * @buffer.
  * 
- * Return value: a reference to the first #GtkSourceMarker, or NULL if
+ * Return value: a reference to the first #GtkSourceMarker, or %NULL if
  * there are no markers in the buffer.
  **/
 GtkSourceMarker *
@@ -3542,7 +3542,7 @@ gtk_source_buffer_get_first_marker (GtkSourceBuffer *buffer)
  * Returns the last (nearest to the bottom of the buffer) marker in
  * @buffer.
  * 
- * Return value: a reference to the last #GtkSourceMarker, or NULL if
+ * Return value: a reference to the last #GtkSourceMarker, or %NULL if
  * there are no markers in the buffer.
  **/
 GtkSourceMarker *
@@ -3594,7 +3594,7 @@ gtk_source_buffer_get_iter_at_marker (GtkSourceBuffer *buffer,
  * others using gtk_source_marker_next().
  * 
  * Return value: the #GtkSourceMarker nearest to the right of @iter,
- * or NULL if there are no more markers after @iter.
+ * or %NULL if there are no more markers after @iter.
  **/
 GtkSourceMarker *
 gtk_source_buffer_get_next_marker (GtkSourceBuffer *buffer,
@@ -3642,7 +3642,7 @@ gtk_source_buffer_get_next_marker (GtkSourceBuffer *buffer,
  * others using gtk_source_marker_prev().
  * 
  * Return value: the #GtkSourceMarker nearest to the left of @iter,
- * or NULL if there are no more markers before @iter.
+ * or %NULL if there are no more markers before @iter.
  **/
 GtkSourceMarker *
 gtk_source_buffer_get_prev_marker (GtkSourceBuffer *buffer,

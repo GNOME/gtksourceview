@@ -1419,7 +1419,7 @@ gtk_source_view_new ()
 
 /**
  * gtk_source_view_new_with_buffer:
- * @buffer: a #GtkSourceBuffer
+ * @buffer: a #GtkSourceBuffer.
  *
  * Creates a new #GtkSourceView widget displaying the buffer
  * @buffer. One buffer can be shared among many widgets.
@@ -1467,11 +1467,11 @@ gtk_source_view_get_type (void)
 
 /**
  * gtk_source_view_get_show_line_numbers:
- * @view: a #GtkSourceView
+ * @view: a #GtkSourceView.
  *
  * Returns whether line numbers are displayed beside the text.
  *
- * Return value: TRUE if the line numbers are displayed.
+ * Return value: %TRUE if the line numbers are displayed.
  **/
 gboolean
 gtk_source_view_get_show_line_numbers (GtkSourceView *view)
@@ -1484,10 +1484,10 @@ gtk_source_view_get_show_line_numbers (GtkSourceView *view)
 
 /**
  * gtk_source_view_set_show_line_numbers:
- * @view: a #GtkSourceView
- * @show: whether line numbers should be displayed
+ * @view: a #GtkSourceView.
+ * @show: whether line numbers should be displayed.
  *
- * If TRUE line numbers will be displayed beside the text.
+ * If %TRUE line numbers will be displayed beside the text.
  *
  **/
 void
@@ -1534,11 +1534,11 @@ gtk_source_view_set_show_line_numbers (GtkSourceView *view,
 
 /**
  * gtk_source_view_get_show_line_markers:
- * @view: a #GtkSourceView
+ * @view: a #GtkSourceView.
  *
  * Returns whether line markers are displayed beside the text.
  *
- * Return value: TRUE if the line markers are displayed.
+ * Return value: %TRUE if the line markers are displayed.
  **/
 gboolean
 gtk_source_view_get_show_line_markers (GtkSourceView *view)
@@ -1551,10 +1551,10 @@ gtk_source_view_get_show_line_markers (GtkSourceView *view)
 
 /**
  * gtk_source_view_set_show_line_markers:
- * @view: a #GtkSourceView
- * @show: whether line markers should be displayed
+ * @view: a #GtkSourceView.
+ * @show: whether line markers should be displayed.
  *
- * If TRUE line markers will be displayed beside the text.
+ * If %TRUE line markers will be displayed beside the text.
  *
  **/
 void
@@ -1601,7 +1601,7 @@ gtk_source_view_set_show_line_markers (GtkSourceView *view,
 
 /**
  * gtk_source_view_get_tabs_width:
- * @view: a #GtkSourceView
+ * @view: a #GtkSourceView.
  *
  * Returns the width of tabulation in characters.
  *
@@ -1640,8 +1640,8 @@ set_tab_stops_internal (GtkSourceView *view)
 
 /**
  * gtk_source_view_set_tabs_width:
- * @view: a #GtkSourceView
- * @width: width of tab in characters
+ * @view: a #GtkSourceView.
+ * @width: width of tab in characters.
  *
  * Sets the width of tabulation in characters.
  *
@@ -1676,11 +1676,11 @@ gtk_source_view_set_tabs_width (GtkSourceView *view,
 
 /**
  * gtk_source_view_set_marker_pixbuf:
- * @view: a #GtkSourceView
- * @marker_type: 
- * @pixbuf:
+ * @view: a #GtkSourceView.
+ * @marker_type: a marker type.
+ * @pixbuf: a #GdkPixbuf.
  *
- *
+ * Associates a given @pixbuf with a given @marker_type.
  **/
 void
 gtk_source_view_set_marker_pixbuf (GtkSourceView *view,
@@ -1726,10 +1726,12 @@ gtk_source_view_set_marker_pixbuf (GtkSourceView *view,
 
 /**
  * gtk_source_view_get_marker_pixbuf:
- * @view: a #GtkSourceView
- * @marker_type: 
+ * @view: a #GtkSourceView.
+ * @marker_type: a marker type. 
  *
- * Return value:
+ * Gets the pixbuf which is associated with the given @marker_type.
+ *
+ * Return value: a #GdkPixbuf if found, or %NULL if not found.
  **/
 GdkPixbuf * 
 gtk_source_view_get_marker_pixbuf (GtkSourceView *view,
@@ -1870,11 +1872,11 @@ key_press_cb (GtkWidget *widget, GdkEventKey *event, gpointer data)
 
 /**
  * gtk_source_view_get_auto_indent:
- * @view: a #GtkSourceView
+ * @view: a #GtkSourceView.
  *
  * Returns whether auto indentation of text is enabled.
  *
- * Return value: TRUE if auto indentation is enabled.
+ * Return value: %TRUE if auto indentation is enabled.
  **/
 gboolean
 gtk_source_view_get_auto_indent (GtkSourceView *view)
@@ -1886,10 +1888,10 @@ gtk_source_view_get_auto_indent (GtkSourceView *view)
 
 /**
  * gtk_source_view_set_auto_indent:
- * @view: a #GtkSourceView
- * @enable: whether to enable auto indentation
+ * @view: a #GtkSourceView.
+ * @enable: whether to enable auto indentation.
  *
- * If TRUE auto indentation of text is enabled.
+ * If %TRUE auto indentation of text is enabled.
  *
  **/
 void
@@ -1909,12 +1911,12 @@ gtk_source_view_set_auto_indent (GtkSourceView *view, gboolean enable)
 
 /**
  * gtk_source_view_get_insert_spaces_instead_of_tabs:
- * @view: a #GtkSourceView
+ * @view: a #GtkSourceView.
  *
  * Returns whether when inserting a tabulator character it should
  * be replaced by a group of space characters.
  *
- * Return value: TRUE if spaces are inserted instead of tabs.
+ * Return value: %TRUE if spaces are inserted instead of tabs.
  **/
 gboolean
 gtk_source_view_get_insert_spaces_instead_of_tabs (GtkSourceView *view)
@@ -1926,10 +1928,10 @@ gtk_source_view_get_insert_spaces_instead_of_tabs (GtkSourceView *view)
 
 /**
  * gtk_source_view_set_insert_spaces_instead_of_tabs:
- * @view: a #GtkSourceView
- * @enable: whether to insert spaces instead of tabs
+ * @view: a #GtkSourceView.
+ * @enable: whether to insert spaces instead of tabs.
  *
- * If TRUE any tabulator character inserted is replaced by a group
+ * If %TRUE any tabulator character inserted is replaced by a group
  * of space characters.
  *
  **/
@@ -2015,11 +2017,11 @@ view_dnd_drop (GtkTextView *view,
 
 /**
  * gtk_source_view_get_show_margin:
- * @view: a #GtkSourceView
+ * @view: a #GtkSourceView.
  *
- * Returns whether a margin is displayed
+ * Returns whether a margin is displayed.
  *
- * Return value: TRUE if the margin is showed
+ * Return value: %TRUE if the margin is showed.
  **/
 gboolean 
 gtk_source_view_get_show_margin (GtkSourceView *view)
@@ -2031,10 +2033,10 @@ gtk_source_view_get_show_margin (GtkSourceView *view)
 
 /**
  * gtk_source_view_set_show_margin:
- * @view: a #GtkSourceView
- * @show: whether to show a margin
+ * @view: a #GtkSourceView.
+ * @show: whether to show a margin.
  *
- * If TRUE a margin is displayed
+ * If %TRUE a margin is displayed
  **/
 void 
 gtk_source_view_set_show_margin (GtkSourceView *view, gboolean show)
@@ -2095,11 +2097,11 @@ gtk_source_view_set_highlight_current_line (GtkSourceView *view, gboolean hl)
 
 /**
  * gtk_source_view_get_margin:
- * @view: a #GtkSourceView
+ * @view: a #GtkSourceView.
  *
+ * Gets the position of the right margin in the given @view.
  *
- *
- * Return value:
+ * Return value: the position of the right margin.
  **/
 guint
 gtk_source_view_get_margin  (GtkSourceView *view)
@@ -2112,9 +2114,10 @@ gtk_source_view_get_margin  (GtkSourceView *view)
 
 /**
  * gtk_source_view_set_margin:
- * @view: a #GtkSourceView
+ * @view: a #GtkSourceView.
+ * @margin: the position of the margin to set.
  *
- *
+ * Sets the position of the right margin in the given @view.
  *
  **/
 void 
@@ -2137,10 +2140,10 @@ gtk_source_view_set_margin (GtkSourceView *view, guint margin)
 
 /**
  * gtk_source_view_set_smart_home_end:
- * @view: a #GtkSourceView
- * @enable: whether to enable smart behavior for HOME and END keys
+ * @view: a #GtkSourceView.
+ * @enable: whether to enable smart behavior for HOME and END keys.
  *
- * If TRUE HOME and END keys will move to the first/last non-space
+ * If %TRUE HOME and END keys will move to the first/last non-space
  * character of the line before moving to the start/end.
  *
  **/
@@ -2161,12 +2164,12 @@ gtk_source_view_set_smart_home_end (GtkSourceView *view, gboolean enable)
 
 /**
  * gtk_source_view_get_smart_home_end:
- * @view: a #GtkSourceView
+ * @view: a #GtkSourceView.
  *
  * Returns whether HOME and END keys will move to the first/last non-space
  * character of the line before moving to the start/end.
  *
- * Return value: TRUE if smart behavior for HOME and END keys is enabled
+ * Return value: %TRUE if smart behavior for HOME and END keys is enabled.
  **/
 gboolean
 gtk_source_view_get_smart_home_end (GtkSourceView *view)
@@ -2178,7 +2181,7 @@ gtk_source_view_get_smart_home_end (GtkSourceView *view)
 
 /**
  * gtk_source_view_style_set:
- * @widget: a #GtkSourceView
+ * @widget: a #GtkSourceView.
  * @previous_style:
  *
  *

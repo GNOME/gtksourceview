@@ -140,6 +140,14 @@ gtk_source_tag_finalize (GObject *object)
 	G_OBJECT_CLASS (parent_class)->finalize (object);
 }
 
+/**
+ * gtk_source_tag_get_style:
+ * @tag: a #GtkSourceTag.
+ * 
+ * Gets the style associated with the given @tag.
+ *
+ * Return value: a #GtkSourceTagStyle if found, or %NULL if not found. 
+ **/
 GtkSourceTagStyle *
 gtk_source_tag_get_style (GtkSourceTag *tag)
 {
@@ -151,6 +159,13 @@ gtk_source_tag_get_style (GtkSourceTag *tag)
 		return NULL;
 }
 
+/**
+ * gtk_source_tag_set_style:
+ * @tag: a #GtkSourceTag.
+ * @style: a #GtkSourceTagStyle.
+ * 
+ * Associates a given @style with the given @tag.
+ **/
 void 
 gtk_source_tag_set_style (GtkSourceTag *tag, const GtkSourceTagStyle *style)
 {
@@ -237,7 +252,17 @@ gtk_syntax_tag_init (GtkSyntaxTag *text_tag)
 {
 }
 
-
+/**
+ * gtk_syntax_tag_new:
+ * @id: the ID for the tag.
+ * @name: the name of the tag.
+ * @pattern_start: the starting pattern.
+ * @pattern_end: the ending pattern.
+ *
+ * Creates a new syntax tag object with the provided arguments.
+ * 
+ * Return value: a new syntax tag, as a #GtkTextTag.
+ **/
 GtkTextTag *
 gtk_syntax_tag_new (const gchar *id,	
 		    const gchar *name, 
@@ -330,6 +355,16 @@ gtk_pattern_tag_class_init (GtkPatternTagClass *klass)
 	object_class->finalize	= gtk_pattern_tag_finalize;
 }
 
+/**
+ * gtk_pattern_tag_new:
+ * @id: the ID for the tag.
+ * @name: the name of the tag.
+ * @pattern: the pattern.
+ *
+ * Creates a new pattern tag object with the provided arguments.
+ * 
+ * Return value: a new pattern tag, as a #GtkTextTag.
+ **/
 GtkTextTag *
 gtk_pattern_tag_new (const gchar *id, 
 		     const gchar *name, 
@@ -412,7 +447,24 @@ case_insesitive_keyword (const gchar *keyword)
 			
 	return g_string_free (str, FALSE);
 }
+ 
+/**
+ * gtk_keyword_list_tag_new:
+ * @id: the ID for the tag.
+ * @name: the name of the tag.
+ * @keywords: a list of keywords.
+ * @case_sensitive: whether the tag should be case sensitive.
+ * @match_empty_string_at_beginning: whether the tag should match empty
+ * string at the beginning.
+ * @match_empty_string_at_end: whether the tag should match empty
+ * string at the end. 
+ * @beginning_regex: the beginning regular expression.
+ * @end_regex: the ending regular expression.
 
+ * Creates a new keyword list tag object with the provided arguments.
+ * 
+ * Return value: a new keyword list tag, as a #GtkTextTag.
+ **/
 GtkTextTag *
 gtk_keyword_list_tag_new (const gchar  *id,
 			  const gchar  *name, 
@@ -496,6 +548,16 @@ gtk_keyword_list_tag_new (const gchar  *id,
 	return tag;
 }
 
+/**
+ * gtk_line_comment_tag_new:
+ * @id: the ID for the tag.
+ * @name: the name of the tag.
+ * @pattern_start: the starting pattern.
+ *
+ * Creates a new line comment tag object with the provided arguments.
+ * 
+ * Return value: a new line comment tag, as a #GtkTextTag.
+ **/
 GtkTextTag *
 gtk_line_comment_tag_new (const gchar *id, 
 			  const gchar *name, 
@@ -506,6 +568,18 @@ gtk_line_comment_tag_new (const gchar *id,
 	return gtk_syntax_tag_new (id, name, pattern_start, "\n");
 }
 
+/**
+ * gtk_string_tag_new:
+ * @id: the ID for the tag.
+ * @name: the name of the tag.
+ * @pattern_start: the starting pattern.
+ * @pattern_end: the ending pattern.
+ * @end_at_line_end: whether the ending pattern should be suffixed by an end-of-line character.
+ *
+ * Creates a new string tag object with the provided arguments.
+ * 
+ * Return value: a new string tag, as a #GtkTextTag.
+ **/
 GtkTextTag *
 gtk_string_tag_new (const gchar    *id,
 		    const gchar    *name,
@@ -615,6 +689,14 @@ gtk_source_tag_get_id (GtkSourceTag *tag)
 
 /* GtkSourceTagStyle functions ------------- */
 
+/**
+ * gtk_source_tag_style_get_type:
+ * 
+ * Retrieves the GType object which is associated with the
+ * #GtkSourceTagStyle class.
+ * 
+ * Return value: the GType associated with #GtkSourceTagStyle.
+ **/
 GType 
 gtk_source_tag_style_get_type (void)
 {
@@ -629,6 +711,13 @@ gtk_source_tag_style_get_type (void)
 	return our_type;
 } 
 
+/**
+ * gtk_source_tag_style_new:
+ * 
+ * Creates a new tag style object.
+ * 
+ * Return value: a new #GtkSourceTagStyle.
+ **/
 GtkSourceTagStyle *
 gtk_source_tag_style_new (void)
 {
@@ -639,6 +728,14 @@ gtk_source_tag_style_new (void)
 	return style;
 }
 
+/**
+ * gtk_source_tag_style_copy:
+ * @style: a #GtkSourceTagStyle.
+ * 
+ * Makes a copy of the given @style.
+ * 
+ * Return value: a new #GtkSourceTagStyle.
+ **/
 GtkSourceTagStyle *
 gtk_source_tag_style_copy (const GtkSourceTagStyle *style)
 {
@@ -652,6 +749,14 @@ gtk_source_tag_style_copy (const GtkSourceTagStyle *style)
 	return new_style;
 }
 
+
+/**
+ * gtk_source_tag_style_free:
+ * @style: a #GtkSourceTagStyle.
+ * 
+ * Frees the resources allocated by the given @style.
+ * 
+ **/
 void 
 gtk_source_tag_style_free (GtkSourceTagStyle *style)
 {

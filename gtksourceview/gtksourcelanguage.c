@@ -214,10 +214,10 @@ static const gchar invalid_chars[] = " \t\r\n\"$&<>,+=#!()'|{}[]?~`;%\\";
 
 /**
  * escape_id:
- * @arbitrary_text: some text in any encoding or format
- * @len: length of @arbitrary_text in bytes, or -1 if @arbitrary_text is nul-terminated
+ * @arbitrary_text: some text in any encoding or format.
+ * @len: length of @arbitrary_text in bytes, or -1 if @arbitrary_text is nul-terminated.
  * 
- * Return value: a nul-terminated valid part of a GConf key
+ * Return value: a null-terminated valid part of a GConf key.
  **/
 static gchar*
 escape_id (const gchar *arbitrary_text, gint len)
@@ -421,7 +421,7 @@ gtk_source_language_get_name (GtkSourceLanguage *language)
  *
  * Returns the localized section of the language.
  * Each language belong to a section (ex. HTML belogs to the
- * Markup section)
+ * Markup section).
  *
  * Return value: the section of @language.
  **/
@@ -434,6 +434,15 @@ gtk_source_language_get_section	(GtkSourceLanguage *language)
 	return g_strdup (language->priv->section);
 }
 
+/**
+ * gtk_source_language_get_mime_types:
+ * @language: a #GtkSourceLanguage.
+ *
+ * Returns a list of mime types for the given @language.  After usage you should
+ * free each element of the list as well as the list itself.
+ *
+ * Return value: a list of mime types (strings). 
+ **/
 GSList *
 gtk_source_language_get_mime_types (GtkSourceLanguage *language)
 {
@@ -544,6 +553,15 @@ get_mime_types_from_file (GtkSourceLanguage *language)
 	return mime_types;
 }
 
+/**
+ * gtk_source_language_set_mime_types:
+ * @language: a #GtkSourceLanguage
+ * @mime_types: a list of mime types (strings).
+ *
+ * Sets a list of @mime_types for the given @language.
+ * If @mime_types is %NULL this function will use the default mime
+ * types from the language file.
+ **/
 void 
 gtk_source_language_set_mime_types (GtkSourceLanguage	*language,
 				    const GSList	*mime_types)
@@ -1178,6 +1196,15 @@ language_file_parse (GtkSourceLanguage *language,
 	return tag_list;
 }
 
+/**
+ * gtk_source_language_get_tags:
+ * @language: a #GtkSourceLanguage.
+ *
+ * Returns a list of tags for the given @language.  You should unref the tags
+ * and free the list after usage.
+ *
+ * Return value: a list of #GtkSourceTag objects.
+ **/
 GSList *
 gtk_source_language_get_tags (GtkSourceLanguage *language)
 {
@@ -1229,6 +1256,16 @@ gtk_source_language_lazy_init_hash_tables (GtkSourceLanguage *language)
 	return TRUE;
 }
 
+/**
+ * gtk_source_language_get_tag_style:
+ * @language: a #GtkSourceLanguage.
+ * @tag_id: the ID of a #GtkSourceTag.
+ *
+ * Gets the style of the tag whose ID is @tag_id. If the style is 
+ * not defined then returns the default style.
+ *
+ * Return value: a #GtkSourceTagStyle.
+ **/
 GtkSourceTagStyle *
 gtk_source_language_get_tag_style (GtkSourceLanguage *language, 
 				   const gchar       *tag_id)
@@ -1254,6 +1291,15 @@ gtk_source_language_get_tag_style (GtkSourceLanguage *language,
 	}
 }
 
+/**
+ * gtk_source_language_get_tag_default_style:
+ * @language: a #GtkSourceLanguage.
+ * @tag_id: the ID of a #GtkSourceTag.
+ *
+ * Gets the default style of the tag whose ID is @tag_id. 
+ *
+ * Return value: a #GtkSourceTagStyle.
+ **/
 GtkSourceTagStyle*
 gtk_source_language_get_tag_default_style (GtkSourceLanguage *language,
 					   const gchar       *tag_id)
@@ -1289,10 +1335,10 @@ gtk_source_language_get_tag_default_style (GtkSourceLanguage *language,
 /**
  * gtk_source_language_set_tag_style:
  * @language: a #GtkSourceLanguage.
- * @tag_id: the ID of a #GtkSourceTag
- * @style: a #GtkSourceTagStyle
+ * @tag_id: the ID of a #GtkSourceTag.
+ * @style: a #GtkSourceTagStyle.
  *
- * Set the @style of the tag whose ID is @tag_id. If @style is NULL
+ * Sets the @style of the tag whose ID is @tag_id. If @style is %NULL
  * restore the default style.
  **/
 void 
@@ -1328,6 +1374,14 @@ gtk_source_language_set_tag_style (GtkSourceLanguage       *language,
 		       tag_id);
 }
 
+/**
+ * gtk_source_language_get_style_scheme:
+ * @language: a #GtkSourceLanguage.
+ * 
+ * Gets the style scheme associated with the given @language.
+ *
+ * Return value: a #GtkSourceStyleScheme.
+ **/
 GtkSourceStyleScheme *
 gtk_source_language_get_style_scheme (GtkSourceLanguage *language)
 {
@@ -1365,6 +1419,13 @@ style_changed_cb (GtkSourceStyleScheme *scheme,
 		       tag_id);	
 }
 
+/**
+ * gtk_source_language_set_style_scheme:
+ * @language: a #GtkSourceLanguage.
+ * @scheme: a #GtkSourceStyleScheme.
+ * 
+ * Sets the style scheme of the given @language.
+ **/
 void 
 gtk_source_language_set_style_scheme (GtkSourceLanguage    *language,
 				      GtkSourceStyleScheme *scheme)
@@ -1392,6 +1453,14 @@ gtk_source_language_set_style_scheme (GtkSourceLanguage    *language,
 			  G_CALLBACK (style_changed_cb), language);
 }
 
+/**
+ * gtk_source_language_get_escape_char:
+ * @language: a #GtkSourceLanguage.
+ * 
+ * Gets the value of the ESC character in the given @language.
+ * 
+ * Return value: the value of the ESC character.
+ **/
 gunichar 
 gtk_source_language_get_escape_char (GtkSourceLanguage *language)
 {
