@@ -46,6 +46,8 @@ enum {
 	LAST_SIGNAL
 };
 
+static GtkSourceTagStyle normal_style = { TRUE, 0 };
+
 static guint 	 signals[LAST_SIGNAL] = { 0 };
 
 static GObjectClass 	 *parent_class  = NULL;
@@ -1269,19 +1271,19 @@ gtk_source_language_get_tag_default_style (GtkSourceLanguage *language,
 
 	if (style_name != NULL)
 	{
-		const GtkSourceTagStyle *tmp;
+		GtkSourceTagStyle *tmp;
 
 		g_return_val_if_fail (language->priv->style_scheme != NULL, NULL);
 
 		tmp = gtk_source_style_scheme_get_tag_style (language->priv->style_scheme,
 							     style_name);
 		if (tmp == NULL)
-			return NULL;
+			return gtk_source_tag_style_copy (&normal_style);
 		else
-			return gtk_source_tag_style_copy (tmp);
+			return tmp;
 	}
 	else
-		return NULL;
+		return gtk_source_tag_style_copy (&normal_style);
 }
 
 /**

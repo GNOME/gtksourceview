@@ -1,3 +1,10 @@
+2004-03-06  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+
+	* gtksourceview/gtksourcelanguage.c
+	(gtk_source_language_get_tag_default_style): Return a copy of a default
+	tag style when the style is not found in the style scheme, or when the
+	tag has no style associated with it (bug #136070, Dustin Mulcahey).
+
 2004-03-05  Paolo Maggi  <paolo.maggi@polito.it>
 
 	* gtksourceview/language-specs/csharp.lang: updated mime-types to work
