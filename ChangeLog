@@ -1,3 +1,8 @@
+2003-08-26  Paolo Maggi <paolo.maggi@polito.it>
+
+	* gtksourceview/gtksourcebuffer.c (gtk_source_buffer_set_bracket_match_style):
+	really set the background color of the bracket match tag
+
 === gtksourceview 0.6.0 ===
 
 2003-08-25  Gustavo Giraldez  <gustavo.giraldez@gmx.net>

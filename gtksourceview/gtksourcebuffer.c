@@ -1404,7 +1404,9 @@ gtk_source_buffer_set_bracket_match_style (GtkSourceBuffer         *source_buffe
 		g_value_set_boxed (&background, &style->background);
 	else
 		g_value_set_boxed (&background, NULL);
-		
+	
+	g_object_set_property (G_OBJECT (tag), "background_gdk", &background);
+	
 	g_object_set (G_OBJECT (tag), 
 		      "style", style->italic ? PANGO_STYLE_ITALIC : PANGO_STYLE_NORMAL,
 		      "weight", style->bold ? PANGO_WEIGHT_BOLD : PANGO_WEIGHT_NORMAL,
