@@ -1,8 +1,8 @@
 # Slovak translations for gtksourceview package
 # Slovenské preklady pre balík gtksourceview.
-# Copyright (C) 2003, 2004 Free Software Foundation, Inc.
+# Copyright (C) 2003, 2004, 2005 Free Software Foundation, Inc.
 # This file is distributed under the same license as the gtksourceview package.
-# Marcel Telka <marcel@telka.sk>, 2003, 2004.
+# Marcel Telka <marcel@telka.sk>, 2003, 2004, 2005.
 #
 # $Id$
 #
@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-12 00:08+0100\n"
-"PO-Revision-Date: 2004-12-30 23:05+0100\n"
+"POT-Creation-Date: 2005-01-26 06:56+0100\n"
+"PO-Revision-Date: 2005-01-26 07:04+0100\n"
 "Last-Translator: Marcel Telka <marcel@telka.sk>\n"
 "Language-Team: Slovak <sk-i18n@lists.linux.sk>\n"
 "MIME-Version: 1.0\n"
@@ -121,8 +121,8 @@ msgid "Font Description"
 msgstr "Popis písma"
 
 #: gtksourceview/gtksourceprintjob.c:313
-msgid "Font description name to use for the document text"
-msgstr "Názov popisu písma, ktoré použiť pre text dokumentu"
+msgid "Font to use for the document text (e.g. \"Monospace 10\")"
+msgstr "Písmo, ktoré použiť pre text dokumentu (napr. \"Monospace 10\")"
 
 #: gtksourceview/gtksourceprintjob.c:320 gtksourceview/gtksourceprintjob.c:328
 msgid "Numbers Font"
@@ -174,25 +174,25 @@ msgid "Header and Footer Font Description"
 msgstr "Popis písma hlavičky a päty"
 
 #: gtksourceview/gtksourceprintjob.c:369
-msgid "Font description name to use for the header and footer"
-msgstr "Názov popisu písma, ktoré použiť pre hlavičku a pätu"
+msgid "Font to use for headers and footers (e.g. \"Monospace 10\")"
+msgstr "Písmo, ktoré použiť pre hlavičky a päty (napr. \"Monospace 10\")"
 
-#: gtksourceview/gtksourcestylescheme.c:237
+#: gtksourceview/gtksourcestylescheme.c:262
 msgid "Base-N Integer"
 msgstr "Celé číslo v sústave N"
 
-#: gtksourceview/gtksourcestylescheme.c:242
+#: gtksourceview/gtksourcestylescheme.c:267
 msgid "Character"
 msgstr "Znak"
 
-#: gtksourceview/gtksourcestylescheme.c:247
+#: gtksourceview/gtksourcestylescheme.c:272
 #: gtksourceview/language-specs/latex.lang.h:1
 #: gtksourceview/language-specs/po.lang.h:1
 msgid "Comment"
 msgstr "Komentár"
 
 #. $this = (datatype)
-#: gtksourceview/gtksourcestylescheme.c:252
+#: gtksourceview/gtksourcestylescheme.c:277
 #: gtksourceview/language-specs/php.lang.h:14
 msgid "Data Type"
 msgstr "Dátový typ"
@@ -200,13 +200,13 @@ msgstr "Dátový typ"
 #.
 #. CSS functions, such as rgb(), clip(), or lang().
 #.
-#: gtksourceview/gtksourcestylescheme.c:257
+#: gtksourceview/gtksourcestylescheme.c:282
 #: gtksourceview/language-specs/ada.lang.h:3
 #: gtksourceview/language-specs/css.lang.h:17
 msgid "Function"
 msgstr "Funkcia"
 
-#: gtksourceview/gtksourcestylescheme.c:262
+#: gtksourceview/gtksourcestylescheme.c:287
 #: gtksourceview/language-specs/c.lang.h:6
 #: gtksourceview/language-specs/cpp.lang.h:6
 #: gtksourceview/language-specs/fortran.lang.h:1
@@ -215,11 +215,11 @@ msgstr "Funkcia"
 msgid "Decimal"
 msgstr "Desiatkové"
 
-#: gtksourceview/gtksourcestylescheme.c:267
+#: gtksourceview/gtksourcestylescheme.c:292
 msgid "Floating Point"
 msgstr "S pohyblivou rádovou čiarkou"
 
-#: gtksourceview/gtksourcestylescheme.c:272
+#: gtksourceview/gtksourcestylescheme.c:297
 #: gtksourceview/language-specs/latex.lang.h:3
 #: gtksourceview/language-specs/po.lang.h:3
 #: gtksourceview/language-specs/texinfo.lang.h:8
@@ -229,11 +229,11 @@ msgstr "S pohyblivou rádovou čiarkou"
 msgid "Keyword"
 msgstr "Kľúčové slovo"
 
-#: gtksourceview/gtksourcestylescheme.c:277
+#: gtksourceview/gtksourcestylescheme.c:302
 msgid "Preprocessor"
 msgstr "Preprocesor"
 
-#: gtksourceview/gtksourcestylescheme.c:282
+#: gtksourceview/gtksourcestylescheme.c:307
 #: gtksourceview/language-specs/ada.lang.h:9
 #: gtksourceview/language-specs/c.lang.h:15
 #: gtksourceview/language-specs/cpp.lang.h:15
@@ -260,7 +260,7 @@ msgstr "Preprocesor"
 msgid "String"
 msgstr "Reťazec"
 
-#: gtksourceview/gtksourcestylescheme.c:287
+#: gtksourceview/gtksourcestylescheme.c:312
 msgid "Specials"
 msgstr "Zvláštnosti"
 
@@ -276,7 +276,7 @@ msgstr "Zvláštnosti"
 #. Submitted by Scott Martin (scott@coffeeblack.org)
 #.
 #. FIXME: find the correct mimetype
-#: gtksourceview/gtksourcestylescheme.c:294
+#: gtksourceview/gtksourcestylescheme.c:319
 #: gtksourceview/language-specs/css.lang.h:46
 #: gtksourceview/language-specs/desktop.lang.h:10
 #: gtksourceview/language-specs/diff.lang.h:7
@@ -287,15 +287,15 @@ msgstr "Zvláštnosti"
 msgid "Others"
 msgstr "Ostatné"
 
-#: gtksourceview/gtksourcestylescheme.c:299
+#: gtksourceview/gtksourcestylescheme.c:324
 msgid "Others 2"
 msgstr "Ostatné 2"
 
-#: gtksourceview/gtksourcestylescheme.c:304
+#: gtksourceview/gtksourcestylescheme.c:329
 msgid "Others 3"
 msgstr "Ostatné 3"
 
-#: gtksourceview/gtksourcestylescheme.c:341
+#: gtksourceview/gtksourcestylescheme.c:366
 msgid "Default"
 msgstr "Predvolené"
 
@@ -377,12 +377,11 @@ msgstr ""
 
 #: gtksourceview/gtksourceview.c:276
 msgid "Highlight current line"
-msgstr ""
+msgstr "Zvýrazniť aktuálny riadok"
 
 #: gtksourceview/gtksourceview.c:277
-#, fuzzy
 msgid "Whether to highlight the current line"
-msgstr "Či zvýrazniť syntax vo vyrovnávacej pamäti"
+msgstr "Či zvýrazniť aktuálny riadok"
 
 #: gtksourceview/language-specs/ada.lang.h:1
 msgid "Ada"
@@ -815,7 +814,7 @@ msgstr "Sektorový"
 
 #: gtksourceview/language-specs/ini.lang.h:1
 msgid ".ini"
-msgstr ""
+msgstr ".ini"
 
 #: gtksourceview/language-specs/ini.lang.h:3
 #: gtksourceview/language-specs/verilog.lang.h:3
@@ -825,19 +824,16 @@ msgstr "Desiatkové číslo"
 #: gtksourceview/language-specs/ini.lang.h:4
 #: gtksourceview/language-specs/R.lang.h:3
 #: gtksourceview/language-specs/gtkrc.lang.h:2
-#, fuzzy
 msgid "Double Quote String"
 msgstr "Reťazec ohraničený úvodzovkami"
 
 #: gtksourceview/language-specs/ini.lang.h:6
-#, fuzzy
 msgid "Integer"
-msgstr "Celé číslo v sústave N"
+msgstr "Celé číslo"
 
 #: gtksourceview/language-specs/ini.lang.h:11
 #: gtksourceview/language-specs/R.lang.h:11
 #: gtksourceview/language-specs/gtkrc.lang.h:10
-#, fuzzy
 msgid "Single Quote String"
 msgstr "Reťazec ohraničený apostrofmi"
 
@@ -1052,9 +1048,8 @@ msgid "Preprocessor Defines"
 msgstr "Definície preprocesora"
 
 #: gtksourceview/language-specs/pascal.lang.h:19
-#, fuzzy
 msgid "Type, Class and Object Keywords"
-msgstr "Typy tried a kľúčové slová objektov"
+msgstr "Kľúčové slová typov, tried a objektov"
 
 #: gtksourceview/language-specs/perl.lang.h:1
 msgid "Function Call"
@@ -1066,7 +1061,7 @@ msgstr "Volanie metódy"
 
 #: gtksourceview/language-specs/perl.lang.h:5
 msgid "POD"
-msgstr ""
+msgstr "POD"
 
 #: gtksourceview/language-specs/perl.lang.h:6
 msgid "Perl"
@@ -1212,37 +1207,32 @@ msgid "Ruby"
 msgstr "Ruby"
 
 #: gtksourceview/language-specs/sh.lang.h:2
-#, fuzzy
 msgid "Built-in Commands"
-msgstr "Vstavané funkcie"
+msgstr "Vstavané príkazy"
 
 #: gtksourceview/language-specs/sh.lang.h:3
-#, fuzzy
 msgid "Common Commands"
-msgstr "Najčastejšie používané príkazy"
+msgstr "Najčastejšie príkazy"
 
 #: gtksourceview/language-specs/sh.lang.h:10
-#, fuzzy
 msgid "Redirections"
-msgstr "Definície"
+msgstr "Presmerovania"
 
 #: gtksourceview/language-specs/sh.lang.h:12
 msgid "Self"
 msgstr "Vlastný"
 
 #: gtksourceview/language-specs/sh.lang.h:15
-#, fuzzy
 msgid "Variable1"
-msgstr "Premenná"
+msgstr "Premenná1"
 
 #: gtksourceview/language-specs/sh.lang.h:16
-#, fuzzy
 msgid "Variable2"
-msgstr "Premenná"
+msgstr "Premenná2"
 
 #: gtksourceview/language-specs/sh.lang.h:17
 msgid "sh"
-msgstr ""
+msgstr "sh"
 
 #: gtksourceview/language-specs/sql.lang.h:1
 msgid "ANSI Datatypes"
@@ -1434,84 +1424,69 @@ msgid "VB.NET"
 msgstr "VB.NET"
 
 #: gtksourceview/language-specs/nemerle.lang.h:4
-#, fuzzy
 msgid "Core Keywords"
-msgstr "Kľúčové slová toku"
+msgstr "Základné kľúčové slová"
 
 #: gtksourceview/language-specs/nemerle.lang.h:5
-#, fuzzy
 msgid "Core Types"
-msgstr "Typy"
+msgstr "Základné typy"
 
 #: gtksourceview/language-specs/nemerle.lang.h:9
 msgid "Keywords Defined by Macros"
-msgstr ""
+msgstr "Kľúčové slová definované makrami"
 
 #: gtksourceview/language-specs/nemerle.lang.h:11
-#, fuzzy
 msgid "Nemerle"
-msgstr "Číslo"
+msgstr "Nemerle"
 
 #: gtksourceview/language-specs/tcl.lang.h:6
 msgid "Tcl"
-msgstr ""
+msgstr "Tcl"
 
 #: gtksourceview/language-specs/vhdl.lang.h:7
-#, fuzzy
 msgid "True and False"
 msgstr "Pravda a nepravda"
 
 #: gtksourceview/language-specs/vhdl.lang.h:8
-#, fuzzy
 msgid "Type"
-msgstr "Typy"
+msgstr "Typ"
 
 #: gtksourceview/language-specs/vhdl.lang.h:9
 msgid "VHDL"
-msgstr ""
+msgstr "VHDL"
 
 #: gtksourceview/language-specs/R.lang.h:1
-#, fuzzy
-msgid "Assign operator"
-msgstr "Operátory poľa"
+msgid "Assignment Operator"
+msgstr "Operátor priradenia"
 
 #: gtksourceview/language-specs/R.lang.h:2
-#, fuzzy
 msgid "Delimiter"
-msgstr "Bez obmedzenia"
+msgstr "Oddeľovač"
 
 #: gtksourceview/language-specs/R.lang.h:5
-#, fuzzy
 msgid "Integer Number"
-msgstr "Dvojkové číslo"
+msgstr "Celé číslo"
 
 #: gtksourceview/language-specs/R.lang.h:8
-#, fuzzy
-msgid "Reserved class"
-msgstr "Rezervované slová ANSI"
+msgid "Reserved Class"
+msgstr "Rezervovaná trieda"
 
 #: gtksourceview/language-specs/R.lang.h:9
-#, fuzzy
-msgid "Reserved constant"
-msgstr "Generovaný obsah"
+msgid "Reserved Constant"
+msgstr "Rezervovaná konštanta"
 
 #: gtksourceview/language-specs/gtkrc.lang.h:3
 msgid "GtkRC"
-msgstr ""
+msgstr "GtkRC"
 
 #: gtksourceview/language-specs/gtkrc.lang.h:4
 msgid "Include Directive"
-msgstr ""
+msgstr "Direktíva vloženia"
 
 #: gtksourceview/language-specs/gtkrc.lang.h:5
-#, fuzzy
 msgid "Keysymbol"
-msgstr "Kľúčové symboly"
+msgstr "Kľúčový symbol"
 
 #: gtksourceview/language-specs/gtkrc.lang.h:11
-#, fuzzy
 msgid "State"
-msgstr "Hradlá"
-
-#~ msgid "Plain Old Documentation"
-#~ msgstr "Obyčajná stará dokumentácia"
+msgstr "Stav"
