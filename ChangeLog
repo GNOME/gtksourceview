@@ -1,3 +1,12 @@
+2003-01-05  Jeroen Zwartepoorte  <jeroen@xs4all.nl>
+
+	* src/gtksourcebuffer.c: (check_syntax),
+	(gtk_source_buffer_regex_search), (gtk_source_buffer_regex_match):
+	Really fix the highlighting code this time. Uses
+	g_utf8_offset_to_pointer and g_utf8_pointer_to_offset to convert
+	between character offset and byte offset required for the regex methods.
+	Patch by Gustavo.
+
 2003-01-04  Jeroen Zwartepoorte  <jeroen@xs4all.nl>
 
 	* src/gtksourcebuffer.c: (check_syntax), (check_pattern),

@@ -729,8 +729,7 @@ check_syntax (GtkSourceBuffer *sbuf,
 	curiter = *iter1;
 	curiter2 = curiter;
 	offset = gtk_text_iter_get_offset (iter1);
-	len = gtk_text_iter_get_offset (iter2);
-	len -= offset;
+	len = gtk_text_iter_get_offset (iter2) - offset;
 
 	while (pos < len) {
 		/* check for any of the syntax highlights */
@@ -739,15 +738,15 @@ check_syntax (GtkSourceBuffer *sbuf,
 			break;	/* not found */
 		/* if there is text segments before syntax, check pattern too... */
 		if (pos < s)
-			check_pattern (sbuf, &txt[pos], s - pos, &curiter);
+			check_pattern (sbuf, g_utf8_offset_to_pointer (txt, pos), s - pos, &curiter);
 		pos = m.endpos;
 		gtk_text_iter_forward_chars (&curiter, m.endpos - oldpos);
 		oldpos = pos;
 
 		for (list = gtk_source_buffer_get_syntax_entries (sbuf); list; list = list->next) {
 			tag = GTK_SYNTAX_TAG (list->data);
-			if (gtk_source_buffer_regex_match (txt, s, len, &tag->reg_start) > 0
-			    && txt[s - 1] != '\\') {
+			if (gtk_source_buffer_regex_match (txt, s, len, &tag->reg_start) > 0) {
+/* 			    && *(g_utf8_offset_to_pointer (txt, s - 1)) != '\\') { */
 				if ((z = get_syntax_end (txt, pos, &tag->reg_end, &m)) >= 0)
 					pos = m.endpos;
 				else if (z == 0)
@@ -1075,7 +1074,6 @@ gtk_source_buffer_regex_search (const gchar          *text,
 				GtkSourceBufferMatch *match)
 {
 	gint len;
-	int diff;
 
 	g_return_val_if_fail (regex != NULL, -1);
 	g_return_val_if_fail (match != NULL, -1);
@@ -1083,8 +1081,8 @@ gtk_source_buffer_regex_search (const gchar          *text,
 	/* Work around a re_search bug where it returns the number of bytes
 	 * instead of the number of characters (unicode characters can be
 	 * more than 1 byte) it matched. See redhat bugzilla #73644. */
-	len = (gint)g_utf8_strlen (text, -1);
-	pos += (pos - (gint)g_utf8_strlen (text, pos));
+	len = strlen (text);
+	pos = g_utf8_offset_to_pointer (text, pos) - text;
 
 	match->startpos = re_search (&regex->buf,
 				     text,
@@ -1094,10 +1092,8 @@ gtk_source_buffer_regex_search (const gchar          *text,
 				     &regex->reg);
 
 	if (match->startpos > -1) {
-		len = (gint)g_utf8_strlen (text, match->startpos);
-		diff = match->startpos - len;
-		match->startpos = len;
-		match->endpos = regex->reg.end[0] - diff;
+		match->startpos = g_utf8_pointer_to_offset (text, text + match->startpos);
+		match->endpos = g_utf8_pointer_to_offset (text, text + regex->reg.end[0]);
 	}
 
 	return match->startpos;
@@ -1115,8 +1111,9 @@ gtk_source_buffer_regex_match (const gchar *text,
 			       Regex       *regex)
 {
 	g_return_val_if_fail (regex != NULL, -1);
-
-	return re_match (&regex->buf, text, end, pos, &regex->reg);
+	
+	pos = g_utf8_offset_to_pointer (text, pos) - text;
+	return re_match (&regex->buf, text, strlen (text), pos, &regex->reg);
 }
 
 GList *
