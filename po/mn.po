@@ -1,16 +1,18 @@
+# translation of gtksourceview.gnome-2-4.mn.po to Mongolian
 # translation of gtksourceview.gnome-2-4.po to Mongolian
 # This file is distributed under the same license as the PACKAGE package.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER.
 # S.Dulmandakh <duluu@localhost.localdomain>, 2003.
+# Sanlig Badral <badral@openmn.org>, 2003.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gtksourceview.gnome-2-4\n"
+"Project-Id-Version: gtksourceview.gnome-2-4.mn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-12-02 13:55+0100\n"
-"PO-Revision-Date: 2003-12-03 02:19+0800\n"
-"Last-Translator: S.Dulmandakh <duluu@localhost.localdomain>\n"
-"Language-Team: Mongolian <en@li.org>\n"
+"POT-Creation-Date: 2003-12-11 02:54+0100\n"
+"PO-Revision-Date: 2003-12-11 11:54-0500\n"
+"Last-Translator: Sanlig Badral <badral@openmn.org>\n"
+"Language-Team: Mongolian <openmn-core@lists.sf.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -262,7 +264,7 @@ msgstr "Мөрийн тэмдэглэгээг үзүүл"
 
 #: gtksourceview/gtksourceview.c:214
 msgid "Whether to display line marker pixbufs"
-msgstr ""
+msgstr "Мөр тэмдэглэгч pixbufs -г үзүүлэх эсэх"
 
 #: gtksourceview/gtksourceview.c:231
 msgid "Auto Indentation"
@@ -282,19 +284,19 @@ msgstr "Таабуудын оронд сул зай оруулах уу"
 
 #: gtksourceview/gtksourceview.c:246
 msgid "Show Right Margin"
-msgstr ""
+msgstr "Баруун захын зайг үзүүлэх"
 
 #: gtksourceview/gtksourceview.c:247
 msgid "Whether to display the right margin"
-msgstr ""
+msgstr "Баруун захын зайг үзүүлэх эсэх"
 
 #: gtksourceview/gtksourceview.c:254
 msgid "Margin position"
-msgstr ""
+msgstr "Захын байрлал"
 
 #: gtksourceview/gtksourceview.c:255
 msgid "Position of the right margin"
-msgstr ""
+msgstr "Баруун захын байрлал"
 
 #: gtksourceview/gtksourceview.c:264
 msgid "Use smart home/end"
@@ -304,7 +306,9 @@ msgstr "Ухаантай home/end-г хэрэглэ"
 msgid ""
 "HOME and END keys move to first/last characters on line first before going "
 "to the start/end of the line"
-msgstr "HOME and END товчнууд нь мөрийн эхэнд/төгсгөлд очхоосоо өмнө эхний/сүүлийн тэмдэгт руу очдог"
+msgstr ""
+"HOME and END товчнууд нь мөрийн эхэнд/төгсгөлд очхоосоо өмнө эхний/сүүлийн "
+"тэмдэгт руу очдог"
 
 #: gtksourceview/language-specs/ada.lang.h:1
 msgid "Ada"
@@ -420,7 +424,7 @@ msgstr ".desktop"
 
 #: gtksourceview/language-specs/desktop.lang.h:1
 msgid ".desktop"
-msgstr ""
+msgstr ".ажлын тавцан"
 
 #: gtksourceview/language-specs/desktop.lang.h:2
 msgid "Boolean Value"
@@ -478,7 +482,7 @@ msgstr "Онцгой нөхцөл"
 #: gtksourceview/language-specs/html.lang.h:1
 #: gtksourceview/language-specs/xml.lang.h:1
 msgid "Attributes"
-msgstr ""
+msgstr "Аттрибут"
 
 #: gtksourceview/language-specs/html.lang.h:3
 #: gtksourceview/language-specs/xml.lang.h:3
@@ -493,7 +497,7 @@ msgstr "DTD"
 #: gtksourceview/language-specs/html.lang.h:5
 #: gtksourceview/language-specs/xml.lang.h:5
 msgid "Entity"
-msgstr ""
+msgstr "Объект"
 
 #: gtksourceview/language-specs/html.lang.h:6
 msgid "HTML"
@@ -543,7 +547,7 @@ msgstr "Тоон"
 
 #: gtksourceview/language-specs/java.lang.h:9
 msgid "Primitives"
-msgstr ""
+msgstr "Үндэс"
 
 #: gtksourceview/language-specs/java.lang.h:12
 #: gtksourceview/language-specs/python.lang.h:12
