@@ -1,19 +1,20 @@
 # English (British) translation.
-# Copyright (C) 2004 THE PACKAGE'S COPYRIGHT HOLDER
+# Copyright (C) 2004 The GNOME Foundation
 # This file is distributed under the same license as the gtksourceview package.
-# Gareth Owen <gowen72@yahoo.com>, 2004.
-#
+# Gareth Owen <gowen72@yahoo.com>, David Lodge <dave@cirt.net>, 2004.
+# 
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-06-25 22:02-0400\n"
-"PO-Revision-Date: 2004-06-25 22:13-0400\n"
-"Last-Translator: Gareth Owen <gowen72@yahoo.comg>\n"
-"Language-Team: \n"
+"POT-Creation-Date: 2004-07-29 00:28+0100\n"
+"PO-Revision-Date: 2004-07-29 00:28+0100\n"
+"Last-Translator: David Lodge <dave@cirt.net>\n"
+"Language-Team: English/GB <en@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: 8bit"
 
 #: gtksourceview/gtksourcebuffer.c:279
 msgid "Escape Character"
@@ -31,7 +32,7 @@ msgstr "Check Brackets"
 msgid "Whether to check and highlight matching brackets"
 msgstr "Whether to check and highlight matching brackets"
 
-#: gtksourceview/gtksourcebuffer.c:297 gtksourceview/gtksourceprintjob.c:303
+#: gtksourceview/gtksourcebuffer.c:297 gtksourceview/gtksourceprintjob.c:295
 msgid "Highlight"
 msgstr "Highlight"
 
@@ -68,90 +69,110 @@ msgstr ""
 "List of directories where the language specification files (.lang) are "
 "located"
 
-#: gtksourceview/gtksourceprintjob.c:272
+#: gtksourceview/gtksourceprintjob.c:264
 msgid "Configuration"
 msgstr "Configuration"
 
-#: gtksourceview/gtksourceprintjob.c:273
+#: gtksourceview/gtksourceprintjob.c:265
 msgid "Configuration options for the print job"
 msgstr "Configuration options for the print job"
 
-#: gtksourceview/gtksourceprintjob.c:280
+#: gtksourceview/gtksourceprintjob.c:272
 msgid "Source Buffer"
 msgstr "Source Buffer"
 
-#: gtksourceview/gtksourceprintjob.c:281
+#: gtksourceview/gtksourceprintjob.c:273
 msgid "GtkSourceBuffer object to print"
 msgstr "GtkSourceBuffer object to print"
 
-#: gtksourceview/gtksourceprintjob.c:287 gtksourceview/gtksourceview.c:221
+#: gtksourceview/gtksourceprintjob.c:279 gtksourceview/gtksourceview.c:221
 #: gtksourceview/gtksourceview.c:222
 msgid "Tabs Width"
 msgstr "Tabs Width"
 
-#: gtksourceview/gtksourceprintjob.c:288
+#: gtksourceview/gtksourceprintjob.c:280
 msgid "Width in equivalent space characters of tabs"
 msgstr "Width in equivalent space characters of tabs"
 
-#: gtksourceview/gtksourceprintjob.c:295
+#: gtksourceview/gtksourceprintjob.c:287
 msgid "Wrap Mode"
 msgstr "Wrap Mode"
 
-#: gtksourceview/gtksourceprintjob.c:296
+#: gtksourceview/gtksourceprintjob.c:288
 msgid "Word wrapping mode"
 msgstr "Word wrapping mode"
 
-#: gtksourceview/gtksourceprintjob.c:304
+#: gtksourceview/gtksourceprintjob.c:296
 msgid "Whether to print the document with highlighted syntax"
 msgstr "Whether to print the document with highlighted syntax"
 
-#: gtksourceview/gtksourceprintjob.c:312
+#: gtksourceview/gtksourceprintjob.c:304
 msgid "Font"
 msgstr "Font"
 
-#: gtksourceview/gtksourceprintjob.c:313
-msgid "Font name to use for the document text"
-msgstr "Font name to use for the document text"
+#: gtksourceview/gtksourceprintjob.c:305
+msgid "GnomeFont name to use for the document text (deprecated)"
+msgstr "GnomeFont name to use for the document text (deprecated)"
 
-#: gtksourceview/gtksourceprintjob.c:320
+#: gtksourceview/gtksourceprintjob.c:312
+msgid "Font Description"
+msgstr "Font Description"
+
+#: gtksourceview/gtksourceprintjob.c:313
+msgid "Font description name to use for the document text"
+msgstr "Font description name to use for the document text"
+
+#: gtksourceview/gtksourceprintjob.c:320 gtksourceview/gtksourceprintjob.c:328
 msgid "Numbers Font"
 msgstr "Numbers Font"
 
 #: gtksourceview/gtksourceprintjob.c:321
-msgid "Font name to use for the line numbers"
-msgstr "Font name to use for the line numbers"
+msgid "GnomeFont name to use for the line numbers (deprecated)"
+msgstr "GnomeFont name to use for the line numbers (deprecated)"
 
-#: gtksourceview/gtksourceprintjob.c:328
+#: gtksourceview/gtksourceprintjob.c:329
+msgid "Font description to use for the line numbers"
+msgstr "Font description to use for the line numbers"
+
+#: gtksourceview/gtksourceprintjob.c:336
 msgid "Print Line Numbers"
 msgstr "Print Line Numbers"
 
-#: gtksourceview/gtksourceprintjob.c:329
+#: gtksourceview/gtksourceprintjob.c:337
 msgid "Interval of printed line numbers (0 means no numbers)"
 msgstr "Interval of printed line numbers (0 means no numbers)"
 
-#: gtksourceview/gtksourceprintjob.c:336
+#: gtksourceview/gtksourceprintjob.c:344
 msgid "Print Header"
 msgstr "Print Header"
 
-#: gtksourceview/gtksourceprintjob.c:337
+#: gtksourceview/gtksourceprintjob.c:345
 msgid "Whether to print a header in each page"
 msgstr "Whether to print a header in each page"
 
-#: gtksourceview/gtksourceprintjob.c:344
+#: gtksourceview/gtksourceprintjob.c:352
 msgid "Print Footer"
 msgstr "Print Footer"
 
-#: gtksourceview/gtksourceprintjob.c:345
+#: gtksourceview/gtksourceprintjob.c:353
 msgid "Whether to print a footer in each page"
 msgstr "Whether to print a footer in each page"
 
-#: gtksourceview/gtksourceprintjob.c:352
+#: gtksourceview/gtksourceprintjob.c:360
 msgid "Header and Footer Font"
 msgstr "Header and Footer Font"
 
-#: gtksourceview/gtksourceprintjob.c:353
-msgid "Font name to use for the header and footer"
-msgstr "Font name to use for the header and footer"
+#: gtksourceview/gtksourceprintjob.c:361
+msgid "GnomeFont name to use for the header and footer (deprecated)"
+msgstr "GnomeFont name to use for the header and footer (deprecated)"
+
+#: gtksourceview/gtksourceprintjob.c:368
+msgid "Header and Footer Font Description"
+msgstr "Header and Footer Font Description"
+
+#: gtksourceview/gtksourceprintjob.c:369
+msgid "Font description name to use for the header and footer"
+msgstr "Font description name to use for the header and footer"
 
 #: gtksourceview/gtksourcestylescheme.c:237
 msgid "Base-N Integer"
@@ -206,7 +227,7 @@ msgstr "Preprocessor"
 #: gtksourceview/language-specs/idl.lang.h:8
 #: gtksourceview/language-specs/java.lang.h:11
 #: gtksourceview/language-specs/lua.lang.h:10
-#: gtksourceview/language-specs/perl.lang.h:6
+#: gtksourceview/language-specs/perl.lang.h:8
 #: gtksourceview/language-specs/po.lang.h:6
 #: gtksourceview/language-specs/python.lang.h:11
 #: gtksourceview/language-specs/ruby.lang.h:18
@@ -626,7 +647,7 @@ msgid "Multiline String 2"
 msgstr "Multiline String 2"
 
 #: gtksourceview/language-specs/lua.lang.h:9
-#: gtksourceview/language-specs/perl.lang.h:5
+#: gtksourceview/language-specs/perl.lang.h:7
 #: gtksourceview/language-specs/python.lang.h:9
 #: gtksourceview/language-specs/ruby.lang.h:17
 msgid "Scripts"
@@ -641,18 +662,26 @@ msgid "Function Call"
 msgstr "Function Call"
 
 #: gtksourceview/language-specs/perl.lang.h:4
+msgid "Method Call"
+msgstr "Method Call"
+
+#: gtksourceview/language-specs/perl.lang.h:5
 msgid "Perl"
 msgstr "Perl"
 
-#: gtksourceview/language-specs/perl.lang.h:7
+#: gtksourceview/language-specs/perl.lang.h:6
+msgid "Plain Old Documentation"
+msgstr "Plain Old Documentation"
+
+#: gtksourceview/language-specs/perl.lang.h:9
 msgid "String2"
 msgstr "String2"
 
-#: gtksourceview/language-specs/perl.lang.h:8
+#: gtksourceview/language-specs/perl.lang.h:10
 msgid "String3"
 msgstr "String3"
 
-#: gtksourceview/language-specs/perl.lang.h:9
+#: gtksourceview/language-specs/perl.lang.h:11
 msgid "Variables"
 msgstr "Variables"
 
@@ -920,3 +949,4 @@ msgstr "Tag"
 #: gtksourceview/language-specs/xml.lang.h:10
 msgid "XML"
 msgstr "XML"
+
