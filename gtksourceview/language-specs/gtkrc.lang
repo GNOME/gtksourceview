@@ -4,12 +4,12 @@
 	
 	<escape-char>\</escape-char>
 
-	<string _name = "String" style = "String" end-at-line-end = "TRUE">
+	<string _name = "Double Quote String" style = "String" end-at-line-end = "TRUE">
 		<start-regex>&quot;</start-regex>
 		<end-regex>&quot;</end-regex>
 	</string>
 
-	<string _name = "String 2" style = "String" end-at-line-end = "TRUE">
+	<string _name = "Single Quote String" style = "String" end-at-line-end = "TRUE">
 		<start-regex>&apos;</start-regex>
 		<end-regex>&apos;</end-regex>
 	</string>
@@ -18,7 +18,7 @@
 		<start-regex>#</start-regex>
 	</line-comment>
 
-	<pattern-item _name = "Keysymbols" style = "Keyword">
+	<pattern-item _name = "Keysymbol" style = "Keyword">
 		<regex>::|=</regex>
 	</pattern-item>
 
@@ -54,7 +54,7 @@
 		<keyword>include</keyword>
 	</keyword-list>
 
-	<keyword-list _name = "Boolean" style = "Preprocessor" case-sensitive="FALSE">
+	<keyword-list _name = "Boolean Value" style = "Preprocessor" case-sensitive="FALSE">
 		<keyword>TRUE</keyword>
 		<keyword>FALSE</keyword>
 	</keyword-list>
