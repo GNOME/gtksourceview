@@ -28,8 +28,8 @@ G_BEGIN_DECLS
 typedef struct _GtkSourceTagStyle GtkSourceTagStyle;
 
 typedef enum {
-	GTK_SOURCE_TAG_STYLE_USE_BACKGROUND = 1 << 0,
-	GTK_SOURCE_TAG_STYLE_USE_FOREGROUND = 1 << 1
+	GTK_SOURCE_TAG_STYLE_USE_BACKGROUND = 1 << 0,	/*< nick=use_background >*/
+	GTK_SOURCE_TAG_STYLE_USE_FOREGROUND = 1 << 1	/*< nick=use_foreground >*/
 } GtkSourceTagStyleMask; 
 
 struct _GtkSourceTagStyle {

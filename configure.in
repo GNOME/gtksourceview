@@ -36,6 +36,7 @@ AC_SUBST(LIBXML_REQUIRED_VERSION)
 
 # Pull glib-genmarshal & co.
 AC_PATH_PROG(GLIB_GENMARSHAL, glib-genmarshal)
+AC_PATH_PROG(GLIB_MKENUMS, glib-mkenums)
 
 # Environment
 GNOME_COMMON_INIT
