@@ -7,10 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-09-03 12:26+0200\n"
-"PO-Revision-Date: 2003-09-03 21:32+0300\n"
+"POT-Creation-Date: 2003-09-04 18:00+0300\n"
+"PO-Revision-Date: 2003-09-04 17:59+0300\n"
 "Last-Translator: Pauli Virtanen <pauli.virtanen@hut.fi>\n"
-"Language-Team: Gnome Finnish Translation Team <gnome-fi-laatu@lists.sourceforge.net>\n"
+"Language-Team: Gnome Finnish Translation Team <gnome-fi-laatu@lists."
+"sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -125,7 +126,8 @@ msgstr "Tulosta rivinumerot"
 
 #: gtksourceview/gtksourceprintjob.c:329
 msgid "Interval of printed line numbers (0 means no numbers)"
-msgstr "Tulostuvien rivinumeroiden väli (0 tarkoittaa, että numeroita ei tulostu)"
+msgstr ""
+"Tulostuvien rivinumeroiden väli (0 tarkoittaa, että numeroita ei tulostu)"
 
 #: gtksourceview/gtksourceprintjob.c:336
 msgid "Print Header"
@@ -192,7 +194,7 @@ msgstr "Avainsana"
 
 #: gtksourceview/gtksourcestylescheme.c:277
 msgid "Preprocessor"
-msgstr "Esikäsittelijä"
+msgstr "Esikäsittelin"
 
 #: gtksourceview/gtksourcestylescheme.c:282
 #: gtksourceview/language-specs/ada.lang.h:9
@@ -303,7 +305,9 @@ msgstr "\"Älykkäät\" home- ja end-painikkeet"
 msgid ""
 "HOME and END keys move to first/last characters on line first before going "
 "to the start/end of the line"
-msgstr "Home- ja end-painikkeet siirtävät kohdistimen rivin ensimmäisen tai viimeisen merkin kohdalle ennen koko rivin alkuun tai loppuun siirtämistä."
+msgstr ""
+"Home- ja end-painikkeet siirtävät kohdistimen rivin ensimmäisen tai "
+"viimeisen merkin kohdalle ennen koko rivin alkuun tai loppuun siirtämistä."
 
 #: gtksourceview/language-specs/ada.lang.h:1
 msgid "Ada"
@@ -366,7 +370,7 @@ msgstr "Tyypit"
 #: gtksourceview/language-specs/c.lang.h:1
 #: gtksourceview/language-specs/cpp.lang.h:1
 msgid "'#if 0' Comment"
-msgstr "'#if 0'-kommentti"
+msgstr "\"#if 0\"-kommentti"
 
 #: gtksourceview/language-specs/c.lang.h:2
 #: gtksourceview/language-specs/cpp.lang.h:2
@@ -482,7 +486,7 @@ msgstr "Määreet"
 #: gtksourceview/language-specs/html.lang.h:3
 #: gtksourceview/language-specs/xml.lang.h:3
 msgid "Closing Bracket"
-msgstr "Sulkeva sulje"
+msgstr "Sulkeva kulmasulje"
 
 #: gtksourceview/language-specs/html.lang.h:4
 #: gtksourceview/language-specs/xml.lang.h:4
