@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
-"POT-Creation-Date: 2003-05-26 18:21+0200\n"
-"PO-Revision-Date: 2003-05-26 18:23+0200\n"
+"POT-Creation-Date: 2003-05-30 10:44+0200\n"
+"PO-Revision-Date: 2003-05-30 10:50+0200\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -120,12 +120,13 @@ msgid "Language object to get highlighting patterns from"
 msgstr "Språkobjekt att hämta färgmarkeringsmönster från"
 
 #: gtksourceview/gtksourcelanguagesmanager.c:119
-msgid "Language spefications directories"
+msgid "Language specification directories"
 msgstr "Kataloger för språkspecifikationer"
 
 #: gtksourceview/gtksourcelanguagesmanager.c:120
 msgid ""
-"List of directories where the language spefication files (.lang) are located"
+"List of directories where the language specification files (.lang) are "
+"located"
 msgstr "Lista med kataloger där språkspecifikationsfiler (.lang) finns"
 
 #: gtksourceview/gtksourcestylescheme.c:222
@@ -188,6 +189,14 @@ msgstr "Andra 3"
 msgid "Default"
 msgstr "Standard"
 
+#~ msgid "Language spefications directories"
+#~ msgstr "Kataloger för språkspecifikationer"
+
+#~ msgid ""
+#~ "List of directories where the language spefication files (.lang) are "
+#~ "located"
+#~ msgstr "Lista med kataloger där språkspecifikationsfiler (.lang) finns"
+
 #~ msgid "Language spefication directories"
 #~ msgstr "Kataloger för språkspecifikationer"
 
@@ -205,14 +214,6 @@ msgstr "Standard"
 
 #~ msgid "Highlighting"
 #~ msgstr "Färgmarkering"
-
-#~ msgid "Language specifications directories"
-#~ msgstr "Kataloger för språkspecifikationer"
-
-#~ msgid ""
-#~ "List of directories where the language specification files (.lang) are "
-#~ "located"
-#~ msgstr "Lista med kataloger där språkspecifikationsfiler (.lang) finns"
 
 #~ msgid "Block Comment"
 #~ msgstr "Blockkommentar"
