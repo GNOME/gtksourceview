@@ -1,3 +1,11 @@
+2005-01-08  Paolo Maggi  <paolo@gnome.org>
+
+	* HACKING: update mail address
+
+	* gtksourceview/gtksourceprintjob.c (print_page): fixes bug 
+	#144492(gtksourceview/gtksourceprintjob.c: linenumbering) when printing
+	selected lines only. Patch by Paul Bolle <pebolle@tiscali.nl> 
+
 2005-01-07  Paolo Maggi  <paolo@gnome.org>
 
 	New language specification file for TCL provided by Riccardo 

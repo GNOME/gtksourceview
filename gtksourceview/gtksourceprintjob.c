@@ -1569,7 +1569,7 @@ print_page (GtkSourcePrintJob *job)
 		{
 			/* We printed the first line of a paragraph */
 			if (job->priv->print_numbers > 0 &&
-			    ((job->priv->printed_lines + 1) % job->priv->print_numbers) == 0)
+			    ((para->line_number % job->priv->print_numbers) == 0))
 				print_line_number (job,
 						   para->line_number,
 						   job->priv->doc_margin_left +
