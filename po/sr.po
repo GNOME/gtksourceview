@@ -8,8 +8,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
-"POT-Creation-Date: 2003-08-07 20:50+0200\n"
-"PO-Revision-Date: 2003-08-08 02:03+0200\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2003-11-25 22:34+0100\n"
+"PO-Revision-Date: 2003-11-25 22:41+0100\n"
 "Last-Translator: Данило Шеган <danilo@prevod.org>\n"
 "Language-Team: Serbian (sr) <serbiangnome-lista@nongnu.org>\n"
 "MIME-Version: 1.0\n"
@@ -65,7 +66,9 @@ msgstr "Директоријуми са дефиницијама језика"
 msgid ""
 "List of directories where the language specification files (.lang) are "
 "located"
-msgstr "Списак директоријума у којима се налазе датотеке са дефиницијама језика (.lang)"
+msgstr ""
+"Списак директоријума у којима се налазе датотеке са дефиницијама језика (."
+"lang)"
 
 #: gtksourceview/gtksourceprintjob.c:272
 msgid "Configuration"
@@ -304,7 +307,9 @@ msgstr "Користи паметне Home/End"
 msgid ""
 "HOME and END keys move to first/last characters on line first before going "
 "to the start/end of the line"
-msgstr "HOME и END тастери премештају на први/последњи знак у линији пре него што пребаце на почетак/крај линије"
+msgstr ""
+"HOME и END тастери премештају на први/последњи знак у линији пре него што "
+"пребаце на почетак/крај линије"
 
 #: gtksourceview/language-specs/ada.lang.h:1
 msgid "Ada"
@@ -333,6 +338,7 @@ msgstr "Кључне речи"
 #: gtksourceview/language-specs/java.lang.h:5
 #: gtksourceview/language-specs/perl.lang.h:3
 #: gtksourceview/language-specs/python.lang.h:4
+#: gtksourceview/language-specs/sql.lang.h:11
 msgid "Line Comment"
 msgstr "Примедба од једног реда"
 
@@ -350,6 +356,7 @@ msgstr "Кључне речи препроцесора"
 #: gtksourceview/language-specs/cpp.lang.h:14
 #: gtksourceview/language-specs/idl.lang.h:7
 #: gtksourceview/language-specs/java.lang.h:10
+#: gtksourceview/language-specs/sql.lang.h:26
 msgid "Sources"
 msgstr "Извори"
 
@@ -374,6 +381,7 @@ msgstr "„#if 0“ примедба"
 #: gtksourceview/language-specs/html.lang.h:2
 #: gtksourceview/language-specs/idl.lang.h:1
 #: gtksourceview/language-specs/java.lang.h:1
+#: gtksourceview/language-specs/sql.lang.h:5
 #: gtksourceview/language-specs/xml.lang.h:2
 msgid "Block Comment"
 msgstr "Примедба у блоку"
@@ -627,6 +635,106 @@ msgstr "Питон"
 #: gtksourceview/language-specs/python.lang.h:10
 msgid "Self"
 msgstr "Self"
+
+#: gtksourceview/language-specs/sql.lang.h:1
+msgid "ANSI Datatypes"
+msgstr "АНСИ типови података"
+
+#: gtksourceview/language-specs/sql.lang.h:2
+msgid "ANSI Reserved Words"
+msgstr "АНСИ резервисане речи"
+
+#: gtksourceview/language-specs/sql.lang.h:3
+msgid "Aggregate Functions"
+msgstr "Допунске функције"
+
+#: gtksourceview/language-specs/sql.lang.h:4
+msgid "Analytic Functions"
+msgstr "Аналитичке функције"
+
+#: gtksourceview/language-specs/sql.lang.h:6
+msgid "Character Functions Returning Character Values"
+msgstr "Знаковне функције које враћају знаковне вредности"
+
+#: gtksourceview/language-specs/sql.lang.h:7
+msgid "Character Functions Returning Number Values"
+msgstr "Знаковне функције које враћају бројевне вредности"
+
+#: gtksourceview/language-specs/sql.lang.h:8
+msgid "Conversion Functions"
+msgstr "Функције за претварање"
+
+#: gtksourceview/language-specs/sql.lang.h:9
+msgid "Datetime Functions"
+msgstr "Функције за време и датум"
+
+#: gtksourceview/language-specs/sql.lang.h:10
+msgid "Integer Literals"
+msgstr "Цели бројеви"
+
+#: gtksourceview/language-specs/sql.lang.h:12
+msgid "Miscellaneous Single-Row Functions"
+msgstr "Разне једноредне функције"
+
+#: gtksourceview/language-specs/sql.lang.h:13
+msgid "Null"
+msgstr "Ништа"
+
+#: gtksourceview/language-specs/sql.lang.h:14
+msgid "Number Functions"
+msgstr "Бројевне функције"
+
+#: gtksourceview/language-specs/sql.lang.h:15
+msgid "Number Literals"
+msgstr "Бројеви"
+
+#: gtksourceview/language-specs/sql.lang.h:16
+msgid "Object Reference Functions"
+msgstr "Функције за позивање објеката"
+
+#: gtksourceview/language-specs/sql.lang.h:17
+msgid "Oracle Built-in Datatypes"
+msgstr "Уграђени Ораклови типови података"
+
+#: gtksourceview/language-specs/sql.lang.h:18
+msgid "Oracle Reserved Words"
+msgstr "Резервисане речи Оракла"
+
+#: gtksourceview/language-specs/sql.lang.h:19
+msgid "SQL"
+msgstr "SQL"
+
+#: gtksourceview/language-specs/sql.lang.h:20
+msgid "SQL*Plus At Sign"
+msgstr "SQL*Plus „на“ знак"
+
+#: gtksourceview/language-specs/sql.lang.h:21
+msgid "SQL*Plus Commands"
+msgstr "SQL*Plus наредбе"
+
+#: gtksourceview/language-specs/sql.lang.h:22
+msgid "SQL*Plus Double At Sign"
+msgstr "SQL*Plus двоструки „на“ знак"
+
+#: gtksourceview/language-specs/sql.lang.h:23
+msgid "SQL*Plus Slash"
+msgstr "SQL*Plus коса црта"
+
+#: gtksourceview/language-specs/sql.lang.h:24
+msgid "SQL/DS and DB2 Datatypes"
+msgstr "SQL/DS и DB2 типови података"
+
+#: gtksourceview/language-specs/sql.lang.h:25
+msgid "Size Clause"
+msgstr "Ознака величине"
+
+#: gtksourceview/language-specs/sql.lang.h:27
+msgid "Text Literals"
+msgstr "Текст"
+
+#: gtksourceview/language-specs/sql.lang.h:28
+msgid "Unlimited"
+msgstr "Неограничено"
 
 #: gtksourceview/language-specs/xml.lang.h:6
 msgid "Hexadecimal"
