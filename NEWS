@@ -1,3 +1,13 @@
+News 0.3.0 -> 0.4.0
+-------------------
+
+* Added get_style_names method to the GtkSourceStyleScheme interface
+* New method gtk_source_language_get_id
+* Added the id arg to all constructors of gtksourcetag.[ch]
+* Added ID and tag_style properties to GtkSourceTag
+* Fixed the .pc.in file
+* Fixes to the printing code
+
 News 0.2.1 -> 0.3.0
 -------------------
 
