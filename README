@@ -46,6 +46,14 @@ The format for regular expressions in the .lang files is the POSIX
 Extended Regular Expression Syntax, plus GNU operators (word operators
 and buffer operators).
 
+There is a limit of 250 keywords in <keyword-list> elements.
+Internally keyword lists generates a branched regular expression
+(i.e. "a|b|c|...") and a bug in GNU libc produces stack corruption
+(hence crashes the application) for more than 250 or so branches.
+
+Longer lists will then be truncated to 250 keywords.  To work around
+this, split your keyword list into smaller ones.
+
 
 How to report bugs
 ==================

@@ -1,3 +1,18 @@
+2003-09-25  Gustavo Giraldez  <gustavo.giraldez@gmx.net>
+
+	* gtksourceview/gtksourcelanguage.c (gtk_source_language_finalize): 
+	Remove debugging output (bug #121204).
+
+	* gtksourceview/gtksourceiter.c (backward_lines_match) 
+	(gtk_source_iter_backward_search): Fix backward case-insensitive
+	search (bug #114666).
+
+	* gtksourceview/gtksourcetag.c (gtk_keyword_list_tag_new):
+	Truncate keyword lists of more than 250 elements (temporary fix
+	for bug #110991).
+
+	* README: Added note about the keywords limit.
+
 2003-09-17  Fatih Demir <kabalak@gtranslator.org>
 
 	* configure.in: Added "ta" (Tamil) to the languages' list.

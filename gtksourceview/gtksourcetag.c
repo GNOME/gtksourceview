@@ -432,7 +432,7 @@ gtk_keyword_list_tag_new (const gchar  *id,
 
 	str =  g_string_new ("");
 
-	while (keywords != NULL)
+	if (keywords != NULL)
 	{
 		if (match_empty_string_at_beginning)
 			g_string_append (str, "\\b");
@@ -443,11 +443,16 @@ gtk_keyword_list_tag_new (const gchar  *id,
 		g_string_append (str, "(");
 	
 		keyword_count = 0;
-		/* Split long keyword lists due to glibc regex's
-		 * implementation limitations/bugs.  In fact, we could
-		 * split at 256 keywords, but 200 feels safer :-) See
-		 * bug #110991 */
-		while (keywords != NULL && keyword_count < 200)
+		/* Due to a bug in GNU libc regular expressions
+		 * implementation we can't have keyword lists of more
+		 * than 250 or so elements, so we truncate such a
+		 * list.  This is a temporary solution, as the correct
+		 * approach would be to generate multiple keyword
+		 * lists.  (See bug #110991) */
+
+#define KEYWORD_LIMIT 250
+
+		while (keywords != NULL && keyword_count < KEYWORD_LIMIT)
 		{
 			gchar *k;
 			
@@ -464,21 +469,24 @@ gtk_keyword_list_tag_new (const gchar  *id,
 			keywords = g_slist_next (keywords);
 			
 			keyword_count++;
-
-			if (keywords != NULL && keyword_count < 200)
+			
+			if (keywords != NULL && keyword_count < KEYWORD_LIMIT)
 				g_string_append (str, "|");
 		}
-
 		g_string_append (str, ")");
 		
+		if (keyword_count >= KEYWORD_LIMIT)
+		{
+			g_warning ("Keyword list '%s' too long. Only the first %d "
+				   "elements will be highlighted. See bug #110991 for "
+				   "further details.", id, KEYWORD_LIMIT);
+		}
+
 		if (end_regex != NULL)
 			g_string_append (str, end_regex);
 		
 		if (match_empty_string_at_end)
 			g_string_append (str, "\\b");
-
-		if (keywords != NULL)
-			g_string_append (str, "|");
 	}
 
 	tag = gtk_pattern_tag_new (id, name, str->str);

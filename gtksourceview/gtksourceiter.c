@@ -335,7 +335,13 @@ backward_lines_match (const GtkTextIter *start,
 	}
 
 	line = next = *start;
-	gtk_text_iter_set_line_offset (&next, 0);
+	if (gtk_text_iter_get_line_offset (&next) == 0)
+	{
+		if (!gtk_text_iter_backward_line (&next))
+			return FALSE;
+	}
+	else
+		gtk_text_iter_set_line_offset (&next, 0);
 
 	if (slice)
 	{
@@ -398,11 +404,11 @@ backward_lines_match (const GtkTextIter *start,
 	if (match_end)
 		*match_end = next;
 
-	/* pass NULL for match_start, since we don't need to find the
-	 * start again.
-	 */
-	return backward_lines_match (&next, lines, visible_only,
-				     slice, NULL, match_end);
+	/* try to match the rest of the lines forward, passing NULL
+	 * for match_start so lines_match will try to match the entire
+	 * line */
+	return lines_match (&next, lines, visible_only,
+			    slice, NULL, match_end);
 }
 
 /* strsplit () that retains the delimiter as part of the string. */
@@ -612,7 +618,7 @@ gtk_source_iter_backward_search (const GtkTextIter   *iter,
 	gchar **lines = NULL;
 	GtkTextIter match;
 	gboolean retval = FALSE;
-	GtkTextIter search, line;
+	GtkTextIter search;
 	gboolean visible_only;
 	gboolean slice;
 
@@ -655,7 +661,7 @@ gtk_source_iter_backward_search (const GtkTextIter   *iter,
 	/* locate all lines */
 	lines = strbreakup (str, "\n", -1);
 
-	line = search = *iter;
+	search = *iter;
 
 	while (TRUE)
 	{
@@ -684,11 +690,15 @@ gtk_source_iter_backward_search (const GtkTextIter   *iter,
 			break;
 		}
 
-		if (!gtk_text_iter_backward_line (&line))
-			break;
-		search = line;
-		if (!gtk_text_iter_ends_line (&search))
-			gtk_text_iter_forward_to_line_end (&search);
+		if (gtk_text_iter_get_line_offset (&search) == 0)
+		{
+			if (!gtk_text_iter_backward_line (&search))
+				break;
+		}
+		else
+		{
+			gtk_text_iter_set_line_offset (&search, 0);
+		}
 	}
 
 	g_strfreev ((gchar**)lines);

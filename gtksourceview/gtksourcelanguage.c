@@ -180,8 +180,6 @@ gtk_source_language_finalize (GObject *object)
 		
 	if (lang->priv != NULL)
 	{
-		g_print ("Finalize lang: %s\n", lang->priv->name);
-
 		g_free (lang->priv->lang_file_name);
 
 		xmlFree (lang->priv->translation_domain);
