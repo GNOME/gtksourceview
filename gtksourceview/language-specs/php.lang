@@ -91,18 +91,23 @@
 		<keyword>for</keyword>
 		<keyword>global</keyword>
 		<keyword>function</keyword>
+		<keyword>foreach</keyword>
 		<keyword>if</keyword>
 		<keyword>import</keyword>
 		<keyword>include</keyword>
+		<keyword>include_once</keyword>
 		<keyword>instanceof</keyword>		
 		<keyword>interface</keyword>
+		<keyword>list</keyword>
 		<keyword>namespace</keyword>
 		<keyword>new</keyword>
 		<keyword>or</keyword>
 		<keyword>print</keyword>
 		<keyword>private</keyword>
 		<keyword>protected</keyword>
+		<keyword>public</keyword>
 		<keyword>require</keyword>
+		<keyword>require_once</keyword>
 		<keyword>return</keyword>
 		<keyword>static</keyword>
 		<keyword>switch</keyword>
@@ -113,6 +118,7 @@
 	<keyword-list _name = "Case Insensitive Keyword" style = "Keyword" case-sensitive="FALSE">
 		<keyword>true</keyword>	
 		<keyword>false</keyword>
+		<keyword>null</keyword>
 	</keyword-list>
 	<pattern-item _name = "Operators" style = "Keyword">
 		<regex>[-.~^@;:/%|\=\+\*\!\?&amp;&lt;&gt;]</regex>
@@ -132,5 +138,5 @@
 		<keyword>string</keyword>
 		<keyword>unset</keyword>
 	</keyword-list>
-	
+
 </language>
