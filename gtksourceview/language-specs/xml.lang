@@ -7,9 +7,14 @@
         	<end-regex>--&gt;</end-regex>
 	</block-comment>
 
-	<syntax-item _name="DTD" style="Preprocessor">
-		<start-regex>&lt;!</start-regex>
+	<syntax-item name="DOCTYPE" style="String">
+		<start-regex>&lt;!DOCTYPE</start-regex>
 		<end-regex>&gt;</end-regex>
+	</syntax-item>
+
+	<syntax-item name="CDATA" style="String">
+		<start-regex>&lt;!\[CDATA\[</start-regex>
+		<end-regex>\]\]&gt;</end-regex>
 	</syntax-item>
 
 	<pattern-item _name="String" style="String">
