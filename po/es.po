@@ -1,22 +1,23 @@
+# translation of gtksourceview.HEAD.po to Spanish
 # translation of gtksourceview.HEAD.es.po to Spanish
 # Spanish translation for GtkSourceView
 # Copyright (C) 2003 Free Software Foundation, Inc.
 # This file is distributed under the same license as the PACKAGE package.
 # Lucas 'Basurero' Vieites <basurero@jazzfree.com>, 2003.
-# Francisco Javier F. Serrador <serrador@arrakis.es>, 2003
+# Francisco Javier F. Serrador <serrador@arrakis.es>, 2003.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gtksourceview.HEAD.es\n"
+"Project-Id-Version: gtksourceview.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-08-08 12:35+0200\n"
-"PO-Revision-Date: 2003-08-08 20:49+0200\n"
+"POT-Creation-Date: 2003-08-28 04:38+0200\n"
+"PO-Revision-Date: 2003-08-28 08:50+0200\n"
 "Last-Translator: Francisco Javier F. Serrador <serrador@arrakis.es>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.0.1\n"
+"X-Generator: KBabel 1.0.2\n"
 
 #: gtksourceview/gtksourcebuffer.c:279
 msgid "Escape Character"
@@ -48,7 +49,7 @@ msgstr "Nivel máximo de deshacer"
 
 #: gtksourceview/gtksourcebuffer.c:307
 msgid "Number of undo levels for the buffer"
-msgstr "Número de niveles de deshacer para el archivo."
+msgstr "Número de niveles de deshacer para el búfer."
 
 #: gtksourceview/gtksourcebuffer.c:317
 #: gtksourceview/language-specs/desktop.lang.h:6
@@ -187,7 +188,7 @@ msgstr "Decimal"
 
 #: gtksourceview/gtksourcestylescheme.c:267
 msgid "Floating Point"
-msgstr "Punto flotante"
+msgstr "Coma flotante"
 
 #: gtksourceview/gtksourcestylescheme.c:272
 #: gtksourceview/language-specs/latex.lang.h:3
@@ -270,11 +271,11 @@ msgstr "Indica si se mostrarán los marcadores de líneas."
 
 #: gtksourceview/gtksourceview.c:231
 msgid "Auto Indentation"
-msgstr "Sangrado automático"
+msgstr "Sangría automática"
 
 #: gtksourceview/gtksourceview.c:232
 msgid "Whether to enable auto indentation"
-msgstr "Indica si se habilita el sangrado automático."
+msgstr "Indica si se habilita el sangrado automático"
 
 #: gtksourceview/gtksourceview.c:238
 msgid "Insert Spaces Instead of Tabs"
@@ -282,7 +283,7 @@ msgstr "Insertar espacios en vez de tabuladores"
 
 #: gtksourceview/gtksourceview.c:239
 msgid "Whether to insert spaces instead of tabs"
-msgstr "Indica si se insertarán espacios en vez de tabuladores."
+msgstr "Indica si se insertarán espacios en vez de tabuladores"
 
 #: gtksourceview/gtksourceview.c:246
 msgid "Show Right Margin"
@@ -290,7 +291,7 @@ msgstr "Mostrar margen derecho"
 
 #: gtksourceview/gtksourceview.c:247
 msgid "Whether to display the right margin"
-msgstr "Indica si se mostrará el margen derecho."
+msgstr "Indica si se mostrará el margen derecho"
 
 #: gtksourceview/gtksourceview.c:254
 msgid "Margin position"
@@ -310,7 +311,7 @@ msgid ""
 "to the start/end of the line"
 msgstr ""
 "Las teclas «Inicio» y «Fin» situarán el cursor en el primer/último carácter "
-"de la línea antes de ir al inicio/fin de la línea."
+"de la línea antes de ir al inicio/fin de la línea"
 
 #: gtksourceview/language-specs/ada.lang.h:1
 msgid "Ada"
@@ -401,7 +402,7 @@ msgstr "Número en coma flotante"
 #: gtksourceview/language-specs/c.lang.h:8
 #: gtksourceview/language-specs/cpp.lang.h:8
 msgid "Hex Number"
-msgstr "Nº hexadecimal"
+msgstr "Número hex"
 
 #: gtksourceview/language-specs/c.lang.h:9
 #: gtksourceview/language-specs/cpp.lang.h:9
