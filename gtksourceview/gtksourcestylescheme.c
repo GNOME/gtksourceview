@@ -62,7 +62,7 @@ gtk_source_style_scheme_base_init (gpointer g_class)
     	}
 }
 
-const GtkSourceTagStyle *
+GtkSourceTagStyle *
 gtk_source_style_scheme_get_tag_style (GtkSourceStyleScheme *scheme,
 				       const gchar          *style_name)
 {
@@ -80,7 +80,13 @@ gtk_source_style_scheme_get_name (GtkSourceStyleScheme *scheme)
 	return GTK_SOURCE_STYLE_SCHEME_GET_CLASS (scheme)->get_name (scheme);
 }
 
+GSList *
+gtk_source_style_scheme_get_style_names (GtkSourceStyleScheme *scheme)
+{
+	g_return_val_if_fail (GTK_IS_SOURCE_STYLE_SCHEME (scheme), NULL);
 
+	return GTK_SOURCE_STYLE_SCHEME_GET_CLASS (scheme)->get_style_names (scheme);
+}
 
 
 /* Default Style Scheme */
@@ -117,10 +123,11 @@ static void   gtk_source_default_style_scheme_IFace_init	(GtkSourceStyleSchemeCl
 static void   gtk_source_default_style_scheme_init		(GtkSourceDefaultStyleScheme	 *scheme);
 static void   gtk_source_default_style_scheme_finalize		(GObject			 *object);
 
-static const GtkSourceTagStyle *gtk_source_default_style_scheme_get_tag_style 
+static GtkSourceTagStyle *gtk_source_default_style_scheme_get_tag_style 
 								(GtkSourceStyleScheme *scheme,
 								 const gchar          *style_name);
 static const gchar *gtk_source_default_style_scheme_get_name 	(GtkSourceStyleScheme *scheme);
+static GSList *gtk_source_default_style_scheme_get_style_names  (GtkSourceStyleScheme *scheme);
 
 
 static GType
@@ -178,6 +185,7 @@ gtk_source_default_style_scheme_IFace_init (GtkSourceStyleSchemeClass *iface)
 {
 	iface->get_tag_style 	= gtk_source_default_style_scheme_get_tag_style;
 	iface->get_name		= gtk_source_default_style_scheme_get_name;
+	iface->get_style_names  = gtk_source_default_style_scheme_get_style_names;
 }
 
 static GtkSourceTagStyle *
@@ -299,7 +307,7 @@ gtk_source_default_style_scheme_finalize (GObject *object)
 }
 
 
-static const GtkSourceTagStyle *
+static GtkSourceTagStyle *
 gtk_source_default_style_scheme_get_tag_style (GtkSourceStyleScheme *scheme,
 					       const gchar          *style_name)
 {
@@ -313,7 +321,7 @@ gtk_source_default_style_scheme_get_tag_style (GtkSourceStyleScheme *scheme,
 
 	style = g_hash_table_lookup (ds->styles, style_name);
 
-	return (style != NULL) ? (const GtkSourceTagStyle*)style : NULL;
+	return (style != NULL) ? gtk_source_tag_style_copy ((GtkSourceTagStyle *)style) : NULL;
 }
 
 static const gchar *
@@ -322,6 +330,29 @@ gtk_source_default_style_scheme_get_name (GtkSourceStyleScheme *scheme)
 	g_return_val_if_fail (GTK_IS_SOURCE_STYLE_SCHEME (scheme), NULL);
 
 	return _("Default");
+}
+
+static void
+add_style_name (gpointer key, gpointer value, gpointer user_data)
+{
+	GSList **l = user_data;
+
+	*l = g_slist_append (*l, g_strdup (key));
+}
+
+static GSList *
+gtk_source_default_style_scheme_get_style_names (GtkSourceStyleScheme *scheme)
+{
+	GtkSourceDefaultStyleScheme *ds;
+	GSList *l = NULL;
+
+	g_return_val_if_fail (GTK_IS_SOURCE_STYLE_SCHEME (scheme), NULL);
+
+	ds = GTK_SOURCE_DEFAULT_STYLE_SCHEME (scheme);
+
+	g_hash_table_foreach (ds->styles, add_style_name, &l);
+
+	return l;
 }
 
 /* Default style scheme */

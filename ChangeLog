@@ -1,3 +1,17 @@
+2003-06-28  Jeroen Zwartepoorte  <jeroen@xs4all.nl>
+
+	* docs/reference/tmpl/stylescheme.sgml: Add get_style_names method.
+	* gtksourceview/gtksourcelanguage.c:
+	(gtk_source_language_get_tag_default_style): Check for NULL style.
+	* gtksourceview/gtksourcestylescheme.c:
+	(gtk_source_style_scheme_get_style_names),
+	(gtk_source_default_style_scheme_IFace_init),
+	(gtk_source_default_style_scheme_get_tag_style),
+	(gtk_source_default_style_scheme_get_name), (add_style_name),
+	(gtk_source_default_style_scheme_get_style_names): Implement
+	get_style_names method.
+	* gtksourceview/gtksourcestylescheme.h: Add get_style_names method.
+
 2003-06-28  Gil "Dolfin" Osher <dolfin@rpg.org.il>
 
 	* configure.in: Added "he" (Hebrew) to ALL_LINGUAS.
@@ -17,7 +31,8 @@
 	(parsePatternItem)(parseSyntaxItem)(parseTag): set tag id
 	(tag_style_changed_cb): use tag instead of name
 	
-	* gtksourceview/gtksourcelanguage.h (gtk_source_language_get_id): new method
+	* gtksourceview/gtksourcelanguage.h (gtk_source_language_get_id): new 
+	method
 	
 	* gtksourceview/gtksourcetag-private.h (GtkSourceTag): added id
 	

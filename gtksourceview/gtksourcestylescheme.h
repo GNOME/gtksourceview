@@ -64,8 +64,9 @@ struct _GtkSourceStyleSchemeClass
 
 	/* vtable */
 	const gchar		* (* get_name)		(GtkSourceStyleScheme *scheme);
-	const GtkSourceTagStyle * (* get_tag_style) 	(GtkSourceStyleScheme *scheme,
+	GtkSourceTagStyle       * (* get_tag_style) 	(GtkSourceStyleScheme *scheme,
 						     	 const gchar          *style_name);
+	GSList                  * (* get_style_names)   (GtkSourceStyleScheme *scheme);
 
 	/* Padding for future expansion */
 	void (*_gtk_source_reserved1) (void);
@@ -74,17 +75,18 @@ struct _GtkSourceStyleSchemeClass
 	void (*_gtk_source_reserved4) (void);	
 };
 
-GType                        gtk_source_style_scheme_get_type      (void) G_GNUC_CONST;
+GType                        gtk_source_style_scheme_get_type        (void) G_GNUC_CONST;
 
 
-const GtkSourceTagStyle	    *gtk_source_style_scheme_get_tag_style (GtkSourceStyleScheme *scheme,
-								    const gchar          *style_name);
-const gchar		    *gtk_source_style_scheme_get_name      (GtkSourceStyleScheme *scheme);
+GtkSourceTagStyle	    *gtk_source_style_scheme_get_tag_style   (GtkSourceStyleScheme *scheme,
+								      const gchar          *style_name);
+const gchar		    *gtk_source_style_scheme_get_name        (GtkSourceStyleScheme *scheme);
+GSList                      *gtk_source_style_scheme_get_style_names (GtkSourceStyleScheme *scheme);
 
 
 /* Default style scheme */
 
-GtkSourceStyleScheme	    *gtk_source_style_scheme_get_default   (void);
+GtkSourceStyleScheme	    *gtk_source_style_scheme_get_default     (void);
 
 G_END_DECLS
 

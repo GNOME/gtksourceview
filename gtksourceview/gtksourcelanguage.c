@@ -1277,8 +1277,10 @@ gtk_source_language_get_tag_default_style (GtkSourceLanguage *language,
 
 		tmp = gtk_source_style_scheme_get_tag_style (language->priv->style_scheme,
 							     style_name);
-
-		return gtk_source_tag_style_copy (tmp);
+		if (tmp == NULL)
+			return NULL;
+		else
+			return gtk_source_tag_style_copy (tmp);
 	}
 	else
 		return NULL;
