@@ -6,7 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview.HEAD\n"
-"POT-Creation-Date: 2003-08-08 12:35+0200\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2003-08-11 12:35+0200\n"
 "PO-Revision-Date: 2003-08-08 18:59+0200\n"
 "Last-Translator: Mətin Əmirov <metin@karegen.com>\n"
 "Language-Team: Azerbaijani <gnome@azitt.com>\n"
@@ -30,8 +31,7 @@ msgstr "Mötərizələri Yoxla"
 msgid "Whether to check and highlight matching brackets"
 msgstr "Mötərizələri yoxla və uyğun gələnləri işıqlandır"
 
-#: gtksourceview/gtksourcebuffer.c:297
-#: gtksourceview/gtksourceprintjob.c:303
+#: gtksourceview/gtksourcebuffer.c:297 gtksourceview/gtksourceprintjob.c:303
 msgid "Highlight"
 msgstr "İşıqlandırma"
 
@@ -61,7 +61,9 @@ msgid "Language specification directories"
 msgstr "Dil spesifikasiya cərgələri"
 
 #: gtksourceview/gtksourcelanguagesmanager.c:120
-msgid "List of directories where the language specification files (.lang) are located"
+msgid ""
+"List of directories where the language specification files (.lang) are "
+"located"
 msgstr "Dil spesifikasiya fayllarının (.lang) olduğu cərgələr siyahısı"
 
 #: gtksourceview/gtksourceprintjob.c:272
@@ -80,8 +82,7 @@ msgstr "Mənbə Buferi"
 msgid "GtkSourceBuffer object to print"
 msgstr "Çap ediləcək GtkSourceBuffer obyekti"
 
-#: gtksourceview/gtksourceprintjob.c:287
-#: gtksourceview/gtksourceview.c:221
+#: gtksourceview/gtksourceprintjob.c:287 gtksourceview/gtksourceview.c:221
 #: gtksourceview/gtksourceview.c:222
 msgid "Tabs Width"
 msgstr "Səkmələrin Eni"
@@ -187,7 +188,7 @@ msgstr "Floating Point"
 #: gtksourceview/language-specs/latex.lang.h:3
 #: gtksourceview/language-specs/po.lang.h:3
 msgid "Keyword"
-msgstr "Açar kəlimə"
+msgstr "Açar kəlmə"
 
 #: gtksourceview/gtksourcestylescheme.c:277
 msgid "Preprocessor"
@@ -299,8 +300,12 @@ msgid "Use smart home/end"
 msgstr "Ağıllı home/end işlət"
 
 #: gtksourceview/gtksourceview.c:265
-msgid "HOME and END keys move to first/last characters on line first before going to the start/end of the line"
-msgstr "HOME və END düymələri sətirin başına/sonuna getmədən əvvəl sətirdəki ilk/son hərfə gedəcək"
+msgid ""
+"HOME and END keys move to first/last characters on line first before going "
+"to the start/end of the line"
+msgstr ""
+"HOME və END düymələri sətirin başına/sonuna getmədən əvvəl sətirdəki ilk/son "
+"hərfə gedəcək"
 
 #: gtksourceview/language-specs/ada.lang.h:1
 msgid "Ada"
@@ -635,4 +640,3 @@ msgstr "Taq"
 #: gtksourceview/language-specs/xml.lang.h:11
 msgid "XML"
 msgstr "XML"
-
