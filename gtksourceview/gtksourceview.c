@@ -1663,7 +1663,7 @@ compute_indentation (GtkSourceView *view, gint line)
 	end = start;
 
 	ch = gtk_text_iter_get_char (&end);
-	while (g_unichar_isspace (ch) && ch != '\n')
+	while (g_unichar_isspace (ch) && ch != '\n' && ch != '\r')
 	{
 		if (!gtk_text_iter_forward_char (&end))
 			break;
@@ -1694,8 +1694,7 @@ key_press_cb (GtkWidget *widget, GdkEventKey *event, gpointer data)
 	mark = gtk_text_buffer_get_insert (buf);
 	gtk_text_buffer_get_iter_at_mark (buf, &cur, mark);
 	
-	if ((key == GDK_Return) && gtk_text_iter_ends_line (&cur) && 
-	    view->priv->auto_indent)
+	if ((key == GDK_Return) && view->priv->auto_indent)
 	{
 		/* Auto-indent means that when you press ENTER at the end of a
 		 * line, the new line is automatically indented at the same
