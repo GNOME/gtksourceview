@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-08-17 15:50+0200\n"
-"PO-Revision-Date: 2004-08-17 15:50+0200\n"
+"POT-Creation-Date: 2004-08-18 23:46+0200\n"
+"PO-Revision-Date: 2004-08-18 23:46+0200\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -18,19 +18,29 @@ msgstr ""
 
 #: gtksourceview/gtksourcebuffer.c:279
 msgid "Escape Character"
-msgstr "Escape-tecken"
+msgstr "Escapetecken"
 
 #: gtksourceview/gtksourcebuffer.c:280
 msgid "Escaping character for syntax patterns"
-msgstr "Escape-tecken för syntaxmönster"
+msgstr "Escapetecken för syntaxmönster"
 
+# Göran Uddeborg:
+# En kommentar som gäller flera meddelanden som talar om "brackets".
+# Jag tolkar meddelandena som att de allmänt avser olika typer av
+# parenteser, som klamrar, hakparenteser, vanliga parenteser, och vad
+# det nu kan finnas i olika språk.
+# 
+# På engelska används nog just "brackets" för denna allmänna betydelse.
+# På svenska brukar vi använda "parenteser" i det fallet.  Så jag tycker
+# du bör översätta "brackets" med "parenteser".
+#
 #: gtksourceview/gtksourcebuffer.c:288
 msgid "Check Brackets"
-msgstr "Kontrollera klamrar"
+msgstr "Kontrollera parenteser"
 
 #: gtksourceview/gtksourcebuffer.c:289
 msgid "Whether to check and highlight matching brackets"
-msgstr "Huruvida matchande klamrar ska kontrolleras och färgmarkeras"
+msgstr "Huruvida matchande parenteser ska kontrolleras och färgmarkeras"
 
 #: gtksourceview/gtksourcebuffer.c:297 gtksourceview/gtksourceprintjob.c:295
 msgid "Highlight"
@@ -138,7 +148,7 @@ msgstr "Skriv ut radnummer"
 
 #: gtksourceview/gtksourceprintjob.c:337
 msgid "Interval of printed line numbers (0 means no numbers)"
-msgstr "Intervall för utskrivna radnummer (0 betyder inga tal)"
+msgstr "Intervall för utskrivna radnummer (0 betyder inga nummer)"
 
 #: gtksourceview/gtksourceprintjob.c:344
 msgid "Print Header"
@@ -334,7 +344,7 @@ msgstr "Position för högermarginalen"
 
 #: gtksourceview/gtksourceview.c:264
 msgid "Use smart home/end"
-msgstr "Avänd intelligent home/end"
+msgstr "Använd intelligent home/end"
 
 #: gtksourceview/gtksourceview.c:265
 msgid ""
@@ -532,10 +542,12 @@ msgstr "Primitiver"
 msgid "String 2"
 msgstr "Sträng 2"
 
-# Osäker.
+# http://www.nada.kth.se/dataterm/rek.html#a17
+# "Snabel-a-regler" eller "snabel-aregler" ser för hemskt ut dock, så
+# jag skriver samman helt och hållet.
 #: gtksourceview/language-specs/css.lang.h:1
 msgid "At Rules"
-msgstr "At-regler"
+msgstr "Snabelaregler"
 
 #: gtksourceview/language-specs/css.lang.h:2
 msgid "Attribute Value Delimiters"
@@ -578,17 +590,14 @@ msgstr "Egenskapsnamn"
 msgid "Punctuators"
 msgstr "Skiljetecken"
 
-# Osäker.
 #: gtksourceview/language-specs/css.lang.h:16
 msgid "Selector Grammar"
 msgstr "Selektorgrammatik"
 
-# Osäker.
 #: gtksourceview/language-specs/css.lang.h:17
 msgid "Selector Pseudo Classes"
 msgstr "Selektorpseudoklasser"
 
-# Osäker.
 #: gtksourceview/language-specs/css.lang.h:18
 msgid "Selector Pseudo Elements"
 msgstr "Selektorpseudoelement"
@@ -623,7 +632,7 @@ msgstr "Grupp"
 
 #: gtksourceview/language-specs/desktop.lang.h:8
 msgid "Non Standard Key"
-msgstr "Nyckel som inte är standard"
+msgstr "Ej standardnyckel"
 
 #: gtksourceview/language-specs/desktop.lang.h:11
 msgid "Standard Key"
@@ -666,7 +675,7 @@ msgstr "Attribut"
 #: gtksourceview/language-specs/html.lang.h:3
 #: gtksourceview/language-specs/xml.lang.h:3
 msgid "Closing Bracket"
-msgstr "Avslutande klammer"
+msgstr "Avslutande parentes"
 
 #: gtksourceview/language-specs/html.lang.h:4
 #: gtksourceview/language-specs/xml.lang.h:4
@@ -760,7 +769,6 @@ msgstr "Felhantering"
 msgid "Floating-Point Number"
 msgstr "Flyttal"
 
-# Osäker.
 #: gtksourceview/language-specs/javascript.lang.h:6
 msgid "Flow Keywords"
 msgstr "Flödesnyckelord"
@@ -848,7 +856,6 @@ msgstr "Funktioner"
 msgid "Line Comment 2"
 msgstr "Radkommentar 2"
 
-# Osäker.
 #: gtksourceview/language-specs/lua.lang.h:6
 msgid "Lua"
 msgstr "Lua"
@@ -899,7 +906,6 @@ msgstr "Funktioner och funktionsmodifierare"
 msgid "General Format"
 msgstr "Allmänt format"
 
-# Osäker.
 #: gtksourceview/language-specs/pascal.lang.h:11
 msgid "Loop, Flow, and Exceptions Keywords"
 msgstr "Nyckelord för slingor, flöden och undantag"
@@ -932,6 +938,7 @@ msgstr "Metodanrop"
 msgid "Perl"
 msgstr "Perl"
 
+# Felrapporterat i http://bugzilla.gnome.org/show_bug.cgi?id=150490
 #: gtksourceview/language-specs/perl.lang.h:6
 msgid "Plain Old Documentation"
 msgstr "Vanlig enkel dokumentation"
@@ -948,7 +955,7 @@ msgstr "Sträng3"
 msgid "Variables"
 msgstr "Variabler"
 
-# Osäker
+# Osäker.
 #: gtksourceview/language-specs/php.lang.h:2
 msgid "Backtick String"
 msgstr "Bakåtcitatssträng"
@@ -1060,7 +1067,7 @@ msgstr "Pseudovariabler"
 
 #: gtksourceview/language-specs/ruby.lang.h:13
 msgid "RegExp Variables"
-msgstr "Reguljära uttrycksvariabler"
+msgstr "Variabler i reguljära uttryck"
 
 #: gtksourceview/language-specs/ruby.lang.h:14
 msgid "Regular Expression"
@@ -1080,7 +1087,7 @@ msgstr "ANSI-datatyper"
 
 #: gtksourceview/language-specs/sql.lang.h:2
 msgid "ANSI Reserved Words"
-msgstr "Reserverade ANSI-ord"
+msgstr "ANSI-reserverade ord"
 
 #: gtksourceview/language-specs/sql.lang.h:3
 msgid "Aggregate Functions"
@@ -1152,7 +1159,7 @@ msgstr "SQL*Plus-kommandon"
 
 #: gtksourceview/language-specs/sql.lang.h:22
 msgid "SQL*Plus Double At Sign"
-msgstr "DQL*Plus-dubbelsnabelatecken"
+msgstr "SQL*Plus-dubbelsnabelatecken"
 
 #: gtksourceview/language-specs/sql.lang.h:23
 msgid "SQL*Plus Slash"
@@ -1212,7 +1219,7 @@ msgstr "Nyckelsymboler"
 
 #: gtksourceview/language-specs/haskell.lang.h:16
 msgid "Type or Constructor"
-msgstr "Typ av konstruktor"
+msgstr "Typ eller konstruktor"
 
 #: gtksourceview/language-specs/texinfo.lang.h:2
 msgid "Characters"
@@ -1247,10 +1254,9 @@ msgstr "Makron"
 msgid "Markup (block)"
 msgstr "Märkning (block)"
 
-# Osäker.
 #: gtksourceview/language-specs/texinfo.lang.h:14
 msgid "Markup (inline)"
-msgstr "Märkning (inline)"
+msgstr "Märkning (löpande)"
 
 #: gtksourceview/language-specs/texinfo.lang.h:15
 msgid "Sectioning"
@@ -1267,6 +1273,12 @@ msgstr "Kommentar i gammal stil"
 #: gtksourceview/language-specs/vbnet.lang.h:9
 msgid "VB.NET"
 msgstr "VB.NET"
+
+#~ msgid "Types, Class and Object Keywords"
+#~ msgstr "Typ-, klass- och objektnyckelord"
+
+#~ msgid "POD"
+#~ msgstr "POD"
 
 #~ msgid "Fortran"
 #~ msgstr "Fortran"
@@ -1340,7 +1352,7 @@ msgstr "VB.NET"
 #~ msgstr "Funktionsanrop"
 
 #~ msgid "Mathemathics"
-#~ msgstr "Metematik"
+#~ msgstr "Matematik"
 
 #~ msgid "Comments"
 #~ msgstr "Kommentarer"
