@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-06-22 21:22+0200\n"
-"PO-Revision-Date: 2004-06-23 10:59+0200\n"
+"POT-Creation-Date: 2004-07-16 04:46+0200\n"
+"PO-Revision-Date: 2004-07-16 17:43+0200\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -32,7 +32,7 @@ msgstr "Kontrolovat závorky"
 msgid "Whether to check and highlight matching brackets"
 msgstr "Jestli kontrolovat a zvýrazňovat odpovídající si závorky"
 
-#: gtksourceview/gtksourcebuffer.c:297 gtksourceview/gtksourceprintjob.c:303
+#: gtksourceview/gtksourcebuffer.c:297 gtksourceview/gtksourceprintjob.c:295
 msgid "Highlight"
 msgstr "Zvýrazňovat"
 
@@ -67,90 +67,110 @@ msgid ""
 "located"
 msgstr "Seznam adresářů, kde jsou umístěny soubory specifikace jazyka (.lang)"
 
-#: gtksourceview/gtksourceprintjob.c:272
+#: gtksourceview/gtksourceprintjob.c:264
 msgid "Configuration"
 msgstr "Nastavení"
 
-#: gtksourceview/gtksourceprintjob.c:273
+#: gtksourceview/gtksourceprintjob.c:265
 msgid "Configuration options for the print job"
 msgstr "Možnosti nastavení tiskové úlohy"
 
-#: gtksourceview/gtksourceprintjob.c:280
+#: gtksourceview/gtksourceprintjob.c:272
 msgid "Source Buffer"
 msgstr "Zdrojový buffer"
 
-#: gtksourceview/gtksourceprintjob.c:281
+#: gtksourceview/gtksourceprintjob.c:273
 msgid "GtkSourceBuffer object to print"
 msgstr "Objekt GtkSourceBuffer, který vytisknout"
 
-#: gtksourceview/gtksourceprintjob.c:287 gtksourceview/gtksourceview.c:221
+#: gtksourceview/gtksourceprintjob.c:279 gtksourceview/gtksourceview.c:221
 #: gtksourceview/gtksourceview.c:222
 msgid "Tabs Width"
 msgstr "Šířka tabelátorů"
 
-#: gtksourceview/gtksourceprintjob.c:288
+#: gtksourceview/gtksourceprintjob.c:280
 msgid "Width in equivalent space characters of tabs"
 msgstr "Šířka v ekvivalentních znacích mezera nebo tabelátor"
 
-#: gtksourceview/gtksourceprintjob.c:295
+#: gtksourceview/gtksourceprintjob.c:287
 msgid "Wrap Mode"
 msgstr "Režim zalamování"
 
-#: gtksourceview/gtksourceprintjob.c:296
+#: gtksourceview/gtksourceprintjob.c:288
 msgid "Word wrapping mode"
 msgstr "Režim zalamování slov"
 
-#: gtksourceview/gtksourceprintjob.c:304
+#: gtksourceview/gtksourceprintjob.c:296
 msgid "Whether to print the document with highlighted syntax"
 msgstr "Jestli tisknout dokument se zvýrazněnou syntaxí"
 
-#: gtksourceview/gtksourceprintjob.c:312
+#: gtksourceview/gtksourceprintjob.c:304
 msgid "Font"
 msgstr "Písmo"
 
-#: gtksourceview/gtksourceprintjob.c:313
-msgid "Font name to use for the document text"
-msgstr "Název písma, které používat pro text dokumentu"
+#: gtksourceview/gtksourceprintjob.c:305
+msgid "GnomeFont name to use for the document text (deprecated)"
+msgstr "Název písma GnomeFont, které používat pro text dokumentu (zastaralé)"
 
-#: gtksourceview/gtksourceprintjob.c:320
+#: gtksourceview/gtksourceprintjob.c:312
+msgid "Font Description"
+msgstr "Popis písma"
+
+#: gtksourceview/gtksourceprintjob.c:313
+msgid "Font description name to use for the document text"
+msgstr "Název popisu písma, které používat pro text dokumentu"
+
+#: gtksourceview/gtksourceprintjob.c:320 gtksourceview/gtksourceprintjob.c:328
 msgid "Numbers Font"
 msgstr "Písmo čísel"
 
 #: gtksourceview/gtksourceprintjob.c:321
-msgid "Font name to use for the line numbers"
-msgstr "Název písma, které používat pro čísla řádků"
+msgid "GnomeFont name to use for the line numbers (deprecated)"
+msgstr "Název písma GnomeFont, které používat pro čísla řádků (zastaralé)"
 
-#: gtksourceview/gtksourceprintjob.c:328
+#: gtksourceview/gtksourceprintjob.c:329
+msgid "Font description to use for the line numbers"
+msgstr "Popis písma, které používat pro čísla řádků"
+
+#: gtksourceview/gtksourceprintjob.c:336
 msgid "Print Line Numbers"
 msgstr "Tisknout čísla řádků"
 
-#: gtksourceview/gtksourceprintjob.c:329
+#: gtksourceview/gtksourceprintjob.c:337
 msgid "Interval of printed line numbers (0 means no numbers)"
 msgstr "Interval čísel tisknutých řádků (0 znamená žádná čísla)"
 
-#: gtksourceview/gtksourceprintjob.c:336
+#: gtksourceview/gtksourceprintjob.c:344
 msgid "Print Header"
 msgstr "Tisknout hlavičku"
 
-#: gtksourceview/gtksourceprintjob.c:337
+#: gtksourceview/gtksourceprintjob.c:345
 msgid "Whether to print a header in each page"
 msgstr "Jestli tisknout hlavičku na každé stránce"
 
-#: gtksourceview/gtksourceprintjob.c:344
+#: gtksourceview/gtksourceprintjob.c:352
 msgid "Print Footer"
 msgstr "Tisknout patičku"
 
-#: gtksourceview/gtksourceprintjob.c:345
+#: gtksourceview/gtksourceprintjob.c:353
 msgid "Whether to print a footer in each page"
 msgstr "Jestli tisknout patičku na každé stránce"
 
-#: gtksourceview/gtksourceprintjob.c:352
+#: gtksourceview/gtksourceprintjob.c:360
 msgid "Header and Footer Font"
 msgstr "Písmo hlavičky a patičky"
 
-#: gtksourceview/gtksourceprintjob.c:353
-msgid "Font name to use for the header and footer"
-msgstr "Název písma, které použít pro hlavičku a patičku"
+#: gtksourceview/gtksourceprintjob.c:361
+msgid "GnomeFont name to use for the header and footer (deprecated)"
+msgstr "Název písma GnomeFont, které používat pro hlavičku a patičku (zastaralé)"
+
+#: gtksourceview/gtksourceprintjob.c:368
+msgid "Header and Footer Font Description"
+msgstr "Popis písma hlavičky a patičky"
+
+#: gtksourceview/gtksourceprintjob.c:369
+msgid "Font description name to use for the header and footer"
+msgstr "Název popisu písma, které používat pro hlavičku a patičku"
 
 #: gtksourceview/gtksourcestylescheme.c:237
 msgid "Base-N Integer"
