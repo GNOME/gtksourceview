@@ -6,14 +6,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview VERSION\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-07-03 13:11+0200\n"
-"PO-Revision-Date: 2003-07-07 21:12+0700\n"
+"POT-Creation-Date: 2003-09-06 04:20+0200\n"
+"PO-Revision-Date: 2003-09-06 17:39+0700\n"
 "Last-Translator: pclouds <pclouds@gmx.net>\n"
 "Language-Team: GnomeVI <gnomevi-list@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Report-Msgid-Bugs-To: \n"
 
 #: gtksourceview/gtksourcebuffer.c:279
 msgid "Escape Character"
@@ -48,6 +48,7 @@ msgid "Number of undo levels for the buffer"
 msgstr "Số mức hoàn lại trong vùng đệm"
 
 #: gtksourceview/gtksourcebuffer.c:317
+#: gtksourceview/language-specs/desktop.lang.h:6
 msgid "Language"
 msgstr "Ngôn ngữ"
 
@@ -81,8 +82,8 @@ msgstr "Vùng đệm nguồn"
 msgid "GtkSourceBuffer object to print"
 msgstr "Đối tượng GtkSourceBuffer cần in"
 
-#: gtksourceview/gtksourceprintjob.c:287 gtksourceview/gtksourceview.c:223
-#: gtksourceview/gtksourceview.c:224
+#: gtksourceview/gtksourceprintjob.c:287 gtksourceview/gtksourceview.c:221
+#: gtksourceview/gtksourceview.c:222
 msgid "Tabs Width"
 msgstr "Độ rộng tab"
 
@@ -150,120 +151,492 @@ msgstr "Font header và footer"
 msgid "Font name to use for the header and footer"
 msgstr "Tên font dùng cho header và footer"
 
-#: gtksourceview/gtksourcestylescheme.c:230
+#: gtksourceview/gtksourcestylescheme.c:237
 msgid "Base-N Integer"
 msgstr "Số nguyên cơ số N"
 
-#: gtksourceview/gtksourcestylescheme.c:235
+#: gtksourceview/gtksourcestylescheme.c:242
 msgid "Character"
 msgstr "Ký tự"
 
-#: gtksourceview/gtksourcestylescheme.c:240
+#: gtksourceview/gtksourcestylescheme.c:247
+#: gtksourceview/language-specs/latex.lang.h:1
+#: gtksourceview/language-specs/po.lang.h:1
 msgid "Comment"
 msgstr "Ghi chú"
 
-#: gtksourceview/gtksourcestylescheme.c:245
+#: gtksourceview/gtksourcestylescheme.c:252
 msgid "Data Type"
 msgstr "Kiểu dữ liệu"
 
-#: gtksourceview/gtksourcestylescheme.c:250
+#: gtksourceview/gtksourcestylescheme.c:257
+#: gtksourceview/language-specs/ada.lang.h:3
 msgid "Function"
 msgstr "Hàm"
 
-#: gtksourceview/gtksourcestylescheme.c:255
+#: gtksourceview/gtksourcestylescheme.c:262
+#: gtksourceview/language-specs/c.lang.h:6
+#: gtksourceview/language-specs/cpp.lang.h:6
 msgid "Decimal"
 msgstr "Thập phân"
 
-#: gtksourceview/gtksourcestylescheme.c:260
+#: gtksourceview/gtksourcestylescheme.c:267
 msgid "Floating Point"
 msgstr "Dấu chấm động"
 
-#: gtksourceview/gtksourcestylescheme.c:265
+#: gtksourceview/gtksourcestylescheme.c:272
+#: gtksourceview/language-specs/latex.lang.h:3
+#: gtksourceview/language-specs/po.lang.h:3
 msgid "Keyword"
 msgstr "Từ khóa"
 
-#: gtksourceview/gtksourcestylescheme.c:270
+#: gtksourceview/gtksourcestylescheme.c:277
 msgid "Preprocessor"
 msgstr "Bộ tiền xử lý"
 
-#: gtksourceview/gtksourcestylescheme.c:275
+#: gtksourceview/gtksourcestylescheme.c:282
+#: gtksourceview/language-specs/ada.lang.h:9
+#: gtksourceview/language-specs/c.lang.h:15
+#: gtksourceview/language-specs/cpp.lang.h:15
+#: gtksourceview/language-specs/html.lang.h:8
+#: gtksourceview/language-specs/idl.lang.h:8
+#: gtksourceview/language-specs/java.lang.h:11
+#: gtksourceview/language-specs/perl.lang.h:6
+#: gtksourceview/language-specs/po.lang.h:6
+#: gtksourceview/language-specs/python.lang.h:11
+#: gtksourceview/language-specs/xml.lang.h:8
 msgid "String"
 msgstr "Chuỗi"
 
-#: gtksourceview/gtksourcestylescheme.c:280
+#: gtksourceview/gtksourcestylescheme.c:287
 msgid "Specials"
 msgstr "Đặc biệt"
 
-#: gtksourceview/gtksourcestylescheme.c:285
+#: gtksourceview/gtksourcestylescheme.c:292
+#: gtksourceview/language-specs/desktop.lang.h:10
+#: gtksourceview/language-specs/diff.lang.h:7
+#: gtksourceview/language-specs/po.lang.h:5
 msgid "Others"
 msgstr "Khác"
 
-#: gtksourceview/gtksourcestylescheme.c:290
+#: gtksourceview/gtksourcestylescheme.c:297
 msgid "Others 2"
 msgstr "Khác 2"
 
-#: gtksourceview/gtksourcestylescheme.c:295
+#: gtksourceview/gtksourcestylescheme.c:302
 msgid "Others 3"
 msgstr "Khác 3"
 
-#: gtksourceview/gtksourcestylescheme.c:332
+#: gtksourceview/gtksourcestylescheme.c:339
 msgid "Default"
 msgstr "Mặc định"
 
-#: gtksourceview/gtksourceview.c:207
+#: gtksourceview/gtksourcetag.c:108
+msgid "Tag ID"
+msgstr "ID Thẻ"
+
+#: gtksourceview/gtksourcetag.c:109
+msgid "ID used to refer to the source tag"
+msgstr "ID dùng để tham chiếu Thẻ nguồn"
+
+#: gtksourceview/gtksourcetag.c:116
+msgid "Tag style"
+msgstr "Kiểu thẻ"
+
+#: gtksourceview/gtksourcetag.c:117
+msgid "The style associated to the source tag"
+msgstr "Kiểu gắn với thẻ nguồn"
+
+#: gtksourceview/gtksourceview.c:205
 msgid "Show Line Numbers"
 msgstr "Hiện số dòng"
 
-#: gtksourceview/gtksourceview.c:208
+#: gtksourceview/gtksourceview.c:206
 msgid "Whether to display line numbers"
 msgstr "Có hiển thị số dòng không"
 
-#: gtksourceview/gtksourceview.c:215
+#: gtksourceview/gtksourceview.c:213
 msgid "Show Line Markers"
 msgstr "Hiện đánh dấu dòng"
 
-#: gtksourceview/gtksourceview.c:216
+#: gtksourceview/gtksourceview.c:214
 msgid "Whether to display line marker pixbufs"
 msgstr "Có hiển thị ký hiệu đánh dấu dòng không"
 
-#: gtksourceview/gtksourceview.c:233
+#: gtksourceview/gtksourceview.c:231
 msgid "Auto Indentation"
 msgstr "Tự động canh hàng"
 
-#: gtksourceview/gtksourceview.c:234
+#: gtksourceview/gtksourceview.c:232
 msgid "Whether to enable auto indentation"
 msgstr "Có bật tính năng tự động canh hàng không"
 
-#: gtksourceview/gtksourceview.c:240
+#: gtksourceview/gtksourceview.c:238
 msgid "Insert Spaces Instead of Tabs"
 msgstr "Chèn khoảng trắng thay vì Tab"
 
-#: gtksourceview/gtksourceview.c:241
+#: gtksourceview/gtksourceview.c:239
 msgid "Whether to insert spaces instead of tabs"
 msgstr "Có chèn khoảng trắng thay vì Tab không"
 
-#: gtksourceview/gtksourceview.c:248
+#: gtksourceview/gtksourceview.c:246
 msgid "Show Right Margin"
 msgstr "Hiện lề phải"
 
-#: gtksourceview/gtksourceview.c:249
+#: gtksourceview/gtksourceview.c:247
 msgid "Whether to display the right margin"
 msgstr "Có hiển thị lề phải không"
 
-#: gtksourceview/gtksourceview.c:256
+#: gtksourceview/gtksourceview.c:254
 msgid "Margin position"
 msgstr "Vị trí lề"
 
-#: gtksourceview/gtksourceview.c:257
+#: gtksourceview/gtksourceview.c:255
 msgid "Position of the right margin"
 msgstr "Vị trí lề phải"
 
-#: gtksourceview/gtksourceview.c:266
+#: gtksourceview/gtksourceview.c:264
 msgid "Use smart home/end"
 msgstr "Dùng Home/End thông minh"
 
-#: gtksourceview/gtksourceview.c:267
+#: gtksourceview/gtksourceview.c:265
 msgid ""
 "HOME and END keys move to first/last characters on line first before going "
 "to the start/end of the line"
-msgstr "Phím HOME và END di chuyển đến ký tự đầu tiên/cuối cùng trên dòng, trước khi chuyển đến đầu/cuối dòng"
+msgstr ""
+"Phím HOME và END di chuyển đến ký tự đầu tiên/cuối cùng trên dòng, trước khi "
+"chuyển đến đầu/cuối dòng"
+
+#: gtksourceview/language-specs/ada.lang.h:1
+msgid "Ada"
+msgstr "Ada"
+
+#: gtksourceview/language-specs/ada.lang.h:2
+#: gtksourceview/language-specs/c.lang.h:4
+#: gtksourceview/language-specs/cpp.lang.h:4
+msgid "Character Constant"
+msgstr "Hằng Ký tự"
+
+#: gtksourceview/language-specs/ada.lang.h:4
+#: gtksourceview/language-specs/c.lang.h:10
+#: gtksourceview/language-specs/cpp.lang.h:10
+#: gtksourceview/language-specs/idl.lang.h:4
+#: gtksourceview/language-specs/perl.lang.h:2
+#: gtksourceview/language-specs/python.lang.h:3
+msgid "Keywords"
+msgstr "Từ khóa"
+
+#: gtksourceview/language-specs/ada.lang.h:5
+#: gtksourceview/language-specs/c.lang.h:11
+#: gtksourceview/language-specs/cpp.lang.h:11
+#: gtksourceview/language-specs/desktop.lang.h:7
+#: gtksourceview/language-specs/diff.lang.h:5
+#: gtksourceview/language-specs/java.lang.h:5
+#: gtksourceview/language-specs/perl.lang.h:3
+#: gtksourceview/language-specs/python.lang.h:4
+msgid "Line Comment"
+msgstr "Ghi chú dòng"
+
+#: gtksourceview/language-specs/ada.lang.h:6
+#: gtksourceview/language-specs/desktop.lang.h:9
+msgid "Number"
+msgstr "Số"
+
+#: gtksourceview/language-specs/ada.lang.h:7
+msgid "Preprocessor Keywords"
+msgstr "Từ khóa Tiền xử lý"
+
+#: gtksourceview/language-specs/ada.lang.h:8
+#: gtksourceview/language-specs/c.lang.h:14
+#: gtksourceview/language-specs/cpp.lang.h:14
+#: gtksourceview/language-specs/idl.lang.h:7
+#: gtksourceview/language-specs/java.lang.h:10
+msgid "Sources"
+msgstr "Nguồn"
+
+#: gtksourceview/language-specs/ada.lang.h:10
+msgid "True And False"
+msgstr "Đúng và Sai"
+
+#: gtksourceview/language-specs/ada.lang.h:11
+#: gtksourceview/language-specs/c.lang.h:16
+#: gtksourceview/language-specs/cpp.lang.h:16
+#: gtksourceview/language-specs/idl.lang.h:9
+msgid "Types"
+msgstr "Kiểu"
+
+#: gtksourceview/language-specs/c.lang.h:1
+#: gtksourceview/language-specs/cpp.lang.h:1
+msgid "'#if 0' Comment"
+msgstr "Ghi chú '#if 0'"
+
+#: gtksourceview/language-specs/c.lang.h:2
+#: gtksourceview/language-specs/cpp.lang.h:2
+#: gtksourceview/language-specs/html.lang.h:2
+#: gtksourceview/language-specs/idl.lang.h:1
+#: gtksourceview/language-specs/java.lang.h:1
+#: gtksourceview/language-specs/xml.lang.h:2
+msgid "Block Comment"
+msgstr "Ghi chú khối"
+
+#: gtksourceview/language-specs/c.lang.h:3
+msgid "C"
+msgstr "C"
+
+#: gtksourceview/language-specs/c.lang.h:5
+#: gtksourceview/language-specs/cpp.lang.h:5
+msgid "Common Macro"
+msgstr "Macro chung"
+
+#: gtksourceview/language-specs/c.lang.h:7
+#: gtksourceview/language-specs/cpp.lang.h:7
+msgid "Floating Point Number"
+msgstr "Số Dấu chấm động"
+
+#: gtksourceview/language-specs/c.lang.h:8
+#: gtksourceview/language-specs/cpp.lang.h:8
+msgid "Hex Number"
+msgstr "Số thập lục"
+
+#: gtksourceview/language-specs/c.lang.h:9
+#: gtksourceview/language-specs/cpp.lang.h:9
+#: gtksourceview/language-specs/idl.lang.h:3
+msgid "Include/Pragma"
+msgstr "Include/Pragma"
+
+#: gtksourceview/language-specs/c.lang.h:12
+#: gtksourceview/language-specs/cpp.lang.h:12
+msgid "Octal Number"
+msgstr "Số bát phân"
+
+#: gtksourceview/language-specs/c.lang.h:13
+#: gtksourceview/language-specs/cpp.lang.h:13
+#: gtksourceview/language-specs/idl.lang.h:5
+msgid "Preprocessor Definitions"
+msgstr "Định nghĩa Tiền xử lý"
+
+#: gtksourceview/language-specs/cpp.lang.h:3
+msgid "C++"
+msgstr "C++"
+
+#: gtksourceview/language-specs/desktop.lang.h:1
+msgid ".desktop"
+msgstr ".desktop"
+
+#: gtksourceview/language-specs/desktop.lang.h:2
+msgid "Boolean Value"
+msgstr "Giá trị Boolean"
+
+#: gtksourceview/language-specs/desktop.lang.h:3
+msgid "Encoding"
+msgstr "Bảng mã"
+
+#: gtksourceview/language-specs/desktop.lang.h:4
+msgid "Exec Parameter"
+msgstr "Tham số Exec"
+
+#: gtksourceview/language-specs/desktop.lang.h:5
+msgid "Group"
+msgstr "Nhóm"
+
+#: gtksourceview/language-specs/desktop.lang.h:8
+msgid "Non Standard Key"
+msgstr "Phím không chuẩn"
+
+#: gtksourceview/language-specs/desktop.lang.h:11
+msgid "Standard Key"
+msgstr "Phím chuẩn"
+
+#: gtksourceview/language-specs/diff.lang.h:1
+msgid "Added line"
+msgstr "Dòng bổ sung"
+
+#: gtksourceview/language-specs/diff.lang.h:2
+msgid "Changed line"
+msgstr "Dòng thay đổi"
+
+#: gtksourceview/language-specs/diff.lang.h:3
+msgid "Diff"
+msgstr "Diff"
+
+#: gtksourceview/language-specs/diff.lang.h:4
+msgid "Diff file"
+msgstr "Tập tin Diff"
+
+#: gtksourceview/language-specs/diff.lang.h:6
+#: gtksourceview/language-specs/po.lang.h:4
+msgid "Location"
+msgstr "Vị trí"
+
+#: gtksourceview/language-specs/diff.lang.h:8
+msgid "Removed line"
+msgstr "Dòng loại bỏ"
+
+#: gtksourceview/language-specs/diff.lang.h:9
+msgid "Special case"
+msgstr "Trường hợp đặc biệt"
+
+#: gtksourceview/language-specs/html.lang.h:1
+#: gtksourceview/language-specs/xml.lang.h:1
+msgid "Attributes"
+msgstr "Thuộc tính"
+
+#: gtksourceview/language-specs/html.lang.h:3
+#: gtksourceview/language-specs/xml.lang.h:3
+msgid "Closing Bracket"
+msgstr "Ngoặc đóng"
+
+#: gtksourceview/language-specs/html.lang.h:4
+#: gtksourceview/language-specs/xml.lang.h:4
+msgid "DTD"
+msgstr "DTD"
+
+#: gtksourceview/language-specs/html.lang.h:5
+#: gtksourceview/language-specs/xml.lang.h:5
+msgid "Entity"
+msgstr "Thực thể"
+
+#: gtksourceview/language-specs/html.lang.h:6
+msgid "HTML"
+msgstr "HTML"
+
+#: gtksourceview/language-specs/html.lang.h:7
+#: gtksourceview/language-specs/latex.lang.h:5
+#: gtksourceview/language-specs/xml.lang.h:7
+msgid "Markup"
+msgstr "Đánh dấu"
+
+#: gtksourceview/language-specs/html.lang.h:9
+msgid "Tags"
+msgstr "Thẻ"
+
+#: gtksourceview/language-specs/idl.lang.h:2
+msgid "IDL"
+msgstr "IDL"
+
+#: gtksourceview/language-specs/idl.lang.h:6
+msgid "Sectional"
+msgstr "Phần"
+
+#: gtksourceview/language-specs/java.lang.h:2
+msgid "Declarations"
+msgstr "Khai báo"
+
+#: gtksourceview/language-specs/java.lang.h:3
+msgid "Flow"
+msgstr "Luồng"
+
+#: gtksourceview/language-specs/java.lang.h:4
+msgid "Java"
+msgstr "Java"
+
+#: gtksourceview/language-specs/java.lang.h:6
+msgid "Memory"
+msgstr "Bộ nhớ"
+
+#: gtksourceview/language-specs/java.lang.h:7
+msgid "Modifiers"
+msgstr ""
+
+#: gtksourceview/language-specs/java.lang.h:8
+msgid "Numeric"
+msgstr "Số"
+
+#: gtksourceview/language-specs/java.lang.h:9
+msgid "Primitives"
+msgstr ""
+
+#: gtksourceview/language-specs/java.lang.h:12
+#: gtksourceview/language-specs/python.lang.h:12
+#: gtksourceview/language-specs/xml.lang.h:9
+msgid "String 2"
+msgstr "Chuỗi 2"
+
+#: gtksourceview/language-specs/latex.lang.h:2
+msgid "Include"
+msgstr "Include"
+
+#: gtksourceview/language-specs/latex.lang.h:4
+msgid "Latex"
+msgstr "Latex"
+
+#: gtksourceview/language-specs/latex.lang.h:6
+msgid "Math"
+msgstr "Toán học"
+
+#: gtksourceview/language-specs/latex.lang.h:7
+msgid "Most Used Commands"
+msgstr "Lệnh thường dùng nhất"
+
+#: gtksourceview/language-specs/perl.lang.h:1
+msgid "Function Call"
+msgstr "Lời gọi hàm"
+
+#: gtksourceview/language-specs/perl.lang.h:4
+msgid "Perl"
+msgstr "Perl"
+
+#: gtksourceview/language-specs/perl.lang.h:5
+#: gtksourceview/language-specs/python.lang.h:9
+msgid "Scripts"
+msgstr "Script"
+
+#: gtksourceview/language-specs/perl.lang.h:7
+msgid "String2"
+msgstr "Chuỗi2"
+
+#: gtksourceview/language-specs/perl.lang.h:8
+msgid "String3"
+msgstr "Chuỗi3"
+
+#: gtksourceview/language-specs/perl.lang.h:9
+msgid "Variables"
+msgstr "Biến"
+
+#: gtksourceview/language-specs/po.lang.h:2
+msgid "Format"
+msgstr "Dạng thức"
+
+#: gtksourceview/language-specs/po.lang.h:7
+msgid "gettext translation"
+msgstr "bản dịch gettext"
+
+#: gtksourceview/language-specs/python.lang.h:1
+msgid "Builtins"
+msgstr "Dựng sẵn"
+
+#: gtksourceview/language-specs/python.lang.h:2
+msgid "Functions"
+msgstr "Hàm"
+
+#: gtksourceview/language-specs/python.lang.h:5
+msgid "Module Handler"
+msgstr "Bộ xử lý module"
+
+#: gtksourceview/language-specs/python.lang.h:6
+msgid "Multiline String"
+msgstr "Chuỗi nhiều dòng"
+
+#: gtksourceview/language-specs/python.lang.h:7
+msgid "Multiline String 2"
+msgstr "Chuỗi nhiều dòng 2"
+
+#: gtksourceview/language-specs/python.lang.h:8
+msgid "Python"
+msgstr "Python"
+
+#: gtksourceview/language-specs/python.lang.h:10
+msgid "Self"
+msgstr "Self"
+
+#: gtksourceview/language-specs/xml.lang.h:6
+msgid "Hexadecimal"
+msgstr "Thập lục phân"
+
+#: gtksourceview/language-specs/xml.lang.h:10
+msgid "Tag"
+msgstr "Thẻ"
+
+#: gtksourceview/language-specs/xml.lang.h:11
+msgid "XML"
+msgstr "XML"
