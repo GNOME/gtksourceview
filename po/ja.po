@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-06-15 19:01+0900\n"
-"PO-Revision-Date: 2003-06-15 18:56+0900\n"
+"POT-Creation-Date: 2003-08-09 16:14+0900\n"
+"PO-Revision-Date: 2003-08-09 16:09+0900\n"
 "Last-Translator: Takeshi AIHANA <aihana@gnome.gr.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
@@ -81,8 +81,8 @@ msgstr "ソース・バッファ"
 msgid "GtkSourceBuffer object to print"
 msgstr "印刷用の GtkSourceBuffer オブジェクトです"
 
-#: gtksourceview/gtksourceprintjob.c:287 gtksourceview/gtksourceview.c:223
-#: gtksourceview/gtksourceview.c:224
+#: gtksourceview/gtksourceprintjob.c:287 gtksourceview/gtksourceview.c:221
+#: gtksourceview/gtksourceview.c:222
 msgid "Tabs Width"
 msgstr "タブの幅"
 
@@ -150,119 +150,135 @@ msgstr "ヘッダとフッタのフォント"
 msgid "Font name to use for the header and footer"
 msgstr "ヘッダとフッタに使用するフォント名です"
 
-#: gtksourceview/gtksourcestylescheme.c:222
+#: gtksourceview/gtksourcestylescheme.c:237
 msgid "Base-N Integer"
 msgstr "Base-N Integer"
 
-#: gtksourceview/gtksourcestylescheme.c:227
+#: gtksourceview/gtksourcestylescheme.c:242
 msgid "Character"
 msgstr "文字"
 
-#: gtksourceview/gtksourcestylescheme.c:232
+#: gtksourceview/gtksourcestylescheme.c:247
 msgid "Comment"
 msgstr "コメント"
 
-#: gtksourceview/gtksourcestylescheme.c:237
+#: gtksourceview/gtksourcestylescheme.c:252
 msgid "Data Type"
 msgstr "データ型"
 
-#: gtksourceview/gtksourcestylescheme.c:242
+#: gtksourceview/gtksourcestylescheme.c:257
 msgid "Function"
 msgstr "関数"
 
-#: gtksourceview/gtksourcestylescheme.c:247
+#: gtksourceview/gtksourcestylescheme.c:262
 msgid "Decimal"
 msgstr "10 進数"
 
-#: gtksourceview/gtksourcestylescheme.c:252
+#: gtksourceview/gtksourcestylescheme.c:267
 msgid "Floating Point"
 msgstr "浮動小数点数"
 
-#: gtksourceview/gtksourcestylescheme.c:257
+#: gtksourceview/gtksourcestylescheme.c:272
 msgid "Keyword"
 msgstr "キーワード"
 
-#: gtksourceview/gtksourcestylescheme.c:262
+#: gtksourceview/gtksourcestylescheme.c:277
 msgid "Preprocessor"
 msgstr "プリプロセッサ"
 
-#: gtksourceview/gtksourcestylescheme.c:267
+#: gtksourceview/gtksourcestylescheme.c:282
 msgid "String"
 msgstr "文字列"
 
-#: gtksourceview/gtksourcestylescheme.c:272
+#: gtksourceview/gtksourcestylescheme.c:287
 msgid "Specials"
 msgstr "カスタマイズ"
 
-#: gtksourceview/gtksourcestylescheme.c:277
+#: gtksourceview/gtksourcestylescheme.c:292
 msgid "Others"
 msgstr "その他"
 
-#: gtksourceview/gtksourcestylescheme.c:282
+#: gtksourceview/gtksourcestylescheme.c:297
 msgid "Others 2"
 msgstr "その他 2"
 
-#: gtksourceview/gtksourcestylescheme.c:287
+#: gtksourceview/gtksourcestylescheme.c:302
 msgid "Others 3"
 msgstr "その他 3"
 
-#: gtksourceview/gtksourcestylescheme.c:324
+#: gtksourceview/gtksourcestylescheme.c:339
 msgid "Default"
 msgstr "デフォルト"
 
-#: gtksourceview/gtksourceview.c:207
+#: gtksourceview/gtksourcetag.c:108
+msgid "Tag ID"
+msgstr "タグ ID"
+
+#: gtksourceview/gtksourcetag.c:109
+msgid "ID used to refer to the source tag"
+msgstr "ソース・タグを参照するのに使用する ID です"
+
+#: gtksourceview/gtksourcetag.c:116
+msgid "Tag style"
+msgstr "タグのスタイル"
+
+#: gtksourceview/gtksourcetag.c:117
+msgid "The style associated to the source tag"
+msgstr "ソース・タグに関連するスタイルです"
+
+#: gtksourceview/gtksourceview.c:205
 msgid "Show Line Numbers"
 msgstr "行番号の表示"
 
-#: gtksourceview/gtksourceview.c:208
+#: gtksourceview/gtksourceview.c:206
 msgid "Whether to display line numbers"
 msgstr "行番号を表示するかどうかを設定します"
 
-#: gtksourceview/gtksourceview.c:215
+#: gtksourceview/gtksourceview.c:213
 msgid "Show Line Markers"
 msgstr "行マーカの表示"
 
-#: gtksourceview/gtksourceview.c:216
+#: gtksourceview/gtksourceview.c:214
 msgid "Whether to display line marker pixbufs"
 msgstr "行マーカのアイコンを表示するかどうかを設定します"
 
-#: gtksourceview/gtksourceview.c:233
+#: gtksourceview/gtksourceview.c:231
 msgid "Auto Indentation"
 msgstr "自動インデント"
 
-#: gtksourceview/gtksourceview.c:234
+#: gtksourceview/gtksourceview.c:232
 msgid "Whether to enable auto indentation"
 msgstr "自動的にインデントするかどうかを設定します"
 
-#: gtksourceview/gtksourceview.c:240
+#: gtksourceview/gtksourceview.c:238
 msgid "Insert Spaces Instead of Tabs"
 msgstr "タブのかわりにスペースを挿入する"
 
-#: gtksourceview/gtksourceview.c:241
+#: gtksourceview/gtksourceview.c:239
 msgid "Whether to insert spaces instead of tabs"
 msgstr "タブのかわりに空白を挿入するかどうかを設定します"
 
-#: gtksourceview/gtksourceview.c:248
+#: gtksourceview/gtksourceview.c:246
 msgid "Show Right Margin"
 msgstr "右マージンの表示"
 
-#: gtksourceview/gtksourceview.c:249
+#: gtksourceview/gtksourceview.c:247
 msgid "Whether to display the right margin"
 msgstr "右側に余白を表示するかどうかを設定します"
 
-#: gtksourceview/gtksourceview.c:256
+#: gtksourceview/gtksourceview.c:254
 msgid "Margin position"
 msgstr "マージンの位置"
 
-#: gtksourceview/gtksourceview.c:257
+#: gtksourceview/gtksourceview.c:255
 msgid "Position of the right margin"
 msgstr "右側の余白の位置です"
 
-#: gtksourceview/gtksourceview.c:266
+#: gtksourceview/gtksourceview.c:264
 msgid "Use smart home/end"
 msgstr "[Home]/[End] キーを使う"
 
-#: gtksourceview/gtksourceview.c:267
+#: gtksourceview/gtksourceview.c:265
 msgid ""
 "HOME and END keys move to first/last characters on line first before going "
 "to the start/end of the line"
