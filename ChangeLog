@@ -1,3 +1,10 @@
+2003-06-12  Paolo Maggi <paolo.maggi@polito.it>
+
+	* configure.in: removed unused GLIB_REQUIRED_VERSION
+
+	* gtksourceview-1.0.pc.in: add ibgnomeprint-2.2 and remove
+	glib-2.0 gdk-2.0 from Requires.
+
 === gtksourceview 0.3.0 ===
 	
 2003-06-07  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
