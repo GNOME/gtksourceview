@@ -1,27 +1,27 @@
-# gtksourceview Portuguese translation.
-# Copyright (C) 2003 gtksourceview
+# gtksourceview's Portuguese translation.
+# Copyright (C) 2003, 2004 gtksourceview
 # This file is distributed under the same license as the gtksourceview package.
-# Duarte Loreto <happyguy_pt@hotmail.com>, 2003.
+# Duarte Loreto <happyguy_pt@hotmail.com>, 2003, 2004.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 2.4\n"
+"Project-Id-Version: 2.6\n"
 "Report-Msgid-Bugs-To: Duarte Loreto <happyguy_pt@hotmail.com>\n"
-"POT-Creation-Date: 2003-09-27 16:08+0100\n"
-"PO-Revision-Date: 2003-09-27 16:10+0000\n"
+"POT-Creation-Date: 2004-01-04 15:50+0000\n"
+"PO-Revision-Date: 2004-01-04 16:15+0000\n"
 "Last-Translator: Duarte Loreto <happyguy_pt@hotmail.com>\n"
-"Language-Team: Portuguese <gnome_pt@hotmail.com>\n"
+"Language-Team: Portuguese <gnome_pt@yahoogroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: gtksourceview/gtksourcebuffer.c:279
 msgid "Escape Character"
-msgstr "Caracter Escape"
+msgstr "Caracter de Escape"
 
 #: gtksourceview/gtksourcebuffer.c:280
 msgid "Escaping character for syntax patterns"
-msgstr "Caracter escape para padrões de sintaxe"
+msgstr "Caracter de escape para padrões de sintaxe"
 
 #: gtksourceview/gtksourcebuffer.c:288
 msgid "Check Brackets"
@@ -37,7 +37,7 @@ msgstr "Realçar"
 
 #: gtksourceview/gtksourcebuffer.c:298
 msgid "Whether to highlight syntax in the buffer"
-msgstr "Se realçar ou não a sintaxe do buffer"
+msgstr "Se realçar ou não a sintaxe no buffer"
 
 #: gtksourceview/gtksourcebuffer.c:306
 msgid "Maximum Undo Levels"
@@ -74,11 +74,11 @@ msgstr "Configuração"
 
 #: gtksourceview/gtksourceprintjob.c:273
 msgid "Configuration options for the print job"
-msgstr "Opções de configuração para o trbalho de impressão"
+msgstr "Opções de configuração para o trabalho de impressão"
 
 #: gtksourceview/gtksourceprintjob.c:280
 msgid "Source Buffer"
-msgstr "Buffer Fonte"
+msgstr "Buffer de Origem"
 
 #: gtksourceview/gtksourceprintjob.c:281
 msgid "GtkSourceBuffer object to print"
@@ -87,11 +87,11 @@ msgstr "Objecto GtkSourceBuffer a imprimir"
 #: gtksourceview/gtksourceprintjob.c:287 gtksourceview/gtksourceview.c:221
 #: gtksourceview/gtksourceview.c:222
 msgid "Tabs Width"
-msgstr "Largura Tabs"
+msgstr "Largura dos Tabuladores"
 
 #: gtksourceview/gtksourceprintjob.c:288
 msgid "Width in equivalent space characters of tabs"
-msgstr "Largura de tabs em caracteres de espaços"
+msgstr "Largura dos tabuladores em caracteres de espaços"
 
 #: gtksourceview/gtksourceprintjob.c:295
 msgid "Wrap Mode"
@@ -111,19 +111,19 @@ msgstr "Fonte"
 
 #: gtksourceview/gtksourceprintjob.c:313
 msgid "Font name to use for the document text"
-msgstr "Nome de fonte a utilizar no texto do documento"
+msgstr "Nome da fonte a utilizar no texto do documento"
 
 #: gtksourceview/gtksourceprintjob.c:320
 msgid "Numbers Font"
-msgstr "Fonte Números"
+msgstr "Fonte de Números"
 
 #: gtksourceview/gtksourceprintjob.c:321
 msgid "Font name to use for the line numbers"
-msgstr "Nome de fonte utilizada para os números de linhas"
+msgstr "Nome da fonte utilizada para os números de linhas"
 
 #: gtksourceview/gtksourceprintjob.c:328
 msgid "Print Line Numbers"
-msgstr "Imprimir Números Linhas"
+msgstr "Imprimir Números de Linhas"
 
 #: gtksourceview/gtksourceprintjob.c:329
 msgid "Interval of printed line numbers (0 means no numbers)"
@@ -151,7 +151,7 @@ msgstr "Fonte de Cabeçalho e Rodapé"
 
 #: gtksourceview/gtksourceprintjob.c:353
 msgid "Font name to use for the header and footer"
-msgstr "Nome de fonte utilizada para o cabeçalho e rodapé"
+msgstr "Nome da fonte utilizada para o cabeçalho e rodapé"
 
 #: gtksourceview/gtksourcestylescheme.c:237
 msgid "Base-N Integer"
@@ -168,8 +168,9 @@ msgid "Comment"
 msgstr "Comentário"
 
 #: gtksourceview/gtksourcestylescheme.c:252
+#: gtksourceview/language-specs/php.lang.h:8
 msgid "Data Type"
-msgstr "Tipo Dados"
+msgstr "Tipo de Dados"
 
 #: gtksourceview/gtksourcestylescheme.c:257
 #: gtksourceview/language-specs/ada.lang.h:3
@@ -184,7 +185,7 @@ msgstr "Decimal"
 
 #: gtksourceview/gtksourcestylescheme.c:267
 msgid "Floating Point"
-msgstr "Virgula Flutuante"
+msgstr "Vírgula Flutuante"
 
 #: gtksourceview/gtksourcestylescheme.c:272
 #: gtksourceview/language-specs/latex.lang.h:3
@@ -200,9 +201,10 @@ msgstr "Pré-processador"
 #: gtksourceview/language-specs/ada.lang.h:9
 #: gtksourceview/language-specs/c.lang.h:15
 #: gtksourceview/language-specs/cpp.lang.h:15
+#: gtksourceview/language-specs/csharp.lang.h:8
 #: gtksourceview/language-specs/html.lang.h:8
 #: gtksourceview/language-specs/idl.lang.h:8
-#: gtksourceview/language-specs/java.lang.h:12
+#: gtksourceview/language-specs/java.lang.h:11
 #: gtksourceview/language-specs/perl.lang.h:6
 #: gtksourceview/language-specs/po.lang.h:6
 #: gtksourceview/language-specs/python.lang.h:11
@@ -217,6 +219,7 @@ msgstr "Especiais"
 #: gtksourceview/gtksourcestylescheme.c:292
 #: gtksourceview/language-specs/desktop.lang.h:10
 #: gtksourceview/language-specs/diff.lang.h:7
+#: gtksourceview/language-specs/msil.lang.h:2
 #: gtksourceview/language-specs/po.lang.h:5
 msgid "Others"
 msgstr "Outras"
@@ -235,35 +238,35 @@ msgstr "Por Omissão"
 
 #: gtksourceview/gtksourcetag.c:108
 msgid "Tag ID"
-msgstr "ID Etiqueta"
+msgstr "ID de Etiqueta"
 
 #: gtksourceview/gtksourcetag.c:109
 msgid "ID used to refer to the source tag"
-msgstr "ID utilizado para se referir à etiqueta fonte"
+msgstr "ID utilizado para se referir à etiqueta origem"
 
 #: gtksourceview/gtksourcetag.c:116
 msgid "Tag style"
-msgstr "Estilo etiqueta"
+msgstr "Estilo de etiqueta"
 
 #: gtksourceview/gtksourcetag.c:117
 msgid "The style associated to the source tag"
-msgstr "O estilo associado à etiqueta fonte"
+msgstr "O estilo associado à etiqueta origem"
 
 #: gtksourceview/gtksourceview.c:205
 msgid "Show Line Numbers"
-msgstr "Mostrar Número Linha"
+msgstr "Apresentar Número de Linha"
 
 #: gtksourceview/gtksourceview.c:206
 msgid "Whether to display line numbers"
-msgstr "Se mostrar ou não os números das linhas"
+msgstr "Se apresentar ou não os números das linhas"
 
 #: gtksourceview/gtksourceview.c:213
 msgid "Show Line Markers"
-msgstr "Mostrar Marcadores Linhas"
+msgstr "Apresentar Marcadores de Linhas"
 
 #: gtksourceview/gtksourceview.c:214
 msgid "Whether to display line marker pixbufs"
-msgstr "Se mostrar ou não imagens de marcadores de linhas"
+msgstr "Se apresentar ou não imagens de marcadores de linhas"
 
 #: gtksourceview/gtksourceview.c:231
 msgid "Auto Indentation"
@@ -271,27 +274,27 @@ msgstr "Auto Indentação"
 
 #: gtksourceview/gtksourceview.c:232
 msgid "Whether to enable auto indentation"
-msgstr "Se activar ou não a auto indentação"
+msgstr "Se activar ou não a indentação automática"
 
 #: gtksourceview/gtksourceview.c:238
 msgid "Insert Spaces Instead of Tabs"
-msgstr "Inserir Espaços em Vez de Tabs"
+msgstr "Inserir Espaços em Vez de Tabuladores"
 
 #: gtksourceview/gtksourceview.c:239
 msgid "Whether to insert spaces instead of tabs"
-msgstr "Se inserir ou não espaços em vez de tabs"
+msgstr "Se inserir ou não espaços em vez de tabuladores"
 
 #: gtksourceview/gtksourceview.c:246
 msgid "Show Right Margin"
-msgstr "Mostrar Margem Direita"
+msgstr "Apresentar Margem Direita"
 
 #: gtksourceview/gtksourceview.c:247
 msgid "Whether to display the right margin"
-msgstr "Se mostrar ou não a margem direita"
+msgstr "Se apresentar ou não a margem direita"
 
 #: gtksourceview/gtksourceview.c:254
 msgid "Margin position"
-msgstr "Posição margem"
+msgstr "Posição da margem"
 
 #: gtksourceview/gtksourceview.c:255
 msgid "Position of the right margin"
@@ -317,25 +320,30 @@ msgstr "Ada"
 #: gtksourceview/language-specs/c.lang.h:4
 #: gtksourceview/language-specs/cpp.lang.h:4
 msgid "Character Constant"
-msgstr "Constante Caracter"
+msgstr "Constante de Caracter"
 
 #: gtksourceview/language-specs/ada.lang.h:4
 #: gtksourceview/language-specs/c.lang.h:10
 #: gtksourceview/language-specs/cpp.lang.h:10
+#: gtksourceview/language-specs/csharp.lang.h:3
 #: gtksourceview/language-specs/idl.lang.h:4
 #: gtksourceview/language-specs/perl.lang.h:2
 #: gtksourceview/language-specs/python.lang.h:3
+#: gtksourceview/language-specs/verilog.lang.h:6
 msgid "Keywords"
 msgstr "Palavras-Chave"
 
 #: gtksourceview/language-specs/ada.lang.h:5
 #: gtksourceview/language-specs/c.lang.h:11
 #: gtksourceview/language-specs/cpp.lang.h:11
+#: gtksourceview/language-specs/csharp.lang.h:4
 #: gtksourceview/language-specs/desktop.lang.h:7
 #: gtksourceview/language-specs/diff.lang.h:5
-#: gtksourceview/language-specs/java.lang.h:7
+#: gtksourceview/language-specs/java.lang.h:5
 #: gtksourceview/language-specs/perl.lang.h:3
 #: gtksourceview/language-specs/python.lang.h:4
+#: gtksourceview/language-specs/sql.lang.h:11
+#: gtksourceview/language-specs/verilog.lang.h:7
 msgid "Line Comment"
 msgstr "Comentário de Linha"
 
@@ -351,8 +359,12 @@ msgstr "Palavra-Chave de Pré-Processador"
 #: gtksourceview/language-specs/ada.lang.h:8
 #: gtksourceview/language-specs/c.lang.h:14
 #: gtksourceview/language-specs/cpp.lang.h:14
+#: gtksourceview/language-specs/csharp.lang.h:7
 #: gtksourceview/language-specs/idl.lang.h:7
-#: gtksourceview/language-specs/java.lang.h:11
+#: gtksourceview/language-specs/java.lang.h:10
+#: gtksourceview/language-specs/php.lang.h:15
+#: gtksourceview/language-specs/sql.lang.h:26
+#: gtksourceview/language-specs/verilog.lang.h:9
 msgid "Sources"
 msgstr "Código Fonte"
 
@@ -364,6 +376,7 @@ msgstr "Verdadeiro e Falso"
 #: gtksourceview/language-specs/c.lang.h:16
 #: gtksourceview/language-specs/cpp.lang.h:16
 #: gtksourceview/language-specs/idl.lang.h:9
+#: gtksourceview/language-specs/verilog.lang.h:10
 msgid "Types"
 msgstr "Tipos"
 
@@ -374,9 +387,12 @@ msgstr "#if 0' Comentário"
 
 #: gtksourceview/language-specs/c.lang.h:2
 #: gtksourceview/language-specs/cpp.lang.h:2
+#: gtksourceview/language-specs/csharp.lang.h:1
 #: gtksourceview/language-specs/html.lang.h:2
 #: gtksourceview/language-specs/idl.lang.h:1
 #: gtksourceview/language-specs/java.lang.h:1
+#: gtksourceview/language-specs/sql.lang.h:5
+#: gtksourceview/language-specs/verilog.lang.h:2
 #: gtksourceview/language-specs/xml.lang.h:2
 msgid "Block Comment"
 msgstr "Comentário em Bloco"
@@ -392,9 +408,8 @@ msgstr "Macro Comum"
 
 #: gtksourceview/language-specs/c.lang.h:7
 #: gtksourceview/language-specs/cpp.lang.h:7
-#: gtksourceview/language-specs/java.lang.h:3
 msgid "Floating Point Number"
-msgstr "Número Virgula Flutuante"
+msgstr "Número de Vírgula Flutuante"
 
 #: gtksourceview/language-specs/c.lang.h:8
 #: gtksourceview/language-specs/cpp.lang.h:8
@@ -409,18 +424,36 @@ msgstr "Include/Pragma"
 
 #: gtksourceview/language-specs/c.lang.h:12
 #: gtksourceview/language-specs/cpp.lang.h:12
+#: gtksourceview/language-specs/verilog.lang.h:8
 msgid "Octal Number"
 msgstr "Número Octal"
 
 #: gtksourceview/language-specs/c.lang.h:13
 #: gtksourceview/language-specs/cpp.lang.h:13
+#: gtksourceview/language-specs/csharp.lang.h:5
 #: gtksourceview/language-specs/idl.lang.h:5
 msgid "Preprocessor Definitions"
-msgstr "Definições Pré-Processador"
+msgstr "Definições de Pré-Processador"
 
 #: gtksourceview/language-specs/cpp.lang.h:3
 msgid "C++"
 msgstr "C++"
+
+#: gtksourceview/language-specs/csharp.lang.h:2
+msgid "C#"
+msgstr "C#"
+
+#: gtksourceview/language-specs/csharp.lang.h:6
+#: gtksourceview/language-specs/java.lang.h:9
+msgid "Primitives"
+msgstr "Primitivas"
+
+#: gtksourceview/language-specs/csharp.lang.h:9
+#: gtksourceview/language-specs/java.lang.h:12
+#: gtksourceview/language-specs/python.lang.h:12
+#: gtksourceview/language-specs/xml.lang.h:9
+msgid "String 2"
+msgstr "Expressão 2"
 
 #: gtksourceview/language-specs/desktop.lang.h:1
 msgid ".desktop"
@@ -436,7 +469,7 @@ msgstr "Codificação"
 
 #: gtksourceview/language-specs/desktop.lang.h:4
 msgid "Exec Parameter"
-msgstr "Parâmetro Execução"
+msgstr "Parâmetro de Execução"
 
 #: gtksourceview/language-specs/desktop.lang.h:5
 msgid "Group"
@@ -460,11 +493,11 @@ msgstr "Linha alterada"
 
 #: gtksourceview/language-specs/diff.lang.h:3
 msgid "Diff"
-msgstr "Diff"
+msgstr "Dif"
 
 #: gtksourceview/language-specs/diff.lang.h:4
 msgid "Diff file"
-msgstr "Diff ficheiro"
+msgstr "Dif de ficheiro"
 
 #: gtksourceview/language-specs/diff.lang.h:6
 #: gtksourceview/language-specs/po.lang.h:4
@@ -487,7 +520,7 @@ msgstr "Atributos"
 #: gtksourceview/language-specs/html.lang.h:3
 #: gtksourceview/language-specs/xml.lang.h:3
 msgid "Closing Bracket"
-msgstr "Fecho Parêntesis Recto"
+msgstr "Fecho de Parêntesis/Chaveta"
 
 #: gtksourceview/language-specs/html.lang.h:4
 #: gtksourceview/language-specs/xml.lang.h:4
@@ -525,35 +558,25 @@ msgstr "Seccional"
 msgid "Declarations"
 msgstr "Declarações"
 
-#: gtksourceview/language-specs/java.lang.h:4
+#: gtksourceview/language-specs/java.lang.h:3
 msgid "Flow"
 msgstr "Fluxo"
 
-#: gtksourceview/language-specs/java.lang.h:5
-msgid "Integer"
-msgstr "Inteiro"
-
-#: gtksourceview/language-specs/java.lang.h:6
+#: gtksourceview/language-specs/java.lang.h:4
 msgid "Java"
 msgstr "Java"
 
-#: gtksourceview/language-specs/java.lang.h:8
+#: gtksourceview/language-specs/java.lang.h:6
 msgid "Memory"
 msgstr "Memória"
 
-#: gtksourceview/language-specs/java.lang.h:9
+#: gtksourceview/language-specs/java.lang.h:7
 msgid "Modifiers"
 msgstr "Modificadores"
 
-#: gtksourceview/language-specs/java.lang.h:10
-msgid "Primitives"
-msgstr "Primitivas"
-
-#: gtksourceview/language-specs/java.lang.h:13
-#: gtksourceview/language-specs/python.lang.h:12
-#: gtksourceview/language-specs/xml.lang.h:9
-msgid "String 2"
-msgstr "Expressão 2"
+#: gtksourceview/language-specs/java.lang.h:8
+msgid "Numeric"
+msgstr "Numérico"
 
 #: gtksourceview/language-specs/latex.lang.h:2
 msgid "Include"
@@ -571,9 +594,13 @@ msgstr "Math"
 msgid "Most Used Commands"
 msgstr "Comandos Mais Utilizados"
 
+#: gtksourceview/language-specs/msil.lang.h:1
+msgid "MSIL"
+msgstr "MSIL"
+
 #: gtksourceview/language-specs/perl.lang.h:1
 msgid "Function Call"
-msgstr "Chamada Função"
+msgstr "Chamada de Função"
 
 #: gtksourceview/language-specs/perl.lang.h:4
 msgid "Perl"
@@ -596,13 +623,69 @@ msgstr "Expressão3"
 msgid "Variables"
 msgstr "Variáveis"
 
+#: gtksourceview/language-specs/php.lang.h:1
+msgid "Array Operators"
+msgstr "Operadores de Matrizes"
+
+#: gtksourceview/language-specs/php.lang.h:2
+msgid "Backtick String"
+msgstr "Expressão 'backtick'"
+
+#: gtksourceview/language-specs/php.lang.h:3
+msgid "Bash Line Comment"
+msgstr "Comentário de Linha em Bash"
+
+#: gtksourceview/language-specs/php.lang.h:4
+msgid "C Block Comment"
+msgstr "Comentário em Bloco C"
+
+#: gtksourceview/language-specs/php.lang.h:5
+msgid "C++ Line Comment"
+msgstr "Comentário de Linha C++"
+
+#: gtksourceview/language-specs/php.lang.h:6
+msgid "Case Insensitive Keyword"
+msgstr "Palavra-Chave Insensível à Capitalização"
+
+#: gtksourceview/language-specs/php.lang.h:7
+msgid "Case Sensitive Keyword"
+msgstr "Palavra-Chave Sensível à Capitalização"
+
+#: gtksourceview/language-specs/php.lang.h:9
+msgid "Double Quoted String"
+msgstr "Expressão com Aspas"
+
+#: gtksourceview/language-specs/php.lang.h:10
+msgid "First Open PHP Tag"
+msgstr "Etiqueta de Primeira Abertura PHP"
+
+#: gtksourceview/language-specs/php.lang.h:11
+msgid "HTML Block"
+msgstr "Bloco HTML"
+
+#: gtksourceview/language-specs/php.lang.h:12
+msgid "Operators"
+msgstr "Operadores"
+
+#: gtksourceview/language-specs/php.lang.h:13
+msgid "PHP"
+msgstr "PHP"
+
+#: gtksourceview/language-specs/php.lang.h:14
+msgid "Single Quoted String"
+msgstr "Expressão com Pelicas"
+
+#: gtksourceview/language-specs/php.lang.h:16
+msgid "Variable"
+msgstr "Variável"
+
 #: gtksourceview/language-specs/po.lang.h:2
 msgid "Format"
 msgstr "Formato"
 
 #: gtksourceview/language-specs/po.lang.h:7
 msgid "gettext translation"
-msgstr "tradução gettext"
+msgstr "Tradução gettext"
 
 #: gtksourceview/language-specs/python.lang.h:1
 msgid "Builtins"
@@ -614,7 +697,7 @@ msgstr "Funções"
 
 #: gtksourceview/language-specs/python.lang.h:5
 msgid "Module Handler"
-msgstr "Gestor Módulo"
+msgstr "Manipulador de Módulo"
 
 #: gtksourceview/language-specs/python.lang.h:6
 msgid "Multiline String"
@@ -632,6 +715,126 @@ msgstr "Python"
 msgid "Self"
 msgstr "Própria"
 
+#: gtksourceview/language-specs/sql.lang.h:1
+msgid "ANSI Datatypes"
+msgstr "Tipo de Dados ANSI"
+
+#: gtksourceview/language-specs/sql.lang.h:2
+msgid "ANSI Reserved Words"
+msgstr "Palavras Reservadas ANSI"
+
+#: gtksourceview/language-specs/sql.lang.h:3
+msgid "Aggregate Functions"
+msgstr "Funções Agregadas"
+
+#: gtksourceview/language-specs/sql.lang.h:4
+msgid "Analytic Functions"
+msgstr "Funções Analíticas"
+
+#: gtksourceview/language-specs/sql.lang.h:6
+msgid "Character Functions Returning Character Values"
+msgstr "Funções de Caracteres que Devolvem Valores de Caracter"
+
+#: gtksourceview/language-specs/sql.lang.h:7
+msgid "Character Functions Returning Number Values"
+msgstr "Funções de Caracteres que Devolvem Valores Numéricos"
+
+#: gtksourceview/language-specs/sql.lang.h:8
+msgid "Conversion Functions"
+msgstr "Funções de Conversão"
+
+#: gtksourceview/language-specs/sql.lang.h:9
+msgid "Datetime Functions"
+msgstr "Funções Data e Hora"
+
+#: gtksourceview/language-specs/sql.lang.h:10
+msgid "Integer Literals"
+msgstr "Literais de Inteiros"
+
+#: gtksourceview/language-specs/sql.lang.h:12
+msgid "Miscellaneous Single-Row Functions"
+msgstr "Várias Funções de Uma Linha"
+
+#: gtksourceview/language-specs/sql.lang.h:13
+msgid "Null"
+msgstr "Nulo"
+
+#: gtksourceview/language-specs/sql.lang.h:14
+msgid "Number Functions"
+msgstr "Funções Numéricas"
+
+#: gtksourceview/language-specs/sql.lang.h:15
+msgid "Number Literals"
+msgstr "Literais Numéricos"
+
+#: gtksourceview/language-specs/sql.lang.h:16
+msgid "Object Reference Functions"
+msgstr "Funções de Referência de Objectos"
+
+#: gtksourceview/language-specs/sql.lang.h:17
+msgid "Oracle Built-in Datatypes"
+msgstr "Tipos de Dados Imbutidos Oracle"
+
+#: gtksourceview/language-specs/sql.lang.h:18
+msgid "Oracle Reserved Words"
+msgstr "Palavras Reservadas Oracle"
+
+#: gtksourceview/language-specs/sql.lang.h:19
+msgid "SQL"
+msgstr "SQL"
+
+#: gtksourceview/language-specs/sql.lang.h:20
+msgid "SQL*Plus At Sign"
+msgstr "Sinal Arroba no SQL*Plus"
+
+#: gtksourceview/language-specs/sql.lang.h:21
+msgid "SQL*Plus Commands"
+msgstr "Comandos SQL*Plus"
+
+#: gtksourceview/language-specs/sql.lang.h:22
+msgid "SQL*Plus Double At Sign"
+msgstr "Sinal de Arroba Dupla no SQL*Plus"
+
+#: gtksourceview/language-specs/sql.lang.h:23
+msgid "SQL*Plus Slash"
+msgstr "Barra SQL*Plus"
+
+#: gtksourceview/language-specs/sql.lang.h:24
+msgid "SQL/DS and DB2 Datatypes"
+msgstr "Tipos de Dados SQL/DS e DB2"
+
+#: gtksourceview/language-specs/sql.lang.h:25
+msgid "Size Clause"
+msgstr "Cláusula de Tamanho"
+
+#: gtksourceview/language-specs/sql.lang.h:27
+msgid "Text Literals"
+msgstr "Literais de Texto"
+
+#: gtksourceview/language-specs/sql.lang.h:28
+msgid "Unlimited"
+msgstr "Ilimitado"
+
+#: gtksourceview/language-specs/verilog.lang.h:1
+msgid "Binary Number"
+msgstr "Número Binário"
+
+#: gtksourceview/language-specs/verilog.lang.h:3
+msgid "Decimal Number"
+msgstr "Número Decimal"
+
+#: gtksourceview/language-specs/verilog.lang.h:4
+msgid "Gates"
+msgstr "Portais"
+
+#: gtksourceview/language-specs/verilog.lang.h:5
+msgid "Hexadecimal Number"
+msgstr "Número Hexadecimal"
+
+#: gtksourceview/language-specs/verilog.lang.h:11
+msgid "Verilog"
+msgstr "Verilog"
+
 #: gtksourceview/language-specs/xml.lang.h:6
 msgid "Hexadecimal"
 msgstr "Hexadecimal"
@@ -643,6 +846,3 @@ msgstr "Etiqueta"
 #: gtksourceview/language-specs/xml.lang.h:11
 msgid "XML"
 msgstr "XML"
-
-#~ msgid "Numeric"
-#~ msgstr "Numérico"
