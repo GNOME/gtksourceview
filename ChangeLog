@@ -1,3 +1,10 @@
+2004-02-22  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+
+	* gtksourceview/gtksourceiter.c (g_utf8_strrcasestr): Position the
+	starting char pointer for the reverse search using UTF-8 aware
+	functions instead of pointer arithmetic.  Ditto for the haystack
+	offset counter.
+
 2004-02-21  Paolo Maggi  <paolo.maggi@polito.it>
 
 	* gtksourceview/language-specs/per.lang: updated mime-types to work
@@ -14,7 +21,7 @@
 	* tests/Makefile.am: Use DEPRECATED_FLAGS.
 
 	* gtksourceview/language-specs/csharp.lang: Highlight "value" in
-	C# (bug #134405, algol@firenze.linux.it).
+	C# (bug #134405, algol firenze linux it).
 	
 	* gtksourceview/gtksourceregex.h: 
 	* gtksourceview/gtksourceregex.c (gtk_source_regex_search)

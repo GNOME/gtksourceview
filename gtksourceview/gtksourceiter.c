@@ -120,10 +120,9 @@ g_utf8_strrcasestr (const gchar *haystack, const gchar *needle)
 		goto finally_1;
 	}
 
-	haystack_len = strlen (caseless_haystack);
-	needle_len = strlen (needle);
-	p = (gchar *)caseless_haystack + haystack_len - needle_len;
 	i = haystack_len - needle_len;
+	p = g_utf8_offset_to_pointer (caseless_haystack, i);
+	needle_len = strlen (needle);
 
 	while (p >= caseless_haystack)
 	{
