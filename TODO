@@ -1,58 +1,48 @@
-TODO:
+TODO (last update: 15 April 2003)
+=================================
 
-Syntax/Pattern Tables --> Tags
----------------------
+Before next release:
 
-* make syntax/pattern inherited from GtkTextTag instead of creating my own Tables.
+[X] Reviewing the APIs
+[X] Support for multiple views (Gustavo)
+[X] Removing the style themes stuff (Paolo)
+[X] Finishing the .lang file stuff (Paolo)
+[X] Rewriting the markers stuff code (Gustavo)
+[X] Writing a gtk_source_buffer_remove_all_source_tags and 
+    use it in GtkSourceBuffer instead of gtk_text_buffer_remove_all_tags (Paolo)
+[X] Reviewing the build stuff (Gustavo)
+[X] i18n (Gustavo)
+[X] Creating a bugzilla product (Paolo)
+[X] Removing gtktextsearch.[ch] files (Paolo)
+[ ] Renaming the src dir to gtksourceview (Paolo)
+[X] Moving the test programs in a tests directory
+[X] Cleaning up the test-widget demo (Gustavo)
+[X] "escape_char" property.  We probably want to put it 
+    into the .lang file too? (Gustavo)
+[X] gtk_source_buffer_set_bracket_tag_style (or whatever we name it :-)
+    (Gustavo)
+[X] New properties "check_brackets", "highlight", "max_undo_levels" and "language",
+    and notification of changes in these (Gustavo)
+[X] Auto-indentation and insert spaces instead of tabs (Paolo)
+[X] gtk_source_buffer_new_with_language and gtk_source_view_[get|set]_language
+    (Paolo)
+[X] Properties in GtkSourceView (Paolo)
+[X] Fixing bracket matching (Paolo)
 
-GtkSourceView 
-----------
+Future releases:
 
-Create an GtkSourceView inherited from GtkTextView
-
-* show line numbers at the left side of widget
-* implement possibilities to set/clear line marks (for breakpoints etc..)  
-* show column/line/offset at bottom something like ("line %d column %d charoffset %d")
-
-GtkSourceBuffer
------------
-
-* fix loop bug in check_brackets
-
-* insert callback, needs more testing... 
-
-* delete callback
-
-need to work on this */
-
-1. first check if startiter holds a tag, if true then iterate backward until tag change */
-2. iterate enditer forward until tag change 
-3. remove tags and update from new start and end iters  
-4. if no tags well iterate from line_start to iterend's line end 
-    also check if syntax tag if true then ignore and let widgert take care 
-
-
-Bugs:
-
-1. syntax Highlighting needs more testing.
-.----------------------------.
-
-* when instering text in a syntax region it must check whats inserted
-  to make sure higlighting correctly right now its a bit broken.
-
-* widget sometimes hangs when scrolling i think this has to do with the check_brackets
-  implementation...
-
-Implement:
------------
-
-* show breakpoints in SourceView
-* Add breakpoints to textbuffer or create
- an class called GtkBreakpointTable(Gobject'ed) and add
-  gtk_text_view_set_breakpoint_table(...)? hmm need to think about this.
-
-maybe a new class is best because then we could add  g_siganls to it:
-
-"remove/change/insert"  (when removing line the breakpoint should also kill?)
-
-
+[ ] Convert .lang files to the new format (we could write a perl 
+    script to translate UltraEdit or TextPad syntax files in 
+    our format) (Gustavo)
+[ ] Implementing smart indentation (Paolo)
+[ ] Writing documentation
+[ ] Properties in GtkSourceLanguage (?) (Paolo)
+[X] Moving some of the code of gedit-view in gtksourceview (Paolo)
+[ ] Moving the gedit printing code to gtksourceview (Paolo)
+[ ] Using a stack machine for the highlight code (Gustavo)
+[ ] Trying to improve the performance of 
+    gtk_source_buffer_remove_all_source_tags by using an hash table
+[ ] Moving (and improving) the UTF-8 aware case insensitive search code from gedit
+    to gtksourceview (Paolo)
+[ ] Writing a test program showing how to use GtkSourceTag 
+    (instead of GtkSourceLanguage)

@@ -1,8 +1,10 @@
-/*  gtksourcetag.c
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8; coding: utf-8 -*- 
+ *  gtksourcetag.c
  *
  *  Copyright (C) 2001
  *  Mikael Hermansson<tyan@linux.se>
  *  Chris Phelps <chicane@reninet.com>
+ *  Copyright (C) 2003 - Paolo Maggi <paolo.maggi@polito.it>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU Library General Public License as published by
@@ -14,30 +16,147 @@
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU Library General Public License for more details.
  *
- *  You should have received a copy of the GNU Library General Public License*  along with this program; if not, write to the Free Software
+ *  You should have received a copy of the GNU Library General Public License
+ *  along with this program; if not, write to the Free Software
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include <string.h>
-#include <gtk/gtk.h>
+
+#include "gtksourceview-i18n.h"
 #include "gtksourcetag.h"
+#include "gtksourcetag-private.h"
 
-static GObjectClass *parent_syntax_class = NULL;
-static GObjectClass *parent_pattern_class = NULL;
-static GObjectClass *parent_embedded_class = NULL;
+static GtkTextTagClass          *parent_class = NULL;
+static GtkSourceTagClass 	*parent_syntax_class  = NULL;
+static GtkSourceTagClass 	*parent_pattern_class = NULL;
 
-static void gtk_syntax_tag_init (GtkSyntaxTag *text_tag);
-static void gtk_syntax_tag_class_init (GtkSyntaxTagClass *text_tag);
-static void gtk_syntax_tag_finalize (GObject *object);
+static void		 gtk_source_tag_init 		(GtkSourceTag       *text_tag);
+static void		 gtk_source_tag_class_init 	(GtkSourceTagClass  *text_tag);
+static void		 gtk_source_tag_finalize	(GObject            *object);
 
-static void gtk_pattern_tag_init (GtkPatternTag *text_tag);
-static void gtk_pattern_tag_class_init (GtkPatternTagClass *text_tag);
-static void gtk_pattern_tag_finalize (GObject *object);
+static void		 gtk_syntax_tag_init 		(GtkSyntaxTag       *text_tag);
+static void		 gtk_syntax_tag_class_init 	(GtkSyntaxTagClass  *text_tag);
+static void		 gtk_syntax_tag_finalize 	(GObject            *object);
 
-static void gtk_embedded_tag_init (GtkEmbeddedTag *text_tag);
-static void gtk_embedded_tag_class_init (GtkEmbeddedTagClass *text_tag);
-static void gtk_embedded_tag_finalize (GObject *object);
+static void		 gtk_pattern_tag_init 		(GtkPatternTag      *text_tag);
+static void		 gtk_pattern_tag_class_init 	(GtkPatternTagClass *text_tag);
+static void		 gtk_pattern_tag_finalize 	(GObject            *object);
 
+/* Source tag */
+
+GType
+gtk_source_tag_get_type (void)
+{
+	static GType our_type = 0;
+
+	if (our_type == 0) {
+		static const GTypeInfo our_info = {
+			sizeof (GtkSourceTagClass),
+			(GBaseInitFunc) NULL,
+			(GBaseFinalizeFunc) NULL,
+			(GClassInitFunc) gtk_source_tag_class_init,
+			NULL,	/* class_finalize */
+			NULL,	/* class_data */
+			sizeof (GtkSourceTag),
+			0,	/* n_preallocs */
+			(GInstanceInitFunc) gtk_source_tag_init
+		};
+
+		our_type =
+		    g_type_register_static (GTK_TYPE_TEXT_TAG,
+					    "GtkSourceTag", &our_info, 0);
+	}
+
+	return our_type;
+}
+
+static void
+gtk_source_tag_class_init (GtkSourceTagClass *klass)
+{
+	GObjectClass *object_class = G_OBJECT_CLASS (klass);
+
+	parent_class = g_type_class_peek_parent (klass);
+	object_class->finalize	= gtk_source_tag_finalize;
+}
+
+static void
+gtk_source_tag_init (GtkSourceTag *text_tag)
+{
+	text_tag->style = NULL;
+}
+
+static void
+gtk_source_tag_finalize (GObject *object)
+{
+	GtkSourceTag *tag;
+
+	tag = GTK_SOURCE_TAG (object);
+	
+	g_free (tag->style);
+	
+	G_OBJECT_CLASS (parent_class)->finalize (object);
+}
+
+GtkSourceTagStyle *
+gtk_source_tag_get_style (GtkSourceTag *tag)
+{
+	GtkSourceTagStyle *style;
+		
+	g_return_val_if_fail (GTK_IS_SOURCE_TAG (tag), NULL);
+
+	style = g_new0 (GtkSourceTagStyle, 1);
+
+	*style = *tag->style;
+	
+	return style;
+}
+
+void 
+gtk_source_tag_set_style (GtkSourceTag *tag, const GtkSourceTagStyle *style)
+{
+	GValue foreground = { 0, };
+	GValue background = { 0, };
+
+	g_return_if_fail (GTK_IS_SOURCE_TAG (tag));
+	g_return_if_fail (style != NULL);
+
+	/* Foreground color */
+	if ((style->mask & GTK_SOURCE_TAG_STYLE_USE_FOREGROUND) != 0)
+	{
+		g_value_init (&foreground, GDK_TYPE_COLOR);
+		g_value_set_boxed (&foreground, &style->foreground);
+		g_object_set_property (G_OBJECT (tag), "foreground_gdk", &foreground);
+	}
+
+	/* Background color */
+	if ((style->mask & GTK_SOURCE_TAG_STYLE_USE_BACKGROUND) != 0)
+	{
+		g_value_init (&background, GDK_TYPE_COLOR);
+		g_value_set_boxed (&background, &style->background);
+		g_object_set_property (G_OBJECT (tag), "background_gdk", &background);
+	}
+	
+	g_object_set (G_OBJECT (tag), 
+		      "style", style->italic ? PANGO_STYLE_ITALIC : PANGO_STYLE_NORMAL,
+		      "weight", style->bold ? PANGO_WEIGHT_BOLD : PANGO_WEIGHT_NORMAL,
+		      "strikethrough", style->strikethrough,
+		      "underline", style->underline ? PANGO_UNDERLINE_SINGLE : PANGO_UNDERLINE_NONE,
+		      NULL);
+
+	g_free (tag->style);
+
+	tag->style = g_new0 (GtkSourceTagStyle, 1);
+
+	*tag->style = *style;
+}
+
+
+/* Syntax tag */
 
 GType
 gtk_syntax_tag_get_type (void)
@@ -57,8 +176,11 @@ gtk_syntax_tag_get_type (void)
 			(GInstanceInitFunc) gtk_syntax_tag_init
 		};
 
-		our_type = g_type_register_static (GTK_TYPE_TEXT_TAG, "GtkSyntaxTag", &our_info, 0);
+		our_type =
+		    g_type_register_static (GTK_TYPE_SOURCE_TAG,
+					    "GtkSyntaxTag", &our_info, 0);
 	}
+
 	return our_type;
 }
 
@@ -67,27 +189,42 @@ gtk_syntax_tag_class_init (GtkSyntaxTagClass *klass)
 {
 	GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
-	parent_syntax_class = g_type_class_peek_parent (klass);
-	object_class->finalize = gtk_syntax_tag_finalize;
+	parent_syntax_class	= g_type_class_peek_parent (klass);
+	object_class->finalize	= gtk_syntax_tag_finalize;
 }
 
 static void
 gtk_syntax_tag_init (GtkSyntaxTag *text_tag)
 {
-	GTK_TEXT_TAG (text_tag)->table = NULL;
 }
 
+
 GtkTextTag *
-gtk_syntax_tag_new (const gchar *name, const gchar *patternstart, const gchar *patternend)
+gtk_syntax_tag_new (const gchar *name, 
+		    const gchar *pattern_start,
+		    const gchar *pattern_end)
 {
 	GtkSyntaxTag *tag;
 
-	tag = GTK_SYNTAX_TAG (g_object_new (gtk_syntax_tag_get_type (), "name", name, NULL));
-	tag->start = g_strdup (patternstart);
-	if (!gtk_source_compile_regex (patternstart, &tag->reg_start))
-		g_print ("Regex syntax start pattern failed [%s]\n", patternstart);
-	if (!gtk_source_compile_regex (patternend, &tag->reg_end))
-		g_print ("Regex syntax end pattern failed [%s]\n", patternend);
+	g_return_val_if_fail (pattern_start != NULL, NULL);
+	g_return_val_if_fail (pattern_end != NULL, NULL);
+
+	tag = GTK_SYNTAX_TAG (g_object_new (GTK_TYPE_SYNTAX_TAG, 
+					    "name", name,
+					    NULL));
+	
+	tag->start = g_strdup (pattern_start);
+	
+	if (!gtk_source_regex_compile (&tag->reg_start, pattern_start)) {
+		g_warning ("Regex syntax start pattern failed [%s]", pattern_start);
+		return NULL;
+	}
+	
+	if (!gtk_source_regex_compile (&tag->reg_end, pattern_end)) {
+		g_warning ("Regex syntax end pattern failed [%s]\n", pattern_end);
+		return NULL;
+	}
+
 	return GTK_TEXT_TAG (tag);
 }
 
@@ -97,16 +234,15 @@ gtk_syntax_tag_finalize (GObject *object)
 	GtkSyntaxTag *tag;
 
 	tag = GTK_SYNTAX_TAG (object);
-	if (tag->start)
-		g_free (tag->start);
-	g_free (tag->reg_start.buf.fastmap);
-	tag->reg_start.buf.fastmap = NULL;
-	regfree (&tag->reg_start.buf);
-	g_free (tag->reg_end.buf.fastmap);
-	tag->reg_end.buf.fastmap = NULL;
-	regfree (&tag->reg_end.buf);
-	(*G_OBJECT_CLASS (parent_syntax_class)->finalize) (object);
+	
+	g_free (tag->start);
+	
+	gtk_source_regex_destroy (&tag->reg_start);
+	gtk_source_regex_destroy (&tag->reg_end);
+
+	G_OBJECT_CLASS (parent_syntax_class)->finalize (object);
 }
+
 
 /* Pattern Tag */
 
@@ -129,7 +265,8 @@ gtk_pattern_tag_get_type (void)
 		};
 
 		our_type =
-			g_type_register_static (GTK_TYPE_TEXT_TAG, "GtkPatternTag", &our_info, 0);
+		    g_type_register_static (GTK_TYPE_SOURCE_TAG,
+					    "GtkPatternTag", &our_info, 0);
 	}
 	return (our_type);
 }
@@ -137,7 +274,6 @@ gtk_pattern_tag_get_type (void)
 static void
 gtk_pattern_tag_init (GtkPatternTag *text_tag)
 {
-
 }
 
 static void
@@ -145,8 +281,8 @@ gtk_pattern_tag_class_init (GtkPatternTagClass *klass)
 {
 	GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
-	parent_pattern_class = g_type_class_peek_parent (klass);
-	object_class->finalize = gtk_pattern_tag_finalize;
+	parent_pattern_class	= g_type_class_peek_parent (klass);
+	object_class->finalize	= gtk_pattern_tag_finalize;
 }
 
 GtkTextTag *
@@ -154,119 +290,232 @@ gtk_pattern_tag_new (const gchar *name, const gchar *pattern)
 {
 	GtkPatternTag *tag;
 
-	tag = GTK_PATTERN_TAG (g_object_new (gtk_pattern_tag_get_type (), "name", name, NULL));
-	if (!gtk_source_compile_regex (pattern, &tag->reg_pattern))
-		g_print ("Regex pattern failed [%s]\n", pattern);
+	g_return_val_if_fail (pattern != NULL, NULL);
+
+	tag = GTK_PATTERN_TAG (g_object_new (GTK_TYPE_PATTERN_TAG, 
+					     "name", name,
+					     NULL));
+	
+	if (!gtk_source_regex_compile (&tag->reg_pattern, pattern)) {
+		g_warning ("Regex pattern failed [%s]\n", pattern);
+		return NULL;
+	}
+
 	return GTK_TEXT_TAG (tag);
 }
 
-void
+static void
 gtk_pattern_tag_finalize (GObject *object)
 {
 	GtkPatternTag *tag;
 
 	tag = GTK_PATTERN_TAG (object);
-	g_free (tag->reg_pattern.buf.fastmap);
-	tag->reg_pattern.buf.fastmap = NULL;
-	regfree (&tag->reg_pattern.buf);
-	(*G_OBJECT_CLASS (parent_pattern_class)->finalize) (object);
+	
+	gtk_source_regex_destroy (&tag->reg_pattern);
+	
+	G_OBJECT_CLASS (parent_pattern_class)->finalize (object);
 }
 
-/* Embedded Tags */
 
-GType
-gtk_embedded_tag_get_type (void)
+static gchar *
+case_insesitive_keyword (const gchar *keyword)
 {
-	static GType our_type = 0;
+	GString *str;
+	gint length;
+	
+	const gchar *cur;
+	const gchar *end;
 
-	if (our_type == 0) {
-		static const GTypeInfo our_info = {
-			sizeof (GtkEmbeddedTagClass),
-			(GBaseInitFunc) NULL,
-			(GBaseFinalizeFunc) NULL,
-			(GClassInitFunc) gtk_embedded_tag_class_init,
-			NULL,	/* class_finalize */
-			NULL,	/* class_data */
-			sizeof (GtkEmbeddedTag),
-			0,	/* n_preallocs */
-			(GInstanceInitFunc) gtk_embedded_tag_init
-		};
+	g_return_val_if_fail (keyword != NULL, NULL);
 
-		our_type =
-			g_type_register_static (GTK_TYPE_TEXT_TAG, "GtkEmbeddedTag", &our_info, 0);
+	length = strlen (keyword);
+
+	str = g_string_new ("");
+
+	cur = keyword;
+	end = keyword + length;
+	
+	while (cur != end) 
+	{
+		gunichar cur_char;
+		cur_char = g_utf8_get_char (cur);
+		
+		if (((cur_char >= 'A') && (cur_char <= 'Z')) ||
+		    ((cur_char >= 'a') && (cur_char <= 'z')))
+		{
+			gunichar cur_char_upper;
+		       	gunichar cur_char_lower;
+	
+			cur_char_upper = g_unichar_toupper (cur_char);
+			cur_char_lower = g_unichar_tolower (cur_char);
+		
+			g_string_append_c (str, '[');
+			g_string_append_unichar (str, cur_char_lower);
+			g_string_append_unichar (str, cur_char_upper);
+			g_string_append_c (str, ']');
+		}
+		else
+			g_string_append_unichar (str, cur_char);
+
+		cur = g_utf8_next_char (cur);
 	}
-	return our_type;
-}
-
-static void
-gtk_embedded_tag_class_init (GtkEmbeddedTagClass *klass)
-{
-	GObjectClass *object_class = G_OBJECT_CLASS (klass);
-
-	parent_embedded_class = g_type_class_peek_parent (klass);
-	object_class->finalize = gtk_embedded_tag_finalize;
-}
-
-static void
-gtk_embedded_tag_init (GtkEmbeddedTag *text_tag)
-{
-
+			
+	return g_string_free (str, FALSE);
 }
 
 GtkTextTag *
-gtk_embedded_tag_new (const gchar *name, const gchar *outside, const gchar *inside)
+gtk_keyword_list_tag_new (const gchar  *name, 
+			  const GSList *keywords,
+			  gboolean      case_sensitive,
+			  gboolean      match_empty_string_at_beginning,
+			  gboolean      match_empty_string_at_end,
+			  const gchar  *beginning_regex,
+			  const gchar  *end_regex)
 {
-	GtkEmbeddedTag *tag;
+	
+	GtkTextTag *tag;
+	GString *str;
+	gint keyword_count;
+	
+	g_return_val_if_fail (keywords != NULL, NULL);
 
-	tag = GTK_EMBEDDED_TAG (g_object_new (GTK_TYPE_EMBEDDED_TAG, "name", name, NULL));
-	if (!gtk_source_compile_regex (outside, &tag->reg_outside))
-		g_print ("Regex embedded outside pattern failed [%s]\n", outside);
-	if (!gtk_source_compile_regex (inside, &tag->reg_inside))
-		g_print ("Regex embedded inside pattern failed [%s]\n", inside);
-	return GTK_TEXT_TAG (tag);
-}
+	str =  g_string_new ("");
 
-static void
-gtk_embedded_tag_finalize (GObject *object)
-{
-	GtkEmbeddedTag *tag;
+	while (keywords != NULL)
+	{
+		if (match_empty_string_at_beginning)
+			g_string_append (str, "\\b");
 
-	tag = GTK_EMBEDDED_TAG (object);
-	g_free (tag->reg_outside.buf.fastmap);
-	tag->reg_outside.buf.fastmap = NULL;
-	regfree (&tag->reg_outside.buf);
-	g_free (tag->reg_inside.buf.fastmap);
-	tag->reg_inside.buf.fastmap = NULL;
-	regfree (&tag->reg_inside.buf);
-	(*G_OBJECT_CLASS (parent_embedded_class)->finalize) (object);
-}
+		if (beginning_regex != NULL)
+			g_string_append (str, beginning_regex);
 
-/* Generic Functions */
+		g_string_append (str, "\\(");
+	
+		keyword_count = 0;
+		/* Split long keyword lists due to glibc regex's
+		 * implementation limitations/bugs.  In fact, we could
+		 * split at 256 keywords, but 200 feels safer :-) See
+		 * bug #110991 */
+		while (keywords != NULL && keyword_count < 200)
+		{
+			gchar *k;
+			
+			if (case_sensitive)
+				k = (gchar*)keywords->data;
+			else
+				k = case_insesitive_keyword ((gchar*)keywords->data);
+			
+			g_string_append (str, k);
+			
+			if (!case_sensitive)
+				g_free (k);
+			
+			keywords = g_slist_next (keywords);
+			
+			keyword_count++;
 
-gboolean
-gtk_source_compile_regex (const gchar *pattern, Regex *regex)
-{
-	if (!pattern)
-		return (FALSE);
-	memset (&regex->buf, 0, sizeof (regex->buf));
-	regex->len = strlen (pattern);
-	regex->buf.translate = NULL;
-	regex->buf.fastmap = g_malloc (256);
-	regex->buf.allocated = 0;
-	regex->buf.buffer = NULL;
-	regex->buf.can_be_null = 0;	/* so we wont allow that in patterns! */
-	regex->buf.no_sub = 0;
-	if (re_compile_pattern (pattern, strlen (pattern), &regex->buf) == 0) {
-		/* success...now try to compile a fastmap */
-		if (re_compile_fastmap (&regex->buf) != 0) {
-			g_warning ("IMPORTANT REGEX FAILED TO CREASTE FASTMAP\n");
-			/* error...no fastmap */
-			g_free (regex->buf.fastmap);
-			regex->buf.fastmap = NULL;
+			if (keywords != NULL && keyword_count < 200)
+				g_string_append (str, "\\|");
 		}
-		return (TRUE);
-	} else {
-		g_warning ("IMPORTANT REGEX FAILED TO COMPILE\n");
-		return (FALSE);
+
+		g_string_append (str, "\\)");
+		
+		if (end_regex != NULL)
+			g_string_append (str, end_regex);
+		
+		if (match_empty_string_at_end)
+			g_string_append (str, "\\b");
+
+		if (keywords != NULL)
+			g_string_append (str, "\\|");
+	}
+
+	tag = gtk_pattern_tag_new (name, str->str);
+
+	g_string_free (str, TRUE);
+	
+	return tag;
+}
+
+GtkTextTag *
+gtk_line_comment_tag_new (const gchar *name, const gchar *pattern_start)
+{
+	g_return_val_if_fail (pattern_start != NULL, NULL);
+
+	return gtk_syntax_tag_new (name, pattern_start, "\n");
+}
+
+GtkTextTag *
+gtk_string_tag_new (const gchar    *name,
+	            const gchar    *pattern_start,
+		    const gchar    *pattern_end,
+		    gboolean        end_at_line_end)
+{
+	g_return_val_if_fail (pattern_start != NULL, NULL);
+	g_return_val_if_fail (pattern_end != NULL, NULL);
+
+	if (!end_at_line_end)
+		return gtk_syntax_tag_new (name, pattern_start, pattern_end);
+	else
+	{
+		GtkTextTag *tag;
+		gchar *end;
+		
+		end = g_strdup_printf ("\\(%s\\|\n\\)", pattern_end);
+
+		tag = gtk_syntax_tag_new (name, pattern_start, end);
+
+		g_free (end);
+
+		return tag;
 	}
 }
+
+/* GtkSourceTagStyle functions ------------- */
+
+GType 
+gtk_source_tag_style_get_type (void)
+{
+	static GType our_type = 0;
+
+	if (!our_type)
+		our_type = g_boxed_type_register_static (
+			"GtkSourceTagStyle",
+			(GBoxedCopyFunc) gtk_source_tag_style_copy,
+			(GBoxedFreeFunc) gtk_source_tag_style_free);
+
+	return our_type;
+} 
+
+GtkSourceTagStyle *
+gtk_source_tag_style_new (void)
+{
+	GtkSourceTagStyle *style;
+
+	style = g_new0 (GtkSourceTagStyle, 1);
+
+	return style;
+}
+
+GtkSourceTagStyle *
+gtk_source_tag_style_copy (const GtkSourceTagStyle *style)
+{
+	GtkSourceTagStyle *new_style;
+
+	g_return_val_if_fail (style != NULL, NULL);
+	
+	new_style = gtk_source_tag_style_new ();
+	*new_style = *style;
+
+	return new_style;
+}
+
+void 
+gtk_source_tag_style_free (GtkSourceTagStyle *style)
+{
+	g_return_if_fail (style != NULL);
+	
+	g_free (style);
+}
+
+

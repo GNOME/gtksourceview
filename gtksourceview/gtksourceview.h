@@ -1,8 +1,11 @@
-/*  gtksourceview.h
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8; coding: utf-8 -*- 
+ *  gtksourceview.h
  *
- *  Copyright (C) 2001
- *  Mikael Hermansson<tyan@linux.se>
+ *  Copyright (C) 2001 - Mikael Hermansson <tyan@linux.se> and
  *  Chris Phelps <chicane@reninet.com>
+ *
+ *  Copyright (C) 2003 - Gustavo Giráldez and Paolo Maggi 
+ *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU Library General Public License as published by
  *  the Free Software Foundation; either version 2 of the License, or
@@ -24,58 +27,90 @@
 
 #include <gtk/gtk.h>
 #include <gtk/gtktextview.h>
+
 #include <gtksourcebuffer.h>
 
 G_BEGIN_DECLS
 
-#define GTK_TYPE_SOURCE_VIEW                  (gtk_source_view_get_type ())
-#define GTK_SOURCE_VIEW(obj)                  (GTK_CHECK_CAST ((obj), GTK_TYPE_SOURCE_VIEW, GtkSourceView))
-#define GTK_SOURCE_VIEW_CLASS(klass)          (GTK_CHECK_CLASS_CAST ((klass), GTK_TYPE_SOURCE_VIEW, GtkSourceViewClass))
-#define GTK_IS_SOURCE_VIEW(obj)               (GTK_CHECK_TYPE ((obj), GTK_TYPE_SOURCE_VIEW))
-#define GTK_IS_SOURCE_VIEW_CLASS(klass)       (GTK_CHECK_CLASS_TYPE ((klass), GTK_TYPE_SOURCE_VIEW))
+#define GTK_TYPE_SOURCE_VIEW             (gtk_source_view_get_type ())
+#define GTK_SOURCE_VIEW(obj)             (G_TYPE_CHECK_INSTANCE_CAST ((obj), GTK_TYPE_SOURCE_VIEW, GtkSourceView))
+#define GTK_SOURCE_VIEW_CLASS(klass)     (G_TYPE_CHECK_CLASS_CAST ((klass), GTK_TYPE_SOURCE_VIEW, GtkSourceViewClass))
+#define GTK_IS_SOURCE_VIEW(obj)          (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GTK_TYPE_SOURCE_VIEW))
+#define GTK_IS_SOURCE_VIEW_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE ((klass), GTK_TYPE_SOURCE_VIEW))
+#define GTK_SOURCE_VIEW_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj), GTK_TYPE_SOURCE_VIEW, GtkSourceViewClass))
+
 
 typedef struct _GtkSourceView GtkSourceView;
 typedef struct _GtkSourceViewClass GtkSourceViewClass;
 
-struct _GtkSourceView
-{
-  GtkTextView parent;
-  
-  guint tab_stop;
-  gint show_line_numbers :1;
-  gint line_number_space;
-  guint show_line_pixmaps :1;
-  GHashTable *pixmap_cache;
+typedef struct _GtkSourceViewPrivate GtkSourceViewPrivate;
 
-  gchar *delete_range;
+struct _GtkSourceView 
+{
+	GtkTextView           parent;
+
+	GtkSourceViewPrivate *priv;
 };
 
-struct _GtkSourceViewClass
+struct _GtkSourceViewClass 
 {
-  GtkTextViewClass parent_class;
-  
-  void (*undo) ();
-  void (*redo) ();
+	GtkTextViewClass parent_class;
+
+	void (*undo) (GtkSourceView *view);
+	void (*redo) (GtkSourceView *view);
+
+	/* Padding for future expansion */
+	void (*_gtk_source_reserved1) (void);
+	void (*_gtk_source_reserved2) (void);
+	void (*_gtk_source_reserved3) (void);
 };
 
-GType gtk_source_view_get_type(void);
+GType		 gtk_source_view_get_type 		(void) G_GNUC_CONST;
 
-GtkWidget *gtk_source_view_new(void);
-GtkWidget *gtk_source_view_new_with_buffer(GtkSourceBuffer *buffer);
+/* Constructors */
+GtkWidget 	*gtk_source_view_new 			(void);
+GtkWidget 	*gtk_source_view_new_with_buffer	(GtkSourceBuffer *buffer);
 
-void gtk_source_view_set_show_line_numbers(GtkSourceView *view, gboolean show);
-gboolean gtk_source_view_get_show_line_numbers(GtkSourceView *view);
-void gtk_source_view_set_show_line_pixmaps(GtkSourceView *view, gboolean show);
-gboolean gtk_source_view_get_show_line_pixmaps(GtkSourceView *view);
+/* Properties */
+void 		 gtk_source_view_set_show_line_numbers 	(GtkSourceView   *view,
+							 gboolean         show);
+gboolean 	 gtk_source_view_get_show_line_numbers 	(GtkSourceView   *view);
 
-void gtk_source_view_set_tab_stop(GtkSourceView *view, gint tab_stop);
-gint gtk_source_view_get_tab_stop(GtkSourceView *view);
-/* Get the width in pixels */
-gint gtk_source_view_get_tab_stop_width(GtkSourceView *view);
+void 		 gtk_source_view_set_show_line_markers  (GtkSourceView   *view,
+							 gboolean         show);
+gboolean	 gtk_source_view_get_show_line_markers  (GtkSourceView   *view);
 
-gboolean gtk_source_view_add_pixbuf(GtkSourceView *view, const gchar *key, GdkPixbuf *pixbuf, gboolean overwrite);
-GdkPixbuf *gtk_source_view_get_pixbuf(GtkSourceView *view, const gchar *key);
+void 		 gtk_source_view_set_tabs_width 	(GtkSourceView   *view, 
+							 guint            width);
+guint            gtk_source_view_get_tabs_width         (GtkSourceView   *view);
+
+void		 gtk_source_view_set_auto_indent 	(GtkSourceView   *view, 
+							 gboolean         enable);
+gboolean	 gtk_source_view_get_auto_indent 	(GtkSourceView   *view);
+
+void		 gtk_source_view_set_insert_spaces_instead_of_tabs 
+							(GtkSourceView   *view, 
+							 gboolean         enable);
+gboolean	 gtk_source_view_get_insert_spaces_instead_of_tabs 
+							(GtkSourceView   *view);
+
+void		 gtk_source_view_set_show_margin 	(GtkSourceView   *view,
+							 gboolean         show);
+gboolean 	 gtk_source_view_get_show_margin 	(GtkSourceView   *view);
+
+void		 gtk_source_view_set_margin 		(GtkSourceView   *view,
+							 guint            margin);
+guint		 gtk_source_view_get_margin 		(GtkSourceView   *view);
+
+void             gtk_source_view_set_marker_pixbuf      (GtkSourceView   *view,
+							 const gchar     *marker_type,
+							 GdkPixbuf       *pixbuf);
+GdkPixbuf	*gtk_source_view_get_marker_pixbuf      (GtkSourceView   *view,
+				       			 const gchar     *marker_type);
+
+void		 gtk_source_view_set_smart_home_end	(GtkSourceView   *view,
+							 gboolean         enable);
+gboolean	 gtk_source_view_get_smart_home_end	(GtkSourceView   *view);
 
 G_END_DECLS
-
-#endif /* end of SOURCE_VIEW_H__ */
+#endif				/* end of SOURCE_VIEW_H__ */

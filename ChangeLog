@@ -1,3 +1,23 @@
+2003-05-02  Gustavo Giraldez  <gustavo.giraldez@gmx.net>
+
+	New GtkSourceView widget by Paolo Maggi and Gustavo Giráldez.
+
+	* API has been completely revised
+	* New language and manager objects to set regular expressions for
+	  syntax highlighting from XML files
+	* New improved highlighting engine
+	* Rewritten test application which demonstrates most important features
+	* Markers API have been redesigned
+	* Text style schemes for highlighted elements
+	* The view can draw a vertical line indicating a right margin
+	* Smart HOME/END keys move to the first/last character in the line
+	  before moving to the real begin/end (patch by Jeroen Zwartepoorte)
+	* Auto indentation support
+	
+2003-04-15  Christian Neumair  <chris@gnome-de.org>
+
+	* configure.in: Changed AC_PROG_LIBTOOL macro to AM_PROG_LIBTOOL.
+
 2003-01-05  Jeroen Zwartepoorte  <jeroen@xs4all.nl>
 
 	* src/gtksourcebuffer.c: (check_syntax),

@@ -1,0 +1,193 @@
+# Spanish translation for GtkSourceView
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2003-05-02 08:49-0300\n"
+"PO-Revision-Date: 2003-03-14 10:54-0300\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/gtksourceview.c:205
+msgid "Show Line Numbers"
+msgstr ""
+
+#: src/gtksourceview.c:206
+msgid "Whether to display line numbers"
+msgstr ""
+
+#: src/gtksourceview.c:213
+msgid "Show Line Markers"
+msgstr ""
+
+#: src/gtksourceview.c:214
+msgid "Whether to display line marker pixbufs"
+msgstr ""
+
+#: src/gtksourceview.c:221 src/gtksourceview.c:222
+msgid "Tabs Width"
+msgstr ""
+
+#: src/gtksourceview.c:231
+msgid "Auto Indentation"
+msgstr ""
+
+#: src/gtksourceview.c:232
+msgid "Whether to enable auto indentation"
+msgstr ""
+
+#: src/gtksourceview.c:238
+msgid "Insert Spaces Instead of Tabs"
+msgstr ""
+
+#: src/gtksourceview.c:239
+msgid "Whether to insert spaces instead of tabs"
+msgstr ""
+
+#: src/gtksourceview.c:246
+msgid "Show Right Margin"
+msgstr ""
+
+#: src/gtksourceview.c:247
+msgid "Whether to display the right margin"
+msgstr ""
+
+#: src/gtksourceview.c:254
+msgid "Margin position"
+msgstr ""
+
+#: src/gtksourceview.c:255
+msgid "Position of the right margin"
+msgstr ""
+
+#: src/gtksourceview.c:264
+msgid "Use smart home/end"
+msgstr ""
+
+#: src/gtksourceview.c:265
+msgid ""
+"HOME and END keys move to first/last characters on line first before going "
+"to the start/end of the line"
+msgstr ""
+
+#: src/gtksourcebuffer.c:277
+msgid "Escape Character"
+msgstr ""
+
+#: src/gtksourcebuffer.c:278
+msgid "Escaping character for syntax delimiters"
+msgstr ""
+
+#: src/gtksourcebuffer.c:286
+msgid "Check Brackets"
+msgstr ""
+
+#: src/gtksourcebuffer.c:287
+msgid "Whether to check and highlight matching brackets"
+msgstr ""
+
+#: src/gtksourcebuffer.c:295
+msgid "Highlight"
+msgstr ""
+
+#: src/gtksourcebuffer.c:296
+msgid "Whether to syntax highlight the buffer"
+msgstr ""
+
+#: src/gtksourcebuffer.c:304
+msgid "Maximum Undo Levels"
+msgstr ""
+
+#: src/gtksourcebuffer.c:305
+msgid "Number of undo levels for the buffer"
+msgstr ""
+
+#: src/gtksourcebuffer.c:315
+msgid "Language"
+msgstr ""
+
+#: src/gtksourcebuffer.c:316
+msgid "Language object to get highlighting rules from"
+msgstr ""
+
+#: src/gtksourcelanguagesmanager.c:93
+msgid "Language spefications directories"
+msgstr ""
+
+#: src/gtksourcelanguagesmanager.c:94
+msgid ""
+"List of directories where the language spefication files (.lang) are located"
+msgstr ""
+
+#: src/gtksourcestylescheme.c:222
+msgid "Base-N Integer"
+msgstr ""
+
+#: src/gtksourcestylescheme.c:227
+msgid "Character"
+msgstr ""
+
+#: src/gtksourcestylescheme.c:232
+msgid "Comment"
+msgstr ""
+
+#: src/gtksourcestylescheme.c:237
+msgid "Data Type"
+msgstr ""
+
+#: src/gtksourcestylescheme.c:242
+msgid "Function"
+msgstr ""
+
+#: src/gtksourcestylescheme.c:247
+msgid "Decimal"
+msgstr ""
+
+#: src/gtksourcestylescheme.c:252
+msgid "Floating Point"
+msgstr ""
+
+#: src/gtksourcestylescheme.c:257
+msgid "Keyword"
+msgstr ""
+
+#: src/gtksourcestylescheme.c:262
+msgid "Preprocessor"
+msgstr ""
+
+#: src/gtksourcestylescheme.c:267
+msgid "String"
+msgstr ""
+
+#: src/gtksourcestylescheme.c:272
+msgid "Specials"
+msgstr ""
+
+#: src/gtksourcestylescheme.c:277
+msgid "Others"
+msgstr ""
+
+#: src/gtksourcestylescheme.c:282
+msgid "Others 2"
+msgstr ""
+
+#: src/gtksourcestylescheme.c:287
+msgid "Others 3"
+msgstr ""
+
+#: src/gtksourcestylescheme.c:324
+msgid "Default"
+msgstr ""
+
+#~ msgid "Undo"
+#~ msgstr "Deshacer"
+
+#~ msgid "Redo"
+#~ msgstr "Rehacer"

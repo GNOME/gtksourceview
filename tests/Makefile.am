@@ -1,0 +1,27 @@
+INCLUDES = 				\
+	-DDATADIR=\""$(datadir)"\" 	\
+	-DG_LOG_DOMAIN=\"GtkSourceView\"\
+	-DG_DISABLE_DEPRECATED 		\
+	-DGTK_DISABLE_DEPRECATED 	\
+	-DGDK_DISABLE_DEPRECATED 	\
+	-DGDK_PIXBUF_DISABLE_DEPRECATED	\
+	-DGNOME_DISABLE_DEPRECATED	\
+	-I$(top_srcdir) 		\
+	-I$(top_srcdir)/src	 	\
+	$(WARN_CFLAGS) 			\
+	$(DEP_CFLAGS)
+
+# testing executables
+noinst_PROGRAMS = test-widget testregion
+
+test_widget_SOURCES = test-widget.c
+
+test_widget_LDADD = 			\
+	$(top_builddir)/src/libgtksourceview-1.0.la \
+	$(DEP_LIBS)
+
+testregion_SOURCES = testregion.c
+
+testregion_LDADD = 			\
+	$(top_builddir)/src/libgtksourceview-1.0.la \
+	$(DEP_LIBS)

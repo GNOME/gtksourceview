@@ -32,7 +32,8 @@ G_BEGIN_DECLS
 typedef struct _GtkTextRegion GtkTextRegion;
 
 GtkTextRegion *gtk_text_region_new                          (GtkTextBuffer *buffer);
-void           gtk_text_region_destroy                      (GtkTextRegion *region);
+void           gtk_text_region_destroy                      (GtkTextRegion *region,
+							     gboolean       delete_marks);
 
 GtkTextBuffer *gtk_text_region_get_buffer                   (GtkTextRegion *region);
 

@@ -1,1 +1,100 @@
-This is a new editor witch uses the new GtkTextView widget in Gtk 2.0
+General Information
+===================
+
+This is version 0.1.0 of GtkSourceView. 
+
+GtkSourceView is a text widget that extends the standard gtk+ 2.x 
+text widget GtkTextView.
+
+It improves GtkTextView by implementing syntax highlighting and other
+features typical of a source editor.
+
+You can download the latest GtkSourceView tarball from the gnome ftp server:
+
+    ftp://ftp.gnome.org/pub/GNOME/sources/gtksourceview
+
+Discussion of GtkSourceView happens in the gnome-devtools@gnome.org
+mailing list.  You can subscribe and get further information here:
+
+    http://mail.gnome.org/mailman/listinfo/gnome-devtools
+
+
+Installation
+============
+
+GtkSourceView requires GTK+-2.2.x and the GNOME 2.2.x libraries 
+(including libxml2 2.5.x).
+
+Simple install procedure:
+
+  % gzip -cd gtksourceview-0.1.0.tar.gz | tar xvf -    # unpack the sources
+  % cd gtksourceview-0.1.0		   # change to the toplevel directory
+  % ./configure				   # run the `configure' script
+  % make				   # build gtksourceview
+  [ Become root if necessary ]
+  % make install			   # install gtksourceview
+
+See the file 'INSTALL' for more detailed information.
+
+
+How to report bugs
+==================
+
+Bugs should be reported to the GNOME bug tracking system.
+(http://bugzilla.gnome.org, product gtksourceview). 
+You will need to create an account for yourself.
+
+You can also report bugs using the GNOME program bug-buddy.
+  
+In the bug report please include:
+  
+* Information about your system. For instance:
+
+   - What operating system and version
+   - What version of X
+   - What version of the gtk+, glib and gnome libraries
+   - For Linux, what version of the C library
+
+  And anything else you think is relevant.
+
+* How to reproduce the bug. 
+
+* If the bug was a crash, the exact text that was printed out when the
+  crash occurred.
+
+* Further information such as stack traces may be useful, but is not
+  necessary. If you do send a stack trace, and the error is an X error,
+  it will be more useful if the stacktrace is produced running the test
+  program with the --sync command line option.
+
+Please check the bugzilla pages for the list of known bugs.
+
+http://bugzilla.gnome.org/buglist.cgi?product=gtksourceview&bug_status=UNCONFIRMED&bug_status=NEW&bug_status=ASSIGNED&bug_status=REOPENED
+
+
+Patches
+=======
+
+Patches should also be submitted to bugzilla.gnome.org. If the patch
+fixes an existing bug, add the patch as an attachment to that bug
+report.
+
+Otherwise, enter a new bug report that describes the problem the patch
+fixes, and attach it to that bug report.
+
+Bug reports containing patches should include the PATCH keyword in their
+keyword fields.
+  
+Patches should be in unified diff form (use the -up options of GNU
+diff and cvs) and should follow the coding style described in the
+HACKING file.
+
+If you are interested in helping us to develop GtkSourceView, please see the 
+file 'MAINTAINERS' for contact information and/or send a message to
+the GtkSourceView mailing list. See also the file 'HACKING' for
+information about our CVS guidelines and the file 'TODO' for a list of
+pending tasks.
+
+
+
+The GtkSourceView team.

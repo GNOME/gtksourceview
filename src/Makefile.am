@@ -1,72 +1,77 @@
-INCLUDES = \
-	$(WARN_CFLAGS) \
-	-DG_LOG_DOMAIN=\"GtkSourceView\" \
-	-I$(top_srcdir) \
-	-I$(top_srcdir)/src \
-	@DEP_CFLAGS@
+SUBDIRS = language-specs
 
-# testing executable
-noinst_PROGRAMS = test-widget testregion
+INCLUDES = 				\
+	-DDATADIR=\""$(datadir)"\" 	\
+	-DG_LOG_DOMAIN=\"GtkSourceView\"\
+	-DG_DISABLE_DEPRECATED 		\
+	-DGTK_DISABLE_DEPRECATED 	\
+	-DGDK_DISABLE_DEPRECATED 	\
+	-DGDK_PIXBUF_DISABLE_DEPRECATED	\
+	-DGNOME_DISABLE_DEPRECATED	\
+	-I$(top_srcdir) -I$(srcdir) 	\
+	$(WARN_CFLAGS) 			\
+	$(DEP_CFLAGS)
 
-# libs
-lib_LTLIBRARIES = libgtksourceview.la
-
-BUILT_SOURCES = \
-	gtksourceview-marshal.c \
+BUILT_SOURCES = 			\
+	gtksourceview-marshal.c 	\
 	gtksourceview-marshal.h
 
-$(libgtksourceview_la_SOURCES): $(BUILD_SOURCES)
+# libs
+lib_LTLIBRARIES = libgtksourceview-1.0.la
 
-libgtksourceview_la_SOURCES = \
-	gtksourcebuffer.c \
-	gtksourcebuffer.h \
-	gtktextsearch.c \
-	gtktextsearch.h \
-	gtksourcetag.c \
-	gtksourcetag.h \
-	gtksourceview.c \
-	gtksourceview.h \
-	gtkundomanager.h \
-	gtkundomanager.c \
-	gtksourceview-marshal.h \
-	gtksourceview-marshal.c \
-	gtktextregion.h \
-	gtktextregion.c
+libgtksourceview_1_0_la_SOURCES = 		\
+	gtksourcebuffer.c 		\
+	gtksourcebuffer.h 		\
+	gtksourcetag.c 			\
+	gtksourcetag.h 			\
+	gtksourcetag-private.h 		\
+	gtksourceview.c 		\
+	gtksourceview.h 		\
+	gtksourceundomanager.h 		\
+	gtksourceundomanager.c 		\
+	gtktextregion.h 		\
+	gtktextregion.c 		\
+	gtksourceregex.h 		\
+	gtksourceregex.c 		\
+	gtksourcelanguage.c 		\
+	gtksourcelanguage.h 		\
+	gtksourcelanguage-private.h 	\
+	gtksourcelanguagesmanager.h 	\
+	gtksourcelanguagesmanager.c 	\
+	gtksourcetagstyle.h		\
+	gtksourceview-i18n.h 		\
+	gtksourceview-i18n.c		\
+	gtksourcetagtable.h		\
+	gtksourcetagtable.c		\
+	gtksourcestylescheme.h		\
+	gtksourcestylescheme.c		\
+	gtksourcemarker.h		\
+	gtksourcemarker.c		\
+	$(BUILT_SOURCES)
 
-libgtksourceview_la_LIBADD = @DEP_LIBS@
+libgtksourceview_1_0_la_LIBADD = $(DEP_LIBS)
 
-libgtksourceview_includedir=$(includedir)/gtksourceview
+libgtksourceview_1_0_includedir = $(includedir)/gtksourceview-1.0
 
-libgtksourceview_include_HEADERS = \
-	gtksourcebuffer.h \
-	gtksourcetag.h \
-	gtksourceview.h
+libgtksourceview_1_0_include_HEADERS = 	\
+	gtksourcebuffer.h 		\
+	gtksourcetag.h 			\
+	gtksourceview.h 		\
+	gtksourcelanguage.h 		\
+	gtksourcelanguagesmanager.h 	\
+	gtksourcetagstyle.h 		\
+	gtksourcetagtable.h		\
+	gtksourcestylescheme.h		\
+	gtksourcemarker.h
 
-gtksourceview-marshal.h: gtksourceview-marshal.list
-	@GLIB_GENMARSHAL@ \
-		--prefix=gtksourceview_marshal $(srcdir)/gtksourceview-marshal.list --header > xgen-gmc \
-	&& cp xgen-gmc $(@F) \
-	&& rm -f xgen-gmc
+gtksourceview-marshal.h: gtksourceview-marshal.list $(GLIB_GENMARSHAL)
+	$(GLIB_GENMARSHAL) $< --header --prefix=gtksourceview_marshal > $@
 
-gtksourceview-marshal.c: gtksourceview-marshal.h
-	echo "#include \"gtksourceview-marshal.h\"" > xgen-gmc \
-	&& @GLIB_GENMARSHAL@ \
-		--prefix=gtksourceview_marshal $(srcdir)/gtksourceview-marshal.list --body >> xgen-gmc \
-	&& cp xgen-gmc $(@F) \
-	&& rm -f xgen-gmc
+gtksourceview-marshal.c: gtksourceview-marshal.list $(GLIB_GENMARSHAL)
+	echo "#include \"gtksourceview-marshal.h\"" > $@ && \
+	$(GLIB_GENMARSHAL) $< --body --prefix=gtksourceview_marshal >> $@
 
-# The testing binary magic
-test_widget_SOURCES = test-widget.c
+EXTRA_DIST = 				\
+	gtksourceview-marshal.list
 
-test_widget_LDADD = \
-	libgtksourceview.la \
-	@DEP_LIBS@
-
-testregion_SOURCES = testregion.c
-
-testregion_LDADD = \
-	libgtksourceview.la \
-	@DEP_LIBS@
-
-
-EXTRA_DIST=gtksourceview-marshal.list
+CLEANFILES = $(BUILT_SOURCES) 

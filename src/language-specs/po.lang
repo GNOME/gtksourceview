@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- <!DOCTYPE language SYSTEM "language.dtd"> -->
+<language name="gettext translation" version="1.0" section="Others" 
+	mimetypes="text/x-po;text/x-pot;text/x-pox">
+
+	<string name = "String" style = "String" end-at-line-end = "FALSE">
+		<start-regex>"</start-regex>
+		<end-regex>"</end-regex>
+	</string>
+
+	<line-comment name = "Format" style= "Comment">
+		<start-regex>^#,</start-regex>
+	</line-comment>
+
+	<line-comment name = "Location" style= "Others 2">
+		<start-regex>^#:</start-regex>
+	</line-comment>
+
+	<line-comment name = "Comment" style= "Comment">
+		<start-regex>^#$\|^#[^:,\n]</start-regex>
+	</line-comment>
+
+	<keyword-list name = "Keyword" style = "Keyword" case-sensitive="TRUE"
+		match-empty-string-at-beginning = "FALSE"
+		match-empty-string-at-end = "TRUE"
+		beginning-regex = "^">
+		<keyword>domain</keyword>
+		<keyword>msgid</keyword>
+		<keyword>msgstr</keyword>
+	</keyword-list>
+
+</language>
+
+
+

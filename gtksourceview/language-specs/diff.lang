@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- <!DOCTYPE language SYSTEM "language.dtd"> -->
+<language name="Diff" version="1.0" section="Others" mimetypes="text/x-diff;text/x-patch">
+
+	<pattern-item name="Removed line" style="Others 3">
+	        <regex>^\(&lt;\|-\).*</regex>
+	</pattern-item>
+
+	<pattern-item name="Added line" style="Others 2">
+	        <regex>^\(\+\|&gt;\).*</regex>
+	</pattern-item>
+
+	<pattern-item name="Changed line" style="Preprocessor">
+	        <regex>^\! .*</regex>
+	</pattern-item>
+
+	<syntax-item name = "Location" style = "Keyword">
+		<start-regex>^\(\(\@\@\)\|[0-9]\|\*\*\*\*\)</start-regex>
+		<end-regex>\(\n\)</end-regex>
+	</syntax-item>
+
+	<syntax-item  name = "Diff file" style = "Data Type">
+		<start-regex>^\(diff \|\+\+\+ \|Index: \|==== \|\*\*\* \|--- \)</start-regex>
+		<end-regex>\n</end-regex>
+	</syntax-item>
+
+	<keyword-list name = "Special case" style = "String"
+		match-empty-string-at-beginning = "FALSE"
+		match-empty-string-at-end = "TRUE"
+		beginning-regex = "^">
+		<keyword>Only in .*</keyword>
+		<keyword>Files .* and .* are identical$</keyword>
+		<keyword>Files .* and .* differ$</keyword>
+		<keyword>Binary files .* and .* differ$</keyword>
+		<keyword>File .* is a .* while file .* is a .*</keyword>
+		<keyword>No newline at end of file .*</keyword>
+	</keyword-list>
+		
+	<line-comment name = "Line Comment" style= "Comment">
+		<start-regex>^#</start-regex>
+	</line-comment>	
+
+</language>
+
+
+
