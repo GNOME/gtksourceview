@@ -194,7 +194,7 @@ static GList 	*gtk_source_buffer_get_pattern_entries 	(const GtkSourceBuffer   *
 static void	 sync_syntax_regex 			(GtkSourceBuffer         *buffer);
 
 static void      build_syntax_regions_table             (GtkSourceBuffer         *buffer,
-							 GtkTextIter             *start_at);
+							 const GtkTextIter       *needed_end);
 static void      update_syntax_regions                  (GtkSourceBuffer         *source_buffer,
 							 gint                     start,
 							 gint                     delta);
@@ -206,8 +206,8 @@ static void      refresh_range                          (GtkSourceBuffer        
 							 GtkTextIter             *start,
 							 GtkTextIter             *end);
 static void      ensure_highlighted                     (GtkSourceBuffer         *source_buffer,
-							 GtkTextIter             *start,
-							 GtkTextIter             *end);
+							 const GtkTextIter       *start,
+							 const GtkTextIter       *end);
 
 static gboolean	 gtk_source_buffer_find_bracket_match_real (GtkTextIter          *orig, 
 							    gint                  max_chars);
@@ -1876,8 +1876,8 @@ next_syntax_region (GtkSourceBuffer      *source_buffer,
 }
 
 static void 
-build_syntax_regions_table (GtkSourceBuffer *source_buffer,
-			    GtkTextIter     *needed_end)
+build_syntax_regions_table (GtkSourceBuffer   *source_buffer,
+			    const GtkTextIter *needed_end)
 {
 	GArray *table;
 	GtkTextIter start, end;
@@ -2556,9 +2556,9 @@ refresh_range (GtkSourceBuffer *buffer,
 }
 
 static void 
-ensure_highlighted (GtkSourceBuffer *source_buffer,
-		    GtkTextIter     *start,
-		    GtkTextIter     *end)
+ensure_highlighted (GtkSourceBuffer   *source_buffer,
+		    const GtkTextIter *start,
+		    const GtkTextIter *end)
 {
 	GtkTextRegion *region;
 	
@@ -2593,9 +2593,9 @@ ensure_highlighted (GtkSourceBuffer *source_buffer,
 }
 
 static void 
-highlight_queue (GtkSourceBuffer *source_buffer,
-		 GtkTextIter     *start,
-		 GtkTextIter     *end)
+highlight_queue (GtkSourceBuffer   *source_buffer,
+		 const GtkTextIter *start,
+		 const GtkTextIter *end)
 {
 	gtk_text_region_add (source_buffer->priv->highlight_requests,
 			     start,
@@ -2606,10 +2606,11 @@ highlight_queue (GtkSourceBuffer *source_buffer,
 			  gtk_text_iter_get_offset (end)));
 }
 
-void
-_gtk_source_buffer_highlight_region (GtkSourceBuffer *source_buffer,
-				    GtkTextIter     *start,
-				    GtkTextIter     *end)
+void 
+_gtk_source_buffer_highlight_region (GtkSourceBuffer   *source_buffer,
+				     const GtkTextIter *start,
+				     const GtkTextIter *end,
+				     gboolean           highlight_now)
 {
 	g_return_if_fail (source_buffer != NULL);
 	g_return_if_fail (start != NULL);
@@ -2625,8 +2626,16 @@ _gtk_source_buffer_highlight_region (GtkSourceBuffer *source_buffer,
 	} else
 #endif
 	{
-		highlight_queue (source_buffer, start, end);
-		install_idle_worker (source_buffer);
+		if (highlight_now)
+		{
+			build_syntax_regions_table (source_buffer, end);
+			ensure_highlighted (source_buffer, start, end);
+		}
+		else
+		{
+			highlight_queue (source_buffer, start, end);
+			install_idle_worker (source_buffer);
+		}
 	}
 }
 

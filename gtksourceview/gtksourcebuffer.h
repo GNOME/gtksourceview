@@ -147,9 +147,10 @@ GtkSourceMarker         *gtk_source_buffer_get_prev_marker      (GtkSourceBuffer
 /* INTERNAL private stuff - not even exported from the library on
  * many platforms
  */
-void			 _gtk_source_buffer_highlight_region    (GtkSourceBuffer         *source_buffer,
-								 GtkTextIter             *start,
-								 GtkTextIter             *end);
+void 	                 _gtk_source_buffer_highlight_region    (GtkSourceBuffer        *source_buffer,
+								 const GtkTextIter      *start,
+								 const GtkTextIter      *end,
+								 gboolean                highlight_now);
 
 G_END_DECLS
 

@@ -21,6 +21,8 @@ which gnome-autogen.sh || {
 
 REQUIRED_AUTOMAKE_VERSION=1.7.2
 
-USE_GNOME2_MACROS=1 . gnome-autogen.sh --enable-gtk-doc $*
-
+USE_GNOME2_MACROS=1 NOCONFIGURE=1 . gnome-autogen.sh
+conf_flags="--enable-maintainter-mode --enable-compiler-warnings=error --enable-gtk-doc"
+echo $srcdir/configure $conf_flags "$@"
+$srcdir/configure $conf_flags "$@"
 

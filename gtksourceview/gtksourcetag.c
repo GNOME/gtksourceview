@@ -105,15 +105,12 @@ gtk_source_tag_finalize (GObject *object)
 GtkSourceTagStyle *
 gtk_source_tag_get_style (GtkSourceTag *tag)
 {
-	GtkSourceTagStyle *style;
-		
 	g_return_val_if_fail (GTK_IS_SOURCE_TAG (tag), NULL);
 
-	style = g_new0 (GtkSourceTagStyle, 1);
-
-	*style = *tag->style;
-	
-	return style;
+	if (tag->style != NULL)
+		return gtk_source_tag_style_copy (tag->style);
+	else
+		return NULL;
 }
 
 void 

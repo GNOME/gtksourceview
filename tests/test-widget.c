@@ -27,9 +27,11 @@
 #include <libgnomevfs/gnome-vfs-init.h>
 #include <libgnomevfs/gnome-vfs-mime-utils.h>
 #include <libgnomevfs/gnome-vfs-utils.h>
+#include <libgnomeprintui/gnome-print-job-preview.h>
 #include <gtksourceview/gtksourceview.h>
 #include <gtksourceview/gtksourcelanguage.h>
 #include <gtksourceview/gtksourcelanguagesmanager.h>
+#include <gtksourceview/gtksourceprintjob.h>
 
 
 /* Private data structures */
@@ -67,6 +69,9 @@ static void       view_toggled_cb                (ViewsData       *vd,
 static void       tabs_toggled_cb                (ViewsData       *vd,
 						  guint            callback_action,
 						  GtkWidget       *widget);
+static void       print_preview_cb               (ViewsData       *vd,
+						  guint            callback_action,
+						  GtkWidget       *widget);
 
 /* Menu definition */
 
@@ -81,6 +86,7 @@ static void       tabs_toggled_cb                (ViewsData       *vd,
 static GtkItemFactoryEntry menu_items[] = {
 	{ "/_File",                   NULL,         0,               0, "<Branch>" },
 	{ "/File/_Open",              "<control>O", open_file_cb,    0, "<StockItem>", GTK_STOCK_OPEN },
+	{ "/File/_Print Preview",     "<control>P", print_preview_cb,0, "<StockItem>", GTK_STOCK_PRINT },
 	{ "/File/sep1",               NULL,         0,               0, "<Separator>" },
 	{ "/File/_Quit",              "<control>Q", gtk_main_quit,   0, "<StockItem>", GTK_STOCK_QUIT },
 	
@@ -555,6 +561,66 @@ button_press_cb (GtkWidget *widget, GdkEventButton *ev, gpointer user_data)
 	}
 	
 	return FALSE;
+}
+
+static void
+page_cb (GtkSourcePrintJob *job, ViewsData *vd)
+{
+	g_message ("Printing page %d of %d",
+		   gtk_source_print_job_get_page (job),
+		   gtk_source_print_job_get_page_count (job));
+}
+
+static void
+finished_cb (GtkSourcePrintJob *job, ViewsData *vd)
+{
+	GnomePrintJob *gjob;
+	GtkWidget *preview;
+	
+	gjob = gtk_source_print_job_get_print_job (job);
+	preview = gnome_print_job_preview_new (gjob, "Testing print");
+ 	g_object_unref (gjob); 
+ 	g_object_unref (job);
+	
+	gtk_widget_show (preview);
+}
+
+static void
+print_preview_cb (ViewsData *vd,
+		  guint      callback_action,
+		  GtkWidget *widget)
+{
+	GtkSourcePrintJob *job;
+	GtkWidget *window;
+	GtkSourceView *view;
+	GtkTextIter start, end;
+	
+	window = g_list_nth_data (vd->windows, 0);
+	view = g_object_get_data (G_OBJECT (window), "view");
+
+	job = gtk_source_print_job_new (NULL);
+	gtk_source_print_job_setup_from_view (job, view);
+	gtk_source_print_job_set_wrap_mode (job, GTK_WRAP_CHAR);
+	gtk_source_print_job_set_font (job, "Monospace Regular 8");
+	gtk_source_print_job_set_highlight (job, TRUE);
+	gtk_source_print_job_set_print_numbers (job, 3);
+
+	gtk_source_print_job_set_header_format (job, "Printed in %A", NULL, "%F", TRUE);
+	gtk_source_print_job_set_footer_format (job, "%T",
+						"Centered text", "Page %N of %Q", TRUE);
+	gtk_source_print_job_set_print_header (job, TRUE);
+	gtk_source_print_job_set_print_footer (job, TRUE);
+	
+	gtk_text_buffer_get_bounds (GTK_TEXT_BUFFER (vd->buffer), &start, &end);
+	if (gtk_source_print_job_print_range_async (job, &start, &end))
+	{
+		g_signal_connect (job, "begin_page", (GCallback) page_cb, vd);
+		g_signal_connect (job, "finished", (GCallback) finished_cb, vd);
+	}
+	else
+	{
+		g_warning ("Async print failed");
+	}
 }
 
 static GtkWidget *

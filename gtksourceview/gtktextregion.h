@@ -39,13 +39,13 @@ GtkTextBuffer *gtk_text_region_get_buffer                   (GtkTextRegion *regi
 
 void           gtk_text_region_clear_zero_length_subregions (GtkTextRegion *region);
 
-void           gtk_text_region_add                          (GtkTextRegion *region,
-							     GtkTextIter   *start,
-							     GtkTextIter   *end);
+void           gtk_text_region_add                          (GtkTextRegion     *region,
+							     const GtkTextIter *_start,
+							     const GtkTextIter *_end);
 
-void           gtk_text_region_substract                    (GtkTextRegion *region,
-							     GtkTextIter   *start,
-							     GtkTextIter   *end);
+void           gtk_text_region_substract                    (GtkTextRegion     *region,
+							     const GtkTextIter *_start,
+							     const GtkTextIter *_end);
 
 gint           gtk_text_region_subregions                   (GtkTextRegion *region);
 
@@ -54,9 +54,9 @@ gboolean       gtk_text_region_nth_subregion                (GtkTextRegion *regi
 							     GtkTextIter   *start,
 							     GtkTextIter   *end);
 
-GtkTextRegion *gtk_text_region_intersect                    (GtkTextRegion *region,
-							     GtkTextIter   *start,
-							     GtkTextIter   *end);
+GtkTextRegion *gtk_text_region_intersect                    (GtkTextRegion     *region,
+							     const GtkTextIter *_start,
+							     const GtkTextIter *_end);
 
 void           gtk_text_region_debug_print                  (GtkTextRegion *region);
 

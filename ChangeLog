@@ -1,3 +1,39 @@
+2003-06-02  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+
+	* configure.in: Add libgnomeprint/libgnomeprintui dependencies.
+
+	* gtksourceview/Makefile.am: Add gtksourceprintjob.[ch] to the build.
+
+	* gtksourceview/gtksourceprintjob.h:
+	* gtksourceview/gtksourceprintjob.c: New files implementing an
+	object which knows how to print a GtkSourceBuffer with
+	highlighting.
+
+	* gtksourceview/gtksourcebuffer.c (build_syntax_regions_table)
+	(ensure_highlighted, highlight_queue): Made GtkTextIter arguments
+	const.
+	(_gtk_source_buffer_highlight_region): Ditto.  Added a
+	highlight_now argument to make highlighting of the whole region
+	synchronous (used for printing).
+
+	* gtksourceview/gtksourcebuffer.h: Updated prototype.
+
+	* gtksourceview/gtksourcetag.c (gtk_source_tag_get_style): Handle
+	the case when tag->style is NULL.
+
+	* gtksourceview/gtksourceview.c (gtk_source_view_expose): Adapt to
+	_gtk_source_buffer_highlight_region change.
+
+	* gtksourceview/gtktextregion.h:
+	* gtksourceview/gtktextregion.c (gtk_text_region_add)
+	(gtk_text_region_substract, gtk_text_region_intersect): Take const
+	GtkTextIter arguments.
+
+	* tests/test-widget.c: Implemented "Print Preview" menu option to
+	test new printing functionality.
+	
+	* autogen.sh: Treat compiler warnings as errors by default.
+
 2003-05-31  Christian Neumair  <chris@gnome-de.org>
 
 	* configure.in: Added German ("de") to ALL_LINGUAS.
