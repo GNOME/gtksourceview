@@ -171,7 +171,6 @@ static void	gtk_source_view_get_property		(GObject           *object,
 static void     gtk_source_view_style_set               (GtkWidget         *widget,
 							 GtkStyle          *previous_style);
 
-static void	gtk_source_view_grab_focus		(GtkWidget         *widget);
 
 /* Private functions. */
 static void
@@ -193,7 +192,6 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	
 	widget_class->expose_event = gtk_source_view_expose;
 	widget_class->style_set = gtk_source_view_style_set;
-	widget_class->grab_focus = gtk_source_view_grab_focus;
 
 	textview_class->populate_popup = gtk_source_view_populate_popup;
 	textview_class->move_cursor = gtk_source_view_move_cursor;
@@ -1883,21 +1881,4 @@ gtk_source_view_style_set (GtkWidget *widget, GtkStyle *previous_style)
 	}
 }
 
-/* This is a workaround for bug #81893.
- * We skip the parent class' grab_focus method in order to avoid the weird 
- * scroll on focus behavior of GtkTextView.
- * The GtkTextView grab_focus method first calls the parent class' 
- * grab_focus method and then scrolls to cursor if disable_scroll_on_focus is
- * FALSE.
- * We will remove this workaround when bug #81893 will be fixed.
- */
-static void
-gtk_source_view_grab_focus (GtkWidget *widget)
-{
-  GtkTextView *text_view;
-
-  text_view = GTK_TEXT_VIEW (widget);
-  
-  GTK_WIDGET_CLASS (g_type_class_peek_parent (parent_class))->grab_focus (widget);
-}
 

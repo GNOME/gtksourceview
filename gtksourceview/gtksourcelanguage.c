@@ -1286,24 +1286,41 @@ gtk_source_language_get_tag_default_style (GtkSourceLanguage *language,
 		return NULL;
 }
 
+/**
+ * gtk_source_language_set_tag_style:
+ * @language: a #GtkSourceLanguage.
+ * @tag_id: the ID of a #GtkSourceTag
+ * @style: a #GtkSourceTagStyle
+ *
+ * Set the @style of the tag whose ID is @tag_id. If @style is NULL
+ * restore the default style.
+ **/
 void 
 gtk_source_language_set_tag_style (GtkSourceLanguage       *language,
 				   const gchar             *tag_id,
 				   const GtkSourceTagStyle *style)
 {
-	GtkSourceTagStyle *ts;
-
 	g_return_if_fail (GTK_SOURCE_LANGUAGE (language));
 	g_return_if_fail (tag_id != NULL);
 
 	if (!gtk_source_language_lazy_init_hash_tables (language))
 			return;	
 	
-	ts = gtk_source_tag_style_copy (style);
+	if (style != NULL)
+	{
+		GtkSourceTagStyle *ts;
+		
+		ts = gtk_source_tag_style_copy (style);
 
-	g_hash_table_insert (language->priv->tag_id_to_style,
-			     g_strdup (tag_id),
-			     ts);
+		g_hash_table_insert (language->priv->tag_id_to_style,
+				     g_strdup (tag_id),
+				     ts);
+	}
+	else
+	{
+		g_hash_table_remove (language->priv->tag_id_to_style,
+				     tag_id);
+	}
 
 	g_signal_emit (G_OBJECT (language),
 		       signals[TAG_STYLE_CHANGED], 

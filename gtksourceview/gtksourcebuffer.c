@@ -1368,7 +1368,9 @@ gtk_source_buffer_set_bracket_match_style (GtkSourceBuffer         *source_buffe
 					   const GtkSourceTagStyle *style)
 {
 	GtkTextTag *tag;
-	
+	GValue foreground = { 0, };
+	GValue background = { 0, };
+
 	g_return_if_fail (GTK_IS_SOURCE_BUFFER (source_buffer));
 	g_return_if_fail (style != NULL);
 
@@ -1384,27 +1386,25 @@ gtk_source_buffer_set_bracket_match_style (GtkSourceBuffer         *source_buffe
 	
 	g_return_if_fail (source_buffer->priv->bracket_match_tag != NULL);
 	tag = source_buffer->priv->bracket_match_tag;
-	
+
 	/* Foreground color */
+	g_value_init (&foreground, GDK_TYPE_COLOR);
+	
 	if ((style->mask & GTK_SOURCE_TAG_STYLE_USE_FOREGROUND) != 0)
-	{
-		GValue foreground = { 0, };
-		
-		g_value_init (&foreground, GDK_TYPE_COLOR);
 		g_value_set_boxed (&foreground, &style->foreground);
-		g_object_set_property (G_OBJECT (tag), "foreground_gdk", &foreground);
-	}
+	else
+		g_value_set_boxed (&foreground, NULL);
+	
+	g_object_set_property (G_OBJECT (tag), "foreground_gdk", &foreground);
 
 	/* Background color */
-	if ((style->mask & GTK_SOURCE_TAG_STYLE_USE_BACKGROUND) != 0)
-	{
-		GValue background = { 0, };
+	g_value_init (&background, GDK_TYPE_COLOR);
 
-		g_value_init (&background, GDK_TYPE_COLOR);
+	if ((style->mask & GTK_SOURCE_TAG_STYLE_USE_BACKGROUND) != 0)
 		g_value_set_boxed (&background, &style->background);
-		g_object_set_property (G_OBJECT (tag), "background_gdk", &background);
-	}
-	
+	else
+		g_value_set_boxed (&background, NULL);
+		
 	g_object_set (G_OBJECT (tag), 
 		      "style", style->italic ? PANGO_STYLE_ITALIC : PANGO_STYLE_NORMAL,
 		      "weight", style->bold ? PANGO_WEIGHT_BOLD : PANGO_WEIGHT_NORMAL,

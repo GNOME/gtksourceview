@@ -1,3 +1,15 @@
+2003-07-19  Paolo Maggi <paolo.maggi@polito.it>
+
+	* gtksourceview/gtksourcebuffer.c (gtk_source_buffer_set_bracket_match_style):
+	manage the cases in which GTK_SOURCE_TAG_STYLE_USE_FOREGROUND and or 
+	GTK_SOURCE_TAG_STYLE_USE_BACKGROUND are not set.
+
+	* gtksourceview/gtksourcelanguage.c (gtk_source_language_set_tag_style):
+	if "style" is NULL restore the default style.
+
+	* gtksourceview/gtksourceview.c: removed hack for bug #81893 since it is now
+	fixed in gtk+
+
 2003-07-19  Evandro Fernandes Giovanini <evandrofg@ig.com.br>
 
 	* configure.in: Added "pt_BR" (Brazilian Portuguese)
