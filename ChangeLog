@@ -1,5 +1,11 @@
 2005-01-07  Paolo Maggi  <paolo@gnome.org>
 
+	* gtksourceview/language-specs/pascal.lang: fixed bug #150477 (Potential
+	"Types Class" typo in gtksourceview message). Patch by 
+	Thierry Moisan  <thierryn@videotron.ca>
+
+2005-01-07  Paolo Maggi  <paolo@gnome.org>
+
 	* gtksourceview/language-specs/xml.lang: fixed bug #151995 (XML Markup 
 	Highlighting does not handle CDATA correctly). s/DTD/DOCTYPE.
 	Does not mark DOCTYPE for translation.
