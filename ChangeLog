@@ -1,3 +1,9 @@
+2004-08-16  Owen Taylor  <otaylor@redhat.com>
+
+	* gtksourceview/gtksourceprintjob.c (get_text_with_style): Handle
+	the case where a tag toggle falls exactly at the paragraph
+	separator.
+
 2004-08-08  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
 
 	* gtksourceview/language-specs/css.lang: CSS highlighting spec, by

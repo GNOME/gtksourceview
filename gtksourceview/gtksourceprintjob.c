@@ -1176,6 +1176,11 @@ get_text_with_style (GtkSourcePrintJob *job,
 		/* advance to next line */
 		*start = limit;
 		gtk_text_iter_forward_line (start);
+
+		if (gtk_text_iter_compare (&next_toggle, start) < 0) {
+			next_toggle = *start;
+			have_toggle = gtk_text_iter_forward_to_tag_toggle (&next_toggle, NULL);
+		}
 	}
 	job->priv->paragraphs = g_slist_reverse (job->priv->paragraphs);
 
