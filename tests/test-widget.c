@@ -381,14 +381,21 @@ open_file (GtkSourceBuffer *buffer, const gchar *filename)
 }
 
 static void
-file_selected_cb (GtkWidget *widget, GtkFileSelection *file_sel)
+file_selected_cb (GtkWidget *chooser, gint response, ViewsData *vd)
 {
-	ViewsData *vd;
-	const gchar *filename;
-	
-	vd = g_object_get_data (G_OBJECT (file_sel), "viewsdata");
-	filename = gtk_file_selection_get_filename (file_sel);
-	open_file (vd->buffer, filename);
+	gchar *filename;
+
+	if (response == GTK_RESPONSE_OK)
+	{
+		filename = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (chooser));
+		if (filename != NULL)
+		{
+			open_file (vd->buffer, filename);
+		}
+		g_free (filename);
+	}
+
+	gtk_widget_destroy (chooser);
 }
 
 static void 
@@ -396,24 +403,21 @@ open_file_cb (ViewsData *vd,
 	      guint      callback_action,
 	      GtkWidget *widget)
 {
-	GtkWidget *file_sel;
+	GtkWidget *chooser;
 
-	file_sel = gtk_file_selection_new ("Open file...");
-	g_object_set_data (G_OBJECT (file_sel), "viewsdata", vd);
+	chooser = gtk_file_chooser_dialog_new ("Open file...",
+					       NULL,
+					       GTK_FILE_CHOOSER_ACTION_OPEN,
+					       GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
+					       GTK_STOCK_OPEN, GTK_RESPONSE_OK,
+					       NULL);
 
-	g_signal_connect (GTK_FILE_SELECTION (file_sel)->ok_button,
-			  "clicked",
-			  G_CALLBACK (file_selected_cb),
-			  file_sel);
+	gtk_window_set_default_size (GTK_WINDOW (chooser), 600, 400);
 
-	g_signal_connect_swapped (GTK_FILE_SELECTION (file_sel)->ok_button, 
-				  "clicked", G_CALLBACK (gtk_widget_destroy),
-				  file_sel);
-	g_signal_connect_swapped (GTK_FILE_SELECTION (file_sel)->cancel_button, 
-				  "clicked", G_CALLBACK (gtk_widget_destroy),
-				  file_sel);
+	g_signal_connect (G_OBJECT (chooser), "response",
+			  G_CALLBACK (file_selected_cb), vd);
 
-	gtk_widget_show (file_sel);
+	gtk_widget_show (chooser);
 }
 
 /* Stolen from gedit */
