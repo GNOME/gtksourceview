@@ -512,6 +512,7 @@ static void
 gtk_source_buffer_finalize (GObject *object)
 {
 	GtkSourceBuffer *buffer;
+	GtkTextTagTable *tag_table;
 
 	g_return_if_fail (object != NULL);
 	g_return_if_fail (GTK_IS_SOURCE_BUFFER (object));
@@ -546,6 +547,14 @@ gtk_source_buffer_finalize (GObject *object)
 
 	if (buffer->priv->language != NULL)
 		g_object_unref (buffer->priv->language);
+
+	tag_table = GTK_TEXT_BUFFER (buffer)->tag_table;
+	g_signal_handlers_disconnect_by_func (tag_table,
+					      (gpointer)tag_table_changed_cb,
+					      buffer);
+	g_signal_handlers_disconnect_by_func (tag_table,
+					      (gpointer)tag_added_or_removed_cb,
+					      buffer);	
 
 	g_free (buffer->priv);
 	buffer->priv = NULL;

@@ -1,5 +1,11 @@
 2005-02-24  Paolo Maggi  <paolo@gnome.org>
 
+	* gtksourceview/gtksourcebuffer.c (gtk_source_buffer_finalize): 
+	fixed bug #168229 (disconnect tag table signal handlers in destructor). 
+	Patch by Yevgen Muntyan <muntyan@tamu.edu>.
+
+2005-02-24  Paolo Maggi  <paolo@gnome.org>
+
 	* gtksourceview/language-specs/idl.lang: rewritten
 
 2005-02-23  Paolo Borelli  <pborelli@katamail.com>
@@ -1842,3 +1848,4 @@ Tue Jan 16  18:13:44 2001 CET Mikael Hermansson  <mikeh@bahnhof.se>
 
   * releasing 0.0.1 of GtkSourceView:
     A new syntax higlight widget that supports GtkTextView upcoming Gtk 2.0.
+
