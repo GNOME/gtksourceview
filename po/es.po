@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview.HEAD.es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-06-12 20:52+0200\n"
-"PO-Revision-Date: 2003-06-13 00:22+0000\n"
+"POT-Creation-Date: 2003-07-14 21:05+0200\n"
+"PO-Revision-Date: 2003-07-15 00:11+0200\n"
 "Last-Translator: Francisco Javier F. Serrador <serrador@arrakis.es>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -66,7 +66,9 @@ msgstr "Directorios de especificaciones de lenguajes"
 msgid ""
 "List of directories where the language specification files (.lang) are "
 "located"
-msgstr "Lista de directorios en los que se hallan los archivo de especificación de lenguajes (.lang)."
+msgstr ""
+"Lista de directorios en los que se hallan los archivo de especificación de "
+"lenguajes (.lang)."
 
 #: gtksourceview/gtksourceprintjob.c:272
 msgid "Configuration"
@@ -153,65 +155,81 @@ msgstr "Tipografía de cabecera y pie de página"
 msgid "Font name to use for the header and footer"
 msgstr "Nombre de la tipografía a usar para la cabecera y el pie de página"
 
-#: gtksourceview/gtksourcestylescheme.c:222
+#: gtksourceview/gtksourcestylescheme.c:230
 msgid "Base-N Integer"
 msgstr "Entero en base-N"
 
-#: gtksourceview/gtksourcestylescheme.c:227
+#: gtksourceview/gtksourcestylescheme.c:235
 msgid "Character"
 msgstr "Carácter"
 
-#: gtksourceview/gtksourcestylescheme.c:232
+#: gtksourceview/gtksourcestylescheme.c:240
 msgid "Comment"
 msgstr "Comentario"
 
-#: gtksourceview/gtksourcestylescheme.c:237
+#: gtksourceview/gtksourcestylescheme.c:245
 msgid "Data Type"
 msgstr "Tipo de dato"
 
-#: gtksourceview/gtksourcestylescheme.c:242
+#: gtksourceview/gtksourcestylescheme.c:250
 msgid "Function"
 msgstr "Función"
 
-#: gtksourceview/gtksourcestylescheme.c:247
+#: gtksourceview/gtksourcestylescheme.c:255
 msgid "Decimal"
 msgstr "Decimal"
 
-#: gtksourceview/gtksourcestylescheme.c:252
+#: gtksourceview/gtksourcestylescheme.c:260
 msgid "Floating Point"
 msgstr "Punto flotante"
 
-#: gtksourceview/gtksourcestylescheme.c:257
+#: gtksourceview/gtksourcestylescheme.c:265
 msgid "Keyword"
 msgstr "Palabra clave"
 
-#: gtksourceview/gtksourcestylescheme.c:262
+#: gtksourceview/gtksourcestylescheme.c:270
 msgid "Preprocessor"
 msgstr "Preprocesador"
 
-#: gtksourceview/gtksourcestylescheme.c:267
+#: gtksourceview/gtksourcestylescheme.c:275
 msgid "String"
 msgstr "Cadena"
 
-#: gtksourceview/gtksourcestylescheme.c:272
+#: gtksourceview/gtksourcestylescheme.c:280
 msgid "Specials"
 msgstr "Especiales"
 
-#: gtksourceview/gtksourcestylescheme.c:277
+#: gtksourceview/gtksourcestylescheme.c:285
 msgid "Others"
 msgstr "Otros"
 
-#: gtksourceview/gtksourcestylescheme.c:282
+#: gtksourceview/gtksourcestylescheme.c:290
 msgid "Others 2"
 msgstr "Otros 2"
 
-#: gtksourceview/gtksourcestylescheme.c:287
+#: gtksourceview/gtksourcestylescheme.c:295
 msgid "Others 3"
 msgstr "Otros 3"
 
-#: gtksourceview/gtksourcestylescheme.c:324
+#: gtksourceview/gtksourcestylescheme.c:332
 msgid "Default"
 msgstr "Predeterminado"
+
+#: gtksourceview/gtksourcetag.c:108
+msgid "Tag ID"
+msgstr "ID de marca"
+
+#: gtksourceview/gtksourcetag.c:109
+msgid "ID used to refer to the source tag"
+msgstr "ID usado para referirse a la marca del origen"
+
+#: gtksourceview/gtksourcetag.c:116
+msgid "Tag style"
+msgstr "Marca de estilo"
+
+#: gtksourceview/gtksourcetag.c:117
+msgid "The style associated to the source tag"
+msgstr "El estilo asociado a la marca de origen"
 
 #: gtksourceview/gtksourceview.c:207
 msgid "Show Line Numbers"
