@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-08-18 04:04+0200\n"
+"POT-Creation-Date: 2004-08-19 12:04+0200\n"
 "PO-Revision-Date: 2004-08-12 17:31+0200\n"
 "Last-Translator: Laurent Dhima <laurenti@alblinux.net>\n"
 "Language-Team: Albanian <gnome-albanian-perkthyesit@lists.sourceforge.net>\n"
@@ -191,10 +191,11 @@ msgstr "Simboli"
 msgid "Comment"
 msgstr "Komenti"
 
+#. GRUT modified this item
 #: gtksourceview/gtksourcestylescheme.c:252
 #: gtksourceview/language-specs/php.lang.h:8
 msgid "Data Type"
-msgstr "Lloji i të dhënës"
+msgstr "Lloji i të dhënave"
 
 #: gtksourceview/gtksourcestylescheme.c:257
 #: gtksourceview/language-specs/ada.lang.h:3
@@ -658,10 +659,11 @@ msgstr "Rresht i hequr"
 msgid "Special case"
 msgstr "Special case"
 
+#. GRUT modified this item
 #: gtksourceview/language-specs/html.lang.h:1
 #: gtksourceview/language-specs/xml.lang.h:1
 msgid "Attributes"
-msgstr "Vlerat"
+msgstr "Veçoritë"
 
 #: gtksourceview/language-specs/html.lang.h:3
 #: gtksourceview/language-specs/xml.lang.h:3
@@ -705,9 +707,10 @@ msgstr "Input/Output"
 msgid "Intrinsics"
 msgstr "Intrinsics (librari e Xlib)"
 
+#. GRUT modified this item
 #: gtksourceview/language-specs/fortran.lang.h:10
 msgid "Read/Write"
-msgstr "Shkrim/Lexim"
+msgstr "Lexim/Shkrim"
 
 #: gtksourceview/language-specs/idl.lang.h:2
 msgid "IDL"
@@ -721,9 +724,10 @@ msgstr "Të seksionit"
 msgid "Declarations"
 msgstr "Deklarime"
 
+#. GRUT modified this item
 #: gtksourceview/language-specs/java.lang.h:3
 msgid "Flow"
-msgstr "Fluks"
+msgstr "Fluksi"
 
 #: gtksourceview/language-specs/java.lang.h:4
 msgid "Java"
@@ -1232,7 +1236,6 @@ msgstr "Duke indeksuar"
 msgid "Macro Parameters"
 msgstr "Parametrat e makro"
 
-#. GRUT modified this item
 #: gtksourceview/language-specs/texinfo.lang.h:11
 msgid "Macros"
 msgstr "Automatizime"
