@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
-"POT-Creation-Date: 2004-01-15 00:25+0100\n"
-"PO-Revision-Date: 2004-01-15 00:25+0100\n"
+"POT-Creation-Date: 2004-03-06 22:37+0100\n"
+"PO-Revision-Date: 2004-03-06 22:37+0100\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -214,7 +214,7 @@ msgstr "Sträng"
 msgid "Specials"
 msgstr "Specialtecken"
 
-#: gtksourceview/gtksourcestylescheme.c:292
+#: gtksourceview/gtksourcestylescheme.c:294
 #: gtksourceview/language-specs/desktop.lang.h:10
 #: gtksourceview/language-specs/diff.lang.h:7
 #: gtksourceview/language-specs/msil.lang.h:2
@@ -222,15 +222,15 @@ msgstr "Specialtecken"
 msgid "Others"
 msgstr "Andra"
 
-#: gtksourceview/gtksourcestylescheme.c:297
+#: gtksourceview/gtksourcestylescheme.c:299
 msgid "Others 2"
 msgstr "Andra 2"
 
-#: gtksourceview/gtksourcestylescheme.c:302
+#: gtksourceview/gtksourcestylescheme.c:304
 msgid "Others 3"
 msgstr "Andra 3"
 
-#: gtksourceview/gtksourcestylescheme.c:339
+#: gtksourceview/gtksourcestylescheme.c:341
 msgid "Default"
 msgstr "Standard"
 
@@ -449,7 +449,6 @@ msgstr "Primitiver"
 #: gtksourceview/language-specs/csharp.lang.h:9
 #: gtksourceview/language-specs/java.lang.h:12
 #: gtksourceview/language-specs/python.lang.h:12
-#: gtksourceview/language-specs/xml.lang.h:9
 msgid "String 2"
 msgstr "Sträng 2"
 
@@ -534,11 +533,12 @@ msgstr "Entitet"
 msgid "HTML"
 msgstr "HTML"
 
+# http://www.nada.kth.se/dataterm/fos-lista.html#f91 är inte entydig om markup.
 #: gtksourceview/language-specs/html.lang.h:7
 #: gtksourceview/language-specs/latex.lang.h:5
 #: gtksourceview/language-specs/xml.lang.h:7
 msgid "Markup"
-msgstr "Markup"
+msgstr "Märkning"
 
 #: gtksourceview/language-specs/html.lang.h:9
 msgid "Tags"
@@ -838,11 +838,11 @@ msgstr "Verilog"
 msgid "Hexadecimal"
 msgstr "Hexadecimalt"
 
-#: gtksourceview/language-specs/xml.lang.h:10
+#: gtksourceview/language-specs/xml.lang.h:9
 msgid "Tag"
 msgstr "Tagg"
 
-#: gtksourceview/language-specs/xml.lang.h:11
+#: gtksourceview/language-specs/xml.lang.h:10
 msgid "XML"
 msgstr "XML"
 
