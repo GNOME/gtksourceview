@@ -3,37 +3,38 @@
 # This file is distributed under the same license as the PACKAGE package.
 # Copyright (C) Free Softwre Foundation, 2003
 # Kostas Papadimas <pkst@gmx.net>, 2003
-#
+# Nikos Charonitakis <frolix68@yahoo.gr>, 2003
+# Kostas entire translation
+# Nikos 11Aug2003 fixes
 msgid ""
 msgstr ""
 "Project-Id-Version: el\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-08-10 04:38+0200\n"
-"PO-Revision-Date: 2003-08-10 14:02+0300\n"
-"Last-Translator: Kostas Papadimas <pkst@gmx.net>\n"
+"POT-Creation-Date: 2003-08-11 00:57+0300\n"
+"PO-Revision-Date: 2003-08-11 01:05-0200\n"
+"Last-Translator: Nikos Charonitakis <charosn@her.fothnet.gr>\n"
 "Language-Team: Greek <nls@tux.hellug.gr>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.0\n"
 
 #: gtksourceview/gtksourcebuffer.c:279
 msgid "Escape Character"
-msgstr "Χατακτήρας Escape"
+msgstr "Χαρακτήρας Escape"
 
 #: gtksourceview/gtksourcebuffer.c:280
 msgid "Escaping character for syntax patterns"
-msgstr "Χατακτήρας Escape για παράμετρους σύνταξης"
+msgstr "Χαρακτήρας Escape για παράμετρους σύνταξης"
 
 #: gtksourceview/gtksourcebuffer.c:288
 msgid "Check Brackets"
-msgstr "Έλεγχος αγκυλών"
+msgstr "Έλεγχος Αγκυλών"
 
 #: gtksourceview/gtksourcebuffer.c:289
 msgid "Whether to check and highlight matching brackets"
 msgstr "Αν θα γίνεται έλεγχος και επισήμανση αγκυλών που ταιριάζουν"
 
-#: gtksourceview/gtksourcebuffer.c:297 gtksourceview/gtksourceprintjob.c:303
+#: gtksourceview/gtksourcebuffer.c:297
+#: gtksourceview/gtksourceprintjob.c:303
 msgid "Highlight"
 msgstr "Επισήμανση"
 
@@ -43,7 +44,7 @@ msgstr "Αν θα γίνεται επισήμανση σύνταξης στο bu
 
 #: gtksourceview/gtksourcebuffer.c:306
 msgid "Maximum Undo Levels"
-msgstr "Μέγιστο επίπεδο αναιρέσεων"
+msgstr "Μέγιστο Επίπεδο Αναιρέσεων"
 
 #: gtksourceview/gtksourcebuffer.c:307
 msgid "Number of undo levels for the buffer"
@@ -63,9 +64,7 @@ msgid "Language specification directories"
 msgstr "Κατάλογοι ορισμάτων γλώσσας"
 
 #: gtksourceview/gtksourcelanguagesmanager.c:120
-msgid ""
-"List of directories where the language specification files (.lang) are "
-"located"
+msgid "List of directories where the language specification files (.lang) are located"
 msgstr "Μια λίστα από καταλόγους όπου βρίσκοντια τα αρχεία ορισμάτων γλώσσας (.lang)"
 
 #: gtksourceview/gtksourceprintjob.c:272
@@ -84,10 +83,11 @@ msgstr "Πηγαίος Buffer"
 msgid "GtkSourceBuffer object to print"
 msgstr "Αντικείμενο GtkSourceBuffer για εκτύπωση"
 
-#: gtksourceview/gtksourceprintjob.c:287 gtksourceview/gtksourceview.c:221
+#: gtksourceview/gtksourceprintjob.c:287
+#: gtksourceview/gtksourceview.c:221
 #: gtksourceview/gtksourceview.c:222
 msgid "Tabs Width"
-msgstr "Πλάτος στηλών"
+msgstr "Πλάτος Στηλών"
 
 #: gtksourceview/gtksourceprintjob.c:288
 msgid "Width in equivalent space characters of tabs"
@@ -115,7 +115,7 @@ msgstr "Όνομα γραμματοσειράς για χρήση στο κεί�
 
 #: gtksourceview/gtksourceprintjob.c:320
 msgid "Numbers Font"
-msgstr "Γραμματοσειρά αριθμών"
+msgstr "Γραμματοσειρά Αριθμών"
 
 #: gtksourceview/gtksourceprintjob.c:321
 msgid "Font name to use for the line numbers"
@@ -123,7 +123,7 @@ msgstr "Όνομα γραμματοσειράς για χρήση στους α�
 
 #: gtksourceview/gtksourceprintjob.c:328
 msgid "Print Line Numbers"
-msgstr "Εκτύπωση αριθμών γραμμής"
+msgstr "Εκτύπωση Αριθμών Γραμμής"
 
 #: gtksourceview/gtksourceprintjob.c:329
 msgid "Interval of printed line numbers (0 means no numbers)"
@@ -131,7 +131,7 @@ msgstr "Διάστημα των εκτυπωμένων αριθμών γραμμ
 
 #: gtksourceview/gtksourceprintjob.c:336
 msgid "Print Header"
-msgstr "Εκτύπωση κεφαλίδας"
+msgstr "Εκτύπωση Κεφαλίδας"
 
 #: gtksourceview/gtksourceprintjob.c:337
 msgid "Whether to print a header in each page"
@@ -139,7 +139,7 @@ msgstr "Αν θα γίνεται εκτύπωση κεφαλίδας σε κάθ
 
 #: gtksourceview/gtksourceprintjob.c:344
 msgid "Print Footer"
-msgstr "Εκτύπωση υποσέλιδου"
+msgstr "Εκτύπωση Υποσέλιδου"
 
 #: gtksourceview/gtksourceprintjob.c:345
 msgid "Whether to print a footer in each page"
@@ -147,7 +147,7 @@ msgstr "Αν θα γίνεται εκτύπωση υποσέριδου σε κά
 
 #: gtksourceview/gtksourceprintjob.c:352
 msgid "Header and Footer Font"
-msgstr "Γραμματοσειρά κεφαλίδας και υποσέλιδου"
+msgstr "Γραμματοσειρά Κεφαλίδας και Υποσέλιδου"
 
 #: gtksourceview/gtksourceprintjob.c:353
 msgid "Font name to use for the header and footer"
@@ -169,7 +169,7 @@ msgstr "Σχόλιο"
 
 #: gtksourceview/gtksourcestylescheme.c:252
 msgid "Data Type"
-msgstr "Τύπος δεδομένων"
+msgstr "Τύπος Δεδομένων"
 
 #: gtksourceview/gtksourcestylescheme.c:257
 #: gtksourceview/language-specs/ada.lang.h:3
@@ -184,7 +184,7 @@ msgstr "Δεκαδικό"
 
 #: gtksourceview/gtksourcestylescheme.c:267
 msgid "Floating Point"
-msgstr "Πλωτό σημείο"
+msgstr "Πλωτό Σημείο"
 
 #: gtksourceview/gtksourcestylescheme.c:272
 #: gtksourceview/language-specs/latex.lang.h:3
@@ -239,7 +239,7 @@ msgstr "Tag ID"
 
 #: gtksourceview/gtksourcetag.c:109
 msgid "ID used to refer to the source tag"
-msgstr "ID που χρησιμοποείται για την αναφορά στην source tag"
+msgstr "ID που χρησιμοποιείται για την αναφορά στην source tag"
 
 #: gtksourceview/gtksourcetag.c:116
 msgid "Tag style"
@@ -259,7 +259,7 @@ msgstr "Αν θα εμφανίζονται αριθμοί γραμμής"
 
 #: gtksourceview/gtksourceview.c:213
 msgid "Show Line Markers"
-msgstr "Εμφάνιση σημάνσεων γραμμής"
+msgstr "Εμφάνιση Σημάνσεων Γραμμής"
 
 #: gtksourceview/gtksourceview.c:214
 msgid "Whether to display line marker pixbufs"
@@ -267,7 +267,7 @@ msgstr "Αν θα εμφανίζονται σημάνσεις γραμμής"
 
 #: gtksourceview/gtksourceview.c:231
 msgid "Auto Indentation"
-msgstr "Αυτόματη εσοχή"
+msgstr "Αυτόματη Εσοχή"
 
 #: gtksourceview/gtksourceview.c:232
 msgid "Whether to enable auto indentation"
@@ -283,7 +283,7 @@ msgstr "Αν θα εισάγονται διαστήματα αντί για στ
 
 #: gtksourceview/gtksourceview.c:246
 msgid "Show Right Margin"
-msgstr "Εμφάνιση δεξιού περιθωρίου"
+msgstr "Εμφάνιση Δεξιού Περιθωρίου"
 
 #: gtksourceview/gtksourceview.c:247
 msgid "Whether to display the right margin"
@@ -302,12 +302,8 @@ msgid "Use smart home/end"
 msgstr "Χρήση έξυπνου home/end"
 
 #: gtksourceview/gtksourceview.c:265
-msgid ""
-"HOME and END keys move to first/last characters on line first before going "
-"to the start/end of the line"
-msgstr ""
-"Τα πλήκτρα HOME και END μετακινούν πρώτα στον πρώτο/τελευταίο χαρακτήρα της "
-"γραμμής πρίν να πάνε στην αρχή/τέλος της γραμμής."
+msgid "HOME and END keys move to first/last characters on line first before going to the start/end of the line"
+msgstr "Τα πλήκτρα HOME και END μετακινούν πρώτα στον πρώτο/τελευταίο χαρακτήρα της γραμμής πρίν να πάνε στην αρχή/τέλος της γραμμής."
 
 #: gtksourceview/language-specs/ada.lang.h:1
 msgid "Ada"
@@ -317,7 +313,7 @@ msgstr "Ada"
 #: gtksourceview/language-specs/c.lang.h:4
 #: gtksourceview/language-specs/cpp.lang.h:4
 msgid "Character Constant"
-msgstr "Χαρακτήρας συνεχούς"
+msgstr "Χαρακτήρας Συνεχούς"
 
 #: gtksourceview/language-specs/ada.lang.h:4
 #: gtksourceview/language-specs/c.lang.h:10
@@ -337,7 +333,7 @@ msgstr "Λέξεις κλειδί"
 #: gtksourceview/language-specs/perl.lang.h:3
 #: gtksourceview/language-specs/python.lang.h:4
 msgid "Line Comment"
-msgstr "Σχόλιο γραμμής"
+msgstr "Σχόλιο Γραμμής"
 
 #: gtksourceview/language-specs/ada.lang.h:6
 #: gtksourceview/language-specs/desktop.lang.h:9
@@ -388,12 +384,12 @@ msgstr "C"
 #: gtksourceview/language-specs/c.lang.h:5
 #: gtksourceview/language-specs/cpp.lang.h:5
 msgid "Common Macro"
-msgstr "Κοινή μακροεντολή"
+msgstr "Κοινή Μακροεντολή"
 
 #: gtksourceview/language-specs/c.lang.h:7
 #: gtksourceview/language-specs/cpp.lang.h:7
 msgid "Floating Point Number"
-msgstr "Αριθμός Πλωτού σημείο"
+msgstr "Αριθμός Πλωτού Σημείου"
 
 #: gtksourceview/language-specs/c.lang.h:8
 #: gtksourceview/language-specs/cpp.lang.h:8
@@ -415,7 +411,7 @@ msgstr "Οκταδικός αριθμός"
 #: gtksourceview/language-specs/cpp.lang.h:13
 #: gtksourceview/language-specs/idl.lang.h:5
 msgid "Preprocessor Definitions"
-msgstr "Ορισμοί προεπεξεργαστή"
+msgstr "Ορισμοί Προεπεξεργαστή"
 
 #: gtksourceview/language-specs/cpp.lang.h:3
 msgid "C++"
@@ -447,7 +443,7 @@ msgstr "Μη στάνταρ κλειδί"
 
 #: gtksourceview/language-specs/desktop.lang.h:11
 msgid "Standard Key"
-msgstr "Στάνταρ κλειδί"
+msgstr "Στάνταρ Κλειδί"
 
 #: gtksourceview/language-specs/diff.lang.h:1
 msgid "Added line"
@@ -486,7 +482,7 @@ msgstr "Γνωρίσματα"
 #: gtksourceview/language-specs/html.lang.h:3
 #: gtksourceview/language-specs/xml.lang.h:3
 msgid "Closing Bracket"
-msgstr "Αγκύλη κλεισίματος"
+msgstr "Αγκύλη Κλεισίματος"
 
 #: gtksourceview/language-specs/html.lang.h:4
 #: gtksourceview/language-specs/xml.lang.h:4
@@ -568,11 +564,11 @@ msgstr "Math"
 
 #: gtksourceview/language-specs/latex.lang.h:7
 msgid "Most Used Commands"
-msgstr "Κοινές εντολές"
+msgstr "Κοινές Εντολές"
 
 #: gtksourceview/language-specs/perl.lang.h:1
 msgid "Function Call"
-msgstr "Λειτουργία κλήσης"
+msgstr "Λειτουργία Κλήσης"
 
 #: gtksourceview/language-specs/perl.lang.h:4
 msgid "Perl"
@@ -613,15 +609,15 @@ msgstr "Λειτουργίες"
 
 #: gtksourceview/language-specs/python.lang.h:5
 msgid "Module Handler"
-msgstr "Χειριστής λειτουργικής μονάδας"
+msgstr "Χειριστής Λειτουργικής Μονάδας"
 
 #: gtksourceview/language-specs/python.lang.h:6
 msgid "Multiline String"
-msgstr "Αλφαριθμητικό πολλαπλών γραμμών"
+msgstr "Αλφαριθμητικό Πολλαπλών Γραμμών"
 
 #: gtksourceview/language-specs/python.lang.h:7
 msgid "Multiline String 2"
-msgstr "Αλφαριθμητικό πολλαπλών γραμμών 2"
+msgstr "Αλφαριθμητικό Πολλαπλών Γραμμών 2"
 
 #: gtksourceview/language-specs/python.lang.h:8
 msgid "Python"
