@@ -15,6 +15,7 @@ EXTRA_DIST = 			\
 	php.lang		\
 	po.lang			\
 	python.lang		\
+	ruby.lang		\
 	sql.lang		\
 	verilog.lang		\
 	xml.lang
