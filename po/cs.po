@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-07-16 04:46+0200\n"
-"PO-Revision-Date: 2004-07-16 17:43+0200\n"
+"POT-Creation-Date: 2004-07-22 04:24+0200\n"
+"PO-Revision-Date: 2004-07-22 15:39+0200\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -162,7 +162,8 @@ msgstr "Písmo hlavičky a patičky"
 
 #: gtksourceview/gtksourceprintjob.c:361
 msgid "GnomeFont name to use for the header and footer (deprecated)"
-msgstr "Název písma GnomeFont, které používat pro hlavičku a patičku (zastaralé)"
+msgstr ""
+"Název písma GnomeFont, které používat pro hlavičku a patičku (zastaralé)"
 
 #: gtksourceview/gtksourceprintjob.c:368
 msgid "Header and Footer Font Description"
@@ -225,7 +226,7 @@ msgstr "Preprocesor"
 #: gtksourceview/language-specs/idl.lang.h:8
 #: gtksourceview/language-specs/java.lang.h:11
 #: gtksourceview/language-specs/lua.lang.h:10
-#: gtksourceview/language-specs/perl.lang.h:6
+#: gtksourceview/language-specs/perl.lang.h:8
 #: gtksourceview/language-specs/po.lang.h:6
 #: gtksourceview/language-specs/python.lang.h:11
 #: gtksourceview/language-specs/ruby.lang.h:18
@@ -645,7 +646,7 @@ msgid "Multiline String 2"
 msgstr "Víceřádkový řetězec 2"
 
 #: gtksourceview/language-specs/lua.lang.h:9
-#: gtksourceview/language-specs/perl.lang.h:5
+#: gtksourceview/language-specs/perl.lang.h:7
 #: gtksourceview/language-specs/python.lang.h:9
 #: gtksourceview/language-specs/ruby.lang.h:17
 msgid "Scripts"
@@ -660,18 +661,27 @@ msgid "Function Call"
 msgstr "Volání funkce"
 
 #: gtksourceview/language-specs/perl.lang.h:4
+msgid "Method Call"
+msgstr "Volání metody"
+
+#: gtksourceview/language-specs/perl.lang.h:5
 msgid "Perl"
 msgstr "Perl"
 
-#: gtksourceview/language-specs/perl.lang.h:7
+# POD is too known
+#: gtksourceview/language-specs/perl.lang.h:6
+msgid "Plain Old Documentation"
+msgstr "Plain Old Documentation"
+
+#: gtksourceview/language-specs/perl.lang.h:9
 msgid "String2"
 msgstr "Řetězec2"
 
-#: gtksourceview/language-specs/perl.lang.h:8
+#: gtksourceview/language-specs/perl.lang.h:10
 msgid "String3"
 msgstr "Řetězec3"
 
-#: gtksourceview/language-specs/perl.lang.h:9
+#: gtksourceview/language-specs/perl.lang.h:11
 msgid "Variables"
 msgstr "Proměnné"
 
