@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-12-04 10:16+0300\n"
-"PO-Revision-Date: 2003-12-04 10:16+0300\n"
+"POT-Creation-Date: 2003-12-04 09:44+0300\n"
+"PO-Revision-Date: 2003-12-08 15:58+0300\n"
 "Last-Translator: Dmitry G. Mastrukov <dmitry@taurussoft.org>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -29,7 +29,7 @@ msgstr "Проверять кавычки"
 
 #: gtksourceview/gtksourcebuffer.c:289
 msgid "Whether to check and highlight matching brackets"
-msgstr "Следует ли проверять и подсвечивать соответствующие кавычки"
+msgstr "Следует ли проверять и подсвечивать соответствующие друг другу скобки"
 
 #: gtksourceview/gtksourcebuffer.c:297 gtksourceview/gtksourceprintjob.c:303
 msgid "Highlight"
@@ -64,7 +64,7 @@ msgstr "Каталоги со спецификациями языков"
 msgid ""
 "List of directories where the language specification files (.lang) are "
 "located"
-msgstr "Список каталогов, где расположены языковые файлы (.lang)"
+msgstr "Список каталогов, где расположены файлы опреления языка (.lang)"
 
 #: gtksourceview/gtksourceprintjob.c:272
 msgid "Configuration"
@@ -334,7 +334,6 @@ msgstr "Ключевые слова"
 #: gtksourceview/language-specs/java.lang.h:5
 #: gtksourceview/language-specs/perl.lang.h:3
 #: gtksourceview/language-specs/python.lang.h:4
-#: gtksourceview/language-specs/sql.lang.h:11
 msgid "Line Comment"
 msgstr "Строковый комментарий"
 
@@ -352,7 +351,6 @@ msgstr "Ключевые слова препроцессора"
 #: gtksourceview/language-specs/cpp.lang.h:14
 #: gtksourceview/language-specs/idl.lang.h:7
 #: gtksourceview/language-specs/java.lang.h:10
-#: gtksourceview/language-specs/sql.lang.h:26
 msgid "Sources"
 msgstr "Исходные коды"
 
@@ -377,7 +375,6 @@ msgstr "Комментарий \"#if 0\""
 #: gtksourceview/language-specs/html.lang.h:2
 #: gtksourceview/language-specs/idl.lang.h:1
 #: gtksourceview/language-specs/java.lang.h:1
-#: gtksourceview/language-specs/sql.lang.h:5
 #: gtksourceview/language-specs/xml.lang.h:2
 msgid "Block Comment"
 msgstr "Блоковый комментарий"
@@ -410,7 +407,7 @@ msgstr "Директивы \"Include/Pragma\""
 #: gtksourceview/language-specs/c.lang.h:12
 #: gtksourceview/language-specs/cpp.lang.h:12
 msgid "Octal Number"
-msgstr "Восьмиричное число"
+msgstr "Восьмеричное число"
 
 #: gtksourceview/language-specs/c.lang.h:13
 #: gtksourceview/language-specs/cpp.lang.h:13
@@ -444,11 +441,11 @@ msgstr "Группа"
 
 #: gtksourceview/language-specs/desktop.lang.h:8
 msgid "Non Standard Key"
-msgstr "Нестандартная клавиша"
+msgstr "Нестандартный ключ"
 
 #: gtksourceview/language-specs/desktop.lang.h:11
 msgid "Standard Key"
-msgstr "Стандартная клавиша"
+msgstr "Стандартный ключ"
 
 #: gtksourceview/language-specs/diff.lang.h:1
 msgid "Added line"
@@ -632,115 +629,9 @@ msgstr "Пайтон"
 msgid "Self"
 msgstr "селф"
 
-#: gtksourceview/language-specs/sql.lang.h:1
-#, fuzzy
-msgid "ANSI Datatypes"
-msgstr "Тип данных"
-
-#: gtksourceview/language-specs/sql.lang.h:2
-msgid "ANSI Reserved Words"
-msgstr ""
-
-#: gtksourceview/language-specs/sql.lang.h:3
-#, fuzzy
-msgid "Aggregate Functions"
-msgstr "Функции"
-
-#: gtksourceview/language-specs/sql.lang.h:4
-#, fuzzy
-msgid "Analytic Functions"
-msgstr "Функции"
-
-#: gtksourceview/language-specs/sql.lang.h:6
-msgid "Character Functions Returning Character Values"
-msgstr ""
-
-#: gtksourceview/language-specs/sql.lang.h:7
-msgid "Character Functions Returning Number Values"
-msgstr ""
-
-#: gtksourceview/language-specs/sql.lang.h:8
-#, fuzzy
-msgid "Conversion Functions"
-msgstr "Функции"
-
-#: gtksourceview/language-specs/sql.lang.h:9
-#, fuzzy
-msgid "Datetime Functions"
-msgstr "Функции"
-
-#: gtksourceview/language-specs/sql.lang.h:10
-msgid "Integer Literals"
-msgstr ""
-
-#: gtksourceview/language-specs/sql.lang.h:12
-msgid "Miscellaneous Single-Row Functions"
-msgstr ""
-
-#: gtksourceview/language-specs/sql.lang.h:13
-msgid "Null"
-msgstr ""
-
-#: gtksourceview/language-specs/sql.lang.h:14
-#, fuzzy
-msgid "Number Functions"
-msgstr "Функции"
-
-#: gtksourceview/language-specs/sql.lang.h:15
-msgid "Number Literals"
-msgstr ""
-
-#: gtksourceview/language-specs/sql.lang.h:16
-msgid "Object Reference Functions"
-msgstr ""
-
-#: gtksourceview/language-specs/sql.lang.h:17
-msgid "Oracle Built-in Datatypes"
-msgstr ""
-
-#: gtksourceview/language-specs/sql.lang.h:18
-msgid "Oracle Reserved Words"
-msgstr ""
-
-#: gtksourceview/language-specs/sql.lang.h:19
-msgid "SQL"
-msgstr ""
-
-#: gtksourceview/language-specs/sql.lang.h:20
-msgid "SQL*Plus At Sign"
-msgstr ""
-
-#: gtksourceview/language-specs/sql.lang.h:21
-msgid "SQL*Plus Commands"
-msgstr ""
-
-#: gtksourceview/language-specs/sql.lang.h:22
-msgid "SQL*Plus Double At Sign"
-msgstr ""
-
-#: gtksourceview/language-specs/sql.lang.h:23
-msgid "SQL*Plus Slash"
-msgstr ""
-
-#: gtksourceview/language-specs/sql.lang.h:24
-msgid "SQL/DS and DB2 Datatypes"
-msgstr ""
-
-#: gtksourceview/language-specs/sql.lang.h:25
-msgid "Size Clause"
-msgstr ""
-
-#: gtksourceview/language-specs/sql.lang.h:27
-msgid "Text Literals"
-msgstr ""
-
-#: gtksourceview/language-specs/sql.lang.h:28
-msgid "Unlimited"
-msgstr ""
-
 #: gtksourceview/language-specs/xml.lang.h:6
 msgid "Hexadecimal"
-msgstr "Шестнадцатиричное число"
+msgstr "Шестнадцатеричное число"
 
 #: gtksourceview/language-specs/xml.lang.h:10
 msgid "Tag"
