@@ -36,66 +36,100 @@
  * decomposable character it consumes the decomposition length from the given
  * offset.  So it's useful when the offset was calculated for the normalized
  * version of str, but we need a pointer to str itself. */
-static const gchar *
-pointer_from_offset_skipping_decomp (const gchar *str, gint offset)
+static void
+pointer_from_offset_skipping_decomp (const gchar *str,
+				     gint offset,
+				     gint needle_len,
+				     const gchar **start,
+				     const gchar **end)
 {
-	gchar *normal;
+	gchar *casefold, *normal;
 	const gchar *p, *q;
 
 	p = str;
 	while (offset > 0)
 	{
 		q = g_utf8_next_char (p);
-		normal = g_utf8_normalize (p, q - p, G_NORMALIZE_ALL);
+		casefold = g_utf8_casefold (p, q - p);
+		normal = g_utf8_normalize (casefold, -1, G_NORMALIZE_ALL);
 		offset -= g_utf8_strlen (normal, -1);
+		g_free (casefold);
 		g_free (normal);
 		p = q;
 	}
-	return p;
+
+	*start = p;
+
+	while (needle_len > 0)
+	{
+		q = g_utf8_next_char (p);
+		casefold = g_utf8_casefold (p, q - p);
+		normal = g_utf8_normalize (casefold, -1, G_NORMALIZE_ALL);
+		needle_len -= g_utf8_strlen (normal, -1);
+		g_free (casefold);
+		g_free (normal);
+		p = q;
+	}
+
+	*end = p;
 }
 
-static const gchar *
-g_utf8_strcasestr (const gchar *haystack, const gchar *needle)
+static void
+g_utf8_strcasestr (const gchar *haystack,
+		   const gchar *needle,
+		   const gchar **start,
+		   const gchar **end)
+
 {
 	gsize needle_len;
 	gsize haystack_len;
-	const gchar *ret = NULL;
 	gchar *p;
 	gchar *casefold;
 	gchar *caseless_haystack;
+	gchar *caseless_needle;
 	gint i;
 
-	g_return_val_if_fail (haystack != NULL, NULL);
-	g_return_val_if_fail (needle != NULL, NULL);
+	g_return_if_fail (haystack != NULL);
+	g_return_if_fail (needle != NULL);
 
 	casefold = g_utf8_casefold (haystack, -1);
 	caseless_haystack = g_utf8_normalize (casefold, -1, G_NORMALIZE_ALL);
 	g_free (casefold);
 
-	needle_len = g_utf8_strlen (needle, -1);
+	casefold = g_utf8_casefold (needle, -1);
+	caseless_needle = g_utf8_normalize (casefold, -1, G_NORMALIZE_ALL);
+	g_free (casefold);
+
+	needle_len = g_utf8_strlen (caseless_needle, -1);
 	haystack_len = g_utf8_strlen (caseless_haystack, -1);
 
 	if (needle_len == 0)
 	{
-		ret = (gchar *)haystack;
+		*start = haystack;
+		*end = haystack + strlen (haystack);
 		goto finally_1;
 	}
 
 	if (haystack_len < needle_len)
 	{
-		ret = NULL;
+		*start = *end = NULL;
 		goto finally_1;
 	}
 
 	p = (gchar*)caseless_haystack;
-	needle_len = strlen (needle);
+	needle_len = strlen (caseless_needle);
 	i = 0;
 
 	while (*p)
 	{
-		if ((strncmp (p, needle, needle_len) == 0))
+		if ((strncmp (p, caseless_needle, needle_len) == 0))
 		{
-			ret = pointer_from_offset_skipping_decomp (haystack, i);
+			pointer_from_offset_skipping_decomp (haystack,
+							     i,
+							     needle_len,
+							     start,
+							     end);
+
 			goto finally_1;
 		}
 
@@ -105,52 +139,63 @@ g_utf8_strcasestr (const gchar *haystack, const gchar *needle)
 
 finally_1:
 	g_free (caseless_haystack);
-
-	return ret;
+	g_free (caseless_needle);
 }
 
-static const gchar *
-g_utf8_strrcasestr (const gchar *haystack, const gchar *needle)
+static const void
+g_utf8_strrcasestr (const gchar *haystack,
+		    const gchar *needle,
+		    const gchar **start,
+		    const gchar **end)
 {
 	gsize needle_len;
 	gsize haystack_len;
-	const gchar *ret = NULL;
 	gchar *p;
 	gchar *casefold;
 	gchar *caseless_haystack;
+	gchar *caseless_needle;
 	gint i;
 
-	g_return_val_if_fail (haystack != NULL, NULL);
-	g_return_val_if_fail (needle != NULL, NULL);
+	g_return_if_fail (haystack != NULL);
+	g_return_if_fail (needle != NULL);
 
 	casefold = g_utf8_casefold (haystack, -1);
 	caseless_haystack = g_utf8_normalize (casefold, -1, G_NORMALIZE_ALL);
 	g_free (casefold);
 
-	needle_len = g_utf8_strlen (needle, -1);
+	casefold = g_utf8_casefold (needle, -1);
+	caseless_needle = g_utf8_normalize (casefold, -1, G_NORMALIZE_ALL);
+	g_free (casefold);
+
+	needle_len = g_utf8_strlen (caseless_needle, -1);
 	haystack_len = g_utf8_strlen (caseless_haystack, -1);
 
 	if (needle_len == 0)
 	{
-		ret = (gchar *)haystack;
+		*start = haystack;
+		*end = haystack + strlen (haystack);
 		goto finally_1;
 	}
 
 	if (haystack_len < needle_len)
 	{
-		ret = NULL;
+		*start = *end = NULL;
 		goto finally_1;
 	}
 
 	i = haystack_len - needle_len;
 	p = g_utf8_offset_to_pointer (caseless_haystack, i);
-	needle_len = strlen (needle);
+	needle_len = strlen (caseless_needle);
 
 	while (p >= caseless_haystack)
 	{
-		if (strncmp (p, needle, needle_len) == 0)
+		if (strncmp (p, caseless_needle, needle_len) == 0)
 		{
-			ret = pointer_from_offset_skipping_decomp (haystack, i);
+			pointer_from_offset_skipping_decomp (haystack,
+							     i,
+							     needle_len,
+							     start,
+							     end);
 			goto finally_1;
 		}
 
@@ -160,8 +205,6 @@ g_utf8_strrcasestr (const gchar *haystack, const gchar *needle)
 
 finally_1:
 	g_free (caseless_haystack);
-
-	return ret;
 }
 
 static gboolean
@@ -233,13 +276,16 @@ forward_chars_with_skipping (GtkTextIter *iter,
 			   offsets coming from canonical decompositions of
 			   UTF8 characters (e.g. accented characters) which 
 			   g_utf8_normalize() performs */
+			gchar *casefold;
 			gchar *normal;
 			gchar buffer[6];
 			gint buffer_len;
 
 			buffer_len = g_unichar_to_utf8 (gtk_text_iter_get_char (iter), buffer);
-			normal = g_utf8_normalize (buffer, buffer_len, G_NORMALIZE_ALL);
+			casefold = g_utf8_casefold (buffer, buffer_len);
+			normal = g_utf8_normalize (casefold, -1, G_NORMALIZE_ALL);
 			i -= (g_utf8_strlen (normal, -1) - 1);
+			g_free (casefold);
 			g_free (normal);
 		}
 
@@ -260,7 +306,8 @@ lines_match (const GtkTextIter *start,
 {
 	GtkTextIter next;
 	gchar *line_text;
-	const gchar *found;
+	const gchar *found_start;
+	const gchar *found_end;
 	gint offset;
 
 	if (*lines == NULL || **lines == '\0')
@@ -296,7 +343,7 @@ lines_match (const GtkTextIter *start,
 
 	if (match_start) /* if this is the first line we're matching */
 	{
-		found = g_utf8_strcasestr (line_text, *lines);
+		g_utf8_strcasestr (line_text, *lines, &found_start, &found_end);
 	}
 	else
 	{
@@ -305,19 +352,30 @@ lines_match (const GtkTextIter *start,
 		 */
 		if (g_utf8_caselessnmatch (line_text, *lines, strlen (line_text),
 					   strlen (*lines)))
-			found = line_text;
+		{
+			found_start = line_text;
+
+			/* FIXME: this is not right! strlen of *lines
+			 * may be different from the length of the matching
+			 *  string in line text.
+			 */
+			found_end = line_text + strlen (*lines);
+		}
 		else
-			found = NULL;
+		{
+			found_start = NULL;
+			found_end = NULL;
+		}
 	}
 
-	if (found == NULL)
+	if (found_start == NULL)
 	{
 		g_free (line_text);
 		return FALSE;
 	}
 
 	/* Get offset to start of search string */
-	offset = g_utf8_strlen (line_text, found - line_text);
+	offset = g_utf8_strlen (line_text, found_start - line_text);
 
 	next = *start;
 
@@ -331,7 +389,8 @@ lines_match (const GtkTextIter *start,
 	}
 
 	/* Go to end of search string */
-	forward_chars_with_skipping (&next, g_utf8_strlen (*lines, -1), visible_only, !slice, TRUE);
+	offset = g_utf8_strlen (found_start, found_end - found_start);
+	forward_chars_with_skipping (&next, offset, visible_only, !slice, TRUE);
 
 	g_free (line_text);
 
@@ -356,7 +415,8 @@ backward_lines_match (const GtkTextIter *start,
 {
 	GtkTextIter line, next;
 	gchar *line_text;
-	const gchar *found;
+	const gchar *found_start;
+	const gchar *found_end;
 	gint offset;
 
 	if (*lines == NULL || **lines == '\0')
@@ -394,7 +454,7 @@ backward_lines_match (const GtkTextIter *start,
 
 	if (match_start) /* if this is the first line we're matching */
 	{
-		found = g_utf8_strrcasestr (line_text, *lines);
+		g_utf8_strrcasestr (line_text, *lines, &found_start, &found_end);
 	}
 	else
 	{
@@ -403,19 +463,31 @@ backward_lines_match (const GtkTextIter *start,
 		 */
 		if (g_utf8_caselessnmatch (line_text, *lines, strlen (line_text),
 					   strlen (*lines)))
-			found = line_text;
+		{
+			found_start = line_text;
+
+			/* FIXME: this is not right! strlen of *lines
+			 * may be different from the length of the matching
+			 *  string in line text.
+			 */
+			found_end = line_text + strlen (*lines);
+		}
 		else
-			found = NULL;
+		{
+			found_start = NULL;
+			found_end = NULL;
+		}
+
 	}
 
-	if (found == NULL)
+	if (found_start == NULL)
 	{
 		g_free (line_text);
 		return FALSE;
 	}
 
 	/* Get offset to start of search string */
-	offset = g_utf8_strlen (line_text, found - line_text);
+	offset = g_utf8_strlen (line_text, found_start - line_text);
 
 	forward_chars_with_skipping (&next, offset, visible_only, !slice, FALSE);
 
@@ -428,7 +500,8 @@ backward_lines_match (const GtkTextIter *start,
 	}
 
 	/* Go to end of search string */
-	forward_chars_with_skipping (&next, g_utf8_strlen (*lines, -1), visible_only, !slice, TRUE);
+	offset = g_utf8_strlen (found_start, found_end - found_start);
+	forward_chars_with_skipping (&next, offset, visible_only, !slice, TRUE);
 
 	g_free (line_text);
 
@@ -451,7 +524,7 @@ strbreakup (const char *string,
 	    gint        max_tokens)
 {
 	GSList *string_list = NULL, *slist;
-	gchar **str_array, *s, *casefold, *new_string;
+	gchar **str_array, *s, *new_string;
 	guint i, n = 1;
 
 	g_return_val_if_fail (string != NULL, NULL);
@@ -473,10 +546,6 @@ strbreakup (const char *string,
 			new_string = g_new (gchar, len + 1);
 			strncpy (new_string, string, len);
 			new_string[len] = 0;
-			casefold = g_utf8_casefold (new_string, -1);
-			g_free (new_string);
-			new_string = g_utf8_normalize (casefold, -1, G_NORMALIZE_ALL);
-			g_free (casefold);
 			string_list = g_slist_prepend (string_list, new_string);
 			n++;
 			string = s + delimiter_len;
@@ -487,10 +556,7 @@ strbreakup (const char *string,
 	if (*string)
 	{
 		n++;
-		casefold = g_utf8_casefold (string, -1);
-		new_string = g_utf8_normalize (casefold, -1, G_NORMALIZE_ALL);
-		g_free (casefold);
-		string_list = g_slist_prepend (string_list, new_string);
+		string_list = g_slist_prepend (string_list, g_strdup (string));
 	}
 
 	str_array = g_new (gchar*, n);
