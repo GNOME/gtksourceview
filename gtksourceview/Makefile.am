@@ -58,3 +58,5 @@ test_widget_SOURCES = test-widget.c
 test_widget_LDADD = \
 	libgtksourceview.la \
 	@DEP_LIBS@
+
+EXTRA_DIST=gtksourceview-marshal.list
