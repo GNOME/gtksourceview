@@ -23,6 +23,7 @@ EXTRA_DIST = 			\
 	po.lang			\
 	python.lang		\
 	ruby.lang		\
+	sh.lang			\
 	sql.lang		\
 	tcl.lang		\
 	texinfo.lang		\
