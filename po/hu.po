@@ -1,16 +1,17 @@
 # Hungarian translation of gtksourceview.
-# Copyright (C) 2003, 2004 Free Software Foundation, Inc.
+# Copyright (C) 2003, 2004, 2005 Free Software Foundation, Inc.
 # This file is distributed under the same license as the gtksourceview package.
 # Andras Timar <timar@gnome.hu>, 2003.
 # Laszlo Dvornik <dvornik@gnome.hu>, 2004.
+# Gabor Kelemen <kelemeng@gnome.hu>, 2005.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-12 00:08+0100\n"
-"PO-Revision-Date: 2004-08-16 13:57+0200\n"
-"Last-Translator: Laszlo Dvornik <dvornik@gnome.hu>\n"
+"POT-Creation-Date: 2005-03-04 06:26+0100\n"
+"PO-Revision-Date: 2005-03-04 13:29+0100\n"
+"Last-Translator: Gabor Kelemen <kelemeng@gnome.hu>\n"
 "Language-Team: Hungarian <gnome@gnome.hu>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -48,21 +49,6 @@ msgstr "Visszavonások maximális száma"
 msgid "Number of undo levels for the buffer"
 msgstr "Visszavonások száma a pufferhez"
 
-# #-#-#-#-#  epiphany.gnome-2-4.hu.po-new.po (Epiphany CVS)  #-#-#-#-#
-# src/prefs.c:416 src/trans.h:280
-# #-#-#-#-#  galeon.HEAD.hu.po-new.po (Galeon 1.2)  #-#-#-#-#
-# #-#-#-#-#  epiphany.HEAD.hu.po-new.po (Epiphany CVS)  #-#-#-#-#
-# src/prefs.c:416 src/trans.h:280
-# #-#-#-#-#  galeon.HEAD.hu.po-new.po (Galeon 1.2)  #-#-#-#-#
-# src/prefs.c:416 src/trans.h:280
-# #-#-#-#-#  gtk+.gtk-2-2.hu.po-new.po (gtk+ 2.2)  #-#-#-#-#
-# #-#-#-#-#  epiphany.HEAD.hu.po-new.po (Epiphany CVS)  #-#-#-#-#
-# src/prefs.c:416 src/trans.h:280
-# #-#-#-#-#  galeon.HEAD.hu.po-new.po (Galeon 1.2)  #-#-#-#-#
-# #-#-#-#-#  epiphany.HEAD.hu.po-new.po (Epiphany CVS)  #-#-#-#-#
-# src/prefs.c:416 src/trans.h:280
-# #-#-#-#-#  galeon.HEAD.hu.po-new.po (Galeon 1.2)  #-#-#-#-#
-# src/prefs.c:416 src/trans.h:280
 #: gtksourceview/gtksourcebuffer.c:317
 #: gtksourceview/language-specs/desktop.lang.h:6
 #: gtksourceview/language-specs/ini.lang.h:7
@@ -99,14 +85,14 @@ msgstr "Forráspuffer"
 msgid "GtkSourceBuffer object to print"
 msgstr "A nyomtatandó GtkSourceBuffer objektum"
 
-#: gtksourceview/gtksourceprintjob.c:279 gtksourceview/gtksourceview.c:223
-#: gtksourceview/gtksourceview.c:224
+#: gtksourceview/gtksourceprintjob.c:279 gtksourceview/gtksourceview.c:222
+#: gtksourceview/gtksourceview.c:223
 msgid "Tabs Width"
 msgstr "Tabulátorok szélessége"
 
 #: gtksourceview/gtksourceprintjob.c:280
 msgid "Width in equivalent space characters of tabs"
-msgstr ""
+msgstr "Tabulátorok szélessége szóközökben kifejezve"
 
 #: gtksourceview/gtksourceprintjob.c:287
 msgid "Wrap Mode"
@@ -120,11 +106,6 @@ msgstr "Sortörési mód"
 msgid "Whether to print the document with highlighted syntax"
 msgstr "Nyelvtani elemek kiemelésével nyomtassa-e a dokumentumot"
 
-# #-#-#-#-#  gnome-terminal.HEAD.hu.po-new.po (gnome-terminal HEAD)  #-#-#-#-#
-# gnome-terminal/gnome-terminal.c:1127
-# #-#-#-#-#  gtk+.gtk-2-2.hu.po-new.po (gtk+ 2.2)  #-#-#-#-#
-# #-#-#-#-#  gnome-terminal.HEAD.hu.po-new.po (gnome-terminal HEAD)  #-#-#-#-#
-# gnome-terminal/gnome-terminal.c:1127
 #: gtksourceview/gtksourceprintjob.c:304
 msgid "Font"
 msgstr "Betűkészlet"
@@ -138,8 +119,9 @@ msgid "Font Description"
 msgstr "Betűkészlet-leírás"
 
 #: gtksourceview/gtksourceprintjob.c:313
-msgid "Font description name to use for the document text"
-msgstr "A dokumentumszöveghez használandó betűkészlet-leírás neve"
+msgid "Font to use for the document text (e.g. \"Monospace 10\")"
+msgstr ""
+"A dokumentumszöveghez használandó betűkészlet ( Például \"Monospace 10\")"
 
 #: gtksourceview/gtksourceprintjob.c:320 gtksourceview/gtksourceprintjob.c:328
 msgid "Numbers Font"
@@ -190,30 +172,26 @@ msgid "Header and Footer Font Description"
 msgstr "Fej- és lábléc betűkészlet-leírás"
 
 #: gtksourceview/gtksourceprintjob.c:369
-msgid "Font description name to use for the header and footer"
-msgstr "A fej- és lábléchez használandó betűkészlet-leírás neve"
-
-#: gtksourceview/gtksourcestylescheme.c:237
-msgid "Base-N Integer"
+msgid "Font to use for headers and footers (e.g. \"Monospace 10\")"
 msgstr ""
+"A fej- és lábléchez használandó betűkészlet ( Például \"Monospace 10\")"
 
-#: gtksourceview/gtksourcestylescheme.c:242
+#: gtksourceview/gtksourcestylescheme.c:262
+msgid "Base-N Integer"
+msgstr "N-alapú egész"
+
+#: gtksourceview/gtksourcestylescheme.c:267
 msgid "Character"
 msgstr "Karakter"
 
-# #-#-#-#-#  gnome-system-tools.HEAD.hu.po-new.po (gnome-system-tools CVS)  #-#-#-#-#
-# interfaces/shares.glade.h:52
-# #-#-#-#-#  gnumeric.HEAD.hu.po-new.po (gnumeric 0.70)  #-#-#-#-#
-# #-#-#-#-#  gnome-system-tools.HEAD.hu.po-new.po (gnome-system-tools CVS)  #-#-#-#-#
-# interfaces/shares.glade.h:52
-#: gtksourceview/gtksourcestylescheme.c:247
+#: gtksourceview/gtksourcestylescheme.c:272
 #: gtksourceview/language-specs/latex.lang.h:1
 #: gtksourceview/language-specs/po.lang.h:1
 msgid "Comment"
 msgstr "Megjegyzés"
 
 #. $this = (datatype)
-#: gtksourceview/gtksourcestylescheme.c:252
+#: gtksourceview/gtksourcestylescheme.c:277
 #: gtksourceview/language-specs/php.lang.h:14
 msgid "Data Type"
 msgstr "Adattípus"
@@ -221,26 +199,27 @@ msgstr "Adattípus"
 #.
 #. CSS functions, such as rgb(), clip(), or lang().
 #.
-#: gtksourceview/gtksourcestylescheme.c:257
+#: gtksourceview/gtksourcestylescheme.c:282
 #: gtksourceview/language-specs/ada.lang.h:3
 #: gtksourceview/language-specs/css.lang.h:17
 msgid "Function"
 msgstr "Függvény"
 
-#: gtksourceview/gtksourcestylescheme.c:262
+#: gtksourceview/gtksourcestylescheme.c:287
 #: gtksourceview/language-specs/c.lang.h:6
 #: gtksourceview/language-specs/cpp.lang.h:6
 #: gtksourceview/language-specs/fortran.lang.h:1
+#: gtksourceview/language-specs/python.lang.h:2
 #: gtksourceview/language-specs/haskell.lang.h:3
 #: gtksourceview/language-specs/nemerle.lang.h:6
 msgid "Decimal"
 msgstr "Decimális"
 
-#: gtksourceview/gtksourcestylescheme.c:267
+#: gtksourceview/gtksourcestylescheme.c:292
 msgid "Floating Point"
 msgstr "Lebegőpontos"
 
-#: gtksourceview/gtksourcestylescheme.c:272
+#: gtksourceview/gtksourcestylescheme.c:297
 #: gtksourceview/language-specs/latex.lang.h:3
 #: gtksourceview/language-specs/po.lang.h:3
 #: gtksourceview/language-specs/texinfo.lang.h:8
@@ -250,11 +229,11 @@ msgstr "Lebegőpontos"
 msgid "Keyword"
 msgstr "Kulcsszó"
 
-#: gtksourceview/gtksourcestylescheme.c:277
+#: gtksourceview/gtksourcestylescheme.c:302
 msgid "Preprocessor"
 msgstr "Előfeldolgozó"
 
-#: gtksourceview/gtksourcestylescheme.c:282
+#: gtksourceview/gtksourcestylescheme.c:307
 #: gtksourceview/language-specs/ada.lang.h:9
 #: gtksourceview/language-specs/c.lang.h:15
 #: gtksourceview/language-specs/cpp.lang.h:15
@@ -262,14 +241,14 @@ msgstr "Előfeldolgozó"
 #: gtksourceview/language-specs/css.lang.h:63
 #: gtksourceview/language-specs/html.lang.h:8
 #: gtksourceview/language-specs/fortran.lang.h:12
-#: gtksourceview/language-specs/idl.lang.h:8
+#: gtksourceview/language-specs/idl.lang.h:9
 #: gtksourceview/language-specs/java.lang.h:11
 #: gtksourceview/language-specs/javascript.lang.h:33
 #: gtksourceview/language-specs/lua.lang.h:10
 #: gtksourceview/language-specs/pascal.lang.h:18
 #: gtksourceview/language-specs/perl.lang.h:8
 #: gtksourceview/language-specs/po.lang.h:6
-#: gtksourceview/language-specs/python.lang.h:10
+#: gtksourceview/language-specs/python.lang.h:14
 #: gtksourceview/language-specs/ruby.lang.h:18
 #: gtksourceview/language-specs/sh.lang.h:13
 #: gtksourceview/language-specs/xml.lang.h:7
@@ -281,13 +260,10 @@ msgstr "Előfeldolgozó"
 msgid "String"
 msgstr "Karakterlánc"
 
-# #-#-#-#-#  nautilus.HEAD.hu.po-new.po (nautilus CVS-HEAD)  #-#-#-#-#
-# data/browser.xml.h:75
-#: gtksourceview/gtksourcestylescheme.c:287
+#: gtksourceview/gtksourcestylescheme.c:312
 msgid "Specials"
 msgstr "Speciális"
 
-# src/file-manager/fm-properties-window.c:1939
 #.
 #. Proposed language specification for CSS (Cascading Style Sheet) files.
 #.
@@ -300,7 +276,7 @@ msgstr "Speciális"
 #. Submitted by Scott Martin (scott@coffeeblack.org)
 #.
 #. FIXME: find the correct mimetype
-#: gtksourceview/gtksourcestylescheme.c:294
+#: gtksourceview/gtksourcestylescheme.c:319
 #: gtksourceview/language-specs/css.lang.h:46
 #: gtksourceview/language-specs/desktop.lang.h:10
 #: gtksourceview/language-specs/diff.lang.h:7
@@ -311,32 +287,18 @@ msgstr "Speciális"
 msgid "Others"
 msgstr "Egyéb"
 
-# src/file-manager/fm-properties-window.c:1939
-#: gtksourceview/gtksourcestylescheme.c:299
+#: gtksourceview/gtksourcestylescheme.c:324
 msgid "Others 2"
 msgstr "Egyéb 2"
 
-# src/file-manager/fm-properties-window.c:1939
-#: gtksourceview/gtksourcestylescheme.c:304
+#: gtksourceview/gtksourcestylescheme.c:329
 msgid "Others 3"
 msgstr "Egyéb 3"
 
-# #-#-#-#-#  gnome-system-tools.HEAD.hu.po-new.po (gnome-system-tools CVS)  #-#-#-#-#
-# interfaces/users.glade.h:63
-# #-#-#-#-#  gnumeric.HEAD.hu.po-new.po (gnumeric 0.70)  #-#-#-#-#
-# #-#-#-#-#  gnome-system-tools.HEAD.hu.po-new.po (gnome-system-tools CVS)  #-#-#-#-#
-# interfaces/users.glade.h:63
-# #-#-#-#-#  gtk+.gtk-2-2.hu.po-new.po (gtk+ 2.2)  #-#-#-#-#
-# #-#-#-#-#  gnome-system-tools.HEAD.hu.po-new.po (gnome-system-tools CVS)  #-#-#-#-#
-# interfaces/users.glade.h:63
-# #-#-#-#-#  gnumeric.HEAD.hu.po-new.po (gnumeric 0.70)  #-#-#-#-#
-# #-#-#-#-#  gnome-system-tools.HEAD.hu.po-new.po (gnome-system-tools CVS)  #-#-#-#-#
-# interfaces/users.glade.h:63
-#: gtksourceview/gtksourcestylescheme.c:341
+#: gtksourceview/gtksourcestylescheme.c:366
 msgid "Default"
 msgstr "Alapértelmezett"
 
-# sysdeps/names/swap.c:42
 #: gtksourceview/gtksourcetag.c:108
 msgid "Tag ID"
 msgstr "Tag azonosító"
@@ -353,72 +315,71 @@ msgstr "Tag stílusa"
 msgid "The style associated to the source tag"
 msgstr "A forrás tag-hez rendelt stílus"
 
-#: gtksourceview/gtksourceview.c:207
+#: gtksourceview/gtksourceview.c:206
 msgid "Show Line Numbers"
 msgstr "Sorszámozás megjelenítése"
 
-#: gtksourceview/gtksourceview.c:208
+#: gtksourceview/gtksourceview.c:207
 msgid "Whether to display line numbers"
 msgstr "Megjelenítse-e a sorok számát"
 
-#: gtksourceview/gtksourceview.c:215
+#: gtksourceview/gtksourceview.c:214
 msgid "Show Line Markers"
 msgstr "Sorjelek megjelenítése"
 
-#: gtksourceview/gtksourceview.c:216
+#: gtksourceview/gtksourceview.c:215
 msgid "Whether to display line marker pixbufs"
 msgstr "Megjelenjenek-e a sorjelző pixbuf-ok"
 
-#: gtksourceview/gtksourceview.c:233
+#: gtksourceview/gtksourceview.c:232
 msgid "Auto Indentation"
 msgstr "Automatikus behúzás"
 
-#: gtksourceview/gtksourceview.c:234
+#: gtksourceview/gtksourceview.c:233
 msgid "Whether to enable auto indentation"
 msgstr "Engedélyezve legyen-e az automatikus behúzás"
 
-#: gtksourceview/gtksourceview.c:240
+#: gtksourceview/gtksourceview.c:239
 msgid "Insert Spaces Instead of Tabs"
 msgstr "Szóközök beillesztése tabulátorok helyett"
 
-#: gtksourceview/gtksourceview.c:241
+#: gtksourceview/gtksourceview.c:240
 msgid "Whether to insert spaces instead of tabs"
 msgstr "Tabulátorok helyett szóközöket illesszen-e be"
 
-#: gtksourceview/gtksourceview.c:248
+#: gtksourceview/gtksourceview.c:247
 msgid "Show Right Margin"
 msgstr "Jobb oldali margó megjelenítése"
 
-#: gtksourceview/gtksourceview.c:249
+#: gtksourceview/gtksourceview.c:248
 msgid "Whether to display the right margin"
 msgstr "Megjelenítse-e a jobb oldali margót"
 
-#: gtksourceview/gtksourceview.c:256
+#: gtksourceview/gtksourceview.c:255
 msgid "Margin position"
 msgstr "Margó pozíciója"
 
-#: gtksourceview/gtksourceview.c:257
+#: gtksourceview/gtksourceview.c:256
 msgid "Position of the right margin"
 msgstr "Jobb oldali margó pozíciója"
 
-#: gtksourceview/gtksourceview.c:266
+#: gtksourceview/gtksourceview.c:265
 msgid "Use smart home/end"
 msgstr "Okos home/end használata"
 
-#: gtksourceview/gtksourceview.c:267
+#: gtksourceview/gtksourceview.c:266
 msgid ""
 "HOME and END keys move to first/last characters on line first before going "
 "to the start/end of the line"
 msgstr ""
 
-#: gtksourceview/gtksourceview.c:276
+#: gtksourceview/gtksourceview.c:275
 msgid "Highlight current line"
 msgstr ""
 
-#: gtksourceview/gtksourceview.c:277
-#, fuzzy
+#: gtksourceview/gtksourceview.c:276
 msgid "Whether to highlight the current line"
-msgstr "Kiemelje-e a nyelvtani elemeket a szerkesztőablakban"
+msgstr "Kiemelje-e a jelenlegi sort?"
 
 #: gtksourceview/language-specs/ada.lang.h:1
 msgid "Ada"
@@ -442,7 +403,7 @@ msgstr "Karakterállandó"
 #: gtksourceview/language-specs/javascript.lang.h:11
 #: gtksourceview/language-specs/lua.lang.h:3
 #: gtksourceview/language-specs/perl.lang.h:2
-#: gtksourceview/language-specs/python.lang.h:3
+#: gtksourceview/language-specs/python.lang.h:6
 #: gtksourceview/language-specs/ruby.lang.h:8
 #: gtksourceview/language-specs/verilog.lang.h:6
 #: gtksourceview/language-specs/haskell.lang.h:9
@@ -459,13 +420,14 @@ msgstr "Kulcsszavak"
 #: gtksourceview/language-specs/desktop.lang.h:7
 #: gtksourceview/language-specs/diff.lang.h:5
 #: gtksourceview/language-specs/fortran.lang.h:8
+#: gtksourceview/language-specs/idl.lang.h:5
 #: gtksourceview/language-specs/ini.lang.h:8
 #: gtksourceview/language-specs/java.lang.h:5
 #: gtksourceview/language-specs/javascript.lang.h:12
 #: gtksourceview/language-specs/lua.lang.h:4
 #: gtksourceview/language-specs/pascal.lang.h:11
 #: gtksourceview/language-specs/perl.lang.h:3
-#: gtksourceview/language-specs/python.lang.h:4
+#: gtksourceview/language-specs/python.lang.h:7
 #: gtksourceview/language-specs/ruby.lang.h:9
 #: gtksourceview/language-specs/sh.lang.h:5
 #: gtksourceview/language-specs/sql.lang.h:11
@@ -504,7 +466,7 @@ msgstr "Előfeldolgozó kulcsszavai"
 #: gtksourceview/language-specs/cpp.lang.h:14
 #: gtksourceview/language-specs/csharp.lang.h:7
 #: gtksourceview/language-specs/fortran.lang.h:11
-#: gtksourceview/language-specs/idl.lang.h:7
+#: gtksourceview/language-specs/idl.lang.h:8
 #: gtksourceview/language-specs/java.lang.h:10
 #: gtksourceview/language-specs/pascal.lang.h:17
 #: gtksourceview/language-specs/php.lang.h:23
@@ -521,49 +483,15 @@ msgstr "Források"
 msgid "True And False"
 msgstr "Igaz és hamis"
 
-# #-#-#-#-#  gnome-system-tools.HEAD.hu.po-new.po (gnome-system-tools CVS)  #-#-#-#-#
-# interfaces/disks.glade.h:8 interfaces/shares.glade.h:8
-# #-#-#-#-#  gnumeric.HEAD.hu.po-new.po (gnumeric 0.70)  #-#-#-#-#
-# #-#-#-#-#  gnome-system-tools.HEAD.hu.po-new.po (gnome-system-tools CVS)  #-#-#-#-#
-# interfaces/disks.glade.h:8 interfaces/shares.glade.h:8
-# #-#-#-#-#  nautilus.HEAD.hu.po-new.po (nautilus CVS-HEAD)  #-#-#-#-#
-# src/file-manager/fm-list-view.c:1982
-# src/file-manager/fm-search-list-view.c:567
-# #-#-#-#-#  seahorse.HEAD.hu.po-new.po (Seahorse 0.7)  #-#-#-#-#
-# FIXME
-# #-#-#-#-#  nautilus.HEAD.hu.po-new.po (nautilus CVS-HEAD)  #-#-#-#-#
-# src/file-manager/fm-list-view.c:1982
-# src/file-manager/fm-search-list-view.c:567
-# #-#-#-#-#  seahorse.HEAD.hu.po-new.po (seahorse CVS)  #-#-#-#-#
-# #-#-#-#-#  gnome-system-tools.HEAD.hu.po-new.po (gnome-system-tools CVS)  #-#-#-#-#
-# interfaces/disks.glade.h:8 interfaces/shares.glade.h:8
-# #-#-#-#-#  gnumeric.HEAD.hu.po-new.po (gnumeric 0.70)  #-#-#-#-#
-# #-#-#-#-#  gnome-system-tools.HEAD.hu.po-new.po (gnome-system-tools CVS)  #-#-#-#-#
-# interfaces/disks.glade.h:8 interfaces/shares.glade.h:8
-# #-#-#-#-#  nautilus.HEAD.hu.po-new.po (nautilus CVS-HEAD)  #-#-#-#-#
-# src/file-manager/fm-list-view.c:1982
-# src/file-manager/fm-search-list-view.c:567
-# #-#-#-#-#  seahorse.HEAD.hu.po-new.po (Seahorse 0.7)  #-#-#-#-#
-# FIXME
-# #-#-#-#-#  nautilus.HEAD.hu.po-new.po (nautilus CVS-HEAD)  #-#-#-#-#
-# src/file-manager/fm-list-view.c:1982
-# src/file-manager/fm-search-list-view.c:567
-# #-#-#-#-#  seahorse.HEAD.hu.po-new.po (Seahorse 0.7)  #-#-#-#-#
-# FIXME
 #: gtksourceview/language-specs/ada.lang.h:11
 #: gtksourceview/language-specs/c.lang.h:16
 #: gtksourceview/language-specs/cpp.lang.h:16
 #: gtksourceview/language-specs/fortran.lang.h:14
-#: gtksourceview/language-specs/idl.lang.h:9
+#: gtksourceview/language-specs/idl.lang.h:10
 #: gtksourceview/language-specs/verilog.lang.h:10
 msgid "Types"
 msgstr "Típusok"
 
-# #-#-#-#-#  gnome-system-tools.HEAD.hu.po-new.po (gnome-system-tools CVS)  #-#-#-#-#
-# interfaces/shares.glade.h:52
-# #-#-#-#-#  gnumeric.HEAD.hu.po-new.po (gnumeric 0.70)  #-#-#-#-#
-# #-#-#-#-#  gnome-system-tools.HEAD.hu.po-new.po (gnome-system-tools CVS)  #-#-#-#-#
-# interfaces/shares.glade.h:52
 #: gtksourceview/language-specs/c.lang.h:1
 #: gtksourceview/language-specs/cpp.lang.h:1
 msgid "'#if 0' Comment"
@@ -599,6 +527,7 @@ msgstr "Közös makró"
 #: gtksourceview/language-specs/c.lang.h:7
 #: gtksourceview/language-specs/cpp.lang.h:7
 #: gtksourceview/language-specs/fortran.lang.h:2
+#: gtksourceview/language-specs/python.lang.h:3
 #: gtksourceview/language-specs/haskell.lang.h:4
 #: gtksourceview/language-specs/nemerle.lang.h:7
 #: gtksourceview/language-specs/R.lang.h:4
@@ -610,6 +539,7 @@ msgstr "Lebegőpontos szám"
 #: gtksourceview/language-specs/cpp.lang.h:8
 #: gtksourceview/language-specs/fortran.lang.h:4
 #: gtksourceview/language-specs/pascal.lang.h:10
+#: gtksourceview/language-specs/python.lang.h:5
 #: gtksourceview/language-specs/haskell.lang.h:6
 #: gtksourceview/language-specs/nemerle.lang.h:8
 msgid "Hex Number"
@@ -625,6 +555,7 @@ msgstr "Include/Pragma"
 #: gtksourceview/language-specs/c.lang.h:12
 #: gtksourceview/language-specs/cpp.lang.h:12
 #: gtksourceview/language-specs/fortran.lang.h:9
+#: gtksourceview/language-specs/python.lang.h:11
 #: gtksourceview/language-specs/verilog.lang.h:8
 #: gtksourceview/language-specs/haskell.lang.h:11
 #: gtksourceview/language-specs/nemerle.lang.h:12
@@ -634,7 +565,7 @@ msgstr "Oktális szám"
 #: gtksourceview/language-specs/c.lang.h:13
 #: gtksourceview/language-specs/cpp.lang.h:13
 #: gtksourceview/language-specs/csharp.lang.h:5
-#: gtksourceview/language-specs/idl.lang.h:5
+#: gtksourceview/language-specs/idl.lang.h:6
 #: gtksourceview/language-specs/haskell.lang.h:13
 #: gtksourceview/language-specs/vbnet.lang.h:4
 msgid "Preprocessor Definitions"
@@ -661,7 +592,7 @@ msgstr "Primitívek"
 #: gtksourceview/language-specs/java.lang.h:12
 #: gtksourceview/language-specs/javascript.lang.h:34
 #: gtksourceview/language-specs/lua.lang.h:11
-#: gtksourceview/language-specs/python.lang.h:11
+#: gtksourceview/language-specs/python.lang.h:15
 #: gtksourceview/language-specs/ruby.lang.h:19
 #: gtksourceview/language-specs/sh.lang.h:14
 #: gtksourceview/language-specs/vbnet.lang.h:8
@@ -764,9 +695,6 @@ msgstr ""
 msgid "Unicode Range"
 msgstr "Unicode tartomány"
 
-# #-#-#-#-#  nautilus.HEAD.hu.po-new.po (nautilus CVS-HEAD)  #-#-#-#-#
-# data/linksets/desktop.xml.h:1
-# libnautilus-private/nautilus-global-preferences.c:548
 #: gtksourceview/language-specs/desktop.lang.h:1
 msgid ".desktop"
 msgstr ".desktop"
@@ -785,11 +713,6 @@ msgstr "Kódolás"
 msgid "Exec Parameter"
 msgstr "Exec paramétere"
 
-# #-#-#-#-#  gnome-system-tools.HEAD.hu.po-new.po (gnome-system-tools CVS)  #-#-#-#-#
-# interfaces/users.glade.h:47
-# #-#-#-#-#  gtk+.gtk-2-2.hu.po-new.po (gtk+ 2.2)  #-#-#-#-#
-# #-#-#-#-#  gnome-system-tools.HEAD.hu.po-new.po (gnome-system-tools CVS)  #-#-#-#-#
-# interfaces/users.glade.h:47
 #: gtksourceview/language-specs/desktop.lang.h:5
 #: gtksourceview/language-specs/ini.lang.h:5
 msgid "Group"
@@ -804,7 +727,6 @@ msgstr "Nem szabványos kulcs"
 msgid "Standard Key"
 msgstr "Szabványos kulcs"
 
-# src/trans.h:187 src/trans.h:319
 #: gtksourceview/language-specs/diff.lang.h:1
 msgid "Added line"
 msgstr "Hozzáadott sor"
@@ -817,18 +739,10 @@ msgstr "Megváltozott sor"
 msgid "Diff"
 msgstr "Diff"
 
-# libnautilus-private/nautilus-file.c:3398
 #: gtksourceview/language-specs/diff.lang.h:4
 msgid "Diff file"
 msgstr "Diff-fájl"
 
-# #-#-#-#-#  galeon.HEAD.hu.po-new.po (Galeon 1.2)  #-#-#-#-#
-# src/trans.h:47 src/trans.h:50
-# #-#-#-#-#  red-carpet.HEAD.hu.po-new.po (Ximian Red Carpet 1.3)  #-#-#-#-#
-# #-#-#-#-#  galeon.HEAD.hu.po-new.po (Galeon 1.2)  #-#-#-#-#
-# src/trans.h:47 src/trans.h:50
-# #-#-#-#-#  gnome-system-tools.HEAD.hu.po-new.po (gnome-system-tools CVS)  #-#-#-#-#
-# interfaces/shares.glade.h:31
 #: gtksourceview/language-specs/diff.lang.h:6
 #: gtksourceview/language-specs/po.lang.h:4
 msgid "Location"
@@ -838,7 +752,6 @@ msgstr "Hely"
 msgid "Removed line"
 msgstr "Eltávolított sor"
 
-# src/file-manager/fm-properties-window.c:1860
 #: gtksourceview/language-specs/diff.lang.h:9
 msgid "Special case"
 msgstr "Speciális eset"
@@ -897,7 +810,7 @@ msgstr "Olvasás/írás"
 msgid "IDL"
 msgstr "IDL"
 
-#: gtksourceview/language-specs/idl.lang.h:6
+#: gtksourceview/language-specs/idl.lang.h:7
 msgid "Sectional"
 msgstr ""
 
@@ -913,19 +826,16 @@ msgstr "Decimális szám"
 #: gtksourceview/language-specs/ini.lang.h:4
 #: gtksourceview/language-specs/R.lang.h:3
 #: gtksourceview/language-specs/gtkrc.lang.h:2
-#, fuzzy
 msgid "Double Quote String"
 msgstr "Duplán idézett karakterlánc"
 
 #: gtksourceview/language-specs/ini.lang.h:6
-#, fuzzy
 msgid "Integer"
-msgstr "Egész szám literálok"
+msgstr "Egész"
 
 #: gtksourceview/language-specs/ini.lang.h:11
 #: gtksourceview/language-specs/R.lang.h:11
 #: gtksourceview/language-specs/gtkrc.lang.h:10
-#, fuzzy
 msgid "Single Quote String"
 msgstr "Egyszer idézett karakterlánc"
 
@@ -952,11 +862,6 @@ msgstr "Java"
 msgid "Memory"
 msgstr "Memória"
 
-# #-#-#-#-#  galeon.HEAD.hu.po-new.po (Galeon 1.2)  #-#-#-#-#
-# #-#-#-#-#  nautilus.HEAD.hu.po-new.po (nautilus CVS-HEAD)  #-#-#-#-#
-# src/file-manager/fm-properties-window.c:1512
-# #-#-#-#-#  nautilus.HEAD.hu.po-new.po (nautilus CVS-HEAD)  #-#-#-#-#
-# src/file-manager/fm-properties-window.c:1512
 #: gtksourceview/language-specs/java.lang.h:7
 msgid "Modifiers"
 msgstr "Módosítók"
@@ -988,7 +893,7 @@ msgstr ""
 
 #: gtksourceview/language-specs/javascript.lang.h:7
 msgid "Future Reserved Words"
-msgstr ""
+msgstr "Jővőbeni védett szavak"
 
 #: gtksourceview/language-specs/javascript.lang.h:8
 msgid "Global Functions"
@@ -1023,7 +928,6 @@ msgstr "Objektumtulajdonságok"
 msgid "Objects"
 msgstr "Objektumok"
 
-# data/browser.xml.h:68
 #.
 #. Proposed language specification for JavaScript files.
 #.
@@ -1038,7 +942,7 @@ msgstr "Objektumok"
 #: gtksourceview/language-specs/javascript.lang.h:32
 #: gtksourceview/language-specs/lua.lang.h:9
 #: gtksourceview/language-specs/perl.lang.h:7
-#: gtksourceview/language-specs/python.lang.h:9
+#: gtksourceview/language-specs/python.lang.h:13
 #: gtksourceview/language-specs/ruby.lang.h:17
 #: gtksourceview/language-specs/sh.lang.h:11
 #: gtksourceview/language-specs/tcl.lang.h:3
@@ -1063,9 +967,6 @@ msgstr "Beleértve"
 msgid "LaTeX"
 msgstr "LaTeX"
 
-# #-#-#-#-#  galeon.HEAD.hu.po-new.po (Galeon 1.2)  #-#-#-#-#
-# #-#-#-#-#  gnome-system-tools.HEAD.hu.po-new.po (gnome-system-tools CVS)  #-#-#-#-#
-# interfaces/shares.glade.h:47
 #: gtksourceview/language-specs/latex.lang.h:6
 msgid "Math"
 msgstr "Matematika"
@@ -1075,7 +976,7 @@ msgid "Most Used Commands"
 msgstr "Leggyakrabban használt parancsok"
 
 #: gtksourceview/language-specs/lua.lang.h:2
-#: gtksourceview/language-specs/python.lang.h:2
+#: gtksourceview/language-specs/python.lang.h:4
 #: gtksourceview/language-specs/sh.lang.h:4
 msgid "Functions"
 msgstr "Függvények"
@@ -1089,13 +990,13 @@ msgid "Lua"
 msgstr "Lua"
 
 #: gtksourceview/language-specs/lua.lang.h:7
-#: gtksourceview/language-specs/python.lang.h:6
+#: gtksourceview/language-specs/python.lang.h:9
 #: gtksourceview/language-specs/sh.lang.h:6
 msgid "Multiline String"
 msgstr "Többsoros karakterlánc"
 
 #: gtksourceview/language-specs/lua.lang.h:8
-#: gtksourceview/language-specs/python.lang.h:7
+#: gtksourceview/language-specs/python.lang.h:10
 #: gtksourceview/language-specs/sh.lang.h:7
 msgid "Multiline String 2"
 msgstr "Többsoros karakterlánc 2"
@@ -1146,12 +1047,11 @@ msgstr "Pascal"
 
 #: gtksourceview/language-specs/pascal.lang.h:16
 msgid "Preprocessor Defines"
-msgstr ""
+msgstr "Előfeldolgozó de"
 
 #: gtksourceview/language-specs/pascal.lang.h:19
-#, fuzzy
 msgid "Type, Class and Object Keywords"
-msgstr "Típusosztályok és objektum kulcsszavak"
+msgstr "Típus, Osztály és Objektum kulcsszavak"
 
 #: gtksourceview/language-specs/perl.lang.h:1
 msgid "Function Call"
@@ -1163,7 +1063,7 @@ msgstr "Metódus hívás"
 
 #: gtksourceview/language-specs/perl.lang.h:5
 msgid "POD"
-msgstr ""
+msgstr "POD"
 
 #: gtksourceview/language-specs/perl.lang.h:6
 msgid "Perl"
@@ -1246,13 +1146,13 @@ msgstr "gettext fordítás"
 #: gtksourceview/language-specs/python.lang.h:1
 #: gtksourceview/language-specs/ruby.lang.h:2
 msgid "Builtins"
-msgstr ""
+msgstr "Beépítettek"
 
-#: gtksourceview/language-specs/python.lang.h:5
+#: gtksourceview/language-specs/python.lang.h:8
 msgid "Module Handler"
 msgstr "Modulkezelő"
 
-#: gtksourceview/language-specs/python.lang.h:8
+#: gtksourceview/language-specs/python.lang.h:12
 msgid "Python"
 msgstr "Python"
 
@@ -1278,7 +1178,7 @@ msgstr "Globális változók"
 
 #: gtksourceview/language-specs/ruby.lang.h:7
 msgid "Instance Variables"
-msgstr ""
+msgstr "Példányváltozók"
 
 #: gtksourceview/language-specs/ruby.lang.h:10
 msgid "Module Handlers"
@@ -1309,38 +1209,32 @@ msgid "Ruby"
 msgstr "Ruby"
 
 #: gtksourceview/language-specs/sh.lang.h:2
-#, fuzzy
 msgid "Built-in Commands"
-msgstr "Beépített függvények"
+msgstr "Beépített parancsok"
 
 #: gtksourceview/language-specs/sh.lang.h:3
-#, fuzzy
 msgid "Common Commands"
-msgstr "Leggyakrabban használt parancsok"
+msgstr "Általános parancsok"
 
 #: gtksourceview/language-specs/sh.lang.h:10
-#, fuzzy
 msgid "Redirections"
-msgstr "Definíciók"
+msgstr "Átirányítások"
 
-# interfaces/users.glade.h:15
 #: gtksourceview/language-specs/sh.lang.h:12
 msgid "Self"
 msgstr "Self"
 
 #: gtksourceview/language-specs/sh.lang.h:15
-#, fuzzy
 msgid "Variable1"
-msgstr "Változó"
+msgstr "Változó1"
 
 #: gtksourceview/language-specs/sh.lang.h:16
-#, fuzzy
 msgid "Variable2"
-msgstr "Változó"
+msgstr "Változó2"
 
 #: gtksourceview/language-specs/sh.lang.h:17
 msgid "sh"
-msgstr ""
+msgstr "sh"
 
 #: gtksourceview/language-specs/sql.lang.h:1
 msgid "ANSI Datatypes"
@@ -1372,7 +1266,7 @@ msgstr "Konverziós függvények"
 
 #: gtksourceview/language-specs/sql.lang.h:9
 msgid "Datetime Functions"
-msgstr ""
+msgstr "Dátum és idő függvények"
 
 #: gtksourceview/language-specs/sql.lang.h:10
 msgid "Integer Literals"
@@ -1412,7 +1306,7 @@ msgstr "SQL"
 
 #: gtksourceview/language-specs/sql.lang.h:20
 msgid "SQL*Plus At Sign"
-msgstr ""
+msgstr "SQL*Plus @ jel"
 
 #: gtksourceview/language-specs/sql.lang.h:21
 msgid "SQL*Plus Commands"
@@ -1420,11 +1314,11 @@ msgstr "SQL*Plus parancsok"
 
 #: gtksourceview/language-specs/sql.lang.h:22
 msgid "SQL*Plus Double At Sign"
-msgstr ""
+msgstr "SQL*Plus dupla @-jel"
 
 #: gtksourceview/language-specs/sql.lang.h:23
 msgid "SQL*Plus Slash"
-msgstr ""
+msgstr "SQL*Plus perjel"
 
 #: gtksourceview/language-specs/sql.lang.h:24
 msgid "SQL/DS and DB2 Datatypes"
@@ -1432,7 +1326,7 @@ msgstr "SQL/DS és DB2 adattípusok"
 
 #: gtksourceview/language-specs/sql.lang.h:25
 msgid "Size Clause"
-msgstr ""
+msgstr "Méretmegszorítás"
 
 #: gtksourceview/language-specs/sql.lang.h:27
 msgid "Text Literals"
@@ -1449,7 +1343,7 @@ msgstr "Bináris szám"
 
 #: gtksourceview/language-specs/verilog.lang.h:4
 msgid "Gates"
-msgstr ""
+msgstr "Kapuk"
 
 #: gtksourceview/language-specs/verilog.lang.h:11
 msgid "Verilog"
@@ -1473,11 +1367,11 @@ msgstr "Haskell"
 
 #: gtksourceview/language-specs/haskell.lang.h:8
 msgid "Keysymbols"
-msgstr ""
+msgstr "Kulcsszimbólumok"
 
 #: gtksourceview/language-specs/haskell.lang.h:16
 msgid "Type or Constructor"
-msgstr ""
+msgstr "Típus vagy konstruktor"
 
 #: gtksourceview/language-specs/texinfo.lang.h:2
 msgid "Characters"
@@ -1513,11 +1407,11 @@ msgstr "Jelölés (blokk)"
 
 #: gtksourceview/language-specs/texinfo.lang.h:14
 msgid "Markup (inline)"
-msgstr ""
+msgstr "Jelölés (beágyazott)"
 
 #: gtksourceview/language-specs/texinfo.lang.h:15
 msgid "Sectioning"
-msgstr ""
+msgstr "Szakaszok"
 
 #: gtksourceview/language-specs/texinfo.lang.h:16
 msgid "Texinfo"
@@ -1532,147 +1426,69 @@ msgid "VB.NET"
 msgstr "VB.NET"
 
 #: gtksourceview/language-specs/nemerle.lang.h:4
-#, fuzzy
 msgid "Core Keywords"
-msgstr "Kulcsszavak"
+msgstr "Mag-kulcsszavak"
 
-# #-#-#-#-#  gnome-system-tools.HEAD.hu.po-new.po (gnome-system-tools CVS)  #-#-#-#-#
-# interfaces/disks.glade.h:8 interfaces/shares.glade.h:8
-# #-#-#-#-#  gnumeric.HEAD.hu.po-new.po (gnumeric 0.70)  #-#-#-#-#
-# #-#-#-#-#  gnome-system-tools.HEAD.hu.po-new.po (gnome-system-tools CVS)  #-#-#-#-#
-# interfaces/disks.glade.h:8 interfaces/shares.glade.h:8
-# #-#-#-#-#  nautilus.HEAD.hu.po-new.po (nautilus CVS-HEAD)  #-#-#-#-#
-# src/file-manager/fm-list-view.c:1982
-# src/file-manager/fm-search-list-view.c:567
-# #-#-#-#-#  seahorse.HEAD.hu.po-new.po (Seahorse 0.7)  #-#-#-#-#
-# FIXME
-# #-#-#-#-#  nautilus.HEAD.hu.po-new.po (nautilus CVS-HEAD)  #-#-#-#-#
-# src/file-manager/fm-list-view.c:1982
-# src/file-manager/fm-search-list-view.c:567
-# #-#-#-#-#  seahorse.HEAD.hu.po-new.po (seahorse CVS)  #-#-#-#-#
-# #-#-#-#-#  gnome-system-tools.HEAD.hu.po-new.po (gnome-system-tools CVS)  #-#-#-#-#
-# interfaces/disks.glade.h:8 interfaces/shares.glade.h:8
-# #-#-#-#-#  gnumeric.HEAD.hu.po-new.po (gnumeric 0.70)  #-#-#-#-#
-# #-#-#-#-#  gnome-system-tools.HEAD.hu.po-new.po (gnome-system-tools CVS)  #-#-#-#-#
-# interfaces/disks.glade.h:8 interfaces/shares.glade.h:8
-# #-#-#-#-#  nautilus.HEAD.hu.po-new.po (nautilus CVS-HEAD)  #-#-#-#-#
-# src/file-manager/fm-list-view.c:1982
-# src/file-manager/fm-search-list-view.c:567
-# #-#-#-#-#  seahorse.HEAD.hu.po-new.po (Seahorse 0.7)  #-#-#-#-#
-# FIXME
-# #-#-#-#-#  nautilus.HEAD.hu.po-new.po (nautilus CVS-HEAD)  #-#-#-#-#
-# src/file-manager/fm-list-view.c:1982
-# src/file-manager/fm-search-list-view.c:567
-# #-#-#-#-#  seahorse.HEAD.hu.po-new.po (Seahorse 0.7)  #-#-#-#-#
-# FIXME
 #: gtksourceview/language-specs/nemerle.lang.h:5
-#, fuzzy
 msgid "Core Types"
-msgstr "Típusok"
+msgstr "Mag-típusok"
 
 #: gtksourceview/language-specs/nemerle.lang.h:9
 msgid "Keywords Defined by Macros"
-msgstr ""
+msgstr "Makrók által definiált kulcsszavak"
 
 #: gtksourceview/language-specs/nemerle.lang.h:11
-#, fuzzy
 msgid "Nemerle"
-msgstr "Szám"
+msgstr "Nemerle"
 
 #: gtksourceview/language-specs/tcl.lang.h:6
 msgid "Tcl"
-msgstr ""
+msgstr "Tcl"
 
 #: gtksourceview/language-specs/vhdl.lang.h:7
-#, fuzzy
 msgid "True and False"
 msgstr "Igaz és hamis"
 
-# #-#-#-#-#  gnome-system-tools.HEAD.hu.po-new.po (gnome-system-tools CVS)  #-#-#-#-#
-# interfaces/disks.glade.h:8 interfaces/shares.glade.h:8
-# #-#-#-#-#  gnumeric.HEAD.hu.po-new.po (gnumeric 0.70)  #-#-#-#-#
-# #-#-#-#-#  gnome-system-tools.HEAD.hu.po-new.po (gnome-system-tools CVS)  #-#-#-#-#
-# interfaces/disks.glade.h:8 interfaces/shares.glade.h:8
-# #-#-#-#-#  nautilus.HEAD.hu.po-new.po (nautilus CVS-HEAD)  #-#-#-#-#
-# src/file-manager/fm-list-view.c:1982
-# src/file-manager/fm-search-list-view.c:567
-# #-#-#-#-#  seahorse.HEAD.hu.po-new.po (Seahorse 0.7)  #-#-#-#-#
-# FIXME
-# #-#-#-#-#  nautilus.HEAD.hu.po-new.po (nautilus CVS-HEAD)  #-#-#-#-#
-# src/file-manager/fm-list-view.c:1982
-# src/file-manager/fm-search-list-view.c:567
-# #-#-#-#-#  seahorse.HEAD.hu.po-new.po (seahorse CVS)  #-#-#-#-#
-# #-#-#-#-#  gnome-system-tools.HEAD.hu.po-new.po (gnome-system-tools CVS)  #-#-#-#-#
-# interfaces/disks.glade.h:8 interfaces/shares.glade.h:8
-# #-#-#-#-#  gnumeric.HEAD.hu.po-new.po (gnumeric 0.70)  #-#-#-#-#
-# #-#-#-#-#  gnome-system-tools.HEAD.hu.po-new.po (gnome-system-tools CVS)  #-#-#-#-#
-# interfaces/disks.glade.h:8 interfaces/shares.glade.h:8
-# #-#-#-#-#  nautilus.HEAD.hu.po-new.po (nautilus CVS-HEAD)  #-#-#-#-#
-# src/file-manager/fm-list-view.c:1982
-# src/file-manager/fm-search-list-view.c:567
-# #-#-#-#-#  seahorse.HEAD.hu.po-new.po (Seahorse 0.7)  #-#-#-#-#
-# FIXME
-# #-#-#-#-#  nautilus.HEAD.hu.po-new.po (nautilus CVS-HEAD)  #-#-#-#-#
-# src/file-manager/fm-list-view.c:1982
-# src/file-manager/fm-search-list-view.c:567
-# #-#-#-#-#  seahorse.HEAD.hu.po-new.po (Seahorse 0.7)  #-#-#-#-#
-# FIXME
 #: gtksourceview/language-specs/vhdl.lang.h:8
-#, fuzzy
 msgid "Type"
-msgstr "Típusok"
+msgstr "Típus"
 
 #: gtksourceview/language-specs/vhdl.lang.h:9
 msgid "VHDL"
-msgstr ""
+msgstr "VHDL"
 
 #: gtksourceview/language-specs/R.lang.h:1
-#, fuzzy
-msgid "Assign operator"
-msgstr "Tömboperátorok"
+msgid "Assignment Operator"
+msgstr "Hozzárendelő operátorok"
 
 #: gtksourceview/language-specs/R.lang.h:2
-#, fuzzy
 msgid "Delimiter"
-msgstr "Korlátlan"
+msgstr "Elválasztó"
 
 #: gtksourceview/language-specs/R.lang.h:5
-#, fuzzy
 msgid "Integer Number"
-msgstr "Bináris szám"
+msgstr "Egész szám"
 
 #: gtksourceview/language-specs/R.lang.h:8
-#, fuzzy
-msgid "Reserved class"
-msgstr "Védett ANSI szavak"
+msgid "Reserved Class"
+msgstr "Védett osztály"
 
 #: gtksourceview/language-specs/R.lang.h:9
-#, fuzzy
-msgid "Reserved constant"
-msgstr "Előállított tartalom"
+msgid "Reserved Constant"
+msgstr "Védett konstans"
 
 #: gtksourceview/language-specs/gtkrc.lang.h:3
 msgid "GtkRC"
-msgstr ""
+msgstr "GtkRC"
 
 #: gtksourceview/language-specs/gtkrc.lang.h:4
 msgid "Include Directive"
-msgstr ""
+msgstr "Include direktíva"
 
 #: gtksourceview/language-specs/gtkrc.lang.h:5
 msgid "Keysymbol"
-msgstr ""
+msgstr "Kulcsszimbólum"
 
 #: gtksourceview/language-specs/gtkrc.lang.h:11
 msgid "State"
-msgstr ""
-
-#~ msgid "CSS"
-#~ msgstr "CSS"
-
-# data/browser.xml.h:68
-#~ msgid "JavaScript"
-#~ msgstr "JavaScript"
-
-#~ msgid "MSIL"
-#~ msgstr "MSIL"
+msgstr "Állapot"
