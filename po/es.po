@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-12 02:14+0100\n"
-"PO-Revision-Date: 2005-01-12 02:20+0100\n"
+"POT-Creation-Date: 2005-01-24 19:46+0100\n"
+"PO-Revision-Date: 2005-01-24 19:48+0100\n"
 "Last-Translator: Francisco Javier F. Serrador <serrador@cvs.gnome.org>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -126,8 +126,8 @@ msgid "Font Description"
 msgstr "Descripción de la tipografía"
 
 #: gtksourceview/gtksourceprintjob.c:313
-msgid "Font description name to use for the document text"
-msgstr "Nombre de la descripción de la tipografía para el texto del documento"
+msgid "Font to use for the document text (e.g. \"Monospace 10\")"
+msgstr "Tipografía que se va a usar en el texto del documento («Ej: Monospace 10»)"
 
 #: gtksourceview/gtksourceprintjob.c:320 gtksourceview/gtksourceprintjob.c:328
 msgid "Numbers Font"
@@ -178,27 +178,25 @@ msgid "Header and Footer Font Description"
 msgstr "Descripción de la tipografía de cabecera y pie de página"
 
 #: gtksourceview/gtksourceprintjob.c:369
-msgid "Font description name to use for the header and footer"
-msgstr ""
-"Nombre de la descripción de tipografía a usar para la cabecera y el pie de "
-"página"
+msgid "Font to use for headers and footers (e.g. \"Monospace 10\")"
+msgstr "Tipografía que se va a usar para las cabeceras y el pie de página («Ej: Monospace 10»)"
 
-#: gtksourceview/gtksourcestylescheme.c:237
+#: gtksourceview/gtksourcestylescheme.c:262
 msgid "Base-N Integer"
 msgstr "Entero en base-N"
 
-#: gtksourceview/gtksourcestylescheme.c:242
+#: gtksourceview/gtksourcestylescheme.c:267
 msgid "Character"
 msgstr "Carácter"
 
-#: gtksourceview/gtksourcestylescheme.c:247
+#: gtksourceview/gtksourcestylescheme.c:272
 #: gtksourceview/language-specs/latex.lang.h:1
 #: gtksourceview/language-specs/po.lang.h:1
 msgid "Comment"
 msgstr "Comentario"
 
 #. $this = (datatype)
-#: gtksourceview/gtksourcestylescheme.c:252
+#: gtksourceview/gtksourcestylescheme.c:277
 #: gtksourceview/language-specs/php.lang.h:14
 msgid "Data Type"
 msgstr "Tipo de dato"
@@ -206,13 +204,13 @@ msgstr "Tipo de dato"
 #.
 #. CSS functions, such as rgb(), clip(), or lang().
 #.
-#: gtksourceview/gtksourcestylescheme.c:257
+#: gtksourceview/gtksourcestylescheme.c:282
 #: gtksourceview/language-specs/ada.lang.h:3
 #: gtksourceview/language-specs/css.lang.h:17
 msgid "Function"
 msgstr "Función"
 
-#: gtksourceview/gtksourcestylescheme.c:262
+#: gtksourceview/gtksourcestylescheme.c:287
 #: gtksourceview/language-specs/c.lang.h:6
 #: gtksourceview/language-specs/cpp.lang.h:6
 #: gtksourceview/language-specs/fortran.lang.h:1
@@ -221,11 +219,11 @@ msgstr "Función"
 msgid "Decimal"
 msgstr "Decimal"
 
-#: gtksourceview/gtksourcestylescheme.c:267
+#: gtksourceview/gtksourcestylescheme.c:292
 msgid "Floating Point"
 msgstr "Coma flotante"
 
-#: gtksourceview/gtksourcestylescheme.c:272
+#: gtksourceview/gtksourcestylescheme.c:297
 #: gtksourceview/language-specs/latex.lang.h:3
 #: gtksourceview/language-specs/po.lang.h:3
 #: gtksourceview/language-specs/texinfo.lang.h:8
@@ -235,11 +233,11 @@ msgstr "Coma flotante"
 msgid "Keyword"
 msgstr "Palabra clave"
 
-#: gtksourceview/gtksourcestylescheme.c:277
+#: gtksourceview/gtksourcestylescheme.c:302
 msgid "Preprocessor"
 msgstr "Preprocesador"
 
-#: gtksourceview/gtksourcestylescheme.c:282
+#: gtksourceview/gtksourcestylescheme.c:307
 #: gtksourceview/language-specs/ada.lang.h:9
 #: gtksourceview/language-specs/c.lang.h:15
 #: gtksourceview/language-specs/cpp.lang.h:15
@@ -266,7 +264,7 @@ msgstr "Preprocesador"
 msgid "String"
 msgstr "Cadena"
 
-#: gtksourceview/gtksourcestylescheme.c:287
+#: gtksourceview/gtksourcestylescheme.c:312
 msgid "Specials"
 msgstr "Especiales"
 
@@ -282,7 +280,7 @@ msgstr "Especiales"
 #. Submitted by Scott Martin (scott@coffeeblack.org)
 #.
 #. FIXME: find the correct mimetype
-#: gtksourceview/gtksourcestylescheme.c:294
+#: gtksourceview/gtksourcestylescheme.c:319
 #: gtksourceview/language-specs/css.lang.h:46
 #: gtksourceview/language-specs/desktop.lang.h:10
 #: gtksourceview/language-specs/diff.lang.h:7
@@ -293,15 +291,15 @@ msgstr "Especiales"
 msgid "Others"
 msgstr "Otros"
 
-#: gtksourceview/gtksourcestylescheme.c:299
+#: gtksourceview/gtksourcestylescheme.c:324
 msgid "Others 2"
 msgstr "Otros 2"
 
-#: gtksourceview/gtksourcestylescheme.c:304
+#: gtksourceview/gtksourcestylescheme.c:329
 msgid "Others 3"
 msgstr "Otros 3"
 
-#: gtksourceview/gtksourcestylescheme.c:341
+#: gtksourceview/gtksourcestylescheme.c:366
 msgid "Default"
 msgstr "Predeterminado"
 
@@ -1462,7 +1460,7 @@ msgid "VHDL"
 msgstr "VHDL"
 
 #: gtksourceview/language-specs/R.lang.h:1
-msgid "Assign operator"
+msgid "Assignment Operator"
 msgstr "Operador de asignación"
 
 #: gtksourceview/language-specs/R.lang.h:2
@@ -1474,11 +1472,11 @@ msgid "Integer Number"
 msgstr "Número entero"
 
 #: gtksourceview/language-specs/R.lang.h:8
-msgid "Reserved class"
+msgid "Reserved Class"
 msgstr "Clase reservada"
 
 #: gtksourceview/language-specs/R.lang.h:9
-msgid "Reserved constant"
+msgid "Reserved Constant"
 msgstr "Constante reservada"
 
 #: gtksourceview/language-specs/gtkrc.lang.h:3
@@ -1496,6 +1494,15 @@ msgstr "Símbolo de tecla"
 #: gtksourceview/language-specs/gtkrc.lang.h:11
 msgid "State"
 msgstr "Estado"
+
+#~ msgid "Font description name to use for the document text"
+#~ msgstr ""
+#~ "Nombre de la descripción de la tipografía para el texto del documento"
+
+#~ msgid "Font description name to use for the header and footer"
+#~ msgstr ""
+#~ "Nombre de la descripción de tipografía a usar para la cabecera y el pie "
+#~ "de página"
 
 #~ msgid "Plain Old Documentation"
 #~ msgstr "Documentación antigua sin formato"
