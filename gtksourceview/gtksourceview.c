@@ -1333,6 +1333,8 @@ gtk_source_view_new_with_buffer (GtkSourceBuffer *buffer)
 {
 	GtkWidget *view;
 
+	g_return_val_if_fail (buffer != NULL && GTK_IS_SOURCE_BUFFER (buffer), NULL);
+	
 	view = g_object_new (GTK_TYPE_SOURCE_VIEW, NULL);
 	gtk_text_view_set_buffer (GTK_TEXT_VIEW (view), GTK_TEXT_BUFFER (buffer));
 

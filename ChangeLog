@@ -1,3 +1,13 @@
+2004-04-19  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+
+	* configure.in: Require Gtk+ 2.2.4, but disable tests if Gtk+ 2.4
+	is not found.
+
+2004-04-18  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+
+	* gtksourceview/gtksourceview.c (gtk_source_view_new_with_buffer):
+	Check for buffer parameter to be non-NULL.
+
 2004-04-18  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
 
 	* gtksourceview/gtksourceview.c (key_press_cb): Also auto-indent
