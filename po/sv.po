@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
-"POT-Creation-Date: 2003-07-11 16:39+0200\n"
-"PO-Revision-Date: 2003-07-11 16:39+0200\n"
+"POT-Creation-Date: 2003-08-01 17:48+0200\n"
+"PO-Revision-Date: 2003-08-01 17:48+0200\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -81,8 +81,8 @@ msgstr "Källkodsbuffert"
 msgid "GtkSourceBuffer object to print"
 msgstr "GtkSourceBuffer-objekt att skriva ut"
 
-#: gtksourceview/gtksourceprintjob.c:287 gtksourceview/gtksourceview.c:223
-#: gtksourceview/gtksourceview.c:224
+#: gtksourceview/gtksourceprintjob.c:287 gtksourceview/gtksourceview.c:221
+#: gtksourceview/gtksourceview.c:222
 msgid "Tabs Width"
 msgstr "Tabulatorbredd"
 
@@ -150,63 +150,63 @@ msgstr "Typsnitt för sidhuvud och sidfot"
 msgid "Font name to use for the header and footer"
 msgstr "Namn på typsnitt att använda för sidhuvudet och sidfoten"
 
-#: gtksourceview/gtksourcestylescheme.c:230
+#: gtksourceview/gtksourcestylescheme.c:237
 msgid "Base-N Integer"
 msgstr "Heltal i bas N"
 
-#: gtksourceview/gtksourcestylescheme.c:235
+#: gtksourceview/gtksourcestylescheme.c:242
 msgid "Character"
 msgstr "Tecken"
 
-#: gtksourceview/gtksourcestylescheme.c:240
+#: gtksourceview/gtksourcestylescheme.c:247
 msgid "Comment"
 msgstr "Kommentar"
 
-#: gtksourceview/gtksourcestylescheme.c:245
+#: gtksourceview/gtksourcestylescheme.c:252
 msgid "Data Type"
 msgstr "Datatyp"
 
-#: gtksourceview/gtksourcestylescheme.c:250
+#: gtksourceview/gtksourcestylescheme.c:257
 msgid "Function"
 msgstr "Funktion"
 
-#: gtksourceview/gtksourcestylescheme.c:255
+#: gtksourceview/gtksourcestylescheme.c:262
 msgid "Decimal"
 msgstr "Decimal"
 
-#: gtksourceview/gtksourcestylescheme.c:260
+#: gtksourceview/gtksourcestylescheme.c:267
 msgid "Floating Point"
 msgstr "Flyttal"
 
-#: gtksourceview/gtksourcestylescheme.c:265
+#: gtksourceview/gtksourcestylescheme.c:272
 msgid "Keyword"
 msgstr "Nyckelord"
 
-#: gtksourceview/gtksourcestylescheme.c:270
+#: gtksourceview/gtksourcestylescheme.c:277
 msgid "Preprocessor"
 msgstr "Preprocessor"
 
-#: gtksourceview/gtksourcestylescheme.c:275
+#: gtksourceview/gtksourcestylescheme.c:282
 msgid "String"
 msgstr "Sträng"
 
-#: gtksourceview/gtksourcestylescheme.c:280
+#: gtksourceview/gtksourcestylescheme.c:287
 msgid "Specials"
 msgstr "Specialtecken"
 
-#: gtksourceview/gtksourcestylescheme.c:285
+#: gtksourceview/gtksourcestylescheme.c:292
 msgid "Others"
 msgstr "Andra"
 
-#: gtksourceview/gtksourcestylescheme.c:290
+#: gtksourceview/gtksourcestylescheme.c:297
 msgid "Others 2"
 msgstr "Andra 2"
 
-#: gtksourceview/gtksourcestylescheme.c:295
+#: gtksourceview/gtksourcestylescheme.c:302
 msgid "Others 3"
 msgstr "Andra 3"
 
-#: gtksourceview/gtksourcestylescheme.c:332
+#: gtksourceview/gtksourcestylescheme.c:339
 msgid "Default"
 msgstr "Standard"
 
@@ -226,59 +226,59 @@ msgstr "Taggstil"
 msgid "The style associated to the source tag"
 msgstr "Stilen som är associerad med källtaggen"
 
-#: gtksourceview/gtksourceview.c:207
+#: gtksourceview/gtksourceview.c:205
 msgid "Show Line Numbers"
 msgstr "Visa radnummer"
 
-#: gtksourceview/gtksourceview.c:208
+#: gtksourceview/gtksourceview.c:206
 msgid "Whether to display line numbers"
 msgstr "Huruvida radnummer ska visas"
 
-#: gtksourceview/gtksourceview.c:215
+#: gtksourceview/gtksourceview.c:213
 msgid "Show Line Markers"
 msgstr "Visa radmarkörer"
 
-#: gtksourceview/gtksourceview.c:216
+#: gtksourceview/gtksourceview.c:214
 msgid "Whether to display line marker pixbufs"
 msgstr "Huruvida bilder för radmarkörer ska visas"
 
-#: gtksourceview/gtksourceview.c:233
+#: gtksourceview/gtksourceview.c:231
 msgid "Auto Indentation"
 msgstr "Automatiskt indrag"
 
-#: gtksourceview/gtksourceview.c:234
+#: gtksourceview/gtksourceview.c:232
 msgid "Whether to enable auto indentation"
 msgstr "Huruvida automatiskt indrag ska aktiveras"
 
-#: gtksourceview/gtksourceview.c:240
+#: gtksourceview/gtksourceview.c:238
 msgid "Insert Spaces Instead of Tabs"
 msgstr "Infoga blanksteg istället för tabulatortecken"
 
-#: gtksourceview/gtksourceview.c:241
+#: gtksourceview/gtksourceview.c:239
 msgid "Whether to insert spaces instead of tabs"
 msgstr "Huruvida blanksteg ska infogas istället för tabulatortecken"
 
-#: gtksourceview/gtksourceview.c:248
+#: gtksourceview/gtksourceview.c:246
 msgid "Show Right Margin"
 msgstr "Visa högermarginal"
 
-#: gtksourceview/gtksourceview.c:249
+#: gtksourceview/gtksourceview.c:247
 msgid "Whether to display the right margin"
 msgstr "Huruvida högermarginalen ska visas"
 
-#: gtksourceview/gtksourceview.c:256
+#: gtksourceview/gtksourceview.c:254
 msgid "Margin position"
 msgstr "Marginalposition"
 
-#: gtksourceview/gtksourceview.c:257
+#: gtksourceview/gtksourceview.c:255
 msgid "Position of the right margin"
 msgstr "Position för högermarginalen"
 
-#: gtksourceview/gtksourceview.c:266
+#: gtksourceview/gtksourceview.c:264
 msgid "Use smart home/end"
 msgstr "Avänd intelligent home/end"
 
-#: gtksourceview/gtksourceview.c:267
+#: gtksourceview/gtksourceview.c:265
 msgid ""
 "HOME and END keys move to first/last characters on line first before going "
 "to the start/end of the line"
@@ -491,3 +491,66 @@ msgstr ""
 
 #~ msgid "Removed line"
 #~ msgstr "Borttagen rad"
+
+#~ msgid "Ada"
+#~ msgstr "Ada"
+
+#~ msgid "Number"
+#~ msgstr "Tal"
+
+#~ msgid "Sources"
+#~ msgstr "Källkoder"
+
+#~ msgid "'#if 0' Comment"
+#~ msgstr "\"#if 0\"-kommentar"
+
+#~ msgid "Comments"
+#~ msgstr "Kommentarer"
+
+#~ msgid "C"
+#~ msgstr "C"
+
+#~ msgid "C++"
+#~ msgstr "C++"
+
+#~ msgid ".desktop"
+#~ msgstr ".desktop"
+
+#~ msgid "Diff"
+#~ msgstr "Diff"
+
+#~ msgid "HTML"
+#~ msgstr "HTML"
+
+#~ msgid "Tags"
+#~ msgstr "Taggar"
+
+#~ msgid "IDL"
+#~ msgstr "IDL"
+
+#~ msgid "Java"
+#~ msgstr "Java"
+
+#~ msgid "Latex"
+#~ msgstr "Latex"
+
+#~ msgid "Perl"
+#~ msgstr "Perl"
+
+#~ msgid "Format"
+#~ msgstr "Format"
+
+#~ msgid "gettext translation"
+#~ msgstr "gettext-översättning"
+
+#~ msgid "Translation"
+#~ msgstr "Översättning"
+
+#~ msgid "Translations"
+#~ msgstr "Översättningar"
+
+#~ msgid "Python"
+#~ msgstr "Python"
+
+#~ msgid "XML"
+#~ msgstr "XML"
