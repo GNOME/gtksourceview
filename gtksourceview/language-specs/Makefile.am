@@ -2,6 +2,7 @@ EXTRA_DIST = 			\
 	language.dtd		\
 	ada.lang		\
 	c.lang			\
+	csharp.lang		\
 	cpp.lang		\
 	diff.lang		\
 	desktop.lang		\
@@ -9,6 +10,7 @@ EXTRA_DIST = 			\
 	idl.lang		\
 	java.lang		\
 	latex.lang		\
+	msil.lang		\
 	perl.lang		\
 	po.lang			\
 	python.lang		\

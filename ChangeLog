@@ -1,3 +1,14 @@
+2003-12-10  Gustavo Giraldez  <gustavo.giraldez@gmx.net>
+
+	* gtksourceview/language-specs/csharp.lang: Support for C#
+	highlighting (file from John Luke, bug 115040).
+	
+	* gtksourceview/language-specs/msil.lang: MSIL hightlighting spec
+	(file from Antonio Ognio Cesti, bug 125252).
+	
+	* gtksourceview/language-specs/Makefile.am: Distribute csharp.lang
+	and msil.lang.
+
 2003-12-09  Gustavo Giraldez  <gustavo.giraldez@gmx.net>
 
 	* configure.in: Updated required Gtk+ version tu use the new
