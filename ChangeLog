@@ -1,3 +1,8 @@
+2002-03-30  Johan Dahlin  <jdahlin@telia.com>
+
+	* src/Makefile.am: Make sure $(BUILD_SOURCES) is built before trying
+	to compile other things. Fixes build in automake-1.5 or higher.
+
 2002-03-22  Jeroen Zwartepoorte  <jeroen@xs4all.nl>
 
 	* src/gtksourcebuffer.c: (add_marker), (add_markers),

@@ -14,6 +14,8 @@ BUILT_SOURCES = \
 	gtksourceview-marshal.c \
 	gtksourceview-marshal.h
 
+$(libgtksourceview_la_SOURCES): $(BUILD_SOURCES)
+
 libgtksourceview_la_SOURCES = \
 	regex.c \
 	regex.h \
