@@ -1,3 +1,8 @@
+2004-01-08  Jody Goldberg <jody@gnome.org>
+
+	* gtksourceview/gtksourceprintjob.c (break_line) : make valgrind
+	  happier.
+
 2004-01-05  Alexander Winston  <alexander.winston@comcast.net>
 
 	* gtksourceview/language-specs/latex.lang: The string "Latex" was

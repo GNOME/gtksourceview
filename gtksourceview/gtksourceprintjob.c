@@ -1157,7 +1157,7 @@ break_line (GtkSourcePrintJob *job,
 
 	set_style (job, segment->style);
 	
-	while (ch != '\n' && ch != '\r')
+	while (ch != 0 && ch != '\n' && ch != '\r')
 	{
 	       	gint glyph;
 		
