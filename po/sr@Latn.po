@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-08-21 15:30+0200\n"
+"POT-Creation-Date: 2004-10-13 10:44+0200\n"
 "PO-Revision-Date: 2004-08-21 15:38+0200\n"
 "Last-Translator: Danilo Šegan <danilo@prevod.org>\n"
 "Language-Team: Serbian (sr) <gnom@prevod.org>\n"
@@ -189,14 +189,18 @@ msgstr "Znak"
 msgid "Comment"
 msgstr "Primedba"
 
+#. $this = (datatype)
 #: gtksourceview/gtksourcestylescheme.c:252
-#: gtksourceview/language-specs/php.lang.h:8
+#: gtksourceview/language-specs/php.lang.h:14
 msgid "Data Type"
 msgstr "Tip podataka"
 
+#.
+#. CSS functions, such as rgb(), clip(), or lang().
+#.
 #: gtksourceview/gtksourcestylescheme.c:257
 #: gtksourceview/language-specs/ada.lang.h:3
-#: gtksourceview/language-specs/css.lang.h:6
+#: gtksourceview/language-specs/css.lang.h:17
 msgid "Function"
 msgstr "Funkcija"
 
@@ -228,14 +232,14 @@ msgstr "Preprocesor"
 #: gtksourceview/language-specs/c.lang.h:15
 #: gtksourceview/language-specs/cpp.lang.h:15
 #: gtksourceview/language-specs/csharp.lang.h:8
-#: gtksourceview/language-specs/css.lang.h:19
+#: gtksourceview/language-specs/css.lang.h:63
 #: gtksourceview/language-specs/html.lang.h:8
 #: gtksourceview/language-specs/fortran.lang.h:12
 #: gtksourceview/language-specs/idl.lang.h:8
 #: gtksourceview/language-specs/java.lang.h:11
-#: gtksourceview/language-specs/javascript.lang.h:23
+#: gtksourceview/language-specs/javascript.lang.h:33
 #: gtksourceview/language-specs/lua.lang.h:10
-#: gtksourceview/language-specs/pascal.lang.h:17
+#: gtksourceview/language-specs/pascal.lang.h:18
 #: gtksourceview/language-specs/perl.lang.h:8
 #: gtksourceview/language-specs/po.lang.h:6
 #: gtksourceview/language-specs/python.lang.h:11
@@ -250,8 +254,20 @@ msgstr "Niska"
 msgid "Specials"
 msgstr "Naročito"
 
+#.
+#. Proposed language specification for CSS (Cascading Style Sheet) files.
+#.
+#. Reference used:
+#. http://www.w3.org/TR/CSS2/
+#.
+#. Tested with:
+#. http://www.simplebits.com/css/simple.css
+#.
+#. Submitted by Scott Martin (scott@coffeeblack.org)
+#.
+#. FIXME: find the correct mimetype
 #: gtksourceview/gtksourcestylescheme.c:294
-#: gtksourceview/language-specs/css.lang.h:13
+#: gtksourceview/language-specs/css.lang.h:46
 #: gtksourceview/language-specs/desktop.lang.h:10
 #: gtksourceview/language-specs/diff.lang.h:7
 #: gtksourceview/language-specs/msil.lang.h:2
@@ -364,7 +380,7 @@ msgstr "Znakovna konstanta"
 #: gtksourceview/language-specs/csharp.lang.h:3
 #: gtksourceview/language-specs/fortran.lang.h:7
 #: gtksourceview/language-specs/idl.lang.h:4
-#: gtksourceview/language-specs/javascript.lang.h:12
+#: gtksourceview/language-specs/javascript.lang.h:11
 #: gtksourceview/language-specs/lua.lang.h:3
 #: gtksourceview/language-specs/perl.lang.h:2
 #: gtksourceview/language-specs/python.lang.h:3
@@ -379,14 +395,14 @@ msgstr "Ključne reči"
 #: gtksourceview/language-specs/c.lang.h:11
 #: gtksourceview/language-specs/cpp.lang.h:11
 #: gtksourceview/language-specs/csharp.lang.h:4
-#: gtksourceview/language-specs/css.lang.h:10
+#: gtksourceview/language-specs/css.lang.h:28
 #: gtksourceview/language-specs/desktop.lang.h:7
 #: gtksourceview/language-specs/diff.lang.h:5
 #: gtksourceview/language-specs/fortran.lang.h:8
 #: gtksourceview/language-specs/java.lang.h:5
-#: gtksourceview/language-specs/javascript.lang.h:13
+#: gtksourceview/language-specs/javascript.lang.h:12
 #: gtksourceview/language-specs/lua.lang.h:4
-#: gtksourceview/language-specs/pascal.lang.h:10
+#: gtksourceview/language-specs/pascal.lang.h:11
 #: gtksourceview/language-specs/perl.lang.h:3
 #: gtksourceview/language-specs/python.lang.h:4
 #: gtksourceview/language-specs/ruby.lang.h:9
@@ -398,11 +414,15 @@ msgstr "Ključne reči"
 msgid "Line Comment"
 msgstr "Primedba od jednog reda"
 
+#.
+#. For values like: z-index: 2;
+#. +/- before 0 is not allowed.
+#.
 #: gtksourceview/language-specs/ada.lang.h:6
-#: gtksourceview/language-specs/css.lang.h:11
+#: gtksourceview/language-specs/css.lang.h:33
 #: gtksourceview/language-specs/desktop.lang.h:9
-#: gtksourceview/language-specs/javascript.lang.h:16
-#: gtksourceview/language-specs/pascal.lang.h:13
+#: gtksourceview/language-specs/javascript.lang.h:15
+#: gtksourceview/language-specs/pascal.lang.h:14
 msgid "Number"
 msgstr "Broj"
 
@@ -417,8 +437,8 @@ msgstr "Ključne reči preprocesora"
 #: gtksourceview/language-specs/fortran.lang.h:11
 #: gtksourceview/language-specs/idl.lang.h:7
 #: gtksourceview/language-specs/java.lang.h:10
-#: gtksourceview/language-specs/pascal.lang.h:16
-#: gtksourceview/language-specs/php.lang.h:15
+#: gtksourceview/language-specs/pascal.lang.h:17
+#: gtksourceview/language-specs/php.lang.h:23
 #: gtksourceview/language-specs/sql.lang.h:26
 #: gtksourceview/language-specs/verilog.lang.h:9
 #: gtksourceview/language-specs/haskell.lang.h:14
@@ -447,7 +467,7 @@ msgstr "„#if 0“ primedba"
 #: gtksourceview/language-specs/c.lang.h:2
 #: gtksourceview/language-specs/cpp.lang.h:2
 #: gtksourceview/language-specs/csharp.lang.h:1
-#: gtksourceview/language-specs/css.lang.h:3
+#: gtksourceview/language-specs/css.lang.h:9
 #: gtksourceview/language-specs/html.lang.h:2
 #: gtksourceview/language-specs/idl.lang.h:1
 #: gtksourceview/language-specs/java.lang.h:1
@@ -477,10 +497,11 @@ msgstr "Zajednički makro"
 msgid "Floating Point Number"
 msgstr "Broj u pokretnom zarezu"
 
+#. FIXME WHY DOESN'T THIS WORK?
 #: gtksourceview/language-specs/c.lang.h:8
 #: gtksourceview/language-specs/cpp.lang.h:8
 #: gtksourceview/language-specs/fortran.lang.h:4
-#: gtksourceview/language-specs/pascal.lang.h:9
+#: gtksourceview/language-specs/pascal.lang.h:10
 #: gtksourceview/language-specs/haskell.lang.h:6
 msgid "Hex Number"
 msgstr "Heksadekadni broj"
@@ -524,10 +545,10 @@ msgid "Primitives"
 msgstr "Primitive"
 
 #: gtksourceview/language-specs/csharp.lang.h:9
-#: gtksourceview/language-specs/css.lang.h:20
+#: gtksourceview/language-specs/css.lang.h:64
 #: gtksourceview/language-specs/fortran.lang.h:13
 #: gtksourceview/language-specs/java.lang.h:12
-#: gtksourceview/language-specs/javascript.lang.h:24
+#: gtksourceview/language-specs/javascript.lang.h:34
 #: gtksourceview/language-specs/lua.lang.h:11
 #: gtksourceview/language-specs/python.lang.h:12
 #: gtksourceview/language-specs/ruby.lang.h:19
@@ -535,67 +556,97 @@ msgstr "Primitive"
 msgid "String 2"
 msgstr "Niska 2"
 
-#: gtksourceview/language-specs/css.lang.h:1
+#.
+#. At rules must occur at the start of a line.
+#.
+#: gtksourceview/language-specs/css.lang.h:4
 msgid "At Rules"
 msgstr "@ pravila"
 
-#: gtksourceview/language-specs/css.lang.h:2
+#.
+#. For CSS 2-style selectors: tag[attr="value"].
+#.
+#: gtksourceview/language-specs/css.lang.h:8
 msgid "Attribute Value Delimiters"
 msgstr "Razdvajači vrednosti atributa"
 
-#: gtksourceview/language-specs/css.lang.h:4
-msgid "CSS"
-msgstr "CSS"
-
-#: gtksourceview/language-specs/css.lang.h:5
+#.
+#. Value length specifier. Unless it is 0, must always be like: -1.2em.
+#.
+#: gtksourceview/language-specs/css.lang.h:13
 msgid "Dimension"
 msgstr "Dimenzije"
 
-#: gtksourceview/language-specs/css.lang.h:7
+#.
+#. Hexadecimal method of specifying colors. Can either be 3 or 6 in
+#. length: #ffcc00 = #fc0.
+#.
+#: gtksourceview/language-specs/css.lang.h:22
 msgid "Hexadecimal Color"
 msgstr "Heksadekadna boja"
 
-#: gtksourceview/language-specs/css.lang.h:8
+#.
+#. Upgrades a rule set's importance when several rule sets conflict.
+#.
+#: gtksourceview/language-specs/css.lang.h:26
 msgid "Importance Modifier"
 msgstr "Izmenjivač važnosti"
 
-#: gtksourceview/language-specs/css.lang.h:9
+#: gtksourceview/language-specs/css.lang.h:27
 msgid "Known Property Values"
 msgstr "Poznate vrednosti osobina"
 
-#: gtksourceview/language-specs/css.lang.h:12
-#: gtksourceview/language-specs/javascript.lang.h:20
-#: gtksourceview/language-specs/php.lang.h:12
+#: gtksourceview/language-specs/css.lang.h:34
+#: gtksourceview/language-specs/javascript.lang.h:19
+#: gtksourceview/language-specs/php.lang.h:19
 #: gtksourceview/language-specs/haskell.lang.h:12
 msgid "Operators"
 msgstr "Operatori"
 
-#: gtksourceview/language-specs/css.lang.h:14
+#: gtksourceview/language-specs/css.lang.h:47
 msgid "Property Names"
 msgstr "Imena osobina"
 
-#: gtksourceview/language-specs/css.lang.h:15
-#: gtksourceview/language-specs/javascript.lang.h:21
+#.
+#. Brackets define a declaration block, parentheses define functions.
+#.
+#: gtksourceview/language-specs/css.lang.h:51
+#: gtksourceview/language-specs/javascript.lang.h:20
 msgid "Punctuators"
 msgstr "Interpunkcija"
 
-#: gtksourceview/language-specs/css.lang.h:16
+#: gtksourceview/language-specs/css.lang.h:52
 msgid "Selector Grammar"
 msgstr "Gramatika izbirača"
 
-#: gtksourceview/language-specs/css.lang.h:17
+#.
+#. Pseudo-class rules. Good to have syntax highlighting for these
+#. for mistypings.
+#.
+#: gtksourceview/language-specs/css.lang.h:57
 msgid "Selector Pseudo Classes"
 msgstr "Pseudo-klase izbirača"
 
-#: gtksourceview/language-specs/css.lang.h:18
+#.
+#. Pseudo-element rules. Good to have syntax highlighting for these
+#. for mistypings.
+#.
+#: gtksourceview/language-specs/css.lang.h:62
 msgid "Selector Pseudo Elements"
 msgstr "Pseudo-elementi izbirača"
 
-#: gtksourceview/language-specs/css.lang.h:21
+#.
+#. Escaped unicode characters can contain either 6 hexadecimal characters
+#. or 1-5 hex characters followed by one whitespace character.
+#.
+#: gtksourceview/language-specs/css.lang.h:69
 msgid "Unicode Character Reference"
 msgstr "Poziv na Unikod znak"
 
-#: gtksourceview/language-specs/css.lang.h:22
+#.
+#. Unicode range values.
+#.
+#: gtksourceview/language-specs/css.lang.h:73
 msgid "Unicode Range"
 msgstr "Opseg Unikoda"
 
@@ -777,32 +828,39 @@ msgstr "Opšte promenljive"
 msgid "Hexadecimal Number"
 msgstr "Heksadekadni broj"
 
-#: gtksourceview/language-specs/javascript.lang.h:11
-msgid "JavaScript"
-msgstr "JavaSkript"
-
-#: gtksourceview/language-specs/javascript.lang.h:14
+#: gtksourceview/language-specs/javascript.lang.h:13
 msgid "Literals"
 msgstr "Doslovni"
 
 # bug: s/Math/Mathematical/
-#: gtksourceview/language-specs/javascript.lang.h:15
+#: gtksourceview/language-specs/javascript.lang.h:14
 msgid "Math Value Properties"
 msgstr "Osobine matematičkih vrednosti"
 
-#: gtksourceview/language-specs/javascript.lang.h:17
+#: gtksourceview/language-specs/javascript.lang.h:16
 msgid "Object Functions"
 msgstr "Funkcije za objekte"
 
-#: gtksourceview/language-specs/javascript.lang.h:18
+#: gtksourceview/language-specs/javascript.lang.h:17
 msgid "Object Properties"
 msgstr "Osobine objekata"
 
-#: gtksourceview/language-specs/javascript.lang.h:19
+#: gtksourceview/language-specs/javascript.lang.h:18
 msgid "Objects"
 msgstr "Objekti"
 
-#: gtksourceview/language-specs/javascript.lang.h:22
+#.
+#. Proposed language specification for JavaScript files.
+#.
+#. Reference used:
+#. http://www.ecma-international.org/publications/files/ecma-st/ECMA-262.pdf
+#.
+#. Tested with:
+#. http://www.coffeeblack.org/scripts/map.js
+#.
+#. Submitted by Scott Martin (scott@coffeeblack.org)
+#.
+#: gtksourceview/language-specs/javascript.lang.h:32
 #: gtksourceview/language-specs/lua.lang.h:9
 #: gtksourceview/language-specs/perl.lang.h:7
 #: gtksourceview/language-specs/python.lang.h:9
@@ -810,11 +868,11 @@ msgstr "Objekti"
 msgid "Scripts"
 msgstr "Skripte"
 
-#: gtksourceview/language-specs/javascript.lang.h:25
+#: gtksourceview/language-specs/javascript.lang.h:35
 msgid "Unicode Escape Sequence"
 msgstr "Niz za isticanje Unikoda"
 
-#: gtksourceview/language-specs/javascript.lang.h:26
+#: gtksourceview/language-specs/javascript.lang.h:36
 msgid "Word Operators"
 msgstr "Operatori za reči"
 
@@ -859,10 +917,6 @@ msgstr "Višelinijska niska"
 msgid "Multiline String 2"
 msgstr "Višelinijska niska 2"
 
-#: gtksourceview/language-specs/msil.lang.h:1
-msgid "MSIL"
-msgstr "MSIL"
-
 #: gtksourceview/language-specs/pascal.lang.h:1
 msgid "Block Comment 1"
 msgstr "Primedba u bloku 1"
@@ -895,24 +949,24 @@ msgstr "Funkcije i izmenjivači funkcija"
 msgid "General Format"
 msgstr "Opšti oblik"
 
-#: gtksourceview/language-specs/pascal.lang.h:11
+#: gtksourceview/language-specs/pascal.lang.h:12
 msgid "Loop, Flow, and Exceptions Keywords"
 msgstr "Ključne reči za cikluse, tok i izuzetke"
 
 # bug: s/Math/Mathematical/
-#: gtksourceview/language-specs/pascal.lang.h:12
+#: gtksourceview/language-specs/pascal.lang.h:13
 msgid "Math Operators"
 msgstr "Matematički operatori"
 
-#: gtksourceview/language-specs/pascal.lang.h:14
+#: gtksourceview/language-specs/pascal.lang.h:15
 msgid "Pascal"
 msgstr "Paskal"
 
-#: gtksourceview/language-specs/pascal.lang.h:15
+#: gtksourceview/language-specs/pascal.lang.h:16
 msgid "Preprocessor Defines"
 msgstr "Definicije za preprocesor"
 
-#: gtksourceview/language-specs/pascal.lang.h:18
+#: gtksourceview/language-specs/pascal.lang.h:19
 msgid "Types Class and Object Keywords"
 msgstr "Ključne reči za tipove, klase i objekte"
 
@@ -944,51 +998,59 @@ msgstr "Niska3"
 msgid "Variables"
 msgstr "Promenljive"
 
-#: gtksourceview/language-specs/php.lang.h:2
+#. `backticks-quoted strings`
+#: gtksourceview/language-specs/php.lang.h:3
 msgid "Backtick String"
 msgstr "Izvršna niska"
 
-#: gtksourceview/language-specs/php.lang.h:3
+#. # Bourne Shell Line Comment
+#: gtksourceview/language-specs/php.lang.h:5
 msgid "Bash Line Comment"
 msgstr "Primedba za Bash"
 
-#: gtksourceview/language-specs/php.lang.h:4
+#. /* C Block Comment
+#: gtksourceview/language-specs/php.lang.h:7
 msgid "C Block Comment"
 msgstr "Primedba C jezika u bloku"
 
-#: gtksourceview/language-specs/php.lang.h:5
+#. // C++ Line Comment
+#: gtksourceview/language-specs/php.lang.h:9
 msgid "C++ Line Comment"
 msgstr "C++ primedba od jednog reda"
 
-#: gtksourceview/language-specs/php.lang.h:6
+#: gtksourceview/language-specs/php.lang.h:10
 msgid "Case Insensitive Keyword"
 msgstr "Ključna reč nezavisna od veličine slova"
 
-#: gtksourceview/language-specs/php.lang.h:7
+#. This are keywords, the are recognised by php
+#: gtksourceview/language-specs/php.lang.h:12
 msgid "Case Sensitive Keyword"
 msgstr "Ključna reč zavisna od veličine slova"
 
-#: gtksourceview/language-specs/php.lang.h:9
+#. "duble-quoted strings"
+#: gtksourceview/language-specs/php.lang.h:16
 msgid "Double Quoted String"
 msgstr "Niska u dvostrukim navodnicima"
 
-#: gtksourceview/language-specs/php.lang.h:10
+#: gtksourceview/language-specs/php.lang.h:17
 msgid "First Open PHP Tag"
 msgstr "Prva otvorena PHP oznaka"
 
-#: gtksourceview/language-specs/php.lang.h:11
+#: gtksourceview/language-specs/php.lang.h:18
 msgid "HTML Block"
 msgstr "HTML blok"
 
-#: gtksourceview/language-specs/php.lang.h:13
+#: gtksourceview/language-specs/php.lang.h:20
 msgid "PHP"
 msgstr "PHP"
 
-#: gtksourceview/language-specs/php.lang.h:14
+#. 'single-quoted strings'
+#: gtksourceview/language-specs/php.lang.h:22
 msgid "Single Quoted String"
 msgstr "Niska u jednostrukim navodnicima"
 
-#: gtksourceview/language-specs/php.lang.h:16
+#. $variable, $$dynamic-variable and even $$$more
+#: gtksourceview/language-specs/php.lang.h:25
 msgid "Variable"
 msgstr "Promenljiva"
 
@@ -1260,3 +1322,12 @@ msgstr "Primedba u starom stilu"
 #: gtksourceview/language-specs/vbnet.lang.h:9
 msgid "VB.NET"
 msgstr "VB.NET"
+
+#~ msgid "CSS"
+#~ msgstr "CSS"
+
+#~ msgid "JavaScript"
+#~ msgstr "JavaSkript"
+
+#~ msgid "MSIL"
+#~ msgstr "MSIL"

@@ -1,13 +1,13 @@
 General Information
 ===================
 
-This is version 1.1.0 of GtkSourceView. 
+This is version 1.1.1 of GtkSourceView. 
 
 GtkSourceView is a text widget that extends the standard gtk+ 2.x 
 text widget GtkTextView.
 
 It improves GtkTextView by implementing syntax highlighting and other
-features typical of a source editor.
+features typical of a source code editor.
 
 You can download the latest GtkSourceView tarball from the gnome ftp server:
 
@@ -26,8 +26,8 @@ GtkSourceView requires GTK+-2.4.x, libxml2 2.5.x and libgnomeprint 2.7.x.
 
 Simple install procedure:
 
-  % gzip -cd gtksourceview-1.1.0.tar.gz | tar xvf -    # unpack the sources
-  % cd gtksourceview-1.1.0		   # change to the toplevel directory
+  % gzip -cd gtksourceview-1.1.1.tar.gz | tar xvf -    # unpack the sources
+  % cd gtksourceview-1.1.1		   # change to the toplevel directory
   % ./configure				   # run the `configure' script
   % make				   # build gtksourceview
   [ Become root if necessary ]

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-09-06 10:25+0900\n"
+"POT-Creation-Date: 2004-10-13 10:44+0200\n"
 "PO-Revision-Date: 2004-09-06 10:23+0900\n"
 "Last-Translator: Takeshi AIHANA <aihana@gnome.gr.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
@@ -185,14 +185,18 @@ msgstr "文字"
 msgid "Comment"
 msgstr "コメント"
 
+#. $this = (datatype)
 #: gtksourceview/gtksourcestylescheme.c:252
-#: gtksourceview/language-specs/php.lang.h:8
+#: gtksourceview/language-specs/php.lang.h:14
 msgid "Data Type"
 msgstr "データ型"
 
+#.
+#. CSS functions, such as rgb(), clip(), or lang().
+#.
 #: gtksourceview/gtksourcestylescheme.c:257
 #: gtksourceview/language-specs/ada.lang.h:3
-#: gtksourceview/language-specs/css.lang.h:6
+#: gtksourceview/language-specs/css.lang.h:17
 msgid "Function"
 msgstr "関数"
 
@@ -224,14 +228,14 @@ msgstr "プリプロセッサ"
 #: gtksourceview/language-specs/c.lang.h:15
 #: gtksourceview/language-specs/cpp.lang.h:15
 #: gtksourceview/language-specs/csharp.lang.h:8
-#: gtksourceview/language-specs/css.lang.h:19
+#: gtksourceview/language-specs/css.lang.h:63
 #: gtksourceview/language-specs/html.lang.h:8
 #: gtksourceview/language-specs/fortran.lang.h:12
 #: gtksourceview/language-specs/idl.lang.h:8
 #: gtksourceview/language-specs/java.lang.h:11
-#: gtksourceview/language-specs/javascript.lang.h:23
+#: gtksourceview/language-specs/javascript.lang.h:33
 #: gtksourceview/language-specs/lua.lang.h:10
-#: gtksourceview/language-specs/pascal.lang.h:17
+#: gtksourceview/language-specs/pascal.lang.h:18
 #: gtksourceview/language-specs/perl.lang.h:8
 #: gtksourceview/language-specs/po.lang.h:6
 #: gtksourceview/language-specs/python.lang.h:11
@@ -246,8 +250,20 @@ msgstr "文字列"
 msgid "Specials"
 msgstr "カスタマイズ"
 
+#.
+#. Proposed language specification for CSS (Cascading Style Sheet) files.
+#.
+#. Reference used:
+#. http://www.w3.org/TR/CSS2/
+#.
+#. Tested with:
+#. http://www.simplebits.com/css/simple.css
+#.
+#. Submitted by Scott Martin (scott@coffeeblack.org)
+#.
+#. FIXME: find the correct mimetype
 #: gtksourceview/gtksourcestylescheme.c:294
-#: gtksourceview/language-specs/css.lang.h:13
+#: gtksourceview/language-specs/css.lang.h:46
 #: gtksourceview/language-specs/desktop.lang.h:10
 #: gtksourceview/language-specs/diff.lang.h:7
 #: gtksourceview/language-specs/msil.lang.h:2
@@ -360,7 +376,7 @@ msgstr "文字定数"
 #: gtksourceview/language-specs/csharp.lang.h:3
 #: gtksourceview/language-specs/fortran.lang.h:7
 #: gtksourceview/language-specs/idl.lang.h:4
-#: gtksourceview/language-specs/javascript.lang.h:12
+#: gtksourceview/language-specs/javascript.lang.h:11
 #: gtksourceview/language-specs/lua.lang.h:3
 #: gtksourceview/language-specs/perl.lang.h:2
 #: gtksourceview/language-specs/python.lang.h:3
@@ -375,14 +391,14 @@ msgstr "キーワード"
 #: gtksourceview/language-specs/c.lang.h:11
 #: gtksourceview/language-specs/cpp.lang.h:11
 #: gtksourceview/language-specs/csharp.lang.h:4
-#: gtksourceview/language-specs/css.lang.h:10
+#: gtksourceview/language-specs/css.lang.h:28
 #: gtksourceview/language-specs/desktop.lang.h:7
 #: gtksourceview/language-specs/diff.lang.h:5
 #: gtksourceview/language-specs/fortran.lang.h:8
 #: gtksourceview/language-specs/java.lang.h:5
-#: gtksourceview/language-specs/javascript.lang.h:13
+#: gtksourceview/language-specs/javascript.lang.h:12
 #: gtksourceview/language-specs/lua.lang.h:4
-#: gtksourceview/language-specs/pascal.lang.h:10
+#: gtksourceview/language-specs/pascal.lang.h:11
 #: gtksourceview/language-specs/perl.lang.h:3
 #: gtksourceview/language-specs/python.lang.h:4
 #: gtksourceview/language-specs/ruby.lang.h:9
@@ -394,11 +410,15 @@ msgstr "キーワード"
 msgid "Line Comment"
 msgstr "行コメント"
 
+#.
+#. For values like: z-index: 2;
+#. +/- before 0 is not allowed.
+#.
 #: gtksourceview/language-specs/ada.lang.h:6
-#: gtksourceview/language-specs/css.lang.h:11
+#: gtksourceview/language-specs/css.lang.h:33
 #: gtksourceview/language-specs/desktop.lang.h:9
-#: gtksourceview/language-specs/javascript.lang.h:16
-#: gtksourceview/language-specs/pascal.lang.h:13
+#: gtksourceview/language-specs/javascript.lang.h:15
+#: gtksourceview/language-specs/pascal.lang.h:14
 msgid "Number"
 msgstr "番号"
 
@@ -413,8 +433,8 @@ msgstr "プリプロセッサのキーワード"
 #: gtksourceview/language-specs/fortran.lang.h:11
 #: gtksourceview/language-specs/idl.lang.h:7
 #: gtksourceview/language-specs/java.lang.h:10
-#: gtksourceview/language-specs/pascal.lang.h:16
-#: gtksourceview/language-specs/php.lang.h:15
+#: gtksourceview/language-specs/pascal.lang.h:17
+#: gtksourceview/language-specs/php.lang.h:23
 #: gtksourceview/language-specs/sql.lang.h:26
 #: gtksourceview/language-specs/verilog.lang.h:9
 #: gtksourceview/language-specs/haskell.lang.h:14
@@ -443,7 +463,7 @@ msgstr "'#if 0' コメント"
 #: gtksourceview/language-specs/c.lang.h:2
 #: gtksourceview/language-specs/cpp.lang.h:2
 #: gtksourceview/language-specs/csharp.lang.h:1
-#: gtksourceview/language-specs/css.lang.h:3
+#: gtksourceview/language-specs/css.lang.h:9
 #: gtksourceview/language-specs/html.lang.h:2
 #: gtksourceview/language-specs/idl.lang.h:1
 #: gtksourceview/language-specs/java.lang.h:1
@@ -473,10 +493,11 @@ msgstr "共通マクロ"
 msgid "Floating Point Number"
 msgstr "浮動小数点数"
 
+#. FIXME WHY DOESN'T THIS WORK?
 #: gtksourceview/language-specs/c.lang.h:8
 #: gtksourceview/language-specs/cpp.lang.h:8
 #: gtksourceview/language-specs/fortran.lang.h:4
-#: gtksourceview/language-specs/pascal.lang.h:9
+#: gtksourceview/language-specs/pascal.lang.h:10
 #: gtksourceview/language-specs/haskell.lang.h:6
 msgid "Hex Number"
 msgstr "16 進数"
@@ -520,10 +541,10 @@ msgid "Primitives"
 msgstr "プリミティブ"
 
 #: gtksourceview/language-specs/csharp.lang.h:9
-#: gtksourceview/language-specs/css.lang.h:20
+#: gtksourceview/language-specs/css.lang.h:64
 #: gtksourceview/language-specs/fortran.lang.h:13
 #: gtksourceview/language-specs/java.lang.h:12
-#: gtksourceview/language-specs/javascript.lang.h:24
+#: gtksourceview/language-specs/javascript.lang.h:34
 #: gtksourceview/language-specs/lua.lang.h:11
 #: gtksourceview/language-specs/python.lang.h:12
 #: gtksourceview/language-specs/ruby.lang.h:19
@@ -531,67 +552,97 @@ msgstr "プリミティブ"
 msgid "String 2"
 msgstr "文字列２"
 
-#: gtksourceview/language-specs/css.lang.h:1
+#.
+#. At rules must occur at the start of a line.
+#.
+#: gtksourceview/language-specs/css.lang.h:4
 msgid "At Rules"
 msgstr "ルール"
 
-#: gtksourceview/language-specs/css.lang.h:2
+#.
+#. For CSS 2-style selectors: tag[attr="value"].
+#.
+#: gtksourceview/language-specs/css.lang.h:8
 msgid "Attribute Value Delimiters"
 msgstr "属性値の区切り"
 
-#: gtksourceview/language-specs/css.lang.h:4
-msgid "CSS"
-msgstr "CSS"
-
-#: gtksourceview/language-specs/css.lang.h:5
+#.
+#. Value length specifier. Unless it is 0, must always be like: -1.2em.
+#.
+#: gtksourceview/language-specs/css.lang.h:13
 msgid "Dimension"
 msgstr "大きさ"
 
-#: gtksourceview/language-specs/css.lang.h:7
+#.
+#. Hexadecimal method of specifying colors. Can either be 3 or 6 in
+#. length: #ffcc00 = #fc0.
+#.
+#: gtksourceview/language-specs/css.lang.h:22
 msgid "Hexadecimal Color"
 msgstr "16 進表記の色名"
 
-#: gtksourceview/language-specs/css.lang.h:8
+#.
+#. Upgrades a rule set's importance when several rule sets conflict.
+#.
+#: gtksourceview/language-specs/css.lang.h:26
 msgid "Importance Modifier"
 msgstr "重要な修飾子"
 
-#: gtksourceview/language-specs/css.lang.h:9
+#: gtksourceview/language-specs/css.lang.h:27
 msgid "Known Property Values"
 msgstr "既知のプロパティ値"
 
-#: gtksourceview/language-specs/css.lang.h:12
-#: gtksourceview/language-specs/javascript.lang.h:20
-#: gtksourceview/language-specs/php.lang.h:12
+#: gtksourceview/language-specs/css.lang.h:34
+#: gtksourceview/language-specs/javascript.lang.h:19
+#: gtksourceview/language-specs/php.lang.h:19
 #: gtksourceview/language-specs/haskell.lang.h:12
 msgid "Operators"
 msgstr "演算子"
 
-#: gtksourceview/language-specs/css.lang.h:14
+#: gtksourceview/language-specs/css.lang.h:47
 msgid "Property Names"
 msgstr "プロパティの名前"
 
-#: gtksourceview/language-specs/css.lang.h:15
-#: gtksourceview/language-specs/javascript.lang.h:21
+#.
+#. Brackets define a declaration block, parentheses define functions.
+#.
+#: gtksourceview/language-specs/css.lang.h:51
+#: gtksourceview/language-specs/javascript.lang.h:20
 msgid "Punctuators"
 msgstr "句読点"
 
-#: gtksourceview/language-specs/css.lang.h:16
+#: gtksourceview/language-specs/css.lang.h:52
 msgid "Selector Grammar"
 msgstr "セレクタの文法"
 
-#: gtksourceview/language-specs/css.lang.h:17
+#.
+#. Pseudo-class rules. Good to have syntax highlighting for these
+#. for mistypings.
+#.
+#: gtksourceview/language-specs/css.lang.h:57
 msgid "Selector Pseudo Classes"
 msgstr "セレクタの疑似クラス"
 
-#: gtksourceview/language-specs/css.lang.h:18
+#.
+#. Pseudo-element rules. Good to have syntax highlighting for these
+#. for mistypings.
+#.
+#: gtksourceview/language-specs/css.lang.h:62
 msgid "Selector Pseudo Elements"
 msgstr "セレクタの疑似要素"
 
-#: gtksourceview/language-specs/css.lang.h:21
+#.
+#. Escaped unicode characters can contain either 6 hexadecimal characters
+#. or 1-5 hex characters followed by one whitespace character.
+#.
+#: gtksourceview/language-specs/css.lang.h:69
 msgid "Unicode Character Reference"
 msgstr "Unicode 文字の参照"
 
-#: gtksourceview/language-specs/css.lang.h:22
+#.
+#. Unicode range values.
+#.
+#: gtksourceview/language-specs/css.lang.h:73
 msgid "Unicode Range"
 msgstr "Unicode の範囲"
 
@@ -773,31 +824,38 @@ msgstr "グローバルなプロパティ"
 msgid "Hexadecimal Number"
 msgstr "16 進数"
 
-#: gtksourceview/language-specs/javascript.lang.h:11
-msgid "JavaScript"
-msgstr "JavaScript"
-
-#: gtksourceview/language-specs/javascript.lang.h:14
+#: gtksourceview/language-specs/javascript.lang.h:13
 msgid "Literals"
 msgstr "リテラル"
 
-#: gtksourceview/language-specs/javascript.lang.h:15
+#: gtksourceview/language-specs/javascript.lang.h:14
 msgid "Math Value Properties"
 msgstr "数値のプロパティ"
 
-#: gtksourceview/language-specs/javascript.lang.h:17
+#: gtksourceview/language-specs/javascript.lang.h:16
 msgid "Object Functions"
 msgstr "オブジェクトの関数"
 
-#: gtksourceview/language-specs/javascript.lang.h:18
+#: gtksourceview/language-specs/javascript.lang.h:17
 msgid "Object Properties"
 msgstr "オブジェクトのプロパティ"
 
-#: gtksourceview/language-specs/javascript.lang.h:19
+#: gtksourceview/language-specs/javascript.lang.h:18
 msgid "Objects"
 msgstr "オブジェクト"
 
-#: gtksourceview/language-specs/javascript.lang.h:22
+#.
+#. Proposed language specification for JavaScript files.
+#.
+#. Reference used:
+#. http://www.ecma-international.org/publications/files/ecma-st/ECMA-262.pdf
+#.
+#. Tested with:
+#. http://www.coffeeblack.org/scripts/map.js
+#.
+#. Submitted by Scott Martin (scott@coffeeblack.org)
+#.
+#: gtksourceview/language-specs/javascript.lang.h:32
 #: gtksourceview/language-specs/lua.lang.h:9
 #: gtksourceview/language-specs/perl.lang.h:7
 #: gtksourceview/language-specs/python.lang.h:9
@@ -805,11 +863,11 @@ msgstr "オブジェクト"
 msgid "Scripts"
 msgstr "スクリプト"
 
-#: gtksourceview/language-specs/javascript.lang.h:25
+#: gtksourceview/language-specs/javascript.lang.h:35
 msgid "Unicode Escape Sequence"
 msgstr "Unicode エスケープ・シーケンス"
 
-#: gtksourceview/language-specs/javascript.lang.h:26
+#: gtksourceview/language-specs/javascript.lang.h:36
 msgid "Word Operators"
 msgstr "ワード演算子"
 
@@ -853,10 +911,6 @@ msgstr "マルチラインの文字列"
 msgid "Multiline String 2"
 msgstr "マルチラインの文字列２"
 
-#: gtksourceview/language-specs/msil.lang.h:1
-msgid "MSIL"
-msgstr "MSIL"
-
 #: gtksourceview/language-specs/pascal.lang.h:1
 msgid "Block Comment 1"
 msgstr "ブロック型のコメント１"
@@ -889,23 +943,23 @@ msgstr "関数と関数の修飾子"
 msgid "General Format"
 msgstr "全般の書式"
 
-#: gtksourceview/language-specs/pascal.lang.h:11
+#: gtksourceview/language-specs/pascal.lang.h:12
 msgid "Loop, Flow, and Exceptions Keywords"
 msgstr "ループ、フローと例外のキーワード"
 
-#: gtksourceview/language-specs/pascal.lang.h:12
+#: gtksourceview/language-specs/pascal.lang.h:13
 msgid "Math Operators"
 msgstr "数学演算子"
 
-#: gtksourceview/language-specs/pascal.lang.h:14
+#: gtksourceview/language-specs/pascal.lang.h:15
 msgid "Pascal"
 msgstr "Pascal"
 
-#: gtksourceview/language-specs/pascal.lang.h:15
+#: gtksourceview/language-specs/pascal.lang.h:16
 msgid "Preprocessor Defines"
 msgstr "プリプロセッサの定義"
 
-#: gtksourceview/language-specs/pascal.lang.h:18
+#: gtksourceview/language-specs/pascal.lang.h:19
 msgid "Types Class and Object Keywords"
 msgstr "型クラスとオブジェクトのキーワード"
 
@@ -937,51 +991,59 @@ msgstr "文字列３"
 msgid "Variables"
 msgstr "変数"
 
-#: gtksourceview/language-specs/php.lang.h:2
+#. `backticks-quoted strings`
+#: gtksourceview/language-specs/php.lang.h:3
 msgid "Backtick String"
 msgstr "バッククオート文字列"
 
-#: gtksourceview/language-specs/php.lang.h:3
+#. # Bourne Shell Line Comment
+#: gtksourceview/language-specs/php.lang.h:5
 msgid "Bash Line Comment"
 msgstr "Bash の行コメント"
 
-#: gtksourceview/language-specs/php.lang.h:4
+#. /* C Block Comment
+#: gtksourceview/language-specs/php.lang.h:7
 msgid "C Block Comment"
 msgstr "C のブロック型コメント"
 
-#: gtksourceview/language-specs/php.lang.h:5
+#. // C++ Line Comment
+#: gtksourceview/language-specs/php.lang.h:9
 msgid "C++ Line Comment"
 msgstr "C++ の行コメント"
 
-#: gtksourceview/language-specs/php.lang.h:6
+#: gtksourceview/language-specs/php.lang.h:10
 msgid "Case Insensitive Keyword"
 msgstr "大/小文字を区別しないキーワード"
 
-#: gtksourceview/language-specs/php.lang.h:7
+#. This are keywords, the are recognised by php
+#: gtksourceview/language-specs/php.lang.h:12
 msgid "Case Sensitive Keyword"
 msgstr "大/小文字を区別するキーワード"
 
-#: gtksourceview/language-specs/php.lang.h:9
+#. "duble-quoted strings"
+#: gtksourceview/language-specs/php.lang.h:16
 msgid "Double Quoted String"
 msgstr "ダブル・クォーテションの文字列"
 
-#: gtksourceview/language-specs/php.lang.h:10
+#: gtksourceview/language-specs/php.lang.h:17
 msgid "First Open PHP Tag"
 msgstr "一番最初の <?php タグ"
 
-#: gtksourceview/language-specs/php.lang.h:11
+#: gtksourceview/language-specs/php.lang.h:18
 msgid "HTML Block"
 msgstr "HTML のブロック"
 
-#: gtksourceview/language-specs/php.lang.h:13
+#: gtksourceview/language-specs/php.lang.h:20
 msgid "PHP"
 msgstr "PHP"
 
-#: gtksourceview/language-specs/php.lang.h:14
+#. 'single-quoted strings'
+#: gtksourceview/language-specs/php.lang.h:22
 msgid "Single Quoted String"
 msgstr "シングル・クォーテションの文字列"
 
-#: gtksourceview/language-specs/php.lang.h:16
+#. $variable, $$dynamic-variable and even $$$more
+#: gtksourceview/language-specs/php.lang.h:25
 msgid "Variable"
 msgstr "変数"
 
@@ -1253,3 +1315,12 @@ msgstr "古いスタイルのコメント"
 #: gtksourceview/language-specs/vbnet.lang.h:9
 msgid "VB.NET"
 msgstr "VB.NET"
+
+#~ msgid "CSS"
+#~ msgstr "CSS"
+
+#~ msgid "JavaScript"
+#~ msgstr "JavaScript"
+
+#~ msgid "MSIL"
+#~ msgstr "MSIL"
