@@ -349,7 +349,7 @@ gtk_source_print_job_class_init (GtkSourcePrintJobClass *klass)
 	g_object_class_install_property (object_class,
 					 PROP_HEADER_FOOTER_FONT,
 					 g_param_spec_string ("header_footer_font",
-							      _("Header & Footer Font"),
+							      _("Header and Footer Font"),
 							      _("Font name to use for the header "
 								"and footer"),
 							      NULL,

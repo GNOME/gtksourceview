@@ -1,3 +1,14 @@
+News 0.2.1 -> 0.3.0
+-------------------
+
+* Printing support
+* Caseless search functions gtk_source_iter_search_forward/backward
+* API reference documentation building infrastructure
+* Added support for translation of user visible strings in language
+  spec files
+* gtk_source_buffer_find_bracket_match has been renamed to
+  gtk_source_iter_find_matching_bracket
+
 News 0.2.0 -> 0.2.1
 -------------------
 
