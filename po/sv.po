@@ -1,6 +1,6 @@
 # Swedish messages for gtksourceview.
-# Copyright (C) 2003, 2004 Free Software Foundation, Inc.
-# Christian Rose <menthos@menthos.com>, 2003, 2004.
+# Copyright (C) 2003, 2004, 2005 Free Software Foundation, Inc.
+# Christian Rose <menthos@menthos.com>, 2003, 2004, 2005.
 #
 # $Id$
 #
@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-12 00:08+0100\n"
-"PO-Revision-Date: 2004-08-18 23:46+0200\n"
+"POT-Creation-Date: 2005-01-13 19:10+0100\n"
+"PO-Revision-Date: 2005-01-13 19:10+0100\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -382,14 +382,12 @@ msgstr ""
 "de går till början/slutet på raden"
 
 #: gtksourceview/gtksourceview.c:276
-#, fuzzy
 msgid "Highlight current line"
-msgstr "Färgmarkering"
+msgstr "Färgmarkera aktuell rad"
 
 #: gtksourceview/gtksourceview.c:277
-#, fuzzy
 msgid "Whether to highlight the current line"
-msgstr "Huruvida syntaxen ska färgmarkeras i bufferten"
+msgstr "Huruvida den aktuella raden ska färgmarkeras"
 
 #: gtksourceview/language-specs/ada.lang.h:1
 msgid "Ada"
@@ -828,7 +826,7 @@ msgstr "Sektionsrelaterat"
 
 #: gtksourceview/language-specs/ini.lang.h:1
 msgid ".ini"
-msgstr ""
+msgstr ".ini"
 
 #: gtksourceview/language-specs/ini.lang.h:3
 #: gtksourceview/language-specs/verilog.lang.h:3
@@ -838,21 +836,18 @@ msgstr "Decimaltal"
 #: gtksourceview/language-specs/ini.lang.h:4
 #: gtksourceview/language-specs/R.lang.h:3
 #: gtksourceview/language-specs/gtkrc.lang.h:2
-#, fuzzy
 msgid "Double Quote String"
-msgstr "Dubbelciterad sträng"
+msgstr "Dubbelcitatssträng"
 
 #: gtksourceview/language-specs/ini.lang.h:6
-#, fuzzy
 msgid "Integer"
-msgstr "Heltal i bas N"
+msgstr "Heltal"
 
 #: gtksourceview/language-specs/ini.lang.h:11
 #: gtksourceview/language-specs/R.lang.h:11
 #: gtksourceview/language-specs/gtkrc.lang.h:10
-#, fuzzy
 msgid "Single Quote String"
-msgstr "Enkelciterad sträng"
+msgstr "Enkelcitatssträng"
 
 #. $variable, $$dynamic-variable and even $$$more
 #: gtksourceview/language-specs/ini.lang.h:12
@@ -1065,7 +1060,6 @@ msgid "Preprocessor Defines"
 msgstr "Preprocessor-definitioner"
 
 #: gtksourceview/language-specs/pascal.lang.h:19
-#, fuzzy
 msgid "Type, Class and Object Keywords"
 msgstr "Typ-, klass- och objektnyckelord"
 
@@ -1226,37 +1220,32 @@ msgid "Ruby"
 msgstr "Ruby"
 
 #: gtksourceview/language-specs/sh.lang.h:2
-#, fuzzy
 msgid "Built-in Commands"
-msgstr "Flerradiga kommentarer"
+msgstr "Inbyggda kommandon"
 
 #: gtksourceview/language-specs/sh.lang.h:3
-#, fuzzy
 msgid "Common Commands"
-msgstr "Mest använda kommandon"
+msgstr "Vanliga kommandon"
 
 #: gtksourceview/language-specs/sh.lang.h:10
-#, fuzzy
 msgid "Redirections"
-msgstr "Definitioner"
+msgstr "Omdirigeringar"
 
 #: gtksourceview/language-specs/sh.lang.h:12
 msgid "Self"
 msgstr "Själv"
 
 #: gtksourceview/language-specs/sh.lang.h:15
-#, fuzzy
 msgid "Variable1"
-msgstr "Variabel"
+msgstr "Variabel1"
 
 #: gtksourceview/language-specs/sh.lang.h:16
-#, fuzzy
 msgid "Variable2"
-msgstr "Variabel"
+msgstr "Variabel2"
 
 #: gtksourceview/language-specs/sh.lang.h:17
 msgid "sh"
-msgstr ""
+msgstr "sh"
 
 #: gtksourceview/language-specs/sql.lang.h:1
 msgid "ANSI Datatypes"
@@ -1449,87 +1438,90 @@ msgid "VB.NET"
 msgstr "VB.NET"
 
 #: gtksourceview/language-specs/nemerle.lang.h:4
-#, fuzzy
 msgid "Core Keywords"
-msgstr "Flödesnyckelord"
+msgstr "Kärnnyckelord"
 
 #: gtksourceview/language-specs/nemerle.lang.h:5
-#, fuzzy
 msgid "Core Types"
-msgstr "Typer"
+msgstr "Kärntyper"
 
 #: gtksourceview/language-specs/nemerle.lang.h:9
 msgid "Keywords Defined by Macros"
-msgstr ""
+msgstr "Nyckelord som definieras av makron"
 
 #: gtksourceview/language-specs/nemerle.lang.h:11
-#, fuzzy
 msgid "Nemerle"
-msgstr "Tal"
+msgstr "Nemerle"
 
 #: gtksourceview/language-specs/tcl.lang.h:6
 msgid "Tcl"
-msgstr ""
+msgstr "Tcl"
 
 #: gtksourceview/language-specs/vhdl.lang.h:7
-#, fuzzy
 msgid "True and False"
 msgstr "Sant och falskt"
 
 #: gtksourceview/language-specs/vhdl.lang.h:8
-#, fuzzy
 msgid "Type"
-msgstr "Typer"
+msgstr "Typ"
 
 #: gtksourceview/language-specs/vhdl.lang.h:9
 msgid "VHDL"
-msgstr ""
+msgstr "VHDL"
 
 #: gtksourceview/language-specs/R.lang.h:1
-#, fuzzy
 msgid "Assign operator"
-msgstr "Vektoroperatorer"
+msgstr "Tilldelningsoperator"
 
 #: gtksourceview/language-specs/R.lang.h:2
-#, fuzzy
 msgid "Delimiter"
-msgstr "Obegränsat"
+msgstr "Avgränsare"
 
 #: gtksourceview/language-specs/R.lang.h:5
-#, fuzzy
 msgid "Integer Number"
-msgstr "Binärtal"
+msgstr "Heltal"
 
 #: gtksourceview/language-specs/R.lang.h:8
-#, fuzzy
 msgid "Reserved class"
-msgstr "ANSI-reserverade ord"
+msgstr "Reserverad klass"
 
 #: gtksourceview/language-specs/R.lang.h:9
-#, fuzzy
 msgid "Reserved constant"
-msgstr "Genererat innehåll"
+msgstr "Reserverad konstant"
 
 #: gtksourceview/language-specs/gtkrc.lang.h:3
 msgid "GtkRC"
-msgstr ""
+msgstr "GtkRC"
 
 #: gtksourceview/language-specs/gtkrc.lang.h:4
 msgid "Include Directive"
-msgstr ""
+msgstr "Inkluderingsdirektiv"
 
 #: gtksourceview/language-specs/gtkrc.lang.h:5
-#, fuzzy
 msgid "Keysymbol"
-msgstr "Nyckelsymboler"
+msgstr "Nyckelsymbol"
 
 #: gtksourceview/language-specs/gtkrc.lang.h:11
-#, fuzzy
 msgid "State"
-msgstr "Latex"
+msgstr "Tillstånd"
 
-#~ msgid "Types Class and Object Keywords"
-#~ msgstr "Typklass och objektnyckelord"
+#~ msgid "True and false"
+#~ msgstr "Sant och falskt"
+
+#~ msgid "Assignment operator"
+#~ msgstr "Tilldelningsoperator"
+
+#~ msgid "Key symbol"
+#~ msgstr "Nyckelsymbol"
+
+#~ msgid "Key Symbol"
+#~ msgstr "Nyckelsymbol"
+
+#~ msgid "Key symbols"
+#~ msgstr "Nyckelsymboler"
+
+#~ msgid "Key Symbols"
+#~ msgstr "Nyckelsymboler"
 
 # Felrapporterat i http://bugzilla.gnome.org/show_bug.cgi?id=150490
 #~ msgid "Plain Old Documentation"
