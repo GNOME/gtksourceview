@@ -1,3 +1,12 @@
+News in 0.7.0
+-------------
+
+* A bunch of small bugfixes
+* Replaced deprecated calls for glib 2.3
+* Multiline backward search works now
+* <keyword-item> patterns are now limited to 250 elements (more cause 
+  trouble with GNU regex)
+
 News 0.4.0 -> 0.5.0
 -------------------
 
