@@ -31,6 +31,7 @@ test_source (GtkSourceBuffer *buffer)
 	GtkTextTag *tag;
 	GtkTextTagTable *table;
 	GList *list = NULL;
+	GError *err = NULL;
 
 	if (!buffer)
 		buffer = GTK_SOURCE_BUFFER (gtk_source_buffer_new (NULL));
@@ -101,7 +102,7 @@ test_source (GtkSourceBuffer *buffer)
 	gtk_source_buffer_install_regex_tags (buffer, list);
 	g_list_free (list);
 
-	gtk_source_buffer_load (buffer, "test-widget.c", NULL);
+	gtk_source_buffer_load (buffer, "test-widget.c", &err);
 #ifdef OLD
 	if (g_file_get_contents ("gtksourcebuffer.c", &txt, &len, &error)) {
 		gtk_text_buffer_set_text (GTK_TEXT_BUFFER (buffer), txt, len);
