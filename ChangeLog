@@ -1,3 +1,11 @@
+2004-12-07  Paolo Maggi  <paolo@gnome.org>
+
+	* INSTALL: updated
+
+	* gtksourceview/language-specs/fortran.lang: Add support for 
+	ancient-style line comments (a line beginning with C), add "data",
+	"block data","common" keywords (patch by  John Spray (bug #143970)
+
 === gtksourceview 1.1.1 ===
 
 2004-10-13  Paolo Borelli  <pborelli@katamail.com>

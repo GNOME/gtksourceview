@@ -5,7 +5,7 @@
 	<escape-char>\</escape-char>
 
 	<line-comment _name = "Line Comment" style= "Comment">
-		<start-regex>!</start-regex>
+		<start-regex>!|(^C)</start-regex>
 	</line-comment>
 
 	<string _name = "String" style = "String" end-at-line-end = "TRUE">
@@ -31,6 +31,9 @@
 		<keyword>where</keyword>
 		<keyword>while</keyword>
 		<keyword>elsewhere</keyword>
+		<keyword>data</keyword>
+		<keyword>block data</keyword>
+		<keyword>common</keyword>
 		<keyword>program</keyword>
 		<keyword>subroutine</keyword>
 		<keyword>function</keyword>
