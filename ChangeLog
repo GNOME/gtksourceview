@@ -1,3 +1,14 @@
+2003-12-12  Gustavo Giraldez  <gustavo.giraldez@gmx.net>
+
+	* tests/test-widget.c (open_file_cb): Removed
+	gtk_window_set_default_size() call (bug #129114).
+
+	* configure.in:
+	* docs/reference/version.xml.in:
+	* docs/reference/Makefile.am:
+	* docs/reference/gtksourceview-docs.sgml: Add version information
+	to built reference documentation (bug #126028).
+
 2003-12-10  Gustavo Giraldez  <gustavo.giraldez@gmx.net>
 
 	* gtksourceview/language-specs/csharp.lang: Support for C#

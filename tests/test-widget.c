@@ -412,8 +412,6 @@ open_file_cb (ViewsData *vd,
 					       GTK_STOCK_OPEN, GTK_RESPONSE_OK,
 					       NULL);
 
-	gtk_window_set_default_size (GTK_WINDOW (chooser), 600, 400);
-
 	g_signal_connect (G_OBJECT (chooser), "response",
 			  G_CALLBACK (file_selected_cb), vd);
 

@@ -41,7 +41,7 @@ MKDB_OPTIONS = --sgml-mode --output-format=xml --ignore-files=trio
 HTML_IMAGES =
 
 # Extra SGML files that are included by $(DOC_MAIN_SGML_FILE)
-content_files =	
+content_files =	version.xml
 
 # Extra options to supply to gtkdoc-fixref
 FIXXREF_OPTIONS=
