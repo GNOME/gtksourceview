@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
-"POT-Creation-Date: 2003-07-11 01:57+0800\n"
-"PO-Revision-Date: 2003-07-11 01:56+0800\n"
+"POT-Creation-Date: 2003-07-23 00:33+0800\n"
+"PO-Revision-Date: 2003-07-23 00:27+0800\n"
 "Last-Translator: Hasbullah Bin Pit <sebol@ikhlas.com>\n"
 "Language-Team: Projek Gabai <gabai-penyumbang@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -23,13 +23,12 @@ msgid "Escaping character for syntax patterns"
 msgstr ""
 
 #: gtksourceview/gtksourcebuffer.c:288
-#, fuzzy
 msgid "Check Brackets"
-msgstr "Periksa Kebocoran"
+msgstr "Periksa Kurungan"
 
 #: gtksourceview/gtksourcebuffer.c:289
 msgid "Whether to check and highlight matching brackets"
-msgstr ""
+msgstr "Samada untuk memeriksa dan menyerlahkan kurungan sepadan"
 
 #: gtksourceview/gtksourcebuffer.c:297 gtksourceview/gtksourceprintjob.c:303
 msgid "Highlight"
@@ -48,32 +47,30 @@ msgid "Number of undo levels for the buffer"
 msgstr "Bilangan aras nyahcara bagi penimbal"
 
 #: gtksourceview/gtksourcebuffer.c:317
-#: gtksourceview/language-specs/desktop.lang.h:6
 msgid "Language"
 msgstr "Bahasa"
 
 #: gtksourceview/gtksourcebuffer.c:318
 msgid "Language object to get highlighting patterns from"
-msgstr ""
+msgstr "Objek bahasa supaya corak diserlahkan"
 
 #: gtksourceview/gtksourcelanguagesmanager.c:119
 msgid "Language specification directories"
-msgstr ""
+msgstr "Direktori spesifikasi bahasa"
 
 #: gtksourceview/gtksourcelanguagesmanager.c:120
 msgid ""
 "List of directories where the language specification files (.lang) are "
 "located"
-msgstr ""
+msgstr "Senarai direktori dimana fail spefisikasi bahasa /.lang)  diletak"
 
 #: gtksourceview/gtksourceprintjob.c:272
 msgid "Configuration"
 msgstr "Kongfigurasi"
 
 #: gtksourceview/gtksourceprintjob.c:273
-#, fuzzy
 msgid "Configuration options for the print job"
-msgstr "Konfigurasi sambungan bagi PDA pengguna"
+msgstr "Opsyen konfigurasi bagi kerja cetakan"
 
 #: gtksourceview/gtksourceprintjob.c:280
 msgid "Source Buffer"
@@ -81,16 +78,16 @@ msgstr "Penimbal Sumber"
 
 #: gtksourceview/gtksourceprintjob.c:281
 msgid "GtkSourceBuffer object to print"
-msgstr ""
+msgstr "Objek GtkSourceBuffer untuk dicetak"
 
-#: gtksourceview/gtksourceprintjob.c:287 gtksourceview/gtksourceview.c:223
-#: gtksourceview/gtksourceview.c:224
+#: gtksourceview/gtksourceprintjob.c:287 gtksourceview/gtksourceview.c:221
+#: gtksourceview/gtksourceview.c:222
 msgid "Tabs Width"
 msgstr "Lebar Tab"
 
 #: gtksourceview/gtksourceprintjob.c:288
 msgid "Width in equivalent space characters of tabs"
-msgstr ""
+msgstr "Lebar yang setara dengan aksara ruang bagi tab"
 
 #: gtksourceview/gtksourceprintjob.c:295
 msgid "Wrap Mode"
@@ -102,16 +99,15 @@ msgstr "Mod balutan perkataan"
 
 #: gtksourceview/gtksourceprintjob.c:304
 msgid "Whether to print the document with highlighted syntax"
-msgstr ""
+msgstr "Samada untuk mencetak dokumen dengan serlahan teks"
 
 #: gtksourceview/gtksourceprintjob.c:312
 msgid "Font"
 msgstr "Font"
 
 #: gtksourceview/gtksourceprintjob.c:313
-#, fuzzy
 msgid "Font name to use for the document text"
-msgstr "Jumlah bilangan halaman pada dokumen"
+msgstr "Nama font untuk digunakan pada teks dokumen"
 
 #: gtksourceview/gtksourceprintjob.c:320
 msgid "Numbers Font"
@@ -127,7 +123,7 @@ msgstr "Cetak Nombor Baris"
 
 #: gtksourceview/gtksourceprintjob.c:329
 msgid "Interval of printed line numbers (0 means no numbers)"
-msgstr ""
+msgstr "Selang bagi nombor baris (0 bermaksud tiada nombor)"
 
 #: gtksourceview/gtksourceprintjob.c:336
 msgid "Print Header"
@@ -151,7 +147,7 @@ msgstr "Pengepala dan Pengaki Font"
 
 #: gtksourceview/gtksourceprintjob.c:353
 msgid "Font name to use for the header and footer"
-msgstr ""
+msgstr "Nama font untuk digunakan pada pengepala dan pengaki"
 
 #: gtksourceview/gtksourcestylescheme.c:230
 msgid "Base-N Integer"
@@ -162,8 +158,6 @@ msgid "Character"
 msgstr "Aksara"
 
 #: gtksourceview/gtksourcestylescheme.c:240
-#: gtksourceview/language-specs/latex.lang.h:1
-#: gtksourceview/language-specs/po.lang.h:1
 msgid "Comment"
 msgstr "Komen"
 
@@ -172,13 +166,10 @@ msgid "Data Type"
 msgstr "Jenis Data"
 
 #: gtksourceview/gtksourcestylescheme.c:250
-#: gtksourceview/language-specs/ada.lang.h:3
 msgid "Function"
 msgstr "Fungsi"
 
 #: gtksourceview/gtksourcestylescheme.c:255
-#: gtksourceview/language-specs/c.lang.h:6
-#: gtksourceview/language-specs/cpp.lang.h:6
 msgid "Decimal"
 msgstr "Desimal"
 
@@ -187,8 +178,6 @@ msgid "Floating Point"
 msgstr "Titik Apungan"
 
 #: gtksourceview/gtksourcestylescheme.c:265
-#: gtksourceview/language-specs/latex.lang.h:3
-#: gtksourceview/language-specs/po.lang.h:3
 msgid "Keyword"
 msgstr "katakunci"
 
@@ -197,16 +186,6 @@ msgid "Preprocessor"
 msgstr "Pra Pemproses"
 
 #: gtksourceview/gtksourcestylescheme.c:275
-#: gtksourceview/language-specs/ada.lang.h:9
-#: gtksourceview/language-specs/c.lang.h:15
-#: gtksourceview/language-specs/cpp.lang.h:15
-#: gtksourceview/language-specs/html.lang.h:8
-#: gtksourceview/language-specs/idl.lang.h:8
-#: gtksourceview/language-specs/java.lang.h:11
-#: gtksourceview/language-specs/perl.lang.h:6
-#: gtksourceview/language-specs/po.lang.h:6
-#: gtksourceview/language-specs/python.lang.h:11
-#: gtksourceview/language-specs/xml.lang.h:8
 msgid "String"
 msgstr "Rentetan"
 
@@ -215,9 +194,6 @@ msgid "Specials"
 msgstr "Istimewa"
 
 #: gtksourceview/gtksourcestylescheme.c:285
-#: gtksourceview/language-specs/desktop.lang.h:10
-#: gtksourceview/language-specs/diff.lang.h:7
-#: gtksourceview/language-specs/po.lang.h:5
 msgid "Others"
 msgstr "Lain-lain"
 
@@ -233,413 +209,78 @@ msgstr "Lain-lain 3"
 msgid "Default"
 msgstr "Default"
 
-#: gtksourceview/gtksourceview.c:207
-#, fuzzy
-msgid "Show Line Numbers"
-msgstr "Papar nombor baris"
+#: gtksourceview/gtksourcetag.c:108
+msgid "Tag ID"
+msgstr "ID Tag"
 
-#: gtksourceview/gtksourceview.c:208
+#: gtksourceview/gtksourcetag.c:109
+msgid "ID used to refer to the source tag"
+msgstr "ID digunakan untuk merujuk kepada tag sumber"
+
+#: gtksourceview/gtksourcetag.c:116
+msgid "Tag style"
+msgstr "Gaya tag"
+
+#: gtksourceview/gtksourcetag.c:117
+msgid "The style associated to the source tag"
+msgstr "Gaya dikaitkan dengan tag sumber"
+
+#: gtksourceview/gtksourceview.c:205
+msgid "Show Line Numbers"
+msgstr "Papar Nombor Baris"
+
+#: gtksourceview/gtksourceview.c:206
 msgid "Whether to display line numbers"
 msgstr "Samada hendak memapar nombor baris"
 
-#: gtksourceview/gtksourceview.c:215
-#, fuzzy
+#: gtksourceview/gtksourceview.c:213
 msgid "Show Line Markers"
-msgstr "Papar nombor baris"
+msgstr "Papar Penanda Baris"
 
-#: gtksourceview/gtksourceview.c:216
-#, fuzzy
+#: gtksourceview/gtksourceview.c:214
 msgid "Whether to display line marker pixbufs"
-msgstr "Samada hendak memapar kolum"
+msgstr "Samada hendak memapar pixbuf penanda baris"
 
-#: gtksourceview/gtksourceview.c:233
+#: gtksourceview/gtksourceview.c:231
 msgid "Auto Indentation"
 msgstr "Auto Indentasi"
 
-#: gtksourceview/gtksourceview.c:234
+#: gtksourceview/gtksourceview.c:232
 msgid "Whether to enable auto indentation"
 msgstr "Samada patut menghidupkan auto pengindenan"
 
-#: gtksourceview/gtksourceview.c:240
+#: gtksourceview/gtksourceview.c:238
 msgid "Insert Spaces Instead of Tabs"
 msgstr "Selitkan Ruang selain Tab"
 
-#: gtksourceview/gtksourceview.c:241
+#: gtksourceview/gtksourceview.c:239
 msgid "Whether to insert spaces instead of tabs"
 msgstr "Samada untuk menyelit ruang selain drpd tab"
 
-#: gtksourceview/gtksourceview.c:248
+#: gtksourceview/gtksourceview.c:246
 msgid "Show Right Margin"
 msgstr "Papar Margin Kanan"
 
-#: gtksourceview/gtksourceview.c:249
-#, fuzzy
+#: gtksourceview/gtksourceview.c:247
 msgid "Whether to display the right margin"
-msgstr "Samada hendak memapar kolum"
+msgstr "Samada hendak memapar margin kanan"
 
-#: gtksourceview/gtksourceview.c:256
+#: gtksourceview/gtksourceview.c:254
 msgid "Margin position"
 msgstr "Posisi margin"
 
-#: gtksourceview/gtksourceview.c:257
-#, fuzzy
+#: gtksourceview/gtksourceview.c:255
 msgid "Position of the right margin"
-msgstr "Lebar bagi margin kanan dalam piksel"
+msgstr "Posisi bagi margin kanan"
 
-#: gtksourceview/gtksourceview.c:266
-#, fuzzy
+#: gtksourceview/gtksourceview.c:264
 msgid "Use smart home/end"
-msgstr "Guna carian bistari"
+msgstr "Guna home/end bistari"
 
-#: gtksourceview/gtksourceview.c:267
+#: gtksourceview/gtksourceview.c:265
 msgid ""
 "HOME and END keys move to first/last characters on line first before going "
 "to the start/end of the line"
 msgstr ""
-
-#: gtksourceview/language-specs/ada.lang.h:1
-msgid "Ada"
-msgstr "Ada"
-
-#: gtksourceview/language-specs/ada.lang.h:2
-#: gtksourceview/language-specs/c.lang.h:4
-#: gtksourceview/language-specs/cpp.lang.h:4
-#, fuzzy
-msgid "Character Constant"
-msgstr "Set Aksara"
-
-#: gtksourceview/language-specs/ada.lang.h:4
-#: gtksourceview/language-specs/c.lang.h:10
-#: gtksourceview/language-specs/cpp.lang.h:10
-#: gtksourceview/language-specs/idl.lang.h:4
-#: gtksourceview/language-specs/perl.lang.h:2
-#: gtksourceview/language-specs/python.lang.h:3
-msgid "Keywords"
-msgstr "Kuncikata"
-
-#: gtksourceview/language-specs/ada.lang.h:5
-#: gtksourceview/language-specs/c.lang.h:11
-#: gtksourceview/language-specs/cpp.lang.h:11
-#: gtksourceview/language-specs/desktop.lang.h:7
-#: gtksourceview/language-specs/diff.lang.h:5
-#: gtksourceview/language-specs/java.lang.h:5
-#: gtksourceview/language-specs/perl.lang.h:3
-#: gtksourceview/language-specs/python.lang.h:4
-msgid "Line Comment"
-msgstr "Komen Baris"
-
-#: gtksourceview/language-specs/ada.lang.h:6
-#: gtksourceview/language-specs/desktop.lang.h:9
-msgid "Number"
-msgstr "Nombor"
-
-#: gtksourceview/language-specs/ada.lang.h:7
-#, fuzzy
-msgid "Preprocessor Keywords"
-msgstr "Kelajuan Pemproses:"
-
-#: gtksourceview/language-specs/ada.lang.h:8
-#: gtksourceview/language-specs/c.lang.h:14
-#: gtksourceview/language-specs/cpp.lang.h:14
-#: gtksourceview/language-specs/idl.lang.h:7
-#: gtksourceview/language-specs/java.lang.h:10
-msgid "Sources"
-msgstr "Sumber"
-
-#: gtksourceview/language-specs/ada.lang.h:10
-msgid "True And False"
-msgstr "Benar atau Palsu"
-
-#: gtksourceview/language-specs/ada.lang.h:11
-#: gtksourceview/language-specs/c.lang.h:16
-#: gtksourceview/language-specs/cpp.lang.h:16
-#: gtksourceview/language-specs/idl.lang.h:9
-msgid "Types"
-msgstr "Jenis"
-
-#: gtksourceview/language-specs/c.lang.h:1
-#: gtksourceview/language-specs/cpp.lang.h:1
-msgid "'#if 0' Comment"
-msgstr "'#if 0' Comment"
-
-#: gtksourceview/language-specs/c.lang.h:2
-#: gtksourceview/language-specs/cpp.lang.h:2
-#: gtksourceview/language-specs/html.lang.h:2
-#: gtksourceview/language-specs/idl.lang.h:1
-#: gtksourceview/language-specs/java.lang.h:1
-#: gtksourceview/language-specs/xml.lang.h:2
-#, fuzzy
-msgid "Block Comment"
-msgstr "Komen Backup"
-
-#: gtksourceview/language-specs/c.lang.h:3
-msgid "C"
-msgstr "C"
-
-#: gtksourceview/language-specs/c.lang.h:5
-#: gtksourceview/language-specs/cpp.lang.h:5
-#, fuzzy
-msgid "Common Macro"
-msgstr "Umum"
-
-#: gtksourceview/language-specs/c.lang.h:7
-#: gtksourceview/language-specs/cpp.lang.h:7
-msgid "Floating Point Number"
-msgstr "Nombor Titik Apungan"
-
-#: gtksourceview/language-specs/c.lang.h:8
-#: gtksourceview/language-specs/cpp.lang.h:8
-msgid "Hex Number"
-msgstr "Nombor Heks"
-
-#: gtksourceview/language-specs/c.lang.h:9
-#: gtksourceview/language-specs/cpp.lang.h:9
-#: gtksourceview/language-specs/idl.lang.h:3
-msgid "Include/Pragma"
-msgstr ""
-
-#: gtksourceview/language-specs/c.lang.h:12
-#: gtksourceview/language-specs/cpp.lang.h:12
-msgid "Octal Number"
-msgstr "Nombor Oktal"
-
-#: gtksourceview/language-specs/c.lang.h:13
-#: gtksourceview/language-specs/cpp.lang.h:13
-#: gtksourceview/language-specs/idl.lang.h:5
-msgid "Preprocessor Definitions"
-msgstr "Takrifan Pra Pemproses"
-
-#: gtksourceview/language-specs/cpp.lang.h:3
-msgid "C++"
-msgstr "C++"
-
-#: gtksourceview/language-specs/desktop.lang.h:1
-msgid ".desktop"
-msgstr ".desktop"
-
-#: gtksourceview/language-specs/desktop.lang.h:2
-msgid "Boolean Value"
-msgstr "Nilai Boolean"
-
-#: gtksourceview/language-specs/desktop.lang.h:3
-msgid "Encoding"
-msgstr "Pengenkodan"
-
-#: gtksourceview/language-specs/desktop.lang.h:4
-msgid "Exec Parameter"
-msgstr "Parameter Exec"
-
-#: gtksourceview/language-specs/desktop.lang.h:5
-msgid "Group"
-msgstr "Kumpulan"
-
-#: gtksourceview/language-specs/desktop.lang.h:8
-msgid "Non Standard Key"
-msgstr "Bukan Kekunci Piawai"
-
-#: gtksourceview/language-specs/desktop.lang.h:11
-msgid "Standard Key"
-msgstr "Kekunci Piawai"
-
-#: gtksourceview/language-specs/diff.lang.h:1
-msgid "Added line"
-msgstr "Baris ditambah"
-
-#: gtksourceview/language-specs/diff.lang.h:2
-msgid "Changed line"
-msgstr "Baris berubah"
-
-#: gtksourceview/language-specs/diff.lang.h:3
-msgid "Diff"
-msgstr "Diff"
-
-#: gtksourceview/language-specs/diff.lang.h:4
-msgid "Diff file"
-msgstr "Fail diff"
-
-#: gtksourceview/language-specs/diff.lang.h:6
-#: gtksourceview/language-specs/po.lang.h:4
-msgid "Location"
-msgstr "Lokasi"
-
-#: gtksourceview/language-specs/diff.lang.h:8
-msgid "Removed line"
-msgstr "Baris dibuang"
-
-#: gtksourceview/language-specs/diff.lang.h:9
-msgid "Special case"
-msgstr "Kes istimewa"
-
-#: gtksourceview/language-specs/html.lang.h:1
-#: gtksourceview/language-specs/xml.lang.h:1
-msgid "Attributes"
-msgstr "Atribut"
-
-#: gtksourceview/language-specs/html.lang.h:3
-#: gtksourceview/language-specs/xml.lang.h:3
-#, fuzzy
-msgid "Closing Bracket"
-msgstr "Menutup sambungan"
-
-#: gtksourceview/language-specs/html.lang.h:4
-#: gtksourceview/language-specs/xml.lang.h:4
-msgid "DTD"
-msgstr "DTD"
-
-#: gtksourceview/language-specs/html.lang.h:5
-#: gtksourceview/language-specs/xml.lang.h:5
-msgid "Entity"
-msgstr "Entiti"
-
-#: gtksourceview/language-specs/html.lang.h:6
-msgid "HTML"
-msgstr "HTML"
-
-#: gtksourceview/language-specs/html.lang.h:7
-#: gtksourceview/language-specs/latex.lang.h:5
-#: gtksourceview/language-specs/xml.lang.h:7
-msgid "Markup"
-msgstr "Markup"
-
-#: gtksourceview/language-specs/html.lang.h:9
-msgid "Tags"
-msgstr "Tag"
-
-#: gtksourceview/language-specs/idl.lang.h:2
-msgid "IDL"
-msgstr "IDL"
-
-#: gtksourceview/language-specs/idl.lang.h:6
-#, fuzzy
-msgid "Sectional"
-msgstr "Seksyen"
-
-#: gtksourceview/language-specs/java.lang.h:2
-msgid "Declarations"
-msgstr "Pengistiharan"
-
-#: gtksourceview/language-specs/java.lang.h:3
-msgid "Flow"
-msgstr "Aliran"
-
-#: gtksourceview/language-specs/java.lang.h:4
-msgid "Java"
-msgstr "Java"
-
-#: gtksourceview/language-specs/java.lang.h:6
-msgid "Memory"
-msgstr "Memori"
-
-#: gtksourceview/language-specs/java.lang.h:7
-msgid "Modifiers"
-msgstr "Pengubahsuai"
-
-#: gtksourceview/language-specs/java.lang.h:8
-msgid "Numeric"
-msgstr "Numerik"
-
-#: gtksourceview/language-specs/java.lang.h:9
-#, fuzzy
-msgid "Primitives"
-msgstr "Cetak imej"
-
-#: gtksourceview/language-specs/java.lang.h:12
-#: gtksourceview/language-specs/python.lang.h:12
-#: gtksourceview/language-specs/xml.lang.h:9
-msgid "String 2"
-msgstr "Rentetan 2"
-
-#: gtksourceview/language-specs/latex.lang.h:2
-#, fuzzy
-msgid "Include"
-msgstr "Fail termasuk"
-
-#: gtksourceview/language-specs/latex.lang.h:4
-msgid "Latex"
-msgstr "Latex"
-
-#: gtksourceview/language-specs/latex.lang.h:6
-#, fuzzy
-msgid "Math"
-msgstr "Padan"
-
-#: gtksourceview/language-specs/latex.lang.h:7
-msgid "Most Used Commands"
-msgstr "Arahan Sering Digunakan"
-
-#: gtksourceview/language-specs/perl.lang.h:1
-msgid "Function Call"
-msgstr "Panggilan Fungsi"
-
-#: gtksourceview/language-specs/perl.lang.h:4
-msgid "Perl"
-msgstr "Perl"
-
-#: gtksourceview/language-specs/perl.lang.h:5
-#: gtksourceview/language-specs/python.lang.h:9
-msgid "Scripts"
-msgstr "Skrip"
-
-#: gtksourceview/language-specs/perl.lang.h:7
-msgid "String2"
-msgstr "Rentetan2"
-
-#: gtksourceview/language-specs/perl.lang.h:8
-msgid "String3"
-msgstr "Rentetan3"
-
-#: gtksourceview/language-specs/perl.lang.h:9
-msgid "Variables"
-msgstr "Pembolehubah"
-
-#: gtksourceview/language-specs/po.lang.h:2
-msgid "Format"
-msgstr "Format"
-
-#: gtksourceview/language-specs/po.lang.h:7
-msgid "gettext translation"
-msgstr "terjemahan gettext"
-
-#: gtksourceview/language-specs/python.lang.h:1
-#, fuzzy
-msgid "Builtins"
-msgstr "Butang"
-
-#: gtksourceview/language-specs/python.lang.h:2
-msgid "Functions"
-msgstr "Fungsi"
-
-#: gtksourceview/language-specs/python.lang.h:5
-msgid "Module Handler"
-msgstr "Pengendali Modul"
-
-#: gtksourceview/language-specs/python.lang.h:6
-#, fuzzy
-msgid "Multiline String"
-msgstr "Tetapan Pergerakan"
-
-#: gtksourceview/language-specs/python.lang.h:7
-#, fuzzy
-msgid "Multiline String 2"
-msgstr "Tetapan Pergerakan"
-
-#: gtksourceview/language-specs/python.lang.h:8
-msgid "Python"
-msgstr "Python"
-
-#: gtksourceview/language-specs/python.lang.h:10
-msgid "Self"
-msgstr "Diri"
-
-#: gtksourceview/language-specs/xml.lang.h:6
-msgid "Hexadecimal"
-msgstr "Heksadesimal"
-
-#: gtksourceview/language-specs/xml.lang.h:10
-#, fuzzy
-msgid "Tag"
-msgstr "Tag"
-
-#: gtksourceview/language-specs/xml.lang.h:11
-msgid "XML"
-msgstr "XML"
+"kekunci HOME dan END menggerak kursor ke aksara pertama/akhir pada baris "
+"pertama sebelum pergi ke mula/akhir baris"
