@@ -310,8 +310,8 @@ gtk_source_print_job_class_init (GtkSourcePrintJobClass *klass)
 					 PROP_FONT_DESC,
 					 g_param_spec_boxed ("font_desc",
 							     _("Font Description"),
-							     _("Font description name to use for the "
-							       "document text"),
+							     _("Font to use for the document text "
+							       "(e.g. \"Monospace 10\")"),
 							     PANGO_TYPE_FONT_DESCRIPTION,
 							      G_PARAM_READWRITE));
 	g_object_class_install_property (object_class,
@@ -366,8 +366,8 @@ gtk_source_print_job_class_init (GtkSourcePrintJobClass *klass)
 					 PROP_HEADER_FOOTER_FONT_DESC,
 					 g_param_spec_boxed ("header_footer_font_desc",
 							     _("Header and Footer Font Description"),
-							     _("Font description name to use for the header "
-							       "and footer"),
+							     _("Font to use for headers and footers "
+							       "(e.g. \"Monospace 10\")"),
 							     PANGO_TYPE_FONT_DESCRIPTION,
 							     G_PARAM_READWRITE));
 	

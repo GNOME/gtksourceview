@@ -1,5 +1,11 @@
 2005-01-24  Paolo Maggi  <paolo@gnome.org>
 
+	* gtksourceview/gtksourceprintjob.c
+	(gtk_source_print_job_class_init): fixed bug #149337 ("font description 
+	name" in gtksourceview difficult to translate)
+
+2005-01-24  Paolo Maggi  <paolo@gnome.org>
+
 	* gtksourceview/gtksourceundomanager.c
 	(gtk_source_undo_manager_insert_text_handler): fixed 
 	bug #141993 (Text insertion undo manager should not assume text length).
