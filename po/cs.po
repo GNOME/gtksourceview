@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-09 12:23+0100\n"
-"PO-Revision-Date: 2005-01-09 15:03+0100\n"
+"POT-Creation-Date: 2005-01-10 20:27+0100\n"
+"PO-Revision-Date: 2005-01-10 21:53+0100\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -207,6 +207,7 @@ msgstr "Funkce"
 #: gtksourceview/language-specs/cpp.lang.h:6
 #: gtksourceview/language-specs/fortran.lang.h:1
 #: gtksourceview/language-specs/haskell.lang.h:3
+#: gtksourceview/language-specs/nemerle.lang.h:6
 msgid "Decimal"
 msgstr "Desítkové"
 
@@ -218,6 +219,7 @@ msgstr "S plovoucí řádovou čárkou"
 #: gtksourceview/language-specs/latex.lang.h:3
 #: gtksourceview/language-specs/po.lang.h:3
 #: gtksourceview/language-specs/texinfo.lang.h:8
+#: gtksourceview/language-specs/vhdl.lang.h:2
 msgid "Keyword"
 msgstr "Klíčové slovo"
 
@@ -245,6 +247,9 @@ msgstr "Preprocesor"
 #: gtksourceview/language-specs/xml.lang.h:7
 #: gtksourceview/language-specs/haskell.lang.h:15
 #: gtksourceview/language-specs/vbnet.lang.h:7
+#: gtksourceview/language-specs/nemerle.lang.h:15
+#: gtksourceview/language-specs/tcl.lang.h:4
+#: gtksourceview/language-specs/vhdl.lang.h:6
 msgid "String"
 msgstr "Řetězec"
 
@@ -377,6 +382,8 @@ msgstr "Ada"
 #: gtksourceview/language-specs/c.lang.h:4
 #: gtksourceview/language-specs/cpp.lang.h:4
 #: gtksourceview/language-specs/haskell.lang.h:2
+#: gtksourceview/language-specs/nemerle.lang.h:3
+#: gtksourceview/language-specs/vhdl.lang.h:1
 msgid "Character Constant"
 msgstr "Znaková konstanta"
 
@@ -394,6 +401,7 @@ msgstr "Znaková konstanta"
 #: gtksourceview/language-specs/verilog.lang.h:6
 #: gtksourceview/language-specs/haskell.lang.h:9
 #: gtksourceview/language-specs/vbnet.lang.h:1
+#: gtksourceview/language-specs/tcl.lang.h:1
 msgid "Keywords"
 msgstr "Klíčová slova"
 
@@ -417,6 +425,9 @@ msgstr "Klíčová slova"
 #: gtksourceview/language-specs/haskell.lang.h:10
 #: gtksourceview/language-specs/texinfo.lang.h:9
 #: gtksourceview/language-specs/vbnet.lang.h:2
+#: gtksourceview/language-specs/nemerle.lang.h:10
+#: gtksourceview/language-specs/tcl.lang.h:2
+#: gtksourceview/language-specs/vhdl.lang.h:3
 msgid "Line Comment"
 msgstr "Poznámka na řádku"
 
@@ -429,6 +440,7 @@ msgstr "Poznámka na řádku"
 #: gtksourceview/language-specs/desktop.lang.h:9
 #: gtksourceview/language-specs/javascript.lang.h:15
 #: gtksourceview/language-specs/pascal.lang.h:14
+#: gtksourceview/language-specs/vhdl.lang.h:4
 msgid "Number"
 msgstr "Číslo"
 
@@ -449,6 +461,8 @@ msgstr "Klíčová slova preprocesoru"
 #: gtksourceview/language-specs/verilog.lang.h:9
 #: gtksourceview/language-specs/haskell.lang.h:14
 #: gtksourceview/language-specs/vbnet.lang.h:6
+#: gtksourceview/language-specs/nemerle.lang.h:14
+#: gtksourceview/language-specs/vhdl.lang.h:5
 msgid "Sources"
 msgstr "Zdrojové kódy"
 
@@ -484,6 +498,7 @@ msgstr "Poznámka '#if 0'"
 #: gtksourceview/language-specs/xml.lang.h:2
 #: gtksourceview/language-specs/haskell.lang.h:1
 #: gtksourceview/language-specs/texinfo.lang.h:1
+#: gtksourceview/language-specs/nemerle.lang.h:2
 msgid "Block Comment"
 msgstr "Bloková poznámka"
 
@@ -500,6 +515,7 @@ msgstr "Společné makro"
 #: gtksourceview/language-specs/cpp.lang.h:7
 #: gtksourceview/language-specs/fortran.lang.h:2
 #: gtksourceview/language-specs/haskell.lang.h:4
+#: gtksourceview/language-specs/nemerle.lang.h:7
 msgid "Floating Point Number"
 msgstr "Číslo s plovoucí řádovou čárkou"
 
@@ -509,6 +525,7 @@ msgstr "Číslo s plovoucí řádovou čárkou"
 #: gtksourceview/language-specs/fortran.lang.h:4
 #: gtksourceview/language-specs/pascal.lang.h:10
 #: gtksourceview/language-specs/haskell.lang.h:6
+#: gtksourceview/language-specs/nemerle.lang.h:8
 msgid "Hex Number"
 msgstr "Šestnáctkové číslo"
 
@@ -524,6 +541,7 @@ msgstr "Include/pragma"
 #: gtksourceview/language-specs/fortran.lang.h:9
 #: gtksourceview/language-specs/verilog.lang.h:8
 #: gtksourceview/language-specs/haskell.lang.h:11
+#: gtksourceview/language-specs/nemerle.lang.h:12
 msgid "Octal Number"
 msgstr "Osmičkové číslo"
 
@@ -547,6 +565,7 @@ msgstr "C#"
 #: gtksourceview/language-specs/csharp.lang.h:6
 #: gtksourceview/language-specs/java.lang.h:9
 #: gtksourceview/language-specs/vbnet.lang.h:5
+#: gtksourceview/language-specs/nemerle.lang.h:13
 msgid "Primitives"
 msgstr "Primitiva"
 
@@ -869,6 +888,7 @@ msgstr "Objekty"
 #: gtksourceview/language-specs/perl.lang.h:7
 #: gtksourceview/language-specs/python.lang.h:9
 #: gtksourceview/language-specs/ruby.lang.h:17
+#: gtksourceview/language-specs/tcl.lang.h:3
 msgid "Scripts"
 msgstr "Skripty"
 
@@ -989,6 +1009,7 @@ msgid "Perl"
 msgstr "Perl"
 
 #: gtksourceview/language-specs/perl.lang.h:9
+#: gtksourceview/language-specs/tcl.lang.h:5
 msgid "String2"
 msgstr "Řetězec2"
 
@@ -997,6 +1018,7 @@ msgid "String3"
 msgstr "Řetězec3"
 
 #: gtksourceview/language-specs/perl.lang.h:11
+#: gtksourceview/language-specs/tcl.lang.h:7
 msgid "Variables"
 msgstr "Proměnné"
 
@@ -1230,6 +1252,7 @@ msgid "Unlimited"
 msgstr "Neomezeno"
 
 #: gtksourceview/language-specs/verilog.lang.h:1
+#: gtksourceview/language-specs/nemerle.lang.h:1
 msgid "Binary Number"
 msgstr "Binární číslo"
 
@@ -1320,3 +1343,35 @@ msgstr "Poznámka ve starém stylu"
 #: gtksourceview/language-specs/vbnet.lang.h:9
 msgid "VB.NET"
 msgstr "VB.NET"
+
+#: gtksourceview/language-specs/nemerle.lang.h:4
+msgid "Core Keywords"
+msgstr "Základní klíčová slova"
+
+#: gtksourceview/language-specs/nemerle.lang.h:5
+msgid "Core Types"
+msgstr "Základní typy"
+
+#: gtksourceview/language-specs/nemerle.lang.h:9
+msgid "Keywords Defined by Macros"
+msgstr "Klíčová slova definovaná makry"
+
+#: gtksourceview/language-specs/nemerle.lang.h:11
+msgid "Nemerle"
+msgstr "Nemerle"
+
+#: gtksourceview/language-specs/tcl.lang.h:6
+msgid "Tcl"
+msgstr "Tcl"
+
+#: gtksourceview/language-specs/vhdl.lang.h:7
+msgid "True and False"
+msgstr "True a false"
+
+#: gtksourceview/language-specs/vhdl.lang.h:8
+msgid "Type"
+msgstr "Typ"
+
+#: gtksourceview/language-specs/vhdl.lang.h:9
+msgid "VHDL"
+msgstr "VHDL"
