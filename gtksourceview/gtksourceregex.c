@@ -117,7 +117,8 @@ gtk_source_regex_search (GtkSourceRegex       *regex,
 			 const gchar          *text,
 			 gint                  pos,
 			 gint                  length,
-			 GtkSourceBufferMatch *match)
+			 GtkSourceBufferMatch *match,
+			 guint                 options)
 {
 	gint res;
 
@@ -132,6 +133,9 @@ gtk_source_regex_search (GtkSourceRegex       *regex,
 	if (pos > 0)
 		pos = g_utf8_offset_to_pointer (text, pos) - text;
 
+	regex->buf.not_bol = (options & GTK_SOURCE_REGEX_NOT_BOL);
+	regex->buf.not_eol = (options & GTK_SOURCE_REGEX_NOT_EOL);
+	
 	res = re_search (&regex->buf, text, length,
 			 pos, length - pos, &regex->reg);
 
@@ -167,7 +171,8 @@ gboolean
 gtk_source_regex_match (GtkSourceRegex *regex,
 			const gchar    *text,
 			gint            pos,
-			gint            length)
+			gint            length,
+			guint           options)
 {
 	g_return_val_if_fail (regex != NULL, -1);
 	g_return_val_if_fail (pos >= 0, -1);
@@ -177,6 +182,9 @@ gtk_source_regex_match (GtkSourceRegex *regex,
 	
 	pos = g_utf8_offset_to_pointer (text, pos) - text;
 
+	regex->buf.not_bol = (options & GTK_SOURCE_REGEX_NOT_BOL);
+	regex->buf.not_eol = (options & GTK_SOURCE_REGEX_NOT_EOL);
+	
 	return (re_match (&regex->buf, text, length, pos,
 			  &regex->reg) > 0);
 }

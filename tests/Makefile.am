@@ -1,12 +1,8 @@
 INCLUDES = 				\
 	-DDATADIR=\""$(datadir)"\" 	\
 	-DG_LOG_DOMAIN=\"GtkSourceView\"\
-	-DG_DISABLE_DEPRECATED 		\
-	-DGDK_DISABLE_DEPRECATED 	\
-	-DGDK_PIXBUF_DISABLE_DEPRECATED	\
-	-DGTK_DISABLE_DEPRECATED	\
-	-DGNOME_DISABLE_DEPRECATED	\
 	-I$(top_srcdir) -I$(srcdir) 	\
+	$(DEPRECATED_FLAGS)		\
 	$(WARN_CFLAGS) 			\
 	$(DEP_CFLAGS)                  \
 	$(TESTS_CFLAGS)

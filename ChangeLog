@@ -1,3 +1,29 @@
+2004-02-20  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+
+	* autogen.sh: 
+	* configure.in: Set DEPRECATED_FLAGS variable and compiler
+	warnings according to maintainer mode (i.e. full deprecated flags
+	and error compiler warnings if maintainer mode is on).
+
+	* gtksourceview/Makefile.am: 
+	* tests/Makefile.am: Use DEPRECATED_FLAGS.
+
+	* gtksourceview/language-specs/csharp.lang: Highlight "value" in
+	C# (bug #134405, algol@firenze.linux.it).
+	
+	* gtksourceview/gtksourceregex.h: 
+	* gtksourceview/gtksourceregex.c (gtk_source_regex_search)
+	(gtk_source_regex_match): Added options to disable beginning and
+	end of line anchor matching at string ends.
+
+	* gtksourceview/gtksourcebuffer.c (get_syntax_start)
+	(get_syntax_end, next_syntax_region)
+	(build_syntax_regions_table, update_syntax_regions)
+	(search_patterns, check_pattern, highlight_region): Determine if
+	the slice of text being analyzed starts at the beginning of a line
+	or ends at the end of line and pass matching options to
+	gtk_source_regex_* functions (bug #120347, Evert Verhellen).
+
 2004-02-20  Albert Chin-A-Young  <china@thewrittenword.com>
 
 	* gtksourceview/gtksourceprintjob.c: IBM C compiler does not like

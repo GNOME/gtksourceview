@@ -36,20 +36,27 @@ struct _GtkSourceBufferMatch
 	gint			 endindex;
 };
 
+typedef enum {
+	GTK_SOURCE_REGEX_NOT_BOL = 1 << 0,	/*< nick=not_bol >*/
+	GTK_SOURCE_REGEX_NOT_EOL = 1 << 1	/*< nick=not_eol >*/
+} GtkSourceRegexOptions; 
+
 GtkSourceRegex *gtk_source_regex_compile 	(const gchar          *pattern);
 
 void		gtk_source_regex_destroy	(GtkSourceRegex       *regex);
 
-gint		gtk_source_regex_search 	(GtkSourceRegex       *regex,
-			 			 const gchar          *text,
-			 			 gint                  pos,
+gint 	        gtk_source_regex_search         (GtkSourceRegex       *regex,
+						 const gchar          *text,
+						 gint                  pos,
 						 gint                  length,
-			 			 GtkSourceBufferMatch *match);
+						 GtkSourceBufferMatch *match,
+						 guint                 options);
 
 gboolean        gtk_source_regex_match          (GtkSourceRegex       *regex,
 						 const gchar          *text,
 						 gint                  pos,
-						 gint                  len);
+						 gint                  len,
+						 guint                 options);
 
 G_END_DECLS
 
