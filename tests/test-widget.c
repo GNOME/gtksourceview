@@ -60,6 +60,8 @@ static void       markers_toggled_cb             (GtkAction       *action,
 						  gpointer         user_data);
 static void       margin_toggled_cb              (GtkAction       *action,
 						  gpointer         user_data);
+static void       hl_line_toggled_cb             (GtkAction       *action,
+						  gpointer         user_data);
 static void       auto_indent_toggled_cb         (GtkAction       *action,
 						  gpointer         user_data);
 static void       insert_spaces_toggled_cb       (GtkAction       *action,
@@ -103,6 +105,9 @@ static GtkToggleActionEntry toggle_entries[] = {
 	{ "ShowMargin", NULL, "Show M_argin", NULL,
 	  "Toggle visibility of right margin indicator",
 	  G_CALLBACK (margin_toggled_cb), FALSE },
+	{ "HlLine", NULL, "_Highlight Current Line", NULL,
+	  "Toggle highlighting of current line",
+	  G_CALLBACK (hl_line_toggled_cb), FALSE },
 	{ "AutoIndent", NULL, "Enable _Auto Indent", NULL,
 	  "Toggle automatic auto indentation of text",
 	  G_CALLBACK (auto_indent_toggled_cb), FALSE },
@@ -131,6 +136,7 @@ static const gchar *view_ui_description =
 "      <menuitem action=\"ShowNumbers\"/>"
 "      <menuitem action=\"ShowMarkers\"/>"
 "      <menuitem action=\"ShowMargin\"/>"
+"      <menuitem action=\"HlLine\"/>"
 "      <separator/>"
 "      <menuitem action=\"AutoIndent\"/>"
 "      <menuitem action=\"InsertSpaces\"/>"
@@ -420,6 +426,16 @@ margin_toggled_cb (GtkAction *action, gpointer user_data)
 		GTK_SOURCE_VIEW (user_data),
 		gtk_toggle_action_get_active (GTK_TOGGLE_ACTION (action)));
 }
+
+static void
+hl_line_toggled_cb (GtkAction *action, gpointer user_data)
+{
+	g_return_if_fail (GTK_IS_TOGGLE_ACTION (action) && GTK_IS_SOURCE_VIEW (user_data));
+	gtk_source_view_set_highlight_current_line (
+		GTK_SOURCE_VIEW (user_data),
+		gtk_toggle_action_get_active (GTK_TOGGLE_ACTION (action)));
+}
+
 
 static void 
 auto_indent_toggled_cb (GtkAction *action,
@@ -828,6 +844,10 @@ create_view_window (GtkSourceBuffer *buffer, GtkSourceView *from)
 		gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action),
 					      gtk_source_view_get_show_margin (from));
 		
+		action = gtk_action_group_get_action (action_group, "HlLine");
+		gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action),
+					      gtk_source_view_get_highlight_current_line (from));
+
 		action = gtk_action_group_get_action (action_group, "AutoIndent");
 		gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action),
 					      gtk_source_view_get_auto_indent (from));

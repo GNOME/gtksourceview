@@ -75,7 +75,8 @@ enum {
 	PROP_INSERT_SPACES,
 	PROP_SHOW_MARGIN,
 	PROP_MARGIN,
-	PROP_SMART_HOME_END
+	PROP_SMART_HOME_END,
+	PROP_HIGHLIGHT_CURRENT_LINE
 };
 
 
@@ -87,6 +88,7 @@ struct _GtkSourceViewPrivate
 	gboolean	 auto_indent;
 	gboolean	 insert_spaces;
 	gboolean	 show_margin;
+	gboolean	 highlight_current_line;
 	guint		 margin;
 	gint             cached_margin_width;
 	gboolean	 smart_home_end;
@@ -247,7 +249,7 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 							       _("Whether to display the right margin"),
 							       FALSE,
 							       G_PARAM_READWRITE));
-
+	
 	g_object_class_install_property (object_class,
 					 PROP_MARGIN,
 					 g_param_spec_uint ("margin",
@@ -262,8 +264,18 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 					 PROP_SMART_HOME_END,
 					 g_param_spec_boolean ("smart_home_end",
 							       _("Use smart home/end"),
-							       _("HOME and END keys move to first/last characters on line first before going to the start/end of the line"),
+							       _("HOME and END keys move to first/last "
+								 "characters on line first before going "
+								 "to the start/end of the line"),
 							       TRUE,
+							       G_PARAM_READWRITE));
+
+	g_object_class_install_property (object_class,
+					 PROP_HIGHLIGHT_CURRENT_LINE,
+					 g_param_spec_boolean ("highlight_current_line",
+							       _("Highlight current line"),
+							       _("Whether to highlight the current line"),
+							       FALSE,
 							       G_PARAM_READWRITE));
 
 	signals [UNDO] =
@@ -357,6 +369,12 @@ gtk_source_view_set_property (GObject      *object,
 			gtk_source_view_set_smart_home_end (view,
 							    g_value_get_boolean (value));
 			break;
+
+		case PROP_HIGHLIGHT_CURRENT_LINE:
+			gtk_source_view_set_highlight_current_line (view,
+								    g_value_get_boolean (value));
+			break;
+
 		
 		default:
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -423,6 +441,10 @@ gtk_source_view_get_property (GObject    *object,
 					     gtk_source_view_get_smart_home_end (view));
 			break;
 			
+		case PROP_HIGHLIGHT_CURRENT_LINE:
+			g_value_set_boolean (value,
+					     gtk_source_view_get_highlight_current_line (view));
+
 		default:
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
 			break;
@@ -972,6 +994,8 @@ gtk_source_view_paint_margin (GtkSourceView *view,
 	gint margin_width;
 	gint text_width, x_pixmap;
 	gint i;
+	GtkTextIter cur;
+	gint cur_line;
 
 	text_view = GTK_TEXT_VIEW (view);
 
@@ -1093,10 +1117,17 @@ gtk_source_view_paint_margin (GtkSourceView *view,
 		marker_line = gtk_source_marker_get_line (
 			GTK_SOURCE_MARKER (current_marker->data));
 	
+	
+	gtk_text_buffer_get_iter_at_mark (text_view->buffer, 
+					  &cur, 
+					  gtk_text_buffer_get_insert (text_view->buffer));
+
+	cur_line = gtk_text_iter_get_line (&cur) + 1;
+	
 	while (i < count) 
 	{
 		gint pos;
-
+		
 		gtk_text_view_buffer_to_window_coords (text_view,
 						       GTK_TEXT_WINDOW_LEFT,
 						       0,
@@ -1106,10 +1137,24 @@ gtk_source_view_paint_margin (GtkSourceView *view,
 
 		if (view->priv->show_line_numbers) 
 		{
-			g_snprintf (str, sizeof (str),
-				    "%d", g_array_index (numbers, gint, i) + 1);
+			gint line_to_paint = g_array_index (numbers, gint, i) + 1;
+			
+			if (line_to_paint == cur_line)
+			{
+				gchar *markup;
+				markup = g_strdup_printf ("<b>%d</b>", line_to_paint);
+				
+				pango_layout_set_markup (layout, markup, -1);
 
-			pango_layout_set_text (layout, str, -1);
+				g_free (markup);
+			}
+			else
+			{
+				g_snprintf (str, sizeof (str),
+					    "%d", line_to_paint);
+
+				pango_layout_set_markup (layout, str, -1);
+			}
 
 			gtk_paint_layout (GTK_WIDGET (view)->style,
 					  win,
@@ -1215,6 +1260,54 @@ gtk_source_view_expose (GtkWidget      *widget,
 				gdk_window_invalidate_rect (w, NULL, FALSE);
 		}
 
+		if (view->priv->highlight_current_line && 
+		    (event->window == gtk_text_view_get_window (text_view, GTK_TEXT_WINDOW_TEXT)))
+		{
+			GdkRectangle visible_rect;
+			GdkRectangle redraw_rect;
+			GtkTextIter cur;
+			gint y;
+			gint height;
+			gint win_y;
+
+			gtk_text_buffer_get_iter_at_mark (text_view->buffer, 
+							  &cur, 
+							  gtk_text_buffer_get_insert (text_view->buffer));
+
+			gtk_text_view_get_line_yrange (text_view, &cur, &y, &height);
+							
+			gtk_text_view_get_visible_rect (text_view, &visible_rect);
+			
+			gtk_text_view_buffer_to_window_coords (text_view,
+						       GTK_TEXT_WINDOW_TEXT,
+						       visible_rect.x,
+						       visible_rect.y,
+						       &redraw_rect.x,
+						       &redraw_rect.y);
+
+			gtk_text_view_buffer_to_window_coords (text_view,
+						       GTK_TEXT_WINDOW_TEXT,
+						       0,
+						       y,
+						       NULL,
+						       &win_y);
+
+			redraw_rect.width = visible_rect.width;
+			redraw_rect.height = visible_rect.height;
+
+			gtk_paint_flat_box (widget->style, 
+					    event->window, 
+					    GTK_WIDGET_STATE (widget),
+					    GTK_SHADOW_NONE,
+					    &redraw_rect, 
+					    widget,
+					    "current_line", 
+					    MAX (1, gtk_text_view_get_left_margin (text_view) - 1),
+					    win_y,
+					    redraw_rect.width,
+					    height);
+		}
+
 		if (view->priv->show_margin && 
 		    (event->window == gtk_text_view_get_window (text_view, GTK_TEXT_WINDOW_TEXT)))
 		{
@@ -1250,6 +1343,7 @@ gtk_source_view_expose (GtkWidget      *widget,
 					 gtk_text_view_get_left_margin (text_view));
 		}
 
+		
 		if (GTK_WIDGET_CLASS (parent_class)->expose_event)
 			event_handled = 
 				(* GTK_WIDGET_CLASS (parent_class)->expose_event)
@@ -1923,7 +2017,6 @@ gtk_source_view_get_show_margin (GtkSourceView *view)
  * @show: whether to show a margin
  *
  * If TRUE a margin is displayed
- *
  **/
 void 
 gtk_source_view_set_show_margin (GtkSourceView *view, gboolean show)
@@ -1940,6 +2033,46 @@ gtk_source_view_set_show_margin (GtkSourceView *view, gboolean show)
 	gtk_widget_queue_draw (GTK_WIDGET (view));
 
 	g_object_notify (G_OBJECT (view), "show_margin");
+}
+
+/**
+ * gtk_source_view_get_highlight_current_line:
+ * @view: a #GtkSourceView
+ *
+ * Returns whether the current line is highlighted
+ *
+ * Return value: TRUE if the current line is highlighted
+ **/
+gboolean 
+gtk_source_view_get_highlight_current_line (GtkSourceView *view)
+{
+	g_return_val_if_fail (GTK_IS_SOURCE_VIEW (view), FALSE);
+
+	return view->priv->highlight_current_line;
+}
+
+/**
+ * gtk_source_view_set_highlight_current_line:
+ * @view: a #GtkSourceView
+ * @show: whether to highlight the current line
+ *
+ * If TRUE the current line is highlighted
+ **/
+void 
+gtk_source_view_set_highlight_current_line (GtkSourceView *view, gboolean hl)
+{
+	g_return_if_fail (GTK_IS_SOURCE_VIEW (view));
+
+	hl = (hl != FALSE);
+
+	if (view->priv->highlight_current_line == hl)
+		return;
+
+	view->priv->highlight_current_line = hl;
+
+	gtk_widget_queue_draw (GTK_WIDGET (view));
+
+	g_object_notify (G_OBJECT (view), "highlight_current_line");
 }
 
 /**

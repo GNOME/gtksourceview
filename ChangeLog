@@ -1,5 +1,27 @@
 2005-01-08  Paolo Maggi  <paolo@gnome.org>
 
+	* docs/reference/tmpl/view.sgml: updated
+
+	* gtksourceview/gtksourceview.c (gtk_source_view_class_init): new 
+	"highlight_current_line" property
+	(gtk_source_view_set_property): manage new "highlight_current_line" 
+	property
+	(gtk_source_view_get_property): ditto
+	(gtk_source_view_paint_margin): use bold font to paint the line
+	number of the current line 
+	(gtk_source_view_expose): highlight the current line
+	(gtk_source_view_get_highlight_current_line): new method
+	(gtk_source_view_set_highlight_current_line): ditto
+
+	* gtksourceview/gtksourceview.h: added new methods
+	gtk_source_view_get_highlight_current_line and 
+	gtk_source_view_set_highlight_current_line
+
+	* tests/test-widget.c (hl_line_toggled_cb) (create_view_window): added
+	test for highlight current line feature
+
+2005-01-08  Paolo Maggi  <paolo@gnome.org>
+
 	* gtksourceview/language-specs/Makefile.am: added nemerle.lang
 
 	* gtksourceview/language-specs/nemerle.lang: new file (from 

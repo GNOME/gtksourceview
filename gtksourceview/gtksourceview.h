@@ -98,6 +98,12 @@ void		 gtk_source_view_set_show_margin 	(GtkSourceView   *view,
 							 gboolean         show);
 gboolean 	 gtk_source_view_get_show_margin 	(GtkSourceView   *view);
 
+void		 gtk_source_view_set_highlight_current_line 	
+							(GtkSourceView   *view,
+							 gboolean         show);
+gboolean 	 gtk_source_view_get_highlight_current_line 	
+							(GtkSourceView   *view);
+
 void		 gtk_source_view_set_margin 		(GtkSourceView   *view,
 							 guint            margin);
 guint		 gtk_source_view_get_margin 		(GtkSourceView   *view);
