@@ -82,7 +82,7 @@ if test x$build_tests = xtrue; then
 fi
 
 # I18N stuff
-ALL_LINGUAS="az be cs cy de el es he it ja ko mk ms nl no pl pt pt_BR ru sv tr vi zh_CN zh_TW"
+ALL_LINGUAS="az be cs cy de el es he it ja ko mk ms nl no pl pt pt_BR ru sr sr@Latn sv tr vi zh_CN zh_TW"
 GETTEXT_PACKAGE=gtksourceview-1.0
 AC_SUBST(GETTEXT_PACKAGE)
 AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE, "$GETTEXT_PACKAGE", [Package name for gettext])
