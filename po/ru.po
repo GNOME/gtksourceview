@@ -1,0 +1,189 @@
+# Translation of gtksourceview.
+# Copyright (C) 2003 gtksourceview  COPYRIGHT HOLDER
+# This file is distributed under the same license as the gtksourceview package.
+# Dmitry G. Mastrukov <dmitry@taurussoft.org>, 2003.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: gtksourceview HEAD\n"
+"POT-Creation-Date: 2003-05-27 09:13+0400\n"
+"PO-Revision-Date: 2003-05-27 10:12+0400\n"
+"Last-Translator: Dmitry G. Mastrukov <dmitry@taurussoft.org>\n"
+"Language-Team: Russian <gnome-cyr@gnome.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: gtksourceview/gtksourceview.c:207
+msgid "Show Line Numbers"
+msgstr "Показывать номера строк"
+
+#: gtksourceview/gtksourceview.c:208
+msgid "Whether to display line numbers"
+msgstr "Следует ли отображать номера строк"
+
+#: gtksourceview/gtksourceview.c:215
+msgid "Show Line Markers"
+msgstr "Показывать маркеры строк"
+
+#: gtksourceview/gtksourceview.c:216
+msgid "Whether to display line marker pixbufs"
+msgstr "Следует ли отображать маркеры строк"
+
+#: gtksourceview/gtksourceview.c:223 gtksourceview/gtksourceview.c:224
+msgid "Tabs Width"
+msgstr "Шаг табуляции"
+
+#: gtksourceview/gtksourceview.c:233
+msgid "Auto Indentation"
+msgstr "Расставлять отступы автоматически"
+
+#: gtksourceview/gtksourceview.c:234
+msgid "Whether to enable auto indentation"
+msgstr "Следует ли автоматически расставлять отсупы"
+
+#: gtksourceview/gtksourceview.c:240
+msgid "Insert Spaces Instead of Tabs"
+msgstr "Вставлять пробелы вместо табуляций"
+
+#: gtksourceview/gtksourceview.c:241
+msgid "Whether to insert spaces instead of tabs"
+msgstr "Следует ди заменять табуляции пробелами"
+
+#: gtksourceview/gtksourceview.c:248
+msgid "Show Right Margin"
+msgstr "Показывать правое поле"
+
+#: gtksourceview/gtksourceview.c:249
+msgid "Whether to display the right margin"
+msgstr "Следует ли отображать правое поле"
+
+#: gtksourceview/gtksourceview.c:256
+msgid "Margin position"
+msgstr "Позиция поля"
+
+#: gtksourceview/gtksourceview.c:257
+msgid "Position of the right margin"
+msgstr "Позиция правого поля"
+
+#: gtksourceview/gtksourceview.c:266
+msgid "Use smart home/end"
+msgstr "Использовать интеллектуальные клавиши \"Home\"/\"End\""
+
+#: gtksourceview/gtksourceview.c:267
+msgid ""
+"HOME and END keys move to first/last characters on line first before going "
+"to the start/end of the line"
+msgstr ""
+"Должны ли клавиши \"Home\" и \"End\" перемещать курсор к первому/последнему "
+"символу в строке перед переходом к началу/концу строки"
+
+#: gtksourceview/gtksourcebuffer.c:277
+msgid "Escape Character"
+msgstr "Экранирующий символ"
+
+#: gtksourceview/gtksourcebuffer.c:278
+msgid "Escaping character for syntax patterns"
+msgstr "Экранирующий символ для синтаксических шаблонов"
+
+#: gtksourceview/gtksourcebuffer.c:286
+msgid "Check Brackets"
+msgstr "Проверять кавычки"
+
+#: gtksourceview/gtksourcebuffer.c:287
+msgid "Whether to check and highlight matching brackets"
+msgstr "Следует ли проверять и подсвечивать соответствующие кавычки"
+
+#: gtksourceview/gtksourcebuffer.c:295
+msgid "Highlight"
+msgstr "Подсвечивать"
+
+#: gtksourceview/gtksourcebuffer.c:296
+msgid "Whether to highlight syntax in the buffer"
+msgstr "Следует ли подсвечивать синтаксис в буфере"
+
+#: gtksourceview/gtksourcebuffer.c:304
+msgid "Maximum Undo Levels"
+msgstr "Максимальный уровень отката"
+
+#: gtksourceview/gtksourcebuffer.c:305
+msgid "Number of undo levels for the buffer"
+msgstr "Установить число уровней отката для буфера"
+
+#: gtksourceview/gtksourcebuffer.c:315
+msgid "Language"
+msgstr "Язык"
+
+#: gtksourceview/gtksourcebuffer.c:316
+msgid "Language object to get highlighting patterns from"
+msgstr "Объект языка, для которого посвечивать синтаксис"
+
+#: gtksourceview/gtksourcelanguagesmanager.c:119
+msgid "Language spefications directories"
+msgstr "Каталоги со спецификациями языков"
+
+#: gtksourceview/gtksourcelanguagesmanager.c:120
+msgid ""
+"List of directories where the language spefication files (.lang) are located"
+msgstr "Список каталогов, где расположены языковые файлы (.lang)"
+
+#: gtksourceview/gtksourcestylescheme.c:222
+msgid "Base-N Integer"
+msgstr "Целое число"
+
+#: gtksourceview/gtksourcestylescheme.c:227
+msgid "Character"
+msgstr "Символ"
+
+#: gtksourceview/gtksourcestylescheme.c:232
+msgid "Comment"
+msgstr "Комментарий"
+
+#: gtksourceview/gtksourcestylescheme.c:237
+msgid "Data Type"
+msgstr "Тип данных"
+
+#: gtksourceview/gtksourcestylescheme.c:242
+msgid "Function"
+msgstr "Функция"
+
+#: gtksourceview/gtksourcestylescheme.c:247
+msgid "Decimal"
+msgstr "Десятичное число"
+
+#: gtksourceview/gtksourcestylescheme.c:252
+msgid "Floating Point"
+msgstr "Число с плавающей точкой"
+
+#: gtksourceview/gtksourcestylescheme.c:257
+msgid "Keyword"
+msgstr "Ключевое слово"
+
+#: gtksourceview/gtksourcestylescheme.c:262
+msgid "Preprocessor"
+msgstr "Директива препроцессора"
+
+#: gtksourceview/gtksourcestylescheme.c:267
+msgid "String"
+msgstr "Строка"
+
+#: gtksourceview/gtksourcestylescheme.c:272
+msgid "Specials"
+msgstr "Специальное"
+
+#: gtksourceview/gtksourcestylescheme.c:277
+msgid "Others"
+msgstr "Прочее"
+
+#: gtksourceview/gtksourcestylescheme.c:282
+msgid "Others 2"
+msgstr "Прочее 2"
+
+#: gtksourceview/gtksourcestylescheme.c:287
+msgid "Others 3"
+msgstr "Прочее 3"
+
+#: gtksourceview/gtksourcestylescheme.c:324
+msgid "Default"
+msgstr "Исходное"
