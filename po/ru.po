@@ -5,72 +5,301 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gtksourceview HEAD\n"
-"POT-Creation-Date: 2003-05-27 09:13+0400\n"
-"PO-Revision-Date: 2003-05-27 10:12+0400\n"
+"Project-Id-Version: gtksourceview\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2003-12-04 10:16+0300\n"
+"PO-Revision-Date: 2003-12-04 10:16+0300\n"
 "Last-Translator: Dmitry G. Mastrukov <dmitry@taurussoft.org>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: gtksourceview/gtksourceview.c:207
-msgid "Show Line Numbers"
-msgstr "Показывать номера строк"
+#: gtksourceview/gtksourcebuffer.c:279
+msgid "Escape Character"
+msgstr "Экранирующий символ"
 
-#: gtksourceview/gtksourceview.c:208
-msgid "Whether to display line numbers"
-msgstr "Следует ли отображать номера строк"
+#: gtksourceview/gtksourcebuffer.c:280
+msgid "Escaping character for syntax patterns"
+msgstr "Экранирующий символ для синтаксических шаблонов"
 
-#: gtksourceview/gtksourceview.c:215
-msgid "Show Line Markers"
-msgstr "Показывать маркеры строк"
+#: gtksourceview/gtksourcebuffer.c:288
+msgid "Check Brackets"
+msgstr "Проверять кавычки"
 
-#: gtksourceview/gtksourceview.c:216
-msgid "Whether to display line marker pixbufs"
-msgstr "Следует ли отображать маркеры строк"
+#: gtksourceview/gtksourcebuffer.c:289
+msgid "Whether to check and highlight matching brackets"
+msgstr "Следует ли проверять и подсвечивать соответствующие кавычки"
 
-#: gtksourceview/gtksourceview.c:223 gtksourceview/gtksourceview.c:224
+#: gtksourceview/gtksourcebuffer.c:297 gtksourceview/gtksourceprintjob.c:303
+msgid "Highlight"
+msgstr "Подсвечивать"
+
+#: gtksourceview/gtksourcebuffer.c:298
+msgid "Whether to highlight syntax in the buffer"
+msgstr "Следует ли подсвечивать синтаксис в буфере"
+
+#: gtksourceview/gtksourcebuffer.c:306
+msgid "Maximum Undo Levels"
+msgstr "Максимальный уровень отката"
+
+#: gtksourceview/gtksourcebuffer.c:307
+msgid "Number of undo levels for the buffer"
+msgstr "Установить число уровней отката для буфера"
+
+#: gtksourceview/gtksourcebuffer.c:317
+#: gtksourceview/language-specs/desktop.lang.h:6
+msgid "Language"
+msgstr "Язык"
+
+#: gtksourceview/gtksourcebuffer.c:318
+msgid "Language object to get highlighting patterns from"
+msgstr "Объект языка, для которого подсвечивать синтаксис"
+
+#: gtksourceview/gtksourcelanguagesmanager.c:119
+msgid "Language specification directories"
+msgstr "Каталоги со спецификациями языков"
+
+#: gtksourceview/gtksourcelanguagesmanager.c:120
+msgid ""
+"List of directories where the language specification files (.lang) are "
+"located"
+msgstr "Список каталогов, где расположены языковые файлы (.lang)"
+
+#: gtksourceview/gtksourceprintjob.c:272
+msgid "Configuration"
+msgstr "Конфигурация"
+
+#: gtksourceview/gtksourceprintjob.c:273
+msgid "Configuration options for the print job"
+msgstr "Параметры конфигурации для задания печати"
+
+#: gtksourceview/gtksourceprintjob.c:280
+msgid "Source Buffer"
+msgstr "Буфер источника"
+
+#: gtksourceview/gtksourceprintjob.c:281
+msgid "GtkSourceBuffer object to print"
+msgstr "Объект GtkSourceBufer для печати"
+
+#: gtksourceview/gtksourceprintjob.c:287 gtksourceview/gtksourceview.c:221
+#: gtksourceview/gtksourceview.c:222
 msgid "Tabs Width"
 msgstr "Шаг табуляции"
 
-#: gtksourceview/gtksourceview.c:233
+#: gtksourceview/gtksourceprintjob.c:288
+msgid "Width in equivalent space characters of tabs"
+msgstr "Ширина табуляции в пробельных символах"
+
+#: gtksourceview/gtksourceprintjob.c:295
+msgid "Wrap Mode"
+msgstr "Режим переноса"
+
+#: gtksourceview/gtksourceprintjob.c:296
+msgid "Word wrapping mode"
+msgstr "Режим переноса слов"
+
+#: gtksourceview/gtksourceprintjob.c:304
+msgid "Whether to print the document with highlighted syntax"
+msgstr "Должен ли документ печататься с подсвеченным синтаксисом"
+
+#: gtksourceview/gtksourceprintjob.c:312
+msgid "Font"
+msgstr "Шрифт"
+
+#: gtksourceview/gtksourceprintjob.c:313
+msgid "Font name to use for the document text"
+msgstr "Наименование шрифта для печати текста документа"
+
+#: gtksourceview/gtksourceprintjob.c:320
+msgid "Numbers Font"
+msgstr "Шрифт для цифр"
+
+#: gtksourceview/gtksourceprintjob.c:321
+msgid "Font name to use for the line numbers"
+msgstr "Наименование шрифта для печати номеров строк"
+
+#: gtksourceview/gtksourceprintjob.c:328
+msgid "Print Line Numbers"
+msgstr "Печатать номера строк"
+
+#: gtksourceview/gtksourceprintjob.c:329
+msgid "Interval of printed line numbers (0 means no numbers)"
+msgstr "Интервал печатаемых номеров строк (0 означает отсутствие нумерации)"
+
+#: gtksourceview/gtksourceprintjob.c:336
+msgid "Print Header"
+msgstr "Заголовок печати"
+
+#: gtksourceview/gtksourceprintjob.c:337
+msgid "Whether to print a header in each page"
+msgstr "Следует ли печатать заголовок на каждой странице"
+
+#: gtksourceview/gtksourceprintjob.c:344
+msgid "Print Footer"
+msgstr "Подвал печати"
+
+#: gtksourceview/gtksourceprintjob.c:345
+msgid "Whether to print a footer in each page"
+msgstr "Следует ли печатать подвал на каждой странице"
+
+#: gtksourceview/gtksourceprintjob.c:352
+msgid "Header and Footer Font"
+msgstr "Шрифт заголовка и подвала"
+
+#: gtksourceview/gtksourceprintjob.c:353
+msgid "Font name to use for the header and footer"
+msgstr "Наименование шрифта для печати заголовка и подвала"
+
+#: gtksourceview/gtksourcestylescheme.c:237
+msgid "Base-N Integer"
+msgstr "Целое число"
+
+#: gtksourceview/gtksourcestylescheme.c:242
+msgid "Character"
+msgstr "Символ"
+
+#: gtksourceview/gtksourcestylescheme.c:247
+#: gtksourceview/language-specs/latex.lang.h:1
+#: gtksourceview/language-specs/po.lang.h:1
+msgid "Comment"
+msgstr "Комментарий"
+
+#: gtksourceview/gtksourcestylescheme.c:252
+msgid "Data Type"
+msgstr "Тип данных"
+
+#: gtksourceview/gtksourcestylescheme.c:257
+#: gtksourceview/language-specs/ada.lang.h:3
+msgid "Function"
+msgstr "Функция"
+
+#: gtksourceview/gtksourcestylescheme.c:262
+#: gtksourceview/language-specs/c.lang.h:6
+#: gtksourceview/language-specs/cpp.lang.h:6
+msgid "Decimal"
+msgstr "Десятичное число"
+
+#: gtksourceview/gtksourcestylescheme.c:267
+msgid "Floating Point"
+msgstr "Число с плавающей точкой"
+
+#: gtksourceview/gtksourcestylescheme.c:272
+#: gtksourceview/language-specs/latex.lang.h:3
+#: gtksourceview/language-specs/po.lang.h:3
+msgid "Keyword"
+msgstr "Ключевое слово"
+
+#: gtksourceview/gtksourcestylescheme.c:277
+msgid "Preprocessor"
+msgstr "Директива препроцессора"
+
+#: gtksourceview/gtksourcestylescheme.c:282
+#: gtksourceview/language-specs/ada.lang.h:9
+#: gtksourceview/language-specs/c.lang.h:15
+#: gtksourceview/language-specs/cpp.lang.h:15
+#: gtksourceview/language-specs/html.lang.h:8
+#: gtksourceview/language-specs/idl.lang.h:8
+#: gtksourceview/language-specs/java.lang.h:11
+#: gtksourceview/language-specs/perl.lang.h:6
+#: gtksourceview/language-specs/po.lang.h:6
+#: gtksourceview/language-specs/python.lang.h:11
+#: gtksourceview/language-specs/xml.lang.h:8
+msgid "String"
+msgstr "Строка"
+
+#: gtksourceview/gtksourcestylescheme.c:287
+msgid "Specials"
+msgstr "Специальные символы"
+
+#: gtksourceview/gtksourcestylescheme.c:292
+#: gtksourceview/language-specs/desktop.lang.h:10
+#: gtksourceview/language-specs/diff.lang.h:7
+#: gtksourceview/language-specs/po.lang.h:5
+msgid "Others"
+msgstr "Прочее"
+
+#: gtksourceview/gtksourcestylescheme.c:297
+msgid "Others 2"
+msgstr "Прочее 2"
+
+#: gtksourceview/gtksourcestylescheme.c:302
+msgid "Others 3"
+msgstr "Прочее 3"
+
+#: gtksourceview/gtksourcestylescheme.c:339
+msgid "Default"
+msgstr "Исходное"
+
+#: gtksourceview/gtksourcetag.c:108
+msgid "Tag ID"
+msgstr "Идентификатор тега"
+
+#: gtksourceview/gtksourcetag.c:109
+msgid "ID used to refer to the source tag"
+msgstr "Идентификатор, используемый для ссылки на тег исходного кода"
+
+#: gtksourceview/gtksourcetag.c:116
+msgid "Tag style"
+msgstr "Стиль тега"
+
+#: gtksourceview/gtksourcetag.c:117
+msgid "The style associated to the source tag"
+msgstr "Стиль, ассоциируемый с тегом исходного кода"
+
+#: gtksourceview/gtksourceview.c:205
+msgid "Show Line Numbers"
+msgstr "Показывать номера строк"
+
+#: gtksourceview/gtksourceview.c:206
+msgid "Whether to display line numbers"
+msgstr "Следует ли отображать номера строк"
+
+#: gtksourceview/gtksourceview.c:213
+msgid "Show Line Markers"
+msgstr "Показывать маркеры строк"
+
+#: gtksourceview/gtksourceview.c:214
+msgid "Whether to display line marker pixbufs"
+msgstr "Следует ли отображать маркеры строк"
+
+#: gtksourceview/gtksourceview.c:231
 msgid "Auto Indentation"
 msgstr "Расставлять отступы автоматически"
 
-#: gtksourceview/gtksourceview.c:234
+#: gtksourceview/gtksourceview.c:232
 msgid "Whether to enable auto indentation"
 msgstr "Следует ли автоматически расставлять отсупы"
 
-#: gtksourceview/gtksourceview.c:240
+#: gtksourceview/gtksourceview.c:238
 msgid "Insert Spaces Instead of Tabs"
 msgstr "Вставлять пробелы вместо табуляций"
 
-#: gtksourceview/gtksourceview.c:241
+#: gtksourceview/gtksourceview.c:239
 msgid "Whether to insert spaces instead of tabs"
 msgstr "Следует ди заменять табуляции пробелами"
 
-#: gtksourceview/gtksourceview.c:248
+#: gtksourceview/gtksourceview.c:246
 msgid "Show Right Margin"
 msgstr "Показывать правое поле"
 
-#: gtksourceview/gtksourceview.c:249
+#: gtksourceview/gtksourceview.c:247
 msgid "Whether to display the right margin"
 msgstr "Следует ли отображать правое поле"
 
-#: gtksourceview/gtksourceview.c:256
+#: gtksourceview/gtksourceview.c:254
 msgid "Margin position"
 msgstr "Позиция поля"
 
-#: gtksourceview/gtksourceview.c:257
+#: gtksourceview/gtksourceview.c:255
 msgid "Position of the right margin"
 msgstr "Позиция правого поля"
 
-#: gtksourceview/gtksourceview.c:266
+#: gtksourceview/gtksourceview.c:264
 msgid "Use smart home/end"
 msgstr "Использовать интеллектуальные клавиши \"Home\"/\"End\""
 
-#: gtksourceview/gtksourceview.c:267
+#: gtksourceview/gtksourceview.c:265
 msgid ""
 "HOME and END keys move to first/last characters on line first before going "
 "to the start/end of the line"
@@ -78,111 +307,445 @@ msgstr ""
 "Должны ли клавиши \"Home\" и \"End\" перемещать курсор к первому/последнему "
 "символу в строке перед переходом к началу/концу строки"
 
-#: gtksourceview/gtksourcebuffer.c:277
-msgid "Escape Character"
-msgstr "Экранирующий символ"
+#: gtksourceview/language-specs/ada.lang.h:1
+msgid "Ada"
+msgstr "Ада"
 
-#: gtksourceview/gtksourcebuffer.c:278
-msgid "Escaping character for syntax patterns"
-msgstr "Экранирующий символ для синтаксических шаблонов"
+#: gtksourceview/language-specs/ada.lang.h:2
+#: gtksourceview/language-specs/c.lang.h:4
+#: gtksourceview/language-specs/cpp.lang.h:4
+msgid "Character Constant"
+msgstr "Символьная константа"
 
-#: gtksourceview/gtksourcebuffer.c:286
-msgid "Check Brackets"
-msgstr "Проверять кавычки"
+#: gtksourceview/language-specs/ada.lang.h:4
+#: gtksourceview/language-specs/c.lang.h:10
+#: gtksourceview/language-specs/cpp.lang.h:10
+#: gtksourceview/language-specs/idl.lang.h:4
+#: gtksourceview/language-specs/perl.lang.h:2
+#: gtksourceview/language-specs/python.lang.h:3
+msgid "Keywords"
+msgstr "Ключевые слова"
 
-#: gtksourceview/gtksourcebuffer.c:287
-msgid "Whether to check and highlight matching brackets"
-msgstr "Следует ли проверять и подсвечивать соответствующие кавычки"
+#: gtksourceview/language-specs/ada.lang.h:5
+#: gtksourceview/language-specs/c.lang.h:11
+#: gtksourceview/language-specs/cpp.lang.h:11
+#: gtksourceview/language-specs/desktop.lang.h:7
+#: gtksourceview/language-specs/diff.lang.h:5
+#: gtksourceview/language-specs/java.lang.h:5
+#: gtksourceview/language-specs/perl.lang.h:3
+#: gtksourceview/language-specs/python.lang.h:4
+#: gtksourceview/language-specs/sql.lang.h:11
+msgid "Line Comment"
+msgstr "Строковый комментарий"
 
-#: gtksourceview/gtksourcebuffer.c:295
-msgid "Highlight"
-msgstr "Подсвечивать"
+#: gtksourceview/language-specs/ada.lang.h:6
+#: gtksourceview/language-specs/desktop.lang.h:9
+msgid "Number"
+msgstr "Число"
 
-#: gtksourceview/gtksourcebuffer.c:296
-msgid "Whether to highlight syntax in the buffer"
-msgstr "Следует ли подсвечивать синтаксис в буфере"
+#: gtksourceview/language-specs/ada.lang.h:7
+msgid "Preprocessor Keywords"
+msgstr "Ключевые слова препроцессора"
 
-#: gtksourceview/gtksourcebuffer.c:304
-msgid "Maximum Undo Levels"
-msgstr "Максимальный уровень отката"
+#: gtksourceview/language-specs/ada.lang.h:8
+#: gtksourceview/language-specs/c.lang.h:14
+#: gtksourceview/language-specs/cpp.lang.h:14
+#: gtksourceview/language-specs/idl.lang.h:7
+#: gtksourceview/language-specs/java.lang.h:10
+#: gtksourceview/language-specs/sql.lang.h:26
+msgid "Sources"
+msgstr "Исходные коды"
 
-#: gtksourceview/gtksourcebuffer.c:305
-msgid "Number of undo levels for the buffer"
-msgstr "Установить число уровней отката для буфера"
+#: gtksourceview/language-specs/ada.lang.h:10
+msgid "True And False"
+msgstr "Истинно и Ложно"
 
-#: gtksourceview/gtksourcebuffer.c:315
-msgid "Language"
-msgstr "Язык"
+#: gtksourceview/language-specs/ada.lang.h:11
+#: gtksourceview/language-specs/c.lang.h:16
+#: gtksourceview/language-specs/cpp.lang.h:16
+#: gtksourceview/language-specs/idl.lang.h:9
+msgid "Types"
+msgstr "Типы"
 
-#: gtksourceview/gtksourcebuffer.c:316
-msgid "Language object to get highlighting patterns from"
-msgstr "Объект языка, для которого посвечивать синтаксис"
+#: gtksourceview/language-specs/c.lang.h:1
+#: gtksourceview/language-specs/cpp.lang.h:1
+msgid "'#if 0' Comment"
+msgstr "Комментарий \"#if 0\""
 
-#: gtksourceview/gtksourcelanguagesmanager.c:119
-msgid "Language spefications directories"
-msgstr "Каталоги со спецификациями языков"
+#: gtksourceview/language-specs/c.lang.h:2
+#: gtksourceview/language-specs/cpp.lang.h:2
+#: gtksourceview/language-specs/html.lang.h:2
+#: gtksourceview/language-specs/idl.lang.h:1
+#: gtksourceview/language-specs/java.lang.h:1
+#: gtksourceview/language-specs/sql.lang.h:5
+#: gtksourceview/language-specs/xml.lang.h:2
+msgid "Block Comment"
+msgstr "Блоковый комментарий"
 
-#: gtksourceview/gtksourcelanguagesmanager.c:120
-msgid ""
-"List of directories where the language spefication files (.lang) are located"
-msgstr "Список каталогов, где расположены языковые файлы (.lang)"
+#: gtksourceview/language-specs/c.lang.h:3
+msgid "C"
+msgstr "Си"
 
-#: gtksourceview/gtksourcestylescheme.c:222
-msgid "Base-N Integer"
-msgstr "Целое число"
+#: gtksourceview/language-specs/c.lang.h:5
+#: gtksourceview/language-specs/cpp.lang.h:5
+msgid "Common Macro"
+msgstr "Общее макро"
 
-#: gtksourceview/gtksourcestylescheme.c:227
-msgid "Character"
-msgstr "Символ"
-
-#: gtksourceview/gtksourcestylescheme.c:232
-msgid "Comment"
-msgstr "Комментарий"
-
-#: gtksourceview/gtksourcestylescheme.c:237
-msgid "Data Type"
-msgstr "Тип данных"
-
-#: gtksourceview/gtksourcestylescheme.c:242
-msgid "Function"
-msgstr "Функция"
-
-#: gtksourceview/gtksourcestylescheme.c:247
-msgid "Decimal"
-msgstr "Десятичное число"
-
-#: gtksourceview/gtksourcestylescheme.c:252
-msgid "Floating Point"
+#: gtksourceview/language-specs/c.lang.h:7
+#: gtksourceview/language-specs/cpp.lang.h:7
+msgid "Floating Point Number"
 msgstr "Число с плавающей точкой"
 
-#: gtksourceview/gtksourcestylescheme.c:257
-msgid "Keyword"
-msgstr "Ключевое слово"
+#: gtksourceview/language-specs/c.lang.h:8
+#: gtksourceview/language-specs/cpp.lang.h:8
+msgid "Hex Number"
+msgstr "Шестнадцатиричное число"
 
-#: gtksourceview/gtksourcestylescheme.c:262
-msgid "Preprocessor"
-msgstr "Директива препроцессора"
+#: gtksourceview/language-specs/c.lang.h:9
+#: gtksourceview/language-specs/cpp.lang.h:9
+#: gtksourceview/language-specs/idl.lang.h:3
+msgid "Include/Pragma"
+msgstr "Директивы \"Include/Pragma\""
 
-#: gtksourceview/gtksourcestylescheme.c:267
-msgid "String"
-msgstr "Строка"
+#: gtksourceview/language-specs/c.lang.h:12
+#: gtksourceview/language-specs/cpp.lang.h:12
+msgid "Octal Number"
+msgstr "Восьмиричное число"
 
-#: gtksourceview/gtksourcestylescheme.c:272
-msgid "Specials"
-msgstr "Специальное"
+#: gtksourceview/language-specs/c.lang.h:13
+#: gtksourceview/language-specs/cpp.lang.h:13
+#: gtksourceview/language-specs/idl.lang.h:5
+msgid "Preprocessor Definitions"
+msgstr "Определения препроцессора"
 
-#: gtksourceview/gtksourcestylescheme.c:277
-msgid "Others"
-msgstr "Прочее"
+#: gtksourceview/language-specs/cpp.lang.h:3
+msgid "C++"
+msgstr "Си++"
 
-#: gtksourceview/gtksourcestylescheme.c:282
-msgid "Others 2"
-msgstr "Прочее 2"
+#: gtksourceview/language-specs/desktop.lang.h:1
+msgid ".desktop"
+msgstr "Файлы формата .desktop"
 
-#: gtksourceview/gtksourcestylescheme.c:287
-msgid "Others 3"
-msgstr "Прочее 3"
+#: gtksourceview/language-specs/desktop.lang.h:2
+msgid "Boolean Value"
+msgstr "Булево значение"
 
-#: gtksourceview/gtksourcestylescheme.c:324
-msgid "Default"
-msgstr "Исходное"
+#: gtksourceview/language-specs/desktop.lang.h:3
+msgid "Encoding"
+msgstr "Кодировка"
+
+#: gtksourceview/language-specs/desktop.lang.h:4
+msgid "Exec Parameter"
+msgstr "Параметр запуска"
+
+#: gtksourceview/language-specs/desktop.lang.h:5
+msgid "Group"
+msgstr "Группа"
+
+#: gtksourceview/language-specs/desktop.lang.h:8
+msgid "Non Standard Key"
+msgstr "Нестандартная клавиша"
+
+#: gtksourceview/language-specs/desktop.lang.h:11
+msgid "Standard Key"
+msgstr "Стандартная клавиша"
+
+#: gtksourceview/language-specs/diff.lang.h:1
+msgid "Added line"
+msgstr "Добавленная строка"
+
+#: gtksourceview/language-specs/diff.lang.h:2
+msgid "Changed line"
+msgstr "Изменённая строка"
+
+#: gtksourceview/language-specs/diff.lang.h:3
+msgid "Diff"
+msgstr "Различие"
+
+#: gtksourceview/language-specs/diff.lang.h:4
+msgid "Diff file"
+msgstr "Файл различий"
+
+#: gtksourceview/language-specs/diff.lang.h:6
+#: gtksourceview/language-specs/po.lang.h:4
+msgid "Location"
+msgstr "Местоположение"
+
+#: gtksourceview/language-specs/diff.lang.h:8
+msgid "Removed line"
+msgstr "Удалённая строка"
+
+#: gtksourceview/language-specs/diff.lang.h:9
+msgid "Special case"
+msgstr "Специальный случай"
+
+#: gtksourceview/language-specs/html.lang.h:1
+#: gtksourceview/language-specs/xml.lang.h:1
+msgid "Attributes"
+msgstr "Атрибуты"
+
+#: gtksourceview/language-specs/html.lang.h:3
+#: gtksourceview/language-specs/xml.lang.h:3
+msgid "Closing Bracket"
+msgstr "Закрывающая кавычка"
+
+#: gtksourceview/language-specs/html.lang.h:4
+#: gtksourceview/language-specs/xml.lang.h:4
+msgid "DTD"
+msgstr "Ди-Ти-Ди(DTD)"
+
+#: gtksourceview/language-specs/html.lang.h:5
+#: gtksourceview/language-specs/xml.lang.h:5
+msgid "Entity"
+msgstr "Сущность"
+
+#: gtksourceview/language-specs/html.lang.h:6
+msgid "HTML"
+msgstr "Эйч-Ти-Эм-Эль(HTML)"
+
+#: gtksourceview/language-specs/html.lang.h:7
+#: gtksourceview/language-specs/latex.lang.h:5
+#: gtksourceview/language-specs/xml.lang.h:7
+msgid "Markup"
+msgstr "Разметка"
+
+#: gtksourceview/language-specs/html.lang.h:9
+msgid "Tags"
+msgstr "Теги"
+
+#: gtksourceview/language-specs/idl.lang.h:2
+msgid "IDL"
+msgstr "Ай-Ди-Эль(IDL)"
+
+#: gtksourceview/language-specs/idl.lang.h:6
+msgid "Sectional"
+msgstr "Секционное"
+
+#: gtksourceview/language-specs/java.lang.h:2
+msgid "Declarations"
+msgstr "Определения"
+
+#: gtksourceview/language-specs/java.lang.h:3
+msgid "Flow"
+msgstr "Поток"
+
+#: gtksourceview/language-specs/java.lang.h:4
+msgid "Java"
+msgstr "Джава"
+
+#: gtksourceview/language-specs/java.lang.h:6
+msgid "Memory"
+msgstr "Память"
+
+#: gtksourceview/language-specs/java.lang.h:7
+msgid "Modifiers"
+msgstr "Модификаторы"
+
+#: gtksourceview/language-specs/java.lang.h:8
+msgid "Numeric"
+msgstr "Числовое"
+
+#: gtksourceview/language-specs/java.lang.h:9
+msgid "Primitives"
+msgstr "Примитивы"
+
+#: gtksourceview/language-specs/java.lang.h:12
+#: gtksourceview/language-specs/python.lang.h:12
+#: gtksourceview/language-specs/xml.lang.h:9
+msgid "String 2"
+msgstr "Строка 2"
+
+#: gtksourceview/language-specs/latex.lang.h:2
+msgid "Include"
+msgstr "Директива \"Include\""
+
+#: gtksourceview/language-specs/latex.lang.h:4
+msgid "Latex"
+msgstr "Латех"
+
+#: gtksourceview/language-specs/latex.lang.h:6
+msgid "Math"
+msgstr "Математическое"
+
+#: gtksourceview/language-specs/latex.lang.h:7
+msgid "Most Used Commands"
+msgstr "Наиболее часто испольуемые команды"
+
+#: gtksourceview/language-specs/perl.lang.h:1
+msgid "Function Call"
+msgstr "Вызов функции"
+
+#: gtksourceview/language-specs/perl.lang.h:4
+msgid "Perl"
+msgstr "Перл"
+
+#: gtksourceview/language-specs/perl.lang.h:5
+#: gtksourceview/language-specs/python.lang.h:9
+msgid "Scripts"
+msgstr "скрипты"
+
+#: gtksourceview/language-specs/perl.lang.h:7
+msgid "String2"
+msgstr "Строка2"
+
+#: gtksourceview/language-specs/perl.lang.h:8
+msgid "String3"
+msgstr "Строка3"
+
+#: gtksourceview/language-specs/perl.lang.h:9
+msgid "Variables"
+msgstr "Переменные"
+
+#: gtksourceview/language-specs/po.lang.h:2
+msgid "Format"
+msgstr "Формат"
+
+#: gtksourceview/language-specs/po.lang.h:7
+msgid "gettext translation"
+msgstr "Перевод формата gettext"
+
+#: gtksourceview/language-specs/python.lang.h:1
+msgid "Builtins"
+msgstr "встроенные"
+
+#: gtksourceview/language-specs/python.lang.h:2
+msgid "Functions"
+msgstr "Функции"
+
+#: gtksourceview/language-specs/python.lang.h:5
+msgid "Module Handler"
+msgstr "Обработчик модуля"
+
+#: gtksourceview/language-specs/python.lang.h:6
+msgid "Multiline String"
+msgstr "Строка из нескольких строчек"
+
+#: gtksourceview/language-specs/python.lang.h:7
+msgid "Multiline String 2"
+msgstr "Строка из нескольких строчек"
+
+#: gtksourceview/language-specs/python.lang.h:8
+msgid "Python"
+msgstr "Пайтон"
+
+#: gtksourceview/language-specs/python.lang.h:10
+msgid "Self"
+msgstr "селф"
+
+#: gtksourceview/language-specs/sql.lang.h:1
+#, fuzzy
+msgid "ANSI Datatypes"
+msgstr "Тип данных"
+
+#: gtksourceview/language-specs/sql.lang.h:2
+msgid "ANSI Reserved Words"
+msgstr ""
+
+#: gtksourceview/language-specs/sql.lang.h:3
+#, fuzzy
+msgid "Aggregate Functions"
+msgstr "Функции"
+
+#: gtksourceview/language-specs/sql.lang.h:4
+#, fuzzy
+msgid "Analytic Functions"
+msgstr "Функции"
+
+#: gtksourceview/language-specs/sql.lang.h:6
+msgid "Character Functions Returning Character Values"
+msgstr ""
+
+#: gtksourceview/language-specs/sql.lang.h:7
+msgid "Character Functions Returning Number Values"
+msgstr ""
+
+#: gtksourceview/language-specs/sql.lang.h:8
+#, fuzzy
+msgid "Conversion Functions"
+msgstr "Функции"
+
+#: gtksourceview/language-specs/sql.lang.h:9
+#, fuzzy
+msgid "Datetime Functions"
+msgstr "Функции"
+
+#: gtksourceview/language-specs/sql.lang.h:10
+msgid "Integer Literals"
+msgstr ""
+
+#: gtksourceview/language-specs/sql.lang.h:12
+msgid "Miscellaneous Single-Row Functions"
+msgstr ""
+
+#: gtksourceview/language-specs/sql.lang.h:13
+msgid "Null"
+msgstr ""
+
+#: gtksourceview/language-specs/sql.lang.h:14
+#, fuzzy
+msgid "Number Functions"
+msgstr "Функции"
+
+#: gtksourceview/language-specs/sql.lang.h:15
+msgid "Number Literals"
+msgstr ""
+
+#: gtksourceview/language-specs/sql.lang.h:16
+msgid "Object Reference Functions"
+msgstr ""
+
+#: gtksourceview/language-specs/sql.lang.h:17
+msgid "Oracle Built-in Datatypes"
+msgstr ""
+
+#: gtksourceview/language-specs/sql.lang.h:18
+msgid "Oracle Reserved Words"
+msgstr ""
+
+#: gtksourceview/language-specs/sql.lang.h:19
+msgid "SQL"
+msgstr ""
+
+#: gtksourceview/language-specs/sql.lang.h:20
+msgid "SQL*Plus At Sign"
+msgstr ""
+
+#: gtksourceview/language-specs/sql.lang.h:21
+msgid "SQL*Plus Commands"
+msgstr ""
+
+#: gtksourceview/language-specs/sql.lang.h:22
+msgid "SQL*Plus Double At Sign"
+msgstr ""
+
+#: gtksourceview/language-specs/sql.lang.h:23
+msgid "SQL*Plus Slash"
+msgstr ""
+
+#: gtksourceview/language-specs/sql.lang.h:24
+msgid "SQL/DS and DB2 Datatypes"
+msgstr ""
+
+#: gtksourceview/language-specs/sql.lang.h:25
+msgid "Size Clause"
+msgstr ""
+
+#: gtksourceview/language-specs/sql.lang.h:27
+msgid "Text Literals"
+msgstr ""
+
+#: gtksourceview/language-specs/sql.lang.h:28
+msgid "Unlimited"
+msgstr ""
+
+#: gtksourceview/language-specs/xml.lang.h:6
+msgid "Hexadecimal"
+msgstr "Шестнадцатиричное число"
+
+#: gtksourceview/language-specs/xml.lang.h:10
+msgid "Tag"
+msgstr "Тег"
+
+#: gtksourceview/language-specs/xml.lang.h:11
+msgid "XML"
+msgstr "Экс-Эм-Эль(XML)"
