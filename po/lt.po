@@ -1,15 +1,15 @@
 # Lithuanian translation of gtksourceview.
-# Copyright (C) 2003,2004 Free Software Foundation, Inc.
+# Copyright (C) 2003-2005 Free Software Foundation, Inc.
 # Tomas Kuliavas <tokul@users.sourceforge.net>, 2003.
-# Žygimantas Beručka <uid0@akl.lt>, 2004.
+# Žygimantas Beručka <uid0@akl.lt>, 2003-2005.
 # 
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-10-13 10:44+0200\n"
-"PO-Revision-Date: 2004-09-16 00:16+0300\n"
+"POT-Creation-Date: 2005-01-01 11:35+0200\n"
+"PO-Revision-Date: 2005-01-01 11:42+0200\n"
 "Last-Translator: Žygimantas Beručka <uid0@akl.lt>\n"
 "Language-Team: Lithuanian <komp_lt@konferencijos.lt>\n"
 "MIME-Version: 1.0\n"
@@ -559,14 +559,14 @@ msgstr "Seka 2"
 #.
 #: gtksourceview/language-specs/css.lang.h:4
 msgid "At Rules"
-msgstr ""
+msgstr "Pradedant taisyklėmis"
 
 #.
 #. For CSS 2-style selectors: tag[attr="value"].
 #.
 #: gtksourceview/language-specs/css.lang.h:8
 msgid "Attribute Value Delimiters"
-msgstr ""
+msgstr "Atributų reikšmių išskyrikliai"
 
 #.
 #. Value length specifier. Unless it is 0, must always be like: -1.2em.
@@ -592,7 +592,7 @@ msgstr "Svarbumo modifikatorius"
 
 #: gtksourceview/language-specs/css.lang.h:27
 msgid "Known Property Values"
-msgstr ""
+msgstr "Žinomos savybių reikšmės"
 
 #: gtksourceview/language-specs/css.lang.h:34
 #: gtksourceview/language-specs/javascript.lang.h:19
@@ -603,7 +603,7 @@ msgstr "Operatoriai"
 
 #: gtksourceview/language-specs/css.lang.h:47
 msgid "Property Names"
-msgstr ""
+msgstr "Savybių pavadinimai"
 
 #.
 #. Brackets define a declaration block, parentheses define functions.
@@ -750,7 +750,7 @@ msgstr "Įvestis/Išvestis"
 
 #: gtksourceview/language-specs/fortran.lang.h:6
 msgid "Intrinsics"
-msgstr ""
+msgstr "Intrinsics"
 
 #: gtksourceview/language-specs/fortran.lang.h:10
 msgid "Read/Write"
@@ -923,19 +923,19 @@ msgstr "Blokinis komentaras 2"
 
 #: gtksourceview/language-specs/pascal.lang.h:3
 msgid "Boolean Bitwise Operators"
-msgstr ""
+msgstr "Loginiai bitwise operatoriai"
 
 #: gtksourceview/language-specs/pascal.lang.h:4
 msgid "Builtin Functions"
-msgstr ""
+msgstr "Integruotos funkcijos"
 
 #: gtksourceview/language-specs/pascal.lang.h:5
 msgid "Builtin Types"
-msgstr ""
+msgstr "Integruoti tipai"
 
 #: gtksourceview/language-specs/pascal.lang.h:6
 msgid "Builtin Values"
-msgstr ""
+msgstr "Integruotos reikšmės"
 
 #: gtksourceview/language-specs/pascal.lang.h:7
 msgid "Functions and Function Modifiers"
@@ -963,7 +963,7 @@ msgstr "Apdorojančios programos nustatymai"
 
 #: gtksourceview/language-specs/pascal.lang.h:19
 msgid "Types Class and Object Keywords"
-msgstr ""
+msgstr "Tipų klasė ir objekto raktažodžiai"
 
 #: gtksourceview/language-specs/perl.lang.h:1
 msgid "Function Call"
@@ -1076,7 +1076,7 @@ msgstr "Pats"
 
 #: gtksourceview/language-specs/ruby.lang.h:1
 msgid "Attribute Definitions"
-msgstr ""
+msgstr "Atributų aprašymai"
 
 #: gtksourceview/language-specs/ruby.lang.h:3
 msgid "Class Variables"
@@ -1300,7 +1300,7 @@ msgstr "Žymėjimas (blokinis)"
 
 #: gtksourceview/language-specs/texinfo.lang.h:14
 msgid "Markup (inline)"
-msgstr ""
+msgstr "Žymėjimas (tiesioginis)"
 
 #: gtksourceview/language-specs/texinfo.lang.h:15
 msgid "Sectioning"
@@ -1317,6 +1317,3 @@ msgstr "Seno stiliaus komentaras"
 #: gtksourceview/language-specs/vbnet.lang.h:9
 msgid "VB.NET"
 msgstr "VB.NET"
-
-#~ msgid "MSIL"
-#~ msgstr "MSIL"
