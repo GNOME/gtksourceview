@@ -12,10 +12,9 @@
 		<end-regex>&gt;</end-regex>
 	</syntax-item>
 
-	<string _name="String" style ="String" end-at-line-end="FALSE">
-		<start-regex>&quot;</start-regex>
-		<end-regex>&quot;</end-regex>
-	</string>
+	<pattern-item _name="String" style="String">
+		<regex>(&quot;[^&lt;&quot;]*&quot;)</regex>
+	</pattern-item>
 
 	<pattern-item _name="Entity" style="Character">
 		<regex>&amp;[a-zA-Z]+;</regex>

@@ -1,3 +1,11 @@
+2004-02-13  Paolo Maggi  <paolo.maggi@polito.it>
+
+	* gtksourceview/language-specs/xml.lang:
+	* gtksourceview/language-specs/html.lang: fixed bug #120602 -
+	highlighting is not correct after an apostrophe. I'm not very happy
+	with the fix since it is a sort of workaround, but probably it is the best
+	we can do with the current highlight engine.
+
 === gtksourceview 0.9.0 ===
 
 2004-02-12  Gustavo Giráldez  <gustavo.giraldez@gmx.net>

@@ -12,17 +12,10 @@
 		<end-regex>&gt;</end-regex>
 	</syntax-item>
 
-	<string _name="String" style ="String" end-at-line-end="FALSE">
-		<start-regex>&quot;</start-regex>
-		<end-regex>&quot;</end-regex>
-	</string>
-
-	<string _name="String 2" style ="String" end-at-line-end="FALSE">
-		<start-regex>&apos;</start-regex>
-		<end-regex>&apos;</end-regex>
-	</string>
-
-
+	<pattern-item _name="String" style="String">
+		<regex>(&quot;[^&lt;&quot;]*&quot;)|(&apos;[^&lt;&apos;]*&apos;)</regex>
+	</pattern-item>
+ 
 	<pattern-item _name="Entity" style="Keyword">
 		<regex>(&amp;|%)[a-zA-Z0-9#][a-zA-Z0-9]*;</regex>
 	</pattern-item>
