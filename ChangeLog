@@ -1,5 +1,13 @@
 2003-06-13  Gustavo Giraldez  <gustavo.giraldez@gmx.net>
 
+	* gtksourceview/gtksourceprintjob.h:
+	* gtksourceview/gtksourceprintjob.c
+	(gtk_source_print_job_print_range_async): Set the idle handler
+	priority to be lower than redraws (so the UI can be effectively
+	updated) but higher than GtkTextView validation handlers.
+
+2003-06-13  Gustavo Giraldez  <gustavo.giraldez@gmx.net>
+
 	* docs/reference/tmpl/printjob.sgml: Documented GtkSourcePrintJob.
 
 	* gtksourceview/gtksourceprintjob.c: Added gtk-doc style headers

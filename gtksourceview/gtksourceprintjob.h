@@ -56,6 +56,9 @@ struct _GtkSourcePrintJobClass
 	void   (* finished)      (GtkSourcePrintJob  *job);
 };
 
+/* we want the idle handler to run before the view validation, but do
+ * not interfere with ui updates */
+#define GTK_SOURCE_PRINT_JOB_PRIORITY ((GDK_PRIORITY_REDRAW + GTK_TEXT_VIEW_PRIORITY_VALIDATE) / 2)
 
 GType              gtk_source_print_job_get_type               (void) G_GNUC_CONST;
 

@@ -2215,6 +2215,7 @@ gtk_source_print_job_print_range_async (GtkSourcePrintJob *job,
 	
 	/* setup the idle handler to print each page at a time */
 	idle_source = g_idle_source_new ();
+	g_source_set_priority (idle_source, GTK_SOURCE_PRINT_JOB_PRIORITY);
 	g_source_set_closure (idle_source,
 			      g_cclosure_new_object ((GCallback) idle_printing_handler,
 						     G_OBJECT (job)));
