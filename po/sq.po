@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-01-04 18:13+0100\n"
-"PO-Revision-Date: 2004-01-04 18:23+0100\n"
+"POT-Creation-Date: 2004-01-15 17:45+0100\n"
+"PO-Revision-Date: 2004-01-15 17:46+0100\n"
 "Last-Translator: Laurent Dhima <laurenti@alblinux.net>\n"
 "Language-Team: Albanian <gnome-albanian-perkthyesit@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -106,7 +106,7 @@ msgstr "Tregon nëse duhet printuar dokumenti me sintaksën të vënë në dukje
 
 #: gtksourceview/gtksourceprintjob.c:312
 msgid "Font"
-msgstr "Font"
+msgstr "Gërmat"
 
 #: gtksourceview/gtksourceprintjob.c:313
 msgid "Font name to use for the document text"
@@ -233,7 +233,7 @@ msgstr "Të tjerë 3"
 
 #: gtksourceview/gtksourcestylescheme.c:339
 msgid "Default"
-msgstr "I prezgjedhur"
+msgstr "I/e prezgjedhur"
 
 #: gtksourceview/gtksourcetag.c:108
 msgid "Tag ID"
@@ -365,7 +365,7 @@ msgstr "Fjalë kyçe të preprocesorit"
 #: gtksourceview/language-specs/sql.lang.h:26
 #: gtksourceview/language-specs/verilog.lang.h:9
 msgid "Sources"
-msgstr "Burues"
+msgstr "Burimet"
 
 #: gtksourceview/language-specs/ada.lang.h:10
 msgid "True And False"
@@ -377,7 +377,7 @@ msgstr "E vërtetë dhe fallso"
 #: gtksourceview/language-specs/idl.lang.h:9
 #: gtksourceview/language-specs/verilog.lang.h:10
 msgid "Types"
-msgstr "Lloje"
+msgstr "Llojet"
 
 #: gtksourceview/language-specs/c.lang.h:1
 #: gtksourceview/language-specs/cpp.lang.h:1
@@ -514,7 +514,7 @@ msgstr "Special case"
 #: gtksourceview/language-specs/html.lang.h:1
 #: gtksourceview/language-specs/xml.lang.h:1
 msgid "Attributes"
-msgstr "Atribute"
+msgstr "Vetitë"
 
 #: gtksourceview/language-specs/html.lang.h:3
 #: gtksourceview/language-specs/xml.lang.h:3
@@ -539,7 +539,7 @@ msgstr "HTML"
 #: gtksourceview/language-specs/latex.lang.h:5
 #: gtksourceview/language-specs/xml.lang.h:7
 msgid "Markup"
-msgstr "Markup"
+msgstr "Markues"
 
 #: gtksourceview/language-specs/html.lang.h:9
 msgid "Tags"
@@ -567,7 +567,7 @@ msgstr "Java"
 
 #: gtksourceview/language-specs/java.lang.h:6
 msgid "Memory"
-msgstr "Memorja"
+msgstr "Kujtesa"
 
 #: gtksourceview/language-specs/java.lang.h:7
 msgid "Modifiers"
@@ -582,8 +582,8 @@ msgid "Include"
 msgstr "Include"
 
 #: gtksourceview/language-specs/latex.lang.h:4
-msgid "Latex"
-msgstr "Latex"
+msgid "LaTeX"
+msgstr "LaTeX"
 
 #: gtksourceview/language-specs/latex.lang.h:6
 msgid "Math"
@@ -620,7 +620,7 @@ msgstr "String3"
 
 #: gtksourceview/language-specs/perl.lang.h:9
 msgid "Variables"
-msgstr "Të ndryshueshme"
+msgstr "Të ndryshueshmet"
 
 #: gtksourceview/language-specs/php.lang.h:1
 msgid "Array Operators"
@@ -712,7 +712,7 @@ msgstr "Python"
 
 #: gtksourceview/language-specs/python.lang.h:10
 msgid "Self"
-msgstr "Self"
+msgstr "Vetë"
 
 #: gtksourceview/language-specs/sql.lang.h:1
 msgid "ANSI Datatypes"
