@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
-"POT-Creation-Date: 2003-08-02 02:58+0800\n"
-"PO-Revision-Date: 2003-08-01 17:48+0200\n"
+"POT-Creation-Date: 2003-09-27 18:15+0200\n"
+"PO-Revision-Date: 2003-09-27 18:17+0200\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -200,7 +200,7 @@ msgstr "Preprocessor"
 #: gtksourceview/language-specs/cpp.lang.h:15
 #: gtksourceview/language-specs/html.lang.h:8
 #: gtksourceview/language-specs/idl.lang.h:8
-#: gtksourceview/language-specs/java.lang.h:11
+#: gtksourceview/language-specs/java.lang.h:12
 #: gtksourceview/language-specs/perl.lang.h:6
 #: gtksourceview/language-specs/po.lang.h:6
 #: gtksourceview/language-specs/python.lang.h:11
@@ -331,7 +331,7 @@ msgstr "Nyckelord"
 #: gtksourceview/language-specs/cpp.lang.h:11
 #: gtksourceview/language-specs/desktop.lang.h:7
 #: gtksourceview/language-specs/diff.lang.h:5
-#: gtksourceview/language-specs/java.lang.h:5
+#: gtksourceview/language-specs/java.lang.h:7
 #: gtksourceview/language-specs/perl.lang.h:3
 #: gtksourceview/language-specs/python.lang.h:4
 msgid "Line Comment"
@@ -350,7 +350,7 @@ msgstr "Preprocessor-nyckelord"
 #: gtksourceview/language-specs/c.lang.h:14
 #: gtksourceview/language-specs/cpp.lang.h:14
 #: gtksourceview/language-specs/idl.lang.h:7
-#: gtksourceview/language-specs/java.lang.h:10
+#: gtksourceview/language-specs/java.lang.h:11
 msgid "Sources"
 msgstr "Källkoder"
 
@@ -390,6 +390,7 @@ msgstr "Gemensamt makro"
 
 #: gtksourceview/language-specs/c.lang.h:7
 #: gtksourceview/language-specs/cpp.lang.h:7
+#: gtksourceview/language-specs/java.lang.h:3
 msgid "Floating Point Number"
 msgstr "Flyttal"
 
@@ -522,31 +523,31 @@ msgstr "Sektionsrelaterat"
 msgid "Declarations"
 msgstr "Deklarationer"
 
-#: gtksourceview/language-specs/java.lang.h:3
+#: gtksourceview/language-specs/java.lang.h:4
 msgid "Flow"
 msgstr "Flöde"
 
-#: gtksourceview/language-specs/java.lang.h:4
+#: gtksourceview/language-specs/java.lang.h:5
+msgid "Integer"
+msgstr "Heltal"
+
+#: gtksourceview/language-specs/java.lang.h:6
 msgid "Java"
 msgstr "Java"
 
-#: gtksourceview/language-specs/java.lang.h:6
+#: gtksourceview/language-specs/java.lang.h:8
 msgid "Memory"
 msgstr "Minne"
 
-#: gtksourceview/language-specs/java.lang.h:7
+#: gtksourceview/language-specs/java.lang.h:9
 msgid "Modifiers"
 msgstr "Modifierare"
 
-#: gtksourceview/language-specs/java.lang.h:8
-msgid "Numeric"
-msgstr "Numeriskt"
-
-#: gtksourceview/language-specs/java.lang.h:9
+#: gtksourceview/language-specs/java.lang.h:10
 msgid "Primitives"
 msgstr "Primitiver"
 
-#: gtksourceview/language-specs/java.lang.h:12
+#: gtksourceview/language-specs/java.lang.h:13
 #: gtksourceview/language-specs/python.lang.h:12
 #: gtksourceview/language-specs/xml.lang.h:9
 msgid "String 2"
@@ -640,6 +641,9 @@ msgstr "Tagg"
 #: gtksourceview/language-specs/xml.lang.h:11
 msgid "XML"
 msgstr "XML"
+
+#~ msgid "Numeric"
+#~ msgstr "Numeriskt"
 
 #~ msgid "Header & Footer Font"
 #~ msgstr "Typsnitt för sidhuvud och sidfot"
