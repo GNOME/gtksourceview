@@ -116,9 +116,9 @@ gtk_source_languages_manager_class_init (GtkSourceLanguagesManagerClass *klass)
 	g_object_class_install_property (object_class,
 					 PROP_LANG_SPECS_DIRS,
 					 g_param_spec_pointer ("lang_files_dirs",
-						 	       _("Language spefications directories"),
+						 	       _("Language specification directories"),
 							       _("List of directories where the "
-								 "language spefication files (.lang) "
+								 "language specification files (.lang) "
 								 "are located"),
 							       (G_PARAM_READWRITE | 
 							        G_PARAM_CONSTRUCT_ONLY)));
