@@ -760,7 +760,6 @@ read_loop (GtkTextBuffer *buffer,
 	gint size = 0;
 	*error = NULL;
 
-	g_print("readloop\n");
 	gtk_text_buffer_get_end_iter (GTK_TEXT_BUFFER (buffer),
 					      &end);
 	if ((status=g_io_channel_read_line (io, &str, &size, NULL, error)) == G_IO_STATUS_NORMAL && size)  {
@@ -784,8 +783,6 @@ read_loop (GtkTextBuffer *buffer,
 		return TRUE;
 	}
 
-	g_print ("%d %d %d\n", G_IO_STATUS_ERROR, G_IO_STATUS_NORMAL, G_IO_STATUS_EOF);
-	g_print("GIOstatus %d  error %s\n", status, *error ? (*error)->message : "NO ERROR");	
 	if (status == G_IO_STATUS_EOF && !*error)
 		return FALSE;
 
