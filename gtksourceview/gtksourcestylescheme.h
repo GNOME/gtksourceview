@@ -62,6 +62,10 @@ struct _GtkSourceStyleSchemeClass
 {
 	GTypeInterface	base_iface;
 
+	/* signals */
+	void                      (* style_changed)     (GtkSourceStyleScheme *scheme,
+							 const gchar          *tag_id);
+
 	/* vtable */
 	const gchar		* (* get_name)		(GtkSourceStyleScheme *scheme);
 	GtkSourceTagStyle       * (* get_tag_style) 	(GtkSourceStyleScheme *scheme,

@@ -1352,6 +1352,19 @@ emit_tag_style_changed_signal (gpointer  key,
 	return TRUE;
 }
 
+static void
+style_changed_cb (GtkSourceStyleScheme *scheme,
+		  const gchar          *tag_id,
+		  gpointer              user_data)
+{
+	GtkSourceLanguage *language = GTK_SOURCE_LANGUAGE (user_data);
+
+	g_signal_emit (G_OBJECT (language),
+		       signals[TAG_STYLE_CHANGED], 
+		       0, 
+		       tag_id);	
+}
+
 void 
 gtk_source_language_set_style_scheme (GtkSourceLanguage    *language,
 				      GtkSourceStyleScheme *scheme)
@@ -1374,6 +1387,9 @@ gtk_source_language_set_style_scheme (GtkSourceLanguage    *language,
 	g_hash_table_foreach (language->priv->tag_id_to_style_name,
 			      (GHFunc) emit_tag_style_changed_signal,
 			      (gpointer) language);
+
+	g_signal_connect (G_OBJECT (scheme), "style_changed",
+			  G_CALLBACK (style_changed_cb), language);
 }
 
 gunichar 

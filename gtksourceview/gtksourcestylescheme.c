@@ -57,7 +57,14 @@ gtk_source_style_scheme_base_init (gpointer g_class)
 
 	if (! initialized)
     	{
-		/* Add signals here */
+		g_signal_new ("style_changed",
+			      G_TYPE_FROM_CLASS (g_class),
+			      G_SIGNAL_RUN_LAST,
+			      G_STRUCT_OFFSET (GtkSourceStyleSchemeClass, style_changed),
+			      NULL, NULL,
+			      g_cclosure_marshal_VOID__STRING,
+			      G_TYPE_NONE, 1, G_TYPE_STRING);
+
       		initialized = TRUE;
     	}
 }
@@ -376,4 +383,3 @@ gtk_source_style_scheme_get_default (void)
 
 	return default_style_scheme;
 }
-

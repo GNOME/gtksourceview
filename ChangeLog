@@ -1,3 +1,15 @@
+2003-07-28  Jeroen Zwartepoorte  <jeroen@xs4all.nl>
+
+	* docs/reference/tmpl/stylescheme.sgml:
+	* gtksourceview/gtksourcelanguage.c: (style_changed_cb),
+	(gtk_source_language_set_style_scheme):
+	* gtksourceview/gtksourcestylescheme.c:
+	(gtk_source_style_scheme_base_init),
+	(gtk_source_style_scheme_get_default):
+	* gtksourceview/gtksourcestylescheme.h: Add a style_changed signal so
+	implementations of the GtkSourceStyleScheme interface can notify
+	gtksourceview that a style has changed.
+
 2003-07-25  Pablo Saratxaga <pablo@mandrakesoft.com>
 
 	* configure.in: Added Vietnamese (vi) and Macedonain (mk) to
