@@ -1,5 +1,11 @@
 2004-12-07  Paolo Maggi  <paolo@gnome.org>
 
+	* gtksourceview/language-specs/xml.lang: added "image/svg+xml" to
+	list of supported mime-types (fixed bug #142628: "gedit should 
+	automatically set "Highlight Mode" to XML for image/svg+xml files")
+	
+2004-12-07  Paolo Maggi  <paolo@gnome.org>
+
 	* gtksourceview/language-specs/pascal.lang : fixed "Number"
 
 2004-12-07  Paolo Maggi  <paolo@gnome.org>
