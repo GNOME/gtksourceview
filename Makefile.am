@@ -1,4 +1,10 @@
-SUBDIRS = gtksourceview tests po
+if BUILD_TESTS
+MAYBE_TESTS = tests
+else
+MAYBE_TESTS = 
+endif
+
+SUBDIRS = gtksourceview po $(MAYBE_TESTS)
 
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = gtksourceview-1.0.pc

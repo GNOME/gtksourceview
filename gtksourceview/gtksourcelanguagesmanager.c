@@ -24,8 +24,6 @@
 #include <string.h>
 
 #include <libxml/xmlreader.h>
-#include <libgnome/gnome-util.h>
-#include <libgnome/gnome-macros.h>
 
 #include "gtksourcelanguagesmanager.h"
 
@@ -39,6 +37,7 @@
 
 #define DEFAULT_LANGUAGE_DIR		DATADIR "/gtksourceview-1.0/language-specs"
 #define USER_LANGUAGE_DIR		"gtksourceview-1.0/language-specs"
+#define USER_CONFIG_BASE_DIR	".gnome2"
 
 enum {
 	PROP_0,
@@ -52,12 +51,10 @@ struct _GtkSourceLanguagesManagerPrivate {
 	GSList		*language_specs_directories;
 };
 
+static GObjectClass *parent_class = NULL;
 
-GNOME_CLASS_BOILERPLATE (GtkSourceLanguagesManager, 
-			 gtk_source_languages_manager,
-			 GObject, 
-			 G_TYPE_OBJECT)
-
+static void  gtk_source_languages_manager_class_init		(GtkSourceLanguagesManagerClass *klass);
+static void  gtk_source_languages_manager_instance_init	(GtkSourceLanguagesManager *lm);
 static void	 gtk_source_languages_manager_finalize	 	(GObject 		   *object);
 
 static void	 slist_deep_free 				(GSList 		   *list);
@@ -75,6 +72,35 @@ static void	 gtk_source_languages_manager_get_property 	(GObject 		   *object,
 					   			 GParamSpec		   *pspec);
 static void	 gtk_source_languages_manager_set_specs_dirs	(GtkSourceLanguagesManager *lm,
 								 const GSList 		   *dirs);
+
+GType
+gtk_source_languages_manager_get_type (void)
+{
+	static GType languages_manager_type = 0;
+
+  	if (languages_manager_type == 0)
+    	{
+      		static const GTypeInfo our_info =
+      		{
+        		sizeof (GtkSourceLanguagesManagerClass),
+        		NULL,		/* base_init */
+        		NULL,		/* base_finalize */
+        		(GClassInitFunc) gtk_source_languages_manager_class_init,
+        		NULL,           /* class_finalize */
+        		NULL,           /* class_data */
+        		sizeof (GtkSourceLanguagesManager),
+        		0,              /* n_preallocs */
+        		(GInstanceInitFunc) gtk_source_languages_manager_instance_init
+      		};
+
+      		languages_manager_type = g_type_register_static (G_TYPE_OBJECT,
+                					    "GtkSourceLanguagesManager",
+							    &our_info,
+							    0);
+    	}
+
+	return languages_manager_type;
+}
 
 static void
 gtk_source_languages_manager_class_init (GtkSourceLanguagesManagerClass *klass)
@@ -196,7 +222,9 @@ gtk_source_languages_manager_set_specs_dirs (GtkSourceLanguagesManager	*lm,
 					g_strdup (DEFAULT_LANGUAGE_DIR));
 		lm->priv->language_specs_directories = 
 			g_slist_prepend (lm->priv->language_specs_directories,
-					gnome_util_home_file (USER_LANGUAGE_DIR));
+					g_build_filename (g_get_home_dir(), 
+						USER_CONFIG_BASE_DIR, USER_LANGUAGE_DIR, 
+						NULL));
 
 		return;
 	}
@@ -336,9 +364,11 @@ build_file_listing (const gchar *directory, GSList *filenames)
 	while (file_name != NULL)
 	{
 		gchar *full_path = g_build_filename (directory, file_name, NULL);
-
+		gchar *last_dot = strrchr (full_path, '.');
+		
 		if (!g_file_test (full_path, G_FILE_TEST_IS_DIR) && 
-		    (strcmp (g_extension_pointer (full_path), "lang") == 0))
+		    last_dot && 
+		    (strcmp (last_dot + 1, "lang") == 0))
 			filenames = g_slist_prepend (filenames, full_path);
 		else
 			g_free (full_path);

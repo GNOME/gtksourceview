@@ -18,15 +18,9 @@
  */
 
 #include "gtksourcetagtable.h"
-#include <libgnome/gnome-macros.h>
 
 #include "gtksourceview-marshal.h"
 #include "gtksourcetag.h"
-
-GNOME_CLASS_BOILERPLATE (GtkSourceTagTable, 
-			 gtk_source_tag_table,
-			 GtkTextTagTable, 
-			 GTK_TYPE_TEXT_TAG_TABLE)
 
 struct _GtkSourceTagTablePrivate
 {
@@ -41,9 +35,42 @@ enum
 	LAST_SIGNAL
 };
 
+static GtkTextTagTableClass *parent_class = NULL;
+
+static void  gtk_source_tag_table_class_init		(GtkSourceTagTableClass *klass);
+static void  gtk_source_tag_table_instance_init	(GtkSourceTagTable *lm);
 static void	 gtk_source_tag_table_finalize		(GObject 			*object);
 
 static guint signals[LAST_SIGNAL] = { 0 };
+
+GType
+gtk_source_tag_table_get_type (void)
+{
+	static GType tag_table_type = 0;
+
+  	if (tag_table_type == 0)
+    	{
+      		static const GTypeInfo our_info =
+      		{
+        		sizeof (GtkSourceTagTableClass),
+        		NULL,		/* base_init */
+        		NULL,		/* base_finalize */
+        		(GClassInitFunc) gtk_source_tag_table_class_init,
+        		NULL,           /* class_finalize */
+        		NULL,           /* class_data */
+        		sizeof (GtkSourceTagTable),
+        		0,              /* n_preallocs */
+        		(GInstanceInitFunc) gtk_source_tag_table_instance_init
+      		};
+
+      		tag_table_type = g_type_register_static (GTK_TYPE_TEXT_TAG_TABLE,
+                					    "GtkSourceTagTable",
+							    &our_info,
+							    0);
+    	}
+
+	return tag_table_type;
+}
 
 static void
 gtk_source_tag_table_class_init (GtkSourceTagTableClass *klass)

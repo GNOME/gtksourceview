@@ -8,7 +8,8 @@ INCLUDES = 				\
 	-DGNOME_DISABLE_DEPRECATED	\
 	-I$(top_srcdir) -I$(srcdir) 	\
 	$(WARN_CFLAGS) 			\
-	$(DEP_CFLAGS)
+	$(DEP_CFLAGS)                  \
+	$(TESTS_CFLAGS)
 
 # testing executables
 noinst_PROGRAMS = test-widget testregion
@@ -17,7 +18,8 @@ test_widget_SOURCES = test-widget.c
 
 test_widget_LDADD = 			\
 	$(top_builddir)/gtksourceview/libgtksourceview-1.0.la \
-	$(DEP_LIBS)
+	$(DEP_LIBS)                     \
+	$(TESTS_LIBS)
 
 testregion_SOURCES = testregion.c
 

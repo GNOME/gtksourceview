@@ -20,8 +20,6 @@
 #ifndef __GTK_SOURCE_LANGUAGE_PRIVATE_H__
 #define __GTK_SOURCE_LANGUAGE_PRIVATE_H__
 
-#include <gconf/gconf-client.h>
-
 #include "gtksourcelanguagesmanager.h"
 
 G_BEGIN_DECLS

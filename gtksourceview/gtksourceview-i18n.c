@@ -32,7 +32,7 @@ gtksourceview_gettext (const char *msgid)
 	static gboolean initialized = FALSE;
 
 	if (!initialized) {
-		bindtextdomain (GETTEXT_PACKAGE, GNOMELOCALEDIR);
+		bindtextdomain (GETTEXT_PACKAGE, LOCALEDIR);
 		bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
 		initialized = TRUE;
 	}

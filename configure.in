@@ -26,27 +26,43 @@ AC_CHECK_FUNCS([memset])
 # Dependencies
 GLIB_REQUIRED_VERSION=2.2.0
 GTK_REQUIRED_VERSION=2.2.0
-GNOME_REQUIRED=2.2.0
+GNOME_VFS_REQUIRED_VERSION=2.2.0
 LIBXML_REQUIRED_VERSION=2.5.0
 
 AC_SUBST(GLIB_REQUIRED_VERSION)
 AC_SUBST(GTK_REQUIRED_VERSION)
-AC_SUBST(GNOME_REQUIRED)
+AC_SUBST(GNOME_VFS_REQUIRED_VERSION)
 AC_SUBST(LIBXML_REQUIRED_VERSION)
 
 # Pull glib-genmarshal & co.
 AC_PATH_PROG(GLIB_GENMARSHAL, glib-genmarshal)
 
+# Environment
+GNOME_COMMON_INIT
+GNOME_COMPILE_WARNINGS(error)
+
 PKG_CHECK_MODULES(DEP,
 	gtk+-2.0 >= $GTK_REQUIRED_VERSION
-	libgnome-2.0 >= $GNOME_REQUIRED
 	libxml-2.0 >= $LIBXML_REQUIRED_VERSION)
 AC_SUBST(DEP_CFLAGS)
 AC_SUBST(DEP_LIBS)
 
-# Environment
-GNOME_COMMON_INIT
-GNOME_COMPILE_WARNINGS(error)
+# Do we build optional tests? (they require gnome-vfs)
+AC_ARG_ENABLE(build_tests,AC_HELP_STRING([--disable-build-tests],
+					     [disable building of the test programs]),
+[case "${enableval}" in
+  yes) build_tests=true ;;
+  no)  build_tests=false ;;
+  *) AC_MSG_ERROR(bad value ${enableval} for --disable-build-tests) ;;
+esac],[build_tests=true])
+AM_CONDITIONAL(BUILD_TESTS, test x$build_tests = xtrue)
+
+if test x$build_tests = xtrue; then
+	PKG_CHECK_MODULES(TESTS,
+		gnome-vfs-2.0 >= $GNOME_VFS_REQUIRED_VERSION)
+	AC_SUBST(TESTS_CFLAGS)
+	AC_SUBST(TESTS_LIBS)
+fi
 
 # I18N stuff
 ALL_LINGUAS="es"
@@ -55,7 +71,7 @@ AC_SUBST(GETTEXT_PACKAGE)
 AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE, "$GETTEXT_PACKAGE", [Package name for gettext])
 
 AM_GLIB_GNU_GETTEXT
-AM_GLIB_DEFINE_LOCALEDIR(GNOMELOCALEDIR)
+AM_GLIB_DEFINE_LOCALEDIR(LOCALEDIR)
 
 # Output files
 AC_CONFIG_FILES([
