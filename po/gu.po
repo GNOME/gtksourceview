@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview.HEAD.gu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-10-13 10:44+0200\n"
-"PO-Revision-Date: 2004-08-09 17:42+0530\n"
+"POT-Creation-Date: 2004-10-26 04:42+0200\n"
+"PO-Revision-Date: 2004-10-26 17:19+0530\n"
 "Last-Translator: Ankit Patel <ankit@redhat.com>\n"
 "Language-Team: Gujarati\n"
 "MIME-Version: 1.0\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "<magnet@magnet-i.com>\n"
 "X-Generator: KBabel 1.3.1\n"
-"Plural-Forms: Plural-Forms: nplurals=2; plural=(n!=1);\n"
+"Plural-Forms: Plural-Forms: nplurals=2; plural=(n!=1);\n\n"
 "\n"
 "\n"
 
@@ -25,15 +25,15 @@ msgstr "એસ્કેપ અક્ષર"
 
 #: gtksourceview/gtksourcebuffer.c:280
 msgid "Escaping character for syntax patterns"
-msgstr "સિન્ટેક્સ ભાત માટે એસ્કેપ માટેના અક્ષર"
+msgstr "વાક્યરચના ભાત માટે એસ્કેપ માટેના અક્ષર"
 
 #: gtksourceview/gtksourcebuffer.c:288
 msgid "Check Brackets"
-msgstr "કાૈંસ ચકાસો"
+msgstr "કૌંસ ચકાસો"
 
 #: gtksourceview/gtksourcebuffer.c:289
 msgid "Whether to check and highlight matching brackets"
-msgstr "કે પછી કાૈંસ ચકાસવા અને પ્રકાશિત કરવા"
+msgstr "કે પછી કૌંસ ચકાસવા અને પ્રકાશિત કરવા"
 
 #: gtksourceview/gtksourcebuffer.c:297 gtksourceview/gtksourceprintjob.c:295
 msgid "Highlight"
@@ -41,7 +41,7 @@ msgstr "પ્રકાશિત કરો"
 
 #: gtksourceview/gtksourcebuffer.c:298
 msgid "Whether to highlight syntax in the buffer"
-msgstr "કે પછી અનામત મેમરીમાં સિન્ટેક્સને પ્રકાશિત કરો"
+msgstr "કે પછી અનામત મેમરીમાં વાક્યરચનાને પ્રકાશિત કરો"
 
 #: gtksourceview/gtksourcebuffer.c:306
 msgid "Maximum Undo Levels"
@@ -83,11 +83,11 @@ msgstr "છાપવા માટેના કાર્ય માટેની �
 
 #: gtksourceview/gtksourceprintjob.c:272
 msgid "Source Buffer"
-msgstr "સ્ત્રોત બફર"
+msgstr "સ્રોત બફર"
 
 #: gtksourceview/gtksourceprintjob.c:273
 msgid "GtkSourceBuffer object to print"
-msgstr "છાપવા માટે Gtk સ્ત્રોત બફર વસ્તુ"
+msgstr "છાપવા માટે Gtk સ્રોત બફર વસ્તુ"
 
 #: gtksourceview/gtksourceprintjob.c:279 gtksourceview/gtksourceview.c:221
 #: gtksourceview/gtksourceview.c:222
@@ -108,7 +108,7 @@ msgstr "શબ્દ લપેટવાની સ્થિતિ"
 
 #: gtksourceview/gtksourceprintjob.c:296
 msgid "Whether to print the document with highlighted syntax"
-msgstr "કે પછી દસ્તાવેજને પ્રકાશિત કરેલી સિન્ટેક્સ સાથે છાપવું"
+msgstr "કે પછી દસ્તાવેજને પ્રકાશિત કરેલી વાક્યરચના સાથે છાપવું"
 
 # #-#-#-#-#  gnome-control-center.HEAD.hi.po (control center)  #-#-#-#-#
 # #-#-#-#-#  libgnomecanvas.gnome-2-2.hi.po (libgnomecanvas)  #-#-#-#-#
@@ -130,7 +130,7 @@ msgstr "ફોન્ટ"
 
 #: gtksourceview/gtksourceprintjob.c:305
 msgid "GnomeFont name to use for the document text (deprecated)"
-msgstr "દસ્તાવેજના લખાણ માટે વાપરવાનું જીનોમફોન્ટનું નામ (પડકારાયેલ)"
+msgstr "દસ્તાવેજના લખાણ માટે વાપરવાનું જીનોમ ફોન્ટનું નામ (પડકારાયેલ)"
 
 #: gtksourceview/gtksourceprintjob.c:312
 msgid "Font Description"
@@ -146,7 +146,7 @@ msgstr "અંકનો ફોન્ટ"
 
 #: gtksourceview/gtksourceprintjob.c:321
 msgid "GnomeFont name to use for the line numbers (deprecated)"
-msgstr "લીટીઓના અંક માટે વાપરવાનું જીનોમફોન્ટનું નામ (પડકારાયેલ)"
+msgstr "લીટીઓના અંક માટે વાપરવાનું જીનોમ ફોન્ટનું નામ (પડકારાયેલ)"
 
 #: gtksourceview/gtksourceprintjob.c:329
 msgid "Font description to use for the line numbers"
@@ -182,7 +182,7 @@ msgstr "હેડર અને ફૂટર ફોન્ટ"
 
 #: gtksourceview/gtksourceprintjob.c:361
 msgid "GnomeFont name to use for the header and footer (deprecated)"
-msgstr "હેડર અને ફૂટર માટે વપરાતા જીનોમફોન્ટનું નામ (પડકારાયેલ)"
+msgstr "હેડર અને ફૂટર માટે વપરાતા જીનોમ ફોન્ટનું નામ (પડકારાયેલ)"
 
 #: gtksourceview/gtksourceprintjob.c:368
 msgid "Header and Footer Font Description"
@@ -309,11 +309,11 @@ msgstr "મૂળભૂત"
 
 #: gtksourceview/gtksourcetag.c:108
 msgid "Tag ID"
-msgstr "નિશાનીની અોળખ"
+msgstr "નિશાનીની ઓળખ"
 
 #: gtksourceview/gtksourcetag.c:109
 msgid "ID used to refer to the source tag"
-msgstr "સ્ત્રોતની નિશાનીને ઉલ્લેખ કરવા માટે ઓળખ વપરાય છે"
+msgstr "સ્રોતની નિશાનીને ઉલ્લેખ કરવા માટે ઓળખ વપરાય છે"
 
 #: gtksourceview/gtksourcetag.c:116
 msgid "Tag style"
@@ -321,7 +321,7 @@ msgstr "નિશાનીનો પ્રકાર"
 
 #: gtksourceview/gtksourcetag.c:117
 msgid "The style associated to the source tag"
-msgstr "સ્ત્રોતની નિશાની સાથે સંકળાયેલી રીત"
+msgstr "સ્રોતની નિશાની સાથે સંકળાયેલી રીત"
 
 #: gtksourceview/gtksourceview.c:205
 msgid "Show Line Numbers"
@@ -357,11 +357,11 @@ msgstr "કે પછી ટેબની જગ્યાએ ખાલી જગ�
 
 #: gtksourceview/gtksourceview.c:246
 msgid "Show Right Margin"
-msgstr "જમણો હાંસિયાે દેખાડો"
+msgstr "જમણો હાંસિયો દેખાડો"
 
 #: gtksourceview/gtksourceview.c:247
 msgid "Whether to display the right margin"
-msgstr "કે પછી જમણી હાંસિયાે દેખાડો"
+msgstr "કે પછી જમણી હાંસિયો દેખાડો"
 
 #: gtksourceview/gtksourceview.c:254
 msgid "Margin position"
@@ -462,7 +462,7 @@ msgstr "પ્રીપ્રોસેસરના મુખ્ય શબ્દ�
 #: gtksourceview/language-specs/haskell.lang.h:14
 #: gtksourceview/language-specs/vbnet.lang.h:6
 msgid "Sources"
-msgstr "સ્ત્રોતો"
+msgstr "સ્રોતો"
 
 #: gtksourceview/language-specs/ada.lang.h:10
 msgid "True And False"
@@ -546,7 +546,7 @@ msgstr "૮ આધારવાળો અંક"
 #: gtksourceview/language-specs/haskell.lang.h:13
 #: gtksourceview/language-specs/vbnet.lang.h:4
 msgid "Preprocessor Definitions"
-msgstr "પ્રીપ્રાેસેસરની વ્યાખ્યાઓ"
+msgstr "પ્રીપ્રોસેસરની વ્યાખ્યાઓ"
 
 #: gtksourceview/language-specs/cpp.lang.h:3
 msgid "C++"
@@ -981,7 +981,7 @@ msgstr "પાસ્કલ"
 
 #: gtksourceview/language-specs/pascal.lang.h:16
 msgid "Preprocessor Defines"
-msgstr "પ્રીપ્રાેસેસરની વ્યાખ્યાયિત કરે છે"
+msgstr "પ્રીપ્રોસેસરની વ્યાખ્યાયિત કરે છે"
 
 #: gtksourceview/language-specs/pascal.lang.h:19
 msgid "Types Class and Object Keywords"
@@ -1258,7 +1258,7 @@ msgstr "દશાંકી સંખ્યા"
 
 #: gtksourceview/language-specs/verilog.lang.h:4
 msgid "Gates"
-msgstr "ગેટાે"
+msgstr "ગેટો"
 
 #: gtksourceview/language-specs/verilog.lang.h:11
 msgid "Verilog"
@@ -1342,11 +1342,3 @@ msgstr "જૂની શૈલીની ટિપ્પળી"
 msgid "VB.NET"
 msgstr "VB.NET"
 
-#~ msgid "CSS"
-#~ msgstr "CSS"
-
-#~ msgid "JavaScript"
-#~ msgstr "જાવાસ્ક્રિપ્ટ"
-
-#~ msgid "MSIL"
-#~ msgstr "MSIL"
