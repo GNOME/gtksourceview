@@ -1,3 +1,10 @@
+2004-07-21  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+
+	* gtksourceview/gtksourceiter.c (forward_chars_with_skipping) 
+	(pointer_from_offset_skipping_decomp): Use g_utf8_normalize()
+	instead of g_unicode_canonical_decomposition() to calculate
+	normalized character lengths.
+
 2004-07-21 Duncan <dc_junk@yahoo.co.uk>
 
 	* gtksourceview/language-specs/haskell.lang: new file, adds support
