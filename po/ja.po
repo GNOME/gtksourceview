@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-02-14 23:06+0900\n"
-"PO-Revision-Date: 2004-02-14 23:07+0900\n"
+"POT-Creation-Date: 2004-08-05 13:09+0900\n"
+"PO-Revision-Date: 2004-08-05 13:08+0900\n"
 "Last-Translator: Takeshi AIHANA <aihana@gnome.gr.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
@@ -31,7 +31,7 @@ msgstr "括弧のチェック"
 msgid "Whether to check and highlight matching brackets"
 msgstr "対になる括弧をチェックして強調表示するかどうかを設定します"
 
-#: gtksourceview/gtksourcebuffer.c:297 gtksourceview/gtksourceprintjob.c:303
+#: gtksourceview/gtksourcebuffer.c:297 gtksourceview/gtksourceprintjob.c:295
 msgid "Highlight"
 msgstr "強調表示"
 
@@ -66,90 +66,110 @@ msgid ""
 "located"
 msgstr "言語指定ファイル (.lang) を格納するフォルダの一覧です"
 
-#: gtksourceview/gtksourceprintjob.c:272
+#: gtksourceview/gtksourceprintjob.c:264
 msgid "Configuration"
 msgstr "設定"
 
-#: gtksourceview/gtksourceprintjob.c:273
+#: gtksourceview/gtksourceprintjob.c:265
 msgid "Configuration options for the print job"
 msgstr "印刷ジョブの設定オプションです"
 
-#: gtksourceview/gtksourceprintjob.c:280
+#: gtksourceview/gtksourceprintjob.c:272
 msgid "Source Buffer"
 msgstr "ソース・バッファ"
 
-#: gtksourceview/gtksourceprintjob.c:281
+#: gtksourceview/gtksourceprintjob.c:273
 msgid "GtkSourceBuffer object to print"
 msgstr "印刷用の GtkSourceBuffer オブジェクトです"
 
-#: gtksourceview/gtksourceprintjob.c:287 gtksourceview/gtksourceview.c:221
+#: gtksourceview/gtksourceprintjob.c:279 gtksourceview/gtksourceview.c:221
 #: gtksourceview/gtksourceview.c:222
 msgid "Tabs Width"
 msgstr "タブの幅"
 
-#: gtksourceview/gtksourceprintjob.c:288
+#: gtksourceview/gtksourceprintjob.c:280
 msgid "Width in equivalent space characters of tabs"
 msgstr "タブ文字と同じスペースの幅です"
 
-#: gtksourceview/gtksourceprintjob.c:295
+#: gtksourceview/gtksourceprintjob.c:287
 msgid "Wrap Mode"
 msgstr "ラップ・モード"
 
-#: gtksourceview/gtksourceprintjob.c:296
+#: gtksourceview/gtksourceprintjob.c:288
 msgid "Word wrapping mode"
 msgstr "ワード・ラップのモードです"
 
-#: gtksourceview/gtksourceprintjob.c:304
+#: gtksourceview/gtksourceprintjob.c:296
 msgid "Whether to print the document with highlighted syntax"
 msgstr "強調表示のドキュメントを印刷するかどうかを設定します"
 
-#: gtksourceview/gtksourceprintjob.c:312
+#: gtksourceview/gtksourceprintjob.c:304
 msgid "Font"
 msgstr "フォント"
 
-#: gtksourceview/gtksourceprintjob.c:313
-msgid "Font name to use for the document text"
-msgstr "ドキュメントのテキストに使用するフォント名です"
+#: gtksourceview/gtksourceprintjob.c:305
+msgid "GnomeFont name to use for the document text (deprecated)"
+msgstr "ドキュメントのテキストに使用する GNOME フォント名です (廃止)"
 
-#: gtksourceview/gtksourceprintjob.c:320
+#: gtksourceview/gtksourceprintjob.c:312
+msgid "Font Description"
+msgstr "フォント名"
+
+#: gtksourceview/gtksourceprintjob.c:313
+msgid "Font description name to use for the document text"
+msgstr "ドキュメントのテキストに使用する論理フォント名です"
+
+#: gtksourceview/gtksourceprintjob.c:320 gtksourceview/gtksourceprintjob.c:328
 msgid "Numbers Font"
 msgstr "行番号のフォント"
 
 #: gtksourceview/gtksourceprintjob.c:321
-msgid "Font name to use for the line numbers"
-msgstr "行番号に使用するフォント名です"
+msgid "GnomeFont name to use for the line numbers (deprecated)"
+msgstr "行番号に使用する GNOME フォント名です (廃止)"
 
-#: gtksourceview/gtksourceprintjob.c:328
+#: gtksourceview/gtksourceprintjob.c:329
+msgid "Font description to use for the line numbers"
+msgstr "行番号に使用する論理フォント名です"
+
+#: gtksourceview/gtksourceprintjob.c:336
 msgid "Print Line Numbers"
 msgstr "行番号を印刷する"
 
-#: gtksourceview/gtksourceprintjob.c:329
+#: gtksourceview/gtksourceprintjob.c:337
 msgid "Interval of printed line numbers (0 means no numbers)"
 msgstr "行番号を印刷する際の間隔です (0: 行番号なし)"
 
-#: gtksourceview/gtksourceprintjob.c:336
+#: gtksourceview/gtksourceprintjob.c:344
 msgid "Print Header"
 msgstr "印刷ハンドラ"
 
-#: gtksourceview/gtksourceprintjob.c:337
+#: gtksourceview/gtksourceprintjob.c:345
 msgid "Whether to print a header in each page"
 msgstr "各ページにヘッダを印刷するかどうかを設定します"
 
-#: gtksourceview/gtksourceprintjob.c:344
+#: gtksourceview/gtksourceprintjob.c:352
 msgid "Print Footer"
 msgstr "フッタ"
 
-#: gtksourceview/gtksourceprintjob.c:345
+#: gtksourceview/gtksourceprintjob.c:353
 msgid "Whether to print a footer in each page"
 msgstr "各ページにフッタを印刷するかどうかを設定します"
 
-#: gtksourceview/gtksourceprintjob.c:352
+#: gtksourceview/gtksourceprintjob.c:360
 msgid "Header and Footer Font"
 msgstr "ヘッダとフッタのフォント"
 
-#: gtksourceview/gtksourceprintjob.c:353
-msgid "Font name to use for the header and footer"
-msgstr "ヘッダとフッタに使用するフォント名です"
+#: gtksourceview/gtksourceprintjob.c:361
+msgid "GnomeFont name to use for the header and footer (deprecated)"
+msgstr "ヘッダとフッタに使用する GNOME フォント名です (廃止)"
+
+#: gtksourceview/gtksourceprintjob.c:368
+msgid "Header and Footer Font Description"
+msgstr "ヘッダとフッタのフォント名"
+
+#: gtksourceview/gtksourceprintjob.c:369
+msgid "Font description name to use for the header and footer"
+msgstr "ヘッダとフッタに使用する論理フォント名です"
 
 #: gtksourceview/gtksourcestylescheme.c:237
 msgid "Base-N Integer"
@@ -178,6 +198,7 @@ msgstr "関数"
 #: gtksourceview/gtksourcestylescheme.c:262
 #: gtksourceview/language-specs/c.lang.h:6
 #: gtksourceview/language-specs/cpp.lang.h:6
+#: gtksourceview/language-specs/haskell.lang.h:3
 msgid "Decimal"
 msgstr "10 進数"
 
@@ -188,6 +209,7 @@ msgstr "浮動小数点数"
 #: gtksourceview/gtksourcestylescheme.c:272
 #: gtksourceview/language-specs/latex.lang.h:3
 #: gtksourceview/language-specs/po.lang.h:3
+#: gtksourceview/language-specs/texinfo.lang.h:8
 msgid "Keyword"
 msgstr "キーワード"
 
@@ -203,10 +225,14 @@ msgstr "プリプロセッサ"
 #: gtksourceview/language-specs/html.lang.h:8
 #: gtksourceview/language-specs/idl.lang.h:8
 #: gtksourceview/language-specs/java.lang.h:11
-#: gtksourceview/language-specs/perl.lang.h:6
+#: gtksourceview/language-specs/lua.lang.h:10
+#: gtksourceview/language-specs/perl.lang.h:8
 #: gtksourceview/language-specs/po.lang.h:6
 #: gtksourceview/language-specs/python.lang.h:11
+#: gtksourceview/language-specs/ruby.lang.h:18
 #: gtksourceview/language-specs/xml.lang.h:8
+#: gtksourceview/language-specs/haskell.lang.h:15
+#: gtksourceview/language-specs/vbnet.lang.h:7
 msgid "String"
 msgstr "文字列"
 
@@ -214,7 +240,7 @@ msgstr "文字列"
 msgid "Specials"
 msgstr "カスタマイズ"
 
-#: gtksourceview/gtksourcestylescheme.c:292
+#: gtksourceview/gtksourcestylescheme.c:294
 #: gtksourceview/language-specs/desktop.lang.h:10
 #: gtksourceview/language-specs/diff.lang.h:7
 #: gtksourceview/language-specs/msil.lang.h:2
@@ -222,15 +248,15 @@ msgstr "カスタマイズ"
 msgid "Others"
 msgstr "その他"
 
-#: gtksourceview/gtksourcestylescheme.c:297
+#: gtksourceview/gtksourcestylescheme.c:299
 msgid "Others 2"
 msgstr "その他２"
 
-#: gtksourceview/gtksourcestylescheme.c:302
+#: gtksourceview/gtksourcestylescheme.c:304
 msgid "Others 3"
 msgstr "その他３"
 
-#: gtksourceview/gtksourcestylescheme.c:339
+#: gtksourceview/gtksourcestylescheme.c:341
 msgid "Default"
 msgstr "デフォルト"
 
@@ -317,6 +343,7 @@ msgstr "Ada"
 #: gtksourceview/language-specs/ada.lang.h:2
 #: gtksourceview/language-specs/c.lang.h:4
 #: gtksourceview/language-specs/cpp.lang.h:4
+#: gtksourceview/language-specs/haskell.lang.h:2
 msgid "Character Constant"
 msgstr "文字定数"
 
@@ -325,9 +352,13 @@ msgstr "文字定数"
 #: gtksourceview/language-specs/cpp.lang.h:10
 #: gtksourceview/language-specs/csharp.lang.h:3
 #: gtksourceview/language-specs/idl.lang.h:4
+#: gtksourceview/language-specs/lua.lang.h:3
 #: gtksourceview/language-specs/perl.lang.h:2
 #: gtksourceview/language-specs/python.lang.h:3
+#: gtksourceview/language-specs/ruby.lang.h:8
 #: gtksourceview/language-specs/verilog.lang.h:6
+#: gtksourceview/language-specs/haskell.lang.h:9
+#: gtksourceview/language-specs/vbnet.lang.h:1
 msgid "Keywords"
 msgstr "キーワード"
 
@@ -338,10 +369,15 @@ msgstr "キーワード"
 #: gtksourceview/language-specs/desktop.lang.h:7
 #: gtksourceview/language-specs/diff.lang.h:5
 #: gtksourceview/language-specs/java.lang.h:5
+#: gtksourceview/language-specs/lua.lang.h:4
 #: gtksourceview/language-specs/perl.lang.h:3
 #: gtksourceview/language-specs/python.lang.h:4
+#: gtksourceview/language-specs/ruby.lang.h:9
 #: gtksourceview/language-specs/sql.lang.h:11
 #: gtksourceview/language-specs/verilog.lang.h:7
+#: gtksourceview/language-specs/haskell.lang.h:10
+#: gtksourceview/language-specs/texinfo.lang.h:9
+#: gtksourceview/language-specs/vbnet.lang.h:2
 msgid "Line Comment"
 msgstr "行コメント"
 
@@ -363,6 +399,8 @@ msgstr "プリプロセッサのキーワード"
 #: gtksourceview/language-specs/php.lang.h:15
 #: gtksourceview/language-specs/sql.lang.h:26
 #: gtksourceview/language-specs/verilog.lang.h:9
+#: gtksourceview/language-specs/haskell.lang.h:14
+#: gtksourceview/language-specs/vbnet.lang.h:6
 msgid "Sources"
 msgstr "ソース"
 
@@ -389,9 +427,12 @@ msgstr "'#if 0' コメント"
 #: gtksourceview/language-specs/html.lang.h:2
 #: gtksourceview/language-specs/idl.lang.h:1
 #: gtksourceview/language-specs/java.lang.h:1
+#: gtksourceview/language-specs/lua.lang.h:1
 #: gtksourceview/language-specs/sql.lang.h:5
 #: gtksourceview/language-specs/verilog.lang.h:2
 #: gtksourceview/language-specs/xml.lang.h:2
+#: gtksourceview/language-specs/haskell.lang.h:1
+#: gtksourceview/language-specs/texinfo.lang.h:1
 msgid "Block Comment"
 msgstr "ブロック型コメント"
 
@@ -406,23 +447,27 @@ msgstr "共通マクロ"
 
 #: gtksourceview/language-specs/c.lang.h:7
 #: gtksourceview/language-specs/cpp.lang.h:7
+#: gtksourceview/language-specs/haskell.lang.h:4
 msgid "Floating Point Number"
 msgstr "浮動小数点数"
 
 #: gtksourceview/language-specs/c.lang.h:8
 #: gtksourceview/language-specs/cpp.lang.h:8
+#: gtksourceview/language-specs/haskell.lang.h:6
 msgid "Hex Number"
 msgstr "16 進数"
 
 #: gtksourceview/language-specs/c.lang.h:9
 #: gtksourceview/language-specs/cpp.lang.h:9
 #: gtksourceview/language-specs/idl.lang.h:3
+#: gtksourceview/language-specs/haskell.lang.h:7
 msgid "Include/Pragma"
 msgstr "Include/Pragma"
 
 #: gtksourceview/language-specs/c.lang.h:12
 #: gtksourceview/language-specs/cpp.lang.h:12
 #: gtksourceview/language-specs/verilog.lang.h:8
+#: gtksourceview/language-specs/haskell.lang.h:11
 msgid "Octal Number"
 msgstr "8 進数"
 
@@ -430,6 +475,8 @@ msgstr "8 進数"
 #: gtksourceview/language-specs/cpp.lang.h:13
 #: gtksourceview/language-specs/csharp.lang.h:5
 #: gtksourceview/language-specs/idl.lang.h:5
+#: gtksourceview/language-specs/haskell.lang.h:13
+#: gtksourceview/language-specs/vbnet.lang.h:4
 msgid "Preprocessor Definitions"
 msgstr "プリプロセッサの定義"
 
@@ -443,12 +490,16 @@ msgstr "C#"
 
 #: gtksourceview/language-specs/csharp.lang.h:6
 #: gtksourceview/language-specs/java.lang.h:9
+#: gtksourceview/language-specs/vbnet.lang.h:5
 msgid "Primitives"
 msgstr "プリミティブ"
 
 #: gtksourceview/language-specs/csharp.lang.h:9
 #: gtksourceview/language-specs/java.lang.h:12
+#: gtksourceview/language-specs/lua.lang.h:11
 #: gtksourceview/language-specs/python.lang.h:12
+#: gtksourceview/language-specs/ruby.lang.h:19
+#: gtksourceview/language-specs/vbnet.lang.h:8
 msgid "String 2"
 msgstr "文字列２"
 
@@ -536,6 +587,7 @@ msgstr "HTML"
 #: gtksourceview/language-specs/html.lang.h:7
 #: gtksourceview/language-specs/latex.lang.h:5
 #: gtksourceview/language-specs/xml.lang.h:7
+#: gtksourceview/language-specs/texinfo.lang.h:12
 msgid "Markup"
 msgstr "マークアップ"
 
@@ -576,6 +628,7 @@ msgid "Numeric"
 msgstr "数値"
 
 #: gtksourceview/language-specs/latex.lang.h:2
+#: gtksourceview/language-specs/texinfo.lang.h:6
 msgid "Include"
 msgstr "Include"
 
@@ -591,6 +644,36 @@ msgstr "数学"
 msgid "Most Used Commands"
 msgstr "最近使ったコマンド"
 
+#: gtksourceview/language-specs/lua.lang.h:2
+#: gtksourceview/language-specs/python.lang.h:2
+msgid "Functions"
+msgstr "関数"
+
+#: gtksourceview/language-specs/lua.lang.h:5
+msgid "Line Comment 2"
+msgstr "行コメント２"
+
+#: gtksourceview/language-specs/lua.lang.h:6
+msgid "Lua"
+msgstr "Lua"
+
+#: gtksourceview/language-specs/lua.lang.h:7
+#: gtksourceview/language-specs/python.lang.h:6
+msgid "Multiline String"
+msgstr "マルチラインの文字列"
+
+#: gtksourceview/language-specs/lua.lang.h:8
+#: gtksourceview/language-specs/python.lang.h:7
+msgid "Multiline String 2"
+msgstr "マルチラインの文字列２"
+
+#: gtksourceview/language-specs/lua.lang.h:9
+#: gtksourceview/language-specs/perl.lang.h:7
+#: gtksourceview/language-specs/python.lang.h:9
+#: gtksourceview/language-specs/ruby.lang.h:17
+msgid "Scripts"
+msgstr "スクリプト"
+
 #: gtksourceview/language-specs/msil.lang.h:1
 msgid "MSIL"
 msgstr "MSIL"
@@ -600,23 +683,26 @@ msgid "Function Call"
 msgstr "関数の呼び出し"
 
 #: gtksourceview/language-specs/perl.lang.h:4
+msgid "Method Call"
+msgstr "メソッドの呼び出し"
+
+#: gtksourceview/language-specs/perl.lang.h:5
 msgid "Perl"
 msgstr "Perl"
 
-#: gtksourceview/language-specs/perl.lang.h:5
-#: gtksourceview/language-specs/python.lang.h:9
-msgid "Scripts"
-msgstr "スクリプト"
+#: gtksourceview/language-specs/perl.lang.h:6
+msgid "Plain Old Documentation"
+msgstr "通常の古いドキュメント"
 
-#: gtksourceview/language-specs/perl.lang.h:7
+#: gtksourceview/language-specs/perl.lang.h:9
 msgid "String2"
 msgstr "文字列２"
 
-#: gtksourceview/language-specs/perl.lang.h:8
+#: gtksourceview/language-specs/perl.lang.h:10
 msgid "String3"
 msgstr "文字列３"
 
-#: gtksourceview/language-specs/perl.lang.h:9
+#: gtksourceview/language-specs/perl.lang.h:11
 msgid "Variables"
 msgstr "変数"
 
@@ -661,6 +747,7 @@ msgid "HTML Block"
 msgstr "HTML のブロック"
 
 #: gtksourceview/language-specs/php.lang.h:12
+#: gtksourceview/language-specs/haskell.lang.h:12
 msgid "Operators"
 msgstr "演算子"
 
@@ -685,24 +772,13 @@ msgid "gettext translation"
 msgstr "ja.po"
 
 #: gtksourceview/language-specs/python.lang.h:1
+#: gtksourceview/language-specs/ruby.lang.h:2
 msgid "Builtins"
 msgstr "組み込み"
-
-#: gtksourceview/language-specs/python.lang.h:2
-msgid "Functions"
-msgstr "関数"
 
 #: gtksourceview/language-specs/python.lang.h:5
 msgid "Module Handler"
 msgstr "モジュール・ハンドラ"
-
-#: gtksourceview/language-specs/python.lang.h:6
-msgid "Multiline String"
-msgstr "マルチラインの文字列"
-
-#: gtksourceview/language-specs/python.lang.h:7
-msgid "Multiline String 2"
-msgstr "マルチラインの文字列２"
 
 #: gtksourceview/language-specs/python.lang.h:8
 msgid "Python"
@@ -711,6 +787,58 @@ msgstr "Python"
 #: gtksourceview/language-specs/python.lang.h:10
 msgid "Self"
 msgstr "セルフ"
+
+#: gtksourceview/language-specs/ruby.lang.h:1
+msgid "Attribute Definitions"
+msgstr "属性の定義"
+
+#: gtksourceview/language-specs/ruby.lang.h:3
+msgid "Class Variables"
+msgstr "クラスの変数"
+
+#: gtksourceview/language-specs/ruby.lang.h:4
+msgid "Constants"
+msgstr "定数"
+
+#: gtksourceview/language-specs/ruby.lang.h:5
+msgid "Definitions"
+msgstr "定義"
+
+#: gtksourceview/language-specs/ruby.lang.h:6
+msgid "Global Variables"
+msgstr "グローバル変数"
+
+#: gtksourceview/language-specs/ruby.lang.h:7
+msgid "Instance Variables"
+msgstr "インスタンス変数"
+
+#: gtksourceview/language-specs/ruby.lang.h:10
+msgid "Module Handlers"
+msgstr "モジュール・ハンドラ"
+
+#: gtksourceview/language-specs/ruby.lang.h:11
+msgid "Multiline Comment"
+msgstr "複数行コメント"
+
+#: gtksourceview/language-specs/ruby.lang.h:12
+msgid "Pseudo Variables"
+msgstr "疑似変数"
+
+#: gtksourceview/language-specs/ruby.lang.h:13
+msgid "RegExp Variables"
+msgstr "正規表現変数"
+
+#: gtksourceview/language-specs/ruby.lang.h:14
+msgid "Regular Expression"
+msgstr "正規表現"
+
+#: gtksourceview/language-specs/ruby.lang.h:15
+msgid "Regular Expression 2"
+msgstr "正規表現２"
+
+#: gtksourceview/language-specs/ruby.lang.h:16
+msgid "Ruby"
+msgstr "Ruby"
 
 #: gtksourceview/language-specs/sql.lang.h:1
 msgid "ANSI Datatypes"
@@ -843,3 +971,67 @@ msgstr "タグ"
 #: gtksourceview/language-specs/xml.lang.h:10
 msgid "XML"
 msgstr "XML"
+
+#: gtksourceview/language-specs/haskell.lang.h:5
+msgid "Haskell"
+msgstr "Haskell"
+
+#: gtksourceview/language-specs/haskell.lang.h:8
+msgid "Keysymbols"
+msgstr "キーシンボル"
+
+#: gtksourceview/language-specs/haskell.lang.h:16
+msgid "Type or Constructor"
+msgstr "型またはコンストラクタ"
+
+#: gtksourceview/language-specs/texinfo.lang.h:2
+msgid "Characters"
+msgstr "文字"
+
+#: gtksourceview/language-specs/texinfo.lang.h:3
+msgid "File Attributes"
+msgstr "ファイルの属性"
+
+#: gtksourceview/language-specs/texinfo.lang.h:4
+msgid "Formatting"
+msgstr "書式"
+
+#: gtksourceview/language-specs/texinfo.lang.h:5
+msgid "Generated Content"
+msgstr "生成したコンテンツ"
+
+#: gtksourceview/language-specs/texinfo.lang.h:7
+msgid "Indexing"
+msgstr "目次"
+
+#: gtksourceview/language-specs/texinfo.lang.h:10
+msgid "Macro Parameters"
+msgstr "マクロの引数"
+
+#: gtksourceview/language-specs/texinfo.lang.h:11
+msgid "Macros"
+msgstr "マクロ"
+
+#: gtksourceview/language-specs/texinfo.lang.h:13
+msgid "Markup (block)"
+msgstr "マークアップ (ブロック)"
+
+#: gtksourceview/language-specs/texinfo.lang.h:14
+msgid "Markup (inline)"
+msgstr "マークアップ (インライン)"
+
+#: gtksourceview/language-specs/texinfo.lang.h:15
+msgid "Sectioning"
+msgstr "セクション化"
+
+#: gtksourceview/language-specs/texinfo.lang.h:16
+msgid "Texinfo"
+msgstr "Texinfo"
+
+#: gtksourceview/language-specs/vbnet.lang.h:3
+msgid "Old Style Comment"
+msgstr "古いスタイルのコメント"
+
+#: gtksourceview/language-specs/vbnet.lang.h:9
+msgid "VB.NET"
+msgstr "VB.NET"
