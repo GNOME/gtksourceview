@@ -3,13 +3,14 @@
 # This file is distributed under the same licence as the gtksourceview package.
 # Adam Weinberger <adamw@gnome.org>, 2004, 2005.
 #
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview 0.9.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-16 20:38-0500\n"
-"PO-Revision-Date: 2005-01-16 20:39-0500\n"
-"Last-Translator: Alexander Winston <alexander.winston@comcast.net>\n"
+"POT-Creation-Date: 2005-01-25 11:04-0500\n"
+"PO-Revision-Date: 2005-01-25 20:39-0500\n"
+"Last-Translator: Adam Weinberger <adamw@gnome.org>\n"
 "Language-Team: Canadian English <adamw@FreeBSD.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -119,8 +120,8 @@ msgid "Font Description"
 msgstr "Font Description"
 
 #: gtksourceview/gtksourceprintjob.c:313
-msgid "Font description name to use for the document text"
-msgstr "Font description name to use for the document text"
+msgid "Font to use for the document text (e.g. \"Monospace 10\")"
+msgstr "Font to use for the document text (e.g. \"Monospace 10\")"
 
 #: gtksourceview/gtksourceprintjob.c:320 gtksourceview/gtksourceprintjob.c:328
 msgid "Numbers Font"
@@ -171,25 +172,25 @@ msgid "Header and Footer Font Description"
 msgstr "Header and Footer Font Description"
 
 #: gtksourceview/gtksourceprintjob.c:369
-msgid "Font description name to use for the header and footer"
-msgstr "Font description name to use for the header and footer"
+msgid "Font to use for headers and footers (e.g. \"Monospace 10\")"
+msgstr "Font to use for headers and footers (e.g. \"Monospace 10\")"
 
-#: gtksourceview/gtksourcestylescheme.c:237
+#: gtksourceview/gtksourcestylescheme.c:262
 msgid "Base-N Integer"
 msgstr "Base-N Integer"
 
-#: gtksourceview/gtksourcestylescheme.c:242
+#: gtksourceview/gtksourcestylescheme.c:267
 msgid "Character"
 msgstr "Character"
 
-#: gtksourceview/gtksourcestylescheme.c:247
+#: gtksourceview/gtksourcestylescheme.c:272
 #: gtksourceview/language-specs/latex.lang.h:1
 #: gtksourceview/language-specs/po.lang.h:1
 msgid "Comment"
 msgstr "Comment"
 
 #. $this = (datatype)
-#: gtksourceview/gtksourcestylescheme.c:252
+#: gtksourceview/gtksourcestylescheme.c:277
 #: gtksourceview/language-specs/php.lang.h:14
 msgid "Data Type"
 msgstr "Data Type"
@@ -197,13 +198,13 @@ msgstr "Data Type"
 #.
 #. CSS functions, such as rgb(), clip(), or lang().
 #.
-#: gtksourceview/gtksourcestylescheme.c:257
+#: gtksourceview/gtksourcestylescheme.c:282
 #: gtksourceview/language-specs/ada.lang.h:3
 #: gtksourceview/language-specs/css.lang.h:17
 msgid "Function"
 msgstr "Function"
 
-#: gtksourceview/gtksourcestylescheme.c:262
+#: gtksourceview/gtksourcestylescheme.c:287
 #: gtksourceview/language-specs/c.lang.h:6
 #: gtksourceview/language-specs/cpp.lang.h:6
 #: gtksourceview/language-specs/fortran.lang.h:1
@@ -212,11 +213,11 @@ msgstr "Function"
 msgid "Decimal"
 msgstr "Decimal"
 
-#: gtksourceview/gtksourcestylescheme.c:267
+#: gtksourceview/gtksourcestylescheme.c:292
 msgid "Floating Point"
 msgstr "Floating Point"
 
-#: gtksourceview/gtksourcestylescheme.c:272
+#: gtksourceview/gtksourcestylescheme.c:297
 #: gtksourceview/language-specs/latex.lang.h:3
 #: gtksourceview/language-specs/po.lang.h:3
 #: gtksourceview/language-specs/texinfo.lang.h:8
@@ -226,11 +227,11 @@ msgstr "Floating Point"
 msgid "Keyword"
 msgstr "Keyword"
 
-#: gtksourceview/gtksourcestylescheme.c:277
+#: gtksourceview/gtksourcestylescheme.c:302
 msgid "Preprocessor"
 msgstr "Preprocessor"
 
-#: gtksourceview/gtksourcestylescheme.c:282
+#: gtksourceview/gtksourcestylescheme.c:307
 #: gtksourceview/language-specs/ada.lang.h:9
 #: gtksourceview/language-specs/c.lang.h:15
 #: gtksourceview/language-specs/cpp.lang.h:15
@@ -257,7 +258,7 @@ msgstr "Preprocessor"
 msgid "String"
 msgstr "String"
 
-#: gtksourceview/gtksourcestylescheme.c:287
+#: gtksourceview/gtksourcestylescheme.c:312
 msgid "Specials"
 msgstr "Specials"
 
@@ -273,7 +274,7 @@ msgstr "Specials"
 #. Submitted by Scott Martin (scott@coffeeblack.org)
 #.
 #. FIXME: find the correct mimetype
-#: gtksourceview/gtksourcestylescheme.c:294
+#: gtksourceview/gtksourcestylescheme.c:319
 #: gtksourceview/language-specs/css.lang.h:46
 #: gtksourceview/language-specs/desktop.lang.h:10
 #: gtksourceview/language-specs/diff.lang.h:7
@@ -284,15 +285,15 @@ msgstr "Specials"
 msgid "Others"
 msgstr "Others"
 
-#: gtksourceview/gtksourcestylescheme.c:299
+#: gtksourceview/gtksourcestylescheme.c:324
 msgid "Others 2"
 msgstr "Others 2"
 
-#: gtksourceview/gtksourcestylescheme.c:304
+#: gtksourceview/gtksourcestylescheme.c:329
 msgid "Others 3"
 msgstr "Others 3"
 
-#: gtksourceview/gtksourcestylescheme.c:341
+#: gtksourceview/gtksourcestylescheme.c:366
 msgid "Default"
 msgstr "Default"
 
@@ -1453,8 +1454,8 @@ msgid "VHDL"
 msgstr "VHDL"
 
 #: gtksourceview/language-specs/R.lang.h:1
-msgid "Assign operator"
-msgstr "Assign operator"
+msgid "Assignment Operator"
+msgstr "Assignment Operator"
 
 #: gtksourceview/language-specs/R.lang.h:2
 msgid "Delimiter"
@@ -1465,12 +1466,12 @@ msgid "Integer Number"
 msgstr "Integer Number"
 
 #: gtksourceview/language-specs/R.lang.h:8
-msgid "Reserved class"
-msgstr "Reserved class"
+msgid "Reserved Class"
+msgstr "Reserved Class"
 
 #: gtksourceview/language-specs/R.lang.h:9
-msgid "Reserved constant"
-msgstr "Reserved constant"
+msgid "Reserved Constant"
+msgstr "Reserved Constant"
 
 #: gtksourceview/language-specs/gtkrc.lang.h:3
 msgid "GtkRC"
