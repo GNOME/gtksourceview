@@ -197,7 +197,7 @@ gtk_source_view_populate_popup (GtkTextView *text_view,
 			  text_view);
 	gtk_menu_shell_insert (GTK_MENU_SHELL (menu), menuitem, 4);
 	gtk_widget_set_sensitive (menuitem,
-				  !gtk_source_buffer_undo_is_empty (GTK_SOURCE_BUFFER (buffer)));
+				  gtk_source_buffer_can_undo (GTK_SOURCE_BUFFER (buffer)));
 	gtk_widget_show (menuitem);
 
 	/* create redo menuitem. */
@@ -209,7 +209,7 @@ gtk_source_view_populate_popup (GtkTextView *text_view,
 			  text_view);
 	gtk_menu_shell_insert (GTK_MENU_SHELL (menu), menuitem, 5);
 	gtk_widget_set_sensitive (menuitem,
-				  !gtk_source_buffer_redo_is_empty (GTK_SOURCE_BUFFER (buffer)));
+				  gtk_source_buffer_can_redo (GTK_SOURCE_BUFFER (buffer)));
 	gtk_widget_show (menuitem);
 }
 

@@ -1,3 +1,18 @@
+2002-03-15  Jeroen Zwartepoorte  <jeroen@xs4all.nl>
+
+	* aclocal.m4: Newer glib version.
+	* configure.in: Added libgnome dependency (i18n).
+	* src/Makefile.am: Added new files.
+	* src/gtksourcebuffer.c: Cleanup, implemented support for new undo
+	manager.
+	* src/gtksourcebuffer.h: Idem.
+	* src/gtksourceview-marshal.list: Added marshal type for undo/redo
+	events.
+	* src/gtksourceview.c: (gtk_source_view_populate_popup): Updated to work
+	with the new undo API.
+	* src/gtkundomanager.c: New GtkUndoManager, copied from gedit.
+	* src/gtkundomanager.h: Idem.
+
 2002-02-11  Mikael Hermansson  <tyan@linux.se>
 
 	* gtksourceview.c: remove compile warnings.
