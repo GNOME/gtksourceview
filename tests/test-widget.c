@@ -368,7 +368,10 @@ open_file (GtkSourceBuffer *buffer, const gchar *filename)
 
 	remove_all_markers (buffer);
 	gtk_source_buffer_load_with_encoding (buffer, filename, "utf-8", &err);
-	
+	g_object_set_data_full (G_OBJECT (buffer),
+				"filename", g_strdup (filename),
+				(GDestroyNotify) g_free);
+
 	if (err != NULL)
 	{
 		g_error_free (err);
@@ -566,9 +569,9 @@ button_press_cb (GtkWidget *widget, GdkEventButton *ev, gpointer user_data)
 static void
 page_cb (GtkSourcePrintJob *job, ViewsData *vd)
 {
-	g_message ("Printing page %d of %d",
-		   gtk_source_print_job_get_page (job),
-		   gtk_source_print_job_get_page_count (job));
+	g_print ("Printing %.2f%%    \r",
+		 100.0 * gtk_source_print_job_get_page (job) /
+		 gtk_source_print_job_get_page_count (job));
 }
 
 static void
@@ -576,9 +579,10 @@ finished_cb (GtkSourcePrintJob *job, ViewsData *vd)
 {
 	GnomePrintJob *gjob;
 	GtkWidget *preview;
-	
+
+	g_print ("\n");
 	gjob = gtk_source_print_job_get_print_job (job);
-	preview = gnome_print_job_preview_new (gjob, "Testing print");
+	preview = gnome_print_job_preview_new (gjob, "test-widget print preview");
  	g_object_unref (gjob); 
  	g_object_unref (job);
 	
@@ -594,6 +598,7 @@ print_preview_cb (ViewsData *vd,
 	GtkWidget *window;
 	GtkSourceView *view;
 	GtkTextIter start, end;
+	gchar *filename;
 	
 	window = g_list_nth_data (vd->windows, 0);
 	view = g_object_get_data (G_OBJECT (window), "view");
@@ -601,13 +606,23 @@ print_preview_cb (ViewsData *vd,
 	job = gtk_source_print_job_new (NULL);
 	gtk_source_print_job_setup_from_view (job, view);
 	gtk_source_print_job_set_wrap_mode (job, GTK_WRAP_CHAR);
-	gtk_source_print_job_set_font (job, "Monospace Regular 8");
 	gtk_source_print_job_set_highlight (job, TRUE);
-	gtk_source_print_job_set_print_numbers (job, 3);
+	gtk_source_print_job_set_print_numbers (job, 5);
 
-	gtk_source_print_job_set_header_format (job, "Printed in %A", NULL, "%F", TRUE);
-	gtk_source_print_job_set_footer_format (job, "%T",
-						"Centered text", "Page %N of %Q", TRUE);
+	gtk_source_print_job_set_header_format (job,
+						"Printed on %A",
+						NULL,
+						"%F",
+						TRUE);
+
+	filename = g_object_get_data (G_OBJECT (vd->buffer), "filename");
+	
+	gtk_source_print_job_set_footer_format (job,
+						"%T",
+						filename,
+						"Page %N/%Q",
+						TRUE);
+
 	gtk_source_print_job_set_print_header (job, TRUE);
 	gtk_source_print_job_set_print_footer (job, TRUE);
 	

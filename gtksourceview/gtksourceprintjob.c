@@ -37,14 +37,12 @@
 #include "gtksourcetag.h"
 #include "gtksourceprintjob.h"
 
-#define ENABLE_PROFILE
 #ifdef ENABLE_PROFILE
 #define PROFILE(x) x
 #else
 #define PROFILE(x)
 #endif
 
-#define ENABLE_PROFILE
 #ifdef ENABLE_DEBUG
 #define DEBUG(x) x
 #else
@@ -416,8 +414,8 @@ gtk_source_print_job_instance_init (GtkSourcePrintJob *job)
 	priv->printing = FALSE;
 	priv->print_ctxt = NULL;
 	priv->print_job = NULL;
-	priv->page = -1;
-	priv->page_count = -1;
+	priv->page = 0;
+	priv->page_count = 0;
 
 	priv->first_line_number = 0;
 	priv->lines = NULL;

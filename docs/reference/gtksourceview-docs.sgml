@@ -10,6 +10,7 @@
     <title>GtkSourceView widget library</title>
 
     <xi:include href="xml/buffer.xml"/>
+    <xi:include href="xml/iter.xml"/>
     <xi:include href="xml/marker.xml"/>
     <xi:include href="xml/view.xml"/>
 
@@ -20,5 +21,7 @@
     <xi:include href="xml/tag.xml"/>
     <xi:include href="xml/tagtable.xml"/>
     <xi:include href="xml/tagstyle.xml"/>
+
+    <xi:include href="xml/printjob.xml"/>
   </section>
 </book>

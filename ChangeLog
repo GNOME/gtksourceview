@@ -1,5 +1,22 @@
 2003-06-02  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
 
+	* docs/reference/gtksourceview-docs.sgml:
+	* docs/reference/gtksourceview-sections.txt:
+	* docs/reference/gtksourceview.types: Added entries for
+	gtk_source_iter_* functions and GtkSourcePrintJob object.
+
+	* docs/reference/tmpl/iter.sgml:
+	* docs/reference/tmpl/printjob.sgml: New files.
+
+	* gtksourceview/gtksourceprintjob.c: Disabled profile output.
+	page and page_count now default to 0 instead of -1.
+
+	* tests/test-widget.c: Save the opened filename and print it in
+	the footer.  A bit nicer print progress indicator and some other
+	printing configuration changed.
+	
+2003-06-02  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+
 	* configure.in: Add libgnomeprint/libgnomeprintui dependencies.
 
 	* gtksourceview/Makefile.am: Add gtksourceprintjob.[ch] to the build.
