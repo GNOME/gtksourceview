@@ -1370,21 +1370,15 @@ gtk_source_buffer_line_remove_marker(GtkSourceBuffer *buffer, gint line, const g
     line_count = gtk_text_buffer_get_line_count(GTK_TEXT_BUFFER(buffer));
     if(line > line_count) return(0);
     list = (GList *)g_hash_table_lookup(buffer->line_markers, GINT_TO_POINTER(line));
-    if(list)
+    for(iter = list; iter; iter = iter->next)
     {
-        for(iter = list; iter; iter = iter->next)
-        {
-            if(iter->data && !strcmp(marker, (gchar *)iter->data))
-            {
-                g_hash_table_remove(buffer->line_markers, GINT_TO_POINTER(line));
-                list = g_list_remove(list, (gpointer)iter->data);
-                g_hash_table_insert(buffer->line_markers, GINT_TO_POINTER(line), (gpointer)list);
-                removed = TRUE;
-                break;
-            }
-        }
-        g_hash_table_remove(buffer->line_markers, GINT_TO_POINTER(line));
-        g_list_free(list);
+	if(iter->data && !strcmp(marker, (gchar *)iter->data))
+	{
+	    list = g_list_remove(list, (gpointer)iter->data);
+	    g_hash_table_insert(buffer->line_markers, GINT_TO_POINTER(line), (gpointer)list);
+	    removed = TRUE;
+	    break;
+	}
     }
     return(removed);
 }

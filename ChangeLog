@@ -1,3 +1,10 @@
+2001-12-30  Dave Camp  <dave@ximian.com>
+
+	* src/gtksourceview.c (get_line_marker): Pass an overall_alpha of 
+	255 to gdk_pixbuf_composite() instead of 127.
+
+	* src/gtksourcebuffer.c (gtk_source_buffer_line_remove_marker): Removed the extraneous list destruction and hashtable removal at the end of the function.  Removing a marker no longer removes all markers.
+
 Sun Dec 30  10:40:08 2001 CET Mikael Hermansson <tyan@linux.se>
 
   * gtksourcebuffer.c: 

@@ -273,7 +273,7 @@ get_line_marker (GtkSourceView *view, GList *list)
 				   0, 0,
 				   width/comp_width, height/comp_height,
 				   GDK_INTERP_BILINEAR,
-				   127);
+				   225);
 	    } else {
 	      g_warning ("Unknown marker '%s' used", iter->data);
 	    }
