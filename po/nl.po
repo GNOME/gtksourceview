@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-08-31 20:36+0200\n"
-"PO-Revision-Date: 2003-09-02 12:17+0200\n"
+"POT-Creation-Date: 2003-09-27 12:34+0200\n"
+"PO-Revision-Date: 2003-09-27 14:33+0200\n"
 "Last-Translator: Tino Meinen <a.t.meinen@chello.nl>\n"
 "Language-Team: Dutch <vertaling@nl.linux.org>\n"
 "MIME-Version: 1.0\n"
@@ -204,7 +204,7 @@ msgstr "Preprocessor"
 #: gtksourceview/language-specs/cpp.lang.h:15
 #: gtksourceview/language-specs/html.lang.h:8
 #: gtksourceview/language-specs/idl.lang.h:8
-#: gtksourceview/language-specs/java.lang.h:11
+#: gtksourceview/language-specs/java.lang.h:12
 #: gtksourceview/language-specs/perl.lang.h:6
 #: gtksourceview/language-specs/po.lang.h:6
 #: gtksourceview/language-specs/python.lang.h:11
@@ -335,7 +335,7 @@ msgstr "Sleutelwoorden"
 #: gtksourceview/language-specs/cpp.lang.h:11
 #: gtksourceview/language-specs/desktop.lang.h:7
 #: gtksourceview/language-specs/diff.lang.h:5
-#: gtksourceview/language-specs/java.lang.h:5
+#: gtksourceview/language-specs/java.lang.h:7
 #: gtksourceview/language-specs/perl.lang.h:3
 #: gtksourceview/language-specs/python.lang.h:4
 msgid "Line Comment"
@@ -354,7 +354,7 @@ msgstr "Preprocessor sleutelwoorden"
 #: gtksourceview/language-specs/c.lang.h:14
 #: gtksourceview/language-specs/cpp.lang.h:14
 #: gtksourceview/language-specs/idl.lang.h:7
-#: gtksourceview/language-specs/java.lang.h:10
+#: gtksourceview/language-specs/java.lang.h:11
 msgid "Sources"
 msgstr "Bronnen"
 
@@ -394,6 +394,7 @@ msgstr "Gemeenschappelijke macro"
 
 #: gtksourceview/language-specs/c.lang.h:7
 #: gtksourceview/language-specs/cpp.lang.h:7
+#: gtksourceview/language-specs/java.lang.h:3
 msgid "Floating Point Number"
 msgstr "Floating-point getal"
 
@@ -504,6 +505,7 @@ msgstr "Entiteit"
 msgid "HTML"
 msgstr "HTML"
 
+# Opmaak-code/markering
 #: gtksourceview/language-specs/html.lang.h:7
 #: gtksourceview/language-specs/latex.lang.h:5
 #: gtksourceview/language-specs/xml.lang.h:7
@@ -518,6 +520,7 @@ msgstr "Tags"
 msgid "IDL"
 msgstr "IDL"
 
+# per sectie
 #: gtksourceview/language-specs/idl.lang.h:6
 msgid "Sectional"
 msgstr "Sectie"
@@ -526,39 +529,40 @@ msgstr "Sectie"
 msgid "Declarations"
 msgstr "Declaraties"
 
-#: gtksourceview/language-specs/java.lang.h:3
+#: gtksourceview/language-specs/java.lang.h:4
 msgid "Flow"
 msgstr "Stroom"
 
-#: gtksourceview/language-specs/java.lang.h:4
+#: gtksourceview/language-specs/java.lang.h:5
+msgid "Integer"
+msgstr "Integer"
+
+#: gtksourceview/language-specs/java.lang.h:6
 msgid "Java"
 msgstr "Java"
 
-#: gtksourceview/language-specs/java.lang.h:6
+#: gtksourceview/language-specs/java.lang.h:8
 msgid "Memory"
 msgstr "Geheugen"
 
-#: gtksourceview/language-specs/java.lang.h:7
-msgid "Modifiers"
-msgstr "Controletoets"
-
-#: gtksourceview/language-specs/java.lang.h:8
-msgid "Numeric"
-msgstr "Numeriek"
-
 #: gtksourceview/language-specs/java.lang.h:9
+msgid "Modifiers"
+msgstr "Controletoetsen"
+
+#: gtksourceview/language-specs/java.lang.h:10
 msgid "Primitives"
 msgstr "Primitieven"
 
-#: gtksourceview/language-specs/java.lang.h:12
+#: gtksourceview/language-specs/java.lang.h:13
 #: gtksourceview/language-specs/python.lang.h:12
 #: gtksourceview/language-specs/xml.lang.h:9
 msgid "String 2"
 msgstr "Tekenreeks 2"
 
+# Toevoegen
 #: gtksourceview/language-specs/latex.lang.h:2
 msgid "Include"
-msgstr "Voegen"
+msgstr "Invoegen"
 
 #: gtksourceview/language-specs/latex.lang.h:4
 msgid "Latex"
@@ -644,3 +648,6 @@ msgstr "Tag"
 #: gtksourceview/language-specs/xml.lang.h:11
 msgid "XML"
 msgstr "XML"
+
+#~ msgid "Numeric"
+#~ msgstr "Numeriek"
