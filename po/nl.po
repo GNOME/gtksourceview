@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-06-26 21:16+0200\n"
+"POT-Creation-Date: 2003-07-16 15:42+0200\n"
 "PO-Revision-Date: 2003-06-26 23:09+0100\n"
 "Last-Translator: Jan-Willem Harmanny <jwharmanny@hotmail.com>\n"
 "Language-Team: Dutch <nl@li.org>\n"
@@ -153,65 +153,81 @@ msgstr "Kop- en voettekst lettertype"
 msgid "Font name to use for the header and footer"
 msgstr "Lettertypenaam om voor de kop- en voettekst te gebruiken"
 
-#: gtksourceview/gtksourcestylescheme.c:222
+#: gtksourceview/gtksourcestylescheme.c:230
 msgid "Base-N Integer"
 msgstr "Base-N Integer"
 
-#: gtksourceview/gtksourcestylescheme.c:227
+#: gtksourceview/gtksourcestylescheme.c:235
 msgid "Character"
 msgstr "Karakter"
 
-#: gtksourceview/gtksourcestylescheme.c:232
+#: gtksourceview/gtksourcestylescheme.c:240
 msgid "Comment"
 msgstr "Commentaar"
 
-#: gtksourceview/gtksourcestylescheme.c:237
+#: gtksourceview/gtksourcestylescheme.c:245
 msgid "Data Type"
 msgstr "Gegevenstype"
 
-#: gtksourceview/gtksourcestylescheme.c:242
+#: gtksourceview/gtksourcestylescheme.c:250
 msgid "Function"
 msgstr "Functie"
 
-#: gtksourceview/gtksourcestylescheme.c:247
+#: gtksourceview/gtksourcestylescheme.c:255
 msgid "Decimal"
 msgstr "Decimaal getal"
 
-#: gtksourceview/gtksourcestylescheme.c:252
+#: gtksourceview/gtksourcestylescheme.c:260
 msgid "Floating Point"
 msgstr "Floating point getal"
 
-#: gtksourceview/gtksourcestylescheme.c:257
+#: gtksourceview/gtksourcestylescheme.c:265
 msgid "Keyword"
 msgstr "Sleutelwoord"
 
-#: gtksourceview/gtksourcestylescheme.c:262
+#: gtksourceview/gtksourcestylescheme.c:270
 msgid "Preprocessor"
 msgstr "Preprocessor"
 
-#: gtksourceview/gtksourcestylescheme.c:267
+#: gtksourceview/gtksourcestylescheme.c:275
 msgid "String"
-msgstr "String"
+msgstr "Tekenreeks"
 
-#: gtksourceview/gtksourcestylescheme.c:272
+#: gtksourceview/gtksourcestylescheme.c:280
 msgid "Specials"
 msgstr "Speciale tekens"
 
-#: gtksourceview/gtksourcestylescheme.c:277
+#: gtksourceview/gtksourcestylescheme.c:285
 msgid "Others"
 msgstr "Andere"
 
-#: gtksourceview/gtksourcestylescheme.c:282
+#: gtksourceview/gtksourcestylescheme.c:290
 msgid "Others 2"
 msgstr "Andere 2"
 
-#: gtksourceview/gtksourcestylescheme.c:287
+#: gtksourceview/gtksourcestylescheme.c:295
 msgid "Others 3"
 msgstr "Andere 3"
 
-#: gtksourceview/gtksourcestylescheme.c:324
+#: gtksourceview/gtksourcestylescheme.c:332
 msgid "Default"
 msgstr "Standaard"
+
+#: gtksourceview/gtksourcetag.c:108
+msgid "Tag ID"
+msgstr ""
+
+#: gtksourceview/gtksourcetag.c:109
+msgid "ID used to refer to the source tag"
+msgstr ""
+
+#: gtksourceview/gtksourcetag.c:116
+msgid "Tag style"
+msgstr ""
+
+#: gtksourceview/gtksourcetag.c:117
+msgid "The style associated to the source tag"
+msgstr ""
 
 #: gtksourceview/gtksourceview.c:207
 msgid "Show Line Numbers"
