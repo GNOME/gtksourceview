@@ -13,7 +13,7 @@
   <line-comment _name="Line Comment" style="Comment">
     <start-regex>#</start-regex>
   </line-comment>
-  <keyword-list _name="Reserved constant" style="String" case-sensitive="TRUE">
+  <keyword-list _name="Reserved Constant" style="String" case-sensitive="TRUE">
     <keyword>FALSE</keyword>
     <keyword>TRUE</keyword>
     <keyword>T</keyword>
@@ -35,7 +35,7 @@
     <keyword>switch</keyword>
     <keyword>in</keyword>
 </keyword-list>
-  <keyword-list _name="Reserved class" style="Data Type" case-sensitive="TRUE">
+  <keyword-list _name="Reserved Class" style="Data Type" case-sensitive="TRUE">
 	<keyword>array</keyword>
 	<keyword>character</keyword>
 	<keyword>complex</keyword>
@@ -56,7 +56,7 @@
   <pattern-item _name="Floating Point Number" style="Floating Point">
     <regex>\b([0-9]+[Ee][-+]?[0-9]+|([0-9]*\.[0-9]+|[0-9]+\.)([Ee][-+]?[0-9]+)?)[i]?\b</regex>
   </pattern-item>
-  <pattern-item _name="Assign operator" style="Keyword">
+  <pattern-item _name="Assignment Operator" style="Keyword">
       <regex>(&lt;){1,2}-</regex>
   </pattern-item>
   <pattern-item _name="Delimiter" style="Others 3">
