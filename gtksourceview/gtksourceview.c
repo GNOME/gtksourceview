@@ -79,7 +79,6 @@ enum {
 	PROP_HIGHLIGHT_CURRENT_LINE
 };
 
-
 struct _GtkSourceViewPrivate
 {
 	guint		 tabs_width;
@@ -639,49 +638,36 @@ set_source_buffer (GtkSourceView *view, GtkTextBuffer *buffer)
 }
 
 static void
-scroll_to_cursor (GtkSourceView *view)
-{
-	GtkTextBuffer* buffer = NULL;
-	
-	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
-	g_return_if_fail (buffer != NULL);
-
-	gtk_text_view_scroll_mark_onscreen (GTK_TEXT_VIEW (view),
-				gtk_text_buffer_get_mark (buffer,
-				"insert"));
-}
-
-static void
 gtk_source_view_undo (GtkSourceView *view)
 {
-	GtkSourceBuffer *buffer;
-	
+	GtkTextBuffer *buffer;
+
 	g_return_if_fail (GTK_IS_SOURCE_VIEW (view));
 
-	buffer = GTK_SOURCE_BUFFER (
-			gtk_text_view_get_buffer (GTK_TEXT_VIEW (view)));
-		
-	if (gtk_source_buffer_can_undo (buffer))
+	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
+
+	if (gtk_source_buffer_can_undo (GTK_SOURCE_BUFFER (buffer)))
 	{
-		gtk_source_buffer_undo (buffer);
-		scroll_to_cursor (view);
+		gtk_source_buffer_undo (GTK_SOURCE_BUFFER (buffer));
+		gtk_text_view_scroll_mark_onscreen (GTK_TEXT_VIEW (view),
+						    gtk_text_buffer_get_insert (buffer));
 	}
 }
 
 static void
 gtk_source_view_redo (GtkSourceView *view)
 {
-	GtkSourceBuffer *buffer;
+	GtkTextBuffer *buffer;
 
 	g_return_if_fail (GTK_IS_SOURCE_VIEW (view));
 
-	buffer = GTK_SOURCE_BUFFER (
-			gtk_text_view_get_buffer (GTK_TEXT_VIEW (view)));
-		
-	if (gtk_source_buffer_can_redo (buffer))
+	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
+
+	if (gtk_source_buffer_can_redo (GTK_SOURCE_BUFFER (buffer)))
 	{
-		gtk_source_buffer_redo (buffer);
-		scroll_to_cursor (view);
+		gtk_source_buffer_redo (GTK_SOURCE_BUFFER (buffer));
+		gtk_text_view_scroll_mark_onscreen (GTK_TEXT_VIEW (view),
+						    gtk_text_buffer_get_insert (buffer));
 	}
 }
 
@@ -1353,7 +1339,6 @@ gtk_source_view_expose (GtkWidget      *widget,
 	
 	return event_handled;	
 }
-
 
 /*
  *This is a pretty important function...we call it when the tab_stop is changed,
