@@ -1,3 +1,15 @@
+News 0.2.0 -> 0.2.1
+-------------------
+
+* Dropped strict libgnome dependency (some Gnome libraries are still needed to
+  build the tests, but those are now optional)
+* Regular expression syntax changed to Extended POSIX + GNU operators
+* Generate enums and flags for introspection and language bindings
+* Copy of GNU regular expression library included for platforms which aren't
+  based on the GNU C library (bug #112517)
+* grab_focus no longer scrolls the widget to the cursor (workaround Gtk+ 
+  bug #81893)
+
 News 0.1.0 -> 0.2.0
 -------------------
 
