@@ -9,6 +9,9 @@ AM_CONFIG_HEADER(config.h)
 
 AM_INIT_AUTOMAKE(AC_PACKAGE_NAME, AC_PACKAGE_VERSION)
 
+dnl make sure we keep ACLOCAL_FLAGS around for maintainer builds to work
+AC_SUBST(ACLOCAL_AMFLAGS, "$ACLOCAL_FLAGS")
+
 AM_MAINTAINER_MODE
 
 # Check for programs
