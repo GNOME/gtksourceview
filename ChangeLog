@@ -1,3 +1,7 @@
+Mon Dec 17  06:38:30 2001 CET Mikael Hermansson<tyan@linux.se>
+
+  * gtksourceview.[c/h] changed GtkSourceView->delete to delete_range.
+
 2001-12-15  Dave Camp  <dave@ximian.com>
 
 	* src/gtksourceview.c (get_line_marker): New function.
@@ -6,6 +10,93 @@
 	(get_lines): Removed.
 	* src/gtksourcebuffer.c (gtk_source_buffer_line_add_marker): Changed line < line_number to line_number > line (the off-by-one is on purpose) and make it a g_return_if_fail()
 	(gtk_source_buffer_line_set_marker): Ditto.
+
+Tue Dec 11 04:48:45 PM PST 2001 Chris Phelps <chicane@reninet.com>
+    * gtksourceview.c: remove some deprecated calls to gdk_string_width() with pango_layout action.
+
+Mon Dec 10 04:58:22 PM PST 2001 Chris Phelps <chicane@reninet.com>
+    * Modified gtksourcebuffer line marker api to allow for multiple markers per line.
+    * Added a a few new marker related functions for convenience purposes and completeness
+    * Update gtksourceview to deal with multiple markers per line (composite pixbufs)
+
+2001-12-09  Dave Camp  <dave@ximian.com>
+
+	* src/gtksourcebuffer.h: Fixed a broken comment.
+
+Sat Dec 08  03:46:47 2001 CET Mikael Hermansson <tyan@linux.se>
+
+  * Hmm It's time to start contribute to my old project again. Nothing new so far except I have changed ISP provider and my new email is tyan@linux.se.
+    Maybe I have some old/new stuff in my local source repository (at http://tyan.homeip.net) but it looks like like Chris has already done some good stuff :-)  
+
+Thu Dec 06 02:25:29 AM PST 2001 Chris Phelps <chicane@reninet.com>
+   * split the line pixmap code up between the view and buffer implementations.
+     you can now have multiple views of a buffer that will show different pixmaps,
+     but in the same places...unneeded flexibility, but I thought it was a good idea.
+     (It was Dave Camp's)
+
+Thu Dec 06 01:14:40 AM PST 2001 Chris Phelps <chicane@reninet.com>
+   * Fixed a bug in the line number drawing code to allow for drawing the line number
+     on the final line of the view even if it is empty.
+
+Thu Dec 06 01:13:42 AM PST 2001 Chris Phelps <chicane@reninet.com>
+   * I have resurected this module and put it to use in Glimmer, and 
+     Dave Camp is playing with it in Dryad as a test bed for gnome-debug
+
+Sat Feb 17  13:19:53 2001 CET Mikael Hermansson<mikeh@bahnhof.se>
+
+* Realesing 0.0.3
+
+Sat Feb 17  13:03:59 2001 CET Mikael Hermansson<mikeh@bahnhof.se>
+
+  * gtktextview.c bugfixes in find_correct_bracket/key_press_event code that made 
+  the bracket sometime show up incorrectly in line.
+
+Sat Feb 17  02:19:27 2001 CET Mikael Hermansson<mikeh@bahnhof.se>
+
+  * gtksourceview.c if source_view->auto_indent = TRUE the keypress implementation 
+    will automatic inserting whitespaces before/after on operator characters like [=<>!], comma [,] 
+    and begin parantes[(]. This is hardcoded values and will probadly only work on
+    C/C++/Java/python or similar programing languages syntax.
+
+Fri Feb 16  23:56:46 2001 CET Mikael Hermansson<mikeh@bahnhof.se>
+
+  * test.c cb_convert() replaced creat/write functions with fopen family instead
+
+  * gtksourceview.c killed some warnings, fixed bug in gtk_source_view_set_show_line_numbers() 
+    that made the widget show line numbers even if you set it to FALSE. 
+
+Mon Feb 12  18:17:56 2001 CET Mikael Hermansson<mikeh@bahnhof.se>
+
+  * Implemented gtk_source_buffer_convert_to_html the name says what it does :-)
+
+Mon Feb 05  20:27:21 2001 CET Mikael Hermansson<mikeh@bahnhof.se>
+
+  * gtksourceview./gtksourcebuffer.[c/h]start implement undo/redo
+
+Sun Feb 04  14:38:10 2001 CET Mikael Hermansson<mikeh@bahnhof.se>
+
+  * configure.in -> 0.0.2cvs
+
+Sun Feb 04  14:35:47 2001 CET Mikael Hermansson<mikeh@bahnhof.se>
+
+  * releasing GtkSourceView 0.0.2
+
+Sun Feb 04  14:17:03 2001 CET Mikael Hermansson<mikeh@bahnhof.se>
+
+  * gtksourceview.[c/h] implemented auto indent. Two new functions added:
+    gtk_source_view_[set/get]_auto_indent()
+
+Sun Jan 21  15:11:17 2001 CET Mikael Hermansson<mikeh@bahnhof.se>
+
+  * gtksourcebuffer.c fixed bug in find_bracket_match that made the buffer hang.
+   also renamed it to gtk_source_buffer_find_bracket_match and made it public API
+
+Tue Jan 16  18:13:44 2001 CET Mikael Hermansson<mikeh@bahnhof.se>
+
+  * releasing 0.0.1 of GtkSourceView:
+    A new syntax higlight widget that supports GtkTextView upcoming Gtk 2.0.Mon Dec 17  06:38:30 2001 CET Mikael Hermansson<tyan@linux.se>
+
+  * gtksourceview.[c/h] changed GtkSourceView->delete to delete_range.
 
 Tue Dec 11 04:48:45 PM PST 2001 Chris Phelps <chicane@reninet.com>
     * gtksourceview.c: remove some deprecated calls to gdk_string_width() with pango_layout action.

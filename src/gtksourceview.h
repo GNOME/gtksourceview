@@ -45,7 +45,7 @@ struct _GtkSourceView
   guint show_line_pixmaps :1;
   GHashTable *pixmap_cache;
 
-  gchar *delete;
+  gchar *delete_range;
 };
 
 struct _GtkSourceViewClass

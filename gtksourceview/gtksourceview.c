@@ -554,20 +554,20 @@ check_line_change_delete_cb(GtkTextBuffer *buffer, GtkTextIter *start, GtkTextIt
 
     g_return_if_fail(buffer != NULL);
     g_return_if_fail(GTK_IS_TEXT_BUFFER(buffer));
-    GTK_SOURCE_VIEW(view)->delete = gtk_text_iter_get_slice(start, end);    
+    GTK_SOURCE_VIEW(view)->delete_range = gtk_text_iter_get_slice(start, end);    
 }
 
 static void
 check_line_change_delete_cb_after(GtkTextBuffer *buffer, GtkTextIter *start, GtkTextIter *end, GtkTextView *view)
 {
     gchar *slice;
-    slice = GTK_SOURCE_VIEW(view)->delete;
+    slice = GTK_SOURCE_VIEW(view)->delete_range;
     if(GTK_SOURCE_VIEW(view)->show_line_numbers && slice && strchr(slice, '\n'))
     {
         recompute_gutter_width(view);
     }
     if(slice) g_free(slice);
-    GTK_SOURCE_VIEW(view)->delete = NULL;
+    GTK_SOURCE_VIEW(view)->delete_range = NULL;
 }
 
 gboolean
