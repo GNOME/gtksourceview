@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-07-27 15:03+0200\n"
+"POT-Creation-Date: 2004-07-28 04:00+0200\n"
 "PO-Revision-Date: 2004-07-27 17:27+0200\n"
 "Last-Translator: Laurent Dhima <laurenti@alblinux.net>\n"
 "Language-Team: Albanian <gnome-albanian-perkthyesit@lists.sourceforge.net>\n"
@@ -119,7 +119,8 @@ msgstr "Përshkrimi i gërmave"
 
 #: gtksourceview/gtksourceprintjob.c:313
 msgid "Font description name to use for the document text"
-msgstr "Përshkrimi i emrit të gërmave që duhen përdorur për tekstin e dokumentit"
+msgstr ""
+"Përshkrimi i emrit të gërmave që duhen përdorur për tekstin e dokumentit"
 
 #: gtksourceview/gtksourceprintjob.c:320 gtksourceview/gtksourceprintjob.c:328
 msgid "Numbers Font"
@@ -127,7 +128,8 @@ msgstr "Lloji i gërmave të numrave"
 
 #: gtksourceview/gtksourceprintjob.c:321
 msgid "GnomeFont name to use for the line numbers (deprecated)"
-msgstr "Emri i GnomeFont që duhet përdorur për numrat e rreshtave (nuk përdoret më)"
+msgstr ""
+"Emri i GnomeFont që duhet përdorur për numrat e rreshtave (nuk përdoret më)"
 
 #: gtksourceview/gtksourceprintjob.c:329
 msgid "Font description to use for the line numbers"
@@ -139,7 +141,8 @@ msgstr "Printo numrat e rreshtave"
 
 #: gtksourceview/gtksourceprintjob.c:337
 msgid "Interval of printed line numbers (0 means no numbers)"
-msgstr "intervali i numrave të rreshtit të printuar (0 do të thotë asnjë numër)"
+msgstr ""
+"intervali i numrave të rreshtit të printuar (0 do të thotë asnjë numër)"
 
 #: gtksourceview/gtksourceprintjob.c:344
 msgid "Print Header"
@@ -163,7 +166,8 @@ msgstr "Gërmat e fillim'faqes dhe fund'faqes"
 
 #: gtksourceview/gtksourceprintjob.c:361
 msgid "GnomeFont name to use for the header and footer (deprecated)"
-msgstr "Emri i GnomeFont që duhen përdorur për header dhe footer (nuk përdoret më)"
+msgstr ""
+"Emri i GnomeFont që duhen përdorur për header dhe footer (nuk përdoret më)"
 
 #: gtksourceview/gtksourceprintjob.c:368
 msgid "Header and Footer Font Description"
@@ -540,10 +544,11 @@ msgstr "Rresht i hequr"
 msgid "Special case"
 msgstr "Special case"
 
+#. GRUT modified this item
 #: gtksourceview/language-specs/html.lang.h:1
 #: gtksourceview/language-specs/xml.lang.h:1
 msgid "Attributes"
-msgstr "Pronësitë"
+msgstr "Veçoritë"
 
 #: gtksourceview/language-specs/html.lang.h:3
 #: gtksourceview/language-specs/xml.lang.h:3
