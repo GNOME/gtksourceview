@@ -1,3 +1,8 @@
+2004-12-10  Vinay M R  <vinay.mandyakoppal@wipro.com>
+
+	* gtksourceview/gtksourceview.c (gtk_source_view_class_init):
+	Signal for Undo key in sun keyboard is bound. Fixes bug #155491.
+
 2004-12-07  Paolo Maggi  <paolo@gnome.org>
 
 	* gtksourceview/language-specs/xml.lang: added "image/svg+xml" to

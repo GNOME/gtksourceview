@@ -297,6 +297,10 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 				      GDK_z,
 				      GDK_CONTROL_MASK | GDK_SHIFT_MASK,
 				      "redo", 0);
+	gtk_binding_entry_add_signal (binding_set,
+				      GDK_F14,
+				      0,
+				      "undo", 0);
 }
 
 static void 
