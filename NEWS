@@ -1,3 +1,10 @@
+News 0.4.0 -> 0.5.0
+-------------------
+
+* Removed hack for bug #81893 since it's now fixed in Gtk+
+* Added "style_changed" signal to GtkSourceStyleScheme to signal the
+  buffer that a style has changed
+
 News 0.3.0 -> 0.4.0
 -------------------
 
