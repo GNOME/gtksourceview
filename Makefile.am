@@ -1,4 +1,4 @@
-SUBDIRS = src tests po
+SUBDIRS = gtksourceview tests po
 
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = gtksourceview-1.0.pc

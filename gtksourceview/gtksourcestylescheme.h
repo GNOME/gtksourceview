@@ -21,7 +21,7 @@
 #define __GTK_SOURCE_STYLE_SCHEME_H__
 
 #include <glib-object.h> 
-#include <gtksourcetagstyle.h>
+#include <gtksourceview/gtksourcetagstyle.h>
 
 G_BEGIN_DECLS
 

@@ -27,8 +27,8 @@
 #define __GTK_SOURCE_BUFFER_H__
 
 #include <gtk/gtk.h>
-#include <gtksourcetagtable.h>
-#include <gtksourcelanguage.h>
+#include <gtksourceview/gtksourcetagtable.h>
+#include <gtksourceview/gtksourcelanguage.h>
 
 G_BEGIN_DECLS
 
@@ -71,7 +71,7 @@ struct _GtkSourceBufferClass
 
 };
 
-#include <gtksourcemarker.h>
+#include <gtksourceview/gtksourcemarker.h>
 
 GType           	 gtk_source_buffer_get_type 		(void) G_GNUC_CONST;
 

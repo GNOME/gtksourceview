@@ -22,7 +22,7 @@
 
 #include <glib.h>
 
-#include <gtksourcelanguage.h>
+#include <gtksourceview/gtksourcelanguage.h>
 
 G_BEGIN_DECLS
 

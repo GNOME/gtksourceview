@@ -28,7 +28,7 @@
 #include <gtk/gtk.h>
 #include <gtk/gtktextview.h>
 
-#include <gtksourcebuffer.h>
+#include <gtksourceview/gtksourcebuffer.h>
 
 G_BEGIN_DECLS
 

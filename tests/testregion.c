@@ -1,5 +1,5 @@
 #include <gtk/gtk.h>
-#include "gtktextregion.h"
+#include "gtksourceview/gtktextregion.h"
 
 
 int

@@ -24,8 +24,8 @@
 #include <glib-object.h> 
 #include <gtk/gtk.h> 
 
-#include <gtksourcetagstyle.h>
-#include <gtksourcestylescheme.h>
+#include <gtksourceview/gtksourcetagstyle.h>
+#include <gtksourceview/gtksourcestylescheme.h>
 
 G_BEGIN_DECLS
 

@@ -51,7 +51,7 @@ libgtksourceview_1_0_la_SOURCES = 		\
 
 libgtksourceview_1_0_la_LIBADD = $(DEP_LIBS)
 
-libgtksourceview_1_0_includedir = $(includedir)/gtksourceview-1.0
+libgtksourceview_1_0_includedir = $(includedir)/gtksourceview-1.0/gtksourceview
 
 libgtksourceview_1_0_include_HEADERS = 	\
 	gtksourcebuffer.h 		\

@@ -25,7 +25,7 @@
 #define __GTK_SOURCE_TAG_H__
 
 #include <gtk/gtktexttag.h>
-#include <gtksourcetagstyle.h>
+#include <gtksourceview/gtksourcetagstyle.h>
 
 G_BEGIN_DECLS
 

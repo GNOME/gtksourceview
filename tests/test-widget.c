@@ -27,9 +27,9 @@
 #include <libgnomevfs/gnome-vfs-init.h>
 #include <libgnomevfs/gnome-vfs-mime-utils.h>
 #include <libgnomevfs/gnome-vfs-utils.h>
-#include <gtksourceview.h>
-#include <gtksourcelanguage.h>
-#include <gtksourcelanguagesmanager.h>
+#include <gtksourceview/gtksourceview.h>
+#include <gtksourceview/gtksourcelanguage.h>
+#include <gtksourceview/gtksourcelanguagesmanager.h>
 
 
 /* Private data structures */
@@ -741,7 +741,7 @@ main (int argc, char *argv[])
 	if (argc > 1)
 		open_file (vd->buffer, argv [1]);
 	else
-		open_file (vd->buffer, "../src/gtksourcebuffer.c");
+		open_file (vd->buffer, "../gtksourceview/gtksourcebuffer.c");
 
 	gtk_window_set_default_size (GTK_WINDOW (window), 500, 500);
 	gtk_widget_show (window);

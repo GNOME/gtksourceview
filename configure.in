@@ -4,7 +4,7 @@ AC_PREREQ(2.53)
 
 # Initialization and versioning
 AC_INIT(gtksourceview, 0.1.0, http://bugzilla.gnome.org/enter_bug.cgi?product=gtksourceview)
-AC_CONFIG_SRCDIR([src/gtksourcebuffer.h])
+AC_CONFIG_SRCDIR([gtksourceview/gtksourcebuffer.h])
 AM_CONFIG_HEADER(config.h)
 
 AM_INIT_AUTOMAKE(AC_PACKAGE_NAME, AC_PACKAGE_VERSION)
@@ -62,8 +62,8 @@ AC_CONFIG_FILES([
 gtksourceview-1.0.pc
 Makefile
 po/Makefile.in
-src/Makefile
-src/language-specs/Makefile
+gtksourceview/Makefile
+gtksourceview/language-specs/Makefile
 tests/Makefile
 ])
 AC_OUTPUT
