@@ -1819,6 +1819,7 @@ gtk_source_view_set_margin (GtkSourceView *view, guint margin)
 		return;
 
 	view->priv->margin = margin;
+	view->priv->cached_margin_width = -1;
 
 	gtk_widget_queue_draw (GTK_WIDGET (view));
 
