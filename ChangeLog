@@ -1,3 +1,9 @@
+2005-02-27  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+
+	* gtksourceview/gtksourceview.c (gtk_source_view_expose): Replaced
+	gtk_paint_flat_box() call with plain gdk_draw_rectangle(). Fixes
+	bug #164066.
+
 2005-02-24  Paolo Maggi  <paolo@gnome.org>
 
 	* gtksourceview/gtksourcebuffer.c (gtk_source_buffer_finalize): 

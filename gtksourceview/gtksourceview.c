@@ -1255,7 +1255,7 @@ gtk_source_view_expose (GtkWidget      *widget,
 			gint y;
 			gint height;
 			gint win_y;
-
+			
 			gtk_text_buffer_get_iter_at_mark (text_view->buffer, 
 							  &cur, 
 							  gtk_text_buffer_get_insert (text_view->buffer));
@@ -1281,14 +1281,10 @@ gtk_source_view_expose (GtkWidget      *widget,
 			redraw_rect.width = visible_rect.width;
 			redraw_rect.height = visible_rect.height;
 
-			gtk_paint_flat_box (widget->style, 
-					    event->window, 
-					    GTK_WIDGET_STATE (widget),
-					    GTK_SHADOW_NONE,
-					    &redraw_rect, 
-					    widget,
-					    "current_line", 
-					    MAX (1, gtk_text_view_get_left_margin (text_view) - 1),
+			gdk_draw_rectangle (event->window,
+					    widget->style->bg_gc[GTK_WIDGET_STATE (widget)],
+					    TRUE,
+					    redraw_rect.x,
 					    win_y,
 					    redraw_rect.width,
 					    height);
