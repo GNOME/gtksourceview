@@ -23,6 +23,7 @@ EXTRA_DIST = 			\
 	php.lang		\
 	po.lang			\
 	python.lang		\
+	R.lang			\
 	ruby.lang		\
 	sh.lang			\
 	sql.lang		\
