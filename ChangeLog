@@ -1,4 +1,12 @@
-Mon Dec 17  06:38:30 2001 CET Mikael Hermansson<tyan@linux.se>
+Sun Dec 30  10:40:08 2001 CET Mikael Hermansson <tyan@linux.se>
+
+  * gtksourcebuffer.c: 
+     - get rid of connect_[before/after] signals on "insert/delete" callbacks.
+        Now the sourcebuffer is  virtually overidding the default insert_text/delete_range handlers.
+  * gtksourceview.c:
+      - adding Undo/Redo to popupmenu
+
+Mon Dec 17  06:38:30 2001 CET Mikael Hermansson <tyan@linux.se>
 
   * gtksourceview.[c/h] changed GtkSourceView->delete to delete_range.
 

@@ -34,10 +34,8 @@ static void gtk_source_buffer_finalize(GObject *object);
 static void hash_remove_func(gpointer key, gpointer value, gpointer user_data);
 
 static void move_cursor(GtkTextBuffer *buf, GtkTextIter *iter, GtkTextMark *mark, gpointer data);
-static void property_text_insert(GtkTextBuffer *buf, GtkTextIter *iter, const gchar *txt, gint len);
-static void property_text_insert_after(GtkTextBuffer *buf, GtkTextIter *iter, const gchar *txt, gint len);
-static void property_text_remove(GtkTextBuffer *buf, GtkTextIter *iter, GtkTextIter *end);
-static void property_text_remove_after(GtkTextBuffer *buf, GtkTextIter *iter, GtkTextIter *end);
+static void gtk_source_buffer_real_insert_text(GtkTextBuffer *text,GtkTextIter *curpos,const gchar *txt,gint len);
+static void gtk_source_buffer_real_delete_range(GtkTextBuffer *text,GtkTextIter *curpos,GtkTextIter *end);
 static void begin_user_action(GtkTextBuffer *buf);
 static void end_user_action(GtkTextBuffer *buf);
 
@@ -92,6 +90,9 @@ gtk_source_buffer_class_init(GtkSourceBufferClass *_class)
     object_class->finalize = gtk_source_buffer_finalize;
     widget_class = (GtkWidgetClass*) _class;
     parent_class = gtk_type_class(GTK_TYPE_TEXT_BUFFER);
+
+    GTK_TEXT_BUFFER_CLASS(_class)->insert_text = gtk_source_buffer_real_insert_text;  
+    GTK_TEXT_BUFFER_CLASS(_class)->delete_range = gtk_source_buffer_real_delete_range;
 }
 
 static void 
@@ -106,10 +107,7 @@ gtk_source_buffer_init(GtkSourceBuffer *text)
     text->undo_max = UNDO_MAX;
     text->undo_redo_processing = FALSE;
 
-    g_signal_connect_closure(G_OBJECT(text),"delete_range", g_cclosure_new((GCallback)property_text_remove,NULL,NULL), FALSE);
-    g_signal_connect_closure(G_OBJECT(text),"delete_range", g_cclosure_new((GCallback)property_text_remove_after,NULL,NULL), TRUE);
-    g_signal_connect_closure(G_OBJECT(text),"insert_text", g_cclosure_new((GCallback)property_text_insert,NULL,NULL), FALSE);
-    g_signal_connect_closure(G_OBJECT(text),"insert_text", g_cclosure_new((GCallback)property_text_insert_after,NULL,NULL), TRUE);
+
     g_signal_connect_closure(G_OBJECT(text),"begin_user_action", g_cclosure_new((GCallback)begin_user_action,NULL,NULL), FALSE);	
     g_signal_connect_closure(G_OBJECT(text),"end_user_action", g_cclosure_new((GCallback)end_user_action,NULL,NULL), FALSE);	
     g_signal_connect_closure(G_OBJECT(text),"mark_set", g_cclosure_new((GCallback)move_cursor, NULL, NULL), TRUE);
@@ -242,7 +240,7 @@ move_cursor(GtkTextBuffer *buf, GtkTextIter *iter, GtkTextMark *m, gpointer data
 }
 
 static void
-property_text_insert(GtkTextBuffer *buf, GtkTextIter *curpos, const gchar *txt, gint len)
+gtk_source_buffer_real_insert_text (GtkTextBuffer *buf, GtkTextIter *curpos, const gchar *txt, gint len)
 {
     GtkSyntaxTag *tag;
     GtkTextIter start, end;
@@ -252,10 +250,15 @@ property_text_insert(GtkTextBuffer *buf, GtkTextIter *curpos, const gchar *txt, 
     g_return_if_fail(GTK_IS_SOURCE_BUFFER(buf));
 
     sbuf = GTK_SOURCE_BUFFER(buf);  
-    if(!sbuf->highlight) return;
+    start=end=*curpos;       
+    if(!sbuf->highlight)
+    {
+     GTK_TEXT_BUFFER_CLASS(parent_class)->insert_text(buf, curpos, txt, len);
+     gtk_text_iter_backward_chars(&start, len);       
+     gtk_source_buffer_undo_insert(sbuf,UNDO_TYPE_REMOVE_RANGE,&start, &end);
+     return ;
+    }
 
-    start = *curpos;
-    end = *curpos;
     gtk_text_iter_forward_chars(&end,len);
 
     /* we have connected AFTER insert thats why iterator points to end */
@@ -289,24 +292,18 @@ property_text_insert(GtkTextBuffer *buf, GtkTextIter *curpos, const gchar *txt, 
     sbuf->refresh_length = gtk_text_iter_get_offset(&end) - sbuf->refresh_start;
     if(sbuf->refresh_length < len)
         sbuf->refresh_length = len;
-}
 
-static void
-property_text_insert_after(GtkTextBuffer *buf, GtkTextIter *iter, const gchar *txt, gint len)
-{
-    GtkTextIter undostart = *iter;
-    GtkTextIter start = *iter; 
-    GtkTextIter end = *iter; 
-    GtkSourceBuffer *sbuf;
+    GTK_TEXT_BUFFER_CLASS(parent_class)->insert_text(buf, curpos, txt, len);
 
-    sbuf = GTK_SOURCE_BUFFER(buf);  
-    gtk_source_buffer_undo_insert(sbuf, UNDO_TYPE_REMOVE_RANGE, &undostart, iter);
-    if(!sbuf->highlight) return;
-    if (!sbuf->refresh_length) return;
+    start=end=*curpos;
+    gtk_text_iter_backward_chars(&start, len); 
+ 
+    gtk_source_buffer_undo_insert(sbuf, UNDO_TYPE_REMOVE_RANGE, &start, &end);
+ 
+   if (!sbuf->refresh_length) return;
 
     gtk_text_iter_set_offset(&start, sbuf->refresh_start);
     end = start;
-    gtk_text_iter_backward_chars(&undostart, len);
     gtk_text_iter_forward_chars(&end, sbuf->refresh_length);
     sbuf->refresh_start = 0;
     sbuf->refresh_length = 0;
@@ -314,17 +311,22 @@ property_text_insert_after(GtkTextBuffer *buf, GtkTextIter *iter, const gchar *t
 }
 
 static void
-property_text_remove(GtkTextBuffer *buf, GtkTextIter *iter, GtkTextIter *iter2)
+gtk_source_buffer_real_delete_range (GtkTextBuffer *buf, GtkTextIter *iter, GtkTextIter *iter2)
 {
-    GtkTextIter start = *iter;
-    GtkTextIter end = *iter2;
+    GtkTextIter start;
+    GtkTextIter end;
     GtkSyntaxTag *tag;
     GtkSourceBuffer *sbuf;
 
     sbuf = GTK_SOURCE_BUFFER(buf);
-
+    start = *iter;
+    end = *iter2;
     gtk_source_buffer_undo_insert(sbuf, UNDO_TYPE_INSERT_TEXT, iter, iter2);
-    if(!sbuf->highlight) return;
+    if(!sbuf->highlight)
+    {
+      GTK_TEXT_BUFFER_CLASS (parent_class)->delete_range(buf,iter,iter2);
+      return ;
+    }
 
     /* we need to work on this */
     /* first check if iter holds a tag */
@@ -333,9 +335,6 @@ property_text_remove(GtkTextBuffer *buf, GtkTextIter *iter, GtkTextIter *iter2)
     /* remove tags and update from new start and end iters */
     /* if no tags, we iterate from line begin to iter2 line end */
     /* also check if syntax tag if true then ignore and let widget take care of it*/
-
-    start = *iter;
-    end = *iter2;
 
     if(sbuf->syntax_items)
     { 
@@ -363,19 +362,13 @@ property_text_remove(GtkTextBuffer *buf, GtkTextIter *iter, GtkTextIter *iter2)
     sbuf->refresh_start = gtk_text_iter_get_offset(&start);
     sbuf->refresh_length = gtk_text_iter_get_offset(&end) - sbuf->refresh_start;
     gtk_text_buffer_remove_all_tags(buf, &start, &end);
-}
 
-static void
-property_text_remove_after(GtkTextBuffer *buf, GtkTextIter *iter, GtkTextIter *iter2)
-{
-    GtkTextIter start=*iter; 
-    GtkTextIter end=*iter2; 
-    GtkSourceBuffer *sbuf;
+    GTK_TEXT_BUFFER_CLASS (parent_class)->delete_range(buf, iter, iter2); 
 
-    sbuf = GTK_SOURCE_BUFFER(buf);
-    if(!sbuf->highlight) return;
+
     if(!sbuf->refresh_length) return;
 
+    start = *iter;
     gtk_text_iter_set_offset(&start, sbuf->refresh_start); 
     end = start;
     gtk_text_iter_forward_chars(&end, sbuf->refresh_length); 
@@ -405,14 +398,12 @@ check_embedded(GtkSourceBuffer *sbuf, GtkTextIter *iter1, GtkTextIter *iter2)
     GtkTextIter start_iter;
     GtkTextIter cur_iter;
     GtkTextIter end_iter;
-    GtkTextIter iterrealend;
     GtkEmbeddedTag *tag;
     gint length = 0;
     gint len = 0;
     gint nlen = 0;
     gint i = 0;
     gint j = 0;
-    gboolean found = FALSE;
 
     buf = GTK_TEXT_BUFFER(sbuf);
     list = gtk_source_buffer_get_embedded_entries(sbuf);
