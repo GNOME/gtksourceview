@@ -435,7 +435,6 @@ get_chars (GtkTextBuffer *buffer, gint start, gint end)
 	return gtk_text_buffer_get_slice (buffer, &start_iter, &end_iter, TRUE);
 }
 
-
 void 
 gtk_source_undo_manager_undo (GtkSourceUndoManager *um)
 {
@@ -677,7 +676,7 @@ gtk_source_undo_manager_insert_text_handler (GtkTextBuffer 		*buffer,
 	if (um->priv->running_not_undoable_actions > 0)
 		return;
 
-	g_return_if_fail (strlen (text) == (guint)length);
+	g_return_if_fail (strlen (text) >= (guint)length);
 	
 	undo_action.action_type = GTK_SOURCE_UNDO_ACTION_INSERT;
 

@@ -1,5 +1,12 @@
 2005-01-24  Paolo Maggi  <paolo@gnome.org>
 
+	* gtksourceview/gtksourceundomanager.c
+	(gtk_source_undo_manager_insert_text_handler): fixed 
+	bug #141993 (Text insertion undo manager should not assume text length).
+	Thanks to Theppitak Karoonboonyanan <thep@linux.thai.net>.
+
+2005-01-24  Paolo Maggi  <paolo@gnome.org>
+
 	* gtksourceview/gtksourceview.c (compute_indentation)
 	(key_press_cb): fixed a problem with indentation when
 	you try to indent a line starting with a space and the cursor
