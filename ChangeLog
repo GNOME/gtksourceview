@@ -1,3 +1,16 @@
+2004-06-21  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+
+	* gtksourceview/language-specs/lua.lang: Lua syntax language file
+	by b.lindeijer@xs4all.nl
+	* gtksourceview/language-specs/Makefile.am: Added lua.lang
+
+2004-06-21  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+
+	Patch by Paul Bolle:
+	
+	* gtksourceview/gtksourceprintjob.c (print_page): Fixed line
+	numbering (bug #144492)
+
 2004-06-01  Alexander Shopov  <ash@contact.bg>
 
 	* configure.in (ALL_LINGUAS): Added "bg" Bulgarian
