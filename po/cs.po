@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview VERSION\n"
-"POT-Creation-Date: 2003-05-22 12:49+0200\n"
-"PO-Revision-Date: 2003-05-22 18:59+0200\n"
+"POT-Creation-Date: 2003-05-29 12:58+0200\n"
+"PO-Revision-Date: 2003-05-29 14:37+0200\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -83,8 +83,8 @@ msgid "Escape Character"
 msgstr "Znak escape"
 
 #: gtksourceview/gtksourcebuffer.c:278
-msgid "Escaping character for syntax delimiters"
-msgstr "Znak escape pro označovače syntaxe"
+msgid "Escaping character for syntax patterns"
+msgstr "Znak escape pro vzory syntaxe"
 
 #: gtksourceview/gtksourcebuffer.c:286
 msgid "Check Brackets"
@@ -99,8 +99,8 @@ msgid "Highlight"
 msgstr "Zvýrazňovat"
 
 #: gtksourceview/gtksourcebuffer.c:296
-msgid "Whether to syntax highlight the buffer"
-msgstr "Jestli zvýrazňovat syntaxi v bufferu"
+msgid "Whether to highlight syntax in the buffer"
+msgstr "Jestli zvýrazňovat syntax v bufferu"
 
 #: gtksourceview/gtksourcebuffer.c:304
 msgid "Maximum Undo Levels"
@@ -115,8 +115,8 @@ msgid "Language"
 msgstr "Jazk"
 
 #: gtksourceview/gtksourcebuffer.c:316
-msgid "Language object to get highlighting rules from"
-msgstr "Objekt jazyka, ze kterého brát zvýrazňovací pravidla"
+msgid "Language object to get highlighting patterns from"
+msgstr "Objekt jazyka, ze kterého brát zvýrazňovací vzory"
 
 #: gtksourceview/gtksourcelanguagesmanager.c:119
 msgid "Language spefications directories"
