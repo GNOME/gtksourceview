@@ -9,8 +9,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview.HEAD\n"
-"POT-Creation-Date: 2003-12-31 11:51+0100\n"
-"PO-Revision-Date: 2004-01-05 21:18+0100\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-02-04 20:33+0100\n"
+"PO-Revision-Date: 2004-02-04 02:11+0100\n"
 "Last-Translator: Sanlig Badral <Badral@openmn.org>\n"
 "Language-Team: Mongolian <openmn-core@lists.sf.net>\n"
 "MIME-Version: 1.0\n"
@@ -34,8 +35,7 @@ msgstr "Угалзан хаалтуудыг шалга"
 msgid "Whether to check and highlight matching brackets"
 msgstr "Тохирч буй угалзан хаалт байгаа эсэхийг шалгаад өнгөөр ялгах уу"
 
-#: gtksourceview/gtksourcebuffer.c:297
-#: gtksourceview/gtksourceprintjob.c:303
+#: gtksourceview/gtksourcebuffer.c:297 gtksourceview/gtksourceprintjob.c:303
 msgid "Highlight"
 msgstr "Өнгөөр ялгах"
 
@@ -65,7 +65,9 @@ msgid "Language specification directories"
 msgstr "Хэлэнд зориулсан хавтаснууд"
 
 #: gtksourceview/gtksourcelanguagesmanager.c:120
-msgid "List of directories where the language specification files (.lang) are located"
+msgid ""
+"List of directories where the language specification files (.lang) are "
+"located"
 msgstr "Хэлний тодорхойлолт файлууд (.lang) байрлаж буй хавтаснуудын жагсаалт"
 
 #: gtksourceview/gtksourceprintjob.c:272
@@ -84,8 +86,7 @@ msgstr "Эх буфер"
 msgid "GtkSourceBuffer object to print"
 msgstr "Gtk эх ыцферийн хэвлэх объект"
 
-#: gtksourceview/gtksourceprintjob.c:287
-#: gtksourceview/gtksourceview.c:221
+#: gtksourceview/gtksourceprintjob.c:287 gtksourceview/gtksourceview.c:221
 #: gtksourceview/gtksourceview.c:222
 msgid "Tabs Width"
 msgstr "Табуудын өргөн"
@@ -306,8 +307,12 @@ msgid "Use smart home/end"
 msgstr "Ухаантай home/end-г хэрэглэ"
 
 #: gtksourceview/gtksourceview.c:265
-msgid "HOME and END keys move to first/last characters on line first before going to the start/end of the line"
-msgstr "HOME and END товчнууд нь мөрийн эхэнд/төгсгөлд очхоосоо өмнө эхний/сүүлийн тэмдэгт руу очдог"
+msgid ""
+"HOME and END keys move to first/last characters on line first before going "
+"to the start/end of the line"
+msgstr ""
+"HOME and END товчнууд нь мөрийн эхэнд/төгсгөлд очхоосоо өмнө эхний/сүүлийн "
+"тэмдэгт руу очдог"
 
 #: gtksourceview/language-specs/ada.lang.h:1
 msgid "Ada"
@@ -580,8 +585,8 @@ msgid "Include"
 msgstr "Агуул"
 
 #: gtksourceview/language-specs/latex.lang.h:4
-msgid "Latex"
-msgstr "Латекс"
+msgid "LaTeX"
+msgstr "ЛаТекс"
 
 #: gtksourceview/language-specs/latex.lang.h:6
 msgid "Math"
