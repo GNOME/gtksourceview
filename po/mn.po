@@ -2,16 +2,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER.
 # S.Dulmandakh <duluu@localhost.localdomain>, 2003.
-# Sanlig Badral <badral@openmn.org>, 2003.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview.gnome-2-4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-12-04 15:23+0100\n"
-"PO-Revision-Date: 2003-12-03 10:38+0100\n"
-"Last-Translator: Sanlig Badral <badral@openmn.org>\n"
-"Language-Team: Mongolian <openmn-core@lists.sf.net>\n"
+"POT-Creation-Date: 2003-12-02 13:55+0100\n"
+"PO-Revision-Date: 2003-12-03 02:19+0800\n"
+"Last-Translator: S.Dulmandakh <duluu@localhost.localdomain>\n"
+"Language-Team: Mongolian <en@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,7 +18,7 @@ msgstr ""
 
 #: gtksourceview/gtksourcebuffer.c:279
 msgid "Escape Character"
-msgstr "Алгасах тэмдэгт"
+msgstr "Алхасах тэмдэгт"
 
 #: gtksourceview/gtksourcebuffer.c:280
 msgid "Escaping character for syntax patterns"
@@ -263,7 +262,7 @@ msgstr "Мөрийн тэмдэглэгээг үзүүл"
 
 #: gtksourceview/gtksourceview.c:214
 msgid "Whether to display line marker pixbufs"
-msgstr "pixbufs мөр тэмдэглэгчийг харуулах эсэх"
+msgstr ""
 
 #: gtksourceview/gtksourceview.c:231
 msgid "Auto Indentation"
@@ -283,19 +282,19 @@ msgstr "Таабуудын оронд сул зай оруулах уу"
 
 #: gtksourceview/gtksourceview.c:246
 msgid "Show Right Margin"
-msgstr "Баруун захын зай харуулах"
+msgstr ""
 
 #: gtksourceview/gtksourceview.c:247
 msgid "Whether to display the right margin"
-msgstr "Баруун захын зай харуулах эсэх"
+msgstr ""
 
 #: gtksourceview/gtksourceview.c:254
 msgid "Margin position"
-msgstr "Захын зайн байрлал"
+msgstr ""
 
 #: gtksourceview/gtksourceview.c:255
 msgid "Position of the right margin"
-msgstr "Баруун захын зайн байрлал"
+msgstr ""
 
 #: gtksourceview/gtksourceview.c:264
 msgid "Use smart home/end"
@@ -305,9 +304,7 @@ msgstr "Ухаантай home/end-г хэрэглэ"
 msgid ""
 "HOME and END keys move to first/last characters on line first before going "
 "to the start/end of the line"
-msgstr ""
-"HOME and END товчнууд нь мөрийн эхэнд/төгсгөлд очхоосоо өмнө эхний/сүүлийн "
-"тэмдэгт руу очдог"
+msgstr "HOME and END товчнууд нь мөрийн эхэнд/төгсгөлд очхоосоо өмнө эхний/сүүлийн тэмдэгт руу очдог"
 
 #: gtksourceview/language-specs/ada.lang.h:1
 msgid "Ada"
@@ -336,7 +333,6 @@ msgstr "Түлхүүр үгс"
 #: gtksourceview/language-specs/java.lang.h:5
 #: gtksourceview/language-specs/perl.lang.h:3
 #: gtksourceview/language-specs/python.lang.h:4
-#: gtksourceview/language-specs/sql.lang.h:11
 msgid "Line Comment"
 msgstr "Мөрийн тайлбар"
 
@@ -354,7 +350,6 @@ msgstr "Препроцессорын түлхүүр үгс"
 #: gtksourceview/language-specs/cpp.lang.h:14
 #: gtksourceview/language-specs/idl.lang.h:7
 #: gtksourceview/language-specs/java.lang.h:10
-#: gtksourceview/language-specs/sql.lang.h:26
 msgid "Sources"
 msgstr "Эхүүд"
 
@@ -379,7 +374,6 @@ msgstr "'#if 0' тайлбар"
 #: gtksourceview/language-specs/html.lang.h:2
 #: gtksourceview/language-specs/idl.lang.h:1
 #: gtksourceview/language-specs/java.lang.h:1
-#: gtksourceview/language-specs/sql.lang.h:5
 #: gtksourceview/language-specs/xml.lang.h:2
 msgid "Block Comment"
 msgstr "Блокын тайлбар"
@@ -426,7 +420,7 @@ msgstr ".desktop"
 
 #: gtksourceview/language-specs/desktop.lang.h:1
 msgid ".desktop"
-msgstr ".ажлын тавцан"
+msgstr ""
 
 #: gtksourceview/language-specs/desktop.lang.h:2
 msgid "Boolean Value"
@@ -484,7 +478,7 @@ msgstr "Онцгой нөхцөл"
 #: gtksourceview/language-specs/html.lang.h:1
 #: gtksourceview/language-specs/xml.lang.h:1
 msgid "Attributes"
-msgstr "Шинж чанар"
+msgstr ""
 
 #: gtksourceview/language-specs/html.lang.h:3
 #: gtksourceview/language-specs/xml.lang.h:3
@@ -499,7 +493,7 @@ msgstr "DTD"
 #: gtksourceview/language-specs/html.lang.h:5
 #: gtksourceview/language-specs/xml.lang.h:5
 msgid "Entity"
-msgstr "Объект"
+msgstr ""
 
 #: gtksourceview/language-specs/html.lang.h:6
 msgid "HTML"
@@ -549,7 +543,7 @@ msgstr "Тоон"
 
 #: gtksourceview/language-specs/java.lang.h:9
 msgid "Primitives"
-msgstr "Үндсэн"
+msgstr ""
 
 #: gtksourceview/language-specs/java.lang.h:12
 #: gtksourceview/language-specs/python.lang.h:12
@@ -634,112 +628,6 @@ msgstr "Python"
 msgid "Self"
 msgstr "Өөрөө"
 
-#: gtksourceview/language-specs/sql.lang.h:1
-#, fuzzy
-msgid "ANSI Datatypes"
-msgstr "Өгөгдлийн төрөл"
-
-#: gtksourceview/language-specs/sql.lang.h:2
-msgid "ANSI Reserved Words"
-msgstr ""
-
-#: gtksourceview/language-specs/sql.lang.h:3
-#, fuzzy
-msgid "Aggregate Functions"
-msgstr "Функцууд"
-
-#: gtksourceview/language-specs/sql.lang.h:4
-#, fuzzy
-msgid "Analytic Functions"
-msgstr "Функцууд"
-
-#: gtksourceview/language-specs/sql.lang.h:6
-msgid "Character Functions Returning Character Values"
-msgstr ""
-
-#: gtksourceview/language-specs/sql.lang.h:7
-msgid "Character Functions Returning Number Values"
-msgstr ""
-
-#: gtksourceview/language-specs/sql.lang.h:8
-#, fuzzy
-msgid "Conversion Functions"
-msgstr "Функцууд"
-
-#: gtksourceview/language-specs/sql.lang.h:9
-#, fuzzy
-msgid "Datetime Functions"
-msgstr "Функцууд"
-
-#: gtksourceview/language-specs/sql.lang.h:10
-msgid "Integer Literals"
-msgstr ""
-
-#: gtksourceview/language-specs/sql.lang.h:12
-msgid "Miscellaneous Single-Row Functions"
-msgstr ""
-
-#: gtksourceview/language-specs/sql.lang.h:13
-msgid "Null"
-msgstr ""
-
-#: gtksourceview/language-specs/sql.lang.h:14
-#, fuzzy
-msgid "Number Functions"
-msgstr "Функцууд"
-
-#: gtksourceview/language-specs/sql.lang.h:15
-msgid "Number Literals"
-msgstr ""
-
-#: gtksourceview/language-specs/sql.lang.h:16
-msgid "Object Reference Functions"
-msgstr ""
-
-#: gtksourceview/language-specs/sql.lang.h:17
-msgid "Oracle Built-in Datatypes"
-msgstr ""
-
-#: gtksourceview/language-specs/sql.lang.h:18
-msgid "Oracle Reserved Words"
-msgstr ""
-
-#: gtksourceview/language-specs/sql.lang.h:19
-msgid "SQL"
-msgstr ""
-
-#: gtksourceview/language-specs/sql.lang.h:20
-msgid "SQL*Plus At Sign"
-msgstr ""
-
-#: gtksourceview/language-specs/sql.lang.h:21
-msgid "SQL*Plus Commands"
-msgstr ""
-
-#: gtksourceview/language-specs/sql.lang.h:22
-msgid "SQL*Plus Double At Sign"
-msgstr ""
-
-#: gtksourceview/language-specs/sql.lang.h:23
-msgid "SQL*Plus Slash"
-msgstr ""
-
-#: gtksourceview/language-specs/sql.lang.h:24
-msgid "SQL/DS and DB2 Datatypes"
-msgstr ""
-
-#: gtksourceview/language-specs/sql.lang.h:25
-msgid "Size Clause"
-msgstr ""
-
-#: gtksourceview/language-specs/sql.lang.h:27
-msgid "Text Literals"
-msgstr ""
-
-#: gtksourceview/language-specs/sql.lang.h:28
-msgid "Unlimited"
-msgstr ""
-
 #: gtksourceview/language-specs/xml.lang.h:6
 msgid "Hexadecimal"
 msgstr "Арван зургаат"
@@ -751,3 +639,4 @@ msgstr "Тааг"
 #: gtksourceview/language-specs/xml.lang.h:11
 msgid "XML"
 msgstr "XML"
+
