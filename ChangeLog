@@ -1,3 +1,12 @@
+2001-12-15  Dave Camp  <dave@ximian.com>
+
+	* src/gtksourceview.c (get_line_marker): New function.
+	(draw_line_markers): New function.
+	(gtk_source_view_expose): Rewritten to be a bit clearer, and to not add one to marker line numbers.
+	(get_lines): Removed.
+	* src/gtksourcebuffer.c (gtk_source_buffer_line_add_marker): Changed line < line_number to line_number > line (the off-by-one is on purpose) and make it a g_return_if_fail()
+	(gtk_source_buffer_line_set_marker): Ditto.
+
 Tue Dec 11 04:48:45 PM PST 2001 Chris Phelps <chicane@reninet.com>
     * gtksourceview.c: remove some deprecated calls to gdk_string_width() with pango_layout action.
 

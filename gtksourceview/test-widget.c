@@ -208,9 +208,16 @@ main (int argc, char *argv[])
   for(i = 1; i < 200; i += 20)
   {
       gtk_source_buffer_line_set_marker(GTK_SOURCE_BUFFER(GTK_TEXT_VIEW(tw)->buffer), i, "one");
+  }
+  for(i = 1; i < 200; i += 40)
+  {
       gtk_source_buffer_line_add_marker(GTK_SOURCE_BUFFER(GTK_TEXT_VIEW(tw)->buffer), i, "two");
+  }
+  for (i = 1; i < 200; i+= 80) 
+  {
       gtk_source_buffer_line_add_marker(GTK_SOURCE_BUFFER(GTK_TEXT_VIEW(tw)->buffer), i, "three");
   }
+
 
   gtk_widget_set_usize(window, 400, 500);
   gtk_widget_show_all(window);

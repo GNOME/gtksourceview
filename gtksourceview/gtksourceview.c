@@ -50,7 +50,6 @@ static gint gtk_source_view_key_press (GtkWidget *widget, GdkEventKey *ev);
 
 static gint get_tab_stop_width(GtkWidget *widget, gint tab_stop);
 
-static gint get_lines (GtkTextView  *text_view, gint first_y, gint last_y, GArray *buffer_coords, gint *countp);
 static gboolean foreach_character(gunichar ch, gpointer data);
 static gint find_correct_bracket(GtkTextBuffer *buf, GtkTextIter *iter);
 static gint recompute_gutter_width(GtkTextView *text_view);
@@ -191,137 +190,143 @@ gtk_source_view_real_redo(GtkSourceView *view)
     gtk_source_buffer_redo(GTK_SOURCE_BUFFER(gtk_text_view_get_buffer(GTK_TEXT_VIEW(view))));
 }
 
+static GdkPixbuf *
+get_line_marker (GtkSourceView *view, GList *list)
+{
+    GdkPixbuf *pixbuf;
+    GdkPixbuf *composite;
+    GList *iter;
+    
+    pixbuf = gtk_source_view_get_pixbuf(view, (const gchar *)list->data);
+    if (!pixbuf) {
+	g_warning ("Unknown marker '%s' used.", list->data);
+	return NULL;
+    }
+    
+    if(!list->next) {
+	g_object_ref (pixbuf);
+    } 
+    else
+    {
+	pixbuf = gdk_pixbuf_copy(pixbuf);
+	for(iter = list->next; iter; iter = iter->next)
+	{
+	    if((composite = gtk_source_view_get_pixbuf(view, 
+						       (const gchar *)iter->data)))
+	    {
+		gint width;
+		gint height;
+		gint comp_width;
+		gint comp_height;
+		width = gdk_pixbuf_get_width(pixbuf);
+		height = gdk_pixbuf_get_height(pixbuf);
+		comp_width = gdk_pixbuf_get_width(composite);
+		comp_height = gdk_pixbuf_get_height(composite);
+		gdk_pixbuf_composite((const GdkPixbuf *)composite,
+				     pixbuf,
+				     0, 0,
+				     width, height,
+				     0, 0,
+				     width/comp_width, height/comp_height,
+				     GDK_INTERP_BILINEAR,
+				     127);
+	    } else {
+		g_warning ("Unknown marker '%s' used", iter->data);
+	    }
+	}
+    }
+
+    return pixbuf;
+}
+
+void
+draw_line_markers (GtkSourceView *view, gint line, gint x, gint y)
+{
+    GList *list;
+    GdkPixbuf *pixbuf;
+    GdkWindow *win = gtk_text_view_get_window (GTK_TEXT_VIEW (view), 
+					       GTK_TEXT_WINDOW_LEFT);
+	    
+    list = (GList *)gtk_source_buffer_line_get_markers(GTK_SOURCE_BUFFER(GTK_TEXT_VIEW (view)->buffer), line);
+    if (list) {
+	if ((pixbuf = get_line_marker (view, list))) {
+	    gdk_pixbuf_render_to_drawable_alpha(pixbuf, GDK_DRAWABLE(win), 0, 0,
+						x, y,
+						gdk_pixbuf_get_width(pixbuf),
+						gdk_pixbuf_get_height(pixbuf),
+						GDK_PIXBUF_ALPHA_BILEVEL,
+						127,
+						GDK_RGB_DITHER_NORMAL,
+						0, 0);
+	    g_object_unref(pixbuf);
+	} 
+    }
+}
+
 gint 
 gtk_source_view_expose(GtkWidget *widget, GdkEventExpose *ev)
 {
     GdkWindow *win=0;
-    GArray *pixels=0;
-    gint pos=0;
     gint y1 = 0;
     gint y2 = 0;
-    gint i = 0;
-    gint num = 0;
-    gint count = 0;
     GtkTextView *tw = GTK_TEXT_VIEW(widget);
     GtkSourceView *view = GTK_SOURCE_VIEW(widget);
     PangoLayout *layout = NULL;
     GdkPixbuf *pixbuf;
-    gchar *str = NULL;
-    gint lines = 0;
-    gint window_width = 0;
-    gint text_width = 0;
-    const gchar *marker;
-
+    gint text_width = view->line_number_space - (GUTTER_PAD * 2);
+    GtkTextIter iter;    
+    gint y;
+	
     win = gtk_text_view_get_window (tw, GTK_TEXT_WINDOW_LEFT);
-    if(ev->window != win || !GTK_SOURCE_VIEW(tw)->show_line_numbers)
+    
+    if(ev->window != win || !(view->show_line_numbers || view->show_line_pixmaps))
         return (* GTK_WIDGET_CLASS (parent_class)->expose_event) (widget, ev);
 
-    if(view->show_line_numbers || view->show_line_pixmaps)
-    {
-        pixels = g_array_new (FALSE, FALSE, sizeof (gint));
-        y1 = ev->area.y;
-        y2 = y1 + ev->area.height;
-        /* get the extents of the line printing */
-        gtk_text_view_window_to_buffer_coords (tw, GTK_TEXT_WINDOW_LEFT, 0, y1, NULL, &y1);
-        gtk_text_view_window_to_buffer_coords (tw, GTK_TEXT_WINDOW_LEFT, 0, y2, NULL, &y2);
-
-        if(view->show_line_numbers)
-        {
-            layout = gtk_widget_create_pango_layout (GTK_WIDGET(tw), "");
-            text_width = view->line_number_space - (GUTTER_PAD * 2);
-            pango_layout_set_width(layout, text_width);
-            pango_layout_set_alignment(layout, PANGO_ALIGN_RIGHT);
-        }
-        for(num = get_lines(tw, y1, y2, pixels, &count); i < count; i++, num++)
-        {
-            gtk_text_view_buffer_to_window_coords (tw, GTK_TEXT_WINDOW_LEFT, 0, g_array_index (pixels, gint, i), NULL, &pos);
-            if(view->show_line_numbers)
-            {
-                str = g_strdup_printf ("%d", num + 1);
-                pango_layout_set_text(layout, str, -1);
-                gdk_draw_layout_with_colors(win, widget->style->fg_gc [widget->state], text_width + GUTTER_PAD, pos, layout, &GTK_WIDGET(tw)->style->fg[GTK_STATE_NORMAL], &GTK_WIDGET(tw)->style->bg[GTK_STATE_NORMAL]);
-                g_free (str);
-            }
-            if(view->show_line_pixmaps)
-            {
-                gint marker_count = 0;
-                GList *list = NULL;
-                GList *iter = NULL;
-
-                if((marker_count = gtk_source_buffer_line_has_markers(GTK_SOURCE_BUFFER(tw->buffer), num + 1)))
-                {
-                    gboolean kill_pixbuf = FALSE;
-
-                    list = (GList *)gtk_source_buffer_line_get_markers(GTK_SOURCE_BUFFER(tw->buffer), num + 1);
-                    if(marker_count > 1)
-                    {
-                        GdkPixbuf *composite;
-
-                        list = g_list_copy(list);
-                        list = g_list_reverse(list);
-                        pixbuf = gtk_source_view_get_pixbuf(GTK_SOURCE_VIEW(tw), (const gchar *)list->data);
-                        if(pixbuf)
-                        {
-                            pixbuf = gdk_pixbuf_copy(pixbuf);
-                            g_object_ref(pixbuf);
-                            kill_pixbuf = TRUE;
-                            for(iter = list->next; iter; iter = iter->next)
-                            {
-                                if((composite = gtk_source_view_get_pixbuf(GTK_SOURCE_VIEW(tw), (const gchar *)iter->data)))
-                                {
-                                    gint width;
-                                    gint height;
-                                    gint comp_width;
-                                    gint comp_height;
-                                    width = gdk_pixbuf_get_width(pixbuf),
-                                    height = gdk_pixbuf_get_height(pixbuf),
-                                    comp_width = gdk_pixbuf_get_width(composite),
-                                    comp_height = gdk_pixbuf_get_height(composite),
-                                    gdk_pixbuf_composite((const GdkPixbuf *)composite,
-                                                         pixbuf,
-                                                         0, 0,
-                                                         width, height,
-                                                         0, 0,
-                                                         width/comp_width, height/comp_height,
-                                                         GDK_INTERP_BILINEAR,
-                                                         127);
-                                }
-                            }
-                            g_print("\n");
-                        }
-                        g_list_free(list);
-                    }
-                    else
-                    {
-                        pixbuf = gtk_source_view_get_pixbuf(GTK_SOURCE_VIEW(tw), (const gchar *)list->data);
-                    }
-
-                    if(pixbuf && gdk_pixbuf_get_has_alpha(pixbuf))
-                        gdk_pixbuf_render_to_drawable_alpha(pixbuf, GDK_DRAWABLE(win), 0, 0,
-                                                            text_width + (GUTTER_PAD * 2), pos,
-                                                            gdk_pixbuf_get_width(pixbuf),
-                                                            gdk_pixbuf_get_height(pixbuf),
-                                                            GDK_PIXBUF_ALPHA_BILEVEL,
-                                                            127,
-                                                            GDK_RGB_DITHER_NORMAL,
-                                                            0, 0);
-                     else if(pixbuf)
-                        gdk_pixbuf_render_to_drawable(pixbuf, GDK_DRAWABLE(win),
-                                                      GTK_WIDGET(tw)->style->bg_gc[GTK_STATE_NORMAL],
-                                                      0, 0, text_width + (GUTTER_PAD * 2), pos,
-                                                      gdk_pixbuf_get_width(pixbuf),
-                                                      gdk_pixbuf_get_height(pixbuf),
-                                                      GDK_RGB_DITHER_NORMAL,
-                                                      0, 0);
-                    if(kill_pixbuf) g_object_unref(pixbuf);
-                }
-            }
-        }
-        g_array_free (pixels, TRUE); 
-        if(view->show_line_numbers) g_object_unref(G_OBJECT (layout));
-        return(TRUE);
+    if(view->show_line_numbers) {
+	layout = gtk_widget_create_pango_layout (widget, "");
+	pango_layout_set_width(layout, text_width);
+	pango_layout_set_alignment(layout, PANGO_ALIGN_RIGHT);
     }
-    return(FALSE);
+
+    y1 = ev->area.y;
+    y2 = y1 + ev->area.height;
+
+    /* get the extents of the line printing */
+    gtk_text_view_window_to_buffer_coords (tw, GTK_TEXT_WINDOW_LEFT, 0, y1, NULL, &y1);
+    gtk_text_view_window_to_buffer_coords (tw, GTK_TEXT_WINDOW_LEFT, 0, y2, NULL, &y2);
+    
+    /* Get iter at first y */
+    gtk_text_view_get_line_at_y (tw, &iter, y1, NULL);
+    gtk_text_view_get_line_yrange(tw, &iter, &y, NULL);
+    while (y < y2 && !gtk_text_iter_is_end (&iter)) {
+	gint pos=0;
+	gint line_num;
+	
+	line_num = gtk_text_iter_get_line(&iter);
+	
+	gtk_text_view_buffer_to_window_coords (tw, GTK_TEXT_WINDOW_LEFT, 
+					       0, y, NULL, &pos);
+
+	if(view->show_line_numbers)
+	{
+	    gchar *str;
+	    str = g_strdup_printf ("%d", line_num + 1);
+	    pango_layout_set_text(layout, str, -1);
+	    gdk_draw_layout_with_colors(win, widget->style->fg_gc [widget->state], text_width + GUTTER_PAD, pos, layout, &GTK_WIDGET(tw)->style->fg[GTK_STATE_NORMAL], &GTK_WIDGET(tw)->style->bg[GTK_STATE_NORMAL]);
+	    g_free (str);
+	}
+	if(view->show_line_pixmaps)
+	{
+	    draw_line_markers (view, line_num, 
+			       text_width + (GUTTER_PAD * 2), pos);
+	}
+	
+	gtk_text_iter_forward_line (&iter);
+	gtk_text_view_get_line_yrange(tw, &iter, &y, NULL);
+    }
+    
+    if(view->show_line_numbers) g_object_unref(G_OBJECT (layout));
+    return(TRUE);
 }
 
 void 
@@ -456,40 +461,6 @@ gtk_source_view_get_tab_stop_width(GtkSourceView *view)
     tabs = gtk_text_view_get_tabs(GTK_TEXT_VIEW(view));
     pango_tab_array_get_tab(tabs, 0, &alignment, &tabstop);
     return(tabstop);
-}
-
-static gint
-get_lines (GtkTextView  *text_view, gint first_y, gint last_y, GArray *buffer_coords, gint *countp)
-{
-    GtkTextIter iter;
-    gint count;
-    gint size;  
-    gint num;
-
-    g_array_set_size(buffer_coords, 0);
-  
-    /* Get iter at first y */
-    gtk_text_view_get_line_at_y (text_view, &iter, first_y, NULL);
-    /*
-       For each iter, get its location and add it to the arrays.
-       Stop when we pass last_y
-    */
-    count = 0;
-    size = 0;
-
-    num = gtk_text_iter_get_line(&iter);
-    do
-    {
-        gint y;
-        gint height;
-        gtk_text_view_get_line_yrange(text_view, &iter, &y, &height);
-        g_array_append_val (buffer_coords, y);
-        count++;
-        if ((y + height) >= last_y) break;
-        gtk_text_iter_forward_line (&iter);
-    } while(!gtk_text_iter_is_end (&iter));
-    *countp = count;
-    return(num);
 }
 
 gboolean foreach_character (gunichar ch, gpointer data)

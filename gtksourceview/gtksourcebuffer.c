@@ -1262,7 +1262,8 @@ gtk_source_buffer_line_set_marker(GtkSourceBuffer *buffer, gint line, const gcha
     g_return_if_fail(GTK_IS_SOURCE_BUFFER(buffer));
 
     line_count = gtk_text_buffer_get_line_count(GTK_TEXT_BUFFER(buffer));
-    if(line > line_count) return;
+    g_return_if_fail (line_count > line);
+
     gtk_source_buffer_line_remove_markers(buffer, line);
     if(marker)
     {
@@ -1274,7 +1275,7 @@ gtk_source_buffer_line_set_marker(GtkSourceBuffer *buffer, gint line, const gcha
 /*
    Add a marker to a line.
    If the list doesnt already exist, it will call set_marker (above)
-   If the list does exist, the new marker will be prepended.
+   If the list does exist, the new marker will be appended.
    If the marker already exists, it will be removed from its current
    order and then prepended.
 */
@@ -1290,7 +1291,8 @@ gtk_source_buffer_line_add_marker(GtkSourceBuffer *buffer, gint line, const gcha
     g_return_if_fail(GTK_IS_SOURCE_BUFFER(buffer));
 
     line_count = gtk_text_buffer_get_line_count(GTK_TEXT_BUFFER(buffer));
-    if(line > line_count) return;
+    g_return_if_fail (line_count > line);
+
     list = (GList *)g_hash_table_lookup(buffer->line_markers, GINT_TO_POINTER(line));
     if(list && marker)
     {
@@ -1304,7 +1306,7 @@ gtk_source_buffer_line_add_marker(GtkSourceBuffer *buffer, gint line, const gcha
             }
         }
         g_hash_table_remove(buffer->line_markers, GINT_TO_POINTER(line));
-        list = g_list_prepend(list, (gpointer)g_strdup(marker));
+        list = g_list_append(list, (gpointer)g_strdup(marker));
         g_hash_table_insert(buffer->line_markers, GINT_TO_POINTER(line), (gpointer)list);
     }
     else if(marker)
