@@ -1,3 +1,8 @@
+2002-07-04  Mikael Hermansson  <tyan@linux.se>
+
+	* src/gtksourcebuffer.[c/h] (gtk_source_buffer_[load/save]_*),
+	code cleanup and improved error handling using GError.
+
 2002-05-22  Mikael Hermansson  <tyan@linux.se>
 
 	* src/gtksourcebuffer.c: (gtk_source_buffer_real_delete_range), 

@@ -145,15 +145,19 @@ gint             gtk_source_view_remove_all_markers    (GtkSourceBuffer *buffer,
 
 /* IO utility methods. */
 gboolean         gtk_source_buffer_load (GtkSourceBuffer *buffer,
-					 const gchar     *filename);
+					 const gchar     *filename,
+					GError**error);
 gboolean         gtk_source_buffer_save (GtkSourceBuffer *buffer,
-					 const gchar     *filename);
+					 const gchar     *filename,
+					GError**error);
 gboolean         gtk_source_buffer_load_with_character_encoding (GtkSourceBuffer *buffer,
 								 const gchar     *filename,
-								 const gchar     *encoding);
+								 const gchar     *encoding, 
+								GError**error);
 gboolean         gtk_source_buffer_save_with_character_encoding (GtkSourceBuffer *buffer,
 								 const gchar     *filename,
-								 const gchar     *encoding);
+								 const gchar     *encoding, 
+								GError **error);
 
 #ifdef __cplusplus
 }
