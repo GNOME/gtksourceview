@@ -1,38 +1,32 @@
-Sun Mar 10  17:06:51 2002 CET Mikael Hermansson<tyan@linux.se>
+2002-02-11  Mikael Hermansson  <tyan@linux.se>
 
-  * gtksourcebuffer.[c/h] 
-    - Added gtk_source_buffer_update_info() this function will reread file stat() from disc
-    - Fixed update_buffer_info() so it doesn't read file stat() when getstat == FALSE
+  * ChangeLog: fixed my ugly comments and make it more emacs compatible :-)
 
-Wed Mar 06  17:25:10 2002 CET Mikael Hermansson<tyan@linux.se>
+2002-03-10  Mikael Hermansson  <tyan@linux.se>
 
-  * gtktextsearch.[c/h] This is a new object class for searching in the buffer
-    Hopefully this API will work better than the old gtk_text_iter_forward_search implmentation :-) 
+  * gtksourcebuffer.[c/h] (gtk_source_buffer_update_info): This function will reread file stat() 
+    from disc and update GtkSourceBufferInfo structure.
+    (update_buffer_info): Fixed so it doesn't read file stat() when getstat == FALSE
 
-    In the moment it supports:
-    GTK_ETEXT_SEARCH_CASE_INSENSITIVE case insensitive search.
-    GTK_ETEXT_SEARCH_TEXT_ONLY (if this flag is set, embended pixbuf/widgets will be ignored)
-    gtk_text_search_new (...)           GtkTextSearch constructor
-    gtk_text_search_forward(...)        search forward from last cached position
-    gtk_text_forward_foreach (...)      search forward until foreach func returns TRUE 
-                                                     this API could be useful to "replace all" etc...
- 
-  * Makefile.am 
-    - added gtktextsearch.[c/h] to sources list
+2002-03-06  Mikael Hermansson  <tyan@linux.se>
 
-Mon Feb 11  02:33:57 2002 CET Mikael Hermansson <tyan@linux.se>
+  * gtktextsearch.[c/h]: This is a new object class for searching in the buffer
+    Hopefully this API will work better than the old gtk_text_iter_forward_search 
+    implementation :-) 
 
-  * gtksourcebuffer.c:
-    remove all compile warnings and fix bug in gtk_source_buffer_set_filename
-    we should not g_strdup/g_free if passed filename == info->filename 
-   just return from without change.
+  * Makefile.am: added gtktextsearch.[c/h] to sources list
 
-Sat Feb 09  19:57:32 2002 CET Mikael Hermansson<tyan@linux.se>
+2002-02-11  Mikael Hermansson  <tyan@linux.se>
 
-  * gtksourcebuffer.c/h:
-    - gtk_source_buffer_get_filename() will now allocate a new filename string 
-     user should g_free it after use.
-   - gtk_source_buffer_[save/load] now will set "modifed" flag to FALSE 
+  * gtksourcebuffer.c:  remove all compile warnings. 
+    (gtk_source_buffer_set_filename): Should not g_strdup/g_free 
+    if passed filename == info->filename just return from without change.
+
+2002-02-09  Mikael Hermansson  <tyan@linux.se>
+
+  * gtksourcebuffer.c/h (gtk_source_buffer_get_filename): Allocate a new filename string 
+     instead of return const char* user should g_free it after use.
+     (gtk_source_buffer_save/load): now will set "modifed" flag to FALSE 
       after load/save success has been completed...
 
 2002-03-07  Jeroen Zwartepoorte  <jeroen@xs4all.nl>
@@ -40,13 +34,13 @@ Sat Feb 09  19:57:32 2002 CET Mikael Hermansson<tyan@linux.se>
 	* src/gtksourceview.c: (gtk_source_view_calculate_tab_stop_width): Fix
 	tab width calculation (finish string by adding a '\0' character).
 
-Sun Dec 30  11:54:36 2001 CET Mikael Hermansson <tyan@linux.se>
+2001-12-30  Mikael Hermansson  <tyan@linux.se>
 
 	* gtksourcebuffer.c: (in move_cursor): Make sure 
 	gtk_source_buffer_find_bracket_match() is only called if 
 	check_brackets == TRUE
 
-Sat Feb 09  05:41:59 2002 CET Mikael Hermansson<tyan@linux.se>
+Sat Feb  09 05:41:59 2002 CET Mikael Hermansson  <tyan@linux.se>
 
 	* gtksourcebuffer.[c/h] added new API: 
 	gtk_source_buffer_save[_with_character_encoding]()
@@ -100,7 +94,7 @@ Sat Jan 26 10:50:43 AM PST 2002 Chris Phelps <chicane@reninet.com>
 
 	* src/gtksourcebuffer.c (gtk_source_buffer_line_remove_marker): Removed the extraneous list destruction and hashtable removal at the end of the function.  Removing a marker no longer removes all markers.
 
-Sun Dec 30  10:40:08 2001 CET Mikael Hermansson <tyan@linux.se>
+Sun Dec  30 10:40:08 2001 CET Mikael Hermansson  <tyan@linux.se>
 
   * gtksourcebuffer.c: 
      - get rid of connect_[before/after] signals on "insert/delete" callbacks.
@@ -108,7 +102,7 @@ Sun Dec 30  10:40:08 2001 CET Mikael Hermansson <tyan@linux.se>
   * gtksourceview.c:
       - adding Undo/Redo to popupmenu
 
-Mon Dec 17  06:38:30 2001 CET Mikael Hermansson <tyan@linux.se>
+Mon Dec  17 06:38:30 2001 CET Mikael Hermansson  <tyan@linux.se>
 
   * gtksourceview.[c/h] changed GtkSourceView->delete to delete_range.
 
@@ -133,7 +127,7 @@ Mon Dec 10 04:58:22 PM PST 2001 Chris Phelps <chicane@reninet.com>
 
 	* src/gtksourcebuffer.h: Fixed a broken comment.
 
-Sat Dec 08  03:46:47 2001 CET Mikael Hermansson <tyan@linux.se>
+Sat Dec  08 03:46:47 2001 CET Mikael Hermansson  <tyan@linux.se>
 
   * Hmm It's time to start contribute to my old project again. Nothing new so far except I have changed ISP provider and my new email is tyan@linux.se.
     Maybe I have some old/new stuff in my local source repository (at http://tyan.homeip.net) but it looks like like Chris has already done some good stuff :-)  
@@ -156,52 +150,52 @@ Sat Feb 17  13:19:53 2001 CET Mikael Hermansson<mikeh@bahnhof.se>
 
 * Realesing 0.0.3
 
-Sat Feb 17  13:03:59 2001 CET Mikael Hermansson<mikeh@bahnhof.se>
+Sat Feb 17  13:03:59 2001 CET Mikael Hermansson  <mikeh@bahnhof.se>
 
   * gtktextview.c bugfixes in find_correct_bracket/key_press_event code that made 
   the bracket sometime show up incorrectly in line.
 
-Sat Feb 17  02:19:27 2001 CET Mikael Hermansson<mikeh@bahnhof.se>
+Sat Feb 17  02:19:27 2001 CET Mikael Hermansson  <mikeh@bahnhof.se>
 
   * gtksourceview.c if source_view->auto_indent = TRUE the keypress implementation 
     will automatic inserting whitespaces before/after on operator characters like [=<>!], comma [,] 
     and begin parantes[(]. This is hardcoded values and will probadly only work on
     C/C++/Java/python or similar programing languages syntax.
 
-Fri Feb 16  23:56:46 2001 CET Mikael Hermansson<mikeh@bahnhof.se>
+Fri Feb 16  23:56:46 2001 CET Mikael Hermansson  <mikeh@bahnhof.se>
 
   * test.c cb_convert() replaced creat/write functions with fopen family instead
 
   * gtksourceview.c killed some warnings, fixed bug in gtk_source_view_set_show_line_numbers() 
     that made the widget show line numbers even if you set it to FALSE. 
 
-Mon Feb 12  18:17:56 2001 CET Mikael Hermansson<mikeh@bahnhof.se>
+Mon Feb 12  18:17:56 2001 CET Mikael Hermansson  <mikeh@bahnhof.se>
 
   * Implemented gtk_source_buffer_convert_to_html the name says what it does :-)
 
-Mon Feb 05  20:27:21 2001 CET Mikael Hermansson<mikeh@bahnhof.se>
+Mon Feb 05  20:27:21 2001 CET Mikael Hermansson  <mikeh@bahnhof.se>
 
   * gtksourceview./gtksourcebuffer.[c/h]start implement undo/redo
 
-Sun Feb 04  14:38:10 2001 CET Mikael Hermansson<mikeh@bahnhof.se>
+Sun Feb 04  14:38:10 2001 CET Mikael Hermansson  <mikeh@bahnhof.se>
 
   * configure.in -> 0.0.2cvs
 
-Sun Feb 04  14:35:47 2001 CET Mikael Hermansson<mikeh@bahnhof.se>
+Sun Feb 04  14:35:47 2001 CET Mikael Hermansson  <mikeh@bahnhof.se>
 
   * releasing GtkSourceView 0.0.2
 
-Sun Feb 04  14:17:03 2001 CET Mikael Hermansson<mikeh@bahnhof.se>
+Sun Feb 04  14:17:03 2001 CET Mikael Hermansson  <mikeh@bahnhof.se>
 
   * gtksourceview.[c/h] implemented auto indent. Two new functions added:
     gtk_source_view_[set/get]_auto_indent()
 
-Sun Jan 21  15:11:17 2001 CET Mikael Hermansson<mikeh@bahnhof.se>
+Sun Jan 21  15:11:17 2001 CET Mikael Hermansson  <mikeh@bahnhof.se>
 
   * gtksourcebuffer.c fixed bug in find_bracket_match that made the buffer hang.
    also renamed it to gtk_source_buffer_find_bracket_match and made it public API
 
-Tue Jan 16  18:13:44 2001 CET Mikael Hermansson<mikeh@bahnhof.se>
+Tue Jan 16  18:13:44 2001 CET Mikael Hermansson  <mikeh@bahnhof.se>
 
   * releasing 0.0.1 of GtkSourceView:
     A new syntax higlight widget that supports GtkTextView upcoming Gtk 2.0.Mon Dec 17  06:38:30 2001 CET Mikael Hermansson<tyan@linux.se>
@@ -220,7 +214,7 @@ Mon Dec 10 04:58:22 PM PST 2001 Chris Phelps <chicane@reninet.com>
 
 	* src/gtksourcebuffer.h: Fixed a broken comment.
 
-Sat Dec 08  03:46:47 2001 CET Mikael Hermansson <tyan@linux.se>
+Sat Dec 08  03:46:47 2001 CET Mikael Hermansson  <tyan@linux.se>
 
   * Hmm It's time to start contribute to my old project again. Nothing new so far except I have changed ISP provider and my new email is tyan@linux.se.
     Maybe I have some old/new stuff in my local source repository (at http://tyan.homeip.net) but it looks like like Chris has already done some good stuff :-)  
@@ -239,46 +233,46 @@ Thu Dec 06 01:13:42 AM PST 2001 Chris Phelps <chicane@reninet.com>
    * I have resurected this module and put it to use in Glimmer, and 
      Dave Camp is playing with it in Dryad as a test bed for gnome-debug
 
-Sat Feb 17  13:19:53 2001 CET Mikael Hermansson<mikeh@bahnhof.se>
+Sat Feb 17  13:19:53 2001 CET Mikael Hermansson  <mikeh@bahnhof.se>
 
 * Realesing 0.0.3
 
-Sat Feb 17  13:03:59 2001 CET Mikael Hermansson<mikeh@bahnhof.se>
+Sat Feb 17  13:03:59 2001 CET Mikael Hermansson  <mikeh@bahnhof.se>
 
   * gtktextview.c bugfixes in find_correct_bracket/key_press_event code that made 
   the bracket sometime show up incorrectly in line.
 
-Sat Feb 17  02:19:27 2001 CET Mikael Hermansson<mikeh@bahnhof.se>
+Sat Feb 17  02:19:27 2001 CET Mikael Hermansson  <mikeh@bahnhof.se>
 
   * gtksourceview.c if source_view->auto_indent = TRUE the keypress implementation 
     will automatic inserting whitespaces before/after on operator characters like [=<>!], comma [,] 
     and begin parantes[(]. This is hardcoded values and will probadly only work on
     C/C++/Java/python or similar programing languages syntax.
 
-Fri Feb 16  23:56:46 2001 CET Mikael Hermansson<mikeh@bahnhof.se>
+Fri Feb 16  23:56:46 2001 CET Mikael Hermansson  <mikeh@bahnhof.se>
 
   * test.c cb_convert() replaced creat/write functions with fopen family instead
 
   * gtksourceview.c killed some warnings, fixed bug in gtk_source_view_set_show_line_numbers() 
     that made the widget show line numbers even if you set it to FALSE. 
 
-Mon Feb 12  18:17:56 2001 CET Mikael Hermansson<mikeh@bahnhof.se>
+Mon Feb 12  18:17:56 2001 CET Mikael Hermansson  <mikeh@bahnhof.se>
 
   * Implemented gtk_source_buffer_convert_to_html the name says what it does :-)
 
-Mon Feb 05  20:27:21 2001 CET Mikael Hermansson<mikeh@bahnhof.se>
+Mon Feb 05  20:27:21 2001 CET Mikael Hermansson  <mikeh@bahnhof.se>
 
   * gtksourceview./gtksourcebuffer.[c/h]start implement undo/redo
 
-Sun Feb 04  14:38:10 2001 CET Mikael Hermansson<mikeh@bahnhof.se>
+Sun Feb 04  14:38:10 2001 CET Mikael Hermansson  <mikeh@bahnhof.se>
 
   * configure.in -> 0.0.2cvs
 
-Sun Feb 04  14:35:47 2001 CET Mikael Hermansson<mikeh@bahnhof.se>
+Sun Feb 04  14:35:47 2001 CET Mikael Hermansson  <mikeh@bahnhof.se>
 
   * releasing GtkSourceView 0.0.2
 
-Sun Feb 04  14:17:03 2001 CET Mikael Hermansson<mikeh@bahnhof.se>
+Sun Feb 04  14:17:03 2001 CET Mikael Hermansson  <mikeh@bahnhof.se>
 
   * gtksourceview.[c/h] implemented auto indent. Two new functions added:
     gtk_source_view_[set/get]_auto_indent()
@@ -288,7 +282,7 @@ Sun Jan 21  15:11:17 2001 CET Mikael Hermansson<mikeh@bahnhof.se>
   * gtksourcebuffer.c fixed bug in find_bracket_match that made the buffer hang.
    also renamed it to gtk_source_buffer_find_bracket_match and made it public API
 
-Tue Jan 16  18:13:44 2001 CET Mikael Hermansson<mikeh@bahnhof.se>
+Tue Jan 16  18:13:44 2001 CET Mikael Hermansson  <mikeh@bahnhof.se>
 
   * releasing 0.0.1 of GtkSourceView:
     A new syntax higlight widget that supports GtkTextView upcoming Gtk 2.0.
