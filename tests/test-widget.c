@@ -34,20 +34,12 @@
 #include <gtksourceview/gtksourceprintjob.h>
 
 
-/* Private data structures */
+/* Global list of open windows */
 
-typedef struct {
-	GtkSourceBuffer *buffer;
-	GList           *windows;
-	gboolean         show_markers;
-	gboolean         show_numbers;
-	gboolean	 auto_indent;
-	gboolean	 insert_spaces;
-	gboolean	 show_margin;
-	guint            tab_stop;
-	GtkItemFactory  *item_factory;
-	GtkWidget       *pos_label;
-} ViewsData;
+static GList *windows = NULL;
+
+
+/* Private data structures */
 
 #define READ_BUFFER_SIZE   4096
 
@@ -55,127 +47,120 @@ typedef struct {
 #define MARKER_TYPE_2      "two"
 
 
-/* Private prototypes */
+/* Private prototypes -------------------------------------------------------- */
 
-static void       open_file_cb                   (ViewsData       *vd,
-						  guint            callback_action,
-						  GtkWidget       *widget);
-static void       new_view_cb                    (ViewsData       *vd,
-						  guint            callback_action,
-						  GtkWidget       *widget);
-static void       view_toggled_cb                (ViewsData       *vd,
-						  guint            callback_action,
-						  GtkWidget       *widget);
-static void       tabs_toggled_cb                (ViewsData       *vd,
-						  guint            callback_action,
-						  GtkWidget       *widget);
-static void       print_preview_cb               (ViewsData       *vd,
-						  guint            callback_action,
-						  GtkWidget       *widget);
+static void       open_file_cb                   (GtkAction       *action,
+						  gpointer         user_data);
 
-/* Menu definition */
+static void       new_view_cb                    (GtkAction       *action,
+						  gpointer         user_data);
+static void       numbers_toggled_cb             (GtkAction       *action,
+						  gpointer         user_data);
+static void       markers_toggled_cb             (GtkAction       *action,
+						  gpointer         user_data);
+static void       margin_toggled_cb              (GtkAction       *action,
+						  gpointer         user_data);
+static void       auto_indent_toggled_cb         (GtkAction       *action,
+						  gpointer         user_data);
+static void       insert_spaces_toggled_cb       (GtkAction       *action,
+						  gpointer         user_data);
+static void       tabs_toggled_cb                (GtkAction       *action,
+						  GtkAction       *current,
+						  gpointer         user_data);
+static void       print_preview_cb               (GtkAction       *action,
+						  gpointer         user_data);
 
-#define SHOW_NUMBERS_PATH "/View/Show _Line Numbers"
-#define SHOW_MARKERS_PATH "/View/Show _Markers"
-#define SHOW_MARGIN_PATH "/View/Show M_argin"
-
-#define ENABLE_AUTO_INDENT_PATH "/View/Enable _Auto Indent"
-#define INSERT_SPACES_PATH "/View/Insert _Spaces Instead of Tabs"
+static GtkWidget *create_view_window             (GtkSourceBuffer *buffer,
+						  GtkSourceView   *from);
 
 
-static GtkItemFactoryEntry menu_items[] = {
-	{ "/_File",                   NULL,         0,               0, "<Branch>" },
-	{ "/File/_Open",              "<control>O", open_file_cb,    0, "<StockItem>", GTK_STOCK_OPEN },
-	{ "/File/_Print Preview",     "<control>P", print_preview_cb,0, "<StockItem>", GTK_STOCK_PRINT },
-	{ "/File/sep1",               NULL,         0,               0, "<Separator>" },
-	{ "/File/_Quit",              "<control>Q", gtk_main_quit,   0, "<StockItem>", GTK_STOCK_QUIT },
-	
-	{ "/_View",                   NULL,         0,               0, "<Branch>" },
-	{ "/View/_New View",          NULL,         new_view_cb,     0, "<StockItem>", GTK_STOCK_NEW },
-	{ "/View/sep1",               NULL,         0,               0, "<Separator>" },
-	{ SHOW_NUMBERS_PATH,          NULL,         view_toggled_cb, 1, "<CheckItem>" },
-	{ SHOW_MARKERS_PATH,          NULL,         view_toggled_cb, 2, "<CheckItem>" },
-	{ SHOW_MARGIN_PATH,           NULL,         view_toggled_cb, 5, "<CheckItem>" },
+/* Actions & UI definition ---------------------------------------------------- */
 
-	{ "/View/sep2",               NULL,         0,               0, "<Separator>" },
-	{ ENABLE_AUTO_INDENT_PATH,    NULL,         view_toggled_cb, 3, "<CheckItem>" },
-	{ INSERT_SPACES_PATH,         NULL,         view_toggled_cb, 4, "<CheckItem>" },
-
-	{ "/View/sep3",               NULL,         0,               0, "<Separator>" },
-	{ "/_View/_Tabs Width",	      NULL,         0,	             0, "<Branch>" },
-	{ "/View/Tabs Width/4",	      NULL,         tabs_toggled_cb, 4, "<RadioItem>" },
-	{ "/View/Tabs Width/6",	      NULL,         tabs_toggled_cb, 6, "/View/Tabs Width/4" },
-	{ "/View/Tabs Width/8",	      NULL,         tabs_toggled_cb, 8, "/View/Tabs Width/4" },
-	{ "/View/Tabs Width/10",      NULL,         tabs_toggled_cb, 10, "/View/Tabs Width/4" },
-	{ "/View/Tabs Width/12",      NULL,         tabs_toggled_cb, 12, "/View/Tabs Width/4" }
+static GtkActionEntry buffer_action_entries[] = {
+	{ "Open", GTK_STOCK_OPEN, "_Open", "<control>O",
+	  "Open a file", G_CALLBACK (open_file_cb) },
+	{ "Quit", GTK_STOCK_QUIT, "_Quit", "<control>Q",
+	  "Exit the application", G_CALLBACK (gtk_main_quit) },
 };
 
-/* Implementation */
-static void 
-view_toggled_cb (ViewsData *vd,
-		 guint      callback_action,
-		 GtkWidget *widget)
-{
-	gboolean active;
-	void (*set_func) (GtkSourceView *, gboolean);
+static GtkActionEntry view_action_entries[] = {
+	{ "FileMenu", NULL, "_File" },
+	{ "ViewMenu", NULL, "_View" },
+	{ "PrintPreview", GTK_STOCK_PRINT, "_Print Preview", "<control>P",
+	  "Preview printing of the file", G_CALLBACK (print_preview_cb) },
+	{ "NewView", GTK_STOCK_NEW, "_New View", NULL,
+	  "Create a new view of the file", G_CALLBACK (new_view_cb) },
+	{ "TabsWidth", NULL, "_Tabs Width" },
+};
 
-	set_func = NULL;
-	active = gtk_check_menu_item_get_active (GTK_CHECK_MENU_ITEM (widget));
-	
-	switch (callback_action)
-	{
-		case 1:
-			vd->show_numbers = active;
-			set_func = gtk_source_view_set_show_line_numbers;
-			break;
-		case 2:
-			vd->show_markers = active;
-			set_func = gtk_source_view_set_show_line_markers;
-			break;
-		case 3:
-			vd->auto_indent = active;
-			set_func = gtk_source_view_set_auto_indent;
-			break;
-		case 4:
-			vd->insert_spaces = active;
-			set_func = gtk_source_view_set_insert_spaces_instead_of_tabs;
-			break;
-		case 5: 
-			vd->show_margin = active;
-			set_func = gtk_source_view_set_show_margin;
-		default:
-			break;
-	}
+static GtkToggleActionEntry toggle_entries[] = {
+	{ "ShowNumbers", NULL, "Show _Line Numbers", NULL,
+	  "Toggle visibility of line numbers in the left margin",
+	  G_CALLBACK (numbers_toggled_cb), FALSE },
+	{ "ShowMarkers", NULL, "Show _Markers", NULL,
+	  "Toggle visibility of markers in the left margin",
+	  G_CALLBACK (markers_toggled_cb), FALSE },
+	{ "ShowMargin", NULL, "Show M_argin", NULL,
+	  "Toggle visibility of right margin indicator",
+	  G_CALLBACK (margin_toggled_cb), FALSE },
+	{ "AutoIndent", NULL, "Enable _Auto Indent", NULL,
+	  "Toggle automatic auto indentation of text",
+	  G_CALLBACK (auto_indent_toggled_cb), FALSE },
+	{ "InsertSpaces", NULL, "Insert _Spaces Instead of Tabs", NULL,
+	  "Whether to insert space characters when inserting tabulations",
+	  G_CALLBACK (insert_spaces_toggled_cb), FALSE }
+};
 
-	if (set_func)
-	{
-		GList *l;
-		for (l = vd->windows; l; l = l->next)
-		{
-			GtkWidget *window = l->data;
-			GtkWidget *view = g_object_get_data (G_OBJECT (window), "view");
-			set_func (GTK_SOURCE_VIEW (view), active);
-		}
-	}
-}
+static GtkRadioActionEntry radio_entries[] = {
+	{ "TabsWidth4", NULL, "4", NULL, "Set tabulation width to 4 spaces", 4 },
+	{ "TabsWidth6", NULL, "6", NULL, "Set tabulation width to 6 spaces", 6 },
+	{ "TabsWidth8", NULL, "8", NULL, "Set tabulation width to 8 spaces", 8 },
+	{ "TabsWidth10", NULL, "10", NULL, "Set tabulation width to 10 spaces", 10 },
+	{ "TabsWidth12", NULL, "12", NULL, "Set tabulation width to 12 spaces", 12 }
+};
 
-static void 
-tabs_toggled_cb (ViewsData *vd,
-	         guint      callback_action,
-	         GtkWidget *widget)
-{
-	GList *l;
+static const gchar *view_ui_description =
+"<ui>"
+"  <menubar name=\"MainMenu\">"
+"    <menu action=\"FileMenu\">"
+"      <menuitem action=\"PrintPreview\"/>"
+"    </menu>"
+"    <menu action=\"ViewMenu\">"
+"      <menuitem action=\"NewView\"/>"
+"      <separator/>"
+"      <menuitem action=\"ShowNumbers\"/>"
+"      <menuitem action=\"ShowMarkers\"/>"
+"      <menuitem action=\"ShowMargin\"/>"
+"      <separator/>"
+"      <menuitem action=\"AutoIndent\"/>"
+"      <menuitem action=\"InsertSpaces\"/>"
+"      <separator/>"
+"      <menu action=\"TabsWidth\">"
+"        <menuitem action=\"TabsWidth4\"/>"
+"        <menuitem action=\"TabsWidth6\"/>"
+"        <menuitem action=\"TabsWidth8\"/>"
+"        <menuitem action=\"TabsWidth10\"/>"
+"        <menuitem action=\"TabsWidth12\"/>"
+"      </menu>"
+"    </menu>"
+"  </menubar>"
+"</ui>";
 
-	vd->tab_stop = callback_action;
-	
-	for (l = vd->windows; l; l = l->next)
-	{
-		GtkWidget *window = l->data;
-		GtkWidget *view = g_object_get_data (G_OBJECT (window), "view");
-		g_object_set (G_OBJECT (view), "tabs_width", vd->tab_stop, NULL);
-	}
-}
+static const gchar *buffer_ui_description =
+"<ui>"
+"  <menubar name=\"MainMenu\">"
+"    <menu action=\"FileMenu\">"
+"      <menuitem action=\"Open\"/>"
+"      <separator/>"
+"      <menuitem action=\"Quit\"/>"
+"    </menu>"
+"    <menu action=\"ViewMenu\">"
+"    </menu>"
+"  </menubar>"
+"</ui>";
 
+
+/* File loading code ----------------------------------------------------------------- */
 
 static void
 error_dialog (GtkWindow *parent, const gchar *msg, ...)
@@ -380,31 +365,170 @@ open_file (GtkSourceBuffer *buffer, const gchar *filename)
 	return TRUE;
 }
 
+
+/* Printing callbacks --------------------------------------------------------- */
+
 static void
-file_selected_cb (GtkWidget *chooser, gint response, ViewsData *vd)
+page_cb (GtkSourcePrintJob *job, gpointer user_data)
 {
-	gchar *filename;
+	g_print ("Printing %.2f%%    \r",
+		 100.0 * gtk_source_print_job_get_page (job) /
+		 gtk_source_print_job_get_page_count (job));
+}
 
-	if (response == GTK_RESPONSE_OK)
-	{
-		filename = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (chooser));
-		if (filename != NULL)
-		{
-			open_file (vd->buffer, filename);
-		}
-		g_free (filename);
-	}
+static void
+finished_cb (GtkSourcePrintJob *job, gpointer user_data)
+{
+	GnomePrintJob *gjob;
+	GtkWidget *preview;
 
-	gtk_widget_destroy (chooser);
+	g_print ("\n");
+	gjob = gtk_source_print_job_get_print_job (job);
+	preview = gnome_print_job_preview_new (gjob, "test-widget print preview");
+ 	g_object_unref (gjob); 
+ 	g_object_unref (job);
+	
+	gtk_widget_show (preview);
+}
+
+
+/* View action callbacks -------------------------------------------------------- */
+
+static void
+numbers_toggled_cb (GtkAction *action, gpointer user_data)
+{
+	g_return_if_fail (GTK_IS_TOGGLE_ACTION (action) && GTK_IS_SOURCE_VIEW (user_data));
+	gtk_source_view_set_show_line_numbers (
+		GTK_SOURCE_VIEW (user_data),
+		gtk_toggle_action_get_active (GTK_TOGGLE_ACTION (action)));
+}
+
+static void
+markers_toggled_cb (GtkAction *action, gpointer user_data)
+{
+	g_return_if_fail (GTK_IS_TOGGLE_ACTION (action) && GTK_IS_SOURCE_VIEW (user_data));
+	gtk_source_view_set_show_line_markers (
+		GTK_SOURCE_VIEW (user_data),
+		gtk_toggle_action_get_active (GTK_TOGGLE_ACTION (action)));
+}
+
+static void
+margin_toggled_cb (GtkAction *action, gpointer user_data)
+{
+	g_return_if_fail (GTK_IS_TOGGLE_ACTION (action) && GTK_IS_SOURCE_VIEW (user_data));
+	gtk_source_view_set_show_margin (
+		GTK_SOURCE_VIEW (user_data),
+		gtk_toggle_action_get_active (GTK_TOGGLE_ACTION (action)));
 }
 
 static void 
-open_file_cb (ViewsData *vd,
-	      guint      callback_action,
-	      GtkWidget *widget)
+auto_indent_toggled_cb (GtkAction *action,
+			gpointer   user_data)
+{
+	g_return_if_fail (GTK_IS_TOGGLE_ACTION (action) && GTK_IS_SOURCE_VIEW (user_data));
+	gtk_source_view_set_auto_indent (
+		GTK_SOURCE_VIEW (user_data),
+		gtk_toggle_action_get_active (GTK_TOGGLE_ACTION (action)));
+}
+
+static void 
+insert_spaces_toggled_cb (GtkAction *action,
+			  gpointer   user_data)
+{
+	g_return_if_fail (GTK_IS_TOGGLE_ACTION (action) && GTK_IS_SOURCE_VIEW (user_data));
+	gtk_source_view_set_insert_spaces_instead_of_tabs (
+		GTK_SOURCE_VIEW (user_data),
+		gtk_toggle_action_get_active (GTK_TOGGLE_ACTION (action)));
+}
+
+static void 
+tabs_toggled_cb (GtkAction *action,
+		 GtkAction *current,
+		 gpointer user_data)
+{
+	g_return_if_fail (GTK_IS_RADIO_ACTION (action) && GTK_IS_SOURCE_VIEW (user_data));
+	gtk_source_view_set_tabs_width (
+		GTK_SOURCE_VIEW (user_data),
+		gtk_radio_action_get_current_value (GTK_RADIO_ACTION (action)));
+}
+
+static void
+new_view_cb (GtkAction *action, gpointer user_data)
+{
+	GtkSourceBuffer *buffer;
+	GtkSourceView *view;
+	GtkWidget *window;
+	
+	g_return_if_fail (GTK_IS_SOURCE_VIEW (user_data));
+
+	view = GTK_SOURCE_VIEW (user_data);
+	buffer = GTK_SOURCE_BUFFER (gtk_text_view_get_buffer (GTK_TEXT_VIEW (view)));
+
+	window = create_view_window (buffer, view);
+	gtk_window_set_default_size (GTK_WINDOW (window), 400, 400);
+	gtk_widget_show (window);
+}
+
+static void
+print_preview_cb (GtkAction *action, gpointer user_data)
+{
+	GtkSourcePrintJob *job;
+	GtkSourceView *view;
+	GtkSourceBuffer *buffer;
+	GtkTextIter start, end;
+	gchar *filename;
+
+	g_return_if_fail (GTK_IS_SOURCE_VIEW (user_data));
+	
+	view = GTK_SOURCE_VIEW (user_data);
+	buffer = GTK_SOURCE_BUFFER (gtk_text_view_get_buffer (GTK_TEXT_VIEW (user_data)));
+	
+	job = gtk_source_print_job_new (NULL);
+	gtk_source_print_job_setup_from_view (job, view);
+	gtk_source_print_job_set_wrap_mode (job, GTK_WRAP_CHAR);
+	gtk_source_print_job_set_highlight (job, TRUE);
+	gtk_source_print_job_set_print_numbers (job, 5);
+
+	gtk_source_print_job_set_header_format (job,
+						"Printed on %A",
+						NULL,
+						"%F",
+						TRUE);
+
+	filename = g_object_get_data (G_OBJECT (buffer), "filename");
+	
+	gtk_source_print_job_set_footer_format (job,
+						"%T",
+						filename,
+						"Page %N/%Q",
+						TRUE);
+
+	gtk_source_print_job_set_print_header (job, TRUE);
+	gtk_source_print_job_set_print_footer (job, TRUE);
+	
+	gtk_text_buffer_get_bounds (GTK_TEXT_BUFFER (buffer), &start, &end);
+	if (gtk_source_print_job_print_range_async (job, &start, &end))
+	{
+		g_signal_connect (job, "begin_page", (GCallback) page_cb, NULL);
+		g_signal_connect (job, "finished", (GCallback) finished_cb, NULL);
+	}
+	else
+	{
+		g_warning ("Async print failed");
+	}
+}
+
+
+/* Buffer action callbacks ------------------------------------------------------------ */
+
+static void 
+open_file_cb (GtkAction *action, gpointer user_data)
 {
 	GtkWidget *chooser;
+	gint response;
 
+	g_return_if_fail (GTK_IS_SOURCE_BUFFER (user_data));
+	
 	chooser = gtk_file_chooser_dialog_new ("Open file...",
 					       NULL,
 					       GTK_FILE_CHOOSER_ACTION_OPEN,
@@ -412,20 +536,39 @@ open_file_cb (ViewsData *vd,
 					       GTK_STOCK_OPEN, GTK_RESPONSE_OK,
 					       NULL);
 
-	g_signal_connect (G_OBJECT (chooser), "response",
-			  G_CALLBACK (file_selected_cb), vd);
+	response = gtk_dialog_run (GTK_DIALOG (chooser));
+	if (response == GTK_RESPONSE_OK)
+	{
+		gchar *filename;
 
-	gtk_widget_show (chooser);
+		filename = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (chooser));
+		if (filename != NULL)
+		{
+			open_file (GTK_SOURCE_BUFFER (user_data), filename);
+			g_free (filename);
+		}
+	}
+	
+	gtk_widget_destroy (chooser);
 }
 
-/* Stolen from gedit */
+
+/* View UI callbacks ------------------------------------------------------------------ */
 
 static void
-update_cursor_position (GtkTextBuffer *buffer, ViewsData *vd)
+update_cursor_position (GtkTextBuffer *buffer, gpointer user_data)
 {
 	gchar *msg;
-	gint row, col, chars;
+	gint row, col, chars, tabwidth;
 	GtkTextIter iter, start;
+	GtkSourceView *view;
+	GtkLabel *pos_label;
+
+	g_return_if_fail (GTK_IS_SOURCE_VIEW (user_data));
+	
+	view = GTK_SOURCE_VIEW (user_data);
+	tabwidth = gtk_source_view_get_tabs_width (view);
+	pos_label = GTK_LABEL (g_object_get_data (G_OBJECT (view), "pos_label"));
 	
 	gtk_text_buffer_get_iter_at_mark (buffer,
 					  &iter,
@@ -437,12 +580,12 @@ update_cursor_position (GtkTextBuffer *buffer, ViewsData *vd)
 	start = iter;
 	gtk_text_iter_set_line_offset (&start, 0);
 	col = 0;
-
+	
 	while (!gtk_text_iter_equal (&start, &iter))
 	{
 		if (gtk_text_iter_get_char (&start) == '\t')
 		{
-			col += (vd->tab_stop - (col % vd->tab_stop));
+			col += (tabwidth - (col % tabwidth));
 		}
 		else
 			++col;
@@ -451,7 +594,7 @@ update_cursor_position (GtkTextBuffer *buffer, ViewsData *vd)
 	}
 	
 	msg = g_strdup_printf ("char: %d, line: %d, column: %d", chars, row, col);
-	gtk_label_set_text (GTK_LABEL (vd->pos_label), msg);
+	gtk_label_set_text (pos_label, msg);
       	g_free (msg);
 }
 
@@ -459,18 +602,20 @@ static void
 move_cursor_cb (GtkTextBuffer *buffer,
 		GtkTextIter   *cursoriter,
 		GtkTextMark   *mark,
-		gpointer       data)
+		gpointer       user_data)
 {
 	if (mark != gtk_text_buffer_get_insert (buffer))
 		return;
-	
-	update_cursor_position (buffer, data);
+
+	update_cursor_position (buffer, user_data);
 }
 
 static gboolean
-window_deleted_cb (GtkWidget *widget, GdkEvent *ev, ViewsData *vd)
+window_deleted_cb (GtkWidget *widget, GdkEvent *ev, gpointer user_data)
 {
-	if (g_list_nth_data (vd->windows, 0) == widget)
+	g_return_val_if_fail (GTK_IS_SOURCE_VIEW (user_data), TRUE);
+
+	if (g_list_nth_data (windows, 0) == widget)
 	{
 		/* Main (first in the list) window was closed, so exit
 		 * the application */
@@ -478,7 +623,20 @@ window_deleted_cb (GtkWidget *widget, GdkEvent *ev, ViewsData *vd)
 	}
 	else
 	{
-		vd->windows = g_list_remove (vd->windows, widget);
+		GtkSourceView *view = GTK_SOURCE_VIEW (user_data);
+		GtkSourceBuffer *buffer = GTK_SOURCE_BUFFER (
+			gtk_text_view_get_buffer (GTK_TEXT_VIEW (view)));
+		
+		windows = g_list_remove (windows, widget);
+
+		/* deinstall buffer motion signal handlers */
+		g_signal_handlers_disconnect_matched (buffer,
+						      G_SIGNAL_MATCH_DATA,
+						      0, /* signal_id */
+						      0, /* detail */
+						      NULL, /* closure */
+						      NULL, /* func */
+						      user_data);
 
 		/* we return FALSE since we want the window destroyed */
 		return FALSE;
@@ -568,110 +726,81 @@ button_press_cb (GtkWidget *widget, GdkEventButton *ev, gpointer user_data)
 	return FALSE;
 }
 
-static void
-page_cb (GtkSourcePrintJob *job, ViewsData *vd)
-{
-	g_print ("Printing %.2f%%    \r",
-		 100.0 * gtk_source_print_job_get_page (job) /
-		 gtk_source_print_job_get_page_count (job));
-}
 
-static void
-finished_cb (GtkSourcePrintJob *job, ViewsData *vd)
-{
-	GnomePrintJob *gjob;
-	GtkWidget *preview;
-
-	g_print ("\n");
-	gjob = gtk_source_print_job_get_print_job (job);
-	preview = gnome_print_job_preview_new (gjob, "test-widget print preview");
- 	g_object_unref (gjob); 
- 	g_object_unref (job);
-	
-	gtk_widget_show (preview);
-}
-
-static void
-print_preview_cb (ViewsData *vd,
-		  guint      callback_action,
-		  GtkWidget *widget)
-{
-	GtkSourcePrintJob *job;
-	GtkWidget *window;
-	GtkSourceView *view;
-	GtkTextIter start, end;
-	gchar *filename;
-	
-	window = g_list_nth_data (vd->windows, 0);
-	view = g_object_get_data (G_OBJECT (window), "view");
-
-	job = gtk_source_print_job_new (NULL);
-	gtk_source_print_job_setup_from_view (job, view);
-	gtk_source_print_job_set_wrap_mode (job, GTK_WRAP_CHAR);
-	gtk_source_print_job_set_highlight (job, TRUE);
-	gtk_source_print_job_set_print_numbers (job, 5);
-
-	gtk_source_print_job_set_header_format (job,
-						"Printed on %A",
-						NULL,
-						"%F",
-						TRUE);
-
-	filename = g_object_get_data (G_OBJECT (vd->buffer), "filename");
-	
-	gtk_source_print_job_set_footer_format (job,
-						"%T",
-						filename,
-						"Page %N/%Q",
-						TRUE);
-
-	gtk_source_print_job_set_print_header (job, TRUE);
-	gtk_source_print_job_set_print_footer (job, TRUE);
-	
-	gtk_text_buffer_get_bounds (GTK_TEXT_BUFFER (vd->buffer), &start, &end);
-	if (gtk_source_print_job_print_range_async (job, &start, &end))
-	{
-		g_signal_connect (job, "begin_page", (GCallback) page_cb, vd);
-		g_signal_connect (job, "finished", (GCallback) finished_cb, vd);
-	}
-	else
-	{
-		g_warning ("Async print failed");
-	}
-}
+/* Window creation functions -------------------------------------------------------- */
 
 static GtkWidget *
-create_window (ViewsData *vd)
+create_view_window (GtkSourceBuffer *buffer, GtkSourceView *from)
 {
-	GtkWidget *window, *sw, *view, *vbox;
+	GtkWidget *window, *sw, *view, *vbox, *pos_label, *menu;
 	PangoFontDescription *font_desc = NULL;
 	GdkPixbuf *pixbuf;
+	GtkAccelGroup *accel_group;
+	GtkActionGroup *action_group;
+	GtkUIManager *ui_manager;
+	GError *error;
+
+	g_return_val_if_fail (GTK_IS_SOURCE_BUFFER (buffer), NULL);
+	g_return_val_if_fail (from == NULL || GTK_IS_SOURCE_VIEW (from), NULL);
 	
 	/* window */
 	window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
 	gtk_container_set_border_width (GTK_CONTAINER (window), 0);
 	gtk_window_set_title (GTK_WINDOW (window), "GtkSourceView Demo");
-	g_signal_connect (window, "delete-event", (GCallback) window_deleted_cb, vd);
-	vd->windows = g_list_append (vd->windows, window);
+	windows = g_list_append (windows, window);
 
-	/* vbox */
+	/* view */
+	view = gtk_source_view_new_with_buffer (buffer);
+	
+	g_signal_connect (buffer, "mark_set", G_CALLBACK (move_cursor_cb), view);
+	g_signal_connect (buffer, "changed", G_CALLBACK (update_cursor_position), view);
+	g_signal_connect (view, "button-press-event", G_CALLBACK (button_press_cb), NULL);
+	g_signal_connect (window, "delete-event", (GCallback) window_deleted_cb, view);
+
+	/* action group and UI manager */
+	action_group = gtk_action_group_new ("ViewActions");
+	gtk_action_group_add_actions (action_group, view_action_entries,
+				      G_N_ELEMENTS (view_action_entries), view);
+	gtk_action_group_add_toggle_actions (action_group, toggle_entries,
+					     G_N_ELEMENTS (toggle_entries), view);
+	gtk_action_group_add_radio_actions (action_group, radio_entries,
+					    G_N_ELEMENTS (radio_entries),
+					    -1, G_CALLBACK (tabs_toggled_cb), view);
+	
+	ui_manager = gtk_ui_manager_new ();
+	gtk_ui_manager_insert_action_group (ui_manager, action_group, 0);
+	g_object_unref (action_group);
+
+	/* save a reference to the ui manager in the window for later use */
+	g_object_set_data_full (G_OBJECT (window), "ui_manager",
+				ui_manager, (GDestroyNotify) g_object_unref);
+	
+	accel_group = gtk_ui_manager_get_accel_group (ui_manager);
+	gtk_window_add_accel_group (GTK_WINDOW (window), accel_group);
+
+	error = NULL;
+	if (!gtk_ui_manager_add_ui_from_string (ui_manager, view_ui_description, -1, &error))
+	{
+		g_message ("building view ui failed: %s", error->message);
+		g_error_free (error);
+		exit (1);
+	}
+
+	/* misc widgets */
 	vbox = gtk_vbox_new (0, FALSE);
-	gtk_container_add (GTK_CONTAINER (window), vbox);
-	g_object_set_data (G_OBJECT (window), "vbox", vbox);
-	gtk_widget_show (vbox);
-
-	/* scrolled window */
 	sw = gtk_scrolled_window_new (NULL, NULL);
-	gtk_box_pack_end (GTK_BOX (vbox), sw, TRUE, TRUE, 0);
 	gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (sw),
                                              GTK_SHADOW_IN);
-	gtk_widget_show (sw);
-	
-	/* view */
-	view = gtk_source_view_new_with_buffer (vd->buffer);
-	g_object_set_data (G_OBJECT (window), "view", view);
+	pos_label = gtk_label_new ("Position");
+	g_object_set_data (G_OBJECT (view), "pos_label", pos_label);
+	menu = gtk_ui_manager_get_widget (ui_manager, "/MainMenu");
+
+	/* layout widgets */
+	gtk_container_add (GTK_CONTAINER (window), vbox);
+	gtk_box_pack_start (GTK_BOX (vbox), menu, FALSE, FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (vbox), sw, TRUE, TRUE, 0);
 	gtk_container_add (GTK_CONTAINER (sw), view);
-	gtk_widget_show (view);
+	gtk_box_pack_start (GTK_BOX (vbox), pos_label, FALSE, FALSE, 0);
 
 	/* setup view */
 	font_desc = pango_font_description_from_string ("monospace 10");
@@ -680,18 +809,42 @@ create_window (ViewsData *vd)
 		gtk_widget_modify_font (view, font_desc);
 		pango_font_description_free (font_desc);
 	}
-	
-	g_object_set (G_OBJECT (view), 
-		      "tabs_width", vd->tab_stop, 
-		      "show_line_numbers", vd->show_numbers,
-		      "show_line_markers", vd->show_markers,
-		      "show_margin", vd->show_margin,
-		      "auto_indent", vd->auto_indent,
-		      "insert_spaces_instead_of_tabs", vd->insert_spaces,
-		      NULL);
 
-	g_signal_connect (view, "button-press-event", (GCallback) button_press_cb, NULL);
-	
+	/* change view attributes to match those of from */
+	if (from)
+	{
+		gchar *tmp;
+		GtkAction *action;
+
+		action = gtk_action_group_get_action (action_group, "ShowNumbers");
+		gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action),
+					      gtk_source_view_get_show_line_numbers (from));
+
+		action = gtk_action_group_get_action (action_group, "ShowMarkers");
+		gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action),
+					      gtk_source_view_get_show_line_markers (from));
+		
+		action = gtk_action_group_get_action (action_group, "ShowMargin");
+		gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action),
+					      gtk_source_view_get_show_margin (from));
+		
+		action = gtk_action_group_get_action (action_group, "AutoIndent");
+		gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action),
+					      gtk_source_view_get_auto_indent (from));
+		
+		action = gtk_action_group_get_action (action_group, "InsertSpaces");
+		gtk_toggle_action_set_active (
+			GTK_TOGGLE_ACTION (action),
+			gtk_source_view_get_insert_spaces_instead_of_tabs (from));
+		
+
+		tmp = g_strdup_printf ("TabsWidth%d", gtk_source_view_get_tabs_width (from));
+		action = gtk_action_group_get_action (action_group, tmp);
+		if (action)
+			gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), TRUE);
+		g_free (tmp);
+	}
+
 	/* add marker pixbufs */
 	pixbuf = gdk_pixbuf_new_from_file ("/usr/share/pixmaps/apple-green.png", NULL);
 	gtk_source_view_set_marker_pixbuf (GTK_SOURCE_VIEW (view), MARKER_TYPE_1, pixbuf);
@@ -701,86 +854,68 @@ create_window (ViewsData *vd)
 	gtk_source_view_set_marker_pixbuf (GTK_SOURCE_VIEW (view), MARKER_TYPE_2, pixbuf);
 	g_object_unref (pixbuf);
 	
-	return window;
-}
+	gtk_widget_show_all (vbox);
 
-static void
-new_view_cb (ViewsData *vd, guint callback_action, GtkWidget *widget)
-{
-	
-	GtkWidget *window;
-	
-	window = create_window (vd);
-	gtk_window_set_default_size (GTK_WINDOW (window), 400, 400);
-	gtk_widget_show (window);
+	return window;
 }
 
 static GtkWidget *
-create_main_window (ViewsData *vd)
+create_main_window (GtkSourceBuffer *buffer)
 {
 	GtkWidget *window;
-	GtkAccelGroup *accel_group;
-	GtkWidget *vbox;
-	GtkWidget *menu;
-	GtkWidget *radio_item;
-	gchar *radio_path;
+	GtkAction *action;
+	GtkUIManager *ui_manager;
+	GtkActionGroup *action_group;
+	GList *groups;
+	GError *error;
 	
-	window = create_window (vd);
-	vbox = g_object_get_data (G_OBJECT (window), "vbox");
+	window = create_view_window (buffer, NULL);
+	ui_manager = g_object_get_data (G_OBJECT (window), "ui_manager");
+	
+	/* buffer action group */
+	action_group = gtk_action_group_new ("BufferActions");
+	gtk_action_group_add_actions (action_group, buffer_action_entries,
+				      G_N_ELEMENTS (buffer_action_entries), buffer);
+	gtk_ui_manager_insert_action_group (ui_manager, action_group, 1);
+	g_object_unref (action_group);
+	
+	/* merge buffer ui */
+	error = NULL;
+	if (!gtk_ui_manager_add_ui_from_string (ui_manager, buffer_ui_description, -1, &error))
+	{
+		g_message ("building buffer ui failed: %s", error->message);
+		g_error_free (error);
+		exit (1);
+	}
 
-	/* item factory/menu */
-	accel_group = gtk_accel_group_new ();
-	vd->item_factory = gtk_item_factory_new (GTK_TYPE_MENU_BAR, "<main>", accel_group);
-	gtk_window_add_accel_group (GTK_WINDOW (window), accel_group);
-	g_object_unref (accel_group);
-	gtk_item_factory_create_items (vd->item_factory,
-				       G_N_ELEMENTS (menu_items),
-				       menu_items,
-				       vd);
-	menu = gtk_item_factory_get_widget (vd->item_factory, "<main>");
-	gtk_box_pack_start (GTK_BOX (vbox), menu, FALSE, FALSE, 0);
-	gtk_widget_show (menu);
-	
 	/* preselect menu checkitems */
-	gtk_check_menu_item_set_active (
-		GTK_CHECK_MENU_ITEM (gtk_item_factory_get_item (vd->item_factory,
-								"/View/Show Line Numbers")),
-		vd->show_numbers);
-	gtk_check_menu_item_set_active (
-		GTK_CHECK_MENU_ITEM (gtk_item_factory_get_item (vd->item_factory,
-								"/View/Show Markers")),
-		vd->show_markers);
-	gtk_check_menu_item_set_active (
-		GTK_CHECK_MENU_ITEM (gtk_item_factory_get_item (vd->item_factory,
-								"/View/Show Margin")),
-		vd->show_margin);
+	groups = gtk_ui_manager_get_action_groups (ui_manager);
+	/* retrieve the view action group at position 0 in the list */
+	action_group = g_list_nth_data (groups, 0);
 
-	gtk_check_menu_item_set_active (
-		GTK_CHECK_MENU_ITEM (gtk_item_factory_get_item (vd->item_factory,
-								"/View/Enable Auto Indent")),
-		vd->auto_indent);
-	gtk_check_menu_item_set_active (
-		GTK_CHECK_MENU_ITEM (gtk_item_factory_get_item (vd->item_factory,
-								"/View/Insert Spaces Instead of Tabs")),
-		vd->insert_spaces);
+	action = gtk_action_group_get_action (action_group, "ShowNumbers");
+	gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), TRUE);
 
-	radio_path = g_strdup_printf ("/View/Tabs Width/%d", vd->tab_stop);
-	radio_item = gtk_item_factory_get_item (vd->item_factory, radio_path);
-	if (radio_item)
-		gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM (radio_item), TRUE);
-	g_free (radio_path);
-	
-	/* cursor position label */
-	vd->pos_label = gtk_label_new ("label");
-	gtk_box_pack_start (GTK_BOX (vbox), vd->pos_label, FALSE, FALSE, 0);
-	g_signal_connect (vd->buffer, "mark_set",
-			  (GCallback) move_cursor_cb, vd);
-	g_signal_connect (vd->buffer, "changed",
-			  (GCallback) update_cursor_position, vd);
-	gtk_widget_show (vd->pos_label);
+	action = gtk_action_group_get_action (action_group, "ShowMarkers");
+	gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), TRUE);
+
+	action = gtk_action_group_get_action (action_group, "ShowMargin");
+	gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), TRUE);
+
+	action = gtk_action_group_get_action (action_group, "AutoIndent");
+	gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), TRUE);
+
+	action = gtk_action_group_get_action (action_group, "InsertSpaces");
+	gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), FALSE);
+
+	action = gtk_action_group_get_action (action_group, "TabsWidth8");
+	gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), TRUE);
 	
 	return window;
 }
+
+
+/* Buffer creation -------------------------------------------------------------- */
 
 static GtkSourceBuffer *
 create_source_buffer (GtkSourceLanguagesManager *manager)
@@ -795,38 +930,32 @@ create_source_buffer (GtkSourceLanguagesManager *manager)
 	return buffer;
 }
 
+
+/* Program entry point ------------------------------------------------------------ */
+
 int
 main (int argc, char *argv[])
 {
 	GtkWidget *window;
 	GtkSourceLanguagesManager *lm;
-	ViewsData *vd;
+	GtkSourceBuffer *buffer;
 	
 	/* initialization */
 	gtk_init (&argc, &argv);
 	gnome_vfs_init ();
 	
+	/* create buffer */
 	lm = gtk_source_languages_manager_new ();
-	
-	/* setup... */
-	vd = g_new0 (ViewsData, 1);
-	vd->buffer = create_source_buffer (lm);
+	buffer = create_source_buffer (lm);
 	g_object_unref (lm);
-	vd->windows = NULL;
 
-	vd->show_numbers = TRUE;
-	vd->show_markers = TRUE;
-	vd->show_margin = TRUE;
-	vd->tab_stop = 8;
-	vd->auto_indent = TRUE;
-	vd->insert_spaces = FALSE;
-
-	window = create_main_window (vd);
 	if (argc > 1)
-		open_file (vd->buffer, argv [1]);
+		open_file (buffer, argv [1]);
 	else
-		open_file (vd->buffer, "../gtksourceview/gtksourcebuffer.c");
+		open_file (buffer, "../gtksourceview/gtksourcebuffer.c");
 
+	/* create first window */
+	window = create_main_window (buffer);
 	gtk_window_set_default_size (GTK_WINDOW (window), 500, 500);
 	gtk_widget_show (window);
 
@@ -834,11 +963,9 @@ main (int argc, char *argv[])
 	gtk_main ();
 
 	/* cleanup */
-	g_object_unref (vd->buffer);
-	g_object_unref (vd->item_factory);
-	g_list_foreach (vd->windows, (GFunc) gtk_widget_destroy, NULL);
-	g_list_free (vd->windows);
-	g_free (vd);
+	g_list_foreach (windows, (GFunc) gtk_widget_destroy, NULL);
+	g_list_free (windows);
+	g_object_unref (buffer);
 
 	gnome_vfs_shutdown ();
 	
