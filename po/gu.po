@@ -1,24 +1,21 @@
 # translation of gtksourceview.HEAD.gu.po to Gujarati
-# Copyright (C) 2004 Free Software Foundation, Inc.
+# Copyright (C) 2004, 2005 Free Software Foundation, Inc.
 # MagNet <magnet@magnet-i.com>, 2004.
-# Ankit Patel <ankit@redhat.com>, 2004.
+# Ankit Patel <ankit@redhat.com>, 2004, 2005.
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview.HEAD.gu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-12 00:08+0100\n"
-"PO-Revision-Date: 2004-10-26 17:19+0530\n"
+"POT-Creation-Date: 2005-02-22 07:41+0100\n"
+"PO-Revision-Date: 2005-02-25 11:28+0530\n"
 "Last-Translator: Ankit Patel <ankit@redhat.com>\n"
-"Language-Team: Gujarati\n"
+"Language-Team: Gujarati <gu@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "<magnet@magnet-i.com>\n"
-"X-Generator: KBabel 1.3.1\n"
-"Plural-Forms: Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"\n"
-"\n"
-"\n"
+"X-Generator: KBabel 1.9.1\n"
+"Plural-Forms: Plural-Forms: Plural-Forms: nplurals=2; plural=(n!=1);\n\n"
 
 #: gtksourceview/gtksourcebuffer.c:279
 msgid "Escape Character"
@@ -139,8 +136,8 @@ msgid "Font Description"
 msgstr "ફોન્ટ વર્ણન"
 
 #: gtksourceview/gtksourceprintjob.c:313
-msgid "Font description name to use for the document text"
-msgstr "દસ્તાવેજના લખાણ માટે વાપરવાનું ફોન્ટના વર્ણનનું નામ"
+msgid "Font to use for the document text (e.g. \"Monospace 10\")"
+msgstr "દસ્તાવેજ લખાણ માટે વાપરવાના ફોન્ટ (ઉ.દા. \"મોનોસ્પેસ ૧૦\")"
 
 #: gtksourceview/gtksourceprintjob.c:320 gtksourceview/gtksourceprintjob.c:328
 msgid "Numbers Font"
@@ -191,27 +188,27 @@ msgid "Header and Footer Font Description"
 msgstr "હેડર અને ફૂટર ફોન્ટનું વર્ણન"
 
 #: gtksourceview/gtksourceprintjob.c:369
-msgid "Font description name to use for the header and footer"
-msgstr "હેડર અને ફૂટર માટે વપરાતા ફોન્ટના વર્ણનનું નામ"
+msgid "Font to use for headers and footers (e.g. \"Monospace 10\")"
+msgstr "હેડરો અને ફુટરો માટે વાપરવાના ફોન્ટ (ઉ.દા. \"મોનોસ્પોસ ૧૦\")"
 
-#: gtksourceview/gtksourcestylescheme.c:237
+#: gtksourceview/gtksourcestylescheme.c:262
 msgid "Base-N Integer"
 msgstr "આધાર-N પૂર્ણાંક"
 
-#: gtksourceview/gtksourcestylescheme.c:242
+#: gtksourceview/gtksourcestylescheme.c:267
 msgid "Character"
 msgstr "અક્ષર"
 
 # libgnome-desktop/gnome-ditem-edit.c:626
 # libgnome-desktop/gnome-ditem-edit.c:736
-#: gtksourceview/gtksourcestylescheme.c:247
+#: gtksourceview/gtksourcestylescheme.c:272
 #: gtksourceview/language-specs/latex.lang.h:1
 #: gtksourceview/language-specs/po.lang.h:1
 msgid "Comment"
 msgstr "ટિપ્પણી"
 
 #. $this = (datatype)
-#: gtksourceview/gtksourcestylescheme.c:252
+#: gtksourceview/gtksourcestylescheme.c:277
 #: gtksourceview/language-specs/php.lang.h:14
 msgid "Data Type"
 msgstr "માહિતિ પ્રકાર"
@@ -219,26 +216,27 @@ msgstr "માહિતિ પ્રકાર"
 #.
 #. CSS functions, such as rgb(), clip(), or lang().
 #.
-#: gtksourceview/gtksourcestylescheme.c:257
+#: gtksourceview/gtksourcestylescheme.c:282
 #: gtksourceview/language-specs/ada.lang.h:3
 #: gtksourceview/language-specs/css.lang.h:17
 msgid "Function"
 msgstr "કાર્ય"
 
-#: gtksourceview/gtksourcestylescheme.c:262
+#: gtksourceview/gtksourcestylescheme.c:287
 #: gtksourceview/language-specs/c.lang.h:6
 #: gtksourceview/language-specs/cpp.lang.h:6
 #: gtksourceview/language-specs/fortran.lang.h:1
+#: gtksourceview/language-specs/python.lang.h:2
 #: gtksourceview/language-specs/haskell.lang.h:3
 #: gtksourceview/language-specs/nemerle.lang.h:6
 msgid "Decimal"
 msgstr "દશાંશ"
 
-#: gtksourceview/gtksourcestylescheme.c:267
+#: gtksourceview/gtksourcestylescheme.c:292
 msgid "Floating Point"
 msgstr "અપૂર્ણાંક બિંદુ"
 
-#: gtksourceview/gtksourcestylescheme.c:272
+#: gtksourceview/gtksourcestylescheme.c:297
 #: gtksourceview/language-specs/latex.lang.h:3
 #: gtksourceview/language-specs/po.lang.h:3
 #: gtksourceview/language-specs/texinfo.lang.h:8
@@ -248,12 +246,12 @@ msgstr "અપૂર્ણાંક બિંદુ"
 msgid "Keyword"
 msgstr "મુખ્ય શબ્દ"
 
-#: gtksourceview/gtksourcestylescheme.c:277
+#: gtksourceview/gtksourcestylescheme.c:302
 msgid "Preprocessor"
 msgstr "પ્રીપ્રોસેસર"
 
 # src/gconf-key-editor.c:94
-#: gtksourceview/gtksourcestylescheme.c:282
+#: gtksourceview/gtksourcestylescheme.c:307
 #: gtksourceview/language-specs/ada.lang.h:9
 #: gtksourceview/language-specs/c.lang.h:15
 #: gtksourceview/language-specs/cpp.lang.h:15
@@ -268,7 +266,7 @@ msgstr "પ્રીપ્રોસેસર"
 #: gtksourceview/language-specs/pascal.lang.h:18
 #: gtksourceview/language-specs/perl.lang.h:8
 #: gtksourceview/language-specs/po.lang.h:6
-#: gtksourceview/language-specs/python.lang.h:10
+#: gtksourceview/language-specs/python.lang.h:14
 #: gtksourceview/language-specs/ruby.lang.h:18
 #: gtksourceview/language-specs/sh.lang.h:13
 #: gtksourceview/language-specs/xml.lang.h:7
@@ -280,7 +278,7 @@ msgstr "પ્રીપ્રોસેસર"
 msgid "String"
 msgstr "શબ્દમાળા"
 
-#: gtksourceview/gtksourcestylescheme.c:287
+#: gtksourceview/gtksourcestylescheme.c:312
 msgid "Specials"
 msgstr "વિશેષ"
 
@@ -296,7 +294,7 @@ msgstr "વિશેષ"
 #. Submitted by Scott Martin (scott@coffeeblack.org)
 #.
 #. FIXME: find the correct mimetype
-#: gtksourceview/gtksourcestylescheme.c:294
+#: gtksourceview/gtksourcestylescheme.c:319
 #: gtksourceview/language-specs/css.lang.h:46
 #: gtksourceview/language-specs/desktop.lang.h:10
 #: gtksourceview/language-specs/diff.lang.h:7
@@ -307,15 +305,15 @@ msgstr "વિશેષ"
 msgid "Others"
 msgstr "બીજા"
 
-#: gtksourceview/gtksourcestylescheme.c:299
+#: gtksourceview/gtksourcestylescheme.c:324
 msgid "Others 2"
 msgstr "બીજા ૨"
 
-#: gtksourceview/gtksourcestylescheme.c:304
+#: gtksourceview/gtksourcestylescheme.c:329
 msgid "Others 3"
 msgstr "બીજા ૩"
 
-#: gtksourceview/gtksourcestylescheme.c:341
+#: gtksourceview/gtksourcestylescheme.c:366
 msgid "Default"
 msgstr "મૂળભૂત"
 
@@ -395,12 +393,11 @@ msgstr "લીટીની શરૂઆત/અંતમાં જતા પહ�
 
 #: gtksourceview/gtksourceview.c:276
 msgid "Highlight current line"
-msgstr ""
+msgstr "વર્તમાન લીટી પ્રકાશિત કરો"
 
 #: gtksourceview/gtksourceview.c:277
-#, fuzzy
 msgid "Whether to highlight the current line"
-msgstr "કે પછી અનામત મેમરીમાં વાક્યરચનાને પ્રકાશિત કરો"
+msgstr "શું વર્તમાન લીટી પ્રકાશિત કરવી"
 
 #: gtksourceview/language-specs/ada.lang.h:1
 msgid "Ada"
@@ -424,7 +421,7 @@ msgstr "અચલ અક્ષર"
 #: gtksourceview/language-specs/javascript.lang.h:11
 #: gtksourceview/language-specs/lua.lang.h:3
 #: gtksourceview/language-specs/perl.lang.h:2
-#: gtksourceview/language-specs/python.lang.h:3
+#: gtksourceview/language-specs/python.lang.h:6
 #: gtksourceview/language-specs/ruby.lang.h:8
 #: gtksourceview/language-specs/verilog.lang.h:6
 #: gtksourceview/language-specs/haskell.lang.h:9
@@ -447,7 +444,7 @@ msgstr "મુખ્ય શબ્દો"
 #: gtksourceview/language-specs/lua.lang.h:4
 #: gtksourceview/language-specs/pascal.lang.h:11
 #: gtksourceview/language-specs/perl.lang.h:3
-#: gtksourceview/language-specs/python.lang.h:4
+#: gtksourceview/language-specs/python.lang.h:7
 #: gtksourceview/language-specs/ruby.lang.h:9
 #: gtksourceview/language-specs/sh.lang.h:5
 #: gtksourceview/language-specs/sql.lang.h:11
@@ -515,7 +512,7 @@ msgstr "પ્રકારો"
 #: gtksourceview/language-specs/c.lang.h:1
 #: gtksourceview/language-specs/cpp.lang.h:1
 msgid "'#if 0' Comment"
-msgstr "#if 0' ટિપ્પણી"
+msgstr "'#if 0' ટિપ્પણી"
 
 #: gtksourceview/language-specs/c.lang.h:2
 #: gtksourceview/language-specs/cpp.lang.h:2
@@ -547,6 +544,7 @@ msgstr "સામાન્ય મેક્રો"
 #: gtksourceview/language-specs/c.lang.h:7
 #: gtksourceview/language-specs/cpp.lang.h:7
 #: gtksourceview/language-specs/fortran.lang.h:2
+#: gtksourceview/language-specs/python.lang.h:3
 #: gtksourceview/language-specs/haskell.lang.h:4
 #: gtksourceview/language-specs/nemerle.lang.h:7
 #: gtksourceview/language-specs/R.lang.h:4
@@ -558,6 +556,7 @@ msgstr "અપૂર્ણાંક સંખ્યા"
 #: gtksourceview/language-specs/cpp.lang.h:8
 #: gtksourceview/language-specs/fortran.lang.h:4
 #: gtksourceview/language-specs/pascal.lang.h:10
+#: gtksourceview/language-specs/python.lang.h:5
 #: gtksourceview/language-specs/haskell.lang.h:6
 #: gtksourceview/language-specs/nemerle.lang.h:8
 msgid "Hex Number"
@@ -573,6 +572,7 @@ msgstr "અંક/પ્રાગ્મા"
 #: gtksourceview/language-specs/c.lang.h:12
 #: gtksourceview/language-specs/cpp.lang.h:12
 #: gtksourceview/language-specs/fortran.lang.h:9
+#: gtksourceview/language-specs/python.lang.h:11
 #: gtksourceview/language-specs/verilog.lang.h:8
 #: gtksourceview/language-specs/haskell.lang.h:11
 #: gtksourceview/language-specs/nemerle.lang.h:12
@@ -609,7 +609,7 @@ msgstr "પહેલાંનું"
 #: gtksourceview/language-specs/java.lang.h:12
 #: gtksourceview/language-specs/javascript.lang.h:34
 #: gtksourceview/language-specs/lua.lang.h:11
-#: gtksourceview/language-specs/python.lang.h:11
+#: gtksourceview/language-specs/python.lang.h:15
 #: gtksourceview/language-specs/ruby.lang.h:19
 #: gtksourceview/language-specs/sh.lang.h:14
 #: gtksourceview/language-specs/vbnet.lang.h:8
@@ -835,7 +835,7 @@ msgstr "વિભાગીય"
 
 #: gtksourceview/language-specs/ini.lang.h:1
 msgid ".ini"
-msgstr ""
+msgstr ".ini"
 
 #: gtksourceview/language-specs/ini.lang.h:3
 #: gtksourceview/language-specs/verilog.lang.h:3
@@ -845,21 +845,18 @@ msgstr "દશાંકી સંખ્યા"
 #: gtksourceview/language-specs/ini.lang.h:4
 #: gtksourceview/language-specs/R.lang.h:3
 #: gtksourceview/language-specs/gtkrc.lang.h:2
-#, fuzzy
 msgid "Double Quote String"
-msgstr "અવતરણ ચિહ્નવાળી શબ્દમાળા"
+msgstr "બમણી અવતરિત શબ્દમાળા"
 
 #: gtksourceview/language-specs/ini.lang.h:6
-#, fuzzy
 msgid "Integer"
-msgstr "આધાર-N પૂર્ણાંક"
+msgstr "પૂર્ણાંક"
 
 #: gtksourceview/language-specs/ini.lang.h:11
 #: gtksourceview/language-specs/R.lang.h:11
 #: gtksourceview/language-specs/gtkrc.lang.h:10
-#, fuzzy
 msgid "Single Quote String"
-msgstr "એક ક્વોટવાળી શબ્દમાળા"
+msgstr "એકલી અવતરિત શબ્દમાળા"
 
 #. $variable, $$dynamic-variable and even $$$more
 #: gtksourceview/language-specs/ini.lang.h:12
@@ -964,7 +961,7 @@ msgstr "ઓબ્જેક્ટો"
 #: gtksourceview/language-specs/javascript.lang.h:32
 #: gtksourceview/language-specs/lua.lang.h:9
 #: gtksourceview/language-specs/perl.lang.h:7
-#: gtksourceview/language-specs/python.lang.h:9
+#: gtksourceview/language-specs/python.lang.h:13
 #: gtksourceview/language-specs/ruby.lang.h:17
 #: gtksourceview/language-specs/sh.lang.h:11
 #: gtksourceview/language-specs/tcl.lang.h:3
@@ -998,7 +995,7 @@ msgid "Most Used Commands"
 msgstr "મોટે ભાગે વપરાતા આદેશો"
 
 #: gtksourceview/language-specs/lua.lang.h:2
-#: gtksourceview/language-specs/python.lang.h:2
+#: gtksourceview/language-specs/python.lang.h:4
 #: gtksourceview/language-specs/sh.lang.h:4
 msgid "Functions"
 msgstr "વિધેયો"
@@ -1012,13 +1009,13 @@ msgid "Lua"
 msgstr "લ્યુઆ"
 
 #: gtksourceview/language-specs/lua.lang.h:7
-#: gtksourceview/language-specs/python.lang.h:6
+#: gtksourceview/language-specs/python.lang.h:9
 #: gtksourceview/language-specs/sh.lang.h:6
 msgid "Multiline String"
 msgstr "ઘણી લીટીવાળી શબ્દમાળા"
 
 #: gtksourceview/language-specs/lua.lang.h:8
-#: gtksourceview/language-specs/python.lang.h:7
+#: gtksourceview/language-specs/python.lang.h:10
 #: gtksourceview/language-specs/sh.lang.h:7
 msgid "Multiline String 2"
 msgstr "ઘણી લીટીવાળી શબ્દમાળા ૨"
@@ -1072,9 +1069,8 @@ msgid "Preprocessor Defines"
 msgstr "પ્રીપ્રોસેસરની વ્યાખ્યાયિત કરે છે"
 
 #: gtksourceview/language-specs/pascal.lang.h:19
-#, fuzzy
 msgid "Type, Class and Object Keywords"
-msgstr "વર્ગ અને ઓબ્જેક્ટ મુખ્ય શબ્દો લખો"
+msgstr "પ્રકાર, વર્ગ અને ઓબ્જેક્ટ મુખ્ય શબ્દો"
 
 #: gtksourceview/language-specs/perl.lang.h:1
 msgid "Function Call"
@@ -1086,7 +1082,7 @@ msgstr "પદ્ધતિ બોલાવો"
 
 #: gtksourceview/language-specs/perl.lang.h:5
 msgid "POD"
-msgstr ""
+msgstr "POD"
 
 #: gtksourceview/language-specs/perl.lang.h:6
 msgid "Perl"
@@ -1171,11 +1167,11 @@ msgstr "gettext રુપાંતર"
 msgid "Builtins"
 msgstr "સમાવિષ્ટ"
 
-#: gtksourceview/language-specs/python.lang.h:5
+#: gtksourceview/language-specs/python.lang.h:8
 msgid "Module Handler"
 msgstr "મોડ્યુલ સંચાલકો"
 
-#: gtksourceview/language-specs/python.lang.h:8
+#: gtksourceview/language-specs/python.lang.h:12
 msgid "Python"
 msgstr "Python"
 
@@ -1232,37 +1228,32 @@ msgid "Ruby"
 msgstr "રુબી"
 
 #: gtksourceview/language-specs/sh.lang.h:2
-#, fuzzy
 msgid "Built-in Commands"
-msgstr "આંતરિક વિધેયો"
+msgstr "આંતરિક આદેશો"
 
 #: gtksourceview/language-specs/sh.lang.h:3
-#, fuzzy
 msgid "Common Commands"
-msgstr "મોટે ભાગે વપરાતા આદેશો"
+msgstr "સામાન્ય આદેશો"
 
 #: gtksourceview/language-specs/sh.lang.h:10
-#, fuzzy
 msgid "Redirections"
-msgstr "વ્યાખ્યાઓ"
+msgstr "પુનઃદિશાઓ"
 
 #: gtksourceview/language-specs/sh.lang.h:12
 msgid "Self"
 msgstr "સ્વયં"
 
 #: gtksourceview/language-specs/sh.lang.h:15
-#, fuzzy
 msgid "Variable1"
-msgstr "ચલ"
+msgstr "ચલ૧"
 
 #: gtksourceview/language-specs/sh.lang.h:16
-#, fuzzy
 msgid "Variable2"
-msgstr "ચલ"
+msgstr "ચલ૨"
 
 #: gtksourceview/language-specs/sh.lang.h:17
 msgid "sh"
-msgstr ""
+msgstr "sh"
 
 #: gtksourceview/language-specs/sql.lang.h:1
 msgid "ANSI Datatypes"
@@ -1456,84 +1447,70 @@ msgid "VB.NET"
 msgstr "VB.NET"
 
 #: gtksourceview/language-specs/nemerle.lang.h:4
-#, fuzzy
 msgid "Core Keywords"
-msgstr "પ્રવાહ મુખ્ય શબ્દો"
+msgstr "મૂળ મુખ્ય શબ્દો"
 
 #: gtksourceview/language-specs/nemerle.lang.h:5
-#, fuzzy
 msgid "Core Types"
-msgstr "પ્રકારો"
+msgstr "મૂળ પ્રકારો"
 
 #: gtksourceview/language-specs/nemerle.lang.h:9
 msgid "Keywords Defined by Macros"
-msgstr ""
+msgstr "મેક્રો દ્વારા વ્યાખ્યાયિત મુખ્ય શબ્દો"
 
 #: gtksourceview/language-specs/nemerle.lang.h:11
-#, fuzzy
 msgid "Nemerle"
 msgstr "અંક"
 
 #: gtksourceview/language-specs/tcl.lang.h:6
 msgid "Tcl"
-msgstr ""
+msgstr "Tcl"
 
 #: gtksourceview/language-specs/vhdl.lang.h:7
-#, fuzzy
 msgid "True and False"
-msgstr "ખરુ અને ખોટું"
+msgstr "ખરું અને ખોટું"
 
 #: gtksourceview/language-specs/vhdl.lang.h:8
-#, fuzzy
 msgid "Type"
-msgstr "પ્રકારો"
+msgstr "પ્રકાર"
 
 #: gtksourceview/language-specs/vhdl.lang.h:9
 msgid "VHDL"
-msgstr ""
+msgstr "VHDL"
 
 #: gtksourceview/language-specs/R.lang.h:1
-#, fuzzy
-msgid "Assign operator"
-msgstr "એરૅ કારકો"
+msgid "Assignment Operator"
+msgstr "સોંપાયેલ કારક"
 
 #: gtksourceview/language-specs/R.lang.h:2
-#, fuzzy
 msgid "Delimiter"
-msgstr "અમર્યાદિત"
+msgstr "અંત કરનાર"
 
 #: gtksourceview/language-specs/R.lang.h:5
-#, fuzzy
 msgid "Integer Number"
-msgstr "દ્વિઅંકી સંખ્યા"
+msgstr "પૂર્ણાંક સંખ્યા"
 
 #: gtksourceview/language-specs/R.lang.h:8
-#, fuzzy
-msgid "Reserved class"
-msgstr "ANSI ઉલટા કરાયેલ શબ્દો"
+msgid "Reserved Class"
+msgstr "ઊલટો વર્ગ"
 
 #: gtksourceview/language-specs/R.lang.h:9
-#, fuzzy
-msgid "Reserved constant"
-msgstr "બનેલા સમાવિષ્ટ"
+msgid "Reserved Constant"
+msgstr "આરક્ષિત અચળ"
 
 #: gtksourceview/language-specs/gtkrc.lang.h:3
 msgid "GtkRC"
-msgstr ""
+msgstr "GtkRC"
 
 #: gtksourceview/language-specs/gtkrc.lang.h:4
 msgid "Include Directive"
-msgstr ""
+msgstr "ડાયરેક્ટિવ સમાવો"
 
 #: gtksourceview/language-specs/gtkrc.lang.h:5
-#, fuzzy
 msgid "Keysymbol"
 msgstr "કી સંજ્ઞાઓ"
 
 #: gtksourceview/language-specs/gtkrc.lang.h:11
-#, fuzzy
 msgid "State"
-msgstr "ગેટો"
+msgstr "સ્થિતિઓ"
 
-#~ msgid "Plain Old Documentation"
-#~ msgstr "સાદુ જૂનું દસ્તાવેજીકરણ"
