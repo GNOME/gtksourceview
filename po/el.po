@@ -1,3 +1,4 @@
+# translation of el.po to 
 # translation of el.po to
 # translation of el.po to Greek
 # Greek translation of gtksourcevie
@@ -7,18 +8,19 @@
 # Nikos 11Aug2003 fixes
 # Nikos Charonitakis <frolix68@yahoo.gr>, 2003.
 # Kostas Papadimas <pkst@gnome.org>, 2003, 2004, 2005.
+# Nikos Charonitakis <charosn@her.forthnet.gr>, 2005.
 msgid ""
 msgstr ""
 "Project-Id-Version: el\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-02-03 18:35+0200\n"
-"PO-Revision-Date: 2005-02-03 18:36+0200\n"
-"Last-Translator: Kostas Papadimas <pkst@gnome.org>\n"
-"Language-Team: Greek <nls@tux.hellug.gr>\n"
+"POT-Creation-Date: 2005-02-24 15:43+0200\n"
+"PO-Revision-Date: 2005-02-24 15:52+0200\n"
+"Last-Translator: Nikos Charonitakis <charosn@her.forthnet.gr>\n"
+"Language-Team:  <team@gnome.gr>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.3.1\n"
+"X-Generator: KBabel 1.9.1\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
 #: gtksourceview/gtksourcebuffer.c:279
@@ -71,7 +73,7 @@ msgstr "Κατάλογοι ορισμάτων γλώσσας"
 msgid ""
 "List of directories where the language specification files (.lang) are "
 "located"
-msgstr "Μια λίστα από καταλόγους όπου βρίσκοντια τα αρχεία ορισμάτων γλώσσας (.lang)"
+msgstr "Λίστα από καταλόγους όπου βρίσκονται τα αρχεία ορισμάτων γλώσσας (.lang)"
 
 #: gtksourceview/gtksourceprintjob.c:264
 msgid "Configuration"
@@ -89,8 +91,8 @@ msgstr "Πηγαίος Buffer"
 msgid "GtkSourceBuffer object to print"
 msgstr "Αντικείμενο GtkSourceBuffer για εκτύπωση"
 
-#: gtksourceview/gtksourceprintjob.c:279 gtksourceview/gtksourceview.c:223
-#: gtksourceview/gtksourceview.c:224
+#: gtksourceview/gtksourceprintjob.c:279 gtksourceview/gtksourceview.c:222
+#: gtksourceview/gtksourceview.c:223
 msgid "Tabs Width"
 msgstr "Πλάτος Στηλών"
 
@@ -120,7 +122,7 @@ msgstr "Όνομα γραμματοσειράς του Gnome για χρήση �
 
 #: gtksourceview/gtksourceprintjob.c:312
 msgid "Font Description"
-msgstr "Περιγραφή γραμματοσειράς"
+msgstr "Περιγραφή Γραμματοσειράς"
 
 #: gtksourceview/gtksourceprintjob.c:313
 msgid "Font to use for the document text (e.g. \"Monospace 10\")"
@@ -196,14 +198,18 @@ msgstr "Χαρακτήρας"
 msgid "Comment"
 msgstr "Σχόλιο"
 
+#. $this = (datatype)
 #: gtksourceview/gtksourcestylescheme.c:277
-#: gtksourceview/language-specs/php.lang.h:8
+#: gtksourceview/language-specs/php.lang.h:14
 msgid "Data Type"
 msgstr "Τύπος Δεδομένων"
 
+#.
+#. CSS functions, such as rgb(), clip(), or lang().
+#.
 #: gtksourceview/gtksourcestylescheme.c:282
 #: gtksourceview/language-specs/ada.lang.h:3
-#: gtksourceview/language-specs/css.lang.h:6
+#: gtksourceview/language-specs/css.lang.h:17
 msgid "Function"
 msgstr "Λειτουργία"
 
@@ -211,6 +217,7 @@ msgstr "Λειτουργία"
 #: gtksourceview/language-specs/c.lang.h:6
 #: gtksourceview/language-specs/cpp.lang.h:6
 #: gtksourceview/language-specs/fortran.lang.h:1
+#: gtksourceview/language-specs/python.lang.h:2
 #: gtksourceview/language-specs/haskell.lang.h:3
 #: gtksourceview/language-specs/nemerle.lang.h:6
 msgid "Decimal"
@@ -218,7 +225,7 @@ msgstr "Δεκαδικό"
 
 #: gtksourceview/gtksourcestylescheme.c:292
 msgid "Floating Point"
-msgstr "Πλωτό Σημείο"
+msgstr "Κινητό Σημείο"
 
 #: gtksourceview/gtksourcestylescheme.c:297
 #: gtksourceview/language-specs/latex.lang.h:3
@@ -239,17 +246,17 @@ msgstr "Προεπεξεργαστής"
 #: gtksourceview/language-specs/c.lang.h:15
 #: gtksourceview/language-specs/cpp.lang.h:15
 #: gtksourceview/language-specs/csharp.lang.h:8
-#: gtksourceview/language-specs/css.lang.h:19
+#: gtksourceview/language-specs/css.lang.h:63
 #: gtksourceview/language-specs/html.lang.h:8
 #: gtksourceview/language-specs/fortran.lang.h:12
-#: gtksourceview/language-specs/idl.lang.h:8
+#: gtksourceview/language-specs/idl.lang.h:9
 #: gtksourceview/language-specs/java.lang.h:11
-#: gtksourceview/language-specs/javascript.lang.h:23
+#: gtksourceview/language-specs/javascript.lang.h:33
 #: gtksourceview/language-specs/lua.lang.h:10
-#: gtksourceview/language-specs/pascal.lang.h:17
+#: gtksourceview/language-specs/pascal.lang.h:18
 #: gtksourceview/language-specs/perl.lang.h:8
 #: gtksourceview/language-specs/po.lang.h:6
-#: gtksourceview/language-specs/python.lang.h:10
+#: gtksourceview/language-specs/python.lang.h:14
 #: gtksourceview/language-specs/ruby.lang.h:18
 #: gtksourceview/language-specs/sh.lang.h:13
 #: gtksourceview/language-specs/xml.lang.h:7
@@ -265,8 +272,20 @@ msgstr "Αλφαριθμητικό"
 msgid "Specials"
 msgstr "Ειδικά"
 
+#.
+#. Proposed language specification for CSS (Cascading Style Sheet) files.
+#.
+#. Reference used:
+#. http://www.w3.org/TR/CSS2/
+#.
+#. Tested with:
+#. http://www.simplebits.com/css/simple.css
+#.
+#. Submitted by Scott Martin (scott@coffeeblack.org)
+#.
+#. FIXME: find the correct mimetype
 #: gtksourceview/gtksourcestylescheme.c:319
-#: gtksourceview/language-specs/css.lang.h:13
+#: gtksourceview/language-specs/css.lang.h:46
 #: gtksourceview/language-specs/desktop.lang.h:10
 #: gtksourceview/language-specs/diff.lang.h:7
 #: gtksourceview/language-specs/ini.lang.h:10
@@ -304,71 +323,71 @@ msgstr "Στυλ Tag"
 msgid "The style associated to the source tag"
 msgstr "Το στυλ που σχετίζεται με την source tag"
 
-#: gtksourceview/gtksourceview.c:207
+#: gtksourceview/gtksourceview.c:206
 msgid "Show Line Numbers"
 msgstr "Εμφάνιση Αριθμών Γραμμής"
 
-#: gtksourceview/gtksourceview.c:208
+#: gtksourceview/gtksourceview.c:207
 msgid "Whether to display line numbers"
 msgstr "Αν θα εμφανίζονται αριθμοί γραμμής"
 
-#: gtksourceview/gtksourceview.c:215
+#: gtksourceview/gtksourceview.c:214
 msgid "Show Line Markers"
 msgstr "Εμφάνιση Σημάνσεων Γραμμής"
 
-#: gtksourceview/gtksourceview.c:216
+#: gtksourceview/gtksourceview.c:215
 msgid "Whether to display line marker pixbufs"
 msgstr "Αν θα εμφανίζονται σημάνσεις γραμμής"
 
-#: gtksourceview/gtksourceview.c:233
+#: gtksourceview/gtksourceview.c:232
 msgid "Auto Indentation"
 msgstr "Αυτόματη Εσοχή"
 
-#: gtksourceview/gtksourceview.c:234
+#: gtksourceview/gtksourceview.c:233
 msgid "Whether to enable auto indentation"
 msgstr "Αν θα ενεργοποιηθεί η αυτόματη εσοχή"
 
-#: gtksourceview/gtksourceview.c:240
+#: gtksourceview/gtksourceview.c:239
 msgid "Insert Spaces Instead of Tabs"
 msgstr "Εισαγωγή Διαστημάτων αντί για Στηλοθέτες"
 
-#: gtksourceview/gtksourceview.c:241
+#: gtksourceview/gtksourceview.c:240
 msgid "Whether to insert spaces instead of tabs"
 msgstr "Αν θα εισάγονται διαστήματα αντί για στηλοθέτες"
 
-#: gtksourceview/gtksourceview.c:248
+#: gtksourceview/gtksourceview.c:247
 msgid "Show Right Margin"
 msgstr "Εμφάνιση Δεξιού Περιθωρίου"
 
-#: gtksourceview/gtksourceview.c:249
+#: gtksourceview/gtksourceview.c:248
 msgid "Whether to display the right margin"
 msgstr "Αν θα εμφανίζεται το δεξί περιθώριο"
 
-#: gtksourceview/gtksourceview.c:256
+#: gtksourceview/gtksourceview.c:255
 msgid "Margin position"
 msgstr "Θέση περιθωρίου"
 
-#: gtksourceview/gtksourceview.c:257
+#: gtksourceview/gtksourceview.c:256
 msgid "Position of the right margin"
 msgstr "Θέση του δεξιού περιθωρίου"
 
-#: gtksourceview/gtksourceview.c:266
+#: gtksourceview/gtksourceview.c:265
 msgid "Use smart home/end"
 msgstr "Χρήση έξυπνου home/end"
 
-#: gtksourceview/gtksourceview.c:267
+#: gtksourceview/gtksourceview.c:266
 msgid ""
 "HOME and END keys move to first/last characters on line first before going "
 "to the start/end of the line"
 msgstr ""
 "Τα πλήκτρα HOME και END μετακινούν πρώτα στον πρώτο/τελευταίο χαρακτήρα της "
-"γραμμής πρίν να πάνε στην αρχή/τέλος της γραμμής."
+"γραμμής πρίν να πάνε στην αρχή/τέλος της γραμμής"
+
+#: gtksourceview/gtksourceview.c:275
+msgid "Highlight current line"
+msgstr "Επισήμανση τρέχουσας γραμμής"
 
 #: gtksourceview/gtksourceview.c:276
-msgid "Highlight current line"
-msgstr "Επσιήμανση τρέχουσας γραμμής"
-
-#: gtksourceview/gtksourceview.c:277
 msgid "Whether to highlight the current line"
 msgstr "Αν θα γίνεται επισήμανση στην τρέχουσα γραμμή"
 
@@ -391,10 +410,10 @@ msgstr "Χαρακτήρας Συνεχούς"
 #: gtksourceview/language-specs/csharp.lang.h:3
 #: gtksourceview/language-specs/fortran.lang.h:7
 #: gtksourceview/language-specs/idl.lang.h:4
-#: gtksourceview/language-specs/javascript.lang.h:12
+#: gtksourceview/language-specs/javascript.lang.h:11
 #: gtksourceview/language-specs/lua.lang.h:3
 #: gtksourceview/language-specs/perl.lang.h:2
-#: gtksourceview/language-specs/python.lang.h:3
+#: gtksourceview/language-specs/python.lang.h:6
 #: gtksourceview/language-specs/ruby.lang.h:8
 #: gtksourceview/language-specs/verilog.lang.h:6
 #: gtksourceview/language-specs/haskell.lang.h:9
@@ -407,17 +426,18 @@ msgstr "Λέξεις κλειδί"
 #: gtksourceview/language-specs/c.lang.h:11
 #: gtksourceview/language-specs/cpp.lang.h:11
 #: gtksourceview/language-specs/csharp.lang.h:4
-#: gtksourceview/language-specs/css.lang.h:10
+#: gtksourceview/language-specs/css.lang.h:28
 #: gtksourceview/language-specs/desktop.lang.h:7
 #: gtksourceview/language-specs/diff.lang.h:5
 #: gtksourceview/language-specs/fortran.lang.h:8
+#: gtksourceview/language-specs/idl.lang.h:5
 #: gtksourceview/language-specs/ini.lang.h:8
 #: gtksourceview/language-specs/java.lang.h:5
-#: gtksourceview/language-specs/javascript.lang.h:13
+#: gtksourceview/language-specs/javascript.lang.h:12
 #: gtksourceview/language-specs/lua.lang.h:4
-#: gtksourceview/language-specs/pascal.lang.h:10
+#: gtksourceview/language-specs/pascal.lang.h:11
 #: gtksourceview/language-specs/perl.lang.h:3
-#: gtksourceview/language-specs/python.lang.h:4
+#: gtksourceview/language-specs/python.lang.h:7
 #: gtksourceview/language-specs/ruby.lang.h:9
 #: gtksourceview/language-specs/sh.lang.h:5
 #: gtksourceview/language-specs/sql.lang.h:11
@@ -433,11 +453,15 @@ msgstr "Λέξεις κλειδί"
 msgid "Line Comment"
 msgstr "Σχόλιο Γραμμής"
 
+#.
+#. For values like: z-index: 2;
+#. +/- before 0 is not allowed.
+#.
 #: gtksourceview/language-specs/ada.lang.h:6
-#: gtksourceview/language-specs/css.lang.h:11
+#: gtksourceview/language-specs/css.lang.h:33
 #: gtksourceview/language-specs/desktop.lang.h:9
-#: gtksourceview/language-specs/javascript.lang.h:16
-#: gtksourceview/language-specs/pascal.lang.h:13
+#: gtksourceview/language-specs/javascript.lang.h:15
+#: gtksourceview/language-specs/pascal.lang.h:14
 #: gtksourceview/language-specs/vhdl.lang.h:4
 #: gtksourceview/language-specs/gtkrc.lang.h:8
 msgid "Number"
@@ -445,17 +469,17 @@ msgstr "Αριθμός"
 
 #: gtksourceview/language-specs/ada.lang.h:7
 msgid "Preprocessor Keywords"
-msgstr "Λέξεις κλειδιά Προεπεξεργαστή"
+msgstr "Λέξεις Κλειδιά Προεπεξεργαστή"
 
 #: gtksourceview/language-specs/ada.lang.h:8
 #: gtksourceview/language-specs/c.lang.h:14
 #: gtksourceview/language-specs/cpp.lang.h:14
 #: gtksourceview/language-specs/csharp.lang.h:7
 #: gtksourceview/language-specs/fortran.lang.h:11
-#: gtksourceview/language-specs/idl.lang.h:7
+#: gtksourceview/language-specs/idl.lang.h:8
 #: gtksourceview/language-specs/java.lang.h:10
-#: gtksourceview/language-specs/pascal.lang.h:16
-#: gtksourceview/language-specs/php.lang.h:15
+#: gtksourceview/language-specs/pascal.lang.h:17
+#: gtksourceview/language-specs/php.lang.h:23
 #: gtksourceview/language-specs/sql.lang.h:26
 #: gtksourceview/language-specs/verilog.lang.h:9
 #: gtksourceview/language-specs/haskell.lang.h:14
@@ -473,7 +497,7 @@ msgstr "True και False"
 #: gtksourceview/language-specs/c.lang.h:16
 #: gtksourceview/language-specs/cpp.lang.h:16
 #: gtksourceview/language-specs/fortran.lang.h:14
-#: gtksourceview/language-specs/idl.lang.h:9
+#: gtksourceview/language-specs/idl.lang.h:10
 #: gtksourceview/language-specs/verilog.lang.h:10
 msgid "Types"
 msgstr "Τύποι"
@@ -486,7 +510,7 @@ msgstr "Σχόλιο '#if 0' "
 #: gtksourceview/language-specs/c.lang.h:2
 #: gtksourceview/language-specs/cpp.lang.h:2
 #: gtksourceview/language-specs/csharp.lang.h:1
-#: gtksourceview/language-specs/css.lang.h:3
+#: gtksourceview/language-specs/css.lang.h:9
 #: gtksourceview/language-specs/html.lang.h:2
 #: gtksourceview/language-specs/idl.lang.h:1
 #: gtksourceview/language-specs/java.lang.h:1
@@ -513,16 +537,19 @@ msgstr "Κοινή Μακροεντολή"
 #: gtksourceview/language-specs/c.lang.h:7
 #: gtksourceview/language-specs/cpp.lang.h:7
 #: gtksourceview/language-specs/fortran.lang.h:2
+#: gtksourceview/language-specs/python.lang.h:3
 #: gtksourceview/language-specs/haskell.lang.h:4
 #: gtksourceview/language-specs/nemerle.lang.h:7
 #: gtksourceview/language-specs/R.lang.h:4
 msgid "Floating Point Number"
-msgstr "Αριθμός Πλωτού Σημείου"
+msgstr "Αριθμός Κινητής Υποδιαστολής"
 
+#. FIXME WHY DOESN'T THIS WORK?
 #: gtksourceview/language-specs/c.lang.h:8
 #: gtksourceview/language-specs/cpp.lang.h:8
 #: gtksourceview/language-specs/fortran.lang.h:4
-#: gtksourceview/language-specs/pascal.lang.h:9
+#: gtksourceview/language-specs/pascal.lang.h:10
+#: gtksourceview/language-specs/python.lang.h:5
 #: gtksourceview/language-specs/haskell.lang.h:6
 #: gtksourceview/language-specs/nemerle.lang.h:8
 msgid "Hex Number"
@@ -538,6 +565,7 @@ msgstr "Συμπερίληψη/Pragma"
 #: gtksourceview/language-specs/c.lang.h:12
 #: gtksourceview/language-specs/cpp.lang.h:12
 #: gtksourceview/language-specs/fortran.lang.h:9
+#: gtksourceview/language-specs/python.lang.h:11
 #: gtksourceview/language-specs/verilog.lang.h:8
 #: gtksourceview/language-specs/haskell.lang.h:11
 #: gtksourceview/language-specs/nemerle.lang.h:12
@@ -547,7 +575,7 @@ msgstr "Οκταδικός Αριθμός"
 #: gtksourceview/language-specs/c.lang.h:13
 #: gtksourceview/language-specs/cpp.lang.h:13
 #: gtksourceview/language-specs/csharp.lang.h:5
-#: gtksourceview/language-specs/idl.lang.h:5
+#: gtksourceview/language-specs/idl.lang.h:6
 #: gtksourceview/language-specs/haskell.lang.h:13
 #: gtksourceview/language-specs/vbnet.lang.h:4
 msgid "Preprocessor Definitions"
@@ -569,81 +597,111 @@ msgid "Primitives"
 msgstr "Primitives"
 
 #: gtksourceview/language-specs/csharp.lang.h:9
-#: gtksourceview/language-specs/css.lang.h:20
+#: gtksourceview/language-specs/css.lang.h:64
 #: gtksourceview/language-specs/fortran.lang.h:13
 #: gtksourceview/language-specs/java.lang.h:12
-#: gtksourceview/language-specs/javascript.lang.h:24
+#: gtksourceview/language-specs/javascript.lang.h:34
 #: gtksourceview/language-specs/lua.lang.h:11
-#: gtksourceview/language-specs/python.lang.h:11
+#: gtksourceview/language-specs/python.lang.h:15
 #: gtksourceview/language-specs/ruby.lang.h:19
 #: gtksourceview/language-specs/sh.lang.h:14
 #: gtksourceview/language-specs/vbnet.lang.h:8
 msgid "String 2"
 msgstr "Αλφαριθμητικό 2"
 
-#: gtksourceview/language-specs/css.lang.h:1
+#.
+#. At rules must occur at the start of a line.
+#.
+#: gtksourceview/language-specs/css.lang.h:4
 msgid "At Rules"
 msgstr "Κανόνες At"
 
-#: gtksourceview/language-specs/css.lang.h:2
+#.
+#. For CSS 2-style selectors: tag[attr="value"].
+#.
+#: gtksourceview/language-specs/css.lang.h:8
 msgid "Attribute Value Delimiters"
 msgstr "Attribute Value Delimiters"
 
-#: gtksourceview/language-specs/css.lang.h:4
-msgid "CSS"
-msgstr "CSS"
-
-#: gtksourceview/language-specs/css.lang.h:5
+#.
+#. Value length specifier. Unless it is 0, must always be like: -1.2em.
+#.
+#: gtksourceview/language-specs/css.lang.h:13
 msgid "Dimension"
 msgstr "Διάσταση"
 
-#: gtksourceview/language-specs/css.lang.h:7
+#.
+#. Hexadecimal method of specifying colors. Can either be 3 or 6 in
+#. length: #ffcc00 = #fc0.
+#.
+#: gtksourceview/language-specs/css.lang.h:22
 msgid "Hexadecimal Color"
-msgstr "Δεκαεξαδικό χρώμα"
+msgstr "Δεκαεξαδικό Χρώμα"
 
-#: gtksourceview/language-specs/css.lang.h:8
+#.
+#. Upgrades a rule set's importance when several rule sets conflict.
+#.
+#: gtksourceview/language-specs/css.lang.h:26
 msgid "Importance Modifier"
 msgstr "Importance Modifier"
 
-#: gtksourceview/language-specs/css.lang.h:9
+#: gtksourceview/language-specs/css.lang.h:27
 msgid "Known Property Values"
-msgstr "Τιμές γνωστής ιδιότητας"
+msgstr "Τιμές Γνωστής Ιδιότητας"
 
-#: gtksourceview/language-specs/css.lang.h:12
-#: gtksourceview/language-specs/javascript.lang.h:20
-#: gtksourceview/language-specs/php.lang.h:12
+#: gtksourceview/language-specs/css.lang.h:34
+#: gtksourceview/language-specs/javascript.lang.h:19
+#: gtksourceview/language-specs/php.lang.h:19
 #: gtksourceview/language-specs/sh.lang.h:8
 #: gtksourceview/language-specs/haskell.lang.h:12
 msgid "Operators"
 msgstr "Operators"
 
-#: gtksourceview/language-specs/css.lang.h:14
+#: gtksourceview/language-specs/css.lang.h:47
 msgid "Property Names"
-msgstr "Ονόματα ιδιότητας"
+msgstr "Ονόματα Ιδιότητας"
 
-#: gtksourceview/language-specs/css.lang.h:15
-#: gtksourceview/language-specs/javascript.lang.h:21
+#.
+#. Brackets define a declaration block, parentheses define functions.
+#.
+#: gtksourceview/language-specs/css.lang.h:51
+#: gtksourceview/language-specs/javascript.lang.h:20
 #: gtksourceview/language-specs/sh.lang.h:9
 msgid "Punctuators"
 msgstr "Punctuators"
 
-#: gtksourceview/language-specs/css.lang.h:16
+#: gtksourceview/language-specs/css.lang.h:52
 msgid "Selector Grammar"
 msgstr "Selector Grammar"
 
-#: gtksourceview/language-specs/css.lang.h:17
+#.
+#. Pseudo-class rules. Good to have syntax highlighting for these
+#. for mistypings.
+#.
+#: gtksourceview/language-specs/css.lang.h:57
 msgid "Selector Pseudo Classes"
 msgstr "Selector Pseudo Classes"
 
-#: gtksourceview/language-specs/css.lang.h:18
+#.
+#. Pseudo-element rules. Good to have syntax highlighting for these
+#. for mistypings.
+#.
+#: gtksourceview/language-specs/css.lang.h:62
 msgid "Selector Pseudo Elements"
 msgstr "Selector Pseudo Elements"
 
-#: gtksourceview/language-specs/css.lang.h:21
+#.
+#. Escaped unicode characters can contain either 6 hexadecimal characters
+#. or 1-5 hex characters followed by one whitespace character.
+#.
+#: gtksourceview/language-specs/css.lang.h:69
 msgid "Unicode Character Reference"
 msgstr "Αναφορά χαρακτήρα Unicode"
 
-#: gtksourceview/language-specs/css.lang.h:22
+#.
+#. Unicode range values.
+#.
+#: gtksourceview/language-specs/css.lang.h:73
 msgid "Unicode Range"
 msgstr "Εύρος Unicode"
 
@@ -762,7 +820,7 @@ msgstr "Εγγραφή/Ανάγνωση"
 msgid "IDL"
 msgstr "IDL"
 
-#: gtksourceview/language-specs/idl.lang.h:6
+#: gtksourceview/language-specs/idl.lang.h:7
 msgid "Sectional"
 msgstr "Sectional"
 
@@ -783,7 +841,7 @@ msgstr "Αλφαριθμητικό Διπλών Εισαγωγικών"
 
 #: gtksourceview/language-specs/ini.lang.h:6
 msgid "Integer"
-msgstr "Integer"
+msgstr "Ακέραιος"
 
 #: gtksourceview/language-specs/ini.lang.h:11
 #: gtksourceview/language-specs/R.lang.h:11
@@ -791,8 +849,9 @@ msgstr "Integer"
 msgid "Single Quote String"
 msgstr "Αλφαριθμητικό μονού εισαγωγικού"
 
+#. $variable, $$dynamic-variable and even $$$more
 #: gtksourceview/language-specs/ini.lang.h:12
-#: gtksourceview/language-specs/php.lang.h:16
+#: gtksourceview/language-specs/php.lang.h:25
 #: gtksourceview/language-specs/gtkrc.lang.h:12
 msgid "Variable"
 msgstr "Μεταβλητή"
@@ -832,7 +891,7 @@ msgstr "Constructors"
 
 #: gtksourceview/language-specs/javascript.lang.h:4
 msgid "Error Handling"
-msgstr "Χειρισμός σφάλματος"
+msgstr "Χειρισμός Σφάλματος"
 
 #: gtksourceview/language-specs/javascript.lang.h:5
 msgid "Floating-Point Number"
@@ -852,41 +911,48 @@ msgstr "Γενικές Λειτουργίες"
 
 #: gtksourceview/language-specs/javascript.lang.h:9
 msgid "Global Properties"
-msgstr "Γενικές ιδιότητες"
+msgstr "Γενικές Ιδιότητες"
 
 #: gtksourceview/language-specs/javascript.lang.h:10
 #: gtksourceview/language-specs/verilog.lang.h:5
 msgid "Hexadecimal Number"
-msgstr "Δεκαεξαδικός αριθμός"
+msgstr "Δεκαεξαδικός Αριθμός"
 
-#: gtksourceview/language-specs/javascript.lang.h:11
-msgid "JavaScript"
-msgstr "JavaScript"
-
-#: gtksourceview/language-specs/javascript.lang.h:14
+#: gtksourceview/language-specs/javascript.lang.h:13
 msgid "Literals"
 msgstr "Literals"
 
-#: gtksourceview/language-specs/javascript.lang.h:15
+#: gtksourceview/language-specs/javascript.lang.h:14
 msgid "Math Value Properties"
 msgstr "Ιδιότητες Math Value"
 
-#: gtksourceview/language-specs/javascript.lang.h:17
+#: gtksourceview/language-specs/javascript.lang.h:16
 msgid "Object Functions"
 msgstr "Object Functions"
 
-#: gtksourceview/language-specs/javascript.lang.h:18
+#: gtksourceview/language-specs/javascript.lang.h:17
 msgid "Object Properties"
-msgstr "Ιδιότητες αντικειμένου"
+msgstr "Ιδιότητες Αντικειμένου"
 
-#: gtksourceview/language-specs/javascript.lang.h:19
+#: gtksourceview/language-specs/javascript.lang.h:18
 msgid "Objects"
 msgstr "Αντικείμενα"
 
-#: gtksourceview/language-specs/javascript.lang.h:22
+#.
+#. Proposed language specification for JavaScript files.
+#.
+#. Reference used:
+#. http://www.ecma-international.org/publications/files/ecma-st/ECMA-262.pdf
+#.
+#. Tested with:
+#. http://www.coffeeblack.org/scripts/map.js
+#.
+#. Submitted by Scott Martin (scott@coffeeblack.org)
+#.
+#: gtksourceview/language-specs/javascript.lang.h:32
 #: gtksourceview/language-specs/lua.lang.h:9
 #: gtksourceview/language-specs/perl.lang.h:7
-#: gtksourceview/language-specs/python.lang.h:9
+#: gtksourceview/language-specs/python.lang.h:13
 #: gtksourceview/language-specs/ruby.lang.h:17
 #: gtksourceview/language-specs/sh.lang.h:11
 #: gtksourceview/language-specs/tcl.lang.h:3
@@ -894,11 +960,11 @@ msgstr "Αντικείμενα"
 msgid "Scripts"
 msgstr "Δέσμες ενεργειών"
 
-#: gtksourceview/language-specs/javascript.lang.h:25
+#: gtksourceview/language-specs/javascript.lang.h:35
 msgid "Unicode Escape Sequence"
 msgstr "Unicode Escape Sequence"
 
-#: gtksourceview/language-specs/javascript.lang.h:26
+#: gtksourceview/language-specs/javascript.lang.h:36
 msgid "Word Operators"
 msgstr "Word Operators"
 
@@ -920,34 +986,30 @@ msgid "Most Used Commands"
 msgstr "Κοινές Εντολές"
 
 #: gtksourceview/language-specs/lua.lang.h:2
-#: gtksourceview/language-specs/python.lang.h:2
+#: gtksourceview/language-specs/python.lang.h:4
 #: gtksourceview/language-specs/sh.lang.h:4
 msgid "Functions"
 msgstr "Λειτουργίες"
 
 #: gtksourceview/language-specs/lua.lang.h:5
 msgid "Line Comment 2"
-msgstr "Σχόλιο Γραμμής  2"
+msgstr "Σχόλιο Γραμμής 2"
 
 #: gtksourceview/language-specs/lua.lang.h:6
 msgid "Lua"
 msgstr "Lua"
 
 #: gtksourceview/language-specs/lua.lang.h:7
-#: gtksourceview/language-specs/python.lang.h:6
+#: gtksourceview/language-specs/python.lang.h:9
 #: gtksourceview/language-specs/sh.lang.h:6
 msgid "Multiline String"
 msgstr "Αλφαριθμητικό Πολλαπλών Γραμμών"
 
 #: gtksourceview/language-specs/lua.lang.h:8
-#: gtksourceview/language-specs/python.lang.h:7
+#: gtksourceview/language-specs/python.lang.h:10
 #: gtksourceview/language-specs/sh.lang.h:7
 msgid "Multiline String 2"
 msgstr "Αλφαριθμητικό Πολλαπλών Γραμμών 2"
-
-#: gtksourceview/language-specs/msil.lang.h:1
-msgid "MSIL"
-msgstr "MSIL"
 
 #: gtksourceview/language-specs/pascal.lang.h:1
 msgid "Block Comment 1"
@@ -967,11 +1029,11 @@ msgstr "Ενσωματωμένες Λειτουργίες"
 
 #: gtksourceview/language-specs/pascal.lang.h:5
 msgid "Builtin Types"
-msgstr "Ενσωματωμένοι τύποι"
+msgstr "Ενσωματωμένοι Τύποι"
 
 #: gtksourceview/language-specs/pascal.lang.h:6
 msgid "Builtin Values"
-msgstr "Ενσωματωμένες τιμές"
+msgstr "Ενσωματωμένες Τιμές"
 
 #: gtksourceview/language-specs/pascal.lang.h:7
 msgid "Functions and Function Modifiers"
@@ -981,23 +1043,23 @@ msgstr "Functions and Function Modifiers"
 msgid "General Format"
 msgstr "Γενική Μορφή"
 
-#: gtksourceview/language-specs/pascal.lang.h:11
+#: gtksourceview/language-specs/pascal.lang.h:12
 msgid "Loop, Flow, and Exceptions Keywords"
 msgstr "Loop, Flow, and Exceptions Keywords"
 
-#: gtksourceview/language-specs/pascal.lang.h:12
+#: gtksourceview/language-specs/pascal.lang.h:13
 msgid "Math Operators"
 msgstr "Math Operators"
 
-#: gtksourceview/language-specs/pascal.lang.h:14
+#: gtksourceview/language-specs/pascal.lang.h:15
 msgid "Pascal"
 msgstr "Pascal"
 
-#: gtksourceview/language-specs/pascal.lang.h:15
+#: gtksourceview/language-specs/pascal.lang.h:16
 msgid "Preprocessor Defines"
 msgstr "Ορισμοί Προεπεξεργαστή"
 
-#: gtksourceview/language-specs/pascal.lang.h:18
+#: gtksourceview/language-specs/pascal.lang.h:19
 msgid "Type, Class and Object Keywords"
 msgstr "Type, Class and Object Keywords"
 
@@ -1031,48 +1093,55 @@ msgstr "Αλφαριθμητικό 3"
 msgid "Variables"
 msgstr "Μεταβλητές"
 
-#: gtksourceview/language-specs/php.lang.h:2
+#. `backticks-quoted strings`
+#: gtksourceview/language-specs/php.lang.h:3
 #: gtksourceview/language-specs/sh.lang.h:1
 msgid "Backtick String"
 msgstr "Backtick String"
 
-#: gtksourceview/language-specs/php.lang.h:3
+#. # Bourne Shell Line Comment
+#: gtksourceview/language-specs/php.lang.h:5
 msgid "Bash Line Comment"
 msgstr "Σχόλιο Γραμμής Bash"
 
-#: gtksourceview/language-specs/php.lang.h:4
+#. /* C Block Comment
+#: gtksourceview/language-specs/php.lang.h:7
 msgid "C Block Comment"
 msgstr "Σχόλιο C Block"
 
-#: gtksourceview/language-specs/php.lang.h:5
+#. // C++ Line Comment
+#: gtksourceview/language-specs/php.lang.h:9
 msgid "C++ Line Comment"
 msgstr "Σχόλιο Γραμμής C++"
 
-#: gtksourceview/language-specs/php.lang.h:6
+#: gtksourceview/language-specs/php.lang.h:10
 msgid "Case Insensitive Keyword"
 msgstr "Case Insensitive Keyword"
 
-#: gtksourceview/language-specs/php.lang.h:7
+#. This are keywords, the are recognised by php
+#: gtksourceview/language-specs/php.lang.h:12
 msgid "Case Sensitive Keyword"
 msgstr "Case Sensitive Keyword"
 
-#: gtksourceview/language-specs/php.lang.h:9
+#. "duble-quoted strings"
+#: gtksourceview/language-specs/php.lang.h:16
 msgid "Double Quoted String"
 msgstr "Αλφαριθμητικό Διπλών Εισαγωγικών"
 
-#: gtksourceview/language-specs/php.lang.h:10
+#: gtksourceview/language-specs/php.lang.h:17
 msgid "First Open PHP Tag"
 msgstr "First Open PHP Tag"
 
-#: gtksourceview/language-specs/php.lang.h:11
+#: gtksourceview/language-specs/php.lang.h:18
 msgid "HTML Block"
 msgstr "HTML Block"
 
-#: gtksourceview/language-specs/php.lang.h:13
+#: gtksourceview/language-specs/php.lang.h:20
 msgid "PHP"
 msgstr "PHP"
 
-#: gtksourceview/language-specs/php.lang.h:14
+#. 'single-quoted strings'
+#: gtksourceview/language-specs/php.lang.h:22
 msgid "Single Quoted String"
 msgstr "Αλφαριθμητικό μονού εισαγωγικού"
 
@@ -1089,11 +1158,11 @@ msgstr "μετάφραση gettext"
 msgid "Builtins"
 msgstr "Ενσωματωμένα"
 
-#: gtksourceview/language-specs/python.lang.h:5
+#: gtksourceview/language-specs/python.lang.h:8
 msgid "Module Handler"
 msgstr "Χειριστής Λειτουργικής Μονάδας"
 
-#: gtksourceview/language-specs/python.lang.h:8
+#: gtksourceview/language-specs/python.lang.h:12
 msgid "Python"
 msgstr "Python"
 
@@ -1127,7 +1196,7 @@ msgstr "Module Handlers"
 
 #: gtksourceview/language-specs/ruby.lang.h:11
 msgid "Multiline Comment"
-msgstr "Σχόλιο πολλαπλής γραμμής"
+msgstr "Σχόλιο Πολλαπλής Γραμμής"
 
 #: gtksourceview/language-specs/ruby.lang.h:12
 msgid "Pseudo Variables"
@@ -1139,11 +1208,11 @@ msgstr "RegExp Variables"
 
 #: gtksourceview/language-specs/ruby.lang.h:14
 msgid "Regular Expression"
-msgstr "Regular Expression"
+msgstr "Κανονική Έκφραση"
 
 #: gtksourceview/language-specs/ruby.lang.h:15
 msgid "Regular Expression 2"
-msgstr "Regular Expression 2"
+msgstr "Κανονική Έκφραση 2"
 
 #: gtksourceview/language-specs/ruby.lang.h:16
 msgid "Ruby"
@@ -1151,7 +1220,7 @@ msgstr "Ruby"
 
 #: gtksourceview/language-specs/sh.lang.h:2
 msgid "Built-in Commands"
-msgstr "Ενσωματωμένες εντολές"
+msgstr "Ενσωματωμένες Εντολές"
 
 #: gtksourceview/language-specs/sh.lang.h:3
 msgid "Common Commands"
@@ -1251,7 +1320,7 @@ msgstr "SQL*Plus At Sign"
 
 #: gtksourceview/language-specs/sql.lang.h:21
 msgid "SQL*Plus Commands"
-msgstr "Εντολές SQL*Plus "
+msgstr "Εντολές SQL*Plus"
 
 #: gtksourceview/language-specs/sql.lang.h:22
 msgid "SQL*Plus Double At Sign"
@@ -1328,7 +1397,7 @@ msgstr "Μορφοποίηση"
 
 #: gtksourceview/language-specs/texinfo.lang.h:5
 msgid "Generated Content"
-msgstr "Δημιουργηθέν περιεχόμενο"
+msgstr "Δημιουργηθέν Περιεχόμενο"
 
 #: gtksourceview/language-specs/texinfo.lang.h:7
 msgid "Indexing"
@@ -1336,7 +1405,7 @@ msgstr "Indexing"
 
 #: gtksourceview/language-specs/texinfo.lang.h:10
 msgid "Macro Parameters"
-msgstr "Παράμετροι Macro "
+msgstr "Παράμετροι Macro"
 
 #: gtksourceview/language-specs/texinfo.lang.h:11
 msgid "Macros"
