@@ -525,6 +525,7 @@ gtk_source_view_calculate_tab_stop_width (GtkWidget *widget,
 		tab_string[counter] = ' ';
 		counter++;
 	}
+	tab_string[tab_stop] = '\0';
 
 	layout = gtk_widget_create_pango_layout (widget, tab_string);
 	g_free (tab_string);

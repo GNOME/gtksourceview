@@ -4052,7 +4052,7 @@ AC_DEFUN(AM_PATH_GLIB_2_0,
 [dnl 
 dnl Get the cflags and libraries from pkg-config
 dnl
-AC_ARG_ENABLE(glibtest, [  --disable-glibtest       Do not try to compile and run a test GLIB program],
+AC_ARG_ENABLE(glibtest, [  --disable-glibtest      do not try to compile and run a test GLIB program],
 		    , enable_glibtest=yes)
 
   pkg_config_args=glib-2.0
@@ -4271,10 +4271,8 @@ AC_DEFUN(PKG_CHECK_MODULES, [
      echo "*** to the full path to pkg-config."
      echo "*** Or see http://www.freedesktop.org/software/pkgconfig to get pkg-config."
   else
-     if ! $PKG_CONFIG --atleast-pkgconfig-version 0.7.0; then
-        echo "*** Your version of pkg-config is too old. You need version 0.7.0 or newer."
-        echo "*** See http://www.freedesktop.org/software/pkgconfig"
-     else
+     PKG_CONFIG_MIN_VERSION=0.9.0
+     if $PKG_CONFIG --atleast-pkgconfig-version $PKG_CONFIG_MIN_VERSION; then
         AC_MSG_CHECKING(for $2)
 
         if $PKG_CONFIG --exists "$2" ; then
@@ -4299,6 +4297,9 @@ AC_DEFUN(PKG_CHECK_MODULES, [
 
         AC_SUBST($1_CFLAGS)
         AC_SUBST($1_LIBS)
+     else
+        echo "*** Your version of pkg-config is too old. You need version $PKG_CONFIG_MIN_VERSION or newer."
+        echo "*** See http://www.freedesktop.org/software/pkgconfig"
      fi
   fi
 
