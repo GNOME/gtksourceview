@@ -1,3 +1,11 @@
+2003-01-04  Jeroen Zwartepoorte  <jeroen@xs4all.nl>
+
+	* src/gtksourcebuffer.c: (check_syntax), (check_pattern),
+	(gtk_source_buffer_regex_search): Work around a bug in the re_search
+	method where it returns the number of bytes matched instead of the
+	number of characters matched (rh bugzilla #73644). UTF8 text is now
+	highlighted properly.
+
 2003-01-02  Gustavo Giraldez  <gustavo.giraldez@gmx.net>
 
 	* autogen.sh: Changed to standard gnome2 autogen.sh 

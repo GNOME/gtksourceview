@@ -770,8 +770,9 @@ check_syntax (GtkSourceBuffer *sbuf,
 				curiter = curiter2;
 				found = TRUE;
 				break;
-			} else if (txt[s - 1] == '\\')
+			} else if (txt[s - 1] == '\\') {
 				found = TRUE;
+			}
 		}
 		if (!found) {
 			pos++;
@@ -779,7 +780,8 @@ check_syntax (GtkSourceBuffer *sbuf,
 		}
 	}
 	if (pos < len)
-		check_pattern (sbuf, &txt[pos], len - pos, &curiter);
+		check_pattern (sbuf, g_utf8_offset_to_pointer (txt, pos),
+			       len - pos, &curiter);
 	if (txt)
 		g_free (txt);
 }
@@ -795,8 +797,9 @@ check_pattern (GtkSourceBuffer *sbuf,
 	GtkTextIter start_iter;
 	GtkTextIter end_iter;
 	GtkPatternTag *tag = NULL;
-	gint i = 0;
-	
+	gint i;
+	GtkSourceBufferMatch m;
+
 	buf = GTK_TEXT_BUFFER (sbuf);
 	patterns = gtk_source_buffer_get_pattern_entries (sbuf);
 	if (!patterns)
@@ -808,32 +811,23 @@ check_pattern (GtkSourceBuffer *sbuf,
 
 		i = 0;
 		while (i < length && i >= 0) {
-			i = re_search (&tag->reg_pattern.buf,
-				       text,
-				       length,
-				       i,
-				       (length - i),
-				       &tag->reg_pattern.reg);
-			
+			i = gtk_source_buffer_regex_search (text, i, &tag->reg_pattern, TRUE, &m);
 			if (i >= 0) {
-				if (tag->reg_pattern.reg.end [0] == i) {
-					g_warning ("Zero length regex match.  "
+				if (m.endpos == i) {
+					g_warning ("Zero length regex match. "
 					           "Probably a buggy syntax specification.");
 					i++;
 					continue;
 				}
-				
-				gtk_text_iter_set_offset (
-					&start_iter,
-					gtk_text_iter_get_offset (iter) + i);
+
+				gtk_text_iter_set_offset (&start_iter,
+							  gtk_text_iter_get_offset (iter) + i);
 				end_iter = start_iter;
-				gtk_text_iter_forward_chars (
-					&end_iter, tag->reg_pattern.reg.end [0] - i);
-				
+				gtk_text_iter_forward_chars (&end_iter, m.endpos - i);
 				gtk_text_buffer_apply_tag (buf, GTK_TEXT_TAG (tag),
 							   &start_iter,
 							   &end_iter);
-				i = tag->reg_pattern.reg.end [0];
+				i = m.endpos;
 			}
 		}
 	}
@@ -1081,11 +1075,16 @@ gtk_source_buffer_regex_search (const gchar          *text,
 				GtkSourceBufferMatch *match)
 {
 	gint len;
+	int diff;
 
 	g_return_val_if_fail (regex != NULL, -1);
 	g_return_val_if_fail (match != NULL, -1);
 
-	len = strlen (text);
+	/* Work around a re_search bug where it returns the number of bytes
+	 * instead of the number of characters (unicode characters can be
+	 * more than 1 byte) it matched. See redhat bugzilla #73644. */
+	len = (gint)g_utf8_strlen (text, -1);
+	pos += (pos - (gint)g_utf8_strlen (text, pos));
 
 	match->startpos = re_search (&regex->buf,
 				     text,
@@ -1094,8 +1093,12 @@ gtk_source_buffer_regex_search (const gchar          *text,
 				     (forward ? len - pos : -pos),
 				     &regex->reg);
 
-	if (match->startpos > -1)
-		match->endpos = regex->reg.end[0];
+	if (match->startpos > -1) {
+		len = (gint)g_utf8_strlen (text, match->startpos);
+		diff = match->startpos - len;
+		match->startpos = len;
+		match->endpos = regex->reg.end[0] - diff;
+	}
 
 	return match->startpos;
 }
