@@ -119,7 +119,7 @@ void gtk_source_buffer_undo_clear_all(GtkSourceBuffer *buf);
 
 void gtk_source_buffer_set_line_marker(GtkSourceBuffer *buffer, gint line, const gchar *marker, gboolean overwrite);
 const gchar *gtk_source_buffer_line_has_marker(GtkSourceBuffer *view, gint line);
-/* return value is the number removed *.
+/* return value is the number removed */
 /* pass -1 for start and end to remove all */
 gint gtk_source_view_remove_all_pixmaps(GtkSourceBuffer *buffer, gint line_start, gint line_end);
 
