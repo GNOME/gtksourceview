@@ -5,9 +5,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: GtkSourceView 0.3.0\n"
-"POT-Creation-Date: 2003-06-08 12:07+0200\n"
-"PO-Revision-Date: 2003-06-08 12:07+0200\n"
+"Project-Id-Version: GtkSourceView 0.4.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2003-07-18 16:56+0200\n"
+"PO-Revision-Date: 2003-07-18 16:56+0200\n"
 "Last-Translator: Christian Neumair <chris@gnome-de.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -152,66 +153,82 @@ msgstr "Kopf- und Fußzeilenschrift"
 msgid "Font name to use for the header and footer"
 msgstr "Name der für die Kopf- und Fußzeile zu verwendenden Schrift"
 
-#: gtksourceview/gtksourcestylescheme.c:222
+#: gtksourceview/gtksourcestylescheme.c:230
 msgid "Base-N Integer"
 msgstr "Ganzzahl zur Basis N"
 
-#: gtksourceview/gtksourcestylescheme.c:227
+#: gtksourceview/gtksourcestylescheme.c:235
 msgid "Character"
 msgstr "Zeichen"
 
-#: gtksourceview/gtksourcestylescheme.c:232
+#: gtksourceview/gtksourcestylescheme.c:240
 msgid "Comment"
 msgstr "Kommentar"
 
-#: gtksourceview/gtksourcestylescheme.c:237
+#: gtksourceview/gtksourcestylescheme.c:245
 msgid "Data Type"
 msgstr "Datentyp"
 
-#: gtksourceview/gtksourcestylescheme.c:242
+#: gtksourceview/gtksourcestylescheme.c:250
 msgid "Function"
 msgstr "Funktion"
 
-#: gtksourceview/gtksourcestylescheme.c:247
+#: gtksourceview/gtksourcestylescheme.c:255
 msgid "Decimal"
 msgstr "Dezimal"
 
-#: gtksourceview/gtksourcestylescheme.c:252
+#: gtksourceview/gtksourcestylescheme.c:260
 msgid "Floating Point"
 msgstr "Fließkomma"
 
-#: gtksourceview/gtksourcestylescheme.c:257
+#: gtksourceview/gtksourcestylescheme.c:265
 msgid "Keyword"
 msgstr "Stichwort"
 
-#: gtksourceview/gtksourcestylescheme.c:262
+#: gtksourceview/gtksourcestylescheme.c:270
 msgid "Preprocessor"
 msgstr "Präprozessor"
 
-#: gtksourceview/gtksourcestylescheme.c:267
+#: gtksourceview/gtksourcestylescheme.c:275
 msgid "String"
 msgstr "Zeichenkette"
 
 # CHECK
-#: gtksourceview/gtksourcestylescheme.c:272
+#: gtksourceview/gtksourcestylescheme.c:280
 msgid "Specials"
 msgstr "Sonderzeichen"
 
-#: gtksourceview/gtksourcestylescheme.c:277
+#: gtksourceview/gtksourcestylescheme.c:285
 msgid "Others"
 msgstr "Sonstige"
 
-#: gtksourceview/gtksourcestylescheme.c:282
+#: gtksourceview/gtksourcestylescheme.c:290
 msgid "Others 2"
 msgstr "Sonstige 2"
 
-#: gtksourceview/gtksourcestylescheme.c:287
+#: gtksourceview/gtksourcestylescheme.c:295
 msgid "Others 3"
 msgstr "Sonstige 3"
 
-#: gtksourceview/gtksourcestylescheme.c:324
+#: gtksourceview/gtksourcestylescheme.c:332
 msgid "Default"
 msgstr "Vorgabe"
+
+#: gtksourceview/gtksourcetag.c:108
+msgid "Tag ID"
+msgstr "Tag-Kennung"
+
+#: gtksourceview/gtksourcetag.c:109
+msgid "ID used to refer to the source tag"
+msgstr "Als Bezug zum Quell-Tag zu verwendende Kennung"
+
+#: gtksourceview/gtksourcetag.c:116
+msgid "Tag style"
+msgstr "Tag-Stil"
+
+#: gtksourceview/gtksourcetag.c:117
+msgid "The style associated to the source tag"
+msgstr "Der mit dem Quell-Tag verknüpfte Stil"
 
 #: gtksourceview/gtksourceview.c:207
 msgid "Show Line Numbers"
