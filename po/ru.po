@@ -2,18 +2,20 @@
 # Copyright (C) 2003 gtksourceview  COPYRIGHT HOLDER
 # This file is distributed under the same license as the gtksourceview package.
 # Dmitry G. Mastrukov <dmitry@taurussoft.org>, 2003-2004.
-# Mikhail Zabaluev <mhz@altlinux.org>, 2004
+# Mikhail Zabaluev <mhz@altlinux.org>, 2004.
+# Leonid Kanter <leon@asplinux.ru>, 2005.
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-12 00:08+0100\n"
-"PO-Revision-Date: 2004-09-26 16:20+0300\n"
-"Last-Translator: Mikhail Zabaluev <mhz@altlinux.org>\n"
+"POT-Creation-Date: 2005-02-09 07:28+0100\n"
+"PO-Revision-Date: 2005-02-09 14:14+0200\n"
+"Last-Translator: Leonid Kanter <leon@asplinux.ru>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.9.1\n"
 
 #: gtksourceview/gtksourcebuffer.c:279
 msgid "Escape Character"
@@ -117,8 +119,8 @@ msgid "Font Description"
 msgstr "Описание шрифта"
 
 #: gtksourceview/gtksourceprintjob.c:313
-msgid "Font description name to use for the document text"
-msgstr "Имя описания шрифта для текста документа"
+msgid "Font to use for the document text (e.g. \"Monospace 10\")"
+msgstr "Шрифт текста докуиента (напр. \"Monospace 10\")"
 
 #: gtksourceview/gtksourceprintjob.c:320 gtksourceview/gtksourceprintjob.c:328
 msgid "Numbers Font"
@@ -162,33 +164,32 @@ msgstr "Шрифт заголовка и подвала"
 
 #: gtksourceview/gtksourceprintjob.c:361
 msgid "GnomeFont name to use for the header and footer (deprecated)"
-msgstr ""
-"Наименование шрифта GnomeFont для заголовка и подвала (не пользоваться)"
+msgstr "Наименование шрифта GnomeFont для заголовка и подвала (не пользоваться)"
 
 #: gtksourceview/gtksourceprintjob.c:368
 msgid "Header and Footer Font Description"
 msgstr "Описание шрифта заголовка и подвала"
 
 #: gtksourceview/gtksourceprintjob.c:369
-msgid "Font description name to use for the header and footer"
-msgstr "Имя описания шрифта для заголовка и подвала"
+msgid "Font to use for headers and footers (e.g. \"Monospace 10\")"
+msgstr "Шрифт заголовков и подвалов (напр. \"Monospace 10\")"
 
-#: gtksourceview/gtksourcestylescheme.c:237
+#: gtksourceview/gtksourcestylescheme.c:262
 msgid "Base-N Integer"
 msgstr "Целое число в N-ичной системе счисления"
 
-#: gtksourceview/gtksourcestylescheme.c:242
+#: gtksourceview/gtksourcestylescheme.c:267
 msgid "Character"
 msgstr "Символ"
 
-#: gtksourceview/gtksourcestylescheme.c:247
+#: gtksourceview/gtksourcestylescheme.c:272
 #: gtksourceview/language-specs/latex.lang.h:1
 #: gtksourceview/language-specs/po.lang.h:1
 msgid "Comment"
 msgstr "Комментарий"
 
 #. $this = (datatype)
-#: gtksourceview/gtksourcestylescheme.c:252
+#: gtksourceview/gtksourcestylescheme.c:277
 #: gtksourceview/language-specs/php.lang.h:14
 msgid "Data Type"
 msgstr "Тип данных"
@@ -196,26 +197,27 @@ msgstr "Тип данных"
 #.
 #. CSS functions, such as rgb(), clip(), or lang().
 #.
-#: gtksourceview/gtksourcestylescheme.c:257
+#: gtksourceview/gtksourcestylescheme.c:282
 #: gtksourceview/language-specs/ada.lang.h:3
 #: gtksourceview/language-specs/css.lang.h:17
 msgid "Function"
 msgstr "Функция"
 
-#: gtksourceview/gtksourcestylescheme.c:262
+#: gtksourceview/gtksourcestylescheme.c:287
 #: gtksourceview/language-specs/c.lang.h:6
 #: gtksourceview/language-specs/cpp.lang.h:6
 #: gtksourceview/language-specs/fortran.lang.h:1
+#: gtksourceview/language-specs/python.lang.h:2
 #: gtksourceview/language-specs/haskell.lang.h:3
 #: gtksourceview/language-specs/nemerle.lang.h:6
 msgid "Decimal"
 msgstr "Десятичное число"
 
-#: gtksourceview/gtksourcestylescheme.c:267
+#: gtksourceview/gtksourcestylescheme.c:292
 msgid "Floating Point"
 msgstr "Число с плавающей точкой"
 
-#: gtksourceview/gtksourcestylescheme.c:272
+#: gtksourceview/gtksourcestylescheme.c:297
 #: gtksourceview/language-specs/latex.lang.h:3
 #: gtksourceview/language-specs/po.lang.h:3
 #: gtksourceview/language-specs/texinfo.lang.h:8
@@ -225,11 +227,11 @@ msgstr "Число с плавающей точкой"
 msgid "Keyword"
 msgstr "Ключевое слово"
 
-#: gtksourceview/gtksourcestylescheme.c:277
+#: gtksourceview/gtksourcestylescheme.c:302
 msgid "Preprocessor"
 msgstr "Директива препроцессора"
 
-#: gtksourceview/gtksourcestylescheme.c:282
+#: gtksourceview/gtksourcestylescheme.c:307
 #: gtksourceview/language-specs/ada.lang.h:9
 #: gtksourceview/language-specs/c.lang.h:15
 #: gtksourceview/language-specs/cpp.lang.h:15
@@ -244,7 +246,7 @@ msgstr "Директива препроцессора"
 #: gtksourceview/language-specs/pascal.lang.h:18
 #: gtksourceview/language-specs/perl.lang.h:8
 #: gtksourceview/language-specs/po.lang.h:6
-#: gtksourceview/language-specs/python.lang.h:10
+#: gtksourceview/language-specs/python.lang.h:14
 #: gtksourceview/language-specs/ruby.lang.h:18
 #: gtksourceview/language-specs/sh.lang.h:13
 #: gtksourceview/language-specs/xml.lang.h:7
@@ -256,7 +258,7 @@ msgstr "Директива препроцессора"
 msgid "String"
 msgstr "Строка"
 
-#: gtksourceview/gtksourcestylescheme.c:287
+#: gtksourceview/gtksourcestylescheme.c:312
 msgid "Specials"
 msgstr "Специальные символы"
 
@@ -272,7 +274,7 @@ msgstr "Специальные символы"
 #. Submitted by Scott Martin (scott@coffeeblack.org)
 #.
 #. FIXME: find the correct mimetype
-#: gtksourceview/gtksourcestylescheme.c:294
+#: gtksourceview/gtksourcestylescheme.c:319
 #: gtksourceview/language-specs/css.lang.h:46
 #: gtksourceview/language-specs/desktop.lang.h:10
 #: gtksourceview/language-specs/diff.lang.h:7
@@ -283,15 +285,15 @@ msgstr "Специальные символы"
 msgid "Others"
 msgstr "Прочее"
 
-#: gtksourceview/gtksourcestylescheme.c:299
+#: gtksourceview/gtksourcestylescheme.c:324
 msgid "Others 2"
 msgstr "Прочее 2"
 
-#: gtksourceview/gtksourcestylescheme.c:304
+#: gtksourceview/gtksourcestylescheme.c:329
 msgid "Others 3"
 msgstr "Прочее 3"
 
-#: gtksourceview/gtksourcestylescheme.c:341
+#: gtksourceview/gtksourcestylescheme.c:366
 msgid "Default"
 msgstr "По умолчанию"
 
@@ -373,12 +375,11 @@ msgstr ""
 
 #: gtksourceview/gtksourceview.c:276
 msgid "Highlight current line"
-msgstr ""
+msgstr "Подсвечивать текущую строку текущую строку"
 
 #: gtksourceview/gtksourceview.c:277
-#, fuzzy
 msgid "Whether to highlight the current line"
-msgstr "Следует ли подсвечивать синтаксис в буфере"
+msgstr "Следует ли подсвечивать текущую строку"
 
 #: gtksourceview/language-specs/ada.lang.h:1
 msgid "Ada"
@@ -402,7 +403,7 @@ msgstr "Символьная константа"
 #: gtksourceview/language-specs/javascript.lang.h:11
 #: gtksourceview/language-specs/lua.lang.h:3
 #: gtksourceview/language-specs/perl.lang.h:2
-#: gtksourceview/language-specs/python.lang.h:3
+#: gtksourceview/language-specs/python.lang.h:6
 #: gtksourceview/language-specs/ruby.lang.h:8
 #: gtksourceview/language-specs/verilog.lang.h:6
 #: gtksourceview/language-specs/haskell.lang.h:9
@@ -425,7 +426,7 @@ msgstr "Ключевые слова"
 #: gtksourceview/language-specs/lua.lang.h:4
 #: gtksourceview/language-specs/pascal.lang.h:11
 #: gtksourceview/language-specs/perl.lang.h:3
-#: gtksourceview/language-specs/python.lang.h:4
+#: gtksourceview/language-specs/python.lang.h:7
 #: gtksourceview/language-specs/ruby.lang.h:9
 #: gtksourceview/language-specs/sh.lang.h:5
 #: gtksourceview/language-specs/sql.lang.h:11
@@ -525,6 +526,7 @@ msgstr "Общий макрос"
 #: gtksourceview/language-specs/c.lang.h:7
 #: gtksourceview/language-specs/cpp.lang.h:7
 #: gtksourceview/language-specs/fortran.lang.h:2
+#: gtksourceview/language-specs/python.lang.h:3
 #: gtksourceview/language-specs/haskell.lang.h:4
 #: gtksourceview/language-specs/nemerle.lang.h:7
 #: gtksourceview/language-specs/R.lang.h:4
@@ -536,6 +538,7 @@ msgstr "Число с плавающей точкой"
 #: gtksourceview/language-specs/cpp.lang.h:8
 #: gtksourceview/language-specs/fortran.lang.h:4
 #: gtksourceview/language-specs/pascal.lang.h:10
+#: gtksourceview/language-specs/python.lang.h:5
 #: gtksourceview/language-specs/haskell.lang.h:6
 #: gtksourceview/language-specs/nemerle.lang.h:8
 msgid "Hex Number"
@@ -551,6 +554,7 @@ msgstr "Директивы #include/#pragma"
 #: gtksourceview/language-specs/c.lang.h:12
 #: gtksourceview/language-specs/cpp.lang.h:12
 #: gtksourceview/language-specs/fortran.lang.h:9
+#: gtksourceview/language-specs/python.lang.h:11
 #: gtksourceview/language-specs/verilog.lang.h:8
 #: gtksourceview/language-specs/haskell.lang.h:11
 #: gtksourceview/language-specs/nemerle.lang.h:12
@@ -587,7 +591,7 @@ msgstr "Примитивы"
 #: gtksourceview/language-specs/java.lang.h:12
 #: gtksourceview/language-specs/javascript.lang.h:34
 #: gtksourceview/language-specs/lua.lang.h:11
-#: gtksourceview/language-specs/python.lang.h:11
+#: gtksourceview/language-specs/python.lang.h:15
 #: gtksourceview/language-specs/ruby.lang.h:19
 #: gtksourceview/language-specs/sh.lang.h:14
 #: gtksourceview/language-specs/vbnet.lang.h:8
@@ -811,7 +815,7 @@ msgstr "Секционное"
 
 #: gtksourceview/language-specs/ini.lang.h:1
 msgid ".ini"
-msgstr ""
+msgstr ".ini"
 
 #: gtksourceview/language-specs/ini.lang.h:3
 #: gtksourceview/language-specs/verilog.lang.h:3
@@ -821,19 +825,16 @@ msgstr "Десятичное число"
 #: gtksourceview/language-specs/ini.lang.h:4
 #: gtksourceview/language-specs/R.lang.h:3
 #: gtksourceview/language-specs/gtkrc.lang.h:2
-#, fuzzy
 msgid "Double Quote String"
 msgstr "Строка в двойных кавычках"
 
 #: gtksourceview/language-specs/ini.lang.h:6
-#, fuzzy
 msgid "Integer"
-msgstr "Целое число в N-ичной системе счисления"
+msgstr "Целое число"
 
 #: gtksourceview/language-specs/ini.lang.h:11
 #: gtksourceview/language-specs/R.lang.h:11
 #: gtksourceview/language-specs/gtkrc.lang.h:10
-#, fuzzy
 msgid "Single Quote String"
 msgstr "Строка в одинарных кавычках"
 
@@ -940,7 +941,7 @@ msgstr "Объекты"
 #: gtksourceview/language-specs/javascript.lang.h:32
 #: gtksourceview/language-specs/lua.lang.h:9
 #: gtksourceview/language-specs/perl.lang.h:7
-#: gtksourceview/language-specs/python.lang.h:9
+#: gtksourceview/language-specs/python.lang.h:13
 #: gtksourceview/language-specs/ruby.lang.h:17
 #: gtksourceview/language-specs/sh.lang.h:11
 #: gtksourceview/language-specs/tcl.lang.h:3
@@ -974,7 +975,7 @@ msgid "Most Used Commands"
 msgstr "Наиболее часто испольуемые команды"
 
 #: gtksourceview/language-specs/lua.lang.h:2
-#: gtksourceview/language-specs/python.lang.h:2
+#: gtksourceview/language-specs/python.lang.h:4
 #: gtksourceview/language-specs/sh.lang.h:4
 msgid "Functions"
 msgstr "Функции"
@@ -988,13 +989,13 @@ msgid "Lua"
 msgstr "Lua"
 
 #: gtksourceview/language-specs/lua.lang.h:7
-#: gtksourceview/language-specs/python.lang.h:6
+#: gtksourceview/language-specs/python.lang.h:9
 #: gtksourceview/language-specs/sh.lang.h:6
 msgid "Multiline String"
 msgstr "Строка с переносами"
 
 #: gtksourceview/language-specs/lua.lang.h:8
-#: gtksourceview/language-specs/python.lang.h:7
+#: gtksourceview/language-specs/python.lang.h:10
 #: gtksourceview/language-specs/sh.lang.h:7
 msgid "Multiline String 2"
 msgstr "Строка с переносами 2"
@@ -1048,7 +1049,6 @@ msgid "Preprocessor Defines"
 msgstr "Определения препроцессора"
 
 #: gtksourceview/language-specs/pascal.lang.h:19
-#, fuzzy
 msgid "Type, Class and Object Keywords"
 msgstr "Ключевые слова для типов, классов и объектов"
 
@@ -1062,7 +1062,7 @@ msgstr "Вызов метода"
 
 #: gtksourceview/language-specs/perl.lang.h:5
 msgid "POD"
-msgstr ""
+msgstr "POD"
 
 #: gtksourceview/language-specs/perl.lang.h:6
 msgid "Perl"
@@ -1147,11 +1147,11 @@ msgstr "Перевод в формате gettext"
 msgid "Builtins"
 msgstr "Встроенные функции"
 
-#: gtksourceview/language-specs/python.lang.h:5
+#: gtksourceview/language-specs/python.lang.h:8
 msgid "Module Handler"
 msgstr "Обработчик модуля"
 
-#: gtksourceview/language-specs/python.lang.h:8
+#: gtksourceview/language-specs/python.lang.h:12
 msgid "Python"
 msgstr "Python"
 
@@ -1208,37 +1208,32 @@ msgid "Ruby"
 msgstr "Ruby"
 
 #: gtksourceview/language-specs/sh.lang.h:2
-#, fuzzy
 msgid "Built-in Commands"
-msgstr "Встроенные функции"
+msgstr "Встроенные команды"
 
 #: gtksourceview/language-specs/sh.lang.h:3
-#, fuzzy
 msgid "Common Commands"
-msgstr "Наиболее часто испольуемые команды"
+msgstr "Общие команды"
 
 #: gtksourceview/language-specs/sh.lang.h:10
-#, fuzzy
 msgid "Redirections"
-msgstr "Определения"
+msgstr "Перенаправления"
 
 #: gtksourceview/language-specs/sh.lang.h:12
 msgid "Self"
 msgstr "Self"
 
 #: gtksourceview/language-specs/sh.lang.h:15
-#, fuzzy
 msgid "Variable1"
-msgstr "Переменная"
+msgstr "Переменная1"
 
 #: gtksourceview/language-specs/sh.lang.h:16
-#, fuzzy
 msgid "Variable2"
-msgstr "Переменная"
+msgstr "Переменная2"
 
 #: gtksourceview/language-specs/sh.lang.h:17
 msgid "sh"
-msgstr ""
+msgstr "sh"
 
 #: gtksourceview/language-specs/sql.lang.h:1
 msgid "ANSI Datatypes"
@@ -1430,87 +1425,70 @@ msgid "VB.NET"
 msgstr "VB.NET"
 
 #: gtksourceview/language-specs/nemerle.lang.h:4
-#, fuzzy
 msgid "Core Keywords"
-msgstr "Ключевые слова для управляющих конструкций"
+msgstr "Основные ключевые слова"
 
 #: gtksourceview/language-specs/nemerle.lang.h:5
-#, fuzzy
 msgid "Core Types"
-msgstr "Типы"
+msgstr "Основные типы"
 
 #: gtksourceview/language-specs/nemerle.lang.h:9
 msgid "Keywords Defined by Macros"
-msgstr ""
+msgstr "Ключевые слова, определенные макросом"
 
 #: gtksourceview/language-specs/nemerle.lang.h:11
-#, fuzzy
 msgid "Nemerle"
-msgstr "Число"
+msgstr "Nemerle"
 
 #: gtksourceview/language-specs/tcl.lang.h:6
 msgid "Tcl"
-msgstr ""
+msgstr "Tcl"
 
 #: gtksourceview/language-specs/vhdl.lang.h:7
-#, fuzzy
 msgid "True and False"
 msgstr "Истинно и Ложно"
 
 #: gtksourceview/language-specs/vhdl.lang.h:8
-#, fuzzy
 msgid "Type"
-msgstr "Типы"
+msgstr "Тип"
 
 #: gtksourceview/language-specs/vhdl.lang.h:9
 msgid "VHDL"
-msgstr ""
+msgstr "VHDL"
 
 #: gtksourceview/language-specs/R.lang.h:1
-#, fuzzy
-msgid "Assign operator"
-msgstr "Операторы массива"
+msgid "Assignment Operator"
+msgstr "Оператор присваивания"
 
 #: gtksourceview/language-specs/R.lang.h:2
-#, fuzzy
 msgid "Delimiter"
-msgstr "Неограниченное (Unlimited)"
+msgstr "Разделитель"
 
 #: gtksourceview/language-specs/R.lang.h:5
-#, fuzzy
 msgid "Integer Number"
-msgstr "Двоичное число"
+msgstr "Целое число"
 
 #: gtksourceview/language-specs/R.lang.h:8
-#, fuzzy
-msgid "Reserved class"
-msgstr "Зарезервированные слова ANSI"
+msgid "Reserved Class"
+msgstr "Зарезервированный класс"
 
 #: gtksourceview/language-specs/R.lang.h:9
-#, fuzzy
-msgid "Reserved constant"
-msgstr "Сгенерированное содержимое"
+msgid "Reserved Constant"
+msgstr "Зарезервированная константа"
 
 #: gtksourceview/language-specs/gtkrc.lang.h:3
 msgid "GtkRC"
-msgstr ""
+msgstr "GtkRC"
 
 #: gtksourceview/language-specs/gtkrc.lang.h:4
 msgid "Include Directive"
-msgstr ""
+msgstr "Директива включения"
 
 #: gtksourceview/language-specs/gtkrc.lang.h:5
-#, fuzzy
 msgid "Keysymbol"
-msgstr "Ключевые символы"
+msgstr "Ключевой символ"
 
 #: gtksourceview/language-specs/gtkrc.lang.h:11
-#, fuzzy
 msgid "State"
-msgstr "Вентили"
+msgstr "Состояние"
 
-#~ msgid "Plain Old Documentation"
-#~ msgstr "Простая старая документация (pod)"
-
-#~ msgid "MSIL"
-#~ msgstr "MSIL"
