@@ -1,3 +1,12 @@
+2004-03-07  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+
+	* gtksourceview/gtksourceiter.c (pointer_from_offset_skipping_decomp)
+	(g_utf8_strcasestr, g_utf8_strrcasestr): Correctly return a pointer to
+	the original string, taking into account decompositions in the
+	normalized string which is used for the actual comparing.
+	(forward_chars_with_skipping, lines_match, backward_lines_match): 
+	Really fix searching now (sigh).
+
 2004-03-06  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
 
 	* gtksourceview/gtksourceiter.c (forward_chars_with_skipping):
