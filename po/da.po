@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-02-06 16:55+0100\n"
-"PO-Revision-Date: 2005-02-06 17:05+0100\n"
+"POT-Creation-Date: 2005-02-07 00:04+0100\n"
+"PO-Revision-Date: 2005-02-07 00:03+0100\n"
 "Last-Translator: Ole Laursen <olau@hardworking.dk>\n"
 "Language-Team: Danish <dansk@klid.dk>\n"
 "MIME-Version: 1.0\n"
@@ -112,7 +112,8 @@ msgstr "Skrifttype"
 
 #: ../gtksourceview/gtksourceprintjob.c:305
 msgid "GnomeFont name to use for the document text (deprecated)"
-msgstr "Gnome-skrifttypenavn som skal anvendes til dokumentteksten (afskrevet)"
+msgstr ""
+"Gnome-skrifttypenavn som skal anvendes til teksten i dokument (afskrevet)"
 
 #: ../gtksourceview/gtksourceprintjob.c:312
 msgid "Font Description"
@@ -120,7 +121,9 @@ msgstr "Skrifttypebeskrivelse"
 
 #: ../gtksourceview/gtksourceprintjob.c:313
 msgid "Font to use for the document text (e.g. \"Monospace 10\")"
-msgstr "Skrifttype som skal anvendes til dokumentteksten (f.eks. \"Monospace 10\")"
+msgstr ""
+"Skrifttype som skal anvendes til teksten i dokumentet (f.eks. \"Monospace 10"
+"\")"
 
 #: ../gtksourceview/gtksourceprintjob.c:320
 #: ../gtksourceview/gtksourceprintjob.c:328
@@ -174,7 +177,8 @@ msgstr "Skrifttypebeskrivelse for sidehoved og -fod"
 
 #: ../gtksourceview/gtksourceprintjob.c:369
 msgid "Font to use for headers and footers (e.g. \"Monospace 10\")"
-msgstr "Skrifttype som skal anvendes til sidehoved og -fod (f.eks. \"Monospace 10\")"
+msgstr ""
+"Skrifttype som skal anvendes til sidehoved og -fod (f.eks. \"Monospace 10\")"
 
 #: ../gtksourceview/gtksourcestylescheme.c:262
 msgid "Base-N Integer"
@@ -886,7 +890,7 @@ msgstr "Kommatal"
 
 #: ../gtksourceview/language-specs/javascript.lang.h:6
 msgid "Flow Keywords"
-msgstr "Reserverede ord for gennemløb"
+msgstr "Gennemløbs-nøgleord"
 
 #: ../gtksourceview/language-specs/javascript.lang.h:7
 msgid "Future Reserved Words"
@@ -1008,7 +1012,7 @@ msgstr "Blokkommentar 2"
 
 #: ../gtksourceview/language-specs/pascal.lang.h:3
 msgid "Boolean Bitwise Operators"
-msgstr "Bitvis-sanhedsoperatorer"
+msgstr "Bitvis-sandhedsoperatorer"
 
 #: ../gtksourceview/language-specs/pascal.lang.h:4
 msgid "Builtin Functions"
@@ -1024,7 +1028,7 @@ msgstr "Indbyggede værdier"
 
 #: ../gtksourceview/language-specs/pascal.lang.h:7
 msgid "Functions and Function Modifiers"
-msgstr "Funktioner og funktionsændrer"
+msgstr "Funktioner og funktionsændrere"
 
 #: ../gtksourceview/language-specs/pascal.lang.h:8
 msgid "General Format"
@@ -1058,7 +1062,7 @@ msgstr "Funktionskald"
 msgid "Method Call"
 msgstr "Metodekald"
 
-# POD = plain old documentation ?
+# POD = plain old documentation
 #: ../gtksourceview/language-specs/perl.lang.h:5
 msgid "POD"
 msgstr "Dokumentation"
@@ -1469,7 +1473,7 @@ msgstr "Heltal"
 
 #: ../gtksourceview/language-specs/R.lang.h:8
 msgid "Reserved Class"
-msgstr "Reserveret klasse "
+msgstr "Reserveret klasse"
 
 #: ../gtksourceview/language-specs/R.lang.h:9
 msgid "Reserved Constant"
