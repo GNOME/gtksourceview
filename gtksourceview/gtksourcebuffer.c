@@ -1628,7 +1628,7 @@ get_syntax_start (GtkSourceBuffer      *source_buffer,
 		tag = list->data;
 		
 		if (gtk_source_regex_match (tag->reg_start, text,
-					    pos, match->endpos))
+					    pos, match->endindex))
 			return tag;
 
 		list = g_list_next (list);
