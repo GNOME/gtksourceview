@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-26 11:53+0900\n"
+"POT-Creation-Date: 2005-03-08 11:38+0100\n"
 "PO-Revision-Date: 2005-01-26 11:52+0900\n"
 "Last-Translator: Takeshi AIHANA <aihana@gnome.gr.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
@@ -83,8 +83,8 @@ msgstr "ソース・バッファ"
 msgid "GtkSourceBuffer object to print"
 msgstr "印刷用の GtkSourceBuffer オブジェクトです"
 
-#: gtksourceview/gtksourceprintjob.c:279 gtksourceview/gtksourceview.c:223
-#: gtksourceview/gtksourceview.c:224
+#: gtksourceview/gtksourceprintjob.c:279 gtksourceview/gtksourceview.c:222
+#: gtksourceview/gtksourceview.c:223
 msgid "Tabs Width"
 msgstr "タブの幅"
 
@@ -205,6 +205,7 @@ msgstr "関数"
 #: gtksourceview/language-specs/c.lang.h:6
 #: gtksourceview/language-specs/cpp.lang.h:6
 #: gtksourceview/language-specs/fortran.lang.h:1
+#: gtksourceview/language-specs/python.lang.h:2
 #: gtksourceview/language-specs/haskell.lang.h:3
 #: gtksourceview/language-specs/nemerle.lang.h:6
 msgid "Decimal"
@@ -236,14 +237,14 @@ msgstr "プリプロセッサ"
 #: gtksourceview/language-specs/css.lang.h:63
 #: gtksourceview/language-specs/html.lang.h:8
 #: gtksourceview/language-specs/fortran.lang.h:12
-#: gtksourceview/language-specs/idl.lang.h:8
+#: gtksourceview/language-specs/idl.lang.h:9
 #: gtksourceview/language-specs/java.lang.h:11
 #: gtksourceview/language-specs/javascript.lang.h:33
 #: gtksourceview/language-specs/lua.lang.h:10
 #: gtksourceview/language-specs/pascal.lang.h:18
 #: gtksourceview/language-specs/perl.lang.h:8
 #: gtksourceview/language-specs/po.lang.h:6
-#: gtksourceview/language-specs/python.lang.h:10
+#: gtksourceview/language-specs/python.lang.h:14
 #: gtksourceview/language-specs/ruby.lang.h:18
 #: gtksourceview/language-specs/sh.lang.h:13
 #: gtksourceview/language-specs/xml.lang.h:7
@@ -310,59 +311,59 @@ msgstr "タグのスタイル"
 msgid "The style associated to the source tag"
 msgstr "ソース・タグに関連するスタイルです"
 
-#: gtksourceview/gtksourceview.c:207
+#: gtksourceview/gtksourceview.c:206
 msgid "Show Line Numbers"
 msgstr "行番号の表示"
 
-#: gtksourceview/gtksourceview.c:208
+#: gtksourceview/gtksourceview.c:207
 msgid "Whether to display line numbers"
 msgstr "行番号を表示するかどうかを設定します"
 
-#: gtksourceview/gtksourceview.c:215
+#: gtksourceview/gtksourceview.c:214
 msgid "Show Line Markers"
 msgstr "行マーカの表示"
 
-#: gtksourceview/gtksourceview.c:216
+#: gtksourceview/gtksourceview.c:215
 msgid "Whether to display line marker pixbufs"
 msgstr "行マーカのアイコンを表示するかどうかを設定します"
 
-#: gtksourceview/gtksourceview.c:233
+#: gtksourceview/gtksourceview.c:232
 msgid "Auto Indentation"
 msgstr "自動インデント"
 
-#: gtksourceview/gtksourceview.c:234
+#: gtksourceview/gtksourceview.c:233
 msgid "Whether to enable auto indentation"
 msgstr "自動的にインデントするかどうかを設定します"
 
-#: gtksourceview/gtksourceview.c:240
+#: gtksourceview/gtksourceview.c:239
 msgid "Insert Spaces Instead of Tabs"
 msgstr "タブのかわりにスペースを挿入する"
 
-#: gtksourceview/gtksourceview.c:241
+#: gtksourceview/gtksourceview.c:240
 msgid "Whether to insert spaces instead of tabs"
 msgstr "タブのかわりに空白を挿入するかどうかを設定します"
 
-#: gtksourceview/gtksourceview.c:248
+#: gtksourceview/gtksourceview.c:247
 msgid "Show Right Margin"
 msgstr "右マージンの表示"
 
-#: gtksourceview/gtksourceview.c:249
+#: gtksourceview/gtksourceview.c:248
 msgid "Whether to display the right margin"
 msgstr "右側に余白を表示するかどうかを設定します"
 
-#: gtksourceview/gtksourceview.c:256
+#: gtksourceview/gtksourceview.c:255
 msgid "Margin position"
 msgstr "マージンの位置"
 
-#: gtksourceview/gtksourceview.c:257
+#: gtksourceview/gtksourceview.c:256
 msgid "Position of the right margin"
 msgstr "右側の余白の位置です"
 
-#: gtksourceview/gtksourceview.c:266
+#: gtksourceview/gtksourceview.c:265
 msgid "Use smart home/end"
 msgstr "[Home]/[End] キーを使う"
 
-#: gtksourceview/gtksourceview.c:267
+#: gtksourceview/gtksourceview.c:266
 msgid ""
 "HOME and END keys move to first/last characters on line first before going "
 "to the start/end of the line"
@@ -370,11 +371,11 @@ msgstr ""
 "[Home] と [End] キーで先頭/末尾の行にジャンプする前に、行の行頭/行末にジャン"
 "プします"
 
-#: gtksourceview/gtksourceview.c:276
+#: gtksourceview/gtksourceview.c:275
 msgid "Highlight current line"
 msgstr "この行の強調表示"
 
-#: gtksourceview/gtksourceview.c:277
+#: gtksourceview/gtksourceview.c:276
 msgid "Whether to highlight the current line"
 msgstr "現在の行を強調表示するかどうかを設定します"
 
@@ -400,7 +401,7 @@ msgstr "文字定数"
 #: gtksourceview/language-specs/javascript.lang.h:11
 #: gtksourceview/language-specs/lua.lang.h:3
 #: gtksourceview/language-specs/perl.lang.h:2
-#: gtksourceview/language-specs/python.lang.h:3
+#: gtksourceview/language-specs/python.lang.h:6
 #: gtksourceview/language-specs/ruby.lang.h:8
 #: gtksourceview/language-specs/verilog.lang.h:6
 #: gtksourceview/language-specs/haskell.lang.h:9
@@ -417,13 +418,14 @@ msgstr "キーワード"
 #: gtksourceview/language-specs/desktop.lang.h:7
 #: gtksourceview/language-specs/diff.lang.h:5
 #: gtksourceview/language-specs/fortran.lang.h:8
+#: gtksourceview/language-specs/idl.lang.h:5
 #: gtksourceview/language-specs/ini.lang.h:8
 #: gtksourceview/language-specs/java.lang.h:5
 #: gtksourceview/language-specs/javascript.lang.h:12
 #: gtksourceview/language-specs/lua.lang.h:4
 #: gtksourceview/language-specs/pascal.lang.h:11
 #: gtksourceview/language-specs/perl.lang.h:3
-#: gtksourceview/language-specs/python.lang.h:4
+#: gtksourceview/language-specs/python.lang.h:7
 #: gtksourceview/language-specs/ruby.lang.h:9
 #: gtksourceview/language-specs/sh.lang.h:5
 #: gtksourceview/language-specs/sql.lang.h:11
@@ -462,7 +464,7 @@ msgstr "プリプロセッサのキーワード"
 #: gtksourceview/language-specs/cpp.lang.h:14
 #: gtksourceview/language-specs/csharp.lang.h:7
 #: gtksourceview/language-specs/fortran.lang.h:11
-#: gtksourceview/language-specs/idl.lang.h:7
+#: gtksourceview/language-specs/idl.lang.h:8
 #: gtksourceview/language-specs/java.lang.h:10
 #: gtksourceview/language-specs/pascal.lang.h:17
 #: gtksourceview/language-specs/php.lang.h:23
@@ -483,7 +485,7 @@ msgstr "TRUE と FALSE"
 #: gtksourceview/language-specs/c.lang.h:16
 #: gtksourceview/language-specs/cpp.lang.h:16
 #: gtksourceview/language-specs/fortran.lang.h:14
-#: gtksourceview/language-specs/idl.lang.h:9
+#: gtksourceview/language-specs/idl.lang.h:10
 #: gtksourceview/language-specs/verilog.lang.h:10
 msgid "Types"
 msgstr "型"
@@ -523,6 +525,7 @@ msgstr "共通マクロ"
 #: gtksourceview/language-specs/c.lang.h:7
 #: gtksourceview/language-specs/cpp.lang.h:7
 #: gtksourceview/language-specs/fortran.lang.h:2
+#: gtksourceview/language-specs/python.lang.h:3
 #: gtksourceview/language-specs/haskell.lang.h:4
 #: gtksourceview/language-specs/nemerle.lang.h:7
 #: gtksourceview/language-specs/R.lang.h:4
@@ -534,6 +537,7 @@ msgstr "浮動小数点数"
 #: gtksourceview/language-specs/cpp.lang.h:8
 #: gtksourceview/language-specs/fortran.lang.h:4
 #: gtksourceview/language-specs/pascal.lang.h:10
+#: gtksourceview/language-specs/python.lang.h:5
 #: gtksourceview/language-specs/haskell.lang.h:6
 #: gtksourceview/language-specs/nemerle.lang.h:8
 msgid "Hex Number"
@@ -549,6 +553,7 @@ msgstr "Include/Pragma"
 #: gtksourceview/language-specs/c.lang.h:12
 #: gtksourceview/language-specs/cpp.lang.h:12
 #: gtksourceview/language-specs/fortran.lang.h:9
+#: gtksourceview/language-specs/python.lang.h:11
 #: gtksourceview/language-specs/verilog.lang.h:8
 #: gtksourceview/language-specs/haskell.lang.h:11
 #: gtksourceview/language-specs/nemerle.lang.h:12
@@ -558,7 +563,7 @@ msgstr "8 進数"
 #: gtksourceview/language-specs/c.lang.h:13
 #: gtksourceview/language-specs/cpp.lang.h:13
 #: gtksourceview/language-specs/csharp.lang.h:5
-#: gtksourceview/language-specs/idl.lang.h:5
+#: gtksourceview/language-specs/idl.lang.h:6
 #: gtksourceview/language-specs/haskell.lang.h:13
 #: gtksourceview/language-specs/vbnet.lang.h:4
 msgid "Preprocessor Definitions"
@@ -585,7 +590,7 @@ msgstr "プリミティブ"
 #: gtksourceview/language-specs/java.lang.h:12
 #: gtksourceview/language-specs/javascript.lang.h:34
 #: gtksourceview/language-specs/lua.lang.h:11
-#: gtksourceview/language-specs/python.lang.h:11
+#: gtksourceview/language-specs/python.lang.h:15
 #: gtksourceview/language-specs/ruby.lang.h:19
 #: gtksourceview/language-specs/sh.lang.h:14
 #: gtksourceview/language-specs/vbnet.lang.h:8
@@ -803,7 +808,7 @@ msgstr "読み込み/書き込み"
 msgid "IDL"
 msgstr "IDL"
 
-#: gtksourceview/language-specs/idl.lang.h:6
+#: gtksourceview/language-specs/idl.lang.h:7
 msgid "Sectional"
 msgstr "組み合わせ"
 
@@ -935,7 +940,7 @@ msgstr "オブジェクト"
 #: gtksourceview/language-specs/javascript.lang.h:32
 #: gtksourceview/language-specs/lua.lang.h:9
 #: gtksourceview/language-specs/perl.lang.h:7
-#: gtksourceview/language-specs/python.lang.h:9
+#: gtksourceview/language-specs/python.lang.h:13
 #: gtksourceview/language-specs/ruby.lang.h:17
 #: gtksourceview/language-specs/sh.lang.h:11
 #: gtksourceview/language-specs/tcl.lang.h:3
@@ -969,7 +974,7 @@ msgid "Most Used Commands"
 msgstr "最近使ったコマンド"
 
 #: gtksourceview/language-specs/lua.lang.h:2
-#: gtksourceview/language-specs/python.lang.h:2
+#: gtksourceview/language-specs/python.lang.h:4
 #: gtksourceview/language-specs/sh.lang.h:4
 msgid "Functions"
 msgstr "関数"
@@ -983,13 +988,13 @@ msgid "Lua"
 msgstr "Lua"
 
 #: gtksourceview/language-specs/lua.lang.h:7
-#: gtksourceview/language-specs/python.lang.h:6
+#: gtksourceview/language-specs/python.lang.h:9
 #: gtksourceview/language-specs/sh.lang.h:6
 msgid "Multiline String"
 msgstr "マルチラインの文字列"
 
 #: gtksourceview/language-specs/lua.lang.h:8
-#: gtksourceview/language-specs/python.lang.h:7
+#: gtksourceview/language-specs/python.lang.h:10
 #: gtksourceview/language-specs/sh.lang.h:7
 msgid "Multiline String 2"
 msgstr "マルチラインの文字列２"
@@ -1141,11 +1146,11 @@ msgstr "ja.po"
 msgid "Builtins"
 msgstr "組み込み"
 
-#: gtksourceview/language-specs/python.lang.h:5
+#: gtksourceview/language-specs/python.lang.h:8
 msgid "Module Handler"
 msgstr "モジュールのハンドラ"
 
-#: gtksourceview/language-specs/python.lang.h:8
+#: gtksourceview/language-specs/python.lang.h:12
 msgid "Python"
 msgstr "Python"
 

@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-12 00:08+0100\n"
+"POT-Creation-Date: 2005-03-08 11:38+0100\n"
 "PO-Revision-Date: 2004-09-09 17:58+0300\n"
 "Last-Translator: Baris Cicek <baris@teamforce.name.tr>\n"
 "Language-Team: Turkish <gnome-turk@gnome.org>\n"
@@ -88,8 +88,8 @@ msgstr "Kaynak Önbelleği"
 msgid "GtkSourceBuffer object to print"
 msgstr "Yazdırmak için GtkSourceBuffer nesnesi"
 
-#: gtksourceview/gtksourceprintjob.c:279 gtksourceview/gtksourceview.c:223
-#: gtksourceview/gtksourceview.c:224
+#: gtksourceview/gtksourceprintjob.c:279 gtksourceview/gtksourceview.c:222
+#: gtksourceview/gtksourceview.c:223
 msgid "Tabs Width"
 msgstr "Sekme Genişliği"
 
@@ -122,8 +122,9 @@ msgid "Font Description"
 msgstr "Yazıtipi Açıklaması"
 
 #: gtksourceview/gtksourceprintjob.c:313
-msgid "Font description name to use for the document text"
-msgstr "Belge metni için kullanılacak yazıtipinin açıklama ismi"
+#, fuzzy
+msgid "Font to use for the document text (e.g. \"Monospace 10\")"
+msgstr "Belge metni için kullanılacak GnomeYazıtipi adı (artık kullanılmıyor)"
 
 #: gtksourceview/gtksourceprintjob.c:320 gtksourceview/gtksourceprintjob.c:328
 msgid "Numbers Font"
@@ -178,25 +179,28 @@ msgid "Header and Footer Font Description"
 msgstr "Başlık ve Dipnot Yazıtipi Tanımı"
 
 #: gtksourceview/gtksourceprintjob.c:369
-msgid "Font description name to use for the header and footer"
-msgstr "Başlık ve dipnot için kullanılacak yazıtipi tanımı ismi"
+#, fuzzy
+msgid "Font to use for headers and footers (e.g. \"Monospace 10\")"
+msgstr ""
+"Başlık ve dipnotlar için kullanılacak sayıların GnomeYazıtipi ismi (artık "
+"kullanılmıyor)"
 
-#: gtksourceview/gtksourcestylescheme.c:237
+#: gtksourceview/gtksourcestylescheme.c:262
 msgid "Base-N Integer"
 msgstr "N-Tabanlı Tamsayı"
 
-#: gtksourceview/gtksourcestylescheme.c:242
+#: gtksourceview/gtksourcestylescheme.c:267
 msgid "Character"
 msgstr "Karakter"
 
-#: gtksourceview/gtksourcestylescheme.c:247
+#: gtksourceview/gtksourcestylescheme.c:272
 #: gtksourceview/language-specs/latex.lang.h:1
 #: gtksourceview/language-specs/po.lang.h:1
 msgid "Comment"
 msgstr "Açıklama"
 
 #. $this = (datatype)
-#: gtksourceview/gtksourcestylescheme.c:252
+#: gtksourceview/gtksourcestylescheme.c:277
 #: gtksourceview/language-specs/php.lang.h:14
 msgid "Data Type"
 msgstr "Veri Türü"
@@ -204,26 +208,27 @@ msgstr "Veri Türü"
 #.
 #. CSS functions, such as rgb(), clip(), or lang().
 #.
-#: gtksourceview/gtksourcestylescheme.c:257
+#: gtksourceview/gtksourcestylescheme.c:282
 #: gtksourceview/language-specs/ada.lang.h:3
 #: gtksourceview/language-specs/css.lang.h:17
 msgid "Function"
 msgstr "Fonksiyon"
 
-#: gtksourceview/gtksourcestylescheme.c:262
+#: gtksourceview/gtksourcestylescheme.c:287
 #: gtksourceview/language-specs/c.lang.h:6
 #: gtksourceview/language-specs/cpp.lang.h:6
 #: gtksourceview/language-specs/fortran.lang.h:1
+#: gtksourceview/language-specs/python.lang.h:2
 #: gtksourceview/language-specs/haskell.lang.h:3
 #: gtksourceview/language-specs/nemerle.lang.h:6
 msgid "Decimal"
 msgstr "Ondalık"
 
-#: gtksourceview/gtksourcestylescheme.c:267
+#: gtksourceview/gtksourcestylescheme.c:292
 msgid "Floating Point"
 msgstr "Reel Sayı"
 
-#: gtksourceview/gtksourcestylescheme.c:272
+#: gtksourceview/gtksourcestylescheme.c:297
 #: gtksourceview/language-specs/latex.lang.h:3
 #: gtksourceview/language-specs/po.lang.h:3
 #: gtksourceview/language-specs/texinfo.lang.h:8
@@ -233,11 +238,11 @@ msgstr "Reel Sayı"
 msgid "Keyword"
 msgstr "Anahtar sözcük"
 
-#: gtksourceview/gtksourcestylescheme.c:277
+#: gtksourceview/gtksourcestylescheme.c:302
 msgid "Preprocessor"
 msgstr "Önişlemci"
 
-#: gtksourceview/gtksourcestylescheme.c:282
+#: gtksourceview/gtksourcestylescheme.c:307
 #: gtksourceview/language-specs/ada.lang.h:9
 #: gtksourceview/language-specs/c.lang.h:15
 #: gtksourceview/language-specs/cpp.lang.h:15
@@ -245,14 +250,14 @@ msgstr "Önişlemci"
 #: gtksourceview/language-specs/css.lang.h:63
 #: gtksourceview/language-specs/html.lang.h:8
 #: gtksourceview/language-specs/fortran.lang.h:12
-#: gtksourceview/language-specs/idl.lang.h:8
+#: gtksourceview/language-specs/idl.lang.h:9
 #: gtksourceview/language-specs/java.lang.h:11
 #: gtksourceview/language-specs/javascript.lang.h:33
 #: gtksourceview/language-specs/lua.lang.h:10
 #: gtksourceview/language-specs/pascal.lang.h:18
 #: gtksourceview/language-specs/perl.lang.h:8
 #: gtksourceview/language-specs/po.lang.h:6
-#: gtksourceview/language-specs/python.lang.h:10
+#: gtksourceview/language-specs/python.lang.h:14
 #: gtksourceview/language-specs/ruby.lang.h:18
 #: gtksourceview/language-specs/sh.lang.h:13
 #: gtksourceview/language-specs/xml.lang.h:7
@@ -264,7 +269,7 @@ msgstr "Önişlemci"
 msgid "String"
 msgstr "Dizgi"
 
-#: gtksourceview/gtksourcestylescheme.c:287
+#: gtksourceview/gtksourcestylescheme.c:312
 msgid "Specials"
 msgstr "Özeller"
 
@@ -280,7 +285,7 @@ msgstr "Özeller"
 #. Submitted by Scott Martin (scott@coffeeblack.org)
 #.
 #. FIXME: find the correct mimetype
-#: gtksourceview/gtksourcestylescheme.c:294
+#: gtksourceview/gtksourcestylescheme.c:319
 #: gtksourceview/language-specs/css.lang.h:46
 #: gtksourceview/language-specs/desktop.lang.h:10
 #: gtksourceview/language-specs/diff.lang.h:7
@@ -291,15 +296,15 @@ msgstr "Özeller"
 msgid "Others"
 msgstr "Diğerleri"
 
-#: gtksourceview/gtksourcestylescheme.c:299
+#: gtksourceview/gtksourcestylescheme.c:324
 msgid "Others 2"
 msgstr "Diğerleri 2"
 
-#: gtksourceview/gtksourcestylescheme.c:304
+#: gtksourceview/gtksourcestylescheme.c:329
 msgid "Others 3"
 msgstr "Diğerleri 3"
 
-#: gtksourceview/gtksourcestylescheme.c:341
+#: gtksourceview/gtksourcestylescheme.c:366
 msgid "Default"
 msgstr "Öntanımlı"
 
@@ -319,59 +324,59 @@ msgstr "Etiket biçemi"
 msgid "The style associated to the source tag"
 msgstr "Kaynak etiketiyle ilişkili biçem"
 
-#: gtksourceview/gtksourceview.c:207
+#: gtksourceview/gtksourceview.c:206
 msgid "Show Line Numbers"
 msgstr "Satır Numaralarını Göster"
 
-#: gtksourceview/gtksourceview.c:208
+#: gtksourceview/gtksourceview.c:207
 msgid "Whether to display line numbers"
 msgstr "Satır numaralarının görüntülenip görüntülenmeyeceği"
 
-#: gtksourceview/gtksourceview.c:215
+#: gtksourceview/gtksourceview.c:214
 msgid "Show Line Markers"
 msgstr "Satır İşaretçilerini Göster"
 
-#: gtksourceview/gtksourceview.c:216
+#: gtksourceview/gtksourceview.c:215
 msgid "Whether to display line marker pixbufs"
 msgstr "Satır işaretleyici resimlerin görüntülenip görüntülenmeyeceği"
 
-#: gtksourceview/gtksourceview.c:233
+#: gtksourceview/gtksourceview.c:232
 msgid "Auto Indentation"
 msgstr "Kendiliğinden Girintileme"
 
-#: gtksourceview/gtksourceview.c:234
+#: gtksourceview/gtksourceview.c:233
 msgid "Whether to enable auto indentation"
 msgstr "Kendiliğinden girintilemenin açılması"
 
-#: gtksourceview/gtksourceview.c:240
+#: gtksourceview/gtksourceview.c:239
 msgid "Insert Spaces Instead of Tabs"
 msgstr "Sekmeler Yerine Boşluk Ekleme"
 
-#: gtksourceview/gtksourceview.c:241
+#: gtksourceview/gtksourceview.c:240
 msgid "Whether to insert spaces instead of tabs"
 msgstr "Sekmeler yerine boşlukların kullanılıp kullanılmayacağı"
 
-#: gtksourceview/gtksourceview.c:248
+#: gtksourceview/gtksourceview.c:247
 msgid "Show Right Margin"
 msgstr "Sağ Kenar Boşluğu Göster"
 
-#: gtksourceview/gtksourceview.c:249
+#: gtksourceview/gtksourceview.c:248
 msgid "Whether to display the right margin"
 msgstr "Sağ kenar boğluğunun görüntülenip görüntülenmeyeceği"
 
-#: gtksourceview/gtksourceview.c:256
+#: gtksourceview/gtksourceview.c:255
 msgid "Margin position"
 msgstr "Kenar Boşlukları Konumu"
 
-#: gtksourceview/gtksourceview.c:257
+#: gtksourceview/gtksourceview.c:256
 msgid "Position of the right margin"
 msgstr "Sağ kenar boşluğunun yeri"
 
-#: gtksourceview/gtksourceview.c:266
+#: gtksourceview/gtksourceview.c:265
 msgid "Use smart home/end"
 msgstr "Akıllı başlangıç/bitiriş kullan"
 
-#: gtksourceview/gtksourceview.c:267
+#: gtksourceview/gtksourceview.c:266
 msgid ""
 "HOME and END keys move to first/last characters on line first before going "
 "to the start/end of the line"
@@ -379,11 +384,11 @@ msgstr ""
 "HOME ve END tuşları satırın başına/sonuna gitmeden önce satırdaki ilk/son "
 "karaktere gider"
 
-#: gtksourceview/gtksourceview.c:276
+#: gtksourceview/gtksourceview.c:275
 msgid "Highlight current line"
 msgstr ""
 
-#: gtksourceview/gtksourceview.c:277
+#: gtksourceview/gtksourceview.c:276
 #, fuzzy
 msgid "Whether to highlight the current line"
 msgstr "Önbellekteki söz diziminin vurgulanıp vurgulanmayacağı"
@@ -410,7 +415,7 @@ msgstr "Karakter Sabiti"
 #: gtksourceview/language-specs/javascript.lang.h:11
 #: gtksourceview/language-specs/lua.lang.h:3
 #: gtksourceview/language-specs/perl.lang.h:2
-#: gtksourceview/language-specs/python.lang.h:3
+#: gtksourceview/language-specs/python.lang.h:6
 #: gtksourceview/language-specs/ruby.lang.h:8
 #: gtksourceview/language-specs/verilog.lang.h:6
 #: gtksourceview/language-specs/haskell.lang.h:9
@@ -427,13 +432,14 @@ msgstr "Anahtar sözcükler"
 #: gtksourceview/language-specs/desktop.lang.h:7
 #: gtksourceview/language-specs/diff.lang.h:5
 #: gtksourceview/language-specs/fortran.lang.h:8
+#: gtksourceview/language-specs/idl.lang.h:5
 #: gtksourceview/language-specs/ini.lang.h:8
 #: gtksourceview/language-specs/java.lang.h:5
 #: gtksourceview/language-specs/javascript.lang.h:12
 #: gtksourceview/language-specs/lua.lang.h:4
 #: gtksourceview/language-specs/pascal.lang.h:11
 #: gtksourceview/language-specs/perl.lang.h:3
-#: gtksourceview/language-specs/python.lang.h:4
+#: gtksourceview/language-specs/python.lang.h:7
 #: gtksourceview/language-specs/ruby.lang.h:9
 #: gtksourceview/language-specs/sh.lang.h:5
 #: gtksourceview/language-specs/sql.lang.h:11
@@ -472,7 +478,7 @@ msgstr "Önişlemci Anahtar Sözcükleri"
 #: gtksourceview/language-specs/cpp.lang.h:14
 #: gtksourceview/language-specs/csharp.lang.h:7
 #: gtksourceview/language-specs/fortran.lang.h:11
-#: gtksourceview/language-specs/idl.lang.h:7
+#: gtksourceview/language-specs/idl.lang.h:8
 #: gtksourceview/language-specs/java.lang.h:10
 #: gtksourceview/language-specs/pascal.lang.h:17
 #: gtksourceview/language-specs/php.lang.h:23
@@ -493,7 +499,7 @@ msgstr "Doğru ve Yanlış"
 #: gtksourceview/language-specs/c.lang.h:16
 #: gtksourceview/language-specs/cpp.lang.h:16
 #: gtksourceview/language-specs/fortran.lang.h:14
-#: gtksourceview/language-specs/idl.lang.h:9
+#: gtksourceview/language-specs/idl.lang.h:10
 #: gtksourceview/language-specs/verilog.lang.h:10
 msgid "Types"
 msgstr "Türler"
@@ -533,6 +539,7 @@ msgstr "Ortak Makro"
 #: gtksourceview/language-specs/c.lang.h:7
 #: gtksourceview/language-specs/cpp.lang.h:7
 #: gtksourceview/language-specs/fortran.lang.h:2
+#: gtksourceview/language-specs/python.lang.h:3
 #: gtksourceview/language-specs/haskell.lang.h:4
 #: gtksourceview/language-specs/nemerle.lang.h:7
 #: gtksourceview/language-specs/R.lang.h:4
@@ -544,6 +551,7 @@ msgstr "Reel Sayı"
 #: gtksourceview/language-specs/cpp.lang.h:8
 #: gtksourceview/language-specs/fortran.lang.h:4
 #: gtksourceview/language-specs/pascal.lang.h:10
+#: gtksourceview/language-specs/python.lang.h:5
 #: gtksourceview/language-specs/haskell.lang.h:6
 #: gtksourceview/language-specs/nemerle.lang.h:8
 msgid "Hex Number"
@@ -559,6 +567,7 @@ msgstr "Include/Pragma"
 #: gtksourceview/language-specs/c.lang.h:12
 #: gtksourceview/language-specs/cpp.lang.h:12
 #: gtksourceview/language-specs/fortran.lang.h:9
+#: gtksourceview/language-specs/python.lang.h:11
 #: gtksourceview/language-specs/verilog.lang.h:8
 #: gtksourceview/language-specs/haskell.lang.h:11
 #: gtksourceview/language-specs/nemerle.lang.h:12
@@ -568,7 +577,7 @@ msgstr "Sekizli Sayı"
 #: gtksourceview/language-specs/c.lang.h:13
 #: gtksourceview/language-specs/cpp.lang.h:13
 #: gtksourceview/language-specs/csharp.lang.h:5
-#: gtksourceview/language-specs/idl.lang.h:5
+#: gtksourceview/language-specs/idl.lang.h:6
 #: gtksourceview/language-specs/haskell.lang.h:13
 #: gtksourceview/language-specs/vbnet.lang.h:4
 msgid "Preprocessor Definitions"
@@ -595,7 +604,7 @@ msgstr "Primitif"
 #: gtksourceview/language-specs/java.lang.h:12
 #: gtksourceview/language-specs/javascript.lang.h:34
 #: gtksourceview/language-specs/lua.lang.h:11
-#: gtksourceview/language-specs/python.lang.h:11
+#: gtksourceview/language-specs/python.lang.h:15
 #: gtksourceview/language-specs/ruby.lang.h:19
 #: gtksourceview/language-specs/sh.lang.h:14
 #: gtksourceview/language-specs/vbnet.lang.h:8
@@ -813,7 +822,7 @@ msgstr "Okuma/Yazma"
 msgid "IDL"
 msgstr "IDL"
 
-#: gtksourceview/language-specs/idl.lang.h:6
+#: gtksourceview/language-specs/idl.lang.h:7
 msgid "Sectional"
 msgstr "Bölümsel"
 
@@ -948,7 +957,7 @@ msgstr "Nesneler"
 #: gtksourceview/language-specs/javascript.lang.h:32
 #: gtksourceview/language-specs/lua.lang.h:9
 #: gtksourceview/language-specs/perl.lang.h:7
-#: gtksourceview/language-specs/python.lang.h:9
+#: gtksourceview/language-specs/python.lang.h:13
 #: gtksourceview/language-specs/ruby.lang.h:17
 #: gtksourceview/language-specs/sh.lang.h:11
 #: gtksourceview/language-specs/tcl.lang.h:3
@@ -982,7 +991,7 @@ msgid "Most Used Commands"
 msgstr "En Çok Kullanılan Komutlar"
 
 #: gtksourceview/language-specs/lua.lang.h:2
-#: gtksourceview/language-specs/python.lang.h:2
+#: gtksourceview/language-specs/python.lang.h:4
 #: gtksourceview/language-specs/sh.lang.h:4
 msgid "Functions"
 msgstr "İşlevler"
@@ -996,13 +1005,13 @@ msgid "Lua"
 msgstr "Lua"
 
 #: gtksourceview/language-specs/lua.lang.h:7
-#: gtksourceview/language-specs/python.lang.h:6
+#: gtksourceview/language-specs/python.lang.h:9
 #: gtksourceview/language-specs/sh.lang.h:6
 msgid "Multiline String"
 msgstr "Çoksatırlı Dizgi"
 
 #: gtksourceview/language-specs/lua.lang.h:8
-#: gtksourceview/language-specs/python.lang.h:7
+#: gtksourceview/language-specs/python.lang.h:10
 #: gtksourceview/language-specs/sh.lang.h:7
 msgid "Multiline String 2"
 msgstr "Çoksatırlı Dizgi 2"
@@ -1155,11 +1164,11 @@ msgstr "gettext tercüme"
 msgid "Builtins"
 msgstr "Dahililer"
 
-#: gtksourceview/language-specs/python.lang.h:5
+#: gtksourceview/language-specs/python.lang.h:8
 msgid "Module Handler"
 msgstr "Modül İşleyici"
 
-#: gtksourceview/language-specs/python.lang.h:8
+#: gtksourceview/language-specs/python.lang.h:12
 msgid "Python"
 msgstr "Python"
 
@@ -1476,7 +1485,7 @@ msgstr ""
 
 #: gtksourceview/language-specs/R.lang.h:1
 #, fuzzy
-msgid "Assign operator"
+msgid "Assignment Operator"
 msgstr "Dizi İşleçleri"
 
 #: gtksourceview/language-specs/R.lang.h:2
@@ -1491,12 +1500,12 @@ msgstr "İkili Sayı"
 
 #: gtksourceview/language-specs/R.lang.h:8
 #, fuzzy
-msgid "Reserved class"
+msgid "Reserved Class"
 msgstr "ANSI Ayrılmış Sözcükler"
 
 #: gtksourceview/language-specs/R.lang.h:9
 #, fuzzy
-msgid "Reserved constant"
+msgid "Reserved Constant"
 msgstr "Oluşturulmuş İçerik"
 
 #: gtksourceview/language-specs/gtkrc.lang.h:3
@@ -1516,6 +1525,12 @@ msgstr "Keysymbols"
 #, fuzzy
 msgid "State"
 msgstr "Kapılar"
+
+#~ msgid "Font description name to use for the document text"
+#~ msgstr "Belge metni için kullanılacak yazıtipinin açıklama ismi"
+
+#~ msgid "Font description name to use for the header and footer"
+#~ msgstr "Başlık ve dipnot için kullanılacak yazıtipi tanımı ismi"
 
 #~ msgid "Plain Old Documentation"
 #~ msgstr "Çok Eski Belgelendirme"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-02-08 15:25+0100\n"
+"POT-Creation-Date: 2005-03-08 11:38+0100\n"
 "PO-Revision-Date: 2005-02-28 13:48+0300\n"
 "Last-Translator: Priit Laes <amd@store20.com>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
@@ -33,8 +33,7 @@ msgstr ""
 msgid "Whether to check and highlight matching brackets"
 msgstr ""
 
-#: gtksourceview/gtksourcebuffer.c:297
-#: gtksourceview/gtksourceprintjob.c:295
+#: gtksourceview/gtksourcebuffer.c:297 gtksourceview/gtksourceprintjob.c:295
 msgid "Highlight"
 msgstr ""
 
@@ -65,7 +64,9 @@ msgid "Language specification directories"
 msgstr ""
 
 #: gtksourceview/gtksourcelanguagesmanager.c:120
-msgid "List of directories where the language specification files (.lang) are located"
+msgid ""
+"List of directories where the language specification files (.lang) are "
+"located"
 msgstr ""
 
 #: gtksourceview/gtksourceprintjob.c:264
@@ -84,9 +85,8 @@ msgstr ""
 msgid "GtkSourceBuffer object to print"
 msgstr ""
 
-#: gtksourceview/gtksourceprintjob.c:279
+#: gtksourceview/gtksourceprintjob.c:279 gtksourceview/gtksourceview.c:222
 #: gtksourceview/gtksourceview.c:223
-#: gtksourceview/gtksourceview.c:224
 msgid "Tabs Width"
 msgstr "Tabulaatori laius"
 
@@ -122,8 +122,7 @@ msgstr ""
 msgid "Font to use for the document text (e.g. \"Monospace 10\")"
 msgstr ""
 
-#: gtksourceview/gtksourceprintjob.c:320
-#: gtksourceview/gtksourceprintjob.c:328
+#: gtksourceview/gtksourceprintjob.c:320 gtksourceview/gtksourceprintjob.c:328
 msgid "Numbers Font"
 msgstr "Arvude kirjatüüp"
 
@@ -240,7 +239,7 @@ msgstr ""
 #: gtksourceview/language-specs/css.lang.h:63
 #: gtksourceview/language-specs/html.lang.h:8
 #: gtksourceview/language-specs/fortran.lang.h:12
-#: gtksourceview/language-specs/idl.lang.h:8
+#: gtksourceview/language-specs/idl.lang.h:9
 #: gtksourceview/language-specs/java.lang.h:11
 #: gtksourceview/language-specs/javascript.lang.h:33
 #: gtksourceview/language-specs/lua.lang.h:10
@@ -314,67 +313,71 @@ msgstr ""
 msgid "The style associated to the source tag"
 msgstr ""
 
-#: gtksourceview/gtksourceview.c:207
+#: gtksourceview/gtksourceview.c:206
 msgid "Show Line Numbers"
 msgstr "Näita reanumbreid"
 
-#: gtksourceview/gtksourceview.c:208
+#: gtksourceview/gtksourceview.c:207
 msgid "Whether to display line numbers"
 msgstr "Kas näidata reanumbreid või mitte"
 
-#: gtksourceview/gtksourceview.c:215
+#: gtksourceview/gtksourceview.c:214
 msgid "Show Line Markers"
 msgstr ""
 
-#: gtksourceview/gtksourceview.c:216
+#: gtksourceview/gtksourceview.c:215
 msgid "Whether to display line marker pixbufs"
 msgstr ""
 
-#: gtksourceview/gtksourceview.c:233
+#: gtksourceview/gtksourceview.c:232
 msgid "Auto Indentation"
 msgstr "Automaatne taandamine"
 
-#: gtksourceview/gtksourceview.c:234
+#: gtksourceview/gtksourceview.c:233
 msgid "Whether to enable auto indentation"
 msgstr "Kas lubada automaatne taandamine"
 
-#: gtksourceview/gtksourceview.c:240
+#: gtksourceview/gtksourceview.c:239
 msgid "Insert Spaces Instead of Tabs"
 msgstr "Kasuta tabulaatorite asemel tühikuid"
 
-#: gtksourceview/gtksourceview.c:241
+#: gtksourceview/gtksourceview.c:240
 msgid "Whether to insert spaces instead of tabs"
 msgstr "Kas sisestada tabulaatorite asemele tühikud"
 
-#: gtksourceview/gtksourceview.c:248
+#: gtksourceview/gtksourceview.c:247
 msgid "Show Right Margin"
 msgstr ""
 
-#: gtksourceview/gtksourceview.c:249
+#: gtksourceview/gtksourceview.c:248
 msgid "Whether to display the right margin"
 msgstr ""
 
-#: gtksourceview/gtksourceview.c:256
+#: gtksourceview/gtksourceview.c:255
 msgid "Margin position"
 msgstr ""
 
-#: gtksourceview/gtksourceview.c:257
+#: gtksourceview/gtksourceview.c:256
 msgid "Position of the right margin"
 msgstr ""
 
-#: gtksourceview/gtksourceview.c:266
+#: gtksourceview/gtksourceview.c:265
 msgid "Use smart home/end"
 msgstr "Home/end klahvid on targad"
 
-#: gtksourceview/gtksourceview.c:267
-msgid "HOME and END keys move to first/last characters on line first before going to the start/end of the line"
-msgstr "HOME ja END klahvid liiguvad enne rea algusesse/lõppu minekut rea esimese/viimase märgi peale"
+#: gtksourceview/gtksourceview.c:266
+msgid ""
+"HOME and END keys move to first/last characters on line first before going "
+"to the start/end of the line"
+msgstr ""
+"HOME ja END klahvid liiguvad enne rea algusesse/lõppu minekut rea esimese/"
+"viimase märgi peale"
 
-#: gtksourceview/gtksourceview.c:276
+#: gtksourceview/gtksourceview.c:275
 msgid "Highlight current line"
 msgstr ""
 
-#: gtksourceview/gtksourceview.c:277
+#: gtksourceview/gtksourceview.c:276
 msgid "Whether to highlight the current line"
 msgstr ""
 
@@ -417,6 +420,7 @@ msgstr "Võtmesõnad"
 #: gtksourceview/language-specs/desktop.lang.h:7
 #: gtksourceview/language-specs/diff.lang.h:5
 #: gtksourceview/language-specs/fortran.lang.h:8
+#: gtksourceview/language-specs/idl.lang.h:5
 #: gtksourceview/language-specs/ini.lang.h:8
 #: gtksourceview/language-specs/java.lang.h:5
 #: gtksourceview/language-specs/javascript.lang.h:12
@@ -462,7 +466,7 @@ msgstr "Eelprotsessori võtmesõnad"
 #: gtksourceview/language-specs/cpp.lang.h:14
 #: gtksourceview/language-specs/csharp.lang.h:7
 #: gtksourceview/language-specs/fortran.lang.h:11
-#: gtksourceview/language-specs/idl.lang.h:7
+#: gtksourceview/language-specs/idl.lang.h:8
 #: gtksourceview/language-specs/java.lang.h:10
 #: gtksourceview/language-specs/pascal.lang.h:17
 #: gtksourceview/language-specs/php.lang.h:23
@@ -483,7 +487,7 @@ msgstr "Tõene ja väär"
 #: gtksourceview/language-specs/c.lang.h:16
 #: gtksourceview/language-specs/cpp.lang.h:16
 #: gtksourceview/language-specs/fortran.lang.h:14
-#: gtksourceview/language-specs/idl.lang.h:9
+#: gtksourceview/language-specs/idl.lang.h:10
 #: gtksourceview/language-specs/verilog.lang.h:10
 msgid "Types"
 msgstr "Tüübid"
@@ -561,7 +565,7 @@ msgstr "Kaheksandarv"
 #: gtksourceview/language-specs/c.lang.h:13
 #: gtksourceview/language-specs/cpp.lang.h:13
 #: gtksourceview/language-specs/csharp.lang.h:5
-#: gtksourceview/language-specs/idl.lang.h:5
+#: gtksourceview/language-specs/idl.lang.h:6
 #: gtksourceview/language-specs/haskell.lang.h:13
 #: gtksourceview/language-specs/vbnet.lang.h:4
 msgid "Preprocessor Definitions"
@@ -808,7 +812,7 @@ msgstr "Loe/Kirjuta"
 msgid "IDL"
 msgstr "IDL"
 
-#: gtksourceview/language-specs/idl.lang.h:6
+#: gtksourceview/language-specs/idl.lang.h:7
 msgid "Sectional"
 msgstr ""
 
@@ -1522,4 +1526,3 @@ msgstr ""
 #: gtksourceview/language-specs/gtkrc.lang.h:11
 msgid "State"
 msgstr "Olek"
-

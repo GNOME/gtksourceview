@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-02-14 05:12+0100\n"
+"POT-Creation-Date: 2005-03-08 11:38+0100\n"
 "PO-Revision-Date: 2005-02-14 13:12+0100\n"
 "Last-Translator: Laurent Dhima <laurenti@alblinux.net>\n"
 "Language-Team: Albanian <gnome-albanian-perkthyesit@lists.sourceforge.net>\n"
@@ -83,8 +83,8 @@ msgstr "Buffer i buruesit"
 msgid "GtkSourceBuffer object to print"
 msgstr "Objekti GtkSourceBuffer që duhet printuar"
 
-#: gtksourceview/gtksourceprintjob.c:279 gtksourceview/gtksourceview.c:223
-#: gtksourceview/gtksourceview.c:224
+#: gtksourceview/gtksourceprintjob.c:279 gtksourceview/gtksourceview.c:222
+#: gtksourceview/gtksourceview.c:223
 msgid "Tabs Width"
 msgstr "Gjërësia e tabs"
 
@@ -120,7 +120,8 @@ msgstr "Përshkrimi i gërmave"
 
 #: gtksourceview/gtksourceprintjob.c:313
 msgid "Font to use for the document text (e.g. \"Monospace 10\")"
-msgstr "Gërmat që duhen përdorur për tekstin e dokumentit (p.sh \"Monospace 10\")"
+msgstr ""
+"Gërmat që duhen përdorur për tekstin e dokumentit (p.sh \"Monospace 10\")"
 
 #: gtksourceview/gtksourceprintjob.c:320 gtksourceview/gtksourceprintjob.c:328
 msgid "Numbers Font"
@@ -128,7 +129,8 @@ msgstr "Lloji i gërmave të numrave"
 
 #: gtksourceview/gtksourceprintjob.c:321
 msgid "GnomeFont name to use for the line numbers (deprecated)"
-msgstr "Emri i GnomeFont që duhet përdorur për numrat e rreshtave (nuk përdoret më)"
+msgstr ""
+"Emri i GnomeFont që duhet përdorur për numrat e rreshtave (nuk përdoret më)"
 
 #: gtksourceview/gtksourceprintjob.c:329
 msgid "Font description to use for the line numbers"
@@ -140,7 +142,8 @@ msgstr "Printo numrat e rreshtave"
 
 #: gtksourceview/gtksourceprintjob.c:337
 msgid "Interval of printed line numbers (0 means no numbers)"
-msgstr "intervali i numrave të rreshtit të printuar (0 do të thotë asnjë numër)"
+msgstr ""
+"intervali i numrave të rreshtit të printuar (0 do të thotë asnjë numër)"
 
 #: gtksourceview/gtksourceprintjob.c:344
 msgid "Print Header"
@@ -164,7 +167,8 @@ msgstr "Gërmat e fillim'faqes dhe fund'faqes"
 
 #: gtksourceview/gtksourceprintjob.c:361
 msgid "GnomeFont name to use for the header and footer (deprecated)"
-msgstr "Emri i GnomeFont që duhen përdorur për header dhe footer (nuk përdoret më)"
+msgstr ""
+"Emri i GnomeFont që duhen përdorur për header dhe footer (nuk përdoret më)"
 
 #: gtksourceview/gtksourceprintjob.c:368
 msgid "Header and Footer Font Description"
@@ -172,7 +176,8 @@ msgstr "Përshkrimi i gërmave të fillim'faqes dhe fund'faqes"
 
 #: gtksourceview/gtksourceprintjob.c:369
 msgid "Font to use for headers and footers (e.g. \"Monospace 10\")"
-msgstr "Gërmat që duhen përdorur për header dhe footers (p.sh \"Monospace 10\")"
+msgstr ""
+"Gërmat që duhen përdorur për header dhe footers (p.sh \"Monospace 10\")"
 
 #: gtksourceview/gtksourcestylescheme.c:262
 msgid "Base-N Integer"
@@ -239,7 +244,7 @@ msgstr "Pre-procesues"
 #: gtksourceview/language-specs/css.lang.h:63
 #: gtksourceview/language-specs/html.lang.h:8
 #: gtksourceview/language-specs/fortran.lang.h:12
-#: gtksourceview/language-specs/idl.lang.h:8
+#: gtksourceview/language-specs/idl.lang.h:9
 #: gtksourceview/language-specs/java.lang.h:11
 #: gtksourceview/language-specs/javascript.lang.h:33
 #: gtksourceview/language-specs/lua.lang.h:10
@@ -313,59 +318,59 @@ msgstr "Stili i tag"
 msgid "The style associated to the source tag"
 msgstr "Stili i tag të buruesit"
 
-#: gtksourceview/gtksourceview.c:207
+#: gtksourceview/gtksourceview.c:206
 msgid "Show Line Numbers"
 msgstr "Shfaq numrat e rreshtit"
 
-#: gtksourceview/gtksourceview.c:208
+#: gtksourceview/gtksourceview.c:207
 msgid "Whether to display line numbers"
 msgstr "Përcakton nëse duhen shfaqur numrat e rreshtit"
 
-#: gtksourceview/gtksourceview.c:215
+#: gtksourceview/gtksourceview.c:214
 msgid "Show Line Markers"
 msgstr "Shfaq markuesit e rreshtit"
 
-#: gtksourceview/gtksourceview.c:216
+#: gtksourceview/gtksourceview.c:215
 msgid "Whether to display line marker pixbufs"
 msgstr "Përcakton nëse duhen shfaqur markuesit e rreshtit"
 
-#: gtksourceview/gtksourceview.c:233
+#: gtksourceview/gtksourceview.c:232
 msgid "Auto Indentation"
 msgstr "Ngushtim automatik"
 
-#: gtksourceview/gtksourceview.c:234
+#: gtksourceview/gtksourceview.c:233
 msgid "Whether to enable auto indentation"
 msgstr "Përcakton nëse duhet aktivuar ngushtimi automatik"
 
-#: gtksourceview/gtksourceview.c:240
+#: gtksourceview/gtksourceview.c:239
 msgid "Insert Spaces Instead of Tabs"
 msgstr "Shto hapësira në vend të tabs"
 
-#: gtksourceview/gtksourceview.c:241
+#: gtksourceview/gtksourceview.c:240
 msgid "Whether to insert spaces instead of tabs"
 msgstr "Përcakton nëse duhen shtuar hapësira në vend të tabs"
 
-#: gtksourceview/gtksourceview.c:248
+#: gtksourceview/gtksourceview.c:247
 msgid "Show Right Margin"
 msgstr "Shfaq kufirin e djathtë"
 
-#: gtksourceview/gtksourceview.c:249
+#: gtksourceview/gtksourceview.c:248
 msgid "Whether to display the right margin"
 msgstr "Përcakton nëse duhet shfaqur kufiri i djathtë"
 
-#: gtksourceview/gtksourceview.c:256
+#: gtksourceview/gtksourceview.c:255
 msgid "Margin position"
 msgstr "Pozicioni i kufirit"
 
-#: gtksourceview/gtksourceview.c:257
+#: gtksourceview/gtksourceview.c:256
 msgid "Position of the right margin"
 msgstr "Pozicioni i kufirit të djathtë"
 
-#: gtksourceview/gtksourceview.c:266
+#: gtksourceview/gtksourceview.c:265
 msgid "Use smart home/end"
 msgstr "Përdor pulsantët inteligjentë fillim/fund"
 
-#: gtksourceview/gtksourceview.c:267
+#: gtksourceview/gtksourceview.c:266
 msgid ""
 "HOME and END keys move to first/last characters on line first before going "
 "to the start/end of the line"
@@ -373,11 +378,11 @@ msgstr ""
 "Pulsantët FILLIMI (shigjeta drejtim majtas) dhe FUNDI lëvizin përpara tek "
 "gërma e parë/e fundit në rresht para se të shkojnë në fillim/fund të rreshtit"
 
-#: gtksourceview/gtksourceview.c:276
+#: gtksourceview/gtksourceview.c:275
 msgid "Highlight current line"
 msgstr "Vër në dukje rreshtin aktual"
 
-#: gtksourceview/gtksourceview.c:277
+#: gtksourceview/gtksourceview.c:276
 msgid "Whether to highlight the current line"
 msgstr "Tregon nëse duhet vënë në dukje rreshti aktual"
 
@@ -420,6 +425,7 @@ msgstr "Fjalë kyçe"
 #: gtksourceview/language-specs/desktop.lang.h:7
 #: gtksourceview/language-specs/diff.lang.h:5
 #: gtksourceview/language-specs/fortran.lang.h:8
+#: gtksourceview/language-specs/idl.lang.h:5
 #: gtksourceview/language-specs/ini.lang.h:8
 #: gtksourceview/language-specs/java.lang.h:5
 #: gtksourceview/language-specs/javascript.lang.h:12
@@ -465,7 +471,7 @@ msgstr "Fjalë kyçe të preprocesorit"
 #: gtksourceview/language-specs/cpp.lang.h:14
 #: gtksourceview/language-specs/csharp.lang.h:7
 #: gtksourceview/language-specs/fortran.lang.h:11
-#: gtksourceview/language-specs/idl.lang.h:7
+#: gtksourceview/language-specs/idl.lang.h:8
 #: gtksourceview/language-specs/java.lang.h:10
 #: gtksourceview/language-specs/pascal.lang.h:17
 #: gtksourceview/language-specs/php.lang.h:23
@@ -486,7 +492,7 @@ msgstr "E vërtetë dhe fallso"
 #: gtksourceview/language-specs/c.lang.h:16
 #: gtksourceview/language-specs/cpp.lang.h:16
 #: gtksourceview/language-specs/fortran.lang.h:14
-#: gtksourceview/language-specs/idl.lang.h:9
+#: gtksourceview/language-specs/idl.lang.h:10
 #: gtksourceview/language-specs/verilog.lang.h:10
 msgid "Types"
 msgstr "Llojet"
@@ -564,7 +570,7 @@ msgstr "Numër oktal"
 #: gtksourceview/language-specs/c.lang.h:13
 #: gtksourceview/language-specs/cpp.lang.h:13
 #: gtksourceview/language-specs/csharp.lang.h:5
-#: gtksourceview/language-specs/idl.lang.h:5
+#: gtksourceview/language-specs/idl.lang.h:6
 #: gtksourceview/language-specs/haskell.lang.h:13
 #: gtksourceview/language-specs/vbnet.lang.h:4
 msgid "Preprocessor Definitions"
@@ -809,7 +815,7 @@ msgstr "Lexim/Shkrim"
 msgid "IDL"
 msgstr "IDL"
 
-#: gtksourceview/language-specs/idl.lang.h:6
+#: gtksourceview/language-specs/idl.lang.h:7
 msgid "Sectional"
 msgstr "Të seksionit"
 
@@ -1491,4 +1497,3 @@ msgstr "Simbol pulsanti"
 #: gtksourceview/language-specs/gtkrc.lang.h:11
 msgid "State"
 msgstr "Gjendja"
-
