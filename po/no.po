@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-01-21 23:38+0100\n"
-"PO-Revision-Date: 2004-01-13 17:32+0100\n"
+"POT-Creation-Date: 2004-03-09 15:26+0100\n"
+"PO-Revision-Date: 2004-03-09 15:29+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian (bokmal) <i18n-nb@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
@@ -213,7 +213,7 @@ msgstr "Streng"
 msgid "Specials"
 msgstr "Spesialtegn"
 
-#: gtksourceview/gtksourcestylescheme.c:292
+#: gtksourceview/gtksourcestylescheme.c:294
 #: gtksourceview/language-specs/desktop.lang.h:10
 #: gtksourceview/language-specs/diff.lang.h:7
 #: gtksourceview/language-specs/msil.lang.h:2
@@ -221,15 +221,15 @@ msgstr "Spesialtegn"
 msgid "Others"
 msgstr "Andre"
 
-#: gtksourceview/gtksourcestylescheme.c:297
+#: gtksourceview/gtksourcestylescheme.c:299
 msgid "Others 2"
 msgstr "Andre 2"
 
-#: gtksourceview/gtksourcestylescheme.c:302
+#: gtksourceview/gtksourcestylescheme.c:304
 msgid "Others 3"
 msgstr "Andre 3"
 
-#: gtksourceview/gtksourcestylescheme.c:339
+#: gtksourceview/gtksourcestylescheme.c:341
 msgid "Default"
 msgstr "Forvalg"
 
@@ -448,7 +448,6 @@ msgstr "Primitiver"
 #: gtksourceview/language-specs/csharp.lang.h:9
 #: gtksourceview/language-specs/java.lang.h:12
 #: gtksourceview/language-specs/python.lang.h:12
-#: gtksourceview/language-specs/xml.lang.h:9
 msgid "String 2"
 msgstr "Streng 2"
 
@@ -626,7 +625,7 @@ msgstr "Tabelloperatorer"
 
 #: gtksourceview/language-specs/php.lang.h:2
 msgid "Backtick String"
-msgstr ""
+msgstr "Streng for bakovervendt sitattegn"
 
 #: gtksourceview/language-specs/php.lang.h:3
 msgid "Bash Line Comment"
@@ -745,9 +744,8 @@ msgid "Datetime Functions"
 msgstr "Dato- og tidsfunksjoner"
 
 #: gtksourceview/language-specs/sql.lang.h:10
-#, fuzzy
 msgid "Integer Literals"
-msgstr "Heltallsverdier"
+msgstr "Heltallsbokstaver"
 
 #: gtksourceview/language-specs/sql.lang.h:12
 msgid "Miscellaneous Single-Row Functions"
@@ -763,7 +761,7 @@ msgstr "Tallfunksjoner"
 
 #: gtksourceview/language-specs/sql.lang.h:15
 msgid "Number Literals"
-msgstr ""
+msgstr "Nummerbokstaver"
 
 #: gtksourceview/language-specs/sql.lang.h:16
 msgid "Object Reference Functions"
@@ -802,13 +800,12 @@ msgid "SQL/DS and DB2 Datatypes"
 msgstr "SQL/DS- og DB2-datatyper"
 
 #: gtksourceview/language-specs/sql.lang.h:25
-#, fuzzy
 msgid "Size Clause"
-msgstr "Størrelses"
+msgstr "Størrelsesklausul"
 
 #: gtksourceview/language-specs/sql.lang.h:27
 msgid "Text Literals"
-msgstr ""
+msgstr "Tekstbokstaver"
 
 #: gtksourceview/language-specs/sql.lang.h:28
 msgid "Unlimited"
@@ -838,10 +835,10 @@ msgstr "Verilog"
 msgid "Hexadecimal"
 msgstr "Heksadesimal"
 
-#: gtksourceview/language-specs/xml.lang.h:10
+#: gtksourceview/language-specs/xml.lang.h:9
 msgid "Tag"
 msgstr "Merke"
 
-#: gtksourceview/language-specs/xml.lang.h:11
+#: gtksourceview/language-specs/xml.lang.h:10
 msgid "XML"
 msgstr "XML"
