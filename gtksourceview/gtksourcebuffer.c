@@ -538,13 +538,11 @@ check_embedded (GtkSourceBuffer *sbuf,
 		return;
 	}
 
-	g_print ("Rehighlighting from %d to %d\n", gtk_text_iter_get_offset (iter1),
-		 gtk_text_iter_get_offset (iter2));
-
 	text = gtk_text_buffer_get_slice (buf, iter1, iter2, TRUE);
 	length = strlen (text);
 
 	start_iter = *iter1;
+	cur_iter = start_iter;
 
 	for (i = 0; i < length; i++) {
 		for (list = gtk_source_buffer_get_embedded_entries (sbuf); list; list = list->next) {
@@ -556,13 +554,9 @@ check_embedded (GtkSourceBuffer *sbuf,
 				   now we have to go about detecting if there is anything *inside*
 				   of out new range that should be highlighted
 				 */
-				g_print ("Embedded range found at position %d with length %d.\n", i,
-					 len);
 				for (j = i; j < (i + len); j++) {
-					if ((nlen =
-					     gtk_source_buffer_regex_match (text, j, j + len,
-									    &tag->reg_inside)) >
-					    0) {
+					if ((nlen = gtk_source_buffer_regex_match (text, j, j + len,
+										   &tag->reg_inside)) > 0) {
 						end_iter = cur_iter;
 						gtk_text_iter_forward_chars (&end_iter, nlen);
 						g_print ("Embedded item found at position %d with length %d.\n", j, nlen);

@@ -1,3 +1,9 @@
+2002-07-12  Jeroen Zwartepoorte  <jeroen@xs4all.nl>
+
+	* aclocal.m4: Obsolete.
+	* src/gtksourcebuffer.c: (check_embedded): Fix unitialized GtkTextIter.
+	* src/gtksourcetag.c: (gtk_embedded_tag_new): Fix correct instance type.
+
 2002-07-12  JP Rosevear  <jpr@ximian.com>
 
 	* src/gtktextsearch.h: remove extraneous characters

@@ -217,7 +217,7 @@ gtk_embedded_tag_new (const gchar *name, const gchar *outside, const gchar *insi
 {
 	GtkEmbeddedTag *tag;
 
-	tag = GTK_EMBEDDED_TAG (g_object_new (gtk_syntax_tag_get_type (), "name", name, NULL));
+	tag = GTK_EMBEDDED_TAG (g_object_new (GTK_TYPE_EMBEDDED_TAG, "name", name, NULL));
 	if (!gtk_source_compile_regex (outside, &tag->reg_outside))
 		g_print ("Regex embedded outside pattern failed [%s]\n", outside);
 	if (!gtk_source_compile_regex (inside, &tag->reg_inside))
