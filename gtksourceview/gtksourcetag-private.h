@@ -35,6 +35,7 @@ struct _GtkSourceTag
 {
 	GtkTextTag		 parent_instance;
 
+	gchar			*id;
 	GtkSourceTagStyle	*style;
 };
 

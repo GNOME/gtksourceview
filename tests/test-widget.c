@@ -705,6 +705,7 @@ create_window (ViewsData *vd)
 static void
 new_view_cb (ViewsData *vd, guint callback_action, GtkWidget *widget)
 {
+	
 	GtkWidget *window;
 	
 	window = create_window (vd);

@@ -98,8 +98,10 @@ GtkSourceLanguage
 </para>
 
 @language: 
-@tag_name: 
+@tag_id: 
 @Returns: 
+<!-- # Unused Parameters # -->
+@tag_name: 
 
 
 <!-- ##### FUNCTION gtk_source_language_set_tag_style ##### -->
@@ -108,8 +110,10 @@ GtkSourceLanguage
 </para>
 
 @language: 
-@tag_name: 
+@tag_id: 
 @style: 
+<!-- # Unused Parameters # -->
+@tag_name: 
 
 
 <!-- ##### FUNCTION gtk_source_language_get_tag_default_style ##### -->
@@ -118,8 +122,10 @@ GtkSourceLanguage
 </para>
 
 @language: 
-@tag_name: 
+@tag_id: 
 @Returns: 
+<!-- # Unused Parameters # -->
+@tag_name: 
 
 
 <!-- ##### SIGNAL GtkSourceLanguage::tag-style-changed ##### -->

@@ -29,13 +29,15 @@ struct _GtkSourceLanguagePrivate
 	gchar			*lang_file_name;
 	gchar                   *translation_domain;
 
+	gchar			*id;
+	
 	gchar			*name;
 	gchar			*section;
 
 	GSList			*mime_types;
 
-	GHashTable		*tag_name_to_style_name;
-	GHashTable		*tag_name_to_style;
+	GHashTable		*tag_id_to_style_name;
+	GHashTable		*tag_id_to_style;
 
 	GtkSourceStyleScheme 	*style_scheme;
 

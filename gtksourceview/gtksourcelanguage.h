@@ -65,6 +65,8 @@ struct _GtkSourceLanguageClass
 
 GType            	 gtk_source_language_get_type 			(void) G_GNUC_CONST;
 
+gchar	 		*gtk_source_language_get_id			(GtkSourceLanguage       *language);
+
 gchar	 		*gtk_source_language_get_name			(GtkSourceLanguage       *language);
 gchar			*gtk_source_language_get_section		(GtkSourceLanguage       *language);
 
@@ -83,13 +85,13 @@ void			 gtk_source_language_set_style_scheme		(GtkSourceLanguage       *language
 									 GtkSourceStyleScheme    *scheme);
 
 GtkSourceTagStyle	*gtk_source_language_get_tag_style		(GtkSourceLanguage       *language,
-									 const gchar		 *tag_name);
+									 const gchar		 *tag_id);
 void			 gtk_source_language_set_tag_style		(GtkSourceLanguage       *language,
-									 const gchar		 *tag_name,
+									 const gchar		 *tag_id,
 								 	 const GtkSourceTagStyle *style);
 
 GtkSourceTagStyle	*gtk_source_language_get_tag_default_style	(GtkSourceLanguage       *language,
-								 	 const gchar		 *tag_name);
+								 	 const gchar		 *tag_id);
 
 G_END_DECLS				
 

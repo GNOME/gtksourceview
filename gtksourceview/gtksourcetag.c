@@ -47,6 +47,21 @@ static void		 gtk_pattern_tag_init 		(GtkPatternTag      *text_tag);
 static void		 gtk_pattern_tag_class_init 	(GtkPatternTagClass *text_tag);
 static void		 gtk_pattern_tag_finalize 	(GObject            *object);
 
+static void 		 gtk_source_tag_set_property	(GObject            *object,
+							 guint               prop_id,
+							 const GValue       *value,
+							 GParamSpec         *pspec);
+static void 		 gtk_source_tag_get_property 	(GObject            *object,
+							 guint               prop_id,
+							 GValue             *value,
+							 GParamSpec         *pspec);
+
+enum {
+	PROP_0,
+	PROP_ID,
+	PROP_TAG_STYLE
+};
+
 /* Source tag */
 
 GType
@@ -82,11 +97,33 @@ gtk_source_tag_class_init (GtkSourceTagClass *klass)
 
 	parent_class = g_type_class_peek_parent (klass);
 	object_class->finalize	= gtk_source_tag_finalize;
+
+	object_class->set_property = gtk_source_tag_set_property;
+	object_class->get_property = gtk_source_tag_get_property;
+  
+	/* Construct */
+	g_object_class_install_property (object_class,
+        	                         PROP_ID,
+                                   	 g_param_spec_string ("id",
+                                                        _("Tag ID"),
+                                                        _("ID used to refer to the source tag"),
+                                                        NULL,
+                                                        G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT_ONLY));
+
+	g_object_class_install_property (object_class,
+        	                         PROP_TAG_STYLE,
+                                   	 g_param_spec_boxed ("tag_style",
+                                                       _("Tag style"),
+                                                       _("The style associated to the source tag"),
+                                                       GTK_TYPE_SOURCE_TAG_STYLE,
+                                                       G_PARAM_READABLE | G_PARAM_WRITABLE));
+
 }
 
 static void
 gtk_source_tag_init (GtkSourceTag *text_tag)
 {
+	text_tag->id = NULL;
 	text_tag->style = NULL;
 }
 
@@ -98,6 +135,7 @@ gtk_source_tag_finalize (GObject *object)
 	tag = GTK_SOURCE_TAG (object);
 	
 	g_free (tag->style);
+	g_free (tag->id);
 	
 	G_OBJECT_CLASS (parent_class)->finalize (object);
 }
@@ -123,21 +161,25 @@ gtk_source_tag_set_style (GtkSourceTag *tag, const GtkSourceTagStyle *style)
 	g_return_if_fail (style != NULL);
 
 	/* Foreground color */
+	g_value_init (&foreground, GDK_TYPE_COLOR);
+	
 	if ((style->mask & GTK_SOURCE_TAG_STYLE_USE_FOREGROUND) != 0)
-	{
-		g_value_init (&foreground, GDK_TYPE_COLOR);
 		g_value_set_boxed (&foreground, &style->foreground);
-		g_object_set_property (G_OBJECT (tag), "foreground_gdk", &foreground);
-	}
+	else
+		g_value_set_boxed (&foreground, NULL);
+	
+	g_object_set_property (G_OBJECT (tag), "foreground_gdk", &foreground);
 
 	/* Background color */
+	g_value_init (&background, GDK_TYPE_COLOR);
+
 	if ((style->mask & GTK_SOURCE_TAG_STYLE_USE_BACKGROUND) != 0)
-	{
-		g_value_init (&background, GDK_TYPE_COLOR);
 		g_value_set_boxed (&background, &style->background);
-		g_object_set_property (G_OBJECT (tag), "background_gdk", &background);
-	}
-	
+	else
+		g_value_set_boxed (&background, NULL);
+
+	g_object_set_property (G_OBJECT (tag), "background_gdk", &background);
+		
 	g_object_set (G_OBJECT (tag), 
 		      "style", style->italic ? PANGO_STYLE_ITALIC : PANGO_STYLE_NORMAL,
 		      "weight", style->bold ? PANGO_WEIGHT_BOLD : PANGO_WEIGHT_NORMAL,
@@ -197,7 +239,8 @@ gtk_syntax_tag_init (GtkSyntaxTag *text_tag)
 
 
 GtkTextTag *
-gtk_syntax_tag_new (const gchar *name, 
+gtk_syntax_tag_new (const gchar *id,	
+		    const gchar *name, 
 		    const gchar *pattern_start,
 		    const gchar *pattern_end)
 {
@@ -207,6 +250,7 @@ gtk_syntax_tag_new (const gchar *name,
 	g_return_val_if_fail (pattern_end != NULL, NULL);
 
 	tag = GTK_SYNTAX_TAG (g_object_new (GTK_TYPE_SYNTAX_TAG, 
+					    "id", id,
 					    "name", name,
 					    NULL));
 	
@@ -287,13 +331,16 @@ gtk_pattern_tag_class_init (GtkPatternTagClass *klass)
 }
 
 GtkTextTag *
-gtk_pattern_tag_new (const gchar *name, const gchar *pattern)
+gtk_pattern_tag_new (const gchar *id, 
+		     const gchar *name, 
+		     const gchar *pattern)
 {
 	GtkPatternTag *tag;
 
 	g_return_val_if_fail (pattern != NULL, NULL);
 
 	tag = GTK_PATTERN_TAG (g_object_new (GTK_TYPE_PATTERN_TAG, 
+					     "id", id,
 					     "name", name,
 					     NULL));
 	
@@ -367,7 +414,8 @@ case_insesitive_keyword (const gchar *keyword)
 }
 
 GtkTextTag *
-gtk_keyword_list_tag_new (const gchar  *name, 
+gtk_keyword_list_tag_new (const gchar  *id,
+			  const gchar  *name, 
 			  const GSList *keywords,
 			  gboolean      case_sensitive,
 			  gboolean      match_empty_string_at_beginning,
@@ -433,7 +481,7 @@ gtk_keyword_list_tag_new (const gchar  *name,
 			g_string_append (str, "|");
 	}
 
-	tag = gtk_pattern_tag_new (name, str->str);
+	tag = gtk_pattern_tag_new (id, name, str->str);
 
 	g_string_free (str, TRUE);
 	
@@ -441,15 +489,18 @@ gtk_keyword_list_tag_new (const gchar  *name,
 }
 
 GtkTextTag *
-gtk_line_comment_tag_new (const gchar *name, const gchar *pattern_start)
+gtk_line_comment_tag_new (const gchar *id, 
+			  const gchar *name, 
+			  const gchar *pattern_start)
 {
 	g_return_val_if_fail (pattern_start != NULL, NULL);
 
-	return gtk_syntax_tag_new (name, pattern_start, "\n");
+	return gtk_syntax_tag_new (id, name, pattern_start, "\n");
 }
 
 GtkTextTag *
-gtk_string_tag_new (const gchar    *name,
+gtk_string_tag_new (const gchar    *id,
+		    const gchar    *name,
 	            const gchar    *pattern_start,
 		    const gchar    *pattern_end,
 		    gboolean        end_at_line_end)
@@ -458,7 +509,7 @@ gtk_string_tag_new (const gchar    *name,
 	g_return_val_if_fail (pattern_end != NULL, NULL);
 
 	if (!end_at_line_end)
-		return gtk_syntax_tag_new (name, pattern_start, pattern_end);
+		return gtk_syntax_tag_new (id, name, pattern_start, pattern_end);
 	else
 	{
 		GtkTextTag *tag;
@@ -466,13 +517,93 @@ gtk_string_tag_new (const gchar    *name,
 		
 		end = g_strdup_printf ("%s|\n", pattern_end);
 
-		tag = gtk_syntax_tag_new (name, pattern_start, end);
+		tag = gtk_syntax_tag_new (id, name, pattern_start, end);
 
 		g_free (end);
 
 		return tag;
 	}
 }
+
+static void
+gtk_source_tag_set_property (GObject            *object,
+			     guint               prop_id,
+			     const GValue       *value,
+			     GParamSpec         *pspec)
+{
+	GtkSourceTag *tag;
+
+	g_return_if_fail (GTK_IS_SOURCE_TAG (object));
+
+	tag = GTK_SOURCE_TAG (object);
+
+	switch (prop_id)
+	{
+		case PROP_ID:
+			g_return_if_fail (tag->id == NULL);
+			tag->id = g_strdup (g_value_get_string (value));
+			break;
+
+		case PROP_TAG_STYLE:
+			{
+				const GtkSourceTagStyle *style;
+
+				style = g_value_get_boxed (value);
+
+				if (style != NULL)
+					gtk_source_tag_set_style (tag, style);
+			}
+				
+		default:
+			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+    	}
+}
+
+static void
+gtk_source_tag_get_property (GObject      *object,
+                             guint         prop_id,
+                             GValue       *value,
+                             GParamSpec   *pspec)
+{
+	GtkSourceTag *tag;
+
+	g_return_if_fail (GTK_IS_SOURCE_TAG (object));
+
+	tag = GTK_SOURCE_TAG (object);
+
+	switch (prop_id)
+	{
+		case PROP_ID:
+			g_value_set_string (value, tag->id);
+			break;
+
+		case PROP_TAG_STYLE:
+			{
+				GtkSourceTagStyle *style;
+				
+				style = gtk_source_tag_get_style (tag);
+
+				g_value_set_boxed (value, style);
+
+				if (style != NULL)
+					gtk_source_tag_style_free (style);
+				
+				break;
+			}
+		default:
+			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+	}
+}
+
+gchar *
+gtk_source_tag_get_id (GtkSourceTag *tag)
+{
+	g_return_val_if_fail (GTK_IS_SOURCE_TAG (tag), NULL);
+	g_return_val_if_fail (tag->id != NULL, NULL);
+
+	return g_strdup (tag->id);
+}
+	
 
 /* GtkSourceTagStyle functions ------------- */
 

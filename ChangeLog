@@ -1,3 +1,25 @@
+2003-06-23  Paolo Maggi <paolo.maggi@polito.it> 
+
+	* gtksourceview/gtksourcelanguage-private.h (GtkSourceLanguagePrivate):
+	added id, renamed tag_name_to_style_name to tag_id_to_style_name and
+	tag_name_to_style to tag_id_to_style
+	
+	* gtksourceview/gtksourcelanguage.c (gtk_source_language_finalize):
+	free id
+	(escape_id): new function
+	(process_language_node): set language id
+	(gtk_source_language_get_id): new method
+	(parseLineComment)(parseLineComment)(parseString)(parseKeywordList)
+	(parsePatternItem)(parseSyntaxItem)(parseTag): set tag id
+	(tag_style_changed_cb): use tag instead of name
+	
+	* gtksourceview/gtksourcelanguage.h (gtk_source_language_get_id): new method
+	
+	* gtksourceview/gtksourcetag-private.h (GtkSourceTag): added id
+	
+	* gtksourceview/gtksourcetag.[ch]: added the id arg to all constructors,
+	added id and tag_style properties
+	
 2003-06-18  Dmitry G. Mastrukov  <dmitry@taurussoft.org>
 
 	* configure.in: Added Belarusian to ALL_LINGUAS.

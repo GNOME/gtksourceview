@@ -187,14 +187,15 @@ gtk_source_language_finalize (GObject *object)
 		xmlFree (lang->priv->translation_domain);
 		xmlFree (lang->priv->name);
 		xmlFree (lang->priv->section);
+		g_free  (lang->priv->id);
 
 		slist_deep_free (lang->priv->mime_types);
 
-		if (lang->priv->tag_name_to_style_name != NULL)
-			g_hash_table_destroy (lang->priv->tag_name_to_style_name);
+		if (lang->priv->tag_id_to_style_name != NULL)
+			g_hash_table_destroy (lang->priv->tag_id_to_style_name);
 
-		if (lang->priv->tag_name_to_style != NULL)
-			g_hash_table_destroy (lang->priv->tag_name_to_style);
+		if (lang->priv->tag_id_to_style != NULL)
+			g_hash_table_destroy (lang->priv->tag_id_to_style);
 
 		g_object_unref (lang->priv->style_scheme);
 
@@ -202,6 +203,61 @@ gtk_source_language_finalize (GObject *object)
 	}
 	
 	G_OBJECT_CLASS (parent_class)->finalize (object);
+}
+
+/*
+ * This function has been taken from GConf.
+ * Copyright (C) 1999, 2000 Red Hat Inc.
+ */
+
+static const gchar invalid_chars[] = " \t\r\n\"$&<>,+=#!()'|{}[]?~`;%\\";
+
+/**
+ * escape_id:
+ * @arbitrary_text: some text in any encoding or format
+ * @len: length of @arbitrary_text in bytes, or -1 if @arbitrary_text is nul-terminated
+ * 
+ * Return value: a nul-terminated valid part of a GConf key
+ **/
+static gchar*
+escape_id (const gchar *arbitrary_text, gint len)
+{
+	const char *p;
+	const char *end;
+	GString *retval;
+
+	g_return_val_if_fail (arbitrary_text != NULL, NULL);
+  
+	/* Nearly all characters we would normally use for escaping aren't allowed in key
+	 * names, so we use @ for that.
+	 *
+	 * Invalid chars and @ itself are escaped as @xxx@ where xxx is the
+	 * Latin-1 value in decimal
+	 */
+
+	if (len < 0)
+		len = strlen (arbitrary_text);
+
+	retval = g_string_new ("");
+
+	p = arbitrary_text;
+	end = arbitrary_text + len;
+	while (p != end)
+	{
+		if (*p == '/' || *p == '.' || *p == '@' || ((guchar) *p) > 127 ||
+			strchr (invalid_chars, *p))
+		{
+			g_string_append_c (retval, '@');
+			g_string_append_printf (retval, "%u", (unsigned int) *p);
+			g_string_append_c (retval, '@');
+		}
+		else
+			g_string_append_c (retval, *p);
+      
+		++p;
+	}
+
+	return g_string_free (retval, FALSE);
 }
 
 static GtkSourceLanguage *
@@ -212,6 +268,7 @@ process_language_node (xmlTextReaderPtr reader, const gchar *filename)
 	gchar** mtl;
 	int i;
 	xmlChar *tmp;
+	xmlChar *id_temp;
 	GtkSourceLanguage *lang;
 	
 	lang= g_object_new (GTK_TYPE_SOURCE_LANGUAGE, NULL);
@@ -236,12 +293,19 @@ process_language_node (xmlTextReaderPtr reader, const gchar *filename)
 			g_object_unref (lang);
 			return NULL;
 		}
+
+		id_temp = xmlStrdup (lang->priv->name);
 	}
 	else
 	{
+		id_temp = xmlStrdup (tmp);
 		lang->priv->name = xmlStrdup (dgettext (lang->priv->translation_domain, tmp));
 		xmlFree (tmp);
 	}
+
+	g_return_val_if_fail (id_temp != NULL, NULL);
+	lang->priv->id = escape_id (id_temp, -1);
+	xmlFree (id_temp);
 
 	tmp = xmlTextReaderGetAttribute (reader, "_section");
 	if (tmp == NULL)
@@ -318,10 +382,27 @@ process_language_node (xmlTextReaderPtr reader, const gchar *filename)
 }
 
 /**
+ * gtk_source_language_get_id:
+ * @language: a #GtkSourceLanguage.
+ *
+ * Returns the ID of the language. The ID is not locale-dependent.
+ *
+ * Return value: the ID of @language.
+ **/
+gchar *
+gtk_source_language_get_id (GtkSourceLanguage *language)
+{
+	g_return_val_if_fail (GTK_IS_SOURCE_LANGUAGE (language), NULL);
+	g_return_val_if_fail (language->priv->id != NULL, NULL);
+		
+	return g_strdup (language->priv->id);
+}
+
+/**
  * gtk_source_language_get_name:
  * @language: a #GtkSourceLanguage.
  *
- * Returns the name of the language @language.
+ * Returns the localized name of the language.
  *
  * Return value: the name of @language.
  **/
@@ -329,14 +410,26 @@ gchar *
 gtk_source_language_get_name (GtkSourceLanguage *language)
 {
 	g_return_val_if_fail (GTK_IS_SOURCE_LANGUAGE (language), NULL);
+	g_return_val_if_fail (language->priv->name != NULL, NULL);
 
 	return g_strdup (language->priv->name);
 }
 
+/**
+ * gtk_source_language_get_section:
+ * @language: a #GtkSourceLanguage.
+ *
+ * Returns the localized section of the language.
+ * Each language belong to a section (ex. HTML belogs to the
+ * Markup section)
+ *
+ * Return value: the section of @language.
+ **/
 gchar *
 gtk_source_language_get_section	(GtkSourceLanguage *language)
 {
 	g_return_val_if_fail (GTK_IS_SOURCE_LANGUAGE (language), NULL);
+	g_return_val_if_fail (language->priv->section != NULL, NULL);
 
 	return g_strdup (language->priv->section);
 }
@@ -516,7 +609,7 @@ strconvescape (gchar *source)
 
 
 static GtkTextTag *
-parseLineComment (xmlDocPtr doc, xmlNodePtr cur, xmlChar *name)
+parseLineComment (xmlDocPtr doc, xmlNodePtr cur, gchar* id, xmlChar *name)
 {
 	GtkTextTag *tag = NULL;
 	
@@ -530,7 +623,7 @@ parseLineComment (xmlDocPtr doc, xmlNodePtr cur, xmlChar *name)
 			
 		start_regex = xmlNodeListGetString (doc, child->xmlChildrenNode, 1);
 			
-		tag = gtk_line_comment_tag_new (name, strconvescape (start_regex));
+		tag = gtk_line_comment_tag_new (id, name, strconvescape (start_regex));
 
 		xmlFree (start_regex);
 	}
@@ -544,7 +637,7 @@ parseLineComment (xmlDocPtr doc, xmlNodePtr cur, xmlChar *name)
 }
 
 static GtkTextTag *
-parseBlockComment (xmlDocPtr doc, xmlNodePtr cur, xmlChar *name)
+parseBlockComment (xmlDocPtr doc, xmlNodePtr cur, gchar* id, xmlChar *name)
 {
 	GtkTextTag *tag = NULL;
 
@@ -588,7 +681,8 @@ parseBlockComment (xmlDocPtr doc, xmlNodePtr cur, xmlChar *name)
 		return NULL;
 	}
 
-	tag = gtk_block_comment_tag_new (name, 
+	tag = gtk_block_comment_tag_new (id,
+					 name, 
 					 strconvescape (start_regex), 
 					 strconvescape (end_regex));
 
@@ -599,7 +693,7 @@ parseBlockComment (xmlDocPtr doc, xmlNodePtr cur, xmlChar *name)
 }
 
 static GtkTextTag *
-parseString (xmlDocPtr doc, xmlNodePtr cur, xmlChar *name)
+parseString (xmlDocPtr doc, xmlNodePtr cur, gchar* id, xmlChar *name)
 {
 	GtkTextTag *tag = NULL;
 
@@ -659,7 +753,8 @@ parseString (xmlDocPtr doc, xmlNodePtr cur, xmlChar *name)
 		return NULL;
 	}
 
-	tag = gtk_string_tag_new (name, 
+	tag = gtk_string_tag_new (id,
+				  name, 
 				  strconvescape (start_regex), 
 				  strconvescape (end_regex), 
 				  end_at_line_end);
@@ -671,7 +766,7 @@ parseString (xmlDocPtr doc, xmlNodePtr cur, xmlChar *name)
 }
 
 static GtkTextTag *
-parseKeywordList (xmlDocPtr doc, xmlNodePtr cur, xmlChar *name)
+parseKeywordList (xmlDocPtr doc, xmlNodePtr cur, gchar* id, xmlChar *name)
 {
 	GtkTextTag *tag = NULL;
 
@@ -770,7 +865,8 @@ parseKeywordList (xmlDocPtr doc, xmlNodePtr cur, xmlChar *name)
 		return NULL;
 	}
 
-	tag = gtk_keyword_list_tag_new (name, 
+	tag = gtk_keyword_list_tag_new (id,
+					name, 
 					list,
 					case_sensitive,
 					match_empty_string_at_beginning,
@@ -788,7 +884,7 @@ parseKeywordList (xmlDocPtr doc, xmlNodePtr cur, xmlChar *name)
 }
 
 static GtkTextTag *
-parsePatternItem (xmlDocPtr doc, xmlNodePtr cur, xmlChar *name)
+parsePatternItem (xmlDocPtr doc, xmlNodePtr cur, gchar* id, xmlChar *name)
 {
 	GtkTextTag *tag = NULL;
 	
@@ -802,7 +898,7 @@ parsePatternItem (xmlDocPtr doc, xmlNodePtr cur, xmlChar *name)
 			
 		regex = xmlNodeListGetString (doc, child->xmlChildrenNode, 1);
 			
-		tag = gtk_pattern_tag_new (name, strconvescape (regex));
+		tag = gtk_pattern_tag_new (id, name, strconvescape (regex));
 
 		xmlFree (regex);
 	}
@@ -816,7 +912,7 @@ parsePatternItem (xmlDocPtr doc, xmlNodePtr cur, xmlChar *name)
 }
 
 static GtkTextTag *
-parseSyntaxItem (xmlDocPtr doc, xmlNodePtr cur, xmlChar *name)
+parseSyntaxItem (xmlDocPtr doc, xmlNodePtr cur, gchar* id, xmlChar *name)
 {
 	GtkTextTag *tag = NULL;
 
@@ -860,7 +956,8 @@ parseSyntaxItem (xmlDocPtr doc, xmlNodePtr cur, xmlChar *name)
 		return NULL;
 	}
 
-	tag = gtk_syntax_tag_new (name, 
+	tag = gtk_syntax_tag_new (id,
+				  name, 
 				  strconvescape (start_regex),
 				  strconvescape (end_regex));
 
@@ -872,20 +969,21 @@ parseSyntaxItem (xmlDocPtr doc, xmlNodePtr cur, xmlChar *name)
 
 static void 
 tag_style_changed_cb (GtkSourceLanguage *language,
-		      const gchar       *name,
-		      GtkTextTag	*tag)
+		      const gchar       *id,
+		      GtkSourceTag	*tag)
 {
 	GtkSourceTagStyle *ts;
-		
-	if (strcmp (tag->name, name) != 0)
+
+	if (strcmp (gtk_source_tag_get_id (tag), id) != 0)
 		return;
 
-	ts = gtk_source_language_get_tag_style (language, name);
+	ts = gtk_source_language_get_tag_style (language, id);
 
 	if (ts != NULL)
+	{
 		gtk_source_tag_set_style (GTK_SOURCE_TAG (tag), ts);
-
-	gtk_source_tag_style_free (ts);
+		gtk_source_tag_style_free (ts);
+	}
 }
 
 static GSList *
@@ -898,15 +996,19 @@ parseTag (GtkSourceLanguage *language,
 	GtkTextTag *tag = NULL;
 	xmlChar *name;
 	xmlChar *style;
+	xmlChar *id_temp;
+	gchar   *id;
 	
 	name = xmlGetProp (cur, "_name");
 	if (name == NULL)
 	{
 		name = xmlGetProp (cur, "name");
+		id_temp =xmlStrdup (name);
 	}
 	else
 	{
 		xmlChar *tmp = xmlStrdup (dgettext (language->priv->translation_domain, name));
+		id_temp = xmlStrdup (name);
 		xmlFree (name);
 		name = tmp;
 	}
@@ -917,6 +1019,11 @@ parseTag (GtkSourceLanguage *language,
 	{
 		return tag_list;	
 	}
+
+	g_return_val_if_fail (id_temp != NULL, tag_list);
+	id = escape_id (id_temp, -1);
+	xmlFree (id_temp);
+
 	if (style == NULL)
 	{
 		/* FIXME */
@@ -925,27 +1032,27 @@ parseTag (GtkSourceLanguage *language,
 	
 	if (!xmlStrcmp (cur->name, (const xmlChar *)"line-comment"))
 	{
-		tag = parseLineComment (doc, cur, name);		
+		tag = parseLineComment (doc, cur, id, name);		
 	}
 	else if (!xmlStrcmp (cur->name, (const xmlChar *)"block-comment"))
 	{
-		tag = parseBlockComment (doc, cur, name);		
+		tag = parseBlockComment (doc, cur, id, name);		
 	}
 	else if (!xmlStrcmp (cur->name, (const xmlChar *)"string"))
 	{
-		tag = parseString (doc, cur, name);		
+		tag = parseString (doc, cur, id, name);		
 	}
 	else if (!xmlStrcmp (cur->name, (const xmlChar *)"keyword-list"))
 	{
-		tag = parseKeywordList (doc, cur, name);		
+		tag = parseKeywordList (doc, cur, id, name);		
 	}
 	else if (!xmlStrcmp (cur->name, (const xmlChar *)"pattern-item"))
 	{
-		tag = parsePatternItem (doc, cur, name);		
+		tag = parsePatternItem (doc, cur, id, name);		
 	}
 	else if (!xmlStrcmp (cur->name, (const xmlChar *)"syntax-item"))
 	{
-		tag = parseSyntaxItem (doc, cur, name);		
+		tag = parseSyntaxItem (doc, cur, id, name);		
 	}
 	else
 	{
@@ -959,16 +1066,17 @@ parseTag (GtkSourceLanguage *language,
 		tag_list = g_slist_prepend (tag_list, tag);
 
 		if (populate_styles_table)
-			g_hash_table_insert (language->priv->tag_name_to_style_name, 
-					     g_strdup (name), 
+			g_hash_table_insert (language->priv->tag_id_to_style_name, 
+					     g_strdup (id), 
 					     g_strdup (style));
 
-		ts = gtk_source_language_get_tag_style (language, name);
+		ts = gtk_source_language_get_tag_style (language, id);
 
 		if (ts != NULL)
+		{
 			gtk_source_tag_set_style (GTK_SOURCE_TAG (tag), ts);
-
-		gtk_source_tag_style_free (ts);
+			gtk_source_tag_style_free (ts);
+		}
 		
 		g_signal_connect_object (language, 
 					 "tag_style_changed",
@@ -979,6 +1087,7 @@ parseTag (GtkSourceLanguage *language,
 		
 	xmlFree (name);
 	xmlFree (style);
+	g_free (id);
 
 	return tag_list;
 }
@@ -1077,16 +1186,16 @@ gtk_source_language_get_tags (GtkSourceLanguage *language)
 
 	g_return_val_if_fail (GTK_IS_SOURCE_LANGUAGE (language), NULL);
 	
-	if (language->priv->tag_name_to_style_name == NULL)
+	if (language->priv->tag_id_to_style_name == NULL)
 	{
-		g_return_val_if_fail (language->priv->tag_name_to_style == NULL, NULL);
+		g_return_val_if_fail (language->priv->tag_id_to_style == NULL, NULL);
 
-		language->priv->tag_name_to_style_name = g_hash_table_new_full ((GHashFunc)g_str_hash,
+		language->priv->tag_id_to_style_name = g_hash_table_new_full ((GHashFunc)g_str_hash,
 										(GEqualFunc)g_str_equal,
 										(GDestroyNotify)g_free,
 										(GDestroyNotify)g_free);
 
-		language->priv->tag_name_to_style = g_hash_table_new_full ((GHashFunc)g_str_hash,
+		language->priv->tag_id_to_style = g_hash_table_new_full ((GHashFunc)g_str_hash,
 									   (GEqualFunc)g_str_equal,
 									   (GDestroyNotify)g_free,
 									   (GDestroyNotify)gtk_source_tag_style_free);
@@ -1102,19 +1211,19 @@ gtk_source_language_get_tags (GtkSourceLanguage *language)
 static gboolean
 gtk_source_language_lazy_init_hash_tables (GtkSourceLanguage *language)
 {
-	if (language->priv->tag_name_to_style_name == NULL)
+	if (language->priv->tag_id_to_style_name == NULL)
 	{
 		GSList *list;
 
-		g_return_val_if_fail (language->priv->tag_name_to_style == NULL, FALSE);
+		g_return_val_if_fail (language->priv->tag_id_to_style == NULL, FALSE);
 
 		list = gtk_source_language_get_tags (language);
 
 		g_slist_foreach (list, (GFunc)g_object_unref, NULL);
 		g_slist_free (list);
 	
-		g_return_val_if_fail (language->priv->tag_name_to_style_name != NULL, FALSE);
-		g_return_val_if_fail (language->priv->tag_name_to_style != NULL, FALSE);
+		g_return_val_if_fail (language->priv->tag_id_to_style_name != NULL, FALSE);
+		g_return_val_if_fail (language->priv->tag_id_to_style != NULL, FALSE);
 	}
 
 	return TRUE;
@@ -1122,22 +1231,22 @@ gtk_source_language_lazy_init_hash_tables (GtkSourceLanguage *language)
 
 GtkSourceTagStyle *
 gtk_source_language_get_tag_style (GtkSourceLanguage *language, 
-				   const gchar       *tag_name)
+				   const gchar       *tag_id)
 {
 	const GtkSourceTagStyle *style;
 
-	g_return_val_if_fail (GTK_SOURCE_LANGUAGE (language), NULL);
-	g_return_val_if_fail (tag_name != NULL, NULL);
+	g_return_val_if_fail (GTK_IS_SOURCE_LANGUAGE (language), NULL);
+	g_return_val_if_fail (tag_id != NULL, NULL);
 
 	if (!gtk_source_language_lazy_init_hash_tables (language))
 		return NULL;
 
-	style = (const GtkSourceTagStyle*)g_hash_table_lookup (language->priv->tag_name_to_style,
-							       tag_name);
+	style = (const GtkSourceTagStyle*)g_hash_table_lookup (language->priv->tag_id_to_style,
+							       tag_id);
 
 	if (style == NULL)
 	{
-		return gtk_source_language_get_tag_default_style (language, tag_name);
+		return gtk_source_language_get_tag_default_style (language, tag_id);
 	}
 	else
 	{
@@ -1147,18 +1256,18 @@ gtk_source_language_get_tag_style (GtkSourceLanguage *language,
 
 GtkSourceTagStyle*
 gtk_source_language_get_tag_default_style (GtkSourceLanguage *language,
-					   const gchar       *tag_name)
+					   const gchar       *tag_id)
 {
 	const gchar *style_name;
 	
-	g_return_val_if_fail (GTK_SOURCE_LANGUAGE (language), NULL);
-	g_return_val_if_fail (tag_name != NULL, NULL);
+	g_return_val_if_fail (GTK_IS_SOURCE_LANGUAGE (language), NULL);
+	g_return_val_if_fail (tag_id != NULL, NULL);
 
 	if (!gtk_source_language_lazy_init_hash_tables (language))
 			return NULL;
 
-	style_name = (const gchar*)g_hash_table_lookup (language->priv->tag_name_to_style_name,
-							tag_name);
+	style_name = (const gchar*)g_hash_table_lookup (language->priv->tag_id_to_style_name,
+							tag_id);
 
 	if (style_name != NULL)
 	{
@@ -1177,29 +1286,27 @@ gtk_source_language_get_tag_default_style (GtkSourceLanguage *language,
 
 void 
 gtk_source_language_set_tag_style (GtkSourceLanguage       *language,
-				   const gchar             *tag_name,
+				   const gchar             *tag_id,
 				   const GtkSourceTagStyle *style)
 {
 	GtkSourceTagStyle *ts;
 
 	g_return_if_fail (GTK_SOURCE_LANGUAGE (language));
-	g_return_if_fail (tag_name != NULL);
+	g_return_if_fail (tag_id != NULL);
 
 	if (!gtk_source_language_lazy_init_hash_tables (language))
 			return;	
 	
 	ts = gtk_source_tag_style_copy (style);
 
-	g_hash_table_insert (language->priv->tag_name_to_style,
-			     g_strdup (tag_name),
+	g_hash_table_insert (language->priv->tag_id_to_style,
+			     g_strdup (tag_id),
 			     ts);
 
 	g_signal_emit (G_OBJECT (language),
 		       signals[TAG_STYLE_CHANGED], 
 		       0, 
-		       tag_name);
-
-	return;
+		       tag_id);
 }
 
 GtkSourceStyleScheme *
@@ -1245,7 +1352,7 @@ gtk_source_language_set_style_scheme (GtkSourceLanguage    *language,
 	if (!gtk_source_language_lazy_init_hash_tables (language))
 		return;
 
-	g_hash_table_foreach (language->priv->tag_name_to_style_name,
+	g_hash_table_foreach (language->priv->tag_id_to_style_name,
 			      (GHFunc) emit_tag_style_changed_signal,
 			      (gpointer) language);
 }
