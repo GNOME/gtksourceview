@@ -6,77 +6,13 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview VERSION\n"
-"POT-Creation-Date: 2003-05-30 21:12+0200\n"
-"PO-Revision-Date: 2003-05-31 01:26+0200\n"
+"POT-Creation-Date: 2003-06-04 13:06+0200\n"
+"PO-Revision-Date: 2003-06-04 15:44+0200\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-
-#: gtksourceview/gtksourceview.c:207
-msgid "Show Line Numbers"
-msgstr "Zobrazovat čísla řádků"
-
-#: gtksourceview/gtksourceview.c:208
-msgid "Whether to display line numbers"
-msgstr "Jestli zobrazovat čísla řádků"
-
-#: gtksourceview/gtksourceview.c:215
-msgid "Show Line Markers"
-msgstr "Zobrazovat značky řádků"
-
-#: gtksourceview/gtksourceview.c:216
-msgid "Whether to display line marker pixbufs"
-msgstr "Jestli zobrazovat pixbufy značek řádků"
-
-#: gtksourceview/gtksourceview.c:223 gtksourceview/gtksourceview.c:224
-msgid "Tabs Width"
-msgstr "Šířka tabelátorů"
-
-#: gtksourceview/gtksourceview.c:233
-msgid "Auto Indentation"
-msgstr "Automatické odsazování"
-
-#: gtksourceview/gtksourceview.c:234
-msgid "Whether to enable auto indentation"
-msgstr "Jestli povolit automatické odsazování"
-
-#: gtksourceview/gtksourceview.c:240
-msgid "Insert Spaces Instead of Tabs"
-msgstr "Vkládat mezery místo tabelátorů"
-
-#: gtksourceview/gtksourceview.c:241
-msgid "Whether to insert spaces instead of tabs"
-msgstr "Jestli vkládat mezery místo tabelátorů"
-
-#: gtksourceview/gtksourceview.c:248
-msgid "Show Right Margin"
-msgstr "Zobrazovat pravý okraj"
-
-#: gtksourceview/gtksourceview.c:249
-msgid "Whether to display the right margin"
-msgstr "Jestli zobrazovat pravý okraj"
-
-#: gtksourceview/gtksourceview.c:256
-msgid "Margin position"
-msgstr "Pozice okraje"
-
-#: gtksourceview/gtksourceview.c:257
-msgid "Position of the right margin"
-msgstr "Pozice pravého okraje"
-
-#: gtksourceview/gtksourceview.c:266
-msgid "Use smart home/end"
-msgstr "Používat chytré home/end"
-
-#: gtksourceview/gtksourceview.c:267
-msgid ""
-"HOME and END keys move to first/last characters on line first before going "
-"to the start/end of the line"
-msgstr ""
-"Klávesy HOME a END jdou nejdřív na první/poslední znak řádku a až potom na "
-"začátek/konec řádku"
 
 #: gtksourceview/gtksourcebuffer.c:277
 msgid "Escape Character"
@@ -94,7 +30,7 @@ msgstr "Kontrolovat závorky"
 msgid "Whether to check and highlight matching brackets"
 msgstr "Jestli kontrolovat a zvýrazňovat odpovídající si závorky"
 
-#: gtksourceview/gtksourcebuffer.c:295
+#: gtksourceview/gtksourcebuffer.c:295 gtksourceview/gtksourceprintjob.c:303
 msgid "Highlight"
 msgstr "Zvýrazňovat"
 
@@ -127,6 +63,91 @@ msgid ""
 "List of directories where the language specification files (.lang) are "
 "located"
 msgstr "Seznam adresářů, kde jsou umístěny soubory specifikace jazyka (.lang)"
+
+#: gtksourceview/gtksourceprintjob.c:272
+msgid "Configuration"
+msgstr "Nastavení"
+
+#: gtksourceview/gtksourceprintjob.c:273
+msgid "Configuration options for the print job"
+msgstr "Možnosti nastavení tiskové úlohy"
+
+#: gtksourceview/gtksourceprintjob.c:280
+msgid "Source Buffer"
+msgstr "Zdrojový buffer"
+
+#: gtksourceview/gtksourceprintjob.c:281
+msgid "GtkSourceBuffer object to print"
+msgstr "Objekt GtkSourceBuffer, který vytisknout"
+
+#: gtksourceview/gtksourceprintjob.c:287 gtksourceview/gtksourceview.c:223
+#: gtksourceview/gtksourceview.c:224
+msgid "Tabs Width"
+msgstr "Šířka tabelátorů"
+
+#: gtksourceview/gtksourceprintjob.c:288
+msgid "Width in equivalent space characters of tabs"
+msgstr "Šířka v ekvivalentních znacích mezera nebo tabelátor"
+
+#: gtksourceview/gtksourceprintjob.c:295
+msgid "Wrap Mode"
+msgstr "Režim zalamování"
+
+#: gtksourceview/gtksourceprintjob.c:296
+msgid "Word wrapping mode"
+msgstr "Režim zalamování slov"
+
+#: gtksourceview/gtksourceprintjob.c:304
+msgid "Whether to print the document with highlighted syntax"
+msgstr "Jestli tisknout dokument se zvýrazněnou syntaxí"
+
+#: gtksourceview/gtksourceprintjob.c:312
+msgid "Font"
+msgstr "Písmo"
+
+#: gtksourceview/gtksourceprintjob.c:313
+msgid "Font name to use for the document text"
+msgstr "Název písma, které používat pro text dokumentu"
+
+#: gtksourceview/gtksourceprintjob.c:320
+msgid "Numbers Font"
+msgstr "Písmo čísel"
+
+#: gtksourceview/gtksourceprintjob.c:321
+msgid "Font name to use for the line numbers"
+msgstr "Název písma, které používat pro čísla řádků"
+
+#: gtksourceview/gtksourceprintjob.c:328
+msgid "Print Line Numbers"
+msgstr "Tisknout čísla řádků"
+
+#: gtksourceview/gtksourceprintjob.c:329
+msgid "Interval of printed line numbers (0 means no numbers)"
+msgstr "Interval čísel tisknutých řádků (0 znamená žádná čísla)"
+
+#: gtksourceview/gtksourceprintjob.c:336
+msgid "Print Header"
+msgstr "Tisknout hlavičku"
+
+#: gtksourceview/gtksourceprintjob.c:337
+msgid "Whether to print a header in each page"
+msgstr "Jestli tisknout hlavičku na každé stránce"
+
+#: gtksourceview/gtksourceprintjob.c:344
+msgid "Print Footer"
+msgstr "Tiskout patičku"
+
+#: gtksourceview/gtksourceprintjob.c:345
+msgid "Whether to print a footer in each page"
+msgstr "Jestli tisknout patičku na každé stránce"
+
+#: gtksourceview/gtksourceprintjob.c:352
+msgid "Header & Footer Font"
+msgstr "Písmo hlavičky a patičky"
+
+#: gtksourceview/gtksourceprintjob.c:353
+msgid "Font name to use for the header and footer"
+msgstr "Název písma, které použít pro hlavičku a patičku"
 
 #: gtksourceview/gtksourcestylescheme.c:222
 msgid "Base-N Integer"
@@ -187,3 +208,63 @@ msgstr "Jiné 3"
 #: gtksourceview/gtksourcestylescheme.c:324
 msgid "Default"
 msgstr "Implicitní"
+
+#: gtksourceview/gtksourceview.c:207
+msgid "Show Line Numbers"
+msgstr "Zobrazovat čísla řádků"
+
+#: gtksourceview/gtksourceview.c:208
+msgid "Whether to display line numbers"
+msgstr "Jestli zobrazovat čísla řádků"
+
+#: gtksourceview/gtksourceview.c:215
+msgid "Show Line Markers"
+msgstr "Zobrazovat značky řádků"
+
+#: gtksourceview/gtksourceview.c:216
+msgid "Whether to display line marker pixbufs"
+msgstr "Jestli zobrazovat pixbufy značek řádků"
+
+#: gtksourceview/gtksourceview.c:233
+msgid "Auto Indentation"
+msgstr "Automatické odsazování"
+
+#: gtksourceview/gtksourceview.c:234
+msgid "Whether to enable auto indentation"
+msgstr "Jestli povolit automatické odsazování"
+
+#: gtksourceview/gtksourceview.c:240
+msgid "Insert Spaces Instead of Tabs"
+msgstr "Vkládat mezery místo tabelátorů"
+
+#: gtksourceview/gtksourceview.c:241
+msgid "Whether to insert spaces instead of tabs"
+msgstr "Jestli vkládat mezery místo tabelátorů"
+
+#: gtksourceview/gtksourceview.c:248
+msgid "Show Right Margin"
+msgstr "Zobrazovat pravý okraj"
+
+#: gtksourceview/gtksourceview.c:249
+msgid "Whether to display the right margin"
+msgstr "Jestli zobrazovat pravý okraj"
+
+#: gtksourceview/gtksourceview.c:256
+msgid "Margin position"
+msgstr "Pozice okraje"
+
+#: gtksourceview/gtksourceview.c:257
+msgid "Position of the right margin"
+msgstr "Pozice pravého okraje"
+
+#: gtksourceview/gtksourceview.c:266
+msgid "Use smart home/end"
+msgstr "Používat chytré home/end"
+
+#: gtksourceview/gtksourceview.c:267
+msgid ""
+"HOME and END keys move to first/last characters on line first before going "
+"to the start/end of the line"
+msgstr ""
+"Klávesy HOME a END jdou nejdřív na první/poslední znak řádku a až potom na "
+"začátek/konec řádku"
