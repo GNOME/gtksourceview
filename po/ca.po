@@ -1,14 +1,14 @@
 # Catalan translation of gtksourceview
-# Copyright © 2003 Free Software Foundation, Inc.
+# Copyright © 2004 Free Software Foundation, Inc.
 # This file is distributed under the same license as the gtksourceview package.
-# Aleix Badia i Bosch <abadia@ica.es>, 2003
+# Aleix Badia i Bosch <abadia@ica.es>, 2003, 2004
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-03-29 15:11+0200\n"
-"PO-Revision-Date: 2004-03-29 15:15+0200\n"
+"POT-Creation-Date: 2004-04-18 21:54+0200\n"
+"PO-Revision-Date: 2004-04-18 21:57+0200\n"
 "Last-Translator: Aleix Badia i Bosch <abadia@ica.es>\n"
 "Language-Team: Catalan <tradgnome@softcatala.org>\n"
 "MIME-Version: 1.0\n"
@@ -42,11 +42,11 @@ msgstr "Si s'ha de ressaltar la sintaxi de la memòria intermèdia"
 
 #: gtksourceview/gtksourcebuffer.c:306
 msgid "Maximum Undo Levels"
-msgstr "Número màxim de nivells a desfer"
+msgstr "Nombre màxim de nivells a desfer"
 
 #: gtksourceview/gtksourcebuffer.c:307
 msgid "Number of undo levels for the buffer"
-msgstr "Número de nivells a desfer per la memòria intermèdia"
+msgstr "Nombre de nivells a desfer per a la memòria intermèdia"
 
 #: gtksourceview/gtksourcebuffer.c:317
 #: gtksourceview/language-specs/desktop.lang.h:6
@@ -138,7 +138,7 @@ msgstr "Imprimeix la capçalera"
 
 #: gtksourceview/gtksourceprintjob.c:337
 msgid "Whether to print a header in each page"
-msgstr "S'ha d'imprimir la capçalera en cada pàgina"
+msgstr "Si s'ha d'imprimir la capçalera en cada pàgina"
 
 #: gtksourceview/gtksourceprintjob.c:344
 msgid "Print Footer"
@@ -413,7 +413,7 @@ msgstr "Macroinstrucció habitual"
 #: gtksourceview/language-specs/c.lang.h:7
 #: gtksourceview/language-specs/cpp.lang.h:7
 msgid "Floating Point Number"
-msgstr "Número coma flotant"
+msgstr "Número en coma flotant"
 
 #: gtksourceview/language-specs/c.lang.h:8
 #: gtksourceview/language-specs/cpp.lang.h:8
@@ -460,7 +460,7 @@ msgstr "Cadena 2"
 
 #: gtksourceview/language-specs/desktop.lang.h:1
 msgid ".desktop"
-msgstr ".escriptori"
+msgstr ".desktop"
 
 #: gtksourceview/language-specs/desktop.lang.h:2
 msgid "Boolean Value"
@@ -628,11 +628,11 @@ msgstr "Variables"
 
 #: gtksourceview/language-specs/php.lang.h:1
 msgid "Array Operators"
-msgstr ""
+msgstr "Operadors de matrius"
 
 #: gtksourceview/language-specs/php.lang.h:2
 msgid "Backtick String"
-msgstr ""
+msgstr "Cadena amb cometes inverses"
 
 #: gtksourceview/language-specs/php.lang.h:3
 msgid "Bash Line Comment"
@@ -648,23 +648,23 @@ msgstr "Comentari de línia de C++"
 
 #: gtksourceview/language-specs/php.lang.h:6
 msgid "Case Insensitive Keyword"
-msgstr ""
+msgstr "Teclat que no distingeix majúscules i minúscules"
 
 #: gtksourceview/language-specs/php.lang.h:7
 msgid "Case Sensitive Keyword"
-msgstr ""
+msgstr "Teclat que distingeix majúscules i minúscules<"
 
 #: gtksourceview/language-specs/php.lang.h:9
 msgid "Double Quoted String"
-msgstr "Cadena entrecomillada"
+msgstr "Cadena entre cometes dobles"
 
 #: gtksourceview/language-specs/php.lang.h:10
 msgid "First Open PHP Tag"
-msgstr ""
+msgstr "Primer marcador d'obertura de PHP"
 
 #: gtksourceview/language-specs/php.lang.h:11
 msgid "HTML Block"
-msgstr "Block HTML"
+msgstr "Bloc d'HTML"
 
 #: gtksourceview/language-specs/php.lang.h:12
 msgid "Operators"
@@ -736,11 +736,11 @@ msgstr "Funcions analítiques"
 
 #: gtksourceview/language-specs/sql.lang.h:6
 msgid "Character Functions Returning Character Values"
-msgstr ""
+msgstr "Funcions de caràcter que retornen valors de caràcter"
 
 #: gtksourceview/language-specs/sql.lang.h:7
 msgid "Character Functions Returning Number Values"
-msgstr ""
+msgstr "Funcions de caràcter que retornen valors numèrics"
 
 #: gtksourceview/language-specs/sql.lang.h:8
 msgid "Conversion Functions"
@@ -756,7 +756,7 @@ msgstr "Literals de sencers"
 
 #: gtksourceview/language-specs/sql.lang.h:12
 msgid "Miscellaneous Single-Row Functions"
-msgstr ""
+msgstr "Funcions de fila única variades"
 
 #: gtksourceview/language-specs/sql.lang.h:13
 msgid "Null"
@@ -764,23 +764,23 @@ msgstr "Nul"
 
 #: gtksourceview/language-specs/sql.lang.h:14
 msgid "Number Functions"
-msgstr "Funcions de nombres"
+msgstr "Funcions de números"
 
 #: gtksourceview/language-specs/sql.lang.h:15
 msgid "Number Literals"
-msgstr "Literals de nombres"
+msgstr "Literals de números"
 
 #: gtksourceview/language-specs/sql.lang.h:16
 msgid "Object Reference Functions"
-msgstr ""
+msgstr "Funcions de referència d'objecte"
 
 #: gtksourceview/language-specs/sql.lang.h:17
 msgid "Oracle Built-in Datatypes"
-msgstr ""
+msgstr "Tipus de dades integrats de l'Oracle"
 
 #: gtksourceview/language-specs/sql.lang.h:18
 msgid "Oracle Reserved Words"
-msgstr ""
+msgstr "Paraules reservades de l'Oracle"
 
 #: gtksourceview/language-specs/sql.lang.h:19
 msgid "SQL"
@@ -788,27 +788,27 @@ msgstr "SQL"
 
 #: gtksourceview/language-specs/sql.lang.h:20
 msgid "SQL*Plus At Sign"
-msgstr ""
+msgstr "Signe arroba de l'SQL*Plus"
 
 #: gtksourceview/language-specs/sql.lang.h:21
 msgid "SQL*Plus Commands"
-msgstr ""
+msgstr "Ordres de l'SQL*Plus"
 
 #: gtksourceview/language-specs/sql.lang.h:22
 msgid "SQL*Plus Double At Sign"
-msgstr ""
+msgstr "Signe doble arroba de l'SQL*Plus"
 
 #: gtksourceview/language-specs/sql.lang.h:23
 msgid "SQL*Plus Slash"
-msgstr ""
+msgstr "Barra inversa de l'SQL*Plus"
 
 #: gtksourceview/language-specs/sql.lang.h:24
 msgid "SQL/DS and DB2 Datatypes"
-msgstr ""
+msgstr "Tipus de dades del DB2 i SQL/DS"
 
 #: gtksourceview/language-specs/sql.lang.h:25
 msgid "Size Clause"
-msgstr ""
+msgstr "Clàusula de mida"
 
 #: gtksourceview/language-specs/sql.lang.h:27
 msgid "Text Literals"
