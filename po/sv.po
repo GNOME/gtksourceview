@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
-"POT-Creation-Date: 2003-05-20 15:53-0300\n"
-"PO-Revision-Date: 2003-05-20 10:35+0200\n"
+"POT-Creation-Date: 2003-05-26 18:21+0200\n"
+"PO-Revision-Date: 2003-05-26 18:23+0200\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -84,8 +84,8 @@ msgid "Escape Character"
 msgstr "Escape-tecken"
 
 #: gtksourceview/gtksourcebuffer.c:278
-msgid "Escaping character for syntax delimiters"
-msgstr "Escape-tecken för syntaxavgränsare"
+msgid "Escaping character for syntax patterns"
+msgstr "Escape-tecken för syntaxmönster"
 
 #: gtksourceview/gtksourcebuffer.c:286
 msgid "Check Brackets"
@@ -100,8 +100,8 @@ msgid "Highlight"
 msgstr "Färgmarkera"
 
 #: gtksourceview/gtksourcebuffer.c:296
-msgid "Whether to syntax highlight the buffer"
-msgstr "Huruvida bufferten ska syntaxfärgmarkeras"
+msgid "Whether to highlight syntax in the buffer"
+msgstr "Huruvida syntaxen ska färgmarkeras i bufferten"
 
 #: gtksourceview/gtksourcebuffer.c:304
 msgid "Maximum Undo Levels"
@@ -116,8 +116,8 @@ msgid "Language"
 msgstr "Språk"
 
 #: gtksourceview/gtksourcebuffer.c:316
-msgid "Language object to get highlighting rules from"
-msgstr "Språkobjekt att hämta färgmarkeringsregler från"
+msgid "Language object to get highlighting patterns from"
+msgstr "Språkobjekt att hämta färgmarkeringsmönster från"
 
 #: gtksourceview/gtksourcelanguagesmanager.c:119
 msgid "Language spefications directories"
@@ -213,3 +213,189 @@ msgstr "Standard"
 #~ "List of directories where the language specification files (.lang) are "
 #~ "located"
 #~ msgstr "Lista med kataloger där språkspecifikationsfiler (.lang) finns"
+
+#~ msgid "Block Comment"
+#~ msgstr "Blockkommentar"
+
+#~ msgid "Boolean Value"
+#~ msgstr "Booleskt värde"
+
+#~ msgid "Builtins"
+#~ msgstr "Inbyggda"
+
+#~ msgid "Character Constant"
+#~ msgstr "Teckenkonstant"
+
+#~ msgid "Common Macro"
+#~ msgstr "Gemensamt makro"
+
+#~ msgid "Declarations"
+#~ msgstr "Deklarationer"
+
+#~ msgid "Declaration"
+#~ msgstr "Deklaration"
+
+#~ msgid "Diff file"
+#~ msgstr "Diff-fil"
+
+#~ msgid "Encoding"
+#~ msgstr "Kodning"
+
+#~ msgid "Exec Parameter"
+#~ msgstr "Exekveringsparameter"
+
+#~ msgid "Floating Point Number"
+#~ msgstr "Flyttal"
+
+#~ msgid "Flow"
+#~ msgstr "Flöde"
+
+#~ msgid "Format"
+#~ msgstr "Format"
+
+#~ msgid "Function Call"
+#~ msgstr "Funktionsanrop"
+
+#~ msgid "Function Calls"
+#~ msgstr "Funktionsanrop"
+
+#~ msgid "Functions"
+#~ msgstr "Funktioner"
+
+#~ msgid "Group"
+#~ msgstr "Grupp"
+
+#~ msgid "Hex Number"
+#~ msgstr "Hexadecimalt tal"
+
+#~ msgid "Include/Pragma"
+#~ msgstr "Inkludering/Pragma"
+
+#~ msgid "Keywords"
+#~ msgstr "Nyckelord"
+
+#~ msgid "Line Comment"
+#~ msgstr "Radkommentar"
+
+#~ msgid "Location"
+#~ msgstr "Plats"
+
+#~ msgid "Math"
+#~ msgstr "Metematik"
+
+#~ msgid "Mathemathics"
+#~ msgstr "Metematik"
+
+#~ msgid "Memory"
+#~ msgstr "Minne"
+
+#~ msgid "Modifiers"
+#~ msgstr "Modifierare"
+
+#~ msgid "Module Handler"
+#~ msgstr "Modulhanterare"
+
+#~ msgid "Multiline String 2"
+#~ msgstr "Flerradig sträng 2"
+
+#~ msgid "Multiline String"
+#~ msgstr "Flerradig sträng"
+
+#~ msgid "Non Standard Key"
+#~ msgstr "Nyckel som inte är standard"
+
+#~ msgid "Number"
+#~ msgstr "Tal"
+
+#~ msgid "Numeric"
+#~ msgstr "Numeriskt"
+
+#~ msgid "Octal Number"
+#~ msgstr "Oktalt tal"
+
+#~ msgid "Preprocessor Definitions"
+#~ msgstr "Preprocessor-definitioner"
+
+#~ msgid "Preprocessor Keywords"
+#~ msgstr "Preprocessor-nyckelord"
+
+#~ msgid "Primitives"
+#~ msgstr "Primitiver"
+
+#~ msgid "Sectional"
+#~ msgstr "Sektionsrelaterat"
+
+#~ msgid "Self"
+#~ msgstr "Själv"
+
+#~ msgid "Special case"
+#~ msgstr "Specialfall"
+
+#~ msgid "Standard Key"
+#~ msgstr "Standardnyckel"
+
+#~ msgid "String 2"
+#~ msgstr "Sträng 2"
+
+#~ msgid "String2"
+#~ msgstr "Sträng2"
+
+#~ msgid "String3"
+#~ msgstr "Sträng3"
+
+#~ msgid "Tag"
+#~ msgstr "Tagg"
+
+#~ msgid "True And False"
+#~ msgstr "Sant och falskt"
+
+#~ msgid "Types"
+#~ msgstr "Typer"
+
+#~ msgid "Variables"
+#~ msgstr "Variabler"
+
+#~ msgid "Variable"
+#~ msgstr "Variabel"
+
+#~ msgid "Hexadecimal"
+#~ msgstr "Hexadecimalt"
+
+#~ msgid "Sources"
+#~ msgstr "Källkod"
+
+#~ msgid "Added line"
+#~ msgstr "Tillagd rad"
+
+#~ msgid "Attributes"
+#~ msgstr "Attribut"
+
+#~ msgid "Changed line"
+#~ msgstr "Ändrad rad"
+
+#~ msgid "Closing Bracket"
+#~ msgstr "Avslutande klammer"
+
+#~ msgid "DTD"
+#~ msgstr "DTD"
+
+#~ msgid "Entity"
+#~ msgstr "Entitet"
+
+#~ msgid "Markup"
+#~ msgstr "Markup"
+
+#~ msgid "Include"
+#~ msgstr "Inkludering"
+
+#~ msgid "Most Used Commands"
+#~ msgstr "Mest använda kommandon"
+
+#~ msgid "Scripts"
+#~ msgstr "Skript"
+
+#~ msgid "Removed line"
+#~ msgstr "Borttagen rad"
+
+#~ msgid "Tags"
+#~ msgstr "Taggar"
