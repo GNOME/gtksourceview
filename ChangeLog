@@ -1,3 +1,8 @@
+2004-10-07  Paolo Borelli  <pborelli@katamail.com>
+
+	* gtksourceview/gtksourcetagtable.c (gtk_source_tag_table_remove_tag):
+	fix leak, patch by David A Knight (bug #152767)
+
 2004-09-05  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* configure.in (ALL_LINGUAS): Added 'th' (Thai).
