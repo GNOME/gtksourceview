@@ -1,15 +1,15 @@
 # Canadian English translation of gtksourceview
-# Copyright (C) 2004 Adam Weinberger and the GNOME Foundation
+# Copyright (C) 2004-2005 Adam Weinberger and the GNOME Foundation
 # This file is distributed under the same licence as the gtksourceview package.
 # Alexander Winston <alexander.winston@comcast.net>, 2004.
-# Adam Weinberger <adamw@gnome.org>, 2004.
+# Adam Weinberger <adamw@gnome.org>, 2004, 2005.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview 0.9.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-10 01:43-0500\n"
-"PO-Revision-Date: 2005-01-10 22:17-0500\n"
+"POT-Creation-Date: 2005-01-11 00:59-0500\n"
+"PO-Revision-Date: 2005-01-11 22:17-0500\n"
 "Last-Translator: Adam Weinberger <adamw@gnome.org>\n"
 "Language-Team: Canadian English <adamw@FreeBSD.org>\n"
 "MIME-Version: 1.0\n"
@@ -50,6 +50,7 @@ msgstr "Number of undo levels for the buffer"
 
 #: gtksourceview/gtksourcebuffer.c:317
 #: gtksourceview/language-specs/desktop.lang.h:6
+#: gtksourceview/language-specs/ini.lang.h:7
 msgid "Language"
 msgstr "Language"
 
@@ -245,6 +246,7 @@ msgstr "Preprocessor"
 #: gtksourceview/language-specs/po.lang.h:6
 #: gtksourceview/language-specs/python.lang.h:10
 #: gtksourceview/language-specs/ruby.lang.h:18
+#: gtksourceview/language-specs/sh.lang.h:13
 #: gtksourceview/language-specs/xml.lang.h:7
 #: gtksourceview/language-specs/haskell.lang.h:15
 #: gtksourceview/language-specs/vbnet.lang.h:7
@@ -274,6 +276,7 @@ msgstr "Specials"
 #: gtksourceview/language-specs/css.lang.h:46
 #: gtksourceview/language-specs/desktop.lang.h:10
 #: gtksourceview/language-specs/diff.lang.h:7
+#: gtksourceview/language-specs/ini.lang.h:10
 #: gtksourceview/language-specs/msil.lang.h:2
 #: gtksourceview/language-specs/po.lang.h:5
 msgid "Others"
@@ -414,6 +417,7 @@ msgstr "Keywords"
 #: gtksourceview/language-specs/desktop.lang.h:7
 #: gtksourceview/language-specs/diff.lang.h:5
 #: gtksourceview/language-specs/fortran.lang.h:8
+#: gtksourceview/language-specs/ini.lang.h:8
 #: gtksourceview/language-specs/java.lang.h:5
 #: gtksourceview/language-specs/javascript.lang.h:12
 #: gtksourceview/language-specs/lua.lang.h:4
@@ -421,6 +425,7 @@ msgstr "Keywords"
 #: gtksourceview/language-specs/perl.lang.h:3
 #: gtksourceview/language-specs/python.lang.h:4
 #: gtksourceview/language-specs/ruby.lang.h:9
+#: gtksourceview/language-specs/sh.lang.h:5
 #: gtksourceview/language-specs/sql.lang.h:11
 #: gtksourceview/language-specs/verilog.lang.h:7
 #: gtksourceview/language-specs/haskell.lang.h:10
@@ -578,6 +583,7 @@ msgstr "Primitives"
 #: gtksourceview/language-specs/lua.lang.h:11
 #: gtksourceview/language-specs/python.lang.h:11
 #: gtksourceview/language-specs/ruby.lang.h:19
+#: gtksourceview/language-specs/sh.lang.h:14
 #: gtksourceview/language-specs/vbnet.lang.h:8
 msgid "String 2"
 msgstr "String 2"
@@ -625,6 +631,7 @@ msgstr "Known Property Values"
 #: gtksourceview/language-specs/css.lang.h:34
 #: gtksourceview/language-specs/javascript.lang.h:19
 #: gtksourceview/language-specs/php.lang.h:19
+#: gtksourceview/language-specs/sh.lang.h:8
 #: gtksourceview/language-specs/haskell.lang.h:12
 msgid "Operators"
 msgstr "Operators"
@@ -638,6 +645,7 @@ msgstr "Property Names"
 #.
 #: gtksourceview/language-specs/css.lang.h:51
 #: gtksourceview/language-specs/javascript.lang.h:20
+#: gtksourceview/language-specs/sh.lang.h:9
 msgid "Punctuators"
 msgstr "Punctuators"
 
@@ -681,6 +689,7 @@ msgid ".desktop"
 msgstr ".desktop"
 
 #: gtksourceview/language-specs/desktop.lang.h:2
+#: gtksourceview/language-specs/ini.lang.h:2
 msgid "Boolean Value"
 msgstr "Boolean Value"
 
@@ -693,10 +702,12 @@ msgid "Exec Parameter"
 msgstr "Exec Parameter"
 
 #: gtksourceview/language-specs/desktop.lang.h:5
+#: gtksourceview/language-specs/ini.lang.h:5
 msgid "Group"
 msgstr "Group"
 
 #: gtksourceview/language-specs/desktop.lang.h:8
+#: gtksourceview/language-specs/ini.lang.h:9
 msgid "Non Standard Key"
 msgstr "Non Standard Key"
 
@@ -790,6 +801,33 @@ msgstr "IDL"
 #: gtksourceview/language-specs/idl.lang.h:6
 msgid "Sectional"
 msgstr "Sectional"
+
+#: gtksourceview/language-specs/ini.lang.h:1
+msgid ".ini"
+msgstr ".ini"
+
+#: gtksourceview/language-specs/ini.lang.h:3
+#: gtksourceview/language-specs/verilog.lang.h:3
+msgid "Decimal Number"
+msgstr "Decimal Number"
+
+#: gtksourceview/language-specs/ini.lang.h:4
+msgid "Double Quote String"
+msgstr "Double Quote String"
+
+#: gtksourceview/language-specs/ini.lang.h:6
+msgid "Integer"
+msgstr "Integer"
+
+#: gtksourceview/language-specs/ini.lang.h:11
+msgid "Single Quote String"
+msgstr "Single Quote String"
+
+#. $variable, $$dynamic-variable and even $$$more
+#: gtksourceview/language-specs/ini.lang.h:12
+#: gtksourceview/language-specs/php.lang.h:25
+msgid "Variable"
+msgstr "Variable"
 
 #: gtksourceview/language-specs/java.lang.h:2
 msgid "Declarations"
@@ -889,6 +927,7 @@ msgstr "Objects"
 #: gtksourceview/language-specs/perl.lang.h:7
 #: gtksourceview/language-specs/python.lang.h:9
 #: gtksourceview/language-specs/ruby.lang.h:17
+#: gtksourceview/language-specs/sh.lang.h:11
 #: gtksourceview/language-specs/tcl.lang.h:3
 msgid "Scripts"
 msgstr "Scripts"
@@ -920,6 +959,7 @@ msgstr "Most Used Commands"
 
 #: gtksourceview/language-specs/lua.lang.h:2
 #: gtksourceview/language-specs/python.lang.h:2
+#: gtksourceview/language-specs/sh.lang.h:4
 msgid "Functions"
 msgstr "Functions"
 
@@ -933,11 +973,13 @@ msgstr "Lua"
 
 #: gtksourceview/language-specs/lua.lang.h:7
 #: gtksourceview/language-specs/python.lang.h:6
+#: gtksourceview/language-specs/sh.lang.h:6
 msgid "Multiline String"
 msgstr "Multiline String"
 
 #: gtksourceview/language-specs/lua.lang.h:8
 #: gtksourceview/language-specs/python.lang.h:7
+#: gtksourceview/language-specs/sh.lang.h:7
 msgid "Multiline String 2"
 msgstr "Multiline String 2"
 
@@ -1025,6 +1067,7 @@ msgstr "Variables"
 
 #. `backticks-quoted strings`
 #: gtksourceview/language-specs/php.lang.h:3
+#: gtksourceview/language-specs/sh.lang.h:1
 msgid "Backtick String"
 msgstr "Backtick String"
 
@@ -1073,11 +1116,6 @@ msgstr "PHP"
 #: gtksourceview/language-specs/php.lang.h:22
 msgid "Single Quoted String"
 msgstr "Single Quoted String"
-
-#. $variable, $$dynamic-variable and even $$$more
-#: gtksourceview/language-specs/php.lang.h:25
-msgid "Variable"
-msgstr "Variable"
 
 #: gtksourceview/language-specs/po.lang.h:2
 msgid "Format"
@@ -1151,6 +1189,34 @@ msgstr "Regular Expression 2"
 #: gtksourceview/language-specs/ruby.lang.h:16
 msgid "Ruby"
 msgstr "Ruby"
+
+#: gtksourceview/language-specs/sh.lang.h:2
+msgid "Built-in Commands"
+msgstr "Built-in Commands"
+
+#: gtksourceview/language-specs/sh.lang.h:3
+msgid "Common Commands"
+msgstr "Common Commands"
+
+#: gtksourceview/language-specs/sh.lang.h:10
+msgid "Redirections"
+msgstr "Redirections"
+
+#: gtksourceview/language-specs/sh.lang.h:12
+msgid "Self"
+msgstr "Self"
+
+#: gtksourceview/language-specs/sh.lang.h:15
+msgid "Variable1"
+msgstr "Variable1"
+
+#: gtksourceview/language-specs/sh.lang.h:16
+msgid "Variable2"
+msgstr "Variable2"
+
+#: gtksourceview/language-specs/sh.lang.h:17
+msgid "sh"
+msgstr "sh"
 
 #: gtksourceview/language-specs/sql.lang.h:1
 msgid "ANSI Datatypes"
@@ -1256,10 +1322,6 @@ msgstr "Unlimited"
 #: gtksourceview/language-specs/nemerle.lang.h:1
 msgid "Binary Number"
 msgstr "Binary Number"
-
-#: gtksourceview/language-specs/verilog.lang.h:3
-msgid "Decimal Number"
-msgstr "Decimal Number"
 
 #: gtksourceview/language-specs/verilog.lang.h:4
 msgid "Gates"
