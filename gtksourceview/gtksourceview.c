@@ -943,12 +943,10 @@ draw_line_markers (GtkSourceView *view,
 		window = gtk_text_view_get_window (GTK_TEXT_VIEW (view),
 						   GTK_TEXT_WINDOW_LEFT);
 
-		gdk_pixbuf_render_to_drawable_alpha (composite,
-						     GDK_DRAWABLE (window),
-						     0, 0, x, y,
-						     width, height,
-						     GDK_PIXBUF_ALPHA_BILEVEL,
-						     127, GDK_RGB_DITHER_NORMAL, 0, 0);
+		gdk_draw_pixbuf (GDK_DRAWABLE (window), NULL, composite,
+				 0, 0, x, y,
+				 width, height,
+				 GDK_RGB_DITHER_NORMAL, 0, 0);
 		g_object_unref (composite);
 	}
 

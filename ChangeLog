@@ -1,3 +1,8 @@
+2003-06-12  Anders Carlsson  <andersca@codefactory.se>
+
+	* gtksourceview/gtksourceview.c (draw_line_markers): 
+	Use gdk_draw_pixbuf.
+
 2003-06-12  Paolo Maggi <paolo.maggi@polito.it>
 
 	* configure.in: removed unused GLIB_REQUIRED_VERSION
