@@ -2111,7 +2111,21 @@ update_syntax_regions (GtkSourceBuffer *source_buffer,
 		/* update saved table offsets which potentially
 		 * contain the offset */
 		region = bsearch_offset (source_buffer->priv->old_syntax_regions, start_offset);
-		adjust_table_offsets (source_buffer->priv->old_syntax_regions, region, delta);
+		if (region > 0)
+		{
+			/* Changes to the uncontrolled regions. We can't possibly
+			   know if some of the syntax regions changed, so we
+			   invalidate the saved information */
+			if (source_buffer->priv->old_syntax_regions) {
+				g_array_free (source_buffer->priv->old_syntax_regions, TRUE);
+				source_buffer->priv->old_syntax_regions = NULL;
+			}
+		}
+		else
+		{
+			adjust_table_offsets (source_buffer->priv->old_syntax_regions,
+					      region, delta);
+		}
 		return;
 	}
 	

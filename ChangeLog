@@ -1,3 +1,11 @@
+2004-02-10  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+
+	* gtksourceview/gtksourcebuffer.c (update_syntax_regions):
+	Invalidate saved syntax regions information if a change is being
+	made in an offset included in them, since we have no way to know
+	if syntax regions have been added/removed and later reusing
+	those regions can lead to crashes (bug #133901, Dan Williams).
+
 2004-01-21 Alastair McKinstry <mckinstry@computer.org>
 
 	* configure.in: Added Irish locale "ga" to ALL_LINGUAS
