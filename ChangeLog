@@ -1,3 +1,6 @@
+Tue Dec 11 04:48:45 PM PST 2001 Chris Phelps <chicane@reninet.com>
+    * gtksourceview.c: remove some deprecated calls to gdk_string_width() with pango_layout action.
+
 Mon Dec 10 04:58:22 PM PST 2001 Chris Phelps <chicane@reninet.com>
     * Modified gtksourcebuffer line marker api to allow for multiple markers per line.
     * Added a a few new marker related functions for convenience purposes and completeness

@@ -412,6 +412,7 @@ get_tab_stop_width(GtkWidget *widget, gint tab_stop)
     gchar *tab_string = NULL;
     int counter = 0;
     int tab_width = 0;
+    PangoLayout *layout = NULL;
 
     tab_string = g_new0(char, tab_stop + 1);
     while(counter < tab_stop)
@@ -419,10 +420,16 @@ get_tab_stop_width(GtkWidget *widget, gint tab_stop)
         tab_string[counter] = ' ';
         counter++;
     }
-    if(widget->style->private_font)
-        tab_width = gdk_string_width(widget->style->private_font, tab_string);
+    layout = gtk_widget_create_pango_layout(widget, tab_string);
+    if(layout)
+    {
+        pango_layout_get_pixel_size(layout, &tab_width, NULL);
+        g_object_unref(G_OBJECT(layout));
+    }
     else
-        tab_width = 8 * tab_stop;
+    {
+        tab_width = tab_stop * 8;
+    }
     return(tab_width);
 }
 
@@ -521,6 +528,7 @@ recompute_gutter_width(GtkTextView *text_view)
 {
     GtkSourceView *view = GTK_SOURCE_VIEW(text_view);
     gchar *str = NULL;
+    PangoLayout *layout = NULL;
     gint lines = 0;
     gint text_width = 0;
     gint old_width;
@@ -530,7 +538,12 @@ recompute_gutter_width(GtkTextView *text_view)
         lines = gtk_text_buffer_get_line_count(text_view->buffer);
         lines--;
         str = g_strdup_printf ("%d", lines);
-        text_width += gdk_string_width(gtk_style_get_font(GTK_WIDGET(text_view)->style), str);
+        layout = gtk_widget_create_pango_layout(GTK_WIDGET(text_view), str);
+        if(layout)
+        {
+            pango_layout_get_pixel_size(layout, &text_width, NULL);
+            g_object_unref(G_OBJECT(layout));
+        }
         g_free(str);
         text_width += GUTTER_PAD * 2;
     }
