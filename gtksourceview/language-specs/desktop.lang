@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- <!DOCTYPE language SYSTEM "language.dtd"> -->
+<!DOCTYPE language SYSTEM "language.dtd">
 <language name=".desktop" version="1.0" section="Others" mimetypes="application/x-gnome-app-info;application/x-desktop">
 
 	<line-comment name = "Line Comment" style= "Comment">
@@ -84,7 +84,7 @@
 	</keyword-list>
 
 	<pattern-item name = "Number" style = "Floating Point">
-		<regex>\(.\b[0-9]+\([Ll]?\|[Ff]?\)\b\)\|\(b[0-9]*\.\W\)</regex>
+		<regex>(.\b[0-9]+([Ll]?|[Ff]?)\b)|(b[0-9]*\.\W)</regex>
 	</pattern-item>
 
 </language>

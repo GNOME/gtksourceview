@@ -1,4 +1,10 @@
-SUBDIRS = language-specs
+SUBDIRS = language-specs gnu-regex
+
+if BUILD_GNU_REGEX
+REGEX_LIBS = gnu-regex/libgnuregex.la
+else
+REGEX_LIBS = 
+endif
 
 INCLUDES = 				\
 	-DDATADIR=\""$(datadir)"\" 	\
@@ -53,7 +59,7 @@ libgtksourceview_1_0_la_SOURCES = 		\
 	$(libgtksourceview_headers)	\
 	$(BUILT_SOURCES)
 
-libgtksourceview_1_0_la_LIBADD = $(DEP_LIBS)
+libgtksourceview_1_0_la_LIBADD = $(DEP_LIBS) $(REGEX_LIBS)
 
 libgtksourceview_1_0_includedir = $(includedir)/gtksourceview-1.0/gtksourceview
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- <!DOCTYPE language SYSTEM "language.dtd"> -->
+<!DOCTYPE language SYSTEM "language.dtd">
 <language name="HTML" version="1.0" section="Markup" mimetypes="text/html">
 	
 	<block-comment name="Block Comment" style="Comment">
@@ -29,7 +29,7 @@
 		match-empty-string-at-beginning = "FALSE"
 		match-empty-string-at-end = "FALSE"
 		beginning-regex="&lt;/?"
-		end-regex="\(\b\|&gt;\)">
+		end-regex="(\b|&gt;)">
 		<keyword>a</keyword>
 		<keyword>abbr</keyword>
 		<keyword>acronym</keyword>

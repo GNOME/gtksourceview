@@ -214,14 +214,18 @@ gtk_syntax_tag_new (const gchar *name,
 					    NULL));
 	
 	tag->start = g_strdup (pattern_start);
-	
-	if (!gtk_source_regex_compile (&tag->reg_start, pattern_start)) {
+
+	tag->reg_start = gtk_source_regex_compile (pattern_start);
+	if (tag->reg_start == NULL) {
 		g_warning ("Regex syntax start pattern failed [%s]", pattern_start);
+		g_object_unref (tag);
 		return NULL;
 	}
 	
-	if (!gtk_source_regex_compile (&tag->reg_end, pattern_end)) {
+	tag->reg_end = gtk_source_regex_compile (pattern_end);
+	if (tag->reg_end == NULL) {
 		g_warning ("Regex syntax end pattern failed [%s]\n", pattern_end);
+		g_object_unref (tag);
 		return NULL;
 	}
 
@@ -237,8 +241,8 @@ gtk_syntax_tag_finalize (GObject *object)
 	
 	g_free (tag->start);
 	
-	gtk_source_regex_destroy (&tag->reg_start);
-	gtk_source_regex_destroy (&tag->reg_end);
+	gtk_source_regex_destroy (tag->reg_start);
+	gtk_source_regex_destroy (tag->reg_end);
 
 	G_OBJECT_CLASS (parent_syntax_class)->finalize (object);
 }
@@ -296,8 +300,10 @@ gtk_pattern_tag_new (const gchar *name, const gchar *pattern)
 					     "name", name,
 					     NULL));
 	
-	if (!gtk_source_regex_compile (&tag->reg_pattern, pattern)) {
+	tag->reg_pattern = gtk_source_regex_compile (pattern);
+	if (tag->reg_pattern == NULL) {
 		g_warning ("Regex pattern failed [%s]\n", pattern);
+		g_object_unref (tag);
 		return NULL;
 	}
 
@@ -311,7 +317,7 @@ gtk_pattern_tag_finalize (GObject *object)
 
 	tag = GTK_PATTERN_TAG (object);
 	
-	gtk_source_regex_destroy (&tag->reg_pattern);
+	gtk_source_regex_destroy (tag->reg_pattern);
 	
 	G_OBJECT_CLASS (parent_pattern_class)->finalize (object);
 }
@@ -389,7 +395,7 @@ gtk_keyword_list_tag_new (const gchar  *name,
 		if (beginning_regex != NULL)
 			g_string_append (str, beginning_regex);
 
-		g_string_append (str, "\\(");
+		g_string_append (str, "(");
 	
 		keyword_count = 0;
 		/* Split long keyword lists due to glibc regex's
@@ -415,10 +421,10 @@ gtk_keyword_list_tag_new (const gchar  *name,
 			keyword_count++;
 
 			if (keywords != NULL && keyword_count < 200)
-				g_string_append (str, "\\|");
+				g_string_append (str, "|");
 		}
 
-		g_string_append (str, "\\)");
+		g_string_append (str, ")");
 		
 		if (end_regex != NULL)
 			g_string_append (str, end_regex);
@@ -427,7 +433,7 @@ gtk_keyword_list_tag_new (const gchar  *name,
 			g_string_append (str, "\\b");
 
 		if (keywords != NULL)
-			g_string_append (str, "\\|");
+			g_string_append (str, "|");
 	}
 
 	tag = gtk_pattern_tag_new (name, str->str);
@@ -461,7 +467,7 @@ gtk_string_tag_new (const gchar    *name,
 		GtkTextTag *tag;
 		gchar *end;
 		
-		end = g_strdup_printf ("\\(%s\\|\n\\)", pattern_end);
+		end = g_strdup_printf ("%s|\n", pattern_end);
 
 		tag = gtk_syntax_tag_new (name, pattern_start, end);
 

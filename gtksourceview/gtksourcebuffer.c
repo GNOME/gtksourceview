@@ -118,7 +118,7 @@ struct _GtkSourceBufferPrivate
 
 	GList                 *syntax_items;
 	GList                 *pattern_items;
-	GtkSourceRegex         reg_syntax_all;
+	GtkSourceRegex        *reg_syntax_all;
 	gunichar               escape_char;
 
 	/* Region covering the unhighlighted text */
@@ -528,8 +528,10 @@ gtk_source_buffer_finalize (GObject *object)
 	if (buffer->priv->old_syntax_regions)
 		g_array_free (buffer->priv->old_syntax_regions, TRUE);
 	
-	if (buffer->priv->reg_syntax_all.len > 0)
-		gtk_source_regex_destroy (&buffer->priv->reg_syntax_all);
+	if (buffer->priv->reg_syntax_all) {
+		gtk_source_regex_destroy (buffer->priv->reg_syntax_all);
+		buffer->priv->reg_syntax_all = NULL;
+	}
 	
 	g_list_free (buffer->priv->syntax_items);
 	g_list_free (buffer->priv->pattern_items);
@@ -932,10 +934,11 @@ sync_with_tag_table (GtkSourceBuffer *buffer)
 	}
 	else
 	{
-		if (buffer->priv->reg_syntax_all.len > 0)
-			gtk_source_regex_destroy (&buffer->priv->reg_syntax_all);
+		if (buffer->priv->reg_syntax_all) {
+			gtk_source_regex_destroy (buffer->priv->reg_syntax_all);
+			buffer->priv->reg_syntax_all = NULL;
+		}
 	}
-
 
 	if (buffer->priv->highlight)
 		invalidate_syntax_regions (buffer, NULL, 0);
@@ -960,13 +963,13 @@ sync_syntax_regex (GtkSourceBuffer *buffer)
 		cur = g_list_next (cur);
 		
 		if (cur != NULL)
-			g_string_append (str, "\\|");
+			g_string_append (str, "|");
 	}
 
-	if (buffer->priv->reg_syntax_all.len > 0)
-		gtk_source_regex_destroy (&buffer->priv->reg_syntax_all);
+	if (buffer->priv->reg_syntax_all)
+		gtk_source_regex_destroy (buffer->priv->reg_syntax_all);
 	
-	gtk_source_regex_compile (&buffer->priv->reg_syntax_all, str->str);
+	buffer->priv->reg_syntax_all = gtk_source_regex_compile (str->str);
 
 	g_string_free (str, TRUE);
 }
@@ -1414,7 +1417,7 @@ get_syntax_start (GtkSourceBuffer      *source_buffer,
 	do {
 		/* check for any of the syntax highlights */
 		pos = gtk_source_regex_search (
-			&source_buffer->priv->reg_syntax_all,
+			source_buffer->priv->reg_syntax_all,
 			text,
 			pos,
 			length,
@@ -1428,14 +1431,10 @@ get_syntax_start (GtkSourceBuffer      *source_buffer,
 		return NULL;
 
 	while (list != NULL) {
-		gint l;
-		
 		tag = list->data;
 		
-		l = gtk_source_regex_match (&tag->reg_start, text,
-					    length, pos);
-
-		if (l >= 0)
+		if (gtk_source_regex_match (tag->reg_start, text,
+					    pos, match->endpos))
 			return tag;
 
 		list = g_list_next (list);
@@ -1463,7 +1462,7 @@ get_syntax_end (GtkSourceBuffer      *source_buffer,
 	
 	pos = 0;
 	do {
-		pos = gtk_source_regex_search (&tag->reg_end, text, pos,
+		pos = gtk_source_regex_search (tag->reg_end, text, pos,
 					       length, match);
 		if (pos < 0 || !is_escaped (source_buffer, text, match->startindex))
 			break;
@@ -2139,7 +2138,7 @@ search_patterns (GList       *matches,
 		}
 		
 		/* do the regex search on @text */
-		i = gtk_source_regex_search (&tag->reg_pattern,
+		i = gtk_source_regex_search (tag->reg_pattern,
 					     text,
 					     0,
 					     length,

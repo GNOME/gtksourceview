@@ -26,29 +26,43 @@
 #include <stdlib.h>
 #include <glib.h>
 
+#ifdef NATIVE_GNU_REGEX
+#include <sys/types.h>
+#include <regex.h>
+#else
+#include "gnu-regex/regex.h"
+#endif
+
 #include "gtksourceview-i18n.h"
 #include "gtksourceregex.h"
 
+/* Implementation using GNU Regular Expressions */
 
-gboolean
-gtk_source_regex_compile (GtkSourceRegex *regex, const gchar *pattern)
+struct _GtkSourceRegex 
 {
-	g_return_val_if_fail (pattern != NULL, FALSE);
-	g_return_val_if_fail (regex != NULL, FALSE);
+	struct re_pattern_buffer buf;
+	struct re_registers 	 reg;
+};
 
-	memset (&regex->buf, 0, sizeof (regex->buf));
-	memset (&regex->reg, 0, sizeof (regex->reg));
+GtkSourceRegex *
+gtk_source_regex_compile (const gchar *pattern)
+{
+	GtkSourceRegex *regex;
+	const char *result = NULL;
 	
-	regex->len = strlen (pattern);
+	g_return_val_if_fail (pattern != NULL, NULL);
 
+	regex = g_new0 (GtkSourceRegex, 1);
+
+	re_syntax_options = RE_SYNTAX_POSIX_MINIMAL_EXTENDED;
 	regex->buf.translate = NULL;
 	regex->buf.fastmap = g_malloc (256);
 	regex->buf.allocated = 0;
 	regex->buf.buffer = NULL;
-	regex->buf.can_be_null = 0;	/* so we wont allow that in patterns! */
-	regex->buf.no_sub = 0;
 	
-	if (re_compile_pattern (pattern, strlen (pattern), &regex->buf) == 0) {
+	if ((result = re_compile_pattern (pattern,
+					  strlen (pattern),
+					  &regex->buf)) == NULL) {
 		/* success...now try to compile a fastmap */
 		if (re_compile_fastmap (&regex->buf) != 0) {
 			g_warning ("Regex failed to create a fastmap.");
@@ -57,22 +71,24 @@ gtk_source_regex_compile (GtkSourceRegex *regex, const gchar *pattern)
 			regex->buf.fastmap = NULL;
 		}
 
-		return TRUE;
+		return regex;
 	} else {
-		g_warning ("Regex failed to compile.");
-		return FALSE;
+		g_free (regex->buf.fastmap);
+		g_free (regex);
+		g_warning ("Regex failed to compile: %s", result);
+		return NULL;
 	}
 }
 
 void
 gtk_source_regex_destroy (GtkSourceRegex *regex)
 {
-	g_return_if_fail (regex != NULL);
+	if (regex == NULL)
+		return;
 
 	g_free (regex->buf.fastmap);
 	regex->buf.fastmap = NULL;
 	regfree (&regex->buf);
-	regex->len = 0;
 	if (regex->reg.num_regs > 0) {
 		
 		/* FIXME: maybe we should pre-allocate the registers
@@ -82,6 +98,7 @@ gtk_source_regex_destroy (GtkSourceRegex *regex)
 		free (regex->reg.end);
 		regex->reg.num_regs = 0;
 	}
+	g_free (regex);
 }
 
 /**
@@ -144,13 +161,13 @@ gtk_source_regex_search (GtkSourceRegex       *regex,
 /*
  * pos: offset
  * 
- * Returns: number of bytes matched
+ * Returns: if @regex matched @text 
  */
-gint
+gboolean 
 gtk_source_regex_match (GtkSourceRegex *regex,
-			const gchar    *text, 
-			gint            length, 
-			gint            pos)
+			const gchar    *text,
+			gint            pos,
+			gint            length)
 {
 	g_return_val_if_fail (regex != NULL, -1);
 	g_return_val_if_fail (pos >= 0, -1);
@@ -160,8 +177,7 @@ gtk_source_regex_match (GtkSourceRegex *regex,
 	
 	pos = g_utf8_offset_to_pointer (text, pos) - text;
 
-	return re_match (&regex->buf, text, length, pos,
-			 &regex->reg);
+	return (re_match (&regex->buf, text, length, pos,
+			  &regex->reg) > 0);
 }
-
 

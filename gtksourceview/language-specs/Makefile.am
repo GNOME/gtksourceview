@@ -1,4 +1,5 @@
 EXTRA_DIST = 			\
+	language.dtd		\
 	ada.lang		\
 	c.lang			\
 	cpp.lang		\

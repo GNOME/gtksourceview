@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- <!DOCTYPE language SYSTEM "language.dtd"> -->
+<!DOCTYPE language SYSTEM "language.dtd">
 <language name="IDL" version="1.0" section="Sources" mimetypes="text/x-idl">
 
 	<escape-char>\</escape-char>
@@ -10,18 +10,18 @@
 	</block-comment>
 
 	<block-comment name = "Sectional" style = "Preprocessor">
-		<start-regex>%{</start-regex>
-        	<end-regex>%}</end-regex>
+		<start-regex>%\{</start-regex>
+        	<end-regex>%\}</end-regex>
 	</block-comment>
 
 	<string name = "String" style = "String" end-at-line-end = "TRUE">
-		<start-regex>"</start-regex>
-		<end-regex>"</end-regex>
+		<start-regex>&quot;</start-regex>
+		<end-regex>&quot;</end-regex>
 	</string>
 
 	<syntax-item name = "Include/Pragma" style = "Preprocessor">
-		<start-regex>^#\ *\t*\(include\|pragma\)</start-regex>
-	         <end-regex>\(\n\)</end-regex>
+		<start-regex>^#[ \t]*(include|pragma)</start-regex>
+		<end-regex>\n</end-regex>
 	</syntax-item>
 
 	<keyword-list name = "Keywords" style = "Keyword" case-sensitive="TRUE">

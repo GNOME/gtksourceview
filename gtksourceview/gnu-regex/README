@@ -1,0 +1,5 @@
+The files in this directory are the GNU regular expressions
+implementation taken verbatim from GLibC 2.3.2.  We build and use
+them for platforms not based on the GNU C library because we use some
+features only present in GNU regexps, like word boundary operators.
+

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- <!DOCTYPE language SYSTEM "language.dtd"> -->
+<!DOCTYPE language SYSTEM "language.dtd">
 <language name="XML" version="1.0" section="Markup" mimetypes="text/xml">
 	
 	<block-comment name="Block Comment" style="Comment">
@@ -24,7 +24,7 @@
 
 
 	<pattern-item name="Entity" style="Keyword">
-		<regex>\(\&amp;\|\%\)[a-zA-Z0-9#][a-zA-Z0-9]*;</regex>
+		<regex>(&amp;|%)[a-zA-Z0-9#][a-zA-Z0-9]*;</regex>
 	</pattern-item>
 
 	<pattern-item name="Closing Bracket" style="Others 2">
@@ -32,7 +32,7 @@
 	</pattern-item>
 
 	<pattern-item name = "Tag" style = "Others 2">
-		<regex>\(&lt;/?[a-zA-Z_:][a-zA-Z0-9_:-]*\(\b\|\&gt;\)\|&lt;\?[x\|X][m\|M][l\|L]\b\)</regex>
+		<regex>(&lt;/?[a-zA-Z_:][a-zA-Z0-9_:-]*(\b|\&gt;)|&lt;\?[xX][mM][lL]\b)</regex>
 	</pattern-item>
 
 	<pattern-item name="Attributes" style = "Others">

@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- <!DOCTYPE language SYSTEM "language.dtd"> -->
+<!DOCTYPE language SYSTEM "language.dtd">
 <language name="Perl" version="1.0" section="Scripts" mimetypes="text/x-perl">
 	
 	<escape-char>\</escape-char>
 
 	<string name = "String" style = "String" end-at-line-end = "TRUE">
-		<start-regex>"</start-regex>
-		<end-regex>"</end-regex>
+		<start-regex>&quot;</start-regex>
+		<end-regex>&quot;</end-regex>
 	</string>
 
 	<string name = "String2" style = "String" end-at-line-end = "TRUE">
-		<start-regex>'</start-regex>
-		<end-regex>'</end-regex>
+		<start-regex>&apos;</start-regex>
+		<end-regex>&apos;</end-regex>
 	</string>
 
 	<string name = "String3" style = "String" end-at-line-end = "TRUE">

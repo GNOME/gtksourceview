@@ -37,6 +37,17 @@ Simple install procedure:
 See the file 'INSTALL' for more detailed information.
 
 
+Language spec files format
+==========================
+
+The Document Type Definition for the XML format used in .lang files is
+located at gtksourceview/language-specs/language.dtd.
+
+The format for regular expressions in the .lang files is the POSIX
+Extended Regular Expression Syntax, plus GNU operators (word operators
+and buffer operators).
+
+
 How to report bugs
 ==================
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- <!DOCTYPE language SYSTEM "language.dtd"> -->
+<!DOCTYPE language SYSTEM "language.dtd">
 <language name="Java" version="1.0" section="Sources" mimetypes="text/x-java">
 	
 	<string name = "String" style = "String" end-at-line-end = "TRUE">
@@ -85,6 +85,7 @@
 		<keyword>void</keyword>
 	</keyword-list>
 
+	<!-- FIXME -->
 	<pattern-item name = "Numeric" style = "Decimal">
 		<regex>&lt;(?i0[X][\\dA-F]+|\\d+(\\.\\d*)?(?:E[+-]?[\\d]+)?F?|\\.\\d+(?:E[+-]?[\\d]+)?F?|[\\d]+[LF]?))</regex>
 	</pattern-item>

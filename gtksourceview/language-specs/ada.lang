@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- <!DOCTYPE language SYSTEM "language.dtd"> -->
+<!DOCTYPE language SYSTEM "language.dtd">
 <language name="Ada" version="1.0" section="Sources" mimetypes="text/x-ada">
 	
 	<line-comment name = "Line Comment" style= "Comment">
@@ -7,8 +7,8 @@
 	</line-comment>
 
 	<string name = "String" style = "String" end-at-line-end = "TRUE">
-		<start-regex>"</start-regex>
-		<end-regex>"</end-regex>
+		<start-regex>&quot;</start-regex>
+		<end-regex>&quot;</end-regex>
 	</string>
 
 	<pattern-item name = "Character String" style = "Character">

@@ -20,7 +20,6 @@
 #ifndef __GTK_SOURCE_REGEX_H__
 #define __GTK_SOURCE_REGEX_H__
 
-#include <regex.h>
 #include <glib/gtypes.h>
 
 G_BEGIN_DECLS
@@ -37,15 +36,7 @@ struct _GtkSourceBufferMatch
 	gint			 endindex;
 };
 
-struct _GtkSourceRegex 
-{
-	struct re_pattern_buffer buf;
-	struct re_registers 	 reg;
-	gint			 len;
-};
-
-gboolean 	gtk_source_regex_compile 	(GtkSourceRegex       *regex,
-						 const gchar          *pattern);
+GtkSourceRegex *gtk_source_regex_compile 	(const gchar          *pattern);
 
 void		gtk_source_regex_destroy	(GtkSourceRegex       *regex);
 
@@ -55,10 +46,10 @@ gint		gtk_source_regex_search 	(GtkSourceRegex       *regex,
 						 gint                  length,
 			 			 GtkSourceBufferMatch *match);
 
-gint		gtk_source_regex_match 		(GtkSourceRegex       *regex,
-						 const gchar          *text, 
-						 gint                  len, 
-						 gint                  pos);
+gboolean        gtk_source_regex_match          (GtkSourceRegex       *regex,
+						 const gchar          *text,
+						 gint                  pos,
+						 gint                  len);
 
 G_END_DECLS
 

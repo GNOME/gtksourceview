@@ -48,8 +48,8 @@ struct _GtkSyntaxTag
 	GtkSourceTag		 parent_instance;
 
 	gchar			*start;  
-	GtkSourceRegex		 reg_start;
-	GtkSourceRegex		 reg_end;
+	GtkSourceRegex		*reg_start;
+	GtkSourceRegex          *reg_end;
 };
 
 struct _GtkSyntaxTagClass 
@@ -61,7 +61,7 @@ struct _GtkPatternTag
 {
 	GtkSourceTag		 parent_instance;
 
-	GtkSourceRegex		 reg_pattern;
+	GtkSourceRegex		*reg_pattern;
 };
 
 struct _GtkPatternTagClass 

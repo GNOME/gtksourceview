@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- <!DOCTYPE language SYSTEM "language.dtd"> -->
+<!DOCTYPE language SYSTEM "language.dtd">
 <language name="C" version="1.0" section="Sources" mimetypes="text/x-c">
 	
 	<escape-char>\</escape-char>
@@ -20,13 +20,13 @@
 
 
 	<string name = "String" style = "String" end-at-line-end = "TRUE">
-		<start-regex>"</start-regex>
-		<end-regex>"</end-regex>
+		<start-regex>&quot;</start-regex>
+		<end-regex>&quot;</end-regex>
 	</string>
 
 	<syntax-item name = "Include/Pragma" style = "Preprocessor">
-		<start-regex>^#\ *\t*\(include\|pragma\)</start-regex>
-	         <end-regex>\(\n\)</end-regex>
+		<start-regex>^#[ \t]*(include|pragma)</start-regex>
+	         <end-regex>\n</end-regex>
 	</syntax-item>
 
 	<keyword-list name = "Keywords" style = "Keyword" case-sensitive="TRUE">
@@ -74,19 +74,19 @@
 	</pattern-item>
 
 	<pattern-item name = "Decimal" style = "Decimal">
-		<regex>\b\([1-9][0-9]*\|0\)\([Uu]\([Ll]\|LL\|ll\)?\|\([Ll]\|LL\|ll\)[Uu]?\)?\b</regex>
+		<regex>\b([1-9][0-9]*|0)([Uu]([Ll]|LL|ll)?|([Ll]|LL|ll)[Uu]?)?\b</regex>
 	</pattern-item>
 
 	<pattern-item name = "Floating Point Number" style = "Floating Point">
-		<regex>\b\([0-9]+[Ee][-]?[0-9]+\|\([0-9]*\.[0-9]+\|[0-9]+\.\)\([Ee][-]?[0-9]+\)?\)[fFlL]?</regex>
+		<regex>\b([0-9]+[Ee][-]?[0-9]+|([0-9]*\.[0-9]+|[0-9]+\.)([Ee][-]?[0-9]+)?)[fFlL]?</regex>
 	</pattern-item>
 
 	<pattern-item name = "Octal Number" style = "Base-N Integer">
-		<regex>\b0[0-7]+\([Uu]\([Ll]\|LL\|ll\)?\|\([Ll]\|LL\|ll\)[Uu]?\)?\b</regex>
+		<regex>\b0[0-7]+([Uu]([Ll]|LL|ll)?|([Ll]|LL|ll)[Uu]?)?\b</regex>
 	</pattern-item>
 
 	<pattern-item name = "Hex Number" style = "Base-N Integer">
-		<regex>\b0[xX][0-9a-fA-F]+\([Uu]\([Ll]\|LL\|ll\)?\|\([Ll]\|LL\|ll\)[Uu]?\)?\b</regex>
+		<regex>\b0[xX][0-9a-fA-F]+([Uu]([Ll]|LL|ll)?|([Ll]|LL|ll)[Uu]?)?\b</regex>
 	</pattern-item>
 
 	<keyword-list name = "Common Macro" style = "Preprocessor" case-sensitive="TRUE">

@@ -1,5 +1,33 @@
 2003-05-15  Gustavo Giraldez  <gustavo.giraldez@gmx.net>
 
+	* gtksourceview/gtksourceregex.h:
+	* gtksourceview/gtksourceregex.c:
+	* gtksourceview/gtksourcetag.c:
+	* gtksourceview/gtksourcetag-private.h:
+	* gtksourceview/gtksourcebuffer.c: 
+	Regular expression syntax changed to POSIX Extended.
+	Changed all occurrences of GtkSourceRegex objects to a pointer to 
+	GtkSourceRegex, since now their implementation is opaque to the
+	rest of the library.
+	Changed prototype of gtk_source_regex_match to return a gboolean
+	and swapped pos and length parameters to match the order of
+	gtk_source_regex_search.
+
+	* configure.in: Bumped version to 0.2.1.  Added check for native
+	GNU regular expressions to conditionally compile the included
+	library in gtksourceview/gnu-regex.
+
+	* gtksourceview/gnu-regex: Directory containing private copy of
+	GNU regular expressions library for platforms not based on the GNU
+	C library (built conditionally).
+	
+	* README: Added section about the .lang file format
+	* gtksourceview/language-specs/language.dtd: DTD for .lang files
+	* gtksourceview/language-specs/*.lang: Changed all regular
+	expressions to the POSIX Extended syntax.
+
+2003-05-15  Gustavo Giraldez  <gustavo.giraldez@gmx.net>
+
 	* configure.in:
 	* gtksourceview/Makefile.am:
 	* gtksourceview/gtksourcetagstyle.h:
