@@ -1,14 +1,6 @@
 TODO (last update: 13th June 2003)
 =================================
 
-Before next release:
-
-[X] Removing hack for bug #81893 (Paolo)
-[ ] Fixing GtkSourceSearchFlags to represent a bitmask fields 
-[ ] Adding php.lang and csharp.lang
-
-Future releases:
-
 [ ] Convert .lang files to the new format (we could write a perl 
     script to translate UltraEdit or TextPad syntax files in 
     our format) (Gustavo)
@@ -18,8 +10,6 @@ Future releases:
 [ ] Using a stack machine for the highlight code (Gustavo)
 [ ] Trying to improve the performance of 
     gtk_source_buffer_remove_all_source_tags by using an hash table
-[X] Moving (and improving) the UTF-8 aware case insensitive search code from gedit
-    to gtksourceview (Jeroen)
 [ ] Writing a test program showing how to use GtkSourceTag 
     (instead of GtkSourceLanguage)
 [ ] Adding calltip (see the Scintilla API)
