@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-12 00:08+0100\n"
-"PO-Revision-Date: 2004-08-19 02:01+0300\n"
+"POT-Creation-Date: 2005-01-24 20:40+0100\n"
+"PO-Revision-Date: 2005-01-29 15:22+0200\n"
 "Last-Translator: Pauli Virtanen <pauli.virtanen@hut.fi>\n"
 "Language-Team: Finnish <gnome-fi-laatu@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -117,8 +117,8 @@ msgid "Font Description"
 msgstr "Kirjasimen kuvaus"
 
 #: gtksourceview/gtksourceprintjob.c:313
-msgid "Font description name to use for the document text"
-msgstr "Asiakirjan tekstin kirjasinlajin kuvausnimi"
+msgid "Font to use for the document text (e.g. \"Monospace 10\")"
+msgstr "Asiakirjan tekstin kirjasinlaji (esim. \"Monospace 10\")"
 
 #: gtksourceview/gtksourceprintjob.c:320 gtksourceview/gtksourceprintjob.c:328
 msgid "Numbers Font"
@@ -164,33 +164,33 @@ msgstr "Ylä- ja alatunnuksen kirjasin"
 #: gtksourceview/gtksourceprintjob.c:361
 msgid "GnomeFont name to use for the header and footer (deprecated)"
 msgstr ""
-"Ylä- ja alatunnuksissa käytössä olevan kirjasinlajin GnomeFont-nimi (ei-"
-"suositeltu)"
+"Ylä- ja alatunnuksissa käytössä olevan kirjasinlajin GnomeFont-nimi "
+"(ei-suositeltu)"
 
 #: gtksourceview/gtksourceprintjob.c:368
 msgid "Header and Footer Font Description"
 msgstr "Ylä- ja alatunnuksen kirjasimen kuvaus"
 
 #: gtksourceview/gtksourceprintjob.c:369
-msgid "Font description name to use for the header and footer"
-msgstr "Ylä- ja alatunnuksissa käytössä olevan kirjasinlajin kuvaus"
+msgid "Font to use for headers and footers (e.g. \"Monospace 10\")"
+msgstr "Ylä- ja alatunnuksissa käytettävä kirjasinlaji (esim. \"Monospace 10\")"
 
-#: gtksourceview/gtksourcestylescheme.c:237
+#: gtksourceview/gtksourcestylescheme.c:262
 msgid "Base-N Integer"
 msgstr "N-kantaiset kokonaisluvut"
 
-#: gtksourceview/gtksourcestylescheme.c:242
+#: gtksourceview/gtksourcestylescheme.c:267
 msgid "Character"
 msgstr "Merkki"
 
-#: gtksourceview/gtksourcestylescheme.c:247
+#: gtksourceview/gtksourcestylescheme.c:272
 #: gtksourceview/language-specs/latex.lang.h:1
 #: gtksourceview/language-specs/po.lang.h:1
 msgid "Comment"
 msgstr "Kommentti"
 
 #. $this = (datatype)
-#: gtksourceview/gtksourcestylescheme.c:252
+#: gtksourceview/gtksourcestylescheme.c:277
 #: gtksourceview/language-specs/php.lang.h:14
 msgid "Data Type"
 msgstr "Tietotyyppi"
@@ -198,13 +198,13 @@ msgstr "Tietotyyppi"
 #.
 #. CSS functions, such as rgb(), clip(), or lang().
 #.
-#: gtksourceview/gtksourcestylescheme.c:257
+#: gtksourceview/gtksourcestylescheme.c:282
 #: gtksourceview/language-specs/ada.lang.h:3
 #: gtksourceview/language-specs/css.lang.h:17
 msgid "Function"
 msgstr "Funktio"
 
-#: gtksourceview/gtksourcestylescheme.c:262
+#: gtksourceview/gtksourcestylescheme.c:287
 #: gtksourceview/language-specs/c.lang.h:6
 #: gtksourceview/language-specs/cpp.lang.h:6
 #: gtksourceview/language-specs/fortran.lang.h:1
@@ -213,11 +213,11 @@ msgstr "Funktio"
 msgid "Decimal"
 msgstr "Desimaali"
 
-#: gtksourceview/gtksourcestylescheme.c:267
+#: gtksourceview/gtksourcestylescheme.c:292
 msgid "Floating Point"
 msgstr "Liukuluku"
 
-#: gtksourceview/gtksourcestylescheme.c:272
+#: gtksourceview/gtksourcestylescheme.c:297
 #: gtksourceview/language-specs/latex.lang.h:3
 #: gtksourceview/language-specs/po.lang.h:3
 #: gtksourceview/language-specs/texinfo.lang.h:8
@@ -227,11 +227,11 @@ msgstr "Liukuluku"
 msgid "Keyword"
 msgstr "Avainsana"
 
-#: gtksourceview/gtksourcestylescheme.c:277
+#: gtksourceview/gtksourcestylescheme.c:302
 msgid "Preprocessor"
 msgstr "Esikäsittelin"
 
-#: gtksourceview/gtksourcestylescheme.c:282
+#: gtksourceview/gtksourcestylescheme.c:307
 #: gtksourceview/language-specs/ada.lang.h:9
 #: gtksourceview/language-specs/c.lang.h:15
 #: gtksourceview/language-specs/cpp.lang.h:15
@@ -258,7 +258,7 @@ msgstr "Esikäsittelin"
 msgid "String"
 msgstr "Merkkijono"
 
-#: gtksourceview/gtksourcestylescheme.c:287
+#: gtksourceview/gtksourcestylescheme.c:312
 msgid "Specials"
 msgstr "Erityiset"
 
@@ -274,7 +274,7 @@ msgstr "Erityiset"
 #. Submitted by Scott Martin (scott@coffeeblack.org)
 #.
 #. FIXME: find the correct mimetype
-#: gtksourceview/gtksourcestylescheme.c:294
+#: gtksourceview/gtksourcestylescheme.c:319
 #: gtksourceview/language-specs/css.lang.h:46
 #: gtksourceview/language-specs/desktop.lang.h:10
 #: gtksourceview/language-specs/diff.lang.h:7
@@ -285,15 +285,15 @@ msgstr "Erityiset"
 msgid "Others"
 msgstr "Muut"
 
-#: gtksourceview/gtksourcestylescheme.c:299
+#: gtksourceview/gtksourcestylescheme.c:324
 msgid "Others 2"
 msgstr "Muut 2"
 
-#: gtksourceview/gtksourcestylescheme.c:304
+#: gtksourceview/gtksourcestylescheme.c:329
 msgid "Others 3"
 msgstr "Muut 3"
 
-#: gtksourceview/gtksourcestylescheme.c:341
+#: gtksourceview/gtksourcestylescheme.c:366
 msgid "Default"
 msgstr "Oletus"
 
@@ -375,12 +375,11 @@ msgstr ""
 
 #: gtksourceview/gtksourceview.c:276
 msgid "Highlight current line"
-msgstr ""
+msgstr "Korosta nykyinen rivi"
 
 #: gtksourceview/gtksourceview.c:277
-#, fuzzy
 msgid "Whether to highlight the current line"
-msgstr "Korostuuko syntaksi puskurissa"
+msgstr "Korostetaanko nykyinen rivi"
 
 #: gtksourceview/language-specs/ada.lang.h:1
 msgid "Ada"
@@ -813,7 +812,7 @@ msgstr "Alueellinen"
 
 #: gtksourceview/language-specs/ini.lang.h:1
 msgid ".ini"
-msgstr ""
+msgstr ".ini"
 
 #: gtksourceview/language-specs/ini.lang.h:3
 #: gtksourceview/language-specs/verilog.lang.h:3
@@ -823,19 +822,16 @@ msgstr "Desimaaliluku"
 #: gtksourceview/language-specs/ini.lang.h:4
 #: gtksourceview/language-specs/R.lang.h:3
 #: gtksourceview/language-specs/gtkrc.lang.h:2
-#, fuzzy
 msgid "Double Quote String"
 msgstr "Merkkijono, kaksinkertaiset lainausmerkit"
 
 #: gtksourceview/language-specs/ini.lang.h:6
-#, fuzzy
 msgid "Integer"
-msgstr "N-kantaiset kokonaisluvut"
+msgstr "Kokonaisluku"
 
 #: gtksourceview/language-specs/ini.lang.h:11
 #: gtksourceview/language-specs/R.lang.h:11
 #: gtksourceview/language-specs/gtkrc.lang.h:10
-#, fuzzy
 msgid "Single Quote String"
 msgstr "Merkkijono, yksinkertaiset lainausmerkit"
 
@@ -1050,7 +1046,6 @@ msgid "Preprocessor Defines"
 msgstr "Esikäsittelyn määrittelyt"
 
 #: gtksourceview/language-specs/pascal.lang.h:19
-#, fuzzy
 msgid "Type, Class and Object Keywords"
 msgstr "Tyyppi-, luokka- ja olioavainsanat"
 
@@ -1064,7 +1059,7 @@ msgstr "Metodikutsu"
 
 #: gtksourceview/language-specs/perl.lang.h:5
 msgid "POD"
-msgstr ""
+msgstr "POD"
 
 #: gtksourceview/language-specs/perl.lang.h:6
 msgid "Perl"
@@ -1210,37 +1205,32 @@ msgid "Ruby"
 msgstr "Ruby"
 
 #: gtksourceview/language-specs/sh.lang.h:2
-#, fuzzy
 msgid "Built-in Commands"
 msgstr "Varusfunktiot"
 
 #: gtksourceview/language-specs/sh.lang.h:3
-#, fuzzy
 msgid "Common Commands"
-msgstr "Yleisimmät komennot"
+msgstr "Yleiset komennot"
 
 #: gtksourceview/language-specs/sh.lang.h:10
-#, fuzzy
 msgid "Redirections"
-msgstr "Määrittelyt"
+msgstr "Uudelleenohjaukset"
 
 #: gtksourceview/language-specs/sh.lang.h:12
 msgid "Self"
 msgstr "Itse"
 
 #: gtksourceview/language-specs/sh.lang.h:15
-#, fuzzy
 msgid "Variable1"
-msgstr "Muuttuja"
+msgstr "Muuttuja1"
 
 #: gtksourceview/language-specs/sh.lang.h:16
-#, fuzzy
 msgid "Variable2"
-msgstr "Muuttuja"
+msgstr "Muuttuja2"
 
 #: gtksourceview/language-specs/sh.lang.h:17
 msgid "sh"
-msgstr ""
+msgstr "sh"
 
 #: gtksourceview/language-specs/sql.lang.h:1
 msgid "ANSI Datatypes"
@@ -1432,93 +1422,70 @@ msgid "VB.NET"
 msgstr "VB.NET"
 
 #: gtksourceview/language-specs/nemerle.lang.h:4
-#, fuzzy
 msgid "Core Keywords"
-msgstr "Ohjausavainsanat"
+msgstr "Perusavainsanat"
 
 #: gtksourceview/language-specs/nemerle.lang.h:5
-#, fuzzy
 msgid "Core Types"
-msgstr "Tyypit"
+msgstr "Perustyypit"
 
 #: gtksourceview/language-specs/nemerle.lang.h:9
 msgid "Keywords Defined by Macros"
-msgstr ""
+msgstr "Makrojen määrittelemät avainsanat"
 
 #: gtksourceview/language-specs/nemerle.lang.h:11
-#, fuzzy
 msgid "Nemerle"
-msgstr "Numero"
+msgstr "Nemerle"
 
 #: gtksourceview/language-specs/tcl.lang.h:6
 msgid "Tcl"
-msgstr ""
+msgstr "Tcl"
 
 #: gtksourceview/language-specs/vhdl.lang.h:7
-#, fuzzy
 msgid "True and False"
 msgstr "Tosi ja epätosi"
 
 #: gtksourceview/language-specs/vhdl.lang.h:8
-#, fuzzy
 msgid "Type"
-msgstr "Tyypit"
+msgstr "Tyyppi"
 
 #: gtksourceview/language-specs/vhdl.lang.h:9
 msgid "VHDL"
-msgstr ""
+msgstr "VHDL"
 
 #: gtksourceview/language-specs/R.lang.h:1
-#, fuzzy
-msgid "Assign operator"
-msgstr "Taulukko-operaattorit"
+msgid "Assignment Operator"
+msgstr "Sijoitusoperaattori"
 
 #: gtksourceview/language-specs/R.lang.h:2
-#, fuzzy
 msgid "Delimiter"
-msgstr "Rajoittamaton"
+msgstr "Erotin"
 
 #: gtksourceview/language-specs/R.lang.h:5
-#, fuzzy
 msgid "Integer Number"
-msgstr "Binaariluku"
+msgstr "Kokonaisluku"
 
 #: gtksourceview/language-specs/R.lang.h:8
-#, fuzzy
-msgid "Reserved class"
-msgstr "ANSI-varattu sana"
+msgid "Reserved Class"
+msgstr "Varattu luokka"
 
 #: gtksourceview/language-specs/R.lang.h:9
-#, fuzzy
-msgid "Reserved constant"
-msgstr "Luotu sisältö"
+msgid "Reserved Constant"
+msgstr "Varattu vakio"
 
 #: gtksourceview/language-specs/gtkrc.lang.h:3
 msgid "GtkRC"
-msgstr ""
+msgstr "GtkRC"
 
 #: gtksourceview/language-specs/gtkrc.lang.h:4
 msgid "Include Directive"
-msgstr ""
+msgstr "Sisällytyskäsky"
 
 #: gtksourceview/language-specs/gtkrc.lang.h:5
-#, fuzzy
 msgid "Keysymbol"
-msgstr "Avainsymbolit"
+msgstr "Avainsymboli"
 
 #: gtksourceview/language-specs/gtkrc.lang.h:11
-#, fuzzy
 msgid "State"
-msgstr "Portit"
+msgstr "Tila"
 
-#~ msgid "Plain Old Documentation"
-#~ msgstr "POD-dokumentaatio"
-
-#~ msgid "CSS"
-#~ msgstr "CSS"
-
-#~ msgid "JavaScript"
-#~ msgstr "JavaScript"
-
-#~ msgid "MSIL"
-#~ msgstr "MSIL"
