@@ -8,7 +8,7 @@
 	</string>
 
 	<pattern-item _name = "Number" style = "Decimal">
-		<regex>\b[0-9][0-9\.]*\b</regex>
+		<regex>\b(([0-9]+)|([0-9]+\.[0-9]+([Ee][-]?[0-9]+)?))\b</regex>
 	</pattern-item>
 
 	<!-- FIXME WHY DOESN'T THIS WORK? -->
