@@ -18,6 +18,7 @@ EXTRA_DIST = 			\
 	python.lang		\
 	ruby.lang		\
 	sql.lang		\
+	vbnet.lang		\
 	verilog.lang		\
 	xml.lang
 
