@@ -1,4 +1,4 @@
-# Translated string for gtksourceview to brazillian portuguese.
+# Translated strings for gtksourceview to brazillian portuguese.
 # This file is distributed under the same license as the gtksourceview package.
 # Fabio Rafael da Rosa <f2r@users.sourceforge.net>, 2003.
 #
@@ -6,13 +6,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-03-13 15:32+0100\n"
-"PO-Revision-Date: 2004-03-13 14:15-0300\n"
+"POT-Creation-Date: 2004-03-19 18:59-0500\n"
+"PO-Revision-Date: 2004-03-18 06:32-0300\n"
 "Last-Translator: Agney Lopes Roth Ferraz  <agney@users.sourceforge.net>\n"
 "Language-Team: Brazilian Portuguese <gnome-l10n-br@listas.cipsga.org.br>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit"
+"Content-Transfer-Encoding: 8bit\n"
 
 #: gtksourceview/gtksourcebuffer.c:279
 msgid "Escape Character"
@@ -28,7 +28,7 @@ msgstr "Checar Chaves"
 
 #: gtksourceview/gtksourcebuffer.c:289
 msgid "Whether to check and highlight matching brackets"
-msgstr "Checar e destacar abre/fecha chaves ?"
+msgstr "Checar e destacar chaves equivalentes?"
 
 #: gtksourceview/gtksourcebuffer.c:297 gtksourceview/gtksourceprintjob.c:303
 msgid "Highlight"
@@ -40,11 +40,11 @@ msgstr "Destacar sintaxe no buffer?"
 
 #: gtksourceview/gtksourcebuffer.c:306
 msgid "Maximum Undo Levels"
-msgstr "Quantidade máxima de níveis de Desfazer"
+msgstr "Quantidade máxima de níveis de desfazer"
 
 #: gtksourceview/gtksourcebuffer.c:307
 msgid "Number of undo levels for the buffer"
-msgstr "Quantidade máxima de níveis desfazer para o buffer"
+msgstr "Quantidade máxima de níveis de desfazer para o buffer"
 
 #: gtksourceview/gtksourcebuffer.c:317
 #: gtksourceview/language-specs/desktop.lang.h:6
@@ -110,7 +110,7 @@ msgstr "Fonte"
 
 #: gtksourceview/gtksourceprintjob.c:313
 msgid "Font name to use for the document text"
-msgstr "Nome da Fonte usada no documento texto"
+msgstr "Nome da fonte usada no documento texto"
 
 #: gtksourceview/gtksourceprintjob.c:320
 msgid "Numbers Font"
@@ -131,19 +131,19 @@ msgstr ""
 
 #: gtksourceview/gtksourceprintjob.c:336
 msgid "Print Header"
-msgstr "Cabeçalho de impressão"
+msgstr "Cabeçalho de Impressão"
 
 #: gtksourceview/gtksourceprintjob.c:337
 msgid "Whether to print a header in each page"
-msgstr "Imprimir um cabeçalho em cada página?"
+msgstr "Imprimir o cabeçalho em cada página?"
 
 #: gtksourceview/gtksourceprintjob.c:344
 msgid "Print Footer"
-msgstr "Rodapé de impressão"
+msgstr "Rodapé de Impressão"
 
 #: gtksourceview/gtksourceprintjob.c:345
 msgid "Whether to print a footer in each page"
-msgstr "Imprimir um rodapé em cada página ?"
+msgstr "Imprimir o rodapé em cada página ?"
 
 #: gtksourceview/gtksourceprintjob.c:352
 msgid "Header and Footer Font"
@@ -155,7 +155,7 @@ msgstr "Nome da fonte usada no Cabeçalho e Rodapé"
 
 #: gtksourceview/gtksourcestylescheme.c:237
 msgid "Base-N Integer"
-msgstr "Inteiro na Base-N"
+msgstr "Inteiro na Base N"
 
 #: gtksourceview/gtksourcestylescheme.c:242
 msgid "Character"
@@ -309,7 +309,7 @@ msgid ""
 "HOME and END keys move to first/last characters on line first before going "
 "to the start/end of the line"
 msgstr ""
-"As teclas HOME e END move para o primeiro/último caracter da linha antes de "
+"As teclas HOME e END movem para o primeiro/último caracter da linha antes de "
 "ir para o início/fim da linha"
 
 #: gtksourceview/language-specs/ada.lang.h:1
@@ -320,7 +320,7 @@ msgstr "Ada"
 #: gtksourceview/language-specs/c.lang.h:4
 #: gtksourceview/language-specs/cpp.lang.h:4
 msgid "Character Constant"
-msgstr "Constante de Caractere"
+msgstr "Constante de Caracteres"
 
 #: gtksourceview/language-specs/ada.lang.h:4
 #: gtksourceview/language-specs/c.lang.h:10
@@ -383,7 +383,7 @@ msgstr "Tipos"
 #: gtksourceview/language-specs/c.lang.h:1
 #: gtksourceview/language-specs/cpp.lang.h:1
 msgid "'#if 0' Comment"
-msgstr "'#if 0' Comentário"
+msgstr "Comentário '#if 0'"
 
 #: gtksourceview/language-specs/c.lang.h:2
 #: gtksourceview/language-specs/cpp.lang.h:2
@@ -395,7 +395,7 @@ msgstr "'#if 0' Comentário"
 #: gtksourceview/language-specs/verilog.lang.h:2
 #: gtksourceview/language-specs/xml.lang.h:2
 msgid "Block Comment"
-msgstr "Comentário de Bloco"
+msgstr "Bloco de Comentário"
 
 #: gtksourceview/language-specs/c.lang.h:3
 msgid "C"
@@ -628,7 +628,7 @@ msgstr "Operadores de Matrizes"
 
 #: gtksourceview/language-specs/php.lang.h:2
 msgid "Backtick String"
-msgstr "Texto Backtick"
+msgstr "Texto entre apóstrofes"
 
 #: gtksourceview/language-specs/php.lang.h:3
 msgid "Bash Line Comment"
@@ -636,7 +636,7 @@ msgstr "Linha de Comentário do Bash"
 
 #: gtksourceview/language-specs/php.lang.h:4
 msgid "C Block Comment"
-msgstr "Comentário de Bloco do C"
+msgstr "Bloco de Comentário do C"
 
 #: gtksourceview/language-specs/php.lang.h:5
 msgid "C++ Line Comment"
@@ -696,7 +696,7 @@ msgstr "Funções"
 
 #: gtksourceview/language-specs/python.lang.h:5
 msgid "Module Handler"
-msgstr "Alimentador do Módulo"
+msgstr "Gerenciador do Módulo"
 
 #: gtksourceview/language-specs/python.lang.h:6
 msgid "Multiline String"
@@ -724,7 +724,7 @@ msgstr "Palavras Reservadas ANSI"
 
 #: gtksourceview/language-specs/sql.lang.h:3
 msgid "Aggregate Functions"
-msgstr "Funções de Agregação"
+msgstr "Funções Agregadas"
 
 #: gtksourceview/language-specs/sql.lang.h:4
 msgid "Analytic Functions"
@@ -732,11 +732,11 @@ msgstr "Funções Analíticas"
 
 #: gtksourceview/language-specs/sql.lang.h:6
 msgid "Character Functions Returning Character Values"
-msgstr "Funções de Caracteres Retornando Valores Caracteres"
+msgstr "Funções de Caracteres que Retorna Valores Caracteres"
 
 #: gtksourceview/language-specs/sql.lang.h:7
 msgid "Character Functions Returning Number Values"
-msgstr "Funções de Caracteres Retornando Valores Numéricos"
+msgstr "Funções de Caracteres que Retorna Valores Numéricos"
 
 #: gtksourceview/language-specs/sql.lang.h:8
 msgid "Conversion Functions"
@@ -748,7 +748,7 @@ msgstr "Funções de Data e Hora"
 
 #: gtksourceview/language-specs/sql.lang.h:10
 msgid "Integer Literals"
-msgstr "Literais Inteiros"
+msgstr "Literais Inteiras"
 
 #: gtksourceview/language-specs/sql.lang.h:12
 msgid "Miscellaneous Single-Row Functions"
@@ -764,7 +764,7 @@ msgstr "Funções Numéricas"
 
 #: gtksourceview/language-specs/sql.lang.h:15
 msgid "Number Literals"
-msgstr "Literais Numéricos"
+msgstr "Literais Numéricas"
 
 #: gtksourceview/language-specs/sql.lang.h:16
 msgid "Object Reference Functions"
@@ -784,7 +784,7 @@ msgstr "SQL"
 
 #: gtksourceview/language-specs/sql.lang.h:20
 msgid "SQL*Plus At Sign"
-msgstr "SQL*Plus At Sign"
+msgstr "Sinal At SQL*Plus"
 
 #: gtksourceview/language-specs/sql.lang.h:21
 msgid "SQL*Plus Commands"
@@ -792,11 +792,11 @@ msgstr "Comandos SQL*Plus"
 
 #: gtksourceview/language-specs/sql.lang.h:22
 msgid "SQL*Plus Double At Sign"
-msgstr "SQL*Plus Double At Sign"
+msgstr "Sinal At Duplo SQL*Plus"
 
 #: gtksourceview/language-specs/sql.lang.h:23
 msgid "SQL*Plus Slash"
-msgstr "SQL*Plus Slash"
+msgstr "Barra SQL*Plus"
 
 #: gtksourceview/language-specs/sql.lang.h:24
 msgid "SQL/DS and DB2 Datatypes"
@@ -845,5 +845,3 @@ msgstr "Tag"
 #: gtksourceview/language-specs/xml.lang.h:10
 msgid "XML"
 msgstr "XML"
-
-
