@@ -1,3 +1,8 @@
+2004-02-20  Albert Chin-A-Young  <china@thewrittenword.com>
+
+	* gtksourceview/gtksourceprintjob.c: IBM C compiler does not like
+	  trailing comma after last enum constant.
+
 2004-02-21 Alejandro Dubrovsky <alito@organicrobot.com>
 
 	* tests/test-widget.c (create_view_window): Make pixmap directory relative
