@@ -106,6 +106,17 @@ void               gtk_source_print_job_get_text_margins       (GtkSourcePrintJo
 								gdouble           *left,
 								gdouble           *right);
 
+/* New non-deprecated font-setting API */
+void                   gtk_source_print_job_set_font_desc               (GtkSourcePrintJob    *job,
+									 PangoFontDescription *desc);
+PangoFontDescription  *gtk_source_print_job_get_font_desc               (GtkSourcePrintJob    *job);
+void                   gtk_source_print_job_set_numbers_font_desc       (GtkSourcePrintJob    *job,
+									 PangoFontDescription *desc);
+PangoFontDescription  *gtk_source_print_job_get_numbers_font_desc       (GtkSourcePrintJob    *job);
+void                   gtk_source_print_job_set_header_footer_font_desc (GtkSourcePrintJob    *job,
+									 PangoFontDescription *desc);
+PangoFontDescription  *gtk_source_print_job_get_header_footer_font_desc (GtkSourcePrintJob    *job);
+
 /* printing operations */
 GnomePrintJob     *gtk_source_print_job_print                  (GtkSourcePrintJob *job);
 GnomePrintJob     *gtk_source_print_job_print_range            (GtkSourcePrintJob *job,

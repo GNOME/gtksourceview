@@ -161,7 +161,17 @@ printed to the physical device.
 
 </para>
 
+<!-- ##### ARG GtkSourcePrintJob:font-desc ##### -->
+<para>
+
+</para>
+
 <!-- ##### ARG GtkSourcePrintJob:header-footer-font ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GtkSourcePrintJob:header-footer-font-desc ##### -->
 <para>
 
 </para>
@@ -172,6 +182,11 @@ printed to the physical device.
 </para>
 
 <!-- ##### ARG GtkSourcePrintJob:numbers-font ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GtkSourcePrintJob:numbers-font-desct ##### -->
 <para>
 
 </para>
@@ -319,6 +334,15 @@ printed to the physical device.
 @Returns: 
 
 
+<!-- ##### FUNCTION gtk_source_print_job_set_font_desc ##### -->
+<para>
+
+</para>
+
+@job: 
+@desc: 
+
+
 <!-- ##### FUNCTION gtk_source_print_job_set_font ##### -->
 <para>
 
@@ -326,6 +350,15 @@ printed to the physical device.
 
 @job: 
 @font_name: 
+
+
+<!-- ##### FUNCTION gtk_source_print_job_get_font_desc ##### -->
+<para>
+
+</para>
+
+@job: 
+@Returns: 
 
 
 <!-- ##### FUNCTION gtk_source_print_job_get_font ##### -->
@@ -337,6 +370,15 @@ printed to the physical device.
 @Returns: 
 
 
+<!-- ##### FUNCTION gtk_source_print_job_set_numbers_font_desc ##### -->
+<para>
+
+</para>
+
+@job: 
+@desc: 
+
+
 <!-- ##### FUNCTION gtk_source_print_job_set_numbers_font ##### -->
 <para>
 
@@ -344,6 +386,15 @@ printed to the physical device.
 
 @job: 
 @font_name: 
+
+
+<!-- ##### FUNCTION gtk_source_print_job_get_numbers_font_desc ##### -->
+<para>
+
+</para>
+
+@job: 
+@Returns: 
 
 
 <!-- ##### FUNCTION gtk_source_print_job_get_numbers_font ##### -->
@@ -508,6 +559,15 @@ printed to the physical device.
 @Returns: 
 
 
+<!-- ##### FUNCTION gtk_source_print_job_set_header_footer_font_desc ##### -->
+<para>
+
+</para>
+
+@job: 
+@desc: 
+
+
 <!-- ##### FUNCTION gtk_source_print_job_set_header_footer_font ##### -->
 <para>
 
@@ -515,6 +575,15 @@ printed to the physical device.
 
 @job: 
 @font_name: 
+
+
+<!-- ##### FUNCTION gtk_source_print_job_get_header_footer_font_desc ##### -->
+<para>
+
+</para>
+
+@job: 
+@Returns: 
 
 
 <!-- ##### FUNCTION gtk_source_print_job_get_header_footer_font ##### -->

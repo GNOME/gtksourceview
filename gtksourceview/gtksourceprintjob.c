@@ -8,6 +8,7 @@
  * Copyright (C) 2000, 2001 Chema Celorio, Paolo Maggi
  * Copyright (C) 2002  Paolo Maggi  
  * Copyright (C) 2003  Gustavo Giráldez
+ * Copyright (C) 2004  Red Hat, Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -37,6 +38,8 @@
 #include "gtksourcetag.h"
 #include "gtksourceprintjob.h"
 
+#include <libgnomeprint/gnome-print-pango.h>
+
 #ifdef ENABLE_PROFILE
 #define PROFILE(x) x
 #else
@@ -50,14 +53,12 @@
 #endif
 
 
-#define DEFAULT_FONT_NAME   "Monospace Regular 10"
+#define DEFAULT_FONT_NAME   "Monospace 10"
 #define DEFAULT_COLOR       0x000000ff
 
 #define CM(v) ((v) * 72.0 / 2.54)
 #define A4_WIDTH (210.0 * 72 / 25.4)
 #define A4_HEIGHT (297.0 * 72 / 25.4)
-
-#define LINE_SPACING_RATIO      1.2
 
 #define NUMBERS_TEXT_SEPARATION CM(0.5)
 
@@ -67,7 +68,7 @@
 
 
 typedef struct _TextSegment TextSegment;
-typedef struct _DisplayLine DisplayLine;
+typedef struct _Paragraph   Paragraph;
 typedef struct _TextStyle   TextStyle;
 
 /* a piece of text (within a paragraph) of the same style */
@@ -79,22 +80,17 @@ struct _TextSegment
 };
 
 /* a printable line */
-struct _DisplayLine
+struct _Paragraph
 {
-	guint                    page;
 	guint                    line_number;
 	TextSegment             *segment;
-	const gchar             *start;
-	guint                    char_count;
 };
 
 /* the style of a TextSegment */
 struct _TextStyle
 {
-	GnomeFont               *font;
-	gdouble                  red;
-	gdouble                  green;
-	gdouble                  blue;
+	PangoFontDescription    *font_desc;
+	GdkColor                *foreground;
 };
 
 
@@ -106,8 +102,9 @@ struct _GtkSourcePrintJobPrivate
 	guint			 tabs_width;
 	GtkWrapMode		 wrap_mode;
 	gboolean                 highlight;
-	GnomeFont		*font;
-	GnomeFont		*numbers_font;
+	PangoLanguage           *language;
+	PangoFontDescription	*font;
+	PangoFontDescription	*numbers_font;
 	guint 			 print_numbers;
 	gdouble                  margin_top;
 	gdouble                  margin_bottom;
@@ -117,7 +114,7 @@ struct _GtkSourcePrintJobPrivate
 	/* Default header and footer configuration */
 	gboolean                 print_header;
 	gboolean                 print_footer;
-	GnomeFont		*header_footer_font;
+	PangoFontDescription	*header_footer_font;
 	gchar                   *header_format_left;
 	gchar                   *header_format_center;
 	gchar                   *header_format_right;
@@ -130,25 +127,22 @@ struct _GtkSourcePrintJobPrivate
 	/* Job data */
 	guint                    first_line_number;
 	guint                    last_line_number;
-	GSList                  *lines;
-	GSList                  *display_lines;
+	GSList                  *paragraphs;
 
 	/* Job state */
 	gboolean                 printing;
 	guint                    idle_printing_tag;
 	GnomePrintContext	*print_ctxt;
 	GnomePrintJob           *print_job;
+	PangoContext            *pango_context;
+	PangoTabArray           *tab_array;
 	gint                     page;
 	gint                     page_count;
-	guint                    line_number;
 	gdouble                  available_height;
-	GSList                  *current_display_line;
+	GSList                  *current_paragraph;
+	gint                     current_paragraph_line;
 	guint                    printed_lines;
 
-	/* Current printing style */
-	GnomeFont               *current_font;
-	guint32                  current_color;  /* what gnome_glyphlist_color needs */
-	
 	/* Cached information - all this information is obtained from
 	 * other fields in the configuration */
 	GHashTable              *tag_styles;
@@ -168,11 +162,6 @@ struct _GtkSourcePrintJobPrivate
 	/* printable (for the document itself) size */
 	gdouble                  text_width;
 	gdouble                  text_height;
-	/* various sizes for the default text font */
-	gdouble                  width_of_tab;
-	gdouble                  space_advance;
-	gdouble                  font_height;
-	gdouble                  line_spacing;
 };
 
 
@@ -185,11 +174,14 @@ enum
 	PROP_WRAP_MODE,
 	PROP_HIGHLIGHT,
 	PROP_FONT,
+	PROP_FONT_DESC,
 	PROP_NUMBERS_FONT,
+	PROP_NUMBERS_FONT_DESC,
 	PROP_PRINT_NUMBERS,
 	PROP_PRINT_HEADER,
 	PROP_PRINT_FOOTER,
-	PROP_HEADER_FOOTER_FONT
+	PROP_HEADER_FOOTER_FONT,
+	PROP_HEADER_FOOTER_FONT_DESC
 };
 
 enum
@@ -310,17 +302,33 @@ gtk_source_print_job_class_init (GtkSourcePrintJobClass *klass)
 					 PROP_FONT,
 					 g_param_spec_string ("font",
 							      _("Font"),
-							      _("Font name to use for the "
-								"document text"),
+							      _("GnomeFont name to use for the "
+								"document text (deprecated)"),
 							      NULL,
+							      G_PARAM_READWRITE));
+	g_object_class_install_property (object_class,
+					 PROP_FONT_DESC,
+					 g_param_spec_boxed ("font_desc",
+							     _("Font Description"),
+							     _("Font description name to use for the "
+							       "document text"),
+							     PANGO_TYPE_FONT_DESCRIPTION,
 							      G_PARAM_READWRITE));
 	g_object_class_install_property (object_class,
 					 PROP_NUMBERS_FONT,
 					 g_param_spec_string ("numbers_font",
 							      _("Numbers Font"),
-							      _("Font name to use for the "
-								"line numbers"),
+							      _("GnomeFont name to use for the "
+								"line numbers (deprecated)"),
 							      NULL,
+							      G_PARAM_READWRITE));
+	g_object_class_install_property (object_class,
+					 PROP_NUMBERS_FONT_DESC,
+					 g_param_spec_boxed ("numbers_font_desc",
+							     _("Numbers Font"),
+							     _("Font description to use for the "
+							       "line numbers"),
+							     PANGO_TYPE_FONT_DESCRIPTION,
 							      G_PARAM_READWRITE));
 	g_object_class_install_property (object_class,
 					 PROP_PRINT_NUMBERS,
@@ -350,10 +358,18 @@ gtk_source_print_job_class_init (GtkSourcePrintJobClass *klass)
 					 PROP_HEADER_FOOTER_FONT,
 					 g_param_spec_string ("header_footer_font",
 							      _("Header and Footer Font"),
-							      _("Font name to use for the header "
-								"and footer"),
+							      _("GnomeFont name to use for the header "
+								"and footer (deprecated)"),
 							      NULL,
 							      G_PARAM_READWRITE));
+	g_object_class_install_property (object_class,
+					 PROP_HEADER_FOOTER_FONT_DESC,
+					 g_param_spec_boxed ("header_footer_font_desc",
+							     _("Header and Footer Font Description"),
+							     _("Font description name to use for the header "
+							       "and footer"),
+							     PANGO_TYPE_FONT_DESCRIPTION,
+							     G_PARAM_READWRITE));
 	
 	print_job_signals [BEGIN_PAGE] =
 	    g_signal_new ("begin_page",
@@ -390,6 +406,7 @@ gtk_source_print_job_instance_init (GtkSourcePrintJob *job)
 	priv->tabs_width = 8;
 	priv->wrap_mode = GTK_WRAP_NONE;
 	priv->highlight = TRUE;
+	priv->language = gtk_get_default_language ();
 	priv->font = NULL;
 	priv->numbers_font = NULL;
 	priv->print_numbers = 1;
@@ -418,8 +435,7 @@ gtk_source_print_job_instance_init (GtkSourcePrintJob *job)
 	priv->page_count = 0;
 
 	priv->first_line_number = 0;
-	priv->lines = NULL;
-	priv->display_lines = NULL;
+	priv->paragraphs = NULL;
 	priv->tag_styles = NULL;
 
 	/* some default, sane values */
@@ -432,11 +448,12 @@ gtk_source_print_job_instance_init (GtkSourcePrintJob *job)
 }
 
 static void
-free_lines (GSList *lines)
+free_paragraphs (GSList *paras)
 {
-	while (lines != NULL)
+	while (paras != NULL)
 	{
-		TextSegment *seg = lines->data;
+		Paragraph *para = paras->data;
+		TextSegment *seg =  para->segment;
 		while (seg != NULL)
 		{
 			TextSegment *next = seg->next;
@@ -444,17 +461,8 @@ free_lines (GSList *lines)
 			g_free (seg);
 			seg = next;
 		}
-		lines = g_slist_delete_link (lines, lines);
-	}
-}
-
-static void
-free_display_lines (GSList *display_lines)
-{
-	while (display_lines != NULL)
-	{
-		g_free (display_lines->data);
-		display_lines = g_slist_delete_link (display_lines, display_lines);
+		g_free (para);
+		paras = g_slist_delete_link (paras, paras);
 	}
 }
 
@@ -476,11 +484,11 @@ gtk_source_print_job_finalize (GObject *object)
 		if (priv->buffer != NULL)
 			g_object_unref (priv->buffer);
 		if (priv->font != NULL)
-			gnome_font_unref (priv->font);
+			pango_font_description_free (priv->font);
 		if (priv->numbers_font != NULL)
-			gnome_font_unref (priv->numbers_font);
+			pango_font_description_free (priv->numbers_font);
 		if (priv->header_footer_font != NULL)
-			gnome_font_unref (priv->header_footer_font);
+			pango_font_description_free (priv->header_footer_font);
 		g_free (priv->header_format_left);
 		g_free (priv->header_format_right);
 		g_free (priv->header_format_center);
@@ -492,11 +500,13 @@ gtk_source_print_job_finalize (GObject *object)
 			g_object_unref (priv->print_ctxt);
 		if (priv->print_job != NULL)
 			g_object_unref (priv->print_job);
+		if (priv->pango_context != NULL)
+			g_object_unref (priv->pango_context);
+		if (priv->tab_array != NULL)
+			pango_tab_array_free (priv->tab_array);
 
-		if (priv->lines != NULL)
-			free_lines (priv->lines);
-		if (priv->display_lines != NULL)
-			free_display_lines (priv->display_lines);
+		if (priv->paragraphs != NULL)
+			free_paragraphs (priv->paragraphs);
 		if (priv->tag_styles != NULL)
 			g_hash_table_destroy (priv->tag_styles);
 		
@@ -538,11 +548,19 @@ gtk_source_print_job_get_property (GObject    *object,
 			break;
 			
 		case PROP_FONT:
-			g_value_set_string (value, gtk_source_print_job_get_font (job));
+			g_value_take_string (value, gtk_source_print_job_get_font (job));
+			break;
+			
+		case PROP_FONT_DESC:
+			g_value_set_boxed (value, gtk_source_print_job_get_font_desc (job));
 			break;
 			
 		case PROP_NUMBERS_FONT:
- 			g_value_set_string (value, gtk_source_print_job_get_numbers_font (job));
+ 			g_value_take_string (value, gtk_source_print_job_get_numbers_font (job));
+			break;
+			
+		case PROP_NUMBERS_FONT_DESC:
+ 			g_value_set_boxed (value, gtk_source_print_job_get_numbers_font_desc (job));
 			break;
 			
 		case PROP_PRINT_NUMBERS:
@@ -558,8 +576,13 @@ gtk_source_print_job_get_property (GObject    *object,
 			break;
 			
 		case PROP_HEADER_FOOTER_FONT:
-			g_value_set_string (value,
- 					    gtk_source_print_job_get_header_footer_font (job));
+			g_value_take_string (value,
+					     gtk_source_print_job_get_header_footer_font (job));
+			break;
+			
+		case PROP_HEADER_FOOTER_FONT_DESC:
+			g_value_set_boxed (value,
+					   gtk_source_print_job_get_header_footer_font_desc (job));
 			break;
 			
 		default:
@@ -602,8 +625,16 @@ gtk_source_print_job_set_property (GObject      *object,
 			gtk_source_print_job_set_font (job, g_value_get_string (value));
 			break;
 
+		case PROP_FONT_DESC:
+			gtk_source_print_job_set_font_desc (job, g_value_get_boxed (value));
+			break;
+			
 		case PROP_NUMBERS_FONT:
 			gtk_source_print_job_set_numbers_font (job, g_value_get_string (value));
+			break;
+			
+		case PROP_NUMBERS_FONT_DESC:
+			gtk_source_print_job_set_numbers_font_desc (job, g_value_get_boxed (value));
 			break;
 
 		case PROP_PRINT_NUMBERS:
@@ -621,6 +652,11 @@ gtk_source_print_job_set_property (GObject      *object,
 		case PROP_HEADER_FOOTER_FONT:
 			gtk_source_print_job_set_header_footer_font (job,
 								     g_value_get_string (value));
+			break;
+			
+		case PROP_HEADER_FOOTER_FONT_DESC:
+			gtk_source_print_job_set_header_footer_font_desc (job,
+									  g_value_get_boxed (value));
 			break;
 
 		default:
@@ -655,6 +691,67 @@ gtk_source_print_job_begin_page (GtkSourcePrintJob *job)
 	}
 }
 
+/* ---- gnome-print / Pango convenience functions */
+
+/* Gets the width of a layout in gnome-print coordinates */
+static gdouble
+get_layout_width (PangoLayout *layout)
+{
+	gint layout_width;
+
+	pango_layout_get_size (layout, &layout_width, NULL);
+	return (gdouble) layout_width / PANGO_SCALE;
+}
+
+/* Gets the ascent/descent of a font in gnome-print coordinates */
+static void
+get_font_ascent_descent (GtkSourcePrintJob    *job,
+			 PangoFontDescription *desc,
+			 gdouble              *ascent,
+			 gdouble              *descent)
+{
+	PangoFontMetrics *metrics;
+	
+	metrics = pango_context_get_metrics (job->priv->pango_context,
+					     desc,
+					     job->priv->language);
+
+	if (ascent)
+		*ascent = (gdouble) pango_font_metrics_get_ascent (metrics) / PANGO_SCALE;
+	if (descent)
+		*descent = (gdouble) pango_font_metrics_get_descent (metrics) / PANGO_SCALE;
+
+	pango_font_metrics_unref (metrics);
+}
+
+/* Draws the first line in a layout; we use this for one-line layouts
+ * to get baseline alignment */
+static void
+show_first_layout_line (GnomePrintContext *print_ctxt,
+			PangoLayout       *layout)
+{
+	PangoLayoutLine *line;
+
+	line = pango_layout_get_lines (layout)->data;
+	gnome_print_pango_layout_line (print_ctxt, line);
+}
+
+static PangoLayout *
+get_line_number_layout (GtkSourcePrintJob *job,
+			guint              line_number)
+{
+	PangoLayout *layout;
+	gchar *num_str;
+
+	num_str = g_strdup_printf ("%d", line_number);
+	layout = pango_layout_new (job->priv->pango_context);
+	pango_layout_set_font_description (layout, job->priv->numbers_font);
+	pango_layout_set_text (layout, num_str, -1);
+	g_free (num_str);
+
+	return layout;
+}
+
 /* ---- Configuration functions */
 
 static void
@@ -663,15 +760,14 @@ ensure_print_config (GtkSourcePrintJob *job)
 	if (job->priv->config == NULL)
 		job->priv->config = gnome_print_config_default ();
 	if (job->priv->font == NULL)
-		job->priv->font = gnome_font_find_closest_from_full_name (DEFAULT_FONT_NAME);
+		job->priv->font = pango_font_description_from_string (DEFAULT_FONT_NAME);
 }
 
 static gboolean
 update_page_size_and_margins (GtkSourcePrintJob *job)
 {
-	ArtPoint space_advance;
-	gint space;
-	gchar *tmp;
+	PangoLayout *layout;
+	gdouble ascent, descent;
 	
 	gnome_print_job_get_page_size_from_config (job->priv->config, 
 						   &job->priv->page_width,
@@ -688,36 +784,29 @@ update_page_size_and_margins (GtkSourcePrintJob *job)
 
 	/* set default fonts for numbers and header/footer */
 	if (job->priv->numbers_font == NULL)
-	{
-		job->priv->numbers_font = job->priv->font;
-		g_object_ref (job->priv->font);
-	}
+		job->priv->numbers_font = pango_font_description_copy (job->priv->font);
 	
 	if (job->priv->header_footer_font == NULL)
-	{
-		job->priv->header_footer_font = job->priv->font;
-		g_object_ref (job->priv->font);
-	}
+		job->priv->header_footer_font = pango_font_description_copy (job->priv->font);
 	
 	/* calculate numbers width */
 	if (job->priv->print_numbers > 0)
 	{
-		tmp = g_strdup_printf ("%d", job->priv->last_line_number);
-		job->priv->numbers_width =
-			gnome_font_get_width_utf8 (job->priv->numbers_font, tmp) +
-			NUMBERS_TEXT_SEPARATION;
-		g_free (tmp);
+		layout = get_line_number_layout (job, job->priv->last_line_number);
+		job->priv->numbers_width = get_layout_width (layout) + NUMBERS_TEXT_SEPARATION;
+		g_object_unref (layout);
 	}
 	else
 		job->priv->numbers_width = 0.0;
+
+	get_font_ascent_descent (job, job->priv->header_footer_font, &ascent, &descent);
 
 	/* calculate header/footer height */
 	if (job->priv->print_header &&
 	    (job->priv->header_format_left != NULL ||
 	     job->priv->header_format_center != NULL ||
 	     job->priv->header_format_right != NULL))
-		job->priv->header_height = HEADER_FOOTER_SIZE *
-			gnome_font_get_size (job->priv->header_footer_font);
+		job->priv->header_height = HEADER_FOOTER_SIZE * (ascent + descent);
 	else
 		job->priv->header_height = 0.0;
 
@@ -725,8 +814,7 @@ update_page_size_and_margins (GtkSourcePrintJob *job)
 	    (job->priv->footer_format_left != NULL ||
 	     job->priv->footer_format_center != NULL ||
 	     job->priv->footer_format_right != NULL))
-		job->priv->footer_height = HEADER_FOOTER_SIZE *
-			gnome_font_get_size (job->priv->header_footer_font);
+		job->priv->footer_height = HEADER_FOOTER_SIZE * (ascent + descent);
 	else
 		job->priv->footer_height = 0.0;
 
@@ -746,19 +834,60 @@ update_page_size_and_margins (GtkSourcePrintJob *job)
 	g_return_val_if_fail (job->priv->text_width > CM(5.0), FALSE);
 	g_return_val_if_fail (job->priv->text_height > CM(5.0), FALSE);
 
-	/* Find space advance */
-	space = gnome_font_lookup_default (job->priv->font, ' ');
-	gnome_font_get_glyph_stdadvance (job->priv->font, space, &space_advance);
-	job->priv->space_advance = space_advance.x;
+	return TRUE;
+}
 
-	/* calculate tab stops */
-	job->priv->width_of_tab = space_advance.x * job->priv->tabs_width;
+/* We want a uniform tab width for the entire job without regard to style
+ * See comments in gtksourceview.c:calculate_real_tab_width
+ */
+static gint
+calculate_real_tab_width (GtkSourcePrintJob *job, guint tab_size, gchar c)
+{
+	PangoLayout *layout;
+	gchar *tab_string;
+	gint tab_width = 0;
 
-	/* font heights and line spacings */
-	job->priv->font_height =
-		gnome_font_get_ascender (job->priv->font) +
-		gnome_font_get_descender (job->priv->font);
-	job->priv->line_spacing = LINE_SPACING_RATIO * gnome_font_get_size (job->priv->font);
+	if (tab_size == 0)
+		return -1;
+
+	tab_string = g_strnfill (tab_size, c);
+	layout = pango_layout_new (job->priv->pango_context);
+	pango_layout_set_text (layout, tab_string, -1);
+	g_free (tab_string);
+
+	pango_layout_get_size (layout, &tab_width, NULL);
+	g_object_unref (G_OBJECT (layout));
+	
+	return tab_width;
+}
+
+static gboolean
+setup_pango_context (GtkSourcePrintJob *job)
+{
+	PangoFontMap *font_map;
+	gint real_tab_width;
+
+	if (!job->priv->pango_context)
+	{
+		font_map = gnome_print_pango_get_default_font_map ();
+		job->priv->pango_context = gnome_print_pango_create_context (font_map);
+	}
+
+	pango_context_set_language (job->priv->pango_context, job->priv->language);
+	pango_context_set_font_description (job->priv->pango_context, job->priv->font);
+
+	if (job->priv->tab_array)
+	{
+		pango_tab_array_free (job->priv->tab_array);
+		job->priv->tab_array = NULL;
+	}
+	
+	real_tab_width = calculate_real_tab_width (job, job->priv->tabs_width, ' ');
+	if (real_tab_width > 0)
+	{
+		job->priv->tab_array = pango_tab_array_new (1, FALSE);
+		pango_tab_array_set_tab (job->priv->tab_array, 0, PANGO_TAB_LEFT, real_tab_width);
+	}
 	
 	return TRUE;
 }
@@ -766,40 +895,78 @@ update_page_size_and_margins (GtkSourcePrintJob *job)
 /* ----- Helper functions */
 
 static gchar * 
-construct_full_font_name (GnomeFont *font)
+font_description_to_gnome_font_name (PangoFontDescription *desc)
 {
+	GnomeFontFace *font_face;
 	gchar *retval;
 
-	retval = g_strdup_printf ("%s %.1f",
-				  gnome_font_get_name (font),
-				  gnome_font_get_size (font));
+	/* Will always return some font */
+	font_face = gnome_font_face_find_closest_from_pango_description (desc);
+
+	retval = g_strdup_printf("%s %f",
+				 gnome_font_face_get_name (font_face),
+				 (double) pango_font_description_get_size (desc) / PANGO_SCALE);
+	g_object_unref (font_face);
 
 	return retval;
 }
 
-static GnomeFont *
-find_gnome_font_from_widget (GtkWidget *widget)
+/*
+ * The following routines are duplicated in gedit/gedit/gedit-prefs-manager.c
+ */
+
+/* Do this ourselves since gnome_font_find_closest() doesn't call
+ * gnome_font_face_find_closest() (probably a gnome-print bug)
+ */
+static void
+face_and_size_from_full_name (const guchar   *name,
+			      GnomeFontFace **face,
+			      gdouble        *size)
 {
-	PangoContext *ctxt;
+	char *copy;
+	char *str_size;
+
+	copy = g_strdup (name);
+	str_size = strrchr (copy, ' ');
+	if (str_size)
+	{
+		*str_size = 0;
+		str_size ++;
+		*size = atof (str_size);
+	}
+	else
+	{
+		*size = 12;
+	}
+
+	*face = gnome_font_face_find_closest (copy);
+	g_free (copy);
+}
+
+static PangoFontDescription *
+font_description_from_gnome_font_name (const char *font_name)
+{
+	GnomeFontFace *face;
 	PangoFontDescription *desc;
 	PangoStyle style;
 	PangoWeight weight;
-	gboolean italic;
-	const char *family_name;
 	gdouble size;
-	
-	ctxt = gtk_widget_get_pango_context (widget);
-	desc = pango_context_get_font_description (ctxt);
-	
-	g_return_val_if_fail (desc != NULL, NULL);
-	
-	weight = pango_font_description_get_weight (desc);
-	style = pango_font_description_get_style (desc);
-	italic = ((style == PANGO_STYLE_OBLIQUE) || (style == PANGO_STYLE_ITALIC));
-	family_name = pango_font_description_get_family (desc);
-	size = (gdouble) pango_font_description_get_size (desc) / PANGO_SCALE;
-	
-	return gnome_font_find_closest_from_weight_slant (family_name, weight, italic, size);
+
+	face_and_size_from_full_name (font_name, &face, &size);
+
+	/* Pango and GnomePrint have basically the same numeric weight values */
+	weight = (PangoWeight) gnome_font_face_get_weight_code (face);
+	style = gnome_font_face_is_italic (face) ? PANGO_STYLE_ITALIC : PANGO_STYLE_NORMAL;
+
+	desc = pango_font_description_new ();
+	pango_font_description_set_family (desc, gnome_font_face_get_family_name (face));
+	pango_font_description_set_weight (desc, weight);
+	pango_font_description_set_style (desc, style);
+	pango_font_description_set_size (desc, size * PANGO_SCALE);
+
+	g_object_unref (face);
+
+	return desc;
 }
 
 /* ---- TextStyle functions */
@@ -825,17 +992,13 @@ text_style_new (GtkSourcePrintJob *job, GtkSourceTag *tag)
 		      NULL);
 
 	if (fg_set)
-	{
-		style->red = (gdouble) fg->red / 65535;
-		style->green = (gdouble) fg->green / 65535;
-		style->blue = (gdouble) fg->blue / 65535;
-	}
+		style->foreground = fg;
+	else
+		gdk_color_free (fg);
 
-	style->font = gnome_font_find_closest_from_weight_slant (
-		gnome_font_get_family_name (job->priv->font),
-		text_weight,
-		(text_style & PANGO_STYLE_ITALIC) != 0,
-		gnome_font_get_size (job->priv->font));
+	style->font_desc = pango_font_description_copy (job->priv->font);
+	pango_font_description_set_weight (style->font_desc, text_weight);
+	pango_font_description_set_style (style->font_desc, text_style);
 	
 	return style;
 }
@@ -843,7 +1006,9 @@ text_style_new (GtkSourcePrintJob *job, GtkSourceTag *tag)
 static void
 text_style_free (TextStyle *style)
 {
-	g_object_unref (style->font);
+	pango_font_description_free (style->font_desc);
+	if (style->foreground)
+		gdk_color_free (style->foreground);
 	g_free (style);
 }
 
@@ -893,25 +1058,6 @@ get_style (GtkSourcePrintJob *job, const GtkTextIter *iter)
 	return style;
 }
 
-static void
-set_style (GtkSourcePrintJob *job, TextStyle *style)
-{
-	if (style != NULL)
-	{
-		job->priv->current_font = style->font;
-		job->priv->current_color =
-			(((guint32) (style->red * 255) << 24) |
-			 ((guint32) (style->green * 255) << 16) |
-			 ((guint32) (style->blue * 255) << 8) |
-			 0xff);
-	}
-	else
-	{
-		job->priv->current_font = job->priv->font;
-		job->priv->current_color = DEFAULT_COLOR;
-	}
-}
-
 /* ----- Text fetching functions */
 
 static gboolean 
@@ -923,14 +1069,16 @@ get_text_simple (GtkSourcePrintJob *job,
 
 	while (gtk_text_iter_compare (start, end) < 0)
 	{
+		Paragraph *para;
 		TextSegment *seg;
 		
 		/* get a line of text */
 		iter = *start;
-		gtk_text_iter_forward_line (&iter);
+		gtk_text_iter_forward_to_line_end (&iter);
 		if (gtk_text_iter_compare (&iter, end) > 0)
 			iter = *end;
 
+		
 		seg = g_new0 (TextSegment, 1);
 		seg->next = NULL;  /* only one segment per line, since there's no style change */
 		seg->style = NULL; /* use default style */
@@ -939,13 +1087,18 @@ get_text_simple (GtkSourcePrintJob *job,
 		 * stuff */
 		seg->text = gtk_text_iter_get_slice (start, &iter);
 
-		/* add the line of text to the job */
-		job->priv->lines = g_slist_prepend (job->priv->lines, seg);
+		para = g_new0 (Paragraph, 1);
+		para->segment = seg;
 
+		/* add the line of text to the job */
+		job->priv->paragraphs = g_slist_prepend (job->priv->paragraphs, para);
+
+		gtk_text_iter_forward_line (&iter);
+		
 		/* advance to next line */
 		*start = iter;
 	}
-	job->priv->lines = g_slist_reverse (job->priv->lines);
+	job->priv->paragraphs = g_slist_reverse (job->priv->paragraphs);
 
 	return TRUE;
 }
@@ -955,48 +1108,45 @@ get_text_with_style (GtkSourcePrintJob *job,
 		     GtkTextIter       *start,
 		     GtkTextIter       *end)
 {
-	GtkTextIter limit, iter;
+	GtkTextIter limit, next_toggle;
+	gboolean have_toggle;
 	
 	/* make sure the region to print is highlighted */
 	_gtk_source_buffer_highlight_region (job->priv->buffer, start, end, TRUE);
 
+	next_toggle = *start;
+	have_toggle = gtk_text_iter_forward_to_tag_toggle (&next_toggle, NULL);
+	
 	/* FIXME: handle invisible text properly.  This also assumes
 	 * the text has no embedded images and stuff */
 	while (gtk_text_iter_compare (start, end) < 0)
 	{
 		TextStyle *style;
-		TextSegment *seg, *head;
+		TextSegment *seg;
+		Paragraph *para;
 		
+		para = g_new0 (Paragraph, 1);
+
 		/* get the style at the start of the line */
 		style = get_style (job, start);
 
 		/* get a line of text - limit points to the end of the line */
 		limit = *start;
-		gtk_text_iter_forward_line (&limit);
+		gtk_text_iter_forward_to_line_end (&limit);
 		if (gtk_text_iter_compare (&limit, end) > 0)
 			limit = *end;
 
 		/* create the first segment for the line */
-		head = seg = g_new0 (TextSegment, 1);
+		para->segment = seg = g_new0 (TextSegment, 1);
 		seg->style = style;
 
-		iter = *start;
-		/* now we advance iter until next tag toggle and check
-		 * if the style has changed; if it has, create a new
-		 * segment; break at the line end. */
-		while (gtk_text_iter_compare (&iter, &limit) < 0)
+		/* while the next tag toggle is within the line, we check to see
+		 * if the style has changed at each tag toggle position, and if so,
+		 * create new segments */
+		while (have_toggle && gtk_text_iter_compare (&next_toggle, &limit) < 0)
 		{
-			gtk_text_iter_forward_to_tag_toggle (&iter, NULL);
-			if (gtk_text_iter_compare (&iter, &limit) > 0)
-			{
-				/* we have reached the limit, so break
-				 * from the inner loop to close the
-				 * line */
-				break;
-			}
-
-			/* otherwise, check style changes */
-			style = get_style (job, &iter);
+			/* check style changes */
+			style = get_style (job, &next_toggle);
 			if (style != seg->style)
 			{
 				TextSegment *new_seg;
@@ -1004,14 +1154,16 @@ get_text_with_style (GtkSourcePrintJob *job,
 				/* style has changed, thus we need to
 				 * create a new segment */
 				/* close the current segment */
-				seg->text = gtk_text_iter_get_slice (start, &iter);
-				*start = iter;
+				seg->text = gtk_text_iter_get_slice (start, &next_toggle);
+				*start = next_toggle;
 				
 				new_seg = g_new0 (TextSegment, 1);
 				seg->next = new_seg;
 				seg = new_seg;
 				seg->style = style;
 			}
+
+			have_toggle = gtk_text_iter_forward_to_tag_toggle (&next_toggle, NULL);			
 		}
 		
 		/* close the line */
@@ -1019,12 +1171,13 @@ get_text_with_style (GtkSourcePrintJob *job,
 		seg->text = gtk_text_iter_get_slice (start, &limit);
 
 		/* add the line of text to the job */
-		job->priv->lines = g_slist_prepend (job->priv->lines, head);
+		job->priv->paragraphs = g_slist_prepend (job->priv->paragraphs, para);
 
 		/* advance to next line */
 		*start = limit;
+		gtk_text_iter_forward_line (start);
 	}
-	job->priv->lines = g_slist_reverse (job->priv->lines);
+	job->priv->paragraphs = g_slist_reverse (job->priv->paragraphs);
 
 	return TRUE;
 }
@@ -1044,22 +1197,15 @@ get_text_to_print (GtkSourcePrintJob *job,
 	_end = *end;
 
 	/* erase any previous data */
-	if (job->priv->lines != NULL)
+	if (job->priv->paragraphs != NULL)
 	{
-		free_lines (job->priv->lines);
-		job->priv->lines = NULL;
+		free_paragraphs (job->priv->paragraphs);
+		job->priv->paragraphs = NULL;
 	}
 	if (job->priv->tag_styles != NULL)
 	{
 		g_hash_table_destroy (job->priv->tag_styles);
 		job->priv->tag_styles = NULL;
-	}
-	/* free display lines here since they point to segments which
-	 * have just been freed */
-	if (job->priv->display_lines != NULL)
-	{
-		free_display_lines (job->priv->display_lines);
-		job->priv->display_lines = NULL;
 	}
 
 	/* provide ordered iters */
@@ -1074,8 +1220,9 @@ get_text_to_print (GtkSourcePrintJob *job,
 	else
 		retval = get_text_with_style (job, &_start, &_end);
 
-	if (retval && job->priv->lines == NULL)
+	if (retval && job->priv->paragraphs == NULL)
 	{
+		Paragraph *para;
 		TextSegment *seg;
 		
 		/* add an empty line to allow printing empty documents */
@@ -1083,7 +1230,11 @@ get_text_to_print (GtkSourcePrintJob *job,
 		seg->next = NULL;
 		seg->style = NULL; /* use default style */
 		seg->text = g_strdup ("");
-		job->priv->lines = g_slist_prepend (job->priv->lines, seg);
+
+		para = g_new0 (Paragraph, 1);
+		para->segment = seg;
+
+		job->priv->paragraphs = g_slist_prepend (job->priv->paragraphs, para);
 	}
 
 	return retval;
@@ -1091,174 +1242,143 @@ get_text_to_print (GtkSourcePrintJob *job,
 
 /* ----- Pagination functions */
 
-static void
-break_line (GtkSourcePrintJob *job,
-	    TextSegment       *segment,
-	    const gchar       *ptr,
-	    gboolean           first_line_of_par)
+static PangoLayout *
+create_layout_for_para (GtkSourcePrintJob *job,
+			Paragraph         *para)
 {
-	DisplayLine *dline;
-	gdouble line_width;
-	gint char_count;
-	const gchar *word_ptr;
-	TextSegment *word_seg;
-	gint word_char_count;
-	gunichar ch;
+	GString *text;
+	PangoLayout *layout;
+	PangoAttrList *attrs;
+	TextSegment *seg;
+	gint index;
 
-	line_width = 0.0;
-	char_count = 0;
-
-	/* these are the safe point at the last word break */
-	word_ptr = ptr;
-	word_seg = segment;
-	word_char_count = 0;
-
-	ch = g_utf8_get_char (ptr);
-
-	if (!first_line_of_par)
-	{
-		/* eat up initial spaces */
-		while (ch == ' ' || ch == '\t')
-		{
-			ptr = g_utf8_next_char (ptr);
-			ch = g_utf8_get_char (ptr);
-			if (ch == 0)
-			{
-				/* this should never happen, since we
-				 * would first get the carriage
-				 * return, but... */
-				segment = segment->next;
-				if (segment)
-				{
-					ptr = segment->text;
-					ch = g_utf8_get_char (ptr);
-				}
-				else
-					return;
-			}
-		}
-	}
-
-	/* create the display line */
-	dline = g_new0 (DisplayLine, 1);
-	dline->line_number = job->priv->line_number;
-	dline->segment = segment;
-	dline->start = ptr;
-
-	/* check page boundaries */
-	if (job->priv->available_height < job->priv->font_height)
-	{
-		/* "create" a new page */
-		job->priv->page_count++;
-		job->priv->available_height = job->priv->text_height;
-	}
-	job->priv->available_height -= job->priv->line_spacing;
-	dline->page = job->priv->page_count;
-
-	set_style (job, segment->style);
+	text = g_string_new (NULL);
+	attrs = pango_attr_list_new ();
 	
-	while (ch != 0 && ch != '\n' && ch != '\r')
+	seg = para->segment;
+	index = 0;
+
+	while (seg != NULL)
 	{
-	       	gint glyph;
-		
-		++char_count;
-		
-		if (ch == '\t')
+		gsize seg_len = strlen (seg->text);
+		g_string_append (text, seg->text);
+
+		if (seg->style)
 		{
-			gdouble tab_stop = job->priv->width_of_tab;
+			PangoAttribute *attr;
 
-			/* advance to next tab stop */
-			while (line_width >= tab_stop)
-				tab_stop += job->priv->width_of_tab;
-			line_width = tab_stop;
-		}
-		else
-		{
-			ArtPoint adv;
-
-			glyph = gnome_font_lookup_default (job->priv->current_font, ch);
-			gnome_font_get_glyph_stdadvance (job->priv->current_font, glyph, &adv);
-			if (adv.x > 0)
-				line_width += adv.x;
-			else
-				/* To be as conservative as possible */
-				line_width += (2 * job->priv->space_advance);
-		}
-
-		/* save word boundary */
-		if (ch == ' ' || ch == '\t')
-		{
-			word_ptr = ptr;
-			word_seg = segment;
-			word_char_count = char_count;
-		}
-		
-		if (line_width > job->priv->text_width)
-		{
-			if (job->priv->wrap_mode == GTK_WRAP_NONE)
-				break;
-			else if (job->priv->wrap_mode == GTK_WRAP_WORD)
-			{
-				/* handle words longer than the line */
-				if (word_char_count != 0)
-				{
-					char_count = word_char_count;
-					ptr = word_ptr;
-					segment = word_seg;
-				}
-			}
-
-			/* close the line */
-			dline->char_count = char_count - 1;
-			job->priv->display_lines = g_slist_prepend (
-				job->priv->display_lines, dline);
-
-			/* recursively break the rest of the line */
-			break_line (job, segment, ptr, FALSE);
+			attr = pango_attr_font_desc_new (seg->style->font_desc);
+			attr->start_index = index;
+			attr->end_index = index + seg_len;
+			pango_attr_list_insert (attrs, attr);
 			
-			return;
+			if (seg->style->foreground)
+			{
+				attr = pango_attr_foreground_new (seg->style->foreground->red,
+								  seg->style->foreground->green,
+								  seg->style->foreground->blue);
+				attr->start_index = index;
+				attr->end_index = index + seg_len;
+				pango_attr_list_insert (attrs, attr);
+			}
 		}
 
-		ptr = g_utf8_next_char (ptr);
-		ch = g_utf8_get_char (ptr);
-		if (ch == 0)
-		{
-			/* move to the next segment */
-			segment = segment->next;
-			if (segment == NULL)
-				break;
-
-			/* switch style */
-			set_style (job, segment->style);
-			ptr = segment->text;
-			ch = g_utf8_get_char (ptr);
-		}
+		index += seg_len;
+		seg = seg->next;
 	}
 
-	/* add the last display line */
-	dline->char_count = char_count;
-	job->priv->display_lines = g_slist_prepend (job->priv->display_lines, dline);
+	layout = pango_layout_new (job->priv->pango_context);
+	
+	if (job->priv->wrap_mode != GTK_WRAP_NONE)
+		pango_layout_set_width (layout, job->priv->text_width * PANGO_SCALE);
+	
+	switch (job->priv->wrap_mode)	{
+	case GTK_WRAP_CHAR:
+		pango_layout_set_wrap (layout, PANGO_WRAP_CHAR);
+		break;
+	case GTK_WRAP_WORD:
+		pango_layout_set_wrap (layout, PANGO_WRAP_WORD);
+		break;
+	case GTK_WRAP_WORD_CHAR:
+		pango_layout_set_wrap (layout, PANGO_WRAP_WORD_CHAR);
+		break;
+	case GTK_WRAP_NONE:
+		break;
+	}
+
+	if (job->priv->tab_array)
+		pango_layout_set_tabs (layout, job->priv->tab_array);
+	
+	pango_layout_set_text (layout, text->str, text->len);
+	pango_layout_set_attributes (layout, attrs);
+
+	g_string_free (text, TRUE);
+	pango_attr_list_unref (attrs);
+
+	return layout;
+}
+
+/* The break logic in this function needs to match that in print_paragraph */
+static void
+paginate_paragraph (GtkSourcePrintJob *job,
+		    Paragraph         *para)
+{
+	PangoLayout *layout;
+	PangoLayoutIter *iter;
+	PangoRectangle logical_rect;
+	gdouble max;
+	gdouble page_skip;
+
+	layout = create_layout_for_para (job, para);
+
+	iter = pango_layout_get_iter (layout);
+
+	max = 0;
+	page_skip = 0;
+
+	do
+	{
+		pango_layout_iter_get_line_extents (iter, NULL, &logical_rect);
+		max = (gdouble) (logical_rect.y + logical_rect.height) / PANGO_SCALE;
+		
+		if (max - page_skip > job->priv->available_height)
+		{
+			/* "create" a new page */
+			job->priv->page_count++;
+			job->priv->available_height = job->priv->text_height;
+			page_skip = (gdouble) logical_rect.y / PANGO_SCALE;
+		}
+
+	}
+	while (pango_layout_iter_next_line (iter));
+
+	job->priv->available_height -= max - page_skip;
+	
+	pango_layout_iter_free (iter);
+	g_object_unref (layout);
 }
 
 static gboolean 
 paginate_text (GtkSourcePrintJob *job)
 {
-	GSList *line;
+	GSList *l;
+	guint line_number;
 	
 	/* set these to zero so the first break_line creates a new page */
 	job->priv->page_count = 0;
 	job->priv->available_height = 0;
-	job->priv->line_number = job->priv->first_line_number;
-	line = job->priv->lines;
-	while (line != NULL)
+	line_number = job->priv->first_line_number;
+	l = job->priv->paragraphs;
+	while (l != NULL)
 	{
-		TextSegment *seg = line->data;
+		Paragraph *para = l->data;
+
+		para->line_number = line_number;
+		paginate_paragraph (job, para);
 		
-		break_line (job, seg, seg->text, TRUE);
-		job->priv->line_number++;
-		line = g_slist_next (line);
+		line_number++;
+		l = g_slist_next (l);
 	}
-	job->priv->display_lines = g_slist_reverse (job->priv->display_lines);
 
 	/* FIXME: do we have any error condition which can force us to
 	 * return FALSE? - Gustavo */
@@ -1287,120 +1407,93 @@ print_line_number (GtkSourcePrintJob *job,
 		   gdouble            x,
 		   gdouble            y)
 {
-	gchar *num_str;
-	gdouble len;
-		
-	num_str = g_strdup_printf ("%d", line_number);
-	gnome_print_setfont (job->priv->print_ctxt, job->priv->numbers_font);
-	len = gnome_font_get_width_utf8 (job->priv->numbers_font, num_str);
-	x = x + job->priv->numbers_width - len - NUMBERS_TEXT_SEPARATION;
-	gnome_print_moveto (job->priv->print_ctxt, x, y - 
-			    gnome_font_get_ascender (job->priv->font));
-	gnome_print_show (job->priv->print_ctxt, num_str);
-	g_free (num_str);
+	PangoLayout *layout;
+
+	layout = get_line_number_layout (job, line_number);
+
+	x = x + job->priv->numbers_width - get_layout_width (layout) - NUMBERS_TEXT_SEPARATION;
+	gnome_print_moveto (job->priv->print_ctxt, x, y);
+	
+	show_first_layout_line (job->priv->print_ctxt, layout);
+	
+	g_object_unref (layout);
 }	
 
-static void 
-print_display_line (GtkSourcePrintJob *job,
-		    DisplayLine       *dline,
-		    gdouble            x,
-		    gdouble            y)
+/* The break logic in this function needs to match that in paginate_paragraph
+ *
+ * @start_line is the first line in the paragraph to print
+ * @y is updated to the position after the portion of the paragraph we printed
+ * @baseline_out is set to the baseline of the first line of the paragraph
+ *   if we printed it. (And not set otherwise)
+ * 
+ * Returns the first unprinted line in the paragraph (unprinted because it
+ * flowed onto the next page) or -1 if the entire paragraph was printed.
+ */
+static gint
+print_paragraph (GtkSourcePrintJob *job,
+		 Paragraph         *para,
+		 gint               start_line,
+		 gdouble            x,
+		 gdouble           *y,
+		 gdouble           *baseline_out,
+		 gboolean           force_fit)
 {
-	TextSegment *seg;
-	const gchar *ptr;
-	GnomeGlyphList *gl = NULL;
-	gint char_count = 0;
-	gboolean need_style;
-	gdouble dx;
+	PangoLayout *layout;
+	PangoLayoutIter *iter;
+	PangoRectangle logical_rect;
+	int current_line;
+	gdouble max;
+	gdouble page_skip;
+	gdouble baseline;
+	int result = -1;
 	
-	seg = dline->segment;
-	ptr = dline->start;
-	need_style = TRUE;
-	dx = 0.0;
+	layout = create_layout_for_para (job, para);
+
+	iter = pango_layout_get_iter (layout);
+
+	/* Skip over lines already printed on previous page(s) */
+	for (current_line = 0; current_line < start_line; current_line++)
+		pango_layout_iter_next_line (iter);
+
+	max = 0;
+	page_skip = 0;
 	
-	while (char_count < dline->char_count && seg != NULL)
+	do
 	{
-		gunichar ch;
-	       	gint glyph;
+		pango_layout_iter_get_line_extents (iter, NULL, &logical_rect);
+		max = (gdouble) (logical_rect.y + logical_rect.height) / PANGO_SCALE;
 		
-		if (need_style)
+		if (current_line == start_line)
+			page_skip = (gdouble) logical_rect.y / PANGO_SCALE;
+
+		if (max - page_skip > job->priv->available_height)
 		{
-			/* create a new glyphlist with the style of
-			 * the current segment */
-			if (gl != NULL)
-				gnome_glyphlist_unref (gl);
-			
-			set_style (job, seg->style);
-			gl = gnome_glyphlist_from_text_dumb (job->priv->current_font,
-							     job->priv->current_color,
-							     0.0, 0.0, "");
-			gnome_glyphlist_advance (gl, TRUE);
-			gnome_glyphlist_moveto (gl, x + dx,
-						y - gnome_font_get_ascender (
-							job->priv->current_font));
-			need_style = FALSE;
+			result = current_line; /* Save position for next page */
+			break;
 		}
+
+		baseline = (gdouble) pango_layout_iter_get_baseline (iter) / PANGO_SCALE;
+		baseline = *y + page_skip - baseline; /* Adjust to global coordinates */
+		if (current_line == 0)
+			*baseline_out = baseline;
 		
-		ch = g_utf8_get_char (ptr);
-		++char_count;
-		
-		if (ch == '\t')
-		{
-			gdouble tab_stop = job->priv->width_of_tab;
+		gnome_print_moveto (job->priv->print_ctxt,
+				    x + (gdouble) logical_rect.x / PANGO_SCALE,
+				    baseline);
+		gnome_print_pango_layout_line (job->priv->print_ctxt,
+					       pango_layout_iter_get_line (iter));
 
-			while (dx >= tab_stop)
-				tab_stop += job->priv->width_of_tab;
-			dx = tab_stop;
-
-			/* we need a new "absolute" position */
-			need_style = TRUE;
-
-			ptr = g_utf8_next_char (ptr);
-		}
-		else if (ch == 0)
-		{
-			seg = seg->next;
-			if (seg != NULL)
-			{
-				ptr = seg->text;
-			
-				/* don't count the segment terminator */
-				--char_count;
-				
-			}
-			need_style = TRUE;
-		}
-		else
-		{
-			ArtPoint adv;
-
-			glyph = gnome_font_lookup_default (job->priv->current_font, ch);
-			gnome_font_get_glyph_stdadvance (job->priv->current_font, glyph, &adv);
-			if (adv.x > 0)
-				dx += adv.x;
-			else
-				/* To be as conservative as possible */
-				dx += (2 * job->priv->space_advance);
-			gnome_glyphlist_glyph (gl, glyph);
-
-			ptr = g_utf8_next_char (ptr);
-		}
-
-		if (need_style)
-		{
-			/* flush (display) the current glyphlist */
-			gnome_print_moveto (job->priv->print_ctxt, 0.0, 0.0);
-			gnome_print_glyphlist (job->priv->print_ctxt, gl);
-		}
+		current_line++;
 	}
+	while (pango_layout_iter_next_line (iter));
 
-	if (gl != NULL)
-	{
-		/* flush the current (last) glyphlist */
-		gnome_print_moveto (job->priv->print_ctxt, 0.0, 0.0);
-		gnome_print_glyphlist (job->priv->print_ctxt, gl);
-		gnome_glyphlist_unref (gl);
-	}
+	job->priv->available_height -= max - page_skip;
+	*y -= max - page_skip;
+
+	pango_layout_iter_free (iter);
+	g_object_unref (layout);
+	
+	return result;
 }
 
 static void
@@ -1408,55 +1501,62 @@ print_page (GtkSourcePrintJob *job)
 {
 	GSList *l;
 	gdouble x, y;
+	gint line;
+	gboolean force_fit = TRUE;
 	
-	y = 0.0;
-	x = 0.0;
-
+	job->priv->page++;
+	
+	
 	begin_page (job);
+	job->priv->available_height = job->priv->text_height;
+
 	y = job->priv->page_height -
 		job->priv->doc_margin_top - job->priv->margin_top -
 		job->priv->header_height;
 	x = job->priv->doc_margin_left + job->priv->margin_left +
 		job->priv->numbers_width;
-	l = job->priv->current_display_line;
+	l = job->priv->current_paragraph;
+	line = job->priv->current_paragraph_line;
 
 	while (l != NULL)
 	{
-		DisplayLine *dline = l->data;
+		Paragraph *para = l->data;
+		gdouble baseline;
+		gint last_line = line;
 		
-		if (dline->page != job->priv->page)
-			/* page is finished */
-			break;
-		
-		if (dline->line_number != job->priv->line_number)
+		line = print_paragraph (job, para, line, x, &y, &baseline, force_fit);
+
+		if (last_line == 0 && line != 0)
 		{
-			job->priv->line_number = dline->line_number;
+			/* We printed the first line of a paragraph */
 			if (job->priv->print_numbers > 0 &&
 			    ((job->priv->printed_lines + 1) % job->priv->print_numbers) == 0)
-			{
 				print_line_number (job,
-						   job->priv->line_number,
+						   para->line_number,
 						   job->priv->doc_margin_left +
 						   job->priv->margin_left,
-						   y);
-			}
+						   baseline);
+
 			job->priv->printed_lines++;
 		}
 
-		print_display_line (job, dline, x, y);
-		y -= job->priv->line_spacing;
-
+		if (line >= 0)
+			break;	/* Didn't all fit on this page */
+		
 		l = l->next;
+		line = 0;
+		force_fit = FALSE;
 	}
 	end_page (job);
-	job->priv->current_display_line = l;
+	job->priv->current_paragraph = l;
+	job->priv->current_paragraph_line = line;
 }
 
 static void
 setup_for_print (GtkSourcePrintJob *job)
 {
-	job->priv->current_display_line = job->priv->display_lines;
-	job->priv->line_number = 0;
+	job->priv->current_paragraph = job->priv->paragraphs;
+	job->priv->page = 0;
 	job->priv->printed_lines = 0;
 
 	if (job->priv->print_job != NULL)
@@ -1466,18 +1566,15 @@ setup_for_print (GtkSourcePrintJob *job)
 	
 	job->priv->print_job = gnome_print_job_new (job->priv->config);
 	job->priv->print_ctxt = gnome_print_job_get_context (job->priv->print_job);
+
+	gnome_print_pango_update_context (job->priv->pango_context, job->priv->print_ctxt);
 }
 
 static void
 print_job (GtkSourcePrintJob *job)
 {
-	while (job->priv->current_display_line != NULL)
-	{
-		DisplayLine *dline = job->priv->current_display_line->data;
-
-		job->priv->page = dline->page;
+	while (job->priv->current_paragraph != NULL)
 		print_page (job);
-	}
 
 	gnome_print_job_close (job->priv->print_job);
 }
@@ -1485,15 +1582,11 @@ print_job (GtkSourcePrintJob *job)
 static gboolean
 idle_printing_handler (GtkSourcePrintJob *job)
 {
-	DisplayLine *dline;
-	
-	g_assert (job->priv->current_display_line != NULL);
+	g_assert (job->priv->current_paragraph != NULL);
 
-	dline = job->priv->current_display_line->data;
-	job->priv->page = dline->page;
 	print_page (job);
 
-	if (job->priv->current_display_line == NULL)
+	if (job->priv->current_paragraph == NULL)
 	{
 		gnome_print_job_close (job->priv->print_job);
 		job->priv->printing = FALSE;
@@ -1784,6 +1877,31 @@ gtk_source_print_job_get_highlight (GtkSourcePrintJob *job)
 }
 
 /**
+ * gtk_source_print_job_set_font_desc:
+ * @job: a #GtkSourcePrintJob.
+ * @desc: the #PangoFontDescription for the default font
+ * 
+ * Sets the default font for the printed text.
+ **/
+void 
+gtk_source_print_job_set_font_desc (GtkSourcePrintJob    *job,
+				    PangoFontDescription *desc)
+{
+	g_return_if_fail (GTK_IS_SOURCE_PRINT_JOB (job));
+	g_return_if_fail (desc != NULL);
+	g_return_if_fail (!job->priv->printing);
+
+	desc = pango_font_description_copy (desc);
+	if (job->priv->font != NULL)
+		pango_font_description_free (job->priv->font);
+	job->priv->font = desc;
+	g_object_freeze_notify (G_OBJECT (job));
+	g_object_notify (G_OBJECT (job), "font");
+	g_object_notify (G_OBJECT (job), "font_desc");
+	g_object_thaw_notify (G_OBJECT (job));
+}
+
+/**
  * gtk_source_print_job_set_font:
  * @job: a #GtkSourcePrintJob.
  * @font_name: the name of the default font.
@@ -1791,30 +1909,50 @@ gtk_source_print_job_get_highlight (GtkSourcePrintJob *job)
  * Sets the default font for the printed text.  @font_name should be a
  * <emphasis>full font name</emphasis> GnomePrint can understand
  * (e.g. &quot;Monospace Regular 10.0&quot;).
+ *
+ * Note that @font_name is a #GnomeFont name not a Pango font
+ * description string. This function is deprecated since #GnomeFont is
+ * no longer used when implementing printing for GtkSourceView; you
+ * should use gtk_source_print_job_set_font_desc() instead.
  **/
 void 
 gtk_source_print_job_set_font (GtkSourcePrintJob *job,
 			       const gchar       *font_name)
 {
-	GnomeFont *font;
+	PangoFontDescription *desc;
 	
 	g_return_if_fail (GTK_IS_SOURCE_PRINT_JOB (job));
 	g_return_if_fail (font_name != NULL);
 	g_return_if_fail (!job->priv->printing);
 
-	font = gnome_font_find_closest_from_full_name (font_name);
-	g_return_if_fail (font != NULL);
-	
-	if (font != job->priv->font)
+	desc = font_description_from_gnome_font_name (font_name);
+	if (desc)
 	{
-		if (job->priv->font != NULL)
-			g_object_unref (job->priv->font);
-		job->priv->font = font;
-		g_object_ref (font);
-		g_object_notify (G_OBJECT (job), "font");
+		gtk_source_print_job_set_font_desc (job, desc);
+		pango_font_description_free (desc);
 	}
+}
+
+/**
+ * gtk_source_print_job_get_font_desc:
+ * @job: a #GtkSourcePrintJob.
+ * 
+ * Determines the default font to be used for the printed text.  The
+ * returned string is of the form &quot;Fontfamily Style Size&quot;,
+ * for example &quot;Monospace Regular 10.0&quot;.  The returned value
+ * should be freed when no longer needed.
+ * 
+ * Return value: the current text font description. This value is
+ *  owned by the job and must not be modified or freed.
+ **/
+PangoFontDescription *
+gtk_source_print_job_get_font_desc (GtkSourcePrintJob *job)
+{
+	g_return_val_if_fail (GTK_IS_SOURCE_PRINT_JOB (job), NULL);
+
+	ensure_print_config (job);
 	
-	gnome_font_unref (font);
+	return job->priv->font;
 }
 
 /**
@@ -1826,6 +1964,11 @@ gtk_source_print_job_set_font (GtkSourcePrintJob *job,
  * for example &quot;Monospace Regular 10.0&quot;.  The returned value
  * should be freed when no longer needed.
  * 
+ * Note that the result is a #GnomeFont name not a Pango font
+ * description string. This function is deprecated since #GnomeFont is
+ * no longer used when implementing printing for GtkSourceView; you
+ * should use gtk_source_print_job_get_font_desc() instead.
+ *
  * Return value: a newly allocated string with the name of the current
  * text font.
  **/
@@ -1836,7 +1979,7 @@ gtk_source_print_job_get_font (GtkSourcePrintJob *job)
 
 	ensure_print_config (job);
 	
-	return construct_full_font_name (job->priv->font);
+	return font_description_to_gnome_font_name (job->priv->font);
 }
 
 /**
@@ -1854,7 +1997,7 @@ gtk_source_print_job_setup_from_view (GtkSourcePrintJob *job,
 				      GtkSourceView     *view)
 {
 	GtkSourceBuffer *buffer = NULL;
-	GnomeFont *font;
+	PangoContext *pango_context;
 	
 	g_return_if_fail (GTK_IS_SOURCE_PRINT_JOB (job));
 	g_return_if_fail (GTK_IS_SOURCE_VIEW (view));
@@ -1869,14 +2012,37 @@ gtk_source_print_job_setup_from_view (GtkSourcePrintJob *job,
 	gtk_source_print_job_set_tabs_width (job, gtk_source_view_get_tabs_width (view));
 	if (buffer != NULL)
 		gtk_source_print_job_set_highlight (job, gtk_source_buffer_get_highlight (buffer));
-	gtk_source_print_job_set_wrap_mode (
-		job, gtk_text_view_get_wrap_mode (GTK_TEXT_VIEW (view)));
+	gtk_source_print_job_set_wrap_mode (job, gtk_text_view_get_wrap_mode (GTK_TEXT_VIEW (view)));
 
-	font = find_gnome_font_from_widget (GTK_WIDGET (view));
-	if (job->priv->font != NULL)
-		g_object_unref (job->priv->font);
-	job->priv->font = font;
-	g_object_notify (G_OBJECT (job), "font");
+	pango_context = gtk_widget_get_pango_context (GTK_WIDGET (view));
+	gtk_source_print_job_set_font_desc (job, pango_context_get_font_description (pango_context));
+}
+
+/**
+ * gtk_source_print_job_set_numbers_font_desc:
+ * @job: a #GtkSourcePrintJob.
+ * @desc: the #PangoFontDescription for the font for line numbers, or %NULL
+ * 
+ * Sets the font for printing line numbers on the left margin.  If
+ * NULL is supplied, the default font (i.e. the one being used for the
+ * text) will be used instead.
+ **/
+void 
+gtk_source_print_job_set_numbers_font_desc (GtkSourcePrintJob    *job,
+					    PangoFontDescription *desc)
+{
+	g_return_if_fail (GTK_IS_SOURCE_PRINT_JOB (job));
+	g_return_if_fail (!job->priv->printing);
+	
+	if (desc)
+		desc = pango_font_description_copy (desc);
+	if (job->priv->numbers_font != NULL)
+		pango_font_description_free (job->priv->numbers_font);
+	job->priv->numbers_font = desc;
+	g_object_freeze_notify (G_OBJECT (job));
+	g_object_notify (G_OBJECT (job), "numbers_font");
+	g_object_notify (G_OBJECT (job), "numbers_font_desc");
+	g_object_thaw_notify (G_OBJECT (job));
 }
 
 /**
@@ -1887,29 +2053,50 @@ gtk_source_print_job_setup_from_view (GtkSourcePrintJob *job,
  * Sets the font for printing line numbers on the left margin.  If
  * NULL is supplied, the default font (i.e. the one being used for the
  * text) will be used instead.
+ *
+ * Note that @font_name is a #GnomeFont name not a Pango font
+ * description string. This function is deprecated since #GnomeFont is
+ * no longer used when implementing printing for GtkSourceView; you
+ * should use gtk_source_print_job_set_numbers_font_desc() instead.
  **/
 void 
 gtk_source_print_job_set_numbers_font (GtkSourcePrintJob *job,
 				       const gchar       *font_name)
 {
-	GnomeFont *font = NULL;
+	PangoFontDescription *desc;
 	
 	g_return_if_fail (GTK_IS_SOURCE_PRINT_JOB (job));
 	g_return_if_fail (!job->priv->printing);
 
 	if (font_name != NULL)
-		font = gnome_font_find_closest_from_full_name (font_name);
-	
-	if (font == job->priv->numbers_font)
 	{
-		g_object_unref (font);
-		return;
+		desc = font_description_from_gnome_font_name (font_name);
+		if (desc)
+		{
+			gtk_source_print_job_set_numbers_font_desc (job, desc);
+			pango_font_description_free (desc);
+		}
 	}
+	else
+		gtk_source_print_job_set_numbers_font (job, NULL);
+}
 
-	if (job->priv->numbers_font != NULL)
-		g_object_unref (job->priv->numbers_font);
-	job->priv->numbers_font = font;
-	g_object_notify (G_OBJECT (job), "numbers_font");
+/**
+ * gtk_source_print_job_get_numbers_font_desc:
+ * @job: a #GtkSourcePrintJob.
+ * 
+ * Determines the font to be used for the line numbers. This function
+ * might return NULL if a specific font for numbers has not been set.
+ * 
+ * Return value: the line numbers font description or NULL. This value is
+ *  owned by the job and must not be modified or freed.
+ **/
+PangoFontDescription *
+gtk_source_print_job_get_numbers_font_desc (GtkSourcePrintJob *job)
+{
+	g_return_val_if_fail (GTK_IS_SOURCE_PRINT_JOB (job), NULL);
+
+	return job->priv->numbers_font;
 }
 
 /**
@@ -1922,6 +2109,11 @@ gtk_source_print_job_set_numbers_font (GtkSourcePrintJob *job,
  * should be freed when no longer needed.  This function might return
  * NULL if a specific font for numbers has not been set.
  * 
+ * Note that the result is a #GnomeFont name not a Pango font
+ * description string. This function is deprecated since #GnomeFont is
+ * no longer used when implementing printing for GtkSourceView; you
+ * should use gtk_source_print_job_get_numbers_font_desc() instead.
+ *
  * Return value: a newly allocated string with the name of the current
  * line numbers font, or NULL.
  **/
@@ -1931,7 +2123,7 @@ gtk_source_print_job_get_numbers_font (GtkSourcePrintJob *job)
 	g_return_val_if_fail (GTK_IS_SOURCE_PRINT_JOB (job), NULL);
 
 	if (job->priv->numbers_font != NULL)
-		return construct_full_font_name (job->priv->numbers_font);
+		return font_description_to_gnome_font_name (job->priv->numbers_font);
 	else
 		return NULL;
 }
@@ -2077,6 +2269,9 @@ gtk_source_print_job_prepare (GtkSourcePrintJob *job,
 
 	PROFILE (g_message ("get_text_to_print: %.2f", g_timer_elapsed (timer, NULL)));
 
+	if (!setup_pango_context (job))
+		return FALSE;
+
 	/* check margins */
 	if (!update_page_size_and_margins (job))
 		return FALSE;
@@ -2210,7 +2405,7 @@ gtk_source_print_job_print_range_async (GtkSourcePrintJob *job,
 
 	/* real work starts here */
 	setup_for_print (job);
-	if (job->priv->current_display_line == NULL)
+	if (job->priv->current_paragraph == NULL)
 		return FALSE;
 	
 	/* setup the idle handler to print each page at a time */
@@ -2252,7 +2447,7 @@ gtk_source_print_job_cancel (GtkSourcePrintJob *job)
 	if (job->priv->idle_printing_tag > 0)
 	{
 		g_source_remove (job->priv->idle_printing_tag);
-		job->priv->current_display_line = NULL;
+		job->priv->current_paragraph = NULL;
 		job->priv->idle_printing_tag = 0;
 		job->priv->printing = FALSE;
 		g_object_unref (job->priv->print_job);
@@ -2476,66 +2671,67 @@ evaluate_format_string (GtkSourcePrintJob *job, const gchar *format)
 	return retval;
 }
 
+static void
+print_header_footer_string (GtkSourcePrintJob *job,
+			    const gchar       *format,
+			    gdouble            x_align,
+			    gdouble            x,
+			    gdouble            y)
+{
+	PangoLayout *layout;
+	gchar *text;
+	gdouble width;
+	gdouble xx;
+	
+	width = job->priv->text_width + job->priv->numbers_width;
+	
+	text = evaluate_format_string (job, format);
+	if (text != NULL)
+	{
+		layout = pango_layout_new (job->priv->pango_context);
+		pango_layout_set_font_description (layout, job->priv->header_footer_font);
+		pango_layout_set_text (layout, text, -1);
+		
+		xx = x + x_align * (width - get_layout_width (layout));
+		gnome_print_moveto (job->priv->print_ctxt, xx, y);
+		show_first_layout_line (job->priv->print_ctxt, layout);
+		
+		g_free (text);
+		g_object_unref (layout);
+	}
+}
+
 static void 
 default_print_header (GtkSourcePrintJob *job,
 		      gdouble            x,
 		      gdouble            y)
 {
-	gdouble len;
-	gchar *text;
-	gdouble yy, xx;
 	gdouble width;
-
-	gnome_print_setfont (job->priv->print_ctxt, job->priv->header_footer_font);
-	width = job->priv->text_width + job->priv->numbers_width;
+	gdouble yy;
+	gdouble ascent, descent;
 	
-	yy = y - gnome_font_get_ascender (job->priv->header_footer_font);
+	width = job->priv->text_width + job->priv->numbers_width;
+
+	get_font_ascent_descent (job, job->priv->header_footer_font, &ascent, &descent);
+
+	yy = y - ascent;
 
 	/* left format */
 	if (job->priv->header_format_left != NULL)
-	{
-		text = evaluate_format_string (job, job->priv->header_format_left);
-		if (text != NULL)
-		{
-			xx = x;
-			gnome_print_moveto (job->priv->print_ctxt, xx, yy);
-			gnome_print_show (job->priv->print_ctxt, text);
-			g_free (text);
-		}
-	}
+		print_header_footer_string (job, job->priv->header_format_left, 0.0, x, yy);
 	
 	/* right format */
 	if (job->priv->header_format_right != NULL)
-	{
-		text = evaluate_format_string (job, job->priv->header_format_right);
-		if (text != NULL)
-		{
-			len = gnome_font_get_width_utf8 (job->priv->header_footer_font, text);
-			xx = x + width - len;
-			gnome_print_moveto (job->priv->print_ctxt, xx, yy);
-			gnome_print_show (job->priv->print_ctxt, text);
-			g_free (text);
-		}
-	}
+		print_header_footer_string (job, job->priv->header_format_right, 1.0, x, yy);
 
 	/* center format */
 	if (job->priv->header_format_center != NULL)
-	{
-		text = evaluate_format_string (job, job->priv->header_format_center);
-		if (text != NULL)
-		{
-			len = gnome_font_get_width_utf8 (job->priv->header_footer_font, text);
-			xx = x + (width - len) / 2;
-			gnome_print_moveto (job->priv->print_ctxt, xx, yy);
-			gnome_print_show (job->priv->print_ctxt, text);
-			g_free (text);
-		}
-	}
+		print_header_footer_string (job, job->priv->header_format_center, 0.5, x, yy);
 
 	/* separator */
 	if (job->priv->header_separator)
 	{
-		yy = y - (SEPARATOR_SPACING * gnome_font_get_size (job->priv->header_footer_font));
+		yy = y - (SEPARATOR_SPACING * (ascent + descent));
 		gnome_print_setlinewidth (job->priv->print_ctxt, SEPARATOR_LINE_WIDTH);
 		gnome_print_moveto (job->priv->print_ctxt, x, yy);
 		gnome_print_lineto (job->priv->print_ctxt, x + width, yy);
@@ -2548,63 +2744,33 @@ default_print_footer (GtkSourcePrintJob *job,
 		      gdouble            x,
 		      gdouble            y)
 {
-	gdouble len;
-	gchar *text;
-	gdouble yy, xx;
 	gdouble width;
-
-	gnome_print_setfont (job->priv->print_ctxt, job->priv->header_footer_font);
+	gdouble yy;
+	gdouble ascent, descent;
+	
 	width = job->priv->text_width + job->priv->numbers_width;
 
-	yy = y - job->priv->footer_height +
-		gnome_font_get_descender (job->priv->header_footer_font);
+	get_font_ascent_descent (job, job->priv->header_footer_font, &ascent, &descent);
+
+	yy = y - job->priv->footer_height + descent;
 
 	/* left format */
 	if (job->priv->footer_format_left != NULL)
-	{
-		text = evaluate_format_string (job, job->priv->footer_format_left);
-		if (text != NULL)
-		{
-			xx = x;
-			gnome_print_moveto (job->priv->print_ctxt, xx, yy);
-			gnome_print_show (job->priv->print_ctxt, text);
-			g_free (text);
-		}
-	}
+		print_header_footer_string (job, job->priv->footer_format_left, 0.0, x, yy);
 	
 	/* right format */
 	if (job->priv->footer_format_right != NULL)
-	{
-		text = evaluate_format_string (job, job->priv->footer_format_right);
-		if (text != NULL)
-		{
-			len = gnome_font_get_width_utf8 (job->priv->header_footer_font, text);
-			xx = x + width - len;
-			gnome_print_moveto (job->priv->print_ctxt, xx, yy);
-			gnome_print_show (job->priv->print_ctxt, text);
-			g_free (text);
-		}
-	}
+		print_header_footer_string (job, job->priv->footer_format_right, 1.0, x, yy);
 
 	/* center format */
 	if (job->priv->footer_format_center != NULL)
-	{
-		text = evaluate_format_string (job, job->priv->footer_format_center);
-		if (text != NULL)
-		{
-			len = gnome_font_get_width_utf8 (job->priv->header_footer_font, text);
-			xx = x + (width - len) / 2;
-			gnome_print_moveto (job->priv->print_ctxt, xx, yy);
-			gnome_print_show (job->priv->print_ctxt, text);
-			g_free (text);
-		}
-	}
+		print_header_footer_string (job, job->priv->footer_format_center, 0.5, x, yy);
 
 	/* separator */
 	if (job->priv->footer_separator)
 	{
 		yy = y - job->priv->footer_height +
-			(SEPARATOR_SPACING * gnome_font_get_size (job->priv->header_footer_font));
+			(SEPARATOR_SPACING * (ascent + descent));
 		gnome_print_setlinewidth (job->priv->print_ctxt, SEPARATOR_LINE_WIDTH);
 		gnome_print_moveto (job->priv->print_ctxt, x, yy);
 		gnome_print_lineto (job->priv->print_ctxt, x + width, yy);
@@ -2711,6 +2877,33 @@ gtk_source_print_job_get_print_footer (GtkSourcePrintJob *job)
 }
 
 /**
+ * gtk_source_print_job_set_header_footer_font_desc:
+ * @job: a #GtkSourcePrintJob.
+ * @desc: the #PangoFontDescription for the font to be used in headers and footers, or %NULL.
+ * 
+ * Sets the font for printing headers and footers.  If %NULL is
+ * supplied, the default font (i.e. the one being used for the text)
+ * will be used instead.
+ **/
+void 
+gtk_source_print_job_set_header_footer_font_desc (GtkSourcePrintJob    *job,
+						  PangoFontDescription *desc)
+{
+	g_return_if_fail (GTK_IS_SOURCE_PRINT_JOB (job));
+	g_return_if_fail (!job->priv->printing);
+	
+	if (desc)
+		desc = pango_font_description_copy (desc);
+	if (job->priv->header_footer_font != NULL)
+		pango_font_description_free (job->priv->header_footer_font);
+	job->priv->header_footer_font = desc;
+	g_object_freeze_notify (G_OBJECT (job));
+	g_object_notify (G_OBJECT (job), "header_footer_font");
+	g_object_notify (G_OBJECT (job), "header_footer_font_desc");
+	g_object_thaw_notify (G_OBJECT (job));
+}
+
+/**
  * gtk_source_print_job_set_header_footer_font:
  * @job: a #GtkSourcePrintJob.
  * @font_name: the full name of the font to be used in headers and footers, or NULL.
@@ -2718,29 +2911,50 @@ gtk_source_print_job_get_print_footer (GtkSourcePrintJob *job)
  * Sets the font for printing headers and footers.  If NULL is
  * supplied, the default font (i.e. the one being used for the text)
  * will be used instead.
+ *
+ * Note that @font_name is a #GnomeFont name not a Pango font
+ * description string. This function is deprecated since #GnomeFont is
+ * no longer used when implementing printing for GtkSourceView; you
+ * should use gtk_source_print_job_set_header_footer_font_desc() instead.
  **/
 void 
 gtk_source_print_job_set_header_footer_font (GtkSourcePrintJob *job,
 					     const gchar       *font_name)
 {
-	GnomeFont *font = NULL;
+	PangoFontDescription *desc;
 	
 	g_return_if_fail (GTK_IS_SOURCE_PRINT_JOB (job));
 	g_return_if_fail (!job->priv->printing);
 
 	if (font_name != NULL)
-		font = gnome_font_find_closest_from_full_name (font_name);
-	
-	if (font == job->priv->header_footer_font)
 	{
-		g_object_unref (font);
-		return;
+		desc = font_description_from_gnome_font_name (font_name);
+		if (desc)
+		{
+			gtk_source_print_job_set_header_footer_font_desc (job, desc);
+			pango_font_description_free (desc);
+		}
 	}
+	else
+		gtk_source_print_job_set_header_footer_font_desc (job, NULL);
+}
 
-	if (job->priv->header_footer_font != NULL)
-		g_object_unref (job->priv->header_footer_font);
-	job->priv->header_footer_font = font;
-	g_object_notify (G_OBJECT (job), "header_footer_font");
+/**
+ * gtk_source_print_job_get_header_footer_font_desc:
+ * @job: a #GtkSourcePrintJob.
+ * 
+ * Determines the font to be used for the header and footer.  This function
+ * might return NULL if a specific font has not been set.
+ * 
+ * Return value: the header and footer font description or NULL. This value is
+ *  owned by the job and must not be modified or freed.
+ **/
+PangoFontDescription *
+gtk_source_print_job_get_header_footer_font_desc (GtkSourcePrintJob *job)
+{
+	g_return_val_if_fail (GTK_IS_SOURCE_PRINT_JOB (job), NULL);
+
+	return job->priv->header_footer_font;
 }
 
 /**
@@ -2753,6 +2967,11 @@ gtk_source_print_job_set_header_footer_font (GtkSourcePrintJob *job,
  * should be freed when no longer needed.  This function might return
  * NULL if a specific font has not been set.
  * 
+ * Note that the result is a #GnomeFont name not a Pango font
+ * description string. This function is deprecated since #GnomeFont is
+ * no longer used when implementing printing for GtkSourceView; you
+ * should use gtk_source_print_job_get_header_footer_font_desc() instead.
+ *
  * Return value: a newly allocated string with the name of the current
  * header and footer font, or NULL.
  **/
@@ -2762,7 +2981,7 @@ gtk_source_print_job_get_header_footer_font (GtkSourcePrintJob *job)
 	g_return_val_if_fail (GTK_IS_SOURCE_PRINT_JOB (job), NULL);
 
 	if (job->priv->header_footer_font != NULL)
-		return construct_full_font_name (job->priv->header_footer_font);
+		return font_description_to_gnome_font_name (job->priv->header_footer_font);
 	else
 		return NULL;
 }

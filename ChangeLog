@@ -1,3 +1,26 @@
+2004-07-15  Owen Taylor  <otaylor@redhat.com>
+
+	#143874: Use Pango for printing
+
+	* configure.in: Require gnome-print >= 2.7 for new Pango integration.
+
+	* gtksourceview/gtksourceprintjob.[ch] docs/reference/gtksourceview-sections.txt:
+	Add functions to set the various fonts as Pango font descriptions rather
+	than gnome-print font names.
+	gtk_source_print_job_{set,get}_{,numbers_,header_footer_}font_desc().
+	Also add "{,numbers_,header_footer_}font_desc" properties.
+
+	* gtksourceview/gtksourceprintjob.c: Rewrite printing code to 
+	use Pango and gnome-print functions to print Pango objects rather than
+	being a separate implementation of layout.
+
+	* gtksourceview/gtksourceprintjob.c (gtk_source_print_job_get_property):
+	Fix memory leak for FONT properties.
+
+	* gtksourceview/gtksourceprintjob.c (get_text_with_style): Improve
+	performance of tag toggle searches for large unstyled buffers.
+	(Don't search for the next tag toggle for each line.)
+
 2004-06-21  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
 
 	* gtksourceview/language-specs/lua.lang: Lua syntax language file
