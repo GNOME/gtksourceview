@@ -7,21 +7,21 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-07-16 15:42+0200\n"
-"PO-Revision-Date: 2003-06-26 23:09+0100\n"
-"Last-Translator: Jan-Willem Harmanny <jwharmanny@hotmail.com>\n"
-"Language-Team: Dutch <nl@li.org>\n"
+"POT-Creation-Date: 2003-07-30 04:45+0200\n"
+"PO-Revision-Date: 2003-07-30 13:23+0200\n"
+"Last-Translator: Tino Meinen <a.t.meinen@chello.nl>\n"
+"Language-Team: Dutch <vertaling@nl.linux.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: gtksourceview/gtksourcebuffer.c:279
 msgid "Escape Character"
-msgstr "Escape karakter"
+msgstr "Escape-teken"
 
 #: gtksourceview/gtksourcebuffer.c:280
 msgid "Escaping character for syntax patterns"
-msgstr "Escate karakter voor syntaxis patronen"
+msgstr "Escape-teken voor syntaxis patronen"
 
 #: gtksourceview/gtksourcebuffer.c:288
 msgid "Check Brackets"
@@ -83,8 +83,8 @@ msgstr "Bron buffer"
 msgid "GtkSourceBuffer object to print"
 msgstr "GtkSourceBuffer object om af te drukken"
 
-#: gtksourceview/gtksourceprintjob.c:287 gtksourceview/gtksourceview.c:223
-#: gtksourceview/gtksourceview.c:224
+#: gtksourceview/gtksourceprintjob.c:287 gtksourceview/gtksourceview.c:221
+#: gtksourceview/gtksourceview.c:222
 msgid "Tabs Width"
 msgstr "Tabs breedte"
 
@@ -153,138 +153,138 @@ msgstr "Kop- en voettekst lettertype"
 msgid "Font name to use for the header and footer"
 msgstr "Lettertypenaam om voor de kop- en voettekst te gebruiken"
 
-#: gtksourceview/gtksourcestylescheme.c:230
+#: gtksourceview/gtksourcestylescheme.c:237
 msgid "Base-N Integer"
 msgstr "Base-N Integer"
 
-#: gtksourceview/gtksourcestylescheme.c:235
+#: gtksourceview/gtksourcestylescheme.c:242
 msgid "Character"
-msgstr "Karakter"
+msgstr "Teken"
 
-#: gtksourceview/gtksourcestylescheme.c:240
+#: gtksourceview/gtksourcestylescheme.c:247
 msgid "Comment"
 msgstr "Commentaar"
 
-#: gtksourceview/gtksourcestylescheme.c:245
+#: gtksourceview/gtksourcestylescheme.c:252
 msgid "Data Type"
 msgstr "Gegevenstype"
 
-#: gtksourceview/gtksourcestylescheme.c:250
+#: gtksourceview/gtksourcestylescheme.c:257
 msgid "Function"
 msgstr "Functie"
 
-#: gtksourceview/gtksourcestylescheme.c:255
+#: gtksourceview/gtksourcestylescheme.c:262
 msgid "Decimal"
 msgstr "Decimaal getal"
 
-#: gtksourceview/gtksourcestylescheme.c:260
+#: gtksourceview/gtksourcestylescheme.c:267
 msgid "Floating Point"
 msgstr "Floating point getal"
 
-#: gtksourceview/gtksourcestylescheme.c:265
+#: gtksourceview/gtksourcestylescheme.c:272
 msgid "Keyword"
 msgstr "Sleutelwoord"
 
-#: gtksourceview/gtksourcestylescheme.c:270
+#: gtksourceview/gtksourcestylescheme.c:277
 msgid "Preprocessor"
 msgstr "Preprocessor"
 
-#: gtksourceview/gtksourcestylescheme.c:275
+#: gtksourceview/gtksourcestylescheme.c:282
 msgid "String"
 msgstr "Tekenreeks"
 
-#: gtksourceview/gtksourcestylescheme.c:280
+#: gtksourceview/gtksourcestylescheme.c:287
 msgid "Specials"
 msgstr "Speciale tekens"
 
-#: gtksourceview/gtksourcestylescheme.c:285
+#: gtksourceview/gtksourcestylescheme.c:292
 msgid "Others"
 msgstr "Andere"
 
-#: gtksourceview/gtksourcestylescheme.c:290
+#: gtksourceview/gtksourcestylescheme.c:297
 msgid "Others 2"
 msgstr "Andere 2"
 
-#: gtksourceview/gtksourcestylescheme.c:295
+#: gtksourceview/gtksourcestylescheme.c:302
 msgid "Others 3"
 msgstr "Andere 3"
 
-#: gtksourceview/gtksourcestylescheme.c:332
+#: gtksourceview/gtksourcestylescheme.c:339
 msgid "Default"
 msgstr "Standaard"
 
 #: gtksourceview/gtksourcetag.c:108
 msgid "Tag ID"
-msgstr ""
+msgstr "Tag-ID"
 
 #: gtksourceview/gtksourcetag.c:109
 msgid "ID used to refer to the source tag"
-msgstr ""
+msgstr "ID gebruikt voor verwijzing naar de bron-tag"
 
 #: gtksourceview/gtksourcetag.c:116
 msgid "Tag style"
-msgstr ""
+msgstr "Tag-stijl"
 
 #: gtksourceview/gtksourcetag.c:117
 msgid "The style associated to the source tag"
-msgstr ""
+msgstr "De stijl geassocieerd met de bron-tag"
 
-#: gtksourceview/gtksourceview.c:207
+#: gtksourceview/gtksourceview.c:205
 msgid "Show Line Numbers"
 msgstr "Regelnummers weergeven"
 
-#: gtksourceview/gtksourceview.c:208
+#: gtksourceview/gtksourceview.c:206
 msgid "Whether to display line numbers"
 msgstr "Of de regelnummers worden weergegeven"
 
-#: gtksourceview/gtksourceview.c:215
+#: gtksourceview/gtksourceview.c:213
 msgid "Show Line Markers"
 msgstr "Regelmarkeringen weergeven"
 
-#: gtksourceview/gtksourceview.c:216
+#: gtksourceview/gtksourceview.c:214
 msgid "Whether to display line marker pixbufs"
 msgstr "Of regelmarkering pixbufs worden weergegeven"
 
-#: gtksourceview/gtksourceview.c:233
+#: gtksourceview/gtksourceview.c:231
 msgid "Auto Indentation"
 msgstr "Automatisch inspringen"
 
-#: gtksourceview/gtksourceview.c:234
+#: gtksourceview/gtksourceview.c:232
 msgid "Whether to enable auto indentation"
 msgstr "Of er automatisch moet worden ingesprongen"
 
-#: gtksourceview/gtksourceview.c:240
+#: gtksourceview/gtksourceview.c:238
 msgid "Insert Spaces Instead of Tabs"
 msgstr "Spaties in plaats van tabs gebruiken"
 
-#: gtksourceview/gtksourceview.c:241
+#: gtksourceview/gtksourceview.c:239
 msgid "Whether to insert spaces instead of tabs"
 msgstr "Of er spaties moeten worden gebruikt in plaats van tabs"
 
-#: gtksourceview/gtksourceview.c:248
+#: gtksourceview/gtksourceview.c:246
 msgid "Show Right Margin"
 msgstr "Rechtermarge weergeven"
 
-#: gtksourceview/gtksourceview.c:249
+#: gtksourceview/gtksourceview.c:247
 msgid "Whether to display the right margin"
 msgstr "Of de rechtermarge moet worden weergegeven"
 
-#: gtksourceview/gtksourceview.c:256
+#: gtksourceview/gtksourceview.c:254
 msgid "Margin position"
 msgstr "Margepositie"
 
-#: gtksourceview/gtksourceview.c:257
+#: gtksourceview/gtksourceview.c:255
 msgid "Position of the right margin"
 msgstr "De positie van de rechter marge"
 
-#: gtksourceview/gtksourceview.c:266
+#: gtksourceview/gtksourceview.c:264
 msgid "Use smart home/end"
 msgstr "Slimme home/end gebruiken"
 
-#: gtksourceview/gtksourceview.c:267
+#: gtksourceview/gtksourceview.c:265
 msgid ""
 "HOME and END keys move to first/last characters on line first before going "
 "to the start/end of the line"
 msgstr ""
-"De HOME en END toetsen eerst naar de eerste/laatste karakters van de regel "
+"De HOME en END toetsen eerst naar de eerste/laatste tekens van de regel "
 "verplaatsen, voordat ze naar het echte regelbegin/einde gaan"
