@@ -1,5 +1,10 @@
 2004-10-07  Paolo Borelli  <pborelli@katamail.com>
 
+	* gtksourceview/language-specs/c.lang: handle #if 0 ... #else,
+	patch by John Spray (bug #153765)
+
+2004-10-07  Paolo Borelli  <pborelli@katamail.com>
+
 	* gtksourceview/gtksourcetagtable.c (gtk_source_tag_table_remove_tag):
 	fix leak, patch by David A Knight (bug #152767)
 
