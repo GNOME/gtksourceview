@@ -244,10 +244,59 @@ gtk_source_view_expose(GtkWidget *widget, GdkEventExpose *ev)
             }
             if(view->show_line_pixmaps)
             {
-                marker = gtk_source_buffer_line_has_marker(GTK_SOURCE_BUFFER(tw->buffer), num + 1);
-                if(marker && (pixbuf = gtk_source_view_get_pixbuf(view, marker)))
+                gint marker_count = 0;
+                GList *list = NULL;
+                GList *iter = NULL;
+
+                if((marker_count = gtk_source_buffer_line_has_markers(GTK_SOURCE_BUFFER(tw->buffer), num + 1)))
                 {
-                    if(gdk_pixbuf_get_has_alpha(pixbuf))
+                    gboolean kill_pixbuf = FALSE;
+
+                    list = (GList *)gtk_source_buffer_line_get_markers(GTK_SOURCE_BUFFER(tw->buffer), num + 1);
+                    if(marker_count > 1)
+                    {
+                        GdkPixbuf *composite;
+
+                        list = g_list_copy(list);
+                        list = g_list_reverse(list);
+                        pixbuf = gtk_source_view_get_pixbuf(GTK_SOURCE_VIEW(tw), (const gchar *)list->data);
+                        if(pixbuf)
+                        {
+                            pixbuf = gdk_pixbuf_copy(pixbuf);
+                            g_object_ref(pixbuf);
+                            kill_pixbuf = TRUE;
+                            for(iter = list->next; iter; iter = iter->next)
+                            {
+                                if((composite = gtk_source_view_get_pixbuf(GTK_SOURCE_VIEW(tw), (const gchar *)iter->data)))
+                                {
+                                    gint width;
+                                    gint height;
+                                    gint comp_width;
+                                    gint comp_height;
+                                    width = gdk_pixbuf_get_width(pixbuf),
+                                    height = gdk_pixbuf_get_height(pixbuf),
+                                    comp_width = gdk_pixbuf_get_width(composite),
+                                    comp_height = gdk_pixbuf_get_height(composite),
+                                    gdk_pixbuf_composite((const GdkPixbuf *)composite,
+                                                         pixbuf,
+                                                         0, 0,
+                                                         width, height,
+                                                         0, 0,
+                                                         width/comp_width, height/comp_height,
+                                                         GDK_INTERP_BILINEAR,
+                                                         127);
+                                }
+                            }
+                            g_print("\n");
+                        }
+                        g_list_free(list);
+                    }
+                    else
+                    {
+                        pixbuf = gtk_source_view_get_pixbuf(GTK_SOURCE_VIEW(tw), (const gchar *)list->data);
+                    }
+
+                    if(pixbuf && gdk_pixbuf_get_has_alpha(pixbuf))
                         gdk_pixbuf_render_to_drawable_alpha(pixbuf, GDK_DRAWABLE(win), 0, 0,
                                                             text_width + (GUTTER_PAD * 2), pos,
                                                             gdk_pixbuf_get_width(pixbuf),
@@ -256,7 +305,7 @@ gtk_source_view_expose(GtkWidget *widget, GdkEventExpose *ev)
                                                             127,
                                                             GDK_RGB_DITHER_NORMAL,
                                                             0, 0);
-                     else
+                     else if(pixbuf)
                         gdk_pixbuf_render_to_drawable(pixbuf, GDK_DRAWABLE(win),
                                                       GTK_WIDGET(tw)->style->bg_gc[GTK_STATE_NORMAL],
                                                       0, 0, text_width + (GUTTER_PAD * 2), pos,
@@ -264,6 +313,7 @@ gtk_source_view_expose(GtkWidget *widget, GdkEventExpose *ev)
                                                       gdk_pixbuf_get_height(pixbuf),
                                                       GDK_RGB_DITHER_NORMAL,
                                                       0, 0);
+                    if(kill_pixbuf) g_object_unref(pixbuf);
                 }
             }
         }
@@ -567,7 +617,7 @@ gtk_source_view_add_pixbuf(GtkSourceView *view, const gchar *key, GdkPixbuf *pix
         {
             if(width > GUTTER_PIXMAP) width = GUTTER_PIXMAP;
             if(height > GUTTER_PIXMAP) height = GUTTER_PIXMAP;
-            pixbuf = gdk_pixbuf_scale_simple(pixbuf, width, height, GDK_INTERP_NEAREST);
+            pixbuf = gdk_pixbuf_scale_simple(pixbuf, width, height, GDK_INTERP_BILINEAR);
         }
         g_object_ref(G_OBJECT(pixbuf));
         g_hash_table_insert(view->pixmap_cache, (gchar *)key, (gpointer)pixbuf);

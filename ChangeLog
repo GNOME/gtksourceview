@@ -1,3 +1,8 @@
+Mon Dec 10 04:58:22 PM PST 2001 Chris Phelps <chicane@reninet.com>
+    * Modified gtksourcebuffer line marker api to allow for multiple markers per line.
+    * Added a a few new marker related functions for convenience purposes and completeness
+    * Update gtksourceview to deal with multiple markers per line (composite pixbufs)
+
 2001-12-09  Dave Camp  <dave@ximian.com>
 
 	* src/gtksourcebuffer.h: Fixed a broken comment.

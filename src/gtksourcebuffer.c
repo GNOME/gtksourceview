@@ -1,21 +1,22 @@
-/*  Highlight code	
-*  Copyright (C) 1999,2000,2001 by:
-*  Mikael Hermansson <tyan@linux.se>
-*  Chris Phelps <reninet.com>
-*  This program is free software; you can redistribute it and/or modify
-*  it under the terms of the GNU General Public License as published by
-*  the Free Software Foundation; either version 2 of the License, or
-*  (at your option) any later version.
-*
-*  This program is distributed in the hope that it will be useful,
-*  but WITHOUT ANY WARRANTY; without even the implied warranty of
-*  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-*  GNU General Public License for more details.
-*
-*  You should have received a copy of the GNU General Public License
-*  along with this program; if not, write to the Free Software
-*  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
-*/
+/*  gtksourcebuffer.c
+ *  Copyright (C) 1999,2000,2001 by:
+ *  Mikael Hermansson <tyan@linux.se>
+ *  Chris Phelps <reninet.com>
+ *
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program; if not, write to the Free Software
+ *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+ */
 
 #include <string.h>
 #include <time.h>
@@ -156,7 +157,17 @@ gtk_source_buffer_finalize(GObject *object)
 static void
 hash_remove_func(gpointer key, gpointer value, gpointer user_data)
 {
-    g_free(value);
+    GList *iter = NULL;
+
+    if(value)
+    {
+        for(iter = (GList *)value; iter; iter = iter->next)
+        {
+            g_print("Removing marker %s for line %d\n", (gchar *)iter->data, GPOINTER_TO_INT(key));
+            if(iter->data) g_free(iter->data);
+        }
+        g_list_free((GList *)value);
+    }
 }
 
 void
@@ -1058,13 +1069,11 @@ gtk_source_buffer_install_regex_tags(GtkSourceBuffer *buf, GList *entries)
         }
         if(GTK_IS_SYNTAX_TAG(cur->data))
         {
-            g_print("syntax tag added, name is %s\n", name);
             buf->syntax_items = g_list_append(buf->syntax_items, cur->data);
             gtk_text_tag_table_add(GTK_TEXT_BUFFER(buf)->tag_table, GTK_TEXT_TAG(cur->data));
         }
         else if(GTK_IS_PATTERN_TAG(cur->data))
         {
-            g_print("pattern tag added, name is %s\n", name);
             buf->pattern_items = g_list_append(buf->pattern_items, cur->data);
             gtk_text_tag_table_add(GTK_TEXT_BUFFER(buf)->tag_table, GTK_TEXT_TAG(cur->data));
         }
@@ -1244,46 +1253,154 @@ gtk_source_buffer_convert_to_html(GtkSourceBuffer *buf, const gchar *htmltitle)
 }
 
 void
-gtk_source_buffer_set_line_marker(GtkSourceBuffer *buffer, gint line, const gchar *marker, gboolean overwrite)
+gtk_source_buffer_line_set_marker(GtkSourceBuffer *buffer, gint line, const gchar *marker)
 {
     gint line_count = 0;
-    gpointer data = NULL;
-    gboolean scaled = FALSE;
-    gchar *new;
+    GList *new_list = NULL;
 
     g_return_if_fail(buffer != NULL);
     g_return_if_fail(GTK_IS_SOURCE_BUFFER(buffer));
 
     line_count = gtk_text_buffer_get_line_count(GTK_TEXT_BUFFER(buffer));
     if(line > line_count) return;
-    data = g_hash_table_lookup(buffer->line_markers, GINT_TO_POINTER(line));
-    if(data && !overwrite) return;
-
-    if(data)
-    {
-        g_hash_table_remove(buffer->line_markers, GINT_TO_POINTER(line));
-        g_free(data);
-    }
+    gtk_source_buffer_line_remove_markers(buffer, line);
     if(marker)
     {
-        new = g_strdup(marker);
-        g_hash_table_insert(buffer->line_markers, GINT_TO_POINTER(line), (gpointer)marker);
+        new_list = g_list_append(new_list, (gpointer)g_strdup(marker));
+        g_hash_table_insert(buffer->line_markers, GINT_TO_POINTER(line), (gpointer)new_list);
     }
 }
 
-const gchar *
-gtk_source_buffer_line_has_marker(GtkSourceBuffer *buffer, gint line)
+/*
+   Add a marker to a line.
+   If the list doesnt already exist, it will call set_marker (above)
+   If the list does exist, the new marker will be prepended.
+   If the marker already exists, it will be removed from its current
+   order and then prepended.
+*/
+void
+gtk_source_buffer_line_add_marker(GtkSourceBuffer *buffer, gint line, const gchar *marker)
+{
+    gint line_count = 0;
+    GList *list = NULL;
+    GList *iter = NULL;
+    gchar *new_marker;
+
+    g_return_if_fail(buffer != NULL);
+    g_return_if_fail(GTK_IS_SOURCE_BUFFER(buffer));
+
+    line_count = gtk_text_buffer_get_line_count(GTK_TEXT_BUFFER(buffer));
+    if(line > line_count) return;
+    list = (GList *)g_hash_table_lookup(buffer->line_markers, GINT_TO_POINTER(line));
+    if(list && marker)
+    {
+        for(iter = list; iter; iter = iter->next)
+        {
+            if(iter->data && !strcmp(marker, (gchar *)iter->data))
+            {
+                list = g_list_remove(list, (gpointer)iter->data);
+                g_free(iter->data);
+                break;
+            }
+        }
+        g_hash_table_remove(buffer->line_markers, GINT_TO_POINTER(line));
+        list = g_list_prepend(list, (gpointer)g_strdup(marker));
+        g_hash_table_insert(buffer->line_markers, GINT_TO_POINTER(line), (gpointer)list);
+    }
+    else if(marker)
+    {
+        gtk_source_buffer_line_set_marker(buffer, line, marker);
+    }
+}
+
+gint
+gtk_source_buffer_line_has_markers(GtkSourceBuffer *buffer, gint line)
+{
+    gpointer data;
+    gint count = 0;
+
+    g_return_val_if_fail(buffer != NULL, 0);
+    g_return_val_if_fail(GTK_IS_SOURCE_BUFFER(buffer), 0);
+
+    data = g_hash_table_lookup(buffer->line_markers, GINT_TO_POINTER(line));
+    if(data) count = g_list_length((GList *)data);
+    return(count);
+}
+
+const GList *
+gtk_source_buffer_line_get_markers(GtkSourceBuffer *buffer, gint line)
 {
     g_return_val_if_fail(buffer != NULL, NULL);
     g_return_val_if_fail(GTK_IS_SOURCE_BUFFER(buffer), NULL);
 
-    return((const gchar *)g_hash_table_lookup(buffer->line_markers, GINT_TO_POINTER(line)));
+    return((const GList *)g_hash_table_lookup(buffer->line_markers, GINT_TO_POINTER(line)));
+}
+
+gint
+gtk_source_buffer_line_remove_markers(GtkSourceBuffer *buffer, gint line)
+{
+    GList *list = NULL;
+    GList *iter = NULL;
+    gint remove_count = 0;
+    gint line_count = 0;
+
+    g_return_val_if_fail(buffer != NULL, 0);
+    g_return_val_if_fail(GTK_IS_SOURCE_BUFFER(buffer), 0);
+
+    line_count = gtk_text_buffer_get_line_count(GTK_TEXT_BUFFER(buffer));
+    if(line > line_count) return(0);
+    list = (GList *)g_hash_table_lookup(buffer->line_markers, GINT_TO_POINTER(line));
+    if(list)
+    {
+        for(iter = list; iter; iter = iter->next)
+        {
+            if(iter->data) g_free(iter->data);
+            remove_count++;
+        }
+        g_hash_table_remove(buffer->line_markers, GINT_TO_POINTER(line));
+        g_list_free(list);
+    }
+    return(remove_count);
+}
+
+gboolean
+gtk_source_buffer_line_remove_marker(GtkSourceBuffer *buffer, gint line, const gchar *marker)
+{
+    GList *list = NULL;
+    GList *iter = NULL;
+    gint line_count = 0;
+    gboolean removed = FALSE;
+
+    g_return_val_if_fail(buffer != NULL, 0);
+    g_return_val_if_fail(GTK_IS_SOURCE_BUFFER(buffer), 0);
+
+    line_count = gtk_text_buffer_get_line_count(GTK_TEXT_BUFFER(buffer));
+    if(line > line_count) return(0);
+    list = (GList *)g_hash_table_lookup(buffer->line_markers, GINT_TO_POINTER(line));
+    if(list)
+    {
+        for(iter = list; iter; iter = iter->next)
+        {
+            if(iter->data && !strcmp(marker, (gchar *)iter->data))
+            {
+                g_hash_table_remove(buffer->line_markers, GINT_TO_POINTER(line));
+                list = g_list_remove(list, (gpointer)iter->data);
+                g_hash_table_insert(buffer->line_markers, GINT_TO_POINTER(line), (gpointer)list);
+                removed = TRUE;
+                break;
+            }
+        }
+        g_hash_table_remove(buffer->line_markers, GINT_TO_POINTER(line));
+        g_list_free(list);
+    }
+    return(removed);
 }
 
 gint
 gtk_source_buffer_remove_all_markers(GtkSourceBuffer *buffer, gint line_start, gint line_end)
 {
-    gchar *data = NULL;
+    GList *data = NULL;
+    GList *iter = NULL;
     gint remove_count = 0;
     gint line_count;
     gint counter;
@@ -1296,12 +1413,7 @@ gtk_source_buffer_remove_all_markers(GtkSourceBuffer *buffer, gint line_start, g
     line_end = line_end > line_count ? line_count : line_end;
     for(counter = line_start; counter <= line_end; counter++)
     {
-        data = (gchar *)g_hash_table_lookup(buffer->line_markers, GINT_TO_POINTER(counter));
-        if(data)
-        {
-            g_hash_table_remove(buffer->line_markers, GINT_TO_POINTER(counter));
-            g_free(data);
-            remove_count++;
-        }
+        remove_count += gtk_source_buffer_line_remove_markers(buffer, counter);
     }
+    return(remove_count);
 }

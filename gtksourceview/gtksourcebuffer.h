@@ -1,21 +1,22 @@
-/*  Higlight code	
-*  Copyright (C) 1999 by:
-*Mikael Hermansson <tyan@linux.se>
-*
-*  This program is free software; you can redistribute it and/or modify
-*  it under the terms of the GNU General Public License as published by
-*  the Free Software Foundation; either version 2 of the License, or
-*  (at your option) any later version.
-*
-*  This program is distributed in the hope that it will be useful,
-*  but WITHOUT ANY WARRANTY; without even the implied warranty of
-*  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-*  GNU General Public License for more details.
-*
-*  You should have received a copy of the GNU General Public License
-*  along with this program; if not, write to the Free Software
-*  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
-*/
+/*  gtksourcebuffer.h
+ *
+ *  Mikael Hermansson <tyan@linux.se>
+ *  Chris Phelps <chicane@reninet.com>
+ *
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program; if not, write to the Free Software
+ *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+ */
 
 #ifndef __GTK_SOURCE_BUFFER_H__
 #define __GTK_SOURCE_BUFFER_H__
@@ -117,11 +118,16 @@ gint gtk_source_buffer_undo_get_max(GtkSourceBuffer *buf);
 gboolean gtk_source_buffer_undo_set_max(GtkSourceBuffer *buf, gint max);
 void gtk_source_buffer_undo_clear_all(GtkSourceBuffer *buf);
 
-void gtk_source_buffer_set_line_marker(GtkSourceBuffer *buffer, gint line, const gchar *marker, gboolean overwrite);
-const gchar *gtk_source_buffer_line_has_marker(GtkSourceBuffer *view, gint line);
+/* Set the line marker, and remove any others if there are already some set for the line */
+void gtk_source_buffer_line_set_marker(GtkSourceBuffer *buffer, gint line, const gchar *marker);
+void gtk_source_buffer_line_add_marker(GtkSourceBuffer *buffer, gint line, const gchar *marker);
+gint gtk_source_buffer_line_has_markers(GtkSourceBuffer *view, gint line);
+const GList *gtk_source_buffer_line_get_markers(GtkSourceBuffer *view, gint line);
+gint gtk_source_buffer_line_remove_markers(GtkSourceBuffer *buffer, gint line);
+gboolean gtk_source_buffer_line_remove_marker(GtkSourceBuffer *buffer, gint line, const gchar *marker);
 /* return value is the number removed */
 /* pass -1 for start and end to remove all */
-gint gtk_source_view_remove_all_pixmaps(GtkSourceBuffer *buffer, gint line_start, gint line_end);
+gint gtk_source_view_remove_all_markers(GtkSourceBuffer *buffer, gint line_start, gint line_end);
 
 #ifdef __cplusplus
 }
