@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2003-12-04 09:44+0300\n"
-"PO-Revision-Date: 2003-12-04 10:16+0300\n"
+"PO-Revision-Date: 2003-12-08 15:58+0300\n"
 "Last-Translator: Dmitry G. Mastrukov <dmitry@taurussoft.org>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -29,7 +29,7 @@ msgstr "Проверять кавычки"
 
 #: gtksourceview/gtksourcebuffer.c:289
 msgid "Whether to check and highlight matching brackets"
-msgstr "Следует ли проверять и подсвечивать соответствующие кавычки"
+msgstr "Следует ли проверять и подсвечивать соответствующие друг другу скобки"
 
 #: gtksourceview/gtksourcebuffer.c:297 gtksourceview/gtksourceprintjob.c:303
 msgid "Highlight"
@@ -64,7 +64,7 @@ msgstr "Каталоги со спецификациями языков"
 msgid ""
 "List of directories where the language specification files (.lang) are "
 "located"
-msgstr "Список каталогов, где расположены языковые файлы (.lang)"
+msgstr "Список каталогов, где расположены файлы опреления языка (.lang)"
 
 #: gtksourceview/gtksourceprintjob.c:272
 msgid "Configuration"
@@ -407,7 +407,7 @@ msgstr "Директивы \"Include/Pragma\""
 #: gtksourceview/language-specs/c.lang.h:12
 #: gtksourceview/language-specs/cpp.lang.h:12
 msgid "Octal Number"
-msgstr "Восьмиричное число"
+msgstr "Восьмеричное число"
 
 #: gtksourceview/language-specs/c.lang.h:13
 #: gtksourceview/language-specs/cpp.lang.h:13
@@ -441,11 +441,11 @@ msgstr "Группа"
 
 #: gtksourceview/language-specs/desktop.lang.h:8
 msgid "Non Standard Key"
-msgstr "Нестандартная клавиша"
+msgstr "Нестандартный ключ"
 
 #: gtksourceview/language-specs/desktop.lang.h:11
 msgid "Standard Key"
-msgstr "Стандартная клавиша"
+msgstr "Стандартный ключ"
 
 #: gtksourceview/language-specs/diff.lang.h:1
 msgid "Added line"
@@ -631,7 +631,7 @@ msgstr "селф"
 
 #: gtksourceview/language-specs/xml.lang.h:6
 msgid "Hexadecimal"
-msgstr "Шестнадцатиричное число"
+msgstr "Шестнадцатеричное число"
 
 #: gtksourceview/language-specs/xml.lang.h:10
 msgid "Tag"
