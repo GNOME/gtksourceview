@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-05-31 21:55+0200\n"
-"PO-Revision-Date: 2004-05-31 21:55+0200\n"
+"POT-Creation-Date: 2004-07-06 20:25+0200\n"
+"PO-Revision-Date: 2004-07-06 20:27+0200\n"
 "Last-Translator: Ole Laursen <olau@hardworking.dk>\n"
 "Language-Team: Danish <dansk@klid.dk>\n"
 "MIME-Version: 1.0\n"
@@ -202,9 +202,11 @@ msgstr "Præprocessor"
 #: gtksourceview/language-specs/html.lang.h:8
 #: gtksourceview/language-specs/idl.lang.h:8
 #: gtksourceview/language-specs/java.lang.h:11
+#: gtksourceview/language-specs/lua.lang.h:10
 #: gtksourceview/language-specs/perl.lang.h:6
 #: gtksourceview/language-specs/po.lang.h:6
 #: gtksourceview/language-specs/python.lang.h:11
+#: gtksourceview/language-specs/ruby.lang.h:18
 #: gtksourceview/language-specs/xml.lang.h:8
 msgid "String"
 msgstr "Streng"
@@ -324,8 +326,10 @@ msgstr "Tegnkonstant"
 #: gtksourceview/language-specs/cpp.lang.h:10
 #: gtksourceview/language-specs/csharp.lang.h:3
 #: gtksourceview/language-specs/idl.lang.h:4
+#: gtksourceview/language-specs/lua.lang.h:3
 #: gtksourceview/language-specs/perl.lang.h:2
 #: gtksourceview/language-specs/python.lang.h:3
+#: gtksourceview/language-specs/ruby.lang.h:8
 #: gtksourceview/language-specs/verilog.lang.h:6
 msgid "Keywords"
 msgstr "Reserverede ord"
@@ -337,8 +341,10 @@ msgstr "Reserverede ord"
 #: gtksourceview/language-specs/desktop.lang.h:7
 #: gtksourceview/language-specs/diff.lang.h:5
 #: gtksourceview/language-specs/java.lang.h:5
+#: gtksourceview/language-specs/lua.lang.h:4
 #: gtksourceview/language-specs/perl.lang.h:3
 #: gtksourceview/language-specs/python.lang.h:4
+#: gtksourceview/language-specs/ruby.lang.h:9
 #: gtksourceview/language-specs/sql.lang.h:11
 #: gtksourceview/language-specs/verilog.lang.h:7
 msgid "Line Comment"
@@ -388,6 +394,7 @@ msgstr "\"#if 0\"-kommentar"
 #: gtksourceview/language-specs/html.lang.h:2
 #: gtksourceview/language-specs/idl.lang.h:1
 #: gtksourceview/language-specs/java.lang.h:1
+#: gtksourceview/language-specs/lua.lang.h:1
 #: gtksourceview/language-specs/sql.lang.h:5
 #: gtksourceview/language-specs/verilog.lang.h:2
 #: gtksourceview/language-specs/xml.lang.h:2
@@ -447,7 +454,9 @@ msgstr "Primitiver"
 
 #: gtksourceview/language-specs/csharp.lang.h:9
 #: gtksourceview/language-specs/java.lang.h:12
+#: gtksourceview/language-specs/lua.lang.h:11
 #: gtksourceview/language-specs/python.lang.h:12
+#: gtksourceview/language-specs/ruby.lang.h:19
 msgid "String 2"
 msgstr "Streng 2"
 
@@ -590,6 +599,36 @@ msgstr "Matematik"
 msgid "Most Used Commands"
 msgstr "Oftest benyttede kommandoer"
 
+#: gtksourceview/language-specs/lua.lang.h:2
+#: gtksourceview/language-specs/python.lang.h:2
+msgid "Functions"
+msgstr "Funktioner"
+
+#: gtksourceview/language-specs/lua.lang.h:5
+msgid "Line Comment 2"
+msgstr "Linjekommentar 2"
+
+#: gtksourceview/language-specs/lua.lang.h:6
+msgid "Lua"
+msgstr "Lua"
+
+#: gtksourceview/language-specs/lua.lang.h:7
+#: gtksourceview/language-specs/python.lang.h:6
+msgid "Multiline String"
+msgstr "Flerlinje-streng"
+
+#: gtksourceview/language-specs/lua.lang.h:8
+#: gtksourceview/language-specs/python.lang.h:7
+msgid "Multiline String 2"
+msgstr "Flerlinje-streng 2"
+
+#: gtksourceview/language-specs/lua.lang.h:9
+#: gtksourceview/language-specs/perl.lang.h:5
+#: gtksourceview/language-specs/python.lang.h:9
+#: gtksourceview/language-specs/ruby.lang.h:17
+msgid "Scripts"
+msgstr "Programmer"
+
 #: gtksourceview/language-specs/msil.lang.h:1
 msgid "MSIL"
 msgstr "MSIL"
@@ -601,11 +640,6 @@ msgstr "Funktionskald"
 #: gtksourceview/language-specs/perl.lang.h:4
 msgid "Perl"
 msgstr "Perl"
-
-#: gtksourceview/language-specs/perl.lang.h:5
-#: gtksourceview/language-specs/python.lang.h:9
-msgid "Scripts"
-msgstr "Programmer"
 
 #: gtksourceview/language-specs/perl.lang.h:7
 msgid "String2"
@@ -684,24 +718,13 @@ msgid "gettext translation"
 msgstr "gettext-oversættelse"
 
 #: gtksourceview/language-specs/python.lang.h:1
+#: gtksourceview/language-specs/ruby.lang.h:2
 msgid "Builtins"
 msgstr "Indbyggede"
-
-#: gtksourceview/language-specs/python.lang.h:2
-msgid "Functions"
-msgstr "Funktioner"
 
 #: gtksourceview/language-specs/python.lang.h:5
 msgid "Module Handler"
 msgstr "Modulstyring"
-
-#: gtksourceview/language-specs/python.lang.h:6
-msgid "Multiline String"
-msgstr "Flerlinje-streng"
-
-#: gtksourceview/language-specs/python.lang.h:7
-msgid "Multiline String 2"
-msgstr "Flerlinje-streng 2"
 
 #: gtksourceview/language-specs/python.lang.h:8
 msgid "Python"
@@ -710,6 +733,58 @@ msgstr "Python"
 #: gtksourceview/language-specs/python.lang.h:10
 msgid "Self"
 msgstr "Selv"
+
+#: gtksourceview/language-specs/ruby.lang.h:1
+msgid "Attribute Definitions"
+msgstr "Attributdefinitioner"
+
+#: gtksourceview/language-specs/ruby.lang.h:3
+msgid "Class Variables"
+msgstr "Klassevariabler"
+
+#: gtksourceview/language-specs/ruby.lang.h:4
+msgid "Constants"
+msgstr "Konstanter"
+
+#: gtksourceview/language-specs/ruby.lang.h:5
+msgid "Definitions"
+msgstr "Definitioner"
+
+#: gtksourceview/language-specs/ruby.lang.h:6
+msgid "Global Variables"
+msgstr "Globale variabler"
+
+#: gtksourceview/language-specs/ruby.lang.h:7
+msgid "Instance Variables"
+msgstr "Instansvariabler"
+
+#: gtksourceview/language-specs/ruby.lang.h:10
+msgid "Module Handlers"
+msgstr "Modulhåndteringer"
+
+#: gtksourceview/language-specs/ruby.lang.h:11
+msgid "Multiline Comment"
+msgstr "Flerlinjekommentar"
+
+#: gtksourceview/language-specs/ruby.lang.h:12
+msgid "Pseudo Variables"
+msgstr "Pseudovariabler"
+
+#: gtksourceview/language-specs/ruby.lang.h:13
+msgid "RegExp Variables"
+msgstr "RegExp-variabler"
+
+#: gtksourceview/language-specs/ruby.lang.h:14
+msgid "Regular Expression"
+msgstr "Regulært udtryk"
+
+#: gtksourceview/language-specs/ruby.lang.h:15
+msgid "Regular Expression 2"
+msgstr "Regulært udtryk 2"
+
+#: gtksourceview/language-specs/ruby.lang.h:16
+msgid "Ruby"
+msgstr "Ruby"
 
 #: gtksourceview/language-specs/sql.lang.h:1
 msgid "ANSI Datatypes"
