@@ -1511,6 +1511,14 @@ idle_printing_handler (GtkSourcePrintJob *job)
 
 /* Public API ------------------- */
 
+/**
+ * gtk_source_print_job_new:
+ * @config: an optional #GnomePrintConfig object.
+ * 
+ * Creates a new print job object, initially setting the print configuration.
+ * 
+ * Return value: the new print job object.
+ **/
 GtkSourcePrintJob *
 gtk_source_print_job_new (GnomePrintConfig  *config)
 {
@@ -1525,6 +1533,15 @@ gtk_source_print_job_new (GnomePrintConfig  *config)
 	return job;
 }
 
+/**
+ * gtk_source_print_job_new_with_buffer:
+ * @config: an optional #GnomePrintConfig.
+ * @buffer: the #GtkSourceBuffer to print (might be NULL).
+ * 
+ * Creates a new print job to print @buffer.
+ * 
+ * Return value: a new print job object.
+ **/
 GtkSourcePrintJob *
 gtk_source_print_job_new_with_buffer (GnomePrintConfig  *config,
 				      GtkSourceBuffer   *buffer)
@@ -1543,6 +1560,15 @@ gtk_source_print_job_new_with_buffer (GnomePrintConfig  *config,
 
 /* --- print job basic configuration */
 
+/**
+ * gtk_source_print_job_set_config:
+ * @job: a #GtkSourcePrintJob.
+ * @config: a #GnomePrintConfig object to get printing configuration from.
+ * 
+ * Sets the print configuration for the job.  If you don't set a
+ * configuration object for the print job, when needed one will be
+ * created with gnome_print_config_default().
+ **/
 void
 gtk_source_print_job_set_config (GtkSourcePrintJob *job,
 				 GnomePrintConfig  *config)
@@ -1563,6 +1589,16 @@ gtk_source_print_job_set_config (GtkSourcePrintJob *job,
 	g_object_notify (G_OBJECT (job), "config");
 }
 
+/**
+ * gtk_source_print_job_get_config:
+ * @job: a #GtkSourcePrintJob.
+ * 
+ * Gets the current #GnomePrintConfig the print job will use.  If not
+ * previously set, this will create a default configuration and return
+ * it.  The returned object reference is owned by the print job.
+ * 
+ * Return value: the #GnomePrintConfig for the print job.
+ **/
 GnomePrintConfig * 
 gtk_source_print_job_get_config (GtkSourcePrintJob *job)
 {
@@ -1573,6 +1609,15 @@ gtk_source_print_job_get_config (GtkSourcePrintJob *job)
 	return job->priv->config;
 }
 
+/**
+ * gtk_source_print_job_set_buffer:
+ * @job: a #GtkSourcePrintJob.
+ * @buffer: a #GtkSourceBuffer.
+ * 
+ * Sets the #GtkSourceBuffer the print job will print.  You need to
+ * specify a buffer to print, either by the use of this function or by
+ * creating the print job with gtk_source_print_job_new_with_buffer().
+ **/
 void 
 gtk_source_print_job_set_buffer (GtkSourcePrintJob *job,
 				 GtkSourceBuffer   *buffer)
@@ -1593,6 +1638,16 @@ gtk_source_print_job_set_buffer (GtkSourcePrintJob *job,
 	g_object_notify (G_OBJECT (job), "buffer");
 }
 
+/**
+ * gtk_source_print_job_get_buffer:
+ * @job: a #GtkSourcePrintJob.
+ * 
+ * Gets the #GtkSourceBuffer the print job would print.  The returned
+ * object reference (if non NULL) is owned by the job object and
+ * should not be unreferenced.
+ * 
+ * Return value: the #GtkSourceBuffer to print.
+ **/
 GtkSourceBuffer *
 gtk_source_print_job_get_buffer (GtkSourcePrintJob *job)
 {
@@ -1603,6 +1658,16 @@ gtk_source_print_job_get_buffer (GtkSourcePrintJob *job)
 
 /* --- print job layout and style configuration */
 
+/**
+ * gtk_source_print_job_set_tabs_width:
+ * @job: a #GtkSourcePrintJob.
+ * @tabs_width: the number of equivalent spaces for a tabulation.
+ * 
+ * Sets the width (in equivalent spaces) of tabulations for the
+ * printed text.  The width in printing units will be calculated as
+ * the width of a string containing @tabs_width spaces of the default
+ * font.  Tabulation stops are set for the full width of printed text.
+ **/
 void 
 gtk_source_print_job_set_tabs_width (GtkSourcePrintJob *job,
 				     guint              tabs_width)
@@ -1618,6 +1683,15 @@ gtk_source_print_job_set_tabs_width (GtkSourcePrintJob *job,
 	g_object_notify (G_OBJECT (job), "tabs_width");
 }
 
+/**
+ * gtk_source_print_job_get_tabs_width:
+ * @job: a #GtkSourcePrintJob.
+ * 
+ * Determines the configured width (in equivalent spaces) of
+ * tabulations.  The default value is 8.
+ * 
+ * Return value: the width (in equivalent spaces) of a tabulation.
+ **/
 guint 
 gtk_source_print_job_get_tabs_width (GtkSourcePrintJob *job)
 {
@@ -1626,6 +1700,14 @@ gtk_source_print_job_get_tabs_width (GtkSourcePrintJob *job)
 	return job->priv->tabs_width;
 }
 
+/**
+ * gtk_source_print_job_set_wrap_mode:
+ * @job: a #GtkSourcePrintJob.
+ * @wrap: the wrap mode.
+ * 
+ * Sets the wrap mode for lines of text larger than the printable
+ * width.  See #GtkWrapMode for a definition of the possible values.
+ **/
 void 
 gtk_source_print_job_set_wrap_mode (GtkSourcePrintJob *job,
 				    GtkWrapMode        wrap)
@@ -1641,6 +1723,15 @@ gtk_source_print_job_set_wrap_mode (GtkSourcePrintJob *job,
 	g_object_notify (G_OBJECT (job), "wrap_mode");
 }
 
+/**
+ * gtk_source_print_job_get_wrap_mode:
+ * @job: a #GtkSourcePrintJob.
+ * 
+ * Determines the wrapping style for text lines wider than the
+ * printable width.  The default is no wrapping.
+ * 
+ * Return value: the current wrapping mode for the print job.
+ **/
 GtkWrapMode 
 gtk_source_print_job_get_wrap_mode (GtkSourcePrintJob *job)
 {
@@ -1649,6 +1740,14 @@ gtk_source_print_job_get_wrap_mode (GtkSourcePrintJob *job)
 	return job->priv->wrap_mode;
 }
 
+/**
+ * gtk_source_print_job_set_highlight:
+ * @job: a #GtkSourcePrintJob.
+ * @highlight: TRUE if the printed text should be highlighted.
+ * 
+ * Sets whether the printed text will be highlighted according to the
+ * buffer rules.  Both color and font style are applied.
+ **/
 void 
 gtk_source_print_job_set_highlight (GtkSourcePrintJob *job,
 				    gboolean           highlight)
@@ -1666,6 +1765,16 @@ gtk_source_print_job_set_highlight (GtkSourcePrintJob *job,
 	g_object_notify (G_OBJECT (job), "highlight");
 }
 
+/**
+ * gtk_source_print_job_get_highlight:
+ * @job: a #GtkSourcePrintJob.
+ * 
+ * Determines if the job is configured to print the text highlighted
+ * with colors and font styles.  Note that highlighting will happen
+ * only if the buffer to print has highlighting activated.
+ * 
+ * Return value: TRUE if the printed output will be highlighted.
+ **/
 gboolean 
 gtk_source_print_job_get_highlight (GtkSourcePrintJob *job)
 {
@@ -1674,6 +1783,15 @@ gtk_source_print_job_get_highlight (GtkSourcePrintJob *job)
 	return job->priv->highlight;
 }
 
+/**
+ * gtk_source_print_job_set_font:
+ * @job: a #GtkSourcePrintJob.
+ * @font_name: the name of the default font.
+ * 
+ * Sets the default font for the printed text.  @font_name should be a
+ * <emphasis>full font name</emphasis> GnomePrint can understand
+ * (e.g. &quot;Monospace Regular 10.0&quot;).
+ **/
 void 
 gtk_source_print_job_set_font (GtkSourcePrintJob *job,
 			       const gchar       *font_name)
@@ -1699,6 +1817,18 @@ gtk_source_print_job_set_font (GtkSourcePrintJob *job,
 	gnome_font_unref (font);
 }
 
+/**
+ * gtk_source_print_job_get_font:
+ * @job: a #GtkSourcePrintJob.
+ * 
+ * Determines the default font to be used for the printed text.  The
+ * returned string is of the form &quot;Fontfamily Style Size&quot;,
+ * for example &quot;Monospace Regular 10.0&quot;.  The returned value
+ * should be freed when no longer needed.
+ * 
+ * Return value: a newly allocated string with the name of the current
+ * text font.
+ **/
 gchar *
 gtk_source_print_job_get_font (GtkSourcePrintJob *job)
 {
@@ -1709,6 +1839,16 @@ gtk_source_print_job_get_font (GtkSourcePrintJob *job)
 	return construct_full_font_name (job->priv->font);
 }
 
+/**
+ * gtk_source_print_job_setup_from_view:
+ * @job: a #GtkSourcePrintJob.
+ * @view: a #GtkSourceView to get configuration from.
+ * 
+ * Convenience function to set several configuration options at once,
+ * so that the printed output matches @view.  The options set are
+ * buffer (if not set already), tabs width, highlighting, wrap mode
+ * and default font.
+ **/
 void 
 gtk_source_print_job_setup_from_view (GtkSourcePrintJob *job,
 				      GtkSourceView     *view)
@@ -1739,6 +1879,15 @@ gtk_source_print_job_setup_from_view (GtkSourcePrintJob *job,
 	g_object_notify (G_OBJECT (job), "font");
 }
 
+/**
+ * gtk_source_print_job_set_numbers_font:
+ * @job: a #GtkSourcePrintJob.
+ * @font_name: the full name of the font for line numbers, or NULL.
+ * 
+ * Sets the font for printing line numbers on the left margin.  If
+ * NULL is supplied, the default font (i.e. the one being used for the
+ * text) will be used instead.
+ **/
 void 
 gtk_source_print_job_set_numbers_font (GtkSourcePrintJob *job,
 				       const gchar       *font_name)
@@ -1763,6 +1912,19 @@ gtk_source_print_job_set_numbers_font (GtkSourcePrintJob *job,
 	g_object_notify (G_OBJECT (job), "numbers_font");
 }
 
+/**
+ * gtk_source_print_job_get_numbers_font:
+ * @job: a #GtkSourcePrintJob.
+ * 
+ * Determines the font to be used for the line numbers.  The returned
+ * string is of the form &quot;Fontfamily Style Size&quot;, for
+ * example &quot;Monospace Regular 10.0&quot;.  The returned value
+ * should be freed when no longer needed.  This function might return
+ * NULL if a specific font for numbers has not been set.
+ * 
+ * Return value: a newly allocated string with the name of the current
+ * line numbers font, or NULL.
+ **/
 gchar *
 gtk_source_print_job_get_numbers_font (GtkSourcePrintJob *job)
 {
@@ -1774,6 +1936,15 @@ gtk_source_print_job_get_numbers_font (GtkSourcePrintJob *job)
 		return NULL;
 }
 
+/**
+ * gtk_source_print_job_set_print_numbers:
+ * @job: a #GtkSourcePrintJob.
+ * @interval: interval for printed line numbers.
+ * 
+ * Sets the interval for printed line numbers.  If @interval is 0 no
+ * numbers will be printed.  If greater than 0, a number will be
+ * printed every @interval lines (i.e. 1 will print all line numbers).
+ **/
 void 
 gtk_source_print_job_set_print_numbers (GtkSourcePrintJob *job,
 					guint              interval)
@@ -1789,6 +1960,16 @@ gtk_source_print_job_set_print_numbers (GtkSourcePrintJob *job,
 	g_object_notify (G_OBJECT (job), "print_numbers");
 }
 
+/**
+ * gtk_source_print_job_get_print_numbers:
+ * @job: a #GtkSourcePrintJob.
+ * 
+ * Determines the interval used for line number printing.  If the
+ * value is 0, no line numbers will be printed.  The default value is
+ * 1 (i.e. numbers printed in all lines).
+ * 
+ * Return value: the interval of printed line numbers.
+ **/
 guint 
 gtk_source_print_job_get_print_numbers (GtkSourcePrintJob *job)
 {
@@ -1797,6 +1978,27 @@ gtk_source_print_job_get_print_numbers (GtkSourcePrintJob *job)
 	return job->priv->print_numbers;
 }
 
+/**
+ * gtk_source_print_job_set_text_margins:
+ * @job: a #GtkSourcePrintJob.
+ * @top: the top user margin.
+ * @bottom: the bottom user margin.
+ * @left: the left user margin.
+ * @right: the right user margin.
+ * 
+ * Sets the four user margins for the print job.  These margins are in
+ * addition to the document margins provided in the #GnomePrintConfig
+ * and will not be used for headers, footers or line numbers (those
+ * are calculated separatedly).  You can print in the space allocated
+ * by these margins by connecting to the <link
+ * linkend="GtkSourcePrintJob-begin-page">&quot;begin_page&quot;</link> signal.  The
+ * space is around the printed text, and inside the margins specified
+ * in the #GnomePrintConfig.
+ *
+ * The margin numbers are given in device units.  If any of the given
+ * values is less than 0, that particular margin is not altered by
+ * this function.
+ **/
 void 
 gtk_source_print_job_set_text_margins (GtkSourcePrintJob *job,
 				       gdouble            top,
@@ -1817,6 +2019,20 @@ gtk_source_print_job_set_text_margins (GtkSourcePrintJob *job,
 		job->priv->margin_right = right;
 }
 
+/**
+ * gtk_source_print_job_get_text_margins:
+ * @job: a #GtkSourcePrintJob.
+ * @top: a pointer to a #gdouble to return the top margin.
+ * @bottom: a pointer to a #gdouble to return the bottom margin.
+ * @left: a pointer to a #gdouble to return the left margin.
+ * @right: a pointer to a #gdouble to return the right margin.
+ * 
+ * Determine the user set margins for the job.  This function
+ * retrieves the values previously set by
+ * gtk_source_print_job_set_text_margins().  The default for all four
+ * margins is 0.  Any of the pointers can be NULL if you want to
+ * ignore that value.
+ **/
 void 
 gtk_source_print_job_get_text_margins (GtkSourcePrintJob *job,
 				       gdouble           *top,
@@ -1877,6 +2093,21 @@ gtk_source_print_job_prepare (GtkSourcePrintJob *job,
 	return TRUE;
 }
 
+/**
+ * gtk_source_print_job_print:
+ * @job: a configured #GtkSourcePrintJob.
+ * 
+ * Produces a #GnomePrintJob with the printed document.  The whole
+ * contents of the configured #GtkSourceBuffer are printed.  The
+ * returned job is already closed and ready to be previewed (using
+ * gnome_print_job_preview_new()) or printed directly.  The caller of
+ * this function owns a reference to the returned object, so @job can
+ * be destroyed and the output will still be valid, or the document
+ * can be printed again with different settings.
+ * 
+ * Return value: a closed #GnomePrintJob with the printed document, or
+ * NULL if printing could not be completed.
+ **/
 GnomePrintJob *
 gtk_source_print_job_print (GtkSourcePrintJob *job)
 {
@@ -1891,6 +2122,19 @@ gtk_source_print_job_print (GtkSourcePrintJob *job)
 	return gtk_source_print_job_print_range (job, &start, &end);
 }
 
+/**
+ * gtk_source_print_job_print_range:
+ * @job: a configured #GtkSourcePrintJob.
+ * @start: the start of the region of text to print.
+ * @end: the end of the region of text to print.
+ * 
+ * Similar to gtk_source_print_job_print(), except you can specify a
+ * range of text to print.  The passed #GtkTextIter values might be
+ * out of order.
+ * 
+ * Return value: a closed #GnomePrintJob with the text from @start to
+ * @end printed, or NULL if @job could not print.
+ **/
 GnomePrintJob *
 gtk_source_print_job_print_range (GtkSourcePrintJob *job,
 				  const GtkTextIter *start,
@@ -1900,6 +2144,10 @@ gtk_source_print_job_print_range (GtkSourcePrintJob *job,
 	g_return_val_if_fail (!job->priv->printing, NULL);
 	g_return_val_if_fail (job->priv->buffer != NULL, NULL);
 	g_return_val_if_fail (start != NULL && end != NULL, NULL);
+	g_return_val_if_fail (gtk_text_iter_get_buffer (start) ==
+			      GTK_TEXT_BUFFER (job->priv->buffer) &&
+			      gtk_text_iter_get_buffer (end) ==
+			      GTK_TEXT_BUFFER (job->priv->buffer), NULL);
 
 	if (!gtk_source_print_job_prepare (job, start, end))
 		return NULL;
@@ -1917,6 +2165,30 @@ gtk_source_print_job_print_range (GtkSourcePrintJob *job,
 
 /* --- asynchronous printing */
 
+/**
+ * gtk_source_print_job_print_range_async:
+ * @job: a configured #GtkSourcePrintJob.
+ * @start: the start of the region of text to print.
+ * @end: the end of the region of text to print.
+ * 
+ * Starts to print @job asynchronously.  This function will ready the
+ * @job for printing and install an idle handler that will render one
+ * page at a time.
+ *
+ * This function will not return immediatly, as only page rendering is
+ * done asynchronously.  Text retrieval and paginating happens within
+ * this function.  Also, if highlighting is enabled, the whole buffer
+ * needs to be highlighted first.
+ *
+ * To get notification when the job has finished, you must connect to
+ * the <link
+ * linkend="GtkSourcePrintJob-finished">&quot;finished&quot;</link>
+ * signal.  After this signal is emitted you can retrieve the
+ * resulting #GnomePrintJob with gtk_source_print_job_get_print_job().
+ * You may cancel the job with gtk_source_print_job_cancel().
+ *
+ * Return value: TRUE if the print started.
+ **/
 gboolean 
 gtk_source_print_job_print_range_async (GtkSourcePrintJob *job,
 					const GtkTextIter *start,
@@ -1928,6 +2200,10 @@ gtk_source_print_job_print_range_async (GtkSourcePrintJob *job,
 	g_return_val_if_fail (!job->priv->printing, FALSE);
 	g_return_val_if_fail (job->priv->buffer != NULL, FALSE);
 	g_return_val_if_fail (start != NULL && end != NULL, FALSE);
+	g_return_val_if_fail (gtk_text_iter_get_buffer (start) ==
+			      GTK_TEXT_BUFFER (job->priv->buffer) &&
+			      gtk_text_iter_get_buffer (end) ==
+			      GTK_TEXT_BUFFER (job->priv->buffer), FALSE);
 
 	if (!gtk_source_print_job_prepare (job, start, end))
 		return FALSE;
@@ -1950,6 +2226,22 @@ gtk_source_print_job_print_range_async (GtkSourcePrintJob *job,
 	return TRUE;
 }
 
+/**
+ * gtk_source_print_job_cancel:
+ * @job: a #GtkSourcePrintJob.
+ * 
+ * Cancels an asynchronous printing operation.  This will remove any
+ * pending print idle handler and unref the current #GnomePrintJob.
+ *
+ * Note that if you got a reference to the job's #GnomePrintJob (using
+ * gtk_source_print_job_get_print_job()) it will not be destroyed
+ * (since you hold a reference to it), but it will not be closed
+ * either.  If you wish to show or print the partially printed
+ * document you need to close it yourself.
+ *
+ * This function has no effect when called from a non-asynchronous
+ * print operation.
+ **/
 void 
 gtk_source_print_job_cancel (GtkSourcePrintJob *job)
 {
@@ -1969,17 +2261,45 @@ gtk_source_print_job_cancel (GtkSourcePrintJob *job)
 	}
 }
 
+/**
+ * gtk_source_print_job_get_print_job:
+ * @job: a #GtkSourcePrintJob.
+ * 
+ * Gets a reference to the #GnomePrintJob which the @job is printing
+ * or has recently finished printing.  You need to unref the returned
+ * object.
+ *
+ * You may call this function in the middle of an asynchronous
+ * printing operation, but the returned #GnomePrintJob will not be
+ * closed until the last page is printed and the <link
+ * linkend="GtkSourcePrintJob-finished">&quot;finished&quot;</link>
+ * signal is emitted.
+ * 
+ * Return value: a new reference to the @job's #GnomePrintJob, or
+ * NULL.
+ **/
 GnomePrintJob *
 gtk_source_print_job_get_print_job (GtkSourcePrintJob *job)
 {
 	g_return_val_if_fail (GTK_IS_SOURCE_PRINT_JOB (job), NULL);
 
-	g_object_ref (job->priv->print_job);
+	if (job->priv->print_job)
+		g_object_ref (job->priv->print_job);
+	
 	return job->priv->print_job;
 }
 
 /* --- information for asynchronous ops and headers and footers callback */
 
+/**
+ * gtk_source_print_job_get_page:
+ * @job: a #GtkSourcePrintJob.
+ * 
+ * Determines the currently printing page number.  This function is
+ * only valid while printing (either synchronously or asynchronously).
+ * 
+ * Return value: the current page number.
+ **/
 guint 
 gtk_source_print_job_get_page (GtkSourcePrintJob *job)
 {
@@ -1989,6 +2309,19 @@ gtk_source_print_job_get_page (GtkSourcePrintJob *job)
 	return job->priv->page;
 }
 
+/**
+ * gtk_source_print_job_get_page_count:
+ * @job: a #GtkSourcePrintJob.
+ * 
+ * Determines the total number of pages the job will print.  The
+ * returned value is only meaninful after pagination has finished.  In
+ * practice, for synchronous printing this means when <link
+ * linkend="GtkSourcePrintJob-begin-page">&quot;begin_page&quot;</link>
+ * is emitted, or after gtk_source_print_job_print_range_async() has
+ * returned.
+ * 
+ * Return value: the number of pages of the printed job.
+ **/
 guint 
 gtk_source_print_job_get_page_count (GtkSourcePrintJob *job)
 {
@@ -1997,6 +2330,20 @@ gtk_source_print_job_get_page_count (GtkSourcePrintJob *job)
 	return job->priv->page_count;
 }
 
+/**
+ * gtk_source_print_job_get_print_context:
+ * @job: a printing #GtkSourcePrintJob.
+ * 
+ * Determines the #GnomePrintContext of the current job.  This
+ * function is only valid while printing.  Normally you would use this
+ * function to print in the margins set by
+ * gtk_source_print_job_set_margins() in a handler for the <link
+ * linkend="GtkSourcePrintJob-begin-page">&quot;begin_page&quot;</link>
+ * signal.
+ * 
+ * Return value: the current #GnomePrintContext.  The returned object
+ * is owned by @job.
+ **/
 GnomePrintContext *
 gtk_source_print_job_get_print_context (GtkSourcePrintJob *job)
 {
@@ -2264,6 +2611,19 @@ default_print_footer (GtkSourcePrintJob *job,
 	}
 }
 
+/**
+ * gtk_source_print_job_set_print_header:
+ * @job: a #GtkSourcePrintJob.
+ * @setting: TRUE if you want the header to be printed.
+ * 
+ * Sets whether you want to print a header in each page.  The default
+ * header consists of three pieces of text and an optional line
+ * separator, configurable with
+ * gtk_source_print_job_set_header_format().
+ *
+ * Note that by default the header format is unspecified, and if it's
+ * empty it will not be printed, regardless of this setting.
+ **/
 void 
 gtk_source_print_job_set_print_header (GtkSourcePrintJob *job,
 				       gboolean           setting)
@@ -2281,6 +2641,17 @@ gtk_source_print_job_set_print_header (GtkSourcePrintJob *job,
 	g_object_notify (G_OBJECT (job), "print_header");
 }
 
+/**
+ * gtk_source_print_job_get_print_header:
+ * @job: a #GtkSourcePrintJob.
+ * 
+ * Determines if a header is set to be printed for each page.  A
+ * header will be printed if this function returns TRUE
+ * <emphasis>and</emphasis> some format strings have been specified
+ * with gtk_source_print_job_set_header_format().
+ * 
+ * Return value: TRUE if the header is set to be printed.
+ **/
 gboolean 
 gtk_source_print_job_get_print_header (GtkSourcePrintJob *job)
 {
@@ -2289,6 +2660,19 @@ gtk_source_print_job_get_print_header (GtkSourcePrintJob *job)
 	return job->priv->print_header;
 }
 
+/**
+ * gtk_source_print_job_set_print_footer:
+ * @job: a #GtkSourcePrintJob.
+ * @setting: TRUE if you want the footer to be printed.
+ * 
+ * Sets whether you want to print a footer in each page.  The default
+ * footer consists of three pieces of text and an optional line
+ * separator, configurable with
+ * gtk_source_print_job_set_footer_format().
+ *
+ * Note that by default the footer format is unspecified, and if it's
+ * empty it will not be printed, regardless of this setting.
+ **/
 void 
 gtk_source_print_job_set_print_footer (GtkSourcePrintJob *job,
 				       gboolean           setting)
@@ -2306,6 +2690,17 @@ gtk_source_print_job_set_print_footer (GtkSourcePrintJob *job,
 	g_object_notify (G_OBJECT (job), "print_footer");
 }
 
+/**
+ * gtk_source_print_job_get_print_footer:
+ * @job: a #GtkSourcePrintJob.
+ * 
+ * Determines if a footer is set to be printed for each page.  A
+ * footer will be printed if this function returns TRUE
+ * <emphasis>and</emphasis> some format strings have been specified
+ * with gtk_source_print_job_set_footer_format().
+ * 
+ * Return value: TRUE if the footer is set to be printed.
+ **/
 gboolean 
 gtk_source_print_job_get_print_footer (GtkSourcePrintJob *job)
 {
@@ -2314,6 +2709,15 @@ gtk_source_print_job_get_print_footer (GtkSourcePrintJob *job)
 	return job->priv->print_footer;
 }
 
+/**
+ * gtk_source_print_job_set_header_footer_font:
+ * @job: a #GtkSourcePrintJob.
+ * @font_name: the full name of the font to be used in headers and footers, or NULL.
+ * 
+ * Sets the font for printing headers and footers.  If NULL is
+ * supplied, the default font (i.e. the one being used for the text)
+ * will be used instead.
+ **/
 void 
 gtk_source_print_job_set_header_footer_font (GtkSourcePrintJob *job,
 					     const gchar       *font_name)
@@ -2338,6 +2742,19 @@ gtk_source_print_job_set_header_footer_font (GtkSourcePrintJob *job,
 	g_object_notify (G_OBJECT (job), "header_footer_font");
 }
 
+/**
+ * gtk_source_print_job_get_header_footer_font:
+ * @job: a #GtkSourcePrintJob.
+ * 
+ * Determines the font to be used for the header and footer.  The
+ * returned string is of the form &quot;Fontfamily Style Size&quot;,
+ * for example &quot;Monospace Regular 10.0&quot;.  The returned value
+ * should be freed when no longer needed.  This function might return
+ * NULL if a specific font has not been set.
+ * 
+ * Return value: a newly allocated string with the name of the current
+ * header and footer font, or NULL.
+ **/
 gchar *
 gtk_source_print_job_get_header_footer_font (GtkSourcePrintJob *job)
 {
@@ -2349,6 +2766,28 @@ gtk_source_print_job_get_header_footer_font (GtkSourcePrintJob *job)
 		return NULL;
 }
 
+/**
+ * gtk_source_print_job_set_header_format:
+ * @job: a #GtkSourcePrintJob.
+ * @left: a format string to print on the left of the header.
+ * @center: a format string to print on the center of the header.
+ * @right: a format string to print on the right of the header.
+ * @separator: TRUE if you want a separator line to be printed.
+ * 
+ * Sets strftime like header format strings, to be printed on the
+ * left, center and right of the top of each page.  The strings may
+ * include strftime(3) codes which will be expanded at print time.
+ * All strftime() codes are accepted, with the addition of %N for the
+ * page number and %Q for the page count.
+ *
+ * @separator specifies if a solid line should be drawn to separate
+ * the header from the document text.
+ *
+ * If NULL is given for any of the three arguments, that particular
+ * string will not be printed.  For the header to be printed, in
+ * addition to specifying format strings, you need to enable header
+ * printing with gtk_source_print_job_set_print_header().
+ **/
 void 
 gtk_source_print_job_set_header_format (GtkSourcePrintJob *job,
 					const gchar       *left,
@@ -2369,6 +2808,16 @@ gtk_source_print_job_set_header_format (GtkSourcePrintJob *job,
 	job->priv->header_separator = separator;
 }
 
+/**
+ * gtk_source_print_job_set_footer_format:
+ * @job: a #GtkSourcePrintJob.
+ * @left: a format string to print on the left of the footer.
+ * @center: a format string to print on the center of the footer.
+ * @right: a format string to print on the right of the footer.
+ * @separator: TRUE if you want a separator line to be printed.
+ * 
+ * Like gtk_source_print_job_set_header_format(), but for the footer.
+ **/
 void 
 gtk_source_print_job_set_footer_format (GtkSourcePrintJob *job,
 					const gchar       *left,

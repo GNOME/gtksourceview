@@ -1,3 +1,15 @@
+2003-06-13  Gustavo Giraldez  <gustavo.giraldez@gmx.net>
+
+	* docs/reference/tmpl/printjob.sgml: Documented GtkSourcePrintJob.
+
+	* gtksourceview/gtksourceprintjob.c: Added gtk-doc style headers
+	to document the public API.
+	(gtk_source_print_job_print_range)
+	(gtk_source_print_job_print_range_async): Check that the given
+	iters belong to the configured buffer.
+	(gtk_source_print_job_get_print_job): Check for non-NULL before
+	referencing the returned object.
+
 2003-06-12  Gustavo Giraldez  <gustavo.giraldez@gmx.net>
 
 	* gtksourceview/gtksourceprintjob.c (get_text_to_print): Add a

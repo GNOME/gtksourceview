@@ -2,16 +2,121 @@
 GtkSourcePrintJob
 
 <!-- ##### SECTION Short_Description ##### -->
-
+Printing a #GtkSourceBuffer.
 
 <!-- ##### SECTION Long_Description ##### -->
 <para>
-
+The #GtkSourcePrintJob object is used to print the contents of a
+#GtkSourceBuffer.  You can set various configuration options to
+customize the printed output, and the result is obtained as a
+#GnomePrintJob object, which you can then preview with
+gnome_print_job_preview_new() or print directly with
+gnome_print_job_print().
 </para>
+
+<para>
+Printing can be done synchronously and asynchronously.  Asynchronous
+methods are provided so you can give the user feedback about what's
+going on when printing long documents (see the <link
+linkend="GtkSourcePrintJob-begin-page">&quot;begin_page&quot;</link>
+and <link
+linkend="GtkSourcePrintJob-finished">&quot;finished&quot;</link>
+signals).
+</para>
+
+<para>
+The task of a #GtkSourcePrintJob is to produce a #GnomePrintJob.  What
+this means is that once you get the resulting #GnomePrintJob, you
+might reuse the #GtkSourcePrintJob to produce another output (with
+different configuration options for example) or just unreference it
+and forget about it.  The lifetime of the produced object is
+independent of that of the producer.
+</para>
+
+<para>
+Before printing you should <emphasis>at least</emphasis> set the
+#GtkSourceBuffer you want to print (using
+gtk_source_print_job_set_buffer ()).  Besides that, you might
+configure word wrapping, font, whether to print hightlighted text as
+seen in the #GtkSourceView, line numbers, basic headers and footers.
+</para>
+
+<para>
+#GtkSourcePrintJob can print basic headers and footers in each page.
+You can specify strftime() like strings for text on the left, right
+and center of the top and bottom of the page.  You can also make
+#GtkSourcePrintJob draw a separator line between the text document and
+the header and footer.  And you can specify a different font (from
+that used for the text document).
+</para>
+
+<para>
+Customization beyond that is possible, but you have to do the printing
+manually.  To do that, you need to connect to the <link
+linkend="GtkSourcePrintJob-begin-page">&quot;begin_page&quot;</link>
+signal of the job and allocate some space in the page using
+gtk_source_print_job_set_text_margins().  Whenever #GtkSourcePrintJob
+is about to print a new text page, the signal will be emitted.  You
+can then get the #GnomePrintContext being used with
+gtk_source_print_job_get_print_context() and use Gnome Print functions
+directly.  The space you allocate is inside the document margins
+defined in the specified #GnomePrintConfig, but outside all print area
+used by #GtkSourcePrintJob itself.
+</para>
+
+<para>
+A quick bootstrap code sequence to get you started using
+#GtkSourcePrintJob is given below:
+</para>
+
+<informalexample><programlisting>
+static GnomePrintJob *
+print_source_buffer_from_view (GtkSourceView *view, const gchar *title)
+{
+	GtkSourcePrintJob *job;
+	GnomePrintJob *print_job;
+
+	/* create the job using default print configuration */
+	job = gtk_source_print_job_new (NULL);
+
+	/* quickly setup the buffer, font and wrapping */
+	gtk_source_print_job_setup_from_view (job, view);
+
+	/* print line numbers every 5 lines, using default font */
+	gtk_source_print_job_set_print_numbers (job, 5);
+
+	/* print a header with the title centered */
+	gtk_source_print_job_set_header_footer_font (job, "Sans Regular 12.0");
+	gtk_source_print_job_set_header_format (job,
+	                                        NULL,
+	                                        title,
+	                                        NULL,
+	                                        TRUE);
+	gtk_source_print_job_set_print_header (job, TRUE);
+
+	/* print the page number in the page bottom */
+	gtk_source_print_job_set_footer_format (job,
+	                                        NULL,
+	                                        NULL,
+	                                        "Page %N of %Q",
+	                                        TRUE);
+	gtk_source_print_job_set_print_footer (job, TRUE);
+
+	/* print the whole buffer and return the result */
+	print_job = gtk_source_print_job_print (job);
+
+	/* job is no longer needed */
+	g_object_unref (job);
+
+	return print_job;
+}
+</programlisting></informalexample>
 
 <!-- ##### SECTION See_Also ##### -->
 <para>
-
+The reference documentation for #GtkSourceBuffer.  You might also want
+to check the <link linkend="">Gnome Print library</link> reference
+documentation.
 </para>
 
 <!-- ##### STRUCT GtkSourcePrintJob ##### -->
@@ -371,14 +476,21 @@ GtkSourcePrintJob
 
 <!-- ##### SIGNAL GtkSourcePrintJob::begin-page ##### -->
 <para>
-
+Emitted whenever the @sourceprintjob is about to print a new text
+page.  You can connect to this signal to provide the user with
+feedback about the progress of printing, or to customize the printed
+page by for example, printing your own headers and footers.
 </para>
 
 @sourceprintjob: the object which received the signal.
 
 <!-- ##### SIGNAL GtkSourcePrintJob::finished ##### -->
 <para>
-
+Emitted whenever an asynchronous print job has finished.  You can
+connect to this signal to get notification when a job has finished
+printing.  When it's emitted, the #GnomePrintJob the @sourceprintjob
+was producing has been closed and it can be either previewed or
+printed to the physical device.
 </para>
 
 @sourceprintjob: the object which received the signal.
