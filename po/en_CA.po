@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview 0.9.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-10-13 10:44+0200\n"
-"PO-Revision-Date: 2004-08-09 22:17-0500\n"
+"POT-Creation-Date: 2005-01-07 16:29-0500\n"
+"PO-Revision-Date: 2005-01-07 22:17-0500\n"
 "Last-Translator: Adam Weinberger <adamw@gnome.org>\n"
 "Language-Team: Canadian English <adamw@FreeBSD.org>\n"
 "MIME-Version: 1.0\n"
@@ -241,9 +241,9 @@ msgstr "Preprocessor"
 #: gtksourceview/language-specs/pascal.lang.h:18
 #: gtksourceview/language-specs/perl.lang.h:8
 #: gtksourceview/language-specs/po.lang.h:6
-#: gtksourceview/language-specs/python.lang.h:11
+#: gtksourceview/language-specs/python.lang.h:10
 #: gtksourceview/language-specs/ruby.lang.h:18
-#: gtksourceview/language-specs/xml.lang.h:8
+#: gtksourceview/language-specs/xml.lang.h:7
 #: gtksourceview/language-specs/haskell.lang.h:15
 #: gtksourceview/language-specs/vbnet.lang.h:7
 msgid "String"
@@ -549,7 +549,7 @@ msgstr "Primitives"
 #: gtksourceview/language-specs/java.lang.h:12
 #: gtksourceview/language-specs/javascript.lang.h:34
 #: gtksourceview/language-specs/lua.lang.h:11
-#: gtksourceview/language-specs/python.lang.h:12
+#: gtksourceview/language-specs/python.lang.h:11
 #: gtksourceview/language-specs/ruby.lang.h:19
 #: gtksourceview/language-specs/vbnet.lang.h:8
 msgid "String 2"
@@ -717,12 +717,11 @@ msgid "Closing Bracket"
 msgstr "Closing Bracket"
 
 #: gtksourceview/language-specs/html.lang.h:4
-#: gtksourceview/language-specs/xml.lang.h:4
 msgid "DTD"
 msgstr "DTD"
 
 #: gtksourceview/language-specs/html.lang.h:5
-#: gtksourceview/language-specs/xml.lang.h:5
+#: gtksourceview/language-specs/xml.lang.h:4
 msgid "Entity"
 msgstr "Entity"
 
@@ -732,7 +731,7 @@ msgstr "HTML"
 
 #: gtksourceview/language-specs/html.lang.h:7
 #: gtksourceview/language-specs/latex.lang.h:5
-#: gtksourceview/language-specs/xml.lang.h:7
+#: gtksourceview/language-specs/xml.lang.h:6
 #: gtksourceview/language-specs/texinfo.lang.h:12
 msgid "Markup"
 msgstr "Markup"
@@ -963,8 +962,8 @@ msgid "Preprocessor Defines"
 msgstr "Preprocessor Defines"
 
 #: gtksourceview/language-specs/pascal.lang.h:19
-msgid "Types Class and Object Keywords"
-msgstr "Types, Class, and Object Keywords"
+msgid "Type, Class and Object Keywords"
+msgstr "Type, Class and Object Keywords"
 
 #: gtksourceview/language-specs/perl.lang.h:1
 msgid "Function Call"
@@ -975,12 +974,12 @@ msgid "Method Call"
 msgstr "Method Call"
 
 #: gtksourceview/language-specs/perl.lang.h:5
-msgid "Perl"
-msgstr "Perl"
+msgid "POD"
+msgstr "POD"
 
 #: gtksourceview/language-specs/perl.lang.h:6
-msgid "Plain Old Documentation"
-msgstr "Plain Old Documentation"
+msgid "Perl"
+msgstr "Perl"
 
 #: gtksourceview/language-specs/perl.lang.h:9
 msgid "String2"
@@ -1070,10 +1069,6 @@ msgstr "Module Handler"
 #: gtksourceview/language-specs/python.lang.h:8
 msgid "Python"
 msgstr "Python"
-
-#: gtksourceview/language-specs/python.lang.h:10
-msgid "Self"
-msgstr "Self"
 
 #: gtksourceview/language-specs/ruby.lang.h:1
 msgid "Attribute Definitions"
@@ -1243,15 +1238,15 @@ msgstr "Gates"
 msgid "Verilog"
 msgstr "Verilog"
 
-#: gtksourceview/language-specs/xml.lang.h:6
+#: gtksourceview/language-specs/xml.lang.h:5
 msgid "Hexadecimal"
 msgstr "Hexadecimal"
 
-#: gtksourceview/language-specs/xml.lang.h:9
+#: gtksourceview/language-specs/xml.lang.h:8
 msgid "Tag"
 msgstr "Tag"
 
-#: gtksourceview/language-specs/xml.lang.h:10
+#: gtksourceview/language-specs/xml.lang.h:9
 msgid "XML"
 msgstr "XML"
 
@@ -1318,12 +1313,3 @@ msgstr "Old Style Comment"
 #: gtksourceview/language-specs/vbnet.lang.h:9
 msgid "VB.NET"
 msgstr "VB.NET"
-
-#~ msgid "CSS"
-#~ msgstr "CSS"
-
-#~ msgid "JavaScript"
-#~ msgstr "JavaScript"
-
-#~ msgid "MSIL"
-#~ msgstr "MSIL"
