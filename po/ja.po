@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-15 12:42+0900\n"
-"PO-Revision-Date: 2005-01-15 12:37+0900\n"
+"POT-Creation-Date: 2005-01-26 11:53+0900\n"
+"PO-Revision-Date: 2005-01-26 11:52+0900\n"
 "Last-Translator: Takeshi AIHANA <aihana@gnome.gr.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
@@ -117,8 +117,8 @@ msgid "Font Description"
 msgstr "フォント名"
 
 #: gtksourceview/gtksourceprintjob.c:313
-msgid "Font description name to use for the document text"
-msgstr "ドキュメントのテキストに使用する論理フォント名です"
+msgid "Font to use for the document text (e.g. \"Monospace 10\")"
+msgstr "ドキュメントのテキストに使用するフォントです (例: \"Monospace 10\")"
 
 #: gtksourceview/gtksourceprintjob.c:320 gtksourceview/gtksourceprintjob.c:328
 msgid "Numbers Font"
@@ -169,25 +169,25 @@ msgid "Header and Footer Font Description"
 msgstr "ヘッダとフッタのフォント名"
 
 #: gtksourceview/gtksourceprintjob.c:369
-msgid "Font description name to use for the header and footer"
-msgstr "ヘッダとフッタに使用する論理フォント名です"
+msgid "Font to use for headers and footers (e.g. \"Monospace 10\")"
+msgstr "ヘッダとフッタに使用するフォントです (例: \"Monospace 10\")"
 
-#: gtksourceview/gtksourcestylescheme.c:237
+#: gtksourceview/gtksourcestylescheme.c:262
 msgid "Base-N Integer"
 msgstr "Base-N Integer"
 
-#: gtksourceview/gtksourcestylescheme.c:242
+#: gtksourceview/gtksourcestylescheme.c:267
 msgid "Character"
 msgstr "文字"
 
-#: gtksourceview/gtksourcestylescheme.c:247
+#: gtksourceview/gtksourcestylescheme.c:272
 #: gtksourceview/language-specs/latex.lang.h:1
 #: gtksourceview/language-specs/po.lang.h:1
 msgid "Comment"
 msgstr "コメント"
 
 #. $this = (datatype)
-#: gtksourceview/gtksourcestylescheme.c:252
+#: gtksourceview/gtksourcestylescheme.c:277
 #: gtksourceview/language-specs/php.lang.h:14
 msgid "Data Type"
 msgstr "データ型"
@@ -195,13 +195,13 @@ msgstr "データ型"
 #.
 #. CSS functions, such as rgb(), clip(), or lang().
 #.
-#: gtksourceview/gtksourcestylescheme.c:257
+#: gtksourceview/gtksourcestylescheme.c:282
 #: gtksourceview/language-specs/ada.lang.h:3
 #: gtksourceview/language-specs/css.lang.h:17
 msgid "Function"
 msgstr "関数"
 
-#: gtksourceview/gtksourcestylescheme.c:262
+#: gtksourceview/gtksourcestylescheme.c:287
 #: gtksourceview/language-specs/c.lang.h:6
 #: gtksourceview/language-specs/cpp.lang.h:6
 #: gtksourceview/language-specs/fortran.lang.h:1
@@ -210,11 +210,11 @@ msgstr "関数"
 msgid "Decimal"
 msgstr "10 進数"
 
-#: gtksourceview/gtksourcestylescheme.c:267
+#: gtksourceview/gtksourcestylescheme.c:292
 msgid "Floating Point"
 msgstr "浮動小数点数"
 
-#: gtksourceview/gtksourcestylescheme.c:272
+#: gtksourceview/gtksourcestylescheme.c:297
 #: gtksourceview/language-specs/latex.lang.h:3
 #: gtksourceview/language-specs/po.lang.h:3
 #: gtksourceview/language-specs/texinfo.lang.h:8
@@ -224,11 +224,11 @@ msgstr "浮動小数点数"
 msgid "Keyword"
 msgstr "キーワード"
 
-#: gtksourceview/gtksourcestylescheme.c:277
+#: gtksourceview/gtksourcestylescheme.c:302
 msgid "Preprocessor"
 msgstr "プリプロセッサ"
 
-#: gtksourceview/gtksourcestylescheme.c:282
+#: gtksourceview/gtksourcestylescheme.c:307
 #: gtksourceview/language-specs/ada.lang.h:9
 #: gtksourceview/language-specs/c.lang.h:15
 #: gtksourceview/language-specs/cpp.lang.h:15
@@ -255,7 +255,7 @@ msgstr "プリプロセッサ"
 msgid "String"
 msgstr "文字列"
 
-#: gtksourceview/gtksourcestylescheme.c:287
+#: gtksourceview/gtksourcestylescheme.c:312
 msgid "Specials"
 msgstr "カスタマイズ"
 
@@ -271,7 +271,7 @@ msgstr "カスタマイズ"
 #. Submitted by Scott Martin (scott@coffeeblack.org)
 #.
 #. FIXME: find the correct mimetype
-#: gtksourceview/gtksourcestylescheme.c:294
+#: gtksourceview/gtksourcestylescheme.c:319
 #: gtksourceview/language-specs/css.lang.h:46
 #: gtksourceview/language-specs/desktop.lang.h:10
 #: gtksourceview/language-specs/diff.lang.h:7
@@ -282,15 +282,15 @@ msgstr "カスタマイズ"
 msgid "Others"
 msgstr "その他"
 
-#: gtksourceview/gtksourcestylescheme.c:299
+#: gtksourceview/gtksourcestylescheme.c:324
 msgid "Others 2"
 msgstr "その他２"
 
-#: gtksourceview/gtksourcestylescheme.c:304
+#: gtksourceview/gtksourcestylescheme.c:329
 msgid "Others 3"
 msgstr "その他３"
 
-#: gtksourceview/gtksourcestylescheme.c:341
+#: gtksourceview/gtksourcestylescheme.c:366
 msgid "Default"
 msgstr "デフォルト"
 
@@ -1451,8 +1451,8 @@ msgid "VHDL"
 msgstr "VHDL"
 
 #: gtksourceview/language-specs/R.lang.h:1
-msgid "Assign operator"
-msgstr "代入の操作"
+msgid "Assignment Operator"
+msgstr "代入演算"
 
 #: gtksourceview/language-specs/R.lang.h:2
 msgid "Delimiter"
@@ -1463,12 +1463,12 @@ msgid "Integer Number"
 msgstr "整数値"
 
 #: gtksourceview/language-specs/R.lang.h:8
-msgid "Reserved class"
+msgid "Reserved Class"
 msgstr "予約されたクラス"
 
 #: gtksourceview/language-specs/R.lang.h:9
-msgid "Reserved constant"
-msgstr "予約された内容　"
+msgid "Reserved Constant"
+msgstr "予約された定数"
 
 #: gtksourceview/language-specs/gtkrc.lang.h:3
 msgid "GtkRC"
