@@ -86,4 +86,4 @@ gint gtk_text_search_backward_foreach (GtkTextSearch *search, GtkTextSearchForea
 };
 #endif
 
-#endif __END  /* END OF GTK_TEXT_SEARCH__H_ */
+#endif
