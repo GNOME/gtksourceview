@@ -1,3 +1,19 @@
+2005-03-01  Paolo Maggi  <paolo@gnome.org>
+
+	Patches by Paolo Borelli <pbor@katamail.com>
+
+	* gtksourceview/gtksourceiter.c (pointer_from_offset_skipping_decomp);
+	"offset" passed to pointer_from_offset_skipping_decomp is the number of chars 
+	before the match in the string after both casefold and normalize. 
+	The function walks the original string one character at a time and to 
+	find out how much to substract from offset it has to both casefold and 
+	normalize the current char. Before the patch, it didn't casefold the 
+	current char, and since casefold may change the lenght of the string 
+	it ended up returning a pointer to the wrong character in the string.
+	(forward_chars_with_skipping): minimal 
+	workaround to avoid the infinite loop of bug #168247.  It doesn't fix the 
+	problem, just the symptom.
+
 2005-02-27  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
 
 	* gtksourceview/gtksourceview.c (gtk_source_view_expose): Replaced

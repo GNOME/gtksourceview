@@ -39,15 +39,17 @@
 static const gchar *
 pointer_from_offset_skipping_decomp (const gchar *str, gint offset)
 {
-	gchar *normal;
+	gchar *casefold, *normal;
 	const gchar *p, *q;
 
 	p = str;
 	while (offset > 0)
 	{
 		q = g_utf8_next_char (p);
-		normal = g_utf8_normalize (p, q - p, G_NORMALIZE_ALL);
+		casefold = g_utf8_casefold (p, q - p);
+		normal = g_utf8_normalize (casefold, -1, G_NORMALIZE_ALL);
 		offset -= g_utf8_strlen (normal, -1);
+		g_free (casefold);
 		g_free (normal);
 		p = q;
 	}
@@ -219,6 +221,12 @@ forward_chars_with_skipping (GtkTextIter *iter,
 	while (i > 0)
 	{
 		gboolean ignored = FALSE;
+
+		/* minimal workaround to avoid the infinite loop of bug #168247.
+		 * It doesn't fix the problemjust the symptom...
+		 */
+		if (gtk_text_iter_is_end (iter))
+			return;
 
 		if (skip_nontext && gtk_text_iter_get_char (iter) == GTK_TEXT_UNKNOWN_CHAR)
 			ignored = TRUE;
