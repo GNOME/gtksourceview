@@ -1,8 +1,7 @@
-# translation of gtksourceview.HEAD.po to Spanish
 # translation of gtksourceview.HEAD.es.po to Spanish
 # Spanish translation for GtkSourceView
 # Copyright (C) 2003 Free Software Foundation, Inc.
-# This file is distributed under the same license as the PACKAGE package.
+# This file is distributed under the same license as the gtksourceview package.
 # Lucas 'Basurero' Vieites <basurero@jazzfree.com>, 2003.
 # Francisco Javier F. Serrador <serrador@arrakis.es>, 2003.
 #
@@ -10,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-08-28 04:38+0200\n"
-"PO-Revision-Date: 2003-08-28 08:50+0200\n"
+"POT-Creation-Date: 2003-12-14 12:02+0100\n"
+"PO-Revision-Date: 2003-12-14 12:08+0100\n"
 "Last-Translator: Francisco Javier F. Serrador <serrador@arrakis.es>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -340,6 +339,7 @@ msgstr "Palabras clave"
 #: gtksourceview/language-specs/java.lang.h:5
 #: gtksourceview/language-specs/perl.lang.h:3
 #: gtksourceview/language-specs/python.lang.h:4
+#: gtksourceview/language-specs/sql.lang.h:11
 msgid "Line Comment"
 msgstr "Comentario de línea"
 
@@ -357,6 +357,7 @@ msgstr "Directivas del preprocesador"
 #: gtksourceview/language-specs/cpp.lang.h:14
 #: gtksourceview/language-specs/idl.lang.h:7
 #: gtksourceview/language-specs/java.lang.h:10
+#: gtksourceview/language-specs/sql.lang.h:26
 msgid "Sources"
 msgstr "Fuentes"
 
@@ -381,6 +382,7 @@ msgstr "Comentario '#if 0'"
 #: gtksourceview/language-specs/html.lang.h:2
 #: gtksourceview/language-specs/idl.lang.h:1
 #: gtksourceview/language-specs/java.lang.h:1
+#: gtksourceview/language-specs/sql.lang.h:5
 #: gtksourceview/language-specs/xml.lang.h:2
 msgid "Block Comment"
 msgstr "Comentario de bloque"
@@ -635,6 +637,106 @@ msgstr "Python"
 msgid "Self"
 msgstr "Self"
 
+#: gtksourceview/language-specs/sql.lang.h:1
+msgid "ANSI Datatypes"
+msgstr "Tipos de datos ANSI"
+
+#: gtksourceview/language-specs/sql.lang.h:2
+msgid "ANSI Reserved Words"
+msgstr "Palabras reservadas ANSI"
+
+#: gtksourceview/language-specs/sql.lang.h:3
+msgid "Aggregate Functions"
+msgstr "Funciones agregadas"
+
+#: gtksourceview/language-specs/sql.lang.h:4
+msgid "Analytic Functions"
+msgstr "Funciones analíticas"
+
+#: gtksourceview/language-specs/sql.lang.h:6
+msgid "Character Functions Returning Character Values"
+msgstr "Funciones de carácter que devuelven valores de carácter"
+
+#: gtksourceview/language-specs/sql.lang.h:7
+msgid "Character Functions Returning Number Values"
+msgstr "Funciones de carácter que devuelven valores numéricos"
+
+#: gtksourceview/language-specs/sql.lang.h:8
+msgid "Conversion Functions"
+msgstr "Funciones de conversión"
+
+#: gtksourceview/language-specs/sql.lang.h:9
+msgid "Datetime Functions"
+msgstr "Funciones de fecha y hora"
+
+#: gtksourceview/language-specs/sql.lang.h:10
+msgid "Integer Literals"
+msgstr "literales enteros"
+
+#: gtksourceview/language-specs/sql.lang.h:12
+msgid "Miscellaneous Single-Row Functions"
+msgstr "Funciones misceláneas de fila simple"
+
+#: gtksourceview/language-specs/sql.lang.h:13
+msgid "Null"
+msgstr "Null"
+
+#: gtksourceview/language-specs/sql.lang.h:14
+msgid "Number Functions"
+msgstr "Funciones numéricas"
+
+#: gtksourceview/language-specs/sql.lang.h:15
+msgid "Number Literals"
+msgstr "Literales numéricos"
+
+#: gtksourceview/language-specs/sql.lang.h:16
+msgid "Object Reference Functions"
+msgstr "Funciones de referencia a objetos"
+
+#: gtksourceview/language-specs/sql.lang.h:17
+msgid "Oracle Built-in Datatypes"
+msgstr "Tipos de datos integrados de Oracle"
+
+#: gtksourceview/language-specs/sql.lang.h:18
+msgid "Oracle Reserved Words"
+msgstr "Palabras reservadas de Oracle"
+
+#: gtksourceview/language-specs/sql.lang.h:19
+msgid "SQL"
+msgstr "SQL"
+
+#: gtksourceview/language-specs/sql.lang.h:20
+msgid "SQL*Plus At Sign"
+msgstr "SQL*Plus At Sign"
+
+#: gtksourceview/language-specs/sql.lang.h:21
+msgid "SQL*Plus Commands"
+msgstr "SQL*Plus Commands"
+
+#: gtksourceview/language-specs/sql.lang.h:22
+msgid "SQL*Plus Double At Sign"
+msgstr "SQL*Plus Double At Sign"
+
+#: gtksourceview/language-specs/sql.lang.h:23
+msgid "SQL*Plus Slash"
+msgstr "SQL*Plus Slash"
+
+#: gtksourceview/language-specs/sql.lang.h:24
+msgid "SQL/DS and DB2 Datatypes"
+msgstr "Tipos de datos SQL/DS y DB2"
+
+#: gtksourceview/language-specs/sql.lang.h:25
+msgid "Size Clause"
+msgstr "Clausula de tamaño"
+
+#: gtksourceview/language-specs/sql.lang.h:27
+msgid "Text Literals"
+msgstr "Literales de texto"
+
+#: gtksourceview/language-specs/sql.lang.h:28
+msgid "Unlimited"
+msgstr "Sin límite"
+
 #: gtksourceview/language-specs/xml.lang.h:6
 msgid "Hexadecimal"
 msgstr "Hexadecimal"
@@ -646,4 +748,3 @@ msgstr "Marca"
 #: gtksourceview/language-specs/xml.lang.h:11
 msgid "XML"
 msgstr "XML"
-
