@@ -2104,7 +2104,8 @@ update_syntax_regions (GtkSourceBuffer *source_buffer,
 	    start_offset >= source_buffer->priv->worker_last_offset) {
 		/* update saved table offsets which potentially
 		 * contain the offset */
-		adjust_table_offsets (source_buffer->priv->old_syntax_regions, 0, delta);
+		region = bsearch_offset (source_buffer->priv->old_syntax_regions, start_offset);
+		adjust_table_offsets (source_buffer->priv->old_syntax_regions, region, delta);
 		return;
 	}
 	

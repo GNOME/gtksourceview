@@ -1,3 +1,9 @@
+2003-09-12  Gustavo Giraldez  <gustavo.giraldez@gmx.net>
+
+	* gtksourceview/gtksourcebuffer.c (update_syntax_regions): Only
+	update saved table offsets which are beyond the start_offset (Bug
+	#117441).
+
 2003-09-07  Laurent Dhima  <laurenti@alblinux.net>
 
 	* configure.in: Added "sq" to ALL_LINGUAS.
