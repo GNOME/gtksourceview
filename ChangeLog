@@ -1,5 +1,17 @@
 2003-09-27  Gustavo Giraldez  <gustavo.giraldez@gmx.net>
 
+	* gtksourceview/gtksourceundomanager.c (gtk_source_undo_manager_undo) 
+	(gtk_source_undo_manager_delete_range_handler): When undoing a
+	delete action, place the cursor where it really was when the user
+	deleted the text (bug #112682).
+	(gtk_source_undo_manager_check_list_size): Keep a pointer to the
+	new list tail instead of iterating through all the list for each
+	removed action.
+	(gtk_source_undo_manager_set_max_undo_levels): Shrink the actions
+	list if needed due to the new maximum undo levels (bug #123273).
+
+2003-09-27  Gustavo Giraldez  <gustavo.giraldez@gmx.net>
+
 	* gtksourceview/language-specs/java.lang: Remove the two new
 	translatable strings and restore the old one, by joining the
 	pattern items (doh!).

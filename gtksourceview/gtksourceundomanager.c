@@ -65,6 +65,7 @@ struct _GtkSourceUndoDeleteAction
 	gint   start;
 	gint   end;
 	gchar *text;
+	gboolean forward;
 };
 
 struct _GtkSourceUndoAction
@@ -435,15 +436,20 @@ gtk_source_undo_manager_undo (GtkSourceUndoManager *um)
 		switch (undo_action->action_type)
 		{
 			case GTK_SOURCE_UNDO_ACTION_DELETE:
-				set_cursor (
-					um->priv->document, 
-					undo_action->action.delete.start);
-
 				insert_text (
 					um->priv->document, 
 					undo_action->action.delete.start, 
 					undo_action->action.delete.text,
 					strlen (undo_action->action.delete.text));
+
+				if (undo_action->action.delete.forward)
+					set_cursor (
+						um->priv->document, 
+						undo_action->action.delete.start);
+				else
+					set_cursor (
+						um->priv->document, 
+						undo_action->action.delete.end);
 
 				break;
 				
@@ -633,7 +639,8 @@ gtk_source_undo_manager_delete_range_handler (GtkTextBuffer 		*buffer,
 					      GtkSourceUndoManager 	*um)
 {
 	GtkSourceUndoAction undo_action;
-
+	GtkTextIter insert_iter;
+	
 	if (um->priv->running_not_undoable_actions > 0)
 		return;
 
@@ -648,6 +655,14 @@ gtk_source_undo_manager_delete_range_handler (GtkTextBuffer 		*buffer,
 						buffer,
 						undo_action.action.delete.start,
 						undo_action.action.delete.end);
+
+	/* figure out if the user used the Delete or the Backspace key */
+	gtk_text_buffer_get_iter_at_mark (buffer, &insert_iter,
+					  gtk_text_buffer_get_insert (buffer));
+	if (gtk_text_iter_get_offset (&insert_iter) <= undo_action.action.delete.start)
+		undo_action.action.delete.forward = TRUE;
+	else
+		undo_action.action.delete.forward = FALSE;
 
 	if (((undo_action.action.delete.end - undo_action.action.delete.start) > 1) ||
 	     (g_utf8_get_char (undo_action.action.delete.text  ) == '\n'))
@@ -795,6 +810,8 @@ gtk_source_undo_manager_check_list_size (GtkSourceUndoManager *um)
 			
 		do
 		{
+			GList *tmp;
+			
 			if (undo_action->action_type == GTK_SOURCE_UNDO_ACTION_INSERT)
 				g_free (undo_action->action.insert.text);
 			else if (undo_action->action_type == GTK_SOURCE_UNDO_ACTION_DELETE)
@@ -807,10 +824,11 @@ gtk_source_undo_manager_check_list_size (GtkSourceUndoManager *um)
 
 			g_free (undo_action);
 
+			tmp = g_list_previous (last);
 			um->priv->actions = g_list_delete_link (um->priv->actions, last);
-			g_return_if_fail (um->priv->actions != NULL); 
+			last = tmp;
+			g_return_if_fail (last != NULL); 
 
-			last = g_list_last (um->priv->actions);
 			undo_action = (GtkSourceUndoAction*) last->data;
 
 		} while ((undo_action->order_in_group > 1) || 
@@ -855,8 +873,9 @@ gtk_source_undo_manager_merge_action (GtkSourceUndoManager 	*um,
 
 	if (undo_action->action_type == GTK_SOURCE_UNDO_ACTION_DELETE)
 	{				
-		if ((last_action->action.delete.start != undo_action->action.delete.start) &&
-		    (last_action->action.delete.start != undo_action->action.delete.end))
+		if ((last_action->action.delete.forward != undo_action->action.delete.forward) ||
+		    ((last_action->action.delete.start != undo_action->action.delete.start) &&
+		     (last_action->action.delete.start != undo_action->action.delete.end)))
 		{
 			last_action->mergeable = FALSE;
 			return FALSE;
@@ -955,9 +974,38 @@ void
 gtk_source_undo_manager_set_max_undo_levels (GtkSourceUndoManager	*um,
 				  	     gint			 max_undo_levels)
 {
+	gint old_levels;
+	
 	g_return_if_fail (um != NULL);
 	g_return_if_fail (GTK_SOURCE_IS_UNDO_MANAGER (um));
 
+	old_levels = um->priv->max_undo_levels;
 	um->priv->max_undo_levels = max_undo_levels;
-}
 
+	if (old_levels > max_undo_levels)
+	{
+		/* strip redo actions first */
+		while (um->priv->next_redo >= 0 && (um->priv->num_of_groups > max_undo_levels))
+		{
+			gtk_source_undo_manager_free_first_n_actions (um, 1);
+			um->priv->next_redo--;
+		}
+		
+		/* now remove undo actions if necessary */
+		gtk_source_undo_manager_check_list_size (um);
+
+		/* emit "can_undo" and/or "can_redo" if appropiate */
+		if (um->priv->next_redo < 0 && um->priv->can_redo)
+		{
+			um->priv->can_redo = FALSE;
+			g_signal_emit (G_OBJECT (um), undo_manager_signals [CAN_REDO], 0, FALSE);
+		}
+
+		if (um->priv->can_undo &&
+		    um->priv->next_redo >= (gint)(g_list_length (um->priv->actions) - 1))
+		{
+			um->priv->can_undo = FALSE;
+			g_signal_emit (G_OBJECT (um), undo_manager_signals [CAN_UNDO], 0, FALSE);
+		}
+	}
+}
