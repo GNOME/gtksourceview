@@ -1,0 +1,193 @@
+# German GtkSourceView translation.
+# Copyright (C) 2002, 2003 Free Software Foundation, Inc.
+# This file is distributed under the same license as the GtkSourceView package.
+# Christian Neumair <chris@gnome-de.org>, 2003.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: GtkSourceView 0.2.1\n"
+"POT-Creation-Date: 2003-05-31 11:58+0200\n"
+"PO-Revision-Date: 2003-05-31 11:40+0200\n"
+"Last-Translator: Christian Neumair <chris@gnome-de.org>\n"
+"Language-Team: German <gnome-de@gnome.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: gtksourceview/gtksourceview.c:207
+msgid "Show Line Numbers"
+msgstr "Zeilennummern anzeigen"
+
+#: gtksourceview/gtksourceview.c:208
+msgid "Whether to display line numbers"
+msgstr "Sollen Zeilennummern angezeigt werden?"
+
+#: gtksourceview/gtksourceview.c:215
+msgid "Show Line Markers"
+msgstr "Zeilenmarkierungen anzeigen"
+
+#: gtksourceview/gtksourceview.c:216
+msgid "Whether to display line marker pixbufs"
+msgstr "Sollen Pixbufs zur Zeilenmarkierung angezeigt werden?"
+
+#: gtksourceview/gtksourceview.c:223 gtksourceview/gtksourceview.c:224
+msgid "Tabs Width"
+msgstr "Tabulatorbreite"
+
+#: gtksourceview/gtksourceview.c:233
+msgid "Auto Indentation"
+msgstr "Auto-Einrücken"
+
+#: gtksourceview/gtksourceview.c:234
+msgid "Whether to enable auto indentation"
+msgstr "Soll das Einrücken automatisch erfolgen?"
+
+#: gtksourceview/gtksourceview.c:240
+msgid "Insert Spaces Instead of Tabs"
+msgstr "Leerzeichen statt Tabulatoren einfügen"
+
+#: gtksourceview/gtksourceview.c:241
+msgid "Whether to insert spaces instead of tabs"
+msgstr "Sollen Leerzeichen statt Tabulatoren eingefügt werden?"
+
+#: gtksourceview/gtksourceview.c:248
+msgid "Show Right Margin"
+msgstr "Rechten Rand anzeigen"
+
+#: gtksourceview/gtksourceview.c:249
+msgid "Whether to display the right margin"
+msgstr "Soll der rechte Rand angezeigt werden?"
+
+#: gtksourceview/gtksourceview.c:256
+msgid "Margin position"
+msgstr "Randposition"
+
+#: gtksourceview/gtksourceview.c:257
+msgid "Position of the right margin"
+msgstr "Position des rechten Rands"
+
+#: gtksourceview/gtksourceview.c:266
+msgid "Use smart home/end"
+msgstr "Intelligentes Pos1/Ende verwenden"
+
+# CHECK
+#: gtksourceview/gtksourceview.c:267
+msgid ""
+"HOME and END keys move to first/last characters on line first before going "
+"to the start/end of the line"
+msgstr ""
+"Sollen die Pos1 sowie die End-Tasten zum ersten/letzten Zeichen in einer "
+"Zeile springen, bevor sie zur ersten/letzten Zeile springen"
+
+#: gtksourceview/gtksourcebuffer.c:277
+msgid "Escape Character"
+msgstr "Terminierungszeichen"
+
+#: gtksourceview/gtksourcebuffer.c:278
+msgid "Escaping character for syntax patterns"
+msgstr "Zeichen zum Terminieren von Syntax-Mustern"
+
+#: gtksourceview/gtksourcebuffer.c:286
+msgid "Check Brackets"
+msgstr "Klammern überprüfen"
+
+#: gtksourceview/gtksourcebuffer.c:287
+msgid "Whether to check and highlight matching brackets"
+msgstr "Sollen zusammengehörige Klammern überprüft und hervorgehoben werden?"
+
+#: gtksourceview/gtksourcebuffer.c:295
+msgid "Highlight"
+msgstr "Hervorheben"
+
+#: gtksourceview/gtksourcebuffer.c:296
+msgid "Whether to highlight syntax in the buffer"
+msgstr "Soll die Syntax im Puffer hervorgehoben werden?"
+
+#: gtksourceview/gtksourcebuffer.c:304
+msgid "Maximum Undo Levels"
+msgstr "Maximale Rückgängig-Ebenen"
+
+#: gtksourceview/gtksourcebuffer.c:305
+msgid "Number of undo levels for the buffer"
+msgstr "Anzahl der maximalen Rückgängig-Ebenen des Puffers"
+
+#: gtksourceview/gtksourcebuffer.c:315
+msgid "Language"
+msgstr "Sprache"
+
+#: gtksourceview/gtksourcebuffer.c:316
+msgid "Language object to get highlighting patterns from"
+msgstr "Sprachobjekte, von dem hervorgehobene Muster bezogen werden sollen"
+
+#: gtksourceview/gtksourcelanguagesmanager.c:119
+msgid "Language specification directories"
+msgstr "Sprachspezifikationsverzeichnisse"
+
+#: gtksourceview/gtksourcelanguagesmanager.c:120
+msgid ""
+"List of directories where the language specification files (.lang) are "
+"located"
+msgstr ""
+"Liste der Verzeichnisse, in denen sich die Sprachspezifikationdateien (."
+"lang) befinden"
+
+#: gtksourceview/gtksourcestylescheme.c:222
+msgid "Base-N Integer"
+msgstr "Ganzzahl zur Basis N"
+
+#: gtksourceview/gtksourcestylescheme.c:227
+msgid "Character"
+msgstr "Zeichen"
+
+#: gtksourceview/gtksourcestylescheme.c:232
+msgid "Comment"
+msgstr "Kommentar"
+
+#: gtksourceview/gtksourcestylescheme.c:237
+msgid "Data Type"
+msgstr "Datentyp"
+
+#: gtksourceview/gtksourcestylescheme.c:242
+msgid "Function"
+msgstr "Funktion"
+
+#: gtksourceview/gtksourcestylescheme.c:247
+msgid "Decimal"
+msgstr "Dezimal"
+
+#: gtksourceview/gtksourcestylescheme.c:252
+msgid "Floating Point"
+msgstr "Fließkomma"
+
+#: gtksourceview/gtksourcestylescheme.c:257
+msgid "Keyword"
+msgstr "Stichwort"
+
+#: gtksourceview/gtksourcestylescheme.c:262
+msgid "Preprocessor"
+msgstr "Präprozessor"
+
+#: gtksourceview/gtksourcestylescheme.c:267
+msgid "String"
+msgstr "Zeichenkette"
+
+# CHECK
+#: gtksourceview/gtksourcestylescheme.c:272
+msgid "Specials"
+msgstr "Sonderzeichen"
+
+#: gtksourceview/gtksourcestylescheme.c:277
+msgid "Others"
+msgstr "Sonstige"
+
+#: gtksourceview/gtksourcestylescheme.c:282
+msgid "Others 2"
+msgstr "Sonstige 2"
+
+#: gtksourceview/gtksourcestylescheme.c:287
+msgid "Others 3"
+msgstr "Sonstige 3"
+
+#: gtksourceview/gtksourcestylescheme.c:324
+msgid "Default"
+msgstr "Vorgabe"
