@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview.HEAD.he\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-06-28 06:46+0200\n"
-"PO-Revision-Date: 2003-06-28 12:50+0300\n"
+"POT-Creation-Date: 2003-07-15 16:41+0200\n"
+"PO-Revision-Date: 2003-07-16 00:15+0300\n"
 "Last-Translator: Gil 'Dolfin' Osher <dolfin@rpg.org.il>\n"
 "Language-Team: Hebrew <he@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -151,65 +151,81 @@ msgstr "גופן כותרת ותחתית"
 msgid "Font name to use for the header and footer"
 msgstr "שם הגופן לשימוש בכותרת ובתחתית"
 
-#: gtksourceview/gtksourcestylescheme.c:222
+#: gtksourceview/gtksourcestylescheme.c:230
 msgid "Base-N Integer"
 msgstr "מספר שלם בבסיס N"
 
-#: gtksourceview/gtksourcestylescheme.c:227
+#: gtksourceview/gtksourcestylescheme.c:235
 msgid "Character"
 msgstr "תו"
 
-#: gtksourceview/gtksourcestylescheme.c:232
+#: gtksourceview/gtksourcestylescheme.c:240
 msgid "Comment"
 msgstr "הערה"
 
-#: gtksourceview/gtksourcestylescheme.c:237
+#: gtksourceview/gtksourcestylescheme.c:245
 msgid "Data Type"
 msgstr "סוג מידע"
 
-#: gtksourceview/gtksourcestylescheme.c:242
+#: gtksourceview/gtksourcestylescheme.c:250
 msgid "Function"
 msgstr "פונקציה"
 
-#: gtksourceview/gtksourcestylescheme.c:247
+#: gtksourceview/gtksourcestylescheme.c:255
 msgid "Decimal"
 msgstr "דצימלי"
 
-#: gtksourceview/gtksourcestylescheme.c:252
+#: gtksourceview/gtksourcestylescheme.c:260
 msgid "Floating Point"
 msgstr "נקודה צפה"
 
-#: gtksourceview/gtksourcestylescheme.c:257
+#: gtksourceview/gtksourcestylescheme.c:265
 msgid "Keyword"
 msgstr "מילת מפתח"
 
-#: gtksourceview/gtksourcestylescheme.c:262
+#: gtksourceview/gtksourcestylescheme.c:270
 msgid "Preprocessor"
 msgstr "מעבד-קדם"
 
-#: gtksourceview/gtksourcestylescheme.c:267
+#: gtksourceview/gtksourcestylescheme.c:275
 msgid "String"
 msgstr "מחרוזת"
 
-#: gtksourceview/gtksourcestylescheme.c:272
+#: gtksourceview/gtksourcestylescheme.c:280
 msgid "Specials"
 msgstr "מיוחדים"
 
-#: gtksourceview/gtksourcestylescheme.c:277
+#: gtksourceview/gtksourcestylescheme.c:285
 msgid "Others"
 msgstr "אחרים"
 
-#: gtksourceview/gtksourcestylescheme.c:282
+#: gtksourceview/gtksourcestylescheme.c:290
 msgid "Others 2"
 msgstr "אחרים 2"
 
-#: gtksourceview/gtksourcestylescheme.c:287
+#: gtksourceview/gtksourcestylescheme.c:295
 msgid "Others 3"
 msgstr "אחרים 3"
 
-#: gtksourceview/gtksourcestylescheme.c:324
+#: gtksourceview/gtksourcestylescheme.c:332
 msgid "Default"
 msgstr "ברירת מחדל"
+
+#: gtksourceview/gtksourcetag.c:108
+msgid "Tag ID"
+msgstr "זיהוי תג"
+
+#: gtksourceview/gtksourcetag.c:109
+msgid "ID used to refer to the source tag"
+msgstr "זיהוי המשמש לקשר לתג המקור"
+
+#: gtksourceview/gtksourcetag.c:116
+msgid "Tag style"
+msgstr "סגנון תג"
+
+#: gtksourceview/gtksourcetag.c:117
+msgid "The style associated to the source tag"
+msgstr "הסגנון המשויך לתג המקור"
 
 #: gtksourceview/gtksourceview.c:207
 msgid "Show Line Numbers"
