@@ -15,9 +15,8 @@
 
 	<block-comment _name = "'#if 0' Comment" style = "Comment">
 		<start-regex>^[ \t]*#[ \t]*if[ \t]*0</start-regex>
-        	<end-regex>[ \t]*#[ \t]*endif</end-regex>
+        	<end-regex>[ \t]*#[ \t]*(endif|else)</end-regex>
 	</block-comment>
-
 
 	<string _name = "String" style = "String" end-at-line-end = "TRUE">
 		<start-regex>&quot;</start-regex>
