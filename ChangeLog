@@ -1,3 +1,10 @@
+2004-12-27  Paolo Maggi  <paolo@gnome.org>
+
+	* gtksourceview/language-specs/php.lang: adds text/x-php-source and 
+	application/x-php-source to mimetypes (fixes bug #162190: PHP 
+	language-spec should work for phps files). Patch by David A Knight
+	<david@ritter.demon.co.uk>.
+
 2004-12-10  Vinay M R  <vinay.mandyakoppal@wipro.com>
 
 	* gtksourceview/gtksourceview.c (gtk_source_view_class_init):
