@@ -445,7 +445,7 @@ gtk_source_view_expose (GtkWidget      *widget,
 		g_signal_handlers_disconnect_by_func (G_OBJECT (view),
 						      G_CALLBACK (gtk_source_view_expose),
 						      view);
-		return;
+		return FALSE;
 	}
 
 	i = 0;
@@ -554,10 +554,10 @@ GtkWidget *
 gtk_source_view_new ()
 {
 	GtkWidget *widget;
-	GtkTextBuffer *buffer;
+	GtkSourceBuffer *buffer;
 
 	buffer = gtk_source_buffer_new (NULL);
-	widget = gtk_source_view_new_with_buffer (GTK_SOURCE_BUFFER (buffer));
+	widget = gtk_source_view_new_with_buffer (buffer);
 	return widget;
 }
 

@@ -117,13 +117,14 @@ static gint get_tag_start (GtkTextTag  *tag,
 static gint get_tag_end   (GtkTextTag  *tag,
 			   GtkTextIter *iter);
 
-static void get_all_markers (gpointer key, gpointer value, gpointer user_data);
-
 static void hash_remove_func (gpointer key, gpointer value, gpointer user_data);
 
 static void get_tags_func (GtkTextTag *tag, gpointer data);
 
-static gboolean read_loop (GtkTextBuffer *buffer, gchar *filename, GIOChannel  *io, GError **error);
+static gboolean read_loop (GtkTextBuffer *buffer,
+			   const char    *filename,
+			   GIOChannel    *io,
+			   GError       **error);
 
 
 static void
@@ -743,9 +744,9 @@ get_syntax_end (const gchar          *text,
 
 static gboolean
 read_loop (GtkTextBuffer *buffer, 
-	char *filename,
-	  GIOChannel  *io,
-	   GError **error)
+	   const char    *filename,
+	   GIOChannel    *io,
+	   GError       **error)
 {
 	GIOStatus status;
 	GtkWidget *widget;

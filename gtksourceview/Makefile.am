@@ -17,8 +17,6 @@ BUILT_SOURCES = \
 $(libgtksourceview_la_SOURCES): $(BUILD_SOURCES)
 
 libgtksourceview_la_SOURCES = \
-	regex.c \
-	regex.h \
 	gtksourcebuffer.c \
 	gtksourcebuffer.h \
 	gtktextsearch.c \

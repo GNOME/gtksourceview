@@ -26,7 +26,7 @@ static GObjectClass *parent_class = NULL;
 
 void gtk_text_search_class_init (GtkTextSearchClass *klass);
 void gtk_text_search_init (GtkTextSearch *object);
-void gtk_text_search_finalize (GtkTextSearch *object);
+void gtk_text_search_finalize (GObject *object);
 
 
 void
@@ -50,8 +50,9 @@ gtk_text_search_class_init(GtkTextSearchClass *klass)
 }
 
 void
-gtk_text_search_finalize (GtkTextSearch *text_search)
+gtk_text_search_finalize (GObject *object)
 {
+  GtkTextSearch *text_search = GTK_TEXT_SEARCH (object);
   g_free (text_search->search_for);
   g_object_unref (G_OBJECT(text_search->mark_current));
   g_object_unref (G_OBJECT(text_search->mark_stop));

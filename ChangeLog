@@ -1,5 +1,20 @@
 2002-07-13  Jeroen Zwartepoorte  <jeroen@xs4all.nl>
 
+	* configure.in: Treat warnings as errors.
+	* src/Makefile.am: Removed regex.[ch]. Old version, use distro instead.
+	* src/gtksourcebuffer.c: (read_loop):
+	* src/gtksourcetag.c:
+	* src/gtksourceview.c: (gtk_source_view_expose),
+	(gtk_source_view_new):
+	* src/gtktextsearch.c: (gtk_text_search_finalize):
+	* src/regex.c: Removed.
+	* src/regex.h: Removed.
+	* src/test-widget.c:
+
+	Fix all warnings.
+
+2002-07-13  Jeroen Zwartepoorte  <jeroen@xs4all.nl>
+
 	* src/test-widget.c: (test_source): Fix test-widget segfault.
 
 2002-07-12  Jeroen Zwartepoorte  <jeroen@xs4all.nl>

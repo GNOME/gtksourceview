@@ -17,6 +17,7 @@
  */
 
 #include <stdio.h>
+#include <string.h>
 #include <gtk/gtk.h>
 #include "gtktextsearch.h"
 #include "gtksourceview.h"

@@ -60,6 +60,8 @@ PKG_CHECK_MODULES(DEP,
 	gtk+-2.0 >= $GTK_REQUIRED_VERSION
 	libgnome-2.0 >= $GNOME_REQUIRED)
 
+CFLAGS="$CFLAGS -Wall -Werror"
+
 AC_OUTPUT([
 gtksourceview.pc
 Makefile
