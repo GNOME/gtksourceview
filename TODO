@@ -1,47 +1,20 @@
-TODO (last update: 6th June 2003)
+TODO (last update: 13th June 2003)
 =================================
 
 Before next release:
 
-[X] Reviewing the APIs
-[X] Support for multiple views (Gustavo)
-[X] Removing the style themes stuff (Paolo)
-[X] Finishing the .lang file stuff (Paolo)
-[X] Rewriting the markers stuff code (Gustavo)
-[X] Writing a gtk_source_buffer_remove_all_source_tags and 
-    use it in GtkSourceBuffer instead of gtk_text_buffer_remove_all_tags (Paolo)
-[X] Reviewing the build stuff (Gustavo)
-[X] i18n (Gustavo)
-[X] Creating a bugzilla product (Paolo)
-[X] Removing gtktextsearch.[ch] files (Paolo)
-[X] Renaming the src dir to gtksourceview (Paolo)
-[X] Moving the test programs in a tests directory
-[X] Cleaning up the test-widget demo (Gustavo)
-[X] "escape_char" property.  We probably want to put it 
-    into the .lang file too? (Gustavo)
-[X] gtk_source_buffer_set_bracket_tag_style (or whatever we name it :-)
-    (Gustavo)
-[X] New properties "check_brackets", "highlight", "max_undo_levels" and "language",
-    and notification of changes in these (Gustavo)
-[X] Auto-indentation and insert spaces instead of tabs (Paolo)
-[X] gtk_source_buffer_new_with_language and gtk_source_view_[get|set]_language
-    (Paolo)
-[X] Properties in GtkSourceView (Paolo)
-[X] Fixing bracket matching (Paolo)
-[X] Moving gtk_source_buffer_find_bracket_match to gtksourceiter.[ch]
 [ ] Removing hack for bug #81893 (Paolo)
-
+[ ] Fixing GtkSourceSearchFlags to represent a bitmask fields 
+[ ] Adding php.lang and csharp.lang
 
 Future releases:
 
 [ ] Convert .lang files to the new format (we could write a perl 
     script to translate UltraEdit or TextPad syntax files in 
     our format) (Gustavo)
-[ ] Implementing smart indentation (Paolo)
+[ ] Implementing smart indentation (bug #107044) (Paolo)
 [ ] Writing documentation
 [ ] Properties in GtkSourceLanguage (?) (Paolo)
-[X] Moving some of the code of gedit-view in gtksourceview (Paolo)
-[X] Moving the gedit printing code to gtksourceview (Gustavo)
 [ ] Using a stack machine for the highlight code (Gustavo)
 [ ] Trying to improve the performance of 
     gtk_source_buffer_remove_all_source_tags by using an hash table
@@ -49,3 +22,6 @@ Future releases:
     to gtksourceview (Jeroen)
 [ ] Writing a test program showing how to use GtkSourceTag 
     (instead of GtkSourceLanguage)
+[ ] Adding calltip (see the Scintilla API)
+[ ] User syntax files should merge with system defaults (bug #110978)
+[ ] Support for code Auto-completion
