@@ -1,5 +1,14 @@
 2005-01-07  Paolo Maggi  <paolo@gnome.org>
 
+	New language specification file for TCL provided by Riccardo 
+	Lancellotti <riccardo@weblab.ing.unimo.it> (bug #154312)
+
+	* gtksourceview/language-specs/Makefile.am: added tcl.lang
+
+	* gtksourceview/language-specs/tcl.lang: new file
+
+2005-01-07  Paolo Maggi  <paolo@gnome.org>
+
 	* gtksourceview/language-specs/pascal.lang: fixed bug #150477 (Potential
 	"Types Class" typo in gtksourceview message). Patch by 
 	Thierry Moisan  <thierryn@videotron.ca>

@@ -23,6 +23,7 @@ EXTRA_DIST = 			\
 	python.lang		\
 	ruby.lang		\
 	sql.lang		\
+	tcl.lang		\
 	texinfo.lang		\
 	vbnet.lang		\
 	verilog.lang		\
