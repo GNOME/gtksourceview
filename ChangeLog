@@ -1,3 +1,9 @@
+2002-05-22  Mikael Hermansson  <tyan@linux.se>
+
+	* src/gtksourcebuffer.c: (gtk_source_buffer_real_delete_range), 
+	fix bug that made it impossible to remove syntax embended text. 
+	(reported by Mario Motta <mmotta@guest.net>)
+
 2002-03-31  Jeroen Zwartepoorte  <jeroen@xs4all.nl>
 
 	* src/gtksourcebuffer.c: (gtk_source_buffer_get_undo_levels),

@@ -479,8 +479,10 @@ gtk_source_buffer_real_delete_range (GtkTextBuffer *buffer,
 
 			scount = get_tag_start (GTK_TEXT_TAG (tag), &start);
 			ecount = get_tag_end (GTK_TEXT_TAG (tag), &end);
-			if (scount > tag->reg_start.len && ecount > tag->reg_end.len)
+			if (scount > tag->reg_start.len && ecount > tag->reg_end.len)  {
+                	parent_class->delete_range (buffer, iter, iter2);
 				return;
+              }
 		}
 	}
 
