@@ -3,7 +3,7 @@
 	* gtksourceview/gtksourceiter.c (g_utf8_strrcasestr): Position the
 	starting char pointer for the reverse search using UTF-8 aware
 	functions instead of pointer arithmetic.  Ditto for the haystack
-	offset counter.
+	offset counter (bug #133887, alexhack inbox ru).
 
 2004-02-21  Paolo Maggi  <paolo.maggi@polito.it>
 
