@@ -1,3 +1,8 @@
+2004-02-21 Alejandro Dubrovsky <alito@organicrobot.com>
+
+	* tests/test-widget.c (create_view_window): Make pixmap directory relative
+	to DATADIR, and check the returned gdk_pixbufs.
+
 2004-02-20  Paolo Maggi  <paolo.maggi@polito.it>
 
 	* gtksourceview/language-specs/ada.lang:

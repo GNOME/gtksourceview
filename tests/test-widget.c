@@ -846,13 +846,31 @@ create_view_window (GtkSourceBuffer *buffer, GtkSourceView *from)
 	}
 
 	/* add marker pixbufs */
-	pixbuf = gdk_pixbuf_new_from_file ("/usr/share/pixmaps/apple-green.png", NULL);
-	gtk_source_view_set_marker_pixbuf (GTK_SOURCE_VIEW (view), MARKER_TYPE_1, pixbuf);
-	g_object_unref (pixbuf);
+	error = NULL;	
+	if ((pixbuf = gdk_pixbuf_new_from_file (DATADIR "/pixmaps/apple-green.png", &error)))
+	{
+		gtk_source_view_set_marker_pixbuf (GTK_SOURCE_VIEW (view), MARKER_TYPE_1, pixbuf);
+		g_object_unref (pixbuf);
+	}
+	else
+	{
+		g_message ("could not load marker 1 image.  Spurious messages might get triggered: %s",
+		error->message);
+		g_error_free (error);
+	} 
 	
-	pixbuf = gdk_pixbuf_new_from_file ("/usr/share/pixmaps/apple-red.png", NULL);
-	gtk_source_view_set_marker_pixbuf (GTK_SOURCE_VIEW (view), MARKER_TYPE_2, pixbuf);
-	g_object_unref (pixbuf);
+	error = NULL;
+	if ((pixbuf = gdk_pixbuf_new_from_file (DATADIR "/pixmaps/apple-red.png", &error)))
+	{
+		gtk_source_view_set_marker_pixbuf (GTK_SOURCE_VIEW (view), MARKER_TYPE_2, pixbuf);
+		g_object_unref (pixbuf);
+	}
+	else
+	{
+		g_message ("could not load marker 2 image.  Spurious messages might get triggered: %s",
+		error->message);
+		g_error_free (error);		
+	}
 	
 	gtk_widget_show_all (vbox);
 
