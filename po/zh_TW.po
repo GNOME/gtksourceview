@@ -1,14 +1,15 @@
 # traditional Chinese translation of gtksourceview.
-# Copyright (C) 2003 Free Software Foundation, Inc.
+# Copyright (C) 2003, 04 Free Software Foundation, Inc.
 # Abel Cheung <maddog@linux.org.hk>, 2003.
+# Anthony Tang <tkyanthony@yahoo.com.hk>, 2004.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gtksourceview 0.6.0\n"
+"Project-Id-Version: gtksourceview 0.9.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-08-30 12:38+0800\n"
-"PO-Revision-Date: 2003-08-31 04:17+0800\n"
-"Last-Translator: Abel Cheung <maddog@linux.org.hk>\n"
+"POT-Creation-Date: 2004-03-21 07:23+0800\n"
+"PO-Revision-Date: 2004-03-21 07:28+0800\n"
+"Last-Translator: Anthony Tang <tkyanthony@yahoo.com.hk>\n"
 "Language-Team: Chinese (traditional) <zh-l10n@linux.org.tw>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -71,7 +72,7 @@ msgstr "組態"
 
 #: gtksourceview/gtksourceprintjob.c:273
 msgid "Configuration options for the print job"
-msgstr "屬於列印工作的選項"
+msgstr "屬於列印工作的組態選項"
 
 #: gtksourceview/gtksourceprintjob.c:280
 msgid "Source Buffer"
@@ -84,11 +85,11 @@ msgstr "準備列印的 GtkSourceBuffer 物件"
 #: gtksourceview/gtksourceprintjob.c:287 gtksourceview/gtksourceview.c:221
 #: gtksourceview/gtksourceview.c:222
 msgid "Tabs Width"
-msgstr "定位字符寬度"
+msgstr "Tab 字符寬度"
 
 #: gtksourceview/gtksourceprintjob.c:288
 msgid "Width in equivalent space characters of tabs"
-msgstr "定位字符等於多少個空格"
+msgstr "Tab 字符等於多少個空格"
 
 #: gtksourceview/gtksourceprintjob.c:295
 msgid "Wrap Mode"
@@ -100,7 +101,7 @@ msgstr "換行模式"
 
 #: gtksourceview/gtksourceprintjob.c:304
 msgid "Whether to print the document with highlighted syntax"
-msgstr "列印時是否加強顯示不同的語法"
+msgstr "列印文件時是否加強顯示不同的語法"
 
 #: gtksourceview/gtksourceprintjob.c:312
 msgid "Font"
@@ -165,6 +166,7 @@ msgid "Comment"
 msgstr "備註"
 
 #: gtksourceview/gtksourcestylescheme.c:252
+#: gtksourceview/language-specs/php.lang.h:8
 msgid "Data Type"
 msgstr "資料類型"
 
@@ -197,6 +199,7 @@ msgstr "前置處理器"
 #: gtksourceview/language-specs/ada.lang.h:9
 #: gtksourceview/language-specs/c.lang.h:15
 #: gtksourceview/language-specs/cpp.lang.h:15
+#: gtksourceview/language-specs/csharp.lang.h:8
 #: gtksourceview/language-specs/html.lang.h:8
 #: gtksourceview/language-specs/idl.lang.h:8
 #: gtksourceview/language-specs/java.lang.h:11
@@ -211,22 +214,23 @@ msgstr "字串"
 msgid "Specials"
 msgstr "特殊"
 
-#: gtksourceview/gtksourcestylescheme.c:292
+#: gtksourceview/gtksourcestylescheme.c:294
 #: gtksourceview/language-specs/desktop.lang.h:10
 #: gtksourceview/language-specs/diff.lang.h:7
+#: gtksourceview/language-specs/msil.lang.h:2
 #: gtksourceview/language-specs/po.lang.h:5
 msgid "Others"
 msgstr "其它"
 
-#: gtksourceview/gtksourcestylescheme.c:297
+#: gtksourceview/gtksourcestylescheme.c:299
 msgid "Others 2"
 msgstr "其它 2"
 
-#: gtksourceview/gtksourcestylescheme.c:302
+#: gtksourceview/gtksourcestylescheme.c:304
 msgid "Others 3"
 msgstr "其它 3"
 
-#: gtksourceview/gtksourcestylescheme.c:339
+#: gtksourceview/gtksourcestylescheme.c:341
 msgid "Default"
 msgstr "預設"
 
@@ -235,17 +239,16 @@ msgid "Tag ID"
 msgstr "標籤 ID"
 
 #: gtksourceview/gtksourcetag.c:109
-#, fuzzy
 msgid "ID used to refer to the source tag"
-msgstr "用來表示該 source tag 的 ID"
+msgstr "用來表示該原始碼標籤的 ID"
 
 #: gtksourceview/gtksourcetag.c:116
 msgid "Tag style"
-msgstr ""
+msgstr "標籤風格"
 
 #: gtksourceview/gtksourcetag.c:117
 msgid "The style associated to the source tag"
-msgstr ""
+msgstr "原始碼標籤的相關風格"
 
 #: gtksourceview/gtksourceview.c:205
 msgid "Show Line Numbers"
@@ -273,11 +276,11 @@ msgstr "是否啟用自動縮排"
 
 #: gtksourceview/gtksourceview.c:238
 msgid "Insert Spaces Instead of Tabs"
-msgstr "使用空格代替定位字符"
+msgstr "使用空格代替 Tab 字符"
 
 #: gtksourceview/gtksourceview.c:239
 msgid "Whether to insert spaces instead of tabs"
-msgstr "是否使用空格代替定位字符"
+msgstr "是否使用空格代替 Tab 字符"
 
 #: gtksourceview/gtksourceview.c:246
 msgid "Show Right Margin"
@@ -320,22 +323,27 @@ msgstr "字符常數"
 #: gtksourceview/language-specs/ada.lang.h:4
 #: gtksourceview/language-specs/c.lang.h:10
 #: gtksourceview/language-specs/cpp.lang.h:10
+#: gtksourceview/language-specs/csharp.lang.h:3
 #: gtksourceview/language-specs/idl.lang.h:4
 #: gtksourceview/language-specs/perl.lang.h:2
 #: gtksourceview/language-specs/python.lang.h:3
+#: gtksourceview/language-specs/verilog.lang.h:6
 msgid "Keywords"
 msgstr "關鍵字"
 
 #: gtksourceview/language-specs/ada.lang.h:5
 #: gtksourceview/language-specs/c.lang.h:11
 #: gtksourceview/language-specs/cpp.lang.h:11
+#: gtksourceview/language-specs/csharp.lang.h:4
 #: gtksourceview/language-specs/desktop.lang.h:7
 #: gtksourceview/language-specs/diff.lang.h:5
 #: gtksourceview/language-specs/java.lang.h:5
 #: gtksourceview/language-specs/perl.lang.h:3
 #: gtksourceview/language-specs/python.lang.h:4
+#: gtksourceview/language-specs/sql.lang.h:11
+#: gtksourceview/language-specs/verilog.lang.h:7
 msgid "Line Comment"
-msgstr "一行注釋"
+msgstr "單行注釋"
 
 #: gtksourceview/language-specs/ada.lang.h:6
 #: gtksourceview/language-specs/desktop.lang.h:9
@@ -349,8 +357,12 @@ msgstr "前置處理器關鍵字"
 #: gtksourceview/language-specs/ada.lang.h:8
 #: gtksourceview/language-specs/c.lang.h:14
 #: gtksourceview/language-specs/cpp.lang.h:14
+#: gtksourceview/language-specs/csharp.lang.h:7
 #: gtksourceview/language-specs/idl.lang.h:7
 #: gtksourceview/language-specs/java.lang.h:10
+#: gtksourceview/language-specs/php.lang.h:15
+#: gtksourceview/language-specs/sql.lang.h:26
+#: gtksourceview/language-specs/verilog.lang.h:9
 msgid "Sources"
 msgstr "原始碼"
 
@@ -362,6 +374,7 @@ msgstr "True 及 False"
 #: gtksourceview/language-specs/c.lang.h:16
 #: gtksourceview/language-specs/cpp.lang.h:16
 #: gtksourceview/language-specs/idl.lang.h:9
+#: gtksourceview/language-specs/verilog.lang.h:10
 msgid "Types"
 msgstr "類型"
 
@@ -372,12 +385,15 @@ msgstr "'#if 0' 注釋"
 
 #: gtksourceview/language-specs/c.lang.h:2
 #: gtksourceview/language-specs/cpp.lang.h:2
+#: gtksourceview/language-specs/csharp.lang.h:1
 #: gtksourceview/language-specs/html.lang.h:2
 #: gtksourceview/language-specs/idl.lang.h:1
 #: gtksourceview/language-specs/java.lang.h:1
+#: gtksourceview/language-specs/sql.lang.h:5
+#: gtksourceview/language-specs/verilog.lang.h:2
 #: gtksourceview/language-specs/xml.lang.h:2
 msgid "Block Comment"
-msgstr "一段注釋"
+msgstr "段落注釋"
 
 #: gtksourceview/language-specs/c.lang.h:3
 msgid "C"
@@ -406,11 +422,13 @@ msgstr "Include/Pragma"
 
 #: gtksourceview/language-specs/c.lang.h:12
 #: gtksourceview/language-specs/cpp.lang.h:12
+#: gtksourceview/language-specs/verilog.lang.h:8
 msgid "Octal Number"
 msgstr "8 進位數"
 
 #: gtksourceview/language-specs/c.lang.h:13
 #: gtksourceview/language-specs/cpp.lang.h:13
+#: gtksourceview/language-specs/csharp.lang.h:5
 #: gtksourceview/language-specs/idl.lang.h:5
 msgid "Preprocessor Definitions"
 msgstr "Preprocessor 關鍵字"
@@ -419,13 +437,28 @@ msgstr "Preprocessor 關鍵字"
 msgid "C++"
 msgstr "C++"
 
+#: gtksourceview/language-specs/csharp.lang.h:2
+msgid "C#"
+msgstr "C#"
+
+#: gtksourceview/language-specs/csharp.lang.h:6
+#: gtksourceview/language-specs/java.lang.h:9
+msgid "Primitives"
+msgstr "原始資料類型(Primitives)"
+
+#: gtksourceview/language-specs/csharp.lang.h:9
+#: gtksourceview/language-specs/java.lang.h:12
+#: gtksourceview/language-specs/python.lang.h:12
+msgid "String 2"
+msgstr "字串 2"
+
 #: gtksourceview/language-specs/desktop.lang.h:1
 msgid ".desktop"
 msgstr ".desktop"
 
 #: gtksourceview/language-specs/desktop.lang.h:2
 msgid "Boolean Value"
-msgstr "布林值"
+msgstr "布林值(Boolean Value)"
 
 #: gtksourceview/language-specs/desktop.lang.h:3
 msgid "Encoding"
@@ -494,7 +527,7 @@ msgstr "DTD"
 #: gtksourceview/language-specs/html.lang.h:5
 #: gtksourceview/language-specs/xml.lang.h:5
 msgid "Entity"
-msgstr "實體"
+msgstr "實體(Entity)"
 
 #: gtksourceview/language-specs/html.lang.h:6
 msgid "HTML"
@@ -516,7 +549,7 @@ msgstr "IDL"
 
 #: gtksourceview/language-specs/idl.lang.h:6
 msgid "Sectional"
-msgstr ""
+msgstr "Sectional"
 
 #: gtksourceview/language-specs/java.lang.h:2
 msgid "Declarations"
@@ -524,7 +557,7 @@ msgstr "宣告"
 
 #: gtksourceview/language-specs/java.lang.h:3
 msgid "Flow"
-msgstr "Flow"
+msgstr "流程"
 
 #: gtksourceview/language-specs/java.lang.h:4
 msgid "Java"
@@ -536,29 +569,19 @@ msgstr "記憶體配置"
 
 #: gtksourceview/language-specs/java.lang.h:7
 msgid "Modifiers"
-msgstr ""
+msgstr "修飾字(Modifiers)"
 
 #: gtksourceview/language-specs/java.lang.h:8
 msgid "Numeric"
 msgstr "數值"
 
-#: gtksourceview/language-specs/java.lang.h:9
-msgid "Primitives"
-msgstr "原始資料類型"
-
-#: gtksourceview/language-specs/java.lang.h:12
-#: gtksourceview/language-specs/python.lang.h:12
-#: gtksourceview/language-specs/xml.lang.h:9
-msgid "String 2"
-msgstr "字串 2"
-
 #: gtksourceview/language-specs/latex.lang.h:2
 msgid "Include"
-msgstr "包括其它檔案"
+msgstr "包括其它檔案(Include)"
 
 #: gtksourceview/language-specs/latex.lang.h:4
-msgid "Latex"
-msgstr "Latex"
+msgid "LaTeX"
+msgstr "LaTeX"
 
 #: gtksourceview/language-specs/latex.lang.h:6
 msgid "Math"
@@ -567,6 +590,10 @@ msgstr "算式"
 #: gtksourceview/language-specs/latex.lang.h:7
 msgid "Most Used Commands"
 msgstr "較常用的指令"
+
+#: gtksourceview/language-specs/msil.lang.h:1
+msgid "MSIL"
+msgstr "MSIL"
 
 #: gtksourceview/language-specs/perl.lang.h:1
 msgid "Function Call"
@@ -579,7 +606,7 @@ msgstr "Perl"
 #: gtksourceview/language-specs/perl.lang.h:5
 #: gtksourceview/language-specs/python.lang.h:9
 msgid "Scripts"
-msgstr "Script"
+msgstr "Scripts"
 
 #: gtksourceview/language-specs/perl.lang.h:7
 msgid "String2"
@@ -591,6 +618,62 @@ msgstr "第 3 類字串"
 
 #: gtksourceview/language-specs/perl.lang.h:9
 msgid "Variables"
+msgstr "變數"
+
+#: gtksourceview/language-specs/php.lang.h:1
+msgid "Array Operators"
+msgstr "陣列運算符"
+
+#: gtksourceview/language-specs/php.lang.h:2
+msgid "Backtick String"
+msgstr "Backtick 字串"
+
+#: gtksourceview/language-specs/php.lang.h:3
+msgid "Bash Line Comment"
+msgstr "Bash 單行注釋"
+
+#: gtksourceview/language-specs/php.lang.h:4
+msgid "C Block Comment"
+msgstr "C 段落注釋"
+
+#: gtksourceview/language-specs/php.lang.h:5
+msgid "C++ Line Comment"
+msgstr "C++ 單行注釋"
+
+#: gtksourceview/language-specs/php.lang.h:6
+msgid "Case Insensitive Keyword"
+msgstr "不分大小寫的關鍵字"
+
+#: gtksourceview/language-specs/php.lang.h:7
+msgid "Case Sensitive Keyword"
+msgstr "區分大小寫的關鍵字"
+
+#: gtksourceview/language-specs/php.lang.h:9
+msgid "Double Quoted String"
+msgstr "雙引號字串"
+
+#: gtksourceview/language-specs/php.lang.h:10
+msgid "First Open PHP Tag"
+msgstr "第一個PHP開啟標籤"
+
+#: gtksourceview/language-specs/php.lang.h:11
+msgid "HTML Block"
+msgstr "HTML 段"
+
+#: gtksourceview/language-specs/php.lang.h:12
+msgid "Operators"
+msgstr "運算符"
+
+#: gtksourceview/language-specs/php.lang.h:13
+msgid "PHP"
+msgstr "PHP"
+
+#: gtksourceview/language-specs/php.lang.h:14
+msgid "Single Quoted String"
+msgstr "單引號字串"
+
+#: gtksourceview/language-specs/php.lang.h:16
+msgid "Variable"
 msgstr "變數"
 
 #: gtksourceview/language-specs/po.lang.h:2
@@ -627,16 +710,136 @@ msgstr "Python"
 
 #: gtksourceview/language-specs/python.lang.h:10
 msgid "Self"
-msgstr "物件自身"
+msgstr "Self"
+
+#: gtksourceview/language-specs/sql.lang.h:1
+msgid "ANSI Datatypes"
+msgstr "ANSI 資料類型"
+
+#: gtksourceview/language-specs/sql.lang.h:2
+msgid "ANSI Reserved Words"
+msgstr "ANSI 保留字"
+
+#: gtksourceview/language-specs/sql.lang.h:3
+msgid "Aggregate Functions"
+msgstr "彙總(Aggregate)函式"
+
+#: gtksourceview/language-specs/sql.lang.h:4
+msgid "Analytic Functions"
+msgstr "分析(Analytic)函式"
+
+#: gtksourceview/language-specs/sql.lang.h:6
+msgid "Character Functions Returning Character Values"
+msgstr "回傳字元值的字元函式"
+
+#: gtksourceview/language-specs/sql.lang.h:7
+msgid "Character Functions Returning Number Values"
+msgstr "回傳數值的字元函式"
+
+#: gtksourceview/language-specs/sql.lang.h:8
+msgid "Conversion Functions"
+msgstr "轉換函式"
+
+#: gtksourceview/language-specs/sql.lang.h:9
+msgid "Datetime Functions"
+msgstr "日期時間函式"
+
+#: gtksourceview/language-specs/sql.lang.h:10
+msgid "Integer Literals"
+msgstr "Integer Literals"
+
+#: gtksourceview/language-specs/sql.lang.h:12
+msgid "Miscellaneous Single-Row Functions"
+msgstr "雜項單行函式"
+
+#: gtksourceview/language-specs/sql.lang.h:13
+msgid "Null"
+msgstr "Null"
+
+#: gtksourceview/language-specs/sql.lang.h:14
+msgid "Number Functions"
+msgstr "數值函式"
+
+#: gtksourceview/language-specs/sql.lang.h:15
+msgid "Number Literals"
+msgstr "Number Literals"
+
+#: gtksourceview/language-specs/sql.lang.h:16
+msgid "Object Reference Functions"
+msgstr "Object Reference Functions"
+
+#: gtksourceview/language-specs/sql.lang.h:17
+msgid "Oracle Built-in Datatypes"
+msgstr "Oracle 內置資料類型"
+
+#: gtksourceview/language-specs/sql.lang.h:18
+msgid "Oracle Reserved Words"
+msgstr "Oracle 保留字"
+
+#: gtksourceview/language-specs/sql.lang.h:19
+msgid "SQL"
+msgstr "SQL"
+
+#: gtksourceview/language-specs/sql.lang.h:20
+msgid "SQL*Plus At Sign"
+msgstr "SQL*Plus @ 符號"
+
+#: gtksourceview/language-specs/sql.lang.h:21
+msgid "SQL*Plus Commands"
+msgstr "SQL*Plus 指令"
+
+#: gtksourceview/language-specs/sql.lang.h:22
+msgid "SQL*Plus Double At Sign"
+msgstr "SQL*Plus @@ 符號"
+
+#: gtksourceview/language-specs/sql.lang.h:23
+msgid "SQL*Plus Slash"
+msgstr "SQL*Plus Slash"
+
+#: gtksourceview/language-specs/sql.lang.h:24
+msgid "SQL/DS and DB2 Datatypes"
+msgstr "SQL/DS 及 DB2 資料類型"
+
+#: gtksourceview/language-specs/sql.lang.h:25
+msgid "Size Clause"
+msgstr "資料大小字句"
+
+#: gtksourceview/language-specs/sql.lang.h:27
+msgid "Text Literals"
+msgstr "Text Literals"
+
+#: gtksourceview/language-specs/sql.lang.h:28
+msgid "Unlimited"
+msgstr "無限"
+
+#: gtksourceview/language-specs/verilog.lang.h:1
+msgid "Binary Number"
+msgstr "2 進位數值"
+
+#: gtksourceview/language-specs/verilog.lang.h:3
+msgid "Decimal Number"
+msgstr "十進位數數值"
+
+#: gtksourceview/language-specs/verilog.lang.h:4
+msgid "Gates"
+msgstr "Gates"
+
+#: gtksourceview/language-specs/verilog.lang.h:5
+msgid "Hexadecimal Number"
+msgstr "16 進位數數值"
+
+#: gtksourceview/language-specs/verilog.lang.h:11
+msgid "Verilog"
+msgstr "Verilog"
 
 #: gtksourceview/language-specs/xml.lang.h:6
 msgid "Hexadecimal"
 msgstr "16 進位數"
 
-#: gtksourceview/language-specs/xml.lang.h:10
+#: gtksourceview/language-specs/xml.lang.h:9
 msgid "Tag"
 msgstr "標籤"
 
-#: gtksourceview/language-specs/xml.lang.h:11
+#: gtksourceview/language-specs/xml.lang.h:10
 msgid "XML"
 msgstr "XML"
