@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview.HEAD.az\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-12-27 20:39+0100\n"
-"PO-Revision-Date: 2004-01-07 09:44+0200\n"
+"POT-Creation-Date: 2004-02-01 16:13+0100\n"
+"PO-Revision-Date: 2004-02-01 21:43+0200\n"
 "Last-Translator: Mətin Əmirov <metin@karegen.com>\n"
 "Language-Team: Azerbaijani Turkish <gnome@azitt.com>\n"
 "MIME-Version: 1.0\n"
@@ -168,6 +168,7 @@ msgid "Comment"
 msgstr "Şərh"
 
 #: gtksourceview/gtksourcestylescheme.c:252
+#: gtksourceview/language-specs/php.lang.h:8
 msgid "Data Type"
 msgstr "Mə'lumat Növü"
 
@@ -328,6 +329,7 @@ msgstr "Hərf Qərarlığı"
 #: gtksourceview/language-specs/idl.lang.h:4
 #: gtksourceview/language-specs/perl.lang.h:2
 #: gtksourceview/language-specs/python.lang.h:3
+#: gtksourceview/language-specs/verilog.lang.h:6
 msgid "Keywords"
 msgstr "Açar Kəlmələr"
 
@@ -341,6 +343,7 @@ msgstr "Açar Kəlmələr"
 #: gtksourceview/language-specs/perl.lang.h:3
 #: gtksourceview/language-specs/python.lang.h:4
 #: gtksourceview/language-specs/sql.lang.h:11
+#: gtksourceview/language-specs/verilog.lang.h:7
 msgid "Line Comment"
 msgstr "Sətir Şərhi"
 
@@ -359,7 +362,9 @@ msgstr "Preprosessor Açar Kəlmələri"
 #: gtksourceview/language-specs/csharp.lang.h:7
 #: gtksourceview/language-specs/idl.lang.h:7
 #: gtksourceview/language-specs/java.lang.h:10
+#: gtksourceview/language-specs/php.lang.h:15
 #: gtksourceview/language-specs/sql.lang.h:26
+#: gtksourceview/language-specs/verilog.lang.h:9
 msgid "Sources"
 msgstr "Mənbələr"
 
@@ -371,6 +376,7 @@ msgstr "Doğru və Səhv"
 #: gtksourceview/language-specs/c.lang.h:16
 #: gtksourceview/language-specs/cpp.lang.h:16
 #: gtksourceview/language-specs/idl.lang.h:9
+#: gtksourceview/language-specs/verilog.lang.h:10
 msgid "Types"
 msgstr "Növlər"
 
@@ -386,6 +392,7 @@ msgstr "'#if 0'  Şərhi"
 #: gtksourceview/language-specs/idl.lang.h:1
 #: gtksourceview/language-specs/java.lang.h:1
 #: gtksourceview/language-specs/sql.lang.h:5
+#: gtksourceview/language-specs/verilog.lang.h:2
 #: gtksourceview/language-specs/xml.lang.h:2
 msgid "Block Comment"
 msgstr "Blok Şərhi"
@@ -417,6 +424,7 @@ msgstr "Daxil Et/Praqma"
 
 #: gtksourceview/language-specs/c.lang.h:12
 #: gtksourceview/language-specs/cpp.lang.h:12
+#: gtksourceview/language-specs/verilog.lang.h:8
 msgid "Octal Number"
 msgstr "Səkkizli Ədəd"
 
@@ -575,8 +583,8 @@ msgid "Include"
 msgstr "Daxil et"
 
 #: gtksourceview/language-specs/latex.lang.h:4
-msgid "Latex"
-msgstr "Latex"
+msgid "LaTeX"
+msgstr "LaTeX"
 
 #: gtksourceview/language-specs/latex.lang.h:6
 msgid "Math"
@@ -614,6 +622,62 @@ msgstr "Qatar3"
 #: gtksourceview/language-specs/perl.lang.h:9
 msgid "Variables"
 msgstr "Dəyişənlər"
+
+#: gtksourceview/language-specs/php.lang.h:1
+msgid "Array Operators"
+msgstr "Array Operatorları"
+
+#: gtksourceview/language-specs/php.lang.h:2
+msgid "Backtick String"
+msgstr "Backtick Qatarı"
+
+#: gtksourceview/language-specs/php.lang.h:3
+msgid "Bash Line Comment"
+msgstr "Bash Sətir Şərhi"
+
+#: gtksourceview/language-specs/php.lang.h:4
+msgid "C Block Comment"
+msgstr "C Blok Şərhi"
+
+#: gtksourceview/language-specs/php.lang.h:5
+msgid "C++ Line Comment"
+msgstr "C++ Sətir Şərhi"
+
+#: gtksourceview/language-specs/php.lang.h:6
+msgid "Case Insensitive Keyword"
+msgstr "Hərf Böyüklüyünə Həssas Olmayan Açar Kəlmə"
+
+#: gtksourceview/language-specs/php.lang.h:7
+msgid "Case Sensitive Keyword"
+msgstr "Hərf Böyüklüyünə Həssas Açar Kəlmə"
+
+#: gtksourceview/language-specs/php.lang.h:9
+msgid "Double Quoted String"
+msgstr "Cüt Dırnaqlı Qatar"
+
+#: gtksourceview/language-specs/php.lang.h:10
+msgid "First Open PHP Tag"
+msgstr "Açılış PHP Taqı"
+
+#: gtksourceview/language-specs/php.lang.h:11
+msgid "HTML Block"
+msgstr "HTML Bloku"
+
+#: gtksourceview/language-specs/php.lang.h:12
+msgid "Operators"
+msgstr "Operatorlar"
+
+#: gtksourceview/language-specs/php.lang.h:13
+msgid "PHP"
+msgstr "PHP"
+
+#: gtksourceview/language-specs/php.lang.h:14
+msgid "Single Quoted String"
+msgstr "Tək Dırnaqlı Qatar"
+
+#: gtksourceview/language-specs/php.lang.h:16
+msgid "Variable"
+msgstr "Dəyişən"
 
 #: gtksourceview/language-specs/po.lang.h:2
 msgid "Format"
@@ -750,6 +814,26 @@ msgstr "Mətn Literalları"
 #: gtksourceview/language-specs/sql.lang.h:28
 msgid "Unlimited"
 msgstr "Hüdudsuz"
+
+#: gtksourceview/language-specs/verilog.lang.h:1
+msgid "Binary Number"
+msgstr "Səkkizlik Ədəd"
+
+#: gtksourceview/language-specs/verilog.lang.h:3
+msgid "Decimal Number"
+msgstr "Onluq Ədəd"
+
+#: gtksourceview/language-specs/verilog.lang.h:4
+msgid "Gates"
+msgstr "Gates"
+
+#: gtksourceview/language-specs/verilog.lang.h:5
+msgid "Hexadecimal Number"
+msgstr "Hekzadesimal Ədəd"
+
+#: gtksourceview/language-specs/verilog.lang.h:11
+msgid "Verilog"
+msgstr "Verilog"
 
 #: gtksourceview/language-specs/xml.lang.h:6
 msgid "Hexadecimal"
