@@ -1,3 +1,12 @@
+2004-04-19  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+
+	* configure.in: Require Gtk+ 2.2.4, but disable tests if Gtk+ 2.4
+	is not found.
+	Bump version to 1.0.1.
+
+	* README: 
+	* NEWS: Updated for new release.
+
 2004-04-18  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
 
 	* gtksourceview/gtksourceview.c (gtk_source_view_new_with_buffer):
