@@ -1,6 +1,6 @@
 /*  Higlight code	
 *  Copyright (C) 1999 by:
-*Mikael Hermansson <mikeh@bahnhof.se>
+*Mikael Hermansson <tyan@linux.se>
 *
 *  This program is free software; you can redistribute it and/or modify
 *  it under the terms of the GNU General Public License as published by
