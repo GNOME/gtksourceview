@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-06-23 05:15+0200\n"
-"PO-Revision-Date: 2004-02-21 15:14+0100\n"
+"POT-Creation-Date: 2004-06-29 12:44+0200\n"
+"PO-Revision-Date: 2004-06-29 12:48+0200\n"
 "Last-Translator: Laurent Dhima <laurenti@alblinux.net>\n"
 "Language-Team: Albanian <gnome-albanian-perkthyesit@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -125,8 +125,7 @@ msgstr "Printo numrat e rreshtave"
 
 #: gtksourceview/gtksourceprintjob.c:329
 msgid "Interval of printed line numbers (0 means no numbers)"
-msgstr ""
-"intervali i numrave të rreshtit të printuar (0 do të thotë asnjë numër)"
+msgstr "intervali i numrave të rreshtit të printuar (0 do të thotë asnjë numër)"
 
 #: gtksourceview/gtksourceprintjob.c:336
 msgid "Print Header"
@@ -498,7 +497,6 @@ msgstr "Rresht i shtuar"
 msgid "Changed line"
 msgstr "Rresht i ndryshuar"
 
-#. GRUT modified this item
 #: gtksourceview/language-specs/diff.lang.h:3
 msgid "Diff"
 msgstr "Dif"
@@ -507,7 +505,6 @@ msgstr "Dif"
 msgid "Diff file"
 msgstr "File diff"
 
-#. GRUT modified this item
 #: gtksourceview/language-specs/diff.lang.h:6
 #: gtksourceview/language-specs/po.lang.h:4
 msgid "Location"
@@ -521,7 +518,6 @@ msgstr "Rresht i hequr"
 msgid "Special case"
 msgstr "Special case"
 
-#. GRUT modified this item
 #: gtksourceview/language-specs/html.lang.h:1
 #: gtksourceview/language-specs/xml.lang.h:1
 msgid "Attributes"
@@ -610,13 +606,12 @@ msgid "Functions"
 msgstr "Funksionet"
 
 #: gtksourceview/language-specs/lua.lang.h:5
-#, fuzzy
 msgid "Line Comment 2"
-msgstr "Komenti i rreshtit"
+msgstr "Komenti i rreshtit 2"
 
 #: gtksourceview/language-specs/lua.lang.h:6
 msgid "Lua"
-msgstr ""
+msgstr "Lua"
 
 #: gtksourceview/language-specs/lua.lang.h:7
 #: gtksourceview/language-specs/python.lang.h:6
@@ -628,7 +623,6 @@ msgstr "Multiline String"
 msgid "Multiline String 2"
 msgstr "Multiline String 2"
 
-#. GRUT modified this item
 #: gtksourceview/language-specs/lua.lang.h:9
 #: gtksourceview/language-specs/perl.lang.h:5
 #: gtksourceview/language-specs/python.lang.h:9
@@ -742,64 +736,53 @@ msgid "Self"
 msgstr "Vetë"
 
 #: gtksourceview/language-specs/ruby.lang.h:1
-#, fuzzy
 msgid "Attribute Definitions"
-msgstr "Vetitë"
+msgstr "Përcaktimet e Vetisë"
 
 #: gtksourceview/language-specs/ruby.lang.h:3
-#, fuzzy
 msgid "Class Variables"
-msgstr "Të ndryshueshmet"
+msgstr "Klasa e të ndryshueshmeve"
 
-#. GRUT modified this item
 #: gtksourceview/language-specs/ruby.lang.h:4
 msgid "Constants"
 msgstr "Konstantet"
 
 #: gtksourceview/language-specs/ruby.lang.h:5
-#, fuzzy
 msgid "Definitions"
-msgstr "Përcaktimet e preprocesorit"
+msgstr "Përcaktimet"
 
 #: gtksourceview/language-specs/ruby.lang.h:6
-#, fuzzy
 msgid "Global Variables"
-msgstr "Të ndryshueshmet"
+msgstr "Të ndryshueshme globale"
 
 #: gtksourceview/language-specs/ruby.lang.h:7
-#, fuzzy
 msgid "Instance Variables"
-msgstr "Të ndryshueshmet"
+msgstr "Të ndryshueshmet e instancës"
 
 #: gtksourceview/language-specs/ruby.lang.h:10
-#, fuzzy
 msgid "Module Handlers"
-msgstr "Trajtues modulësh"
+msgstr "Trajtuesit e modulit"
 
 #: gtksourceview/language-specs/ruby.lang.h:11
-#, fuzzy
 msgid "Multiline Comment"
-msgstr "Komenti i rreshtit"
+msgstr "Koment shumë rreshtash"
 
 #: gtksourceview/language-specs/ruby.lang.h:12
-#, fuzzy
 msgid "Pseudo Variables"
-msgstr "Të ndryshueshmet"
+msgstr "Pseudo të ndryshueshme"
 
 #: gtksourceview/language-specs/ruby.lang.h:13
-#, fuzzy
 msgid "RegExp Variables"
-msgstr "Të ndryshueshmet"
+msgstr "Të ndryshueshme RegExp"
 
 #: gtksourceview/language-specs/ruby.lang.h:14
 msgid "Regular Expression"
-msgstr ""
+msgstr "Shprehje të rregullta"
 
 #: gtksourceview/language-specs/ruby.lang.h:15
 msgid "Regular Expression 2"
-msgstr ""
+msgstr "Shprehje të rregullta 2"
 
-#. GRUT modified this item
 #: gtksourceview/language-specs/ruby.lang.h:16
 msgid "Ruby"
 msgstr "Rubin"
