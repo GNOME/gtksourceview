@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-10-13 10:44+0200\n"
-"PO-Revision-Date: 2004-10-13 06:24+0200\n"
+"POT-Creation-Date: 2004-12-30 22:57+0100\n"
+"PO-Revision-Date: 2004-12-30 23:05+0100\n"
 "Last-Translator: Marcel Telka <marcel@telka.sk>\n"
 "Language-Team: Slovak <sk-i18n@lists.linux.sk>\n"
 "MIME-Version: 1.0\n"
@@ -562,7 +562,7 @@ msgstr "Reťazec 2"
 #.
 #: gtksourceview/language-specs/css.lang.h:4
 msgid "At Rules"
-msgstr ""
+msgstr "At pravidlá"
 
 #.
 #. For CSS 2-style selectors: tag[attr="value"].
@@ -618,7 +618,7 @@ msgstr "Interpunkčné znamienka"
 
 #: gtksourceview/language-specs/css.lang.h:52
 msgid "Selector Grammar"
-msgstr ""
+msgstr "Výber gramatiky"
 
 #.
 #. Pseudo-class rules. Good to have syntax highlighting for these
@@ -626,7 +626,7 @@ msgstr ""
 #.
 #: gtksourceview/language-specs/css.lang.h:57
 msgid "Selector Pseudo Classes"
-msgstr ""
+msgstr "Výber pseudotried"
 
 #.
 #. Pseudo-element rules. Good to have syntax highlighting for these
@@ -634,7 +634,7 @@ msgstr ""
 #.
 #: gtksourceview/language-specs/css.lang.h:62
 msgid "Selector Pseudo Elements"
-msgstr ""
+msgstr "Výber pseudoelementov"
 
 #.
 #. Escaped unicode characters can contain either 6 hexadecimal characters
@@ -642,14 +642,14 @@ msgstr ""
 #.
 #: gtksourceview/language-specs/css.lang.h:69
 msgid "Unicode Character Reference"
-msgstr ""
+msgstr "Odkaz znaku Unicode"
 
 #.
 #. Unicode range values.
 #.
 #: gtksourceview/language-specs/css.lang.h:73
 msgid "Unicode Range"
-msgstr ""
+msgstr "Rozsah Unicode"
 
 #: gtksourceview/language-specs/desktop.lang.h:1
 msgid ".desktop"
@@ -809,9 +809,8 @@ msgid "Floating-Point Number"
 msgstr "Číslo s pohyblivou rádovou čiarkou"
 
 #: gtksourceview/language-specs/javascript.lang.h:6
-#, fuzzy
 msgid "Flow Keywords"
-msgstr "Kľúčové slová"
+msgstr "Kľúčové slová toku"
 
 #: gtksourceview/language-specs/javascript.lang.h:7
 msgid "Future Reserved Words"
@@ -871,7 +870,7 @@ msgstr "Skripty"
 
 #: gtksourceview/language-specs/javascript.lang.h:35
 msgid "Unicode Escape Sequence"
-msgstr ""
+msgstr "Špeciálna (escape) sekvencia Unicode"
 
 #: gtksourceview/language-specs/javascript.lang.h:36
 msgid "Word Operators"
@@ -927,7 +926,7 @@ msgstr "Blokový komentár 2"
 
 #: gtksourceview/language-specs/pascal.lang.h:3
 msgid "Boolean Bitwise Operators"
-msgstr ""
+msgstr "Boolovské bitové operátory"
 
 #: gtksourceview/language-specs/pascal.lang.h:4
 msgid "Builtin Functions"
@@ -983,7 +982,7 @@ msgstr "Perl"
 
 #: gtksourceview/language-specs/perl.lang.h:6
 msgid "Plain Old Documentation"
-msgstr ""
+msgstr "Obyčajná stará dokumentácia"
 
 #: gtksourceview/language-specs/perl.lang.h:9
 msgid "String2"
@@ -1000,7 +999,7 @@ msgstr "Premenné"
 #. `backticks-quoted strings`
 #: gtksourceview/language-specs/php.lang.h:3
 msgid "Backtick String"
-msgstr ""
+msgstr "Reťazec v opačných apostrofoch"
 
 #. # Bourne Shell Line Comment
 #: gtksourceview/language-specs/php.lang.h:5
@@ -1200,7 +1199,7 @@ msgstr "SQL"
 
 #: gtksourceview/language-specs/sql.lang.h:20
 msgid "SQL*Plus At Sign"
-msgstr ""
+msgstr "SQL*Plus Znak At"
 
 #: gtksourceview/language-specs/sql.lang.h:21
 msgid "SQL*Plus Commands"
@@ -1208,11 +1207,11 @@ msgstr "SQL*Plus Príkazy"
 
 #: gtksourceview/language-specs/sql.lang.h:22
 msgid "SQL*Plus Double At Sign"
-msgstr ""
+msgstr "SQL*Plus Dvojitý znak At"
 
 #: gtksourceview/language-specs/sql.lang.h:23
 msgid "SQL*Plus Slash"
-msgstr ""
+msgstr "SQL*Plus Lomka"
 
 #: gtksourceview/language-specs/sql.lang.h:24
 msgid "SQL/DS and DB2 Datatypes"
@@ -1321,12 +1320,3 @@ msgstr "Komentár starého typu"
 #: gtksourceview/language-specs/vbnet.lang.h:9
 msgid "VB.NET"
 msgstr "VB.NET"
-
-#~ msgid "CSS"
-#~ msgstr "CSS"
-
-#~ msgid "JavaScript"
-#~ msgstr "JavaScript"
-
-#~ msgid "MSIL"
-#~ msgstr "MSIL"
