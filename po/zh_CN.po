@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-12 00:08+0100\n"
-"PO-Revision-Date: 2004-08-09 22:41+0800\n"
+"POT-Creation-Date: 2005-01-23 12:38+0100\n"
+"PO-Revision-Date: 2005-01-23 23:45+0800\n"
 "Last-Translator: Funda Wang <fundawang@linux.net.cn>\n"
 "Language-Team: zh_CN <i18n-translation@lists.linux.net.cn>\n"
 "MIME-Version: 1.0\n"
@@ -370,12 +370,11 @@ msgstr "HOME 和 END 键将会跳到行内的第一个/最后一个字符，而�
 
 #: gtksourceview/gtksourceview.c:276
 msgid "Highlight current line"
-msgstr ""
+msgstr "加亮显示当前行"
 
 #: gtksourceview/gtksourceview.c:277
-#, fuzzy
 msgid "Whether to highlight the current line"
-msgstr "是否在缓冲区突出显示语法"
+msgstr "是否加亮显示当前行"
 
 #: gtksourceview/language-specs/ada.lang.h:1
 msgid "Ada"
@@ -808,7 +807,7 @@ msgstr "组合式"
 
 #: gtksourceview/language-specs/ini.lang.h:1
 msgid ".ini"
-msgstr ""
+msgstr ".ini"
 
 #: gtksourceview/language-specs/ini.lang.h:3
 #: gtksourceview/language-specs/verilog.lang.h:3
@@ -818,19 +817,16 @@ msgstr "十进制数"
 #: gtksourceview/language-specs/ini.lang.h:4
 #: gtksourceview/language-specs/R.lang.h:3
 #: gtksourceview/language-specs/gtkrc.lang.h:2
-#, fuzzy
 msgid "Double Quote String"
 msgstr "双引号字符串"
 
 #: gtksourceview/language-specs/ini.lang.h:6
-#, fuzzy
 msgid "Integer"
-msgstr "N 进制整数"
+msgstr "整数"
 
 #: gtksourceview/language-specs/ini.lang.h:11
 #: gtksourceview/language-specs/R.lang.h:11
 #: gtksourceview/language-specs/gtkrc.lang.h:10
-#, fuzzy
 msgid "Single Quote String"
 msgstr "单引号字符串"
 
@@ -1045,9 +1041,8 @@ msgid "Preprocessor Defines"
 msgstr "预处理定义"
 
 #: gtksourceview/language-specs/pascal.lang.h:19
-#, fuzzy
 msgid "Type, Class and Object Keywords"
-msgstr "类型类和对象关键字"
+msgstr "类型、类和对象关键字"
 
 #: gtksourceview/language-specs/perl.lang.h:1
 msgid "Function Call"
@@ -1059,7 +1054,7 @@ msgstr "方法调用"
 
 #: gtksourceview/language-specs/perl.lang.h:5
 msgid "POD"
-msgstr ""
+msgstr "POD"
 
 #: gtksourceview/language-specs/perl.lang.h:6
 msgid "Perl"
@@ -1205,37 +1200,32 @@ msgid "Ruby"
 msgstr "Ruby"
 
 #: gtksourceview/language-specs/sh.lang.h:2
-#, fuzzy
 msgid "Built-in Commands"
-msgstr "内建函数"
+msgstr "内建命令"
 
 #: gtksourceview/language-specs/sh.lang.h:3
-#, fuzzy
 msgid "Common Commands"
-msgstr "最常用的命令"
+msgstr "常用命令"
 
 #: gtksourceview/language-specs/sh.lang.h:10
-#, fuzzy
 msgid "Redirections"
-msgstr "定义"
+msgstr "重定向"
 
 #: gtksourceview/language-specs/sh.lang.h:12
 msgid "Self"
 msgstr "Self"
 
 #: gtksourceview/language-specs/sh.lang.h:15
-#, fuzzy
 msgid "Variable1"
-msgstr "变量"
+msgstr "变量1"
 
 #: gtksourceview/language-specs/sh.lang.h:16
-#, fuzzy
 msgid "Variable2"
-msgstr "变量"
+msgstr "变量2"
 
 #: gtksourceview/language-specs/sh.lang.h:17
 msgid "sh"
-msgstr ""
+msgstr "sh"
 
 #: gtksourceview/language-specs/sql.lang.h:1
 msgid "ANSI Datatypes"
@@ -1427,93 +1417,70 @@ msgid "VB.NET"
 msgstr "VB.NET"
 
 #: gtksourceview/language-specs/nemerle.lang.h:4
-#, fuzzy
 msgid "Core Keywords"
-msgstr "流程关键字"
+msgstr "核心关键字"
 
 #: gtksourceview/language-specs/nemerle.lang.h:5
-#, fuzzy
 msgid "Core Types"
-msgstr "类型"
+msgstr "核心类型"
 
 #: gtksourceview/language-specs/nemerle.lang.h:9
 msgid "Keywords Defined by Macros"
-msgstr ""
+msgstr "宏定义的关键字"
 
 #: gtksourceview/language-specs/nemerle.lang.h:11
-#, fuzzy
 msgid "Nemerle"
-msgstr "数字"
+msgstr "Nemerle"
 
 #: gtksourceview/language-specs/tcl.lang.h:6
 msgid "Tcl"
-msgstr ""
+msgstr "Tcl"
 
 #: gtksourceview/language-specs/vhdl.lang.h:7
-#, fuzzy
 msgid "True and False"
 msgstr "真和假"
 
 #: gtksourceview/language-specs/vhdl.lang.h:8
-#, fuzzy
 msgid "Type"
 msgstr "类型"
 
 #: gtksourceview/language-specs/vhdl.lang.h:9
 msgid "VHDL"
-msgstr ""
+msgstr "VHDL"
 
 #: gtksourceview/language-specs/R.lang.h:1
-#, fuzzy
 msgid "Assign operator"
-msgstr "数组操作符"
+msgstr "赋值操作符"
 
 #: gtksourceview/language-specs/R.lang.h:2
-#, fuzzy
 msgid "Delimiter"
-msgstr "无限制"
+msgstr "分隔符"
 
 #: gtksourceview/language-specs/R.lang.h:5
-#, fuzzy
 msgid "Integer Number"
-msgstr "二进制数"
+msgstr "整数"
 
 #: gtksourceview/language-specs/R.lang.h:8
-#, fuzzy
 msgid "Reserved class"
-msgstr "ANSI 保留字"
+msgstr "保留类"
 
 #: gtksourceview/language-specs/R.lang.h:9
-#, fuzzy
 msgid "Reserved constant"
-msgstr "生成的常量"
+msgstr "保留常量"
 
 #: gtksourceview/language-specs/gtkrc.lang.h:3
 msgid "GtkRC"
-msgstr ""
+msgstr "GtkRC"
 
 #: gtksourceview/language-specs/gtkrc.lang.h:4
 msgid "Include Directive"
-msgstr ""
+msgstr "Include 指令"
 
 #: gtksourceview/language-specs/gtkrc.lang.h:5
-#, fuzzy
 msgid "Keysymbol"
 msgstr "关键字符号"
 
 #: gtksourceview/language-specs/gtkrc.lang.h:11
-#, fuzzy
 msgid "State"
-msgstr "门"
+msgstr "状态"
 
-#~ msgid "Plain Old Documentation"
-#~ msgstr "纯旧文档"
-
-#~ msgid "CSS"
-#~ msgstr "CSS"
-
-#~ msgid "JavaScript"
-#~ msgstr "JavaScript"
-
-#~ msgid "MSIL"
-#~ msgstr "MSIL"
