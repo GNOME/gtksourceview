@@ -4,7 +4,7 @@ else
 MAYBE_TESTS = 
 endif
 
-SUBDIRS = gtksourceview po $(MAYBE_TESTS)
+SUBDIRS = gtksourceview po $(MAYBE_TESTS) docs
 
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = gtksourceview-1.0.pc
@@ -22,3 +22,5 @@ DISTCLEANFILES = \
 	intltool-extract \
 	intltool-merge \
 	intltool-update
+
+DISTCHECK_CONFIGURE_FLAGS = --enable-gtk-doc

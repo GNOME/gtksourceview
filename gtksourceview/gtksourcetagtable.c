@@ -180,7 +180,7 @@ unblock_signals (GtkSourceTagTable *tt)
 /**
  * gtk_source_tag_table_add_tags:
  * @table: a #GtkSourceTagTable
- * @tag: a #GSList containing #GtkTextTag objects 
+ * @tags: a #GSList containing #GtkTextTag objects 
  *
  * Add a list of tag to the table. The added tags are assigned the highest priority
  * in the table.

@@ -1,0 +1,356 @@
+<!-- ##### SECTION Title ##### -->
+GtkSourceBuffer
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### STRUCT GtkSourceBuffer ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION gtk_source_buffer_new ##### -->
+<para>
+
+</para>
+
+@table: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gtk_source_buffer_new_with_language ##### -->
+<para>
+
+</para>
+
+@language: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gtk_source_buffer_get_check_brackets ##### -->
+<para>
+
+</para>
+
+@buffer: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gtk_source_buffer_set_check_brackets ##### -->
+<para>
+
+</para>
+
+@buffer: 
+@check_brackets: 
+
+
+<!-- ##### FUNCTION gtk_source_buffer_set_bracket_match_style ##### -->
+<para>
+
+</para>
+
+@source_buffer: 
+@style: 
+
+
+<!-- ##### FUNCTION gtk_source_buffer_get_highlight ##### -->
+<para>
+
+</para>
+
+@buffer: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gtk_source_buffer_set_highlight ##### -->
+<para>
+
+</para>
+
+@buffer: 
+@highlight: 
+
+
+<!-- ##### FUNCTION gtk_source_buffer_get_max_undo_levels ##### -->
+<para>
+
+</para>
+
+@buffer: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gtk_source_buffer_set_max_undo_levels ##### -->
+<para>
+
+</para>
+
+@buffer: 
+@max_undo_levels: 
+
+
+<!-- ##### FUNCTION gtk_source_buffer_get_language ##### -->
+<para>
+
+</para>
+
+@buffer: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gtk_source_buffer_set_language ##### -->
+<para>
+
+</para>
+
+@buffer: 
+@language: 
+
+
+<!-- ##### FUNCTION gtk_source_buffer_get_escape_char ##### -->
+<para>
+
+</para>
+
+@buffer: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gtk_source_buffer_set_escape_char ##### -->
+<para>
+
+</para>
+
+@buffer: 
+@escape_char: 
+
+
+<!-- ##### FUNCTION gtk_source_buffer_find_bracket_match ##### -->
+<para>
+
+</para>
+
+@iter: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gtk_source_buffer_can_undo ##### -->
+<para>
+
+</para>
+
+@buffer: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gtk_source_buffer_can_redo ##### -->
+<para>
+
+</para>
+
+@buffer: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gtk_source_buffer_undo ##### -->
+<para>
+
+</para>
+
+@buffer: 
+
+
+<!-- ##### FUNCTION gtk_source_buffer_redo ##### -->
+<para>
+
+</para>
+
+@buffer: 
+
+
+<!-- ##### FUNCTION gtk_source_buffer_begin_not_undoable_action ##### -->
+<para>
+
+</para>
+
+@buffer: 
+
+
+<!-- ##### FUNCTION gtk_source_buffer_end_not_undoable_action ##### -->
+<para>
+
+</para>
+
+@buffer: 
+
+
+<!-- ##### FUNCTION gtk_source_buffer_create_marker ##### -->
+<para>
+
+</para>
+
+@buffer: 
+@name: 
+@type: 
+@where: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gtk_source_buffer_move_marker ##### -->
+<para>
+
+</para>
+
+@buffer: 
+@marker: 
+@where: 
+
+
+<!-- ##### FUNCTION gtk_source_buffer_delete_marker ##### -->
+<para>
+
+</para>
+
+@buffer: 
+@marker: 
+
+
+<!-- ##### FUNCTION gtk_source_buffer_get_marker ##### -->
+<para>
+
+</para>
+
+@buffer: 
+@name: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gtk_source_buffer_get_markers_in_region ##### -->
+<para>
+
+</para>
+
+@buffer: 
+@begin: 
+@end: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gtk_source_buffer_get_first_marker ##### -->
+<para>
+
+</para>
+
+@buffer: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gtk_source_buffer_get_last_marker ##### -->
+<para>
+
+</para>
+
+@buffer: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gtk_source_buffer_get_iter_at_marker ##### -->
+<para>
+
+</para>
+
+@buffer: 
+@iter: 
+@marker: 
+
+
+<!-- ##### FUNCTION gtk_source_buffer_get_next_marker ##### -->
+<para>
+
+</para>
+
+@buffer: 
+@iter: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gtk_source_buffer_get_prev_marker ##### -->
+<para>
+
+</para>
+
+@buffer: 
+@iter: 
+@Returns: 
+
+
+<!-- ##### SIGNAL GtkSourceBuffer::can-redo ##### -->
+<para>
+
+</para>
+
+@sourcebuffer: the object which received the signal.
+@arg1: 
+
+<!-- ##### SIGNAL GtkSourceBuffer::can-undo ##### -->
+<para>
+
+</para>
+
+@sourcebuffer: the object which received the signal.
+@arg1: 
+
+<!-- ##### SIGNAL GtkSourceBuffer::highlight-updated ##### -->
+<para>
+
+</para>
+
+@sourcebuffer: the object which received the signal.
+@arg1: 
+@arg2: 
+
+<!-- ##### SIGNAL GtkSourceBuffer::marker-updated ##### -->
+<para>
+
+</para>
+
+@sourcebuffer: the object which received the signal.
+@arg1: 
+
+<!-- ##### ARG GtkSourceBuffer:check-brackets ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GtkSourceBuffer:escape-char ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GtkSourceBuffer:highlight ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GtkSourceBuffer:language ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GtkSourceBuffer:max-undo-levels ##### -->
+<para>
+
+</para>
+

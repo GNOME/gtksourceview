@@ -1,3 +1,26 @@
+2003-05-25  Gustavo Giraldez  <gustavo.giraldez@gmx.net>
+
+	* configure.in: 
+	* Makefile.am: Added reference documentation building
+	infrastructure.
+
+	* docs/Makefile.am:
+	* docs/reference/Makefile.am:
+	* docs/reference/gtksourceview-docs.sgml:
+	* docs/reference/gtksourceview-overrides.txt:
+	* docs/reference/gtksourceview-sections.txt:
+	* docs/reference/gtksourceview.types: New files necessary to build
+	the reference documentation
+
+	* docs/reference/tmpl/*.sgml: Initial versions of documentation
+	template files.
+
+	* gtksourceview/gtksourcelanguagesmanager.h: Reformatted
+	declarations so gtk-doc scanners can pick them up.
+	* gtksourceview/gtksourcetagtable.c
+	(gtk_source_tag_table_add_tags): Fixed typo in gtk-doc comment
+	header.
+	
 2003-05-25  Duarte Loreto <happyguy_pt@hotmail.com>
 
         * configure.in: Add Portuguese (pt) to ALL_LINGUAS.

@@ -1,0 +1,257 @@
+<!-- ##### SECTION Title ##### -->
+GtkSourceView
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### STRUCT GtkSourceView ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION gtk_source_view_new ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+
+<!-- ##### FUNCTION gtk_source_view_new_with_buffer ##### -->
+<para>
+
+</para>
+
+@buffer: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gtk_source_view_set_show_line_numbers ##### -->
+<para>
+
+</para>
+
+@view: 
+@show: 
+
+
+<!-- ##### FUNCTION gtk_source_view_get_show_line_numbers ##### -->
+<para>
+
+</para>
+
+@view: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gtk_source_view_set_show_line_markers ##### -->
+<para>
+
+</para>
+
+@view: 
+@show: 
+
+
+<!-- ##### FUNCTION gtk_source_view_get_show_line_markers ##### -->
+<para>
+
+</para>
+
+@view: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gtk_source_view_set_tabs_width ##### -->
+<para>
+
+</para>
+
+@view: 
+@width: 
+
+
+<!-- ##### FUNCTION gtk_source_view_get_tabs_width ##### -->
+<para>
+
+</para>
+
+@view: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gtk_source_view_set_auto_indent ##### -->
+<para>
+
+</para>
+
+@view: 
+@enable: 
+
+
+<!-- ##### FUNCTION gtk_source_view_get_auto_indent ##### -->
+<para>
+
+</para>
+
+@view: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gtk_source_view_set_insert_spaces_instead_of_tabs ##### -->
+<para>
+
+</para>
+
+@view: 
+@enable: 
+
+
+<!-- ##### FUNCTION gtk_source_view_get_insert_spaces_instead_of_tabs ##### -->
+<para>
+
+</para>
+
+@view: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gtk_source_view_set_show_margin ##### -->
+<para>
+
+</para>
+
+@view: 
+@show: 
+
+
+<!-- ##### FUNCTION gtk_source_view_get_show_margin ##### -->
+<para>
+
+</para>
+
+@view: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gtk_source_view_set_margin ##### -->
+<para>
+
+</para>
+
+@view: 
+@margin: 
+
+
+<!-- ##### FUNCTION gtk_source_view_get_margin ##### -->
+<para>
+
+</para>
+
+@view: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gtk_source_view_set_marker_pixbuf ##### -->
+<para>
+
+</para>
+
+@view: 
+@marker_type: 
+@pixbuf: 
+
+
+<!-- ##### FUNCTION gtk_source_view_get_marker_pixbuf ##### -->
+<para>
+
+</para>
+
+@view: 
+@marker_type: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gtk_source_view_set_smart_home_end ##### -->
+<para>
+
+</para>
+
+@view: 
+@enable: 
+
+
+<!-- ##### FUNCTION gtk_source_view_get_smart_home_end ##### -->
+<para>
+
+</para>
+
+@view: 
+@Returns: 
+
+
+<!-- ##### SIGNAL GtkSourceView::redo ##### -->
+<para>
+
+</para>
+
+@sourceview: the object which received the signal.
+
+<!-- ##### SIGNAL GtkSourceView::undo ##### -->
+<para>
+
+</para>
+
+@sourceview: the object which received the signal.
+
+<!-- ##### ARG GtkSourceView:auto-indent ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GtkSourceView:insert-spaces-instead-of-tabs ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GtkSourceView:margin ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GtkSourceView:show-line-markers ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GtkSourceView:show-line-numbers ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GtkSourceView:show-margin ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GtkSourceView:smart-home-end ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GtkSourceView:tabs-width ##### -->
+<para>
+
+</para>
+

@@ -84,6 +84,9 @@ AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE, "$GETTEXT_PACKAGE", [Package name for gettex
 AM_GLIB_GNU_GETTEXT
 AM_GLIB_DEFINE_LOCALEDIR(LOCALEDIR)
 
+# gtk-doc
+GTK_DOC_CHECK([1.0])
+
 # Output files
 AC_CONFIG_FILES([
 gtksourceview-1.0.pc
@@ -92,6 +95,9 @@ po/Makefile.in
 gtksourceview/Makefile
 gtksourceview/gnu-regex/Makefile
 gtksourceview/language-specs/Makefile
+docs/Makefile
+docs/reference/Makefile
 tests/Makefile
 ])
+
 AC_OUTPUT
