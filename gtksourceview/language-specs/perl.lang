@@ -4,7 +4,7 @@
 	
 	<escape-char>\</escape-char>
 
-	<string _name = "Plain Old Documentation" style = "Comment" end-at-line-end = "FALSE">
+	<string _name = "POD" style = "Comment" end-at-line-end = "FALSE">
 		<start-regex>^=pod</start-regex>
 		<end-regex>^=cut</end-regex>
 	</string>

@@ -1,5 +1,10 @@
 2005-01-07  Paolo Maggi  <paolo@gnome.org>
 
+	* gtksourceview/language-specs/perl.lang: fixes bug #150490 (POD 
+	acronym in gtksourceview seemingly unnecessarily expanded)
+
+2005-01-07  Paolo Maggi  <paolo@gnome.org>
+
 	Patch by Gustavo Giráldez  <gustavo.giraldez@gmx.net>.
 	Fixes the line number problems and the para box when wrap is disabled.
 	See bug #143874.
