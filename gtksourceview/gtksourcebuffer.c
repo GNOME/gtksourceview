@@ -40,6 +40,8 @@
 #include "gtksourceview-marshal.h"
 #include "gtktextregion.h"
 
+#include "gtksourceiter.h"
+
 /*
 #define ENABLE_DEBUG
 #define ENABLE_PROFILE
@@ -1125,7 +1127,7 @@ gtk_source_buffer_find_bracket_match_real (GtkTextIter *orig, gint max_chars)
 }
 
 /**
- * gtk_source_buffer_find_bracket_match:
+ * gtk_source_iter_find_matching_bracket:
  * @iter: a #GtkTextIter.
  * 
  * Tries to match the bracket character currently at @iter with its
@@ -1138,7 +1140,7 @@ gtk_source_buffer_find_bracket_match_real (GtkTextIter *orig, gint max_chars)
  * iter moved.
  **/
 gboolean
-gtk_source_buffer_find_bracket_match (GtkTextIter *iter)
+gtk_source_iter_find_matching_bracket (GtkTextIter *iter)
 {
 	g_return_val_if_fail (iter != NULL, FALSE);
 

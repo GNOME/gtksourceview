@@ -104,9 +104,6 @@ gunichar                 gtk_source_buffer_get_escape_char      (GtkSourceBuffer
 void                     gtk_source_buffer_set_escape_char      (GtkSourceBuffer        *buffer,
 								 gunichar                escape_char);
 
-/* Utility method */
-gboolean		 gtk_source_buffer_find_bracket_match 	(GtkTextIter            *iter);
-
 /* Undo/redo methods */
 gboolean		 gtk_source_buffer_can_undo		(GtkSourceBuffer        *buffer);
 gboolean		 gtk_source_buffer_can_redo		(GtkSourceBuffer        *buffer);

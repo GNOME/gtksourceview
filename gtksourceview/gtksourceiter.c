@@ -695,3 +695,7 @@ gtk_source_iter_backward_search (const GtkTextIter   *iter,
 
 	return retval;
 }
+
+/*
+ * gtk_source_iter_find_matching_bracket is implemented in gtksourcebuffer.c
+ */

@@ -9,12 +9,10 @@ Searching in a GtkSourceBuffer
 
 </para>
 
-
 <!-- ##### SECTION See_Also ##### -->
 <para>
 
 </para>
-
 
 <!-- ##### ENUM GtkSourceSearchFlags ##### -->
 <para>
@@ -50,6 +48,15 @@ Searching in a GtkSourceBuffer
 @match_start: 
 @match_end: 
 @limit: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gtk_source_iter_find_matching_bracket ##### -->
+<para>
+
+</para>
+
+@iter: 
 @Returns: 
 
 

@@ -27,8 +27,22 @@ G_BEGIN_DECLS
 
 /*
  * A theme should define at least the following styles to work well with the included .lang files:
+ * 
+ * - Base-N Integer
+ * - Character
+ * - Comment
+ * - Data Type
+ * - Function
+ * - Decimal
+ * - Floating Point
+ * - Keyword
+ * - Preprocessor
+ * - String
+ * - Specials
+ * - Others
+ * - Others 2
+ * - Others 3
  *
- * TODO
  *
  * The default theme defines all of them.
  *

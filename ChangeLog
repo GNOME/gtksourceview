@@ -1,3 +1,24 @@
+2003-06-06  Paolo Maggi  <paolo.maggi@polito.it>
+
+	* TODO: Updated
+
+	* docs/reference/gtksourceview-sections.txt: removed 
+	gtk_source_buffer_find_bracket_match, added 
+	gtk_source_iter_find_matching_bracket
+
+	* gtksourceview/gtksourcebuffer.c: #include "gtksourceiter.h",
+	rename gtk_source_buffer_find_bracket_match to 
+	gtk_source_iter_find_matching_bracket
+
+	* gtksourceview/gtksourcebuffer.h: removed 
+	gtk_source_buffer_find_bracket_match
+
+	* gtksourceview/gtksourceiter.h: added 
+	gtk_source_iter_find_matching_bracket
+
+	* gtksourceview/gtksourcestylescheme.h: added a list of 
+	required styles
+
 2003-06-04  Abel Cheung  <maddog@linux.org.hk>
 
 	* configure.in: Added "zh_TW" to ALL_LINGUAS.

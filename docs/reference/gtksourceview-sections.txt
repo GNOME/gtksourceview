@@ -16,7 +16,6 @@ gtk_source_buffer_get_language
 gtk_source_buffer_set_language
 gtk_source_buffer_get_escape_char
 gtk_source_buffer_set_escape_char
-gtk_source_buffer_find_bracket_match
 gtk_source_buffer_can_undo
 gtk_source_buffer_can_redo
 gtk_source_buffer_undo
@@ -296,4 +295,5 @@ GTK_SOURCE_PRINT_JOB_GET_CLASS
 GtkSourceSearchFlags
 gtk_source_iter_backward_search
 gtk_source_iter_forward_search
+gtk_source_iter_find_matching_bracket
 </SECTION>

@@ -317,7 +317,14 @@ process_language_node (xmlTextReaderPtr reader, const gchar *filename)
 	return lang;
 }
 
-
+/**
+ * gtk_source_language_get_name:
+ * @language: a #GtkSourceLanguage.
+ *
+ * Returns the name of the language @language.
+ *
+ * Return value: the name of @language.
+ **/
 gchar *
 gtk_source_language_get_name (GtkSourceLanguage *language)
 {
