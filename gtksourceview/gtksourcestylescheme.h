@@ -39,7 +39,7 @@ G_BEGIN_DECLS
  * - Preprocessor
  * - String
  * - Specials
- * - Others
+ * - Others (DEPRECATED, it has been replaced by "Data Type")
  * - Others 2
  * - Others 3
  *

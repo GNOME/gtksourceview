@@ -286,7 +286,9 @@ gtk_source_default_style_scheme_init (GtkSourceDefaultStyleScheme *scheme)
 	g_hash_table_insert (scheme->styles, 
 			     g_strdup (N_("Specials")),
 			     ts);
+ 
 
+	/* "Others" is DEPRECATED, it has been replaced by "Data Type" */
 	ts = new_tag_style ("#2E8B57", NULL, TRUE, FALSE);
 	g_hash_table_insert (scheme->styles, 
 			     g_strdup (N_("Others")),
