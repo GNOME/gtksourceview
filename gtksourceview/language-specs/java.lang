@@ -85,12 +85,8 @@
 		<keyword>void</keyword>
 	</keyword-list>
 
-	<pattern-item _name = "Integer" style = "Base-N Integer">
-		<regex>\b([0-9]+|0[xX][0-9a-fA-F]+)[Ll]?\b</regex>
-	</pattern-item>
-
-	<pattern-item _name = "Floating Point Number" style = "Floating Point">
-		<regex>\b(([0-9]+[Ee][-]?[0-9]+|([0-9]*\.[0-9]+|[0-9]+\.)([Ee][-]?[0-9]+)?)[fFdD]?|[0-9]+[FfDd])</regex>
+	<pattern-item _name = "Numeric" style = "Decimal">
+		<regex>(\b([0-9]+|0[xX][0-9a-fA-F]+)[Ll]?\b|\b(([0-9]+[Ee][-]?[0-9]+|([0-9]*\.[0-9]+|[0-9]+\.)([Ee][-]?[0-9]+)?)[fFdD]?|[0-9]+[FfDd]))</regex>
 	</pattern-item>
 
 </language>

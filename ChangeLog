@@ -1,5 +1,11 @@
 2003-09-27  Gustavo Giraldez  <gustavo.giraldez@gmx.net>
 
+	* gtksourceview/language-specs/java.lang: Remove the two new
+	translatable strings and restore the old one, by joining the
+	pattern items (doh!).
+
+2003-09-27  Gustavo Giraldez  <gustavo.giraldez@gmx.net>
+
 	* gtksourceview/language-specs/html.lang: Added missing <iframe>
 	to the tags keyword list (bug #121501).
 
