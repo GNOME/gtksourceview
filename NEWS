@@ -1,3 +1,12 @@
+News in 0.9.1
+-------------
+
+* Bug fixes.
+* XML and HTML .lang files now highlight strings using simple patterns.
+* Beginning of line and end of line are now correctly matched, even if
+  the slice of text doesn't include the newlines.
+* "Others" style is now deprecated.
+
 News in 0.9.0
 -------------
 
