@@ -1,3 +1,14 @@
+Sat Feb 09  05:41:59 2002 CET Mikael Hermansson<tyan@linux.se>
+
+  * gtksourcebuffer.[c/h] added new API: 
+
+    gtk_source_buffer_save[_with_character_encoding]()
+    gtk_source_buffer_load[_with_character_encoding]()
+    gtk_source_buffer_set_filename()
+    gtk_source_buffer_get_filename()
+    gtk_source_buffer_get_info()
+    GtkSourceBufferInfo structure holds file-/buffer status:        
+
 2002-02-06  Jeroen Zwartepoorte  <jeroen@xs4all.nl>
 
 	* src/gtksourceview.c: (gtk_source_view_calculate_tab_stop_width):

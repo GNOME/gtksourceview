@@ -46,8 +46,20 @@ typedef struct _GtkSourceBufferUndoEntry {
 	gpointer data;
 }GtkSourceBufferUndoEntry;
 
+typedef struct _GtkSourceBufferInfo
+{
+  gchar *filename;
+  gint buffersize;   /* bytes in memory */
+  gint filesize;       /* bytes written on disc */
+  gint filedate;      /* last time file was saved */
+  gint modified : 1;  /* is buffer modified since last write */
+}GtkSourceBufferInfo;
+
 typedef struct _GtkSourceBuffer {
 	GtkTextBuffer TextBuffer;
+
+    GtkSourceBufferInfo *info;
+
 	gint highlight :1;
 	gint check_brackets :1;
 	gint refresh_start;
@@ -123,6 +135,17 @@ gboolean gtk_source_buffer_line_remove_marker(GtkSourceBuffer *buffer, gint line
 /* return value is the number removed */
 /* pass -1 for start and end to remove all */
 gint gtk_source_view_remove_all_markers(GtkSourceBuffer *buffer, gint line_start, gint line_end);
+
+/* save/load and status API */
+
+void gtk_source_buffer_set_filename (GtkSourceBuffer *buffer, const gchar *filename);
+const gchar *gtk_source_buffer_get_filename (GtkSourceBuffer *buffer);
+const GtkSourceBufferInfo* gtk_source_buffer_get_info (GtkSourceBuffer *buffer);
+
+gboolean gtk_source_buffer_load (GtkSourceBuffer *buffer, const gchar *filename);
+gboolean gtk_source_buffer_load_with_character_encoding (GtkSourceBuffer *buffer, const gchar *filename, const gchar *input_encoding);
+gboolean gtk_source_buffer_save (GtkSourceBuffer *buffer, const gchar *filename);
+gboolean gtk_source_buffer_save_with_character_encoding (GtkSourceBuffer *buffer, const gchar *filename, const gchar *output_encoding);
 
 #ifdef __cplusplus
 }

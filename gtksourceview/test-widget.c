@@ -103,6 +103,8 @@ test_source (GtkSourceBuffer *buffer)
 	gtk_source_buffer_install_regex_tags (buffer, list);
 	g_list_free (list);
 
+    gtk_source_buffer_load (buffer, "test-widget.c");
+#ifdef OLD
 	if (g_file_get_contents ("gtksourcebuffer.c", &txt, &len, &error)) {
 		gtk_text_buffer_set_text (GTK_TEXT_BUFFER (buffer), txt, len);
 	} else {
@@ -114,6 +116,7 @@ test_source (GtkSourceBuffer *buffer)
 		gtk_widget_destroy (w);
 		g_error_free (error);
 	}
+#endif
 
 	return GTK_TEXT_BUFFER (buffer);
 }

@@ -21,8 +21,13 @@
 #include <string.h>
 #include <time.h>
 #include <gtk/gtk.h>
+#include <sys/stat.h>
 
 #include "gtksourcebuffer.h"
+
+#ifndef _()
+#define _(a) a
+#endif
 
 #ifndef UNDO_MAX
 #define UNDO_MAX 5
@@ -106,6 +111,9 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *_class)
 static void
 gtk_source_buffer_init (GtkSourceBuffer *text)
 {
+    text->info = g_malloc0 (sizeof(GtkSourceBufferInfo));
+    text->info->filename = g_strdup("");
+
 	text->check_brackets = FALSE;
 	text->highlight = TRUE;
 
@@ -628,6 +636,14 @@ gtk_source_buffer_set_check_brackets (GtkSourceBuffer *buf, gboolean set)
 	buf->check_brackets = set;
 }
 
+gboolean
+gtk_source_buffer_get_highlight (GtkSourceBuffer *buf)
+{
+  g_return_if_fail (buf != NULL);
+  g_return_if_fail (GTK_IS_SOURCE_BUFFER (buf));
+
+  return buf->highlight;
+}
 void
 gtk_source_buffer_set_highlight (GtkSourceBuffer *buf, gboolean set)
 {
@@ -1424,4 +1440,240 @@ gtk_source_buffer_remove_all_markers (GtkSourceBuffer *buffer, gint line_start, 
 		remove_count += gtk_source_buffer_line_remove_markers (buffer, counter);
 	}
 	return (remove_count);
+}
+
+void
+gtk_source_buffer_set_filename (GtkSourceBuffer *buf, const gchar *filename)
+{
+  g_return_if_fail(buf != NULL);
+  g_return_if_fail(GTK_IS_SOURCE_BUFFER(buf));
+
+  g_free (buf->info->filename);
+  buf->info->filename = g_strdup(filename);
+  
+  update_buffer_info (buf, TRUE);
+}
+
+const gchar *
+gtk_source_buffer_get_filename (GtkSourceBuffer *buf)
+{
+  g_return_val_if_fail(buf != NULL, "");
+  g_return_val_if_fail(GTK_IS_SOURCE_BUFFER(buf), "");
+
+  return buf->info->filename;
+}
+
+const GtkSourceBufferInfo *
+gtk_source_buffer_get_info (GtkSourceBuffer *buf)
+{
+  g_return_val_if_fail(buf != NULL, NULL);
+  g_return_val_if_fail(GTK_IS_SOURCE_BUFFER(buf), NULL);
+
+  update_buffer_info (buf, FALSE);
+
+  return buf->info;
+}
+
+void
+update_buffer_info (GtkSourceBuffer *buf, gboolean getstat)
+{
+  struct stat st;
+  GtkTextIter end;
+
+  gtk_text_buffer_get_end_iter (GTK_TEXT_BUFFER(buf), &end);
+  buf->info->buffersize = gtk_text_iter_get_offset(&end);
+  buf->info->modified = gtk_text_buffer_get_modified(GTK_TEXT_BUFFER (buf));  
+
+  if (!stat (buf->info->filename, &st))  {
+    buf->info->filesize = st.st_size;
+    buf->info->filedate = st.st_mtime;
+  }  else if (getstat)  {
+    buf->info->filesize = 0;
+    buf->info->filedate = 0;
+  }
+}
+
+gboolean
+read_loop (GIOChannel *io, GIOCondition cond, gpointer data)
+{
+  GtkSourceBuffer *buffer = GTK_SOURCE_BUFFER(data); 
+  gchar *str = NULL;
+  gint size = 0;
+
+  GError *error = NULL;
+  GtkTextIter end;
+  if (cond == G_IO_IN)  {
+    gtk_text_buffer_get_end_iter (GTK_TEXT_BUFFER (buffer), &end);
+    if (g_io_channel_read_line (io, &str, &size, NULL, &error) == G_IO_STATUS_NORMAL && size)  {
+      gtk_text_buffer_insert (GTK_TEXT_BUFFER (buffer), &end, str, size);
+      g_free(str);
+
+      return TRUE;
+    }   else  {
+      if (error)
+        g_error_free(error);
+
+      error = NULL;
+      g_io_channel_read_to_end (io, &str, &size, &error);
+      gtk_text_buffer_insert (GTK_TEXT_BUFFER (buffer), &end, str, size);
+      g_free(str);
+
+      return FALSE;
+    }
+  }  
+
+  return FALSE;
+}
+gboolean
+gtk_source_buffer_load (GtkSourceBuffer *buffer, const gchar *filename)
+{
+  g_return_val_if_fail(buffer != NULL, FALSE);
+  g_return_val_if_fail(GTK_IS_SOURCE_BUFFER(buffer), FALSE);
+  g_return_val_if_fail(filename != NULL, FALSE);
+
+  return gtk_source_buffer_load_with_character_encoding (buffer, filename, "UTF-8");  
+}
+
+gboolean
+gtk_source_buffer_load_with_character_encoding (GtkSourceBuffer *buffer, const gchar *filename, const gchar *input_encoding)
+{
+  GError *error=NULL;
+  GIOChannel *io;
+  GtkWidget *widget;
+  gboolean highlight = FALSE;
+
+  g_return_val_if_fail(buffer != NULL, FALSE);
+  g_return_val_if_fail(GTK_IS_SOURCE_BUFFER(buffer), FALSE);
+  g_return_val_if_fail(filename != NULL, FALSE);
+
+  highlight = gtk_source_buffer_get_highlight (buffer);
+
+  io = g_io_channel_new_file (filename, "r", &error);
+  if (!io)  {
+    widget = gtk_message_dialog_new(NULL,(GtkDialogFlags)0,GTK_MESSAGE_ERROR, GTK_BUTTONS_OK, "%s\nFile %s", error->message, filename);  
+    gtk_dialog_run (GTK_DIALOG(widget));
+    gtk_widget_destroy (widget);
+
+    return FALSE;
+  }
+
+  if (g_io_channel_set_encoding (io, input_encoding, &error) != G_IO_STATUS_NORMAL)  {
+    widget = gtk_message_dialog_new(NULL,(GtkDialogFlags)0,GTK_MESSAGE_ERROR,GTK_BUTTONS_OK, 
+                      _("Failed to set encoding:\n%s\n%s"), filename, error->message);
+
+    gtk_dialog_run(GTK_DIALOG(widget));
+    gtk_widget_destroy(widget);
+    g_error_free(error);
+    g_io_channel_unref(io);
+    
+    return FALSE;
+  }
+
+  if (highlight)  
+    gtk_source_buffer_set_highlight (buffer, FALSE);
+
+   while (read_loop (io, G_IO_IN, buffer));
+/*  g_io_add_watch (io, G_IO_IN | G_IO_ERR, read_loop, buffer);*/
+
+  g_io_channel_unref (io);
+  
+  gtk_source_buffer_set_filename(buffer, filename);
+
+  if (highlight)  
+    gtk_source_buffer_set_highlight (buffer, TRUE);
+
+  return TRUE;
+}
+
+gboolean
+gtk_source_buffer_save (GtkSourceBuffer *buffer, const gchar *filename)
+{
+  g_return_val_if_fail(buffer != NULL, FALSE);
+  g_return_val_if_fail(GTK_IS_SOURCE_BUFFER(buffer), FALSE);
+  g_return_val_if_fail(filename != NULL, FALSE);
+
+  return gtk_source_buffer_save_with_character_encoding (buffer, filename, "UTF-8");  
+}
+
+gboolean
+gtk_source_buffer_save_with_character_encoding (GtkSourceBuffer *buffer, const gchar *filename, const gchar *output_encoding)
+{
+  GIOChannel *io;
+  GtkTextIter iter, iterend;
+  GError *error=NULL;
+  gsize length=0;
+  gchar *buf;
+  gboolean more = FALSE;
+
+  g_return_val_if_fail(buffer != NULL, FALSE);
+  g_return_val_if_fail(GTK_IS_SOURCE_BUFFER(buffer), FALSE);
+  g_return_val_if_fail(filename != NULL, FALSE);
+
+  
+  io=g_io_channel_new_file(filename, "w+", &error);
+  if(!io)  {
+    GtkWidget *w;
+    w=gtk_message_dialog_new(NULL,(GtkDialogFlags)0,GTK_MESSAGE_ERROR,GTK_BUTTONS_OK, 
+                      _("Failed to create file:\n%s\n%s"), filename, error->message);
+
+    gtk_dialog_run(GTK_DIALOG(w));
+    gtk_widget_destroy(w);
+    g_error_free(error);
+
+    return FALSE;
+  }
+
+  if (g_io_channel_set_encoding (io, output_encoding, &error) != G_IO_STATUS_NORMAL)  {
+    GtkWidget *w;
+    w=gtk_message_dialog_new(NULL,(GtkDialogFlags)0,GTK_MESSAGE_ERROR,GTK_BUTTONS_OK, 
+                      _("Failed to set encoding:\n%s\n%s"), filename, error->message);
+
+    gtk_dialog_run(GTK_DIALOG(w));
+    gtk_widget_destroy(w);
+    g_error_free(error);
+    g_io_channel_unref(io);
+    
+    return FALSE;
+  }
+
+  gtk_text_buffer_get_start_iter(GTK_TEXT_BUFFER (buffer), &iter);
+  iterend=iter;
+  do
+  {
+    more = gtk_text_iter_forward_line(&iterend);
+    buf = gtk_text_iter_get_text(&iter, &iterend);
+    if (g_io_channel_write_chars(io, buf, -1, &length, &error) != G_IO_STATUS_NORMAL)
+    {
+      GtkWidget *w;
+      w=gtk_message_dialog_new(NULL,(GtkDialogFlags)0,GTK_MESSAGE_ERROR,GTK_BUTTONS_OK, 
+                                _("Failed to write characters to file:\n%s\n%s"), filename, error->message);  
+      gtk_dialog_run(GTK_DIALOG(w));
+      gtk_widget_destroy(w);
+      g_error_free(error);
+      g_io_channel_unref(io);
+    
+      return FALSE;
+    }
+    g_free(buf);
+    iter=iterend;
+  }  while(more);
+  
+  if (g_io_channel_flush(io, &error) != G_IO_STATUS_NORMAL)
+  {
+    GtkWidget *w;
+    w=gtk_message_dialog_new(NULL,(GtkDialogFlags)0,GTK_MESSAGE_ERROR,GTK_BUTTONS_OK, 
+                                _("Failed to write end line to file:\n%s\n%s"), filename, error->message);  
+    gtk_dialog_run(GTK_DIALOG(w));
+    gtk_widget_destroy(w);
+    g_error_free(error);
+    g_io_channel_unref(io);
+
+    return FALSE;
+  }
+
+  g_io_channel_unref(io);
+  gtk_text_buffer_set_modified (GTK_TEXT_BUFFER(buffer), FALSE);
+  gtk_source_buffer_set_filename(buffer, filename);
+
+  return TRUE;
 }
