@@ -751,7 +751,7 @@ gtk_source_buffer_move_cursor (GtkTextBuffer *buffer,
 					    &iter2);
 	}
 
-	if (!GTK_SOURCE_BUFFER (buffer)->priv->check_brackets || iter_has_syntax_tag (iter))
+	if (!GTK_SOURCE_BUFFER (buffer)->priv->check_brackets)
 		return;
 
 	iter1 = *iter;
@@ -1045,17 +1045,21 @@ gtk_source_buffer_find_bracket_match_real (GtkTextIter *orig, gint max_chars)
 	gunichar cur_char;
 	gint addition;
 	gint char_cont;
-
 	gint counter;
 	
 	gboolean found;
 
+	const GtkSyntaxTag *base_tag;
+
 	iter = *orig;
 
-	gtk_text_iter_backward_char (&iter);
+	if (!gtk_text_iter_backward_char (&iter))
+		return FALSE;
+	
 	cur_char = gtk_text_iter_get_char (&iter);
 
 	base_char = search_char = cur_char;
+	base_tag = iter_has_syntax_tag (&iter);
 	
 	switch ((int) base_char) {
 		case '{':
@@ -1107,15 +1111,18 @@ gtk_source_buffer_find_bracket_match_real (GtkTextIter *orig, gint max_chars)
 		cur_char = gtk_text_iter_get_char (&iter);
 		++char_cont;
 		
-		if ((cur_char == search_char) && counter == 0) {
-			found = TRUE;
-			break;
-		}
-		if (cur_char == base_char)
-			counter++;
-		else 
-			if (cur_char == search_char)
+		if ((cur_char == search_char || cur_char == base_char) &&
+		    base_tag == iter_has_syntax_tag (&iter))
+		{
+			if ((cur_char == search_char) && counter == 0) {
+				found = TRUE;
+				break;
+			}
+			if (cur_char == base_char)
+				counter++;
+			else 
 				counter--;
+		}
 	} 
 	while (!gtk_text_iter_is_end (&iter) && !gtk_text_iter_is_start (&iter) && 
 		((char_cont < max_chars) || (max_chars < 0)));

@@ -1,5 +1,13 @@
 2003-06-13  Gustavo Giraldez  <gustavo.giraldez@gmx.net>
 
+	* gtksourceview/gtksourcebuffer.c
+	(gtk_source_buffer_find_bracket_match_real): Return FALSE if at
+	the beginning of the buffer.  Verify that the matching bracket is
+	inside the same type of syntax region as the base bracket (Fixes
+	bug #113495).
+
+2003-06-13  Gustavo Giraldez  <gustavo.giraldez@gmx.net>
+
 	* gtksourceview/gtksourceprintjob.h:
 	* gtksourceview/gtksourceprintjob.c
 	(gtk_source_print_job_print_range_async): Set the idle handler
