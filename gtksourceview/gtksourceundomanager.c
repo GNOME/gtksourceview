@@ -1044,6 +1044,9 @@ gtk_source_undo_manager_set_max_undo_levels (GtkSourceUndoManager	*um,
 	old_levels = um->priv->max_undo_levels;
 	um->priv->max_undo_levels = max_undo_levels;
 
+	if (max_undo_levels < 1)
+		return;
+		
 	if (old_levels > max_undo_levels)
 	{
 		/* strip redo actions first */

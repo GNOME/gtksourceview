@@ -1,3 +1,11 @@
+2005-02-03  Paolo Maggi  <paolo@gnome.org>
+
+	* gtksourceview/gtksourceundomanager.c
+	(gtk_source_undo_manager_set_max_undo_levels): do not resize the 
+	undo action list if max_undo_levels < 1
+
+=== gtksourceview 1.1.91 ===
+
 2005-01-25  Paolo Maggi  <paolo@gnome.org> 
 
 	* configure.in: set version to 1.1.91
