@@ -1,0 +1,643 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gtksourceview\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2003-11-10 18:47+0200\n"
+"PO-Revision-Date: 2003-11-07 20:00+0200\n"
+"Last-Translator: Tomas Kuliavas <tokul@users.sourceforge.net>\n"
+"Language-Team: Lithuanian <komp_lt@konferencijos.lt>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: gtksourceview/gtksourcebuffer.c:279
+msgid "Escape Character"
+msgstr "Atšaukimo Simbolis"
+
+#: gtksourceview/gtksourcebuffer.c:280
+msgid "Escaping character for syntax patterns"
+msgstr "Atšaukimo simbolis naudojamas sintaksinėse konstrukcijose"
+
+#: gtksourceview/gtksourcebuffer.c:288
+msgid "Check Brackets"
+msgstr "Tikrinti Skliaustus"
+
+#: gtksourceview/gtksourcebuffer.c:289
+msgid "Whether to check and highlight matching brackets"
+msgstr "Ar reikia tikrinti ir sužymėti atitinkamus laužtinius skliaustus"
+
+#: gtksourceview/gtksourcebuffer.c:297 gtksourceview/gtksourceprintjob.c:303
+msgid "Highlight"
+msgstr "Paryškinimas"
+
+#: gtksourceview/gtksourcebuffer.c:298
+msgid "Whether to highlight syntax in the buffer"
+msgstr "Ar sužymėti buferyje išvedamo kodo sintaksę"
+
+#: gtksourceview/gtksourcebuffer.c:306
+msgid "Maximum Undo Levels"
+msgstr "Atšaukimo Lygių Skaičius"
+
+#: gtksourceview/gtksourcebuffer.c:307
+msgid "Number of undo levels for the buffer"
+msgstr "Buferyje galimas didžiausias atgalinių žingsnių skaičius"
+
+#: gtksourceview/gtksourcebuffer.c:317
+#: gtksourceview/language-specs/desktop.lang.h:6
+msgid "Language"
+msgstr "Kalba"
+
+#: gtksourceview/gtksourcebuffer.c:318
+msgid "Language object to get highlighting patterns from"
+msgstr "Kalbos objektas, kuris nurodo žymėjimo požymius"
+
+#: gtksourceview/gtksourcelanguagesmanager.c:119
+msgid "Language specification directories"
+msgstr "Kalbų specifikacijų katalogai"
+
+#: gtksourceview/gtksourcelanguagesmanager.c:120
+msgid ""
+"List of directories where the language specification files (.lang) are "
+"located"
+msgstr "Katalogų, saugančių kalbų specifikacijos bylas (.lang), vieta"
+
+#: gtksourceview/gtksourceprintjob.c:272
+msgid "Configuration"
+msgstr "Nustatymai"
+
+#: gtksourceview/gtksourceprintjob.c:273
+msgid "Configuration options for the print job"
+msgstr "Spausdinimo užduoties nustatymai"
+
+#: gtksourceview/gtksourceprintjob.c:280
+msgid "Source Buffer"
+msgstr "Pradinio teksto buferis"
+
+#: gtksourceview/gtksourceprintjob.c:281
+msgid "GtkSourceBuffer object to print"
+msgstr "Spausdintinas GtkSourceBuffer objektas"
+
+#: gtksourceview/gtksourceprintjob.c:287 gtksourceview/gtksourceview.c:221
+#: gtksourceview/gtksourceview.c:222
+msgid "Tabs Width"
+msgstr "Tab Plotis"
+
+#: gtksourceview/gtksourceprintjob.c:288
+msgid "Width in equivalent space characters of tabs"
+msgstr "Tabuliacijos plotis išreikštas tarpo simboliais"
+
+#: gtksourceview/gtksourceprintjob.c:295
+msgid "Wrap Mode"
+msgstr "Laužymo Režimas"
+
+#: gtksourceview/gtksourceprintjob.c:296
+msgid "Word wrapping mode"
+msgstr "Žodžių laužymo režimas"
+
+#: gtksourceview/gtksourceprintjob.c:304
+msgid "Whether to print the document with highlighted syntax"
+msgstr "Ar spausdinti dokumentą su sužymėta sintakse"
+
+#: gtksourceview/gtksourceprintjob.c:312
+msgid "Font"
+msgstr "Šriftas"
+
+#: gtksourceview/gtksourceprintjob.c:313
+msgid "Font name to use for the document text"
+msgstr "Šriftas naudotinas dokumento tekstui"
+
+#: gtksourceview/gtksourceprintjob.c:320
+msgid "Numbers Font"
+msgstr "Skaičių Šriftas"
+
+#: gtksourceview/gtksourceprintjob.c:321
+msgid "Font name to use for the line numbers"
+msgstr "Šriftas naudotinas eilučių numeriams"
+
+#: gtksourceview/gtksourceprintjob.c:328
+msgid "Print Line Numbers"
+msgstr "Spausdinti Eilučių Numerius"
+
+#: gtksourceview/gtksourceprintjob.c:329
+msgid "Interval of printed line numbers (0 means no numbers)"
+msgstr ""
+"Tarpas tarp spausdinamų eilučių numerių (0 reiškia numerių nespausdinimą)"
+
+#: gtksourceview/gtksourceprintjob.c:336
+msgid "Print Header"
+msgstr "Spausdinti Antraštę"
+
+#: gtksourceview/gtksourceprintjob.c:337
+msgid "Whether to print a header in each page"
+msgstr "Ar spausdinti antraštę kiekviename lape"
+
+#: gtksourceview/gtksourceprintjob.c:344
+msgid "Print Footer"
+msgstr "Spausdinti Poraštę"
+
+#: gtksourceview/gtksourceprintjob.c:345
+msgid "Whether to print a footer in each page"
+msgstr "Ar spausdinti poraštę kiekviename lape"
+
+#: gtksourceview/gtksourceprintjob.c:352
+msgid "Header and Footer Font"
+msgstr "Antraštės ir Poraštės Šriftas"
+
+#: gtksourceview/gtksourceprintjob.c:353
+msgid "Font name to use for the header and footer"
+msgstr "Šriftas naudotinas antraštei ir poraštei"
+
+#: gtksourceview/gtksourcestylescheme.c:237
+msgid "Base-N Integer"
+msgstr "N_Pagrindo Sveikasis"
+
+#: gtksourceview/gtksourcestylescheme.c:242
+msgid "Character"
+msgstr "Simbolis"
+
+#: gtksourceview/gtksourcestylescheme.c:247
+#: gtksourceview/language-specs/latex.lang.h:1
+#: gtksourceview/language-specs/po.lang.h:1
+msgid "Comment"
+msgstr "Pastaba"
+
+#: gtksourceview/gtksourcestylescheme.c:252
+msgid "Data Type"
+msgstr "Duomenų Tipas"
+
+#: gtksourceview/gtksourcestylescheme.c:257
+#: gtksourceview/language-specs/ada.lang.h:3
+msgid "Function"
+msgstr "Funkcija"
+
+#: gtksourceview/gtksourcestylescheme.c:262
+#: gtksourceview/language-specs/c.lang.h:6
+#: gtksourceview/language-specs/cpp.lang.h:6
+msgid "Decimal"
+msgstr "Dešimtainis"
+
+#: gtksourceview/gtksourcestylescheme.c:267
+msgid "Floating Point"
+msgstr "Slankus Kablelis"
+
+#: gtksourceview/gtksourcestylescheme.c:272
+#: gtksourceview/language-specs/latex.lang.h:3
+#: gtksourceview/language-specs/po.lang.h:3
+msgid "Keyword"
+msgstr "Raktas"
+
+#: gtksourceview/gtksourcestylescheme.c:277
+msgid "Preprocessor"
+msgstr "Apdorojanti programa"
+
+#: gtksourceview/gtksourcestylescheme.c:282
+#: gtksourceview/language-specs/ada.lang.h:9
+#: gtksourceview/language-specs/c.lang.h:15
+#: gtksourceview/language-specs/cpp.lang.h:15
+#: gtksourceview/language-specs/html.lang.h:8
+#: gtksourceview/language-specs/idl.lang.h:8
+#: gtksourceview/language-specs/java.lang.h:11
+#: gtksourceview/language-specs/perl.lang.h:6
+#: gtksourceview/language-specs/po.lang.h:6
+#: gtksourceview/language-specs/python.lang.h:11
+#: gtksourceview/language-specs/xml.lang.h:8
+msgid "String"
+msgstr "Seka"
+
+#: gtksourceview/gtksourcestylescheme.c:287
+msgid "Specials"
+msgstr "Specialūs"
+
+#: gtksourceview/gtksourcestylescheme.c:292
+#: gtksourceview/language-specs/desktop.lang.h:10
+#: gtksourceview/language-specs/diff.lang.h:7
+#: gtksourceview/language-specs/po.lang.h:5
+msgid "Others"
+msgstr "Kiti"
+
+#: gtksourceview/gtksourcestylescheme.c:297
+msgid "Others 2"
+msgstr "Kiti 2"
+
+#: gtksourceview/gtksourcestylescheme.c:302
+msgid "Others 3"
+msgstr "Kiti 3"
+
+#: gtksourceview/gtksourcestylescheme.c:339
+msgid "Default"
+msgstr "Standartinis(ė)"
+
+#: gtksourceview/gtksourcetag.c:108
+msgid "Tag ID"
+msgstr "Žymės ID"
+
+#: gtksourceview/gtksourcetag.c:109
+msgid "ID used to refer to the source tag"
+msgstr "ID naudojamas pradinio teksto žymėjime"
+
+#: gtksourceview/gtksourcetag.c:116
+msgid "Tag style"
+msgstr "Žymės stilius"
+
+#: gtksourceview/gtksourcetag.c:117
+msgid "The style associated to the source tag"
+msgstr "Stilius susietas su pradinio teksto žymėjimu"
+
+#: gtksourceview/gtksourceview.c:205
+msgid "Show Line Numbers"
+msgstr "Rodyti Eilučių Numerius"
+
+#: gtksourceview/gtksourceview.c:206
+msgid "Whether to display line numbers"
+msgstr "Ar rodyti eilučių numerius"
+
+#: gtksourceview/gtksourceview.c:213
+msgid "Show Line Markers"
+msgstr "Rodyti Eilučių Markerius"
+
+#: gtksourceview/gtksourceview.c:214
+msgid "Whether to display line marker pixbufs"
+msgstr "Ar rodyti eilučių markerių buferius"
+
+#: gtksourceview/gtksourceview.c:231
+msgid "Auto Indentation"
+msgstr "Automatinis Atitraukimas"
+
+#: gtksourceview/gtksourceview.c:232
+msgid "Whether to enable auto indentation"
+msgstr "Ar naudoti automatinį atitraukimą"
+
+#: gtksourceview/gtksourceview.c:238
+msgid "Insert Spaces Instead of Tabs"
+msgstr "Įterpti tarpus vietoj tabuliacijos"
+
+#: gtksourceview/gtksourceview.c:239
+msgid "Whether to insert spaces instead of tabs"
+msgstr "Ar vietoj tabuliacijos įterpti tarpus"
+
+#: gtksourceview/gtksourceview.c:246
+msgid "Show Right Margin"
+msgstr "Rodyti Dešinę Paraštę"
+
+#: gtksourceview/gtksourceview.c:247
+msgid "Whether to display the right margin"
+msgstr "Ar rodyti dešinę paraštę"
+
+#: gtksourceview/gtksourceview.c:254
+msgid "Margin position"
+msgstr "Paraštės padėtis"
+
+#: gtksourceview/gtksourceview.c:255
+msgid "Position of the right margin"
+msgstr "Dešinės paraštės padėtis"
+
+#: gtksourceview/gtksourceview.c:264
+msgid "Use smart home/end"
+msgstr "Naudoti protingą pradžia/pabaigą"
+
+#: gtksourceview/gtksourceview.c:265
+msgid ""
+"HOME and END keys move to first/last characters on line first before going "
+"to the start/end of the line"
+msgstr ""
+"PRAD ir PAD klavišai pereis prie pirmo/paskutinio eilutės simbolio prieš "
+"eidami į pačios eilutės pradžią/pabaigą"
+
+#: gtksourceview/language-specs/ada.lang.h:1
+msgid "Ada"
+msgstr "Ada"
+
+#: gtksourceview/language-specs/ada.lang.h:2
+#: gtksourceview/language-specs/c.lang.h:4
+#: gtksourceview/language-specs/cpp.lang.h:4
+msgid "Character Constant"
+msgstr "Simbolinė Konstanta"
+
+#: gtksourceview/language-specs/ada.lang.h:4
+#: gtksourceview/language-specs/c.lang.h:10
+#: gtksourceview/language-specs/cpp.lang.h:10
+#: gtksourceview/language-specs/idl.lang.h:4
+#: gtksourceview/language-specs/perl.lang.h:2
+#: gtksourceview/language-specs/python.lang.h:3
+msgid "Keywords"
+msgstr "Raktai"
+
+#: gtksourceview/language-specs/ada.lang.h:5
+#: gtksourceview/language-specs/c.lang.h:11
+#: gtksourceview/language-specs/cpp.lang.h:11
+#: gtksourceview/language-specs/desktop.lang.h:7
+#: gtksourceview/language-specs/diff.lang.h:5
+#: gtksourceview/language-specs/java.lang.h:5
+#: gtksourceview/language-specs/perl.lang.h:3
+#: gtksourceview/language-specs/python.lang.h:4
+msgid "Line Comment"
+msgstr "Eilutės Pastabos"
+
+#: gtksourceview/language-specs/ada.lang.h:6
+#: gtksourceview/language-specs/desktop.lang.h:9
+msgid "Number"
+msgstr "Skaičius"
+
+#: gtksourceview/language-specs/ada.lang.h:7
+msgid "Preprocessor Keywords"
+msgstr "Apdorojančios Programos Raktai"
+
+#: gtksourceview/language-specs/ada.lang.h:8
+#: gtksourceview/language-specs/c.lang.h:14
+#: gtksourceview/language-specs/cpp.lang.h:14
+#: gtksourceview/language-specs/idl.lang.h:7
+#: gtksourceview/language-specs/java.lang.h:10
+msgid "Sources"
+msgstr "Pradiniai Tekstai"
+
+#: gtksourceview/language-specs/ada.lang.h:10
+msgid "True And False"
+msgstr "Taip ir Ne"
+
+#: gtksourceview/language-specs/ada.lang.h:11
+#: gtksourceview/language-specs/c.lang.h:16
+#: gtksourceview/language-specs/cpp.lang.h:16
+#: gtksourceview/language-specs/idl.lang.h:9
+msgid "Types"
+msgstr "Tipai"
+
+#: gtksourceview/language-specs/c.lang.h:1
+#: gtksourceview/language-specs/cpp.lang.h:1
+msgid "'#if 0' Comment"
+msgstr "'#if 0' Pastabos"
+
+#: gtksourceview/language-specs/c.lang.h:2
+#: gtksourceview/language-specs/cpp.lang.h:2
+#: gtksourceview/language-specs/html.lang.h:2
+#: gtksourceview/language-specs/idl.lang.h:1
+#: gtksourceview/language-specs/java.lang.h:1
+#: gtksourceview/language-specs/xml.lang.h:2
+msgid "Block Comment"
+msgstr "Blokinė Pastaba"
+
+#: gtksourceview/language-specs/c.lang.h:3
+msgid "C"
+msgstr "C"
+
+#: gtksourceview/language-specs/c.lang.h:5
+#: gtksourceview/language-specs/cpp.lang.h:5
+msgid "Common Macro"
+msgstr "Bendrinis Makrosas"
+
+#: gtksourceview/language-specs/c.lang.h:7
+#: gtksourceview/language-specs/cpp.lang.h:7
+msgid "Floating Point Number"
+msgstr "Skaičius su Slankiu Kableliu"
+
+#: gtksourceview/language-specs/c.lang.h:8
+#: gtksourceview/language-specs/cpp.lang.h:8
+msgid "Hex Number"
+msgstr "Hex Skaičius"
+
+#: gtksourceview/language-specs/c.lang.h:9
+#: gtksourceview/language-specs/cpp.lang.h:9
+#: gtksourceview/language-specs/idl.lang.h:3
+msgid "Include/Pragma"
+msgstr "Intarpas/Pragma"
+
+#: gtksourceview/language-specs/c.lang.h:12
+#: gtksourceview/language-specs/cpp.lang.h:12
+msgid "Octal Number"
+msgstr "Aštuntainis Skaičius"
+
+#: gtksourceview/language-specs/c.lang.h:13
+#: gtksourceview/language-specs/cpp.lang.h:13
+#: gtksourceview/language-specs/idl.lang.h:5
+msgid "Preprocessor Definitions"
+msgstr "Apdorojančios Programos Nustatymai"
+
+#: gtksourceview/language-specs/cpp.lang.h:3
+msgid "C++"
+msgstr "C++"
+
+#: gtksourceview/language-specs/desktop.lang.h:1
+msgid ".desktop"
+msgstr ".desktop"
+
+#: gtksourceview/language-specs/desktop.lang.h:2
+msgid "Boolean Value"
+msgstr "Loginė Reikšmė"
+
+#: gtksourceview/language-specs/desktop.lang.h:3
+msgid "Encoding"
+msgstr "Koduotė"
+
+#: gtksourceview/language-specs/desktop.lang.h:4
+msgid "Exec Parameter"
+msgstr "Paleidimo Parametras"
+
+#: gtksourceview/language-specs/desktop.lang.h:5
+msgid "Group"
+msgstr "Grupė"
+
+#: gtksourceview/language-specs/desktop.lang.h:8
+msgid "Non Standard Key"
+msgstr "Netipinis Raktas"
+
+#: gtksourceview/language-specs/desktop.lang.h:11
+msgid "Standard Key"
+msgstr "Tipinis Raktas"
+
+#: gtksourceview/language-specs/diff.lang.h:1
+msgid "Added line"
+msgstr "Pridėta eilutė"
+
+#: gtksourceview/language-specs/diff.lang.h:2
+msgid "Changed line"
+msgstr "Pakeista eilutė"
+
+#: gtksourceview/language-specs/diff.lang.h:3
+msgid "Diff"
+msgstr "Diff"
+
+#: gtksourceview/language-specs/diff.lang.h:4
+msgid "Diff file"
+msgstr "Diff byla"
+
+#: gtksourceview/language-specs/diff.lang.h:6
+#: gtksourceview/language-specs/po.lang.h:4
+msgid "Location"
+msgstr "Vieta"
+
+#: gtksourceview/language-specs/diff.lang.h:8
+msgid "Removed line"
+msgstr "Pašalinta eilutė"
+
+#: gtksourceview/language-specs/diff.lang.h:9
+msgid "Special case"
+msgstr "Specialus atvejis"
+
+#: gtksourceview/language-specs/html.lang.h:1
+#: gtksourceview/language-specs/xml.lang.h:1
+msgid "Attributes"
+msgstr "Požymiai"
+
+#: gtksourceview/language-specs/html.lang.h:3
+#: gtksourceview/language-specs/xml.lang.h:3
+msgid "Closing Bracket"
+msgstr "Uždarantys Laužtiniai Skliaustai"
+
+#: gtksourceview/language-specs/html.lang.h:4
+#: gtksourceview/language-specs/xml.lang.h:4
+msgid "DTD"
+msgstr "DTD"
+
+#: gtksourceview/language-specs/html.lang.h:5
+#: gtksourceview/language-specs/xml.lang.h:5
+msgid "Entity"
+msgstr "Elementai"
+
+#: gtksourceview/language-specs/html.lang.h:6
+msgid "HTML"
+msgstr "HTML"
+
+#: gtksourceview/language-specs/html.lang.h:7
+#: gtksourceview/language-specs/latex.lang.h:5
+#: gtksourceview/language-specs/xml.lang.h:7
+msgid "Markup"
+msgstr "Žymėjimas"
+
+#: gtksourceview/language-specs/html.lang.h:9
+msgid "Tags"
+msgstr "Žymės"
+
+#: gtksourceview/language-specs/idl.lang.h:2
+msgid "IDL"
+msgstr "IDL"
+
+#: gtksourceview/language-specs/idl.lang.h:6
+msgid "Sectional"
+msgstr "Sekcijos"
+
+#: gtksourceview/language-specs/java.lang.h:2
+msgid "Declarations"
+msgstr "Deklaravimas"
+
+#: gtksourceview/language-specs/java.lang.h:3
+msgid "Flow"
+msgstr "Srautas"
+
+#: gtksourceview/language-specs/java.lang.h:4
+msgid "Java"
+msgstr "Java"
+
+#: gtksourceview/language-specs/java.lang.h:6
+msgid "Memory"
+msgstr "Atmintis"
+
+#: gtksourceview/language-specs/java.lang.h:7
+msgid "Modifiers"
+msgstr "Keitikliai"
+
+#: gtksourceview/language-specs/java.lang.h:8
+msgid "Numeric"
+msgstr "Skaitmenys"
+
+#: gtksourceview/language-specs/java.lang.h:9
+msgid "Primitives"
+msgstr "Primityvai"
+
+#: gtksourceview/language-specs/java.lang.h:12
+#: gtksourceview/language-specs/python.lang.h:12
+#: gtksourceview/language-specs/xml.lang.h:9
+msgid "String 2"
+msgstr "Seka 2"
+
+#: gtksourceview/language-specs/latex.lang.h:2
+msgid "Include"
+msgstr "Intarpas"
+
+#: gtksourceview/language-specs/latex.lang.h:4
+msgid "Latex"
+msgstr "Latex"
+
+#: gtksourceview/language-specs/latex.lang.h:6
+msgid "Math"
+msgstr "Math"
+
+#: gtksourceview/language-specs/latex.lang.h:7
+msgid "Most Used Commands"
+msgstr "Dažniausiai Naudotos Komandos"
+
+#: gtksourceview/language-specs/perl.lang.h:1
+msgid "Function Call"
+msgstr "Funkcijos Iškvietimas"
+
+#: gtksourceview/language-specs/perl.lang.h:4
+msgid "Perl"
+msgstr "Perl"
+
+#: gtksourceview/language-specs/perl.lang.h:5
+#: gtksourceview/language-specs/python.lang.h:9
+msgid "Scripts"
+msgstr "Scenarijai"
+
+#: gtksourceview/language-specs/perl.lang.h:7
+msgid "String2"
+msgstr "Seka2"
+
+#: gtksourceview/language-specs/perl.lang.h:8
+msgid "String3"
+msgstr "Seka3"
+
+#: gtksourceview/language-specs/perl.lang.h:9
+msgid "Variables"
+msgstr "Kintamieji"
+
+#: gtksourceview/language-specs/po.lang.h:2
+msgid "Format"
+msgstr "Formatas"
+
+#: gtksourceview/language-specs/po.lang.h:7
+msgid "gettext translation"
+msgstr "gettext vertimas"
+
+#: gtksourceview/language-specs/python.lang.h:1
+msgid "Builtins"
+msgstr "Vidiniai"
+
+#: gtksourceview/language-specs/python.lang.h:2
+msgid "Functions"
+msgstr "Funkcijos"
+
+#: gtksourceview/language-specs/python.lang.h:5
+msgid "Module Handler"
+msgstr "Modulio Rodyklė"
+
+#: gtksourceview/language-specs/python.lang.h:6
+msgid "Multiline String"
+msgstr "Suskaidyta Eilutėmis Seka"
+
+#: gtksourceview/language-specs/python.lang.h:7
+msgid "Multiline String 2"
+msgstr "Suskaidyta Eilutėmis Seka 2"
+
+#: gtksourceview/language-specs/python.lang.h:8
+msgid "Python"
+msgstr "Python"
+
+#: gtksourceview/language-specs/python.lang.h:10
+msgid "Self"
+msgstr "Pats"
+
+#: gtksourceview/language-specs/xml.lang.h:6
+msgid "Hexadecimal"
+msgstr "Šešioliktainis"
+
+#: gtksourceview/language-specs/xml.lang.h:10
+msgid "Tag"
+msgstr "Žymė"
+
+#: gtksourceview/language-specs/xml.lang.h:11
+msgid "XML"
+msgstr "XML"
