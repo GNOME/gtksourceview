@@ -276,7 +276,7 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 					 g_param_spec_unichar ("escape_char",
 							       _("Escape Character"),
 							       _("Escaping character "
-								 "for syntax delimiters"),
+								 "for syntax patterns"),
 							       0,
 							       G_PARAM_READWRITE));
 
@@ -293,8 +293,8 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 					 PROP_HIGHLIGHT,
 					 g_param_spec_boolean ("highlight",
 							       _("Highlight"),
-							       _("Whether to syntax highlight "
-								 "the buffer"),
+							       _("Whether to highlight syntax "
+								 "in the buffer"),
 							       FALSE,
 							       G_PARAM_READWRITE));
 	
@@ -314,7 +314,7 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 					 g_param_spec_object ("language",
 							      _("Language"),
 							      _("Language object to get "
-								"highlighting rules from"),
+								"highlighting patterns from"),
 							      GTK_TYPE_SOURCE_LANGUAGE,
 							      G_PARAM_READWRITE));
 	
@@ -633,6 +633,14 @@ gtk_source_buffer_get_property (GObject    *object,
 	}
 }
 
+/**
+ * gtk_source_buffer_new:
+ * @table: a #GtkSourceTagTable, or NULL to create a new one.
+ * 
+ * Creates a new source buffer.
+ * 
+ * Return value: a new source buffer.
+ **/
 GtkSourceBuffer *
 gtk_source_buffer_new (GtkSourceTagTable *table)
 {
@@ -645,6 +653,18 @@ gtk_source_buffer_new (GtkSourceTagTable *table)
 	return buffer;
 }
 
+/**
+ * gtk_source_buffer_new_with_language:
+ * @language: a #GtkSourceLanguage.
+ * 
+ * Creates a new source buffer using the highlighting patterns in
+ * @language.  This is equivalent to creating a new source buffer with
+ * the default tag table and then calling
+ * gtk_source_buffer_set_language().
+ * 
+ * Return value: a new source buffer which will highlight text
+ * according to @language.
+ **/
 GtkSourceBuffer *
 gtk_source_buffer_new_with_language (GtkSourceLanguage *language)
 {
@@ -1104,14 +1124,35 @@ gtk_source_buffer_find_bracket_match_real (GtkTextIter *orig, gint max_chars)
 	return found;
 }
 
+/**
+ * gtk_source_buffer_find_bracket_match:
+ * @iter: a #GtkTextIter.
+ * 
+ * Tries to match the bracket character currently at @iter with its
+ * opening/closing counterpart, and if found moves @iter to the position
+ * where it was found.
+ *
+ * @iter must be a #GtkTextIter belonging to a #GtkSourceBuffer.
+ * 
+ * Return value: TRUE if the matching bracket was found and the @iter
+ * iter moved.
+ **/
 gboolean
-gtk_source_buffer_find_bracket_match (GtkTextIter *orig)
+gtk_source_buffer_find_bracket_match (GtkTextIter *iter)
 {
-	g_return_val_if_fail (orig != NULL, FALSE);
+	g_return_val_if_fail (iter != NULL, FALSE);
 
-	return gtk_source_buffer_find_bracket_match_real (orig, -1);
+	return gtk_source_buffer_find_bracket_match_real (iter, -1);
 }
-	
+
+/**
+ * gtk_source_buffer_can_undo:
+ * @buffer: a #GtkSourceBuffer.
+ * 
+ * Determines whether a source buffer can undo the last action.
+ * 
+ * Return value: TRUE if it's possible to undo the last action.
+ **/
 gboolean
 gtk_source_buffer_can_undo (GtkSourceBuffer *buffer)
 {
@@ -1120,6 +1161,15 @@ gtk_source_buffer_can_undo (GtkSourceBuffer *buffer)
 	return gtk_source_undo_manager_can_undo (buffer->priv->undo_manager);
 }
 
+/**
+ * gtk_source_buffer_can_redo:
+ * @buffer: a #GtkSourceBuffer.
+ * 
+ * Determines whether a source buffer can redo the last action
+ * (i.e. if the last operation was an undo).
+ * 
+ * Return value: TRUE if a redo is possible.
+ **/
 gboolean
 gtk_source_buffer_can_redo (GtkSourceBuffer *buffer)
 {
@@ -1128,6 +1178,19 @@ gtk_source_buffer_can_redo (GtkSourceBuffer *buffer)
 	return gtk_source_undo_manager_can_redo (buffer->priv->undo_manager);
 }
 
+/**
+ * gtk_source_buffer_undo:
+ * @buffer: a #GtkSourceBuffer.
+ * 
+ * Undoes the last user action which modified the buffer.  Use
+ * gtk_source_buffer_can_undo() to check whether a call to this
+ * function will have any effect.
+ *
+ * Actions are defined as groups of operations between a call to
+ * gtk_text_buffer_begin_user_action() and
+ * gtk_text_buffer_end_user_action(), or sequences of similar edits
+ * (inserts or deletes) on the same line.
+ **/
 void
 gtk_source_buffer_undo (GtkSourceBuffer *buffer)
 {
@@ -1137,6 +1200,13 @@ gtk_source_buffer_undo (GtkSourceBuffer *buffer)
 	gtk_source_undo_manager_undo (buffer->priv->undo_manager);
 }
 
+/**
+ * gtk_source_buffer_redo:
+ * @buffer: a #GtkSourceBuffer.
+ * 
+ * Redoes the last undo operation.  Use gtk_source_buffer_can_redo()
+ * to check whether a call to this function will have any effect.
+ **/
 void
 gtk_source_buffer_redo (GtkSourceBuffer *buffer)
 {
@@ -1146,6 +1216,15 @@ gtk_source_buffer_redo (GtkSourceBuffer *buffer)
 	gtk_source_undo_manager_redo (buffer->priv->undo_manager);
 }
 
+/**
+ * gtk_source_buffer_get_max_undo_levels:
+ * @buffer: a #GtkSourceBuffer.
+ * 
+ * Determines the number of undo levels the buffer will track for
+ * buffer edits.
+ * 
+ * Return value: the maximum number of possible undo levels.
+ **/
 gint
 gtk_source_buffer_get_max_undo_levels (GtkSourceBuffer *buffer)
 {
@@ -1154,6 +1233,22 @@ gtk_source_buffer_get_max_undo_levels (GtkSourceBuffer *buffer)
 	return gtk_source_undo_manager_get_max_undo_levels (buffer->priv->undo_manager);
 }
 
+/**
+ * gtk_source_buffer_set_max_undo_levels:
+ * @buffer: a #GtkSourceBuffer.
+ * @max_undo_levels: the desired maximum number of undo levels.
+ * 
+ * Sets the number of undo levels for user actions the buffer will
+ * track.  If the number of user actions exceeds the limit set by this
+ * function, older actions will be discarded.
+ *
+ * A new action is started whenever the function
+ * gtk_text_buffer_begin_user_action() is called.  In general, this
+ * happens whenever the user presses any key which modifies the
+ * buffer, but the undo manager will try to merge similar consecutive
+ * actions, such as multiple character insertions into one action.
+ * But, inserting a newline does start a new action.
+ **/
 void
 gtk_source_buffer_set_max_undo_levels (GtkSourceBuffer *buffer,
 				       gint             max_undo_levels)
@@ -1169,6 +1264,18 @@ gtk_source_buffer_set_max_undo_levels (GtkSourceBuffer *buffer,
 	}
 }
 
+/**
+ * gtk_source_buffer_begin_not_undoable_action:
+ * @buffer: a #GtkSourceBuffer.
+ * 
+ * Marks the beginning of a not undoable action on the buffer,
+ * disabling the undo manager.  Typically you would call this function
+ * before initially setting the contents of the buffer (e.g. when
+ * loading a file in a text editor).
+ *
+ * You may nest gtk_source_buffer_begin_not_undoable_action() /
+ * gtk_source_buffer_end_not_undoable_action() blocks.
+ **/
 void
 gtk_source_buffer_begin_not_undoable_action (GtkSourceBuffer *buffer)
 {
@@ -1177,6 +1284,15 @@ gtk_source_buffer_begin_not_undoable_action (GtkSourceBuffer *buffer)
 	gtk_source_undo_manager_begin_not_undoable_action (buffer->priv->undo_manager);
 }
 
+/**
+ * gtk_source_buffer_end_not_undoable_action:
+ * @buffer: a #GtkSourceBuffer.
+ * 
+ * Marks the end of a not undoable action on the buffer.  When the
+ * last not undoable block is closed through the call to this
+ * function, the list of undo actions is cleared and the undo manager
+ * is re-enabled.
+ **/
 void
 gtk_source_buffer_end_not_undoable_action (GtkSourceBuffer *buffer)
 {
@@ -1185,6 +1301,16 @@ gtk_source_buffer_end_not_undoable_action (GtkSourceBuffer *buffer)
 	gtk_source_undo_manager_end_not_undoable_action (buffer->priv->undo_manager);
 }
 
+/**
+ * gtk_source_buffer_get_check_brackets:
+ * @buffer: a #GtkSourceBuffer.
+ * 
+ * Determines whether bracket match highlighting is activated for the
+ * source buffer.
+ * 
+ * Return value: TRUE if the source buffer will highlight matching
+ * brackets.
+ **/
 gboolean
 gtk_source_buffer_get_check_brackets (GtkSourceBuffer *buffer)
 {
@@ -1193,6 +1319,18 @@ gtk_source_buffer_get_check_brackets (GtkSourceBuffer *buffer)
 	return buffer->priv->check_brackets;
 }
 
+/**
+ * gtk_source_buffer_set_check_brackets:
+ * @buffer: a #GtkSourceBuffer.
+ * @check_brackets: TRUE if you want matching brackets highlighted.
+ * 
+ * Controls the bracket match highlighting function in the buffer.  If
+ * activated, when you position your cursor over a bracket character
+ * (a parenthesis, a square bracket, etc.) the matching opening or
+ * closing bracket character will be highlighted.  You can specify the
+ * style with the gtk_source_buffer_set_bracket_match_style()
+ * function.
+ **/
 void
 gtk_source_buffer_set_check_brackets (GtkSourceBuffer *buffer,
 				      gboolean         check_brackets)
@@ -1208,6 +1346,14 @@ gtk_source_buffer_set_check_brackets (GtkSourceBuffer *buffer,
 	}
 }
 
+/**
+ * gtk_source_buffer_set_bracket_match_style:
+ * @source_buffer: a #GtkSourceBuffer.
+ * @style: the #GtkSourceTagStyle specifying colors and text
+ * attributes.
+ * 
+ * Sets the style used for highlighting matching brackets.
+ **/
 void 
 gtk_source_buffer_set_bracket_match_style (GtkSourceBuffer         *source_buffer,
 					   const GtkSourceTagStyle *style)
@@ -1258,6 +1404,15 @@ gtk_source_buffer_set_bracket_match_style (GtkSourceBuffer         *source_buffe
 		      NULL);	
 }
 
+/**
+ * gtk_source_buffer_get_highlight:
+ * @buffer: a #GtkSourceBuffer.
+ * 
+ * Determines whether text highlighting is activated in the source
+ * buffer.
+ * 
+ * Return value: TRUE if highlighting is enabled.
+ **/
 gboolean
 gtk_source_buffer_get_highlight (GtkSourceBuffer *buffer)
 {
@@ -1266,6 +1421,28 @@ gtk_source_buffer_get_highlight (GtkSourceBuffer *buffer)
 	return buffer->priv->highlight;
 }
 
+/**
+ * gtk_source_buffer_set_highlight:
+ * @buffer: a #GtkSourceBuffer.
+ * @highlight: TRUE if you want to activate highlighting.
+ * 
+ * Controls whether text is highlighted in the buffer.  If @highlight
+ * is TRUE, the text will be highlighted according to the patterns
+ * installed in the buffer (either set with
+ * gtk_source_buffer_set_language() or by adding individual
+ * #GtkSourceTag tags to the buffer's tag table).  Otherwise, any
+ * current highlighted text will be restored to the default buffer
+ * style.
+ *
+ * Tags not of #GtkSourceTag type will not be removed by this option,
+ * and normal #GtkTextTag priority settings apply when highlighting is
+ * enabled.
+ *
+ * If not using a #GtkSourceLanguage for setting the highlighting
+ * patterns in the buffer, it is recommended for performance reasons
+ * that you add all the #GtkSourceTag tags with highlighting disabled
+ * and enable it when finished.
+ **/
 void
 gtk_source_buffer_set_highlight (GtkSourceBuffer *buffer,
 				 gboolean         highlight)
@@ -2604,6 +2781,18 @@ gtk_source_buffer_remove_all_source_tags (GtkSourceBuffer   *buffer,
 	g_slist_free (tags);
 }
 
+/**
+ * gtk_source_buffer_set_language:
+ * @buffer: a #GtkSourceBuffer.
+ * @language: a #GtkSourceLanguage to set, or NULL.
+ * 
+ * Sets the #GtkSourceLanguage the source buffer will use, adding
+ * #GtkSourceTag tags with the language's patterns and setting the
+ * escape character with gtk_source_buffer_set_escape_char().  Note
+ * that this will remove any #GtkSourceTag tags currently in the
+ * buffer's tag table.  The buffer holds a reference to the @language
+ * set.
+ **/
 void
 gtk_source_buffer_set_language (GtkSourceBuffer   *buffer, 
 				GtkSourceLanguage *language)
@@ -2644,6 +2833,16 @@ gtk_source_buffer_set_language (GtkSourceBuffer   *buffer,
 	g_object_notify (G_OBJECT (buffer), "language");
 }
 
+/**
+ * gtk_source_buffer_get_language:
+ * @buffer: a #GtkSourceBuffer.
+ * 
+ * Determines the #GtkSourceLanguage used by the buffer.  The returned
+ * object should not be unreferenced by the user.
+ * 
+ * Return value: the #GtkSourceLanguage set by
+ * gtk_source_buffer_set_language(), or NULL.
+ **/
 GtkSourceLanguage *
 gtk_source_buffer_get_language (GtkSourceBuffer *buffer)
 {
@@ -2652,6 +2851,16 @@ gtk_source_buffer_get_language (GtkSourceBuffer *buffer)
 	return buffer->priv->language;
 }
 
+/**
+ * gtk_source_buffer_get_escape_char:
+ * @buffer: a #GtkSourceBuffer.
+ * 
+ * Determines the escaping character used by the source buffer
+ * highlighting engine.
+ * 
+ * Return value: the UTF-8 character for the escape character the
+ * buffer is using.
+ **/
 gunichar 
 gtk_source_buffer_get_escape_char (GtkSourceBuffer *buffer)
 {
@@ -2660,6 +2869,21 @@ gtk_source_buffer_get_escape_char (GtkSourceBuffer *buffer)
 	return buffer->priv->escape_char;
 }
 
+/**
+ * gtk_source_buffer_set_escape_char:
+ * @buffer: a #GtkSourceBuffer.
+ * @escape_char: the escape character the buffer should use.
+ * 
+ * Sets the escape character to be used by the highlighting engine.
+ *
+ * When performing the initial analysis, the engine will discard a
+ * matching syntax pattern if it's prefixed with an odd number of
+ * escape characters.  This allows for example to correctly highlight
+ * strings with escaped quotes embedded.
+ *
+ * This setting affects only syntax patterns (i.e. those defined in
+ * #GtkSyntaxTag tags).
+ **/
 void 
 gtk_source_buffer_set_escape_char (GtkSourceBuffer *buffer,
 				   gunichar         escape_char)
@@ -2871,6 +3095,40 @@ markers_insert (GtkSourceBuffer *buffer, GtkSourceMarker *marker)
 	g_array_insert_val (buffer->priv->markers, index, marker);
 }
 
+/**
+ * gtk_source_buffer_create_marker:
+ * @buffer: a #GtkSourceBuffer.
+ * @name: the name of the marker, or NULL.
+ * @type: a string defining the marker type, or NULL.
+ * @where: location to place the marker.
+ * 
+ * Creates a marker in the @buffer of type @type.  A marker is
+ * semantically very similar to a #GtkTextMark, except it has a type
+ * which is used by the #GtkSourceView displaying the buffer to show a
+ * pixmap on the left margin, at the line the marker is in.  Because
+ * of this, a marker is generally associated to a line and not a
+ * character position.  Markers are also accessible through a position
+ * or range in the buffer.
+ *
+ * Markers are implemented using #GtkTextMark, so all characteristics
+ * and restrictions to marks apply to markers too.  These includes
+ * life cycle issues and "mark-set" and "mark-deleted" signal
+ * emissions.
+ *
+ * Like a #GtkTextMark, a #GtkSourceMarker can be anonymous if the
+ * passed @name is NULL.  Also, the buffer owns the markers so you
+ * shouldn't unreference it.
+ *
+ * Markers always have left gravity and are moved to the beginning of
+ * the line when the user deletes the line they were in.  Also, if the
+ * user deletes a region of text which contained lines with markers,
+ * those are deleted.
+ *
+ * Typical uses for a marker are bookmarks, breakpoints, current
+ * executing instruction indication in a source file, etc..
+ * 
+ * Return value: a new #GtkSourceMarker, owned by the buffer.
+ **/
 GtkSourceMarker *
 gtk_source_buffer_create_marker (GtkSourceBuffer   *buffer,
 				 const gchar       *name,
@@ -2923,6 +3181,14 @@ markers_lookup (GtkSourceBuffer *buffer, GtkSourceMarker *marker)
 	return -1;
 }
 
+/**
+ * gtk_source_buffer_move_marker:
+ * @buffer: a #GtkSourceBuffer.
+ * @marker: a #GtkSourceMarker in @buffer.
+ * @where: the new location for the marker.
+ * 
+ * Moves @marker to the new location @where.
+ **/
 void 
 gtk_source_buffer_move_marker (GtkSourceBuffer   *buffer,
 			       GtkSourceMarker   *marker,
@@ -2956,6 +3222,16 @@ gtk_source_buffer_move_marker (GtkSourceBuffer   *buffer,
 	_gtk_source_marker_changed (marker);
 }
 
+/**
+ * gtk_source_buffer_delete_marker:
+ * @buffer: a #GtkSourceBuffer.
+ * @marker: a #GtkSourceMarker in the @buffer.
+ * 
+ * Deletes @marker from the source buffer.  The same conditions as for
+ * #GtkTextMark apply here.  The marker is no longer accessible from
+ * the buffer, but if you held a reference to it, it will not be
+ * destroyed.
+ **/
 void 
 gtk_source_buffer_delete_marker (GtkSourceBuffer *buffer,
 				 GtkSourceMarker *marker)
@@ -2980,6 +3256,16 @@ gtk_source_buffer_delete_marker (GtkSourceBuffer *buffer,
 				     GTK_TEXT_MARK (marker));
 }
 
+/**
+ * gtk_source_buffer_get_marker:
+ * @buffer: a #GtkSourceBuffer.
+ * @name: name of the marker to retrieve.
+ * 
+ * Looks up the #GtkSourceMarker named @name in @buffer, returning
+ * NULL if it doesn't exists.
+ * 
+ * Return value: the #GtkSourceMarker whose name is @name, or NULL.
+ **/
 GtkSourceMarker *
 gtk_source_buffer_get_marker (GtkSourceBuffer *buffer,
 			      const gchar     *name)
@@ -3050,15 +3336,15 @@ markers_debug (GtkSourceBuffer *buffer)
 
 /**
  * gtk_source_buffer_get_markers_in_region:
- * @buffer: the GtkSourceBuffer to get the markers from
- * @begin: region delimiter
- * @end: region delimiter
+ * @buffer: a #GtkSourceBuffer.
+ * @begin: beginning of the range.
+ * @end: end of the range.
  * 
- * Returns an <emphasis>ordered</emphasis> (by position) list of
- * markers inside the region given by @begin and @end.  The iters can
- * be unorder.
+ * Returns an <emphasis>ordered</emphasis> (by position) #GSList of
+ * #GtkSourceMarker objects inside the region delimited by the
+ * #GtkTextIter @begin and @end.  The iters may be in any order.
  * 
- * Return value: a GSList of the GtkSourceMarker's inside the region
+ * Return value: a #GSList of the #GtkSourceMarker inside the range.
  **/
 GSList * 
 gtk_source_buffer_get_markers_in_region (GtkSourceBuffer   *buffer,
@@ -3135,6 +3421,16 @@ gtk_source_buffer_get_markers_in_region (GtkSourceBuffer   *buffer,
 	return result;
 }
 
+/**
+ * gtk_source_buffer_get_first_marker:
+ * @buffer: a #GtkSourceBuffer.
+ * 
+ * Returns the first (nearest to the top of the buffer) marker in
+ * @buffer.
+ * 
+ * Return value: a reference to the first #GtkSourceMarker, or NULL if
+ * there are no markers in the buffer.
+ **/
 GtkSourceMarker *
 gtk_source_buffer_get_first_marker (GtkSourceBuffer *buffer)
 {
@@ -3147,6 +3443,16 @@ gtk_source_buffer_get_first_marker (GtkSourceBuffer *buffer)
 	return g_array_index (buffer->priv->markers, GtkSourceMarker *, 0);
 }
 
+/**
+ * gtk_source_buffer_get_last_marker:
+ * @buffer: a #GtkSourceBuffer.
+ * 
+ * Returns the last (nearest to the bottom of the buffer) marker in
+ * @buffer.
+ * 
+ * Return value: a reference to the last #GtkSourceMarker, or NULL if
+ * there are no markers in the buffer.
+ **/
 GtkSourceMarker *
 gtk_source_buffer_get_last_marker (GtkSourceBuffer *buffer)
 {
@@ -3161,6 +3467,14 @@ gtk_source_buffer_get_last_marker (GtkSourceBuffer *buffer)
 			      buffer->priv->markers->len - 1);
 }
 
+/**
+ * gtk_source_buffer_get_iter_at_marker:
+ * @buffer: a #GtkSourceBuffer.
+ * @iter: a #GtkTextIter to initialize.
+ * @marker: a #GtkSourceMarker of @buffer.
+ * 
+ * Initializes @iter at the location of @marker.
+ **/
 void 
 gtk_source_buffer_get_iter_at_marker (GtkSourceBuffer *buffer,
 				      GtkTextIter     *iter,
@@ -3176,6 +3490,20 @@ gtk_source_buffer_get_iter_at_marker (GtkSourceBuffer *buffer,
 					  GTK_TEXT_MARK (marker));
 }
 
+/**
+ * gtk_source_buffer_get_next_marker:
+ * @buffer: a #GtkSourceBuffer.
+ * @iter: the location to start searching from.
+ * 
+ * Returns the nearest marker to the right of @iter.  If there are
+ * multiple markers at the same position, this function will always
+ * return the first one (from the internal linked list), even if
+ * starting the search exactly at its location.  You can get the
+ * others using gtk_source_marker_next().
+ * 
+ * Return value: the #GtkSourceMarker nearest to the right of @iter,
+ * or NULL if there are no more markers after @iter.
+ **/
 GtkSourceMarker *
 gtk_source_buffer_get_next_marker (GtkSourceBuffer *buffer,
 				   GtkTextIter     *iter)
@@ -3210,6 +3538,20 @@ gtk_source_buffer_get_next_marker (GtkSourceBuffer *buffer,
 	return marker;
 }
 
+/**
+ * gtk_source_buffer_get_prev_marker:
+ * @buffer: a #GtkSourceBuffer.
+ * @iter: the location to start searching from.
+ * 
+ * Returns the nearest marker to the left of @iter.  If there are
+ * multiple markers at the same position, this function will always
+ * return the last one (from the internal linked list), even if
+ * starting the search exactly at its location.  You can get the
+ * others using gtk_source_marker_prev().
+ * 
+ * Return value: the #GtkSourceMarker nearest to the left of @iter,
+ * or NULL if there are no more markers before @iter.
+ **/
 GtkSourceMarker *
 gtk_source_buffer_get_prev_marker (GtkSourceBuffer *buffer,
 				   GtkTextIter     *iter)

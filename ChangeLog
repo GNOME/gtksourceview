@@ -1,5 +1,11 @@
 2003-05-26  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
 
+	* docs/reference/tmpl/buffer.sgml: Documented GtkSourceBuffer.
+	* gtksourceview/gtksourcebuffer.c: Fixed some object properties
+	descriptions.  Added gtk-doc style comments for all public API.
+
+2003-05-26  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+
 	* configure.in: Require intltool 0.26.
 	
 	* gtksourceview/gtksourcelanguage-private.h:

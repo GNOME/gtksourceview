@@ -2,16 +2,41 @@
 GtkSourceBuffer
 
 <!-- ##### SECTION Short_Description ##### -->
-
+Text buffer object for #GtkSourceView
 
 <!-- ##### SECTION Long_Description ##### -->
 <para>
+The #GtkSourceBuffer object is the model for #GtkSourceView widgets.
+It extends the #GtkTextBuffer object by adding features necessary to
+display and edit source code: syntax highlighting, bracket matching
+and markers.  It also implements support for undo/redo operations.
+</para>
 
+<para>
+To create a #GtkSourceBuffer use gtk_source_buffer_new() or
+gtk_source_buffer_new_with_language().  The second form is just a
+convenience function which allows you to initially set a
+#GtkSourceLanguage.
+</para>
+
+<para>
+By default highlighting is enabled, but you can disable it with
+gtk_source_buffer_set_highlight().  This can be useful if you're not
+using #GtkSourceLanguage objects to set the highlighting patterns, and
+instead you're manually adding #GtkSourceTag objects to the buffer's
+tag table.
 </para>
 
 <!-- ##### SECTION See_Also ##### -->
 <para>
+There is an <link linkend="TextWidget">introduction</link> document
+describing the basic concepts of the buffer/view interactions.
+</para>
 
+<para>
+Check #GtkTextBuffer for information about the base buffer; and
+#GtkSourceView for examples on setting up the buffer to be displayed
+in a view widget.
 </para>
 
 <!-- ##### STRUCT GtkSourceBuffer ##### -->
@@ -298,36 +323,48 @@ GtkSourceBuffer
 
 <!-- ##### SIGNAL GtkSourceBuffer::can-redo ##### -->
 <para>
-
+Emitted whenever there is a change in the buffer's ability to redo an
+operation.
 </para>
 
 @sourcebuffer: the object which received the signal.
-@arg1: 
+@arg1: TRUE if the buffer can now perform an redo.
 
 <!-- ##### SIGNAL GtkSourceBuffer::can-undo ##### -->
 <para>
-
+Emitted whenever there is a change in the buffer's ability to undo an
+operation.
 </para>
 
 @sourcebuffer: the object which received the signal.
-@arg1: 
+@arg1: TRUE if the buffer can now perform an undo.
 
 <!-- ##### SIGNAL GtkSourceBuffer::highlight-updated ##### -->
 <para>
-
+Emitted whenever the syntax highlighting information has been updated,
+so that views can request a redraw if the region changed is visible.
+Usually only view widgets displaying this buffer will be interested in
+this signal.
 </para>
 
 @sourcebuffer: the object which received the signal.
-@arg1: 
-@arg2: 
+@arg1: #GtkTextIter at the start of the updated region.
+@arg2: #GtkTextIter at the end of the updated region.
 
 <!-- ##### SIGNAL GtkSourceBuffer::marker-updated ##### -->
 <para>
+Emitted whenever a marker of @sourcebuffer has changed and needs to be
+redisplayed by the view.  A change in a marker's type or location can
+trigger this signal.
+</para>
 
+<para>
+Note that moving a marker causes the emission of this signal twice:
+one for the old location and one for the new.
 </para>
 
 @sourcebuffer: the object which received the signal.
-@arg1: 
+@arg1: #GtkTextIter at the location where the change occurred.
 
 <!-- ##### ARG GtkSourceBuffer:check-brackets ##### -->
 <para>
