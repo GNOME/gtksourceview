@@ -1,3 +1,8 @@
+2004-07-21  Arnaud LE ROUZIC <lerouzic@pge.cnrs-gif.fr>
+
+	* gtksourceview/language-specs/perl.lang: 
+	a string starting by $# must not be considered as a comment.
+
 2004-07-21  Gavin Brown <gavin.brown@uk.com>
 
 	* gtksourceview/language-specs/perl.lang: adds support for

@@ -25,7 +25,7 @@
 	</string>
 
 	<line-comment _name = "Line Comment" style= "Comment">
-		<start-regex>#</start-regex>
+		<start-regex>[^\$]#|^#</start-regex>
 	</line-comment>
 
 	<pattern-item _name = "Variables" style = "Data Type">
