@@ -686,9 +686,11 @@ gtk_source_buffer_can_redo_handler (GtkSourceUndoManager  	*um,
 static void
 get_tags_func (GtkTextTag *tag, gpointer data)
 {
+        GSList **list = NULL;
+
 	g_return_if_fail (data != NULL);
 
-	GSList **list = (GSList **) data;
+	list = (GSList **) data;
 
 	if (GTK_IS_SOURCE_TAG (tag))
 	{

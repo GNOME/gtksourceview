@@ -762,8 +762,9 @@ gtk_source_view_move_cursor (GtkTextView    *text_view,
 			gtk_text_iter_forward_to_line_end (&cur);
 		while (!gtk_text_iter_starts_line (&cur))
 		{
+			gunichar c;
 			gtk_text_iter_backward_char (&cur);
-			gunichar c = gtk_text_iter_get_char (&cur);
+			c = gtk_text_iter_get_char (&cur);
 			if (!g_unichar_isspace (c))
 			{
 				/* We've gone one character too far. */
