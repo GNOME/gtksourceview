@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview 0.9.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-11 00:59-0500\n"
+"POT-Creation-Date: 2005-01-12 00:08+0100\n"
 "PO-Revision-Date: 2005-01-11 22:17-0500\n"
 "Last-Translator: Adam Weinberger <adamw@gnome.org>\n"
 "Language-Team: Canadian English <adamw@FreeBSD.org>\n"
@@ -222,6 +222,8 @@ msgstr "Floating Point"
 #: gtksourceview/language-specs/po.lang.h:3
 #: gtksourceview/language-specs/texinfo.lang.h:8
 #: gtksourceview/language-specs/vhdl.lang.h:2
+#: gtksourceview/language-specs/R.lang.h:6
+#: gtksourceview/language-specs/gtkrc.lang.h:6
 msgid "Keyword"
 msgstr "Keyword"
 
@@ -279,6 +281,7 @@ msgstr "Specials"
 #: gtksourceview/language-specs/ini.lang.h:10
 #: gtksourceview/language-specs/msil.lang.h:2
 #: gtksourceview/language-specs/po.lang.h:5
+#: gtksourceview/language-specs/gtkrc.lang.h:9
 msgid "Others"
 msgstr "Others"
 
@@ -434,6 +437,8 @@ msgstr "Keywords"
 #: gtksourceview/language-specs/nemerle.lang.h:10
 #: gtksourceview/language-specs/tcl.lang.h:2
 #: gtksourceview/language-specs/vhdl.lang.h:3
+#: gtksourceview/language-specs/R.lang.h:7
+#: gtksourceview/language-specs/gtkrc.lang.h:7
 msgid "Line Comment"
 msgstr "Line Comment"
 
@@ -447,6 +452,7 @@ msgstr "Line Comment"
 #: gtksourceview/language-specs/javascript.lang.h:15
 #: gtksourceview/language-specs/pascal.lang.h:14
 #: gtksourceview/language-specs/vhdl.lang.h:4
+#: gtksourceview/language-specs/gtkrc.lang.h:8
 msgid "Number"
 msgstr "Number"
 
@@ -522,6 +528,7 @@ msgstr "Common Macro"
 #: gtksourceview/language-specs/fortran.lang.h:2
 #: gtksourceview/language-specs/haskell.lang.h:4
 #: gtksourceview/language-specs/nemerle.lang.h:7
+#: gtksourceview/language-specs/R.lang.h:4
 msgid "Floating Point Number"
 msgstr "Floating Point Number"
 
@@ -690,6 +697,7 @@ msgstr ".desktop"
 
 #: gtksourceview/language-specs/desktop.lang.h:2
 #: gtksourceview/language-specs/ini.lang.h:2
+#: gtksourceview/language-specs/gtkrc.lang.h:1
 msgid "Boolean Value"
 msgstr "Boolean Value"
 
@@ -812,6 +820,8 @@ msgid "Decimal Number"
 msgstr "Decimal Number"
 
 #: gtksourceview/language-specs/ini.lang.h:4
+#: gtksourceview/language-specs/R.lang.h:3
+#: gtksourceview/language-specs/gtkrc.lang.h:2
 msgid "Double Quote String"
 msgstr "Double Quote String"
 
@@ -820,12 +830,15 @@ msgid "Integer"
 msgstr "Integer"
 
 #: gtksourceview/language-specs/ini.lang.h:11
+#: gtksourceview/language-specs/R.lang.h:11
+#: gtksourceview/language-specs/gtkrc.lang.h:10
 msgid "Single Quote String"
 msgstr "Single Quote String"
 
 #. $variable, $$dynamic-variable and even $$$more
 #: gtksourceview/language-specs/ini.lang.h:12
 #: gtksourceview/language-specs/php.lang.h:25
+#: gtksourceview/language-specs/gtkrc.lang.h:12
 msgid "Variable"
 msgstr "Variable"
 
@@ -929,6 +942,7 @@ msgstr "Objects"
 #: gtksourceview/language-specs/ruby.lang.h:17
 #: gtksourceview/language-specs/sh.lang.h:11
 #: gtksourceview/language-specs/tcl.lang.h:3
+#: gtksourceview/language-specs/R.lang.h:10
 msgid "Scripts"
 msgstr "Scripts"
 
@@ -1438,3 +1452,46 @@ msgstr "Type"
 #: gtksourceview/language-specs/vhdl.lang.h:9
 msgid "VHDL"
 msgstr "VHDL"
+
+#: gtksourceview/language-specs/R.lang.h:1
+#, fuzzy
+msgid "Assign operator"
+msgstr "Array Operators"
+
+#: gtksourceview/language-specs/R.lang.h:2
+#, fuzzy
+msgid "Delimiter"
+msgstr "Unlimited"
+
+#: gtksourceview/language-specs/R.lang.h:5
+#, fuzzy
+msgid "Integer Number"
+msgstr "Binary Number"
+
+#: gtksourceview/language-specs/R.lang.h:8
+#, fuzzy
+msgid "Reserved class"
+msgstr "ANSI Reserved Words"
+
+#: gtksourceview/language-specs/R.lang.h:9
+#, fuzzy
+msgid "Reserved constant"
+msgstr "Generated Content"
+
+#: gtksourceview/language-specs/gtkrc.lang.h:3
+msgid "GtkRC"
+msgstr ""
+
+#: gtksourceview/language-specs/gtkrc.lang.h:4
+msgid "Include Directive"
+msgstr ""
+
+#: gtksourceview/language-specs/gtkrc.lang.h:5
+#, fuzzy
+msgid "Keysymbol"
+msgstr "Keysymbols"
+
+#: gtksourceview/language-specs/gtkrc.lang.h:11
+#, fuzzy
+msgid "State"
+msgstr "Gates"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview.HEAD.az\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-10-13 10:44+0200\n"
+"POT-Creation-Date: 2005-01-12 00:08+0100\n"
 "PO-Revision-Date: 2004-02-01 21:43+0200\n"
 "Last-Translator: Mətin Əmirov <metin@karegen.com>\n"
 "Language-Team: Azerbaijani Turkish <translation-team-az@lists.sourceforge."
@@ -51,6 +51,7 @@ msgstr "Buffer üçün geri alma miqdarı"
 
 #: gtksourceview/gtksourcebuffer.c:317
 #: gtksourceview/language-specs/desktop.lang.h:6
+#: gtksourceview/language-specs/ini.lang.h:7
 msgid "Language"
 msgstr "Dil"
 
@@ -84,8 +85,8 @@ msgstr "Mənbə Buferi"
 msgid "GtkSourceBuffer object to print"
 msgstr "Çap ediləcək GtkSourceBuffer obyekti"
 
-#: gtksourceview/gtksourceprintjob.c:279 gtksourceview/gtksourceview.c:221
-#: gtksourceview/gtksourceview.c:222
+#: gtksourceview/gtksourceprintjob.c:279 gtksourceview/gtksourceview.c:223
+#: gtksourceview/gtksourceview.c:224
 msgid "Tabs Width"
 msgstr "Səkmə Eni"
 
@@ -214,6 +215,7 @@ msgstr "Funksiya"
 #: gtksourceview/language-specs/cpp.lang.h:6
 #: gtksourceview/language-specs/fortran.lang.h:1
 #: gtksourceview/language-specs/haskell.lang.h:3
+#: gtksourceview/language-specs/nemerle.lang.h:6
 msgid "Decimal"
 msgstr "Onluq"
 
@@ -225,6 +227,9 @@ msgstr "Floating Point"
 #: gtksourceview/language-specs/latex.lang.h:3
 #: gtksourceview/language-specs/po.lang.h:3
 #: gtksourceview/language-specs/texinfo.lang.h:8
+#: gtksourceview/language-specs/vhdl.lang.h:2
+#: gtksourceview/language-specs/R.lang.h:6
+#: gtksourceview/language-specs/gtkrc.lang.h:6
 msgid "Keyword"
 msgstr "Açar kəlmə"
 
@@ -247,11 +252,15 @@ msgstr "Preprocessor"
 #: gtksourceview/language-specs/pascal.lang.h:18
 #: gtksourceview/language-specs/perl.lang.h:8
 #: gtksourceview/language-specs/po.lang.h:6
-#: gtksourceview/language-specs/python.lang.h:11
+#: gtksourceview/language-specs/python.lang.h:10
 #: gtksourceview/language-specs/ruby.lang.h:18
-#: gtksourceview/language-specs/xml.lang.h:8
+#: gtksourceview/language-specs/sh.lang.h:13
+#: gtksourceview/language-specs/xml.lang.h:7
 #: gtksourceview/language-specs/haskell.lang.h:15
 #: gtksourceview/language-specs/vbnet.lang.h:7
+#: gtksourceview/language-specs/nemerle.lang.h:15
+#: gtksourceview/language-specs/tcl.lang.h:4
+#: gtksourceview/language-specs/vhdl.lang.h:6
 msgid "String"
 msgstr "Qatar"
 
@@ -275,8 +284,10 @@ msgstr "Xüsusi"
 #: gtksourceview/language-specs/css.lang.h:46
 #: gtksourceview/language-specs/desktop.lang.h:10
 #: gtksourceview/language-specs/diff.lang.h:7
+#: gtksourceview/language-specs/ini.lang.h:10
 #: gtksourceview/language-specs/msil.lang.h:2
 #: gtksourceview/language-specs/po.lang.h:5
+#: gtksourceview/language-specs/gtkrc.lang.h:9
 msgid "Others"
 msgstr "Digərləri"
 
@@ -308,65 +319,74 @@ msgstr "Taq tərzi"
 msgid "The style associated to the source tag"
 msgstr "Mənbə taqı ilə əlaqələndirilmiş tərz"
 
-#: gtksourceview/gtksourceview.c:205
+#: gtksourceview/gtksourceview.c:207
 msgid "Show Line Numbers"
 msgstr "Sətir Nömrələrini Göstər"
 
-#: gtksourceview/gtksourceview.c:206
+#: gtksourceview/gtksourceview.c:208
 msgid "Whether to display line numbers"
 msgstr "Sətir nömrələrinin göstərilməsi"
 
-#: gtksourceview/gtksourceview.c:213
+#: gtksourceview/gtksourceview.c:215
 msgid "Show Line Markers"
 msgstr "Sətir İşarələyicilərini Göstər"
 
-#: gtksourceview/gtksourceview.c:214
+#: gtksourceview/gtksourceview.c:216
 msgid "Whether to display line marker pixbufs"
 msgstr "Sətir işarələyici rəsmciklərin göstərilməsi"
 
-#: gtksourceview/gtksourceview.c:231
+#: gtksourceview/gtksourceview.c:233
 msgid "Auto Indentation"
 msgstr "Avtomatik Çərtmə"
 
-#: gtksourceview/gtksourceview.c:232
+#: gtksourceview/gtksourceview.c:234
 msgid "Whether to enable auto indentation"
 msgstr "Avtomatik çərtmələmənin fəal olması"
 
-#: gtksourceview/gtksourceview.c:238
+#: gtksourceview/gtksourceview.c:240
 msgid "Insert Spaces Instead of Tabs"
 msgstr "Tablar Yerinə Boşluqlar Daxil Et"
 
-#: gtksourceview/gtksourceview.c:239
+#: gtksourceview/gtksourceview.c:241
 msgid "Whether to insert spaces instead of tabs"
 msgstr "Tabların yerinə boşluqların girilməsi"
 
-#: gtksourceview/gtksourceview.c:246
+#: gtksourceview/gtksourceview.c:248
 msgid "Show Right Margin"
 msgstr "Sağ Kənarı Göstər"
 
-#: gtksourceview/gtksourceview.c:247
+#: gtksourceview/gtksourceview.c:249
 msgid "Whether to display the right margin"
 msgstr "Sağ kənarın göstərilməsi"
 
-#: gtksourceview/gtksourceview.c:254
+#: gtksourceview/gtksourceview.c:256
 msgid "Margin position"
 msgstr "Kənar mövqeyi"
 
-#: gtksourceview/gtksourceview.c:255
+#: gtksourceview/gtksourceview.c:257
 msgid "Position of the right margin"
 msgstr "Sağ kənarın mövqeyi"
 
-#: gtksourceview/gtksourceview.c:264
+#: gtksourceview/gtksourceview.c:266
 msgid "Use smart home/end"
 msgstr "Ağıllı home/end işlət"
 
-#: gtksourceview/gtksourceview.c:265
+#: gtksourceview/gtksourceview.c:267
 msgid ""
 "HOME and END keys move to first/last characters on line first before going "
 "to the start/end of the line"
 msgstr ""
 "HOME və END düymələri sətirin başına/sonuna getmədən əvvəl sətirdəki ilk/son "
 "hərfə gedəcək"
+
+#: gtksourceview/gtksourceview.c:276
+msgid "Highlight current line"
+msgstr ""
+
+#: gtksourceview/gtksourceview.c:277
+#, fuzzy
+msgid "Whether to highlight the current line"
+msgstr "Bufferdə sintaksisin işıqlandırılması"
 
 #: gtksourceview/language-specs/ada.lang.h:1
 msgid "Ada"
@@ -376,6 +396,8 @@ msgstr "Ada"
 #: gtksourceview/language-specs/c.lang.h:4
 #: gtksourceview/language-specs/cpp.lang.h:4
 #: gtksourceview/language-specs/haskell.lang.h:2
+#: gtksourceview/language-specs/nemerle.lang.h:3
+#: gtksourceview/language-specs/vhdl.lang.h:1
 msgid "Character Constant"
 msgstr "Hərf Qərarlığı"
 
@@ -393,6 +415,7 @@ msgstr "Hərf Qərarlığı"
 #: gtksourceview/language-specs/verilog.lang.h:6
 #: gtksourceview/language-specs/haskell.lang.h:9
 #: gtksourceview/language-specs/vbnet.lang.h:1
+#: gtksourceview/language-specs/tcl.lang.h:1
 msgid "Keywords"
 msgstr "Açar Kəlmələr"
 
@@ -404,6 +427,7 @@ msgstr "Açar Kəlmələr"
 #: gtksourceview/language-specs/desktop.lang.h:7
 #: gtksourceview/language-specs/diff.lang.h:5
 #: gtksourceview/language-specs/fortran.lang.h:8
+#: gtksourceview/language-specs/ini.lang.h:8
 #: gtksourceview/language-specs/java.lang.h:5
 #: gtksourceview/language-specs/javascript.lang.h:12
 #: gtksourceview/language-specs/lua.lang.h:4
@@ -411,11 +435,17 @@ msgstr "Açar Kəlmələr"
 #: gtksourceview/language-specs/perl.lang.h:3
 #: gtksourceview/language-specs/python.lang.h:4
 #: gtksourceview/language-specs/ruby.lang.h:9
+#: gtksourceview/language-specs/sh.lang.h:5
 #: gtksourceview/language-specs/sql.lang.h:11
 #: gtksourceview/language-specs/verilog.lang.h:7
 #: gtksourceview/language-specs/haskell.lang.h:10
 #: gtksourceview/language-specs/texinfo.lang.h:9
 #: gtksourceview/language-specs/vbnet.lang.h:2
+#: gtksourceview/language-specs/nemerle.lang.h:10
+#: gtksourceview/language-specs/tcl.lang.h:2
+#: gtksourceview/language-specs/vhdl.lang.h:3
+#: gtksourceview/language-specs/R.lang.h:7
+#: gtksourceview/language-specs/gtkrc.lang.h:7
 msgid "Line Comment"
 msgstr "Sətir Şərhi"
 
@@ -428,6 +458,8 @@ msgstr "Sətir Şərhi"
 #: gtksourceview/language-specs/desktop.lang.h:9
 #: gtksourceview/language-specs/javascript.lang.h:15
 #: gtksourceview/language-specs/pascal.lang.h:14
+#: gtksourceview/language-specs/vhdl.lang.h:4
+#: gtksourceview/language-specs/gtkrc.lang.h:8
 msgid "Number"
 msgstr "Ədəd"
 
@@ -448,6 +480,8 @@ msgstr "Preprosessor Açar Kəlmələri"
 #: gtksourceview/language-specs/verilog.lang.h:9
 #: gtksourceview/language-specs/haskell.lang.h:14
 #: gtksourceview/language-specs/vbnet.lang.h:6
+#: gtksourceview/language-specs/nemerle.lang.h:14
+#: gtksourceview/language-specs/vhdl.lang.h:5
 msgid "Sources"
 msgstr "Mənbələr"
 
@@ -483,6 +517,7 @@ msgstr "'#if 0'  Şərhi"
 #: gtksourceview/language-specs/xml.lang.h:2
 #: gtksourceview/language-specs/haskell.lang.h:1
 #: gtksourceview/language-specs/texinfo.lang.h:1
+#: gtksourceview/language-specs/nemerle.lang.h:2
 msgid "Block Comment"
 msgstr "Blok Şərhi"
 
@@ -499,6 +534,8 @@ msgstr "Ümumi Makro"
 #: gtksourceview/language-specs/cpp.lang.h:7
 #: gtksourceview/language-specs/fortran.lang.h:2
 #: gtksourceview/language-specs/haskell.lang.h:4
+#: gtksourceview/language-specs/nemerle.lang.h:7
+#: gtksourceview/language-specs/R.lang.h:4
 msgid "Floating Point Number"
 msgstr "Floating Point Ədədi"
 
@@ -508,6 +545,7 @@ msgstr "Floating Point Ədədi"
 #: gtksourceview/language-specs/fortran.lang.h:4
 #: gtksourceview/language-specs/pascal.lang.h:10
 #: gtksourceview/language-specs/haskell.lang.h:6
+#: gtksourceview/language-specs/nemerle.lang.h:8
 msgid "Hex Number"
 msgstr "Altılı Ədəd"
 
@@ -523,6 +561,7 @@ msgstr "Daxil Et/Praqma"
 #: gtksourceview/language-specs/fortran.lang.h:9
 #: gtksourceview/language-specs/verilog.lang.h:8
 #: gtksourceview/language-specs/haskell.lang.h:11
+#: gtksourceview/language-specs/nemerle.lang.h:12
 msgid "Octal Number"
 msgstr "Səkkizli Ədəd"
 
@@ -546,6 +585,7 @@ msgstr "C#"
 #: gtksourceview/language-specs/csharp.lang.h:6
 #: gtksourceview/language-specs/java.lang.h:9
 #: gtksourceview/language-specs/vbnet.lang.h:5
+#: gtksourceview/language-specs/nemerle.lang.h:13
 msgid "Primitives"
 msgstr "Primitivlər"
 
@@ -555,8 +595,9 @@ msgstr "Primitivlər"
 #: gtksourceview/language-specs/java.lang.h:12
 #: gtksourceview/language-specs/javascript.lang.h:34
 #: gtksourceview/language-specs/lua.lang.h:11
-#: gtksourceview/language-specs/python.lang.h:12
+#: gtksourceview/language-specs/python.lang.h:11
 #: gtksourceview/language-specs/ruby.lang.h:19
+#: gtksourceview/language-specs/sh.lang.h:14
 #: gtksourceview/language-specs/vbnet.lang.h:8
 msgid "String 2"
 msgstr "Qatar 2"
@@ -605,6 +646,7 @@ msgstr ""
 #: gtksourceview/language-specs/css.lang.h:34
 #: gtksourceview/language-specs/javascript.lang.h:19
 #: gtksourceview/language-specs/php.lang.h:19
+#: gtksourceview/language-specs/sh.lang.h:8
 #: gtksourceview/language-specs/haskell.lang.h:12
 msgid "Operators"
 msgstr "Operatorlar"
@@ -618,6 +660,7 @@ msgstr ""
 #.
 #: gtksourceview/language-specs/css.lang.h:51
 #: gtksourceview/language-specs/javascript.lang.h:20
+#: gtksourceview/language-specs/sh.lang.h:9
 #, fuzzy
 msgid "Punctuators"
 msgstr "Funksiyalar"
@@ -662,6 +705,8 @@ msgid ".desktop"
 msgstr ".desktop"
 
 #: gtksourceview/language-specs/desktop.lang.h:2
+#: gtksourceview/language-specs/ini.lang.h:2
+#: gtksourceview/language-specs/gtkrc.lang.h:1
 msgid "Boolean Value"
 msgstr "Bulean Qiymət"
 
@@ -674,10 +719,12 @@ msgid "Exec Parameter"
 msgstr "İcra Parametri"
 
 #: gtksourceview/language-specs/desktop.lang.h:5
+#: gtksourceview/language-specs/ini.lang.h:5
 msgid "Group"
 msgstr "Qrup"
 
 #: gtksourceview/language-specs/desktop.lang.h:8
+#: gtksourceview/language-specs/ini.lang.h:9
 msgid "Non Standard Key"
 msgstr "Standart Olmayan Qiymət"
 
@@ -725,12 +772,11 @@ msgid "Closing Bracket"
 msgstr "Mötərizə Bağlanır"
 
 #: gtksourceview/language-specs/html.lang.h:4
-#: gtksourceview/language-specs/xml.lang.h:4
 msgid "DTD"
 msgstr "DTD"
 
 #: gtksourceview/language-specs/html.lang.h:5
-#: gtksourceview/language-specs/xml.lang.h:5
+#: gtksourceview/language-specs/xml.lang.h:4
 msgid "Entity"
 msgstr "Möcudiyyət"
 
@@ -740,7 +786,7 @@ msgstr "HTML"
 
 #: gtksourceview/language-specs/html.lang.h:7
 #: gtksourceview/language-specs/latex.lang.h:5
-#: gtksourceview/language-specs/xml.lang.h:7
+#: gtksourceview/language-specs/xml.lang.h:6
 #: gtksourceview/language-specs/texinfo.lang.h:12
 msgid "Markup"
 msgstr "İşarələmə"
@@ -772,6 +818,41 @@ msgstr "IDL"
 #: gtksourceview/language-specs/idl.lang.h:6
 msgid "Sectional"
 msgstr "Qismi"
+
+#: gtksourceview/language-specs/ini.lang.h:1
+msgid ".ini"
+msgstr ""
+
+#: gtksourceview/language-specs/ini.lang.h:3
+#: gtksourceview/language-specs/verilog.lang.h:3
+msgid "Decimal Number"
+msgstr "Onluq Ədəd"
+
+#: gtksourceview/language-specs/ini.lang.h:4
+#: gtksourceview/language-specs/R.lang.h:3
+#: gtksourceview/language-specs/gtkrc.lang.h:2
+#, fuzzy
+msgid "Double Quote String"
+msgstr "Cüt Dırnaqlı Qatar"
+
+#: gtksourceview/language-specs/ini.lang.h:6
+#, fuzzy
+msgid "Integer"
+msgstr "Əsas-N Integer"
+
+#: gtksourceview/language-specs/ini.lang.h:11
+#: gtksourceview/language-specs/R.lang.h:11
+#: gtksourceview/language-specs/gtkrc.lang.h:10
+#, fuzzy
+msgid "Single Quote String"
+msgstr "Tək Dırnaqlı Qatar"
+
+#. $variable, $$dynamic-variable and even $$$more
+#: gtksourceview/language-specs/ini.lang.h:12
+#: gtksourceview/language-specs/php.lang.h:25
+#: gtksourceview/language-specs/gtkrc.lang.h:12
+msgid "Variable"
+msgstr "Dəyişən"
 
 #: gtksourceview/language-specs/java.lang.h:2
 msgid "Declarations"
@@ -877,6 +958,9 @@ msgstr ""
 #: gtksourceview/language-specs/perl.lang.h:7
 #: gtksourceview/language-specs/python.lang.h:9
 #: gtksourceview/language-specs/ruby.lang.h:17
+#: gtksourceview/language-specs/sh.lang.h:11
+#: gtksourceview/language-specs/tcl.lang.h:3
+#: gtksourceview/language-specs/R.lang.h:10
 msgid "Scripts"
 msgstr "Skriptlər"
 
@@ -908,6 +992,7 @@ msgstr "Ən Çox İstifadə Edilən Əmrlər"
 
 #: gtksourceview/language-specs/lua.lang.h:2
 #: gtksourceview/language-specs/python.lang.h:2
+#: gtksourceview/language-specs/sh.lang.h:4
 msgid "Functions"
 msgstr "Funksiyalar"
 
@@ -922,11 +1007,13 @@ msgstr ""
 
 #: gtksourceview/language-specs/lua.lang.h:7
 #: gtksourceview/language-specs/python.lang.h:6
+#: gtksourceview/language-specs/sh.lang.h:6
 msgid "Multiline String"
 msgstr "Çoxs Stirli Qatar"
 
 #: gtksourceview/language-specs/lua.lang.h:8
 #: gtksourceview/language-specs/python.lang.h:7
+#: gtksourceview/language-specs/sh.lang.h:7
 msgid "Multiline String 2"
 msgstr "Çoxs Stirli Qatar 2"
 
@@ -987,7 +1074,7 @@ msgid "Preprocessor Defines"
 msgstr "Preprosessor Tə'yinləri"
 
 #: gtksourceview/language-specs/pascal.lang.h:19
-msgid "Types Class and Object Keywords"
+msgid "Type, Class and Object Keywords"
 msgstr ""
 
 #: gtksourceview/language-specs/perl.lang.h:1
@@ -999,14 +1086,15 @@ msgid "Method Call"
 msgstr ""
 
 #: gtksourceview/language-specs/perl.lang.h:5
+msgid "POD"
+msgstr ""
+
+#: gtksourceview/language-specs/perl.lang.h:6
 msgid "Perl"
 msgstr "Perl"
 
-#: gtksourceview/language-specs/perl.lang.h:6
-msgid "Plain Old Documentation"
-msgstr ""
-
 #: gtksourceview/language-specs/perl.lang.h:9
+#: gtksourceview/language-specs/tcl.lang.h:5
 msgid "String2"
 msgstr "Qatar2"
 
@@ -1015,11 +1103,13 @@ msgid "String3"
 msgstr "Qatar3"
 
 #: gtksourceview/language-specs/perl.lang.h:11
+#: gtksourceview/language-specs/tcl.lang.h:7
 msgid "Variables"
 msgstr "Dəyişənlər"
 
 #. `backticks-quoted strings`
 #: gtksourceview/language-specs/php.lang.h:3
+#: gtksourceview/language-specs/sh.lang.h:1
 msgid "Backtick String"
 msgstr "Backtick Qatarı"
 
@@ -1069,11 +1159,6 @@ msgstr "PHP"
 msgid "Single Quoted String"
 msgstr "Tək Dırnaqlı Qatar"
 
-#. $variable, $$dynamic-variable and even $$$more
-#: gtksourceview/language-specs/php.lang.h:25
-msgid "Variable"
-msgstr "Dəyişən"
-
 #: gtksourceview/language-specs/po.lang.h:2
 msgid "Format"
 msgstr "Şəkil"
@@ -1094,10 +1179,6 @@ msgstr "Modul Tutucusu"
 #: gtksourceview/language-specs/python.lang.h:8
 msgid "Python"
 msgstr "Python"
-
-#: gtksourceview/language-specs/python.lang.h:10
-msgid "Self"
-msgstr "Özü"
 
 #: gtksourceview/language-specs/ruby.lang.h:1
 #, fuzzy
@@ -1158,6 +1239,39 @@ msgstr ""
 
 #: gtksourceview/language-specs/ruby.lang.h:16
 msgid "Ruby"
+msgstr ""
+
+#: gtksourceview/language-specs/sh.lang.h:2
+#, fuzzy
+msgid "Built-in Commands"
+msgstr "Analitik Funksiyalar"
+
+#: gtksourceview/language-specs/sh.lang.h:3
+#, fuzzy
+msgid "Common Commands"
+msgstr "Ən Çox İstifadə Edilən Əmrlər"
+
+#: gtksourceview/language-specs/sh.lang.h:10
+#, fuzzy
+msgid "Redirections"
+msgstr "Preprosessor Tə'yinləri"
+
+#: gtksourceview/language-specs/sh.lang.h:12
+msgid "Self"
+msgstr "Özü"
+
+#: gtksourceview/language-specs/sh.lang.h:15
+#, fuzzy
+msgid "Variable1"
+msgstr "Dəyişən"
+
+#: gtksourceview/language-specs/sh.lang.h:16
+#, fuzzy
+msgid "Variable2"
+msgstr "Dəyişən"
+
+#: gtksourceview/language-specs/sh.lang.h:17
+msgid "sh"
 msgstr ""
 
 #: gtksourceview/language-specs/sql.lang.h:1
@@ -1261,12 +1375,9 @@ msgid "Unlimited"
 msgstr "Hüdudsuz"
 
 #: gtksourceview/language-specs/verilog.lang.h:1
+#: gtksourceview/language-specs/nemerle.lang.h:1
 msgid "Binary Number"
 msgstr "Səkkizlik Ədəd"
-
-#: gtksourceview/language-specs/verilog.lang.h:3
-msgid "Decimal Number"
-msgstr "Onluq Ədəd"
 
 #: gtksourceview/language-specs/verilog.lang.h:4
 msgid "Gates"
@@ -1276,15 +1387,15 @@ msgstr "Gates"
 msgid "Verilog"
 msgstr "Verilog"
 
-#: gtksourceview/language-specs/xml.lang.h:6
+#: gtksourceview/language-specs/xml.lang.h:5
 msgid "Hexadecimal"
 msgstr "Altılıq"
 
-#: gtksourceview/language-specs/xml.lang.h:9
+#: gtksourceview/language-specs/xml.lang.h:8
 msgid "Tag"
 msgstr "Taq"
 
-#: gtksourceview/language-specs/xml.lang.h:10
+#: gtksourceview/language-specs/xml.lang.h:9
 msgid "XML"
 msgstr "XML"
 
@@ -1360,6 +1471,85 @@ msgstr "C Blok Şərhi"
 #: gtksourceview/language-specs/vbnet.lang.h:9
 msgid "VB.NET"
 msgstr ""
+
+#: gtksourceview/language-specs/nemerle.lang.h:4
+#, fuzzy
+msgid "Core Keywords"
+msgstr "Açar Kəlmələr"
+
+#: gtksourceview/language-specs/nemerle.lang.h:5
+#, fuzzy
+msgid "Core Types"
+msgstr "Növlər"
+
+#: gtksourceview/language-specs/nemerle.lang.h:9
+msgid "Keywords Defined by Macros"
+msgstr ""
+
+#: gtksourceview/language-specs/nemerle.lang.h:11
+#, fuzzy
+msgid "Nemerle"
+msgstr "Ədəd"
+
+#: gtksourceview/language-specs/tcl.lang.h:6
+msgid "Tcl"
+msgstr ""
+
+#: gtksourceview/language-specs/vhdl.lang.h:7
+#, fuzzy
+msgid "True and False"
+msgstr "Doğru və Səhv"
+
+#: gtksourceview/language-specs/vhdl.lang.h:8
+#, fuzzy
+msgid "Type"
+msgstr "Növlər"
+
+#: gtksourceview/language-specs/vhdl.lang.h:9
+msgid "VHDL"
+msgstr ""
+
+#: gtksourceview/language-specs/R.lang.h:1
+#, fuzzy
+msgid "Assign operator"
+msgstr "Array Operatorları"
+
+#: gtksourceview/language-specs/R.lang.h:2
+#, fuzzy
+msgid "Delimiter"
+msgstr "Hüdudsuz"
+
+#: gtksourceview/language-specs/R.lang.h:5
+#, fuzzy
+msgid "Integer Number"
+msgstr "Səkkizlik Ədəd"
+
+#: gtksourceview/language-specs/R.lang.h:8
+#, fuzzy
+msgid "Reserved class"
+msgstr "ANSI Ayırılmış Kəlmələr"
+
+#: gtksourceview/language-specs/R.lang.h:9
+#, fuzzy
+msgid "Reserved constant"
+msgstr "Hərf Qərarlığı"
+
+#: gtksourceview/language-specs/gtkrc.lang.h:3
+msgid "GtkRC"
+msgstr ""
+
+#: gtksourceview/language-specs/gtkrc.lang.h:4
+msgid "Include Directive"
+msgstr ""
+
+#: gtksourceview/language-specs/gtkrc.lang.h:5
+msgid "Keysymbol"
+msgstr ""
+
+#: gtksourceview/language-specs/gtkrc.lang.h:11
+#, fuzzy
+msgid "State"
+msgstr "Gates"
 
 #~ msgid "MSIL"
 #~ msgstr "MSIL"

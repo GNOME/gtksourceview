@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview 0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-10-13 10:44+0200\n"
+"POT-Creation-Date: 2005-01-12 00:08+0100\n"
 "PO-Revision-Date: 2004-02-05 23:50+CET\n"
 "Last-Translator: auto\n"
 "Language-Team: Croatian <lokalizacija@linux.hr>\n"
@@ -48,6 +48,7 @@ msgstr "Broj koraka unazad za međuspremnik"
 
 #: gtksourceview/gtksourcebuffer.c:317
 #: gtksourceview/language-specs/desktop.lang.h:6
+#: gtksourceview/language-specs/ini.lang.h:7
 msgid "Language"
 msgstr "Jezik"
 
@@ -82,8 +83,8 @@ msgstr "Međuspremnik s kodom"
 msgid "GtkSourceBuffer object to print"
 msgstr "GtkSourceBuffer objekt za ispisati"
 
-#: gtksourceview/gtksourceprintjob.c:279 gtksourceview/gtksourceview.c:221
-#: gtksourceview/gtksourceview.c:222
+#: gtksourceview/gtksourceprintjob.c:279 gtksourceview/gtksourceview.c:223
+#: gtksourceview/gtksourceview.c:224
 msgid "Tabs Width"
 msgstr "Širina tabova"
 
@@ -212,6 +213,7 @@ msgstr "Funkcija"
 #: gtksourceview/language-specs/cpp.lang.h:6
 #: gtksourceview/language-specs/fortran.lang.h:1
 #: gtksourceview/language-specs/haskell.lang.h:3
+#: gtksourceview/language-specs/nemerle.lang.h:6
 msgid "Decimal"
 msgstr "Decimalni"
 
@@ -223,6 +225,9 @@ msgstr "Pomični zarez"
 #: gtksourceview/language-specs/latex.lang.h:3
 #: gtksourceview/language-specs/po.lang.h:3
 #: gtksourceview/language-specs/texinfo.lang.h:8
+#: gtksourceview/language-specs/vhdl.lang.h:2
+#: gtksourceview/language-specs/R.lang.h:6
+#: gtksourceview/language-specs/gtkrc.lang.h:6
 msgid "Keyword"
 msgstr "Ključna riječ"
 
@@ -245,11 +250,15 @@ msgstr "Predprocesor"
 #: gtksourceview/language-specs/pascal.lang.h:18
 #: gtksourceview/language-specs/perl.lang.h:8
 #: gtksourceview/language-specs/po.lang.h:6
-#: gtksourceview/language-specs/python.lang.h:11
+#: gtksourceview/language-specs/python.lang.h:10
 #: gtksourceview/language-specs/ruby.lang.h:18
-#: gtksourceview/language-specs/xml.lang.h:8
+#: gtksourceview/language-specs/sh.lang.h:13
+#: gtksourceview/language-specs/xml.lang.h:7
 #: gtksourceview/language-specs/haskell.lang.h:15
 #: gtksourceview/language-specs/vbnet.lang.h:7
+#: gtksourceview/language-specs/nemerle.lang.h:15
+#: gtksourceview/language-specs/tcl.lang.h:4
+#: gtksourceview/language-specs/vhdl.lang.h:6
 msgid "String"
 msgstr "Znakovni niz"
 
@@ -273,8 +282,10 @@ msgstr "Posebno"
 #: gtksourceview/language-specs/css.lang.h:46
 #: gtksourceview/language-specs/desktop.lang.h:10
 #: gtksourceview/language-specs/diff.lang.h:7
+#: gtksourceview/language-specs/ini.lang.h:10
 #: gtksourceview/language-specs/msil.lang.h:2
 #: gtksourceview/language-specs/po.lang.h:5
+#: gtksourceview/language-specs/gtkrc.lang.h:9
 msgid "Others"
 msgstr "Drugi"
 
@@ -306,65 +317,74 @@ msgstr "Stil tag-a"
 msgid "The style associated to the source tag"
 msgstr "Stil povezan sa source tagom"
 
-#: gtksourceview/gtksourceview.c:205
+#: gtksourceview/gtksourceview.c:207
 msgid "Show Line Numbers"
 msgstr "Pokaži brojeve linija"
 
-#: gtksourceview/gtksourceview.c:206
+#: gtksourceview/gtksourceview.c:208
 msgid "Whether to display line numbers"
 msgstr "Treba li prikazati brojeve redaka"
 
-#: gtksourceview/gtksourceview.c:213
+#: gtksourceview/gtksourceview.c:215
 msgid "Show Line Markers"
 msgstr "Pokaži oznake linija"
 
-#: gtksourceview/gtksourceview.c:214
+#: gtksourceview/gtksourceview.c:216
 msgid "Whether to display line marker pixbufs"
 msgstr "Treba li prikazati pixbufere oznake redaka"
 
-#: gtksourceview/gtksourceview.c:231
+#: gtksourceview/gtksourceview.c:233
 msgid "Auto Indentation"
 msgstr "Automatsko uvlačenje"
 
-#: gtksourceview/gtksourceview.c:232
+#: gtksourceview/gtksourceview.c:234
 msgid "Whether to enable auto indentation"
 msgstr "Treba li omogućiti automatsko uvlačenje"
 
-#: gtksourceview/gtksourceview.c:238
+#: gtksourceview/gtksourceview.c:240
 msgid "Insert Spaces Instead of Tabs"
 msgstr "Ubacivanje razmaka umjesto tabova"
 
-#: gtksourceview/gtksourceview.c:239
+#: gtksourceview/gtksourceview.c:241
 msgid "Whether to insert spaces instead of tabs"
 msgstr "Treba li ubaciti razmake umjesto tabova"
 
-#: gtksourceview/gtksourceview.c:246
+#: gtksourceview/gtksourceview.c:248
 msgid "Show Right Margin"
 msgstr "Pokaži desnu marginu"
 
-#: gtksourceview/gtksourceview.c:247
+#: gtksourceview/gtksourceview.c:249
 msgid "Whether to display the right margin"
 msgstr "Treba li prikazati desnu marginu"
 
-#: gtksourceview/gtksourceview.c:254
+#: gtksourceview/gtksourceview.c:256
 msgid "Margin position"
 msgstr "Položaj margine"
 
-#: gtksourceview/gtksourceview.c:255
+#: gtksourceview/gtksourceview.c:257
 msgid "Position of the right margin"
 msgstr "Položaj desne margine"
 
-#: gtksourceview/gtksourceview.c:264
+#: gtksourceview/gtksourceview.c:266
 msgid "Use smart home/end"
 msgstr "Koristi pametni home/end"
 
-#: gtksourceview/gtksourceview.c:265
+#: gtksourceview/gtksourceview.c:267
 msgid ""
 "HOME and END keys move to first/last characters on line first before going "
 "to the start/end of the line"
 msgstr ""
 "HOME i END tipke pomiču pokazivač na prvi/zadnji znak linije prije pomicanja "
 "na početak/kraj linije"
+
+#: gtksourceview/gtksourceview.c:276
+msgid "Highlight current line"
+msgstr ""
+
+#: gtksourceview/gtksourceview.c:277
+#, fuzzy
+msgid "Whether to highlight the current line"
+msgstr "Treba li osvijetliti sintaksu u međuspremniku"
 
 #: gtksourceview/language-specs/ada.lang.h:1
 msgid "Ada"
@@ -374,6 +394,8 @@ msgstr "Ada"
 #: gtksourceview/language-specs/c.lang.h:4
 #: gtksourceview/language-specs/cpp.lang.h:4
 #: gtksourceview/language-specs/haskell.lang.h:2
+#: gtksourceview/language-specs/nemerle.lang.h:3
+#: gtksourceview/language-specs/vhdl.lang.h:1
 msgid "Character Constant"
 msgstr "Znakovna konstanta"
 
@@ -391,6 +413,7 @@ msgstr "Znakovna konstanta"
 #: gtksourceview/language-specs/verilog.lang.h:6
 #: gtksourceview/language-specs/haskell.lang.h:9
 #: gtksourceview/language-specs/vbnet.lang.h:1
+#: gtksourceview/language-specs/tcl.lang.h:1
 msgid "Keywords"
 msgstr "Ključne riječi"
 
@@ -402,6 +425,7 @@ msgstr "Ključne riječi"
 #: gtksourceview/language-specs/desktop.lang.h:7
 #: gtksourceview/language-specs/diff.lang.h:5
 #: gtksourceview/language-specs/fortran.lang.h:8
+#: gtksourceview/language-specs/ini.lang.h:8
 #: gtksourceview/language-specs/java.lang.h:5
 #: gtksourceview/language-specs/javascript.lang.h:12
 #: gtksourceview/language-specs/lua.lang.h:4
@@ -409,11 +433,17 @@ msgstr "Ključne riječi"
 #: gtksourceview/language-specs/perl.lang.h:3
 #: gtksourceview/language-specs/python.lang.h:4
 #: gtksourceview/language-specs/ruby.lang.h:9
+#: gtksourceview/language-specs/sh.lang.h:5
 #: gtksourceview/language-specs/sql.lang.h:11
 #: gtksourceview/language-specs/verilog.lang.h:7
 #: gtksourceview/language-specs/haskell.lang.h:10
 #: gtksourceview/language-specs/texinfo.lang.h:9
 #: gtksourceview/language-specs/vbnet.lang.h:2
+#: gtksourceview/language-specs/nemerle.lang.h:10
+#: gtksourceview/language-specs/tcl.lang.h:2
+#: gtksourceview/language-specs/vhdl.lang.h:3
+#: gtksourceview/language-specs/R.lang.h:7
+#: gtksourceview/language-specs/gtkrc.lang.h:7
 msgid "Line Comment"
 msgstr "Komentar linije"
 
@@ -426,6 +456,8 @@ msgstr "Komentar linije"
 #: gtksourceview/language-specs/desktop.lang.h:9
 #: gtksourceview/language-specs/javascript.lang.h:15
 #: gtksourceview/language-specs/pascal.lang.h:14
+#: gtksourceview/language-specs/vhdl.lang.h:4
+#: gtksourceview/language-specs/gtkrc.lang.h:8
 msgid "Number"
 msgstr "Broj"
 
@@ -446,6 +478,8 @@ msgstr "Pretprocesorske ključne riječi"
 #: gtksourceview/language-specs/verilog.lang.h:9
 #: gtksourceview/language-specs/haskell.lang.h:14
 #: gtksourceview/language-specs/vbnet.lang.h:6
+#: gtksourceview/language-specs/nemerle.lang.h:14
+#: gtksourceview/language-specs/vhdl.lang.h:5
 msgid "Sources"
 msgstr "Izvorni kod"
 
@@ -481,6 +515,7 @@ msgstr "'#if 0' komentar"
 #: gtksourceview/language-specs/xml.lang.h:2
 #: gtksourceview/language-specs/haskell.lang.h:1
 #: gtksourceview/language-specs/texinfo.lang.h:1
+#: gtksourceview/language-specs/nemerle.lang.h:2
 msgid "Block Comment"
 msgstr "Blok komentar"
 
@@ -497,6 +532,8 @@ msgstr "Zajednička makronaredba"
 #: gtksourceview/language-specs/cpp.lang.h:7
 #: gtksourceview/language-specs/fortran.lang.h:2
 #: gtksourceview/language-specs/haskell.lang.h:4
+#: gtksourceview/language-specs/nemerle.lang.h:7
+#: gtksourceview/language-specs/R.lang.h:4
 msgid "Floating Point Number"
 msgstr "Broj sa pomičnim zarezom"
 
@@ -506,6 +543,7 @@ msgstr "Broj sa pomičnim zarezom"
 #: gtksourceview/language-specs/fortran.lang.h:4
 #: gtksourceview/language-specs/pascal.lang.h:10
 #: gtksourceview/language-specs/haskell.lang.h:6
+#: gtksourceview/language-specs/nemerle.lang.h:8
 msgid "Hex Number"
 msgstr "Hex broj"
 
@@ -521,6 +559,7 @@ msgstr "Include/Pragma"
 #: gtksourceview/language-specs/fortran.lang.h:9
 #: gtksourceview/language-specs/verilog.lang.h:8
 #: gtksourceview/language-specs/haskell.lang.h:11
+#: gtksourceview/language-specs/nemerle.lang.h:12
 msgid "Octal Number"
 msgstr "Oktalni broj"
 
@@ -544,6 +583,7 @@ msgstr "C#"
 #: gtksourceview/language-specs/csharp.lang.h:6
 #: gtksourceview/language-specs/java.lang.h:9
 #: gtksourceview/language-specs/vbnet.lang.h:5
+#: gtksourceview/language-specs/nemerle.lang.h:13
 msgid "Primitives"
 msgstr "Primitivi"
 
@@ -553,8 +593,9 @@ msgstr "Primitivi"
 #: gtksourceview/language-specs/java.lang.h:12
 #: gtksourceview/language-specs/javascript.lang.h:34
 #: gtksourceview/language-specs/lua.lang.h:11
-#: gtksourceview/language-specs/python.lang.h:12
+#: gtksourceview/language-specs/python.lang.h:11
 #: gtksourceview/language-specs/ruby.lang.h:19
+#: gtksourceview/language-specs/sh.lang.h:14
 #: gtksourceview/language-specs/vbnet.lang.h:8
 msgid "String 2"
 msgstr "Znakovni niz 2"
@@ -603,6 +644,7 @@ msgstr ""
 #: gtksourceview/language-specs/css.lang.h:34
 #: gtksourceview/language-specs/javascript.lang.h:19
 #: gtksourceview/language-specs/php.lang.h:19
+#: gtksourceview/language-specs/sh.lang.h:8
 #: gtksourceview/language-specs/haskell.lang.h:12
 msgid "Operators"
 msgstr "Operatori"
@@ -616,6 +658,7 @@ msgstr ""
 #.
 #: gtksourceview/language-specs/css.lang.h:51
 #: gtksourceview/language-specs/javascript.lang.h:20
+#: gtksourceview/language-specs/sh.lang.h:9
 #, fuzzy
 msgid "Punctuators"
 msgstr "Funkcije"
@@ -660,6 +703,8 @@ msgid ".desktop"
 msgstr ".desktop"
 
 #: gtksourceview/language-specs/desktop.lang.h:2
+#: gtksourceview/language-specs/ini.lang.h:2
+#: gtksourceview/language-specs/gtkrc.lang.h:1
 msgid "Boolean Value"
 msgstr "Boolean vrijednost"
 
@@ -672,10 +717,12 @@ msgid "Exec Parameter"
 msgstr "Exec parametar"
 
 #: gtksourceview/language-specs/desktop.lang.h:5
+#: gtksourceview/language-specs/ini.lang.h:5
 msgid "Group"
 msgstr "Grupa"
 
 #: gtksourceview/language-specs/desktop.lang.h:8
+#: gtksourceview/language-specs/ini.lang.h:9
 msgid "Non Standard Key"
 msgstr "Nestandardna tipka"
 
@@ -723,12 +770,11 @@ msgid "Closing Bracket"
 msgstr "Završna zagrada"
 
 #: gtksourceview/language-specs/html.lang.h:4
-#: gtksourceview/language-specs/xml.lang.h:4
 msgid "DTD"
 msgstr "DTD"
 
 #: gtksourceview/language-specs/html.lang.h:5
-#: gtksourceview/language-specs/xml.lang.h:5
+#: gtksourceview/language-specs/xml.lang.h:4
 msgid "Entity"
 msgstr "Entitet"
 
@@ -738,7 +784,7 @@ msgstr "HTML"
 
 #: gtksourceview/language-specs/html.lang.h:7
 #: gtksourceview/language-specs/latex.lang.h:5
-#: gtksourceview/language-specs/xml.lang.h:7
+#: gtksourceview/language-specs/xml.lang.h:6
 #: gtksourceview/language-specs/texinfo.lang.h:12
 msgid "Markup"
 msgstr "Markup"
@@ -770,6 +816,41 @@ msgstr "IDL"
 #: gtksourceview/language-specs/idl.lang.h:6
 msgid "Sectional"
 msgstr "Podijeljeno"
+
+#: gtksourceview/language-specs/ini.lang.h:1
+msgid ".ini"
+msgstr ""
+
+#: gtksourceview/language-specs/ini.lang.h:3
+#: gtksourceview/language-specs/verilog.lang.h:3
+msgid "Decimal Number"
+msgstr "Decimalni broj"
+
+#: gtksourceview/language-specs/ini.lang.h:4
+#: gtksourceview/language-specs/R.lang.h:3
+#: gtksourceview/language-specs/gtkrc.lang.h:2
+#, fuzzy
+msgid "Double Quote String"
+msgstr "Niz znakova s dvostrukim navodnicima"
+
+#: gtksourceview/language-specs/ini.lang.h:6
+#, fuzzy
+msgid "Integer"
+msgstr "Base-N prirodni broj"
+
+#: gtksourceview/language-specs/ini.lang.h:11
+#: gtksourceview/language-specs/R.lang.h:11
+#: gtksourceview/language-specs/gtkrc.lang.h:10
+#, fuzzy
+msgid "Single Quote String"
+msgstr "Niz znakova sa jednostrukim navodima"
+
+#. $variable, $$dynamic-variable and even $$$more
+#: gtksourceview/language-specs/ini.lang.h:12
+#: gtksourceview/language-specs/php.lang.h:25
+#: gtksourceview/language-specs/gtkrc.lang.h:12
+msgid "Variable"
+msgstr "Varijabla"
 
 #: gtksourceview/language-specs/java.lang.h:2
 msgid "Declarations"
@@ -875,6 +956,9 @@ msgstr ""
 #: gtksourceview/language-specs/perl.lang.h:7
 #: gtksourceview/language-specs/python.lang.h:9
 #: gtksourceview/language-specs/ruby.lang.h:17
+#: gtksourceview/language-specs/sh.lang.h:11
+#: gtksourceview/language-specs/tcl.lang.h:3
+#: gtksourceview/language-specs/R.lang.h:10
 msgid "Scripts"
 msgstr "Skripte"
 
@@ -906,6 +990,7 @@ msgstr "Najkorištenije naredbe"
 
 #: gtksourceview/language-specs/lua.lang.h:2
 #: gtksourceview/language-specs/python.lang.h:2
+#: gtksourceview/language-specs/sh.lang.h:4
 msgid "Functions"
 msgstr "Funkcije"
 
@@ -920,11 +1005,13 @@ msgstr ""
 
 #: gtksourceview/language-specs/lua.lang.h:7
 #: gtksourceview/language-specs/python.lang.h:6
+#: gtksourceview/language-specs/sh.lang.h:6
 msgid "Multiline String"
 msgstr "Višelinijski znakovni niz"
 
 #: gtksourceview/language-specs/lua.lang.h:8
 #: gtksourceview/language-specs/python.lang.h:7
+#: gtksourceview/language-specs/sh.lang.h:7
 msgid "Multiline String 2"
 msgstr "Višelinijski znakovni niz 2"
 
@@ -985,7 +1072,7 @@ msgid "Preprocessor Defines"
 msgstr "Pretprocesorske definicije"
 
 #: gtksourceview/language-specs/pascal.lang.h:19
-msgid "Types Class and Object Keywords"
+msgid "Type, Class and Object Keywords"
 msgstr ""
 
 #: gtksourceview/language-specs/perl.lang.h:1
@@ -997,14 +1084,15 @@ msgid "Method Call"
 msgstr ""
 
 #: gtksourceview/language-specs/perl.lang.h:5
+msgid "POD"
+msgstr ""
+
+#: gtksourceview/language-specs/perl.lang.h:6
 msgid "Perl"
 msgstr "Perl"
 
-#: gtksourceview/language-specs/perl.lang.h:6
-msgid "Plain Old Documentation"
-msgstr ""
-
 #: gtksourceview/language-specs/perl.lang.h:9
+#: gtksourceview/language-specs/tcl.lang.h:5
 msgid "String2"
 msgstr "Niz2"
 
@@ -1013,11 +1101,13 @@ msgid "String3"
 msgstr "String3"
 
 #: gtksourceview/language-specs/perl.lang.h:11
+#: gtksourceview/language-specs/tcl.lang.h:7
 msgid "Variables"
 msgstr "Varijable"
 
 #. `backticks-quoted strings`
 #: gtksourceview/language-specs/php.lang.h:3
+#: gtksourceview/language-specs/sh.lang.h:1
 msgid "Backtick String"
 msgstr "Niz znakova backtick"
 
@@ -1067,11 +1157,6 @@ msgstr "PHP"
 msgid "Single Quoted String"
 msgstr "Niz znakova sa jednostrukim navodima"
 
-#. $variable, $$dynamic-variable and even $$$more
-#: gtksourceview/language-specs/php.lang.h:25
-msgid "Variable"
-msgstr "Varijabla"
-
 #: gtksourceview/language-specs/po.lang.h:2
 msgid "Format"
 msgstr "Oblikovanje"
@@ -1092,10 +1177,6 @@ msgstr "Rukovatelj modula"
 #: gtksourceview/language-specs/python.lang.h:8
 msgid "Python"
 msgstr "Python"
-
-#: gtksourceview/language-specs/python.lang.h:10
-msgid "Self"
-msgstr "Sebe"
 
 #: gtksourceview/language-specs/ruby.lang.h:1
 #, fuzzy
@@ -1156,6 +1237,39 @@ msgstr ""
 
 #: gtksourceview/language-specs/ruby.lang.h:16
 msgid "Ruby"
+msgstr ""
+
+#: gtksourceview/language-specs/sh.lang.h:2
+#, fuzzy
+msgid "Built-in Commands"
+msgstr "Analitičke funkcije"
+
+#: gtksourceview/language-specs/sh.lang.h:3
+#, fuzzy
+msgid "Common Commands"
+msgstr "Najkorištenije naredbe"
+
+#: gtksourceview/language-specs/sh.lang.h:10
+#, fuzzy
+msgid "Redirections"
+msgstr "Pretprocesorske definicije"
+
+#: gtksourceview/language-specs/sh.lang.h:12
+msgid "Self"
+msgstr "Sebe"
+
+#: gtksourceview/language-specs/sh.lang.h:15
+#, fuzzy
+msgid "Variable1"
+msgstr "Varijabla"
+
+#: gtksourceview/language-specs/sh.lang.h:16
+#, fuzzy
+msgid "Variable2"
+msgstr "Varijabla"
+
+#: gtksourceview/language-specs/sh.lang.h:17
+msgid "sh"
 msgstr ""
 
 #: gtksourceview/language-specs/sql.lang.h:1
@@ -1259,12 +1373,9 @@ msgid "Unlimited"
 msgstr "Neograničeno"
 
 #: gtksourceview/language-specs/verilog.lang.h:1
+#: gtksourceview/language-specs/nemerle.lang.h:1
 msgid "Binary Number"
 msgstr "Binarni broj"
-
-#: gtksourceview/language-specs/verilog.lang.h:3
-msgid "Decimal Number"
-msgstr "Decimalni broj"
 
 #: gtksourceview/language-specs/verilog.lang.h:4
 msgid "Gates"
@@ -1274,15 +1385,15 @@ msgstr "Vrata"
 msgid "Verilog"
 msgstr "Verilog"
 
-#: gtksourceview/language-specs/xml.lang.h:6
+#: gtksourceview/language-specs/xml.lang.h:5
 msgid "Hexadecimal"
 msgstr "Heksodecimalno"
 
-#: gtksourceview/language-specs/xml.lang.h:9
+#: gtksourceview/language-specs/xml.lang.h:8
 msgid "Tag"
 msgstr "Oznaka"
 
-#: gtksourceview/language-specs/xml.lang.h:10
+#: gtksourceview/language-specs/xml.lang.h:9
 msgid "XML"
 msgstr "XML"
 
@@ -1358,6 +1469,85 @@ msgstr "Blok komentara jezika C"
 #: gtksourceview/language-specs/vbnet.lang.h:9
 msgid "VB.NET"
 msgstr ""
+
+#: gtksourceview/language-specs/nemerle.lang.h:4
+#, fuzzy
+msgid "Core Keywords"
+msgstr "Ključne riječi"
+
+#: gtksourceview/language-specs/nemerle.lang.h:5
+#, fuzzy
+msgid "Core Types"
+msgstr "Tipovi"
+
+#: gtksourceview/language-specs/nemerle.lang.h:9
+msgid "Keywords Defined by Macros"
+msgstr ""
+
+#: gtksourceview/language-specs/nemerle.lang.h:11
+#, fuzzy
+msgid "Nemerle"
+msgstr "Broj"
+
+#: gtksourceview/language-specs/tcl.lang.h:6
+msgid "Tcl"
+msgstr ""
+
+#: gtksourceview/language-specs/vhdl.lang.h:7
+#, fuzzy
+msgid "True and False"
+msgstr "Točno i netočno"
+
+#: gtksourceview/language-specs/vhdl.lang.h:8
+#, fuzzy
+msgid "Type"
+msgstr "Tipovi"
+
+#: gtksourceview/language-specs/vhdl.lang.h:9
+msgid "VHDL"
+msgstr ""
+
+#: gtksourceview/language-specs/R.lang.h:1
+#, fuzzy
+msgid "Assign operator"
+msgstr "Operatori poljima"
+
+#: gtksourceview/language-specs/R.lang.h:2
+#, fuzzy
+msgid "Delimiter"
+msgstr "Neograničeno"
+
+#: gtksourceview/language-specs/R.lang.h:5
+#, fuzzy
+msgid "Integer Number"
+msgstr "Binarni broj"
+
+#: gtksourceview/language-specs/R.lang.h:8
+#, fuzzy
+msgid "Reserved class"
+msgstr "Rezervirane riječi za ANSI"
+
+#: gtksourceview/language-specs/R.lang.h:9
+#, fuzzy
+msgid "Reserved constant"
+msgstr "Znakovna konstanta"
+
+#: gtksourceview/language-specs/gtkrc.lang.h:3
+msgid "GtkRC"
+msgstr ""
+
+#: gtksourceview/language-specs/gtkrc.lang.h:4
+msgid "Include Directive"
+msgstr ""
+
+#: gtksourceview/language-specs/gtkrc.lang.h:5
+msgid "Keysymbol"
+msgstr ""
+
+#: gtksourceview/language-specs/gtkrc.lang.h:11
+#, fuzzy
+msgid "State"
+msgstr "Vrata"
 
 #~ msgid "MSIL"
 #~ msgstr "MSIL"
