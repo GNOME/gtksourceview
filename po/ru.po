@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2005-02-09 07:28+0100\n"
-"PO-Revision-Date: 2005-02-09 14:14+0200\n"
+"PO-Revision-Date: 2005-02-21 17:01+0200\n"
 "Last-Translator: Leonid Kanter <leon@asplinux.ru>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -67,7 +67,7 @@ msgstr "Каталоги со спецификациями языков"
 msgid ""
 "List of directories where the language specification files (.lang) are "
 "located"
-msgstr "Список каталогов, где расположены файлы опреления языка (.lang)"
+msgstr "Список каталогов, где расположены файлы определения языка (.lang)"
 
 #: gtksourceview/gtksourceprintjob.c:264
 msgid "Configuration"
@@ -120,7 +120,7 @@ msgstr "Описание шрифта"
 
 #: gtksourceview/gtksourceprintjob.c:313
 msgid "Font to use for the document text (e.g. \"Monospace 10\")"
-msgstr "Шрифт текста докуиента (напр. \"Monospace 10\")"
+msgstr "Шрифт текста документа (напр. \"Monospace 10\")"
 
 #: gtksourceview/gtksourceprintjob.c:320 gtksourceview/gtksourceprintjob.c:328
 msgid "Numbers Font"
@@ -152,7 +152,7 @@ msgstr "Следует ли печатать заголовок на каждо�
 
 #: gtksourceview/gtksourceprintjob.c:352
 msgid "Print Footer"
-msgstr "Подвал печати"
+msgstr "Нижний колонтитул"
 
 #: gtksourceview/gtksourceprintjob.c:353
 msgid "Whether to print a footer in each page"
@@ -375,7 +375,7 @@ msgstr ""
 
 #: gtksourceview/gtksourceview.c:276
 msgid "Highlight current line"
-msgstr "Подсвечивать текущую строку текущую строку"
+msgstr "Подсвечивать текущую строку"
 
 #: gtksourceview/gtksourceview.c:277
 msgid "Whether to highlight the current line"
@@ -972,7 +972,7 @@ msgstr "Математическое"
 
 #: gtksourceview/language-specs/latex.lang.h:7
 msgid "Most Used Commands"
-msgstr "Наиболее часто испольуемые команды"
+msgstr "Наиболее часто используемые команды"
 
 #: gtksourceview/language-specs/lua.lang.h:2
 #: gtksourceview/language-specs/python.lang.h:4
