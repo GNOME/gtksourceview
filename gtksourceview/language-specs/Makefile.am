@@ -28,6 +28,7 @@ EXTRA_DIST = 			\
 	texinfo.lang		\
 	vbnet.lang		\
 	verilog.lang		\
+	vhdl.lang		\
 	xml.lang
 
 languagesdir = $(datadir)/gtksourceview-1.0/language-specs
