@@ -13,6 +13,9 @@ braces for which we prefer the "hanging" style. I.e.:
 Braces are optional if code_block is just one line of code, but be
 consistent for multiple branched statements suchs as if/else if/else.
 
+If you add new API to GtkSourceView you must provide gtk-doc style
+comments fully documenting all the functions you're adding.
+
 CVS guidelines for gtksourceview
 ================================
 

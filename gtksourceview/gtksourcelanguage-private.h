@@ -27,6 +27,7 @@ G_BEGIN_DECLS
 struct _GtkSourceLanguagePrivate 
 {
 	gchar			*lang_file_name;
+	gchar                   *translation_domain;
 
 	gchar			*name;
 	gchar			*section;

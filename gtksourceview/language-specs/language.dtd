@@ -1,13 +1,17 @@
+<!-- FIXME: the "name" attribute can be "_name" to be marked for translation -->
 <!ENTITY % itemattrs
  "name  CDATA #REQUIRED
   style CDATA #REQUIRED">
 
 <!ELEMENT language (escape-char?,(line-comment|block-comment|string|syntax-item|pattern-item|keyword-list)+)>
+<!-- FIXME: the "name" and "section" attributes can be prefixed with
+     "_" to be marked for translation -->
 <!ATTLIST language
-  name      CDATA #REQUIRED
-  version   CDATA #REQUIRED
-  section   CDATA #REQUIRED
-  mimetypes CDATA #REQUIRED>
+  name                CDATA #REQUIRED
+  version             CDATA #REQUIRED
+  section             CDATA #REQUIRED
+  translation-domain  CDATA #IMPLIED
+  mimetypes           CDATA #REQUIRED>
 
 <!ELEMENT escape-char (#PCDATA)>
 

@@ -1,3 +1,25 @@
+2003-05-26  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+
+	* configure.in: Require intltool 0.26.
+	
+	* gtksourceview/gtksourcelanguage-private.h:
+	* gtksourceview/gtksourcelanguage.c: Add support for translated
+	.lang files.
+	(process_language_node, parseTag): Prefer underscore-prefixed
+	attribute names and get translations for their values.
+	(language_file_parse): Check that the escape character is UTF-8
+	valid.
+
+	* gtksourceview/language-specs/c.lang: Prefix translatable
+	attribute names with an underscore, so intltool-extract can pick
+	the strings for translation.
+
+	* gtksourceview/language-specs/language.dtd: Added
+	"translation-domain" attribute to the language element.
+
+	* autogen.sh: Enable documentation build by default.
+	* HACKING: Added documentation policy for new API.
+	
 2003-05-25  Gustavo Giraldez  <gustavo.giraldez@gmx.net>
 
 	* configure.in: 
@@ -25,7 +47,7 @@
 
         * configure.in: Add Portuguese (pt) to ALL_LINGUAS.
 
-2003-05-24  Gustavo Gir�ldez  <gustavo.giraldez@gmx.net>
+2003-05-24  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
 
 	* gtksourceview/language-specs/ada.lang: 
 	* gtksourceview/language-specs/c.lang: 

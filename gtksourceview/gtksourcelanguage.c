@@ -184,6 +184,7 @@ gtk_source_language_finalize (GObject *object)
 
 		g_free (lang->priv->lang_file_name);
 
+		xmlFree (lang->priv->translation_domain);
 		xmlFree (lang->priv->name);
 		xmlFree (lang->priv->section);
 
@@ -210,33 +211,57 @@ process_language_node (xmlTextReaderPtr reader, const gchar *filename)
 	gchar *mimetypes;
 	gchar** mtl;
 	int i;
-
+	xmlChar *tmp;
 	GtkSourceLanguage *lang;
 	
 	lang= g_object_new (GTK_TYPE_SOURCE_LANGUAGE, NULL);
 
 	lang->priv->lang_file_name = g_strdup (filename);
 	
-	lang->priv->name = xmlTextReaderGetAttribute (reader, "name");
-	if (lang->priv->name == NULL)
+	lang->priv->translation_domain = xmlTextReaderGetAttribute (reader, "translation-domain");
+	if (lang->priv->translation_domain == NULL)
 	{
-		g_warning ("Impossible to get language name from file '%s'",
-			   filename);
+		lang->priv->translation_domain = xmlStrdup (GETTEXT_PACKAGE);
+	}
+	
+	tmp = xmlTextReaderGetAttribute (reader, "_name");
+	if (tmp == NULL)
+	{
+		lang->priv->name = xmlTextReaderGetAttribute (reader, "name");
+		if (lang->priv->name == NULL)
+		{
+			g_warning ("Impossible to get language name from file '%s'",
+				   filename);
 
-		g_object_unref (lang);
-		return NULL;
+			g_object_unref (lang);
+			return NULL;
+		}
+	}
+	else
+	{
+		lang->priv->name = xmlStrdup (dgettext (lang->priv->translation_domain, tmp));
+		xmlFree (tmp);
 	}
 
-	lang->priv->section = xmlTextReaderGetAttribute (reader, "section");
-	if (lang->priv->section == NULL)
+	tmp = xmlTextReaderGetAttribute (reader, "_section");
+	if (tmp == NULL)
 	{
-		g_warning ("Impossible to get language section from file '%s'",
-			   filename);
-
-		g_object_unref (lang);
-		return NULL;
+		lang->priv->section = xmlTextReaderGetAttribute (reader, "section");
+		if (lang->priv->section == NULL)
+		{
+			g_warning ("Impossible to get language section from file '%s'",
+				   filename);
+			
+			g_object_unref (lang);
+			return NULL;
+		}
 	}
-
+	else
+	{
+		lang->priv->section = xmlStrdup (dgettext (lang->priv->translation_domain, tmp));
+		xmlFree (tmp);
+	}
+	
 	version = xmlTextReaderGetAttribute (reader, "version");
 	if (version == NULL)
 	{
@@ -867,7 +892,18 @@ parseTag (GtkSourceLanguage *language,
 	xmlChar *name;
 	xmlChar *style;
 	
-	name = xmlGetProp (cur, "name");
+	name = xmlGetProp (cur, "_name");
+	if (name == NULL)
+	{
+		name = xmlGetProp (cur, "name");
+	}
+	else
+	{
+		xmlChar *tmp = xmlStrdup (dgettext (language->priv->translation_domain, name));
+		xmlFree (name);
+		name = tmp;
+	}
+	
 	style = xmlGetProp (cur, "style");
 
 	if (name == NULL)
@@ -990,11 +1026,19 @@ language_file_parse (GtkSourceLanguage *language,
 		if (!xmlStrcmp (cur->name, (const xmlChar *)"escape-char"))
 		{
 			xmlChar *escape;
-		
+			gunichar esc_char;
+			
 			escape = xmlNodeListGetString (doc, cur->xmlChildrenNode, 1);
-			language->priv->escape_char = g_utf8_get_char (escape);
+			esc_char = g_utf8_get_char_validated (escape, -1);
+			if (esc_char < 0)
+			{
+				g_warning ("Invalid (non UTF8) escape character in file '%s'",
+					   language->priv->lang_file_name);
+				esc_char = 0;
+			}
 			xmlFree (escape);
-
+			language->priv->escape_char = esc_char;
+			
 			if (!get_tags)
 				break;
 		}

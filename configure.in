@@ -16,7 +16,8 @@ AC_PROG_CC
 AC_PROG_INSTALL
 AM_DISABLE_STATIC
 AM_PROG_LIBTOOL
-AC_PROG_INTLTOOL(0.25)
+# FIXME: update required version when there's a new intltool release
+AC_PROG_INTLTOOL(0.26)
 
 # Check for headers and functions
 AC_HEADER_STDC
