@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
-"POT-Creation-Date: 2003-07-09 02:09+0100\n"
-"PO-Revision-Date: 2003-07-09 01:14+0100\n"
+"POT-Creation-Date: 2003-07-21 05:54+0100\n"
+"PO-Revision-Date: 2003-07-21 05:55+0100\n"
 "Last-Translator: Dafydd Harries <daf@parnassus.ath.cx>\n"
 "Language-Team: Cymraeg <gnome-cy@www.linux.org>\n"
 "MIME-Version: 1.0\n"
@@ -81,8 +81,8 @@ msgstr "Byffer Ffynhonell"
 msgid "GtkSourceBuffer object to print"
 msgstr "Y gwrthrydd GtkSourceBuffer i'w argraffu"
 
-#: gtksourceview/gtksourceprintjob.c:287 gtksourceview/gtksourceview.c:223
-#: gtksourceview/gtksourceview.c:224
+#: gtksourceview/gtksourceprintjob.c:287 gtksourceview/gtksourceview.c:221
+#: gtksourceview/gtksourceview.c:222
 msgid "Tabs Width"
 msgstr "Lled Tabiau"
 
@@ -210,59 +210,75 @@ msgstr "Eraill 3"
 msgid "Default"
 msgstr "Rhagosodiad"
 
-#: gtksourceview/gtksourceview.c:207
+#: gtksourceview/gtksourcetag.c:108
+msgid "Tag ID"
+msgstr "ID Tag"
+
+#: gtksourceview/gtksourcetag.c:109
+msgid "ID used to refer to the source tag"
+msgstr "Y ID a ddefnyddir i gyfeirio i'r tag ffynhonell"
+
+#: gtksourceview/gtksourcetag.c:116
+msgid "Tag style"
+msgstr "Arddull y tag"
+
+#: gtksourceview/gtksourcetag.c:117
+msgid "The style associated to the source tag"
+msgstr "Yr arddull a gysylltir a'r tag ffynhonell"
+
+#: gtksourceview/gtksourceview.c:205
 msgid "Show Line Numbers"
 msgstr "Dangos Rhifau LLinellau"
 
-#: gtksourceview/gtksourceview.c:208
+#: gtksourceview/gtksourceview.c:206
 msgid "Whether to display line numbers"
 msgstr "A ddylid dangos rhifau llinellau"
 
-#: gtksourceview/gtksourceview.c:215
+#: gtksourceview/gtksourceview.c:213
 msgid "Show Line Markers"
 msgstr "Dangos Marciau Llinellau"
 
-#: gtksourceview/gtksourceview.c:216
+#: gtksourceview/gtksourceview.c:214
 msgid "Whether to display line marker pixbufs"
 msgstr "A ddylid dangos byfferau picseli marciau llinell"
 
-#: gtksourceview/gtksourceview.c:233
+#: gtksourceview/gtksourceview.c:231
 msgid "Auto Indentation"
 msgstr "Mewnoli Awtomatig"
 
-#: gtksourceview/gtksourceview.c:234
+#: gtksourceview/gtksourceview.c:232
 msgid "Whether to enable auto indentation"
 msgstr "A ddylid galluogi mewnoliad awtomatig"
 
-#: gtksourceview/gtksourceview.c:240
+#: gtksourceview/gtksourceview.c:238
 msgid "Insert Spaces Instead of Tabs"
 msgstr "Mewnosod Bylchau yn Hytrach na Tabiau"
 
-#: gtksourceview/gtksourceview.c:241
+#: gtksourceview/gtksourceview.c:239
 msgid "Whether to insert spaces instead of tabs"
 msgstr "A ddylid mewnosod bylchau yn hytrach na tabiau"
 
-#: gtksourceview/gtksourceview.c:248
+#: gtksourceview/gtksourceview.c:246
 msgid "Show Right Margin"
 msgstr "Dangos yr Ymyl De"
 
-#: gtksourceview/gtksourceview.c:249
+#: gtksourceview/gtksourceview.c:247
 msgid "Whether to display the right margin"
 msgstr "A ddylid dangos yr ymyl de"
 
-#: gtksourceview/gtksourceview.c:256
+#: gtksourceview/gtksourceview.c:254
 msgid "Margin position"
 msgstr "Safle'r ymyl"
 
-#: gtksourceview/gtksourceview.c:257
+#: gtksourceview/gtksourceview.c:255
 msgid "Position of the right margin"
 msgstr "Safle'r ymyl de"
 
-#: gtksourceview/gtksourceview.c:266
+#: gtksourceview/gtksourceview.c:264
 msgid "Use smart home/end"
 msgstr "Defnyddio cartre/diwedd clyfar"
 
-#: gtksourceview/gtksourceview.c:267
+#: gtksourceview/gtksourceview.c:265
 msgid ""
 "HOME and END keys move to first/last characters on line first before going "
 "to the start/end of the line"
