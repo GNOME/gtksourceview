@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-07-30 04:45+0200\n"
+"POT-Creation-Date: 2003-08-26 12:54+0200\n"
 "PO-Revision-Date: 2003-07-30 13:23+0200\n"
 "Last-Translator: Tino Meinen <a.t.meinen@chello.nl>\n"
 "Language-Team: Dutch <vertaling@nl.linux.org>\n"
@@ -48,6 +48,7 @@ msgid "Number of undo levels for the buffer"
 msgstr "Hoe vaak er in de buffer iets ongedaan kan worden gemaakt"
 
 #: gtksourceview/gtksourcebuffer.c:317
+#: gtksourceview/language-specs/desktop.lang.h:6
 msgid "Language"
 msgstr "Taal"
 
@@ -162,18 +163,23 @@ msgid "Character"
 msgstr "Teken"
 
 #: gtksourceview/gtksourcestylescheme.c:247
+#: gtksourceview/language-specs/latex.lang.h:1
+#: gtksourceview/language-specs/po.lang.h:1
 msgid "Comment"
-msgstr "Commentaar"
+msgstr "Opmerking"
 
 #: gtksourceview/gtksourcestylescheme.c:252
 msgid "Data Type"
 msgstr "Gegevenstype"
 
 #: gtksourceview/gtksourcestylescheme.c:257
+#: gtksourceview/language-specs/ada.lang.h:3
 msgid "Function"
 msgstr "Functie"
 
 #: gtksourceview/gtksourcestylescheme.c:262
+#: gtksourceview/language-specs/c.lang.h:6
+#: gtksourceview/language-specs/cpp.lang.h:6
 msgid "Decimal"
 msgstr "Decimaal getal"
 
@@ -182,6 +188,8 @@ msgid "Floating Point"
 msgstr "Floating point getal"
 
 #: gtksourceview/gtksourcestylescheme.c:272
+#: gtksourceview/language-specs/latex.lang.h:3
+#: gtksourceview/language-specs/po.lang.h:3
 msgid "Keyword"
 msgstr "Sleutelwoord"
 
@@ -190,6 +198,16 @@ msgid "Preprocessor"
 msgstr "Preprocessor"
 
 #: gtksourceview/gtksourcestylescheme.c:282
+#: gtksourceview/language-specs/ada.lang.h:9
+#: gtksourceview/language-specs/c.lang.h:15
+#: gtksourceview/language-specs/cpp.lang.h:15
+#: gtksourceview/language-specs/html.lang.h:8
+#: gtksourceview/language-specs/idl.lang.h:8
+#: gtksourceview/language-specs/java.lang.h:11
+#: gtksourceview/language-specs/perl.lang.h:6
+#: gtksourceview/language-specs/po.lang.h:6
+#: gtksourceview/language-specs/python.lang.h:11
+#: gtksourceview/language-specs/xml.lang.h:8
 msgid "String"
 msgstr "Tekenreeks"
 
@@ -198,6 +216,9 @@ msgid "Specials"
 msgstr "Speciale tekens"
 
 #: gtksourceview/gtksourcestylescheme.c:292
+#: gtksourceview/language-specs/desktop.lang.h:10
+#: gtksourceview/language-specs/diff.lang.h:7
+#: gtksourceview/language-specs/po.lang.h:5
 msgid "Others"
 msgstr "Andere"
 
@@ -288,3 +309,357 @@ msgid ""
 msgstr ""
 "De HOME en END toetsen eerst naar de eerste/laatste tekens van de regel "
 "verplaatsen, voordat ze naar het echte regelbegin/einde gaan"
+
+#: gtksourceview/language-specs/ada.lang.h:1
+msgid "Ada"
+msgstr "Ada"
+
+#: gtksourceview/language-specs/ada.lang.h:2
+#: gtksourceview/language-specs/c.lang.h:4
+#: gtksourceview/language-specs/cpp.lang.h:4
+#, fuzzy
+msgid "Character Constant"
+msgstr "Teken"
+
+#: gtksourceview/language-specs/ada.lang.h:4
+#: gtksourceview/language-specs/c.lang.h:10
+#: gtksourceview/language-specs/cpp.lang.h:10
+#: gtksourceview/language-specs/idl.lang.h:4
+#: gtksourceview/language-specs/perl.lang.h:2
+#: gtksourceview/language-specs/python.lang.h:3
+#, fuzzy
+msgid "Keywords"
+msgstr "Sleutelwoord"
+
+#: gtksourceview/language-specs/ada.lang.h:5
+#: gtksourceview/language-specs/c.lang.h:11
+#: gtksourceview/language-specs/cpp.lang.h:11
+#: gtksourceview/language-specs/desktop.lang.h:7
+#: gtksourceview/language-specs/diff.lang.h:5
+#: gtksourceview/language-specs/java.lang.h:5
+#: gtksourceview/language-specs/perl.lang.h:3
+#: gtksourceview/language-specs/python.lang.h:4
+#, fuzzy
+msgid "Line Comment"
+msgstr "Commentaar"
+
+#: gtksourceview/language-specs/ada.lang.h:6
+#: gtksourceview/language-specs/desktop.lang.h:9
+#, fuzzy
+msgid "Number"
+msgstr "Nummers lettertype"
+
+#: gtksourceview/language-specs/ada.lang.h:7
+#, fuzzy
+msgid "Preprocessor Keywords"
+msgstr "Preprocessor"
+
+#: gtksourceview/language-specs/ada.lang.h:8
+#: gtksourceview/language-specs/c.lang.h:14
+#: gtksourceview/language-specs/cpp.lang.h:14
+#: gtksourceview/language-specs/idl.lang.h:7
+#: gtksourceview/language-specs/java.lang.h:10
+#, fuzzy
+msgid "Sources"
+msgstr "Bron buffer"
+
+#: gtksourceview/language-specs/ada.lang.h:10
+msgid "True And False"
+msgstr ""
+
+#: gtksourceview/language-specs/ada.lang.h:11
+#: gtksourceview/language-specs/c.lang.h:16
+#: gtksourceview/language-specs/cpp.lang.h:16
+#: gtksourceview/language-specs/idl.lang.h:9
+msgid "Types"
+msgstr "Typen"
+
+#: gtksourceview/language-specs/c.lang.h:1
+#: gtksourceview/language-specs/cpp.lang.h:1
+#, fuzzy
+msgid "'#if 0' Comment"
+msgstr "Commentaar"
+
+#: gtksourceview/language-specs/c.lang.h:2
+#: gtksourceview/language-specs/cpp.lang.h:2
+#: gtksourceview/language-specs/html.lang.h:2
+#: gtksourceview/language-specs/idl.lang.h:1
+#: gtksourceview/language-specs/java.lang.h:1
+#: gtksourceview/language-specs/xml.lang.h:2
+#, fuzzy
+msgid "Block Comment"
+msgstr "Commentaar"
+
+#: gtksourceview/language-specs/c.lang.h:3
+msgid "C"
+msgstr "C"
+
+#: gtksourceview/language-specs/c.lang.h:5
+#: gtksourceview/language-specs/cpp.lang.h:5
+msgid "Common Macro"
+msgstr ""
+
+#: gtksourceview/language-specs/c.lang.h:7
+#: gtksourceview/language-specs/cpp.lang.h:7
+#, fuzzy
+msgid "Floating Point Number"
+msgstr "Floating point getal"
+
+#: gtksourceview/language-specs/c.lang.h:8
+#: gtksourceview/language-specs/cpp.lang.h:8
+msgid "Hex Number"
+msgstr ""
+
+#: gtksourceview/language-specs/c.lang.h:9
+#: gtksourceview/language-specs/cpp.lang.h:9
+#: gtksourceview/language-specs/idl.lang.h:3
+msgid "Include/Pragma"
+msgstr ""
+
+#: gtksourceview/language-specs/c.lang.h:12
+#: gtksourceview/language-specs/cpp.lang.h:12
+msgid "Octal Number"
+msgstr ""
+
+#: gtksourceview/language-specs/c.lang.h:13
+#: gtksourceview/language-specs/cpp.lang.h:13
+#: gtksourceview/language-specs/idl.lang.h:5
+#, fuzzy
+msgid "Preprocessor Definitions"
+msgstr "Preprocessor"
+
+#: gtksourceview/language-specs/cpp.lang.h:3
+msgid "C++"
+msgstr "C++"
+
+#: gtksourceview/language-specs/desktop.lang.h:1
+msgid ".desktop"
+msgstr ""
+
+#: gtksourceview/language-specs/desktop.lang.h:2
+msgid "Boolean Value"
+msgstr ""
+
+#: gtksourceview/language-specs/desktop.lang.h:3
+msgid "Encoding"
+msgstr "Codering"
+
+#: gtksourceview/language-specs/desktop.lang.h:4
+#, fuzzy
+msgid "Exec Parameter"
+msgstr "Escape-teken"
+
+#: gtksourceview/language-specs/desktop.lang.h:5
+msgid "Group"
+msgstr "Groep"
+
+#: gtksourceview/language-specs/desktop.lang.h:8
+msgid "Non Standard Key"
+msgstr ""
+
+#: gtksourceview/language-specs/desktop.lang.h:11
+msgid "Standard Key"
+msgstr ""
+
+#: gtksourceview/language-specs/diff.lang.h:1
+msgid "Added line"
+msgstr ""
+
+#: gtksourceview/language-specs/diff.lang.h:2
+msgid "Changed line"
+msgstr ""
+
+#: gtksourceview/language-specs/diff.lang.h:3
+msgid "Diff"
+msgstr "Diff"
+
+#: gtksourceview/language-specs/diff.lang.h:4
+msgid "Diff file"
+msgstr ""
+
+#: gtksourceview/language-specs/diff.lang.h:6
+#: gtksourceview/language-specs/po.lang.h:4
+msgid "Location"
+msgstr "Lokatie"
+
+#: gtksourceview/language-specs/diff.lang.h:8
+msgid "Removed line"
+msgstr ""
+
+#: gtksourceview/language-specs/diff.lang.h:9
+#, fuzzy
+msgid "Special case"
+msgstr "Speciale tekens"
+
+#: gtksourceview/language-specs/html.lang.h:1
+#: gtksourceview/language-specs/xml.lang.h:1
+msgid "Attributes"
+msgstr "Attributen"
+
+#: gtksourceview/language-specs/html.lang.h:3
+#: gtksourceview/language-specs/xml.lang.h:3
+#, fuzzy
+msgid "Closing Bracket"
+msgstr "Haakjes controleren"
+
+#: gtksourceview/language-specs/html.lang.h:4
+#: gtksourceview/language-specs/xml.lang.h:4
+msgid "DTD"
+msgstr ""
+
+#: gtksourceview/language-specs/html.lang.h:5
+#: gtksourceview/language-specs/xml.lang.h:5
+msgid "Entity"
+msgstr "Entiteit"
+
+#: gtksourceview/language-specs/html.lang.h:6
+msgid "HTML"
+msgstr "HTML"
+
+#: gtksourceview/language-specs/html.lang.h:7
+#: gtksourceview/language-specs/latex.lang.h:5
+#: gtksourceview/language-specs/xml.lang.h:7
+msgid "Markup"
+msgstr "Markering"
+
+#: gtksourceview/language-specs/html.lang.h:9
+msgid "Tags"
+msgstr "Tags"
+
+#: gtksourceview/language-specs/idl.lang.h:2
+msgid "IDL"
+msgstr ""
+
+#: gtksourceview/language-specs/idl.lang.h:6
+#, fuzzy
+msgid "Sectional"
+msgstr "Speciale tekens"
+
+#: gtksourceview/language-specs/java.lang.h:2
+msgid "Declarations"
+msgstr ""
+
+#: gtksourceview/language-specs/java.lang.h:3
+msgid "Flow"
+msgstr "Stroom"
+
+#: gtksourceview/language-specs/java.lang.h:4
+msgid "Java"
+msgstr "Java"
+
+#: gtksourceview/language-specs/java.lang.h:6
+msgid "Memory"
+msgstr "Geheugen"
+
+#: gtksourceview/language-specs/java.lang.h:7
+msgid "Modifiers"
+msgstr ""
+
+#: gtksourceview/language-specs/java.lang.h:8
+msgid "Numeric"
+msgstr "Numeriek"
+
+#: gtksourceview/language-specs/java.lang.h:9
+msgid "Primitives"
+msgstr ""
+
+#: gtksourceview/language-specs/java.lang.h:12
+#: gtksourceview/language-specs/python.lang.h:12
+#: gtksourceview/language-specs/xml.lang.h:9
+#, fuzzy
+msgid "String 2"
+msgstr "Tekenreeks"
+
+#: gtksourceview/language-specs/latex.lang.h:2
+msgid "Include"
+msgstr ""
+
+#: gtksourceview/language-specs/latex.lang.h:4
+msgid "Latex"
+msgstr ""
+
+#: gtksourceview/language-specs/latex.lang.h:6
+msgid "Math"
+msgstr ""
+
+#: gtksourceview/language-specs/latex.lang.h:7
+msgid "Most Used Commands"
+msgstr ""
+
+#: gtksourceview/language-specs/perl.lang.h:1
+#, fuzzy
+msgid "Function Call"
+msgstr "Functie"
+
+#: gtksourceview/language-specs/perl.lang.h:4
+msgid "Perl"
+msgstr "Perl"
+
+#: gtksourceview/language-specs/perl.lang.h:5
+#: gtksourceview/language-specs/python.lang.h:9
+msgid "Scripts"
+msgstr ""
+
+#: gtksourceview/language-specs/perl.lang.h:7
+#, fuzzy
+msgid "String2"
+msgstr "Tekenreeks"
+
+#: gtksourceview/language-specs/perl.lang.h:8
+#, fuzzy
+msgid "String3"
+msgstr "Tekenreeks"
+
+#: gtksourceview/language-specs/perl.lang.h:9
+msgid "Variables"
+msgstr "Variabelen"
+
+#: gtksourceview/language-specs/po.lang.h:2
+msgid "Format"
+msgstr "Opmaak"
+
+#: gtksourceview/language-specs/po.lang.h:7
+msgid "gettext translation"
+msgstr "gettext-vertaling"
+
+#: gtksourceview/language-specs/python.lang.h:1
+msgid "Builtins"
+msgstr ""
+
+#: gtksourceview/language-specs/python.lang.h:2
+msgid "Functions"
+msgstr "Functies"
+
+#: gtksourceview/language-specs/python.lang.h:5
+msgid "Module Handler"
+msgstr ""
+
+#: gtksourceview/language-specs/python.lang.h:6
+msgid "Multiline String"
+msgstr ""
+
+#: gtksourceview/language-specs/python.lang.h:7
+msgid "Multiline String 2"
+msgstr ""
+
+#: gtksourceview/language-specs/python.lang.h:8
+msgid "Python"
+msgstr "Python"
+
+#: gtksourceview/language-specs/python.lang.h:10
+msgid "Self"
+msgstr ""
+
+#: gtksourceview/language-specs/xml.lang.h:6
+#, fuzzy
+msgid "Hexadecimal"
+msgstr "Decimaal getal"
+
+#: gtksourceview/language-specs/xml.lang.h:10
+#, fuzzy
+msgid "Tag"
+msgstr "Tag-ID"
+
+#: gtksourceview/language-specs/xml.lang.h:11
+msgid "XML"
+msgstr "XML"
