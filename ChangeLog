@@ -1,3 +1,7 @@
+2003-06-28  Gil "Dolfin" Osher <dolfin@rpg.org.il>
+
+	* configure.in: Added "he" (Hebrew) to ALL_LINGUAS.
+
 2003-06-23  Paolo Maggi <paolo.maggi@polito.it> 
 
 	* gtksourceview/gtksourcelanguage-private.h (GtkSourceLanguagePrivate):
@@ -95,7 +99,7 @@
 
 === gtksourceview 0.3.0 ===
 	
-2003-06-07  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+2003-06-07  Gustavo Gir??ldez  <gustavo.giraldez@gmx.net>
 
 	* README
 	* NEWS: Updated for new release
@@ -130,7 +134,7 @@
 
 	* configure.in: Added "zh_TW" to ALL_LINGUAS.
 
-2003-06-02  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+2003-06-02  Gustavo Gir??ldez  <gustavo.giraldez@gmx.net>
 
 	* docs/reference/gtksourceview-docs.sgml:
 	* docs/reference/gtksourceview-sections.txt:
@@ -147,7 +151,7 @@
 	the footer.  A bit nicer print progress indicator and some other
 	printing configuration changed.
 	
-2003-06-02  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+2003-06-02  Gustavo Gir??ldez  <gustavo.giraldez@gmx.net>
 
 	* configure.in: Add libgnomeprint/libgnomeprintui dependencies.
 
@@ -192,7 +196,7 @@
 	* gtksourceview/gtksourcelanguagesmanager.c:
 	s/spefications/specification/  Fixes: #113278
 
-2003-05-28  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+2003-05-28  Gustavo Gir??ldez  <gustavo.giraldez@gmx.net>
 
 	* gtksourceview/gtksourcelanguage.h: Added missing
 	GTK_SOURCE_LANGUAGE_GET_CLASS macro (pointed by Jeff Franks).
@@ -209,18 +213,18 @@
 
 	* configure.in: Added Russian to ALL_LINGUAS.
 
-2003-05-26  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+2003-05-26  Gustavo Gir??ldez  <gustavo.giraldez@gmx.net>
 
 	* gtksourceview/language-specs/*.lang: Marked all "name" and
 	"section" attributes for translation.
 
-2003-05-26  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+2003-05-26  Gustavo Gir??ldez  <gustavo.giraldez@gmx.net>
 
 	* docs/reference/tmpl/buffer.sgml: Documented GtkSourceBuffer.
 	* gtksourceview/gtksourcebuffer.c: Fixed some object properties
 	descriptions.  Added gtk-doc style comments for all public API.
 
-2003-05-26  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+2003-05-26  Gustavo Gir??ldez  <gustavo.giraldez@gmx.net>
 
 	* configure.in: Require intltool 0.26.
 	
@@ -269,7 +273,7 @@
 
         * configure.in: Add Portuguese (pt) to ALL_LINGUAS.
 
-2003-05-24  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+2003-05-24  Gustavo Gir??ldez  <gustavo.giraldez@gmx.net>
 
 	* gtksourceview/language-specs/ada.lang: 
 	* gtksourceview/language-specs/c.lang: 
@@ -395,7 +399,7 @@
 	
 2003-05-02  Gustavo Giraldez  <gustavo.giraldez@gmx.net>
 
-	New GtkSourceView widget by Paolo Maggi and Gustavo Giráldez.
+	New GtkSourceView widget by Paolo Maggi and Gustavo Gir??ldez.
 
 	* API has been completely revised
 	* New language and manager objects to set regular expressions for
