@@ -1,3 +1,10 @@
+2004-02-11  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+
+	* gtksourceview/gnu-regex/regex.h: Redefine POSIX regular
+	expression API entries to avoid symbols clashes in systems which
+	implement them but don't have GNU regular expressions (patch by
+	Julio M. Merino Vidal, bug #133734).
+
 2004-02-10  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
 
 	* gtksourceview/gtksourcebuffer.c (update_syntax_regions):

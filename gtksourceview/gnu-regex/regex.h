@@ -22,6 +22,11 @@
 #ifndef _REGEX_H
 #define _REGEX_H 1
 
+#define regcomp  gtksourceview_regcomp
+#define regexec  gtksourceview_regexec
+#define regerror gtksourceview_regerror
+#define regfree  gtksourceview_regfree
+
 /* Allow the use in C++ code.  */
 #ifdef __cplusplus
 extern "C" {
