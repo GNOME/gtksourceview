@@ -8,6 +8,7 @@ EXTRA_DIST = 			\
 	diff.lang		\
 	desktop.lang		\
 	fortran.lang		\
+  gtkrc.lang	\
 	haskell.lang		\
 	html.lang		\
 	idl.lang		\
