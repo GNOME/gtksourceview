@@ -1,0 +1,20 @@
+News 0.0.2 -> 0.0.3
+----------------
+
+* Undo support using begin/end_user_action in GtkTextBuffer.
+* Implemented gtk_source_buffer_convert_to_html the name says what it does :-)
+* more auto indent support/bugfixes: On an keypress it will automatic inserting whitespaces before/after on operator characters like [=<>!], comma [,]  and begin parantes[(]. This is hardcoded values and will probadly only work correcly on C/C++/Java/python or similar programing languages syntax
+* bugfixes.
+
+News 0.0.1 -> 0.0.2
+----------------
+
+* Auto indent support
+* bugfixes
+
+News 0.0.1
+--------
+
+* Syntax/Pattern highlighting
+* Bracket matching support
+* Show line numbers in margin

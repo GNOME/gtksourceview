@@ -1,0 +1,53 @@
+Sat Feb 17  13:19:53 2001 CET Mikael Hermansson<mikeh@bahnhof.se>
+
+* Realesing 0.0.3
+
+Sat Feb 17  13:03:59 2001 CET Mikael Hermansson<mikeh@bahnhof.se>
+
+  * gtktextview.c bugfixes in find_correct_bracket/key_press_event code that made 
+  the bracket sometime show up incorrectly in line.
+
+Sat Feb 17  02:19:27 2001 CET Mikael Hermansson<mikeh@bahnhof.se>
+
+  * gtksourceview.c if source_view->auto_indent = TRUE the keypress implementation 
+    will automatic inserting whitespaces before/after on operator characters like [=<>!], comma [,] 
+    and begin parantes[(]. This is hardcoded values and will probadly only work on
+    C/C++/Java/python or similar programing languages syntax.
+
+Fri Feb 16  23:56:46 2001 CET Mikael Hermansson<mikeh@bahnhof.se>
+
+  * test.c cb_convert() replaced creat/write functions with fopen family instead
+
+  * gtksourceview.c killed some warnings, fixed bug in gtk_source_view_set_show_line_numbers() 
+    that made the widget show line numbers even if you set it to FALSE. 
+
+Mon Feb 12  18:17:56 2001 CET Mikael Hermansson<mikeh@bahnhof.se>
+
+  * Implemented gtk_source_buffer_convert_to_html the name says what it does :-)
+
+Mon Feb 05  20:27:21 2001 CET Mikael Hermansson<mikeh@bahnhof.se>
+
+  * gtksourceview./gtksourcebuffer.[c/h]start implement undo/redo
+
+Sun Feb 04  14:38:10 2001 CET Mikael Hermansson<mikeh@bahnhof.se>
+
+  * configure.in -> 0.0.2cvs
+
+Sun Feb 04  14:35:47 2001 CET Mikael Hermansson<mikeh@bahnhof.se>
+
+  * releasing GtkSourceView 0.0.2
+
+Sun Feb 04  14:17:03 2001 CET Mikael Hermansson<mikeh@bahnhof.se>
+
+  * gtksourceview.[c/h] implemented auto indent. Two new functions added:
+    gtk_source_view_[set/get]_auto_indent()
+
+Sun Jan 21  15:11:17 2001 CET Mikael Hermansson<mikeh@bahnhof.se>
+
+  * gtksourcebuffer.c fixed bug in find_bracket_match that made the buffer hang.
+   also renamed it to gtk_source_buffer_find_bracket_match and made it public API
+
+Tue Jan 16  18:13:44 2001 CET Mikael Hermansson<mikeh@bahnhof.se>
+
+  * releasing 0.0.1 of GtkSourceView:
+    A new syntax higlight widget that supports GtkTextView upcoming Gtk 2.0.
