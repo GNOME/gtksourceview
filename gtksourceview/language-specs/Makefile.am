@@ -16,6 +16,7 @@ EXTRA_DIST = 			\
 	latex.lang		\
 	lua.lang		\
 	msil.lang		\
+	nemerle.lang		\
 	pascal.lang		\
 	perl.lang		\
 	php.lang		\
