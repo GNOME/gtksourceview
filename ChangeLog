@@ -1,3 +1,28 @@
+2002-02-05  Jeroen Zwartepoorte  <jeroen@xs4all.nl>
+
+	* aclocal.m4: Updated by auto* programs.
+	* src/gtksourceview.c: (gtk_source_view_class_init),
+	(gtk_source_view_init), (gtk_source_view_finalize),
+	(gtk_source_view_pixbuf_foreach_unref), (gtk_source_view_undo),
+	(gtk_source_view_redo), (gtk_source_view_populate_popup),
+	(menuitem_activate_cb), (gtk_source_view_get_line_marker),
+	(gtk_source_view_draw_line_markers), (gtk_source_view_get_lines),
+	(gtk_source_view_expose),
+	(gtk_source_view_calculate_tab_stop_width), (gtk_source_view_new),
+	(gtk_source_view_new_with_buffer), (gtk_source_view_get_type),
+	(gtk_source_view_get_show_line_numbers),
+	(gtk_source_view_set_show_line_numbers),
+	(gtk_source_view_get_show_line_pixmaps),
+	(gtk_source_view_set_show_line_pixmaps),
+	(gtk_source_view_get_tab_stop), (gtk_source_view_set_tab_stop),
+	(gtk_source_view_get_tab_stop_width), (gtk_source_view_add_pixbuf),
+	(gtk_source_view_get_pixbuf): Rewrote line numbering code. Now works
+	the same way as in gedit2. The left margin no longer resizes when you
+	just enter blank lines. It is also now possible to hide the line numbers,
+	while keeping the line pixmaps. Some methods which weren't being used
+	removed and overall cleanup. Problem of not displaying a line number
+	for the last (empty) line is also fixed.
+
 Sat Jan 26 10:50:43 AM PST 2002 Chris Phelps <chicane@reninet.com>
 	* all:
 	  indent all code with: '-bad -br -brs -ce -l100 -lp -psl -saf -sai -saw -i8'
