@@ -1,3 +1,13 @@
+2002-09-22  Jeroen Zwartepoorte  <jeroen@xs4all.nl>
+
+	* src/gtksourcebuffer.h:
+	* src/gtksourcetag.h:
+	* src/gtksourceview.h:
+	* src/gtktextsearch.h:
+	* src/gtkundomanager.h:
+
+	Use G_BEGIN_DECLS & G_END_DECLS instead of #ifdef __cplusplus.
+
 2002-07-13  Jeroen Zwartepoorte  <jeroen@xs4all.nl>
 
 	* configure.in: Treat warnings as errors.

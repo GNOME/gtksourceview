@@ -21,13 +21,11 @@
 #ifndef __GTK_SOURCE_TAG_H__
 #define __GTK_SOURCE_TAG_H__
 
-#ifdef __cplusplus
-extern "C" {
-#endif /* __cplusplus */
-
 #include <regex.h>
 #include <gtk/gtk.h>
 #include <gtk/gtktexttag.h>
+
+G_BEGIN_DECLS
 
 #define GTK_TYPE_SYNTAX_TAG            (gtk_syntax_tag_get_type ())
 #define GTK_SYNTAX_TAG(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GTK_TYPE_SYNTAX_TAG, GtkSyntaxTag))
@@ -115,8 +113,6 @@ GtkTextTag* gtk_embedded_tag_new(const gchar *name, const gchar *outside,
 
 gboolean gtk_source_compile_regex (const gchar *pattern, Regex *regex);
 
-#ifdef __cplusplus
-};
-#endif
+G_END_DECLS
 
 #endif

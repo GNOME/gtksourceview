@@ -19,13 +19,12 @@
 
 #ifndef __GTK_SOURCE_VIEW_H__
 #define __GTK_SOURCE_VIEW_H__
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 #include <gtk/gtk.h>
 #include <gtk/gtktextview.h>
 #include <gtksourcebuffer.h>
+
+G_BEGIN_DECLS
 
 #define GTK_TYPE_SOURCE_VIEW                  (gtk_source_view_get_type ())
 #define GTK_SOURCE_VIEW(obj)                  (GTK_CHECK_CAST ((obj), GTK_TYPE_SOURCE_VIEW, GtkSourceView))
@@ -74,7 +73,7 @@ gint gtk_source_view_get_tab_stop_width(GtkSourceView *view);
 
 gboolean gtk_source_view_add_pixbuf(GtkSourceView *view, const gchar *key, GdkPixbuf *pixbuf, gboolean overwrite);
 GdkPixbuf *gtk_source_view_get_pixbuf(GtkSourceView *view, const gchar *key);
-#ifdef __cplusplus
-}
-#endif
+
+G_END_DECLS
+
 #endif /* end of SOURCE_VIEW_H__ */

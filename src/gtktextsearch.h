@@ -22,12 +22,12 @@
 #ifndef _GTK_TEXT_SEARCH__H_
 #define _GTK_TEXT_SEARCH__H_
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+#include <gtk/gtk.h>
+
+G_BEGIN_DECLS
 
 #define GTK_TYPE_TEXT_SEARCH                  (gtk_text_search_get_type ())
-#define GTK_TEXT_SEARCH(obj)                  ( G_TYPE_CHECK_INSTANCE_CAST((obj), GTK_TYPE_TEXT_SEARCH, GtkTextSearch))
+#define GTK_TEXT_SEARCH(obj)                  (G_TYPE_CHECK_INSTANCE_CAST((obj), GTK_TYPE_TEXT_SEARCH, GtkTextSearch))
 #define GTK_TEXT_SEARCH_CLASS(klass)          (G_TYPE_CHECK_CLASS_CAST ((klass), GTK_TYPE_TEXT_SEARCH, GtkTextSearchClass))
 #define GTK_IS_TEXT_SEARCH(obj)               (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GTK_TYPE_TEXT_SEARCH))
 #define GTK_IS_TEXT_SEARCH_CLASS(klass)       (G_TYPE_CHECK_CLASS_TYPE ((klass), GTK_TYPE_TEXT_SEARCH))
@@ -82,8 +82,6 @@ gboolean gtk_text_search_backward (GtkTextSearch *search, GtkTextIter *match_sta
 gint gtk_text_search_forward_foreach (GtkTextSearch *search, GtkTextSearchForeachFunc func, gpointer data);
 gint gtk_text_search_backward_foreach (GtkTextSearch *search, GtkTextSearchForeachFunc func, gpointer data);
 
-#ifdef __cplusplus
-};
-#endif
+G_END_DECLS
 
 #endif

@@ -33,6 +33,8 @@
 
 #include "gtksourcebuffer.h"
 
+G_BEGIN_DECLS
+
 #define GTK_TYPE_UNDO_MANAGER			(gtk_undo_manager_get_type ())
 #define GTK_UNDO_MANAGER(obj)			(GTK_CHECK_CAST ((obj), GTK_TYPE_UNDO_MANAGER, GtkUndoManager))
 #define GTK_UNDO_MANAGER_CLASS(klass)		(GTK_CHECK_CLASS_CAST ((klass), GTK_TYPE_UNDO_MANAGER, GtkUndoManagerClass))
@@ -74,5 +76,7 @@ void            gtk_undo_manager_set_undo_levels (GtkUndoManager *um,
 
 void            gtk_undo_manager_begin_not_undoable_action (GtkUndoManager *um);
 void            gtk_undo_manager_end_not_undoable_action   (GtkUndoManager *um);
+
+G_END_DECLS
 
 #endif /* __GTK_UNDO_MANAGER_H__ */

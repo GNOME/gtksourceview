@@ -23,13 +23,11 @@
 #ifndef __GTK_SOURCE_BUFFER_H__
 #define __GTK_SOURCE_BUFFER_H__
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 #include <regex.h>
 #include <gtk/gtk.h>
 #include "gtksourcetag.h"
+
+G_BEGIN_DECLS
 
 #define GTK_TYPE_SOURCE_BUFFER			(gtk_source_buffer_get_type ())
 #define GTK_SOURCE_BUFFER(obj)			(GTK_CHECK_CAST ((obj), GTK_TYPE_SOURCE_BUFFER, GtkSourceBuffer))
@@ -159,8 +157,6 @@ gboolean         gtk_source_buffer_save_with_character_encoding (GtkSourceBuffer
 								 const gchar     *encoding, 
 								GError **error);
 
-#ifdef __cplusplus
-}
-#endif
+G_END_DECLS
 
 #endif /* __GTK_SOURCE_BUFFER_H__ */
