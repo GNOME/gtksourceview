@@ -6,7 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview.HEAD\n"
-"POT-Creation-Date: 2003-09-27 20:36+0200\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2003-09-28 12:28+0200\n"
 "PO-Revision-Date: 2003-09-27 22:17+0200\n"
 "Last-Translator: Mətin Əmirov <metin@karegen.com>\n"
 "Language-Team: Azerbaijani <gnome@azitt.com>\n"
@@ -30,8 +31,7 @@ msgstr "Mötərizələri Yoxla"
 msgid "Whether to check and highlight matching brackets"
 msgstr "Mötərizələri yoxla və uyğun gələnləri işıqlandır"
 
-#: gtksourceview/gtksourcebuffer.c:297
-#: gtksourceview/gtksourceprintjob.c:303
+#: gtksourceview/gtksourcebuffer.c:297 gtksourceview/gtksourceprintjob.c:303
 msgid "Highlight"
 msgstr "İşıqlandırma"
 
@@ -61,7 +61,9 @@ msgid "Language specification directories"
 msgstr "Dil spesifikasiya cərgələri"
 
 #: gtksourceview/gtksourcelanguagesmanager.c:120
-msgid "List of directories where the language specification files (.lang) are located"
+msgid ""
+"List of directories where the language specification files (.lang) are "
+"located"
 msgstr "Dil spesifikasiya fayllarının (.lang) olduğu cərgələr siyahısı"
 
 #: gtksourceview/gtksourceprintjob.c:272
@@ -80,8 +82,7 @@ msgstr "Mənbə Buferi"
 msgid "GtkSourceBuffer object to print"
 msgstr "Çap ediləcək GtkSourceBuffer obyekti"
 
-#: gtksourceview/gtksourceprintjob.c:287
-#: gtksourceview/gtksourceview.c:221
+#: gtksourceview/gtksourceprintjob.c:287 gtksourceview/gtksourceview.c:221
 #: gtksourceview/gtksourceview.c:222
 msgid "Tabs Width"
 msgstr "Səkmələrin Eni"
@@ -199,7 +200,7 @@ msgstr "Preprocessor"
 #: gtksourceview/language-specs/cpp.lang.h:15
 #: gtksourceview/language-specs/html.lang.h:8
 #: gtksourceview/language-specs/idl.lang.h:8
-#: gtksourceview/language-specs/java.lang.h:12
+#: gtksourceview/language-specs/java.lang.h:11
 #: gtksourceview/language-specs/perl.lang.h:6
 #: gtksourceview/language-specs/po.lang.h:6
 #: gtksourceview/language-specs/python.lang.h:11
@@ -299,8 +300,12 @@ msgid "Use smart home/end"
 msgstr "Ağıllı home/end işlət"
 
 #: gtksourceview/gtksourceview.c:265
-msgid "HOME and END keys move to first/last characters on line first before going to the start/end of the line"
-msgstr "HOME və END düymələri sətirin başına/sonuna getmədən əvvəl sətirdəki ilk/son hərfə gedəcək"
+msgid ""
+"HOME and END keys move to first/last characters on line first before going "
+"to the start/end of the line"
+msgstr ""
+"HOME və END düymələri sətirin başına/sonuna getmədən əvvəl sətirdəki ilk/son "
+"hərfə gedəcək"
 
 #: gtksourceview/language-specs/ada.lang.h:1
 msgid "Ada"
@@ -326,7 +331,7 @@ msgstr "Açar Kəlmələr"
 #: gtksourceview/language-specs/cpp.lang.h:11
 #: gtksourceview/language-specs/desktop.lang.h:7
 #: gtksourceview/language-specs/diff.lang.h:5
-#: gtksourceview/language-specs/java.lang.h:7
+#: gtksourceview/language-specs/java.lang.h:5
 #: gtksourceview/language-specs/perl.lang.h:3
 #: gtksourceview/language-specs/python.lang.h:4
 msgid "Line Comment"
@@ -345,7 +350,7 @@ msgstr "Preprosessor Açar Kəlmələri"
 #: gtksourceview/language-specs/c.lang.h:14
 #: gtksourceview/language-specs/cpp.lang.h:14
 #: gtksourceview/language-specs/idl.lang.h:7
-#: gtksourceview/language-specs/java.lang.h:11
+#: gtksourceview/language-specs/java.lang.h:10
 msgid "Sources"
 msgstr "Mənbələr"
 
@@ -385,7 +390,6 @@ msgstr "Ümumi Makro"
 
 #: gtksourceview/language-specs/c.lang.h:7
 #: gtksourceview/language-specs/cpp.lang.h:7
-#: gtksourceview/language-specs/java.lang.h:3
 msgid "Floating Point Number"
 msgstr "Floating Point Ədədi"
 
@@ -518,31 +522,31 @@ msgstr "Qismi"
 msgid "Declarations"
 msgstr "Deklarasiyalar"
 
-#: gtksourceview/language-specs/java.lang.h:4
+#: gtksourceview/language-specs/java.lang.h:3
 msgid "Flow"
 msgstr "Daşma"
 
-#: gtksourceview/language-specs/java.lang.h:5
-msgid "Integer"
-msgstr "Integer"
-
-#: gtksourceview/language-specs/java.lang.h:6
+#: gtksourceview/language-specs/java.lang.h:4
 msgid "Java"
 msgstr "Java"
 
-#: gtksourceview/language-specs/java.lang.h:8
+#: gtksourceview/language-specs/java.lang.h:6
 msgid "Memory"
 msgstr "Yaddaş"
 
-#: gtksourceview/language-specs/java.lang.h:9
+#: gtksourceview/language-specs/java.lang.h:7
 msgid "Modifiers"
 msgstr "Təkmilləşdiricilər"
 
-#: gtksourceview/language-specs/java.lang.h:10
+#: gtksourceview/language-specs/java.lang.h:8
+msgid "Numeric"
+msgstr "Ədədi"
+
+#: gtksourceview/language-specs/java.lang.h:9
 msgid "Primitives"
 msgstr "Primitivlər"
 
-#: gtksourceview/language-specs/java.lang.h:13
+#: gtksourceview/language-specs/java.lang.h:12
 #: gtksourceview/language-specs/python.lang.h:12
 #: gtksourceview/language-specs/xml.lang.h:9
 msgid "String 2"
@@ -637,3 +641,5 @@ msgstr "Taq"
 msgid "XML"
 msgstr "XML"
 
+#~ msgid "Integer"
+#~ msgstr "Integer"
