@@ -71,8 +71,6 @@ static gint gtk_source_view_expose (GtkWidget      *widget,
 				    GdkEventExpose *event,
 				    gpointer        user_data);
 
-static gint gtk_source_view_key_press (GtkWidget   *widget,
-				       GdkEventKey *event);
 
 static gint gtk_source_view_calculate_tab_stop_width (GtkWidget *widget,
 						      gint       tab_stop);
@@ -235,7 +233,7 @@ gtk_source_view_get_line_marker (GtkSourceView *view,
 
 	pixbuf = gtk_source_view_get_pixbuf (view, (const gchar *) list->data);
 	if (!pixbuf) {
-		g_warning ("Unknown marker '%s' used.", list->data);
+		g_warning ("Unknown marker '%s' used.", (char*)list->data);
 		return NULL;
 	}
 
@@ -266,7 +264,7 @@ gtk_source_view_get_line_marker (GtkSourceView *view,
 						      GDK_INTERP_BILINEAR,
 						      225);
 			} else
-				g_warning ("Unknown marker '%s' used", iter->data);
+				g_warning ("Unknown marker '%s' used", (char*)iter->data);
 		}
 	}
 
@@ -735,7 +733,6 @@ gtk_source_view_add_pixbuf (GtkSourceView *view,
 			    GdkPixbuf     *pixbuf,
 			    gboolean       overwrite)
 {
-	GtkTextBuffer *buffer = NULL;
 	gpointer data = NULL;
 	gboolean replaced = FALSE;
 

@@ -1,18 +1,25 @@
 2002-02-11  Mikael Hermansson  <tyan@linux.se>
 
+  * gtksourceview.c: remove compile warnings.
+  * test-widget.c: remove compile warnings.
+
+2002-02-11  Mikael Hermansson  <tyan@linux.se>
+
   * ChangeLog: fixed my ugly comments and make it more emacs compatible :-)
 
 2002-03-10  Mikael Hermansson  <tyan@linux.se>
 
-  * gtksourcebuffer.[c/h] (gtk_source_buffer_update_info): This function will reread file stat() 
-    from disc and update GtkSourceBufferInfo structure.
-    (update_buffer_info): Fixed so it doesn't read file stat() when getstat == FALSE
+  * gtksourcebuffer.[c/h] (gtk_source_buffer_update_info): 
+    This function will reread file stat() from disc and update 
+    GtkSourceBufferInfo structure.
+    (update_buffer_info): Fixed so it doesn't read file stat() when 
+    getstat == FALSE
 
 2002-03-06  Mikael Hermansson  <tyan@linux.se>
 
-  * gtktextsearch.[c/h]: This is a new object class for searching in the buffer
-    Hopefully this API will work better than the old gtk_text_iter_forward_search 
-    implementation :-) 
+  * gtktextsearch.[c/h]: This is a new object class for searching in the 
+    buffer. Hopefully this API will work better than the old 
+    gtk_text_iter_forward_search implementation :-) 
 
   * Makefile.am: added gtktextsearch.[c/h] to sources list
 
@@ -24,10 +31,11 @@
 
 2002-02-09  Mikael Hermansson  <tyan@linux.se>
 
-  * gtksourcebuffer.c/h (gtk_source_buffer_get_filename): Allocate a new filename string 
-     instead of return const char* user should g_free it after use.
-     (gtk_source_buffer_save/load): now will set "modifed" flag to FALSE 
-      after load/save success has been completed...
+  * gtksourcebuffer.c/h (gtk_source_buffer_get_filename): 
+    Allocate a new filename string instead of return const char*
+    user should g_free it after use. 
+    (gtk_source_buffer_save/load): Now will set "modifed" flag to 
+    FALSE after load/save success has been completed...
 
 2002-03-07  Jeroen Zwartepoorte  <jeroen@xs4all.nl>
 

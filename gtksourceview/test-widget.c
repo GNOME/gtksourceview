@@ -30,9 +30,6 @@ test_source (GtkSourceBuffer *buffer)
 {
 	GtkTextTag *tag;
 	GtkTextTagTable *table;
-	char *txt = NULL;
-	guint len = 0;
-	GError *error = 0;
 	GList *list = NULL;
 
 	if (!buffer)
