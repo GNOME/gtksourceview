@@ -1,3 +1,9 @@
+Sat Jan 26 10:50:43 AM PST 2002 Chris Phelps <chicane@reninet.com>
+	* all:
+	  indent all code with: '-bad -br -brs -ce -l100 -lp -psl -saf -sai -saw -i8'
+	* src/gtksourcebuffer.c:
+	  (real_insert_text) fix invalidated TextIter when no highlighting style is set.
+
 2001-12-30  Dave Camp  <dave@ximian.com>
 
 	* src/gtksourceview.c (get_line_marker): Pass an overall_alpha of 

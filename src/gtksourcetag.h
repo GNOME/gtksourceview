@@ -1,21 +1,22 @@
-/* gtksourcetag
-*  Copyright (C) 2001
-*  Mikael Hermansson<tyan@linux.se>
-*  Chris Phelps <chicane@reninet.com>
-*
-*  This program is free software; you can redistribute it and/or modify
-*  it under the terms of the GNU Library General Public License as published by
-*  the Free Software Foundation; either version 2 of the License, or
-*  (at your option) any later version.
-*
-*  This program is distributed in the hope that it will be useful,
-*  but WITHOUT ANY WARRANTY; without even the implied warranty of
-*  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-*  GNU Library General Public License for more details.
-*
-*  You should have received a copy of the GNU Library General Public License*  along with this program; if not, write to the Free Software
-*  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
-*/
+/*  gtksourcetag.h
+ *
+ *  Copyright (C) 2001
+ *  Mikael Hermansson<tyan@linux.se>
+ *  Chris Phelps <chicane@reninet.com>
+ *
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU Library General Public License as published by
+ *  the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU Library General Public License for more details.
+ *
+ *  You should have received a copy of the GNU Library General Public License*  along with this program; if not, write to the Free Software
+ *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+ */
 
 #ifndef __GTK_SOURCE_TAG_H__
 #define __GTK_SOURCE_TAG_H__
@@ -57,11 +58,10 @@ typedef struct _GtkSourceBufferMatch
 
 /* FIXME: regex routines is NOT UTF8 compat... */
 
-typedef struct _Regex
-{
-  struct re_pattern_buffer buf;
-  struct re_registers reg;
-  gint len;
+typedef struct _Regex {
+	struct re_pattern_buffer buf;
+	struct re_registers reg;
+	gint len;
 }Regex;
 
 typedef struct _GtkSyntaxTag GtkSyntaxTag;
@@ -71,53 +71,47 @@ typedef struct _GtkPatternTagClass GtkPatternTagClass;
 typedef struct _GtkEmbeddedTag GtkEmbeddedTag;
 typedef struct _GtkEmbeddedTagClass GtkEmbeddedTagClass;
 
-struct _GtkSyntaxTag
-{
-  GtkTextTag parent_instance;
-  gchar *start;  
-  Regex reg_start;
-  Regex reg_end;
+struct _GtkSyntaxTag {
+	GtkTextTag parent_instance;
+	gchar *start;  
+	Regex reg_start;
+	Regex reg_end;
 };
 
-struct _GtkSyntaxTagClass
-{
-  GtkTextTagClass parent_class; 
+struct _GtkSyntaxTagClass {
+	GtkTextTagClass parent_class; 
 };
 
-struct _GtkPatternTag
-{
-  GtkTextTag parent_instance;
-
-  Regex reg_pattern;
+struct _GtkPatternTag {
+	GtkTextTag parent_instance;
+	Regex reg_pattern;
 };
 
-struct _GtkPatternTagClass
-{
-  GtkTextTagClass parent_class; 
+struct _GtkPatternTagClass {
+	GtkTextTagClass parent_class; 
 };
 
-struct _GtkEmbeddedTag
-{
-  GtkTextTag parent_instance;
-
-  Regex reg_outside;
-  Regex reg_inside;
+struct _GtkEmbeddedTag {
+	GtkTextTag parent_instance;
+	Regex reg_outside;
+	Regex reg_inside;
 };
 
-struct _GtkEmbeddedTagClass
-{
-  GtkTextTagClass parent_class; 
+struct _GtkEmbeddedTagClass {
+	GtkTextTagClass parent_class; 
 };
 
 
 GType      gtk_syntax_tag_get_type(void) G_GNUC_CONST;
-GtkTextTag* gtk_syntax_tag_new(const gchar *name, const gchar *patternstart, const gchar *patternend);
+GtkTextTag* gtk_syntax_tag_new(const gchar *name, const gchar *patternstart,
+			       const gchar *patternend);
 
 GType      gtk_pattern_tag_get_type(void) G_GNUC_CONST;
 GtkTextTag* gtk_pattern_tag_new(const gchar *name, const gchar *pattern);
 
 GType      gtk_embedded_tag_get_type(void) G_GNUC_CONST;
-GtkTextTag* gtk_embedded_tag_new(const gchar *name, const gchar *outside, const gchar *inside);
+GtkTextTag* gtk_embedded_tag_new(const gchar *name, const gchar *outside,
+				 const gchar *inside);
 
 gboolean gtk_source_compile_regex (const gchar *pattern, Regex *regex);
 

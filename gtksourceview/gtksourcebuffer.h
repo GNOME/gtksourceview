@@ -39,42 +39,35 @@ extern "C" {
 #define UNDO_TYPE_INSERT_TEXT 1
 #define UNDO_TYPE_REMOVE_RANGE 2
 
-typedef struct _GtkSourceBufferUndoEntry
-{
-  gint type;
-  gint offset;
-  gint length;
-  gpointer data;
+typedef struct _GtkSourceBufferUndoEntry {
+	gint type;
+	gint offset;
+	gint length;
+	gpointer data;
 }GtkSourceBufferUndoEntry;
 
-typedef struct _GtkSourceBuffer
-{
-  GtkTextBuffer TextBuffer;
-  gint highlight :1;
-  gint check_brackets :1;
-
-  gint refresh_start;
-  gint refresh_length;
-
-  GtkTextTag *bracket_match_tag;
-  GtkTextMark *mark;
-  GHashTable *line_markers;
-  /* Undo coding */
-  gint undo_max;
-  GList *undo_redo;
-  guint undo_level;
-  guint undo_redo_processing : 1;
-
-  GList *syntax_items;
-  GList *pattern_items;
-  GList *embedded_items;
-  Regex reg_syntax_all;
+typedef struct _GtkSourceBuffer {
+	GtkTextBuffer TextBuffer;
+	gint highlight :1;
+	gint check_brackets :1;
+	gint refresh_start;
+	gint refresh_length;
+	GtkTextTag *bracket_match_tag;
+	GtkTextMark *mark;
+	GHashTable *line_markers;
+	/* Undo coding */
+	gint undo_max;
+	GList *undo_redo;
+	guint undo_level;
+	guint undo_redo_processing : 1;
+	GList *syntax_items;
+	GList *pattern_items;
+	GList *embedded_items;
+	Regex reg_syntax_all;
 } GtkSourceBuffer;
 
-typedef struct _GtkSourceBufferClass
-{
-  GtkTextBufferClass parent_class;
-
+typedef struct _GtkSourceBufferClass {
+	GtkTextBufferClass parent_class;
 } GtkSourceBufferClass;
 
 
@@ -84,7 +77,8 @@ GType gtk_source_buffer_get_type(void);
 GtkTextBuffer* gtk_source_buffer_new(GtkTextTagTable *table);
 void gtk_source_buffer_attach_to_view(GtkSourceBuffer *buffer, GtkTextView *view);
 
-gint gtk_source_buffer_regex_search(const char *text, gint pos, Regex *regex, gboolean forward, GtkSourceBufferMatch *m);
+gint gtk_source_buffer_regex_search(const char *text, gint pos, Regex *regex,
+				    gboolean forward, GtkSourceBufferMatch *m);
 gint gtk_source_buffer_regex_match(const char *text, gint pos, gint end, Regex *regex);
 
 void gtk_source_buffer_set_check_brackets(GtkSourceBuffer *buf, gboolean check);
@@ -124,7 +118,8 @@ void gtk_source_buffer_line_add_marker(GtkSourceBuffer *buffer, gint line, const
 gint gtk_source_buffer_line_has_markers(GtkSourceBuffer *view, gint line);
 const GList *gtk_source_buffer_line_get_markers(GtkSourceBuffer *view, gint line);
 gint gtk_source_buffer_line_remove_markers(GtkSourceBuffer *buffer, gint line);
-gboolean gtk_source_buffer_line_remove_marker(GtkSourceBuffer *buffer, gint line, const gchar *marker);
+gboolean gtk_source_buffer_line_remove_marker(GtkSourceBuffer *buffer, gint line,
+					      const gchar *marker);
 /* return value is the number removed */
 /* pass -1 for start and end to remove all */
 gint gtk_source_view_remove_all_markers(GtkSourceBuffer *buffer, gint line_start, gint line_end);
