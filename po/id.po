@@ -1,19 +1,20 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# Indonesia translation of gtksourceview.
+# Copyright (C) 2004 THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# Ahmad Riza H Nst <ari@160c.afraid.org>, 2004.
+# 
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview HEAD\n"
-"POT-Creation-Date: 2003-12-09 17:55+0700\n"
-"PO-Revision-Date: 2003-11-19 10:27+0700\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-05-19 14:52+0700\n"
+"PO-Revision-Date: 2004-05-12 19:57+0700\n"
 "Last-Translator: Ahmad Riza H Nst <ari@160c.afraid.org>\n"
 "Language-Team: Indonesia <sukarelawan@gnome.linux.or.id>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Report-Msgid-Bugs-To: \n"
 
 #: gtksourceview/gtksourcebuffer.c:279
 msgid "Escape Character"
@@ -166,6 +167,7 @@ msgid "Comment"
 msgstr "Komentar"
 
 #: gtksourceview/gtksourcestylescheme.c:252
+#: gtksourceview/language-specs/php.lang.h:8
 msgid "Data Type"
 msgstr "Tipe data"
 
@@ -198,6 +200,7 @@ msgstr "Preprosesor"
 #: gtksourceview/language-specs/ada.lang.h:9
 #: gtksourceview/language-specs/c.lang.h:15
 #: gtksourceview/language-specs/cpp.lang.h:15
+#: gtksourceview/language-specs/csharp.lang.h:8
 #: gtksourceview/language-specs/html.lang.h:8
 #: gtksourceview/language-specs/idl.lang.h:8
 #: gtksourceview/language-specs/java.lang.h:11
@@ -212,22 +215,23 @@ msgstr "String"
 msgid "Specials"
 msgstr "Spesial"
 
-#: gtksourceview/gtksourcestylescheme.c:292
+#: gtksourceview/gtksourcestylescheme.c:294
 #: gtksourceview/language-specs/desktop.lang.h:10
 #: gtksourceview/language-specs/diff.lang.h:7
+#: gtksourceview/language-specs/msil.lang.h:2
 #: gtksourceview/language-specs/po.lang.h:5
 msgid "Others"
 msgstr "Yang lain"
 
-#: gtksourceview/gtksourcestylescheme.c:297
+#: gtksourceview/gtksourcestylescheme.c:299
 msgid "Others 2"
 msgstr "Yang lain 2"
 
-#: gtksourceview/gtksourcestylescheme.c:302
+#: gtksourceview/gtksourcestylescheme.c:304
 msgid "Others 3"
 msgstr "Yang lain 3"
 
-#: gtksourceview/gtksourcestylescheme.c:339
+#: gtksourceview/gtksourcestylescheme.c:341
 msgid "Default"
 msgstr "Default"
 
@@ -320,21 +324,25 @@ msgstr "Konstanta Karakter"
 #: gtksourceview/language-specs/ada.lang.h:4
 #: gtksourceview/language-specs/c.lang.h:10
 #: gtksourceview/language-specs/cpp.lang.h:10
+#: gtksourceview/language-specs/csharp.lang.h:3
 #: gtksourceview/language-specs/idl.lang.h:4
 #: gtksourceview/language-specs/perl.lang.h:2
 #: gtksourceview/language-specs/python.lang.h:3
+#: gtksourceview/language-specs/verilog.lang.h:6
 msgid "Keywords"
 msgstr "Kata kunci"
 
 #: gtksourceview/language-specs/ada.lang.h:5
 #: gtksourceview/language-specs/c.lang.h:11
 #: gtksourceview/language-specs/cpp.lang.h:11
+#: gtksourceview/language-specs/csharp.lang.h:4
 #: gtksourceview/language-specs/desktop.lang.h:7
 #: gtksourceview/language-specs/diff.lang.h:5
 #: gtksourceview/language-specs/java.lang.h:5
 #: gtksourceview/language-specs/perl.lang.h:3
 #: gtksourceview/language-specs/python.lang.h:4
 #: gtksourceview/language-specs/sql.lang.h:11
+#: gtksourceview/language-specs/verilog.lang.h:7
 msgid "Line Comment"
 msgstr "Baris komentar"
 
@@ -350,9 +358,12 @@ msgstr "Kata kunci preprosesor"
 #: gtksourceview/language-specs/ada.lang.h:8
 #: gtksourceview/language-specs/c.lang.h:14
 #: gtksourceview/language-specs/cpp.lang.h:14
+#: gtksourceview/language-specs/csharp.lang.h:7
 #: gtksourceview/language-specs/idl.lang.h:7
 #: gtksourceview/language-specs/java.lang.h:10
+#: gtksourceview/language-specs/php.lang.h:15
 #: gtksourceview/language-specs/sql.lang.h:26
+#: gtksourceview/language-specs/verilog.lang.h:9
 msgid "Sources"
 msgstr "Sumber"
 
@@ -364,6 +375,7 @@ msgstr "Benar dan salah"
 #: gtksourceview/language-specs/c.lang.h:16
 #: gtksourceview/language-specs/cpp.lang.h:16
 #: gtksourceview/language-specs/idl.lang.h:9
+#: gtksourceview/language-specs/verilog.lang.h:10
 msgid "Types"
 msgstr "Tipe"
 
@@ -374,10 +386,12 @@ msgstr "'#if 0' komentar"
 
 #: gtksourceview/language-specs/c.lang.h:2
 #: gtksourceview/language-specs/cpp.lang.h:2
+#: gtksourceview/language-specs/csharp.lang.h:1
 #: gtksourceview/language-specs/html.lang.h:2
 #: gtksourceview/language-specs/idl.lang.h:1
 #: gtksourceview/language-specs/java.lang.h:1
 #: gtksourceview/language-specs/sql.lang.h:5
+#: gtksourceview/language-specs/verilog.lang.h:2
 #: gtksourceview/language-specs/xml.lang.h:2
 msgid "Block Comment"
 msgstr "Blok komentar"
@@ -409,11 +423,13 @@ msgstr "Include/Pragma"
 
 #: gtksourceview/language-specs/c.lang.h:12
 #: gtksourceview/language-specs/cpp.lang.h:12
+#: gtksourceview/language-specs/verilog.lang.h:8
 msgid "Octal Number"
 msgstr "Nomor Oktal"
 
 #: gtksourceview/language-specs/c.lang.h:13
 #: gtksourceview/language-specs/cpp.lang.h:13
+#: gtksourceview/language-specs/csharp.lang.h:5
 #: gtksourceview/language-specs/idl.lang.h:5
 msgid "Preprocessor Definitions"
 msgstr "Definisi preprosesor"
@@ -421,6 +437,21 @@ msgstr "Definisi preprosesor"
 #: gtksourceview/language-specs/cpp.lang.h:3
 msgid "C++"
 msgstr "C++"
+
+#: gtksourceview/language-specs/csharp.lang.h:2
+msgid "C#"
+msgstr "C#"
+
+#: gtksourceview/language-specs/csharp.lang.h:6
+#: gtksourceview/language-specs/java.lang.h:9
+msgid "Primitives"
+msgstr "Primitif"
+
+#: gtksourceview/language-specs/csharp.lang.h:9
+#: gtksourceview/language-specs/java.lang.h:12
+#: gtksourceview/language-specs/python.lang.h:12
+msgid "String 2"
+msgstr "String 2"
 
 #: gtksourceview/language-specs/desktop.lang.h:1
 msgid ".desktop"
@@ -545,23 +576,13 @@ msgstr "Pemodifikasi"
 msgid "Numeric"
 msgstr "Numerik"
 
-#: gtksourceview/language-specs/java.lang.h:9
-msgid "Primitives"
-msgstr "Primitif"
-
-#: gtksourceview/language-specs/java.lang.h:12
-#: gtksourceview/language-specs/python.lang.h:12
-#: gtksourceview/language-specs/xml.lang.h:9
-msgid "String 2"
-msgstr "String 2"
-
 #: gtksourceview/language-specs/latex.lang.h:2
 msgid "Include"
 msgstr "Termasuk"
 
 #: gtksourceview/language-specs/latex.lang.h:4
-msgid "Latex"
-msgstr "Latex"
+msgid "LaTeX"
+msgstr "LaTeX"
 
 #: gtksourceview/language-specs/latex.lang.h:6
 msgid "Math"
@@ -570,6 +591,10 @@ msgstr "Matematika"
 #: gtksourceview/language-specs/latex.lang.h:7
 msgid "Most Used Commands"
 msgstr "Perintah yg paling sering digunakan"
+
+#: gtksourceview/language-specs/msil.lang.h:1
+msgid "MSIL"
+msgstr "MSIL"
 
 #: gtksourceview/language-specs/perl.lang.h:1
 msgid "Function Call"
@@ -594,6 +619,62 @@ msgstr "String3"
 
 #: gtksourceview/language-specs/perl.lang.h:9
 msgid "Variables"
+msgstr "Variabel"
+
+#: gtksourceview/language-specs/php.lang.h:1
+msgid "Array Operators"
+msgstr "Operator Array"
+
+#: gtksourceview/language-specs/php.lang.h:2
+msgid "Backtick String"
+msgstr "String backtick"
+
+#: gtksourceview/language-specs/php.lang.h:3
+msgid "Bash Line Comment"
+msgstr "Baris komentar Bash"
+
+#: gtksourceview/language-specs/php.lang.h:4
+msgid "C Block Comment"
+msgstr "Blok komentar C"
+
+#: gtksourceview/language-specs/php.lang.h:5
+msgid "C++ Line Comment"
+msgstr "Baris komentar C++"
+
+#: gtksourceview/language-specs/php.lang.h:6
+msgid "Case Insensitive Keyword"
+msgstr "Kata kunci yang tidak case sensitive"
+
+#: gtksourceview/language-specs/php.lang.h:7
+msgid "Case Sensitive Keyword"
+msgstr "Kata·kunci·yang·case·sensitive"
+
+#: gtksourceview/language-specs/php.lang.h:9
+msgid "Double Quoted String"
+msgstr "String tanda petik ganda"
+
+#: gtksourceview/language-specs/php.lang.h:10
+msgid "First Open PHP Tag"
+msgstr "Tag PHP yang dibuka pertama"
+
+#: gtksourceview/language-specs/php.lang.h:11
+msgid "HTML Block"
+msgstr "Blok HTML"
+
+#: gtksourceview/language-specs/php.lang.h:12
+msgid "Operators"
+msgstr "Operator"
+
+#: gtksourceview/language-specs/php.lang.h:13
+msgid "PHP"
+msgstr "PHP"
+
+#: gtksourceview/language-specs/php.lang.h:14
+msgid "Single Quoted String"
+msgstr "String tanda petik tunggal"
+
+#: gtksourceview/language-specs/php.lang.h:16
+msgid "Variable"
 msgstr "Variabel"
 
 #: gtksourceview/language-specs/po.lang.h:2
@@ -732,14 +813,34 @@ msgstr "Teks literal"
 msgid "Unlimited"
 msgstr "Tidak terbatas"
 
+#: gtksourceview/language-specs/verilog.lang.h:1
+msgid "Binary Number"
+msgstr "Nomor Biner"
+
+#: gtksourceview/language-specs/verilog.lang.h:3
+msgid "Decimal Number"
+msgstr "Nomor Desimal"
+
+#: gtksourceview/language-specs/verilog.lang.h:4
+msgid "Gates"
+msgstr "Gerbang"
+
+#: gtksourceview/language-specs/verilog.lang.h:5
+msgid "Hexadecimal Number"
+msgstr "Nomor Heksadesimal"
+
+#: gtksourceview/language-specs/verilog.lang.h:11
+msgid "Verilog"
+msgstr "Verilog"
+
 #: gtksourceview/language-specs/xml.lang.h:6
 msgid "Hexadecimal"
 msgstr "Heksadesimal"
 
-#: gtksourceview/language-specs/xml.lang.h:10
+#: gtksourceview/language-specs/xml.lang.h:9
 msgid "Tag"
 msgstr "Tag"
 
-#: gtksourceview/language-specs/xml.lang.h:11
+#: gtksourceview/language-specs/xml.lang.h:10
 msgid "XML"
 msgstr "XML"
