@@ -5,117 +5,52 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: GtkSourceView 0.2.1\n"
-"POT-Creation-Date: 2003-05-31 11:58+0200\n"
-"PO-Revision-Date: 2003-05-31 11:40+0200\n"
+"Project-Id-Version: GtkSourceView 0.3.0\n"
+"POT-Creation-Date: 2003-06-08 12:07+0200\n"
+"PO-Revision-Date: 2003-06-08 12:07+0200\n"
 "Last-Translator: Christian Neumair <chris@gnome-de.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: gtksourceview/gtksourceview.c:207
-msgid "Show Line Numbers"
-msgstr "Zeilennummern anzeigen"
-
-#: gtksourceview/gtksourceview.c:208
-msgid "Whether to display line numbers"
-msgstr "Sollen Zeilennummern angezeigt werden?"
-
-#: gtksourceview/gtksourceview.c:215
-msgid "Show Line Markers"
-msgstr "Zeilenmarkierungen anzeigen"
-
-#: gtksourceview/gtksourceview.c:216
-msgid "Whether to display line marker pixbufs"
-msgstr "Sollen Pixbufs zur Zeilenmarkierung angezeigt werden?"
-
-#: gtksourceview/gtksourceview.c:223 gtksourceview/gtksourceview.c:224
-msgid "Tabs Width"
-msgstr "Tabulatorbreite"
-
-#: gtksourceview/gtksourceview.c:233
-msgid "Auto Indentation"
-msgstr "Auto-Einrücken"
-
-#: gtksourceview/gtksourceview.c:234
-msgid "Whether to enable auto indentation"
-msgstr "Soll das Einrücken automatisch erfolgen?"
-
-#: gtksourceview/gtksourceview.c:240
-msgid "Insert Spaces Instead of Tabs"
-msgstr "Leerzeichen statt Tabulatoren einfügen"
-
-#: gtksourceview/gtksourceview.c:241
-msgid "Whether to insert spaces instead of tabs"
-msgstr "Sollen Leerzeichen statt Tabulatoren eingefügt werden?"
-
-#: gtksourceview/gtksourceview.c:248
-msgid "Show Right Margin"
-msgstr "Rechten Rand anzeigen"
-
-#: gtksourceview/gtksourceview.c:249
-msgid "Whether to display the right margin"
-msgstr "Soll der rechte Rand angezeigt werden?"
-
-#: gtksourceview/gtksourceview.c:256
-msgid "Margin position"
-msgstr "Randposition"
-
-#: gtksourceview/gtksourceview.c:257
-msgid "Position of the right margin"
-msgstr "Position des rechten Rands"
-
-#: gtksourceview/gtksourceview.c:266
-msgid "Use smart home/end"
-msgstr "Intelligentes Pos1/Ende verwenden"
-
-# CHECK
-#: gtksourceview/gtksourceview.c:267
-msgid ""
-"HOME and END keys move to first/last characters on line first before going "
-"to the start/end of the line"
-msgstr ""
-"Sollen die Pos1 sowie die End-Tasten zum ersten/letzten Zeichen in einer "
-"Zeile springen, bevor sie zur ersten/letzten Zeile springen"
-
-#: gtksourceview/gtksourcebuffer.c:277
+#: gtksourceview/gtksourcebuffer.c:279
 msgid "Escape Character"
 msgstr "Terminierungszeichen"
 
-#: gtksourceview/gtksourcebuffer.c:278
+#: gtksourceview/gtksourcebuffer.c:280
 msgid "Escaping character for syntax patterns"
 msgstr "Zeichen zum Terminieren von Syntax-Mustern"
 
-#: gtksourceview/gtksourcebuffer.c:286
+#: gtksourceview/gtksourcebuffer.c:288
 msgid "Check Brackets"
 msgstr "Klammern überprüfen"
 
-#: gtksourceview/gtksourcebuffer.c:287
+#: gtksourceview/gtksourcebuffer.c:289
 msgid "Whether to check and highlight matching brackets"
 msgstr "Sollen zusammengehörige Klammern überprüft und hervorgehoben werden?"
 
-#: gtksourceview/gtksourcebuffer.c:295
+#: gtksourceview/gtksourcebuffer.c:297 gtksourceview/gtksourceprintjob.c:303
 msgid "Highlight"
 msgstr "Hervorheben"
 
-#: gtksourceview/gtksourcebuffer.c:296
+#: gtksourceview/gtksourcebuffer.c:298
 msgid "Whether to highlight syntax in the buffer"
 msgstr "Soll die Syntax im Puffer hervorgehoben werden?"
 
-#: gtksourceview/gtksourcebuffer.c:304
+#: gtksourceview/gtksourcebuffer.c:306
 msgid "Maximum Undo Levels"
 msgstr "Maximale Rückgängig-Ebenen"
 
-#: gtksourceview/gtksourcebuffer.c:305
+#: gtksourceview/gtksourcebuffer.c:307
 msgid "Number of undo levels for the buffer"
 msgstr "Anzahl der maximalen Rückgängig-Ebenen des Puffers"
 
-#: gtksourceview/gtksourcebuffer.c:315
+#: gtksourceview/gtksourcebuffer.c:317
 msgid "Language"
 msgstr "Sprache"
 
-#: gtksourceview/gtksourcebuffer.c:316
+#: gtksourceview/gtksourcebuffer.c:318
 msgid "Language object to get highlighting patterns from"
 msgstr "Sprachobjekte, von dem hervorgehobene Muster bezogen werden sollen"
 
@@ -130,6 +65,92 @@ msgid ""
 msgstr ""
 "Liste der Verzeichnisse, in denen sich die Sprachspezifikationdateien (."
 "lang) befinden"
+
+#: gtksourceview/gtksourceprintjob.c:272
+msgid "Configuration"
+msgstr "Konfiguration"
+
+#: gtksourceview/gtksourceprintjob.c:273
+msgid "Configuration options for the print job"
+msgstr "Konfigurationseinstellungen zum Druckauftrag"
+
+#: gtksourceview/gtksourceprintjob.c:280
+msgid "Source Buffer"
+msgstr "Quellpuffer"
+
+#: gtksourceview/gtksourceprintjob.c:281
+msgid "GtkSourceBuffer object to print"
+msgstr "Zu druckendes GtkSourceBuffer-Objekt"
+
+#: gtksourceview/gtksourceprintjob.c:287 gtksourceview/gtksourceview.c:223
+#: gtksourceview/gtksourceview.c:224
+msgid "Tabs Width"
+msgstr "Tabulatorbreite"
+
+#: gtksourceview/gtksourceprintjob.c:288
+msgid "Width in equivalent space characters of tabs"
+msgstr "Tabulatorbreite in entsprechenden Leerzeichen"
+
+#: gtksourceview/gtksourceprintjob.c:295
+msgid "Wrap Mode"
+msgstr "Umbruchmodus"
+
+#: gtksourceview/gtksourceprintjob.c:296
+msgid "Word wrapping mode"
+msgstr "Wort-Umbruchmodus"
+
+#: gtksourceview/gtksourceprintjob.c:304
+msgid "Whether to print the document with highlighted syntax"
+msgstr ""
+"Gibt an, ob beim Drucken die Syntax des Dokuments hervorgehoben werden soll"
+
+#: gtksourceview/gtksourceprintjob.c:312
+msgid "Font"
+msgstr "Schrift"
+
+#: gtksourceview/gtksourceprintjob.c:313
+msgid "Font name to use for the document text"
+msgstr "Name der für den Dokumententext zu verwendenden Schrift"
+
+#: gtksourceview/gtksourceprintjob.c:320
+msgid "Numbers Font"
+msgstr "Nummernschrift"
+
+#: gtksourceview/gtksourceprintjob.c:321
+msgid "Font name to use for the line numbers"
+msgstr "Name der für die Zeilennummern zu verwendenden Schrift"
+
+#: gtksourceview/gtksourceprintjob.c:328
+msgid "Print Line Numbers"
+msgstr "Zeilennummern drucken"
+
+#: gtksourceview/gtksourceprintjob.c:329
+msgid "Interval of printed line numbers (0 means no numbers)"
+msgstr "Intervall der zu druckenden Zeilennummern (0 bedeutet keine Nummern)"
+
+#: gtksourceview/gtksourceprintjob.c:336
+msgid "Print Header"
+msgstr "Kopfzeile drucken"
+
+#: gtksourceview/gtksourceprintjob.c:337
+msgid "Whether to print a header in each page"
+msgstr "Gibt an, ob auf jeder Seite eine Kopfzeile gedruckt werden soll"
+
+#: gtksourceview/gtksourceprintjob.c:344
+msgid "Print Footer"
+msgstr "Fußzeile drucken"
+
+#: gtksourceview/gtksourceprintjob.c:345
+msgid "Whether to print a footer in each page"
+msgstr "Gibt an, ob auf jeder Seite eine Fußzeile gedruckt werden soll"
+
+#: gtksourceview/gtksourceprintjob.c:352
+msgid "Header and Footer Font"
+msgstr "Kopf- und Fußzeilenschrift"
+
+#: gtksourceview/gtksourceprintjob.c:353
+msgid "Font name to use for the header and footer"
+msgstr "Name der für die Kopf- und Fußzeile zu verwendenden Schrift"
 
 #: gtksourceview/gtksourcestylescheme.c:222
 msgid "Base-N Integer"
@@ -191,3 +212,64 @@ msgstr "Sonstige 3"
 #: gtksourceview/gtksourcestylescheme.c:324
 msgid "Default"
 msgstr "Vorgabe"
+
+#: gtksourceview/gtksourceview.c:207
+msgid "Show Line Numbers"
+msgstr "Zeilennummern anzeigen"
+
+#: gtksourceview/gtksourceview.c:208
+msgid "Whether to display line numbers"
+msgstr "Gibt an, ob Zeilennummern angezeigt werden sollen"
+
+#: gtksourceview/gtksourceview.c:215
+msgid "Show Line Markers"
+msgstr "Zeilenmarkierungen anzeigen"
+
+#: gtksourceview/gtksourceview.c:216
+msgid "Whether to display line marker pixbufs"
+msgstr "Gibt an, ob Pixbufs zur Zeilenmarkierung angezeigt werden sollen"
+
+#: gtksourceview/gtksourceview.c:233
+msgid "Auto Indentation"
+msgstr "Auto-Einrücken"
+
+#: gtksourceview/gtksourceview.c:234
+msgid "Whether to enable auto indentation"
+msgstr "Gibt an, ob das Einrücken automatisch erfolgen soll"
+
+#: gtksourceview/gtksourceview.c:240
+msgid "Insert Spaces Instead of Tabs"
+msgstr "Leerzeichen statt Tabulatoren einfügen"
+
+#: gtksourceview/gtksourceview.c:241
+msgid "Whether to insert spaces instead of tabs"
+msgstr "Gibt an, ob Leerzeichen statt Tabulatoren eingefügt werden sollen"
+
+#: gtksourceview/gtksourceview.c:248
+msgid "Show Right Margin"
+msgstr "Rechten Rand anzeigen"
+
+#: gtksourceview/gtksourceview.c:249
+msgid "Whether to display the right margin"
+msgstr "Gibt an, ob der rechte Rand angezeigt werden soll"
+
+#: gtksourceview/gtksourceview.c:256
+msgid "Margin position"
+msgstr "Randposition"
+
+#: gtksourceview/gtksourceview.c:257
+msgid "Position of the right margin"
+msgstr "Position des rechten Rands"
+
+#: gtksourceview/gtksourceview.c:266
+msgid "Use smart home/end"
+msgstr "Intelligentes Pos1/Ende verwenden"
+
+# CHECK
+#: gtksourceview/gtksourceview.c:267
+msgid ""
+"HOME and END keys move to first/last characters on line first before going "
+"to the start/end of the line"
+msgstr ""
+"Gibt an, ob die Pos1 bzw. die End-Taste zum ersten/letzten Zeichen in einer "
+"Zeile springen soll, bevor sie zur ersten/letzten Zeile springt"
