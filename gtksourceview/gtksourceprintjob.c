@@ -1035,6 +1035,7 @@ get_text_to_print (GtkSourcePrintJob *job,
 		   const GtkTextIter *end)
 {
 	GtkTextIter _start, _end;
+	gboolean retval;
 	
 	g_return_val_if_fail (start != NULL && end != NULL, FALSE);
 	g_return_val_if_fail (job->priv->buffer != NULL, FALSE);
@@ -1069,9 +1070,23 @@ get_text_to_print (GtkSourcePrintJob *job,
 	job->priv->last_line_number = gtk_text_iter_get_line (&_end) + 1;
 
 	if (!job->priv->highlight)
-		return get_text_simple (job, &_start, &_end);
+		retval = get_text_simple (job, &_start, &_end);
 	else
-		return get_text_with_style (job, &_start, &_end);
+		retval = get_text_with_style (job, &_start, &_end);
+
+	if (retval && job->priv->lines == NULL)
+	{
+		TextSegment *seg;
+		
+		/* add an empty line to allow printing empty documents */
+		seg = g_new0 (TextSegment, 1);
+		seg->next = NULL;
+		seg->style = NULL; /* use default style */
+		seg->text = g_strdup ("");
+		job->priv->lines = g_slist_prepend (job->priv->lines, seg);
+	}
+
+	return retval;
 }
 
 /* ----- Pagination functions */
@@ -1142,7 +1157,7 @@ break_line (GtkSourcePrintJob *job,
 
 	set_style (job, segment->style);
 	
-	while (ch != '\n')
+	while (ch != '\n' && ch != '\r')
 	{
 	       	gint glyph;
 		
@@ -1280,7 +1295,7 @@ print_line_number (GtkSourcePrintJob *job,
 	len = gnome_font_get_width_utf8 (job->priv->numbers_font, num_str);
 	x = x + job->priv->numbers_width - len - NUMBERS_TEXT_SEPARATION;
 	gnome_print_moveto (job->priv->print_ctxt, x, y - 
-			    gnome_font_get_ascender (job->priv->numbers_font));
+			    gnome_font_get_ascender (job->priv->font));
 	gnome_print_show (job->priv->print_ctxt, num_str);
 	g_free (num_str);
 }	
@@ -1345,11 +1360,14 @@ print_display_line (GtkSourcePrintJob *job,
 		else if (ch == 0)
 		{
 			seg = seg->next;
-			ptr = seg->text;
+			if (seg != NULL)
+			{
+				ptr = seg->text;
 			
-			/* don't count the segment terminator */
-			--char_count;
-			
+				/* don't count the segment terminator */
+				--char_count;
+				
+			}
 			need_style = TRUE;
 		}
 		else

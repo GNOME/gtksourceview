@@ -1,3 +1,15 @@
+2003-06-12  Gustavo Giraldez  <gustavo.giraldez@gmx.net>
+
+	* gtksourceview/gtksourceprintjob.c (get_text_to_print): Add a
+	sentinel line if the no text is available to print, so we can
+	print empty documents.
+	(break_line): Skip CR characters, so they are not printed for DOS
+	encoded files.
+	(print_line_number): Align line numbers the the to the base of the
+	body text line.
+	(print_display_line): Check that seg != NULL before getting the
+	text pointer.
+
 2003-06-12  Anders Carlsson  <andersca@codefactory.se>
 
 	* gtksourceview/gtksourceview.c (draw_line_markers): 
