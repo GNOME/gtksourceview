@@ -2,15 +2,15 @@
 # Copyright (C) 2003-2004 Free Software Foundation, Inc.
 # This file is distributed under the same license as the gtksourceview package.
 # Andras Timar <timar@gnome.hu>, 2003.
-# Laszlo Dvornik <dvornikl@mailbox.hu>, 2004.
+# Laszlo Dvornik <dvornik@gnome.hu>, 2004.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-05-13 02:56+0200\n"
-"PO-Revision-Date: 2004-05-13 11:01+0200\n"
-"Last-Translator: Laszlo Dvornik <dvornikl@mailbox.hu>\n"
+"POT-Creation-Date: 2004-07-08 20:46+0200\n"
+"PO-Revision-Date: 2004-07-09 14:55+0200\n"
+"Last-Translator: Laszlo Dvornik <dvornik@gnome.hu>\n"
 "Language-Team: Hungarian <gnome@gnome.hu>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -70,7 +70,7 @@ msgstr "Nyelv"
 
 #: gtksourceview/gtksourcebuffer.c:318
 msgid "Language object to get highlighting patterns from"
-msgstr ""
+msgstr "Nyelvobjektum ahonnan a kiemelési minták beszerezhetőek"
 
 #: gtksourceview/gtksourcelanguagesmanager.c:119
 msgid "Language specification directories"
@@ -117,7 +117,7 @@ msgstr "Sortörési mód"
 
 #: gtksourceview/gtksourceprintjob.c:304
 msgid "Whether to print the document with highlighted syntax"
-msgstr ""
+msgstr "Nyelvtani elemek kiemelésével nyomtassa-e a dokumentumot"
 
 # #-#-#-#-#  gnome-terminal.HEAD.hu.po-new.po (gnome-terminal HEAD)  #-#-#-#-#
 # gnome-terminal/gnome-terminal.c:1127
@@ -146,7 +146,7 @@ msgstr "Sorok számának kiírása"
 
 #: gtksourceview/gtksourceprintjob.c:329
 msgid "Interval of printed line numbers (0 means no numbers)"
-msgstr ""
+msgstr "Nyomtatott sorszámok időköze (0 azt jelenti, hogy nincsenek számok)"
 
 #: gtksourceview/gtksourceprintjob.c:336
 msgid "Print Header"
@@ -154,7 +154,7 @@ msgstr "Nyomtatási fejléc"
 
 #: gtksourceview/gtksourceprintjob.c:337
 msgid "Whether to print a header in each page"
-msgstr ""
+msgstr "Nyomtasson-e fejlécet minden egyes oldalon"
 
 #: gtksourceview/gtksourceprintjob.c:344
 msgid "Print Footer"
@@ -170,7 +170,7 @@ msgstr "Fej- és lábléc betűkészlete"
 
 #: gtksourceview/gtksourceprintjob.c:353
 msgid "Font name to use for the header and footer"
-msgstr ""
+msgstr "A fej- és lábléchez használandó betűkészlet neve"
 
 #: gtksourceview/gtksourcestylescheme.c:237
 msgid "Base-N Integer"
@@ -229,9 +229,11 @@ msgstr "Előfeldolgozó"
 #: gtksourceview/language-specs/html.lang.h:8
 #: gtksourceview/language-specs/idl.lang.h:8
 #: gtksourceview/language-specs/java.lang.h:11
+#: gtksourceview/language-specs/lua.lang.h:10
 #: gtksourceview/language-specs/perl.lang.h:6
 #: gtksourceview/language-specs/po.lang.h:6
 #: gtksourceview/language-specs/python.lang.h:11
+#: gtksourceview/language-specs/ruby.lang.h:18
 #: gtksourceview/language-specs/xml.lang.h:8
 msgid "String"
 msgstr "Karakterlánc"
@@ -283,7 +285,7 @@ msgstr "Tag azonosító"
 
 #: gtksourceview/gtksourcetag.c:109
 msgid "ID used to refer to the source tag"
-msgstr ""
+msgstr "A forrás tag-re hivatkozáshoz használt azonosító"
 
 #: gtksourceview/gtksourcetag.c:116
 msgid "Tag style"
@@ -291,7 +293,7 @@ msgstr "Tag stílusa"
 
 #: gtksourceview/gtksourcetag.c:117
 msgid "The style associated to the source tag"
-msgstr ""
+msgstr "A forrás tag-hez rendelt stílus"
 
 #: gtksourceview/gtksourceview.c:205
 msgid "Show Line Numbers"
@@ -307,7 +309,7 @@ msgstr "Sorjelek megjelenítése"
 
 #: gtksourceview/gtksourceview.c:214
 msgid "Whether to display line marker pixbufs"
-msgstr ""
+msgstr "Megjelenjenek-e a sorjelző pixbuf-ok"
 
 #: gtksourceview/gtksourceview.c:231
 msgid "Auto Indentation"
@@ -366,8 +368,10 @@ msgstr "Karakterállandó"
 #: gtksourceview/language-specs/cpp.lang.h:10
 #: gtksourceview/language-specs/csharp.lang.h:3
 #: gtksourceview/language-specs/idl.lang.h:4
+#: gtksourceview/language-specs/lua.lang.h:3
 #: gtksourceview/language-specs/perl.lang.h:2
 #: gtksourceview/language-specs/python.lang.h:3
+#: gtksourceview/language-specs/ruby.lang.h:8
 #: gtksourceview/language-specs/verilog.lang.h:6
 msgid "Keywords"
 msgstr "Kulcsszavak"
@@ -379,8 +383,10 @@ msgstr "Kulcsszavak"
 #: gtksourceview/language-specs/desktop.lang.h:7
 #: gtksourceview/language-specs/diff.lang.h:5
 #: gtksourceview/language-specs/java.lang.h:5
+#: gtksourceview/language-specs/lua.lang.h:4
 #: gtksourceview/language-specs/perl.lang.h:3
 #: gtksourceview/language-specs/python.lang.h:4
+#: gtksourceview/language-specs/ruby.lang.h:9
 #: gtksourceview/language-specs/sql.lang.h:11
 #: gtksourceview/language-specs/verilog.lang.h:7
 msgid "Line Comment"
@@ -464,6 +470,7 @@ msgstr "'#if 0' megjegyzés"
 #: gtksourceview/language-specs/html.lang.h:2
 #: gtksourceview/language-specs/idl.lang.h:1
 #: gtksourceview/language-specs/java.lang.h:1
+#: gtksourceview/language-specs/lua.lang.h:1
 #: gtksourceview/language-specs/sql.lang.h:5
 #: gtksourceview/language-specs/verilog.lang.h:2
 #: gtksourceview/language-specs/xml.lang.h:2
@@ -519,11 +526,13 @@ msgstr "C#"
 #: gtksourceview/language-specs/csharp.lang.h:6
 #: gtksourceview/language-specs/java.lang.h:9
 msgid "Primitives"
-msgstr ""
+msgstr "Primitívek"
 
 #: gtksourceview/language-specs/csharp.lang.h:9
 #: gtksourceview/language-specs/java.lang.h:12
+#: gtksourceview/language-specs/lua.lang.h:11
 #: gtksourceview/language-specs/python.lang.h:12
+#: gtksourceview/language-specs/ruby.lang.h:19
 msgid "String 2"
 msgstr "Karakterlánc 2"
 
@@ -692,6 +701,37 @@ msgstr "Matematika"
 msgid "Most Used Commands"
 msgstr "Leggyakrabban használt parancsok"
 
+#: gtksourceview/language-specs/lua.lang.h:2
+#: gtksourceview/language-specs/python.lang.h:2
+msgid "Functions"
+msgstr "Függvények"
+
+#: gtksourceview/language-specs/lua.lang.h:5
+msgid "Line Comment 2"
+msgstr "Sormegjegyzés 2"
+
+#: gtksourceview/language-specs/lua.lang.h:6
+msgid "Lua"
+msgstr "Lua"
+
+#: gtksourceview/language-specs/lua.lang.h:7
+#: gtksourceview/language-specs/python.lang.h:6
+msgid "Multiline String"
+msgstr "Többsoros karakterlánc"
+
+#: gtksourceview/language-specs/lua.lang.h:8
+#: gtksourceview/language-specs/python.lang.h:7
+msgid "Multiline String 2"
+msgstr "Többsoros karakterlánc 2"
+
+# data/browser.xml.h:68
+#: gtksourceview/language-specs/lua.lang.h:9
+#: gtksourceview/language-specs/perl.lang.h:5
+#: gtksourceview/language-specs/python.lang.h:9
+#: gtksourceview/language-specs/ruby.lang.h:17
+msgid "Scripts"
+msgstr "Parancsfájlok"
+
 #: gtksourceview/language-specs/msil.lang.h:1
 msgid "MSIL"
 msgstr "MSIL"
@@ -703,12 +743,6 @@ msgstr "Függvényhívás"
 #: gtksourceview/language-specs/perl.lang.h:4
 msgid "Perl"
 msgstr "Perl"
-
-# data/browser.xml.h:68
-#: gtksourceview/language-specs/perl.lang.h:5
-#: gtksourceview/language-specs/python.lang.h:9
-msgid "Scripts"
-msgstr "Parancsfájlok"
 
 #: gtksourceview/language-specs/perl.lang.h:7
 msgid "String2"
@@ -724,11 +758,11 @@ msgstr "Változók"
 
 #: gtksourceview/language-specs/php.lang.h:1
 msgid "Array Operators"
-msgstr ""
+msgstr "Tömboperátorok"
 
 #: gtksourceview/language-specs/php.lang.h:2
 msgid "Backtick String"
-msgstr ""
+msgstr "Backtick-karakterlánc"
 
 #: gtksourceview/language-specs/php.lang.h:3
 msgid "Bash Line Comment"
@@ -744,7 +778,7 @@ msgstr "C++ sormegjegyzés"
 
 #: gtksourceview/language-specs/php.lang.h:6
 msgid "Case Insensitive Keyword"
-msgstr ""
+msgstr "Nagybetűérzékeny kulcsszó"
 
 #: gtksourceview/language-specs/php.lang.h:7
 msgid "Case Sensitive Keyword"
@@ -752,7 +786,7 @@ msgstr "Nagybetűérzékeny kulcsszó"
 
 #: gtksourceview/language-specs/php.lang.h:9
 msgid "Double Quoted String"
-msgstr ""
+msgstr "Duplán idézett karakterlánc"
 
 #: gtksourceview/language-specs/php.lang.h:10
 msgid "First Open PHP Tag"
@@ -772,7 +806,7 @@ msgstr "PHP"
 
 #: gtksourceview/language-specs/php.lang.h:14
 msgid "Single Quoted String"
-msgstr ""
+msgstr "Egyszer idézett karakterlánc"
 
 #: gtksourceview/language-specs/php.lang.h:16
 msgid "Variable"
@@ -787,24 +821,13 @@ msgid "gettext translation"
 msgstr "gettext fordítás"
 
 #: gtksourceview/language-specs/python.lang.h:1
+#: gtksourceview/language-specs/ruby.lang.h:2
 msgid "Builtins"
 msgstr ""
-
-#: gtksourceview/language-specs/python.lang.h:2
-msgid "Functions"
-msgstr "Függvények"
 
 #: gtksourceview/language-specs/python.lang.h:5
 msgid "Module Handler"
 msgstr "Modulkezelő"
-
-#: gtksourceview/language-specs/python.lang.h:6
-msgid "Multiline String"
-msgstr "Többsoros karakterlánc"
-
-#: gtksourceview/language-specs/python.lang.h:7
-msgid "Multiline String 2"
-msgstr "Többsoros karakterlánc 2"
 
 #: gtksourceview/language-specs/python.lang.h:8
 msgid "Python"
@@ -814,6 +837,58 @@ msgstr "Python"
 #: gtksourceview/language-specs/python.lang.h:10
 msgid "Self"
 msgstr "Self"
+
+#: gtksourceview/language-specs/ruby.lang.h:1
+msgid "Attribute Definitions"
+msgstr "Attribútum definíciók"
+
+#: gtksourceview/language-specs/ruby.lang.h:3
+msgid "Class Variables"
+msgstr "Osztályváltozók"
+
+#: gtksourceview/language-specs/ruby.lang.h:4
+msgid "Constants"
+msgstr "Állandók"
+
+#: gtksourceview/language-specs/ruby.lang.h:5
+msgid "Definitions"
+msgstr "Definíciók"
+
+#: gtksourceview/language-specs/ruby.lang.h:6
+msgid "Global Variables"
+msgstr "Globális változók"
+
+#: gtksourceview/language-specs/ruby.lang.h:7
+msgid "Instance Variables"
+msgstr ""
+
+#: gtksourceview/language-specs/ruby.lang.h:10
+msgid "Module Handlers"
+msgstr "Modulkezelők"
+
+#: gtksourceview/language-specs/ruby.lang.h:11
+msgid "Multiline Comment"
+msgstr "Többsoros megjegyzés"
+
+#: gtksourceview/language-specs/ruby.lang.h:12
+msgid "Pseudo Variables"
+msgstr "Pszeudo-változók"
+
+#: gtksourceview/language-specs/ruby.lang.h:13
+msgid "RegExp Variables"
+msgstr "RegExp-változók"
+
+#: gtksourceview/language-specs/ruby.lang.h:14
+msgid "Regular Expression"
+msgstr "Reguláris kifejezés"
+
+#: gtksourceview/language-specs/ruby.lang.h:15
+msgid "Regular Expression 2"
+msgstr "Reguláris kifejezés 2"
+
+#: gtksourceview/language-specs/ruby.lang.h:16
+msgid "Ruby"
+msgstr "Ruby"
 
 #: gtksourceview/language-specs/sql.lang.h:1
 msgid "ANSI Datatypes"
@@ -825,23 +900,23 @@ msgstr "Védett ANSI szavak"
 
 #: gtksourceview/language-specs/sql.lang.h:3
 msgid "Aggregate Functions"
-msgstr ""
+msgstr "Összegző függvények"
 
 #: gtksourceview/language-specs/sql.lang.h:4
 msgid "Analytic Functions"
-msgstr ""
+msgstr "Analitikus függvények"
 
 #: gtksourceview/language-specs/sql.lang.h:6
 msgid "Character Functions Returning Character Values"
-msgstr ""
+msgstr "Karakterértékeket visszaadó karakterfüggvények"
 
 #: gtksourceview/language-specs/sql.lang.h:7
 msgid "Character Functions Returning Number Values"
-msgstr ""
+msgstr "Számértékeket visszaadó karakterfüggvények"
 
 #: gtksourceview/language-specs/sql.lang.h:8
 msgid "Conversion Functions"
-msgstr ""
+msgstr "Konverziós függvények"
 
 #: gtksourceview/language-specs/sql.lang.h:9
 msgid "Datetime Functions"
@@ -849,11 +924,11 @@ msgstr ""
 
 #: gtksourceview/language-specs/sql.lang.h:10
 msgid "Integer Literals"
-msgstr ""
+msgstr "Egész szám literálok"
 
 #: gtksourceview/language-specs/sql.lang.h:12
 msgid "Miscellaneous Single-Row Functions"
-msgstr ""
+msgstr "Egyéb egysoros függvények"
 
 #: gtksourceview/language-specs/sql.lang.h:13
 msgid "Null"
@@ -861,15 +936,15 @@ msgstr "Null"
 
 #: gtksourceview/language-specs/sql.lang.h:14
 msgid "Number Functions"
-msgstr ""
+msgstr "Számfüggvények"
 
 #: gtksourceview/language-specs/sql.lang.h:15
 msgid "Number Literals"
-msgstr ""
+msgstr "Szám literálok"
 
 #: gtksourceview/language-specs/sql.lang.h:16
 msgid "Object Reference Functions"
-msgstr ""
+msgstr "Objektumreferencia-függvények"
 
 #: gtksourceview/language-specs/sql.lang.h:17
 msgid "Oracle Built-in Datatypes"
@@ -909,7 +984,7 @@ msgstr ""
 
 #: gtksourceview/language-specs/sql.lang.h:27
 msgid "Text Literals"
-msgstr ""
+msgstr "Szöveg literálok"
 
 #: gtksourceview/language-specs/sql.lang.h:28
 msgid "Unlimited"
