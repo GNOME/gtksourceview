@@ -12,6 +12,7 @@ EXTRA_DIST = 			\
 	perl.lang		\
 	po.lang			\
 	python.lang		\
+	sql.lang		\
 	xml.lang
 
 languagesdir = $(datadir)/gtksourceview-1.0/language-specs

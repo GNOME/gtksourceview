@@ -20,6 +20,13 @@ GtkSourceTagTable
 </para>
 
 
+<!-- ##### SIGNAL GtkSourceTagTable::changed ##### -->
+<para>
+
+</para>
+
+@sourcetagtable: the object which received the signal.
+
 <!-- ##### FUNCTION gtk_source_tag_table_new ##### -->
 <para>
 
@@ -44,11 +51,4 @@ GtkSourceTagTable
 
 @table: 
 
-
-<!-- ##### SIGNAL GtkSourceTagTable::changed ##### -->
-<para>
-
-</para>
-
-@sourcetagtable: the object which received the signal.
 

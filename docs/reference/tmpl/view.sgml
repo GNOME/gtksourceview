@@ -20,6 +20,60 @@ GtkSourceView
 </para>
 
 
+<!-- ##### SIGNAL GtkSourceView::redo ##### -->
+<para>
+
+</para>
+
+@sourceview: the object which received the signal.
+
+<!-- ##### SIGNAL GtkSourceView::undo ##### -->
+<para>
+
+</para>
+
+@sourceview: the object which received the signal.
+
+<!-- ##### ARG GtkSourceView:auto-indent ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GtkSourceView:insert-spaces-instead-of-tabs ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GtkSourceView:margin ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GtkSourceView:show-line-markers ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GtkSourceView:show-line-numbers ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GtkSourceView:show-margin ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GtkSourceView:smart-home-end ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GtkSourceView:tabs-width ##### -->
+<para>
+
+</para>
+
 <!-- ##### FUNCTION gtk_source_view_new ##### -->
 <para>
 
@@ -200,58 +254,4 @@ GtkSourceView
 @view: 
 @Returns: 
 
-
-<!-- ##### SIGNAL GtkSourceView::redo ##### -->
-<para>
-
-</para>
-
-@sourceview: the object which received the signal.
-
-<!-- ##### SIGNAL GtkSourceView::undo ##### -->
-<para>
-
-</para>
-
-@sourceview: the object which received the signal.
-
-<!-- ##### ARG GtkSourceView:auto-indent ##### -->
-<para>
-
-</para>
-
-<!-- ##### ARG GtkSourceView:insert-spaces-instead-of-tabs ##### -->
-<para>
-
-</para>
-
-<!-- ##### ARG GtkSourceView:margin ##### -->
-<para>
-
-</para>
-
-<!-- ##### ARG GtkSourceView:show-line-markers ##### -->
-<para>
-
-</para>
-
-<!-- ##### ARG GtkSourceView:show-line-numbers ##### -->
-<para>
-
-</para>
-
-<!-- ##### ARG GtkSourceView:show-margin ##### -->
-<para>
-
-</para>
-
-<!-- ##### ARG GtkSourceView:smart-home-end ##### -->
-<para>
-
-</para>
-
-<!-- ##### ARG GtkSourceView:tabs-width ##### -->
-<para>
-
-</para>
 

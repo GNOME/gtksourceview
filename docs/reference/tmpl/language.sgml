@@ -20,6 +20,14 @@ GtkSourceLanguage
 </para>
 
 
+<!-- ##### SIGNAL GtkSourceLanguage::tag-style-changed ##### -->
+<para>
+
+</para>
+
+@sourcelanguage: the object which received the signal.
+@arg1: 
+
 <!-- ##### FUNCTION gtk_source_language_get_name ##### -->
 <para>
 
@@ -127,12 +135,4 @@ GtkSourceLanguage
 <!-- # Unused Parameters # -->
 @tag_name: 
 
-
-<!-- ##### SIGNAL GtkSourceLanguage::tag-style-changed ##### -->
-<para>
-
-</para>
-
-@sourcelanguage: the object which received the signal.
-@arg1: 
 

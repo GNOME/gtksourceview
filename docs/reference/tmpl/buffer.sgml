@@ -45,6 +45,76 @@ in a view widget.
 </para>
 
 
+<!-- ##### SIGNAL GtkSourceBuffer::can-redo ##### -->
+<para>
+Emitted whenever there is a change in the buffer's ability to redo an
+operation.
+</para>
+
+@sourcebuffer: the object which received the signal.
+@arg1: TRUE if the buffer can now perform an redo.
+
+<!-- ##### SIGNAL GtkSourceBuffer::can-undo ##### -->
+<para>
+Emitted whenever there is a change in the buffer's ability to undo an
+operation.
+</para>
+
+@sourcebuffer: the object which received the signal.
+@arg1: TRUE if the buffer can now perform an undo.
+
+<!-- ##### SIGNAL GtkSourceBuffer::highlight-updated ##### -->
+<para>
+Emitted whenever the syntax highlighting information has been updated,
+so that views can request a redraw if the region changed is visible.
+Usually only view widgets displaying this buffer will be interested in
+this signal.
+</para>
+
+@sourcebuffer: the object which received the signal.
+@arg1: #GtkTextIter at the start of the updated region.
+@arg2: #GtkTextIter at the end of the updated region.
+
+<!-- ##### SIGNAL GtkSourceBuffer::marker-updated ##### -->
+<para>
+Emitted whenever a marker of @sourcebuffer has changed and needs to be
+redisplayed by the view.  A change in a marker's type or location can
+trigger this signal.
+</para>
+
+<para>
+Note that moving a marker causes the emission of this signal twice:
+one for the old location and one for the new.
+</para>
+
+@sourcebuffer: the object which received the signal.
+@arg1: #GtkTextIter at the location where the change occurred.
+
+<!-- ##### ARG GtkSourceBuffer:check-brackets ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GtkSourceBuffer:escape-char ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GtkSourceBuffer:highlight ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GtkSourceBuffer:language ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GtkSourceBuffer:max-undo-levels ##### -->
+<para>
+
+</para>
+
 <!-- ##### FUNCTION gtk_source_buffer_new ##### -->
 <para>
 
@@ -311,74 +381,4 @@ in a view widget.
 @iter: 
 @Returns: 
 
-
-<!-- ##### SIGNAL GtkSourceBuffer::can-redo ##### -->
-<para>
-Emitted whenever there is a change in the buffer's ability to redo an
-operation.
-</para>
-
-@sourcebuffer: the object which received the signal.
-@arg1: TRUE if the buffer can now perform an redo.
-
-<!-- ##### SIGNAL GtkSourceBuffer::can-undo ##### -->
-<para>
-Emitted whenever there is a change in the buffer's ability to undo an
-operation.
-</para>
-
-@sourcebuffer: the object which received the signal.
-@arg1: TRUE if the buffer can now perform an undo.
-
-<!-- ##### SIGNAL GtkSourceBuffer::highlight-updated ##### -->
-<para>
-Emitted whenever the syntax highlighting information has been updated,
-so that views can request a redraw if the region changed is visible.
-Usually only view widgets displaying this buffer will be interested in
-this signal.
-</para>
-
-@sourcebuffer: the object which received the signal.
-@arg1: #GtkTextIter at the start of the updated region.
-@arg2: #GtkTextIter at the end of the updated region.
-
-<!-- ##### SIGNAL GtkSourceBuffer::marker-updated ##### -->
-<para>
-Emitted whenever a marker of @sourcebuffer has changed and needs to be
-redisplayed by the view.  A change in a marker's type or location can
-trigger this signal.
-</para>
-
-<para>
-Note that moving a marker causes the emission of this signal twice:
-one for the old location and one for the new.
-</para>
-
-@sourcebuffer: the object which received the signal.
-@arg1: #GtkTextIter at the location where the change occurred.
-
-<!-- ##### ARG GtkSourceBuffer:check-brackets ##### -->
-<para>
-
-</para>
-
-<!-- ##### ARG GtkSourceBuffer:escape-char ##### -->
-<para>
-
-</para>
-
-<!-- ##### ARG GtkSourceBuffer:highlight ##### -->
-<para>
-
-</para>
-
-<!-- ##### ARG GtkSourceBuffer:language ##### -->
-<para>
-
-</para>
-
-<!-- ##### ARG GtkSourceBuffer:max-undo-levels ##### -->
-<para>
-
-</para>
 

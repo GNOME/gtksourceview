@@ -125,6 +125,82 @@ documentation.
 </para>
 
 
+<!-- ##### SIGNAL GtkSourcePrintJob::begin-page ##### -->
+<para>
+Emitted whenever the @sourceprintjob is about to print a new text
+page.  You can connect to this signal to provide the user with
+feedback about the progress of printing, or to customize the printed
+page by for example, printing your own headers and footers.
+</para>
+
+@sourceprintjob: the object which received the signal.
+
+<!-- ##### SIGNAL GtkSourcePrintJob::finished ##### -->
+<para>
+Emitted whenever an asynchronous print job has finished.  You can
+connect to this signal to get notification when a job has finished
+printing.  When it's emitted, the #GnomePrintJob the @sourceprintjob
+was producing has been closed and it can be either previewed or
+printed to the physical device.
+</para>
+
+@sourceprintjob: the object which received the signal.
+
+<!-- ##### ARG GtkSourcePrintJob:buffer ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GtkSourcePrintJob:config ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GtkSourcePrintJob:font ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GtkSourcePrintJob:header-footer-font ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GtkSourcePrintJob:highlight ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GtkSourcePrintJob:numbers-font ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GtkSourcePrintJob:print-footer ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GtkSourcePrintJob:print-header ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GtkSourcePrintJob:print-numbers ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GtkSourcePrintJob:tabs-width ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GtkSourcePrintJob:wrap-mode ##### -->
+<para>
+
+</para>
+
 <!-- ##### FUNCTION gtk_source_print_job_new ##### -->
 <para>
 
@@ -473,80 +549,4 @@ documentation.
 @right: 
 @separator: 
 
-
-<!-- ##### SIGNAL GtkSourcePrintJob::begin-page ##### -->
-<para>
-Emitted whenever the @sourceprintjob is about to print a new text
-page.  You can connect to this signal to provide the user with
-feedback about the progress of printing, or to customize the printed
-page by for example, printing your own headers and footers.
-</para>
-
-@sourceprintjob: the object which received the signal.
-
-<!-- ##### SIGNAL GtkSourcePrintJob::finished ##### -->
-<para>
-Emitted whenever an asynchronous print job has finished.  You can
-connect to this signal to get notification when a job has finished
-printing.  When it's emitted, the #GnomePrintJob the @sourceprintjob
-was producing has been closed and it can be either previewed or
-printed to the physical device.
-</para>
-
-@sourceprintjob: the object which received the signal.
-
-<!-- ##### ARG GtkSourcePrintJob:buffer ##### -->
-<para>
-
-</para>
-
-<!-- ##### ARG GtkSourcePrintJob:config ##### -->
-<para>
-
-</para>
-
-<!-- ##### ARG GtkSourcePrintJob:font ##### -->
-<para>
-
-</para>
-
-<!-- ##### ARG GtkSourcePrintJob:header-footer-font ##### -->
-<para>
-
-</para>
-
-<!-- ##### ARG GtkSourcePrintJob:highlight ##### -->
-<para>
-
-</para>
-
-<!-- ##### ARG GtkSourcePrintJob:numbers-font ##### -->
-<para>
-
-</para>
-
-<!-- ##### ARG GtkSourcePrintJob:print-footer ##### -->
-<para>
-
-</para>
-
-<!-- ##### ARG GtkSourcePrintJob:print-header ##### -->
-<para>
-
-</para>
-
-<!-- ##### ARG GtkSourcePrintJob:print-numbers ##### -->
-<para>
-
-</para>
-
-<!-- ##### ARG GtkSourcePrintJob:tabs-width ##### -->
-<para>
-
-</para>
-
-<!-- ##### ARG GtkSourcePrintJob:wrap-mode ##### -->
-<para>
-
-</para>
 
