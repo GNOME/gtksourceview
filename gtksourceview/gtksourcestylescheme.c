@@ -333,11 +333,12 @@ gtk_source_style_scheme_get_default (void)
 {
 	if (default_style_scheme == NULL)
 	{
+		GtkSourceStyleScheme **ptr = &default_style_scheme;
+		
 		default_style_scheme = g_object_new (GTK_TYPE_SOURCE_DEFAULT_STYLE_SCHEME,
 						     NULL);
 		g_object_add_weak_pointer (G_OBJECT (default_style_scheme),
-					   (gpointer *) &default_style_scheme);
-
+					   (gpointer *) ptr);
 	}
 	else
 		g_object_ref (default_style_scheme);

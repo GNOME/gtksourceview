@@ -1,5 +1,12 @@
 2003-05-12  Gustavo Giraldez  <gustavo.giraldez@gmx.net>
 
+	* gtksourceview/gtksourcestylescheme.c
+	(gtk_source_style_scheme_get_default): Fix the "dereferencing
+	type-punned pointer will break strict-aliasing rules" gcc 3.3
+	warning (bug #112680)
+
+2003-05-12  Gustavo Giraldez  <gustavo.giraldez@gmx.net>
+
 	* gtksourceview/gtksourcestylescheme.h:
 	s/GTK_STYLE_SOURCE_SCHEME/GTK_SOURCE_STYLE_SCHEME/ for
 	GtkSourceStyleScheme macros (pointed by Ahmad Baitalmal
