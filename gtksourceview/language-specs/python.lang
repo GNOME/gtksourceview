@@ -191,5 +191,21 @@
 	<pattern-item name = "Self" style = "Data Type">
 		<regex>\bself\b</regex>
 	</pattern-item>
+	
+	<pattern-item _name = "Decimal" style = "Decimal">
+		<regex>\b([1-9][0-9]*|0)([Uu]([Ll]|LL|ll)?|([Ll]|LL|ll)[Uu]?)?\b</regex>
+	</pattern-item>
+
+	<pattern-item _name = "Floating Point Number" style = "Floating Point">
+		<regex>\b([0-9]+[Ee][-]?[0-9]+|([0-9]*\.[0-9]+|[0-9]+\.)([Ee][-]?[0-9]+)?)[fFlL]?</regex>
+	</pattern-item>
+
+	<pattern-item _name = "Octal Number" style = "Base-N Integer">
+		<regex>\b0[0-7]+([Uu]([Ll]|LL|ll)?|([Ll]|LL|ll)[Uu]?)?\b</regex>
+	</pattern-item>
+
+	<pattern-item _name = "Hex Number" style = "Base-N Integer">
+		<regex>\b0[xX][0-9a-fA-F]+([Uu]([Ll]|LL|ll)?|([Ll]|LL|ll)[Uu]?)?\b</regex>
+	</pattern-item>
 
 </language>

@@ -2,6 +2,8 @@
 <!DOCTYPE language SYSTEM "language.dtd">
 <language _name="LaTeX" version="1.0" _section="Markup" mimetypes="text/x-tex">
 
+	<escape-char>\</escape-char>
+
 	<line-comment _name="Comment" style="Comment">
 		<start-regex>%</start-regex>
 	</line-comment>

@@ -1,3 +1,11 @@
+2005-02-07  Paolo Maggi  <paolo@gnome.org>
+
+	* gtksourceview/language-specs/latex.lang: fixed bug #128223 (Latex: \$ 
+	and \% are not escaped)
+
+	* gtksourceview/language-specs/python.lang: fixed bug #126589 (Python: 
+	Embolden punctuation/operators, numbers)
+
 2005-02-03  Paolo Maggi  <paolo@gnome.org>
 
 	* gtksourceview/gtksourceundomanager.c
