@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: gtksourceview VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2003-09-28 12:28+0200\n"
-"PO-Revision-Date: 2003-10-02 10:05+0700\n"
+"PO-Revision-Date: 2004-06-25 21:38+0700\n"
 "Last-Translator: pclouds <pclouds@gmx.net>\n"
 "Language-Team: GnomeVI <gnomevi-list@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -41,11 +41,11 @@ msgstr "Có tô sáng cú pháp trong vùng đệm hay không"
 
 #: gtksourceview/gtksourcebuffer.c:306
 msgid "Maximum Undo Levels"
-msgstr "Mức hoàn lại tối đa"
+msgstr "Mức hồi lại tối đa"
 
 #: gtksourceview/gtksourcebuffer.c:307
 msgid "Number of undo levels for the buffer"
-msgstr "Số mức hoàn lại trong vùng đệm"
+msgstr "Số mức hồi lại trong vùng đệm"
 
 #: gtksourceview/gtksourcebuffer.c:317
 #: gtksourceview/language-specs/desktop.lang.h:6
@@ -93,7 +93,7 @@ msgstr "Số ký tự khoảng trắng tương đương với Tab"
 
 #: gtksourceview/gtksourceprintjob.c:295
 msgid "Wrap Mode"
-msgstr "Chế độ cuộn"
+msgstr "Kiểu cuộn"
 
 #: gtksourceview/gtksourceprintjob.c:296
 msgid "Word wrapping mode"
@@ -105,19 +105,19 @@ msgstr "Có in tài liệu với ký hiệu được tô sáng không"
 
 #: gtksourceview/gtksourceprintjob.c:312
 msgid "Font"
-msgstr "Font"
+msgstr "Phông chữ"
 
 #: gtksourceview/gtksourceprintjob.c:313
 msgid "Font name to use for the document text"
-msgstr "Tên font cho văn bản"
+msgstr "Tên phông cho văn bản"
 
 #: gtksourceview/gtksourceprintjob.c:320
 msgid "Numbers Font"
-msgstr "Font số dòng"
+msgstr "Phông Số dòng"
 
 #: gtksourceview/gtksourceprintjob.c:321
 msgid "Font name to use for the line numbers"
-msgstr "Tên font của số dòng"
+msgstr "Tên phông của số dòng"
 
 #: gtksourceview/gtksourceprintjob.c:328
 msgid "Print Line Numbers"
@@ -145,11 +145,11 @@ msgstr "Có in footer trên mỗi trang không"
 
 #: gtksourceview/gtksourceprintjob.c:352
 msgid "Header and Footer Font"
-msgstr "Font header và footer"
+msgstr "Phông header và footer"
 
 #: gtksourceview/gtksourceprintjob.c:353
 msgid "Font name to use for the header and footer"
-msgstr "Tên font dùng cho header và footer"
+msgstr "Tên phông dùng cho header và footer"
 
 #: gtksourceview/gtksourcestylescheme.c:237
 msgid "Base-N Integer"
@@ -599,7 +599,7 @@ msgstr "Dạng thức"
 
 #: gtksourceview/language-specs/po.lang.h:7
 msgid "gettext translation"
-msgstr "bản dịch gettext"
+msgstr "Bản dịch gettext"
 
 #: gtksourceview/language-specs/python.lang.h:1
 msgid "Builtins"
@@ -640,3 +640,134 @@ msgstr "Thẻ"
 #: gtksourceview/language-specs/xml.lang.h:11
 msgid "XML"
 msgstr "XML"
+
+#~ msgid "C#"
+#~ msgstr "C#"
+
+#~ msgid "LaTeX"
+#~ msgstr "LaTeX"
+
+#~ msgid "MSIL"
+#~ msgstr "MSIL"
+
+#~ msgid "Array Operators"
+#~ msgstr "Toán tử Mảng"
+
+#~ msgid "Backtick String"
+#~ msgstr "Chuỗi Nháy ngược"
+
+#~ msgid "Bash Line Comment"
+#~ msgstr "Ghi chú dòng Bash"
+
+#~ msgid "C Block Comment"
+#~ msgstr "Ghi chú khối C"
+
+#~ msgid "C++ Line Comment"
+#~ msgstr "Ghi chú dòng C++"
+
+#~ msgid "Case Insensitive Keyword"
+#~ msgstr "Từ khoá không phân biệt hoa/thường"
+
+#~ msgid "Case Sensitive Keyword"
+#~ msgstr "Từ khoá phân biệt hoa/thường"
+
+#~ msgid "Double Quoted String"
+#~ msgstr "Chuỗi Nháy đôi"
+
+#~ msgid "First Open PHP Tag"
+#~ msgstr "Tag mở PHP"
+
+#~ msgid "HTML Block"
+#~ msgstr "Khối HTML"
+
+#~ msgid "Operators"
+#~ msgstr "Toán tử"
+
+#~ msgid "PHP"
+#~ msgstr "PHP"
+
+#~ msgid "Single Quoted String"
+#~ msgstr "Chuỗi nháy đơn"
+
+#~ msgid "Variable"
+#~ msgstr "Biến"
+
+#~ msgid "ANSI Datatypes"
+#~ msgstr "Kiểu dữ liệu ANSI"
+
+#~ msgid "ANSI Reserved Words"
+#~ msgstr "Từ khoá ANSI"
+
+#, fuzzy
+#~ msgid "Aggregate Functions"
+#~ msgstr "Hàm thời gian"
+
+#, fuzzy
+#~ msgid "Analytic Functions"
+#~ msgstr "Hàm thời gian"
+
+#~ msgid "Character Functions Returning Character Values"
+#~ msgstr "Hàm ký tự trả về giá trị ký tự"
+
+#~ msgid "Character Functions Returning Number Values"
+#~ msgstr "Hàm ký tự trả về giá trị số"
+
+#~ msgid "Conversion Functions"
+#~ msgstr "Hàm chuyển đổi"
+
+#~ msgid "Datetime Functions"
+#~ msgstr "Hàm thời gian"
+
+#~ msgid "Integer Literals"
+#~ msgstr "Số nguyên"
+
+#~ msgid "Null"
+#~ msgstr "Null"
+
+#~ msgid "Number Functions"
+#~ msgstr "Hàm số học"
+
+#~ msgid "Number Literals"
+#~ msgstr "Số"
+
+#~ msgid "Object Reference Functions"
+#~ msgstr "Hàm tham chiếu đối tượng"
+
+#~ msgid "Oracle Built-in Datatypes"
+#~ msgstr "Kiểu dữ liệu sẵn có Oracle"
+
+#~ msgid "Oracle Reserved Words"
+#~ msgstr "Từ khoá Oracle"
+
+#~ msgid "SQL"
+#~ msgstr "SQL"
+
+#, fuzzy
+#~ msgid "SQL*Plus At Sign"
+#~ msgstr "Lệnh SQL*Plus"
+
+#~ msgid "SQL*Plus Commands"
+#~ msgstr "Lệnh SQL*Plus"
+
+#, fuzzy
+#~ msgid "SQL*Plus Slash"
+#~ msgstr "Lệnh SQL*Plus"
+
+#~ msgid "Text Literals"
+#~ msgstr "Chuỗi"
+
+#~ msgid "Unlimited"
+#~ msgstr "Không giới hạn"
+
+#~ msgid "Binary Number"
+#~ msgstr "Số Nhị phân"
+
+#~ msgid "Decimal Number"
+#~ msgstr "Số Thập phân"
+
+#, fuzzy
+#~ msgid "Gates"
+#~ msgstr "Latex"
+
+#~ msgid "Hexadecimal Number"
+#~ msgstr "Số Thập lục phân"
