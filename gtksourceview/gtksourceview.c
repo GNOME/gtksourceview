@@ -1750,20 +1750,29 @@ gtk_source_view_get_marker_pixbuf (GtkSourceView *view,
 }
 
 static gchar*
-compute_indentation (GtkSourceView *view, gint line)
+compute_indentation (GtkSourceView *view, 
+		     GtkTextIter   *cur)
 {
 	GtkTextIter start;
 	GtkTextIter end;
-	gunichar ch;
 
-	gtk_text_buffer_get_iter_at_line (
-			gtk_text_view_get_buffer (GTK_TEXT_VIEW (view)), 
-			&start, line);
+	gunichar ch;
+	gint line;
+
+	line = gtk_text_iter_get_line (cur);
+
+	gtk_text_buffer_get_iter_at_line (gtk_text_view_get_buffer (GTK_TEXT_VIEW (view)), 
+					  &start, 
+					  line);
 
 	end = start;
 
 	ch = gtk_text_iter_get_char (&end);
-	while (g_unichar_isspace (ch) && ch != '\n' && ch != '\r')
+
+	while (g_unichar_isspace (ch) && 
+	       (ch != '\n') && 
+	       (ch != '\r') && 
+	       (gtk_text_iter_compare (&end, cur) < 0))
 	{
 		if (!gtk_text_iter_forward_char (&end))
 			break;
@@ -1803,11 +1812,20 @@ key_press_cb (GtkWidget *widget, GdkEventKey *event, gpointer data)
 		gchar *indent = NULL;
 
 		/* Calculate line indentation and create indent string. */
-		indent = compute_indentation (view, 
-					      gtk_text_iter_get_line (&cur));
+		indent = compute_indentation (view, &cur);
 
 		if (indent != NULL)
 		{
+			/* Allow input methods to internally handle a key press event. 
+			 * If this function returns TRUE, then no further processing should be done 
+			 * for this keystroke. */
+			if (gtk_im_context_filter_keypress (GTK_TEXT_VIEW(view)->im_context, event))
+				return TRUE;
+
+			/* If an input method has inserted some test while handling the key press event,
+			 * the cur iterm may be invalid, so get the iter again */
+			gtk_text_buffer_get_iter_at_mark (buf, &cur, mark);
+	
 			/* Insert new line and auto-indent. */
 			gtk_text_buffer_begin_user_action (buf);
 			gtk_text_buffer_insert (buf, &cur, "\n", 1);
@@ -1815,7 +1833,7 @@ key_press_cb (GtkWidget *widget, GdkEventKey *event, gpointer data)
 			g_free (indent);
 			gtk_text_buffer_end_user_action (buf);
 			gtk_text_view_scroll_mark_onscreen (GTK_TEXT_VIEW (widget),
-							    gtk_text_buffer_get_insert (buf));
+							    mark);
 			return TRUE;
 		}
 	}

@@ -1,5 +1,16 @@
 2005-01-24  Paolo Maggi  <paolo@gnome.org>
 
+	* gtksourceview/gtksourceview.c (compute_indentation)
+	(key_press_cb): fixed a problem with indentation when
+	you try to indent a line starting with a space and the cursor
+	is put before the last space character. 
+	Also fixed bug #154039 (gedit cannot determine Japanese input 
+	when autoindent is enable). 
+	Thanks to Takao Fujiwara <Takao.Fujiwara@Sun.COM> and
+	Choe Hwanjin <choe.hwanjin@gmail.com>.
+
+2005-01-24  Paolo Maggi  <paolo@gnome.org>
+
 	* gtksourceview/language-specs/R.lang: fixed bug #163971 ("Assign 
 	operator" should perhaps be "Assignment operator" in gtksourceview)
 
