@@ -1,13 +1,10 @@
 INCLUDES = 				\
 	-DDATADIR=\""$(datadir)"\" 	\
 	-DG_LOG_DOMAIN=\"GtkSourceView\"\
-	-DG_DISABLE_DEPRECATED 		\
-	-DGDK_DISABLE_DEPRECATED 	\
-	-DGDK_PIXBUF_DISABLE_DEPRECATED	\
-	-DGNOME_DISABLE_DEPRECATED	\
 	-I$(top_srcdir) -I$(srcdir) 	\
 	$(WARN_CFLAGS) 			\
-	$(DEP_CFLAGS)                  \
+	$(DEPRECATED_FLAGS)		\
+	$(DEP_CFLAGS)			\
 	$(TESTS_CFLAGS)
 
 # testing executables
