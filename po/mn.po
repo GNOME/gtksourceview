@@ -1,0 +1,643 @@
+# translation of gtksourceview.gnome-2-4.po to Mongolian
+# This file is distributed under the same license as the PACKAGE package.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER.
+# S.Dulmandakh <duluu@localhost.localdomain>, 2003.
+# Sanlig Badral <badral@openmn.org>, 2003.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gtksourceview.gnome-2-4\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2003-12-02 13:55+0100\n"
+"PO-Revision-Date: 2003-12-03 10:38+0100\n"
+"Last-Translator: Sanlig Badral <badral@openmn.org>\n"
+"Language-Team: Mongolian <openmn-core@lists.sf.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.0.2\n"
+
+#: gtksourceview/gtksourcebuffer.c:279
+msgid "Escape Character"
+msgstr "Алгасах тэмдэгт"
+
+#: gtksourceview/gtksourcebuffer.c:280
+msgid "Escaping character for syntax patterns"
+msgstr "Өгүүлбэр зүйн загваруудын алхасах тэмдэгт"
+
+#: gtksourceview/gtksourcebuffer.c:288
+msgid "Check Brackets"
+msgstr "Угалзан хаалтуудыг шалга"
+
+#: gtksourceview/gtksourcebuffer.c:289
+msgid "Whether to check and highlight matching brackets"
+msgstr "Тохирч буй угалзан хаалт байгаа эсэхийг шалгаад өнгөөр ялгах уу"
+
+#: gtksourceview/gtksourcebuffer.c:297 gtksourceview/gtksourceprintjob.c:303
+msgid "Highlight"
+msgstr "Өнгөөр ялгах"
+
+#: gtksourceview/gtksourcebuffer.c:298
+msgid "Whether to highlight syntax in the buffer"
+msgstr "Буфер дахь өгүүлбэр зүйг өнгөөр ялгах уу"
+
+#: gtksourceview/gtksourcebuffer.c:306
+msgid "Maximum Undo Levels"
+msgstr "Үйлдэл буцаах үйлдэл хийх дээд хэмжээ"
+
+#: gtksourceview/gtksourcebuffer.c:307
+msgid "Number of undo levels for the buffer"
+msgstr "Буфер хийх үйлдэл буцаах үйлдлийн тоо"
+
+#: gtksourceview/gtksourcebuffer.c:317
+#: gtksourceview/language-specs/desktop.lang.h:6
+msgid "Language"
+msgstr "Хэл"
+
+#: gtksourceview/gtksourcebuffer.c:318
+msgid "Language object to get highlighting patterns from"
+msgstr "-с өнгө ялгах загвар авах хэлний объект"
+
+#: gtksourceview/gtksourcelanguagesmanager.c:119
+msgid "Language specification directories"
+msgstr "Хэлэнд зориулсан хавтаснууд"
+
+#: gtksourceview/gtksourcelanguagesmanager.c:120
+msgid ""
+"List of directories where the language specification files (.lang) are "
+"located"
+msgstr "Хэлний тодорхойлолт файлууд (.lang) байрлаж буй хавтаснуудын жагсаалт"
+
+#: gtksourceview/gtksourceprintjob.c:272
+msgid "Configuration"
+msgstr "Тохиргоо"
+
+#: gtksourceview/gtksourceprintjob.c:273
+msgid "Configuration options for the print job"
+msgstr "Хэвлэх тохиргоонууд"
+
+#: gtksourceview/gtksourceprintjob.c:280
+msgid "Source Buffer"
+msgstr "Эх буфер"
+
+#: gtksourceview/gtksourceprintjob.c:281
+msgid "GtkSourceBuffer object to print"
+msgstr "Gtk эх ыцферийн хэвлэх объект"
+
+#: gtksourceview/gtksourceprintjob.c:287 gtksourceview/gtksourceview.c:221
+#: gtksourceview/gtksourceview.c:222
+msgid "Tabs Width"
+msgstr "Табуудын өргөн"
+
+#: gtksourceview/gtksourceprintjob.c:288
+msgid "Width in equivalent space characters of tabs"
+msgstr "Табтай тэнцэх сул зайн өргөн"
+
+#: gtksourceview/gtksourceprintjob.c:295
+msgid "Wrap Mode"
+msgstr "Тэгштгэх горим"
+
+#: gtksourceview/gtksourceprintjob.c:296
+msgid "Word wrapping mode"
+msgstr "Үгээр тэгштгэх горим"
+
+#: gtksourceview/gtksourceprintjob.c:304
+msgid "Whether to print the document with highlighted syntax"
+msgstr "Өнгө ялгасан өгүүлбэр зүйтэй бичиг баримтыг хэвлэх үү"
+
+#: gtksourceview/gtksourceprintjob.c:312
+msgid "Font"
+msgstr "Шрифт"
+
+#: gtksourceview/gtksourceprintjob.c:313
+msgid "Font name to use for the document text"
+msgstr "Бичиг баримтын текстэд ашиглах шрифтийн нэр"
+
+#: gtksourceview/gtksourceprintjob.c:320
+msgid "Numbers Font"
+msgstr "Тоонуудын шрифт"
+
+#: gtksourceview/gtksourceprintjob.c:321
+msgid "Font name to use for the line numbers"
+msgstr "Мөрийн дугааруудад ашиглах шрифтийн нэр"
+
+#: gtksourceview/gtksourceprintjob.c:328
+msgid "Print Line Numbers"
+msgstr "Мөрийн дугаарыг хэвлэ"
+
+#: gtksourceview/gtksourceprintjob.c:329
+msgid "Interval of printed line numbers (0 means no numbers)"
+msgstr "Хэвлэгдсэн мөрийн дугаарын давтамж (0 тоо байхгүйг илэрхийлнэ)"
+
+#: gtksourceview/gtksourceprintjob.c:336
+msgid "Print Header"
+msgstr "Толгойг хэвлэ"
+
+#: gtksourceview/gtksourceprintjob.c:337
+msgid "Whether to print a header in each page"
+msgstr "Хуудас бүрт толгойг хэвлэх үү"
+
+#: gtksourceview/gtksourceprintjob.c:344
+msgid "Print Footer"
+msgstr "Хөлийг хэвлэ"
+
+#: gtksourceview/gtksourceprintjob.c:345
+msgid "Whether to print a footer in each page"
+msgstr "Хуудас бүрт хөлийг хэвлэх үү"
+
+#: gtksourceview/gtksourceprintjob.c:352
+msgid "Header and Footer Font"
+msgstr "Толгой болон хөлний шрифт"
+
+#: gtksourceview/gtksourceprintjob.c:353
+msgid "Font name to use for the header and footer"
+msgstr "Толгой болон хөлөнд ашиглах шрифтийн нэр"
+
+#: gtksourceview/gtksourcestylescheme.c:237
+msgid "Base-N Integer"
+msgstr "N суурьтай бүхэл тоо"
+
+#: gtksourceview/gtksourcestylescheme.c:242
+msgid "Character"
+msgstr "Тэмдэгт"
+
+#: gtksourceview/gtksourcestylescheme.c:247
+#: gtksourceview/language-specs/latex.lang.h:1
+#: gtksourceview/language-specs/po.lang.h:1
+msgid "Comment"
+msgstr "Тайлбар"
+
+#: gtksourceview/gtksourcestylescheme.c:252
+msgid "Data Type"
+msgstr "Өгөгдлийн төрөл"
+
+#: gtksourceview/gtksourcestylescheme.c:257
+#: gtksourceview/language-specs/ada.lang.h:3
+msgid "Function"
+msgstr "Функц"
+
+#: gtksourceview/gtksourcestylescheme.c:262
+#: gtksourceview/language-specs/c.lang.h:6
+#: gtksourceview/language-specs/cpp.lang.h:6
+msgid "Decimal"
+msgstr "Аравт"
+
+#: gtksourceview/gtksourcestylescheme.c:267
+msgid "Floating Point"
+msgstr "Хөвдөг цэг"
+
+#: gtksourceview/gtksourcestylescheme.c:272
+#: gtksourceview/language-specs/latex.lang.h:3
+#: gtksourceview/language-specs/po.lang.h:3
+msgid "Keyword"
+msgstr "Түлхүүр үг"
+
+#: gtksourceview/gtksourcestylescheme.c:277
+msgid "Preprocessor"
+msgstr "Препроцессор"
+
+#: gtksourceview/gtksourcestylescheme.c:282
+#: gtksourceview/language-specs/ada.lang.h:9
+#: gtksourceview/language-specs/c.lang.h:15
+#: gtksourceview/language-specs/cpp.lang.h:15
+#: gtksourceview/language-specs/html.lang.h:8
+#: gtksourceview/language-specs/idl.lang.h:8
+#: gtksourceview/language-specs/java.lang.h:11
+#: gtksourceview/language-specs/perl.lang.h:6
+#: gtksourceview/language-specs/po.lang.h:6
+#: gtksourceview/language-specs/python.lang.h:11
+#: gtksourceview/language-specs/xml.lang.h:8
+msgid "String"
+msgstr "Тэмдэгт мөр"
+
+#: gtksourceview/gtksourcestylescheme.c:287
+msgid "Specials"
+msgstr "Тусгай зүйлс"
+
+#: gtksourceview/gtksourcestylescheme.c:292
+#: gtksourceview/language-specs/desktop.lang.h:10
+#: gtksourceview/language-specs/diff.lang.h:7
+#: gtksourceview/language-specs/po.lang.h:5
+msgid "Others"
+msgstr "Бусад"
+
+#: gtksourceview/gtksourcestylescheme.c:297
+msgid "Others 2"
+msgstr "Бусад 2"
+
+#: gtksourceview/gtksourcestylescheme.c:302
+msgid "Others 3"
+msgstr "Бусад 3"
+
+#: gtksourceview/gtksourcestylescheme.c:339
+msgid "Default"
+msgstr "Стандарт"
+
+#: gtksourceview/gtksourcetag.c:108
+msgid "Tag ID"
+msgstr "Тагын дугаар"
+
+#: gtksourceview/gtksourcetag.c:109
+msgid "ID used to refer to the source tag"
+msgstr "Дугаар нь эх таг руу чиглэхэд хэрэглэгдэнэ"
+
+#: gtksourceview/gtksourcetag.c:116
+msgid "Tag style"
+msgstr "Таагийн хэв"
+
+#: gtksourceview/gtksourcetag.c:117
+msgid "The style associated to the source tag"
+msgstr "Эх таагд хэрэглэгдэх хэв"
+
+#: gtksourceview/gtksourceview.c:205
+msgid "Show Line Numbers"
+msgstr "Мөрийн дугаарыг үзүүл"
+
+#: gtksourceview/gtksourceview.c:206
+msgid "Whether to display line numbers"
+msgstr "Мөрийн дугаарыг үзүүлэх үү"
+
+#: gtksourceview/gtksourceview.c:213
+msgid "Show Line Markers"
+msgstr "Мөрийн тэмдэглэгээг үзүүл"
+
+#: gtksourceview/gtksourceview.c:214
+msgid "Whether to display line marker pixbufs"
+msgstr "pixbufs мөр тэмдэглэгчийг харуулах эсэх"
+
+#: gtksourceview/gtksourceview.c:231
+msgid "Auto Indentation"
+msgstr "Автоматаар индэнт хий"
+
+#: gtksourceview/gtksourceview.c:232
+msgid "Whether to enable auto indentation"
+msgstr "Автоматаар индэнт хийхийг идэвхжүүлэх үү"
+
+#: gtksourceview/gtksourceview.c:238
+msgid "Insert Spaces Instead of Tabs"
+msgstr "Таабын оронд сул зай оруул"
+
+#: gtksourceview/gtksourceview.c:239
+msgid "Whether to insert spaces instead of tabs"
+msgstr "Таабуудын оронд сул зай оруулах уу"
+
+#: gtksourceview/gtksourceview.c:246
+msgid "Show Right Margin"
+msgstr "Баруун захын зай харуулах"
+
+#: gtksourceview/gtksourceview.c:247
+msgid "Whether to display the right margin"
+msgstr "Баруун захын зай харуулах эсэх"
+
+#: gtksourceview/gtksourceview.c:254
+msgid "Margin position"
+msgstr "Захын зайн байрлал"
+
+#: gtksourceview/gtksourceview.c:255
+msgid "Position of the right margin"
+msgstr "Баруун захын зайн байрлал"
+
+#: gtksourceview/gtksourceview.c:264
+msgid "Use smart home/end"
+msgstr "Ухаантай home/end-г хэрэглэ"
+
+#: gtksourceview/gtksourceview.c:265
+msgid ""
+"HOME and END keys move to first/last characters on line first before going "
+"to the start/end of the line"
+msgstr "HOME and END товчнууд нь мөрийн эхэнд/төгсгөлд очхоосоо өмнө эхний/сүүлийн тэмдэгт руу очдог"
+
+#: gtksourceview/language-specs/ada.lang.h:1
+msgid "Ada"
+msgstr "Ada"
+
+#: gtksourceview/language-specs/ada.lang.h:2
+#: gtksourceview/language-specs/c.lang.h:4
+#: gtksourceview/language-specs/cpp.lang.h:4
+msgid "Character Constant"
+msgstr "Тэмдэгт тогтмол"
+
+#: gtksourceview/language-specs/ada.lang.h:4
+#: gtksourceview/language-specs/c.lang.h:10
+#: gtksourceview/language-specs/cpp.lang.h:10
+#: gtksourceview/language-specs/idl.lang.h:4
+#: gtksourceview/language-specs/perl.lang.h:2
+#: gtksourceview/language-specs/python.lang.h:3
+msgid "Keywords"
+msgstr "Түлхүүр үгс"
+
+#: gtksourceview/language-specs/ada.lang.h:5
+#: gtksourceview/language-specs/c.lang.h:11
+#: gtksourceview/language-specs/cpp.lang.h:11
+#: gtksourceview/language-specs/desktop.lang.h:7
+#: gtksourceview/language-specs/diff.lang.h:5
+#: gtksourceview/language-specs/java.lang.h:5
+#: gtksourceview/language-specs/perl.lang.h:3
+#: gtksourceview/language-specs/python.lang.h:4
+msgid "Line Comment"
+msgstr "Мөрийн тайлбар"
+
+#: gtksourceview/language-specs/ada.lang.h:6
+#: gtksourceview/language-specs/desktop.lang.h:9
+msgid "Number"
+msgstr "Тоо"
+
+#: gtksourceview/language-specs/ada.lang.h:7
+msgid "Preprocessor Keywords"
+msgstr "Препроцессорын түлхүүр үгс"
+
+#: gtksourceview/language-specs/ada.lang.h:8
+#: gtksourceview/language-specs/c.lang.h:14
+#: gtksourceview/language-specs/cpp.lang.h:14
+#: gtksourceview/language-specs/idl.lang.h:7
+#: gtksourceview/language-specs/java.lang.h:10
+msgid "Sources"
+msgstr "Эхүүд"
+
+#: gtksourceview/language-specs/ada.lang.h:10
+msgid "True And False"
+msgstr "Үнэн ба худал"
+
+#: gtksourceview/language-specs/ada.lang.h:11
+#: gtksourceview/language-specs/c.lang.h:16
+#: gtksourceview/language-specs/cpp.lang.h:16
+#: gtksourceview/language-specs/idl.lang.h:9
+msgid "Types"
+msgstr "Төрлүүд"
+
+#: gtksourceview/language-specs/c.lang.h:1
+#: gtksourceview/language-specs/cpp.lang.h:1
+msgid "'#if 0' Comment"
+msgstr "'#if 0' тайлбар"
+
+#: gtksourceview/language-specs/c.lang.h:2
+#: gtksourceview/language-specs/cpp.lang.h:2
+#: gtksourceview/language-specs/html.lang.h:2
+#: gtksourceview/language-specs/idl.lang.h:1
+#: gtksourceview/language-specs/java.lang.h:1
+#: gtksourceview/language-specs/xml.lang.h:2
+msgid "Block Comment"
+msgstr "Блокын тайлбар"
+
+#: gtksourceview/language-specs/c.lang.h:3
+msgid "C"
+msgstr "С"
+
+#: gtksourceview/language-specs/c.lang.h:5
+#: gtksourceview/language-specs/cpp.lang.h:5
+msgid "Common Macro"
+msgstr "Үндсэн макро"
+
+#: gtksourceview/language-specs/c.lang.h:7
+#: gtksourceview/language-specs/cpp.lang.h:7
+msgid "Floating Point Number"
+msgstr "Хөвөгч цэгтэй тоо"
+
+#: gtksourceview/language-specs/c.lang.h:8
+#: gtksourceview/language-specs/cpp.lang.h:8
+msgid "Hex Number"
+msgstr "Арван зургаатын тоо"
+
+#: gtksourceview/language-specs/c.lang.h:9
+#: gtksourceview/language-specs/cpp.lang.h:9
+#: gtksourceview/language-specs/idl.lang.h:3
+msgid "Include/Pragma"
+msgstr "Include/Pragma"
+
+#: gtksourceview/language-specs/c.lang.h:12
+#: gtksourceview/language-specs/cpp.lang.h:12
+msgid "Octal Number"
+msgstr "Наймтын тоо"
+
+#: gtksourceview/language-specs/c.lang.h:13
+#: gtksourceview/language-specs/cpp.lang.h:13
+#: gtksourceview/language-specs/idl.lang.h:5
+msgid "Preprocessor Definitions"
+msgstr "Препроцессорын тодорхойлолтууд"
+
+#: gtksourceview/language-specs/cpp.lang.h:3
+msgid "C++"
+msgstr ".desktop"
+
+#: gtksourceview/language-specs/desktop.lang.h:1
+msgid ".desktop"
+msgstr ".ажлын тавцан"
+
+#: gtksourceview/language-specs/desktop.lang.h:2
+msgid "Boolean Value"
+msgstr "Бүүлин утга"
+
+#: gtksourceview/language-specs/desktop.lang.h:3
+msgid "Encoding"
+msgstr "Кодчлол"
+
+#: gtksourceview/language-specs/desktop.lang.h:4
+msgid "Exec Parameter"
+msgstr "Exec параметр"
+
+#: gtksourceview/language-specs/desktop.lang.h:5
+msgid "Group"
+msgstr "Бүлэг"
+
+#: gtksourceview/language-specs/desktop.lang.h:8
+msgid "Non Standard Key"
+msgstr "Стандарт бус товч"
+
+#: gtksourceview/language-specs/desktop.lang.h:11
+msgid "Standard Key"
+msgstr "Стандарт товч"
+
+#: gtksourceview/language-specs/diff.lang.h:1
+msgid "Added line"
+msgstr "Нэмэгдсэн мөр"
+
+#: gtksourceview/language-specs/diff.lang.h:2
+msgid "Changed line"
+msgstr "Өөрчлөгдсөн мөр"
+
+#: gtksourceview/language-specs/diff.lang.h:3
+msgid "Diff"
+msgstr "Diff"
+
+#: gtksourceview/language-specs/diff.lang.h:4
+msgid "Diff file"
+msgstr "Diff файл"
+
+#: gtksourceview/language-specs/diff.lang.h:6
+#: gtksourceview/language-specs/po.lang.h:4
+msgid "Location"
+msgstr "Байршил"
+
+#: gtksourceview/language-specs/diff.lang.h:8
+msgid "Removed line"
+msgstr "Устгагдсан мөр"
+
+#: gtksourceview/language-specs/diff.lang.h:9
+msgid "Special case"
+msgstr "Онцгой нөхцөл"
+
+#: gtksourceview/language-specs/html.lang.h:1
+#: gtksourceview/language-specs/xml.lang.h:1
+msgid "Attributes"
+msgstr "Шинж чанар"
+
+#: gtksourceview/language-specs/html.lang.h:3
+#: gtksourceview/language-specs/xml.lang.h:3
+msgid "Closing Bracket"
+msgstr "Хаах угалзан хаалт"
+
+#: gtksourceview/language-specs/html.lang.h:4
+#: gtksourceview/language-specs/xml.lang.h:4
+msgid "DTD"
+msgstr "DTD"
+
+#: gtksourceview/language-specs/html.lang.h:5
+#: gtksourceview/language-specs/xml.lang.h:5
+msgid "Entity"
+msgstr "Объект"
+
+#: gtksourceview/language-specs/html.lang.h:6
+msgid "HTML"
+msgstr "HTML"
+
+#: gtksourceview/language-specs/html.lang.h:7
+#: gtksourceview/language-specs/latex.lang.h:5
+#: gtksourceview/language-specs/xml.lang.h:7
+msgid "Markup"
+msgstr "Тэмдэглэгээнүүд"
+
+#: gtksourceview/language-specs/html.lang.h:9
+msgid "Tags"
+msgstr "Таагууд"
+
+#: gtksourceview/language-specs/idl.lang.h:2
+msgid "IDL"
+msgstr "IDL"
+
+#: gtksourceview/language-specs/idl.lang.h:6
+msgid "Sectional"
+msgstr "Хэсгийн"
+
+#: gtksourceview/language-specs/java.lang.h:2
+msgid "Declarations"
+msgstr "Зарлалтууд"
+
+#: gtksourceview/language-specs/java.lang.h:3
+msgid "Flow"
+msgstr "Урсгал"
+
+#: gtksourceview/language-specs/java.lang.h:4
+msgid "Java"
+msgstr "Java"
+
+#: gtksourceview/language-specs/java.lang.h:6
+msgid "Memory"
+msgstr "Санах ой"
+
+#: gtksourceview/language-specs/java.lang.h:7
+msgid "Modifiers"
+msgstr "Өөрчлөгчид"
+
+#: gtksourceview/language-specs/java.lang.h:8
+msgid "Numeric"
+msgstr "Тоон"
+
+#: gtksourceview/language-specs/java.lang.h:9
+msgid "Primitives"
+msgstr "Үндсэн"
+
+#: gtksourceview/language-specs/java.lang.h:12
+#: gtksourceview/language-specs/python.lang.h:12
+#: gtksourceview/language-specs/xml.lang.h:9
+msgid "String 2"
+msgstr "Тэмдэгт мөр 2"
+
+#: gtksourceview/language-specs/latex.lang.h:2
+msgid "Include"
+msgstr "Агуул"
+
+#: gtksourceview/language-specs/latex.lang.h:4
+msgid "Latex"
+msgstr "Латекс"
+
+#: gtksourceview/language-specs/latex.lang.h:6
+msgid "Math"
+msgstr "Математик"
+
+#: gtksourceview/language-specs/latex.lang.h:7
+msgid "Most Used Commands"
+msgstr "Хамгийн их хэрэглэсэн команд"
+
+#: gtksourceview/language-specs/perl.lang.h:1
+msgid "Function Call"
+msgstr "Функцийн дуудалт"
+
+#: gtksourceview/language-specs/perl.lang.h:4
+msgid "Perl"
+msgstr "Perl"
+
+#: gtksourceview/language-specs/perl.lang.h:5
+#: gtksourceview/language-specs/python.lang.h:9
+msgid "Scripts"
+msgstr "Скриптүүд"
+
+#: gtksourceview/language-specs/perl.lang.h:7
+msgid "String2"
+msgstr "Тэмдэгт мөр 2"
+
+#: gtksourceview/language-specs/perl.lang.h:8
+msgid "String3"
+msgstr "Тэмдэгт мөр 3"
+
+#: gtksourceview/language-specs/perl.lang.h:9
+msgid "Variables"
+msgstr "Хувьсагчид"
+
+#: gtksourceview/language-specs/po.lang.h:2
+msgid "Format"
+msgstr "Формат"
+
+#: gtksourceview/language-specs/po.lang.h:7
+msgid "gettext translation"
+msgstr "gettext орчуулга"
+
+#: gtksourceview/language-specs/python.lang.h:1
+msgid "Builtins"
+msgstr "Угсрагдсан зүйл"
+
+#: gtksourceview/language-specs/python.lang.h:2
+msgid "Functions"
+msgstr "Функцууд"
+
+#: gtksourceview/language-specs/python.lang.h:5
+msgid "Module Handler"
+msgstr "Модулийг залагч"
+
+#: gtksourceview/language-specs/python.lang.h:6
+msgid "Multiline String"
+msgstr "Олон тэмдэгт мөр"
+
+#: gtksourceview/language-specs/python.lang.h:7
+msgid "Multiline String 2"
+msgstr "Олон тэмдэгт мөр 2"
+
+#: gtksourceview/language-specs/python.lang.h:8
+msgid "Python"
+msgstr "Python"
+
+#: gtksourceview/language-specs/python.lang.h:10
+msgid "Self"
+msgstr "Өөрөө"
+
+#: gtksourceview/language-specs/xml.lang.h:6
+msgid "Hexadecimal"
+msgstr "Арван зургаат"
+
+#: gtksourceview/language-specs/xml.lang.h:10
+msgid "Tag"
+msgstr "Тааг"
+
+#: gtksourceview/language-specs/xml.lang.h:11
+msgid "XML"
+msgstr "XML"
+
