@@ -1,5 +1,13 @@
 2004-03-06  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
 
+	* gtksourceview/gtksourceiter.c (forward_chars_with_skipping):
+	Account for extra offsets coming from decomposed UTF8 characters when
+	moving the GtkTextIter forward (bug #135163).
+	(backward_lines_match): Use forward_chars_with_skipping when moving to
+	the start of the line match.
+
+2004-03-06  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+
 	* gtksourceview/gtksourcelanguage.c
 	(gtk_source_language_get_tag_default_style): Return a copy of a default
 	tag style when the style is not found in the style scheme, or when the

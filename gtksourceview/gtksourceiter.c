@@ -204,6 +204,20 @@ forward_chars_with_skipping (GtkTextIter *iter,
 		    /* _gtk_text_btree_char_is_invisible (iter)*/ FALSE)
 			ignored = TRUE;
 
+		if (!ignored)
+		{
+			/* being UTF8 correct sucks; this accounts for extra
+			   offsets coming from canonical decompositions of
+			   UTF8 characters (e.g. accented characters) which 
+			   g_utf8_normalize() performs */
+			gunichar *decomp;
+			gsize decomp_len;
+			decomp = g_unicode_canonical_decomposition (
+				gtk_text_iter_get_char (iter), &decomp_len);
+			i -= (decomp_len - 1);
+			g_free (decomp);
+		}
+
 		gtk_text_iter_forward_char (iter);
 
 		if (!ignored)
@@ -388,7 +402,9 @@ backward_lines_match (const GtkTextIter *start,
 	if (match_start)
 	{
 		*match_start = next;
-		gtk_text_iter_set_visible_line_offset (match_start, offset);
+
+		forward_chars_with_skipping (match_start, offset,
+					     visible_only, !slice);
 	}
 
 	/* Go to end of search string */
