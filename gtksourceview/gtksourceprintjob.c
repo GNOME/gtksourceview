@@ -1432,7 +1432,7 @@ print_page (GtkSourcePrintJob *job)
 		{
 			job->priv->line_number = dline->line_number;
 			if (job->priv->print_numbers > 0 &&
-			    (job->priv->printed_lines % job->priv->print_numbers) == 0)
+			    ((job->priv->printed_lines + 1) % job->priv->print_numbers) == 0)
 			{
 				print_line_number (job,
 						   job->priv->line_number,
