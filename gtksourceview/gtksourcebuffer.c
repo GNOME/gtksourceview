@@ -249,7 +249,7 @@ move_cursor (GtkTextBuffer *buf, GtkTextIter *iter, GtkTextMark *m, gpointer dat
 		gtk_text_iter_forward_char (&iter2);
 		gtk_text_buffer_remove_tag (buf, sbuf->bracket_match_tag, &iter1, &iter2);
 	}
-	if (gtk_source_buffer_iter_has_syntax_tag (iter))
+	if (gtk_source_buffer_iter_has_syntax_tag (iter)  || !sbuf->check_brackets)
 		return;
 
 	if (gtk_source_buffer_find_bracket_match (iter)) {

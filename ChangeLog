@@ -1,3 +1,9 @@
+Sun Dec 30  11:54:36 2001 CET Mikael Hermansson <tyan@linux.se>
+
+  * gtksourcebuffer.c:
+    - in move_cursor() make sure gtk_source_buffer_find_bracket_match() is only
+      called if check_brackets == TRUE
+
 Sat Feb 09  05:41:59 2002 CET Mikael Hermansson<tyan@linux.se>
 
   * gtksourcebuffer.[c/h] added new API: 
