@@ -37,6 +37,11 @@ typedef struct _SearchInfo {
 	GtkTextSearchFlags sflags;
 } SearchInfo;
 
+typedef struct _MarkerSubList {
+	int line;
+	GList *marker_list;
+} MarkerSubList;
+
 struct _GtkSourceBufferPrivate {
 	gint            highlight : 1;
 	gint            check_brackets : 1;
@@ -111,6 +116,8 @@ static gint get_tag_start (GtkTextTag  *tag,
 			   GtkTextIter *iter);
 static gint get_tag_end   (GtkTextTag  *tag,
 			   GtkTextIter *iter);
+
+static void get_all_markers (gpointer key, gpointer value, gpointer user_data);
 
 static void hash_remove_func (gpointer key, gpointer value, gpointer user_data);
 
@@ -773,6 +780,39 @@ read_loop (GIOChannel  *io,
 	}
 
 	return FALSE;
+}
+
+static void
+add_marker (gpointer data,
+	    gpointer user_data)
+{
+	char *name = data;
+	MarkerSubList *sublist = user_data;
+	GtkSourceBufferMarker *marker;
+
+	marker = g_new0 (GtkSourceBufferMarker, 1);
+	marker->line = sublist->line;
+	marker->name = g_strdup (name);
+
+	sublist->marker_list = g_list_append (sublist->marker_list, marker);
+}
+
+static void
+add_markers (gpointer key,
+	     gpointer value,
+	     gpointer user_data)
+{
+	GList **list = user_data;
+	GList *markers = value;
+	MarkerSubList *sublist;
+
+	sublist = g_new0 (MarkerSubList, 1);
+	sublist->line = GPOINTER_TO_INT (key);
+	sublist->marker_list = *list;
+
+	g_list_foreach (markers, add_marker, sublist);
+
+	g_free (sublist);
 }
 
 /* ----------------------------------------------------------------------
@@ -1473,6 +1513,16 @@ gtk_source_buffer_line_remove_markers (GtkSourceBuffer *buffer,
 	}
 
 	return remove_count;
+}
+
+GList *
+gtk_source_buffer_get_all_markers (GtkSourceBuffer *buffer)
+{
+	GList *list = NULL;
+
+	g_hash_table_foreach (buffer->priv->line_markers, add_markers, &list);
+
+	return list;
 }
 
 gint

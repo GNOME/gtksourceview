@@ -1,3 +1,11 @@
+2002-03-22  Jeroen Zwartepoorte  <jeroen@xs4all.nl>
+
+	* src/gtksourcebuffer.c: (add_marker), (add_markers),
+	(gtk_source_buffer_line_remove_markers),
+	(gtk_source_buffer_get_all_markers): Added
+	gtk_source_buffer_get_all_markers method.
+	* src/gtksourcebuffer.h: Idem.
+
 2002-03-15  Jeroen Zwartepoorte  <jeroen@xs4all.nl>
 
 	* aclocal.m4: Newer glib version.

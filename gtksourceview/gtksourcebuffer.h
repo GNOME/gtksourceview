@@ -40,6 +40,7 @@ extern "C" {
 typedef struct _GtkSourceBuffer			GtkSourceBuffer;
 typedef struct _GtkSourceBufferClass		GtkSourceBufferClass;
 typedef struct _GtkSourceBufferPrivate		GtkSourceBufferPrivate;
+typedef struct _GtkSourceBufferMarker		GtkSourceBufferMarker;
 
 struct _GtkSourceBuffer {
 	GtkTextBuffer TextBuffer;
@@ -54,6 +55,11 @@ struct _GtkSourceBufferClass {
 					 gboolean         can_undo);
 	void (* can_redo)		(GtkSourceBuffer *buffer,
 					 gboolean         can_redo);
+};
+
+struct _GtkSourceBufferMarker {
+	int line;
+	char *name;
 };
 
 /* Creation. */
@@ -128,6 +134,7 @@ gint             gtk_source_buffer_line_has_markers    (GtkSourceBuffer *buffer,
 							gint             line);
 gint             gtk_source_buffer_line_remove_markers (GtkSourceBuffer *buffer,
 							gint             line);
+GList           *gtk_source_buffer_get_all_markers     (GtkSourceBuffer *buffer);
 gint             gtk_source_view_remove_all_markers    (GtkSourceBuffer *buffer,
 							gint             line_start,
 							gint             line_end);
