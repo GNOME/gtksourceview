@@ -441,8 +441,14 @@ gtk_source_buffer_constructor (GType                  type,
 		if (!strcmp ("tag-table", construct_param [i].pspec->name) &&
 		    g_value_get_object (construct_param [i].value) == NULL)
 		{
+#if (GLIB_MINOR_VERSION <= 2)
 			g_value_set_object_take_ownership (construct_param [i].value,
 							   gtk_source_tag_table_new ());
+#else
+			g_value_take_object (construct_param [i].value,
+					     gtk_source_tag_table_new ());
+#endif
+
 			break;
 		}
 	}

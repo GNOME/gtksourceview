@@ -1,3 +1,12 @@
+2003-10-03  Paolo Maggi  <paolo.maggi@polito.it>
+
+	* tests/Makefile.am (INCLUDES): remove GTK_DISABLE_DEPRECATED for
+	now until we're ported to GtkUIManager.
+
+	* gtksourceview/gtksourcebuffer.c (gtk_source_buffer_constructor):
+	change g_value_set_object_take_ownership to g_value_take_object to
+	avoid the deprecated call when compiling with glib 2.3
+
 2003-09-30  Christian Rose  <menthos@menthos.com>
 
 	* configure.in: Added "eu" to ALL_LINGUAS.
