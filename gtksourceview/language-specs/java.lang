@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE language SYSTEM "language.dtd">
-<language name="Java" version="1.0" section="Sources" mimetypes="text/x-java">
+<language _name="Java" version="1.0" _section="Sources" mimetypes="text/x-java">
 	
-	<string name = "String" style = "String" end-at-line-end = "TRUE">
+	<string _name = "String" style = "String" end-at-line-end = "TRUE">
 		<start-regex>&quot;</start-regex>
 		<end-regex>&quot;</end-regex>
 	</string>
 
-	<string name = "String 2" style = "String" end-at-line-end = "TRUE">
+	<string _name = "String 2" style = "String" end-at-line-end = "TRUE">
 		<start-regex>&apos;</start-regex>
 		<end-regex>&apos;</end-regex>
 	</string>
 
-	<line-comment name = "Line Comment" style= "Comment">
+	<line-comment _name = "Line Comment" style= "Comment">
 		<start-regex>//</start-regex>
 	</line-comment>
 
-	<block-comment name = "Block Comment" style = "Comment">
+	<block-comment _name = "Block Comment" style = "Comment">
 		<start-regex>/\*</start-regex>
         	<end-regex>\*/</end-regex>
 	</block-comment>
 
-	<keyword-list name = "Declarations" style = "Keyword" case-sensitive="TRUE">
+	<keyword-list _name = "Declarations" style = "Keyword" case-sensitive="TRUE">
 		<keyword>class</keyword>
 		<keyword>extends</keyword>
 		<keyword>implements</keyword>
@@ -34,7 +34,7 @@
 		<keyword>throws</keyword>
 	</keyword-list>
 
-	<keyword-list name = "Primitives" style = "Data Type" case-sensitive="TRUE">
+	<keyword-list _name = "Primitives" style = "Data Type" case-sensitive="TRUE">
 		<keyword>boolean</keyword>
 		<keyword>byte</keyword>
 		<keyword>char</keyword>
@@ -45,7 +45,7 @@
 		<keyword>short</keyword>
 	</keyword-list>
 
-	<keyword-list name = "Flow" style = "Keyword" case-sensitive="TRUE">
+	<keyword-list _name = "Flow" style = "Keyword" case-sensitive="TRUE">
 		<keyword>break</keyword>
 		<keyword>case</keyword>
 		<keyword>catch</keyword>
@@ -64,7 +64,7 @@
 		<keyword>while</keyword>
 	</keyword-list>
 
-	<keyword-list name = "Modifiers" style = "Keyword" case-sensitive="TRUE">
+	<keyword-list _name = "Modifiers" style = "Keyword" case-sensitive="TRUE">
 		<keyword>abstract</keyword>
 		<keyword>final</keyword>
 		<keyword>finally</keyword>
@@ -77,7 +77,7 @@
 		<keyword>transient</keyword>
 	</keyword-list>
 
-	<keyword-list name = "Memory" style = "Others" case-sensitive="TRUE">
+	<keyword-list _name = "Memory" style = "Others" case-sensitive="TRUE">
 		<keyword>new</keyword>
 		<keyword>null</keyword>
 		<keyword>super</keyword>
@@ -86,7 +86,7 @@
 	</keyword-list>
 
 	<!-- FIXME -->
-	<pattern-item name = "Numeric" style = "Decimal">
+	<pattern-item _name = "Numeric" style = "Decimal">
 		<regex>&lt;(?i0[X][\\dA-F]+|\\d+(\\.\\d*)?(?:E[+-]?[\\d]+)?F?|\\.\\d+(?:E[+-]?[\\d]+)?F?|[\\d]+[LF]?))</regex>
 	</pattern-item>
 

@@ -1,5 +1,10 @@
 2003-05-26  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
 
+	* gtksourceview/language-specs/*.lang: Marked all "name" and
+	"section" attributes for translation.
+
+2003-05-26  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+
 	* docs/reference/tmpl/buffer.sgml: Documented GtkSourceBuffer.
 	* gtksourceview/gtksourcebuffer.c: Fixed some object properties
 	descriptions.  Added gtk-doc style comments for all public API.

@@ -1,46 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- <!DOCTYPE language SYSTEM "language.dtd"> -->
-<language name="Python" version="1.0" section="Scripts" mimetypes="text/x-python">
+<!DOCTYPE language SYSTEM "language.dtd">
+<language _name="Python" version="1.0" _section="Scripts" mimetypes="text/x-python">
 
 	<escape-char>\</escape-char>
 
-	<string name = "Multiline String" style = "String" end-at-line-end = "FALSE">
+	<string _name = "Multiline String" style = "String" end-at-line-end = "FALSE">
 		<start-regex>[uUrR]?&quot;&quot;&quot;</start-regex>
 		<end-regex>&quot;&quot;&quot;</end-regex>
 	</string>
 
-	<string name = "Multiline String 2" style = "String" end-at-line-end = "FALSE">
+	<string _name = "Multiline String 2" style = "String" end-at-line-end = "FALSE">
 		<start-regex>[uUrR]?&apos;&apos;&apos;</start-regex>
 		<end-regex>&apos;&apos;&apos;</end-regex>
 	</string>
 
-	<string name = "String" style = "String" end-at-line-end = "TRUE">
+	<string _name = "String" style = "String" end-at-line-end = "TRUE">
 		<start-regex>[uUrR]?&quot;</start-regex>
 		<end-regex>&quot;</end-regex>
 	</string>
 
-	<string name = "String 2" style = "String" end-at-line-end = "TRUE">
+	<string _name = "String 2" style = "String" end-at-line-end = "TRUE">
 		<start-regex>[uUrR]?&apos;</start-regex>
 		<end-regex>&apos;</end-regex>
 	</string>
 
-	<line-comment name = "Line Comment" style= "Comment">
+	<line-comment _name = "Line Comment" style= "Comment">
 		<start-regex>#</start-regex>
 	</line-comment>
 
-	<keyword-list name = "Module Handler" style = "Preprocessor" case-sensitive="TRUE">
+	<keyword-list _name = "Module Handler" style = "Preprocessor" case-sensitive="TRUE">
 		<keyword>import</keyword>
 		<keyword>from</keyword>
 		<keyword>as</keyword>
 	</keyword-list>
 
-	<keyword-list name = "Functions" style = "Keyword" case-sensitive="TRUE">
+	<keyword-list _name = "Functions" style = "Keyword" case-sensitive="TRUE">
 		<keyword>def</keyword>
 		<keyword>class</keyword>
 		<keyword>return</keyword>
 	</keyword-list>
 
-	<keyword-list name = "Keywords" style = "Keyword" case-sensitive="TRUE">
+	<keyword-list _name = "Keywords" style = "Keyword" case-sensitive="TRUE">
 		<keyword>and</keyword>
 		<keyword>assert</keyword>
 		<keyword>break</keyword>
@@ -68,7 +68,7 @@
 		<keyword>yield</keyword>
 	</keyword-list>
 
-	<keyword-list name = "Builtins" style = "Others" case-sensitive="TRUE">
+	<keyword-list _name = "Builtins" style = "Others" case-sensitive="TRUE">
 		<keyword>Exception</keyword>
 		<keyword>StandardError</keyword>
 		<keyword>ArithmeticError</keyword>
@@ -162,7 +162,7 @@
 		<keyword>zip</keyword>
 	</keyword-list>
 
-	<pattern-item name = "Self" style = "Data Type">
+	<pattern-item _name = "Self" style = "Data Type">
 		<regex>\bself\b</regex>
 	</pattern-item>
 

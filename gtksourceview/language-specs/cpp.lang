@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE language SYSTEM "language.dtd">
-<language name="C++" version="1.0" section="Sources" mimetypes="text/x-c++;text/x-cpp;text/x-c-header">
+<language _name="C++" version="1.0" _section="Sources" mimetypes="text/x-c++;text/x-cpp;text/x-c-header">
 	
 	<escape-char>\</escape-char>
 
-	<line-comment name = "Line Comment" style= "Comment">
+	<line-comment _name = "Line Comment" style= "Comment">
 		<start-regex>//</start-regex>
 	</line-comment>
 
-	<block-comment name = "Block Comment" style = "Comment">
+	<block-comment _name = "Block Comment" style = "Comment">
 		<start-regex>/\*</start-regex>
         	<end-regex>\*/</end-regex>
 	</block-comment>
 
-	<block-comment name = "'#if 0' Comment" style = "Comment">
+	<block-comment _name = "'#if 0' Comment" style = "Comment">
 		<start-regex>^[ \t]*#[ \t]*if[ \t]*0</start-regex>
         	<end-regex>[ \t]*#[ \t]*endif</end-regex>
 	</block-comment>
 
 
-	<string name = "String" style = "String" end-at-line-end = "TRUE">
+	<string _name = "String" style = "String" end-at-line-end = "TRUE">
 		<start-regex>&quot;</start-regex>
 		<end-regex>&quot;</end-regex>
 	</string>
 
-	<syntax-item name = "Include/Pragma" style = "Preprocessor">
+	<syntax-item _name = "Include/Pragma" style = "Preprocessor">
 		<start-regex>^#[ \t]*(include|pragma)</start-regex>
 	         <end-regex>\n</end-regex>
 	</syntax-item>
 
-	<keyword-list name = "Keywords" style = "Keyword" case-sensitive="TRUE">
+	<keyword-list _name = "Keywords" style = "Keyword" case-sensitive="TRUE">
 		<keyword>and</keyword>
 		<keyword>and_eq</keyword>
 		<keyword>asm</keyword>
@@ -75,7 +75,7 @@
 		<keyword>xor_eq</keyword>
 	</keyword-list>
 
-	<keyword-list name = "Types" style = "Data Type" case-sensitive="TRUE">
+	<keyword-list _name = "Types" style = "Data Type" case-sensitive="TRUE">
 		<keyword>auto</keyword>
 		<keyword>bool</keyword>
 		<keyword>char</keyword>
@@ -108,28 +108,28 @@
 		<keyword>wchar_t</keyword>
 	</keyword-list>
 
-	<string name = "Character Constant" style = "String" end-at-line-end = "TRUE">
+	<string _name = "Character Constant" style = "String" end-at-line-end = "TRUE">
 		<start-regex>&apos;</start-regex>
 		<end-regex>&apos;</end-regex>
 	</string>
 
-	<pattern-item name = "Decimal" style = "Decimal">
+	<pattern-item _name = "Decimal" style = "Decimal">
 		<regex>\b([1-9][0-9]*|0)([Uu]([Ll]|LL|ll)?|([Ll]|LL|ll)[Uu]?)?\b</regex>
 	</pattern-item>
 
-	<pattern-item name = "Floating Point Number" style = "Floating Point">
+	<pattern-item _name = "Floating Point Number" style = "Floating Point">
 		<regex>\b([0-9]+[Ee][-]?[0-9]+|([0-9]*\.[0-9]+|[0-9]+\.)([Ee][-]?[0-9]+)?)[fFlL]?</regex>
 	</pattern-item>
 
-	<pattern-item name = "Octal Number" style = "Base-N Integer">
+	<pattern-item _name = "Octal Number" style = "Base-N Integer">
 		<regex>\b0[0-7]+([Uu]([Ll]|LL|ll)?|([Ll]|LL|ll)[Uu]?)?\b</regex>
 	</pattern-item>
 
-	<pattern-item name = "Hex Number" style = "Base-N Integer">
+	<pattern-item _name = "Hex Number" style = "Base-N Integer">
 		<regex>\b0[xX][0-9a-fA-F]+([Uu]([Ll]|LL|ll)?|([Ll]|LL|ll)[Uu]?)?\b</regex>
 	</pattern-item>
 
-	<keyword-list name = "Common Macro" style = "Preprocessor" case-sensitive="TRUE">
+	<keyword-list _name = "Common Macro" style = "Preprocessor" case-sensitive="TRUE">
 		<keyword>NULL</keyword>
 		<keyword>TRUE</keyword>
 		<keyword>FALSE</keyword>
@@ -144,7 +144,7 @@
 		<keyword>true</keyword>
 	</keyword-list>
 
-	<keyword-list name = "Preprocessor Definitions" style = "Preprocessor" case-sensitive="TRUE"
+	<keyword-list _name = "Preprocessor Definitions" style = "Preprocessor" case-sensitive="TRUE"
 		match-empty-string-at-beginning = "FALSE"
 		match-empty-string-at-end = "TRUE"
 		beginning-regex = "^[ \t]*#[ \t]*">

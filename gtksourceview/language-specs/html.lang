@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE language SYSTEM "language.dtd">
-<language name="HTML" version="1.0" section="Markup" mimetypes="text/html">
+<language _name="HTML" version="1.0" _section="Markup" mimetypes="text/html">
 	
-	<block-comment name="Block Comment" style="Comment">
+	<block-comment _name="Block Comment" style="Comment">
 		<start-regex>&lt;!--</start-regex>
         	<end-regex>--&gt;</end-regex>
 	</block-comment>
 
-	<syntax-item name="DTD" style="Preprocessor">
+	<syntax-item _name="DTD" style="Preprocessor">
 		<start-regex>&lt;!</start-regex>
 		<end-regex>&gt;</end-regex>
 	</syntax-item>
 
-	<string name="String" style ="String" end-at-line-end="FALSE">
+	<string _name="String" style ="String" end-at-line-end="FALSE">
 		<start-regex>&quot;</start-regex>
 		<end-regex>&quot;</end-regex>
 	</string>
 
-	<pattern-item name="Entity" style="Character">
+	<pattern-item _name="Entity" style="Character">
 		<regex>&amp;[a-zA-Z]+;</regex>
 	</pattern-item>
 
-	<pattern-item name="Closing Bracket" style="Keyword">
+	<pattern-item _name="Closing Bracket" style="Keyword">
 		<regex>&gt;</regex>
 	</pattern-item>
 
-	<keyword-list name="Tags" style = "Keyword" case-sensitive="FALSE"
+	<keyword-list _name="Tags" style = "Keyword" case-sensitive="FALSE"
 		match-empty-string-at-beginning = "FALSE"
 		match-empty-string-at-end = "FALSE"
 		beginning-regex="&lt;/?"
@@ -114,7 +114,7 @@
 		<keyword>var</keyword>
 	</keyword-list>
 
-	<keyword-list name="Attributes" style = "Others" case-sensitive="FALSE"
+	<keyword-list _name="Attributes" style = "Others" case-sensitive="FALSE"
 		match-empty-string-at-beginning = "TRUE"
 		match-empty-string-at-end = "FALSE"
 		end-regex="[ \t]*=">

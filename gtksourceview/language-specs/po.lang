@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE language SYSTEM "language.dtd">
-<language name="gettext translation" version="1.0" section="Others" 
+<language _name="gettext translation" version="1.0" _section="Others" 
 	mimetypes="text/x-po;text/x-pot;text/x-pox">
 
-	<string name = "String" style = "String" end-at-line-end = "FALSE">
+	<string _name = "String" style = "String" end-at-line-end = "FALSE">
 		<start-regex>&quot;</start-regex>
 		<end-regex>&quot;</end-regex>
 	</string>
 
-	<line-comment name = "Format" style= "Comment">
+	<line-comment _name = "Format" style= "Comment">
 		<start-regex>^#,</start-regex>
 	</line-comment>
 
-	<line-comment name = "Location" style= "Others 2">
+	<line-comment _name = "Location" style= "Others 2">
 		<start-regex>^#:</start-regex>
 	</line-comment>
 
-	<line-comment name = "Comment" style= "Comment">
+	<line-comment _name = "Comment" style= "Comment">
 		<start-regex>^#$|^#[^:,\n]</start-regex>
 	</line-comment>
 
-	<keyword-list name = "Keyword" style = "Keyword" case-sensitive="TRUE"
+	<keyword-list _name = "Keyword" style = "Keyword" case-sensitive="TRUE"
 		match-empty-string-at-beginning = "FALSE"
 		match-empty-string-at-end = "TRUE"
 		beginning-regex = "^">
