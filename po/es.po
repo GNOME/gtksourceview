@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-07-06 16:08+0200\n"
-"PO-Revision-Date: 2004-07-06 16:10+0200\n"
+"POT-Creation-Date: 2004-07-18 12:13+0200\n"
+"PO-Revision-Date: 2004-07-18 12:16+0200\n"
 "Last-Translator: Francisco Javier F. Serrador <serrador@cvs.gnome.org>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -38,7 +38,7 @@ msgstr "Comprobar corchetes"
 msgid "Whether to check and highlight matching brackets"
 msgstr "Indica si se comprueban y resaltan los corchetes coincidentes"
 
-#: gtksourceview/gtksourcebuffer.c:297 gtksourceview/gtksourceprintjob.c:303
+#: gtksourceview/gtksourcebuffer.c:297 gtksourceview/gtksourceprintjob.c:295
 msgid "Highlight"
 msgstr "Resaltar"
 
@@ -75,90 +75,110 @@ msgstr ""
 "Lista de directorios en los que se hallan los archivo de especificación de "
 "lenguajes (.lang)."
 
-#: gtksourceview/gtksourceprintjob.c:272
+#: gtksourceview/gtksourceprintjob.c:264
 msgid "Configuration"
 msgstr "Configuración"
 
-#: gtksourceview/gtksourceprintjob.c:273
+#: gtksourceview/gtksourceprintjob.c:265
 msgid "Configuration options for the print job"
 msgstr "Opciones de configuración para el trabajo de impresión"
 
-#: gtksourceview/gtksourceprintjob.c:280
+#: gtksourceview/gtksourceprintjob.c:272
 msgid "Source Buffer"
 msgstr "Búfer del fuente"
 
-#: gtksourceview/gtksourceprintjob.c:281
+#: gtksourceview/gtksourceprintjob.c:273
 msgid "GtkSourceBuffer object to print"
 msgstr "Objeto GtkSourceBuffer a imprimir"
 
-#: gtksourceview/gtksourceprintjob.c:287 gtksourceview/gtksourceview.c:221
+#: gtksourceview/gtksourceprintjob.c:279 gtksourceview/gtksourceview.c:221
 #: gtksourceview/gtksourceview.c:222
 msgid "Tabs Width"
 msgstr "Ancho de tabulación"
 
-#: gtksourceview/gtksourceprintjob.c:288
+#: gtksourceview/gtksourceprintjob.c:280
 msgid "Width in equivalent space characters of tabs"
 msgstr "Anchura en espacios equivalentes para los tabuladores"
 
-#: gtksourceview/gtksourceprintjob.c:295
+#: gtksourceview/gtksourceprintjob.c:287
 msgid "Wrap Mode"
 msgstr "Modo de ajuste"
 
-#: gtksourceview/gtksourceprintjob.c:296
+#: gtksourceview/gtksourceprintjob.c:288
 msgid "Word wrapping mode"
 msgstr "Modo de ajuste de palabras"
 
-#: gtksourceview/gtksourceprintjob.c:304
+#: gtksourceview/gtksourceprintjob.c:296
 msgid "Whether to print the document with highlighted syntax"
 msgstr "Indica si se imprime el documento con resaltado de sintaxis"
 
-#: gtksourceview/gtksourceprintjob.c:312
+#: gtksourceview/gtksourceprintjob.c:304
 msgid "Font"
 msgstr "Tipografía"
 
-#: gtksourceview/gtksourceprintjob.c:313
-msgid "Font name to use for the document text"
-msgstr "Nombre de la tipografía para el texto del documento"
+#: gtksourceview/gtksourceprintjob.c:305
+msgid "GnomeFont name to use for the document text (deprecated)"
+msgstr "Nombre GnomeFont para usar en el texto del documento (obsoleto)"
 
-#: gtksourceview/gtksourceprintjob.c:320
+#: gtksourceview/gtksourceprintjob.c:312
+msgid "Font Description"
+msgstr "Descripción de la tipografía"
+
+#: gtksourceview/gtksourceprintjob.c:313
+msgid "Font description name to use for the document text"
+msgstr "Nombre de la descripción de la tipografía para el texto del documento"
+
+#: gtksourceview/gtksourceprintjob.c:320 gtksourceview/gtksourceprintjob.c:328
 msgid "Numbers Font"
 msgstr "Tipografía para los números"
 
 #: gtksourceview/gtksourceprintjob.c:321
-msgid "Font name to use for the line numbers"
-msgstr "Nombre de la tipografía a usar en los números de línea"
+msgid "GnomeFont name to use for the line numbers (deprecated)"
+msgstr "Nombre GnomeFont para usar en los números de línea (obsoleto)"
 
-#: gtksourceview/gtksourceprintjob.c:328
+#: gtksourceview/gtksourceprintjob.c:329
+msgid "Font description to use for the line numbers"
+msgstr "Descripción de la tipografía a usar en los números de línea"
+
+#: gtksourceview/gtksourceprintjob.c:336
 msgid "Print Line Numbers"
 msgstr "Mostrar números de líneas"
 
-#: gtksourceview/gtksourceprintjob.c:329
+#: gtksourceview/gtksourceprintjob.c:337
 msgid "Interval of printed line numbers (0 means no numbers)"
 msgstr "Intervalo de impresión de números de líneas (0 significa sin números)"
 
-#: gtksourceview/gtksourceprintjob.c:336
+#: gtksourceview/gtksourceprintjob.c:344
 msgid "Print Header"
 msgstr "Imprimir cabecera"
 
-#: gtksourceview/gtksourceprintjob.c:337
+#: gtksourceview/gtksourceprintjob.c:345
 msgid "Whether to print a header in each page"
 msgstr "Indica si se imprimirá una cabecera en cada página"
 
-#: gtksourceview/gtksourceprintjob.c:344
+#: gtksourceview/gtksourceprintjob.c:352
 msgid "Print Footer"
 msgstr "Imprimir pie de página"
 
-#: gtksourceview/gtksourceprintjob.c:345
+#: gtksourceview/gtksourceprintjob.c:353
 msgid "Whether to print a footer in each page"
 msgstr "Indica si se imprimirá un pie de página en cada página"
 
-#: gtksourceview/gtksourceprintjob.c:352
+#: gtksourceview/gtksourceprintjob.c:360
 msgid "Header and Footer Font"
 msgstr "Tipografía de cabecera y pie de página"
 
-#: gtksourceview/gtksourceprintjob.c:353
-msgid "Font name to use for the header and footer"
-msgstr "Nombre de la tipografía a usar para la cabecera y el pie de página"
+#: gtksourceview/gtksourceprintjob.c:361
+msgid "GnomeFont name to use for the header and footer (deprecated)"
+msgstr "Nombre GnomeFont a usar para la cabecera y el pie de página (obsoleto)"
+
+#: gtksourceview/gtksourceprintjob.c:368
+msgid "Header and Footer Font Description"
+msgstr "Descripción de la tipografía de cabecera y pie de página"
+
+#: gtksourceview/gtksourceprintjob.c:369
+msgid "Font description name to use for the header and footer"
+msgstr "Nombre de la descripción de tipografía a usar para la cabecera y el pie de página"
 
 #: gtksourceview/gtksourcestylescheme.c:237
 msgid "Base-N Integer"
@@ -927,4 +947,3 @@ msgstr "Marca"
 #: gtksourceview/language-specs/xml.lang.h:10
 msgid "XML"
 msgstr "XML"
-
