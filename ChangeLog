@@ -1,3 +1,18 @@
+2005-01-07  Paolo Maggi  <paolo@gnome.org>
+
+	Patch by Gustavo Giráldez  <gustavo.giraldez@gmx.net>.
+	Fixes the line number problems and the para box when wrap is disabled.
+	See bug #143874.
+
+	* gtksourceview/gtksourceprintjob.c (get_text_simple)
+	(get_text_with_style): correctly gets the paragraphs to print; 
+	for empty lines gtk_text_iter_forward_to_line_end() would skip the 
+	empty line, thus causing the incorrect numbering. 
+	(create_layout_for_para): ellipsizes the paragraph when text wrapping 
+	is disabled; for empty paragraphs, pango_layout_iter_get_baseline() 
+	returns 0, so checks this condition and adds a space character to 
+	force the calculation of the baseline
+
 2004-12-27  Paolo Maggi  <paolo@gnome.org>
 
 	* gtksourceview/language-specs/php.lang: adds text/x-php-source and 

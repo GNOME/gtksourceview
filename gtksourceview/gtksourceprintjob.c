@@ -1074,7 +1074,9 @@ get_text_simple (GtkSourcePrintJob *job,
 		
 		/* get a line of text */
 		iter = *start;
-		gtk_text_iter_forward_to_line_end (&iter);
+		if (!gtk_text_iter_ends_line (&iter))
+			gtk_text_iter_forward_to_line_end (&iter);
+		
 		if (gtk_text_iter_compare (&iter, end) > 0)
 			iter = *end;
 
@@ -1132,7 +1134,9 @@ get_text_with_style (GtkSourcePrintJob *job,
 
 		/* get a line of text - limit points to the end of the line */
 		limit = *start;
-		gtk_text_iter_forward_to_line_end (&limit);
+		if (!gtk_text_iter_ends_line (&limit))
+			gtk_text_iter_forward_to_line_end (&limit);
+		
 		if (gtk_text_iter_compare (&limit, end) > 0)
 			limit = *end;
 
@@ -1294,7 +1298,7 @@ create_layout_for_para (GtkSourcePrintJob *job,
 
 	layout = pango_layout_new (job->priv->pango_context);
 	
-	if (job->priv->wrap_mode != GTK_WRAP_NONE)
+/*	if (job->priv->wrap_mode != GTK_WRAP_NONE)*/
 		pango_layout_set_width (layout, job->priv->text_width * PANGO_SCALE);
 	
 	switch (job->priv->wrap_mode)	{
@@ -1308,6 +1312,14 @@ create_layout_for_para (GtkSourcePrintJob *job,
 		pango_layout_set_wrap (layout, PANGO_WRAP_WORD_CHAR);
 		break;
 	case GTK_WRAP_NONE:
+		/* FIXME: hack 
+		 * Ellipsize the paragraph when text wrapping is disabled.
+		 * Another possibility would be to set the width so the text 
+		 * breaks into multiple lines, and paginate/render just the 
+		 * first one.
+		 * See also Comment #23 by Owen on bug #143874.
+		 */
+		pango_layout_set_ellipsize (layout, PANGO_ELLIPSIZE_END);
 		break;
 	}
 
@@ -1317,6 +1329,28 @@ create_layout_for_para (GtkSourcePrintJob *job,
 	pango_layout_set_text (layout, text->str, text->len);
 	pango_layout_set_attributes (layout, attrs);
 
+	/* FIXME: <horrible-hack> 
+	 * For empty paragraphs, pango_layout_iter_get_baseline() returns 0,
+	 * so I check this condition and add a space character to force 
+	 * the calculation of the baseline. I don't like that, but I
+	 * didn't find a better way to do it. Note that a paragraph is 
+	 * considered empty either when it has no characters, or when 
+	 * it only has tabs.
+	 * See comment #22 and #23 on bug #143874.
+	 */
+	if (job->priv->print_numbers > 0)
+	{
+		PangoLayoutIter *iter;
+		iter = pango_layout_get_iter (layout);
+		if (pango_layout_iter_get_baseline (iter) == 0)
+		{
+			g_string_append_c (text, ' ');
+			pango_layout_set_text (layout, text->str, text->len);
+		}
+		pango_layout_iter_free (iter);
+	}
+	/* FIXME: </horrible-hack> */
+	
 	g_string_free (text, TRUE);
 	pango_attr_list_unref (attrs);
 
