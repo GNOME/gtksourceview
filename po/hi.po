@@ -1,0 +1,664 @@
+# translation of gtksourceview.HEAD.hi.po to Hindi
+# This file is distributed under the same license as the PACKAGE package.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# G Karunakar <karunakar@freedomink.org>, 2003
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gtksourceview.HEAD.hi\n"
+"POT-Creation-Date: 2003-09-05 04:24+0200\n"
+"PO-Revision-Date: 2003-09-06 18:44+0530\n"
+"Last-Translator: G Karunakar <karunakar@freedomink.org>\n"
+"Language-Team: Hindi <indlinux-hindi-gnome@lists.sourceforge.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Report-Msgid-Bugs-To: \n"
+"X-Generator: KBabel 1.0\n"
+
+#: gtksourceview/gtksourcebuffer.c:279
+msgid "Escape Character"
+msgstr ""
+
+#: gtksourceview/gtksourcebuffer.c:280
+msgid "Escaping character for syntax patterns"
+msgstr ""
+
+#: gtksourceview/gtksourcebuffer.c:288
+msgid "Check Brackets"
+msgstr "कोष्टक जांचे"
+
+#: gtksourceview/gtksourcebuffer.c:289
+msgid "Whether to check and highlight matching brackets"
+msgstr ""
+
+#: gtksourceview/gtksourcebuffer.c:297 gtksourceview/gtksourceprintjob.c:303
+msgid "Highlight"
+msgstr ""
+
+#: gtksourceview/gtksourcebuffer.c:298
+msgid "Whether to highlight syntax in the buffer"
+msgstr ""
+
+#: gtksourceview/gtksourcebuffer.c:306
+msgid "Maximum Undo Levels"
+msgstr ""
+
+#: gtksourceview/gtksourcebuffer.c:307
+msgid "Number of undo levels for the buffer"
+msgstr ""
+
+# #-#-#-#-#  gnome-desktop.HEAD.hi.po (gnome-desktop-2.0.hi)  #-#-#-#-#
+# libgnome-desktop/gnome-ditem-edit.c:611
+# libgnome-desktop/gnome-ditem-edit.c:710
+#: gtksourceview/gtksourcebuffer.c:317
+#: gtksourceview/language-specs/desktop.lang.h:6
+msgid "Language"
+msgstr "भाषा"
+
+#: gtksourceview/gtksourcebuffer.c:318
+msgid "Language object to get highlighting patterns from"
+msgstr ""
+
+#: gtksourceview/gtksourcelanguagesmanager.c:119
+msgid "Language specification directories"
+msgstr ""
+
+#: gtksourceview/gtksourcelanguagesmanager.c:120
+msgid ""
+"List of directories where the language specification files (.lang) are "
+"located"
+msgstr ""
+
+#: gtksourceview/gtksourceprintjob.c:272
+msgid "Configuration"
+msgstr "कॉनफिगरेशन"
+
+#: gtksourceview/gtksourceprintjob.c:273
+msgid "Configuration options for the print job"
+msgstr ""
+
+#: gtksourceview/gtksourceprintjob.c:280
+msgid "Source Buffer"
+msgstr ""
+
+#: gtksourceview/gtksourceprintjob.c:281
+msgid "GtkSourceBuffer object to print"
+msgstr ""
+
+#: gtksourceview/gtksourceprintjob.c:287 gtksourceview/gtksourceview.c:221
+#: gtksourceview/gtksourceview.c:222
+msgid "Tabs Width"
+msgstr "टैब चोडाई"
+
+#: gtksourceview/gtksourceprintjob.c:288
+msgid "Width in equivalent space characters of tabs"
+msgstr ""
+
+#: gtksourceview/gtksourceprintjob.c:295
+msgid "Wrap Mode"
+msgstr "व्रेप मोड"
+
+#: gtksourceview/gtksourceprintjob.c:296
+msgid "Word wrapping mode"
+msgstr ""
+
+#: gtksourceview/gtksourceprintjob.c:304
+msgid "Whether to print the document with highlighted syntax"
+msgstr ""
+
+# #-#-#-#-#  gnome-control-center.HEAD.hi.po (control center)  #-#-#-#-#
+# #-#-#-#-#  libgnomecanvas.gnome-2-2.hi.po (libgnomecanvas)  #-#-#-#-#
+# libgnomecanvas/gnome-canvas-text.c:238
+# #-#-#-#-#  libgnomeui.gnome-2-2.hi.po (libgnomeui HEAD)  #-#-#-#-#
+# libgnomeui/gnome-font-picker.c:184 libgnomeui/gnome-font-picker.c:979
+# #-#-#-#-#  gnumeric.HEAD.hi.po (gnumeric HEAD)  #-#-#-#-#
+# #-#-#-#-#  libgnomecanvas.HEAD.hi.po (PACKAGE VERSION)  #-#-#-#-#
+# libgnomecanvas/gnome-canvas-text.c:238
+# #-#-#-#-#  libgnomeui.HEAD.hi.po (libgnomeui HEAD)  #-#-#-#-#
+# libgnomeui/gnome-font-picker.c:184 libgnomeui/gnome-font-picker.c:979
+# #-#-#-#-#  libgnomecanvas.HEAD.hi.po (libgnomecanvas)  #-#-#-#-#
+# libgnomecanvas/gnome-canvas-text.c:238
+# #-#-#-#-#  libgnomeui.HEAD.hi.po (libgnomeui-2.0.hi)  #-#-#-#-#
+# libgnomeui/gnome-font-picker.c:184 libgnomeui/gnome-font-picker.c:979
+#: gtksourceview/gtksourceprintjob.c:312
+msgid "Font"
+msgstr "फोंट"
+
+#: gtksourceview/gtksourceprintjob.c:313
+msgid "Font name to use for the document text"
+msgstr ""
+
+#: gtksourceview/gtksourceprintjob.c:320
+msgid "Numbers Font"
+msgstr "संख्या फोंट"
+
+#: gtksourceview/gtksourceprintjob.c:321
+msgid "Font name to use for the line numbers"
+msgstr "पंक्ति संख्या के लिए फोंट"
+
+#: gtksourceview/gtksourceprintjob.c:328
+msgid "Print Line Numbers"
+msgstr "प्रत्येक पंक्ति क संख्या प्रिंट करें"
+
+#: gtksourceview/gtksourceprintjob.c:329
+msgid "Interval of printed line numbers (0 means no numbers)"
+msgstr ""
+
+#: gtksourceview/gtksourceprintjob.c:336
+msgid "Print Header"
+msgstr "हैडर प्रिंट करें"
+
+#: gtksourceview/gtksourceprintjob.c:337
+msgid "Whether to print a header in each page"
+msgstr ""
+
+#: gtksourceview/gtksourceprintjob.c:344
+msgid "Print Footer"
+msgstr ""
+
+#: gtksourceview/gtksourceprintjob.c:345
+msgid "Whether to print a footer in each page"
+msgstr ""
+
+#: gtksourceview/gtksourceprintjob.c:352
+msgid "Header and Footer Font"
+msgstr "हैडर और फुटर फोंट"
+
+#: gtksourceview/gtksourceprintjob.c:353
+msgid "Font name to use for the header and footer"
+msgstr "हैडर और फुटर के लिए प्रयुक्त फोंट नाम"
+
+#: gtksourceview/gtksourcestylescheme.c:237
+msgid "Base-N Integer"
+msgstr ""
+
+#: gtksourceview/gtksourcestylescheme.c:242
+msgid "Character"
+msgstr "शब्द"
+
+# libgnome-desktop/gnome-ditem-edit.c:626
+# libgnome-desktop/gnome-ditem-edit.c:736
+#: gtksourceview/gtksourcestylescheme.c:247
+#: gtksourceview/language-specs/latex.lang.h:1
+#: gtksourceview/language-specs/po.lang.h:1
+msgid "Comment"
+msgstr "टिप्पणी"
+
+#: gtksourceview/gtksourcestylescheme.c:252
+msgid "Data Type"
+msgstr "डॉटा प्रकार"
+
+#: gtksourceview/gtksourcestylescheme.c:257
+#: gtksourceview/language-specs/ada.lang.h:3
+msgid "Function"
+msgstr "प्रक्रिया"
+
+#: gtksourceview/gtksourcestylescheme.c:262
+#: gtksourceview/language-specs/c.lang.h:6
+#: gtksourceview/language-specs/cpp.lang.h:6
+msgid "Decimal"
+msgstr "दशमलव"
+
+#: gtksourceview/gtksourcestylescheme.c:267
+msgid "Floating Point"
+msgstr ""
+
+#: gtksourceview/gtksourcestylescheme.c:272
+#: gtksourceview/language-specs/latex.lang.h:3
+#: gtksourceview/language-specs/po.lang.h:3
+msgid "Keyword"
+msgstr ""
+
+#: gtksourceview/gtksourcestylescheme.c:277
+msgid "Preprocessor"
+msgstr ""
+
+# src/gconf-key-editor.c:94
+#: gtksourceview/gtksourcestylescheme.c:282
+#: gtksourceview/language-specs/ada.lang.h:9
+#: gtksourceview/language-specs/c.lang.h:15
+#: gtksourceview/language-specs/cpp.lang.h:15
+#: gtksourceview/language-specs/html.lang.h:8
+#: gtksourceview/language-specs/idl.lang.h:8
+#: gtksourceview/language-specs/java.lang.h:11
+#: gtksourceview/language-specs/perl.lang.h:6
+#: gtksourceview/language-specs/po.lang.h:6
+#: gtksourceview/language-specs/python.lang.h:11
+#: gtksourceview/language-specs/xml.lang.h:8
+msgid "String"
+msgstr "स्ट्रिंग"
+
+#: gtksourceview/gtksourcestylescheme.c:287
+msgid "Specials"
+msgstr "विशेष"
+
+#: gtksourceview/gtksourcestylescheme.c:292
+#: gtksourceview/language-specs/desktop.lang.h:10
+#: gtksourceview/language-specs/diff.lang.h:7
+#: gtksourceview/language-specs/po.lang.h:5
+msgid "Others"
+msgstr "अन्य"
+
+#: gtksourceview/gtksourcestylescheme.c:297
+msgid "Others 2"
+msgstr "अन्य 2"
+
+#: gtksourceview/gtksourcestylescheme.c:302
+msgid "Others 3"
+msgstr "अन्य 3"
+
+#: gtksourceview/gtksourcestylescheme.c:339
+msgid "Default"
+msgstr "डिफॉल्ट"
+
+#: gtksourceview/gtksourcetag.c:108
+msgid "Tag ID"
+msgstr ""
+
+#: gtksourceview/gtksourcetag.c:109
+msgid "ID used to refer to the source tag"
+msgstr ""
+
+#: gtksourceview/gtksourcetag.c:116
+msgid "Tag style"
+msgstr "टैग शैली"
+
+#: gtksourceview/gtksourcetag.c:117
+msgid "The style associated to the source tag"
+msgstr ""
+
+#: gtksourceview/gtksourceview.c:205
+msgid "Show Line Numbers"
+msgstr "पंक्ति संख्या दिखाएं"
+
+#: gtksourceview/gtksourceview.c:206
+msgid "Whether to display line numbers"
+msgstr "क्या पंक्ति संख्या दिखाना है"
+
+#: gtksourceview/gtksourceview.c:213
+msgid "Show Line Markers"
+msgstr ""
+
+#: gtksourceview/gtksourceview.c:214
+msgid "Whether to display line marker pixbufs"
+msgstr ""
+
+#: gtksourceview/gtksourceview.c:231
+msgid "Auto Indentation"
+msgstr ""
+
+#: gtksourceview/gtksourceview.c:232
+msgid "Whether to enable auto indentation"
+msgstr ""
+
+#: gtksourceview/gtksourceview.c:238
+msgid "Insert Spaces Instead of Tabs"
+msgstr "टैब के बदले मेँ खाली जगह का प्रयोग करें"
+
+#: gtksourceview/gtksourceview.c:239
+msgid "Whether to insert spaces instead of tabs"
+msgstr "क्या टैब के बदले मेँ खाली जगह का प्रयोग करें"
+
+#: gtksourceview/gtksourceview.c:246
+msgid "Show Right Margin"
+msgstr "दायां मार्जिन दिखाएं"
+
+#: gtksourceview/gtksourceview.c:247
+msgid "Whether to display the right margin"
+msgstr "क्या दायां मार्जिन दिखाना है"
+
+#: gtksourceview/gtksourceview.c:254
+msgid "Margin position"
+msgstr "मार्जिन स्थिति"
+
+#: gtksourceview/gtksourceview.c:255
+msgid "Position of the right margin"
+msgstr "दाएं मार्जिन की स्थिति"
+
+#: gtksourceview/gtksourceview.c:264
+msgid "Use smart home/end"
+msgstr ""
+
+#: gtksourceview/gtksourceview.c:265
+msgid ""
+"HOME and END keys move to first/last characters on line first before going "
+"to the start/end of the line"
+msgstr ""
+
+#: gtksourceview/language-specs/ada.lang.h:1
+msgid "Ada"
+msgstr "एडा"
+
+#: gtksourceview/language-specs/ada.lang.h:2
+#: gtksourceview/language-specs/c.lang.h:4
+#: gtksourceview/language-specs/cpp.lang.h:4
+msgid "Character Constant"
+msgstr "स्थायी अक्षर"
+
+#: gtksourceview/language-specs/ada.lang.h:4
+#: gtksourceview/language-specs/c.lang.h:10
+#: gtksourceview/language-specs/cpp.lang.h:10
+#: gtksourceview/language-specs/idl.lang.h:4
+#: gtksourceview/language-specs/perl.lang.h:2
+#: gtksourceview/language-specs/python.lang.h:3
+msgid "Keywords"
+msgstr ""
+
+#: gtksourceview/language-specs/ada.lang.h:5
+#: gtksourceview/language-specs/c.lang.h:11
+#: gtksourceview/language-specs/cpp.lang.h:11
+#: gtksourceview/language-specs/desktop.lang.h:7
+#: gtksourceview/language-specs/diff.lang.h:5
+#: gtksourceview/language-specs/java.lang.h:5
+#: gtksourceview/language-specs/perl.lang.h:3
+#: gtksourceview/language-specs/python.lang.h:4
+msgid "Line Comment"
+msgstr "पंक्ति टिप्पणी"
+
+#: gtksourceview/language-specs/ada.lang.h:6
+#: gtksourceview/language-specs/desktop.lang.h:9
+msgid "Number"
+msgstr "संख्या"
+
+#: gtksourceview/language-specs/ada.lang.h:7
+msgid "Preprocessor Keywords"
+msgstr ""
+
+#: gtksourceview/language-specs/ada.lang.h:8
+#: gtksourceview/language-specs/c.lang.h:14
+#: gtksourceview/language-specs/cpp.lang.h:14
+#: gtksourceview/language-specs/idl.lang.h:7
+#: gtksourceview/language-specs/java.lang.h:10
+msgid "Sources"
+msgstr "स्रोत"
+
+#: gtksourceview/language-specs/ada.lang.h:10
+msgid "True And False"
+msgstr "सत्य एवं असत्य"
+
+#: gtksourceview/language-specs/ada.lang.h:11
+#: gtksourceview/language-specs/c.lang.h:16
+#: gtksourceview/language-specs/cpp.lang.h:16
+#: gtksourceview/language-specs/idl.lang.h:9
+msgid "Types"
+msgstr "प्रकारें"
+
+#: gtksourceview/language-specs/c.lang.h:1
+#: gtksourceview/language-specs/cpp.lang.h:1
+msgid "'#if 0' Comment"
+msgstr ""
+
+#: gtksourceview/language-specs/c.lang.h:2
+#: gtksourceview/language-specs/cpp.lang.h:2
+#: gtksourceview/language-specs/html.lang.h:2
+#: gtksourceview/language-specs/idl.lang.h:1
+#: gtksourceview/language-specs/java.lang.h:1
+#: gtksourceview/language-specs/xml.lang.h:2
+msgid "Block Comment"
+msgstr ""
+
+#: gtksourceview/language-specs/c.lang.h:3
+msgid "C"
+msgstr "सी"
+
+#: gtksourceview/language-specs/c.lang.h:5
+#: gtksourceview/language-specs/cpp.lang.h:5
+msgid "Common Macro"
+msgstr "सार्वजनिक मेक्रो"
+
+#: gtksourceview/language-specs/c.lang.h:7
+#: gtksourceview/language-specs/cpp.lang.h:7
+msgid "Floating Point Number"
+msgstr ""
+
+#: gtksourceview/language-specs/c.lang.h:8
+#: gtksourceview/language-specs/cpp.lang.h:8
+msgid "Hex Number"
+msgstr "षट संख्या"
+
+#: gtksourceview/language-specs/c.lang.h:9
+#: gtksourceview/language-specs/cpp.lang.h:9
+#: gtksourceview/language-specs/idl.lang.h:3
+msgid "Include/Pragma"
+msgstr ""
+
+#: gtksourceview/language-specs/c.lang.h:12
+#: gtksourceview/language-specs/cpp.lang.h:12
+msgid "Octal Number"
+msgstr "अष्ट संख्या"
+
+#: gtksourceview/language-specs/c.lang.h:13
+#: gtksourceview/language-specs/cpp.lang.h:13
+#: gtksourceview/language-specs/idl.lang.h:5
+msgid "Preprocessor Definitions"
+msgstr ""
+
+#: gtksourceview/language-specs/cpp.lang.h:3
+msgid "C++"
+msgstr "सी++"
+
+#: gtksourceview/language-specs/desktop.lang.h:1
+msgid ".desktop"
+msgstr ".desktop"
+
+#: gtksourceview/language-specs/desktop.lang.h:2
+msgid "Boolean Value"
+msgstr ""
+
+#: gtksourceview/language-specs/desktop.lang.h:3
+msgid "Encoding"
+msgstr "एनकोड करें"
+
+#: gtksourceview/language-specs/desktop.lang.h:4
+msgid "Exec Parameter"
+msgstr ""
+
+#: gtksourceview/language-specs/desktop.lang.h:5
+msgid "Group"
+msgstr "समूह"
+
+#: gtksourceview/language-specs/desktop.lang.h:8
+msgid "Non Standard Key"
+msgstr "अमानक कुंजी"
+
+#: gtksourceview/language-specs/desktop.lang.h:11
+msgid "Standard Key"
+msgstr "मानक कुंजी"
+
+#: gtksourceview/language-specs/diff.lang.h:1
+msgid "Added line"
+msgstr "पंक्ति जोडा"
+
+#: gtksourceview/language-specs/diff.lang.h:2
+msgid "Changed line"
+msgstr "पंक्ति बदला"
+
+#: gtksourceview/language-specs/diff.lang.h:3
+msgid "Diff"
+msgstr "डिफ"
+
+#: gtksourceview/language-specs/diff.lang.h:4
+msgid "Diff file"
+msgstr "डिफ फाइल"
+
+#: gtksourceview/language-specs/diff.lang.h:6
+#: gtksourceview/language-specs/po.lang.h:4
+msgid "Location"
+msgstr "स्थान"
+
+#: gtksourceview/language-specs/diff.lang.h:8
+msgid "Removed line"
+msgstr "पंक्ति हटाया"
+
+#: gtksourceview/language-specs/diff.lang.h:9
+msgid "Special case"
+msgstr "विशेष केस"
+
+#: gtksourceview/language-specs/html.lang.h:1
+#: gtksourceview/language-specs/xml.lang.h:1
+msgid "Attributes"
+msgstr "गुणधर्म"
+
+#: gtksourceview/language-specs/html.lang.h:3
+#: gtksourceview/language-specs/xml.lang.h:3
+msgid "Closing Bracket"
+msgstr "बंद करने वाला कोष्ठक"
+
+#: gtksourceview/language-specs/html.lang.h:4
+#: gtksourceview/language-specs/xml.lang.h:4
+msgid "DTD"
+msgstr "DTD"
+
+#: gtksourceview/language-specs/html.lang.h:5
+#: gtksourceview/language-specs/xml.lang.h:5
+msgid "Entity"
+msgstr ""
+
+#: gtksourceview/language-specs/html.lang.h:6
+msgid "HTML"
+msgstr "एच टी एम एल"
+
+# #-#-#-#-#  libgnomecanvas.HEAD.hi.po (libgnomecanvas)  #-#-#-#-#
+# libgnomecanvas/gnome-canvas-text.c:212
+#: gtksourceview/language-specs/html.lang.h:7
+#: gtksourceview/language-specs/latex.lang.h:5
+#: gtksourceview/language-specs/xml.lang.h:7
+msgid "Markup"
+msgstr "चिन्हित करें"
+
+#: gtksourceview/language-specs/html.lang.h:9
+msgid "Tags"
+msgstr "टैग"
+
+#: gtksourceview/language-specs/idl.lang.h:2
+msgid "IDL"
+msgstr "IDL"
+
+#: gtksourceview/language-specs/idl.lang.h:6
+msgid "Sectional"
+msgstr "विभागीय"
+
+#: gtksourceview/language-specs/java.lang.h:2
+msgid "Declarations"
+msgstr ""
+
+#: gtksourceview/language-specs/java.lang.h:3
+msgid "Flow"
+msgstr "बहाव"
+
+#: gtksourceview/language-specs/java.lang.h:4
+msgid "Java"
+msgstr "जावा"
+
+#: gtksourceview/language-specs/java.lang.h:6
+msgid "Memory"
+msgstr "मेमोरी"
+
+#: gtksourceview/language-specs/java.lang.h:7
+msgid "Modifiers"
+msgstr "सुधारक"
+
+#: gtksourceview/language-specs/java.lang.h:8
+msgid "Numeric"
+msgstr "आंकिक"
+
+#: gtksourceview/language-specs/java.lang.h:9
+msgid "Primitives"
+msgstr ""
+
+#: gtksourceview/language-specs/java.lang.h:12
+#: gtksourceview/language-specs/python.lang.h:12
+#: gtksourceview/language-specs/xml.lang.h:9
+msgid "String 2"
+msgstr ""
+
+#: gtksourceview/language-specs/latex.lang.h:2
+msgid "Include"
+msgstr ""
+
+#: gtksourceview/language-specs/latex.lang.h:4
+msgid "Latex"
+msgstr "लेटेक्स"
+
+#: gtksourceview/language-specs/latex.lang.h:6
+msgid "Math"
+msgstr "गणित"
+
+#: gtksourceview/language-specs/latex.lang.h:7
+msgid "Most Used Commands"
+msgstr ""
+
+#: gtksourceview/language-specs/perl.lang.h:1
+msgid "Function Call"
+msgstr ""
+
+#: gtksourceview/language-specs/perl.lang.h:4
+msgid "Perl"
+msgstr "पर्ल"
+
+#: gtksourceview/language-specs/perl.lang.h:5
+#: gtksourceview/language-specs/python.lang.h:9
+msgid "Scripts"
+msgstr "स्करिपटें"
+
+#: gtksourceview/language-specs/perl.lang.h:7
+msgid "String2"
+msgstr ""
+
+#: gtksourceview/language-specs/perl.lang.h:8
+msgid "String3"
+msgstr ""
+
+#: gtksourceview/language-specs/perl.lang.h:9
+msgid "Variables"
+msgstr "अनियत"
+
+#: gtksourceview/language-specs/po.lang.h:2
+msgid "Format"
+msgstr "प्रारूप"
+
+#: gtksourceview/language-specs/po.lang.h:7
+msgid "gettext translation"
+msgstr "गेटटेक्सट अनुवाद"
+
+#: gtksourceview/language-specs/python.lang.h:1
+msgid "Builtins"
+msgstr ""
+
+#: gtksourceview/language-specs/python.lang.h:2
+msgid "Functions"
+msgstr "कार्य"
+
+#: gtksourceview/language-specs/python.lang.h:5
+msgid "Module Handler"
+msgstr ""
+
+#: gtksourceview/language-specs/python.lang.h:6
+msgid "Multiline String"
+msgstr ""
+
+#: gtksourceview/language-specs/python.lang.h:7
+msgid "Multiline String 2"
+msgstr ""
+
+#: gtksourceview/language-specs/python.lang.h:8
+msgid "Python"
+msgstr "पाइथन"
+
+#: gtksourceview/language-specs/python.lang.h:10
+msgid "Self"
+msgstr "स्वयं"
+
+#: gtksourceview/language-specs/xml.lang.h:6
+msgid "Hexadecimal"
+msgstr "षटदशमलव"
+
+#: gtksourceview/language-specs/xml.lang.h:10
+msgid "Tag"
+msgstr "टैग"
+
+#: gtksourceview/language-specs/xml.lang.h:11
+msgid "XML"
+msgstr "एक्सएमएल"
+
