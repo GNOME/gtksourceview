@@ -173,6 +173,13 @@ cb_toggle (GtkWidget *widget, gpointer data)
 }
 
 void
+cb_line_numbers_toggle (GtkWidget *widget, gpointer data)
+{
+	gtk_source_view_set_show_line_numbers (GTK_SOURCE_VIEW (data),
+					       !GTK_SOURCE_VIEW (data)->show_line_numbers);
+}
+
+void
 cb_move_cursor (GtkTextBuffer *b, GtkTextIter *cursoriter, GtkTextMark *mark, gpointer data)
 {
 	char buf[64];
@@ -236,6 +243,10 @@ main (int argc, char *argv[])
 	button = gtk_button_new_with_label ("Toggle line pixmaps");
 	gtk_box_pack_start (GTK_BOX (vbox), button, FALSE, FALSE, 0);
 	gtk_signal_connect (GTK_OBJECT (button), "clicked", GTK_SIGNAL_FUNC (cb_toggle), tw);
+
+	button = gtk_button_new_with_label ("Toggle line numbers");
+	gtk_box_pack_start (GTK_BOX (vbox), button, FALSE, FALSE, 0);
+	gtk_signal_connect (GTK_OBJECT (button), "clicked", GTK_SIGNAL_FUNC (cb_line_numbers_toggle), tw);
 
 	pixbuf = gdk_pixbuf_new_from_file ("/usr/share/pixmaps/apple-green.png", NULL);
 	gtk_source_view_add_pixbuf (GTK_SOURCE_VIEW (tw), "one", pixbuf, FALSE);

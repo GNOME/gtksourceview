@@ -1,3 +1,18 @@
+2002-03-31  Jeroen Zwartepoorte  <jeroen@xs4all.nl>
+
+	* src/gtksourcebuffer.c: (gtk_source_buffer_get_undo_levels),
+	(gtk_source_buffer_set_undo_levels): Add undo_levels property.
+	* src/gtksourcebuffer.h: Idem.
+	* src/gtksourceview.c: (gtk_source_view_expose),
+	(gtk_source_view_set_show_line_numbers),
+	(gtk_source_view_set_show_line_pixmaps): Fix bug where margin would
+	still be visible even though both the line numbers & pixmaps were off.
+	* src/gtkundomanager.c: (gtk_undo_manager_get_undo_levels),
+	(gtk_undo_manager_set_undo_levels): Add undo_levels property.
+	* src/gtkundomanager.h: Idem.
+	* src/test-widget.c: (cb_line_numbers_toggle), (main): Add button for
+	showing/hiding the line numbers margin.
+
 2002-03-30  Johan Dahlin  <jdahlin@telia.com>
 
 	* src/Makefile.am: Make sure $(BUILD_SOURCES) is built before trying

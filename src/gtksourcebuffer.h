@@ -115,6 +115,10 @@ gboolean         gtk_source_buffer_can_redo (const GtkSourceBuffer *buffer);
 void             gtk_source_buffer_undo (GtkSourceBuffer *buffer);
 void             gtk_source_buffer_redo (GtkSourceBuffer *buffer);
 
+int              gtk_source_buffer_get_undo_levels (GtkSourceBuffer *buffer);
+void             gtk_source_buffer_set_undo_levels (GtkSourceBuffer *buffer,
+						    int              undo_levels);
+
 void             gtk_source_buffer_begin_not_undoable_action (GtkSourceBuffer *buffer);
 void             gtk_source_buffer_end_not_undoable_action   (GtkSourceBuffer *buffer);
 

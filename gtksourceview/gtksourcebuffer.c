@@ -1334,6 +1334,25 @@ gtk_source_buffer_redo (GtkSourceBuffer *buffer)
 	gtk_undo_manager_redo (buffer->priv->undo_manager);
 }
 
+int
+gtk_source_buffer_get_undo_levels (GtkSourceBuffer *buffer)
+{
+	g_return_if_fail (GTK_IS_SOURCE_BUFFER (buffer));
+	g_return_if_fail (buffer->priv != NULL);
+
+	return gtk_undo_manager_get_undo_levels (buffer->priv->undo_manager);
+}
+
+void
+gtk_source_buffer_set_undo_levels (GtkSourceBuffer *buffer,
+				   int              undo_levels)
+{
+	g_return_if_fail (GTK_IS_SOURCE_BUFFER (buffer));
+	g_return_if_fail (buffer->priv != NULL);
+
+	gtk_undo_manager_set_undo_levels (buffer->priv->undo_manager, undo_levels);
+}
+
 void
 gtk_source_buffer_begin_not_undoable_action (GtkSourceBuffer *buffer)
 {

@@ -443,6 +443,27 @@ gtk_undo_manager_redo (GtkUndoManager *um)
 
 }
 
+int
+gtk_undo_manager_get_undo_levels (GtkUndoManager *um)
+{
+	g_return_val_if_fail (um != NULL, 0);
+	g_return_val_if_fail (GTK_IS_UNDO_MANAGER (um), 0);
+
+	return um->priv->undo_levels;
+}
+
+void
+gtk_undo_manager_set_undo_levels (GtkUndoManager *um,
+				  int             undo_levels)
+{
+	g_return_if_fail (um != NULL);
+	g_return_if_fail (GTK_IS_UNDO_MANAGER (um));
+
+	um->priv->undo_levels = undo_levels;
+
+	gtk_undo_manager_check_list_size (um);
+}
+
 static void 
 gtk_undo_manager_free_action_list (GtkUndoManager *um)
 {

@@ -432,12 +432,21 @@ gtk_source_view_expose (GtkWidget      *widget,
 		margin_width = text_width + 4 + GUTTER_PIXMAP;
 	else if (view->show_line_numbers)
 		margin_width = text_width + 4;
-	else
+	else if (view->show_line_pixmaps)
 		margin_width = GUTTER_PIXMAP;
+	else
+		margin_width = 0;
 
 	gtk_text_view_set_border_window_size (GTK_TEXT_VIEW (text_view),
 					      GTK_TEXT_WINDOW_LEFT,
 					      margin_width);
+
+	if (margin_width == 0) {
+		g_signal_handlers_disconnect_by_func (G_OBJECT (view),
+						      G_CALLBACK (gtk_source_view_expose),
+						      view);
+		return;
+	}
 
 	i = 0;
 	while (i < count) {
@@ -624,15 +633,11 @@ gtk_source_view_set_show_line_numbers (GtkSourceView *view,
 						  view);
 
 			view->show_line_numbers = visible;		}	} else {
-		if (view->show_line_numbers) {			/* force expose event, which will adjust margin. */
-			gtk_widget_queue_draw (GTK_WIDGET (view));
-
-			if (!view->show_line_pixmaps)
-				g_signal_handlers_disconnect_by_func (G_OBJECT (view),
-								      G_CALLBACK (gtk_source_view_expose),
-								      view);
-
+		if (view->show_line_numbers) {
 			view->show_line_numbers = visible;
+
+			/* force expose event, which will adjust margin. */
+			gtk_widget_queue_draw (GTK_WIDGET (view));
 		}	}
 }
 
@@ -672,15 +677,10 @@ gtk_source_view_set_show_line_pixmaps (GtkSourceView *view,
 
 			view->show_line_pixmaps = visible;		}	} else {
 		if (view->show_line_pixmaps) {
+			view->show_line_pixmaps = visible;
+
 			/* force expose event, which will adjust margin. */
 			gtk_widget_queue_draw (GTK_WIDGET (view));
-
-			if (!view->show_line_numbers)
-				g_signal_handlers_disconnect_by_func (G_OBJECT (view),
-								      G_CALLBACK (gtk_source_view_expose),
-								      view);
-
-			view->show_line_pixmaps = visible;
 		}
 	}
 }

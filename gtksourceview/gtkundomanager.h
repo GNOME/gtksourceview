@@ -68,6 +68,10 @@ gboolean        gtk_undo_manager_can_redo (const GtkUndoManager *um);
 void            gtk_undo_manager_undo     (GtkUndoManager *um);
 void            gtk_undo_manager_redo     (GtkUndoManager *um);
 
+int             gtk_undo_manager_get_undo_levels (GtkUndoManager *um);
+void            gtk_undo_manager_set_undo_levels (GtkUndoManager *um,
+						  int             undo_levels);
+
 void            gtk_undo_manager_begin_not_undoable_action (GtkUndoManager *um);
 void            gtk_undo_manager_end_not_undoable_action   (GtkUndoManager *um);
 
