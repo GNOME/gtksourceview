@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-09-27 12:34+0200\n"
-"PO-Revision-Date: 2003-09-27 15:37+0200\n"
+"POT-Creation-Date: 2003-12-02 15:19+0100\n"
+"PO-Revision-Date: 2003-12-02 21:01+0100\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -200,7 +200,7 @@ msgstr "Preprocesor"
 #: gtksourceview/language-specs/cpp.lang.h:15
 #: gtksourceview/language-specs/html.lang.h:8
 #: gtksourceview/language-specs/idl.lang.h:8
-#: gtksourceview/language-specs/java.lang.h:12
+#: gtksourceview/language-specs/java.lang.h:11
 #: gtksourceview/language-specs/perl.lang.h:6
 #: gtksourceview/language-specs/po.lang.h:6
 #: gtksourceview/language-specs/python.lang.h:11
@@ -331,9 +331,10 @@ msgstr "Klíčová slova"
 #: gtksourceview/language-specs/cpp.lang.h:11
 #: gtksourceview/language-specs/desktop.lang.h:7
 #: gtksourceview/language-specs/diff.lang.h:5
-#: gtksourceview/language-specs/java.lang.h:7
+#: gtksourceview/language-specs/java.lang.h:5
 #: gtksourceview/language-specs/perl.lang.h:3
 #: gtksourceview/language-specs/python.lang.h:4
+#: gtksourceview/language-specs/sql.lang.h:11
 msgid "Line Comment"
 msgstr "Poznámka na řádku"
 
@@ -350,7 +351,8 @@ msgstr "Klíčová slova preprocesoru"
 #: gtksourceview/language-specs/c.lang.h:14
 #: gtksourceview/language-specs/cpp.lang.h:14
 #: gtksourceview/language-specs/idl.lang.h:7
-#: gtksourceview/language-specs/java.lang.h:11
+#: gtksourceview/language-specs/java.lang.h:10
+#: gtksourceview/language-specs/sql.lang.h:26
 msgid "Sources"
 msgstr "Zdrojové kódy"
 
@@ -375,6 +377,7 @@ msgstr "Poznámka '#if 0'"
 #: gtksourceview/language-specs/html.lang.h:2
 #: gtksourceview/language-specs/idl.lang.h:1
 #: gtksourceview/language-specs/java.lang.h:1
+#: gtksourceview/language-specs/sql.lang.h:5
 #: gtksourceview/language-specs/xml.lang.h:2
 msgid "Block Comment"
 msgstr "Bloková poznámka"
@@ -390,7 +393,6 @@ msgstr "Společné makro"
 
 #: gtksourceview/language-specs/c.lang.h:7
 #: gtksourceview/language-specs/cpp.lang.h:7
-#: gtksourceview/language-specs/java.lang.h:3
 msgid "Floating Point Number"
 msgstr "Číslo s plovoucí řádovou čárkou"
 
@@ -523,31 +525,31 @@ msgstr "Sekční"
 msgid "Declarations"
 msgstr "Deklarace"
 
-#: gtksourceview/language-specs/java.lang.h:4
+#: gtksourceview/language-specs/java.lang.h:3
 msgid "Flow"
 msgstr "Tok"
 
-#: gtksourceview/language-specs/java.lang.h:5
-msgid "Integer"
-msgstr "Celé číslo"
-
-#: gtksourceview/language-specs/java.lang.h:6
+#: gtksourceview/language-specs/java.lang.h:4
 msgid "Java"
 msgstr "Java"
 
-#: gtksourceview/language-specs/java.lang.h:8
+#: gtksourceview/language-specs/java.lang.h:6
 msgid "Memory"
 msgstr "Paměť"
 
-#: gtksourceview/language-specs/java.lang.h:9
+#: gtksourceview/language-specs/java.lang.h:7
 msgid "Modifiers"
 msgstr "Modifikátory"
 
-#: gtksourceview/language-specs/java.lang.h:10
+#: gtksourceview/language-specs/java.lang.h:8
+msgid "Numeric"
+msgstr "Číselné"
+
+#: gtksourceview/language-specs/java.lang.h:9
 msgid "Primitives"
 msgstr "Primitiva"
 
-#: gtksourceview/language-specs/java.lang.h:13
+#: gtksourceview/language-specs/java.lang.h:12
 #: gtksourceview/language-specs/python.lang.h:12
 #: gtksourceview/language-specs/xml.lang.h:9
 msgid "String 2"
@@ -630,6 +632,106 @@ msgstr "Python"
 msgid "Self"
 msgstr "Self"
 
+#: gtksourceview/language-specs/sql.lang.h:1
+msgid "ANSI Datatypes"
+msgstr "Typy dat ANSI"
+
+#: gtksourceview/language-specs/sql.lang.h:2
+msgid "ANSI Reserved Words"
+msgstr "Rezervovaná slova ANSI"
+
+#: gtksourceview/language-specs/sql.lang.h:3
+msgid "Aggregate Functions"
+msgstr "Agregující funkce"
+
+#: gtksourceview/language-specs/sql.lang.h:4
+msgid "Analytic Functions"
+msgstr "Analyttické funkce"
+
+#: gtksourceview/language-specs/sql.lang.h:6
+msgid "Character Functions Returning Character Values"
+msgstr "Znakové funkce vracející znakové hodnoty"
+
+#: gtksourceview/language-specs/sql.lang.h:7
+msgid "Character Functions Returning Number Values"
+msgstr "Znakové funkce vracející číselné hodnoty"
+
+#: gtksourceview/language-specs/sql.lang.h:8
+msgid "Conversion Functions"
+msgstr "Konverzní funkce"
+
+#: gtksourceview/language-specs/sql.lang.h:9
+msgid "Datetime Functions"
+msgstr "Funkce data a času"
+
+#: gtksourceview/language-specs/sql.lang.h:10
+msgid "Integer Literals"
+msgstr "Celočíselné literály"
+
+#: gtksourceview/language-specs/sql.lang.h:12
+msgid "Miscellaneous Single-Row Functions"
+msgstr "Různé funkce pro jeden řádek"
+
+#: gtksourceview/language-specs/sql.lang.h:13
+msgid "Null"
+msgstr "Null"
+
+#: gtksourceview/language-specs/sql.lang.h:14
+msgid "Number Functions"
+msgstr "Číselné funkce"
+
+#: gtksourceview/language-specs/sql.lang.h:15
+msgid "Number Literals"
+msgstr "Číselné literály"
+
+#: gtksourceview/language-specs/sql.lang.h:16
+msgid "Object Reference Functions"
+msgstr "Funkce odkazu na objekt"
+
+#: gtksourceview/language-specs/sql.lang.h:17
+msgid "Oracle Built-in Datatypes"
+msgstr "Vestavěné typy dat Oracle"
+
+#: gtksourceview/language-specs/sql.lang.h:18
+msgid "Oracle Reserved Words"
+msgstr "Rezervovaná slova Oracle"
+
+#: gtksourceview/language-specs/sql.lang.h:19
+msgid "SQL"
+msgstr "SQL"
+
+#: gtksourceview/language-specs/sql.lang.h:20
+msgid "SQL*Plus At Sign"
+msgstr "SQL*Plus znak At"
+
+#: gtksourceview/language-specs/sql.lang.h:21
+msgid "SQL*Plus Commands"
+msgstr "SQL*Plus příkazy"
+
+#: gtksourceview/language-specs/sql.lang.h:22
+msgid "SQL*Plus Double At Sign"
+msgstr "SQL*Plus dvojitý znak At"
+
+#: gtksourceview/language-specs/sql.lang.h:23
+msgid "SQL*Plus Slash"
+msgstr "SQL*Plus lomítko"
+
+#: gtksourceview/language-specs/sql.lang.h:24
+msgid "SQL/DS and DB2 Datatypes"
+msgstr "Typydat SQL/DS a DB2"
+
+#: gtksourceview/language-specs/sql.lang.h:25
+msgid "Size Clause"
+msgstr "Klauzule size"
+
+#: gtksourceview/language-specs/sql.lang.h:27
+msgid "Text Literals"
+msgstr "Textové literály"
+
+#: gtksourceview/language-specs/sql.lang.h:28
+msgid "Unlimited"
+msgstr "Neomezeno"
+
 #: gtksourceview/language-specs/xml.lang.h:6
 msgid "Hexadecimal"
 msgstr "Šestnáctkové"
@@ -641,6 +743,3 @@ msgstr "Tag"
 #: gtksourceview/language-specs/xml.lang.h:11
 msgid "XML"
 msgstr "XML"
-
-#~ msgid "Numeric"
-#~ msgstr "Číselné"
