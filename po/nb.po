@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-10-13 10:44+0200\n"
-"PO-Revision-Date: 2004-08-24 10:58+0200\n"
+"POT-Creation-Date: 2004-11-25 11:14+0100\n"
+"PO-Revision-Date: 2004-11-25 11:17+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian (bokmal) <i18n-nb@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
@@ -607,9 +607,8 @@ msgstr "Navn på egenskaper"
 #.
 #: gtksourceview/language-specs/css.lang.h:51
 #: gtksourceview/language-specs/javascript.lang.h:20
-#, fuzzy
 msgid "Punctuators"
-msgstr "Funksjoner"
+msgstr "Stopptegn"
 
 #: gtksourceview/language-specs/css.lang.h:52
 msgid "Selector Grammar"
@@ -637,7 +636,7 @@ msgstr ""
 #.
 #: gtksourceview/language-specs/css.lang.h:69
 msgid "Unicode Character Reference"
-msgstr ""
+msgstr "Unicode tegnreferanse"
 
 #.
 #. Unicode range values.
@@ -744,7 +743,7 @@ msgstr "Fortran 95"
 
 #: gtksourceview/language-specs/fortran.lang.h:5
 msgid "Input/Output"
-msgstr ""
+msgstr "Inn-/utdata"
 
 #: gtksourceview/language-specs/fortran.lang.h:6
 msgid "Intrinsics"
@@ -800,7 +799,6 @@ msgid "Error Handling"
 msgstr "Feilhåndtering"
 
 #: gtksourceview/language-specs/javascript.lang.h:5
-#, fuzzy
 msgid "Floating-Point Number"
 msgstr "Flyttall"
 
@@ -832,7 +830,7 @@ msgstr "Tekstbokstaver"
 
 #: gtksourceview/language-specs/javascript.lang.h:14
 msgid "Math Value Properties"
-msgstr ""
+msgstr "Egenskaper for matematiske verdier"
 
 #: gtksourceview/language-specs/javascript.lang.h:16
 msgid "Object Functions"
@@ -924,7 +922,7 @@ msgstr "Blokk-kommentar 2"
 
 #: gtksourceview/language-specs/pascal.lang.h:3
 msgid "Boolean Bitwise Operators"
-msgstr ""
+msgstr "Bolske bitvise operatorer"
 
 #: gtksourceview/language-specs/pascal.lang.h:4
 msgid "Builtin Functions"
@@ -939,8 +937,9 @@ msgid "Builtin Values"
 msgstr "Innebygde verdier"
 
 #: gtksourceview/language-specs/pascal.lang.h:7
+#, fuzzy
 msgid "Functions and Function Modifiers"
-msgstr ""
+msgstr "Funksjoner og funksjons"
 
 #: gtksourceview/language-specs/pascal.lang.h:8
 msgid "General Format"
@@ -951,16 +950,14 @@ msgid "Loop, Flow, and Exceptions Keywords"
 msgstr ""
 
 #: gtksourceview/language-specs/pascal.lang.h:13
-#, fuzzy
 msgid "Math Operators"
-msgstr "Operatorer"
+msgstr "Matematiske operatorer"
 
 #: gtksourceview/language-specs/pascal.lang.h:15
 msgid "Pascal"
 msgstr "Pascal"
 
 #: gtksourceview/language-specs/pascal.lang.h:16
-#, fuzzy
 msgid "Preprocessor Defines"
 msgstr "Preprosessordefinisjoner"
 
@@ -1320,12 +1317,3 @@ msgstr "Gammel type kommentar"
 #: gtksourceview/language-specs/vbnet.lang.h:9
 msgid "VB.NET"
 msgstr "VB.NET"
-
-#~ msgid "CSS"
-#~ msgstr "CSS"
-
-#~ msgid "JavaScript"
-#~ msgstr "JavaScript"
-
-#~ msgid "MSIL"
-#~ msgstr "MSIL"
