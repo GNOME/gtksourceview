@@ -1,3 +1,9 @@
+2003-12-14  Gustavo Giraldez  <gustavo.giraldez@gmx.net>
+
+	* docs/reference/gtksourceview-docs.sgml: Use a <reference>, not a
+	<section> for the API reference.  The index does not build
+	correctly otherwise.
+
 2003-12-12  Gustavo Giraldez  <gustavo.giraldez@gmx.net>
 
 	* tests/test-widget.c (open_file_cb): Removed
