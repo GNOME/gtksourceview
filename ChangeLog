@@ -1,3 +1,9 @@
+2002-02-06  Jeroen Zwartepoorte  <jeroen@xs4all.nl>
+
+	* src/gtksourceview.c: (gtk_source_view_calculate_tab_stop_width):
+	Immediately return 0 if tab_stop if also 0, otherwise a pango warning
+	about an invalid UTF-8 string will be displayed.
+
 2002-02-05  Jeroen Zwartepoorte  <jeroen@xs4all.nl>
 
 	* aclocal.m4: Updated by auto* programs.

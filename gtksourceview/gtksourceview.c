@@ -516,6 +516,9 @@ gtk_source_view_calculate_tab_stop_width (GtkWidget *widget,
 	int counter = 0;
 	int tab_width = 0;
 
+	if (tab_stop == 0)
+		return 0;
+
 	tab_string = g_malloc (tab_stop + 1);
 
 	while (counter < tab_stop) {
