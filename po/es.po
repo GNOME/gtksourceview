@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-07-31 12:00+0200\n"
-"PO-Revision-Date: 2004-07-31 12:01+0200\n"
+"POT-Creation-Date: 2004-08-02 23:02+0200\n"
+"PO-Revision-Date: 2004-08-02 23:04+0200\n"
 "Last-Translator: Francisco Javier F. Serrador <serrador@cvs.gnome.org>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -209,6 +209,7 @@ msgstr "Función"
 #: gtksourceview/gtksourcestylescheme.c:262
 #: gtksourceview/language-specs/c.lang.h:6
 #: gtksourceview/language-specs/cpp.lang.h:6
+#: gtksourceview/language-specs/haskell.lang.h:3
 msgid "Decimal"
 msgstr "Decimal"
 
@@ -219,6 +220,7 @@ msgstr "Coma flotante"
 #: gtksourceview/gtksourcestylescheme.c:272
 #: gtksourceview/language-specs/latex.lang.h:3
 #: gtksourceview/language-specs/po.lang.h:3
+#: gtksourceview/language-specs/texinfo.lang.h:8
 msgid "Keyword"
 msgstr "Palabra clave"
 
@@ -240,6 +242,8 @@ msgstr "Preprocesador"
 #: gtksourceview/language-specs/python.lang.h:11
 #: gtksourceview/language-specs/ruby.lang.h:18
 #: gtksourceview/language-specs/xml.lang.h:8
+#: gtksourceview/language-specs/haskell.lang.h:15
+#: gtksourceview/language-specs/vbnet.lang.h:7
 msgid "String"
 msgstr "Cadena"
 
@@ -350,6 +354,7 @@ msgstr "Ada"
 #: gtksourceview/language-specs/ada.lang.h:2
 #: gtksourceview/language-specs/c.lang.h:4
 #: gtksourceview/language-specs/cpp.lang.h:4
+#: gtksourceview/language-specs/haskell.lang.h:2
 msgid "Character Constant"
 msgstr "Constante carácter"
 
@@ -363,6 +368,8 @@ msgstr "Constante carácter"
 #: gtksourceview/language-specs/python.lang.h:3
 #: gtksourceview/language-specs/ruby.lang.h:8
 #: gtksourceview/language-specs/verilog.lang.h:6
+#: gtksourceview/language-specs/haskell.lang.h:9
+#: gtksourceview/language-specs/vbnet.lang.h:1
 msgid "Keywords"
 msgstr "Palabras clave"
 
@@ -379,6 +386,9 @@ msgstr "Palabras clave"
 #: gtksourceview/language-specs/ruby.lang.h:9
 #: gtksourceview/language-specs/sql.lang.h:11
 #: gtksourceview/language-specs/verilog.lang.h:7
+#: gtksourceview/language-specs/haskell.lang.h:10
+#: gtksourceview/language-specs/texinfo.lang.h:9
+#: gtksourceview/language-specs/vbnet.lang.h:2
 msgid "Line Comment"
 msgstr "Comentario de línea"
 
@@ -400,6 +410,8 @@ msgstr "Directivas del preprocesador"
 #: gtksourceview/language-specs/php.lang.h:15
 #: gtksourceview/language-specs/sql.lang.h:26
 #: gtksourceview/language-specs/verilog.lang.h:9
+#: gtksourceview/language-specs/haskell.lang.h:14
+#: gtksourceview/language-specs/vbnet.lang.h:6
 msgid "Sources"
 msgstr "Fuentes"
 
@@ -430,6 +442,8 @@ msgstr "Comentario '#if 0'"
 #: gtksourceview/language-specs/sql.lang.h:5
 #: gtksourceview/language-specs/verilog.lang.h:2
 #: gtksourceview/language-specs/xml.lang.h:2
+#: gtksourceview/language-specs/haskell.lang.h:1
+#: gtksourceview/language-specs/texinfo.lang.h:1
 msgid "Block Comment"
 msgstr "Comentario de bloque"
 
@@ -444,23 +458,27 @@ msgstr "Macro común"
 
 #: gtksourceview/language-specs/c.lang.h:7
 #: gtksourceview/language-specs/cpp.lang.h:7
+#: gtksourceview/language-specs/haskell.lang.h:4
 msgid "Floating Point Number"
 msgstr "Número en coma flotante"
 
 #: gtksourceview/language-specs/c.lang.h:8
 #: gtksourceview/language-specs/cpp.lang.h:8
+#: gtksourceview/language-specs/haskell.lang.h:6
 msgid "Hex Number"
 msgstr "Número hex"
 
 #: gtksourceview/language-specs/c.lang.h:9
 #: gtksourceview/language-specs/cpp.lang.h:9
 #: gtksourceview/language-specs/idl.lang.h:3
+#: gtksourceview/language-specs/haskell.lang.h:7
 msgid "Include/Pragma"
 msgstr "Include/Pragma"
 
 #: gtksourceview/language-specs/c.lang.h:12
 #: gtksourceview/language-specs/cpp.lang.h:12
 #: gtksourceview/language-specs/verilog.lang.h:8
+#: gtksourceview/language-specs/haskell.lang.h:11
 msgid "Octal Number"
 msgstr "Número octal"
 
@@ -468,6 +486,8 @@ msgstr "Número octal"
 #: gtksourceview/language-specs/cpp.lang.h:13
 #: gtksourceview/language-specs/csharp.lang.h:5
 #: gtksourceview/language-specs/idl.lang.h:5
+#: gtksourceview/language-specs/haskell.lang.h:13
+#: gtksourceview/language-specs/vbnet.lang.h:4
 msgid "Preprocessor Definitions"
 msgstr "Definiciones del preprocesador"
 
@@ -481,6 +501,7 @@ msgstr "C#"
 
 #: gtksourceview/language-specs/csharp.lang.h:6
 #: gtksourceview/language-specs/java.lang.h:9
+#: gtksourceview/language-specs/vbnet.lang.h:5
 msgid "Primitives"
 msgstr "Primitivas"
 
@@ -489,6 +510,7 @@ msgstr "Primitivas"
 #: gtksourceview/language-specs/lua.lang.h:11
 #: gtksourceview/language-specs/python.lang.h:12
 #: gtksourceview/language-specs/ruby.lang.h:19
+#: gtksourceview/language-specs/vbnet.lang.h:8
 msgid "String 2"
 msgstr "Cadena 2"
 
@@ -576,6 +598,7 @@ msgstr "HTML"
 #: gtksourceview/language-specs/html.lang.h:7
 #: gtksourceview/language-specs/latex.lang.h:5
 #: gtksourceview/language-specs/xml.lang.h:7
+#: gtksourceview/language-specs/texinfo.lang.h:12
 msgid "Markup"
 msgstr "Marcado"
 
@@ -616,6 +639,7 @@ msgid "Numeric"
 msgstr "Numérico"
 
 #: gtksourceview/language-specs/latex.lang.h:2
+#: gtksourceview/language-specs/texinfo.lang.h:6
 msgid "Include"
 msgstr "Include"
 
@@ -734,6 +758,7 @@ msgid "HTML Block"
 msgstr "Bloque HTML"
 
 #: gtksourceview/language-specs/php.lang.h:12
+#: gtksourceview/language-specs/haskell.lang.h:12
 msgid "Operators"
 msgstr "Operadores"
 
@@ -957,3 +982,68 @@ msgstr "Marca"
 #: gtksourceview/language-specs/xml.lang.h:10
 msgid "XML"
 msgstr "XML"
+
+#: gtksourceview/language-specs/haskell.lang.h:5
+msgid "Haskell"
+msgstr "Haskell"
+
+#: gtksourceview/language-specs/haskell.lang.h:8
+msgid "Keysymbols"
+msgstr "Keysymbols"
+
+#: gtksourceview/language-specs/haskell.lang.h:16
+msgid "Type or Constructor"
+msgstr "Tipo o constructor"
+
+#: gtksourceview/language-specs/texinfo.lang.h:2
+msgid "Characters"
+msgstr "Caracteres"
+
+#: gtksourceview/language-specs/texinfo.lang.h:3
+msgid "File Attributes"
+msgstr "Atributos de archivo"
+
+#: gtksourceview/language-specs/texinfo.lang.h:4
+msgid "Formatting"
+msgstr "Formato"
+
+#: gtksourceview/language-specs/texinfo.lang.h:5
+msgid "Generated Content"
+msgstr "Contenido generado"
+
+#: gtksourceview/language-specs/texinfo.lang.h:7
+msgid "Indexing"
+msgstr "Indexado"
+
+#: gtksourceview/language-specs/texinfo.lang.h:10
+msgid "Macro Parameters"
+msgstr "Parámetros de macro"
+
+#: gtksourceview/language-specs/texinfo.lang.h:11
+msgid "Macros"
+msgstr "Macros"
+
+#: gtksourceview/language-specs/texinfo.lang.h:13
+msgid "Markup (block)"
+msgstr "Marcado (bloque)"
+
+#: gtksourceview/language-specs/texinfo.lang.h:14
+msgid "Markup (inline)"
+msgstr "Marcado (en línea)"
+
+#: gtksourceview/language-specs/texinfo.lang.h:15
+msgid "Sectioning"
+msgstr "Seccionado"
+
+#: gtksourceview/language-specs/texinfo.lang.h:16
+msgid "Texinfo"
+msgstr "Texinfo"
+
+#: gtksourceview/language-specs/vbnet.lang.h:3
+msgid "Old Style Comment"
+msgstr "Comentario al viejo estilo"
+
+#: gtksourceview/language-specs/vbnet.lang.h:9
+msgid "VB.NET"
+msgstr "VB.NET"
+
