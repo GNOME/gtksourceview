@@ -1,5 +1,4 @@
 # translation of gtksourceview.HEAD.az.po to Azerbaijani Turkish
-# gtksourceview.HEAD.po faylının Azərbaycan dilinə tərcüməsi
 # Copyright (C) 2003 Mətin Əmirov
 # This file is distributed under the same license as the gtksourceview package.
 # Mətin Əmirov <metin@karegen.com>, 2003, 2004.
@@ -8,10 +7,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview.HEAD.az\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-02-01 16:13+0100\n"
+"POT-Creation-Date: 2004-03-05 15:17+0100\n"
 "PO-Revision-Date: 2004-02-01 21:43+0200\n"
 "Last-Translator: Mətin Əmirov <metin@karegen.com>\n"
-"Language-Team: Azerbaijani Turkish <gnome@azitt.com>\n"
+"Language-Team: Azerbaijani Turkish <translation-team-az@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,7 +18,7 @@ msgstr ""
 
 #: gtksourceview/gtksourcebuffer.c:279
 msgid "Escape Character"
-msgstr "Qaçış İşarəsi (Escape Character)"
+msgstr "Qaçış İşarəsi"
 
 #: gtksourceview/gtksourcebuffer.c:280
 msgid "Escaping character for syntax patterns"
@@ -43,7 +42,7 @@ msgstr "Bufferdə sintaksisin işıqlandırılması"
 
 #: gtksourceview/gtksourcebuffer.c:306
 msgid "Maximum Undo Levels"
-msgstr "maksimal Geri Alma Səviyyəsi"
+msgstr "Maksimal Geri Alma Səviyyəsi"
 
 #: gtksourceview/gtksourcebuffer.c:307
 msgid "Number of undo levels for the buffer"
@@ -70,11 +69,11 @@ msgstr "Dil spesifikasiya fayllarının (.lang) olduğu cərgələr siyahısı"
 
 #: gtksourceview/gtksourceprintjob.c:272
 msgid "Configuration"
-msgstr "Quraşdırma"
+msgstr "Qurğular"
 
 #: gtksourceview/gtksourceprintjob.c:273
 msgid "Configuration options for the print job"
-msgstr "Çap vəzifəsi üçün quraşdırma seçənəkləri"
+msgstr "Çap vəzifəsi üçün quraşdırma seçimləri"
 
 #: gtksourceview/gtksourceprintjob.c:280
 msgid "Source Buffer"
@@ -87,11 +86,11 @@ msgstr "Çap ediləcək GtkSourceBuffer obyekti"
 #: gtksourceview/gtksourceprintjob.c:287 gtksourceview/gtksourceview.c:221
 #: gtksourceview/gtksourceview.c:222
 msgid "Tabs Width"
-msgstr "Səkmələrin Eni"
+msgstr "Səkmə Eni"
 
 #: gtksourceview/gtksourceprintjob.c:288
 msgid "Width in equivalent space characters of tabs"
-msgstr "Eyni böyüklükdəki boşluq miqdarı olaraq tabların eni"
+msgstr "Eyni böyüklükdəki boşluq miqdarı olaraq səkmələrin eni"
 
 #: gtksourceview/gtksourceprintjob.c:295
 msgid "Wrap Mode"
@@ -216,7 +215,7 @@ msgstr "Qatar"
 msgid "Specials"
 msgstr "Xüsusi"
 
-#: gtksourceview/gtksourcestylescheme.c:292
+#: gtksourceview/gtksourcestylescheme.c:294
 #: gtksourceview/language-specs/desktop.lang.h:10
 #: gtksourceview/language-specs/diff.lang.h:7
 #: gtksourceview/language-specs/msil.lang.h:2
@@ -224,21 +223,21 @@ msgstr "Xüsusi"
 msgid "Others"
 msgstr "Digərləri"
 
-#: gtksourceview/gtksourcestylescheme.c:297
+#: gtksourceview/gtksourcestylescheme.c:299
 msgid "Others 2"
 msgstr "Digərləri 2"
 
-#: gtksourceview/gtksourcestylescheme.c:302
+#: gtksourceview/gtksourcestylescheme.c:304
 msgid "Others 3"
 msgstr "Digərləri 3"
 
-#: gtksourceview/gtksourcestylescheme.c:339
+#: gtksourceview/gtksourcestylescheme.c:341
 msgid "Default"
-msgstr "Əsas"
+msgstr "Ön Qurğulu"
 
 #: gtksourceview/gtksourcetag.c:108
 msgid "Tag ID"
-msgstr "Taq ID'si"
+msgstr "Taq ID-si"
 
 #: gtksourceview/gtksourcetag.c:109
 msgid "ID used to refer to the source tag"
@@ -451,7 +450,6 @@ msgstr "Primitivlər"
 #: gtksourceview/language-specs/csharp.lang.h:9
 #: gtksourceview/language-specs/java.lang.h:12
 #: gtksourceview/language-specs/python.lang.h:12
-#: gtksourceview/language-specs/xml.lang.h:9
 msgid "String 2"
 msgstr "Qatar 2"
 
@@ -839,11 +837,10 @@ msgstr "Verilog"
 msgid "Hexadecimal"
 msgstr "Altılıq"
 
-#: gtksourceview/language-specs/xml.lang.h:10
+#: gtksourceview/language-specs/xml.lang.h:9
 msgid "Tag"
 msgstr "Taq"
 
-#: gtksourceview/language-specs/xml.lang.h:11
+#: gtksourceview/language-specs/xml.lang.h:10
 msgid "XML"
 msgstr "XML"
-
