@@ -1,14 +1,14 @@
 # German GtkSourceView translation.
-# Copyright (C) 2002, 2003 Free Software Foundation, Inc.
+# Copyright (C) 2002-2004 Free Software Foundation, Inc.
 # This file is distributed under the same license as the GtkSourceView package.
-# Christian Neumair <chris@gnome-de.org>, 2003.
+# Christian Neumair <chris@gnome-de.org>, 2003, 2004.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: GtkSourceView 0.7.0\n"
+"Project-Id-Version: GtkSourceView 0.8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-12-29 22:00+0100\n"
-"PO-Revision-Date: 2003-12-29 22:00+0100\n"
+"POT-Creation-Date: 2004-01-05 12:21+0100\n"
+"PO-Revision-Date: 2004-01-05 12:21+0100\n"
 "Last-Translator: Christian Neumair <chris@gnome-de.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -169,6 +169,7 @@ msgid "Comment"
 msgstr "Kommentar"
 
 #: gtksourceview/gtksourcestylescheme.c:252
+#: gtksourceview/language-specs/php.lang.h:8
 msgid "Data Type"
 msgstr "Datentyp"
 
@@ -331,6 +332,7 @@ msgstr "Zeichenkonstante"
 #: gtksourceview/language-specs/idl.lang.h:4
 #: gtksourceview/language-specs/perl.lang.h:2
 #: gtksourceview/language-specs/python.lang.h:3
+#: gtksourceview/language-specs/verilog.lang.h:6
 msgid "Keywords"
 msgstr "Stichwörter"
 
@@ -344,6 +346,7 @@ msgstr "Stichwörter"
 #: gtksourceview/language-specs/perl.lang.h:3
 #: gtksourceview/language-specs/python.lang.h:4
 #: gtksourceview/language-specs/sql.lang.h:11
+#: gtksourceview/language-specs/verilog.lang.h:7
 msgid "Line Comment"
 msgstr "Zeilenkommentar"
 
@@ -362,7 +365,9 @@ msgstr "Präprozessorstichwörter"
 #: gtksourceview/language-specs/csharp.lang.h:7
 #: gtksourceview/language-specs/idl.lang.h:7
 #: gtksourceview/language-specs/java.lang.h:10
+#: gtksourceview/language-specs/php.lang.h:15
 #: gtksourceview/language-specs/sql.lang.h:26
+#: gtksourceview/language-specs/verilog.lang.h:9
 msgid "Sources"
 msgstr "Quelltexte"
 
@@ -374,6 +379,7 @@ msgstr "Wahr und falsch"
 #: gtksourceview/language-specs/c.lang.h:16
 #: gtksourceview/language-specs/cpp.lang.h:16
 #: gtksourceview/language-specs/idl.lang.h:9
+#: gtksourceview/language-specs/verilog.lang.h:10
 msgid "Types"
 msgstr "Typen"
 
@@ -389,6 +395,7 @@ msgstr "»#if 0«-Kommentar"
 #: gtksourceview/language-specs/idl.lang.h:1
 #: gtksourceview/language-specs/java.lang.h:1
 #: gtksourceview/language-specs/sql.lang.h:5
+#: gtksourceview/language-specs/verilog.lang.h:2
 #: gtksourceview/language-specs/xml.lang.h:2
 msgid "Block Comment"
 msgstr "Blockkommentar"
@@ -422,6 +429,7 @@ msgstr "Include/Pragma"
 
 #: gtksourceview/language-specs/c.lang.h:12
 #: gtksourceview/language-specs/cpp.lang.h:12
+#: gtksourceview/language-specs/verilog.lang.h:8
 msgid "Octal Number"
 msgstr "Oktalzahl"
 
@@ -626,6 +634,62 @@ msgstr "Zeichenkette3"
 msgid "Variables"
 msgstr "Variablen"
 
+#: gtksourceview/language-specs/php.lang.h:1
+msgid "Array Operators"
+msgstr "Feldoperatoren"
+
+#: gtksourceview/language-specs/php.lang.h:2
+msgid "Backtick String"
+msgstr "Backtick-Zeichenkette"
+
+#: gtksourceview/language-specs/php.lang.h:3
+msgid "Bash Line Comment"
+msgstr "Bash-Zeilenkommentar"
+
+#: gtksourceview/language-specs/php.lang.h:4
+msgid "C Block Comment"
+msgstr "C-Blockkommentar"
+
+#: gtksourceview/language-specs/php.lang.h:5
+msgid "C++ Line Comment"
+msgstr "C++-Zeilenkommentar"
+
+#: gtksourceview/language-specs/php.lang.h:6
+msgid "Case Insensitive Keyword"
+msgstr "Schlüsselwort ohne Berücksichtigung von Groß-/Kleinschreibung"
+
+#: gtksourceview/language-specs/php.lang.h:7
+msgid "Case Sensitive Keyword"
+msgstr "Schlüsselwort mit Berücksichtigung von Groß-/Kleinschreibung"
+
+#: gtksourceview/language-specs/php.lang.h:9
+msgid "Double Quoted String"
+msgstr "Zeichenkette in doppelten Anführungszeichen"
+
+#: gtksourceview/language-specs/php.lang.h:10
+msgid "First Open PHP Tag"
+msgstr "Erster öffnender PHP-Tag"
+
+#: gtksourceview/language-specs/php.lang.h:11
+msgid "HTML Block"
+msgstr "HTML-Block"
+
+#: gtksourceview/language-specs/php.lang.h:12
+msgid "Operators"
+msgstr "Operatoren"
+
+#: gtksourceview/language-specs/php.lang.h:13
+msgid "PHP"
+msgstr "PHP"
+
+#: gtksourceview/language-specs/php.lang.h:14
+msgid "Single Quoted String"
+msgstr "Zeichenkette in einfachen Anführungszeichen"
+
+#: gtksourceview/language-specs/php.lang.h:16
+msgid "Variable"
+msgstr "Variable"
+
 #: gtksourceview/language-specs/po.lang.h:2
 msgid "Format"
 msgstr "Format"
@@ -762,6 +826,26 @@ msgstr "Textliterale"
 #: gtksourceview/language-specs/sql.lang.h:28
 msgid "Unlimited"
 msgstr "Unbegrenzt"
+
+#: gtksourceview/language-specs/verilog.lang.h:1
+msgid "Binary Number"
+msgstr "Binärzahl"
+
+#: gtksourceview/language-specs/verilog.lang.h:3
+msgid "Decimal Number"
+msgstr "Dezimalzahl"
+
+#: gtksourceview/language-specs/verilog.lang.h:4
+msgid "Gates"
+msgstr "Gatter"
+
+#: gtksourceview/language-specs/verilog.lang.h:5
+msgid "Hexadecimal Number"
+msgstr "Hexadezimalzahl"
+
+#: gtksourceview/language-specs/verilog.lang.h:11
+msgid "Verilog"
+msgstr "Verilog"
 
 #: gtksourceview/language-specs/xml.lang.h:6
 msgid "Hexadecimal"
