@@ -1,3 +1,14 @@
+2003-09-27  Gustavo Giraldez  <gustavo.giraldez@gmx.net>
+
+	* gtksourceview/language-specs/html.lang: Added missing <iframe>
+	to the tags keyword list (bug #121501).
+
+	* gtksourceview/language-specs/po.lang: Added escape character and
+	missing msgid_plural (Pointed by Abel Cheung, bug #121190).
+
+	* gtksourceview/language-specs/java.lang: Fixed numbers regular
+	expression pattern (bug #115780).
+
 2003-09-25  Gustavo Giraldez  <gustavo.giraldez@gmx.net>
 
 	* gtksourceview/gtksourcelanguage.c (gtk_source_language_finalize): 
