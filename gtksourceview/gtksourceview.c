@@ -1284,7 +1284,7 @@ gtk_source_view_expose (GtkWidget      *widget,
 			gdk_draw_rectangle (event->window,
 					    widget->style->bg_gc[GTK_WIDGET_STATE (widget)],
 					    TRUE,
-					    redraw_rect.x,
+					    redraw_rect.x + 1,
 					    win_y,
 					    redraw_rect.width,
 					    height);
