@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-08-01 20:43+0200\n"
-"PO-Revision-Date: 2003-08-01 22:53+0200\n"
+"POT-Creation-Date: 2003-09-27 12:34+0200\n"
+"PO-Revision-Date: 2003-09-27 15:37+0200\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -200,7 +200,7 @@ msgstr "Preprocesor"
 #: gtksourceview/language-specs/cpp.lang.h:15
 #: gtksourceview/language-specs/html.lang.h:8
 #: gtksourceview/language-specs/idl.lang.h:8
-#: gtksourceview/language-specs/java.lang.h:11
+#: gtksourceview/language-specs/java.lang.h:12
 #: gtksourceview/language-specs/perl.lang.h:6
 #: gtksourceview/language-specs/po.lang.h:6
 #: gtksourceview/language-specs/python.lang.h:11
@@ -331,7 +331,7 @@ msgstr "Klíčová slova"
 #: gtksourceview/language-specs/cpp.lang.h:11
 #: gtksourceview/language-specs/desktop.lang.h:7
 #: gtksourceview/language-specs/diff.lang.h:5
-#: gtksourceview/language-specs/java.lang.h:5
+#: gtksourceview/language-specs/java.lang.h:7
 #: gtksourceview/language-specs/perl.lang.h:3
 #: gtksourceview/language-specs/python.lang.h:4
 msgid "Line Comment"
@@ -350,7 +350,7 @@ msgstr "Klíčová slova preprocesoru"
 #: gtksourceview/language-specs/c.lang.h:14
 #: gtksourceview/language-specs/cpp.lang.h:14
 #: gtksourceview/language-specs/idl.lang.h:7
-#: gtksourceview/language-specs/java.lang.h:10
+#: gtksourceview/language-specs/java.lang.h:11
 msgid "Sources"
 msgstr "Zdrojové kódy"
 
@@ -390,6 +390,7 @@ msgstr "Společné makro"
 
 #: gtksourceview/language-specs/c.lang.h:7
 #: gtksourceview/language-specs/cpp.lang.h:7
+#: gtksourceview/language-specs/java.lang.h:3
 msgid "Floating Point Number"
 msgstr "Číslo s plovoucí řádovou čárkou"
 
@@ -522,31 +523,31 @@ msgstr "Sekční"
 msgid "Declarations"
 msgstr "Deklarace"
 
-#: gtksourceview/language-specs/java.lang.h:3
+#: gtksourceview/language-specs/java.lang.h:4
 msgid "Flow"
 msgstr "Tok"
 
-#: gtksourceview/language-specs/java.lang.h:4
+#: gtksourceview/language-specs/java.lang.h:5
+msgid "Integer"
+msgstr "Celé číslo"
+
+#: gtksourceview/language-specs/java.lang.h:6
 msgid "Java"
 msgstr "Java"
 
-#: gtksourceview/language-specs/java.lang.h:6
+#: gtksourceview/language-specs/java.lang.h:8
 msgid "Memory"
 msgstr "Paměť"
 
-#: gtksourceview/language-specs/java.lang.h:7
+#: gtksourceview/language-specs/java.lang.h:9
 msgid "Modifiers"
 msgstr "Modifikátory"
 
-#: gtksourceview/language-specs/java.lang.h:8
-msgid "Numeric"
-msgstr "Číselné"
-
-#: gtksourceview/language-specs/java.lang.h:9
+#: gtksourceview/language-specs/java.lang.h:10
 msgid "Primitives"
 msgstr "Primitiva"
 
-#: gtksourceview/language-specs/java.lang.h:12
+#: gtksourceview/language-specs/java.lang.h:13
 #: gtksourceview/language-specs/python.lang.h:12
 #: gtksourceview/language-specs/xml.lang.h:9
 msgid "String 2"
@@ -640,3 +641,6 @@ msgstr "Tag"
 #: gtksourceview/language-specs/xml.lang.h:11
 msgid "XML"
 msgstr "XML"
+
+#~ msgid "Numeric"
+#~ msgstr "Číselné"
