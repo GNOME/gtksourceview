@@ -25,13 +25,20 @@
 
 #include "gtksourcebuffer.h"
 
-#ifndef _()
+#ifndef _
 #define _(a) a
 #endif
 
 #ifndef UNDO_MAX
 #define UNDO_MAX 5
 #endif
+
+typedef struct _SearchInfo {
+  const gchar *searchfor;
+  gchar *offset;
+  gint matched : 1;
+  GtkTextSearchFlags sflags;
+} SearchInfo;
 
 static void gtk_source_buffer_class_init (GtkSourceBufferClass *_class);
 static void gtk_source_buffer_init (GtkSourceBuffer *_class);
@@ -53,11 +60,10 @@ static void check_pattern (GtkSourceBuffer *sbuf, const char *txt, gint length,
 			   GtkTextIter *iter);
 static gint get_syntax_end (const char *text, gint pos, Regex *reg, GtkSourceBufferMatch *m);
 
-static void check_brackets (GtkTextBuffer *buf, GtkTextIter *end);
 
 static gint get_tag_start (GtkTextTag *tag, GtkTextIter *iter);
 static gint get_tag_end (GtkTextTag *tag, GtkTextIter *iter);
-static GtkSyntaxTag *is_syntax_tag (GList *list, GtkTextIter *iter);
+void update_buffer_info (GtkSourceBuffer *buf, gboolean getstat);
 
 static void gtk_source_buffer_undo_insert (GtkSourceBuffer *buf, gint type,
 					   const GtkTextIter *start_iter,
@@ -164,6 +170,7 @@ gtk_source_buffer_finalize (GObject *object)
 
 	g_return_if_fail (object != NULL);
 	g_return_if_fail (GTK_IS_SOURCE_BUFFER (object));
+    g_print ("KILLBUFFER\n");
 
 	buffer = GTK_SOURCE_BUFFER (object);
 	if (buffer->line_markers) {
@@ -243,6 +250,10 @@ move_cursor (GtkTextBuffer *buf, GtkTextIter *iter, GtkTextMark *m, gpointer dat
 	if (m != gtk_text_buffer_get_insert (buf))
 		return;
 
+	gtk_text_buffer_get_iter_at_mark (buf, &iter1, m);
+	sbuf->info->offset = gtk_text_iter_get_offset (&iter1);
+	sbuf->info->line = gtk_text_iter_get_line (&iter1);
+	sbuf->info->column = gtk_text_iter_get_line_index ( &iter1);
 	if (sbuf->mark) {
 		gtk_text_buffer_get_iter_at_mark (buf, &iter1, sbuf->mark);
 		iter2 = iter1;
@@ -639,8 +650,8 @@ gtk_source_buffer_set_check_brackets (GtkSourceBuffer *buf, gboolean set)
 gboolean
 gtk_source_buffer_get_highlight (GtkSourceBuffer *buf)
 {
-  g_return_if_fail (buf != NULL);
-  g_return_if_fail (GTK_IS_SOURCE_BUFFER (buf));
+  g_return_val_if_fail (buf != NULL, FALSE);
+  g_return_val_if_fail (GTK_IS_SOURCE_BUFFER (buf), FALSE);
 
   return buf->highlight;
 }
@@ -691,6 +702,7 @@ gtk_source_buffer_regex_search (const char *txt, gint pos, Regex *regex, gboolea
 		m->endpos = regex->reg.end[0];
 	return m->startpos;
 }
+
 
 gboolean
 gtk_source_buffer_find_bracket_match (GtkTextIter *orig)
@@ -850,7 +862,7 @@ gtk_source_buffer_redo (GtkSourceBuffer *buf)
 	gint length;
 	gchar *text;
 
-	g_return_val_if_fail (text != NULL, FALSE);
+	g_return_val_if_fail (buf != NULL, FALSE);
 	g_return_val_if_fail (GTK_IS_SOURCE_BUFFER (buf), FALSE);
 
 	length = g_list_length (buf->undo_redo);
@@ -1085,9 +1097,6 @@ void
 gtk_source_buffer_install_regex_tags (GtkSourceBuffer *buf, GList *entries)
 {
 	GtkTextTag *tag = NULL;
-	GtkSyntaxTag *stag = NULL;
-	GtkPatternTag *ptag = NULL;
-	GtkEmbeddedTag *etag = NULL;
 	GList *cur = NULL;
 	gchar *name;
 
@@ -1318,7 +1327,6 @@ gtk_source_buffer_line_add_marker (GtkSourceBuffer *buffer, gint line, const gch
 	gint line_count = 0;
 	GList *list = NULL;
 	GList *iter = NULL;
-	gchar *new_marker;
 
 	g_return_if_fail (buffer != NULL);
 	g_return_if_fail (GTK_IS_SOURCE_BUFFER (buffer));
@@ -1424,8 +1432,6 @@ gtk_source_buffer_line_remove_marker (GtkSourceBuffer *buffer, gint line, const 
 gint
 gtk_source_buffer_remove_all_markers (GtkSourceBuffer *buffer, gint line_start, gint line_end)
 {
-	GList *data = NULL;
-	GList *iter = NULL;
 	gint remove_count = 0;
 	gint line_count;
 	gint counter;
@@ -1448,43 +1454,69 @@ gtk_source_buffer_set_filename (GtkSourceBuffer *buf, const gchar *filename)
   g_return_if_fail(buf != NULL);
   g_return_if_fail(GTK_IS_SOURCE_BUFFER(buf));
 
+  if (buf->info->filename == filename)  {
+    /* we really should stat() even if file is the same 
+    because user maybe has saved to disc 
+    and therefore is calling set_filename  */
+    update_buffer_info (buf, TRUE);
+
+    return ;
+  }
+
   g_free (buf->info->filename);
   buf->info->filename = g_strdup(filename);
   
   update_buffer_info (buf, TRUE);
 }
 
-const gchar *
+gchar *
 gtk_source_buffer_get_filename (GtkSourceBuffer *buf)
 {
   g_return_val_if_fail(buf != NULL, "");
   g_return_val_if_fail(GTK_IS_SOURCE_BUFFER(buf), "");
 
-  return buf->info->filename;
+  return g_strdup(buf->info->filename);
 }
 
-const GtkSourceBufferInfo *
-gtk_source_buffer_get_info (GtkSourceBuffer *buf)
+/* call this if you want to reread file stat() from disc */
+
+void
+gtk_source_buffer_update_info (GtkSourceBuffer *buf)
 {
-  g_return_val_if_fail(buf != NULL, NULL);
-  g_return_val_if_fail(GTK_IS_SOURCE_BUFFER(buf), NULL);
+  g_return_if_fail(buf != NULL);
+  g_return_if_fail(GTK_IS_SOURCE_BUFFER(buf));
+
+  update_buffer_info (buf, TRUE);
+}
+
+void
+gtk_source_buffer_get_info (GtkSourceBuffer *buf, GtkSourceBufferInfo *info)
+{
+  g_return_if_fail(buf != NULL);
+  g_return_if_fail(info != NULL);
+  g_return_if_fail(GTK_IS_SOURCE_BUFFER(buf));
 
   update_buffer_info (buf, FALSE);
 
-  return buf->info;
+  *info = *buf->info;
 }
 
 void
 update_buffer_info (GtkSourceBuffer *buf, gboolean getstat)
 {
   struct stat st;
-  GtkTextIter end;
+  GtkTextIter iter;
 
-  gtk_text_buffer_get_end_iter (GTK_TEXT_BUFFER(buf), &end);
-  buf->info->buffersize = gtk_text_iter_get_offset(&end);
+  gtk_text_buffer_get_end_iter (GTK_TEXT_BUFFER(buf), &iter);
+  buf->info->buffersize = gtk_text_iter_get_offset(&iter);
   buf->info->modified = gtk_text_buffer_get_modified(GTK_TEXT_BUFFER (buf));  
 
-  if (!stat (buf->info->filename, &st))  {
+  gtk_text_buffer_get_iter_at_mark (GTK_TEXT_BUFFER(buf), &iter, gtk_text_buffer_get_insert(GTK_TEXT_BUFFER(buf)));
+  buf->info->offset = gtk_text_iter_get_offset (&iter);
+  buf->info->line = gtk_text_iter_get_line (&iter);
+  buf->info->column = gtk_text_iter_get_line_index ( &iter);
+
+  if (!stat (buf->info->filename, &st) && getstat)  {
     buf->info->filesize = st.st_size;
     buf->info->filedate = st.st_mtime;
   }  else if (getstat)  {
@@ -1578,6 +1610,7 @@ gtk_source_buffer_load_with_character_encoding (GtkSourceBuffer *buffer, const g
   g_io_channel_unref (io);
   
   gtk_source_buffer_set_filename(buffer, filename);
+  gtk_text_buffer_set_modified (GTK_TEXT_BUFFER(buffer), FALSE);
 
   if (highlight)  
     gtk_source_buffer_set_highlight (buffer, TRUE);
@@ -1672,8 +1705,8 @@ gtk_source_buffer_save_with_character_encoding (GtkSourceBuffer *buffer, const g
   }
 
   g_io_channel_unref(io);
-  gtk_text_buffer_set_modified (GTK_TEXT_BUFFER(buffer), FALSE);
   gtk_source_buffer_set_filename(buffer, filename);
+  gtk_text_buffer_set_modified (GTK_TEXT_BUFFER(buffer), FALSE);
 
   return TRUE;
 }

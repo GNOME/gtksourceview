@@ -1,3 +1,40 @@
+Sun Mar 10  17:06:51 2002 CET Mikael Hermansson<tyan@linux.se>
+
+  * gtksourcebuffer.[c/h] 
+    - Added gtk_source_buffer_update_info() this function will reread file stat() from disc
+    - Fixed update_buffer_info() so it doesn't read file stat() when getstat == FALSE
+
+Wed Mar 06  17:25:10 2002 CET Mikael Hermansson<tyan@linux.se>
+
+  * gtktextsearch.[c/h] This is a new object class for searching in the buffer
+    Hopefully this API will work better than the old gtk_text_iter_forward_search implmentation :-) 
+
+    In the moment it supports:
+    GTK_ETEXT_SEARCH_CASE_INSENSITIVE case insensitive search.
+    GTK_ETEXT_SEARCH_TEXT_ONLY (if this flag is set, embended pixbuf/widgets will be ignored)
+    gtk_text_search_new (...)           GtkTextSearch constructor
+    gtk_text_search_forward(...)        search forward from last cached position
+    gtk_text_forward_foreach (...)      search forward until foreach func returns TRUE 
+                                                     this API could be useful to "replace all" etc...
+ 
+  * Makefile.am 
+    - added gtktextsearch.[c/h] to sources list
+
+Mon Feb 11  02:33:57 2002 CET Mikael Hermansson <tyan@linux.se>
+
+  * gtksourcebuffer.c:
+    remove all compile warnings and fix bug in gtk_source_buffer_set_filename
+    we should not g_strdup/g_free if passed filename == info->filename 
+   just return from without change.
+
+Sat Feb 09  19:57:32 2002 CET Mikael Hermansson<tyan@linux.se>
+
+  * gtksourcebuffer.c/h:
+    - gtk_source_buffer_get_filename() will now allocate a new filename string 
+     user should g_free it after use.
+   - gtk_source_buffer_[save/load] now will set "modifed" flag to FALSE 
+      after load/save success has been completed...
+
 2002-03-07  Jeroen Zwartepoorte  <jeroen@xs4all.nl>
 
 	* src/gtksourceview.c: (gtk_source_view_calculate_tab_stop_width): Fix

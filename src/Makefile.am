@@ -11,10 +11,13 @@ noinst_PROGRAMS = test-widget
 lib_LTLIBRARIES = libgtksourceview.la
 
 libgtksourceview_la_SOURCES = \
+gutf8strfuncs.c \
 regex.c \
 regex.h \
 gtksourcebuffer.c \
 gtksourcebuffer.h \
+gtktextsearch.c \
+gtktextsearch.h \
 gtksourcetag.c \
 gtksourcetag.h \
 gtksourceview.c \

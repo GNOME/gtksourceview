@@ -27,6 +27,7 @@ extern "C" {
 
 #include <gtk/gtk.h>
 #include <gtk/gtktextbuffer.h>
+#include <time.h>
 #include <regex.h>
 #include <gtksourcetag.h>
 
@@ -38,6 +39,11 @@ extern "C" {
 
 #define UNDO_TYPE_INSERT_TEXT 1
 #define UNDO_TYPE_REMOVE_RANGE 2
+
+typedef struct _GtkSourceBuffer GtkSourceBuffer;
+typedef gboolean (*GtkSourceBufferSearchFunc)(GtkSourceBuffer *buffer, GtkTextIter *start, GtkTextIter *end, gpointer data); 
+
+#define  SEARCH_CASE_INSENSITIVE 3
 
 typedef struct _GtkSourceBufferUndoEntry {
 	gint type;
@@ -51,11 +57,14 @@ typedef struct _GtkSourceBufferInfo
   gchar *filename;
   gint buffersize;   /* bytes in memory */
   gint filesize;       /* bytes written on disc */
-  gint filedate;      /* last time file was saved */
+  time_t filedate;      /* last time file was saved */
   gint modified : 1;  /* is buffer modified since last write */
+  gint offset;
+  gint line;  /*  current line */
+  gint column; /* current_column */
 }GtkSourceBufferInfo;
 
-typedef struct _GtkSourceBuffer {
+struct _GtkSourceBuffer {
 	GtkTextBuffer TextBuffer;
 
     GtkSourceBufferInfo *info;
@@ -76,10 +85,11 @@ typedef struct _GtkSourceBuffer {
 	GList *pattern_items;
 	GList *embedded_items;
 	Regex reg_syntax_all;
-} GtkSourceBuffer;
+};
 
 typedef struct _GtkSourceBufferClass {
-	GtkTextBufferClass parent_class;
+  GtkTextBufferClass parent_class;
+
 } GtkSourceBufferClass;
 
 
@@ -88,7 +98,6 @@ GType gtk_source_buffer_get_type(void);
 
 GtkTextBuffer* gtk_source_buffer_new(GtkTextTagTable *table);
 void gtk_source_buffer_attach_to_view(GtkSourceBuffer *buffer, GtkTextView *view);
-
 gint gtk_source_buffer_regex_search(const char *text, gint pos, Regex *regex,
 				    gboolean forward, GtkSourceBufferMatch *m);
 gint gtk_source_buffer_regex_match(const char *text, gint pos, gint end, Regex *regex);
@@ -139,8 +148,9 @@ gint gtk_source_view_remove_all_markers(GtkSourceBuffer *buffer, gint line_start
 /* save/load and status API */
 
 void gtk_source_buffer_set_filename (GtkSourceBuffer *buffer, const gchar *filename);
-const gchar *gtk_source_buffer_get_filename (GtkSourceBuffer *buffer);
-const GtkSourceBufferInfo* gtk_source_buffer_get_info (GtkSourceBuffer *buffer);
+gchar *gtk_source_buffer_get_filename (GtkSourceBuffer *buffer);
+void gtk_source_buffer_update_info (GtkSourceBuffer *buffer);
+void gtk_source_buffer_get_info (GtkSourceBuffer *buffer, GtkSourceBufferInfo *info);
 
 gboolean gtk_source_buffer_load (GtkSourceBuffer *buffer, const gchar *filename);
 gboolean gtk_source_buffer_load_with_character_encoding (GtkSourceBuffer *buffer, const gchar *filename, const gchar *input_encoding);

@@ -700,7 +700,6 @@ void
 gtk_source_view_set_tab_stop (GtkSourceView *view,
 			      gint           tab_stop)
 {
-	GtkTextView *text_view;
 	PangoTabArray *tabs;
 
 	g_return_if_fail (view != NULL);
@@ -737,7 +736,6 @@ gtk_source_view_add_pixbuf (GtkSourceView *view,
 			    gboolean       overwrite)
 {
 	GtkTextBuffer *buffer = NULL;
-	gint line_count = 0;
 	gpointer data = NULL;
 	gboolean replaced = FALSE;
 
