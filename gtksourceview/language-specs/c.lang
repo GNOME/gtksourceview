@@ -47,6 +47,9 @@
 	</keyword-list>
 
 	<keyword-list _name = "Types" style = "Data Type" case-sensitive="TRUE">
+		<keyword>_Bool</keyword>
+		<keyword>_Complex</keyword>
+		<keyword>_Imaginary</keyword>
 		<keyword>auto</keyword>
 		<keyword>char</keyword>
 		<keyword>const</keyword>
@@ -55,8 +58,10 @@
 		<keyword>extern</keyword>
 		<keyword>float</keyword>
 		<keyword>int</keyword>
+		<keyword>inline</keyword>
 		<keyword>long</keyword>
 		<keyword>register</keyword>
+		<keyword>restrict</keyword>
 		<keyword>short</keyword>
 		<keyword>signed</keyword>
 		<keyword>static</keyword>
@@ -98,6 +103,7 @@
 		<keyword>__LINE__</keyword>
 		<keyword>__DATA__</keyword>
 		<keyword>__FILE__</keyword>
+		<keyword>__func__</keyword>
 		<keyword>__TIME__</keyword>
 		<keyword>__STDC__</keyword>
 	</keyword-list>

@@ -1,3 +1,23 @@
+2004-04-18  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+
+	* gtksourceview/gtksourceview.c (key_press_cb): Also auto-indent
+	when splitting a line.
+
+2004-04-18  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+
+	Patch by Benoît Dejean <TaZForEver@free.fr>:
+	
+	* gtksourceview/language-specs/c.lang: Updated to highlight C99
+	keywords, types and macros.
+	* gtksourceview/language-specs/python.lang: Highlight Python 2.3
+	keywords, types and functions.
+
+2004-04-14  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+
+	* gtksourceview/gtksourceview.c (compute_indentation): Stop at
+	'\r' as well as '\n' or non-space character (partially fixes
+	#139576, Daniel Borgmann).
+
 2004-04-13  Paolo Borelli  <pborelli@katamail.com>
 
 	* gtksourceview/gtksourceview.c: add documentation.
