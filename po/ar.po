@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-12-21 20:18+0100\n"
-"PO-Revision-Date: 2004-01-09 17:27+0100\n"
+"POT-Creation-Date: 2004-03-17 04:09+0100\n"
+"PO-Revision-Date: 2004-03-17 17:00+0100\n"
 "Last-Translator: Arafat Medini <lumina@silverpen.de>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
 "MIME-Version: 1.0\n"
@@ -19,11 +19,11 @@ msgstr ""
 
 #: gtksourceview/gtksourcebuffer.c:279
 msgid "Escape Character"
-msgstr ""
+msgstr "رمز الإفلات"
 
 #: gtksourceview/gtksourcebuffer.c:280
 msgid "Escaping character for syntax patterns"
-msgstr ""
+msgstr "رمز الإفلات لأنماط تراكيب الجمل"
 
 #: gtksourceview/gtksourcebuffer.c:288
 msgid "Check Brackets"
@@ -31,7 +31,7 @@ msgstr "مراجعة القوسان"
 
 #: gtksourceview/gtksourcebuffer.c:289
 msgid "Whether to check and highlight matching brackets"
-msgstr ""
+msgstr "فيما إذا سيقع التثبت و إبراز الأقواس المتطابقة"
 
 #: gtksourceview/gtksourcebuffer.c:297 gtksourceview/gtksourceprintjob.c:303
 msgid "Highlight"
@@ -66,8 +66,7 @@ msgstr "دلائل خصائص اللغة"
 msgid ""
 "List of directories where the language specification files (.lang) are "
 "located"
-msgstr ""
-"قائمة الدلائل الحاوية لملفات خصائص اللغة (.lang)"
+msgstr "قائمة الدلائل الحاوية لملفات خصائص اللغة (.lang)"
 
 #: gtksourceview/gtksourceprintjob.c:272
 msgid "Configuration"
@@ -92,7 +91,7 @@ msgstr "عرض الألسنة"
 
 #: gtksourceview/gtksourceprintjob.c:288
 msgid "Width in equivalent space characters of tabs"
-msgstr ""
+msgstr "العرض بما يقابله من فضائات رموز الألسنة"
 
 #: gtksourceview/gtksourceprintjob.c:295
 msgid "Wrap Mode"
@@ -128,7 +127,7 @@ msgstr "طبع أرقام السطور"
 
 #: gtksourceview/gtksourceprintjob.c:329
 msgid "Interval of printed line numbers (0 means no numbers)"
-msgstr ""
+msgstr "الفاصل بين أرقام السطور المطبوعة (0 يعني لا أرقام)"
 
 #: gtksourceview/gtksourceprintjob.c:336
 msgid "Print Header"
@@ -169,6 +168,7 @@ msgid "Comment"
 msgstr "تعليق"
 
 #: gtksourceview/gtksourcestylescheme.c:252
+#: gtksourceview/language-specs/php.lang.h:8
 msgid "Data Type"
 msgstr "نوع البيانات"
 
@@ -195,7 +195,7 @@ msgstr "الكلمة المفتاح"
 
 #: gtksourceview/gtksourcestylescheme.c:277
 msgid "Preprocessor"
-msgstr ""
+msgstr "Preprocessor"
 
 #: gtksourceview/gtksourcestylescheme.c:282
 #: gtksourceview/language-specs/ada.lang.h:9
@@ -216,7 +216,7 @@ msgstr "سلسلة"
 msgid "Specials"
 msgstr "خاصة"
 
-#: gtksourceview/gtksourcestylescheme.c:292
+#: gtksourceview/gtksourcestylescheme.c:294
 #: gtksourceview/language-specs/desktop.lang.h:10
 #: gtksourceview/language-specs/diff.lang.h:7
 #: gtksourceview/language-specs/msil.lang.h:2
@@ -224,15 +224,15 @@ msgstr "خاصة"
 msgid "Others"
 msgstr "أخرى"
 
-#: gtksourceview/gtksourcestylescheme.c:297
+#: gtksourceview/gtksourcestylescheme.c:299
 msgid "Others 2"
 msgstr "أخرى 2"
 
-#: gtksourceview/gtksourcestylescheme.c:302
+#: gtksourceview/gtksourcestylescheme.c:304
 msgid "Others 3"
 msgstr "أخرى 3"
 
-#: gtksourceview/gtksourcestylescheme.c:339
+#: gtksourceview/gtksourcestylescheme.c:341
 msgid "Default"
 msgstr "الإفتراض"
 
@@ -266,7 +266,7 @@ msgstr "اظهار معلمات السطور"
 
 #: gtksourceview/gtksourceview.c:214
 msgid "Whether to display line marker pixbufs"
-msgstr ""
+msgstr "فيما إذا ستعرض بكسباف معلم السطر"
 
 #: gtksourceview/gtksourceview.c:231
 msgid "Auto Indentation"
@@ -302,14 +302,15 @@ msgstr "موقع الهامش الأيمن"
 
 #: gtksourceview/gtksourceview.c:264
 msgid "Use smart home/end"
-msgstr ""
+msgstr "إستخدام منزل/نهاية حاذقين"
 
 #: gtksourceview/gtksourceview.c:265
 msgid ""
 "HOME and END keys move to first/last characters on line first before going "
 "to the start/end of the line"
 msgstr ""
-""
+"مفتاحا HOME و END ينقلان للرموز الأولى/الأخيرة على السطر قبل الذهاب إلى "
+"بداية/نهاية السطر"
 
 #: gtksourceview/language-specs/ada.lang.h:1
 msgid "Ada"
@@ -319,7 +320,7 @@ msgstr "Ada"
 #: gtksourceview/language-specs/c.lang.h:4
 #: gtksourceview/language-specs/cpp.lang.h:4
 msgid "Character Constant"
-msgstr ""
+msgstr "رمزُ ثابت"
 
 #: gtksourceview/language-specs/ada.lang.h:4
 #: gtksourceview/language-specs/c.lang.h:10
@@ -328,6 +329,7 @@ msgstr ""
 #: gtksourceview/language-specs/idl.lang.h:4
 #: gtksourceview/language-specs/perl.lang.h:2
 #: gtksourceview/language-specs/python.lang.h:3
+#: gtksourceview/language-specs/verilog.lang.h:6
 msgid "Keywords"
 msgstr "الكلمات المفاتيح"
 
@@ -341,6 +343,7 @@ msgstr "الكلمات المفاتيح"
 #: gtksourceview/language-specs/perl.lang.h:3
 #: gtksourceview/language-specs/python.lang.h:4
 #: gtksourceview/language-specs/sql.lang.h:11
+#: gtksourceview/language-specs/verilog.lang.h:7
 msgid "Line Comment"
 msgstr "تعليق عن السطر"
 
@@ -351,7 +354,7 @@ msgstr "الرقم"
 
 #: gtksourceview/language-specs/ada.lang.h:7
 msgid "Preprocessor Keywords"
-msgstr ""
+msgstr "الكلمات المفاتيح للـ Preprocessor"
 
 #: gtksourceview/language-specs/ada.lang.h:8
 #: gtksourceview/language-specs/c.lang.h:14
@@ -359,7 +362,9 @@ msgstr ""
 #: gtksourceview/language-specs/csharp.lang.h:7
 #: gtksourceview/language-specs/idl.lang.h:7
 #: gtksourceview/language-specs/java.lang.h:10
+#: gtksourceview/language-specs/php.lang.h:15
 #: gtksourceview/language-specs/sql.lang.h:26
+#: gtksourceview/language-specs/verilog.lang.h:9
 msgid "Sources"
 msgstr "المصادر"
 
@@ -371,6 +376,7 @@ msgstr "True و False"
 #: gtksourceview/language-specs/c.lang.h:16
 #: gtksourceview/language-specs/cpp.lang.h:16
 #: gtksourceview/language-specs/idl.lang.h:9
+#: gtksourceview/language-specs/verilog.lang.h:10
 msgid "Types"
 msgstr "أنواع"
 
@@ -386,6 +392,7 @@ msgstr "تعليق '#if·0'"
 #: gtksourceview/language-specs/idl.lang.h:1
 #: gtksourceview/language-specs/java.lang.h:1
 #: gtksourceview/language-specs/sql.lang.h:5
+#: gtksourceview/language-specs/verilog.lang.h:2
 #: gtksourceview/language-specs/xml.lang.h:2
 msgid "Block Comment"
 msgstr "تعليق مقولب"
@@ -413,10 +420,11 @@ msgstr "عدد سادس عشري"
 #: gtksourceview/language-specs/cpp.lang.h:9
 #: gtksourceview/language-specs/idl.lang.h:3
 msgid "Include/Pragma"
-msgstr ""
+msgstr "تضمين/Pragma"
 
 #: gtksourceview/language-specs/c.lang.h:12
 #: gtksourceview/language-specs/cpp.lang.h:12
+#: gtksourceview/language-specs/verilog.lang.h:8
 msgid "Octal Number"
 msgstr "عدد ثماني"
 
@@ -425,7 +433,7 @@ msgstr "عدد ثماني"
 #: gtksourceview/language-specs/csharp.lang.h:5
 #: gtksourceview/language-specs/idl.lang.h:5
 msgid "Preprocessor Definitions"
-msgstr ""
+msgstr "تعريفات الـ Preprocessor"
 
 #: gtksourceview/language-specs/cpp.lang.h:3
 msgid "C++"
@@ -443,7 +451,6 @@ msgstr "البدائيات"
 #: gtksourceview/language-specs/csharp.lang.h:9
 #: gtksourceview/language-specs/java.lang.h:12
 #: gtksourceview/language-specs/python.lang.h:12
-#: gtksourceview/language-specs/xml.lang.h:9
 msgid "String 2"
 msgstr "سلسلة 2"
 
@@ -564,7 +571,7 @@ msgstr "الذاكرة"
 
 #: gtksourceview/language-specs/java.lang.h:7
 msgid "Modifiers"
-msgstr ""
+msgstr "مغيّرات"
 
 #: gtksourceview/language-specs/java.lang.h:8
 msgid "Numeric"
@@ -575,8 +582,8 @@ msgid "Include"
 msgstr "تضمين"
 
 #: gtksourceview/language-specs/latex.lang.h:4
-msgid "Latex"
-msgstr "Latex"
+msgid "LaTeX"
+msgstr "LaTeX"
 
 #: gtksourceview/language-specs/latex.lang.h:6
 msgid "Math"
@@ -614,6 +621,62 @@ msgstr "سلسلة3"
 #: gtksourceview/language-specs/perl.lang.h:9
 msgid "Variables"
 msgstr "متغيرات"
+
+#: gtksourceview/language-specs/php.lang.h:1
+msgid "Array Operators"
+msgstr "عوامل الصفيفة"
+
+#: gtksourceview/language-specs/php.lang.h:2
+msgid "Backtick String"
+msgstr "سلسلة Backtick"
+
+#: gtksourceview/language-specs/php.lang.h:3
+msgid "Bash Line Comment"
+msgstr "تعليق سطر Bash"
+
+#: gtksourceview/language-specs/php.lang.h:4
+msgid "C Block Comment"
+msgstr "تعليق مقولب لـ C"
+
+#: gtksourceview/language-specs/php.lang.h:5
+msgid "C++ Line Comment"
+msgstr "تعليق سطر C++"
+
+#: gtksourceview/language-specs/php.lang.h:6
+msgid "Case Insensitive Keyword"
+msgstr "كلمة مفتاح غير حساسة للحالة"
+
+#: gtksourceview/language-specs/php.lang.h:7
+msgid "Case Sensitive Keyword"
+msgstr "كلمة مفتاح حاسة للحالة"
+
+#: gtksourceview/language-specs/php.lang.h:9
+msgid "Double Quoted String"
+msgstr "سلسلة ذات رمز تصاريح مضاعف"
+
+#: gtksourceview/language-specs/php.lang.h:10
+msgid "First Open PHP Tag"
+msgstr "شارة Open·PHP الأولى"
+
+#: gtksourceview/language-specs/php.lang.h:11
+msgid "HTML Block"
+msgstr "قالب HTML"
+
+#: gtksourceview/language-specs/php.lang.h:12
+msgid "Operators"
+msgstr "العوامل"
+
+#: gtksourceview/language-specs/php.lang.h:13
+msgid "PHP"
+msgstr "PHP"
+
+#: gtksourceview/language-specs/php.lang.h:14
+msgid "Single Quoted String"
+msgstr "سلسلة ذات رمز تصريح وحيد"
+
+#: gtksourceview/language-specs/php.lang.h:16
+msgid "Variable"
+msgstr "متغيرة"
 
 #: gtksourceview/language-specs/po.lang.h:2
 msgid "Format"
@@ -685,7 +748,7 @@ msgstr "دالات التاريخ و الساعة"
 
 #: gtksourceview/language-specs/sql.lang.h:10
 msgid "Integer Literals"
-msgstr ""
+msgstr "محدّدات الأعداد الصحيحة"
 
 #: gtksourceview/language-specs/sql.lang.h:12
 msgid "Miscellaneous Single-Row Functions"
@@ -701,15 +764,15 @@ msgstr "دالات عددية"
 
 #: gtksourceview/language-specs/sql.lang.h:15
 msgid "Number Literals"
-msgstr ""
+msgstr "محدّدات الأرقام"
 
 #: gtksourceview/language-specs/sql.lang.h:16
 msgid "Object Reference Functions"
-msgstr ""
+msgstr "الدالات المرجعية للأجسام"
 
 #: gtksourceview/language-specs/sql.lang.h:17
 msgid "Oracle Built-in Datatypes"
-msgstr ""
+msgstr "أنواع البيانات المركبة في Oracle"
 
 #: gtksourceview/language-specs/sql.lang.h:18
 msgid "Oracle Reserved Words"
@@ -721,7 +784,7 @@ msgstr "SQL"
 
 #: gtksourceview/language-specs/sql.lang.h:20
 msgid "SQL*Plus At Sign"
-msgstr ""
+msgstr "رمز آت لـ SQL*Plus"
 
 #: gtksourceview/language-specs/sql.lang.h:21
 msgid "SQL*Plus Commands"
@@ -729,11 +792,11 @@ msgstr "أوامر SQL*Plus"
 
 #: gtksourceview/language-specs/sql.lang.h:22
 msgid "SQL*Plus Double At Sign"
-msgstr ""
+msgstr "رمز آت مضاعف لـ SQL*Plus"
 
 #: gtksourceview/language-specs/sql.lang.h:23
 msgid "SQL*Plus Slash"
-msgstr ""
+msgstr "رمز قاطع لـ SQL*Plus"
 
 #: gtksourceview/language-specs/sql.lang.h:24
 msgid "SQL/DS and DB2 Datatypes"
@@ -745,21 +808,41 @@ msgstr "شرط الحجم"
 
 #: gtksourceview/language-specs/sql.lang.h:27
 msgid "Text Literals"
-msgstr ""
+msgstr "محددّات النص"
 
 #: gtksourceview/language-specs/sql.lang.h:28
 msgid "Unlimited"
 msgstr "غير محدود"
 
+#: gtksourceview/language-specs/verilog.lang.h:1
+msgid "Binary Number"
+msgstr "عدد ثنائي"
+
+#: gtksourceview/language-specs/verilog.lang.h:3
+msgid "Decimal Number"
+msgstr "عدد عشري"
+
+#: gtksourceview/language-specs/verilog.lang.h:4
+msgid "Gates"
+msgstr "بوّابات"
+
+#: gtksourceview/language-specs/verilog.lang.h:5
+msgid "Hexadecimal Number"
+msgstr "عدد سادس عشري"
+
+#: gtksourceview/language-specs/verilog.lang.h:11
+msgid "Verilog"
+msgstr "Verilog"
+
 #: gtksourceview/language-specs/xml.lang.h:6
 msgid "Hexadecimal"
 msgstr "سادس عشري"
 
-#: gtksourceview/language-specs/xml.lang.h:10
+#: gtksourceview/language-specs/xml.lang.h:9
 msgid "Tag"
 msgstr "شارة"
 
-#: gtksourceview/language-specs/xml.lang.h:11
+#: gtksourceview/language-specs/xml.lang.h:10
 msgid "XML"
 msgstr "XML"
 
