@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-23 12:38+0100\n"
-"PO-Revision-Date: 2005-01-23 23:45+0800\n"
+"POT-Creation-Date: 2005-01-25 04:40+0100\n"
+"PO-Revision-Date: 2005-01-25 17:01+0800\n"
 "Last-Translator: Funda Wang <fundawang@linux.net.cn>\n"
 "Language-Team: zh_CN <i18n-translation@lists.linux.net.cn>\n"
 "MIME-Version: 1.0\n"
@@ -117,8 +117,8 @@ msgid "Font Description"
 msgstr "字体描述"
 
 #: gtksourceview/gtksourceprintjob.c:313
-msgid "Font description name to use for the document text"
-msgstr "文档文字所用的字体描述名称"
+msgid "Font to use for the document text (e.g. \"Monospace 10\")"
+msgstr "文档文字所用的字体(如“Monospace 10”)"
 
 #: gtksourceview/gtksourceprintjob.c:320 gtksourceview/gtksourceprintjob.c:328
 msgid "Numbers Font"
@@ -169,25 +169,25 @@ msgid "Header and Footer Font Description"
 msgstr "页眉页脚字体描述"
 
 #: gtksourceview/gtksourceprintjob.c:369
-msgid "Font description name to use for the header and footer"
-msgstr "页眉页脚所用的字体描述"
+msgid "Font to use for headers and footers (e.g. \"Monospace 10\")"
+msgstr "页眉页脚所用的字体(如“Monospace 10”)"
 
-#: gtksourceview/gtksourcestylescheme.c:237
+#: gtksourceview/gtksourcestylescheme.c:262
 msgid "Base-N Integer"
 msgstr "N 进制整数"
 
-#: gtksourceview/gtksourcestylescheme.c:242
+#: gtksourceview/gtksourcestylescheme.c:267
 msgid "Character"
 msgstr "字符"
 
-#: gtksourceview/gtksourcestylescheme.c:247
+#: gtksourceview/gtksourcestylescheme.c:272
 #: gtksourceview/language-specs/latex.lang.h:1
 #: gtksourceview/language-specs/po.lang.h:1
 msgid "Comment"
 msgstr "注释"
 
 #. $this = (datatype)
-#: gtksourceview/gtksourcestylescheme.c:252
+#: gtksourceview/gtksourcestylescheme.c:277
 #: gtksourceview/language-specs/php.lang.h:14
 msgid "Data Type"
 msgstr "数据类型"
@@ -195,13 +195,13 @@ msgstr "数据类型"
 #.
 #. CSS functions, such as rgb(), clip(), or lang().
 #.
-#: gtksourceview/gtksourcestylescheme.c:257
+#: gtksourceview/gtksourcestylescheme.c:282
 #: gtksourceview/language-specs/ada.lang.h:3
 #: gtksourceview/language-specs/css.lang.h:17
 msgid "Function"
 msgstr "函数"
 
-#: gtksourceview/gtksourcestylescheme.c:262
+#: gtksourceview/gtksourcestylescheme.c:287
 #: gtksourceview/language-specs/c.lang.h:6
 #: gtksourceview/language-specs/cpp.lang.h:6
 #: gtksourceview/language-specs/fortran.lang.h:1
@@ -210,11 +210,11 @@ msgstr "函数"
 msgid "Decimal"
 msgstr "小数"
 
-#: gtksourceview/gtksourcestylescheme.c:267
+#: gtksourceview/gtksourcestylescheme.c:292
 msgid "Floating Point"
 msgstr "浮点数"
 
-#: gtksourceview/gtksourcestylescheme.c:272
+#: gtksourceview/gtksourcestylescheme.c:297
 #: gtksourceview/language-specs/latex.lang.h:3
 #: gtksourceview/language-specs/po.lang.h:3
 #: gtksourceview/language-specs/texinfo.lang.h:8
@@ -224,11 +224,11 @@ msgstr "浮点数"
 msgid "Keyword"
 msgstr "关键字"
 
-#: gtksourceview/gtksourcestylescheme.c:277
+#: gtksourceview/gtksourcestylescheme.c:302
 msgid "Preprocessor"
 msgstr "预处理器"
 
-#: gtksourceview/gtksourcestylescheme.c:282
+#: gtksourceview/gtksourcestylescheme.c:307
 #: gtksourceview/language-specs/ada.lang.h:9
 #: gtksourceview/language-specs/c.lang.h:15
 #: gtksourceview/language-specs/cpp.lang.h:15
@@ -255,7 +255,7 @@ msgstr "预处理器"
 msgid "String"
 msgstr "字符串"
 
-#: gtksourceview/gtksourcestylescheme.c:287
+#: gtksourceview/gtksourcestylescheme.c:312
 msgid "Specials"
 msgstr "特殊"
 
@@ -271,7 +271,7 @@ msgstr "特殊"
 #. Submitted by Scott Martin (scott@coffeeblack.org)
 #.
 #. FIXME: find the correct mimetype
-#: gtksourceview/gtksourcestylescheme.c:294
+#: gtksourceview/gtksourcestylescheme.c:319
 #: gtksourceview/language-specs/css.lang.h:46
 #: gtksourceview/language-specs/desktop.lang.h:10
 #: gtksourceview/language-specs/diff.lang.h:7
@@ -282,15 +282,15 @@ msgstr "特殊"
 msgid "Others"
 msgstr "其它"
 
-#: gtksourceview/gtksourcestylescheme.c:299
+#: gtksourceview/gtksourcestylescheme.c:324
 msgid "Others 2"
 msgstr "其它 2"
 
-#: gtksourceview/gtksourcestylescheme.c:304
+#: gtksourceview/gtksourcestylescheme.c:329
 msgid "Others 3"
 msgstr "其它 3"
 
-#: gtksourceview/gtksourcestylescheme.c:341
+#: gtksourceview/gtksourcestylescheme.c:366
 msgid "Default"
 msgstr "默认"
 
@@ -1449,7 +1449,7 @@ msgid "VHDL"
 msgstr "VHDL"
 
 #: gtksourceview/language-specs/R.lang.h:1
-msgid "Assign operator"
+msgid "Assignment Operator"
 msgstr "赋值操作符"
 
 #: gtksourceview/language-specs/R.lang.h:2
@@ -1461,11 +1461,11 @@ msgid "Integer Number"
 msgstr "整数"
 
 #: gtksourceview/language-specs/R.lang.h:8
-msgid "Reserved class"
+msgid "Reserved Class"
 msgstr "保留类"
 
 #: gtksourceview/language-specs/R.lang.h:9
-msgid "Reserved constant"
+msgid "Reserved Constant"
 msgstr "保留常量"
 
 #: gtksourceview/language-specs/gtkrc.lang.h:3
