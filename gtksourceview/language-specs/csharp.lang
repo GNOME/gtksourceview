@@ -3,6 +3,8 @@
 <!-- FIXME: find the correct mimetype -->
 <language _name="C#" version="1.0" _section="Sources" mimetypes="text/x-csharp">
 	
+	<escape-char>\</escape-char>
+
 	<string _name = "String" style = "String" end-at-line-end = "TRUE">
 		<start-regex>&quot;</start-regex>
 		<end-regex>&quot;</end-regex>

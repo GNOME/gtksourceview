@@ -1,3 +1,8 @@
+2004-02-12  Jeroen Zwartepoorte  <jeroen@xs4all.nl>
+
+	* gtksourceview/language-specs/csharp.lang: Added an escape character
+	to properly highlight things like strings-in-strings.
+
 2004-02-11  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
 
 	* gtksourceview/gnu-regex/regex.h: Redefine POSIX regular
