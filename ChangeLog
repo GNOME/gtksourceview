@@ -1,3 +1,20 @@
+2005-01-22  Paolo Maggi  <paolo@gnome.org>
+
+	* gtksourceview/gtksourceundomanager.c
+	(gtk_source_undo_manager_init) (gtk_source_undo_manager_finalize)
+	(gtk_source_undo_manager_new) (gtk_source_undo_manager_undo)
+	(gtk_source_undo_manager_redo)
+	(gtk_source_undo_manager_free_action_list)
+	(gtk_source_undo_manager_insert_text_handler)
+	(gtk_source_undo_manager_delete_range_handler)
+	(gtk_source_undo_manager_add_action)
+	(gtk_source_undo_manager_free_first_n_actions)
+	(gtk_source_undo_manager_check_list_size)
+	(gtk_source_undo_manager_merge_action)
+	(gtk_source_undo_manager_set_max_undo_levels)
+	(gtk_source_undo_manager_modified_changed_handler): fixed bug 
+	#132828 (Undoing/Redoing to a non-modified state should unset modified)
+
 === gtksourceview 1.1.90 ===
 
 2005-01-12  Paolo Maggi  <paolo@gnome.org>
