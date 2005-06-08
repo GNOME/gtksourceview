@@ -2,15 +2,16 @@
 # Copyright (C) 2003 Free Software Foundation, Inc.
 # This file is distributed under the same license as the gtksourceview package.
 # Tõivo Leedjärv <toivo@linux.ee>, 2003.
-# 
+# Priit Laes <amd@store20.com>, 2005.
+# Ivar Smolin <okul@linux.ee>, 2005.
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-03-08 11:38+0100\n"
-"PO-Revision-Date: 2005-02-28 13:48+0300\n"
-"Last-Translator: Priit Laes <amd@store20.com>\n"
+"POT-Creation-Date: 2005-02-08 15:25+0100\n"
+"PO-Revision-Date: 2005-06-08 00:19+0300\n"
+"Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -33,7 +34,8 @@ msgstr ""
 msgid "Whether to check and highlight matching brackets"
 msgstr ""
 
-#: gtksourceview/gtksourcebuffer.c:297 gtksourceview/gtksourceprintjob.c:295
+#: gtksourceview/gtksourcebuffer.c:297
+#: gtksourceview/gtksourceprintjob.c:295
 msgid "Highlight"
 msgstr ""
 
@@ -64,14 +66,12 @@ msgid "Language specification directories"
 msgstr ""
 
 #: gtksourceview/gtksourcelanguagesmanager.c:120
-msgid ""
-"List of directories where the language specification files (.lang) are "
-"located"
+msgid "List of directories where the language specification files (.lang) are located"
 msgstr ""
 
 #: gtksourceview/gtksourceprintjob.c:264
 msgid "Configuration"
-msgstr "Häälestus"
+msgstr "Seadistused"
 
 #: gtksourceview/gtksourceprintjob.c:265
 msgid "Configuration options for the print job"
@@ -85,8 +85,9 @@ msgstr ""
 msgid "GtkSourceBuffer object to print"
 msgstr ""
 
-#: gtksourceview/gtksourceprintjob.c:279 gtksourceview/gtksourceview.c:222
+#: gtksourceview/gtksourceprintjob.c:279
 #: gtksourceview/gtksourceview.c:223
+#: gtksourceview/gtksourceview.c:224
 msgid "Tabs Width"
 msgstr "Tabulaatori laius"
 
@@ -122,7 +123,8 @@ msgstr ""
 msgid "Font to use for the document text (e.g. \"Monospace 10\")"
 msgstr ""
 
-#: gtksourceview/gtksourceprintjob.c:320 gtksourceview/gtksourceprintjob.c:328
+#: gtksourceview/gtksourceprintjob.c:320
+#: gtksourceview/gtksourceprintjob.c:328
 msgid "Numbers Font"
 msgstr "Arvude kirjatüüp"
 
@@ -239,7 +241,7 @@ msgstr ""
 #: gtksourceview/language-specs/css.lang.h:63
 #: gtksourceview/language-specs/html.lang.h:8
 #: gtksourceview/language-specs/fortran.lang.h:12
-#: gtksourceview/language-specs/idl.lang.h:9
+#: gtksourceview/language-specs/idl.lang.h:8
 #: gtksourceview/language-specs/java.lang.h:11
 #: gtksourceview/language-specs/javascript.lang.h:33
 #: gtksourceview/language-specs/lua.lang.h:10
@@ -313,71 +315,67 @@ msgstr ""
 msgid "The style associated to the source tag"
 msgstr ""
 
-#: gtksourceview/gtksourceview.c:206
+#: gtksourceview/gtksourceview.c:207
 msgid "Show Line Numbers"
 msgstr "Näita reanumbreid"
 
-#: gtksourceview/gtksourceview.c:207
+#: gtksourceview/gtksourceview.c:208
 msgid "Whether to display line numbers"
 msgstr "Kas näidata reanumbreid või mitte"
 
-#: gtksourceview/gtksourceview.c:214
+#: gtksourceview/gtksourceview.c:215
 msgid "Show Line Markers"
 msgstr ""
 
-#: gtksourceview/gtksourceview.c:215
+#: gtksourceview/gtksourceview.c:216
 msgid "Whether to display line marker pixbufs"
 msgstr ""
 
-#: gtksourceview/gtksourceview.c:232
+#: gtksourceview/gtksourceview.c:233
 msgid "Auto Indentation"
 msgstr "Automaatne taandamine"
 
-#: gtksourceview/gtksourceview.c:233
+#: gtksourceview/gtksourceview.c:234
 msgid "Whether to enable auto indentation"
 msgstr "Kas lubada automaatne taandamine"
 
-#: gtksourceview/gtksourceview.c:239
+#: gtksourceview/gtksourceview.c:240
 msgid "Insert Spaces Instead of Tabs"
 msgstr "Kasuta tabulaatorite asemel tühikuid"
 
-#: gtksourceview/gtksourceview.c:240
+#: gtksourceview/gtksourceview.c:241
 msgid "Whether to insert spaces instead of tabs"
 msgstr "Kas sisestada tabulaatorite asemele tühikud"
 
-#: gtksourceview/gtksourceview.c:247
+#: gtksourceview/gtksourceview.c:248
 msgid "Show Right Margin"
 msgstr ""
 
-#: gtksourceview/gtksourceview.c:248
+#: gtksourceview/gtksourceview.c:249
 msgid "Whether to display the right margin"
 msgstr ""
 
-#: gtksourceview/gtksourceview.c:255
+#: gtksourceview/gtksourceview.c:256
 msgid "Margin position"
 msgstr ""
 
-#: gtksourceview/gtksourceview.c:256
+#: gtksourceview/gtksourceview.c:257
 msgid "Position of the right margin"
 msgstr ""
 
-#: gtksourceview/gtksourceview.c:265
+#: gtksourceview/gtksourceview.c:266
 msgid "Use smart home/end"
 msgstr "Home/end klahvid on targad"
 
-#: gtksourceview/gtksourceview.c:266
-msgid ""
-"HOME and END keys move to first/last characters on line first before going "
-"to the start/end of the line"
-msgstr ""
-"HOME ja END klahvid liiguvad enne rea algusesse/lõppu minekut rea esimese/"
-"viimase märgi peale"
+#: gtksourceview/gtksourceview.c:267
+msgid "HOME and END keys move to first/last characters on line first before going to the start/end of the line"
+msgstr "HOME ja END klahvid liiguvad enne rea algusesse/lõppu minekut rea esimese/viimase märgi peale"
 
-#: gtksourceview/gtksourceview.c:275
+#: gtksourceview/gtksourceview.c:276
 msgid "Highlight current line"
 msgstr ""
 
-#: gtksourceview/gtksourceview.c:276
+#: gtksourceview/gtksourceview.c:277
 msgid "Whether to highlight the current line"
 msgstr ""
 
@@ -420,7 +418,6 @@ msgstr "Võtmesõnad"
 #: gtksourceview/language-specs/desktop.lang.h:7
 #: gtksourceview/language-specs/diff.lang.h:5
 #: gtksourceview/language-specs/fortran.lang.h:8
-#: gtksourceview/language-specs/idl.lang.h:5
 #: gtksourceview/language-specs/ini.lang.h:8
 #: gtksourceview/language-specs/java.lang.h:5
 #: gtksourceview/language-specs/javascript.lang.h:12
@@ -466,7 +463,7 @@ msgstr "Eelprotsessori võtmesõnad"
 #: gtksourceview/language-specs/cpp.lang.h:14
 #: gtksourceview/language-specs/csharp.lang.h:7
 #: gtksourceview/language-specs/fortran.lang.h:11
-#: gtksourceview/language-specs/idl.lang.h:8
+#: gtksourceview/language-specs/idl.lang.h:7
 #: gtksourceview/language-specs/java.lang.h:10
 #: gtksourceview/language-specs/pascal.lang.h:17
 #: gtksourceview/language-specs/php.lang.h:23
@@ -487,7 +484,7 @@ msgstr "Tõene ja väär"
 #: gtksourceview/language-specs/c.lang.h:16
 #: gtksourceview/language-specs/cpp.lang.h:16
 #: gtksourceview/language-specs/fortran.lang.h:14
-#: gtksourceview/language-specs/idl.lang.h:10
+#: gtksourceview/language-specs/idl.lang.h:9
 #: gtksourceview/language-specs/verilog.lang.h:10
 msgid "Types"
 msgstr "Tüübid"
@@ -565,7 +562,7 @@ msgstr "Kaheksandarv"
 #: gtksourceview/language-specs/c.lang.h:13
 #: gtksourceview/language-specs/cpp.lang.h:13
 #: gtksourceview/language-specs/csharp.lang.h:5
-#: gtksourceview/language-specs/idl.lang.h:6
+#: gtksourceview/language-specs/idl.lang.h:5
 #: gtksourceview/language-specs/haskell.lang.h:13
 #: gtksourceview/language-specs/vbnet.lang.h:4
 msgid "Preprocessor Definitions"
@@ -625,7 +622,6 @@ msgstr ""
 #. length: #ffcc00 = #fc0.
 #.
 #: gtksourceview/language-specs/css.lang.h:22
-#, fuzzy
 msgid "Hexadecimal Color"
 msgstr "Kuueteistkümnendarv"
 
@@ -650,7 +646,7 @@ msgstr "Operaatorid"
 
 #: gtksourceview/language-specs/css.lang.h:47
 msgid "Property Names"
-msgstr ""
+msgstr "Omaduste nimed"
 
 #.
 #. Brackets define a declaration block, parentheses define functions.
@@ -658,9 +654,8 @@ msgstr ""
 #: gtksourceview/language-specs/css.lang.h:51
 #: gtksourceview/language-specs/javascript.lang.h:20
 #: gtksourceview/language-specs/sh.lang.h:9
-#, fuzzy
 msgid "Punctuators"
-msgstr "Funktsioonid"
+msgstr ""
 
 #: gtksourceview/language-specs/css.lang.h:52
 msgid "Selector Grammar"
@@ -812,7 +807,7 @@ msgstr "Loe/Kirjuta"
 msgid "IDL"
 msgstr "IDL"
 
-#: gtksourceview/language-specs/idl.lang.h:7
+#: gtksourceview/language-specs/idl.lang.h:6
 msgid "Sectional"
 msgstr ""
 
@@ -828,20 +823,18 @@ msgstr "Kümnendarv"
 #: gtksourceview/language-specs/ini.lang.h:4
 #: gtksourceview/language-specs/R.lang.h:3
 #: gtksourceview/language-specs/gtkrc.lang.h:2
-#, fuzzy
 msgid "Double Quote String"
-msgstr "Mitmerealine string"
+msgstr "Kahekordsete jutumärkidega string"
 
 #: gtksourceview/language-specs/ini.lang.h:6
 msgid "Integer"
-msgstr ""
+msgstr "Täisarv"
 
 #: gtksourceview/language-specs/ini.lang.h:11
 #: gtksourceview/language-specs/R.lang.h:11
 #: gtksourceview/language-specs/gtkrc.lang.h:10
-#, fuzzy
 msgid "Single Quote String"
-msgstr "Mitmerealine string"
+msgstr "Ühekordsete jutumärkidega string"
 
 #. $variable, $$dynamic-variable and even $$$more
 #: gtksourceview/language-specs/ini.lang.h:12
@@ -885,16 +878,15 @@ msgstr ""
 
 #: gtksourceview/language-specs/javascript.lang.h:4
 msgid "Error Handling"
-msgstr ""
+msgstr "Veatöötlus"
 
 #: gtksourceview/language-specs/javascript.lang.h:5
 msgid "Floating-Point Number"
 msgstr "Ujupunkt-arv"
 
 #: gtksourceview/language-specs/javascript.lang.h:6
-#, fuzzy
 msgid "Flow Keywords"
-msgstr "Võtmesõnad"
+msgstr ""
 
 #: gtksourceview/language-specs/javascript.lang.h:7
 msgid "Future Reserved Words"
@@ -910,7 +902,6 @@ msgstr ""
 
 #: gtksourceview/language-specs/javascript.lang.h:10
 #: gtksourceview/language-specs/verilog.lang.h:5
-#, fuzzy
 msgid "Hexadecimal Number"
 msgstr "Kuueteistkümnendarv"
 
@@ -923,13 +914,12 @@ msgid "Math Value Properties"
 msgstr ""
 
 #: gtksourceview/language-specs/javascript.lang.h:16
-#, fuzzy
 msgid "Object Functions"
-msgstr "Funktsioonid"
+msgstr "Objekti funktsioonid"
 
 #: gtksourceview/language-specs/javascript.lang.h:17
 msgid "Object Properties"
-msgstr ""
+msgstr "Objekti omadused"
 
 #: gtksourceview/language-specs/javascript.lang.h:18
 msgid "Objects"
@@ -980,7 +970,7 @@ msgstr "Matemaatika"
 
 #: gtksourceview/language-specs/latex.lang.h:7
 msgid "Most Used Commands"
-msgstr ""
+msgstr "Enimkasutatavad käsud"
 
 #: gtksourceview/language-specs/lua.lang.h:2
 #: gtksourceview/language-specs/python.lang.h:4
@@ -989,9 +979,8 @@ msgid "Functions"
 msgstr "Funktsioonid"
 
 #: gtksourceview/language-specs/lua.lang.h:5
-#, fuzzy
 msgid "Line Comment 2"
-msgstr "Reakommentaar"
+msgstr "Reakommentaar 2"
 
 #: gtksourceview/language-specs/lua.lang.h:6
 msgid "Lua"
@@ -1010,14 +999,12 @@ msgid "Multiline String 2"
 msgstr "Mitmerealine string 2"
 
 #: gtksourceview/language-specs/pascal.lang.h:1
-#, fuzzy
 msgid "Block Comment 1"
-msgstr "Blokk-kommentaar"
+msgstr "Blokk-kommentaar 1"
 
 #: gtksourceview/language-specs/pascal.lang.h:2
-#, fuzzy
 msgid "Block Comment 2"
-msgstr "Blokk-kommentaar"
+msgstr "Blokk-kommentaar 2"
 
 #: gtksourceview/language-specs/pascal.lang.h:3
 msgid "Boolean Bitwise Operators"
@@ -1065,11 +1052,11 @@ msgstr ""
 
 #: gtksourceview/language-specs/perl.lang.h:1
 msgid "Function Call"
-msgstr ""
+msgstr "Funktsioonikutsung"
 
 #: gtksourceview/language-specs/perl.lang.h:4
 msgid "Method Call"
-msgstr ""
+msgstr "Meetodikutsung"
 
 #: gtksourceview/language-specs/perl.lang.h:5
 msgid "POD"
@@ -1101,14 +1088,13 @@ msgstr ""
 
 #. # Bourne Shell Line Comment
 #: gtksourceview/language-specs/php.lang.h:5
-#, fuzzy
 msgid "Bash Line Comment"
-msgstr "Reakommentaar"
+msgstr "Bash'i Reakommentaar"
 
 #. /* C Block Comment
 #: gtksourceview/language-specs/php.lang.h:7
 msgid "C Block Comment"
-msgstr "C plokk-kommentaar"
+msgstr "C blokk-kommentaar"
 
 #. // C++ Line Comment
 #: gtksourceview/language-specs/php.lang.h:9
@@ -1117,18 +1103,17 @@ msgstr "C++ reakommentaar"
 
 #: gtksourceview/language-specs/php.lang.h:10
 msgid "Case Insensitive Keyword"
-msgstr ""
+msgstr "Tõstutundetu võtmesõna"
 
 #. This are keywords, the are recognised by php
 #: gtksourceview/language-specs/php.lang.h:12
 msgid "Case Sensitive Keyword"
-msgstr ""
+msgstr "Tõstutundlik võtmesõna"
 
 #. "duble-quoted strings"
 #: gtksourceview/language-specs/php.lang.h:16
-#, fuzzy
 msgid "Double Quoted String"
-msgstr "Mitmerealine string"
+msgstr ""
 
 #: gtksourceview/language-specs/php.lang.h:17
 msgid "First Open PHP Tag"
@@ -1136,7 +1121,7 @@ msgstr ""
 
 #: gtksourceview/language-specs/php.lang.h:18
 msgid "HTML Block"
-msgstr ""
+msgstr "HTML blokk"
 
 #: gtksourceview/language-specs/php.lang.h:20
 msgid "PHP"
@@ -1169,9 +1154,8 @@ msgid "Python"
 msgstr "Python"
 
 #: gtksourceview/language-specs/ruby.lang.h:1
-#, fuzzy
 msgid "Attribute Definitions"
-msgstr "Atribuut"
+msgstr "Atribuudi definitsioonid"
 
 #: gtksourceview/language-specs/ruby.lang.h:3
 msgid "Class Variables"
@@ -1190,28 +1174,24 @@ msgid "Global Variables"
 msgstr "Globaalsed muutujad"
 
 #: gtksourceview/language-specs/ruby.lang.h:7
-#, fuzzy
 msgid "Instance Variables"
-msgstr "Muutujad"
+msgstr ""
 
 #: gtksourceview/language-specs/ruby.lang.h:10
 msgid "Module Handlers"
 msgstr ""
 
 #: gtksourceview/language-specs/ruby.lang.h:11
-#, fuzzy
 msgid "Multiline Comment"
-msgstr "Reakommentaar"
+msgstr "Mitmerealine kommentaar"
 
 #: gtksourceview/language-specs/ruby.lang.h:12
-#, fuzzy
 msgid "Pseudo Variables"
-msgstr "Muutujad"
+msgstr "Pseudomuutujad"
 
 #: gtksourceview/language-specs/ruby.lang.h:13
-#, fuzzy
 msgid "RegExp Variables"
-msgstr "Muutujad"
+msgstr "Regulaaravaldise muutujad"
 
 #: gtksourceview/language-specs/ruby.lang.h:14
 msgid "Regular Expression"
@@ -1226,18 +1206,16 @@ msgid "Ruby"
 msgstr "Ruby"
 
 #: gtksourceview/language-specs/sh.lang.h:2
-#, fuzzy
 msgid "Built-in Commands"
-msgstr "Funktsioonid"
+msgstr ""
 
 #: gtksourceview/language-specs/sh.lang.h:3
 msgid "Common Commands"
-msgstr ""
+msgstr "Üldised käsud"
 
 #: gtksourceview/language-specs/sh.lang.h:10
-#, fuzzy
 msgid "Redirections"
-msgstr "Eelprotsessori definitsoonid"
+msgstr "Ümbersuunamised"
 
 #: gtksourceview/language-specs/sh.lang.h:12
 msgid "Self"
@@ -1264,14 +1242,12 @@ msgid "ANSI Reserved Words"
 msgstr ""
 
 #: gtksourceview/language-specs/sql.lang.h:3
-#, fuzzy
 msgid "Aggregate Functions"
-msgstr "Funktsioonid"
+msgstr "Agregaatfunktsioonid"
 
 #: gtksourceview/language-specs/sql.lang.h:4
-#, fuzzy
 msgid "Analytic Functions"
-msgstr "Funktsioonid"
+msgstr "Analüütilised funktsioonid"
 
 #: gtksourceview/language-specs/sql.lang.h:6
 msgid "Character Functions Returning Character Values"
@@ -1282,14 +1258,12 @@ msgid "Character Functions Returning Number Values"
 msgstr ""
 
 #: gtksourceview/language-specs/sql.lang.h:8
-#, fuzzy
 msgid "Conversion Functions"
-msgstr "Funktsioonid"
+msgstr "Teisendusfunktsioonid"
 
 #: gtksourceview/language-specs/sql.lang.h:9
-#, fuzzy
 msgid "Datetime Functions"
-msgstr "Funktsioonid"
+msgstr "Kuupäeva ja aja funktsioonid"
 
 #: gtksourceview/language-specs/sql.lang.h:10
 msgid "Integer Literals"
@@ -1304,9 +1278,8 @@ msgid "Null"
 msgstr "Null"
 
 #: gtksourceview/language-specs/sql.lang.h:14
-#, fuzzy
 msgid "Number Functions"
-msgstr "Funktsioonid"
+msgstr ""
 
 #: gtksourceview/language-specs/sql.lang.h:15
 msgid "Number Literals"
@@ -1318,7 +1291,7 @@ msgstr ""
 
 #: gtksourceview/language-specs/sql.lang.h:17
 msgid "Oracle Built-in Datatypes"
-msgstr ""
+msgstr "Oracle sisseehitatud andmetüübid"
 
 #: gtksourceview/language-specs/sql.lang.h:18
 msgid "Oracle Reserved Words"
@@ -1358,7 +1331,7 @@ msgstr ""
 
 #: gtksourceview/language-specs/sql.lang.h:28
 msgid "Unlimited"
-msgstr ""
+msgstr "Piiramatu"
 
 #: gtksourceview/language-specs/verilog.lang.h:1
 #: gtksourceview/language-specs/nemerle.lang.h:1
@@ -1366,9 +1339,8 @@ msgid "Binary Number"
 msgstr "Kahendarv"
 
 #: gtksourceview/language-specs/verilog.lang.h:4
-#, fuzzy
 msgid "Gates"
-msgstr "Latex"
+msgstr ""
 
 #: gtksourceview/language-specs/verilog.lang.h:11
 msgid "Verilog"
@@ -1399,9 +1371,8 @@ msgid "Type or Constructor"
 msgstr ""
 
 #: gtksourceview/language-specs/texinfo.lang.h:2
-#, fuzzy
 msgid "Characters"
-msgstr "Märk"
+msgstr "Märgid"
 
 #: gtksourceview/language-specs/texinfo.lang.h:3
 msgid "File Attributes"
@@ -1412,14 +1383,12 @@ msgid "Formatting"
 msgstr "Vormindamine"
 
 #: gtksourceview/language-specs/texinfo.lang.h:5
-#, fuzzy
 msgid "Generated Content"
-msgstr "Märgikonstant"
+msgstr "Genereeritud sisu"
 
 #: gtksourceview/language-specs/texinfo.lang.h:7
-#, fuzzy
 msgid "Indexing"
-msgstr "Kodeering"
+msgstr "Indekseerimine"
 
 #: gtksourceview/language-specs/texinfo.lang.h:10
 msgid "Macro Parameters"
@@ -1438,32 +1407,28 @@ msgid "Markup (inline)"
 msgstr ""
 
 #: gtksourceview/language-specs/texinfo.lang.h:15
-#, fuzzy
 msgid "Sectioning"
-msgstr "String"
+msgstr ""
 
 #: gtksourceview/language-specs/texinfo.lang.h:16
 msgid "Texinfo"
 msgstr "Texinfo"
 
 #: gtksourceview/language-specs/vbnet.lang.h:3
-#, fuzzy
 msgid "Old Style Comment"
-msgstr "Reakommentaar"
+msgstr ""
 
 #: gtksourceview/language-specs/vbnet.lang.h:9
 msgid "VB.NET"
 msgstr "VB.NET"
 
 #: gtksourceview/language-specs/nemerle.lang.h:4
-#, fuzzy
 msgid "Core Keywords"
-msgstr "Võtmesõnad"
+msgstr ""
 
 #: gtksourceview/language-specs/nemerle.lang.h:5
-#, fuzzy
 msgid "Core Types"
-msgstr "Tüübid"
+msgstr ""
 
 #: gtksourceview/language-specs/nemerle.lang.h:9
 msgid "Keywords Defined by Macros"
@@ -1502,14 +1467,12 @@ msgid "Integer Number"
 msgstr "Täisarv"
 
 #: gtksourceview/language-specs/R.lang.h:8
-#, fuzzy
 msgid "Reserved Class"
-msgstr "Märgikonstant"
+msgstr "Reserveeritud klass"
 
 #: gtksourceview/language-specs/R.lang.h:9
-#, fuzzy
 msgid "Reserved Constant"
-msgstr "Märgikonstant"
+msgstr "Reserveeritud konstant"
 
 #: gtksourceview/language-specs/gtkrc.lang.h:3
 msgid "GtkRC"
@@ -1521,8 +1484,9 @@ msgstr ""
 
 #: gtksourceview/language-specs/gtkrc.lang.h:5
 msgid "Keysymbol"
-msgstr ""
+msgstr "Võtmesümbol"
 
 #: gtksourceview/language-specs/gtkrc.lang.h:11
 msgid "State"
 msgstr "Olek"
+
