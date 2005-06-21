@@ -1016,11 +1016,14 @@ iter_has_syntax_tag (const GtkTextIter *iter)
 {
 	const GtkSyntaxTag *tag;
 	GSList *list;
+	GSList *l;
 
 	g_return_val_if_fail (iter != NULL, NULL);
 
 	list = gtk_text_iter_get_tags (iter);
 	tag = NULL;
+
+	l = list;
 
 	while ((list != NULL) && (tag == NULL)) {
 		if (GTK_IS_SYNTAX_TAG (list->data))
@@ -1028,7 +1031,7 @@ iter_has_syntax_tag (const GtkTextIter *iter)
 		list = g_slist_next (list);
 	}
 
-	g_slist_free (list);
+	g_slist_free (l);
 
 	return tag;
 }

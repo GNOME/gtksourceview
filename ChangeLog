@@ -1,10 +1,16 @@
+2005-06-21  Paolo Maggi  <paolo@gnome.org>
+
+	* gtksourceview/gtksourcebuffer.c (iter_has_syntax_tag): fixed
+	memory leak (#300796). 
+	Based on a patch by Yevgen Muntyan <muntyan@tamu.edu>.
+
 2005-04-01  Adi Attar  <aattar@cvs.gnome.org>
 
 	* configure.in: Added "xh" to ALL_LINGUAS.
 
 2005-03-31  Steve Murphy  <murf@e-tools.com>
 
-        * configure.in: Added "rw" to ALL_LINGUAS.
+	* configure.in: Added "rw" to ALL_LINGUAS.
 
 2005-03-10  Pawan Chitrakar  <pawan@nplinux.org>
 
