@@ -1,5 +1,10 @@
 2005-06-21  Paolo Maggi  <paolo@gnome.org>
 
+	* gtksourceview/language-specs/ruby.lang: added application/x-ruby
+	to the list of mime-types. Fixes bug #307365.
+
+2005-06-21  Paolo Maggi  <paolo@gnome.org>
+
 	* gtksourceview/gtksourcebuffer.c (iter_has_syntax_tag): fixed
 	memory leak (#300796). 
 	Based on a patch by Yevgen Muntyan <muntyan@tamu.edu>.
