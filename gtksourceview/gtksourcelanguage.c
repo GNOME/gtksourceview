@@ -991,9 +991,17 @@ tag_style_changed_cb (GtkSourceLanguage *language,
 		      GtkSourceTag	*tag)
 {
 	GtkSourceTagStyle *ts;
+	gchar *tag_id;
 
-	if (strcmp (gtk_source_tag_get_id (tag), id) != 0)
+	tag_id = gtk_source_tag_get_id (tag);
+
+	if (strcmp (tag_id, id) != 0)
+	{
+		g_free (tag_id);
 		return;
+	}
+
+	g_free (tag_id);
 
 	ts = gtk_source_language_get_tag_style (language, id);
 

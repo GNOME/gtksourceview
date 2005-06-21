@@ -1,5 +1,10 @@
 2005-06-21  Paolo Maggi  <paolo@gnome.org>
 
+	* gtksourceview/gtksourcelanguage.c (tag_style_changed_cb): free
+	the value returned by gtk_source_tag_get_id. Fixes bug #306147.
+
+2005-06-21  Paolo Maggi  <paolo@gnome.org>
+
 	* gtksourceview/language-specs/ruby.lang: added application/x-ruby
 	to the list of mime-types. Fixes bug #307365.
 
