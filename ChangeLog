@@ -1,5 +1,10 @@
 2005-06-23  Paolo Maggi  <paolo@gnome.org>
 
+	* gtksourceview/language-specs/sql.lang: use \ as escape char.
+	Fixes bug #305958. 
+
+2005-06-23  Paolo Maggi  <paolo@gnome.org>
+
 	* gtksourceview/language-specs/fortran.lang: added STOP keyword, 
 	improved comments management. Based on a patch by 
 	John Spray <jcs116@york.ac.uk>. Partially fixes bug #168090
