@@ -1,3 +1,9 @@
+2005-06-23  Paolo Maggi  <paolo@gnome.org>
+
+	* gtksourceview/language-specs/fortran.lang: added STOP keyword, 
+	improved comments management. Based on a patch by 
+	John Spray <jcs116@york.ac.uk>. Partially fixes bug #168090
+
 2005-06-21  Paolo Maggi  <paolo@gnome.org>
 
 	* gtksourceview/gtksourcelanguage.c (tag_style_changed_cb): free

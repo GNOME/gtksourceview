@@ -5,7 +5,7 @@
 	<escape-char>\</escape-char>
 
 	<line-comment _name = "Line Comment" style= "Comment">
-		<start-regex>!|(^C)</start-regex>
+		<start-regex>!|(^[Cc])</start-regex>
 	</line-comment>
 
 	<string _name = "String" style = "String" end-at-line-end = "TRUE">
@@ -21,6 +21,7 @@
 		<keyword>case</keyword>
 		<keyword>continue</keyword>
 		<keyword>cycle</keyword>
+		<keyword>stop</keyword>
 		<keyword>do</keyword>
       		<keyword>else</keyword>
       		<keyword>elseif</keyword>
