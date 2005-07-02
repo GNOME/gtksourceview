@@ -1,6 +1,9 @@
-# gtksourceview eesti tõlge.
-# Copyright (C) 2003 Free Software Foundation, Inc.
+# gtksourceview'i eesti keele tõlge.
+# Estonian translation of gtksourceview
+#
+# Copyright (C) 2003, 2005 Free Software Foundation, Inc.
 # This file is distributed under the same license as the gtksourceview package.
+#
 # Tõivo Leedjärv <toivo@linux.ee>, 2003.
 # Priit Laes <amd@store20.com>, 2005.
 # Ivar Smolin <okul@linux.ee>, 2005.
@@ -10,7 +13,7 @@ msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2005-02-08 15:25+0100\n"
-"PO-Revision-Date: 2005-06-08 00:19+0300\n"
+"PO-Revision-Date: 2005-07-01 22:25+0300\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -37,11 +40,11 @@ msgstr ""
 #: gtksourceview/gtksourcebuffer.c:297
 #: gtksourceview/gtksourceprintjob.c:295
 msgid "Highlight"
-msgstr ""
+msgstr "Esiletõstmine"
 
 #: gtksourceview/gtksourcebuffer.c:298
 msgid "Whether to highlight syntax in the buffer"
-msgstr ""
+msgstr "Kas puhvrisolevat süntaksit tõstetakse esile"
 
 #: gtksourceview/gtksourcebuffer.c:306
 msgid "Maximum Undo Levels"
@@ -97,11 +100,11 @@ msgstr ""
 
 #: gtksourceview/gtksourceprintjob.c:287
 msgid "Wrap Mode"
-msgstr ""
+msgstr "Murdmisrežiim"
 
 #: gtksourceview/gtksourceprintjob.c:288
 msgid "Word wrapping mode"
-msgstr ""
+msgstr "Sõnade murdmise režiim"
 
 #: gtksourceview/gtksourceprintjob.c:296
 msgid "Whether to print the document with highlighted syntax"
@@ -117,11 +120,12 @@ msgstr ""
 
 #: gtksourceview/gtksourceprintjob.c:312
 msgid "Font Description"
-msgstr ""
+msgstr "Kirjatüübi kirjeldus"
 
 #: gtksourceview/gtksourceprintjob.c:313
 msgid "Font to use for the document text (e.g. \"Monospace 10\")"
 msgstr ""
+"Dokumendi tekstis kasutatava kirjatüübi kirjeldus (näiteks \"Monospace 10\")"
 
 #: gtksourceview/gtksourceprintjob.c:320
 #: gtksourceview/gtksourceprintjob.c:328
@@ -138,27 +142,27 @@ msgstr ""
 
 #: gtksourceview/gtksourceprintjob.c:336
 msgid "Print Line Numbers"
-msgstr ""
+msgstr "Reanumbrite trükkimine"
 
 #: gtksourceview/gtksourceprintjob.c:337
 msgid "Interval of printed line numbers (0 means no numbers)"
-msgstr ""
+msgstr "Trükitavate reanumbrite vahemik (0 tähendab, et numbreid ei trükita)"
 
 #: gtksourceview/gtksourceprintjob.c:344
 msgid "Print Header"
-msgstr ""
+msgstr "Päise trükkimine"
 
 #: gtksourceview/gtksourceprintjob.c:345
 msgid "Whether to print a header in each page"
-msgstr ""
+msgstr "Kas päis trükitakse igale lehele"
 
 #: gtksourceview/gtksourceprintjob.c:352
 msgid "Print Footer"
-msgstr ""
+msgstr "Jaluse trükkimine"
 
 #: gtksourceview/gtksourceprintjob.c:353
 msgid "Whether to print a footer in each page"
-msgstr ""
+msgstr "Kas jalus trükitakse igale lehele"
 
 #: gtksourceview/gtksourceprintjob.c:360
 msgid "Header and Footer Font"
@@ -373,11 +377,11 @@ msgstr "HOME ja END klahvid liiguvad enne rea algusesse/lõppu minekut rea esime
 
 #: gtksourceview/gtksourceview.c:276
 msgid "Highlight current line"
-msgstr ""
+msgstr "Käesoleva rea esiletõstmine"
 
 #: gtksourceview/gtksourceview.c:277
 msgid "Whether to highlight the current line"
-msgstr ""
+msgstr "Kas käesolevat rida tõstetakse esile"
 
 #: gtksourceview/language-specs/ada.lang.h:1
 msgid "Ada"
@@ -1207,7 +1211,7 @@ msgstr "Ruby"
 
 #: gtksourceview/language-specs/sh.lang.h:2
 msgid "Built-in Commands"
-msgstr ""
+msgstr "Sisseehitatud käsud"
 
 #: gtksourceview/language-specs/sh.lang.h:3
 msgid "Common Commands"
@@ -1307,7 +1311,7 @@ msgstr ""
 
 #: gtksourceview/language-specs/sql.lang.h:21
 msgid "SQL*Plus Commands"
-msgstr ""
+msgstr "SQL*Plus käsud"
 
 #: gtksourceview/language-specs/sql.lang.h:22
 msgid "SQL*Plus Double At Sign"
@@ -1319,7 +1323,7 @@ msgstr ""
 
 #: gtksourceview/language-specs/sql.lang.h:24
 msgid "SQL/DS and DB2 Datatypes"
-msgstr ""
+msgstr "SQL/DS ja DB2 andmetüübid"
 
 #: gtksourceview/language-specs/sql.lang.h:25
 msgid "Size Clause"
