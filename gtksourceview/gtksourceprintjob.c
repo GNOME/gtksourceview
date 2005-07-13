@@ -1560,9 +1560,9 @@ print_page (GtkSourcePrintJob *job)
 	while (l != NULL)
 	{
 		Paragraph *para = l->data;
-		gdouble baseline;
+		gdouble baseline = 0;
 		gint last_line = line;
-		
+
 		line = print_paragraph (job, para, line, x, &y, &baseline, force_fit);
 
 		if (last_line == 0 && line != 0)

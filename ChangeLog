@@ -1,3 +1,8 @@
+2005-07-13  Marco Barisione  <marco.bari@vene.ws>
+
+	* gtksourceview/gtksourceprintjob.c (print_page): init
+	unitialized variable.
+
 2005-06-23  Paolo Maggi  <paolo@gnome.org>
 
 	* gtksourceview/language-specs/sql.lang: use \ as escape char.
