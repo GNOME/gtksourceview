@@ -8,12 +8,12 @@ msgstr ""
 "Project-Id-Version: gtksourceview 1.1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2005-03-08 11:38+0100\n"
-"PO-Revision-Date: 2005-01-26 16:44+0700\n"
+"PO-Revision-Date: 2005-07-18 15:19+0700\n"
 "Last-Translator: Theppitak Karoonboonyanan <thep@linux.thai.net>\n"
 "Language-Team: Thai <l10n@opentle.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: 8bit"
 
 #: gtksourceview/gtksourcebuffer.c:279
 msgid "Escape Character"
@@ -320,14 +320,12 @@ msgid "Whether to display line numbers"
 msgstr "กำหนดว่าจะแสดงเลขบรรทัดหรือไม่"
 
 #: gtksourceview/gtksourceview.c:214
-#, fuzzy
 msgid "Show Line Markers"
-msgstr "แสดงการหมายบรรทัด"
+msgstr "แสดงการทำเครื่องหมายบรรทัด"
 
 #: gtksourceview/gtksourceview.c:215
-#, fuzzy
 msgid "Whether to display line marker pixbufs"
-msgstr "กำหนดว่าจะแสดงรูปเล็กๆ ที่ใช้หมายบรรทัดหรือไม่"
+msgstr "กำหนดว่าจะแสดงรูปเล็กๆ ที่ใช้ทำเครื่องหมายบรรทัดหรือไม่"
 
 #: gtksourceview/gtksourceview.c:232
 msgid "Auto Indentation"
@@ -1048,7 +1046,6 @@ msgid "Preprocessor Defines"
 msgstr "ข้อกำหนดพรีโพรเซสเซอร์"
 
 #: gtksourceview/language-specs/pascal.lang.h:19
-#, fuzzy
 msgid "Type, Class and Object Keywords"
 msgstr "คำเกี่ยวกับชนิด คลาส และออบเจกต์"
 
@@ -1425,23 +1422,20 @@ msgid "VB.NET"
 msgstr "VB.NET"
 
 #: gtksourceview/language-specs/nemerle.lang.h:4
-#, fuzzy
 msgid "Core Keywords"
-msgstr "คำสั่งควบคุมเส้นทางการทำงาน"
+msgstr ""
 
 #: gtksourceview/language-specs/nemerle.lang.h:5
-#, fuzzy
 msgid "Core Types"
-msgstr "ชนิด"
+msgstr ""
 
 #: gtksourceview/language-specs/nemerle.lang.h:9
 msgid "Keywords Defined by Macros"
 msgstr ""
 
 #: gtksourceview/language-specs/nemerle.lang.h:11
-#, fuzzy
 msgid "Nemerle"
-msgstr "ตัวเลข"
+msgstr ""
 
 #: gtksourceview/language-specs/tcl.lang.h:6
 msgid "Tcl"
