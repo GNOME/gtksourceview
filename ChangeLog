@@ -1,3 +1,10 @@
+2005-07-27  Paolo Borelli  <pborelli@katamail.com>
+
+	* gtksourceview/gtksourceview.c (key_press_event): override the 
+	handler and chain up the textview handler instead of connecting
+	to the signal, so that applications have a chance to handle the
+	signal themselves. Bug #310294.
+
 2005-07-15  Ignacio Casal Quinteiro  <nacho.resa@gmail.com>
 
 	* configure.in: Added 'gl' to ALL_LINGUAS.

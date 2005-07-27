@@ -143,10 +143,8 @@ static void 	gtk_source_view_get_lines 		(GtkTextView       *text_view,
 				       			 gint              *countp);
 static gint     gtk_source_view_expose 			(GtkWidget         *widget,
 							 GdkEventExpose    *event);
-
-static gint	key_press_cb 				(GtkWidget         *widget, 
-							 GdkEventKey       *event, 
-							 gpointer           data);
+static gboolean	key_press_event				(GtkWidget         *widget, 
+							 GdkEventKey       *event);
 static void 	view_dnd_drop 				(GtkTextView       *view, 
 							 GdkDragContext    *context,
 							 gint               x,
@@ -190,7 +188,8 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	object_class->finalize = gtk_source_view_finalize;
 	object_class->get_property = gtk_source_view_get_property;
 	object_class->set_property = gtk_source_view_set_property;
-	
+
+	widget_class->key_press_event = key_press_event;
 	widget_class->expose_event = gtk_source_view_expose;
 	widget_class->style_set = gtk_source_view_style_set;
 
@@ -468,11 +467,6 @@ gtk_source_view_init (GtkSourceView *view)
 
 	gtk_text_view_set_left_margin (GTK_TEXT_VIEW (view), 2);
 	gtk_text_view_set_right_margin (GTK_TEXT_VIEW (view), 2);
-
-	g_signal_connect (G_OBJECT (view),
-			  "key_press_event",
-			  G_CALLBACK (key_press_cb),
-			  NULL);
 
 	tl = gtk_drag_dest_get_target_list (GTK_WIDGET (view));
 	g_return_if_fail (tl != NULL);
@@ -1769,8 +1763,8 @@ compute_indentation (GtkSourceView *view,
 	return gtk_text_iter_get_slice (&start, &end);
 }
 
-static gint
-key_press_cb (GtkWidget *widget, GdkEventKey *event, gpointer data)
+static gboolean
+key_press_event (GtkWidget *widget, GdkEventKey *event)
 {
 	GtkSourceView *view;
 	GtkTextBuffer *buf;
@@ -1785,7 +1779,7 @@ key_press_cb (GtkWidget *widget, GdkEventKey *event, gpointer data)
 
 	mark = gtk_text_buffer_get_insert (buf);
 	gtk_text_buffer_get_iter_at_mark (buf, &cur, mark);
-	
+
 	if ((key == GDK_Return) && view->priv->auto_indent)
 	{
 		/* Auto-indent means that when you press ENTER at the end of a
@@ -1847,8 +1841,8 @@ key_press_cb (GtkWidget *widget, GdkEventKey *event, gpointer data)
 
 		return TRUE;
 	}
-		
-	return FALSE;
+
+	return	(* GTK_WIDGET_CLASS (parent_class)->key_press_event) (widget, event);
 }
 
 /**
