@@ -24,6 +24,8 @@
 #ifndef __GTK_SOURCE_TAG_PRIVATE_H__
 #define __GTK_SOURCE_TAG_PRIVATE_H__
 
+#error "This file is no longer valid"
+
 #include <gtk/gtktexttag.h>
 
 #include <gtksourceview/gtksourceregex.h>
@@ -35,39 +37,13 @@ struct _GtkSourceTag
 {
 	GtkTextTag		 parent_instance;
 
-	gchar			*id;
+	gchar			*translated_name;
 	GtkSourceTagStyle	*style;
 };
 
 struct _GtkSourceTagClass 
 {
 	GtkTextTagClass		 parent_class; 
-};
-
-struct _GtkSyntaxTag 
-{
-	GtkSourceTag		 parent_instance;
-
-	gchar			*start;  
-	GtkSourceRegex		*reg_start;
-	GtkSourceRegex          *reg_end;
-};
-
-struct _GtkSyntaxTagClass 
-{
-	GtkSourceTagClass	 parent_class; 
-};
-
-struct _GtkPatternTag 
-{
-	GtkSourceTag		 parent_instance;
-
-	GtkSourceRegex		*reg_pattern;
-};
-
-struct _GtkPatternTagClass 
-{
-	GtkSourceTagClass	 parent_class; 
 };
 
 G_END_DECLS

@@ -1,3 +1,36 @@
+2005-07-28  Marco Barisione <barisione@gmail.com>
+
+	* configure.in docs/reference/gtksourceview-docs.sgml
+	docs/reference/gtksourceview-sections.txt
+	docs/reference/gtksourceview.types docs/reference/lang-reference.sgml
+	docs/reference/lang-tutorial.sgml docs/reference/Makefile.am
+	docs/reference/tmpl/buffer.sgml docs/reference/tmpl/stylescheme.sgml
+	docs/reference/tmpl/tag.sgml gtksourceview/gtksourcebuffer.[ch]
+	gtksourceview/gtksourcecontextengine.[ch]
+	gtksourceview/gtksourceengine.[ch]
+	gtksourceview/gtksourcelanguage.[ch]
+	gtksourceview/gtksourcelanguage-parser-1.c
+	gtksourceview/gtksourcelanguage-parser-2.c
+	gtksourceview/gtksourcelanguage-private.h
+	gtksourceview/gtksourcelanguagesmanager.[ch]
+	gtksourceview/gtksourceprintjob.c gtksourceview/gtksourceregex.[ch]
+	gtksourceview/gtksourcesimpleengine.[ch]
+	gtksourceview/gtksourcestylescheme.c gtksourceview/gtksourcetag.[ch]
+	gtksourceview/gtksourcetag-private.h gtksourceview/gtksourceview.c
+	gtksourceview/gtksourceview-marshal.list
+	gtksourceview/language-specs/c.lang
+	gtksourceview/language-specs/cpp.lang
+	gtksourceview/language-specs/def.lang
+	gtksourceview/language-specs/html.lang
+	gtksourceview/language-specs/javascript.lang
+	gtksourceview/language-specs/language2.rng
+	gtksourceview/language-specs/lang_v1_to_v2.xslt
+	gtksourceview/language-specs/latex.lang
+	gtksourceview/language-specs/Makefile.am
+	gtksourceview/language-specs/xml.lang gtksourceview/libegg/
+	gtksourceview/Makefile.am README tests/test-widget.c: merged the new
+	syntax highlighting engine from sf.net
+
 2005-07-27  Paolo Borelli  <pborelli@katamail.com>
 
 	* gtksourceview/gtksourceview.c (key_press_event): override the 

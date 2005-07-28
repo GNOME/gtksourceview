@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<grammar xmlns="http://relaxng.org/ns/structure/1.0"
+         datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+<start>
+    <element name="language">
+        <choice>
+            <attribute name="name"/>
+            <attribute name="_name"/>
+        </choice>
+        <attribute name="id">
+            <data type="string">
+                <param name="pattern">([a-zA-Z0-9_]|-)+</param>
+            </data>
+        </attribute>
+        <attribute name="version"/>
+        <choice>
+            <attribute name="section"/>
+            <attribute name="_section"/>
+        </choice>
+        <attribute name="mimetypes"/>
+
+        <optional>
+            <ref name="metadata"/>
+        </optional>
+
+        <optional>
+            <ref name="styles" />
+        </optional>
+        
+        <optional>
+            <element name="default-regex-options">
+                <text/>
+            </element>
+        </optional>
+
+        <optional>
+            <element name="keyword-char-class">
+                <text/>
+            </element>
+        </optional>
+
+        <ref name="definitions" />
+    </element>
+</start>
+
+
+
+<define name="id-type">
+    <data type="string">
+        <!-- FIXME: Why it doesn't work? 
+             It seems that [a-z-] is unsupported -->
+        <!--
+        <param name="pattern">([a-zA-Z0-9_-]+:)?[a-zA-Z0-9_-]+</param>
+        -->
+        <param name="pattern">(([a-zA-Z0-9_]|-)+:)?([a-zA-Z0-9_]|-)+</param>
+    </data>
+</define>
+
+<define name="ref-type">
+    <data type="string">
+        <!-- FIXME: Why it doesn't work? 
+             It seems that [a-z-] is unsupported -->
+        <!--
+        <param name="pattern">([a-zA-Z0-9_-]+:)?[a-zA-Z0-9_-]+(:\*)?</param>
+        -->
+        <param name="pattern">(([a-zA-Z0-9_]|-)+:)?([a-zA-Z0-9_]|-)+(:\*)?</param>
+    </data>
+</define> 
+
+<define name="boolean-value">
+    <choice>
+        <value>true</value>
+        <value>false</value>
+    </choice>
+</define>
+
+
+
+<define name="itemInAnotherNamespace">
+    <element>
+        <anyName>
+            <except>
+                <nsName/>
+                <nsName ns=""/>
+            </except>
+        </anyName>
+
+        <zeroOrMore>
+            <ref name="itemInAnotherNamespace"/>
+            <text/>
+        </zeroOrMore>
+    </element>
+</define>
+
+
+
+<define name="metadata">
+    <element name="metadata">
+        <zeroOrMore>
+            <ref name="itemInAnotherNamespace"/>
+        </zeroOrMore>
+    </element>
+</define>
+
+<define name="styles">
+    <element name="styles">
+        <oneOrMore>
+            <element name="style">
+                <attribute name="id">
+                    <data type="string">
+                        <param name="pattern">([a-zA-Z0-9_]|-)+</param>
+                    </data>
+                </attribute>
+                <choice>
+                    <attribute name="name"/>
+                    <attribute name="_name"/>
+                </choice>
+                <optional>
+                    <attribute name="map-to">
+                        <ref name="id-type"/>
+                    </attribute>
+                </optional>
+            </element>
+        </oneOrMore>
+    </element>
+</define>
+
+<define name="definitions">
+    <element name="definitions">
+        <interleave>
+            <oneOrMore>
+                <choice>
+                    <ref name="context-to-be-included"/>
+                    <ref name="context-container"/>
+                    <ref name="context-simple"/>
+                    <ref name="context-reference"/>
+                </choice>
+            </oneOrMore>
+            <zeroOrMore>
+                <ref name="define-regex"/>
+            </zeroOrMore>
+        </interleave>
+    </element>
+</define>
+
+
+<define name="context-simple">
+    <element name="context">
+        <optional>
+            <attribute name="id">
+                <ref name="id-type"/>
+            </attribute>
+        </optional>
+        <optional>
+            <attribute name="style-ref">
+                <ref name="id-type"/>
+            </attribute>
+        </optional>
+        <optional>
+            <attribute name="extend-parent">
+                <ref name="boolean-value"/>
+            </attribute>
+        </optional>
+
+        <choice>
+            <element name="match"><text/></element>
+
+            <group>
+                <optional>
+                    <element name="prefix"><text/></element>
+                </optional>
+                <optional>
+                    <element name="suffix"><text/></element>
+                </optional>
+                <oneOrMore>
+                    <element name="keyword"><text/></element>
+                </oneOrMore>
+            </group>
+        </choice>
+
+        <optional>
+            <element name="include">
+                <oneOrMore>
+                    <ref name="context-subpattern-simple"/>
+                </oneOrMore>
+            </element>
+        </optional>
+    </element>
+</define>
+
+<define name="context-container">
+    <element name="context">
+        <optional>
+            <attribute name="id">
+                <ref name="id-type"/>
+            </attribute>
+        </optional>
+        <optional>
+            <attribute name="style-ref"/>
+        </optional>
+        <optional>
+            <attribute name="extend-parent">
+                <ref name="boolean-value"/>
+            </attribute>
+        </optional>
+        <optional>
+            <attribute name="end-at-line-end">
+                <ref name="boolean-value"/>
+            </attribute>
+        </optional>
+
+        <element name="start"><text/></element>
+        <optional>
+            <element name="end"><text/></element>
+        </optional>
+
+        <optional>
+            <element name="include">
+                <interleave>
+                    <oneOrMore>
+                        <choice>
+                            <ref name="context-container"/>
+                            <ref name="context-simple"/>
+                            <ref name="context-to-be-included"/>
+                            <ref name="context-subpattern-container"/>
+                            <ref name="context-reference"/>
+                        </choice>
+                    </oneOrMore>
+                    <zeroOrMore>
+                        <ref name="define-regex"/>
+                    </zeroOrMore>
+                </interleave>
+            </element>
+        </optional>
+    </element>
+</define>
+
+<define name="context-to-be-included">
+    <element name="context">
+        <attribute name="id">
+            <ref name="id-type"/>
+        </attribute>
+
+        <element name="include">
+            <interleave>
+                <oneOrMore>
+                    <choice>
+                        <ref name="context-container"/>
+                        <ref name="context-simple"/>
+                        <ref name="context-to-be-included"/>
+                        <ref name="context-reference"/>
+                    </choice>
+                </oneOrMore>
+                <zeroOrMore>
+                    <ref name="define-regex"/>
+                </zeroOrMore>
+            </interleave>
+        </element>
+    </element>
+</define>
+
+<define name="context-subpattern-simple">
+    <element name="context">
+        <optional>
+            <attribute name="id">
+                <ref name="id-type"/>
+            </attribute>
+        </optional>
+        <optional>
+            <attribute name="style-ref"/>
+        </optional>
+
+        <attribute name="sub-pattern"/>
+    </element>
+</define>
+
+<define name="context-subpattern-container">
+    <element name="context">
+        <optional>
+            <attribute name="id">
+                <ref name="id-type"/>
+            </attribute>
+        </optional>
+        <optional>
+            <attribute name="style-ref"/>
+        </optional>
+
+        <attribute name="sub-pattern"/>
+
+        <attribute name="where">
+            <choice>
+                <value>start</value>
+                <value>end</value>
+            </choice>
+        </attribute>
+    </element>
+</define>
+
+<define name="context-reference">
+    <element name="context">
+        <attribute name="ref">
+            <ref name="ref-type"/>
+        </attribute>
+    </element>
+</define>
+
+
+
+<define name="define-regex">
+    <element name="define-regex">
+        <attribute name="id">
+            <ref name="id-type"/>
+        </attribute>
+        <text/>
+    </element>
+</define>
+
+</grammar>

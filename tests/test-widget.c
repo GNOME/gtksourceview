@@ -31,6 +31,7 @@
 #include <gtksourceview/gtksourceview.h>
 #include <gtksourceview/gtksourcelanguage.h>
 #include <gtksourceview/gtksourcelanguagesmanager.h>
+#include <gtksourceview/gtksourcetag.h>
 #include <gtksourceview/gtksourceprintjob.h>
 
 
@@ -301,6 +302,36 @@ remove_all_markers (GtkSourceBuffer *buffer)
 	}
 }
 
+static void
+print_tags (GtkSourceLanguage *lang)
+{
+	GSList *tags, *l;
+	tags = gtk_source_language_get_tags (lang);
+	l = tags;
+
+	g_print ("List of tags in current language\n");
+	while (l != NULL)
+	{
+		gchar *name;
+		gchar *id;
+		GtkSourceTag *tag;
+
+		tag = GTK_SOURCE_TAG (l->data);
+
+		g_object_get (tag, "name", &name, "id", &id, NULL);
+
+		g_print (" name '%s', id '%s'\n", name, id);
+
+		g_free (id);
+		g_free (name);
+
+		l = g_slist_next (l);
+	}
+
+	g_slist_foreach (tags, (GFunc)g_object_unref, NULL);
+	g_slist_free (tags);
+}
+
 static gboolean
 open_file (GtkSourceBuffer *buffer, const gchar *filename)
 {
@@ -346,6 +377,8 @@ open_file (GtkSourceBuffer *buffer, const gchar *filename)
 			g_object_set (G_OBJECT (buffer), "highlight", TRUE, NULL);
 
 			gtk_source_buffer_set_language (buffer, language);
+
+			print_tags (language);
 		}
 			
 		g_free (mime_type);
@@ -977,13 +1010,22 @@ main (int argc, char *argv[])
 	GtkWidget *window;
 	GtkSourceLanguagesManager *lm;
 	GtkSourceBuffer *buffer;
+
+	GSList *lang_dirs;
 	
 	/* initialization */
 	gtk_init (&argc, &argv);
 	gnome_vfs_init ();
 	
 	/* create buffer */
-	lm = gtk_source_languages_manager_new ();
+	lang_dirs = g_slist_prepend (NULL,
+			g_strdup("../gtksourceview/language-specs"));
+	lang_dirs = g_slist_prepend (lang_dirs,
+			g_strdup("./gtksourceview/language-specs"));
+	lm = GTK_SOURCE_LANGUAGES_MANAGER (
+			g_object_new (GTK_TYPE_SOURCE_LANGUAGES_MANAGER, 
+			"lang_files_dirs", lang_dirs, NULL));
+
 	buffer = create_source_buffer (lm);
 	g_object_unref (lm);
 

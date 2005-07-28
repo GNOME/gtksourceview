@@ -28,7 +28,6 @@
 
 #include <gtk/gtk.h>
 #include <gtksourceview/gtksourcetagtable.h>
-#include <gtksourceview/gtksourcelanguage.h>
 
 G_BEGIN_DECLS
 
@@ -50,7 +49,7 @@ struct _GtkSourceBuffer
 	GtkSourceBufferPrivate *priv;
 };
 
-struct _GtkSourceBufferClass 
+struct _GtkSourceBufferClass
 {
 	GtkTextBufferClass parent_class;
 
@@ -58,20 +57,29 @@ struct _GtkSourceBufferClass
 					 gboolean         can_undo);
 	void (* can_redo)		(GtkSourceBuffer *buffer,
 					 gboolean         can_redo);
+	/* views connect to this signal */
 	void (* highlight_updated)      (GtkSourceBuffer *buffer,
 					 GtkTextIter     *start,
 					 GtkTextIter     *end);
 	void (* marker_updated)         (GtkSourceBuffer *buffer,
 					 GtkTextIter     *where);
 
-	/* Padding for future expansion */
-	void (*_gtk_source_reserved1) 	(void);
-	void (*_gtk_source_reserved2) 	(void);
-	void (*_gtk_source_reserved3) 	(void);
+	/* highlighting engines connect to these */
+	void (* text_inserted)          (GtkSourceBuffer   *buffer,
+					 const GtkTextIter *start,
+					 const GtkTextIter *end);
+	void (* text_deleted)           (GtkSourceBuffer   *buffer,
+					 const GtkTextIter *where,
+					 const gchar       *text);
+	void (* update_highlight)       (GtkSourceBuffer   *buffer,
+					 const GtkTextIter *start,
+					 const GtkTextIter *end,
+					 gboolean           synchronous);
 
 };
 
 #include <gtksourceview/gtksourcemarker.h>
+#include <gtksourceview/gtksourcelanguage.h>
 
 GType           	 gtk_source_buffer_get_type 		(void) G_GNUC_CONST;
 
@@ -99,10 +107,6 @@ void			 gtk_source_buffer_set_max_undo_levels	(GtkSourceBuffer        *buffer,
 GtkSourceLanguage 	*gtk_source_buffer_get_language 	(GtkSourceBuffer        *buffer);
 void			 gtk_source_buffer_set_language 	(GtkSourceBuffer        *buffer, 
 								 GtkSourceLanguage      *language);
-
-gunichar                 gtk_source_buffer_get_escape_char      (GtkSourceBuffer        *buffer);
-void                     gtk_source_buffer_set_escape_char      (GtkSourceBuffer        *buffer,
-								 gunichar                escape_char);
 
 /* Undo/redo methods */
 gboolean		 gtk_source_buffer_can_undo		(GtkSourceBuffer        *buffer);
@@ -141,13 +145,6 @@ GtkSourceMarker         *gtk_source_buffer_get_next_marker      (GtkSourceBuffer
 GtkSourceMarker         *gtk_source_buffer_get_prev_marker      (GtkSourceBuffer        *buffer,
 								 GtkTextIter            *iter);
 
-/* INTERNAL private stuff - not even exported from the library on
- * many platforms
- */
-void 	                 _gtk_source_buffer_highlight_region    (GtkSourceBuffer        *source_buffer,
-								 const GtkTextIter      *start,
-								 const GtkTextIter      *end,
-								 gboolean                highlight_now);
 
 G_END_DECLS
 

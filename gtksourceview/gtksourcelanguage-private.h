@@ -20,6 +20,9 @@
 #ifndef __GTK_SOURCE_LANGUAGE_PRIVATE_H__
 #define __GTK_SOURCE_LANGUAGE_PRIVATE_H__
 
+#include <glib.h>
+#include "gtksourcesimpleengine.h"
+#include "gtksourcecontextengine.h"
 #include "gtksourcelanguagesmanager.h"
 
 G_BEGIN_DECLS
@@ -34,20 +37,36 @@ struct _GtkSourceLanguagePrivate
 	gchar			*name;
 	gchar			*section;
 
+	gint                     version;
+	
 	GSList			*mime_types;
 
+	/* this maps from style names to their parent styles */
 	GHashTable		*tag_id_to_style_name;
+	/* this maps style names to GtkSourceTagStyle structs */
 	GHashTable		*tag_id_to_style;
 
 	GtkSourceStyleScheme 	*style_scheme;
 
-	gunichar                 escape_char;
-	gboolean                 escape_char_valid;
+	GtkSourceLanguagesManager *languages_manager;
 };
 
 GtkSourceLanguage *_gtk_source_language_new_from_file (const gchar			*filename,
 						       GtkSourceLanguagesManager	*lm);
-				
+gchar *_gtk_source_language_strconvescape (gchar *source);
+
+GtkSourceLanguagesManager *gtk_source_language_get_languages_manager (GtkSourceLanguage *language);
+
+gboolean _gtk_source_language_file_parse_version1 (GtkSourceLanguage      *language,
+						   GSList                **tags,
+						   GtkSourceSimpleEngine  *engine,
+						   gboolean                populate_styles_table);
+
+gboolean _gtk_source_language_file_parse_version2 (GtkSourceLanguage      *language,
+						   GSList                **tags,
+						   GtkSourceContextEngine *engine,
+						   gboolean                populate_styles_table);
+
 G_END_DECLS
 
 #endif  /* __GTK_SOURCE_LANGUAGE_PRIVATE_H__ */

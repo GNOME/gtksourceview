@@ -1,0 +1,11 @@
+This directory contains regular expression api which should eventually 
+land in GLib. We have put it here, since it didn't get enough testing
+to put it into GLib 2.6. 
+
+TODO items:
+- Improve the Unicode support by making PCRE use the GLib Unicode functions.
+- Maybe change the replace functions to replace only one match.
+
+July 2 2004
+
+Matthias

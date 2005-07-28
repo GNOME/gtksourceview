@@ -1,5 +1,9 @@
-EXTRA_DIST = 			\
+SCHEMAS = 			\
 	language.dtd		\
+	language2.rng
+
+LANGUAGES =			\
+	def.lang		\
 	ada.lang		\
 	c.lang			\
 	csharp.lang		\
@@ -8,7 +12,7 @@ EXTRA_DIST = 			\
 	diff.lang		\
 	desktop.lang		\
 	fortran.lang		\
-  gtkrc.lang	\
+	gtkrc.lang		\
 	haskell.lang		\
 	html.lang		\
 	idl.lang		\
@@ -35,5 +39,10 @@ EXTRA_DIST = 			\
 	vhdl.lang		\
 	xml.lang
 
+EXTRA_DIST = $(SCHEMAS) $(LANGUAGES)
+
 languagesdir = $(datadir)/gtksourceview-1.0/language-specs
-languages_DATA = $(EXTRA_DIST)
+languages_DATA = $(LANGUAGES)
+
+schemasdir = $(datadir)/gtksourceview-1.0/schemas
+schemas_DATA = $(SCHEMAS)

@@ -1,68 +1,131 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE language SYSTEM "language.dtd">
-<language _name="LaTeX" version="1.0" _section="Markup" mimetypes="text/x-tex">
+<?xml version="1.0"?>
+<language id="latex" _name="LaTeX" version="2.0" _section="Markup" mimetypes="text/x-tex">
+    <styles>
+        <style id="comment"            _name="Comment"
+                                       map-to="def:comment"/>
+        <style id="math"               _name="Math Mode"
+                                       map-to="def:comment"/>
+        <style id="include"            _name="Include"
+                                       map-to="def:preprocessor"/>
+        <style id="most-used-commands" _name="Most Used Commands"
+                                       map-to="def:keyword"/>
+        <style id="command"            _name="Keyword"
+                                       map-to="def:others"/>
+        <style id="verbatim"           _name="Verbatim"
+                                       map-to="def:comment"/>
+    </styles>
 
-	<escape-char>\</escape-char>
+    <definitions>
+        <context id="latex">
+            <include>
 
-	<line-comment _name="Comment" style="Comment">
-		<start-regex>%</start-regex>
-	</line-comment>
+                <context id="comment" style-ref="comment">
+                    <start>%</start>
+                    <end>$</end>
+                    <include>
+                        <context ref="def:comment:*"/>
+                    </include>
+                </context>
 
-	<block-comment _name = "Math" style = "Comment">
-		<start-regex>\$</start-regex>
-        	<end-regex>\$</end-regex>
-	</block-comment>
+                <context id="verbatim-comment" style-ref="comment">
+                    <start>\\begin\{comment\}</start>
+                    <end>\\end\{comment\}</end>
+                    <include>
+                        <context ref="def:comment:*"/>
+                    </include>
+                </context>
 
-	<keyword-list _name="Include" style="Preprocessor" case-sensitive="TRUE"
-		match-empty-string-at-beginning="FALSE"
-		match-empty-string-at-end="FALSE"
-		beginning-regex="\\">
-		<keyword>input</keyword>
-		<keyword>include</keyword>
-		<keyword>includeonly</keyword>
-		<keyword>usepackage</keyword>
-	</keyword-list>
+                <context id="math" style-ref="math">
+                    <start>\$</start>
+                    <end>\$</end>
+                </context>
 
-	<keyword-list _name="Most Used Commands" style="Keyword" case-sensitive="TRUE"
-		match-empty-string-at-beginning="FALSE"
-		match-empty-string-at-end="FALSE"
-		beginning-regex="\\">
-		<keyword>\\</keyword>
-		<keyword>begin</keyword>
-		<keyword>end</keyword>
-		<keyword>documentclass</keyword>
-		<keyword>newcommand</keyword>
-		<keyword>newenvironment</keyword>
-		<keyword>newtheorem</keyword>
-		<keyword>newfont</keyword>
-		<keyword>part</keyword>
-		<keyword>chapter</keyword>
-		<keyword>section</keyword>
-		<keyword>subsection</keyword>
-		<keyword>subsubsection</keyword>
-		<keyword>paragraph</keyword>
-		<keyword>subparagraph</keyword>
-		<keyword>page</keyword>
-		<keyword>equation</keyword>
-		<keyword>figure</keyword>
-		<keyword>table</keyword>
-		<keyword>footnote</keyword>
-		<keyword>footnotemark</keyword>
-		<keyword>footnotetext</keyword>
-		<keyword>mpfootnote</keyword>
-		<keyword>enumi</keyword>
-		<keyword>enumii</keyword>
-		<keyword>enumiii</keyword>
-		<keyword>enumiv</keyword>
-		<keyword>label</keyword>
-		<keyword>pageref</keyword>
-		<keyword>ref</keyword>
-		<keyword>onecolumn</keyword>
-		<keyword>twocolumn</keyword>
-	</keyword-list>
+                <context id="verbatim-env" style-ref="verbatim">
+                    <start>
+                        /
+                            \\begin\{
+                                (
+                                    verbatim\*?|
+                                    lstlisting|
+                                    alltt
+                                )
+                            \}
+                        /x
+                    </start>
+                    <end>\\end\{\%{1@start}\}</end>
+                </context>
 
-	<pattern-item _name="Keyword" style="Others">
-		<regex>\\[a-zA-Z]+</regex>
-	</pattern-item>
+                <context id="verbatim-inline" style-ref="verbatim">
+                    <start>\\(verb\*?|lstinline)(\S)</start>
+                    <end>\%{2@start}</end>
+                </context>
 
+                <context id="include" style-ref="include">
+                    <prefix>\\</prefix>
+
+                    <keyword>input</keyword>
+                    <keyword>include</keyword>
+                    <keyword>includeonly</keyword>
+                    <keyword>usepackage</keyword>
+                </context>
+
+                <context id="most-used-commands" style-ref="most-used-commands">
+                    <prefix>\\</prefix>
+
+                    <keyword>begin</keyword>
+                    <keyword>end</keyword>
+                    <keyword>documentclass</keyword>
+                    <keyword>newcommand</keyword>
+                    <keyword>newenvironment</keyword>
+                    <keyword>newtheorem</keyword>
+                    <keyword>newfont</keyword>
+                    <keyword>part</keyword>
+                    <keyword>chapter</keyword>
+                    <keyword>section</keyword>
+                    <keyword>subsection</keyword>
+                    <keyword>subsubsection</keyword>
+                    <keyword>paragraph</keyword>
+                    <keyword>subparagraph</keyword>
+                    <keyword>page</keyword>
+                    <keyword>equation</keyword>
+                    <keyword>figure</keyword>
+                    <keyword>table</keyword>
+                    <keyword>footnote</keyword>
+                    <keyword>footnotemark</keyword>
+                    <keyword>footnotetext</keyword>
+                    <keyword>mpfootnote</keyword>
+                    <keyword>enumi</keyword>
+                    <keyword>enumii</keyword>
+                    <keyword>enumiii</keyword>
+                    <keyword>enumiv</keyword>
+                    <keyword>label</keyword>
+                    <keyword>pageref</keyword>
+                    <keyword>ref</keyword>
+                    <keyword>onecolumn</keyword>
+                    <keyword>twocolumn</keyword>
+                </context>
+
+                <context id="specials-symbol" style-ref="command">
+                    <prefix>\\</prefix>
+                    <suffix></suffix>
+
+                    <keyword>\$</keyword>
+                    <keyword>&amp;</keyword>
+                    <keyword>%</keyword>
+                    <keyword>#</keyword>
+                    <keyword>_</keyword>
+                    <keyword>\{</keyword>
+                    <keyword>\}</keyword>
+                    <keyword>~</keyword>
+                    <keyword>\^</keyword>
+                    <keyword>\\</keyword>
+                </context>
+
+                <context id="command" style-ref="command">
+                    <match>\\[a-zA-Z]+</match>
+                </context>
+
+            </include>
+        </context>
+    </definitions>
 </language>
