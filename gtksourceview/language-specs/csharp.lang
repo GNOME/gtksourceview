@@ -14,6 +14,11 @@
 		<end-regex>&apos;</end-regex>
 	</string>
 
+	<string _name = "Multiline String" style = "String" end-at-line-end = "FALSE">
+		<start-regex>@&quot;([^&quot;]|&quot;&quot;)*</start-regex>
+		<end-regex>&quot;</end-regex>
+	</string>
+
 	<line-comment _name = "Line Comment" style= "Comment">
 		<start-regex>//</start-regex>
 	</line-comment>

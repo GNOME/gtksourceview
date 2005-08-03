@@ -1,5 +1,13 @@
 2005-08-03  Paolo Maggi  <paolo@gnome.org>
 
+	Fixed bug #307456: Multiline string literals in C# break syntax 
+	highlighting at end of line
+	
+	* gtksourceview/language-specs/csharp.lang: added support for @"" 
+	strings. Patch by Brion Vibber <brion@pobox.com>
+
+2005-08-03  Paolo Maggi  <paolo@gnome.org>
+
 	Fixe bug #309438: a couple of typos in the .po file
 	
 	* gtksourceview/gtksourcetag.c (gtk_source_tag_class_init):
