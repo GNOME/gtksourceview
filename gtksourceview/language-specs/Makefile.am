@@ -8,7 +8,7 @@ EXTRA_DIST = 			\
 	diff.lang		\
 	desktop.lang		\
 	fortran.lang		\
-  gtkrc.lang	\
+	gtkrc.lang		\
 	haskell.lang		\
 	html.lang		\
 	idl.lang		\
@@ -17,6 +17,7 @@ EXTRA_DIST = 			\
 	javascript.lang		\
 	latex.lang		\
 	lua.lang		\
+	makefile.lang		\
 	msil.lang		\
 	nemerle.lang		\
 	pascal.lang		\
