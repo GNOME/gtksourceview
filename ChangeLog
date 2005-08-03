@@ -1,4 +1,11 @@
 2005-08-03  Paolo Maggi  <paolo@gnome.org>
+	
+	Fixed bug #310219: RDF files not recognized as XML for syntax coloring
+	
+	* gtksourceview/language-specs/xml.lang: added the
+	"text/rdf" mime-type. 
+
+2005-08-03  Paolo Maggi  <paolo@gnome.org>
 
 	Fixed bug #310249: Latex "comment" environment support
 	
