@@ -263,7 +263,7 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 					 g_param_spec_boolean ("smart_home_end",
 							       _("Use smart home/end"),
 							       _("HOME and END keys move to first/last "
-								 "characters on line first before going "
+								 "non whitespace characters on line before going "
 								 "to the start/end of the line"),
 							       TRUE,
 							       G_PARAM_READWRITE));

@@ -1,4 +1,14 @@
 2005-08-03  Paolo Maggi  <paolo@gnome.org>
+
+	Fixe bug #309438: a couple of typos in the .po file
+	
+	* gtksourceview/gtksourcetag.c (gtk_source_tag_class_init):
+	s/associated to/associated with
+
+	* gtksourceview/gtksourceview.c (gtk_source_view_class_init): added
+	"non whitespace characters" to clarify
+
+2005-08-03  Paolo Maggi  <paolo@gnome.org>
 	
 	Fixed bug #310219: RDF files not recognized as XML for syntax coloring
 	
