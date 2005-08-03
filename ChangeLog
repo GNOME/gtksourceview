@@ -1,5 +1,14 @@
 2005-08-03  Paolo Maggi  <paolo@gnome.org>
 
+	Fixed bug #310249: Latex "comment" environment support
+	
+	* gtksourceview/language-specs/latex.lang: added support for 
+	comment environment in latex syntax. Patch by Riccardo Lancellotti
+
+2005-08-03  Paolo Maggi  <paolo@gnome.org>
+
+	Fixed bug #311517: Missing mime type in javascript.lang
+
 	* gtksourceview/language-specs/javascript.lang: added the
 	"application/x-javascript" mime-type. 
 	Patch by Marco Barisione  <marco.bari@vene.ws>

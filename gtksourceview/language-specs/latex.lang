@@ -13,6 +13,11 @@
         	<end-regex>\$</end-regex>
 	</block-comment>
 
+	<block-comment _name = "Comment Environment" style = "Comment">
+		<start-regex>\\begin\{comment\}</start-regex>
+        	<end-regex>\\end\{comment\}</end-regex>
+	</block-comment>
+
 	<keyword-list _name="Include" style="Preprocessor" case-sensitive="TRUE"
 		match-empty-string-at-beginning="FALSE"
 		match-empty-string-at-end="FALSE"
