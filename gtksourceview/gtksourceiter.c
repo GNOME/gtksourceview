@@ -1,7 +1,7 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- 
  *  gtksourceiter.h
  *
- *  Copyright (C) 2000, 2002 Paolo Maggi 
+ *  Copyright (C) 2000 - 2005 Paolo Maggi 
  *  Copyright (C) 2002, 2003 Jeroen Zwartepoorte
  *
  *  This program is free software; you can redistribute it and/or modify
@@ -47,7 +47,7 @@ pointer_from_offset_skipping_decomp (const gchar *str, gint offset)
 	{
 		q = g_utf8_next_char (p);
 		casefold = g_utf8_casefold (p, q - p);
-		normal = g_utf8_normalize (casefold, -1, G_NORMALIZE_ALL);
+		normal = g_utf8_normalize (casefold, -1, G_NORMALIZE_NFD);
 		offset -= g_utf8_strlen (normal, -1);
 		g_free (casefold);
 		g_free (normal);
@@ -71,7 +71,7 @@ g_utf8_strcasestr (const gchar *haystack, const gchar *needle)
 	g_return_val_if_fail (needle != NULL, NULL);
 
 	casefold = g_utf8_casefold (haystack, -1);
-	caseless_haystack = g_utf8_normalize (casefold, -1, G_NORMALIZE_ALL);
+	caseless_haystack = g_utf8_normalize (casefold, -1, G_NORMALIZE_NFD);
 	g_free (casefold);
 
 	needle_len = g_utf8_strlen (needle, -1);
@@ -126,7 +126,7 @@ g_utf8_strrcasestr (const gchar *haystack, const gchar *needle)
 	g_return_val_if_fail (needle != NULL, NULL);
 
 	casefold = g_utf8_casefold (haystack, -1);
-	caseless_haystack = g_utf8_normalize (casefold, -1, G_NORMALIZE_ALL);
+	caseless_haystack = g_utf8_normalize (casefold, -1, G_NORMALIZE_NFD);
 	g_free (casefold);
 
 	needle_len = g_utf8_strlen (needle, -1);
@@ -183,11 +183,11 @@ g_utf8_caselessnmatch (const char *s1, const char *s2,
 	g_return_val_if_fail (n2 > 0, FALSE);
 
 	casefold = g_utf8_casefold (s1, n1);
-	normalized_s1 = g_utf8_normalize (casefold, -1, G_NORMALIZE_ALL);
+	normalized_s1 = g_utf8_normalize (casefold, -1, G_NORMALIZE_NFD);
 	g_free (casefold);
 
 	casefold = g_utf8_casefold (s2, n2);
-	normalized_s2 = g_utf8_normalize (casefold, -1, G_NORMALIZE_ALL);
+	normalized_s2 = g_utf8_normalize (casefold, -1, G_NORMALIZE_NFD);
 	g_free (casefold);
 
 	len_s1 = strlen (normalized_s1);
@@ -246,7 +246,7 @@ forward_chars_with_skipping (GtkTextIter *iter,
 			gint buffer_len;
 
 			buffer_len = g_unichar_to_utf8 (gtk_text_iter_get_char (iter), buffer);
-			normal = g_utf8_normalize (buffer, buffer_len, G_NORMALIZE_ALL);
+			normal = g_utf8_normalize (buffer, buffer_len, G_NORMALIZE_NFD);
 			i -= (g_utf8_strlen (normal, -1) - 1);
 			g_free (normal);
 		}
@@ -483,7 +483,7 @@ strbreakup (const char *string,
 			new_string[len] = 0;
 			casefold = g_utf8_casefold (new_string, -1);
 			g_free (new_string);
-			new_string = g_utf8_normalize (casefold, -1, G_NORMALIZE_ALL);
+			new_string = g_utf8_normalize (casefold, -1, G_NORMALIZE_NFD);
 			g_free (casefold);
 			string_list = g_slist_prepend (string_list, new_string);
 			n++;
@@ -496,7 +496,7 @@ strbreakup (const char *string,
 	{
 		n++;
 		casefold = g_utf8_casefold (string, -1);
-		new_string = g_utf8_normalize (casefold, -1, G_NORMALIZE_ALL);
+		new_string = g_utf8_normalize (casefold, -1, G_NORMALIZE_NFD);
 		g_free (casefold);
 		string_list = g_slist_prepend (string_list, new_string);
 	}
