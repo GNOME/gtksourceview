@@ -5,10 +5,10 @@
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: gtksourceview GNOME 2.12\n"
+"Project-Id-Version: gtksourceview 1.3.91 for GNOME 2.12\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-08-04 06:42+0000\n"
-"PO-Revision-Date: 2005-08-04 21:38+0930\n"
+"POT-Creation-Date: 2005-08-08 22:56+0000\n"
+"PO-Revision-Date: 2005-08-09 16:52+0930\n"
 "Last-Translator: Clytie Siddall <clytie@riverland.net.au>\n"
 "Language-Team: Vietnamese <gnomevi-list@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -253,7 +253,7 @@ msgstr "Bộ tiền xử lý"
 #: ../gtksourceview/language-specs/java.lang.h:11
 #: ../gtksourceview/language-specs/javascript.lang.h:33
 #: ../gtksourceview/language-specs/lua.lang.h:10
-#: ../gtksourceview/language-specs/makefile.lang.h:7
+#: ../gtksourceview/language-specs/makefile.lang.h:8
 #: ../gtksourceview/language-specs/nemerle.lang.h:15
 #: ../gtksourceview/language-specs/pascal.lang.h:18
 #: ../gtksourceview/language-specs/perl.lang.h:8
@@ -611,7 +611,7 @@ msgstr "Điều có sẵn"
 #: ../gtksourceview/language-specs/java.lang.h:12
 #: ../gtksourceview/language-specs/javascript.lang.h:34
 #: ../gtksourceview/language-specs/lua.lang.h:11
-#: ../gtksourceview/language-specs/makefile.lang.h:8
+#: ../gtksourceview/language-specs/makefile.lang.h:9
 #: ../gtksourceview/language-specs/python.lang.h:15
 #: ../gtksourceview/language-specs/ruby.lang.h:19
 #: ../gtksourceview/language-specs/sh.lang.h:14
@@ -1072,9 +1072,23 @@ msgstr "Chỉ thị"
 msgid "Makefile"
 msgstr "Tập tin « make »"
 
-#: ../gtksourceview/language-specs/makefile.lang.h:9
+#: ../gtksourceview/language-specs/makefile.lang.h:7
+msgid "Special Targets"
+msgstr "Đích đặc biệt"
+
+#: ../gtksourceview/language-specs/makefile.lang.h:10
 msgid "Targets"
 msgstr "Đích"
+
+#: ../gtksourceview/language-specs/makefile.lang.h:11
+#: ../gtksourceview/language-specs/sh.lang.h:15
+msgid "Variable1"
+msgstr "Biến 1"
+
+#: ../gtksourceview/language-specs/makefile.lang.h:12
+#: ../gtksourceview/language-specs/sh.lang.h:16
+msgid "Variable2"
+msgstr "Biến 2"
 
 #: ../gtksourceview/language-specs/nemerle.lang.h:1
 #: ../gtksourceview/language-specs/verilog.lang.h:1
@@ -1339,14 +1353,6 @@ msgstr "Chuyển hướng"
 msgid "Self"
 msgstr "Self"
 
-#: ../gtksourceview/language-specs/sh.lang.h:15
-msgid "Variable1"
-msgstr "Biến 1"
-
-#: ../gtksourceview/language-specs/sh.lang.h:16
-msgid "Variable2"
-msgstr "Biến "
-
 #: ../gtksourceview/language-specs/sh.lang.h:17
 msgid "sh"
 msgstr "sh"
@@ -1598,6 +1604,3 @@ msgstr "Thẻ"
 #: ../gtksourceview/language-specs/xml.lang.h:9
 msgid "XML"
 msgstr "XML"
-
-#~ msgid "Miscellaneous Single-Row Functions"
-#~ msgstr "Hàm đơn hàng linh tinh"
