@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview 0.9.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-08-03 15:54-0400\n"
-"PO-Revision-Date: 2005-08-03 20:39-0500\n"
+"POT-Creation-Date: 2005-08-08 23:14-0400\n"
+"PO-Revision-Date: 2005-08-08 20:39-0500\n"
 "Last-Translator: Adam Weinberger <adamw@gnome.org>\n"
 "Language-Team: Canadian English <adamw@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -245,7 +245,7 @@ msgstr "Preprocessor"
 #: gtksourceview/language-specs/java.lang.h:11
 #: gtksourceview/language-specs/javascript.lang.h:33
 #: gtksourceview/language-specs/lua.lang.h:10
-#: gtksourceview/language-specs/makefile.lang.h:7
+#: gtksourceview/language-specs/makefile.lang.h:8
 #: gtksourceview/language-specs/nemerle.lang.h:15
 #: gtksourceview/language-specs/pascal.lang.h:18
 #: gtksourceview/language-specs/perl.lang.h:8
@@ -603,7 +603,7 @@ msgstr "Primitives"
 #: gtksourceview/language-specs/java.lang.h:12
 #: gtksourceview/language-specs/javascript.lang.h:34
 #: gtksourceview/language-specs/lua.lang.h:11
-#: gtksourceview/language-specs/makefile.lang.h:8
+#: gtksourceview/language-specs/makefile.lang.h:9
 #: gtksourceview/language-specs/python.lang.h:15
 #: gtksourceview/language-specs/ruby.lang.h:19
 #: gtksourceview/language-specs/sh.lang.h:14
@@ -1056,9 +1056,23 @@ msgstr "Directives"
 msgid "Makefile"
 msgstr "Makefile"
 
-#: gtksourceview/language-specs/makefile.lang.h:9
+#: gtksourceview/language-specs/makefile.lang.h:7
+msgid "Special Targets"
+msgstr "Special Targets"
+
+#: gtksourceview/language-specs/makefile.lang.h:10
 msgid "Targets"
 msgstr "Targets"
+
+#: gtksourceview/language-specs/makefile.lang.h:11
+#: gtksourceview/language-specs/sh.lang.h:15
+msgid "Variable1"
+msgstr "Variable1"
+
+#: gtksourceview/language-specs/makefile.lang.h:12
+#: gtksourceview/language-specs/sh.lang.h:16
+msgid "Variable2"
+msgstr "Variable2"
 
 #: gtksourceview/language-specs/nemerle.lang.h:1
 #: gtksourceview/language-specs/verilog.lang.h:1
@@ -1317,14 +1331,6 @@ msgstr "Redirections"
 #: gtksourceview/language-specs/sh.lang.h:12
 msgid "Self"
 msgstr "Self"
-
-#: gtksourceview/language-specs/sh.lang.h:15
-msgid "Variable1"
-msgstr "Variable1"
-
-#: gtksourceview/language-specs/sh.lang.h:16
-msgid "Variable2"
-msgstr "Variable2"
 
 #: gtksourceview/language-specs/sh.lang.h:17
 msgid "sh"
