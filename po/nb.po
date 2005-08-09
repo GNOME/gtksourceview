@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview 1.2.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-08-04 15:32+0200\n"
-"PO-Revision-Date: 2005-08-04 15:35+0200\n"
+"POT-Creation-Date: 2005-08-09 13:22+0200\n"
+"PO-Revision-Date: 2005-08-09 13:23+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian bokmal <i18n-nb@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
@@ -243,7 +243,7 @@ msgstr "Preprosessor"
 #: ../gtksourceview/language-specs/java.lang.h:11
 #: ../gtksourceview/language-specs/javascript.lang.h:33
 #: ../gtksourceview/language-specs/lua.lang.h:10
-#: ../gtksourceview/language-specs/makefile.lang.h:7
+#: ../gtksourceview/language-specs/makefile.lang.h:8
 #: ../gtksourceview/language-specs/nemerle.lang.h:15
 #: ../gtksourceview/language-specs/pascal.lang.h:18
 #: ../gtksourceview/language-specs/perl.lang.h:8
@@ -369,7 +369,9 @@ msgstr "Bruk smart home/end"
 msgid ""
 "HOME and END keys move to first/last non whitespace characters on line "
 "before going to the start/end of the line"
-msgstr "HOME- og END-tastene flytter til første/siste tegn som ikke er mellomrom på linjen før de går til begynnelsen/slutten på linjen"
+msgstr ""
+"HOME- og END-tastene flytter til første/siste tegn som ikke er mellomrom på "
+"linjen før de går til begynnelsen/slutten på linjen"
 
 #: ../gtksourceview/gtksourceview.c:274
 msgid "Highlight current line"
@@ -599,7 +601,7 @@ msgstr "Primitiver"
 #: ../gtksourceview/language-specs/java.lang.h:12
 #: ../gtksourceview/language-specs/javascript.lang.h:34
 #: ../gtksourceview/language-specs/lua.lang.h:11
-#: ../gtksourceview/language-specs/makefile.lang.h:8
+#: ../gtksourceview/language-specs/makefile.lang.h:9
 #: ../gtksourceview/language-specs/python.lang.h:15
 #: ../gtksourceview/language-specs/ruby.lang.h:19
 #: ../gtksourceview/language-specs/sh.lang.h:14
@@ -1052,9 +1054,23 @@ msgstr "Direktiver"
 msgid "Makefile"
 msgstr "Makefil"
 
-#: ../gtksourceview/language-specs/makefile.lang.h:9
+#: ../gtksourceview/language-specs/makefile.lang.h:7
+msgid "Special Targets"
+msgstr "Spesialmål"
+
+#: ../gtksourceview/language-specs/makefile.lang.h:10
 msgid "Targets"
 msgstr "Mål"
+
+#: ../gtksourceview/language-specs/makefile.lang.h:11
+#: ../gtksourceview/language-specs/sh.lang.h:15
+msgid "Variable1"
+msgstr "Variabel1"
+
+#: ../gtksourceview/language-specs/makefile.lang.h:12
+#: ../gtksourceview/language-specs/sh.lang.h:16
+msgid "Variable2"
+msgstr "Variabel2"
 
 #: ../gtksourceview/language-specs/nemerle.lang.h:1
 #: ../gtksourceview/language-specs/verilog.lang.h:1
@@ -1313,14 +1329,6 @@ msgstr "Omdirigering"
 #: ../gtksourceview/language-specs/sh.lang.h:12
 msgid "Self"
 msgstr "Self"
-
-#: ../gtksourceview/language-specs/sh.lang.h:15
-msgid "Variable1"
-msgstr "Variabel1"
-
-#: ../gtksourceview/language-specs/sh.lang.h:16
-msgid "Variable2"
-msgstr "Variabel2"
 
 #: ../gtksourceview/language-specs/sh.lang.h:17
 msgid "sh"
