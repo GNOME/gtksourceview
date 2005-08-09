@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-08-05 05:38+0200\n"
-"PO-Revision-Date: 2005-08-05 05:48+0200\n"
+"POT-Creation-Date: 2005-08-09 07:07+0200\n"
+"PO-Revision-Date: 2005-08-09 07:08+0200\n"
 "Last-Translator: Marcel Telka <marcel@telka.sk>\n"
 "Language-Team: Slovak <sk-i18n@lists.linux.sk>\n"
 "MIME-Version: 1.0\n"
@@ -249,7 +249,7 @@ msgstr "Preprocesor"
 #: ../gtksourceview/language-specs/java.lang.h:11
 #: ../gtksourceview/language-specs/javascript.lang.h:33
 #: ../gtksourceview/language-specs/lua.lang.h:10
-#: ../gtksourceview/language-specs/makefile.lang.h:7
+#: ../gtksourceview/language-specs/makefile.lang.h:8
 #: ../gtksourceview/language-specs/nemerle.lang.h:15
 #: ../gtksourceview/language-specs/pascal.lang.h:18
 #: ../gtksourceview/language-specs/perl.lang.h:8
@@ -376,8 +376,8 @@ msgid ""
 "HOME and END keys move to first/last non whitespace characters on line "
 "before going to the start/end of the line"
 msgstr ""
-"Klávesy HOME a END presunú na prvý/posledný znak riadku, ktorý nie je medzerou, a až potom na "
-"začiatok/koniec riadku"
+"Klávesy HOME a END presunú na prvý/posledný znak riadku, ktorý nie je "
+"medzerou, a až potom na začiatok/koniec riadku"
 
 #: ../gtksourceview/gtksourceview.c:274
 msgid "Highlight current line"
@@ -607,7 +607,7 @@ msgstr "Primitívy"
 #: ../gtksourceview/language-specs/java.lang.h:12
 #: ../gtksourceview/language-specs/javascript.lang.h:34
 #: ../gtksourceview/language-specs/lua.lang.h:11
-#: ../gtksourceview/language-specs/makefile.lang.h:8
+#: ../gtksourceview/language-specs/makefile.lang.h:9
 #: ../gtksourceview/language-specs/python.lang.h:15
 #: ../gtksourceview/language-specs/ruby.lang.h:19
 #: ../gtksourceview/language-specs/sh.lang.h:14
@@ -1060,9 +1060,23 @@ msgstr "Direktívy"
 msgid "Makefile"
 msgstr "Makefile"
 
-#: ../gtksourceview/language-specs/makefile.lang.h:9
+#: ../gtksourceview/language-specs/makefile.lang.h:7
+msgid "Special Targets"
+msgstr "Špeciálne ciele"
+
+#: ../gtksourceview/language-specs/makefile.lang.h:10
 msgid "Targets"
 msgstr "Ciele"
+
+#: ../gtksourceview/language-specs/makefile.lang.h:11
+#: ../gtksourceview/language-specs/sh.lang.h:15
+msgid "Variable1"
+msgstr "Premenná1"
+
+#: ../gtksourceview/language-specs/makefile.lang.h:12
+#: ../gtksourceview/language-specs/sh.lang.h:16
+msgid "Variable2"
+msgstr "Premenná2"
 
 #: ../gtksourceview/language-specs/nemerle.lang.h:1
 #: ../gtksourceview/language-specs/verilog.lang.h:1
@@ -1321,14 +1335,6 @@ msgstr "Presmerovania"
 #: ../gtksourceview/language-specs/sh.lang.h:12
 msgid "Self"
 msgstr "Vlastný"
-
-#: ../gtksourceview/language-specs/sh.lang.h:15
-msgid "Variable1"
-msgstr "Premenná1"
-
-#: ../gtksourceview/language-specs/sh.lang.h:16
-msgid "Variable2"
-msgstr "Premenná2"
 
 #: ../gtksourceview/language-specs/sh.lang.h:17
 msgid "sh"
