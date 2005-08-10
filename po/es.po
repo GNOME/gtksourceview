@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-08-04 17:06+0200\n"
-"PO-Revision-Date: 2005-08-04 17:11+0200\n"
+"POT-Creation-Date: 2005-08-10 19:30+0200\n"
+"PO-Revision-Date: 2005-08-10 19:31+0200\n"
 "Last-Translator: Francisco Javier F. Serrador <serrador@cvs.gnome.org>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -252,7 +252,7 @@ msgstr "Preprocesador"
 #: ../gtksourceview/language-specs/java.lang.h:11
 #: ../gtksourceview/language-specs/javascript.lang.h:33
 #: ../gtksourceview/language-specs/lua.lang.h:10
-#: ../gtksourceview/language-specs/makefile.lang.h:7
+#: ../gtksourceview/language-specs/makefile.lang.h:8
 #: ../gtksourceview/language-specs/nemerle.lang.h:15
 #: ../gtksourceview/language-specs/pascal.lang.h:18
 #: ../gtksourceview/language-specs/perl.lang.h:8
@@ -378,7 +378,9 @@ msgstr "Utilizar inicio/fin inteligente"
 msgid ""
 "HOME and END keys move to first/last non whitespace characters on line "
 "before going to the start/end of the line"
-msgstr "Las teclas «Inicio» y «Fin» situarán el cursor en el primer/último carácter no blanco de la línea antes de ir al inicio/fin de la línea"
+msgstr ""
+"Las teclas «Inicio» y «Fin» situarán el cursor en el primer/último carácter "
+"no blanco de la línea antes de ir al inicio/fin de la línea"
 
 #: ../gtksourceview/gtksourceview.c:274
 msgid "Highlight current line"
@@ -608,7 +610,7 @@ msgstr "Primitivas"
 #: ../gtksourceview/language-specs/java.lang.h:12
 #: ../gtksourceview/language-specs/javascript.lang.h:34
 #: ../gtksourceview/language-specs/lua.lang.h:11
-#: ../gtksourceview/language-specs/makefile.lang.h:8
+#: ../gtksourceview/language-specs/makefile.lang.h:9
 #: ../gtksourceview/language-specs/python.lang.h:15
 #: ../gtksourceview/language-specs/ruby.lang.h:19
 #: ../gtksourceview/language-specs/sh.lang.h:14
@@ -1061,9 +1063,23 @@ msgstr "Directivas"
 msgid "Makefile"
 msgstr "Makefile"
 
-#: ../gtksourceview/language-specs/makefile.lang.h:9
+#: ../gtksourceview/language-specs/makefile.lang.h:7
+msgid "Special Targets"
+msgstr "Destinos especiales"
+
+#: ../gtksourceview/language-specs/makefile.lang.h:10
 msgid "Targets"
-msgstr "Objetivos"
+msgstr "Destinos"
+
+#: ../gtksourceview/language-specs/makefile.lang.h:11
+#: ../gtksourceview/language-specs/sh.lang.h:15
+msgid "Variable1"
+msgstr "Variable1"
+
+#: ../gtksourceview/language-specs/makefile.lang.h:12
+#: ../gtksourceview/language-specs/sh.lang.h:16
+msgid "Variable2"
+msgstr "Variable2"
 
 #: ../gtksourceview/language-specs/nemerle.lang.h:1
 #: ../gtksourceview/language-specs/verilog.lang.h:1
@@ -1322,14 +1338,6 @@ msgstr "Redirecciones"
 #: ../gtksourceview/language-specs/sh.lang.h:12
 msgid "Self"
 msgstr "Self"
-
-#: ../gtksourceview/language-specs/sh.lang.h:15
-msgid "Variable1"
-msgstr "Variable1"
-
-#: ../gtksourceview/language-specs/sh.lang.h:16
-msgid "Variable2"
-msgstr "Variable2"
 
 #: ../gtksourceview/language-specs/sh.lang.h:17
 msgid "sh"
