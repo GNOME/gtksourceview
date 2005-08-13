@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-08-04 06:42+0000\n"
-"PO-Revision-Date: 2005-08-05 00:06+0800\n"
+"POT-Creation-Date: 2005-08-13 22:44+0000\n"
+"PO-Revision-Date: 2005-08-14 07:06+0800\n"
 "Last-Translator: Funda Wang <fundawang@linux.net.cn>\n"
 "Language-Team: zh_CN <i18n-translation@lists.linux.net.cn>\n"
 "MIME-Version: 1.0\n"
@@ -244,7 +244,7 @@ msgstr "预处理器"
 #: ../gtksourceview/language-specs/java.lang.h:11
 #: ../gtksourceview/language-specs/javascript.lang.h:33
 #: ../gtksourceview/language-specs/lua.lang.h:10
-#: ../gtksourceview/language-specs/makefile.lang.h:7
+#: ../gtksourceview/language-specs/makefile.lang.h:8
 #: ../gtksourceview/language-specs/nemerle.lang.h:15
 #: ../gtksourceview/language-specs/pascal.lang.h:18
 #: ../gtksourceview/language-specs/perl.lang.h:8
@@ -600,7 +600,7 @@ msgstr "原生"
 #: ../gtksourceview/language-specs/java.lang.h:12
 #: ../gtksourceview/language-specs/javascript.lang.h:34
 #: ../gtksourceview/language-specs/lua.lang.h:11
-#: ../gtksourceview/language-specs/makefile.lang.h:8
+#: ../gtksourceview/language-specs/makefile.lang.h:9
 #: ../gtksourceview/language-specs/python.lang.h:15
 #: ../gtksourceview/language-specs/ruby.lang.h:19
 #: ../gtksourceview/language-specs/sh.lang.h:14
@@ -1053,9 +1053,23 @@ msgstr "指令"
 msgid "Makefile"
 msgstr "Makefile"
 
-#: ../gtksourceview/language-specs/makefile.lang.h:9
+#: ../gtksourceview/language-specs/makefile.lang.h:7
+msgid "Special Targets"
+msgstr "特殊目标"
+
+#: ../gtksourceview/language-specs/makefile.lang.h:10
 msgid "Targets"
 msgstr "目标"
+
+#: ../gtksourceview/language-specs/makefile.lang.h:11
+#: ../gtksourceview/language-specs/sh.lang.h:15
+msgid "Variable1"
+msgstr "变量1"
+
+#: ../gtksourceview/language-specs/makefile.lang.h:12
+#: ../gtksourceview/language-specs/sh.lang.h:16
+msgid "Variable2"
+msgstr "变量2"
 
 #: ../gtksourceview/language-specs/nemerle.lang.h:1
 #: ../gtksourceview/language-specs/verilog.lang.h:1
@@ -1315,14 +1329,6 @@ msgstr "重定向"
 msgid "Self"
 msgstr "Self"
 
-#: ../gtksourceview/language-specs/sh.lang.h:15
-msgid "Variable1"
-msgstr "变量1"
-
-#: ../gtksourceview/language-specs/sh.lang.h:16
-msgid "Variable2"
-msgstr "变量2"
-
 #: ../gtksourceview/language-specs/sh.lang.h:17
 msgid "sh"
 msgstr "sh"
@@ -1566,4 +1572,3 @@ msgstr "标记"
 #: ../gtksourceview/language-specs/xml.lang.h:9
 msgid "XML"
 msgstr "XML"
-
