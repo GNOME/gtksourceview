@@ -12,9 +12,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-08-10 06:51+0000\n"
-"PO-Revision-Date: 2005-07-01 22:25+0300\n"
-"Last-Translator: Ivar Smolin <okul@linux.ee>\n"
+"POT-Creation-Date: 2005-08-17 14:46+0000\n"
+"PO-Revision-Date: 2005-08-17 23:21+0300\n"
+"Last-Translator: Priit Laes <amd@store20.com>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,11 +31,11 @@ msgstr "Paomärk süntaksimustrite jaoks"
 
 #: ../gtksourceview/gtksourcebuffer.c:288
 msgid "Check Brackets"
-msgstr ""
+msgstr "Sulgude kontrollimine"
 
 #: ../gtksourceview/gtksourcebuffer.c:289
 msgid "Whether to check and highlight matching brackets"
-msgstr ""
+msgstr "Kas tuua esile ja märkida kokkukäivad sulud"
 
 #: ../gtksourceview/gtksourcebuffer.c:297
 #: ../gtksourceview/gtksourceprintjob.c:295
@@ -69,9 +69,7 @@ msgid "Language specification directories"
 msgstr ""
 
 #: ../gtksourceview/gtksourcelanguagesmanager.c:120
-msgid ""
-"List of directories where the language specification files (.lang) are "
-"located"
+msgid "List of directories where the language specification files (.lang) are located"
 msgstr ""
 
 #: ../gtksourceview/gtksourceprintjob.c:264
@@ -91,7 +89,8 @@ msgid "GtkSourceBuffer object to print"
 msgstr ""
 
 #: ../gtksourceview/gtksourceprintjob.c:279
-#: ../gtksourceview/gtksourceview.c:221 ../gtksourceview/gtksourceview.c:222
+#: ../gtksourceview/gtksourceview.c:221
+#: ../gtksourceview/gtksourceview.c:222
 msgid "Tabs Width"
 msgstr "Tabulaatori laius"
 
@@ -117,7 +116,7 @@ msgstr "Kirjatüüp"
 
 #: ../gtksourceview/gtksourceprintjob.c:305
 msgid "GnomeFont name to use for the document text (deprecated)"
-msgstr ""
+msgstr "GnomeFont'i nimi mida kasutada dokumendi teksti jaoks (kasutu)"
 
 #: ../gtksourceview/gtksourceprintjob.c:312
 msgid "Font Description"
@@ -125,8 +124,7 @@ msgstr "Kirjatüübi kirjeldus"
 
 #: ../gtksourceview/gtksourceprintjob.c:313
 msgid "Font to use for the document text (e.g. \"Monospace 10\")"
-msgstr ""
-"Dokumendi tekstis kasutatava kirjatüübi kirjeldus (näiteks \"Monospace 10\")"
+msgstr "Dokumendi tekstis kasutatava kirjatüübi kirjeldus (näiteks \"Monospace 10\")"
 
 #: ../gtksourceview/gtksourceprintjob.c:320
 #: ../gtksourceview/gtksourceprintjob.c:328
@@ -135,11 +133,11 @@ msgstr "Arvude kirjatüüp"
 
 #: ../gtksourceview/gtksourceprintjob.c:321
 msgid "GnomeFont name to use for the line numbers (deprecated)"
-msgstr ""
+msgstr "GnomeFont'i nimi mida kasutada reanumbrite jaoks (kasutu)"
 
 #: ../gtksourceview/gtksourceprintjob.c:329
 msgid "Font description to use for the line numbers"
-msgstr ""
+msgstr "Reanumbrite jaoks kasutatava kirjatüübi kirjeldus"
 
 #: ../gtksourceview/gtksourceprintjob.c:336
 msgid "Print Line Numbers"
@@ -167,19 +165,19 @@ msgstr "Kas jalus trükitakse igale lehele"
 
 #: ../gtksourceview/gtksourceprintjob.c:360
 msgid "Header and Footer Font"
-msgstr ""
+msgstr "Päise ja jaluse kirjatüüp"
 
 #: ../gtksourceview/gtksourceprintjob.c:361
 msgid "GnomeFont name to use for the header and footer (deprecated)"
-msgstr ""
+msgstr "GnomeFont'i nimi mida kasutada päise ja jaluse jaoks (kasutu)"
 
 #: ../gtksourceview/gtksourceprintjob.c:368
 msgid "Header and Footer Font Description"
-msgstr ""
+msgstr "Päise ja jaluse kirjatüübi kirjeldus"
 
 #: ../gtksourceview/gtksourceprintjob.c:369
 msgid "Font to use for headers and footers (e.g. \"Monospace 10\")"
-msgstr ""
+msgstr "Kirjatüüp mida kasutada päise ja jaluse jaoks (nt. \"Monospace 10\")"
 
 #: ../gtksourceview/gtksourcestylescheme.c:262
 msgid "Base-N Integer"
@@ -374,13 +372,8 @@ msgid "Use smart home/end"
 msgstr "Home/end klahvid on targad"
 
 #: ../gtksourceview/gtksourceview.c:265
-#, fuzzy
-msgid ""
-"HOME and END keys move to first/last non whitespace characters on line "
-"before going to the start/end of the line"
-msgstr ""
-"HOME ja END klahvid liiguvad enne rea algusesse/lõppu minekut rea esimese/"
-"viimase märgi peale"
+msgid "HOME and END keys move to first/last non whitespace characters on line before going to the start/end of the line"
+msgstr "HOME ja END klahvid liiguvad enne rea algusesse/lõppu minekut rea esimese/viimase mittetühja märgi peale"
 
 #: ../gtksourceview/gtksourceview.c:274
 msgid "Highlight current line"
@@ -1056,9 +1049,8 @@ msgid "Backtick String"
 msgstr ""
 
 #: ../gtksourceview/language-specs/makefile.lang.h:2
-#, fuzzy
 msgid "Directives"
-msgstr "Ümbersuunamised"
+msgstr "Direktiivid"
 
 #: ../gtksourceview/language-specs/makefile.lang.h:5
 msgid "Makefile"
@@ -1461,7 +1453,6 @@ msgid "Oracle Reserved Words"
 msgstr ""
 
 #: ../gtksourceview/language-specs/sql.lang.h:30
-#, fuzzy
 msgid "Oracle-Supplied Types"
 msgstr "Oracle sisseehitatud andmetüübid"
 
@@ -1506,9 +1497,8 @@ msgid "Unlimited"
 msgstr "Piiramatu"
 
 #: ../gtksourceview/language-specs/sql.lang.h:42
-#, fuzzy
 msgid "XML Functions"
-msgstr "Funktsioonid"
+msgstr "XML funktsioonid"
 
 #: ../gtksourceview/language-specs/tcl.lang.h:6
 msgid "Tcl"
@@ -1597,3 +1587,4 @@ msgstr "Silt"
 #: ../gtksourceview/language-specs/xml.lang.h:9
 msgid "XML"
 msgstr "XML"
+
