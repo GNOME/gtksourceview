@@ -5,265 +5,263 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gtksourceview HEAD\n"
+"Project-Id-Version: gtksourceview.HEAD.sq\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-03-08 11:38+0100\n"
-"PO-Revision-Date: 2005-02-14 13:12+0100\n"
+"POT-Creation-Date: 2005-08-17 06:46+0000\n"
+"PO-Revision-Date: 2005-08-17 12:23+0200\n"
 "Last-Translator: Laurent Dhima <laurenti@alblinux.net>\n"
 "Language-Team: Albanian <gnome-albanian-perkthyesit@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: gtksourceview/gtksourcebuffer.c:279
+#: ../gtksourceview/gtksourcebuffer.c:279
 msgid "Escape Character"
 msgstr "Simboli i escape"
 
-#: gtksourceview/gtksourcebuffer.c:280
+#: ../gtksourceview/gtksourcebuffer.c:280
 msgid "Escaping character for syntax patterns"
 msgstr "Simboli i escape për modelet e sintaksës"
 
-#: gtksourceview/gtksourcebuffer.c:288
+#: ../gtksourceview/gtksourcebuffer.c:288
 msgid "Check Brackets"
 msgstr "Kontrollo kllapat"
 
-#: gtksourceview/gtksourcebuffer.c:289
+#: ../gtksourceview/gtksourcebuffer.c:289
 msgid "Whether to check and highlight matching brackets"
 msgstr "Tregon nëse duhen verifikuar dhe vënë në dukje kllapat korrisponduese"
 
-#: gtksourceview/gtksourcebuffer.c:297 gtksourceview/gtksourceprintjob.c:295
+#: ../gtksourceview/gtksourcebuffer.c:297
+#: ../gtksourceview/gtksourceprintjob.c:295
 msgid "Highlight"
 msgstr "Vër në dukje"
 
-#: gtksourceview/gtksourcebuffer.c:298
+#: ../gtksourceview/gtksourcebuffer.c:298
 msgid "Whether to highlight syntax in the buffer"
 msgstr "Tregon nëse duhet vënë në dukje sintaksa në buffer"
 
-#: gtksourceview/gtksourcebuffer.c:306
+#: ../gtksourceview/gtksourcebuffer.c:306
 msgid "Maximum Undo Levels"
 msgstr "Maksimumi i nivelit të anullimeve"
 
-#: gtksourceview/gtksourcebuffer.c:307
+#: ../gtksourceview/gtksourcebuffer.c:307
 msgid "Number of undo levels for the buffer"
 msgstr "Numri i niveleve të anullimeve për buffer-in"
 
-#: gtksourceview/gtksourcebuffer.c:317
-#: gtksourceview/language-specs/desktop.lang.h:6
-#: gtksourceview/language-specs/ini.lang.h:7
+#: ../gtksourceview/gtksourcebuffer.c:317
+#: ../gtksourceview/language-specs/desktop.lang.h:6
+#: ../gtksourceview/language-specs/ini.lang.h:7
 msgid "Language"
 msgstr "Gjuha"
 
-#: gtksourceview/gtksourcebuffer.c:318
+#: ../gtksourceview/gtksourcebuffer.c:318
 msgid "Language object to get highlighting patterns from"
 msgstr "Subjekti gjuhë nga ku duhen marrë rregullat për vënien në dukje"
 
-#: gtksourceview/gtksourcelanguagesmanager.c:119
+#: ../gtksourceview/gtksourcelanguagesmanager.c:119
 msgid "Language specification directories"
 msgstr "Directory e specifikave të gjuhës"
 
-#: gtksourceview/gtksourcelanguagesmanager.c:120
+#: ../gtksourceview/gtksourcelanguagesmanager.c:120
 msgid ""
 "List of directories where the language specification files (.lang) are "
 "located"
 msgstr "Lista e directories ku ndodhen files e specifikave të gjuhës (.lang)"
 
-#: gtksourceview/gtksourceprintjob.c:264
+#: ../gtksourceview/gtksourceprintjob.c:264
 msgid "Configuration"
 msgstr "Konfigurimi"
 
-#: gtksourceview/gtksourceprintjob.c:265
+#: ../gtksourceview/gtksourceprintjob.c:265
 msgid "Configuration options for the print job"
 msgstr "Opcionet e konfigurimit për printimin"
 
-#: gtksourceview/gtksourceprintjob.c:272
+#: ../gtksourceview/gtksourceprintjob.c:272
 msgid "Source Buffer"
 msgstr "Buffer i buruesit"
 
-#: gtksourceview/gtksourceprintjob.c:273
+#: ../gtksourceview/gtksourceprintjob.c:273
 msgid "GtkSourceBuffer object to print"
 msgstr "Objekti GtkSourceBuffer që duhet printuar"
 
-#: gtksourceview/gtksourceprintjob.c:279 gtksourceview/gtksourceview.c:222
-#: gtksourceview/gtksourceview.c:223
+#: ../gtksourceview/gtksourceprintjob.c:279
+#: ../gtksourceview/gtksourceview.c:221 ../gtksourceview/gtksourceview.c:222
 msgid "Tabs Width"
 msgstr "Gjërësia e tabs"
 
-#: gtksourceview/gtksourceprintjob.c:280
+#: ../gtksourceview/gtksourceprintjob.c:280
 msgid "Width in equivalent space characters of tabs"
 msgstr "Gjërësia sipas ekuivalentes në simbole hapësire të tabs"
 
-#: gtksourceview/gtksourceprintjob.c:287
+#: ../gtksourceview/gtksourceprintjob.c:287
 msgid "Wrap Mode"
 msgstr "Mënyra \"në krye automatikisht\""
 
-#: gtksourceview/gtksourceprintjob.c:288
+#: ../gtksourceview/gtksourceprintjob.c:288
 msgid "Word wrapping mode"
 msgstr "Mënyra \"në krye automatikisht\""
 
-#: gtksourceview/gtksourceprintjob.c:296
+#: ../gtksourceview/gtksourceprintjob.c:296
 msgid "Whether to print the document with highlighted syntax"
 msgstr "Tregon nëse duhet printuar dokumenti me sintaksën të vënë në dukje"
 
-#: gtksourceview/gtksourceprintjob.c:304
+#: ../gtksourceview/gtksourceprintjob.c:304
 msgid "Font"
 msgstr "Gërmat"
 
-#: gtksourceview/gtksourceprintjob.c:305
+#: ../gtksourceview/gtksourceprintjob.c:305
 msgid "GnomeFont name to use for the document text (deprecated)"
 msgstr ""
 "Emri i gërmave GnomeFont që duhen përdorur për tekstin e dokumentit (nuk "
 "përdoret më)"
 
-#: gtksourceview/gtksourceprintjob.c:312
+#: ../gtksourceview/gtksourceprintjob.c:312
 msgid "Font Description"
 msgstr "Përshkrimi i gërmave"
 
-#: gtksourceview/gtksourceprintjob.c:313
+#: ../gtksourceview/gtksourceprintjob.c:313
 msgid "Font to use for the document text (e.g. \"Monospace 10\")"
-msgstr ""
-"Gërmat që duhen përdorur për tekstin e dokumentit (p.sh \"Monospace 10\")"
+msgstr "Gërmat që duhen përdorur për tekstin e dokumentit (p.sh \"Monospace 10\")"
 
-#: gtksourceview/gtksourceprintjob.c:320 gtksourceview/gtksourceprintjob.c:328
+#: ../gtksourceview/gtksourceprintjob.c:320
+#: ../gtksourceview/gtksourceprintjob.c:328
 msgid "Numbers Font"
 msgstr "Lloji i gërmave të numrave"
 
-#: gtksourceview/gtksourceprintjob.c:321
+#: ../gtksourceview/gtksourceprintjob.c:321
 msgid "GnomeFont name to use for the line numbers (deprecated)"
-msgstr ""
-"Emri i GnomeFont që duhet përdorur për numrat e rreshtave (nuk përdoret më)"
+msgstr "Emri i GnomeFont që duhet përdorur për numrat e rreshtave (nuk përdoret më)"
 
-#: gtksourceview/gtksourceprintjob.c:329
+#: ../gtksourceview/gtksourceprintjob.c:329
 msgid "Font description to use for the line numbers"
 msgstr "Përshkrimi i gërmave që duhen përdorur për numrat e rreshtave"
 
-#: gtksourceview/gtksourceprintjob.c:336
+#: ../gtksourceview/gtksourceprintjob.c:336
 msgid "Print Line Numbers"
 msgstr "Printo numrat e rreshtave"
 
-#: gtksourceview/gtksourceprintjob.c:337
+#: ../gtksourceview/gtksourceprintjob.c:337
 msgid "Interval of printed line numbers (0 means no numbers)"
-msgstr ""
-"intervali i numrave të rreshtit të printuar (0 do të thotë asnjë numër)"
+msgstr "intervali i numrave të rreshtit të printuar (0 do të thotë asnjë numër)"
 
-#: gtksourceview/gtksourceprintjob.c:344
+#: ../gtksourceview/gtksourceprintjob.c:344
 msgid "Print Header"
 msgstr "Printo kreun (Header)"
 
-#: gtksourceview/gtksourceprintjob.c:345
+#: ../gtksourceview/gtksourceprintjob.c:345
 msgid "Whether to print a header in each page"
 msgstr "Tregon nëse duhet stampuar një header për çdo faqe"
 
-#: gtksourceview/gtksourceprintjob.c:352
+#: ../gtksourceview/gtksourceprintjob.c:352
 msgid "Print Footer"
 msgstr "Printo fund'faqen (footer)"
 
-#: gtksourceview/gtksourceprintjob.c:353
+#: ../gtksourceview/gtksourceprintjob.c:353
 msgid "Whether to print a footer in each page"
 msgstr "Tregon nëse duhet printuar fund'faqja për çdo faqe"
 
-#: gtksourceview/gtksourceprintjob.c:360
+#: ../gtksourceview/gtksourceprintjob.c:360
 msgid "Header and Footer Font"
 msgstr "Gërmat e fillim'faqes dhe fund'faqes"
 
-#: gtksourceview/gtksourceprintjob.c:361
+#: ../gtksourceview/gtksourceprintjob.c:361
 msgid "GnomeFont name to use for the header and footer (deprecated)"
-msgstr ""
-"Emri i GnomeFont që duhen përdorur për header dhe footer (nuk përdoret më)"
+msgstr "Emri i GnomeFont që duhen përdorur për header dhe footer (nuk përdoret më)"
 
-#: gtksourceview/gtksourceprintjob.c:368
+#: ../gtksourceview/gtksourceprintjob.c:368
 msgid "Header and Footer Font Description"
 msgstr "Përshkrimi i gërmave të fillim'faqes dhe fund'faqes"
 
-#: gtksourceview/gtksourceprintjob.c:369
+#: ../gtksourceview/gtksourceprintjob.c:369
 msgid "Font to use for headers and footers (e.g. \"Monospace 10\")"
-msgstr ""
-"Gërmat që duhen përdorur për header dhe footers (p.sh \"Monospace 10\")"
+msgstr "Gërmat që duhen përdorur për header dhe footers (p.sh \"Monospace 10\")"
 
-#: gtksourceview/gtksourcestylescheme.c:262
+#: ../gtksourceview/gtksourcestylescheme.c:262
 msgid "Base-N Integer"
 msgstr "I plotë me bazë N"
 
-#: gtksourceview/gtksourcestylescheme.c:267
+#: ../gtksourceview/gtksourcestylescheme.c:267
 msgid "Character"
 msgstr "Simboli"
 
-#: gtksourceview/gtksourcestylescheme.c:272
-#: gtksourceview/language-specs/latex.lang.h:1
-#: gtksourceview/language-specs/po.lang.h:1
+#: ../gtksourceview/gtksourcestylescheme.c:272
+#: ../gtksourceview/language-specs/latex.lang.h:1
+#: ../gtksourceview/language-specs/po.lang.h:1
 msgid "Comment"
 msgstr "Komenti"
 
 #. $this = (datatype)
-#: gtksourceview/gtksourcestylescheme.c:277
-#: gtksourceview/language-specs/php.lang.h:14
+#: ../gtksourceview/gtksourcestylescheme.c:277
+#: ../gtksourceview/language-specs/php.lang.h:14
 msgid "Data Type"
 msgstr "Lloji i të dhënave"
 
 #.
 #. CSS functions, such as rgb(), clip(), or lang().
 #.
-#: gtksourceview/gtksourcestylescheme.c:282
-#: gtksourceview/language-specs/ada.lang.h:3
-#: gtksourceview/language-specs/css.lang.h:17
+#: ../gtksourceview/gtksourcestylescheme.c:282
+#: ../gtksourceview/language-specs/ada.lang.h:3
+#: ../gtksourceview/language-specs/css.lang.h:17
 msgid "Function"
 msgstr "Funksioni"
 
-#: gtksourceview/gtksourcestylescheme.c:287
-#: gtksourceview/language-specs/c.lang.h:6
-#: gtksourceview/language-specs/cpp.lang.h:6
-#: gtksourceview/language-specs/fortran.lang.h:1
-#: gtksourceview/language-specs/python.lang.h:2
-#: gtksourceview/language-specs/haskell.lang.h:3
-#: gtksourceview/language-specs/nemerle.lang.h:6
+#: ../gtksourceview/gtksourcestylescheme.c:287
+#: ../gtksourceview/language-specs/c.lang.h:6
+#: ../gtksourceview/language-specs/cpp.lang.h:6
+#: ../gtksourceview/language-specs/fortran.lang.h:1
+#: ../gtksourceview/language-specs/haskell.lang.h:3
+#: ../gtksourceview/language-specs/nemerle.lang.h:6
+#: ../gtksourceview/language-specs/python.lang.h:2
 msgid "Decimal"
 msgstr "Dhjetor"
 
-#: gtksourceview/gtksourcestylescheme.c:292
+#: ../gtksourceview/gtksourcestylescheme.c:292
 msgid "Floating Point"
 msgstr "Presje e lëvizëshme"
 
-#: gtksourceview/gtksourcestylescheme.c:297
-#: gtksourceview/language-specs/latex.lang.h:3
-#: gtksourceview/language-specs/po.lang.h:3
-#: gtksourceview/language-specs/texinfo.lang.h:8
-#: gtksourceview/language-specs/vhdl.lang.h:2
-#: gtksourceview/language-specs/R.lang.h:6
-#: gtksourceview/language-specs/gtkrc.lang.h:6
+#: ../gtksourceview/gtksourcestylescheme.c:297
+#: ../gtksourceview/language-specs/gtkrc.lang.h:6
+#: ../gtksourceview/language-specs/latex.lang.h:4
+#: ../gtksourceview/language-specs/po.lang.h:3
+#: ../gtksourceview/language-specs/R.lang.h:6
+#: ../gtksourceview/language-specs/texinfo.lang.h:8
+#: ../gtksourceview/language-specs/vhdl.lang.h:2
 msgid "Keyword"
 msgstr "Fjalë kyç"
 
-#: gtksourceview/gtksourcestylescheme.c:302
+#: ../gtksourceview/gtksourcestylescheme.c:302
 msgid "Preprocessor"
 msgstr "Pre-procesues"
 
-#: gtksourceview/gtksourcestylescheme.c:307
-#: gtksourceview/language-specs/ada.lang.h:9
-#: gtksourceview/language-specs/c.lang.h:15
-#: gtksourceview/language-specs/cpp.lang.h:15
-#: gtksourceview/language-specs/csharp.lang.h:8
-#: gtksourceview/language-specs/css.lang.h:63
-#: gtksourceview/language-specs/html.lang.h:8
-#: gtksourceview/language-specs/fortran.lang.h:12
-#: gtksourceview/language-specs/idl.lang.h:9
-#: gtksourceview/language-specs/java.lang.h:11
-#: gtksourceview/language-specs/javascript.lang.h:33
-#: gtksourceview/language-specs/lua.lang.h:10
-#: gtksourceview/language-specs/pascal.lang.h:18
-#: gtksourceview/language-specs/perl.lang.h:8
-#: gtksourceview/language-specs/po.lang.h:6
-#: gtksourceview/language-specs/python.lang.h:14
-#: gtksourceview/language-specs/ruby.lang.h:18
-#: gtksourceview/language-specs/sh.lang.h:13
-#: gtksourceview/language-specs/xml.lang.h:7
-#: gtksourceview/language-specs/haskell.lang.h:15
-#: gtksourceview/language-specs/vbnet.lang.h:7
-#: gtksourceview/language-specs/nemerle.lang.h:15
-#: gtksourceview/language-specs/tcl.lang.h:4
-#: gtksourceview/language-specs/vhdl.lang.h:6
+#: ../gtksourceview/gtksourcestylescheme.c:307
+#: ../gtksourceview/language-specs/ada.lang.h:9
+#: ../gtksourceview/language-specs/c.lang.h:15
+#: ../gtksourceview/language-specs/cpp.lang.h:15
+#: ../gtksourceview/language-specs/csharp.lang.h:9
+#: ../gtksourceview/language-specs/css.lang.h:63
+#: ../gtksourceview/language-specs/html.lang.h:8
+#: ../gtksourceview/language-specs/fortran.lang.h:12
+#: ../gtksourceview/language-specs/haskell.lang.h:15
+#: ../gtksourceview/language-specs/idl.lang.h:9
+#: ../gtksourceview/language-specs/java.lang.h:11
+#: ../gtksourceview/language-specs/javascript.lang.h:33
+#: ../gtksourceview/language-specs/lua.lang.h:10
+#: ../gtksourceview/language-specs/makefile.lang.h:8
+#: ../gtksourceview/language-specs/nemerle.lang.h:15
+#: ../gtksourceview/language-specs/pascal.lang.h:18
+#: ../gtksourceview/language-specs/perl.lang.h:8
+#: ../gtksourceview/language-specs/po.lang.h:6
+#: ../gtksourceview/language-specs/python.lang.h:14
+#: ../gtksourceview/language-specs/ruby.lang.h:18
+#: ../gtksourceview/language-specs/sh.lang.h:13
+#: ../gtksourceview/language-specs/tcl.lang.h:4
+#: ../gtksourceview/language-specs/vbnet.lang.h:7
+#: ../gtksourceview/language-specs/vhdl.lang.h:6
+#: ../gtksourceview/language-specs/xml.lang.h:7
 msgid "String"
 msgstr "Stringë"
 
-#: gtksourceview/gtksourcestylescheme.c:312
+#: ../gtksourceview/gtksourcestylescheme.c:312
 msgid "Specials"
 msgstr "Specialë"
 
@@ -279,172 +277,173 @@ msgstr "Specialë"
 #. Submitted by Scott Martin (scott@coffeeblack.org)
 #.
 #. FIXME: find the correct mimetype
-#: gtksourceview/gtksourcestylescheme.c:319
-#: gtksourceview/language-specs/css.lang.h:46
-#: gtksourceview/language-specs/desktop.lang.h:10
-#: gtksourceview/language-specs/diff.lang.h:7
-#: gtksourceview/language-specs/ini.lang.h:10
-#: gtksourceview/language-specs/msil.lang.h:2
-#: gtksourceview/language-specs/po.lang.h:5
-#: gtksourceview/language-specs/gtkrc.lang.h:9
+#: ../gtksourceview/gtksourcestylescheme.c:319
+#: ../gtksourceview/language-specs/css.lang.h:46
+#: ../gtksourceview/language-specs/desktop.lang.h:10
+#: ../gtksourceview/language-specs/diff.lang.h:7
+#: ../gtksourceview/language-specs/gtkrc.lang.h:9
+#: ../gtksourceview/language-specs/ini.lang.h:10
+#: ../gtksourceview/language-specs/msil.lang.h:2
+#: ../gtksourceview/language-specs/po.lang.h:5
 msgid "Others"
 msgstr "Të tjerë"
 
-#: gtksourceview/gtksourcestylescheme.c:324
+#: ../gtksourceview/gtksourcestylescheme.c:324
 msgid "Others 2"
 msgstr "Të tjerë 2"
 
-#: gtksourceview/gtksourcestylescheme.c:329
+#: ../gtksourceview/gtksourcestylescheme.c:329
 msgid "Others 3"
 msgstr "Të tjerë 3"
 
-#: gtksourceview/gtksourcestylescheme.c:366
+#: ../gtksourceview/gtksourcestylescheme.c:366
 msgid "Default"
 msgstr "E prezgjedhur"
 
-#: gtksourceview/gtksourcetag.c:108
+#: ../gtksourceview/gtksourcetag.c:108
 msgid "Tag ID"
 msgstr "ID tag"
 
-#: gtksourceview/gtksourcetag.c:109
+#: ../gtksourceview/gtksourcetag.c:109
 msgid "ID used to refer to the source tag"
 msgstr "ID e përdorur për riferiment me një tag të buruesit"
 
-#: gtksourceview/gtksourcetag.c:116
+#: ../gtksourceview/gtksourcetag.c:116
 msgid "Tag style"
 msgstr "Stili i tag"
 
-#: gtksourceview/gtksourcetag.c:117
-msgid "The style associated to the source tag"
-msgstr "Stili i tag të buruesit"
+#: ../gtksourceview/gtksourcetag.c:117
+msgid "The style associated with the source tag"
+msgstr "Stili që shoqëron tag e buruesit"
 
-#: gtksourceview/gtksourceview.c:206
+#: ../gtksourceview/gtksourceview.c:205
 msgid "Show Line Numbers"
 msgstr "Shfaq numrat e rreshtit"
 
-#: gtksourceview/gtksourceview.c:207
+#: ../gtksourceview/gtksourceview.c:206
 msgid "Whether to display line numbers"
 msgstr "Përcakton nëse duhen shfaqur numrat e rreshtit"
 
-#: gtksourceview/gtksourceview.c:214
+#: ../gtksourceview/gtksourceview.c:213
 msgid "Show Line Markers"
 msgstr "Shfaq markuesit e rreshtit"
 
-#: gtksourceview/gtksourceview.c:215
+#: ../gtksourceview/gtksourceview.c:214
 msgid "Whether to display line marker pixbufs"
 msgstr "Përcakton nëse duhen shfaqur markuesit e rreshtit"
 
-#: gtksourceview/gtksourceview.c:232
+#: ../gtksourceview/gtksourceview.c:231
 msgid "Auto Indentation"
 msgstr "Ngushtim automatik"
 
-#: gtksourceview/gtksourceview.c:233
+#: ../gtksourceview/gtksourceview.c:232
 msgid "Whether to enable auto indentation"
 msgstr "Përcakton nëse duhet aktivuar ngushtimi automatik"
 
-#: gtksourceview/gtksourceview.c:239
+#: ../gtksourceview/gtksourceview.c:238
 msgid "Insert Spaces Instead of Tabs"
 msgstr "Shto hapësira në vend të tabs"
 
-#: gtksourceview/gtksourceview.c:240
+#: ../gtksourceview/gtksourceview.c:239
 msgid "Whether to insert spaces instead of tabs"
 msgstr "Përcakton nëse duhen shtuar hapësira në vend të tabs"
 
-#: gtksourceview/gtksourceview.c:247
+#: ../gtksourceview/gtksourceview.c:246
 msgid "Show Right Margin"
 msgstr "Shfaq kufirin e djathtë"
 
-#: gtksourceview/gtksourceview.c:248
+#: ../gtksourceview/gtksourceview.c:247
 msgid "Whether to display the right margin"
 msgstr "Përcakton nëse duhet shfaqur kufiri i djathtë"
 
-#: gtksourceview/gtksourceview.c:255
+#: ../gtksourceview/gtksourceview.c:254
 msgid "Margin position"
 msgstr "Pozicioni i kufirit"
 
-#: gtksourceview/gtksourceview.c:256
+#: ../gtksourceview/gtksourceview.c:255
 msgid "Position of the right margin"
 msgstr "Pozicioni i kufirit të djathtë"
 
-#: gtksourceview/gtksourceview.c:265
+#: ../gtksourceview/gtksourceview.c:264
 msgid "Use smart home/end"
 msgstr "Përdor pulsantët inteligjentë fillim/fund"
 
-#: gtksourceview/gtksourceview.c:266
+#: ../gtksourceview/gtksourceview.c:265
 msgid ""
-"HOME and END keys move to first/last characters on line first before going "
-"to the start/end of the line"
+"HOME and END keys move to first/last non whitespace characters on line "
+"before going to the start/end of the line"
 msgstr ""
-"Pulsantët FILLIMI (shigjeta drejtim majtas) dhe FUNDI lëvizin përpara tek "
-"gërma e parë/e fundit në rresht para se të shkojnë në fillim/fund të rreshtit"
+"Pulsantët HOME dhe END lëvizin tek gërma e parë/e fundit jo-hapsirë-bosh tek rreshti "
+"para se të shkojnë në fillim/fund të rreshtit"
 
-#: gtksourceview/gtksourceview.c:275
+#: ../gtksourceview/gtksourceview.c:274
 msgid "Highlight current line"
 msgstr "Vër në dukje rreshtin aktual"
 
-#: gtksourceview/gtksourceview.c:276
+#: ../gtksourceview/gtksourceview.c:275
 msgid "Whether to highlight the current line"
 msgstr "Tregon nëse duhet vënë në dukje rreshti aktual"
 
-#: gtksourceview/language-specs/ada.lang.h:1
+#: ../gtksourceview/language-specs/ada.lang.h:1
 msgid "Ada"
 msgstr "Ada"
 
-#: gtksourceview/language-specs/ada.lang.h:2
-#: gtksourceview/language-specs/c.lang.h:4
-#: gtksourceview/language-specs/cpp.lang.h:4
-#: gtksourceview/language-specs/haskell.lang.h:2
-#: gtksourceview/language-specs/nemerle.lang.h:3
-#: gtksourceview/language-specs/vhdl.lang.h:1
+#: ../gtksourceview/language-specs/ada.lang.h:2
+#: ../gtksourceview/language-specs/c.lang.h:4
+#: ../gtksourceview/language-specs/cpp.lang.h:4
+#: ../gtksourceview/language-specs/haskell.lang.h:2
+#: ../gtksourceview/language-specs/nemerle.lang.h:3
+#: ../gtksourceview/language-specs/vhdl.lang.h:1
 msgid "Character Constant"
 msgstr "Character Constant"
 
-#: gtksourceview/language-specs/ada.lang.h:4
-#: gtksourceview/language-specs/c.lang.h:10
-#: gtksourceview/language-specs/cpp.lang.h:10
-#: gtksourceview/language-specs/csharp.lang.h:3
-#: gtksourceview/language-specs/fortran.lang.h:7
-#: gtksourceview/language-specs/idl.lang.h:4
-#: gtksourceview/language-specs/javascript.lang.h:11
-#: gtksourceview/language-specs/lua.lang.h:3
-#: gtksourceview/language-specs/perl.lang.h:2
-#: gtksourceview/language-specs/python.lang.h:6
-#: gtksourceview/language-specs/ruby.lang.h:8
-#: gtksourceview/language-specs/verilog.lang.h:6
-#: gtksourceview/language-specs/haskell.lang.h:9
-#: gtksourceview/language-specs/vbnet.lang.h:1
-#: gtksourceview/language-specs/tcl.lang.h:1
+#: ../gtksourceview/language-specs/ada.lang.h:4
+#: ../gtksourceview/language-specs/c.lang.h:10
+#: ../gtksourceview/language-specs/cpp.lang.h:10
+#: ../gtksourceview/language-specs/csharp.lang.h:3
+#: ../gtksourceview/language-specs/fortran.lang.h:7
+#: ../gtksourceview/language-specs/haskell.lang.h:9
+#: ../gtksourceview/language-specs/idl.lang.h:4
+#: ../gtksourceview/language-specs/javascript.lang.h:11
+#: ../gtksourceview/language-specs/lua.lang.h:3
+#: ../gtksourceview/language-specs/perl.lang.h:2
+#: ../gtksourceview/language-specs/python.lang.h:6
+#: ../gtksourceview/language-specs/ruby.lang.h:8
+#: ../gtksourceview/language-specs/tcl.lang.h:1
+#: ../gtksourceview/language-specs/vbnet.lang.h:1
+#: ../gtksourceview/language-specs/verilog.lang.h:6
 msgid "Keywords"
 msgstr "Fjalë kyçe"
 
-#: gtksourceview/language-specs/ada.lang.h:5
-#: gtksourceview/language-specs/c.lang.h:11
-#: gtksourceview/language-specs/cpp.lang.h:11
-#: gtksourceview/language-specs/csharp.lang.h:4
-#: gtksourceview/language-specs/css.lang.h:28
-#: gtksourceview/language-specs/desktop.lang.h:7
-#: gtksourceview/language-specs/diff.lang.h:5
-#: gtksourceview/language-specs/fortran.lang.h:8
-#: gtksourceview/language-specs/idl.lang.h:5
-#: gtksourceview/language-specs/ini.lang.h:8
-#: gtksourceview/language-specs/java.lang.h:5
-#: gtksourceview/language-specs/javascript.lang.h:12
-#: gtksourceview/language-specs/lua.lang.h:4
-#: gtksourceview/language-specs/pascal.lang.h:11
-#: gtksourceview/language-specs/perl.lang.h:3
-#: gtksourceview/language-specs/python.lang.h:7
-#: gtksourceview/language-specs/ruby.lang.h:9
-#: gtksourceview/language-specs/sh.lang.h:5
-#: gtksourceview/language-specs/sql.lang.h:11
-#: gtksourceview/language-specs/verilog.lang.h:7
-#: gtksourceview/language-specs/haskell.lang.h:10
-#: gtksourceview/language-specs/texinfo.lang.h:9
-#: gtksourceview/language-specs/vbnet.lang.h:2
-#: gtksourceview/language-specs/nemerle.lang.h:10
-#: gtksourceview/language-specs/tcl.lang.h:2
-#: gtksourceview/language-specs/vhdl.lang.h:3
-#: gtksourceview/language-specs/R.lang.h:7
-#: gtksourceview/language-specs/gtkrc.lang.h:7
+#: ../gtksourceview/language-specs/ada.lang.h:5
+#: ../gtksourceview/language-specs/c.lang.h:11
+#: ../gtksourceview/language-specs/cpp.lang.h:11
+#: ../gtksourceview/language-specs/csharp.lang.h:4
+#: ../gtksourceview/language-specs/css.lang.h:28
+#: ../gtksourceview/language-specs/desktop.lang.h:7
+#: ../gtksourceview/language-specs/diff.lang.h:5
+#: ../gtksourceview/language-specs/fortran.lang.h:8
+#: ../gtksourceview/language-specs/gtkrc.lang.h:7
+#: ../gtksourceview/language-specs/haskell.lang.h:10
+#: ../gtksourceview/language-specs/idl.lang.h:5
+#: ../gtksourceview/language-specs/ini.lang.h:8
+#: ../gtksourceview/language-specs/java.lang.h:5
+#: ../gtksourceview/language-specs/javascript.lang.h:12
+#: ../gtksourceview/language-specs/lua.lang.h:4
+#: ../gtksourceview/language-specs/makefile.lang.h:4
+#: ../gtksourceview/language-specs/nemerle.lang.h:10
+#: ../gtksourceview/language-specs/pascal.lang.h:11
+#: ../gtksourceview/language-specs/perl.lang.h:3
+#: ../gtksourceview/language-specs/python.lang.h:7
+#: ../gtksourceview/language-specs/R.lang.h:7
+#: ../gtksourceview/language-specs/ruby.lang.h:9
+#: ../gtksourceview/language-specs/sh.lang.h:5
+#: ../gtksourceview/language-specs/sql.lang.h:19
+#: ../gtksourceview/language-specs/tcl.lang.h:2
+#: ../gtksourceview/language-specs/texinfo.lang.h:9
+#: ../gtksourceview/language-specs/vbnet.lang.h:2
+#: ../gtksourceview/language-specs/verilog.lang.h:7
+#: ../gtksourceview/language-specs/vhdl.lang.h:3
 msgid "Line Comment"
 msgstr "Komenti i rreshtit"
 
@@ -452,176 +451,185 @@ msgstr "Komenti i rreshtit"
 #. For values like: z-index: 2;
 #. +/- before 0 is not allowed.
 #.
-#: gtksourceview/language-specs/ada.lang.h:6
-#: gtksourceview/language-specs/css.lang.h:33
-#: gtksourceview/language-specs/desktop.lang.h:9
-#: gtksourceview/language-specs/javascript.lang.h:15
-#: gtksourceview/language-specs/pascal.lang.h:14
-#: gtksourceview/language-specs/vhdl.lang.h:4
-#: gtksourceview/language-specs/gtkrc.lang.h:8
+#: ../gtksourceview/language-specs/ada.lang.h:6
+#: ../gtksourceview/language-specs/css.lang.h:33
+#: ../gtksourceview/language-specs/desktop.lang.h:9
+#: ../gtksourceview/language-specs/gtkrc.lang.h:8
+#: ../gtksourceview/language-specs/javascript.lang.h:15
+#: ../gtksourceview/language-specs/pascal.lang.h:14
+#: ../gtksourceview/language-specs/vhdl.lang.h:4
 msgid "Number"
 msgstr "Numri"
 
-#: gtksourceview/language-specs/ada.lang.h:7
+#: ../gtksourceview/language-specs/ada.lang.h:7
 msgid "Preprocessor Keywords"
 msgstr "Fjalë kyçe të preprocesorit"
 
-#: gtksourceview/language-specs/ada.lang.h:8
-#: gtksourceview/language-specs/c.lang.h:14
-#: gtksourceview/language-specs/cpp.lang.h:14
-#: gtksourceview/language-specs/csharp.lang.h:7
-#: gtksourceview/language-specs/fortran.lang.h:11
-#: gtksourceview/language-specs/idl.lang.h:8
-#: gtksourceview/language-specs/java.lang.h:10
-#: gtksourceview/language-specs/pascal.lang.h:17
-#: gtksourceview/language-specs/php.lang.h:23
-#: gtksourceview/language-specs/sql.lang.h:26
-#: gtksourceview/language-specs/verilog.lang.h:9
-#: gtksourceview/language-specs/haskell.lang.h:14
-#: gtksourceview/language-specs/vbnet.lang.h:6
-#: gtksourceview/language-specs/nemerle.lang.h:14
-#: gtksourceview/language-specs/vhdl.lang.h:5
+#: ../gtksourceview/language-specs/ada.lang.h:8
+#: ../gtksourceview/language-specs/c.lang.h:14
+#: ../gtksourceview/language-specs/cpp.lang.h:14
+#: ../gtksourceview/language-specs/csharp.lang.h:8
+#: ../gtksourceview/language-specs/fortran.lang.h:11
+#: ../gtksourceview/language-specs/haskell.lang.h:14
+#: ../gtksourceview/language-specs/idl.lang.h:8
+#: ../gtksourceview/language-specs/java.lang.h:10
+#: ../gtksourceview/language-specs/makefile.lang.h:6
+#: ../gtksourceview/language-specs/nemerle.lang.h:14
+#: ../gtksourceview/language-specs/pascal.lang.h:17
+#: ../gtksourceview/language-specs/php.lang.h:23
+#: ../gtksourceview/language-specs/sql.lang.h:39
+#: ../gtksourceview/language-specs/vbnet.lang.h:6
+#: ../gtksourceview/language-specs/verilog.lang.h:9
+#: ../gtksourceview/language-specs/vhdl.lang.h:5
 msgid "Sources"
 msgstr "Burimet"
 
-#: gtksourceview/language-specs/ada.lang.h:10
+#: ../gtksourceview/language-specs/ada.lang.h:10
 msgid "True And False"
 msgstr "E vërtetë dhe fallso"
 
-#: gtksourceview/language-specs/ada.lang.h:11
-#: gtksourceview/language-specs/c.lang.h:16
-#: gtksourceview/language-specs/cpp.lang.h:16
-#: gtksourceview/language-specs/fortran.lang.h:14
-#: gtksourceview/language-specs/idl.lang.h:10
-#: gtksourceview/language-specs/verilog.lang.h:10
+#: ../gtksourceview/language-specs/ada.lang.h:11
+#: ../gtksourceview/language-specs/c.lang.h:16
+#: ../gtksourceview/language-specs/cpp.lang.h:16
+#: ../gtksourceview/language-specs/fortran.lang.h:14
+#: ../gtksourceview/language-specs/idl.lang.h:10
+#: ../gtksourceview/language-specs/verilog.lang.h:10
 msgid "Types"
 msgstr "Llojet"
 
-#: gtksourceview/language-specs/c.lang.h:1
-#: gtksourceview/language-specs/cpp.lang.h:1
+#: ../gtksourceview/language-specs/c.lang.h:1
+#: ../gtksourceview/language-specs/cpp.lang.h:1
 msgid "'#if 0' Comment"
 msgstr "'#if 0' Koment"
 
-#: gtksourceview/language-specs/c.lang.h:2
-#: gtksourceview/language-specs/cpp.lang.h:2
-#: gtksourceview/language-specs/csharp.lang.h:1
-#: gtksourceview/language-specs/css.lang.h:9
-#: gtksourceview/language-specs/html.lang.h:2
-#: gtksourceview/language-specs/idl.lang.h:1
-#: gtksourceview/language-specs/java.lang.h:1
-#: gtksourceview/language-specs/javascript.lang.h:2
-#: gtksourceview/language-specs/lua.lang.h:1
-#: gtksourceview/language-specs/sql.lang.h:5
-#: gtksourceview/language-specs/verilog.lang.h:2
-#: gtksourceview/language-specs/xml.lang.h:2
-#: gtksourceview/language-specs/haskell.lang.h:1
-#: gtksourceview/language-specs/texinfo.lang.h:1
-#: gtksourceview/language-specs/nemerle.lang.h:2
+#: ../gtksourceview/language-specs/c.lang.h:2
+#: ../gtksourceview/language-specs/cpp.lang.h:2
+#: ../gtksourceview/language-specs/csharp.lang.h:1
+#: ../gtksourceview/language-specs/css.lang.h:9
+#: ../gtksourceview/language-specs/html.lang.h:2
+#: ../gtksourceview/language-specs/haskell.lang.h:1
+#: ../gtksourceview/language-specs/idl.lang.h:1
+#: ../gtksourceview/language-specs/java.lang.h:1
+#: ../gtksourceview/language-specs/javascript.lang.h:2
+#: ../gtksourceview/language-specs/lua.lang.h:1
+#: ../gtksourceview/language-specs/nemerle.lang.h:2
+#: ../gtksourceview/language-specs/sql.lang.h:5
+#: ../gtksourceview/language-specs/texinfo.lang.h:1
+#: ../gtksourceview/language-specs/verilog.lang.h:2
+#: ../gtksourceview/language-specs/xml.lang.h:2
 msgid "Block Comment"
 msgstr "Koment blloku"
 
-#: gtksourceview/language-specs/c.lang.h:3
+#: ../gtksourceview/language-specs/c.lang.h:3
 msgid "C"
 msgstr "C"
 
-#: gtksourceview/language-specs/c.lang.h:5
-#: gtksourceview/language-specs/cpp.lang.h:5
+#: ../gtksourceview/language-specs/c.lang.h:5
+#: ../gtksourceview/language-specs/cpp.lang.h:5
 msgid "Common Macro"
 msgstr "Macro e zakonshme"
 
-#: gtksourceview/language-specs/c.lang.h:7
-#: gtksourceview/language-specs/cpp.lang.h:7
-#: gtksourceview/language-specs/fortran.lang.h:2
-#: gtksourceview/language-specs/python.lang.h:3
-#: gtksourceview/language-specs/haskell.lang.h:4
-#: gtksourceview/language-specs/nemerle.lang.h:7
-#: gtksourceview/language-specs/R.lang.h:4
+#: ../gtksourceview/language-specs/c.lang.h:7
+#: ../gtksourceview/language-specs/cpp.lang.h:7
+#: ../gtksourceview/language-specs/fortran.lang.h:2
+#: ../gtksourceview/language-specs/haskell.lang.h:4
+#: ../gtksourceview/language-specs/nemerle.lang.h:7
+#: ../gtksourceview/language-specs/python.lang.h:3
+#: ../gtksourceview/language-specs/R.lang.h:4
 msgid "Floating Point Number"
 msgstr "Numër me presje të lëvizëshme"
 
 #. FIXME WHY DOESN'T THIS WORK?
-#: gtksourceview/language-specs/c.lang.h:8
-#: gtksourceview/language-specs/cpp.lang.h:8
-#: gtksourceview/language-specs/fortran.lang.h:4
-#: gtksourceview/language-specs/pascal.lang.h:10
-#: gtksourceview/language-specs/python.lang.h:5
-#: gtksourceview/language-specs/haskell.lang.h:6
-#: gtksourceview/language-specs/nemerle.lang.h:8
+#: ../gtksourceview/language-specs/c.lang.h:8
+#: ../gtksourceview/language-specs/cpp.lang.h:8
+#: ../gtksourceview/language-specs/fortran.lang.h:4
+#: ../gtksourceview/language-specs/haskell.lang.h:6
+#: ../gtksourceview/language-specs/nemerle.lang.h:8
+#: ../gtksourceview/language-specs/pascal.lang.h:10
+#: ../gtksourceview/language-specs/python.lang.h:5
 msgid "Hex Number"
 msgstr "Numër Hex"
 
-#: gtksourceview/language-specs/c.lang.h:9
-#: gtksourceview/language-specs/cpp.lang.h:9
-#: gtksourceview/language-specs/idl.lang.h:3
-#: gtksourceview/language-specs/haskell.lang.h:7
+#: ../gtksourceview/language-specs/c.lang.h:9
+#: ../gtksourceview/language-specs/cpp.lang.h:9
+#: ../gtksourceview/language-specs/haskell.lang.h:7
+#: ../gtksourceview/language-specs/idl.lang.h:3
 msgid "Include/Pragma"
 msgstr "Include/Pragma"
 
-#: gtksourceview/language-specs/c.lang.h:12
-#: gtksourceview/language-specs/cpp.lang.h:12
-#: gtksourceview/language-specs/fortran.lang.h:9
-#: gtksourceview/language-specs/python.lang.h:11
-#: gtksourceview/language-specs/verilog.lang.h:8
-#: gtksourceview/language-specs/haskell.lang.h:11
-#: gtksourceview/language-specs/nemerle.lang.h:12
+#: ../gtksourceview/language-specs/c.lang.h:12
+#: ../gtksourceview/language-specs/cpp.lang.h:12
+#: ../gtksourceview/language-specs/fortran.lang.h:9
+#: ../gtksourceview/language-specs/haskell.lang.h:11
+#: ../gtksourceview/language-specs/nemerle.lang.h:12
+#: ../gtksourceview/language-specs/python.lang.h:11
+#: ../gtksourceview/language-specs/verilog.lang.h:8
 msgid "Octal Number"
 msgstr "Numër oktal"
 
-#: gtksourceview/language-specs/c.lang.h:13
-#: gtksourceview/language-specs/cpp.lang.h:13
-#: gtksourceview/language-specs/csharp.lang.h:5
-#: gtksourceview/language-specs/idl.lang.h:6
-#: gtksourceview/language-specs/haskell.lang.h:13
-#: gtksourceview/language-specs/vbnet.lang.h:4
+#: ../gtksourceview/language-specs/c.lang.h:13
+#: ../gtksourceview/language-specs/cpp.lang.h:13
+#: ../gtksourceview/language-specs/csharp.lang.h:6
+#: ../gtksourceview/language-specs/haskell.lang.h:13
+#: ../gtksourceview/language-specs/idl.lang.h:6
+#: ../gtksourceview/language-specs/vbnet.lang.h:4
 msgid "Preprocessor Definitions"
 msgstr "Përcaktimet e preprocesorit"
 
-#: gtksourceview/language-specs/cpp.lang.h:3
+#: ../gtksourceview/language-specs/cpp.lang.h:3
 msgid "C++"
 msgstr "C++"
 
-#: gtksourceview/language-specs/csharp.lang.h:2
+#: ../gtksourceview/language-specs/csharp.lang.h:2
 msgid "C#"
 msgstr "C#"
 
-#: gtksourceview/language-specs/csharp.lang.h:6
-#: gtksourceview/language-specs/java.lang.h:9
-#: gtksourceview/language-specs/vbnet.lang.h:5
-#: gtksourceview/language-specs/nemerle.lang.h:13
+#: ../gtksourceview/language-specs/csharp.lang.h:5
+#: ../gtksourceview/language-specs/lua.lang.h:7
+#: ../gtksourceview/language-specs/python.lang.h:9
+#: ../gtksourceview/language-specs/sh.lang.h:6
+msgid "Multiline String"
+msgstr "Multiline String"
+
+#: ../gtksourceview/language-specs/csharp.lang.h:7
+#: ../gtksourceview/language-specs/java.lang.h:9
+#: ../gtksourceview/language-specs/nemerle.lang.h:13
+#: ../gtksourceview/language-specs/vbnet.lang.h:5
 msgid "Primitives"
 msgstr "Primitivë"
 
-#: gtksourceview/language-specs/csharp.lang.h:9
-#: gtksourceview/language-specs/css.lang.h:64
-#: gtksourceview/language-specs/fortran.lang.h:13
-#: gtksourceview/language-specs/java.lang.h:12
-#: gtksourceview/language-specs/javascript.lang.h:34
-#: gtksourceview/language-specs/lua.lang.h:11
-#: gtksourceview/language-specs/python.lang.h:15
-#: gtksourceview/language-specs/ruby.lang.h:19
-#: gtksourceview/language-specs/sh.lang.h:14
-#: gtksourceview/language-specs/vbnet.lang.h:8
+#: ../gtksourceview/language-specs/csharp.lang.h:10
+#: ../gtksourceview/language-specs/css.lang.h:64
+#: ../gtksourceview/language-specs/fortran.lang.h:13
+#: ../gtksourceview/language-specs/java.lang.h:12
+#: ../gtksourceview/language-specs/javascript.lang.h:34
+#: ../gtksourceview/language-specs/lua.lang.h:11
+#: ../gtksourceview/language-specs/makefile.lang.h:9
+#: ../gtksourceview/language-specs/python.lang.h:15
+#: ../gtksourceview/language-specs/ruby.lang.h:19
+#: ../gtksourceview/language-specs/sh.lang.h:14
+#: ../gtksourceview/language-specs/vbnet.lang.h:8
 msgid "String 2"
 msgstr "String 2"
 
 #.
 #. At rules must occur at the start of a line.
 #.
-#: gtksourceview/language-specs/css.lang.h:4
+#: ../gtksourceview/language-specs/css.lang.h:4
 msgid "At Rules"
 msgstr "Tek rregullat"
 
 #.
 #. For CSS 2-style selectors: tag[attr="value"].
 #.
-#: gtksourceview/language-specs/css.lang.h:8
+#: ../gtksourceview/language-specs/css.lang.h:8
 msgid "Attribute Value Delimiters"
 msgstr "Delimitues të vlerës së atributit"
 
 #.
 #. Value length specifier. Unless it is 0, must always be like: -1.2em.
 #.
-#: gtksourceview/language-specs/css.lang.h:13
+#: ../gtksourceview/language-specs/css.lang.h:13
 msgid "Dimension"
 msgstr "Përmasa"
 
@@ -629,43 +637,44 @@ msgstr "Përmasa"
 #. Hexadecimal method of specifying colors. Can either be 3 or 6 in
 #. length: #ffcc00 = #fc0.
 #.
-#: gtksourceview/language-specs/css.lang.h:22
+#: ../gtksourceview/language-specs/css.lang.h:22
 msgid "Hexadecimal Color"
 msgstr "Ngjyrë Hexadecimale"
 
 #.
 #. Upgrades a rule set's importance when several rule sets conflict.
 #.
-#: gtksourceview/language-specs/css.lang.h:26
+#: ../gtksourceview/language-specs/css.lang.h:26
 msgid "Importance Modifier"
 msgstr "Ndryshuesi i rendësisë"
 
-#: gtksourceview/language-specs/css.lang.h:27
+#: ../gtksourceview/language-specs/css.lang.h:27
 msgid "Known Property Values"
 msgstr "Vlerat e njohura të pronësisë"
 
-#: gtksourceview/language-specs/css.lang.h:34
-#: gtksourceview/language-specs/javascript.lang.h:19
-#: gtksourceview/language-specs/php.lang.h:19
-#: gtksourceview/language-specs/sh.lang.h:8
-#: gtksourceview/language-specs/haskell.lang.h:12
+#: ../gtksourceview/language-specs/css.lang.h:34
+#: ../gtksourceview/language-specs/haskell.lang.h:12
+#: ../gtksourceview/language-specs/javascript.lang.h:19
+#: ../gtksourceview/language-specs/php.lang.h:19
+#: ../gtksourceview/language-specs/sh.lang.h:8
+#: ../gtksourceview/language-specs/sql.lang.h:27
 msgid "Operators"
 msgstr "Operatorë"
 
-#: gtksourceview/language-specs/css.lang.h:47
+#: ../gtksourceview/language-specs/css.lang.h:47
 msgid "Property Names"
 msgstr "Emrat e pronësisë"
 
 #.
 #. Brackets define a declaration block, parentheses define functions.
 #.
-#: gtksourceview/language-specs/css.lang.h:51
-#: gtksourceview/language-specs/javascript.lang.h:20
-#: gtksourceview/language-specs/sh.lang.h:9
+#: ../gtksourceview/language-specs/css.lang.h:51
+#: ../gtksourceview/language-specs/javascript.lang.h:20
+#: ../gtksourceview/language-specs/sh.lang.h:9
 msgid "Punctuators"
 msgstr "Shënuesi"
 
-#: gtksourceview/language-specs/css.lang.h:52
+#: ../gtksourceview/language-specs/css.lang.h:52
 msgid "Selector Grammar"
 msgstr "Gramatika e zgjedhësit"
 
@@ -673,7 +682,7 @@ msgstr "Gramatika e zgjedhësit"
 #. Pseudo-class rules. Good to have syntax highlighting for these
 #. for mistypings.
 #.
-#: gtksourceview/language-specs/css.lang.h:57
+#: ../gtksourceview/language-specs/css.lang.h:57
 msgid "Selector Pseudo Classes"
 msgstr "Pseudo klasat e zgjedhësit"
 
@@ -681,7 +690,7 @@ msgstr "Pseudo klasat e zgjedhësit"
 #. Pseudo-element rules. Good to have syntax highlighting for these
 #. for mistypings.
 #.
-#: gtksourceview/language-specs/css.lang.h:62
+#: ../gtksourceview/language-specs/css.lang.h:62
 msgid "Selector Pseudo Elements"
 msgstr "Pseudo elementët e zgjedhësit"
 
@@ -689,247 +698,275 @@ msgstr "Pseudo elementët e zgjedhësit"
 #. Escaped unicode characters can contain either 6 hexadecimal characters
 #. or 1-5 hex characters followed by one whitespace character.
 #.
-#: gtksourceview/language-specs/css.lang.h:69
+#: ../gtksourceview/language-specs/css.lang.h:69
 msgid "Unicode Character Reference"
 msgstr "Riferimenti i simbolit Unicode"
 
 #.
 #. Unicode range values.
 #.
-#: gtksourceview/language-specs/css.lang.h:73
+#: ../gtksourceview/language-specs/css.lang.h:73
 msgid "Unicode Range"
 msgstr "Rangu i Unicode"
 
-#: gtksourceview/language-specs/desktop.lang.h:1
+#: ../gtksourceview/language-specs/desktop.lang.h:1
 msgid ".desktop"
 msgstr ".desktop"
 
-#: gtksourceview/language-specs/desktop.lang.h:2
-#: gtksourceview/language-specs/ini.lang.h:2
-#: gtksourceview/language-specs/gtkrc.lang.h:1
+#: ../gtksourceview/language-specs/desktop.lang.h:2
+#: ../gtksourceview/language-specs/gtkrc.lang.h:1
+#: ../gtksourceview/language-specs/ini.lang.h:2
 msgid "Boolean Value"
 msgstr "Vlerë Booleane"
 
-#: gtksourceview/language-specs/desktop.lang.h:3
+#: ../gtksourceview/language-specs/desktop.lang.h:3
 msgid "Encoding"
 msgstr "Kodifikimi"
 
-#: gtksourceview/language-specs/desktop.lang.h:4
+#: ../gtksourceview/language-specs/desktop.lang.h:4
 msgid "Exec Parameter"
 msgstr "Parametër i exec"
 
-#: gtksourceview/language-specs/desktop.lang.h:5
-#: gtksourceview/language-specs/ini.lang.h:5
+#: ../gtksourceview/language-specs/desktop.lang.h:5
+#: ../gtksourceview/language-specs/ini.lang.h:5
 msgid "Group"
 msgstr "Grupi"
 
-#: gtksourceview/language-specs/desktop.lang.h:8
-#: gtksourceview/language-specs/ini.lang.h:9
+#: ../gtksourceview/language-specs/desktop.lang.h:8
+#: ../gtksourceview/language-specs/ini.lang.h:9
 msgid "Non Standard Key"
 msgstr "Pulsant jo standart"
 
-#: gtksourceview/language-specs/desktop.lang.h:11
+#: ../gtksourceview/language-specs/desktop.lang.h:11
 msgid "Standard Key"
 msgstr "Pulsant standart"
 
-#: gtksourceview/language-specs/diff.lang.h:1
+#: ../gtksourceview/language-specs/diff.lang.h:1
 msgid "Added line"
 msgstr "Rresht i shtuar"
 
-#: gtksourceview/language-specs/diff.lang.h:2
+#: ../gtksourceview/language-specs/diff.lang.h:2
 msgid "Changed line"
 msgstr "Rresht i ndryshuar"
 
-#: gtksourceview/language-specs/diff.lang.h:3
+#: ../gtksourceview/language-specs/diff.lang.h:3
 msgid "Diff"
 msgstr "Dif"
 
-#: gtksourceview/language-specs/diff.lang.h:4
+#: ../gtksourceview/language-specs/diff.lang.h:4
 msgid "Diff file"
 msgstr "File diff"
 
-#: gtksourceview/language-specs/diff.lang.h:6
-#: gtksourceview/language-specs/po.lang.h:4
+#: ../gtksourceview/language-specs/diff.lang.h:6
+#: ../gtksourceview/language-specs/po.lang.h:4
 msgid "Location"
 msgstr "Vendodhja"
 
-#: gtksourceview/language-specs/diff.lang.h:8
+#: ../gtksourceview/language-specs/diff.lang.h:8
 msgid "Removed line"
 msgstr "Rresht i hequr"
 
-#: gtksourceview/language-specs/diff.lang.h:9
+#: ../gtksourceview/language-specs/diff.lang.h:9
 msgid "Special case"
 msgstr "Special case"
 
-#: gtksourceview/language-specs/html.lang.h:1
-#: gtksourceview/language-specs/xml.lang.h:1
+#: ../gtksourceview/language-specs/html.lang.h:1
+#: ../gtksourceview/language-specs/xml.lang.h:1
 msgid "Attributes"
 msgstr "Veçoritë"
 
-#: gtksourceview/language-specs/html.lang.h:3
-#: gtksourceview/language-specs/xml.lang.h:3
+#: ../gtksourceview/language-specs/html.lang.h:3
+#: ../gtksourceview/language-specs/xml.lang.h:3
 msgid "Closing Bracket"
 msgstr "Kllapë mbyllëse"
 
-#: gtksourceview/language-specs/html.lang.h:4
+#: ../gtksourceview/language-specs/html.lang.h:4
 msgid "DTD"
 msgstr "DTD"
 
-#: gtksourceview/language-specs/html.lang.h:5
-#: gtksourceview/language-specs/xml.lang.h:4
+#: ../gtksourceview/language-specs/html.lang.h:5
+#: ../gtksourceview/language-specs/xml.lang.h:4
 msgid "Entity"
 msgstr "Entitet"
 
-#: gtksourceview/language-specs/html.lang.h:6
+#: ../gtksourceview/language-specs/html.lang.h:6
 msgid "HTML"
 msgstr "HTML"
 
-#: gtksourceview/language-specs/html.lang.h:7
-#: gtksourceview/language-specs/latex.lang.h:5
-#: gtksourceview/language-specs/xml.lang.h:6
-#: gtksourceview/language-specs/texinfo.lang.h:12
+#: ../gtksourceview/language-specs/html.lang.h:7
+#: ../gtksourceview/language-specs/latex.lang.h:6
+#: ../gtksourceview/language-specs/texinfo.lang.h:12
+#: ../gtksourceview/language-specs/xml.lang.h:6
 msgid "Markup"
 msgstr "Markues"
 
-#: gtksourceview/language-specs/html.lang.h:9
+#: ../gtksourceview/language-specs/html.lang.h:9
 msgid "Tags"
 msgstr "Tags"
 
-#: gtksourceview/language-specs/fortran.lang.h:3
+#: ../gtksourceview/language-specs/fortran.lang.h:3
 msgid "Fortran 95"
 msgstr "Fortran 95"
 
-#: gtksourceview/language-specs/fortran.lang.h:5
+#: ../gtksourceview/language-specs/fortran.lang.h:5
 msgid "Input/Output"
 msgstr "Input/Output"
 
-#: gtksourceview/language-specs/fortran.lang.h:6
+#: ../gtksourceview/language-specs/fortran.lang.h:6
 msgid "Intrinsics"
 msgstr "Intrinsics (librari e Xlib)"
 
-#: gtksourceview/language-specs/fortran.lang.h:10
+#: ../gtksourceview/language-specs/fortran.lang.h:10
 msgid "Read/Write"
 msgstr "Lexim/Shkrim"
 
-#: gtksourceview/language-specs/idl.lang.h:2
-msgid "IDL"
-msgstr "IDL"
-
-#: gtksourceview/language-specs/idl.lang.h:7
-msgid "Sectional"
-msgstr "Të seksionit"
-
-#: gtksourceview/language-specs/ini.lang.h:1
-msgid ".ini"
-msgstr ".ini"
-
-#: gtksourceview/language-specs/ini.lang.h:3
-#: gtksourceview/language-specs/verilog.lang.h:3
-msgid "Decimal Number"
-msgstr "Numër dhjetor"
-
-#: gtksourceview/language-specs/ini.lang.h:4
-#: gtksourceview/language-specs/R.lang.h:3
-#: gtksourceview/language-specs/gtkrc.lang.h:2
+#: ../gtksourceview/language-specs/gtkrc.lang.h:2
+#: ../gtksourceview/language-specs/ini.lang.h:4
+#: ../gtksourceview/language-specs/R.lang.h:3
 msgid "Double Quote String"
 msgstr "Vlerë e dyfishe kuotuar"
 
-#: gtksourceview/language-specs/ini.lang.h:6
-msgid "Integer"
-msgstr "Numër i plotë"
+#: ../gtksourceview/language-specs/gtkrc.lang.h:3
+msgid "GtkRC"
+msgstr "GtkRC"
 
-#: gtksourceview/language-specs/ini.lang.h:11
-#: gtksourceview/language-specs/R.lang.h:11
-#: gtksourceview/language-specs/gtkrc.lang.h:10
+#: ../gtksourceview/language-specs/gtkrc.lang.h:4
+msgid "Include Directive"
+msgstr "Directive Include"
+
+#: ../gtksourceview/language-specs/gtkrc.lang.h:5
+msgid "Keysymbol"
+msgstr "Simbol pulsanti"
+
+#: ../gtksourceview/language-specs/gtkrc.lang.h:10
+#: ../gtksourceview/language-specs/ini.lang.h:11
+#: ../gtksourceview/language-specs/R.lang.h:11
 msgid "Single Quote String"
 msgstr "E dhënë me kuotë teke"
 
+#: ../gtksourceview/language-specs/gtkrc.lang.h:11
+msgid "State"
+msgstr "Gjendja"
+
 #. $variable, $$dynamic-variable and even $$$more
-#: gtksourceview/language-specs/ini.lang.h:12
-#: gtksourceview/language-specs/php.lang.h:25
-#: gtksourceview/language-specs/gtkrc.lang.h:12
+#: ../gtksourceview/language-specs/gtkrc.lang.h:12
+#: ../gtksourceview/language-specs/ini.lang.h:12
+#: ../gtksourceview/language-specs/php.lang.h:25
 msgid "Variable"
 msgstr "E ndryshueshme"
 
-#: gtksourceview/language-specs/java.lang.h:2
+#: ../gtksourceview/language-specs/haskell.lang.h:5
+msgid "Haskell"
+msgstr "Haskell"
+
+#: ../gtksourceview/language-specs/haskell.lang.h:8
+msgid "Keysymbols"
+msgstr "Simbolet e pulsantëve"
+
+#: ../gtksourceview/language-specs/haskell.lang.h:16
+msgid "Type or Constructor"
+msgstr "Lloji apo Konstruktori"
+
+#: ../gtksourceview/language-specs/idl.lang.h:2
+msgid "IDL"
+msgstr "IDL"
+
+#: ../gtksourceview/language-specs/idl.lang.h:7
+msgid "Sectional"
+msgstr "Të seksionit"
+
+#: ../gtksourceview/language-specs/ini.lang.h:1
+msgid ".ini"
+msgstr ".ini"
+
+#: ../gtksourceview/language-specs/ini.lang.h:3
+#: ../gtksourceview/language-specs/verilog.lang.h:3
+msgid "Decimal Number"
+msgstr "Numër dhjetor"
+
+#: ../gtksourceview/language-specs/ini.lang.h:6
+msgid "Integer"
+msgstr "Numër i plotë"
+
+#: ../gtksourceview/language-specs/java.lang.h:2
 msgid "Declarations"
 msgstr "Deklarime"
 
-#: gtksourceview/language-specs/java.lang.h:3
+#: ../gtksourceview/language-specs/java.lang.h:3
 msgid "Flow"
 msgstr "Fluksi"
 
-#: gtksourceview/language-specs/java.lang.h:4
+#: ../gtksourceview/language-specs/java.lang.h:4
 msgid "Java"
 msgstr "Java"
 
-#: gtksourceview/language-specs/java.lang.h:6
+#: ../gtksourceview/language-specs/java.lang.h:6
 msgid "Memory"
 msgstr "Kujtesa"
 
-#: gtksourceview/language-specs/java.lang.h:7
+#: ../gtksourceview/language-specs/java.lang.h:7
 msgid "Modifiers"
 msgstr "Ndryshues"
 
-#: gtksourceview/language-specs/java.lang.h:8
+#: ../gtksourceview/language-specs/java.lang.h:8
 msgid "Numeric"
 msgstr "Numerik"
 
-#: gtksourceview/language-specs/javascript.lang.h:1
-#: gtksourceview/language-specs/php.lang.h:1
+#: ../gtksourceview/language-specs/javascript.lang.h:1
+#: ../gtksourceview/language-specs/php.lang.h:1
 msgid "Array Operators"
 msgstr "Array Operators"
 
-#: gtksourceview/language-specs/javascript.lang.h:3
+#: ../gtksourceview/language-specs/javascript.lang.h:3
 msgid "Constructors"
 msgstr "Konstruktorë"
 
-#: gtksourceview/language-specs/javascript.lang.h:4
+#: ../gtksourceview/language-specs/javascript.lang.h:4
 msgid "Error Handling"
 msgstr "Trajtimi i gabimeve"
 
-#: gtksourceview/language-specs/javascript.lang.h:5
+#: ../gtksourceview/language-specs/javascript.lang.h:5
 msgid "Floating-Point Number"
 msgstr "Numër me presje të lëvizëshme"
 
-#: gtksourceview/language-specs/javascript.lang.h:6
+#: ../gtksourceview/language-specs/javascript.lang.h:6
 msgid "Flow Keywords"
 msgstr "Fjalëkyçe të fluksit"
 
-#: gtksourceview/language-specs/javascript.lang.h:7
+#: ../gtksourceview/language-specs/javascript.lang.h:7
 msgid "Future Reserved Words"
 msgstr "Fjalë të ardhshme të rezervuara"
 
-#: gtksourceview/language-specs/javascript.lang.h:8
+#: ../gtksourceview/language-specs/javascript.lang.h:8
 msgid "Global Functions"
 msgstr "Funksionet Globale"
 
-#: gtksourceview/language-specs/javascript.lang.h:9
+#: ../gtksourceview/language-specs/javascript.lang.h:9
 msgid "Global Properties"
 msgstr "Pronësitë globale"
 
-#: gtksourceview/language-specs/javascript.lang.h:10
-#: gtksourceview/language-specs/verilog.lang.h:5
+#: ../gtksourceview/language-specs/javascript.lang.h:10
+#: ../gtksourceview/language-specs/verilog.lang.h:5
 msgid "Hexadecimal Number"
 msgstr "Numër Hexadecimal"
 
-#: gtksourceview/language-specs/javascript.lang.h:13
+#: ../gtksourceview/language-specs/javascript.lang.h:13
 msgid "Literals"
 msgstr "Konstante leterale"
 
-#: gtksourceview/language-specs/javascript.lang.h:14
+#: ../gtksourceview/language-specs/javascript.lang.h:14
 msgid "Math Value Properties"
 msgstr "Pronësitë e vlerës matematikore"
 
-#: gtksourceview/language-specs/javascript.lang.h:16
+#: ../gtksourceview/language-specs/javascript.lang.h:16
 msgid "Object Functions"
 msgstr "Funksione Object"
 
-#: gtksourceview/language-specs/javascript.lang.h:17
+#: ../gtksourceview/language-specs/javascript.lang.h:17
 msgid "Object Properties"
 msgstr "Pronësitë e objektit"
 
-#: gtksourceview/language-specs/javascript.lang.h:18
+#: ../gtksourceview/language-specs/javascript.lang.h:18
 msgid "Objects"
 msgstr "Objekte"
 
@@ -944,556 +981,599 @@ msgstr "Objekte"
 #.
 #. Submitted by Scott Martin (scott@coffeeblack.org)
 #.
-#: gtksourceview/language-specs/javascript.lang.h:32
-#: gtksourceview/language-specs/lua.lang.h:9
-#: gtksourceview/language-specs/perl.lang.h:7
-#: gtksourceview/language-specs/python.lang.h:13
-#: gtksourceview/language-specs/ruby.lang.h:17
-#: gtksourceview/language-specs/sh.lang.h:11
-#: gtksourceview/language-specs/tcl.lang.h:3
-#: gtksourceview/language-specs/R.lang.h:10
+#: ../gtksourceview/language-specs/javascript.lang.h:32
+#: ../gtksourceview/language-specs/lua.lang.h:9
+#: ../gtksourceview/language-specs/perl.lang.h:7
+#: ../gtksourceview/language-specs/python.lang.h:13
+#: ../gtksourceview/language-specs/R.lang.h:10
+#: ../gtksourceview/language-specs/ruby.lang.h:17
+#: ../gtksourceview/language-specs/sh.lang.h:11
+#: ../gtksourceview/language-specs/tcl.lang.h:3
 msgid "Scripts"
 msgstr "Scripte"
 
-#: gtksourceview/language-specs/javascript.lang.h:35
+#: ../gtksourceview/language-specs/javascript.lang.h:35
 msgid "Unicode Escape Sequence"
 msgstr "Sekuenca Escape Unicode"
 
-#: gtksourceview/language-specs/javascript.lang.h:36
+#: ../gtksourceview/language-specs/javascript.lang.h:36
 msgid "Word Operators"
 msgstr "Operatorë fjale"
 
-#: gtksourceview/language-specs/latex.lang.h:2
-#: gtksourceview/language-specs/texinfo.lang.h:6
+#: ../gtksourceview/language-specs/latex.lang.h:2
+msgid "Comment Environment"
+msgstr "Comment Environment"
+
+#: ../gtksourceview/language-specs/latex.lang.h:3
+#: ../gtksourceview/language-specs/texinfo.lang.h:6
 msgid "Include"
 msgstr "Include"
 
-#: gtksourceview/language-specs/latex.lang.h:4
+#: ../gtksourceview/language-specs/latex.lang.h:5
 msgid "LaTeX"
 msgstr "LaTeX"
 
-#: gtksourceview/language-specs/latex.lang.h:6
+#: ../gtksourceview/language-specs/latex.lang.h:7
 msgid "Math"
 msgstr "Math"
 
-#: gtksourceview/language-specs/latex.lang.h:7
+#: ../gtksourceview/language-specs/latex.lang.h:8
 msgid "Most Used Commands"
 msgstr "Komandat më të përdorura"
 
-#: gtksourceview/language-specs/lua.lang.h:2
-#: gtksourceview/language-specs/python.lang.h:4
-#: gtksourceview/language-specs/sh.lang.h:4
+#: ../gtksourceview/language-specs/lua.lang.h:2
+#: ../gtksourceview/language-specs/makefile.lang.h:3
+#: ../gtksourceview/language-specs/python.lang.h:4
+#: ../gtksourceview/language-specs/sh.lang.h:4
 msgid "Functions"
 msgstr "Funksionet"
 
-#: gtksourceview/language-specs/lua.lang.h:5
+#: ../gtksourceview/language-specs/lua.lang.h:5
 msgid "Line Comment 2"
 msgstr "Komenti i rreshtit 2"
 
-#: gtksourceview/language-specs/lua.lang.h:6
+#: ../gtksourceview/language-specs/lua.lang.h:6
 msgid "Lua"
 msgstr "Lua"
 
-#: gtksourceview/language-specs/lua.lang.h:7
-#: gtksourceview/language-specs/python.lang.h:9
-#: gtksourceview/language-specs/sh.lang.h:6
-msgid "Multiline String"
-msgstr "Multiline String"
-
-#: gtksourceview/language-specs/lua.lang.h:8
-#: gtksourceview/language-specs/python.lang.h:10
-#: gtksourceview/language-specs/sh.lang.h:7
+#: ../gtksourceview/language-specs/lua.lang.h:8
+#: ../gtksourceview/language-specs/python.lang.h:10
+#: ../gtksourceview/language-specs/sh.lang.h:7
 msgid "Multiline String 2"
 msgstr "Multiline String 2"
 
-#: gtksourceview/language-specs/pascal.lang.h:1
-msgid "Block Comment 1"
-msgstr "Komenti bllokut 1"
-
-#: gtksourceview/language-specs/pascal.lang.h:2
-msgid "Block Comment 2"
-msgstr "Komenti bllokut 2"
-
-#: gtksourceview/language-specs/pascal.lang.h:3
-msgid "Boolean Bitwise Operators"
-msgstr "Operatorë Boolean Bitwise"
-
-#: gtksourceview/language-specs/pascal.lang.h:4
-msgid "Builtin Functions"
-msgstr "Funksionet e konstruktit"
-
-#: gtksourceview/language-specs/pascal.lang.h:5
-msgid "Builtin Types"
-msgstr "Llojet e konstruktit"
-
-#: gtksourceview/language-specs/pascal.lang.h:6
-msgid "Builtin Values"
-msgstr "Vlerat e konstruktit"
-
-#: gtksourceview/language-specs/pascal.lang.h:7
-msgid "Functions and Function Modifiers"
-msgstr "Funksionet dhe ndryshuesit e funksionit"
-
-#: gtksourceview/language-specs/pascal.lang.h:8
-msgid "General Format"
-msgstr "Formati i përgjithshëm"
-
-#: gtksourceview/language-specs/pascal.lang.h:12
-msgid "Loop, Flow, and Exceptions Keywords"
-msgstr "Cikël, fluks dhe fjalëkyçet e përjashtimeve"
-
-#: gtksourceview/language-specs/pascal.lang.h:13
-msgid "Math Operators"
-msgstr "Operatorë matematikë"
-
-#: gtksourceview/language-specs/pascal.lang.h:15
-msgid "Pascal"
-msgstr "Pascal"
-
-#: gtksourceview/language-specs/pascal.lang.h:16
-msgid "Preprocessor Defines"
-msgstr "Përcaktimet e preprocesuesit"
-
-#: gtksourceview/language-specs/pascal.lang.h:19
-msgid "Type, Class and Object Keywords"
-msgstr "Fjalkyçet e llojit, klasës dhe objektit"
-
-#: gtksourceview/language-specs/perl.lang.h:1
-msgid "Function Call"
-msgstr "Thirrje me funksion"
-
-#: gtksourceview/language-specs/perl.lang.h:4
-msgid "Method Call"
-msgstr "Thirrje metodike"
-
-#: gtksourceview/language-specs/perl.lang.h:5
-msgid "POD"
-msgstr "POD"
-
-#: gtksourceview/language-specs/perl.lang.h:6
-msgid "Perl"
-msgstr "Perl"
-
-#: gtksourceview/language-specs/perl.lang.h:9
-#: gtksourceview/language-specs/tcl.lang.h:5
-msgid "String2"
-msgstr "String2"
-
-#: gtksourceview/language-specs/perl.lang.h:10
-msgid "String3"
-msgstr "String3"
-
-#: gtksourceview/language-specs/perl.lang.h:11
-#: gtksourceview/language-specs/tcl.lang.h:7
-msgid "Variables"
-msgstr "Të ndryshueshmet"
-
 #. `backticks-quoted strings`
-#: gtksourceview/language-specs/php.lang.h:3
-#: gtksourceview/language-specs/sh.lang.h:1
+#: ../gtksourceview/language-specs/makefile.lang.h:1
+#: ../gtksourceview/language-specs/php.lang.h:3
+#: ../gtksourceview/language-specs/sh.lang.h:1
 msgid "Backtick String"
 msgstr "Backtick String"
 
+#: ../gtksourceview/language-specs/makefile.lang.h:2
+msgid "Directives"
+msgstr "Direktiva"
+
+#: ../gtksourceview/language-specs/makefile.lang.h:5
+msgid "Makefile"
+msgstr "Makefile"
+
+#: ../gtksourceview/language-specs/makefile.lang.h:7
+msgid "Special Targets"
+msgstr "Objektivë specialë"
+
+#: ../gtksourceview/language-specs/makefile.lang.h:10
+msgid "Targets"
+msgstr "Objektivë"
+
+#: ../gtksourceview/language-specs/makefile.lang.h:11
+#: ../gtksourceview/language-specs/sh.lang.h:15
+msgid "Variable1"
+msgstr "E ndryshueshme1"
+
+#: ../gtksourceview/language-specs/makefile.lang.h:12
+#: ../gtksourceview/language-specs/sh.lang.h:16
+msgid "Variable2"
+msgstr "E ndryshueshme2"
+
+#: ../gtksourceview/language-specs/nemerle.lang.h:1
+#: ../gtksourceview/language-specs/verilog.lang.h:1
+msgid "Binary Number"
+msgstr "Numër binar"
+
+#: ../gtksourceview/language-specs/nemerle.lang.h:4
+msgid "Core Keywords"
+msgstr "Fjalëkyçet bazë"
+
+#: ../gtksourceview/language-specs/nemerle.lang.h:5
+msgid "Core Types"
+msgstr "Llojet Core"
+
+#: ../gtksourceview/language-specs/nemerle.lang.h:9
+msgid "Keywords Defined by Macros"
+msgstr "Fjalë kyçe sipas Automatizimeve"
+
+#: ../gtksourceview/language-specs/nemerle.lang.h:11
+msgid "Nemerle"
+msgstr "Nemerle"
+
+#: ../gtksourceview/language-specs/pascal.lang.h:1
+msgid "Block Comment 1"
+msgstr "Komenti bllokut 1"
+
+#: ../gtksourceview/language-specs/pascal.lang.h:2
+msgid "Block Comment 2"
+msgstr "Komenti bllokut 2"
+
+#: ../gtksourceview/language-specs/pascal.lang.h:3
+msgid "Boolean Bitwise Operators"
+msgstr "Operatorë Boolean Bitwise"
+
+#: ../gtksourceview/language-specs/pascal.lang.h:4
+msgid "Builtin Functions"
+msgstr "Funksionet e konstruktit"
+
+#: ../gtksourceview/language-specs/pascal.lang.h:5
+msgid "Builtin Types"
+msgstr "Llojet e konstruktit"
+
+#: ../gtksourceview/language-specs/pascal.lang.h:6
+msgid "Builtin Values"
+msgstr "Vlerat e konstruktit"
+
+#: ../gtksourceview/language-specs/pascal.lang.h:7
+msgid "Functions and Function Modifiers"
+msgstr "Funksionet dhe ndryshuesit e funksionit"
+
+#: ../gtksourceview/language-specs/pascal.lang.h:8
+msgid "General Format"
+msgstr "Formati i përgjithshëm"
+
+#: ../gtksourceview/language-specs/pascal.lang.h:12
+msgid "Loop, Flow, and Exceptions Keywords"
+msgstr "Cikël, fluks dhe fjalëkyçet e përjashtimeve"
+
+#: ../gtksourceview/language-specs/pascal.lang.h:13
+msgid "Math Operators"
+msgstr "Operatorë matematikë"
+
+#: ../gtksourceview/language-specs/pascal.lang.h:15
+msgid "Pascal"
+msgstr "Pascal"
+
+#: ../gtksourceview/language-specs/pascal.lang.h:16
+msgid "Preprocessor Defines"
+msgstr "Përcaktimet e preprocesuesit"
+
+#: ../gtksourceview/language-specs/pascal.lang.h:19
+msgid "Type, Class and Object Keywords"
+msgstr "Fjalkyçet e llojit, klasës dhe objektit"
+
+#: ../gtksourceview/language-specs/perl.lang.h:1
+msgid "Function Call"
+msgstr "Thirrje me funksion"
+
+#: ../gtksourceview/language-specs/perl.lang.h:4
+msgid "Method Call"
+msgstr "Thirrje metodike"
+
+#: ../gtksourceview/language-specs/perl.lang.h:5
+msgid "POD"
+msgstr "POD"
+
+#: ../gtksourceview/language-specs/perl.lang.h:6
+msgid "Perl"
+msgstr "Perl"
+
+#: ../gtksourceview/language-specs/perl.lang.h:9
+#: ../gtksourceview/language-specs/tcl.lang.h:5
+msgid "String2"
+msgstr "String2"
+
+#: ../gtksourceview/language-specs/perl.lang.h:10
+msgid "String3"
+msgstr "String3"
+
+#: ../gtksourceview/language-specs/perl.lang.h:11
+#: ../gtksourceview/language-specs/tcl.lang.h:7
+msgid "Variables"
+msgstr "Të ndryshueshmet"
+
 #. # Bourne Shell Line Comment
-#: gtksourceview/language-specs/php.lang.h:5
+#: ../gtksourceview/language-specs/php.lang.h:5
 msgid "Bash Line Comment"
 msgstr "Komenti i rreshtit Bash"
 
 #. /* C Block Comment
-#: gtksourceview/language-specs/php.lang.h:7
+#: ../gtksourceview/language-specs/php.lang.h:7
 msgid "C Block Comment"
 msgstr "Komenti i bllokut C"
 
 #. // C++ Line Comment
-#: gtksourceview/language-specs/php.lang.h:9
+#: ../gtksourceview/language-specs/php.lang.h:9
 msgid "C++ Line Comment"
 msgstr "Komenti i rreshtit C++"
 
-#: gtksourceview/language-specs/php.lang.h:10
+#: ../gtksourceview/language-specs/php.lang.h:10
 msgid "Case Insensitive Keyword"
 msgstr "Case Insensitive Keyword"
 
 #. This are keywords, the are recognised by php
-#: gtksourceview/language-specs/php.lang.h:12
+#: ../gtksourceview/language-specs/php.lang.h:12
 msgid "Case Sensitive Keyword"
 msgstr "Fjalëkyçe e ndjeshme nga ndryshimi gërma të mëdha/vogla"
 
 #. "duble-quoted strings"
-#: gtksourceview/language-specs/php.lang.h:16
+#: ../gtksourceview/language-specs/php.lang.h:16
 msgid "Double Quoted String"
 msgstr "Vlerë e dyfishe kuotuar"
 
-#: gtksourceview/language-specs/php.lang.h:17
+#: ../gtksourceview/language-specs/php.lang.h:17
 msgid "First Open PHP Tag"
 msgstr "Tag i hapjes së PHP"
 
-#: gtksourceview/language-specs/php.lang.h:18
+#: ../gtksourceview/language-specs/php.lang.h:18
 msgid "HTML Block"
 msgstr "Bllok HTML"
 
-#: gtksourceview/language-specs/php.lang.h:20
+#: ../gtksourceview/language-specs/php.lang.h:20
 msgid "PHP"
 msgstr "PHP"
 
 #. 'single-quoted strings'
-#: gtksourceview/language-specs/php.lang.h:22
+#: ../gtksourceview/language-specs/php.lang.h:22
 msgid "Single Quoted String"
 msgstr "Single Quoted String"
 
-#: gtksourceview/language-specs/po.lang.h:2
+#: ../gtksourceview/language-specs/po.lang.h:2
 msgid "Format"
 msgstr "Formati"
 
-#: gtksourceview/language-specs/po.lang.h:7
+#: ../gtksourceview/language-specs/po.lang.h:7
 msgid "gettext translation"
 msgstr "përkthim gettext"
 
-#: gtksourceview/language-specs/python.lang.h:1
-#: gtksourceview/language-specs/ruby.lang.h:2
+#: ../gtksourceview/language-specs/python.lang.h:1
+#: ../gtksourceview/language-specs/ruby.lang.h:2
 msgid "Builtins"
 msgstr "Të lindur"
 
-#: gtksourceview/language-specs/python.lang.h:8
+#: ../gtksourceview/language-specs/python.lang.h:8
 msgid "Module Handler"
 msgstr "Trajtues modulësh"
 
-#: gtksourceview/language-specs/python.lang.h:12
+#: ../gtksourceview/language-specs/python.lang.h:12
 msgid "Python"
 msgstr "Python"
 
-#: gtksourceview/language-specs/ruby.lang.h:1
-msgid "Attribute Definitions"
-msgstr "Përcaktimet e Vetisë"
-
-#: gtksourceview/language-specs/ruby.lang.h:3
-msgid "Class Variables"
-msgstr "Klasa e të ndryshueshmeve"
-
-#: gtksourceview/language-specs/ruby.lang.h:4
-msgid "Constants"
-msgstr "Konstantet"
-
-#: gtksourceview/language-specs/ruby.lang.h:5
-msgid "Definitions"
-msgstr "Përcaktimet"
-
-#: gtksourceview/language-specs/ruby.lang.h:6
-msgid "Global Variables"
-msgstr "Të ndryshueshme globale"
-
-#: gtksourceview/language-specs/ruby.lang.h:7
-msgid "Instance Variables"
-msgstr "Të ndryshueshmet e instancës"
-
-#: gtksourceview/language-specs/ruby.lang.h:10
-msgid "Module Handlers"
-msgstr "Trajtuesit e modulit"
-
-#: gtksourceview/language-specs/ruby.lang.h:11
-msgid "Multiline Comment"
-msgstr "Koment shumë rreshtash"
-
-#: gtksourceview/language-specs/ruby.lang.h:12
-msgid "Pseudo Variables"
-msgstr "Pseudo të ndryshueshme"
-
-#: gtksourceview/language-specs/ruby.lang.h:13
-msgid "RegExp Variables"
-msgstr "Të ndryshueshme RegExp"
-
-#: gtksourceview/language-specs/ruby.lang.h:14
-msgid "Regular Expression"
-msgstr "Shprehje të rregullta"
-
-#: gtksourceview/language-specs/ruby.lang.h:15
-msgid "Regular Expression 2"
-msgstr "Shprehje të rregullta 2"
-
-#: gtksourceview/language-specs/ruby.lang.h:16
-msgid "Ruby"
-msgstr "Rubin"
-
-#: gtksourceview/language-specs/sh.lang.h:2
-msgid "Built-in Commands"
-msgstr "Komandat për krijimin"
-
-#: gtksourceview/language-specs/sh.lang.h:3
-msgid "Common Commands"
-msgstr "Komandat më të përdorura"
-
-#: gtksourceview/language-specs/sh.lang.h:10
-msgid "Redirections"
-msgstr "Ridrejtimet"
-
-#: gtksourceview/language-specs/sh.lang.h:12
-msgid "Self"
-msgstr "Vetë"
-
-#: gtksourceview/language-specs/sh.lang.h:15
-msgid "Variable1"
-msgstr "E ndryshueshme1"
-
-#: gtksourceview/language-specs/sh.lang.h:16
-msgid "Variable2"
-msgstr "E ndryshueshme2"
-
-#: gtksourceview/language-specs/sh.lang.h:17
-msgid "sh"
-msgstr "sh"
-
-#: gtksourceview/language-specs/sql.lang.h:1
-msgid "ANSI Datatypes"
-msgstr "Lloje të dhënash ANSI"
-
-#: gtksourceview/language-specs/sql.lang.h:2
-msgid "ANSI Reserved Words"
-msgstr "Fjalë të rezervuara ANSI"
-
-#: gtksourceview/language-specs/sql.lang.h:3
-msgid "Aggregate Functions"
-msgstr "Funksione agreguese"
-
-#: gtksourceview/language-specs/sql.lang.h:4
-msgid "Analytic Functions"
-msgstr "Funksione analitike"
-
-#: gtksourceview/language-specs/sql.lang.h:6
-msgid "Character Functions Returning Character Values"
-msgstr "Character Functions Returning Character Values"
-
-#: gtksourceview/language-specs/sql.lang.h:7
-msgid "Character Functions Returning Number Values"
-msgstr "Character Functions Returning Number Values"
-
-#: gtksourceview/language-specs/sql.lang.h:8
-msgid "Conversion Functions"
-msgstr "Funksionet e konvertimit"
-
-#: gtksourceview/language-specs/sql.lang.h:9
-msgid "Datetime Functions"
-msgstr "Funksionet e kohës"
-
-#: gtksourceview/language-specs/sql.lang.h:10
-msgid "Integer Literals"
-msgstr "Integer Literals"
-
-#: gtksourceview/language-specs/sql.lang.h:12
-msgid "Miscellaneous Single-Row Functions"
-msgstr "Miscellaneous Single-Row Functions"
-
-#: gtksourceview/language-specs/sql.lang.h:13
-msgid "Null"
-msgstr "Null"
-
-#: gtksourceview/language-specs/sql.lang.h:14
-msgid "Number Functions"
-msgstr "Funksione numerikë"
-
-#: gtksourceview/language-specs/sql.lang.h:15
-msgid "Number Literals"
-msgstr "Number Literals"
-
-#: gtksourceview/language-specs/sql.lang.h:16
-msgid "Object Reference Functions"
-msgstr "Funksione Object Reference"
-
-#: gtksourceview/language-specs/sql.lang.h:17
-msgid "Oracle Built-in Datatypes"
-msgstr "Të dhëna të llojit Oracle Built in"
-
-#: gtksourceview/language-specs/sql.lang.h:18
-msgid "Oracle Reserved Words"
-msgstr "Fjalë të rezervuara Oracle"
-
-#: gtksourceview/language-specs/sql.lang.h:19
-msgid "SQL"
-msgstr "SQL"
-
-#: gtksourceview/language-specs/sql.lang.h:20
-msgid "SQL*Plus At Sign"
-msgstr "SQL*Plus At Sign"
-
-#: gtksourceview/language-specs/sql.lang.h:21
-msgid "SQL*Plus Commands"
-msgstr "Komanda SQL*Plus"
-
-#: gtksourceview/language-specs/sql.lang.h:22
-msgid "SQL*Plus Double At Sign"
-msgstr "SQL*Plus Double At Sign"
-
-#: gtksourceview/language-specs/sql.lang.h:23
-msgid "SQL*Plus Slash"
-msgstr "SQL*Plus Slash"
-
-#: gtksourceview/language-specs/sql.lang.h:24
-msgid "SQL/DS and DB2 Datatypes"
-msgstr "Të dhëna të llojit SQL/DS dhe DB2"
-
-#: gtksourceview/language-specs/sql.lang.h:25
-msgid "Size Clause"
-msgstr "Size Clause"
-
-#: gtksourceview/language-specs/sql.lang.h:27
-msgid "Text Literals"
-msgstr "Text Literals"
-
-#: gtksourceview/language-specs/sql.lang.h:28
-msgid "Unlimited"
-msgstr "Pa limit"
-
-#: gtksourceview/language-specs/verilog.lang.h:1
-#: gtksourceview/language-specs/nemerle.lang.h:1
-msgid "Binary Number"
-msgstr "Numër binar"
-
-#: gtksourceview/language-specs/verilog.lang.h:4
-msgid "Gates"
-msgstr "Gates"
-
-#: gtksourceview/language-specs/verilog.lang.h:11
-msgid "Verilog"
-msgstr "Verilog"
-
-#: gtksourceview/language-specs/xml.lang.h:5
-msgid "Hexadecimal"
-msgstr "Hexadecimal"
-
-#: gtksourceview/language-specs/xml.lang.h:8
-msgid "Tag"
-msgstr "Tag"
-
-#: gtksourceview/language-specs/xml.lang.h:9
-msgid "XML"
-msgstr "XML"
-
-#: gtksourceview/language-specs/haskell.lang.h:5
-msgid "Haskell"
-msgstr "Haskell"
-
-#: gtksourceview/language-specs/haskell.lang.h:8
-msgid "Keysymbols"
-msgstr "Simbolet e pulsantëve"
-
-#: gtksourceview/language-specs/haskell.lang.h:16
-msgid "Type or Constructor"
-msgstr "Lloji apo Konstruktori"
-
-#: gtksourceview/language-specs/texinfo.lang.h:2
-msgid "Characters"
-msgstr "Simbolet"
-
-#: gtksourceview/language-specs/texinfo.lang.h:3
-msgid "File Attributes"
-msgstr "Vlerat e file"
-
-#: gtksourceview/language-specs/texinfo.lang.h:4
-msgid "Formatting"
-msgstr "Duke formatuar"
-
-#: gtksourceview/language-specs/texinfo.lang.h:5
-msgid "Generated Content"
-msgstr "Përmbajtja e krijuar"
-
-#: gtksourceview/language-specs/texinfo.lang.h:7
-msgid "Indexing"
-msgstr "Duke indeksuar"
-
-#: gtksourceview/language-specs/texinfo.lang.h:10
-msgid "Macro Parameters"
-msgstr "Parametrat e makro"
-
-#: gtksourceview/language-specs/texinfo.lang.h:11
-msgid "Macros"
-msgstr "Automatizime"
-
-#: gtksourceview/language-specs/texinfo.lang.h:13
-msgid "Markup (block)"
-msgstr "Markues (bllok)"
-
-#: gtksourceview/language-specs/texinfo.lang.h:14
-msgid "Markup (inline)"
-msgstr "Markues (në linjë)"
-
-#: gtksourceview/language-specs/texinfo.lang.h:15
-msgid "Sectioning"
-msgstr "Duke seksionuar"
-
-#: gtksourceview/language-specs/texinfo.lang.h:16
-msgid "Texinfo"
-msgstr "Infotekst"
-
-#: gtksourceview/language-specs/vbnet.lang.h:3
-msgid "Old Style Comment"
-msgstr "Koment në stilin e vjetër"
-
-#: gtksourceview/language-specs/vbnet.lang.h:9
-msgid "VB.NET"
-msgstr "VB.NET"
-
-#: gtksourceview/language-specs/nemerle.lang.h:4
-msgid "Core Keywords"
-msgstr "Fjalëkyçet bazë"
-
-#: gtksourceview/language-specs/nemerle.lang.h:5
-msgid "Core Types"
-msgstr "Llojet Core"
-
-#: gtksourceview/language-specs/nemerle.lang.h:9
-msgid "Keywords Defined by Macros"
-msgstr "Fjalë kyçe sipas Automatizimeve"
-
-#: gtksourceview/language-specs/nemerle.lang.h:11
-msgid "Nemerle"
-msgstr "Nemerle"
-
-#: gtksourceview/language-specs/tcl.lang.h:6
-msgid "Tcl"
-msgstr "Tcl"
-
-#: gtksourceview/language-specs/vhdl.lang.h:7
-msgid "True and False"
-msgstr "True dhe False"
-
-#: gtksourceview/language-specs/vhdl.lang.h:8
-msgid "Type"
-msgstr "Lloji"
-
-#: gtksourceview/language-specs/vhdl.lang.h:9
-msgid "VHDL"
-msgstr "VHDL"
-
-#: gtksourceview/language-specs/R.lang.h:1
+#: ../gtksourceview/language-specs/R.lang.h:1
 msgid "Assignment Operator"
 msgstr "Operator shënues"
 
-#: gtksourceview/language-specs/R.lang.h:2
+#: ../gtksourceview/language-specs/R.lang.h:2
 msgid "Delimiter"
 msgstr "Kufizues"
 
-#: gtksourceview/language-specs/R.lang.h:5
+#: ../gtksourceview/language-specs/R.lang.h:5
 msgid "Integer Number"
 msgstr "Numër i plotë"
 
-#: gtksourceview/language-specs/R.lang.h:8
+#: ../gtksourceview/language-specs/R.lang.h:8
 msgid "Reserved Class"
 msgstr "Klasë e rezervuar"
 
-#: gtksourceview/language-specs/R.lang.h:9
+#: ../gtksourceview/language-specs/R.lang.h:9
 msgid "Reserved Constant"
 msgstr "Konstante e rezervuar"
 
-#: gtksourceview/language-specs/gtkrc.lang.h:3
-msgid "GtkRC"
-msgstr "GtkRC"
+#: ../gtksourceview/language-specs/ruby.lang.h:1
+msgid "Attribute Definitions"
+msgstr "Përcaktimet e Vetisë"
 
-#: gtksourceview/language-specs/gtkrc.lang.h:4
-msgid "Include Directive"
-msgstr "Directive Include"
+#: ../gtksourceview/language-specs/ruby.lang.h:3
+msgid "Class Variables"
+msgstr "Klasa e të ndryshueshmeve"
 
-#: gtksourceview/language-specs/gtkrc.lang.h:5
-msgid "Keysymbol"
-msgstr "Simbol pulsanti"
+#: ../gtksourceview/language-specs/ruby.lang.h:4
+msgid "Constants"
+msgstr "Konstantet"
 
-#: gtksourceview/language-specs/gtkrc.lang.h:11
-msgid "State"
-msgstr "Gjendja"
+#: ../gtksourceview/language-specs/ruby.lang.h:5
+msgid "Definitions"
+msgstr "Përcaktimet"
+
+#: ../gtksourceview/language-specs/ruby.lang.h:6
+msgid "Global Variables"
+msgstr "Të ndryshueshme globale"
+
+#: ../gtksourceview/language-specs/ruby.lang.h:7
+msgid "Instance Variables"
+msgstr "Të ndryshueshmet e instancës"
+
+#: ../gtksourceview/language-specs/ruby.lang.h:10
+msgid "Module Handlers"
+msgstr "Trajtuesit e modulit"
+
+#: ../gtksourceview/language-specs/ruby.lang.h:11
+msgid "Multiline Comment"
+msgstr "Koment shumë rreshtash"
+
+#: ../gtksourceview/language-specs/ruby.lang.h:12
+msgid "Pseudo Variables"
+msgstr "Pseudo të ndryshueshme"
+
+#: ../gtksourceview/language-specs/ruby.lang.h:13
+msgid "RegExp Variables"
+msgstr "Të ndryshueshme RegExp"
+
+#: ../gtksourceview/language-specs/ruby.lang.h:14
+msgid "Regular Expression"
+msgstr "Shprehje të rregullta"
+
+#: ../gtksourceview/language-specs/ruby.lang.h:15
+msgid "Regular Expression 2"
+msgstr "Shprehje të rregullta 2"
+
+#: ../gtksourceview/language-specs/ruby.lang.h:16
+msgid "Ruby"
+msgstr "Rubin"
+
+#: ../gtksourceview/language-specs/sh.lang.h:2
+msgid "Built-in Commands"
+msgstr "Komandat për krijimin"
+
+#: ../gtksourceview/language-specs/sh.lang.h:3
+msgid "Common Commands"
+msgstr "Komandat më të përdorura"
+
+#: ../gtksourceview/language-specs/sh.lang.h:10
+msgid "Redirections"
+msgstr "Ridrejtimet"
+
+#: ../gtksourceview/language-specs/sh.lang.h:12
+msgid "Self"
+msgstr "Vetë"
+
+#: ../gtksourceview/language-specs/sh.lang.h:17
+msgid "sh"
+msgstr "sh"
+
+#: ../gtksourceview/language-specs/sql.lang.h:1
+msgid "ANSI Datatypes"
+msgstr "Lloje të dhënash ANSI"
+
+#: ../gtksourceview/language-specs/sql.lang.h:2
+msgid "ANSI Reserved Words"
+msgstr "Fjalë të rezervuara ANSI"
+
+#: ../gtksourceview/language-specs/sql.lang.h:3
+msgid "Aggregate Functions"
+msgstr "Funksione agreguese"
+
+#: ../gtksourceview/language-specs/sql.lang.h:4
+msgid "Analytic Functions"
+msgstr "Funksione analitike"
+
+#: ../gtksourceview/language-specs/sql.lang.h:6
+msgid "Character Functions Returning Character Values"
+msgstr "Character Functions Returning Character Values"
+
+#: ../gtksourceview/language-specs/sql.lang.h:7
+msgid "Character Functions Returning Number Values"
+msgstr "Character Functions Returning Number Values"
+
+#: ../gtksourceview/language-specs/sql.lang.h:8
+msgid "Collection Functions"
+msgstr "Collection Functions"
+
+#: ../gtksourceview/language-specs/sql.lang.h:9
+msgid "Conditions"
+msgstr "Kushtet"
+
+#: ../gtksourceview/language-specs/sql.lang.h:10
+msgid "Conversion Functions"
+msgstr "Funksionet e konvertimit"
+
+#: ../gtksourceview/language-specs/sql.lang.h:11
+msgid "Data Mining Functions"
+msgstr "Funksionet e Data Mining"
+
+#: ../gtksourceview/language-specs/sql.lang.h:12
+msgid "Datetime Functions"
+msgstr "Funksionet e kohës"
+
+#: ../gtksourceview/language-specs/sql.lang.h:13
+msgid "Encoding and Decoding Functions"
+msgstr "Funksionet e Kodifikimit dhe dekodifikimit"
+
+#: ../gtksourceview/language-specs/sql.lang.h:14
+msgid "Environment and Identifier Functions"
+msgstr "Funksionet e ambientit dhe identifikimit"
+
+#: ../gtksourceview/language-specs/sql.lang.h:15
+msgid "General Comparison Functions"
+msgstr "Funksionet bazë të krahasimit"
+
+#: ../gtksourceview/language-specs/sql.lang.h:16
+msgid "Hierarchical Function"
+msgstr "Hierarchical Function"
+
+#: ../gtksourceview/language-specs/sql.lang.h:17
+msgid "Integer Literals"
+msgstr "Integer Literals"
+
+#: ../gtksourceview/language-specs/sql.lang.h:18
+msgid "Large Object Functions"
+msgstr "Large Object Functions"
+
+#: ../gtksourceview/language-specs/sql.lang.h:20
+msgid "Model Functions"
+msgstr "Funksionet e modelit"
+
+#: ../gtksourceview/language-specs/sql.lang.h:21
+msgid "NLS Character Functions"
+msgstr "NLS Character Functions"
+
+#: ../gtksourceview/language-specs/sql.lang.h:22
+msgid "NULL-Related Functions"
+msgstr "NULL-Related Functions"
+
+#: ../gtksourceview/language-specs/sql.lang.h:23
+msgid "Null"
+msgstr "Null"
+
+#: ../gtksourceview/language-specs/sql.lang.h:24
+msgid "Number Literals"
+msgstr "Number Literals"
+
+#: ../gtksourceview/language-specs/sql.lang.h:25
+msgid "Numeric Functions"
+msgstr "Funksione numerikë"
+
+#: ../gtksourceview/language-specs/sql.lang.h:26
+msgid "Object Reference Functions"
+msgstr "Funksione Object Reference"
+
+#: ../gtksourceview/language-specs/sql.lang.h:28
+msgid "Oracle Built-in Datatypes"
+msgstr "Të dhëna të llojit Oracle Built in"
+
+#: ../gtksourceview/language-specs/sql.lang.h:29
+msgid "Oracle Reserved Words"
+msgstr "Fjalë të rezervuara Oracle"
+
+#: ../gtksourceview/language-specs/sql.lang.h:30
+msgid "Oracle-Supplied Types"
+msgstr "Lloje Oracle-Supplied"
+
+#: ../gtksourceview/language-specs/sql.lang.h:31
+msgid "SQL"
+msgstr "SQL"
+
+#: ../gtksourceview/language-specs/sql.lang.h:32
+msgid "SQL Statements"
+msgstr "SQL Statements"
+
+#: ../gtksourceview/language-specs/sql.lang.h:33
+msgid "SQL*Plus At Sign"
+msgstr "SQL*Plus At Sign"
+
+#: ../gtksourceview/language-specs/sql.lang.h:34
+msgid "SQL*Plus Commands"
+msgstr "Komanda SQL*Plus"
+
+#: ../gtksourceview/language-specs/sql.lang.h:35
+msgid "SQL*Plus Double At Sign"
+msgstr "SQL*Plus Double At Sign"
+
+#: ../gtksourceview/language-specs/sql.lang.h:36
+msgid "SQL*Plus Slash"
+msgstr "SQL*Plus Slash"
+
+#: ../gtksourceview/language-specs/sql.lang.h:37
+msgid "SQL/DS and DB2 Datatypes"
+msgstr "Të dhëna të llojit SQL/DS dhe DB2"
+
+#: ../gtksourceview/language-specs/sql.lang.h:38
+msgid "Size Clause"
+msgstr "Size Clause"
+
+#: ../gtksourceview/language-specs/sql.lang.h:40
+msgid "Text Literals"
+msgstr "Text Literals"
+
+#: ../gtksourceview/language-specs/sql.lang.h:41
+msgid "Unlimited"
+msgstr "Pa limit"
+
+#: ../gtksourceview/language-specs/sql.lang.h:42
+msgid "XML Functions"
+msgstr "Funksione XML"
+
+#: ../gtksourceview/language-specs/tcl.lang.h:6
+msgid "Tcl"
+msgstr "Tcl"
+
+#: ../gtksourceview/language-specs/texinfo.lang.h:2
+msgid "Characters"
+msgstr "Simbolet"
+
+#: ../gtksourceview/language-specs/texinfo.lang.h:3
+msgid "File Attributes"
+msgstr "Vlerat e file"
+
+#: ../gtksourceview/language-specs/texinfo.lang.h:4
+msgid "Formatting"
+msgstr "Duke formatuar"
+
+#: ../gtksourceview/language-specs/texinfo.lang.h:5
+msgid "Generated Content"
+msgstr "Përmbajtja e krijuar"
+
+#: ../gtksourceview/language-specs/texinfo.lang.h:7
+msgid "Indexing"
+msgstr "Duke indeksuar"
+
+#: ../gtksourceview/language-specs/texinfo.lang.h:10
+msgid "Macro Parameters"
+msgstr "Parametrat e makro"
+
+#: ../gtksourceview/language-specs/texinfo.lang.h:11
+msgid "Macros"
+msgstr "Automatizime"
+
+#: ../gtksourceview/language-specs/texinfo.lang.h:13
+msgid "Markup (block)"
+msgstr "Markues (bllok)"
+
+#: ../gtksourceview/language-specs/texinfo.lang.h:14
+msgid "Markup (inline)"
+msgstr "Markues (në linjë)"
+
+#: ../gtksourceview/language-specs/texinfo.lang.h:15
+msgid "Sectioning"
+msgstr "Duke seksionuar"
+
+#: ../gtksourceview/language-specs/texinfo.lang.h:16
+msgid "Texinfo"
+msgstr "Infotekst"
+
+#: ../gtksourceview/language-specs/vbnet.lang.h:3
+msgid "Old Style Comment"
+msgstr "Koment në stilin e vjetër"
+
+#: ../gtksourceview/language-specs/vbnet.lang.h:9
+msgid "VB.NET"
+msgstr "VB.NET"
+
+#: ../gtksourceview/language-specs/verilog.lang.h:4
+msgid "Gates"
+msgstr "Gates"
+
+#: ../gtksourceview/language-specs/verilog.lang.h:11
+msgid "Verilog"
+msgstr "Verilog"
+
+#: ../gtksourceview/language-specs/vhdl.lang.h:7
+msgid "True and False"
+msgstr "True dhe False"
+
+#: ../gtksourceview/language-specs/vhdl.lang.h:8
+msgid "Type"
+msgstr "Lloji"
+
+#: ../gtksourceview/language-specs/vhdl.lang.h:9
+msgid "VHDL"
+msgstr "VHDL"
+
+#: ../gtksourceview/language-specs/xml.lang.h:5
+msgid "Hexadecimal"
+msgstr "Hexadecimal"
+
+#: ../gtksourceview/language-specs/xml.lang.h:8
+msgid "Tag"
+msgstr "Tag"
+
+#: ../gtksourceview/language-specs/xml.lang.h:9
+msgid "XML"
+msgstr "XML"
+
