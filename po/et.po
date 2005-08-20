@@ -1,5 +1,5 @@
 # gtksourceview'i eesti keele tõlge.
-# Estonian translation of gtksourceview
+# Estonian translation of gtksourceview.
 #
 # Copyright (C) 2003, 2005 Free Software Foundation, Inc.
 # This file is distributed under the same license as the gtksourceview package.
@@ -7,14 +7,14 @@
 # Tõivo Leedjärv <toivo@linux.ee>, 2003.
 # Priit Laes <amd@store20.com>, 2005.
 # Ivar Smolin <okul@linux.ee>, 2005.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-08-17 14:46+0000\n"
-"PO-Revision-Date: 2005-08-17 23:21+0300\n"
-"Last-Translator: Priit Laes <amd@store20.com>\n"
+"POT-Creation-Date: 2005-08-18 15:22+0000\n"
+"PO-Revision-Date: 2005-08-20 12:20+0300\n"
+"Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -48,7 +48,7 @@ msgstr "Kas puhvrisolevat süntaksit tõstetakse esile"
 
 #: ../gtksourceview/gtksourcebuffer.c:306
 msgid "Maximum Undo Levels"
-msgstr ""
+msgstr "Suurim unustatavate toimingute arv"
 
 #: ../gtksourceview/gtksourcebuffer.c:307
 msgid "Number of undo levels for the buffer"
@@ -66,7 +66,7 @@ msgstr ""
 
 #: ../gtksourceview/gtksourcelanguagesmanager.c:119
 msgid "Language specification directories"
-msgstr ""
+msgstr "Keelekirjelduste kataloogid"
 
 #: ../gtksourceview/gtksourcelanguagesmanager.c:120
 msgid "List of directories where the language specification files (.lang) are located"
@@ -86,7 +86,7 @@ msgstr ""
 
 #: ../gtksourceview/gtksourceprintjob.c:273
 msgid "GtkSourceBuffer object to print"
-msgstr ""
+msgstr "Prinditav GtkSourceBuffer objekt"
 
 #: ../gtksourceview/gtksourceprintjob.c:279
 #: ../gtksourceview/gtksourceview.c:221
@@ -234,7 +234,7 @@ msgstr "Võtmesõna"
 
 #: ../gtksourceview/gtksourcestylescheme.c:302
 msgid "Preprocessor"
-msgstr ""
+msgstr "Eelprotsessor"
 
 #: ../gtksourceview/gtksourcestylescheme.c:307
 #: ../gtksourceview/language-specs/ada.lang.h:9
@@ -305,7 +305,7 @@ msgstr "Vaikimisi"
 
 #: ../gtksourceview/gtksourcetag.c:108
 msgid "Tag ID"
-msgstr ""
+msgstr "Sildi ID"
 
 #: ../gtksourceview/gtksourcetag.c:109
 msgid "ID used to refer to the source tag"
@@ -313,7 +313,7 @@ msgstr ""
 
 #: ../gtksourceview/gtksourcetag.c:116
 msgid "Tag style"
-msgstr ""
+msgstr "Sildi stiil"
 
 #: ../gtksourceview/gtksourcetag.c:117
 msgid "The style associated with the source tag"
@@ -372,8 +372,12 @@ msgid "Use smart home/end"
 msgstr "Home/end klahvid on targad"
 
 #: ../gtksourceview/gtksourceview.c:265
-msgid "HOME and END keys move to first/last non whitespace characters on line before going to the start/end of the line"
-msgstr "HOME ja END klahvid liiguvad enne rea algusesse/lõppu minekut rea esimese/viimase mittetühja märgi peale"
+msgid ""
+"HOME and END keys move to first/last non whitespace characters on line "
+"before going to the start/end of the line"
+msgstr ""
+"HOME ja END klahvid liiguvad enne rea algusesse/lõppu minekut rea esimese/"
+"viimase mittetühja märgi peale"
 
 #: ../gtksourceview/gtksourceview.c:274
 msgid "Highlight current line"
@@ -623,14 +627,14 @@ msgstr ""
 #.
 #: ../gtksourceview/language-specs/css.lang.h:8
 msgid "Attribute Value Delimiters"
-msgstr ""
+msgstr "Atribuudiväärtuse piirid"
 
 #.
 #. Value length specifier. Unless it is 0, must always be like: -1.2em.
 #.
 #: ../gtksourceview/language-specs/css.lang.h:13
 msgid "Dimension"
-msgstr ""
+msgstr "Mõõde"
 
 #.
 #. Hexadecimal method of specifying colors. Can either be 3 or 6 in
@@ -914,11 +918,11 @@ msgstr "Arvud"
 #: ../gtksourceview/language-specs/javascript.lang.h:1
 #: ../gtksourceview/language-specs/php.lang.h:1
 msgid "Array Operators"
-msgstr ""
+msgstr "Massiivioperaatorid"
 
 #: ../gtksourceview/language-specs/javascript.lang.h:3
 msgid "Constructors"
-msgstr ""
+msgstr "Konstruktorid"
 
 #: ../gtksourceview/language-specs/javascript.lang.h:4
 msgid "Error Handling"
@@ -938,11 +942,11 @@ msgstr ""
 
 #: ../gtksourceview/language-specs/javascript.lang.h:8
 msgid "Global Functions"
-msgstr "Globaalsed funktsioonid"
+msgstr "Globaalfunktsioonid"
 
 #: ../gtksourceview/language-specs/javascript.lang.h:9
 msgid "Global Properties"
-msgstr ""
+msgstr "Globaalomadused"
 
 #: ../gtksourceview/language-specs/javascript.lang.h:10
 #: ../gtksourceview/language-specs/verilog.lang.h:5
@@ -959,7 +963,7 @@ msgstr ""
 
 #: ../gtksourceview/language-specs/javascript.lang.h:16
 msgid "Object Functions"
-msgstr "Objekti funktsioonid"
+msgstr "Objektifunktsioonid"
 
 #: ../gtksourceview/language-specs/javascript.lang.h:17
 msgid "Object Properties"
@@ -1057,14 +1061,12 @@ msgid "Makefile"
 msgstr ""
 
 #: ../gtksourceview/language-specs/makefile.lang.h:7
-#, fuzzy
 msgid "Special Targets"
-msgstr "Erijuht"
+msgstr ""
 
 #: ../gtksourceview/language-specs/makefile.lang.h:10
-#, fuzzy
 msgid "Targets"
-msgstr "Sildid"
+msgstr ""
 
 #: ../gtksourceview/language-specs/makefile.lang.h:11
 #: ../gtksourceview/language-specs/sh.lang.h:15
@@ -1284,7 +1286,7 @@ msgstr "Definitsoonid"
 
 #: ../gtksourceview/language-specs/ruby.lang.h:6
 msgid "Global Variables"
-msgstr "Globaalsed muutujad"
+msgstr "Globaalmuutujad"
 
 #: ../gtksourceview/language-specs/ruby.lang.h:7
 msgid "Instance Variables"
@@ -1356,76 +1358,67 @@ msgstr "Analüütilised funktsioonid"
 
 #: ../gtksourceview/language-specs/sql.lang.h:6
 msgid "Character Functions Returning Character Values"
-msgstr ""
+msgstr "Märgiväärtust tagastavad märgifunktsioonid"
 
 #: ../gtksourceview/language-specs/sql.lang.h:7
 msgid "Character Functions Returning Number Values"
-msgstr ""
+msgstr "Numbrilist väärtust tagastavad märgifunktsioonid"
 
 #: ../gtksourceview/language-specs/sql.lang.h:8
-#, fuzzy
 msgid "Collection Functions"
-msgstr "Teisendusfunktsioonid"
+msgstr "Kollektsioonifunktsioonid"
 
 #: ../gtksourceview/language-specs/sql.lang.h:9
-#, fuzzy
 msgid "Conditions"
-msgstr "Seadistused"
+msgstr "Tingimused"
 
 #: ../gtksourceview/language-specs/sql.lang.h:10
 msgid "Conversion Functions"
 msgstr "Teisendusfunktsioonid"
 
 #: ../gtksourceview/language-specs/sql.lang.h:11
-#, fuzzy
 msgid "Data Mining Functions"
-msgstr "Kuupäeva ja aja funktsioonid"
+msgstr "Andmekaevandamisfunktsioonid"
 
 #: ../gtksourceview/language-specs/sql.lang.h:12
 msgid "Datetime Functions"
-msgstr "Kuupäeva ja aja funktsioonid"
+msgstr "Kuupäeva- ja ajafunktsioonid"
 
 #: ../gtksourceview/language-specs/sql.lang.h:13
 msgid "Encoding and Decoding Functions"
-msgstr ""
+msgstr "Kodeerimis- ja dekodeerimisfunktsioonid"
 
 #: ../gtksourceview/language-specs/sql.lang.h:14
 msgid "Environment and Identifier Functions"
 msgstr ""
 
 #: ../gtksourceview/language-specs/sql.lang.h:15
-#, fuzzy
 msgid "General Comparison Functions"
-msgstr "Teisendusfunktsioonid"
+msgstr "Üldised võrdlemisfunktsioonid"
 
 #: ../gtksourceview/language-specs/sql.lang.h:16
-#, fuzzy
 msgid "Hierarchical Function"
-msgstr "Analüütilised funktsioonid"
+msgstr "Hierarhilised funktsioonid"
 
 #: ../gtksourceview/language-specs/sql.lang.h:17
 msgid "Integer Literals"
 msgstr ""
 
 #: ../gtksourceview/language-specs/sql.lang.h:18
-#, fuzzy
 msgid "Large Object Functions"
-msgstr "Objekti funktsioonid"
+msgstr "Suurte objektide funktsioonid"
 
 #: ../gtksourceview/language-specs/sql.lang.h:20
-#, fuzzy
 msgid "Model Functions"
-msgstr "Globaalsed funktsioonid"
+msgstr "Mudelifunktsioonid"
 
 #: ../gtksourceview/language-specs/sql.lang.h:21
-#, fuzzy
 msgid "NLS Character Functions"
-msgstr "Agregaatfunktsioonid"
+msgstr "NLS märkide funktsioonid"
 
 #: ../gtksourceview/language-specs/sql.lang.h:22
-#, fuzzy
 msgid "NULL-Related Functions"
-msgstr "Agregaatfunktsioonid"
+msgstr "NULL-iga seotud funktsioonid"
 
 #: ../gtksourceview/language-specs/sql.lang.h:23
 msgid "Null"
@@ -1436,9 +1429,8 @@ msgid "Number Literals"
 msgstr ""
 
 #: ../gtksourceview/language-specs/sql.lang.h:25
-#, fuzzy
 msgid "Numeric Functions"
-msgstr "Objekti funktsioonid"
+msgstr "Numbrifunktsioonid"
 
 #: ../gtksourceview/language-specs/sql.lang.h:26
 msgid "Object Reference Functions"
