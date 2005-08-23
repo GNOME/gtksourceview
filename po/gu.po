@@ -2,15 +2,18 @@
 # Ankit Patel <ankit644@yahoo.com>, 2005.
 msgid ""
 msgstr ""
-"Last-Translator: Ankit Patel <ankit644@yahoo.com>\n"
-"PO-Revision-Date: 2005-08-04 10:58+0530\n"
 "Project-Id-Version: gtksourceview.HEAD.gu\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2005-08-22 23:20+0000\n"
+"PO-Revision-Date: 2005-08-23 11:45+0530\n"
+"Last-Translator: Ankit Patel <ankit644@yahoo.com>\n"
 "Language-Team: Gujarati <indianoss-gujarati@lists.sourceforge.net>\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.9.1\n"
-"MIME-Version: 1.0\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n\n"
+"\n"
 
 #: ../gtksourceview/gtksourcebuffer.c:279
 msgid "Escape Character"
@@ -261,7 +264,7 @@ msgstr "પ્રીપ્રોસેસર"
 #: ../gtksourceview/language-specs/java.lang.h:11
 #: ../gtksourceview/language-specs/javascript.lang.h:33
 #: ../gtksourceview/language-specs/lua.lang.h:10
-#: ../gtksourceview/language-specs/makefile.lang.h:7
+#: ../gtksourceview/language-specs/makefile.lang.h:8
 #: ../gtksourceview/language-specs/nemerle.lang.h:15
 #: ../gtksourceview/language-specs/pascal.lang.h:18
 #: ../gtksourceview/language-specs/perl.lang.h:8
@@ -387,7 +390,9 @@ msgstr "દેખાવડું ઘર/અંત વાપરો"
 msgid ""
 "HOME and END keys move to first/last non whitespace characters on line "
 "before going to the start/end of the line"
-msgstr "લીટીની શરૂઆત/અંતમાં જતા પહેલા ખાલી જગ્યાના અક્ષરો નહિં હોય ત્યાં પ્રથમ/છેલ્લે ખસવા માટે HOME અને END કીઓ"
+msgstr ""
+"લીટીની શરૂઆત/અંતમાં જતા પહેલા ખાલી જગ્યાના અક્ષરો નહિં હોય ત્યાં પ્રથમ/છેલ્લે ખસવા માટે "
+"HOME અને END કીઓ"
 
 #: ../gtksourceview/gtksourceview.c:274
 msgid "Highlight current line"
@@ -617,7 +622,7 @@ msgstr "પહેલાંનું"
 #: ../gtksourceview/language-specs/java.lang.h:12
 #: ../gtksourceview/language-specs/javascript.lang.h:34
 #: ../gtksourceview/language-specs/lua.lang.h:11
-#: ../gtksourceview/language-specs/makefile.lang.h:8
+#: ../gtksourceview/language-specs/makefile.lang.h:9
 #: ../gtksourceview/language-specs/python.lang.h:15
 #: ../gtksourceview/language-specs/ruby.lang.h:19
 #: ../gtksourceview/language-specs/sh.lang.h:14
@@ -1072,9 +1077,23 @@ msgstr "Directives"
 msgid "Makefile"
 msgstr "Makefile"
 
-#: ../gtksourceview/language-specs/makefile.lang.h:9
+#: ../gtksourceview/language-specs/makefile.lang.h:7
+msgid "Special Targets"
+msgstr "ખાસ લક્ષ્યો"
+
+#: ../gtksourceview/language-specs/makefile.lang.h:10
 msgid "Targets"
 msgstr "Targets"
+
+#: ../gtksourceview/language-specs/makefile.lang.h:11
+#: ../gtksourceview/language-specs/sh.lang.h:15
+msgid "Variable1"
+msgstr "ચલ૧"
+
+#: ../gtksourceview/language-specs/makefile.lang.h:12
+#: ../gtksourceview/language-specs/sh.lang.h:16
+msgid "Variable2"
+msgstr "ચલ૨"
 
 #: ../gtksourceview/language-specs/nemerle.lang.h:1
 #: ../gtksourceview/language-specs/verilog.lang.h:1
@@ -1333,14 +1352,6 @@ msgstr "પુનઃદિશાઓ"
 #: ../gtksourceview/language-specs/sh.lang.h:12
 msgid "Self"
 msgstr "સ્વયં"
-
-#: ../gtksourceview/language-specs/sh.lang.h:15
-msgid "Variable1"
-msgstr "ચલ૧"
-
-#: ../gtksourceview/language-specs/sh.lang.h:16
-msgid "Variable2"
-msgstr "ચલ૨"
 
 #: ../gtksourceview/language-specs/sh.lang.h:17
 msgid "sh"
