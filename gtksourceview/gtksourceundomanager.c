@@ -861,7 +861,7 @@ gtk_source_undo_manager_check_list_size (GtkSourceUndoManager *um)
 	if (um->priv->num_of_groups > undo_levels)
 	{
 		GtkSourceUndoAction *undo_action;
-		GList* last;
+		GList *last;
 		
 		last = g_list_last (um->priv->actions);
 		undo_action = (GtkSourceUndoAction*) last->data;
