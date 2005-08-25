@@ -1,3 +1,11 @@
+2005-08-25  Paolo Maggi  <paolo@gnome.org>
+
+	Fixed bug #312482: Undo manager warning
+
+	* gtksourceview/gtksourceundomanager.c
+	(gtk_source_undo_manager_modified_changed_handler): action can be NULL
+	when internally undoing/redoing a non undoable action.
+
 === gtksourceview 1.3.92 ===
 
 2005-08-08  Paolo Maggi  <paolo@gnome.org>

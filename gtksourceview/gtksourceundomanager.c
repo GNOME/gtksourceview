@@ -634,9 +634,8 @@ gtk_source_undo_manager_free_action_list (GtkSourceUndoManager *um)
 	g_return_if_fail (um->priv != NULL);
 
 	if (um->priv->actions == NULL)
-	{
 		return;
-	}
+	
 	len = g_list_length (um->priv->actions);
 	
 	for (n = 0; n < len; n++)
@@ -1111,10 +1110,16 @@ gtk_source_undo_manager_modified_changed_handler (GtkTextBuffer        *buffer,
 		return;
 	}
 
+	if (action == NULL)
+	{
+		g_return_if_fail (um->priv->running_not_undoable_actions > 0);
+
+		return;
+	}
+	
 	/* gtk_text_buffer_get_modified (buffer) == TRUE */
 
 	g_return_if_fail (um->priv->modified_action == NULL);
-	g_return_if_fail (action != NULL);
 
 	if (action->order_in_group > 1)
 		um->priv->modified_undoing_group  = TRUE;
