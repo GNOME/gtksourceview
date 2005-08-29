@@ -1,3 +1,8 @@
+2005-08-29  Paolo Borelli  <pborelli@katamail.com>
+
+	* gtksourceview/gtksourceview.c (key_press_event): shift+enter
+	doesn't autoindent.
+
 2005-08-25  Paolo Maggi  <paolo@gnome.org>
 
 	Fixed bug #312482: Undo manager warning
