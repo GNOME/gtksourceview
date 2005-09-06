@@ -36,7 +36,7 @@ libgtksourceview_headers =			\
 	gtksourcemarker.h			\
 	gtksourceprintjob.h
 
-libgtksourceview_1_0_la_SOURCES = 		\
+libgtksourceview_1_0_la_SOURCES = 	\
 	gtksourcebuffer.c 		\
 	gtksourceiter.c			\
 	gtksourcetag.c 			\
@@ -61,6 +61,8 @@ libgtksourceview_1_0_la_SOURCES = 		\
 	$(BUILT_SOURCES)
 
 libgtksourceview_1_0_la_LIBADD = $(DEP_LIBS) $(REGEX_LIBS)
+
+libgtksourceview_1_0_la_LDFLAGS = -no-undefined
 
 libgtksourceview_1_0_includedir = $(includedir)/gtksourceview-1.0/gtksourceview
 

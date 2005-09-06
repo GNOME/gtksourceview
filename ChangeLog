@@ -1,6 +1,12 @@
+2005-09-06  Paolo Borelli  <pborelli@katamail.com>
+
+	* gtksourceview/Makefile.am: add LDFLAGS = -no-undefined, for
+	benefit of people compiling on win32. Suggested by
+	yselkowitz@users.sourceforge.net, bug #314414.
+
 === gtksourceview 1.4.1 ===
 
-2005-09-05  Paolo Borelli  <pborelli@katamail.com>
+2005-09-06  Paolo Borelli  <pborelli@katamail.com>
 
 	* configure.in:
 	* README:
