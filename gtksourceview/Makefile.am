@@ -25,6 +25,7 @@ lib_LTLIBRARIES = libgtksourceview-1.0.la
 
 libgtksourceview_headers =			\
 	gtksourcebuffer.h			\
+	gtksourcefold.h				\
 	gtksourceiter.h				\
 	gtksourcetag.h				\
 	gtksourceview.h				\
@@ -38,6 +39,8 @@ libgtksourceview_headers =			\
 
 libgtksourceview_1_0_la_SOURCES = 	\
 	gtksourcebuffer.c 		\
+	gtksourcefold.c			\
+	gtksourcefold-private.h		\
 	gtksourceiter.c			\
 	gtksourcetag.c 			\
 	gtksourcetag-private.h 		\

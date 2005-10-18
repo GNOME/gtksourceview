@@ -1,3 +1,24 @@
+2005-10-18  Jeroen Zwartepoorte  <jeroen.zwartepoorte@gmail.com>
+
+	* gtksourceview/Makefile.am:
+	* gtksourceview/gtksourcefold-private.h:
+	* gtksourceview/gtksourcefold.c:
+	* gtksourceview/gtksourcefold.h:
+	
+	Add non-visible part of code-folding functionality.
+	
+	* gtksourceview/gtksourcelanguage.c:
+	(_gtk_source_language_new_from_file), (process_language_node),
+	(get_mime_types_from_file), (parseLineComment),
+	(parseBlockComment), (parseString), (parseKeywordList),
+	(parsePatternItem), (parseSyntaxItem), (parseTag),
+	(language_file_parse):
+	* gtksourceview/gtksourceprintjob.c:
+	(update_page_size_and_margins), (face_and_size_from_full_name),
+	(font_description_from_gnome_font_name):
+	
+	Fix gcc4 warnings about pointer signedness (fixes #309663).
+
 === gtksourceview 1.4.2 ===
 
 2005-10-03  Paolo Borelli  <pborelli@katamail.com>
