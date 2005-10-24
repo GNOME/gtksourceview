@@ -1512,6 +1512,7 @@ element_start (ParserState *parser_state, GError **error)
 	const xmlChar *name;
 	GError *tmp_error = NULL;
 	
+	/* TODO: check the namespace and ignore everithing is not in our namespace */
 	name = xmlTextReaderConstName (parser_state->reader);
 
 	if (strcmp ("context", name) == 0)
