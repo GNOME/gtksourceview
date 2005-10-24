@@ -32,38 +32,30 @@
         <!-- $^ never matches. -->
         <define-regex id="never-match">$^</define-regex>
 
-        <define-regex id="decimal">
-            /
+        <define-regex id="decimal" extended="true" case-insensitive="true">
                 \b
                 ([1-9][0-9]* | 0)
                 (u (ll?)? | ll? u?)?
                 \b
-            /xi
         </define-regex>
-        <define-regex id="octal">
-            /
+        <define-regex id="octal" extended="true" case-insensitive="true">
                 \b
                 0 [0-7]+
                 (u (ll?)? | ll? u?)?
                 \b
-            /xi
         </define-regex>
-        <define-regex id="hexadecimal">
-            /
+        <define-regex id="hexadecimal" extended="true" case-insensitive="true">
                 \b
                 0x [0-9a-f]+
                 (u (ll?)? | ll? u?)?
                 \b
-            /xi
         </define-regex>
-        <define-regex id="float">
-            /
+        <define-regex id="float" extended="true" case-insensitive="true">
                 \b
                 ([0-9]+ e [-+]? [0-9]+ |
                  ([0-9]* \. [0-9]+ | [0-9]+ \.)
                  (e [-+]? [0-9]+)?) [fl]?
                 \b
-            /xi
         </define-regex>
 
         <context id="decimal" style-ref="decimal">
@@ -79,24 +71,20 @@
             <match>\%{float}</match>
         </context>
 
-        <define-regex id="net-address"> 
-            /
+        <define-regex id="net-address" extended="true" case-insensitive="true"> 
                 \%[                                         # separator
                 (https?|ftp|nntp|news|javascript|about):    # protocol
                 [^\ \n]* [^\ \n.:;,?&gt;&lt;)]              # address
                 (?=[^a-z0-9_.-])                            # separator
-            /xi
         </define-regex>
 
-        <define-regex id="email-address">
-            /
+        <define-regex id="email-address" extended="true" case-insensitive="true">
                 \%[                 # separator
                 (mailto:)?          # optional "mailto:"
                 [a-z0-9_.-]+        # user name
                 @                   # at
                 [a-z0-9_.-]+        # domain
                 \%]                 # separator
-            /xi
         </define-regex>
 
         <context id="comment">

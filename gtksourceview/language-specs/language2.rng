@@ -74,6 +74,23 @@
     </choice>
 </define>
 
+<define name="regex-options">
+    <optional>
+        <attribute name="extended">
+            <ref name="boolean-value"/>
+        </attribute>
+    </optional>
+    <optional>
+        <attribute name="case-insensitive">
+            <ref name="boolean-value"/>
+        </attribute>
+    </optional>
+    <optional>
+        <attribute name="dot-match-all">
+            <ref name="boolean-value"/>
+        </attribute>
+    </optional>
+</define>
 
 
 <define name="itemInAnotherNamespace">
@@ -163,7 +180,10 @@
         </optional>
 
         <choice>
-            <element name="match"><text/></element>
+            <element name="match">
+                <ref name="regex-options"/>
+                <text/>
+            </element>
 
             <group>
                 <optional>
@@ -209,9 +229,15 @@
             </attribute>
         </optional>
 
-        <element name="start"><text/></element>
+        <element name="start">
+            <ref name="regex-options"/>
+            <text/>
+        </element>
         <optional>
-            <element name="end"><text/></element>
+            <element name="end">
+                <ref name="regex-options"/>
+                <text/>
+            </element>
         </optional>
 
         <optional>
@@ -311,6 +337,7 @@
         <attribute name="id">
             <ref name="id-type"/>
         </attribute>
+        <ref name="regex-options"/>
         <text/>
     </element>
 </define>

@@ -74,12 +74,10 @@
                 </context>
 
                 <context id="include" style-ref="preprocessor">
-                    <match>
-                        /
+                    <match extended="true">
                             \%{preproc-start}
                             include\s*
                             (".*?"|&lt;.*&gt;)
-                        /x
                     </match>
                     <include>
                         <context id="included-file" sub-pattern="1" style-ref="included-file"/>
@@ -87,12 +85,10 @@
                 </context>
 
                 <context id="preprocessor" style-ref="preprocessor">
-                    <match>
-                        /
+                    <match extended="true">
                             \%{preproc-start}
                             (define|undef|error|pragma|if(n?def)?|else|elif|endif|line)
                             \b
-                        /x
                     </match>
                 </context>
 

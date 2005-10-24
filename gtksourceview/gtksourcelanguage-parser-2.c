@@ -129,6 +129,11 @@ static gboolean   file_parse                   (gchar                  *filename
                                                 GSList                **loaded_lang_ids,
                                                 GError                **error);
 
+static EggRegexCompileFlags
+		  update_regex_flags	       (EggRegexCompileFlags flags,
+						gchar *option_name,
+						gboolean value);
+
 static gboolean   create_definition            (ParserState *parser_state,
                                                 gchar *id,
                                                 gchar *parent_id,
@@ -154,6 +159,7 @@ static gboolean   replace_by_id                (const EggRegex *egg_regex,
                                                 gpointer data);
 static gchar     *expand_regex                 (ParserState *parser_state,
                                                 gchar *regex,
+						EggRegexCompileFlags flags,
 						gboolean do_expand_vars,
 						gboolean insert_parentheses,
 						GError **error);
@@ -287,6 +293,8 @@ create_definition (ParserState *parser_state,
 	GString *all_items;
 	gchar *item;
 
+	EggRegexCompileFlags flags, match_flags = 0, start_flags = 0, end_flags = 0;
+
 	GError *tmp_error = NULL;
 
 	g_assert (parser_state->engine != NULL);
@@ -318,12 +326,42 @@ create_definition (ParserState *parser_state,
 	child = context_node->children;
 	while (child != NULL)
 	{
+		/* FIXME: add PCRE_EXTRA support in EggRegex */
+		flags = parser_state->regex_compile_flags;
+		
+		xmlAttr *attribute;
+		for (attribute = child->properties; 
+				attribute != NULL;
+				attribute = attribute->next)
+		{
+			g_assert (attribute->children);
+			tmp = attribute->children->content;
+			if (strcmp ("extended", attribute->name) == 0)
+			{
+				flags = update_regex_flags (flags,
+					"extended", str_to_bool (tmp));
+			}
+			else if (strcmp ("case-insensitive", attribute->name) == 0)
+			{
+				flags = update_regex_flags (flags,
+					"case-insensitive", str_to_bool (tmp));
+			}
+			else if (strcmp ("dot-match-all", attribute->name) == 0)
+			{
+				flags = update_regex_flags (flags,
+					"dot-match-all", str_to_bool (tmp));
+			}
+		}
+		/*flags = update_regex_flags (parser_state->regex_compile_flags,
+				"extended", TRUE);*/
+
 		g_assert (child->name);
 		if (strcmp ("match", child->name) == 0 
 				&& child->children)
 		{
 			/* <match> */
 			match = g_strdup (child->children->content);
+			match_flags = flags;
 		}
 		else if (strcmp ("start", child->name) == 0)
 		{	
@@ -338,6 +376,7 @@ create_definition (ParserState *parser_state,
 				 * has no content use an empty string */
 				start = g_strdup ("");
 			}
+			start_flags = flags;
 		}
 		else if (strcmp ("end", child->name) == 0)
 		{	
@@ -350,6 +389,7 @@ create_definition (ParserState *parser_state,
 				 * has no content use an empty string */
 				end = g_strdup ("");
 			}
+			end_flags = flags;
 		}
 		else if (strcmp ("prefix", child->name) == 0)
 		{
@@ -432,6 +472,7 @@ create_definition (ParserState *parser_state,
 			}
 
 			match = g_string_free (all_items, FALSE);
+			match_flags = flags;
 		}
 
 		if (child != NULL)
@@ -447,21 +488,24 @@ create_definition (ParserState *parser_state,
 	{
 		g_strstrip (start);
 		tmp = start;
-		start = expand_regex (parser_state, start, TRUE, FALSE, &tmp_error);
+		start = expand_regex (parser_state, start, start_flags, 
+				TRUE, FALSE, &tmp_error);
 		g_free (tmp);
 	}
 	if (tmp_error == NULL && end != NULL)
 	{
 		g_strstrip (end);
 		tmp = end;
-		end = expand_regex (parser_state, end, TRUE, FALSE, &tmp_error);
+		end = expand_regex (parser_state, end, end_flags,
+				TRUE, FALSE, &tmp_error);
 		g_free (tmp);
 	}
 	if (tmp_error == NULL && match != NULL)
 	{
 		g_strstrip (match);
 		tmp = match;
-		match = expand_regex (parser_state, match, TRUE, FALSE, &tmp_error);
+		match = expand_regex (parser_state, match, match_flags,
+				TRUE, FALSE, &tmp_error);
 		g_free (tmp);
 	}
 
@@ -794,6 +838,36 @@ replace_by_id (const EggRegex *egg_regex,
 	return FALSE;
 }
 
+static EggRegexCompileFlags
+update_regex_flags (EggRegexCompileFlags flags, gchar *option_name, gboolean value)
+{
+	EggRegexCompileFlags single_flag;
+
+	DEBUG (g_message ("setting the '%s' regex flag to %d", option_name, value));
+
+	if (strcmp ("case-insensitive", option_name) == 0)
+	{
+		single_flag = EGG_REGEX_CASELESS;
+	}
+	else if (strcmp ("extended", option_name) == 0)
+	{
+		single_flag = EGG_REGEX_EXTENDED;
+	}
+	else if (strcmp ("dot-match-all", option_name) == 0)
+	{
+		single_flag = EGG_REGEX_DOTALL;
+	}
+	else
+		return flags;
+
+	if (value)
+		flags |= single_flag;
+	else
+		flags &= ~single_flag;
+
+	return flags;
+}
+
 static gboolean
 calc_regex_flags (const gchar *flags_string, EggRegexCompileFlags *flags)
 {
@@ -908,6 +982,8 @@ replace_delimiter (const EggRegex *egg_regex,
 	g_free (escapes);
 
 	delim = egg_regex_fetch (egg_regex, regex, 2);
+	DEBUG (g_message ("replacing '\\%%%s'", delim));
+
 	switch (delim[0])
 	{
 		case '[':
@@ -968,11 +1044,11 @@ expand_regex_delimiters (ParserState *parser_state,
 static gchar *
 expand_regex (ParserState *parser_state,
 	      gchar *regex,
+	      EggRegexCompileFlags flags,
 	      gboolean do_expand_vars,
 	      gboolean insert_parentheses,
 	      GError **error)
 {
-	EggRegexCompileFlags flags;
 	gchar *tmp_regex;
 	GString *expanded_regex;
 	/* Length in *bytes* of the regex passed to expand_regex_vars. */
@@ -982,9 +1058,6 @@ expand_regex (ParserState *parser_state,
 
 	if (regex == NULL)
 		return NULL;
-
-	/* FIXME: add PCRE_EXTRA support in EggRegex */
-	flags = parser_state->regex_compile_flags;
 
 	if (g_utf8_get_char (regex) == '/')
 	{
@@ -996,15 +1069,6 @@ expand_regex (ParserState *parser_state,
 					_ ("malformed regex '%s'"), regex);
 			return NULL;
 		}
-
-		if (!calc_regex_flags (g_utf8_next_char (regex_end), &flags))
-		{
-			g_set_error (error,
-					PARSER_ERROR, PARSER_ERROR_MALFORMED_REGEX,
-					_ ("malformed regex options '%s'"), regex);
-			return NULL;
-		}
-
 		regex = g_utf8_next_char (regex);
 		len = regex_end - regex;
 	}
@@ -1058,7 +1122,17 @@ expand_regex (ParserState *parser_state,
 	g_string_append (expanded_regex, ")");
 	g_string_append (expanded_regex, tmp_regex);
 	if (insert_parentheses)
+	{
+		/* The '\n' is needed otherwise, if the regex is "extended" 
+		 * and it ends with a comment, the ')' is appended inside the
+		 * comment itself */
+		if (flags & EGG_REGEX_EXTENDED)
+		{
+			g_string_append (expanded_regex, "\n");
+		}
+		/* FIXME: if the regex is not exteded this doesn't works */
 		g_string_append (expanded_regex, ")");
+	}
 	g_free (tmp_regex);
 
 	return g_string_free (expanded_regex, FALSE);
@@ -1071,6 +1145,9 @@ handle_define_regex_element (ParserState *parser_state,
 	gchar *id, *regex;
 	gchar *tmp;
 	gchar *expanded_regex;
+	int i;
+	gchar *regex_options[] = {"extended", "case-insensitive", "dot-match-all", NULL};
+	EggRegexCompileFlags flags;
 	GError *tmp_error = NULL;
 
 	int type;
@@ -1092,6 +1169,21 @@ handle_define_regex_element (ParserState *parser_state,
 	else
 		id = decorate_id (parser_state, tmp);
 	g_free (tmp);
+	
+	flags = parser_state->regex_compile_flags;
+
+	for (i=0; regex_options[i] != NULL; i++)
+	{
+		tmp = xmlTextReaderGetAttribute (parser_state->reader,
+				regex_options[i]);
+		if (tmp != NULL)
+		{
+			flags = update_regex_flags (flags, regex_options[i], 
+					str_to_bool (tmp));
+		}
+		g_free (tmp);
+	}
+
 
 	xmlTextReaderRead (parser_state->reader);
 
@@ -1108,7 +1200,8 @@ handle_define_regex_element (ParserState *parser_state,
 	}
 
 	g_strstrip (regex);
-	expanded_regex = expand_regex (parser_state, regex, FALSE, TRUE, &tmp_error);
+	expanded_regex = expand_regex (parser_state, regex, flags,
+			FALSE, TRUE, &tmp_error);
 
 	if (tmp_error == NULL)
 	{
