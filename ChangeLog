@@ -1,3 +1,8 @@
+2005-10-30  Jeroen Zwartepoorte  <jeroen.zwartepoorte@gmail.com>
+
+	* gtksourceview/gtksourcefold.c: (gtk_source_fold_free): Check if the
+	GtkTextMark needs to be deleted from the buffer.
+
 2005-10-18  Jeroen Zwartepoorte  <jeroen.zwartepoorte@gmail.com>
 
 	* gtksourceview/Makefile.am:

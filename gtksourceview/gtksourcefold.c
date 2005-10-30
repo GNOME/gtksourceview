@@ -69,8 +69,17 @@ gtk_source_fold_free (GtkSourceFold *fold)
 	if (!fold)
 		return;
 
-	g_object_unref (fold->start_line);
-	g_object_unref (fold->end_line);
+	if (!gtk_text_mark_get_deleted (fold->start_line))
+		gtk_text_buffer_delete_mark (gtk_text_mark_get_buffer (fold->start_line),
+					     fold->start_line);
+	else
+		g_object_unref (fold->start_line);
+		
+	if (!gtk_text_mark_get_deleted (fold->end_line))
+		gtk_text_buffer_delete_mark (gtk_text_mark_get_buffer (fold->end_line),
+					     fold->end_line);
+	else
+		g_object_unref (fold->end_line);
 
 	if (fold->children)
 		g_list_free (fold->children);
