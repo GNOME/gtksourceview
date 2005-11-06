@@ -8,7 +8,13 @@ INCLUDES = 				\
 	$(TESTS_CFLAGS)
 
 # testing executables
-noinst_PROGRAMS = test-widget testregion
+noinst_PROGRAMS = test-fold test-widget testregion
+
+test_fold_SOURCES = test-fold.c
+
+test_fold_LDADD = \
+	$(top_builddir)/gtksourceview/libgtksourceview-1.0.la \
+	$(DEP_LIBS)
 
 test_widget_SOURCES = test-widget.c
 

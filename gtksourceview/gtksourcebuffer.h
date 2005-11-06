@@ -68,9 +68,9 @@ struct _GtkSourceBufferClass
 	void (*_gtk_source_reserved1) 	(void);
 	void (*_gtk_source_reserved2) 	(void);
 	void (*_gtk_source_reserved3) 	(void);
-
 };
 
+#include <gtksourceview/gtksourcefold.h>
 #include <gtksourceview/gtksourcemarker.h>
 
 GType           	 gtk_source_buffer_get_type 		(void) G_GNUC_CONST;
@@ -141,6 +141,23 @@ GtkSourceMarker         *gtk_source_buffer_get_next_marker      (GtkSourceBuffer
 GtkSourceMarker         *gtk_source_buffer_get_prev_marker      (GtkSourceBuffer        *buffer,
 								 GtkTextIter            *iter);
 
+/* fold methods. */
+GtkSourceFold		*gtk_source_buffer_add_fold		(GtkSourceBuffer        *buffer,
+								 const GtkTextIter      *begin,
+								 const GtkTextIter      *end);
+void			 gtk_source_buffer_remove_fold		(GtkSourceBuffer        *buffer,
+								 GtkSourceFold          *fold);
+
+void			 gtk_source_buffer_remove_folds_in_region
+								(GtkSourceBuffer        *buffer,
+								 const GtkTextIter      *begin,
+								 const GtkTextIter      *end);
+
+GtkSourceFold		*gtk_source_buffer_get_fold_at_iter	(GtkSourceBuffer        *buffer,
+								 const GtkTextIter      *iter);
+
+const GList		*gtk_source_buffer_get_root_folds	(GtkSourceBuffer        *buffer);
+
 /* INTERNAL private stuff - not even exported from the library on
  * many platforms
  */
@@ -148,6 +165,14 @@ void 	                 _gtk_source_buffer_highlight_region    (GtkSourceBuffer  
 								 const GtkTextIter      *start,
 								 const GtkTextIter      *end,
 								 gboolean                highlight_now);
+
+GList			*_gtk_source_buffer_get_folds_in_region	(GtkSourceBuffer        *buffer,
+								 const GtkTextIter      *begin,
+								 const GtkTextIter      *end);
+
+GtkSourceFold		*_gtk_source_buffer_get_fold_at_line	(GtkSourceBuffer        *buffer,
+								 gint                    line);
+
 
 G_END_DECLS
 

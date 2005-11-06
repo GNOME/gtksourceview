@@ -1,3 +1,26 @@
+2005-11-06  Jeroen Zwartepoorte  <jeroen.zwartepoorte@gmail.com>
+
+	* gtksourceview/gtksourcebuffer.c: (gtk_source_buffer_init),
+	(gtk_source_buffer_constructor), (gtk_source_buffer_error_quark),
+	(insert_child_fold), (gtk_source_buffer_add_fold),
+	(foreach_fold_region), (gtk_source_buffer_remove_fold),
+	(get_folds_in_region), (_gtk_source_buffer_get_folds_in_region),
+	(remove_folds_in_region),
+	(gtk_source_buffer_remove_folds_in_region), (find_fold_at_line),
+	(_gtk_source_buffer_get_fold_at_line), (find_fold_at_iter),
+	(gtk_source_buffer_get_fold_at_iter),
+	(gtk_source_buffer_get_root_folds):
+	* gtksourceview/gtksourcebuffer.h:
+	* tests/Makefile.am:
+	* tests/test-fold.c: (add_fold), (reset_buffer), (test1), (test2),
+	(test3), (test4), (test5), (test6), (test7), (prepare8), (test8),
+	(prepare9), (test9), (prepare10), (test10), (prepare11), (test11),
+	(run_tests), (main):
+	
+	Commit the GtkSourceBuffer parts of the code folding patch. Also adds
+	a test-fold program that tests various scenarions for adding (invalid)
+	folds.
+
 2005-10-30  Jeroen Zwartepoorte  <jeroen.zwartepoorte@gmail.com>
 
 	* gtksourceview/gtksourcefold.c: (gtk_source_fold_free): Check if the
