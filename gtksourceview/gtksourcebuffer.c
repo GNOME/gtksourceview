@@ -82,6 +82,8 @@ enum {
 	CAN_REDO,
 	HIGHLIGHT_UPDATED,
 	MARKER_UPDATED,
+	FOLD_ADDED,
+	FOLD_REMOVE,
 	LAST_SIGNAL
 };
 
@@ -214,14 +216,19 @@ static void      ensure_highlighted                     (GtkSourceBuffer        
 							 const GtkTextIter       *start,
 							 const GtkTextIter       *end);
 
-static gboolean	 gtk_source_buffer_find_bracket_match_real (GtkTextIter          *orig, 
-							    gint                  max_chars);
+static gboolean	 gtk_source_buffer_find_bracket_match_real
+							(GtkTextIter             *orig, 
+							 gint                     max_chars);
 
-static void	 gtk_source_buffer_remove_all_source_tags (GtkSourceBuffer   *buffer,
-					  		const GtkTextIter *start,
-					  		const GtkTextIter *end);
+static void	 gtk_source_buffer_remove_all_source_tags
+							(GtkSourceBuffer         *buffer,
+					  		 const GtkTextIter       *start,
+					  		 const GtkTextIter       *end);
 
-static void	sync_with_tag_table 			(GtkSourceBuffer *buffer);
+static void	 sync_with_tag_table 			(GtkSourceBuffer         *buffer);
+
+static void	 gtk_source_buffer_real_remove_fold	(GtkSourceBuffer         *buffer,
+							 GtkSourceFold           *fold);
 
 
 GType
@@ -270,6 +277,8 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 	klass->can_redo 	 = NULL;
 	klass->highlight_updated = NULL;
 	klass->marker_updated    = NULL;
+	klass->fold_added        = NULL;
+	klass->fold_remove	 = gtk_source_buffer_real_remove_fold;
 	
 	/* Do not set these signals handlers directly on the parent_class since
 	 * that will cause problems (a loop). */
@@ -367,6 +376,28 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 			  G_TYPE_NONE, 
 			  1, 
 			  GTK_TYPE_TEXT_ITER | G_SIGNAL_TYPE_STATIC_SCOPE);
+
+	buffer_signals[FOLD_ADDED] =
+	    g_signal_new ("fold_added",
+			  G_OBJECT_CLASS_TYPE (object_class),
+			  G_SIGNAL_RUN_LAST,
+			  G_STRUCT_OFFSET (GtkSourceBufferClass, fold_added),
+			  NULL, NULL,
+			  gtksourceview_marshal_VOID__BOXED,
+			  G_TYPE_NONE, 
+			  1, 
+			  GTK_TYPE_SOURCE_FOLD | G_SIGNAL_TYPE_STATIC_SCOPE);
+
+	buffer_signals[FOLD_REMOVE] =
+	    g_signal_new ("fold_remove",
+			  G_OBJECT_CLASS_TYPE (object_class),
+			  G_SIGNAL_RUN_LAST,
+			  G_STRUCT_OFFSET (GtkSourceBufferClass, fold_remove),
+			  NULL, NULL,
+			  gtksourceview_marshal_VOID__BOXED,
+			  G_TYPE_NONE, 
+			  1, 
+			  GTK_TYPE_SOURCE_FOLD | G_SIGNAL_TYPE_STATIC_SCOPE);
 }
 
 static void
@@ -421,7 +452,6 @@ tag_added_or_removed_cb (GtkTextTagTable *table, GtkTextTag *tag, GtkSourceBuffe
 	sync_with_tag_table (buffer);
 	
 }
-
 
 static void 
 tag_table_changed_cb (GtkSourceTagTable *table, GtkSourceBuffer *buffer)
@@ -4048,18 +4078,20 @@ gtk_source_buffer_add_fold (GtkSourceBuffer   *buffer,
 			g_list_append (last_fold, fold);
 	}
 	
+	g_signal_emit (G_OBJECT (buffer), buffer_signals [FOLD_ADDED], 0, fold);
+	
 	return fold;
 }
 
 static void
 foreach_fold_region (gpointer data, gpointer user_data)
 {
-	gtk_source_buffer_remove_fold (GTK_SOURCE_BUFFER (user_data), data);
+	gtk_source_buffer_real_remove_fold (GTK_SOURCE_BUFFER (user_data), data);
 }
 
-void
-gtk_source_buffer_remove_fold (GtkSourceBuffer *buffer,
-			       GtkSourceFold   *fold)
+static void
+gtk_source_buffer_real_remove_fold (GtkSourceBuffer *buffer,
+				    GtkSourceFold   *fold)
 {
 	GList *l;
 
@@ -4078,8 +4110,15 @@ gtk_source_buffer_remove_fold (GtkSourceBuffer *buffer,
 	buffer->priv->folds = g_list_delete_link (buffer->priv->folds, l);
 	
 	g_list_foreach (fold->children, foreach_fold_region, buffer);
-	
+
 	gtk_source_fold_free (fold);
+}
+
+void
+gtk_source_buffer_remove_fold (GtkSourceBuffer *buffer,
+			       GtkSourceFold   *fold)
+{
+	g_signal_emit (G_OBJECT (buffer), buffer_signals [FOLD_REMOVE], 0, fold);
 }
 
 /**

@@ -50,6 +50,8 @@ struct _GtkSourceBuffer
 	GtkSourceBufferPrivate *priv;
 };
 
+#include <gtksourceview/gtksourcefold.h>
+
 struct _GtkSourceBufferClass 
 {
 	GtkTextBufferClass parent_class;
@@ -63,6 +65,10 @@ struct _GtkSourceBufferClass
 					 GtkTextIter     *end);
 	void (* marker_updated)         (GtkSourceBuffer *buffer,
 					 GtkTextIter     *where);
+	void (* fold_added)		(GtkSourceBuffer *buffer,
+					 GtkSourceFold   *fold);
+	void (* fold_remove)		(GtkSourceBuffer *buffer,
+					 GtkSourceFold   *fold);
 
 	/* Padding for future expansion */
 	void (*_gtk_source_reserved1) 	(void);
@@ -70,7 +76,6 @@ struct _GtkSourceBufferClass
 	void (*_gtk_source_reserved3) 	(void);
 };
 
-#include <gtksourceview/gtksourcefold.h>
 #include <gtksourceview/gtksourcemarker.h>
 
 GType           	 gtk_source_buffer_get_type 		(void) G_GNUC_CONST;

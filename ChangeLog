@@ -1,5 +1,15 @@
 2005-11-06  Jeroen Zwartepoorte  <jeroen.zwartepoorte@gmail.com>
 
+	* gtksourceview/gtksourcebuffer.c: (gtk_source_buffer_class_init),
+	(gtk_source_buffer_add_fold), (foreach_fold_region),
+	(gtk_source_buffer_real_remove_fold),
+	(gtk_source_buffer_remove_fold):
+	* gtksourceview/gtksourcebuffer.h:
+	
+	Add fold_added & fold_remove signals.
+
+2005-11-06  Jeroen Zwartepoorte  <jeroen.zwartepoorte@gmail.com>
+
 	* gtksourceview/gtksourcebuffer.c: (gtk_source_buffer_init),
 	(gtk_source_buffer_constructor), (gtk_source_buffer_error_quark),
 	(insert_child_fold), (gtk_source_buffer_add_fold),
