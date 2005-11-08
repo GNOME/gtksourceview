@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview gnome 2.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-08-12 10:01+0300\n"
-"PO-Revision-Date: 2005-08-12 10:01+0300\n"
+"POT-Creation-Date: 2005-11-08 09:09+0200\n"
+"PO-Revision-Date: 2005-11-08 09:11+0200\n"
 "Last-Translator: Alexander Shopov <ash@contact.bg>\n"
 "Language-Team: Bulgarian <dict@fsa-bg.org>\n"
 "MIME-Version: 1.0\n"
@@ -208,7 +208,7 @@ msgstr "Тип на данната"
 #.
 #: ../gtksourceview/gtksourcestylescheme.c:282
 #: ../gtksourceview/language-specs/ada.lang.h:3
-#: ../gtksourceview/language-specs/css.lang.h:18
+#: ../gtksourceview/language-specs/css.lang.h:17
 msgid "Function"
 msgstr "Функция"
 
@@ -240,35 +240,18 @@ msgstr "Ключова дума"
 msgid "Preprocessor"
 msgstr "Предпроцесор"
 
-#.
-#. <pattern-item _name = "Operators" style = "Operators">
-#. <regex>[:!#$%&amp;*+./&gt;=&lt;?@\\^|~\-]+</regex>
-#. </pattern-item>
-#.
-#. <keyword-list _name="Keysymbols" style = "Keyword">
-#. <keyword>::</keyword>
-#. <keyword>-&gt;</keyword>
-#. <keyword>&lt;-</keyword>
-#. <keyword>=&gt;</keyword>
-#. <keyword>=</keyword>
-#. <keyword>|</keyword>`
-#. <keyword>\</keyword>
-#. <keyword>@</keyword>
-#. <keyword>~</keyword>
-#. </keyword-list>
-#.
 #: ../gtksourceview/gtksourcestylescheme.c:307
 #: ../gtksourceview/language-specs/ada.lang.h:9
 #: ../gtksourceview/language-specs/c.lang.h:15
 #: ../gtksourceview/language-specs/cpp.lang.h:15
 #: ../gtksourceview/language-specs/csharp.lang.h:9
-#: ../gtksourceview/language-specs/css.lang.h:58
+#: ../gtksourceview/language-specs/css.lang.h:63
 #: ../gtksourceview/language-specs/html.lang.h:8
 #: ../gtksourceview/language-specs/fortran.lang.h:12
-#: ../gtksourceview/language-specs/haskell.lang.h:31
+#: ../gtksourceview/language-specs/haskell.lang.h:15
 #: ../gtksourceview/language-specs/idl.lang.h:9
 #: ../gtksourceview/language-specs/java.lang.h:11
-#: ../gtksourceview/language-specs/javascript.lang.h:23
+#: ../gtksourceview/language-specs/javascript.lang.h:33
 #: ../gtksourceview/language-specs/lua.lang.h:10
 #: ../gtksourceview/language-specs/makefile.lang.h:8
 #: ../gtksourceview/language-specs/nemerle.lang.h:15
@@ -279,7 +262,7 @@ msgstr "Предпроцесор"
 #: ../gtksourceview/language-specs/ruby.lang.h:18
 #: ../gtksourceview/language-specs/sh.lang.h:13
 #: ../gtksourceview/language-specs/tcl.lang.h:4
-#: ../gtksourceview/language-specs/vbnet.lang.h:11
+#: ../gtksourceview/language-specs/vbnet.lang.h:7
 #: ../gtksourceview/language-specs/vhdl.lang.h:6
 #: ../gtksourceview/language-specs/xml.lang.h:7
 msgid "String"
@@ -289,8 +272,20 @@ msgstr "Низ"
 msgid "Specials"
 msgstr "Специални"
 
+#.
+#. Proposed language specification for CSS (Cascading Style Sheet) files.
+#.
+#. Reference used:
+#. http://www.w3.org/TR/CSS2/
+#.
+#. Tested with:
+#. http://www.simplebits.com/css/simple.css
+#.
+#. Submitted by Scott Martin (scott@coffeeblack.org)
+#.
+#. FIXME: find the correct mimetype
 #: ../gtksourceview/gtksourcestylescheme.c:319
-#: ../gtksourceview/language-specs/css.lang.h:36
+#: ../gtksourceview/language-specs/css.lang.h:46
 #: ../gtksourceview/language-specs/desktop.lang.h:10
 #: ../gtksourceview/language-specs/diff.lang.h:7
 #: ../gtksourceview/language-specs/gtkrc.lang.h:9
@@ -416,7 +411,7 @@ msgstr "Символна константа"
 #: ../gtksourceview/language-specs/fortran.lang.h:7
 #: ../gtksourceview/language-specs/haskell.lang.h:9
 #: ../gtksourceview/language-specs/idl.lang.h:4
-#: ../gtksourceview/language-specs/javascript.lang.h:12
+#: ../gtksourceview/language-specs/javascript.lang.h:11
 #: ../gtksourceview/language-specs/lua.lang.h:3
 #: ../gtksourceview/language-specs/perl.lang.h:2
 #: ../gtksourceview/language-specs/python.lang.h:6
@@ -427,15 +422,11 @@ msgstr "Символна константа"
 msgid "Keywords"
 msgstr "Ключови думи"
 
-#. <string _name = "String 2" style = "String" end-at-line-end = "TRUE">
-#. <start-regex>&apos;</start-regex>
-#. <end-regex>&apos;</end-regex>
-#. </string>
 #: ../gtksourceview/language-specs/ada.lang.h:5
 #: ../gtksourceview/language-specs/c.lang.h:11
 #: ../gtksourceview/language-specs/cpp.lang.h:11
 #: ../gtksourceview/language-specs/csharp.lang.h:4
-#: ../gtksourceview/language-specs/css.lang.h:29
+#: ../gtksourceview/language-specs/css.lang.h:28
 #: ../gtksourceview/language-specs/desktop.lang.h:7
 #: ../gtksourceview/language-specs/diff.lang.h:5
 #: ../gtksourceview/language-specs/fortran.lang.h:8
@@ -444,7 +435,7 @@ msgstr "Ключови думи"
 #: ../gtksourceview/language-specs/idl.lang.h:5
 #: ../gtksourceview/language-specs/ini.lang.h:8
 #: ../gtksourceview/language-specs/java.lang.h:5
-#: ../gtksourceview/language-specs/javascript.lang.h:13
+#: ../gtksourceview/language-specs/javascript.lang.h:12
 #: ../gtksourceview/language-specs/lua.lang.h:4
 #: ../gtksourceview/language-specs/makefile.lang.h:4
 #: ../gtksourceview/language-specs/nemerle.lang.h:10
@@ -454,10 +445,10 @@ msgstr "Ключови думи"
 #: ../gtksourceview/language-specs/R.lang.h:7
 #: ../gtksourceview/language-specs/ruby.lang.h:9
 #: ../gtksourceview/language-specs/sh.lang.h:5
-#: ../gtksourceview/language-specs/sql.lang.h:23
+#: ../gtksourceview/language-specs/sql.lang.h:19
 #: ../gtksourceview/language-specs/tcl.lang.h:2
 #: ../gtksourceview/language-specs/texinfo.lang.h:9
-#: ../gtksourceview/language-specs/vbnet.lang.h:6
+#: ../gtksourceview/language-specs/vbnet.lang.h:2
 #: ../gtksourceview/language-specs/verilog.lang.h:7
 #: ../gtksourceview/language-specs/vhdl.lang.h:3
 msgid "Line Comment"
@@ -468,10 +459,10 @@ msgstr "Редов коментар"
 #. +/- before 0 is not allowed.
 #.
 #: ../gtksourceview/language-specs/ada.lang.h:6
-#: ../gtksourceview/language-specs/css.lang.h:34
+#: ../gtksourceview/language-specs/css.lang.h:33
 #: ../gtksourceview/language-specs/desktop.lang.h:9
 #: ../gtksourceview/language-specs/gtkrc.lang.h:8
-#: ../gtksourceview/language-specs/javascript.lang.h:16
+#: ../gtksourceview/language-specs/javascript.lang.h:15
 #: ../gtksourceview/language-specs/pascal.lang.h:14
 #: ../gtksourceview/language-specs/vhdl.lang.h:4
 msgid "Number"
@@ -486,15 +477,15 @@ msgstr "Ключови думи за предпроцесора"
 #: ../gtksourceview/language-specs/cpp.lang.h:14
 #: ../gtksourceview/language-specs/csharp.lang.h:8
 #: ../gtksourceview/language-specs/fortran.lang.h:11
-#: ../gtksourceview/language-specs/haskell.lang.h:13
+#: ../gtksourceview/language-specs/haskell.lang.h:14
 #: ../gtksourceview/language-specs/idl.lang.h:8
 #: ../gtksourceview/language-specs/java.lang.h:10
 #: ../gtksourceview/language-specs/makefile.lang.h:6
 #: ../gtksourceview/language-specs/nemerle.lang.h:14
 #: ../gtksourceview/language-specs/pascal.lang.h:17
-#: ../gtksourceview/language-specs/php.lang.h:24
-#: ../gtksourceview/language-specs/sql.lang.h:48
-#: ../gtksourceview/language-specs/vbnet.lang.h:10
+#: ../gtksourceview/language-specs/php.lang.h:23
+#: ../gtksourceview/language-specs/sql.lang.h:39
+#: ../gtksourceview/language-specs/vbnet.lang.h:6
 #: ../gtksourceview/language-specs/verilog.lang.h:9
 #: ../gtksourceview/language-specs/vhdl.lang.h:5
 msgid "Sources"
@@ -518,7 +509,6 @@ msgstr "Типове"
 msgid "'#if 0' Comment"
 msgstr "„#if 0“ коментар"
 
-#. Comments
 #: ../gtksourceview/language-specs/c.lang.h:2
 #: ../gtksourceview/language-specs/cpp.lang.h:2
 #: ../gtksourceview/language-specs/csharp.lang.h:1
@@ -530,7 +520,7 @@ msgstr "„#if 0“ коментар"
 #: ../gtksourceview/language-specs/javascript.lang.h:2
 #: ../gtksourceview/language-specs/lua.lang.h:1
 #: ../gtksourceview/language-specs/nemerle.lang.h:2
-#: ../gtksourceview/language-specs/sql.lang.h:9
+#: ../gtksourceview/language-specs/sql.lang.h:5
 #: ../gtksourceview/language-specs/texinfo.lang.h:1
 #: ../gtksourceview/language-specs/verilog.lang.h:2
 #: ../gtksourceview/language-specs/xml.lang.h:2
@@ -587,9 +577,9 @@ msgstr "Осмично число"
 #: ../gtksourceview/language-specs/c.lang.h:13
 #: ../gtksourceview/language-specs/cpp.lang.h:13
 #: ../gtksourceview/language-specs/csharp.lang.h:6
-#: ../gtksourceview/language-specs/haskell.lang.h:12
+#: ../gtksourceview/language-specs/haskell.lang.h:13
 #: ../gtksourceview/language-specs/idl.lang.h:6
-#: ../gtksourceview/language-specs/vbnet.lang.h:8
+#: ../gtksourceview/language-specs/vbnet.lang.h:4
 msgid "Preprocessor Definitions"
 msgstr "Дефиниция на предпроцесора"
 
@@ -611,20 +601,21 @@ msgstr "Низ на няколко реда"
 #: ../gtksourceview/language-specs/csharp.lang.h:7
 #: ../gtksourceview/language-specs/java.lang.h:9
 #: ../gtksourceview/language-specs/nemerle.lang.h:13
-#: ../gtksourceview/language-specs/vbnet.lang.h:9
+#: ../gtksourceview/language-specs/vbnet.lang.h:5
 msgid "Primitives"
 msgstr "Примитиви"
 
 #: ../gtksourceview/language-specs/csharp.lang.h:10
-#: ../gtksourceview/language-specs/css.lang.h:59
+#: ../gtksourceview/language-specs/css.lang.h:64
 #: ../gtksourceview/language-specs/fortran.lang.h:13
 #: ../gtksourceview/language-specs/java.lang.h:12
-#: ../gtksourceview/language-specs/javascript.lang.h:24
+#: ../gtksourceview/language-specs/javascript.lang.h:34
 #: ../gtksourceview/language-specs/lua.lang.h:11
 #: ../gtksourceview/language-specs/makefile.lang.h:9
 #: ../gtksourceview/language-specs/python.lang.h:15
 #: ../gtksourceview/language-specs/ruby.lang.h:19
 #: ../gtksourceview/language-specs/sh.lang.h:14
+#: ../gtksourceview/language-specs/vbnet.lang.h:8
 msgid "String 2"
 msgstr "Низ 2"
 
@@ -642,14 +633,10 @@ msgstr "Правила „@“"
 msgid "Attribute Value Delimiters"
 msgstr "Разделители на стойността на атрибут"
 
-#: ../gtksourceview/language-specs/css.lang.h:10
-msgid "CSS"
-msgstr "CSS"
-
 #.
 #. Value length specifier. Unless it is 0, must always be like: -1.2em.
 #.
-#: ../gtksourceview/language-specs/css.lang.h:14
+#: ../gtksourceview/language-specs/css.lang.h:13
 msgid "Dimension"
 msgstr "Размерност"
 
@@ -657,48 +644,44 @@ msgstr "Размерност"
 #. Hexadecimal method of specifying colors. Can either be 3 or 6 in
 #. length: #ffcc00 = #fc0.
 #.
-#: ../gtksourceview/language-specs/css.lang.h:23
+#: ../gtksourceview/language-specs/css.lang.h:22
 msgid "Hexadecimal Color"
 msgstr "Шестнадесетичен цвят"
 
 #.
 #. Upgrades a rule set's importance when several rule sets conflict.
 #.
-#: ../gtksourceview/language-specs/css.lang.h:27
+#: ../gtksourceview/language-specs/css.lang.h:26
 msgid "Importance Modifier"
 msgstr "Модификатор на значимостта"
 
-#: ../gtksourceview/language-specs/css.lang.h:28
+#: ../gtksourceview/language-specs/css.lang.h:27
 msgid "Known Property Values"
 msgstr "Стойност на познато свойство"
 
-#: ../gtksourceview/language-specs/css.lang.h:35
-#: ../gtksourceview/language-specs/javascript.lang.h:20
-#: ../gtksourceview/language-specs/php.lang.h:20
+#: ../gtksourceview/language-specs/css.lang.h:34
+#: ../gtksourceview/language-specs/haskell.lang.h:12
+#: ../gtksourceview/language-specs/javascript.lang.h:19
+#: ../gtksourceview/language-specs/php.lang.h:19
 #: ../gtksourceview/language-specs/sh.lang.h:8
-#: ../gtksourceview/language-specs/sql.lang.h:34
+#: ../gtksourceview/language-specs/sql.lang.h:27
 msgid "Operators"
 msgstr "Оператори"
 
-#: ../gtksourceview/language-specs/css.lang.h:37
+#: ../gtksourceview/language-specs/css.lang.h:47
 msgid "Property Names"
 msgstr "Имена на свойства"
 
 #.
 #. Brackets define a declaration block, parentheses define functions.
 #.
-#: ../gtksourceview/language-specs/css.lang.h:41
-#: ../gtksourceview/language-specs/javascript.lang.h:21
+#: ../gtksourceview/language-specs/css.lang.h:51
+#: ../gtksourceview/language-specs/javascript.lang.h:20
 #: ../gtksourceview/language-specs/sh.lang.h:9
 msgid "Punctuators"
 msgstr "Пунктуатори"
 
-#.
-#. Used to combine selectors. Example syntax:
-#.
-#. body * div#ID.className > p + ul li:first-child
-#.
-#: ../gtksourceview/language-specs/css.lang.h:47
+#: ../gtksourceview/language-specs/css.lang.h:52
 msgid "Selector Grammar"
 msgstr "Граматика със селектори"
 
@@ -706,7 +689,7 @@ msgstr "Граматика със селектори"
 #. Pseudo-class rules. Good to have syntax highlighting for these
 #. for mistypings.
 #.
-#: ../gtksourceview/language-specs/css.lang.h:52
+#: ../gtksourceview/language-specs/css.lang.h:57
 msgid "Selector Pseudo Classes"
 msgstr "Селектори за псевдокласове"
 
@@ -714,7 +697,7 @@ msgstr "Селектори за псевдокласове"
 #. Pseudo-element rules. Good to have syntax highlighting for these
 #. for mistypings.
 #.
-#: ../gtksourceview/language-specs/css.lang.h:57
+#: ../gtksourceview/language-specs/css.lang.h:62
 msgid "Selector Pseudo Elements"
 msgstr "Селектори за псевдоелементи"
 
@@ -722,14 +705,14 @@ msgstr "Селектори за псевдоелементи"
 #. Escaped unicode characters can contain either 6 hexadecimal characters
 #. or 1-5 hex characters followed by one whitespace character.
 #.
-#: ../gtksourceview/language-specs/css.lang.h:64
+#: ../gtksourceview/language-specs/css.lang.h:69
 msgid "Unicode Character Reference"
 msgstr "Псевдоним на символ от Уникод"
 
 #.
 #. Unicode range values.
 #.
-#: ../gtksourceview/language-specs/css.lang.h:68
+#: ../gtksourceview/language-specs/css.lang.h:73
 msgid "Unicode Range"
 msgstr "Дял от Уникод"
 
@@ -811,7 +794,7 @@ msgstr "DTD"
 #: ../gtksourceview/language-specs/html.lang.h:5
 #: ../gtksourceview/language-specs/xml.lang.h:4
 msgid "Entity"
-msgstr "Единица"
+msgstr "Заместваща последователност"
 
 #: ../gtksourceview/language-specs/html.lang.h:6
 msgid "HTML"
@@ -875,7 +858,7 @@ msgstr "Състояние"
 #. $variable, $$dynamic-variable and even $$$more
 #: ../gtksourceview/language-specs/gtkrc.lang.h:12
 #: ../gtksourceview/language-specs/ini.lang.h:12
-#: ../gtksourceview/language-specs/php.lang.h:26
+#: ../gtksourceview/language-specs/php.lang.h:25
 msgid "Variable"
 msgstr "Променлива"
 
@@ -887,7 +870,7 @@ msgstr "Haskell"
 msgid "Keysymbols"
 msgstr "Ключови символи"
 
-#: ../gtksourceview/language-specs/haskell.lang.h:32
+#: ../gtksourceview/language-specs/haskell.lang.h:16
 msgid "Type or Constructor"
 msgstr "Тип или конструктор"
 
@@ -974,31 +957,38 @@ msgstr "Глобални свойства"
 msgid "Hexadecimal Number"
 msgstr "Шестнадесетично число"
 
-#: ../gtksourceview/language-specs/javascript.lang.h:11
-msgid "JavaScript"
-msgstr "JavaScript"
-
-#: ../gtksourceview/language-specs/javascript.lang.h:14
+#: ../gtksourceview/language-specs/javascript.lang.h:13
 msgid "Literals"
 msgstr "Литерали"
 
-#: ../gtksourceview/language-specs/javascript.lang.h:15
+#: ../gtksourceview/language-specs/javascript.lang.h:14
 msgid "Math Value Properties"
 msgstr "Свойства на математическа стойност"
 
-#: ../gtksourceview/language-specs/javascript.lang.h:17
+#: ../gtksourceview/language-specs/javascript.lang.h:16
 msgid "Object Functions"
 msgstr "Функции на обект"
 
-#: ../gtksourceview/language-specs/javascript.lang.h:18
+#: ../gtksourceview/language-specs/javascript.lang.h:17
 msgid "Object Properties"
 msgstr "Свойства на обект"
 
-#: ../gtksourceview/language-specs/javascript.lang.h:19
+#: ../gtksourceview/language-specs/javascript.lang.h:18
 msgid "Objects"
 msgstr "Обекти"
 
-#: ../gtksourceview/language-specs/javascript.lang.h:22
+#.
+#. Proposed language specification for JavaScript files.
+#.
+#. Reference used:
+#. http://www.ecma-international.org/publications/files/ecma-st/ECMA-262.pdf
+#.
+#. Tested with:
+#. http://www.coffeeblack.org/scripts/map.js
+#.
+#. Submitted by Scott Martin (scott@coffeeblack.org)
+#.
+#: ../gtksourceview/language-specs/javascript.lang.h:32
 #: ../gtksourceview/language-specs/lua.lang.h:9
 #: ../gtksourceview/language-specs/perl.lang.h:7
 #: ../gtksourceview/language-specs/python.lang.h:13
@@ -1009,11 +999,11 @@ msgstr "Обекти"
 msgid "Scripts"
 msgstr "Скриптове"
 
-#: ../gtksourceview/language-specs/javascript.lang.h:25
+#: ../gtksourceview/language-specs/javascript.lang.h:35
 msgid "Unicode Escape Sequence"
 msgstr "Екранираща последователност в уникод"
 
-#: ../gtksourceview/language-specs/javascript.lang.h:26
+#: ../gtksourceview/language-specs/javascript.lang.h:36
 msgid "Word Operators"
 msgstr "Оператори за думи"
 
@@ -1091,10 +1081,6 @@ msgstr "Променлива1"
 #: ../gtksourceview/language-specs/sh.lang.h:16
 msgid "Variable2"
 msgstr "Променлива2"
-
-#: ../gtksourceview/language-specs/msil.lang.h:1
-msgid "MSIL"
-msgstr "MSIL"
 
 #: ../gtksourceview/language-specs/nemerle.lang.h:1
 #: ../gtksourceview/language-specs/verilog.lang.h:1
@@ -1228,21 +1214,20 @@ msgstr "Чувствителна към регистъра ключова дум
 msgid "Double Quoted String"
 msgstr "Низ в двойни кавички"
 
-#. <? ?> <HTML> inside PHP <?
-#: ../gtksourceview/language-specs/php.lang.h:18
+#: ../gtksourceview/language-specs/php.lang.h:17
 msgid "First Open PHP Tag"
 msgstr "Първият отворен етикет в PHP"
 
-#: ../gtksourceview/language-specs/php.lang.h:19
+#: ../gtksourceview/language-specs/php.lang.h:18
 msgid "HTML Block"
 msgstr "Блок с HTML"
 
-#: ../gtksourceview/language-specs/php.lang.h:21
+#: ../gtksourceview/language-specs/php.lang.h:20
 msgid "PHP"
 msgstr "PHP"
 
 #. 'single-quoted strings'
-#: ../gtksourceview/language-specs/php.lang.h:23
+#: ../gtksourceview/language-specs/php.lang.h:22
 msgid "Single Quoted String"
 msgstr "Низ в единични кавички"
 
@@ -1363,160 +1348,151 @@ msgstr "sh"
 msgid "ANSI Datatypes"
 msgstr "Типове данни от ANSI"
 
-#. Reserved Words
-#: ../gtksourceview/language-specs/sql.lang.h:3
+#: ../gtksourceview/language-specs/sql.lang.h:2
 msgid "ANSI Reserved Words"
 msgstr "Резервирани думи от ANSI"
 
-#. Aggregate Functions
-#: ../gtksourceview/language-specs/sql.lang.h:5
+#: ../gtksourceview/language-specs/sql.lang.h:3
 msgid "Aggregate Functions"
 msgstr "Обобщаващи функции"
 
-#. Analytic Functions
-#: ../gtksourceview/language-specs/sql.lang.h:7
+#: ../gtksourceview/language-specs/sql.lang.h:4
 msgid "Analytic Functions"
 msgstr "Аналитични функции"
 
-#: ../gtksourceview/language-specs/sql.lang.h:10
+#: ../gtksourceview/language-specs/sql.lang.h:6
 msgid "Character Functions Returning Character Values"
 msgstr "Функции за символи връщащи символни стойности"
 
-#: ../gtksourceview/language-specs/sql.lang.h:11
+#: ../gtksourceview/language-specs/sql.lang.h:7
 msgid "Character Functions Returning Number Values"
 msgstr "Функции за символи връщащи числови стойности"
 
-#: ../gtksourceview/language-specs/sql.lang.h:12
+#: ../gtksourceview/language-specs/sql.lang.h:8
 msgid "Collection Functions"
 msgstr "Функции за колекции"
 
-#: ../gtksourceview/language-specs/sql.lang.h:13
+#: ../gtksourceview/language-specs/sql.lang.h:9
 msgid "Conditions"
 msgstr "Условия"
 
-#: ../gtksourceview/language-specs/sql.lang.h:14
+#: ../gtksourceview/language-specs/sql.lang.h:10
 msgid "Conversion Functions"
 msgstr "Функции за превръщане"
 
-#: ../gtksourceview/language-specs/sql.lang.h:15
+#: ../gtksourceview/language-specs/sql.lang.h:11
 msgid "Data Mining Functions"
 msgstr "Функции за сондиране на данни"
 
-#: ../gtksourceview/language-specs/sql.lang.h:16
+#: ../gtksourceview/language-specs/sql.lang.h:12
 msgid "Datetime Functions"
 msgstr "Функции за време"
 
-#: ../gtksourceview/language-specs/sql.lang.h:17
+#: ../gtksourceview/language-specs/sql.lang.h:13
 msgid "Encoding and Decoding Functions"
 msgstr "Функции за кодиране и декодиране"
 
-#: ../gtksourceview/language-specs/sql.lang.h:18
+#: ../gtksourceview/language-specs/sql.lang.h:14
 msgid "Environment and Identifier Functions"
 msgstr "Функции на средата и за идентификация"
 
-#: ../gtksourceview/language-specs/sql.lang.h:19
+#: ../gtksourceview/language-specs/sql.lang.h:15
 msgid "General Comparison Functions"
 msgstr "Стандартни функции за сравнение"
 
-#: ../gtksourceview/language-specs/sql.lang.h:20
+#: ../gtksourceview/language-specs/sql.lang.h:16
 msgid "Hierarchical Function"
 msgstr "Йерархични функции"
 
-#: ../gtksourceview/language-specs/sql.lang.h:21
+#: ../gtksourceview/language-specs/sql.lang.h:17
 msgid "Integer Literals"
 msgstr "Целочислени литерали"
 
-#: ../gtksourceview/language-specs/sql.lang.h:22
+#: ../gtksourceview/language-specs/sql.lang.h:18
 msgid "Large Object Functions"
 msgstr "Функции за големи обект"
 
-#. Model Functions
-#: ../gtksourceview/language-specs/sql.lang.h:25
+#: ../gtksourceview/language-specs/sql.lang.h:20
 msgid "Model Functions"
 msgstr "Моделиращи функции"
 
-#: ../gtksourceview/language-specs/sql.lang.h:26
+#: ../gtksourceview/language-specs/sql.lang.h:21
 msgid "NLS Character Functions"
 msgstr "Функции за работа с национални символи"
 
-#: ../gtksourceview/language-specs/sql.lang.h:27
+#: ../gtksourceview/language-specs/sql.lang.h:22
 msgid "NULL-Related Functions"
 msgstr "Функции за работа с нули"
 
-#: ../gtksourceview/language-specs/sql.lang.h:28
+#: ../gtksourceview/language-specs/sql.lang.h:23
 msgid "Null"
 msgstr "Нула"
 
-#: ../gtksourceview/language-specs/sql.lang.h:29
+#: ../gtksourceview/language-specs/sql.lang.h:24
 msgid "Number Literals"
 msgstr "Числови литерали"
 
-#. Single-Row Functions
-#: ../gtksourceview/language-specs/sql.lang.h:31
+#: ../gtksourceview/language-specs/sql.lang.h:25
 msgid "Numeric Functions"
 msgstr "Числови функции"
 
-#. Object Reference Functions
-#: ../gtksourceview/language-specs/sql.lang.h:33
+#: ../gtksourceview/language-specs/sql.lang.h:26
 msgid "Object Reference Functions"
 msgstr "Функции от референции на обекти"
 
-#. Datatypes
-#: ../gtksourceview/language-specs/sql.lang.h:36
+#: ../gtksourceview/language-specs/sql.lang.h:28
 msgid "Oracle Built-in Datatypes"
 msgstr "Вградени типове на данни на Oracle"
 
-#: ../gtksourceview/language-specs/sql.lang.h:37
+#: ../gtksourceview/language-specs/sql.lang.h:29
 msgid "Oracle Reserved Words"
 msgstr "Запазени думи на Oracle"
 
-#: ../gtksourceview/language-specs/sql.lang.h:38
+#: ../gtksourceview/language-specs/sql.lang.h:30
 msgid "Oracle-Supplied Types"
 msgstr "Типове данни доставяни от Oracle"
 
-#: ../gtksourceview/language-specs/sql.lang.h:39
+#: ../gtksourceview/language-specs/sql.lang.h:31
 msgid "SQL"
 msgstr "SQL"
 
-#: ../gtksourceview/language-specs/sql.lang.h:40
+#: ../gtksourceview/language-specs/sql.lang.h:32
 msgid "SQL Statements"
 msgstr "Израз на SQL"
 
-#. SQL*Plus
-#: ../gtksourceview/language-specs/sql.lang.h:42
+#: ../gtksourceview/language-specs/sql.lang.h:33
 msgid "SQL*Plus At Sign"
 msgstr "Команда на SQL*Plus + „@“"
 
-#: ../gtksourceview/language-specs/sql.lang.h:43
+#: ../gtksourceview/language-specs/sql.lang.h:34
 msgid "SQL*Plus Commands"
 msgstr "Команди на SQL*Plus"
 
-#: ../gtksourceview/language-specs/sql.lang.h:44
+#: ../gtksourceview/language-specs/sql.lang.h:35
 msgid "SQL*Plus Double At Sign"
 msgstr "Команда на SQL*Plus + „@@“"
 
-#: ../gtksourceview/language-specs/sql.lang.h:45
+#: ../gtksourceview/language-specs/sql.lang.h:36
 msgid "SQL*Plus Slash"
 msgstr "Команда на SQL*Plus + „/“"
 
-#: ../gtksourceview/language-specs/sql.lang.h:46
+#: ../gtksourceview/language-specs/sql.lang.h:37
 msgid "SQL/DS and DB2 Datatypes"
 msgstr "Типове на данни в SQL/DS и DB2"
 
-#: ../gtksourceview/language-specs/sql.lang.h:47
+#: ../gtksourceview/language-specs/sql.lang.h:38
 msgid "Size Clause"
 msgstr "Клауза за размер"
 
-#. Literals
-#: ../gtksourceview/language-specs/sql.lang.h:50
+#: ../gtksourceview/language-specs/sql.lang.h:40
 msgid "Text Literals"
 msgstr "Текстови литерали"
 
-#: ../gtksourceview/language-specs/sql.lang.h:51
+#: ../gtksourceview/language-specs/sql.lang.h:41
 msgid "Unlimited"
 msgstr "Неограничен"
 
-#: ../gtksourceview/language-specs/sql.lang.h:52
+#: ../gtksourceview/language-specs/sql.lang.h:42
 msgid "XML Functions"
 msgstr "Функции за XML"
 
@@ -1568,11 +1544,11 @@ msgstr "Дялове"
 msgid "Texinfo"
 msgstr "Texinfo"
 
-#: ../gtksourceview/language-specs/vbnet.lang.h:7
+#: ../gtksourceview/language-specs/vbnet.lang.h:3
 msgid "Old Style Comment"
 msgstr "Коментар, стар стил"
 
-#: ../gtksourceview/language-specs/vbnet.lang.h:12
+#: ../gtksourceview/language-specs/vbnet.lang.h:9
 msgid "VB.NET"
 msgstr "VB.NET"
 
