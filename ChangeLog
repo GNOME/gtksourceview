@@ -1,5 +1,12 @@
 2005-11-14  Paolo Borelli  <pborelli@katamail.com>
 
+	* gtksourceview/gtksourcebuffer.c: improve bracket matching: do the
+	matching both if the bracket precedes the cursor and if follows it.
+	If we have brackets on both sides, the match of the bracket following
+	the cursor takes precedence.
+
+2005-11-14  Paolo Borelli  <pborelli@katamail.com>
+
 	* gtksourceview/gtksourcebuffer.c (gtk_source_buffer_constructor):
 	sync with the tag table if the caller specified one. Noticed by
 	Joseph Turner, bug #321174.

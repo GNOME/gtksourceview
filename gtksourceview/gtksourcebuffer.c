@@ -211,8 +211,8 @@ static void      ensure_highlighted                     (GtkSourceBuffer        
 							 const GtkTextIter       *start,
 							 const GtkTextIter       *end);
 
-static gboolean	 gtk_source_buffer_find_bracket_match_real (GtkTextIter          *orig, 
-							    gint                  max_chars);
+static gboolean	 gtk_source_buffer_find_bracket_match_with_limit (GtkTextIter    *orig, 
+								  gint            max_chars);
 
 static void	 gtk_source_buffer_remove_all_source_tags (GtkSourceBuffer   *buffer,
 					  		const GtkTextIter *start,
@@ -779,7 +779,7 @@ gtk_source_buffer_move_cursor (GtkTextBuffer *buffer,
 		return;
 
 	iter1 = *iter;
-	if (gtk_source_buffer_find_bracket_match_real (&iter1, MAX_CHARS_BEFORE_FINDING_A_MATCH)) 
+	if (gtk_source_buffer_find_bracket_match_with_limit (&iter1, MAX_CHARS_BEFORE_FINDING_A_MATCH)) 
 	{
 		if (!GTK_SOURCE_BUFFER (buffer)->priv->bracket_mark)
 			GTK_SOURCE_BUFFER (buffer)->priv->bracket_mark =
@@ -1080,9 +1080,6 @@ gtk_source_buffer_find_bracket_match_real (GtkTextIter *orig, gint max_chars)
 
 	iter = *orig;
 
-	if (!gtk_text_iter_backward_char (&iter))
-		return FALSE;
-	
 	cur_char = gtk_text_iter_get_char (&iter);
 
 	base_char = search_char = cur_char;
@@ -1160,6 +1157,34 @@ gtk_source_buffer_find_bracket_match_real (GtkTextIter *orig, gint max_chars)
 	return found;
 }
 
+/* Note that we take into account both the character following the cursor and the
+ * one preceding it. If there are brackets on both sides the one following the 
+ * cursor takes precedence.
+ */
+static gboolean
+gtk_source_buffer_find_bracket_match_with_limit (GtkTextIter *orig, gint max_chars)
+{
+	GtkTextIter iter;
+
+	if (gtk_source_buffer_find_bracket_match_real (orig, max_chars))
+	{
+		return TRUE;
+	}
+
+	iter = *orig;
+	if (!gtk_text_iter_starts_line (&iter) &&
+	    gtk_text_iter_backward_char (&iter))
+	{
+		if (gtk_source_buffer_find_bracket_match_real (&iter, max_chars))
+		{
+			*orig = iter;
+			return TRUE;
+		}
+	}
+
+	return FALSE;
+}
+
 /**
  * gtk_source_iter_find_matching_bracket:
  * @iter: a #GtkTextIter.
@@ -1178,7 +1203,7 @@ gtk_source_iter_find_matching_bracket (GtkTextIter *iter)
 {
 	g_return_val_if_fail (iter != NULL, FALSE);
 
-	return gtk_source_buffer_find_bracket_match_real (iter, -1);
+	return gtk_source_buffer_find_bracket_match_with_limit (iter, -1);
 }
 
 /**
