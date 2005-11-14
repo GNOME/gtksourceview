@@ -33,7 +33,6 @@
 #include "gnu-regex/regex.h"
 #endif
 
-#include "gtksourceview-i18n.h"
 #include "gtksourceregex.h"
 
 /* Implementation using GNU Regular Expressions */

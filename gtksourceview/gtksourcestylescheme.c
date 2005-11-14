@@ -22,8 +22,10 @@
 #include <config.h>
 #endif
 
+#include <glib/gi18n.h>
+
 #include "gtksourcestylescheme.h"
-#include "gtksourceview-i18n.h"
+
 
 static void gtk_source_style_scheme_base_init (gpointer g_class);
 

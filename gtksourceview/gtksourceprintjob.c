@@ -33,7 +33,8 @@
 #include <string.h>
 #include <time.h>
 
-#include "gtksourceview-i18n.h"
+#include <glib/gi18n.h>
+
 #include "gtksourceview-marshal.h"
 #include "gtksourcetag.h"
 #include "gtksourceprintjob.h"

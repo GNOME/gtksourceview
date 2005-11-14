@@ -32,8 +32,8 @@
 #include <gtk/gtk.h>
 #include <gdk/gdkkeysyms.h>
 #include <pango/pango-tabs.h>
+#include <glib/gi18n.h>
 
-#include "gtksourceview-i18n.h"
 #include "gtksourceview-marshal.h"
 #include "gtksourceview.h"
 

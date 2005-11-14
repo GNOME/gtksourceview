@@ -24,10 +24,10 @@
 #include <string.h>
 
 #include <libxml/xmlreader.h>
+#include <glib/gi18n.h>
 
 #include "gtksourcelanguagesmanager.h"
 #include "gtksourcelanguage-private.h"
-#include "gtksourceview-i18n.h"
 #include "gtksourcelanguage.h"
 #include "gtksourcetag.h"
 
