@@ -4,7 +4,7 @@ INCLUDES = 				\
 	-I$(top_srcdir) -I$(srcdir) 	\
 	$(DEPRECATED_FLAGS)		\
 	$(WARN_CFLAGS) 			\
-	$(DEP_CFLAGS)                  \
+	$(DEP_CFLAGS)			\
 	$(TESTS_CFLAGS)
 
 # testing executables

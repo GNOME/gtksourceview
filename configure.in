@@ -3,7 +3,7 @@ dnl Process this file with autoconf to produce a configure script.
 AC_PREREQ(2.53)
 
 # Initialization and versioning
-AC_INIT(gtksourceview, 1.4.2, http://bugzilla.gnome.org/enter_bug.cgi?product=gtksourceview)
+AC_INIT(gtksourceview, 1.5.1, http://bugzilla.gnome.org/enter_bug.cgi?product=gtksourceview)
 AC_CONFIG_SRCDIR([gtksourceview/gtksourcebuffer.h])
 AM_CONFIG_HEADER(config.h)
 
@@ -27,8 +27,7 @@ AC_CHECK_HEADERS([stdlib.h string.h])
 AC_CHECK_FUNCS([memset])
 
 # Dependencies
-GTK_REQUIRED_VERSION=2.2.4
-GTK24_REQUIRED_VERSION=2.4.0
+GTK_REQUIRED_VERSION=2.6.0
 GNOME_VFS_REQUIRED_VERSION=2.2.0
 LIBXML_REQUIRED_VERSION=2.5.0
 GNOME_PRINT_REQUIRED_VERSION=2.8.0
@@ -78,10 +77,6 @@ AC_ARG_ENABLE(build_tests,AC_HELP_STRING([--disable-build-tests],
   no)  build_tests=false ;;
   *) AC_MSG_ERROR(bad value ${enableval} for --disable-build-tests) ;;
 esac],[build_tests=true])
-
-# Check for Gtk 2.4; we need that to build the tests, so disable tests if not found
-PKG_CHECK_MODULES(GTK24, gtk+-2.0 >= $GTK24_REQUIRED_VERSION, 
-			 [], [build_tests=false])
 
 AM_CONDITIONAL(BUILD_TESTS, [test x$build_tests = xtrue])
 
