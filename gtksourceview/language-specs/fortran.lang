@@ -18,43 +18,43 @@
 	</string>
 
 	<keyword-list _name = "Keywords" style = "Keyword" case-sensitive="FALSE">
+		<keyword>block data</keyword>
+		<keyword>CALL</keyword>
 		<keyword>case</keyword>
+		<keyword>common</keyword>
+		<keyword>contains</keyword>
 		<keyword>continue</keyword>
 		<keyword>cycle</keyword>
-		<keyword>stop</keyword>
-		<keyword>do</keyword>
-      		<keyword>else</keyword>
-      		<keyword>elseif</keyword>
-      		<keyword>end</keyword>
-      		<keyword>endif</keyword>
-      		<keyword>enddo</keyword>
-		<keyword>forall</keyword>
-		<keyword>where</keyword>
-		<keyword>while</keyword>
-		<keyword>elsewhere</keyword>
 		<keyword>data</keyword>
-		<keyword>block data</keyword>
-		<keyword>common</keyword>
-		<keyword>program</keyword>
-		<keyword>subroutine</keyword>
+		<keyword>do</keyword>
+		<keyword>elseif</keyword>
+		<keyword>else</keyword>
+		<keyword>elsewhere</keyword>
+		<keyword>enddo</keyword>
+		<keyword>endif</keyword>
+		<keyword>end</keyword>
+		<keyword>external</keyword>
+		<keyword>forall</keyword>
 		<keyword>function</keyword>
-		<keyword>module</keyword>
-		<keyword>contains</keyword>
 		<keyword>goto</keyword>
 		<keyword>if</keyword>
-		<keyword>then</keyword>
-		<keyword>return</keyword>
-		<keyword>use</keyword>
-		<keyword>include</keyword>
 		<keyword>implicit none</keyword>
-		<keyword>CALL</keyword>
-		<keyword>SELECT</keyword>
-
+		<keyword>include</keyword>
+		<keyword>intrinsic</keyword>
 		<keyword>kind</keyword>
 		<keyword>len</keyword>
-		<keyword>external</keyword>
-		<keyword>intrinsic</keyword>
+		<keyword>module</keyword>
+		<keyword>program</keyword>
+		<keyword>return</keyword>
 		<keyword>save</keyword>
+		<keyword>SELECT</keyword>
+		<keyword>stop</keyword>
+		<keyword>subroutine</keyword>
+		<keyword>then</keyword>
+		<keyword>type</keyword>
+		<keyword>use</keyword>
+		<keyword>where</keyword>
+		<keyword>while</keyword>
 	</keyword-list>
 
 	<keyword-list _name = "Read/Write" style = "Keyword" case-sensitive="FALSE">
@@ -68,6 +68,7 @@
 		<keyword>write</keyword>
 		<keyword>print</keyword>
 	</keyword-list>
+
 	<keyword-list _name = "Input/Output" style = "Keyword" case-sensitive="FALSE">
 		<keyword>unit</keyword>
 		<keyword>file</keyword>
@@ -112,7 +113,9 @@
 		<keyword>cshift</keyword>
 		<keyword>date_and_time</keyword>
 		<keyword>digits</keyword>
+		<keyword>dim</keyword>
 		<keyword>dot_product</keyword>
+		<keyword>dprod</keyword>
 		<keyword>eoshift</keyword>
 		<keyword>epsilon</keyword>
 		<keyword>exponent</keyword>
@@ -236,6 +239,7 @@
 		<keyword>amin0</keyword>
 		<keyword>amin1</keyword>
 		<keyword>dmin1</keyword>
+ 		<keyword>loc</keyword>
 		<keyword>min0</keyword>
 		<keyword>min1</keyword>
 		<keyword>amod</keyword>
@@ -296,6 +300,12 @@
 		<keyword>derfc</keyword>
 		<keyword>qerfc</keyword>
 		<keyword>dfloat</keyword>
+		<keyword>zabs</keyword>
+		<keyword>zcos</keyword>
+		<keyword>zexp</keyword>
+		<keyword>zlog</keyword>
+		<keyword>zsin</keyword>
+		<keyword>zsqrt</keyword>
 	</keyword-list>
 
 	<keyword-list _name = "Types" style = "Data Type" case-sensitive="FALSE">
@@ -316,7 +326,6 @@
 		<keyword>target</keyword>
 		<keyword>allocatable</keyword>
 	</keyword-list>
-
 
 	<pattern-item _name = "Decimal" style = "Decimal">
 		<regex>\b([1-9][0-9]*|0)([Uu]([Ll]|LL|ll)?|([Ll]|LL|ll)[Uu]?)?\b</regex>
