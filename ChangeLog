@@ -1,5 +1,10 @@
 2005-11-14  Paolo Borelli  <pborelli@katamail.com>
 
+	* gtksourceview/gtksourcelanguagesmanager.c: grab lang files from
+	XDG_DATA_DIRS instead of the hardcoded install path. Bug #304147.
+
+2005-11-14  Paolo Borelli  <pborelli@katamail.com>
+
 	* gtksourceview/gtksourcebuffer.c: improve bracket matching: do the
 	matching both if the bracket precedes the cursor and if follows it.
 	If we have brackets on both sides, the match of the bracket following

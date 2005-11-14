@@ -26,18 +26,12 @@
 #include <libxml/xmlreader.h>
 
 #include "gtksourcelanguagesmanager.h"
-
 #include "gtksourcelanguage-private.h"
 #include "gtksourceview-i18n.h"
-
 #include "gtksourcelanguage.h"
 #include "gtksourcetag.h"
 
 #define DEFAULT_GCONF_BASE_DIR		"/apps/gtksourceview"
-
-#define DEFAULT_LANGUAGE_DIR		DATADIR "/gtksourceview-1.0/language-specs"
-#define USER_LANGUAGE_DIR		"gtksourceview-1.0/language-specs"
-#define USER_CONFIG_BASE_DIR	".gnome2"
 
 enum {
 	PROP_0,
@@ -177,7 +171,6 @@ gtk_source_languages_manager_instance_init (GtkSourceLanguagesManager *lm)
 	lm->priv = g_new0 (GtkSourceLanguagesManagerPrivate, 1);	
 }
 
-
 /**
  * gtk_source_languages_manager_new:
  *
@@ -215,23 +208,42 @@ gtk_source_languages_manager_finalize (GObject *object)
 	(* G_OBJECT_CLASS (parent_class)->finalize) (object);
 }
 
-static void 
-gtk_source_languages_manager_set_specs_dirs (GtkSourceLanguagesManager	*lm,
-					     const GSList		*dirs)
+#define SOURCEVIEW_DIR		"gtksourceview-1.0"
+#define LANGUAGE_DIR		"language-specs"
+#define USER_CONFIG_BASE_DIR	".gnome2"
+
+static void
+gtk_source_languages_manager_set_specs_dirs (GtkSourceLanguagesManager *lm,
+					     const GSList              *dirs)
 {
 	g_return_if_fail (GTK_IS_SOURCE_LANGUAGES_MANAGER (lm));
 	g_return_if_fail (lm->priv->language_specs_directories == NULL);
-			
+
 	if (dirs == NULL)
 	{
-		lm->priv->language_specs_directories =
-			g_slist_prepend (lm->priv->language_specs_directories,
-					g_strdup (DEFAULT_LANGUAGE_DIR));
+		const gchar * const *xdg_dirs;
+		gint i;
+
+		/* fetch specs in XDG_DATA_DIRS */
+		xdg_dirs = g_get_system_data_dirs ();
+		for (i = G_N_ELEMENTS (xdg_dirs) - 1; i >= 0; --i)
+		{
+			lm->priv->language_specs_directories =
+				g_slist_prepend (lm->priv->language_specs_directories,
+						 g_build_filename (xdg_dirs[i],
+								   SOURCEVIEW_DIR,
+								   LANGUAGE_DIR, 
+								   NULL));
+		}
+
+		/* prepend the dir in ~ so that we look there first */
 		lm->priv->language_specs_directories = 
 			g_slist_prepend (lm->priv->language_specs_directories,
-					g_build_filename (g_get_home_dir(), 
-						USER_CONFIG_BASE_DIR, USER_LANGUAGE_DIR, 
-						NULL));
+					 g_build_filename (g_get_home_dir(),
+							   USER_CONFIG_BASE_DIR,
+							   SOURCEVIEW_DIR,
+							   LANGUAGE_DIR, 
+							   NULL));
 
 		return;
 	}
