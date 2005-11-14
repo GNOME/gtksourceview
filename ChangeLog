@@ -1,5 +1,9 @@
 2005-11-14  Paolo Borelli  <pborelli@katamail.com>
 
+	* gtksourceview/gtksourceundomanager.c: improve action list freeing.
+
+2005-11-14  Paolo Borelli  <pborelli@katamail.com>
+
 	* gtksourceview/gtksourceiter.c (gtk_source_iter_forward_search):
 	make limit an inclusive boundary. (#321300)
 
