@@ -3,7 +3,7 @@
 	* gtksourceview/gtksourcebuffer.c: improve bracket matching: do the
 	matching both if the bracket precedes the cursor and if follows it.
 	If we have brackets on both sides, the match of the bracket following
-	the cursor takes precedence.
+	the cursor takes precedence. Bug #316020.
 
 2005-11-14  Paolo Borelli  <pborelli@katamail.com>
 
