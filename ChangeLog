@@ -1,5 +1,11 @@
 2005-11-14  Paolo Borelli  <pborelli@katamail.com>
 
+	* gtksourceview/gtksourcebuffer.c (gtk_source_buffer_constructor):
+	sync with the tag table if the caller specified one. Noticed by
+	Joseph Turner, bug #321174.
+
+2005-11-14  Paolo Borelli  <pborelli@katamail.com>
+
 	* gtksourceview/gtksourceundomanager.c: improve action list freeing.
 
 2005-11-14  Paolo Borelli  <pborelli@katamail.com>

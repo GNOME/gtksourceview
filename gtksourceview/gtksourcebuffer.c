@@ -408,7 +408,6 @@ gtk_source_buffer_init (GtkSourceBuffer *buffer)
 			  "can_redo",
 			  G_CALLBACK (gtk_source_buffer_can_redo_handler),
 			  buffer);
-
 }
 
 static void 
@@ -417,7 +416,6 @@ tag_added_or_removed_cb (GtkTextTagTable *table, GtkTextTag *tag, GtkSourceBuffe
 	sync_with_tag_table (buffer);
 	
 }
-
 
 static void 
 tag_table_changed_cb (GtkSourceTagTable *table, GtkSourceBuffer *buffer)
@@ -431,6 +429,7 @@ gtk_source_buffer_constructor (GType                  type,
 			       GObjectConstructParam *construct_param)
 {
 	GObject *g_object;
+	gboolean tag_table_specified = FALSE;
 	gint i;
 
 	/* Check the construction parameters to see if the user
@@ -438,25 +437,31 @@ gtk_source_buffer_constructor (GType                  type,
 	 * GtkSourceTagTable if he didn't */
 	for (i = 0; i < n_construct_properties; i++)
 	{
-		if (!strcmp ("tag-table", construct_param [i].pspec->name) &&
-		    g_value_get_object (construct_param [i].value) == NULL)
+		if (!strcmp ("tag-table", construct_param [i].pspec->name))
 		{
+			if (g_value_get_object (construct_param [i].value) == NULL)
+			{
 #if (GLIB_MINOR_VERSION <= 2)
-			g_value_set_object_take_ownership (construct_param [i].value,
-							   gtk_source_tag_table_new ());
+				g_value_set_object_take_ownership (construct_param [i].value,
+								   gtk_source_tag_table_new ());
 #else
-			g_value_take_object (construct_param [i].value,
-					     gtk_source_tag_table_new ());
+				g_value_take_object (construct_param [i].value,
+						     gtk_source_tag_table_new ());
 #endif
+			}
+			else
+			{
+				tag_table_specified = TRUE;
+			}
 
 			break;
 		}
 	}
-	
+
 	g_object = G_OBJECT_CLASS (parent_class)->constructor (type, 
 							       n_construct_properties,
 							       construct_param);
-	
+
 	if (g_object) 
 	{
 		GtkSourceTagStyle *tag_style;
@@ -482,6 +487,10 @@ gtk_source_buffer_constructor (GType                  type,
 
 		if (GTK_IS_SOURCE_TAG_TABLE (GTK_TEXT_BUFFER (source_buffer)->tag_table))
 		{
+			/* sync with the tag table if the user passed one */
+			if (tag_table_specified)
+				sync_with_tag_table (source_buffer);
+
 			g_signal_connect (GTK_TEXT_BUFFER (source_buffer)->tag_table ,
 					  "changed",
 					  G_CALLBACK (tag_table_changed_cb),
@@ -504,7 +513,7 @@ gtk_source_buffer_constructor (GType                  type,
 					  source_buffer);				
 		}
 	}
-	
+
 	return g_object;
 }
 
@@ -666,7 +675,7 @@ gtk_source_buffer_new (GtkSourceTagTable *table)
 	buffer = GTK_SOURCE_BUFFER (g_object_new (GTK_TYPE_SOURCE_BUFFER, 
 						  "tag-table", table, 
 						  NULL));
-	
+
 	return buffer;
 }
 
