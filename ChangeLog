@@ -1,6 +1,11 @@
+2005-11-15  Paolo Borelli  <pborelli@katamail.com>
+
+	* gtksourceview/gtksourcelanguagesmanager.c: fix off by one error
+	in xdg directory lookup.
+
 === gtksourceview 1.5.1 ===
 
-2005-10-03  Paolo Borelli  <pborelli@katamail.com>
+2005-11-14  Paolo Borelli  <pborelli@katamail.com>
 
 	* configure.in:
 	* README:

@@ -226,7 +226,7 @@ gtk_source_languages_manager_set_specs_dirs (GtkSourceLanguagesManager *lm,
 
 		/* fetch specs in XDG_DATA_DIRS */
 		xdg_dirs = g_get_system_data_dirs ();
-		for (i = G_N_ELEMENTS (xdg_dirs) - 1; i >= 0; --i)
+		for (i = G_N_ELEMENTS (xdg_dirs); i >= 0; --i)
 		{
 			lm->priv->language_specs_directories =
 				g_slist_prepend (lm->priv->language_specs_directories,
