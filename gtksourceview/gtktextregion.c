@@ -27,7 +27,6 @@
 #endif
 
 #include <glib.h>
-#include <glib/gi18n.h>
 
 #include "gtktextregion.h"
 
@@ -260,7 +259,6 @@ gtk_text_region_add (GtkTextRegion     *region,
 
 	DEBUG (gtk_text_region_debug_print (region));
 }
-
 
 void 
 gtk_text_region_substract (GtkTextRegion     *region,
@@ -534,5 +532,4 @@ gtk_text_region_debug_print (GtkTextRegion *region)
 	}
 	g_print ("\n");
 }
-
 
