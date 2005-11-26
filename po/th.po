@@ -7,187 +7,189 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview 1.1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-03-08 11:38+0100\n"
-"PO-Revision-Date: 2005-07-25 12:59+0700\n"
+"POT-Creation-Date: 2005-11-26 19:43+0700\n"
+"PO-Revision-Date: 2005-11-26 20:00+0700\n"
 "Last-Translator: Theppitak Karoonboonyanan <thep@linux.thai.net>\n"
 "Language-Team: Thai <l10n@opentle.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit"
 
-#: gtksourceview/gtksourcebuffer.c:279
+#: gtksourceview/gtksourcebuffer.c:277
 msgid "Escape Character"
 msgstr "อักขระหลีก"
 
-#: gtksourceview/gtksourcebuffer.c:280
+#: gtksourceview/gtksourcebuffer.c:278
 msgid "Escaping character for syntax patterns"
 msgstr "อักขระหลีกสำหรับการกำหนดรูปแบบไวยากรณ์"
 
-#: gtksourceview/gtksourcebuffer.c:288
+#: gtksourceview/gtksourcebuffer.c:286
 msgid "Check Brackets"
 msgstr "ตรวจคู่วงเล็บ"
 
-#: gtksourceview/gtksourcebuffer.c:289
+#: gtksourceview/gtksourcebuffer.c:287
 msgid "Whether to check and highlight matching brackets"
 msgstr "กำหนดว่าจะตรวจคู่วงเล็บเปิด-ปิดหรือไม่"
 
-#: gtksourceview/gtksourcebuffer.c:297 gtksourceview/gtksourceprintjob.c:295
+#: gtksourceview/gtksourcebuffer.c:295
+#: gtksourceview/gtksourceprintjob.c:296
 msgid "Highlight"
 msgstr "เน้นข้อความ"
 
-#: gtksourceview/gtksourcebuffer.c:298
+#: gtksourceview/gtksourcebuffer.c:296
 msgid "Whether to highlight syntax in the buffer"
 msgstr "กำหนดว่าจะเน้นข้อความในบัฟเฟอร์ตามไวยากรณ์หรือไม่"
 
-#: gtksourceview/gtksourcebuffer.c:306
+#: gtksourceview/gtksourcebuffer.c:304
 msgid "Maximum Undo Levels"
 msgstr "จำนวนขั้นการเรียกคืนสูงสุด"
 
-#: gtksourceview/gtksourcebuffer.c:307
+#: gtksourceview/gtksourcebuffer.c:305
 msgid "Number of undo levels for the buffer"
 msgstr "จำนวนขั้นของการเรียกคืนการทำคำสั่งในบัฟเฟอร์"
 
-#: gtksourceview/gtksourcebuffer.c:317
+#: gtksourceview/gtksourcebuffer.c:315
 #: gtksourceview/language-specs/desktop.lang.h:6
 #: gtksourceview/language-specs/ini.lang.h:7
 msgid "Language"
 msgstr "ภาษา"
 
-#: gtksourceview/gtksourcebuffer.c:318
+#: gtksourceview/gtksourcebuffer.c:316
 msgid "Language object to get highlighting patterns from"
 msgstr "อ็อบเจกต์ภาษาที่เก็บรูปแบบการเน้นข้อความ"
 
-#: gtksourceview/gtksourcelanguagesmanager.c:119
+#: gtksourceview/gtksourcelanguagesmanager.c:113
 msgid "Language specification directories"
 msgstr "ไดเรกทอรีข้อกำหนดภาษา"
 
-#: gtksourceview/gtksourcelanguagesmanager.c:120
+#: gtksourceview/gtksourcelanguagesmanager.c:114
 msgid ""
 "List of directories where the language specification files (.lang) are "
 "located"
 msgstr "รายการไดเรกทอรีที่เก็บแฟ้มข้อกำหนดภาษา (.lang)"
 
-#: gtksourceview/gtksourceprintjob.c:264
+#: gtksourceview/gtksourceprintjob.c:265
 msgid "Configuration"
 msgstr "ค่าตั้ง"
 
-#: gtksourceview/gtksourceprintjob.c:265
+#: gtksourceview/gtksourceprintjob.c:266
 msgid "Configuration options for the print job"
 msgstr "ตัวเลือกการตั้งค่างานพิมพ์"
 
-#: gtksourceview/gtksourceprintjob.c:272
+#: gtksourceview/gtksourceprintjob.c:273
 msgid "Source Buffer"
 msgstr "บัฟเฟอร์ซอร์ส"
 
-#: gtksourceview/gtksourceprintjob.c:273
+#: gtksourceview/gtksourceprintjob.c:274
 msgid "GtkSourceBuffer object to print"
 msgstr "อ็อบเจกต์ GtkSourceBuffer ที่จะพิมพ์"
 
-#: gtksourceview/gtksourceprintjob.c:279 gtksourceview/gtksourceview.c:222
-#: gtksourceview/gtksourceview.c:223
+#: gtksourceview/gtksourceprintjob.c:280
+#: gtksourceview/gtksourceview.c:221 gtksourceview/gtksourceview.c:222
 msgid "Tabs Width"
 msgstr "ความกว้างแท็บ"
 
-#: gtksourceview/gtksourceprintjob.c:280
+#: gtksourceview/gtksourceprintjob.c:281
 msgid "Width in equivalent space characters of tabs"
 msgstr "ความกว้างแท็บในหน่วยจำนวนช่องว่างที่เทียบเท่า"
 
-#: gtksourceview/gtksourceprintjob.c:287
+#: gtksourceview/gtksourceprintjob.c:288
 msgid "Wrap Mode"
 msgstr "โหมดการขึ้นบรรทัดใหม่"
 
-#: gtksourceview/gtksourceprintjob.c:288
+#: gtksourceview/gtksourceprintjob.c:289
 msgid "Word wrapping mode"
 msgstr "โหมดการตัดคำขึ้นบรรทัดใหม่"
 
-#: gtksourceview/gtksourceprintjob.c:296
+#: gtksourceview/gtksourceprintjob.c:297
 msgid "Whether to print the document with highlighted syntax"
 msgstr "กำหนดว่าจะพิมพ์เอกสารโดยเน้นข้อความตามไวยากรณ์หรือไม่"
 
-#: gtksourceview/gtksourceprintjob.c:304
+#: gtksourceview/gtksourceprintjob.c:305
 msgid "Font"
 msgstr "ฟอนต์"
 
-#: gtksourceview/gtksourceprintjob.c:305
+#: gtksourceview/gtksourceprintjob.c:306
 msgid "GnomeFont name to use for the document text (deprecated)"
 msgstr "ชื่อ GnomeFont ที่จะใช้พิมพ์ข้อความในเอกสาร (เลิกใช้แล้ว)"
 
-#: gtksourceview/gtksourceprintjob.c:312
+#: gtksourceview/gtksourceprintjob.c:313
 msgid "Font Description"
 msgstr "ข้อกำหนดฟอนต์"
 
-#: gtksourceview/gtksourceprintjob.c:313
+#: gtksourceview/gtksourceprintjob.c:314
 msgid "Font to use for the document text (e.g. \"Monospace 10\")"
 msgstr "ฟอนต์ที่จะใช้พิมพ์ข้อความในเอกสาร (เช่น \"Monospace 10\")"
 
-#: gtksourceview/gtksourceprintjob.c:320 gtksourceview/gtksourceprintjob.c:328
+#: gtksourceview/gtksourceprintjob.c:321
+#: gtksourceview/gtksourceprintjob.c:329
 msgid "Numbers Font"
 msgstr "ฟอนต์เลขบรรทัด"
 
-#: gtksourceview/gtksourceprintjob.c:321
+#: gtksourceview/gtksourceprintjob.c:322
 msgid "GnomeFont name to use for the line numbers (deprecated)"
 msgstr "ชื่อ GnomeFont ที่จะใช้พิมพ์เลขบรรทัด (เลิกใช้แล้ว)"
 
-#: gtksourceview/gtksourceprintjob.c:329
+#: gtksourceview/gtksourceprintjob.c:330
 msgid "Font description to use for the line numbers"
 msgstr "ข้อกำหนดฟอนต์สำหรับพิมพ์เลขบรรทัด"
 
-#: gtksourceview/gtksourceprintjob.c:336
+#: gtksourceview/gtksourceprintjob.c:337
 msgid "Print Line Numbers"
 msgstr "การพิมพ์เลขบรรทัด"
 
-#: gtksourceview/gtksourceprintjob.c:337
+#: gtksourceview/gtksourceprintjob.c:338
 msgid "Interval of printed line numbers (0 means no numbers)"
 msgstr "จำนวนบรรทัดต่อการพิมพ์เลขบรรทัดหนึ่งครั้ง (0 หมายถึงไม่พิมพ์เลขบรรทัด)"
 
-#: gtksourceview/gtksourceprintjob.c:344
+#: gtksourceview/gtksourceprintjob.c:345
 msgid "Print Header"
 msgstr "พิมพ์หัวกระดาษ"
 
-#: gtksourceview/gtksourceprintjob.c:345
+#: gtksourceview/gtksourceprintjob.c:346
 msgid "Whether to print a header in each page"
 msgstr "กำหนดว่าจะพิมพ์หัวกระดาษในแต่ละหน้าหรือไม่"
 
-#: gtksourceview/gtksourceprintjob.c:352
+#: gtksourceview/gtksourceprintjob.c:353
 msgid "Print Footer"
 msgstr "พิมพ์ท้ายกระดาษ"
 
-#: gtksourceview/gtksourceprintjob.c:353
+#: gtksourceview/gtksourceprintjob.c:354
 msgid "Whether to print a footer in each page"
 msgstr "กำหนดว่าจะพิมพ์ท้ายกระดาษในแต่ละหน้าหรือไม่"
 
-#: gtksourceview/gtksourceprintjob.c:360
+#: gtksourceview/gtksourceprintjob.c:361
 msgid "Header and Footer Font"
 msgstr "ฟอนต์สำหรับหัวและท้ายกระดาษ"
 
-#: gtksourceview/gtksourceprintjob.c:361
+#: gtksourceview/gtksourceprintjob.c:362
 msgid "GnomeFont name to use for the header and footer (deprecated)"
 msgstr "ชื่อ GnomeFont สำหรับพิมพ์หัวกระดาษและท้ายกระดาษ (เลิกใช้แล้ว)"
 
-#: gtksourceview/gtksourceprintjob.c:368
+#: gtksourceview/gtksourceprintjob.c:369
 msgid "Header and Footer Font Description"
 msgstr "ข้อกำหนดฟอนต์หัวกระดาษและท้ายกระดาษ"
 
-#: gtksourceview/gtksourceprintjob.c:369
+#: gtksourceview/gtksourceprintjob.c:370
 msgid "Font to use for headers and footers (e.g. \"Monospace 10\")"
 msgstr "ฟอนต์สำหรับพิมพ์หัวกระดาษและท้ายกระดาษ (เช่น \"Monospace 10\")"
 
-#: gtksourceview/gtksourcestylescheme.c:262
+#: gtksourceview/gtksourcestylescheme.c:264
 msgid "Base-N Integer"
 msgstr "เลขจำนวนเต็มฐาน N"
 
-#: gtksourceview/gtksourcestylescheme.c:267
+#: gtksourceview/gtksourcestylescheme.c:269
 msgid "Character"
 msgstr "อักขระ"
 
-#: gtksourceview/gtksourcestylescheme.c:272
+#: gtksourceview/gtksourcestylescheme.c:274
 #: gtksourceview/language-specs/latex.lang.h:1
 #: gtksourceview/language-specs/po.lang.h:1
 msgid "Comment"
 msgstr "หมายเหตุ"
 
 #. $this = (datatype)
-#: gtksourceview/gtksourcestylescheme.c:277
+#: gtksourceview/gtksourcestylescheme.c:279
 #: gtksourceview/language-specs/php.lang.h:14
 msgid "Data Type"
 msgstr "ชนิดข้อมูล"
@@ -195,103 +197,109 @@ msgstr "ชนิดข้อมูล"
 #.
 #. CSS functions, such as rgb(), clip(), or lang().
 #.
-#: gtksourceview/gtksourcestylescheme.c:282
+#: gtksourceview/gtksourcestylescheme.c:284
 #: gtksourceview/language-specs/ada.lang.h:3
-#: gtksourceview/language-specs/css.lang.h:17
+#: gtksourceview/language-specs/css.lang.h:18
 msgid "Function"
 msgstr "ฟังก์ชัน"
 
-#: gtksourceview/gtksourcestylescheme.c:287
+#: gtksourceview/gtksourcestylescheme.c:289
 #: gtksourceview/language-specs/c.lang.h:6
 #: gtksourceview/language-specs/cpp.lang.h:6
 #: gtksourceview/language-specs/fortran.lang.h:1
-#: gtksourceview/language-specs/python.lang.h:2
 #: gtksourceview/language-specs/haskell.lang.h:3
 #: gtksourceview/language-specs/nemerle.lang.h:6
+#: gtksourceview/language-specs/python.lang.h:2
 msgid "Decimal"
 msgstr "เลขฐานสิบ"
 
-#: gtksourceview/gtksourcestylescheme.c:292
+#: gtksourceview/gtksourcestylescheme.c:294
 msgid "Floating Point"
 msgstr "เลขทศนิยม"
 
-#: gtksourceview/gtksourcestylescheme.c:297
-#: gtksourceview/language-specs/latex.lang.h:3
+#: gtksourceview/gtksourcestylescheme.c:299
+#: gtksourceview/language-specs/gtkrc.lang.h:6
+#: gtksourceview/language-specs/latex.lang.h:4
 #: gtksourceview/language-specs/po.lang.h:3
+#: gtksourceview/language-specs/R.lang.h:6
 #: gtksourceview/language-specs/texinfo.lang.h:8
 #: gtksourceview/language-specs/vhdl.lang.h:2
-#: gtksourceview/language-specs/R.lang.h:6
-#: gtksourceview/language-specs/gtkrc.lang.h:6
 msgid "Keyword"
 msgstr "คำหลัก"
 
-#: gtksourceview/gtksourcestylescheme.c:302
+#: gtksourceview/gtksourcestylescheme.c:304
 msgid "Preprocessor"
 msgstr "พรีโพรเซสเซอร์"
 
-#: gtksourceview/gtksourcestylescheme.c:307
+#.
+#. <pattern-item _name = "Operators" style = "Operators">
+#. <regex>[:!#$%&amp;*+./&gt;=&lt;?@\\^|~\-]+</regex>
+#. </pattern-item>
+#.
+#. <keyword-list _name="Keysymbols" style = "Keyword">
+#. <keyword>::</keyword>
+#. <keyword>-&gt;</keyword>
+#. <keyword>&lt;-</keyword>
+#. <keyword>=&gt;</keyword>
+#. <keyword>=</keyword>
+#. <keyword>|</keyword>`
+#. <keyword>\</keyword>
+#. <keyword>@</keyword>
+#. <keyword>~</keyword>
+#. </keyword-list>
+#.
+#: gtksourceview/gtksourcestylescheme.c:309
 #: gtksourceview/language-specs/ada.lang.h:9
 #: gtksourceview/language-specs/c.lang.h:15
 #: gtksourceview/language-specs/cpp.lang.h:15
-#: gtksourceview/language-specs/csharp.lang.h:8
-#: gtksourceview/language-specs/css.lang.h:63
+#: gtksourceview/language-specs/csharp.lang.h:9
+#: gtksourceview/language-specs/css.lang.h:58
 #: gtksourceview/language-specs/html.lang.h:8
 #: gtksourceview/language-specs/fortran.lang.h:12
+#: gtksourceview/language-specs/haskell.lang.h:31
 #: gtksourceview/language-specs/idl.lang.h:9
 #: gtksourceview/language-specs/java.lang.h:11
-#: gtksourceview/language-specs/javascript.lang.h:33
+#: gtksourceview/language-specs/javascript.lang.h:23
 #: gtksourceview/language-specs/lua.lang.h:10
+#: gtksourceview/language-specs/makefile.lang.h:8
+#: gtksourceview/language-specs/nemerle.lang.h:15
 #: gtksourceview/language-specs/pascal.lang.h:18
 #: gtksourceview/language-specs/perl.lang.h:8
 #: gtksourceview/language-specs/po.lang.h:6
 #: gtksourceview/language-specs/python.lang.h:14
 #: gtksourceview/language-specs/ruby.lang.h:18
 #: gtksourceview/language-specs/sh.lang.h:13
-#: gtksourceview/language-specs/xml.lang.h:7
-#: gtksourceview/language-specs/haskell.lang.h:15
-#: gtksourceview/language-specs/vbnet.lang.h:7
-#: gtksourceview/language-specs/nemerle.lang.h:15
 #: gtksourceview/language-specs/tcl.lang.h:4
+#: gtksourceview/language-specs/vbnet.lang.h:11
 #: gtksourceview/language-specs/vhdl.lang.h:6
+#: gtksourceview/language-specs/xml.lang.h:7
 msgid "String"
 msgstr "สตริง"
 
-#: gtksourceview/gtksourcestylescheme.c:312
+#: gtksourceview/gtksourcestylescheme.c:314
 msgid "Specials"
 msgstr "พิเศษ"
 
-#.
-#. Proposed language specification for CSS (Cascading Style Sheet) files.
-#.
-#. Reference used:
-#. http://www.w3.org/TR/CSS2/
-#.
-#. Tested with:
-#. http://www.simplebits.com/css/simple.css
-#.
-#. Submitted by Scott Martin (scott@coffeeblack.org)
-#.
-#. FIXME: find the correct mimetype
-#: gtksourceview/gtksourcestylescheme.c:319
-#: gtksourceview/language-specs/css.lang.h:46
+#: gtksourceview/gtksourcestylescheme.c:321
+#: gtksourceview/language-specs/css.lang.h:36
 #: gtksourceview/language-specs/desktop.lang.h:10
 #: gtksourceview/language-specs/diff.lang.h:7
+#: gtksourceview/language-specs/gtkrc.lang.h:9
 #: gtksourceview/language-specs/ini.lang.h:10
 #: gtksourceview/language-specs/msil.lang.h:2
 #: gtksourceview/language-specs/po.lang.h:5
-#: gtksourceview/language-specs/gtkrc.lang.h:9
 msgid "Others"
 msgstr "อื่นๆ"
 
-#: gtksourceview/gtksourcestylescheme.c:324
+#: gtksourceview/gtksourcestylescheme.c:326
 msgid "Others 2"
 msgstr "อื่นๆ 2"
 
-#: gtksourceview/gtksourcestylescheme.c:329
+#: gtksourceview/gtksourcestylescheme.c:331
 msgid "Others 3"
 msgstr "อื่นๆ 3"
 
-#: gtksourceview/gtksourcestylescheme.c:366
+#: gtksourceview/gtksourcestylescheme.c:368
 msgid "Default"
 msgstr "ปริยาย"
 
@@ -308,72 +316,73 @@ msgid "Tag style"
 msgstr "สไตล์ของแท็ก"
 
 #: gtksourceview/gtksourcetag.c:117
-msgid "The style associated to the source tag"
+msgid "The style associated with the source tag"
 msgstr "สไตล์ที่ใช้กับแท็กในซอร์ส"
 
-#: gtksourceview/gtksourceview.c:206
+#: gtksourceview/gtksourceview.c:205
 msgid "Show Line Numbers"
 msgstr "แสดงเลขบรรทัด"
 
-#: gtksourceview/gtksourceview.c:207
+#: gtksourceview/gtksourceview.c:206
 msgid "Whether to display line numbers"
 msgstr "กำหนดว่าจะแสดงเลขบรรทัดหรือไม่"
 
-#: gtksourceview/gtksourceview.c:214
+#: gtksourceview/gtksourceview.c:213
 msgid "Show Line Markers"
 msgstr "แสดงการทำเครื่องหมายบรรทัด"
 
-#: gtksourceview/gtksourceview.c:215
+#: gtksourceview/gtksourceview.c:214
 msgid "Whether to display line marker pixbufs"
 msgstr "กำหนดว่าจะแสดงรูปเล็กๆ ที่ใช้ทำเครื่องหมายบรรทัดหรือไม่"
 
-#: gtksourceview/gtksourceview.c:232
+#: gtksourceview/gtksourceview.c:231
 msgid "Auto Indentation"
 msgstr "เยื้องบรรทัดอัตโนมัติ"
 
-#: gtksourceview/gtksourceview.c:233
+#: gtksourceview/gtksourceview.c:232
 msgid "Whether to enable auto indentation"
 msgstr "กำหนดว่าจะเปิดใช้การเยื้องบรรทัดอัตโนมัติหรือไม่"
 
-#: gtksourceview/gtksourceview.c:239
+#: gtksourceview/gtksourceview.c:238
 msgid "Insert Spaces Instead of Tabs"
 msgstr "แทรกช่องว่างแทนแท็บ"
 
-#: gtksourceview/gtksourceview.c:240
+#: gtksourceview/gtksourceview.c:239
 msgid "Whether to insert spaces instead of tabs"
 msgstr "กำหนดว่าจะแทรกช่องว่างแทนแท็บหรือไม่"
 
-#: gtksourceview/gtksourceview.c:247
+#: gtksourceview/gtksourceview.c:246
 msgid "Show Right Margin"
 msgstr "แสดงกั้นหน้าขวา"
 
-#: gtksourceview/gtksourceview.c:248
+#: gtksourceview/gtksourceview.c:247
 msgid "Whether to display the right margin"
 msgstr "กำหนดว่าจะแสดงกั้นหน้าขวาหรือไม่"
 
-#: gtksourceview/gtksourceview.c:255
+#: gtksourceview/gtksourceview.c:254
 msgid "Margin position"
 msgstr "ตำแหน่งกั้นหน้า"
 
-#: gtksourceview/gtksourceview.c:256
+#: gtksourceview/gtksourceview.c:255
 msgid "Position of the right margin"
 msgstr "ตำแหน่งของกั้นหน้าขวา"
 
-#: gtksourceview/gtksourceview.c:265
+#: gtksourceview/gtksourceview.c:264
 msgid "Use smart home/end"
 msgstr "ใช้ home/end พิเศษ"
 
-#: gtksourceview/gtksourceview.c:266
+#: gtksourceview/gtksourceview.c:265
 msgid ""
-"HOME and END keys move to first/last characters on line first before going "
-"to the start/end of the line"
-msgstr "ปุ่ม HOME และ END จะเคลื่อนไปที่อักขระแรก/สุดท้ายของบรรทัด ก่อนที่จะไปที่ต้น/ท้ายบรรทัด"
+"HOME and END keys move to first/last non whitespace characters on line "
+"before going to the start/end of the line"
+msgstr "ปุ่ม HOME และ END จะเคลื่อนไปที่อักขระแรก/สุดท้ายที่ไม่ใช่ช่องว่างของบรรทัด "
+"ก่อนที่จะไปที่ต้น/ท้ายบรรทัด"
 
-#: gtksourceview/gtksourceview.c:275
+#: gtksourceview/gtksourceview.c:274
 msgid "Highlight current line"
 msgstr "เน้นบรรทัดปัจจุบัน"
 
-#: gtksourceview/gtksourceview.c:276
+#: gtksourceview/gtksourceview.c:275
 msgid "Whether to highlight the current line"
 msgstr "กำหนดว่าจะเน้นบรรทัดปัจจุบันหรือไม่"
 
@@ -395,47 +404,52 @@ msgstr "ค่าคงที่อักขระ"
 #: gtksourceview/language-specs/cpp.lang.h:10
 #: gtksourceview/language-specs/csharp.lang.h:3
 #: gtksourceview/language-specs/fortran.lang.h:7
+#: gtksourceview/language-specs/haskell.lang.h:9
 #: gtksourceview/language-specs/idl.lang.h:4
-#: gtksourceview/language-specs/javascript.lang.h:11
+#: gtksourceview/language-specs/javascript.lang.h:12
 #: gtksourceview/language-specs/lua.lang.h:3
 #: gtksourceview/language-specs/perl.lang.h:2
 #: gtksourceview/language-specs/python.lang.h:6
 #: gtksourceview/language-specs/ruby.lang.h:8
-#: gtksourceview/language-specs/verilog.lang.h:6
-#: gtksourceview/language-specs/haskell.lang.h:9
-#: gtksourceview/language-specs/vbnet.lang.h:1
 #: gtksourceview/language-specs/tcl.lang.h:1
+#: gtksourceview/language-specs/vbnet.lang.h:1
+#: gtksourceview/language-specs/verilog.lang.h:6
 msgid "Keywords"
 msgstr "คำหลัก"
 
+#. <string _name = "String 2" style = "String" end-at-line-end = "TRUE">
+#. <start-regex>&apos;</start-regex>
+#. <end-regex>&apos;</end-regex>
+#. </string>
 #: gtksourceview/language-specs/ada.lang.h:5
 #: gtksourceview/language-specs/c.lang.h:11
 #: gtksourceview/language-specs/cpp.lang.h:11
 #: gtksourceview/language-specs/csharp.lang.h:4
-#: gtksourceview/language-specs/css.lang.h:28
+#: gtksourceview/language-specs/css.lang.h:29
 #: gtksourceview/language-specs/desktop.lang.h:7
 #: gtksourceview/language-specs/diff.lang.h:5
 #: gtksourceview/language-specs/fortran.lang.h:8
+#: gtksourceview/language-specs/gtkrc.lang.h:7
+#: gtksourceview/language-specs/haskell.lang.h:10
 #: gtksourceview/language-specs/idl.lang.h:5
 #: gtksourceview/language-specs/ini.lang.h:8
 #: gtksourceview/language-specs/java.lang.h:5
-#: gtksourceview/language-specs/javascript.lang.h:12
+#: gtksourceview/language-specs/javascript.lang.h:13
 #: gtksourceview/language-specs/lua.lang.h:4
+#: gtksourceview/language-specs/makefile.lang.h:4
+#: gtksourceview/language-specs/nemerle.lang.h:10
 #: gtksourceview/language-specs/pascal.lang.h:11
 #: gtksourceview/language-specs/perl.lang.h:3
 #: gtksourceview/language-specs/python.lang.h:7
+#: gtksourceview/language-specs/R.lang.h:7
 #: gtksourceview/language-specs/ruby.lang.h:9
 #: gtksourceview/language-specs/sh.lang.h:5
-#: gtksourceview/language-specs/sql.lang.h:11
-#: gtksourceview/language-specs/verilog.lang.h:7
-#: gtksourceview/language-specs/haskell.lang.h:10
-#: gtksourceview/language-specs/texinfo.lang.h:9
-#: gtksourceview/language-specs/vbnet.lang.h:2
-#: gtksourceview/language-specs/nemerle.lang.h:10
+#: gtksourceview/language-specs/sql.lang.h:23
 #: gtksourceview/language-specs/tcl.lang.h:2
+#: gtksourceview/language-specs/texinfo.lang.h:9
+#: gtksourceview/language-specs/vbnet.lang.h:6
+#: gtksourceview/language-specs/verilog.lang.h:7
 #: gtksourceview/language-specs/vhdl.lang.h:3
-#: gtksourceview/language-specs/R.lang.h:7
-#: gtksourceview/language-specs/gtkrc.lang.h:7
 msgid "Line Comment"
 msgstr "หมายเหตุแบบบรรทัด"
 
@@ -444,12 +458,12 @@ msgstr "หมายเหตุแบบบรรทัด"
 #. +/- before 0 is not allowed.
 #.
 #: gtksourceview/language-specs/ada.lang.h:6
-#: gtksourceview/language-specs/css.lang.h:33
+#: gtksourceview/language-specs/css.lang.h:34
 #: gtksourceview/language-specs/desktop.lang.h:9
-#: gtksourceview/language-specs/javascript.lang.h:15
+#: gtksourceview/language-specs/gtkrc.lang.h:8
+#: gtksourceview/language-specs/javascript.lang.h:16
 #: gtksourceview/language-specs/pascal.lang.h:14
 #: gtksourceview/language-specs/vhdl.lang.h:4
-#: gtksourceview/language-specs/gtkrc.lang.h:8
 msgid "Number"
 msgstr "ตัวเลข"
 
@@ -460,17 +474,18 @@ msgstr "คำหลักของพรีโพรเซสเซอร์"
 #: gtksourceview/language-specs/ada.lang.h:8
 #: gtksourceview/language-specs/c.lang.h:14
 #: gtksourceview/language-specs/cpp.lang.h:14
-#: gtksourceview/language-specs/csharp.lang.h:7
+#: gtksourceview/language-specs/csharp.lang.h:8
 #: gtksourceview/language-specs/fortran.lang.h:11
+#: gtksourceview/language-specs/haskell.lang.h:13
 #: gtksourceview/language-specs/idl.lang.h:8
 #: gtksourceview/language-specs/java.lang.h:10
-#: gtksourceview/language-specs/pascal.lang.h:17
-#: gtksourceview/language-specs/php.lang.h:23
-#: gtksourceview/language-specs/sql.lang.h:26
-#: gtksourceview/language-specs/verilog.lang.h:9
-#: gtksourceview/language-specs/haskell.lang.h:14
-#: gtksourceview/language-specs/vbnet.lang.h:6
+#: gtksourceview/language-specs/makefile.lang.h:6
 #: gtksourceview/language-specs/nemerle.lang.h:14
+#: gtksourceview/language-specs/pascal.lang.h:17
+#: gtksourceview/language-specs/php.lang.h:24
+#: gtksourceview/language-specs/sql.lang.h:48
+#: gtksourceview/language-specs/vbnet.lang.h:10
+#: gtksourceview/language-specs/verilog.lang.h:9
 #: gtksourceview/language-specs/vhdl.lang.h:5
 msgid "Sources"
 msgstr "ซอร์สโค้ด"
@@ -493,21 +508,22 @@ msgstr "ชนิด"
 msgid "'#if 0' Comment"
 msgstr "หมายเหตุแบบ '#if 0'"
 
+#. Comments
 #: gtksourceview/language-specs/c.lang.h:2
 #: gtksourceview/language-specs/cpp.lang.h:2
 #: gtksourceview/language-specs/csharp.lang.h:1
 #: gtksourceview/language-specs/css.lang.h:9
 #: gtksourceview/language-specs/html.lang.h:2
+#: gtksourceview/language-specs/haskell.lang.h:1
 #: gtksourceview/language-specs/idl.lang.h:1
 #: gtksourceview/language-specs/java.lang.h:1
 #: gtksourceview/language-specs/javascript.lang.h:2
 #: gtksourceview/language-specs/lua.lang.h:1
-#: gtksourceview/language-specs/sql.lang.h:5
+#: gtksourceview/language-specs/nemerle.lang.h:2
+#: gtksourceview/language-specs/sql.lang.h:9
+#: gtksourceview/language-specs/texinfo.lang.h:1
 #: gtksourceview/language-specs/verilog.lang.h:2
 #: gtksourceview/language-specs/xml.lang.h:2
-#: gtksourceview/language-specs/haskell.lang.h:1
-#: gtksourceview/language-specs/texinfo.lang.h:1
-#: gtksourceview/language-specs/nemerle.lang.h:2
 msgid "Block Comment"
 msgstr "หมายเหตุแบบบล็อก"
 
@@ -523,9 +539,9 @@ msgstr "แมโครใช้บ่อย"
 #: gtksourceview/language-specs/c.lang.h:7
 #: gtksourceview/language-specs/cpp.lang.h:7
 #: gtksourceview/language-specs/fortran.lang.h:2
-#: gtksourceview/language-specs/python.lang.h:3
 #: gtksourceview/language-specs/haskell.lang.h:4
 #: gtksourceview/language-specs/nemerle.lang.h:7
+#: gtksourceview/language-specs/python.lang.h:3
 #: gtksourceview/language-specs/R.lang.h:4
 msgid "Floating Point Number"
 msgstr "เลขทศนิยม"
@@ -534,36 +550,36 @@ msgstr "เลขทศนิยม"
 #: gtksourceview/language-specs/c.lang.h:8
 #: gtksourceview/language-specs/cpp.lang.h:8
 #: gtksourceview/language-specs/fortran.lang.h:4
-#: gtksourceview/language-specs/pascal.lang.h:10
-#: gtksourceview/language-specs/python.lang.h:5
 #: gtksourceview/language-specs/haskell.lang.h:6
 #: gtksourceview/language-specs/nemerle.lang.h:8
+#: gtksourceview/language-specs/pascal.lang.h:10
+#: gtksourceview/language-specs/python.lang.h:5
 msgid "Hex Number"
 msgstr "เลขฐานสิบหก"
 
 #: gtksourceview/language-specs/c.lang.h:9
 #: gtksourceview/language-specs/cpp.lang.h:9
-#: gtksourceview/language-specs/idl.lang.h:3
 #: gtksourceview/language-specs/haskell.lang.h:7
+#: gtksourceview/language-specs/idl.lang.h:3
 msgid "Include/Pragma"
 msgstr "Include/Pragma"
 
 #: gtksourceview/language-specs/c.lang.h:12
 #: gtksourceview/language-specs/cpp.lang.h:12
 #: gtksourceview/language-specs/fortran.lang.h:9
-#: gtksourceview/language-specs/python.lang.h:11
-#: gtksourceview/language-specs/verilog.lang.h:8
 #: gtksourceview/language-specs/haskell.lang.h:11
 #: gtksourceview/language-specs/nemerle.lang.h:12
+#: gtksourceview/language-specs/python.lang.h:11
+#: gtksourceview/language-specs/verilog.lang.h:8
 msgid "Octal Number"
 msgstr "เลขฐานแปด"
 
 #: gtksourceview/language-specs/c.lang.h:13
 #: gtksourceview/language-specs/cpp.lang.h:13
-#: gtksourceview/language-specs/csharp.lang.h:5
+#: gtksourceview/language-specs/csharp.lang.h:6
+#: gtksourceview/language-specs/haskell.lang.h:12
 #: gtksourceview/language-specs/idl.lang.h:6
-#: gtksourceview/language-specs/haskell.lang.h:13
-#: gtksourceview/language-specs/vbnet.lang.h:4
+#: gtksourceview/language-specs/vbnet.lang.h:8
 msgid "Preprocessor Definitions"
 msgstr "ข้อกำหนดพรีโพรเซสเซอร์"
 
@@ -575,23 +591,30 @@ msgstr "C++"
 msgid "C#"
 msgstr "C#"
 
-#: gtksourceview/language-specs/csharp.lang.h:6
+#: gtksourceview/language-specs/csharp.lang.h:5
+#: gtksourceview/language-specs/lua.lang.h:7
+#: gtksourceview/language-specs/python.lang.h:9
+#: gtksourceview/language-specs/sh.lang.h:6
+msgid "Multiline String"
+msgstr "สตริงหลายบรรทัด"
+
+#: gtksourceview/language-specs/csharp.lang.h:7
 #: gtksourceview/language-specs/java.lang.h:9
-#: gtksourceview/language-specs/vbnet.lang.h:5
 #: gtksourceview/language-specs/nemerle.lang.h:13
+#: gtksourceview/language-specs/vbnet.lang.h:9
 msgid "Primitives"
 msgstr "ชนิดมูลฐาน"
 
-#: gtksourceview/language-specs/csharp.lang.h:9
-#: gtksourceview/language-specs/css.lang.h:64
+#: gtksourceview/language-specs/csharp.lang.h:10
+#: gtksourceview/language-specs/css.lang.h:59
 #: gtksourceview/language-specs/fortran.lang.h:13
 #: gtksourceview/language-specs/java.lang.h:12
-#: gtksourceview/language-specs/javascript.lang.h:34
+#: gtksourceview/language-specs/javascript.lang.h:24
 #: gtksourceview/language-specs/lua.lang.h:11
+#: gtksourceview/language-specs/makefile.lang.h:9
 #: gtksourceview/language-specs/python.lang.h:15
 #: gtksourceview/language-specs/ruby.lang.h:19
 #: gtksourceview/language-specs/sh.lang.h:14
-#: gtksourceview/language-specs/vbnet.lang.h:8
 msgid "String 2"
 msgstr "สตริง 2"
 
@@ -607,12 +630,16 @@ msgstr ""
 #.
 #: gtksourceview/language-specs/css.lang.h:8
 msgid "Attribute Value Delimiters"
-msgstr ""
+msgstr "เครื่องหมายคั่นค่าแอตทริบิวต์"
+
+#: gtksourceview/language-specs/css.lang.h:10
+msgid "CSS"
+msgstr "CSS"
 
 #.
 #. Value length specifier. Unless it is 0, must always be like: -1.2em.
 #.
-#: gtksourceview/language-specs/css.lang.h:13
+#: gtksourceview/language-specs/css.lang.h:14
 msgid "Dimension"
 msgstr "ขนาด"
 
@@ -620,43 +647,48 @@ msgstr "ขนาด"
 #. Hexadecimal method of specifying colors. Can either be 3 or 6 in
 #. length: #ffcc00 = #fc0.
 #.
-#: gtksourceview/language-specs/css.lang.h:22
+#: gtksourceview/language-specs/css.lang.h:23
 msgid "Hexadecimal Color"
 msgstr "รหัสสีฐานสิบหก"
 
 #.
 #. Upgrades a rule set's importance when several rule sets conflict.
 #.
-#: gtksourceview/language-specs/css.lang.h:26
+#: gtksourceview/language-specs/css.lang.h:27
 msgid "Importance Modifier"
 msgstr ""
 
-#: gtksourceview/language-specs/css.lang.h:27
+#: gtksourceview/language-specs/css.lang.h:28
 msgid "Known Property Values"
 msgstr "ค่าคุณสมบัติตามข้อกำหนด"
 
-#: gtksourceview/language-specs/css.lang.h:34
-#: gtksourceview/language-specs/javascript.lang.h:19
-#: gtksourceview/language-specs/php.lang.h:19
+#: gtksourceview/language-specs/css.lang.h:35
+#: gtksourceview/language-specs/javascript.lang.h:20
+#: gtksourceview/language-specs/php.lang.h:20
 #: gtksourceview/language-specs/sh.lang.h:8
-#: gtksourceview/language-specs/haskell.lang.h:12
+#: gtksourceview/language-specs/sql.lang.h:34
 msgid "Operators"
 msgstr "ตัวกระทำ"
 
-#: gtksourceview/language-specs/css.lang.h:47
+#: gtksourceview/language-specs/css.lang.h:37
 msgid "Property Names"
 msgstr "ชื่อคุณสมบัติ"
 
 #.
 #. Brackets define a declaration block, parentheses define functions.
 #.
-#: gtksourceview/language-specs/css.lang.h:51
-#: gtksourceview/language-specs/javascript.lang.h:20
+#: gtksourceview/language-specs/css.lang.h:41
+#: gtksourceview/language-specs/javascript.lang.h:21
 #: gtksourceview/language-specs/sh.lang.h:9
 msgid "Punctuators"
 msgstr "เครื่องหมายวรรคตอน"
 
-#: gtksourceview/language-specs/css.lang.h:52
+#.
+#. Used to combine selectors. Example syntax:
+#.
+#. body * div#ID.className > p + ul li:first-child
+#.
+#: gtksourceview/language-specs/css.lang.h:47
 msgid "Selector Grammar"
 msgstr ""
 
@@ -664,7 +696,7 @@ msgstr ""
 #. Pseudo-class rules. Good to have syntax highlighting for these
 #. for mistypings.
 #.
-#: gtksourceview/language-specs/css.lang.h:57
+#: gtksourceview/language-specs/css.lang.h:52
 msgid "Selector Pseudo Classes"
 msgstr ""
 
@@ -672,7 +704,7 @@ msgstr ""
 #. Pseudo-element rules. Good to have syntax highlighting for these
 #. for mistypings.
 #.
-#: gtksourceview/language-specs/css.lang.h:62
+#: gtksourceview/language-specs/css.lang.h:57
 msgid "Selector Pseudo Elements"
 msgstr ""
 
@@ -680,14 +712,14 @@ msgstr ""
 #. Escaped unicode characters can contain either 6 hexadecimal characters
 #. or 1-5 hex characters followed by one whitespace character.
 #.
-#: gtksourceview/language-specs/css.lang.h:69
+#: gtksourceview/language-specs/css.lang.h:64
 msgid "Unicode Character Reference"
 msgstr "การอ้างอิงอักขระยูนิโค้ด"
 
 #.
 #. Unicode range values.
 #.
-#: gtksourceview/language-specs/css.lang.h:73
+#: gtksourceview/language-specs/css.lang.h:68
 msgid "Unicode Range"
 msgstr "ช่วงยูนิโค้ด"
 
@@ -696,8 +728,8 @@ msgid ".desktop"
 msgstr ".desktop"
 
 #: gtksourceview/language-specs/desktop.lang.h:2
-#: gtksourceview/language-specs/ini.lang.h:2
 #: gtksourceview/language-specs/gtkrc.lang.h:1
+#: gtksourceview/language-specs/ini.lang.h:2
 msgid "Boolean Value"
 msgstr "ค่าบูลีน"
 
@@ -776,9 +808,9 @@ msgid "HTML"
 msgstr "HTML"
 
 #: gtksourceview/language-specs/html.lang.h:7
-#: gtksourceview/language-specs/latex.lang.h:5
-#: gtksourceview/language-specs/xml.lang.h:6
+#: gtksourceview/language-specs/latex.lang.h:6
 #: gtksourceview/language-specs/texinfo.lang.h:12
+#: gtksourceview/language-specs/xml.lang.h:6
 msgid "Markup"
 msgstr "มาร์กอัพ"
 
@@ -802,6 +834,53 @@ msgstr "ฟังก์ชันภายใน"
 msgid "Read/Write"
 msgstr "การอ่าน/เขียนแฟ้ม"
 
+#: gtksourceview/language-specs/gtkrc.lang.h:2
+#: gtksourceview/language-specs/ini.lang.h:4
+#: gtksourceview/language-specs/R.lang.h:3
+msgid "Double Quote String"
+msgstr "สตริงในอัญประกาศคู่"
+
+#: gtksourceview/language-specs/gtkrc.lang.h:3
+msgid "GtkRC"
+msgstr "GtkRC"
+
+#: gtksourceview/language-specs/gtkrc.lang.h:4
+msgid "Include Directive"
+msgstr "คำสั่ง include"
+
+#: gtksourceview/language-specs/gtkrc.lang.h:5
+msgid "Keysymbol"
+msgstr ""
+
+#: gtksourceview/language-specs/gtkrc.lang.h:10
+#: gtksourceview/language-specs/ini.lang.h:11
+#: gtksourceview/language-specs/R.lang.h:11
+msgid "Single Quote String"
+msgstr "สตริงในอัญประกาศเดี่ยว"
+
+#: gtksourceview/language-specs/gtkrc.lang.h:11
+msgid "State"
+msgstr "สถานะ"
+
+#. $variable, $$dynamic-variable and even $$$more
+#: gtksourceview/language-specs/gtkrc.lang.h:12
+#: gtksourceview/language-specs/ini.lang.h:12
+#: gtksourceview/language-specs/php.lang.h:26
+msgid "Variable"
+msgstr "ตัวแปร"
+
+#: gtksourceview/language-specs/haskell.lang.h:5
+msgid "Haskell"
+msgstr "Haskell"
+
+#: gtksourceview/language-specs/haskell.lang.h:8
+msgid "Keysymbols"
+msgstr ""
+
+#: gtksourceview/language-specs/haskell.lang.h:32
+msgid "Type or Constructor"
+msgstr "ชนิดหรือคอนสตรักเตอร์"
+
 #: gtksourceview/language-specs/idl.lang.h:2
 msgid "IDL"
 msgstr "IDL"
@@ -819,28 +898,9 @@ msgstr ".ini"
 msgid "Decimal Number"
 msgstr "ตัวเลขฐานสิบ"
 
-#: gtksourceview/language-specs/ini.lang.h:4
-#: gtksourceview/language-specs/R.lang.h:3
-#: gtksourceview/language-specs/gtkrc.lang.h:2
-msgid "Double Quote String"
-msgstr "สตริงในอัญประกาศคู่"
-
 #: gtksourceview/language-specs/ini.lang.h:6
 msgid "Integer"
 msgstr "เลขจำนวนเต็ม"
-
-#: gtksourceview/language-specs/ini.lang.h:11
-#: gtksourceview/language-specs/R.lang.h:11
-#: gtksourceview/language-specs/gtkrc.lang.h:10
-msgid "Single Quote String"
-msgstr "สตริงในอัญประกาศเดี่ยว"
-
-#. $variable, $$dynamic-variable and even $$$more
-#: gtksourceview/language-specs/ini.lang.h:12
-#: gtksourceview/language-specs/php.lang.h:25
-#: gtksourceview/language-specs/gtkrc.lang.h:12
-msgid "Variable"
-msgstr "ตัวแปร"
 
 #: gtksourceview/language-specs/java.lang.h:2
 msgid "Declarations"
@@ -904,74 +964,72 @@ msgstr ""
 msgid "Hexadecimal Number"
 msgstr "เลขฐานสิบหก"
 
-#: gtksourceview/language-specs/javascript.lang.h:13
+#: gtksourceview/language-specs/javascript.lang.h:11
+msgid "JavaScript"
+msgstr "จาวาสคริปต์"
+
+#: gtksourceview/language-specs/javascript.lang.h:14
 msgid "Literals"
 msgstr "ค่าคงที่"
 
-#: gtksourceview/language-specs/javascript.lang.h:14
+#: gtksourceview/language-specs/javascript.lang.h:15
 msgid "Math Value Properties"
 msgstr ""
 
-#: gtksourceview/language-specs/javascript.lang.h:16
+#: gtksourceview/language-specs/javascript.lang.h:17
 msgid "Object Functions"
 msgstr "ฟังก์ชันของอ็อบเจกต์"
 
-#: gtksourceview/language-specs/javascript.lang.h:17
+#: gtksourceview/language-specs/javascript.lang.h:18
 msgid "Object Properties"
 msgstr "คุณสมบัติของอ็อบเจกต์"
 
-#: gtksourceview/language-specs/javascript.lang.h:18
+#: gtksourceview/language-specs/javascript.lang.h:19
 msgid "Objects"
 msgstr "อ็อบเจกต์"
 
-#.
-#. Proposed language specification for JavaScript files.
-#.
-#. Reference used:
-#. http://www.ecma-international.org/publications/files/ecma-st/ECMA-262.pdf
-#.
-#. Tested with:
-#. http://www.coffeeblack.org/scripts/map.js
-#.
-#. Submitted by Scott Martin (scott@coffeeblack.org)
-#.
-#: gtksourceview/language-specs/javascript.lang.h:32
+#: gtksourceview/language-specs/javascript.lang.h:22
 #: gtksourceview/language-specs/lua.lang.h:9
 #: gtksourceview/language-specs/perl.lang.h:7
 #: gtksourceview/language-specs/python.lang.h:13
+#: gtksourceview/language-specs/R.lang.h:10
 #: gtksourceview/language-specs/ruby.lang.h:17
 #: gtksourceview/language-specs/sh.lang.h:11
 #: gtksourceview/language-specs/tcl.lang.h:3
-#: gtksourceview/language-specs/R.lang.h:10
 msgid "Scripts"
 msgstr "สคริปต์"
 
-#: gtksourceview/language-specs/javascript.lang.h:35
+#: gtksourceview/language-specs/javascript.lang.h:25
 msgid "Unicode Escape Sequence"
 msgstr "ลำดับหลีกยูนิโค้ด"
 
-#: gtksourceview/language-specs/javascript.lang.h:36
+#: gtksourceview/language-specs/javascript.lang.h:26
 msgid "Word Operators"
 msgstr ""
 
 #: gtksourceview/language-specs/latex.lang.h:2
+msgid "Comment Environment"
+msgstr ""
+
+#: gtksourceview/language-specs/latex.lang.h:3
 #: gtksourceview/language-specs/texinfo.lang.h:6
 msgid "Include"
 msgstr "Include"
 
-#: gtksourceview/language-specs/latex.lang.h:4
+#: gtksourceview/language-specs/latex.lang.h:5
 msgid "LaTeX"
 msgstr "LaTeX"
 
-#: gtksourceview/language-specs/latex.lang.h:6
+#: gtksourceview/language-specs/latex.lang.h:7
 msgid "Math"
 msgstr "คณิตศาสตร์"
 
-#: gtksourceview/language-specs/latex.lang.h:7
+#: gtksourceview/language-specs/latex.lang.h:8
 msgid "Most Used Commands"
 msgstr "คำสั่งใช้บ่อย"
 
 #: gtksourceview/language-specs/lua.lang.h:2
+#: gtksourceview/language-specs/makefile.lang.h:3
 #: gtksourceview/language-specs/python.lang.h:4
 #: gtksourceview/language-specs/sh.lang.h:4
 msgid "Functions"
@@ -985,17 +1043,69 @@ msgstr "หมายเหตุแบบบรรทัด 2"
 msgid "Lua"
 msgstr "Lua"
 
-#: gtksourceview/language-specs/lua.lang.h:7
-#: gtksourceview/language-specs/python.lang.h:9
-#: gtksourceview/language-specs/sh.lang.h:6
-msgid "Multiline String"
-msgstr "สตริงหลายบรรทัด"
-
 #: gtksourceview/language-specs/lua.lang.h:8
 #: gtksourceview/language-specs/python.lang.h:10
 #: gtksourceview/language-specs/sh.lang.h:7
 msgid "Multiline String 2"
 msgstr "สตริงหลายบรรทัด 2"
+
+#. `backticks-quoted strings`
+#: gtksourceview/language-specs/makefile.lang.h:1
+#: gtksourceview/language-specs/php.lang.h:3
+#: gtksourceview/language-specs/sh.lang.h:1
+msgid "Backtick String"
+msgstr "สตริงในอัญประกาศย้อน"
+
+#: gtksourceview/language-specs/makefile.lang.h:2
+msgid "Directives"
+msgstr ""
+
+#: gtksourceview/language-specs/makefile.lang.h:5
+msgid "Makefile"
+msgstr "Makefile"
+
+#: gtksourceview/language-specs/makefile.lang.h:7
+msgid "Special Targets"
+msgstr "เป้าหมายพิเศษ"
+
+#: gtksourceview/language-specs/makefile.lang.h:10
+msgid "Targets"
+msgstr "เป้าหมาย"
+
+#: gtksourceview/language-specs/makefile.lang.h:11
+#: gtksourceview/language-specs/sh.lang.h:15
+msgid "Variable1"
+msgstr "ตัวแปร1"
+
+#: gtksourceview/language-specs/makefile.lang.h:12
+#: gtksourceview/language-specs/sh.lang.h:16
+msgid "Variable2"
+msgstr "ตัวแปร2"
+
+#: gtksourceview/language-specs/msil.lang.h:1
+msgid "MSIL"
+msgstr ""
+
+#: gtksourceview/language-specs/nemerle.lang.h:1
+#: gtksourceview/language-specs/verilog.lang.h:1
+msgid "Binary Number"
+msgstr "เลขฐานสอง"
+
+#: gtksourceview/language-specs/nemerle.lang.h:4
+msgid "Core Keywords"
+msgstr ""
+
+#: gtksourceview/language-specs/nemerle.lang.h:5
+msgid "Core Types"
+msgstr ""
+
+#: gtksourceview/language-specs/nemerle.lang.h:9
+msgid "Keywords Defined by Macros"
+msgstr ""
+
+#: gtksourceview/language-specs/nemerle.lang.h:11
+msgid "Nemerle"
+msgstr ""
 
 #: gtksourceview/language-specs/pascal.lang.h:1
 msgid "Block Comment 1"
@@ -1079,12 +1189,6 @@ msgstr "สตริง3"
 msgid "Variables"
 msgstr "ตัวแปร"
 
-#. `backticks-quoted strings`
-#: gtksourceview/language-specs/php.lang.h:3
-#: gtksourceview/language-specs/sh.lang.h:1
-msgid "Backtick String"
-msgstr "สตริงในอัญประกาศย้อน"
-
 #. # Bourne Shell Line Comment
 #: gtksourceview/language-specs/php.lang.h:5
 msgid "Bash Line Comment"
@@ -1114,20 +1218,21 @@ msgstr "คำหลักบังคับตัวใหญ่-เล็ก"
 msgid "Double Quoted String"
 msgstr "สตริงในอัญประกาศคู่"
 
-#: gtksourceview/language-specs/php.lang.h:17
+#. <? ?> <HTML> inside PHP <?
+#: gtksourceview/language-specs/php.lang.h:18
 msgid "First Open PHP Tag"
 msgstr "แท็กแรกเปิด PHP"
 
-#: gtksourceview/language-specs/php.lang.h:18
+#: gtksourceview/language-specs/php.lang.h:19
 msgid "HTML Block"
 msgstr "บล็อก HTML"
 
-#: gtksourceview/language-specs/php.lang.h:20
+#: gtksourceview/language-specs/php.lang.h:21
 msgid "PHP"
 msgstr "PHP"
 
 #. 'single-quoted strings'
-#: gtksourceview/language-specs/php.lang.h:22
+#: gtksourceview/language-specs/php.lang.h:23
 msgid "Single Quoted String"
 msgstr "สตริงในอัญประกาศเดี่ยว"
 
@@ -1151,6 +1256,26 @@ msgstr "การจัดการมอดูล"
 #: gtksourceview/language-specs/python.lang.h:12
 msgid "Python"
 msgstr "Python"
+
+#: gtksourceview/language-specs/R.lang.h:1
+msgid "Assignment Operator"
+msgstr "เครื่องหมายกำหนดค่า"
+
+#: gtksourceview/language-specs/R.lang.h:2
+msgid "Delimiter"
+msgstr "เครื่องหมายวรรคตอน"
+
+#: gtksourceview/language-specs/R.lang.h:5
+msgid "Integer Number"
+msgstr "เลขจำนวนเต็ม"
+
+#: gtksourceview/language-specs/R.lang.h:8
+msgid "Reserved Class"
+msgstr "คลาสสงวน"
+
+#: gtksourceview/language-specs/R.lang.h:9
+msgid "Reserved Constant"
+msgstr "ค่าคงที่สงวน"
 
 #: gtksourceview/language-specs/ruby.lang.h:1
 msgid "Attribute Definitions"
@@ -1220,14 +1345,6 @@ msgstr "การเปลี่ยนเส้นทาง"
 msgid "Self"
 msgstr "Self"
 
-#: gtksourceview/language-specs/sh.lang.h:15
-msgid "Variable1"
-msgstr "ตัวแปร1"
-
-#: gtksourceview/language-specs/sh.lang.h:16
-msgid "Variable2"
-msgstr "ตัวแปร2"
-
 #: gtksourceview/language-specs/sh.lang.h:17
 msgid "sh"
 msgstr "sh"
@@ -1236,138 +1353,166 @@ msgstr "sh"
 msgid "ANSI Datatypes"
 msgstr "ชนิดข้อมูลของ ANSI"
 
-#: gtksourceview/language-specs/sql.lang.h:2
+#. Reserved Words
+#: gtksourceview/language-specs/sql.lang.h:3
 msgid "ANSI Reserved Words"
 msgstr "คำสงวนของ ANSI"
 
-#: gtksourceview/language-specs/sql.lang.h:3
+#. Aggregate Functions
+#: gtksourceview/language-specs/sql.lang.h:5
 msgid "Aggregate Functions"
 msgstr "ฟังก์ชัน Aggregate"
 
-#: gtksourceview/language-specs/sql.lang.h:4
+#. Analytic Functions
+#: gtksourceview/language-specs/sql.lang.h:7
 msgid "Analytic Functions"
 msgstr "ฟังก์ชันเชิงวิเคราะห์"
 
-#: gtksourceview/language-specs/sql.lang.h:6
+#: gtksourceview/language-specs/sql.lang.h:10
 msgid "Character Functions Returning Character Values"
 msgstr "ฟังก์ชันอักขระที่ให้ผลลัพธ์เป็นอักขระ"
 
-#: gtksourceview/language-specs/sql.lang.h:7
+#: gtksourceview/language-specs/sql.lang.h:11
 msgid "Character Functions Returning Number Values"
 msgstr "ฟังก์ชันอักขระที่ให้ผลลัพธ์เป็นตัวเลข"
 
-#: gtksourceview/language-specs/sql.lang.h:8
+#: gtksourceview/language-specs/sql.lang.h:12
+msgid "Collection Functions"
+msgstr "ฟังก์ชันประมวลผลเป็นกลุ่ม"
+
+#: gtksourceview/language-specs/sql.lang.h:13
+msgid "Conditions"
+msgstr "เงื่อนไข"
+
+#: gtksourceview/language-specs/sql.lang.h:14
 msgid "Conversion Functions"
 msgstr "ฟังก์ชันแปลงค่า"
 
-#: gtksourceview/language-specs/sql.lang.h:9
+#: gtksourceview/language-specs/sql.lang.h:15
+msgid "Data Mining Functions"
+msgstr "ฟังก์ชันเกี่ยวกับ Data Mining"
+
+#: gtksourceview/language-specs/sql.lang.h:16
 msgid "Datetime Functions"
 msgstr "ฟังก์ชันเกี่ยวกับวันเวลา"
 
-#: gtksourceview/language-specs/sql.lang.h:10
+#: gtksourceview/language-specs/sql.lang.h:17
+msgid "Encoding and Decoding Functions"
+msgstr "ฟังก์ชันเกี่ยวกับการลงรหัสและอ่านรหัส"
+
+#: gtksourceview/language-specs/sql.lang.h:18
+msgid "Environment and Identifier Functions"
+msgstr ""
+
+#: gtksourceview/language-specs/sql.lang.h:19
+msgid "General Comparison Functions"
+msgstr "ฟังก์ชันเปรียบเทียบทั่วไป"
+
+#: gtksourceview/language-specs/sql.lang.h:20
+msgid "Hierarchical Function"
+msgstr "ฟังก์ชันลำดับชั้น"
+
+#: gtksourceview/language-specs/sql.lang.h:21
 msgid "Integer Literals"
 msgstr "ค่าคงที่จำนวนเต็ม"
 
-#: gtksourceview/language-specs/sql.lang.h:12
-msgid "Miscellaneous Single-Row Functions"
-msgstr "ฟังก์ชันแถวเดี่ยวจิปาถะ"
+#: gtksourceview/language-specs/sql.lang.h:22
+msgid "Large Object Functions"
+msgstr "ฟังก์ชันของอ็อบเจกต์ขนาดใหญ่"
 
-#: gtksourceview/language-specs/sql.lang.h:13
+#. Model Functions
+#: gtksourceview/language-specs/sql.lang.h:25
+msgid "Model Functions"
+msgstr ""
+
+#: gtksourceview/language-specs/sql.lang.h:26
+msgid "NLS Character Functions"
+msgstr "ฟังก์ชันอักขระภาษาท้องถิ่น"
+
+#: gtksourceview/language-specs/sql.lang.h:27
+msgid "NULL-Related Functions"
+msgstr "ฟังก์ชันเกี่ยวกับค่าว่างเปล่า"
+
+#: gtksourceview/language-specs/sql.lang.h:28
 msgid "Null"
 msgstr "Null"
 
-#: gtksourceview/language-specs/sql.lang.h:14
-msgid "Number Functions"
-msgstr "ฟังก์ชันเกี่ยวกับตัวเลข"
-
-#: gtksourceview/language-specs/sql.lang.h:15
+#: gtksourceview/language-specs/sql.lang.h:29
 msgid "Number Literals"
 msgstr "ค่าคงที่ตัวเลข"
 
-#: gtksourceview/language-specs/sql.lang.h:16
+#. Single-Row Functions
+#: gtksourceview/language-specs/sql.lang.h:31
+msgid "Numeric Functions"
+msgstr "ฟังก์ชันเกี่ยวกับตัวเลข"
+
+#. Object Reference Functions
+#: gtksourceview/language-specs/sql.lang.h:33
 msgid "Object Reference Functions"
 msgstr "ฟังก์ชันอ้างอิงอ็อบเจกต์"
 
-#: gtksourceview/language-specs/sql.lang.h:17
+#. Datatypes
+#: gtksourceview/language-specs/sql.lang.h:36
 msgid "Oracle Built-in Datatypes"
 msgstr "ชนิดข้อมูลในตัวของออราเคิล"
 
-#: gtksourceview/language-specs/sql.lang.h:18
+#: gtksourceview/language-specs/sql.lang.h:37
 msgid "Oracle Reserved Words"
 msgstr "คำสงวนของออราเคิล"
 
-#: gtksourceview/language-specs/sql.lang.h:19
+#: gtksourceview/language-specs/sql.lang.h:38
+msgid "Oracle-Supplied Types"
+msgstr "ชนิดข้อมูลในตัวของออราเคิล"
+
+#: gtksourceview/language-specs/sql.lang.h:39
 msgid "SQL"
 msgstr "SQL"
 
-#: gtksourceview/language-specs/sql.lang.h:20
+#: gtksourceview/language-specs/sql.lang.h:40
+msgid "SQL Statements"
+msgstr "ถ้อยแถลง SQL"
+
+#. SQL*Plus
+#: gtksourceview/language-specs/sql.lang.h:42
 msgid "SQL*Plus At Sign"
 msgstr ""
 
-#: gtksourceview/language-specs/sql.lang.h:21
+#: gtksourceview/language-specs/sql.lang.h:43
 msgid "SQL*Plus Commands"
 msgstr ""
 
-#: gtksourceview/language-specs/sql.lang.h:22
+#: gtksourceview/language-specs/sql.lang.h:44
 msgid "SQL*Plus Double At Sign"
 msgstr ""
 
-#: gtksourceview/language-specs/sql.lang.h:23
+#: gtksourceview/language-specs/sql.lang.h:45
 msgid "SQL*Plus Slash"
 msgstr ""
 
-#: gtksourceview/language-specs/sql.lang.h:24
+#: gtksourceview/language-specs/sql.lang.h:46
 msgid "SQL/DS and DB2 Datatypes"
 msgstr "ชนิดข้อมูลของ SQL/DS และ DB2"
 
-#: gtksourceview/language-specs/sql.lang.h:25
+#: gtksourceview/language-specs/sql.lang.h:47
 msgid "Size Clause"
 msgstr "ขนาดข้อมูล"
 
-#: gtksourceview/language-specs/sql.lang.h:27
+#. Literals
+#: gtksourceview/language-specs/sql.lang.h:50
 msgid "Text Literals"
 msgstr "ค่าคงที่ข้อความ"
 
-#: gtksourceview/language-specs/sql.lang.h:28
+#: gtksourceview/language-specs/sql.lang.h:51
 msgid "Unlimited"
 msgstr "Unlimited"
 
-#: gtksourceview/language-specs/verilog.lang.h:1
-#: gtksourceview/language-specs/nemerle.lang.h:1
-msgid "Binary Number"
-msgstr "เลขฐานสอง"
+#: gtksourceview/language-specs/sql.lang.h:52
+msgid "XML Functions"
+msgstr "ฟังก์ชัน XML"
 
-#: gtksourceview/language-specs/verilog.lang.h:4
-msgid "Gates"
-msgstr "เกต"
-
-#: gtksourceview/language-specs/verilog.lang.h:11
-msgid "Verilog"
-msgstr "Verilog"
-
-#: gtksourceview/language-specs/xml.lang.h:5
-msgid "Hexadecimal"
-msgstr "เลขฐานสิบหก"
-
-#: gtksourceview/language-specs/xml.lang.h:8
-msgid "Tag"
-msgstr "แท็ก"
-
-#: gtksourceview/language-specs/xml.lang.h:9
-msgid "XML"
-msgstr "XML"
-
-#: gtksourceview/language-specs/haskell.lang.h:5
-msgid "Haskell"
-msgstr "Haskell"
-
-#: gtksourceview/language-specs/haskell.lang.h:8
-msgid "Keysymbols"
-msgstr ""
-
-#: gtksourceview/language-specs/haskell.lang.h:16
-msgid "Type or Constructor"
-msgstr "ชนิดหรือคอนสตรักเตอร์"
+#: gtksourceview/language-specs/tcl.lang.h:6
+msgid "Tcl"
+msgstr "Tcl"
 
 #: gtksourceview/language-specs/texinfo.lang.h:2
 msgid "Characters"
@@ -1413,33 +1558,21 @@ msgstr "การแบ่งหัวข้อ"
 msgid "Texinfo"
 msgstr "Texinfo"
 
-#: gtksourceview/language-specs/vbnet.lang.h:3
+#: gtksourceview/language-specs/vbnet.lang.h:7
 msgid "Old Style Comment"
 msgstr "หมายเหตุแบบเก่า"
 
-#: gtksourceview/language-specs/vbnet.lang.h:9
+#: gtksourceview/language-specs/vbnet.lang.h:12
 msgid "VB.NET"
 msgstr "VB.NET"
 
-#: gtksourceview/language-specs/nemerle.lang.h:4
-msgid "Core Keywords"
-msgstr ""
+#: gtksourceview/language-specs/verilog.lang.h:4
+msgid "Gates"
+msgstr "เกต"
 
-#: gtksourceview/language-specs/nemerle.lang.h:5
-msgid "Core Types"
-msgstr ""
-
-#: gtksourceview/language-specs/nemerle.lang.h:9
-msgid "Keywords Defined by Macros"
-msgstr ""
-
-#: gtksourceview/language-specs/nemerle.lang.h:11
-msgid "Nemerle"
-msgstr ""
-
-#: gtksourceview/language-specs/tcl.lang.h:6
-msgid "Tcl"
-msgstr "Tcl"
+#: gtksourceview/language-specs/verilog.lang.h:11
+msgid "Verilog"
+msgstr "Verilog"
 
 #: gtksourceview/language-specs/vhdl.lang.h:7
 msgid "True and False"
@@ -1453,41 +1586,20 @@ msgstr "ชนิด"
 msgid "VHDL"
 msgstr "VHDL"
 
-#: gtksourceview/language-specs/R.lang.h:1
-msgid "Assignment Operator"
-msgstr "เครื่องหมายกำหนดค่า"
+#: gtksourceview/language-specs/xml.lang.h:5
+msgid "Hexadecimal"
+msgstr "เลขฐานสิบหก"
 
-#: gtksourceview/language-specs/R.lang.h:2
-msgid "Delimiter"
-msgstr "เครื่องหมายวรรคตอน"
+#: gtksourceview/language-specs/xml.lang.h:8
+msgid "Tag"
+msgstr "แท็ก"
 
-#: gtksourceview/language-specs/R.lang.h:5
-msgid "Integer Number"
-msgstr "เลขจำนวนเต็ม"
+#: gtksourceview/language-specs/xml.lang.h:9
+msgid "XML"
+msgstr "XML"
 
-#: gtksourceview/language-specs/R.lang.h:8
-msgid "Reserved Class"
-msgstr "คลาสสงวน"
-
-#: gtksourceview/language-specs/R.lang.h:9
-msgid "Reserved Constant"
-msgstr "ค่าคงที่สงวน"
-
-#: gtksourceview/language-specs/gtkrc.lang.h:3
-msgid "GtkRC"
-msgstr "GtkRC"
-
-#: gtksourceview/language-specs/gtkrc.lang.h:4
-msgid "Include Directive"
-msgstr "คำสั่ง include"
-
-#: gtksourceview/language-specs/gtkrc.lang.h:5
-msgid "Keysymbol"
-msgstr ""
-
-#: gtksourceview/language-specs/gtkrc.lang.h:11
-msgid "State"
-msgstr "สถานะ"
+#~ msgid "Miscellaneous Single-Row Functions"
+#~ msgstr "ฟังก์ชันแถวเดี่ยวจิปาถะ"
 
 #~ msgid "Plain Old Documentation"
 #~ msgstr "Plain Old Documentation"
