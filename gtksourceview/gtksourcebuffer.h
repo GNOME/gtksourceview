@@ -147,6 +147,10 @@ GtkSourceMarker         *gtk_source_buffer_get_prev_marker      (GtkSourceBuffer
 								 GtkTextIter            *iter);
 
 /* fold methods. */
+gboolean		 gtk_source_buffer_get_folds_enabled	(GtkSourceBuffer        *buffer);
+void			 gtk_source_buffer_set_folds_enabled	(GtkSourceBuffer        *buffer,
+								 gboolean                enable_folds);
+
 GtkSourceFold		*gtk_source_buffer_add_fold		(GtkSourceBuffer        *buffer,
 								 const GtkTextIter      *begin,
 								 const GtkTextIter      *end);

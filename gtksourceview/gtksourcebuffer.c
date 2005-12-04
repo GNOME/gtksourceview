@@ -94,7 +94,8 @@ enum {
 	PROP_CHECK_BRACKETS,
 	PROP_HIGHLIGHT,
 	PROP_MAX_UNDO_LEVELS,
-	PROP_LANGUAGE
+	PROP_LANGUAGE,
+	PROP_FOLDS
 };
 
 struct _SyntaxDelimiter 
@@ -143,6 +144,7 @@ struct _GtkSourceBufferPrivate
 
 	GtkSourceUndoManager  *undo_manager;
 	
+	gint                   enable_folds:1;
 	GList                 *folds;
 };
 
@@ -332,6 +334,14 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 							      GTK_TYPE_SOURCE_LANGUAGE,
 							      G_PARAM_READWRITE));
 	
+	g_object_class_install_property (object_class,
+					 PROP_FOLDS,
+					 g_param_spec_boolean ("folds",
+							       _("Folds"),
+							       _("Whether folds are enabled"),
+							       FALSE,
+							       G_PARAM_READWRITE));
+	
 	buffer_signals[CAN_UNDO] =
 	    g_signal_new ("can_undo",
 			  G_OBJECT_CLASS_TYPE (object_class),
@@ -414,6 +424,7 @@ gtk_source_buffer_init (GtkSourceBuffer *buffer)
 	priv->check_brackets = TRUE;
 	priv->bracket_mark = NULL;
 	priv->bracket_found = FALSE;
+	priv->enable_folds = FALSE;
 	priv->folds = NULL;
 	
 	priv->markers = g_array_new (FALSE, FALSE, sizeof (GtkSourceMarker *));
@@ -443,7 +454,6 @@ gtk_source_buffer_init (GtkSourceBuffer *buffer)
 			  "can_redo",
 			  G_CALLBACK (gtk_source_buffer_can_redo_handler),
 			  buffer);
-
 }
 
 static void 
@@ -641,6 +651,11 @@ gtk_source_buffer_set_property (GObject      *object,
 							g_value_get_object (value));
 			break;
 			
+		case PROP_FOLDS:
+			gtk_source_buffer_set_folds_enabled (source_buffer,
+							     g_value_get_boolean (value));
+			break;
+			
 		default:
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
 			break;
@@ -680,6 +695,10 @@ gtk_source_buffer_get_property (GObject    *object,
 			
 		case PROP_LANGUAGE:
 			g_value_set_object (value, source_buffer->priv->language);
+			break;
+		
+		case PROP_FOLDS:
+			g_value_set_boolean (value, source_buffer->priv->enable_folds);
 			break;
 			
 		default:
@@ -3739,6 +3758,44 @@ gtk_source_buffer_error_quark (void)
 	return q;
 }
 
+gboolean
+gtk_source_buffer_get_folds_enabled (GtkSourceBuffer *buffer)
+{
+	g_return_val_if_fail (GTK_IS_SOURCE_BUFFER (buffer), FALSE);
+
+	return buffer->priv->enable_folds;
+}
+
+static void
+foreach_fold_region (gpointer data, gpointer user_data)
+{
+	gtk_source_buffer_real_remove_fold (GTK_SOURCE_BUFFER (user_data), data);
+}
+
+void
+gtk_source_buffer_set_folds_enabled (GtkSourceBuffer *buffer,
+				     gboolean         enable_folds)
+{
+	g_return_if_fail (GTK_IS_SOURCE_BUFFER (buffer));
+
+	enable_folds = (enable_folds != FALSE);
+
+	if (buffer->priv->enable_folds == enable_folds)
+		return;
+
+	buffer->priv->enable_folds = enable_folds;
+
+	/* Remove all existing folds if folds are disabled. */
+	if (!enable_folds && buffer->priv->folds != NULL)
+	{
+		GList *folds = g_list_copy (buffer->priv->folds);
+		g_list_foreach (folds, foreach_fold_region, buffer);
+		g_list_free (folds);
+	}
+
+	g_object_notify (G_OBJECT (buffer), "folds");
+}
+
 /**
  * insert_child_fold:
  * @buffer: a #GtkSourceBuffer.
@@ -4084,12 +4141,6 @@ gtk_source_buffer_add_fold (GtkSourceBuffer   *buffer,
 }
 
 static void
-foreach_fold_region (gpointer data, gpointer user_data)
-{
-	gtk_source_buffer_real_remove_fold (GTK_SOURCE_BUFFER (user_data), data);
-}
-
-static void
 gtk_source_buffer_real_remove_fold (GtkSourceBuffer *buffer,
 				    GtkSourceFold   *fold)
 {
@@ -4098,16 +4149,15 @@ gtk_source_buffer_real_remove_fold (GtkSourceBuffer *buffer,
 	g_return_if_fail (GTK_IS_SOURCE_BUFFER (buffer));
 	g_return_if_fail (fold != NULL);
 	
-	l = g_list_find (buffer->priv->folds, fold);
-	g_return_if_fail (l != NULL);
-	
 	if (fold->folded)
 		gtk_source_fold_set_folded (fold, FALSE);
 	
 	gtk_text_buffer_delete_mark (GTK_TEXT_BUFFER (buffer), fold->start_line);
 	gtk_text_buffer_delete_mark (GTK_TEXT_BUFFER (buffer), fold->end_line);
 	
-	buffer->priv->folds = g_list_delete_link (buffer->priv->folds, l);
+	l = g_list_find (buffer->priv->folds, fold);
+	if (l != NULL)
+		buffer->priv->folds = g_list_delete_link (buffer->priv->folds, l);
 	
 	g_list_foreach (fold->children, foreach_fold_region, buffer);
 

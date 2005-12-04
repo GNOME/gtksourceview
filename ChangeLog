@@ -1,3 +1,37 @@
+2005-12-04  Jeroen Zwartepoorte  <jeroen.zwartepoorte@gmail.com>
+
+	* docs/reference/tmpl/buffer.sgml:
+	* docs/reference/tmpl/gtksourceview-unused.sgml:
+	* docs/reference/tmpl/view.sgml:
+	* gtksourceview/Makefile.am:
+	* gtksourceview/gtksourcebuffer.c: (gtk_source_buffer_class_init),
+	(gtk_source_buffer_init), (gtk_source_buffer_set_property),
+	(gtk_source_buffer_get_property),
+	(gtk_source_buffer_get_folds_enabled), (foreach_fold_region),
+	(gtk_source_buffer_set_folds_enabled),
+	(gtk_source_buffer_real_remove_fold):
+	* gtksourceview/gtksourcebuffer.h:
+	* gtksourceview/gtksourcefold.c: (_gtk_source_fold_new),
+	(gtk_source_fold_free), (gtk_source_fold_set_folded),
+	(gtk_source_fold_get_bounds):
+	* gtksourceview/gtksourceview.c: (gtk_source_view_class_init),
+	(gtk_source_view_init), (fold_added_cb), (fold_remove_cb),
+	(notify_folds_cb), (set_source_buffer), (gtk_source_view_motion),
+	(gtk_source_view_button_press), (fold_animation_timeout),
+	(start_fold_animation), (gtk_source_view_button_release),
+	(gtk_source_view_move_cursor), (gtk_source_view_get_lines),
+	(draw_line_markers), (draw_fold_line), (move_fold_label),
+	(foreach_fold_label), (update_fold_label_locations),
+	(gtk_source_view_paint_margin), (gtk_source_view_expose),
+	(gtk_source_view_style_set), (expand_folds):
+	* gtksourceview/gtksourceview.h:
+	* tests/test-widget.c: (finished_cb), (folds_toggled_cb),
+	(button_press_cb), (create_view_window), (create_main_window),
+	(main):
+	
+	Commit outstanding changes for the code folding + new highlighting
+	engine integration branch.
+
 2005-11-06  Jeroen Zwartepoorte  <jeroen.zwartepoorte@gmail.com>
 
 	* gtksourceview/gtksourcebuffer.c: (gtk_source_buffer_class_init),

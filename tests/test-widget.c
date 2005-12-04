@@ -58,6 +58,8 @@ static void       numbers_toggled_cb             (GtkAction       *action,
 						  gpointer         user_data);
 static void       markers_toggled_cb             (GtkAction       *action,
 						  gpointer         user_data);
+static void       folds_toggled_cb               (GtkAction       *action,
+						  gpointer         user_data);
 static void       margin_toggled_cb              (GtkAction       *action,
 						  gpointer         user_data);
 static void       hl_line_toggled_cb             (GtkAction       *action,
@@ -102,6 +104,9 @@ static GtkToggleActionEntry toggle_entries[] = {
 	{ "ShowMarkers", NULL, "Show _Markers", NULL,
 	  "Toggle visibility of markers in the left margin",
 	  G_CALLBACK (markers_toggled_cb), FALSE },
+	{ "ShowFolds", NULL, "Show _Folds", NULL,
+	  "Toggle visibility of line folds left margin",
+	  G_CALLBACK (folds_toggled_cb), FALSE },
 	{ "ShowMargin", NULL, "Show M_argin", NULL,
 	  "Toggle visibility of right margin indicator",
 	  G_CALLBACK (margin_toggled_cb), FALSE },
@@ -135,6 +140,7 @@ static const gchar *view_ui_description =
 "      <separator/>"
 "      <menuitem action=\"ShowNumbers\"/>"
 "      <menuitem action=\"ShowMarkers\"/>"
+"      <menuitem action=\"ShowFolds\"/>"
 "      <menuitem action=\"ShowMargin\"/>"
 "      <menuitem action=\"HlLine\"/>"
 "      <separator/>"
@@ -390,7 +396,7 @@ finished_cb (GtkSourcePrintJob *job, gpointer user_data)
 
 	g_print ("\n");
 	gjob = gtk_source_print_job_get_print_job (job);
-	preview = gnome_print_job_preview_new (gjob, "test-widget print preview");
+	preview = gnome_print_job_preview_new (gjob, (guchar *)"test-widget print preview");
  	g_object_unref (gjob); 
  	g_object_unref (job);
 	
@@ -415,6 +421,18 @@ markers_toggled_cb (GtkAction *action, gpointer user_data)
 	g_return_if_fail (GTK_IS_TOGGLE_ACTION (action) && GTK_IS_SOURCE_VIEW (user_data));
 	gtk_source_view_set_show_line_markers (
 		GTK_SOURCE_VIEW (user_data),
+		gtk_toggle_action_get_active (GTK_TOGGLE_ACTION (action)));
+}
+
+static void
+folds_toggled_cb (GtkAction *action, gpointer user_data)
+{
+	GtkSourceBuffer *buffer;
+
+	g_return_if_fail (GTK_IS_TOGGLE_ACTION (action) && GTK_IS_SOURCE_VIEW (user_data));
+
+	buffer = GTK_SOURCE_BUFFER (gtk_text_view_get_buffer (GTK_TEXT_VIEW (user_data)));
+	gtk_source_buffer_set_folds_enabled (buffer,
 		gtk_toggle_action_get_active (GTK_TOGGLE_ACTION (action)));
 }
 
@@ -702,7 +720,8 @@ button_press_cb (GtkWidget *widget, GdkEventButton *ev, gpointer user_data)
 					     NULL);
 		
 		line_end = line_start;
-		gtk_text_iter_forward_to_line_end (&line_end);
+		if (!gtk_text_iter_ends_line (&line_end))
+			gtk_text_iter_forward_to_line_end (&line_end);
 
 		/* get the markers already in the line */
 		marker_list = gtk_source_buffer_get_markers_in_region (buffer,
@@ -755,6 +774,7 @@ create_view_window (GtkSourceBuffer *buffer, GtkSourceView *from)
 	GtkActionGroup *action_group;
 	GtkUIManager *ui_manager;
 	GError *error;
+	GtkIconTheme *theme;
 
 	g_return_val_if_fail (GTK_IS_SOURCE_BUFFER (buffer), NULL);
 	g_return_val_if_fail (from == NULL || GTK_IS_SOURCE_VIEW (from), NULL);
@@ -767,11 +787,12 @@ create_view_window (GtkSourceBuffer *buffer, GtkSourceView *from)
 
 	/* view */
 	view = gtk_source_view_new_with_buffer (buffer);
+	g_object_set_data (G_OBJECT (window), "view", view);
 	
 	g_signal_connect (buffer, "mark_set", G_CALLBACK (move_cursor_cb), view);
 	g_signal_connect (buffer, "changed", G_CALLBACK (update_cursor_position), view);
-	g_signal_connect (view, "button-press-event", G_CALLBACK (button_press_cb), NULL);
 	g_signal_connect (window, "delete-event", (GCallback) window_deleted_cb, view);
+	g_signal_connect_after (view, "button-press-event", G_CALLBACK (button_press_cb), NULL);
 
 	/* action group and UI manager */
 	action_group = gtk_action_group_new ("ViewActions");
@@ -805,6 +826,9 @@ create_view_window (GtkSourceBuffer *buffer, GtkSourceView *from)
 	/* misc widgets */
 	vbox = gtk_vbox_new (0, FALSE);
 	sw = gtk_scrolled_window_new (NULL, NULL);
+	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (sw),
+					GTK_POLICY_AUTOMATIC,
+					GTK_POLICY_AUTOMATIC);
 	gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (sw),
                                              GTK_SHADOW_IN);
 	pos_label = gtk_label_new ("Position");
@@ -819,7 +843,7 @@ create_view_window (GtkSourceBuffer *buffer, GtkSourceView *from)
 	gtk_box_pack_start (GTK_BOX (vbox), pos_label, FALSE, FALSE, 0);
 
 	/* setup view */
-	font_desc = pango_font_description_from_string ("monospace 10");
+	font_desc = pango_font_description_from_string ("Bitstream Vera Sans Mono 8");
 	if (font_desc != NULL)
 	{
 		gtk_widget_modify_font (view, font_desc);
@@ -839,6 +863,10 @@ create_view_window (GtkSourceBuffer *buffer, GtkSourceView *from)
 		action = gtk_action_group_get_action (action_group, "ShowMarkers");
 		gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action),
 					      gtk_source_view_get_show_line_markers (from));
+		
+		action = gtk_action_group_get_action (action_group, "ShowFolds");
+		gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action),
+					      gtk_source_buffer_get_folds_enabled (buffer));
 		
 		action = gtk_action_group_get_action (action_group, "ShowMargin");
 		gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action),
@@ -865,9 +893,13 @@ create_view_window (GtkSourceBuffer *buffer, GtkSourceView *from)
 		g_free (tmp);
 	}
 
+	theme = gtk_icon_theme_get_default ();
+
 	/* add marker pixbufs */
-	error = NULL;	
-	if ((pixbuf = gdk_pixbuf_new_from_file (DATADIR "/pixmaps/apple-green.png", &error)))
+	error = NULL;
+	pixbuf = gtk_icon_theme_load_icon (theme, GTK_STOCK_STOP,
+					   GTK_ICON_SIZE_MENU, 0, &error);
+	if (pixbuf != NULL)
 	{
 		gtk_source_view_set_marker_pixbuf (GTK_SOURCE_VIEW (view), MARKER_TYPE_1, pixbuf);
 		g_object_unref (pixbuf);
@@ -877,10 +909,12 @@ create_view_window (GtkSourceBuffer *buffer, GtkSourceView *from)
 		g_message ("could not load marker 1 image.  Spurious messages might get triggered: %s",
 		error->message);
 		g_error_free (error);
-	} 
+	}
 	
 	error = NULL;
-	if ((pixbuf = gdk_pixbuf_new_from_file (DATADIR "/pixmaps/apple-red.png", &error)))
+	pixbuf = gtk_icon_theme_load_icon (theme, GTK_STOCK_GO_FORWARD,
+					   GTK_ICON_SIZE_MENU, 0, &error);
+	if (pixbuf != NULL)
 	{
 		gtk_source_view_set_marker_pixbuf (GTK_SOURCE_VIEW (view), MARKER_TYPE_2, pixbuf);
 		g_object_unref (pixbuf);
@@ -937,6 +971,9 @@ create_main_window (GtkSourceBuffer *buffer)
 	action = gtk_action_group_get_action (action_group, "ShowMarkers");
 	gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), TRUE);
 
+	action = gtk_action_group_get_action (action_group, "ShowFolds");
+	gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), TRUE);
+
 	action = gtk_action_group_get_action (action_group, "ShowMargin");
 	gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), TRUE);
 
@@ -977,6 +1014,8 @@ main (int argc, char *argv[])
 	GtkWidget *window;
 	GtkSourceLanguagesManager *lm;
 	GtkSourceBuffer *buffer;
+	GtkSourceView *view;
+	GtkTextIter begin, end;
 	
 	/* initialization */
 	gtk_init (&argc, &argv);
@@ -987,13 +1026,50 @@ main (int argc, char *argv[])
 	buffer = create_source_buffer (lm);
 	g_object_unref (lm);
 
-	if (argc > 1)
-		open_file (buffer, argv [1]);
-	else
-		open_file (buffer, "../gtksourceview/gtksourcebuffer.c");
-
 	/* create first window */
 	window = create_main_window (buffer);
+	view = GTK_SOURCE_VIEW (g_object_get_data (G_OBJECT (window), "view"));
+
+	if (argc > 1) {
+		open_file (buffer, argv [1]);
+	} else {
+		open_file (buffer, "test.c");
+
+		gtk_source_buffer_set_folds_enabled (buffer, TRUE);
+
+		/* main() fold. */		
+		gtk_text_buffer_get_iter_at_line (GTK_TEXT_BUFFER (buffer), &begin, 33);
+		gtk_text_iter_forward_to_line_end (&begin);
+		gtk_text_buffer_get_iter_at_line (GTK_TEXT_BUFFER (buffer), &end, 67);
+		gtk_source_buffer_add_fold (buffer, &begin, &end);
+
+		/* doit() fold. */		
+		gtk_text_buffer_get_iter_at_line (GTK_TEXT_BUFFER (buffer), &begin, 18);
+		gtk_text_iter_forward_to_line_end (&begin);
+		gtk_text_buffer_get_iter_at_line (GTK_TEXT_BUFFER (buffer), &end, 22);
+		gtk_source_fold_set_folded (
+			gtk_source_buffer_add_fold (buffer, &begin, &end),
+			TRUE);
+
+		/* nested while (...) fold. */
+		gtk_text_buffer_get_iter_at_line (GTK_TEXT_BUFFER (buffer), &begin, 59);
+		gtk_text_iter_forward_to_line_end (&begin);
+		gtk_text_buffer_get_iter_at_line (GTK_TEXT_BUFFER (buffer), &end, 62);
+		gtk_source_buffer_add_fold (buffer, &begin, &end);
+		
+		/* nested if (...) fold. */
+		gtk_text_buffer_get_iter_at_line (GTK_TEXT_BUFFER (buffer), &begin, 51);
+		gtk_text_iter_forward_to_line_end (&begin);
+		gtk_text_buffer_get_iter_at_line (GTK_TEXT_BUFFER (buffer), &end, 54);
+		gtk_source_buffer_add_fold (buffer, &begin, &end);
+		
+		/* nested if (DEBUG) fold. This should cause a reparent of the previous fold. */
+		gtk_text_buffer_get_iter_at_line (GTK_TEXT_BUFFER (buffer), &begin, 50);
+		gtk_text_iter_forward_to_line_end (&begin);
+		gtk_text_buffer_get_iter_at_line (GTK_TEXT_BUFFER (buffer), &end, 55);
+		gtk_source_buffer_add_fold (buffer, &begin, &end);
+	}
+
 	gtk_window_set_default_size (GTK_WINDOW (window), 500, 500);
 	gtk_widget_show (window);
 

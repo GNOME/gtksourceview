@@ -39,7 +39,6 @@ G_BEGIN_DECLS
 #define GTK_IS_SOURCE_VIEW_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE ((klass), GTK_TYPE_SOURCE_VIEW))
 #define GTK_SOURCE_VIEW_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj), GTK_TYPE_SOURCE_VIEW, GtkSourceViewClass))
 
-
 typedef struct _GtkSourceView GtkSourceView;
 typedef struct _GtkSourceViewClass GtkSourceViewClass;
 
@@ -69,7 +68,7 @@ GType		 gtk_source_view_get_type 		(void) G_GNUC_CONST;
 
 /* Constructors */
 GtkWidget 	*gtk_source_view_new 			(void);
-GtkWidget 	*gtk_source_view_new_with_buffer	(GtkSourceBuffer *buffer);
+GtkWidget 	*gtk_source_view_new_with_buffer		(GtkSourceBuffer *buffer);
 
 /* Properties */
 void 		 gtk_source_view_set_show_line_numbers 	(GtkSourceView   *view,
@@ -80,7 +79,7 @@ void 		 gtk_source_view_set_show_line_markers  (GtkSourceView   *view,
 							 gboolean         show);
 gboolean	 gtk_source_view_get_show_line_markers  (GtkSourceView   *view);
 
-void 		 gtk_source_view_set_tabs_width 	(GtkSourceView   *view, 
+void 		 gtk_source_view_set_tabs_width		(GtkSourceView   *view, 
 							 guint            width);
 guint            gtk_source_view_get_tabs_width         (GtkSourceView   *view);
 

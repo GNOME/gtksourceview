@@ -66,6 +66,22 @@ operation.
 @sourcebuffer: the object which received the signal.
 @arg1: TRUE if the buffer can now perform an undo.
 
+<!-- ##### SIGNAL GtkSourceBuffer::fold-added ##### -->
+<para>
+
+</para>
+
+@sourcebuffer: the object which received the signal.
+@arg1: 
+
+<!-- ##### SIGNAL GtkSourceBuffer::fold-remove ##### -->
+<para>
+
+</para>
+
+@sourcebuffer: the object which received the signal.
+@arg1: 
+
 <!-- ##### SIGNAL GtkSourceBuffer::highlight-updated ##### -->
 <para>
 Emitted whenever the syntax highlighting information has been updated,
@@ -99,6 +115,11 @@ one for the old location and one for the new.
 </para>
 
 <!-- ##### ARG GtkSourceBuffer:escape-char ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GtkSourceBuffer:folds ##### -->
 <para>
 
 </para>

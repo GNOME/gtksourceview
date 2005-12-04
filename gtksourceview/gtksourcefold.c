@@ -37,8 +37,10 @@ _gtk_source_fold_new (GtkSourceBuffer   *buffer,
 	
 	fold->start_line = gtk_text_buffer_create_mark (GTK_TEXT_BUFFER (buffer),
 							NULL, begin, FALSE);
+	g_object_ref (fold->start_line);
 	fold->end_line = gtk_text_buffer_create_mark (GTK_TEXT_BUFFER (buffer),
 						      NULL, end, FALSE);
+	g_object_ref (fold->end_line);
 	
 	return fold;
 }
@@ -72,14 +74,12 @@ gtk_source_fold_free (GtkSourceFold *fold)
 	if (!gtk_text_mark_get_deleted (fold->start_line))
 		gtk_text_buffer_delete_mark (gtk_text_mark_get_buffer (fold->start_line),
 					     fold->start_line);
-	else
-		g_object_unref (fold->start_line);
+	g_object_unref (fold->start_line);
 		
 	if (!gtk_text_mark_get_deleted (fold->end_line))
 		gtk_text_buffer_delete_mark (gtk_text_mark_get_buffer (fold->end_line),
 					     fold->end_line);
-	else
-		g_object_unref (fold->end_line);
+	g_object_unref (fold->end_line);
 
 	if (fold->children)
 		g_list_free (fold->children);
@@ -186,7 +186,7 @@ gtk_source_fold_set_folded (GtkSourceFold *fold,
 	if (folded)
 	{
 		GtkTextIter insert;
-	
+
 		gtk_text_buffer_apply_tag_by_name (buffer, INVISIBLE_LINE,
 						   &begin, &end);
 
@@ -244,12 +244,14 @@ gtk_source_fold_get_bounds (GtkSourceFold *fold,
 {
 	GtkTextBuffer *buffer;
 	
-	g_return_if_fail (fold != NULL && begin != NULL && end != NULL);
+	g_return_if_fail (fold != NULL);
 
 	buffer = gtk_text_mark_get_buffer (fold->start_line);
 
-	gtk_text_buffer_get_iter_at_mark (buffer, begin, fold->start_line);
-	gtk_text_buffer_get_iter_at_mark (buffer, end, fold->end_line);
+	if (begin != NULL)
+		gtk_text_buffer_get_iter_at_mark (buffer, begin, fold->start_line);
+	if (end != NULL)
+		gtk_text_buffer_get_iter_at_mark (buffer, end, fold->end_line);
 }
 
 /**
