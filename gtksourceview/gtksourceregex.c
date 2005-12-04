@@ -189,3 +189,76 @@ gtk_source_regex_match (GtkSourceRegex *regex,
 			  &regex->reg) > 0);
 }
 
+/* --- Utility functions ----------------------------------------------- */
+
+gchar *
+gtk_source_regex_case_insesitive_keyword (const gchar *keyword)
+{
+	GString *str;
+	
+	const gchar *cur;
+
+	g_return_val_if_fail (keyword != NULL, NULL);
+
+	str = g_string_new ("");
+
+	cur = keyword;
+	
+	while (*cur) 
+	{
+		gunichar cur_char;
+		cur_char = g_utf8_get_char (cur);
+		
+		if (g_unichar_isalpha (cur_char))
+		{
+			gunichar cur_char_upper;
+		       	gunichar cur_char_lower;
+	
+			cur_char_upper = g_unichar_toupper (cur_char);
+			cur_char_lower = g_unichar_tolower (cur_char);
+		
+			g_string_append_c (str, '[');
+			g_string_append_unichar (str, cur_char_lower);
+			g_string_append_unichar (str, cur_char_upper);
+			g_string_append_c (str, ']');
+		}
+		else
+			g_string_append_unichar (str, cur_char);
+
+		cur = g_utf8_next_char (cur);
+	}
+			
+	return g_string_free (str, FALSE);
+}
+
+static const gchar *chars_to_escape = "[]+*.?{}()|^$";
+
+gchar *
+gtk_source_regex_escape_string (const gchar *text)
+{
+	GString *rval;
+	const gchar *p;
+
+	rval = g_string_new ("");
+	p = text;
+	while (*p)
+	{
+		gunichar c;
+
+		c = g_utf8_get_char (p);
+		if (c == '\\')
+			g_string_append (rval, "[\\]");
+		else if (g_utf8_strchr (chars_to_escape, -1, c) != NULL)
+		{
+			g_string_append_c (rval, '\\');
+			g_string_append_c (rval, c);
+		}
+		else
+			g_string_append_c (rval, c);
+
+		p = g_utf8_next_char (p);
+	}
+	
+	return g_string_free (rval, FALSE);
+}
+

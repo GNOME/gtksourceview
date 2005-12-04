@@ -25,13 +25,13 @@
 
 #include <libxml/xmlreader.h>
 
+#include "gtksourcetag.h"
+#include "gtksourcebuffer.h"
+#include "gtksourcelanguage.h"
 #include "gtksourcelanguagesmanager.h"
 
 #include "gtksourcelanguage-private.h"
 #include "gtksourceview-i18n.h"
-
-#include "gtksourcelanguage.h"
-#include "gtksourcetag.h"
 
 #define DEFAULT_GCONF_BASE_DIR		"/apps/gtksourceview"
 
@@ -357,6 +357,51 @@ gtk_source_languages_manager_get_language_from_mime_type (GtkSourceLanguagesMana
 		if (tmp != NULL)
 			return lang;
 		
+		languages = g_slist_next (languages);
+	}
+
+	return NULL;
+}
+
+/**
+ * gtk_source_languages_manager_get_language_from_id:
+ * @lm: a #GtkSourceLanguagesManager.
+ * @id: a language id.
+ * 
+ * Gets the #GtkSourceLanguage identified by the given @id in the language 
+ * manager.
+ *
+ * Return value: a #GtkSourceLanguage, or %NULL if there is no language
+ * identified by the given @id.
+ **/
+GtkSourceLanguage *
+gtk_source_languages_manager_get_language_from_id (GtkSourceLanguagesManager 	*lm,
+							  const gchar 		*id)
+{
+	const GSList *languages;
+	gboolean found = FALSE;
+	g_return_val_if_fail (id != NULL, NULL);
+
+	languages = gtk_source_languages_manager_get_available_languages (lm);
+
+	while (languages != NULL)
+	{
+		gchar *lang_id;
+
+		GtkSourceLanguage *lang = GTK_SOURCE_LANGUAGE (languages->data);
+		
+		lang_id = gtk_source_language_get_id (lang);
+
+		if (lang_id != NULL && (strcmp (lang_id, id) == 0))
+		{		
+			found = TRUE;
+		}
+
+		g_free (lang_id);
+
+		if (found)
+			return lang;
+
 		languages = g_slist_next (languages);
 	}
 

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<language id="def" _name="Defaults" version="2.0" section="" mimetypes="FIXME">
+    <styles>
+        <style id="decimal"        _name="Decimal"/>
+        <style id="base-n-integer" _name="Base-N Integer"/>
+        <style id="floating-point" _name="Floating Point"/>
+        <style id="net-address"    _name="Net Address"/>
+        <style id="note"           _name="Note"/>
+        <style id="escape"         _name="Escape"/>
+        
+        <style id="comment"        _name="Comment"/>
+        <style id="error"          _name="Error"/>
+        <style id="preprocessor"   _name="Preprocessor"/>
+        <style id="string"         _name="String"/>
+        <style id="package"        _name="Package"/>
+        <style id="keyword"        _name="Keyword"/>
+        <style id="data-type"      _name="Data Type"/>
+        <style id="character"      _name="Character"/>
+        <style id="function"       _name="Function"/>
+
+        <style id="others"         _name="Others"/>
+        <style id="others2"        _name="Others 2"/>
+        <style id="others3"        _name="Others 3"/>
+        <style id="specials"       _name="Specials"/>
+    </styles>
+
+    <definitions>
+
+        <!-- An empty string always matches. -->
+        <define-regex id="always-match"></define-regex>
+
+        <!-- $^ never matches. -->
+        <define-regex id="never-match">$^</define-regex>
+
+        <define-regex id="decimal" extended="true" case-insensitive="true">
+                \b
+                ([1-9][0-9]* | 0)
+                (u (ll?)? | ll? u?)?
+                \b
+        </define-regex>
+        <define-regex id="octal" extended="true" case-insensitive="true">
+                \b
+                0 [0-7]+
+                (u (ll?)? | ll? u?)?
+                \b
+        </define-regex>
+        <define-regex id="hexadecimal" extended="true" case-insensitive="true">
+                \b
+                0x [0-9a-f]+
+                (u (ll?)? | ll? u?)?
+                \b
+        </define-regex>
+        <define-regex id="float" extended="true" case-insensitive="true">
+                \b
+                ([0-9]+ e [-+]? [0-9]+ |
+                 ([0-9]* \. [0-9]+ | [0-9]+ \.)
+                 (e [-+]? [0-9]+)?) [fl]?
+                \b
+        </define-regex>
+
+        <context id="decimal" style-ref="decimal">
+            <match>\%{decimal}</match>
+        </context>
+        <context id="octal" style-ref="base-n-integer">
+            <match>\%{octal}</match>
+        </context>
+        <context id="hexadecimal" style-ref="base-n-integer">
+            <match>\%{hexadecimal}</match>
+        </context>
+        <context id="float" style-ref="floating-point">
+            <match>\%{float}</match>
+        </context>
+
+        <define-regex id="net-address" extended="true" case-insensitive="true"> 
+                \%[                                         # separator
+                (https?|ftp|nntp|news|javascript|about):    # protocol
+                [^\ \n]* [^\ \n.:;,?&gt;&lt;)]              # address
+                (?=[^a-z0-9_.-])                            # separator
+        </define-regex>
+
+        <define-regex id="email-address" extended="true" case-insensitive="true">
+                \%[                 # separator
+                (mailto:)?          # optional "mailto:"
+                [a-z0-9_.-]+        # user name
+                @                   # at
+                [a-z0-9_.-]+        # domain
+                \%]                 # separator
+        </define-regex>
+
+        <context id="comment">
+            <include>
+                <context id="net-address" extend-parent="false" style-ref="net-address">
+                    <match>\%{net-address}</match>
+                </context>
+                <context id="email-address" extend-parent="false" style-ref="net-address">
+                    <match>\%{email-address}</match>
+                </context>
+                <context id="comment-note" extend-parent="false" style-ref="note">
+                    <match>\b(FIXME|TODO|XXX)\b</match>
+                </context>
+            </include>
+        </context>
+
+        <context id="c-style-escape" style-ref="escape">
+            <match>\\.</match>
+        </context>
+
+    </definitions>
+</language>

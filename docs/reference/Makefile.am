@@ -31,6 +31,7 @@ IGNORE_HFILES =					\
 	gtksourceview-marshal.h			\
 	gtksourceview-typebuiltins.h		\
 	gtktextregion.h				\
+	gtksourcecontextengine.h		\
 	regex.h					\
 	regex_internal.h
 
@@ -41,7 +42,10 @@ MKDB_OPTIONS = --sgml-mode --output-format=xml --ignore-files=trio
 HTML_IMAGES =
 
 # Extra SGML files that are included by $(DOC_MAIN_SGML_FILE)
-content_files =	version.xml
+content_files =			\
+	version.xml		\
+	lang-tutorial.sgml	\
+	lang-reference.sgml
 
 # Extra options to supply to gtkdoc-fixref
 FIXXREF_OPTIONS=

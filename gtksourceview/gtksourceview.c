@@ -1909,8 +1909,9 @@ gtk_source_view_expose (GtkWidget      *widget,
 					     + visible_rect.height, NULL);
 		gtk_text_iter_forward_line (&iter2);
 
-		_gtk_source_buffer_highlight_region (view->priv->source_buffer,
-						     &iter1, &iter2, FALSE);
+		g_signal_emit_by_name (view->priv->source_buffer,
+				       "update_highlight",
+				       &iter1, &iter2, FALSE);
 	}
 
 	/* now check for the left window, which contains the margin */

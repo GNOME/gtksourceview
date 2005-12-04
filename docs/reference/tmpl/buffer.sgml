@@ -109,12 +109,35 @@ one for the old location and one for the new.
 @sourcebuffer: the object which received the signal.
 @arg1: #GtkTextIter at the location where the change occurred.
 
-<!-- ##### ARG GtkSourceBuffer:check-brackets ##### -->
+<!-- ##### SIGNAL GtkSourceBuffer::text-deleted ##### -->
 <para>
 
 </para>
 
-<!-- ##### ARG GtkSourceBuffer:escape-char ##### -->
+@sourcebuffer: the object which received the signal.
+@arg1: 
+@arg2: 
+
+<!-- ##### SIGNAL GtkSourceBuffer::text-inserted ##### -->
+<para>
+
+</para>
+
+@sourcebuffer: the object which received the signal.
+@arg1: 
+@arg2: 
+
+<!-- ##### SIGNAL GtkSourceBuffer::update-highlight ##### -->
+<para>
+
+</para>
+
+@sourcebuffer: the object which received the signal.
+@arg1: 
+@arg2: 
+@arg3: 
+
+<!-- ##### ARG GtkSourceBuffer:check-brackets ##### -->
 <para>
 
 </para>
@@ -236,24 +259,6 @@ one for the old location and one for the new.
 
 @buffer: 
 @language: 
-
-
-<!-- ##### FUNCTION gtk_source_buffer_get_escape_char ##### -->
-<para>
-
-</para>
-
-@buffer: 
-@Returns: 
-
-
-<!-- ##### FUNCTION gtk_source_buffer_set_escape_char ##### -->
-<para>
-
-</para>
-
-@buffer: 
-@escape_char: 
 
 
 <!-- ##### FUNCTION gtk_source_buffer_can_undo ##### -->

@@ -1,128 +1,184 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE language SYSTEM "language.dtd">
-<language _name="C" version="1.0" _section="Sources" mimetypes="text/x-c;text/x-chdr;text/x-csrc">
-	
-	<escape-char>\</escape-char>
+<language id="c" _name="C" version="2.0" _section="Sources" mimetypes="text/x-c;text/x-chdr;text/x-csrc">
+    <styles>
+        <style id="comment"           _name="Comment"
+                                      map-to="def:comment"/>
+        <style id="comment-multiline" _name="Multiline Comment"
+                                      map-to="def:comment"/>
+        <style id="error"             _name="Error"
+                                      map-to="def:error"/>
+        <style id="string"            _name="String"
+                                      map-to="def:string"/>
+        <style id="escape"            _name="Escape"
+                                      map-to="def:escape"/>
+        <style id="preprocessor"      _name="Preprocessor"
+                                      map-to="def:preprocessor"/>
+        <style id="included-file"     _name="Included File"
+                                      map-to="def:package"/>
+        <style id="char"              _name="Character"
+                                      map-to="def:string"/>
+        <style id="keyword"           _name="Keyword"
+                                      map-to="def:keyword"/>
+        <style id="data-type"         _name="Data Type"
+                                      map-to="def:data-type"/>
+    </styles>
 
-	<line-comment _name = "Line Comment" style= "Comment">
-		<start-regex>//</start-regex>
-	</line-comment>
+    <definitions>
+        <context id="c">
+            <include>
 
-	<block-comment _name = "Block Comment" style = "Comment">
-		<start-regex>/\*</start-regex>
-        	<end-regex>\*/</end-regex>
-	</block-comment>
+                <!-- Comments -->
+                <context id="comment" style-ref="comment">
+                    <start>\/\/</start>
+                    <end>$</end>
+                    <include>
+                        <context id="comment-continue">
+                            <match>\\\n</match>
+                        </context>
+                        <context ref="def:comment:*"/>
+                    </include>
+                </context>
 
-	<block-comment _name = "'#if 0' Comment" style = "Comment">
-		<start-regex>^[ \t]*#[ \t]*if[ \t]*0</start-regex>
-        	<end-regex>[ \t]*#[ \t]*(endif|else)</end-regex>
-	</block-comment>
+                <context id="comment-multiline" style-ref="comment-multiline">
+                    <start>\/\*</start>
+                    <end>\*\/</end>
+                    <include>
+                        <context id="open-comment-in-comment" extend-parent="false" style-ref="error">
+                            <match>\/\*</match>
+                        </context>
+                        <context ref="def:comment:*"/>
+                    </include>
+                </context>
 
-	<string _name = "String" style = "String" end-at-line-end = "TRUE">
-		<start-regex>&quot;</start-regex>
-		<end-regex>&quot;</end-regex>
-	</string>
+                <context id="close-comment-outside-comment" style-ref="error">
+                    <match>\*\/(?!\*)</match>
+                </context>
 
-	<syntax-item _name = "Include/Pragma" style = "Preprocessor">
-		<start-regex>^#[ \t]*(include|pragma)</start-regex>
-	         <end-regex>\n</end-regex>
-	</syntax-item>
+                <!-- Preprocessor -->
+                <define-regex id="preproc-start">
+                    ^\s*#\s*
+                </define-regex>
 
-	<keyword-list _name = "Keywords" style = "Keyword" case-sensitive="TRUE">
-		<keyword>asm</keyword>
-		<keyword>break</keyword>
-		<keyword>case</keyword>
-		<keyword>continue</keyword>
-		<keyword>default</keyword>
-		<keyword>do</keyword>
-      		<keyword>else</keyword>
-		<keyword>for</keyword>
-		<keyword>fortran</keyword>
-		<keyword>goto</keyword>
-		<keyword>if</keyword>
-		<keyword>return</keyword>
-		<keyword>sizeof</keyword>
-		<keyword>switch</keyword>
-		<keyword>while</keyword>
-	</keyword-list>
+                <context id="if0-comment" style-ref="comment-multiline">
+                    <start>\%{preproc-start}if\s*0\b</start>
+                    <end>\%{preproc-start}(endif|else|elif)\b</end>
+                    <include>
+                        <context id="if-in-if0">
+                            <start>\%{preproc-start}if(n?def)?\b</start>
+                            <end>\%{preproc-start}endif\b</end>
+                            <include>
+                                <context ref="if-in-if0"/>
+                            </include>
+                        </context>
+                    </include>
+                </context>
 
-	<keyword-list _name = "Types" style = "Data Type" case-sensitive="TRUE">
-		<keyword>_Bool</keyword>
-		<keyword>_Complex</keyword>
-		<keyword>_Imaginary</keyword>
-		<keyword>auto</keyword>
-		<keyword>char</keyword>
-		<keyword>const</keyword>
-		<keyword>double</keyword>
-      		<keyword>enum</keyword>
-		<keyword>extern</keyword>
-		<keyword>float</keyword>
-		<keyword>int</keyword>
-		<keyword>inline</keyword>
-		<keyword>long</keyword>
-		<keyword>register</keyword>
-		<keyword>restrict</keyword>
-		<keyword>short</keyword>
-		<keyword>signed</keyword>
-		<keyword>static</keyword>
-		<keyword>struct</keyword>
-		<keyword>typedef</keyword>
-		<keyword>union</keyword>
-		<keyword>unsigned</keyword>
-		<keyword>void</keyword>
-		<keyword>volatile</keyword>
-	</keyword-list>
+                <context id="include" style-ref="preprocessor">
+                    <match extended="true">
+                            \%{preproc-start}
+                            include\s*
+                            (".*?"|&lt;.*&gt;)
+                    </match>
+                    <include>
+                        <context id="included-file" sub-pattern="1" style-ref="included-file"/>
+                    </include>
+                </context>
 
-	<string _name = "Character Constant" style = "String" end-at-line-end = "TRUE">
-		<start-regex>&apos;</start-regex>
-		<end-regex>&apos;</end-regex>
-	</string>
+                <context id="preprocessor" style-ref="preprocessor">
+                    <match extended="true">
+                            \%{preproc-start}
+                            (define|undef|error|pragma|if(n?def)?|else|elif|endif|line)
+                            \b
+                    </match>
+                </context>
 
-	<pattern-item _name = "Decimal" style = "Decimal">
-		<regex>\b([1-9][0-9]*|0)([Uu]([Ll]|LL|ll)?|([Ll]|LL|ll)[Uu]?)?\b</regex>
-	</pattern-item>
+                <!-- Strings -->
+                <context id="string" end-at-line-end="true" style-ref="string">
+                    <start>"</start>
+                    <end>"</end>
+                    <include>
+                        <context id="string-continue" style-ref="escape">
+                            <match>\\\n</match>
+                        </context>
+                        <context ref="def:c-style-escape"/>
+                    </include>
+                </context>
 
-	<pattern-item _name = "Floating Point Number" style = "Floating Point">
-		<regex>\b([0-9]+[Ee][-]?[0-9]+|([0-9]*\.[0-9]+|[0-9]+\.)([Ee][-]?[0-9]+)?)[fFlL]?</regex>
-	</pattern-item>
+                <context id="char" end-at-line-end="true" style-ref="char">
+                    <start>'</start>
+                    <end>'</end>
+                    <include>
+                        <context ref="def:c-style-escape"/>
+                    </include>
+                </context>
 
-	<pattern-item _name = "Octal Number" style = "Base-N Integer">
-		<regex>\b0[0-7]+([Uu]([Ll]|LL|ll)?|([Ll]|LL|ll)[Uu]?)?\b</regex>
-	</pattern-item>
+                <!-- Numbers -->
+                <context ref="def:decimal"/>
+                <context ref="def:octal"/>
+                <context ref="def:hexadecimal"/>
+                <context ref="def:float"/>
 
-	<pattern-item _name = "Hex Number" style = "Base-N Integer">
-		<regex>\b0[xX][0-9a-fA-F]+([Uu]([Ll]|LL|ll)?|([Ll]|LL|ll)[Uu]?)?\b</regex>
-	</pattern-item>
+                <!-- Keywords -->
+                <context id="keywords" style-ref="keyword">
+                    <keyword>asm</keyword>
+                    <keyword>break</keyword>
+                    <keyword>case</keyword>
+                    <keyword>continue</keyword>
+                    <keyword>default</keyword>
+                    <keyword>do</keyword>
+                    <keyword>else</keyword>
+                    <keyword>for</keyword>
+                    <keyword>fortran</keyword>
+                    <keyword>goto</keyword>
+                    <keyword>if</keyword>
+                    <keyword>return</keyword>
+                    <keyword>sizeof</keyword>
+                    <keyword>switch</keyword>
+                    <keyword>while</keyword>
+                </context>
 
-	<keyword-list _name = "Common Macro" style = "Preprocessor" case-sensitive="TRUE">
-		<keyword>NULL</keyword>
-		<keyword>TRUE</keyword>
-		<keyword>FALSE</keyword>
-		<keyword>MAX</keyword>
-		<keyword>MIN</keyword>
-		<keyword>__LINE__</keyword>
-		<keyword>__DATA__</keyword>
-		<keyword>__FILE__</keyword>
-		<keyword>__func__</keyword>
-		<keyword>__TIME__</keyword>
-		<keyword>__STDC__</keyword>
-	</keyword-list>
+                <context id="types" style-ref="data-type">
+                    <keyword>_Bool</keyword>
+                    <keyword>_Complex</keyword>
+                    <keyword>_Imaginary</keyword>
+                    <keyword>auto</keyword>
+                    <keyword>char</keyword>
+                    <keyword>const</keyword>
+                    <keyword>double</keyword>
+                    <keyword>enum</keyword>
+                    <keyword>extern</keyword>
+                    <keyword>float</keyword>
+                    <keyword>int</keyword>
+                    <keyword>inline</keyword>
+                    <keyword>long</keyword>
+                    <keyword>register</keyword>
+                    <keyword>restrict</keyword>
+                    <keyword>short</keyword>
+                    <keyword>signed</keyword>
+                    <keyword>static</keyword>
+                    <keyword>struct</keyword>
+                    <keyword>typedef</keyword>
+                    <keyword>union</keyword>
+                    <keyword>unsigned</keyword>
+                    <keyword>void</keyword>
+                    <keyword>volatile</keyword>
+                </context>
 
-	<keyword-list _name = "Preprocessor Definitions" style = "Preprocessor" case-sensitive="TRUE"
-		match-empty-string-at-beginning = "FALSE"
-		match-empty-string-at-end = "TRUE"
-		beginning-regex = "^[ \t]*#[ \t]*">
-		<keyword>if</keyword>
-		<keyword>ifdef</keyword>
-		<keyword>ifndef</keyword>
-		<keyword>else</keyword>
-		<keyword>elif</keyword>
-		<keyword>define</keyword>
-		<keyword>endif</keyword>
-		<keyword>undef</keyword>
-		<keyword>error</keyword>
-		<keyword>pragma</keyword>
-		<keyword>line</keyword>
-	</keyword-list>
+                <context id="common-defines" style-ref="preprocessor">
+                    <keyword>NULL</keyword>
+                    <keyword>TRUE</keyword>
+                    <keyword>FALSE</keyword>
+                    <keyword>MAX</keyword>
+                    <keyword>MIN</keyword>
+                    <keyword>__LINE__</keyword>
+                    <keyword>__DATA__</keyword>
+                    <keyword>__FILE__</keyword>
+                    <keyword>__func__</keyword>
+                    <keyword>__TIME__</keyword>
+                    <keyword>__STDC__</keyword>
+                </context>
 
+            </include>
+        </context>
+    </definitions>
 </language>

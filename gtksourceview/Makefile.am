@@ -1,9 +1,15 @@
-SUBDIRS = language-specs gnu-regex
+SUBDIRS = language-specs gnu-regex libegg
 
 if BUILD_GNU_REGEX
 REGEX_LIBS = gnu-regex/libgnuregex.la
 else
 REGEX_LIBS = 
+endif
+
+if BUILD_EGG_REGEX
+EGGREGEX_LIBS = libegg/regex/libeggregex.la
+else
+EGGREGEX_LIBS = 
 endif
 
 INCLUDES = 				\
@@ -36,7 +42,8 @@ libgtksourceview_headers =			\
 	gtksourcetagtable.h			\
 	gtksourcestylescheme.h			\
 	gtksourcemarker.h			\
-	gtksourceprintjob.h
+	gtksourceprintjob.h			\
+	gtksourceengine.h
 
 libgtksourceview_1_0_la_SOURCES = 	\
 	gtksourcebuffer.c 		\
@@ -56,16 +63,24 @@ libgtksourceview_1_0_la_SOURCES = 	\
 	gtksourcelanguage.c 		\
 	gtksourcelanguage-private.h 	\
 	gtksourcelanguagesmanager.c 	\
+	gtksourcelanguage-parser-1.c	\
+	gtksourcelanguage-parser-2.c	\
 	gtksourceview-i18n.h 		\
 	gtksourceview-i18n.c		\
 	gtksourcetagtable.c		\
 	gtksourcestylescheme.c		\
 	gtksourcemarker.c		\
 	gtksourceprintjob.c		\
+	gtksourceengine.c		\
+	gtksourcesimpleengine.h		\
+	gtksourcesimpleengine.c		\
+	gtksourcecontextengine.h	\
+	gtksourcecontextengine.c	\
 	$(libgtksourceview_headers)	\
 	$(BUILT_SOURCES)
 
-libgtksourceview_1_0_la_LIBADD = $(DEP_LIBS) $(REGEX_LIBS)
+
+libgtksourceview_1_0_la_LIBADD = $(DEP_LIBS) $(REGEX_LIBS) $(EGGREGEX_LIBS)
 
 libgtksourceview_1_0_la_LDFLAGS = -no-undefined
 
