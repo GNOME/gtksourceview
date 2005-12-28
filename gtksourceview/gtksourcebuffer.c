@@ -2095,18 +2095,32 @@ build_syntax_regions_table (GtkSourceBuffer   *source_buffer,
 		/* update worker information */
 		source_buffer->priv->worker_last_offset =
 			gtk_text_iter_is_end (&end) ? -1 : gtk_text_iter_get_offset (&end);
-		
+
 		head_length = gtk_text_iter_get_offset (&end) -	gtk_text_iter_get_offset (&start);
-		
+
 		if (head_length > 0) {
 			/* update profile information only if we didn't use the saved data */
-			source_buffer->priv->worker_batch_size =
-				MAX (head_length * WORKER_TIME_SLICE
-				     / (g_timer_elapsed (timer, NULL) * 1000),
-				     MINIMUM_WORKER_BATCH);
+			gdouble et;
+			gint batch_size;
+
+			/* elapsed time in milliseconds */
+			et = 1000 * g_timer_elapsed (timer, NULL);
+
+			/* make sure the elapsed time is never 0.
+			 * This happens in particular with the GTimer
+			 * implementation on win32 which is not accurate.
+			 * 1 ms seems to work well enough as a fallback.
+			 */
+			et = et != 0 ? et : 1.0;
+
+			batch_size = MIN (head_length * WORKER_TIME_SLICE / et,
+					  G_MAXINT);
+
+			source_buffer->priv->worker_batch_size = 
+				MAX (batch_size, MINIMUM_WORKER_BATCH);
 		}
 	}
-		
+
 	/* make sure the analyzed region gets highlighted */
 	refresh_range (source_buffer, &start, &end);
 	

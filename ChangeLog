@@ -1,3 +1,9 @@
+2005-12-28  Paolo Borelli  <pborelli@katamail.com>
+
+	* gtksourceview/gtksourcebuffer.c (build_syntax_regions_table): 
+	avoid possible division by zero bug with inaccurate implementations
+	of GTimer (for instance win32). Noticed by Stefan Knorr (bug 321898).
+
 2005-11-22  Paolo Borelli  <pborelli@katamail.com>
 
 	* gtksourceview/gtktextregion.c: remove include of gi18n.h.
