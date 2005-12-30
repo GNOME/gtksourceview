@@ -2,11 +2,11 @@
 <!DOCTYPE language SYSTEM "language.dtd">
 <language name="R" version="1.0" _section="Scripts" mimetypes="text/x-R">
   <escape-char>\</escape-char>
-  <string _name="Double Quote String" style="String" end-at-line-end="TRUE">
+  <string _name="Double Quoted String" style="String" end-at-line-end="TRUE">
     <start-regex>&quot;</start-regex>
     <end-regex>&quot;</end-regex>
   </string>
-  <string _name="Single Quote String" style="String" end-at-line-end="TRUE">
+  <string _name="Single Quoted String" style="String" end-at-line-end="TRUE">
     <start-regex>&apos;</start-regex>
     <end-regex>&apos;</end-regex>
   </string>

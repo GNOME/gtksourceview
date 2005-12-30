@@ -1,5 +1,16 @@
 2005-12-30  Paolo Maggi  <paolo@gnome.org>
 
+	* gtksourceview/language-specs/R.lang: s/Quote/Quoted
+
+	* gtksourceview/language-specs/gtkrc.lang: s/Quote/Quoted
+
+	* gtksourceview/language-specs/ini.lang: s/Quote/Quoted
+
+	* gtksourceview/language-specs/ruby.lang: fixed bug #316612 (Ruby 
+	coloration problems). Patch by Michael Witrant <mike@lepton.fr>
+
+2005-12-30  Paolo Maggi  <paolo@gnome.org>
+
 	* gtksourceview/language-specs/css.lang: fixed bug #323750 (CSS 
 	highlighting missing "font" property).
 
