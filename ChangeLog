@@ -1,5 +1,11 @@
 2005-12-30  Paolo Maggi  <paolo@gnome.org>
 
+	* gtksourceview/language-specs/php.lang: changed Section to "Scripts".
+	Fixed bug #316587 (PHP syntax file should be in the "Scripting" 
+	section instead of "Sources")
+
+2005-12-30  Paolo Maggi  <paolo@gnome.org>
+
 	* gtksourceview/language-specs/R.lang: s/Quote/Quoted
 
 	* gtksourceview/language-specs/gtkrc.lang: s/Quote/Quoted
