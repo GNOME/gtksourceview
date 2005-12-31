@@ -2,6 +2,7 @@ EXTRA_DIST = 			\
 	language.dtd		\
 	ada.lang		\
 	c.lang			\
+	changelog.lang		\
 	csharp.lang		\
 	css.lang		\
 	cpp.lang		\
