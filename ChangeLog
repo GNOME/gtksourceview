@@ -1,3 +1,9 @@
+2005-12-31  Paolo Maggi  <paolo@gnome.org>
+
+	* gtksourceview/language-specs/fortran.lang: does not mark "^COMMON" as
+	a comment. Based on a patch by John Spray <jcs116@york.ac.uk>. 
+	Fixes bug #168090 (Recognise fortran line comments better)
+
 2005-12-30  Paolo Maggi  <paolo@gnome.org>
 
 	* gtksourceview/language-specs/ada.lang: fixed bug #316330 (Ada Syntax

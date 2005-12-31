@@ -4,8 +4,9 @@
 	
 	<escape-char>\</escape-char>
 
+	<!-- Note: contains an hack to avoid considering ^COMMON a comment -->
 	<line-comment _name = "Line Comment" style= "Comment">
-		<start-regex>!|(^[Cc])</start-regex>
+		<start-regex>!|(^[Cc](\b|[^Oo]))</start-regex>
 	</line-comment>
 
 	<string _name = "String" style = "String" end-at-line-end = "TRUE">
