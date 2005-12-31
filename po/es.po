@@ -1,3 +1,4 @@
+# translation of es.po to Spanish
 # Spanish translation for GtkSourceView
 # Copyright (C) 2003, 2004, 2005 Free Software Foundation, Inc.
 # This file is distributed under the same license as the gtksourceview package.
@@ -6,10 +7,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gtksourceview\n"
+"Project-Id-Version: es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-08-10 19:30+0200\n"
-"PO-Revision-Date: 2005-08-10 19:31+0200\n"
+"POT-Creation-Date: 2005-12-31 13:52+0100\n"
+"PO-Revision-Date: 2005-12-31 13:55+0100\n"
 "Last-Translator: Francisco Javier F. Serrador <serrador@cvs.gnome.org>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -18,54 +19,54 @@ msgstr ""
 "X-Generator: KBabel 1.9.1\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
-#: ../gtksourceview/gtksourcebuffer.c:279
+#: ../gtksourceview/gtksourcebuffer.c:277
 msgid "Escape Character"
 msgstr "Carácter de escape"
 
-#: ../gtksourceview/gtksourcebuffer.c:280
+#: ../gtksourceview/gtksourcebuffer.c:278
 msgid "Escaping character for syntax patterns"
 msgstr "Indica el carácter de escape para los patrones de sintaxis."
 
-#: ../gtksourceview/gtksourcebuffer.c:288
+#: ../gtksourceview/gtksourcebuffer.c:286
 msgid "Check Brackets"
 msgstr "Comprobar corchetes"
 
-#: ../gtksourceview/gtksourcebuffer.c:289
+#: ../gtksourceview/gtksourcebuffer.c:287
 msgid "Whether to check and highlight matching brackets"
 msgstr "Indica si se comprueban y resaltan los corchetes coincidentes"
 
-#: ../gtksourceview/gtksourcebuffer.c:297
-#: ../gtksourceview/gtksourceprintjob.c:295
+#: ../gtksourceview/gtksourcebuffer.c:295
+#: ../gtksourceview/gtksourceprintjob.c:296
 msgid "Highlight"
 msgstr "Resaltar"
 
-#: ../gtksourceview/gtksourcebuffer.c:298
+#: ../gtksourceview/gtksourcebuffer.c:296
 msgid "Whether to highlight syntax in the buffer"
 msgstr "Indica si se resalta la sintaxis en el búfer"
 
-#: ../gtksourceview/gtksourcebuffer.c:306
+#: ../gtksourceview/gtksourcebuffer.c:304
 msgid "Maximum Undo Levels"
 msgstr "Nivel máximo de deshacer"
 
-#: ../gtksourceview/gtksourcebuffer.c:307
+#: ../gtksourceview/gtksourcebuffer.c:305
 msgid "Number of undo levels for the buffer"
 msgstr "Número de niveles de deshacer para el búfer."
 
-#: ../gtksourceview/gtksourcebuffer.c:317
+#: ../gtksourceview/gtksourcebuffer.c:315
 #: ../gtksourceview/language-specs/desktop.lang.h:6
 #: ../gtksourceview/language-specs/ini.lang.h:7
 msgid "Language"
 msgstr "Lenguaje"
 
-#: ../gtksourceview/gtksourcebuffer.c:318
+#: ../gtksourceview/gtksourcebuffer.c:316
 msgid "Language object to get highlighting patterns from"
 msgstr "El objeto de lenguaje del que se obtienen los patrones de resaltado"
 
-#: ../gtksourceview/gtksourcelanguagesmanager.c:119
+#: ../gtksourceview/gtksourcelanguagesmanager.c:113
 msgid "Language specification directories"
 msgstr "Directorios de especificaciones de lenguajes"
 
-#: ../gtksourceview/gtksourcelanguagesmanager.c:120
+#: ../gtksourceview/gtksourcelanguagesmanager.c:114
 msgid ""
 "List of directories where the language specification files (.lang) are "
 "located"
@@ -73,131 +74,130 @@ msgstr ""
 "Lista de directorios en los que se hallan los archivo de especificación de "
 "lenguajes (.lang)."
 
-#: ../gtksourceview/gtksourceprintjob.c:264
+#: ../gtksourceview/gtksourceprintjob.c:265
 msgid "Configuration"
 msgstr "Configuración"
 
-#: ../gtksourceview/gtksourceprintjob.c:265
+#: ../gtksourceview/gtksourceprintjob.c:266
 msgid "Configuration options for the print job"
 msgstr "Opciones de configuración para el trabajo de impresión"
 
-#: ../gtksourceview/gtksourceprintjob.c:272
+#: ../gtksourceview/gtksourceprintjob.c:273
 msgid "Source Buffer"
 msgstr "Búfer del fuente"
 
-#: ../gtksourceview/gtksourceprintjob.c:273
+#: ../gtksourceview/gtksourceprintjob.c:274
 msgid "GtkSourceBuffer object to print"
 msgstr "Objeto GtkSourceBuffer a imprimir"
 
-#: ../gtksourceview/gtksourceprintjob.c:279
+#: ../gtksourceview/gtksourceprintjob.c:280
 #: ../gtksourceview/gtksourceview.c:221 ../gtksourceview/gtksourceview.c:222
 msgid "Tabs Width"
 msgstr "Ancho de tabulación"
 
-#: ../gtksourceview/gtksourceprintjob.c:280
+#: ../gtksourceview/gtksourceprintjob.c:281
 msgid "Width in equivalent space characters of tabs"
 msgstr "Anchura en espacios equivalentes para los tabuladores"
 
-#: ../gtksourceview/gtksourceprintjob.c:287
+#: ../gtksourceview/gtksourceprintjob.c:288
 msgid "Wrap Mode"
 msgstr "Modo de ajuste"
 
-#: ../gtksourceview/gtksourceprintjob.c:288
+#: ../gtksourceview/gtksourceprintjob.c:289
 msgid "Word wrapping mode"
 msgstr "Modo de ajuste de palabras"
 
-#: ../gtksourceview/gtksourceprintjob.c:296
+#: ../gtksourceview/gtksourceprintjob.c:297
 msgid "Whether to print the document with highlighted syntax"
 msgstr "Indica si se imprime el documento con resaltado de sintaxis"
 
-#: ../gtksourceview/gtksourceprintjob.c:304
+#: ../gtksourceview/gtksourceprintjob.c:305
 msgid "Font"
 msgstr "Tipografía"
 
-#: ../gtksourceview/gtksourceprintjob.c:305
+#: ../gtksourceview/gtksourceprintjob.c:306
 msgid "GnomeFont name to use for the document text (deprecated)"
 msgstr "Nombre GnomeFont para usar en el texto del documento (obsoleto)"
 
-#: ../gtksourceview/gtksourceprintjob.c:312
+#: ../gtksourceview/gtksourceprintjob.c:313
 msgid "Font Description"
 msgstr "Descripción de la tipografía"
 
-#: ../gtksourceview/gtksourceprintjob.c:313
+#: ../gtksourceview/gtksourceprintjob.c:314
 msgid "Font to use for the document text (e.g. \"Monospace 10\")"
-msgstr ""
-"Tipografía que se va a usar en el texto del documento («Ej: Monospace 10»)"
+msgstr "Tipografía que se va a usar en el texto del documento («Ej: Monospace 10»)"
 
-#: ../gtksourceview/gtksourceprintjob.c:320
-#: ../gtksourceview/gtksourceprintjob.c:328
+#: ../gtksourceview/gtksourceprintjob.c:321
+#: ../gtksourceview/gtksourceprintjob.c:329
 msgid "Numbers Font"
 msgstr "Tipografía para los números"
 
-#: ../gtksourceview/gtksourceprintjob.c:321
+#: ../gtksourceview/gtksourceprintjob.c:322
 msgid "GnomeFont name to use for the line numbers (deprecated)"
 msgstr "Nombre GnomeFont para usar en los números de línea (obsoleto)"
 
-#: ../gtksourceview/gtksourceprintjob.c:329
+#: ../gtksourceview/gtksourceprintjob.c:330
 msgid "Font description to use for the line numbers"
 msgstr "Descripción de la tipografía a usar en los números de línea"
 
-#: ../gtksourceview/gtksourceprintjob.c:336
+#: ../gtksourceview/gtksourceprintjob.c:337
 msgid "Print Line Numbers"
 msgstr "Mostrar números de líneas"
 
-#: ../gtksourceview/gtksourceprintjob.c:337
+#: ../gtksourceview/gtksourceprintjob.c:338
 msgid "Interval of printed line numbers (0 means no numbers)"
 msgstr "Intervalo de impresión de números de líneas (0 significa sin números)"
 
-#: ../gtksourceview/gtksourceprintjob.c:344
+#: ../gtksourceview/gtksourceprintjob.c:345
 msgid "Print Header"
 msgstr "Imprimir cabecera"
 
-#: ../gtksourceview/gtksourceprintjob.c:345
+#: ../gtksourceview/gtksourceprintjob.c:346
 msgid "Whether to print a header in each page"
 msgstr "Indica si se imprimirá una cabecera en cada página"
 
-#: ../gtksourceview/gtksourceprintjob.c:352
+#: ../gtksourceview/gtksourceprintjob.c:353
 msgid "Print Footer"
 msgstr "Imprimir pie de página"
 
-#: ../gtksourceview/gtksourceprintjob.c:353
+#: ../gtksourceview/gtksourceprintjob.c:354
 msgid "Whether to print a footer in each page"
 msgstr "Indica si se imprimirá un pie de página en cada página"
 
-#: ../gtksourceview/gtksourceprintjob.c:360
+#: ../gtksourceview/gtksourceprintjob.c:361
 msgid "Header and Footer Font"
 msgstr "Tipografía de cabecera y pie de página"
 
-#: ../gtksourceview/gtksourceprintjob.c:361
+#: ../gtksourceview/gtksourceprintjob.c:362
 msgid "GnomeFont name to use for the header and footer (deprecated)"
 msgstr "Nombre GnomeFont a usar para la cabecera y el pie de página (obsoleto)"
 
-#: ../gtksourceview/gtksourceprintjob.c:368
+#: ../gtksourceview/gtksourceprintjob.c:369
 msgid "Header and Footer Font Description"
 msgstr "Descripción de la tipografía de cabecera y pie de página"
 
-#: ../gtksourceview/gtksourceprintjob.c:369
+#: ../gtksourceview/gtksourceprintjob.c:370
 msgid "Font to use for headers and footers (e.g. \"Monospace 10\")"
 msgstr ""
 "Tipografía que se va a usar para las cabeceras y el pie de página («Ej: "
 "Monospace 10»)"
 
-#: ../gtksourceview/gtksourcestylescheme.c:262
+#: ../gtksourceview/gtksourcestylescheme.c:264
 msgid "Base-N Integer"
 msgstr "Entero en base-N"
 
-#: ../gtksourceview/gtksourcestylescheme.c:267
+#: ../gtksourceview/gtksourcestylescheme.c:269
 msgid "Character"
 msgstr "Carácter"
 
-#: ../gtksourceview/gtksourcestylescheme.c:272
+#: ../gtksourceview/gtksourcestylescheme.c:274
 #: ../gtksourceview/language-specs/latex.lang.h:1
 #: ../gtksourceview/language-specs/po.lang.h:1
 msgid "Comment"
 msgstr "Comentario"
 
 #. $this = (datatype)
-#: ../gtksourceview/gtksourcestylescheme.c:277
+#: ../gtksourceview/gtksourcestylescheme.c:279
 #: ../gtksourceview/language-specs/php.lang.h:14
 msgid "Data Type"
 msgstr "Tipo de dato"
@@ -205,13 +205,13 @@ msgstr "Tipo de dato"
 #.
 #. CSS functions, such as rgb(), clip(), or lang().
 #.
-#: ../gtksourceview/gtksourcestylescheme.c:282
+#: ../gtksourceview/gtksourcestylescheme.c:284
 #: ../gtksourceview/language-specs/ada.lang.h:3
 #: ../gtksourceview/language-specs/css.lang.h:17
 msgid "Function"
 msgstr "Función"
 
-#: ../gtksourceview/gtksourcestylescheme.c:287
+#: ../gtksourceview/gtksourcestylescheme.c:289
 #: ../gtksourceview/language-specs/c.lang.h:6
 #: ../gtksourceview/language-specs/cpp.lang.h:6
 #: ../gtksourceview/language-specs/fortran.lang.h:1
@@ -221,11 +221,12 @@ msgstr "Función"
 msgid "Decimal"
 msgstr "Decimal"
 
-#: ../gtksourceview/gtksourcestylescheme.c:292
+#: ../gtksourceview/gtksourcestylescheme.c:294
 msgid "Floating Point"
 msgstr "Coma flotante"
 
-#: ../gtksourceview/gtksourcestylescheme.c:297
+#: ../gtksourceview/gtksourcestylescheme.c:299
+#: ../gtksourceview/language-specs/ada.lang.h:4
 #: ../gtksourceview/language-specs/gtkrc.lang.h:6
 #: ../gtksourceview/language-specs/latex.lang.h:4
 #: ../gtksourceview/language-specs/po.lang.h:3
@@ -233,13 +234,13 @@ msgstr "Coma flotante"
 #: ../gtksourceview/language-specs/texinfo.lang.h:8
 #: ../gtksourceview/language-specs/vhdl.lang.h:2
 msgid "Keyword"
-msgstr "Palabra clave"
+msgstr "Palabra reservada"
 
-#: ../gtksourceview/gtksourcestylescheme.c:302
+#: ../gtksourceview/gtksourcestylescheme.c:304
 msgid "Preprocessor"
 msgstr "Preprocesador"
 
-#: ../gtksourceview/gtksourcestylescheme.c:307
+#: ../gtksourceview/gtksourcestylescheme.c:309
 #: ../gtksourceview/language-specs/ada.lang.h:9
 #: ../gtksourceview/language-specs/c.lang.h:15
 #: ../gtksourceview/language-specs/cpp.lang.h:15
@@ -258,7 +259,6 @@ msgstr "Preprocesador"
 #: ../gtksourceview/language-specs/perl.lang.h:8
 #: ../gtksourceview/language-specs/po.lang.h:6
 #: ../gtksourceview/language-specs/python.lang.h:14
-#: ../gtksourceview/language-specs/ruby.lang.h:18
 #: ../gtksourceview/language-specs/sh.lang.h:13
 #: ../gtksourceview/language-specs/tcl.lang.h:4
 #: ../gtksourceview/language-specs/vbnet.lang.h:7
@@ -267,7 +267,7 @@ msgstr "Preprocesador"
 msgid "String"
 msgstr "Cadena"
 
-#: ../gtksourceview/gtksourcestylescheme.c:312
+#: ../gtksourceview/gtksourcestylescheme.c:314
 msgid "Specials"
 msgstr "Especiales"
 
@@ -283,7 +283,7 @@ msgstr "Especiales"
 #. Submitted by Scott Martin (scott@coffeeblack.org)
 #.
 #. FIXME: find the correct mimetype
-#: ../gtksourceview/gtksourcestylescheme.c:319
+#: ../gtksourceview/gtksourcestylescheme.c:321
 #: ../gtksourceview/language-specs/css.lang.h:46
 #: ../gtksourceview/language-specs/desktop.lang.h:10
 #: ../gtksourceview/language-specs/diff.lang.h:7
@@ -294,15 +294,15 @@ msgstr "Especiales"
 msgid "Others"
 msgstr "Otros"
 
-#: ../gtksourceview/gtksourcestylescheme.c:324
+#: ../gtksourceview/gtksourcestylescheme.c:326
 msgid "Others 2"
 msgstr "Otros 2"
 
-#: ../gtksourceview/gtksourcestylescheme.c:329
+#: ../gtksourceview/gtksourcestylescheme.c:331
 msgid "Others 3"
 msgstr "Otros 3"
 
-#: ../gtksourceview/gtksourcestylescheme.c:366
+#: ../gtksourceview/gtksourcestylescheme.c:368
 msgid "Default"
 msgstr "Predeterminado"
 
@@ -403,24 +403,6 @@ msgstr "Ada"
 msgid "Character Constant"
 msgstr "Constante carácter"
 
-#: ../gtksourceview/language-specs/ada.lang.h:4
-#: ../gtksourceview/language-specs/c.lang.h:10
-#: ../gtksourceview/language-specs/cpp.lang.h:10
-#: ../gtksourceview/language-specs/csharp.lang.h:3
-#: ../gtksourceview/language-specs/fortran.lang.h:7
-#: ../gtksourceview/language-specs/haskell.lang.h:9
-#: ../gtksourceview/language-specs/idl.lang.h:4
-#: ../gtksourceview/language-specs/javascript.lang.h:11
-#: ../gtksourceview/language-specs/lua.lang.h:3
-#: ../gtksourceview/language-specs/perl.lang.h:2
-#: ../gtksourceview/language-specs/python.lang.h:6
-#: ../gtksourceview/language-specs/ruby.lang.h:8
-#: ../gtksourceview/language-specs/tcl.lang.h:1
-#: ../gtksourceview/language-specs/vbnet.lang.h:1
-#: ../gtksourceview/language-specs/verilog.lang.h:6
-msgid "Keywords"
-msgstr "Palabras clave"
-
 #: ../gtksourceview/language-specs/ada.lang.h:5
 #: ../gtksourceview/language-specs/c.lang.h:11
 #: ../gtksourceview/language-specs/cpp.lang.h:11
@@ -442,7 +424,7 @@ msgstr "Palabras clave"
 #: ../gtksourceview/language-specs/perl.lang.h:3
 #: ../gtksourceview/language-specs/python.lang.h:7
 #: ../gtksourceview/language-specs/R.lang.h:7
-#: ../gtksourceview/language-specs/ruby.lang.h:9
+#: ../gtksourceview/language-specs/ruby.lang.h:10
 #: ../gtksourceview/language-specs/sh.lang.h:5
 #: ../gtksourceview/language-specs/sql.lang.h:19
 #: ../gtksourceview/language-specs/tcl.lang.h:2
@@ -468,8 +450,8 @@ msgid "Number"
 msgstr "Número"
 
 #: ../gtksourceview/language-specs/ada.lang.h:7
-msgid "Preprocessor Keywords"
-msgstr "Directivas del preprocesador"
+msgid "Preprocessor Keyword"
+msgstr "Palabra reservada del preprocesador"
 
 #: ../gtksourceview/language-specs/ada.lang.h:8
 #: ../gtksourceview/language-specs/c.lang.h:14
@@ -482,7 +464,6 @@ msgstr "Directivas del preprocesador"
 #: ../gtksourceview/language-specs/makefile.lang.h:6
 #: ../gtksourceview/language-specs/nemerle.lang.h:14
 #: ../gtksourceview/language-specs/pascal.lang.h:17
-#: ../gtksourceview/language-specs/php.lang.h:23
 #: ../gtksourceview/language-specs/sql.lang.h:39
 #: ../gtksourceview/language-specs/vbnet.lang.h:6
 #: ../gtksourceview/language-specs/verilog.lang.h:9
@@ -495,13 +476,9 @@ msgid "True And False"
 msgstr "Verdadero y falso"
 
 #: ../gtksourceview/language-specs/ada.lang.h:11
-#: ../gtksourceview/language-specs/c.lang.h:16
-#: ../gtksourceview/language-specs/cpp.lang.h:16
-#: ../gtksourceview/language-specs/fortran.lang.h:14
-#: ../gtksourceview/language-specs/idl.lang.h:10
-#: ../gtksourceview/language-specs/verilog.lang.h:10
-msgid "Types"
-msgstr "Tipos"
+#: ../gtksourceview/language-specs/vhdl.lang.h:8
+msgid "Type"
+msgstr "Tipo"
 
 #: ../gtksourceview/language-specs/c.lang.h:1
 #: ../gtksourceview/language-specs/cpp.lang.h:1
@@ -563,6 +540,23 @@ msgstr "Número hex"
 msgid "Include/Pragma"
 msgstr "Include/Pragma"
 
+#: ../gtksourceview/language-specs/c.lang.h:10
+#: ../gtksourceview/language-specs/cpp.lang.h:10
+#: ../gtksourceview/language-specs/csharp.lang.h:3
+#: ../gtksourceview/language-specs/fortran.lang.h:7
+#: ../gtksourceview/language-specs/haskell.lang.h:9
+#: ../gtksourceview/language-specs/idl.lang.h:4
+#: ../gtksourceview/language-specs/javascript.lang.h:11
+#: ../gtksourceview/language-specs/lua.lang.h:3
+#: ../gtksourceview/language-specs/perl.lang.h:2
+#: ../gtksourceview/language-specs/python.lang.h:6
+#: ../gtksourceview/language-specs/ruby.lang.h:9
+#: ../gtksourceview/language-specs/tcl.lang.h:1
+#: ../gtksourceview/language-specs/vbnet.lang.h:1
+#: ../gtksourceview/language-specs/verilog.lang.h:6
+msgid "Keywords"
+msgstr "Palabras reservadas"
+
 #: ../gtksourceview/language-specs/c.lang.h:12
 #: ../gtksourceview/language-specs/cpp.lang.h:12
 #: ../gtksourceview/language-specs/fortran.lang.h:9
@@ -581,6 +575,14 @@ msgstr "Número octal"
 #: ../gtksourceview/language-specs/vbnet.lang.h:4
 msgid "Preprocessor Definitions"
 msgstr "Definiciones del preprocesador"
+
+#: ../gtksourceview/language-specs/c.lang.h:16
+#: ../gtksourceview/language-specs/cpp.lang.h:16
+#: ../gtksourceview/language-specs/fortran.lang.h:14
+#: ../gtksourceview/language-specs/idl.lang.h:10
+#: ../gtksourceview/language-specs/verilog.lang.h:10
+msgid "Types"
+msgstr "Tipos"
 
 #: ../gtksourceview/language-specs/cpp.lang.h:3
 msgid "C++"
@@ -612,7 +614,6 @@ msgstr "Primitivas"
 #: ../gtksourceview/language-specs/lua.lang.h:11
 #: ../gtksourceview/language-specs/makefile.lang.h:9
 #: ../gtksourceview/language-specs/python.lang.h:15
-#: ../gtksourceview/language-specs/ruby.lang.h:19
 #: ../gtksourceview/language-specs/sh.lang.h:14
 #: ../gtksourceview/language-specs/vbnet.lang.h:8
 msgid "String 2"
@@ -826,10 +827,13 @@ msgstr "Intrínseco"
 msgid "Read/Write"
 msgstr "Lectura/Escritura"
 
+#. "duble-quoted strings"
 #: ../gtksourceview/language-specs/gtkrc.lang.h:2
 #: ../gtksourceview/language-specs/ini.lang.h:4
+#: ../gtksourceview/language-specs/php.lang.h:16
 #: ../gtksourceview/language-specs/R.lang.h:3
-msgid "Double Quote String"
+#: ../gtksourceview/language-specs/ruby.lang.h:6
+msgid "Double Quoted String"
 msgstr "Cadena doblemente entrecomillada"
 
 #: ../gtksourceview/language-specs/gtkrc.lang.h:3
@@ -844,10 +848,13 @@ msgstr "Directiva de inclusión"
 msgid "Keysymbol"
 msgstr "Símbolo de tecla"
 
+#. 'single-quoted strings'
 #: ../gtksourceview/language-specs/gtkrc.lang.h:10
 #: ../gtksourceview/language-specs/ini.lang.h:11
+#: ../gtksourceview/language-specs/php.lang.h:23
 #: ../gtksourceview/language-specs/R.lang.h:11
-msgid "Single Quote String"
+#: ../gtksourceview/language-specs/ruby.lang.h:17
+msgid "Single Quoted String"
 msgstr "Cadena entrecomillada simple"
 
 #: ../gtksourceview/language-specs/gtkrc.lang.h:11
@@ -937,7 +944,7 @@ msgstr "Número en coma flotante"
 
 #: ../gtksourceview/language-specs/javascript.lang.h:6
 msgid "Flow Keywords"
-msgstr "Palabras clave de flujo"
+msgstr "Palabras reservadas de flujo"
 
 #: ../gtksourceview/language-specs/javascript.lang.h:7
 msgid "Future Reserved Words"
@@ -990,9 +997,10 @@ msgstr "Objetos"
 #: ../gtksourceview/language-specs/javascript.lang.h:32
 #: ../gtksourceview/language-specs/lua.lang.h:9
 #: ../gtksourceview/language-specs/perl.lang.h:7
+#: ../gtksourceview/language-specs/php.lang.h:21
 #: ../gtksourceview/language-specs/python.lang.h:13
 #: ../gtksourceview/language-specs/R.lang.h:10
-#: ../gtksourceview/language-specs/ruby.lang.h:17
+#: ../gtksourceview/language-specs/ruby.lang.h:16
 #: ../gtksourceview/language-specs/sh.lang.h:11
 #: ../gtksourceview/language-specs/tcl.lang.h:3
 msgid "Scripts"
@@ -1088,7 +1096,7 @@ msgstr "Número binario"
 
 #: ../gtksourceview/language-specs/nemerle.lang.h:4
 msgid "Core Keywords"
-msgstr "Palabras clave"
+msgstr "Palabras reservadas principales"
 
 #: ../gtksourceview/language-specs/nemerle.lang.h:5
 msgid "Core Types"
@@ -1096,7 +1104,7 @@ msgstr "Tipos incluidos"
 
 #: ../gtksourceview/language-specs/nemerle.lang.h:9
 msgid "Keywords Defined by Macros"
-msgstr "Palabras clave definidas por macros"
+msgstr "Palabras reservadas definidas por macros"
 
 #: ../gtksourceview/language-specs/nemerle.lang.h:11
 msgid "Nemerle"
@@ -1201,17 +1209,12 @@ msgstr "Comentario de línea C++"
 
 #: ../gtksourceview/language-specs/php.lang.h:10
 msgid "Case Insensitive Keyword"
-msgstr "Palabra clave insensible a capitalización"
+msgstr "Palabra reservada insensible a capitalización"
 
 #. This are keywords, the are recognised by php
 #: ../gtksourceview/language-specs/php.lang.h:12
 msgid "Case Sensitive Keyword"
-msgstr "Palabra clave sensible a capitalización"
-
-#. "duble-quoted strings"
-#: ../gtksourceview/language-specs/php.lang.h:16
-msgid "Double Quoted String"
-msgstr "Cadena doblemente entrecomillada"
+msgstr "Palabra reservada sensible a capitalización"
 
 #: ../gtksourceview/language-specs/php.lang.h:17
 msgid "First Open PHP Tag"
@@ -1224,11 +1227,6 @@ msgstr "Bloque HTML"
 #: ../gtksourceview/language-specs/php.lang.h:20
 msgid "PHP"
 msgstr "PHP"
-
-#. 'single-quoted strings'
-#: ../gtksourceview/language-specs/php.lang.h:22
-msgid "Single Quoted String"
-msgstr "Cadena entrecomillada simple"
 
 #: ../gtksourceview/language-specs/po.lang.h:2
 msgid "Format"
@@ -1287,41 +1285,37 @@ msgstr "Constantes"
 msgid "Definitions"
 msgstr "Definiciones"
 
-#: ../gtksourceview/language-specs/ruby.lang.h:6
+#: ../gtksourceview/language-specs/ruby.lang.h:7
 msgid "Global Variables"
 msgstr "Variables globales"
 
-#: ../gtksourceview/language-specs/ruby.lang.h:7
+#: ../gtksourceview/language-specs/ruby.lang.h:8
 msgid "Instance Variables"
 msgstr "Variables de instancia"
 
-#: ../gtksourceview/language-specs/ruby.lang.h:10
+#: ../gtksourceview/language-specs/ruby.lang.h:11
 msgid "Module Handlers"
 msgstr "Manejadores de módulo"
 
-#: ../gtksourceview/language-specs/ruby.lang.h:11
+#: ../gtksourceview/language-specs/ruby.lang.h:12
 msgid "Multiline Comment"
 msgstr "Comentario multilínea"
 
-#: ../gtksourceview/language-specs/ruby.lang.h:12
+#: ../gtksourceview/language-specs/ruby.lang.h:13
 msgid "Pseudo Variables"
 msgstr "Pseudovariables"
 
-#: ../gtksourceview/language-specs/ruby.lang.h:13
+#: ../gtksourceview/language-specs/ruby.lang.h:14
 msgid "RegExp Variables"
 msgstr "Variables de exp. reg."
 
-#: ../gtksourceview/language-specs/ruby.lang.h:14
-msgid "Regular Expression"
-msgstr "Expresión regular"
-
 #: ../gtksourceview/language-specs/ruby.lang.h:15
-msgid "Regular Expression 2"
-msgstr "Expresión regular 2"
-
-#: ../gtksourceview/language-specs/ruby.lang.h:16
 msgid "Ruby"
 msgstr "Ruby"
+
+#: ../gtksourceview/language-specs/ruby.lang.h:18
+msgid "Symbols"
+msgstr "Símbolos"
 
 #: ../gtksourceview/language-specs/sh.lang.h:2
 msgid "Built-in Commands"
@@ -1563,10 +1557,6 @@ msgstr "Verilog"
 msgid "True and False"
 msgstr "Verdadero y falso"
 
-#: ../gtksourceview/language-specs/vhdl.lang.h:8
-msgid "Type"
-msgstr "Tipo"
-
 #: ../gtksourceview/language-specs/vhdl.lang.h:9
 msgid "VHDL"
 msgstr "VHDL"
@@ -1582,6 +1572,18 @@ msgstr "Marca"
 #: ../gtksourceview/language-specs/xml.lang.h:9
 msgid "XML"
 msgstr "XML"
+
+#~ msgid "Double Quote String"
+#~ msgstr "Cadena doblemente entrecomillada"
+
+#~ msgid "Single Quote String"
+#~ msgstr "Cadena entrecomillada simple"
+
+#~ msgid "Regular Expression"
+#~ msgstr "Expresión regular"
+
+#~ msgid "Regular Expression 2"
+#~ msgstr "Expresión regular 2"
 
 #~ msgid "Miscellaneous Single-Row Functions"
 #~ msgstr "Funciones misceláneas de fila simple"
@@ -1606,3 +1608,4 @@ msgstr "XML"
 
 #~ msgid "MSIL"
 #~ msgstr "MSIL"
+
