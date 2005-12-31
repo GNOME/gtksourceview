@@ -54,10 +54,33 @@ AC_SUBST(DEPRECATED_FLAGS)
 
 PKG_CHECK_MODULES(DEP,
 	gtk+-2.0 >= $GTK_REQUIRED_VERSION
-	libxml-2.0 >= $LIBXML_REQUIRED_VERSION
-	libgnomeprint-2.2 >= $GNOME_PRINT_REQUIRED_VERSION)
+	libxml-2.0 >= $LIBXML_REQUIRED_VERSION)
 AC_SUBST(DEP_CFLAGS)
 AC_SUBST(DEP_LIBS)
+
+# Check for gnomeprint support
+AC_ARG_ENABLE(gnomeprint, AC_HELP_STRING([--disable-gnomeprint],
+		 [disable gnomeprint support. Do this only if you are using gtksourceview in a custom application.]),
+[case "${enableval}" in
+  yes) enable_gnomeprint=true ;;
+  no)  enable_gnomeprint=false ;;
+  *) AC_MSG_ERROR(bad value ${enableval} for --enable-gnomeprint) ;;
+esac],
+[enable_gnomeprint=true]) dnl default
+
+msg_gnomeprint=no
+AM_CONDITIONAL(HAVE_GNOMEPRINT, false)
+
+if test "$enable_gnomeprint" = "true"; then
+	PKG_CHECK_MODULES(GNOMEPRINT,
+			libgnomeprint-2.2 >= $GNOME_PRINT_REQUIRED_VERSION,
+			[AM_CONDITIONAL(HAVE_GNOMEPRINT, true)
+			 AC_DEFINE(HAVE_GNOMEPRINT, [], [using gnomeprint])
+			 msg_gnomeprint=yes],
+			[AM_CONDITIONAL(HAVE_GNOMEPRINT, false)])
+	AC_SUBST(GNOMEPRINT_CFLAGS)
+	AC_SUBST(GNOMEPRINT_LIBS)
+fi
 
 # Check for GNU regex functions
 AH_TEMPLATE(NATIVE_GNU_REGEX, [Define if the C library implements the GNU regular expressions API])
@@ -69,21 +92,32 @@ AC_CHECK_FUNCS([re_compile_pattern re_compile_fastmap re_search re_match], [
 ])
 AM_CONDITIONAL(BUILD_GNU_REGEX,$BUILD_GNU_REGEX)
 
-# Do we build optional tests? (they require gnome-vfs)
+# Do we build optional tests? (they require gnome-vfs and gnomeprintui support)
 AC_ARG_ENABLE(build_tests,AC_HELP_STRING([--disable-build-tests],
 					     [disable building of the test programs]),
 [case "${enableval}" in
   yes) build_tests=true ;;
   no)  build_tests=false ;;
   *) AC_MSG_ERROR(bad value ${enableval} for --disable-build-tests) ;;
-esac],[build_tests=true])
+esac],
+[build_tests=true])
 
-AM_CONDITIONAL(BUILD_TESTS, [test x$build_tests = xtrue])
+# disable tests if gnomeprint is not enabled
+if test x$msg_gnomeprint != xyes; then
+  build_tests=false
+fi
+
+msg_tests=no
+AM_CONDITIONAL(BUILD_TESTS, false)
 
 if test x$build_tests = xtrue; then
 	PKG_CHECK_MODULES(TESTS,
-		gnome-vfs-2.0 >= $GNOME_VFS_REQUIRED_VERSION
-		libgnomeprintui-2.2 >= $GNOME_PRINT_REQUIRED_VERSION)
+			libgnomeprintui-2.2 >= $GNOME_PRINT_REQUIRED_VERSION
+			gnome-vfs-2.0 >= $GNOME_VFS_REQUIRED_VERSION,
+			[AM_CONDITIONAL(BUILD_TESTS, true)
+			 AC_DEFINE(BUILD_TESTS, [], [build test suite])
+			 msg_tests=yes],
+			[AM_CONDITIONAL(BUILD_TESTS, false)])
 	AC_SUBST(TESTS_CFLAGS)
 	AC_SUBST(TESTS_LIBS)
 fi
@@ -115,3 +149,14 @@ tests/Makefile
 ])
 
 AC_OUTPUT
+
+
+echo "
+
+Configuration:
+
+	Source code location:	${srcdir}
+	Compiler:		${CC}
+	gnome-print support:	$msg_gnomeprint
+	build tests:		$msg_tests
+"

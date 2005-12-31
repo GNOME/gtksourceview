@@ -12,7 +12,8 @@ INCLUDES = 				\
 	-I$(top_srcdir) -I$(srcdir) 	\
 	$(DEPRECATED_FLAGS)		\
 	$(WARN_CFLAGS) 			\
-	$(DEP_CFLAGS)
+	$(DEP_CFLAGS)			\
+	$(GNOMEPRINT_CFLAGS)
 
 BUILT_SOURCES = 			\
 	gtksourceview-marshal.c 	\
@@ -33,8 +34,7 @@ libgtksourceview_headers =			\
 	gtksourcetagstyle.h			\
 	gtksourcetagtable.h			\
 	gtksourcestylescheme.h			\
-	gtksourcemarker.h			\
-	gtksourceprintjob.h
+	gtksourcemarker.h
 
 libgtksourceview_1_0_la_SOURCES = 	\
 	gtksourcebuffer.c 		\
@@ -54,11 +54,16 @@ libgtksourceview_1_0_la_SOURCES = 	\
 	gtksourcetagtable.c		\
 	gtksourcestylescheme.c		\
 	gtksourcemarker.c		\
-	gtksourceprintjob.c		\
 	$(libgtksourceview_headers)	\
 	$(BUILT_SOURCES)
 
-libgtksourceview_1_0_la_LIBADD = $(DEP_LIBS) $(REGEX_LIBS)
+if HAVE_GNOMEPRINT
+libgtksourceview_headers += gtksourceprintjob.h
+libgtksourceview_1_0_la_SOURCES += gtksourceprintjob.c gtksourceprintjob.h
+endif
+
+
+libgtksourceview_1_0_la_LIBADD = $(DEP_LIBS) $(REGEX_LIBS) $(GNOMEPRINT_LIBS)
 
 libgtksourceview_1_0_la_LDFLAGS = -no-undefined
 

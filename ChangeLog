@@ -1,3 +1,10 @@
+2005-12-31  Paolo Borelli  <pborelli@katamail.com>
+
+	* configure.in: add a --disable-gnomeprint option for people who want
+	to use sourceview in their application without the libgnomeprint dep,
+	for instance on win32. However this option should only be used if you
+	know what you are doing and not be used when building GNOME.
+
 2005-12-31  Paolo Maggi  <paolo@gnome.org>
 
 	* gtksourceview/language-specs/fortran.lang: does not mark "^COMMON" as
