@@ -1,5 +1,10 @@
 2005-12-31  Paolo Borelli  <pborelli@katamail.com>
 
+	* gtksourceview/*.c: restore gtksourceview-i18n.[ch] since we need
+	our hack to do gettext initialization.
+
+2005-12-31  Paolo Borelli  <pborelli@katamail.com>
+
 	* configure.in: add a --disable-gnomeprint option for people who want
 	to use sourceview in their application without the libgnomeprint dep,
 	for instance on win32. However this option should only be used if you

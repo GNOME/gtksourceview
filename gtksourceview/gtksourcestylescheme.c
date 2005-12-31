@@ -22,7 +22,7 @@
 #include <config.h>
 #endif
 
-#include <glib/gi18n.h>
+#include "gtksourceview-i18n.h"
 
 #include "gtksourcestylescheme.h"
 

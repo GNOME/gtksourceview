@@ -25,7 +25,7 @@
 
 #include <libxml/xmlreader.h>
 
-#include <glib/gi18n.h>
+#include "gtksourceview-i18n.h"
 
 #include "gtksourcelanguage-private.h"
 #include "gtksourcelanguage.h"

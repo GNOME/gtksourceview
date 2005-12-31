@@ -26,7 +26,8 @@
 #endif
 
 #include <string.h>
-#include <glib/gi18n.h>
+
+#include "gtksourceview-i18n.h"
 
 #include "gtksourcetag.h"
 #include "gtksourcetag-private.h"

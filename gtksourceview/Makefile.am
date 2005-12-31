@@ -51,6 +51,8 @@ libgtksourceview_1_0_la_SOURCES = 	\
 	gtksourcelanguage.c 		\
 	gtksourcelanguage-private.h 	\
 	gtksourcelanguagesmanager.c 	\
+	gtksourceview-i18n.h		\
+	gtksourceview-i18n.c		\
 	gtksourcetagtable.c		\
 	gtksourcestylescheme.c		\
 	gtksourcemarker.c		\
