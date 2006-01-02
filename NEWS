@@ -1,3 +1,20 @@
+News in 1.5.3
+-------------
+
+* Fixed bug #321898 - fix for division by zero bug (not checking 
+  g_timer_elapsed() return value)
+* Fixed bug #323999 - perl inline pod not properly highlighted
+* Fixed bug #323750 - CSS highlighting missing "font" property
+* Fixed bug #316612 - Ruby coloration problems
+* Fixed bug #316587 - PHP syntax file should be in the "Scripting" section 
+  instead of "Sources")
+* Fixed bug #316330 - Ada Syntax highlighting is incorrect
+* Fixed bug #168090 - Recognise fortran line comments better
+* Added a --disable-gnomeprint configuration option
+* Fixed i18n problem introduced in 1.5.2
+* Added changelog.lang
+* Updated translations
+
 News in 1.5.2
 -------------
 
