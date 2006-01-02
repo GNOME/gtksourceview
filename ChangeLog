@@ -68,6 +68,14 @@
 	avoid possible division by zero bug with inaccurate implementations
 	of GTimer (for instance win32). Noticed by Stefan Knorr (bug 321898).
 
+=== gtksourceview 1.5.2 ===
+
+2005-12-14  Paolo Borelli  <pborelli@katamail.com>
+
+	* configure.in:
+	* README:
+	* NEWS: release 1.5.2
+
 2005-11-22  Paolo Borelli  <pborelli@katamail.com>
 
 	* gtksourceview/gtktextregion.c: remove include of gi18n.h.
