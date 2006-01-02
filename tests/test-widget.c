@@ -1046,9 +1046,10 @@ main (int argc, char *argv[])
 {
 	GtkWidget *window;
 	GtkSourceLanguagesManager *lm;
+	GtkSourceLanguage *language;
 	GtkSourceBuffer *buffer;
 	GtkSourceView *view;
-	GtkTextIter begin, end;
+	//GtkTextIter begin, end;
 	GSList *lang_dirs;
 	
 	/* initialization */
@@ -1075,6 +1076,7 @@ main (int argc, char *argv[])
 		open_file (buffer, argv [1]);
 	} else {
 		open_file (buffer, "test.c");
+#if 0
 
 		gtk_source_buffer_set_folds_enabled (buffer, TRUE);
 
@@ -1109,6 +1111,19 @@ main (int argc, char *argv[])
 		gtk_text_iter_forward_to_line_end (&begin);
 		gtk_text_buffer_get_iter_at_line (GTK_TEXT_BUFFER (buffer), &end, 55);
 		gtk_source_buffer_add_fold (buffer, &begin, &end);
+#endif
+	}
+
+	language = gtk_source_languages_manager_get_language_from_id (lm, "c");
+
+	if (language == NULL)
+	{
+		g_object_set (G_OBJECT (buffer), "highlight", FALSE, NULL);
+	}
+	else
+	{	
+		g_object_set (G_OBJECT (buffer), "highlight", TRUE, NULL);
+		gtk_source_buffer_set_language (buffer, language);
 	}
 
 	gtk_window_set_default_size (GTK_WINDOW (window), 500, 500);

@@ -1,3 +1,54 @@
+2006-01-02  Jeroen Zwartepoorte  <jeroen.zwartepoorte@gmail.com>
+
+	* gtksourceview/gtksourcebuffer.c: (gtk_source_buffer_class_init),
+	(gtk_source_buffer_real_insert_text),
+	(gtk_source_buffer_real_delete_range), (insert_child_fold),
+	(gtk_source_buffer_add_fold):
+	* gtksourceview/gtksourcebuffer.h:
+	* gtksourceview/gtksourcecontextengine.c: (text_deleted_cb),
+	(gtk_source_context_engine_attach_buffer), (definition_new),
+	(update_context_fold), (update_context_end), (context_new),
+	(context_destroy), (context_dup), (ancestor_ends_here),
+	(container_context_starts_here), (simple_context_starts_here),
+	(next_context), (split_contexts_tree), (join_contexts_tree),
+	(end_at_line_end), (update_syntax), (unhighlight_region_cb),
+	(gtk_source_context_engine_define_context):
+	* gtksourceview/gtksourcecontextengine.h:
+	* gtksourceview/gtksourcefold.c: (_gtk_source_fold_new),
+	(collapse_fold), (expand_fold), (gtk_source_fold_set_folded),
+	(gtk_source_fold_get_bounds):
+	* gtksourceview/gtksourcefold.h:
+	* gtksourceview/gtksourcelanguage-parser-2.c: (create_definition):
+	* gtksourceview/gtksourcelanguagesmanager.c:
+	(gtk_source_languages_manager_get_language_from_id):
+	* gtksourceview/gtksourceundomanager.c:
+	(gtk_source_undo_manager_new),
+	(gtk_source_undo_manager_insert_text_handler),
+	(gtk_source_undo_manager_delete_range_handler):
+	* gtksourceview/gtksourceview-marshal.list:
+	* gtksourceview/gtksourceview.c: (fold_remove_cb),
+	(set_source_buffer), (gtk_source_view_get_lines),
+	(move_fold_label):
+	* gtksourceview/gtktextregion.c: (gtk_text_region_add),
+	(gtk_text_region_substract):
+	* gtksourceview/language-specs/c.lang:
+	* gtksourceview/language-specs/language2.rng:
+	* tests/test-widget.c: (main):
+	
+	Too many changes to list them individually:
+	- Make GtkSourceUndoManager use the text_[inserted|deleted] signals on
+	  GtkSourceBuffer instead of listening directly to GtkTextBuffer. This
+	  was required because sometimes a delete/insertion doesn't actually
+	  remove/add text, but expands a fold instead.
+	  
+	- Integrate automatic folding into the new GtkSourceContextEngine. The
+	  commit includes a modified RNG schema that adds folding support. This
+	  will need to be redone since the current schemas changes are a hack.
+	  Multiline comments and #if0 blocks are foldable in c.lang.
+	
+	- GtkSourceFold contains "smart" behavior on how it visually displays
+	  a collapsed fold. This is partly based on Eclipse behavior.
+
 2005-12-04  Jeroen Zwartepoorte  <jeroen.zwartepoorte@gmail.com>
 
 	Merge new_hl_engine branch into folding+newhl branch.

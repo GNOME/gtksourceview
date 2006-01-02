@@ -287,6 +287,7 @@ create_definition (ParserState *parser_state,
 	gchar *tmp;
 	gboolean extend_parent = TRUE;
 	gboolean end_at_line_end = FALSE;
+	gboolean fold = FALSE;
 
 	xmlNode *context_node, *child;
 
@@ -390,6 +391,11 @@ create_definition (ParserState *parser_state,
 				end = g_strdup ("");
 			}
 			end_flags = flags;
+		}
+		else if (strcmp ("fold", child->name) == 0)
+		{
+			/* <fold/> */
+			fold = TRUE;
 		}
 		else if (strcmp ("prefix", child->name) == 0)
 		{
@@ -514,7 +520,7 @@ create_definition (ParserState *parser_state,
 		gtk_source_context_engine_define_context (
 				parser_state->engine, id, parent_id,
 				match, start, end, style, 
-				extend_parent, end_at_line_end,
+				extend_parent, end_at_line_end, fold,
 				&tmp_error);
 	}
 

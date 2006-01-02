@@ -37,7 +37,7 @@
 
 #define DEFAULT_LANGUAGE_DIR		DATADIR "/gtksourceview-1.0/language-specs"
 #define USER_LANGUAGE_DIR		"gtksourceview-1.0/language-specs"
-#define USER_CONFIG_BASE_DIR	".gnome2"
+#define USER_CONFIG_BASE_DIR		".gnome2"
 
 enum {
 	PROP_0,
@@ -53,8 +53,8 @@ struct _GtkSourceLanguagesManagerPrivate {
 
 static GObjectClass *parent_class = NULL;
 
-static void  gtk_source_languages_manager_class_init		(GtkSourceLanguagesManagerClass *klass);
-static void  gtk_source_languages_manager_instance_init	(GtkSourceLanguagesManager *lm);
+static void	 gtk_source_languages_manager_class_init	(GtkSourceLanguagesManagerClass *klass);
+static void	 gtk_source_languages_manager_instance_init	(GtkSourceLanguagesManager *lm);
 static void	 gtk_source_languages_manager_finalize	 	(GObject 		   *object);
 
 static void	 slist_deep_free 				(GSList 		   *list);
@@ -375,8 +375,8 @@ gtk_source_languages_manager_get_language_from_mime_type (GtkSourceLanguagesMana
  * identified by the given @id.
  **/
 GtkSourceLanguage *
-gtk_source_languages_manager_get_language_from_id (GtkSourceLanguagesManager 	*lm,
-							  const gchar 		*id)
+gtk_source_languages_manager_get_language_from_id (GtkSourceLanguagesManager *lm,
+						   const gchar               *id)
 {
 	const GSList *languages;
 	gboolean found = FALSE;

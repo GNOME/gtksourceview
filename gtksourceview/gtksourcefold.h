@@ -49,9 +49,7 @@ GtkSourceFold		*gtk_source_fold_get_parent	(GtkSourceFold       *fold);
 
 const GList		*gtk_source_fold_get_children	(GtkSourceFold       *fold);
 
-/* INTERNAL private stuff - not even exported from the library on
- * many platforms
- */
+/* INTERNAL private stuff - not even exported from the library on many platforms */
 GtkSourceFold		*_gtk_source_fold_new		(GtkSourceBuffer     *buffer,
 							 const GtkTextIter   *begin,
 							 const GtkTextIter   *end);

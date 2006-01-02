@@ -182,7 +182,7 @@ gtk_source_buffer_get_type (void)
 	
 	return our_type;
 }
-	
+
 static void
 gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 {
@@ -345,11 +345,13 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 			  G_SIGNAL_RUN_LAST,
 			  G_STRUCT_OFFSET (GtkSourceBufferClass, text_deleted),
 			  NULL, NULL,
-			  gtksourceview_marshal_VOID__BOXED_STRING,
+			  gtksourceview_marshal_VOID__BOXED_INT_STRING_BOOLEAN,
 			  G_TYPE_NONE, 
-			  2, 
+			  4, 
 			  GTK_TYPE_TEXT_ITER | G_SIGNAL_TYPE_STATIC_SCOPE,
-			  G_TYPE_STRING | G_SIGNAL_TYPE_STATIC_SCOPE);
+			  G_TYPE_INT | G_SIGNAL_TYPE_STATIC_SCOPE,
+			  G_TYPE_STRING | G_SIGNAL_TYPE_STATIC_SCOPE,
+			  G_TYPE_BOOLEAN | G_SIGNAL_TYPE_STATIC_SCOPE);
 
 	buffer_signals[UPDATE_HIGHLIGHT] =
 	    g_signal_new ("update_highlight",
@@ -742,6 +744,7 @@ gtk_source_buffer_real_insert_text (GtkTextBuffer *buffer,
 				    gint           len)
 {
 	gint insert_offset;
+	GtkSourceFold *fold;
 	GtkTextIter insert_iter;
 	
 	g_return_if_fail (GTK_IS_SOURCE_BUFFER (buffer));
@@ -750,6 +753,17 @@ gtk_source_buffer_real_insert_text (GtkTextBuffer *buffer,
 	g_return_if_fail (gtk_text_iter_get_buffer (iter) == buffer);
 
 	insert_offset = gtk_text_iter_get_offset (iter);
+	
+	/* if the user tries to insert text into a folded section, don't insert
+	 * the text, but unfold the region.
+	 */
+	fold = gtk_source_buffer_get_fold_at_iter (GTK_SOURCE_BUFFER (buffer),
+						   iter);
+	if (fold != NULL && fold->folded)
+	{
+		gtk_source_fold_set_folded (fold, FALSE);
+		return;
+	}
 	
 	/*
 	 * iter is invalidated when
@@ -773,11 +787,12 @@ gtk_source_buffer_real_delete_range (GtkTextBuffer *buffer,
 				     GtkTextIter   *start,
 				     GtkTextIter   *end)
 {
-	gint delta;
+	gint delta, end_offset;
 	GtkTextMark *mark;
-	GtkTextIter iter;
+	GtkTextIter iter, insert_iter;
 	GSList *markers;
 	gchar *text;
+	gboolean forward;
 		
 	g_return_if_fail (GTK_IS_SOURCE_BUFFER (buffer));
 	g_return_if_fail (start != NULL);
@@ -785,12 +800,46 @@ gtk_source_buffer_real_delete_range (GtkTextBuffer *buffer,
 	g_return_if_fail (gtk_text_iter_get_buffer (start) == buffer);
 	g_return_if_fail (gtk_text_iter_get_buffer (end) == buffer);
 
+	/* if the delete range intersects a folded region, don't delete any text;
+	 * unfold the region instead. */
+	if (GTK_SOURCE_BUFFER (buffer)->priv->enable_folds)
+	{
+		GtkSourceFold *fold;
+
+		/* do we start in a folded region? */
+		fold = gtk_source_buffer_get_fold_at_iter (GTK_SOURCE_BUFFER (buffer),
+							   start);
+		if (fold != NULL && fold->folded)
+		{
+			gtk_source_fold_set_folded (fold, FALSE);
+			return;
+		}
+
+		/* do we end in a folded region? */		
+		fold = gtk_source_buffer_get_fold_at_iter (GTK_SOURCE_BUFFER (buffer),
+							   end);
+		if (fold != NULL && fold->folded)
+		{
+			gtk_source_fold_set_folded (fold, FALSE);
+			return;
+		}
+	}
+
 	/* save slice of deleted text */
 	text = gtk_text_buffer_get_slice (buffer, start, end, TRUE);
 	
 	gtk_text_iter_order (start, end);
 	delta = gtk_text_iter_get_offset (start) - 
 			gtk_text_iter_get_offset (end);
+	end_offset = gtk_text_iter_get_offset (end);
+
+	/* figure out if the user used the Delete or the Backspace key */
+	gtk_text_buffer_get_iter_at_mark (buffer, &insert_iter,
+					  gtk_text_buffer_get_insert (buffer));
+	if (gtk_text_iter_get_offset (&insert_iter) <= gtk_text_iter_get_offset (start))
+		forward = TRUE;
+	else
+		forward = FALSE;
 
 	/* remove the markers in the deleted region if deleting more than one character */
 	if (ABS (delta) > 1)
@@ -803,7 +852,7 @@ gtk_source_buffer_real_delete_range (GtkTextBuffer *buffer,
 			markers = g_slist_delete_link (markers, markers);
 		}
 	}
-		
+
 	parent_class->delete_range (buffer, start, end);
 
 	mark = gtk_text_buffer_get_insert (buffer);
@@ -833,9 +882,9 @@ gtk_source_buffer_real_delete_range (GtkTextBuffer *buffer,
 		g_slist_free (markers);
 	}
 
-	/* emit text deleted for engines */
+	/* emit text deleted for engines and undomanager */
 	g_signal_emit (buffer, buffer_signals [TEXT_DELETED], 0,
-		       start, text);
+		       start, end_offset, text, forward);
 	g_free (text);
 }
 
@@ -2228,7 +2277,7 @@ insert_child_fold (GtkSourceBuffer *buffer,
 		if (last_fold == NULL)
 			parent->children = g_list_append (NULL, child);
 		else
-			g_list_append (last_fold, child);
+			parent->children = g_list_append (last_fold, child);
 		child->parent = parent;
 		return TRUE;
 	}
@@ -2453,11 +2502,13 @@ gtk_source_buffer_add_fold (GtkSourceBuffer   *buffer,
 	/* add the fold at the end of the list. */
 	if (folds == NULL)
 	{
+		GList *dummy;
+		
 		DEBUG (g_message ("adding fold at end of root"));
 		if (last_fold == NULL)
 			buffer->priv->folds = g_list_append (NULL, fold);
 		else
-			g_list_append (last_fold, fold);
+			dummy = g_list_append (last_fold, fold);
 	}
 	
 	g_signal_emit (G_OBJECT (buffer), buffer_signals [FOLD_ADDED], 0, fold);

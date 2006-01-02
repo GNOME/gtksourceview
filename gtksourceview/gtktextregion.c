@@ -245,7 +245,7 @@ gtk_text_region_add (GtkTextRegion     *region,
 			gtk_text_buffer_delete_mark (region->buffer, q->start);
 			sr->end = q->end;
 			g_free (q);
-			g_list_delete_link (l, l);
+			l = g_list_delete_link (l, l);
 		}
 		/* now move marks if that action expands the region */
 		gtk_text_buffer_get_iter_at_mark (region->buffer, &iter, sr->start);
@@ -311,7 +311,7 @@ gtk_text_region_substract (GtkTextRegion     *region,
 			new_sr->end = sr->end;
 			new_sr->start = gtk_text_buffer_create_mark (region->buffer,
 								     NULL, &end, TRUE);
-			g_list_insert_before (start_node, start_node->next, new_sr);
+			node = g_list_insert_before (start_node, start_node->next, new_sr);
 
 			sr->end = gtk_text_buffer_create_mark (region->buffer,
 							       NULL, &start, FALSE);

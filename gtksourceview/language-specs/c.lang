@@ -42,6 +42,7 @@
                 <context id="comment-multiline" style-ref="comment-multiline">
                     <start>\/\*</start>
                     <end>\*\/</end>
+                    <fold></fold>
                     <include>
                         <context id="open-comment-in-comment" extend-parent="false" style-ref="error">
                             <match>\/\*</match>
@@ -62,6 +63,7 @@
                 <context id="if0-comment" style-ref="comment-multiline">
                     <start>\%{preproc-start}if\s*0\b</start>
                     <end>\%{preproc-start}(endif|else|elif)\b</end>
+                    <fold></fold>
                     <include>
                         <context id="if-in-if0">
                             <start>\%{preproc-start}if(n?def)?\b</start>

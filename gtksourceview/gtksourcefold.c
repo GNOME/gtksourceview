@@ -34,7 +34,7 @@ _gtk_source_fold_new (GtkSourceBuffer   *buffer,
 	fold->prelighted = FALSE;
 	fold->animated = FALSE;
 	fold->expander_style = GTK_EXPANDER_EXPANDED;
-	
+
 	fold->start_line = gtk_text_buffer_create_mark (GTK_TEXT_BUFFER (buffer),
 							NULL, begin, FALSE);
 	g_object_ref (fold->start_line);
@@ -155,6 +155,71 @@ reapply_invisibleline_tag (GtkTextBuffer *buffer,
 	}
 }
 
+static void
+collapse_fold (GtkTextBuffer *buffer,
+	       GtkSourceFold *fold,
+	       GtkTextIter   *begin,
+	       GtkTextIter   *end)
+{
+	GtkTextIter insert;
+
+	/* if the starting point of the fold has no text before it on the line,
+	 * then only hide part of the line so the user still sees something. */
+	if (gtk_text_iter_starts_line (begin) || gtk_text_iter_starts_sentence (begin))
+		gtk_text_iter_forward_to_line_end (begin);
+	
+	/* hide the entire line that contains the end of the fold. */
+	if (!gtk_text_iter_starts_line (end))
+		gtk_text_iter_forward_line (end);
+
+	gtk_text_buffer_apply_tag_by_name (buffer, INVISIBLE_LINE,
+					   begin, end);
+
+	gtk_text_buffer_get_iter_at_mark (buffer, &insert,
+					  gtk_text_buffer_get_insert (buffer));
+	
+	/* make the cursor visible again if it was inside the fold. */
+	if (gtk_text_iter_in_range (&insert, begin, end))
+	{
+		if (!gtk_text_iter_forward_visible_cursor_position (&insert))
+			gtk_text_iter_backward_visible_cursor_position (&insert);
+	
+		gtk_text_buffer_place_cursor (buffer, &insert);
+	}
+
+	/* if the fold collapse is animated, the style is gradually
+	 * updated from a timeout handler in the view. If it isn't
+	 * animated we need to set the style here. This needed when
+	 * the user collapses the fold using the API instead of the GUI. */
+	if (!fold->animated)
+		fold->expander_style = GTK_EXPANDER_COLLAPSED;
+}
+
+static void
+expand_fold (GtkTextBuffer *buffer,
+	     GtkSourceFold *fold,
+	     GtkTextIter   *begin,
+	     GtkTextIter   *end)
+{
+	/* unhide the text after the fold, but still on the same line. */
+	if (!gtk_text_iter_starts_line (end))
+		gtk_text_iter_forward_line (end);
+
+	gtk_text_buffer_remove_tag_by_name (buffer, INVISIBLE_LINE,
+					    begin, end);
+	
+	/* reapply the invisibleline tag to collapsed children. */
+	if (fold->children != NULL)
+		reapply_invisibleline_tag (buffer, fold->children);
+	
+	/* if the fold expansion is animated, the style is gradually
+	 * updated from a timeout handler in the view. If it isn't
+	 * animated we need to set the style here. This needed when
+	 * the user expands the fold using the API instead of the GUI. */
+	if (!fold->animated)
+		fold->expander_style = GTK_EXPANDER_EXPANDED;
+}
+
 /**
  * gtk_source_fold_set_folded:
  * @fold: a #GtkSourceFold.
@@ -184,49 +249,9 @@ gtk_source_fold_set_folded (GtkSourceFold *fold,
 	gtk_text_buffer_get_iter_at_mark (buffer, &end, fold->end_line);
 	
 	if (folded)
-	{
-		GtkTextIter insert;
-
-		gtk_text_buffer_apply_tag_by_name (buffer, INVISIBLE_LINE,
-						   &begin, &end);
-
-		gtk_text_buffer_get_iter_at_mark (buffer, &insert,
-						  gtk_text_buffer_get_insert (buffer));
-		
-		/* make the cursor visible again if it was inside the fold. */
-		if (gtk_text_iter_in_range (&insert, &begin, &end))
-		{
-			if (!gtk_text_iter_forward_visible_cursor_position (&insert))
-				gtk_text_iter_backward_visible_cursor_position (&insert);
-		
-			gtk_text_buffer_place_cursor (buffer, &insert);
-		}
-
-		/* if the fold collapse is animated, the style is gradually
-		 * updated from a timeout handler in the view. If it isn't
-		 * animated we need to set the style here. This needed when
-		 * the user collapses the fold using the API instead of the GUI.
-		 */
-		if (!fold->animated)
-			fold->expander_style = GTK_EXPANDER_COLLAPSED;
-	}
+		collapse_fold (buffer, fold, &begin, &end);
 	else
-	{
-		gtk_text_buffer_remove_tag_by_name (buffer, INVISIBLE_LINE,
-						    &begin, &end);
-		
-		/* reapply the invisibleline tag to collapsed children. */
-		if (fold->children != NULL)
-			reapply_invisibleline_tag (buffer, fold->children);
-		
-		/* if the fold expansion is animated, the style is gradually
-		 * updated from a timeout handler in the view. If it isn't
-		 * animated we need to set the style here. This needed when
-		 * the user expands the fold using the API instead of the GUI.
-		 */
-		if (!fold->animated)
-			fold->expander_style = GTK_EXPANDER_EXPANDED;
-	}
+		expand_fold (buffer, fold, &begin, &end);
 }
 
 /**
@@ -245,6 +270,9 @@ gtk_source_fold_get_bounds (GtkSourceFold *fold,
 	GtkTextBuffer *buffer;
 	
 	g_return_if_fail (fold != NULL);
+
+	if (gtk_text_mark_get_deleted (fold->start_line))
+		g_message ("starting mark DELETED!");
 
 	buffer = gtk_text_mark_get_buffer (fold->start_line);
 

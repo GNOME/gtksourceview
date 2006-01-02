@@ -139,8 +139,11 @@ struct _ContextDefinition
 	/* Tag used for contexts of this type. */
 	GtkSourceTag		*tag;
 
-	/* Does this context should end before the end of the line? */
+	/* Does this context end at the end of the line? */
 	gboolean		 end_at_line_end;
+
+	/* Is this context foldable in the view? */
+	gboolean		 foldable;
 
 	/* This is a list of DefinitionChild pointers. */
 	GSList			*children;
@@ -210,6 +213,11 @@ struct _Context
 	 * contains A); so the tag of an outer context is cleared if
 	 * needed. */
 	GtkSourceTag		*clear_tag;
+	/* The fold for this context assuming the ContextDefinition is
+	 * foldable. */
+	GtkSourceFold           *fold;
+	/* Id of idle handler for update_context_fold. */
+	guint			 fold_update_handler;
 };
 
 /* Asyncronous insertions or deletions. */
@@ -219,6 +227,14 @@ struct _Modify
 	gint delta;
 };
 typedef struct _Modify Modify;
+
+struct _FoldUpdate
+{
+	GtkSourceContextEngine	*ce;
+	Context			*context;
+};
+typedef struct _FoldUpdate FoldUpdate;
+
 
 #define CONTEXT_ENGINE_GET_PRIVATE(obj) \
 	(G_TYPE_INSTANCE_GET_PRIVATE ((obj), \
@@ -288,7 +304,8 @@ static void	 gtk_source_context_engine_attach_buffer
 
 static void	 definition_free		(ContextDefinition		*definition);
 
-static Context	*context_new			(ContextDefinition		*definition,
+static Context	*context_new			(GtkSourceContextEngine		*ce,
+						 ContextDefinition		*definition,
 						 Context			*parent,
 						 gint				 start_at,
 						 gint				 end_at,
@@ -453,22 +470,24 @@ text_inserted_cb (GtkSourceBuffer   *buffer,
 
 static void
 text_deleted_cb (GtkSourceBuffer   *buffer,
-		 const GtkTextIter *iter,
+		 const GtkTextIter *where,
+		 gint               end_offset,
 		 const gchar       *text,
+		 gboolean           forward,
 		 gpointer           data)
 {
 	GtkSourceContextEnginePrivate *priv;
 	GtkSourceContextEngine *ce = data;
 
-	g_return_if_fail (iter != NULL);
-	g_return_if_fail (gtk_text_iter_get_buffer (iter) ==
+	g_return_if_fail (where != NULL);
+	g_return_if_fail (gtk_text_iter_get_buffer (where) ==
 		GTK_TEXT_BUFFER (buffer));
 	g_return_if_fail (GTK_IS_SOURCE_CONTEXT_ENGINE (ce));
 
 	priv = CONTEXT_ENGINE_GET_PRIVATE (ce);
 	g_return_if_fail (priv->buffer == buffer);
 
-	text_modified (ce, gtk_text_iter_get_offset (iter),
+	text_modified (ce, gtk_text_iter_get_offset (where),
 		-g_utf8_strlen (text, -1));
 }
 
@@ -759,7 +778,7 @@ gtk_source_context_engine_attach_buffer (GtkSourceEngine *engine,
 				priv->id);
 			return;
 		}
-		priv->root_context = context_new (main_definition, NULL,
+		priv->root_context = context_new (ce, main_definition, NULL,
 			0, END_NOT_YET_FOUND, NULL);
 
 		priv->highlight = gtk_source_buffer_get_highlight (buffer);
@@ -1075,6 +1094,7 @@ definition_new (gchar              *id,
 		gchar              *style,
 		gboolean            extend_parent,
 		gboolean            end_at_line_end,
+		gboolean            foldable,
 		GError            **error)
 {
 	ContextDefinition *definition;
@@ -1153,6 +1173,7 @@ definition_new (gchar              *id,
 	definition->type = type;
 	definition->extend_parent = extend_parent;
 	definition->end_at_line_end = end_at_line_end;
+	definition->foldable = foldable;
 	definition->children = NULL;
 	definition->tag = NULL;
 	definition->sub_patterns = NULL;
@@ -1384,6 +1405,105 @@ create_reg_all (Context *context, ContextDefinition *definition)
 	return regex;
 }
 
+static gboolean
+update_context_fold (FoldUpdate *fu)
+{
+	GtkSourceContextEnginePrivate *priv;
+	GtkTextBuffer *buffer;
+	gint start_line;
+	GtkTextIter start_iter, end_iter;
+
+	priv = CONTEXT_ENGINE_GET_PRIVATE (fu->ce);
+	buffer = GTK_TEXT_BUFFER (priv->buffer);
+
+	gtk_text_buffer_get_iter_at_offset (buffer, &start_iter, fu->context->start_at);
+	gtk_text_buffer_get_iter_at_offset (buffer, &end_iter, fu->context->end_at);
+
+	start_line = gtk_text_iter_get_line (&start_iter);
+
+	/* only add a fold if the start & end are on different lines. */
+	if (start_line != gtk_text_iter_get_line (&end_iter))
+	{
+		/* either create a new fold or update the existing one. */
+		if (fu->context->fold != NULL)
+		{
+			GtkTextIter fold_begin, fold_end;
+			
+			gtk_source_fold_get_bounds (fu->context->fold,
+						    &fold_begin, &fold_end);
+			
+			/* only update (remove & add) the fold if it changed. */
+			if (!(gtk_text_iter_equal (&start_iter, &fold_begin) &&
+			      gtk_text_iter_equal (&end_iter, &fold_end)))
+			{
+				DEBUG (g_message ("remove_fold @ %d-%d for fold %p, context %p",
+					   gtk_text_iter_get_line (&fold_begin),
+					   gtk_text_iter_get_line (&fold_end),
+					   fu->context->fold, fu->context));
+				gtk_source_buffer_remove_fold (priv->buffer,
+							       fu->context->fold);
+
+				fu->context->fold = 
+					gtk_source_buffer_add_fold (priv->buffer,
+								    &start_iter,
+								    &end_iter);
+				DEBUG (g_message ("add_fold @ %d-%d for fold %p, context %p",
+					   gtk_text_iter_get_line (&start_iter),
+					   gtk_text_iter_get_line (&end_iter),
+					   fu->context->fold, fu->context));
+			}
+		}
+		else
+		{
+			fu->context->fold = gtk_source_buffer_add_fold (priv->buffer,
+									&start_iter,
+									&end_iter);
+			DEBUG (g_message ("add_fold @ %d-%d for fold %p, context %p",
+				   gtk_text_iter_get_line (&start_iter),
+				   gtk_text_iter_get_line (&end_iter),
+				   fu->context->fold, fu->context));
+		}
+	}
+	else if (fu->context->fold != NULL)
+	{
+		g_message ("encountered fold on single line: %p, context %p",
+			   fu->context->fold, fu->context);
+		//gtk_source_buffer_remove_fold (priv->buffer, fu->context->fold);
+		//fu->context->fold = NULL;
+	}
+
+	fu->context->fold_update_handler = 0;
+	
+	g_free (fu);
+	
+	return FALSE;
+}
+
+static void
+update_context_end (GtkSourceContextEngine *ce, Context *context)
+{
+	if (context->definition->foldable && context->end_at != END_NOT_YET_FOUND)
+	{
+		FoldUpdate *fu = g_new0 (FoldUpdate, 1);
+		fu->ce = ce;
+		fu->context = context;
+		
+		/* The context_destroy (and thus remove_fold) gets called after
+		 * the new context has been created. So in order to get add_fold
+		 * called *after* remove_fold, we need to call
+		 * update_context_fold from an idle handler.
+		 *
+		 * If we type really quickly, the context will be destroyed and
+		 * be replaced with a new one before the idle call is executed.
+		 * To prevent the handler from being run against an already
+		 * freed Context, we store the idle id in the Context and remove
+		 * the idle handler in context_destroy if it's still pending. */
+		context->fold_update_handler =
+			g_idle_add_full (GTK_TEXT_VIEW_PRIORITY_VALIDATE,
+					 (GSourceFunc) update_context_fold, fu, NULL);
+	}
+}
+
 /* context_new:
  *
  * @definition: a #ContextDefinition.
@@ -1400,11 +1520,12 @@ create_reg_all (Context *context, ContextDefinition *definition)
  * Return value: a newly-allocated context.
  */
 static Context *
-context_new (ContextDefinition *definition,
-	     Context           *parent,
-	     gint               start_at,
-	     gint               end_at,
-	     const gchar       *end_text)
+context_new (GtkSourceContextEngine *ce,
+	     ContextDefinition      *definition,
+	     Context                *parent,
+	     gint                    start_at,
+	     gint                    end_at,
+	     const gchar            *end_text)
 {
 	Context *new_context = g_new0 (Context, 1);
 	new_context->definition = definition;
@@ -1413,6 +1534,7 @@ context_new (ContextDefinition *definition,
 	new_context->end_at = end_at;
 	new_context->children = NULL;
 	new_context->end = NULL;
+	new_context->fold = NULL;
 
 	if (parent &&
 	    (!parent->all_ancestors_extend ||
@@ -1491,6 +1613,9 @@ context_new (ContextDefinition *definition,
 		new_context->reg_all = regex_ref (definition->reg_all);
 	}
 
+	if (end_at != END_NOT_YET_FOUND)
+		update_context_end (ce, new_context);
+
 	return new_context;
 }
 
@@ -1509,6 +1634,30 @@ context_destroy (Context *context)
 
 	g_return_if_fail (context != NULL);
 
+	/* if we have a pending idle handler for updating the fold, remove it. */
+	if (context->fold_update_handler != 0)
+	{
+		g_source_remove (context->fold_update_handler);
+		context->fold_update_handler = 0;
+	}
+
+	if (context->fold != NULL)
+	{
+#if defined(ENABLE_DEBUG)
+		GtkTextIter start, end;
+	
+		gtk_source_fold_get_bounds (context->fold, &start, &end);
+		g_message ("remove_fold @ %d-%d for fold %p, context %p",
+			   gtk_text_iter_get_line (&start),
+			   gtk_text_iter_get_line (&end),
+			   context->fold, context);
+#endif
+
+		GtkSourceBuffer *buffer = gtk_source_fold_get_buffer (context->fold);
+		gtk_source_buffer_remove_fold (buffer, context->fold);
+		context->fold = NULL;
+	}
+
 	child = context->children;
 	while (child != NULL)
 	{
@@ -1522,7 +1671,7 @@ context_destroy (Context *context)
 
 	regex_unref (context->end);
 	regex_unref (context->reg_all);
-
+	
 	g_free (context);
 }
 
@@ -1568,6 +1717,10 @@ context_dup (const Context *context)
 	memcpy (ret, context, sizeof (Context));
 	ret->children = NULL;
 	ret->sub_patterns = NULL;
+	
+	/* Copied Context's don't have a fold; this messes up fold removal. */
+	ret->fold = NULL;
+	
 	regex_ref (context->end);
 	regex_ref (ret->reg_all);
 	return ret;
@@ -2064,6 +2217,8 @@ ancestor_ends_here (GtkSourceContextEngine   *ce,
 		{
 			current_context->end_at = end_offset;
 			current_context = current_context->parent;
+			
+			update_context_end (ce, current_context);
 		}
 		*new_state = terminating_context;
 	}
@@ -2234,7 +2389,7 @@ container_context_starts_here (GtkSourceContextEngine  *ce,
 		line_length, *line_pos))
 	{
 		gint offset = line_starts_at + *line_pos;
-		Context *new_context = context_new (curr_definition,
+		Context *new_context = context_new (ce, curr_definition,
 			state, offset, END_NOT_YET_FOUND, line);
 		if (apply_match (ce, new_context, line_starts_at, line,
 			line_pos, line_length,
@@ -2272,7 +2427,7 @@ simple_context_starts_here (GtkSourceContextEngine  *ce,
 		line_length, *line_pos))
 	{
 		gint offset = line_starts_at + *line_pos;
-		Context *new_context = context_new (curr_definition,
+		Context *new_context = context_new (ce, curr_definition,
 			state, offset, END_NOT_YET_FOUND, NULL);
 		if (apply_match (ce, new_context, line_starts_at, line,
 			line_pos, line_length,
@@ -2280,6 +2435,7 @@ simple_context_starts_here (GtkSourceContextEngine  *ce,
 			SUB_PATTERN_WHERE_DEFAULT))
 		{
 			new_context->end_at = line_starts_at + *line_pos;
+			update_context_end (ce, new_context);
 			return TRUE;
 		}
 		else
@@ -2433,6 +2589,7 @@ next_context (GtkSourceContextEngine  *ce,
 				SUB_PATTERN_WHERE_END);
 			state->end_at = line_starts_at + *line_pos;
 			*new_state = state->parent;
+			update_context_end (ce, state);
 			return TRUE;
 		}
 		/* At this position there is nothing new, so we examine the
@@ -2695,6 +2852,9 @@ split_contexts_tree (GtkSourceContextEngine *ce,
 		common_context_copy = context_dup (common_context);
 		/* We are in common_context, so we have not found its end. */
 		common_context->end_at = END_NOT_YET_FOUND;
+		
+		// FIXME: do we need to call update_context_end here?
+		update_context_end (ce, common_context);
 
 		/* Splits the sub-patterns list between common_context and
 		 * common_context_copy. */
@@ -3016,6 +3176,7 @@ join_contexts_tree (GtkSourceContextEngine *ce,
 		}
 
 		new_context->end_at = old_context->end_at;
+		update_context_end (ce, new_context);
 
 		/* Concatenate the two lists deleting old_context. */
 		new_context->next = old_context->next;
@@ -3148,6 +3309,7 @@ end_at_line_end (GtkSourceContextEngine   *ce,
 		{
 			current_context->end_at = end_offset;
 			current_context = current_context->parent;
+			update_context_end (ce, current_context);
 		} while (current_context != terminating_context->parent);
 		return terminating_context->parent;
 	}
@@ -3334,7 +3496,7 @@ update_syntax (GtkSourceContextEngine *ce,
 		gtk_text_iter_forward_to_line_end (&end);
 
 	/* We read all the batch if delta is zero or if the text
-	 * iserted/deleted is long (so rarely the removed tree can
+	 * inserted/deleted is long (so rarely the removed tree can
 	 * be used.) */
 	LineReader *reader;
 	reader = line_reader_new (&start, &end,
@@ -3483,10 +3645,12 @@ unhighlight_region_cb (gpointer key,
 	GSList *sub_pattern_list;
 
 	if (definition->tag != NULL)
+	{
 		gtk_text_buffer_remove_tag (
 			GTK_TEXT_BUFFER (data->priv->buffer),
 			GTK_TEXT_TAG (definition->tag),
 			data->start, data->end);
+	}
 
 	sub_pattern_list = definition->sub_patterns;
 	while (sub_pattern_list != NULL)
@@ -3519,7 +3683,7 @@ unhighlight_region (GtkSourceContextEngine *ce,
  *
  * @buffer: a #GtkSourceBuffer.
  * @context: the context to highlight.
- * @start_region_offset: the beggining of the region to highlight.
+ * @start_region_offset: the beginning of the region to highlight.
  * @end_region_offset: the end of the region to highlight.
  *
  * Highlights the part of @context contained in the interval from
@@ -3780,6 +3944,7 @@ gtk_source_context_engine_define_context (GtkSourceContextEngine  *ce,
 					  gchar                   *style,
 					  gboolean                 extend_parent,
 					  gboolean                 end_at_line_end,
+					  gboolean                 foldable,
 					  GError                 **error)
 {
 	ContextDefinition *definition, *parent = NULL;
@@ -3847,7 +4012,7 @@ gtk_source_context_engine_define_context (GtkSourceContextEngine  *ce,
 
 	definition = definition_new (id, type, parent, match_regex,
 		start_regex, end_regex, style, extend_parent, end_at_line_end,
-		error);
+		foldable, error);
 	if (definition == NULL)
 		return FALSE;
 	g_hash_table_insert (priv->definitions, g_strdup (id), definition);

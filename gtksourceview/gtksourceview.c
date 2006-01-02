@@ -653,6 +653,9 @@ fold_remove_cb (GtkSourceBuffer *buffer,
 		GtkSourceFold   *fold,
 		GtkSourceView   *view)
 {
+	/* attempt to remove the fold label (if it exists). */
+	g_hash_table_remove (view->priv->fold_labels, fold);
+
 	gtk_widget_queue_draw (GTK_WIDGET (view));
 }
 
@@ -690,14 +693,14 @@ set_source_buffer (GtkSourceView *view, GtkTextBuffer *buffer)
 						      fold_remove_cb,
 						      view);
 		g_object_remove_weak_pointer (G_OBJECT (view->priv->source_buffer),
-					      (gpointer *) &view->priv->source_buffer);
+					      (gpointer) &view->priv->source_buffer);
 	}
 
 	if (buffer && GTK_IS_SOURCE_BUFFER (buffer)) 
 	{
 		view->priv->source_buffer = GTK_SOURCE_BUFFER (buffer);
 		g_object_add_weak_pointer (G_OBJECT (buffer),
-					   (gpointer *) &view->priv->source_buffer);
+					   (gpointer) &view->priv->source_buffer);
 		g_signal_connect (buffer,
 				  "highlight_updated",
 				  G_CALLBACK (highlight_updated_cb),
@@ -1204,7 +1207,7 @@ gtk_source_view_get_lines (GtkTextView  *text_view,
 	folds = _gtk_source_buffer_get_folds_in_region (GTK_SOURCE_VIEW (text_view)->priv->source_buffer,
 						        &iter, &iter2);
 	l = folds;
-
+	
 	/* For each iter, get its location and add it to the arrays. Stop when
 	 * we pass last_y. */
 	count = 0;
@@ -1458,6 +1461,10 @@ move_fold_label (GtkTextView        *view,
 	int x, y, old_x, old_y;
 	
 	gtk_source_fold_get_bounds (fold, &begin, NULL);
+	
+	/* if there's text on the line, move to the end. */
+	if (gtk_text_iter_starts_line (&begin) && !gtk_text_iter_ends_line (&begin))
+		gtk_text_iter_forward_to_line_end (&begin);
 
 	gtk_text_view_get_iter_location (view, &begin, &rect);
 	

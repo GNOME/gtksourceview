@@ -33,6 +33,7 @@
 
 #include "gtksourceundomanager.h"
 #include "gtksourceview-marshal.h"
+#include "gtksourcebuffer.h"
 
 
 #define DEFAULT_MAX_UNDO_LEVELS		25
@@ -134,14 +135,15 @@ static void gtk_source_undo_manager_class_init 			(GtkSourceUndoManagerClass 	*k
 static void gtk_source_undo_manager_init 			(GtkSourceUndoManager 		*um);
 static void gtk_source_undo_manager_finalize 			(GObject 			*object);
 
-static void gtk_source_undo_manager_insert_text_handler 	(GtkTextBuffer 			*buffer, 
-							 	 GtkTextIter 			*pos,
-		                             		 	 const 	gchar 			*text, 
-							 	 gint 				 length, 
+static void gtk_source_undo_manager_insert_text_handler 	(GtkSourceBuffer		*buffer, 
+							 	 const GtkTextIter		*start,
+		                             		 	 const GtkTextIter		*end,
 							 	 GtkSourceUndoManager 		*um);
-static void gtk_source_undo_manager_delete_range_handler 	(GtkTextBuffer 			*buffer, 
-							 	 GtkTextIter 			*start,
-                        		      		 	 GtkTextIter 			*end,
+static void gtk_source_undo_manager_delete_range_handler 	(GtkSourceBuffer		*buffer, 
+							 	 const GtkTextIter		*where,
+                        		      		 	 gint				 end_offset,
+                        		      		 	 const gchar			*text,
+                        		      		 	 gboolean			 forward,
 							 	 GtkSourceUndoManager 		*um);
 static void gtk_source_undo_manager_begin_user_action_handler 	(GtkTextBuffer 			*buffer, 
 								 GtkSourceUndoManager 		*um);
@@ -293,11 +295,11 @@ gtk_source_undo_manager_new (GtkTextBuffer* buffer)
 	g_return_val_if_fail (um->priv != NULL, NULL);
   	um->priv->document = buffer;
 
-	g_signal_connect (G_OBJECT (buffer), "insert_text",
+	g_signal_connect (G_OBJECT (buffer), "text_inserted",
 			  G_CALLBACK (gtk_source_undo_manager_insert_text_handler), 
 			  um);
 
-	g_signal_connect (G_OBJECT (buffer), "delete_range",
+	g_signal_connect (G_OBJECT (buffer), "text_deleted",
 			  G_CALLBACK (gtk_source_undo_manager_delete_range_handler), 
 			  um);
 
@@ -417,22 +419,6 @@ delete_text (GtkTextBuffer *buffer, gint start, gint end)
 		gtk_text_buffer_get_iter_at_offset (buffer, &end_iter, end);
 
 	gtk_text_buffer_delete (buffer, &start_iter, &end_iter);
-}
-
-static gchar*
-get_chars (GtkTextBuffer *buffer, gint start, gint end)
-{
-	GtkTextIter start_iter;
-	GtkTextIter end_iter;
-
-	gtk_text_buffer_get_iter_at_offset (buffer, &start_iter, start);
-
-	if (end < 0)
-		gtk_text_buffer_get_end_iter (buffer, &end_iter);
-	else
-		gtk_text_buffer_get_iter_at_offset (buffer, &end_iter, end);
-
-	return gtk_text_buffer_get_slice (buffer, &start_iter, &end_iter, TRUE);
 }
 
 void 
@@ -664,28 +650,28 @@ gtk_source_undo_manager_free_action_list (GtkSourceUndoManager *um)
 }
 
 static void 
-gtk_source_undo_manager_insert_text_handler (GtkTextBuffer 		*buffer, 
-					     GtkTextIter 		*pos,
-		                             const gchar 		*text, 
-					     gint 			 length, 
+gtk_source_undo_manager_insert_text_handler (GtkSourceBuffer 		*buffer, 
+					     const GtkTextIter 		*start,
+		                             const GtkTextIter 		*end, 
 					     GtkSourceUndoManager 	*um)
 {
 	GtkSourceUndoAction undo_action;
+	gchar *text;
 	
 	if (um->priv->running_not_undoable_actions > 0)
 		return;
 
-	g_return_if_fail (strlen (text) >= (guint)length);
-	
 	undo_action.action_type = GTK_SOURCE_UNDO_ACTION_INSERT;
 
-	undo_action.action.insert.pos    = gtk_text_iter_get_offset (pos);
-	undo_action.action.insert.text   = (gchar*) text;
-	undo_action.action.insert.length = length;
-	undo_action.action.insert.chars  = g_utf8_strlen (text, length);
+	text = gtk_text_buffer_get_slice (GTK_TEXT_BUFFER (buffer),
+					  start, end, TRUE);
+
+	undo_action.action.insert.pos    = gtk_text_iter_get_offset (start);
+	undo_action.action.insert.text   = text;
+	undo_action.action.insert.length = strlen (text);
+	undo_action.action.insert.chars  = g_utf8_strlen (text, undo_action.action.insert.length);
 
 	if ((undo_action.action.insert.chars > 1) || (g_utf8_get_char (text) == '\n'))
-
 	       	undo_action.mergeable = FALSE;
 	else
 		undo_action.mergeable = TRUE;
@@ -693,39 +679,29 @@ gtk_source_undo_manager_insert_text_handler (GtkTextBuffer 		*buffer,
 	undo_action.modified = FALSE;
 
 	gtk_source_undo_manager_add_action (um, &undo_action);
+	
+	g_free (text);
 }
 
 static void 
-gtk_source_undo_manager_delete_range_handler (GtkTextBuffer 		*buffer, 
-					      GtkTextIter 		*start,
-                        		      GtkTextIter 		*end, 
+gtk_source_undo_manager_delete_range_handler (GtkSourceBuffer 		*buffer, 
+					      const GtkTextIter		*where,
+					      gint			 end_offset,
+                        		      const gchar 		*text,
+                        		      gboolean			 forward,
 					      GtkSourceUndoManager 	*um)
 {
 	GtkSourceUndoAction undo_action;
-	GtkTextIter insert_iter;
 	
 	if (um->priv->running_not_undoable_actions > 0)
 		return;
 
 	undo_action.action_type = GTK_SOURCE_UNDO_ACTION_DELETE;
 
-	gtk_text_iter_order (start, end);
-
-	undo_action.action.delete.start  = gtk_text_iter_get_offset (start);
-	undo_action.action.delete.end    = gtk_text_iter_get_offset (end);
-
-	undo_action.action.delete.text   = get_chars (
-						buffer,
-						undo_action.action.delete.start,
-						undo_action.action.delete.end);
-
-	/* figure out if the user used the Delete or the Backspace key */
-	gtk_text_buffer_get_iter_at_mark (buffer, &insert_iter,
-					  gtk_text_buffer_get_insert (buffer));
-	if (gtk_text_iter_get_offset (&insert_iter) <= undo_action.action.delete.start)
-		undo_action.action.delete.forward = TRUE;
-	else
-		undo_action.action.delete.forward = FALSE;
+	undo_action.action.delete.start   = gtk_text_iter_get_offset (where);
+	undo_action.action.delete.end     = end_offset;
+	undo_action.action.delete.text    = (gchar *) text;
+	undo_action.action.delete.forward = forward;
 
 	if (((undo_action.action.delete.end - undo_action.action.delete.start) > 1) ||
 	     (g_utf8_get_char (undo_action.action.delete.text  ) == '\n'))
@@ -736,9 +712,6 @@ gtk_source_undo_manager_delete_range_handler (GtkTextBuffer 		*buffer,
 	undo_action.modified = FALSE;
 	
 	gtk_source_undo_manager_add_action (um, &undo_action);
-
-	g_free (undo_action.action.delete.text);
-
 }
 
 static void 

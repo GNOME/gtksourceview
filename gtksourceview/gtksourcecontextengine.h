@@ -81,6 +81,7 @@ gboolean	 gtk_source_context_engine_define_context
 							 gchar			 *style,
 							 gboolean		  extend_parent,
 							 gboolean		  end_at_line_end,
+							 gboolean		  foldable,
 							 GError			**error);
 
 gboolean	 gtk_source_context_engine_add_sub_pattern

@@ -76,7 +76,9 @@ struct _GtkSourceBufferClass
 					 const GtkTextIter *end);
 	void (* text_deleted)           (GtkSourceBuffer   *buffer,
 					 const GtkTextIter *where,
-					 const gchar       *text);
+					 gint               end_offset,
+					 const gchar       *text,
+					 gboolean           forward);
 	void (* update_highlight)       (GtkSourceBuffer   *buffer,
 					 const GtkTextIter *start,
 					 const GtkTextIter *end,
