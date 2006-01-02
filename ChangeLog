@@ -1,3 +1,8 @@
+2006-01-02  Paolo Borelli  <pborelli@katamail.com>
+
+	* gtksourceview/gtksourcelanguage.c: avoid some strdups when parsing
+	mime types.
+
 2005-12-31  Paolo Maggi  <paolo@gnome.org>
 
 	* gtksourceview/language-specs/Makefile.am: added changelog.lang

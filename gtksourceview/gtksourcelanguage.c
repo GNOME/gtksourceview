@@ -362,19 +362,16 @@ process_language_node (xmlTextReaderPtr reader, const gchar *filename)
 		return NULL;
 	}
 
-	mtl = g_strsplit (mimetypes, ";" , 0);
+	mtl = g_strsplit (mimetypes, ";", 0);
 
-	i = 0; 
-	
-	do
+	for (i = 0; mtl[i] != NULL; i++)
 	{
+		/* steal the strings from the array */
 		lang->priv->mime_types = g_slist_prepend (lang->priv->mime_types,
-				g_strdup (mtl[i]));
+							  mtl[i]);
+	}
 
-		++i;
-	} while (mtl[i] != NULL);
-
-	g_strfreev (mtl);
+	g_free (mtl);
 	xmlFree (mimetypes);
 
 	lang->priv->mime_types = g_slist_reverse (lang->priv->mime_types);
@@ -495,8 +492,6 @@ get_mime_types_from_file (GtkSourceLanguage *language)
 				if (strcmp (name, "language") == 0)
 				{
 					gchar *mimetypes;
-					gchar** mtl;
-					gint i;
 
 					mimetypes = xmlTextReaderGetAttribute (reader, "mimetypes");
 					
@@ -509,20 +504,19 @@ get_mime_types_from_file (GtkSourceLanguage *language)
 					}
 					else
 					{
+						gchar **mtl;
+						gint i;
 
-						mtl = g_strsplit (mimetypes, ";" , 0);
+						mtl = g_strsplit (mimetypes, ";", 0);
 
-						i = 0; 
-	
-						do
+						for (i = 0; mtl[i] != NULL; i++)
 						{
+							/* steal the strings from the array */
 							mime_types = g_slist_prepend (mime_types,
-										      g_strdup (mtl[i]));
+										      mtl[i]);
+						}
 
-							++i;
-						} while (mtl[i] != NULL);
-
-						g_strfreev (mtl);
+						g_free (mtl);
 						xmlFree (mimetypes);
 
 						ret = 0;
@@ -534,7 +528,6 @@ get_mime_types_from_file (GtkSourceLanguage *language)
 			
 			if (ret != 0)
 				ret = xmlTextReaderRead (reader);
-			
 		}
 	
 		xmlFreeTextReader (reader);
