@@ -21,6 +21,7 @@ EXTRA_DIST = 			\
 	makefile.lang		\
 	msil.lang		\
 	nemerle.lang		\
+	octave.lang		\
 	pascal.lang		\
 	perl.lang		\
 	php.lang		\

@@ -1,3 +1,13 @@
+2006-01-03  Paolo Maggi  <paolo@gnome.org>
+
+	Fixes bug #170604 – Syntax for GNU Octave
+	
+	* gtksourceview/language-specs/Makefile.am: added octave.lang
+	
+	* gtksourceview/language-specs/octave.lang: new file by
+	Søren Hauberg <soren@hauberg.org> and 
+	Muthiah Annamalai <gnumuthu@users.sf.net>
+
 === gtksourceview 1.5.3 ===
 
 2006-01-02  Paolo Maggi  <paolo@gnome.org>
