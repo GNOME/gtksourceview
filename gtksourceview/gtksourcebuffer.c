@@ -811,8 +811,16 @@ gtk_source_buffer_real_delete_range (GtkTextBuffer *buffer,
 							   start);
 		if (fold != NULL && fold->folded)
 		{
-			gtk_source_fold_set_folded (fold, FALSE);
-			return;
+			GtkTextIter fold_begin;
+			
+			/* If the start of delete range is the same as the start
+			 * of the fold, allow the delete to proceed. */
+			gtk_source_fold_get_bounds (fold, &fold_begin, NULL);
+			if (!gtk_text_iter_equal (start, &fold_begin))
+			{
+				gtk_source_fold_set_folded (fold, FALSE);
+				return;
+			}
 		}
 
 		/* do we end in a folded region? */		
@@ -820,8 +828,16 @@ gtk_source_buffer_real_delete_range (GtkTextBuffer *buffer,
 							   end);
 		if (fold != NULL && fold->folded)
 		{
-			gtk_source_fold_set_folded (fold, FALSE);
-			return;
+			GtkTextIter fold_end;
+			
+			/* If the end of delete range is the same as the end
+			 * of the fold, allow the delete to proceed. */
+			gtk_source_fold_get_bounds (fold, NULL, &fold_end);
+			if (!gtk_text_iter_equal (end, &fold_end))
+			{
+				gtk_source_fold_set_folded (fold, FALSE);
+				return;
+			}
 		}
 	}
 

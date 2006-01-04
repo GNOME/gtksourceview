@@ -653,10 +653,18 @@ fold_remove_cb (GtkSourceBuffer *buffer,
 		GtkSourceFold   *fold,
 		GtkSourceView   *view)
 {
-	/* attempt to remove the fold label (if it exists). */
-	g_hash_table_remove (view->priv->fold_labels, fold);
+	GtkSourceFoldLabel *label = g_hash_table_lookup (view->priv->fold_labels, fold);
+	
+	if (label != NULL)
+	{
+		if (GTK_WIDGET_VISIBLE (label))
+			gtk_widget_hide (GTK_WIDGET (label));
 
-	gtk_widget_queue_draw (GTK_WIDGET (view));
+		g_hash_table_remove (view->priv->fold_labels, fold);
+
+		/* FIXME: this causes excessive redrawing? */
+		gtk_widget_queue_draw (GTK_WIDGET (view));
+	}
 }
 
 static void
@@ -1462,8 +1470,11 @@ move_fold_label (GtkTextView        *view,
 	
 	gtk_source_fold_get_bounds (fold, &begin, NULL);
 	
-	/* if there's text on the line, move to the end. */
-	if (gtk_text_iter_starts_line (&begin) && !gtk_text_iter_ends_line (&begin))
+	/* if there's no text before the start of the fold, show the fold label
+	 * after the text on the line. This ties in with how GtkSourceFold shows
+	 * a collapsed fold: the first line remains visible when there's no text
+	 * before the start of the fold. */
+	if (gtk_text_iter_starts_sentence (&begin) && !gtk_text_iter_ends_line (&begin))
 		gtk_text_iter_forward_to_line_end (&begin);
 
 	gtk_text_view_get_iter_location (view, &begin, &rect);

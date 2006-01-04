@@ -1,3 +1,13 @@
+2006-01-04  Jeroen Zwartepoorte  <jeroen.zwartepoorte@gmail.com>
+
+	* gtksourceview/gtksourcebuffer.c:
+	(gtk_source_buffer_real_delete_range): Don't expand the fold when the
+	start/end of the delete range is the same as the start/end of the fold.
+	
+	* gtksourceview/gtksourcefold.c: (collapse_fold):
+	* gtksourceview/gtksourceview.c: (fold_remove_cb),
+	(move_fold_label): Fix the position & cleanup of the fold label.
+
 2006-01-02  Jeroen Zwartepoorte  <jeroen.zwartepoorte@gmail.com>
 
 	* gtksourceview/gtksourcebuffer.c: (gtk_source_buffer_class_init),

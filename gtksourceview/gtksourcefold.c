@@ -165,7 +165,7 @@ collapse_fold (GtkTextBuffer *buffer,
 
 	/* if the starting point of the fold has no text before it on the line,
 	 * then only hide part of the line so the user still sees something. */
-	if (gtk_text_iter_starts_line (begin) || gtk_text_iter_starts_sentence (begin))
+	if (gtk_text_iter_starts_sentence (begin))
 		gtk_text_iter_forward_to_line_end (begin);
 	
 	/* hide the entire line that contains the end of the fold. */
