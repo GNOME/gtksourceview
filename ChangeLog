@@ -1,3 +1,10 @@
+2006-01-04  Marco Barisione <barisione@gmail.com>
+
+	* gtksourceview/gtksourceprintjob.c, tests/test-widget.c: added casts
+	to avoid warnings on different signedness.
+	Partially fixes bug #309663 – gcc 4.01 compiler treats pointer target
+	warnings as errors
+
 === gtksourceview 1.5.4 ===
 
 2006-01-04  Paolo Borelli  <pborelli@katamail.com>

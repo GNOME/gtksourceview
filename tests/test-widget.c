@@ -390,7 +390,8 @@ finished_cb (GtkSourcePrintJob *job, gpointer user_data)
 
 	g_print ("\n");
 	gjob = gtk_source_print_job_get_print_job (job);
-	preview = gnome_print_job_preview_new (gjob, "test-widget print preview");
+	preview = gnome_print_job_preview_new (gjob,
+		(const guchar *)"test-widget print preview");
  	g_object_unref (gjob); 
  	g_object_unref (job);
 	
