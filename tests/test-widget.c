@@ -21,6 +21,11 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
+/* If TEST_XML_MEM is defined the test program will try to detect memory
+ * allocated by xmlMalloc() but not freed by xmlFree() or freed by xmlFree()
+ * but not allocated by xmlMalloc(). */
+/*#define TEST_XML_MEM*/
+
 #include <stdio.h>
 #include <string.h>
 #include <gtk/gtk.h>
@@ -32,7 +37,9 @@
 #include <gtksourceview/gtksourcelanguage.h>
 #include <gtksourceview/gtksourcelanguagesmanager.h>
 #include <gtksourceview/gtksourceprintjob.h>
-
+#ifdef TEST_XML_MEM
+#include <libxml/xmlreader.h>
+#endif
 
 /* Global list of open windows */
 
@@ -970,6 +977,87 @@ create_source_buffer (GtkSourceLanguagesManager *manager)
 }
 
 
+/* XML memory management and verification functions ----------------------------- */
+
+#ifdef TEST_XML_MEM
+
+static GHashTable *xml_mem_table = NULL;
+
+static void
+xml_free (void *mem)
+{
+	if (mem == NULL)
+		return;
+
+	if (g_hash_table_remove (xml_mem_table, mem))
+	{
+		g_free (mem);
+	}
+	else
+	{
+		g_warning ("Memory at %p (\"%s\") was not allocated by libxml",
+				mem, (gchar*)mem);
+	}
+}
+
+static void *
+xml_malloc (size_t size)
+{
+	void *allocated_mem = g_malloc (size);
+	g_hash_table_insert (xml_mem_table, allocated_mem, GINT_TO_POINTER (TRUE));
+	return allocated_mem;
+}
+
+static void *
+xml_realloc (void *mem, size_t size)
+{
+	void *allocated_mem;
+
+	if (!g_hash_table_remove (xml_mem_table, mem))
+	{
+		g_warning ("Memory at %p (\"%s\") was not allocated by libxml",
+				mem, (gchar*)mem);
+	}
+
+	allocated_mem = g_realloc (mem, size);
+	g_hash_table_insert (xml_mem_table, allocated_mem, GINT_TO_POINTER (TRUE));
+	return allocated_mem;
+}
+
+static char *
+xml_strdup (const char *str)
+{
+	void *allocated_mem = g_strdup (str);
+	g_hash_table_insert (xml_mem_table, allocated_mem, GINT_TO_POINTER (TRUE));
+	return allocated_mem;
+}
+
+static void
+xml_init ()
+{
+	xml_mem_table = g_hash_table_new (NULL, NULL);
+	if (xmlMemSetup (xml_free, xml_malloc, xml_realloc, xml_strdup) != 0)
+		g_warning ("xmlMemSetup() failed");
+}
+
+static void
+xml_table_foreach_cb (gpointer key, gpointer value, gpointer user_data)
+{
+	/* Some of this memory could be internally allocated by libxml. */
+	g_warning ("Memory at %p (\"%s\") was not freed, freed without using xmlFree() "
+			"or allocated internally by libxml", key, (gchar*)key);
+}
+
+static void
+xml_finalize ()
+{
+	g_hash_table_foreach (xml_mem_table, xml_table_foreach_cb, NULL);
+	g_hash_table_destroy (xml_mem_table);
+}
+
+#endif /* TEST_XML_MEM */
+
+
 /* Program entry point ------------------------------------------------------------ */
 
 int
@@ -982,7 +1070,11 @@ main (int argc, char *argv[])
 	/* initialization */
 	gtk_init (&argc, &argv);
 	gnome_vfs_init ();
-	
+
+#ifdef TEST_XML_MEM
+	xml_init ();
+#endif
+
 	/* create buffer */
 	lm = gtk_source_languages_manager_new ();
 	buffer = create_source_buffer (lm);
@@ -1007,6 +1099,10 @@ main (int argc, char *argv[])
 	g_object_unref (buffer);
 
 	gnome_vfs_shutdown ();
-	
+
+#ifdef TEST_XML_MEM
+	xml_finalize ();
+#endif
+
 	return 0;
 }
