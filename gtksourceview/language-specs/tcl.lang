@@ -18,11 +18,11 @@
 		<start-regex>#</start-regex>
 	</line-comment>
 
-	<pattern-item _name="Variables" style="Data Type">
+	<pattern-item _name="Variable" style="Data Type">
 		<regex>[$@%][$]?[a-zA-Z_][a-zA-Z0-9_]*</regex>
 	</pattern-item>
 
-	<keyword-list _name="Keywords" style="Keyword" case-sensitive="TRUE">
+	<keyword-list _name="Keyword" style="Keyword" case-sensitive="TRUE">
                 <!--String handling-->
 		<keyword>string</keyword>
 		<keyword>subst</keyword>

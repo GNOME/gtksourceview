@@ -22,15 +22,15 @@
 		<regex>\b[A-Z][0-9a-zA-Z._]*(&apos;|#)*</regex>
 	</pattern-item>
 
-	<pattern-item _name = "Keysymbols" style = "Keyword">
+	<pattern-item _name = "Keysymbol" style = "Keyword">
 		<regex>::|-&gt;|&lt;-|=&gt;|=|\||\\|@|~</regex>
 	</pattern-item>
 <!--
-	<pattern-item _name = "Operators" style = "Operators">
+	<pattern-item _name = "Operator" style = "Operators">
                 <regex>[:!#$%&amp;*+./&gt;=&lt;?@\\^|~\-]+</regex>
 	</pattern-item>
 
-	<keyword-list _name="Keysymbols" style = "Keyword">
+	<keyword-list _name="Keysymbol" style = "Keyword">
 		<keyword>::</keyword>
 		<keyword>-&gt;</keyword>
 		<keyword>&lt;-</keyword>
@@ -68,7 +68,7 @@
 		<regex>\b0[xX][0-9a-fA-F]+\b</regex>
 	</pattern-item>
 
-	<keyword-list _name = "Keywords" style = "Keyword" case-sensitive="true">
+	<keyword-list _name = "Keyword" style = "Keyword" case-sensitive="true">
                 <keyword>as</keyword>
                 <keyword>case</keyword>
 	        <keyword>class</keyword>
@@ -95,7 +95,7 @@
                 <keyword>with</keyword> <!-- GHC extension -->
 	</keyword-list>
 
-	<keyword-list _name = "Preprocessor Definitions" style = "Preprocessor" case-sensitive="true"
+	<keyword-list _name = "Preprocessor Definition" style = "Preprocessor" case-sensitive="true"
 		match-empty-string-at-beginning = "false"
 		match-empty-string-at-end = "true"
 		beginning-regex = "^[ \t]*#[ \t]*">

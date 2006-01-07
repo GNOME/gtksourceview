@@ -24,7 +24,7 @@
 		<regex>&gt;</regex>
 	</pattern-item>
 
-	<keyword-list _name="Tags" style = "Keyword" case-sensitive="FALSE"
+	<keyword-list _name="Tag" style="Keyword" case-sensitive="FALSE"
 		match-empty-string-at-beginning = "FALSE"
 		match-empty-string-at-end = "FALSE"
 		beginning-regex="&lt;/?"
@@ -117,9 +117,9 @@
 		<keyword>var</keyword>
 	</keyword-list>
 
-	<keyword-list _name="Attributes" style = "Others" case-sensitive="FALSE"
-		match-empty-string-at-beginning = "TRUE"
-		match-empty-string-at-end = "FALSE"
+	<keyword-list _name="Attribute" style="Others" case-sensitive="FALSE"
+		match-empty-string-at-beginning="TRUE"
+		match-empty-string-at-end="FALSE"
 		end-regex="[ \t]*=">
 		<keyword>abbr</keyword>
 		<keyword>accept-charset</keyword>
