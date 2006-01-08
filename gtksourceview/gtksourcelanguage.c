@@ -86,7 +86,7 @@ _gtk_source_language_new_from_file (const gchar			*filename,
 
 				name = xmlTextReaderName (reader);
 
-				if (strcmp (name, "language") == 0)
+				if (xmlStrcmp (name, BAD_CAST "language") == 0)
 				{
 
 					lang = process_language_node (reader, filename);
@@ -264,8 +264,8 @@ escape_id (const gchar *arbitrary_text, gint len)
 static GtkSourceLanguage *
 process_language_node (xmlTextReaderPtr reader, const gchar *filename)
 {
-	gchar *version;
-	gchar *mimetypes;
+	xmlChar *version;
+	xmlChar *mimetypes;
 	gchar** mtl;
 	int i;
 	xmlChar *tmp;
@@ -276,16 +276,21 @@ process_language_node (xmlTextReaderPtr reader, const gchar *filename)
 
 	lang->priv->lang_file_name = g_strdup (filename);
 	
-	lang->priv->translation_domain = xmlTextReaderGetAttribute (reader, "translation-domain");
+	lang->priv->translation_domain = (gchar *) xmlTextReaderGetAttribute (
+			reader, BAD_CAST "translation-domain");
 	if (lang->priv->translation_domain == NULL)
 	{
-		lang->priv->translation_domain = xmlStrdup (GETTEXT_PACKAGE);
+		/* if the attribute "translation-domain" exists then
+		 * lang->priv->translation_domain is a xmlChar so it must always
+		 * be a xmlChar, this is why xmlStrdup() is used instead of
+		 * g_strdup() */
+		lang->priv->translation_domain = (gchar *)xmlStrdup (BAD_CAST GETTEXT_PACKAGE);
 	}
 	
-	tmp = xmlTextReaderGetAttribute (reader, "_name");
+	tmp = xmlTextReaderGetAttribute (reader, BAD_CAST "_name");
 	if (tmp == NULL)
 	{
-		lang->priv->name = xmlTextReaderGetAttribute (reader, "name");
+		lang->priv->name = (gchar *)xmlTextReaderGetAttribute (reader, BAD_CAST "name");
 		if (lang->priv->name == NULL)
 		{
 			g_warning ("Impossible to get language name from file '%s'",
@@ -295,23 +300,28 @@ process_language_node (xmlTextReaderPtr reader, const gchar *filename)
 			return NULL;
 		}
 
-		id_temp = xmlStrdup (lang->priv->name);
+		id_temp = xmlStrdup (BAD_CAST lang->priv->name);
 	}
 	else
 	{
 		id_temp = xmlStrdup (tmp);
-		lang->priv->name = xmlStrdup (dgettext (lang->priv->translation_domain, tmp));
+		/* if tmp is NULL then lang->priv->name is a xmlChar so it must
+		 * always be a xmlChar, this is why xmlStrdup() is used instead
+		 * of g_strdup() */
+		lang->priv->name = (gchar *)xmlStrdup (BAD_CAST dgettext (
+					lang->priv->translation_domain,
+					(gchar *)tmp));
 		xmlFree (tmp);
 	}
 
 	g_return_val_if_fail (id_temp != NULL, NULL);
-	lang->priv->id = escape_id (id_temp, -1);
+	lang->priv->id = escape_id ((gchar *)id_temp, -1);
 	xmlFree (id_temp);
 
-	tmp = xmlTextReaderGetAttribute (reader, "_section");
+	tmp = xmlTextReaderGetAttribute (reader, BAD_CAST "_section");
 	if (tmp == NULL)
 	{
-		lang->priv->section = xmlTextReaderGetAttribute (reader, "section");
+		lang->priv->section = (gchar *)xmlTextReaderGetAttribute (reader, BAD_CAST "section");
 		if (lang->priv->section == NULL)
 		{
 			g_warning ("Impossible to get language section from file '%s'",
@@ -323,11 +333,16 @@ process_language_node (xmlTextReaderPtr reader, const gchar *filename)
 	}
 	else
 	{
-		lang->priv->section = xmlStrdup (dgettext (lang->priv->translation_domain, tmp));
+		/* if tmp is NULL then lang->priv->section is a xmlChar so it
+		 * must always be a xmlChar, this is why xmlStrdup() is used
+		 * instead of g_strdup() */
+		lang->priv->section = (gchar *)xmlStrdup (BAD_CAST dgettext (
+					lang->priv->translation_domain,
+					(gchar *)tmp));
 		xmlFree (tmp);
 	}
 	
-	version = xmlTextReaderGetAttribute (reader, "version");
+	version = xmlTextReaderGetAttribute (reader, BAD_CAST "version");
 	if (version == NULL)
 	{
 		g_warning ("Impossible to get version number from file '%s'",
@@ -338,10 +353,10 @@ process_language_node (xmlTextReaderPtr reader, const gchar *filename)
 	}
 	else
 	{
-		if (strcmp (version , "1.0") != 0)
+		if (xmlStrcmp (version , BAD_CAST "1.0") != 0)
 		{
 			g_warning ("Usupported language spec version '%s' in file '%s'",
-				   version, filename);
+				   (gchar *)version, filename);
 
 			xmlFree (version);
 			
@@ -352,7 +367,7 @@ process_language_node (xmlTextReaderPtr reader, const gchar *filename)
 		xmlFree (version);
 	}
 
-	mimetypes = xmlTextReaderGetAttribute (reader, "mimetypes");
+	mimetypes = xmlTextReaderGetAttribute (reader, BAD_CAST "mimetypes");
 	if (mimetypes == NULL)
 	{
 		g_warning ("Impossible to get mimetypes from file '%s'",
@@ -362,7 +377,7 @@ process_language_node (xmlTextReaderPtr reader, const gchar *filename)
 		return NULL;
 	}
 
-	mtl = g_strsplit (mimetypes, ";", 0);
+	mtl = g_strsplit ((gchar *)mimetypes, ";", 0);
 
 	for (i = 0; mtl[i] != NULL; i++)
 	{
@@ -489,11 +504,12 @@ get_mime_types_from_file (GtkSourceLanguage *language)
 
 				name = xmlTextReaderName (reader);
 
-				if (strcmp (name, "language") == 0)
+				if (xmlStrcmp (name, BAD_CAST "language") == 0)
 				{
 					gchar *mimetypes;
 
-					mimetypes = xmlTextReaderGetAttribute (reader, "mimetypes");
+					mimetypes = (gchar *)xmlTextReaderGetAttribute (reader,
+							BAD_CAST "mimetypes");
 					
 					if (mimetypes == NULL)
 					{
@@ -635,7 +651,7 @@ parseLineComment (xmlDocPtr doc, xmlNodePtr cur, gchar* id, xmlChar *name)
 			
 		start_regex = xmlNodeListGetString (doc, child->xmlChildrenNode, 1);
 			
-		tag = gtk_line_comment_tag_new (id, name, strconvescape (start_regex));
+		tag = gtk_line_comment_tag_new (id, (gchar *)name, strconvescape ((gchar *)start_regex));
 
 		xmlFree (start_regex);
 	}
@@ -694,9 +710,9 @@ parseBlockComment (xmlDocPtr doc, xmlNodePtr cur, gchar* id, xmlChar *name)
 	}
 
 	tag = gtk_block_comment_tag_new (id,
-					 name, 
-					 strconvescape (start_regex), 
-					 strconvescape (end_regex));
+					 (gchar *)name, 
+					 strconvescape ((gchar *)start_regex), 
+					 strconvescape ((gchar *)end_regex));
 
 	xmlFree (start_regex);
 	xmlFree (end_regex);
@@ -717,11 +733,11 @@ parseString (xmlDocPtr doc, xmlNodePtr cur, gchar* id, xmlChar *name)
 
 	xmlNodePtr child;
 
-	prop = xmlGetProp (cur, "end-at-line-end");
+	prop = xmlGetProp (cur, BAD_CAST "end-at-line-end");
 	if (prop != NULL)
 	{
-		if (!xmlStrcasecmp (prop, (const xmlChar *)"TRUE") ||
-		    !xmlStrcmp (prop, (const xmlChar *)"1"))
+		if (!xmlStrcasecmp (prop, BAD_CAST "TRUE") ||
+		    !xmlStrcmp (prop, BAD_CAST "1"))
 
 				end_at_line_end = TRUE;
 			else
@@ -766,9 +782,9 @@ parseString (xmlDocPtr doc, xmlNodePtr cur, gchar* id, xmlChar *name)
 	}
 
 	tag = gtk_string_tag_new (id,
-				  name, 
-				  strconvescape (start_regex), 
-				  strconvescape (end_regex), 
+				  (gchar *)name, 
+				  strconvescape ((gchar *)start_regex), 
+				  strconvescape ((gchar *)end_regex), 
 				  end_at_line_end);
 
 	xmlFree (start_regex);
@@ -794,7 +810,7 @@ parseKeywordList (xmlDocPtr doc, xmlNodePtr cur, gchar* id, xmlChar *name)
 
 	xmlNodePtr child;
 
-	prop = xmlGetProp (cur, "case-sensitive");
+	prop = xmlGetProp (cur, BAD_CAST "case-sensitive");
 	if (prop != NULL)
 	{
 		if (!xmlStrcasecmp (prop, (const xmlChar *)"TRUE") ||
@@ -807,7 +823,7 @@ parseKeywordList (xmlDocPtr doc, xmlNodePtr cur, gchar* id, xmlChar *name)
 		xmlFree (prop);	
 	}
 
-	prop = xmlGetProp (cur, "match-empty-string-at-beginning");
+	prop = xmlGetProp (cur, BAD_CAST "match-empty-string-at-beginning");
 	if (prop != NULL)
 	{
 		if (!xmlStrcasecmp (prop, (const xmlChar *)"TRUE") ||
@@ -820,7 +836,7 @@ parseKeywordList (xmlDocPtr doc, xmlNodePtr cur, gchar* id, xmlChar *name)
 		xmlFree (prop);	
 	}
 
-	prop = xmlGetProp (cur, "match-empty-string-at-end");
+	prop = xmlGetProp (cur, BAD_CAST "match-empty-string-at-end");
 	if (prop != NULL)
 	{
 		if (!xmlStrcasecmp (prop, (const xmlChar *)"TRUE") ||
@@ -833,18 +849,18 @@ parseKeywordList (xmlDocPtr doc, xmlNodePtr cur, gchar* id, xmlChar *name)
 		xmlFree (prop);	
 	}
 
-	prop = xmlGetProp (cur, "beginning-regex");
+	prop = xmlGetProp (cur, BAD_CAST "beginning-regex");
 	if (prop != NULL)
 	{
-		beginning_regex = g_strdup (prop);
+		beginning_regex = g_strdup ((gchar *)prop);
 		
 		xmlFree (prop);	
 	}
 
-	prop = xmlGetProp (cur, "end-regex");
+	prop = xmlGetProp (cur, BAD_CAST "end-regex");
 	if (prop != NULL)
 	{
-		end_regex = g_strdup (prop);
+		end_regex = g_strdup ((gchar *)prop);
 		
 		xmlFree (prop);	
 	}
@@ -858,7 +874,7 @@ parseKeywordList (xmlDocPtr doc, xmlNodePtr cur, gchar* id, xmlChar *name)
 			xmlChar *keyword;
 			keyword = xmlNodeListGetString (doc, child->xmlChildrenNode, 1);
 			
-			list = g_slist_prepend (list, strconvescape (keyword));
+			list = g_slist_prepend (list, strconvescape ((gchar *)keyword));
 		}
 
 		child = child->next;
@@ -878,7 +894,7 @@ parseKeywordList (xmlDocPtr doc, xmlNodePtr cur, gchar* id, xmlChar *name)
 	}
 
 	tag = gtk_keyword_list_tag_new (id,
-					name, 
+					(gchar *)name, 
 					list,
 					case_sensitive,
 					match_empty_string_at_beginning,
@@ -910,7 +926,8 @@ parsePatternItem (xmlDocPtr doc, xmlNodePtr cur, gchar* id, xmlChar *name)
 			
 		regex = xmlNodeListGetString (doc, child->xmlChildrenNode, 1);
 			
-		tag = gtk_pattern_tag_new (id, name, strconvescape (regex));
+		tag = gtk_pattern_tag_new (id, (gchar *)name,
+				strconvescape ((gchar *)regex));
 
 		xmlFree (regex);
 	}
@@ -969,9 +986,9 @@ parseSyntaxItem (xmlDocPtr doc, xmlNodePtr cur, gchar* id, xmlChar *name)
 	}
 
 	tag = gtk_syntax_tag_new (id,
-				  name, 
-				  strconvescape (start_regex),
-				  strconvescape (end_regex));
+				  (gchar *)name, 
+				  strconvescape ((gchar *)start_regex),
+				  strconvescape ((gchar *)end_regex));
 
 	xmlFree (start_regex);
 	xmlFree (end_regex);
@@ -1016,24 +1033,26 @@ parseTag (GtkSourceLanguage *language,
 	GtkTextTag *tag = NULL;
 	xmlChar *name;
 	xmlChar *style;
-	xmlChar *id_temp;
+	gchar   *id_temp;
 	gchar   *id;
 	
-	name = xmlGetProp (cur, "_name");
+	name = xmlGetProp (cur, BAD_CAST "_name");
 	if (name == NULL)
 	{
-		name = xmlGetProp (cur, "name");
-		id_temp =xmlStrdup (name);
+		name = xmlGetProp (cur, BAD_CAST "name");
+		id_temp = g_strdup ((gchar *)name);
 	}
 	else
 	{
-		xmlChar *tmp = xmlStrdup (dgettext (language->priv->translation_domain, name));
-		id_temp = xmlStrdup (name);
+		xmlChar *tmp = xmlStrdup (BAD_CAST dgettext (
+					language->priv->translation_domain,
+					(gchar *)name));
+		id_temp = g_strdup ((gchar *)name);
 		xmlFree (name);
 		name = tmp;
 	}
 	
-	style = xmlGetProp (cur, "style");
+	style = xmlGetProp (cur, BAD_CAST "style");
 
 	if (name == NULL)
 	{
@@ -1042,12 +1061,12 @@ parseTag (GtkSourceLanguage *language,
 
 	g_return_val_if_fail (id_temp != NULL, tag_list);
 	id = escape_id (id_temp, -1);
-	xmlFree (id_temp);
+	g_free (id_temp);
 
 	if (style == NULL)
 	{
 		/* FIXME */
-		style = xmlStrdup ("Normal");
+		style = xmlStrdup (BAD_CAST "Normal");
 	}
 	
 	if (!xmlStrcmp (cur->name, (const xmlChar *)"line-comment"))
@@ -1088,7 +1107,7 @@ parseTag (GtkSourceLanguage *language,
 		if (populate_styles_table)
 			g_hash_table_insert (language->priv->tag_id_to_style_name, 
 					     g_strdup (id), 
-					     g_strdup (style));
+					     g_strdup ((gchar *)style));
 
 		ts = gtk_source_language_get_tag_style (language, id);
 
@@ -1165,7 +1184,7 @@ language_file_parse (GtkSourceLanguage *language,
 			gunichar esc_char;
 			
 			escape = xmlNodeListGetString (doc, cur->xmlChildrenNode, 1);
-			esc_char = g_utf8_get_char_validated (escape, -1);
+			esc_char = g_utf8_get_char_validated ((gchar *)escape, -1);
 			if (esc_char < 0)
 			{
 				g_warning ("Invalid (non UTF8) escape character in file '%s'",
