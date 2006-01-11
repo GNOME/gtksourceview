@@ -1544,9 +1544,9 @@ gtk_source_buffer_set_highlight (GtkSourceBuffer *buffer,
 static gboolean
 idle_worker (GtkSourceBuffer *source_buffer)
 {
+	GtkTextRegionIterator reg_iter;
 	GtkTextIter start_iter, end_iter, last_end_iter;
-	gint i;
-	
+
 	if (source_buffer->priv->worker_last_offset >= 0) {
 		/* the syntax regions table is incomplete */
 		build_syntax_regions_table (source_buffer, NULL);
@@ -1554,17 +1554,22 @@ idle_worker (GtkSourceBuffer *source_buffer)
 
 	/* Now we highlight subregions requested by our views */
 	gtk_text_buffer_get_iter_at_offset (GTK_TEXT_BUFFER (source_buffer), &last_end_iter, 0);
-	for (i = 0; i < gtk_text_region_subregions (
-		     source_buffer->priv->highlight_requests); i++) {
-		gtk_text_region_nth_subregion (source_buffer->priv->highlight_requests,
-					       i, &start_iter, &end_iter);
+
+	gtk_text_region_get_iterator (source_buffer->priv->highlight_requests,
+	                              &reg_iter, 0);
+
+	while (!gtk_text_region_iterator_is_end (&reg_iter))
+	{
+		gtk_text_region_iterator_get_subregion (&reg_iter,
+							&start_iter,
+							&end_iter);
 
 		if (source_buffer->priv->worker_last_offset < 0 ||
 		    source_buffer->priv->worker_last_offset >=
 		    gtk_text_iter_get_offset (&end_iter)) {
-			ensure_highlighted (source_buffer, 
-					    &start_iter, 
-					    &end_iter);
+			ensure_highlighted (source_buffer,
+			                    &start_iter,
+			                    &end_iter);
 			last_end_iter = end_iter;
 		} else {
 			/* since the subregions are ordered, we are
@@ -1573,15 +1578,16 @@ idle_worker (GtkSourceBuffer *source_buffer)
 			 * analyzed text */
 			break;
 		}
+
+		gtk_text_region_iterator_next (&reg_iter);
 	}
+
 	gtk_text_buffer_get_iter_at_offset (GTK_TEXT_BUFFER (source_buffer), &start_iter, 0);
 
 	if (!gtk_text_iter_equal (&start_iter, &last_end_iter)) {
 		/* remove already highlighted subregions from requests */
-		gtk_text_region_substract (source_buffer->priv->highlight_requests,
-					   &start_iter, &last_end_iter);
-		gtk_text_region_clear_zero_length_subregions (
-			source_buffer->priv->highlight_requests);
+		gtk_text_region_subtract (source_buffer->priv->highlight_requests,
+					  &start_iter, &last_end_iter);
 	}
 	
 	if (source_buffer->priv->worker_last_offset < 0) {
@@ -2602,7 +2608,6 @@ highlight_region (GtkSourceBuffer *source_buffer,
  			   gtk_text_iter_get_offset (start),
  			   gtk_text_iter_get_offset (end));
  	});
-
 	
 	table = source_buffer->priv->syntax_regions;
 	g_return_if_fail (table != NULL);
@@ -2703,7 +2708,7 @@ ensure_highlighted (GtkSourceBuffer   *source_buffer,
 		    const GtkTextIter *end)
 {
 	GtkTextRegion *region;
-	
+
 #if 0
 	DEBUG (g_message ("ensure_highlighted %d to %d",
 			  gtk_text_iter_get_offset (start),
@@ -2714,23 +2719,28 @@ ensure_highlighted (GtkSourceBuffer   *source_buffer,
 	region = gtk_text_region_intersect (
 		source_buffer->priv->refresh_region, start, end);
 	if (region) {
-		GtkTextIter iter1, iter2;
-		gint i;
-		
+		GtkTextRegionIterator reg_iter;
+
+		gtk_text_region_get_iterator (region, &reg_iter, 0);
+
 		/* highlight all subregions from the intersection.
                    hopefully this will only be one subregion */
-		for (i = 0; i < gtk_text_region_subregions (region); i++) {
-			gtk_text_region_nth_subregion (region, i,
-						       &iter1, &iter2);
-			highlight_region (source_buffer, &iter1, &iter2);
+		while (!gtk_text_region_iterator_is_end (&reg_iter))
+		{
+			GtkTextIter s, e;
+
+			gtk_text_region_iterator_get_subregion (&reg_iter,
+								&s, &e);
+			highlight_region (source_buffer, &s, &e);
+
+			gtk_text_region_iterator_next (&reg_iter);
 		}
+
 		gtk_text_region_destroy (region, TRUE);
+
 		/* remove the just highlighted region */
-		gtk_text_region_substract (source_buffer->priv->refresh_region,
-					   start, 
-					   end);
-		gtk_text_region_clear_zero_length_subregions (
-			source_buffer->priv->refresh_region);
+		gtk_text_region_subtract (source_buffer->priv->refresh_region,
+					  start, end);
 	}
 }
 

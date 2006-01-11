@@ -1,3 +1,11 @@
+2006-01-07  Paolo Borelli  <pborelli@katamail.com>
+
+	* gtksourceview/gtktextregion.[ch]:
+	* gtksourceview/gtksourcebuffer.c:
+	* tests/testregion.c:
+
+	Add iterators to text region and use them.
+
 2006-01-11  Steve Frécinaux  <nud@apinc.org>
 
 	* gtksourceview/language-specs/python.lang: allow to specify both 'u'
