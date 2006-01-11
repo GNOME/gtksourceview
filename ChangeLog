@@ -1,3 +1,16 @@
+2006-01-11  Marco Barisione  <barisione@gmail.com>
+
+	* gtksourceview/gtksourcecontextengine.c: cache the last child of the
+	contexts to improve performances (i.e. context_last() is faster),
+	fixes bug #323965
+
+2005-10-24  Emanuele Aina <emanuele.aina@tiscali.it>
+
+	* gtksourceview/gtksourcelanguage-parser-2.c: (create_definition),
+	(update_regex_flags), (replace_delimiter), (expand_regex),
+	(handle_define_regex_element), (element_start): specify the regex
+	options as attributes in the language descriptions
+
 2005-07-28  Marco Barisione <barisione@gmail.com>
 
 	* configure.in docs/reference/gtksourceview-docs.sgml
