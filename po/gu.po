@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview.HEAD.gu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-08 23:08+0100\n"
-"PO-Revision-Date: 2006-01-09 10:40+0530\n"
+"POT-Creation-Date: 2006-01-11 06:50+0100\n"
+"PO-Revision-Date: 2006-01-11 11:57+0530\n"
 "Last-Translator: Ankit Patel <ankit644@yahoo.com>\n"
 "Language-Team: Gujarati <indianoss-gujarati@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -13,6 +13,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.9.1\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n\n"
+"\n"
 "\n"
 "\n"
 "\n"
@@ -222,6 +223,8 @@ msgstr "માહિતિ પ્રકાર"
 #: ../gtksourceview/gtksourcestylescheme.c:284
 #: ../gtksourceview/language-specs/ada.lang.h:3
 #: ../gtksourceview/language-specs/css.lang.h:18
+#: ../gtksourceview/language-specs/octave.lang.h:4
+#: ../gtksourceview/language-specs/scheme.lang.h:2
 #: ../gtksourceview/language-specs/sh.lang.h:4
 msgid "Function"
 msgstr "કાર્ય"
@@ -232,6 +235,7 @@ msgstr "કાર્ય"
 #: ../gtksourceview/language-specs/fortran.lang.h:1
 #: ../gtksourceview/language-specs/haskell.lang.h:3
 #: ../gtksourceview/language-specs/nemerle.lang.h:6
+#: ../gtksourceview/language-specs/octave.lang.h:1
 #: ../gtksourceview/language-specs/python.lang.h:2
 msgid "Decimal"
 msgstr "દશાંશ"
@@ -240,13 +244,21 @@ msgstr "દશાંશ"
 msgid "Floating Point"
 msgstr "અપૂર્ણાંક બિંદુ"
 
+#. We cannot match \b at the end of a keyword automatically
+#. because it fails for let* etc. So we need to manually add it to the
+#. other keywords and match ([ \t]|$) for the one ending with a
+#. special character. Unfortnately this also means that if the highlight
+#. style for keywords sets the background color, for let* etc also the
+#. trailing space will be highlighted.
 #: ../gtksourceview/gtksourcestylescheme.c:299
 #: ../gtksourceview/language-specs/ada.lang.h:4
 #: ../gtksourceview/language-specs/gtkrc.lang.h:6
 #: ../gtksourceview/language-specs/haskell.lang.h:9
 #: ../gtksourceview/language-specs/latex.lang.h:5
+#: ../gtksourceview/language-specs/octave.lang.h:6
 #: ../gtksourceview/language-specs/po.lang.h:3
 #: ../gtksourceview/language-specs/R.lang.h:6
+#: ../gtksourceview/language-specs/scheme.lang.h:9
 #: ../gtksourceview/language-specs/tcl.lang.h:1
 #: ../gtksourceview/language-specs/texinfo.lang.h:8
 #: ../gtksourceview/language-specs/vhdl.lang.h:2
@@ -294,6 +306,7 @@ msgstr "પ્રીપ્રોસેસર"
 #: ../gtksourceview/language-specs/perl.lang.h:8
 #: ../gtksourceview/language-specs/po.lang.h:6
 #: ../gtksourceview/language-specs/python.lang.h:14
+#: ../gtksourceview/language-specs/scheme.lang.h:13
 #: ../gtksourceview/language-specs/sh.lang.h:13
 #: ../gtksourceview/language-specs/tcl.lang.h:4
 #: ../gtksourceview/language-specs/vbnet.lang.h:11
@@ -307,6 +320,7 @@ msgid "Specials"
 msgstr "વિશેષ"
 
 #: ../gtksourceview/gtksourcestylescheme.c:321
+#: ../gtksourceview/language-specs/changelog.lang.h:6
 #: ../gtksourceview/language-specs/css.lang.h:36
 #: ../gtksourceview/language-specs/desktop.lang.h:10
 #: ../gtksourceview/language-specs/diff.lang.h:7
@@ -448,11 +462,13 @@ msgstr "અચલ અક્ષર"
 #: ../gtksourceview/language-specs/lua.lang.h:4
 #: ../gtksourceview/language-specs/makefile.lang.h:4
 #: ../gtksourceview/language-specs/nemerle.lang.h:10
+#: ../gtksourceview/language-specs/octave.lang.h:7
 #: ../gtksourceview/language-specs/pascal.lang.h:11
 #: ../gtksourceview/language-specs/perl.lang.h:3
 #: ../gtksourceview/language-specs/python.lang.h:7
 #: ../gtksourceview/language-specs/R.lang.h:7
 #: ../gtksourceview/language-specs/ruby.lang.h:10
+#: ../gtksourceview/language-specs/scheme.lang.h:10
 #: ../gtksourceview/language-specs/sh.lang.h:5
 #: ../gtksourceview/language-specs/sql.lang.h:23
 #: ../gtksourceview/language-specs/tcl.lang.h:2
@@ -492,6 +508,7 @@ msgstr "પ્રીપ્રોસેસર મુખ્ય શબ્દ"
 #: ../gtksourceview/language-specs/makefile.lang.h:6
 #: ../gtksourceview/language-specs/nemerle.lang.h:14
 #: ../gtksourceview/language-specs/pascal.lang.h:17
+#: ../gtksourceview/language-specs/scheme.lang.h:12
 #: ../gtksourceview/language-specs/sql.lang.h:48
 #: ../gtksourceview/language-specs/vbnet.lang.h:10
 #: ../gtksourceview/language-specs/verilog.lang.h:9
@@ -546,6 +563,7 @@ msgstr "સામાન્ય મેક્રો"
 #: ../gtksourceview/language-specs/fortran.lang.h:2
 #: ../gtksourceview/language-specs/haskell.lang.h:4
 #: ../gtksourceview/language-specs/nemerle.lang.h:7
+#: ../gtksourceview/language-specs/octave.lang.h:3
 #: ../gtksourceview/language-specs/python.lang.h:3
 #: ../gtksourceview/language-specs/R.lang.h:4
 msgid "Floating Point Number"
@@ -557,6 +575,7 @@ msgstr "અપૂર્ણાંક સંખ્યા"
 #: ../gtksourceview/language-specs/fortran.lang.h:4
 #: ../gtksourceview/language-specs/haskell.lang.h:6
 #: ../gtksourceview/language-specs/nemerle.lang.h:8
+#: ../gtksourceview/language-specs/octave.lang.h:5
 #: ../gtksourceview/language-specs/pascal.lang.h:10
 #: ../gtksourceview/language-specs/python.lang.h:5
 msgid "Hex Number"
@@ -589,6 +608,7 @@ msgstr "મુખ્ય શબ્દો"
 #: ../gtksourceview/language-specs/fortran.lang.h:10
 #: ../gtksourceview/language-specs/haskell.lang.h:11
 #: ../gtksourceview/language-specs/nemerle.lang.h:12
+#: ../gtksourceview/language-specs/octave.lang.h:10
 #: ../gtksourceview/language-specs/python.lang.h:11
 #: ../gtksourceview/language-specs/verilog.lang.h:8
 msgid "Octal Number"
@@ -609,6 +629,28 @@ msgstr "પ્રીપ્રોસેસરની વ્યાખ્યાઓ"
 #: ../gtksourceview/language-specs/verilog.lang.h:10
 msgid "Types"
 msgstr "પ્રકારો"
+
+#: ../gtksourceview/language-specs/changelog.lang.h:1
+msgid "ChangeLog"
+msgstr "ChangeLog"
+
+#: ../gtksourceview/language-specs/changelog.lang.h:2
+msgid "Date"
+msgstr "તારીખ"
+
+#: ../gtksourceview/language-specs/changelog.lang.h:3
+msgid "Email"
+msgstr "ઈમેઈલ"
+
+#: ../gtksourceview/language-specs/changelog.lang.h:4
+msgid "File"
+msgstr "ફાઈલ"
+
+# #-#-#-#-#  libgnomecanvas.HEAD.hi.po (libgnomecanvas)  #-#-#-#-#
+# libgnomecanvas/gnome-canvas-text.c:212
+#: ../gtksourceview/language-specs/changelog.lang.h:5
+msgid "Marker"
+msgstr "નિશાની કરનાર"
 
 #: ../gtksourceview/language-specs/cpp.lang.h:3
 msgid "C++"
@@ -754,6 +796,7 @@ msgstr ".desktop"
 #: ../gtksourceview/language-specs/desktop.lang.h:2
 #: ../gtksourceview/language-specs/gtkrc.lang.h:1
 #: ../gtksourceview/language-specs/ini.lang.h:2
+#: ../gtksourceview/language-specs/scheme.lang.h:1
 msgid "Boolean Value"
 msgstr "બુલિયન કિંમત"
 
@@ -864,6 +907,7 @@ msgstr "વાંચો/લખો"
 #. "duble-quoted strings"
 #: ../gtksourceview/language-specs/gtkrc.lang.h:2
 #: ../gtksourceview/language-specs/ini.lang.h:4
+#: ../gtksourceview/language-specs/octave.lang.h:2
 #: ../gtksourceview/language-specs/php.lang.h:16
 #: ../gtksourceview/language-specs/R.lang.h:3
 #: ../gtksourceview/language-specs/ruby.lang.h:6
@@ -886,6 +930,7 @@ msgstr "કી સંજ્ઞાઓ"
 #. 'single-quoted strings'
 #: ../gtksourceview/language-specs/gtkrc.lang.h:10
 #: ../gtksourceview/language-specs/ini.lang.h:11
+#: ../gtksourceview/language-specs/octave.lang.h:14
 #: ../gtksourceview/language-specs/php.lang.h:24
 #: ../gtksourceview/language-specs/R.lang.h:11
 #: ../gtksourceview/language-specs/ruby.lang.h:17
@@ -1025,6 +1070,7 @@ msgstr "ઓબ્જેક્ટો"
 
 #: ../gtksourceview/language-specs/javascript.lang.h:22
 #: ../gtksourceview/language-specs/lua.lang.h:9
+#: ../gtksourceview/language-specs/octave.lang.h:13
 #: ../gtksourceview/language-specs/perl.lang.h:7
 #: ../gtksourceview/language-specs/php.lang.h:22
 #: ../gtksourceview/language-specs/python.lang.h:13
@@ -1143,6 +1189,23 @@ msgstr "મેક્રો દ્વારા વ્યાખ્યાયિત 
 #: ../gtksourceview/language-specs/nemerle.lang.h:11
 msgid "Nemerle"
 msgstr "અંક"
+
+#: ../gtksourceview/language-specs/octave.lang.h:8
+msgid "Multiline Double Quoted String"
+msgstr "ઘણી લીટીવાળી દ્વિ અવતરણવાળી શબ્દમાળા"
+
+#: ../gtksourceview/language-specs/octave.lang.h:9
+msgid "Multiline Single Quoted String"
+msgstr "ઘણી લીટીવાળી એક અવતરણવાળી શબ્દમાળા"
+
+#: ../gtksourceview/language-specs/octave.lang.h:11
+msgid "Octave"
+msgstr "ઓક્ટેવ"
+
+#: ../gtksourceview/language-specs/octave.lang.h:12
+#: ../gtksourceview/language-specs/R.lang.h:9
+msgid "Reserved Constant"
+msgstr "આરક્ષિત અચળ"
 
 #: ../gtksourceview/language-specs/pascal.lang.h:1
 msgid "Block Comment 1"
@@ -1299,10 +1362,6 @@ msgstr "પૂર્ણાંક સંખ્યા"
 msgid "Reserved Class"
 msgstr "ઊલટો વર્ગ"
 
-#: ../gtksourceview/language-specs/R.lang.h:9
-msgid "Reserved Constant"
-msgstr "આરક્ષિત અચળ"
-
 #: ../gtksourceview/language-specs/ruby.lang.h:1
 msgid "Attribute Definitions"
 msgstr "લાક્ષણિકતાની વ્યાખ્યાઓ"
@@ -1350,6 +1409,10 @@ msgstr "રુબી"
 #: ../gtksourceview/language-specs/ruby.lang.h:18
 msgid "Symbols"
 msgstr "સંજ્ઞાઓ"
+
+#: ../gtksourceview/language-specs/scheme.lang.h:11
+msgid "Scheme"
+msgstr "પદ્ધતિ"
 
 #: ../gtksourceview/language-specs/sh.lang.h:2
 msgid "Built-in Command"
