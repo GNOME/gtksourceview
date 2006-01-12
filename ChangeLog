@@ -1,3 +1,9 @@
+2006-01-11  Marco Barisione  <barisione@gmail.com>
+
+	* gtksourceview/gtksourcecontextengine.c: cache the last child of the
+	contexts to improve performances (i.e. context_last() is faster),
+	fixes bug #323965
+
 2006-01-04  Jeroen Zwartepoorte  <jeroen.zwartepoorte@gmail.com>
 
 	* gtksourceview/gtksourcebuffer.c:
