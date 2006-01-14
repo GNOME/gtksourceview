@@ -946,7 +946,7 @@ create_main_window (GtkSourceBuffer *buffer)
 	gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), TRUE);
 
 	action = gtk_action_group_get_action (action_group, "ShowMargin");
-	gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), TRUE);
+	gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), FALSE);
 
 	action = gtk_action_group_get_action (action_group, "AutoIndent");
 	gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), TRUE);

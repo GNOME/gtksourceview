@@ -43,12 +43,22 @@
 */
 #undef ENABLE_DEBUG
 
+/*
+#define ENABLE_PROFILE
+*/
+#undef ENABLE_PROFILE
+
 #ifdef ENABLE_DEBUG
 #define DEBUG(x) (x)
 #else
 #define DEBUG(x)
 #endif
 
+#ifdef ENABLE_PROFILE
+#define PROFILE(x) (x)
+#else
+#define PROFILE(x)
+#endif
 
 #define COMPOSITE_ALPHA                 225
 #define GUTTER_PIXMAP 			16
@@ -1390,9 +1400,20 @@ gtk_source_view_expose (GtkWidget      *widget,
 			gchar *toggle;
 			guchar alpha;
 
+#ifdef ENABLE_PROFILE
+			static GTimer *timer = NULL;
+#endif
+
 			if (view->priv->cached_margin_width < 0)
 				view->priv->cached_margin_width =
 					calculate_real_tab_width (view, view->priv->margin, '_');
+
+#ifdef ENABLE_PROFILE
+			if (timer == NULL)
+				timer = g_timer_new ();
+				
+			g_timer_start (timer);
+#endif 
 		
 			gtk_text_view_get_visible_rect (text_view, &visible_rect);
 			
@@ -1475,6 +1496,11 @@ gtk_source_view_expose (GtkWidget      *widget,
 
 			g_free (toggle);
 			cairo_destroy (cr);
+			
+			PROFILE ({
+				g_timer_stop (timer);
+				g_message ("Time to draw the margin: %g (sec * 1000)", g_timer_elapsed (timer, NULL) * 1000);
+			});
 		}
 	}
 	

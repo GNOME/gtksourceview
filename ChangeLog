@@ -1,3 +1,14 @@
+2006-01-14  Paolo Maggi  <paolo@gnome.org>
+
+	* gtksourceview/gtksourceview.c (gtk_source_view_expose): added some
+	instructions to profile right margin drawing
+
+	* gtksourceview/language-specs/xml.lang: added application/xml ti
+	mime-types
+
+	* tests/test-widget.c (create_main_window): disable ShowMargin by
+	default
+
 2006-01-14  Jeroen Zwartepoorte  <jeroen.zwartepoorte@gmail.com>
 
 	* gtksourceview/gtksourceview.c: (gtk_source_view_class_init),
