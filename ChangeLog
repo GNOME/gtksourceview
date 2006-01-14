@@ -1,3 +1,13 @@
+2006-01-14  Jeroen Zwartepoorte  <jeroen.zwartepoorte@gmail.com>
+
+	* gtksourceview/gtksourceview.c: (gtk_source_view_class_init),
+	(gtk_source_view_expose): Use cairo to draw the right margin. Also draw
+	a transparent overlay for everything past the right margin. Margin
+	colors and transparency are customizable via style properties. The
+	overlay has a negative impact on perforamance for some users, so is
+	disabled by default. It can be turned on by adding
+	GtkSourceView::right-margin-overlay-toggle = TRUE to your gtkrc.
+
 2006-01-07  Paolo Borelli  <pborelli@katamail.com>
 
 	* gtksourceview/gtktextregion.[ch]:

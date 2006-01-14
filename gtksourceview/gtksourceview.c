@@ -277,6 +277,93 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 							       FALSE,
 							       G_PARAM_READWRITE));
 
+	/**
+	 * GtkSourceView:right-margin-line-alpha:
+	 *
+	 * The ::right-margin-line-alpha determines the alpha component with
+	 * which the vertical line will be drawn. 0 means it is fully transparent
+	 * (invisible). 255 means it has full opacity (text under the line won't
+	 * be visible).
+	 *
+	 * Since: 1.6
+	 */
+	gtk_widget_class_install_style_property (widget_class,
+		g_param_spec_int ("right-margin-line-alpha",
+				  _("Margin Line Alpha"),
+				  _("Transparency of the margin line"),
+				  0,
+				  255,
+				  40,
+				  G_PARAM_READABLE));
+
+	/**
+	 * GtkSourceView:right-margin-line-color:
+	 *
+	 * The ::right-margin-line-color property contains the color with
+	 * which the right margin line (vertical line indicating the right
+	 * margin) will be drawn.
+	 *
+	 * Since: 1.6
+	 */
+	gtk_widget_class_install_style_property (widget_class,
+		g_param_spec_boxed ("right-margin-line-color",
+				    _("Margin Line Color"),
+				    _("Color to use for the right margin line"),
+				    GDK_TYPE_COLOR,
+				    G_PARAM_READABLE));
+
+	/**
+	 * GtkSourceView:right-margin-overlay-toggle:
+	 *
+	 * The ::right-margin-overlay-toggle property determines whether the
+	 * widget will draw a transparent overlay on top of the area on the
+	 * right side of the right margin line. On some systems, this has a
+	 * noticable performance impact, so this property is FALSE by default.
+	 *
+	 * Since: 1.6
+	 */
+	gtk_widget_class_install_style_property (widget_class,
+		g_param_spec_string ("right-margin-overlay-toggle",
+				     _("Margin Overlay Toggle"),
+				     _("Whether to draw the right margin overlay"),
+				     "FALSE",
+				     G_PARAM_READABLE));
+
+	/**
+	 * GtkSourceView:right-margin-overlay-alpha:
+	 *
+	 * The ::right-margin-overlay-alpha determines the alpha component with
+	 * which the overlay will be drawn. 0 means it is fully transparent
+	 * (invisible). 255 means it has full opacity (text under the overlay
+	 * won't be visible).
+	 *
+	 * Since: 1.6
+	 */
+	gtk_widget_class_install_style_property (widget_class,
+		g_param_spec_int ("right-margin-overlay-alpha",
+				  _("Margin Overlay Alpha"),
+				  _("Transparency of the margin overlay"),
+				  0,
+				  255,
+				  15,
+				  G_PARAM_READABLE));
+
+	/**
+	 * GtkSourceView:right-margin-overlay-color:
+	 *
+	 * The ::right-margin-overlay-color property contains the color with
+	 * which the right margin overlay will be drawn. Setting this property
+	 * will only have an effect if ::right-margin-overlay-toggle is TRUE.
+	 *
+	 * Since: 1.6
+	 */
+	gtk_widget_class_install_style_property (widget_class,
+		g_param_spec_boxed ("right-margin-overlay-color",
+				    _("Margin Overlay Color"),
+				    _("Color to use for drawing the margin overlay"),
+				    GDK_TYPE_COLOR,
+				    G_PARAM_READABLE));
+
 	signals [UNDO] =
 		g_signal_new ("undo",
 			      G_TYPE_FROM_CLASS (klass),
@@ -1284,12 +1371,24 @@ gtk_source_view_expose (GtkWidget      *widget,
 					    redraw_rect.width,
 					    height);
 		}
+		
+		/* Have GtkTextView draw the text first. */
+		if (GTK_WIDGET_CLASS (parent_class)->expose_event)
+			event_handled = 
+				(* GTK_WIDGET_CLASS (parent_class)->expose_event)
+				(widget, event);
 
+		/* Draw the right margin vertical line + overlay. */
 		if (view->priv->show_margin && 
 		    (event->window == gtk_text_view_get_window (text_view, GTK_TEXT_WINDOW_TEXT)))
 		{
 			GdkRectangle visible_rect;
 			GdkRectangle redraw_rect;
+			cairo_t *cr;
+			double x;
+			GdkColor *line_color;
+			gchar *toggle;
+			guchar alpha;
 
 			if (view->priv->cached_margin_width < 0)
 				view->priv->cached_margin_width =
@@ -1307,25 +1406,76 @@ gtk_source_view_expose (GtkWidget      *widget,
 			redraw_rect.width = visible_rect.width;
 			redraw_rect.height = visible_rect.height;
 
-			gtk_paint_vline (widget->style, 
-					 event->window, 
-					 GTK_WIDGET_STATE (widget), 
-					 &redraw_rect, 
-					 widget,
-					 "margin", 
-					 redraw_rect.y, 
-					 redraw_rect.y + redraw_rect.height, 
-					 view->priv->cached_margin_width -
-					 visible_rect.x + redraw_rect.x +
-					 gtk_text_view_get_left_margin (text_view));
+			cr = gdk_cairo_create (gtk_text_view_get_window (text_view, GTK_TEXT_WINDOW_TEXT));
+			
+			/* Set a clip region for the expose event. */
+			cairo_rectangle (cr, event->area.x, event->area.y,
+					 event->area.width, event->area.height);
+			cairo_clip (cr);
+
+			/* Offset with 0.5 is needed for a sharp line. */
+			x = view->priv->cached_margin_width -
+				visible_rect.x + redraw_rect.x + 0.5 +
+				gtk_text_view_get_left_margin (text_view);
+
+			/* Default line width is 2.0 which is too wide. */
+			cairo_set_line_width (cr, 1.0);
+
+			cairo_move_to (cr, x, redraw_rect.y);
+			cairo_line_to (cr, x, redraw_rect.y + redraw_rect.height);
+			
+			gtk_widget_style_get (widget,
+					      "right-margin-line-alpha", &alpha,
+					      "right-margin-line-color", &line_color,
+					      "right-margin-overlay-toggle", &toggle,
+					      NULL);
+
+			if (!line_color)
+				line_color = gdk_color_copy (&widget->style->text[GTK_STATE_NORMAL]);
+			
+			cairo_set_source_rgba (cr,
+					       line_color->red / 65535.,
+					       line_color->green / 65535.,
+					       line_color->blue / 65535.,
+					       alpha / 255.);
+			gdk_color_free (line_color);
+			cairo_stroke (cr);
+			
+			/* g_strstrip doesn't allocate a new string. */
+			toggle = g_strstrip (toggle);
+			
+			/* Only draw the overlay when the theme explicitly permits it. */
+			if (g_ascii_strcasecmp ("TRUE", toggle) == 0 ||
+			    strcmp ("1", toggle) == 0)
+			{
+				GdkColor *overlay_color;
+				
+				gtk_widget_style_get (widget,
+						      "right-margin-overlay-alpha", &alpha,
+						      "right-margin-overlay-color", &overlay_color,
+						      NULL);
+
+				if (!overlay_color)
+					overlay_color = gdk_color_copy (&widget->style->text[GTK_STATE_NORMAL]);
+
+				/* Draw the rectangle next to the line (x+.5). */
+				cairo_rectangle (cr,
+						 x + .5,
+						 redraw_rect.y,
+						 redraw_rect.width - x - .5,
+						 redraw_rect.y + redraw_rect.height);
+				cairo_set_source_rgba (cr,
+						       overlay_color->red / 65535.,
+						       overlay_color->green / 65535.,
+						       overlay_color->blue / 65535.,
+						       alpha / 255.);
+				gdk_color_free (overlay_color);
+				cairo_fill (cr);
+			}
+
+			g_free (toggle);
+			cairo_destroy (cr);
 		}
-
-		
-		if (GTK_WIDGET_CLASS (parent_class)->expose_event)
-			event_handled = 
-				(* GTK_WIDGET_CLASS (parent_class)->expose_event)
-				(widget, event);
-
 	}
 	
 	return event_handled;	
