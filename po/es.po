@@ -1,22 +1,22 @@
 # translation of es.po to Spanish
 # Spanish translation for GtkSourceView
-# Copyright (C) 2003, 2004, 2005 Free Software Foundation, Inc.
+# Copyright (C) 2003, 2004, 2005, 2006 Free Software Foundation, Inc.
 # This file is distributed under the same license as the gtksourceview package.
-# Lucas 'Basurero' Vieites <basurero@jazzfree.com>, 2003.
-# Francisco Javier F. Serrador <serrador@cvs.gnome.org>, 2003-2005.
 #
+# Lucas 'Basurero' Vieites <basurero@jazzfree.com>, 2003.
+# Francisco Javier F. Serrador <serrador@cvs.gnome.org>, 2003-2005, 2006.
 msgid ""
 msgstr ""
 "Project-Id-Version: es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-14 02:20+0100\n"
-"PO-Revision-Date: 2006-01-14 02:23+0100\n"
+"POT-Creation-Date: 2006-01-15 20:09+0100\n"
+"PO-Revision-Date: 2006-01-15 20:11+0100\n"
 "Last-Translator: Francisco Javier F. Serrador <serrador@cvs.gnome.org>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.9.1\n"
+"X-Generator: KBabel 1.11.1\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
 #: ../gtksourceview/gtksourcebuffer.c:278
@@ -91,7 +91,7 @@ msgid "GtkSourceBuffer object to print"
 msgstr "Objeto GtkSourceBuffer a imprimir"
 
 #: ../gtksourceview/gtksourceprintjob.c:280
-#: ../gtksourceview/gtksourceview.c:222 ../gtksourceview/gtksourceview.c:223
+#: ../gtksourceview/gtksourceview.c:235 ../gtksourceview/gtksourceview.c:236
 msgid "Tabs Width"
 msgstr "Ancho de tabulación"
 
@@ -125,8 +125,7 @@ msgstr "Descripción de la tipografía"
 
 #: ../gtksourceview/gtksourceprintjob.c:314
 msgid "Font to use for the document text (e.g. \"Monospace 10\")"
-msgstr ""
-"Tipografía que se va a usar en el texto del documento («Ej: Monospace 10»)"
+msgstr "Tipografía que se va a usar en el texto del documento («Ej: Monospace 10»)"
 
 #: ../gtksourceview/gtksourceprintjob.c:321
 #: ../gtksourceview/gtksourceprintjob.c:329
@@ -345,59 +344,59 @@ msgstr "Marca de estilo"
 msgid "The style associated with the source tag"
 msgstr "El estilo asociado a la etiqueta del fuente"
 
-#: ../gtksourceview/gtksourceview.c:206
+#: ../gtksourceview/gtksourceview.c:219
 msgid "Show Line Numbers"
 msgstr "Mostrar número de línea"
 
-#: ../gtksourceview/gtksourceview.c:207
+#: ../gtksourceview/gtksourceview.c:220
 msgid "Whether to display line numbers"
 msgstr "Indica si se mostrarán los números de las líneas."
 
-#: ../gtksourceview/gtksourceview.c:214
+#: ../gtksourceview/gtksourceview.c:227
 msgid "Show Line Markers"
 msgstr "Mostrar marcadores de líneas"
 
-#: ../gtksourceview/gtksourceview.c:215
+#: ../gtksourceview/gtksourceview.c:228
 msgid "Whether to display line marker pixbufs"
 msgstr "Indica si se mostrarán los marcadores de líneas."
 
-#: ../gtksourceview/gtksourceview.c:232
+#: ../gtksourceview/gtksourceview.c:245
 msgid "Auto Indentation"
 msgstr "Sangría automática"
 
-#: ../gtksourceview/gtksourceview.c:233
+#: ../gtksourceview/gtksourceview.c:246
 msgid "Whether to enable auto indentation"
 msgstr "Indica si se habilita el sangrado automático"
 
-#: ../gtksourceview/gtksourceview.c:239
+#: ../gtksourceview/gtksourceview.c:252
 msgid "Insert Spaces Instead of Tabs"
 msgstr "Insertar espacios en vez de tabuladores"
 
-#: ../gtksourceview/gtksourceview.c:240
+#: ../gtksourceview/gtksourceview.c:253
 msgid "Whether to insert spaces instead of tabs"
 msgstr "Indica si se insertarán espacios en vez de tabuladores"
 
-#: ../gtksourceview/gtksourceview.c:247
+#: ../gtksourceview/gtksourceview.c:260
 msgid "Show Right Margin"
 msgstr "Mostrar margen derecho"
 
-#: ../gtksourceview/gtksourceview.c:248
+#: ../gtksourceview/gtksourceview.c:261
 msgid "Whether to display the right margin"
 msgstr "Indica si se mostrará el margen derecho"
 
-#: ../gtksourceview/gtksourceview.c:255
+#: ../gtksourceview/gtksourceview.c:268
 msgid "Margin position"
 msgstr "Posición del margen"
 
-#: ../gtksourceview/gtksourceview.c:256
+#: ../gtksourceview/gtksourceview.c:269
 msgid "Position of the right margin"
 msgstr "Posición del margen derecho"
 
-#: ../gtksourceview/gtksourceview.c:265
+#: ../gtksourceview/gtksourceview.c:278
 msgid "Use smart home/end"
 msgstr "Utilizar inicio/fin inteligente"
 
-#: ../gtksourceview/gtksourceview.c:266
+#: ../gtksourceview/gtksourceview.c:279
 msgid ""
 "HOME and END keys move to first/last non whitespace characters on line "
 "before going to the start/end of the line"
@@ -405,13 +404,53 @@ msgstr ""
 "Las teclas «Inicio» y «Fin» situarán el cursor en el primer/último carácter "
 "no blanco de la línea antes de ir al inicio/fin de la línea"
 
-#: ../gtksourceview/gtksourceview.c:275
+#: ../gtksourceview/gtksourceview.c:288
 msgid "Highlight current line"
 msgstr "Resaltar la línea actual"
 
-#: ../gtksourceview/gtksourceview.c:276
+#: ../gtksourceview/gtksourceview.c:289
 msgid "Whether to highlight the current line"
 msgstr "Indica si se resalta la línea actual"
+
+#: ../gtksourceview/gtksourceview.c:305
+msgid "Margin Line Alpha"
+msgstr "Línea alfa del margen"
+
+#: ../gtksourceview/gtksourceview.c:306
+msgid "Transparency of the margin line"
+msgstr "Transparencia de la línea del margen"
+
+#: ../gtksourceview/gtksourceview.c:323
+msgid "Margin Line Color"
+msgstr "Color de la línea del margen"
+
+#: ../gtksourceview/gtksourceview.c:324
+msgid "Color to use for the right margin line"
+msgstr "Color para usar para la línea derecha del margen"
+
+#: ../gtksourceview/gtksourceview.c:340
+msgid "Margin Overlay Toggle"
+msgstr "Cambiar margen sobrepuesto"
+
+#: ../gtksourceview/gtksourceview.c:341
+msgid "Whether to draw the right margin overlay"
+msgstr "Indica si se mostrará el margen derecho sobrepuesto"
+
+#: ../gtksourceview/gtksourceview.c:357
+msgid "Margin Overlay Alpha"
+msgstr "Alfa del margen sobrepuesto"
+
+#: ../gtksourceview/gtksourceview.c:358
+msgid "Transparency of the margin overlay"
+msgstr "Transparencia del margen sobrepuesto"
+
+#: ../gtksourceview/gtksourceview.c:375
+msgid "Margin Overlay Color"
+msgstr "Color del margen sobrepuesto"
+
+#: ../gtksourceview/gtksourceview.c:376
+msgid "Color to use for drawing the margin overlay"
+msgstr "color usado para dibujar el margen sobrepuesto"
 
 #: ../gtksourceview/language-specs/ada.lang.h:1
 msgid "Ada"
@@ -1697,3 +1736,4 @@ msgstr "XML"
 
 #~ msgid "Plain Old Documentation"
 #~ msgstr "Documentación antigua sin formato"
+
