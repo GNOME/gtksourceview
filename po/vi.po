@@ -7,8 +7,8 @@ msgid ""
 ""
 msgstr "Project-Id-Version: gtksourceview 1.5.4 for GNOME HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-13 23:22+0100\n"
-"PO-Revision-Date: 2006-01-14 13:57+1030\n"
+"POT-Creation-Date: 2006-01-14 23:21+0100\n"
+"PO-Revision-Date: 2006-01-15 21:52+1030\n"
 "Last-Translator: Clytie Siddall <clytie@riverland.net.au>\n"
 "Language-Team: Vietnamese <gnomevi-list@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -87,7 +87,7 @@ msgid "GtkSourceBuffer object to print"
 msgstr "Đối tượng GtkSourceBuffer cần in"
 
 #:../gtksourceview/gtksourceprintjob.c:280
-#:../gtksourceview/gtksourceview.c:222 ../gtksourceview/gtksourceview.c:223
+#:../gtksourceview/gtksourceview.c:232 ../gtksourceview/gtksourceview.c:233
 msgid "Tabs Width"
 msgstr "Độ rộng tab"
 
@@ -340,72 +340,112 @@ msgstr "Kiểu dạng thẻ"
 msgid "The style associated with the source tag"
 msgstr "Kiểu dạng gắn với thẻ nguồn"
 
-#:../gtksourceview/gtksourceview.c:206
+#:../gtksourceview/gtksourceview.c:216
 msgid "Show Line Numbers"
 msgstr "Hiện số thứ tự dòng"
 
-#:../gtksourceview/gtksourceview.c:207
+#:../gtksourceview/gtksourceview.c:217
 msgid "Whether to display line numbers"
 msgstr "Có hiển thị số thứ tự dòng không"
 
-#:../gtksourceview/gtksourceview.c:214
+#:../gtksourceview/gtksourceview.c:224
 msgid "Show Line Markers"
 msgstr "Hiện đánh dấu dòng"
 
-#:../gtksourceview/gtksourceview.c:215
+#:../gtksourceview/gtksourceview.c:225
 msgid "Whether to display line marker pixbufs"
 msgstr "Có hiển thị ký hiệu đánh dấu dòng không"
 
-#:../gtksourceview/gtksourceview.c:232
+#:../gtksourceview/gtksourceview.c:242
 msgid "Auto Indentation"
 msgstr "Tự động canh hàng"
 
-#:../gtksourceview/gtksourceview.c:233
+#:../gtksourceview/gtksourceview.c:243
 msgid "Whether to enable auto indentation"
 msgstr "Có bật tính năng tự động canh hàng không"
 
-#:../gtksourceview/gtksourceview.c:239
+#:../gtksourceview/gtksourceview.c:249
 msgid "Insert Spaces Instead of Tabs"
 msgstr "Chèn khoảng trắng thay vì Tab"
 
-#:../gtksourceview/gtksourceview.c:240
+#:../gtksourceview/gtksourceview.c:250
 msgid "Whether to insert spaces instead of tabs"
 msgstr "Có chèn khoảng trắng thay vì Tab không"
 
-#:../gtksourceview/gtksourceview.c:247
+#:../gtksourceview/gtksourceview.c:257
 msgid "Show Right Margin"
 msgstr "Hiện lề phải"
 
-#:../gtksourceview/gtksourceview.c:248
+#:../gtksourceview/gtksourceview.c:258
 msgid "Whether to display the right margin"
 msgstr "Có hiển thị lề phải không"
 
-#:../gtksourceview/gtksourceview.c:255
+#:../gtksourceview/gtksourceview.c:265
 msgid "Margin position"
 msgstr "Vị trí lề"
 
-#:../gtksourceview/gtksourceview.c:256
+#:../gtksourceview/gtksourceview.c:266
 msgid "Position of the right margin"
 msgstr "Vị trí lề phải"
 
-#:../gtksourceview/gtksourceview.c:265
+#:../gtksourceview/gtksourceview.c:275
 msgid "Use smart home/end"
 msgstr "Dùng Home/End thông minh"
 
-#:../gtksourceview/gtksourceview.c:266
+#:../gtksourceview/gtksourceview.c:276
 msgid ""
 "HOME and END keys move to first/last non whitespace characters on line "
 "before going to the start/end of the line"
 msgstr "Phím HOME và END di chuyển đến ký tự đầu tiên/cuối cùng trên dòng, trước khi "
 "chuyển đến đầu/cuối dòng"
 
-#:../gtksourceview/gtksourceview.c:275
+#:../gtksourceview/gtksourceview.c:285
 msgid "Highlight current line"
 msgstr "Tô sáng dòng hiện có"
 
-#:../gtksourceview/gtksourceview.c:276
+#:../gtksourceview/gtksourceview.c:286
 msgid "Whether to highlight the current line"
 msgstr "Có tô sáng dòng hiện có hay không"
+
+#:../gtksourceview/gtksourceview.c:302
+msgid "Margin Line Alpha"
+msgstr "Anfa đường lề"
+
+#:../gtksourceview/gtksourceview.c:303
+msgid "Transparency of the margin line"
+msgstr "Độ trong suốt của đường lề"
+
+#:../gtksourceview/gtksourceview.c:320
+msgid "Margin Line Color"
+msgstr "Màu đường lề"
+
+#:../gtksourceview/gtksourceview.c:321
+msgid "Color to use for the right margin line"
+msgstr "Màu cần dùng cho đường lề phải"
+
+#:../gtksourceview/gtksourceview.c:337
+msgid "Margin Overlay Toggle"
+msgstr "Bật tắt phủ lề"
+
+#:../gtksourceview/gtksourceview.c:338
+msgid "Whether to draw the right margin overlay"
+msgstr "Có nên hiển thị phụ lề phải hay không"
+
+#:../gtksourceview/gtksourceview.c:354
+msgid "Margin Overlay Alpha"
+msgstr "Anfa phụ lề"
+
+#:../gtksourceview/gtksourceview.c:355
+msgid "Transparency of the margin overlay"
+msgstr "Độ trong suốt của vật phủ lề"
+
+#:../gtksourceview/gtksourceview.c:372
+msgid "Margin Overlay Color"
+msgstr "Màu phụ lề"
+
+#:../gtksourceview/gtksourceview.c:373
+msgid "Color to use for drawing the margin overlay"
+msgstr "Màu cần dùng để vẽ phủ viền"
 
 #:../gtksourceview/language-specs/ada.lang.h:1
 msgid "Ada"
