@@ -1,3 +1,20 @@
+News in 1.5.5
+-------------
+
+* Requires gtk+ 2.8.x
+* Fixed bug #309663 – gcc 4.01 compiler treats pointer target
+  warnings as errors (Marco Barisione)
+* Added scheme.lang (Paolo Borelli)
+* Allow to specify both 'u' and 'r' modifiers to python strings at 
+  the same time (Steve Frécinaux)
+* Add iterators to text region and use them (Paolo Borelli and Paolo Maggi)
+* Use cairo to draw the right margin (Jeroen Zwartepoorte)
+* Fixed bug #321252 - Clicking gedit line numbers should jump to line (Paolo 
+  Borelli and Paolo Maggi)
+* Fixed bug 312241 – .lang files in homedir take priority over $prefix (Guillaume
+  Desmottes and Paolo Borelli)
+* Updated translations
+
 News in 1.5.4
 -------------
 
