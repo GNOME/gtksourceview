@@ -225,9 +225,25 @@ gtk_source_languages_manager_set_specs_dirs (GtkSourceLanguagesManager *lm,
 		const gchar * const *xdg_dirs;
 		gint i;
 
+		/* Don't be tricked by the list order: what we want
+		 * is [xdg2, xdg1, ~], in other words it should be
+		 * in reverse order. This is due to the fact that
+		 * in get_lang_files() we walk the list, read each
+		 * dir and prepend the files, so the files in last
+		 * dir of this list will be first in the files list.
+		 */
+
+		lm->priv->language_specs_directories = 
+			g_slist_prepend (lm->priv->language_specs_directories,
+					 g_build_filename (g_get_home_dir(),
+							   USER_CONFIG_BASE_DIR,
+							   SOURCEVIEW_DIR,
+							   LANGUAGE_DIR, 
+							   NULL));
+
 		/* fetch specs in XDG_DATA_DIRS */
 		xdg_dirs = g_get_system_data_dirs ();
-		for (i = G_N_ELEMENTS (xdg_dirs); i >= 0; --i)
+		for (i = 0; i < G_N_ELEMENTS (xdg_dirs); i++)
 		{
 			lm->priv->language_specs_directories =
 				g_slist_prepend (lm->priv->language_specs_directories,
@@ -236,15 +252,6 @@ gtk_source_languages_manager_set_specs_dirs (GtkSourceLanguagesManager *lm,
 								   LANGUAGE_DIR, 
 								   NULL));
 		}
-
-		/* prepend the dir in ~ so that we look there first */
-		lm->priv->language_specs_directories = 
-			g_slist_prepend (lm->priv->language_specs_directories,
-					 g_build_filename (g_get_home_dir(),
-							   USER_CONFIG_BASE_DIR,
-							   SOURCEVIEW_DIR,
-							   LANGUAGE_DIR, 
-							   NULL));
 
 		return;
 	}
@@ -275,6 +282,13 @@ gtk_source_languages_manager_get_lang_files_dirs (GtkSourceLanguagesManager *lm)
 	return lm->priv->language_specs_directories;
 }
 
+static void
+prepend_lang (gchar *id, GtkSourceLanguage *lang, GtkSourceLanguagesManager *lm)
+{
+	lm->priv->available_languages = 
+		g_slist_prepend (lm->priv->available_languages, lang);
+}
+
 /**
  * gtk_source_languages_manager_get_available_languages:
  * @lm: a #GtkSourceLanguagesManager.
@@ -288,7 +302,8 @@ gtk_source_languages_manager_get_lang_files_dirs (GtkSourceLanguagesManager *lm)
 const GSList *
 gtk_source_languages_manager_get_available_languages (GtkSourceLanguagesManager *lm)
 {
-	GSList *filenames;
+	GSList *filenames, *l;
+	GHashTable *lang_hash;
 
 	g_return_val_if_fail (GTK_IS_SOURCE_LANGUAGES_MANAGER (lm), NULL);
 
@@ -300,30 +315,35 @@ gtk_source_languages_manager_get_available_languages (GtkSourceLanguagesManager 
 	/* Build list of availables languages */
 	filenames = get_lang_files (lm);
 	
-	while (filenames != NULL)
+	lang_hash = g_hash_table_new (g_str_hash, g_str_equal);
+
+	for (l = filenames; l != NULL; l = l->next)
 	{
 		GtkSourceLanguage *lang;
-		
-		lang = _gtk_source_language_new_from_file ((const gchar*)filenames->data,
+
+		lang = _gtk_source_language_new_from_file ((const gchar*)l->data,
 							   lm);
 
 		if (lang == NULL)
 		{
 			g_warning ("Error reading language specification file '%s'", 
-				   (const gchar*)filenames->data);
-		}
-		else
-		{	
-			lm->priv->available_languages = 
-				g_slist_prepend (lm->priv->available_languages, lang);
+				   (const gchar*)l->data);
+			continue;
 		}
 
-		filenames = g_slist_next (filenames);
+		if (g_hash_table_lookup (lang_hash, lang->priv->id) == NULL)
+		{	
+			g_hash_table_insert (lang_hash, 
+					     lang->priv->id,
+					     lang);
+		}
 	}
 
 	slist_deep_free (filenames);
 
-	/* TODO: remove duplicates - Paolo */
+	g_hash_table_foreach (lang_hash, (GHFunc) prepend_lang, lm);
+
+	g_hash_table_destroy (lang_hash);
 
 	return lm->priv->available_languages;
 }

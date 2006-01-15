@@ -3,7 +3,13 @@
 	* configure.in:
 	* README:
 	* NEWS: release 1.5.5
-	
+
+2006-01-15  Paolo Borelli  <pborelli@katamail.com>
+
+	* gtksourceview/gtksourcelanguagesmanager.c: fetch lang files in the
+	right order so that files in ~ can override the system ones and make
+	sure to avoid duplicates (bug #312241).
+
 2006-01-15  Paolo Borelli  <pborelli@katamail.com>
 
 	* gtksourceview/gtksourceview.c: handle clicks on the left gutter,
