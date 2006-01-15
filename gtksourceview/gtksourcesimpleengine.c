@@ -29,8 +29,8 @@
 #include "gtksourcetag.h"
 #include "gtksourcebuffer.h"
 #include "gtksourcesimpleengine.h"
-#include "gtksourceregex.h"
 #include "gtktextregion.h"
+#include "libegg/regex/eggregex.h"
 
 /*
 #define ENABLE_DEBUG
@@ -67,9 +67,7 @@ struct _Pattern
 struct _SimplePattern
 {
 	Pattern         p;
-	
-	gchar          *pattern;
-	GtkSourceRegex *reg_pattern;
+	EggRegex       *reg_pattern;
 };
 
 struct _SyntaxPattern
@@ -78,8 +76,8 @@ struct _SyntaxPattern
 	
 	gchar          *start_pattern;
 	gchar          *end_pattern;
-	GtkSourceRegex *reg_start;
-	GtkSourceRegex *reg_end;
+	EggRegex       *reg_start;
+	EggRegex       *reg_end;
 };
 
 /* define this to always highlight in an idle handler, and not
@@ -91,8 +89,15 @@ struct _SyntaxPattern
 #define INITIAL_WORKER_BATCH                40960
 #define MINIMUM_WORKER_BATCH                1024
 
+typedef struct _RegexMatch           RegexMatch;
 typedef struct _SyntaxDelimiter      SyntaxDelimiter;
 typedef struct _PatternMatch         PatternMatch;
+
+struct _RegexMatch
+{
+	gint start;
+	gint end;
+};
 
 struct _SyntaxDelimiter 
 {
@@ -104,7 +109,7 @@ struct _SyntaxDelimiter
 struct _PatternMatch
 {
 	const SimplePattern  *pattern;
-	GtkSourceBufferMatch  match;
+	RegexMatch            match;
 };
 
 struct _GtkSourceSimpleEnginePrivate 
@@ -117,7 +122,7 @@ struct _GtkSourceSimpleEnginePrivate
 	/* highlighting "input" */
 	GList                 *syntax_items;
 	GList                 *pattern_items;
-	GtkSourceRegex        *reg_syntax_all;
+	EggRegex              *reg_syntax_all;
 	gunichar               escape_char;
 
 	/* Region covering the unhighlighted text */
@@ -252,12 +257,41 @@ gtk_source_simple_engine_finalize (GObject *object)
 	/* destroy patterns */
 	g_list_foreach (engine->priv->pattern_items, (GFunc) simple_pattern_destroy, NULL);
 	g_list_foreach (engine->priv->syntax_items, (GFunc) syntax_pattern_destroy, NULL);
-	gtk_source_regex_destroy (engine->priv->reg_syntax_all);
+	egg_regex_free (engine->priv->reg_syntax_all);
 	
 	g_free (engine->priv);
 	engine->priv = NULL;
 	
 	G_OBJECT_CLASS (parent_class)->finalize (object);
+}
+
+
+/* Regex handling ------------------------------------------------------------------- */
+
+static EggRegex *
+regex_new (const gchar *pattern)
+{
+	return egg_regex_new (pattern, EGG_REGEX_MULTILINE, 0, NULL);
+}
+
+static gint
+regex_match (EggRegex		*regex,
+	     const gchar	*string,
+	     gssize		 string_len,
+	     gint		 start_position,
+	     EggRegexMatchFlags  match_options,
+	     RegexMatch		*match)
+{
+	RegexMatch tmp_match = {-1, -1};
+	if (egg_regex_match_extended (regex, string, string_len,
+				start_position, match_options, NULL))
+	{
+		egg_regex_fetch_pos (regex, string, 0,
+				&tmp_match.start, &tmp_match.end);
+		if (match != NULL)
+			*match = tmp_match;
+	}
+	return tmp_match.start;
 }
 
 
@@ -269,17 +303,16 @@ simple_pattern_new (const gchar *id,
 		    const gchar *pattern)
 {
 	SimplePattern *pat;
-	GtkSourceRegex *regex;
+	EggRegex *regex;
 	
 	/* try to compile pattern */
-	regex = gtk_source_regex_compile (pattern);
+	regex = regex_new (pattern);
 	if (regex)
 	{
 		pat = g_new0 (SimplePattern, 1);
 
 		pat->p.id = g_strdup (id);
 		pat->p.style = g_strdup (style);
-		pat->pattern = g_strdup (pattern);
 		pat->reg_pattern = regex;
 	}
 	else
@@ -297,8 +330,7 @@ simple_pattern_destroy (SimplePattern *pat)
 		g_free (pat->p.style);
 		if (pat->p.tag)
 			g_object_unref (pat->p.tag);
-		g_free (pat->pattern);
-		gtk_source_regex_destroy (pat->reg_pattern);
+		egg_regex_free (pat->reg_pattern);
 
 		g_free (pat);
 	}
@@ -311,11 +343,11 @@ syntax_pattern_new (const gchar *id,
 		    const gchar *end_pattern)
 {
 	SyntaxPattern *sp;
-	GtkSourceRegex *rs, *re;
+	EggRegex *rs, *re;
 	
 	/* try to compile pattern */
-	rs = gtk_source_regex_compile (start_pattern);
-	re = gtk_source_regex_compile (end_pattern);
+	rs = regex_new (start_pattern);
+	re = regex_new (end_pattern);
 	if (rs != NULL && re != NULL)
 	{
 		sp = g_new0 (SyntaxPattern, 1);
@@ -329,8 +361,8 @@ syntax_pattern_new (const gchar *id,
 	}
 	else
 	{
-		gtk_source_regex_destroy (rs);
-		gtk_source_regex_destroy (re);
+		egg_regex_free (rs);
+		egg_regex_free (re);
 		sp = NULL;
 	}
 	
@@ -348,8 +380,8 @@ syntax_pattern_destroy (SyntaxPattern *sp)
 			g_object_unref (sp->p.tag);
 		g_free (sp->start_pattern);
 		g_free (sp->end_pattern);
-		gtk_source_regex_destroy (sp->reg_start);
-		gtk_source_regex_destroy (sp->reg_end);
+		egg_regex_free (sp->reg_start);
+		egg_regex_free (sp->reg_end);
 
 		g_free (sp);
 	}
@@ -784,7 +816,7 @@ sync_reg_syntax_all (GtkSourceSimpleEngine *se)
 
 	if (se->priv->reg_syntax_all)
 	{
-		gtk_source_regex_destroy (se->priv->reg_syntax_all);
+		egg_regex_free (se->priv->reg_syntax_all);
 		se->priv->reg_syntax_all = NULL;
 	}
 	if (cur == NULL)
@@ -801,15 +833,15 @@ sync_reg_syntax_all (GtkSourceSimpleEngine *se)
 			g_string_append (str, "|");
 	}
 
-	se->priv->reg_syntax_all = gtk_source_regex_compile (str->str);
+	se->priv->reg_syntax_all = regex_new (str->str);
 
 	g_string_free (str, TRUE);
 }
 
 static gboolean
-is_escaped (GtkSourceSimpleEngine *se, const gchar *text, gint index)
+is_escaped (GtkSourceSimpleEngine *se, const gchar *text, gint offset)
 {
-	gchar *tmp = (gchar *) text + index;
+	gchar *tmp = g_utf8_offset_to_pointer (text, offset);
 	gboolean retval = FALSE;
 
 	if (se->priv->escape_char == 0)
@@ -829,7 +861,7 @@ get_syntax_start (GtkSourceSimpleEngine *se,
 		  const gchar           *text,
 		  gint                   length,
 		  guint                  match_options,
-		  GtkSourceBufferMatch  *match)
+		  RegexMatch            *match)
 {
 	GList *list;
 	SyntaxPattern *sp;
@@ -846,16 +878,16 @@ get_syntax_start (GtkSourceSimpleEngine *se,
 	pos = 0;
 	do {
 		/* check for any of the syntax highlights */
-		pos = gtk_source_regex_search (
+		pos = regex_match (
 			se->priv->reg_syntax_all,
 			text,
-			pos,
 			length,
-			match,
-			match_options);
-		if (pos < 0 || !is_escaped (se, text, match->startindex))
+			pos,
+			match_options,
+			match);
+		if (pos < 0 || !is_escaped (se, text, match->start))
 			break;
-		pos = match->startpos + 1;
+		pos = match->start + 1;
 	} while (pos >= 0);
 
 	if (pos < 0)
@@ -864,9 +896,9 @@ get_syntax_start (GtkSourceSimpleEngine *se,
 	while (list != NULL) {
 		sp = list->data;
 		
-		if (gtk_source_regex_match (sp->reg_start, text,
-					    pos, match->endindex,
-					    match_options))
+		if (regex_match (sp->reg_start, text, match->end, pos,
+				 match_options | EGG_REGEX_MATCH_ANCHORED,
+				 NULL) >= 0)
 			return sp;
 
 		list = g_list_next (list);
@@ -881,9 +913,9 @@ get_syntax_end (GtkSourceSimpleEngine *se,
 		gint                   length,
 		guint                  match_options,
 		const SyntaxPattern   *sp,
-		GtkSourceBufferMatch  *match)
+		RegexMatch            *match)
 {
-	GtkSourceBufferMatch tmp;
+	RegexMatch tmp;
 	gint pos;
 
 	g_return_val_if_fail (text != NULL, FALSE);
@@ -895,11 +927,11 @@ get_syntax_end (GtkSourceSimpleEngine *se,
 	
 	pos = 0;
 	do {
-		pos = gtk_source_regex_search (sp->reg_end, text, pos,
-					       length, match, match_options);
-		if (pos < 0 || !is_escaped (se, text, match->startindex))
+		pos = regex_match (sp->reg_end, text, length, pos,
+				   match_options, match);
+		if (pos < 0 || !is_escaped (se, text, match->start))
 			break;
-		pos = match->startpos + 1;
+		pos = match->start + 1;
 	} while (pos >= 0);
 
 	return (pos >= 0);
@@ -1079,14 +1111,14 @@ delimiter_is_equal (SyntaxDelimiter *d1, SyntaxDelimiter *d2)
  * @source_buffer: the GtkSourceBuffer to work on
  * @state: the current SyntaxDelimiter
  * @head: text to analyze
- * @head_length: length in bytes of @head
+ * @head_length: length in characters of @head
  * @head_offset: offset in the buffer where @head starts
  * @match_options:
- * @match: GtkSourceBufferMatch object to get the results
+ * @match: RegexMatch object to get the results
  * 
  * This function can be seen as a single iteration in the analyzing
  * process.  It takes the current @state, searches for the next syntax
- * pattern in head (starting from byte index 0) and if found, updates
+ * pattern in head (starting from offset 0) and if found, updates
  * @state to reflect the new state.  @match is also filled with the
  * matching bounds.
  * 
@@ -1099,7 +1131,7 @@ next_syntax_region (GtkSourceSimpleEngine *se,
 		    gint                   head_length,
 		    gint                   head_offset,
 		    guint                  head_options,
-		    GtkSourceBufferMatch  *match)
+		    RegexMatch            *match)
 {
 	const SyntaxPattern *pat;
 	gboolean found;
@@ -1113,7 +1145,7 @@ next_syntax_region (GtkSourceSimpleEngine *se,
 			return FALSE;
 		
 		state->pattern = pat;
-		state->offset = match->startpos + head_offset;
+		state->offset = match->start + head_offset;
 		state->depth = 1;
 
 	} else {
@@ -1125,7 +1157,7 @@ next_syntax_region (GtkSourceSimpleEngine *se,
 		if (!found)
 			return FALSE;
 		
-		state->offset = match->endpos + head_offset;
+		state->offset = match->end + head_offset;
 		state->pattern = NULL;
 		state->depth = 0;
 		
@@ -1145,7 +1177,7 @@ build_syntax_regions_table (GtkSourceSimpleEngine *se,
 	gchar *slice, *head;
 	gint offset, head_length;
 	guint slice_options;
-	GtkSourceBufferMatch match;
+	RegexMatch match;
 	SyntaxDelimiter delim;
 	GTimer *timer;
 
@@ -1206,11 +1238,11 @@ build_syntax_regions_table (GtkSourceSimpleEngine *se,
 	/* get slice of text to work on */
 	slice = gtk_text_iter_get_slice (&start, &end);
 	head = slice;
-	head_length = strlen (head);
+	head_length = g_utf8_strlen (head, -1);
 
 	/* we always stop processing at line ends */
 	slice_options = (gtk_text_iter_get_line_offset (&start) != 0 ?
-			 GTK_SOURCE_REGEX_NOT_BOL : 0);
+			 EGG_REGEX_MATCH_NOTBOL : 0);
 
 	timer = g_timer_new ();
 
@@ -1252,20 +1284,20 @@ build_syntax_regions_table (GtkSourceSimpleEngine *se,
 		g_array_append_val (table, delim);
 			
 		/* move pointers */
-		head += match.endindex;
-		head_length -= match.endindex;
-		offset += match.endpos;
+		head = g_utf8_offset_to_pointer (head, match.end);
+		head_length -= match.end;
+		offset += match.end;
 		
 		/* recalculate b-o-l matching options */
-		if (match.endindex > 0)
+		if (match.end > 0)
 		{
 			GtkTextIter tmp;
 			gtk_text_buffer_get_iter_at_offset (GTK_TEXT_BUFFER (se->priv->buffer),
 							    &tmp, offset);
 			if (gtk_text_iter_get_line_offset (&tmp) != 0)
-				slice_options |= GTK_SOURCE_REGEX_NOT_BOL;
+				slice_options |= EGG_REGEX_MATCH_NOTBOL;
 			else
-				slice_options &= ~GTK_SOURCE_REGEX_NOT_BOL;
+				slice_options &= ~EGG_REGEX_MATCH_NOTBOL;
 		}
 	}
     
@@ -1341,7 +1373,7 @@ update_syntax_regions (GtkSourceSimpleEngine *se,
 	guint slice_options;
 	gint head_length, head_offset;
 	GtkTextIter start_iter, end_iter;
-	GtkSourceBufferMatch match;
+	RegexMatch match;
 	SyntaxDelimiter delim;
 	gboolean mismatch;
 	
@@ -1473,13 +1505,13 @@ update_syntax_regions (GtkSourceSimpleEngine *se,
 
 	/* get us the chunk of text to analyze */
 	head = slice = gtk_text_iter_get_slice (&start_iter, &end_iter);
-	head_length = strlen (head);
+	head_length = g_utf8_strlen (head, -1);
 
 	/* eol match options is constant for this run */
 	slice_options = ((gtk_text_iter_get_line_offset (&start_iter) != 0 ?
-			  GTK_SOURCE_REGEX_NOT_BOL : 0) |
+			  EGG_REGEX_MATCH_NOTBOL : 0) |
 			 (!gtk_text_iter_ends_line (&end_iter) ?
-			  GTK_SOURCE_REGEX_NOT_EOL : 0));
+			  EGG_REGEX_MATCH_NOTEOL : 0));
 
 	/* We will start analyzing the slice of text and see if it
 	 * matches the information from the table.  When we hit a
@@ -1509,21 +1541,21 @@ update_syntax_regions (GtkSourceSimpleEngine *se,
 		}
 		
 		/* move pointers */
-		head += match.endindex;
-		head_length -= match.endindex;
-		head_offset += match.endpos;
+		head = g_utf8_offset_to_pointer (head, match.end);
+		head_length -= match.end;
+		head_offset += match.end;
 		table_index++;
 		
 		/* recalculate b-o-l matching options */
-		if (match.endindex > 0)
+		if (match.end > 0)
 		{
 			GtkTextIter tmp;
 			gtk_text_buffer_get_iter_at_offset (GTK_TEXT_BUFFER (se->priv->buffer),
 							    &tmp, head_offset);
 			if (gtk_text_iter_get_line_offset (&tmp) != 0)
-				slice_options |= GTK_SOURCE_REGEX_NOT_BOL;
+				slice_options |= EGG_REGEX_MATCH_NOTBOL;
 			else
-				slice_options &= ~GTK_SOURCE_REGEX_NOT_BOL;
+				slice_options &= ~EGG_REGEX_MATCH_NOTBOL;
 		}
 	}
 
@@ -1574,9 +1606,8 @@ update_syntax_regions (GtkSourceSimpleEngine *se,
  * search_patterns:
  * @matches: the starting list of matches to work from (can be NULL)
  * @text: the text which will be searched for
- * @length: the length (in bytes) of @text
+ * @length: the length (in characters) of @text
  * @offset: the offset the beginning of @text is at
- * @index: an index to add the match indexes (usually: @text - base_text)
  * @match_options: 
  * @patterns: additional patterns (can be NULL)
  * 
@@ -1597,11 +1628,10 @@ search_patterns (GList       *matches,
 		 const gchar *text,
 		 gint         length,
 		 gint         offset,
-		 gint         index,
 		 guint        match_options,
 		 GList       *patterns)
 {
-	GtkSourceBufferMatch match;
+	RegexMatch match;
 	PatternMatch *pmatch;
 	GList *new_pattern;
 	
@@ -1619,7 +1649,7 @@ search_patterns (GList       *matches,
 			/* process patterns already in @matches */
 			pmatch = matches->data;
 			pat = pmatch->pattern;
-			if (pmatch->match.startpos >= offset) {
+			if (pmatch->match.start >= offset) {
 				/* pattern is ahead of offset, so our
 				 * work is done */
 				break;
@@ -1630,14 +1660,14 @@ search_patterns (GList       *matches,
 		}
 		
 		/* do the regex search on @text */
-		i = gtk_source_regex_search (pat->reg_pattern,
-					     text,
-					     0,
-					     length,
-					     &match,
-					     match_options);
+		i = regex_match (pat->reg_pattern,
+				 text,
+				 length,
+				 0,
+				 match_options,
+				 &match);
 		
-		if (i >= 0 && match.endpos != i) {
+		if (i >= 0 && match.end != i) {
 			GList *p;
 			
 			/* create the match structure */
@@ -1645,19 +1675,16 @@ search_patterns (GList       *matches,
 				pmatch = g_new0 (PatternMatch, 1);
 				pmatch->pattern = pat;
 			}
-			/* adjust offsets (indexes remain relative to
-			 * the current pointer in the text) */
-			pmatch->match.startpos = match.startpos + offset;
-			pmatch->match.endpos = match.endpos + offset;
-			pmatch->match.startindex = match.startindex + index;
-			pmatch->match.endindex = match.endindex + index;
+			/* adjust offsets */
+			pmatch->match.start = match.start + offset;
+			pmatch->match.end = match.end + offset;
 			
 			/* insert the match in order (prioritize longest match) */
 			for (p = matches; p; p = p->next) {
 				PatternMatch *tmp = p->data;
-				if (tmp->match.startpos > pmatch->match.startpos ||
-				    (tmp->match.startpos == pmatch->match.startpos &&
-				     tmp->match.endpos < pmatch->match.endpos)) {
+				if (tmp->match.start > pmatch->match.start ||
+				    (tmp->match.start == pmatch->match.start &&
+				     tmp->match.end < pmatch->match.end)) {
 					break;
 				}
 			}
@@ -1669,7 +1696,7 @@ search_patterns (GList       *matches,
 			 * buggy syntax pattern), so free the
 			 * PatternMatch structure if we were analyzing
 			 * a pattern from @matches */
-			if (i >= 0 && i == match.endpos) {
+			if (i >= 0 && i == match.end) {
 				g_warning ("The regex for pattern `%s' matched "
 					   "a zero length string.  That's probably "
 					   "due to a buggy regular expression.", pat->p.id);
@@ -1689,7 +1716,7 @@ check_pattern (GtkSourceSimpleEngine *se,
 	       guint                  match_options)
 {
 	GList *matches;
-	gint offset, index;
+	gint offset, start_offset;
 	GtkTextIter start_iter, end_iter;
 	const gchar *ptr;
 
@@ -1710,16 +1737,12 @@ check_pattern (GtkSourceSimpleEngine *se,
 	});
 	
 	/* setup environment */
-	index = 0;
-	offset = gtk_text_iter_get_offset (start);
+	offset = start_offset = gtk_text_iter_get_offset (start);
 	start_iter = end_iter = *start;
 	ptr = text;
 	
 	/* get the initial list of matches */
-	matches = search_patterns (NULL,
-				   ptr, length,
-				   offset, index,
-				   match_options,
+	matches = search_patterns (NULL, ptr, length, offset, match_options,
 				   gtk_source_simple_engine_get_pattern_entries (se));
 	
 	while (matches && length > 0) {
@@ -1727,9 +1750,9 @@ check_pattern (GtkSourceSimpleEngine *se,
 		PatternMatch *pmatch = matches->data;
 		
 		gtk_text_iter_set_offset (&start_iter,
-					  pmatch->match.startpos);
+					  pmatch->match.start);
 		gtk_text_iter_set_offset (&end_iter,
-					  pmatch->match.endpos);
+					  pmatch->match.end);
 
 		/* ... and apply it */
 		if (pmatch->pattern->p.tag)
@@ -1739,17 +1762,14 @@ check_pattern (GtkSourceSimpleEngine *se,
 						   &end_iter);
 
 		/* now skip it completely */
-		offset = pmatch->match.endpos;
-		index = pmatch->match.endindex;
-		length -= (text + index) - ptr;
-		ptr = text + index;
+		offset = pmatch->match.end;
+		length += g_utf8_pointer_to_offset (text, ptr)
+				+ start_offset - offset;
+		ptr = g_utf8_offset_to_pointer (text, offset - start_offset);
 
 		/* and update matches from the new position */
-		matches = search_patterns (matches,
-					   ptr, length,
-					   offset, index,
-					   match_options,
-					   NULL);
+		matches = search_patterns (matches, ptr, length, offset,
+					   match_options, NULL);
 	}
 
 	if (matches) {
@@ -1874,9 +1894,9 @@ highlight_region (GtkSourceSimpleEngine *se,
 			
 			/* calculate beginning and end of line match options */
 			slice_options = ((gtk_text_iter_get_line_offset (&b_iter) != 0 ?
-					  GTK_SOURCE_REGEX_NOT_BOL : 0) |
+					  EGG_REGEX_MATCH_NOTBOL : 0) |
 					 (!gtk_text_iter_ends_line (&e_iter) ?
-					  GTK_SOURCE_REGEX_NOT_EOL : 0));
+					  EGG_REGEX_MATCH_NOTEOL : 0));
 
 			check_pattern (se, &b_iter,
 				       slice_ptr, tmp - slice_ptr,
@@ -2048,7 +2068,7 @@ gtk_source_simple_engine_add_syntax_pattern (GtkSourceSimpleEngine *se,
 
 			/* destroy the all syntax patterns regex so
 			 * it's recreated when needed */
-			gtk_source_regex_destroy (se->priv->reg_syntax_all);
+			egg_regex_free (se->priv->reg_syntax_all);
 			se->priv->reg_syntax_all = NULL;
 			
 			/* invalidate syntax */
@@ -2102,7 +2122,7 @@ gtk_source_simple_engine_remove_pattern (GtkSourceSimpleEngine *se,
 
 			/* destroy the all syntax patterns regex so
 			 * it's recreated when needed */
-			gtk_source_regex_destroy (se->priv->reg_syntax_all);
+			egg_regex_free (se->priv->reg_syntax_all);
 			se->priv->reg_syntax_all = NULL;
 			
 			/* invalidate syntax */
