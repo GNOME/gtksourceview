@@ -154,8 +154,10 @@ static void 	gtk_source_view_get_lines 		(GtkTextView       *text_view,
 				       			 gint              *countp);
 static gint     gtk_source_view_expose 			(GtkWidget         *widget,
 							 GdkEventExpose    *event);
-static gboolean	key_press_event				(GtkWidget         *widget, 
+static gboolean	gtk_source_view_key_press_event		(GtkWidget         *widget,
 							 GdkEventKey       *event);
+static gboolean	gtk_source_view_button_press_event	(GtkWidget         *widget,
+							 GdkEventButton    *event);
 static void 	view_dnd_drop 				(GtkTextView       *view, 
 							 GdkDragContext    *context,
 							 gint               x,
@@ -200,7 +202,8 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	object_class->get_property = gtk_source_view_get_property;
 	object_class->set_property = gtk_source_view_set_property;
 
-	widget_class->key_press_event = key_press_event;
+	widget_class->key_press_event = gtk_source_view_key_press_event;
+	widget_class->button_press_event = gtk_source_view_button_press_event;
 	widget_class->expose_event = gtk_source_view_expose;
 	widget_class->style_set = gtk_source_view_style_set;
 
@@ -1941,7 +1944,7 @@ compute_indentation (GtkSourceView *view,
 }
 
 static gboolean
-key_press_event (GtkWidget *widget, GdkEventKey *event)
+gtk_source_view_key_press_event (GtkWidget *widget, GdkEventKey *event)
 {
 	GtkSourceView *view;
 	GtkTextBuffer *buf;
@@ -2021,6 +2024,103 @@ key_press_event (GtkWidget *widget, GdkEventKey *event)
 	}
 
 	return	(* GTK_WIDGET_CLASS (parent_class)->key_press_event) (widget, event);
+}
+
+static void
+extend_selection_to_line (GtkTextBuffer *buf, GtkTextIter *line_start)
+{
+	GtkTextIter start;
+	GtkTextIter end;
+	GtkTextIter line_end;
+
+	gtk_text_buffer_get_selection_bounds (buf, &start, &end);
+
+	line_end = *line_start;
+	gtk_text_iter_forward_to_line_end (&line_end);
+
+	if (gtk_text_iter_compare (&start, line_start) < 0)
+	{
+		gtk_text_buffer_select_range (buf, &start, &line_end);
+	}
+	else if (gtk_text_iter_compare (&end, &line_end) < 0)
+	{
+		/* if the selection is in this line, extend
+		 * the selection to the whole line */
+		gtk_text_buffer_select_range (buf, &line_end, line_start);
+	}
+	else
+	{
+		gtk_text_buffer_select_range (buf, &end, line_start);
+	}
+}
+
+static void
+select_line (GtkTextBuffer *buf, GtkTextIter *line_start)
+{
+	GtkTextIter iter;
+
+	iter = *line_start;
+
+	if (!gtk_text_iter_ends_line (&iter))
+		gtk_text_iter_forward_to_line_end (&iter);
+
+	/* Select the line, put the cursor at the end of the line */
+	gtk_text_buffer_select_range (buf, &iter, line_start);
+}
+
+static gboolean
+gtk_source_view_button_press_event (GtkWidget *widget, GdkEventButton *event)
+{
+	GtkSourceView *view;
+	GtkTextBuffer *buf;
+	int y_buf;
+	GtkTextIter line_start;
+
+	view = GTK_SOURCE_VIEW (widget);
+	buf = gtk_text_view_get_buffer (GTK_TEXT_VIEW (widget));
+
+	if ((event->button == 1) &&
+	    view->priv->show_line_numbers &&
+	    (event->window == gtk_text_view_get_window (GTK_TEXT_VIEW (view),
+						       GTK_TEXT_WINDOW_LEFT)))
+	{
+		gtk_text_view_window_to_buffer_coords (GTK_TEXT_VIEW (view),
+						       GTK_TEXT_WINDOW_LEFT,
+						       event->x, event->y,
+						       NULL, &y_buf);
+
+		gtk_text_view_get_line_at_y (GTK_TEXT_VIEW (view),
+					     &line_start,
+					     y_buf,
+					     NULL);
+	
+		if (event->type == GDK_BUTTON_PRESS)
+		{
+			if ((event->state & GDK_CONTROL_MASK) != 0)
+			{
+				/* Single click + Ctrl -> select the line */
+				select_line (buf, &line_start);
+			}
+			else if ((event->state & GDK_SHIFT_MASK) != 0)
+			{
+				/* Single click + Shift -> extended current
+				   selection to include the clicked line */
+				extend_selection_to_line (buf, &line_start);
+			}
+			else
+			{
+				gtk_text_buffer_place_cursor (buf, &line_start);
+			}
+		}
+		else if (event->type == GDK_2BUTTON_PRESS)
+		{
+			select_line (buf, &line_start);
+		}
+
+		return TRUE;
+	}
+
+	return GTK_WIDGET_CLASS (parent_class)->button_press_event (widget, event);
 }
 
 /**

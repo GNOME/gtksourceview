@@ -1,3 +1,8 @@
+2006-01-15  Paolo Borelli  <pborelli@katamail.com>
+
+	* gtksourceview/gtksourceview.c: handle clicks on the left gutter,
+	moving the cursor to the line, selecting the line etc (bug #321252).
+
 2006-01-14  Paolo Maggi  <paolo@gnome.org>
 
 	* gtksourceview/gtksourceview.c (gtk_source_view_expose): added some
