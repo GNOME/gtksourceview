@@ -14,6 +14,7 @@ EXTRA_DIST = \
 	intltool-merge.in \
 	intltool-update.in \
 	gtksourceview-1.0.pc.in	\
+	gtksourceview-zip.in \
 	HACKING \
 	MAINTAINERS \
 	TODO

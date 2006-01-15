@@ -21,9 +21,17 @@
 #include <config.h>
 #endif
 
+#ifdef HAVE_UNISTD_H
+#include <unistd.h>
+#endif
+
 #include <string.h>
+#include <fcntl.h>
 
 #include <libxml/xmlreader.h>
+
+#include <glib/gstdio.h>
+#include <glib/gmappedfile.h>
 
 #include "gtksourceview-i18n.h"
 
@@ -66,13 +74,19 @@ _gtk_source_language_new_from_file (const gchar			*filename,
 {
 	GtkSourceLanguage *lang = NULL;
 
-	xmlTextReaderPtr reader;
+	xmlTextReaderPtr reader = NULL;
 	gint ret;
-	
+	int fd;
+
 	g_return_val_if_fail (filename != NULL, NULL);
 	g_return_val_if_fail (lm != NULL, NULL);
 
-	reader = xmlNewTextReaderFilename (filename);
+	/*
+	 * Use fd instead of filename so that it's utf8 safe on w32.
+	 */
+	fd = g_open (filename, O_RDONLY, 0);
+	if (fd != -1)
+		reader = xmlReaderForFd (fd, filename, NULL, 0);
 
 	if (reader != NULL) 
 	{
@@ -103,7 +117,8 @@ _gtk_source_language_new_from_file (const gchar			*filename,
 		}
 	
 		xmlFreeTextReader (reader);
-        	
+		close (fd);
+
 		if (ret != 0) 
 		{
 	            g_warning("Failed to parse '%s'", filename);
@@ -118,7 +133,6 @@ _gtk_source_language_new_from_file (const gchar			*filename,
 	
 	return lang;
 }
-
 
 GType
 gtk_source_language_get_type (void)
@@ -483,14 +497,20 @@ gtk_source_language_get_mime_types (GtkSourceLanguage *language)
 static GSList *
 get_mime_types_from_file (GtkSourceLanguage *language)
 {
-	xmlTextReaderPtr reader;
+	xmlTextReaderPtr reader = NULL;
 	gint ret;
 	GSList *mime_types = NULL;
+	int fd;
 
 	g_return_val_if_fail (GTK_IS_SOURCE_LANGUAGE (language), NULL);
 	g_return_val_if_fail (language->priv->lang_file_name != NULL, NULL);
 		
-	reader = xmlNewTextReaderFilename (language->priv->lang_file_name);
+	/*
+	 * Use fd instead of filename so that it's utf8 safe on w32.
+	 */
+	fd = g_open (language->priv->lang_file_name, O_RDONLY, 0);
+	if (fd != -1)
+		reader = xmlReaderForFd (fd, language->priv->lang_file_name, NULL, 0);
 
 	if (reader != NULL) 
 	{
@@ -547,7 +567,8 @@ get_mime_types_from_file (GtkSourceLanguage *language)
 		}
 	
 		xmlFreeTextReader (reader);
-        	
+		close (fd);
+
 		if (ret != 0) 
 		{
 	            g_warning("Failed to parse '%s'", language->priv->lang_file_name);
@@ -1139,10 +1160,22 @@ language_file_parse (GtkSourceLanguage *language,
 	GSList *tag_list = NULL;
 	xmlDocPtr doc;
 	xmlNodePtr cur;
-
+	GMappedFile *mf;
+	
 	xmlKeepBlanksDefault (0);
 
-	doc = xmlParseFile (language->priv->lang_file_name);
+	mf = g_mapped_file_new (language->priv->lang_file_name, FALSE, NULL);
+	
+	if (mf == NULL)
+		doc = NULL;
+	else
+	{
+		doc = xmlParseMemory (g_mapped_file_get_contents (mf), 
+				      g_mapped_file_get_length (mf));
+
+		g_mapped_file_free (mf);
+	}
+	
 	if (doc == NULL)
 	{
 		g_warning ("Impossible to parse file '%s'",

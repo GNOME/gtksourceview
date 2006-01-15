@@ -4,6 +4,27 @@
 	* README:
 	* NEWS: release 1.5.5
 
+2006-01-16  Paolo Maggi  <paolo@gnome.org>
+
+	Fixed bug #318577 – win32 port
+	
+	Based on a patch by Tor Lillqvist modified by Paolo Borelli
+	
+	* configure.in: added gtksourceview-zip to AC_CONFIG_FILES
+	
+	* makefile.am: added gtksourceview-zip.in to EXTRA_DIST
+	
+	* gtksourceview-zip.in: new file
+	
+	* gtksourceview/Makefile.am: define PREFIX in INCLUDES
+
+	* gtksourceview/gtksourcelanguage.c
+	(_gtk_source_language_new_from_file): use xmlReaderForFd instead of
+	xmlNewTextReaderFilename so that it's utf8 safe on win32.
+	 (get_mime_types_from_file): ditto
+	(language_file_parse):  use GMappedFile and xmlParseMemory instead of
+	xmlParseFile
+	
 2006-01-15  Paolo Borelli  <pborelli@katamail.com>
 
 	* gtksourceview/gtksourcelanguagesmanager.c: fetch lang files in the
