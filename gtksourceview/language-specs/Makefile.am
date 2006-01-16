@@ -29,6 +29,7 @@ EXTRA_DIST = 			\
 	python.lang		\
 	R.lang			\
 	ruby.lang		\
+	scheme.lang		\
 	sh.lang			\
 	sql.lang		\
 	tcl.lang		\
