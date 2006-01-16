@@ -24,7 +24,6 @@ CFILE_GLOB = $(top_srcdir)/gtksourceview/*.c
 IGNORE_HFILES =					\
 	config.h				\
 	gtksourcelanguage-private.h		\
-	gtksourceregex.h			\
 	gtksourcetag-private.h			\
 	gtksourceundomanager.h			\
 	gtksourceview-i18n.h			\

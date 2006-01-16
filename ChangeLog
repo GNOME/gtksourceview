@@ -3,6 +3,12 @@
 	* gtksourceview/gtksourcelanguage-parser-1.c: (build_keyword_list):
 	use "(?i:)" syntax to have case insensitive keywords instead of
 	gtk_source_regex_case_insesitive_keyword()
+	* configure.in, docs/reference/Makefile.am, gtksourceview/Makefile.am,
+	gtksourceview/gnu-regex/*, gtksourceview/gtksourcelanguage-parser-1.c,
+	gtksourceview/gtksourcelanguage-parser-2.c,
+	gtksourceview/gtksourceregex.c, gtksourceview/gtksourceregex.h,
+	gtksourceview/gtksourcetag-private.h: removed GtkSourceRegex and
+	gnu-regex
 
 2006-01-15  Marco Barisione  <barisione@gmail.com>
 

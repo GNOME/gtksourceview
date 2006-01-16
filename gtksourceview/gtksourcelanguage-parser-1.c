@@ -27,7 +27,6 @@
 #include <libxml/parser.h>
 #include "gtksourceview-i18n.h"
 #include "gtksourcebuffer.h"
-#include "gtksourceregex.h"
 #include "gtksourcetag.h"
 #include "gtksourcelanguage.h"
 #include "gtksourcelanguagesmanager.h"

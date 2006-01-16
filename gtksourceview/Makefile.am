@@ -1,10 +1,4 @@
-SUBDIRS = language-specs gnu-regex libegg
-
-if BUILD_GNU_REGEX
-REGEX_LIBS = gnu-regex/libgnuregex.la
-else
-REGEX_LIBS = 
-endif
+SUBDIRS = language-specs libegg
 
 if BUILD_EGG_REGEX
 EGGREGEX_LIBS = libegg/regex/libeggregex.la
@@ -53,8 +47,6 @@ libgtksourceview_1_0_la_SOURCES = 	\
 	gtksourceundomanager.c 		\
 	gtktextregion.h 		\
 	gtktextregion.c 		\
-	gtksourceregex.h 		\
-	gtksourceregex.c 		\
 	gtksourcelanguage.c 		\
 	gtksourcelanguage-private.h 	\
 	gtksourcelanguagesmanager.c 	\

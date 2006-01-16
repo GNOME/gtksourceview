@@ -71,16 +71,6 @@ PKG_CHECK_MODULES(DEP,
 AC_SUBST(DEP_CFLAGS)
 AC_SUBST(DEP_LIBS)
 
-# Check for GNU regex functions
-AH_TEMPLATE(NATIVE_GNU_REGEX, [Define if the C library implements the GNU regular expressions API])
-BUILD_GNU_REGEX=false
-AC_CHECK_FUNCS([re_compile_pattern re_compile_fastmap re_search re_match], [
-	AC_DEFINE(NATIVE_GNU_REGEX)
-], [
-	BUILD_GNU_REGEX=true
-])
-AM_CONDITIONAL(BUILD_GNU_REGEX,$BUILD_GNU_REGEX)
-
 # If the regex system is included in glib we should check that
 BUILD_EGG_REGEX=true
 AM_CONDITIONAL(BUILD_EGG_REGEX,$BUILD_EGG_REGEX)
@@ -126,7 +116,6 @@ gtksourceview-1.0.pc
 Makefile
 po/Makefile.in
 gtksourceview/Makefile
-gtksourceview/gnu-regex/Makefile
 gtksourceview/libegg/Makefile
 gtksourceview/libegg/regex/Makefile
 gtksourceview/libegg/regex/pcre/Makefile
