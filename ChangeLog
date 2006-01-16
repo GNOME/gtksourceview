@@ -1,3 +1,9 @@
+2006-01-16  Marco Barisione  <barisione@gmail.com>
+
+	* gtksourceview/gtksourcelanguage-parser-1.c: (build_keyword_list):
+	use "(?i:)" syntax to have case insensitive keywords instead of
+	gtk_source_regex_case_insesitive_keyword()
+
 2006-01-15  Marco Barisione  <barisione@gmail.com>
 
 	* gtksourceview/gtksourcesimpleengine.c: use EggRegex instead of

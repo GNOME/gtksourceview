@@ -57,7 +57,10 @@ build_keyword_list (const gchar  *id,
 		if (beginning_regex != NULL)
 			g_string_append (str, beginning_regex);
 
-		g_string_append (str, "(");
+		if (case_sensitive)
+			g_string_append (str, "(?:");
+		else
+			g_string_append (str, "(?i:");
 	
 		keyword_count = 0;
 		/* Due to a bug in GNU libc regular expressions
@@ -71,20 +74,9 @@ build_keyword_list (const gchar  *id,
 
 		while (keywords != NULL && keyword_count < KEYWORD_LIMIT)
 		{
-			gchar *k;
-			
-			if (case_sensitive)
-				k = (gchar*)keywords->data;
-			else
-				k = gtk_source_regex_case_insesitive_keyword ((gchar*)keywords->data);
-			
-			g_string_append (str, k);
-			
-			if (!case_sensitive)
-				g_free (k);
+			g_string_append (str, (gchar*)keywords->data);
 			
 			keywords = g_slist_next (keywords);
-			
 			keyword_count++;
 			
 			if (keywords != NULL && keyword_count < KEYWORD_LIMIT)
