@@ -1,21 +1,20 @@
 # translation of gl.po to Galego
-# translation of gtksourceview.HEAD.po to Galego
 # This file is distributed under the same license as the PACKAGE package.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER.
-# Ignacio Casal Quinteiro <nacho.resa@gmail.com>, 2005, 2006.
 #
+# Ignacio Casal Quinteiro <nacho.resa@gmail.com>, 2005, 2006.
 msgid ""
 msgstr ""
 "Project-Id-Version: gl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-10 23:21+0100\n"
-"PO-Revision-Date: 2006-01-10 23:24+0100\n"
+"POT-Creation-Date: 2006-01-17 21:23+0100\n"
+"PO-Revision-Date: 2006-01-17 21:25+0100\n"
 "Last-Translator: Ignacio Casal Quinteiro <nacho.resa@gmail.com>\n"
 "Language-Team: Galego\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.10.2\n"
+"X-Generator: KBabel 1.11.1\n"
 
 #: ../gtksourceview/gtksourcebuffer.c:278
 msgid "Escape Character"
@@ -89,7 +88,7 @@ msgid "GtkSourceBuffer object to print"
 msgstr "Obxecto GtkSourceBuffer a imprimir"
 
 #: ../gtksourceview/gtksourceprintjob.c:280
-#: ../gtksourceview/gtksourceview.c:222 ../gtksourceview/gtksourceview.c:223
+#: ../gtksourceview/gtksourceview.c:235 ../gtksourceview/gtksourceview.c:236
 msgid "Tabs Width"
 msgstr "Ancho da tabulación"
 
@@ -207,6 +206,7 @@ msgstr "Tipo de dato"
 #: ../gtksourceview/language-specs/ada.lang.h:3
 #: ../gtksourceview/language-specs/css.lang.h:18
 #: ../gtksourceview/language-specs/octave.lang.h:4
+#: ../gtksourceview/language-specs/python.lang.h:5
 #: ../gtksourceview/language-specs/scheme.lang.h:2
 #: ../gtksourceview/language-specs/sh.lang.h:4
 msgid "Function"
@@ -240,6 +240,7 @@ msgstr "Coma flotante"
 #: ../gtksourceview/language-specs/latex.lang.h:5
 #: ../gtksourceview/language-specs/octave.lang.h:6
 #: ../gtksourceview/language-specs/po.lang.h:3
+#: ../gtksourceview/language-specs/python.lang.h:7
 #: ../gtksourceview/language-specs/R.lang.h:6
 #: ../gtksourceview/language-specs/scheme.lang.h:9
 #: ../gtksourceview/language-specs/tcl.lang.h:1
@@ -287,7 +288,6 @@ msgstr "Preprocesador"
 #: ../gtksourceview/language-specs/pascal.lang.h:18
 #: ../gtksourceview/language-specs/perl.lang.h:8
 #: ../gtksourceview/language-specs/po.lang.h:6
-#: ../gtksourceview/language-specs/python.lang.h:14
 #: ../gtksourceview/language-specs/scheme.lang.h:13
 #: ../gtksourceview/language-specs/sh.lang.h:13
 #: ../gtksourceview/language-specs/tcl.lang.h:4
@@ -341,59 +341,59 @@ msgstr "Marca de estilo"
 msgid "The style associated with the source tag"
 msgstr "O estilo asociado coa marca de orixe"
 
-#: ../gtksourceview/gtksourceview.c:206
+#: ../gtksourceview/gtksourceview.c:219
 msgid "Show Line Numbers"
 msgstr "Mostrar número de liña"
 
-#: ../gtksourceview/gtksourceview.c:207
+#: ../gtksourceview/gtksourceview.c:220
 msgid "Whether to display line numbers"
 msgstr "Indica se se mostrarán os números das liñas"
 
-#: ../gtksourceview/gtksourceview.c:214
+#: ../gtksourceview/gtksourceview.c:227
 msgid "Show Line Markers"
 msgstr "Mostrar marcadores de liñas"
 
-#: ../gtksourceview/gtksourceview.c:215
+#: ../gtksourceview/gtksourceview.c:228
 msgid "Whether to display line marker pixbufs"
 msgstr "Indica se se mostrarán os marcadores de liñas"
 
-#: ../gtksourceview/gtksourceview.c:232
+#: ../gtksourceview/gtksourceview.c:245
 msgid "Auto Indentation"
 msgstr "Sangría automática"
 
-#: ../gtksourceview/gtksourceview.c:233
+#: ../gtksourceview/gtksourceview.c:246
 msgid "Whether to enable auto indentation"
 msgstr "Indica se se habilita o sangrado automático"
 
-#: ../gtksourceview/gtksourceview.c:239
+#: ../gtksourceview/gtksourceview.c:252
 msgid "Insert Spaces Instead of Tabs"
 msgstr "Insertar espacios en vez de tabuladores"
 
-#: ../gtksourceview/gtksourceview.c:240
+#: ../gtksourceview/gtksourceview.c:253
 msgid "Whether to insert spaces instead of tabs"
 msgstr "Indica se se insertarán espacios en vez de tabuladores"
 
-#: ../gtksourceview/gtksourceview.c:247
+#: ../gtksourceview/gtksourceview.c:260
 msgid "Show Right Margin"
 msgstr "Mostrar a marxe dereita"
 
-#: ../gtksourceview/gtksourceview.c:248
+#: ../gtksourceview/gtksourceview.c:261
 msgid "Whether to display the right margin"
 msgstr "Indica se se mostrará a marxe dereita"
 
-#: ../gtksourceview/gtksourceview.c:255
+#: ../gtksourceview/gtksourceview.c:268
 msgid "Margin position"
 msgstr "Posición da marxe"
 
-#: ../gtksourceview/gtksourceview.c:256
+#: ../gtksourceview/gtksourceview.c:269
 msgid "Position of the right margin"
 msgstr "Posición da marxe dereita"
 
-#: ../gtksourceview/gtksourceview.c:265
+#: ../gtksourceview/gtksourceview.c:278
 msgid "Use smart home/end"
 msgstr "Utilizar inicio/fin intelixente"
 
-#: ../gtksourceview/gtksourceview.c:266
+#: ../gtksourceview/gtksourceview.c:279
 msgid ""
 "HOME and END keys move to first/last non whitespace characters on line "
 "before going to the start/end of the line"
@@ -401,13 +401,53 @@ msgstr ""
 "As teclas INICIO e FIN situarán o cursor no primer/último carácter non "
 "branco da liña antes de ir ao inicio/fin da liña"
 
-#: ../gtksourceview/gtksourceview.c:275
+#: ../gtksourceview/gtksourceview.c:288
 msgid "Highlight current line"
 msgstr "Resaltar a liña actual"
 
-#: ../gtksourceview/gtksourceview.c:276
+#: ../gtksourceview/gtksourceview.c:289
 msgid "Whether to highlight the current line"
 msgstr "Indica se se resalta a liña actual"
+
+#: ../gtksourceview/gtksourceview.c:305
+msgid "Margin Line Alpha"
+msgstr "Liña alfa da marxe"
+
+#: ../gtksourceview/gtksourceview.c:306
+msgid "Transparency of the margin line"
+msgstr "Transparencia da liña da marxe"
+
+#: ../gtksourceview/gtksourceview.c:323
+msgid "Margin Line Color"
+msgstr "Cor da liña da marxe"
+
+#: ../gtksourceview/gtksourceview.c:324
+msgid "Color to use for the right margin line"
+msgstr "Cor a usar para a liña dereita da marxe"
+
+#: ../gtksourceview/gtksourceview.c:340
+msgid "Margin Overlay Toggle"
+msgstr "Cambiar marxe sobreposta"
+
+#: ../gtksourceview/gtksourceview.c:341
+msgid "Whether to draw the right margin overlay"
+msgstr "Indica se se amosará a marxe dereita sobreposta"
+
+#: ../gtksourceview/gtksourceview.c:357
+msgid "Margin Overlay Alpha"
+msgstr "Alfa da marxe sobreposta"
+
+#: ../gtksourceview/gtksourceview.c:358
+msgid "Transparency of the margin overlay"
+msgstr "Transparencia da marxe sobreposta"
+
+#: ../gtksourceview/gtksourceview.c:375
+msgid "Margin Overlay Color"
+msgstr "Cor da marxe sobreposta"
+
+#: ../gtksourceview/gtksourceview.c:376
+msgid "Color to use for drawing the margin overlay"
+msgstr "Cor usada para debuxar a marxe sobreposta"
 
 #: ../gtksourceview/language-specs/ada.lang.h:1
 msgid "Ada"
@@ -447,7 +487,7 @@ msgstr "Constante carácter"
 #: ../gtksourceview/language-specs/octave.lang.h:7
 #: ../gtksourceview/language-specs/pascal.lang.h:11
 #: ../gtksourceview/language-specs/perl.lang.h:3
-#: ../gtksourceview/language-specs/python.lang.h:7
+#: ../gtksourceview/language-specs/python.lang.h:8
 #: ../gtksourceview/language-specs/R.lang.h:7
 #: ../gtksourceview/language-specs/ruby.lang.h:10
 #: ../gtksourceview/language-specs/scheme.lang.h:10
@@ -546,7 +586,7 @@ msgstr "Macro común"
 #: ../gtksourceview/language-specs/haskell.lang.h:4
 #: ../gtksourceview/language-specs/nemerle.lang.h:7
 #: ../gtksourceview/language-specs/octave.lang.h:3
-#: ../gtksourceview/language-specs/python.lang.h:3
+#: ../gtksourceview/language-specs/python.lang.h:4
 #: ../gtksourceview/language-specs/R.lang.h:4
 msgid "Floating Point Number"
 msgstr "Número de coma flotante"
@@ -559,7 +599,7 @@ msgstr "Número de coma flotante"
 #: ../gtksourceview/language-specs/nemerle.lang.h:8
 #: ../gtksourceview/language-specs/octave.lang.h:5
 #: ../gtksourceview/language-specs/pascal.lang.h:10
-#: ../gtksourceview/language-specs/python.lang.h:5
+#: ../gtksourceview/language-specs/python.lang.h:6
 msgid "Hex Number"
 msgstr "Número Hex"
 
@@ -578,7 +618,6 @@ msgstr "Include/Pragma"
 #: ../gtksourceview/language-specs/javascript.lang.h:12
 #: ../gtksourceview/language-specs/lua.lang.h:3
 #: ../gtksourceview/language-specs/perl.lang.h:2
-#: ../gtksourceview/language-specs/python.lang.h:6
 #: ../gtksourceview/language-specs/ruby.lang.h:9
 #: ../gtksourceview/language-specs/vbnet.lang.h:1
 #: ../gtksourceview/language-specs/verilog.lang.h:6
@@ -591,7 +630,7 @@ msgstr "Palabras clave"
 #: ../gtksourceview/language-specs/haskell.lang.h:11
 #: ../gtksourceview/language-specs/nemerle.lang.h:12
 #: ../gtksourceview/language-specs/octave.lang.h:10
-#: ../gtksourceview/language-specs/python.lang.h:11
+#: ../gtksourceview/language-specs/python.lang.h:12
 #: ../gtksourceview/language-specs/verilog.lang.h:8
 msgid "Octal Number"
 msgstr "Número Octal"
@@ -642,7 +681,6 @@ msgstr "C#"
 
 #: ../gtksourceview/language-specs/csharp.lang.h:5
 #: ../gtksourceview/language-specs/lua.lang.h:7
-#: ../gtksourceview/language-specs/python.lang.h:9
 #: ../gtksourceview/language-specs/sh.lang.h:6
 msgid "Multiline String"
 msgstr "Cadea multiliña"
@@ -661,7 +699,6 @@ msgstr "Primitivas"
 #: ../gtksourceview/language-specs/javascript.lang.h:24
 #: ../gtksourceview/language-specs/lua.lang.h:11
 #: ../gtksourceview/language-specs/makefile.lang.h:9
-#: ../gtksourceview/language-specs/python.lang.h:15
 #: ../gtksourceview/language-specs/sh.lang.h:14
 msgid "String 2"
 msgstr "Cadea 2"
@@ -887,6 +924,7 @@ msgstr "Lectura/Escritura"
 #: ../gtksourceview/language-specs/ini.lang.h:4
 #: ../gtksourceview/language-specs/octave.lang.h:2
 #: ../gtksourceview/language-specs/php.lang.h:16
+#: ../gtksourceview/language-specs/python.lang.h:3
 #: ../gtksourceview/language-specs/R.lang.h:3
 #: ../gtksourceview/language-specs/ruby.lang.h:6
 msgid "Double Quoted String"
@@ -910,6 +948,7 @@ msgstr "Símbolo clave"
 #: ../gtksourceview/language-specs/ini.lang.h:11
 #: ../gtksourceview/language-specs/octave.lang.h:14
 #: ../gtksourceview/language-specs/php.lang.h:24
+#: ../gtksourceview/language-specs/python.lang.h:15
 #: ../gtksourceview/language-specs/R.lang.h:11
 #: ../gtksourceview/language-specs/ruby.lang.h:17
 msgid "Single Quoted String"
@@ -1051,7 +1090,7 @@ msgstr "Obxectos"
 #: ../gtksourceview/language-specs/octave.lang.h:13
 #: ../gtksourceview/language-specs/perl.lang.h:7
 #: ../gtksourceview/language-specs/php.lang.h:22
-#: ../gtksourceview/language-specs/python.lang.h:13
+#: ../gtksourceview/language-specs/python.lang.h:14
 #: ../gtksourceview/language-specs/R.lang.h:10
 #: ../gtksourceview/language-specs/ruby.lang.h:16
 #: ../gtksourceview/language-specs/sh.lang.h:11
@@ -1090,7 +1129,6 @@ msgstr "Matemáticas"
 
 #: ../gtksourceview/language-specs/lua.lang.h:2
 #: ../gtksourceview/language-specs/makefile.lang.h:3
-#: ../gtksourceview/language-specs/python.lang.h:4
 msgid "Functions"
 msgstr "Funcións"
 
@@ -1103,7 +1141,6 @@ msgid "Lua"
 msgstr "Lua"
 
 #: ../gtksourceview/language-specs/lua.lang.h:8
-#: ../gtksourceview/language-specs/python.lang.h:10
 #: ../gtksourceview/language-specs/sh.lang.h:7
 msgid "Multiline String 2"
 msgstr "Cadea multiliña 2"
@@ -1167,10 +1204,12 @@ msgid "Nemerle"
 msgstr "Nemerle"
 
 #: ../gtksourceview/language-specs/octave.lang.h:8
+#: ../gtksourceview/language-specs/python.lang.h:10
 msgid "Multiline Double Quoted String"
 msgstr "Cadea con comilla dobre multiliña"
 
 #: ../gtksourceview/language-specs/octave.lang.h:9
+#: ../gtksourceview/language-specs/python.lang.h:11
 msgid "Multiline Single Quoted String"
 msgstr "Cade con comilla sinxela multiliña"
 
@@ -1314,11 +1353,11 @@ msgstr "traducción gettext"
 msgid "Builtins"
 msgstr "Integrados"
 
-#: ../gtksourceview/language-specs/python.lang.h:8
+#: ../gtksourceview/language-specs/python.lang.h:9
 msgid "Module Handler"
 msgstr "Manexador de módulo"
 
-#: ../gtksourceview/language-specs/python.lang.h:12
+#: ../gtksourceview/language-specs/python.lang.h:13
 msgid "Python"
 msgstr "Python"
 
