@@ -2,7 +2,7 @@
  *  gtksourcecontextengine.c
  *
  *  Copyright (C) 2003 - Gustavo Giráldez <gustavo.giraldez@gmx.net>
- *  Copyright (C) 2005 - Marco Barisione, Emanuele Aina
+ *  Copyright (C) 2005, 2006 - Marco Barisione, Emanuele Aina
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -19,6 +19,117 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
+/*
+ * This is a general introduction to the contexts based engine, before
+ * reading this you should read the documentation of the .lang format.
+ *
+ * ENGINE INITIALIZATION
+ * The engine is created using gtk_source_context_engine_new(), the
+ * definitions of the contexts are added using:
+ * - gtk_source_context_engine_define_context() -- for container
+ *   contexts, these are represented by ContextDefinition structures
+ *   stored in the hash table priv->definitions. If the parent_id
+ *   argument is not NULL a reference to the newly created
+ *   definition is added to the children list of the parent definition.
+ * - gtk_source_context_engine_add_sub_pattern() -- for sub pattern
+ *   contexts, represented by SubPatternDefinition and stored
+ *   in the list sub_patterns of the containing ContextDefinition.
+ * - gtk_source_context_engine_add_ref() -- for reference to contexts,
+ *   the context has already been created, so a reference to the
+ *   existing context is added to the GSList children of the parent
+ *   ContextDefinition.
+ *
+ *
+ * SYNTAX ANALYSIS
+ * The analysis process starts creating a new Context referring to the
+ * main ContextDefinition of the language, that is the context whose id
+ * is the same id of the language (for instance "c:c" for C) that is
+ * stored in priv->root_context.
+ *
+ * The text is analyzed in the idle loop or when explicitly required
+ * (see update_highlight_cb()), during the analysis process the engine
+ * looks for transitions to other contexts at each character, i.e. when
+ * the text matches one of the following:
+ * - The StartEnd.start regex of a child container context definition.
+ * - The StartEnd.end regex of the definition of the current
+ *   context.
+ * - The match regex of a child simple context definition.
+ * - The StartEnd.end regex of a parent definition that can terminate
+ *   the current context (see the description of the extend-parent
+ *   attribute in .lang files.)
+ * This way Contexts are stored in a tree whose root is stored in
+ * priv->root_context, for instance for the following code:
+ *
+ *   // This is a comment.
+ *   int a = 42;
+ *   printf ("%d\n", a);
+ *
+ * We would obtain:
+ *
+ *                    c
+ *                    |
+ *        -------------------------
+ *        |           |           |
+ *     comment     keyword      string
+ *                                |
+ *                              escape
+ *
+ * Where each context is marked by a start and an end offset, if we have
+ * not yet found the end of a context it is set to END_NOT_YET_FOUND.
+ *
+ * Note that looking for a transition at each character means doing an
+ * anchored search (see EGG_REGEX_ANCHORED) at each character for each
+ * possible transition, this is extremely slow, so this process is
+ * accelerated with these steps:
+ * 1 - Each ContextDefinition contains a reg_all regex that contains
+ *     the union (with the regular expression "|" operator) of the
+ *     possible transitions to other definitions. This will be NULL
+ *     if there are regular expressions that depend on the matched
+ *     text because they contain a "\{...@start}".
+ * 2 - When a Context is created then Context.reg_all is set to the
+ *     value of ContextDefinition.reg_all. If this is NULL the value is
+ *     calculated as we now know the text matched. Note that this means
+ *     the using a lot of "\{...@start}" can slow down the engine.
+ * 3 - The position of the transition is found using a not anchored
+ *     search using Context.reg_all
+ * 4 - The exact transition is found using the norml method.
+ *
+ * The main functions involved in this process are: update_syntax(),
+ * analyze_line(), next_context(), context_starts_here(),
+ * simple_context_starts_here(), container_context_starts_here(),
+ * apply_match() and ancestor_ends_here().
+ *
+ * The text to analyze is split in batches, the batches are analyzed
+ * line by line and read through line_reader_*() functions.
+ *
+ *
+ * MODIFICATIONS
+ * When the buffer is modified the engine tries to minimize the work to
+ * update the tree, to do so it splits the tree in two different trees,
+ * the first contains contexts that are surely valid because they are
+ * before the modification offset, the second contain the other contexts.
+ * The analysis process continues as usual but after each step the engine
+ * verifies if the current state is equal to the state at the same
+ * position before the modification using the function states_are_equal().
+ * If the function returns TRUE then the two trees are joined by
+ * join_contexts_tree() and the analysis stops.
+ *
+ * Modifications can be synchronous or asynchronous, synchronous ones
+ * are used if the text inserted is only one character (i.e. normal
+ * input) and there are no others pending modifications, else they are
+ * inserted in the queue priv->modifications. Asynchronous modifications
+ * are analyzed in the idle loop.
+ * This tecnique improves the perceived responsiveness after a
+ * modification.
+ *
+ *
+ * HIGHLIGHTING
+ * The highlighting process is separated from the analysis, when a
+ * region of the buffer is visualized then the tags of the visible part
+ * of the tree are applied. See functions highlight_region(),
+ * ensure_highlighted() and update_highlight_cb().
+ */
+
 #ifdef HAVE_CONFIG_H
 #include <config.h>
 #endif
@@ -32,8 +143,6 @@
 #include "gtksourcebuffer.h"
 #include "gtksourcecontextengine.h"
 #include "gtktextregion.h"
-
-#include <glib/gprintf.h>
 
 #undef ENABLE_DEBUG
 #undef ENABLE_PROFILE
@@ -53,9 +162,11 @@
 
 /* In milliseconds. */
 #define WORKER_TIME_SLICE	30
+/* The batch size is modified at runtime. */
 #define INITIAL_WORKER_BATCH	8192
 #define MINIMUM_WORKER_BATCH	1024
 
+/* Regex used to match "\%{...@start}". */
 #define START_REF_REGEX "(?<!\\\\)(\\\\\\\\)*\\\\%\\{(.*?)@start\\}"
 
 #define SIGN(n) ((n) >= 0 ? 1 : -1)
@@ -67,6 +178,7 @@ struct _RegexInfo
 };
 typedef struct _RegexInfo RegexInfo;
 
+/* We do not use directly EggRegex to allow the use of "\%{...@start}". */
 struct _Regex
 {
 	union
@@ -217,7 +329,7 @@ struct _Context
 	GtkSourceTag		*clear_tag;
 };
 
-/* Asyncronous insertions or deletions. */
+/* Asynchronous insertions or deletions. */
 struct _Modify
 {
 	gint offset;
@@ -807,7 +919,7 @@ gtk_source_context_engine_attach_buffer (GtkSourceEngine *engine,
 
 /* REGEX HANDLING --------------------------------------------------------- */
 
-/*
+/**
  * regex_ref:
  *
  * @regex: a #Regex.
@@ -825,7 +937,7 @@ regex_ref (Regex *regex)
 	return regex;
 }
 
-/*
+/**
  * regex_unref:
  *
  * @regex: a #Regex.
@@ -850,7 +962,7 @@ regex_unref (Regex *regex)
 	}
 }
 
-/*
+/**
  * regex_new:
  *
  * @pattern: the regular expression.
@@ -957,7 +1069,7 @@ replace_start_regex (const EggRegex *regex,
 	return FALSE;
 }
 
-/*
+/**
  * regex_resolve:
  *
  * @regex: a #Regex.
@@ -1275,7 +1387,8 @@ definition_iter_next (DefinitionsIter *iter)
 
 /* CONTEXTS MANAGEMENT ---------------------------------------------------- */
 
-/* context_last:
+/**
+ * context_last:
  *
  * @context:
  *
@@ -1297,7 +1410,8 @@ context_last (Context *context)
 	return context;
 }
 
-/* context_set_last_sibling:
+/**
+ * context_set_last_sibling:
  *
  * @context:
  * @last_sibling:
@@ -1312,7 +1426,8 @@ context_set_last_sibling (Context *context, Context *last_sibling)
 		context->parent->last_child = last_sibling;
 }
 
-/* context_append_child:
+/**
+ * context_append_child:
  *
  * @context:
  * @child:
@@ -1434,7 +1549,8 @@ create_reg_all (Context *context, ContextDefinition *definition)
 	return regex;
 }
 
-/* context_new:
+/**
+ * context_new:
  *
  * @definition: a #ContextDefinition.
  * @parent: a #Context containing the new context.
@@ -1532,7 +1648,7 @@ context_new (ContextDefinition *definition,
 	return new_context;
 }
 
-/*
+/**
  * context_destroy:
  *
  * @context: a #Context to delete.
@@ -1564,7 +1680,8 @@ context_destroy (Context *context)
 	g_free (context);
 }
 
-/* context_remove:
+/**
+ * context_remove:
  *
  * @context: a #Context.
  *
@@ -1590,7 +1707,7 @@ context_remove (Context *context)
 	context->parent = NULL;
 }
 
-/*
+/**
  * context_dup:
  *
  * @context: a #Context to duplicate.
@@ -1710,7 +1827,7 @@ install_idle_worker (GtkSourceContextEngine *ce)
  * but if, after some lines, the syntax trees cannot be joined we read all
  * the remaining text.
  *
- * We do not use this structure directly but through line_reader_*()
+ * This structure is not used directly but through line_reader_*()
  * functions. */
 struct _LineReader
 {
@@ -1864,7 +1981,7 @@ line_reader_get_line (LineReader *reader,
 
 /* SYNTAX ANALYSIS CODE --------------------------------------------------- */
 
-/*
+/**
  * text_modified:
  *
  * @ce: a GtkSourceContextEngine.
@@ -1907,7 +2024,7 @@ text_modified (GtkSourceContextEngine *ce,
 	}
 }
 
-/*
+/**
  * async_modify:
  *
  * @ce: a #GtkSourceContextEngine.
@@ -1971,7 +2088,7 @@ async_modify (GtkSourceContextEngine *ce)
 	return TRUE;
 }
 
-/*
+/**
  * get_next_context:
  *
  * @current_context: a @Context.
@@ -2028,7 +2145,7 @@ get_next_context (Context *current_context,
 	return next_context;
 }
 
-/*
+/**
  * ancestor_ends_here:
  *
  * @ce: a #GtkSourceContextEngine.
@@ -2110,7 +2227,7 @@ ancestor_ends_here (GtkSourceContextEngine   *ce,
 	return terminating_context != NULL;
 }
 
-/*
+/**
  * apply_sub_patterns:
  *
  * @ce: a #GtkSourceContextEngine.
@@ -2170,7 +2287,7 @@ apply_sub_patterns (GtkSourceContextEngine  *ce,
 	}
 }
 
-/*
+/**
  * apply_match:
  *
  * @ce: a #GtkSourceContextEngine.
@@ -2334,7 +2451,8 @@ simple_context_starts_here (GtkSourceContextEngine  *ce,
 	}
 }
 
-/* context_starts_here:
+/**
+ * context_starts_here:
  *
  * @ce: a #GtkSourceContextEngine.
  * @state: the current state of the parser.
@@ -2376,7 +2494,8 @@ context_starts_here (GtkSourceContextEngine  *ce,
 	}
 }
 
-/* next_context:
+/**
+ * next_context:
  *
  * @ce: a #GtkSourceContextEngine.
  * @state: the current state of the parser.
@@ -2481,7 +2600,7 @@ next_context (GtkSourceContextEngine  *ce,
 	return FALSE;
 }
 
-/*
+/**
  * get_context_at:
  *
  * @ce: a #GtkSourceContextEngine.
@@ -2522,7 +2641,7 @@ get_context_at (GtkSourceContextEngine *ce,
 	return ret;
 }
 
-/*
+/**
  * move_offset:
  * @offset: the offset to move.
  * @modification_offset: where the modification was done.
@@ -2549,7 +2668,7 @@ move_offset (gint offset,
 	}
 }
 
-/*
+/**
  * split_contexts_tree:
  *
  * @ce: a #GtkSourceContextEngine.
@@ -2829,7 +2948,7 @@ split_contexts_tree (GtkSourceContextEngine *ce,
 	return removed_tree;
 }
 
-/*
+/**
  * move_tree_offsets:
  *
  * @context: a #Context.
@@ -2870,7 +2989,7 @@ move_tree_offsets (Context	*context,
 	}
 }
 
-/*
+/**
  * states_are_equal:
  *
  * @current_state: the current state at @offset.
@@ -3000,7 +3119,7 @@ states_are_equal (Context	*current_state,
 	return states_equal;
 }
 
-/*
+/**
  * join_contexts_tree:
  *
  * @ce: a #GtkSourceContextEngine.
@@ -3010,7 +3129,7 @@ states_are_equal (Context	*current_state,
  * @delta: how many characters were added or removed.
  *
  * Joins the main tree with the old tree (@removed_tree). This function
- * can be called only if @states_are_equal returned %TRUE.
+ * can be called only if states_are_equal() returned %TRUE.
  */
 static void
 join_contexts_tree (GtkSourceContextEngine *ce,
@@ -3161,7 +3280,8 @@ join_contexts_tree (GtkSourceContextEngine *ce,
 	}
 }
 
-/* end_at_line_end:
+/**
+ * end_at_line_end:
  *
  * @ce: a #GtkSourceContextEngine.
  * @state: the current state.
@@ -3209,7 +3329,7 @@ end_at_line_end (GtkSourceContextEngine   *ce,
 	}
 }
 
-/*
+/**
  * analyze_line:
  *
  * @ce: a #GtkSourceContextEngine.
@@ -3296,7 +3416,7 @@ analyze_line (GtkSourceContextEngine *ce,
 		return current_state;
 }
 
-/*
+/**
  * update_syntax:
  *
  * @ce: a #GtkSourceContextEngine.
@@ -3566,7 +3686,7 @@ unhighlight_region (GtkSourceContextEngine *ce,
 		&data);
 }
 
-/*
+/**
  * apply_tag:
  *
  * @buffer: a #GtkSourceBuffer.
@@ -3662,7 +3782,7 @@ apply_tag (GtkSourceBuffer *buffer,
 	}
 }
 
-/*
+/**
  * highlight_region:
  *
  * @ce: a #GtkSourceContextEngine.
@@ -3801,7 +3921,7 @@ highlight_queue (GtkSourceContextEngine *ce,
 
 /* ENGINE INITIALIZATION -------------------------------------------------- */
 
-/*
+/**
  * gtk_source_context_engine_new:
  * @id: the id of the language.
  *
