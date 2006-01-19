@@ -1357,10 +1357,12 @@ definition_get_iter (ContextDefinition      *definition,
 static ContextDefinition *
 definition_iter_next (DefinitionsIter *iter)
 {
+	GSList *children_list;
+
 	if (iter->children_stack == NULL)
 		return NULL;
 
-	GSList *children_list = iter->children_stack->data;
+	children_list = iter->children_stack->data;
 	if (children_list == NULL)
 	{
 		iter->children_stack = g_slist_delete_link (
@@ -2685,10 +2687,11 @@ split_contexts_tree (GtkSourceContextEngine *ce,
 		     GtkTextIter             start)
 {
 	GtkSourceContextEnginePrivate *priv = CONTEXT_ENGINE_GET_PRIVATE (ce);
+	GSList *common_context_list;
+	GSList *common_context_element;
 	Context *moved_context;
 	Context *common_context;
 	Context *common_context_copy = NULL;
-	GSList *common_context_element;
 	Context *removed_tree;
 	Context *last_copied_context;
 	Context *current_context;
@@ -2836,7 +2839,7 @@ split_contexts_tree (GtkSourceContextEngine *ce,
 
 	/* These are the common contexts that need to be copied in the
 	 * removed tree, the first context in the list is the root context. */
-	GSList *common_context_list = NULL;
+	common_context_list = NULL;
 	while (common_context != NULL)
 	{
 		common_context_list = g_slist_prepend (common_context_list,
@@ -2850,6 +2853,9 @@ split_contexts_tree (GtkSourceContextEngine *ce,
 	common_context_element = common_context_list;
 	while (common_context_element)
 	{
+		GSList *tmp_list;
+		GSList *sub_pattern_list;
+
 		common_context = common_context_element->data;
 		common_context_copy = context_dup (common_context);
 		/* We are in common_context, so we have not found its end. */
@@ -2857,8 +2863,8 @@ split_contexts_tree (GtkSourceContextEngine *ce,
 
 		/* Splits the sub-patterns list between common_context and
 		 * common_context_copy. */
-		GSList *tmp_list = common_context->sub_patterns;
-		GSList *sub_pattern_list = tmp_list;
+		tmp_list = common_context->sub_patterns;
+		sub_pattern_list = tmp_list;
 		common_context->sub_patterns = NULL;
 		while (sub_pattern_list != NULL)
 		{
@@ -3014,6 +3020,9 @@ states_are_equal (Context	*current_state,
 {
 	Context *curr_context;
 	gboolean stop = FALSE;
+	gboolean states_equal;
+	Context *new_state;
+	Context *old_state;
 
 	/* Delete contexts that are no more needed. At the end of this loop
 	 * curr_context will contain the current position in the old
@@ -3066,11 +3075,11 @@ states_are_equal (Context	*current_state,
 		}
 	}
 
-	gboolean states_equal = TRUE;
+	states_equal = TRUE;
 	/* new_state and old_state are the current contexts in the
 	 * their trees. */
-	Context *new_state = current_state;
-	Context *old_state = curr_context;
+	new_state = current_state;
+	old_state = curr_context;
 	while (states_equal && new_state != NULL && old_state != NULL)
 	{
 		/* Are the two current contexts equal? */
@@ -3176,6 +3185,7 @@ join_contexts_tree (GtkSourceContextEngine *ce,
 	while (old_context != NULL && new_context != NULL && !stop)
 	{
 		GSList *sub_pattern_list;
+		Context *last;
 
 		if (old_context->start_at != new_context->start_at)
 		{
@@ -3216,7 +3226,7 @@ join_contexts_tree (GtkSourceContextEngine *ce,
 			current_context = current_context->next;
 		}
 
-		Context *last = context_last (new_context->children);
+		last = context_last (new_context->children);
 		if (last != NULL && last->end_at != END_NOT_YET_FOUND)
 		{
 			old_context = old_context->children;
@@ -3440,6 +3450,7 @@ update_syntax (GtkSourceContextEngine *ce,
 	GtkTextIter start, end, refresh_end;
 	gint text_starts_at;
 	Context *current_state;
+	LineReader *reader;
 	GTimer *timer;
 	Context *removed_tree;
 	gboolean old_tree_used = FALSE;
@@ -3509,7 +3520,6 @@ update_syntax (GtkSourceContextEngine *ce,
 	/* We read all the batch if delta is zero or if the text
 	 * iserted/deleted is long (so rarely the removed tree can
 	 * be used.) */
-	LineReader *reader;
 	reader = line_reader_new (&start, &end,
 		delta == 0 || delta > MAX_LINES * 60);
 

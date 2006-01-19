@@ -325,10 +325,11 @@ create_definition (ParserState *parser_state,
 	child = context_node->children;
 	while (child != NULL)
 	{
+		xmlAttr *attribute;
+
 		/* FIXME: add PCRE_EXTRA support in EggRegex */
 		flags = parser_state->regex_compile_flags;
-		
-		xmlAttr *attribute;
+
 		for (attribute = child->properties; 
 				attribute != NULL;
 				attribute = attribute->next)
@@ -755,14 +756,13 @@ static void
 handle_language_element (ParserState *parser_state,
 			 GError **error)
 {
+	/* FIXME: check that the language name, version, etc. are the 
+	 * right ones - Paolo */
+	xmlChar *lang_id, *lang_version;
 	gchar *expected_version = "2.0";
 
 	/* Return if an error is already set */
 	g_return_if_fail (error == NULL || *error == NULL);
-
-	/* FIXME: check that the language name, version, etc. are the 
-	 * right ones - Paolo */
-	xmlChar *lang_id, *lang_version;
 
 	lang_version = xmlTextReaderGetAttribute (parser_state->reader, "version");
 
@@ -1713,6 +1713,8 @@ file_parse (gchar                 *filename,
 		ret = xmlTextReaderRead (parser_state->reader);
 		while (ret == 1)
 		{
+			int type;
+
 			if (!xmlTextReaderIsValid (parser_state->reader))
 			{
 				/* TODO: get the error message from the 
@@ -1726,8 +1728,7 @@ file_parse (gchar                 *filename,
 			if (tmp_error != NULL)
 				break;
 
-
-			int type = xmlTextReaderNodeType (parser_state->reader);
+			type = xmlTextReaderNodeType (parser_state->reader);
 			switch (type)
 			{
 				case XML_READER_TYPE_ELEMENT: 
