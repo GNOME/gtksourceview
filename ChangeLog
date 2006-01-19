@@ -1,6 +1,8 @@
 2006-01-19  Marco Barisione  <barisione@gmail.com>
 
 	* gtksourceview/gtksourcecontextengine.c: added some documentation
+	* gtksourceview/gtksourcecontextengine.c: (regex_get_pattern): do not
+	crash if the regex is unresolved
 
 2006-01-16  Marco Barisione  <barisione@gmail.com>
 

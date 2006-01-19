@@ -1173,6 +1173,7 @@ regex_fetch_named_pos (Regex       *regex,
 static const gchar *
 regex_get_pattern (Regex *regex)
 {
+	g_return_val_if_fail (regex->resolved, "");
 	if (regex == NULL)
 		return NULL;
 	else
