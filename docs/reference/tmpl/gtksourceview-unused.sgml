@@ -80,6 +80,12 @@
 </para>
 
 
+<!-- ##### ARG GtkSourceBuffer:escape-char ##### -->
+<para>
+
+</para>
+
+
 <!-- ##### ARG GtkSourcePrintJob:numbers-font-desct ##### -->
 <para>
 
@@ -99,6 +105,14 @@
 </para>
 
 @iter: 
+@Returns: 
+
+<!-- ##### FUNCTION gtk_source_language_get_escape_char ##### -->
+<para>
+
+</para>
+
+@language: 
 @Returns: 
 
 <!-- ##### FUNCTION gtk_syntax_tag_get_type ##### -->
