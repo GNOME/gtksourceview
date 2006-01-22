@@ -273,8 +273,8 @@ struct _ContextDefinition
 typedef struct _ContextDefinition ContextDefinition;
 
 /* Returns the definition corrsponding to the specified id. */
-#define LOOKUP_DEFINITION(priv, id) \
-	(g_hash_table_lookup ((priv)->definitions, (id)))
+#define LOOKUP_DEFINITION(ce, id) \
+	(g_hash_table_lookup ((ce)->priv->definitions, (id)))
 
 struct _DefinitionChild
 {
@@ -387,7 +387,6 @@ struct _GtkSourceContextEnginePrivate
 	/* Views highlight requests. */
 	GtkTextRegion		*highlight_requests;
 };
-typedef struct _GtkSourceContextEnginePrivate GtkSourceContextEnginePrivate;
 
 struct _DefinitionsIter
 {
@@ -499,26 +498,24 @@ gtk_source_context_engine_class_init (GtkSourceContextEngineClass *klass)
 static void
 gtk_source_context_engine_init (GtkSourceContextEngine *ce)
 {
-	GtkSourceContextEnginePrivate *priv = CONTEXT_ENGINE_GET_PRIVATE (ce);
+	ce->priv = CONTEXT_ENGINE_GET_PRIVATE (ce);
 
-	priv->definitions = g_hash_table_new_full (g_str_hash, g_str_equal,
+	ce->priv->definitions = g_hash_table_new_full (g_str_hash, g_str_equal,
 		g_free, (GDestroyNotify)definition_free);
-	priv->root_context = NULL;
-	priv->buffer = NULL;
-	priv->modifications = g_queue_new ();
+	ce->priv->root_context = NULL;
+	ce->priv->buffer = NULL;
+	ce->priv->modifications = g_queue_new ();
 }
 
 static void
 gtk_source_context_engine_finalize (GObject *object)
 {
 	GtkSourceContextEngine *ce;
-	GtkSourceContextEnginePrivate *priv;
 
 	g_return_if_fail (object != NULL);
 	g_return_if_fail (GTK_IS_SOURCE_CONTEXT_ENGINE (object));
 
 	ce = GTK_SOURCE_CONTEXT_ENGINE (object);
-	priv = CONTEXT_ENGINE_GET_PRIVATE (ce);
 
 	/* Disconnect the buffer (if there is one), which destroys almost
 	 * eveything. */
@@ -526,13 +523,13 @@ gtk_source_context_engine_finalize (GObject *object)
 
 	/* If the engine has not been attached to a buffer root_context
 	 * is NULL. */
-	if (priv->root_context != NULL)
-		context_destroy (priv->root_context);
+	if (ce->priv->root_context != NULL)
+		context_destroy (ce->priv->root_context);
 
-	g_hash_table_destroy (priv->definitions);
-	g_queue_free (priv->modifications);
+	g_hash_table_destroy (ce->priv->definitions);
+	g_queue_free (ce->priv->modifications);
 
-	g_free (priv->id);
+	g_free (ce->priv->id);
 
 	G_OBJECT_CLASS (parent_class)->finalize (object);
 }
@@ -557,7 +554,6 @@ text_inserted_cb (GtkSourceBuffer   *buffer,
 		  const GtkTextIter *end,
 		  gpointer           data)
 {
-	GtkSourceContextEnginePrivate *priv;
 	gint text_length;
 	gint start_offset, end_offset;
 	GtkSourceContextEngine *ce = data;
@@ -566,8 +562,7 @@ text_inserted_cb (GtkSourceBuffer   *buffer,
 	g_return_if_fail (end != NULL);
 	g_return_if_fail (GTK_IS_SOURCE_CONTEXT_ENGINE (ce));
 
-	priv = CONTEXT_ENGINE_GET_PRIVATE (ce);
-	g_return_if_fail (priv->buffer == buffer);
+	g_return_if_fail (ce->priv->buffer == buffer);
 
 	start_offset = gtk_text_iter_get_offset (start);
 	end_offset = gtk_text_iter_get_offset (end);
@@ -582,7 +577,6 @@ text_deleted_cb (GtkSourceBuffer   *buffer,
 		 const gchar       *text,
 		 gpointer           data)
 {
-	GtkSourceContextEnginePrivate *priv;
 	GtkSourceContextEngine *ce = data;
 
 	g_return_if_fail (iter != NULL);
@@ -590,8 +584,7 @@ text_deleted_cb (GtkSourceBuffer   *buffer,
 		GTK_TEXT_BUFFER (buffer));
 	g_return_if_fail (GTK_IS_SOURCE_CONTEXT_ENGINE (ce));
 
-	priv = CONTEXT_ENGINE_GET_PRIVATE (ce);
-	g_return_if_fail (priv->buffer == buffer);
+	g_return_if_fail (ce->priv->buffer == buffer);
 
 	text_modified (ce, gtk_text_iter_get_offset (iter),
 		-g_utf8_strlen (text, -1));
@@ -604,20 +597,17 @@ update_highlight_cb (GtkSourceBuffer   *buffer,
 		     gboolean           synchronous,
 		     gpointer           data)
 {
-	GtkSourceContextEnginePrivate *priv;
 	GtkSourceContextEngine *ce = data;
 
 	g_return_if_fail (GTK_IS_SOURCE_CONTEXT_ENGINE (ce));
 	g_return_if_fail (start != NULL);
        	g_return_if_fail (end != NULL);
 
-	priv = CONTEXT_ENGINE_GET_PRIVATE (ce);
-
-	if (!priv->highlight)
+	if (!ce->priv->highlight)
 		return;
 
-	if (priv->worker_last_offset < 0 ||
-	    priv->worker_last_offset >= gtk_text_iter_get_offset (end))
+	if (ce->priv->worker_last_offset < 0 ||
+	    ce->priv->worker_last_offset >= gtk_text_iter_get_offset (end))
 	{
 		ensure_highlighted (ce, start, end);
 	}
@@ -644,20 +634,17 @@ static void
 forget_tag (GtkSourceContextEngine  *ce,
 	    GtkSourceTag	   **tag)
 {
-	GtkSourceContextEnginePrivate *priv;
 	GtkTextIter start, end;
 
-	priv = CONTEXT_ENGINE_GET_PRIVATE (ce);
-
-	g_return_if_fail (priv->buffer != NULL);
+	g_return_if_fail (ce->priv->buffer != NULL);
 
 	if (*tag == NULL)
 		return;
 
 	/* Remove tag from buffer. */
-	gtk_text_buffer_get_bounds (GTK_TEXT_BUFFER (priv->buffer),
+	gtk_text_buffer_get_bounds (GTK_TEXT_BUFFER (ce->priv->buffer),
 		&start, &end);
-	gtk_text_buffer_remove_tag (GTK_TEXT_BUFFER (priv->buffer),
+	gtk_text_buffer_remove_tag (GTK_TEXT_BUFFER (ce->priv->buffer),
 		GTK_TEXT_TAG (*tag),
 		&start, &end);
 
@@ -704,16 +691,13 @@ static gboolean
 retrieve_definition_tag (GtkSourceContextEngine *ce,
 			 ContextDefinition      *definition)
 {
-	GtkSourceContextEnginePrivate *priv;
 	GtkTextTagTable *table;
 	gboolean rval;
 	GSList *sub_pattern_list;
 
-	priv = CONTEXT_ENGINE_GET_PRIVATE (ce);
+	g_return_val_if_fail (ce->priv->buffer, FALSE);
 
-	g_return_val_if_fail (priv->buffer, FALSE);
-
-	table = gtk_text_buffer_get_tag_table (GTK_TEXT_BUFFER (priv->buffer));
+	table = gtk_text_buffer_get_tag_table (GTK_TEXT_BUFFER (ce->priv->buffer));
 	g_return_val_if_fail (table, FALSE);
 
 	rval = update_tag (ce, table, definition->style, &definition->tag);
@@ -751,16 +735,15 @@ sync_with_tag_table_hash_cb (gpointer key,
 static void
 sync_with_tag_table (GtkSourceContextEngine *ce)
 {
-	GtkSourceContextEnginePrivate *priv = CONTEXT_ENGINE_GET_PRIVATE (ce);
 	SyncWithTagTableData data;
 
-	g_return_if_fail (priv->buffer != NULL);
+	g_return_if_fail (ce->priv->buffer != NULL);
 
 	/* Check for changes in used tags in the buffer's tag table. */
 	data.ce = ce;
 	data.invalidate = FALSE;
-	g_hash_table_foreach (priv->definitions, sync_with_tag_table_hash_cb,
-		&data);
+	g_hash_table_foreach (ce->priv->definitions,
+		sync_with_tag_table_hash_cb, &data);
 	if (data.invalidate)
 		enable_highlight (ce, FALSE);
 }
@@ -769,14 +752,10 @@ static void
 tag_table_changed_cb (GtkSourceTagTable      *table,
 		      GtkSourceContextEngine *ce)
 {
-	GtkSourceContextEnginePrivate *priv;
-
 	g_return_if_fail (GTK_IS_SOURCE_CONTEXT_ENGINE (ce));
 
-	priv = CONTEXT_ENGINE_GET_PRIVATE (ce);
-
 	g_return_if_fail (GTK_TEXT_TAG_TABLE (table) ==
-		gtk_text_buffer_get_tag_table (GTK_TEXT_BUFFER (priv->buffer)));
+		gtk_text_buffer_get_tag_table (GTK_TEXT_BUFFER (ce->priv->buffer)));
 
 	sync_with_tag_table (ce);
 }
@@ -786,7 +765,6 @@ buffer_notify_cb (GObject    *object,
 		  GParamSpec *pspec,
 		  gpointer    user_data)
 {
-	GtkSourceContextEnginePrivate *priv;
 	GtkSourceBuffer *buffer;
 	GtkSourceContextEngine *ce;
 	gboolean highlight;
@@ -795,13 +773,12 @@ buffer_notify_cb (GObject    *object,
 	g_return_if_fail (GTK_IS_SOURCE_CONTEXT_ENGINE (user_data));
 
 	ce = GTK_SOURCE_CONTEXT_ENGINE (user_data);
-	priv = CONTEXT_ENGINE_GET_PRIVATE (ce);
 	buffer = GTK_SOURCE_BUFFER (object);
 
 	highlight = gtk_source_buffer_get_highlight (buffer);
-	if (highlight != priv->highlight)
+	if (highlight != ce->priv->highlight)
 	{
-		priv->highlight = highlight;
+		ce->priv->highlight = highlight;
 		enable_highlight (ce, highlight);
 	}
 }
@@ -821,50 +798,49 @@ gtk_source_context_engine_attach_buffer (GtkSourceEngine *engine,
 					 GtkSourceBuffer *buffer)
 {
 	GtkSourceContextEngine *ce;
-	GtkSourceContextEnginePrivate *priv;
 	GtkTextTagTable *table;
 
 	g_return_if_fail (GTK_IS_SOURCE_CONTEXT_ENGINE (engine));
 	g_return_if_fail (buffer == NULL || GTK_IS_SOURCE_BUFFER (buffer));
 	ce = GTK_SOURCE_CONTEXT_ENGINE (engine);
-	priv = CONTEXT_ENGINE_GET_PRIVATE (engine);
 
 	/* Detach previous buffer if there is one. */
-	if (priv->buffer != NULL)
+	if (ce->priv->buffer != NULL)
 	{
 		gpointer modify;
 
 		enable_highlight (ce, FALSE);
 
 		/* Disconnect signals. */
-		table = gtk_text_buffer_get_tag_table (GTK_TEXT_BUFFER (priv->buffer));
+		table = gtk_text_buffer_get_tag_table (
+			GTK_TEXT_BUFFER (ce->priv->buffer));
 		g_signal_handlers_disconnect_matched (table,
 			G_SIGNAL_MATCH_DATA, 0, 0, NULL, NULL, ce);
-		g_signal_handlers_disconnect_matched (priv->buffer,
+		g_signal_handlers_disconnect_matched (ce->priv->buffer,
 			G_SIGNAL_MATCH_DATA, 0, 0, NULL, NULL, ce);
 
-		if (priv->worker_handler)
+		if (ce->priv->worker_handler)
 		{
-			g_source_remove (priv->worker_handler);
-			priv->worker_handler = 0;
+			g_source_remove (ce->priv->worker_handler);
+			ce->priv->worker_handler = 0;
 		}
 
-		g_hash_table_foreach (priv->definitions,
+		g_hash_table_foreach (ce->priv->definitions,
 			forget_definition_tag_hash_cb, ce);
 
 		/* If not previously attached they are NULL */
-		if (priv->refresh_region != NULL)
-			gtk_text_region_destroy (priv->refresh_region, FALSE);
-		if (priv->highlight_requests != NULL)
-			gtk_text_region_destroy (priv->highlight_requests, FALSE);
-		priv->refresh_region = NULL;
-		priv->highlight_requests = NULL;
+		if (ce->priv->refresh_region != NULL)
+			gtk_text_region_destroy (ce->priv->refresh_region, FALSE);
+		if (ce->priv->highlight_requests != NULL)
+			gtk_text_region_destroy (ce->priv->highlight_requests, FALSE);
+		ce->priv->refresh_region = NULL;
+		ce->priv->highlight_requests = NULL;
 
-		while ((modify = g_queue_pop_head (priv->modifications)))
+		while ((modify = g_queue_pop_head (ce->priv->modifications)))
 			g_free (modify);
 	}
 
-	priv->buffer = buffer;
+	ce->priv->buffer = buffer;
 
 	if (buffer != NULL)
 	{
@@ -872,8 +848,8 @@ gtk_source_context_engine_attach_buffer (GtkSourceEngine *engine,
 
 		/* Create the root context. */
 		gchar *root_id;
-		root_id = g_strdup_printf ("%s:%s", priv->id, priv->id);
-		main_definition = g_hash_table_lookup (priv->definitions, 
+		root_id = g_strdup_printf ("%s:%s", ce->priv->id, ce->priv->id);
+		main_definition = g_hash_table_lookup (ce->priv->definitions, 
 				root_id);
 		g_free (root_id);
 
@@ -881,26 +857,26 @@ gtk_source_context_engine_attach_buffer (GtkSourceEngine *engine,
 		{
 			g_warning (_ ("Missing main language "
 				      "definition (id = \"%s\".)"),
-				priv->id);
+				ce->priv->id);
 			return;
 		}
-		priv->root_context = context_new (main_definition, NULL,
+		ce->priv->root_context = context_new (main_definition, NULL,
 			0, END_NOT_YET_FOUND, NULL);
 
-		priv->highlight = gtk_source_buffer_get_highlight (buffer);
+		ce->priv->highlight = gtk_source_buffer_get_highlight (buffer);
 
 		/* Retrieve references to all text tags. */
 		sync_with_tag_table (ce);
 
 		/* Highlight data. */
-		priv->refresh_region = gtk_text_region_new (
+		ce->priv->refresh_region = gtk_text_region_new (
 			GTK_TEXT_BUFFER (buffer));
-		priv->highlight_requests = gtk_text_region_new (
+		ce->priv->highlight_requests = gtk_text_region_new (
 			GTK_TEXT_BUFFER (buffer));
 
 		/* Initially the buffer is empty so it's entirely analyzed. */
-		priv->worker_last_offset = -1;
-		priv->worker_batch_size = INITIAL_WORKER_BATCH;
+		ce->priv->worker_last_offset = -1;
+		ce->priv->worker_batch_size = INITIAL_WORKER_BATCH;
 
 		g_signal_connect (buffer, "text_inserted",
 			G_CALLBACK (text_inserted_cb), ce);
@@ -1754,32 +1730,31 @@ context_dup (const Context *context)
 static gboolean
 idle_worker (GtkSourceContextEngine *ce)
 {
-	GtkSourceContextEnginePrivate *priv = CONTEXT_ENGINE_GET_PRIVATE (ce);
 	GtkTextIter start_iter, end_iter, last_end_iter;
 	gint i;
 
-	g_return_val_if_fail (priv->buffer != NULL, FALSE);
+	g_return_val_if_fail (ce->priv->buffer != NULL, FALSE);
 
-	if (!g_queue_is_empty (priv->modifications))
+	if (!g_queue_is_empty (ce->priv->modifications))
 		/* Do asynchronous modifications. */
 		async_modify (ce);
-	else if (priv->worker_last_offset >= 0)
+	else if (ce->priv->worker_last_offset >= 0)
 		/* The contexts' tree is incomplete. */
 		update_syntax (ce, NULL, -1, 0);
 
-	if (priv->highlight)
+	if (ce->priv->highlight)
 	{
 		/* Highlight subregions requested by the views. */
 		gtk_text_buffer_get_iter_at_offset (
-			GTK_TEXT_BUFFER (priv->buffer), &last_end_iter, 0);
+			GTK_TEXT_BUFFER (ce->priv->buffer), &last_end_iter, 0);
 		for (i = 0;
-		     i < gtk_text_region_subregions (priv->highlight_requests);
+		     i < gtk_text_region_subregions (ce->priv->highlight_requests);
 		     i++)
 		{
-			gtk_text_region_nth_subregion (priv->highlight_requests,
+			gtk_text_region_nth_subregion (ce->priv->highlight_requests,
 				i, &start_iter, &end_iter);
-			if (priv->worker_last_offset < 0 ||
-			    priv->worker_last_offset >= gtk_text_iter_get_offset (&end_iter))
+			if (ce->priv->worker_last_offset < 0 ||
+			    ce->priv->worker_last_offset >= gtk_text_iter_get_offset (&end_iter))
 			{
 				ensure_highlighted (ce, &start_iter, &end_iter);
 				last_end_iter = end_iter;
@@ -1793,24 +1768,24 @@ idle_worker (GtkSourceContextEngine *ce)
 				break;
 			}
 		}
-		gtk_text_buffer_get_iter_at_offset (GTK_TEXT_BUFFER (priv->buffer),
+		gtk_text_buffer_get_iter_at_offset (GTK_TEXT_BUFFER (ce->priv->buffer),
 			&start_iter, 0);
 
 		if (!gtk_text_iter_equal (&start_iter, &last_end_iter))
 		{
 			/* Remove already highlighted subregions from requests. */
-			gtk_text_region_substract (priv->highlight_requests,
+			gtk_text_region_substract (ce->priv->highlight_requests,
 				&start_iter, &last_end_iter);
 			gtk_text_region_clear_zero_length_subregions (
-				priv->highlight_requests);
+				ce->priv->highlight_requests);
 		}
 	}
 
-	if (priv->worker_last_offset < 0 &&
-	    g_queue_is_empty (priv->modifications))
+	if (ce->priv->worker_last_offset < 0 &&
+	    g_queue_is_empty (ce->priv->modifications))
 	{
 		/* Idle handler will be removed. */
-		priv->worker_handler = 0;
+		ce->priv->worker_handler = 0;
 		return FALSE;
 	}
 
@@ -1820,13 +1795,11 @@ idle_worker (GtkSourceContextEngine *ce)
 static void
 install_idle_worker (GtkSourceContextEngine *ce)
 {
-	GtkSourceContextEnginePrivate *priv = CONTEXT_ENGINE_GET_PRIVATE (ce);
-
-	if (priv->worker_handler == 0) {
+	if (ce->priv->worker_handler == 0) {
 		/* Use the text view validation priority to get
 		 * highlighted text even before complete validation of
 		 * the buffer. */
-		priv->worker_handler =
+		ce->priv->worker_handler =
 			g_idle_add_full (GTK_TEXT_VIEW_PRIORITY_VALIDATE,
 				(GSourceFunc) idle_worker, ce, NULL);
 	}
@@ -2014,15 +1987,13 @@ text_modified (GtkSourceContextEngine *ce,
 	       gint                    offset,
 	       gint                    delta)
 {
-	GtkSourceContextEnginePrivate *priv = CONTEXT_ENGINE_GET_PRIVATE (ce);
-
-	if (ABS (delta) == 1 && g_queue_is_empty (priv->modifications))
+	if (ABS (delta) == 1 && g_queue_is_empty (ce->priv->modifications))
 	{
 		update_syntax (ce, NULL, offset, delta);
 	}
 	else
 	{
-		Modify *modify = g_queue_peek_tail (priv->modifications);
+		Modify *modify = g_queue_peek_tail (ce->priv->modifications);
 		if (modify != NULL &&
 		    modify->offset + modify->delta == offset &&
 		    SIGN (modify->delta) == SIGN (delta))
@@ -2037,7 +2008,7 @@ text_modified (GtkSourceContextEngine *ce,
 			modify = g_new0 (Modify, 1);
 			modify->delta = delta;
 			modify->offset = offset;
-			g_queue_push_tail (priv->modifications, modify);
+			g_queue_push_tail (ce->priv->modifications, modify);
 			install_idle_worker (ce);
 		}
 	}
@@ -2056,30 +2027,30 @@ text_modified (GtkSourceContextEngine *ce,
 static gboolean
 async_modify (GtkSourceContextEngine *ce)
 {
-	GtkSourceContextEnginePrivate *priv = CONTEXT_ENGINE_GET_PRIVATE (ce);
 	Modify *modify;
 	gboolean clean_updates;
 
-	modify = g_queue_pop_head (priv->modifications);
+	modify = g_queue_pop_head (ce->priv->modifications);
 	if (modify == NULL)
 		return FALSE;
 
 	update_syntax (ce, NULL, modify->offset, modify->delta);
 
 	/* If we have not updated all the tree in a single step, the
-	 * modifications after priv->worker_last_offset are no more
+	 * modifications after ce->priv->worker_last_offset are no more
 	 * needed. */
-	clean_updates = priv->worker_last_offset != -1 &&
-		priv->worker_last_offset < modify->offset + MAX (modify->delta, 0);
+	clean_updates = ce->priv->worker_last_offset != -1 &&
+		ce->priv->worker_last_offset < modify->offset +
+		MAX (modify->delta, 0);
 	g_free (modify);
 	if (clean_updates)
 	{
 		gint n_del = 0;
-		GList *curr = priv->modifications->head;
+		GList *curr = ce->priv->modifications->head;
 		while (curr != NULL)
 		{
 			modify = curr->data;
-			if (modify->offset >= priv->worker_last_offset)
+			if (modify->offset >= ce->priv->worker_last_offset)
 			{
 				/* Remove modify from the list. */
 				GList *tmp;
@@ -2087,7 +2058,7 @@ async_modify (GtkSourceContextEngine *ce)
 				if (curr->prev != NULL)
 					curr->prev->next = curr->next;
 				else
-					priv->modifications->head = curr->next;
+					ce->priv->modifications->head = curr->next;
 				if (curr->next != NULL)
 					curr->next->prev = curr->prev;
 				tmp = curr;
@@ -2100,8 +2071,8 @@ async_modify (GtkSourceContextEngine *ce)
 				curr = g_list_next (curr);
 			}
 		}
-		priv->modifications->length -= n_del;
-		priv->modifications->tail = g_list_last (priv->modifications->head);
+		ce->priv->modifications->length -= n_del;
+		ce->priv->modifications->tail = g_list_last (ce->priv->modifications->head);
 	}
 
 	return TRUE;
@@ -2633,9 +2604,8 @@ static Context *
 get_context_at (GtkSourceContextEngine *ce,
 		gint                    offset)
 {
-	GtkSourceContextEnginePrivate *priv = CONTEXT_ENGINE_GET_PRIVATE (ce);
 	Context *curr_context;
-	Context *ret = priv->root_context;
+	Context *ret = ce->priv->root_context;
 	gboolean maybe_child;
 
 	do
@@ -2702,7 +2672,6 @@ static Context *
 split_contexts_tree (GtkSourceContextEngine *ce,
 		     GtkTextIter             start)
 {
-	GtkSourceContextEnginePrivate *priv = CONTEXT_ENGINE_GET_PRIVATE (ce);
 	GSList *common_context_list;
 	GSList *common_context_element;
 	Context *moved_context;
@@ -2713,7 +2682,7 @@ split_contexts_tree (GtkSourceContextEngine *ce,
 	Context *current_context;
 	gint start_offset;
 
-	/* This function splits the contexts' tree; in priv->root_context
+	/* This function splits the contexts' tree; in ce->priv->root_context
 	 * we leave the tree of the contexts that are surely valid (they
 	 * starts before the start of the line where the modification
 	 * occurred.) The return value of the function is the tree of
@@ -2743,7 +2712,7 @@ split_contexts_tree (GtkSourceContextEngine *ce,
 	 *     address
 	 *
 	 * If we insert some text in the first line we need to keep only
-	 * "c" in priv->root_context, create a copy of "c" (called "c'")
+	 * "c" in ce->priv->root_context, create a copy of "c" (called "c'")
 	 * in the removed tree and move the sub-contexts in it:
 	 *
 	 *     c                      c'
@@ -2826,10 +2795,10 @@ split_contexts_tree (GtkSourceContextEngine *ce,
 	if (gtk_text_iter_is_start (&start))
 	{
 		/* First case. */
-		if (!priv->root_context->children)
+		if (!ce->priv->root_context->children)
 			return NULL;
-		common_context = priv->root_context;
-		moved_context = priv->root_context->children;
+		common_context = ce->priv->root_context;
+		moved_context = ce->priv->root_context->children;
 		start_offset = gtk_text_iter_get_offset (&start);
 	}
 	else
@@ -2897,7 +2866,7 @@ split_contexts_tree (GtkSourceContextEngine *ce,
 		g_slist_free (tmp_list);
 
 		/* The root of the removed tree is the copy of the root of
-		 * priv->root_context. */
+		 * ce->priv->root_context. */
 		if (removed_tree == NULL)
 			removed_tree = common_context_copy;
 
@@ -3164,7 +3133,6 @@ join_contexts_tree (GtkSourceContextEngine *ce,
 		    gint                    modification_offset,
 		    gint                    delta)
 {
-	GtkSourceContextEnginePrivate *priv = CONTEXT_ENGINE_GET_PRIVATE (ce);
 	Context *new_context, *old_context, *current_context, *stop_delete;
 	gboolean stop;
 
@@ -3196,7 +3164,7 @@ join_contexts_tree (GtkSourceContextEngine *ce,
 	stop = FALSE;
 	/* We do not need to join the root context, so start from the
 	 * second level. */
-	new_context = context_last (priv->root_context->children);
+	new_context = context_last (ce->priv->root_context->children);
 	old_context = removed_tree->children;
 	while (old_context != NULL && new_context != NULL && !stop)
 	{
@@ -3283,7 +3251,7 @@ join_contexts_tree (GtkSourceContextEngine *ce,
 			/* If the main tree contains only the root context,
 			 * then new_context is initialized to NULL (as we
 			 * do not need to join the root context). */
-			new_context = priv->root_context;
+			new_context = ce->priv->root_context;
 		if (new_context->children != NULL)
 		{
 			Context *last = context_last (new_context->children);
@@ -3420,7 +3388,7 @@ analyze_line (GtkSourceContextEngine *ce,
 				line_pos = line_length - 1;
 
 			/* If we have a removed tree we can try to join it
-			 * with the tree in priv->root_context, but only
+			 * with the tree in ce->priv->root_context, but only
 			 * if we are after the modified text. */
 			current_offset = line_starts_at + line_pos;
 			offset_ok = (current_offset >
@@ -3472,7 +3440,6 @@ update_syntax (GtkSourceContextEngine *ce,
 	       gint                    modification_offset,
 	       gint                    delta)
 {
-	GtkSourceContextEnginePrivate *priv = CONTEXT_ENGINE_GET_PRIVATE (ce);
 	gint batch_size;
 	GtkTextIter start, end, refresh_end;
 	gint text_starts_at;
@@ -3482,18 +3449,18 @@ update_syntax (GtkSourceContextEngine *ce,
 	Context *removed_tree;
 	gboolean old_tree_used = FALSE;
 
-	g_return_if_fail (priv->buffer != NULL);
+	g_return_if_fail (ce->priv->buffer != NULL);
 	g_return_if_fail ((modification_offset == -1 && delta == 0) ||
 			  (modification_offset != -1 && delta != 0));
 
 	/* Check if we still have text to analyze. */
-	if (delta == 0 && priv->worker_last_offset < 0)
+	if (delta == 0 && ce->priv->worker_last_offset < 0)
 		return;
 
 	/* If the modification is at an unanalyzed region do the update
 	 * in the idle worker. */
-	if (priv->worker_last_offset != -1 &&
-	    modification_offset > priv->worker_last_offset)
+	if (ce->priv->worker_last_offset != -1 &&
+	    modification_offset > ce->priv->worker_last_offset)
 	{
 		/* We do not to call install_idle_worker() because, if
 		 * worker_last_offset is not -1, it is surely installed. */
@@ -3509,10 +3476,10 @@ update_syntax (GtkSourceContextEngine *ce,
 
 	/* Compute starting iter of the batch. */
 	if (delta == 0)
-		text_starts_at = priv->worker_last_offset;
+		text_starts_at = ce->priv->worker_last_offset;
 	else
 		text_starts_at = modification_offset;
-	gtk_text_buffer_get_iter_at_offset (GTK_TEXT_BUFFER (priv->buffer),
+	gtk_text_buffer_get_iter_at_offset (GTK_TEXT_BUFFER (ce->priv->buffer),
 		&start, text_starts_at);
 
 	/* Move to the beginning of the line. */
@@ -3527,11 +3494,11 @@ update_syntax (GtkSourceContextEngine *ce,
 	 * smaller batch, so we do not slow the UI while the user is
 	 * typing. */
 	if (delta == 0)
-		batch_size = priv->worker_batch_size;
+		batch_size = ce->priv->worker_batch_size;
 	else
 		batch_size = MAX (MINIMUM_WORKER_BATCH,
-			priv->worker_batch_size / 2);
-	gtk_text_buffer_get_iter_at_offset (GTK_TEXT_BUFFER (priv->buffer),
+			ce->priv->worker_batch_size / 2);
+	gtk_text_buffer_get_iter_at_offset (GTK_TEXT_BUFFER (ce->priv->buffer),
 		&end, text_starts_at + batch_size);
 
 	/* Extend the range to include needed_end if necessary. */
@@ -3611,7 +3578,7 @@ update_syntax (GtkSourceContextEngine *ce,
 			old_tree_used = TRUE;
 			/* We do not need to refresh from start to end. */
 			gtk_text_buffer_get_iter_at_offset (
-				GTK_TEXT_BUFFER (priv->buffer),
+				GTK_TEXT_BUFFER (ce->priv->buffer),
 				&refresh_end, line_starts_at);
 			gtk_text_iter_forward_to_line_end (&refresh_end);
 		}
@@ -3626,23 +3593,24 @@ update_syntax (GtkSourceContextEngine *ce,
 	if (gtk_text_iter_is_end (&end))
 	{
 		/* All the text has been analyzed. */
-		priv->worker_last_offset = -1;
+		ce->priv->worker_last_offset = -1;
 	}
 	else if (old_tree_used)
 	{
-		if (priv->worker_last_offset != -1)
+		if (ce->priv->worker_last_offset != -1)
 		{
 			/* We have used the old tree, so we can use the
 			 * old offset. */
-			gint moved_offset = move_offset (priv->worker_last_offset,
+			gint moved_offset = move_offset (
+				ce->priv->worker_last_offset,
 				modification_offset, delta);
-			priv->worker_last_offset = MAX (moved_offset,
+			ce->priv->worker_last_offset = MAX (moved_offset,
 				gtk_text_iter_get_offset (&end));
 		}
 	}
 	else
 	{
-		priv->worker_last_offset = gtk_text_iter_get_offset (&end);
+		ce->priv->worker_last_offset = gtk_text_iter_get_offset (&end);
 		install_idle_worker (ce);
 	}
 
@@ -3653,9 +3621,9 @@ update_syntax (GtkSourceContextEngine *ce,
 		gint end_offset = gtk_text_iter_get_offset (&end);
 		gint new_size = (end_offset - start_offset) * WORKER_TIME_SLICE
 			/ (g_timer_elapsed (timer, NULL) * 1000);
-		priv->worker_batch_size = MAX (MINIMUM_WORKER_BATCH, new_size);
+		ce->priv->worker_batch_size = MAX (MINIMUM_WORKER_BATCH, new_size);
 		DEBUG (g_message ("new batch size: %d",
-			priv->worker_batch_size));
+			ce->priv->worker_batch_size));
 	}
 
 	/* Make sure the analyzed region gets highlighted. */
@@ -3671,7 +3639,7 @@ update_syntax (GtkSourceContextEngine *ce,
 #endif
 
 #ifdef ENABLE_PRINT_TREE
-	print_tree ("tree", priv->root_context);
+	print_tree ("tree", ce->priv->root_context);
 #endif
 
 	g_timer_destroy (timer);
@@ -3682,7 +3650,7 @@ update_syntax (GtkSourceContextEngine *ce,
 
 struct _UnhighlightRegionData
 {
-	GtkSourceContextEnginePrivate *priv;
+	GtkSourceContextEngine *ce;
 	const GtkTextIter *start, *end;
 };
 typedef struct _UnhighlightRegionData UnhighlightRegionData;
@@ -3698,7 +3666,7 @@ unhighlight_region_cb (gpointer key,
 
 	if (definition->tag != NULL)
 		gtk_text_buffer_remove_tag (
-			GTK_TEXT_BUFFER (data->priv->buffer),
+			GTK_TEXT_BUFFER (data->ce->priv->buffer),
 			GTK_TEXT_TAG (definition->tag),
 			data->start, data->end);
 
@@ -3708,7 +3676,7 @@ unhighlight_region_cb (gpointer key,
 		SubPatternDefinition *sp_def = sub_pattern_list->data;
 		if (sp_def->tag != NULL)
 			gtk_text_buffer_remove_tag (
-				GTK_TEXT_BUFFER (data->priv->buffer),
+				GTK_TEXT_BUFFER (data->ce->priv->buffer),
 				GTK_TEXT_TAG (sp_def->tag),
 				data->start, data->end);
 		sub_pattern_list = g_slist_next (sub_pattern_list);
@@ -3722,9 +3690,8 @@ unhighlight_region (GtkSourceContextEngine *ce,
 {
 	/* FIXME Find a better way to do this as more definitions
 	 * could refer to the same tag. */
-	GtkSourceContextEnginePrivate *priv = CONTEXT_ENGINE_GET_PRIVATE (ce);
-	UnhighlightRegionData data = {priv, start, end};
-	g_hash_table_foreach (priv->definitions, unhighlight_region_cb,
+	UnhighlightRegionData data = {ce, start, end};
+	g_hash_table_foreach (ce->priv->definitions, unhighlight_region_cb,
 		&data);
 }
 
@@ -3838,7 +3805,6 @@ highlight_region (GtkSourceContextEngine *ce,
 		  GtkTextIter            *start,
 		  GtkTextIter            *end)
 {
-	GtkSourceContextEnginePrivate *priv = CONTEXT_ENGINE_GET_PRIVATE (ce);
 	Context *current_context, *current_parent;
 	gint start_region_offset, end_region_offset;
 #ifdef ENABLE_PROFILE
@@ -3865,7 +3831,7 @@ highlight_region (GtkSourceContextEngine *ce,
 	current_parent = current_context->parent;
 	while (current_parent != NULL)
 	{
-		apply_tag (priv->buffer, current_parent,
+		apply_tag (ce->priv->buffer, current_parent,
 			start_region_offset, end_region_offset);
 		current_parent = current_parent->parent;
 	}
@@ -3874,7 +3840,7 @@ highlight_region (GtkSourceContextEngine *ce,
 	while (current_context != NULL &&
 	       current_context->start_at < end_region_offset)
 	{
-		apply_tag (priv->buffer, current_context,
+		apply_tag (ce->priv->buffer, current_context,
 			start_region_offset, end_region_offset);
 		current_context = get_next_context (current_context,
 			MAX (current_context->start_at, start_region_offset));
@@ -3891,23 +3857,21 @@ refresh_range (GtkSourceContextEngine *ce,
 	       GtkTextIter            *start,
 	       GtkTextIter            *end)
 {
-	GtkSourceContextEnginePrivate *priv = CONTEXT_ENGINE_GET_PRIVATE (ce);
-
 	/* Add this region to the refresh region. */
-	gtk_text_region_add (priv->refresh_region, start, end);
+	gtk_text_region_add (ce->priv->refresh_region, start, end);
 
 	/* Notify views of the updated highlight region */
-	g_signal_emit_by_name (priv->buffer, "highlight_updated", start, end);
+	g_signal_emit_by_name (ce->priv->buffer, "highlight_updated", start, end);
 }
 
 static void
 enable_highlight (GtkSourceContextEngine *ce,
 		  gboolean                enable)
 {
-	GtkSourceContextEnginePrivate *priv = CONTEXT_ENGINE_GET_PRIVATE (ce);
 	GtkTextIter start, end;
 
-	gtk_text_buffer_get_bounds (GTK_TEXT_BUFFER (priv->buffer), &start, &end);
+	gtk_text_buffer_get_bounds (GTK_TEXT_BUFFER (ce->priv->buffer),
+			&start, &end);
 	if (enable)
 		refresh_range (ce, &start, &end);
 	else
@@ -3919,13 +3883,12 @@ ensure_highlighted (GtkSourceContextEngine *ce,
 		    const GtkTextIter      *start,
 		    const GtkTextIter      *end)
 {
-	GtkSourceContextEnginePrivate *priv = CONTEXT_ENGINE_GET_PRIVATE (ce);
 	GtkTextRegion *region;
 
 	/* Assumes the entire region to highlight has already been analyzed. */
 
 	/* Get the subregions not yet highlighted. */
-	region = gtk_text_region_intersect (priv->refresh_region, start, end);
+	region = gtk_text_region_intersect (ce->priv->refresh_region, start, end);
 	if (region)
 	{
 		GtkTextIter iter1, iter2;
@@ -3941,8 +3904,8 @@ ensure_highlighted (GtkSourceContextEngine *ce,
 		}
 		gtk_text_region_destroy (region, TRUE);
 		/* Remove the just highlighted region. */
-		gtk_text_region_substract (priv->refresh_region, start, end);
-		gtk_text_region_clear_zero_length_subregions (priv->refresh_region);
+		gtk_text_region_substract (ce->priv->refresh_region, start, end);
+		gtk_text_region_clear_zero_length_subregions (ce->priv->refresh_region);
 	}
 }
 
@@ -3951,9 +3914,7 @@ highlight_queue (GtkSourceContextEngine *ce,
 		 const GtkTextIter      *start,
 		 const GtkTextIter      *end)
 {
-	GtkSourceContextEnginePrivate *priv = CONTEXT_ENGINE_GET_PRIVATE (ce);
-
-	gtk_text_region_add (priv->highlight_requests, start, end);
+	gtk_text_region_add (ce->priv->highlight_requests, start, end);
 
 	DEBUG (g_message ("queueing highlight [%d, %d]",
 		gtk_text_iter_get_offset (start),
@@ -3973,13 +3934,13 @@ GtkSourceEngine *
 gtk_source_context_engine_new (const gchar *id)
 {
 	GtkSourceEngine *engine;
-	GtkSourceContextEnginePrivate *priv;
+	GtkSourceContextEngine *ce;
 
 	engine = GTK_SOURCE_ENGINE (g_object_new (
 			GTK_TYPE_SOURCE_CONTEXT_ENGINE,
 			NULL));
-	priv = CONTEXT_ENGINE_GET_PRIVATE (GTK_SOURCE_CONTEXT_ENGINE (engine));
-	priv->id = g_strdup (id);
+	ce = GTK_SOURCE_CONTEXT_ENGINE (engine);
+	ce->priv->id = g_strdup (id);
 
 	return engine;
 }
@@ -3997,7 +3958,6 @@ gtk_source_context_engine_define_context (GtkSourceContextEngine  *ce,
 					  GError                 **error)
 {
 	ContextDefinition *definition, *parent = NULL;
-	GtkSourceContextEnginePrivate *priv;
 	ContextType type;
 
 	gboolean wrong_args = FALSE;
@@ -4006,12 +3966,11 @@ gtk_source_context_engine_define_context (GtkSourceContextEngine  *ce,
 
 	g_return_val_if_fail (ce != NULL, FALSE);
 	g_return_val_if_fail (id != NULL, FALSE);
-	priv = CONTEXT_ENGINE_GET_PRIVATE (ce);
 
 	/* If the id is already present in the hastable it is a duplicate,
 	 * so we report the error (probably there is a duplicate id in the
 	 * XML lang file) */
-	if (LOOKUP_DEFINITION (priv, id) != NULL)
+	if (LOOKUP_DEFINITION (ce, id) != NULL)
 	{
 		g_set_error (error,
 			GTK_SOURCE_CONTEXT_ENGINE_ERROR,
@@ -4055,7 +4014,7 @@ gtk_source_context_engine_define_context (GtkSourceContextEngine  *ce,
 	}
 	else
 	{
-		parent = LOOKUP_DEFINITION (priv, parent_id);
+		parent = LOOKUP_DEFINITION (ce, parent_id);
 		g_return_val_if_fail (parent != NULL, FALSE);
 	}
 
@@ -4064,7 +4023,7 @@ gtk_source_context_engine_define_context (GtkSourceContextEngine  *ce,
 		error);
 	if (definition == NULL)
 		return FALSE;
-	g_hash_table_insert (priv->definitions, g_strdup (id), definition);
+	g_hash_table_insert (ce->priv->definitions, g_strdup (id), definition);
 
 	if (parent != NULL)
 	{
@@ -4086,7 +4045,6 @@ gtk_source_context_engine_add_sub_pattern (GtkSourceContextEngine  *ce,
 					   gchar                   *style,
 					   GError                 **error)
 {
-	GtkSourceContextEnginePrivate *priv;
 	ContextDefinition *parent;
 	SubPatternDefinition *sp_def;
 	SubPatternWhere where_num;
@@ -4098,12 +4056,10 @@ gtk_source_context_engine_add_sub_pattern (GtkSourceContextEngine  *ce,
 	g_return_val_if_fail (name != NULL, FALSE);
 	g_return_val_if_fail (GTK_IS_SOURCE_CONTEXT_ENGINE (ce), FALSE);
 
-	priv = CONTEXT_ENGINE_GET_PRIVATE (ce);
-
 	/* If the id is already present in the hastable it is a duplicate,
 	 * so we report the error (probably there is a duplicate id in the
 	 * XML lang file) */
-	if (LOOKUP_DEFINITION (priv, id) != NULL)
+	if (LOOKUP_DEFINITION (ce, id) != NULL)
 	{
 		g_set_error (error,
 			GTK_SOURCE_CONTEXT_ENGINE_ERROR,
@@ -4112,7 +4068,7 @@ gtk_source_context_engine_add_sub_pattern (GtkSourceContextEngine  *ce,
 		return FALSE;
 	}
 
-	parent = LOOKUP_DEFINITION (priv, parent_id);
+	parent = LOOKUP_DEFINITION (ce, parent_id);
 	g_return_val_if_fail (parent != NULL, FALSE);
 
 	if (where == NULL || where [0] == '\0' ||
@@ -4172,7 +4128,6 @@ gtk_source_context_engine_add_ref (GtkSourceContextEngine  *ce,
 {
 	ContextDefinition *parent;
 	ContextDefinition *ref;
-	GtkSourceContextEnginePrivate *priv;
 	DefinitionChild *self;
 
 	g_return_val_if_fail (ce != NULL, FALSE);
@@ -4180,12 +4135,10 @@ gtk_source_context_engine_add_ref (GtkSourceContextEngine  *ce,
 	g_return_val_if_fail (ref_id != NULL, FALSE);
 	g_return_val_if_fail (GTK_IS_SOURCE_CONTEXT_ENGINE (ce), FALSE);
 
-	priv = CONTEXT_ENGINE_GET_PRIVATE (ce);
-
 	/* If the id is already present in the hastable it is a duplicate,
 	 * so we report the error (probably there is a duplicate id in the
 	 * XML lang file). */
-	ref = LOOKUP_DEFINITION (priv, ref_id);
+	ref = LOOKUP_DEFINITION (ce, ref_id);
 	if (ref == NULL)
 	{
 		g_set_error (error,
@@ -4205,7 +4158,7 @@ gtk_source_context_engine_add_ref (GtkSourceContextEngine  *ce,
 		return FALSE;
 	}
 
-	parent = LOOKUP_DEFINITION (priv, parent_id);
+	parent = LOOKUP_DEFINITION (ce, parent_id);
 	g_return_val_if_fail (parent != NULL, FALSE);
 	
 	if (parent->type != CONTEXT_TYPE_CONTAINER)
@@ -4294,23 +4247,20 @@ static void
 verify_parent (GtkSourceContextEngine *ce,
 	       Context		      *context)
 {
-	GtkSourceContextEnginePrivate *priv;
 	Context *child;
 
 	if (context == NULL)
 		return;
 
-	priv = CONTEXT_ENGINE_GET_PRIVATE (ce);
-
 	if (context->parent == NULL)
 	{
 		/* This should be the root context. */
-		if (context != priv->root_context)
+		if (context != ce->priv->root_context)
 			g_printf ("Wrong NULL parent for %s [%d; %d) at %p\n",
 				context->definition->id, context->start_at,
 				context->end_at, context);
 	}
-	else if (priv->root_context == context)
+	else if (ce->priv->root_context == context)
 	{
 		/* This is the root context but the parent is not NULL. */
 		g_printf ("Root context should not have a parent: "
@@ -4337,13 +4287,10 @@ static void
 verify_sequence (GtkSourceContextEngine *ce,
 		 Context		*context)
 {
-	GtkSourceContextEnginePrivate *priv;
 	Context *child, *prev_child;
 
 	if (context == NULL)
 		return;
-
-	priv = CONTEXT_ENGINE_GET_PRIVATE (ce);
 
 	if (context->parent == NULL)
 	{
@@ -4440,14 +4387,10 @@ verify_sequence (GtkSourceContextEngine *ce,
 static void
 verify_tree (GtkSourceContextEngine *ce)
 {
-	GtkSourceContextEnginePrivate *priv;
-
 	g_return_if_fail (ce != NULL);
 
-	priv = CONTEXT_ENGINE_GET_PRIVATE (ce);
-
-	verify_parent (ce, priv->root_context);
-	verify_sequence (ce, priv->root_context);
+	verify_parent (ce, ce->priv->root_context);
+	verify_sequence (ce, ce->priv->root_context);
 }
 
 #endif /* #ifdef ENABLE_VERIFY_TREE */

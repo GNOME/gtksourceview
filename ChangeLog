@@ -6,6 +6,9 @@
 	* gtksourceview/gtksourcecontextengine.c: (context_last),
 	(context_append_child), (join_contexts_tree): call
 	context_set_last_sibling() when needed
+	* gtksourceview/gtksourcecontextengine.c,
+	gtksourceview/gtksourcecontextengine.h: keep the private data in
+	GtkSourceContextEngine->priv
 
 2006-01-19  Marco Barisione  <barisione@gmail.com>
 

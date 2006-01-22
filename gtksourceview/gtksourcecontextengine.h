@@ -56,10 +56,14 @@ typedef enum {
 
 typedef struct _GtkSourceContextEngine        GtkSourceContextEngine;
 typedef struct _GtkSourceContextEngineClass   GtkSourceContextEngineClass;
+typedef struct _GtkSourceContextEnginePrivate GtkSourceContextEnginePrivate;
 
 struct _GtkSourceContextEngine 
 {
 	GtkSourceEngine engine;
+
+	/*< private >*/
+	GtkSourceContextEnginePrivate *priv;
 };
 
 struct _GtkSourceContextEngineClass 
