@@ -3,6 +3,9 @@
 	* gtksourceview/gtksourcecontextengine.c: (update_syntax),
 	(verify_parent), (verify_sequence), (verify_tree): if
 	ENABLE_VERIFY_TREE is defined the engine verifies the tree coherency
+	* gtksourceview/gtksourcecontextengine.c: (context_last),
+	(context_append_child), (join_contexts_tree): call
+	context_set_last_sibling() when needed
 
 2006-01-19  Marco Barisione  <barisione@gmail.com>
 

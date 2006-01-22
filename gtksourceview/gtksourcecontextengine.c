@@ -1399,29 +1399,6 @@ definition_iter_next (DefinitionsIter *iter)
 /* CONTEXTS MANAGEMENT ---------------------------------------------------- */
 
 /**
- * context_last:
- *
- * @context:
- *
- * Returns the last sibling of @context.
- *
- * Return value: the last sibling or %NULL if @context is %NULL.
- */
-static Context *
-context_last (Context *context)
-{
-	if (context == NULL)
-		return NULL;
-
-	if (context->parent != NULL && context->parent->last_child != NULL)
-		return context->parent->last_child;
-
-	while (context->next != NULL)
-		context = context->next;
-	return context;
-}
-
-/**
  * context_set_last_sibling:
  *
  * @context:
@@ -1433,8 +1410,38 @@ static void
 context_set_last_sibling (Context *context, Context *last_sibling)
 {
 	g_return_if_fail (context != NULL);
+	g_return_if_fail (last_sibling == NULL || last_sibling->next == NULL);
+
 	if (context->parent != NULL)
 		context->parent->last_child = last_sibling;
+}
+
+/**
+ * context_last:
+ *
+ * @context:
+ *
+ * Returns the last sibling of @context.
+ *
+ * Return value: the last sibling or %NULL if @context is %NULL.
+ */
+static Context *
+context_last (Context *context)
+{
+	Context *last;
+
+	if (context == NULL)
+		return NULL;
+
+	if (context->parent != NULL && context->parent->last_child != NULL)
+		return context->parent->last_child;
+
+	last = context;
+	while (last->next != NULL)
+		last = last->next;
+
+	context_set_last_sibling (context, last);
+	return last;
 }
 
 /**
@@ -1448,8 +1455,9 @@ context_set_last_sibling (Context *context, Context *last_sibling)
 static void
 context_append_child (Context *context, Context *child)
 {
-	g_assert (context);
-	g_assert (child);
+	g_return_if_fail (context != NULL);
+	g_return_if_fail (child != NULL);
+	g_return_if_fail (child->next == NULL);
 
 	if (context->children == NULL)
 	{
@@ -3208,7 +3216,17 @@ join_contexts_tree (GtkSourceContextEngine *ce,
 		/* Concatenate the two lists deleting old_context. */
 		new_context->next = old_context->next;
 		if (old_context->next != NULL)
+		{
 			old_context->next->prev = new_context;
+			/* Use the cached value in the old tree. */
+			context_set_last_sibling (new_context,
+				new_context->next->parent->last_child);
+		}
+		else
+		{
+			/* This is the last sibling. */
+			context_set_last_sibling (new_context, new_context);
+		}
 
 		/* Insert in new_context->sub_patterns the sub_patterns
 		 * after the current position. */
@@ -3276,12 +3294,13 @@ join_contexts_tree (GtkSourceContextEngine *ce,
 		{
 			new_context->children = old_context;
 		}
+		context_set_last_sibling (new_context->children,
+			old_context->parent->last_child);
 		while (old_context != NULL)
 		{
 			old_context->parent = new_context;
 			old_context = old_context->next;
 		}
-		context_set_last_sibling (new_context, NULL);
 	}
 
 	/* We delete the contexts removed from the list after concatenation. */
