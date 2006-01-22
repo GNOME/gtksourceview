@@ -411,7 +411,6 @@ static void	 definition_free		(ContextDefinition		*definition);
 static Context	*context_new			(ContextDefinition		*definition,
 						 Context			*parent,
 						 gint				 start_at,
-						 gint				 end_at,
 						 const gchar			*end_text);
 static void	 context_destroy		(Context			*context);
 
@@ -860,8 +859,7 @@ gtk_source_context_engine_attach_buffer (GtkSourceEngine *engine,
 				ce->priv->id);
 			return;
 		}
-		ce->priv->root_context = context_new (main_definition, NULL,
-			0, END_NOT_YET_FOUND, NULL);
+		ce->priv->root_context = context_new (main_definition, NULL, 0, NULL);
 
 		ce->priv->highlight = gtk_source_buffer_get_highlight (buffer);
 
@@ -1550,7 +1548,6 @@ create_reg_all (Context *context, ContextDefinition *definition)
  * @definition: a #ContextDefinition.
  * @parent: a #Context containing the new context.
  * @start_at: beggining offset of the context.
- * @end_at: end offset of the context.
  * @end_text: the text matched by @context->definition->start_end.start.
  *
  * Creates a new context.
@@ -1564,14 +1561,12 @@ static Context *
 context_new (ContextDefinition *definition,
 	     Context           *parent,
 	     gint               start_at,
-	     gint               end_at,
 	     const gchar       *end_text)
 {
 	Context *new_context = g_new0 (Context, 1);
 	new_context->definition = definition;
 	new_context->parent = parent;
 	new_context->start_at = start_at;
-	new_context->end_at = end_at;
 	new_context->children = NULL;
 	new_context->end = NULL;
 
@@ -2381,7 +2376,7 @@ container_context_starts_here (GtkSourceContextEngine  *ce,
 	{
 		gint offset = line_starts_at + *line_pos;
 		Context *new_context = context_new (curr_definition,
-			state, offset, END_NOT_YET_FOUND, line);
+			state, offset, line);
 		if (apply_match (ce, new_context, line_starts_at, line,
 			line_pos, line_length,
 			curr_definition->start_end.start,
@@ -2419,7 +2414,7 @@ simple_context_starts_here (GtkSourceContextEngine  *ce,
 	{
 		gint offset = line_starts_at + *line_pos;
 		Context *new_context = context_new (curr_definition,
-			state, offset, END_NOT_YET_FOUND, NULL);
+			state, offset, NULL);
 		if (apply_match (ce, new_context, line_starts_at, line,
 			line_pos, line_length,
 			curr_definition->match,

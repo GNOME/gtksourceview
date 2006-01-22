@@ -9,6 +9,10 @@
 	* gtksourceview/gtksourcecontextengine.c,
 	gtksourceview/gtksourcecontextengine.h: keep the private data in
 	GtkSourceContextEngine->priv
+	* gtksourceview/gtksourcecontextengine.c:
+	(gtk_source_context_engine_attach_buffer), (context_new),
+	(container_context_starts_here), (simple_context_starts_here): removed
+	end_at argument from context_new() as it is always END_NOT_YET_FOUND
 
 2006-01-19  Marco Barisione  <barisione@gmail.com>
 
