@@ -147,6 +147,8 @@
 #undef ENABLE_DEBUG
 #undef ENABLE_PROFILE
 #undef ENABLE_PRINT_TREE
+/* If this is defined then the engine verifies the tree coherency. */
+#undef ENABLE_VERIFY_TREE
 
 #ifdef ENABLE_DEBUG
 #define DEBUG(x) (x)
@@ -201,7 +203,9 @@ typedef enum _SubPatternWhere SubPatternWhere;
 
 struct _SubPatternDefinition
 {
-#if defined(ENABLE_DEBUG) || defined(ENABLE_PRINT_TREE)
+#if defined (ENABLE_DEBUG) || \
+    defined (ENABLE_PRINT_TREE) || \
+    defined (ENABLE_VERIFY_TREE)
 	/* We need the id only for debugging. */
 	gchar			*id;
 #endif
@@ -441,6 +445,10 @@ static void	 highlight_queue		(GtkSourceContextEngine		*ce,
 #ifdef ENABLE_PRINT_TREE
 static void	 print_tree			(const gchar			*label,
 						 Context			*tree);
+#endif
+
+#ifdef ENABLE_VERIFY_TREE
+static void	verify_tree			(GtkSourceContextEngine		*ce);
 #endif
 
 
@@ -3639,6 +3647,10 @@ update_syntax (GtkSourceContextEngine *ce,
 		gtk_text_iter_get_offset (&end),
 		g_timer_elapsed (timer, NULL) * 1000));
 
+#ifdef ENABLE_VERIFY_TREE
+	verify_tree (ce);
+#endif
+
 #ifdef ENABLE_PRINT_TREE
 	print_tree ("tree", priv->root_context);
 #endif
@@ -4198,9 +4210,12 @@ gtk_source_context_engine_add_ref (GtkSourceContextEngine  *ce,
 
 /* DEBUGGING CODE --------------------------------------------------------- */
 
-#ifdef ENABLE_PRINT_TREE
-
+#if defined (ENABLE_PRINT_TREE) || defined (ENABLE_VERIFY_TREE)
 #include <glib/gprintf.h>
+#endif
+
+
+#ifdef ENABLE_PRINT_TREE
 
 static void
 print_div (gint depth)
@@ -4252,4 +4267,169 @@ print_tree (const gchar *label, Context *tree)
 }
 
 #endif /* #ifdef ENABLE_PRINT_TREE */
+
+
+#ifdef ENABLE_VERIFY_TREE
+
+static void
+verify_parent (GtkSourceContextEngine *ce,
+	       Context		      *context)
+{
+	GtkSourceContextEnginePrivate *priv;
+	Context *child;
+
+	if (context == NULL)
+		return;
+
+	priv = CONTEXT_ENGINE_GET_PRIVATE (ce);
+
+	if (context->parent == NULL)
+	{
+		/* This should be the root context. */
+		if (context != priv->root_context)
+			g_printf ("Wrong NULL parent for %s [%d; %d) at %p\n",
+				context->definition->id, context->start_at,
+				context->end_at, context);
+	}
+	else if (priv->root_context == context)
+	{
+		/* This is the root context but the parent is not NULL. */
+		g_printf ("Root context should not have a parent: "
+			"%s [%d; %d) at %p\n",
+			context->definition->id, context->start_at,
+			context->end_at, context);
+	}
+
+	child = context->children;
+	while (child != NULL)
+	{
+		if (child->parent != context)
+			g_printf ("Wrong parent for %s [%d; %d) at %p\n",
+				child->definition->id, child->start_at,
+				child->end_at, child);
+
+		verify_parent (ce, child);
+
+		child = child->next;
+	}
+}
+
+static void
+verify_sequence (GtkSourceContextEngine *ce,
+		 Context		*context)
+{
+	GtkSourceContextEnginePrivate *priv;
+	Context *child, *prev_child;
+
+	if (context == NULL)
+		return;
+
+	priv = CONTEXT_ENGINE_GET_PRIVATE (ce);
+
+	if (context->parent == NULL)
+	{
+		/* This is the root context. */
+		if (context->prev != NULL)
+			g_printf ("Root context should not have a previous context: "
+				"%s [%d; %d) at %p\n",
+				context->definition->id, context->start_at,
+				context->end_at, context);
+		if (context->next != NULL)
+			g_printf ("Root context should not have a next context: "
+				"%s [%d; %d) at %p\n",
+				context->definition->id, context->start_at,
+				context->end_at, context);
+	}
+
+	child = context->children;
+	prev_child = NULL;
+	while (child != NULL)
+	{
+		if (child->prev != prev_child)
+			g_printf ("Wrong previous pointer for %s [%d; %d) at %p\n",
+				child->definition->id, child->start_at,
+				child->end_at, child);
+		else if (prev_child != NULL && prev_child->next != child)
+			g_printf ("Wrong next pointer for %s [%d; %d) at %p\n",
+				prev_child->definition->id, prev_child->start_at,
+				prev_child->end_at, prev_child);
+
+		verify_sequence (ce, child);
+
+		prev_child = child;
+		child = child->next;
+	}
+
+	if (context->children != NULL)
+	{
+		const gchar *err_msg = NULL;
+		Context *expected = NULL;
+		Context *obtained = NULL;
+
+		g_assert (prev_child);
+
+		Context *cached_last = context->last_child;
+		/* context_last() forces context->last_child to be not NULL. */
+		Context *last = context_last (context->children);
+		if (cached_last != NULL && cached_last != last)
+		{
+			err_msg = "Wrong cached value for the last sibling of";
+			expected = last;
+			obtained = cached_last;
+		}
+
+		if (context->last_child != last)
+		{
+			err_msg = "Wrong cached value (after context_last) for "
+				"the last sibling of";
+			expected = last;
+			obtained = context->last_child;
+		}
+
+		if (last != prev_child)
+		{
+			err_msg = "Wrong last sibling of";
+			expected = prev_child;
+			obtained = last;
+		}
+
+		if (err_msg != NULL)
+		{
+			g_assert (expected != NULL);
+			g_assert (obtained != NULL);
+
+			g_printf ("%s %s [%d; %d) at %p\n"
+				"Expected %s [%d; %d) at %p\n"
+				"Obtained %s [%d; %d) at %p\n\n",
+				err_msg,
+				context->children->definition->id,
+				context->children->start_at,
+				context->children->end_at,
+				context->children,
+				expected->definition->id,
+				expected->start_at,
+				expected->end_at,
+				expected,
+				obtained->definition->id,
+				obtained->start_at,
+				obtained->end_at,
+				obtained);
+		}
+	}
+}
+
+static void
+verify_tree (GtkSourceContextEngine *ce)
+{
+	GtkSourceContextEnginePrivate *priv;
+
+	g_return_if_fail (ce != NULL);
+
+	priv = CONTEXT_ENGINE_GET_PRIVATE (ce);
+
+	verify_parent (ce, priv->root_context);
+	verify_sequence (ce, priv->root_context);
+}
+
+#endif /* #ifdef ENABLE_VERIFY_TREE */
 
