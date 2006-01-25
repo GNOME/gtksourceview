@@ -1388,6 +1388,10 @@ context_set_last_sibling (Context *context, Context *last_sibling)
 
 	if (context->parent != NULL)
 		context->parent->last_child = last_sibling;
+
+#ifdef ENABLE_VERIFY_TREE
+	g_assert (last_sibling == NULL || last_sibling->parent == context->parent);
+#endif
 }
 
 /**
@@ -1407,12 +1411,21 @@ context_last (Context *context)
 	if (context == NULL)
 		return NULL;
 
+#ifndef ENABLE_VERIFY_TREE
+	/* Use the cached value if available. */
 	if (context->parent != NULL && context->parent->last_child != NULL)
 		return context->parent->last_child;
+#endif
 
 	last = context;
 	while (last->next != NULL)
 		last = last->next;
+
+#ifdef ENABLE_VERIFY_TREE
+	/* Verify that the cached value is correct. */
+	if (context->parent != NULL && context->parent->last_child != NULL)
+		g_assert (context->parent->last_child == last);
+#endif
 
 	context_set_last_sibling (context, last);
 	return last;
@@ -2871,12 +2884,6 @@ split_contexts_tree (GtkSourceContextEngine *ce,
 		 * so the last context will be common_context. */
 		context_set_last_sibling (common_context, common_context);
 		common_context_copy->prev = NULL;
-		/* If common_context_copy is not the last context then
-		 * context->parent->last_child is still valid else we
-		 * need to update it. */
-		if (common_context_copy->next == NULL)
-			context_set_last_sibling (common_context_copy,
-				common_context_copy);
 
 		/* last_copied_context is the parent of the copied context. */
 		if (last_copied_context)
@@ -2890,6 +2897,13 @@ split_contexts_tree (GtkSourceContextEngine *ce,
 			current_context->parent = last_copied_context;
 			current_context = current_context->next;
 		}
+
+		/* If common_context_copy is not the last context then
+		 * context->parent->last_child is still valid else we
+		 * need to update it. */
+		if (common_context_copy->next == NULL)
+			context_set_last_sibling (common_context_copy,
+				common_context_copy);
 
 		/* The parent of the next common context is the current
 		 * context. */
@@ -3179,17 +3193,7 @@ join_contexts_tree (GtkSourceContextEngine *ce,
 		/* Concatenate the two lists deleting old_context. */
 		new_context->next = old_context->next;
 		if (old_context->next != NULL)
-		{
 			old_context->next->prev = new_context;
-			/* Use the cached value in the old tree. */
-			context_set_last_sibling (new_context,
-				new_context->next->parent->last_child);
-		}
-		else
-		{
-			/* This is the last sibling. */
-			context_set_last_sibling (new_context, new_context);
-		}
 
 		/* Insert in new_context->sub_patterns the sub_patterns
 		 * after the current position. */
@@ -3207,13 +3211,20 @@ join_contexts_tree (GtkSourceContextEngine *ce,
 		}
 
 		/* Update the parent of the contexts in the old tree. */
-		context_set_last_sibling (new_context, NULL);
 		current_context = old_context->next;
 		while (current_context != NULL)
 		{
 			current_context->parent = new_context->parent;
 			current_context = current_context->next;
 		}
+
+		if (new_context->next == NULL)
+			/* This is the last sibling. */
+			context_set_last_sibling (new_context, new_context);
+		else
+			/* Use the cached value in the old tree. */
+			context_set_last_sibling (new_context,
+				old_context->parent->last_child);
 
 		last = context_last (new_context->children);
 		if (last != NULL && last->end_at != END_NOT_YET_FOUND)
@@ -3242,6 +3253,8 @@ join_contexts_tree (GtkSourceContextEngine *ce,
 	 * of old_context. */
 	if (old_context != NULL)
 	{
+		Context *last;
+
 		if (new_context == NULL)
 			/* If the main tree contains only the root context,
 			 * then new_context is initialized to NULL (as we
@@ -3249,7 +3262,7 @@ join_contexts_tree (GtkSourceContextEngine *ce,
 			new_context = ce->priv->root_context;
 		if (new_context->children != NULL)
 		{
-			Context *last = context_last (new_context->children);
+			last = context_last (new_context->children);
 			last->next = old_context;
 			old_context->prev = last;
 		}
@@ -3257,13 +3270,13 @@ join_contexts_tree (GtkSourceContextEngine *ce,
 		{
 			new_context->children = old_context;
 		}
-		context_set_last_sibling (new_context->children,
-			old_context->parent->last_child);
+		last = old_context->parent->last_child;
 		while (old_context != NULL)
 		{
 			old_context->parent = new_context;
 			old_context = old_context->next;
 		}
+		context_set_last_sibling (new_context->children, last);
 	}
 
 	/* We delete the contexts removed from the list after concatenation. */
