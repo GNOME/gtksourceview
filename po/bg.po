@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview gnome HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-09 20:27+0200\n"
-"PO-Revision-Date: 2006-01-09 20:27+0200\n"
+"POT-Creation-Date: 2006-01-25 12:16+0200\n"
+"PO-Revision-Date: 2006-01-25 12:15+0200\n"
 "Last-Translator: Alexander Shopov <ash@contact.bg>\n"
 "Language-Team: Bulgarian <dict@fsa-bg.org>\n"
 "MIME-Version: 1.0\n"
@@ -19,11 +19,11 @@ msgstr ""
 
 #: ../gtksourceview/gtksourcebuffer.c:278
 msgid "Escape Character"
-msgstr "Екраниращ символ"
+msgstr "Екраниращ знак"
 
 #: ../gtksourceview/gtksourcebuffer.c:279
 msgid "Escaping character for syntax patterns"
-msgstr "Екраниращ символ за шаблоните на синтаксиса"
+msgstr "Екраниращ знак за шаблоните на синтаксиса"
 
 #: ../gtksourceview/gtksourcebuffer.c:287
 msgid "Check Brackets"
@@ -88,7 +88,7 @@ msgid "GtkSourceBuffer object to print"
 msgstr "Буферът GtkSourceBuffer, който се печата"
 
 #: ../gtksourceview/gtksourceprintjob.c:280
-#: ../gtksourceview/gtksourceview.c:222 ../gtksourceview/gtksourceview.c:223
+#: ../gtksourceview/gtksourceview.c:235 ../gtksourceview/gtksourceview.c:236
 msgid "Tabs Width"
 msgstr "Дължина на табулаторите"
 
@@ -189,7 +189,7 @@ msgstr "Цяло число в основа N   "
 
 #: ../gtksourceview/gtksourcestylescheme.c:269
 msgid "Character"
-msgstr "Символ"
+msgstr "Знак"
 
 #: ../gtksourceview/gtksourcestylescheme.c:274
 #: ../gtksourceview/language-specs/latex.lang.h:2
@@ -209,6 +209,9 @@ msgstr "Тип на данната"
 #: ../gtksourceview/gtksourcestylescheme.c:284
 #: ../gtksourceview/language-specs/ada.lang.h:3
 #: ../gtksourceview/language-specs/css.lang.h:18
+#: ../gtksourceview/language-specs/octave.lang.h:4
+#: ../gtksourceview/language-specs/python.lang.h:5
+#: ../gtksourceview/language-specs/scheme.lang.h:2
 #: ../gtksourceview/language-specs/sh.lang.h:4
 msgid "Function"
 msgstr "Функция"
@@ -219,6 +222,7 @@ msgstr "Функция"
 #: ../gtksourceview/language-specs/fortran.lang.h:1
 #: ../gtksourceview/language-specs/haskell.lang.h:3
 #: ../gtksourceview/language-specs/nemerle.lang.h:6
+#: ../gtksourceview/language-specs/octave.lang.h:1
 #: ../gtksourceview/language-specs/python.lang.h:2
 msgid "Decimal"
 msgstr "Десетичен"
@@ -227,13 +231,22 @@ msgstr "Десетичен"
 msgid "Floating Point"
 msgstr "Плаваща запетая"
 
+#. We cannot match \b at the end of a keyword automatically
+#. because it fails for let* etc. So we need to manually add it to the
+#. other keywords and match ([ \t]|$) for the one ending with a
+#. special character. Unfortnately this also means that if the highlight
+#. style for keywords sets the background color, for let* etc also the
+#. trailing space will be highlighted.
 #: ../gtksourceview/gtksourcestylescheme.c:299
 #: ../gtksourceview/language-specs/ada.lang.h:4
 #: ../gtksourceview/language-specs/gtkrc.lang.h:6
 #: ../gtksourceview/language-specs/haskell.lang.h:9
 #: ../gtksourceview/language-specs/latex.lang.h:5
+#: ../gtksourceview/language-specs/octave.lang.h:6
 #: ../gtksourceview/language-specs/po.lang.h:3
+#: ../gtksourceview/language-specs/python.lang.h:7
 #: ../gtksourceview/language-specs/R.lang.h:6
+#: ../gtksourceview/language-specs/scheme.lang.h:9
 #: ../gtksourceview/language-specs/tcl.lang.h:1
 #: ../gtksourceview/language-specs/texinfo.lang.h:8
 #: ../gtksourceview/language-specs/vhdl.lang.h:2
@@ -279,7 +292,7 @@ msgstr "Предпроцесор"
 #: ../gtksourceview/language-specs/pascal.lang.h:18
 #: ../gtksourceview/language-specs/perl.lang.h:8
 #: ../gtksourceview/language-specs/po.lang.h:6
-#: ../gtksourceview/language-specs/python.lang.h:14
+#: ../gtksourceview/language-specs/scheme.lang.h:13
 #: ../gtksourceview/language-specs/sh.lang.h:13
 #: ../gtksourceview/language-specs/tcl.lang.h:4
 #: ../gtksourceview/language-specs/vbnet.lang.h:11
@@ -293,6 +306,7 @@ msgid "Specials"
 msgstr "Специални"
 
 #: ../gtksourceview/gtksourcestylescheme.c:321
+#: ../gtksourceview/language-specs/changelog.lang.h:6
 #: ../gtksourceview/language-specs/css.lang.h:36
 #: ../gtksourceview/language-specs/desktop.lang.h:10
 #: ../gtksourceview/language-specs/diff.lang.h:7
@@ -331,73 +345,113 @@ msgstr "Стил на етикетите"
 msgid "The style associated with the source tag"
 msgstr "Стилът свързан с етикета в кода"
 
-#: ../gtksourceview/gtksourceview.c:206
+#: ../gtksourceview/gtksourceview.c:219
 msgid "Show Line Numbers"
 msgstr "Номерация на редовете"
 
-#: ../gtksourceview/gtksourceview.c:207
+#: ../gtksourceview/gtksourceview.c:220
 msgid "Whether to display line numbers"
 msgstr "Дали редовете да се номерират"
 
-#: ../gtksourceview/gtksourceview.c:214
+#: ../gtksourceview/gtksourceview.c:227
 msgid "Show Line Markers"
 msgstr "Маркери на редовете"
 
-#: ../gtksourceview/gtksourceview.c:215
+#: ../gtksourceview/gtksourceview.c:228
 msgid "Whether to display line marker pixbufs"
 msgstr "Дали да се показват маркери на редовете"
 
-#: ../gtksourceview/gtksourceview.c:232
+#: ../gtksourceview/gtksourceview.c:245
 msgid "Auto Indentation"
 msgstr "Автоматичен отстъп"
 
-#: ../gtksourceview/gtksourceview.c:233
+#: ../gtksourceview/gtksourceview.c:246
 msgid "Whether to enable auto indentation"
 msgstr "Дали да автоматично да се вмъкват отстъпи"
 
-#: ../gtksourceview/gtksourceview.c:239
+#: ../gtksourceview/gtksourceview.c:252
 msgid "Insert Spaces Instead of Tabs"
 msgstr "Интервали вместо табулатори"
 
-#: ../gtksourceview/gtksourceview.c:240
+#: ../gtksourceview/gtksourceview.c:253
 msgid "Whether to insert spaces instead of tabs"
 msgstr "Дали да се заместват новите табулатори с интервали"
 
-#: ../gtksourceview/gtksourceview.c:247
+#: ../gtksourceview/gtksourceview.c:260
 msgid "Show Right Margin"
 msgstr "Граница отдясно"
 
-#: ../gtksourceview/gtksourceview.c:248
+#: ../gtksourceview/gtksourceview.c:261
 msgid "Whether to display the right margin"
 msgstr "Дали да се показва граница отдясно"
 
-#: ../gtksourceview/gtksourceview.c:255
+#: ../gtksourceview/gtksourceview.c:268
 msgid "Margin position"
 msgstr "Позиция на границата"
 
-#: ../gtksourceview/gtksourceview.c:256
+#: ../gtksourceview/gtksourceview.c:269
 msgid "Position of the right margin"
 msgstr "Позиция на дясната граница"
 
-#: ../gtksourceview/gtksourceview.c:265
+#: ../gtksourceview/gtksourceview.c:278
 msgid "Use smart home/end"
 msgstr "Умни Home/End"
 
-#: ../gtksourceview/gtksourceview.c:266
+#: ../gtksourceview/gtksourceview.c:279
 msgid ""
 "HOME and END keys move to first/last non whitespace characters on line "
 "before going to the start/end of the line"
 msgstr ""
-"Клавишите HOME и END местят курсора първо при първия/последния значещ символ "
+"Клавишите HOME и END местят курсора първо при първия/последния значещ знак "
 "преди да отиват в началото/края на реда"
 
-#: ../gtksourceview/gtksourceview.c:275
+#: ../gtksourceview/gtksourceview.c:288
 msgid "Highlight current line"
 msgstr "Засветяване на текущия ред"
 
-#: ../gtksourceview/gtksourceview.c:276
+#: ../gtksourceview/gtksourceview.c:289
 msgid "Whether to highlight the current line"
 msgstr "Дали текущият ред да се засветява"
+
+#: ../gtksourceview/gtksourceview.c:305
+msgid "Margin Line Alpha"
+msgstr "Прозрачност на линията на границата"
+
+#: ../gtksourceview/gtksourceview.c:306
+msgid "Transparency of the margin line"
+msgstr "Прозрачност на линията на границата"
+
+#: ../gtksourceview/gtksourceview.c:323
+msgid "Margin Line Color"
+msgstr "Цвят на линията на границата"
+
+#: ../gtksourceview/gtksourceview.c:324
+msgid "Color to use for the right margin line"
+msgstr "Цвят за линията на дясната граница"
+
+#: ../gtksourceview/gtksourceview.c:340
+msgid "Margin Overlay Toggle"
+msgstr "Превключване на покриването след границата"
+
+#: ../gtksourceview/gtksourceview.c:341
+msgid "Whether to draw the right margin overlay"
+msgstr "Дали да се покрива полето отдясно на границата"
+
+#: ../gtksourceview/gtksourceview.c:357
+msgid "Margin Overlay Alpha"
+msgstr "Прозрачност на покриването"
+
+#: ../gtksourceview/gtksourceview.c:358
+msgid "Transparency of the margin overlay"
+msgstr "Прозрачност на покриването на полето отдясно на границата"
+
+#: ../gtksourceview/gtksourceview.c:375
+msgid "Margin Overlay Color"
+msgstr "Цвят на покриването"
+
+#: ../gtksourceview/gtksourceview.c:376
+msgid "Color to use for drawing the margin overlay"
+msgstr "Цвят на покриването на полето отдясно на границата"
 
 #: ../gtksourceview/language-specs/ada.lang.h:1
 msgid "Ada"
@@ -410,7 +464,7 @@ msgstr "Ada"
 #: ../gtksourceview/language-specs/nemerle.lang.h:3
 #: ../gtksourceview/language-specs/vhdl.lang.h:1
 msgid "Character Constant"
-msgstr "Символна константа"
+msgstr "Знакова константа"
 
 #. Note: contains an hack to avoid considering ^COMMON a comment
 #. <string _name = "String 2" style = "String" end-at-line-end = "TRUE">
@@ -434,11 +488,13 @@ msgstr "Символна константа"
 #: ../gtksourceview/language-specs/lua.lang.h:4
 #: ../gtksourceview/language-specs/makefile.lang.h:4
 #: ../gtksourceview/language-specs/nemerle.lang.h:10
+#: ../gtksourceview/language-specs/octave.lang.h:7
 #: ../gtksourceview/language-specs/pascal.lang.h:11
 #: ../gtksourceview/language-specs/perl.lang.h:3
-#: ../gtksourceview/language-specs/python.lang.h:7
+#: ../gtksourceview/language-specs/python.lang.h:8
 #: ../gtksourceview/language-specs/R.lang.h:7
 #: ../gtksourceview/language-specs/ruby.lang.h:10
+#: ../gtksourceview/language-specs/scheme.lang.h:10
 #: ../gtksourceview/language-specs/sh.lang.h:5
 #: ../gtksourceview/language-specs/sql.lang.h:23
 #: ../gtksourceview/language-specs/tcl.lang.h:2
@@ -478,6 +534,7 @@ msgstr "Ключова дума за предпроцесора"
 #: ../gtksourceview/language-specs/makefile.lang.h:6
 #: ../gtksourceview/language-specs/nemerle.lang.h:14
 #: ../gtksourceview/language-specs/pascal.lang.h:17
+#: ../gtksourceview/language-specs/scheme.lang.h:12
 #: ../gtksourceview/language-specs/sql.lang.h:48
 #: ../gtksourceview/language-specs/vbnet.lang.h:10
 #: ../gtksourceview/language-specs/verilog.lang.h:9
@@ -532,7 +589,8 @@ msgstr "Общ макрос"
 #: ../gtksourceview/language-specs/fortran.lang.h:2
 #: ../gtksourceview/language-specs/haskell.lang.h:4
 #: ../gtksourceview/language-specs/nemerle.lang.h:7
-#: ../gtksourceview/language-specs/python.lang.h:3
+#: ../gtksourceview/language-specs/octave.lang.h:3
+#: ../gtksourceview/language-specs/python.lang.h:4
 #: ../gtksourceview/language-specs/R.lang.h:4
 msgid "Floating Point Number"
 msgstr "Число с плаващата запетая"
@@ -543,8 +601,9 @@ msgstr "Число с плаващата запетая"
 #: ../gtksourceview/language-specs/fortran.lang.h:4
 #: ../gtksourceview/language-specs/haskell.lang.h:6
 #: ../gtksourceview/language-specs/nemerle.lang.h:8
+#: ../gtksourceview/language-specs/octave.lang.h:5
 #: ../gtksourceview/language-specs/pascal.lang.h:10
-#: ../gtksourceview/language-specs/python.lang.h:5
+#: ../gtksourceview/language-specs/python.lang.h:6
 msgid "Hex Number"
 msgstr "Шестнадесетично число"
 
@@ -563,7 +622,6 @@ msgstr "Включване/прагма"
 #: ../gtksourceview/language-specs/javascript.lang.h:12
 #: ../gtksourceview/language-specs/lua.lang.h:3
 #: ../gtksourceview/language-specs/perl.lang.h:2
-#: ../gtksourceview/language-specs/python.lang.h:6
 #: ../gtksourceview/language-specs/ruby.lang.h:9
 #: ../gtksourceview/language-specs/vbnet.lang.h:1
 #: ../gtksourceview/language-specs/verilog.lang.h:6
@@ -575,7 +633,8 @@ msgstr "Ключови думи"
 #: ../gtksourceview/language-specs/fortran.lang.h:10
 #: ../gtksourceview/language-specs/haskell.lang.h:11
 #: ../gtksourceview/language-specs/nemerle.lang.h:12
-#: ../gtksourceview/language-specs/python.lang.h:11
+#: ../gtksourceview/language-specs/octave.lang.h:10
+#: ../gtksourceview/language-specs/python.lang.h:12
 #: ../gtksourceview/language-specs/verilog.lang.h:8
 msgid "Octal Number"
 msgstr "Осмично число"
@@ -596,6 +655,26 @@ msgstr "Дефиниция на предпроцесора"
 msgid "Types"
 msgstr "Типове"
 
+#: ../gtksourceview/language-specs/changelog.lang.h:1
+msgid "ChangeLog"
+msgstr "Дневник на промените"
+
+#: ../gtksourceview/language-specs/changelog.lang.h:2
+msgid "Date"
+msgstr "Дата"
+
+#: ../gtksourceview/language-specs/changelog.lang.h:3
+msgid "Email"
+msgstr "Е-писмо"
+
+#: ../gtksourceview/language-specs/changelog.lang.h:4
+msgid "File"
+msgstr "Файл"
+
+#: ../gtksourceview/language-specs/changelog.lang.h:5
+msgid "Marker"
+msgstr "Маркер"
+
 #: ../gtksourceview/language-specs/cpp.lang.h:3
 msgid "C++"
 msgstr "C++"
@@ -606,7 +685,6 @@ msgstr "C#"
 
 #: ../gtksourceview/language-specs/csharp.lang.h:5
 #: ../gtksourceview/language-specs/lua.lang.h:7
-#: ../gtksourceview/language-specs/python.lang.h:9
 #: ../gtksourceview/language-specs/sh.lang.h:6
 msgid "Multiline String"
 msgstr "Низ на няколко реда"
@@ -625,7 +703,6 @@ msgstr "Примитиви"
 #: ../gtksourceview/language-specs/javascript.lang.h:24
 #: ../gtksourceview/language-specs/lua.lang.h:11
 #: ../gtksourceview/language-specs/makefile.lang.h:9
-#: ../gtksourceview/language-specs/python.lang.h:15
 #: ../gtksourceview/language-specs/sh.lang.h:14
 msgid "String 2"
 msgstr "Низ 2"
@@ -724,7 +801,7 @@ msgstr "Селектори за псевдоелементи"
 #.
 #: ../gtksourceview/language-specs/css.lang.h:64
 msgid "Unicode Character Reference"
-msgstr "Псевдоним на символ от Уникод"
+msgstr "Псевдоним на знак от Уникод"
 
 #.
 #. Unicode range values.
@@ -740,6 +817,7 @@ msgstr ".desktop"
 #: ../gtksourceview/language-specs/desktop.lang.h:2
 #: ../gtksourceview/language-specs/gtkrc.lang.h:1
 #: ../gtksourceview/language-specs/ini.lang.h:2
+#: ../gtksourceview/language-specs/scheme.lang.h:1
 msgid "Boolean Value"
 msgstr "Булева стойност"
 
@@ -848,7 +926,9 @@ msgstr "Четене/запис"
 #. "duble-quoted strings"
 #: ../gtksourceview/language-specs/gtkrc.lang.h:2
 #: ../gtksourceview/language-specs/ini.lang.h:4
+#: ../gtksourceview/language-specs/octave.lang.h:2
 #: ../gtksourceview/language-specs/php.lang.h:16
+#: ../gtksourceview/language-specs/python.lang.h:3
 #: ../gtksourceview/language-specs/R.lang.h:3
 #: ../gtksourceview/language-specs/ruby.lang.h:6
 msgid "Double Quoted String"
@@ -870,7 +950,9 @@ msgstr "Ключов символ"
 #. 'single-quoted strings'
 #: ../gtksourceview/language-specs/gtkrc.lang.h:10
 #: ../gtksourceview/language-specs/ini.lang.h:11
+#: ../gtksourceview/language-specs/octave.lang.h:14
 #: ../gtksourceview/language-specs/php.lang.h:24
+#: ../gtksourceview/language-specs/python.lang.h:15
 #: ../gtksourceview/language-specs/R.lang.h:11
 #: ../gtksourceview/language-specs/ruby.lang.h:17
 msgid "Single Quoted String"
@@ -1009,9 +1091,10 @@ msgstr "Обекти"
 
 #: ../gtksourceview/language-specs/javascript.lang.h:22
 #: ../gtksourceview/language-specs/lua.lang.h:9
+#: ../gtksourceview/language-specs/octave.lang.h:13
 #: ../gtksourceview/language-specs/perl.lang.h:7
 #: ../gtksourceview/language-specs/php.lang.h:22
-#: ../gtksourceview/language-specs/python.lang.h:13
+#: ../gtksourceview/language-specs/python.lang.h:14
 #: ../gtksourceview/language-specs/R.lang.h:10
 #: ../gtksourceview/language-specs/ruby.lang.h:16
 #: ../gtksourceview/language-specs/sh.lang.h:11
@@ -1050,7 +1133,6 @@ msgstr "Математически"
 
 #: ../gtksourceview/language-specs/lua.lang.h:2
 #: ../gtksourceview/language-specs/makefile.lang.h:3
-#: ../gtksourceview/language-specs/python.lang.h:4
 msgid "Functions"
 msgstr "Функции"
 
@@ -1063,7 +1145,6 @@ msgid "Lua"
 msgstr "Lua"
 
 #: ../gtksourceview/language-specs/lua.lang.h:8
-#: ../gtksourceview/language-specs/python.lang.h:10
 #: ../gtksourceview/language-specs/sh.lang.h:7
 msgid "Multiline String 2"
 msgstr "Низ на няколко реда 2"
@@ -1125,6 +1206,25 @@ msgstr "Ключови думи дефинирани от макрос"
 #: ../gtksourceview/language-specs/nemerle.lang.h:11
 msgid "Nemerle"
 msgstr "Nemerle"
+
+#: ../gtksourceview/language-specs/octave.lang.h:8
+#: ../gtksourceview/language-specs/python.lang.h:10
+msgid "Multiline Double Quoted String"
+msgstr "Низ на повече от един ред в двойни кавички"
+
+#: ../gtksourceview/language-specs/octave.lang.h:9
+#: ../gtksourceview/language-specs/python.lang.h:11
+msgid "Multiline Single Quoted String"
+msgstr "Низ на повече от един ред в единични кавички"
+
+#: ../gtksourceview/language-specs/octave.lang.h:11
+msgid "Octave"
+msgstr "Octave"
+
+#: ../gtksourceview/language-specs/octave.lang.h:12
+#: ../gtksourceview/language-specs/R.lang.h:9
+msgid "Reserved Constant"
+msgstr "Резервирана константа"
 
 #: ../gtksourceview/language-specs/pascal.lang.h:1
 msgid "Block Comment 1"
@@ -1257,11 +1357,11 @@ msgstr "Превод на gettext"
 msgid "Builtins"
 msgstr "Вградени"
 
-#: ../gtksourceview/language-specs/python.lang.h:8
+#: ../gtksourceview/language-specs/python.lang.h:9
 msgid "Module Handler"
 msgstr "Обработка на модул"
 
-#: ../gtksourceview/language-specs/python.lang.h:12
+#: ../gtksourceview/language-specs/python.lang.h:13
 msgid "Python"
 msgstr "Python"
 
@@ -1280,10 +1380,6 @@ msgstr "Цяло число"
 #: ../gtksourceview/language-specs/R.lang.h:8
 msgid "Reserved Class"
 msgstr "Резервиран клас"
-
-#: ../gtksourceview/language-specs/R.lang.h:9
-msgid "Reserved Constant"
-msgstr "Резервирана константа"
 
 #: ../gtksourceview/language-specs/ruby.lang.h:1
 msgid "Attribute Definitions"
@@ -1332,6 +1428,10 @@ msgstr "Ruby"
 #: ../gtksourceview/language-specs/ruby.lang.h:18
 msgid "Symbols"
 msgstr "Символи"
+
+#: ../gtksourceview/language-specs/scheme.lang.h:11
+msgid "Scheme"
+msgstr "Scheme"
 
 #: ../gtksourceview/language-specs/sh.lang.h:2
 msgid "Built-in Command"
@@ -1382,11 +1482,11 @@ msgstr "Аналитични функции"
 
 #: ../gtksourceview/language-specs/sql.lang.h:10
 msgid "Character Functions Returning Character Values"
-msgstr "Функции за символи връщащи символни стойности"
+msgstr "Знакови функции връщащи знакови стойности"
 
 #: ../gtksourceview/language-specs/sql.lang.h:11
 msgid "Character Functions Returning Number Values"
-msgstr "Функции за символи връщащи числови стойности"
+msgstr "Знакови функции връщащи числови стойности"
 
 #: ../gtksourceview/language-specs/sql.lang.h:12
 msgid "Collection Functions"
@@ -1439,7 +1539,7 @@ msgstr "Моделиращи функции"
 
 #: ../gtksourceview/language-specs/sql.lang.h:26
 msgid "NLS Character Functions"
-msgstr "Функции за работа с национални символи"
+msgstr "Функции за работа с национални знаци"
 
 #: ../gtksourceview/language-specs/sql.lang.h:27
 msgid "NULL-Related Functions"
@@ -1528,7 +1628,7 @@ msgstr "Tcl"
 
 #: ../gtksourceview/language-specs/texinfo.lang.h:2
 msgid "Characters"
-msgstr "Символи"
+msgstr "Знаци"
 
 #: ../gtksourceview/language-specs/texinfo.lang.h:3
 msgid "File Attributes"
