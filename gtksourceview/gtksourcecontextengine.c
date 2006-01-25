@@ -3449,7 +3449,7 @@ update_syntax (GtkSourceContextEngine *ce,
 	       gint                    delta)
 {
 	gint batch_size;
-	GtkTextIter start, end, refresh_end;
+	GtkTextIter start, end;
 	gint text_starts_at;
 	Context *current_state;
 	LineReader *reader;
@@ -3565,7 +3565,6 @@ update_syntax (GtkSourceContextEngine *ce,
 	}
 
 	/* MAIN LOOP: build the tree. */
-	refresh_end = end;
 	while (!old_tree_used)
 	{
 		gint line_length;
@@ -3582,14 +3581,7 @@ update_syntax (GtkSourceContextEngine *ce,
 			current_state, line, line_length, line_starts_at,
 			removed_tree);
 		if (current_state == NULL)
-		{
 			old_tree_used = TRUE;
-			/* We do not need to refresh from start to end. */
-			gtk_text_buffer_get_iter_at_offset (
-				GTK_TEXT_BUFFER (ce->priv->buffer),
-				&refresh_end, line_starts_at);
-			gtk_text_iter_forward_to_line_end (&refresh_end);
-		}
 	}
 
 	line_reader_free (reader);
@@ -3635,7 +3627,7 @@ update_syntax (GtkSourceContextEngine *ce,
 	}
 
 	/* Make sure the analyzed region gets highlighted. */
-	refresh_range (ce, &start, &refresh_end);
+	refresh_range (ce, &start, &end);
 
 	PROFILE (g_message ("ended worker batch (from %d to %d), %g ms elapsed",
 		gtk_text_iter_get_offset (&start),

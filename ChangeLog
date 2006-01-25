@@ -1,5 +1,10 @@
 2006-01-25  Marco Barisione  <barisione@gmail.com>
 
+	* gtksourceview/gtksourcecontextengine.c: (update_syntax): refresh the
+	highlighting of the entire batch (bug #326698)
+
+2006-01-25  Marco Barisione  <barisione@gmail.com>
+
 	* gtksourceview/gtksourcecontextengine.c: (apply_tag): do not pass a
 	NULL tag to gtk_text_tag_get_priority()
 
