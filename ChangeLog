@@ -1,5 +1,10 @@
 2006-01-25  Marco Barisione  <barisione@gmail.com>
 
+	* gtksourceview/gtksourcecontextengine.c: (apply_tag): do not pass a
+	NULL tag to gtk_text_tag_get_priority()
+
+2006-01-25  Marco Barisione  <barisione@gmail.com>
+
 	* gtksourceview/gtksourcecontextengine.c: (context_set_last_sibling),
 	(context_last), (split_contexts_tree), (join_contexts_tree): the last
 	sibling was set before reparenting the contexts

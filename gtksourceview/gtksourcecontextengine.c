@@ -3757,7 +3757,7 @@ apply_tag (GtkSourceBuffer *buffer,
 		}
 	}
 
-	if (clear_tag != NULL)
+	if (clear_tag != NULL && context->definition->tag != NULL)
 		tag_priority = gtk_text_tag_get_priority (
 			GTK_TEXT_TAG (context->definition->tag));
 
