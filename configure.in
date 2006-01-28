@@ -52,17 +52,6 @@ else
 fi
 AC_SUBST(DEPRECATED_FLAGS)
 
-# gcc 4 emits lots of warnings about signedness without -Wno-pointer-sign.
-if test x"$GCC" = xyes; then
-    AC_MSG_CHECKING([whether gcc understands -Wno-pointer-sign])
-    if test [`$CC --version | sed -e 's/[^0-9]*\([0-9]\).*/\1/' -e q`] -ge 4; then
-        WARN_CFLAGS="$WARN_CFLAGS -Wno-pointer-sign"
-        AC_MSG_RESULT([yes]) 
-    else
-        AC_MSG_RESULT([no]) 
-    fi
-fi
-
 PKG_CHECK_MODULES(DEP,
 	gtk+-2.0 >= $GTK_REQUIRED_VERSION
 	libxml-2.0 >= $LIBXML_REQUIRED_VERSION)

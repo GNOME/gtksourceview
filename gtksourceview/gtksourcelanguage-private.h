@@ -33,6 +33,7 @@ struct _GtkSourceLanguagePrivate
 	/* this is allocated by libxml, it should be freed using xmlFree() */
 	gchar                   *translation_domain;
 
+	/* this is allocated by libxml, it should be freed using xmlFree() */
 	gchar			*id;
 	
 	/* this is allocated by libxml, it should be freed using xmlFree() */

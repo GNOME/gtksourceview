@@ -2,7 +2,7 @@
  *  Language specification parser for 2.0 version .lang files
  *
  *  Copyright (C) 2003 - Gustavo Giráldez <gustavo.giraldez@gmx.net>
- *  Copyright (C) 2005 - Emanuele Aina, Marco Barisione
+ *  Copyright (C) 2005, 2006 - Emanuele Aina, Marco Barisione
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU Library General Public License as published by
@@ -45,7 +45,6 @@
 #include "gtksourcecontextengine.h"
 #include "libegg/regex/eggregex.h"
 
-
 #define RNG_SCHEMA_DIR  DATADIR "/gtksourceview-1.0/schemas/language2.rng"
 
 #define PARSER_ERROR parser_error_quark ()
@@ -82,7 +81,7 @@ struct _ParserState
 	/* The mapping between style ids and their default styles */
 	GHashTable *styles_mapping;
 
-	/* The list of loaded languages */
+	/* The list of loaded languages (the item are XmlChar pointers) */
 	GSList **loaded_lang_ids;
 
 	/* A serial number incremented to get unique generated names */
@@ -283,7 +282,7 @@ create_definition (ParserState *parser_state,
 {
 	gchar *match = NULL, *start = NULL, *end = NULL;
 	gchar *prefix = NULL, *suffix = NULL;
-	gchar *tmp;
+	xmlChar *tmp;
 	gboolean extend_parent = TRUE;
 	gboolean end_at_line_end = FALSE;
 
@@ -301,15 +300,15 @@ create_definition (ParserState *parser_state,
 	g_return_val_if_fail (error == NULL || *error == NULL, FALSE);
 
 	/* extend-parent */
-	tmp = xmlTextReaderGetAttribute (parser_state->reader, "extend-parent");
+	tmp = xmlTextReaderGetAttribute (parser_state->reader, BAD_CAST "extend-parent");
 	if (tmp)
-		extend_parent = str_to_bool (tmp);
+		extend_parent = str_to_bool ((gchar *)tmp);
 	xmlFree (tmp);
 	
 	/* end-at-line-end */
-	tmp = xmlTextReaderGetAttribute (parser_state->reader, "end-at-line-end");
+	tmp = xmlTextReaderGetAttribute (parser_state->reader, BAD_CAST "end-at-line-end");
 	if (tmp)
-		end_at_line_end = str_to_bool (tmp);
+		end_at_line_end = str_to_bool ((gchar *)tmp);
 	xmlFree (tmp);
 
 
@@ -336,39 +335,39 @@ create_definition (ParserState *parser_state,
 		{
 			g_assert (attribute->children);
 			tmp = attribute->children->content;
-			if (strcmp ("extended", attribute->name) == 0)
+			if (xmlStrcmp (BAD_CAST "extended", attribute->name) == 0)
 			{
 				flags = update_regex_flags (flags,
-					"extended", str_to_bool (tmp));
+					"extended", str_to_bool ((gchar *)tmp));
 			}
-			else if (strcmp ("case-insensitive", attribute->name) == 0)
+			else if (xmlStrcmp (BAD_CAST "case-insensitive", attribute->name) == 0)
 			{
 				flags = update_regex_flags (flags,
-					"case-insensitive", str_to_bool (tmp));
+					"case-insensitive", str_to_bool ((gchar *)tmp));
 			}
-			else if (strcmp ("dot-match-all", attribute->name) == 0)
+			else if (xmlStrcmp (BAD_CAST "dot-match-all", attribute->name) == 0)
 			{
 				flags = update_regex_flags (flags,
-					"dot-match-all", str_to_bool (tmp));
+					"dot-match-all", str_to_bool ((gchar *)tmp));
 			}
 		}
 		/*flags = update_regex_flags (parser_state->regex_compile_flags,
 				"extended", TRUE);*/
 
 		g_assert (child->name);
-		if (strcmp ("match", child->name) == 0 
+		if (xmlStrcmp (BAD_CAST "match", child->name) == 0 
 				&& child->children)
 		{
 			/* <match> */
-			match = g_strdup (child->children->content);
+			match = g_strdup ((gchar *)child->children->content);
 			match_flags = flags;
 		}
-		else if (strcmp ("start", child->name) == 0)
+		else if (xmlStrcmp (BAD_CAST "start", child->name) == 0)
 		{	
 			/* <start> */
 			if (child->children)
 			{
-				start = g_strdup (child->children->content);
+				start = g_strdup ((gchar *)child->children->content);
 			}
 			else
 			{
@@ -378,11 +377,11 @@ create_definition (ParserState *parser_state,
 			}
 			start_flags = flags;
 		}
-		else if (strcmp ("end", child->name) == 0)
+		else if (xmlStrcmp (BAD_CAST "end", child->name) == 0)
 		{	
 			/* <end> */
 			if (child->children)
-				end = g_strdup (child->children->content);
+				end = g_strdup ((gchar *)child->children->content);
 			else
 			{
 				/* If the <end> element is present but 
@@ -391,25 +390,25 @@ create_definition (ParserState *parser_state,
 			}
 			end_flags = flags;
 		}
-		else if (strcmp ("prefix", child->name) == 0)
+		else if (xmlStrcmp (BAD_CAST "prefix", child->name) == 0)
 		{
 			/* <prefix> */
 			if (child->children != NULL)
-				prefix = g_strdup (child->children->content);
+				prefix = g_strdup ((gchar *)child->children->content);
 			else
 				prefix = g_strdup ("");
 			g_strstrip (prefix);
 		}
-		else if (strcmp ("suffix", child->name) == 0)
+		else if (xmlStrcmp (BAD_CAST "suffix", child->name) == 0)
 		{
 			/* <suffix> */
 			if (child->children != NULL)
-				suffix = g_strdup (child->children->content);
+				suffix = g_strdup ((gchar *)child->children->content);
 			else
 				suffix = g_strdup ("");
 			g_strstrip (suffix);
 		}
-		else if ((strcmp ("keyword", child->name) == 0) 
+		else if ((xmlStrcmp (BAD_CAST "keyword", child->name) == 0) 
 				&& child->children)
 		{
 			/* <keyword> */
@@ -432,7 +431,7 @@ create_definition (ParserState *parser_state,
 				/* TODO: this could be done destructively, 
 				 * modifing the string in place without the 
 				 * copy */
-				item = g_strdup (child->children->content);
+				item = g_strdup ((gchar *)child->children->content);
 				g_strstrip (item);
 
 				g_string_append (all_items, item);
@@ -442,14 +441,14 @@ create_definition (ParserState *parser_state,
 
 				/* Skip text nodes */
 				if (child != NULL
-						&& strcmp ("text", child->name) == 0)
+						&& xmlStrcmp (BAD_CAST "text", child->name) == 0)
 					child = child->next;
 
 				/* These are the conditions which control
 				 * the loop */
 				if (child == NULL)
 					break;
-				if (strcmp ("keyword",	child->name) != 0)
+				if (xmlStrcmp (BAD_CAST "keyword", child->name) != 0)
 					break;
 				if (child->children == NULL)
 					break;
@@ -486,6 +485,7 @@ create_definition (ParserState *parser_state,
 
 	if (tmp_error == NULL && start != NULL)
 	{
+		gchar *tmp;
 		g_strstrip (start);
 		tmp = start;
 		start = expand_regex (parser_state, start, start_flags, 
@@ -494,6 +494,7 @@ create_definition (ParserState *parser_state,
 	}
 	if (tmp_error == NULL && end != NULL)
 	{
+		gchar *tmp;
 		g_strstrip (end);
 		tmp = end;
 		end = expand_regex (parser_state, end, end_flags,
@@ -502,6 +503,7 @@ create_definition (ParserState *parser_state,
 	}
 	if (tmp_error == NULL && match != NULL)
 	{
+		gchar *tmp;
 		g_strstrip (match);
 		tmp = match;
 		match = expand_regex (parser_state, match, match_flags,
@@ -518,11 +520,11 @@ create_definition (ParserState *parser_state,
 				&tmp_error);
 	}
 
-	xmlFree (match);
-	xmlFree (start);
-	xmlFree (end);
-	xmlFree (prefix);
-	xmlFree (suffix);
+	g_free (match);
+	g_free (start);
+	g_free (end);
+	g_free (prefix);
+	g_free (suffix);
 	
 	if (tmp_error != NULL)
 	{
@@ -624,7 +626,7 @@ create_sub_pattern (ParserState *parser_state,
                     GError **error)
 {
 	gchar *container_id;
-	gchar *where;
+	xmlChar *where;
 
 	GError *tmp_error = NULL;
 
@@ -635,13 +637,13 @@ create_sub_pattern (ParserState *parser_state,
 	/* If the document is validated container is never NULL */
 	g_assert (container_id);
 
-	where = xmlTextReaderGetAttribute (parser_state->reader, "where");
+	where = xmlTextReaderGetAttribute (parser_state->reader, BAD_CAST "where");
 
 	gtk_source_context_engine_add_sub_pattern (parser_state->engine,
-			id, container_id, sub_pattern, where, style, 
+			id, container_id, sub_pattern, (gchar *)where, style, 
 			&tmp_error);
 
-	g_free (where);
+	xmlFree (where);
 
 	if (tmp_error != NULL)
 	{
@@ -656,8 +658,8 @@ static void
 handle_context_element (ParserState *parser_state,
 			GError **error)
 {
-	gchar *id, *tmp, *parent_id, *style_ref;
-	gchar *ref, *sub_pattern;
+	gchar *id, *parent_id, *style_ref;
+	xmlChar *ref, *sub_pattern, *tmp;
 	int is_empty;
 	gboolean success;
 
@@ -666,22 +668,18 @@ handle_context_element (ParserState *parser_state,
 	/* Return if an error is already set */
 	g_return_if_fail (error == NULL || *error == NULL);
 
-	ref = xmlTextReaderGetAttribute (parser_state->reader, "ref");
+	ref = xmlTextReaderGetAttribute (parser_state->reader, BAD_CAST "ref");
 	sub_pattern = xmlTextReaderGetAttribute (parser_state->reader, 
-			"sub-pattern");
+			BAD_CAST "sub-pattern");
 
 	tmp = xmlTextReaderGetAttribute (parser_state->reader, 
-			"style-ref");
+			BAD_CAST "style-ref");
 
-	if (tmp == NULL || id_is_decorated (tmp, NULL))
-	{
-		style_ref = tmp;
-	}
+	if (tmp == NULL || id_is_decorated ((gchar *)tmp, NULL))
+		style_ref = g_strdup ((gchar *)tmp);
 	else
-	{
-		style_ref = decorate_id (parser_state, tmp);
-		g_free (tmp);
-	}
+		style_ref = decorate_id (parser_state, (gchar *)tmp);
+	xmlFree (tmp);
 
 	if (style_ref != NULL &&
 			g_hash_table_lookup (parser_state->styles_mapping,
@@ -692,27 +690,27 @@ handle_context_element (ParserState *parser_state,
 	
 	if (ref != NULL)
 	{
-		add_ref (parser_state, ref, &tmp_error);
+		add_ref (parser_state, (gchar *)ref, &tmp_error);
 	}
 	else
 	{
-		tmp = xmlTextReaderGetAttribute (parser_state->reader, "id");
+		tmp = xmlTextReaderGetAttribute (parser_state->reader, BAD_CAST "id");
 		if (tmp == NULL)
-			tmp = generate_new_id (parser_state);
+			tmp = xmlStrdup (BAD_CAST generate_new_id (parser_state));
 
-		if (id_is_decorated (tmp, NULL))
-			id = g_strdup (tmp);
+		if (id_is_decorated ((gchar *)tmp, NULL))
+			id = g_strdup ((gchar *)tmp);
 		else
-			id = decorate_id (parser_state, tmp);
+			id = decorate_id (parser_state, (gchar *)tmp);
 	
-		g_free (tmp);
+		xmlFree (tmp);
 
 		if (parser_state->engine != NULL)
 		{
 			if (sub_pattern != NULL)
 			{
 				create_sub_pattern (parser_state, id, 
-						sub_pattern, style_ref,
+						(gchar *)sub_pattern, style_ref,
 						&tmp_error);
 			}
 			else
@@ -742,8 +740,8 @@ handle_context_element (ParserState *parser_state,
 
 
 	g_free (style_ref);
-	g_free (sub_pattern);
-	g_free (ref);
+	xmlFree (sub_pattern);
+	xmlFree (ref);
 
 	if (tmp_error != NULL)
 	{
@@ -759,30 +757,29 @@ handle_language_element (ParserState *parser_state,
 	/* FIXME: check that the language name, version, etc. are the 
 	 * right ones - Paolo */
 	xmlChar *lang_id, *lang_version;
-	gchar *expected_version = "2.0";
+	xmlChar *expected_version = BAD_CAST "2.0";
 
 	/* Return if an error is already set */
 	g_return_if_fail (error == NULL || *error == NULL);
 
-	lang_version = xmlTextReaderGetAttribute (parser_state->reader, "version");
+	lang_version = xmlTextReaderGetAttribute (parser_state->reader, BAD_CAST "version");
 
 	if (lang_version == NULL || 
-			(strcmp (expected_version, lang_version) != 0))
+			(xmlStrcmp (expected_version, lang_version) != 0))
 	{
 		g_set_error (error,
 				PARSER_ERROR,
 				PARSER_ERROR_WRONG_VERSION,
 				"wrong language version '%s', expected '%s'", 
-				lang_version, expected_version);
+				lang_version, (gchar *)expected_version);
 	}
 
-	lang_id = xmlTextReaderGetAttribute (parser_state->reader, "id");
+	lang_id = xmlTextReaderGetAttribute (parser_state->reader, BAD_CAST "id");
 
-	parser_state->current_lang_id = g_strdup (lang_id);
+	parser_state->current_lang_id = g_strdup ((gchar *)lang_id);
 
 	*(parser_state->loaded_lang_ids) = g_slist_prepend (
 			*(parser_state->loaded_lang_ids), lang_id);
-
 
 	xmlFree (lang_version);
 }
@@ -1129,7 +1126,7 @@ expand_regex (ParserState *parser_state,
 		{
 			g_string_append (expanded_regex, "\n");
 		}
-		/* FIXME: if the regex is not exteded this doesn't works */
+		/* FIXME: if the regex is not extended this doesn't works */
 		g_string_append (expanded_regex, ")");
 	}
 	g_free (tmp_regex);
@@ -1141,8 +1138,9 @@ static void
 handle_define_regex_element (ParserState *parser_state,
 			     GError **error)
 {
-	gchar *id, *regex;
-	gchar *tmp;
+	gchar *id;
+	xmlChar *regex;
+	xmlChar *tmp;
 	gchar *expanded_regex;
 	int i;
 	gchar *regex_options[] = {"extended", "case-insensitive", "dot-match-all", NULL};
@@ -1157,30 +1155,30 @@ handle_define_regex_element (ParserState *parser_state,
 	if (parser_state->engine == NULL)
 		return;
 
-	tmp = xmlTextReaderGetAttribute (parser_state->reader, "id");
+	tmp = xmlTextReaderGetAttribute (parser_state->reader, BAD_CAST "id");
 
 	/* If the file is validated <define-regex> must have an id
 	 * attribute */
 	g_assert (tmp != NULL);
 
-	if (id_is_decorated (tmp, NULL))
-		id = g_strdup (tmp);
+	if (id_is_decorated ((gchar *)tmp, NULL))
+		id = g_strdup ((gchar *)tmp);
 	else
-		id = decorate_id (parser_state, tmp);
-	g_free (tmp);
+		id = decorate_id (parser_state, (gchar *)tmp);
+	xmlFree (tmp);
 	
 	flags = parser_state->regex_compile_flags;
 
 	for (i=0; regex_options[i] != NULL; i++)
 	{
 		tmp = xmlTextReaderGetAttribute (parser_state->reader,
-				regex_options[i]);
+				BAD_CAST regex_options[i]);
 		if (tmp != NULL)
 		{
 			flags = update_regex_flags (flags, regex_options[i], 
-					str_to_bool (tmp));
+					str_to_bool ((gchar *)tmp));
 		}
-		g_free (tmp);
+		xmlFree (tmp);
 	}
 
 
@@ -1195,21 +1193,21 @@ handle_define_regex_element (ParserState *parser_state,
 	}
 	else
 	{
-		regex = xmlStrdup ("");
+		regex = xmlStrdup (BAD_CAST "");
 	}
 
-	g_strstrip (regex);
-	expanded_regex = expand_regex (parser_state, regex, flags,
+	g_strstrip ((gchar *)regex);
+	expanded_regex = expand_regex (parser_state, (gchar *)regex, flags,
 			FALSE, TRUE, &tmp_error);
 
 	if (tmp_error == NULL)
 	{
-		DEBUG (g_message ("defined regex %s: \"%s\"", id, regex));
+		DEBUG (g_message ("defined regex %s: \"%s\"", id, (gchar *)regex));
 
 		g_hash_table_insert (parser_state->defined_regexes, id, expanded_regex);
 	}
 
-	g_free (regex);
+	xmlFree (regex);
 
 	if (tmp_error != NULL)
 	{
@@ -1222,7 +1220,7 @@ static void
 handle_default_regex_options_element (ParserState *parser_state,
 			     GError **error)
 {
-	gchar *options;
+	xmlChar *options;
 	int ret, type;
 
 	/* Return if an error is already set */
@@ -1242,17 +1240,18 @@ handle_default_regex_options_element (ParserState *parser_state,
 
 	options = xmlTextReaderValue (parser_state->reader);
 
-	g_strstrip (options);
+	g_strstrip ((gchar *)options);
 
-	if (!calc_regex_flags (options, &(parser_state->regex_compile_flags)))
+	if (!calc_regex_flags ((gchar *)options, &(parser_state->regex_compile_flags)))
 	{
 		g_set_error (error,
 				PARSER_ERROR,
 				PARSER_ERROR_MALFORMED_REGEX,
-				_ ("malformed regex options '%s'"), options);
+				_ ("malformed regex options '%s'"),
+				(gchar *)options);
 	}
 
-	g_free (options);
+	xmlFree (options);
 }
 
 static void
@@ -1411,44 +1410,46 @@ static void
 parse_style (ParserState *parser_state,
 		GError **error)
 {
-	gchar *id, *name, *map_to;
+	gchar *id;
+	xmlChar *name, *map_to;
 	gchar *mapped_style;
 
-	gchar *tmp, *lang_id = NULL;
+	xmlChar *tmp;
+	gchar *lang_id = NULL;
 
 	GError *tmp_error = NULL;
 
 	tmp = xmlTextReaderGetAttribute (parser_state->reader, 
-			"id");
+			BAD_CAST "id");
 
-	if (id_is_decorated (tmp, NULL))
-		id = g_strdup (tmp);
+	if (id_is_decorated ((gchar *) tmp, NULL))
+		id = g_strdup ((gchar *)tmp);
 	else
-		id = decorate_id (parser_state, tmp);
+		id = decorate_id (parser_state, (gchar *)tmp);
 
-	g_free (tmp);
+	xmlFree (tmp);
 
 	name = xmlTextReaderGetAttribute (parser_state->reader, 
-			"_name");
+			BAD_CAST "_name");
 	if (name != NULL)
 	{
-		tmp = g_strdup (dgettext (
+		tmp = xmlStrdup (BAD_CAST dgettext (
 					parser_state->language->priv->translation_domain,
-					name));
-		g_free (name);
+					(gchar *)name));
+		xmlFree (name);
 		name = tmp;
 	}
 	else
 	{
 		name = xmlTextReaderGetAttribute (parser_state->reader, 
-				"name");
+				BAD_CAST "name");
 	}
 
 	map_to = xmlTextReaderGetAttribute (parser_state->reader, 
-			"map-to");
+			BAD_CAST "map-to");
 
 	if (map_to != NULL && 
-			!id_is_decorated (map_to, &lang_id))
+			!id_is_decorated ((gchar *)map_to, &lang_id))
 	{
 		g_set_error (&tmp_error, 
 				PARSER_ERROR,
@@ -1480,14 +1481,14 @@ parse_style (ParserState *parser_state,
 	DEBUG (g_message ("style %s (%s) to be mapped to '%s'", 
 			name, id, map_to));
 
-	mapped_style = map_style (parser_state, id, map_to, &tmp_error);
+	mapped_style = map_style (parser_state, id, (gchar *)map_to, &tmp_error);
 
 	if (tmp_error == NULL && 
 			parser_state->tags != NULL)
 	{
 		GtkTextTag *tag;
 
-		tag = create_tag (parser_state, id, name, mapped_style, NULL);
+		tag = create_tag (parser_state, id, (gchar *)name, mapped_style, NULL);
 
 		if (tag != NULL)
 		{
@@ -1498,8 +1499,8 @@ parse_style (ParserState *parser_state,
 
 	g_free (lang_id);
 	g_free (id);
-	g_free (name);
-	g_free (map_to);
+	xmlFree (name);
+	xmlFree (map_to);
 	g_free (mapped_style);
 	
 	if (tmp_error != NULL)
@@ -1513,7 +1514,7 @@ static void
 handle_keyword_char_class_element (ParserState *parser_state,
 			     GError **error)
 {
-	gchar *char_class;
+	xmlChar *char_class;
 	int ret, type;
 
 	/* Return if an error is already set */
@@ -1533,7 +1534,7 @@ handle_keyword_char_class_element (ParserState *parser_state,
 
 	char_class = xmlTextReaderValue (parser_state->reader);
 
-	g_strstrip (char_class);
+	g_strstrip ((gchar *)char_class);
 
 	g_free (parser_state->opening_delimiter);
 	g_free (parser_state->closing_delimiter);
@@ -1543,7 +1544,7 @@ handle_keyword_char_class_element (ParserState *parser_state,
 	parser_state->closing_delimiter = g_strdup_printf ("(?<=%s)(?!%s)", 
 			char_class, char_class);
 
-	g_free (char_class);
+	xmlFree (char_class);
 }
 
 static void
@@ -1551,7 +1552,7 @@ handle_styles_element (ParserState *parser_state,
 			     GError **error)
 {
 	int ret, type;
-	const gchar *tag_name;
+	const xmlChar *tag_name;
 
 	GError *tmp_error = NULL;
 
@@ -1575,12 +1576,12 @@ handle_styles_element (ParserState *parser_state,
 		/* End at the closing </styles> tag */
 		if (tag_name != NULL && 
 				type == XML_READER_TYPE_END_ELEMENT &&
-				(strcmp ("styles", tag_name) == 0))
+				(xmlStrcmp (BAD_CAST "styles", tag_name) == 0))
 			break;
 
 		/* Skip nodes that aren't <style> elements */
 		if (tag_name == NULL || 
-				(strcmp ("style", tag_name) != 0))
+				(xmlStrcmp (BAD_CAST "style", tag_name) != 0))
 			continue;
 
 		/* Handle <style> elements */
@@ -1607,32 +1608,32 @@ element_start (ParserState *parser_state, GError **error)
 	/* TODO: check the namespace and ignore everithing is not in our namespace */
 	name = xmlTextReaderConstName (parser_state->reader);
 
-	if (strcmp ("context", name) == 0)
+	if (xmlStrcmp (BAD_CAST "context", name) == 0)
 	{
 		handle_context_element (parser_state,
 				&tmp_error);
 	}
-	else if (strcmp ("define-regex", name) == 0)
+	else if (xmlStrcmp (BAD_CAST "define-regex", name) == 0)
 	{
 		handle_define_regex_element (parser_state,
 				&tmp_error);
 	}
-	else if (strcmp ("language", name) == 0)
+	else if (xmlStrcmp (BAD_CAST "language", name) == 0)
 	{
 		handle_language_element (parser_state,
 				&tmp_error);
 	}
-	else if (strcmp ("styles", name) == 0)
+	else if (xmlStrcmp (BAD_CAST "styles", name) == 0)
 	{
 		handle_styles_element (parser_state,
 				&tmp_error);
 	}
-	else if (strcmp ("keyword-char-class", name) == 0)
+	else if (xmlStrcmp (BAD_CAST "keyword-char-class", name) == 0)
 	{
 		handle_keyword_char_class_element (parser_state,
 				&tmp_error);
 	}
-	else if (strcmp ("default-regex-options", name) == 0)
+	else if (xmlStrcmp (BAD_CAST "default-regex-options", name) == 0)
 	{
 		handle_default_regex_options_element (parser_state,
 				&tmp_error);
@@ -1653,7 +1654,7 @@ element_end (ParserState *parser_state, GError **error)
 
 	name = xmlTextReaderConstName (parser_state->reader);
 	
-	if (strcmp (name, "context") == 0) 
+	if (xmlStrcmp (name, BAD_CAST "context") == 0) 
 	{
 		/* pop the first element in the curr_parents list */
 		popped_id = g_queue_pop_head (parser_state->curr_parents);
@@ -1858,7 +1859,7 @@ _gtk_source_language_file_parse_version2 (GtkSourceLanguage       *language,
 
 	for (l = loaded_lang_ids; l != NULL; l = l->next)
 	{
-		g_free (l->data);
+		xmlFree (l->data);
 	}
 	g_slist_free (loaded_lang_ids);
 

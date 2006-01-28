@@ -116,8 +116,8 @@ parseLineComment (xmlNodePtr             cur,
 			
 		start_regex = xmlNodeListGetString (child->doc, child->xmlChildrenNode, 1);
 			
-		gtk_source_simple_engine_add_syntax_pattern (se, id, style,
-							     _gtk_source_language_strconvescape (start_regex), 
+		gtk_source_simple_engine_add_syntax_pattern (se, id, (gchar *)style,
+							     _gtk_source_language_strconvescape ((gchar *)start_regex), 
 							     "\n");
 
 		xmlFree (start_regex);
@@ -175,9 +175,9 @@ parseBlockComment (xmlNodePtr             cur,
 		return;
 	}
 
-	gtk_source_simple_engine_add_syntax_pattern (se, id, style,
-						     _gtk_source_language_strconvescape (start_regex), 
-						     _gtk_source_language_strconvescape (end_regex));
+	gtk_source_simple_engine_add_syntax_pattern (se, id, (gchar *)style,
+						     _gtk_source_language_strconvescape ((gchar *)start_regex), 
+						     _gtk_source_language_strconvescape ((gchar *)end_regex));
 	
 	xmlFree (start_regex);
 	xmlFree (end_regex);
@@ -197,7 +197,7 @@ parseString (xmlNodePtr             cur,
 
 	xmlNodePtr child;
 
-	prop = xmlGetProp (cur, "end-at-line-end");
+	prop = xmlGetProp (cur, BAD_CAST "end-at-line-end");
 	if (prop != NULL)
 	{
 		if (!xmlStrcasecmp (prop, (const xmlChar *)"TRUE") ||
@@ -245,22 +245,22 @@ parseString (xmlNodePtr             cur,
 		return;
 	}
 
-	_gtk_source_language_strconvescape (start_regex);
-	_gtk_source_language_strconvescape (end_regex);
+	_gtk_source_language_strconvescape ((gchar *)start_regex);
+	_gtk_source_language_strconvescape ((gchar *)end_regex);
 	
 	if (!end_at_line_end)
-		gtk_source_simple_engine_add_syntax_pattern (se, id, style,
-							     start_regex,
-							     end_regex);
+		gtk_source_simple_engine_add_syntax_pattern (se, id, (gchar *)style,
+							     (gchar *)start_regex,
+							     (gchar *)end_regex);
 	else
 	{
 		gchar *end;
 		
 		end = g_strdup_printf ("%s|\n", end_regex);
 
-		gtk_source_simple_engine_add_syntax_pattern (se, id, style,
-							     start_regex,
-							     end);
+		gtk_source_simple_engine_add_syntax_pattern (se, id, (gchar *)style,
+							     (gchar *)start_regex,
+							     (gchar *)end);
 		
 		g_free (end);
 	}
@@ -288,7 +288,7 @@ parseKeywordList (xmlNodePtr             cur,
 
 	xmlNodePtr child;
 
-	prop = xmlGetProp (cur, "case-sensitive");
+	prop = xmlGetProp (cur, BAD_CAST "case-sensitive");
 	if (prop != NULL)
 	{
 		if (!xmlStrcasecmp (prop, (const xmlChar *)"TRUE") ||
@@ -301,7 +301,7 @@ parseKeywordList (xmlNodePtr             cur,
 		xmlFree (prop);	
 	}
 
-	prop = xmlGetProp (cur, "match-empty-string-at-beginning");
+	prop = xmlGetProp (cur, BAD_CAST "match-empty-string-at-beginning");
 	if (prop != NULL)
 	{
 		if (!xmlStrcasecmp (prop, (const xmlChar *)"TRUE") ||
@@ -314,7 +314,7 @@ parseKeywordList (xmlNodePtr             cur,
 		xmlFree (prop);	
 	}
 
-	prop = xmlGetProp (cur, "match-empty-string-at-end");
+	prop = xmlGetProp (cur, BAD_CAST "match-empty-string-at-end");
 	if (prop != NULL)
 	{
 		if (!xmlStrcasecmp (prop, (const xmlChar *)"TRUE") ||
@@ -327,18 +327,18 @@ parseKeywordList (xmlNodePtr             cur,
 		xmlFree (prop);	
 	}
 
-	prop = xmlGetProp (cur, "beginning-regex");
+	prop = xmlGetProp (cur, BAD_CAST "beginning-regex");
 	if (prop != NULL)
 	{
-		beginning_regex = g_strdup (prop);
+		beginning_regex = g_strdup ((gchar *)prop);
 		
 		xmlFree (prop);	
 	}
 
-	prop = xmlGetProp (cur, "end-regex");
+	prop = xmlGetProp (cur, BAD_CAST "end-regex");
 	if (prop != NULL)
 	{
-		end_regex = g_strdup (prop);
+		end_regex = g_strdup ((gchar *)prop);
 		
 		xmlFree (prop);	
 	}
@@ -347,12 +347,13 @@ parseKeywordList (xmlNodePtr             cur,
 	
 	while (child != NULL)
 	{
-		if (!xmlStrcmp (child->name, (const xmlChar *)"keyword"))
+		if (!xmlStrcmp (child->name, BAD_CAST "keyword"))
 		{
 			xmlChar *keyword;
 			keyword = xmlNodeListGetString (child->doc, child->xmlChildrenNode, 1);
 			
-			list = g_slist_prepend (list, _gtk_source_language_strconvescape (keyword));
+			list = g_slist_prepend (list,
+						_gtk_source_language_strconvescape ((gchar *)keyword));
 		}
 
 		child = child->next;
@@ -385,7 +386,7 @@ parseKeywordList (xmlNodePtr             cur,
 	g_slist_foreach (list, (GFunc) xmlFree, NULL);
 	g_slist_free (list);
 
-	gtk_source_simple_engine_add_simple_pattern (se, id, style, regex);
+	gtk_source_simple_engine_add_simple_pattern (se, id, (gchar *)style, regex);
 
 	g_free (regex);
 }
@@ -406,8 +407,8 @@ parsePatternItem (xmlNodePtr             cur,
 			
 		regex = xmlNodeListGetString (child->doc, child->xmlChildrenNode, 1);
 			
-		gtk_source_simple_engine_add_simple_pattern (se, id, style,
-							     _gtk_source_language_strconvescape (regex));
+		gtk_source_simple_engine_add_simple_pattern (se, id, (gchar *)style,
+							     _gtk_source_language_strconvescape ((gchar *)regex));
 
 		xmlFree (regex);
 	}
@@ -464,9 +465,9 @@ parseSyntaxItem (xmlNodePtr             cur,
 		return;
 	}
 
-	gtk_source_simple_engine_add_syntax_pattern (se, id, style,
-						     _gtk_source_language_strconvescape (start_regex),
-						     _gtk_source_language_strconvescape (end_regex));
+	gtk_source_simple_engine_add_syntax_pattern (se, id, (gchar *)style,
+						     _gtk_source_language_strconvescape ((gchar *)start_regex),
+						     _gtk_source_language_strconvescape ((gchar *)end_regex));
 
 	xmlFree (start_regex);
 	xmlFree (end_regex);
@@ -483,15 +484,17 @@ parseTag (GtkSourceLanguage     *language,
 	xmlChar *style;
 	xmlChar *id;
 	
-	name = xmlGetProp (cur, "_name");
+	name = xmlGetProp (cur, BAD_CAST "_name");
 	if (name == NULL)
 	{
-		name = xmlGetProp (cur, "name");
+		name = xmlGetProp (cur, BAD_CAST "name");
 		id = xmlStrdup (name);
 	}
 	else
 	{
-		xmlChar *tmp = xmlStrdup (dgettext (language->priv->translation_domain, name));
+		xmlChar *tmp = xmlStrdup (BAD_CAST dgettext (
+							language->priv->translation_domain,
+							(gchar *)name));
 		id = name;
 		name = tmp;
 	}
@@ -501,39 +504,39 @@ parseTag (GtkSourceLanguage     *language,
 		return;
 	}
 
-	style = xmlGetProp (cur, "style");
+	style = xmlGetProp (cur, BAD_CAST "style");
 
 	if (style == NULL)
 	{
 		/* FIXME */
-		style = xmlStrdup ("Normal");
+		style = xmlStrdup (BAD_CAST "Normal");
 	}
 	
 	if (engine)
 	{
 		if (!xmlStrcmp (cur->name, (const xmlChar *)"line-comment"))
 		{
-			parseLineComment (cur, id, style, engine);
+			parseLineComment (cur, (gchar *)id, style, engine);
 		}
 		else if (!xmlStrcmp (cur->name, (const xmlChar *)"block-comment"))
 		{
-			parseBlockComment (cur, id, style, engine);		
+			parseBlockComment (cur, (gchar *)id, style, engine);		
 		}
 		else if (!xmlStrcmp (cur->name, (const xmlChar *)"string"))
 		{
-			parseString (cur, id, style, engine);
+			parseString (cur, (gchar *)id, style, engine);
 		}
 		else if (!xmlStrcmp (cur->name, (const xmlChar *)"keyword-list"))
 		{
-			parseKeywordList (cur, id, style, engine);
+			parseKeywordList (cur, (gchar *)id, style, engine);
 		}
 		else if (!xmlStrcmp (cur->name, (const xmlChar *)"pattern-item"))
 		{
-			parsePatternItem (cur, id, style, engine);
+			parsePatternItem (cur, (gchar *)id, style, engine);
 		}
 		else if (!xmlStrcmp (cur->name, (const xmlChar *)"syntax-item"))
 		{
-			parseSyntaxItem (cur, id, style, engine);
+			parseSyntaxItem (cur, (gchar *)id, style, engine);
 		}
 		else
 		{
@@ -543,18 +546,18 @@ parseTag (GtkSourceLanguage     *language,
 	
 	if (populate_styles_table)
 		g_hash_table_insert (language->priv->tag_id_to_style_name, 
-				     g_strdup (id), 
-				     g_strdup (style));
+				     g_strdup ((gchar *)id), 
+				     g_strdup ((gchar *)style));
 
 	if (tags)
 	{
 		GtkTextTag *tag;
 		GtkSourceTagStyle *ts;
 
-		tag = gtk_source_tag_new (id, name);
+		tag = gtk_source_tag_new ((gchar *)id, (gchar *)name);
 		*tags = g_slist_prepend (*tags, tag);
 
-		ts = gtk_source_language_get_tag_style (language, id);
+		ts = gtk_source_language_get_tag_style (language, (gchar *)id);
 
 		if (ts != NULL)
 		{
@@ -622,7 +625,7 @@ _gtk_source_language_file_parse_version1 (GtkSourceLanguage     *language,
 			gunichar esc_char;
 			
 			escape = xmlNodeListGetString (doc, cur->xmlChildrenNode, 1);
-			esc_char = g_utf8_get_char_validated (escape, -1);
+			esc_char = g_utf8_get_char_validated ((gchar *)escape, -1);
 			if (esc_char < 0)
 			{
 				g_warning ("Invalid (non UTF8) escape character in file '%s'",

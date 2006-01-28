@@ -1,5 +1,15 @@
 2006-01-28  Marco Barisione  <barisione@gmail.com>
 
+	* gtksourceview/gtksourcelanguage-parser-1.c,
+	gtksourceview/gtksourcelanguage-parser-2.c,
+	gtksourceview/gtksourcelanguage-private.h,
+	gtksourceview/gtksourcelanguage.c: fixes gcc 4.01 compiler warnings on
+	different signedness (bug #309663) and make sure that strings
+	allocated by libxml are freed using xmlFree()
+	* configure.in: do not pass -Wno-pointer-sign to gcc 4
+
+2006-01-28  Marco Barisione  <barisione@gmail.com>
+
 	Merged the changes from HEAD into new_hl_engine
 
 2006-01-25  Marco Barisione  <barisione@gmail.com>

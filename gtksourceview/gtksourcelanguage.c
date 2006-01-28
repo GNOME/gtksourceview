@@ -207,7 +207,7 @@ gtk_source_language_finalize (GObject *object)
 		xmlFree (lang->priv->translation_domain);
 		xmlFree (lang->priv->name);
 		xmlFree (lang->priv->section);
-		g_free  (lang->priv->id);
+		xmlFree (lang->priv->id);
 
 		slist_deep_free (lang->priv->mime_types);
 
@@ -286,7 +286,7 @@ process_language_node (xmlTextReaderPtr reader, const gchar *filename)
 	{
 		lang->priv->name = (gchar *)xmlTextReaderGetAttribute (reader,
 					BAD_CAST "name");
-		untranslated_name = xmlStrdup (lang->priv->name);
+		untranslated_name = xmlStrdup (BAD_CAST lang->priv->name);
 		if (lang->priv->name == NULL)
 		{
 			g_warning ("Impossible to get language name from file '%s'",
@@ -307,15 +307,15 @@ process_language_node (xmlTextReaderPtr reader, const gchar *filename)
 					(gchar *)tmp));
 	}
 
-	tmp = xmlTextReaderGetAttribute (reader, "id");
+	tmp = xmlTextReaderGetAttribute (reader, BAD_CAST "id");
 	if (tmp != NULL)
 	{
-		lang->priv->id = tmp;
+		lang->priv->id = (gchar *) tmp;
 		xmlFree (untranslated_name);
 	}
 	else
 	{
-		lang->priv->id = untranslated_name;
+		lang->priv->id = (gchar *) untranslated_name;
 	}
 
 	tmp = xmlTextReaderGetAttribute (reader, BAD_CAST "_section");
