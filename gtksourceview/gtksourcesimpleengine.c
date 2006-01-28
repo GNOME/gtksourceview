@@ -732,9 +732,9 @@ gtk_source_simple_engine_get_pattern_entries (GtkSourceSimpleEngine *se)
 static gboolean
 idle_worker (GtkSourceSimpleEngine *se)
 {
+	GtkTextRegionIterator reg_iter;
 	GtkTextIter start_iter, end_iter, last_end_iter;
 	GtkSourceBuffer *source_buffer;
-	gint i;
 
 	g_assert (se->priv->buffer);
 	source_buffer = se->priv->buffer;
@@ -747,10 +747,17 @@ idle_worker (GtkSourceSimpleEngine *se)
 	if (se->priv->highlight)
 	{
 		/* Now we highlight subregions requested by the views */
-		gtk_text_buffer_get_iter_at_offset (GTK_TEXT_BUFFER (source_buffer), &last_end_iter, 0);
-		for (i = 0; i < gtk_text_region_subregions (se->priv->highlight_requests); i++) {
-			gtk_text_region_nth_subregion (se->priv->highlight_requests,
-						       i, &start_iter, &end_iter);
+		gtk_text_buffer_get_iter_at_offset (GTK_TEXT_BUFFER (se->priv->buffer),
+				&last_end_iter, 0);
+
+		gtk_text_region_get_iterator (se->priv->highlight_requests,
+				&reg_iter, 0);
+
+		while (!gtk_text_region_iterator_is_end (&reg_iter))
+		{
+			gtk_text_region_iterator_get_subregion (&reg_iter,
+				&start_iter,
+				&end_iter);
 
 			if (se->priv->worker_last_offset < 0 ||
 			    se->priv->worker_last_offset >= gtk_text_iter_get_offset (&end_iter)) {
@@ -765,15 +772,16 @@ idle_worker (GtkSourceSimpleEngine *se)
 				 * analyzed text */
 				break;
 			}
+
+			gtk_text_region_iterator_next (&reg_iter);
 		}
+
 		gtk_text_buffer_get_iter_at_offset (GTK_TEXT_BUFFER (se->priv->buffer), &start_iter, 0);
 
 		if (!gtk_text_iter_equal (&start_iter, &last_end_iter)) {
 			/* remove already highlighted subregions from requests */
-			gtk_text_region_substract (se->priv->highlight_requests,
-						   &start_iter, &last_end_iter);
-			gtk_text_region_clear_zero_length_subregions (
-				se->priv->highlight_requests);
+			gtk_text_region_subtract (se->priv->highlight_requests,
+						  &start_iter, &last_end_iter);
 		}
 	}
 	
@@ -1334,10 +1342,24 @@ build_syntax_regions_table (GtkSourceSimpleEngine *se,
 		
 		if (head_length > 0) {
 			/* update profile information only if we didn't use the saved data */
+			gdouble et;
+			gint batch_size;
+
+			/* elapsed time in milliseconds */
+			et = 1000 * g_timer_elapsed (timer, NULL);
+
+			/* make sure the elapsed time is never 0.
+			 * This happens in particular with the GTimer
+			 * implementation on win32 which is not accurate.
+			 * 1 ms seems to work well enough as a fallback.
+			 */
+			et = et != 0 ? et : 1.0;
+
+			batch_size = MIN (head_length * WORKER_TIME_SLICE / et,
+					  G_MAXINT);
+
 			se->priv->worker_batch_size =
-				MAX (head_length * WORKER_TIME_SLICE
-				     / (g_timer_elapsed (timer, NULL) * 1000),
-				     MINIMUM_WORKER_BATCH);
+				MAX (batch_size, MINIMUM_WORKER_BATCH);
 		}
 	}
 		
@@ -1957,20 +1979,27 @@ ensure_highlighted (GtkSourceSimpleEngine *se,
 	/* get the subregions not yet highlighted */
 	region = gtk_text_region_intersect (se->priv->refresh_region, start, end);
 	if (region) {
-		GtkTextIter iter1, iter2;
-		gint i;
+		GtkTextRegionIterator reg_iter;
 		
+		gtk_text_region_get_iterator (region, &reg_iter, 0);
+
 		/* highlight all subregions from the intersection.
                    hopefully this will only be one subregion */
-		for (i = 0; i < gtk_text_region_subregions (region); i++) {
-			gtk_text_region_nth_subregion (region, i,
-						       &iter1, &iter2);
-			highlight_region (se, &iter1, &iter2);
+		while (!gtk_text_region_iterator_is_end (&reg_iter))
+		{
+			GtkTextIter s, e;
+
+			gtk_text_region_iterator_get_subregion (&reg_iter,
+								&s, &e);
+			highlight_region (se, &s, &e);
+
+			gtk_text_region_iterator_next (&reg_iter);
 		}
+
 		gtk_text_region_destroy (region, TRUE);
+
 		/* remove the just highlighted region */
-		gtk_text_region_substract (se->priv->refresh_region, start, end);
-		gtk_text_region_clear_zero_length_subregions (se->priv->refresh_region);
+		gtk_text_region_subtract (se->priv->refresh_region, start, end);
 	}
 }
 

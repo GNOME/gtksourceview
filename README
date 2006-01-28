@@ -1,7 +1,7 @@
 General Information
 ===================
 
-This is based on version 1.2.1 of GtkSourceView. 
+This is version 1.5.6 of GtkSourceView. 
 
 GtkSourceView is a text widget that extends the standard gtk+ 2.x 
 text widget GtkTextView.
@@ -22,12 +22,12 @@ mailing list.  You can subscribe and get further information here:
 Installation
 ============
 
-GtkSourceView requires GTK+-2.4.x, libxml2 2.5.x and libgnomeprint 2.8.x.
+GtkSourceView requires GTK+-2.8.x, libxml2 2.5.x and libgnomeprint 2.8.x.
 
 Simple install procedure:
 
-  % gzip -cd gtksourceview-1.2.1.tar.gz | tar xvf -    # unpack the sources
-  % cd gtksourceview-1.2.1		   # change to the toplevel directory
+  % gzip -cd gtksourceview-1.5.6.tar.gz | tar xvf -    # unpack the sources
+  % cd gtksourceview-1.5.6		   # change to the toplevel directory
   % ./configure				   # run the `configure' script
   % make				   # build gtksourceview
   [ Become root if necessary ]

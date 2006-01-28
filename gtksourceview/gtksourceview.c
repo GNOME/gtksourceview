@@ -34,6 +34,7 @@
 #include <pango/pango-tabs.h>
 
 #include "gtksourceview-i18n.h"
+
 #include "gtksourceview-marshal.h"
 #include "gtksourceview.h"
 
@@ -42,12 +43,22 @@
 */
 #undef ENABLE_DEBUG
 
+/*
+#define ENABLE_PROFILE
+*/
+#undef ENABLE_PROFILE
+
 #ifdef ENABLE_DEBUG
 #define DEBUG(x) (x)
 #else
 #define DEBUG(x)
 #endif
 
+#ifdef ENABLE_PROFILE
+#define PROFILE(x) (x)
+#else
+#define PROFILE(x)
+#endif
 
 #define COMPOSITE_ALPHA                 225
 #define GUTTER_PIXMAP 			16
@@ -143,8 +154,10 @@ static void 	gtk_source_view_get_lines 		(GtkTextView       *text_view,
 				       			 gint              *countp);
 static gint     gtk_source_view_expose 			(GtkWidget         *widget,
 							 GdkEventExpose    *event);
-static gboolean	key_press_event				(GtkWidget         *widget, 
+static gboolean	gtk_source_view_key_press_event		(GtkWidget         *widget,
 							 GdkEventKey       *event);
+static gboolean	gtk_source_view_button_press_event	(GtkWidget         *widget,
+							 GdkEventButton    *event);
 static void 	view_dnd_drop 				(GtkTextView       *view, 
 							 GdkDragContext    *context,
 							 gint               x,
@@ -189,7 +202,8 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	object_class->get_property = gtk_source_view_get_property;
 	object_class->set_property = gtk_source_view_set_property;
 
-	widget_class->key_press_event = key_press_event;
+	widget_class->key_press_event = gtk_source_view_key_press_event;
+	widget_class->button_press_event = gtk_source_view_button_press_event;
 	widget_class->expose_event = gtk_source_view_expose;
 	widget_class->style_set = gtk_source_view_style_set;
 
@@ -263,7 +277,7 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 					 g_param_spec_boolean ("smart_home_end",
 							       _("Use smart home/end"),
 							       _("HOME and END keys move to first/last "
-								 "characters on line first before going "
+								 "non whitespace characters on line before going "
 								 "to the start/end of the line"),
 							       TRUE,
 							       G_PARAM_READWRITE));
@@ -275,6 +289,93 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 							       _("Whether to highlight the current line"),
 							       FALSE,
 							       G_PARAM_READWRITE));
+
+	/**
+	 * GtkSourceView:right-margin-line-alpha:
+	 *
+	 * The ::right-margin-line-alpha determines the alpha component with
+	 * which the vertical line will be drawn. 0 means it is fully transparent
+	 * (invisible). 255 means it has full opacity (text under the line won't
+	 * be visible).
+	 *
+	 * Since: 1.6
+	 */
+	gtk_widget_class_install_style_property (widget_class,
+		g_param_spec_int ("right-margin-line-alpha",
+				  _("Margin Line Alpha"),
+				  _("Transparency of the margin line"),
+				  0,
+				  255,
+				  40,
+				  G_PARAM_READABLE));
+
+	/**
+	 * GtkSourceView:right-margin-line-color:
+	 *
+	 * The ::right-margin-line-color property contains the color with
+	 * which the right margin line (vertical line indicating the right
+	 * margin) will be drawn.
+	 *
+	 * Since: 1.6
+	 */
+	gtk_widget_class_install_style_property (widget_class,
+		g_param_spec_boxed ("right-margin-line-color",
+				    _("Margin Line Color"),
+				    _("Color to use for the right margin line"),
+				    GDK_TYPE_COLOR,
+				    G_PARAM_READABLE));
+
+	/**
+	 * GtkSourceView:right-margin-overlay-toggle:
+	 *
+	 * The ::right-margin-overlay-toggle property determines whether the
+	 * widget will draw a transparent overlay on top of the area on the
+	 * right side of the right margin line. On some systems, this has a
+	 * noticable performance impact, so this property is FALSE by default.
+	 *
+	 * Since: 1.6
+	 */
+	gtk_widget_class_install_style_property (widget_class,
+		g_param_spec_string ("right-margin-overlay-toggle",
+				     _("Margin Overlay Toggle"),
+				     _("Whether to draw the right margin overlay"),
+				     "FALSE",
+				     G_PARAM_READABLE));
+
+	/**
+	 * GtkSourceView:right-margin-overlay-alpha:
+	 *
+	 * The ::right-margin-overlay-alpha determines the alpha component with
+	 * which the overlay will be drawn. 0 means it is fully transparent
+	 * (invisible). 255 means it has full opacity (text under the overlay
+	 * won't be visible).
+	 *
+	 * Since: 1.6
+	 */
+	gtk_widget_class_install_style_property (widget_class,
+		g_param_spec_int ("right-margin-overlay-alpha",
+				  _("Margin Overlay Alpha"),
+				  _("Transparency of the margin overlay"),
+				  0,
+				  255,
+				  15,
+				  G_PARAM_READABLE));
+
+	/**
+	 * GtkSourceView:right-margin-overlay-color:
+	 *
+	 * The ::right-margin-overlay-color property contains the color with
+	 * which the right margin overlay will be drawn. Setting this property
+	 * will only have an effect if ::right-margin-overlay-toggle is TRUE.
+	 *
+	 * Since: 1.6
+	 */
+	gtk_widget_class_install_style_property (widget_class,
+		g_param_spec_boxed ("right-margin-overlay-color",
+				    _("Margin Overlay Color"),
+				    _("Color to use for drawing the margin overlay"),
+				    GDK_TYPE_COLOR,
+				    G_PARAM_READABLE));
 
 	signals [UNDO] =
 		g_signal_new ("undo",
@@ -1284,16 +1385,39 @@ gtk_source_view_expose (GtkWidget      *widget,
 					    redraw_rect.width,
 					    height);
 		}
+		
+		/* Have GtkTextView draw the text first. */
+		if (GTK_WIDGET_CLASS (parent_class)->expose_event)
+			event_handled = 
+				(* GTK_WIDGET_CLASS (parent_class)->expose_event)
+				(widget, event);
 
+		/* Draw the right margin vertical line + overlay. */
 		if (view->priv->show_margin && 
 		    (event->window == gtk_text_view_get_window (text_view, GTK_TEXT_WINDOW_TEXT)))
 		{
 			GdkRectangle visible_rect;
 			GdkRectangle redraw_rect;
+			cairo_t *cr;
+			double x;
+			GdkColor *line_color;
+			gchar *toggle;
+			guchar alpha;
+
+#ifdef ENABLE_PROFILE
+			static GTimer *timer = NULL;
+#endif
 
 			if (view->priv->cached_margin_width < 0)
 				view->priv->cached_margin_width =
 					calculate_real_tab_width (view, view->priv->margin, '_');
+
+#ifdef ENABLE_PROFILE
+			if (timer == NULL)
+				timer = g_timer_new ();
+				
+			g_timer_start (timer);
+#endif 
 		
 			gtk_text_view_get_visible_rect (text_view, &visible_rect);
 			
@@ -1307,25 +1431,81 @@ gtk_source_view_expose (GtkWidget      *widget,
 			redraw_rect.width = visible_rect.width;
 			redraw_rect.height = visible_rect.height;
 
-			gtk_paint_vline (widget->style, 
-					 event->window, 
-					 GTK_WIDGET_STATE (widget), 
-					 &redraw_rect, 
-					 widget,
-					 "margin", 
-					 redraw_rect.y, 
-					 redraw_rect.y + redraw_rect.height, 
-					 view->priv->cached_margin_width -
-					 visible_rect.x + redraw_rect.x +
-					 gtk_text_view_get_left_margin (text_view));
+			cr = gdk_cairo_create (gtk_text_view_get_window (text_view, GTK_TEXT_WINDOW_TEXT));
+			
+			/* Set a clip region for the expose event. */
+			cairo_rectangle (cr, event->area.x, event->area.y,
+					 event->area.width, event->area.height);
+			cairo_clip (cr);
+
+			/* Offset with 0.5 is needed for a sharp line. */
+			x = view->priv->cached_margin_width -
+				visible_rect.x + redraw_rect.x + 0.5 +
+				gtk_text_view_get_left_margin (text_view);
+
+			/* Default line width is 2.0 which is too wide. */
+			cairo_set_line_width (cr, 1.0);
+
+			cairo_move_to (cr, x, redraw_rect.y);
+			cairo_line_to (cr, x, redraw_rect.y + redraw_rect.height);
+			
+			gtk_widget_style_get (widget,
+					      "right-margin-line-alpha", &alpha,
+					      "right-margin-line-color", &line_color,
+					      "right-margin-overlay-toggle", &toggle,
+					      NULL);
+
+			if (!line_color)
+				line_color = gdk_color_copy (&widget->style->text[GTK_STATE_NORMAL]);
+			
+			cairo_set_source_rgba (cr,
+					       line_color->red / 65535.,
+					       line_color->green / 65535.,
+					       line_color->blue / 65535.,
+					       alpha / 255.);
+			gdk_color_free (line_color);
+			cairo_stroke (cr);
+			
+			/* g_strstrip doesn't allocate a new string. */
+			toggle = g_strstrip (toggle);
+			
+			/* Only draw the overlay when the theme explicitly permits it. */
+			if (g_ascii_strcasecmp ("TRUE", toggle) == 0 ||
+			    strcmp ("1", toggle) == 0)
+			{
+				GdkColor *overlay_color;
+				
+				gtk_widget_style_get (widget,
+						      "right-margin-overlay-alpha", &alpha,
+						      "right-margin-overlay-color", &overlay_color,
+						      NULL);
+
+				if (!overlay_color)
+					overlay_color = gdk_color_copy (&widget->style->text[GTK_STATE_NORMAL]);
+
+				/* Draw the rectangle next to the line (x+.5). */
+				cairo_rectangle (cr,
+						 x + .5,
+						 redraw_rect.y,
+						 redraw_rect.width - x - .5,
+						 redraw_rect.y + redraw_rect.height);
+				cairo_set_source_rgba (cr,
+						       overlay_color->red / 65535.,
+						       overlay_color->green / 65535.,
+						       overlay_color->blue / 65535.,
+						       alpha / 255.);
+				gdk_color_free (overlay_color);
+				cairo_fill (cr);
+			}
+
+			g_free (toggle);
+			cairo_destroy (cr);
+			
+			PROFILE ({
+				g_timer_stop (timer);
+				g_message ("Time to draw the margin: %g (sec * 1000)", g_timer_elapsed (timer, NULL) * 1000);
+			});
 		}
-
-		
-		if (GTK_WIDGET_CLASS (parent_class)->expose_event)
-			event_handled = 
-				(* GTK_WIDGET_CLASS (parent_class)->expose_event)
-				(widget, event);
-
 	}
 	
 	return event_handled;	
@@ -1727,7 +1907,7 @@ gtk_source_view_get_marker_pixbuf (GtkSourceView *view,
 	return pixbuf;
 }
 
-static gchar*
+static gchar *
 compute_indentation (GtkSourceView *view, 
 		     GtkTextIter   *cur)
 {
@@ -1765,7 +1945,7 @@ compute_indentation (GtkSourceView *view,
 }
 
 static gboolean
-key_press_event (GtkWidget *widget, GdkEventKey *event)
+gtk_source_view_key_press_event (GtkWidget *widget, GdkEventKey *event)
 {
 	GtkSourceView *view;
 	GtkTextBuffer *buf;
@@ -1781,11 +1961,12 @@ key_press_event (GtkWidget *widget, GdkEventKey *event)
 	mark = gtk_text_buffer_get_insert (buf);
 	gtk_text_buffer_get_iter_at_mark (buf, &cur, mark);
 
-	if ((key == GDK_Return) && view->priv->auto_indent)
+	if ((key == GDK_Return) && !(event->state & GDK_SHIFT_MASK) && view->priv->auto_indent)
 	{
 		/* Auto-indent means that when you press ENTER at the end of a
 		 * line, the new line is automatically indented at the same
 		 * level as the previous line.
+		 * SHIFT+ENTER allows to avoid autoindentation.
 		 */
 		gchar *indent = NULL;
 
@@ -1844,6 +2025,103 @@ key_press_event (GtkWidget *widget, GdkEventKey *event)
 	}
 
 	return	(* GTK_WIDGET_CLASS (parent_class)->key_press_event) (widget, event);
+}
+
+static void
+extend_selection_to_line (GtkTextBuffer *buf, GtkTextIter *line_start)
+{
+	GtkTextIter start;
+	GtkTextIter end;
+	GtkTextIter line_end;
+
+	gtk_text_buffer_get_selection_bounds (buf, &start, &end);
+
+	line_end = *line_start;
+	gtk_text_iter_forward_to_line_end (&line_end);
+
+	if (gtk_text_iter_compare (&start, line_start) < 0)
+	{
+		gtk_text_buffer_select_range (buf, &start, &line_end);
+	}
+	else if (gtk_text_iter_compare (&end, &line_end) < 0)
+	{
+		/* if the selection is in this line, extend
+		 * the selection to the whole line */
+		gtk_text_buffer_select_range (buf, &line_end, line_start);
+	}
+	else
+	{
+		gtk_text_buffer_select_range (buf, &end, line_start);
+	}
+}
+
+static void
+select_line (GtkTextBuffer *buf, GtkTextIter *line_start)
+{
+	GtkTextIter iter;
+
+	iter = *line_start;
+
+	if (!gtk_text_iter_ends_line (&iter))
+		gtk_text_iter_forward_to_line_end (&iter);
+
+	/* Select the line, put the cursor at the end of the line */
+	gtk_text_buffer_select_range (buf, &iter, line_start);
+}
+
+static gboolean
+gtk_source_view_button_press_event (GtkWidget *widget, GdkEventButton *event)
+{
+	GtkSourceView *view;
+	GtkTextBuffer *buf;
+	int y_buf;
+	GtkTextIter line_start;
+
+	view = GTK_SOURCE_VIEW (widget);
+	buf = gtk_text_view_get_buffer (GTK_TEXT_VIEW (widget));
+
+	if ((event->button == 1) &&
+	    view->priv->show_line_numbers &&
+	    (event->window == gtk_text_view_get_window (GTK_TEXT_VIEW (view),
+						       GTK_TEXT_WINDOW_LEFT)))
+	{
+		gtk_text_view_window_to_buffer_coords (GTK_TEXT_VIEW (view),
+						       GTK_TEXT_WINDOW_LEFT,
+						       event->x, event->y,
+						       NULL, &y_buf);
+
+		gtk_text_view_get_line_at_y (GTK_TEXT_VIEW (view),
+					     &line_start,
+					     y_buf,
+					     NULL);
+	
+		if (event->type == GDK_BUTTON_PRESS)
+		{
+			if ((event->state & GDK_CONTROL_MASK) != 0)
+			{
+				/* Single click + Ctrl -> select the line */
+				select_line (buf, &line_start);
+			}
+			else if ((event->state & GDK_SHIFT_MASK) != 0)
+			{
+				/* Single click + Shift -> extended current
+				   selection to include the clicked line */
+				extend_selection_to_line (buf, &line_start);
+			}
+			else
+			{
+				gtk_text_buffer_place_cursor (buf, &line_start);
+			}
+		}
+		else if (event->type == GDK_2BUTTON_PRESS)
+		{
+			select_line (buf, &line_start);
+		}
+
+		return TRUE;
+	}
+
+	return GTK_WIDGET_CLASS (parent_class)->button_press_event (widget, event);
 }
 
 /**

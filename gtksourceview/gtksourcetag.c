@@ -28,6 +28,7 @@
 #include <string.h>
 
 #include "gtksourceview-i18n.h"
+
 #include "gtksourcetag.h"
 
 struct _GtkSourceTag 
@@ -116,7 +117,7 @@ gtk_source_tag_class_init (GtkSourceTagClass *klass)
         	                         PROP_TAG_STYLE,
                                    	 g_param_spec_boxed ("tag_style",
                                                        _("Tag style"),
-                                                       _("The style associated to the source tag"),
+                                                       _("The style associated with the source tag"),
                                                        GTK_TYPE_SOURCE_TAG_STYLE,
                                                        G_PARAM_READABLE | G_PARAM_WRITABLE));
 

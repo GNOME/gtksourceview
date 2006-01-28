@@ -36,15 +36,15 @@
 		<start-regex>#</start-regex>
 	</line-comment>
 	
-	<pattern-item _name = "Punctuators" style = "Others">
+	<pattern-item _name = "Punctuator" style = "Others">
 		<regex>[();\|&amp;/]</regex>
 	</pattern-item>
 	
-	<pattern-item _name = "Functions" style = "Function">
+	<pattern-item _name = "Function" style = "Function">
 		<regex>\b[a-zA-Z_][a-zA-Z0-9_]+[ \t]*\(\)</regex>
 	</pattern-item>
 	
-	<keyword-list _name = "Redirections" style = "Others" match-empty-string-at-beginning = "FALSE" match-empty-string-at-end = "FALSE">
+	<keyword-list _name = "Redirection" style = "Others" match-empty-string-at-beginning = "FALSE" match-empty-string-at-end = "FALSE">
 		<keyword>&gt;&amp;+[0-9]</keyword>
 		<keyword>\b[0-9]+&gt;&amp;</keyword>
 		<keyword>\b[0-9]+&gt;&amp;+[0-9]</keyword>
@@ -59,7 +59,7 @@
 		<keyword>\b[0-9]+&lt;&lt;</keyword>
 	</keyword-list>
 	
-	<keyword-list _name = "Operators" style = "Function" match-empty-string-at-beginning = "FALSE" match-empty-string-at-end = "FALSE">
+	<keyword-list _name = "Operator" style = "Function" match-empty-string-at-beginning = "FALSE" match-empty-string-at-end = "FALSE">
 		<keyword>\-a\b</keyword>
 		<keyword>\-b\b</keyword>
 		<keyword>\-c\b</keyword>
@@ -106,7 +106,7 @@
 		<keyword>[a-zA-Z_][a-zA-Z0-9_]*\=</keyword>
 	</keyword-list>
 	
-	<keyword-list _name = "Built-in Commands" style = "Keyword" case-sensitive="TRUE" match-empty-string-at-beginning = "FALSE" match-empty-string-at-end = "FALSE">	
+	<keyword-list _name = "Built-in Command" style = "Keyword" case-sensitive="TRUE" match-empty-string-at-beginning = "FALSE" match-empty-string-at-end = "FALSE">	
 		<keyword>\!</keyword>
 		<keyword>\{</keyword>
 		<keyword>\}</keyword>
@@ -186,7 +186,7 @@
 		<keyword>\bwait\b</keyword>
 	</keyword-list>
 
-	<keyword-list _name = "Common Commands" style = "Others" case-sensitive="TRUE">
+	<keyword-list _name = "Common Command" style = "Others" case-sensitive="TRUE">
 		<keyword>cp</keyword>
 		<keyword>rm</keyword>
 		<keyword>mv</keyword>

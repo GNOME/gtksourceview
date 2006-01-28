@@ -1,3 +1,97 @@
+News in 1.5.6
+-------------
+
+* fix .lang files lookup from xdg directories.
+
+News in 1.5.5
+-------------
+
+* Requires gtk+ 2.8.x
+* Fixed bug #309663 – gcc 4.01 compiler treats pointer target
+  warnings as errors (Marco Barisione)
+* Added scheme.lang (Paolo Borelli)
+* Allow to specify both 'u' and 'r' modifiers to python strings at 
+  the same time (Steve Frécinaux)
+* Add iterators to text region and use them (Paolo Borelli and Paolo Maggi)
+* Use cairo to draw the right margin (Jeroen Zwartepoorte)
+* Fixed bug #321252 - Clicking gedit line numbers should jump to line (Paolo 
+  Borelli and Paolo Maggi)
+* Fixed bug 312241 – .lang files in homedir take priority over $prefix (Guillaume
+  Desmottes and Paolo Borelli)
+* Fixed bug #318577 – win32 port (Tor Lillqvist, Paolo Borelli and Paolo Maggi) 
+* Updated translations
+
+News in 1.5.4
+-------------
+
+* Fixed bug #170604 – syntax for GNU Octave
+
+News in 1.5.3
+-------------
+
+* Fixed bug #321898 - fix for division by zero bug (not checking 
+  g_timer_elapsed() return value)
+* Fixed bug #323999 - perl inline pod not properly highlighted
+* Fixed bug #323750 - CSS highlighting missing "font" property
+* Fixed bug #316612 - Ruby coloration problems
+* Fixed bug #316587 - PHP syntax file should be in the "Scripting" section 
+  instead of "Sources")
+* Fixed bug #316330 - Ada Syntax highlighting is incorrect
+* Fixed bug #168090 - Recognise fortran line comments better
+* Added a --disable-gnomeprint configuration option
+* Fixed i18n problem introduced in 1.5.2
+* Added changelog.lang
+* Updated translations
+
+News in 1.5.2
+-------------
+
+* Fix an off by one error in Lang directory lookup
+
+News in 1.5.1
+-------------
+
+* Lang files are now loaded from the locations specified in XDG_DATA_DIRS
+* Bug Fixes
+* New and updated translations.
+
+News in 1.4.2
+-------------
+
+* New and updated translations.
+
+News in 1.4.1
+-------------
+
+* Include the html documentation in the tarball.
+* Updated translations.
+
+News in 1.4.0
+-------------
+
+* Bug fixes (Paolo Maggi and Paolo Borelli)
+* New and updated translations.
+
+News in 1.3.93
+--------------
+
+* Bug fixes (Paolo Maggi and Paolo Borelli)
+* New and updated translations.
+
+News in 1.3.92
+--------------
+
+* New and updated translations.
+
+News in 1.3.91
+--------------
+
+* use G_NORMALIZE_NFD in caseless search, part of bug #303239 (Paolo Maggi)
+* allow GtkSourceView derivatives to override the key press (Paolo Borelli)
+* Makefile.lang (Ricardo Lenz, Paolo Borelli)
+* Updates to SQL, C#, javascript and XML language specifications.
+* New and updated translations.
+
 News in 1.2.1
 -------------
 

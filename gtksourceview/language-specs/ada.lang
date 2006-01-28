@@ -10,13 +10,12 @@
 		<start-regex>&quot;</start-regex>
 		<end-regex>&quot;</end-regex>
 	</string>
+	
+	<pattern-item _name = "Character Constant" style = "String">
+		<regex>&apos;.&apos;</regex>
+	</pattern-item>
 
-	<string _name = "Character Constant" style = "String" end-at-line-end = "TRUE">
-		<start-regex>&apos;</start-regex>
-		<end-regex>&apos;</end-regex>
-	</string>
-
-	<keyword-list _name = "Preprocessor Keywords" style = "Preprocessor" case-sensitive="FALSE">
+	<keyword-list _name = "Preprocessor Keyword" style = "Preprocessor" case-sensitive="FALSE">
 		<keyword>package</keyword>
 		<keyword>pragma</keyword>
 		<keyword>use</keyword>
@@ -29,7 +28,7 @@
 		<keyword>return</keyword>
 	</keyword-list>
 
-	<keyword-list _name = "Keywords" style = "Keyword" case-sensitive="FALSE">
+	<keyword-list _name = "Keyword" style = "Keyword" case-sensitive="FALSE">
 		<keyword>abort</keyword>
 		<keyword>abs</keyword>
 		<keyword>abstract</keyword>
@@ -94,7 +93,7 @@
 		<keyword>xor</keyword>
 	</keyword-list>
 
-	<keyword-list _name = "Types" style = "Data Type" case-sensitive="FALSE">
+	<keyword-list _name = "Type" style = "Data Type" case-sensitive="FALSE">
 		<keyword>boolean</keyword>
 		<keyword>character</keyword>
 		<keyword>count</keyword>

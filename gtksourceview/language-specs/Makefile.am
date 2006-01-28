@@ -6,6 +6,7 @@ LANGUAGES =			\
 	def.lang		\
 	ada.lang		\
 	c.lang			\
+	changelog.lang		\
 	csharp.lang		\
 	css.lang		\
 	cpp.lang		\
@@ -21,8 +22,10 @@ LANGUAGES =			\
 	javascript.lang		\
 	latex.lang		\
 	lua.lang		\
+	makefile.lang		\
 	msil.lang		\
 	nemerle.lang		\
+	octave.lang		\
 	pascal.lang		\
 	perl.lang		\
 	php.lang		\
@@ -30,6 +33,7 @@ LANGUAGES =			\
 	python.lang		\
 	R.lang			\
 	ruby.lang		\
+	scheme.lang		\
 	sh.lang			\
 	sql.lang		\
 	tcl.lang		\

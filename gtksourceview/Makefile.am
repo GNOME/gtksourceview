@@ -72,8 +72,7 @@ libgtksourceview_1_0_la_SOURCES += gtksourceprintjob.c gtksourceprintjob.h
 endif
 
 
-# XXX REGEX_LIBS? togliere gnu-regex
-libgtksourceview_1_0_la_LIBADD = $(DEP_LIBS) $(REGEX_LIBS) $(EGGREGEX_LIBS) $(GNOMEPRINT_LIBS)
+libgtksourceview_1_0_la_LIBADD = $(DEP_LIBS) $(EGGREGEX_LIBS) $(GNOMEPRINT_LIBS)
 
 libgtksourceview_1_0_la_LDFLAGS = -no-undefined
 

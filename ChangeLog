@@ -1,3 +1,7 @@
+2006-01-28  Marco Barisione  <barisione@gmail.com>
+
+	Merged the changes from HEAD into new_hl_engine
+
 2006-01-25  Marco Barisione  <barisione@gmail.com>
 
 	* gtksourceview/gtksourcecontextengine.c: (update_syntax): refresh the
@@ -39,6 +43,19 @@
 	gtksourceview/gtksourcelanguage-parser-2.c: removed declarations mixed
 	with code
 
+=== gtksourceview 1.5.6 ===
+
+2006-01-16  Paolo Borelli  <pborelli@katamail.com>
+
+	* configure.in:
+	* README:
+	* NEWS: release 1.5.6
+
+2006-01-16  Paolo Borelli  <pborelli@katamail.com>
+
+	* gtksourceview/gtksourcelanguagesmanager.c: fix xdg lookup once
+	again.
+
 2006-01-16  Marco Barisione  <barisione@gmail.com>
 
 	* gtksourceview/gtksourcelanguage-parser-1.c: (build_keyword_list):
@@ -51,10 +68,79 @@
 	gtksourceview/gtksourcetag-private.h: removed GtkSourceRegex and
 	gnu-regex
 
+=== gtksourceview 1.5.5 ===
+
+2006-01-15  Paolo Maggi  <paolo@gnome.org>
+
+	* configure.in:
+	* README:
+	* NEWS: release 1.5.5
+
+2006-01-16  Paolo Maggi  <paolo@gnome.org>
+
+	Fixed bug #318577 – win32 port
+	
+	Based on a patch by Tor Lillqvist modified by Paolo Borelli
+	
+	* configure.in: added gtksourceview-zip to AC_CONFIG_FILES
+	
+	* makefile.am: added gtksourceview-zip.in to EXTRA_DIST
+	
+	* gtksourceview-zip.in: new file
+	
+	* gtksourceview/Makefile.am: define PREFIX in INCLUDES
+
+	* gtksourceview/gtksourcelanguage.c
+	(_gtk_source_language_new_from_file): use xmlReaderForFd instead of
+	xmlNewTextReaderFilename so that it's utf8 safe on win32.
+	 (get_mime_types_from_file): ditto
+	(language_file_parse):  use GMappedFile and xmlParseMemory instead of
+	xmlParseFile
+	
 2006-01-15  Marco Barisione  <barisione@gmail.com>
 
 	* gtksourceview/gtksourcesimpleengine.c: use EggRegex instead of
 	gnu-regex
+
+2006-01-15  Paolo Borelli  <pborelli@katamail.com>
+
+	* gtksourceview/gtksourcelanguagesmanager.c: fetch lang files in the
+	right order so that files in ~ can override the system ones and make
+	sure to avoid duplicates (bug #312241).
+
+2006-01-15  Paolo Borelli  <pborelli@katamail.com>
+
+	* gtksourceview/gtksourceview.c: handle clicks on the left gutter,
+	moving the cursor to the line, selecting the line etc (bug #321252).
+
+2006-01-14  Paolo Maggi  <paolo@gnome.org>
+
+	* gtksourceview/gtksourceview.c (gtk_source_view_expose): added some
+	instructions to profile right margin drawing
+
+	* gtksourceview/language-specs/xml.lang: added application/xml ti
+	mime-types
+
+	* tests/test-widget.c (create_main_window): disable ShowMargin by
+	default
+
+2006-01-14  Jeroen Zwartepoorte  <jeroen.zwartepoorte@gmail.com>
+
+	* gtksourceview/gtksourceview.c: (gtk_source_view_class_init),
+	(gtk_source_view_expose): Use cairo to draw the right margin. Also draw
+	a transparent overlay for everything past the right margin. Margin
+	colors and transparency are customizable via style properties. The
+	overlay has a negative impact on perforamance for some users, so is
+	disabled by default. It can be turned on by adding
+	GtkSourceView::right-margin-overlay-toggle = TRUE to your gtkrc.
+
+2006-01-07  Paolo Borelli  <pborelli@katamail.com>
+
+	* gtksourceview/gtktextregion.[ch]:
+	* gtksourceview/gtksourcebuffer.c:
+	* tests/testregion.c:
+
+	Add iterators to text region and use them.
 
 2006-01-11  Marco Barisione  <barisione@gmail.com>
 
@@ -62,12 +148,350 @@
 	contexts to improve performances (i.e. context_last() is faster),
 	fixes bug #323965
 
+2006-01-11  Steve Frécinaux  <nud@apinc.org>
+
+	* gtksourceview/language-specs/python.lang: allow to specify both 'u'
+	and 'r' modifiers to python strings at the same time.
+
+2006-01-08  Marco Barisione  <barisione@gmail.com>
+
+	* gtksourceview/gtksourcelanguage-private.h,
+	gtksourceview/gtksourcelanguage.c: fixes gcc 4.01 compiler warnings on
+	different signedness (bug #309663)
+
+2006-01-08  Jeroen Zwartepoorte  <jeroen.zwartepoorte@gmail.com>
+
+	* gtksourceview/gtktextregion.c: (gtk_text_region_add),
+	(gtk_text_region_substract): Fix gcc 4.01 compiler warnings.
+
+2006-01-07  Paolo Borelli  <pborelli@katamail.com>
+
+	* gtksourceview/language-specs/scheme.lang: add scheme highlighting.
+
+2006-01-07  Paolo Borelli  <pborelli@katamail.com>
+
+	* gtksourceview/language-specs/*.lang: fix some names to use singular
+	for consistency.
+
+2006-01-06  Marco Barisione  <barisione@gmail.com>
+
+	* tests/test-widget.c: added tests to detect memory allocated by
+	xmlMalloc() but not freed by xmlFree() or freed by xmlFree() but not
+	allocated by xmlMalloc()
+
+2006-01-04  Marco Barisione <barisione@gmail.com>
+
+	* gtksourceview/gtksourceprintjob.c, tests/test-widget.c: added casts
+	to avoid warnings on different signedness.
+	Partially fixes bug #309663 – gcc 4.01 compiler treats pointer target
+	warnings as errors
+
+=== gtksourceview 1.5.4 ===
+
+2006-01-04  Paolo Borelli  <pborelli@katamail.com>
+
+	* configure.in:
+	* README:
+	* NEWS: release 1.5.4
+
+2006-01-03  Paolo Maggi  <paolo@gnome.org>
+
+	Fixes bug #170604 – Syntax for GNU Octave
+	
+	* gtksourceview/language-specs/Makefile.am: added octave.lang
+	
+	* gtksourceview/language-specs/octave.lang: new file by
+	Søren Hauberg <soren@hauberg.org> and 
+	Muthiah Annamalai <gnumuthu@users.sf.net>
+
+=== gtksourceview 1.5.3 ===
+
+2006-01-02  Paolo Maggi  <paolo@gnome.org>
+
+	* configure.in:
+	* README:
+	* NEWS: release 1.5.3
+
+2006-01-02  Paolo Borelli  <pborelli@katamail.com>
+
+	* gtksourceview/gtksourcelanguage.c: avoid some strdups when parsing
+	mime types.
+
+2005-12-31  Paolo Maggi  <paolo@gnome.org>
+
+	* gtksourceview/language-specs/Makefile.am: added changelog.lang
+
+	* gtksourceview/language-specs/changelog.lang: new file based on patches
+	by  Jacob Ilsø Christensen <jacobilsoe@gmail.com> and Paolo Borelli
+	<pborelli@katamail.com>
+
+2005-12-31  Paolo Borelli  <pborelli@katamail.com>
+
+	* gtksourceview/*.c: restore gtksourceview-i18n.[ch] since we need
+	our hack to do gettext initialization.
+
+2005-12-31  Paolo Borelli  <pborelli@katamail.com>
+
+	* configure.in: add a --disable-gnomeprint option for people who want
+	to use sourceview in their application without the libgnomeprint dep,
+	for instance on win32. However this option should only be used if you
+	know what you are doing and not be used when building GNOME.
+
+2005-12-31  Paolo Maggi  <paolo@gnome.org>
+
+	* gtksourceview/language-specs/fortran.lang: does not mark "^COMMON" as
+	a comment. Based on a patch by John Spray <jcs116@york.ac.uk>. 
+	Fixes bug #168090 (Recognise fortran line comments better)
+
+2005-12-30  Paolo Maggi  <paolo@gnome.org>
+
+	* gtksourceview/language-specs/ada.lang: fixed bug #316330 (Ada Syntax
+	highlighting is incorrect)
+
+2005-12-30  Paolo Maggi  <paolo@gnome.org>
+
+	* gtksourceview/language-specs/php.lang: changed Section to "Scripts".
+	Fixed bug #316587 (PHP syntax file should be in the "Scripting" 
+	section instead of "Sources")
+
+2005-12-30  Paolo Maggi  <paolo@gnome.org>
+
+	* gtksourceview/language-specs/R.lang: s/Quote/Quoted
+
+	* gtksourceview/language-specs/gtkrc.lang: s/Quote/Quoted
+
+	* gtksourceview/language-specs/ini.lang: s/Quote/Quoted
+
+	* gtksourceview/language-specs/ruby.lang: fixed bug #316612 (Ruby 
+	coloration problems). Patch by Michael Witrant <mike@lepton.fr>
+
+2005-12-30  Paolo Maggi  <paolo@gnome.org>
+
+	* gtksourceview/language-specs/css.lang: fixed bug #323750 (CSS 
+	highlighting missing "font" property).
+
+2005-12-30  Paolo Maggi  <paolo@gnome.org>
+
+	* gtksourceview/language-specs/perl.lang: fixed bug #323999 (perl 
+	inline pod not properly highlighted). Based on a patch by 
+	Jaap Karssenberg <pardus@cpan.org>
+
+2005-12-28  Paolo Borelli  <pborelli@katamail.com>
+
+	* gtksourceview/gtksourcebuffer.c (build_syntax_regions_table): 
+	avoid possible division by zero bug with inaccurate implementations
+	of GTimer (for instance win32). Noticed by Stefan Knorr (bug 321898).
+
+=== gtksourceview 1.5.2 ===
+
+2005-12-14  Paolo Borelli  <pborelli@katamail.com>
+
+	* configure.in:
+	* README:
+	* NEWS: release 1.5.2
+
+2005-11-22  Paolo Borelli  <pborelli@katamail.com>
+
+	* gtksourceview/gtktextregion.c: remove include of gi18n.h.
+
+2005-11-15  Paolo Borelli  <pborelli@katamail.com>
+
+	* gtksourceview/gtksourcelanguagesmanager.c: fix off by one error
+	in xdg directory lookup.
+
+=== gtksourceview 1.5.1 ===
+
+2005-11-14  Paolo Borelli  <pborelli@katamail.com>
+
+	* configure.in:
+	* README:
+	* NEWS: release 1.5.1, bump required gtk to 2.6.0.
+
+2005-11-14  Paolo Borelli  <pborelli@katamail.com>
+
+	* gtksourceview/*: use gi18n-lib.h and remove gtksourceview-i18n.[ch].
+
+2005-11-14  Paolo Borelli  <pborelli@katamail.com>
+
+	* gtksourceview/gtksourcelanguagesmanager.c: grab lang files from
+	XDG_DATA_DIRS instead of the hardcoded install path. Bug #304147.
+
+2005-11-14  Paolo Borelli  <pborelli@katamail.com>
+
+	* gtksourceview/gtksourcebuffer.c: improve bracket matching: do the
+	matching both if the bracket precedes the cursor and if follows it.
+	If we have brackets on both sides, the match of the bracket following
+	the cursor takes precedence. Bug #316020.
+
+2005-11-14  Paolo Borelli  <pborelli@katamail.com>
+
+	* gtksourceview/gtksourcebuffer.c (gtk_source_buffer_constructor):
+	sync with the tag table if the caller specified one. Noticed by
+	Joseph Turner, bug #321174.
+
+2005-11-14  Paolo Borelli  <pborelli@katamail.com>
+
+	* gtksourceview/gtksourceundomanager.c: improve action list freeing.
+
+2005-11-14  Paolo Borelli  <pborelli@katamail.com>
+
+	* gtksourceview/gtksourceiter.c (gtk_source_iter_forward_search):
+	make limit an inclusive boundary. (#321300)
+
+2005-11-14  Paolo Borelli  <pborelli@katamail.com>
+
+	* gtksourceview/language-specs/fortran.lang: add missing keywords.
+	Patch by Jerry DeLisle. See bug #317898.
+
 2005-10-24  Emanuele Aina <emanuele.aina@tiscali.it>
 
 	* gtksourceview/gtksourcelanguage-parser-2.c: (create_definition),
 	(update_regex_flags), (replace_delimiter), (expand_regex),
 	(handle_define_regex_element), (element_start): specify the regex
 	options as attributes in the language descriptions
+
+2005-10-18  Nate Nielsen  <nielsen@memberwebs.com>
+
+	* gtksourceview/language-specs/javascript.lang: Moved 
+	'const' into keywords. See bug #317978
+
+=== gtksourceview 1.4.2 ===
+
+2005-10-03  Paolo Borelli  <pborelli@katamail.com>
+
+	* configure.in:
+	* README:
+	* NEWS: release 1.4.2.
+
+2005-09-06  Paolo Borelli  <pborelli@katamail.com>
+
+	* gtksourceview/Makefile.am: add LDFLAGS = -no-undefined, for
+	benefit of people compiling on win32. Suggested by
+	yselkowitz@users.sourceforge.net, bug #314414.
+
+=== gtksourceview 1.4.1 ===
+
+2005-09-06  Paolo Borelli  <pborelli@katamail.com>
+
+	* configure.in:
+	* README:
+	* NEWS: release 1.4.1 including the docs in the tarball.
+
+=== gtksourceview 1.4.0 ===
+
+2005-09-05  Paolo Borelli  <pborelli@katamail.com>
+
+	* configure.in:
+	* README:
+	* NEWS: release 1.4.0.
+
+=== gtksourceview 1.3.93 ===
+
+2005-08-29  Paolo Maggi  <paolo@gnome.org>
+
+	* configure.in:
+	* README:
+	* NEWS: release 1.3.93.
+
+2005-08-29  Paolo Borelli  <pborelli@katamail.com>
+
+	* gtksourceview/gtksourceview.c (key_press_event): shift+enter
+	doesn't autoindent.
+
+2005-08-25  Paolo Maggi  <paolo@gnome.org>
+
+	Fixed bug #312482: Undo manager warning
+
+	* gtksourceview/gtksourceundomanager.c
+	(gtk_source_undo_manager_modified_changed_handler): action can be NULL
+	when internally undoing/redoing a non undoable action.
+
+=== gtksourceview 1.3.92 ===
+
+2005-08-08  Paolo Maggi  <paolo@gnome.org>
+
+	* configure.in:
+	* README:
+	* NEWS: release 1.3.92.
+
+2005-08-19  Dan Damian  <dand@gnome.ro>
+
+	* configure.in: Added "ro" to ALL_LINGUAS.
+
+=== gtksourceview 1.3.91 ===
+
+2005-08-08  Paolo Borelli  <pborelli@katamail.com>
+
+	* configure.in:
+	* README:
+	* NEWS: release 1.3.91.
+
+2005-08-08  Paolo Borelli  <pborelli@katamail.com>
+
+	* gtksourceview/language-specs/makefile.lang: improvements by
+	Ricardo Lenz.
+
+2005-08-04  Paolo Maggi  <paolo@gnome.org>
+
+	* gtksourceview/gtksourceiter.c
+	(pointer_from_offset_skipping_decomp) (g_utf8_strcasestr)
+	(g_utf8_strrcasestr) (g_utf8_caselessnmatch)
+	(forward_chars_with_skipping) (strbreakup): 
+	s/G_NORMALIZE_ALL/G_NORMALIZE_NFD. See bug #303239 for more info.
+
+2005-08-03  Paolo Borelli  <pborelli@katamail.com>
+
+	* gtksourceview/language-specs/makefile.lang: add makefile.lang.
+
+2005-08-03  Paolo Maggi  <paolo@gnome.org>
+
+	Fixed bug #171734: Updated SQL language specification
+	
+	* gtksourceview/language-specs/sql.lang: updated the gtksourceview SQL 
+	language specification so that it covers all the functionality 
+	new in Oracle Database 10g Release 1. Improved the handling of 
+	top-level SQL statements. 
+	Patch by Evert Verhellen <evert.verhellen@advalvas.be>
+
+2005-08-03  Paolo Maggi  <paolo@gnome.org>
+
+	Fixed bug #307456: Multiline string literals in C# break syntax 
+	highlighting at end of line
+	
+	* gtksourceview/language-specs/csharp.lang: added support for @"" 
+	strings. Patch by Brion Vibber <brion@pobox.com>
+
+2005-08-03  Paolo Maggi  <paolo@gnome.org>
+
+	Fixe bug #309438: a couple of typos in the .po file
+	
+	* gtksourceview/gtksourcetag.c (gtk_source_tag_class_init):
+	s/associated to/associated with
+
+	* gtksourceview/gtksourceview.c (gtk_source_view_class_init): added
+	"non whitespace characters" to clarify
+
+2005-08-03  Paolo Maggi  <paolo@gnome.org>
+	
+	Fixed bug #310219: RDF files not recognized as XML for syntax coloring
+	
+	* gtksourceview/language-specs/xml.lang: added the
+	"text/rdf" mime-type. 
+
+2005-08-03  Paolo Maggi  <paolo@gnome.org>
+
+	Fixed bug #310249: Latex "comment" environment support
+	
+	* gtksourceview/language-specs/latex.lang: added support for 
+	comment environment in latex syntax. Patch by Riccardo Lancellotti
+
+2005-08-03  Paolo Maggi  <paolo@gnome.org>
+
+	Fixed bug #311517: Missing mime type in javascript.lang
+
+	* gtksourceview/language-specs/javascript.lang: added the
+	"application/x-javascript" mime-type. 
+	Patch by Marco Barisione  <marco.bari@vene.ws>
 
 2005-07-28  Marco Barisione <barisione@gmail.com>
 
@@ -112,6 +536,8 @@
 2005-07-15  Ignacio Casal Quinteiro  <nacho.resa@gmail.com>
 
 	* configure.in: Added 'gl' to ALL_LINGUAS.
+
+=== gtksourceview 1.2.1 ===
 
 2005-07-13  Marco Barisione  <marco.bari@vene.ws>
 

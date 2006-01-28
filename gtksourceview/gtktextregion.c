@@ -27,8 +27,9 @@
 #endif
 
 #include <glib.h>
+
 #include "gtktextregion.h"
-#include "gtksourceview-i18n.h"
+
 
 #undef ENABLE_DEBUG
 /*
@@ -48,6 +49,16 @@ typedef struct _Subregion {
 
 struct _GtkTextRegion {
 	GtkTextBuffer *buffer;
+	GList         *subregions;
+	guint32        time_stamp;
+};
+
+typedef struct _GtkTextRegionIteratorReal GtkTextRegionIteratorReal;
+
+struct _GtkTextRegionIteratorReal {
+	GtkTextRegion *region;
+	guint32        region_time_stamp;
+	
 	GList         *subregions;
 };
 
@@ -118,6 +129,7 @@ gtk_text_region_new (GtkTextBuffer *buffer)
 	region = g_new (GtkTextRegion, 1);
 	region->buffer = buffer;
 	region->subregions = NULL;
+	region->time_stamp = 0;
 	
 	return region;
 }
@@ -138,6 +150,8 @@ gtk_text_region_destroy (GtkTextRegion *region, gboolean delete_marks)
 							 region->subregions);
 	}
 	region->buffer = NULL;
+	region->time_stamp = 0;
+	
 	g_free (region);
 }
 
@@ -149,7 +163,7 @@ gtk_text_region_get_buffer (GtkTextRegion *region)
 	return region->buffer;
 }
 
-void
+static void
 gtk_text_region_clear_zero_length_subregions (GtkTextRegion *region)
 {
 	GtkTextIter start, end;
@@ -169,6 +183,9 @@ gtk_text_region_clear_zero_length_subregions (GtkTextRegion *region)
 				region->subregions = node = g_list_delete_link (node, node);
 			else
 				node = g_list_delete_link (node, node);
+
+			++region->time_stamp;
+			
 		} else {
 			node = node->next;
 		}
@@ -222,7 +239,6 @@ gtk_text_region_add (GtkTextRegion     *region,
 			/* we are in the middle of two subregions */
 			region->subregions = g_list_insert_before (region->subregions,
 								   start_node, sr);
-
 		}
 	}
 	else {
@@ -245,7 +261,7 @@ gtk_text_region_add (GtkTextRegion     *region,
 			gtk_text_buffer_delete_mark (region->buffer, q->start);
 			sr->end = q->end;
 			g_free (q);
-			g_list_delete_link (l, l);
+			l = g_list_delete_link (l, l);
 		}
 		/* now move marks if that action expands the region */
 		gtk_text_buffer_get_iter_at_mark (region->buffer, &iter, sr->start);
@@ -256,14 +272,15 @@ gtk_text_region_add (GtkTextRegion     *region,
 			gtk_text_buffer_move_mark (region->buffer, sr->end, &end);
 	}
 
+	++region->time_stamp;
+
 	DEBUG (gtk_text_region_debug_print (region));
 }
 
-
 void 
-gtk_text_region_substract (GtkTextRegion     *region,
-			   const GtkTextIter *_start,
-			   const GtkTextIter *_end)
+gtk_text_region_subtract (GtkTextRegion     *region,
+			  const GtkTextIter *_start,
+			  const GtkTextIter *_end)
 {
 	GList *start_node, *end_node, *node;
 	GtkTextIter sr_start_iter, sr_end_iter;
@@ -271,7 +288,7 @@ gtk_text_region_substract (GtkTextRegion     *region,
 	gboolean start_is_outside, end_is_outside;
 	Subregion *sr;
 	GtkTextIter start, end;
-	
+
 	g_return_if_fail (region != NULL && _start != NULL && _end != NULL);
 	
 	start = *_start;
@@ -311,7 +328,7 @@ gtk_text_region_substract (GtkTextRegion     *region,
 			new_sr->end = sr->end;
 			new_sr->start = gtk_text_buffer_create_mark (region->buffer,
 								     NULL, &end, TRUE);
-			g_list_insert_before (start_node, start_node->next, new_sr);
+			start_node = g_list_insert_before (start_node, start_node->next, new_sr);
 
 			sr->end = gtk_text_buffer_create_mark (region->buffer,
 							       NULL, &start, FALSE);
@@ -320,12 +337,10 @@ gtk_text_region_substract (GtkTextRegion     *region,
 			DEBUG (g_message ("subregion splitted"));
 			
 			return;
-			
 		} else {
 			/* the ending point is outside, so just move
                            the end of the subregion to the starting point */
 			gtk_text_buffer_move_mark (region->buffer, sr->end, &start);
-			
 		}
 	} else {
 		/* the starting point is outside (and so to the left)
@@ -333,7 +348,6 @@ gtk_text_region_substract (GtkTextRegion     *region,
 		DEBUG (g_message ("start is outside"));
 			
 		start_is_outside = TRUE;
-		
 	}
 	
 	/* deal with the end point */
@@ -377,6 +391,14 @@ gtk_text_region_substract (GtkTextRegion     *region,
 			node = l;
 		}
 	}
+
+	++region->time_stamp;
+
+	DEBUG (gtk_text_region_debug_print (region));
+
+	/* now get rid of empty subregions */
+	gtk_text_region_clear_zero_length_subregions (region);
+
 	DEBUG (gtk_text_region_debug_print (region));
 }
 
@@ -512,6 +534,96 @@ gtk_text_region_intersect (GtkTextRegion     *region,
 	return new_region;
 }
 
+static gboolean 
+check_iterator (GtkTextRegionIteratorReal *real)
+{
+	if ((real->region == NULL) ||
+	    (real->region_time_stamp != real->region->time_stamp))
+	{
+		g_warning("Invalid iterator: either the iterator "
+                	  "is uninitialized, or the region "
+                 	  "has been modified since the iterator "
+                 	  "was created.");
+                 	  
+                return FALSE;
+	}
+
+	return TRUE;
+}
+
+void       
+gtk_text_region_get_iterator (GtkTextRegion         *region,
+                              GtkTextRegionIterator *iter,
+                              guint                  start)
+{
+	GtkTextRegionIteratorReal *real;
+
+	g_return_if_fail (region != NULL);
+	g_return_if_fail (iter != NULL);	
+
+	real = (GtkTextRegionIteratorReal *)iter;
+
+	/* region->subregions may be NULL, -> end iter */
+
+	real->region = region;
+	real->subregions = g_list_nth (region->subregions, start);
+	real->region_time_stamp = region->time_stamp;
+}
+
+gboolean
+gtk_text_region_iterator_is_end (GtkTextRegionIterator *iter)
+{
+	GtkTextRegionIteratorReal *real;
+
+	g_return_val_if_fail (iter != NULL, FALSE);	
+
+	real = (GtkTextRegionIteratorReal *)iter;
+	g_return_val_if_fail (check_iterator (real), FALSE);
+
+	return (real->subregions == NULL);
+}
+
+gboolean
+gtk_text_region_iterator_next (GtkTextRegionIterator *iter)
+{
+	GtkTextRegionIteratorReal *real;
+
+	g_return_val_if_fail (iter != NULL, FALSE);	
+
+	real = (GtkTextRegionIteratorReal *)iter;
+	g_return_val_if_fail (check_iterator (real), FALSE);
+
+	if (real->subregions != NULL) {
+		real->subregions = g_list_next (real->subregions);
+		return TRUE;
+	}
+	else
+		return FALSE;
+}
+
+void       
+gtk_text_region_iterator_get_subregion (GtkTextRegionIterator *iter,
+					GtkTextIter           *start,
+					GtkTextIter           *end)
+{
+	GtkTextRegionIteratorReal *real;
+	Subregion *sr;
+
+	g_return_if_fail (iter != NULL);
+
+	real = (GtkTextRegionIteratorReal *)iter;
+	g_return_if_fail (check_iterator (real));
+	g_return_if_fail (real->subregions != NULL);
+
+	sr = (Subregion*)real->subregions->data;
+	g_return_if_fail (sr != NULL);
+
+	if (start)
+		gtk_text_buffer_get_iter_at_mark (real->region->buffer, start, sr->start);
+	if (end)
+		gtk_text_buffer_get_iter_at_mark (real->region->buffer, end, sr->end);
+}
+
 void 
 gtk_text_region_debug_print (GtkTextRegion *region)
 {
@@ -532,5 +644,4 @@ gtk_text_region_debug_print (GtkTextRegion *region)
 	}
 	g_print ("\n");
 }
-
 
