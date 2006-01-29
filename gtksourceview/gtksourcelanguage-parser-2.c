@@ -33,8 +33,11 @@
 
 /* TODO: included for strcmp(). Why there isn't something similar in glib? */
 #include <string.h>
+#include <fcntl.h>
 
 #include <libxml/xmlreader.h>
+
+#include <glib/gstdio.h>
 
 #include "gtksourceview-i18n.h"
 #include "gtksourcebuffer.h"
@@ -1676,14 +1679,21 @@ file_parse (gchar                 *filename,
 	gchar *rng_lang_schema = RNG_SCHEMA_DIR;
 
 	ParserState *parser_state;
-	xmlTextReader *reader;
+	xmlTextReader *reader = NULL;
 	int ret;
+	int fd;
 
 	GError *tmp_error = NULL;
 
 	DEBUG (g_message ("loading file '%s'", 	filename));
 	
-	reader = xmlNewTextReaderFilename (filename);
+	/*	
+	 * Use fd instead of filename so that it's utf8 safe on w32.	
+	 */	
+	fd = g_open (filename, O_RDONLY, 0);	
+	if (fd != -1)	
+		reader = xmlReaderForFd (fd, filename, NULL, 0);	
+
 
 	if (reader == NULL)
 	{

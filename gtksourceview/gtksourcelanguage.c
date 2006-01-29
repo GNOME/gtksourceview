@@ -31,7 +31,6 @@
 #include <libxml/xmlreader.h>
 
 #include <glib/gstdio.h>
-#include <glib/gmappedfile.h>
 
 #include "gtksourceview-i18n.h"
 

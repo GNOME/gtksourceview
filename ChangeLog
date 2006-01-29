@@ -1,3 +1,12 @@
+2006-01-29  Marco Barisione  <barisione@gmail.com>
+
+	* gtksourceview/gtksourcelanguage-parser-1.c,
+	gtksourceview/gtksourcelanguage-parser-2.c,
+	gtksourceview/gtksourcelanguage.c: use xmlReaderForFd() instead of
+	xmlNewTextReaderFilename() so that it's utf8 safe on win32, see bug
+	#318577. The changes already in HEAD were not merged correctly in
+	new_hl_engine
+
 2006-01-28  Marco Barisione  <barisione@gmail.com>
 
 	* gtksourceview/gtksourcelanguage-parser-1.c,

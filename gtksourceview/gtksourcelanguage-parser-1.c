@@ -580,10 +580,24 @@ _gtk_source_language_file_parse_version1 (GtkSourceLanguage     *language,
 {
 	xmlDocPtr doc;
 	xmlNodePtr cur;
+	GMappedFile *mf;
 
 	xmlKeepBlanksDefault (0);
 
-	doc = xmlParseFile (language->priv->lang_file_name);
+	mf = g_mapped_file_new (language->priv->lang_file_name, FALSE, NULL);	
+
+	if (mf == NULL)	
+	{
+		doc = NULL;	
+	}
+	else	
+	{	
+		doc = xmlParseMemory (g_mapped_file_get_contents (mf),	
+				g_mapped_file_get_length (mf));	
+
+		g_mapped_file_free (mf);	
+	}	
+
 	if (doc == NULL)
 	{
 		g_warning ("Impossible to parse file '%s'",
