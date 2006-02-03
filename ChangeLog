@@ -1,3 +1,9 @@
+2006-02-03  Marco Barisione  <barisione@gmail.com>
+
+	* gtksourceview/gtksourcecontextengine.c: (verify_parent),
+	(verify_sequence), (verify_positions), (verify_tree): do so more tests
+	if ENABLE_VERIFY_TREE is defined
+
 2006-01-29  Marco Barisione  <barisione@gmail.com>
 
 	* gtksourceview/gtksourcelanguage-parser-1.c,

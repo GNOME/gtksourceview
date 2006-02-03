@@ -4280,7 +4280,7 @@ verify_parent (GtkSourceContextEngine *ce,
 	{
 		/* This should be the root context. */
 		if (context != ce->priv->root_context)
-			g_printf ("Wrong NULL parent for %s [%d; %d) at %p\n",
+			g_printf ("Wrong NULL parent for %s [%d; %d) at %p\n\n",
 				context->definition->id, context->start_at,
 				context->end_at, context);
 	}
@@ -4288,7 +4288,7 @@ verify_parent (GtkSourceContextEngine *ce,
 	{
 		/* This is the root context but the parent is not NULL. */
 		g_printf ("Root context should not have a parent: "
-			"%s [%d; %d) at %p\n",
+			"%s [%d; %d) at %p\n\n",
 			context->definition->id, context->start_at,
 			context->end_at, context);
 	}
@@ -4297,7 +4297,7 @@ verify_parent (GtkSourceContextEngine *ce,
 	while (child != NULL)
 	{
 		if (child->parent != context)
-			g_printf ("Wrong parent for %s [%d; %d) at %p\n",
+			g_printf ("Wrong parent for %s [%d; %d) at %p\n\n",
 				child->definition->id, child->start_at,
 				child->end_at, child);
 
@@ -4321,12 +4321,12 @@ verify_sequence (GtkSourceContextEngine *ce,
 		/* This is the root context. */
 		if (context->prev != NULL)
 			g_printf ("Root context should not have a previous context: "
-				"%s [%d; %d) at %p\n",
+				"%s [%d; %d) at %p\n\n",
 				context->definition->id, context->start_at,
 				context->end_at, context);
 		if (context->next != NULL)
 			g_printf ("Root context should not have a next context: "
-				"%s [%d; %d) at %p\n",
+				"%s [%d; %d) at %p\n\n",
 				context->definition->id, context->start_at,
 				context->end_at, context);
 	}
@@ -4336,11 +4336,11 @@ verify_sequence (GtkSourceContextEngine *ce,
 	while (child != NULL)
 	{
 		if (child->prev != prev_child)
-			g_printf ("Wrong previous pointer for %s [%d; %d) at %p\n",
+			g_printf ("Wrong previous pointer for %s [%d; %d) at %p\n\n",
 				child->definition->id, child->start_at,
 				child->end_at, child);
 		else if (prev_child != NULL && prev_child->next != child)
-			g_printf ("Wrong next pointer for %s [%d; %d) at %p\n",
+			g_printf ("Wrong next pointer for %s [%d; %d) at %p\n\n",
 				prev_child->definition->id, prev_child->start_at,
 				prev_child->end_at, prev_child);
 
@@ -4409,12 +4409,91 @@ verify_sequence (GtkSourceContextEngine *ce,
 }
 
 static void
+verify_positions (GtkSourceContextEngine *ce,
+		  Context		 *context)
+{
+	Context *child;
+
+	if (context == NULL)
+		return;
+
+	if (context->parent == NULL)
+	{
+		/* Root context */
+		if (context->start_at != 0)
+			g_printf ("Wrong start position for root context "
+				"%s (%d instead of %d) at %p\n\n",
+				context->definition->id, context->start_at,
+				0, context);
+		if (context->end_at != END_NOT_YET_FOUND)
+			g_printf ("Wrong end position for root context "
+				"%s (%d instead of %d) at %p\n\n",
+				context->definition->id, context->start_at,
+				END_NOT_YET_FOUND, context);
+	}
+
+	if (context->start_at >= context->end_at)
+		g_printf ("Wrong position for context "
+			"%s [%d; %d) at %p\n\n",
+			context->definition->id, context->start_at,
+			context->end_at, context);
+
+	child = context->children;
+	while (child != NULL)
+	{
+		if (child->start_at < context->start_at)
+			g_printf ("Wrong start position for "
+				"%s [%d; %d) at %p\n"
+				"The parent is %s [%d; %d) at %p\n\n",
+				child->definition->id,
+				child->start_at,
+				child->end_at,
+				child,
+				context->definition->id,
+				context->start_at,
+				context->end_at,
+				context);
+
+		if (child->end_at > context->end_at)
+			g_printf ("Wrong end position for "
+				"%s [%d; %d) at %p\n"
+				"The parent is %s [%d; %d) at %p\n\n",
+				child->definition->id,
+				child->start_at,
+				child->end_at,
+				child,
+				context->definition->id,
+				context->start_at,
+				context->end_at,
+				context);
+
+		if (child->next != NULL && child->end_at > child->next->start_at)
+			g_printf ("Wrong sequence position for "
+				"%s [%d; %d) at %p and "
+				"%s [%d; %d) at %p\n\n",
+				child->definition->id,
+				child->start_at,
+				child->end_at,
+				child,
+				child->next->definition->id,
+				child->next->start_at,
+				child->next->end_at,
+				child->next);
+
+		verify_positions (ce, child);
+
+		child = child->next;
+	}
+}
+
+static void
 verify_tree (GtkSourceContextEngine *ce)
 {
 	g_return_if_fail (ce != NULL);
 
 	verify_parent (ce, ce->priv->root_context);
 	verify_sequence (ce, ce->priv->root_context);
+	verify_positions (ce, ce->priv->root_context);
 }
 
 #endif /* #ifdef ENABLE_VERIFY_TREE */
