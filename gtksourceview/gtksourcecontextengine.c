@@ -1580,6 +1580,7 @@ context_new (ContextDefinition *definition,
 	new_context->definition = definition;
 	new_context->parent = parent;
 	new_context->start_at = start_at;
+	new_context->end_at = END_NOT_YET_FOUND;
 	new_context->children = NULL;
 	new_context->end = NULL;
 
