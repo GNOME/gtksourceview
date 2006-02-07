@@ -1,19 +1,19 @@
 # gtksourceview'i eesti keele tõlge.
 # Estonian translation of gtksourceview.
 #
-# Copyright (C) 2003, 2005 Free Software Foundation, Inc.
+# Copyright (C) 2003, 2005, 2006 Free Software Foundation, Inc.
 # This file is distributed under the same license as the gtksourceview package.
 #
 # Tõivo Leedjärv <toivo@linux.ee>, 2003.
 # Priit Laes <amd@store20.com>, 2005.
-# Ivar Smolin <okul@linux.ee>, 2005.
+# Ivar Smolin <okul@linux.ee>, 2005, 2006.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview GNOME 2.12\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2005-08-31 22:45+0000\n"
-"PO-Revision-Date: 2005-09-01 11:54+0300\n"
+"PO-Revision-Date: 2006-01-31 08:52+0200\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -62,7 +62,7 @@ msgstr "Keel"
 
 #: ../gtksourceview/gtksourcebuffer.c:318
 msgid "Language object to get highlighting patterns from"
-msgstr ""
+msgstr "Keeleobjekt, mille järgi esiletõstmist teostatakse"
 
 #: ../gtksourceview/gtksourcelanguagesmanager.c:119
 msgid "Language specification directories"
@@ -73,6 +73,7 @@ msgid ""
 "List of directories where the language specification files (.lang) are "
 "located"
 msgstr ""
+"Kataloogide loend, kus keelekirjelduste failid (.lang) asuvad"
 
 #: ../gtksourceview/gtksourceprintjob.c:264
 msgid "Configuration"
@@ -316,15 +317,15 @@ msgstr "Sildi ID"
 
 #: ../gtksourceview/gtksourcetag.c:109
 msgid "ID used to refer to the source tag"
-msgstr ""
+msgstr "ID, mida kasutatakse lähtesildi identifitseerimiseks"
 
 #: ../gtksourceview/gtksourcetag.c:116
 msgid "Tag style"
-msgstr "Sildi stiil"
+msgstr "Sildi laad"
 
 #: ../gtksourceview/gtksourcetag.c:117
 msgid "The style associated with the source tag"
-msgstr ""
+msgstr "Lähtesildiga seotud laad"
 
 #: ../gtksourceview/gtksourceview.c:205
 msgid "Show Line Numbers"
@@ -336,7 +337,7 @@ msgstr "Kas näidata reanumbreid või mitte"
 
 #: ../gtksourceview/gtksourceview.c:213
 msgid "Show Line Markers"
-msgstr ""
+msgstr "Reamarkerite kuvamine"
 
 #: ../gtksourceview/gtksourceview.c:214
 msgid "Whether to display line marker pixbufs"
@@ -368,11 +369,11 @@ msgstr ""
 
 #: ../gtksourceview/gtksourceview.c:254
 msgid "Margin position"
-msgstr ""
+msgstr "Äärise asukoht"
 
 #: ../gtksourceview/gtksourceview.c:255
 msgid "Position of the right margin"
-msgstr ""
+msgstr "Paremäärise asukoht"
 
 #: ../gtksourceview/gtksourceview.c:264
 msgid "Use smart home/end"
@@ -800,7 +801,7 @@ msgstr "Atribuut"
 #: ../gtksourceview/language-specs/html.lang.h:3
 #: ../gtksourceview/language-specs/xml.lang.h:3
 msgid "Closing Bracket"
-msgstr ""
+msgstr "Sulgev sulg"
 
 #: ../gtksourceview/language-specs/html.lang.h:4
 msgid "DTD"
@@ -887,7 +888,7 @@ msgstr ""
 
 #: ../gtksourceview/language-specs/haskell.lang.h:32
 msgid "Type or Constructor"
-msgstr ""
+msgstr "Konstruktori tüüp"
 
 #: ../gtksourceview/language-specs/idl.lang.h:2
 msgid "IDL"
@@ -1009,7 +1010,7 @@ msgstr "Skriptid"
 
 #: ../gtksourceview/language-specs/javascript.lang.h:25
 msgid "Unicode Escape Sequence"
-msgstr ""
+msgstr "Unikoodi paojada"
 
 #: ../gtksourceview/language-specs/javascript.lang.h:26
 msgid "Word Operators"
@@ -1017,7 +1018,7 @@ msgstr ""
 
 #: ../gtksourceview/language-specs/latex.lang.h:2
 msgid "Comment Environment"
-msgstr ""
+msgstr "Kommentaarikeskkond"
 
 #: ../gtksourceview/language-specs/latex.lang.h:3
 #: ../gtksourceview/language-specs/texinfo.lang.h:6
@@ -1224,7 +1225,7 @@ msgstr "Tõstutundlik võtmesõna"
 #. "duble-quoted strings"
 #: ../gtksourceview/language-specs/php.lang.h:16
 msgid "Double Quoted String"
-msgstr ""
+msgstr "Kahekordsete jutumärkidega string"
 
 #. <? ?> <HTML> inside PHP <?
 #: ../gtksourceview/language-specs/php.lang.h:18
@@ -1242,7 +1243,7 @@ msgstr "PHP"
 #. 'single-quoted strings'
 #: ../gtksourceview/language-specs/php.lang.h:23
 msgid "Single Quoted String"
-msgstr ""
+msgstr "Ühekordsete jutumärkidega string"
 
 #: ../gtksourceview/language-specs/po.lang.h:2
 msgid "Format"
@@ -1364,7 +1365,7 @@ msgstr "ANSI andmetüübid"
 #. Reserved Words
 #: ../gtksourceview/language-specs/sql.lang.h:3
 msgid "ANSI Reserved Words"
-msgstr ""
+msgstr "ANSI reserveeritud sõnad"
 
 #. Aggregate Functions
 #: ../gtksourceview/language-specs/sql.lang.h:5
@@ -1568,7 +1569,7 @@ msgstr "Texinfo"
 
 #: ../gtksourceview/language-specs/vbnet.lang.h:7
 msgid "Old Style Comment"
-msgstr ""
+msgstr "Vanas laadis kommentaar"
 
 #: ../gtksourceview/language-specs/vbnet.lang.h:12
 msgid "VB.NET"
