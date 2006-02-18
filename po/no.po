@@ -1,13 +1,13 @@
 # Norwegian messages for gtksourceview.
 # Copyright (C) 2003 Free Software Foundation, Inc.
-# Kjartan Maraas <kmaraas@gnome.org, 2003-2005.
+# Kjartan Maraas <kmaraas@gnome.org, 2003-2006.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview 1.2.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-22 20:25+0100\n"
-"PO-Revision-Date: 2006-01-22 20:27+0100\n"
+"POT-Creation-Date: 2006-02-18 13:48+0100\n"
+"PO-Revision-Date: 2006-02-18 13:54+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian bokmal <i18n-nb@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
@@ -420,29 +420,34 @@ msgid "Color to use for the right margin line"
 msgstr "Farge som skal brukes på høyre marg"
 
 #: ../gtksourceview/gtksourceview.c:340
+#, fuzzy
 msgid "Margin Overlay Toggle"
-msgstr ""
+msgstr "Slå av/på ..."
 
 #: ../gtksourceview/gtksourceview.c:341
 #, fuzzy
 msgid "Whether to draw the right margin overlay"
-msgstr "Om høyre marg skal vises"
+msgstr "Om høyre ... skal tegnes"
 
 #: ../gtksourceview/gtksourceview.c:357
+#, fuzzy
 msgid "Margin Overlay Alpha"
-msgstr ""
+msgstr "Alpha for ..."
 
 #: ../gtksourceview/gtksourceview.c:358
+#, fuzzy
 msgid "Transparency of the margin overlay"
-msgstr ""
+msgstr "Gjennomsiktighet for ..."
 
 #: ../gtksourceview/gtksourceview.c:375
+#, fuzzy
 msgid "Margin Overlay Color"
-msgstr ""
+msgstr "Farge for "
 
 #: ../gtksourceview/gtksourceview.c:376
+#, fuzzy
 msgid "Color to use for drawing the margin overlay"
-msgstr ""
+msgstr "Farge som skal brukes for å tegne "
 
 #: ../gtksourceview/language-specs/ada.lang.h:1
 msgid "Ada"
