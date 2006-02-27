@@ -8,191 +8,191 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-09-02 06:41+0000\n"
-"PO-Revision-Date: 2005-09-02 13:00+0300\n"
-"Last-Translator: Leonid Kanter <leon@asplinux.ru>\n"
-"Language-Team:  <gnome-cyr@gnome.org>\n"
+"POT-Creation-Date: 2006-02-27 07:17+0100\n"
+"PO-Revision-Date: 2006-02-27 14:47+0200\n"
+"Last-Translator: Leonid Kanter\n"
+"Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.10.2\n"
+"X-Generator: KBabel 1.11.1\n"
 "Plural-Forms:  nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: ../gtksourceview/gtksourcebuffer.c:279
+#: ../gtksourceview/gtksourcebuffer.c:278
 msgid "Escape Character"
 msgstr "Экранирующий символ"
 
-#: ../gtksourceview/gtksourcebuffer.c:280
+#: ../gtksourceview/gtksourcebuffer.c:279
 msgid "Escaping character for syntax patterns"
 msgstr "Экранирующий символ для синтаксических шаблонов"
 
-#: ../gtksourceview/gtksourcebuffer.c:288
+#: ../gtksourceview/gtksourcebuffer.c:287
 msgid "Check Brackets"
 msgstr "Проверять скобки"
 
-#: ../gtksourceview/gtksourcebuffer.c:289
+#: ../gtksourceview/gtksourcebuffer.c:288
 msgid "Whether to check and highlight matching brackets"
 msgstr "Следует ли проверять и подсвечивать соответствующие друг другу скобки"
 
-#: ../gtksourceview/gtksourcebuffer.c:297
-#: ../gtksourceview/gtksourceprintjob.c:295
+#: ../gtksourceview/gtksourcebuffer.c:296
+#: ../gtksourceview/gtksourceprintjob.c:296
 msgid "Highlight"
 msgstr "Подсвечивать"
 
-#: ../gtksourceview/gtksourcebuffer.c:298
+#: ../gtksourceview/gtksourcebuffer.c:297
 msgid "Whether to highlight syntax in the buffer"
 msgstr "Следует ли подсвечивать синтаксис в буфере"
 
-#: ../gtksourceview/gtksourcebuffer.c:306
+#: ../gtksourceview/gtksourcebuffer.c:305
 msgid "Maximum Undo Levels"
 msgstr "Максимальный уровень отката"
 
-#: ../gtksourceview/gtksourcebuffer.c:307
+#: ../gtksourceview/gtksourcebuffer.c:306
 msgid "Number of undo levels for the buffer"
 msgstr "Установить число уровней отката для буфера"
 
-#: ../gtksourceview/gtksourcebuffer.c:317
+#: ../gtksourceview/gtksourcebuffer.c:316
 #: ../gtksourceview/language-specs/desktop.lang.h:6
 #: ../gtksourceview/language-specs/ini.lang.h:7
 msgid "Language"
 msgstr "Язык"
 
-#: ../gtksourceview/gtksourcebuffer.c:318
+#: ../gtksourceview/gtksourcebuffer.c:317
 msgid "Language object to get highlighting patterns from"
 msgstr "Объект языка, для которого подсвечивать синтаксис"
 
-#: ../gtksourceview/gtksourcelanguagesmanager.c:119
+#: ../gtksourceview/gtksourcelanguagesmanager.c:114
 msgid "Language specification directories"
 msgstr "Каталоги со спецификациями языков"
 
-#: ../gtksourceview/gtksourcelanguagesmanager.c:120
+#: ../gtksourceview/gtksourcelanguagesmanager.c:115
 msgid ""
 "List of directories where the language specification files (.lang) are "
 "located"
 msgstr "Список каталогов, где расположены файлы определения языка (.lang)"
 
-#: ../gtksourceview/gtksourceprintjob.c:264
+#: ../gtksourceview/gtksourceprintjob.c:265
 msgid "Configuration"
 msgstr "Конфигурация"
 
-#: ../gtksourceview/gtksourceprintjob.c:265
+#: ../gtksourceview/gtksourceprintjob.c:266
 msgid "Configuration options for the print job"
 msgstr "Параметры конфигурации для задания печати"
 
-#: ../gtksourceview/gtksourceprintjob.c:272
+#: ../gtksourceview/gtksourceprintjob.c:273
 msgid "Source Buffer"
 msgstr "Буфер источника"
 
-#: ../gtksourceview/gtksourceprintjob.c:273
+#: ../gtksourceview/gtksourceprintjob.c:274
 msgid "GtkSourceBuffer object to print"
 msgstr "Объект GtkSourceBuffer для печати"
 
-#: ../gtksourceview/gtksourceprintjob.c:279
-#: ../gtksourceview/gtksourceview.c:221 ../gtksourceview/gtksourceview.c:222
+#: ../gtksourceview/gtksourceprintjob.c:280
+#: ../gtksourceview/gtksourceview.c:235 ../gtksourceview/gtksourceview.c:236
 msgid "Tabs Width"
 msgstr "Шаг табуляции"
 
-#: ../gtksourceview/gtksourceprintjob.c:280
+#: ../gtksourceview/gtksourceprintjob.c:281
 msgid "Width in equivalent space characters of tabs"
 msgstr "Ширина табуляции в пробельных символах"
 
-#: ../gtksourceview/gtksourceprintjob.c:287
+#: ../gtksourceview/gtksourceprintjob.c:288
 msgid "Wrap Mode"
 msgstr "Режим переноса"
 
-#: ../gtksourceview/gtksourceprintjob.c:288
+#: ../gtksourceview/gtksourceprintjob.c:289
 msgid "Word wrapping mode"
 msgstr "Режим переноса слов"
 
-#: ../gtksourceview/gtksourceprintjob.c:296
+#: ../gtksourceview/gtksourceprintjob.c:297
 msgid "Whether to print the document with highlighted syntax"
 msgstr "Должен ли документ печататься с подсвеченным синтаксисом"
 
-#: ../gtksourceview/gtksourceprintjob.c:304
+#: ../gtksourceview/gtksourceprintjob.c:305
 msgid "Font"
 msgstr "Шрифт"
 
-#: ../gtksourceview/gtksourceprintjob.c:305
+#: ../gtksourceview/gtksourceprintjob.c:306
 msgid "GnomeFont name to use for the document text (deprecated)"
 msgstr "Наименование шрифта GnomeFont для текста документа (не пользоваться)"
 
-#: ../gtksourceview/gtksourceprintjob.c:312
+#: ../gtksourceview/gtksourceprintjob.c:313
 msgid "Font Description"
 msgstr "Описание шрифта"
 
-#: ../gtksourceview/gtksourceprintjob.c:313
+#: ../gtksourceview/gtksourceprintjob.c:314
 msgid "Font to use for the document text (e.g. \"Monospace 10\")"
 msgstr "Шрифт текста документа (напр. \"Monospace 10\")"
 
-#: ../gtksourceview/gtksourceprintjob.c:320
-#: ../gtksourceview/gtksourceprintjob.c:328
+#: ../gtksourceview/gtksourceprintjob.c:321
+#: ../gtksourceview/gtksourceprintjob.c:329
 msgid "Numbers Font"
 msgstr "Шрифт для чисел"
 
-#: ../gtksourceview/gtksourceprintjob.c:321
+#: ../gtksourceview/gtksourceprintjob.c:322
 msgid "GnomeFont name to use for the line numbers (deprecated)"
 msgstr "Наименование шрифта GnomeFont для номеров строк (не пользоваться)"
 
-#: ../gtksourceview/gtksourceprintjob.c:329
+#: ../gtksourceview/gtksourceprintjob.c:330
 msgid "Font description to use for the line numbers"
 msgstr "Описание шрифта для номеров строк"
 
-#: ../gtksourceview/gtksourceprintjob.c:336
+#: ../gtksourceview/gtksourceprintjob.c:337
 msgid "Print Line Numbers"
 msgstr "Печатать номера строк"
 
-#: ../gtksourceview/gtksourceprintjob.c:337
+#: ../gtksourceview/gtksourceprintjob.c:338
 msgid "Interval of printed line numbers (0 means no numbers)"
 msgstr "Интервал печатаемых номеров строк (0 означает отсутствие нумерации)"
 
-#: ../gtksourceview/gtksourceprintjob.c:344
+#: ../gtksourceview/gtksourceprintjob.c:345
 msgid "Print Header"
 msgstr "Заголовок печати"
 
-#: ../gtksourceview/gtksourceprintjob.c:345
+#: ../gtksourceview/gtksourceprintjob.c:346
 msgid "Whether to print a header in each page"
 msgstr "Следует ли печатать заголовок на каждой странице"
 
-#: ../gtksourceview/gtksourceprintjob.c:352
+#: ../gtksourceview/gtksourceprintjob.c:353
 msgid "Print Footer"
 msgstr "Нижний колонтитул"
 
-#: ../gtksourceview/gtksourceprintjob.c:353
+#: ../gtksourceview/gtksourceprintjob.c:354
 msgid "Whether to print a footer in each page"
 msgstr "Следует ли печатать подвал на каждой странице"
 
-#: ../gtksourceview/gtksourceprintjob.c:360
+#: ../gtksourceview/gtksourceprintjob.c:361
 msgid "Header and Footer Font"
 msgstr "Шрифт заголовка и подвала"
 
-#: ../gtksourceview/gtksourceprintjob.c:361
+#: ../gtksourceview/gtksourceprintjob.c:362
 msgid "GnomeFont name to use for the header and footer (deprecated)"
 msgstr "Наименование шрифта GnomeFont для заголовка и подвала (не пользоваться)"
 
-#: ../gtksourceview/gtksourceprintjob.c:368
+#: ../gtksourceview/gtksourceprintjob.c:369
 msgid "Header and Footer Font Description"
 msgstr "Описание шрифта заголовка и подвала"
 
-#: ../gtksourceview/gtksourceprintjob.c:369
+#: ../gtksourceview/gtksourceprintjob.c:370
 msgid "Font to use for headers and footers (e.g. \"Monospace 10\")"
 msgstr "Шрифт заголовков и подвалов (напр. \"Monospace 10\")"
 
-#: ../gtksourceview/gtksourcestylescheme.c:262
+#: ../gtksourceview/gtksourcestylescheme.c:264
 msgid "Base-N Integer"
 msgstr "Целое число в N-ичной системе счисления"
 
-#: ../gtksourceview/gtksourcestylescheme.c:267
+#: ../gtksourceview/gtksourcestylescheme.c:269
 msgid "Character"
 msgstr "Символ"
 
-#: ../gtksourceview/gtksourcestylescheme.c:272
-#: ../gtksourceview/language-specs/latex.lang.h:1
+#: ../gtksourceview/gtksourcestylescheme.c:274
+#: ../gtksourceview/language-specs/latex.lang.h:2
 #: ../gtksourceview/language-specs/po.lang.h:1
 msgid "Comment"
 msgstr "Комментарий"
 
 #. $this = (datatype)
-#: ../gtksourceview/gtksourcestylescheme.c:277
+#: ../gtksourceview/gtksourcestylescheme.c:279
 #: ../gtksourceview/language-specs/php.lang.h:14
 msgid "Data Type"
 msgstr "Тип данных"
@@ -200,46 +200,63 @@ msgstr "Тип данных"
 #.
 #. CSS functions, such as rgb(), clip(), or lang().
 #.
-#: ../gtksourceview/gtksourcestylescheme.c:282
+#: ../gtksourceview/gtksourcestylescheme.c:284
 #: ../gtksourceview/language-specs/ada.lang.h:3
 #: ../gtksourceview/language-specs/css.lang.h:18
+#: ../gtksourceview/language-specs/octave.lang.h:4
+#: ../gtksourceview/language-specs/python.lang.h:5
+#: ../gtksourceview/language-specs/scheme.lang.h:2
+#: ../gtksourceview/language-specs/sh.lang.h:4
 msgid "Function"
 msgstr "Функция"
 
-#: ../gtksourceview/gtksourcestylescheme.c:287
+#: ../gtksourceview/gtksourcestylescheme.c:289
 #: ../gtksourceview/language-specs/c.lang.h:6
 #: ../gtksourceview/language-specs/cpp.lang.h:6
 #: ../gtksourceview/language-specs/fortran.lang.h:1
 #: ../gtksourceview/language-specs/haskell.lang.h:3
 #: ../gtksourceview/language-specs/nemerle.lang.h:6
+#: ../gtksourceview/language-specs/octave.lang.h:1
 #: ../gtksourceview/language-specs/python.lang.h:2
 msgid "Decimal"
 msgstr "Десятичное число"
 
-#: ../gtksourceview/gtksourcestylescheme.c:292
+#: ../gtksourceview/gtksourcestylescheme.c:294
 msgid "Floating Point"
 msgstr "Число с плавающей точкой"
 
-#: ../gtksourceview/gtksourcestylescheme.c:297
+#. We cannot match \b at the end of a keyword automatically
+#. because it fails for let* etc. So we need to manually add it to the
+#. other keywords and match ([ \t]|$) for the one ending with a
+#. special character. Unfortnately this also means that if the highlight
+#. style for keywords sets the background color, for let* etc also the
+#. trailing space will be highlighted.
+#: ../gtksourceview/gtksourcestylescheme.c:299
+#: ../gtksourceview/language-specs/ada.lang.h:4
 #: ../gtksourceview/language-specs/gtkrc.lang.h:6
-#: ../gtksourceview/language-specs/latex.lang.h:4
+#: ../gtksourceview/language-specs/haskell.lang.h:9
+#: ../gtksourceview/language-specs/latex.lang.h:5
+#: ../gtksourceview/language-specs/octave.lang.h:6
 #: ../gtksourceview/language-specs/po.lang.h:3
+#: ../gtksourceview/language-specs/python.lang.h:7
 #: ../gtksourceview/language-specs/R.lang.h:6
+#: ../gtksourceview/language-specs/scheme.lang.h:9
+#: ../gtksourceview/language-specs/tcl.lang.h:1
 #: ../gtksourceview/language-specs/texinfo.lang.h:8
 #: ../gtksourceview/language-specs/vhdl.lang.h:2
 msgid "Keyword"
 msgstr "Ключевое слово"
 
-#: ../gtksourceview/gtksourcestylescheme.c:302
+#: ../gtksourceview/gtksourcestylescheme.c:304
 msgid "Preprocessor"
 msgstr "Директива препроцессора"
 
 #.
-#. <pattern-item _name = "Operators" style = "Operators">
+#. <pattern-item _name = "Operator" style = "Operators">
 #. <regex>[:!#$%&amp;*+./&gt;=&lt;?@\\^|~\-]+</regex>
 #. </pattern-item>
 #.
-#. <keyword-list _name="Keysymbols" style = "Keyword">
+#. <keyword-list _name="Keysymbol" style = "Keyword">
 #. <keyword>::</keyword>
 #. <keyword>-&gt;</keyword>
 #. <keyword>&lt;-</keyword>
@@ -251,14 +268,14 @@ msgstr "Директива препроцессора"
 #. <keyword>~</keyword>
 #. </keyword-list>
 #.
-#: ../gtksourceview/gtksourcestylescheme.c:307
+#: ../gtksourceview/gtksourcestylescheme.c:309
 #: ../gtksourceview/language-specs/ada.lang.h:9
 #: ../gtksourceview/language-specs/c.lang.h:15
 #: ../gtksourceview/language-specs/cpp.lang.h:15
 #: ../gtksourceview/language-specs/csharp.lang.h:9
 #: ../gtksourceview/language-specs/css.lang.h:58
 #: ../gtksourceview/language-specs/html.lang.h:8
-#: ../gtksourceview/language-specs/fortran.lang.h:12
+#: ../gtksourceview/language-specs/fortran.lang.h:13
 #: ../gtksourceview/language-specs/haskell.lang.h:31
 #: ../gtksourceview/language-specs/idl.lang.h:9
 #: ../gtksourceview/language-specs/java.lang.h:11
@@ -269,8 +286,7 @@ msgstr "Директива препроцессора"
 #: ../gtksourceview/language-specs/pascal.lang.h:18
 #: ../gtksourceview/language-specs/perl.lang.h:8
 #: ../gtksourceview/language-specs/po.lang.h:6
-#: ../gtksourceview/language-specs/python.lang.h:14
-#: ../gtksourceview/language-specs/ruby.lang.h:18
+#: ../gtksourceview/language-specs/scheme.lang.h:13
 #: ../gtksourceview/language-specs/sh.lang.h:13
 #: ../gtksourceview/language-specs/tcl.lang.h:4
 #: ../gtksourceview/language-specs/vbnet.lang.h:11
@@ -279,11 +295,12 @@ msgstr "Директива препроцессора"
 msgid "String"
 msgstr "Строка"
 
-#: ../gtksourceview/gtksourcestylescheme.c:312
+#: ../gtksourceview/gtksourcestylescheme.c:314
 msgid "Specials"
 msgstr "Специальные символы"
 
-#: ../gtksourceview/gtksourcestylescheme.c:319
+#: ../gtksourceview/gtksourcestylescheme.c:321
+#: ../gtksourceview/language-specs/changelog.lang.h:6
 #: ../gtksourceview/language-specs/css.lang.h:36
 #: ../gtksourceview/language-specs/desktop.lang.h:10
 #: ../gtksourceview/language-specs/diff.lang.h:7
@@ -294,87 +311,87 @@ msgstr "Специальные символы"
 msgid "Others"
 msgstr "Прочее"
 
-#: ../gtksourceview/gtksourcestylescheme.c:324
+#: ../gtksourceview/gtksourcestylescheme.c:326
 msgid "Others 2"
 msgstr "Прочее 2"
 
-#: ../gtksourceview/gtksourcestylescheme.c:329
+#: ../gtksourceview/gtksourcestylescheme.c:331
 msgid "Others 3"
 msgstr "Прочее 3"
 
-#: ../gtksourceview/gtksourcestylescheme.c:366
+#: ../gtksourceview/gtksourcestylescheme.c:368
 msgid "Default"
 msgstr "По умолчанию"
 
-#: ../gtksourceview/gtksourcetag.c:108
+#: ../gtksourceview/gtksourcetag.c:109
 msgid "Tag ID"
 msgstr "Идентификатор тега"
 
-#: ../gtksourceview/gtksourcetag.c:109
+#: ../gtksourceview/gtksourcetag.c:110
 msgid "ID used to refer to the source tag"
 msgstr "Идентификатор, используемый для ссылки на тег исходного кода"
 
-#: ../gtksourceview/gtksourcetag.c:116
+#: ../gtksourceview/gtksourcetag.c:117
 msgid "Tag style"
 msgstr "Стиль тега"
 
-#: ../gtksourceview/gtksourcetag.c:117
+#: ../gtksourceview/gtksourcetag.c:118
 msgid "The style associated with the source tag"
 msgstr "Стиль, ассоциируемый с тегом исходного кода"
 
-#: ../gtksourceview/gtksourceview.c:205
+#: ../gtksourceview/gtksourceview.c:219
 msgid "Show Line Numbers"
 msgstr "Показывать номера строк"
 
-#: ../gtksourceview/gtksourceview.c:206
+#: ../gtksourceview/gtksourceview.c:220
 msgid "Whether to display line numbers"
 msgstr "Следует ли отображать номера строк"
 
-#: ../gtksourceview/gtksourceview.c:213
+#: ../gtksourceview/gtksourceview.c:227
 msgid "Show Line Markers"
 msgstr "Показывать маркеры строк"
 
-#: ../gtksourceview/gtksourceview.c:214
+#: ../gtksourceview/gtksourceview.c:228
 msgid "Whether to display line marker pixbufs"
 msgstr "Следует ли отображать маркеры строк"
 
-#: ../gtksourceview/gtksourceview.c:231
+#: ../gtksourceview/gtksourceview.c:245
 msgid "Auto Indentation"
 msgstr "Расставлять отступы автоматически"
 
-#: ../gtksourceview/gtksourceview.c:232
+#: ../gtksourceview/gtksourceview.c:246
 msgid "Whether to enable auto indentation"
 msgstr "Следует ли автоматически расставлять отсупы"
 
-#: ../gtksourceview/gtksourceview.c:238
+#: ../gtksourceview/gtksourceview.c:252
 msgid "Insert Spaces Instead of Tabs"
 msgstr "Вставлять пробелы вместо табуляций"
 
-#: ../gtksourceview/gtksourceview.c:239
+#: ../gtksourceview/gtksourceview.c:253
 msgid "Whether to insert spaces instead of tabs"
 msgstr "Следует ли заменять табуляции пробелами"
 
-#: ../gtksourceview/gtksourceview.c:246
+#: ../gtksourceview/gtksourceview.c:260
 msgid "Show Right Margin"
 msgstr "Показывать правое поле"
 
-#: ../gtksourceview/gtksourceview.c:247
+#: ../gtksourceview/gtksourceview.c:261
 msgid "Whether to display the right margin"
 msgstr "Следует ли отображать правое поле"
 
-#: ../gtksourceview/gtksourceview.c:254
+#: ../gtksourceview/gtksourceview.c:268
 msgid "Margin position"
 msgstr "Позиция поля"
 
-#: ../gtksourceview/gtksourceview.c:255
+#: ../gtksourceview/gtksourceview.c:269
 msgid "Position of the right margin"
 msgstr "Позиция правого поля"
 
-#: ../gtksourceview/gtksourceview.c:264
+#: ../gtksourceview/gtksourceview.c:278
 msgid "Use smart home/end"
 msgstr "Использовать интеллектуальные клавиши \"Home\"/\"End\""
 
-#: ../gtksourceview/gtksourceview.c:265
+#: ../gtksourceview/gtksourceview.c:279
 msgid ""
 "HOME and END keys move to first/last non whitespace characters on line "
 "before going to the start/end of the line"
@@ -382,13 +399,53 @@ msgstr ""
 "Kлавиши \"Home\" и \"End\" перемещают курсор к первому/последнему "
 "непробельному символу в строке перед переходом к началу/концу строки"
 
-#: ../gtksourceview/gtksourceview.c:274
+#: ../gtksourceview/gtksourceview.c:288
 msgid "Highlight current line"
 msgstr "Подсвечивать текущую строку"
 
-#: ../gtksourceview/gtksourceview.c:275
+#: ../gtksourceview/gtksourceview.c:289
 msgid "Whether to highlight the current line"
 msgstr "Следует ли подсвечивать текущую строку"
+
+#: ../gtksourceview/gtksourceview.c:305
+msgid "Margin Line Alpha"
+msgstr "Полупрозрачность линии поля"
+
+#: ../gtksourceview/gtksourceview.c:306
+msgid "Transparency of the margin line"
+msgstr "Полупрозрачность линии поля"
+
+#: ../gtksourceview/gtksourceview.c:323
+msgid "Margin Line Color"
+msgstr "Цвет линии поля"
+
+#: ../gtksourceview/gtksourceview.c:324
+msgid "Color to use for the right margin line"
+msgstr "Цвет линии правого поля"
+
+#: ../gtksourceview/gtksourceview.c:340
+msgid "Margin Overlay Toggle"
+msgstr "Переключение отображения поля"
+
+#: ../gtksourceview/gtksourceview.c:341
+msgid "Whether to draw the right margin overlay"
+msgstr "Следует ли отображать правое поле"
+
+#: ../gtksourceview/gtksourceview.c:357
+msgid "Margin Overlay Alpha"
+msgstr "Полупрозрачность полей"
+
+#: ../gtksourceview/gtksourceview.c:358
+msgid "Transparency of the margin overlay"
+msgstr "Полупрозрачность полей"
+
+#: ../gtksourceview/gtksourceview.c:375
+msgid "Margin Overlay Color"
+msgstr "Цвет поля"
+
+#: ../gtksourceview/gtksourceview.c:376
+msgid "Color to use for drawing the margin overlay"
+msgstr "Цвет, используемый при отображении поля"
 
 #: ../gtksourceview/language-specs/ada.lang.h:1
 msgid "Ada"
@@ -403,24 +460,7 @@ msgstr "Ada"
 msgid "Character Constant"
 msgstr "Символьная константа"
 
-#: ../gtksourceview/language-specs/ada.lang.h:4
-#: ../gtksourceview/language-specs/c.lang.h:10
-#: ../gtksourceview/language-specs/cpp.lang.h:10
-#: ../gtksourceview/language-specs/csharp.lang.h:3
-#: ../gtksourceview/language-specs/fortran.lang.h:7
-#: ../gtksourceview/language-specs/haskell.lang.h:9
-#: ../gtksourceview/language-specs/idl.lang.h:4
-#: ../gtksourceview/language-specs/javascript.lang.h:12
-#: ../gtksourceview/language-specs/lua.lang.h:3
-#: ../gtksourceview/language-specs/perl.lang.h:2
-#: ../gtksourceview/language-specs/python.lang.h:6
-#: ../gtksourceview/language-specs/ruby.lang.h:8
-#: ../gtksourceview/language-specs/tcl.lang.h:1
-#: ../gtksourceview/language-specs/vbnet.lang.h:1
-#: ../gtksourceview/language-specs/verilog.lang.h:6
-msgid "Keywords"
-msgstr "Ключевые слова"
-
+#. Note: contains an hack to avoid considering ^COMMON a comment
 #. <string _name = "String 2" style = "String" end-at-line-end = "TRUE">
 #. <start-regex>&apos;</start-regex>
 #. <end-regex>&apos;</end-regex>
@@ -432,7 +472,7 @@ msgstr "Ключевые слова"
 #: ../gtksourceview/language-specs/css.lang.h:29
 #: ../gtksourceview/language-specs/desktop.lang.h:7
 #: ../gtksourceview/language-specs/diff.lang.h:5
-#: ../gtksourceview/language-specs/fortran.lang.h:8
+#: ../gtksourceview/language-specs/fortran.lang.h:9
 #: ../gtksourceview/language-specs/gtkrc.lang.h:7
 #: ../gtksourceview/language-specs/haskell.lang.h:10
 #: ../gtksourceview/language-specs/idl.lang.h:5
@@ -442,11 +482,13 @@ msgstr "Ключевые слова"
 #: ../gtksourceview/language-specs/lua.lang.h:4
 #: ../gtksourceview/language-specs/makefile.lang.h:4
 #: ../gtksourceview/language-specs/nemerle.lang.h:10
+#: ../gtksourceview/language-specs/octave.lang.h:7
 #: ../gtksourceview/language-specs/pascal.lang.h:11
 #: ../gtksourceview/language-specs/perl.lang.h:3
-#: ../gtksourceview/language-specs/python.lang.h:7
+#: ../gtksourceview/language-specs/python.lang.h:8
 #: ../gtksourceview/language-specs/R.lang.h:7
-#: ../gtksourceview/language-specs/ruby.lang.h:9
+#: ../gtksourceview/language-specs/ruby.lang.h:10
+#: ../gtksourceview/language-specs/scheme.lang.h:10
 #: ../gtksourceview/language-specs/sh.lang.h:5
 #: ../gtksourceview/language-specs/sql.lang.h:23
 #: ../gtksourceview/language-specs/tcl.lang.h:2
@@ -472,21 +514,21 @@ msgid "Number"
 msgstr "Число"
 
 #: ../gtksourceview/language-specs/ada.lang.h:7
-msgid "Preprocessor Keywords"
-msgstr "Ключевые слова препроцессора"
+msgid "Preprocessor Keyword"
+msgstr "Ключевое слово препроцессора"
 
 #: ../gtksourceview/language-specs/ada.lang.h:8
 #: ../gtksourceview/language-specs/c.lang.h:14
 #: ../gtksourceview/language-specs/cpp.lang.h:14
 #: ../gtksourceview/language-specs/csharp.lang.h:8
-#: ../gtksourceview/language-specs/fortran.lang.h:11
+#: ../gtksourceview/language-specs/fortran.lang.h:12
 #: ../gtksourceview/language-specs/haskell.lang.h:13
 #: ../gtksourceview/language-specs/idl.lang.h:8
 #: ../gtksourceview/language-specs/java.lang.h:10
 #: ../gtksourceview/language-specs/makefile.lang.h:6
 #: ../gtksourceview/language-specs/nemerle.lang.h:14
 #: ../gtksourceview/language-specs/pascal.lang.h:17
-#: ../gtksourceview/language-specs/php.lang.h:24
+#: ../gtksourceview/language-specs/scheme.lang.h:12
 #: ../gtksourceview/language-specs/sql.lang.h:48
 #: ../gtksourceview/language-specs/vbnet.lang.h:10
 #: ../gtksourceview/language-specs/verilog.lang.h:9
@@ -499,13 +541,9 @@ msgid "True And False"
 msgstr "Истинно и Ложно"
 
 #: ../gtksourceview/language-specs/ada.lang.h:11
-#: ../gtksourceview/language-specs/c.lang.h:16
-#: ../gtksourceview/language-specs/cpp.lang.h:16
-#: ../gtksourceview/language-specs/fortran.lang.h:14
-#: ../gtksourceview/language-specs/idl.lang.h:10
-#: ../gtksourceview/language-specs/verilog.lang.h:10
-msgid "Types"
-msgstr "Типы"
+#: ../gtksourceview/language-specs/vhdl.lang.h:8
+msgid "Type"
+msgstr "Тип"
 
 #: ../gtksourceview/language-specs/c.lang.h:1
 #: ../gtksourceview/language-specs/cpp.lang.h:1
@@ -545,7 +583,8 @@ msgstr "Общий макрос"
 #: ../gtksourceview/language-specs/fortran.lang.h:2
 #: ../gtksourceview/language-specs/haskell.lang.h:4
 #: ../gtksourceview/language-specs/nemerle.lang.h:7
-#: ../gtksourceview/language-specs/python.lang.h:3
+#: ../gtksourceview/language-specs/octave.lang.h:3
+#: ../gtksourceview/language-specs/python.lang.h:4
 #: ../gtksourceview/language-specs/R.lang.h:4
 msgid "Floating Point Number"
 msgstr "Число с плавающей точкой"
@@ -556,8 +595,9 @@ msgstr "Число с плавающей точкой"
 #: ../gtksourceview/language-specs/fortran.lang.h:4
 #: ../gtksourceview/language-specs/haskell.lang.h:6
 #: ../gtksourceview/language-specs/nemerle.lang.h:8
+#: ../gtksourceview/language-specs/octave.lang.h:5
 #: ../gtksourceview/language-specs/pascal.lang.h:10
-#: ../gtksourceview/language-specs/python.lang.h:5
+#: ../gtksourceview/language-specs/python.lang.h:6
 msgid "Hex Number"
 msgstr "Шестнадцатиричное число"
 
@@ -568,12 +608,27 @@ msgstr "Шестнадцатиричное число"
 msgid "Include/Pragma"
 msgstr "Директивы #include/#pragma"
 
+#: ../gtksourceview/language-specs/c.lang.h:10
+#: ../gtksourceview/language-specs/cpp.lang.h:10
+#: ../gtksourceview/language-specs/csharp.lang.h:3
+#: ../gtksourceview/language-specs/fortran.lang.h:7
+#: ../gtksourceview/language-specs/idl.lang.h:4
+#: ../gtksourceview/language-specs/javascript.lang.h:12
+#: ../gtksourceview/language-specs/lua.lang.h:3
+#: ../gtksourceview/language-specs/perl.lang.h:2
+#: ../gtksourceview/language-specs/ruby.lang.h:9
+#: ../gtksourceview/language-specs/vbnet.lang.h:1
+#: ../gtksourceview/language-specs/verilog.lang.h:6
+msgid "Keywords"
+msgstr "Ключевые слова"
+
 #: ../gtksourceview/language-specs/c.lang.h:12
 #: ../gtksourceview/language-specs/cpp.lang.h:12
-#: ../gtksourceview/language-specs/fortran.lang.h:9
+#: ../gtksourceview/language-specs/fortran.lang.h:10
 #: ../gtksourceview/language-specs/haskell.lang.h:11
 #: ../gtksourceview/language-specs/nemerle.lang.h:12
-#: ../gtksourceview/language-specs/python.lang.h:11
+#: ../gtksourceview/language-specs/octave.lang.h:10
+#: ../gtksourceview/language-specs/python.lang.h:12
 #: ../gtksourceview/language-specs/verilog.lang.h:8
 msgid "Octal Number"
 msgstr "Восьмеричное число"
@@ -581,11 +636,38 @@ msgstr "Восьмеричное число"
 #: ../gtksourceview/language-specs/c.lang.h:13
 #: ../gtksourceview/language-specs/cpp.lang.h:13
 #: ../gtksourceview/language-specs/csharp.lang.h:6
-#: ../gtksourceview/language-specs/haskell.lang.h:12
 #: ../gtksourceview/language-specs/idl.lang.h:6
 #: ../gtksourceview/language-specs/vbnet.lang.h:8
 msgid "Preprocessor Definitions"
 msgstr "Определения препроцессора"
+
+#: ../gtksourceview/language-specs/c.lang.h:16
+#: ../gtksourceview/language-specs/cpp.lang.h:16
+#: ../gtksourceview/language-specs/fortran.lang.h:15
+#: ../gtksourceview/language-specs/idl.lang.h:10
+#: ../gtksourceview/language-specs/verilog.lang.h:10
+msgid "Types"
+msgstr "Типы"
+
+#: ../gtksourceview/language-specs/changelog.lang.h:1
+msgid "ChangeLog"
+msgstr "ChangeLog"
+
+#: ../gtksourceview/language-specs/changelog.lang.h:2
+msgid "Date"
+msgstr "Дата"
+
+#: ../gtksourceview/language-specs/changelog.lang.h:3
+msgid "Email"
+msgstr "Эл. почта"
+
+#: ../gtksourceview/language-specs/changelog.lang.h:4
+msgid "File"
+msgstr "Файл"
+
+#: ../gtksourceview/language-specs/changelog.lang.h:5
+msgid "Marker"
+msgstr "Маркер"
 
 #: ../gtksourceview/language-specs/cpp.lang.h:3
 msgid "C++"
@@ -597,7 +679,6 @@ msgstr "C#"
 
 #: ../gtksourceview/language-specs/csharp.lang.h:5
 #: ../gtksourceview/language-specs/lua.lang.h:7
-#: ../gtksourceview/language-specs/python.lang.h:9
 #: ../gtksourceview/language-specs/sh.lang.h:6
 msgid "Multiline String"
 msgstr "Строка с переносами"
@@ -611,13 +692,11 @@ msgstr "Примитивы"
 
 #: ../gtksourceview/language-specs/csharp.lang.h:10
 #: ../gtksourceview/language-specs/css.lang.h:59
-#: ../gtksourceview/language-specs/fortran.lang.h:13
+#: ../gtksourceview/language-specs/fortran.lang.h:14
 #: ../gtksourceview/language-specs/java.lang.h:12
 #: ../gtksourceview/language-specs/javascript.lang.h:24
 #: ../gtksourceview/language-specs/lua.lang.h:11
 #: ../gtksourceview/language-specs/makefile.lang.h:9
-#: ../gtksourceview/language-specs/python.lang.h:15
-#: ../gtksourceview/language-specs/ruby.lang.h:19
 #: ../gtksourceview/language-specs/sh.lang.h:14
 msgid "String 2"
 msgstr "Строка 2"
@@ -669,7 +748,6 @@ msgstr "Известные значения свойств"
 #: ../gtksourceview/language-specs/css.lang.h:35
 #: ../gtksourceview/language-specs/javascript.lang.h:20
 #: ../gtksourceview/language-specs/php.lang.h:20
-#: ../gtksourceview/language-specs/sh.lang.h:8
 #: ../gtksourceview/language-specs/sql.lang.h:34
 msgid "Operators"
 msgstr "Операторы"
@@ -683,7 +761,6 @@ msgstr "Имена свойств"
 #.
 #: ../gtksourceview/language-specs/css.lang.h:41
 #: ../gtksourceview/language-specs/javascript.lang.h:21
-#: ../gtksourceview/language-specs/sh.lang.h:9
 msgid "Punctuators"
 msgstr "Символы пунктуации"
 
@@ -734,6 +811,7 @@ msgstr ".desktop"
 #: ../gtksourceview/language-specs/desktop.lang.h:2
 #: ../gtksourceview/language-specs/gtkrc.lang.h:1
 #: ../gtksourceview/language-specs/ini.lang.h:2
+#: ../gtksourceview/language-specs/scheme.lang.h:1
 msgid "Boolean Value"
 msgstr "Булево (логическое) значение"
 
@@ -790,8 +868,8 @@ msgstr "Специальный случай"
 
 #: ../gtksourceview/language-specs/html.lang.h:1
 #: ../gtksourceview/language-specs/xml.lang.h:1
-msgid "Attributes"
-msgstr "Атрибуты"
+msgid "Attribute"
+msgstr "Атрибут"
 
 #: ../gtksourceview/language-specs/html.lang.h:3
 #: ../gtksourceview/language-specs/xml.lang.h:3
@@ -812,15 +890,16 @@ msgid "HTML"
 msgstr "HTML"
 
 #: ../gtksourceview/language-specs/html.lang.h:7
-#: ../gtksourceview/language-specs/latex.lang.h:6
+#: ../gtksourceview/language-specs/latex.lang.h:7
 #: ../gtksourceview/language-specs/texinfo.lang.h:12
 #: ../gtksourceview/language-specs/xml.lang.h:6
 msgid "Markup"
 msgstr "Разметка"
 
 #: ../gtksourceview/language-specs/html.lang.h:9
-msgid "Tags"
-msgstr "Теги"
+#: ../gtksourceview/language-specs/xml.lang.h:8
+msgid "Tag"
+msgstr "Тег"
 
 #: ../gtksourceview/language-specs/fortran.lang.h:3
 msgid "Fortran 95"
@@ -834,14 +913,19 @@ msgstr "Ввод/вывод"
 msgid "Intrinsics"
 msgstr "Внутренние"
 
-#: ../gtksourceview/language-specs/fortran.lang.h:10
+#: ../gtksourceview/language-specs/fortran.lang.h:11
 msgid "Read/Write"
 msgstr "Чтение/запись"
 
+#. "duble-quoted strings"
 #: ../gtksourceview/language-specs/gtkrc.lang.h:2
 #: ../gtksourceview/language-specs/ini.lang.h:4
+#: ../gtksourceview/language-specs/octave.lang.h:2
+#: ../gtksourceview/language-specs/php.lang.h:16
+#: ../gtksourceview/language-specs/python.lang.h:3
 #: ../gtksourceview/language-specs/R.lang.h:3
-msgid "Double Quote String"
+#: ../gtksourceview/language-specs/ruby.lang.h:6
+msgid "Double Quoted String"
 msgstr "Строка в двойных кавычках"
 
 #: ../gtksourceview/language-specs/gtkrc.lang.h:3
@@ -853,13 +937,19 @@ msgid "Include Directive"
 msgstr "Директива включения"
 
 #: ../gtksourceview/language-specs/gtkrc.lang.h:5
+#: ../gtksourceview/language-specs/haskell.lang.h:8
 msgid "Keysymbol"
 msgstr "Ключевой символ"
 
+#. 'single-quoted strings'
 #: ../gtksourceview/language-specs/gtkrc.lang.h:10
 #: ../gtksourceview/language-specs/ini.lang.h:11
+#: ../gtksourceview/language-specs/octave.lang.h:14
+#: ../gtksourceview/language-specs/php.lang.h:24
+#: ../gtksourceview/language-specs/python.lang.h:15
 #: ../gtksourceview/language-specs/R.lang.h:11
-msgid "Single Quote String"
+#: ../gtksourceview/language-specs/ruby.lang.h:17
+msgid "Single Quoted String"
 msgstr "Строка в одинарных кавычках"
 
 #: ../gtksourceview/language-specs/gtkrc.lang.h:11
@@ -870,6 +960,7 @@ msgstr "Состояние"
 #: ../gtksourceview/language-specs/gtkrc.lang.h:12
 #: ../gtksourceview/language-specs/ini.lang.h:12
 #: ../gtksourceview/language-specs/php.lang.h:26
+#: ../gtksourceview/language-specs/tcl.lang.h:7
 msgid "Variable"
 msgstr "Переменная"
 
@@ -877,9 +968,9 @@ msgstr "Переменная"
 msgid "Haskell"
 msgstr "Haskell"
 
-#: ../gtksourceview/language-specs/haskell.lang.h:8
-msgid "Keysymbols"
-msgstr "Ключевые символы"
+#: ../gtksourceview/language-specs/haskell.lang.h:12
+msgid "Preprocessor Definition"
+msgstr "Определение препроцессора"
 
 #: ../gtksourceview/language-specs/haskell.lang.h:32
 msgid "Type or Constructor"
@@ -994,10 +1085,12 @@ msgstr "Объекты"
 
 #: ../gtksourceview/language-specs/javascript.lang.h:22
 #: ../gtksourceview/language-specs/lua.lang.h:9
+#: ../gtksourceview/language-specs/octave.lang.h:13
 #: ../gtksourceview/language-specs/perl.lang.h:7
-#: ../gtksourceview/language-specs/python.lang.h:13
+#: ../gtksourceview/language-specs/php.lang.h:22
+#: ../gtksourceview/language-specs/python.lang.h:14
 #: ../gtksourceview/language-specs/R.lang.h:10
-#: ../gtksourceview/language-specs/ruby.lang.h:17
+#: ../gtksourceview/language-specs/ruby.lang.h:16
 #: ../gtksourceview/language-specs/sh.lang.h:11
 #: ../gtksourceview/language-specs/tcl.lang.h:3
 msgid "Scripts"
@@ -1011,31 +1104,29 @@ msgstr "Последовательность, кодирующая Unicode-си�
 msgid "Word Operators"
 msgstr "Слова-операторы"
 
-#: ../gtksourceview/language-specs/latex.lang.h:2
+#: ../gtksourceview/language-specs/latex.lang.h:1
+msgid "Command"
+msgstr "Команда"
+
+#: ../gtksourceview/language-specs/latex.lang.h:3
 msgid "Comment Environment"
 msgstr "Окружение комментария"
 
-#: ../gtksourceview/language-specs/latex.lang.h:3
+#: ../gtksourceview/language-specs/latex.lang.h:4
 #: ../gtksourceview/language-specs/texinfo.lang.h:6
 msgid "Include"
 msgstr "Директива \"Include\""
 
-#: ../gtksourceview/language-specs/latex.lang.h:5
+#: ../gtksourceview/language-specs/latex.lang.h:6
 msgid "LaTeX"
 msgstr "LaTeX"
 
-#: ../gtksourceview/language-specs/latex.lang.h:7
+#: ../gtksourceview/language-specs/latex.lang.h:8
 msgid "Math"
 msgstr "Математическое"
 
-#: ../gtksourceview/language-specs/latex.lang.h:8
-msgid "Most Used Commands"
-msgstr "Наиболее часто используемые команды"
-
 #: ../gtksourceview/language-specs/lua.lang.h:2
 #: ../gtksourceview/language-specs/makefile.lang.h:3
-#: ../gtksourceview/language-specs/python.lang.h:4
-#: ../gtksourceview/language-specs/sh.lang.h:4
 msgid "Functions"
 msgstr "Функции"
 
@@ -1048,7 +1139,6 @@ msgid "Lua"
 msgstr "Lua"
 
 #: ../gtksourceview/language-specs/lua.lang.h:8
-#: ../gtksourceview/language-specs/python.lang.h:10
 #: ../gtksourceview/language-specs/sh.lang.h:7
 msgid "Multiline String 2"
 msgstr "Строка с переносами 2"
@@ -1110,6 +1200,25 @@ msgstr "Ключевые слова, определенные макросом"
 #: ../gtksourceview/language-specs/nemerle.lang.h:11
 msgid "Nemerle"
 msgstr "Nemerle"
+
+#: ../gtksourceview/language-specs/octave.lang.h:8
+#: ../gtksourceview/language-specs/python.lang.h:10
+msgid "Multiline Double Quoted String"
+msgstr "Многострочный текст в двойных кавычках"
+
+#: ../gtksourceview/language-specs/octave.lang.h:9
+#: ../gtksourceview/language-specs/python.lang.h:11
+msgid "Multiline Single Quoted String"
+msgstr "Многострочный текст в одинарных кавычках"
+
+#: ../gtksourceview/language-specs/octave.lang.h:11
+msgid "Octave"
+msgstr "Октава"
+
+#: ../gtksourceview/language-specs/octave.lang.h:12
+#: ../gtksourceview/language-specs/R.lang.h:9
+msgid "Reserved Constant"
+msgstr "Зарезервированная константа"
 
 #: ../gtksourceview/language-specs/pascal.lang.h:1
 msgid "Block Comment 1"
@@ -1189,7 +1298,6 @@ msgid "String3"
 msgstr "Строка3"
 
 #: ../gtksourceview/language-specs/perl.lang.h:11
-#: ../gtksourceview/language-specs/tcl.lang.h:7
 msgid "Variables"
 msgstr "Переменные"
 
@@ -1217,11 +1325,6 @@ msgstr "Ключевое слово без учета регистра"
 msgid "Case Sensitive Keyword"
 msgstr "Ключевое слово с учетом регистра"
 
-#. "duble-quoted strings"
-#: ../gtksourceview/language-specs/php.lang.h:16
-msgid "Double Quoted String"
-msgstr "Строка в двойных кавычках"
-
 #. <? ?> <HTML> inside PHP <?
 #: ../gtksourceview/language-specs/php.lang.h:18
 msgid "First Open PHP Tag"
@@ -1234,11 +1337,6 @@ msgstr "Блок HTML"
 #: ../gtksourceview/language-specs/php.lang.h:21
 msgid "PHP"
 msgstr "PHP"
-
-#. 'single-quoted strings'
-#: ../gtksourceview/language-specs/php.lang.h:23
-msgid "Single Quoted String"
-msgstr "Строка в одинарных кавычках"
 
 #: ../gtksourceview/language-specs/po.lang.h:2
 msgid "Format"
@@ -1253,11 +1351,11 @@ msgstr "Перевод в формате gettext"
 msgid "Builtins"
 msgstr "Встроенные функции"
 
-#: ../gtksourceview/language-specs/python.lang.h:8
+#: ../gtksourceview/language-specs/python.lang.h:9
 msgid "Module Handler"
 msgstr "Обработчик модуля"
 
-#: ../gtksourceview/language-specs/python.lang.h:12
+#: ../gtksourceview/language-specs/python.lang.h:13
 msgid "Python"
 msgstr "Python"
 
@@ -1277,10 +1375,6 @@ msgstr "Целое число"
 msgid "Reserved Class"
 msgstr "Зарезервированный класс"
 
-#: ../gtksourceview/language-specs/R.lang.h:9
-msgid "Reserved Constant"
-msgstr "Зарезервированная константа"
-
 #: ../gtksourceview/language-specs/ruby.lang.h:1
 msgid "Attribute Definitions"
 msgstr "Определения атрибутов"
@@ -1297,53 +1391,61 @@ msgstr "Константы"
 msgid "Definitions"
 msgstr "Определения"
 
-#: ../gtksourceview/language-specs/ruby.lang.h:6
+#: ../gtksourceview/language-specs/ruby.lang.h:7
 msgid "Global Variables"
 msgstr "Глобальные переменные"
 
-#: ../gtksourceview/language-specs/ruby.lang.h:7
+#: ../gtksourceview/language-specs/ruby.lang.h:8
 msgid "Instance Variables"
 msgstr "Переменные экземпляра"
 
-#: ../gtksourceview/language-specs/ruby.lang.h:10
+#: ../gtksourceview/language-specs/ruby.lang.h:11
 msgid "Module Handlers"
 msgstr "Обработчики модуля"
 
-#: ../gtksourceview/language-specs/ruby.lang.h:11
+#: ../gtksourceview/language-specs/ruby.lang.h:12
 msgid "Multiline Comment"
 msgstr "Многострочный комментарий"
 
-#: ../gtksourceview/language-specs/ruby.lang.h:12
+#: ../gtksourceview/language-specs/ruby.lang.h:13
 msgid "Pseudo Variables"
 msgstr "Псевдо-переменные"
 
-#: ../gtksourceview/language-specs/ruby.lang.h:13
+#: ../gtksourceview/language-specs/ruby.lang.h:14
 msgid "RegExp Variables"
 msgstr "Переменные рег.выр."
 
-#: ../gtksourceview/language-specs/ruby.lang.h:14
-msgid "Regular Expression"
-msgstr "Регулярное выражение"
-
 #: ../gtksourceview/language-specs/ruby.lang.h:15
-msgid "Regular Expression 2"
-msgstr "Регулярное выражение 2"
-
-#: ../gtksourceview/language-specs/ruby.lang.h:16
 msgid "Ruby"
 msgstr "Ruby"
 
+#: ../gtksourceview/language-specs/ruby.lang.h:18
+msgid "Symbols"
+msgstr "Символы"
+
+#: ../gtksourceview/language-specs/scheme.lang.h:11
+msgid "Scheme"
+msgstr "Scheme"
+
 #: ../gtksourceview/language-specs/sh.lang.h:2
-msgid "Built-in Commands"
-msgstr "Встроенные команды"
+msgid "Built-in Command"
+msgstr "Встроенная команда"
 
 #: ../gtksourceview/language-specs/sh.lang.h:3
-msgid "Common Commands"
-msgstr "Общие команды"
+msgid "Common Command"
+msgstr "Общая команда"
+
+#: ../gtksourceview/language-specs/sh.lang.h:8
+msgid "Operator"
+msgstr "Оператор"
+
+#: ../gtksourceview/language-specs/sh.lang.h:9
+msgid "Punctuator"
+msgstr "Пунктуатор"
 
 #: ../gtksourceview/language-specs/sh.lang.h:10
-msgid "Redirections"
-msgstr "Перенаправления"
+msgid "Redirection"
+msgstr "Перенаправление"
 
 #: ../gtksourceview/language-specs/sh.lang.h:12
 msgid "Self"
@@ -1582,10 +1684,6 @@ msgstr "Verilog"
 msgid "True and False"
 msgstr "Истинно и Ложно"
 
-#: ../gtksourceview/language-specs/vhdl.lang.h:8
-msgid "Type"
-msgstr "Тип"
-
 #: ../gtksourceview/language-specs/vhdl.lang.h:9
 msgid "VHDL"
 msgstr "VHDL"
@@ -1593,10 +1691,6 @@ msgstr "VHDL"
 #: ../gtksourceview/language-specs/xml.lang.h:5
 msgid "Hexadecimal"
 msgstr "Шестнадцатиричное число"
-
-#: ../gtksourceview/language-specs/xml.lang.h:8
-msgid "Tag"
-msgstr "Тег"
 
 #: ../gtksourceview/language-specs/xml.lang.h:9
 msgid "XML"
