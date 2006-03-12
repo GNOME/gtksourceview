@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the gtksourceview
 # package.
 # Stefano Canepa <sc@linux.it>, 2003, 2004, 2005, 2006.
+# Francesco Marletta <francesco.marletta@tiscali.it>, 2006.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview 0.1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-03-05 18:55+0100\n"
-"PO-Revision-Date: 2006-03-05 18:58+0100\n"
+"POT-Creation-Date: 2006-03-12 13:37+0100\n"
+"PO-Revision-Date: 2006-03-06 10:30+0100\n"
 "Last-Translator: Stefano Canepa <sc@linux.it>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "MIME-Version: 1.0\n"
@@ -402,7 +403,8 @@ msgid ""
 "before going to the start/end of the line"
 msgstr ""
 "I tasti INIZIO (freccia verso sinistra inclinata) e FINE muovono al primo/"
-"ultimo carattere sulla riga prima di andare all'inizio/fine della stessa"
+"ultimo carattere diverso da spazio sulla riga prima di andare all'inizio/"
+"fine della stessa"
 
 #: ../gtksourceview/gtksourceview.c:288
 msgid "Highlight current line"
@@ -414,45 +416,43 @@ msgstr "Indica se evidenziare la riga corrente"
 
 #: ../gtksourceview/gtksourceview.c:305
 msgid "Margin Line Alpha"
-msgstr ""
+msgstr "Componente alfa della linea del margine"
 
 #: ../gtksourceview/gtksourceview.c:306
 msgid "Transparency of the margin line"
-msgstr ""
+msgstr "Trasparenza della linea del margine"
 
 #: ../gtksourceview/gtksourceview.c:323
 msgid "Margin Line Color"
-msgstr ""
+msgstr "Colore della linea del margine"
 
 #: ../gtksourceview/gtksourceview.c:324
-#, fuzzy
 msgid "Color to use for the right margin line"
-msgstr "Posizione del margine destro"
+msgstr "Colore da usare per la linea del margin destro"
 
 #: ../gtksourceview/gtksourceview.c:340
 msgid "Margin Overlay Toggle"
-msgstr ""
+msgstr "Commuta sovrapposizione del margine"
 
 #: ../gtksourceview/gtksourceview.c:341
-#, fuzzy
 msgid "Whether to draw the right margin overlay"
-msgstr "Indica se mostrare il margine di destra"
+msgstr "Indica se disegnare il margine destro sovrapposto"
 
 #: ../gtksourceview/gtksourceview.c:357
 msgid "Margin Overlay Alpha"
-msgstr ""
+msgstr "Componente alfa del margine sovrapposto"
 
 #: ../gtksourceview/gtksourceview.c:358
 msgid "Transparency of the margin overlay"
-msgstr ""
+msgstr "Trasparenza del margine sovrapposto"
 
 #: ../gtksourceview/gtksourceview.c:375
 msgid "Margin Overlay Color"
-msgstr ""
+msgstr "Colore del margine sovrapposto"
 
 #: ../gtksourceview/gtksourceview.c:376
 msgid "Color to use for drawing the margin overlay"
-msgstr ""
+msgstr "Colore da usare per disegnare il margine sovrapposto"
 
 #: ../gtksourceview/language-specs/ada.lang.h:1
 msgid "Ada"
@@ -522,7 +522,7 @@ msgstr "Numero"
 
 #: ../gtksourceview/language-specs/ada.lang.h:7
 msgid "Preprocessor Keyword"
-msgstr "Parola chiave del preprocessore"
+msgstr "Parole chiave del preprocessore"
 
 #: ../gtksourceview/language-specs/ada.lang.h:8
 #: ../gtksourceview/language-specs/c.lang.h:14
@@ -658,25 +658,23 @@ msgstr "Tipi"
 
 #: ../gtksourceview/language-specs/changelog.lang.h:1
 msgid "ChangeLog"
-msgstr ""
+msgstr "ChangeLog"
 
 #: ../gtksourceview/language-specs/changelog.lang.h:2
-#, fuzzy
 msgid "Date"
-msgstr "Porte"
+msgstr "Data"
 
 #: ../gtksourceview/language-specs/changelog.lang.h:3
 msgid "Email"
-msgstr ""
+msgstr "Email"
 
 #: ../gtksourceview/language-specs/changelog.lang.h:4
 msgid "File"
 msgstr "File"
 
 #: ../gtksourceview/language-specs/changelog.lang.h:5
-#, fuzzy
 msgid "Marker"
-msgstr "Markup"
+msgstr "Marcatore"
 
 #: ../gtksourceview/language-specs/cpp.lang.h:3
 msgid "C++"
@@ -924,7 +922,7 @@ msgstr "Intrinsiche"
 
 #: ../gtksourceview/language-specs/fortran.lang.h:11
 msgid "Read/Write"
-msgstr "Read/Write"
+msgstr "Lettura scrittura"
 
 #. "duble-quoted strings"
 #: ../gtksourceview/language-specs/gtkrc.lang.h:2
@@ -971,7 +969,7 @@ msgstr "Stato"
 #: ../gtksourceview/language-specs/php.lang.h:26
 #: ../gtksourceview/language-specs/tcl.lang.h:7
 msgid "Variable"
-msgstr "Variabili"
+msgstr "Variabile"
 
 #: ../gtksourceview/language-specs/haskell.lang.h:5
 msgid "Haskell"
@@ -1075,7 +1073,7 @@ msgstr "JavaScript"
 # [NdT] non so come metterci
 #: ../gtksourceview/language-specs/javascript.lang.h:14
 msgid "Literals"
-msgstr "Valori letterali"
+msgstr "Letterali"
 
 #: ../gtksourceview/language-specs/javascript.lang.h:15
 msgid "Math Value Properties"
@@ -1213,15 +1211,13 @@ msgstr "Nemerle"
 
 #: ../gtksourceview/language-specs/octave.lang.h:8
 #: ../gtksourceview/language-specs/python.lang.h:10
-#, fuzzy
 msgid "Multiline Double Quoted String"
-msgstr "Stringa tra apici doppi"
+msgstr "Stringa multilinea tra apici doppi"
 
 #: ../gtksourceview/language-specs/octave.lang.h:9
 #: ../gtksourceview/language-specs/python.lang.h:11
-#, fuzzy
 msgid "Multiline Single Quoted String"
-msgstr "Stringa tra apici singoli"
+msgstr "Stringa multilinea tra apici singoli"
 
 #: ../gtksourceview/language-specs/octave.lang.h:11
 msgid "Octave"
@@ -1441,20 +1437,19 @@ msgstr "Scheme"
 
 #: ../gtksourceview/language-specs/sh.lang.h:2
 msgid "Built-in Command"
-msgstr "Comando incorporato"
+msgstr "Comandi incorporati"
 
 #: ../gtksourceview/language-specs/sh.lang.h:3
 msgid "Common Command"
-msgstr "Comando frequente"
+msgstr "Comandi comuni"
 
 #: ../gtksourceview/language-specs/sh.lang.h:8
 msgid "Operator"
 msgstr "Operatore"
 
 #: ../gtksourceview/language-specs/sh.lang.h:9
-#, fuzzy
 msgid "Punctuator"
-msgstr "Puntatori"
+msgstr "Puntatore"
 
 #: ../gtksourceview/language-specs/sh.lang.h:10
 msgid "Redirection"
@@ -1497,7 +1492,7 @@ msgstr "Funzioni sui caratteri che restituiscono numeri"
 
 #: ../gtksourceview/language-specs/sql.lang.h:12
 msgid "Collection Functions"
-msgstr "Funzioni di raggruppamento"
+msgstr "Funzioni di raccolta"
 
 #: ../gtksourceview/language-specs/sql.lang.h:13
 msgid "Conditions"
@@ -1509,7 +1504,7 @@ msgstr "Funzioni di conversione"
 
 #: ../gtksourceview/language-specs/sql.lang.h:15
 msgid "Data Mining Functions"
-msgstr "Funzioni «data mining»"
+msgstr "Funzioni di ricerca dati"
 
 #: ../gtksourceview/language-specs/sql.lang.h:16
 msgid "Datetime Functions"
@@ -1521,11 +1516,11 @@ msgstr "Funzioni di codifica e decodifica"
 
 #: ../gtksourceview/language-specs/sql.lang.h:18
 msgid "Environment and Identifier Functions"
-msgstr "Funzioni di ambiente e di idetificativo"
+msgstr "Funzioni ambiente e indentificatori"
 
 #: ../gtksourceview/language-specs/sql.lang.h:19
 msgid "General Comparison Functions"
-msgstr "Funzioni generiche di confronto"
+msgstr "Funzioni di confronto generico"
 
 #: ../gtksourceview/language-specs/sql.lang.h:20
 msgid "Hierarchical Function"
@@ -1534,11 +1529,11 @@ msgstr "Funzioni gerarchiche"
 # [NdT] non so che metterci
 #: ../gtksourceview/language-specs/sql.lang.h:21
 msgid "Integer Literals"
-msgstr "Caratteri degli interi"
+msgstr "Intero letterale"
 
 #: ../gtksourceview/language-specs/sql.lang.h:22
 msgid "Large Object Functions"
-msgstr "Funzioni per oggetti di grandi dimensioni"
+msgstr "Funzioni per grandi oggetti"
 
 #. Model Functions
 #: ../gtksourceview/language-specs/sql.lang.h:25
@@ -1547,11 +1542,11 @@ msgstr "Funzioni modello"
 
 #: ../gtksourceview/language-specs/sql.lang.h:26
 msgid "NLS Character Functions"
-msgstr "Funzioni per i caratteri nazionali"
+msgstr "Funzioni carattere NLS"
 
 #: ../gtksourceview/language-specs/sql.lang.h:27
 msgid "NULL-Related Functions"
-msgstr "Funzioni relativi ai valori nulli"
+msgstr "Non Funzioni relative a NULL"
 
 #: ../gtksourceview/language-specs/sql.lang.h:28
 msgid "Null"
@@ -1591,7 +1586,7 @@ msgstr "SQL"
 
 #: ../gtksourceview/language-specs/sql.lang.h:40
 msgid "SQL Statements"
-msgstr "Istruzioni SQL"
+msgstr "Comandi SQL"
 
 #. SQL*Plus
 #: ../gtksourceview/language-specs/sql.lang.h:42
@@ -1658,7 +1653,7 @@ msgstr "Indicizzazione"
 
 #: ../gtksourceview/language-specs/texinfo.lang.h:10
 msgid "Macro Parameters"
-msgstr "Parametro della macro"
+msgstr "Parametri delle macro"
 
 #: ../gtksourceview/language-specs/texinfo.lang.h:11
 msgid "Macros"
@@ -1666,11 +1661,11 @@ msgstr "Macro"
 
 #: ../gtksourceview/language-specs/texinfo.lang.h:13
 msgid "Markup (block)"
-msgstr "Markup (block)"
+msgstr "Markup (blocco)"
 
 #: ../gtksourceview/language-specs/texinfo.lang.h:14
 msgid "Markup (inline)"
-msgstr "Markup (inline)"
+msgstr "Markup (in linea)"
 
 #: ../gtksourceview/language-specs/texinfo.lang.h:15
 msgid "Sectioning"
@@ -1712,3 +1707,21 @@ msgstr "Esadecimale"
 #: ../gtksourceview/language-specs/xml.lang.h:9
 msgid "XML"
 msgstr "XML"
+
+#~ msgid "Tags"
+#~ msgstr "Tag"
+
+#~ msgid "Double Quote String"
+#~ msgstr "Stringa tra doppi apici"
+
+#~ msgid "Single Quote String"
+#~ msgstr "Stringa tra apici singoli"
+
+#~ msgid "Most Used Commands"
+#~ msgstr "Comandi frequenti"
+
+#~ msgid "Regular Expression"
+#~ msgstr "Espressione regolare"
+
+#~ msgid "Regular Expression 2"
+#~ msgstr "Espressione regolare 2"
