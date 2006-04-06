@@ -2079,8 +2079,7 @@ gtk_source_view_button_press_event (GtkWidget *widget, GdkEventButton *event)
 	view = GTK_SOURCE_VIEW (widget);
 	buf = gtk_text_view_get_buffer (GTK_TEXT_VIEW (widget));
 
-	if ((event->button == 1) &&
-	    view->priv->show_line_numbers &&
+	if (view->priv->show_line_numbers &&
 	    (event->window == gtk_text_view_get_window (GTK_TEXT_VIEW (view),
 						       GTK_TEXT_WINDOW_LEFT)))
 	{
@@ -2094,7 +2093,7 @@ gtk_source_view_button_press_event (GtkWidget *widget, GdkEventButton *event)
 					     y_buf,
 					     NULL);
 	
-		if (event->type == GDK_BUTTON_PRESS)
+		if (event->type == GDK_BUTTON_PRESS && (event->button == 1))
 		{
 			if ((event->state & GDK_CONTROL_MASK) != 0)
 			{
@@ -2112,11 +2111,12 @@ gtk_source_view_button_press_event (GtkWidget *widget, GdkEventButton *event)
 				gtk_text_buffer_place_cursor (buf, &line_start);
 			}
 		}
-		else if (event->type == GDK_2BUTTON_PRESS)
+		else if (event->type == GDK_2BUTTON_PRESS && (event->button == 1))
 		{
 			select_line (buf, &line_start);
 		}
 
+		/* consume the event also on right click etc */
 		return TRUE;
 	}
 
