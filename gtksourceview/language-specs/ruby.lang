@@ -127,7 +127,7 @@
 	</pattern-item>
 
 	<pattern-item _name = "Constants" style = "Decimal">
-		<regex>\b[A-Z_][A-Za-z0-9_]*\b</regex>
+		<regex>\b[A-Z_][A-Za-z0-9_:]*\b</regex>
 	</pattern-item>
 
 	<string _name = "Double Quoted String" style = "String" end-at-line-end = "TRUE">

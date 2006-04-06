@@ -1,3 +1,9 @@
+2006-04-06  Paolo Maggi  <paolo@gnome.org>
+
+	* gtksourceview/language-specs/ruby.lang: fixes bug #336788 – Patch to
+	make namespaced ruby constants display correctly (patch by
+	Gabriel Bauman <gbauman@gmail.com>)	
+
 2006-04-06  Paolo Borelli  <pborelli@katamail.com>
 
 	* gtksourceview/gtksourceview.c: consume the button press event
