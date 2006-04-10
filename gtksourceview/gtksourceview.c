@@ -114,11 +114,9 @@ typedef enum {
 	TARGET_COLOR = 200
 } GtkSourceViewDropTypes;
 
-static GtkTargetEntry drop_types[] = {
+static const GtkTargetEntry drop_types[] = {
 	{"application/x-color", 0, TARGET_COLOR}
 };
-
-static gint n_drop_types = sizeof (drop_types) / sizeof (drop_types[0]);
 
 static guint signals[LAST_SIGNAL] = { 0 };
 
@@ -572,8 +570,8 @@ gtk_source_view_init (GtkSourceView *view)
 	tl = gtk_drag_dest_get_target_list (GTK_WIDGET (view));
 	g_return_if_fail (tl != NULL);
 
-	gtk_target_list_add_table (tl, drop_types, n_drop_types);
-	
+	gtk_target_list_add_table (tl, drop_types, G_N_ELEMENTS (drop_types));
+
 	g_signal_connect (G_OBJECT (view), 
 			  "drag_data_received", 
 			  G_CALLBACK (view_dnd_drop), 
