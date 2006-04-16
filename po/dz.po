@@ -1,15 +1,14 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Dzongkha translation of gtksourceview
+# Copyright @ 2006 Free Software Foundation, Inc.
+# Mindu Dorji
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gtksourceview.HEAD.dz\n"
+"Project-Id-Version: gtksourceview.gnome-2-14 dz\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-03-06 05:21+0100\n"
-"PO-Revision-Date: 2006-03-24 17:33-0500\n"
-"Last-Translator: \n"
+"POT-Creation-Date: 2006-04-04 22:38+0200\n"
+"PO-Revision-Date: 2006-04-14 15:25+0530\n"
+"Last-Translator: Mindu Dorji\n"
 "Language-Team: DZONGKHA <pgeyleg@dit.gov.bt>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -19,180 +18,180 @@ msgstr ""
 "X-Poedit-Country: BHUTAN\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
-#: ../gtksourceview/gtksourcebuffer.c:279
+#: ../gtksourceview/gtksourcebuffer.c:278
 msgid "Escape Character"
 msgstr "ཡིག་འབྲུ་ བྲོས་ཐར་འབད།"
 
-#: ../gtksourceview/gtksourcebuffer.c:280
+#: ../gtksourceview/gtksourcebuffer.c:279
 msgid "Escaping character for syntax patterns"
 msgstr "ཚིག་སྦྱོར་དཔེ་གཞིའི་དོན་ལུ་ ཡིག་འབྲུ་བྲོས་ཐར་འབད་དོ།"
 
-#: ../gtksourceview/gtksourcebuffer.c:288
+#: ../gtksourceview/gtksourcebuffer.c:287
 msgid "Check Brackets"
 msgstr "གུག་ཤད་ཚུ་ ཞིབ་དཔྱད་འབད།"
 
-#: ../gtksourceview/gtksourcebuffer.c:289
+#: ../gtksourceview/gtksourcebuffer.c:288
 msgid "Whether to check and highlight matching brackets"
 msgstr "མཐུན་སྒྲིག་གི་གུག་ཤད་ཚུ་ ཞིབ་དཔྱད་འབད་དེ་ གཙོ་དམིགས་འབད་དགོཔ་ཨིན་ན།"
 
-#: ../gtksourceview/gtksourcebuffer.c:297
-#: ../gtksourceview/gtksourceprintjob.c:295
+#: ../gtksourceview/gtksourcebuffer.c:296
+#: ../gtksourceview/gtksourceprintjob.c:296
 msgid "Highlight"
 msgstr "གཙོ་དམིགས།"
 
-#: ../gtksourceview/gtksourcebuffer.c:298
+#: ../gtksourceview/gtksourcebuffer.c:297
 msgid "Whether to highlight syntax in the buffer"
 msgstr "གནད་ཁོངས་ནང་གི་ ཚིག་སྦྱོར་ལུ་ གཙོ་དམིགས་འབད་དགོཔ་ཨིན་ན།"
 
-#: ../gtksourceview/gtksourcebuffer.c:306
+#: ../gtksourceview/gtksourcebuffer.c:305
 msgid "Maximum Undo Levels"
 msgstr "འབད་བཤོལ་གནས་རིམ་གྱི་མང་མཐའ།"
 
-#: ../gtksourceview/gtksourcebuffer.c:307
+#: ../gtksourceview/gtksourcebuffer.c:306
 msgid "Number of undo levels for the buffer"
 msgstr "གནད་ཁོངས་ཀྱི་དོན་ལུ་ འབད་བཤོལ་གནས་རིམ་གྱི་གྱངས་ཁ།"
 
-#: ../gtksourceview/gtksourcebuffer.c:317
+#: ../gtksourceview/gtksourcebuffer.c:316
 #: ../gtksourceview/language-specs/desktop.lang.h:6
 #: ../gtksourceview/language-specs/ini.lang.h:7
 msgid "Language"
 msgstr "སྐད་ཡིག"
 
-#: ../gtksourceview/gtksourcebuffer.c:318
+#: ../gtksourceview/gtksourcebuffer.c:317
 msgid "Language object to get highlighting patterns from"
 msgstr "གཙོ་དམིགས་ཀྱི་དཔེ་གཞི་ལེན་སའི་ སྐད་ཡིག་དངོས་པོ།"
 
-#: ../gtksourceview/gtksourcelanguagesmanager.c:119
+#: ../gtksourceview/gtksourcelanguagesmanager.c:114
 msgid "Language specification directories"
 msgstr "སྐད་ཡིག་གསལ་བཤད་ཀྱི་ ཁ་བྱང་ཐོ་དེབ།"
 
-#: ../gtksourceview/gtksourcelanguagesmanager.c:120
+#: ../gtksourceview/gtksourcelanguagesmanager.c:115
 msgid "List of directories where the language specification files (.lang) are located"
 msgstr "སྐད་ཡིག་གསལ་བཤད་ཡིག་སྣོད་(.སྐད་ཡིག་) ཚུ་ཡོད་སའི་ ཁ་བྱང་ཐོ་དེབ་ཀྱི་ཐོ་ཡིག"
 
-#: ../gtksourceview/gtksourceprintjob.c:264
+#: ../gtksourceview/gtksourceprintjob.c:265
 msgid "Configuration"
 msgstr "རིམ་སྒྲིག"
 
-#: ../gtksourceview/gtksourceprintjob.c:265
+#: ../gtksourceview/gtksourceprintjob.c:266
 msgid "Configuration options for the print job"
 msgstr "དཔར་བསྐྲུན་ལས་གཡོག་དོན་ལུ་ རིམ་སྒྲིག་གདམ་ཁ་ཚུ།"
 
-#: ../gtksourceview/gtksourceprintjob.c:272
+#: ../gtksourceview/gtksourceprintjob.c:273
 msgid "Source Buffer"
 msgstr "འབྱུང་ཁུངས་གནད་ཁོངས།"
 
-#: ../gtksourceview/gtksourceprintjob.c:273
+#: ../gtksourceview/gtksourceprintjob.c:274
 msgid "GtkSourceBuffer object to print"
 msgstr "དཔར་བསྐྲུན་འབད་ནིའི་ ཇི་ཊི་ཀེ་འབྱུང་ཁུངས་གནད་ཁོངས་དངོས་པོ།"
 
-#: ../gtksourceview/gtksourceprintjob.c:279
-#: ../gtksourceview/gtksourceview.c:221
-#: ../gtksourceview/gtksourceview.c:222
+#: ../gtksourceview/gtksourceprintjob.c:280
+#: ../gtksourceview/gtksourceview.c:235
+#: ../gtksourceview/gtksourceview.c:236
 msgid "Tabs Width"
 msgstr "མཆོང་ལྡེའི་རྒྱ་ཚད།"
 
-#: ../gtksourceview/gtksourceprintjob.c:280
+#: ../gtksourceview/gtksourceprintjob.c:281
 msgid "Width in equivalent space characters of tabs"
 msgstr "མཆོང་ལྡེ་ཚུ་གི་ ཡིག་འབྲུའི་བར་སྟོང་འདྲ་མཉམ་གྱི་རྒྱ་ཚད།"
 
-#: ../gtksourceview/gtksourceprintjob.c:287
+#: ../gtksourceview/gtksourceprintjob.c:288
 msgid "Wrap Mode"
 msgstr "ཐབས་ལམ་ལོག་མཚམས་བཟོ།"
 
-#: ../gtksourceview/gtksourceprintjob.c:288
+#: ../gtksourceview/gtksourceprintjob.c:289
 msgid "Word wrapping mode"
 msgstr "མིང་ཚིག་ལོག་མཚམས་ཐབས་ལམ།"
 
-#: ../gtksourceview/gtksourceprintjob.c:296
+#: ../gtksourceview/gtksourceprintjob.c:297
 msgid "Whether to print the document with highlighted syntax"
 msgstr "ཡིག་ཆ་དེ་ གཙོ་དམིགས་འབད་མི་ ཚིག་སྦྱོར་གྱི་ཐོག་ལས་ དཔར་བསྐྲུན་འབད་ནི་ཨིན་ན།"
 
-#: ../gtksourceview/gtksourceprintjob.c:304
+#: ../gtksourceview/gtksourceprintjob.c:305
 msgid "Font"
 msgstr "ཡིག་གཟུགས།"
 
-#: ../gtksourceview/gtksourceprintjob.c:305
+#: ../gtksourceview/gtksourceprintjob.c:306
 msgid "GnomeFont name to use for the document text (deprecated)"
 msgstr "ཡིག་ཆའི་ཚིག་ཡིག་གི་དོན་ལུ་ ལག་ལེན་འཐབ་ནིའི་ ཇི་ནོམ་ཡིག་གཟུགས་ཀྱི་མིང་། (ངོས་ལེན་མེདཔ)"
 
-#: ../gtksourceview/gtksourceprintjob.c:312
+#: ../gtksourceview/gtksourceprintjob.c:313
 msgid "Font Description"
 msgstr "ཡིག་གཟུགས་འགྲེལ་བཤད།"
 
-#: ../gtksourceview/gtksourceprintjob.c:313
+#: ../gtksourceview/gtksourceprintjob.c:314
 msgid "Font to use for the document text (e.g. \"Monospace 10\")"
 msgstr "ཡིག་ཆའི་ཚིག་ཡིག་དོན་ལུ་ ལག་ལེན་འཐབ་ནིའི་ཡིག་གཟུགས། (དཔེར་ན་ \"Monospace 10\")"
 
-#: ../gtksourceview/gtksourceprintjob.c:320
-#: ../gtksourceview/gtksourceprintjob.c:328
+#: ../gtksourceview/gtksourceprintjob.c:321
+#: ../gtksourceview/gtksourceprintjob.c:329
 msgid "Numbers Font"
 msgstr "ཨང་གྲངས་ཚུ་གི་ཡིག་གཟུགས།"
 
-#: ../gtksourceview/gtksourceprintjob.c:321
+#: ../gtksourceview/gtksourceprintjob.c:322
 msgid "GnomeFont name to use for the line numbers (deprecated)"
 msgstr "གྱལ་རིམ་ཨང་གྲངས་ཚུ་གི་དོན་ལུ་ ལག་ལེན་འཐབ་ནིའི་ ཇི་ནོམ་ཡིག་གཟུགས་མིང་། (ངོས་ལེན་མེདཔ)"
 
-#: ../gtksourceview/gtksourceprintjob.c:329
+#: ../gtksourceview/gtksourceprintjob.c:330
 msgid "Font description to use for the line numbers"
 msgstr "གྱལ་རིམ་ཨང་གྲངས་ཚུ་གི་དོན་ལུ་ ལག་ལེན་འཐབ་ནིའི་ ཡིག་གཟུགས་འགྲེལ་བཤད།"
 
-#: ../gtksourceview/gtksourceprintjob.c:336
+#: ../gtksourceview/gtksourceprintjob.c:337
 msgid "Print Line Numbers"
 msgstr "གྱལ་རིམ་ཨང་གྲངས་ཚུ་ དཔར་བསྐྲུན་འབད།"
 
-#: ../gtksourceview/gtksourceprintjob.c:337
+#: ../gtksourceview/gtksourceprintjob.c:338
 msgid "Interval of printed line numbers (0 means no numbers)"
 msgstr "དཔར་བསྐྲུན་འབད་བའི་ གྱལ་རིམ་ཨང་གྲངས་ཚུ་གི་བར་མཚམས། (༠ འབད་བ་ཅིན་ཨང་གྲངས་མེད)"
 
-#: ../gtksourceview/gtksourceprintjob.c:344
+#: ../gtksourceview/gtksourceprintjob.c:345
 msgid "Print Header"
 msgstr "མགོ་ཡིག་དཔར་བསྐྲུན་འབད།"
 
-#: ../gtksourceview/gtksourceprintjob.c:345
+#: ../gtksourceview/gtksourceprintjob.c:346
 msgid "Whether to print a header in each page"
 msgstr "ཤོག་ལེབ་རེ་རེ་བཞིན་དུ་ལུ་ མགོ་ཡིག་དཔར་བསྐྲུན་འབད་དགོཔ་ཨིན་ན།"
 
-#: ../gtksourceview/gtksourceprintjob.c:352
+#: ../gtksourceview/gtksourceprintjob.c:353
 msgid "Print Footer"
 msgstr "མཇུག་ཡིག་དཔར་བསྐྲུན་འབད།"
 
-#: ../gtksourceview/gtksourceprintjob.c:353
+#: ../gtksourceview/gtksourceprintjob.c:354
 msgid "Whether to print a footer in each page"
 msgstr "ཤོག་ལེབ་རེ་རེ་བཞིན་དུ་ལུ་ མཇུག་ཡིག་དཔར་བསྐྲུན་འབད་དགོཔ་ཨིན་ན།"
 
-#: ../gtksourceview/gtksourceprintjob.c:360
+#: ../gtksourceview/gtksourceprintjob.c:361
 msgid "Header and Footer Font"
 msgstr "མགོ་ཡིག་དང་མཇུག་ཡིག་གི་ ཡིག་གཟུགས།"
 
-#: ../gtksourceview/gtksourceprintjob.c:361
+#: ../gtksourceview/gtksourceprintjob.c:362
 msgid "GnomeFont name to use for the header and footer (deprecated)"
 msgstr "མགོ་ཡིག་དང་ མཇུག་ཡིག་གི་དོན་ལུ་ ལག་ལེན་འཐབ་ནིའི་ ཇི་ནོམ་ཡིག་གཟུགས་མིང་། (ངོས་ལེན་མེདཔ)"
 
-#: ../gtksourceview/gtksourceprintjob.c:368
+#: ../gtksourceview/gtksourceprintjob.c:369
 msgid "Header and Footer Font Description"
 msgstr "མགོ་ཡིག་དང་མཇུག་ཡིག་གི་ ཡིག་གཟུགས་ཀྱི་འགྲེལ་བཤད།"
 
-#: ../gtksourceview/gtksourceprintjob.c:369
+#: ../gtksourceview/gtksourceprintjob.c:370
 msgid "Font to use for headers and footers (e.g. \"Monospace 10\")"
 msgstr "མགོ་ཡིག་དང་མཇུག་ཡིག་ཚུ་གི་དོན་ལུ་ ལག་ལེན་འཐབ་ནིའི་ཡིག་གཟུགས། (དཔེར་ན་\"Monospace 10\")"
 
-#: ../gtksourceview/gtksourcestylescheme.c:262
+#: ../gtksourceview/gtksourcestylescheme.c:264
 msgid "Base-N Integer"
 msgstr "གཞི་རྟེན་ཨེན་གྱི་ ཧྲིལ་ཨང་།"
 
-#: ../gtksourceview/gtksourcestylescheme.c:267
+#: ../gtksourceview/gtksourcestylescheme.c:269
 msgid "Character"
 msgstr "ཡིག་འབྲུ།"
 
-#: ../gtksourceview/gtksourcestylescheme.c:272
-#: ../gtksourceview/language-specs/latex.lang.h:1
+#: ../gtksourceview/gtksourcestylescheme.c:274
+#: ../gtksourceview/language-specs/latex.lang.h:2
 #: ../gtksourceview/language-specs/po.lang.h:1
 msgid "Comment"
 msgstr "བསམ་བཀོད།"
 
 #. $this = (datatype)
-#: ../gtksourceview/gtksourcestylescheme.c:277
+#: ../gtksourceview/gtksourcestylescheme.c:279
 #: ../gtksourceview/language-specs/php.lang.h:14
 msgid "Data Type"
 msgstr "གནད་སྡུད་དབྱེ་བ།"
@@ -200,46 +199,63 @@ msgstr "གནད་སྡུད་དབྱེ་བ།"
 #.
 #. CSS functions, such as rgb(), clip(), or lang().
 #.
-#: ../gtksourceview/gtksourcestylescheme.c:282
+#: ../gtksourceview/gtksourcestylescheme.c:284
 #: ../gtksourceview/language-specs/ada.lang.h:3
 #: ../gtksourceview/language-specs/css.lang.h:18
+#: ../gtksourceview/language-specs/octave.lang.h:4
+#: ../gtksourceview/language-specs/python.lang.h:5
+#: ../gtksourceview/language-specs/scheme.lang.h:2
+#: ../gtksourceview/language-specs/sh.lang.h:4
 msgid "Function"
 msgstr "བྱ་ལས།"
 
-#: ../gtksourceview/gtksourcestylescheme.c:287
+#: ../gtksourceview/gtksourcestylescheme.c:289
 #: ../gtksourceview/language-specs/c.lang.h:6
 #: ../gtksourceview/language-specs/cpp.lang.h:6
 #: ../gtksourceview/language-specs/fortran.lang.h:1
 #: ../gtksourceview/language-specs/haskell.lang.h:3
 #: ../gtksourceview/language-specs/nemerle.lang.h:6
+#: ../gtksourceview/language-specs/octave.lang.h:1
 #: ../gtksourceview/language-specs/python.lang.h:2
 msgid "Decimal"
 msgstr "བཅུ་ཚག"
 
-#: ../gtksourceview/gtksourcestylescheme.c:292
+#: ../gtksourceview/gtksourcestylescheme.c:294
 msgid "Floating Point"
 msgstr "ལྡིང་ཚད།"
 
-#: ../gtksourceview/gtksourcestylescheme.c:297
+#. We cannot match \b at the end of a keyword automatically
+#. because it fails for let* etc. So we need to manually add it to the
+#. other keywords and match ([ \t]|$) for the one ending with a
+#. special character. Unfortnately this also means that if the highlight
+#. style for keywords sets the background color, for let* etc also the
+#. trailing space will be highlighted.
+#: ../gtksourceview/gtksourcestylescheme.c:299
+#: ../gtksourceview/language-specs/ada.lang.h:4
 #: ../gtksourceview/language-specs/gtkrc.lang.h:6
-#: ../gtksourceview/language-specs/latex.lang.h:4
+#: ../gtksourceview/language-specs/haskell.lang.h:9
+#: ../gtksourceview/language-specs/latex.lang.h:5
+#: ../gtksourceview/language-specs/octave.lang.h:6
 #: ../gtksourceview/language-specs/po.lang.h:3
+#: ../gtksourceview/language-specs/python.lang.h:7
 #: ../gtksourceview/language-specs/R.lang.h:6
+#: ../gtksourceview/language-specs/scheme.lang.h:9
+#: ../gtksourceview/language-specs/tcl.lang.h:1
 #: ../gtksourceview/language-specs/texinfo.lang.h:8
 #: ../gtksourceview/language-specs/vhdl.lang.h:2
 msgid "Keyword"
 msgstr "གཙོ་ཚིག"
 
-#: ../gtksourceview/gtksourcestylescheme.c:302
+#: ../gtksourceview/gtksourcestylescheme.c:304
 msgid "Preprocessor"
 msgstr "སྔ་གོང་ལས་སྦྱོར་འཕྲུལ་ཆས།"
 
 #.
-#. <pattern-item _name = "Operators" style = "Operators">
+#. <pattern-item _name = "Operator" style = "Operators">
 #. <regex>[:!#$%&amp;*+./&gt;=&lt;?@\\^|~\-]+</regex>
 #. </pattern-item>
 #.
-#. <keyword-list _name="Keysymbols" style = "Keyword">
+#. <keyword-list _name="Keysymbol" style = "Keyword">
 #. <keyword>::</keyword>
 #. <keyword>-&gt;</keyword>
 #. <keyword>&lt;-</keyword>
@@ -251,14 +267,14 @@ msgstr "སྔ་གོང་ལས་སྦྱོར་འཕྲུལ་ཆས
 #. <keyword>~</keyword>
 #. </keyword-list>
 #.
-#: ../gtksourceview/gtksourcestylescheme.c:307
+#: ../gtksourceview/gtksourcestylescheme.c:309
 #: ../gtksourceview/language-specs/ada.lang.h:9
 #: ../gtksourceview/language-specs/c.lang.h:15
 #: ../gtksourceview/language-specs/cpp.lang.h:15
 #: ../gtksourceview/language-specs/csharp.lang.h:9
 #: ../gtksourceview/language-specs/css.lang.h:58
 #: ../gtksourceview/language-specs/html.lang.h:8
-#: ../gtksourceview/language-specs/fortran.lang.h:12
+#: ../gtksourceview/language-specs/fortran.lang.h:13
 #: ../gtksourceview/language-specs/haskell.lang.h:31
 #: ../gtksourceview/language-specs/idl.lang.h:9
 #: ../gtksourceview/language-specs/java.lang.h:11
@@ -269,8 +285,7 @@ msgstr "སྔ་གོང་ལས་སྦྱོར་འཕྲུལ་ཆས
 #: ../gtksourceview/language-specs/pascal.lang.h:18
 #: ../gtksourceview/language-specs/perl.lang.h:8
 #: ../gtksourceview/language-specs/po.lang.h:6
-#: ../gtksourceview/language-specs/python.lang.h:14
-#: ../gtksourceview/language-specs/ruby.lang.h:18
+#: ../gtksourceview/language-specs/scheme.lang.h:13
 #: ../gtksourceview/language-specs/sh.lang.h:13
 #: ../gtksourceview/language-specs/tcl.lang.h:4
 #: ../gtksourceview/language-specs/vbnet.lang.h:11
@@ -279,11 +294,12 @@ msgstr "སྔ་གོང་ལས་སྦྱོར་འཕྲུལ་ཆས
 msgid "String"
 msgstr "ཡིག་རྒྱུན།"
 
-#: ../gtksourceview/gtksourcestylescheme.c:312
+#: ../gtksourceview/gtksourcestylescheme.c:314
 msgid "Specials"
 msgstr "དམིགས་བསལ་ཚུ།"
 
-#: ../gtksourceview/gtksourcestylescheme.c:319
+#: ../gtksourceview/gtksourcestylescheme.c:321
+#: ../gtksourceview/language-specs/changelog.lang.h:6
 #: ../gtksourceview/language-specs/css.lang.h:36
 #: ../gtksourceview/language-specs/desktop.lang.h:10
 #: ../gtksourceview/language-specs/diff.lang.h:7
@@ -294,97 +310,137 @@ msgstr "དམིགས་བསལ་ཚུ།"
 msgid "Others"
 msgstr "གཞན་ཚུ།"
 
-#: ../gtksourceview/gtksourcestylescheme.c:324
+#: ../gtksourceview/gtksourcestylescheme.c:326
 msgid "Others 2"
 msgstr "གཞན་ཚུ་ ༢ པ།"
 
-#: ../gtksourceview/gtksourcestylescheme.c:329
+#: ../gtksourceview/gtksourcestylescheme.c:331
 msgid "Others 3"
 msgstr "གཞན་ཚུ་ ༣ པ།"
 
-#: ../gtksourceview/gtksourcestylescheme.c:366
+#: ../gtksourceview/gtksourcestylescheme.c:368
 msgid "Default"
 msgstr "སྔོན་སྒྲིག"
 
-#: ../gtksourceview/gtksourcetag.c:108
+#: ../gtksourceview/gtksourcetag.c:109
 msgid "Tag ID"
 msgstr "ངོ་རྟགས་ཀྱི་ཨའི་ཌི།"
 
-#: ../gtksourceview/gtksourcetag.c:109
+#: ../gtksourceview/gtksourcetag.c:110
 msgid "ID used to refer to the source tag"
 msgstr "འབྱུང་ཁུངས་ངོ་རྟགས་ལུ་ གཞི་བསྟུན་འབད་ནི་ལུ་ ལག་ལེན་འཐབ་ནིའི་ཨའི་ཌི།"
 
-#: ../gtksourceview/gtksourcetag.c:116
+#: ../gtksourceview/gtksourcetag.c:117
 msgid "Tag style"
 msgstr "ངོ་རྟགས་ཀྱི་བཟོ་རྣམ།"
 
-#: ../gtksourceview/gtksourcetag.c:117
+#: ../gtksourceview/gtksourcetag.c:118
 msgid "The style associated with the source tag"
 msgstr "འབྱུང་ཁུངས་ངོ་རྟགས་དང་ མཉམ་འབྲེལ་ཡོད་པའི་བཟོ་རྣམ་།"
 
-#: ../gtksourceview/gtksourceview.c:205
+#: ../gtksourceview/gtksourceview.c:219
 msgid "Show Line Numbers"
 msgstr "གྱལ་རིམ་ཨང་གྲངས་སྟོན།"
 
-#: ../gtksourceview/gtksourceview.c:206
+#: ../gtksourceview/gtksourceview.c:220
 msgid "Whether to display line numbers"
 msgstr "གྱལ་རིམ་ཨང་གྲངས་ཚུ་ བཀྲམ་སྟོན་འབད་དགོཔ་ཨིན་ན།"
 
-#: ../gtksourceview/gtksourceview.c:213
+#: ../gtksourceview/gtksourceview.c:227
 msgid "Show Line Markers"
 msgstr "གྱལ་རིམ་ལུ་ རྟགས་བཀོདཔ་སྟོན།"
 
-#: ../gtksourceview/gtksourceview.c:214
+#: ../gtksourceview/gtksourceview.c:228
 msgid "Whether to display line marker pixbufs"
 msgstr "གྱལ་རིམ་རྟགས་བཀོད་པའི་པར་ཁོངས་ བཀྲམ་སྟོན་འབད་ནི་ཨིན།"
 
-#: ../gtksourceview/gtksourceview.c:231
+#: ../gtksourceview/gtksourceview.c:245
 msgid "Auto Indentation"
 msgstr "རང་བཞིན་འགོ་ཚག་བཀལ་བ།"
 
-#: ../gtksourceview/gtksourceview.c:232
+#: ../gtksourceview/gtksourceview.c:246
 msgid "Whether to enable auto indentation"
 msgstr "རི་བཞིན་འགོ་ཚག་བཀལ་ནི་ ལྕོགས་ཅན་བཟོ་དགོཔ་ཨིན་ན།"
 
-#: ../gtksourceview/gtksourceview.c:238
+#: ../gtksourceview/gtksourceview.c:252
 msgid "Insert Spaces Instead of Tabs"
 msgstr "མཆོང་ལྡེ་ཚུ་གི་ཚབ་ལུ་ བར་སྟོང་ཚུ་བཙུགས།"
 
-#: ../gtksourceview/gtksourceview.c:239
+#: ../gtksourceview/gtksourceview.c:253
 msgid "Whether to insert spaces instead of tabs"
 msgstr "མཆོང་ལྡེ་ཚུ་གི་ཚབ་ལུ་ བར་སྟོང་ཚུ་བཙུགས་དགོཔ་ཨིན་ན།"
 
-#: ../gtksourceview/gtksourceview.c:246
+#: ../gtksourceview/gtksourceview.c:260
 msgid "Show Right Margin"
 msgstr "གཡས་ཀྱི་ས་སྟོང་སྟོན།"
 
-#: ../gtksourceview/gtksourceview.c:247
+#: ../gtksourceview/gtksourceview.c:261
 msgid "Whether to display the right margin"
 msgstr "གཡས་ཀྱི་ས་སྟོང་སྟོན་དགོཔ་ཨིན་ན།"
 
-#: ../gtksourceview/gtksourceview.c:254
+#: ../gtksourceview/gtksourceview.c:268
 msgid "Margin position"
 msgstr "ས་སྟོང་གནས་ས།"
 
-#: ../gtksourceview/gtksourceview.c:255
+#: ../gtksourceview/gtksourceview.c:269
 msgid "Position of the right margin"
 msgstr "གཡས་ཀྱི་ས་སྟོང་གནས་ས།"
 
-#: ../gtksourceview/gtksourceview.c:264
+#: ../gtksourceview/gtksourceview.c:278
 msgid "Use smart home/end"
 msgstr "སྤུར་བསྒྱིར་དྲགས་ཀྱི་ཁྱིམ་ལག་ལེན་འཐབ/མཇུག་བསྡུ།"
 
-#: ../gtksourceview/gtksourceview.c:265
+#: ../gtksourceview/gtksourceview.c:279
 msgid "HOME and END keys move to first/last non whitespace characters on line before going to the start/end of the line"
 msgstr "ཁྱིམ་དང་མཇུག་གི་ལྡེ་མིག་ཚུ་གིས་ གྱལ་རིམ་གི་འགོ་དང་མཇུག་ལུ་ མ་འགྱོ་བའི་ཧེ་མར་ གྱལ་རིམ་ནང་གི་ བར་སྟོང་དཀརཔོ་མིན་པའི་ཡིག་འབྲུ་ལུ་འགྱོཝ་ཨིན།"
 
-#: ../gtksourceview/gtksourceview.c:274
+#: ../gtksourceview/gtksourceview.c:288
 msgid "Highlight current line"
 msgstr "ད་ལྟོའི་གྱལ་རིམ་ གཙོ་དམིགས་འབད།"
 
-#: ../gtksourceview/gtksourceview.c:275
+#: ../gtksourceview/gtksourceview.c:289
 msgid "Whether to highlight the current line"
 msgstr "ད་ལྟོའི་གྱལ་རིམ་ གཙོ་དམིགས་འབད་དགོཔ་ཨིན་ན།"
+
+#: ../gtksourceview/gtksourceview.c:305
+msgid "Margin Line Alpha"
+msgstr "ཨཱལ་ཕ་གྱལ་རིམ་མཐའ་སྟོང་ནང་བཙུགས།"
+
+#: ../gtksourceview/gtksourceview.c:306
+msgid "Transparency of the margin line"
+msgstr "མཐའ་སྟོང་ཐིག་གི་དྭངས་གསལ།"
+
+#: ../gtksourceview/gtksourceview.c:323
+msgid "Margin Line Color"
+msgstr "ཐིག་གི་ཚོས་གཞི་མཐའ་སྟོང་ནང་བཙུགས།"
+
+#: ../gtksourceview/gtksourceview.c:324
+msgid "Color to use for the right margin line"
+msgstr "གཡས་ཀྱི་མཐའ་སྟོང་ཐིག་གི་དོན་ལུ་ལག་ལེན་འཐབ་ནིའི་ཚོས་གཞི།"
+
+#: ../gtksourceview/gtksourceview.c:340
+msgid "Margin Overlay Toggle"
+msgstr "སྤུར་ཁེབས་སོར་སྟོན་མཐའ་སྟོང་ནང་བཙུགས།"
+
+#: ../gtksourceview/gtksourceview.c:341
+msgid "Whether to draw the right margin overlay"
+msgstr "གཡས་ཀྱི་མཐའ་སྟོང་སྤུར་ཁེབས་འབྲི་དགོཔ་ཨིན་ན།"
+
+#: ../gtksourceview/gtksourceview.c:357
+msgid "Margin Overlay Alpha"
+msgstr "སྤུར་ཁེབས་ཨཱལ་ཕ་མཐའ་སྟོང་ནང་བཙུགས།"
+
+#: ../gtksourceview/gtksourceview.c:358
+msgid "Transparency of the margin overlay"
+msgstr "མཐའ་སྟོང་སྤུར་ཁེབས་ཀྱི་དྭངས་གསལ།"
+
+#: ../gtksourceview/gtksourceview.c:375
+msgid "Margin Overlay Color"
+msgstr "སྤུར་ཁེབས་ཚོས་གཞི་མཐའ་སྟོང་ནང་བཙུགས།"
+
+#: ../gtksourceview/gtksourceview.c:376
+msgid "Color to use for drawing the margin overlay"
+msgstr "མཐའ་སྟོང་སྤུར་ཁེབས་འབྲི་ནིའི་དོན་ལུ་ལག་ལནེ་འཐབ་ནིའི་ཚོས་གཞི།"
 
 #: ../gtksourceview/language-specs/ada.lang.h:1
 msgid "Ada"
@@ -399,24 +455,7 @@ msgstr "ཨ་ཌ།"
 msgid "Character Constant"
 msgstr "ཡིག་འབྲུ་ཆད་མེད།"
 
-#: ../gtksourceview/language-specs/ada.lang.h:4
-#: ../gtksourceview/language-specs/c.lang.h:10
-#: ../gtksourceview/language-specs/cpp.lang.h:10
-#: ../gtksourceview/language-specs/csharp.lang.h:3
-#: ../gtksourceview/language-specs/fortran.lang.h:7
-#: ../gtksourceview/language-specs/haskell.lang.h:9
-#: ../gtksourceview/language-specs/idl.lang.h:4
-#: ../gtksourceview/language-specs/javascript.lang.h:12
-#: ../gtksourceview/language-specs/lua.lang.h:3
-#: ../gtksourceview/language-specs/perl.lang.h:2
-#: ../gtksourceview/language-specs/python.lang.h:6
-#: ../gtksourceview/language-specs/ruby.lang.h:8
-#: ../gtksourceview/language-specs/tcl.lang.h:1
-#: ../gtksourceview/language-specs/vbnet.lang.h:1
-#: ../gtksourceview/language-specs/verilog.lang.h:6
-msgid "Keywords"
-msgstr "གཙོ་ཚིག་ཚུ།"
-
+#. Note: contains an hack to avoid considering ^COMMON a comment
 #. <string _name = "String 2" style = "String" end-at-line-end = "TRUE">
 #. <start-regex>&apos;</start-regex>
 #. <end-regex>&apos;</end-regex>
@@ -428,7 +467,7 @@ msgstr "གཙོ་ཚིག་ཚུ།"
 #: ../gtksourceview/language-specs/css.lang.h:29
 #: ../gtksourceview/language-specs/desktop.lang.h:7
 #: ../gtksourceview/language-specs/diff.lang.h:5
-#: ../gtksourceview/language-specs/fortran.lang.h:8
+#: ../gtksourceview/language-specs/fortran.lang.h:9
 #: ../gtksourceview/language-specs/gtkrc.lang.h:7
 #: ../gtksourceview/language-specs/haskell.lang.h:10
 #: ../gtksourceview/language-specs/idl.lang.h:5
@@ -438,11 +477,13 @@ msgstr "གཙོ་ཚིག་ཚུ།"
 #: ../gtksourceview/language-specs/lua.lang.h:4
 #: ../gtksourceview/language-specs/makefile.lang.h:4
 #: ../gtksourceview/language-specs/nemerle.lang.h:10
+#: ../gtksourceview/language-specs/octave.lang.h:7
 #: ../gtksourceview/language-specs/pascal.lang.h:11
 #: ../gtksourceview/language-specs/perl.lang.h:3
-#: ../gtksourceview/language-specs/python.lang.h:7
+#: ../gtksourceview/language-specs/python.lang.h:8
 #: ../gtksourceview/language-specs/R.lang.h:7
-#: ../gtksourceview/language-specs/ruby.lang.h:9
+#: ../gtksourceview/language-specs/ruby.lang.h:10
+#: ../gtksourceview/language-specs/scheme.lang.h:10
 #: ../gtksourceview/language-specs/sh.lang.h:5
 #: ../gtksourceview/language-specs/sql.lang.h:23
 #: ../gtksourceview/language-specs/tcl.lang.h:2
@@ -468,21 +509,21 @@ msgid "Number"
 msgstr "ཨང་གྲངས།"
 
 #: ../gtksourceview/language-specs/ada.lang.h:7
-msgid "Preprocessor Keywords"
-msgstr "སྔ་གོང་ལས་སྦྱོར་འཕྲུལ་ཆས་ཀྱི་གཙོ་ཚིག་ཚུ།"
+msgid "Preprocessor Keyword"
+msgstr "སྔ་གོང་ལས་སྦྱོར་འཕྲུལ་ཆས་ཀྱི་གཙོ་ཚིག"
 
 #: ../gtksourceview/language-specs/ada.lang.h:8
 #: ../gtksourceview/language-specs/c.lang.h:14
 #: ../gtksourceview/language-specs/cpp.lang.h:14
 #: ../gtksourceview/language-specs/csharp.lang.h:8
-#: ../gtksourceview/language-specs/fortran.lang.h:11
+#: ../gtksourceview/language-specs/fortran.lang.h:12
 #: ../gtksourceview/language-specs/haskell.lang.h:13
 #: ../gtksourceview/language-specs/idl.lang.h:8
 #: ../gtksourceview/language-specs/java.lang.h:10
 #: ../gtksourceview/language-specs/makefile.lang.h:6
 #: ../gtksourceview/language-specs/nemerle.lang.h:14
 #: ../gtksourceview/language-specs/pascal.lang.h:17
-#: ../gtksourceview/language-specs/php.lang.h:24
+#: ../gtksourceview/language-specs/scheme.lang.h:12
 #: ../gtksourceview/language-specs/sql.lang.h:48
 #: ../gtksourceview/language-specs/vbnet.lang.h:10
 #: ../gtksourceview/language-specs/verilog.lang.h:9
@@ -495,13 +536,9 @@ msgid "True And False"
 msgstr "བདེན་པ་དང་རྫུན་པ།"
 
 #: ../gtksourceview/language-specs/ada.lang.h:11
-#: ../gtksourceview/language-specs/c.lang.h:16
-#: ../gtksourceview/language-specs/cpp.lang.h:16
-#: ../gtksourceview/language-specs/fortran.lang.h:14
-#: ../gtksourceview/language-specs/idl.lang.h:10
-#: ../gtksourceview/language-specs/verilog.lang.h:10
-msgid "Types"
-msgstr "དབྱེ་བ་ཚུ།"
+#: ../gtksourceview/language-specs/vhdl.lang.h:8
+msgid "Type"
+msgstr "དབྱེ་བ།"
 
 #: ../gtksourceview/language-specs/c.lang.h:1
 #: ../gtksourceview/language-specs/cpp.lang.h:1
@@ -541,7 +578,8 @@ msgstr "མཐུན་མོང་གི་མེཀ་རོ།"
 #: ../gtksourceview/language-specs/fortran.lang.h:2
 #: ../gtksourceview/language-specs/haskell.lang.h:4
 #: ../gtksourceview/language-specs/nemerle.lang.h:7
-#: ../gtksourceview/language-specs/python.lang.h:3
+#: ../gtksourceview/language-specs/octave.lang.h:3
+#: ../gtksourceview/language-specs/python.lang.h:4
 #: ../gtksourceview/language-specs/R.lang.h:4
 msgid "Floating Point Number"
 msgstr "ལྡིང་ཚད་ཨང་གྲངས།"
@@ -552,8 +590,9 @@ msgstr "ལྡིང་ཚད་ཨང་གྲངས།"
 #: ../gtksourceview/language-specs/fortran.lang.h:4
 #: ../gtksourceview/language-specs/haskell.lang.h:6
 #: ../gtksourceview/language-specs/nemerle.lang.h:8
+#: ../gtksourceview/language-specs/octave.lang.h:5
 #: ../gtksourceview/language-specs/pascal.lang.h:10
-#: ../gtksourceview/language-specs/python.lang.h:5
+#: ../gtksourceview/language-specs/python.lang.h:6
 msgid "Hex Number"
 msgstr "ཧེགསི་ཨང་གྲངས།"
 
@@ -564,12 +603,27 @@ msgstr "ཧེགསི་ཨང་གྲངས།"
 msgid "Include/Pragma"
 msgstr "གྲངས་སུ་བཙུགས་/པེརེག་མ།"
 
+#: ../gtksourceview/language-specs/c.lang.h:10
+#: ../gtksourceview/language-specs/cpp.lang.h:10
+#: ../gtksourceview/language-specs/csharp.lang.h:3
+#: ../gtksourceview/language-specs/fortran.lang.h:7
+#: ../gtksourceview/language-specs/idl.lang.h:4
+#: ../gtksourceview/language-specs/javascript.lang.h:12
+#: ../gtksourceview/language-specs/lua.lang.h:3
+#: ../gtksourceview/language-specs/perl.lang.h:2
+#: ../gtksourceview/language-specs/ruby.lang.h:9
+#: ../gtksourceview/language-specs/vbnet.lang.h:1
+#: ../gtksourceview/language-specs/verilog.lang.h:6
+msgid "Keywords"
+msgstr "གཙོ་ཚིག་ཚུ།"
+
 #: ../gtksourceview/language-specs/c.lang.h:12
 #: ../gtksourceview/language-specs/cpp.lang.h:12
-#: ../gtksourceview/language-specs/fortran.lang.h:9
+#: ../gtksourceview/language-specs/fortran.lang.h:10
 #: ../gtksourceview/language-specs/haskell.lang.h:11
 #: ../gtksourceview/language-specs/nemerle.lang.h:12
-#: ../gtksourceview/language-specs/python.lang.h:11
+#: ../gtksourceview/language-specs/octave.lang.h:10
+#: ../gtksourceview/language-specs/python.lang.h:12
 #: ../gtksourceview/language-specs/verilog.lang.h:8
 msgid "Octal Number"
 msgstr "བརྒྱད་རྟེན་ཨང་གྲངས།"
@@ -577,11 +631,38 @@ msgstr "བརྒྱད་རྟེན་ཨང་གྲངས།"
 #: ../gtksourceview/language-specs/c.lang.h:13
 #: ../gtksourceview/language-specs/cpp.lang.h:13
 #: ../gtksourceview/language-specs/csharp.lang.h:6
-#: ../gtksourceview/language-specs/haskell.lang.h:12
 #: ../gtksourceview/language-specs/idl.lang.h:6
 #: ../gtksourceview/language-specs/vbnet.lang.h:8
 msgid "Preprocessor Definitions"
 msgstr "སྔ་གོང་ལས་སྦྱོར་འཕྲུལ་ཆས་ཀྱི་ངེས་ཚིག་ཚུ།"
+
+#: ../gtksourceview/language-specs/c.lang.h:16
+#: ../gtksourceview/language-specs/cpp.lang.h:16
+#: ../gtksourceview/language-specs/fortran.lang.h:15
+#: ../gtksourceview/language-specs/idl.lang.h:10
+#: ../gtksourceview/language-specs/verilog.lang.h:10
+msgid "Types"
+msgstr "དབྱེ་བ་ཚུ།"
+
+#: ../gtksourceview/language-specs/changelog.lang.h:1
+msgid "ChangeLog"
+msgstr "བསྒྱུར་བཅོས་དྲན་དེབ།"
+
+#: ../gtksourceview/language-specs/changelog.lang.h:2
+msgid "Date"
+msgstr "ཚེས་གྲངས།"
+
+#: ../gtksourceview/language-specs/changelog.lang.h:3
+msgid "Email"
+msgstr "གློག་འཕྲིན།"
+
+#: ../gtksourceview/language-specs/changelog.lang.h:4
+msgid "File"
+msgstr "ཡིག་སྣོད།"
+
+#: ../gtksourceview/language-specs/changelog.lang.h:5
+msgid "Marker"
+msgstr "རྟགས་བཀོདཔ།"
 
 #: ../gtksourceview/language-specs/cpp.lang.h:3
 msgid "C++"
@@ -593,7 +674,6 @@ msgstr "སི་#།"
 
 #: ../gtksourceview/language-specs/csharp.lang.h:5
 #: ../gtksourceview/language-specs/lua.lang.h:7
-#: ../gtksourceview/language-specs/python.lang.h:9
 #: ../gtksourceview/language-specs/sh.lang.h:6
 msgid "Multiline String"
 msgstr "སྣ་མང་གྱལ་རིམ་ཡིག་རྒྱུན།"
@@ -607,13 +687,11 @@ msgstr "པིརི་མི་ཊིབསི།"
 
 #: ../gtksourceview/language-specs/csharp.lang.h:10
 #: ../gtksourceview/language-specs/css.lang.h:59
-#: ../gtksourceview/language-specs/fortran.lang.h:13
+#: ../gtksourceview/language-specs/fortran.lang.h:14
 #: ../gtksourceview/language-specs/java.lang.h:12
 #: ../gtksourceview/language-specs/javascript.lang.h:24
 #: ../gtksourceview/language-specs/lua.lang.h:11
 #: ../gtksourceview/language-specs/makefile.lang.h:9
-#: ../gtksourceview/language-specs/python.lang.h:15
-#: ../gtksourceview/language-specs/ruby.lang.h:19
 #: ../gtksourceview/language-specs/sh.lang.h:14
 msgid "String 2"
 msgstr "ཡིག་རྒྱུན་ ༢ པ།"
@@ -665,7 +743,6 @@ msgstr "ཤེས་པའི་རྒྱུ་དངོས་ཀྱི་བེ
 #: ../gtksourceview/language-specs/css.lang.h:35
 #: ../gtksourceview/language-specs/javascript.lang.h:20
 #: ../gtksourceview/language-specs/php.lang.h:20
-#: ../gtksourceview/language-specs/sh.lang.h:8
 #: ../gtksourceview/language-specs/sql.lang.h:34
 msgid "Operators"
 msgstr "བཀོལ་སྤྱོདཔ།"
@@ -679,7 +756,6 @@ msgstr "རྒྱུ་དངོས་ཀྱི་མིང་ཚུ།"
 #.
 #: ../gtksourceview/language-specs/css.lang.h:41
 #: ../gtksourceview/language-specs/javascript.lang.h:21
-#: ../gtksourceview/language-specs/sh.lang.h:9
 msgid "Punctuators"
 msgstr "ཡིག་རྟགས་བཀལ་མི།"
 
@@ -730,6 +806,7 @@ msgstr ".ཌེཀསི་ཊོཔ།"
 #: ../gtksourceview/language-specs/desktop.lang.h:2
 #: ../gtksourceview/language-specs/gtkrc.lang.h:1
 #: ../gtksourceview/language-specs/ini.lang.h:2
+#: ../gtksourceview/language-specs/scheme.lang.h:1
 msgid "Boolean Value"
 msgstr "བུ་ལིན་ བེ་ལུ།"
 
@@ -786,8 +863,8 @@ msgstr "དམིགས་བསལ་གནད་དོན།"
 
 #: ../gtksourceview/language-specs/html.lang.h:1
 #: ../gtksourceview/language-specs/xml.lang.h:1
-msgid "Attributes"
-msgstr "ཁྱད་ཆོས་ཚུ།"
+msgid "Attribute"
+msgstr "ཁྱད་ཆོས།"
 
 #: ../gtksourceview/language-specs/html.lang.h:3
 #: ../gtksourceview/language-specs/xml.lang.h:3
@@ -808,15 +885,16 @@ msgid "HTML"
 msgstr "ཨེཆ་ཊི་ཨེམ་ཨེལ།"
 
 #: ../gtksourceview/language-specs/html.lang.h:7
-#: ../gtksourceview/language-specs/latex.lang.h:6
+#: ../gtksourceview/language-specs/latex.lang.h:7
 #: ../gtksourceview/language-specs/texinfo.lang.h:12
 #: ../gtksourceview/language-specs/xml.lang.h:6
 msgid "Markup"
 msgstr "རྟགས་བཀོད།"
 
 #: ../gtksourceview/language-specs/html.lang.h:9
-msgid "Tags"
-msgstr "ངོ་རྟགས་ཚུ།"
+#: ../gtksourceview/language-specs/xml.lang.h:8
+msgid "Tag"
+msgstr "ངོ་རྟགས།"
 
 #: ../gtksourceview/language-specs/fortran.lang.h:3
 msgid "Fortran 95"
@@ -830,15 +908,20 @@ msgstr "ཨིན་པུཊི་/ཨའུཊི་པུཊི།"
 msgid "Intrinsics"
 msgstr "རང་གཤིས།"
 
-#: ../gtksourceview/language-specs/fortran.lang.h:10
+#: ../gtksourceview/language-specs/fortran.lang.h:11
 msgid "Read/Write"
 msgstr "ལྷག/འབྲི།"
 
+#. "duble-quoted strings"
 #: ../gtksourceview/language-specs/gtkrc.lang.h:2
 #: ../gtksourceview/language-specs/ini.lang.h:4
+#: ../gtksourceview/language-specs/octave.lang.h:2
+#: ../gtksourceview/language-specs/php.lang.h:16
+#: ../gtksourceview/language-specs/python.lang.h:3
 #: ../gtksourceview/language-specs/R.lang.h:3
-msgid "Double Quote String"
-msgstr "འདྲེན་རྟགས་གཉིས་ལྡན་ཡིག་རྒྱུན།"
+#: ../gtksourceview/language-specs/ruby.lang.h:6
+msgid "Double Quoted String"
+msgstr "འདྲེན་རྟགས་གཉིས་ལྡན་གྱི་ཡིག་རྒྱུན།"
 
 #: ../gtksourceview/language-specs/gtkrc.lang.h:3
 msgid "GtkRC"
@@ -849,14 +932,20 @@ msgid "Include Directive"
 msgstr "ལམ་སྟོན་གྲངས་སུ་བཙུགས།"
 
 #: ../gtksourceview/language-specs/gtkrc.lang.h:5
+#: ../gtksourceview/language-specs/haskell.lang.h:8
 msgid "Keysymbol"
 msgstr "ལྡེ་མིག་བརྡ་མཚོན།"
 
+#. 'single-quoted strings'
 #: ../gtksourceview/language-specs/gtkrc.lang.h:10
 #: ../gtksourceview/language-specs/ini.lang.h:11
+#: ../gtksourceview/language-specs/octave.lang.h:14
+#: ../gtksourceview/language-specs/php.lang.h:24
+#: ../gtksourceview/language-specs/python.lang.h:15
 #: ../gtksourceview/language-specs/R.lang.h:11
-msgid "Single Quote String"
-msgstr "འདྲེན་རྟགས་གཅིག་ལྡན་ཡིག་རྒྱུན།"
+#: ../gtksourceview/language-specs/ruby.lang.h:17
+msgid "Single Quoted String"
+msgstr "འདྲེན་རྟགས་རྐྱང་པོའི་ཡིག་རྒྱུན།"
 
 #: ../gtksourceview/language-specs/gtkrc.lang.h:11
 msgid "State"
@@ -866,6 +955,7 @@ msgstr "གནས་ལུགས།"
 #: ../gtksourceview/language-specs/gtkrc.lang.h:12
 #: ../gtksourceview/language-specs/ini.lang.h:12
 #: ../gtksourceview/language-specs/php.lang.h:26
+#: ../gtksourceview/language-specs/tcl.lang.h:7
 msgid "Variable"
 msgstr "འགྱུར་ཅན།"
 
@@ -873,9 +963,9 @@ msgstr "འགྱུར་ཅན།"
 msgid "Haskell"
 msgstr "ཧེསི་ཀེལ།"
 
-#: ../gtksourceview/language-specs/haskell.lang.h:8
-msgid "Keysymbols"
-msgstr "ལྡེ་མིག་བརྡ་མཚོན།"
+#: ../gtksourceview/language-specs/haskell.lang.h:12
+msgid "Preprocessor Definition"
+msgstr "སྔ་གོང་ལས་སྦྱོར་འཕྲུལ་ཆས་ཀྱི་ངེས་ཚིག"
 
 #: ../gtksourceview/language-specs/haskell.lang.h:32
 msgid "Type or Constructor"
@@ -990,10 +1080,12 @@ msgstr "དངོས་པོ་ཚུ།"
 
 #: ../gtksourceview/language-specs/javascript.lang.h:22
 #: ../gtksourceview/language-specs/lua.lang.h:9
+#: ../gtksourceview/language-specs/octave.lang.h:13
 #: ../gtksourceview/language-specs/perl.lang.h:7
-#: ../gtksourceview/language-specs/python.lang.h:13
+#: ../gtksourceview/language-specs/php.lang.h:22
+#: ../gtksourceview/language-specs/python.lang.h:14
 #: ../gtksourceview/language-specs/R.lang.h:10
-#: ../gtksourceview/language-specs/ruby.lang.h:17
+#: ../gtksourceview/language-specs/ruby.lang.h:16
 #: ../gtksourceview/language-specs/sh.lang.h:11
 #: ../gtksourceview/language-specs/tcl.lang.h:3
 msgid "Scripts"
@@ -1007,31 +1099,29 @@ msgstr "ཡུ་ནི་ཀོཌི་ བྲོས་ཐར་འབྱུ�
 msgid "Word Operators"
 msgstr "མིང་ཚིག་བཀོལ་སྤྱོད་པ་ཚུ།"
 
-#: ../gtksourceview/language-specs/latex.lang.h:2
+#: ../gtksourceview/language-specs/latex.lang.h:1
+msgid "Command"
+msgstr "བརྡ་བཀོད།"
+
+#: ../gtksourceview/language-specs/latex.lang.h:3
 msgid "Comment Environment"
 msgstr "བསམ་བཀོད་མཐའ་འཁོར།"
 
-#: ../gtksourceview/language-specs/latex.lang.h:3
+#: ../gtksourceview/language-specs/latex.lang.h:4
 #: ../gtksourceview/language-specs/texinfo.lang.h:6
 msgid "Include"
 msgstr "གྲངས་སུ་བཙུགས།"
 
-#: ../gtksourceview/language-specs/latex.lang.h:5
+#: ../gtksourceview/language-specs/latex.lang.h:6
 msgid "LaTeX"
 msgstr "ལ་ཊེགསི།"
 
-#: ../gtksourceview/language-specs/latex.lang.h:7
+#: ../gtksourceview/language-specs/latex.lang.h:8
 msgid "Math"
 msgstr "ཨང་རྩིས།"
 
-#: ../gtksourceview/language-specs/latex.lang.h:8
-msgid "Most Used Commands"
-msgstr "མང་ཤོས་ལག་ལེན་འཐབ་མི་བརྡ་བཀོད་ཚུ།"
-
 #: ../gtksourceview/language-specs/lua.lang.h:2
 #: ../gtksourceview/language-specs/makefile.lang.h:3
-#: ../gtksourceview/language-specs/python.lang.h:4
-#: ../gtksourceview/language-specs/sh.lang.h:4
 msgid "Functions"
 msgstr "བྱ་ལས།"
 
@@ -1044,7 +1134,6 @@ msgid "Lua"
 msgstr "ལུ་འ།"
 
 #: ../gtksourceview/language-specs/lua.lang.h:8
-#: ../gtksourceview/language-specs/python.lang.h:10
 #: ../gtksourceview/language-specs/sh.lang.h:7
 msgid "Multiline String 2"
 msgstr "སྣ་མང་གྱལ་རིམ་ཡིག་རྒྱུན་༢།"
@@ -1106,6 +1195,25 @@ msgstr "མེཀ་རོསི་གིས་ ངེས་འཛིན་འ�
 #: ../gtksourceview/language-specs/nemerle.lang.h:11
 msgid "Nemerle"
 msgstr "ནི་མར་ལི"
+
+#: ../gtksourceview/language-specs/octave.lang.h:8
+#: ../gtksourceview/language-specs/python.lang.h:10
+msgid "Multiline Double Quoted String"
+msgstr "སྣ་མང་ཐིག་འདྲེན་རྟགས་གཉིས་ནང་བཙུགས་པའི་ཡིག་རྒྱུན།"
+
+#: ../gtksourceview/language-specs/octave.lang.h:9
+#: ../gtksourceview/language-specs/python.lang.h:11
+msgid "Multiline Single Quoted String"
+msgstr "སྣ་མང་ཐིག་འདྲེན་རྟགས་རྐྱང་པོའི་ནང་བཙུགས་པའི་ཡིག་རྒྱུན།"
+
+#: ../gtksourceview/language-specs/octave.lang.h:11
+msgid "Octave"
+msgstr "བརྒྱད་ལྡན།"
+
+#: ../gtksourceview/language-specs/octave.lang.h:12
+#: ../gtksourceview/language-specs/R.lang.h:9
+msgid "Reserved Constant"
+msgstr "ཟུར་བསགས་འབད་བའི་ ཆད་མེད །"
 
 #: ../gtksourceview/language-specs/pascal.lang.h:1
 msgid "Block Comment 1"
@@ -1185,7 +1293,6 @@ msgid "String3"
 msgstr "ཡིག་རྒྱུན་ ༣ པ།"
 
 #: ../gtksourceview/language-specs/perl.lang.h:11
-#: ../gtksourceview/language-specs/tcl.lang.h:7
 msgid "Variables"
 msgstr "འགྱུར་ཅན་ཚུ།"
 
@@ -1213,11 +1320,6 @@ msgstr "གནད་དོན་དྲན་ཚོར་མེད་པའི་
 msgid "Case Sensitive Keyword"
 msgstr "གནད་དོན་དྲན་ཚོར་ཅན་གྱི་གཙོ་ཚིག"
 
-#. "duble-quoted strings"
-#: ../gtksourceview/language-specs/php.lang.h:16
-msgid "Double Quoted String"
-msgstr "འདྲེན་རྟགས་གཉིས་ལྡན་གྱི་ཡིག་རྒྱུན།"
-
 #. <? ?> <HTML> inside PHP <?
 #: ../gtksourceview/language-specs/php.lang.h:18
 msgid "First Open PHP Tag"
@@ -1230,11 +1332,6 @@ msgstr "ཨེཆ་ཊི་ཨེམ་ཨེལ་ སྡེབ་ཚན།"
 #: ../gtksourceview/language-specs/php.lang.h:21
 msgid "PHP"
 msgstr "པི་ཨེཆ་པི།"
-
-#. 'single-quoted strings'
-#: ../gtksourceview/language-specs/php.lang.h:23
-msgid "Single Quoted String"
-msgstr "འདྲེན་རྟགས་རྐྱང་པོའི་ཡིག་རྒྱུན།"
 
 #: ../gtksourceview/language-specs/po.lang.h:2
 msgid "Format"
@@ -1249,11 +1346,11 @@ msgstr "ཚིག་ཡིག་ལེན་ནིའི་ སྐད་བས�
 msgid "Builtins"
 msgstr "ནང་སྦྲགས།"
 
-#: ../gtksourceview/language-specs/python.lang.h:8
+#: ../gtksourceview/language-specs/python.lang.h:9
 msgid "Module Handler"
 msgstr "ཚད་གཞི་ལེགས་སྐྱོང་པ།"
 
-#: ../gtksourceview/language-specs/python.lang.h:12
+#: ../gtksourceview/language-specs/python.lang.h:13
 msgid "Python"
 msgstr "སྦུལམོ་ཆེ།"
 
@@ -1273,10 +1370,6 @@ msgstr "ཧྲིལ་ཨང་གི་ཨང་།"
 msgid "Reserved Class"
 msgstr "ཟུར་བསགས་འབད་བའི་ དབྱེ་ཁག"
 
-#: ../gtksourceview/language-specs/R.lang.h:9
-msgid "Reserved Constant"
-msgstr "ཟུར་བསགས་འབད་བའི་ ཆད་མེད །"
-
 #: ../gtksourceview/language-specs/ruby.lang.h:1
 msgid "Attribute Definitions"
 msgstr "ཁྱད་ཆོས་ཀྱི་ངེས་ཚིག"
@@ -1293,52 +1386,60 @@ msgstr "ཆད་མེད།"
 msgid "Definitions"
 msgstr "ངེས་ཚིག"
 
-#: ../gtksourceview/language-specs/ruby.lang.h:6
+#: ../gtksourceview/language-specs/ruby.lang.h:7
 msgid "Global Variables"
 msgstr "སྤྱི་ཁྱབ་ཀྱི་འགྱུར་བ།"
 
-#: ../gtksourceview/language-specs/ruby.lang.h:7
+#: ../gtksourceview/language-specs/ruby.lang.h:8
 msgid "Instance Variables"
 msgstr "དཔེ་མཚོན་གྱི་འགྱུར་བ།"
 
-#: ../gtksourceview/language-specs/ruby.lang.h:10
+#: ../gtksourceview/language-specs/ruby.lang.h:11
 msgid "Module Handlers"
 msgstr "ཚད་གཞི་ལེགས་སྐྱོང་པ།"
 
-#: ../gtksourceview/language-specs/ruby.lang.h:11
+#: ../gtksourceview/language-specs/ruby.lang.h:12
 msgid "Multiline Comment"
 msgstr "སྣ་མང་གྱལ་རིམ་བསམ་བཀོད།"
 
-#: ../gtksourceview/language-specs/ruby.lang.h:12
+#: ../gtksourceview/language-specs/ruby.lang.h:13
 msgid "Pseudo Variables"
 msgstr "སིའུ་ཌོ་ འགྱུར་ཅན།"
 
-#: ../gtksourceview/language-specs/ruby.lang.h:13
+#: ../gtksourceview/language-specs/ruby.lang.h:14
 msgid "RegExp Variables"
 msgstr "དུས་རྒྱུན་གྱི་ གསལ་བརྗོད་འགྱུར་བ།"
 
-#: ../gtksourceview/language-specs/ruby.lang.h:14
-msgid "Regular Expression"
-msgstr "དུས་རྒྱུན་གསལ་བརྗོད།"
-
 #: ../gtksourceview/language-specs/ruby.lang.h:15
-msgid "Regular Expression 2"
-msgstr "དུས་རྒྱུན་གྱི་གསལ་བརྗོད་ ༢ པ།"
-
-#: ../gtksourceview/language-specs/ruby.lang.h:16
 msgid "Ruby"
 msgstr "ར་བི།"
 
+#: ../gtksourceview/language-specs/ruby.lang.h:18
+msgid "Symbols"
+msgstr "བརྡ་མཚོན་ཚུ།"
+
+#: ../gtksourceview/language-specs/scheme.lang.h:11
+msgid "Scheme"
+msgstr "འཆར་ལས།"
+
 #: ../gtksourceview/language-specs/sh.lang.h:2
-msgid "Built-in Commands"
+msgid "Built-in Command"
 msgstr "ནང་སྦྲགས་བརྡ་བཀོད།"
 
 #: ../gtksourceview/language-specs/sh.lang.h:3
-msgid "Common Commands"
-msgstr "མཐུན་མོང་གི་བརྡ་བཀོད་ཚུ།"
+msgid "Common Command"
+msgstr "མཐུན་མོང་གི་བརྡ་བཀོད།"
+
+#: ../gtksourceview/language-specs/sh.lang.h:8
+msgid "Operator"
+msgstr "བཀོལ་སྤྱོདཔ།"
+
+#: ../gtksourceview/language-specs/sh.lang.h:9
+msgid "Punctuator"
+msgstr "ཡིག་རྟགས་བཀལ་མི།"
 
 #: ../gtksourceview/language-specs/sh.lang.h:10
-msgid "Redirections"
+msgid "Redirection"
 msgstr "སླར་ལོག་གཏང་བ།"
 
 #: ../gtksourceview/language-specs/sh.lang.h:12
@@ -1578,10 +1679,6 @@ msgstr "བེ་རི་ལོག"
 msgid "True and False"
 msgstr "བདེན་པ་དང་རྫུན་པ།"
 
-#: ../gtksourceview/language-specs/vhdl.lang.h:8
-msgid "Type"
-msgstr "དབྱེ་བ།"
-
 #: ../gtksourceview/language-specs/vhdl.lang.h:9
 msgid "VHDL"
 msgstr "ཝི་ཨེཆ་ཌི་ཨེལ།"
@@ -1590,14 +1687,22 @@ msgstr "ཝི་ཨེཆ་ཌི་ཨེལ།"
 msgid "Hexadecimal"
 msgstr "དྲུག་ལྡན་བཅུ་ཚག"
 
-#: ../gtksourceview/language-specs/xml.lang.h:8
-msgid "Tag"
-msgstr "ངོ་རྟགས།"
-
 #: ../gtksourceview/language-specs/xml.lang.h:9
 msgid "XML"
 msgstr "ཨེགསི་ཨེམ་ཨེལ།"
 
+#~ msgid "Tags"
+#~ msgstr "ངོ་རྟགས་ཚུ།"
+#~ msgid "Double Quote String"
+#~ msgstr "འདྲེན་རྟགས་གཉིས་ལྡན་ཡིག་རྒྱུན།"
+#~ msgid "Single Quote String"
+#~ msgstr "འདྲེན་རྟགས་གཅིག་ལྡན་ཡིག་རྒྱུན།"
+#~ msgid "Most Used Commands"
+#~ msgstr "མང་ཤོས་ལག་ལེན་འཐབ་མི་བརྡ་བཀོད་ཚུ།"
+#~ msgid "Regular Expression"
+#~ msgstr "དུས་རྒྱུན་གསལ་བརྗོད།"
+#~ msgid "Regular Expression 2"
+#~ msgstr "དུས་རྒྱུན་གྱི་གསལ་བརྗོད་ ༢ པ།"
 #~ msgid "Miscellaneous Single-Row Functions"
 #~ msgstr "སྣ་ཚོགས་གྱལ་རིམ་རྐྱང་པོའི་བྱ་ལས།"
 
