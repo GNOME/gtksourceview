@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview 1.6.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-05-10 23:35+0200\n"
-"PO-Revision-Date: 2006-05-02 02:17+0100\n"
+"POT-Creation-Date: 2006-05-22 19:04+0200\n"
+"PO-Revision-Date: 2006-05-15 17:44+0100\n"
 "Last-Translator: Jonathan Ernst <jonathan@ernstfamily.ch>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -27,7 +27,7 @@ msgstr "Caractère d'échappement"
 
 #: ../gtksourceview/gtksourcebuffer.c:279
 msgid "Escaping character for syntax patterns"
-msgstr "Caractère d'échappement dans la syntaxe des motifs"
+msgstr "Caractère d'échappement pour les motifs de syntaxe"
 
 #: ../gtksourceview/gtksourcebuffer.c:287
 msgid "Check Brackets"
@@ -416,43 +416,43 @@ msgstr "Mettre en surbrillance la ligne actuelle"
 
 #: ../gtksourceview/gtksourceview.c:303
 msgid "Margin Line Alpha"
-msgstr ""
+msgstr "Canal alpha de la ligne de marge"
 
 #: ../gtksourceview/gtksourceview.c:304
 msgid "Transparency of the margin line"
-msgstr ""
+msgstr "Transparence de la ligne de marge"
 
 #: ../gtksourceview/gtksourceview.c:321
 msgid "Margin Line Color"
-msgstr ""
+msgstr "Couleur de la ligne de marge"
 
 #: ../gtksourceview/gtksourceview.c:322
 msgid "Color to use for the right margin line"
-msgstr ""
+msgstr "Couleur à utiliser pour la ligne de marge de droite"
 
 #: ../gtksourceview/gtksourceview.c:338
 msgid "Margin Overlay Toggle"
-msgstr ""
+msgstr "Bascule du cache avec marge"
 
 #: ../gtksourceview/gtksourceview.c:339
 msgid "Whether to draw the right margin overlay"
-msgstr ""
+msgstr "Indique s'il faut afficher le cache de la marge de droite"
 
 #: ../gtksourceview/gtksourceview.c:355
 msgid "Margin Overlay Alpha"
-msgstr ""
+msgstr "Canal alpha du cache avec marge"
 
 #: ../gtksourceview/gtksourceview.c:356
 msgid "Transparency of the margin overlay"
-msgstr ""
+msgstr "Transparence du cache avec marge"
 
 #: ../gtksourceview/gtksourceview.c:373
 msgid "Margin Overlay Color"
-msgstr ""
+msgstr "Couleur du cache avec marge"
 
 #: ../gtksourceview/gtksourceview.c:374
 msgid "Color to use for drawing the margin overlay"
-msgstr ""
+msgstr "Couleur à utiliser pour dessiner le cache avec marge"
 
 #: ../gtksourceview/language-specs/ada.lang.h:1
 msgid "Ada"
@@ -555,7 +555,7 @@ msgstr "Type"
 #: ../gtksourceview/language-specs/c.lang.h:1
 #: ../gtksourceview/language-specs/cpp.lang.h:1
 msgid "'#if 0' Comment"
-msgstr "Commentaire '#if 0'"
+msgstr "Commentaire « #if 0 »"
 
 #. Comments
 #: ../gtksourceview/language-specs/c.lang.h:2
@@ -933,7 +933,7 @@ msgstr "Lecture/Écriture"
 #: ../gtksourceview/language-specs/R.lang.h:3
 #: ../gtksourceview/language-specs/ruby.lang.h:6
 msgid "Double Quoted String"
-msgstr "Chaîne doublement citée"
+msgstr "Chaîne mise entre guillemets (\")"
 
 #: ../gtksourceview/language-specs/gtkrc.lang.h:3
 msgid "GtkRC"
@@ -957,7 +957,7 @@ msgstr "Symbole clé"
 #: ../gtksourceview/language-specs/R.lang.h:11
 #: ../gtksourceview/language-specs/ruby.lang.h:17
 msgid "Single Quoted String"
-msgstr "Chaîne simplement citée"
+msgstr "Chaîne mise entre guillemets simples (')"
 
 #: ../gtksourceview/language-specs/gtkrc.lang.h:11
 msgid "State"
@@ -1155,7 +1155,7 @@ msgstr "Chaîne sur plusieurs lignes 2"
 #: ../gtksourceview/language-specs/php.lang.h:3
 #: ../gtksourceview/language-specs/sh.lang.h:1
 msgid "Backtick String"
-msgstr "Chaîne backtick"
+msgstr "Chaîne entourée d'apostrophes inverse"
 
 #: ../gtksourceview/language-specs/makefile.lang.h:2
 msgid "Directives"
@@ -1211,12 +1211,12 @@ msgstr "Nemerle"
 #: ../gtksourceview/language-specs/octave.lang.h:8
 #: ../gtksourceview/language-specs/python.lang.h:10
 msgid "Multiline Double Quoted String"
-msgstr ""
+msgstr "Chaîne mise entre guillemets (\") sur plusieurs lignes"
 
 #: ../gtksourceview/language-specs/octave.lang.h:9
 #: ../gtksourceview/language-specs/python.lang.h:11
 msgid "Multiline Single Quoted String"
-msgstr ""
+msgstr "Chaîne mise entre guillemets simples (') sur plusieurs lignes"
 
 #: ../gtksourceview/language-specs/octave.lang.h:11
 msgid "Octave"
@@ -1588,7 +1588,7 @@ msgstr "Instructions SQL"
 #. SQL*Plus
 #: ../gtksourceview/language-specs/sql.lang.h:42
 msgid "SQL*Plus At Sign"
-msgstr "SQL*Plus At Sign"
+msgstr "Arobase SQL*Plus"
 
 #: ../gtksourceview/language-specs/sql.lang.h:43
 msgid "SQL*Plus Commands"
@@ -1596,11 +1596,11 @@ msgstr "Commandes SQL*Plus"
 
 #: ../gtksourceview/language-specs/sql.lang.h:44
 msgid "SQL*Plus Double At Sign"
-msgstr "SQL*Plus Double At Sign"
+msgstr "Double arobase SQL*Plus"
 
 #: ../gtksourceview/language-specs/sql.lang.h:45
 msgid "SQL*Plus Slash"
-msgstr "SQL*Plus Slash"
+msgstr "Slash SQL*Plus"
 
 #: ../gtksourceview/language-specs/sql.lang.h:46
 msgid "SQL/DS and DB2 Datatypes"
@@ -1608,12 +1608,12 @@ msgstr "SQL/DS et types de données DB2"
 
 #: ../gtksourceview/language-specs/sql.lang.h:47
 msgid "Size Clause"
-msgstr "Size Clause"
+msgstr "Clause de taille"
 
 #. Literals
 #: ../gtksourceview/language-specs/sql.lang.h:50
 msgid "Text Literals"
-msgstr "Texte littéral"
+msgstr "Constantes de texte"
 
 #: ../gtksourceview/language-specs/sql.lang.h:51
 msgid "Unlimited"
@@ -1702,21 +1702,3 @@ msgstr "Hexadécimal"
 #: ../gtksourceview/language-specs/xml.lang.h:9
 msgid "XML"
 msgstr "XML"
-
-#~ msgid "Tags"
-#~ msgstr "Balises"
-
-#~ msgid "Double Quote String"
-#~ msgstr "Chaîne doublement citée"
-
-#~ msgid "Single Quote String"
-#~ msgstr "Chaîne simplement citée"
-
-#~ msgid "Most Used Commands"
-#~ msgstr "Commandes les plus utilisées"
-
-#~ msgid "Regular Expression"
-#~ msgstr "Expression rationnelle"
-
-#~ msgid "Regular Expression 2"
-#~ msgstr "Expression rationnelle 2"
