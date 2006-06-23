@@ -1,3 +1,8 @@
+2006-06-22  Paolo Borelli  <steve@istique.net>
+
+	* gtksourceview/gtksourceview.c: fix bug #345252 – Automatic
+	indentation does not work with keypad enter.
+
 === gtksourceview 1.6.1 ===
 
 2006-04-10  Paolo Borelli  <pborelli@katamail.com>

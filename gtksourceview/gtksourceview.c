@@ -1958,7 +1958,9 @@ gtk_source_view_key_press_event (GtkWidget *widget, GdkEventKey *event)
 	mark = gtk_text_buffer_get_insert (buf);
 	gtk_text_buffer_get_iter_at_mark (buf, &cur, mark);
 
-	if ((key == GDK_Return) && !(event->state & GDK_SHIFT_MASK) && view->priv->auto_indent)
+	if ((key == GDK_Return || key == GDK_KP_Enter) &&
+	    !(event->state & GDK_SHIFT_MASK) &&
+	    view->priv->auto_indent)
 	{
 		/* Auto-indent means that when you press ENTER at the end of a
 		 * line, the new line is automatically indented at the same
