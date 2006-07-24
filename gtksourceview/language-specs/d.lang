@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE language SYSTEM "language.dtd">
+<!--
+	D Language specification
+
+	Reference:
+		http://www.digitalmars.com/d/lex.html
+-->
+
+<language _name="D" version="1.0" _section="Sources" 
+           mimetypes="text/x-dsrc">
+	
+	<escape-char>\</escape-char>
+
+	<line-comment _name="Line Comment" style="Comment">
+		<start-regex>//</start-regex>
+	</line-comment>
+
+	<block-comment _name="Block Comment" style="Comment">
+		<start-regex>/\*</start-regex>
+		<end-regex>\*/</end-regex>
+	</block-comment>
+
+	<block-comment _name="Nested Comment" style="Comment">
+		<start-regex>/\+</start-regex>
+		<end-regex>\+/</end-regex>
+	</block-comment>
+
+	<string _name="Grave Literal" style="String" end-at-line-end="false">
+		<start-regex>`</start-regex>
+		<end-regex>`</end-regex>
+	</string>
+
+	<string _name="String Literal" style="String" end-at-line-end="false">
+		<start-regex>&quot;</start-regex>
+		<end-regex>&quot;</end-regex>
+	</string>
+
+	<string _name="Char Literal" style="String" end-at-line-end="true">
+		<start-regex>'</start-regex>
+		<end-regex>'</end-regex>
+	</string>
+
+	<keyword-list _name="Keywords" style="Keyword" case-sensitive="true">
+		<keyword>abstract</keyword>
+		<keyword>alias</keyword>
+		<keyword>align</keyword>
+		<keyword>asm</keyword>
+		<keyword>assert</keyword>
+		<keyword>body</keyword>
+		<keyword>break</keyword>
+		<keyword>case</keyword>
+		<keyword>cast</keyword>
+		<keyword>catch</keyword>
+		<keyword>continue</keyword>
+		<keyword>debug</keyword>
+		<keyword>default</keyword>
+		<keyword>delegate</keyword>
+		<keyword>delete</keyword>
+		<keyword>deprecated</keyword>
+		<keyword>do</keyword>
+		<keyword>else</keyword>
+		<keyword>false</keyword>
+		<keyword>final</keyword>
+		<keyword>finally</keyword>
+		<keyword>for</keyword>
+		<keyword>foreach</keyword>
+		<keyword>function</keyword>
+		<keyword>goto</keyword>
+		<keyword>if</keyword>
+		<keyword>import</keyword>
+		<keyword>in</keyword>
+		<keyword>inout</keyword>
+		<keyword>is</keyword>
+		<keyword>mixin</keyword>
+		<keyword>new</keyword>
+		<keyword>out</keyword>
+		<keyword>override</keyword>
+		<keyword>pragma</keyword>
+		<keyword>private</keyword>
+		<keyword>protected</keyword>
+		<keyword>public</keyword>
+		<keyword>return</keyword>
+		<keyword>scope</keyword>
+		<keyword>super</keyword>
+		<keyword>switch</keyword>
+		<keyword>synchronized</keyword>
+		<keyword>this</keyword>
+		<keyword>throw</keyword>
+		<keyword>true</keyword>
+		<keyword>try</keyword>
+		<keyword>typeid</keyword>
+		<keyword>typeof</keyword>
+		<keyword>unittest</keyword>
+		<keyword>version</keyword>
+		<keyword>while</keyword>
+		<keyword>with</keyword>
+	</keyword-list>
+
+	<keyword-list _name="Types" style="Data Type" case-sensitive="true">
+		<keyword>auto</keyword>
+		<keyword>bool</keyword>
+		<keyword>byte</keyword>
+		<keyword>cdouble</keyword>
+		<keyword>cent</keyword>
+		<keyword>cfloat</keyword>
+		<keyword>char</keyword>
+		<keyword>class</keyword>
+		<keyword>const</keyword>
+		<keyword>creal</keyword>
+		<keyword>dchar</keyword>
+		<keyword>double</keyword>
+		<keyword>enum</keyword>
+		<keyword>export</keyword>
+		<keyword>extern</keyword>
+		<keyword>float</keyword>
+		<keyword>idouble</keyword>
+		<keyword>ifloat</keyword>
+		<keyword>int</keyword>
+		<keyword>interface</keyword>
+		<keyword>invariant</keyword>
+		<keyword>ireal</keyword>
+		<keyword>long</keyword>
+		<keyword>module</keyword>
+		<keyword>null</keyword>
+		<keyword>package</keyword>
+		<keyword>real</keyword>
+		<keyword>short</keyword>
+		<keyword>static</keyword>
+		<keyword>struct</keyword>
+		<keyword>template</keyword>
+		<keyword>typedef</keyword>
+		<keyword>ubyte</keyword>
+		<keyword>ucent</keyword>
+		<keyword>uint</keyword>
+		<keyword>ulong</keyword>
+		<keyword>union</keyword>
+		<keyword>ushort</keyword>
+		<keyword>void</keyword>
+		<keyword>volatile</keyword>
+		<keyword>wchar</keyword>
+	</keyword-list>
+
+	<pattern-item _name="Binary Number" style="Base-N Integer">
+		<regex>\b0[bB][01_]*\b</regex>
+	</pattern-item>
+
+	<pattern-item _name="Decimal" style="Decimal">
+		<regex>\b([1-9][0-9_]*|0)([Uu]([Ll]|LL|ll)?|([Ll]|LL|ll)[Uu]?)?\b</regex>
+	</pattern-item>
+
+	<pattern-item _name="Floating Point Number" style="Floating Point">
+		<regex>\b([0-9_]+[Ee][-]?[0-9_]+|([0-9_]*\.[0-9_]+|[0-9_]+\.)([Ee][-]?[0-9_]+)?)[fFLi]?</regex>
+	</pattern-item>
+
+	<pattern-item _name="Octal Number" style="Base-N Integer">
+		<regex>\b0[0-7_]+([Uu]([Ll]|LL|ll)?|([Ll]|LL|ll)[Uu]?)?\b</regex>
+	</pattern-item>
+
+	<pattern-item _name="Hex Number" style="Base-N Integer">
+		<regex>\b0[xX][0-9a-fA-F_]+([Uu]([Ll]|LL|ll)?|([Ll]|LL|ll)[Uu]?)?\b</regex>
+	</pattern-item>
+
+	<keyword-list _name="Special Tokens" style="Preprocessor" case-sensitive="true">
+		<keyword>#line</keyword>
+		<keyword>__FILE__</keyword>
+		<keyword>__LINE__</keyword>
+		<keyword>__DATE__</keyword>
+		<keyword>__TIME__</keyword>
+		<keyword>__TIMESTAMP__</keyword>
+	</keyword-list>
+</language>

@@ -6,6 +6,7 @@ EXTRA_DIST = 			\
 	csharp.lang		\
 	css.lang		\
 	cpp.lang		\
+	d.lang			\
 	diff.lang		\
 	desktop.lang		\
 	fortran.lang		\
