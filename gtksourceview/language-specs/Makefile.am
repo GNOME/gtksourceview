@@ -1,14 +1,15 @@
 EXTRA_DIST = 			\
 	language.dtd		\
 	ada.lang		\
+	boo.lang		\
 	c.lang			\
 	changelog.lang		\
 	csharp.lang		\
 	css.lang		\
 	cpp.lang		\
 	d.lang			\
-	diff.lang		\
 	desktop.lang		\
+	diff.lang		\
 	fortran.lang		\
 	gtkrc.lang		\
 	haskell.lang		\
