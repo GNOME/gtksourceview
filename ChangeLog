@@ -1,3 +1,8 @@
+2006-07-24  Paolo Borelli  <pborelli@katamail.com>
+
+	* gtksourceview/gtksourceview.c: fix tab key issues when inserting
+	spaces instead of tabs. Bug #343755.
+
 2006-06-22  Paolo Borelli  <steve@istique.net>
 
 	* gtksourceview/gtksourceview.c: fix bug #345252 – Automatic

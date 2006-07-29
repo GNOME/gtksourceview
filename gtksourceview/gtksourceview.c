@@ -1998,21 +1998,42 @@ gtk_source_view_key_press_event (GtkWidget *widget, GdkEventKey *event)
 
 	if ((key == GDK_Tab) && view->priv->insert_spaces)
 	{
+		GtkTextIter s, e;
+		GtkTextIter tab;
 		gint cur_pos;
+		gint tab_pos;
 		gint num_of_equivalent_spaces;
 		gint tabs_size;
 		gchar *spaces;
+
+		gtk_text_buffer_get_selection_bounds (buf, &s, &e);
 
 		tabs_size = view->priv->tabs_width; 
 		
 		cur_pos = gtk_text_iter_get_line_offset (&cur);
 
-		num_of_equivalent_spaces = tabs_size - (cur_pos % tabs_size); 
+		tab = cur;
+		tab_pos = cur_pos;
+
+		/* If there are tabs in the line take them into account */
+		while (tab_pos > 0)
+		{
+			gunichar c;
+
+			gtk_text_iter_backward_char (&tab);
+			c = gtk_text_iter_get_char (&tab);
+			if (c == '\t')
+				break;
+			tab_pos--;
+		}
+
+		num_of_equivalent_spaces = tabs_size - (cur_pos - tab_pos) % tabs_size; 
 
 		spaces = g_strnfill (num_of_equivalent_spaces, ' ');
 		
 		gtk_text_buffer_begin_user_action (buf);
-		gtk_text_buffer_insert (buf,  &cur, spaces, num_of_equivalent_spaces);
+		gtk_text_buffer_delete (buf, &s, &e);
+		gtk_text_buffer_insert (buf, &s, spaces, num_of_equivalent_spaces);
 		gtk_text_buffer_end_user_action (buf);
 
 		gtk_text_view_scroll_mark_onscreen (GTK_TEXT_VIEW (widget),
