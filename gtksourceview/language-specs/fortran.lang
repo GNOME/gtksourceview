@@ -18,6 +18,27 @@
 		<end-regex>&apos;</end-regex>
 	</string>
 
+	<keyword-list _name = "Operators" style = "Keyword"
+	 case-sensitive = "FALSE"
+	 match-empty-string-at-beginning = "FALSE"
+	 match-empty-string-at-end = "FALSE"
+	 beginning-regex = "\." end-regex = "\.">
+		<keyword>TRUE</keyword>
+		<keyword>FALSE</keyword>
+		<keyword>NOT</keyword>
+		<keyword>AND</keyword>
+		<keyword>OR</keyword>
+		<keyword>XOR</keyword>
+		<keyword>EQV</keyword>
+		<keyword>NEQV</keyword>
+		<keyword>EQ</keyword>
+		<keyword>NE</keyword>
+		<keyword>GT</keyword>
+		<keyword>GE</keyword>
+		<keyword>LT</keyword>
+		<keyword>LE</keyword>
+	</keyword-list>
+
 	<keyword-list _name = "Keywords" style = "Keyword" case-sensitive="FALSE">
 		<keyword>block data</keyword>
 		<keyword>CALL</keyword>
