@@ -87,7 +87,8 @@ enum {
 	PROP_SHOW_MARGIN,
 	PROP_MARGIN,
 	PROP_SMART_HOME_END,
-	PROP_HIGHLIGHT_CURRENT_LINE
+	PROP_HIGHLIGHT_CURRENT_LINE,
+	PROP_INDENT_ON_TAB
 };
 
 struct _GtkSourceViewPrivate
@@ -99,6 +100,7 @@ struct _GtkSourceViewPrivate
 	gboolean	 insert_spaces;
 	gboolean	 show_margin;
 	gboolean	 highlight_current_line;
+	gboolean	 indent_on_tab;
 	guint		 margin;
 	gint             cached_margin_width;
 	gboolean	 smart_home_end;
@@ -288,6 +290,14 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 							       FALSE,
 							       G_PARAM_READWRITE));
 
+	g_object_class_install_property (object_class,
+					 PROP_INDENT_ON_TAB,
+					 g_param_spec_boolean ("indent_on_tab",
+							       _("Indent on tab"),
+							       _("Whether to indent the selected text when the tab key is pressed"),
+							       FALSE,
+							       G_PARAM_READWRITE));
+
 	/**
 	 * GtkSourceView:right-margin-line-alpha:
 	 *
@@ -471,7 +481,10 @@ gtk_source_view_set_property (GObject      *object,
 			gtk_source_view_set_highlight_current_line (view,
 								    g_value_get_boolean (value));
 			break;
-
+		case PROP_INDENT_ON_TAB:
+			gtk_source_view_set_indent_on_tab (view,
+							   g_value_get_boolean (value));
+			break;
 		
 		default:
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -541,6 +554,12 @@ gtk_source_view_get_property (GObject    *object,
 		case PROP_HIGHLIGHT_CURRENT_LINE:
 			g_value_set_boolean (value,
 					     gtk_source_view_get_highlight_current_line (view));
+			break;
+
+		case PROP_INDENT_ON_TAB:
+			g_value_set_boolean (value,
+					     gtk_source_view_get_indent_on_tab (view));
+			break;
 
 		default:
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -1941,6 +1960,185 @@ compute_indentation (GtkSourceView *view,
 	return gtk_text_iter_get_slice (&start, &end);
 }
 
+static void
+indent_lines (GtkSourceView *view, GtkTextIter *start, GtkTextIter *end)
+{
+	GtkTextBuffer *buf;
+	gint start_line, end_line;
+	gint i;
+	gchar *tab_buffer = NULL;
+
+	buf = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
+
+	start_line = gtk_text_iter_get_line (start);
+	end_line = gtk_text_iter_get_line (end);
+
+	if ((gtk_text_iter_get_visible_line_offset (end) == 0) &&
+	    (end_line > start_line))
+	{
+		end_line--;
+	}
+
+	if (gtk_source_view_get_insert_spaces_instead_of_tabs (view))
+	{
+		gint tabs_size;
+
+		tabs_size = view->priv->tabs_width;
+		tab_buffer = g_strnfill (tabs_size, ' ');
+	}
+	else
+	{
+		tab_buffer = g_strdup ("\t");
+	}
+
+	gtk_text_buffer_begin_user_action (buf);
+
+	for (i = start_line; i <= end_line; i++)
+	{
+		GtkTextIter iter;
+
+		gtk_text_buffer_get_iter_at_line (buf, &iter, i);
+
+		/* don't add indentation on empty lines */
+		if (gtk_text_iter_ends_line (&iter))
+			continue;
+
+		gtk_text_buffer_insert (buf, &iter, tab_buffer, -1);
+	}
+
+	gtk_text_buffer_end_user_action (buf);
+
+	g_free (tab_buffer);
+
+	gtk_text_view_scroll_mark_onscreen (GTK_TEXT_VIEW (view),
+					    gtk_text_buffer_get_insert (buf));
+}
+
+static void
+unindent_lines (GtkSourceView *view, GtkTextIter *start, GtkTextIter *end)
+{
+	GtkTextBuffer *buf;
+	gint start_line, end_line;
+	gint i;
+
+	buf = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
+
+	start_line = gtk_text_iter_get_line (start);
+	end_line = gtk_text_iter_get_line (end);
+
+	if ((gtk_text_iter_get_visible_line_offset (end) == 0) &&
+	    (end_line > start_line))
+	{
+		end_line--;
+	}
+
+	gtk_text_buffer_begin_user_action (buf);
+
+	for (i = start_line; i <= end_line; i++)
+	{
+		GtkTextIter iter, iter2;
+
+		gtk_text_buffer_get_iter_at_line (buf, &iter, i);
+
+		if (gtk_text_iter_get_char (&iter) == '\t')
+		{
+			iter2 = iter;
+			gtk_text_iter_forward_char (&iter2);
+			gtk_text_buffer_delete (buf, &iter, &iter2);
+		}
+		else if (gtk_text_iter_get_char (&iter) == ' ')
+		{
+			gint spaces = 0;
+
+			iter2 = iter;
+
+			while (!gtk_text_iter_ends_line (&iter2))
+			{
+				if (gtk_text_iter_get_char (&iter2) == ' ')
+					spaces++;
+				else
+					break;
+
+				gtk_text_iter_forward_char (&iter2);
+			}
+
+			if (spaces > 0)
+			{
+				gint tabs = 0;
+				gint tabs_size = view->priv->tabs_width;
+
+				tabs = spaces / tabs_size;
+				spaces = spaces - (tabs * tabs_size);
+
+				if (spaces == 0)
+					spaces = tabs_size;
+
+				iter2 = iter;
+
+				gtk_text_iter_forward_chars (&iter2, spaces);
+				gtk_text_buffer_delete (buf, &iter, &iter2);
+			}
+		}
+	}
+
+	gtk_text_buffer_end_user_action (buf);
+
+	gtk_text_view_scroll_mark_onscreen (GTK_TEXT_VIEW (view),
+					    gtk_text_buffer_get_insert (buf));
+}
+
+static void
+insert_tab_or_spaces (GtkSourceView *view, GtkTextIter *start, GtkTextIter *end)
+{
+	GtkTextBuffer *buf;
+	gchar *tab_buf;
+
+	if (view->priv->insert_spaces)
+	{
+		gint tabs_size;
+		GtkTextIter iter;
+		gint cur_pos;
+		gint tab_pos;
+		gint num_of_equivalent_spaces;
+
+		tabs_size = view->priv->tabs_width; 
+
+		iter = *start;
+
+		cur_pos = gtk_text_iter_get_line_offset (start);
+		tab_pos = cur_pos;
+
+		/* If there are tabs in the line take them into account */
+		while (tab_pos > 0)
+		{
+			gunichar c;
+
+			gtk_text_iter_backward_char (&iter);
+			c = gtk_text_iter_get_char (&iter);
+			if (c == '\t')
+				break;
+			tab_pos--;
+		}
+
+		num_of_equivalent_spaces = tabs_size - (cur_pos - tab_pos) % tabs_size; 
+
+		tab_buf = g_strnfill (num_of_equivalent_spaces, ' ');
+	}
+	else
+	{
+		tab_buf = g_strdup ("\t");
+	}
+
+	buf = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
+
+	gtk_text_buffer_begin_user_action (buf);
+	gtk_text_buffer_delete (buf, start, end);
+	gtk_text_buffer_insert (buf, start, tab_buf, -1);
+	gtk_text_buffer_end_user_action (buf);
+
+	g_free (tab_buf);
+}
+
 static gboolean
 gtk_source_view_key_press_event (GtkWidget *widget, GdkEventKey *event)
 {
@@ -1996,55 +2194,44 @@ gtk_source_view_key_press_event (GtkWidget *widget, GdkEventKey *event)
 		}
 	}
 
-	if ((key == GDK_Tab) && view->priv->insert_spaces)
+	/* if tab or shift+tab:
+	 * with shift+tab key is GDK_ISO_Left_Tab (depends on X?)
+	 */
+	if ((key == GDK_Tab || key == GDK_KP_Tab || key == GDK_ISO_Left_Tab) &&
+	    (event->state == 0 || event->state == GDK_SHIFT_MASK))
 	{
 		GtkTextIter s, e;
-		GtkTextIter tab;
-		gint cur_pos;
-		gint tab_pos;
-		gint num_of_equivalent_spaces;
-		gint tabs_size;
-		gchar *spaces;
+		gboolean has_selection;
 
-		gtk_text_buffer_get_selection_bounds (buf, &s, &e);
+		has_selection = gtk_text_buffer_get_selection_bounds (buf, &s, &e);
 
-		tabs_size = view->priv->tabs_width; 
-		
-		cur_pos = gtk_text_iter_get_line_offset (&cur);
-
-		tab = cur;
-		tab_pos = cur_pos;
-
-		/* If there are tabs in the line take them into account */
-		while (tab_pos > 0)
+		if (view->priv->indent_on_tab)
 		{
-			gunichar c;
+			/* shift+tab: always unindent */
+			if (event->state & GDK_SHIFT_MASK)
+			{
+				unindent_lines (view, &s, &e);
+				return TRUE;
+			}
 
-			gtk_text_iter_backward_char (&tab);
-			c = gtk_text_iter_get_char (&tab);
-			if (c == '\t')
-				break;
-			tab_pos--;
+			/* tab: if we have a selection which spans one whole line
+			 * or more, we mass indent, if the selection spans less then
+			 * the full line just replace the text with \t
+			 */
+			if (has_selection &&
+			    ((gtk_text_iter_starts_line (&s) && gtk_text_iter_ends_line (&e)) ||
+			     (gtk_text_iter_get_line (&s) != gtk_text_iter_get_line (&e))))
+			{
+				indent_lines (view, &s, &e);
+				return TRUE;
+			}
 		}
-
-		num_of_equivalent_spaces = tabs_size - (cur_pos - tab_pos) % tabs_size; 
-
-		spaces = g_strnfill (num_of_equivalent_spaces, ' ');
-		
-		gtk_text_buffer_begin_user_action (buf);
-		gtk_text_buffer_delete (buf, &s, &e);
-		gtk_text_buffer_insert (buf, &s, spaces, num_of_equivalent_spaces);
-		gtk_text_buffer_end_user_action (buf);
-
-		gtk_text_view_scroll_mark_onscreen (GTK_TEXT_VIEW (widget),
-						    gtk_text_buffer_get_insert (buf));
-		
-		g_free (spaces);
-
-		return TRUE;
+ 
+		insert_tab_or_spaces (view, &s, &e);
+ 		return TRUE;
 	}
 
-	return	(* GTK_WIDGET_CLASS (parent_class)->key_press_event) (widget, event);
+	return (* GTK_WIDGET_CLASS (parent_class)->key_press_event) (widget, event);
 }
 
 static void
@@ -2222,6 +2409,51 @@ gtk_source_view_set_insert_spaces_instead_of_tabs (GtkSourceView *view, gboolean
 	view->priv->insert_spaces = enable;
 
 	g_object_notify (G_OBJECT (view), "insert_spaces_instead_of_tabs");
+}
+
+/**
+ * gtk_source_view_get_indent_on_tab:
+ * @view: a #GtkSourceView.
+ *
+ * Returns whether when the tab key is pressed the current selection
+ * should get indented instead of replaced with the \t character.
+ *
+ * Return value: %TRUE if the selection is indented when tab is pressed.
+ *
+ * Since: 1.8
+ **/
+gboolean
+gtk_source_view_get_indent_on_tab (GtkSourceView *view)
+{
+	g_return_val_if_fail (GTK_IS_SOURCE_VIEW (view), FALSE);
+
+	return view->priv->indent_on_tab;
+}
+
+/**
+ * gtk_source_view_set_indent_on_tab:
+ * @view: a #GtkSourceView.
+ * @enable: whether to indent a block when tab is pressed.
+ *
+ * If %TRUE, when the tab key is pressed and there is a selection, the
+ * selected text is indented of one level instead of being replaced with
+ * the \t characters. Shift+Tab unindents the selection.
+ *
+ * Since: 1.8
+ **/
+void
+gtk_source_view_set_indent_on_tab (GtkSourceView *view, gboolean enable)
+{
+	g_return_if_fail (GTK_IS_SOURCE_VIEW (view));
+
+	enable = (enable != FALSE);
+
+	if (view->priv->indent_on_tab == enable)
+		return;
+
+	view->priv->indent_on_tab = enable;
+
+	g_object_notify (G_OBJECT (view), "indent_on_tab");
 }
 
 static void 

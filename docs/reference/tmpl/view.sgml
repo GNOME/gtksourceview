@@ -47,6 +47,11 @@ GtkSourceView
 
 </para>
 
+<!-- ##### ARG GtkSourceView:indent-on-tab ##### -->
+<para>
+
+</para>
+
 <!-- ##### ARG GtkSourceView:insert-spaces-instead-of-tabs ##### -->
 <para>
 
@@ -206,6 +211,24 @@ GtkSourceView
 
 
 <!-- ##### FUNCTION gtk_source_view_get_insert_spaces_instead_of_tabs ##### -->
+<para>
+
+</para>
+
+@view: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gtk_source_view_set_indent_on_tab ##### -->
+<para>
+
+</para>
+
+@view: 
+@enable: 
+
+
+<!-- ##### FUNCTION gtk_source_view_get_indent_on_tab ##### -->
 <para>
 
 </para>

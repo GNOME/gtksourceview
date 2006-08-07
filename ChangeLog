@@ -1,5 +1,10 @@
 2006-08-06  Paolo Borelli  <pborelli@katamail.com>
 
+	* gtksourceview/gtksourceview.c: add indent-on-tab property to 
+	allow mass indentation: bug #132824.
+
+2006-08-06  Paolo Borelli  <pborelli@katamail.com>
+
 	* gtksourceview/language-specs/fortran.lang: highlight operators. Patch
 	by John Spray, bug #153438.
 
