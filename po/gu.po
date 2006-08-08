@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview.HEAD.gu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-07-25 01:59+0200\n"
-"PO-Revision-Date: 2006-07-25 10:47+0530\n"
+"POT-Creation-Date: 2006-08-08 00:11+0200\n"
+"PO-Revision-Date: 2006-08-08 10:28+0530\n"
 "Last-Translator: Ankit Patel <ankit644@yahoo.com>\n"
 "Language-Team: Gujarati <indianoss-gujarati@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -13,6 +13,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.9.1\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n\n"
+"\n"
 "\n"
 "\n"
 "\n"
@@ -94,7 +95,7 @@ msgid "GtkSourceBuffer object to print"
 msgstr "છાપવા માટે Gtk સ્રોત બફર વસ્તુ"
 
 #: ../gtksourceview/gtksourceprintjob.c:280
-#: ../gtksourceview/gtksourceview.c:233 ../gtksourceview/gtksourceview.c:234
+#: ../gtksourceview/gtksourceview.c:235 ../gtksourceview/gtksourceview.c:236
 msgid "Tabs Width"
 msgstr "ટેબની પહોળાઈ"
 
@@ -299,7 +300,7 @@ msgstr "પ્રીપ્રોસેસર"
 #: ../gtksourceview/language-specs/csharp.lang.h:9
 #: ../gtksourceview/language-specs/css.lang.h:58
 #: ../gtksourceview/language-specs/html.lang.h:8
-#: ../gtksourceview/language-specs/fortran.lang.h:13
+#: ../gtksourceview/language-specs/fortran.lang.h:14
 #: ../gtksourceview/language-specs/haskell.lang.h:31
 #: ../gtksourceview/language-specs/idl.lang.h:9
 #: ../gtksourceview/language-specs/java.lang.h:11
@@ -363,59 +364,59 @@ msgstr "નિશાનીનો પ્રકાર"
 msgid "The style associated with the source tag"
 msgstr "સ્રોતની નિશાની સાથે સંકળાયેલી શૈલી"
 
-#: ../gtksourceview/gtksourceview.c:217
+#: ../gtksourceview/gtksourceview.c:219
 msgid "Show Line Numbers"
 msgstr "લીટીઓનો ક્રમ દર્શાવો"
 
-#: ../gtksourceview/gtksourceview.c:218
+#: ../gtksourceview/gtksourceview.c:220
 msgid "Whether to display line numbers"
 msgstr "કે પછી લીટીઓનો ક્રમ દર્શાવો"
 
-#: ../gtksourceview/gtksourceview.c:225
+#: ../gtksourceview/gtksourceview.c:227
 msgid "Show Line Markers"
 msgstr "લીટી સૂચકો દર્શાવો"
 
-#: ../gtksourceview/gtksourceview.c:226
+#: ../gtksourceview/gtksourceview.c:228
 msgid "Whether to display line marker pixbufs"
 msgstr "કે પછી લીટી સૂચક pixbufs દર્શાવવા કે નહિં"
 
-#: ../gtksourceview/gtksourceview.c:243
+#: ../gtksourceview/gtksourceview.c:245
 msgid "Auto Indentation"
 msgstr "આપોઆપ જગ્યા છોડો"
 
-#: ../gtksourceview/gtksourceview.c:244
+#: ../gtksourceview/gtksourceview.c:246
 msgid "Whether to enable auto indentation"
 msgstr "કે પછી આપોઆપ જગ્યા છોડો સક્રિય કરો"
 
-#: ../gtksourceview/gtksourceview.c:250
+#: ../gtksourceview/gtksourceview.c:252
 msgid "Insert Spaces Instead of Tabs"
 msgstr "ટેબની જગ્યાએ ખાલી જગ્યા નાખો"
 
-#: ../gtksourceview/gtksourceview.c:251
+#: ../gtksourceview/gtksourceview.c:253
 msgid "Whether to insert spaces instead of tabs"
 msgstr "કે પછી ટેબની જગ્યાએ ખાલી જગ્યા નાખો"
 
-#: ../gtksourceview/gtksourceview.c:258
+#: ../gtksourceview/gtksourceview.c:260
 msgid "Show Right Margin"
 msgstr "જમણો હાંસિયો દેખાડો"
 
-#: ../gtksourceview/gtksourceview.c:259
+#: ../gtksourceview/gtksourceview.c:261
 msgid "Whether to display the right margin"
 msgstr "કે પછી જમણી હાંસિયો દેખાડો"
 
-#: ../gtksourceview/gtksourceview.c:266
+#: ../gtksourceview/gtksourceview.c:268
 msgid "Margin position"
 msgstr "હાંસિયાની સ્થિતિ"
 
-#: ../gtksourceview/gtksourceview.c:267
+#: ../gtksourceview/gtksourceview.c:269
 msgid "Position of the right margin"
 msgstr "જમણા હાંસિયાની સ્થિતિ"
 
-#: ../gtksourceview/gtksourceview.c:276
+#: ../gtksourceview/gtksourceview.c:278
 msgid "Use smart home/end"
 msgstr "દેખાવડું ઘર/અંત વાપરો"
 
-#: ../gtksourceview/gtksourceview.c:277
+#: ../gtksourceview/gtksourceview.c:279
 msgid ""
 "HOME and END keys move to first/last non whitespace characters on line "
 "before going to the start/end of the line"
@@ -423,51 +424,59 @@ msgstr ""
 "લીટીની શરૂઆત/અંતમાં જતા પહેલા ખાલી જગ્યાના અક્ષરો નહિં હોય ત્યાં પ્રથમ/છેલ્લે ખસવા માટે "
 "HOME અને END કીઓ"
 
-#: ../gtksourceview/gtksourceview.c:286
+#: ../gtksourceview/gtksourceview.c:288
 msgid "Highlight current line"
 msgstr "વર્તમાન લીટી પ્રકાશિત કરો"
 
-#: ../gtksourceview/gtksourceview.c:287
+#: ../gtksourceview/gtksourceview.c:289
 msgid "Whether to highlight the current line"
 msgstr "શું વર્તમાન લીટી પ્રકાશિત કરવી"
 
-#: ../gtksourceview/gtksourceview.c:303
+#: ../gtksourceview/gtksourceview.c:296
+msgid "Indent on tab"
+msgstr "ટેબ પર હાંસિયો"
+
+#: ../gtksourceview/gtksourceview.c:297
+msgid "Whether to indent the selected text when the tab key is pressed"
+msgstr "જ્યારે ટેબ કી દબાયેલ હોય ત્યારે શું પસંદિત લખાણનો હાંસિયો કરવો"
+
+#: ../gtksourceview/gtksourceview.c:313
 msgid "Margin Line Alpha"
 msgstr "હાંસિયા લીટી આલ્ફા"
 
-#: ../gtksourceview/gtksourceview.c:304
+#: ../gtksourceview/gtksourceview.c:314
 msgid "Transparency of the margin line"
 msgstr "હાંસિયા લીટીની પારદર્શકતા"
 
-#: ../gtksourceview/gtksourceview.c:321
+#: ../gtksourceview/gtksourceview.c:331
 msgid "Margin Line Color"
 msgstr "હાંસિયા લીટી રંગ"
 
-#: ../gtksourceview/gtksourceview.c:322
+#: ../gtksourceview/gtksourceview.c:332
 msgid "Color to use for the right margin line"
 msgstr "જમણાં હાંસિયા વાક્ય માટે વાપરવાનો રંગ"
 
-#: ../gtksourceview/gtksourceview.c:338
+#: ../gtksourceview/gtksourceview.c:348
 msgid "Margin Overlay Toggle"
 msgstr "હાંસિયા ઓવરલે બદલો"
 
-#: ../gtksourceview/gtksourceview.c:339
+#: ../gtksourceview/gtksourceview.c:349
 msgid "Whether to draw the right margin overlay"
 msgstr "શું જમણા હાંસિયા ઓવરલે દોરવો કે નહિં"
 
-#: ../gtksourceview/gtksourceview.c:355
+#: ../gtksourceview/gtksourceview.c:365
 msgid "Margin Overlay Alpha"
 msgstr "હાંસિય ઓવરલે આલ્ફા"
 
-#: ../gtksourceview/gtksourceview.c:356
+#: ../gtksourceview/gtksourceview.c:366
 msgid "Transparency of the margin overlay"
 msgstr "હાંસિયા ઓવરલેની પારદર્શકતા"
 
-#: ../gtksourceview/gtksourceview.c:373
+#: ../gtksourceview/gtksourceview.c:383
 msgid "Margin Overlay Color"
 msgstr "હાંસિયા ઓવરલેનો રંગ"
 
-#: ../gtksourceview/gtksourceview.c:374
+#: ../gtksourceview/gtksourceview.c:384
 msgid "Color to use for drawing the margin overlay"
 msgstr "હાંસિયા ઓવરલે દોરવા માટે વાપરવાનો રંગ"
 
@@ -549,7 +558,7 @@ msgstr "પ્રીપ્રોસેસર મુખ્ય શબ્દ"
 #: ../gtksourceview/language-specs/cpp.lang.h:14
 #: ../gtksourceview/language-specs/csharp.lang.h:8
 #: ../gtksourceview/language-specs/d.lang.h:13
-#: ../gtksourceview/language-specs/fortran.lang.h:12
+#: ../gtksourceview/language-specs/fortran.lang.h:13
 #: ../gtksourceview/language-specs/haskell.lang.h:13
 #: ../gtksourceview/language-specs/idl.lang.h:8
 #: ../gtksourceview/language-specs/java.lang.h:10
@@ -691,7 +700,7 @@ msgstr "પ્રીપ્રોસેસરની વ્યાખ્યાઓ"
 #: ../gtksourceview/language-specs/c.lang.h:16
 #: ../gtksourceview/language-specs/cpp.lang.h:16
 #: ../gtksourceview/language-specs/d.lang.h:16
-#: ../gtksourceview/language-specs/fortran.lang.h:15
+#: ../gtksourceview/language-specs/fortran.lang.h:16
 #: ../gtksourceview/language-specs/idl.lang.h:10
 #: ../gtksourceview/language-specs/verilog.lang.h:10
 msgid "Types"
@@ -742,7 +751,7 @@ msgstr "પહેલાંનું"
 
 #: ../gtksourceview/language-specs/csharp.lang.h:10
 #: ../gtksourceview/language-specs/css.lang.h:59
-#: ../gtksourceview/language-specs/fortran.lang.h:14
+#: ../gtksourceview/language-specs/fortran.lang.h:15
 #: ../gtksourceview/language-specs/java.lang.h:12
 #: ../gtksourceview/language-specs/javascript.lang.h:24
 #: ../gtksourceview/language-specs/lua.lang.h:11
@@ -796,6 +805,7 @@ msgid "Known Property Values"
 msgstr "જાણીતી ગુણદર્મ કિંમતો"
 
 #: ../gtksourceview/language-specs/css.lang.h:35
+#: ../gtksourceview/language-specs/fortran.lang.h:11
 #: ../gtksourceview/language-specs/javascript.lang.h:20
 #: ../gtksourceview/language-specs/php.lang.h:20
 #: ../gtksourceview/language-specs/sql.lang.h:34
@@ -995,7 +1005,7 @@ msgstr "ઈનપુટ/આઉટપુટ"
 msgid "Intrinsics"
 msgstr "આંતરિકો"
 
-#: ../gtksourceview/language-specs/fortran.lang.h:11
+#: ../gtksourceview/language-specs/fortran.lang.h:12
 msgid "Read/Write"
 msgstr "વાંચો/લખો"
 
