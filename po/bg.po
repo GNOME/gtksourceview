@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview gnome HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-25 12:16+0200\n"
-"PO-Revision-Date: 2006-01-25 12:15+0200\n"
+"POT-Creation-Date: 2006-08-20 00:02+0300\n"
+"PO-Revision-Date: 2006-08-20 00:07+0300\n"
 "Last-Translator: Alexander Shopov <ash@contact.bg>\n"
 "Language-Team: Bulgarian <dict@fsa-bg.org>\n"
 "MIME-Version: 1.0\n"
@@ -185,7 +185,7 @@ msgstr "Шрифт който да се ползва за колонтитули
 
 #: ../gtksourceview/gtksourcestylescheme.c:264
 msgid "Base-N Integer"
-msgstr "Цяло число в основа N   "
+msgstr "Цяло число в основа N"
 
 #: ../gtksourceview/gtksourcestylescheme.c:269
 msgid "Character"
@@ -219,6 +219,7 @@ msgstr "Функция"
 #: ../gtksourceview/gtksourcestylescheme.c:289
 #: ../gtksourceview/language-specs/c.lang.h:6
 #: ../gtksourceview/language-specs/cpp.lang.h:6
+#: ../gtksourceview/language-specs/d.lang.h:5
 #: ../gtksourceview/language-specs/fortran.lang.h:1
 #: ../gtksourceview/language-specs/haskell.lang.h:3
 #: ../gtksourceview/language-specs/nemerle.lang.h:6
@@ -281,7 +282,7 @@ msgstr "Предпроцесор"
 #: ../gtksourceview/language-specs/csharp.lang.h:9
 #: ../gtksourceview/language-specs/css.lang.h:58
 #: ../gtksourceview/language-specs/html.lang.h:8
-#: ../gtksourceview/language-specs/fortran.lang.h:13
+#: ../gtksourceview/language-specs/fortran.lang.h:14
 #: ../gtksourceview/language-specs/haskell.lang.h:31
 #: ../gtksourceview/language-specs/idl.lang.h:9
 #: ../gtksourceview/language-specs/java.lang.h:11
@@ -413,43 +414,51 @@ msgstr "Засветяване на текущия ред"
 msgid "Whether to highlight the current line"
 msgstr "Дали текущият ред да се засветява"
 
-#: ../gtksourceview/gtksourceview.c:305
+#: ../gtksourceview/gtksourceview.c:296
+msgid "Indent on tab"
+msgstr "Отстъп при табулация"
+
+#: ../gtksourceview/gtksourceview.c:297
+msgid "Whether to indent the selected text when the tab key is pressed"
+msgstr "Дали да се увеличи отстъпа на избрания текст при натискане на табулатора"
+
+#: ../gtksourceview/gtksourceview.c:313
 msgid "Margin Line Alpha"
 msgstr "Прозрачност на линията на границата"
 
-#: ../gtksourceview/gtksourceview.c:306
+#: ../gtksourceview/gtksourceview.c:314
 msgid "Transparency of the margin line"
 msgstr "Прозрачност на линията на границата"
 
-#: ../gtksourceview/gtksourceview.c:323
+#: ../gtksourceview/gtksourceview.c:331
 msgid "Margin Line Color"
 msgstr "Цвят на линията на границата"
 
-#: ../gtksourceview/gtksourceview.c:324
+#: ../gtksourceview/gtksourceview.c:332
 msgid "Color to use for the right margin line"
 msgstr "Цвят за линията на дясната граница"
 
-#: ../gtksourceview/gtksourceview.c:340
+#: ../gtksourceview/gtksourceview.c:348
 msgid "Margin Overlay Toggle"
 msgstr "Превключване на покриването след границата"
 
-#: ../gtksourceview/gtksourceview.c:341
+#: ../gtksourceview/gtksourceview.c:349
 msgid "Whether to draw the right margin overlay"
 msgstr "Дали да се покрива полето отдясно на границата"
 
-#: ../gtksourceview/gtksourceview.c:357
+#: ../gtksourceview/gtksourceview.c:365
 msgid "Margin Overlay Alpha"
 msgstr "Прозрачност на покриването"
 
-#: ../gtksourceview/gtksourceview.c:358
+#: ../gtksourceview/gtksourceview.c:366
 msgid "Transparency of the margin overlay"
 msgstr "Прозрачност на покриването на полето отдясно на границата"
 
-#: ../gtksourceview/gtksourceview.c:375
+#: ../gtksourceview/gtksourceview.c:383
 msgid "Margin Overlay Color"
 msgstr "Цвят на покриването"
 
-#: ../gtksourceview/gtksourceview.c:376
+#: ../gtksourceview/gtksourceview.c:384
 msgid "Color to use for drawing the margin overlay"
 msgstr "Цвят на покриването на полето отдясно на границата"
 
@@ -476,6 +485,7 @@ msgstr "Знакова константа"
 #: ../gtksourceview/language-specs/cpp.lang.h:11
 #: ../gtksourceview/language-specs/csharp.lang.h:4
 #: ../gtksourceview/language-specs/css.lang.h:29
+#: ../gtksourceview/language-specs/d.lang.h:10
 #: ../gtksourceview/language-specs/desktop.lang.h:7
 #: ../gtksourceview/language-specs/diff.lang.h:5
 #: ../gtksourceview/language-specs/fortran.lang.h:9
@@ -510,6 +520,7 @@ msgstr "Редов коментар"
 #. +/- before 0 is not allowed.
 #.
 #: ../gtksourceview/language-specs/ada.lang.h:6
+#: ../gtksourceview/language-specs/boo.lang.h:4
 #: ../gtksourceview/language-specs/css.lang.h:34
 #: ../gtksourceview/language-specs/desktop.lang.h:9
 #: ../gtksourceview/language-specs/gtkrc.lang.h:8
@@ -524,10 +535,12 @@ msgid "Preprocessor Keyword"
 msgstr "Ключова дума за предпроцесора"
 
 #: ../gtksourceview/language-specs/ada.lang.h:8
+#: ../gtksourceview/language-specs/boo.lang.h:6
 #: ../gtksourceview/language-specs/c.lang.h:14
 #: ../gtksourceview/language-specs/cpp.lang.h:14
 #: ../gtksourceview/language-specs/csharp.lang.h:8
-#: ../gtksourceview/language-specs/fortran.lang.h:12
+#: ../gtksourceview/language-specs/d.lang.h:13
+#: ../gtksourceview/language-specs/fortran.lang.h:13
 #: ../gtksourceview/language-specs/haskell.lang.h:13
 #: ../gtksourceview/language-specs/idl.lang.h:8
 #: ../gtksourceview/language-specs/java.lang.h:10
@@ -551,6 +564,35 @@ msgstr "Булева стойност"
 msgid "Type"
 msgstr "Тип"
 
+#: ../gtksourceview/language-specs/boo.lang.h:1
+msgid "Boolean"
+msgstr "Булева стойност"
+
+#: ../gtksourceview/language-specs/boo.lang.h:2
+#: ../gtksourceview/language-specs/c.lang.h:10
+#: ../gtksourceview/language-specs/cpp.lang.h:10
+#: ../gtksourceview/language-specs/csharp.lang.h:3
+#: ../gtksourceview/language-specs/d.lang.h:9
+#: ../gtksourceview/language-specs/fortran.lang.h:7
+#: ../gtksourceview/language-specs/idl.lang.h:4
+#: ../gtksourceview/language-specs/javascript.lang.h:12
+#: ../gtksourceview/language-specs/lua.lang.h:3
+#: ../gtksourceview/language-specs/perl.lang.h:2
+#: ../gtksourceview/language-specs/ruby.lang.h:9
+#: ../gtksourceview/language-specs/vbnet.lang.h:1
+#: ../gtksourceview/language-specs/verilog.lang.h:6
+msgid "Keywords"
+msgstr "Ключови думи"
+
+#: ../gtksourceview/language-specs/boo.lang.h:3
+#: ../gtksourceview/language-specs/javascript.lang.h:14
+msgid "Literals"
+msgstr "Литерали"
+
+#: ../gtksourceview/language-specs/boo.lang.h:5
+msgid "Primitive"
+msgstr "Примитив"
+
 #: ../gtksourceview/language-specs/c.lang.h:1
 #: ../gtksourceview/language-specs/cpp.lang.h:1
 msgid "'#if 0' Comment"
@@ -561,6 +603,7 @@ msgstr "„#if 0“ коментар"
 #: ../gtksourceview/language-specs/cpp.lang.h:2
 #: ../gtksourceview/language-specs/csharp.lang.h:1
 #: ../gtksourceview/language-specs/css.lang.h:9
+#: ../gtksourceview/language-specs/d.lang.h:2
 #: ../gtksourceview/language-specs/html.lang.h:2
 #: ../gtksourceview/language-specs/haskell.lang.h:1
 #: ../gtksourceview/language-specs/idl.lang.h:1
@@ -586,6 +629,7 @@ msgstr "Общ макрос"
 
 #: ../gtksourceview/language-specs/c.lang.h:7
 #: ../gtksourceview/language-specs/cpp.lang.h:7
+#: ../gtksourceview/language-specs/d.lang.h:6
 #: ../gtksourceview/language-specs/fortran.lang.h:2
 #: ../gtksourceview/language-specs/haskell.lang.h:4
 #: ../gtksourceview/language-specs/nemerle.lang.h:7
@@ -598,6 +642,7 @@ msgstr "Число с плаващата запетая"
 #. FIXME WHY DOESN'T THIS WORK?
 #: ../gtksourceview/language-specs/c.lang.h:8
 #: ../gtksourceview/language-specs/cpp.lang.h:8
+#: ../gtksourceview/language-specs/d.lang.h:8
 #: ../gtksourceview/language-specs/fortran.lang.h:4
 #: ../gtksourceview/language-specs/haskell.lang.h:6
 #: ../gtksourceview/language-specs/nemerle.lang.h:8
@@ -614,22 +659,9 @@ msgstr "Шестнадесетично число"
 msgid "Include/Pragma"
 msgstr "Включване/прагма"
 
-#: ../gtksourceview/language-specs/c.lang.h:10
-#: ../gtksourceview/language-specs/cpp.lang.h:10
-#: ../gtksourceview/language-specs/csharp.lang.h:3
-#: ../gtksourceview/language-specs/fortran.lang.h:7
-#: ../gtksourceview/language-specs/idl.lang.h:4
-#: ../gtksourceview/language-specs/javascript.lang.h:12
-#: ../gtksourceview/language-specs/lua.lang.h:3
-#: ../gtksourceview/language-specs/perl.lang.h:2
-#: ../gtksourceview/language-specs/ruby.lang.h:9
-#: ../gtksourceview/language-specs/vbnet.lang.h:1
-#: ../gtksourceview/language-specs/verilog.lang.h:6
-msgid "Keywords"
-msgstr "Ключови думи"
-
 #: ../gtksourceview/language-specs/c.lang.h:12
 #: ../gtksourceview/language-specs/cpp.lang.h:12
+#: ../gtksourceview/language-specs/d.lang.h:12
 #: ../gtksourceview/language-specs/fortran.lang.h:10
 #: ../gtksourceview/language-specs/haskell.lang.h:11
 #: ../gtksourceview/language-specs/nemerle.lang.h:12
@@ -649,7 +681,8 @@ msgstr "Дефиниция на предпроцесора"
 
 #: ../gtksourceview/language-specs/c.lang.h:16
 #: ../gtksourceview/language-specs/cpp.lang.h:16
-#: ../gtksourceview/language-specs/fortran.lang.h:15
+#: ../gtksourceview/language-specs/d.lang.h:16
+#: ../gtksourceview/language-specs/fortran.lang.h:16
 #: ../gtksourceview/language-specs/idl.lang.h:10
 #: ../gtksourceview/language-specs/verilog.lang.h:10
 msgid "Types"
@@ -698,7 +731,7 @@ msgstr "Примитиви"
 
 #: ../gtksourceview/language-specs/csharp.lang.h:10
 #: ../gtksourceview/language-specs/css.lang.h:59
-#: ../gtksourceview/language-specs/fortran.lang.h:14
+#: ../gtksourceview/language-specs/fortran.lang.h:15
 #: ../gtksourceview/language-specs/java.lang.h:12
 #: ../gtksourceview/language-specs/javascript.lang.h:24
 #: ../gtksourceview/language-specs/lua.lang.h:11
@@ -752,6 +785,7 @@ msgid "Known Property Values"
 msgstr "Стойност на познато свойство"
 
 #: ../gtksourceview/language-specs/css.lang.h:35
+#: ../gtksourceview/language-specs/fortran.lang.h:11
 #: ../gtksourceview/language-specs/javascript.lang.h:20
 #: ../gtksourceview/language-specs/php.lang.h:20
 #: ../gtksourceview/language-specs/sql.lang.h:34
@@ -809,6 +843,36 @@ msgstr "Псевдоним на знак от Уникод"
 #: ../gtksourceview/language-specs/css.lang.h:68
 msgid "Unicode Range"
 msgstr "Дял от Уникод"
+
+#: ../gtksourceview/language-specs/d.lang.h:1
+#: ../gtksourceview/language-specs/nemerle.lang.h:1
+#: ../gtksourceview/language-specs/verilog.lang.h:1
+msgid "Binary Number"
+msgstr "Двоично число"
+
+#: ../gtksourceview/language-specs/d.lang.h:3
+msgid "Char Literal"
+msgstr "Знакови литерали"
+
+#: ../gtksourceview/language-specs/d.lang.h:4
+msgid "D"
+msgstr "D"
+
+#: ../gtksourceview/language-specs/d.lang.h:7
+msgid "Grave Literal"
+msgstr "Литерал с грав"
+
+#: ../gtksourceview/language-specs/d.lang.h:11
+msgid "Nested Comment"
+msgstr "Вложен коментар"
+
+#: ../gtksourceview/language-specs/d.lang.h:14
+msgid "Special Tokens"
+msgstr "Специални лексеми"
+
+#: ../gtksourceview/language-specs/d.lang.h:15
+msgid "String Literal"
+msgstr "Низови литерали"
 
 #: ../gtksourceview/language-specs/desktop.lang.h:1
 msgid ".desktop"
@@ -919,7 +983,7 @@ msgstr "Вход/изход"
 msgid "Intrinsics"
 msgstr "Съществена част"
 
-#: ../gtksourceview/language-specs/fortran.lang.h:11
+#: ../gtksourceview/language-specs/fortran.lang.h:12
 msgid "Read/Write"
 msgstr "Четене/запис"
 
@@ -1069,10 +1133,6 @@ msgstr "Шестнадесетично число"
 msgid "JavaScript"
 msgstr "JavaScript"
 
-#: ../gtksourceview/language-specs/javascript.lang.h:14
-msgid "Literals"
-msgstr "Литерали"
-
 #: ../gtksourceview/language-specs/javascript.lang.h:15
 msgid "Math Value Properties"
 msgstr "Свойства на математическа стойност"
@@ -1104,7 +1164,7 @@ msgstr "Скриптове"
 
 #: ../gtksourceview/language-specs/javascript.lang.h:25
 msgid "Unicode Escape Sequence"
-msgstr "Екранираща последователност в уникод"
+msgstr "Екранираща последователност в Уникод"
 
 #: ../gtksourceview/language-specs/javascript.lang.h:26
 msgid "Word Operators"
@@ -1186,14 +1246,9 @@ msgstr "Променлива2"
 msgid "MSIL"
 msgstr "MSIL"
 
-#: ../gtksourceview/language-specs/nemerle.lang.h:1
-#: ../gtksourceview/language-specs/verilog.lang.h:1
-msgid "Binary Number"
-msgstr "Двоично число"
-
 #: ../gtksourceview/language-specs/nemerle.lang.h:4
 msgid "Core Keywords"
-msgstr "Вградении думи"
+msgstr "Вградени думи"
 
 #: ../gtksourceview/language-specs/nemerle.lang.h:5
 msgid "Core Types"
@@ -1264,7 +1319,7 @@ msgstr "Ключови думи за цикли, изпълнение и изк�
 
 #: ../gtksourceview/language-specs/pascal.lang.h:13
 msgid "Math Operators"
-msgstr "Математически oператори"
+msgstr "Математически оператори"
 
 #: ../gtksourceview/language-specs/pascal.lang.h:15
 msgid "Pascal"
