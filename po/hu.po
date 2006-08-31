@@ -9,15 +9,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview.HEAD.hu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-08-15 12:11+0200\n"
-"PO-Revision-Date: 2006-07-21 19:46+0200\n"
+"POT-Creation-Date: 2006-08-26 12:10+0200\n"
+"PO-Revision-Date: 2006-08-31 03:14+0200\n"
 "Last-Translator: Gabor Kelemen <kelemeng@gnome.hu>\n"
 "Language-Team: Hungarian <gnome@gnome.hu>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.2\n"
-"Plural-Forms:   nplurals=2; plural=(n != 1);\n"
+"Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
 #: ../gtksourceview/gtksourcebuffer.c:278
 msgid "Escape Character"
@@ -123,8 +123,7 @@ msgstr "Betűkészlet-leírás"
 
 #: ../gtksourceview/gtksourceprintjob.c:314
 msgid "Font to use for the document text (e.g. \"Monospace 10\")"
-msgstr ""
-"A dokumentumszöveghez használandó betűkészlet ( Például \"Monospace 10\")"
+msgstr "A dokumentumszöveghez használandó betűkészlet ( Például \"Monospace 10\")"
 
 #: ../gtksourceview/gtksourceprintjob.c:321
 #: ../gtksourceview/gtksourceprintjob.c:329
@@ -177,8 +176,7 @@ msgstr "Fej- és lábléc betűkészlet-leírás"
 
 #: ../gtksourceview/gtksourceprintjob.c:370
 msgid "Font to use for headers and footers (e.g. \"Monospace 10\")"
-msgstr ""
-"A fej- és lábléchez használandó betűkészlet ( Például \"Monospace 10\")"
+msgstr "A fej- és lábléchez használandó betűkészlet ( Például \"Monospace 10\")"
 
 #: ../gtksourceview/gtksourcestylescheme.c:264
 msgid "Base-N Integer"
@@ -413,11 +411,11 @@ msgstr "Kiemelje-e a jelenlegi sort?"
 
 #: ../gtksourceview/gtksourceview.c:296
 msgid "Indent on tab"
-msgstr ""
+msgstr "Behúzás tabnál"
 
 #: ../gtksourceview/gtksourceview.c:297
 msgid "Whether to indent the selected text when the tab key is pressed"
-msgstr ""
+msgstr "Behúzza-e a kijelölt szöveget a tab billentyű lenyomásakor"
 
 #: ../gtksourceview/gtksourceview.c:313
 msgid "Margin Line Alpha"
@@ -562,9 +560,8 @@ msgid "Type"
 msgstr "Típus"
 
 #: ../gtksourceview/language-specs/boo.lang.h:1
-#, fuzzy
 msgid "Boolean"
-msgstr "Logikai érték"
+msgstr "Logikai"
 
 #: ../gtksourceview/language-specs/boo.lang.h:2
 #: ../gtksourceview/language-specs/c.lang.h:10
@@ -588,9 +585,8 @@ msgid "Literals"
 msgstr "Literálok"
 
 #: ../gtksourceview/language-specs/boo.lang.h:5
-#, fuzzy
 msgid "Primitive"
-msgstr "Primitívek"
+msgstr "Primitív"
 
 #: ../gtksourceview/language-specs/c.lang.h:1
 #: ../gtksourceview/language-specs/cpp.lang.h:1
@@ -850,33 +846,29 @@ msgid "Binary Number"
 msgstr "Bináris szám"
 
 #: ../gtksourceview/language-specs/d.lang.h:3
-#, fuzzy
 msgid "Char Literal"
-msgstr "Literálok"
+msgstr "Karakterliterál"
 
 #: ../gtksourceview/language-specs/d.lang.h:4
 msgid "D"
-msgstr ""
+msgstr "D"
 
+# fixme: jobb ötlet?
 #: ../gtksourceview/language-specs/d.lang.h:7
-#, fuzzy
 msgid "Grave Literal"
-msgstr "Szöveg literálok"
+msgstr "Grave literál"
 
 #: ../gtksourceview/language-specs/d.lang.h:11
-#, fuzzy
 msgid "Nested Comment"
-msgstr "Sormegjegyzés"
+msgstr "Beágyazott megjegyzés"
 
 #: ../gtksourceview/language-specs/d.lang.h:14
-#, fuzzy
 msgid "Special Tokens"
-msgstr "Speciális célok"
+msgstr "Speciális jelsorok"
 
 #: ../gtksourceview/language-specs/d.lang.h:15
-#, fuzzy
 msgid "String Literal"
-msgstr "Szöveg literálok"
+msgstr "Karakterlánc literál"
 
 #: ../gtksourceview/language-specs/desktop.lang.h:1
 msgid ".desktop"
@@ -1760,3 +1752,4 @@ msgstr "Hexadecimális"
 #: ../gtksourceview/language-specs/xml.lang.h:9
 msgid "XML"
 msgstr "XML"
+
