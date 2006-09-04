@@ -1,4 +1,4 @@
-# Chinese (Taiwan) translation of gtksourceview.
+# Chinese (Hong Kong) translation of gtksourceview.
 # Copyright (C) 2003-06 Free Software Foundation, Inc.
 # Anthony Tang <tkyanthony@yahoo.com.hk>, 2004.
 # Abel Cheung <abel@oaka.org>, 2003, 05.
@@ -8,21 +8,21 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview 1.7.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-08-02 07:43+0200\n"
-"PO-Revision-Date: 2006-07-26 03:44+0800\n"
+"POT-Creation-Date: 2006-09-04 20:11+0800\n"
+"PO-Revision-Date: 2006-09-04 20:16+0800\n"
 "Last-Translator: Woodman Tuen <wmtuen@gmail.com>\n"
-"Language-Team: Chinese (Taiwan) <community@linuxhall.org>\n"
+"Language-Team: Chinese (Hong Kong) <community@linuxhall.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../gtksourceview/gtksourcebuffer.c:278
 msgid "Escape Character"
-msgstr "「跳出字元」"
+msgstr "「跳出字符」"
 
 #: ../gtksourceview/gtksourcebuffer.c:279
 msgid "Escaping character for syntax patterns"
-msgstr "作為加強顯示語法所用的「跳出字元」"
+msgstr "作為加強顯示語法所用的「跳出字符」"
 
 #: ../gtksourceview/gtksourcebuffer.c:287
 msgid "Check Brackets"
@@ -75,7 +75,7 @@ msgstr "組態"
 
 #: ../gtksourceview/gtksourceprintjob.c:266
 msgid "Configuration options for the print job"
-msgstr "屬於列印工作的組態選項"
+msgstr "屬於打印工作的組態選項"
 
 #: ../gtksourceview/gtksourceprintjob.c:273
 msgid "Source Buffer"
@@ -83,12 +83,12 @@ msgstr "原始碼緩衝區內容"
 
 #: ../gtksourceview/gtksourceprintjob.c:274
 msgid "GtkSourceBuffer object to print"
-msgstr "準備列印的 GtkSourceBuffer 物件"
+msgstr "準備打印的 GtkSourceBuffer 物件"
 
 #: ../gtksourceview/gtksourceprintjob.c:280
-#: ../gtksourceview/gtksourceview.c:233 ../gtksourceview/gtksourceview.c:234
+#: ../gtksourceview/gtksourceview.c:235 ../gtksourceview/gtksourceview.c:236
 msgid "Tabs Width"
-msgstr "Tab 字符寬度"
+msgstr "Tab 字符闊度"
 
 #: ../gtksourceview/gtksourceprintjob.c:281
 msgid "Width in equivalent space characters of tabs"
@@ -104,7 +104,7 @@ msgstr "換行模式"
 
 #: ../gtksourceview/gtksourceprintjob.c:297
 msgid "Whether to print the document with highlighted syntax"
-msgstr "列印文件時是否加強顯示不同的語法"
+msgstr "打印文件時是否加強顯示不同的語法"
 
 #: ../gtksourceview/gtksourceprintjob.c:305
 msgid "Font"
@@ -274,7 +274,7 @@ msgstr "前置處理器"
 #: ../gtksourceview/language-specs/csharp.lang.h:9
 #: ../gtksourceview/language-specs/css.lang.h:58
 #: ../gtksourceview/language-specs/html.lang.h:8
-#: ../gtksourceview/language-specs/fortran.lang.h:13
+#: ../gtksourceview/language-specs/fortran.lang.h:14
 #: ../gtksourceview/language-specs/haskell.lang.h:31
 #: ../gtksourceview/language-specs/idl.lang.h:9
 #: ../gtksourceview/language-specs/java.lang.h:11
@@ -338,111 +338,117 @@ msgstr "標籤風格"
 msgid "The style associated with the source tag"
 msgstr "原始碼標籤的相關風格"
 
-#: ../gtksourceview/gtksourceview.c:217
+#: ../gtksourceview/gtksourceview.c:219
 msgid "Show Line Numbers"
 msgstr "顯示行號"
 
-#: ../gtksourceview/gtksourceview.c:218
+#: ../gtksourceview/gtksourceview.c:220
 msgid "Whether to display line numbers"
 msgstr "是否顯示行號"
 
-#: ../gtksourceview/gtksourceview.c:225
+#: ../gtksourceview/gtksourceview.c:227
 msgid "Show Line Markers"
 msgstr "每行顯示標記"
 
-#: ../gtksourceview/gtksourceview.c:226
+#: ../gtksourceview/gtksourceview.c:228
 msgid "Whether to display line marker pixbufs"
 msgstr "是否顯示表示每行開始的 pixbuf 標記"
 
-#: ../gtksourceview/gtksourceview.c:243
+#: ../gtksourceview/gtksourceview.c:245
 msgid "Auto Indentation"
 msgstr "自動縮排"
 
-#: ../gtksourceview/gtksourceview.c:244
+#: ../gtksourceview/gtksourceview.c:246
 msgid "Whether to enable auto indentation"
 msgstr "是否啟用自動縮排"
 
-#: ../gtksourceview/gtksourceview.c:250
+#: ../gtksourceview/gtksourceview.c:252
 msgid "Insert Spaces Instead of Tabs"
 msgstr "使用空格代替 Tab 字符"
 
-#: ../gtksourceview/gtksourceview.c:251
+#: ../gtksourceview/gtksourceview.c:253
 msgid "Whether to insert spaces instead of tabs"
 msgstr "是否使用空格代替 Tab 字符"
 
-#: ../gtksourceview/gtksourceview.c:258
+#: ../gtksourceview/gtksourceview.c:260
 msgid "Show Right Margin"
 msgstr "顯示右邊邊界"
 
-#: ../gtksourceview/gtksourceview.c:259
+#: ../gtksourceview/gtksourceview.c:261
 msgid "Whether to display the right margin"
 msgstr "是否顯示右邊邊界"
 
-#: ../gtksourceview/gtksourceview.c:266
+#: ../gtksourceview/gtksourceview.c:268
 msgid "Margin position"
 msgstr "邊界位置"
 
-#: ../gtksourceview/gtksourceview.c:267
+#: ../gtksourceview/gtksourceview.c:269
 msgid "Position of the right margin"
 msgstr "右邊邊界的位置"
 
-#: ../gtksourceview/gtksourceview.c:276
+#: ../gtksourceview/gtksourceview.c:278
 msgid "Use smart home/end"
 msgstr "使用特殊的 home/end"
 
-#: ../gtksourceview/gtksourceview.c:277
+#: ../gtksourceview/gtksourceview.c:279
 msgid ""
 "HOME and END keys move to first/last non whitespace characters on line "
 "before going to the start/end of the line"
-msgstr ""
-"HOME 或 END 鍵會先令游標移至該行第一個/最後一個非空格的字元，然後才會移至該行"
-"的開始或結束位置"
+msgstr "HOME 或 END 鍵會先令游標移至該行第一個/最後一個非空格的字符，然後才會移至該行的開始或結束位置"
 
-#: ../gtksourceview/gtksourceview.c:286
+#: ../gtksourceview/gtksourceview.c:288
 msgid "Highlight current line"
 msgstr "加強顯示目前一行"
 
-#: ../gtksourceview/gtksourceview.c:287
+#: ../gtksourceview/gtksourceview.c:289
 msgid "Whether to highlight the current line"
 msgstr "是否加強顯示游標所在的一行"
 
-#: ../gtksourceview/gtksourceview.c:303
+#: ../gtksourceview/gtksourceview.c:296
+msgid "Indent on tab"
+msgstr "按下 tab 鍵縮排"
+
+#: ../gtksourceview/gtksourceview.c:297
+msgid "Whether to indent the selected text when the tab key is pressed"
+msgstr "按下 tab 鍵時已選的文字是否縮排"
+
+#: ../gtksourceview/gtksourceview.c:313
 msgid "Margin Line Alpha"
 msgstr "邊界線的透明度"
 
-#: ../gtksourceview/gtksourceview.c:304
+#: ../gtksourceview/gtksourceview.c:314
 msgid "Transparency of the margin line"
 msgstr "邊界線的透明度"
 
-#: ../gtksourceview/gtksourceview.c:321
+#: ../gtksourceview/gtksourceview.c:331
 msgid "Margin Line Color"
 msgstr "邊界線顏色"
 
-#: ../gtksourceview/gtksourceview.c:322
+#: ../gtksourceview/gtksourceview.c:332
 msgid "Color to use for the right margin line"
 msgstr "右邊邊界線使用的顏色"
 
-#: ../gtksourceview/gtksourceview.c:338
+#: ../gtksourceview/gtksourceview.c:348
 msgid "Margin Overlay Toggle"
 msgstr "邊界重疊切換"
 
-#: ../gtksourceview/gtksourceview.c:339
+#: ../gtksourceview/gtksourceview.c:349
 msgid "Whether to draw the right margin overlay"
 msgstr "是否繪畫右邊邊界重疊"
 
-#: ../gtksourceview/gtksourceview.c:355
+#: ../gtksourceview/gtksourceview.c:365
 msgid "Margin Overlay Alpha"
 msgstr "邊界重疊的透明度"
 
-#: ../gtksourceview/gtksourceview.c:356
+#: ../gtksourceview/gtksourceview.c:366
 msgid "Transparency of the margin overlay"
 msgstr "邊界重疊的透明度"
 
-#: ../gtksourceview/gtksourceview.c:373
+#: ../gtksourceview/gtksourceview.c:383
 msgid "Margin Overlay Color"
 msgstr "邊界重疊顏色"
 
-#: ../gtksourceview/gtksourceview.c:374
+#: ../gtksourceview/gtksourceview.c:384
 msgid "Color to use for drawing the margin overlay"
 msgstr "繪畫邊界重疊時使用的顏色"
 
@@ -524,7 +530,7 @@ msgstr "前置處理器關鍵字"
 #: ../gtksourceview/language-specs/cpp.lang.h:14
 #: ../gtksourceview/language-specs/csharp.lang.h:8
 #: ../gtksourceview/language-specs/d.lang.h:13
-#: ../gtksourceview/language-specs/fortran.lang.h:12
+#: ../gtksourceview/language-specs/fortran.lang.h:13
 #: ../gtksourceview/language-specs/haskell.lang.h:13
 #: ../gtksourceview/language-specs/idl.lang.h:8
 #: ../gtksourceview/language-specs/java.lang.h:10
@@ -667,7 +673,7 @@ msgstr "前置處理器關鍵字"
 #: ../gtksourceview/language-specs/c.lang.h:16
 #: ../gtksourceview/language-specs/cpp.lang.h:16
 #: ../gtksourceview/language-specs/d.lang.h:16
-#: ../gtksourceview/language-specs/fortran.lang.h:15
+#: ../gtksourceview/language-specs/fortran.lang.h:16
 #: ../gtksourceview/language-specs/idl.lang.h:10
 #: ../gtksourceview/language-specs/verilog.lang.h:10
 msgid "Types"
@@ -683,7 +689,7 @@ msgstr "日期"
 
 #: ../gtksourceview/language-specs/changelog.lang.h:3
 msgid "Email"
-msgstr "電郵"
+msgstr "電子郵件"
 
 #: ../gtksourceview/language-specs/changelog.lang.h:4
 msgid "File"
@@ -716,7 +722,7 @@ msgstr "原始資料類型(Primitives)"
 
 #: ../gtksourceview/language-specs/csharp.lang.h:10
 #: ../gtksourceview/language-specs/css.lang.h:59
-#: ../gtksourceview/language-specs/fortran.lang.h:14
+#: ../gtksourceview/language-specs/fortran.lang.h:15
 #: ../gtksourceview/language-specs/java.lang.h:12
 #: ../gtksourceview/language-specs/javascript.lang.h:24
 #: ../gtksourceview/language-specs/lua.lang.h:11
@@ -770,6 +776,7 @@ msgid "Known Property Values"
 msgstr "Known Property Values"
 
 #: ../gtksourceview/language-specs/css.lang.h:35
+#: ../gtksourceview/language-specs/fortran.lang.h:11
 #: ../gtksourceview/language-specs/javascript.lang.h:20
 #: ../gtksourceview/language-specs/php.lang.h:20
 #: ../gtksourceview/language-specs/sql.lang.h:34
@@ -968,7 +975,7 @@ msgstr "輸入/輸出"
 msgid "Intrinsics"
 msgstr "Intrinsic"
 
-#: ../gtksourceview/language-specs/fortran.lang.h:11
+#: ../gtksourceview/language-specs/fortran.lang.h:12
 msgid "Read/Write"
 msgstr "讀寫檔案"
 
@@ -1151,7 +1158,7 @@ msgstr "Scripts"
 
 #: ../gtksourceview/language-specs/javascript.lang.h:25
 msgid "Unicode Escape Sequence"
-msgstr "統一碼跳脫字元"
+msgstr "統一碼跳脫字符"
 
 #: ../gtksourceview/language-specs/javascript.lang.h:26
 msgid "Word Operators"
@@ -1176,7 +1183,7 @@ msgstr "LaTeX"
 
 #: ../gtksourceview/language-specs/latex.lang.h:8
 msgid "Math"
-msgstr "數式"
+msgstr "算式"
 
 #: ../gtksourceview/language-specs/lua.lang.h:2
 #: ../gtksourceview/language-specs/makefile.lang.h:3
@@ -1526,11 +1533,11 @@ msgstr "分析(Analytic)函數"
 
 #: ../gtksourceview/language-specs/sql.lang.h:10
 msgid "Character Functions Returning Character Values"
-msgstr "回傳字元值的字元函數"
+msgstr "回傳字符值的字符函數"
 
 #: ../gtksourceview/language-specs/sql.lang.h:11
 msgid "Character Functions Returning Number Values"
-msgstr "回傳數值的字元函數"
+msgstr "回傳數值的字符函數"
 
 #: ../gtksourceview/language-specs/sql.lang.h:12
 msgid "Collection Functions"
@@ -1673,7 +1680,7 @@ msgstr "Tcl"
 
 #: ../gtksourceview/language-specs/texinfo.lang.h:2
 msgid "Characters"
-msgstr "字元"
+msgstr "字符"
 
 #: ../gtksourceview/language-specs/texinfo.lang.h:3
 msgid "File Attributes"
