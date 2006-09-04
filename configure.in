@@ -3,7 +3,7 @@ dnl Process this file with autoconf to produce a configure script.
 AC_PREREQ(2.53)
 
 # Initialization and versioning
-AC_INIT(gtksourceview, 1.7.2, http://bugzilla.gnome.org/enter_bug.cgi?product=gtksourceview)
+AC_INIT(gtksourceview, 1.8.0, http://bugzilla.gnome.org/enter_bug.cgi?product=gtksourceview)
 AC_CONFIG_SRCDIR([gtksourceview/gtksourcebuffer.h])
 AM_CONFIG_HEADER(config.h)
 
