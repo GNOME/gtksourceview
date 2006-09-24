@@ -636,7 +636,8 @@ gtk_source_tag_set_property (GObject            *object,
 				if (style != NULL)
 					gtk_source_tag_set_style (tag, style);
 			}
-				
+			break;
+
 		default:
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
     	}
