@@ -1,3 +1,8 @@
+2006-09-26  Paolo Borelli  <pborelli@katamail.com>
+
+	* gtksourceview/gtksourceview.c (gtk_source_view_key_press_event):
+        properly test for modifiers key. Bug #357746.
+
 2006-09-24  Paolo Borelli  <pborelli@katamail.com>
 
 	* gtksourceview/gtksourcetag.c (gtk_source_tag_set_property):

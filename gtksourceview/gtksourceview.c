@@ -2146,10 +2146,15 @@ gtk_source_view_key_press_event (GtkWidget *widget, GdkEventKey *event)
 	GtkTextBuffer *buf;
 	GtkTextIter cur;
 	GtkTextMark *mark;
+	guint modifiers;
 	gint key;
 
 	view = GTK_SOURCE_VIEW (widget);
 	buf = gtk_text_view_get_buffer (GTK_TEXT_VIEW (widget));
+
+	/* Be careful when testing for modifier state equality:
+	 * caps lock, num lock,etc need to be taken into account */
+	modifiers = gtk_accelerator_get_default_mod_mask ();
 
 	key = event->keyval;
 
@@ -2198,7 +2203,8 @@ gtk_source_view_key_press_event (GtkWidget *widget, GdkEventKey *event)
 	 * with shift+tab key is GDK_ISO_Left_Tab (depends on X?)
 	 */
 	if ((key == GDK_Tab || key == GDK_KP_Tab || key == GDK_ISO_Left_Tab) &&
-	    (event->state == 0 || event->state == GDK_SHIFT_MASK))
+	    ((event->state & modifiers) == 0 ||
+	     (event->state & modifiers) == GDK_SHIFT_MASK))
 	{
 		GtkTextIter s, e;
 		gboolean has_selection;
