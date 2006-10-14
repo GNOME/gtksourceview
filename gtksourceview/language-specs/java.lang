@@ -23,6 +23,7 @@
 
 	<keyword-list _name = "Declarations" style = "Keyword" case-sensitive="TRUE">
 		<keyword>class</keyword>
+		<keyword>enum</keyword>
 		<keyword>extends</keyword>
 		<keyword>implements</keyword>
 		<keyword>import</keyword>
@@ -46,6 +47,7 @@
 	</keyword-list>
 
 	<keyword-list _name = "Flow" style = "Keyword" case-sensitive="TRUE">
+		<keyword>assert</keyword>
 		<keyword>break</keyword>
 		<keyword>case</keyword>
 		<keyword>catch</keyword>
@@ -53,8 +55,8 @@
 		<keyword>default</keyword>
 		<keyword>do</keyword>
       		<keyword>else</keyword>
+		<keyword>finally</keyword>
 		<keyword>for</keyword>
-		<keyword>goto</keyword>
 		<keyword>if</keyword>
 		<keyword>return</keyword>
 		<keyword>synchronized</keyword>
@@ -67,22 +69,27 @@
 	<keyword-list _name = "Modifiers" style = "Keyword" case-sensitive="TRUE">
 		<keyword>abstract</keyword>
 		<keyword>final</keyword>
-		<keyword>finally</keyword>
 		<keyword>private</keyword>
 		<keyword>protected</keyword>
 		<keyword>public</keyword>
 		<keyword>static</keyword>
-		<keyword>const</keyword>
-		<keyword>gotol</keyword>
+		<keyword>strictfp</keyword>
 		<keyword>transient</keyword>
 	</keyword-list>
 
 	<keyword-list _name = "Memory" style = "Others" case-sensitive="TRUE">
+		<keyword>false</keyword>
 		<keyword>new</keyword>
 		<keyword>null</keyword>
 		<keyword>super</keyword>
 		<keyword>this</keyword>
+		<keyword>true</keyword>
 		<keyword>void</keyword>
+	</keyword-list>
+
+	<keyword-list _name = "Future Reserved Words" style = "Specials" case-sensitive="TRUE">
+		<keyword>const</keyword>
+		<keyword>goto</keyword>
 	</keyword-list>
 
 	<pattern-item _name = "Numeric" style = "Decimal">
