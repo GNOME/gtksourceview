@@ -1,5 +1,6 @@
 EXTRA_DIST = 			\
 	language.dtd		\
+	language.rng		\
 	ada.lang		\
 	boo.lang		\
 	c.lang			\

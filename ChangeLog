@@ -1,5 +1,12 @@
 2006-12-11  Paolo Maggi  <paolo@gnome.org>
 
+	* gtksourceview/language-specs/language.rng: first try to a RNG schema
+	for the .lang file format
+	
+	* gtksourceview/language-specs/Makefile.am: distribute language.rng
+
+2006-12-11  Paolo Maggi  <paolo@gnome.org>
+
 	Fixes bug #380996 – language.dtd needs more comments
 	
 	* gtksourceview/language-specs/language.dtd: rewritten and documented,
