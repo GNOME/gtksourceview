@@ -30,11 +30,11 @@
 	</pattern-item>
 
 	<pattern-item _name = "Tag" style = "Others 2">
-		<regex>(&lt;/?[a-zA-Z_:][a-zA-Z0-9_:-]*(\b|\&gt;)|&lt;\?[xX][mM][lL]\b)</regex>
+		<regex>(&lt;/?[a-zA-Z_:][a-zA-Z0-9_:.-]*(\b|\&gt;)|&lt;\?[xX][mM][lL]\b)</regex>
 	</pattern-item>
 
 	<pattern-item _name="Attribute" style = "Others">
-		<regex>[ \t][a-zA-Z_:][a-zA-Z0-9_:-]*\b[ \t]*=</regex>
+		<regex>\b[a-zA-Z_:][a-zA-Z0-9_:.-]*\b[ \t]*=</regex>
 	</pattern-item>
 
 	<pattern-item _name ="Hexadecimal" style = "Base-N Integer">
