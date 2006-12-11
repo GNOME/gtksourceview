@@ -16,24 +16,24 @@
 		<regex>\b\$[0-9a-fA-F]*\b</regex>
 	</pattern-item>
 
-	<line-comment _name = "Line Comment" style= "Comment" end-at-line-end = "TRUE">
+	<line-comment _name = "Line Comment" style= "Comment">
 		<start-regex>//</start-regex>
 	</line-comment>
 
-	<block-comment _name = "Block Comment 1" style= "Comment" end-at-line-end = "FALSE">
+	<block-comment _name = "Block Comment 1" style= "Comment">
 		<start-regex>\(\*</start-regex>
 		<end-regex>\*\)</end-regex>
 	</block-comment>
 
-	<block-comment _name = "Block Comment 2" style= "Comment" end-at-line-end = "FALSE">
+	<block-comment _name = "Block Comment 2" style= "Comment">
 		<start-regex>\{[^\$]</start-regex>
 		<end-regex>\}</end-regex>
 	</block-comment>
 
-	<block-comment _name = "Preprocessor Defines" style= "Preprocessor" end-at-line-end = "TRUE">
+	<string _name = "Preprocessor Defines" style= "Preprocessor" end-at-line-end = "TRUE">
 		<start-regex>\{\$</start-regex>
 		<end-regex>\}</end-regex>
-	</block-comment>
+	</string>
 
 	<keyword-list _name = "General Format" style = "Keyword" case-sensitive="FALSE">
 		<!-- File Header -->

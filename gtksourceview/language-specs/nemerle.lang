@@ -4,7 +4,7 @@
 	
 	<escape-char>\</escape-char>
 
-	<pattern-item _name = "Character Constant" style = "String" end-at-line-end = "TRUE">
+	<pattern-item _name = "Character Constant" style = "String">
 		<regex>&apos;(\\)?.&apos;</regex>
 	</pattern-item>
 	
