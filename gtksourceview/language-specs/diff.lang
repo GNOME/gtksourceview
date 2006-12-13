@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE language SYSTEM "language.dtd">
-<language _name="Diff" version="1.0" _section="Others" mimetypes="text/x-diff;text/x-patch">
+<language _name="Diff" version="1.0" _section="Others" mimetypes="text/x-patch">
 
 	<pattern-item _name="Removed line" style="Others 3">
 	        <regex>^(&lt;|-)[^\n]*\n</regex>
