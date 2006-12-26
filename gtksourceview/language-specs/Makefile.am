@@ -11,6 +11,7 @@ EXTRA_DIST = 			\
 	d.lang			\
 	desktop.lang		\
 	diff.lang		\
+	docbook.lang    \
 	fortran.lang		\
 	gtkrc.lang		\
 	haskell.lang		\
