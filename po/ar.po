@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-10-30 00:54+0000\n"
+"POT-Creation-Date: 2006-12-27 16:32+0000\n"
 "PO-Revision-Date: 2006-10-05 21:07-0000\n"
 "Last-Translator: Djihed Afifi <djihed@gmail.com>\n"
 "Language-Team: Arabic <support@arabeyes.org>\n"
@@ -279,6 +279,7 @@ msgstr "Preprocessor"
 #: ../gtksourceview/language-specs/cpp.lang.h:15
 #: ../gtksourceview/language-specs/csharp.lang.h:9
 #: ../gtksourceview/language-specs/css.lang.h:58
+#: ../gtksourceview/language-specs/docbook.lang.h:11
 #: ../gtksourceview/language-specs/html.lang.h:8
 #: ../gtksourceview/language-specs/fortran.lang.h:14
 #: ../gtksourceview/language-specs/haskell.lang.h:31
@@ -602,6 +603,7 @@ msgstr "تعليق '#if 0'"
 #: ../gtksourceview/language-specs/csharp.lang.h:1
 #: ../gtksourceview/language-specs/css.lang.h:9
 #: ../gtksourceview/language-specs/d.lang.h:2
+#: ../gtksourceview/language-specs/docbook.lang.h:2
 #: ../gtksourceview/language-specs/html.lang.h:2
 #: ../gtksourceview/language-specs/haskell.lang.h:1
 #: ../gtksourceview/language-specs/idl.lang.h:1
@@ -934,35 +936,67 @@ msgstr "السطر المحذوف"
 msgid "Special case"
 msgstr "حالة خاصة"
 
+#: ../gtksourceview/language-specs/docbook.lang.h:1
 #: ../gtksourceview/language-specs/html.lang.h:1
 #: ../gtksourceview/language-specs/xml.lang.h:1
 msgid "Attribute"
 msgstr "الصّفة"
 
+#: ../gtksourceview/language-specs/docbook.lang.h:3
 #: ../gtksourceview/language-specs/html.lang.h:3
 #: ../gtksourceview/language-specs/xml.lang.h:3
 msgid "Closing Bracket"
 msgstr "القوس الغالق"
 
-#: ../gtksourceview/language-specs/html.lang.h:4
-msgid "DTD"
-msgstr "DTD"
+#: ../gtksourceview/language-specs/docbook.lang.h:4
+msgid "DocBook"
+msgstr ""
 
+#: ../gtksourceview/language-specs/docbook.lang.h:5
 #: ../gtksourceview/language-specs/html.lang.h:5
 #: ../gtksourceview/language-specs/xml.lang.h:4
 msgid "Entity"
 msgstr "كيان"
 
-#: ../gtksourceview/language-specs/html.lang.h:6
-msgid "HTML"
-msgstr "HTML"
+#: ../gtksourceview/language-specs/docbook.lang.h:6
+#, fuzzy
+msgid "Formatting Elements"
+msgstr "تنسيق"
 
+#: ../gtksourceview/language-specs/docbook.lang.h:7
+msgid "GUI Elements"
+msgstr ""
+
+#: ../gtksourceview/language-specs/docbook.lang.h:8
+#, fuzzy
+msgid "Header Elements"
+msgstr "شبه العناصر للمنتقي "
+
+#: ../gtksourceview/language-specs/docbook.lang.h:9
+#: ../gtksourceview/language-specs/xml.lang.h:5
+msgid "Hexadecimal"
+msgstr "سادس عشري"
+
+#: ../gtksourceview/language-specs/docbook.lang.h:10
 #: ../gtksourceview/language-specs/html.lang.h:7
 #: ../gtksourceview/language-specs/latex.lang.h:7
 #: ../gtksourceview/language-specs/texinfo.lang.h:12
 #: ../gtksourceview/language-specs/xml.lang.h:6
 msgid "Markup"
 msgstr "تعليم"
+
+#: ../gtksourceview/language-specs/docbook.lang.h:12
+#, fuzzy
+msgid "Structural Elements"
+msgstr "شبه العناصر للمنتقي "
+
+#: ../gtksourceview/language-specs/html.lang.h:4
+msgid "DTD"
+msgstr "DTD"
+
+#: ../gtksourceview/language-specs/html.lang.h:6
+msgid "HTML"
+msgstr "HTML"
 
 #: ../gtksourceview/language-specs/html.lang.h:9
 #: ../gtksourceview/language-specs/xml.lang.h:8
@@ -1747,10 +1781,6 @@ msgstr "True و False"
 #: ../gtksourceview/language-specs/vhdl.lang.h:9
 msgid "VHDL"
 msgstr "VHDL"
-
-#: ../gtksourceview/language-specs/xml.lang.h:5
-msgid "Hexadecimal"
-msgstr "سادس عشري"
 
 #: ../gtksourceview/language-specs/xml.lang.h:9
 msgid "XML"
