@@ -1,6 +1,11 @@
+2007-01-02  Joachim Noreiko  <jnoreiko@yahoo.com>
+
+	* gtksourceview/language-specs/docbook.lang: split keywords list to have under 250 elements. (Workaround for #110991.)
+
 2006-12-26  Joachim Noreiko  <jnoreiko@yahoo.com>
 
-	* gtksourceview/language-specs/docbook.lang: added DocBook lang file
+	* gtksourceview/language-specs/docbook.lang: 
+	* gtksourceview/language-specs/Makefile.am: added DocBook lang file
 
 2006-12-13  Paolo Maggi  <paolo@gnome.org>
 

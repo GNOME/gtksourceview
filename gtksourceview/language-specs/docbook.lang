@@ -53,6 +53,8 @@
     <keyword>orgname</keyword>
     <keyword>publisher</keyword>
     <keyword>publishername</keyword>
+    <keyword>pubdate</keyword>
+    <keyword>pubsnumber</keyword>    
     <keyword>releaseinfo</keyword>
     <keyword>surname</keyword>
     <keyword>revdescription</keyword>
@@ -92,8 +94,10 @@
 		beginning-regex="&lt;/?"
 		end-regex="(\b|&gt;)">	
 			
+    <keyword>accel</keyword>
     <keyword>application</keyword>
     <keyword>guibutton</keyword>
+    <keyword>guiicon</keyword>    
     <keyword>guilabel</keyword>
     <keyword>guimenuitem</keyword>
     <keyword>guimenu</keyword>
@@ -146,12 +150,14 @@
     <keyword>phrase</keyword>
     <keyword>primary</keyword>
     <keyword>programlisting</keyword>
+    
     <keyword>row</keyword>
     <keyword>screen</keyword>
     <keyword>screenshot</keyword>
     <keyword>secondary</keyword>
     <keyword>see</keyword>
     <keyword>shortcut</keyword>
+    
     <keyword>table</keyword>
     <keyword>tbody</keyword>
     <keyword>term</keyword>
@@ -165,7 +171,6 @@
     <keyword>userinput</keyword>
     <keyword>year</keyword>
     
-    <keyword>accel</keyword>
     <keyword>ackno</keyword>
     <keyword>acronym</keyword>
     <keyword>action</keyword>
@@ -266,7 +271,6 @@
     <keyword>glossseealso</keyword>
     <keyword>graphic</keyword>
     <keyword>graphicco</keyword>
-    <keyword>guiicon</keyword>
     <keyword>hardware</keyword>
     <keyword>honorific</keyword>
     <keyword>imageobjectco</keyword>
@@ -351,11 +355,21 @@
     <keyword>productionset</keyword>
     <keyword>productname</keyword>
     <keyword>productnumber</keyword>
+
+	</keyword-list>	
+	<!-- This split keeps each keyword-list under 250 elements.
+	     See bug #110991 for further details.
+       -->
+	    
+	<keyword-list _name="Structural Elements 2" style="Keyword" case-sensitive="FALSE"
+		match-empty-string-at-beginning = "FALSE"
+		match-empty-string-at-end = "FALSE"
+		beginning-regex="&lt;/?"
+		end-regex="(\b|&gt;)">	
+   
     <keyword>programlistingco</keyword>
     <keyword>prompt</keyword>
     <keyword>property</keyword>
-    <keyword>pubdate</keyword>
-    <keyword>pubsnumber</keyword>
     <keyword>qandadiv</keyword>
     <keyword>qandaentry</keyword>
     <keyword>qandaset</keyword>
@@ -460,8 +474,7 @@
     <keyword>videoobject</keyword>
     <keyword>void</keyword>
     <keyword>volumenum</keyword>
-    <keyword>wordasword</keyword>
-    
+    <keyword>wordasword</keyword>    
     
 	</keyword-list>	
 	
