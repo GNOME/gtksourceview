@@ -1,26 +1,27 @@
-# translation of gtksourceview.po to Arabic
+# translation of gtksourceview.HEAD.ar.po to Arabic
 # Arabic translation of PACKAGE.
 # Copyright (C) 2003 THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
+#
+#
 # Arafat Medini <lumina@silverpen.de>, 2003.
 # Abdulaziz Al-Arfaj <alarfaj0@yahoo.com>, 2004.
 # Djihed Afifi <djihed@gmail.com>, 2006.
-#
-#
+# Khaled Hosny <khaledhosny@eglug.org>, 2007.
 msgid ""
 msgstr ""
-"Project-Id-Version: gtksourceview\n"
+"Project-Id-Version: gtksourceview.HEAD.ar\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-12-27 16:32+0000\n"
-"PO-Revision-Date: 2006-10-05 21:07-0000\n"
-"Last-Translator: Djihed Afifi <djihed@gmail.com>\n"
+"POT-Creation-Date: 2007-01-03 21:30+0000\n"
+"PO-Revision-Date: 2007-01-02 21:47+0200\n"
+"Last-Translator: Khaled Hosny <khaledhosny@eglug.org>\n"
 "Language-Team: Arabic <support@arabeyes.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.3\n"
-"Plural-Forms: nplurals=4; plural=n==1 ? 0 : n==2 ? 1 : n>=3 && n<=10 ? 2 : "
-"3\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: Plural-Forms: nplurals=4; plural=n==1 ? 0 : n==2 ? 1 : n>=3 && "
+"n<=10 ? 2 : 3\n"
 
 #: ../gtksourceview/gtksourcebuffer.c:278
 msgid "Escape Character"
@@ -950,7 +951,7 @@ msgstr "القوس الغالق"
 
 #: ../gtksourceview/language-specs/docbook.lang.h:4
 msgid "DocBook"
-msgstr ""
+msgstr "DocBook"
 
 #: ../gtksourceview/language-specs/docbook.lang.h:5
 #: ../gtksourceview/language-specs/html.lang.h:5
@@ -959,18 +960,16 @@ msgid "Entity"
 msgstr "كيان"
 
 #: ../gtksourceview/language-specs/docbook.lang.h:6
-#, fuzzy
 msgid "Formatting Elements"
-msgstr "تنسيق"
+msgstr "عناصر تنسيق"
 
 #: ../gtksourceview/language-specs/docbook.lang.h:7
 msgid "GUI Elements"
-msgstr ""
+msgstr "عناصر الواجهة الرسوميّة"
 
 #: ../gtksourceview/language-specs/docbook.lang.h:8
-#, fuzzy
 msgid "Header Elements"
-msgstr "شبه العناصر للمنتقي "
+msgstr "عناصر الترويسة"
 
 #: ../gtksourceview/language-specs/docbook.lang.h:9
 #: ../gtksourceview/language-specs/xml.lang.h:5
@@ -986,9 +985,16 @@ msgid "Markup"
 msgstr "تعليم"
 
 #: ../gtksourceview/language-specs/docbook.lang.h:12
-#, fuzzy
 msgid "Structural Elements"
-msgstr "شبه العناصر للمنتقي "
+msgstr "عناصر بنائيّة"
+
+#. This split keeps each keyword-list under 250 elements.
+#. See bug #110991 for further details.
+#.
+#: ../gtksourceview/language-specs/docbook.lang.h:16
+#, fuzzy
+msgid "Structural Elements 2"
+msgstr "عناصر بنائيّة"
 
 #: ../gtksourceview/language-specs/html.lang.h:4
 msgid "DTD"
@@ -1785,32 +1791,3 @@ msgstr "VHDL"
 #: ../gtksourceview/language-specs/xml.lang.h:9
 msgid "XML"
 msgstr "XML"
-
-#, fuzzy
-#~ msgid "Double Quote String"
-#~ msgstr "سلسلة ذات رمز تصاريح مضاعف"
-
-#, fuzzy
-#~ msgid "Single Quote String"
-#~ msgstr "سلسلة ذات رمز تصريح وحيد"
-
-#~ msgid "Most Used Commands"
-#~ msgstr "الأوامر المستخدمة بكثرة"
-
-#~ msgid "Regular Expression"
-#~ msgstr "تعبير رياضي"
-
-#~ msgid "Regular Expression 2"
-#~ msgstr "تعبير رياضي 2"
-
-#~ msgid "Miscellaneous Single-Row Functions"
-#~ msgstr "دالات متعددة ذات صف وحيد"
-
-#~ msgid "Font description name to use for the document text"
-#~ msgstr "اسم وصف الخط الذي سيستخدم لنص المستند"
-
-#~ msgid "Font description name to use for the header and footer"
-#~ msgstr "اسم وصف الخط الذي سيستخدم للتّرويسة و التّذييل (ملغى)"
-
-#~ msgid "Plain Old Documentation"
-#~ msgstr "توثيق عادي بسيط"
