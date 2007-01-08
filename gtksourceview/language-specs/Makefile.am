@@ -11,7 +11,7 @@ EXTRA_DIST = 			\
 	d.lang			\
 	desktop.lang		\
 	diff.lang		\
-	docbook.lang    \
+	docbook.lang		\
 	fortran.lang		\
 	gtkrc.lang		\
 	haskell.lang		\
@@ -25,6 +25,7 @@ EXTRA_DIST = 			\
 	makefile.lang		\
 	msil.lang		\
 	nemerle.lang		\
+	ocaml.lang		\
 	octave.lang		\
 	pascal.lang		\
 	perl.lang		\
