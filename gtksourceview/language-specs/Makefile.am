@@ -36,6 +36,7 @@ EXTRA_DIST = 			\
 	ruby.lang		\
 	scheme.lang		\
 	sh.lang			\
+	spec.lang		\
 	sql.lang		\
 	tcl.lang		\
 	texinfo.lang		\

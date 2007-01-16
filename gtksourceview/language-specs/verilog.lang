@@ -13,6 +13,29 @@
         	<end-regex>\*/</end-regex>
 	</block-comment>
 
+	<keyword-list _name="Compiler directive" style="Preprocessor"
+		case-sensitive="TRUE"
+		match-empty-string-at-beginning="FALSE"
+		match-empty-string-at-end="TRUE"
+		beginning-regex = "`">
+		<keyword>celldefine</keyword>
+		<keyword>default_nettype</keyword>
+		<keyword>define</keyword>
+		<keyword>else</keyword>
+		<keyword>elsif</keyword>
+		<keyword>endcelldefine</keyword>
+		<keyword>endif</keyword>
+		<keyword>ifdef</keyword>
+		<keyword>ifndef</keyword>
+		<keyword>include</keyword>
+		<keyword>line</keyword>
+		<keyword>nounconnected_drive</keyword>
+		<keyword>resetall</keyword>
+		<keyword>timescale</keyword>
+		<keyword>unconnected_drive</keyword>
+		<keyword>undef</keyword>
+	</keyword-list>
+
 	<keyword-list _name="Keywords" style="Keyword" case-sensitive="TRUE">
 		<keyword>always</keyword>
 		<keyword>assign</keyword>
