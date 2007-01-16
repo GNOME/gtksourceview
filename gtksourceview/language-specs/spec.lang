@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE language SYSTEM "language.dtd">
+<!--
+    RPM .spec support for gtksourceview
+    Created by: Konstantin Ryabitsev <icon@fedoraproject.org>
+    License: LGPL
+-->
+
+<language _name="RPM spec" version="1.0" _section="Others" mimetypes="text/x-rpm-spec">
+
+    <escape-char>\</escape-char>
+
+    <line-comment _name="Line Comment" style="Comment">
+        <start-regex>#</start-regex>
+    </line-comment>
+
+    <string _name="Define" style="Preprocessor" end-at-line-end="TRUE">
+        <start-regex>%define</start-regex>
+        <end-regex>$</end-regex>
+    </string>
+
+    <string _name="Conditional Define" style="Preprocessor" end-at-line-end="TRUE">
+        <start-regex>%\{\!\?.*%define</start-regex>
+        <end-regex>\}$</end-regex>
+    </string>
+
+    <keyword-list _name="Header" style="Keyword"
+     case-sensitive="TRUE"
+     match-empty-string-at-beginning="FALSE"
+     match-empty-string-at-end="FALSE"
+     beginning-regex="^" end-regex=":">
+        <keyword>Name</keyword>
+        <keyword>Version</keyword>
+        <keyword>Release</keyword>
+        <keyword>Epoch</keyword>
+        <keyword>Summary</keyword>
+        <keyword>Group</keyword>
+        <keyword>License</keyword>
+        <keyword>Packager</keyword>
+        <keyword>Vendor</keyword>
+        <keyword>Icon</keyword>
+        <keyword>URL</keyword>
+        <keyword>Patch[0-9]*</keyword>
+        <keyword>Source[0-9]*</keyword>
+        <keyword>Requires\(?[a-z]*\)?</keyword>
+        <keyword>[A-Za-z]+Req</keyword>
+        <keyword>Obsoletes</keyword>
+        <keyword>Provides</keyword>
+        <keyword>Conflicts</keyword>
+        <keyword>Build[A-Za-z]+</keyword>
+        <keyword>[A-Za-z]+Arch</keyword>
+        <keyword>Auto[A-Za-z]+</keyword>
+    </keyword-list>
+
+    <keyword-list _name="Section" style="Others"
+     case-sensitive="TRUE"
+     match-empty-string-at-beginning="FALSE"
+     beginning-regex="^%">
+        <keyword>description</keyword>
+        <keyword>package</keyword>
+        <keyword>prep</keyword>
+        <keyword>build</keyword>
+        <keyword>install</keyword>
+        <keyword>clean</keyword>
+        <keyword>check</keyword>
+        <keyword>pre[a-z]*</keyword>
+        <keyword>post[a-z]*</keyword>
+        <keyword>trigger[a-z]*</keyword>
+        <keyword>files</keyword>
+        <keyword>changelog</keyword>
+    </keyword-list>
+
+    <keyword-list _name="Spec Macro" style="Keyword"
+     match-empty-string-at-beginning="FALSE"
+     match-empty-string-at-end="FALSE"
+     beginning-regex="%">
+        <keyword>defattr</keyword>
+        <keyword>doc</keyword>
+        <keyword>setup</keyword>
+        <keyword>config</keyword>
+        <keyword>configure</keyword>
+        <keyword>make</keyword>
+        <keyword>makeinstall</keyword>
+        <keyword>dir</keyword>
+        <keyword>ghost</keyword>
+        <keyword>patch[0-9]+</keyword>
+        <keyword>find_lang</keyword>
+        <keyword>exclude</keyword>
+    </keyword-list>
+
+    <pattern-item _name="Directory Macro" style="Others 2">
+        <regex>%\{?_([a-z_]+dir|[a-z_]+path|prefix)\}?</regex>
+    </pattern-item>
+
+    <pattern-item _name="Command Macro" style="Others 3">
+        <regex>%\{?__[a-z_]+\}?</regex>
+    </pattern-item>
+
+    <pattern-item _name="Conditional Macro" style="Preprocessor">
+        <regex>%\{\?[A-Za-z0-9_]+\}</regex>
+    </pattern-item>
+
+    <string _name="Other Macro" style="String">
+        <start-regex>%\{[a-zA-Z][a-zA-Z0-9_]+</start-regex>
+        <end-regex>\}</end-regex>
+    </string>
+
+    <pattern-item _name="Switch" style="String">
+        <regex>[ \t]+-?-[A-Za-z0-9_-]+</regex>
+    </pattern-item>
+
+    <pattern-item _name="RPM Variable" style="Preprocessor">
+        <regex>\$\{?RPM_[A-Z0-9_]+\}?</regex>
+    </pattern-item>
+
+    <keyword-list _name="Flow Conditional" style="Preprocessor"
+     match-empty-string-at-beginning="FALSE"
+     match-empty-string-at-end="FALSE"
+     beginning-regex="%">
+        <keyword>if</keyword>
+        <keyword>elif</keyword>
+        <keyword>endif</keyword>
+    </keyword-list>
+
+    <keyword-list _name="Date" style="String" case-sensitive="FALSE">
+        <keyword>[0-9]{1,2} +[0-9]{4}</keyword>
+        <keyword>jan</keyword>
+        <keyword>feb</keyword>
+        <keyword>mar</keyword>
+        <keyword>apr</keyword>
+        <keyword>may</keyword>
+        <keyword>jun</keyword>
+        <keyword>jul</keyword>
+        <keyword>aug</keyword>
+        <keyword>sep</keyword>
+        <keyword>oct</keyword>
+        <keyword>nov</keyword>
+        <keyword>dec</keyword>
+        <keyword>mon</keyword>
+        <keyword>tue</keyword>
+        <keyword>wed</keyword>
+        <keyword>thu</keyword>
+        <keyword>fri</keyword>
+        <keyword>sat</keyword>
+        <keyword>sun</keyword>
+    </keyword-list>
+
+    <pattern-item _name="Email" style="Comment">
+        <regex>&lt;[A-Za-z0-9._:+-]+@[A-Za-z0-9._:+-]+\.[A-Za-z0-9]{2,4}&gt;</regex>
+    </pattern-item>
+
+</language>
