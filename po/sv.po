@@ -1,6 +1,6 @@
 # Swedish messages for gtksourceview.
-# Copyright (C) 2003, 2004, 2005, 2006 Free Software Foundation, Inc.
-# Daniel Nylander <po@danielnylander.se>, 2006.
+# Copyright (C) 2003, 2004, 2005, 2006, 2007 Free Software Foundation, Inc.
+# Daniel Nylander <po@danielnylander.se>, 2006, 2007.
 # Christian Rose <menthos@menthos.com>, 2003, 2004, 2005.
 #
 # $Id: sv.po,v 1.23 2006/08/16 06:08:08 dnylande Exp $
@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-01-17 03:22+0000\n"
-"PO-Revision-Date: 2007-01-17 22:02+0100\n"
+"POT-Creation-Date: 2007-01-21 21:01+0100\n"
+"PO-Revision-Date: 2007-01-21 21:00+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "MIME-Version: 1.0\n"
@@ -75,7 +75,9 @@ msgid "Language specification directories"
 msgstr "Kataloger för språkspecifikationer"
 
 #: ../gtksourceview/gtksourcelanguagesmanager.c:115
-msgid "List of directories where the language specification files (.lang) are located"
+msgid ""
+"List of directories where the language specification files (.lang) are "
+"located"
 msgstr "Lista med kataloger där språkspecifikationsfiler (.lang) finns"
 
 #: ../gtksourceview/gtksourceprintjob.c:265
@@ -95,8 +97,7 @@ msgid "GtkSourceBuffer object to print"
 msgstr "GtkSourceBuffer-objekt att skriva ut"
 
 #: ../gtksourceview/gtksourceprintjob.c:280
-#: ../gtksourceview/gtksourceview.c:235
-#: ../gtksourceview/gtksourceview.c:236
+#: ../gtksourceview/gtksourceview.c:235 ../gtksourceview/gtksourceview.c:236
 msgid "Tabs Width"
 msgstr "Tabulatorbredd"
 
@@ -183,7 +184,8 @@ msgstr "Typsnittsbeskrivning för sidhuvud och sidfot"
 
 #: ../gtksourceview/gtksourceprintjob.c:370
 msgid "Font to use for headers and footers (e.g. \"Monospace 10\")"
-msgstr "Typsnitt att använda för sidhuvud och sidfötter (t.ex. \"Monospace 10\")"
+msgstr ""
+"Typsnitt att använda för sidhuvud och sidfötter (t.ex. \"Monospace 10\")"
 
 #: ../gtksourceview/gtksourcestylescheme.c:264
 msgid "Base-N Integer"
@@ -321,6 +323,7 @@ msgstr "Specialtecken"
 #: ../gtksourceview/language-specs/ini.lang.h:10
 #: ../gtksourceview/language-specs/msil.lang.h:2
 #: ../gtksourceview/language-specs/po.lang.h:5
+#: ../gtksourceview/language-specs/spec.lang.h:12
 msgid "Others"
 msgstr "Andra"
 
@@ -405,8 +408,12 @@ msgid "Use smart home/end"
 msgstr "Använd intelligent home/end"
 
 #: ../gtksourceview/gtksourceview.c:279
-msgid "HOME and END keys move to first/last non whitespace characters on line before going to the start/end of the line"
-msgstr "HOME- och END-tangenterna flyttar till första/sista tecknen på raden innan de går till början/slutet på raden"
+msgid ""
+"HOME and END keys move to first/last non whitespace characters on line "
+"before going to the start/end of the line"
+msgstr ""
+"HOME- och END-tangenterna flyttar till första/sista tecknen på raden innan "
+"de går till början/slutet på raden"
 
 #: ../gtksourceview/gtksourceview.c:288
 msgid "Highlight current line"
@@ -509,6 +516,7 @@ msgstr "Teckenkonstant"
 #: ../gtksourceview/language-specs/ruby.lang.h:10
 #: ../gtksourceview/language-specs/scheme.lang.h:10
 #: ../gtksourceview/language-specs/sh.lang.h:5
+#: ../gtksourceview/language-specs/spec.lang.h:10
 #: ../gtksourceview/language-specs/sql.lang.h:23
 #: ../gtksourceview/language-specs/tcl.lang.h:2
 #: ../gtksourceview/language-specs/texinfo.lang.h:9
@@ -702,10 +710,12 @@ msgid "ChangeLog"
 msgstr "Ändringslogg"
 
 #: ../gtksourceview/language-specs/changelog.lang.h:2
+#: ../gtksourceview/language-specs/spec.lang.h:4
 msgid "Date"
 msgstr "Datum"
 
 #: ../gtksourceview/language-specs/changelog.lang.h:3
+#: ../gtksourceview/language-specs/spec.lang.h:7
 msgid "Email"
 msgstr "E-post"
 
@@ -1590,6 +1600,58 @@ msgstr "Själv"
 msgid "sh"
 msgstr "sh"
 
+#: ../gtksourceview/language-specs/spec.lang.h:1
+msgid "Command Macro"
+msgstr "Kommandomakro"
+
+#: ../gtksourceview/language-specs/spec.lang.h:2
+msgid "Conditional Define"
+msgstr "Villkorlig definiering"
+
+#: ../gtksourceview/language-specs/spec.lang.h:3
+msgid "Conditional Macro"
+msgstr "Villkorligt makro"
+
+#: ../gtksourceview/language-specs/spec.lang.h:5
+msgid "Define"
+msgstr "Definiering"
+
+#: ../gtksourceview/language-specs/spec.lang.h:6
+msgid "Directory Macro"
+msgstr "Katalogmakro"
+
+#: ../gtksourceview/language-specs/spec.lang.h:8
+msgid "Flow Conditional"
+msgstr "Villkorligt flöde"
+
+#: ../gtksourceview/language-specs/spec.lang.h:9
+msgid "Header"
+msgstr "Sidhuvud"
+
+#: ../gtksourceview/language-specs/spec.lang.h:11
+msgid "Other Macro"
+msgstr "Annat makro"
+
+#: ../gtksourceview/language-specs/spec.lang.h:13
+msgid "RPM Variable"
+msgstr "RPM-variabel"
+
+#: ../gtksourceview/language-specs/spec.lang.h:14
+msgid "RPM spec"
+msgstr "RPM spec"
+
+#: ../gtksourceview/language-specs/spec.lang.h:15
+msgid "Section"
+msgstr "Sektion"
+
+#: ../gtksourceview/language-specs/spec.lang.h:16
+msgid "Spec Macro"
+msgstr "Spec-makro"
+
+#: ../gtksourceview/language-specs/spec.lang.h:17
+msgid "Switch"
+msgstr "Växling"
+
 #: ../gtksourceview/language-specs/sql.lang.h:1
 msgid "ANSI Datatypes"
 msgstr "ANSI-datatyper"
@@ -1836,41 +1898,58 @@ msgstr "XML"
 
 #~ msgid "Tags"
 #~ msgstr "Taggar"
+
 #~ msgid "Double Quote String"
 #~ msgstr "Dubbelcitatssträng"
+
 #~ msgid "Single Quote String"
 #~ msgstr "Enkelcitatssträng"
+
 #~ msgid "Keysymbols"
 #~ msgstr "Nyckelsymboler"
+
 #~ msgid "Most Used Commands"
 #~ msgstr "Mest använda kommandon"
+
 #~ msgid "Regular Expression"
 #~ msgstr "Reguljärt uttryck"
+
 #~ msgid "Regular Expression 2"
 #~ msgstr "Reguljärt uttryck 2"
+
 #~ msgid "Directive"
 #~ msgstr "Direktiv"
+
 #~ msgid "Miscellaneous Single-Row Functions"
 #~ msgstr "Diverse enkelradsfunktioner"
+
 #~ msgid "Assignment operator"
 #~ msgstr "Tilldelningsoperator"
+
 #~ msgid "Reserved class"
 #~ msgstr "Reserverad klass"
+
 #~ msgid "Reserved constant"
 #~ msgstr "Reserverad konstant"
+
 #~ msgid "Font description name to use for the document text"
 #~ msgstr "Namn på typsnittsbeskrivning att använda för dokumenttexten"
+
 #~ msgid "Font description name to use for the header and footer"
 #~ msgstr ""
 #~ "Namn på typsnittsbeskrivning att använda för sidhuvudet och sidfoten"
+
 #~ msgid "Assign operator"
 #~ msgstr "Tilldelningsoperator"
+
 #~ msgid "True and false"
 #~ msgstr "Sant och falskt"
+
 #~ msgid "Key symbol"
 #~ msgstr "Nyckelsymbol"
+
 #~ msgid "Key Symbol"
 #~ msgstr "Nyckelsymbol"
+
 #~ msgid "Key symbols"
 #~ msgstr "Nyckelsymboler"
-
