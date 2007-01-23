@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-01-09 07:13+0000\n"
-"PO-Revision-Date: 2007-01-09 07:13-0000\n"
+"POT-Creation-Date: 2007-01-23 20:05+0000\n"
+"PO-Revision-Date: 2007-01-23 20:05-0000\n"
 "Last-Translator: David Lodge <dave@cirt.net>\n"
 "Language-Team: English/GB <en@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -310,6 +310,7 @@ msgstr "Specials"
 #: ../gtksourceview/language-specs/ini.lang.h:10
 #: ../gtksourceview/language-specs/msil.lang.h:2
 #: ../gtksourceview/language-specs/po.lang.h:5
+#: ../gtksourceview/language-specs/spec.lang.h:12
 msgid "Others"
 msgstr "Others"
 
@@ -498,11 +499,12 @@ msgstr "Character Constant"
 #: ../gtksourceview/language-specs/ruby.lang.h:10
 #: ../gtksourceview/language-specs/scheme.lang.h:10
 #: ../gtksourceview/language-specs/sh.lang.h:5
+#: ../gtksourceview/language-specs/spec.lang.h:10
 #: ../gtksourceview/language-specs/sql.lang.h:23
 #: ../gtksourceview/language-specs/tcl.lang.h:2
 #: ../gtksourceview/language-specs/texinfo.lang.h:9
 #: ../gtksourceview/language-specs/vbnet.lang.h:6
-#: ../gtksourceview/language-specs/verilog.lang.h:7
+#: ../gtksourceview/language-specs/verilog.lang.h:8
 #: ../gtksourceview/language-specs/vhdl.lang.h:3
 msgid "Line Comment"
 msgstr "Line Comment"
@@ -543,7 +545,7 @@ msgstr "Preprocessor Keyword"
 #: ../gtksourceview/language-specs/scheme.lang.h:12
 #: ../gtksourceview/language-specs/sql.lang.h:48
 #: ../gtksourceview/language-specs/vbnet.lang.h:10
-#: ../gtksourceview/language-specs/verilog.lang.h:9
+#: ../gtksourceview/language-specs/verilog.lang.h:10
 #: ../gtksourceview/language-specs/vhdl.lang.h:5
 msgid "Sources"
 msgstr "Sources"
@@ -574,7 +576,7 @@ msgstr "Boolean"
 #: ../gtksourceview/language-specs/perl.lang.h:2
 #: ../gtksourceview/language-specs/ruby.lang.h:9
 #: ../gtksourceview/language-specs/vbnet.lang.h:1
-#: ../gtksourceview/language-specs/verilog.lang.h:6
+#: ../gtksourceview/language-specs/verilog.lang.h:7
 msgid "Keywords"
 msgstr "Keywords"
 
@@ -665,7 +667,7 @@ msgstr "Include/Pragma"
 #: ../gtksourceview/language-specs/ocaml.lang.h:12
 #: ../gtksourceview/language-specs/octave.lang.h:10
 #: ../gtksourceview/language-specs/python.lang.h:12
-#: ../gtksourceview/language-specs/verilog.lang.h:8
+#: ../gtksourceview/language-specs/verilog.lang.h:9
 msgid "Octal Number"
 msgstr "Octal Number"
 
@@ -682,7 +684,7 @@ msgstr "Preprocessor Definitions"
 #: ../gtksourceview/language-specs/d.lang.h:16
 #: ../gtksourceview/language-specs/fortran.lang.h:16
 #: ../gtksourceview/language-specs/idl.lang.h:10
-#: ../gtksourceview/language-specs/verilog.lang.h:10
+#: ../gtksourceview/language-specs/verilog.lang.h:11
 msgid "Types"
 msgstr "Types"
 
@@ -691,10 +693,12 @@ msgid "ChangeLog"
 msgstr "ChangeLog"
 
 #: ../gtksourceview/language-specs/changelog.lang.h:2
+#: ../gtksourceview/language-specs/spec.lang.h:4
 msgid "Date"
 msgstr "Date"
 
 #: ../gtksourceview/language-specs/changelog.lang.h:3
+#: ../gtksourceview/language-specs/spec.lang.h:7
 msgid "Email"
 msgstr "Email"
 
@@ -1094,7 +1098,7 @@ msgid ".ini"
 msgstr ".ini"
 
 #: ../gtksourceview/language-specs/ini.lang.h:3
-#: ../gtksourceview/language-specs/verilog.lang.h:3
+#: ../gtksourceview/language-specs/verilog.lang.h:4
 msgid "Decimal Number"
 msgstr "Decimal Number"
 
@@ -1161,7 +1165,7 @@ msgid "Global Properties"
 msgstr "Global Properties"
 
 #: ../gtksourceview/language-specs/javascript.lang.h:10
-#: ../gtksourceview/language-specs/verilog.lang.h:5
+#: ../gtksourceview/language-specs/verilog.lang.h:6
 msgid "Hexadecimal Number"
 msgstr "Hexadecimal Number"
 
@@ -1568,6 +1572,58 @@ msgstr "Self"
 msgid "sh"
 msgstr "sh"
 
+#: ../gtksourceview/language-specs/spec.lang.h:1
+msgid "Command Macro"
+msgstr "Command Macro"
+
+#: ../gtksourceview/language-specs/spec.lang.h:2
+msgid "Conditional Define"
+msgstr "Conditional Define"
+
+#: ../gtksourceview/language-specs/spec.lang.h:3
+msgid "Conditional Macro"
+msgstr "Conditional Macro"
+
+#: ../gtksourceview/language-specs/spec.lang.h:5
+msgid "Define"
+msgstr "Define"
+
+#: ../gtksourceview/language-specs/spec.lang.h:6
+msgid "Directory Macro"
+msgstr "Directory Macro"
+
+#: ../gtksourceview/language-specs/spec.lang.h:8
+msgid "Flow Conditional"
+msgstr "Flow Conditional"
+
+#: ../gtksourceview/language-specs/spec.lang.h:9
+msgid "Header"
+msgstr "Header"
+
+#: ../gtksourceview/language-specs/spec.lang.h:11
+msgid "Other Macro"
+msgstr "Other Macro"
+
+#: ../gtksourceview/language-specs/spec.lang.h:13
+msgid "RPM Variable"
+msgstr "RPM Variable"
+
+#: ../gtksourceview/language-specs/spec.lang.h:14
+msgid "RPM spec"
+msgstr "RPM spec"
+
+#: ../gtksourceview/language-specs/spec.lang.h:15
+msgid "Section"
+msgstr "Section"
+
+#: ../gtksourceview/language-specs/spec.lang.h:16
+msgid "Spec Macro"
+msgstr "Spec Macro"
+
+#: ../gtksourceview/language-specs/spec.lang.h:17
+msgid "Switch"
+msgstr "Switch"
+
 #: ../gtksourceview/language-specs/sql.lang.h:1
 msgid "ANSI Datatypes"
 msgstr "ANSI Datatypes"
@@ -1785,11 +1841,15 @@ msgstr "Old Style Comment"
 msgid "VB.NET"
 msgstr "VB.NET"
 
-#: ../gtksourceview/language-specs/verilog.lang.h:4
+#: ../gtksourceview/language-specs/verilog.lang.h:3
+msgid "Compiler directive"
+msgstr "Compiler directive"
+
+#: ../gtksourceview/language-specs/verilog.lang.h:5
 msgid "Gates"
 msgstr "Gates"
 
-#: ../gtksourceview/language-specs/verilog.lang.h:11
+#: ../gtksourceview/language-specs/verilog.lang.h:12
 msgid "Verilog"
 msgstr "Verilog"
 
