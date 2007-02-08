@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview.HEAD.ar\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-01-13 05:56+0000\n"
+"POT-Creation-Date: 2007-02-07 03:21+0000\n"
 "PO-Revision-Date: 2007-01-13 15:07+0200\n"
 "Last-Translator: Khaled Hosny <khaledhosny@eglug.org>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
@@ -20,7 +20,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
-"Plural-Forms: Plural-Forms: nplurals=4; plural=n==1 ? 0 : n==2 ? 1 : n>=3 && n<=10 ? 2 : 3\n"
+"Plural-Forms: Plural-Forms: nplurals=4; plural=n==1 ? 0 : n==2 ? 1 : n>=3 && "
+"n<=10 ? 2 : 3\n"
 
 #: ../gtksourceview/gtksourcebuffer.c:278
 msgid "Escape Character"
@@ -317,6 +318,7 @@ msgstr "خاصة"
 #: ../gtksourceview/language-specs/ini.lang.h:10
 #: ../gtksourceview/language-specs/msil.lang.h:2
 #: ../gtksourceview/language-specs/po.lang.h:5
+#: ../gtksourceview/language-specs/spec.lang.h:12
 msgid "Others"
 msgstr "أخرى"
 
@@ -509,11 +511,12 @@ msgstr "رمزُ ثابت"
 #: ../gtksourceview/language-specs/ruby.lang.h:10
 #: ../gtksourceview/language-specs/scheme.lang.h:10
 #: ../gtksourceview/language-specs/sh.lang.h:5
+#: ../gtksourceview/language-specs/spec.lang.h:10
 #: ../gtksourceview/language-specs/sql.lang.h:23
 #: ../gtksourceview/language-specs/tcl.lang.h:2
 #: ../gtksourceview/language-specs/texinfo.lang.h:9
 #: ../gtksourceview/language-specs/vbnet.lang.h:6
-#: ../gtksourceview/language-specs/verilog.lang.h:7
+#: ../gtksourceview/language-specs/verilog.lang.h:8
 #: ../gtksourceview/language-specs/vhdl.lang.h:3
 msgid "Line Comment"
 msgstr "تعليق عن السطر"
@@ -554,7 +557,7 @@ msgstr "تعريفات الـ Preprocessor"
 #: ../gtksourceview/language-specs/scheme.lang.h:12
 #: ../gtksourceview/language-specs/sql.lang.h:48
 #: ../gtksourceview/language-specs/vbnet.lang.h:10
-#: ../gtksourceview/language-specs/verilog.lang.h:9
+#: ../gtksourceview/language-specs/verilog.lang.h:10
 #: ../gtksourceview/language-specs/vhdl.lang.h:5
 msgid "Sources"
 msgstr "المصادر"
@@ -585,7 +588,7 @@ msgstr "قيمة منطقية"
 #: ../gtksourceview/language-specs/perl.lang.h:2
 #: ../gtksourceview/language-specs/ruby.lang.h:9
 #: ../gtksourceview/language-specs/vbnet.lang.h:1
-#: ../gtksourceview/language-specs/verilog.lang.h:6
+#: ../gtksourceview/language-specs/verilog.lang.h:7
 msgid "Keywords"
 msgstr "الكلمات المفاتيح"
 
@@ -676,7 +679,7 @@ msgstr "تضمين/Pragma"
 #: ../gtksourceview/language-specs/ocaml.lang.h:12
 #: ../gtksourceview/language-specs/octave.lang.h:10
 #: ../gtksourceview/language-specs/python.lang.h:12
-#: ../gtksourceview/language-specs/verilog.lang.h:8
+#: ../gtksourceview/language-specs/verilog.lang.h:9
 msgid "Octal Number"
 msgstr "عدد ثماني"
 
@@ -693,7 +696,7 @@ msgstr "تعريفات الـ Preprocessor"
 #: ../gtksourceview/language-specs/d.lang.h:16
 #: ../gtksourceview/language-specs/fortran.lang.h:16
 #: ../gtksourceview/language-specs/idl.lang.h:10
-#: ../gtksourceview/language-specs/verilog.lang.h:10
+#: ../gtksourceview/language-specs/verilog.lang.h:11
 msgid "Types"
 msgstr "أنواع"
 
@@ -702,10 +705,12 @@ msgid "ChangeLog"
 msgstr "التغيرات:"
 
 #: ../gtksourceview/language-specs/changelog.lang.h:2
+#: ../gtksourceview/language-specs/spec.lang.h:4
 msgid "Date"
 msgstr "التاريخ"
 
 #: ../gtksourceview/language-specs/changelog.lang.h:3
+#: ../gtksourceview/language-specs/spec.lang.h:7
 msgid "Email"
 msgstr "البريد الإلكتروني"
 
@@ -1105,7 +1110,7 @@ msgid ".ini"
 msgstr ".ini"
 
 #: ../gtksourceview/language-specs/ini.lang.h:3
-#: ../gtksourceview/language-specs/verilog.lang.h:3
+#: ../gtksourceview/language-specs/verilog.lang.h:4
 msgid "Decimal Number"
 msgstr "عدد عشري"
 
@@ -1172,7 +1177,7 @@ msgid "Global Properties"
 msgstr "خصائص عالمية"
 
 #: ../gtksourceview/language-specs/javascript.lang.h:10
-#: ../gtksourceview/language-specs/verilog.lang.h:5
+#: ../gtksourceview/language-specs/verilog.lang.h:6
 msgid "Hexadecimal Number"
 msgstr "عدد سادس عشري"
 
@@ -1579,6 +1584,67 @@ msgstr "ذاته"
 msgid "sh"
 msgstr "sh"
 
+#: ../gtksourceview/language-specs/spec.lang.h:1
+#, fuzzy
+msgid "Command Macro"
+msgstr "مركب متداول"
+
+#: ../gtksourceview/language-specs/spec.lang.h:2
+#, fuzzy
+msgid "Conditional Define"
+msgstr "الشروط"
+
+#: ../gtksourceview/language-specs/spec.lang.h:3
+#, fuzzy
+msgid "Conditional Macro"
+msgstr "مركب متداول"
+
+#: ../gtksourceview/language-specs/spec.lang.h:5
+msgid "Define"
+msgstr ""
+
+#: ../gtksourceview/language-specs/spec.lang.h:6
+msgid "Directory Macro"
+msgstr ""
+
+#: ../gtksourceview/language-specs/spec.lang.h:8
+#, fuzzy
+msgid "Flow Conditional"
+msgstr "الشروط"
+
+#: ../gtksourceview/language-specs/spec.lang.h:9
+#, fuzzy
+msgid "Header"
+msgstr "طبع الترويسة"
+
+#: ../gtksourceview/language-specs/spec.lang.h:11
+#, fuzzy
+msgid "Other Macro"
+msgstr "أخرى 3"
+
+#: ../gtksourceview/language-specs/spec.lang.h:13
+#, fuzzy
+msgid "RPM Variable"
+msgstr "متغيرة"
+
+#: ../gtksourceview/language-specs/spec.lang.h:14
+msgid "RPM spec"
+msgstr ""
+
+#: ../gtksourceview/language-specs/spec.lang.h:15
+#, fuzzy
+msgid "Section"
+msgstr "مقطع"
+
+#: ../gtksourceview/language-specs/spec.lang.h:16
+#, fuzzy
+msgid "Spec Macro"
+msgstr "مركّبات"
+
+#: ../gtksourceview/language-specs/spec.lang.h:17
+msgid "Switch"
+msgstr ""
+
 #: ../gtksourceview/language-specs/sql.lang.h:1
 msgid "ANSI Datatypes"
 msgstr "أنواع بيانات ANSI"
@@ -1796,11 +1862,16 @@ msgstr "تعليق أسلوب قديم"
 msgid "VB.NET"
 msgstr "VB.NET"
 
-#: ../gtksourceview/language-specs/verilog.lang.h:4
+#: ../gtksourceview/language-specs/verilog.lang.h:3
+#, fuzzy
+msgid "Compiler directive"
+msgstr "موجه التضمين"
+
+#: ../gtksourceview/language-specs/verilog.lang.h:5
 msgid "Gates"
 msgstr "بوّابات"
 
-#: ../gtksourceview/language-specs/verilog.lang.h:11
+#: ../gtksourceview/language-specs/verilog.lang.h:12
 msgid "Verilog"
 msgstr "Verilog"
 
@@ -1815,4 +1886,3 @@ msgstr "VHDL"
 #: ../gtksourceview/language-specs/xml.lang.h:9
 msgid "XML"
 msgstr "XML"
-
