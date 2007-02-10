@@ -1,3 +1,10 @@
+2006-02-10  Yevgen Muntyan  <muntyan@tamu.edu>
+
+	* gtksourceview/gtksourceiter.c: (exact_prefix_cmp): new UTF8
+        accent mark-aware replacement for strncmp(), fixes #339805;
+        renamed g_utf8_* functions to utf8_* to avoid potential clash
+        with glib namespace.
+
 2007-01-16  Paolo Borelli  <pborelli@katamail.com>
 
 	* gtksourceview/language-specs/verilog.lang:

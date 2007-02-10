@@ -56,8 +56,30 @@ pointer_from_offset_skipping_decomp (const gchar *str, gint offset)
 	return p;
 }
 
+static gboolean
+exact_prefix_cmp (const gchar *string,
+		  const gchar *prefix,
+		  guint        prefix_len)
+{
+	GUnicodeType type;
+
+	if (strncmp (string, prefix, prefix_len) != 0)
+		return FALSE;
+	if (string[prefix_len] == '\0')
+		return TRUE;
+
+	type = g_unichar_type (g_utf8_get_char (string + prefix_len));
+
+	/* If string contains prefix, check that prefix is not followed
+	 * by a unicode mark symbol, e.g. that trailing 'a' in prefix
+	 * is not part of two-char a-with-hat symbol in string. */
+	return type != G_UNICODE_NON_SPACING_MARK &&
+		type != G_UNICODE_ENCLOSING_MARK &&
+		type != G_UNICODE_NON_SPACING_MARK;
+}
+
 static const gchar *
-g_utf8_strcasestr (const gchar *haystack, const gchar *needle)
+utf8_strcasestr (const gchar *haystack, const gchar *needle)
 {
 	gsize needle_len;
 	gsize haystack_len;
@@ -95,7 +117,7 @@ g_utf8_strcasestr (const gchar *haystack, const gchar *needle)
 
 	while (*p)
 	{
-		if ((strncmp (p, needle, needle_len) == 0))
+		if (exact_prefix_cmp (p, needle, needle_len))
 		{
 			ret = pointer_from_offset_skipping_decomp (haystack, i);
 			goto finally_1;
@@ -112,7 +134,7 @@ finally_1:
 }
 
 static const gchar *
-g_utf8_strrcasestr (const gchar *haystack, const gchar *needle)
+utf8_strrcasestr (const gchar *haystack, const gchar *needle)
 {
 	gsize needle_len;
 	gsize haystack_len;
@@ -150,7 +172,7 @@ g_utf8_strrcasestr (const gchar *haystack, const gchar *needle)
 
 	while (p >= caseless_haystack)
 	{
-		if (strncmp (p, needle, needle_len) == 0)
+		if (exact_prefix_cmp (p, needle, needle_len))
 		{
 			ret = pointer_from_offset_skipping_decomp (haystack, i);
 			goto finally_1;
@@ -167,8 +189,8 @@ finally_1:
 }
 
 static gboolean
-g_utf8_caselessnmatch (const char *s1, const char *s2,
-		       gssize n1, gssize n2)
+utf8_caselessnmatch (const char *s1, const char *s2,
+		     gssize n1, gssize n2)
 {
 	gchar *casefold;
 	gchar *normalized_s1;
@@ -200,7 +222,7 @@ g_utf8_caselessnmatch (const char *s1, const char *s2,
 
 finally_2:
 	g_free (normalized_s1);
-	g_free (normalized_s2);	
+	g_free (normalized_s2); 
 
 	return ret;
 }
@@ -304,15 +326,15 @@ lines_match (const GtkTextIter *start,
 
 	if (match_start) /* if this is the first line we're matching */
 	{
-		found = g_utf8_strcasestr (line_text, *lines);
+		found = utf8_strcasestr (line_text, *lines);
 	}
 	else
 	{
 		/* If it's not the first line, we have to match from the
 		 * start of the line.
 		 */
-		if (g_utf8_caselessnmatch (line_text, *lines, strlen (line_text),
-					   strlen (*lines)))
+		if (utf8_caselessnmatch (line_text, *lines, strlen (line_text),
+					 strlen (*lines)))
 			found = line_text;
 		else
 			found = NULL;
@@ -402,15 +424,15 @@ backward_lines_match (const GtkTextIter *start,
 
 	if (match_start) /* if this is the first line we're matching */
 	{
-		found = g_utf8_strrcasestr (line_text, *lines);
+		found = utf8_strrcasestr (line_text, *lines);
 	}
 	else
 	{
 		/* If it's not the first line, we have to match from the
 		 * start of the line.
 		 */
-		if (g_utf8_caselessnmatch (line_text, *lines, strlen (line_text),
-					   strlen (*lines)))
+		if (utf8_caselessnmatch (line_text, *lines, strlen (line_text),
+					 strlen (*lines)))
 			found = line_text;
 		else
 			found = NULL;
