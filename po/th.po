@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview 1.1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-01-17 19:43+0700\n"
-"PO-Revision-Date: 2007-01-17 19:50+0700\n"
+"POT-Creation-Date: 2007-02-11 17:14+0700\n"
+"PO-Revision-Date: 2007-02-11 17:22+0700\n"
 "Last-Translator: Theppitak Karoonboonyanan <thep@linux.thai.net>\n"
 "Language-Team: Thai <l10n@opentle.org>\n"
 "MIME-Version: 1.0\n"
@@ -310,6 +310,7 @@ msgstr "พิเศษ"
 #: gtksourceview/language-specs/ini.lang.h:10
 #: gtksourceview/language-specs/msil.lang.h:2
 #: gtksourceview/language-specs/po.lang.h:5
+#: gtksourceview/language-specs/spec.lang.h:12
 msgid "Others"
 msgstr "อื่นๆ"
 
@@ -502,6 +503,7 @@ msgstr "ค่าคงที่อักขระ"
 #: gtksourceview/language-specs/ruby.lang.h:10
 #: gtksourceview/language-specs/scheme.lang.h:10
 #: gtksourceview/language-specs/sh.lang.h:5
+#: gtksourceview/language-specs/spec.lang.h:10
 #: gtksourceview/language-specs/sql.lang.h:23
 #: gtksourceview/language-specs/tcl.lang.h:2
 #: gtksourceview/language-specs/texinfo.lang.h:9
@@ -695,10 +697,12 @@ msgid "ChangeLog"
 msgstr "ChangeLog"
 
 #: gtksourceview/language-specs/changelog.lang.h:2
+#: gtksourceview/language-specs/spec.lang.h:4
 msgid "Date"
 msgstr "วันที่"
 
 #: gtksourceview/language-specs/changelog.lang.h:3
+#: gtksourceview/language-specs/spec.lang.h:7
 msgid "Email"
 msgstr "อีเมล"
 
@@ -1571,6 +1575,58 @@ msgstr "Self"
 #: gtksourceview/language-specs/sh.lang.h:17
 msgid "sh"
 msgstr "sh"
+
+#: gtksourceview/language-specs/spec.lang.h:1
+msgid "Command Macro"
+msgstr "แมโครคำสั่ง"
+
+#: gtksourceview/language-specs/spec.lang.h:2
+msgid "Conditional Define"
+msgstr "ข้อกำหนดแบบมีเงื่อนไข"
+
+#: gtksourceview/language-specs/spec.lang.h:3
+msgid "Conditional Macro"
+msgstr "แมโครแบบมีเงื่อนไข"
+
+#: gtksourceview/language-specs/spec.lang.h:5
+msgid "Define"
+msgstr "ข้อกำหนด"
+
+#: gtksourceview/language-specs/spec.lang.h:6
+msgid "Directory Macro"
+msgstr "แมโครสำหรับไดเรกทอรี"
+
+#: gtksourceview/language-specs/spec.lang.h:8
+msgid "Flow Conditional"
+msgstr "เงื่อนไขในการทำคำสั่ง"
+
+#: gtksourceview/language-specs/spec.lang.h:9
+msgid "Header"
+msgstr "ข้อมูลส่วนหัว"
+
+#: gtksourceview/language-specs/spec.lang.h:11
+msgid "Other Macro"
+msgstr "แมโครอื่นๆ"
+
+#: gtksourceview/language-specs/spec.lang.h:13
+msgid "RPM Variable"
+msgstr "ตัวแปร RPM"
+
+#: gtksourceview/language-specs/spec.lang.h:14
+msgid "RPM spec"
+msgstr "สเปค RPM"
+
+#: gtksourceview/language-specs/spec.lang.h:15
+msgid "Section"
+msgstr "หัวข้อ"
+
+#: gtksourceview/language-specs/spec.lang.h:16
+msgid "Spec Macro"
+msgstr "แมโครสำหรับสเปค"
+
+#: gtksourceview/language-specs/spec.lang.h:17
+msgid "Switch"
+msgstr "ตัวเลือกในบรรทัดคำสั่ง"
 
 #: gtksourceview/language-specs/sql.lang.h:1
 msgid "ANSI Datatypes"
