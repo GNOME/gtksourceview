@@ -338,10 +338,12 @@
 		<keyword>ASC</keyword>
 		<keyword>BETWEEN</keyword>
 		<keyword>BY</keyword>
+		<keyword>CASE</keyword>
 		<!-- CHAR: See "Datatypes" -->
 		<keyword>CHECK</keyword>
 		<!-- CONNECT: See "SQL*Plus" -->
 		<keyword>CREATE</keyword>
+		<keyword>CROSS</keyword>
 		<keyword>CURRENT</keyword>
 		<!-- DATE: See "Datatypes" -->
 		<keyword>DECIMAL</keyword>
@@ -351,21 +353,27 @@
 		<keyword>DISTINCT</keyword>
 		<keyword>DROP</keyword>
 		<keyword>ELSE</keyword>
+		<keyword>END</keyword>
 		<keyword>FLOAT</keyword>
 		<keyword>FOR</keyword>
 		<keyword>FROM</keyword>
+		<keyword>FULL</keyword>
 		<keyword>GRANT</keyword>
 		<keyword>GROUP</keyword>
 		<keyword>HAVING</keyword>
 		<keyword>IMMEDIATE</keyword>
 		<keyword>IN</keyword>
+		<keyword>INNER</keyword>
 		<keyword>INSERT</keyword>
 		<keyword>INTEGER</keyword>
 		<keyword>INTERSECT</keyword>
 		<keyword>INTO</keyword>
 		<keyword>IS</keyword>
+		<keyword>JOIN</keyword>
+		<keyword>LEFT</keyword>
 		<keyword>LEVEL</keyword>
 		<keyword>LIKE</keyword>
+		<keyword>NATURAL</keyword>
 		<keyword>NOT</keyword>
 		<!-- NULL: See "Literals" -->
 		<keyword>OF</keyword>
@@ -373,10 +381,12 @@
 		<keyword>OPTION</keyword>
 		<keyword>OR</keyword>
 		<keyword>ORDER</keyword>
+		<keyword>OUTER</keyword>
 		<keyword>PRIOR</keyword>
 		<keyword>PRIVILEGES</keyword>
 		<keyword>PUBLIC</keyword>
 		<keyword>REVOKE</keyword>
+		<keyword>RIGHT</keyword>
 		<keyword>ROWS</keyword>
 		<keyword>SELECT</keyword>
 		<keyword>SESSION</keyword>
@@ -389,10 +399,12 @@
 		<keyword>UNION</keyword>
 		<keyword>UNIQUE</keyword>
 		<keyword>UPDATE</keyword>
+		<keyword>USING</keyword>
 		<!-- USER: See "Functions" -->
 		<keyword>VALUES</keyword>
 		<!-- VARCHAR: See "Datatypes" -->
 		<keyword>VIEW</keyword>
+		<keyword>WHEN</keyword>
 		<!-- WHENEVER: See "SQL*Plus" -->
 		<keyword>WITH</keyword>
 	</keyword-list>
@@ -404,9 +416,12 @@
 		<!-- COLUMN: See "SQL*Plus" -->
 		<keyword>COMMENT</keyword>
 		<keyword>COMPRESS</keyword>
+		<keyword>CONNECT[ \t]+BY</keyword>
+		<keyword>CUBE</keyword>
 		<keyword>EXCLUSIVE</keyword>
 		<keyword>EXISTS</keyword>
 		<keyword>FILE</keyword>
+		<keyword>GROUPING[ \t]+SETS</keyword>
 		<keyword>IDENTIFIED</keyword>
 		<keyword>INCREMENT</keyword>
 		<keyword>INDEX</keyword>
@@ -420,6 +435,7 @@
 		<keyword>MODIFY</keyword>
 		<keyword>NOAUDIT</keyword>
 		<keyword>NOCOMPRESS</keyword>
+		<keyword>NOCYCLE</keyword>
 		<keyword>NOWAIT</keyword>
 		<!-- NUMBER: See "Datatypes" -->
 		<keyword>OFFLINE</keyword>
@@ -428,11 +444,14 @@
 		<!-- RAW: See "Datatypes" -->
 		<keyword>RENAME</keyword>
 		<keyword>RESOURCE</keyword>
+		<keyword>ROLLUP</keyword>
 		<keyword>ROW</keyword>
 		<!-- ROWID: See "Datatypes" -->
 		<keyword>ROWNUM</keyword>
 		<keyword>SHARE</keyword>
+		<keyword>SIBLINGS</keyword>
 		<!-- START: See "SQL*Plus" -->
+		<keyword>START[ \t]+WITH</keyword>
 		<keyword>SUCCESSFUL</keyword>
 		<keyword>SYNONYM</keyword>
 		<!-- SYSDATE: See "Functions" -->

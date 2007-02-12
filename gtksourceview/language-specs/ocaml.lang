@@ -10,7 +10,7 @@
 	</block-comment>
 
 	<pattern-item _name = "Decimal" style = "Decimal">
-		<regex>\b[-]?[0-9][0-9_]*[lL]?\b</regex>
+		<regex>\b[-]?[0-9][0-9_]*[lLn]?\b</regex>
 	</pattern-item>
 
 	<pattern-item _name = "Hex Number" style = "Base-N Integer">
@@ -53,21 +53,6 @@
 	</pattern-item>
 
 	<keyword-list _name = "Keywords" style = "Keyword" case-sensitive="TRUE">
-		<keyword>asm</keyword>
-		<keyword>break</keyword>
-		<keyword>case</keyword>
-		<keyword>continue</keyword>
-		<keyword>default</keyword>
-		<keyword>do</keyword>
-      		<keyword>else</keyword>
-		<keyword>for</keyword>
-		<keyword>fortran</keyword>
-		<keyword>goto</keyword>
-		<keyword>if</keyword>
-		<keyword>return</keyword>
-		<keyword>sizeof</keyword>
-		<keyword>switch</keyword>
-		<keyword>while</keyword>
 		<keyword>and</keyword>
 		<keyword>as</keyword>
 		<keyword>assert</keyword>

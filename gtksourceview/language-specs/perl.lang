@@ -40,11 +40,29 @@
 		<regex>-&gt;[a-zA-Z_][a-zA-Z0-9_]*</regex>
 	</pattern-item>
 
+	<keyword-list _name = "Operators" style = "Others" case-sensitive="TRUE">
+		<keyword>gt</keyword>
+		<keyword>ge</keyword>
+		<keyword>lt</keyword>
+		<keyword>le</keyword>
+		<keyword>xor</keyword>
+		<keyword>cmp</keyword>
+ 		<keyword>eq</keyword>
+ 		<keyword>ne</keyword>
+ 		<keyword>not</keyword>
+ 		<keyword>or</keyword>
+		<keyword>and</keyword>
+		<keyword>s</keyword>		
+		<keyword>m</keyword>		
+		<keyword>q</keyword>		
+		<keyword>qq</keyword>	
+		<keyword>qw</keyword>					
+		<keyword>qr</keyword>		
+		<keyword>qx</keyword>		
+		<keyword>tr</keyword>		
+	</keyword-list>
+
 	<keyword-list _name = "Keywords" style = "Keyword" case-sensitive="TRUE">
-		<keyword>eq</keyword>
-		<keyword>ne</keyword>
-		<keyword>not</keyword>
-		<keyword>or</keyword>
 		<keyword>read</keyword>
 		<keyword>keys</keyword>
 		<keyword>chomp</keyword>
