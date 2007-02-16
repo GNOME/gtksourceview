@@ -13,15 +13,14 @@ msgstr ""
 "Project-Id-Version: gtksourceview.HEAD.ar\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-02-07 03:21+0000\n"
-"PO-Revision-Date: 2007-01-13 15:07+0200\n"
-"Last-Translator: Khaled Hosny <khaledhosny@eglug.org>\n"
+"PO-Revision-Date: 2007-02-16 11:53-0000\n"
+"Last-Translator: Djihed Afifi <djihed@gmail.com>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
-"Plural-Forms: Plural-Forms: nplurals=4; plural=n==1 ? 0 : n==2 ? 1 : n>=3 && "
-"n<=10 ? 2 : 3\n"
+"Plural-Forms: Plural-Forms: nplurals=4; plural=n==1 ? 0 : n==2 ? 1 : n>=3 && n<=10 ? 2 : 3\n"
 
 #: ../gtksourceview/gtksourcebuffer.c:278
 msgid "Escape Character"
@@ -71,9 +70,7 @@ msgid "Language specification directories"
 msgstr "دلائل خصائص اللغة"
 
 #: ../gtksourceview/gtksourcelanguagesmanager.c:115
-msgid ""
-"List of directories where the language specification files (.lang) are "
-"located"
+msgid "List of directories where the language specification files (.lang) are located"
 msgstr "قائمة الدلائل الحاوية لملفات خصائص اللغة (.lang)"
 
 #: ../gtksourceview/gtksourceprintjob.c:265
@@ -93,7 +90,8 @@ msgid "GtkSourceBuffer object to print"
 msgstr "جسم GtkSourceBuffer للطبع"
 
 #: ../gtksourceview/gtksourceprintjob.c:280
-#: ../gtksourceview/gtksourceview.c:235 ../gtksourceview/gtksourceview.c:236
+#: ../gtksourceview/gtksourceview.c:235
+#: ../gtksourceview/gtksourceview.c:236
 msgid "Tabs Width"
 msgstr "عرض الألسنة"
 
@@ -403,12 +401,8 @@ msgid "Use smart home/end"
 msgstr "إستخدام منزل/نهاية حاذقين"
 
 #: ../gtksourceview/gtksourceview.c:279
-msgid ""
-"HOME and END keys move to first/last non whitespace characters on line "
-"before going to the start/end of the line"
-msgstr ""
-"مفتاحا HOME و END ينقلان للرموز الأولى/الأخيرة على السطر قبل الذهاب إلى "
-"بداية/نهاية السطر"
+msgid "HOME and END keys move to first/last non whitespace characters on line before going to the start/end of the line"
+msgstr "مفتاحا HOME و END ينقلان للرموز الأولى/الأخيرة على السطر قبل الذهاب إلى بداية/نهاية السطر"
 
 #: ../gtksourceview/gtksourceview.c:288
 msgid "Highlight current line"
@@ -1585,65 +1579,56 @@ msgid "sh"
 msgstr "sh"
 
 #: ../gtksourceview/language-specs/spec.lang.h:1
-#, fuzzy
 msgid "Command Macro"
-msgstr "مركب متداول"
+msgstr "مركب أمر"
 
 #: ../gtksourceview/language-specs/spec.lang.h:2
-#, fuzzy
 msgid "Conditional Define"
-msgstr "الشروط"
+msgstr "تعريف شرطي"
 
 #: ../gtksourceview/language-specs/spec.lang.h:3
-#, fuzzy
 msgid "Conditional Macro"
-msgstr "مركب متداول"
+msgstr "مركب شرطي"
 
 #: ../gtksourceview/language-specs/spec.lang.h:5
 msgid "Define"
-msgstr ""
+msgstr "تعريف"
 
 #: ../gtksourceview/language-specs/spec.lang.h:6
 msgid "Directory Macro"
-msgstr ""
+msgstr "مركب دليل"
 
 #: ../gtksourceview/language-specs/spec.lang.h:8
-#, fuzzy
 msgid "Flow Conditional"
-msgstr "الشروط"
+msgstr "تدفق شرطي"
 
 #: ../gtksourceview/language-specs/spec.lang.h:9
-#, fuzzy
 msgid "Header"
-msgstr "طبع الترويسة"
+msgstr "ترويسة"
 
 #: ../gtksourceview/language-specs/spec.lang.h:11
-#, fuzzy
 msgid "Other Macro"
-msgstr "أخرى 3"
+msgstr "مركبات أخرى"
 
 #: ../gtksourceview/language-specs/spec.lang.h:13
-#, fuzzy
 msgid "RPM Variable"
-msgstr "متغيرة"
+msgstr "متغير أر بي ام RPM "
 
 #: ../gtksourceview/language-specs/spec.lang.h:14
 msgid "RPM spec"
-msgstr ""
+msgstr "تحديد أر بي ام RPM "
 
 #: ../gtksourceview/language-specs/spec.lang.h:15
-#, fuzzy
 msgid "Section"
 msgstr "مقطع"
 
 #: ../gtksourceview/language-specs/spec.lang.h:16
-#, fuzzy
 msgid "Spec Macro"
-msgstr "مركّبات"
+msgstr "مركّب تحديد"
 
 #: ../gtksourceview/language-specs/spec.lang.h:17
 msgid "Switch"
-msgstr ""
+msgstr "اداة تغيير (Switch)"
 
 #: ../gtksourceview/language-specs/sql.lang.h:1
 msgid "ANSI Datatypes"
@@ -1863,9 +1848,8 @@ msgid "VB.NET"
 msgstr "VB.NET"
 
 #: ../gtksourceview/language-specs/verilog.lang.h:3
-#, fuzzy
 msgid "Compiler directive"
-msgstr "موجه التضمين"
+msgstr "موجه تجميع"
 
 #: ../gtksourceview/language-specs/verilog.lang.h:5
 msgid "Gates"
@@ -1886,3 +1870,4 @@ msgstr "VHDL"
 #: ../gtksourceview/language-specs/xml.lang.h:9
 msgid "XML"
 msgstr "XML"
+
