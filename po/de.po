@@ -3,14 +3,17 @@
 # This file is distributed under the same license as the GtkSourceView package.
 # Christian Neumair <chris@gnome-de.org>, 2003, 2004.
 # Hendrik Richter <hendrikr@gnome.org>, 2005, 2006, 2007.
+# Hendrik Brandt <heb@gnome-de.org>, 2007.
+# Hendrik Richter <hendrikr@gnome.org>, 2007.
+# 
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: GtkSourceView HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-01-12 12:05+0100\n"
-"PO-Revision-Date: 2007-01-12 12:07+0100\n"
-"Last-Translator: Hendrik Richter <hendrikr@gnome.org>\n"
+"POT-Creation-Date: 2007-02-19 18:22+0100\n"
+"PO-Revision-Date: 2007-02-17 19:28+0100\n"
+"Last-Translator: Hendrik Brandt <heb@gnome-de.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -107,7 +110,7 @@ msgstr "Wort-Umbruchmodus"
 #: ../gtksourceview/gtksourceprintjob.c:297
 msgid "Whether to print the document with highlighted syntax"
 msgstr ""
-"Gibt an, ob beim Drucken die Syntax des Dokuments hervorgehoben werden soll"
+"Legt·fest, ob beim Drucken die Syntax des Dokuments hervorgehoben werden soll"
 
 #: ../gtksourceview/gtksourceprintjob.c:305
 msgid "Font"
@@ -152,7 +155,7 @@ msgstr "Kopfzeile drucken"
 
 #: ../gtksourceview/gtksourceprintjob.c:346
 msgid "Whether to print a header in each page"
-msgstr "Gibt an, ob auf jeder Seite eine Kopfzeile gedruckt werden soll"
+msgstr "Legt·fest, ob auf jeder Seite eine Kopfzeile gedruckt werden soll"
 
 #: ../gtksourceview/gtksourceprintjob.c:353
 msgid "Print Footer"
@@ -160,7 +163,7 @@ msgstr "Fußzeile drucken"
 
 #: ../gtksourceview/gtksourceprintjob.c:354
 msgid "Whether to print a footer in each page"
-msgstr "Gibt an, ob auf jeder Seite eine Fußzeile gedruckt werden soll"
+msgstr "Legt fest, ob auf jeder Seite eine Fußzeile gedruckt werden soll"
 
 #: ../gtksourceview/gtksourceprintjob.c:361
 msgid "Header and Footer Font"
@@ -291,7 +294,7 @@ msgstr "Präprozessor"
 #: ../gtksourceview/language-specs/nemerle.lang.h:15
 #: ../gtksourceview/language-specs/ocaml.lang.h:14
 #: ../gtksourceview/language-specs/pascal.lang.h:18
-#: ../gtksourceview/language-specs/perl.lang.h:8
+#: ../gtksourceview/language-specs/perl.lang.h:9
 #: ../gtksourceview/language-specs/po.lang.h:6
 #: ../gtksourceview/language-specs/scheme.lang.h:13
 #: ../gtksourceview/language-specs/sh.lang.h:13
@@ -316,6 +319,7 @@ msgstr "Sonderzeichen"
 #: ../gtksourceview/language-specs/ini.lang.h:10
 #: ../gtksourceview/language-specs/msil.lang.h:2
 #: ../gtksourceview/language-specs/po.lang.h:5
+#: ../gtksourceview/language-specs/spec.lang.h:12
 msgid "Others"
 msgstr "Sonstige"
 
@@ -353,7 +357,7 @@ msgstr "Zeilennummern anzeigen"
 
 #: ../gtksourceview/gtksourceview.c:220
 msgid "Whether to display line numbers"
-msgstr "Gibt an, ob Zeilennummern angezeigt werden sollen"
+msgstr "Legt·fest, ob Zeilennummern angezeigt werden sollen"
 
 #: ../gtksourceview/gtksourceview.c:227
 msgid "Show Line Markers"
@@ -361,7 +365,7 @@ msgstr "Zeilenmarkierungen anzeigen"
 
 #: ../gtksourceview/gtksourceview.c:228
 msgid "Whether to display line marker pixbufs"
-msgstr "Gibt an, ob Pixbufs zur Zeilenmarkierung angezeigt werden sollen"
+msgstr "Legt·fest, ob Symbole zur Zeilenmarkierung angezeigt werden sollen"
 
 #: ../gtksourceview/gtksourceview.c:245
 msgid "Auto Indentation"
@@ -369,7 +373,7 @@ msgstr "Auto-Einrücken"
 
 #: ../gtksourceview/gtksourceview.c:246
 msgid "Whether to enable auto indentation"
-msgstr "Gibt an, ob das Einrücken automatisch erfolgen soll"
+msgstr "Legt·fest, ob das Einrücken automatisch erfolgen soll"
 
 #: ../gtksourceview/gtksourceview.c:252
 msgid "Insert Spaces Instead of Tabs"
@@ -377,7 +381,7 @@ msgstr "Leerzeichen statt Tabulatoren einfügen"
 
 #: ../gtksourceview/gtksourceview.c:253
 msgid "Whether to insert spaces instead of tabs"
-msgstr "Gibt an, ob Leerzeichen statt Tabulatoren eingefügt werden sollen"
+msgstr "Legt·fest, ob Leerzeichen statt Tabulatoren eingefügt werden sollen"
 
 #: ../gtksourceview/gtksourceview.c:260
 msgid "Show Right Margin"
@@ -385,7 +389,7 @@ msgstr "Rechten Rand anzeigen"
 
 #: ../gtksourceview/gtksourceview.c:261
 msgid "Whether to display the right margin"
-msgstr "Gibt an, ob der rechte Rand angezeigt werden soll"
+msgstr "Legt·fest, ob der rechte Rand angezeigt werden soll"
 
 #: ../gtksourceview/gtksourceview.c:268
 msgid "Margin position"
@@ -405,9 +409,9 @@ msgid ""
 "HOME and END keys move to first/last non whitespace characters on line "
 "before going to the start/end of the line"
 msgstr ""
-"Gibt an, ob die Pos1 bzw. die End-Taste zum ersten/letzten sichtbare Zeichen "
-"einer Zeile springen soll, bevor sie zum Anfang/Ende der jeweiligen Zeile "
-"springt"
+"Legt·fest, ob die Pos1- bzw. die Ende-Taste zum ersten/letzten sichtbare "
+"Zeichen einer Zeile springen soll, bevor sie zum Anfang/Ende der jeweiligen "
+"Zeile springt"
 
 #: ../gtksourceview/gtksourceview.c:288
 msgid "Highlight current line"
@@ -415,7 +419,7 @@ msgstr "Aktuelle Zeile hervorheben"
 
 #: ../gtksourceview/gtksourceview.c:289
 msgid "Whether to highlight the current line"
-msgstr "Gibt an, ob die aktuelle Zeile hervorgehoben werden soll"
+msgstr "Legt·fest, ob die aktuelle Zeile hervorgehoben werden soll"
 
 #: ../gtksourceview/gtksourceview.c:296
 msgid "Indent on tab"
@@ -424,7 +428,7 @@ msgstr "Einrücken mit Tabulator"
 #: ../gtksourceview/gtksourceview.c:297
 msgid "Whether to indent the selected text when the tab key is pressed"
 msgstr ""
-"Gibt ab, ob der markierte Text eingerückt werden soll, wenn die Tabulator-"
+"Legt·fest, ob der markierte Text eingerückt werden soll, wenn die Tabulator-"
 "Taste gedrückt wird"
 
 #: ../gtksourceview/gtksourceview.c:313
@@ -449,7 +453,7 @@ msgstr "Randüberlagerungseinschalter"
 
 #: ../gtksourceview/gtksourceview.c:349
 msgid "Whether to draw the right margin overlay"
-msgstr "Gibt an, ob die Überlagerung des rechten Rand angezeigt werden soll"
+msgstr "Legt·fest, ob die Überlagerung des rechten Rand angezeigt werden soll"
 
 #: ../gtksourceview/gtksourceview.c:365
 msgid "Margin Overlay Alpha"
@@ -512,11 +516,12 @@ msgstr "Zeichenkonstante"
 #: ../gtksourceview/language-specs/ruby.lang.h:10
 #: ../gtksourceview/language-specs/scheme.lang.h:10
 #: ../gtksourceview/language-specs/sh.lang.h:5
+#: ../gtksourceview/language-specs/spec.lang.h:10
 #: ../gtksourceview/language-specs/sql.lang.h:23
 #: ../gtksourceview/language-specs/tcl.lang.h:2
 #: ../gtksourceview/language-specs/texinfo.lang.h:9
 #: ../gtksourceview/language-specs/vbnet.lang.h:6
-#: ../gtksourceview/language-specs/verilog.lang.h:7
+#: ../gtksourceview/language-specs/verilog.lang.h:8
 #: ../gtksourceview/language-specs/vhdl.lang.h:3
 msgid "Line Comment"
 msgstr "Zeilenkommentar"
@@ -557,7 +562,7 @@ msgstr "Präprozessorstichwort"
 #: ../gtksourceview/language-specs/scheme.lang.h:12
 #: ../gtksourceview/language-specs/sql.lang.h:48
 #: ../gtksourceview/language-specs/vbnet.lang.h:10
-#: ../gtksourceview/language-specs/verilog.lang.h:9
+#: ../gtksourceview/language-specs/verilog.lang.h:10
 #: ../gtksourceview/language-specs/vhdl.lang.h:5
 msgid "Sources"
 msgstr "Quelltexte"
@@ -588,7 +593,7 @@ msgstr "Boolescher Wert"
 #: ../gtksourceview/language-specs/perl.lang.h:2
 #: ../gtksourceview/language-specs/ruby.lang.h:9
 #: ../gtksourceview/language-specs/vbnet.lang.h:1
-#: ../gtksourceview/language-specs/verilog.lang.h:6
+#: ../gtksourceview/language-specs/verilog.lang.h:7
 msgid "Keywords"
 msgstr "Stichwörter"
 
@@ -662,7 +667,7 @@ msgstr "Fließkommazahl"
 #: ../gtksourceview/language-specs/pascal.lang.h:10
 #: ../gtksourceview/language-specs/python.lang.h:6
 msgid "Hex Number"
-msgstr "Hexzahl"
+msgstr "Hex-Zahl"
 
 # CHECK
 #: ../gtksourceview/language-specs/c.lang.h:9
@@ -681,7 +686,7 @@ msgstr "Include/Pragma"
 #: ../gtksourceview/language-specs/ocaml.lang.h:12
 #: ../gtksourceview/language-specs/octave.lang.h:10
 #: ../gtksourceview/language-specs/python.lang.h:12
-#: ../gtksourceview/language-specs/verilog.lang.h:8
+#: ../gtksourceview/language-specs/verilog.lang.h:9
 msgid "Octal Number"
 msgstr "Oktalzahl"
 
@@ -698,7 +703,7 @@ msgstr "Präprozessordefinitionen"
 #: ../gtksourceview/language-specs/d.lang.h:16
 #: ../gtksourceview/language-specs/fortran.lang.h:16
 #: ../gtksourceview/language-specs/idl.lang.h:10
-#: ../gtksourceview/language-specs/verilog.lang.h:10
+#: ../gtksourceview/language-specs/verilog.lang.h:11
 msgid "Types"
 msgstr "Typen"
 
@@ -707,10 +712,12 @@ msgid "ChangeLog"
 msgstr "Änderungsprotokoll"
 
 #: ../gtksourceview/language-specs/changelog.lang.h:2
+#: ../gtksourceview/language-specs/spec.lang.h:4
 msgid "Date"
 msgstr "Datum"
 
 #: ../gtksourceview/language-specs/changelog.lang.h:3
+#: ../gtksourceview/language-specs/spec.lang.h:7
 msgid "Email"
 msgstr "E-Mail"
 
@@ -804,6 +811,7 @@ msgstr "Bekannte Eigenschaftswerte"
 #: ../gtksourceview/language-specs/css.lang.h:35
 #: ../gtksourceview/language-specs/fortran.lang.h:11
 #: ../gtksourceview/language-specs/javascript.lang.h:20
+#: ../gtksourceview/language-specs/perl.lang.h:5
 #: ../gtksourceview/language-specs/php.lang.h:20
 #: ../gtksourceview/language-specs/sql.lang.h:34
 msgid "Operators"
@@ -886,7 +894,7 @@ msgstr "Verschachtelter Kommentar"
 
 #: ../gtksourceview/language-specs/d.lang.h:14
 msgid "Special Tokens"
-msgstr "Spezielles Token"
+msgstr "Spezielles Zeichen"
 
 #: ../gtksourceview/language-specs/d.lang.h:15
 msgid "String Literal"
@@ -949,7 +957,7 @@ msgstr "Ort"
 
 #: ../gtksourceview/language-specs/diff.lang.h:8
 msgid "Removed line"
-msgstr "Entfernte Zeile"
+msgstr "Gelöschte Zeile"
 
 # CHECK
 #: ../gtksourceview/language-specs/diff.lang.h:9
@@ -984,7 +992,7 @@ msgstr "Formatierungs-Elemente"
 
 #: ../gtksourceview/language-specs/docbook.lang.h:7
 msgid "GUI Elements"
-msgstr "Benutzeroberflächen-Elemente"
+msgstr "Benutzeroberflächenelemente"
 
 #: ../gtksourceview/language-specs/docbook.lang.h:8
 msgid "Header Elements"
@@ -1002,7 +1010,7 @@ msgstr "Hexadezimal"
 #: ../gtksourceview/language-specs/texinfo.lang.h:12
 #: ../gtksourceview/language-specs/xml.lang.h:6
 msgid "Markup"
-msgstr "Markup"
+msgstr "Auszeichnung"
 
 #: ../gtksourceview/language-specs/docbook.lang.h:12
 msgid "Structural Elements"
@@ -1038,7 +1046,7 @@ msgstr "Eingabe/Ausgabe"
 
 #: ../gtksourceview/language-specs/fortran.lang.h:6
 msgid "Intrinsics"
-msgstr "Intrinsics"
+msgstr "Inhärent"
 
 #: ../gtksourceview/language-specs/fortran.lang.h:12
 msgid "Read/Write"
@@ -1110,14 +1118,14 @@ msgstr "IDL"
 # CHECK
 #: ../gtksourceview/language-specs/idl.lang.h:7
 msgid "Sectional"
-msgstr "Sectional"
+msgstr "Eingeteilt"
 
 #: ../gtksourceview/language-specs/ini.lang.h:1
 msgid ".ini"
 msgstr ".ini"
 
 #: ../gtksourceview/language-specs/ini.lang.h:3
-#: ../gtksourceview/language-specs/verilog.lang.h:3
+#: ../gtksourceview/language-specs/verilog.lang.h:4
 msgid "Decimal Number"
 msgstr "Dezimalzahl"
 
@@ -1132,7 +1140,7 @@ msgstr "Deklarationen"
 # CHECK
 #: ../gtksourceview/language-specs/java.lang.h:3
 msgid "Flow"
-msgstr "Flow"
+msgstr "Fluss"
 
 #: ../gtksourceview/language-specs/java.lang.h:4
 #: ../gtksourceview/language-specs/javascript.lang.h:7
@@ -1146,7 +1154,7 @@ msgstr "Java"
 # CHECK
 #: ../gtksourceview/language-specs/java.lang.h:7
 msgid "Memory"
-msgstr "Memory"
+msgstr "Speicher"
 
 #: ../gtksourceview/language-specs/java.lang.h:8
 msgid "Modifiers"
@@ -1171,11 +1179,11 @@ msgstr "Fehlerbehandlung"
 
 #: ../gtksourceview/language-specs/javascript.lang.h:5
 msgid "Floating-Point Number"
-msgstr "Fließpunktzahl"
+msgstr "Fließkommazahl"
 
 #: ../gtksourceview/language-specs/javascript.lang.h:6
 msgid "Flow Keywords"
-msgstr "Fluss-Schlüsselwörter"
+msgstr "Flussschlüsselwörter"
 
 #: ../gtksourceview/language-specs/javascript.lang.h:8
 msgid "Global Functions"
@@ -1186,7 +1194,7 @@ msgid "Global Properties"
 msgstr "Globale Eigenschaften"
 
 #: ../gtksourceview/language-specs/javascript.lang.h:10
-#: ../gtksourceview/language-specs/verilog.lang.h:5
+#: ../gtksourceview/language-specs/verilog.lang.h:6
 msgid "Hexadecimal Number"
 msgstr "Hexadezimalzahl"
 
@@ -1213,7 +1221,7 @@ msgstr "Objekte"
 #: ../gtksourceview/language-specs/javascript.lang.h:22
 #: ../gtksourceview/language-specs/lua.lang.h:9
 #: ../gtksourceview/language-specs/octave.lang.h:13
-#: ../gtksourceview/language-specs/perl.lang.h:7
+#: ../gtksourceview/language-specs/perl.lang.h:8
 #: ../gtksourceview/language-specs/php.lang.h:22
 #: ../gtksourceview/language-specs/python.lang.h:14
 #: ../gtksourceview/language-specs/R.lang.h:10
@@ -1309,11 +1317,11 @@ msgstr "MSIL"
 
 #: ../gtksourceview/language-specs/nemerle.lang.h:4
 msgid "Core Keywords"
-msgstr "Kern-Schlüsselwörter"
+msgstr "Grundschlüsselwörter"
 
 #: ../gtksourceview/language-specs/nemerle.lang.h:5
 msgid "Core Types"
-msgstr "Kern-Typen"
+msgstr "Grundtypen"
 
 #: ../gtksourceview/language-specs/nemerle.lang.h:9
 msgid "Keywords Defined by Macros"
@@ -1368,7 +1376,7 @@ msgstr "Blockkommentar 2"
 
 #: ../gtksourceview/language-specs/pascal.lang.h:3
 msgid "Boolean Bitwise Operators"
-msgstr "Boole'sche, bitweise Operatoren"
+msgstr "Boolesche, bitweise Operatoren"
 
 #: ../gtksourceview/language-specs/pascal.lang.h:4
 msgid "Builtin Functions"
@@ -1394,7 +1402,7 @@ msgstr "Allgemeines Format"
 
 #: ../gtksourceview/language-specs/pascal.lang.h:12
 msgid "Loop, Flow, and Exceptions Keywords"
-msgstr "Loop-, Flow- und Exception-Schlüsselwörter"
+msgstr "Schlüsselwörter für Fluss, Schleifen und Ausnahmen"
 
 #: ../gtksourceview/language-specs/pascal.lang.h:13
 msgid "Math Operators"
@@ -1420,24 +1428,24 @@ msgstr "Funktionsaufruf"
 msgid "Method Call"
 msgstr "Methodenaufruf"
 
-#: ../gtksourceview/language-specs/perl.lang.h:5
+#: ../gtksourceview/language-specs/perl.lang.h:6
 msgid "POD"
 msgstr "POD"
 
-#: ../gtksourceview/language-specs/perl.lang.h:6
+#: ../gtksourceview/language-specs/perl.lang.h:7
 msgid "Perl"
 msgstr "Perl"
 
-#: ../gtksourceview/language-specs/perl.lang.h:9
+#: ../gtksourceview/language-specs/perl.lang.h:10
 #: ../gtksourceview/language-specs/tcl.lang.h:5
 msgid "String2"
 msgstr "Zeichenkette2"
 
-#: ../gtksourceview/language-specs/perl.lang.h:10
+#: ../gtksourceview/language-specs/perl.lang.h:11
 msgid "String3"
 msgstr "Zeichenkette3"
 
-#: ../gtksourceview/language-specs/perl.lang.h:11
+#: ../gtksourceview/language-specs/perl.lang.h:12
 msgid "Variables"
 msgstr "Variablen"
 
@@ -1518,7 +1526,7 @@ msgstr "Reservierte Klasse"
 
 #: ../gtksourceview/language-specs/ruby.lang.h:1
 msgid "Attribute Definitions"
-msgstr "Attributdefinitionen"
+msgstr "Attributsdefinitionen"
 
 #: ../gtksourceview/language-specs/ruby.lang.h:3
 msgid "Class Variables"
@@ -1596,6 +1604,61 @@ msgstr "Selbst"
 msgid "sh"
 msgstr "sh"
 
+# CHECK
+#: ../gtksourceview/language-specs/spec.lang.h:1
+msgid "Command Macro"
+msgstr "Befehlsmakro"
+
+#: ../gtksourceview/language-specs/spec.lang.h:2
+msgid "Conditional Define"
+msgstr "Bedingte Definition"
+
+# CHECK
+#: ../gtksourceview/language-specs/spec.lang.h:3
+msgid "Conditional Macro"
+msgstr "Bedingtes Makro"
+
+#: ../gtksourceview/language-specs/spec.lang.h:5
+msgid "Define"
+msgstr "Festlegen"
+
+#: ../gtksourceview/language-specs/spec.lang.h:6
+msgid "Directory Macro"
+msgstr "Verzeichnismakro"
+
+#: ../gtksourceview/language-specs/spec.lang.h:8
+msgid "Flow Conditional"
+msgstr "Flusskontrolle"
+
+#: ../gtksourceview/language-specs/spec.lang.h:9
+msgid "Header"
+msgstr "Kopfzeile"
+
+#: ../gtksourceview/language-specs/spec.lang.h:11
+msgid "Other Macro"
+msgstr "Sonstiges Makro"
+
+#: ../gtksourceview/language-specs/spec.lang.h:13
+msgid "RPM Variable"
+msgstr "RPM-Variable"
+
+#: ../gtksourceview/language-specs/spec.lang.h:14
+msgid "RPM spec"
+msgstr "RPM-Spezifikation"
+
+# CHECK
+#: ../gtksourceview/language-specs/spec.lang.h:15
+msgid "Section"
+msgstr "Abschnitts"
+
+#: ../gtksourceview/language-specs/spec.lang.h:16
+msgid "Spec Macro"
+msgstr "Spezifikations-Makro"
+
+#: ../gtksourceview/language-specs/spec.lang.h:17
+msgid "Switch"
+msgstr "Wechseln"
+
 #: ../gtksourceview/language-specs/sql.lang.h:1
 msgid "ANSI Datatypes"
 msgstr "ANSI-Datentypen"
@@ -1665,7 +1728,7 @@ msgstr "Ganzzahlige Literale"
 
 #: ../gtksourceview/language-specs/sql.lang.h:22
 msgid "Large Object Functions"
-msgstr "Große Objekte-Funktionen"
+msgstr "Funktionen für große Objekte"
 
 #. Model Functions
 #: ../gtksourceview/language-specs/sql.lang.h:25
@@ -1743,7 +1806,7 @@ msgstr "SQL/DS und DB2-Datentypen"
 
 #: ../gtksourceview/language-specs/sql.lang.h:47
 msgid "Size Clause"
-msgstr "Size-Bedingung"
+msgstr "Größenbedingung"
 
 #. Literals
 #: ../gtksourceview/language-specs/sql.lang.h:50
@@ -1793,11 +1856,11 @@ msgstr "Makros"
 # CHECK
 #: ../gtksourceview/language-specs/texinfo.lang.h:13
 msgid "Markup (block)"
-msgstr "Markup (Block)"
+msgstr "Auszeichnung (Block)"
 
 #: ../gtksourceview/language-specs/texinfo.lang.h:14
 msgid "Markup (inline)"
-msgstr "Markup (inline)"
+msgstr "Auszeichnung (inline)"
 
 # CHECK
 #: ../gtksourceview/language-specs/texinfo.lang.h:15
@@ -1816,11 +1879,15 @@ msgstr "Kommentar im alten Stil"
 msgid "VB.NET"
 msgstr "VB.NET"
 
-#: ../gtksourceview/language-specs/verilog.lang.h:4
+#: ../gtksourceview/language-specs/verilog.lang.h:3
+msgid "Compiler directive"
+msgstr "Compiler-Anweisung"
+
+#: ../gtksourceview/language-specs/verilog.lang.h:5
 msgid "Gates"
 msgstr "Gatter"
 
-#: ../gtksourceview/language-specs/verilog.lang.h:11
+#: ../gtksourceview/language-specs/verilog.lang.h:12
 msgid "Verilog"
 msgstr "Verilog"
 
