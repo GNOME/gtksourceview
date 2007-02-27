@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lt\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-08-29 01:10+0300\n"
+"POT-Creation-Date: 2007-02-27 15:48+0200\n"
 "PO-Revision-Date: 2006-08-29 01:20+0300\n"
 "Last-Translator: Gintautas Miliauskas <gintas@akl.lt>\n"
 "Language-Team: Lithuanian <komp_lt@konferencijos.lt>\n"
@@ -18,7 +18,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.2\n"
-"Plural-Forms:  nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms:  nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%"
+"100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: ../gtksourceview/gtksourcebuffer.c:278
 msgid "Escape Character"
@@ -71,7 +72,7 @@ msgstr "Kalbų specifikacijų aplankai"
 msgid ""
 "List of directories where the language specification files (.lang) are "
 "located"
-msgstr "Aplankų, kuriuose yra kalbų specifikacijų rinkmenos (.lang), vieta"
+msgstr "Aplankų, kuriuose yra kalbų specifikacijų failo (.lang), vieta"
 
 #: ../gtksourceview/gtksourceprintjob.c:265
 msgid "Configuration"
@@ -145,7 +146,8 @@ msgstr "Spausdinti eilučių numerius"
 
 #: ../gtksourceview/gtksourceprintjob.c:338
 msgid "Interval of printed line numbers (0 means no numbers)"
-msgstr "Tarpas tarp spausdinamų eilučių numerių (0 reiškia numerių nespausdinimą)"
+msgstr ""
+"Tarpas tarp spausdinamų eilučių numerių (0 reiškia numerių nespausdinimą)"
 
 #: ../gtksourceview/gtksourceprintjob.c:345
 msgid "Print Header"
@@ -189,6 +191,7 @@ msgstr "Simbolis"
 
 #: ../gtksourceview/gtksourcestylescheme.c:274
 #: ../gtksourceview/language-specs/latex.lang.h:2
+#: ../gtksourceview/language-specs/ocaml.lang.h:4
 #: ../gtksourceview/language-specs/po.lang.h:1
 msgid "Comment"
 msgstr "Komentaras"
@@ -219,6 +222,7 @@ msgstr "Funkcija"
 #: ../gtksourceview/language-specs/fortran.lang.h:1
 #: ../gtksourceview/language-specs/haskell.lang.h:3
 #: ../gtksourceview/language-specs/nemerle.lang.h:6
+#: ../gtksourceview/language-specs/ocaml.lang.h:5
 #: ../gtksourceview/language-specs/octave.lang.h:1
 #: ../gtksourceview/language-specs/python.lang.h:2
 msgid "Decimal"
@@ -277,17 +281,19 @@ msgstr "Apdorojanti programa"
 #: ../gtksourceview/language-specs/cpp.lang.h:15
 #: ../gtksourceview/language-specs/csharp.lang.h:9
 #: ../gtksourceview/language-specs/css.lang.h:58
+#: ../gtksourceview/language-specs/docbook.lang.h:11
 #: ../gtksourceview/language-specs/html.lang.h:8
 #: ../gtksourceview/language-specs/fortran.lang.h:14
 #: ../gtksourceview/language-specs/haskell.lang.h:31
 #: ../gtksourceview/language-specs/idl.lang.h:9
-#: ../gtksourceview/language-specs/java.lang.h:11
+#: ../gtksourceview/language-specs/java.lang.h:12
 #: ../gtksourceview/language-specs/javascript.lang.h:23
 #: ../gtksourceview/language-specs/lua.lang.h:10
 #: ../gtksourceview/language-specs/makefile.lang.h:8
 #: ../gtksourceview/language-specs/nemerle.lang.h:15
+#: ../gtksourceview/language-specs/ocaml.lang.h:14
 #: ../gtksourceview/language-specs/pascal.lang.h:18
-#: ../gtksourceview/language-specs/perl.lang.h:8
+#: ../gtksourceview/language-specs/perl.lang.h:9
 #: ../gtksourceview/language-specs/po.lang.h:6
 #: ../gtksourceview/language-specs/scheme.lang.h:13
 #: ../gtksourceview/language-specs/sh.lang.h:13
@@ -311,6 +317,7 @@ msgstr "Specialūs"
 #: ../gtksourceview/language-specs/ini.lang.h:10
 #: ../gtksourceview/language-specs/msil.lang.h:2
 #: ../gtksourceview/language-specs/po.lang.h:5
+#: ../gtksourceview/language-specs/spec.lang.h:12
 msgid "Others"
 msgstr "Kiti"
 
@@ -467,6 +474,7 @@ msgstr "Ada"
 #: ../gtksourceview/language-specs/cpp.lang.h:4
 #: ../gtksourceview/language-specs/haskell.lang.h:2
 #: ../gtksourceview/language-specs/nemerle.lang.h:3
+#: ../gtksourceview/language-specs/ocaml.lang.h:3
 #: ../gtksourceview/language-specs/vhdl.lang.h:1
 msgid "Character Constant"
 msgstr "Simbolinė konstanta"
@@ -489,7 +497,7 @@ msgstr "Simbolinė konstanta"
 #: ../gtksourceview/language-specs/haskell.lang.h:10
 #: ../gtksourceview/language-specs/idl.lang.h:5
 #: ../gtksourceview/language-specs/ini.lang.h:8
-#: ../gtksourceview/language-specs/java.lang.h:5
+#: ../gtksourceview/language-specs/java.lang.h:6
 #: ../gtksourceview/language-specs/javascript.lang.h:13
 #: ../gtksourceview/language-specs/lua.lang.h:4
 #: ../gtksourceview/language-specs/makefile.lang.h:4
@@ -502,11 +510,12 @@ msgstr "Simbolinė konstanta"
 #: ../gtksourceview/language-specs/ruby.lang.h:10
 #: ../gtksourceview/language-specs/scheme.lang.h:10
 #: ../gtksourceview/language-specs/sh.lang.h:5
+#: ../gtksourceview/language-specs/spec.lang.h:10
 #: ../gtksourceview/language-specs/sql.lang.h:23
 #: ../gtksourceview/language-specs/tcl.lang.h:2
 #: ../gtksourceview/language-specs/texinfo.lang.h:9
 #: ../gtksourceview/language-specs/vbnet.lang.h:6
-#: ../gtksourceview/language-specs/verilog.lang.h:7
+#: ../gtksourceview/language-specs/verilog.lang.h:8
 #: ../gtksourceview/language-specs/vhdl.lang.h:3
 msgid "Line Comment"
 msgstr "Eilutės komentaras"
@@ -539,14 +548,15 @@ msgstr "Apdorojančios programos raktažodis"
 #: ../gtksourceview/language-specs/fortran.lang.h:13
 #: ../gtksourceview/language-specs/haskell.lang.h:13
 #: ../gtksourceview/language-specs/idl.lang.h:8
-#: ../gtksourceview/language-specs/java.lang.h:10
+#: ../gtksourceview/language-specs/java.lang.h:11
 #: ../gtksourceview/language-specs/makefile.lang.h:6
 #: ../gtksourceview/language-specs/nemerle.lang.h:14
+#: ../gtksourceview/language-specs/ocaml.lang.h:13
 #: ../gtksourceview/language-specs/pascal.lang.h:17
 #: ../gtksourceview/language-specs/scheme.lang.h:12
 #: ../gtksourceview/language-specs/sql.lang.h:48
 #: ../gtksourceview/language-specs/vbnet.lang.h:10
-#: ../gtksourceview/language-specs/verilog.lang.h:9
+#: ../gtksourceview/language-specs/verilog.lang.h:10
 #: ../gtksourceview/language-specs/vhdl.lang.h:5
 msgid "Sources"
 msgstr "Pradiniai tekstai"
@@ -573,10 +583,11 @@ msgstr "Loginė reikšmė"
 #: ../gtksourceview/language-specs/idl.lang.h:4
 #: ../gtksourceview/language-specs/javascript.lang.h:12
 #: ../gtksourceview/language-specs/lua.lang.h:3
+#: ../gtksourceview/language-specs/ocaml.lang.h:8
 #: ../gtksourceview/language-specs/perl.lang.h:2
 #: ../gtksourceview/language-specs/ruby.lang.h:9
 #: ../gtksourceview/language-specs/vbnet.lang.h:1
-#: ../gtksourceview/language-specs/verilog.lang.h:6
+#: ../gtksourceview/language-specs/verilog.lang.h:7
 msgid "Keywords"
 msgstr "Raktai"
 
@@ -600,6 +611,7 @@ msgstr "'#if 0' komentaras"
 #: ../gtksourceview/language-specs/csharp.lang.h:1
 #: ../gtksourceview/language-specs/css.lang.h:9
 #: ../gtksourceview/language-specs/d.lang.h:2
+#: ../gtksourceview/language-specs/docbook.lang.h:2
 #: ../gtksourceview/language-specs/html.lang.h:2
 #: ../gtksourceview/language-specs/haskell.lang.h:1
 #: ../gtksourceview/language-specs/idl.lang.h:1
@@ -629,6 +641,7 @@ msgstr "Bendrinis makrosas"
 #: ../gtksourceview/language-specs/fortran.lang.h:2
 #: ../gtksourceview/language-specs/haskell.lang.h:4
 #: ../gtksourceview/language-specs/nemerle.lang.h:7
+#: ../gtksourceview/language-specs/ocaml.lang.h:6
 #: ../gtksourceview/language-specs/octave.lang.h:3
 #: ../gtksourceview/language-specs/python.lang.h:4
 #: ../gtksourceview/language-specs/R.lang.h:4
@@ -642,6 +655,7 @@ msgstr "Skaičius su slankiu kableliu"
 #: ../gtksourceview/language-specs/fortran.lang.h:4
 #: ../gtksourceview/language-specs/haskell.lang.h:6
 #: ../gtksourceview/language-specs/nemerle.lang.h:8
+#: ../gtksourceview/language-specs/ocaml.lang.h:7
 #: ../gtksourceview/language-specs/octave.lang.h:5
 #: ../gtksourceview/language-specs/pascal.lang.h:10
 #: ../gtksourceview/language-specs/python.lang.h:6
@@ -661,9 +675,10 @@ msgstr "Intarpas/Pragma"
 #: ../gtksourceview/language-specs/fortran.lang.h:10
 #: ../gtksourceview/language-specs/haskell.lang.h:11
 #: ../gtksourceview/language-specs/nemerle.lang.h:12
+#: ../gtksourceview/language-specs/ocaml.lang.h:12
 #: ../gtksourceview/language-specs/octave.lang.h:10
 #: ../gtksourceview/language-specs/python.lang.h:12
-#: ../gtksourceview/language-specs/verilog.lang.h:8
+#: ../gtksourceview/language-specs/verilog.lang.h:9
 msgid "Octal Number"
 msgstr "Aštuntainis skaičius"
 
@@ -680,7 +695,7 @@ msgstr "Apdorojančios programos nustatymai"
 #: ../gtksourceview/language-specs/d.lang.h:16
 #: ../gtksourceview/language-specs/fortran.lang.h:16
 #: ../gtksourceview/language-specs/idl.lang.h:10
-#: ../gtksourceview/language-specs/verilog.lang.h:10
+#: ../gtksourceview/language-specs/verilog.lang.h:11
 msgid "Types"
 msgstr "Tipai"
 
@@ -689,16 +704,18 @@ msgid "ChangeLog"
 msgstr "ChangeLog"
 
 #: ../gtksourceview/language-specs/changelog.lang.h:2
+#: ../gtksourceview/language-specs/spec.lang.h:4
 msgid "Date"
 msgstr "Data"
 
 #: ../gtksourceview/language-specs/changelog.lang.h:3
+#: ../gtksourceview/language-specs/spec.lang.h:7
 msgid "Email"
 msgstr "El. paštas"
 
 #: ../gtksourceview/language-specs/changelog.lang.h:4
 msgid "File"
-msgstr "Rinkmena"
+msgstr "Failas"
 
 #: ../gtksourceview/language-specs/changelog.lang.h:5
 msgid "Marker"
@@ -719,7 +736,7 @@ msgid "Multiline String"
 msgstr "Suskaidyta eilutėmis seka"
 
 #: ../gtksourceview/language-specs/csharp.lang.h:7
-#: ../gtksourceview/language-specs/java.lang.h:9
+#: ../gtksourceview/language-specs/java.lang.h:10
 #: ../gtksourceview/language-specs/nemerle.lang.h:13
 #: ../gtksourceview/language-specs/vbnet.lang.h:9
 msgid "Primitives"
@@ -728,7 +745,7 @@ msgstr "Primityvai"
 #: ../gtksourceview/language-specs/csharp.lang.h:10
 #: ../gtksourceview/language-specs/css.lang.h:59
 #: ../gtksourceview/language-specs/fortran.lang.h:15
-#: ../gtksourceview/language-specs/java.lang.h:12
+#: ../gtksourceview/language-specs/java.lang.h:13
 #: ../gtksourceview/language-specs/javascript.lang.h:24
 #: ../gtksourceview/language-specs/lua.lang.h:11
 #: ../gtksourceview/language-specs/makefile.lang.h:9
@@ -783,6 +800,7 @@ msgstr "Žinomos savybių reikšmės"
 #: ../gtksourceview/language-specs/css.lang.h:35
 #: ../gtksourceview/language-specs/fortran.lang.h:11
 #: ../gtksourceview/language-specs/javascript.lang.h:20
+#: ../gtksourceview/language-specs/perl.lang.h:5
 #: ../gtksourceview/language-specs/php.lang.h:20
 #: ../gtksourceview/language-specs/sql.lang.h:34
 msgid "Operators"
@@ -842,6 +860,7 @@ msgstr "Unikodo sritys"
 
 #: ../gtksourceview/language-specs/d.lang.h:1
 #: ../gtksourceview/language-specs/nemerle.lang.h:1
+#: ../gtksourceview/language-specs/ocaml.lang.h:1
 #: ../gtksourceview/language-specs/verilog.lang.h:1
 msgid "Binary Number"
 msgstr "Dvejetainis skaičius"
@@ -917,7 +936,7 @@ msgstr "Pasikeitimai"
 
 #: ../gtksourceview/language-specs/diff.lang.h:4
 msgid "Diff file"
-msgstr "Pasikeitimų rinkmena (diff)"
+msgstr "Pasikeitimų failas (diff)"
 
 #: ../gtksourceview/language-specs/diff.lang.h:6
 #: ../gtksourceview/language-specs/po.lang.h:4
@@ -932,35 +951,74 @@ msgstr "Pašalinta eilutė"
 msgid "Special case"
 msgstr "Specialus atvejis"
 
+#: ../gtksourceview/language-specs/docbook.lang.h:1
 #: ../gtksourceview/language-specs/html.lang.h:1
 #: ../gtksourceview/language-specs/xml.lang.h:1
 msgid "Attribute"
 msgstr "Požymis"
 
+#: ../gtksourceview/language-specs/docbook.lang.h:3
 #: ../gtksourceview/language-specs/html.lang.h:3
 #: ../gtksourceview/language-specs/xml.lang.h:3
 msgid "Closing Bracket"
 msgstr "Uždarantys laužtiniai skliaustai"
 
-#: ../gtksourceview/language-specs/html.lang.h:4
-msgid "DTD"
-msgstr "DTD"
+#: ../gtksourceview/language-specs/docbook.lang.h:4
+msgid "DocBook"
+msgstr ""
 
+#: ../gtksourceview/language-specs/docbook.lang.h:5
 #: ../gtksourceview/language-specs/html.lang.h:5
 #: ../gtksourceview/language-specs/xml.lang.h:4
 msgid "Entity"
 msgstr "Esybė"
 
-#: ../gtksourceview/language-specs/html.lang.h:6
-msgid "HTML"
-msgstr "HTML"
+#: ../gtksourceview/language-specs/docbook.lang.h:6
+#, fuzzy
+msgid "Formatting Elements"
+msgstr "Formatavimas"
 
+#: ../gtksourceview/language-specs/docbook.lang.h:7
+msgid "GUI Elements"
+msgstr ""
+
+#: ../gtksourceview/language-specs/docbook.lang.h:8
+#, fuzzy
+msgid "Header Elements"
+msgstr "Parinkiklio pseudo elementai"
+
+#: ../gtksourceview/language-specs/docbook.lang.h:9
+#: ../gtksourceview/language-specs/xml.lang.h:5
+msgid "Hexadecimal"
+msgstr "Šešioliktainis"
+
+#: ../gtksourceview/language-specs/docbook.lang.h:10
 #: ../gtksourceview/language-specs/html.lang.h:7
 #: ../gtksourceview/language-specs/latex.lang.h:7
 #: ../gtksourceview/language-specs/texinfo.lang.h:12
 #: ../gtksourceview/language-specs/xml.lang.h:6
 msgid "Markup"
 msgstr "Žymėjimas"
+
+#: ../gtksourceview/language-specs/docbook.lang.h:12
+#, fuzzy
+msgid "Structural Elements"
+msgstr "Parinkiklio pseudo elementai"
+
+#. This split keeps each keyword-list under 250 elements.
+#. See bug #110991 for further details.
+#.
+#: ../gtksourceview/language-specs/docbook.lang.h:16
+msgid "Structural Elements 2"
+msgstr ""
+
+#: ../gtksourceview/language-specs/html.lang.h:4
+msgid "DTD"
+msgstr "DTD"
+
+#: ../gtksourceview/language-specs/html.lang.h:6
+msgid "HTML"
+msgstr "HTML"
 
 #: ../gtksourceview/language-specs/html.lang.h:9
 #: ../gtksourceview/language-specs/xml.lang.h:8
@@ -1055,7 +1113,7 @@ msgid ".ini"
 msgstr ".ini"
 
 #: ../gtksourceview/language-specs/ini.lang.h:3
-#: ../gtksourceview/language-specs/verilog.lang.h:3
+#: ../gtksourceview/language-specs/verilog.lang.h:4
 msgid "Decimal Number"
 msgstr "Dešimtainis skaičius"
 
@@ -1072,18 +1130,23 @@ msgid "Flow"
 msgstr "Srautas"
 
 #: ../gtksourceview/language-specs/java.lang.h:4
+#: ../gtksourceview/language-specs/javascript.lang.h:7
+msgid "Future Reserved Words"
+msgstr "Ateičiai rezervuoti žodžiai"
+
+#: ../gtksourceview/language-specs/java.lang.h:5
 msgid "Java"
 msgstr "Java"
 
-#: ../gtksourceview/language-specs/java.lang.h:6
+#: ../gtksourceview/language-specs/java.lang.h:7
 msgid "Memory"
 msgstr "Atmintis"
 
-#: ../gtksourceview/language-specs/java.lang.h:7
+#: ../gtksourceview/language-specs/java.lang.h:8
 msgid "Modifiers"
 msgstr "Keitikliai"
 
-#: ../gtksourceview/language-specs/java.lang.h:8
+#: ../gtksourceview/language-specs/java.lang.h:9
 msgid "Numeric"
 msgstr "Skaitmenys"
 
@@ -1108,10 +1171,6 @@ msgstr "Skaičius su slankiu kableliu"
 msgid "Flow Keywords"
 msgstr "Srauto raktažodžiai"
 
-#: ../gtksourceview/language-specs/javascript.lang.h:7
-msgid "Future Reserved Words"
-msgstr "Ateičiai rezervuoti žodžiai"
-
 #: ../gtksourceview/language-specs/javascript.lang.h:8
 msgid "Global Functions"
 msgstr "Globalios funkcijos"
@@ -1121,7 +1180,7 @@ msgid "Global Properties"
 msgstr "Globalios savybės"
 
 #: ../gtksourceview/language-specs/javascript.lang.h:10
-#: ../gtksourceview/language-specs/verilog.lang.h:5
+#: ../gtksourceview/language-specs/verilog.lang.h:6
 msgid "Hexadecimal Number"
 msgstr "Šešioliktainis skaičius"
 
@@ -1148,7 +1207,7 @@ msgstr "Objektai"
 #: ../gtksourceview/language-specs/javascript.lang.h:22
 #: ../gtksourceview/language-specs/lua.lang.h:9
 #: ../gtksourceview/language-specs/octave.lang.h:13
-#: ../gtksourceview/language-specs/perl.lang.h:7
+#: ../gtksourceview/language-specs/perl.lang.h:8
 #: ../gtksourceview/language-specs/php.lang.h:22
 #: ../gtksourceview/language-specs/python.lang.h:14
 #: ../gtksourceview/language-specs/R.lang.h:10
@@ -1258,6 +1317,25 @@ msgstr "Raktažodžiai apibrėžti makro komandų"
 msgid "Nemerle"
 msgstr "Nemerle"
 
+#: ../gtksourceview/language-specs/ocaml.lang.h:2
+#, fuzzy
+msgid "Boolean Constant"
+msgstr "Konstantos"
+
+#: ../gtksourceview/language-specs/ocaml.lang.h:9
+#, fuzzy
+msgid "Label"
+msgstr "LaTeX"
+
+#: ../gtksourceview/language-specs/ocaml.lang.h:10
+#, fuzzy
+msgid "Module"
+msgstr "Modulio rodyklė"
+
+#: ../gtksourceview/language-specs/ocaml.lang.h:11
+msgid "Objective Caml"
+msgstr ""
+
 #: ../gtksourceview/language-specs/octave.lang.h:8
 #: ../gtksourceview/language-specs/python.lang.h:10
 msgid "Multiline Double Quoted String"
@@ -1337,24 +1415,24 @@ msgstr "Funkcijos iškvietimas"
 msgid "Method Call"
 msgstr "Metodo iškvietimas"
 
-#: ../gtksourceview/language-specs/perl.lang.h:5
+#: ../gtksourceview/language-specs/perl.lang.h:6
 msgid "POD"
 msgstr "POD"
 
-#: ../gtksourceview/language-specs/perl.lang.h:6
+#: ../gtksourceview/language-specs/perl.lang.h:7
 msgid "Perl"
 msgstr "Perl"
 
-#: ../gtksourceview/language-specs/perl.lang.h:9
+#: ../gtksourceview/language-specs/perl.lang.h:10
 #: ../gtksourceview/language-specs/tcl.lang.h:5
 msgid "String2"
 msgstr "Seka2"
 
-#: ../gtksourceview/language-specs/perl.lang.h:10
+#: ../gtksourceview/language-specs/perl.lang.h:11
 msgid "String3"
 msgstr "Seka3"
 
-#: ../gtksourceview/language-specs/perl.lang.h:11
+#: ../gtksourceview/language-specs/perl.lang.h:12
 msgid "Variables"
 msgstr "Kintamieji"
 
@@ -1511,6 +1589,67 @@ msgstr "Pats"
 #: ../gtksourceview/language-specs/sh.lang.h:17
 msgid "sh"
 msgstr "sh"
+
+#: ../gtksourceview/language-specs/spec.lang.h:1
+#, fuzzy
+msgid "Command Macro"
+msgstr "Bendrinis makrosas"
+
+#: ../gtksourceview/language-specs/spec.lang.h:2
+#, fuzzy
+msgid "Conditional Define"
+msgstr "Sąlygos"
+
+#: ../gtksourceview/language-specs/spec.lang.h:3
+#, fuzzy
+msgid "Conditional Macro"
+msgstr "Bendrinis makrosas"
+
+#: ../gtksourceview/language-specs/spec.lang.h:5
+msgid "Define"
+msgstr ""
+
+#: ../gtksourceview/language-specs/spec.lang.h:6
+msgid "Directory Macro"
+msgstr ""
+
+#: ../gtksourceview/language-specs/spec.lang.h:8
+#, fuzzy
+msgid "Flow Conditional"
+msgstr "Sąlygos"
+
+#: ../gtksourceview/language-specs/spec.lang.h:9
+#, fuzzy
+msgid "Header"
+msgstr "Spausdinti antraštę"
+
+#: ../gtksourceview/language-specs/spec.lang.h:11
+#, fuzzy
+msgid "Other Macro"
+msgstr "Kiti 2"
+
+#: ../gtksourceview/language-specs/spec.lang.h:13
+#, fuzzy
+msgid "RPM Variable"
+msgstr "Kintamasis"
+
+#: ../gtksourceview/language-specs/spec.lang.h:14
+msgid "RPM spec"
+msgstr ""
+
+#: ../gtksourceview/language-specs/spec.lang.h:15
+#, fuzzy
+msgid "Section"
+msgstr "Sekcinis"
+
+#: ../gtksourceview/language-specs/spec.lang.h:16
+#, fuzzy
+msgid "Spec Macro"
+msgstr "Makrosai"
+
+#: ../gtksourceview/language-specs/spec.lang.h:17
+msgid "Switch"
+msgstr ""
 
 #: ../gtksourceview/language-specs/sql.lang.h:1
 msgid "ANSI Datatypes"
@@ -1683,7 +1822,7 @@ msgstr "Simboliai"
 
 #: ../gtksourceview/language-specs/texinfo.lang.h:3
 msgid "File Attributes"
-msgstr "Rinkmenų požymiai"
+msgstr "Failų požymiai"
 
 #: ../gtksourceview/language-specs/texinfo.lang.h:4
 msgid "Formatting"
@@ -1729,11 +1868,16 @@ msgstr "Seno stiliaus komentaras"
 msgid "VB.NET"
 msgstr "VB.NET"
 
-#: ../gtksourceview/language-specs/verilog.lang.h:4
+#: ../gtksourceview/language-specs/verilog.lang.h:3
+#, fuzzy
+msgid "Compiler directive"
+msgstr "Intarpo direktyva"
+
+#: ../gtksourceview/language-specs/verilog.lang.h:5
 msgid "Gates"
 msgstr "Gates"
 
-#: ../gtksourceview/language-specs/verilog.lang.h:11
+#: ../gtksourceview/language-specs/verilog.lang.h:12
 msgid "Verilog"
 msgstr "Verilog"
 
@@ -1745,11 +1889,6 @@ msgstr "Teisinga ir klaidinga"
 msgid "VHDL"
 msgstr "VHDL"
 
-#: ../gtksourceview/language-specs/xml.lang.h:5
-msgid "Hexadecimal"
-msgstr "Šešioliktainis"
-
 #: ../gtksourceview/language-specs/xml.lang.h:9
 msgid "XML"
 msgstr "XML"
-
