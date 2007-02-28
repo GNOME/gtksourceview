@@ -12,16 +12,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview.HEAD.pl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-11-12 16:28+0100\n"
-"PO-Revision-Date: 2006-08-15 17:17+0200\n"
-"Last-Translator: Artur Flinta <aflinta@at.kernel.pl>\n"
+"POT-Creation-Date: 2007-02-28 21:28+0100\n"
+"PO-Revision-Date: 2007-02-27 01:24+0100\n"
+"Last-Translator: wadim dziedzic <nikdo@aviary.pl>\n"
 "Language-Team: Polish <translators@gnomepl.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.2\n"
-"Plural-Forms:  nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%"
-"100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2);\n"
 
 #: ../gtksourceview/gtksourcebuffer.c:278
 msgid "Escape Character"
@@ -193,6 +193,7 @@ msgstr "Znak"
 
 #: ../gtksourceview/gtksourcestylescheme.c:274
 #: ../gtksourceview/language-specs/latex.lang.h:2
+#: ../gtksourceview/language-specs/ocaml.lang.h:4
 #: ../gtksourceview/language-specs/po.lang.h:1
 msgid "Comment"
 msgstr "Komentarz"
@@ -223,6 +224,7 @@ msgstr "Funkcja"
 #: ../gtksourceview/language-specs/fortran.lang.h:1
 #: ../gtksourceview/language-specs/haskell.lang.h:3
 #: ../gtksourceview/language-specs/nemerle.lang.h:6
+#: ../gtksourceview/language-specs/ocaml.lang.h:5
 #: ../gtksourceview/language-specs/octave.lang.h:1
 #: ../gtksourceview/language-specs/python.lang.h:2
 msgid "Decimal"
@@ -281,6 +283,7 @@ msgstr "Preprocesor"
 #: ../gtksourceview/language-specs/cpp.lang.h:15
 #: ../gtksourceview/language-specs/csharp.lang.h:9
 #: ../gtksourceview/language-specs/css.lang.h:58
+#: ../gtksourceview/language-specs/docbook.lang.h:11
 #: ../gtksourceview/language-specs/html.lang.h:8
 #: ../gtksourceview/language-specs/fortran.lang.h:14
 #: ../gtksourceview/language-specs/haskell.lang.h:31
@@ -290,8 +293,9 @@ msgstr "Preprocesor"
 #: ../gtksourceview/language-specs/lua.lang.h:10
 #: ../gtksourceview/language-specs/makefile.lang.h:8
 #: ../gtksourceview/language-specs/nemerle.lang.h:15
+#: ../gtksourceview/language-specs/ocaml.lang.h:14
 #: ../gtksourceview/language-specs/pascal.lang.h:18
-#: ../gtksourceview/language-specs/perl.lang.h:8
+#: ../gtksourceview/language-specs/perl.lang.h:9
 #: ../gtksourceview/language-specs/po.lang.h:6
 #: ../gtksourceview/language-specs/scheme.lang.h:13
 #: ../gtksourceview/language-specs/sh.lang.h:13
@@ -315,6 +319,7 @@ msgstr "Specjalne"
 #: ../gtksourceview/language-specs/ini.lang.h:10
 #: ../gtksourceview/language-specs/msil.lang.h:2
 #: ../gtksourceview/language-specs/po.lang.h:5
+#: ../gtksourceview/language-specs/spec.lang.h:12
 msgid "Others"
 msgstr "Inne"
 
@@ -472,6 +477,7 @@ msgstr "Ada"
 #: ../gtksourceview/language-specs/cpp.lang.h:4
 #: ../gtksourceview/language-specs/haskell.lang.h:2
 #: ../gtksourceview/language-specs/nemerle.lang.h:3
+#: ../gtksourceview/language-specs/ocaml.lang.h:3
 #: ../gtksourceview/language-specs/vhdl.lang.h:1
 msgid "Character Constant"
 msgstr "Stała znakowa"
@@ -507,11 +513,12 @@ msgstr "Stała znakowa"
 #: ../gtksourceview/language-specs/ruby.lang.h:10
 #: ../gtksourceview/language-specs/scheme.lang.h:10
 #: ../gtksourceview/language-specs/sh.lang.h:5
+#: ../gtksourceview/language-specs/spec.lang.h:10
 #: ../gtksourceview/language-specs/sql.lang.h:23
 #: ../gtksourceview/language-specs/tcl.lang.h:2
 #: ../gtksourceview/language-specs/texinfo.lang.h:9
 #: ../gtksourceview/language-specs/vbnet.lang.h:6
-#: ../gtksourceview/language-specs/verilog.lang.h:7
+#: ../gtksourceview/language-specs/verilog.lang.h:8
 #: ../gtksourceview/language-specs/vhdl.lang.h:3
 msgid "Line Comment"
 msgstr "Komentarz wiersza"
@@ -547,11 +554,12 @@ msgstr "Słowo kluczowe preprocesora"
 #: ../gtksourceview/language-specs/java.lang.h:11
 #: ../gtksourceview/language-specs/makefile.lang.h:6
 #: ../gtksourceview/language-specs/nemerle.lang.h:14
+#: ../gtksourceview/language-specs/ocaml.lang.h:13
 #: ../gtksourceview/language-specs/pascal.lang.h:17
 #: ../gtksourceview/language-specs/scheme.lang.h:12
 #: ../gtksourceview/language-specs/sql.lang.h:48
 #: ../gtksourceview/language-specs/vbnet.lang.h:10
-#: ../gtksourceview/language-specs/verilog.lang.h:9
+#: ../gtksourceview/language-specs/verilog.lang.h:10
 #: ../gtksourceview/language-specs/vhdl.lang.h:5
 msgid "Sources"
 msgstr "Źródła"
@@ -578,10 +586,11 @@ msgstr "Logiczny"
 #: ../gtksourceview/language-specs/idl.lang.h:4
 #: ../gtksourceview/language-specs/javascript.lang.h:12
 #: ../gtksourceview/language-specs/lua.lang.h:3
+#: ../gtksourceview/language-specs/ocaml.lang.h:8
 #: ../gtksourceview/language-specs/perl.lang.h:2
 #: ../gtksourceview/language-specs/ruby.lang.h:9
 #: ../gtksourceview/language-specs/vbnet.lang.h:1
-#: ../gtksourceview/language-specs/verilog.lang.h:6
+#: ../gtksourceview/language-specs/verilog.lang.h:7
 msgid "Keywords"
 msgstr "Słowa kluczowe"
 
@@ -605,6 +614,7 @@ msgstr "Komentarz \"#if 0\""
 #: ../gtksourceview/language-specs/csharp.lang.h:1
 #: ../gtksourceview/language-specs/css.lang.h:9
 #: ../gtksourceview/language-specs/d.lang.h:2
+#: ../gtksourceview/language-specs/docbook.lang.h:2
 #: ../gtksourceview/language-specs/html.lang.h:2
 #: ../gtksourceview/language-specs/haskell.lang.h:1
 #: ../gtksourceview/language-specs/idl.lang.h:1
@@ -634,6 +644,7 @@ msgstr "Zwykłe makro"
 #: ../gtksourceview/language-specs/fortran.lang.h:2
 #: ../gtksourceview/language-specs/haskell.lang.h:4
 #: ../gtksourceview/language-specs/nemerle.lang.h:7
+#: ../gtksourceview/language-specs/ocaml.lang.h:6
 #: ../gtksourceview/language-specs/octave.lang.h:3
 #: ../gtksourceview/language-specs/python.lang.h:4
 #: ../gtksourceview/language-specs/R.lang.h:4
@@ -647,6 +658,7 @@ msgstr "Liczba zmiennoprzecinkowa"
 #: ../gtksourceview/language-specs/fortran.lang.h:4
 #: ../gtksourceview/language-specs/haskell.lang.h:6
 #: ../gtksourceview/language-specs/nemerle.lang.h:8
+#: ../gtksourceview/language-specs/ocaml.lang.h:7
 #: ../gtksourceview/language-specs/octave.lang.h:5
 #: ../gtksourceview/language-specs/pascal.lang.h:10
 #: ../gtksourceview/language-specs/python.lang.h:6
@@ -666,9 +678,10 @@ msgstr "Include/Pragma"
 #: ../gtksourceview/language-specs/fortran.lang.h:10
 #: ../gtksourceview/language-specs/haskell.lang.h:11
 #: ../gtksourceview/language-specs/nemerle.lang.h:12
+#: ../gtksourceview/language-specs/ocaml.lang.h:12
 #: ../gtksourceview/language-specs/octave.lang.h:10
 #: ../gtksourceview/language-specs/python.lang.h:12
-#: ../gtksourceview/language-specs/verilog.lang.h:8
+#: ../gtksourceview/language-specs/verilog.lang.h:9
 msgid "Octal Number"
 msgstr "Liczba ósemkowa"
 
@@ -685,7 +698,7 @@ msgstr "Definicje preprocesora"
 #: ../gtksourceview/language-specs/d.lang.h:16
 #: ../gtksourceview/language-specs/fortran.lang.h:16
 #: ../gtksourceview/language-specs/idl.lang.h:10
-#: ../gtksourceview/language-specs/verilog.lang.h:10
+#: ../gtksourceview/language-specs/verilog.lang.h:11
 msgid "Types"
 msgstr "Typy"
 
@@ -694,10 +707,12 @@ msgid "ChangeLog"
 msgstr "Dziennik zmian"
 
 #: ../gtksourceview/language-specs/changelog.lang.h:2
+#: ../gtksourceview/language-specs/spec.lang.h:4
 msgid "Date"
 msgstr "Data"
 
 #: ../gtksourceview/language-specs/changelog.lang.h:3
+#: ../gtksourceview/language-specs/spec.lang.h:7
 msgid "Email"
 msgstr "E-mail"
 
@@ -788,6 +803,7 @@ msgstr "Znane wartości właściwości"
 #: ../gtksourceview/language-specs/css.lang.h:35
 #: ../gtksourceview/language-specs/fortran.lang.h:11
 #: ../gtksourceview/language-specs/javascript.lang.h:20
+#: ../gtksourceview/language-specs/perl.lang.h:5
 #: ../gtksourceview/language-specs/php.lang.h:20
 #: ../gtksourceview/language-specs/sql.lang.h:34
 msgid "Operators"
@@ -847,6 +863,7 @@ msgstr "Obszar unikodu"
 
 #: ../gtksourceview/language-specs/d.lang.h:1
 #: ../gtksourceview/language-specs/nemerle.lang.h:1
+#: ../gtksourceview/language-specs/ocaml.lang.h:1
 #: ../gtksourceview/language-specs/verilog.lang.h:1
 msgid "Binary Number"
 msgstr "Liczba binarna"
@@ -937,35 +954,71 @@ msgstr "Linia usunięta"
 msgid "Special case"
 msgstr "Przypadek specjalny"
 
+#: ../gtksourceview/language-specs/docbook.lang.h:1
 #: ../gtksourceview/language-specs/html.lang.h:1
 #: ../gtksourceview/language-specs/xml.lang.h:1
 msgid "Attribute"
 msgstr "Atrybut"
 
+#: ../gtksourceview/language-specs/docbook.lang.h:3
 #: ../gtksourceview/language-specs/html.lang.h:3
 #: ../gtksourceview/language-specs/xml.lang.h:3
 msgid "Closing Bracket"
 msgstr "Nawias zamykający"
 
-#: ../gtksourceview/language-specs/html.lang.h:4
-msgid "DTD"
-msgstr "DTD"
+#: ../gtksourceview/language-specs/docbook.lang.h:4
+msgid "DocBook"
+msgstr "DocBook"
 
+#: ../gtksourceview/language-specs/docbook.lang.h:5
 #: ../gtksourceview/language-specs/html.lang.h:5
 #: ../gtksourceview/language-specs/xml.lang.h:4
 msgid "Entity"
 msgstr "Encja"
 
-#: ../gtksourceview/language-specs/html.lang.h:6
-msgid "HTML"
-msgstr "HTML"
+#: ../gtksourceview/language-specs/docbook.lang.h:6
+msgid "Formatting Elements"
+msgstr "Elementy formatujące"
 
+#: ../gtksourceview/language-specs/docbook.lang.h:7
+msgid "GUI Elements"
+msgstr "Elementy GUI"
+
+#: ../gtksourceview/language-specs/docbook.lang.h:8
+msgid "Header Elements"
+msgstr "Elementy nagówka"
+
+#: ../gtksourceview/language-specs/docbook.lang.h:9
+#: ../gtksourceview/language-specs/xml.lang.h:5
+msgid "Hexadecimal"
+msgstr "Szesnastkowy"
+
+#: ../gtksourceview/language-specs/docbook.lang.h:10
 #: ../gtksourceview/language-specs/html.lang.h:7
 #: ../gtksourceview/language-specs/latex.lang.h:7
 #: ../gtksourceview/language-specs/texinfo.lang.h:12
 #: ../gtksourceview/language-specs/xml.lang.h:6
 msgid "Markup"
 msgstr "Znacznik"
+
+#: ../gtksourceview/language-specs/docbook.lang.h:12
+msgid "Structural Elements"
+msgstr "Elementy strukturalne"
+
+#. This split keeps each keyword-list under 250 elements.
+#. See bug #110991 for further details.
+#.
+#: ../gtksourceview/language-specs/docbook.lang.h:16
+msgid "Structural Elements 2"
+msgstr "Structural Elements 2"
+
+#: ../gtksourceview/language-specs/html.lang.h:4
+msgid "DTD"
+msgstr "DTD"
+
+#: ../gtksourceview/language-specs/html.lang.h:6
+msgid "HTML"
+msgstr "HTML"
 
 #: ../gtksourceview/language-specs/html.lang.h:9
 #: ../gtksourceview/language-specs/xml.lang.h:8
@@ -1060,7 +1113,7 @@ msgid ".ini"
 msgstr ".ini"
 
 #: ../gtksourceview/language-specs/ini.lang.h:3
-#: ../gtksourceview/language-specs/verilog.lang.h:3
+#: ../gtksourceview/language-specs/verilog.lang.h:4
 msgid "Decimal Number"
 msgstr "Liczba dziesiętna"
 
@@ -1127,7 +1180,7 @@ msgid "Global Properties"
 msgstr "Właściwości globalne"
 
 #: ../gtksourceview/language-specs/javascript.lang.h:10
-#: ../gtksourceview/language-specs/verilog.lang.h:5
+#: ../gtksourceview/language-specs/verilog.lang.h:6
 msgid "Hexadecimal Number"
 msgstr "Liczba szesnastkowa"
 
@@ -1154,7 +1207,7 @@ msgstr "Obiekty"
 #: ../gtksourceview/language-specs/javascript.lang.h:22
 #: ../gtksourceview/language-specs/lua.lang.h:9
 #: ../gtksourceview/language-specs/octave.lang.h:13
-#: ../gtksourceview/language-specs/perl.lang.h:7
+#: ../gtksourceview/language-specs/perl.lang.h:8
 #: ../gtksourceview/language-specs/php.lang.h:22
 #: ../gtksourceview/language-specs/python.lang.h:14
 #: ../gtksourceview/language-specs/R.lang.h:10
@@ -1264,6 +1317,22 @@ msgstr "Słowa kluczowe zdefiniowane przez makra"
 msgid "Nemerle"
 msgstr "Nemerle"
 
+#: ../gtksourceview/language-specs/ocaml.lang.h:2
+msgid "Boolean Constant"
+msgstr "Stała boolowska"
+
+#: ../gtksourceview/language-specs/ocaml.lang.h:9
+msgid "Label"
+msgstr "Etykieta"
+
+#: ../gtksourceview/language-specs/ocaml.lang.h:10
+msgid "Module"
+msgstr "Moduł"
+
+#: ../gtksourceview/language-specs/ocaml.lang.h:11
+msgid "Objective Caml"
+msgstr "Objective Caml"
+
 #: ../gtksourceview/language-specs/octave.lang.h:8
 #: ../gtksourceview/language-specs/python.lang.h:10
 msgid "Multiline Double Quoted String"
@@ -1343,24 +1412,24 @@ msgstr "Wywołanie funkcji"
 msgid "Method Call"
 msgstr "Wywołanie metody"
 
-#: ../gtksourceview/language-specs/perl.lang.h:5
+#: ../gtksourceview/language-specs/perl.lang.h:6
 msgid "POD"
 msgstr "POD"
 
-#: ../gtksourceview/language-specs/perl.lang.h:6
+#: ../gtksourceview/language-specs/perl.lang.h:7
 msgid "Perl"
 msgstr "Perl"
 
-#: ../gtksourceview/language-specs/perl.lang.h:9
+#: ../gtksourceview/language-specs/perl.lang.h:10
 #: ../gtksourceview/language-specs/tcl.lang.h:5
 msgid "String2"
 msgstr "Ciąg znaków2"
 
-#: ../gtksourceview/language-specs/perl.lang.h:10
+#: ../gtksourceview/language-specs/perl.lang.h:11
 msgid "String3"
 msgstr "Ciąg znaków3"
 
-#: ../gtksourceview/language-specs/perl.lang.h:11
+#: ../gtksourceview/language-specs/perl.lang.h:12
 msgid "Variables"
 msgstr "Zmienne"
 
@@ -1518,6 +1587,58 @@ msgstr "Self"
 #: ../gtksourceview/language-specs/sh.lang.h:17
 msgid "sh"
 msgstr "sh"
+
+#: ../gtksourceview/language-specs/spec.lang.h:1
+msgid "Command Macro"
+msgstr "Makropolecenie"
+
+#: ../gtksourceview/language-specs/spec.lang.h:2
+msgid "Conditional Define"
+msgstr "Warunkowe define"
+
+#: ../gtksourceview/language-specs/spec.lang.h:3
+msgid "Conditional Macro"
+msgstr "Makro warunkowe"
+
+#: ../gtksourceview/language-specs/spec.lang.h:5
+msgid "Define"
+msgstr "Define"
+
+#: ../gtksourceview/language-specs/spec.lang.h:6
+msgid "Directory Macro"
+msgstr "Makro katalogu"
+
+#: ../gtksourceview/language-specs/spec.lang.h:8
+msgid "Flow Conditional"
+msgstr "Warunek przepływu"
+
+#: ../gtksourceview/language-specs/spec.lang.h:9
+msgid "Header"
+msgstr "Nagłówek"
+
+#: ../gtksourceview/language-specs/spec.lang.h:11
+msgid "Other Macro"
+msgstr "Inne makro"
+
+#: ../gtksourceview/language-specs/spec.lang.h:13
+msgid "RPM Variable"
+msgstr "Zmienna RPM"
+
+#: ../gtksourceview/language-specs/spec.lang.h:14
+msgid "RPM spec"
+msgstr "RPM spec"
+
+#: ../gtksourceview/language-specs/spec.lang.h:15
+msgid "Section"
+msgstr "Sekcja"
+
+#: ../gtksourceview/language-specs/spec.lang.h:16
+msgid "Spec Macro"
+msgstr "Makro spec"
+
+#: ../gtksourceview/language-specs/spec.lang.h:17
+msgid "Switch"
+msgstr "Przełącznik"
 
 #: ../gtksourceview/language-specs/sql.lang.h:1
 msgid "ANSI Datatypes"
@@ -1736,11 +1857,15 @@ msgstr "Komentarz starego typu"
 msgid "VB.NET"
 msgstr "VB.NET"
 
-#: ../gtksourceview/language-specs/verilog.lang.h:4
+#: ../gtksourceview/language-specs/verilog.lang.h:3
+msgid "Compiler directive"
+msgstr "Dyrektywa kompilatora"
+
+#: ../gtksourceview/language-specs/verilog.lang.h:5
 msgid "Gates"
 msgstr "Bramki"
 
-#: ../gtksourceview/language-specs/verilog.lang.h:11
+#: ../gtksourceview/language-specs/verilog.lang.h:12
 msgid "Verilog"
 msgstr "Verilog"
 
@@ -1751,10 +1876,6 @@ msgstr "Prawda i fałsz"
 #: ../gtksourceview/language-specs/vhdl.lang.h:9
 msgid "VHDL"
 msgstr "VHDL"
-
-#: ../gtksourceview/language-specs/xml.lang.h:5
-msgid "Hexadecimal"
-msgstr "Szesnastkowy"
 
 #: ../gtksourceview/language-specs/xml.lang.h:9
 msgid "XML"
