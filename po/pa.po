@@ -1,25 +1,24 @@
 # translation of gtksourceview.HEAD.po to Punjabi
-# translation of pa.po to Punjabi
-# translation of gtksourceview.HEAD.pa.po to Punjabi
 # Punjabi translation of gtksourceview.HEAD.
 # Copyright (C) 2004 THE gtksourceview.HEAD'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the gtksourceview.HEAD package.
+#
 # Amanpreet Singh Alam <amanlinux@netscape.net>, 2004.
 # Amanpreet Singh Alam <aalam@redhat.com>, 2004, 2006.
 # Amanpreet Singh Alam <amanpreetalam@yahoo.com>, 2005.
-#
+# A S Alam <aalam@users.sf.net>, 2007.
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-15 23:21+0100\n"
-"PO-Revision-Date: 2006-01-16 07:18+0530\n"
-"Last-Translator: Amanpreet Singh Alam <aalam@redhat.com>\n"
-"Language-Team: Punjabi <fedora-trans-pa@redhat.com>\n"
+"POT-Creation-Date: 2007-01-21 20:01+0000\n"
+"PO-Revision-Date: 2007-03-06 08:05+0530\n"
+"Last-Translator: A S Alam <aalam@users.sf.net>\n"
+"Language-Team: Punjabi <punjabi-l10n@lists.sf.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.9.1\n"
+"X-Generator: KBabel 1.11.4\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "\n"
 
@@ -37,7 +36,7 @@ msgstr "ਚੈਕ ਬਰੈਕਟ"
 
 #: ../gtksourceview/gtksourcebuffer.c:288
 msgid "Whether to check and highlight matching brackets"
-msgstr "ਕੀ ਮੇਲ ਖਾਦੀਆ ਬਰੈਕਟਾਂ ਦੀ ਜਾਂਚ ਕਰਨੀ ਹੈ ਅਤੇ ਉਭਾਰਨ ਹੈ"
+msgstr "ਕੀ ਮਿਲਦੀਆਂ ਬਰੈਕਟਾਂ ਦੀ ਜਾਂਚ ਕਰਨੀ ਹੈ ਅਤੇ ਉਭਾਰਨ ਹੈ"
 
 #: ../gtksourceview/gtksourcebuffer.c:296
 #: ../gtksourceview/gtksourceprintjob.c:296
@@ -68,13 +67,13 @@ msgstr "ਭਾਸ਼ਾ ਇਕਾਈ, ਉਭਾਰਵੀ ਤਰਤੀਬ ਪ੍ਰ�
 
 #: ../gtksourceview/gtksourcelanguagesmanager.c:114
 msgid "Language specification directories"
-msgstr "ਭਾਸ਼ਾ ਨਿਰਧਾਰਨ ਡਾਇਰੈਕਟਰੀਆਂ"
+msgstr "ਭਾਸ਼ਾ ਸਥਾਪਨ ਡਾਇਰੈਕਟਰੀਆਂ"
 
 #: ../gtksourceview/gtksourcelanguagesmanager.c:115
 msgid ""
 "List of directories where the language specification files (.lang) are "
 "located"
-msgstr "ਡਾਇਰੈਕਟਰੀ ਦੀ ਸੂਚੀ ਜਿਥੇ ਕਿ ਭਾਸ਼ਾ ਨਿਰਧਾਰਨ ਫਾਇਲ(.lang) ਸਥਿਤ ਹਨ "
+msgstr "ਡਾਇਰੈਕਟਰੀ ਦੀ ਸੂਚੀ ਜਿਥੇ ਕਿ ਭਾਸ਼ਾ ਨਿਰਧਾਰਨ ਫਾਇਲ(.lang) ਸਥਿਤ ਹਨ"
 
 #: ../gtksourceview/gtksourceprintjob.c:265
 msgid "Configuration"
@@ -119,7 +118,7 @@ msgstr "ਫੋਂਟ"
 
 #: ../gtksourceview/gtksourceprintjob.c:306
 msgid "GnomeFont name to use for the document text (deprecated)"
-msgstr "ਦਸਤਾਵੇਜ਼ ਪਾਠ ਲਈ ਵਰਤਣ ਲਈ ਗਨੋਮਫੋਂਟ ਨਾਂ"
+msgstr "ਦਸਤਾਵੇਜ਼ ਪਾਠ ਲਈ ਵਰਤਣ ਲਈ ਗਨੋਮਫੋਂਟ ਨਾਂ (ਬਰਤਰਫ਼)"
 
 #: ../gtksourceview/gtksourceprintjob.c:313
 msgid "Font Description"
@@ -136,19 +135,19 @@ msgstr "ਨੰਬਰ ਫੋਂਟ"
 
 #: ../gtksourceview/gtksourceprintjob.c:322
 msgid "GnomeFont name to use for the line numbers (deprecated)"
-msgstr "ਸਤਰ ਨੰਬਰ ਛਾਪਣ ਲਈ ਵਰਤਣੇ ਗਨੋਮਫੋਂਟ ਨਾਂ"
+msgstr "ਲਾਇਨ ਨੰਬਰ ਛਾਪਣ ਲਈ ਵਰਤਣੇ ਗਨੋਮਫੋਂਟ ਨਾਂ (ਬਰਤਰਫ਼)"
 
 #: ../gtksourceview/gtksourceprintjob.c:330
 msgid "Font description to use for the line numbers"
-msgstr "ਸਤਰ ਨੰਬਰ ਛਾਪਣ ਲਈ ਵਰਤੇ ਫੋਂਟ ਵੇਰਵਾ"
+msgstr "ਲਾਇਨ ਨੰਬਰ ਛਾਪਣ ਲਈ ਵਰਤੇ ਫੋਂਟ ਵੇਰਵਾ"
 
 #: ../gtksourceview/gtksourceprintjob.c:337
 msgid "Print Line Numbers"
-msgstr "ਸਤਰ ਨੰ ਛਾਪੋ"
+msgstr "ਲਾਇਨ ਨੰਬਰ ਛਾਪੋ"
 
 #: ../gtksourceview/gtksourceprintjob.c:338
 msgid "Interval of printed line numbers (0 means no numbers)"
-msgstr "ਛਾਪਣ ਲਈ ਸਤਰ ਨੰਬਰ ਦਾ ਅੰਤਰਾਲ (0 ਦਾ ਅਰਥ ਹੈ ਕੋਈ ਨੰਬਰ ਨਹੀ)"
+msgstr "ਛਾਪਣ ਲਈ ਲਾਇਨ ਨੰਬਰ ਦਾ ਅੰਤਰਾਲ (0 ਦਾ ਅਰਥ ਹੈ ਕੋਈ ਨੰਬਰ ਨਹੀਂ)"
 
 #: ../gtksourceview/gtksourceprintjob.c:345
 msgid "Print Header"
@@ -168,7 +167,7 @@ msgstr "ਕੀ ਹਰੇਕ ਸਫੇ ਤੇ ਪਦਲੇਖ ਛਾਪਣਾ ਹ
 
 #: ../gtksourceview/gtksourceprintjob.c:361
 msgid "Header and Footer Font"
-msgstr "ਸਿਰਲੇਖ ਤੇ ਪਦਲੇਖ ਫੋਂਟ"
+msgstr "ਸਿਰਲੇਖ ਅਤੇ ਪਦਲੇਖ ਫੋਂਟ"
 
 #: ../gtksourceview/gtksourceprintjob.c:362
 msgid "GnomeFont name to use for the header and footer (deprecated)"
@@ -192,6 +191,7 @@ msgstr "ਅੱਖਰ"
 
 #: ../gtksourceview/gtksourcestylescheme.c:274
 #: ../gtksourceview/language-specs/latex.lang.h:2
+#: ../gtksourceview/language-specs/ocaml.lang.h:4
 #: ../gtksourceview/language-specs/po.lang.h:1
 msgid "Comment"
 msgstr "ਟਿੱਪਣੀ"
@@ -218,9 +218,11 @@ msgstr "ਫੰਕਸ਼ਨ"
 #: ../gtksourceview/gtksourcestylescheme.c:289
 #: ../gtksourceview/language-specs/c.lang.h:6
 #: ../gtksourceview/language-specs/cpp.lang.h:6
+#: ../gtksourceview/language-specs/d.lang.h:5
 #: ../gtksourceview/language-specs/fortran.lang.h:1
 #: ../gtksourceview/language-specs/haskell.lang.h:3
 #: ../gtksourceview/language-specs/nemerle.lang.h:6
+#: ../gtksourceview/language-specs/ocaml.lang.h:5
 #: ../gtksourceview/language-specs/octave.lang.h:1
 #: ../gtksourceview/language-specs/python.lang.h:2
 msgid "Decimal"
@@ -228,7 +230,7 @@ msgstr "ਦਸ਼ਮਲਵ"
 
 #: ../gtksourceview/gtksourcestylescheme.c:294
 msgid "Floating Point"
-msgstr "ਦਸ਼ਮਲਵ"
+msgstr "ਫਲੋਟਿੰਗ ਬਿੰਦੂ"
 
 #. We cannot match \b at the end of a keyword automatically
 #. because it fails for let* etc. So we need to manually add it to the
@@ -279,15 +281,17 @@ msgstr "ਪ੍ਰੀ-ਪਰੋਸੈਸਰ"
 #: ../gtksourceview/language-specs/cpp.lang.h:15
 #: ../gtksourceview/language-specs/csharp.lang.h:9
 #: ../gtksourceview/language-specs/css.lang.h:58
+#: ../gtksourceview/language-specs/docbook.lang.h:11
 #: ../gtksourceview/language-specs/html.lang.h:8
-#: ../gtksourceview/language-specs/fortran.lang.h:13
+#: ../gtksourceview/language-specs/fortran.lang.h:14
 #: ../gtksourceview/language-specs/haskell.lang.h:31
 #: ../gtksourceview/language-specs/idl.lang.h:9
-#: ../gtksourceview/language-specs/java.lang.h:11
+#: ../gtksourceview/language-specs/java.lang.h:12
 #: ../gtksourceview/language-specs/javascript.lang.h:23
 #: ../gtksourceview/language-specs/lua.lang.h:10
 #: ../gtksourceview/language-specs/makefile.lang.h:8
 #: ../gtksourceview/language-specs/nemerle.lang.h:15
+#: ../gtksourceview/language-specs/ocaml.lang.h:14
 #: ../gtksourceview/language-specs/pascal.lang.h:18
 #: ../gtksourceview/language-specs/perl.lang.h:8
 #: ../gtksourceview/language-specs/po.lang.h:6
@@ -313,6 +317,7 @@ msgstr "ਖਾਸ"
 #: ../gtksourceview/language-specs/ini.lang.h:10
 #: ../gtksourceview/language-specs/msil.lang.h:2
 #: ../gtksourceview/language-specs/po.lang.h:5
+#: ../gtksourceview/language-specs/spec.lang.h:12
 msgid "Others"
 msgstr "ਹੋਰ"
 
@@ -346,27 +351,27 @@ msgstr "ਸਰੋਤ ਟੈਗ ਨਾਲ ਸਬੰਧਤ ਸ਼ੈਲੀ"
 
 #: ../gtksourceview/gtksourceview.c:219
 msgid "Show Line Numbers"
-msgstr "ਸਤਰ ਨੰਬਰ ਵੇਖਾਓ"
+msgstr "ਲਾਇਨ ਨੰਬਰ ਵੇਖਾਓ"
 
 #: ../gtksourceview/gtksourceview.c:220
 msgid "Whether to display line numbers"
-msgstr "ਕੀ ਸਤਰ ਨੰਬਰ ਨੂੰ ਵੇਖਾਉਣਾ ਹੈ"
+msgstr "ਕੀ ਲਾਇਨ ਨੰਬਰ ਨੂੰ ਵੇਖਾਉਣਾ ਹੈ"
 
 #: ../gtksourceview/gtksourceview.c:227
 msgid "Show Line Markers"
-msgstr "ਸਤਰ ਨਿਸ਼ਾਨਕਾਰ ਵੇਖਾਓ"
+msgstr "ਲਾਇਨ ਮਾਰਕਰ ਵੇਖਾਓ"
 
 #: ../gtksourceview/gtksourceview.c:228
 msgid "Whether to display line marker pixbufs"
-msgstr "ਕੀ ਸਤਰ ਨਿਸ਼ਾਨਕਾਰ ਪਿਕਬਫ਼ ਨੂੰ ਵੇਖਾਉਣਾ ਹੈ"
+msgstr "ਕੀ ਲਾਇਨ ਮਾਰਕਰ ਪਿਕਬਫ਼ ਨੂੰ ਵੇਖਾਉਣਾ ਹੈ"
 
 #: ../gtksourceview/gtksourceview.c:245
 msgid "Auto Indentation"
-msgstr "ਸਵੈ ਹਾਸ਼ੀਏ ਤੋਂ ਦੂਰ"
+msgstr "ਆਟੋ ਹਾਸ਼ੀਏ ਤੋਂ ਦੂਰ"
 
 #: ../gtksourceview/gtksourceview.c:246
 msgid "Whether to enable auto indentation"
-msgstr "ਕੀ ਸਵੈ ਹਾਸ਼ੀਏ ਤੋ ਦੂਰ ਨੂੰ ਯੋਗ ਕਰਨਾ ਹੈ"
+msgstr "ਕੀ ਆਟੋ ਹਾਸ਼ੀਏ ਤੋਂ ਦੂਰ ਨੂੰ ਯੋਗ ਕਰਨਾ ਹੈ"
 
 #: ../gtksourceview/gtksourceview.c:252
 msgid "Insert Spaces Instead of Tabs"
@@ -410,43 +415,51 @@ msgstr "ਮੌਜੂਦਾ ਸਤਰ ਉਭਾਰੋ"
 msgid "Whether to highlight the current line"
 msgstr "ਕੀ ਮੌਜੂਦਾ ਸਤਰ ਵਿੱਚ ਸੰਟੈਕਸਟ ਨੂੰ ਉਭਾਰਨਾ ਹੈ"
 
-#: ../gtksourceview/gtksourceview.c:305
+#: ../gtksourceview/gtksourceview.c:296
+msgid "Indent on tab"
+msgstr "ਟੈਬ ਉੱਤੇ ਦੂਰੀ"
+
+#: ../gtksourceview/gtksourceview.c:297
+msgid "Whether to indent the selected text when the tab key is pressed"
+msgstr "ਜਦੋਂ ਟੈਬ ਸਵਿੱਚ ਦੱਬੀ ਜਾਵੇ ਤਾਂ ਕੀ ਚੁਣੇ ਪਾਠ ਲਈ ਹਾਸ਼ੀਏ ਤੋਂ ਦੂਰੀ ਰੱਖਣੀ ਹੈ"
+
+#: ../gtksourceview/gtksourceview.c:313
 msgid "Margin Line Alpha"
 msgstr "ਹਾਸ਼ੀਆ ਰੇਖਾ ਐਲਫ਼ਾ"
 
-#: ../gtksourceview/gtksourceview.c:306
+#: ../gtksourceview/gtksourceview.c:314
 msgid "Transparency of the margin line"
 msgstr "ਹਾਸ਼ੀਆ ਰੇਖਾ ਲਈ ਪਾਰਦਰਸ਼ਤਾ"
 
-#: ../gtksourceview/gtksourceview.c:323
+#: ../gtksourceview/gtksourceview.c:331
 msgid "Margin Line Color"
 msgstr "ਹਾਸ਼ੀਆ ਦਿੱਖ ਰੰਗ"
 
-#: ../gtksourceview/gtksourceview.c:324
+#: ../gtksourceview/gtksourceview.c:332
 msgid "Color to use for the right margin line"
 msgstr "ਸੱਜੇ ਹਾਸ਼ੀਆ ਸਤਰ ਲਈ ਵਰਤਣ ਲਈ ਰੰਗ"
 
-#: ../gtksourceview/gtksourceview.c:340
+#: ../gtksourceview/gtksourceview.c:348
 msgid "Margin Overlay Toggle"
 msgstr "ਹਾਸ਼ੀਆ ਦਿੱਖ ਤਬਦੀਲ"
 
-#: ../gtksourceview/gtksourceview.c:341
+#: ../gtksourceview/gtksourceview.c:349
 msgid "Whether to draw the right margin overlay"
 msgstr "ਕੀ ਸੱਜਾ ਹਾਸ਼ੀਆ ਵੇਖਾਉਣਾ ਹੈ"
 
-#: ../gtksourceview/gtksourceview.c:357
+#: ../gtksourceview/gtksourceview.c:365
 msgid "Margin Overlay Alpha"
 msgstr "ਹਾਸ਼ੀਆ ਦਿੱਖ ਐਲਫ਼ਾ"
 
-#: ../gtksourceview/gtksourceview.c:358
+#: ../gtksourceview/gtksourceview.c:366
 msgid "Transparency of the margin overlay"
 msgstr "ਹਾਸ਼ੀਆ ਦਿੱਖ ਦੀ ਬਲੌਰੀਪਨ"
 
-#: ../gtksourceview/gtksourceview.c:375
+#: ../gtksourceview/gtksourceview.c:383
 msgid "Margin Overlay Color"
 msgstr "ਹਾਸ਼ੀਆ ਦਿੱਖ ਰੰਗ"
 
-#: ../gtksourceview/gtksourceview.c:376
+#: ../gtksourceview/gtksourceview.c:384
 msgid "Color to use for drawing the margin overlay"
 msgstr "ਹਾਸ਼ੀਆ ਦਿੱਖ ਬਣਾਉਣ ਲਈ ਵਰਤਣ ਵਾਸਤੇ ਰੰਗ"
 
@@ -459,6 +472,7 @@ msgstr "Ada"
 #: ../gtksourceview/language-specs/cpp.lang.h:4
 #: ../gtksourceview/language-specs/haskell.lang.h:2
 #: ../gtksourceview/language-specs/nemerle.lang.h:3
+#: ../gtksourceview/language-specs/ocaml.lang.h:3
 #: ../gtksourceview/language-specs/vhdl.lang.h:1
 msgid "Character Constant"
 msgstr "ਅੱਖਰ ਸਥਿਰ"
@@ -473,6 +487,7 @@ msgstr "ਅੱਖਰ ਸਥਿਰ"
 #: ../gtksourceview/language-specs/cpp.lang.h:11
 #: ../gtksourceview/language-specs/csharp.lang.h:4
 #: ../gtksourceview/language-specs/css.lang.h:29
+#: ../gtksourceview/language-specs/d.lang.h:10
 #: ../gtksourceview/language-specs/desktop.lang.h:7
 #: ../gtksourceview/language-specs/diff.lang.h:5
 #: ../gtksourceview/language-specs/fortran.lang.h:9
@@ -480,7 +495,7 @@ msgstr "ਅੱਖਰ ਸਥਿਰ"
 #: ../gtksourceview/language-specs/haskell.lang.h:10
 #: ../gtksourceview/language-specs/idl.lang.h:5
 #: ../gtksourceview/language-specs/ini.lang.h:8
-#: ../gtksourceview/language-specs/java.lang.h:5
+#: ../gtksourceview/language-specs/java.lang.h:6
 #: ../gtksourceview/language-specs/javascript.lang.h:13
 #: ../gtksourceview/language-specs/lua.lang.h:4
 #: ../gtksourceview/language-specs/makefile.lang.h:4
@@ -493,20 +508,22 @@ msgstr "ਅੱਖਰ ਸਥਿਰ"
 #: ../gtksourceview/language-specs/ruby.lang.h:10
 #: ../gtksourceview/language-specs/scheme.lang.h:10
 #: ../gtksourceview/language-specs/sh.lang.h:5
+#: ../gtksourceview/language-specs/spec.lang.h:10
 #: ../gtksourceview/language-specs/sql.lang.h:23
 #: ../gtksourceview/language-specs/tcl.lang.h:2
 #: ../gtksourceview/language-specs/texinfo.lang.h:9
 #: ../gtksourceview/language-specs/vbnet.lang.h:6
-#: ../gtksourceview/language-specs/verilog.lang.h:7
+#: ../gtksourceview/language-specs/verilog.lang.h:8
 #: ../gtksourceview/language-specs/vhdl.lang.h:3
 msgid "Line Comment"
-msgstr "ਸਤਰ ਟਿੱਪਣੀ"
+msgstr "ਲਾਇਨ ਟਿੱਪਣੀ"
 
 #.
 #. For values like: z-index: 2;
 #. +/- before 0 is not allowed.
 #.
 #: ../gtksourceview/language-specs/ada.lang.h:6
+#: ../gtksourceview/language-specs/boo.lang.h:4
 #: ../gtksourceview/language-specs/css.lang.h:34
 #: ../gtksourceview/language-specs/desktop.lang.h:9
 #: ../gtksourceview/language-specs/gtkrc.lang.h:8
@@ -521,20 +538,23 @@ msgid "Preprocessor Keyword"
 msgstr "ਪ੍ਰੀਪੋਰਸੈਸਰ ਸ਼ਬਦ"
 
 #: ../gtksourceview/language-specs/ada.lang.h:8
+#: ../gtksourceview/language-specs/boo.lang.h:6
 #: ../gtksourceview/language-specs/c.lang.h:14
 #: ../gtksourceview/language-specs/cpp.lang.h:14
 #: ../gtksourceview/language-specs/csharp.lang.h:8
-#: ../gtksourceview/language-specs/fortran.lang.h:12
+#: ../gtksourceview/language-specs/d.lang.h:13
+#: ../gtksourceview/language-specs/fortran.lang.h:13
 #: ../gtksourceview/language-specs/haskell.lang.h:13
 #: ../gtksourceview/language-specs/idl.lang.h:8
-#: ../gtksourceview/language-specs/java.lang.h:10
+#: ../gtksourceview/language-specs/java.lang.h:11
 #: ../gtksourceview/language-specs/makefile.lang.h:6
 #: ../gtksourceview/language-specs/nemerle.lang.h:14
+#: ../gtksourceview/language-specs/ocaml.lang.h:13
 #: ../gtksourceview/language-specs/pascal.lang.h:17
 #: ../gtksourceview/language-specs/scheme.lang.h:12
 #: ../gtksourceview/language-specs/sql.lang.h:48
 #: ../gtksourceview/language-specs/vbnet.lang.h:10
-#: ../gtksourceview/language-specs/verilog.lang.h:9
+#: ../gtksourceview/language-specs/verilog.lang.h:10
 #: ../gtksourceview/language-specs/vhdl.lang.h:5
 msgid "Sources"
 msgstr "ਸਰੋਤ"
@@ -548,6 +568,36 @@ msgstr "ਸੱਚ ਤੇ ਝੂਠ"
 msgid "Type"
 msgstr "ਕਿਸਮ"
 
+#: ../gtksourceview/language-specs/boo.lang.h:1
+msgid "Boolean"
+msgstr "ਬੂਲੀਅਨ"
+
+#: ../gtksourceview/language-specs/boo.lang.h:2
+#: ../gtksourceview/language-specs/c.lang.h:10
+#: ../gtksourceview/language-specs/cpp.lang.h:10
+#: ../gtksourceview/language-specs/csharp.lang.h:3
+#: ../gtksourceview/language-specs/d.lang.h:9
+#: ../gtksourceview/language-specs/fortran.lang.h:7
+#: ../gtksourceview/language-specs/idl.lang.h:4
+#: ../gtksourceview/language-specs/javascript.lang.h:12
+#: ../gtksourceview/language-specs/lua.lang.h:3
+#: ../gtksourceview/language-specs/ocaml.lang.h:8
+#: ../gtksourceview/language-specs/perl.lang.h:2
+#: ../gtksourceview/language-specs/ruby.lang.h:9
+#: ../gtksourceview/language-specs/vbnet.lang.h:1
+#: ../gtksourceview/language-specs/verilog.lang.h:7
+msgid "Keywords"
+msgstr "ਸ਼ਬਦ"
+
+#: ../gtksourceview/language-specs/boo.lang.h:3
+#: ../gtksourceview/language-specs/javascript.lang.h:14
+msgid "Literals"
+msgstr "ਲਿਟਰਲ"
+
+#: ../gtksourceview/language-specs/boo.lang.h:5
+msgid "Primitive"
+msgstr "Primitive"
+
 #: ../gtksourceview/language-specs/c.lang.h:1
 #: ../gtksourceview/language-specs/cpp.lang.h:1
 msgid "'#if 0' Comment"
@@ -558,6 +608,8 @@ msgstr "'#if 0' ਟਿੱਪਣੀ"
 #: ../gtksourceview/language-specs/cpp.lang.h:2
 #: ../gtksourceview/language-specs/csharp.lang.h:1
 #: ../gtksourceview/language-specs/css.lang.h:9
+#: ../gtksourceview/language-specs/d.lang.h:2
+#: ../gtksourceview/language-specs/docbook.lang.h:2
 #: ../gtksourceview/language-specs/html.lang.h:2
 #: ../gtksourceview/language-specs/haskell.lang.h:1
 #: ../gtksourceview/language-specs/idl.lang.h:1
@@ -583,9 +635,11 @@ msgstr "ਆਮ ਮਾਈਕਰੋ"
 
 #: ../gtksourceview/language-specs/c.lang.h:7
 #: ../gtksourceview/language-specs/cpp.lang.h:7
+#: ../gtksourceview/language-specs/d.lang.h:6
 #: ../gtksourceview/language-specs/fortran.lang.h:2
 #: ../gtksourceview/language-specs/haskell.lang.h:4
 #: ../gtksourceview/language-specs/nemerle.lang.h:7
+#: ../gtksourceview/language-specs/ocaml.lang.h:6
 #: ../gtksourceview/language-specs/octave.lang.h:3
 #: ../gtksourceview/language-specs/python.lang.h:4
 #: ../gtksourceview/language-specs/R.lang.h:4
@@ -595,9 +649,11 @@ msgstr "ਦਸ਼ਮਲਵ ਅੰਕ"
 #. FIXME WHY DOESN'T THIS WORK?
 #: ../gtksourceview/language-specs/c.lang.h:8
 #: ../gtksourceview/language-specs/cpp.lang.h:8
+#: ../gtksourceview/language-specs/d.lang.h:8
 #: ../gtksourceview/language-specs/fortran.lang.h:4
 #: ../gtksourceview/language-specs/haskell.lang.h:6
 #: ../gtksourceview/language-specs/nemerle.lang.h:8
+#: ../gtksourceview/language-specs/ocaml.lang.h:7
 #: ../gtksourceview/language-specs/octave.lang.h:5
 #: ../gtksourceview/language-specs/pascal.lang.h:10
 #: ../gtksourceview/language-specs/python.lang.h:6
@@ -611,28 +667,16 @@ msgstr "ਹੈਕਸਾ ਨੰਬਰ"
 msgid "Include/Pragma"
 msgstr "Include/Pragma"
 
-#: ../gtksourceview/language-specs/c.lang.h:10
-#: ../gtksourceview/language-specs/cpp.lang.h:10
-#: ../gtksourceview/language-specs/csharp.lang.h:3
-#: ../gtksourceview/language-specs/fortran.lang.h:7
-#: ../gtksourceview/language-specs/idl.lang.h:4
-#: ../gtksourceview/language-specs/javascript.lang.h:12
-#: ../gtksourceview/language-specs/lua.lang.h:3
-#: ../gtksourceview/language-specs/perl.lang.h:2
-#: ../gtksourceview/language-specs/ruby.lang.h:9
-#: ../gtksourceview/language-specs/vbnet.lang.h:1
-#: ../gtksourceview/language-specs/verilog.lang.h:6
-msgid "Keywords"
-msgstr "ਸ਼ਬਦ"
-
 #: ../gtksourceview/language-specs/c.lang.h:12
 #: ../gtksourceview/language-specs/cpp.lang.h:12
+#: ../gtksourceview/language-specs/d.lang.h:12
 #: ../gtksourceview/language-specs/fortran.lang.h:10
 #: ../gtksourceview/language-specs/haskell.lang.h:11
 #: ../gtksourceview/language-specs/nemerle.lang.h:12
+#: ../gtksourceview/language-specs/ocaml.lang.h:12
 #: ../gtksourceview/language-specs/octave.lang.h:10
 #: ../gtksourceview/language-specs/python.lang.h:12
-#: ../gtksourceview/language-specs/verilog.lang.h:8
+#: ../gtksourceview/language-specs/verilog.lang.h:9
 msgid "Octal Number"
 msgstr "ਓਕਟਲ ਨੰਬਰ"
 
@@ -646,9 +690,10 @@ msgstr "ਪਰੀਪਰੋਸੈਸਰ ਪਰਿਭਾਸ਼ਾ"
 
 #: ../gtksourceview/language-specs/c.lang.h:16
 #: ../gtksourceview/language-specs/cpp.lang.h:16
-#: ../gtksourceview/language-specs/fortran.lang.h:15
+#: ../gtksourceview/language-specs/d.lang.h:16
+#: ../gtksourceview/language-specs/fortran.lang.h:16
 #: ../gtksourceview/language-specs/idl.lang.h:10
-#: ../gtksourceview/language-specs/verilog.lang.h:10
+#: ../gtksourceview/language-specs/verilog.lang.h:11
 msgid "Types"
 msgstr "ਕਿਸਮਾਂ"
 
@@ -657,10 +702,12 @@ msgid "ChangeLog"
 msgstr "ChangeLog"
 
 #: ../gtksourceview/language-specs/changelog.lang.h:2
+#: ../gtksourceview/language-specs/spec.lang.h:4
 msgid "Date"
 msgstr "ਮਿਤੀ"
 
 #: ../gtksourceview/language-specs/changelog.lang.h:3
+#: ../gtksourceview/language-specs/spec.lang.h:7
 msgid "Email"
 msgstr "ਈ-ਮੇਲ"
 
@@ -687,16 +734,16 @@ msgid "Multiline String"
 msgstr "ਬਹੁਕਤਾਰ ਸਤਰ"
 
 #: ../gtksourceview/language-specs/csharp.lang.h:7
-#: ../gtksourceview/language-specs/java.lang.h:9
+#: ../gtksourceview/language-specs/java.lang.h:10
 #: ../gtksourceview/language-specs/nemerle.lang.h:13
 #: ../gtksourceview/language-specs/vbnet.lang.h:9
 msgid "Primitives"
-msgstr "ਮੌਲਿਕ"
+msgstr "Primitives"
 
 #: ../gtksourceview/language-specs/csharp.lang.h:10
 #: ../gtksourceview/language-specs/css.lang.h:59
-#: ../gtksourceview/language-specs/fortran.lang.h:14
-#: ../gtksourceview/language-specs/java.lang.h:12
+#: ../gtksourceview/language-specs/fortran.lang.h:15
+#: ../gtksourceview/language-specs/java.lang.h:13
 #: ../gtksourceview/language-specs/javascript.lang.h:24
 #: ../gtksourceview/language-specs/lua.lang.h:11
 #: ../gtksourceview/language-specs/makefile.lang.h:9
@@ -716,7 +763,7 @@ msgstr "ਨਿਯਮ ਅਨੁਸਾਰ"
 #.
 #: ../gtksourceview/language-specs/css.lang.h:8
 msgid "Attribute Value Delimiters"
-msgstr "ਵਿਸ਼ੇਸਤਾ ਮੁੱਲ ਸੀਮਾ-ਕਾਰ"
+msgstr "ਵਿਸ਼ੇਸ਼ਤਾ ਮੁੱਲ ਸੀਮਾ-ਕਾਰ"
 
 #: ../gtksourceview/language-specs/css.lang.h:10
 msgid "CSS"
@@ -746,9 +793,10 @@ msgstr "ਖਾਸ ਸੋਧਕ"
 
 #: ../gtksourceview/language-specs/css.lang.h:28
 msgid "Known Property Values"
-msgstr "ਉਪਲੱਬਧ ਵਿਸ਼ੇਸਤਾ ਮੁੱਲ"
+msgstr "ਉਪਲੱਬਧ ਵਿਸ਼ੇਸ਼ਤਾ ਮੁੱਲ"
 
 #: ../gtksourceview/language-specs/css.lang.h:35
+#: ../gtksourceview/language-specs/fortran.lang.h:11
 #: ../gtksourceview/language-specs/javascript.lang.h:20
 #: ../gtksourceview/language-specs/php.lang.h:20
 #: ../gtksourceview/language-specs/sql.lang.h:34
@@ -757,7 +805,7 @@ msgstr "ਓਪਰੇਟਰ"
 
 #: ../gtksourceview/language-specs/css.lang.h:37
 msgid "Property Names"
-msgstr "ਵਿਸ਼ੇਸਤਾ ਮੁੱਲ"
+msgstr "ਵਿਸ਼ੇਸ਼ਤਾ ਮੁੱਲ"
 
 #.
 #. Brackets define a declaration block, parentheses define functions.
@@ -806,6 +854,37 @@ msgstr "ਯੂਨੀਕੋਡ ਅੱਖਰ ਹਵਾਲਾ"
 #: ../gtksourceview/language-specs/css.lang.h:68
 msgid "Unicode Range"
 msgstr "ਯੂਨੀਕੋਡ ਸੀਮਾ"
+
+#: ../gtksourceview/language-specs/d.lang.h:1
+#: ../gtksourceview/language-specs/nemerle.lang.h:1
+#: ../gtksourceview/language-specs/ocaml.lang.h:1
+#: ../gtksourceview/language-specs/verilog.lang.h:1
+msgid "Binary Number"
+msgstr "ਬਾਈਨਰ ਅੰਕ"
+
+#: ../gtksourceview/language-specs/d.lang.h:3
+msgid "Char Literal"
+msgstr "ਕੈਰ ਲਿਟਰਲ"
+
+#: ../gtksourceview/language-specs/d.lang.h:4
+msgid "D"
+msgstr "D"
+
+#: ../gtksourceview/language-specs/d.lang.h:7
+msgid "Grave Literal"
+msgstr "ਗਰੇਵ ਲਿਟਰਲ"
+
+#: ../gtksourceview/language-specs/d.lang.h:11
+msgid "Nested Comment"
+msgstr "ਨੈਸਟਿਡ ਟਿੱਪਣੀ"
+
+#: ../gtksourceview/language-specs/d.lang.h:14
+msgid "Special Tokens"
+msgstr "ਖਾਸ ਟੋਕਨ"
+
+#: ../gtksourceview/language-specs/d.lang.h:15
+msgid "String Literal"
+msgstr "ਸਤਰ ਲਿਟਰਲ"
 
 #: ../gtksourceview/language-specs/desktop.lang.h:1
 msgid ".desktop"
@@ -869,35 +948,71 @@ msgstr "ਸਤਰ ਹਟਾਈ"
 msgid "Special case"
 msgstr "ਖਾਸ ਮੌਕਾ"
 
+#: ../gtksourceview/language-specs/docbook.lang.h:1
 #: ../gtksourceview/language-specs/html.lang.h:1
 #: ../gtksourceview/language-specs/xml.lang.h:1
 msgid "Attribute"
 msgstr "ਗੁਣ"
 
+#: ../gtksourceview/language-specs/docbook.lang.h:3
 #: ../gtksourceview/language-specs/html.lang.h:3
 #: ../gtksourceview/language-specs/xml.lang.h:3
 msgid "Closing Bracket"
 msgstr "ਬਰੈਕਟ ਬੰਦ"
 
-#: ../gtksourceview/language-specs/html.lang.h:4
-msgid "DTD"
-msgstr "DTD"
+#: ../gtksourceview/language-specs/docbook.lang.h:4
+msgid "DocBook"
+msgstr "DocBook"
 
+#: ../gtksourceview/language-specs/docbook.lang.h:5
 #: ../gtksourceview/language-specs/html.lang.h:5
 #: ../gtksourceview/language-specs/xml.lang.h:4
 msgid "Entity"
 msgstr "ਇਕਾਈ"
 
-#: ../gtksourceview/language-specs/html.lang.h:6
-msgid "HTML"
-msgstr "HTML"
+#: ../gtksourceview/language-specs/docbook.lang.h:6
+msgid "Formatting Elements"
+msgstr "ਫਾਰਮੈਟ ਇਕਾਈਆਂ"
 
+#: ../gtksourceview/language-specs/docbook.lang.h:7
+msgid "GUI Elements"
+msgstr "GUI ਇਕਾਈਆਂ"
+
+#: ../gtksourceview/language-specs/docbook.lang.h:8
+msgid "Header Elements"
+msgstr "ਹੈਂਡਰ ਇਕਾਈਆਂ"
+
+#: ../gtksourceview/language-specs/docbook.lang.h:9
+#: ../gtksourceview/language-specs/xml.lang.h:5
+msgid "Hexadecimal"
+msgstr "ਹੈਕਸਾਡੈਸੀਮਲ"
+
+#: ../gtksourceview/language-specs/docbook.lang.h:10
 #: ../gtksourceview/language-specs/html.lang.h:7
 #: ../gtksourceview/language-specs/latex.lang.h:7
 #: ../gtksourceview/language-specs/texinfo.lang.h:12
 #: ../gtksourceview/language-specs/xml.lang.h:6
 msgid "Markup"
 msgstr "Markup"
+
+#: ../gtksourceview/language-specs/docbook.lang.h:12
+msgid "Structural Elements"
+msgstr "ਢਾਂਚਾ ਇਕਾਈਆਂ"
+
+#. This split keeps each keyword-list under 250 elements.
+#. See bug #110991 for further details.
+#.
+#: ../gtksourceview/language-specs/docbook.lang.h:16
+msgid "Structural Elements 2"
+msgstr "ਢਾਂਚਾ ਇਕਾਈ 2"
+
+#: ../gtksourceview/language-specs/html.lang.h:4
+msgid "DTD"
+msgstr "DTD"
+
+#: ../gtksourceview/language-specs/html.lang.h:6
+msgid "HTML"
+msgstr "HTML"
 
 #: ../gtksourceview/language-specs/html.lang.h:9
 #: ../gtksourceview/language-specs/xml.lang.h:8
@@ -910,13 +1025,13 @@ msgstr "Fortran 95"
 
 #: ../gtksourceview/language-specs/fortran.lang.h:5
 msgid "Input/Output"
-msgstr "ਇੰਨਪੁੱਟ/ਆਉਟਪੁੱਟ"
+msgstr "ਇੰਪੁੱਟ/ਆਉਟਪੁੱਟ"
 
 #: ../gtksourceview/language-specs/fortran.lang.h:6
 msgid "Intrinsics"
 msgstr "Intrinsics"
 
-#: ../gtksourceview/language-specs/fortran.lang.h:11
+#: ../gtksourceview/language-specs/fortran.lang.h:12
 msgid "Read/Write"
 msgstr "ਲਿਖਣ/ਪੜਨ"
 
@@ -929,7 +1044,7 @@ msgstr "ਲਿਖਣ/ਪੜਨ"
 #: ../gtksourceview/language-specs/R.lang.h:3
 #: ../gtksourceview/language-specs/ruby.lang.h:6
 msgid "Double Quoted String"
-msgstr "ਦੂਹਰੇ ਉਪੱਰੀ ਕਾਮੇ ਸਤਰ"
+msgstr "ਦੂਹਰੇ ਉੱਪਰੀ ਕਾਮੇ ਸਤਰ"
 
 #: ../gtksourceview/language-specs/gtkrc.lang.h:3
 msgid "GtkRC"
@@ -953,11 +1068,11 @@ msgstr "Keysymbol"
 #: ../gtksourceview/language-specs/R.lang.h:11
 #: ../gtksourceview/language-specs/ruby.lang.h:17
 msgid "Single Quoted String"
-msgstr "ਇਕਹਰੇ ਉਪੱਰੀ ਕਾਮੇ ਸਤਰ"
+msgstr "ਇਕਹਰੇ ਉੱਤੇ ਕਾਮੇ ਸਤਰ"
 
 #: ../gtksourceview/language-specs/gtkrc.lang.h:11
 msgid "State"
-msgstr "ਸਥਿਤੀ"
+msgstr "ਹਾਲਤ"
 
 #. $variable, $$dynamic-variable and even $$$more
 #: ../gtksourceview/language-specs/gtkrc.lang.h:12
@@ -992,7 +1107,7 @@ msgid ".ini"
 msgstr ".ini"
 
 #: ../gtksourceview/language-specs/ini.lang.h:3
-#: ../gtksourceview/language-specs/verilog.lang.h:3
+#: ../gtksourceview/language-specs/verilog.lang.h:4
 msgid "Decimal Number"
 msgstr "ਦਸ਼ਮਲਵ ਅੰਕ"
 
@@ -1009,25 +1124,30 @@ msgid "Flow"
 msgstr "ਵਹਾ"
 
 #: ../gtksourceview/language-specs/java.lang.h:4
+#: ../gtksourceview/language-specs/javascript.lang.h:7
+msgid "Future Reserved Words"
+msgstr "ਭਵਿੱਖ ਰਾਖਵੇ ਸ਼ਬਦ"
+
+#: ../gtksourceview/language-specs/java.lang.h:5
 msgid "Java"
 msgstr "ਜਾਵਾ"
 
-#: ../gtksourceview/language-specs/java.lang.h:6
+#: ../gtksourceview/language-specs/java.lang.h:7
 msgid "Memory"
 msgstr "ਮੈਮੋਰੀ"
 
-#: ../gtksourceview/language-specs/java.lang.h:7
+#: ../gtksourceview/language-specs/java.lang.h:8
 msgid "Modifiers"
 msgstr "ਸੋਧਕ"
 
-#: ../gtksourceview/language-specs/java.lang.h:8
+#: ../gtksourceview/language-specs/java.lang.h:9
 msgid "Numeric"
 msgstr "ਅੰਕੀ"
 
 #: ../gtksourceview/language-specs/javascript.lang.h:1
 #: ../gtksourceview/language-specs/php.lang.h:1
 msgid "Array Operators"
-msgstr "ਲੜੀ ਓਪਰੇਟਰ"
+msgstr "ਅਰੇ ਓਪਰੇਟਰ"
 
 #: ../gtksourceview/language-specs/javascript.lang.h:3
 msgid "Constructors"
@@ -1045,20 +1165,16 @@ msgstr "ਫਲੋਇੰਗ-ਬਿੰਦੂ ਅੰਕ"
 msgid "Flow Keywords"
 msgstr "ਫਲੋ ਸ਼ਬਦ"
 
-#: ../gtksourceview/language-specs/javascript.lang.h:7
-msgid "Future Reserved Words"
-msgstr "ਭਵਿੱਖ ਰਾਖਵੇ ਸ਼ਬਦ"
-
 #: ../gtksourceview/language-specs/javascript.lang.h:8
 msgid "Global Functions"
-msgstr "ਵਿਆਪਕ ਫੰਕਸ਼ਨ"
+msgstr "ਗਲੋਬਲ ਫੰਕਸ਼ਨ"
 
 #: ../gtksourceview/language-specs/javascript.lang.h:9
 msgid "Global Properties"
-msgstr "ਵਿਆਪਕ ਵਿਸ਼ੇਸਤਾ"
+msgstr "ਗਲੋਬਲ ਵਿਸ਼ੇਸ਼ਤਾ"
 
 #: ../gtksourceview/language-specs/javascript.lang.h:10
-#: ../gtksourceview/language-specs/verilog.lang.h:5
+#: ../gtksourceview/language-specs/verilog.lang.h:6
 msgid "Hexadecimal Number"
 msgstr "ਹੈਕਸਾਡੈਸੀਮਲ ਅੰਕ"
 
@@ -1066,13 +1182,9 @@ msgstr "ਹੈਕਸਾਡੈਸੀਮਲ ਅੰਕ"
 msgid "JavaScript"
 msgstr "ਜਾਵਾਸਕਰਿਪਟ"
 
-#: ../gtksourceview/language-specs/javascript.lang.h:14
-msgid "Literals"
-msgstr "ਲਿਟਰਲ"
-
 #: ../gtksourceview/language-specs/javascript.lang.h:15
 msgid "Math Value Properties"
-msgstr "ਗਣਿਤ ਮੁੱਲ ਵਿਸ਼ੇਸਤਾ"
+msgstr "ਗਣਿਤ ਮੁੱਲ ਵਿਸ਼ੇਸ਼ਤਾ"
 
 #: ../gtksourceview/language-specs/javascript.lang.h:17
 msgid "Object Functions"
@@ -1080,7 +1192,7 @@ msgstr "ਆਬਜੈਕਟ ਫੰਕਸ਼ਨ"
 
 #: ../gtksourceview/language-specs/javascript.lang.h:18
 msgid "Object Properties"
-msgstr "ਇਕਾਈ ਵਿਸ਼ੇਸਤਾ"
+msgstr "ਇਕਾਈ ਵਿਸ਼ੇਸ਼ਤਾ"
 
 #: ../gtksourceview/language-specs/javascript.lang.h:19
 msgid "Objects"
@@ -1135,7 +1247,7 @@ msgstr "ਫੰਕਸ਼ਨ"
 
 #: ../gtksourceview/language-specs/lua.lang.h:5
 msgid "Line Comment 2"
-msgstr "ਸਤਰ ਟਿੱਪਣੀ 2"
+msgstr "ਲਾਇਨ ਟਿੱਪਣੀ 2"
 
 #: ../gtksourceview/language-specs/lua.lang.h:6
 msgid "Lua"
@@ -1155,7 +1267,7 @@ msgstr "ਬੈਕਟਿਕ ਸਤਰ"
 
 #: ../gtksourceview/language-specs/makefile.lang.h:2
 msgid "Directives"
-msgstr "ਦਿਸ਼ਾ-ਨਿਰਦੇਸ਼"
+msgstr "ਡਾਈਰੈਕਟਿਵ"
 
 #: ../gtksourceview/language-specs/makefile.lang.h:5
 msgid "Makefile"
@@ -1183,11 +1295,6 @@ msgstr "ਵੇਰੀਬਲ2"
 msgid "MSIL"
 msgstr "MSIL"
 
-#: ../gtksourceview/language-specs/nemerle.lang.h:1
-#: ../gtksourceview/language-specs/verilog.lang.h:1
-msgid "Binary Number"
-msgstr "ਬਾਈਨਰ ਅੰਕ"
-
 #: ../gtksourceview/language-specs/nemerle.lang.h:4
 msgid "Core Keywords"
 msgstr "ਮੂਲ ਸ਼ਬਦ"
@@ -1204,10 +1311,26 @@ msgstr "ਮਾਈਕਰੋ ਰਾਹੀਂ ਪ੍ਰਭਾਸ਼ਤ ਸ਼ਬਦ"
 msgid "Nemerle"
 msgstr "Nemerle"
 
+#: ../gtksourceview/language-specs/ocaml.lang.h:2
+msgid "Boolean Constant"
+msgstr "ਬੂਲੀਅਨ ਸਥਿਰ"
+
+#: ../gtksourceview/language-specs/ocaml.lang.h:9
+msgid "Label"
+msgstr "ਲੇਬਲ"
+
+#: ../gtksourceview/language-specs/ocaml.lang.h:10
+msgid "Module"
+msgstr "ਮੋਡੀਊਲ"
+
+#: ../gtksourceview/language-specs/ocaml.lang.h:11
+msgid "Objective Caml"
+msgstr "ਆਬਜੈਕਟਿਵ Caml"
+
 #: ../gtksourceview/language-specs/octave.lang.h:8
 #: ../gtksourceview/language-specs/python.lang.h:10
 msgid "Multiline Double Quoted String"
-msgstr "ਦੂਹਰੇ ਉਪੱਰੀ ਕਾਮੇ ਸਤਰ"
+msgstr "ਦੂਹਰੇ ਉੱਪਰੀ ਕਾਮੇ ਸਤਰ"
 
 #: ../gtksourceview/language-specs/octave.lang.h:9
 #: ../gtksourceview/language-specs/python.lang.h:11
@@ -1273,7 +1396,7 @@ msgstr "ਪ੍ਰੀਪ੍ਰੋਸੈਸਰ ਪ੍ਰਭਾਸ਼ਾ"
 
 #: ../gtksourceview/language-specs/pascal.lang.h:19
 msgid "Type, Class and Object Keywords"
-msgstr "ਕਿਸਮ ਸ਼੍ਰੇਣੀ ਤੇ ਇਕਾਈ ਸ਼ਬਦ"
+msgstr "ਕਿਸਮ, ਕਲਾਸ ਅਤੇ ਆਬਜੈਕਟ ਸ਼ਬਦ"
 
 #: ../gtksourceview/language-specs/perl.lang.h:1
 msgid "Function Call"
@@ -1307,17 +1430,17 @@ msgstr "ਵੇਰੀਬਲ"
 #. # Bourne Shell Line Comment
 #: ../gtksourceview/language-specs/php.lang.h:5
 msgid "Bash Line Comment"
-msgstr "ਬਾਸ਼ ਸਤਰ ਟਿੱਪਣੀ"
+msgstr "ਬੈਸ਼ ਲਾਇਨ ਟਿੱਪਣੀ"
 
 #. /* C Block Comment
 #: ../gtksourceview/language-specs/php.lang.h:7
 msgid "C Block Comment"
-msgstr "ਸੀ (C) ਬਲਾਕ ਟਿੱਪਣੀ"
+msgstr "C ਬਲਾਕ ਟਿੱਪਣੀ"
 
 #. // C++ Line Comment
 #: ../gtksourceview/language-specs/php.lang.h:9
 msgid "C++ Line Comment"
-msgstr "ਸੀ (C)++ ਸਤਰ ਟਿੱਪਣੀ"
+msgstr "C++ ਲਾਇਨ ਟਿੱਪਣੀ"
 
 #: ../gtksourceview/language-specs/php.lang.h:10
 msgid "Case Insensitive Keyword"
@@ -1347,7 +1470,7 @@ msgstr "ਫਾਰਮੈਟ"
 
 #: ../gtksourceview/language-specs/po.lang.h:7
 msgid "gettext translation"
-msgstr "gettext ਤਬਦੀਲੀ"
+msgstr "gettext ਅਨੁਵਾਦ"
 
 #: ../gtksourceview/language-specs/python.lang.h:1
 #: ../gtksourceview/language-specs/ruby.lang.h:2
@@ -1356,11 +1479,11 @@ msgstr "Builtins"
 
 #: ../gtksourceview/language-specs/python.lang.h:9
 msgid "Module Handler"
-msgstr "ਮੈਡੀਲਿਊ ਹੈਡਲਰ"
+msgstr "ਮੋਡੀਊਲ ਹੈਡਲਰ"
 
 #: ../gtksourceview/language-specs/python.lang.h:13
 msgid "Python"
-msgstr "ਪਾਈਥਾਨ(Python)"
+msgstr "ਪਾਈਥਨ"
 
 #: ../gtksourceview/language-specs/R.lang.h:1
 msgid "Assignment Operator"
@@ -1376,15 +1499,15 @@ msgstr "ਪੂਰਨ ਅੰਕ"
 
 #: ../gtksourceview/language-specs/R.lang.h:8
 msgid "Reserved Class"
-msgstr "ਰਾਖਵਾਂ ਵਰਗ"
+msgstr "ਰਾਖਵੀਂ ਕਲਾਸ"
 
 #: ../gtksourceview/language-specs/ruby.lang.h:1
 msgid "Attribute Definitions"
-msgstr "ਵਿਸ਼ੇਸਤਾ ਪ੍ਰੀਭਾਸ਼ਾ"
+msgstr "ਵਿਸ਼ੇਸ਼ਤਾ ਪ੍ਰੀਭਾਸ਼ਾ"
 
 #: ../gtksourceview/language-specs/ruby.lang.h:3
 msgid "Class Variables"
-msgstr "ਸ੍ਰੇਣੀ ਵੇਰੀਬਲ"
+msgstr "ਕਲਾਸ ਵੇਰੀਬਲ"
 
 #: ../gtksourceview/language-specs/ruby.lang.h:4
 msgid "Constants"
@@ -1396,7 +1519,7 @@ msgstr "ਪ੍ਰਭਾਸ਼ਾ"
 
 #: ../gtksourceview/language-specs/ruby.lang.h:7
 msgid "Global Variables"
-msgstr "ਵਿਆਪਕ ਵੇਰੀਬਲ"
+msgstr "ਗਲੋਬਲ ਵੇਰੀਬਲ"
 
 #: ../gtksourceview/language-specs/ruby.lang.h:8
 msgid "Instance Variables"
@@ -1404,7 +1527,7 @@ msgstr "ਮੌਕਾ ਵੇਰੀਬਲ"
 
 #: ../gtksourceview/language-specs/ruby.lang.h:11
 msgid "Module Handlers"
-msgstr "ਮੈਡੀਲਿਊ ਹੈਡਲਰ"
+msgstr "ਮੋਡੀਊਲ ਹੈਡਲਰ"
 
 #: ../gtksourceview/language-specs/ruby.lang.h:12
 msgid "Multiline Comment"
@@ -1458,6 +1581,58 @@ msgstr "ਖੁਦ"
 msgid "sh"
 msgstr "sh"
 
+#: ../gtksourceview/language-specs/spec.lang.h:1
+msgid "Command Macro"
+msgstr "ਕਮਾਂਡ ਮਾਈਕਰੋ"
+
+#: ../gtksourceview/language-specs/spec.lang.h:2
+msgid "Conditional Define"
+msgstr "ਸ਼ਰਤੀਆਂ ਪਰਿਭਾਸ਼ਾ"
+
+#: ../gtksourceview/language-specs/spec.lang.h:3
+msgid "Conditional Macro"
+msgstr "ਸ਼ਰਤੀਆਂ ਮਾਈਕਰੋ"
+
+#: ../gtksourceview/language-specs/spec.lang.h:5
+msgid "Define"
+msgstr "ਪ੍ਰੀਭਾਸ਼ਾ"
+
+#: ../gtksourceview/language-specs/spec.lang.h:6
+msgid "Directory Macro"
+msgstr "ਡਾਇਰੈਕਟਰੀ ਮਾਈਕਰੋ"
+
+#: ../gtksourceview/language-specs/spec.lang.h:8
+msgid "Flow Conditional"
+msgstr "ਫਲੋ ਸ਼ਰਤੀਆ"
+
+#: ../gtksourceview/language-specs/spec.lang.h:9
+msgid "Header"
+msgstr "ਹੈਂਡਰ"
+
+#: ../gtksourceview/language-specs/spec.lang.h:11
+msgid "Other Macro"
+msgstr "ਹੋਰ ਮਾਈਕਰੋ"
+
+#: ../gtksourceview/language-specs/spec.lang.h:13
+msgid "RPM Variable"
+msgstr "RPM ਵੇਰੀਬਲ"
+
+#: ../gtksourceview/language-specs/spec.lang.h:14
+msgid "RPM spec"
+msgstr "RPM spec"
+
+#: ../gtksourceview/language-specs/spec.lang.h:15
+msgid "Section"
+msgstr "ਭਾਗ"
+
+#: ../gtksourceview/language-specs/spec.lang.h:16
+msgid "Spec Macro"
+msgstr "Spec ਮਾਈਕਰੋ"
+
+#: ../gtksourceview/language-specs/spec.lang.h:17
+msgid "Switch"
+msgstr "ਸਵਿੱਚ"
+
 #: ../gtksourceview/language-specs/sql.lang.h:1
 msgid "ANSI Datatypes"
 msgstr "ANSI ਡਾਟਾ-ਟਾਇਪ"
@@ -1499,7 +1674,7 @@ msgstr "ਤਬਦੀਲੀ ਫੰਕਸ਼ਨ"
 
 #: ../gtksourceview/language-specs/sql.lang.h:15
 msgid "Data Mining Functions"
-msgstr "ਮਿਤੀ-ਸਮਾਂ ਫੰਕਸ਼ਨ"
+msgstr "ਮਿਤੀ Mining ਫੰਕਸ਼ਨ"
 
 #: ../gtksourceview/language-specs/sql.lang.h:16
 msgid "Datetime Functions"
@@ -1629,7 +1804,7 @@ msgstr "ਅੱਖਰ"
 
 #: ../gtksourceview/language-specs/texinfo.lang.h:3
 msgid "File Attributes"
-msgstr "ਫਾਇਲ਼ ਵਿਸ਼ੇਸਤਾ"
+msgstr "ਫਾਇਲ਼ ਵਿਸ਼ੇਸ਼ਤਾ"
 
 #: ../gtksourceview/language-specs/texinfo.lang.h:4
 msgid "Formatting"
@@ -1675,11 +1850,15 @@ msgstr "ਪੁਰਾਣੀ ਸ਼ੈਲੀ ਟਿੱਪਣੀ"
 msgid "VB.NET"
 msgstr "VB.NET"
 
-#: ../gtksourceview/language-specs/verilog.lang.h:4
+#: ../gtksourceview/language-specs/verilog.lang.h:3
+msgid "Compiler directive"
+msgstr "ਕੰਪਾਇਲਰ ਡਾਈਰੈਕਟਿਵ"
+
+#: ../gtksourceview/language-specs/verilog.lang.h:5
 msgid "Gates"
 msgstr "ਗੇਟ"
 
-#: ../gtksourceview/language-specs/verilog.lang.h:11
+#: ../gtksourceview/language-specs/verilog.lang.h:12
 msgid "Verilog"
 msgstr "ਵੇਰੀਲਾਗ"
 
@@ -1690,10 +1869,6 @@ msgstr "ਸੱਚ ਅਤੇ ਝੂਠ"
 #: ../gtksourceview/language-specs/vhdl.lang.h:9
 msgid "VHDL"
 msgstr "VHDL"
-
-#: ../gtksourceview/language-specs/xml.lang.h:5
-msgid "Hexadecimal"
-msgstr "ਹੈਕਸਾਡੈਸੀਮਲ"
 
 #: ../gtksourceview/language-specs/xml.lang.h:9
 msgid "XML"
