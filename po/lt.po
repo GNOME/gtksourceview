@@ -1,25 +1,24 @@
 # translation of lt.po to Lithuanian
 # Lithuanian translation of gtksourceview.
-# Copyright (C) 2003-2006 Free Software Foundation, Inc.
+# Copyright (C) 2003-2006, 2007 Free Software Foundation, Inc.
 #
 #
 # Tomas Kuliavas <tokul@users.sourceforge.net>, 2003.
 # Žygimantas Beručka <zygis@gnome.org>, 2003-2006.
-# Gintautas Miliauskas <gintas@akl.lt>, 2006.
+# Gintautas Miliauskas <gintas@akl.lt>, 2006, 2007.
 msgid ""
 msgstr ""
 "Project-Id-Version: lt\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-02-27 15:48+0200\n"
-"PO-Revision-Date: 2006-08-29 01:20+0300\n"
+"POT-Creation-Date: 2007-03-09 22:19+0200\n"
+"PO-Revision-Date: 2007-03-09 22:25+0200\n"
 "Last-Translator: Gintautas Miliauskas <gintas@akl.lt>\n"
-"Language-Team: Lithuanian <komp_lt@konferencijos.lt>\n"
+"Language-Team: Lithuanian <gnome-lt@lists.akl.lt>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.2\n"
-"Plural-Forms:  nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%"
-"100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms:  nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: ../gtksourceview/gtksourcebuffer.c:278
 msgid "Escape Character"
@@ -146,8 +145,7 @@ msgstr "Spausdinti eilučių numerius"
 
 #: ../gtksourceview/gtksourceprintjob.c:338
 msgid "Interval of printed line numbers (0 means no numbers)"
-msgstr ""
-"Tarpas tarp spausdinamų eilučių numerių (0 reiškia numerių nespausdinimą)"
+msgstr "Tarpas tarp spausdinamų eilučių numerių (0 reiškia numerių nespausdinimą)"
 
 #: ../gtksourceview/gtksourceprintjob.c:345
 msgid "Print Header"
@@ -965,7 +963,7 @@ msgstr "Uždarantys laužtiniai skliaustai"
 
 #: ../gtksourceview/language-specs/docbook.lang.h:4
 msgid "DocBook"
-msgstr ""
+msgstr "DocBook"
 
 #: ../gtksourceview/language-specs/docbook.lang.h:5
 #: ../gtksourceview/language-specs/html.lang.h:5
@@ -974,18 +972,16 @@ msgid "Entity"
 msgstr "Esybė"
 
 #: ../gtksourceview/language-specs/docbook.lang.h:6
-#, fuzzy
 msgid "Formatting Elements"
-msgstr "Formatavimas"
+msgstr "Formatavimo elementai"
 
 #: ../gtksourceview/language-specs/docbook.lang.h:7
 msgid "GUI Elements"
-msgstr ""
+msgstr "Grafinės sąsajos elementai"
 
 #: ../gtksourceview/language-specs/docbook.lang.h:8
-#, fuzzy
 msgid "Header Elements"
-msgstr "Parinkiklio pseudo elementai"
+msgstr "Antraštės elementai"
 
 #: ../gtksourceview/language-specs/docbook.lang.h:9
 #: ../gtksourceview/language-specs/xml.lang.h:5
@@ -1001,16 +997,15 @@ msgid "Markup"
 msgstr "Žymėjimas"
 
 #: ../gtksourceview/language-specs/docbook.lang.h:12
-#, fuzzy
 msgid "Structural Elements"
-msgstr "Parinkiklio pseudo elementai"
+msgstr "Struktūriniai elementai"
 
 #. This split keeps each keyword-list under 250 elements.
 #. See bug #110991 for further details.
 #.
 #: ../gtksourceview/language-specs/docbook.lang.h:16
 msgid "Structural Elements 2"
-msgstr ""
+msgstr "Struktūriniai elementai 2"
 
 #: ../gtksourceview/language-specs/html.lang.h:4
 msgid "DTD"
@@ -1318,23 +1313,20 @@ msgid "Nemerle"
 msgstr "Nemerle"
 
 #: ../gtksourceview/language-specs/ocaml.lang.h:2
-#, fuzzy
 msgid "Boolean Constant"
-msgstr "Konstantos"
+msgstr "Būlio konstanta"
 
 #: ../gtksourceview/language-specs/ocaml.lang.h:9
-#, fuzzy
 msgid "Label"
-msgstr "LaTeX"
+msgstr "Užrašas"
 
 #: ../gtksourceview/language-specs/ocaml.lang.h:10
-#, fuzzy
 msgid "Module"
-msgstr "Modulio rodyklė"
+msgstr "Modulis"
 
 #: ../gtksourceview/language-specs/ocaml.lang.h:11
 msgid "Objective Caml"
-msgstr ""
+msgstr "Objective Caml"
 
 #: ../gtksourceview/language-specs/octave.lang.h:8
 #: ../gtksourceview/language-specs/python.lang.h:10
@@ -1591,65 +1583,56 @@ msgid "sh"
 msgstr "sh"
 
 #: ../gtksourceview/language-specs/spec.lang.h:1
-#, fuzzy
 msgid "Command Macro"
-msgstr "Bendrinis makrosas"
+msgstr "Komandos makrosas"
 
 #: ../gtksourceview/language-specs/spec.lang.h:2
-#, fuzzy
 msgid "Conditional Define"
-msgstr "Sąlygos"
+msgstr "Sąlyginis aprašas"
 
 #: ../gtksourceview/language-specs/spec.lang.h:3
-#, fuzzy
 msgid "Conditional Macro"
-msgstr "Bendrinis makrosas"
+msgstr "Sąlyginis makrosas"
 
 #: ../gtksourceview/language-specs/spec.lang.h:5
 msgid "Define"
-msgstr ""
+msgstr "Aprašas"
 
 #: ../gtksourceview/language-specs/spec.lang.h:6
 msgid "Directory Macro"
-msgstr ""
+msgstr "Aplanko makrosas"
 
 #: ../gtksourceview/language-specs/spec.lang.h:8
-#, fuzzy
 msgid "Flow Conditional"
-msgstr "Sąlygos"
+msgstr "Tėkmės sąlyga"
 
 #: ../gtksourceview/language-specs/spec.lang.h:9
-#, fuzzy
 msgid "Header"
-msgstr "Spausdinti antraštę"
+msgstr "Antraštė"
 
 #: ../gtksourceview/language-specs/spec.lang.h:11
-#, fuzzy
 msgid "Other Macro"
-msgstr "Kiti 2"
+msgstr "Kitas makrosas"
 
 #: ../gtksourceview/language-specs/spec.lang.h:13
-#, fuzzy
 msgid "RPM Variable"
-msgstr "Kintamasis"
+msgstr "RPM kintamasis"
 
 #: ../gtksourceview/language-specs/spec.lang.h:14
 msgid "RPM spec"
-msgstr ""
+msgstr "RPM specifikacija"
 
 #: ../gtksourceview/language-specs/spec.lang.h:15
-#, fuzzy
 msgid "Section"
-msgstr "Sekcinis"
+msgstr "Sekcija"
 
 #: ../gtksourceview/language-specs/spec.lang.h:16
-#, fuzzy
 msgid "Spec Macro"
-msgstr "Makrosai"
+msgstr "Specialus makrosas"
 
 #: ../gtksourceview/language-specs/spec.lang.h:17
 msgid "Switch"
-msgstr ""
+msgstr "Jungiklis"
 
 #: ../gtksourceview/language-specs/sql.lang.h:1
 msgid "ANSI Datatypes"
@@ -1869,9 +1852,8 @@ msgid "VB.NET"
 msgstr "VB.NET"
 
 #: ../gtksourceview/language-specs/verilog.lang.h:3
-#, fuzzy
 msgid "Compiler directive"
-msgstr "Intarpo direktyva"
+msgstr "Kompiliatoriaus direktyva"
 
 #: ../gtksourceview/language-specs/verilog.lang.h:5
 msgid "Gates"
@@ -1892,3 +1874,4 @@ msgstr "VHDL"
 #: ../gtksourceview/language-specs/xml.lang.h:9
 msgid "XML"
 msgstr "XML"
+
