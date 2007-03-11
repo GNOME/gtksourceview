@@ -1,7 +1,7 @@
 General Information
 ===================
 
-This is version 1.8.4 of GtkSourceView. 
+This is version 1.8.5 of GtkSourceView. 
 
 GtkSourceView is a text widget that extends the standard gtk+ 2.x 
 text widget GtkTextView.
@@ -26,8 +26,8 @@ GtkSourceView requires GTK+-2.8.x, libxml2 2.5.x and libgnomeprint 2.8.x.
 
 Simple install procedure:
 
-  % gzip -cd gtksourceview-1.8.4.tar.gz | tar xvf -    # unpack the sources
-  % cd gtksourceview-1.8.4		   # change to the toplevel directory
+  % gzip -cd gtksourceview-1.8.5.tar.gz | tar xvf -    # unpack the sources
+  % cd gtksourceview-1.8.5		   # change to the toplevel directory
   % ./configure				   # run the `configure' script
   % make				   # build gtksourceview
   [ Become root if necessary ]
