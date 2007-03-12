@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview.HEAD.pt_BR\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-03-05 23:46-0300\n"
-"PO-Revision-Date: 2007-03-05 23:47-0300\n"
+"POT-Creation-Date: 2007-03-12 02:27-0300\n"
+"PO-Revision-Date: 2007-03-12 02:47-0300\n"
 "Last-Translator: Washington Lins <washington-lins@uol.com.br>\n"
 "Language-Team: Brazilian Portuguese <gnome-l10n-br@listas.cipsga.org.br>\n"
 "MIME-Version: 1.0\n"
@@ -55,7 +55,7 @@ msgstr "Quantidade máxima de níveis de desfazer para o buffer"
 #: ../gtksourceview/language-specs/desktop.lang.h:6
 #: ../gtksourceview/language-specs/ini.lang.h:7
 msgid "Language"
-msgstr "Idioma"
+msgstr "Linguagem"
 
 #: ../gtksourceview/gtksourcebuffer.c:317
 msgid "Language object to get highlighting patterns from"
@@ -129,7 +129,7 @@ msgstr "Fonte a ser usada no texto do documento (i.e. \"Monospace 10\")"
 #: ../gtksourceview/gtksourceprintjob.c:321
 #: ../gtksourceview/gtksourceprintjob.c:329
 msgid "Numbers Font"
-msgstr "Fonte dos números"
+msgstr "Fonte para os números"
 
 #: ../gtksourceview/gtksourceprintjob.c:322
 msgid "GnomeFont name to use for the line numbers (deprecated)"
@@ -251,7 +251,7 @@ msgstr "Ponto Flutuante"
 #: ../gtksourceview/language-specs/texinfo.lang.h:8
 #: ../gtksourceview/language-specs/vhdl.lang.h:2
 msgid "Keyword"
-msgstr "Palavra Chave"
+msgstr "Palavra-chave"
 
 #: ../gtksourceview/gtksourcestylescheme.c:304
 msgid "Preprocessor"
@@ -334,7 +334,7 @@ msgstr "Padrão"
 
 #: ../gtksourceview/gtksourcetag.c:109
 msgid "Tag ID"
-msgstr "Tag ID"
+msgstr "ID da Tag"
 
 #: ../gtksourceview/gtksourcetag.c:110
 msgid "ID used to refer to the source tag"
@@ -358,7 +358,7 @@ msgstr "Exibir ou não a numeração de linha"
 
 #: ../gtksourceview/gtksourceview.c:227
 msgid "Show Line Markers"
-msgstr "Exibir marcadores de linha"
+msgstr "Mostrar marcadores de linha"
 
 #: ../gtksourceview/gtksourceview.c:228
 msgid "Whether to display line marker pixbufs"
@@ -382,11 +382,11 @@ msgstr "Inserir ou não espaços ao invés de tabulações"
 
 #: ../gtksourceview/gtksourceview.c:260
 msgid "Show Right Margin"
-msgstr "Exibir margem direita"
+msgstr "Mostrar margem direita"
 
 #: ../gtksourceview/gtksourceview.c:261
 msgid "Whether to display the right margin"
-msgstr "Exibir ou não a margem direita"
+msgstr "Mostrar ou não a margem direita"
 
 #: ../gtksourceview/gtksourceview.c:268
 msgid "Margin position"
@@ -405,7 +405,7 @@ msgid ""
 "HOME and END keys move to first/last non whitespace characters on line "
 "before going to the start/end of the line"
 msgstr ""
-"As teclas HOME e END movem para o primeiro/último caractere não branco da "
+"As teclas HOME e END movem para o primeiro/último caractere não-branco da "
 "linha antes de ir para o início/fim da linha"
 
 #: ../gtksourceview/gtksourceview.c:288
@@ -422,11 +422,11 @@ msgstr "Recuar com Tab"
 
 #: ../gtksourceview/gtksourceview.c:297
 msgid "Whether to indent the selected text when the tab key is pressed"
-msgstr "Recuar ou não o texto selecionado quanto a tecla Tab for pressionada"
+msgstr "Recuar ou não o texto selecionado quanto a tecla tab for pressionada"
 
 #: ../gtksourceview/gtksourceview.c:313
 msgid "Margin Line Alpha"
-msgstr "Alfa da Margem Esquerda"
+msgstr "Alfa da Linha de Margem"
 
 #: ../gtksourceview/gtksourceview.c:314
 msgid "Transparency of the margin line"
@@ -438,11 +438,11 @@ msgstr "Cor da Linha de Margem"
 
 #: ../gtksourceview/gtksourceview.c:332
 msgid "Color to use for the right margin line"
-msgstr "Cor para a linha da margem direita"
+msgstr "Cor usada para a linha da margem direita"
 
 #: ../gtksourceview/gtksourceview.c:348
 msgid "Margin Overlay Toggle"
-msgstr "(Des)liga a Camada da Margem"
+msgstr "Alterna a Camada da Margem"
 
 #: ../gtksourceview/gtksourceview.c:349
 msgid "Whether to draw the right margin overlay"
@@ -462,7 +462,7 @@ msgstr "Cor da Camada da Margem"
 
 #: ../gtksourceview/gtksourceview.c:384
 msgid "Color to use for drawing the margin overlay"
-msgstr "Cor de desenho para a camada da margem"
+msgstr "Cor a usar para desenhar a camada da margem"
 
 #: ../gtksourceview/language-specs/ada.lang.h:1
 msgid "Ada"
@@ -536,7 +536,7 @@ msgstr "Números"
 
 #: ../gtksourceview/language-specs/ada.lang.h:7
 msgid "Preprocessor Keyword"
-msgstr "Palavras Chave do Pré-processador"
+msgstr "Palavras-chave do Pré-processador"
 
 #: ../gtksourceview/language-specs/ada.lang.h:8
 #: ../gtksourceview/language-specs/boo.lang.h:6
@@ -588,7 +588,7 @@ msgstr "Booleano"
 #: ../gtksourceview/language-specs/vbnet.lang.h:1
 #: ../gtksourceview/language-specs/verilog.lang.h:7
 msgid "Keywords"
-msgstr "Palavras Chave"
+msgstr "Palavras-chave"
 
 #: ../gtksourceview/language-specs/boo.lang.h:3
 #: ../gtksourceview/language-specs/javascript.lang.h:14
@@ -666,7 +666,7 @@ msgstr "Número Hexadecimal"
 #: ../gtksourceview/language-specs/haskell.lang.h:7
 #: ../gtksourceview/language-specs/idl.lang.h:3
 msgid "Include/Pragma"
-msgstr "Incluir/Diretiva de Compilação Pragma"
+msgstr "Include/Pragma"
 
 #: ../gtksourceview/language-specs/c.lang.h:12
 #: ../gtksourceview/language-specs/cpp.lang.h:12
@@ -783,7 +783,7 @@ msgstr "Dimensão"
 #.
 #: ../gtksourceview/language-specs/css.lang.h:23
 msgid "Hexadecimal Color"
-msgstr "Cor Hexadecimal"
+msgstr "Cor em Hexadecimal"
 
 #.
 #. Upgrades a rule set's importance when several rule sets conflict.
@@ -815,7 +815,7 @@ msgstr "Nomes de Propriedade"
 #: ../gtksourceview/language-specs/css.lang.h:41
 #: ../gtksourceview/language-specs/javascript.lang.h:21
 msgid "Punctuators"
-msgstr "Pontuadores"
+msgstr "Símbolos de Pontuação"
 
 #.
 #. Used to combine selectors. Example syntax:
@@ -832,7 +832,7 @@ msgstr "Gramática de Seletor"
 #.
 #: ../gtksourceview/language-specs/css.lang.h:52
 msgid "Selector Pseudo Classes"
-msgstr "Pseudo Classes de Seletor"
+msgstr "Pseudoclasses de Seletor"
 
 #.
 #. Pseudo-element rules. Good to have syntax highlighting for these
@@ -840,7 +840,7 @@ msgstr "Pseudo Classes de Seletor"
 #.
 #: ../gtksourceview/language-specs/css.lang.h:57
 msgid "Selector Pseudo Elements"
-msgstr "Pseudo Elementos de Seletor"
+msgstr "Pseudoelementos de Seletor"
 
 #.
 #. Escaped unicode characters can contain either 6 hexadecimal characters
@@ -866,7 +866,7 @@ msgstr "Número Binário"
 
 #: ../gtksourceview/language-specs/d.lang.h:3
 msgid "Char Literal"
-msgstr "Literal de Caracter"
+msgstr "Literal de Caractere"
 
 #: ../gtksourceview/language-specs/d.lang.h:4
 msgid "D"
@@ -886,7 +886,7 @@ msgstr "Símbolos Especiais"
 
 #: ../gtksourceview/language-specs/d.lang.h:15
 msgid "String Literal"
-msgstr "Literal de Expressão"
+msgstr "Expressão Literal"
 
 #: ../gtksourceview/language-specs/desktop.lang.h:1
 msgid ".desktop"
@@ -915,11 +915,11 @@ msgstr "Grupo"
 #: ../gtksourceview/language-specs/desktop.lang.h:8
 #: ../gtksourceview/language-specs/ini.lang.h:9
 msgid "Non Standard Key"
-msgstr "Chave Não Padrão"
+msgstr "Tecla Não-padrão"
 
 #: ../gtksourceview/language-specs/desktop.lang.h:11
 msgid "Standard Key"
-msgstr "Chave Padrão"
+msgstr "Tecla Padrão"
 
 #: ../gtksourceview/language-specs/diff.lang.h:1
 msgid "Added line"
@@ -1128,7 +1128,7 @@ msgstr "Fluxo"
 #: ../gtksourceview/language-specs/java.lang.h:4
 #: ../gtksourceview/language-specs/javascript.lang.h:7
 msgid "Future Reserved Words"
-msgstr "Palavras Reservadas para o Futuro"
+msgstr "Palavras Reservadas para uso Futuro"
 
 #: ../gtksourceview/language-specs/java.lang.h:5
 msgid "Java"
@@ -1165,7 +1165,7 @@ msgstr "Número de Ponto Flutuante"
 
 #: ../gtksourceview/language-specs/javascript.lang.h:6
 msgid "Flow Keywords"
-msgstr "Palavras Chave de Fluxo"
+msgstr "Palavras-chave de Fluxo"
 
 #: ../gtksourceview/language-specs/javascript.lang.h:8
 msgid "Global Functions"
@@ -1299,15 +1299,15 @@ msgstr "MSIL"
 
 #: ../gtksourceview/language-specs/nemerle.lang.h:4
 msgid "Core Keywords"
-msgstr "Palavras Chave Centrais"
+msgstr "Palavras-chave Principais"
 
 #: ../gtksourceview/language-specs/nemerle.lang.h:5
 msgid "Core Types"
-msgstr "Tipos Centrais"
+msgstr "Tipos Principais"
 
 #: ../gtksourceview/language-specs/nemerle.lang.h:9
 msgid "Keywords Defined by Macros"
-msgstr "Palavras Chave Definidas por Macros"
+msgstr "Palavras-chave Definidas por Macros"
 
 #: ../gtksourceview/language-specs/nemerle.lang.h:11
 msgid "Nemerle"
@@ -1341,7 +1341,7 @@ msgstr "Texto entre Aspas Simples"
 
 #: ../gtksourceview/language-specs/octave.lang.h:11
 msgid "Octave"
-msgstr "Oitava"
+msgstr "Octave"
 
 #: ../gtksourceview/language-specs/octave.lang.h:12
 #: ../gtksourceview/language-specs/R.lang.h:9
@@ -1362,15 +1362,15 @@ msgstr "Operadores Booleanos Bit-a-bit"
 
 #: ../gtksourceview/language-specs/pascal.lang.h:4
 msgid "Builtin Functions"
-msgstr "Funções Internas"
+msgstr "Funções Predefinidas"
 
 #: ../gtksourceview/language-specs/pascal.lang.h:5
 msgid "Builtin Types"
-msgstr "Tipos Internos"
+msgstr "Tipos Predefinidos"
 
 #: ../gtksourceview/language-specs/pascal.lang.h:6
 msgid "Builtin Values"
-msgstr "Valores Internos"
+msgstr "Valores Predefinidos"
 
 #: ../gtksourceview/language-specs/pascal.lang.h:7
 msgid "Functions and Function Modifiers"
@@ -1382,7 +1382,7 @@ msgstr "Formato Geral"
 
 #: ../gtksourceview/language-specs/pascal.lang.h:12
 msgid "Loop, Flow, and Exceptions Keywords"
-msgstr "Palavras Chave de Laço, Fluxo e Exceções"
+msgstr "Palavras-chave de Laço, Fluxo e Exceções"
 
 #: ../gtksourceview/language-specs/pascal.lang.h:13
 msgid "Math Operators"
@@ -1398,7 +1398,7 @@ msgstr "Definições do Pré-processador"
 
 #: ../gtksourceview/language-specs/pascal.lang.h:19
 msgid "Type, Class and Object Keywords"
-msgstr "Palavras Chave de Tipo, Classe e Objeto"
+msgstr "Palavras-chave de Tipo, Classe e Objeto"
 
 #: ../gtksourceview/language-specs/perl.lang.h:1
 msgid "Function Call"
@@ -1446,12 +1446,12 @@ msgstr "Linha de Comentário do C++"
 
 #: ../gtksourceview/language-specs/php.lang.h:10
 msgid "Case Insensitive Keyword"
-msgstr "Palavra Chave Insensível a Maiúsculas/Minúsculas"
+msgstr "Palavra-chave Insensível a Maiúsc./Minúsc."
 
 #. This are keywords, the are recognised by php
 #: ../gtksourceview/language-specs/php.lang.h:12
 msgid "Case Sensitive Keyword"
-msgstr "Palvra Chave Sensível a Maiúsculas/Minúsculas"
+msgstr "Palavra-chave Sensível a Maiúsc./Minúsc."
 
 #. <? ?> <HTML> inside PHP <?
 #: ../gtksourceview/language-specs/php.lang.h:18
@@ -1472,12 +1472,12 @@ msgstr "Formato"
 
 #: ../gtksourceview/language-specs/po.lang.h:7
 msgid "gettext translation"
-msgstr "Tradução do gettext"
+msgstr "tradução do gettext"
 
 #: ../gtksourceview/language-specs/python.lang.h:1
 #: ../gtksourceview/language-specs/ruby.lang.h:2
 msgid "Builtins"
-msgstr "Internos"
+msgstr "Predefinidos"
 
 #: ../gtksourceview/language-specs/python.lang.h:9
 msgid "Module Handler"
@@ -1533,11 +1533,11 @@ msgstr "Manipulador de Módulo"
 
 #: ../gtksourceview/language-specs/ruby.lang.h:12
 msgid "Multiline Comment"
-msgstr "Comentário em Várias Linhas"
+msgstr "Comentário em Múltiplas Linhas"
 
 #: ../gtksourceview/language-specs/ruby.lang.h:13
 msgid "Pseudo Variables"
-msgstr "Pseudo Variavéis"
+msgstr "Pseudo-variavéis"
 
 #: ../gtksourceview/language-specs/ruby.lang.h:14
 msgid "RegExp Variables"
@@ -1557,7 +1557,7 @@ msgstr "Esquema"
 
 #: ../gtksourceview/language-specs/sh.lang.h:2
 msgid "Built-in Command"
-msgstr "Comandos Internos"
+msgstr "Comandos predefinidos"
 
 #: ../gtksourceview/language-specs/sh.lang.h:3
 msgid "Common Command"
@@ -1569,7 +1569,7 @@ msgstr "Operador"
 
 #: ../gtksourceview/language-specs/sh.lang.h:9
 msgid "Punctuator"
-msgstr "Pontuador"
+msgstr "Sinal de Pontuação"
 
 #: ../gtksourceview/language-specs/sh.lang.h:10
 msgid "Redirection"
@@ -1613,15 +1613,15 @@ msgstr "Cabeçalho"
 
 #: ../gtksourceview/language-specs/spec.lang.h:11
 msgid "Other Macro"
-msgstr "Macro Outra"
+msgstr "Outra Macro"
 
 #: ../gtksourceview/language-specs/spec.lang.h:13
 msgid "RPM Variable"
-msgstr "Variável RPM"
+msgstr "Variável de RPM"
 
 #: ../gtksourceview/language-specs/spec.lang.h:14
 msgid "RPM spec"
-msgstr "Spec de RPM"
+msgstr "Especificação de RPM"
 
 #: ../gtksourceview/language-specs/spec.lang.h:15
 msgid "Section"
@@ -1633,7 +1633,7 @@ msgstr "Macro de Especificação"
 
 #: ../gtksourceview/language-specs/spec.lang.h:17
 msgid "Switch"
-msgstr "Interruptor"
+msgstr "Switch"
 
 #: ../gtksourceview/language-specs/sql.lang.h:1
 msgid "ANSI Datatypes"
@@ -1656,11 +1656,11 @@ msgstr "Funções Analíticas"
 
 #: ../gtksourceview/language-specs/sql.lang.h:10
 msgid "Character Functions Returning Character Values"
-msgstr "Funções de Caracteres que Retorna Valores Caracteres"
+msgstr "Funções de Caracteres que Retornam Valores em Caracteres"
 
 #: ../gtksourceview/language-specs/sql.lang.h:11
 msgid "Character Functions Returning Number Values"
-msgstr "Funções de Caracteres que Retorna Valores Numéricos"
+msgstr "Funções de Caracteres que Retornam Valores Numéricos"
 
 #: ../gtksourceview/language-specs/sql.lang.h:12
 msgid "Collection Functions"
@@ -1676,7 +1676,7 @@ msgstr "Funções de Conversão"
 
 #: ../gtksourceview/language-specs/sql.lang.h:15
 msgid "Data Mining Functions"
-msgstr "Funções de Data Mining"
+msgstr "Funções de Mineração de Dados"
 
 #: ../gtksourceview/language-specs/sql.lang.h:16
 msgid "Datetime Functions"
@@ -1704,7 +1704,7 @@ msgstr "Literais Inteiras"
 
 #: ../gtksourceview/language-specs/sql.lang.h:22
 msgid "Large Object Functions"
-msgstr "Funções de Objeto Grande"
+msgstr "Funções de Objetos Grandes"
 
 #. Model Functions
 #: ../gtksourceview/language-specs/sql.lang.h:25
@@ -1713,7 +1713,7 @@ msgstr "Funções Modelo"
 
 #: ../gtksourceview/language-specs/sql.lang.h:26
 msgid "NLS Character Functions"
-msgstr "Funções de Caractere NLS"
+msgstr "Funções de Caracteres NLS"
 
 #: ../gtksourceview/language-specs/sql.lang.h:27
 msgid "NULL-Related Functions"
@@ -1735,12 +1735,12 @@ msgstr "Funções Numéricas"
 #. Object Reference Functions
 #: ../gtksourceview/language-specs/sql.lang.h:33
 msgid "Object Reference Functions"
-msgstr "Funções de Objetos de Referência"
+msgstr "Funções de Referência de Objetos"
 
 #. Datatypes
 #: ../gtksourceview/language-specs/sql.lang.h:36
 msgid "Oracle Built-in Datatypes"
-msgstr "Tipos de Dados Internos do Oracle"
+msgstr "Tipos de Dados Predefinidos do Oracle"
 
 #: ../gtksourceview/language-specs/sql.lang.h:37
 msgid "Oracle Reserved Words"
@@ -1761,19 +1761,19 @@ msgstr "Declarações SQL"
 #. SQL*Plus
 #: ../gtksourceview/language-specs/sql.lang.h:42
 msgid "SQL*Plus At Sign"
-msgstr "Sinal At SQL*Plus"
+msgstr "Sinal At do SQL*Plus"
 
 #: ../gtksourceview/language-specs/sql.lang.h:43
 msgid "SQL*Plus Commands"
-msgstr "Comandos SQL*Plus"
+msgstr "Comandos do SQL*Plus"
 
 #: ../gtksourceview/language-specs/sql.lang.h:44
 msgid "SQL*Plus Double At Sign"
-msgstr "Sinal At Duplo SQL*Plus"
+msgstr "Sinal At Duplo do SQL*Plus"
 
 #: ../gtksourceview/language-specs/sql.lang.h:45
 msgid "SQL*Plus Slash"
-msgstr "Barra SQL*Plus"
+msgstr "Barra do SQL*Plus"
 
 #: ../gtksourceview/language-specs/sql.lang.h:46
 msgid "SQL/DS and DB2 Datatypes"
@@ -1786,7 +1786,7 @@ msgstr "Cláusula de Tamanho"
 #. Literals
 #: ../gtksourceview/language-specs/sql.lang.h:50
 msgid "Text Literals"
-msgstr "Literais Texto"
+msgstr "Literais de Texto"
 
 #: ../gtksourceview/language-specs/sql.lang.h:51
 msgid "Unlimited"
@@ -1838,7 +1838,7 @@ msgstr "Marcação (em linha)"
 
 #: ../gtksourceview/language-specs/texinfo.lang.h:15
 msgid "Sectioning"
-msgstr "Seção"
+msgstr "Seccionamento"
 
 #: ../gtksourceview/language-specs/texinfo.lang.h:16
 msgid "Texinfo"
