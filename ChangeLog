@@ -1,3 +1,8 @@
+2007-03-20  Carlos Garnacho  <carlos@imendio.com>
+
+	* gtksourceview/gtksourceview.c (gtk_source_view_undo)
+	(gtk_source_view_redo) (gtk_source_view_populate_popup): Do not allow
+	undo/redo if the GtkSourceView is not editable. Fixes #418521.
 
 === gtksourceview 1.8.5 ===
 

@@ -758,7 +758,8 @@ gtk_source_view_undo (GtkSourceView *view)
 
 	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
 
-	if (gtk_source_buffer_can_undo (GTK_SOURCE_BUFFER (buffer)))
+	if (gtk_text_view_get_editable (GTK_TEXT_VIEW (view)) &&
+	    gtk_source_buffer_can_undo (GTK_SOURCE_BUFFER (buffer)))
 	{
 		gtk_source_buffer_undo (GTK_SOURCE_BUFFER (buffer));
 		gtk_text_view_scroll_mark_onscreen (GTK_TEXT_VIEW (view),
@@ -775,7 +776,8 @@ gtk_source_view_redo (GtkSourceView *view)
 
 	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
 
-	if (gtk_source_buffer_can_redo (GTK_SOURCE_BUFFER (buffer)))
+	if (gtk_text_view_get_editable (GTK_TEXT_VIEW (view)) &&
+	    gtk_source_buffer_can_redo (GTK_SOURCE_BUFFER (buffer)))
 	{
 		gtk_source_buffer_redo (GTK_SOURCE_BUFFER (buffer));
 		gtk_text_view_scroll_mark_onscreen (GTK_TEXT_VIEW (view),
@@ -806,7 +808,8 @@ gtk_source_view_populate_popup (GtkTextView *text_view,
 			  G_CALLBACK (menu_item_activate_cb), text_view);
 	gtk_menu_shell_prepend (GTK_MENU_SHELL (menu), menu_item);
 	gtk_widget_set_sensitive (menu_item,
-				  gtk_source_buffer_can_redo (GTK_SOURCE_BUFFER (buffer)));
+				  (gtk_text_view_get_editable (text_view) &&
+				   gtk_source_buffer_can_redo (GTK_SOURCE_BUFFER (buffer))));
 	gtk_widget_show (menu_item);
 
 	/* create undo menu_item. */
@@ -815,8 +818,9 @@ gtk_source_view_populate_popup (GtkTextView *text_view,
 	g_signal_connect (G_OBJECT (menu_item), "activate",
 			  G_CALLBACK (menu_item_activate_cb), text_view);
 	gtk_menu_shell_prepend (GTK_MENU_SHELL (menu), menu_item);
-	gtk_widget_set_sensitive (menu_item, 
-				  gtk_source_buffer_can_undo (GTK_SOURCE_BUFFER (buffer)));
+	gtk_widget_set_sensitive (menu_item,
+				  (gtk_text_view_get_editable (text_view) &&
+				   gtk_source_buffer_can_undo (GTK_SOURCE_BUFFER (buffer))));
 	gtk_widget_show (menu_item);
 
 }
