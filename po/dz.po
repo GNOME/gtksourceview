@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview.gnome-2-14 dz\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-01-09 03:21+0000\n"
-"PO-Revision-Date: 2007-03-01 12:35+0530\n"
-"Last-Translator: norbu <nor_den@hotmail.com>\n"
+"POT-Creation-Date: 2007-03-04 03:18+0000\n"
+"PO-Revision-Date: 2007-03-20 16:55+0530\n"
+"Last-Translator: sonam pelden <sonaa_peldn@yahoo.com>\n"
 "Language-Team: DZONGKHA <pgeyleg@dit.gov.bt>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -288,7 +288,7 @@ msgstr "སྔ་གོང་ལས་སྦྱོར་འཕྲུལ་ཆས
 #: ../gtksourceview/language-specs/nemerle.lang.h:15
 #: ../gtksourceview/language-specs/ocaml.lang.h:14
 #: ../gtksourceview/language-specs/pascal.lang.h:18
-#: ../gtksourceview/language-specs/perl.lang.h:8
+#: ../gtksourceview/language-specs/perl.lang.h:9
 #: ../gtksourceview/language-specs/po.lang.h:6
 #: ../gtksourceview/language-specs/scheme.lang.h:13
 #: ../gtksourceview/language-specs/sh.lang.h:13
@@ -312,6 +312,7 @@ msgstr "དམིགས་བསལ་ཚུ།"
 #: ../gtksourceview/language-specs/ini.lang.h:10
 #: ../gtksourceview/language-specs/msil.lang.h:2
 #: ../gtksourceview/language-specs/po.lang.h:5
+#: ../gtksourceview/language-specs/spec.lang.h:12
 msgid "Others"
 msgstr "གཞན་ཚུ།"
 
@@ -500,11 +501,12 @@ msgstr "ཡིག་འབྲུ་ཆད་མེད།"
 #: ../gtksourceview/language-specs/ruby.lang.h:10
 #: ../gtksourceview/language-specs/scheme.lang.h:10
 #: ../gtksourceview/language-specs/sh.lang.h:5
+#: ../gtksourceview/language-specs/spec.lang.h:10
 #: ../gtksourceview/language-specs/sql.lang.h:23
 #: ../gtksourceview/language-specs/tcl.lang.h:2
 #: ../gtksourceview/language-specs/texinfo.lang.h:9
 #: ../gtksourceview/language-specs/vbnet.lang.h:6
-#: ../gtksourceview/language-specs/verilog.lang.h:7
+#: ../gtksourceview/language-specs/verilog.lang.h:8
 #: ../gtksourceview/language-specs/vhdl.lang.h:3
 msgid "Line Comment"
 msgstr "གྱལ་རིམ་བསམ་བཀོད།"
@@ -545,7 +547,7 @@ msgstr "སྔ་གོང་ལས་སྦྱོར་འཕྲུལ་ཆས
 #: ../gtksourceview/language-specs/scheme.lang.h:12
 #: ../gtksourceview/language-specs/sql.lang.h:48
 #: ../gtksourceview/language-specs/vbnet.lang.h:10
-#: ../gtksourceview/language-specs/verilog.lang.h:9
+#: ../gtksourceview/language-specs/verilog.lang.h:10
 #: ../gtksourceview/language-specs/vhdl.lang.h:5
 msgid "Sources"
 msgstr "འབྱུང་ཁུངས་ཚུ།"
@@ -576,7 +578,7 @@ msgstr "བུ་ལིན།"
 #: ../gtksourceview/language-specs/perl.lang.h:2
 #: ../gtksourceview/language-specs/ruby.lang.h:9
 #: ../gtksourceview/language-specs/vbnet.lang.h:1
-#: ../gtksourceview/language-specs/verilog.lang.h:6
+#: ../gtksourceview/language-specs/verilog.lang.h:7
 msgid "Keywords"
 msgstr "གཙོ་ཚིག་ཚུ།"
 
@@ -667,7 +669,7 @@ msgstr "གྲངས་སུ་བཙུགས་/པེརེག་མ།"
 #: ../gtksourceview/language-specs/ocaml.lang.h:12
 #: ../gtksourceview/language-specs/octave.lang.h:10
 #: ../gtksourceview/language-specs/python.lang.h:12
-#: ../gtksourceview/language-specs/verilog.lang.h:8
+#: ../gtksourceview/language-specs/verilog.lang.h:9
 msgid "Octal Number"
 msgstr "བརྒྱད་རྟེན་ཨང་གྲངས།"
 
@@ -684,7 +686,7 @@ msgstr "སྔ་གོང་ལས་སྦྱོར་འཕྲུལ་ཆས
 #: ../gtksourceview/language-specs/d.lang.h:16
 #: ../gtksourceview/language-specs/fortran.lang.h:16
 #: ../gtksourceview/language-specs/idl.lang.h:10
-#: ../gtksourceview/language-specs/verilog.lang.h:10
+#: ../gtksourceview/language-specs/verilog.lang.h:11
 msgid "Types"
 msgstr "དབྱེ་བ་ཚུ།"
 
@@ -693,10 +695,12 @@ msgid "ChangeLog"
 msgstr "བསྒྱུར་བཅོས་དྲན་དེབ།"
 
 #: ../gtksourceview/language-specs/changelog.lang.h:2
+#: ../gtksourceview/language-specs/spec.lang.h:4
 msgid "Date"
 msgstr "ཚེས་གྲངས།"
 
 #: ../gtksourceview/language-specs/changelog.lang.h:3
+#: ../gtksourceview/language-specs/spec.lang.h:7
 msgid "Email"
 msgstr "གློག་འཕྲིན།"
 
@@ -787,6 +791,7 @@ msgstr "ཤེས་པའི་རྒྱུ་དངོས་ཀྱི་བེ
 #: ../gtksourceview/language-specs/css.lang.h:35
 #: ../gtksourceview/language-specs/fortran.lang.h:11
 #: ../gtksourceview/language-specs/javascript.lang.h:20
+#: ../gtksourceview/language-specs/perl.lang.h:5
 #: ../gtksourceview/language-specs/php.lang.h:20
 #: ../gtksourceview/language-specs/sql.lang.h:34
 msgid "Operators"
@@ -1096,7 +1101,7 @@ msgid ".ini"
 msgstr ".ཨའི་ཨེན་ཨའི།"
 
 #: ../gtksourceview/language-specs/ini.lang.h:3
-#: ../gtksourceview/language-specs/verilog.lang.h:3
+#: ../gtksourceview/language-specs/verilog.lang.h:4
 msgid "Decimal Number"
 msgstr "བཅུ་ཚག་ཨང་།"
 
@@ -1163,7 +1168,7 @@ msgid "Global Properties"
 msgstr "སྤྱི་ཁྱབ་རྒྱུ་དངོས།"
 
 #: ../gtksourceview/language-specs/javascript.lang.h:10
-#: ../gtksourceview/language-specs/verilog.lang.h:5
+#: ../gtksourceview/language-specs/verilog.lang.h:6
 msgid "Hexadecimal Number"
 msgstr "དྲུག་ལྡན་བཅུ་ཚག་ཨང་།"
 
@@ -1190,7 +1195,7 @@ msgstr "དངོས་པོ་ཚུ།"
 #: ../gtksourceview/language-specs/javascript.lang.h:22
 #: ../gtksourceview/language-specs/lua.lang.h:9
 #: ../gtksourceview/language-specs/octave.lang.h:13
-#: ../gtksourceview/language-specs/perl.lang.h:7
+#: ../gtksourceview/language-specs/perl.lang.h:8
 #: ../gtksourceview/language-specs/php.lang.h:22
 #: ../gtksourceview/language-specs/python.lang.h:14
 #: ../gtksourceview/language-specs/R.lang.h:10
@@ -1395,24 +1400,24 @@ msgstr "བྱ་ལས་ཀྱི་བོད་བརྡ།"
 msgid "Method Call"
 msgstr "ཐབས་ཤེས་ཀྱི་བོད་བརྡ།"
 
-#: ../gtksourceview/language-specs/perl.lang.h:5
+#: ../gtksourceview/language-specs/perl.lang.h:6
 msgid "POD"
 msgstr "པི་ཨོ་ཌི།"
 
-#: ../gtksourceview/language-specs/perl.lang.h:6
+#: ../gtksourceview/language-specs/perl.lang.h:7
 msgid "Perl"
 msgstr "པརཱལ།"
 
-#: ../gtksourceview/language-specs/perl.lang.h:9
+#: ../gtksourceview/language-specs/perl.lang.h:10
 #: ../gtksourceview/language-specs/tcl.lang.h:5
 msgid "String2"
 msgstr "ཡིག་རྒྱུན་ ༢ པ།"
 
-#: ../gtksourceview/language-specs/perl.lang.h:10
+#: ../gtksourceview/language-specs/perl.lang.h:11
 msgid "String3"
 msgstr "ཡིག་རྒྱུན་ ༣ པ།"
 
-#: ../gtksourceview/language-specs/perl.lang.h:11
+#: ../gtksourceview/language-specs/perl.lang.h:12
 msgid "Variables"
 msgstr "འགྱུར་ཅན་ཚུ།"
 
@@ -1569,6 +1574,58 @@ msgstr "ཉིད།"
 #: ../gtksourceview/language-specs/sh.lang.h:17
 msgid "sh"
 msgstr "ཨེསི་ཨེཆ།"
+
+#: ../gtksourceview/language-specs/spec.lang.h:1
+msgid "Command Macro"
+msgstr "བརྡ་བཀོད་མེཀ་རོ།"
+
+#: ../gtksourceview/language-specs/spec.lang.h:2
+msgid "Conditional Define"
+msgstr "གནས་སྟངས་ངེས་འཛིན་"
+
+#: ../gtksourceview/language-specs/spec.lang.h:3
+msgid "Conditional Macro"
+msgstr "གནས་སྟངས་ཀྱི་མེཀ་རོ།"
+
+#: ../gtksourceview/language-specs/spec.lang.h:5
+msgid "Define"
+msgstr "ངེས་འཛིན་འབད་"
+
+#: ../gtksourceview/language-specs/spec.lang.h:6
+msgid "Directory Macro"
+msgstr "སྣོད་ཐོའི་མེཀ་རོ་"
+
+#: ../gtksourceview/language-specs/spec.lang.h:8
+msgid "Flow Conditional"
+msgstr "གནས་སྟངས་རྒྱུན་འབབ་"
+
+#: ../gtksourceview/language-specs/spec.lang.h:9
+msgid "Header"
+msgstr "མགོ་ཡིག་"
+
+#: ../gtksourceview/language-specs/spec.lang.h:11
+msgid "Other Macro"
+msgstr "མེཀ་རོ་གཞན་ཚུ་ "
+
+#: ../gtksourceview/language-specs/spec.lang.h:13
+msgid "RPM Variable"
+msgstr "ཨར་པི་ཨེམ་འགྱུར་ཅན།"
+
+#: ../gtksourceview/language-specs/spec.lang.h:14
+msgid "RPM spec"
+msgstr "ཨར་པི་ཨེམ་ཨེསི་པི་ཨི་སི་"
+
+#: ../gtksourceview/language-specs/spec.lang.h:15
+msgid "Section"
+msgstr "དབྱེ་ཚན་"
+
+#: ../gtksourceview/language-specs/spec.lang.h:16
+msgid "Spec Macro"
+msgstr "མེཀ་རོ་ཨེསི་པི་ཨི་སི་"
+
+#: ../gtksourceview/language-specs/spec.lang.h:17
+msgid "Switch"
+msgstr "གློག་རྟ་"
 
 #: ../gtksourceview/language-specs/sql.lang.h:1
 msgid "ANSI Datatypes"
@@ -1787,11 +1844,15 @@ msgstr "བཟོ་རྣམ་རྙིང་པའི་བསམ་བཀོ
 msgid "VB.NET"
 msgstr "ཝི་བི་.ནེཊི།"
 
-#: ../gtksourceview/language-specs/verilog.lang.h:4
+#: ../gtksourceview/language-specs/verilog.lang.h:3
+msgid "Compiler directive"
+msgstr "ཕྱོགས་སྒྲིག་པའི་བཀོད་རྒྱ་"
+
+#: ../gtksourceview/language-specs/verilog.lang.h:5
 msgid "Gates"
 msgstr "སྒོ་ར།"
 
-#: ../gtksourceview/language-specs/verilog.lang.h:11
+#: ../gtksourceview/language-specs/verilog.lang.h:12
 msgid "Verilog"
 msgstr "བེ་རི་ལོག"
 
