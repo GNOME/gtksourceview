@@ -1,3 +1,9 @@
+2006-04-15  Yevgen Muntyan  <muntyan@tamu.edu>
+
+	* gtksourceview/gtksourceview.c (gtk_source_view_expose):
+	fixed drawing current line so no garbage is left on screen when
+	scrolling horizontally.
+
 2007-03-20  Carlos Garnacho  <carlos@imendio.com>
 
 	* gtksourceview/gtksourceview.c (gtk_source_view_undo)

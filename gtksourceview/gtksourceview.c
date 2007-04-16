@@ -1371,7 +1371,8 @@ gtk_source_view_expose (GtkWidget      *widget,
 			gint y;
 			gint height;
 			gint win_y;
-			
+			gint margin;
+
 			gtk_text_buffer_get_iter_at_mark (text_view->buffer, 
 							  &cur, 
 							  gtk_text_buffer_get_insert (text_view->buffer));
@@ -1397,10 +1398,15 @@ gtk_source_view_expose (GtkWidget      *widget,
 			redraw_rect.width = visible_rect.width;
 			redraw_rect.height = visible_rect.height;
 
+			if (text_view->hadjustment)
+				margin = gtk_text_view_get_left_margin (text_view) - (int) text_view->hadjustment->value;
+			else
+				margin = gtk_text_view_get_left_margin (text_view);
+
 			gdk_draw_rectangle (event->window,
 					    widget->style->bg_gc[GTK_WIDGET_STATE (widget)],
 					    TRUE,
-					    redraw_rect.x + MAX (0, gtk_text_view_get_left_margin (text_view) - 1),
+					    redraw_rect.x + MAX (0, margin - 1),
 					    win_y,
 					    redraw_rect.width,
 					    height);
