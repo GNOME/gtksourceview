@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<style-scheme id="gvim" _name="GVim">
+  <style name="bracket-match"               foreground="white" background="grey" bold="true"/>
+  <style name="bracket-mismatch"            foreground="white" background="red" bold="true"/>
+
+  <!-- legacy styles for old lang files -->
+  <style name="Others"                      foreground="#2E8B57" bold="true"/>
+  <style name="Others 2"                    foreground="#008B8B"/>
+  <style name="Others 3"                    foreground="#6A5ACD"/>
+
+  <style name="def:base-n-integer"          foreground="#FF00FF"/>
+  <style name="def:character"               foreground="#FF00FF"/>
+  <style name="def:comment"                 foreground="#0000FF"/>
+  <style name="def:data-type"               foreground="#2E8B57" bold="true"/>
+  <style name="def:function"                foreground="#008A8C"/>
+  <style name="def:decimal"                 foreground="#FF00FF"/>
+  <style name="def:floating-point"          foreground="#FF00FF"/>
+  <style name="def:keyword"                 foreground="#A52A2A" bold="true"/>
+  <style name="def:string"                  foreground="#FF00FF"/>
+  <style name="def:net-address-in-comment"  foreground="#0000FF" italic="true" underline="true"/>
+  <style name="def:note"                    foreground="#0000FF" background="#FFFF00" bold="true"/>
+  <style name="def:error"                   background="#FF0000" bold="true"/>
+  <style name="def:escape"                  foreground="#9010D0"/>
+  <style name="def:shebang"                 foreground="#0000FF" bold="true"/>
+
+  <style name="def:specials"                foreground="#FFFFFF" background="#FF0000"/>
+  <style name="def:preprocessor"            foreground="#A020F0"/>
+
+  <style name="c:preprocessor"              foreground="#A020F0"/>
+
+  <style name="diff:added-line"             use-style="Others 2"/>
+  <style name="diff:removed-line"           use-style="Others 3"/>
+  <style name="diff:changed-line"           use-style="c:preprocessor"/>
+  <style name="diff:special-case"           use-style="def:string"/>
+  <style name="diff:location"               use-style="def:keyword"/>
+  <style name="diff:diff-file"              use-style="def:data-type"/>
+
+  <style name="xml:attribute-name"          foreground="#6A5ACD"/>
+  <style name="xml:tags"                    foreground="#008B8B"/>
+  <style name="xml:namespace"               foreground="#2E8B57" bold="true"/>
+  <style name="xml:doctype"                 use-style="c:preprocessor"/>
+  <style name="xml:cdata-delim"             use-style="c:preprocessor"/>
+  <style name="xml:processing-instruction"  use-style="c:preprocessor"/>
+
+  <style name="js:object"                   foreground="#2E8B57" bold="true"/>
+  <style name="js:constructors"             foreground="#008B8B"/>
+
+  <style name="latex:command"               foreground="#2E8B57" bold="true"/>
+  <style name="latex:include"               use-style="c:preprocessor"/>
+
+  <style name="sh:variable1"                use-style="Others 3"/>
+  <style name="sh:variable2"                use-style="Others 2"/>
+
+  <style name="python:builtins"             use-style="Others"/>
+  <style name="changelog:email"             use-style="def:comment"/>
+</style-scheme>

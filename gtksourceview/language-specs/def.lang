@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<language id="def" _name="Defaults" hidden="true" version="2.0">
+    <styles>
+        <style id="decimal"                 _name="Decimal"/>
+        <style id="base-n-integer"          _name="Base-N Integer"/>
+        <style id="complex"                 _name="Complex number"/>
+        <style id="floating-point"          _name="Floating Point"/>
+        <style id="net-address-in-comment"  _name="Net Address"/>
+        <style id="note"                    _name="Note"/>
+        <style id="escape"                  _name="Escape"/>
+        <style id="comment"                 _name="Comment"/>
+        <style id="error"                   _name="Error"/>
+        <style id="string"                  _name="String"/>
+        <style id="keyword"                 _name="Keyword"/>
+        <style id="data-type"               _name="Data Type"/>
+        <style id="character"               _name="Character"/>
+        <style id="function"                _name="Function"/>
+        <style id="shebang"                 _name="Shebang"/>
+        <!-- FIXME this "specials" doesn't make sense -->
+        <style id="specials"                _name="Specials"/>
+        <!-- FIXME and this is real nonsense -->
+        <style id="preprocessor"            _name="Preprocessor"/>
+    </styles>
+
+    <definitions>
+
+        <!-- An empty string always matches. -->
+        <define-regex id="always-match"></define-regex>
+
+        <!-- $^ never matches. -->
+        <define-regex id="never-match">$^</define-regex>
+
+        <define-regex id="decimal" extended="true">
+            (?&lt;![\w\.]) ([1-9][0-9]* | 0) (?![\w\.])
+        </define-regex>
+        <define-regex id="octal" extended="true">
+            (?&lt;![\w\.]) 0 [0-7]+ (?![\w\.])
+        </define-regex>
+        <define-regex id="hexadecimal" extended="true">
+            (?&lt;![\w\.]) 0 [xX] [0-9a-fA-F]+ (?![\w\.])
+        </define-regex>
+        <!-- FIXME: these one is broken, and is it useful at all? -->
+        <define-regex id="float" extended="true" case-insensitive="true">
+                \b
+                ([0-9]+ e [-+]? [0-9]+ |
+                 ([0-9]* \. [0-9]+ | [0-9]+ \.)
+                 (e [-+]? [0-9]+)?) [fl]?
+                \b
+        </define-regex>
+
+        <context id="decimal" style-ref="decimal">
+            <match>\%{decimal}</match>
+        </context>
+        <context id="octal" style-ref="base-n-integer">
+            <match>\%{octal}</match>
+        </context>
+        <context id="hexadecimal" style-ref="base-n-integer">
+            <match>\%{hexadecimal}</match>
+        </context>
+        <context id="float" style-ref="floating-point">
+            <match>\%{float}</match>
+        </context>
+
+        <define-regex id="net-address" extended="true" case-insensitive="true">
+                \%[                                         # separator
+                (https?|ftp|nntp|news|javascript|about):    # protocol
+                [^\ \n]* [^\ \n.:;,?&gt;&lt;)]              # address
+                (?=[^a-z0-9_.-])                            # separator
+        </define-regex>
+
+        <define-regex id="email-address" extended="true" case-insensitive="true">
+                \%[                 # separator
+                (mailto:)?          # optional "mailto:"
+                [a-z0-9_.-]+        # user name
+                @                   # at
+                [a-z0-9_.-]+        # domain
+                \%]                 # separator
+        </define-regex>
+
+        <context id="in-comment">
+            <include>
+                <context id="net-address" extend-parent="false" style-ref="net-address-in-comment">
+                    <match>\%{net-address}</match>
+                </context>
+                <context id="email-address" extend-parent="false" style-ref="net-address-in-comment">
+                    <match>\%{email-address}</match>
+                </context>
+                <context id="comment-note" extend-parent="false" style-ref="note">
+                    <match>\b(FIXME|TODO|XXX)\b</match>
+                </context>
+            </include>
+        </context>
+
+        <!-- A line comment starting with # -->
+        <context id="shell-like-comment" style-ref="comment" end-at-line-end="true">
+          <start>#</start>
+          <include>
+            <context ref="in-comment"/>
+          </include>
+        </context>
+
+        <context id="line-continue" style-ref="escape">
+            <start>\\$</start>
+            <end>^</end>
+        </context>
+
+        <!-- this is intended to be used from line comments
+             that can continue on a different line after "\" -->
+        <context id="in-line-comment">
+          <include>
+            <context ref="line-continue" ignore-style="true"/>
+            <context ref="in-comment"/>
+          </include>
+        </context>
+
+        <context id="shebang" style-ref="shebang" first-line-only="true">
+            <start>^#!</start>
+            <end>$</end>
+        </context>
+
+        <context id="escape" style-ref="escape">
+            <match>\\.</match>
+        </context>
+
+        <!-- usual quoted string, ends at line end, \ is an escape char -->
+        <context id="string" style-ref="string" end-at-line-end="true">
+            <start>"</start>
+            <end>"</end>
+            <include>
+                <context ref="escape"/>
+                <context ref="line-continue"/>
+            </include>
+        </context>
+
+        <!-- same thing but with single quote marks -->
+        <context id="single-quoted-string" style-ref="string" end-at-line-end="true">
+            <start>'</start>
+            <end>'</end>
+            <include>
+                <context ref="escape"/>
+                <context ref="line-continue"/>
+            </include>
+        </context>
+
+    </definitions>
+</language>

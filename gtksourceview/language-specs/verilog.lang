@@ -1,165 +1,222 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE language SYSTEM "language.dtd">
-<language _name="Verilog" version="1.0" _section="Sources" mimetypes="text/x-verilog-src">
+<language id="verilog" _name="Verilog" version="2.0" _section="Sources">
+  <metadata>
+    <property name="mimetypes">text/x-verilog-src</property>
+    <property name="globs">*.v</property>
+    <property name="line-comment-start">//</property>
+    <property name="block-comment-start">/*</property>
+    <property name="block-comment-end">*/</property>
+  </metadata>
 
-	<escape-char>\</escape-char>
+  <styles>
+    <style id="comment" _name="Comment" map-to="def:comment"/>
+    <style id="error" _name="Error" map-to="def:error"/>
+    <style id="compiler-directive" _name="Compiler Directive" map-to="def:preprocessor"/>
+    <style id="keyword" _name="Keyword" map-to="def:keyword"/>
+    <style id="gate" _name="Gate" map-to="def:keyword"/>
+    <style id="type" _name="Type" map-to="def:data-type"/>
+    <style id="base-n-integer" _name="Base-N Integer" map-to="def:base-n-integer"/>
+  </styles>
 
-	<line-comment _name="Line Comment" style="Comment">
-		<start-regex>//</start-regex>
-	</line-comment>
+  <definitions>
 
-	<block-comment _name="Block Comment" style="Comment">
-		<start-regex>/\*</start-regex>
-        	<end-regex>\*/</end-regex>
-	</block-comment>
+    <context id="line-comment" style-ref="comment" end-at-line-end="true">
+      <start>\/\/</start>
+      <include>
+        <context ref="def:in-line-comment"/>
+      </include>
+    </context>
 
-	<keyword-list _name="Compiler directive" style="Preprocessor"
-		case-sensitive="TRUE"
-		match-empty-string-at-beginning="FALSE"
-		match-empty-string-at-end="TRUE"
-		beginning-regex = "`">
-		<keyword>celldefine</keyword>
-		<keyword>default_nettype</keyword>
-		<keyword>define</keyword>
-		<keyword>else</keyword>
-		<keyword>elsif</keyword>
-		<keyword>endcelldefine</keyword>
-		<keyword>endif</keyword>
-		<keyword>ifdef</keyword>
-		<keyword>ifndef</keyword>
-		<keyword>include</keyword>
-		<keyword>line</keyword>
-		<keyword>nounconnected_drive</keyword>
-		<keyword>resetall</keyword>
-		<keyword>timescale</keyword>
-		<keyword>unconnected_drive</keyword>
-		<keyword>undef</keyword>
-	</keyword-list>
+    <context id="block-comment" style-ref="comment">
+      <start>\/\*</start>
+      <end>\*\/</end>
+      <include>
+        <context ref="def:in-comment"/>
+      </include>
+    </context>
 
-	<keyword-list _name="Keywords" style="Keyword" case-sensitive="TRUE">
-		<keyword>always</keyword>
-		<keyword>assign</keyword>
-		<keyword>begin</keyword>
-		<keyword>case</keyword>
-		<keyword>casex</keyword>
-		<keyword>casez</keyword>
-		<keyword>deassign</keyword>
-		<keyword>default</keyword>
-		<keyword>defparam</keyword>
-		<keyword>disable</keyword>
-		<keyword>edge</keyword>
-		<keyword>else</keyword>
-		<keyword>end</keyword>
-		<keyword>endcase</keyword>
-		<keyword>endmodule</keyword>
-      		<keyword>endfunction</keyword>
-		<keyword>endprimitive</keyword>
-		<keyword>endspecify</keyword>
-		<keyword>endtable</keyword>
-		<keyword>endtask</keyword>
-		<keyword>for</keyword>
-		<keyword>force</keyword>
-		<keyword>forever</keyword>
-		<keyword>for</keyword>
-		<keyword>function</keyword>
-		<keyword>highz0</keyword>
-		<keyword>highz1</keyword>
-		<keyword>if</keyword>
-		<keyword>ifnone</keyword>
-		<keyword>initial</keyword>
-		<keyword>join</keyword>
-		<keyword>large</keyword>
-		<keyword>macromodule</keyword>
-		<keyword>medium</keyword>
-		<keyword>module</keyword>
-		<keyword>negedge</keyword>
-		<keyword>posedge</keyword>
-		<keyword>primitive</keyword>
-		<keyword>pull0</keyword>
-		<keyword>pull1</keyword>
-		<keyword>release</keyword>
-		<keyword>repeat</keyword>
-		<keyword>small</keyword>
-		<keyword>specify</keyword>
-		<keyword>specparam</keyword>
-		<keyword>strong0</keyword>
-		<keyword>strong1</keyword>
-		<keyword>task</keyword>
-		<keyword>wait</keyword>
-		<keyword>weak0</keyword>
-		<keyword>weak1</keyword>
-		<keyword>while</keyword>
-	</keyword-list>
+    <context id="close-comment-outside-comment" style-ref="error">
+      <match>\*\/(?!\*)</match>
+    </context>
 
-	<keyword-list _name="Gates" style="Keyword" case-sensitive="TRUE">
-		<keyword>and</keyword>
-		<keyword>buf</keyword>
-		<keyword>bufif0</keyword>
-		<keyword>bufif1</keyword>
-		<keyword>cmos</keyword>
-		<keyword>nand</keyword>
-		<keyword>nmos</keyword>
-		<keyword>nor</keyword>
-		<keyword>not</keyword>
-		<keyword>notif0</keyword>
-		<keyword>notif1</keyword>
-		<keyword>or</keyword>
-		<keyword>pmos</keyword>
-		<keyword>pullup</keyword>
-		<keyword>pulldown</keyword>
-		<keyword>rcmos</keyword>
-		<keyword>rnmos</keyword>
-		<keyword>rpmos</keyword>
-		<keyword>rtran</keyword>
-		<keyword>rtranif0</keyword>
-		<keyword>rtranif1</keyword>
-		<keyword>tran</keyword>
-		<keyword>tranif0</keyword>
-		<keyword>tranif1</keyword>
-		<keyword>xnor</keyword>
-		<keyword>xor</keyword>
-	</keyword-list>
+    <context id="compiler-directive" style-ref="compiler-directive">
+      <prefix>`</prefix>
+      <keyword>celldefine</keyword>
+      <keyword>default_nettype</keyword>
+      <keyword>define</keyword>
+      <keyword>else</keyword>
+      <keyword>elsif</keyword>
+      <keyword>endcelldefine</keyword>
+      <keyword>endif</keyword>
+      <keyword>ifdef</keyword>
+      <keyword>ifndef</keyword>
+      <keyword>include</keyword>
+      <keyword>line</keyword>
+      <keyword>nounconnected_drive</keyword>
+      <keyword>resetall</keyword>
+      <keyword>timescale</keyword>
+      <keyword>unconnected_drive</keyword>
+      <keyword>undef</keyword>
+    </context>
 
-	<keyword-list _name="Types" style="Data Type" case-sensitive="TRUE">
-		<keyword>event</keyword>
-		<keyword>inout</keyword>
-		<keyword>input</keyword>
-		<keyword>integer</keyword>
-      		<keyword>output</keyword>
-		<keyword>parameter</keyword>
-		<keyword>reg</keyword>
-		<keyword>real</keyword>
-		<keyword>realtime</keyword>
-		<keyword>scalared</keyword>
-		<keyword>supply0</keyword>
-		<keyword>supply1</keyword>
-		<keyword>time</keyword>
-		<keyword>tri</keyword>
-		<keyword>tri0</keyword>
-		<keyword>tri1</keyword>
-		<keyword>triand</keyword>
-		<keyword>trior</keyword>
-		<keyword>trireg</keyword>
-		<keyword>vectored</keyword>
-		<keyword>wand</keyword>
-		<keyword>wire</keyword>
-		<keyword>wor</keyword>
-	</keyword-list>
+    <context id="keywords" style-ref="keyword">
+      <keyword>always</keyword>
+      <keyword>assign</keyword>
+      <keyword>begin</keyword>
+      <keyword>case</keyword>
+      <keyword>casex</keyword>
+      <keyword>casez</keyword>
+      <keyword>deassign</keyword>
+      <keyword>default</keyword>
+      <keyword>defparam</keyword>
+      <keyword>disable</keyword>
+      <keyword>edge</keyword>
+      <keyword>else</keyword>
+      <keyword>end</keyword>
+      <keyword>endcase</keyword>
+      <keyword>endmodule</keyword>
+      <keyword>endfunction</keyword>
+      <keyword>endprimitive</keyword>
+      <keyword>endspecify</keyword>
+      <keyword>endtable</keyword>
+      <keyword>endtask</keyword>
+      <keyword>for</keyword>
+      <keyword>force</keyword>
+      <keyword>forever</keyword>
+      <keyword>for</keyword>
+      <keyword>function</keyword>
+      <keyword>highz0</keyword>
+      <keyword>highz1</keyword>
+      <keyword>if</keyword>
+      <keyword>ifnone</keyword>
+      <keyword>initial</keyword>
+      <keyword>join</keyword>
+      <keyword>large</keyword>
+      <keyword>macromodule</keyword>
+      <keyword>medium</keyword>
+      <keyword>module</keyword>
+      <keyword>negedge</keyword>
+      <keyword>posedge</keyword>
+      <keyword>primitive</keyword>
+      <keyword>pull0</keyword>
+      <keyword>pull1</keyword>
+      <keyword>release</keyword>
+      <keyword>repeat</keyword>
+      <keyword>small</keyword>
+      <keyword>specify</keyword>
+      <keyword>specparam</keyword>
+      <keyword>strong0</keyword>
+      <keyword>strong1</keyword>
+      <keyword>task</keyword>
+      <keyword>wait</keyword>
+      <keyword>weak0</keyword>
+      <keyword>weak1</keyword>
+      <keyword>while</keyword>
+    </context>
 
-	<pattern-item _name="Binary Number" style="Base-N Integer">
-		<regex>\b[1-9][0-9]*&apos;[bB][0-1_xXzZ?]+\b</regex>
-	</pattern-item>
+    <context id="gates" style-ref="gate">
+      <keyword>and</keyword>
+      <keyword>buf</keyword>
+      <keyword>bufif0</keyword>
+      <keyword>bufif1</keyword>
+      <keyword>cmos</keyword>
+      <keyword>nand</keyword>
+      <keyword>nmos</keyword>
+      <keyword>nor</keyword>
+      <keyword>not</keyword>
+      <keyword>notif0</keyword>
+      <keyword>notif1</keyword>
+      <keyword>or</keyword>
+      <keyword>pmos</keyword>
+      <keyword>pullup</keyword>
+      <keyword>pulldown</keyword>
+      <keyword>rcmos</keyword>
+      <keyword>rnmos</keyword>
+      <keyword>rpmos</keyword>
+      <keyword>rtran</keyword>
+      <keyword>rtranif0</keyword>
+      <keyword>rtranif1</keyword>
+      <keyword>tran</keyword>
+      <keyword>tranif0</keyword>
+      <keyword>tranif1</keyword>
+      <keyword>xnor</keyword>
+      <keyword>xor</keyword>
+    </context>
 
-	<pattern-item _name="Octal Number" style="Base-N Integer">
-		<regex>\b[1-9][0-9]*&apos;[oO][0-7_xXzZ?]+\b</regex>
-	</pattern-item>
+    <context id="types" style-ref="type">
+      <keyword>event</keyword>
+      <keyword>inout</keyword>
+      <keyword>input</keyword>
+      <keyword>integer</keyword>
+      <keyword>output</keyword>
+      <keyword>parameter</keyword>
+      <keyword>reg</keyword>
+      <keyword>real</keyword>
+      <keyword>realtime</keyword>
+      <keyword>scalared</keyword>
+      <keyword>supply0</keyword>
+      <keyword>supply1</keyword>
+      <keyword>time</keyword>
+      <keyword>tri</keyword>
+      <keyword>tri0</keyword>
+      <keyword>tri1</keyword>
+      <keyword>triand</keyword>
+      <keyword>trior</keyword>
+      <keyword>trireg</keyword>
+      <keyword>vectored</keyword>
+      <keyword>wand</keyword>
+      <keyword>wire</keyword>
+      <keyword>wor</keyword>
+    </context>
 
-	<pattern-item _name="Decimal Number" style="Base-N Integer">
-		<regex>\b[1-9][0-9]*&apos;[dD][0-9_xXzZ?]+\b</regex>
-	</pattern-item>
+    <context id="binary-number" style-ref="base-n-integer">
+      <match extended="true">
+        (?&lt;![\w\.])
+        [1-9][0-9]*'[bB][0-1_xXzZ?]+
+        (?![\w\.])
+      </match>
+    </context>
 
-	<pattern-item _name="Hexadecimal Number" style="Base-N Integer">
-		<regex>\b[1-9][0-9]*&apos;[hH][0-9a-fA-F_xXzZ?]+\b</regex>
-	</pattern-item>
+    <context id="octal-number" style-ref="base-n-integer">
+      <match extended="true">
+        (?&lt;![\w\.])
+        [1-9][0-9]*'[oO][0-7_xXzZ?]+
+        (?![\w\.])
+      </match>
+    </context>
+
+    <context id="decimal-number" style-ref="base-n-integer">
+      <match extended="true">
+        (?&lt;![\w\.])
+        [1-9][0-9]*'[dD][0-9_xXzZ?]+
+        (?![\w\.])
+      </match>
+    </context>
+
+    <context id="hexadecimal-number" style-ref="base-n-integer">
+      <match extended="true">
+        (?&lt;![\w\.])
+        [1-9][0-9]*'[hH][0-9a-fA-F_xXzZ?]+
+        (?![\w\.])
+      </match>
+    </context>
+
+    <context id="verilog">
+      <include>
+        <context ref="line-comment"/>
+        <context ref="block-comment"/>
+        <context ref="close-comment-outside-comment"/>
+        <context ref="compiler-directive"/>
+        <context ref="keywords"/>
+        <context ref="gates"/>
+        <context ref="types"/>
+        <context ref="binary-number"/>
+        <context ref="octal-number"/>
+        <context ref="decimal-number"/>
+        <context ref="hexadecimal-number"/>
+      </include>
+    </context>
+
+  </definitions>
 
 </language>

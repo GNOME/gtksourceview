@@ -1,4 +1,5 @@
-/*  gtksourcestylescheme.h
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8; coding: utf-8 -*-
+ *  gtksourcestylescheme.h
  *
  *  Copyright (C) 2003 - Paolo Maggi <paolo.maggi@polito.it>
  *
@@ -20,79 +21,65 @@
 #ifndef __GTK_SOURCE_STYLE_SCHEME_H__
 #define __GTK_SOURCE_STYLE_SCHEME_H__
 
-#include <glib-object.h> 
-#include <gtksourceview/gtksourcetagstyle.h>
+#include <gtk/gtkwidget.h>
+#include <gtksourceview/gtksourcestyle.h>
 
 G_BEGIN_DECLS
 
-/*
- * A theme should define at least the following styles to work well with the included .lang files:
- * 
- * - Base-N Integer
- * - Character
- * - Comment
- * - Data Type
- * - Function
- * - Decimal
- * - Floating Point
- * - Keyword
- * - Preprocessor
- * - String
- * - Specials
- * - Others (DEPRECATED, it has been replaced by "Data Type")
- * - Others 2
- * - Others 3
- *
- *
- * The default theme defines all of them.
- *
- */
-
 #define GTK_TYPE_SOURCE_STYLE_SCHEME             (gtk_source_style_scheme_get_type ())
 #define GTK_SOURCE_STYLE_SCHEME(obj)             (G_TYPE_CHECK_INSTANCE_CAST ((obj), GTK_TYPE_SOURCE_STYLE_SCHEME, GtkSourceStyleScheme))
-#define GTK_SOURCE_STYLE_SCHEME_CLASS(vtable)    (G_TYPE_CHECK_CLASS_CAST ((vtable), GTK_TYPE_SOURCE_STYLE_SCHEME, GtkSourceStyleSchemeClass))
+#define GTK_SOURCE_STYLE_SCHEME_CLASS(klass)     (G_TYPE_CHECK_CLASS_CAST ((klass), GTK_TYPE_SOURCE_STYLE_SCHEME, GtkSourceStyleSchemeClass))
 #define GTK_IS_SOURCE_STYLE_SCHEME(obj)          (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GTK_TYPE_SOURCE_STYLE_SCHEME))
-#define GTK_IS_SOURCE_STYLE_SCHEME_CLASS(vtable) (G_TYPE_CHECK_CLASS_TYPE ((vtable), GTK_TYPE_SOURCE_STYLE_SCHEME))
-#define GTK_SOURCE_STYLE_SCHEME_GET_CLASS(inst)  (G_TYPE_INSTANCE_GET_INTERFACE ((inst), GTK_TYPE_SOURCE_STYLE_SCHEME, GtkSourceStyleSchemeClass))
+#define GTK_IS_SOURCE_STYLE_SCHEME_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE ((klass), GTK_TYPE_SOURCE_STYLE_SCHEME))
+#define GTK_SOURCE_STYLE_SCHEME_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj), GTK_TYPE_SOURCE_STYLE_SCHEME, GtkSourceStyleSchemeClass))
 
-typedef struct _GtkSourceStyleScheme       GtkSourceStyleScheme;         /* Dummy typedef */
-typedef struct _GtkSourceStyleSchemeClass  GtkSourceStyleSchemeClass;
+typedef struct _GtkSourceStyleScheme             GtkSourceStyleScheme;
+typedef struct _GtkSourceStyleSchemePrivate      GtkSourceStyleSchemePrivate;
+typedef struct _GtkSourceStyleSchemeClass        GtkSourceStyleSchemeClass;
+
+struct _GtkSourceStyleScheme
+{
+	GObject base;
+	GtkSourceStyleSchemePrivate *priv;
+};
 
 struct _GtkSourceStyleSchemeClass
 {
-	GTypeInterface	base_iface;
-
-	/* signals */
-	void                      (* style_changed)     (GtkSourceStyleScheme *scheme,
-							 const gchar          *tag_id);
-
-	/* vtable */
-	const gchar		* (* get_name)		(GtkSourceStyleScheme *scheme);
-	GtkSourceTagStyle       * (* get_tag_style) 	(GtkSourceStyleScheme *scheme,
-						     	 const gchar          *style_name);
-	GSList                  * (* get_style_names)   (GtkSourceStyleScheme *scheme);
+	GObjectClass base_class;
 
 	/* Padding for future expansion */
 	void (*_gtk_source_reserved1) (void);
 	void (*_gtk_source_reserved2) (void);
-	void (*_gtk_source_reserved3) (void);
-	void (*_gtk_source_reserved4) (void);	
 };
 
-GType                        gtk_source_style_scheme_get_type        (void) G_GNUC_CONST;
+GType			 gtk_source_style_scheme_get_type	(void) G_GNUC_CONST;
 
+GtkSourceStyleScheme	*_gtk_source_style_scheme_new		(const gchar          *id,
+								 const gchar          *name);
 
-GtkSourceTagStyle	    *gtk_source_style_scheme_get_tag_style   (GtkSourceStyleScheme *scheme,
-								      const gchar          *style_name);
-const gchar		    *gtk_source_style_scheme_get_name        (GtkSourceStyleScheme *scheme);
-GSList                      *gtk_source_style_scheme_get_style_names (GtkSourceStyleScheme *scheme);
+const gchar             *gtk_source_style_scheme_get_id         (GtkSourceStyleScheme *scheme);
+const gchar             *gtk_source_style_scheme_get_name       (GtkSourceStyleScheme *scheme);
 
+/* Return value must be freed with gtk_source_style_free */
+GtkSourceStyle		*gtk_source_style_scheme_get_style	(GtkSourceStyleScheme *scheme,
+								 const gchar          *style_name);
+GtkSourceStyle		*gtk_source_style_scheme_get_matching_brackets_style
+								(GtkSourceStyleScheme *scheme);
+gboolean		 gtk_source_style_scheme_get_current_line_color
+								(GtkSourceStyleScheme *scheme,
+								 GdkColor             *color);
+void			 gtk_source_style_scheme_set_style	(GtkSourceStyleScheme *scheme,
+								 const gchar          *name,
+								 const GtkSourceStyle *style);
 
-/* Default style scheme */
-
-GtkSourceStyleScheme	    *gtk_source_style_scheme_get_default     (void);
+void			 _gtk_source_style_scheme_apply		(GtkSourceStyleScheme *scheme,
+								 GtkWidget            *widget);
+GtkSourceStyleScheme	*_gtk_source_style_scheme_new_from_file (const gchar          *filename);
+GtkSourceStyleScheme	*_gtk_source_style_scheme_default_new	(void);
+const gchar		*_gtk_source_style_scheme_get_parent_id	(GtkSourceStyleScheme *scheme);
+void			 _gtk_source_style_scheme_set_parent	(GtkSourceStyleScheme *scheme,
+								 GtkSourceStyleScheme *parent_scheme);
 
 G_END_DECLS
 
 #endif  /* __GTK_SOURCE_STYLE_SCHEME_H__ */
-

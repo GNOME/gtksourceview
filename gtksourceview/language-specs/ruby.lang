@@ -1,151 +1,177 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE language SYSTEM "language.dtd">
-<language _name="Ruby" version="1.0" _section="Scripts" mimetypes="application/x-ruby">
+<language id="ruby" _name="Ruby" version="2.0" _section="Scripts">
+  <metadata>
+    <property name="mimetypes">application/x-ruby;text/x-ruby</property>
+    <property name="globs">*.rb</property>
+    <property name="line-comment-start">#</property>
+  </metadata>
 
-	<escape-char>\</escape-char>
+  <styles>
+    <style id="comment" _name="Comment" map-to="def:comment"/>
+    <style id="keyword" _name="Keyword" map-to="def:keyword"/>
+    <style id="decimal" _name="Decimal" map-to="def:decimal"/>
+    <style id="data-type" _name="Data Type" map-to="def:data-type"/>
+    <style id="preprocessor" _name="Preprocessor" map-to="def:preprocessor"/>
+    <style id="others" _name="Others"/>
+  </styles>
 
-	<keyword-list _name="Attribute Definitions" style="Others" case-sensitive="TRUE">
-		<keyword>attr</keyword>
-		<keyword>attr_writer</keyword>
-		<keyword>attr_reader</keyword>
-		<keyword>attr_accessor</keyword>
-	</keyword-list>
+  <definitions>
 
-	<keyword-list _name="Definitions" style="Keyword" case-sensitive="TRUE">
-		<keyword>alias</keyword>
-		<keyword>class</keyword>
-		<keyword>module</keyword>
-		<keyword>def</keyword>
-		<keyword>undef</keyword>
-	</keyword-list>
+    <context id="multiline-comment" style-ref="comment">
+      <start>^=begin</start>
+      <end>^=end</end>
+      <include>
+        <context ref="def:escape"/>
+        <context ref="def:line-continue"/>
+      </include>
+    </context>
 
-	<keyword-list _name="Pseudo Variables" style="Data Type" case-sensitive="TRUE">
-		<keyword>self</keyword>
-		<keyword>super</keyword>
-		<keyword>nil</keyword>
-		<keyword>false</keyword>
-		<keyword>true</keyword>
-		<keyword>__FILE__</keyword>
-		<keyword>__LINE__</keyword>
-	</keyword-list>
+    <context id="attribute-definitions" style-ref="others">
+      <keyword>attr</keyword>
+      <keyword>attr_writer</keyword>
+      <keyword>attr_reader</keyword>
+      <keyword>attr_accessor</keyword>
+    </context>
 
-	<keyword-list _name = "Module Handlers" style = "Preprocessor">
-		<keyword>require</keyword>
-		<keyword>include</keyword>
-		<keyword>load</keyword>
-	</keyword-list>
+    <context id="definitions" style-ref="keyword">
+      <keyword>alias</keyword>
+      <keyword>class</keyword>
+      <keyword>module</keyword>
+      <keyword>def</keyword>
+      <keyword>undef</keyword>
+    </context>
 
-	<keyword-list _name = "Keywords" style = "Keyword" case-sensitive="TRUE">
-		<keyword>BEGIN</keyword>
-		<keyword>END</keyword>
-		<keyword>and</keyword>
-		<keyword>begin</keyword>
-		<keyword>break</keyword>
-		<keyword>case</keyword>
-		<keyword>catch</keyword>
-		<keyword>defined?</keyword>
-		<keyword>do</keyword>
-		<keyword>else</keyword>
-		<keyword>elsif</keyword>
-		<keyword>end</keyword>
-		<keyword>ensure</keyword>
-		<keyword>for</keyword>
-		<keyword>if</keyword>
-		<keyword>in</keyword>
-		<keyword>next</keyword>
-		<keyword>not</keyword>
-		<keyword>or</keyword>
-		<keyword>private</keyword>
-		<keyword>protected</keyword>
-		<keyword>public</keyword>
-		<keyword>redo</keyword>
-		<keyword>rescue</keyword>
-		<keyword>retry</keyword>
-		<keyword>return</keyword>
-		<keyword>then</keyword>
-		<keyword>throw</keyword>
-		<keyword>unless</keyword>
-		<keyword>until</keyword>
-		<keyword>when</keyword>
-		<keyword>while</keyword>
-		<keyword>yield</keyword>
-	</keyword-list>
+    <context id="pseudo-variables" style-ref="data-type">
+      <keyword>self</keyword>
+      <keyword>super</keyword>
+      <keyword>nil</keyword>
+      <keyword>false</keyword>
+      <keyword>true</keyword>
+      <keyword>__FILE__</keyword>
+      <keyword>__LINE__</keyword>
+    </context>
 
-	<keyword-list _name = "Builtins" style = "Others" case-sensitive="TRUE">
-		<keyword>Array</keyword>
-		<keyword>Bignum</keyword>
-		<keyword>Binding</keyword>
-		<keyword>Class</keyword>
-		<keyword>Continuation</keyword>
-		<keyword>Dir</keyword>
-		<keyword>Exception</keyword>
-		<keyword>FalseClass</keyword>
-		<keyword>File::Stat</keyword>
-		<keyword>File</keyword>
-		<keyword>Fixnum</keyword>
-		<keyword>Fload</keyword>
-		<keyword>Hash</keyword>
-		<keyword>Integer</keyword>
-		<keyword>IO</keyword>
-		<keyword>MatchData</keyword>
-		<keyword>Method</keyword>
-		<keyword>Module</keyword>
-		<keyword>NilClass</keyword>
-		<keyword>Numeric</keyword>
-		<keyword>Object</keyword>
-		<keyword>Proc</keyword>
-		<keyword>Range</keyword>
-		<keyword>Regexp</keyword>
-		<keyword>String</keyword>
-		<keyword>Struct::Tms</keyword>
-		<keyword>Symbol</keyword>
-		<keyword>Symbol</keyword>
-		<keyword>ThreadGroup</keyword>
-		<keyword>Thread</keyword>
-		<keyword>Time</keyword>
-		<keyword>TrueClass</keyword>
-	</keyword-list>
+    <context id="module-handlers" style-ref="preprocessor">
+      <keyword>require</keyword>
+      <keyword>include</keyword>
+      <keyword>load</keyword>
+    </context>
 
-	<pattern-item _name = "Class Variables" style = "Data Type">
-		<regex>@@[a-zA-Z_][a-zA-Z0-9_]*</regex>
-	</pattern-item>
+    <context id="keywords" style-ref="keyword">
+      <keyword>BEGIN</keyword>
+      <keyword>END</keyword>
+      <keyword>and</keyword>
+      <keyword>begin</keyword>
+      <keyword>break</keyword>
+      <keyword>case</keyword>
+      <keyword>catch</keyword>
+      <keyword>defined?</keyword>
+      <keyword>do</keyword>
+      <keyword>else</keyword>
+      <keyword>elsif</keyword>
+      <keyword>end</keyword>
+      <keyword>ensure</keyword>
+      <keyword>for</keyword>
+      <keyword>if</keyword>
+      <keyword>in</keyword>
+      <keyword>next</keyword>
+      <keyword>not</keyword>
+      <keyword>or</keyword>
+      <keyword>private</keyword>
+      <keyword>protected</keyword>
+      <keyword>public</keyword>
+      <keyword>redo</keyword>
+      <keyword>rescue</keyword>
+      <keyword>retry</keyword>
+      <keyword>return</keyword>
+      <keyword>then</keyword>
+      <keyword>throw</keyword>
+      <keyword>unless</keyword>
+      <keyword>until</keyword>
+      <keyword>when</keyword>
+      <keyword>while</keyword>
+      <keyword>yield</keyword>
+    </context>
 
-	<pattern-item _name = "Instance Variables" style = "Data Type">
-		<regex>@[a-zA-Z_][a-zA-Z0-9_]*</regex>
-	</pattern-item>
+    <context id="builtins" style-ref="others">
+      <keyword>Array</keyword>
+      <keyword>Bignum</keyword>
+      <keyword>Binding</keyword>
+      <keyword>Class</keyword>
+      <keyword>Continuation</keyword>
+      <keyword>Dir</keyword>
+      <keyword>Exception</keyword>
+      <keyword>FalseClass</keyword>
+      <keyword>File::Stat</keyword>
+      <keyword>File</keyword>
+      <keyword>Fixnum</keyword>
+      <keyword>Fload</keyword>
+      <keyword>Hash</keyword>
+      <keyword>Integer</keyword>
+      <keyword>IO</keyword>
+      <keyword>MatchData</keyword>
+      <keyword>Method</keyword>
+      <keyword>Module</keyword>
+      <keyword>NilClass</keyword>
+      <keyword>Numeric</keyword>
+      <keyword>Object</keyword>
+      <keyword>Proc</keyword>
+      <keyword>Range</keyword>
+      <keyword>Regexp</keyword>
+      <keyword>String</keyword>
+      <keyword>Struct::Tms</keyword>
+      <keyword>Symbol</keyword>
+      <keyword>Symbol</keyword>
+      <keyword>ThreadGroup</keyword>
+      <keyword>Thread</keyword>
+      <keyword>Time</keyword>
+      <keyword>TrueClass</keyword>
+    </context>
 
-	<pattern-item _name = "Global Variables" style = "Data Type">
-		<regex>\$[a-zA-Z_][a-zA-Z0-9_]*</regex>
-	</pattern-item>
+    <context id="class-variables" style-ref="data-type">
+      <match>@@[a-zA-Z_][a-zA-Z0-9_]*</match>
+    </context>
 
-	<pattern-item _name = "Symbols" style = "Data Type">
-                <regex>:[a-zA-Z0-9_]+</regex>
-        </pattern-item>
+    <context id="instance-variables" style-ref="data-type">
+      <match>@[a-zA-Z_][a-zA-Z0-9_]*</match>
+    </context>
 
-	<pattern-item _name = "RegExp Variables" style = "Decimal">
-		<regex>\$[1-9][0-9]*</regex>
-	</pattern-item>
+    <context id="global-variables" style-ref="data-type">
+      <match>\$[a-zA-Z_][a-zA-Z0-9_]*</match>
+    </context>
 
-	<pattern-item _name = "Constants" style = "Decimal">
-		<regex>\b[A-Z_][A-Za-z0-9_:]*\b</regex>
-	</pattern-item>
+    <context id="symbols" style-ref="data-type">
+      <match>:[a-zA-Z0-9_]+</match>
+    </context>
 
-	<string _name = "Double Quoted String" style = "String" end-at-line-end = "TRUE">
-		<start-regex>&quot;</start-regex>
-		<end-regex>&quot;</end-regex>
-	</string>
+    <context id="regexp-variables" style-ref="decimal">
+      <match>\$[1-9][0-9]*</match>
+    </context>
 
-	<string _name = "Single Quoted String" style = "String" end-at-line-end = "TRUE">
-		<start-regex>&apos;</start-regex>
-		<end-regex>&apos;</end-regex>
-	</string>
+    <context id="constants" style-ref="decimal">
+      <match>\b[A-Z_][A-Za-z0-9_:]*\b</match>
+    </context>
 
-	<line-comment _name = "Line Comment" style= "Comment">
-		<start-regex>#</start-regex>
-	</line-comment>
-
-	<block-comment _name="Multiline Comment" style="Comment">
-		<start-regex>^=begin</start-regex>
-		<end-regex>^=end</end-regex>
-	</block-comment>
+    <context id="ruby">
+      <include>
+        <context ref="def:shebang"/>
+        <context ref="def:shell-like-comment"/>
+        <context ref="def:string"/>
+        <context ref="def:single-quoted-string"/>
+        <context ref="multiline-comment"/>
+        <context ref="attribute-definitions"/>
+        <context ref="definitions"/>
+        <context ref="pseudo-variables"/>
+        <context ref="module-handlers"/>
+        <context ref="keywords"/>
+        <context ref="builtins"/>
+        <context ref="class-variables"/>
+        <context ref="instance-variables"/>
+        <context ref="global-variables"/>
+        <context ref="symbols"/>
+        <context ref="regexp-variables"/>
+        <context ref="constants"/>
+      </include>
+    </context>
+  </definitions>
 </language>

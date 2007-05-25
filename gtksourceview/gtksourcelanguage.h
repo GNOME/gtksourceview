@@ -1,4 +1,5 @@
-/*  gtksourcelanguage.h
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8; coding: utf-8 -*-
+ *  gtksourcelanguage.h
  *
  *  Copyright (C) 2003 - Paolo Maggi <paolo.maggi@polito.it>
  *
@@ -21,79 +22,52 @@
 #define __GTK_SOURCE_LANGUAGE_H__
 
 #include <glib.h>
-#include <glib-object.h> 
-#include <gtk/gtk.h> 
-
-#include <gtksourceview/gtksourcetagstyle.h>
-#include <gtksourceview/gtksourcestylescheme.h>
+#include <glib-object.h>
+#include <gtk/gtk.h>
 
 G_BEGIN_DECLS
 
 #define GTK_TYPE_SOURCE_LANGUAGE		(gtk_source_language_get_type ())
-#define GTK_SOURCE_LANGUAGE(obj)		(GTK_CHECK_CAST ((obj), GTK_TYPE_SOURCE_LANGUAGE, GtkSourceLanguage))
-#define GTK_SOURCE_LANGUAGE_CLASS(klass)	(GTK_CHECK_CLASS_CAST ((klass), GTK_TYPE_SOURCE_LANGUAGE, GtkSourceLanguageClass))
-#define GTK_IS_SOURCE_LANGUAGE(obj)		(GTK_CHECK_TYPE ((obj), GTK_TYPE_SOURCE_LANGUAGE))
-#define GTK_IS_SOURCE_LANGUAGE_CLASS(klass)	(GTK_CHECK_CLASS_TYPE ((klass), GTK_TYPE_SOURCE_LANGUAGE))
+#define GTK_SOURCE_LANGUAGE(obj)		(G_TYPE_CHECK_INSTANCE_CAST((obj), GTK_TYPE_SOURCE_LANGUAGE, GtkSourceLanguage))
+#define GTK_SOURCE_LANGUAGE_CLASS(klass)	(G_TYPE_CHECK_CLASS_CAST((klass), GTK_TYPE_SOURCE_LANGUAGE, GtkSourceLanguageClass))
+#define GTK_IS_SOURCE_LANGUAGE(obj)		(G_TYPE_CHECK_INSTANCE_TYPE((obj), GTK_TYPE_SOURCE_LANGUAGE))
+#define GTK_IS_SOURCE_LANGUAGE_CLASS(klass)	(G_TYPE_CHECK_CLASS_TYPE ((klass), GTK_TYPE_SOURCE_LANGUAGE))
 #define GTK_SOURCE_LANGUAGE_GET_CLASS(obj)      (G_TYPE_INSTANCE_GET_CLASS ((obj), GTK_TYPE_SOURCE_LANGUAGE, GtkSourceLanguageClass))
 
 
 typedef struct _GtkSourceLanguage		GtkSourceLanguage;
 typedef struct _GtkSourceLanguageClass		GtkSourceLanguageClass;
-
 typedef struct _GtkSourceLanguagePrivate	GtkSourceLanguagePrivate;
 
-struct _GtkSourceLanguage 
+struct _GtkSourceLanguage
 {
 	GObject                   parent;
 
 	GtkSourceLanguagePrivate *priv;
 };
 
-struct _GtkSourceLanguageClass 
+struct _GtkSourceLanguageClass
 {
 	GObjectClass              parent_class;
-
-	void			  (*tag_style_changed) (GtkSourceLanguage *language,
-							const gchar       *name);
-
-	/* Padding for future expansion */
-	void (*_gtk_source_reserved1) (void);
-	void (*_gtk_source_reserved2) (void);
-	void (*_gtk_source_reserved3) (void);
 };
-
 
 GType            	 gtk_source_language_get_type 			(void) G_GNUC_CONST;
 
-gchar	 		*gtk_source_language_get_id			(GtkSourceLanguage       *language);
+const gchar 		*gtk_source_language_get_id			(GtkSourceLanguage       *language);
 
-gchar	 		*gtk_source_language_get_name			(GtkSourceLanguage       *language);
-gchar			*gtk_source_language_get_section		(GtkSourceLanguage       *language);
+const gchar 		*gtk_source_language_get_name			(GtkSourceLanguage       *language);
 
-/* The list must be freed and the tags unref'ed */
-GSList			*gtk_source_language_get_tags			(GtkSourceLanguage       *language);
+const gchar		*gtk_source_language_get_section		(GtkSourceLanguage       *language);
 
-gunichar                 gtk_source_language_get_escape_char            (GtkSourceLanguage       *language);
+const gchar		*gtk_source_language_get_metadata		(GtkSourceLanguage       *language,
+									 const gchar		 *name);
 
-/* Should free the list (and free each string in it also). */
-GSList			*gtk_source_language_get_mime_types		(GtkSourceLanguage       *language);
-void			 gtk_source_language_set_mime_types		(GtkSourceLanguage       *language,
-								 	 const GSList		 *mime_types);
+gchar			**gtk_source_language_get_mime_types		(GtkSourceLanguage       *language);
 
-GtkSourceStyleScheme	*gtk_source_language_get_style_scheme		(GtkSourceLanguage       *language);
-void			 gtk_source_language_set_style_scheme		(GtkSourceLanguage       *language,
-									 GtkSourceStyleScheme    *scheme);
+gchar			**gtk_source_language_get_globs			(GtkSourceLanguage       *language);
 
-GtkSourceTagStyle	*gtk_source_language_get_tag_style		(GtkSourceLanguage       *language,
-									 const gchar		 *tag_id);
-void			 gtk_source_language_set_tag_style		(GtkSourceLanguage       *language,
-									 const gchar		 *tag_id,
-								 	 const GtkSourceTagStyle *style);
 
-GtkSourceTagStyle	*gtk_source_language_get_tag_default_style	(GtkSourceLanguage       *language,
-								 	 const gchar		 *tag_id);
-
-G_END_DECLS				
+G_END_DECLS
 
 #endif /* __GTK_SOURCE_LANGUAGE_H__ */
 

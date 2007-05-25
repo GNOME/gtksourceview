@@ -48,57 +48,34 @@ in a view widget.
 </para>
 
 
-<!-- ##### SIGNAL GtkSourceBuffer::can-redo ##### -->
-<para>
-Emitted whenever there is a change in the buffer's ability to redo an
-operation.
-</para>
-
-@sourcebuffer: the object which received the signal.
-@arg1: TRUE if the buffer can now perform an redo.
-
-<!-- ##### SIGNAL GtkSourceBuffer::can-undo ##### -->
-<para>
-Emitted whenever there is a change in the buffer's ability to undo an
-operation.
-</para>
-
-@sourcebuffer: the object which received the signal.
-@arg1: TRUE if the buffer can now perform an undo.
-
 <!-- ##### SIGNAL GtkSourceBuffer::highlight-updated ##### -->
 <para>
-Emitted whenever the syntax highlighting information has been updated,
-so that views can request a redraw if the region changed is visible.
-Usually only view widgets displaying this buffer will be interested in
-this signal.
+
 </para>
 
 @sourcebuffer: the object which received the signal.
-@arg1: #GtkTextIter at the start of the updated region.
-@arg2: #GtkTextIter at the end of the updated region.
+@arg1: 
+@arg2: 
 
 <!-- ##### SIGNAL GtkSourceBuffer::marker-updated ##### -->
 <para>
-Emitted whenever a marker of @sourcebuffer has changed and needs to be
-redisplayed by the view.  A change in a marker's type or location can
-trigger this signal.
-</para>
 
-<para>
-Note that moving a marker causes the emission of this signal twice:
-one for the old location and one for the new.
 </para>
 
 @sourcebuffer: the object which received the signal.
-@arg1: #GtkTextIter at the location where the change occurred.
+@arg1: 
 
-<!-- ##### ARG GtkSourceBuffer:check-brackets ##### -->
+<!-- ##### ARG GtkSourceBuffer:can-redo ##### -->
 <para>
 
 </para>
 
-<!-- ##### ARG GtkSourceBuffer:escape-char ##### -->
+<!-- ##### ARG GtkSourceBuffer:can-undo ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GtkSourceBuffer:check-brackets ##### -->
 <para>
 
 </para>
@@ -118,6 +95,24 @@ one for the old location and one for the new.
 
 </para>
 
+<!-- ##### ARG GtkSourceBuffer:style-scheme ##### -->
+<para>
+
+</para>
+
+<!-- ##### STRUCT GtkSourceBufferClass ##### -->
+<para>
+
+</para>
+
+@parent_class: 
+@highlight_updated: 
+@marker_updated: 
+@_gtk_source_reserved1: 
+@_gtk_source_reserved2: 
+@_gtk_source_reserved3: 
+@_gtk_source_reserved4: 
+
 <!-- ##### FUNCTION gtk_source_buffer_new ##### -->
 <para>
 
@@ -136,7 +131,34 @@ one for the old location and one for the new.
 @Returns: 
 
 
-<!-- ##### FUNCTION gtk_source_buffer_get_check_brackets ##### -->
+<!-- ##### FUNCTION gtk_source_buffer_set_highlight ##### -->
+<para>
+
+</para>
+
+@buffer: 
+@highlight: 
+
+
+<!-- ##### FUNCTION gtk_source_buffer_get_highlight ##### -->
+<para>
+
+</para>
+
+@buffer: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gtk_source_buffer_set_language ##### -->
+<para>
+
+</para>
+
+@buffer: 
+@language: 
+
+
+<!-- ##### FUNCTION gtk_source_buffer_get_language ##### -->
 <para>
 
 </para>
@@ -154,16 +176,7 @@ one for the old location and one for the new.
 @check_brackets: 
 
 
-<!-- ##### FUNCTION gtk_source_buffer_set_bracket_match_style ##### -->
-<para>
-
-</para>
-
-@source_buffer: 
-@style: 
-
-
-<!-- ##### FUNCTION gtk_source_buffer_get_highlight ##### -->
+<!-- ##### FUNCTION gtk_source_buffer_get_check_brackets ##### -->
 <para>
 
 </para>
@@ -172,13 +185,22 @@ one for the old location and one for the new.
 @Returns: 
 
 
-<!-- ##### FUNCTION gtk_source_buffer_set_highlight ##### -->
+<!-- ##### FUNCTION gtk_source_buffer_set_style_scheme ##### -->
 <para>
 
 </para>
 
 @buffer: 
-@highlight: 
+@scheme: 
+
+
+<!-- ##### FUNCTION gtk_source_buffer_get_style_scheme ##### -->
+<para>
+
+</para>
+
+@buffer: 
+@Returns: 
 
 
 <!-- ##### FUNCTION gtk_source_buffer_get_max_undo_levels ##### -->
@@ -199,49 +221,20 @@ one for the old location and one for the new.
 @max_undo_levels: 
 
 
-<!-- ##### FUNCTION gtk_source_buffer_get_language ##### -->
+<!-- ##### FUNCTION gtk_source_buffer_redo ##### -->
 <para>
 
 </para>
 
 @buffer: 
-@Returns: 
 
 
-<!-- ##### FUNCTION gtk_source_buffer_set_language ##### -->
+<!-- ##### FUNCTION gtk_source_buffer_undo ##### -->
 <para>
 
 </para>
 
 @buffer: 
-@language: 
-
-
-<!-- ##### FUNCTION gtk_source_buffer_get_escape_char ##### -->
-<para>
-
-</para>
-
-@buffer: 
-@Returns: 
-
-
-<!-- ##### FUNCTION gtk_source_buffer_set_escape_char ##### -->
-<para>
-
-</para>
-
-@buffer: 
-@escape_char: 
-
-
-<!-- ##### FUNCTION gtk_source_buffer_can_undo ##### -->
-<para>
-
-</para>
-
-@buffer: 
-@Returns: 
 
 
 <!-- ##### FUNCTION gtk_source_buffer_can_redo ##### -->
@@ -253,20 +246,13 @@ one for the old location and one for the new.
 @Returns: 
 
 
-<!-- ##### FUNCTION gtk_source_buffer_undo ##### -->
+<!-- ##### FUNCTION gtk_source_buffer_can_undo ##### -->
 <para>
 
 </para>
 
 @buffer: 
-
-
-<!-- ##### FUNCTION gtk_source_buffer_redo ##### -->
-<para>
-
-</para>
-
-@buffer: 
+@Returns: 
 
 
 <!-- ##### FUNCTION gtk_source_buffer_begin_not_undoable_action ##### -->
@@ -297,6 +283,15 @@ one for the old location and one for the new.
 @Returns: 
 
 
+<!-- ##### FUNCTION gtk_source_buffer_delete_marker ##### -->
+<para>
+
+</para>
+
+@buffer: 
+@marker: 
+
+
 <!-- ##### FUNCTION gtk_source_buffer_move_marker ##### -->
 <para>
 
@@ -307,13 +302,22 @@ one for the old location and one for the new.
 @where: 
 
 
-<!-- ##### FUNCTION gtk_source_buffer_delete_marker ##### -->
+<!-- ##### FUNCTION gtk_source_buffer_get_first_marker ##### -->
 <para>
 
 </para>
 
 @buffer: 
-@marker: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gtk_source_buffer_get_last_marker ##### -->
+<para>
+
+</para>
+
+@buffer: 
+@Returns: 
 
 
 <!-- ##### FUNCTION gtk_source_buffer_get_marker ##### -->
@@ -337,34 +341,6 @@ one for the old location and one for the new.
 @Returns: 
 
 
-<!-- ##### FUNCTION gtk_source_buffer_get_first_marker ##### -->
-<para>
-
-</para>
-
-@buffer: 
-@Returns: 
-
-
-<!-- ##### FUNCTION gtk_source_buffer_get_last_marker ##### -->
-<para>
-
-</para>
-
-@buffer: 
-@Returns: 
-
-
-<!-- ##### FUNCTION gtk_source_buffer_get_iter_at_marker ##### -->
-<para>
-
-</para>
-
-@buffer: 
-@iter: 
-@marker: 
-
-
 <!-- ##### FUNCTION gtk_source_buffer_get_next_marker ##### -->
 <para>
 
@@ -383,5 +359,15 @@ one for the old location and one for the new.
 @buffer: 
 @iter: 
 @Returns: 
+
+
+<!-- ##### FUNCTION gtk_source_buffer_get_iter_at_marker ##### -->
+<para>
+
+</para>
+
+@buffer: 
+@iter: 
+@marker: 
 
 

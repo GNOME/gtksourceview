@@ -1,209 +1,51 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<!--
-	This file describes the XML format used for syntax highlight
-	descriptions for the GtkSourceView 1.x library.
-
-	.lang files are XML files which describe how to highlight syntax;
-	this DTD is used for validation purposes.
-
-	.lang files should include:
-
-	<!DOCTYPE language SYSTEM "language.dtd">
-
-	and be located in $PREFIX/gtksourceview-1.0/language-specs/, or in
-	~./gnome2/gtksourceview-1.0/language-specs/
-
-	To check if a .lang file is valid, run
-
-	$ xmllint FILENAME - -dtdvalid language.dtd
-
-	If you create a new .lang file or modify an existing one, please note
-	that it will be (re)loaded by the application only after it is
-	restarted.
--->
-
-<!--
-	Boolean type
-
-  	Attributes that are of type boolean allow the following values:
-  	
-  	- 'true', 'TRUE' and '1' 	all meaning true
-  	- 'false', FALSE' and '0' 	all meaning false
-
-	It is encouraged to use 'TRUE' and 'FALSE' instead of the alternatives.
--->
-
-<!ENTITY % boolean
-	"(true|false|TRUE|FALSE|0|1)">
-
-<!--
-	Attributes required by all element representing a syntax or pattern tag.
-
-	- name		the name of the tag (it can appear in the UI)
-
-	- style		the style used to highlight the tag. Recognized values
-			are (from gtksourcestylescheme.h):
-
-			- Base-N Integer	used for values with a base
-						other than 10
-			- Character		used for single characters
-			- Comment		used for comments
-			- Data Type		used for data types
-			- Function		used for function names
-			- Decimal		used for decimal values
-			- Floating Point	used for floating point values
-			- Keyword		used for keywords
-			- Preprocessor		used for preprocessor instructions
-			- String		used for strings
-			- Specials		used for 'special' things
-			- Others (DEPRECATED, replaced by "Data Type")
-			- Others 2		used for 'other' things
-			- Others 3		used for 'other' things
-
-	The "name" attribute can be prefixed with "_" to be marked for
-	translation.
--->
-
-<!ENTITY % tagattrs
-	"name		CDATA	#IMPLIED
-	 _name 		CDATA	#IMPLIED
-	 style 		CDATA	#REQUIRED">
-
-<!--
-	The root of the definition file is the element "language".
-
-	Required attributes:
-
-	- name		the name of the language (it can appear in menus and
-			dialog boxes)
-
-	- section	the category the language belongs to (e.g. "Sources",
-			"Scripts", etc.)
-
-	- version	version of the .lang file format (1.0)
-
-	- mimetypes	a list of mime-types that identifies the types of file
-			that must be highlighted using the .lang file
-
-	Optional attributes:
-
-	- translation-domain
-			the translation domain used by the file
-
-	The "name" and "section" attributes can be prefixed with
-	"_" to be marked for translation.
--->
+<!-- FIXME: the "name" attribute can be "_name" to be marked for translation -->
+<!ENTITY % itemattrs
+ "name  CDATA #REQUIRED
+  style CDATA #REQUIRED">
 
 <!ELEMENT language (escape-char?,(line-comment|block-comment|string|syntax-item|pattern-item|keyword-list)+)>
+<!-- FIXME: the "name" and "section" attributes can be prefixed with
+     "_" to be marked for translation -->
 <!ATTLIST language
-	_name			CDATA	#IMPLIED
-	name  			CDATA	#IMPLIED
-	_section  		CDATA	#IMPLIED
-	section  		CDATA	#IMPLIED
-	version			CDATA	#REQUIRED
-	mimetypes		CDATA	#REQUIRED
-  	translation-domain  	CDATA	#IMPLIED>
+  name                CDATA #REQUIRED
+  version             CDATA #REQUIRED
+  section             CDATA #REQUIRED
+  translation-domain  CDATA #IMPLIED
+  mimetypes           CDATA #REQUIRED>
 
-<!--
-	Which character is used in escape sequences.
--->
 <!ELEMENT escape-char (#PCDATA)>
 
-<!--
-	The line-comment" element represents single line comments.
-	The "start-regex" subelement defines the regex matching the start of
-	the comment.
--->
 <!ELEMENT line-comment (start-regex)>
 <!ATTLIST line-comment
-	%tagattrs;>
+  %itemattrs;>
 
-<!--
-	The "block-comment" element represents multiple lines comments.
-	The "start-regex" subelement defines the regex matching the beginning of
-	the comment.
-	The "end-regex" subelement defines the regex matching the end of
-	the comment.
--->
 <!ELEMENT block-comment (start-regex,end-regex)>
 <!ATTLIST block-comment
- 	%tagattrs;>
+  %itemattrs;>
 
-<!--
-	The "string" element represents string.
-	The "start-regex" subelement defines the regex matching the beginning of
-	the string.
-	The "end-regex" subelement defines the regex matching the end of
-	the string.
-
-	Optional attributes:
-
-	- end-at-line-end	whether the string end at the end of line
--->
 <!ELEMENT string (start-regex,end-regex)>
 <!ATTLIST string
- 	%tagattrs;
- 	end-at-line-end		%boolean; "TRUE">
+  %itemattrs;
+  end-at-line-end (true|false) "true">
 
-<!--
-	The "syntax-item" element represents a generic region of the document.
-	The "start-regex" subelement defines the regex matching the beginning of
-	the region.
-	The "end-regex" subelement defines the regex matching the end of
-	the region.
--->
 <!ELEMENT syntax-item (start-regex,end-regex)>
 <!ATTLIST syntax-item
- 	%tagattrs;>
+  %itemattrs;>
 
-<!--
-	The "pattern-item" element represents a generic token.
-	The "regex" subelement defines the regex matching the token.
--->
 <!ELEMENT pattern-item (regex)>
 <!ATTLIST pattern-item
-	%tagattrs;>
+  %itemattrs;>
 
-<!--
-	The "keyword-list" element represents a list of keywords, it can have
-	one or more "keyword" subelements each one representing a keyword.
-	A "keyword" subelement defines the regex matching a keyword of the
-	language.
-
-	Optional attributes:
-
-	- case-sensitive	whether the keywords are case sensitive
-	
-	- match-empty-string-at-beginning:
-				whether the empty string (\b) should be matched
-				at the beginning of the keywords
-				
-	- match-empty-string-at-end
-				whether the empty string (\b) should be matched
-				at the end of the keywords
-				
-	- beginning-regex	if all keywords start with a regex, you can
-				specify	it here to avoid doing it for
-				every single keyword
-				
-	- end-regex		if all keywords end with a regex, you can
-				specify	it here to avoid doing it for
-				every single keyword
--->
-
-<!ELEMENT keyword-list (keyword)+>
+<!ELEMENT keyword-list (keyword+)>
 <!ATTLIST keyword-list
-	%tagattrs;
-	case-sensitive			%boolean;	"TRUE"
-  	match-empty-string-at-beginning	%boolean;	"FALSE"
-	match-empty-string-at-end	%boolean;	"FALSE"
-	beginning-regex			CDATA		#IMPLIED
-	end-regex			CDATA		#IMPLIED>
+  %itemattrs;
+  case-sensitive                  (true|false) "true"
+  match-empty-string-at-beginning (true|false) "false"
+  match-empty-string-at-end       (true|false) "false"
+  beginning-regex                 CDATA        #IMPLIED
+  end-regex                       CDATA        #IMPLIED>
 
-<!-- Elements used inside other elements -->
-<!ELEMENT keyword (#PCDATA)>
-<!ELEMENT regex (#PCDATA)>
 <!ELEMENT start-regex (#PCDATA)>
 <!ELEMENT end-regex (#PCDATA)>
-
+<!ELEMENT regex (#PCDATA)>
+<!ELEMENT keyword (#PCDATA)>

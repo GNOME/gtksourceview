@@ -1,42 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE language SYSTEM "language.dtd">
-<language _name="ChangeLog" version="1.0" _section="Others" mimetypes="text/x-changelog">
+<language id="changelog" _name="ChangeLog" version="2.0" _section="Others">
 
-	<keyword-list _name = "Date" style = "String" case-sensitive="TRUE">
-		<keyword>[0-9-]*[0-9]+</keyword>
-		<keyword>jan</keyword>
-		<keyword>feb</keyword>
-		<keyword>mar</keyword>
-		<keyword>apr</keyword>
-		<keyword>may</keyword>
-		<keyword>jun</keyword>
-		<keyword>jul</keyword>
-		<keyword>aug</keyword>
-		<keyword>sep</keyword>
-		<keyword>oct</keyword>
-		<keyword>nov</keyword>
-		<keyword>dec</keyword>
-		<keyword>mon</keyword>
-		<keyword>tue</keyword>
-		<keyword>wed</keyword>
-		<keyword>thu</keyword>
-		<keyword>fri</keyword>
-		<keyword>sat</keyword>
-		<keyword>sun</keyword>
-	</keyword-list>
+  <metadata>
+    <property name="mimetypes">text/x-changelog</property>
+    <property name="globs">ChangeLog*</property>
+  </metadata>
 
-	<pattern-item _name="Email" style="Comment">
-		<regex>&lt;[A-Za-z0-9._:+-]+@[A-Za-z0-9._:+-]+\.[A-Za-z0-9]{2,4}&gt;</regex>
-	</pattern-item>
+  <styles>
+    <style id="date" name="Date" map-to="def:data-type"/>
+    <style id="name" name="Name" map-to="def:keyword"/>
+    <style id="email" name="Email"/>
+    <style id="file" name="File" map-to="def:function"/>
+    <style id="function" name="Function" map-to="def:function"/>
+    <style id="release" name="Release" map-to="def:function"/>
+  </styles>
 
-	<syntax-item _name="File" style="Data Type">
-		<start-regex>^[\t ]+[*(]</start-regex>
-		<end-regex>(:|^[\t ]*$)</end-regex>
-	</syntax-item>
-	
-	<syntax-item _name="Marker" style="Keyword">
-		<start-regex>^[\t ]*[=[]</start-regex>
-		<end-regex>$</end-regex>
-	</syntax-item>
+  <definitions>
+    <define-regex id="identifier">[A-Za-z_][A-Za-z0-9_]*</define-regex>
+
+    <context id="changelog">
+      <include>
+        <context id="date-and-stuff">
+          <!-- FIXME: how to match date here? The date and name line is
+            something like (DATE) (NAME) <EMAIL>, where DATE and NAME may
+            be quite arbitrary. -->
+          <match>^(\S+)\s+(.*)\s+(\&lt;[^\&lt;]+\&gt;)\s*$</match>
+          <include>
+            <context sub-pattern="1" style-ref="date"/>
+            <context sub-pattern="2" style-ref="name"/>
+            <context sub-pattern="3" style-ref="email"/>
+          </include>
+        </context>
+        <context id="release" style-ref="release">
+          <match>^\s*\=.*\=\s*$</match>
+        </context>
+        <context id="file" style-ref="file">
+          <start>^\s+\*</start>
+          <!-- end at blank lines if there's no colon -->
+          <end>\:|^$</end>
+        </context>
+        <context id="function" style-ref="function">
+          <match>\(\s*\%{identifier}\s*\)</match>
+        </context>
+      </include>
+    </context>
+  </definitions>
 
 </language>

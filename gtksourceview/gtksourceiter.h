@@ -1,7 +1,7 @@
-/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- 
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*-
  *  gtksourceiter.h
  *
- *  Copyright (C) 2000, 2002 Paolo Maggi 
+ *  Copyright (C) 2000, 2002 Paolo Maggi
  *  Copyright (C) 2002, 2003 Jeroen Zwartepoorte
  *
  *  This program is free software; you can redistribute it and/or modify
@@ -47,8 +47,6 @@ gboolean gtk_source_iter_backward_search 	(const GtkTextIter   *iter,
 						 GtkTextIter         *match_start,
 						 GtkTextIter         *match_end,
 						 const GtkTextIter   *limit);
-
-gboolean gtk_source_iter_find_matching_bracket 	(GtkTextIter         *iter);
 
 G_END_DECLS
 

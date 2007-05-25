@@ -1,123 +1,124 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE language SYSTEM "language.dtd">
-<language _name="Tcl" version="1.0" _section="Scripts" mimetypes="text/x-tcl">
-	
-	<escape-char>\</escape-char>
+<language id="tcl" _name="Tcl" version="2.0" _section="Scripts">
+  <metadata>
+    <property name="mimetypes">text/x-tcl;application/x-tcl</property>
+    <property name="globs">*.tcl;*.tk</property>
+    <property name="line-comment-start">#</property>
+  </metadata>
 
-	<string _name="String" style="String" end-at-line-end="TRUE">
-		<start-regex>"</start-regex>
-		<end-regex>"</end-regex>
-	</string>
+  <styles>
+    <style id="data-type" _name="Data Type" map-to="def:data-type"/>
+    <style id="keyword" _name="Keyword" map-to="def:keyword"/>
+  </styles>
 
-	<string _name="String2" style="String" end-at-line-end="TRUE">
-		<start-regex>'</start-regex>
-		<end-regex>'</end-regex>
-	</string>
+  <definitions>
 
-	<line-comment _name="Line Comment" style="Comment">
-		<start-regex>#</start-regex>
-	</line-comment>
+    <context id="variable" style-ref="data-type">
+      <match>[$@%][$]?[a-zA-Z_][a-zA-Z0-9_]*</match>
+    </context>
 
-	<pattern-item _name="Variable" style="Data Type">
-		<regex>[$@%][$]?[a-zA-Z_][a-zA-Z0-9_]*</regex>
-	</pattern-item>
+    <context id="keyword" style-ref="keyword">
+      <keyword>string</keyword>
+      <keyword>subst</keyword>
+      <keyword>regexp</keyword>
+      <keyword>regsub</keyword>
+      <keyword>scan</keyword>
+      <keyword>format</keyword>
+      <keyword>binary</keyword>
+      <keyword>list</keyword>
+      <keyword>split</keyword>
+      <keyword>join</keyword>
+      <keyword>concat</keyword>
+      <keyword>llength</keyword>
+      <keyword>lrange</keyword>
+      <keyword>lsearch</keyword>
+      <keyword>lreplace</keyword>
+      <keyword>lindex</keyword>
+      <keyword>lsort</keyword>
+      <keyword>linsert</keyword>
+      <keyword>lrepeat</keyword>
+      <keyword>dict</keyword>
+      <keyword>if</keyword>
+      <keyword>else</keyword>
+      <keyword>elseif</keyword>
+      <keyword>then</keyword>
+      <keyword>for</keyword>
+      <keyword>foreach</keyword>
+      <keyword>switch</keyword>
+      <keyword>case</keyword>
+      <keyword>while</keyword>
+      <keyword>continue</keyword>
+      <keyword>return</keyword>
+      <keyword>break</keyword>
+      <keyword>catch</keyword>
+      <keyword>error</keyword>
+      <keyword>eval</keyword>
+      <keyword>uplevel</keyword>
+      <keyword>after</keyword>
+      <keyword>update</keyword>
+      <keyword>vwait</keyword>
+      <keyword>proc</keyword>
+      <keyword>rename</keyword>
+      <keyword>set</keyword>
+      <keyword>lset</keyword>
+      <keyword>lassign</keyword>
+      <keyword>unset</keyword>
+      <keyword>namespace</keyword>
+      <keyword>variable</keyword>
+      <keyword>upvar</keyword>
+      <keyword>global</keyword>
+      <keyword>trace</keyword>
+      <keyword>array</keyword>
+      <keyword>incr</keyword>
+      <keyword>append</keyword>
+      <keyword>lappend</keyword>
+      <keyword>expr</keyword>
+      <keyword>file</keyword>
+      <keyword>open</keyword>
+      <keyword>close</keyword>
+      <keyword>socket</keyword>
+      <keyword>fconfigure</keyword>
+      <keyword>puts</keyword>
+      <keyword>gets</keyword>
+      <keyword>read</keyword>
+      <keyword>seek</keyword>
+      <keyword>tell</keyword>
+      <keyword>eof</keyword>
+      <keyword>flush</keyword>
+      <keyword>fblocked</keyword>
+      <keyword>fcopy</keyword>
+      <keyword>fileevent</keyword>
+      <keyword>source</keyword>
+      <keyword>load</keyword>
+      <keyword>unload</keyword>
+      <keyword>package</keyword>
+      <keyword>info</keyword>
+      <keyword>interp</keyword>
+      <keyword>history</keyword>
+      <keyword>bgerror</keyword>
+      <keyword>unknown</keyword>
+      <keyword>memory</keyword>
+      <keyword>cd</keyword>
+      <keyword>pwd</keyword>
+      <keyword>clock</keyword>
+      <keyword>time</keyword>
+      <keyword>exec</keyword>
+      <keyword>glob</keyword>
+      <keyword>pid</keyword>
+      <keyword>exit</keyword>
+    </context>
 
-	<keyword-list _name="Keyword" style="Keyword" case-sensitive="TRUE">
-                <!--String handling-->
-		<keyword>string</keyword>
-		<keyword>subst</keyword>
-		<keyword>regexp</keyword>
-		<keyword>regsub</keyword>
-		<keyword>scan</keyword>
-		<keyword>format</keyword>
-		<keyword>binary</keyword>
-		<!--List handling-->
-		<keyword>list</keyword>
-		<keyword>split</keyword>
-		<keyword>join</keyword>
-		<keyword>concat</keyword>
-		<keyword>llength</keyword>
-		<keyword>lrange</keyword>
-		<keyword>lsearch</keyword>
-		<keyword>lreplace</keyword>
-		<keyword>lindex</keyword>
-		<keyword>lsort</keyword>
-		<keyword>linsert</keyword>
-		<keyword>lrepeat</keyword>
-		<keyword>dict</keyword>
-		<!--Control constucts-->
-		<keyword>if</keyword>
-		<keyword>else</keyword>
-		<keyword>elseif</keyword>
-		<keyword>then</keyword>
-		<keyword>for</keyword>
-		<keyword>foreach</keyword>
-		<keyword>switch</keyword>
-		<keyword>case</keyword>
-		<keyword>while</keyword>
-		<keyword>continue</keyword>
-		<keyword>return</keyword>
-		<keyword>break</keyword>
-		<keyword>catch</keyword>
-		<keyword>error</keyword>
-		<keyword>eval</keyword>
-		<keyword>uplevel</keyword>
-		<keyword>after</keyword>
-		<keyword>update</keyword>
-		<keyword>vwait</keyword>
-		<!--Variables and procedures-->
-		<keyword>proc</keyword>
-		<keyword>rename</keyword>
-		<keyword>set</keyword>
-		<keyword>lset</keyword>
-		<keyword>lassign</keyword>
-		<keyword>unset</keyword>
-		<keyword>namespace</keyword>
-		<keyword>variable</keyword>
-		<keyword>upvar</keyword>
-		<keyword>global</keyword>
-		<keyword>trace</keyword>
-		<keyword>array</keyword>
-		<keyword>incr</keyword>
-		<keyword>append</keyword>
-		<keyword>lappend</keyword>
-		<keyword>expr</keyword>
-                <!--Input/Output-->
-		<keyword>file</keyword>
-		<keyword>open</keyword>
-		<keyword>close</keyword>
-		<keyword>socket</keyword>
-		<keyword>fconfigure</keyword>
-		<keyword>puts</keyword>
-		<keyword>gets</keyword>
-		<keyword>read</keyword>
-		<keyword>seek</keyword>
-		<keyword>tell</keyword>
-		<keyword>eof</keyword>
-		<keyword>flush</keyword>
-		<keyword>fblocked</keyword>
-		<keyword>fcopy</keyword>
-		<keyword>fileevent</keyword>
-		<!--Packages and source files-->
-		<keyword>source</keyword>
-		<keyword>load</keyword>
-		<keyword>unload</keyword>
-		<keyword>package</keyword>
-		<!--Interpreter routines-->
-		<keyword>info</keyword>
-		<keyword>interp</keyword>
-		<keyword>history</keyword>
-		<keyword>bgerror</keyword>
-		<keyword>unknown</keyword>
-		<keyword>memory</keyword>
-                <!--System related-->
-		<keyword>cd</keyword>
-		<keyword>pwd</keyword>
-		<keyword>clock</keyword>
-		<keyword>time</keyword>
-		<keyword>exec</keyword>
-		<keyword>glob</keyword>
-		<keyword>pid</keyword>
-		<keyword>exit</keyword>
-	</keyword-list>
+    <context id="tcl">
+      <include>
+        <context ref="def:shebang"/>
+        <context ref="def:shell-like-comment"/>
+        <context ref="def:string"/>
+        <context ref="def:single-quoted-string"/>
+        <context ref="variable"/>
+        <context ref="keyword"/>
+      </include>
+    </context>
+
+  </definitions>
+
 </language>

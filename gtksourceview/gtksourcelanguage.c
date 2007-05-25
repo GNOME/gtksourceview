@@ -1,4 +1,5 @@
-/*  gtksourcelanguage.c
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8; coding: utf-8 -*-
+ *  gtksourcelanguage.c
  *
  *  Copyright (C) 2003 - Paolo Maggi <paolo.maggi@polito.it>
  *
@@ -29,54 +30,28 @@
 #include <fcntl.h>
 
 #include <libxml/xmlreader.h>
-
 #include <glib/gstdio.h>
-#include <glib/gmappedfile.h>
-
 #include "gtksourceview-i18n.h"
-
 #include "gtksourcelanguage-private.h"
 #include "gtksourcelanguage.h"
-#include "gtksourcetag.h"
-
 #include "gtksourceview-marshal.h"
 
-static void	 	  gtk_source_language_class_init 	(GtkSourceLanguageClass 	*klass);
-static void		  gtk_source_language_init		(GtkSourceLanguage 		*lang);
-static void		  gtk_source_language_finalize 		(GObject 			*object);
+#define DEFAULT_SECTION _("Others")
 
-static GtkSourceLanguage *process_language_node 		(xmlTextReaderPtr 		 reader, 
+G_DEFINE_TYPE (GtkSourceLanguage, gtk_source_language, G_TYPE_OBJECT)
+
+static GtkSourceLanguage *process_language_node 		(xmlTextReaderPtr 		 reader,
 								 const gchar 			*filename);
-static GSList 		 *get_mime_types_from_file 		(GtkSourceLanguage 		*language);
 
-/* Signals */
-enum {
-	TAG_STYLE_CHANGED = 0,
-	LAST_SIGNAL
-};
-
-static GtkSourceTagStyle normal_style = { TRUE, 0 };
-
-static guint 	 signals[LAST_SIGNAL] = { 0 };
-
-static GObjectClass 	 *parent_class  = NULL;
-
-static void
-slist_deep_free (GSList *list)
-{
-	g_slist_foreach (list, (GFunc) g_free, NULL);
-	g_slist_free (list);
-}
 
 GtkSourceLanguage *
-_gtk_source_language_new_from_file (const gchar			*filename,
-				    GtkSourceLanguagesManager	*lm)
+_gtk_source_language_new_from_file (const gchar              *filename,
+				    GtkSourceLanguageManager *lm)
 {
 	GtkSourceLanguage *lang = NULL;
-
 	xmlTextReaderPtr reader = NULL;
 	gint ret;
-	int fd;
+	gint fd;
 
 	g_return_val_if_fail (filename != NULL, NULL);
 	g_return_val_if_fail (lm != NULL, NULL);
@@ -88,11 +63,11 @@ _gtk_source_language_new_from_file (const gchar			*filename,
 	if (fd != -1)
 		reader = xmlReaderForFd (fd, filename, NULL, 0);
 
-	if (reader != NULL) 
+	if (reader != NULL)
 	{
         	ret = xmlTextReaderRead (reader);
-		
-        	while (ret == 1) 
+
+        	while (ret == 1)
 		{
 			if (xmlTextReaderNodeType (reader) == 1)
 			{
@@ -102,90 +77,36 @@ _gtk_source_language_new_from_file (const gchar			*filename,
 
 				if (xmlStrcmp (name, BAD_CAST "language") == 0)
 				{
-
 					lang = process_language_node (reader, filename);
-					
 					ret = 0;
 				}
 
 				xmlFree (name);
 			}
-			
-			if (ret != 0)
+
+			if (ret == 1)
 				ret = xmlTextReaderRead (reader);
-			
 		}
-	
+
 		xmlFreeTextReader (reader);
 		close (fd);
 
-		if (ret != 0) 
+		if (ret != 0)
 		{
 	            g_warning("Failed to parse '%s'", filename);
 		    return NULL;
 		}
         }
-	else 
+	else
 	{
 		g_warning("Unable to open '%s'", filename);
 
     	}
-	
+
+	if (lang != NULL)
+		lang->priv->language_manager = lm;
+
 	return lang;
-}
-
-GType
-gtk_source_language_get_type (void)
-{
-	static GType our_type = 0;
-
-	if (our_type == 0) {
-		static const GTypeInfo our_info = {
-			sizeof (GtkSourceLanguageClass),
-			(GBaseInitFunc) NULL,
-			(GBaseFinalizeFunc) NULL,
-			(GClassInitFunc) gtk_source_language_class_init,
-			NULL,	/* class_finalize */
-			NULL,	/* class_data */
-			sizeof (GtkSourceLanguage),
-			0,	/* n_preallocs */
-			(GInstanceInitFunc) gtk_source_language_init
-		};
-
-		our_type =
-		    g_type_register_static (G_TYPE_OBJECT,
-					    "GtkSourceLanguage", &our_info, 0);
-	}
-
-	return our_type;
-}
-
-static void
-gtk_source_language_class_init (GtkSourceLanguageClass *klass)
-{
-	GObjectClass *object_class = G_OBJECT_CLASS (klass);
-
-	parent_class		= g_type_class_peek_parent (klass);
-	object_class->finalize	= gtk_source_language_finalize;
-
-	signals[TAG_STYLE_CHANGED] = 
-		g_signal_new ("tag_style_changed",
-			  G_OBJECT_CLASS_TYPE (object_class),
-			  G_SIGNAL_RUN_LAST,
-			  G_STRUCT_OFFSET (GtkSourceLanguageClass, tag_style_changed),
-			  NULL, NULL,
-			  gtksourceview_marshal_VOID__STRING,
-			  G_TYPE_NONE, 
-			  1, 
-			  G_TYPE_STRING);
-}
-
-static void
-gtk_source_language_init (GtkSourceLanguage *lang)
-{
-	lang->priv = g_new0 (GtkSourceLanguagePrivate, 1);
-
-	lang->priv->style_scheme = gtk_source_style_scheme_get_default ();
 }
 
 static void
@@ -194,216 +115,234 @@ gtk_source_language_finalize (GObject *object)
 	GtkSourceLanguage *lang;
 
 	lang = GTK_SOURCE_LANGUAGE (object);
-		
-	if (lang->priv != NULL)
-	{
-		g_free (lang->priv->lang_file_name);
 
-		xmlFree (lang->priv->translation_domain);
-		xmlFree (lang->priv->name);
-		xmlFree (lang->priv->section);
-		g_free  (lang->priv->id);
+	if (lang->priv->ctx_data != NULL)
+		g_critical ("context data not freed in gtk_source_language_finalize");
 
-		slist_deep_free (lang->priv->mime_types);
+	g_free (lang->priv->lang_file_name);
+	g_free (lang->priv->translation_domain);
+	g_free (lang->priv->name);
+	g_free (lang->priv->section);
+	g_free (lang->priv->id);
+	g_hash_table_destroy (lang->priv->properties);
+	g_hash_table_destroy (lang->priv->styles);
 
-		if (lang->priv->tag_id_to_style_name != NULL)
-			g_hash_table_destroy (lang->priv->tag_id_to_style_name);
-
-		if (lang->priv->tag_id_to_style != NULL)
-			g_hash_table_destroy (lang->priv->tag_id_to_style);
-
-		g_object_unref (lang->priv->style_scheme);
-
-		g_free (lang->priv); 
-	}
-	
-	G_OBJECT_CLASS (parent_class)->finalize (object);
+	G_OBJECT_CLASS (gtk_source_language_parent_class)->finalize (object);
 }
 
-/*
- * This function has been taken from GConf.
- * Copyright (C) 1999, 2000 Red Hat Inc.
- */
-
-static const gchar invalid_chars[] = " \t\r\n\"$&<>,+=#!()'|{}[]?~`;%\\";
-
-/**
- * escape_id:
- * @arbitrary_text: some text in any encoding or format.
- * @len: length of @arbitrary_text in bytes, or -1 if @arbitrary_text is nul-terminated.
- * 
- * Return value: a null-terminated valid part of a GConf key.
- **/
-static gchar*
-escape_id (const gchar *arbitrary_text, gint len)
+static void
+gtk_source_language_class_init (GtkSourceLanguageClass *klass)
 {
-	const char *p;
-	const char *end;
-	GString *retval;
+	GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
-	g_return_val_if_fail (arbitrary_text != NULL, NULL);
-  
-	/* Nearly all characters we would normally use for escaping aren't allowed in key
-	 * names, so we use @ for that.
-	 *
-	 * Invalid chars and @ itself are escaped as @xxx@ where xxx is the
-	 * Latin-1 value in decimal
-	 */
+	object_class->finalize	= gtk_source_language_finalize;
 
-	if (len < 0)
-		len = strlen (arbitrary_text);
+	g_type_class_add_private (object_class, sizeof(GtkSourceLanguagePrivate));
+}
 
-	retval = g_string_new ("");
+static void
+gtk_source_language_init (GtkSourceLanguage *lang)
+{
+	lang->priv = G_TYPE_INSTANCE_GET_PRIVATE (lang, GTK_TYPE_SOURCE_LANGUAGE,
+						  GtkSourceLanguagePrivate);
+	lang->priv->styles = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, g_free);
+	lang->priv->properties = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, g_free);
+}
 
-	p = arbitrary_text;
-	end = arbitrary_text + len;
-	while (p != end)
+static gboolean
+string_to_bool (const gchar *string)
+{
+	if (!g_ascii_strcasecmp (string, "yes") ||
+	    !g_ascii_strcasecmp (string, "true") ||
+	    !g_ascii_strcasecmp (string, "1"))
+		return TRUE;
+	else if (!g_ascii_strcasecmp (string, "no") ||
+		 !g_ascii_strcasecmp (string, "false") ||
+		 !g_ascii_strcasecmp (string, "0"))
+		return FALSE;
+	else
+		g_return_val_if_reached (FALSE);
+}
+
+static void
+process_properties (xmlTextReaderPtr   reader,
+		    GtkSourceLanguage *language)
+{
+	gint ret;
+	xmlNodePtr child;
+	xmlNodePtr node = NULL;
+
+	while (node == NULL && (ret = xmlTextReaderRead (reader)) == 1)
 	{
-		if (*p == '/' || *p == '.' || *p == '@' || ((guchar) *p) > 127 ||
-			strchr (invalid_chars, *p))
+		xmlChar *name;
+
+		if (xmlTextReaderNodeType (reader) != 1)
+			continue;
+
+		name = xmlTextReaderName (reader);
+
+		if (xmlStrcmp (name, BAD_CAST "metadata") != 0)
 		{
-			g_string_append_c (retval, '@');
-			g_string_append_printf (retval, "%u", (unsigned int) *p);
-			g_string_append_c (retval, '@');
+			xmlFree (name);
+			continue;
 		}
-		else
-			g_string_append_c (retval, *p);
-      
-		++p;
+
+		xmlFree (name);
+
+		node = xmlTextReaderExpand (reader);
+
+		if (node == NULL)
+			return;
 	}
 
-	return g_string_free (retval, FALSE);
+	if (node == NULL)
+		return;
+
+	for (child = node->children; child != NULL; child = child->next)
+	{
+		xmlChar *name;
+		xmlChar *content;
+
+		if (child->type != XML_ELEMENT_NODE ||
+		    xmlStrcmp (child->name, BAD_CAST "property") != 0)
+			continue;
+
+		name = xmlGetProp (child, BAD_CAST "name");
+		content = xmlNodeGetContent (child);
+
+		if (name != NULL && content != NULL)
+			g_hash_table_insert (language->priv->properties,
+					     g_strdup ((gchar *) name),
+					     g_strdup ((gchar *) content));
+
+		xmlFree (name);
+		xmlFree (content);
+	}
 }
 
 static GtkSourceLanguage *
 process_language_node (xmlTextReaderPtr reader, const gchar *filename)
 {
 	xmlChar *version;
-	xmlChar *mimetypes;
-	gchar** mtl;
-	int i;
 	xmlChar *tmp;
-	xmlChar *id_temp;
+	xmlChar *untranslated_name;
 	GtkSourceLanguage *lang;
-	
-	lang= g_object_new (GTK_TYPE_SOURCE_LANGUAGE, NULL);
+
+	lang = g_object_new (GTK_TYPE_SOURCE_LANGUAGE, NULL);
 
 	lang->priv->lang_file_name = g_strdup (filename);
-	
-	lang->priv->translation_domain = (gchar *) xmlTextReaderGetAttribute (
-			reader, BAD_CAST "translation-domain");
-	if (lang->priv->translation_domain == NULL)
-	{
-		/* if the attribute "translation-domain" exists then
-		 * lang->priv->translation_domain is a xmlChar so it must always
-		 * be a xmlChar, this is why xmlStrdup() is used instead of
-		 * g_strdup() */
-		lang->priv->translation_domain = (gchar *)xmlStrdup (BAD_CAST GETTEXT_PACKAGE);
-	}
-	
+
+	tmp = xmlTextReaderGetAttribute (reader, BAD_CAST "translation-domain");
+	if (tmp != NULL)
+		lang->priv->translation_domain = g_strdup ((gchar*) tmp);
+	else
+		lang->priv->translation_domain = g_strdup (GETTEXT_PACKAGE);
+	xmlFree (tmp);
+
+	tmp = xmlTextReaderGetAttribute (reader, BAD_CAST "hidden");
+	if (tmp != NULL)
+		lang->priv->hidden = string_to_bool ((gchar*) tmp);
+	else
+		lang->priv->hidden = FALSE;
+	xmlFree (tmp);
+
+	tmp = xmlTextReaderGetAttribute (reader, BAD_CAST "mimetypes");
+	if (tmp != NULL)
+		g_hash_table_insert (lang->priv->properties,
+				     g_strdup ("mimetypes"),
+				     g_strdup ((char*) tmp));
+	xmlFree (tmp);
+
+	tmp = xmlTextReaderGetAttribute (reader, BAD_CAST "globs");
+	if (tmp != NULL)
+		g_hash_table_insert (lang->priv->properties,
+				     g_strdup ("globs"),
+				     g_strdup ((char*) tmp));
+	xmlFree (tmp);
+
 	tmp = xmlTextReaderGetAttribute (reader, BAD_CAST "_name");
 	if (tmp == NULL)
 	{
-		lang->priv->name = (gchar *)xmlTextReaderGetAttribute (reader, BAD_CAST "name");
-		if (lang->priv->name == NULL)
+		tmp = xmlTextReaderGetAttribute (reader, BAD_CAST "name");
+
+		if (tmp == NULL)
 		{
 			g_warning ("Impossible to get language name from file '%s'",
 				   filename);
-
 			g_object_unref (lang);
 			return NULL;
 		}
 
-		id_temp = xmlStrdup (BAD_CAST lang->priv->name);
+		lang->priv->name = g_strdup ((char*) tmp);
+		untranslated_name = tmp;
 	}
 	else
 	{
-		id_temp = xmlStrdup (tmp);
-		/* if tmp is NULL then lang->priv->name is a xmlChar so it must
-		 * always be a xmlChar, this is why xmlStrdup() is used instead
-		 * of g_strdup() */
-		lang->priv->name = (gchar *)xmlStrdup (BAD_CAST dgettext (
-					lang->priv->translation_domain,
-					(gchar *)tmp));
-		xmlFree (tmp);
+		lang->priv->name = g_strdup (dgettext (lang->priv->translation_domain, (gchar*) tmp));
+		untranslated_name = tmp;
 	}
 
-	g_return_val_if_fail (id_temp != NULL, NULL);
-	lang->priv->id = escape_id ((gchar *)id_temp, -1);
-	xmlFree (id_temp);
+	tmp = xmlTextReaderGetAttribute (reader, BAD_CAST "id");
+	if (tmp != NULL)
+	{
+		lang->priv->id = g_ascii_strdown ((gchar*) tmp, -1);
+	}
+	else
+	{
+		lang->priv->id = g_ascii_strdown ((gchar*) untranslated_name, -1);
+	}
+	xmlFree (tmp);
+	xmlFree (untranslated_name);
 
 	tmp = xmlTextReaderGetAttribute (reader, BAD_CAST "_section");
 	if (tmp == NULL)
 	{
-		lang->priv->section = (gchar *)xmlTextReaderGetAttribute (reader, BAD_CAST "section");
-		if (lang->priv->section == NULL)
-		{
-			g_warning ("Impossible to get language section from file '%s'",
-				   filename);
-			
-			g_object_unref (lang);
-			return NULL;
-		}
+		tmp = xmlTextReaderGetAttribute (reader, BAD_CAST "section");
+
+		if (tmp == NULL)
+			lang->priv->section = g_strdup (DEFAULT_SECTION);
+		else
+			lang->priv->section = g_strdup ((gchar *) tmp);
+
+		xmlFree (tmp);
 	}
 	else
 	{
-		/* if tmp is NULL then lang->priv->section is a xmlChar so it
-		 * must always be a xmlChar, this is why xmlStrdup() is used
-		 * instead of g_strdup() */
-		lang->priv->section = (gchar *)xmlStrdup (BAD_CAST dgettext (
-					lang->priv->translation_domain,
-					(gchar *)tmp));
+		lang->priv->section = g_strdup (dgettext (lang->priv->translation_domain, (gchar*) tmp));
 		xmlFree (tmp);
 	}
-	
+
 	version = xmlTextReaderGetAttribute (reader, BAD_CAST "version");
+
 	if (version == NULL)
 	{
 		g_warning ("Impossible to get version number from file '%s'",
 			   filename);
-
 		g_object_unref (lang);
 		return NULL;
+	}
+
+	if (xmlStrcmp (version , BAD_CAST "1.0") == 0)
+	{
+		lang->priv->version = GTK_SOURCE_LANGUAGE_VERSION_1_0;
+	}
+	else if (xmlStrcmp (version, BAD_CAST "2.0") == 0)
+	{
+		lang->priv->version = GTK_SOURCE_LANGUAGE_VERSION_2_0;
 	}
 	else
 	{
-		if (xmlStrcmp (version , BAD_CAST "1.0") != 0)
-		{
-			g_warning ("Usupported language spec version '%s' in file '%s'",
-				   (gchar *)version, filename);
-
-			xmlFree (version);
-			
-			g_object_unref (lang);
-			return NULL;
-		}
-
+		g_warning ("Unsupported language spec version '%s' in file '%s'",
+			   (gchar*) version, filename);
 		xmlFree (version);
-	}
-
-	mimetypes = xmlTextReaderGetAttribute (reader, BAD_CAST "mimetypes");
-	if (mimetypes == NULL)
-	{
-		g_warning ("Impossible to get mimetypes from file '%s'",
-			   filename);
-
 		g_object_unref (lang);
 		return NULL;
 	}
 
-	mtl = g_strsplit ((gchar *)mimetypes, ";", 0);
+	xmlFree (version);
 
-	for (i = 0; mtl[i] != NULL; i++)
-	{
-		/* steal the strings from the array */
-		lang->priv->mime_types = g_slist_prepend (lang->priv->mime_types,
-							  mtl[i]);
-	}
-
-	g_free (mtl);
-	xmlFree (mimetypes);
-
-	lang->priv->mime_types = g_slist_reverse (lang->priv->mime_types);
+	if (lang->priv->version == GTK_SOURCE_LANGUAGE_VERSION_2_0)
+		process_properties (reader, lang);
 
 	return lang;
 }
@@ -414,15 +353,17 @@ process_language_node (xmlTextReaderPtr reader, const gchar *filename)
  *
  * Returns the ID of the language. The ID is not locale-dependent.
  *
- * Return value: the ID of @language.
+ * Returns: the ID of @language.
+ * The returned string is owned by @language and should not be freed
+ * or modified.
  **/
-gchar *
+const gchar *
 gtk_source_language_get_id (GtkSourceLanguage *language)
 {
 	g_return_val_if_fail (GTK_IS_SOURCE_LANGUAGE (language), NULL);
 	g_return_val_if_fail (language->priv->id != NULL, NULL);
-		
-	return g_strdup (language->priv->id);
+
+	return language->priv->id;
 }
 
 /**
@@ -431,15 +372,17 @@ gtk_source_language_get_id (GtkSourceLanguage *language)
  *
  * Returns the localized name of the language.
  *
- * Return value: the name of @language.
+ * Returns: the name of @language.
+ * The returned string is owned by @language and should not be freed
+ * or modified.
  **/
-gchar *
+const gchar *
 gtk_source_language_get_name (GtkSourceLanguage *language)
 {
 	g_return_val_if_fail (GTK_IS_SOURCE_LANGUAGE (language), NULL);
 	g_return_val_if_fail (language->priv->name != NULL, NULL);
 
-	return g_strdup (language->priv->name);
+	return language->priv->name;
 }
 
 /**
@@ -450,1078 +393,170 @@ gtk_source_language_get_name (GtkSourceLanguage *language)
  * Each language belong to a section (ex. HTML belogs to the
  * Markup section).
  *
- * Return value: the section of @language.
+ * Returns: the section of @language.
+ * The returned string is owned by @language and should not be freed
+ * or modified.
  **/
-gchar *
+const gchar *
 gtk_source_language_get_section	(GtkSourceLanguage *language)
 {
 	g_return_val_if_fail (GTK_IS_SOURCE_LANGUAGE (language), NULL);
 	g_return_val_if_fail (language->priv->section != NULL, NULL);
 
-	return g_strdup (language->priv->section);
+	return language->priv->section;
+}
+
+/**
+ * gtk_source_language_get_metadata:
+ * @language: a #GtkSourceLanguage.
+ * @name: metadata property name.
+ *
+ * Returns: value of property @name stored in the metadata of @language
+ * or %NULL if language doesn't contain that metadata property.
+ * The returned string is owned by @language and should not be freed
+ * or modified.
+ **/
+const gchar *
+gtk_source_language_get_metadata (GtkSourceLanguage *language,
+				  const gchar       *name)
+{
+	g_return_val_if_fail (GTK_IS_SOURCE_LANGUAGE (language), NULL);
+	g_return_val_if_fail (name != NULL, NULL);
+
+	return g_hash_table_lookup (language->priv->properties, name);
 }
 
 /**
  * gtk_source_language_get_mime_types:
+ *
  * @language: a #GtkSourceLanguage.
  *
- * Returns a list of mime types for the given @language.  After usage you should
- * free each element of the list as well as the list itself.
+ * Returns the mime types associated to this language. This is just
+ * an utility wrapper around gtk_source_language_get_metadata() to
+ * retrieve the "mimetypes" metadata property and split it into an
+ * array.
  *
- * Return value: a list of mime types (strings). 
+ * Returns: a newly-allocated %NULL terminated array containing
+ * the mime types or %NULL if no mime types are found.
+ * The returned array must be freed with g_strfreev().
  **/
-GSList *
+gchar **
 gtk_source_language_get_mime_types (GtkSourceLanguage *language)
 {
-	const GSList *l;
-	GSList *mime_types = NULL;
+	const gchar *mimetypes;
 
 	g_return_val_if_fail (GTK_IS_SOURCE_LANGUAGE (language), NULL);
-	g_return_val_if_fail (language->priv->mime_types != NULL, NULL);
 
-	/* Dup mime_types */
-	
-	l = language->priv->mime_types;
-	
-	while (l != NULL)
-	{
-		mime_types = g_slist_prepend (mime_types, g_strdup ((const gchar*)l->data));
-		l = g_slist_next (l);
-	}
-	
-	mime_types = g_slist_reverse (mime_types);
+	mimetypes = gtk_source_language_get_metadata (language, "mimetypes");
+	if (mimetypes == NULL)
+		return NULL;
 
-	return mime_types;
-}
-
-static GSList *
-get_mime_types_from_file (GtkSourceLanguage *language)
-{
-	xmlTextReaderPtr reader = NULL;
-	gint ret;
-	GSList *mime_types = NULL;
-	int fd;
-
-	g_return_val_if_fail (GTK_IS_SOURCE_LANGUAGE (language), NULL);
-	g_return_val_if_fail (language->priv->lang_file_name != NULL, NULL);
-		
-	/*
-	 * Use fd instead of filename so that it's utf8 safe on w32.
-	 */
-	fd = g_open (language->priv->lang_file_name, O_RDONLY, 0);
-	if (fd != -1)
-		reader = xmlReaderForFd (fd, language->priv->lang_file_name, NULL, 0);
-
-	if (reader != NULL) 
-	{
-        	ret = xmlTextReaderRead (reader);
-		
-        	while (ret == 1) 
-		{
-			if (xmlTextReaderNodeType (reader) == 1)
-			{
-				xmlChar *name;
-
-				name = xmlTextReaderName (reader);
-
-				if (xmlStrcmp (name, BAD_CAST "language") == 0)
-				{
-					gchar *mimetypes;
-
-					mimetypes = (gchar *)xmlTextReaderGetAttribute (reader,
-							BAD_CAST "mimetypes");
-					
-					if (mimetypes == NULL)
-					{
-						g_warning ("Impossible to get mimetypes from file '%s'",
-			   				   language->priv->lang_file_name);
-
-						ret = 0;
-					}
-					else
-					{
-						gchar **mtl;
-						gint i;
-
-						mtl = g_strsplit (mimetypes, ";", 0);
-
-						for (i = 0; mtl[i] != NULL; i++)
-						{
-							/* steal the strings from the array */
-							mime_types = g_slist_prepend (mime_types,
-										      mtl[i]);
-						}
-
-						g_free (mtl);
-						xmlFree (mimetypes);
-
-						ret = 0;
-					}
-				}
-
-				xmlFree (name);
-			}
-			
-			if (ret != 0)
-				ret = xmlTextReaderRead (reader);
-		}
-	
-		xmlFreeTextReader (reader);
-		close (fd);
-
-		if (ret != 0) 
-		{
-	            g_warning("Failed to parse '%s'", language->priv->lang_file_name);
-		    return NULL;
-		}
-        }
-	else 
-	{
-		g_warning("Unable to open '%s'", language->priv->lang_file_name);
-
-    	}
-
-	return mime_types;
+	return g_strsplit (mimetypes, ";", 0);
 }
 
 /**
- * gtk_source_language_set_mime_types:
- * @language: a #GtkSourceLanguage
- * @mime_types: a list of mime types (strings).
+ * gtk_source_language_get_globs:
  *
- * Sets a list of @mime_types for the given @language.
- * If @mime_types is %NULL this function will use the default mime
- * types from the language file.
+ * @language: a #GtkSourceLanguage.
+ *
+ * Returns the globs associated to this language. This is just
+ * an utility wrapper around gtk_source_language_get_metadata() to
+ * retrieve the "globs" metadata property and split it into an array.
+ *
+ * Returns: a newly-allocated %NULL terminated array containing
+ * the globs or %NULL if no globs are found.
+ * The returned array must be freed with g_strfreev().
  **/
-void 
-gtk_source_language_set_mime_types (GtkSourceLanguage	*language,
-				    const GSList	*mime_types)
+gchar **
+gtk_source_language_get_globs (GtkSourceLanguage *language)
 {
-	g_return_if_fail (GTK_IS_SOURCE_LANGUAGE (language));
-	g_return_if_fail (language->priv->mime_types != NULL);
-		
-	slist_deep_free (language->priv->mime_types);
-	language->priv->mime_types = NULL;
+	const gchar *globs;
 
-	if (mime_types != NULL)
-	{
-		const GSList *l;
+	g_return_val_if_fail (GTK_IS_SOURCE_LANGUAGE (language), NULL);
 
-		/* Dup mime_types */
-		l = mime_types;
-		while (l != NULL)
-		{
-			language->priv->mime_types = g_slist_prepend (language->priv->mime_types,
-							      g_strdup ((const gchar*)l->data));
-			l = g_slist_next (l);
-		}
-	
-		language->priv->mime_types = g_slist_reverse (language->priv->mime_types);
-	}
-	else
-		language->priv->mime_types = get_mime_types_from_file (language);
+	globs = gtk_source_language_get_metadata (language, "globs");
+	if (globs == NULL)
+		return NULL;
+
+	return g_strsplit (globs, ";", 0);
 }
 
-/* FIXME: is this function UTF-8 aware? - Paolo */
-static gchar *
-strconvescape (gchar *source)
+/**
+ * _gtk_source_language_get_language_manager:
+ * @language: a #GtkSourceLanguage.
+ *
+ * Returns: #GtkSourceLanguageManager for @language.
+ **/
+GtkSourceLanguageManager *
+_gtk_source_language_get_language_manager (GtkSourceLanguage *language)
 {
-	gchar cur_char;
-	gchar last_char = '\0';
-	gint iterations = 0;
-	gint max_chars;
-	gchar *dest;
+	g_return_val_if_fail (GTK_IS_SOURCE_LANGUAGE (language), NULL);
+	g_return_val_if_fail (language->priv->id != NULL, NULL);
 
-	if (source == NULL)
-		return NULL;
-
-	max_chars = strlen (source);
-	dest = source;
-
-	for (iterations = 0; iterations < max_chars; iterations++) {
-		cur_char = source[iterations];
-		*dest = cur_char;
-		if (last_char == '\\' && cur_char == 'n') {
-			dest--;
-			*dest = '\n';
-		} else if (last_char == '\\' && cur_char == 't') {
-			dest--;
-			*dest = '\t';
-		}
-		last_char = cur_char;
-		dest++;
-	}
-	*dest = '\0';
-
-	return source;
+	return language->priv->language_manager;
 }
 
+/* Highlighting engine creation ------------------------------------------ */
 
-static GtkTextTag *
-parseLineComment (xmlDocPtr doc, xmlNodePtr cur, gchar* id, xmlChar *name)
+void
+_gtk_source_language_define_language_styles (GtkSourceLanguage *lang)
 {
-	GtkTextTag *tag = NULL;
-	
-	xmlNodePtr child;
+#define ADD_ALIAS(style,mapto)								\
+	g_hash_table_insert (lang->priv->styles, g_strdup (style), g_strdup (mapto))
 
-	child = cur->xmlChildrenNode;
-		
-	if ((child != NULL) && !xmlStrcmp (child->name, (const xmlChar *)"start-regex"))
-	{
-		xmlChar *start_regex;
-			
-		start_regex = xmlNodeListGetString (doc, child->xmlChildrenNode, 1);
-			
-		tag = gtk_line_comment_tag_new (id, (gchar *)name, strconvescape ((gchar *)start_regex));
+	ADD_ALIAS ("Base-N Integer", "def:base-n-integer");
+	ADD_ALIAS ("Character", "def:character");
+	ADD_ALIAS ("Comment", "def:comment");
+	ADD_ALIAS ("Function", "def:function");
+	ADD_ALIAS ("Decimal", "def:decimal");
+	ADD_ALIAS ("Floating Point", "def:floating-point");
+	ADD_ALIAS ("Keyword", "def:keyword");
+	ADD_ALIAS ("Preprocessor", "def:preprocessor");
+	ADD_ALIAS ("String", "def:string");
+	ADD_ALIAS ("Specials", "def:specials");
+	ADD_ALIAS ("Data Type", "def:data-type");
 
-		xmlFree (start_regex);
-	}
-	else
-	{
-		g_warning ("Missing start-regex in tag 'line-comment' (%s, line %ld)", 
-			   doc->name, xmlGetLineNo (child));
-	}
-
-	return tag;
+#undef ADD_ALIAS
 }
 
-static GtkTextTag *
-parseBlockComment (xmlDocPtr doc, xmlNodePtr cur, gchar* id, xmlChar *name)
+GtkSourceEngine *
+_gtk_source_language_create_engine (GtkSourceLanguage *language)
 {
-	GtkTextTag *tag = NULL;
+	GtkSourceContextEngine *ce = NULL;
 
-	xmlChar *start_regex = NULL;
-	xmlChar *end_regex = NULL;
+	if (language->priv->ctx_data == NULL)
+	{
+		gboolean success = FALSE;
+		GtkSourceContextData *ctx_data;
 
-	xmlNodePtr child;
+		ctx_data = _gtk_source_context_data_new	(language);
 
-	child = cur->xmlChildrenNode;
-	
-	while (child != NULL)
-	{	
-		if (!xmlStrcmp (child->name, (const xmlChar *)"start-regex"))
+		switch (language->priv->version)
 		{
-			start_regex = xmlNodeListGetString (doc, child->xmlChildrenNode, 1);
-		}
-		else
-		if (!xmlStrcmp (child->name, (const xmlChar *)"end-regex"))
-		{
-			end_regex = xmlNodeListGetString (doc, child->xmlChildrenNode, 1);
-		}
-
-		child = child->next;
-	}
-
-	if (start_regex == NULL)
-	{
-		g_warning ("Missing start-regex in tag 'block-comment' (%s, line %ld)", 
-			   doc->name, xmlGetLineNo (cur));
-
-		return NULL;
-	}
-
-	if (end_regex == NULL)
-	{
-		xmlFree (start_regex);
-
-		g_warning ("Missing end-regex in tag 'block-comment' (%s, line %ld)", 
-			   doc->name, xmlGetLineNo (cur));
-
-		return NULL;
-	}
-
-	tag = gtk_block_comment_tag_new (id,
-					 (gchar *)name, 
-					 strconvescape ((gchar *)start_regex), 
-					 strconvescape ((gchar *)end_regex));
-
-	xmlFree (start_regex);
-	xmlFree (end_regex);
-
-	return tag;
-}
-
-static GtkTextTag *
-parseString (xmlDocPtr doc, xmlNodePtr cur, gchar* id, xmlChar *name)
-{
-	GtkTextTag *tag = NULL;
-
-	xmlChar *start_regex = NULL;
-	xmlChar *end_regex = NULL;
-
-	xmlChar *prop = NULL;
-	gboolean end_at_line_end = TRUE;
-
-	xmlNodePtr child;
-
-	prop = xmlGetProp (cur, BAD_CAST "end-at-line-end");
-	if (prop != NULL)
-	{
-		if (!xmlStrcasecmp (prop, BAD_CAST "TRUE") ||
-		    !xmlStrcmp (prop, BAD_CAST "1"))
-
-				end_at_line_end = TRUE;
-			else
-				end_at_line_end = FALSE;
-
-		xmlFree (prop);	
-	}
-	
-	child = cur->xmlChildrenNode;
-	
-	while (child != NULL)
-	{	
-		if (!xmlStrcmp (child->name, (const xmlChar *)"start-regex"))
-		{
-			start_regex = xmlNodeListGetString (doc, child->xmlChildrenNode, 1);
-		}
-		else
-		if (!xmlStrcmp (child->name, (const xmlChar *)"end-regex"))
-		{
-			end_regex = xmlNodeListGetString (doc, child->xmlChildrenNode, 1);
-		}
-	
-		child = child->next;
-	}
-
-	if (start_regex == NULL)
-	{
-		g_warning ("Missing start-regex in tag 'string' (%s, line %ld)", 
-			   doc->name, xmlGetLineNo (cur));
-
-		return NULL;
-	}
-
-	if (end_regex == NULL)
-	{
-		xmlFree (start_regex);
-
-		g_warning ("Missing end-regex in tag 'string' (%s, line %ld)", 
-			   doc->name, xmlGetLineNo (cur));
-
-		return NULL;
-	}
-
-	tag = gtk_string_tag_new (id,
-				  (gchar *)name, 
-				  strconvescape ((gchar *)start_regex), 
-				  strconvescape ((gchar *)end_regex), 
-				  end_at_line_end);
-
-	xmlFree (start_regex);
-	xmlFree (end_regex);
-
-	return tag;
-}
-
-static GtkTextTag *
-parseKeywordList (xmlDocPtr doc, xmlNodePtr cur, gchar* id, xmlChar *name)
-{
-	GtkTextTag *tag = NULL;
-
-	gboolean case_sensitive = TRUE;
-	gboolean match_empty_string_at_beginning = TRUE;
-	gboolean match_empty_string_at_end = TRUE;
-	gchar  *beginning_regex = NULL;
-	gchar  *end_regex = NULL;
-
-	GSList *list = NULL;
-
-	xmlChar *prop;
-
-	xmlNodePtr child;
-
-	prop = xmlGetProp (cur, BAD_CAST "case-sensitive");
-	if (prop != NULL)
-	{
-		if (!xmlStrcasecmp (prop, (const xmlChar *)"TRUE") ||
-		    !xmlStrcmp (prop, (const xmlChar *)"1"))
-
-				case_sensitive = TRUE;
-			else
-				case_sensitive = FALSE;
-
-		xmlFree (prop);	
-	}
-
-	prop = xmlGetProp (cur, BAD_CAST "match-empty-string-at-beginning");
-	if (prop != NULL)
-	{
-		if (!xmlStrcasecmp (prop, (const xmlChar *)"TRUE") ||
-		    !xmlStrcmp (prop, (const xmlChar *)"1"))
-
-				match_empty_string_at_beginning = TRUE;
-			else
-				match_empty_string_at_beginning = FALSE;
-
-		xmlFree (prop);	
-	}
-
-	prop = xmlGetProp (cur, BAD_CAST "match-empty-string-at-end");
-	if (prop != NULL)
-	{
-		if (!xmlStrcasecmp (prop, (const xmlChar *)"TRUE") ||
-		    !xmlStrcmp (prop, (const xmlChar *)"1"))
-
-				match_empty_string_at_end = TRUE;
-			else
-				match_empty_string_at_end = FALSE;
-
-		xmlFree (prop);	
-	}
-
-	prop = xmlGetProp (cur, BAD_CAST "beginning-regex");
-	if (prop != NULL)
-	{
-		beginning_regex = g_strdup ((gchar *)prop);
-		
-		xmlFree (prop);	
-	}
-
-	prop = xmlGetProp (cur, BAD_CAST "end-regex");
-	if (prop != NULL)
-	{
-		end_regex = g_strdup ((gchar *)prop);
-		
-		xmlFree (prop);	
-	}
-
-	child = cur->xmlChildrenNode;
-	
-	while (child != NULL)
-	{
-		if (!xmlStrcmp (child->name, (const xmlChar *)"keyword"))
-		{
-			xmlChar *keyword;
-			keyword = xmlNodeListGetString (doc, child->xmlChildrenNode, 1);
-			
-			list = g_slist_prepend (list, strconvescape ((gchar *)keyword));
-		}
-
-		child = child->next;
-	}
-
-	list = g_slist_reverse (list);
-
-	if (list == NULL)
-	{
-		g_warning ("No keywords in tag 'keyword-list' (%s, line %ld)", 
-			   doc->name, xmlGetLineNo (cur));
-
-		g_free (beginning_regex),
-		g_free (end_regex);
-		
-		return NULL;
-	}
-
-	tag = gtk_keyword_list_tag_new (id,
-					(gchar *)name, 
-					list,
-					case_sensitive,
-					match_empty_string_at_beginning,
-					match_empty_string_at_end,
-					strconvescape (beginning_regex),
-					strconvescape (end_regex));
-
-	g_free (beginning_regex),
-	g_free (end_regex);
-
-	g_slist_foreach (list, (GFunc) xmlFree, NULL);
-	g_slist_free (list);
-
-	return tag;
-}
-
-static GtkTextTag *
-parsePatternItem (xmlDocPtr doc, xmlNodePtr cur, gchar* id, xmlChar *name)
-{
-	GtkTextTag *tag = NULL;
-	
-	xmlNodePtr child;
-
-	child = cur->xmlChildrenNode;
-		
-	if ((child != NULL) && !xmlStrcmp (child->name, (const xmlChar *)"regex"))
-	{
-		xmlChar *regex;
-			
-		regex = xmlNodeListGetString (doc, child->xmlChildrenNode, 1);
-			
-		tag = gtk_pattern_tag_new (id, (gchar *)name,
-				strconvescape ((gchar *)regex));
-
-		xmlFree (regex);
-	}
-	else
-	{
-		g_warning ("Missing regex in tag 'pattern-item' (%s, line %ld)", 
-			   doc->name, xmlGetLineNo (child));
-	}
-
-	return tag;
-}
-
-static GtkTextTag *
-parseSyntaxItem (xmlDocPtr doc, xmlNodePtr cur, gchar* id, xmlChar *name)
-{
-	GtkTextTag *tag = NULL;
-
-	xmlChar *start_regex = NULL;
-	xmlChar *end_regex = NULL;
-
-	xmlNodePtr child;
-
-	child = cur->xmlChildrenNode;
-	
-	while (child != NULL)
-	{	
-		if (!xmlStrcmp (child->name, (const xmlChar *)"start-regex"))
-		{
-			start_regex = xmlNodeListGetString (doc, child->xmlChildrenNode, 1);
-		}
-		else
-		if (!xmlStrcmp (child->name, (const xmlChar *)"end-regex"))
-		{
-			end_regex = xmlNodeListGetString (doc, child->xmlChildrenNode, 1);
-		}
-
-		child = child->next;
-	}
-
-	if (start_regex == NULL)
-	{
-		g_warning ("Missing start-regex in tag 'syntax-item' (%s, line %ld)", 
-			   doc->name, xmlGetLineNo (cur));
-
-		return NULL;
-	}
-
-	if (end_regex == NULL)
-	{
-		xmlFree (start_regex);
-
-		g_warning ("Missing end-regex in tag 'syntax-item' (%s, line %ld)", 
-			   doc->name, xmlGetLineNo (cur));
-
-		return NULL;
-	}
-
-	tag = gtk_syntax_tag_new (id,
-				  (gchar *)name, 
-				  strconvescape ((gchar *)start_regex),
-				  strconvescape ((gchar *)end_regex));
-
-	xmlFree (start_regex);
-	xmlFree (end_regex);
-
-	return tag;
-}
-
-static void 
-tag_style_changed_cb (GtkSourceLanguage *language,
-		      const gchar       *id,
-		      GtkSourceTag	*tag)
-{
-	GtkSourceTagStyle *ts;
-	gchar *tag_id;
-
-	tag_id = gtk_source_tag_get_id (tag);
-
-	if (strcmp (tag_id, id) != 0)
-	{
-		g_free (tag_id);
-		return;
-	}
-
-	g_free (tag_id);
-
-	ts = gtk_source_language_get_tag_style (language, id);
-
-	if (ts != NULL)
-	{
-		gtk_source_tag_set_style (GTK_SOURCE_TAG (tag), ts);
-		gtk_source_tag_style_free (ts);
-	}
-}
-
-static GSList *
-parseTag (GtkSourceLanguage *language, 
-	  xmlDocPtr          doc, 
-	  xmlNodePtr         cur, 
-	  GSList            *tag_list, 
-	  gboolean           populate_styles_table)
-{
-	GtkTextTag *tag = NULL;
-	xmlChar *name;
-	xmlChar *style;
-	gchar   *id_temp;
-	gchar   *id;
-	
-	name = xmlGetProp (cur, BAD_CAST "_name");
-	if (name == NULL)
-	{
-		name = xmlGetProp (cur, BAD_CAST "name");
-		id_temp = g_strdup ((gchar *)name);
-	}
-	else
-	{
-		xmlChar *tmp = xmlStrdup (BAD_CAST dgettext (
-					language->priv->translation_domain,
-					(gchar *)name));
-		id_temp = g_strdup ((gchar *)name);
-		xmlFree (name);
-		name = tmp;
-	}
-	
-	style = xmlGetProp (cur, BAD_CAST "style");
-
-	if (name == NULL)
-	{
-		return tag_list;	
-	}
-
-	g_return_val_if_fail (id_temp != NULL, tag_list);
-	id = escape_id (id_temp, -1);
-	g_free (id_temp);
-
-	if (style == NULL)
-	{
-		/* FIXME */
-		style = xmlStrdup (BAD_CAST "Normal");
-	}
-	
-	if (!xmlStrcmp (cur->name, (const xmlChar *)"line-comment"))
-	{
-		tag = parseLineComment (doc, cur, id, name);		
-	}
-	else if (!xmlStrcmp (cur->name, (const xmlChar *)"block-comment"))
-	{
-		tag = parseBlockComment (doc, cur, id, name);		
-	}
-	else if (!xmlStrcmp (cur->name, (const xmlChar *)"string"))
-	{
-		tag = parseString (doc, cur, id, name);		
-	}
-	else if (!xmlStrcmp (cur->name, (const xmlChar *)"keyword-list"))
-	{
-		tag = parseKeywordList (doc, cur, id, name);		
-	}
-	else if (!xmlStrcmp (cur->name, (const xmlChar *)"pattern-item"))
-	{
-		tag = parsePatternItem (doc, cur, id, name);		
-	}
-	else if (!xmlStrcmp (cur->name, (const xmlChar *)"syntax-item"))
-	{
-		tag = parseSyntaxItem (doc, cur, id, name);		
-	}
-	else
-	{
-		g_print ("Unknown tag: %s\n", cur->name);
-	}
-
-	if (tag != NULL)
-	{
-		GtkSourceTagStyle *ts;
-		
-		tag_list = g_slist_prepend (tag_list, tag);
-
-		if (populate_styles_table)
-			g_hash_table_insert (language->priv->tag_id_to_style_name, 
-					     g_strdup (id), 
-					     g_strdup ((gchar *)style));
-
-		ts = gtk_source_language_get_tag_style (language, id);
-
-		if (ts != NULL)
-		{
-			gtk_source_tag_set_style (GTK_SOURCE_TAG (tag), ts);
-			gtk_source_tag_style_free (ts);
-		}
-		
-		g_signal_connect_object (language, 
-					 "tag_style_changed",
-					 G_CALLBACK (tag_style_changed_cb),
-					 tag,
-					 0);
-	}
-		
-	xmlFree (name);
-	xmlFree (style);
-	g_free (id);
-
-	return tag_list;
-}
-
-static GSList *
-language_file_parse (GtkSourceLanguage *language,
-		     gboolean           get_tags,
-		     gboolean           populate_styles_table)
-{
-	GSList *tag_list = NULL;
-	xmlDocPtr doc;
-	xmlNodePtr cur;
-	GMappedFile *mf;
-	
-	xmlKeepBlanksDefault (0);
-
-	mf = g_mapped_file_new (language->priv->lang_file_name, FALSE, NULL);
-	
-	if (mf == NULL)
-		doc = NULL;
-	else
-	{
-		doc = xmlParseMemory (g_mapped_file_get_contents (mf), 
-				      g_mapped_file_get_length (mf));
-
-		g_mapped_file_free (mf);
-	}
-	
-	if (doc == NULL)
-	{
-		g_warning ("Impossible to parse file '%s'",
-			   language->priv->lang_file_name);
-		return NULL;
-	}
-
-	cur = xmlDocGetRootElement (doc);
-	
-	if (cur == NULL) 
-	{
-		g_warning ("The lang file '%s' is empty",
-			   language->priv->lang_file_name);
-
-		xmlFreeDoc (doc);
-		return NULL;
-	}
-
-	if (xmlStrcmp (cur->name, (const xmlChar *) "language")) {
-		g_warning ("File '%s' is of the wrong type",
-			   language->priv->lang_file_name);
-		
-		xmlFreeDoc (doc);
-		return NULL;
-	}
-
-	/* FIXME: check that the language name, version, etc. are the 
-	 * right ones - Paolo */
-
-	cur = xmlDocGetRootElement (doc);
-	cur = cur->xmlChildrenNode;
-	g_return_val_if_fail (cur != NULL, NULL);
-	
-	while (cur != NULL)
-	{
-		if (!xmlStrcmp (cur->name, (const xmlChar *)"escape-char"))
-		{
-			xmlChar *escape;
-			gunichar esc_char;
-			
-			escape = xmlNodeListGetString (doc, cur->xmlChildrenNode, 1);
-			esc_char = g_utf8_get_char_validated ((gchar *)escape, -1);
-			if (esc_char < 0)
-			{
-				g_warning ("Invalid (non UTF8) escape character in file '%s'",
-					   language->priv->lang_file_name);
-				esc_char = 0;
-			}
-			xmlFree (escape);
-			language->priv->escape_char = esc_char;
-			
-			if (!get_tags)
+			case GTK_SOURCE_LANGUAGE_VERSION_1_0:
+				success = _gtk_source_language_file_parse_version1 (language, ctx_data);
+				break;
+
+			case GTK_SOURCE_LANGUAGE_VERSION_2_0:
+				success = _gtk_source_language_file_parse_version2 (language, ctx_data);
 				break;
 		}
-		else if (get_tags)
-		{
-			tag_list = parseTag (language,
-					     doc, 
-					     cur, 
-					     tag_list, 
-					     populate_styles_table);
-		}
-		
-		cur = cur->next;
-	}
-	language->priv->escape_char_valid = TRUE;
 
-	tag_list = g_slist_reverse (tag_list);
-      
-	xmlFreeDoc (doc);
-
-	return tag_list;
-}
-
-/**
- * gtk_source_language_get_tags:
- * @language: a #GtkSourceLanguage.
- *
- * Returns a list of tags for the given @language.  You should unref the tags
- * and free the list after usage.
- *
- * Return value: a list of #GtkSourceTag objects.
- **/
-GSList *
-gtk_source_language_get_tags (GtkSourceLanguage *language)
-{
-	GSList *tag_list = NULL;
-	gboolean populate_styles_table = FALSE;
-
-	g_return_val_if_fail (GTK_IS_SOURCE_LANGUAGE (language), NULL);
-	
-	if (language->priv->tag_id_to_style_name == NULL)
-	{
-		g_return_val_if_fail (language->priv->tag_id_to_style == NULL, NULL);
-
-		language->priv->tag_id_to_style_name = g_hash_table_new_full ((GHashFunc)g_str_hash,
-										(GEqualFunc)g_str_equal,
-										(GDestroyNotify)g_free,
-										(GDestroyNotify)g_free);
-
-		language->priv->tag_id_to_style = g_hash_table_new_full ((GHashFunc)g_str_hash,
-									   (GEqualFunc)g_str_equal,
-									   (GDestroyNotify)g_free,
-									   (GDestroyNotify)gtk_source_tag_style_free);
-
-		populate_styles_table = TRUE;
-	}
-
-	tag_list = language_file_parse (language, TRUE, populate_styles_table);
-
-	return tag_list;
-}
-
-static gboolean
-gtk_source_language_lazy_init_hash_tables (GtkSourceLanguage *language)
-{
-	if (language->priv->tag_id_to_style_name == NULL)
-	{
-		GSList *list;
-
-		g_return_val_if_fail (language->priv->tag_id_to_style == NULL, FALSE);
-
-		list = gtk_source_language_get_tags (language);
-
-		g_slist_foreach (list, (GFunc)g_object_unref, NULL);
-		g_slist_free (list);
-	
-		g_return_val_if_fail (language->priv->tag_id_to_style_name != NULL, FALSE);
-		g_return_val_if_fail (language->priv->tag_id_to_style != NULL, FALSE);
-	}
-
-	return TRUE;
-}
-
-/**
- * gtk_source_language_get_tag_style:
- * @language: a #GtkSourceLanguage.
- * @tag_id: the ID of a #GtkSourceTag.
- *
- * Gets the style of the tag whose ID is @tag_id. If the style is 
- * not defined then returns the default style.
- *
- * Return value: a #GtkSourceTagStyle.
- **/
-GtkSourceTagStyle *
-gtk_source_language_get_tag_style (GtkSourceLanguage *language, 
-				   const gchar       *tag_id)
-{
-	const GtkSourceTagStyle *style;
-
-	g_return_val_if_fail (GTK_IS_SOURCE_LANGUAGE (language), NULL);
-	g_return_val_if_fail (tag_id != NULL, NULL);
-
-	if (!gtk_source_language_lazy_init_hash_tables (language))
-		return NULL;
-
-	style = (const GtkSourceTagStyle*)g_hash_table_lookup (language->priv->tag_id_to_style,
-							       tag_id);
-
-	if (style == NULL)
-	{
-		return gtk_source_language_get_tag_default_style (language, tag_id);
-	}
-	else
-	{
-		return gtk_source_tag_style_copy (style);
-	}
-}
-
-/**
- * gtk_source_language_get_tag_default_style:
- * @language: a #GtkSourceLanguage.
- * @tag_id: the ID of a #GtkSourceTag.
- *
- * Gets the default style of the tag whose ID is @tag_id. 
- *
- * Return value: a #GtkSourceTagStyle.
- **/
-GtkSourceTagStyle*
-gtk_source_language_get_tag_default_style (GtkSourceLanguage *language,
-					   const gchar       *tag_id)
-{
-	const gchar *style_name;
-	
-	g_return_val_if_fail (GTK_IS_SOURCE_LANGUAGE (language), NULL);
-	g_return_val_if_fail (tag_id != NULL, NULL);
-
-	if (!gtk_source_language_lazy_init_hash_tables (language))
-			return NULL;
-
-	style_name = (const gchar*)g_hash_table_lookup (language->priv->tag_id_to_style_name,
-							tag_id);
-
-	if (style_name != NULL)
-	{
-		GtkSourceTagStyle *tmp;
-
-		g_return_val_if_fail (language->priv->style_scheme != NULL, NULL);
-
-		tmp = gtk_source_style_scheme_get_tag_style (language->priv->style_scheme,
-							     style_name);
-		if (tmp == NULL)
-			return gtk_source_tag_style_copy (&normal_style);
+		if (!success)
+			_gtk_source_context_data_unref (ctx_data);
 		else
-			return tmp;
-	}
-	else
-		return gtk_source_tag_style_copy (&normal_style);
-}
-
-/**
- * gtk_source_language_set_tag_style:
- * @language: a #GtkSourceLanguage.
- * @tag_id: the ID of a #GtkSourceTag.
- * @style: a #GtkSourceTagStyle.
- *
- * Sets the @style of the tag whose ID is @tag_id. If @style is %NULL
- * restore the default style.
- **/
-void 
-gtk_source_language_set_tag_style (GtkSourceLanguage       *language,
-				   const gchar             *tag_id,
-				   const GtkSourceTagStyle *style)
-{
-	g_return_if_fail (GTK_SOURCE_LANGUAGE (language));
-	g_return_if_fail (tag_id != NULL);
-
-	if (!gtk_source_language_lazy_init_hash_tables (language))
-			return;	
-	
-	if (style != NULL)
-	{
-		GtkSourceTagStyle *ts;
-		
-		ts = gtk_source_tag_style_copy (style);
-
-		g_hash_table_insert (language->priv->tag_id_to_style,
-				     g_strdup (tag_id),
-				     ts);
+			language->priv->ctx_data = ctx_data;
 	}
 	else
 	{
-		g_hash_table_remove (language->priv->tag_id_to_style,
-				     tag_id);
+		_gtk_source_context_data_ref (language->priv->ctx_data);
 	}
 
-	g_signal_emit (G_OBJECT (language),
-		       signals[TAG_STYLE_CHANGED], 
-		       0, 
-		       tag_id);
-}
+	if (language->priv->ctx_data)
+	{
+		ce = _gtk_source_context_engine_new (language->priv->ctx_data);
+		_gtk_source_context_data_unref (language->priv->ctx_data);
+	}
 
-/**
- * gtk_source_language_get_style_scheme:
- * @language: a #GtkSourceLanguage.
- * 
- * Gets the style scheme associated with the given @language.
- *
- * Return value: a #GtkSourceStyleScheme.
- **/
-GtkSourceStyleScheme *
-gtk_source_language_get_style_scheme (GtkSourceLanguage *language)
-{
-	g_return_val_if_fail (GTK_IS_SOURCE_LANGUAGE (language), NULL);
-
-	return language->priv->style_scheme;
-
-}
-
-static gboolean
-emit_tag_style_changed_signal (gpointer  key, 
-			       gpointer  value,
-			       gpointer  user_data)
-{
-	GtkSourceLanguage *language = GTK_SOURCE_LANGUAGE (user_data);
-
-	g_signal_emit (G_OBJECT (language),
-		       signals[TAG_STYLE_CHANGED], 
-		       0, 
-		       (gchar*)key);
-
-	return TRUE;
-}
-
-static void
-style_changed_cb (GtkSourceStyleScheme *scheme,
-		  const gchar          *tag_id,
-		  gpointer              user_data)
-{
-	GtkSourceLanguage *language = GTK_SOURCE_LANGUAGE (user_data);
-
-	g_signal_emit (G_OBJECT (language),
-		       signals[TAG_STYLE_CHANGED], 
-		       0, 
-		       tag_id);	
-}
-
-/**
- * gtk_source_language_set_style_scheme:
- * @language: a #GtkSourceLanguage.
- * @scheme: a #GtkSourceStyleScheme.
- * 
- * Sets the style scheme of the given @language.
- **/
-void 
-gtk_source_language_set_style_scheme (GtkSourceLanguage    *language,
-				      GtkSourceStyleScheme *scheme)
-{	
-	g_return_if_fail (GTK_IS_SOURCE_LANGUAGE (language));
-	g_return_if_fail (GTK_IS_SOURCE_STYLE_SCHEME (scheme));
-	g_return_if_fail (language->priv->style_scheme != NULL);
-
-	if (language->priv->style_scheme == scheme)
-		return;
-
-	g_object_unref (language->priv->style_scheme);
-	
-	language->priv->style_scheme = scheme;
-	g_object_ref (language->priv->style_scheme);
-
-	if (!gtk_source_language_lazy_init_hash_tables (language))
-		return;
-
-	g_hash_table_foreach (language->priv->tag_id_to_style_name,
-			      (GHFunc) emit_tag_style_changed_signal,
-			      (gpointer) language);
-
-	g_signal_connect (G_OBJECT (scheme), "style_changed",
-			  G_CALLBACK (style_changed_cb), language);
-}
-
-/**
- * gtk_source_language_get_escape_char:
- * @language: a #GtkSourceLanguage.
- * 
- * Gets the value of the ESC character in the given @language.
- * 
- * Return value: the value of the ESC character.
- **/
-gunichar 
-gtk_source_language_get_escape_char (GtkSourceLanguage *language)
-{
-	g_return_val_if_fail (GTK_IS_SOURCE_LANGUAGE (language), 0);
-
-	if (!language->priv->escape_char_valid)
-		language_file_parse (language, FALSE, FALSE);
-		
-	return language->priv->escape_char;
+	return ce ? GTK_SOURCE_ENGINE (ce) : NULL;
 }

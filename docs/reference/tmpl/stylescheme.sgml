@@ -23,36 +23,31 @@ GtkSourceStyleScheme
 </para>
 
 
-<!-- ##### SIGNAL GtkSourceStyleScheme::style-changed ##### -->
+<!-- ##### ARG GtkSourceStyleScheme:id ##### -->
 <para>
 
 </para>
 
-@sourcestylescheme: the object which received the signal.
-@arg1: 
+<!-- ##### ARG GtkSourceStyleScheme:name ##### -->
+<para>
+
+</para>
 
 <!-- ##### STRUCT GtkSourceStyleSchemeClass ##### -->
 <para>
 
 </para>
 
-@base_iface: 
-@style_changed: 
-@get_name: 
-@get_tag_style: 
-@get_style_names: 
+@base_class: 
 @_gtk_source_reserved1: 
 @_gtk_source_reserved2: 
-@_gtk_source_reserved3: 
-@_gtk_source_reserved4: 
 
-<!-- ##### FUNCTION gtk_source_style_scheme_get_tag_style ##### -->
+<!-- ##### FUNCTION gtk_source_style_scheme_get_id ##### -->
 <para>
 
 </para>
 
 @scheme: 
-@style_name: 
 @Returns: 
 
 
@@ -65,11 +60,42 @@ GtkSourceStyleScheme
 @Returns: 
 
 
-<!-- ##### FUNCTION gtk_source_style_scheme_get_default ##### -->
+<!-- ##### FUNCTION gtk_source_style_scheme_get_matching_brackets_style ##### -->
 <para>
 
 </para>
 
+@scheme: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gtk_source_style_scheme_get_current_line_color ##### -->
+<para>
+
+</para>
+
+@scheme: 
+@color: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gtk_source_style_scheme_set_style ##### -->
+<para>
+
+</para>
+
+@scheme: 
+@name: 
+@style: 
+
+
+<!-- ##### FUNCTION gtk_source_style_scheme_get_style ##### -->
+<para>
+
+</para>
+
+@scheme: 
+@style_name: 
 @Returns: 
 
 

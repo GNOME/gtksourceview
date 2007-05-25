@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<language id="dpatch" _name="DPatch" version="2.0" _section="Others">
+  <metadata>
+    <property name="mimetypes">text/x-dpatch</property>
+    <property name="globs">*.dpatch</property>
+  </metadata>
+
+  <styles>
+    <style id="patch-start" _name="patch-start" map-to="def:keyword"/>
+  </styles>
+
+  <definitions>
+    <context id="dpatch">
+      <include>
+        <context ref="sh:sh"/>
+        <context id="patch">
+          <start>^(\@DPATCH\@).*</start>
+          <include>
+            <context sub-pattern="1" where="start" style-ref="patch-start"/>
+            <context ref="diff:diff"/>
+          </include>
+        </context>
+      </include>
+    </context>
+  </definitions>
+</language>

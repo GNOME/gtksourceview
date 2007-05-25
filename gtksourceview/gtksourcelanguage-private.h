@@ -1,4 +1,5 @@
-/*  gtksourcelanguage-private.h
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8; coding: utf-8 -*-
+ *  gtksourcelanguage-private.h
  *
  *  Copyright (C) 2003 - Paolo Maggi <paolo.maggi@polito.it>
  *
@@ -20,37 +21,50 @@
 #ifndef __GTK_SOURCE_LANGUAGE_PRIVATE_H__
 #define __GTK_SOURCE_LANGUAGE_PRIVATE_H__
 
-#include "gtksourcelanguagesmanager.h"
+#include <glib.h>
+#include "gtksourcecontextengine.h"
+#include "gtksourcelanguagemanager.h"
 
 G_BEGIN_DECLS
 
-struct _GtkSourceLanguagePrivate 
+#define GTK_SOURCE_LANGUAGE_VERSION_1_0  100
+#define GTK_SOURCE_LANGUAGE_VERSION_2_0  200
+
+struct _GtkSourceLanguagePrivate
 {
 	gchar			*lang_file_name;
-	/* this is allocated by libxml, it should be freed using xmlFree() */
 	gchar                   *translation_domain;
 
 	gchar			*id;
-	
-	/* this is allocated by libxml, it should be freed using xmlFree() */
 	gchar			*name;
-	/* this is allocated by libxml, it should be freed using xmlFree() */
 	gchar			*section;
 
-	GSList			*mime_types;
+	/* maps style names to default styles (e.g. "comment" to "def:comment") */
+	GHashTable		*styles;
 
-	GHashTable		*tag_id_to_style_name;
-	GHashTable		*tag_id_to_style;
+	gint                     version;
+	gboolean		 hidden;
 
-	GtkSourceStyleScheme 	*style_scheme;
+	GHashTable		*properties;
 
-	gunichar                 escape_char;
-	gboolean                 escape_char_valid;
+	GtkSourceLanguageManager *language_manager;
+
+	GtkSourceContextData    *ctx_data;
 };
 
-GtkSourceLanguage *_gtk_source_language_new_from_file (const gchar			*filename,
-						       GtkSourceLanguagesManager	*lm);
-				
+GtkSourceLanguage *_gtk_source_language_new_from_file (const gchar		*filename,
+						       GtkSourceLanguageManager	*lm);
+
+GtkSourceLanguageManager *_gtk_source_language_get_language_manager (GtkSourceLanguage *language);
+const char *_gtk_source_language_manager_get_rng_file (GtkSourceLanguageManager *lm);
+
+void _gtk_source_language_define_language_styles  (GtkSourceLanguage      *language);
+gboolean _gtk_source_language_file_parse_version1 (GtkSourceLanguage      *language,
+						   GtkSourceContextData   *ctx_data);
+gboolean _gtk_source_language_file_parse_version2 (GtkSourceLanguage      *language,
+						   GtkSourceContextData   *ctx_data);
+GtkSourceEngine *_gtk_source_language_create_engine (GtkSourceLanguage *language);
+
 G_END_DECLS
 
 #endif  /* __GTK_SOURCE_LANGUAGE_PRIVATE_H__ */

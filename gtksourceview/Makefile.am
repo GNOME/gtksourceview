@@ -1,15 +1,16 @@
-SUBDIRS = language-specs gnu-regex
+SUBDIRS = language-specs libegg
 
-if BUILD_GNU_REGEX
-REGEX_LIBS = gnu-regex/libgnuregex.la
+if BUILD_EGG_REGEX
+EGGREGEX_LIBS = libegg/regex/libeggregex.la
 else
-REGEX_LIBS = 
+EGGREGEX_LIBS =
 endif
 
 INCLUDES = 				\
 	-DDATADIR=\""$(datadir)"\" 	\
 	-DG_LOG_DOMAIN=\"GtkSourceView\"\
 	-I$(top_srcdir) -I$(srcdir) 	\
+	-I$(srcdir)/libegg/regex 	\
 	$(DEPRECATED_FLAGS)		\
 	$(WARN_CFLAGS) 			\
 	$(DEP_CFLAGS)			\
@@ -22,65 +23,69 @@ BUILT_SOURCES = 			\
 	gtksourceview-typebuiltins.h
 
 # libs
-lib_LTLIBRARIES = libgtksourceview-1.0.la
+lib_LTLIBRARIES = libgtksourceview-2.0.la
 
 libgtksourceview_headers =			\
 	gtksourcebuffer.h			\
 	gtksourceiter.h				\
-	gtksourcetag.h				\
 	gtksourceview.h				\
 	gtksourcelanguage.h			\
-	gtksourcelanguagesmanager.h		\
-	gtksourcetagstyle.h			\
-	gtksourcetagtable.h			\
+	gtksourcelanguagemanager.h		\
+	gtksourcestyle.h			\
+	gtksourcestylemanager.h			\
 	gtksourcestylescheme.h			\
 	gtksourcemarker.h
 
-libgtksourceview_1_0_la_SOURCES = 	\
+libgtksourceview_2_0_la_SOURCES = 	\
 	gtksourcebuffer.c 		\
 	gtksourceiter.c			\
-	gtksourcetag.c 			\
-	gtksourcetag-private.h 		\
 	gtksourceview.c 		\
 	gtksourceundomanager.h 		\
 	gtksourceundomanager.c 		\
 	gtktextregion.h 		\
 	gtktextregion.c 		\
-	gtksourceregex.h 		\
-	gtksourceregex.c 		\
 	gtksourcelanguage.c 		\
 	gtksourcelanguage-private.h 	\
-	gtksourcelanguagesmanager.c 	\
-	gtksourceview-i18n.h		\
+	gtksourcelanguagemanager.c 	\
+	gtksourcelanguage-parser-1.c	\
+	gtksourcelanguage-parser-2.c	\
+	gtksourceview-i18n.h 		\
 	gtksourceview-i18n.c		\
-	gtksourcetagtable.c		\
+	gtksourceview-utils.h 		\
+	gtksourceview-utils.c 		\
+	gtksourcestyle.c		\
+	gtksourcestylemanager.c		\
 	gtksourcestylescheme.c		\
 	gtksourcemarker.c		\
+	gtksourceengine.h		\
+	gtksourceengine.c		\
+	gtksourcecontextengine.h	\
+	gtksourcecontextengine.c	\
 	$(libgtksourceview_headers)	\
 	$(BUILT_SOURCES)
 
 if HAVE_GNOMEPRINT
 libgtksourceview_headers += gtksourceprintjob.h
-libgtksourceview_1_0_la_SOURCES += gtksourceprintjob.c gtksourceprintjob.h
+libgtksourceview_2_0_la_SOURCES += gtksourceprintjob.c gtksourceprintjob.h
 endif
 
 
-libgtksourceview_1_0_la_LIBADD = $(DEP_LIBS) $(REGEX_LIBS) $(GNOMEPRINT_LIBS)
+libgtksourceview_2_0_la_LIBADD = $(DEP_LIBS) $(EGGREGEX_LIBS) $(GNOMEPRINT_LIBS)
 
-libgtksourceview_1_0_la_LDFLAGS = -no-undefined
+libgtksourceview_2_0_la_LDFLAGS = -no-undefined -export-symbols-regex "^gtk_source_.*"
 
-libgtksourceview_1_0_includedir = $(includedir)/gtksourceview-1.0/gtksourceview
+libgtksourceview_2_0_includedir = $(includedir)/gtksourceview-2.0/gtksourceview
 
-libgtksourceview_1_0_include_HEADERS =		\
+libgtksourceview_2_0_include_HEADERS =		\
 	$(libgtksourceview_headers)		\
 	gtksourceview-typebuiltins.h
 
 gtksourceview-marshal.h: gtksourceview-marshal.list $(GLIB_GENMARSHAL)
-	$(GLIB_GENMARSHAL) $< --header --prefix=gtksourceview_marshal > $@
+	$(GLIB_GENMARSHAL) $< --header --prefix=_gtksourceview_marshal > $@
 
 gtksourceview-marshal.c: gtksourceview-marshal.list $(GLIB_GENMARSHAL)
 	echo "#include \"gtksourceview-marshal.h\"" > $@ && \
-	$(GLIB_GENMARSHAL) $< --body --prefix=gtksourceview_marshal >> $@
+	$(GLIB_GENMARSHAL) $< --body --prefix=_gtksourceview_marshal >> $@
 
 $(srcdir)/gtksourceview-typebuiltins.c: Makefile.am $(libgtksourceview_headers)
 	cd $(srcdir) \
@@ -97,7 +102,7 @@ $(srcdir)/gtksourceview-typebuiltins.c: Makefile.am $(libgtksourceview_headers)
 			--vtail "    type = g_@type@_register_static (\"@EnumName@\", _@enum_name@_values);\n\n" \
 			--vtail "  return type;\n}\n\n" \
 		$(libgtksourceview_headers) > xgen-gtbec \
-	&& cp xgen-gtbec $(@F) \
+	&& (cmp -s xgen-gtbec $(@F) || cp xgen-gtbec $(@F)) \
 	&& rm -f xgen-gtbec
 
 $(srcdir)/gtksourceview-typebuiltins.h: Makefile.am $(libgtksourceview_headers)
@@ -105,17 +110,19 @@ $(srcdir)/gtksourceview-typebuiltins.h: Makefile.am $(libgtksourceview_headers)
 	&& glib-mkenums \
 			--fhead "#ifndef __GTKSOURCEVIEW_TYPEBUILTINS_H__\n" \
 			--fhead "#define __GTKSOURCEVIEW_TYPEBUILTINS_H__ 1\n\n" \
-			--fhead "G_BEGIN_DECLS\n\n" \
-			--ftail "G_END_DECLS\n\n" \
 			--ftail "#endif /* __GTKSOURCEVIEW_TYPEBUILTINS_H__ */\n" \
-			--fprod "#include \"@filename@\"\n" \
+			--fprod "#include <gtksourceview/@filename@>\n" \
+			--eprod "G_BEGIN_DECLS\n" \
 			--eprod "#define GTK_TYPE_@ENUMSHORT@ @enum_name@_get_type()\n" \
 			--eprod "GType @enum_name@_get_type (void);\n" \
+			--eprod "G_END_DECLS\n\n" \
 		$(libgtksourceview_headers) > xgen-gth \
-	&& cp xgen-gth $(@F) \
+	&& (cmp -s xgen-gth $(@F) || cp xgen-gth $(@F)) \
 	&& rm -f xgen-gth
 
 EXTRA_DIST = 				\
-	gtksourceview-marshal.list
+	gtksourceview-marshal.list	\
+	gtksourceprintjob.c		\
+	gtksourceprintjob.h
 
 CLEANFILES = $(BUILT_SOURCES)

@@ -1,61 +1,90 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE language SYSTEM "language.dtd">
-<language _name="GtkRC" version="1.0" _section="Others" mimetypes="text/x-gtkrc">
-	
-	<escape-char>\</escape-char>
+<language id="gtkrc" _name="GtkRC" version="2.0" _section="Others">
+  <metadata>
+    <property name="mimetypes">text/x-gtkrc</property>
+    <property name="globs">gtkrc;.gtkrc;gtkrc-*;.gtkrc-*</property>
+  </metadata>
 
-	<string _name = "Double Quoted String" style = "String" end-at-line-end = "TRUE">
-		<start-regex>&quot;</start-regex>
-		<end-regex>&quot;</end-regex>
-	</string>
+  <styles>
+    <style id="comment" _name="Comment" map-to="def:comment"/>
+    <style id="string" _name="String" map-to="def:string"/>
+    <style id="keyword" _name="Keyword" map-to="def:keyword"/>
+    <style id="decimal" _name="Decimal" map-to="def:decimal"/>
+    <style id="data-type" _name="Data Type" map-to="def:data-type"/>
+    <style id="preprocessor" _name="Preprocessor" map-to="def:preprocessor"/>
+  </styles>
 
-	<string _name = "Single Quoted String" style = "String" end-at-line-end = "TRUE">
-		<start-regex>&apos;</start-regex>
-		<end-regex>&apos;</end-regex>
-	</string>
-
-	<line-comment _name = "Line Comment" style= "Comment">
-		<start-regex>#</start-regex>
-	</line-comment>
-
-	<pattern-item _name = "Keysymbol" style = "Keyword">
-		<regex>::|=</regex>
-	</pattern-item>
-
-	<pattern-item _name = "Number" style = "Decimal">
-		<regex>\b[0-9][0-9\.]*\b</regex>
-	</pattern-item>
-	
-	<keyword-list _name = "Keyword" style = "Keyword" case-sensitive="TRUE">
-		<keyword>style</keyword>
-		<keyword>engine</keyword>
-		<keyword>widget_class</keyword>
-		<keyword>class</keyword>
-		<keyword>widget</keyword>
-	</keyword-list>
-
-	<keyword-list _name = "Variable" style = "Data Type" case-sensitive="TRUE">
-		<keyword>fg</keyword>
-		<keyword>bg</keyword>
-		<keyword>bg_pixmap</keyword>
-		<keyword>base</keyword>
-		<keyword>text</keyword>
-	</keyword-list>
-	
-	<keyword-list _name = "State" style = "Preprocessor" case-sensitive="TRUE">
-		<keyword>ACTIVE</keyword>
-		<keyword>SELECTED</keyword>
-		<keyword>NORMAL</keyword>
-		<keyword>PRELIGHT</keyword>
-		<keyword>INSENSITIVE</keyword>
-	</keyword-list>
-
-	<keyword-list _name = "Include Directive" style = "Preprocessor" case-sensitive="TRUE">
-		<keyword>include</keyword>
-	</keyword-list>
-
-	<keyword-list _name = "Boolean Value" style = "Preprocessor" case-sensitive="FALSE">
-		<keyword>TRUE</keyword>
-		<keyword>FALSE</keyword>
-	</keyword-list>
+  <definitions>
+    <context id="double-quoted-string" style-ref="string" end-at-line-end="true">
+      <start>"</start>
+      <end>"</end>
+      <include>
+        <context ref="def:escape"/>
+        <context ref="def:line-continue"/>
+      </include>
+    </context>
+    <context id="single-quoted-string" style-ref="string" end-at-line-end="true">
+      <start>'</start>
+      <end>'</end>
+      <include>
+        <context ref="def:escape"/>
+        <context ref="def:line-continue"/>
+      </include>
+    </context>
+    <context id="line-comment" style-ref="comment" end-at-line-end="true">
+      <start>#</start>
+      <include>
+        <context ref="def:escape"/>
+        <context ref="def:line-continue"/>
+      </include>
+    </context>
+    <context id="keysymbol" style-ref="keyword">
+      <match>::|=</match>
+    </context>
+    <context id="number" style-ref="decimal">
+      <match>\b[0-9][0-9\.]*\b</match>
+    </context>
+    <context id="keyword" style-ref="keyword">
+      <keyword>style</keyword>
+      <keyword>engine</keyword>
+      <keyword>widget_class</keyword>
+      <keyword>class</keyword>
+      <keyword>widget</keyword>
+    </context>
+    <context id="variable" style-ref="data-type">
+      <keyword>fg</keyword>
+      <keyword>bg</keyword>
+      <keyword>bg_pixmap</keyword>
+      <keyword>base</keyword>
+      <keyword>text</keyword>
+    </context>
+    <context id="state" style-ref="preprocessor">
+      <keyword>ACTIVE</keyword>
+      <keyword>SELECTED</keyword>
+      <keyword>NORMAL</keyword>
+      <keyword>PRELIGHT</keyword>
+      <keyword>INSENSITIVE</keyword>
+    </context>
+    <context id="include-directive" style-ref="preprocessor">
+      <keyword>include</keyword>
+    </context>
+    <context id="boolean-value" style-ref="preprocessor">
+      <keyword>TRUE</keyword>
+      <keyword>FALSE</keyword>
+    </context>
+    <context id="gtkrc">
+      <include>
+        <context ref="double-quoted-string"/>
+        <context ref="single-quoted-string"/>
+        <context ref="line-comment"/>
+        <context ref="keysymbol"/>
+        <context ref="number"/>
+        <context ref="keyword"/>
+        <context ref="variable"/>
+        <context ref="state"/>
+        <context ref="include-directive"/>
+        <context ref="boolean-value"/>
+      </include>
+    </context>
+  </definitions>
 </language>

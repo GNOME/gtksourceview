@@ -1,52 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE language SYSTEM "language.dtd">
-<language _name=".ini" version="1.0" _section="Others" mimetypes="text/x-ini-file;application/x-ini-file">
+<language id="ini" _name=".ini" version="2.0" _section="Others">
+  <metadata>
+    <property name="mimetypes">text/x-ini-file;application/x-ini-file</property>
+    <property name="globs">*.ini</property>
+    <property name="line-comment-start">;</property>
+  </metadata>
 
-	<line-comment _name = "Line Comment" style= "Comment">
-		<start-regex>;</start-regex>
-	</line-comment>
+  <styles>
+    <style id="comment" _name="Comment" map-to="def:comment"/>
+    <style id="floating-point" _name="Floating Point" map-to="def:floating-point"/>
+    <style id="string" _name="String" map-to="def:string"/>
+    <style id="keyword" _name="Keyword" map-to="def:keyword"/>
+    <style id="decimal" _name="Decimal" map-to="def:decimal"/>
+    <style id="data-type" _name="Data Type" map-to="def:data-type"/>
+    <style id="preprocessor" _name="Preprocessor" map-to="def:preprocessor"/>
+  </styles>
 
-	<syntax-item _name = "Group" style = "Keyword">
-		<start-regex>^\[</start-regex>
-		<end-regex>\]$</end-regex>
-	</syntax-item>
-
-	<pattern-item _name = "Non Standard Key" style = "Data Type">
-		<regex>^_?X\-[a-zA-Z\-]+</regex>
-	</pattern-item>
-
-	<pattern-item _name = "Language" style = "Decimal">
-		<regex>\[[a-zA-Z_]+\]</regex>
-	</pattern-item>
-
-        <pattern-item _name = "Variable" style = "Data Type">
-                <regex>^[a-zA-Z_][a-zA-Z0-9_.]*</regex>
-        </pattern-item>
-
-	<keyword-list _name = "Boolean Value" style = "Preprocessor" case-sensitive="false">
-		<keyword>true</keyword>
-		<keyword>false</keyword>
-		<keyword>on</keyword>
-		<keyword>off</keyword>
-		<keyword>yes</keyword>
-		<keyword>no</keyword>
-	</keyword-list>
-                                                                                                                                               
-        <string _name="Single Quoted String" style="String" end-at-line-end="FALSE">
-                <start-regex>&apos;</start-regex>
-                <end-regex>&apos;</end-regex>
-        </string>
-
-	 <string _name="Double Quoted String" style="String" end-at-line-end="FALSE">
-                <start-regex>&quot;</start-regex>
-                <end-regex>&quot;</end-regex>
-        </string>                                                                                                                                              
-        <pattern-item _name="Integer" style="Decimal">
-                <regex>\b[0-9]+\b</regex>
-        </pattern-item>
-                                                                                                                                               
-        <pattern-item _name="Decimal Number" style="Floating Point">
-                <regex>(\b[0-9]+(\.[0-9]+)?|\.[0-9]+)([Ee][\+-]?[0-9]+)?\b</regex>
-        </pattern-item>
-
+  <definitions>
+    <context id="line-comment" style-ref="comment" end-at-line-end="true">
+      <start>;</start>
+    </context>
+    <context id="group" style-ref="keyword">
+      <start>^\[</start>
+      <end>\]$</end>
+    </context>
+    <context id="non-standard-key" style-ref="data-type">
+      <match>^_?X\-[a-zA-Z\-]+</match>
+    </context>
+    <context id="language" style-ref="decimal">
+      <match>\[[a-zA-Z_]+\]</match>
+    </context>
+    <context id="variable" style-ref="data-type">
+      <match>^[a-zA-Z_][a-zA-Z0-9_.]*</match>
+    </context>
+    <context id="boolean-value" style-ref="preprocessor">
+      <keyword>true</keyword>
+      <keyword>false</keyword>
+      <keyword>on</keyword>
+      <keyword>off</keyword>
+      <keyword>yes</keyword>
+      <keyword>no</keyword>
+    </context>
+    <context id="single-quoted-string" style-ref="string">
+      <start>'</start>
+      <end>'</end>
+    </context>
+    <context id="double-quoted-string" style-ref="string">
+      <start>"</start>
+      <end>"</end>
+    </context>
+    <context id="integer" style-ref="decimal">
+      <match>\b[0-9]+\b</match>
+    </context>
+    <context id="decimal-number" style-ref="floating-point">
+      <match>(\b[0-9]+(\.[0-9]+)?|\.[0-9]+)([Ee][\+-]?[0-9]+)?\b</match>
+    </context>
+    <context id="ini">
+      <include>
+        <context ref="line-comment"/>
+        <context ref="group"/>
+        <context ref="non-standard-key"/>
+        <context ref="language"/>
+        <context ref="variable"/>
+        <context ref="boolean-value"/>
+        <context ref="single-quoted-string"/>
+        <context ref="double-quoted-string"/>
+        <context ref="decimal-number"/>
+        <context ref="integer"/>
+      </include>
+    </context>
+  </definitions>
 </language>

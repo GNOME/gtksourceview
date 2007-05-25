@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<language id="yacc" _name="Yacc" _section="Others" version="2.0">
+  <metadata>
+    <property name="mimetypes">text/x-yacc;text/x-bison</property>
+    <property name="globs">*.y;*.yacc</property>
+    <property name="line-comment-start">//</property>
+    <property name="block-comment-start">/*</property>
+    <property name="block-comment-end">*/</property>
+  </metadata>
+
+  <styles>
+    <style id="inline-c" _name="Inline C Code" map-to="def:keyword"/>
+    <style id="grammar" _name="grammar" map-to="def:keyword"/>
+    <style id="keyword" _name="keyword" map-to="def:keyword"/>
+  </styles>
+
+  <definitions>
+    <context id="inline-c">
+      <start>^%{</start>
+      <end>^%}</end>
+      <include>
+        <context sub-pattern="0" where="start" style-ref="inline-c" />
+        <context sub-pattern="0" where="end" style-ref="inline-c" />
+        <context ref="c:c"/>
+      </include>
+    </context>
+
+    <context id="keywords" style-ref="keyword">
+      <prefix>^%</prefix>
+      <keyword>name-prefix</keyword>
+      <keyword>error-verbose</keyword>
+      <keyword>lex-param</keyword>
+      <keyword>parse-param</keyword>
+      <keyword>expect</keyword>
+      <keyword>union</keyword>
+      <keyword>token</keyword>
+      <keyword>type</keyword>
+      <keyword>left</keyword>
+      <keyword>right</keyword>
+    </context>
+
+    <context id="grammar">
+      <start>^%%</start>
+      <end>^%%</end>
+      <include>
+        <context sub-pattern="0" where="start" style-ref="grammar" />
+        <context sub-pattern="0" where="end" style-ref="grammar" />
+      </include>
+    </context>
+
+    <context id="yacc">
+      <include>
+        <context ref="inline-c"/>
+        <context ref="grammar"/>
+        <context ref="keywords"/>
+        <context ref="c:comment"/>
+        <context ref="c:comment-multiline"/>
+      </include>
+    </context>
+  </definitions>
+</language>

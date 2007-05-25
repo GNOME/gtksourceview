@@ -73,7 +73,7 @@ exact_prefix_cmp (const gchar *string,
 	/* If string contains prefix, check that prefix is not followed
 	 * by a unicode mark symbol, e.g. that trailing 'a' in prefix
 	 * is not part of two-char a-with-hat symbol in string. */
-	return type != G_UNICODE_NON_SPACING_MARK &&
+	return type != G_UNICODE_COMBINING_MARK &&
 		type != G_UNICODE_ENCLOSING_MARK &&
 		type != G_UNICODE_NON_SPACING_MARK;
 }
@@ -227,6 +227,25 @@ finally_2:
 	return ret;
 }
 
+/* FIXME: total horror */
+static gboolean
+char_is_invisible (const GtkTextIter *iter)
+{
+	GSList *tags;
+	gboolean invisible = FALSE;
+	tags = gtk_text_iter_get_tags (iter);
+	while (tags)
+	{
+		gboolean this_invisible, invisible_set;
+		g_object_get (tags->data, "invisible", &this_invisible, 
+			      "invisible-set", &invisible_set, NULL);
+		if (invisible_set)
+			invisible = this_invisible;
+		tags = g_slist_delete_link (tags, tags);
+	}
+	return invisible;
+}
+
 static void
 forward_chars_with_skipping (GtkTextIter *iter,
 			     gint         count,
@@ -253,8 +272,9 @@ forward_chars_with_skipping (GtkTextIter *iter,
 		if (skip_nontext && gtk_text_iter_get_char (iter) == GTK_TEXT_UNKNOWN_CHAR)
 			ignored = TRUE;
 
-		if (!ignored && skip_invisible &&
-		    /* _gtk_text_btree_char_is_invisible (iter)*/ FALSE)
+		/* FIXME: char_is_invisible() gets list of tags for each char there,
+		   and checks every tag. It doesn't sound like a good idea. */
+		if (!ignored && skip_invisible && char_is_invisible (iter))
 			ignored = TRUE;
 
 		if (!ignored && skip_decomp)
@@ -476,9 +496,9 @@ backward_lines_match (const GtkTextIter *start,
 
 /* strsplit () that retains the delimiter as part of the string. */
 static gchar **
-strbreakup (const char *string,
-	    const char *delimiter,
-	    gint        max_tokens)
+breakup_string (const char *string,
+		const char *delimiter,
+		gint        max_tokens)
 {
 	GSList *string_list = NULL, *slist;
 	gchar **str_array, *s, *casefold, *new_string;
@@ -619,7 +639,7 @@ gtk_source_iter_forward_search (const GtkTextIter   *iter,
 	slice = (flags & GTK_SOURCE_SEARCH_TEXT_ONLY) == 0;
 
 	/* locate all lines */
-	lines = strbreakup (str, "\n", -1);
+	lines = breakup_string (str, "\n", -1);
 
 	search = *iter;
 
@@ -722,7 +742,7 @@ gtk_source_iter_backward_search (const GtkTextIter   *iter,
 	slice = (flags & GTK_SOURCE_SEARCH_TEXT_ONLY) == 0;
 
 	/* locate all lines */
-	lines = strbreakup (str, "\n", -1);
+	lines = breakup_string (str, "\n", -1);
 
 	search = *iter;
 

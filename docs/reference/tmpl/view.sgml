@@ -112,6 +112,18 @@ GtkSourceView
 
 </para>
 
+<!-- ##### STRUCT GtkSourceViewClass ##### -->
+<para>
+
+</para>
+
+@parent_class: 
+@undo: 
+@redo: 
+@_gtk_source_reserved1: 
+@_gtk_source_reserved2: 
+@_gtk_source_reserved3: 
+
 <!-- ##### FUNCTION gtk_source_view_new ##### -->
 <para>
 
@@ -129,60 +141,6 @@ GtkSourceView
 @Returns: 
 
 
-<!-- ##### FUNCTION gtk_source_view_set_show_line_numbers ##### -->
-<para>
-
-</para>
-
-@view: 
-@show: 
-
-
-<!-- ##### FUNCTION gtk_source_view_get_show_line_numbers ##### -->
-<para>
-
-</para>
-
-@view: 
-@Returns: 
-
-
-<!-- ##### FUNCTION gtk_source_view_set_show_line_markers ##### -->
-<para>
-
-</para>
-
-@view: 
-@show: 
-
-
-<!-- ##### FUNCTION gtk_source_view_get_show_line_markers ##### -->
-<para>
-
-</para>
-
-@view: 
-@Returns: 
-
-
-<!-- ##### FUNCTION gtk_source_view_set_tabs_width ##### -->
-<para>
-
-</para>
-
-@view: 
-@width: 
-
-
-<!-- ##### FUNCTION gtk_source_view_get_tabs_width ##### -->
-<para>
-
-</para>
-
-@view: 
-@Returns: 
-
-
 <!-- ##### FUNCTION gtk_source_view_set_auto_indent ##### -->
 <para>
 
@@ -193,24 +151,6 @@ GtkSourceView
 
 
 <!-- ##### FUNCTION gtk_source_view_get_auto_indent ##### -->
-<para>
-
-</para>
-
-@view: 
-@Returns: 
-
-
-<!-- ##### FUNCTION gtk_source_view_set_insert_spaces_instead_of_tabs ##### -->
-<para>
-
-</para>
-
-@view: 
-@enable: 
-
-
-<!-- ##### FUNCTION gtk_source_view_get_insert_spaces_instead_of_tabs ##### -->
 <para>
 
 </para>
@@ -237,16 +177,34 @@ GtkSourceView
 @Returns: 
 
 
-<!-- ##### FUNCTION gtk_source_view_set_show_margin ##### -->
+<!-- ##### FUNCTION gtk_source_view_set_insert_spaces_instead_of_tabs ##### -->
 <para>
 
 </para>
 
 @view: 
-@show: 
+@enable: 
 
 
-<!-- ##### FUNCTION gtk_source_view_get_show_margin ##### -->
+<!-- ##### FUNCTION gtk_source_view_get_insert_spaces_instead_of_tabs ##### -->
+<para>
+
+</para>
+
+@view: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gtk_source_view_set_smart_home_end ##### -->
+<para>
+
+</para>
+
+@view: 
+@smart_he: 
+
+
+<!-- ##### FUNCTION gtk_source_view_get_smart_home_end ##### -->
 <para>
 
 </para>
@@ -265,24 +223,6 @@ GtkSourceView
 
 
 <!-- ##### FUNCTION gtk_source_view_get_margin ##### -->
-<para>
-
-</para>
-
-@view: 
-@Returns: 
-
-
-<!-- ##### FUNCTION gtk_source_view_set_highlight_current_line ##### -->
-<para>
-
-</para>
-
-@view: 
-@show: 
-
-
-<!-- ##### FUNCTION gtk_source_view_get_highlight_current_line ##### -->
 <para>
 
 </para>
@@ -311,16 +251,88 @@ GtkSourceView
 @Returns: 
 
 
-<!-- ##### FUNCTION gtk_source_view_set_smart_home_end ##### -->
+<!-- ##### FUNCTION gtk_source_view_set_highlight_current_line ##### -->
 <para>
 
 </para>
 
 @view: 
-@enable: 
+@show: 
 
 
-<!-- ##### FUNCTION gtk_source_view_get_smart_home_end ##### -->
+<!-- ##### FUNCTION gtk_source_view_get_highlight_current_line ##### -->
+<para>
+
+</para>
+
+@view: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gtk_source_view_set_show_line_markers ##### -->
+<para>
+
+</para>
+
+@view: 
+@show: 
+
+
+<!-- ##### FUNCTION gtk_source_view_get_show_line_markers ##### -->
+<para>
+
+</para>
+
+@view: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gtk_source_view_set_show_line_numbers ##### -->
+<para>
+
+</para>
+
+@view: 
+@show: 
+
+
+<!-- ##### FUNCTION gtk_source_view_get_show_line_numbers ##### -->
+<para>
+
+</para>
+
+@view: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gtk_source_view_set_show_margin ##### -->
+<para>
+
+</para>
+
+@view: 
+@show: 
+
+
+<!-- ##### FUNCTION gtk_source_view_get_show_margin ##### -->
+<para>
+
+</para>
+
+@view: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gtk_source_view_set_tabs_width ##### -->
+<para>
+
+</para>
+
+@view: 
+@width: 
+
+
+<!-- ##### FUNCTION gtk_source_view_get_tabs_width ##### -->
 <para>
 
 </para>

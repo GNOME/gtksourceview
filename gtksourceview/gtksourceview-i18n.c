@@ -31,7 +31,7 @@
  * do gettext initialization.
  */
 char *
-gtksourceview_gettext (const char *msgid)
+_gtksourceview_gettext (const char *msgid)
 {
 	static gboolean initialized = FALSE;
 
@@ -44,5 +44,3 @@ gtksourceview_gettext (const char *msgid)
 
 	return dgettext (GETTEXT_PACKAGE, msgid);
 }
-
-

@@ -1,4 +1,4 @@
-/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8; coding: utf-8 -*- 
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8; coding: utf-8 -*-
  *  gtksourcemarker.c
  *
  *  Copyright (C) 2003 - Gustavo Giráldez <gustavo.giraldez@gmx.net>
@@ -30,7 +30,7 @@ static GQuark quark_next_marker = 0;
 static GQuark quark_prev_marker = 0;
 
 
-GType 
+GType
 gtk_source_marker_get_type (void)
 {
 	static GType our_type = 0;
@@ -46,17 +46,17 @@ gtk_source_marker_get_type (void)
 		quark_next_marker = g_quark_from_static_string ("gtk-source-marker-next");
 		quark_prev_marker = g_quark_from_static_string ("gtk-source-marker-prev");
 	}
-	
+
 	return our_type;
 }
 
-void 
+void
 gtk_source_marker_set_marker_type (GtkSourceMarker *marker,
 				   const gchar     *type)
 {
 	g_return_if_fail (marker != NULL);
 	g_return_if_fail (GTK_IS_SOURCE_MARKER (marker));
-	
+
 	g_object_set_qdata_full (G_OBJECT (marker), quark_marker_type,
 				 g_strdup (type), (GDestroyNotify) g_free);
 	_gtk_source_marker_changed (marker);
@@ -65,9 +65,9 @@ gtk_source_marker_set_marker_type (GtkSourceMarker *marker,
 /**
  * gtk_source_marker_get_marker_type:
  * @marker: a #GtkSourceMarker.
- * 
+ *
  * Gets the marker type of this @marker.
- * 
+ *
  * Return value: the marker type.
  **/
 gchar *
@@ -75,23 +75,23 @@ gtk_source_marker_get_marker_type (GtkSourceMarker *marker)
 {
 	g_return_val_if_fail (marker != NULL, NULL);
 	g_return_val_if_fail (GTK_IS_SOURCE_MARKER (marker), NULL);
-	
+
 	return g_strdup (g_object_get_qdata (G_OBJECT (marker), quark_marker_type));
 }
 
 /**
  * gtk_source_marker_get_line:
  * @marker: a #GtkSourceMarker.
- * 
+ *
  * Gets the line number of this @marker.
- * 
+ *
  * Return value: the line number.
  **/
 gint
 gtk_source_marker_get_line (GtkSourceMarker *marker)
 {
 	GtkTextIter iter;
-	
+
 	g_return_val_if_fail (marker != NULL, -1);
 	g_return_val_if_fail (GTK_IS_SOURCE_MARKER (marker), -1);
 	g_return_val_if_fail (!gtk_text_mark_get_deleted (GTK_TEXT_MARK (marker)), -1);
@@ -105,9 +105,9 @@ gtk_source_marker_get_line (GtkSourceMarker *marker)
 /**
  * gtk_source_marker_get_name:
  * @marker: a #GtkSourceMarker.
- * 
+ *
  * Gets the name of this @marker.
- * 
+ *
  * Return value: the name.
  **/
 G_CONST_RETURN gchar *
@@ -115,30 +115,30 @@ gtk_source_marker_get_name (GtkSourceMarker *marker)
 {
 	g_return_val_if_fail (marker != NULL, NULL);
 	g_return_val_if_fail (GTK_IS_SOURCE_MARKER (marker), NULL);
-	
+
 	return gtk_text_mark_get_name (GTK_TEXT_MARK (marker));
 }
- 
+
 /**
  * gtk_source_marker_get_buffer:
  * @marker: a #GtkSourceMarker.
- * 
+ *
  * Gets the buffer associated with this @marker.
- * 
+ *
  * Return value: the #GtkSourceBuffer.
  **/
-GtkSourceBuffer *
+gpointer
 gtk_source_marker_get_buffer (GtkSourceMarker *marker)
 {
 	GtkTextBuffer *buffer;
 
 	g_return_val_if_fail (marker != NULL, NULL);
 	g_return_val_if_fail (GTK_IS_SOURCE_MARKER (marker), NULL);
-	
+
 	buffer = gtk_text_mark_get_buffer (GTK_TEXT_MARK (marker));
 
 	if (GTK_IS_SOURCE_BUFFER (buffer))
-		return GTK_SOURCE_BUFFER (buffer);
+		return buffer;
 	else
 		return NULL;
 }
@@ -154,7 +154,7 @@ _gtk_source_marker_changed (GtkSourceMarker *marker)
 	g_return_if_fail (!gtk_text_mark_get_deleted (GTK_TEXT_MARK (marker)));
 
 	buffer = GTK_SOURCE_BUFFER (gtk_text_mark_get_buffer (GTK_TEXT_MARK (marker)));
-	
+
 	gtk_text_buffer_get_iter_at_mark (GTK_TEXT_BUFFER (buffer),
 					  &iter,
 					  GTK_TEXT_MARK (marker));
@@ -169,14 +169,14 @@ _gtk_source_marker_link (GtkSourceMarker *marker,
 			 gboolean         after_sibling)
 {
 	GtkSourceMarker *tmp;
-	
+
 	g_return_if_fail (marker != NULL);
 	g_return_if_fail (GTK_IS_SOURCE_MARKER (marker));
 	g_return_if_fail (!gtk_text_mark_get_deleted (GTK_TEXT_MARK (marker)));
 
 	if (!sibling)
 		return;
-	
+
 	g_return_if_fail (GTK_IS_SOURCE_MARKER (sibling));
 
 	if (after_sibling)
@@ -207,7 +207,7 @@ void
 _gtk_source_marker_unlink (GtkSourceMarker *marker)
 {
 	GtkSourceMarker *m1, *m2;
-	
+
 	g_return_if_fail (marker != NULL);
 	g_return_if_fail (GTK_IS_SOURCE_MARKER (marker));
 	g_return_if_fail (!gtk_text_mark_get_deleted (GTK_TEXT_MARK (marker)));
@@ -224,9 +224,9 @@ _gtk_source_marker_unlink (GtkSourceMarker *marker)
 /**
  * gtk_source_marker_next:
  * @marker: a #GtkSourceMarker.
- * 
+ *
  * Gets the next marker after @marker.
- * 
+ *
  * Return value: a #GtkSourceMarker.
  **/
 GtkSourceMarker *
@@ -234,16 +234,16 @@ gtk_source_marker_next (GtkSourceMarker *marker)
 {
 	g_return_val_if_fail (marker != NULL, NULL);
 	g_return_val_if_fail (GTK_IS_SOURCE_MARKER (marker), NULL);
-	
+
 	return g_object_get_qdata (G_OBJECT (marker), quark_next_marker);
 }
 
 /**
  * gtk_source_marker_prev:
  * @marker: a #GtkSourceMarker.
- * 
+ *
  * Gets the previous marker before @marker.
- * 
+ *
  * Return value: a #GtkSourceMarker.
  **/
 GtkSourceMarker *
@@ -251,7 +251,7 @@ gtk_source_marker_prev (GtkSourceMarker *marker)
 {
 	g_return_val_if_fail (marker != NULL, NULL);
 	g_return_val_if_fail (GTK_IS_SOURCE_MARKER (marker), NULL);
-	
+
 	return g_object_get_qdata (G_OBJECT (marker), quark_prev_marker);
 }
 

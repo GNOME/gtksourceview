@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<language id="pkgconfig" _name="pkg-config" version="2.0" _section="Others">
+  <metadata>
+    <property name="mimetypes">text/x-pkg-config</property>
+    <property name="globs">*.pc</property>
+  </metadata>
+
+  <styles>
+    <style id="variable" _name="Variable" map-to="def:keyword"/>
+    <style id="info" _name="Package Info" map-to="def:keyword"/>
+  </styles>
+
+  <definitions>
+    <context id="var-value" style-ref="variable">
+      <match>\$\{[\w_]*\}</match>
+    </context>
+
+    <context id="pkgconfig">
+      <include>
+        <context end-at-line-end="true">
+          <start>^([\w_]+)\s*=\s*</start>
+          <include>
+            <context sub-pattern="1" where="start" style-ref="variable"/>
+            <context ref="var-value"/>
+          </include>
+        </context>
+
+        <context end-at-line-end="true">
+          <start>^([\w_]+)\s*\:\s*</start>
+          <include>
+            <context sub-pattern="1" where="start" style-ref="info"/>
+            <context ref="var-value"/>
+          </include>
+        </context>
+      </include>
+    </context>
+  </definitions>
+</language>

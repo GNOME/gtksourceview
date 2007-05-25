@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<language id="gtk-doc" _name="gtk-doc" version="2.0" _section="Markup" hidden="true">
+    <styles>
+        <style id="inline-docs"       _name="inline-docs"         map-to="def:comment"/>
+        <style id="function-name"     _name="function-name"       map-to="def:keyword"/>
+        <style id="signal-name"     _name="signal-name"       map-to="def:keyword"/>
+        <style id="property-name"     _name="property-name"       map-to="def:keyword"/>
+        <style id="parameter"     _name="property-name"       map-to="def:keyword"/>
+        <style id="constant"     _name="property-name"       map-to="def:keyword"/>
+        <style id="type"     _name="property-name"       map-to="def:keyword"/>
+        <style id="function"     _name="property-name"       map-to="def:keyword"/>
+        <style id="return"     _name="property-name"       map-to="def:keyword"/>
+        <style id="since"     _name="property-name"       map-to="def:keyword"/>
+    </styles>
+
+    <definitions>
+      <context id="skip-asterisk">
+        <match>^\s*\*(?!\/)\s*</match>
+      </context>
+
+      <context id="inline-docs-body">
+        <include>
+          <context ref="skip-asterisk"/>
+          <context ref="def:in-comment"/>
+          <context style-ref="parameter">
+            <match>\@[\w_]+</match>
+          </context>
+          <context style-ref="constant">
+            <match>%[\w_]+</match>
+          </context>
+          <context style-ref="type">
+            <match>\#[\w_]+</match>
+          </context>
+          <context style-ref="function">
+            <match>[\w_]+\(\s*\)</match>
+          </context>
+          <context style-ref="return">
+            <match>(Returns|Return value)\:</match>
+          </context>
+          <context style-ref="since">
+            <match>Since\:</match>
+          </context>
+        </include>
+      </context>
+
+      <context id="inline-docs" style-ref="inline-docs">
+        <start>\/\*\*(?!\S)</start>
+        <end>\*\/</end>
+        <include>
+          <context ref="skip-asterisk"/>
+          <context extend-parent="false">
+            <start>(([\w_]+\:\:[\w_-]+)|([\w_]+\:[\w_-]+)|([\w_]+))\:?</start>
+            <include>
+              <context sub-pattern="2" where="start" style-ref="function-name"/>
+              <context sub-pattern="3" where="start" style-ref="signal-name"/>
+              <context sub-pattern="4" where="start" style-ref="property-name"/>
+              <context ref="inline-docs-body"/>
+            </include>
+          </context>
+          <context ref="inline-docs-body"/>
+        </include>
+      </context>
+    </definitions>
+</language>

@@ -1,211 +1,309 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE language SYSTEM "language.dtd">
-<language _name="Python" version="1.0" _section="Scripts" mimetypes="text/x-python">
+<language id="python" _name="Python" version="2.0" _section="Scripts">
+  <metadata>
+    <property name="mimetypes">text/x-python;application/x-python</property>
+    <property name="globs">*.py</property>
+    <property name="line-comment-start">#</property>
+  </metadata>
 
-	<escape-char>\</escape-char>
+  <styles>
+    <style id="special-variables" _name="Special variables" map-to="def:data-type"/>
+    <style id="module-handler"    _name="Module handler"    map-to="def:character"/>
+    <style id="keyword"           _name="Keyword"           map-to="def:keyword"/>
+    <style id="function"          _name="Function"          map-to="def:keyword"/>
+    <style id="builtins"          _name="Builtins"          map-to="def:data-type"/>
+    <style id="multiline-string"  _name="Multiline string"  map-to="def:string"/>
+    <style id="string"            _name="String"            map-to="def:string"/>
+    <style id="escaped-char"      _name="Escaped character" map-to="def:escape"/>
+    <style id="format"            _name="format"            map-to="def:character"/>
+    <style id="string-conversion" _name="string-conversion"/>
+    <style id="floating-point"    _name="Floating point"    map-to="def:floating-point"/>
+    <style id="decimal"           _name="Decimal"           map-to="def:decimal"/>
+    <style id="base-n-integer"    _name="Base-N integer"    map-to="def:base-n-integer"/>
+    <style id="complex"           _name="Complex number"    map-to="def:complex"/>
+  </styles>
 
-	<string _name = "Multiline Double Quoted String" style = "String" end-at-line-end = "FALSE">
-		<start-regex>([uUrR]|[uU][rR]|[rR][uU])?&quot;&quot;&quot;</start-regex>
-		<end-regex>&quot;&quot;&quot;</end-regex>
-	</string>
+  <definitions>
+    <define-regex id="identifier">[_a-zA-Z][_a-zA-Z0-9]*</define-regex>
+    <define-regex id="number">[1-9][0-9]*</define-regex>
 
-	<string _name = "Multiline Single Quoted String" style = "String" end-at-line-end = "FALSE">
-		<start-regex>([uUrR]|[uU][rR]|[rR][uU])?&apos;&apos;&apos;</start-regex>
-		<end-regex>&apos;&apos;&apos;</end-regex>
-	</string>
+    <!-- http://docs.python.org/lib/typesseq-strings.html -->
+    <context id="format" style-ref="format" extend-parent="false">
+      <match extended="true">
+        %                       # leading % sign
+        \(\%{identifier}\)?     # mapping key
+        [#0\-\ \+]*             # conversion flags
+        (\-?\%{number}|\*)?     # minimum field width
+        (\.(\-?\%{number}|\*))? # precision
+        (hlL)?                  # lentgh modifier
+        [diouxXeEfFgGcrs%]      # conversion type
+      </match>
+    </context>
 
-	<string _name = "Double Quoted String" style = "String" end-at-line-end = "TRUE">
-		<start-regex>([uUrR]|[uU][rR]|[rR][uU])?&quot;</start-regex>
-		<end-regex>&quot;</end-regex>
-	</string>
+    <!-- http://docs.python.org/ref/strings.html -->
+    <context id="escaped-char" style-ref="escaped-char" extend-parent="true">
+      <match extended="true">
+        \\(                 # leading backslash
+        [\\'"abfnrtv]     | # single escaped char
+        N\{[A-Z\ ]+\}     | # named unicode character
+        u[0-9A-Fa-f]{4}   | # xxxx - character with 16-bit hex value xxxx
+        U[0-9A-Fa-f]{8}   | # xxxxxxxx - character with 32-bit hex value xxxxxxxx
+        x[0-9A-Fa-f]{1,2} | # \xhh - character with hex value hh
+        [0-7]{1,3}        | # \ooo - character with octal value ooo
+        )
+      </match>
+    </context>
 
-	<string _name = "Single Quoted String" style = "String" end-at-line-end = "TRUE">
-		<start-regex>([uUrR]|[uU][rR]|[rR][uU])?&apos;</start-regex>
-		<end-regex>&apos;</end-regex>
-	</string>
+    <define-regex id="string-prefix">(r|u|ur|R|U|UR|Ur|uR)?</define-regex>
 
-	<line-comment _name = "Line Comment" style= "Comment">
-		<start-regex>#</start-regex>
-	</line-comment>
+    <context id="multiline-double-quoted-string" style-ref="multiline-string">
+      <start>\%{string-prefix}"""</start>
+      <end>"""</end>
+      <include>
+        <context ref="format"/>
+        <context ref="escaped-char"/>
+      </include>
+    </context>
 
-	<keyword-list _name = "Module Handler" style = "Preprocessor" case-sensitive="TRUE">
-		<keyword>import</keyword>
-		<keyword>from</keyword>
-		<keyword>as</keyword>
-		<keyword>False</keyword>
-		<keyword>None</keyword>
-		<keyword>True</keyword>
-		<keyword>__name__</keyword>
-		<keyword>__debug__</keyword>
-	</keyword-list>
+    <context id="multiline-single-quoted-string" style-ref="multiline-string">
+      <start>\%{string-prefix}'''</start>
+      <end>'''</end>
+      <include>
+        <context ref="format"/>
+        <context ref="escaped-char"/>
+      </include>
+    </context>
 
-	<keyword-list _name = "Function" style = "Keyword" case-sensitive="TRUE">
-		<keyword>def</keyword>
-		<keyword>class</keyword>
-		<keyword>return</keyword>
-	</keyword-list>
+    <context id="double-quoted-string" style-ref="string" end-at-line-end="true">
+      <start>\%{string-prefix}"</start>
+      <end>"</end>
+      <include>
+        <context ref="format"/>
+        <context ref="escaped-char"/>
+        <context ref="def:line-continue"/>
+      </include>
+    </context>
 
-	<keyword-list _name = "Keyword" style = "Keyword" case-sensitive="TRUE">
-		<keyword>and</keyword>
-		<keyword>assert</keyword>
-		<keyword>break</keyword>
-		<keyword>continue</keyword>
-		<keyword>del</keyword>
-		<keyword>elif</keyword>
-		<keyword>else</keyword>
-		<keyword>except</keyword>
-		<keyword>exec</keyword>
-		<keyword>finally</keyword>
-		<keyword>for</keyword>
-		<keyword>global</keyword>
-		<keyword>if</keyword>
-		<keyword>in</keyword>
-		<keyword>is</keyword>
-		<keyword>lambda</keyword>
-		<keyword>not</keyword>
-		<keyword>or</keyword>
-		<keyword>pass</keyword>
-		<keyword>print</keyword>
-		<keyword>raise</keyword>
-		<keyword>try</keyword>
-		<keyword>while</keyword>
-		<keyword>yield</keyword>
-	</keyword-list>
+    <context id="single-quoted-string" style-ref="string" end-at-line-end="true">
+      <start>\%{string-prefix}'</start>
+      <end>'</end>
+      <include>
+        <context ref="format"/>
+        <context ref="escaped-char"/>
+        <context ref="def:line-continue"/>
+      </include>
+    </context>
 
-	<keyword-list _name = "Builtins" style = "Others" case-sensitive="TRUE">
-		<keyword>ArithmeticError</keyword>
-		<keyword>AssertionError</keyword>
-		<keyword>AttributeError</keyword>
-		<keyword>EnvironmentError</keyword>
-		<keyword>EOFError</keyword>
-		<keyword>Exception</keyword>
-		<keyword>FloatingPointError</keyword>
-		<keyword>ImportError</keyword>
-		<keyword>IndentationError</keyword>
-		<keyword>IndexError</keyword>
-		<keyword>IOError</keyword>
-		<keyword>KeyboardInterrupt</keyword>
-		<keyword>KeyError</keyword>
-		<keyword>LookupError</keyword>
-		<keyword>MemoryError</keyword>
-		<keyword>NameError</keyword>
-		<keyword>NotImplementedError</keyword>
-		<keyword>OSError</keyword>
-		<keyword>OverflowError</keyword>
-		<keyword>ReferenceError</keyword>
-		<keyword>RuntimeError</keyword>
-		<keyword>StandardError</keyword>
-		<keyword>StopIteration</keyword>
-		<keyword>SyntaxError</keyword>
-		<keyword>SystemError</keyword>
-		<keyword>SystemExit</keyword>
-		<keyword>TabError</keyword>
-		<keyword>TypeError</keyword>
-		<keyword>UnboundLocalError</keyword>
-		<keyword>UnicodeDecodeError</keyword>
-		<keyword>UnicodeEncodeError</keyword>
-		<keyword>UnicodeError</keyword>
-		<keyword>UnicodeTranslateError</keyword>
-		<keyword>ValueError</keyword>
-		<keyword>WindowsError</keyword>
-		<keyword>ZeroDivisionError</keyword>
-		
-		<keyword>Warning</keyword>
-		<keyword>UserWarning</keyword>
-		<keyword>DeprecationWarning</keyword>
-		<keyword>PendingDeprecationWarning</keyword>
-		<keyword>SyntaxWarning</keyword>
-		<keyword>OverflowWarning</keyword>
-		<keyword>RuntimeWarning</keyword>
-		<keyword>FutureWarning</keyword>		
+    <context id="python">
+      <include>
+        <context ref="def:shebang"/>
+        <context ref="def:shell-like-comment"/>
+        <context ref="def:line-continue"/>
 
-		<keyword>__import__</keyword>
-		<keyword>abs</keyword>
-		<keyword>apply</keyword>
-		<keyword>basestring</keyword>
-		<keyword>bool</keyword>
-		<keyword>buffer</keyword>
-		<keyword>callable</keyword>
-		<keyword>chr</keyword>
-		<keyword>classmethod</keyword>
-		<keyword>cmp</keyword>
-		<keyword>coerce</keyword>
-		<keyword>compile</keyword>
-		<keyword>complex</keyword>
-		<keyword>delattr</keyword>
-		<keyword>dict</keyword>
-		<keyword>dir</keyword>
-		<keyword>divmod</keyword>
-		<keyword>enumerate</keyword>
-		<keyword>eval</keyword>
-		<keyword>execfile</keyword>
-		<keyword>file</keyword>
-		<keyword>filter</keyword>
-		<keyword>float</keyword>
-		<keyword>getattr</keyword>
-		<keyword>globals</keyword>
-		<keyword>hasattr</keyword>
-		<keyword>hash</keyword>
-		<keyword>hex</keyword>
-		<keyword>id</keyword>
-		<keyword>input</keyword>
-		<keyword>int</keyword>
-		<keyword>intern</keyword>
-		<keyword>isinstance</keyword>
-		<keyword>issubclass</keyword>
-		<keyword>iter</keyword>
-		<keyword>len</keyword>
-		<keyword>list</keyword>
-		<keyword>locals</keyword>
-		<keyword>long</keyword>
-		<keyword>map</keyword>
-		<keyword>max</keyword>
-		<keyword>min</keyword>
-		<keyword>object</keyword>
-		<keyword>oct</keyword>
-		<keyword>open</keyword>
-		<keyword>ord</keyword>
-		<keyword>pow</keyword>
-		<keyword>property</keyword>
-		<keyword>range</keyword>
-		<keyword>raw_input</keyword>
-		<keyword>reduce</keyword>
-		<keyword>reload</keyword>
-		<keyword>repr</keyword>
-		<keyword>round</keyword>
-		<keyword>setattr</keyword>
-		<keyword>slice</keyword>
-		<keyword>staticmethod</keyword>
-		<keyword>str</keyword>
-		<keyword>sum</keyword>
-		<keyword>super</keyword>
-		<keyword>tuple</keyword>
-		<keyword>type</keyword>
-		<keyword>unichr</keyword>
-		<keyword>unicode</keyword>
-		<keyword>vars</keyword>
-		<keyword>xrange</keyword>
-		<keyword>zip</keyword>
-	</keyword-list>
+        <context ref="multiline-double-quoted-string"/>
+        <context ref="multiline-single-quoted-string"/>
+        <context ref="double-quoted-string"/>
+        <context ref="single-quoted-string"/>
 
-	<pattern-item name = "Self" style = "Data Type">
-		<regex>\bself\b</regex>
-	</pattern-item>
-	
-	<pattern-item _name = "Decimal" style = "Decimal">
-		<regex>\b([1-9][0-9]*|0)([Uu]([Ll]|LL|ll)?|([Ll]|LL|ll)[Uu]?)?\b</regex>
-	</pattern-item>
+        <context id="string-conversion" style-ref="string-conversion" end-at-line-end="true">
+          <start>`</start>
+          <end>`</end>
+          <include>
+            <context ref="python"/>
+          </include>
+        </context>
 
-	<pattern-item _name = "Floating Point Number" style = "Floating Point">
-		<regex>\b([0-9]+[Ee][-]?[0-9]+|([0-9]*\.[0-9]+|[0-9]+\.)([Ee][-]?[0-9]+)?)[fFlL]?</regex>
-	</pattern-item>
+	<context id="special-variables" style-ref="special-variables">
+          <prefix>(?&lt;![\w\.])</prefix>
+          <keyword>self</keyword>
+          <keyword>False</keyword>
+          <keyword>None</keyword>
+          <keyword>True</keyword>
+          <keyword>__name__</keyword>
+          <keyword>__debug__</keyword>
+	</context>
 
-	<pattern-item _name = "Octal Number" style = "Base-N Integer">
-		<regex>\b0[0-7]+([Uu]([Ll]|LL|ll)?|([Ll]|LL|ll)[Uu]?)?\b</regex>
-	</pattern-item>
+        <define-regex id="float" extended="true">
+          ( (\d+)?\.\d+ | \d+\. ) |
+          ( (\d+|(\d+)?\.\d+|\d+\.)[eE][+-]?\d+ )
+        </define-regex>
 
-	<pattern-item _name = "Hex Number" style = "Base-N Integer">
-		<regex>\b0[xX][0-9a-fA-F]+([Uu]([Ll]|LL|ll)?|([Ll]|LL|ll)[Uu]?)?\b</regex>
-	</pattern-item>
+        <context id="complex" style-ref="complex">
+          <match>(?&lt;![\w\.])(\%{float}|\d+)[jJ]\b</match>
+        </context>
 
+        <context id="float" style-ref="floating-point">
+          <match>(?&lt;![\w\.])\%{float}(?![\w\.])</match>
+	</context>
+
+        <context id="decimal" style-ref="decimal">
+          <match>(?&lt;![\w\.])([1-9][0-9]*|0)[lL]?(?![\w\.])</match>
+        </context>
+
+        <context id="octal" style-ref="base-n-integer">
+          <match>(?&lt;![\w\.])0[0-7]+[lL]?(?![\w\.])</match>
+        </context>
+
+        <context id="hex" style-ref="base-n-integer">
+          <match>(?&lt;![\w\.])0[xX][0-9A-Fa-f]+[lL]?(?![\w\.])</match>
+        </context>
+
+        <context id="module-handler" style-ref="module-handler">
+          <keyword>import</keyword>
+          <keyword>from</keyword>
+          <keyword>as</keyword>
+        </context>
+
+        <context id="function" style-ref="function">
+          <keyword>def</keyword>
+          <keyword>class</keyword>
+          <keyword>return</keyword>
+        </context>
+
+        <context id="keyword" style-ref="keyword">
+          <keyword>and</keyword>
+          <keyword>assert</keyword>
+          <keyword>break</keyword>
+          <keyword>continue</keyword>
+          <keyword>del</keyword>
+          <keyword>elif</keyword>
+          <keyword>else</keyword>
+          <keyword>except</keyword>
+          <keyword>exec</keyword>
+          <keyword>finally</keyword>
+          <keyword>for</keyword>
+          <keyword>global</keyword>
+          <keyword>if</keyword>
+          <keyword>in</keyword>
+          <keyword>is</keyword>
+          <keyword>lambda</keyword>
+          <keyword>not</keyword>
+          <keyword>or</keyword>
+          <keyword>pass</keyword>
+          <keyword>print</keyword>
+          <keyword>raise</keyword>
+          <keyword>try</keyword>
+          <keyword>while</keyword>
+          <keyword>yield</keyword>
+        </context>
+
+        <context id="builtins" style-ref="builtins">
+          <prefix>(?&lt;![\w\.])</prefix>
+          <keyword>ArithmeticError</keyword>
+          <keyword>AssertionError</keyword>
+          <keyword>AttributeError</keyword>
+          <keyword>EnvironmentError</keyword>
+          <keyword>EOFError</keyword>
+          <keyword>Exception</keyword>
+          <keyword>FloatingPointError</keyword>
+          <keyword>ImportError</keyword>
+          <keyword>IndentationError</keyword>
+          <keyword>IndexError</keyword>
+          <keyword>IOError</keyword>
+          <keyword>KeyboardInterrupt</keyword>
+          <keyword>KeyError</keyword>
+          <keyword>LookupError</keyword>
+          <keyword>MemoryError</keyword>
+          <keyword>NameError</keyword>
+          <keyword>NotImplementedError</keyword>
+          <keyword>OSError</keyword>
+          <keyword>OverflowError</keyword>
+          <keyword>ReferenceError</keyword>
+          <keyword>RuntimeError</keyword>
+          <keyword>StandardError</keyword>
+          <keyword>StopIteration</keyword>
+          <keyword>SyntaxError</keyword>
+          <keyword>SystemError</keyword>
+          <keyword>SystemExit</keyword>
+          <keyword>TabError</keyword>
+          <keyword>TypeError</keyword>
+          <keyword>UnboundLocalError</keyword>
+          <keyword>UnicodeDecodeError</keyword>
+          <keyword>UnicodeEncodeError</keyword>
+          <keyword>UnicodeError</keyword>
+          <keyword>UnicodeTranslateError</keyword>
+          <keyword>ValueError</keyword>
+          <keyword>WindowsError</keyword>
+          <keyword>ZeroDivisionError</keyword>
+
+          <keyword>Warning</keyword>
+          <keyword>UserWarning</keyword>
+          <keyword>DeprecationWarning</keyword>
+          <keyword>PendingDeprecationWarning</keyword>
+          <keyword>SyntaxWarning</keyword>
+          <keyword>OverflowWarning</keyword>
+          <keyword>RuntimeWarning</keyword>
+          <keyword>FutureWarning</keyword>
+
+          <keyword>__import__</keyword>
+          <keyword>abs</keyword>
+          <keyword>apply</keyword>
+          <keyword>basestring</keyword>
+          <keyword>bool</keyword>
+          <keyword>buffer</keyword>
+          <keyword>callable</keyword>
+          <keyword>chr</keyword>
+          <keyword>classmethod</keyword>
+          <keyword>cmp</keyword>
+          <keyword>coerce</keyword>
+          <keyword>compile</keyword>
+          <keyword>complex</keyword>
+          <keyword>delattr</keyword>
+          <keyword>dict</keyword>
+          <keyword>dir</keyword>
+          <keyword>divmod</keyword>
+          <keyword>enumerate</keyword>
+          <keyword>eval</keyword>
+          <keyword>execfile</keyword>
+          <keyword>file</keyword>
+          <keyword>filter</keyword>
+          <keyword>float</keyword>
+          <keyword>getattr</keyword>
+          <keyword>globals</keyword>
+          <keyword>hasattr</keyword>
+          <keyword>hash</keyword>
+          <keyword>hex</keyword>
+          <keyword>id</keyword>
+          <keyword>input</keyword>
+          <keyword>int</keyword>
+          <keyword>intern</keyword>
+          <keyword>isinstance</keyword>
+          <keyword>issubclass</keyword>
+          <keyword>iter</keyword>
+          <keyword>len</keyword>
+          <keyword>list</keyword>
+          <keyword>locals</keyword>
+          <keyword>long</keyword>
+          <keyword>map</keyword>
+          <keyword>max</keyword>
+          <keyword>min</keyword>
+          <keyword>object</keyword>
+          <keyword>oct</keyword>
+          <keyword>open</keyword>
+          <keyword>ord</keyword>
+          <keyword>pow</keyword>
+          <keyword>property</keyword>
+          <keyword>range</keyword>
+          <keyword>raw_input</keyword>
+          <keyword>reduce</keyword>
+          <keyword>reload</keyword>
+          <keyword>repr</keyword>
+          <keyword>round</keyword>
+          <keyword>setattr</keyword>
+          <keyword>slice</keyword>
+          <keyword>staticmethod</keyword>
+          <keyword>str</keyword>
+          <keyword>sum</keyword>
+          <keyword>super</keyword>
+          <keyword>tuple</keyword>
+          <keyword>type</keyword>
+          <keyword>unichr</keyword>
+          <keyword>unicode</keyword>
+          <keyword>vars</keyword>
+          <keyword>xrange</keyword>
+          <keyword>zip</keyword>
+        </context>
+      </include>
+    </context>
+  </definitions>
 </language>

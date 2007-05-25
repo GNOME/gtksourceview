@@ -378,7 +378,7 @@ gtk_source_print_job_class_init (GtkSourcePrintJobClass *klass)
 			  G_SIGNAL_RUN_LAST,
 			  G_STRUCT_OFFSET (GtkSourcePrintJobClass, begin_page),
 			  NULL, NULL,
-			  gtksourceview_marshal_VOID__VOID,
+			  _gtksourceview_marshal_VOID__VOID,
 			  G_TYPE_NONE, 
 			  0);
 	print_job_signals [FINISHED] =
@@ -387,7 +387,7 @@ gtk_source_print_job_class_init (GtkSourcePrintJobClass *klass)
 			  G_SIGNAL_RUN_FIRST,
 			  G_STRUCT_OFFSET (GtkSourcePrintJobClass, finished),
 			  NULL, NULL,
-			  gtksourceview_marshal_VOID__VOID,
+			  _gtksourceview_marshal_VOID__VOID,
 			  G_TYPE_NONE, 
 			  0);
 }
@@ -1119,7 +1119,8 @@ get_text_with_style (GtkSourcePrintJob *job,
 	gboolean have_toggle;
 	
 	/* make sure the region to print is highlighted */
-	_gtk_source_buffer_highlight_region (job->priv->buffer, start, end, TRUE);
+	g_signal_emit_by_name (job->priv->buffer, "update_highlight",
+		start, end, TRUE);
 
 	next_toggle = *start;
 	have_toggle = gtk_text_iter_forward_to_tag_toggle (&next_toggle, NULL);

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<language id="libtool" _name="libtool" version="2.0" _section="Others">
+  <metadata>
+    <property name="mimetypes">text/x-libtool</property>
+    <property name="globs">*.la;*.lai;*.lo</property>
+    <property name="line-comment-start">#</property>
+  </metadata>
+
+  <styles>
+    <style id="boolean" _name="Boolean" map-to="def:decimal"/>
+  </styles>
+
+  <definitions>
+    <context id="libtool">
+      <include>
+        <context ref="def:shell-like-comment"/>
+        <context end-at-line-end="true">
+          <start>\=</start>
+          <include>
+            <context ref="def:single-quoted-string"/>
+            <context ref="def:string"/>
+            <context ref="def:shell-like-comment"/>
+            <context ref="def:decimal"/>
+            <context style-ref="boolean">
+              <keyword>yes</keyword>
+              <keyword>no</keyword>
+            </context>
+          </include>
+        </context>
+      </include>
+    </context>
+  </definitions>
+</language>

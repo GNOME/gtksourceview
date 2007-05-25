@@ -1,4 +1,4 @@
-/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- 
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*-
  *
  * gtktextregion.h - GtkTextMark based region utility functions
  *
@@ -19,7 +19,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330,
- * Boston, MA 02111-1307, USA.  
+ * Boston, MA 02111-1307, USA.
  */
 
 #ifdef HAVE_CONFIG_H
@@ -58,7 +58,7 @@ typedef struct _GtkTextRegionIteratorReal GtkTextRegionIteratorReal;
 struct _GtkTextRegionIteratorReal {
 	GtkTextRegion *region;
 	guint32        region_time_stamp;
-	
+
 	GList         *subregions;
 };
 
@@ -71,7 +71,7 @@ struct _GtkTextRegionIteratorReal {
    iter.  If left_side is TRUE, return the subregion which contains
    the text iter or which is the leftmost; else return the rightmost
    subregion */
-static GList * 
+static GList *
 find_nearest_subregion (GtkTextRegion     *region,
 			const GtkTextIter *iter,
 			GList             *begin,
@@ -79,17 +79,17 @@ find_nearest_subregion (GtkTextRegion     *region,
 			gboolean           include_edges)
 {
 	GList *l, *retval;
-	
+
 	g_return_val_if_fail (region != NULL && iter != NULL, NULL);
 
 	if (!begin)
 		begin = region->subregions;
-	
+
 	if (begin)
 		retval = begin->prev;
 	else
 		retval = NULL;
-	
+
 	for (l = begin; l; l = l->next) {
 		GtkTextIter sr_iter;
 		Subregion *sr = l->data;
@@ -125,16 +125,16 @@ gtk_text_region_new (GtkTextBuffer *buffer)
 	GtkTextRegion *region;
 
 	g_return_val_if_fail (buffer != NULL, NULL);
-	
+
 	region = g_new (GtkTextRegion, 1);
 	region->buffer = buffer;
 	region->subregions = NULL;
 	region->time_stamp = 0;
-	
+
 	return region;
 }
 
-void 
+void
 gtk_text_region_destroy (GtkTextRegion *region, gboolean delete_marks)
 {
 	g_return_if_fail (region != NULL);
@@ -151,7 +151,7 @@ gtk_text_region_destroy (GtkTextRegion *region, gboolean delete_marks)
 	}
 	region->buffer = NULL;
 	region->time_stamp = 0;
-	
+
 	g_free (region);
 }
 
@@ -159,7 +159,7 @@ GtkTextBuffer *
 gtk_text_region_get_buffer (GtkTextRegion *region)
 {
 	g_return_val_if_fail (region != NULL, NULL);
-	
+
 	return region->buffer;
 }
 
@@ -168,7 +168,7 @@ gtk_text_region_clear_zero_length_subregions (GtkTextRegion *region)
 {
 	GtkTextIter start, end;
 	GList *node;
-	
+
 	g_return_if_fail (region != NULL);
 
 	for (node = region->subregions; node; ) {
@@ -185,26 +185,26 @@ gtk_text_region_clear_zero_length_subregions (GtkTextRegion *region)
 				node = g_list_delete_link (node, node);
 
 			++region->time_stamp;
-			
+
 		} else {
 			node = node->next;
 		}
 	}
 }
 
-void 
+void
 gtk_text_region_add (GtkTextRegion     *region,
 		     const GtkTextIter *_start,
 		     const GtkTextIter *_end)
 {
 	GList *start_node, *end_node;
 	GtkTextIter start, end;
-	
+
 	g_return_if_fail (region != NULL && _start != NULL && _end != NULL);
-	
+
 	start = *_start;
 	end = *_end;
-	
+
 	DEBUG (g_print ("---\n"));
 	DEBUG (gtk_text_region_debug_print (region));
 	DEBUG (g_message ("region_add (%d, %d)",
@@ -212,7 +212,7 @@ gtk_text_region_add (GtkTextRegion     *region,
 			  gtk_text_iter_get_offset (&end)));
 
 	gtk_text_iter_order (&start, &end);
-	
+
 	/* don't add zero-length regions */
 	if (gtk_text_iter_equal (&start, &end))
 		return;
@@ -226,11 +226,11 @@ gtk_text_region_add (GtkTextRegion     *region,
 		Subregion *sr = g_new0 (Subregion, 1);
 		sr->start = gtk_text_buffer_create_mark (region->buffer, NULL, &start, TRUE);
 		sr->end = gtk_text_buffer_create_mark (region->buffer, NULL, &end, FALSE);
-		
+
 		if (start_node == NULL) {
 			/* append the new region */
 			region->subregions = g_list_append (region->subregions, sr);
-			
+
 		} else if (end_node == NULL) {
 			/* prepend the new region */
 			region->subregions = g_list_prepend (region->subregions, sr);
@@ -248,7 +248,7 @@ gtk_text_region_add (GtkTextRegion     *region,
 			/* we need to merge some subregions */
 			GList *l = start_node->next;
 			Subregion *q;
-			
+
 			gtk_text_buffer_delete_mark (region->buffer, sr->end);
 			while (l != end_node) {
 				q = l->data;
@@ -277,7 +277,7 @@ gtk_text_region_add (GtkTextRegion     *region,
 	DEBUG (gtk_text_region_debug_print (region));
 }
 
-void 
+void
 gtk_text_region_subtract (GtkTextRegion     *region,
 			  const GtkTextIter *_start,
 			  const GtkTextIter *_end)
@@ -290,18 +290,18 @@ gtk_text_region_subtract (GtkTextRegion     *region,
 	GtkTextIter start, end;
 
 	g_return_if_fail (region != NULL && _start != NULL && _end != NULL);
-	
+
 	start = *_start;
 	end = *_end;
-	
+
 	DEBUG (g_print ("---\n"));
 	DEBUG (gtk_text_region_debug_print (region));
 	DEBUG (g_message ("region_substract (%d, %d)",
 			  gtk_text_iter_get_offset (&start),
 			  gtk_text_iter_get_offset (&end)));
-	
+
 	gtk_text_iter_order (&start, &end);
-	
+
 	/* find bounding subregions */
 	start_node = find_nearest_subregion (region, &start, NULL, FALSE, FALSE);
 	end_node = find_nearest_subregion (region, &end, start_node, TRUE, FALSE);
@@ -309,10 +309,10 @@ gtk_text_region_subtract (GtkTextRegion     *region,
 	/* easy case first */
 	if (start_node == NULL || end_node == NULL || end_node == start_node->prev)
 		return;
-	
+
 	/* deal with the start point */
 	start_is_outside = end_is_outside = FALSE;
-	
+
 	sr = start_node->data;
 	gtk_text_buffer_get_iter_at_mark (region->buffer, &sr_start_iter, sr->start);
 	gtk_text_buffer_get_iter_at_mark (region->buffer, &sr_end_iter, sr->end);
@@ -335,7 +335,7 @@ gtk_text_region_subtract (GtkTextRegion     *region,
 
 			/* no further processing needed */
 			DEBUG (g_message ("subregion splitted"));
-			
+
 			return;
 		} else {
 			/* the ending point is outside, so just move
@@ -346,17 +346,17 @@ gtk_text_region_subtract (GtkTextRegion     *region,
 		/* the starting point is outside (and so to the left)
                    of the first subregion */
 		DEBUG (g_message ("start is outside"));
-			
+
 		start_is_outside = TRUE;
 	}
-	
+
 	/* deal with the end point */
 	if (start_node != end_node) {
 		sr = end_node->data;
 		gtk_text_buffer_get_iter_at_mark (region->buffer, &sr_start_iter, sr->start);
 		gtk_text_buffer_get_iter_at_mark (region->buffer, &sr_end_iter, sr->end);
 	}
-	
+
 	if (gtk_text_iter_in_range (&end, &sr_start_iter, &sr_end_iter) &&
 	    !gtk_text_iter_equal (&end, &sr_end_iter)) {
 		/* ending point is inside, move the start mark */
@@ -364,18 +364,18 @@ gtk_text_region_subtract (GtkTextRegion     *region,
 	} else {
 		end_is_outside = TRUE;
 		DEBUG (g_message ("end is outside"));
-		
+
 	}
-	
+
 	/* finally remove any intermediate subregions */
 	done = FALSE;
 	node = start_node;
-	
+
 	while (!done) {
 		if (node == end_node)
 			/* we are done, exit in the next iteration */
 			done = TRUE;
-		
+
 		if ((node == start_node && !start_is_outside) ||
 		    (node == end_node && !end_is_outside)) {
 			/* skip starting or ending node */
@@ -402,7 +402,7 @@ gtk_text_region_subtract (GtkTextRegion     *region,
 	DEBUG (gtk_text_region_debug_print (region));
 }
 
-gint 
+gint
 gtk_text_region_subregions (GtkTextRegion *region)
 {
 	g_return_val_if_fail (region != NULL, 0);
@@ -410,14 +410,14 @@ gtk_text_region_subregions (GtkTextRegion *region)
 	return g_list_length (region->subregions);
 }
 
-gboolean 
+gboolean
 gtk_text_region_nth_subregion (GtkTextRegion *region,
 			       guint          subregion,
 			       GtkTextIter   *start,
 			       GtkTextIter   *end)
 {
 	Subregion *sr;
-	
+
 	g_return_val_if_fail (region != NULL, FALSE);
 
 	sr = g_list_nth_data (region->subregions, subregion);
@@ -432,7 +432,7 @@ gtk_text_region_nth_subregion (GtkTextRegion *region,
 	return TRUE;
 }
 
-GtkTextRegion * 
+GtkTextRegion *
 gtk_text_region_intersect (GtkTextRegion     *region,
 			   const GtkTextIter *_start,
 			   const GtkTextIter *_end)
@@ -443,14 +443,14 @@ gtk_text_region_intersect (GtkTextRegion     *region,
 	gboolean done;
 	GtkTextRegion *new_region;
 	GtkTextIter start, end;
-	
+
 	g_return_val_if_fail (region != NULL && _start != NULL && _end != NULL, NULL);
-	
+
 	start = *_start;
 	end = *_end;
-	
+
 	gtk_text_iter_order (&start, &end);
-	
+
 	/* find bounding subregions */
 	start_node = find_nearest_subregion (region, &start, NULL, FALSE, FALSE);
 	end_node = find_nearest_subregion (region, &end, start_node, TRUE, FALSE);
@@ -458,10 +458,10 @@ gtk_text_region_intersect (GtkTextRegion     *region,
 	/* easy case first */
 	if (start_node == NULL || end_node == NULL || end_node == start_node->prev)
 		return NULL;
-	
+
 	new_region = gtk_text_region_new (region->buffer);
 	done = FALSE;
-	
+
 	sr = start_node->data;
 	gtk_text_buffer_get_iter_at_mark (region->buffer, &sr_start_iter, sr->start);
 	gtk_text_buffer_get_iter_at_mark (region->buffer, &sr_end_iter, sr->end);
@@ -500,7 +500,7 @@ gtk_text_region_intersect (GtkTextRegion     *region,
 			gtk_text_buffer_get_iter_at_mark (region->buffer, &sr_start_iter,
 							  sr->start);
 			gtk_text_buffer_get_iter_at_mark (region->buffer, &sr_end_iter, sr->end);
-			
+
 			new_sr = g_new0 (Subregion, 1);
 			new_region->subregions = g_list_prepend (new_region->subregions, new_sr);
 			new_sr->start = gtk_text_buffer_create_mark (new_region->buffer, NULL,
@@ -515,10 +515,10 @@ gtk_text_region_intersect (GtkTextRegion     *region,
 		sr = node->data;
 		gtk_text_buffer_get_iter_at_mark (region->buffer, &sr_start_iter, sr->start);
 		gtk_text_buffer_get_iter_at_mark (region->buffer, &sr_end_iter, sr->end);
-		
+
 		new_sr = g_new0 (Subregion, 1);
 		new_region->subregions = g_list_prepend (new_region->subregions, new_sr);
-		
+
 		new_sr->start = gtk_text_buffer_create_mark (new_region->buffer, NULL,
 							     &sr_start_iter, TRUE);
 
@@ -534,7 +534,7 @@ gtk_text_region_intersect (GtkTextRegion     *region,
 	return new_region;
 }
 
-static gboolean 
+static gboolean
 check_iterator (GtkTextRegionIteratorReal *real)
 {
 	if ((real->region == NULL) ||
@@ -544,14 +544,14 @@ check_iterator (GtkTextRegionIteratorReal *real)
                 	  "is uninitialized, or the region "
                  	  "has been modified since the iterator "
                  	  "was created.");
-                 	  
+
                 return FALSE;
 	}
 
 	return TRUE;
 }
 
-void       
+void
 gtk_text_region_get_iterator (GtkTextRegion         *region,
                               GtkTextRegionIterator *iter,
                               guint                  start)
@@ -559,7 +559,7 @@ gtk_text_region_get_iterator (GtkTextRegion         *region,
 	GtkTextRegionIteratorReal *real;
 
 	g_return_if_fail (region != NULL);
-	g_return_if_fail (iter != NULL);	
+	g_return_if_fail (iter != NULL);
 
 	real = (GtkTextRegionIteratorReal *)iter;
 
@@ -575,7 +575,7 @@ gtk_text_region_iterator_is_end (GtkTextRegionIterator *iter)
 {
 	GtkTextRegionIteratorReal *real;
 
-	g_return_val_if_fail (iter != NULL, FALSE);	
+	g_return_val_if_fail (iter != NULL, FALSE);
 
 	real = (GtkTextRegionIteratorReal *)iter;
 	g_return_val_if_fail (check_iterator (real), FALSE);
@@ -588,7 +588,7 @@ gtk_text_region_iterator_next (GtkTextRegionIterator *iter)
 {
 	GtkTextRegionIteratorReal *real;
 
-	g_return_val_if_fail (iter != NULL, FALSE);	
+	g_return_val_if_fail (iter != NULL, FALSE);
 
 	real = (GtkTextRegionIteratorReal *)iter;
 	g_return_val_if_fail (check_iterator (real), FALSE);
@@ -601,7 +601,7 @@ gtk_text_region_iterator_next (GtkTextRegionIterator *iter)
 		return FALSE;
 }
 
-void       
+void
 gtk_text_region_iterator_get_subregion (GtkTextRegionIterator *iter,
 					GtkTextIter           *start,
 					GtkTextIter           *end)
@@ -624,11 +624,11 @@ gtk_text_region_iterator_get_subregion (GtkTextRegionIterator *iter,
 		gtk_text_buffer_get_iter_at_mark (real->region->buffer, end, sr->end);
 }
 
-void 
+void
 gtk_text_region_debug_print (GtkTextRegion *region)
 {
 	GList *l;
-	
+
 	g_return_if_fail (region != NULL);
 
 	g_print ("Subregions: ");

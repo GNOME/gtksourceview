@@ -1,73 +1,161 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE language SYSTEM "language.dtd">
-<language _name="LaTeX" version="1.0" _section="Markup" mimetypes="text/x-tex">
+<?xml version="1.0"?>
+<language id="latex" _name="LaTeX" version="2.0" _section="Markup">
+  <metadata>
+    <property name="mimetypes">text/x-tex</property>
+    <property name="globs">*.tex;*.ltx;*.sty;*.cls;*.dtx;*.ins;*.bbl</property>
+    <property name="line-comment-start">%</property>
+  </metadata>
 
-	<escape-char>\</escape-char>
+  <styles>
+    <style id="comment"            _name="Comment"    map-to="def:comment"/>
+    <style id="documentclass"      _name="Comment"    map-to="def:keyword"/>
+    <style id="usepackage"         _name="Comment"    map-to="def:keyword"/>
+    <style id="newcommand"         _name="Comment"    map-to="def:keyword"/>
+    <style id="display-math"       _name="Math Mode"/>
+    <style id="inline-math"        _name="Inline Math Mode" map-to="latex:display-math"/>
+    <style id="structure"          _name="Inline Math Mode"/>
+    <style id="section"            _name="Inline Math Mode"/>
+    <style id="math"               _name="Math Mode" map-to="latex:display-math"/>
+    <style id="math-bound"         _name="math-bound" map-to="latex:display-math"/>
+    <style id="include"            _name="Include"    map-to="def:keyword"/>
+    <style id="common-commands"    _name="Command"    map-to="def:keyword"/>
+    <style id="command"            _name="Command"    map-to="def:keyword"/>
+    <style id="verbatim"           _name="Verbatim"   map-to="def:comment"/>
+  </styles>
 
-	<line-comment _name="Comment" style="Comment">
-		<start-regex>%</start-regex>
-	</line-comment>
+  <definitions>
+        <context id="common-commands" style-ref="common-commands">
+            <prefix>\\</prefix>
 
-	<block-comment _name = "Math" style = "Comment">
-		<start-regex>\$</start-regex>
-        	<end-regex>\$</end-regex>
-	</block-comment>
+            <keyword>begin</keyword>
+            <keyword>end</keyword>
+            <keyword>documentclass</keyword>
+            <keyword>newcommand</keyword>
+            <keyword>newenvironment</keyword>
+            <keyword>newtheorem</keyword>
+            <keyword>newfont</keyword>
+            <keyword>part</keyword>
+            <keyword>chapter</keyword>
+            <keyword>section</keyword>
+            <keyword>subsection</keyword>
+            <keyword>subsubsection</keyword>
+            <keyword>paragraph</keyword>
+            <keyword>subparagraph</keyword>
+            <keyword>page</keyword>
+            <keyword>equation</keyword>
+            <keyword>figure</keyword>
+            <keyword>table</keyword>
+            <keyword>footnote</keyword>
+            <keyword>footnotemark</keyword>
+            <keyword>footnotetext</keyword>
+            <keyword>mpfootnote</keyword>
+            <keyword>enumi</keyword>
+            <keyword>enumii</keyword>
+            <keyword>enumiii</keyword>
+            <keyword>enumiv</keyword>
+            <keyword>label</keyword>
+            <keyword>pageref</keyword>
+            <keyword>ref</keyword>
+            <keyword>onecolumn</keyword>
+            <keyword>twocolumn</keyword>
+        </context>
 
-	<block-comment _name = "Comment Environment" style = "Comment">
-		<start-regex>\\begin\{comment\}</start-regex>
-        	<end-regex>\\end\{comment\}</end-regex>
-	</block-comment>
+        <context id="specials-symbol" style-ref="command">
+            <prefix>\\</prefix>
+            <suffix></suffix>
 
-	<keyword-list _name="Include" style="Preprocessor" case-sensitive="TRUE"
-		match-empty-string-at-beginning="FALSE"
-		match-empty-string-at-end="FALSE"
-		beginning-regex="\\">
-		<keyword>input</keyword>
-		<keyword>include</keyword>
-		<keyword>includeonly</keyword>
-		<keyword>usepackage</keyword>
-	</keyword-list>
+            <keyword>\$</keyword>
+            <keyword>&amp;</keyword>
+            <keyword>%</keyword>
+            <keyword>#</keyword>
+            <keyword>_</keyword>
+            <keyword>\{</keyword>
+            <keyword>\}</keyword>
+            <keyword>~</keyword>
+            <keyword>\^</keyword>
+            <keyword>\\</keyword>
+        </context>
 
-	<keyword-list _name="Command" style="Keyword" case-sensitive="TRUE"
-		match-empty-string-at-beginning="FALSE"
-		match-empty-string-at-end="FALSE"
-		beginning-regex="\\">
-		<keyword>\\</keyword>
-		<keyword>begin</keyword>
-		<keyword>end</keyword>
-		<keyword>documentclass</keyword>
-		<keyword>newcommand</keyword>
-		<keyword>newenvironment</keyword>
-		<keyword>newtheorem</keyword>
-		<keyword>newfont</keyword>
-		<keyword>part</keyword>
-		<keyword>chapter</keyword>
-		<keyword>section</keyword>
-		<keyword>subsection</keyword>
-		<keyword>subsubsection</keyword>
-		<keyword>paragraph</keyword>
-		<keyword>subparagraph</keyword>
-		<keyword>page</keyword>
-		<keyword>equation</keyword>
-		<keyword>figure</keyword>
-		<keyword>table</keyword>
-		<keyword>footnote</keyword>
-		<keyword>footnotemark</keyword>
-		<keyword>footnotetext</keyword>
-		<keyword>mpfootnote</keyword>
-		<keyword>enumi</keyword>
-		<keyword>enumii</keyword>
-		<keyword>enumiii</keyword>
-		<keyword>enumiv</keyword>
-		<keyword>label</keyword>
-		<keyword>pageref</keyword>
-		<keyword>ref</keyword>
-		<keyword>onecolumn</keyword>
-		<keyword>twocolumn</keyword>
-	</keyword-list>
+        <context id="command" style-ref="command">
+            <match>\\[a-zA-Z]+</match>
+        </context>
 
-	<pattern-item _name="Keyword" style="Others">
-		<regex>\\[a-zA-Z]+</regex>
-	</pattern-item>
+        <context id="latex">
+            <include>
 
+                <context id="comment" style-ref="comment">
+                    <start>%</start>
+                    <end>$</end>
+                    <include>
+                        <context ref="def:in-comment"/>
+                    </include>
+                </context>
+
+                <context id="verbatim-comment" style-ref="comment">
+                    <start>\\begin\{comment\}</start>
+                    <end>\\end\{comment\}</end>
+                    <include>
+                        <context ref="def:in-comment"/>
+                    </include>
+                </context>
+
+                <context id="math" style-ref="math">
+                    <start>\$\$</start>
+                    <end>\$\$</end>
+                    <include>
+                        <context sub-pattern="0" where="start" style-ref="math-bound"/>
+                        <context sub-pattern="0" where="end" style-ref="math-bound"/>
+                        <context ref="common-commands"/>
+                        <context ref="specials-symbol"/>
+                        <context ref="command"/>
+                    </include>
+                </context>
+
+                <context id="inline-math" style-ref="inline-math">
+                    <start>\$</start>
+                    <end>\$</end>
+                    <include>
+                        <context sub-pattern="0" where="start" style-ref="math-bound"/>
+                        <context sub-pattern="0" where="end" style-ref="math-bound"/>
+                        <context ref="common-commands"/>
+                        <context ref="specials-symbol"/>
+                        <context ref="command"/>
+                    </include>
+                </context>
+
+                <context id="verbatim-env" style-ref="verbatim">
+                    <start extended="true">
+                        /
+                            \\begin\{
+                                (
+                                    verbatim\*?|
+                                    lstlisting|
+                                    alltt
+                                )
+                            \}
+                        /x
+                    </start>
+                    <end>\\end\{\%{1@start}\}</end>
+                </context>
+
+                <context id="verbatim-inline" style-ref="verbatim">
+                    <start>\\(verb\*?|lstinline)(\S)</start>
+                    <end>\%{2@start}</end>
+                </context>
+
+                <context id="include" style-ref="include">
+                    <prefix>\\</prefix>
+
+                    <keyword>input</keyword>
+                    <keyword>include</keyword>
+                    <keyword>includeonly</keyword>
+                    <keyword>usepackage</keyword>
+                </context>
+
+                <context ref="common-commands"/>
+                <context ref="specials-symbol"/>
+                <context ref="command"/>
+            </include>
+        </context>
+  </definitions>
 </language>

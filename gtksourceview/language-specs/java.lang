@@ -1,99 +1,146 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE language SYSTEM "language.dtd">
-<language _name="Java" version="1.0" _section="Sources" mimetypes="text/x-java">
-	
-	<string _name = "String" style = "String" end-at-line-end = "TRUE">
-		<start-regex>&quot;</start-regex>
-		<end-regex>&quot;</end-regex>
-	</string>
+<language id="java" _name="Java" version="2.0" _section="Sources">
+  <metadata>
+    <property name="mimetypes">text/x-java</property>
+    <property name="globs">*.java</property>
+    <property name="line-comment-start">//</property>
+    <property name="block-comment-start">/*</property>
+    <property name="block-comment-end">*/</property>
+  </metadata>
 
-	<string _name = "String 2" style = "String" end-at-line-end = "TRUE">
-		<start-regex>&apos;</start-regex>
-		<end-regex>&apos;</end-regex>
-	</string>
+  <styles>
+    <style id="comment" _name="Comment" map-to="def:comment"/>
+    <style id="error" _name="Error" map-to="def:error"/>
+    <style id="string" _name="String" map-to="def:string"/>
+    <style id="keyword" _name="Keyword" map-to="def:keyword"/>
+    <style id="decimal" _name="Decimal" map-to="def:decimal"/>
+    <style id="specials" _name="Specials" map-to="def:specials"/>
+    <style id="data-type" _name="Data Type" map-to="def:data-type"/>
+    <style id="others" _name="Others"/>
+  </styles>
 
-	<line-comment _name = "Line Comment" style= "Comment">
-		<start-regex>//</start-regex>
-	</line-comment>
+  <definitions>
 
-	<block-comment _name = "Block Comment" style = "Comment">
-		<start-regex>/\*</start-regex>
-        	<end-regex>\*/</end-regex>
-	</block-comment>
+    <context id="string" style-ref="string" end-at-line-end="true">
+      <start>"</start>
+      <end>"</end>
+    </context>
 
-	<keyword-list _name = "Declarations" style = "Keyword" case-sensitive="TRUE">
-		<keyword>class</keyword>
-		<keyword>enum</keyword>
-		<keyword>extends</keyword>
-		<keyword>implements</keyword>
-		<keyword>import</keyword>
-		<keyword>instanceof</keyword>
-		<keyword>interface</keyword>
-		<keyword>native</keyword>
-		<keyword>package</keyword>
-		<keyword>volatile</keyword>
-		<keyword>throws</keyword>
-	</keyword-list>
+    <context id="string-2" style-ref="string" end-at-line-end="true">
+      <start>'</start>
+      <end>'</end>
+    </context>
 
-	<keyword-list _name = "Primitives" style = "Data Type" case-sensitive="TRUE">
-		<keyword>boolean</keyword>
-		<keyword>byte</keyword>
-		<keyword>char</keyword>
-		<keyword>double</keyword>
-		<keyword>float</keyword>
-		<keyword>int</keyword>
-		<keyword>long</keyword>
-		<keyword>short</keyword>
-	</keyword-list>
+    <context id="line-comment" style-ref="comment" end-at-line-end="true">
+      <start>\/\/</start>
+      <include>
+        <context ref="def:in-line-comment"/>
+      </include>
+    </context>
 
-	<keyword-list _name = "Flow" style = "Keyword" case-sensitive="TRUE">
-		<keyword>assert</keyword>
-		<keyword>break</keyword>
-		<keyword>case</keyword>
-		<keyword>catch</keyword>
-		<keyword>continue</keyword>
-		<keyword>default</keyword>
-		<keyword>do</keyword>
-      		<keyword>else</keyword>
-		<keyword>finally</keyword>
-		<keyword>for</keyword>
-		<keyword>if</keyword>
-		<keyword>return</keyword>
-		<keyword>synchronized</keyword>
-		<keyword>throw</keyword>
-		<keyword>switch</keyword>
-		<keyword>try</keyword>
-		<keyword>while</keyword>
-	</keyword-list>
+    <context id="block-comment" style-ref="comment">
+      <start>\/\*</start>
+      <end>\*\/</end>
+      <include>
+        <context ref="def:in-comment"/>
+      </include>
+    </context>
 
-	<keyword-list _name = "Modifiers" style = "Keyword" case-sensitive="TRUE">
-		<keyword>abstract</keyword>
-		<keyword>final</keyword>
-		<keyword>private</keyword>
-		<keyword>protected</keyword>
-		<keyword>public</keyword>
-		<keyword>static</keyword>
-		<keyword>strictfp</keyword>
-		<keyword>transient</keyword>
-	</keyword-list>
+    <context id="close-comment-outside-comment" style-ref="error">
+      <match>\*\/(?!\*)</match>
+    </context>
 
-	<keyword-list _name = "Memory" style = "Others" case-sensitive="TRUE">
-		<keyword>false</keyword>
-		<keyword>new</keyword>
-		<keyword>null</keyword>
-		<keyword>super</keyword>
-		<keyword>this</keyword>
-		<keyword>true</keyword>
-		<keyword>void</keyword>
-	</keyword-list>
+    <context id="declarations" style-ref="keyword">
+      <keyword>class</keyword>
+      <keyword>enum</keyword>
+      <keyword>extends</keyword>
+      <keyword>implements</keyword>
+      <keyword>import</keyword>
+      <keyword>instanceof</keyword>
+      <keyword>interface</keyword>
+      <keyword>native</keyword>
+      <keyword>package</keyword>
+      <keyword>volatile</keyword>
+      <keyword>throws</keyword>
+    </context>
 
-	<keyword-list _name = "Future Reserved Words" style = "Specials" case-sensitive="TRUE">
-		<keyword>const</keyword>
-		<keyword>goto</keyword>
-	</keyword-list>
+    <context id="primitives" style-ref="data-type">
+      <keyword>boolean</keyword>
+      <keyword>byte</keyword>
+      <keyword>char</keyword>
+      <keyword>double</keyword>
+      <keyword>float</keyword>
+      <keyword>int</keyword>
+      <keyword>long</keyword>
+      <keyword>short</keyword>
+    </context>
 
-	<pattern-item _name = "Numeric" style = "Decimal">
-		<regex>(\b([0-9]+|0[xX][0-9a-fA-F]+)[Ll]?\b|\b(([0-9]+[Ee][-]?[0-9]+|([0-9]*\.[0-9]+|[0-9]+\.)([Ee][-]?[0-9]+)?)[fFdD]?|[0-9]+[FfDd]))</regex>
-	</pattern-item>
+    <context id="flow" style-ref="keyword">
+      <keyword>assert</keyword>
+      <keyword>break</keyword>
+      <keyword>case</keyword>
+      <keyword>catch</keyword>
+      <keyword>continue</keyword>
+      <keyword>default</keyword>
+      <keyword>do</keyword>
+      <keyword>else</keyword>
+      <keyword>finally</keyword>
+      <keyword>for</keyword>
+      <keyword>if</keyword>
+      <keyword>return</keyword>
+      <keyword>synchronized</keyword>
+      <keyword>throw</keyword>
+      <keyword>switch</keyword>
+      <keyword>try</keyword>
+      <keyword>while</keyword>
+    </context>
 
+    <context id="modifiers" style-ref="keyword">
+      <keyword>abstract</keyword>
+      <keyword>final</keyword>
+      <keyword>private</keyword>
+      <keyword>protected</keyword>
+      <keyword>public</keyword>
+      <keyword>static</keyword>
+      <keyword>strictfp</keyword>
+      <keyword>transient</keyword>
+    </context>
+
+    <context id="memory" style-ref="others">
+      <keyword>false</keyword>
+      <keyword>new</keyword>
+      <keyword>null</keyword>
+      <keyword>super</keyword>
+      <keyword>this</keyword>
+      <keyword>true</keyword>
+      <keyword>void</keyword>
+    </context>
+
+    <context id="future-reserved-words" style-ref="specials">
+      <keyword>const</keyword>
+      <keyword>goto</keyword>
+    </context>
+
+    <context id="numeric" style-ref="decimal">
+      <match>(\b([0-9]+|0[xX][0-9a-fA-F]+)[Ll]?\b|\b(([0-9]+[Ee][-]?[0-9]+|([0-9]*\.[0-9]+|[0-9]+\.)([Ee][-]?[0-9]+)?)[fFdD]?|[0-9]+[FfDd]))</match>
+    </context>
+
+    <context id="java">
+      <include>
+        <context ref="string"/>
+        <context ref="string-2"/>
+        <context ref="line-comment"/>
+        <context ref="block-comment"/>
+        <context ref="close-comment-outside-comment"/>
+        <context ref="declarations"/>
+        <context ref="primitives"/>
+        <context ref="flow"/>
+        <context ref="modifiers"/>
+        <context ref="memory"/>
+        <context ref="future-reserved-words"/>
+        <context ref="numeric"/>
+      </include>
+    </context>
+
+  </definitions>
 </language>

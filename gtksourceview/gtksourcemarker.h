@@ -1,4 +1,4 @@
-/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8; coding: utf-8 -*- 
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8; coding: utf-8 -*-
  *  gtksourcemarker.h
  *
  *  Copyright (C) 2003 - Gustavo Giráldez <gustavo.giraldez@gmx.net>
@@ -42,7 +42,8 @@ void                  gtk_source_marker_set_marker_type (GtkSourceMarker *marker
 gchar                *gtk_source_marker_get_marker_type (GtkSourceMarker *marker);
 gint                  gtk_source_marker_get_line        (GtkSourceMarker *marker);
 G_CONST_RETURN gchar *gtk_source_marker_get_name        (GtkSourceMarker *marker);
-GtkSourceBuffer      *gtk_source_marker_get_buffer      (GtkSourceMarker *marker);
+/* FIXME: move GtkSourceMarker declaration to gtktextbuffer.h? */
+gpointer	      gtk_source_marker_get_buffer      (GtkSourceMarker *marker);
 GtkSourceMarker      *gtk_source_marker_next            (GtkSourceMarker *marker);
 GtkSourceMarker      *gtk_source_marker_prev            (GtkSourceMarker *marker);
 

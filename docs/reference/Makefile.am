@@ -1,5 +1,5 @@
-GTKDOC_CFLAGS = -I$(top_srcdir) $(DEP_CFLAGS) $(GNOMEPRINT_CFLAGS)
-GTKDOC_LIBS = $(top_builddir)/gtksourceview/libgtksourceview-1.0.la
+GTKDOC_CFLAGS = -I$(top_srcdir) $(DEP_CFLAGS)
+GTKDOC_LIBS = $(top_builddir)/gtksourceview/libgtksourceview-2.0.la
 
 ## Process this file with automake to produce Makefile.in
 AUTOMAKE_OPTIONS = 1.7
@@ -24,15 +24,21 @@ CFILE_GLOB = $(top_srcdir)/gtksourceview/*.c
 IGNORE_HFILES =					\
 	config.h				\
 	gtksourcelanguage-private.h		\
-	gtksourceregex.h			\
 	gtksourcetag-private.h			\
 	gtksourceundomanager.h			\
 	gtksourceview-i18n.h			\
 	gtksourceview-marshal.h			\
 	gtksourceview-typebuiltins.h		\
+	gtksourceview-utils.h			\
 	gtktextregion.h				\
-	regex.h					\
-	regex_internal.h
+	gtksourceengine.h			\
+	gtksourcecontextengine.h		\
+	gtksourceprintjob.h			\
+	eggregex.h				\
+	pcre.h					\
+	pcre_internal.h				\
+	ucp.h					\
+	ucpinternal.h
 
 # Extra options to supply to gtkdoc-mkdb
 MKDB_OPTIONS = --sgml-mode --output-format=xml --ignore-files=trio
@@ -41,7 +47,10 @@ MKDB_OPTIONS = --sgml-mode --output-format=xml --ignore-files=trio
 HTML_IMAGES =
 
 # Extra SGML files that are included by $(DOC_MAIN_SGML_FILE)
-content_files =	version.xml
+content_files =			\
+	version.xml		\
+	lang-tutorial.sgml	\
+	lang-reference.sgml
 
 # Extra options to supply to gtkdoc-fixref
 FIXXREF_OPTIONS=

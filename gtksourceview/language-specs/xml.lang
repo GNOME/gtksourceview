@@ -1,44 +1,182 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE language SYSTEM "language.dtd">
-<language _name="XML" version="1.0" _section="Markup" mimetypes="application/xml;text/xml">
-	
-	<block-comment _name="Block Comment" style="Comment">
-		<start-regex>&lt;!--</start-regex>
-        	<end-regex>--&gt;</end-regex>
-	</block-comment>
+<language id="xml" _name="XML" version="2.0" _section="Markup">
+    <metadata>
+      <property name="mimetypes">application/xml;text/xml</property>
+      <property name="globs">*.xml;*.xspf;*.siv;*.smil;*.smi;*.sml;*.kino;*.xul;*.xbel;*.abw;*.zabw;*.glade;*.jnlp;*.xhtml;*.svg;*.docbook;*.mml;*.rdf;*.rss;*.wml;*.xmi;*.fo;*.xslfo;*.xslt;*.xsl</property>
+      <property name="block-comment-start">&lt;!--</property>
+      <property name="block-comment-end">--&gt;</property>
+    </metadata>
 
-	<syntax-item name="DOCTYPE" style="String">
-		<start-regex>&lt;!DOCTYPE</start-regex>
-		<end-regex>&gt;</end-regex>
-	</syntax-item>
+    <styles>
+        <style id="comment"                 _name="Comment"                 map-to="def:comment"/>
+        <style id="doctype"                 _name="DOCTYPE"/>
+        <style id="cdata-delim"             _name="CDATA Delimiters"/>
+        <style id="processing-instruction"  _name="Processing Instruction"/>
+        <style id="attribute-name"          _name="Attribute Name"/> <!--map-to="def:others3"-->
+        <style id="attribute-value"         _name="Attribute Value"         map-to="def:string"/>
+        <style id="entity"                  _name="Entity"                  map-to="def:escape"/>
+        <style id="tags"                    _name="Tag"/> <!--map-to="def:others2"-->
+        <style id="namespace"               _name="Namespace"/> <!--map-to="def:others"-->
+        <style id="error"                   _name="Error"                   map-to="def:error"/>
+    </styles>
 
-	<syntax-item name="CDATA" style="String">
-		<start-regex>&lt;!\[CDATA\[</start-regex>
-		<end-regex>\]\]&gt;</end-regex>
-	</syntax-item>
+    <definitions>
+        <define-regex id="prefix">[a-zA-Z_][a-zA-Z0-9._-]*</define-regex>
 
-	<pattern-item _name="String" style="String">
-		<regex>(&quot;[^&lt;&quot;]*&quot;)|(&apos;[^&lt;&apos;]*&apos;)</regex>
-	</pattern-item>
- 
-	<pattern-item _name="Entity" style="Keyword">
-		<regex>(&amp;|%)[a-zA-Z0-9#][a-zA-Z0-9]*;</regex>
-	</pattern-item>
+        <define-regex id="name">[a-zA-Z_][a-zA-Z0-9.:_-]*</define-regex>
 
-	<pattern-item _name="Closing Bracket" style="Others 2">
-		<regex>\??&gt;</regex>
-	</pattern-item>
+        <context id="entity" style-ref="entity">
+            <match>&amp;\%{name};</match>
+        </context>
 
-	<pattern-item _name = "Tag" style = "Others 2">
-		<regex>(&lt;/?[a-zA-Z_:][a-zA-Z0-9_:.-]*(\b|\&gt;)|&lt;\?[xX][mM][lL]\b)</regex>
-	</pattern-item>
+        <context id="character-reference" style-ref="entity">
+            <match>&amp;#([0-9]+|x[a-fA-F0-9]+);</match>
+        </context>
 
-	<pattern-item _name="Attribute" style = "Others">
-		<regex>\b[a-zA-Z_:][a-zA-Z0-9_:.-]*\b[ \t]*=</regex>
-	</pattern-item>
+        <context id="unallowed-chars" style-ref="error" extend-parent="false">
+            <match>[&amp;&lt;]</match>
+        </context>
 
-	<pattern-item _name ="Hexadecimal" style = "Base-N Integer">
-		<regex>#[a-fA-F0-9][a-fA-F0-9][a-fA-F0-9][a-fA-F0-9][a-fA-F0-9][a-fA-F0-9]</regex>
-	</pattern-item>
+        <context id="attribute" style-ref="attribute-value">
+            <start>((\%{prefix}:)?\%{name}\s*=\s*)(["'])</start>
+            <end>\%{3@start}</end>
+            <include>
+                <context sub-pattern="1" where="start" style-ref="attribute-name" />
+                <context sub-pattern="2" where="start" style-ref="namespace" />
+                <context ref="entity"/>
+                <context ref="character-reference"/>
+                <context ref="unallowed-chars"/>
+            </include>
+        </context>
 
+        <context id="comment" style-ref="comment">
+            <start>&lt;!--</start>
+            <end>--&gt;</end>
+            <include>
+                <context style-ref="error" extend-parent="false">
+                    <match>--+</match>
+                </context>
+                <context ref="def:in-comment"/>
+            </include>
+        </context>
+
+        <context id="doctype">
+            <start>(&lt;!DOCTYPE)\s+(\%{name})</start>
+            <end>&gt;</end>
+            <include>
+              <context sub-pattern="1" where="start" style-ref="doctype"/>
+              <context sub-pattern="2" where="start" style-ref="doctype"/>
+              <context sub-pattern="0" where="end" style-ref="doctype"/>
+              <context>
+                <match>(SYSTEM)\s+(\"[^\"]*\")</match>
+                <include>
+                  <context sub-pattern="1" style-ref="doctype"/>
+                  <context sub-pattern="2" style-ref="attribute-value"/>
+                </include>
+              </context>
+              <context>
+                <match>(PUBLIC)\s+(\"[^\"]*\")\s+(\"[^\"]*\")</match>
+                <include>
+                  <context sub-pattern="1" style-ref="doctype"/>
+                  <context sub-pattern="2" style-ref="attribute-value"/>
+                  <context sub-pattern="3" style-ref="attribute-value"/>
+                </include>
+              </context>
+              <context>
+                <start>\[</start>
+                <end>\]</end>
+                <include>
+                  <context sub-pattern="0" where="start" style-ref="doctype"/>
+                  <context sub-pattern="0" where="end" style-ref="doctype"/>
+                  <context ref="dtd:dtd"/>
+                </include>
+              </context>
+            </include>
+        </context>
+
+        <context id="cdata">
+            <start>&lt;!\[CDATA\[</start>
+            <end>\]\]&gt;</end>
+            <include>
+                <context sub-pattern="0" where="start" style-ref="cdata-delim"/>
+                <context sub-pattern="0" where="end" style-ref="cdata-delim"/>
+            </include>
+        </context>
+
+        <context id="prolog">
+            <start>&lt;\?xml</start>
+            <end>\?&gt;</end>
+            <include>
+                <context sub-pattern="0" where="start" style-ref="processing-instruction"/>
+                <context sub-pattern="0" where="end" style-ref="processing-instruction"/>
+                <context ref="attribute"/>
+            </include>
+        </context>
+
+        <context id="processing-instruction" style-ref="processing-instruction">
+            <start>&lt;\?</start>
+            <end>\?&gt;</end>
+        </context>
+
+        <!-- Tags are divided in two parts, one external and one internal
+           -          <tag attr="foo">  [...]  <tag>
+           -          |____________________________|  external
+           -                         |_________|      internal
+           -               |________|                 attributes
+           -->
+        <context id="tag">
+            <!-- This matches the external portion
+               -  <tag  [...]  tag>
+               -->
+            <start>&lt;\s*(\%{prefix}:)?\%{name}</start>
+            <end>\/\s*((\%{prefix}:)?\%{name}\s*&gt;)|/&gt;</end>
+            <include>
+                <context sub-pattern="1" where="start" style-ref="namespace" />
+                <context sub-pattern="0" where="start" style-ref="tags" />
+                <context sub-pattern="2" where="end" style-ref="namespace" />
+                <context sub-pattern="0" where="end" style-ref="tags" />
+
+                <context ref="attribute"/>
+
+                <context id="tag-internal">
+                <!-- This matches the internal portion
+                   -  >  [...]  <
+                   -->
+                    <start>&gt;</start>
+                    <end>&lt;(?=/)</end>
+                    <include>
+                        <context sub-pattern="0" where="start" style-ref="tags" />
+                        <context sub-pattern="0" where="end" style-ref="tags" />
+                        <context ref="tag"/>
+                        <context ref="comment"/>
+                        <context ref="entity"/>
+             	        <context ref="character-reference"/>
+                        <context ref="cdata"/>
+                        <context ref="processing-instruction"/>
+                        <context ref="unallowed-chars"/>
+                    </include>
+                </context>
+
+                <context style-ref="error" extend-parent="false">
+                    <match>\S</match>
+                </context>
+            </include>
+        </context>
+
+        <context id="xml">
+            <include>
+                <context ref="comment"/>
+                <context ref="doctype"/>
+                <context ref="cdata"/>
+                <context ref="prolog"/>
+                <context ref="processing-instruction"/>
+
+                <context ref="tag"/>
+
+                <context style-ref="error">
+                    <match>\S</match>
+                </context>
+            </include>
+        </context>
+    </definitions>
 </language>

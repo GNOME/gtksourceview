@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<grammar xmlns="http://relaxng.org/ns/structure/1.0"
+         datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+
+<start>
+  <element name="style-scheme">
+    <attribute name="id">
+      <data type="string">
+        <param name="pattern">([a-zA-Z0-9_]|-)+</param>
+      </data>
+    </attribute>
+
+    <choice>
+      <attribute name="name"/>
+      <attribute name="_name"/>
+    </choice>
+
+    <optional>
+      <oneOrMore>
+          <element name="style">
+              <attribute name="name"/>
+
+              <optional>
+                <choice>
+                  <attribute name="use-style"/>
+                  <ref name="style-elements"/>
+                </choice>
+              </optional>
+          </element>
+      </oneOrMore>
+    </optional>
+  </element>
+</start>
+
+<define name="boolean-value">
+  <choice>
+    <value>true</value>
+    <value>false</value>
+  </choice>
+</define>
+
+<define name="style-elements">
+  <optional>
+    <attribute name="foreground"/>
+  </optional>
+  <optional>
+    <attribute name="background"/>
+  </optional>
+  <optional>
+    <attribute name="bold">
+      <ref name="boolean-value"/>
+    </attribute>
+  </optional>
+  <optional>
+    <attribute name="italic">
+      <ref name="boolean-value"/>
+    </attribute>
+  </optional>
+  <optional>
+    <attribute name="underline">
+      <ref name="boolean-value"/>
+    </attribute>
+  </optional>
+  <optional>
+    <attribute name="strikethrough">
+      <ref name="boolean-value"/>
+    </attribute>
+  </optional>
+</define>
+
+</grammar>

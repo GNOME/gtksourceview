@@ -31,15 +31,18 @@
 #ifndef __GTKSOURCEVIEW_18N_H__
 #define __GTKSOURCEVIEW_18N_H__ 1
 
-#include <glib.h>
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
 
+#include <glib.h>
 
 G_BEGIN_DECLS
 
 #ifdef ENABLE_NLS
 #    include <libintl.h>
 #    undef _
-#    define _(String) gtksourceview_gettext (String)
+#    define _(String) _gtksourceview_gettext (String)
 #    ifdef gettext_noop
 #        define N_(String) gettext_noop (String)
 #    else
@@ -65,7 +68,7 @@ G_BEGIN_DECLS
 #    define N_(String) (String)
 #endif
 
-char *gtksourceview_gettext (const char *msgid);
+char *_gtksourceview_gettext (const char *msgid);
 
 G_END_DECLS
 

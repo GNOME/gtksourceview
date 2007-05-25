@@ -1,0 +1,70 @@
+<!-- ##### SECTION Title ##### -->
+GtkSourceStyle
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### ENUM GtkSourceStyleMask ##### -->
+<para>
+
+</para>
+
+@GTK_SOURCE_STYLE_USE_BACKGROUND: 
+@GTK_SOURCE_STYLE_USE_FOREGROUND: 
+@GTK_SOURCE_STYLE_USE_ITALIC: 
+@GTK_SOURCE_STYLE_USE_BOLD: 
+@GTK_SOURCE_STYLE_USE_UNDERLINE: 
+@GTK_SOURCE_STYLE_USE_STRIKETHROUGH: 
+
+<!-- ##### STRUCT GtkSourceStyle ##### -->
+<para>
+
+</para>
+
+@mask: 
+@foreground: 
+@background: 
+@italic: 
+@bold: 
+@underline: 
+@strikethrough: 
+
+<!-- ##### FUNCTION gtk_source_style_new ##### -->
+<para>
+
+</para>
+
+@mask: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gtk_source_style_copy ##### -->
+<para>
+
+</para>
+
+@style: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gtk_source_style_free ##### -->
+<para>
+
+</para>
+
+@style: 
+
+

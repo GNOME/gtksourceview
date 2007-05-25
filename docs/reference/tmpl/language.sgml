@@ -23,15 +23,51 @@ GtkSourceLanguage
 </para>
 
 
-<!-- ##### SIGNAL GtkSourceLanguage::tag-style-changed ##### -->
+<!-- ##### STRUCT GtkSourceLanguageClass ##### -->
 <para>
 
 </para>
 
-@sourcelanguage: the object which received the signal.
-@arg1: 
+@parent_class: 
+
+<!-- ##### FUNCTION gtk_source_language_get_id ##### -->
+<para>
+
+</para>
+
+@language: 
+@Returns: 
+
 
 <!-- ##### FUNCTION gtk_source_language_get_name ##### -->
+<para>
+
+</para>
+
+@language: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gtk_source_language_get_metadata ##### -->
+<para>
+
+</para>
+
+@language: 
+@name: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gtk_source_language_get_mime_types ##### -->
+<para>
+
+</para>
+
+@language: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gtk_source_language_get_globs ##### -->
 <para>
 
 </para>
@@ -46,90 +82,6 @@ GtkSourceLanguage
 </para>
 
 @language: 
-@Returns: 
-
-
-<!-- ##### FUNCTION gtk_source_language_get_tags ##### -->
-<para>
-
-</para>
-
-@language: 
-@Returns: 
-
-
-<!-- ##### FUNCTION gtk_source_language_get_escape_char ##### -->
-<para>
-
-</para>
-
-@language: 
-@Returns: 
-
-
-<!-- ##### FUNCTION gtk_source_language_get_mime_types ##### -->
-<para>
-
-</para>
-
-@language: 
-@Returns: 
-
-
-<!-- ##### FUNCTION gtk_source_language_set_mime_types ##### -->
-<para>
-
-</para>
-
-@language: 
-@mime_types: 
-
-
-<!-- ##### FUNCTION gtk_source_language_get_style_scheme ##### -->
-<para>
-
-</para>
-
-@language: 
-@Returns: 
-
-
-<!-- ##### FUNCTION gtk_source_language_set_style_scheme ##### -->
-<para>
-
-</para>
-
-@language: 
-@scheme: 
-
-
-<!-- ##### FUNCTION gtk_source_language_get_tag_style ##### -->
-<para>
-
-</para>
-
-@language: 
-@tag_id: 
-@Returns: 
-
-
-<!-- ##### FUNCTION gtk_source_language_set_tag_style ##### -->
-<para>
-
-</para>
-
-@language: 
-@tag_id: 
-@style: 
-
-
-<!-- ##### FUNCTION gtk_source_language_get_tag_default_style ##### -->
-<para>
-
-</para>
-
-@language: 
-@tag_id: 
 @Returns: 
 
 

@@ -23,25 +23,13 @@ GtkSourceMarker
 </para>
 
 
-<!-- ##### FUNCTION gtk_source_marker_set_marker_type ##### -->
+<!-- ##### TYPEDEF GtkSourceMarkerClass ##### -->
 <para>
 
 </para>
 
-@marker: 
-@type: 
 
-
-<!-- ##### FUNCTION gtk_source_marker_get_marker_type ##### -->
-<para>
-
-</para>
-
-@marker: 
-@Returns: 
-
-
-<!-- ##### FUNCTION gtk_source_marker_get_line ##### -->
+<!-- ##### FUNCTION gtk_source_marker_get_buffer ##### -->
 <para>
 
 </para>
@@ -59,7 +47,25 @@ GtkSourceMarker
 @Returns: 
 
 
-<!-- ##### FUNCTION gtk_source_marker_get_buffer ##### -->
+<!-- ##### FUNCTION gtk_source_marker_get_line ##### -->
+<para>
+
+</para>
+
+@marker: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gtk_source_marker_set_marker_type ##### -->
+<para>
+
+</para>
+
+@marker: 
+@type: 
+
+
+<!-- ##### FUNCTION gtk_source_marker_get_marker_type ##### -->
 <para>
 
 </para>

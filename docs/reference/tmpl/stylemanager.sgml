@@ -1,0 +1,94 @@
+<!-- ##### SECTION Title ##### -->
+GtkSourceStyleManager
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT GtkSourceStyleManager ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SIGNAL GtkSourceStyleManager::changed ##### -->
+<para>
+
+</para>
+
+@sourcestylemanager: the object which received the signal.
+
+<!-- ##### ARG GtkSourceStyleManager:search-path ##### -->
+<para>
+
+</para>
+
+<!-- ##### STRUCT GtkSourceStyleManagerClass ##### -->
+<para>
+
+</para>
+
+@parent_class: 
+@changed: 
+@_gtk_source_reserved1: 
+@_gtk_source_reserved2: 
+@_gtk_source_reserved3: 
+@_gtk_source_reserved4: 
+
+<!-- ##### FUNCTION gtk_source_style_manager_new ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+
+<!-- ##### FUNCTION gtk_source_style_manager_get_scheme ##### -->
+<para>
+
+</para>
+
+@manager: 
+@scheme_id: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gtk_source_style_manager_list_schemes ##### -->
+<para>
+
+</para>
+
+@manager: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gtk_source_style_manager_set_search_path ##### -->
+<para>
+
+</para>
+
+@manager: 
+@path: 
+
+
+<!-- ##### FUNCTION gtk_source_style_manager_get_search_path ##### -->
+<para>
+
+</para>
+
+@manager: 
+@Returns: 
+
+
