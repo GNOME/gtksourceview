@@ -7,7 +7,7 @@ INCLUDES = 				\
 	-DG_LOG_DOMAIN=\"GtkSourceView\"\
 	-I$(top_srcdir) -I$(srcdir) 	\
 	-DTOP_SRCDIR=\""$(ABS_TOP_SRCDIR)"\"\
-	$(DEPRECATED_FLAGS)		\
+	$(DISABLE_DEPRECATED_CFLAGS)	\
 	$(WARN_CFLAGS) 			\
 	$(DEP_CFLAGS)			\
 	$(GVFS_FLAG)			\

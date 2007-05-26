@@ -1,6 +1,6 @@
-INCLUDES =		\
-  $(DEPRECATED_FLAGS)	\
-  $(DEP_CFLAGS)		\
+INCLUDES =			\
+  $(DISABLE_DEPRECATED_CFLAGS)	\
+  $(DEP_CFLAGS)			\
   -I$(top_builddir)
 
 noinst_LTLIBRARIES = libpcre.la

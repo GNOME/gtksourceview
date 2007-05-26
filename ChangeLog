@@ -1,3 +1,13 @@
+2007-05-26  Paolo Borelli  <pborelli@katamail.com>
+
+	* configure.ac:
+	* Makefile.am:
+	* gtksourceview/Makefile.am:
+	* gtksourceprintjob.[ch]:
+	* tests/Makefile.am:
+
+	Modernize build system a bit and remove all traces of gnome-print.
+
 === gtksourceview 1.90.0 ===
 
 2007-05-26  Steve Frécinaux  <code@istique.net>

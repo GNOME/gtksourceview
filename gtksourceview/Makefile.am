@@ -11,10 +11,9 @@ INCLUDES = 				\
 	-DG_LOG_DOMAIN=\"GtkSourceView\"\
 	-I$(top_srcdir) -I$(srcdir) 	\
 	-I$(srcdir)/libegg/regex 	\
-	$(DEPRECATED_FLAGS)		\
+	$(DISABLE_DEPRECATED_CFLAGS)	\
 	$(WARN_CFLAGS) 			\
-	$(DEP_CFLAGS)			\
-	$(GNOMEPRINT_CFLAGS)
+	$(DEP_CFLAGS)
 
 BUILT_SOURCES = 			\
 	gtksourceview-marshal.c 	\
@@ -64,16 +63,8 @@ libgtksourceview_2_0_la_SOURCES = 	\
 	$(libgtksourceview_headers)	\
 	$(BUILT_SOURCES)
 
-if HAVE_GNOMEPRINT
-libgtksourceview_headers += gtksourceprintjob.h
-libgtksourceview_2_0_la_SOURCES += gtksourceprintjob.c gtksourceprintjob.h
-endif
-
-
 libgtksourceview_2_0_la_LIBADD = $(DEP_LIBS) $(EGGREGEX_LIBS) $(GNOMEPRINT_LIBS)
-
 libgtksourceview_2_0_la_LDFLAGS = -no-undefined -export-symbols-regex "^gtk_source_.*"
-
 libgtksourceview_2_0_includedir = $(includedir)/gtksourceview-2.0/gtksourceview
 
 libgtksourceview_2_0_include_HEADERS =		\
@@ -120,9 +111,7 @@ $(srcdir)/gtksourceview-typebuiltins.h: Makefile.am $(libgtksourceview_headers)
 	&& (cmp -s xgen-gth $(@F) || cp xgen-gth $(@F)) \
 	&& rm -f xgen-gth
 
-EXTRA_DIST = 				\
-	gtksourceview-marshal.list	\
-	gtksourceprintjob.c		\
-	gtksourceprintjob.h
+EXTRA_DIST = \
+	gtksourceview-marshal.list
 
 CLEANFILES = $(BUILT_SOURCES)

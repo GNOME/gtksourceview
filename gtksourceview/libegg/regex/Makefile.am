@@ -9,9 +9,9 @@ pcre_lib = $(PCRE_LIBS)
 pcre_incl = $(PCRE_CFLAGS)
 endif
 
-INCLUDES =			\
-	$(DEPRECATED_FLAGS)	\
-	$(DEP_CFLAGS)		\
+INCLUDES =				\
+	$(DISABLE_DEPRECATED_CFLAGS)	\
+	$(DEP_CFLAGS)			\
 	$(pcre_incl)
 
 noinst_LTLIBRARIES = libeggregex.la
