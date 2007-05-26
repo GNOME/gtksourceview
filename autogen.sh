@@ -7,7 +7,7 @@ srcdir=`cd $srcdir && pwd`
 
 PKG_NAME="gtksourceview"
 
-(test -f $srcdir/configure.in \
+(test -f $srcdir/configure.ac \
   && test -f $srcdir/README \
   && test -d $srcdir/gtksourceview) || {
     echo -n "**Error**: Directory "\`$srcdir\'" does not look like the"
@@ -20,8 +20,7 @@ which gnome-autogen.sh || {
     exit 1
 }
 
-REQUIRED_AUTOMAKE_VERSION=1.7.2
-
+REQUIRED_AUTOMAKE_VERSION=1.8
 USE_GNOME2_MACROS=1 NOCONFIGURE=1 . gnome-autogen.sh
 # conf_flags="--enable-maintainer-mode --enable-gtk-doc"
 conf_flags="--enable-maintainer-mode"
