@@ -23,7 +23,7 @@
     </context>
 
     <context id="m4-function-call"><!-- style-ref="test:_violet"-->
-      <start>\((?!\))</start>
+      <start>(?&lt;=[\w\d_])\((?!\))</start>
       <end>\)</end>
       <include>
         <context ref="ARG-M"/>

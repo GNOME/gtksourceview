@@ -40,6 +40,7 @@
       <keyword>DATE</keyword>
       <keyword>TIMESTAMP</keyword>
       <keyword>INTERVAL</keyword>
+      <!-- FIXME no \n in patterns! -->
       <keyword>(LONG[ \t\n]+)?RAW</keyword>
       <keyword>U?ROWID</keyword>
       <keyword>N?CHAR</keyword>
@@ -48,14 +49,18 @@
       <keyword>BINARY_(FLOAT|DOUBLE)</keyword>
     </context>
     <context id="ansi-datatypes" style-ref="data-type">
+      <!-- FIXME no \n in patterns! -->
       <keyword>(NATIONAL[ \t\n]+)?CHAR(ACTER)?([ \t\n]+VARYING)?</keyword>
+      <!-- FIXME no \n in patterns! -->
       <keyword>NCHAR([ \t\n]+VARYING)?</keyword>
       <keyword>NUMERIC|DECIMAL</keyword>
       <keyword>INTEGER|INT|SMALLINT</keyword>
+      <!-- FIXME no \n in patterns! -->
       <keyword>FLOAT|DOUBLE[ \t\n]+PRECISION|REAL</keyword>
     </context>
     <context id="sql-ds-and-db2-datatypes" style-ref="data-type">
       <keyword>CHARACTER</keyword>
+      <!-- FIXME no \n in patterns! -->
       <keyword>(LONG[ \t\n]+)?VARCHAR</keyword>
       <keyword>DECIMAL</keyword>
       <keyword>INTEGER|SMALLINT</keyword>

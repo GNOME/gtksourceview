@@ -43,6 +43,7 @@
                     <start>\/\/</start>
                     <end>$</end>
                     <include>
+                        <!-- FIXME no \n in patterns! -->
                         <context id="comment-continue">
                             <match>\\\n</match>
                         </context>
@@ -63,6 +64,7 @@
                     <start>"</start>
                     <end>"</end>
                     <include>
+                        <!-- FIXME no \n in patterns! -->
                         <context id="string-continue" style-ref="escape">
                             <match>\\\n</match>
                         </context>

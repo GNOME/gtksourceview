@@ -19,9 +19,6 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
-/* FIXME adjacent invalid segments: is it a problem? it should be taken care of,
- * but need to check anyway (it's really impossible to *test*) */
-
 #include "gtksourceview-i18n.h"
 #include "gtksourcecontextengine.h"
 #include "gtktextregion.h"

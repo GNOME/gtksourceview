@@ -36,6 +36,7 @@
         <context ref="def:line-continue"/>
       </include>
     </context>
+    <!-- FIXME no \n in patterns! -->
     <context id="comment" style-ref="comment" end-at-line-end="true">
       <start>^#$|^#[^:,\n]</start>
       <include>

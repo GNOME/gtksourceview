@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<style-scheme id="kate" _name="Kate">
+  <style name="current-line"                foreground="#EEF6FF"/>
+  <style name="bracket-match"               background="#FFFF99" bold="true"/>
+  <style name="bracket-mismatch"            background="#FF0000" bold="true"/>
+
+  <style name="Others"                      foreground="#800000"/>
+  <style name="Others 2"                    bold="true"/>
+  <style name="Others 3"                    foreground="#008000"/>
+
+  <style name="def:string"                  foreground="#DD0000"/>
+  <style name="def:comment"                 foreground="#808080" italic="true" bold="false"/>
+  <style name="def:base-n-integer"          foreground="#008080"/>
+  <style name="def:complex"                 use-style="def:base-n-integer"/>
+  <style name="def:keyword"                 bold="true"/>
+  <style name="def:data-type"               foreground="#800000"/>
+  <style name="def:decimal"                 foreground="#0000FF"/>
+  <style name="def:floating-point"          foreground="#800080"/>
+  <style name="def:character"               foreground="#FF00FF"/>
+  <style name="def:note"                    foreground="#FFFFFF" background="#FFCCCC" bold="true" italic="false"/>
+  <style name="def:function"                foreground="#000080"/>
+  <style name="def:error"                   foreground="#FF0000" underline="true"/>
+  <style name="def:shebang"                 foreground="#808080" bold="true"/>
+  <style name="def:net-address-in-comment"  underline="true"/>
+  <style name="def:escape"                  foreground="#FF00FF"/>
+
+  <style name="def:specials"                foreground="#FFFFFF" background="#FF0000"/>
+  <style name="def:preprocessor"            foreground="#008000"/>
+
+  <style name="c:common-defines"            foreground="#0095ff" bold="true"/>
+  <style name="c:preprocessor"              foreground="#008000"/>
+
+  <style name="gtk-doc:inline-docs"         foreground="blue"/>
+
+  <style name="diff:diff-file"              use-style="def:keyword"/>
+  <style name="diff:added-line"             use-style="def:decimal"/>
+  <style name="diff:removed-line"           use-style="def:string"/>
+  <style name="diff:changed-line"           use-style="c:preprocessor"/>
+  <style name="diff:special-case"/>
+  <style name="diff:location"               use-style="def:data-type"/>
+
+  <style name="xml:attribute-name"          foreground="#008000"/>
+  <style name="xml:tags"                    bold="true"/>
+  <style name="xml:namespace"               foreground="#008000"/>
+  <style name="xml:entity"                  foreground="#0000FF"/>
+  <style name="xml:cdata-delim"             foreground="#008080" bold="true"/>
+  <style name="xml:processing-instruction"  bold="true"/>
+  <style name="xml:doctype"                 foreground="#800000" bold="true"/>
+
+  <style name="js:object"                   foreground="#008000"/>
+  <style name="js:constructors"             bold="true"/>
+
+  <style name="mooscript:special-vars"      use-style="c:preprocessor"/>
+
+  <style name="latex:display-math"          background="#C0FFC0"/>
+  <style name="latex:inline-math"           foreground="DarkGreen"/>
+  <style name="latex:math-bound"            bold="true"/>
+  <style name="latex:common-commands"       foreground="#800000"/>
+  <style name="latex:command"               foreground="#7000DF"/>
+  <style name="latex:structure"             bold="true"/>
+  <style name="latex:section"               foreground="#7000DF" bold="true"/>
+
+  <style name="changelog:release"           foreground="#0095ff" bold="true"/>
+
+  <style name="python:string-conversion"    background="grey"/>
+
+  <style name="changelog:email"             use-style="c:preprocessor"/>
+
+  <style name="scheme:parens"               use-style="def:keyword"/>
+  <style name="scheme:any-function"         use-style="def:keyword"/>
+
+  <style name="sh:dollar"                   foreground="#008000" bold="true"/>
+
+  <style name="makefile:trailing-tab"       background="pink"/>
+</style-scheme>

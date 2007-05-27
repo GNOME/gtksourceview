@@ -1,3 +1,19 @@
+2007-05-27  Yevgen Muntyan  <muntyan@tamu.edu>
+
+	* gtksourceview/language-specs/def.lang:
+	* gtksourceview/language-specs/javascript.lang:
+	* gtksourceview/language-specs/po.lang:
+	* gtksourceview/language-specs/sql.lang:
+	added FIXME comments where \n is used in patterns. Lame, indeed.
+
+	* gtksourceview/gtksourcecontextengine.c: removed obsolete FIXME comment.
+	* gtksourceview/language-specs/m4.lang: try to make sure parentheses not
+	preceeded by identifier are not treated as function call.
+	* gtksourceview/language-specs/gap.lang: added 'infinity' keyword.
+
+	* gtksourceview/language-specs/kate.styles:
+	* gtksourceview/language-specs/Makefile.am: "Kate" style scheme.
+
 2007-05-26  Paolo Borelli  <pborelli@katamail.com>
 
 	* configure.ac:

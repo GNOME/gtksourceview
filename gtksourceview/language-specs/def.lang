@@ -61,6 +61,7 @@
             <match>\%{float}</match>
         </context>
 
+        <!-- FIXME no \n in patterns! -->
         <define-regex id="net-address" extended="true" case-insensitive="true">
                 \%[                                         # separator
                 (https?|ftp|nntp|news|javascript|about):    # protocol
