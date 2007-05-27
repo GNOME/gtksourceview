@@ -597,11 +597,11 @@ parseTag (GtkSourceLanguage    *language,
 	}
 	else
 	{
-		xmlChar *tmp = xmlStrdup (BAD_CAST dgettext (
-							language->priv->translation_domain,
-							(gchar *)name));
+		gchar *tmp1 = _gtk_source_language_translate_string (language, (gchar*) name);
+		xmlChar *tmp2 = xmlStrdup (BAD_CAST tmp1);
 		id = name;
-		name = tmp;
+		name = tmp2;
+		g_free (tmp1);
 	}
 
 	if (name == NULL)

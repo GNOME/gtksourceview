@@ -56,7 +56,10 @@ GtkSourceLanguage *_gtk_source_language_new_from_file (const gchar		*filename,
 						       GtkSourceLanguageManager	*lm);
 
 GtkSourceLanguageManager *_gtk_source_language_get_language_manager (GtkSourceLanguage *language);
-const char *_gtk_source_language_manager_get_rng_file (GtkSourceLanguageManager *lm);
+const gchar *_gtk_source_language_manager_get_rng_file (GtkSourceLanguageManager *lm);
+
+gchar       *_gtk_source_language_translate_string (GtkSourceLanguage     *language,
+						    const gchar           *string);
 
 void _gtk_source_language_define_language_styles  (GtkSourceLanguage      *language);
 gboolean _gtk_source_language_file_parse_version1 (GtkSourceLanguage      *language,

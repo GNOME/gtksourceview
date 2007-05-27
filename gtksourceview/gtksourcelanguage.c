@@ -233,10 +233,7 @@ process_language_node (xmlTextReaderPtr reader, const gchar *filename)
 	lang->priv->lang_file_name = g_strdup (filename);
 
 	tmp = xmlTextReaderGetAttribute (reader, BAD_CAST "translation-domain");
-	if (tmp != NULL)
-		lang->priv->translation_domain = g_strdup ((gchar*) tmp);
-	else
-		lang->priv->translation_domain = g_strdup (GETTEXT_PACKAGE);
+	lang->priv->translation_domain = g_strdup ((gchar*) tmp);
 	xmlFree (tmp);
 
 	tmp = xmlTextReaderGetAttribute (reader, BAD_CAST "hidden");
@@ -278,7 +275,7 @@ process_language_node (xmlTextReaderPtr reader, const gchar *filename)
 	}
 	else
 	{
-		lang->priv->name = g_strdup (dgettext (lang->priv->translation_domain, (gchar*) tmp));
+		lang->priv->name = _gtk_source_language_translate_string (lang, (gchar*) tmp);
 		untranslated_name = tmp;
 	}
 
@@ -308,7 +305,7 @@ process_language_node (xmlTextReaderPtr reader, const gchar *filename)
 	}
 	else
 	{
-		lang->priv->section = g_strdup (dgettext (lang->priv->translation_domain, (gchar*) tmp));
+		lang->priv->section = _gtk_source_language_translate_string (lang, (gchar*) tmp);
 		xmlFree (tmp);
 	}
 
@@ -345,6 +342,14 @@ process_language_node (xmlTextReaderPtr reader, const gchar *filename)
 		process_properties (reader, lang);
 
 	return lang;
+}
+
+gchar *
+_gtk_source_language_translate_string (GtkSourceLanguage *language,
+				       const gchar       *string)
+{
+	g_return_val_if_fail (string != NULL, NULL);
+	return GD_(language->priv->translation_domain, string);
 }
 
 /**

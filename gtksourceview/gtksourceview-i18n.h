@@ -48,6 +48,8 @@ G_BEGIN_DECLS
 #    else
 #        define N_(String) (String)
 #    endif
+#    undef GD_
+#    define GD_(Domain,String) _gtksourceview_dgettext (Domain, String)
 #else
 /* Stubs that do something close enough.  */
 #    undef textdomain
@@ -66,9 +68,13 @@ G_BEGIN_DECLS
 #    define _(String) (String)
 #    undef N_
 #    define N_(String) (String)
+#    undef GD_
+#    define GD_(Domain,String) (g_strdup (String))
 #endif
 
 char *_gtksourceview_gettext (const char *msgid);
+/* NOTE: it returns duplicated string */
+char *_gtksourceview_dgettext (const char *domain, const char *msgid);
 
 G_END_DECLS
 

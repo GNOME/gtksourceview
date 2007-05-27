@@ -1,5 +1,19 @@
 2007-05-27  Yevgen Muntyan  <muntyan@tamu.edu>
 
+	* gtksourceview/language-specs/language2.rng: allow "translation-domain"
+	language attribute.
+	* gtksourceview/gtksourcelanguage-private.h:
+	* gtksourceview/gtksourcelanguage.c (_gtk_source_language_translate_string):
+	new function to translate strings in lang-file domain.
+	* gtksourceview/gtksourcelanguage-parser-1.c (parseTag),
+	gtksourceview/gtksourcelanguage-parser-2.c (parse_style):
+	use it here.
+	* gtksourceview/gtksourceview-i18n.h,
+	gtksourceview/gtksourceview-i18n.c (_gtksourceview_dgettext):
+	new function which does the actual job, and GD_() macro for it.
+
+2007-05-27  Yevgen Muntyan  <muntyan@tamu.edu>
+
 	* gtksourceview/language-specs/def.lang:
 	* gtksourceview/language-specs/javascript.lang:
 	* gtksourceview/language-specs/po.lang:

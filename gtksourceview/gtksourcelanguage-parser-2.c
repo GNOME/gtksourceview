@@ -1368,10 +1368,12 @@ parse_style (ParserState *parser_state,
 	/* FIXME: actually use this name somehow */
 	if (name != NULL)
 	{
-		tmp = xmlStrdup (BAD_CAST dgettext (parser_state->language->priv->translation_domain,
-				 (gchar*) name));
+		gchar *tmp2 = _gtk_source_language_translate_string (parser_state->language, 
+								     (gchar*) name);
+		tmp = xmlStrdup (BAD_CAST tmp2);
 		xmlFree (name);
 		name = tmp;
+		g_free (tmp2);
 	}
 	else
 	{
