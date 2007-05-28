@@ -66,7 +66,7 @@
                 \%[                                         # separator
                 (https?|ftp|nntp|news|javascript|about):    # protocol
                 [^\ \n]* [^\ \n.:;,?&gt;&lt;)]              # address
-                (?=[^a-z0-9_.-])                            # separator
+                (?![a-z0-9_.-])                             # separator
         </define-regex>
 
         <define-regex id="email-address" extended="true" case-insensitive="true">
