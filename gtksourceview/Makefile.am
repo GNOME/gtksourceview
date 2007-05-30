@@ -1,16 +1,22 @@
-SUBDIRS = language-specs libegg
+DIST_SUBDIRS = language-specs regex
+SUBDIRS = language-specs
 
-if BUILD_EGG_REGEX
-EGGREGEX_LIBS = libegg/regex/libeggregex.la
-else
-EGGREGEX_LIBS =
+REGEX_LIBS =
+
+if BUILD_GREGEX
+REGEX_LIBS += regex/glib/libgregex.la
+REGEX_CFLAGS = -I$(srcdir)/regex
+SUBDIRS += regex
+endif
+if !USE_SYSTEM_PCRE
+REGEX_LIBS += regex/pcre/libpcre.la
 endif
 
 INCLUDES = 				\
 	-DDATADIR=\""$(datadir)"\" 	\
 	-DG_LOG_DOMAIN=\"GtkSourceView\"\
 	-I$(top_srcdir) -I$(srcdir) 	\
-	-I$(srcdir)/libegg/regex 	\
+	$(REGEX_CFLAGS)			\
 	$(DISABLE_DEPRECATED_CFLAGS)	\
 	$(WARN_CFLAGS) 			\
 	$(DEP_CFLAGS)
@@ -63,7 +69,7 @@ libgtksourceview_2_0_la_SOURCES = 	\
 	$(libgtksourceview_headers)	\
 	$(BUILT_SOURCES)
 
-libgtksourceview_2_0_la_LIBADD = $(DEP_LIBS) $(EGGREGEX_LIBS) $(GNOMEPRINT_LIBS)
+libgtksourceview_2_0_la_LIBADD = $(DEP_LIBS) $(REGEX_LIBS) $(GNOMEPRINT_LIBS)
 libgtksourceview_2_0_la_LDFLAGS = -no-undefined -export-symbols-regex "^gtk_source_.*"
 libgtksourceview_2_0_includedir = $(includedir)/gtksourceview-2.0/gtksourceview
 

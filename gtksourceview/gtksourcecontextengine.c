@@ -24,7 +24,7 @@
 #include "gtktextregion.h"
 #include "gtksourcelanguage-private.h"
 #include "gtksourcebuffer.h"
-#include "eggregex.h"
+#include <glib/gregex.h>
 #include <errno.h>
 #include <string.h>
 
@@ -32,6 +32,7 @@
 #undef ENABLE_PROFILE
 #undef ENABLE_CHECK_TREE
 #undef ENABLE_MEMORY_DEBUG /* define it to make it print memory usage information */
+			   /* it won't work with GRegex */
 
 #ifdef ENABLE_DEBUG
 #define DEBUG(x) (x)
@@ -111,6 +112,7 @@
 #define ENGINE_STYLES_MAP(ce) ((ce)->priv->ctx_data->lang->priv->styles)
 
 typedef struct _RegexInfo RegexInfo;
+typedef struct _RegexAndMatch RegexAndMatch;
 typedef struct _Regex Regex;
 typedef struct _SubPatternDefinition SubPatternDefinition;
 typedef struct _SubPattern SubPattern;
@@ -148,14 +150,21 @@ typedef enum {
 struct _RegexInfo
 {
 	gchar			*pattern;
-	EggRegexCompileFlags	 flags;
+	GRegexCompileFlags	 flags;
 };
 
-/* We do not use directly EggRegex to allow the use of "\%{...@start}". */
+/* glib has now so fscking nice API! */
+struct _RegexAndMatch
+{
+	GRegex			*regex;
+	GMatchInfo		*match;
+};
+
+/* We do not use directly GRegex to allow the use of "\%{...@start}". */
 struct _Regex
 {
 	union {
-		EggRegex	*regex;
+		RegexAndMatch	 regex;
 		RegexInfo	 info;
 	} u;
 	guint			 ref_count;
@@ -2438,7 +2447,11 @@ regex_unref (Regex *regex)
 	if (regex != NULL && --regex->ref_count == 0)
 	{
 		if (regex->resolved)
-			egg_regex_free (regex->u.regex);
+		{
+			g_regex_unref (regex->u.regex.regex);
+			if (regex->u.regex.match)
+				g_match_info_free (regex->u.regex.match);
+		}
 		else
 			g_free (regex->u.info.pattern);
 		g_free (regex);
@@ -2498,7 +2511,7 @@ find_single_byte_escape (const gchar *string)
  */
 static Regex *
 regex_new (const gchar           *pattern,
-	   EggRegexCompileFlags   flags,
+	   GRegexCompileFlags     flags,
 	   GError               **error)
 {
 	Regex *regex;
@@ -2516,7 +2529,7 @@ regex_new (const gchar           *pattern,
 	regex = g_new0 (Regex, 1);
 	regex->ref_count = 1;
 
-	if (egg_regex_match_simple (START_REF_REGEX, pattern, 0, 0))
+	if (g_regex_match_simple (START_REF_REGEX, pattern, 0, 0))
 	{
 		regex->resolved = FALSE;
 		regex->u.info.pattern = g_strdup (pattern);
@@ -2525,16 +2538,14 @@ regex_new (const gchar           *pattern,
 	else
 	{
 		regex->resolved = TRUE;
-		regex->u.regex = egg_regex_new (pattern, flags, 0, error);
+		regex->u.regex.regex = g_regex_new (pattern,
+						    flags | G_REGEX_OPTIMIZE, 0,
+						    error);
 
-		if (regex->u.regex == NULL)
+		if (regex->u.regex.regex == NULL)
 		{
 			g_free (regex);
 			regex = NULL;
-		}
-		else
-		{
-			egg_regex_optimize (regex->u.regex, NULL);
 		}
 	}
 
@@ -2574,31 +2585,28 @@ struct RegexResolveData {
 };
 
 static gboolean
-replace_start_regex (const EggRegex *regex,
-		     const gchar    *matched_text,
-		     GString        *expanded_regex,
-		     gpointer        user_data)
+replace_start_regex (const GMatchInfo *match_info,
+		     GString          *expanded_regex,
+		     gpointer          user_data)
 {
 	gchar *num_string, *subst, *subst_escaped, *escapes;
 	gint num;
 	struct RegexResolveData *data = user_data;
 
-	escapes = egg_regex_fetch (regex, 1, matched_text);
-	num_string = egg_regex_fetch (regex, 2, matched_text);
+	escapes = g_match_info_fetch (match_info, 1);
+	num_string = g_match_info_fetch (match_info, 2);
 	num = sub_pattern_to_int (num_string);
 
 	if (num < 0)
-		subst = egg_regex_fetch_named (data->start_regex->u.regex,
-					       num_string,
-					       data->matched_text);
+		subst = g_match_info_fetch_named (data->start_regex->u.regex.match,
+						  num_string);
 	else
-		subst = egg_regex_fetch (data->start_regex->u.regex,
-					 num,
-					 data->matched_text);
+		subst = g_match_info_fetch (data->start_regex->u.regex.match,
+					    num);
 
 	if (subst != NULL)
 	{
-		subst_escaped = egg_regex_escape_string (subst, -1);
+		subst_escaped = g_regex_escape_string (subst, -1);
 	}
 	else
 	{
@@ -2640,7 +2648,7 @@ regex_resolve (Regex       *regex,
 	       Regex       *start_regex,
 	       const gchar *matched_text)
 {
-	EggRegex *start_ref;
+	GRegex *start_ref;
 	gchar *expanded_regex;
 	Regex *new_regex;
 	struct RegexResolveData data;
@@ -2648,14 +2656,14 @@ regex_resolve (Regex       *regex,
 	if (regex == NULL || regex->resolved)
 		return regex_ref (regex);
 
-	start_ref = egg_regex_new (START_REF_REGEX, 0, 0, NULL);
+	start_ref = g_regex_new (START_REF_REGEX, 0, 0, NULL);
 	data.start_regex = start_regex;
 	data.matched_text = matched_text;
-	expanded_regex = egg_regex_replace_eval (start_ref,
-						 regex->u.info.pattern,
-						 -1, 0, 0,
-						 replace_start_regex,
-						 &data, NULL);
+	expanded_regex = g_regex_replace_eval (start_ref,
+					       regex->u.info.pattern,
+					       -1, 0, 0,
+					       replace_start_regex,
+					       &data, NULL);
 	new_regex = regex_new (expanded_regex, regex->u.info.flags, NULL);
 
 	if (new_regex == NULL || !new_regex->resolved)
@@ -2667,7 +2675,7 @@ regex_resolve (Regex       *regex,
 		new_regex = regex_new ("$never-match^", 0, NULL);
 	}
 
-	egg_regex_free (start_ref);
+	g_regex_unref (start_ref);
 	return new_regex;
 }
 
@@ -2679,6 +2687,7 @@ regex_match (Regex       *regex,
 {
 	gint byte_length = line_length;
 	gint byte_pos = line_pos;
+	gboolean result;
 
 	g_assert (regex->resolved);
 
@@ -2688,18 +2697,26 @@ regex_match (Regex       *regex,
 	if (line_pos > 0)
 		byte_pos = (g_utf8_offset_to_pointer (line, line_pos) - line);
 
-	return egg_regex_match_full (regex->u.regex, line,
+	if (regex->u.regex.match)
+	{
+		g_match_info_free (regex->u.regex.match);
+		regex->u.regex.match = NULL;
+	}
+
+	result = g_regex_match_full (regex->u.regex.regex, line,
 				     byte_length, byte_pos,
-				     0, NULL);
+				     0, &regex->u.regex.match,
+				     NULL);
+
+	return result;
 }
 
 static gchar *
 regex_fetch (Regex       *regex,
-	     const gchar *line,
 	     gint         num)
 {
 	g_assert (regex->resolved);
-	return egg_regex_fetch (regex->u.regex, num, line);
+	return g_match_info_fetch (regex->u.regex.match, num);
 }
 
 static void
@@ -2713,7 +2730,7 @@ regex_fetch_pos (Regex       *regex,
 
 	g_assert (regex->resolved);
 
-	if (!egg_regex_fetch_pos (regex->u.regex, num, &byte_start_pos, &byte_end_pos))
+	if (!g_match_info_fetch_pos (regex->u.regex.match, num, &byte_start_pos, &byte_end_pos))
 	{
 		if (start_pos != NULL)
 			*start_pos = -1;
@@ -2740,7 +2757,7 @@ regex_fetch_named_pos (Regex       *regex,
 
 	g_assert (regex->resolved);
 
-	if (!egg_regex_fetch_named_pos (regex->u.regex, name, &byte_start_pos, &byte_end_pos))
+	if (!g_match_info_fetch_named_pos (regex->u.regex.match, name, &byte_start_pos, &byte_end_pos))
 	{
 		if (start_pos != NULL)
 			*start_pos = -1;
@@ -2760,7 +2777,7 @@ static const gchar *
 regex_get_pattern (Regex *regex)
 {
 	g_return_val_if_fail (regex && regex->resolved, "");
-	return egg_regex_get_pattern (regex->u.regex);
+	return g_regex_get_pattern (regex->u.regex.regex);
 }
 
 /* SYNTAX TREE ------------------------------------------------------------ */
@@ -3435,7 +3452,7 @@ create_child_context (Context           *parent,
 	}
 	else
 	{
-		match = regex_fetch (definition->u.start_end.start, line_text, 0);
+		match = regex_fetch (definition->u.start_end.start, 0);
 		g_return_val_if_fail (match != NULL, NULL);
 		context = g_hash_table_lookup (ptr->u.hash, match);
 	}
@@ -4036,7 +4053,7 @@ ancestor_context_ends_here (Context                *state,
 		current_context = current_context_list->data;
 
 		if (current_context->end &&
-		    current_context->end->u.regex &&
+		    current_context->end->u.regex.regex &&
 		    regex_match (current_context->end,
 				 line->text,
 				 line->length,
@@ -5526,7 +5543,7 @@ context_definition_new (const gchar        *id,
 
 	if (match != NULL)
 	{
-		definition->u.match = regex_new (match, EGG_REGEX_ANCHORED, error);
+		definition->u.match = regex_new (match, G_REGEX_ANCHORED, error);
 
 		if (definition->u.match == NULL)
 		{
@@ -5543,7 +5560,7 @@ context_definition_new (const gchar        *id,
 
 	if (start != NULL)
 	{
-		definition->u.start_end.start = regex_new (start, EGG_REGEX_ANCHORED, error);
+		definition->u.start_end.start = regex_new (start, G_REGEX_ANCHORED, error);
 
 		if (definition->u.start_end.start == NULL)
 		{
@@ -5560,7 +5577,7 @@ context_definition_new (const gchar        *id,
 
 	if (end != NULL && !regex_error)
 	{
-		definition->u.start_end.end = regex_new (end, EGG_REGEX_ANCHORED, error);
+		definition->u.start_end.end = regex_new (end, G_REGEX_ANCHORED, error);
 
 		if (definition->u.start_end.end == NULL)
 			regex_error = TRUE;
@@ -6092,7 +6109,7 @@ _gtk_source_context_data_set_escape_char (GtkSourceContextData *ctx_data,
 	len = g_unichar_to_utf8 (escape_char, buf);
 	g_return_if_fail (len > 0);
 
-	escaped = egg_regex_escape_string (buf, 1);
+	escaped = g_regex_escape_string (buf, 1);
 	pattern = g_strdup_printf ("%s.", escaped);
 
 	g_hash_table_foreach (ctx_data->definitions, (GHFunc) prepend_definition, &definitions);
@@ -6468,7 +6485,7 @@ get_regex_mem (Regex *regex)
 	mem += sizeof (Regex);
 
 	if (regex->resolved)
-		mem += _egg_regex_get_memory (regex->u.regex);
+		mem += _egg_regex_get_memory (regex->u.regex.regex);
 	else
 		mem += get_str_mem (regex->u.info.pattern);
 

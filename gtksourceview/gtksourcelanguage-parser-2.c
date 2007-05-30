@@ -42,7 +42,7 @@
 #include "gtksourcelanguage.h"
 #include "gtksourcelanguage-private.h"
 #include "gtksourcecontextengine.h"
-#include <eggregex.h>
+#include <glib/gregex.h>
 
 #define PARSER_ERROR (parser_error_quark ())
 #define ATTR_NO_STYLE ""
@@ -90,7 +90,7 @@ struct _ParserState
 	guint id_cookie;
 
 	/* The default flags used by the regexes */
-	EggRegexCompileFlags regex_compile_flags;
+	GRegexCompileFlags regex_compile_flags;
 
 	gchar *opening_delimiter;
 	gchar *closing_delimiter;
@@ -123,8 +123,8 @@ static gboolean   file_parse                   (gchar                  *filename
                                                 GHashTable             *loaded_lang_ids,
                                                 GError                **error);
 
-static EggRegexCompileFlags
-		  update_regex_flags	       (EggRegexCompileFlags flags,
+static GRegexCompileFlags
+		  update_regex_flags	       (GRegexCompileFlags flags,
 						const gchar   *option_name,
 						const xmlChar *bool_value);
 
@@ -146,13 +146,12 @@ static void       handle_default_regex_options_element
 static void       element_start                (ParserState *parser_state,
 						GError **error);
 static void       element_end                  (ParserState *parser_state);
-static gboolean   replace_by_id                (const EggRegex *egg_regex,
-                                                const gchar *regex,
-                                                GString *expanded_regex,
-                                                gpointer data);
+static gboolean   replace_by_id                (const GMatchInfo *match_info,
+						GString *expanded_regex,
+						gpointer data);
 static gchar     *expand_regex                 (ParserState *parser_state,
                                                 gchar *regex,
-						EggRegexCompileFlags flags,
+						GRegexCompileFlags flags,
 						gboolean do_expand_vars,
 						gboolean insert_parentheses,
 						GError **error);
@@ -232,9 +231,9 @@ lang_id_is_already_loaded (ParserState *parser_state, gchar *lang_id)
 }
 
 
-static EggRegexCompileFlags
+static GRegexCompileFlags
 get_regex_flags (xmlNode             *node,
-		 EggRegexCompileFlags flags)
+		 GRegexCompileFlags flags)
 {
 	xmlAttr *attribute;
 
@@ -321,7 +320,7 @@ create_definition (ParserState *parser_state,
 
 	GString *all_items = NULL;
 
-	EggRegexCompileFlags match_flags = 0, start_flags = 0, end_flags = 0;
+	GRegexCompileFlags match_flags = 0, start_flags = 0, end_flags = 0;
 
 	GError *tmp_error = NULL;
 
@@ -345,7 +344,8 @@ create_definition (ParserState *parser_state,
 		if (child->type != XML_READER_TYPE_ELEMENT)
 			continue;
 
-		/* FIXME: add PCRE_EXTRA support in EggRegex */
+		/* FIXME: add PCRE_EXTRA support in EggRegex
+		 * Huh? */
 
 		g_assert (child->name);
 		if (xmlStrcmp (BAD_CAST "match", child->name) == 0
@@ -816,10 +816,9 @@ struct ReplaceByIdData {
 };
 
 static gboolean
-replace_by_id (const EggRegex *egg_regex,
-	       const gchar    *regex,
-	       GString        *expanded_regex,
-	       gpointer        user_data)
+replace_by_id (const GMatchInfo *match_info,
+	       GString          *expanded_regex,
+	       gpointer          user_data)
 {
 	gchar *id, *subst, *escapes;
 	gchar *tmp;
@@ -827,8 +826,8 @@ replace_by_id (const EggRegex *egg_regex,
 
 	struct ReplaceByIdData *data = user_data;
 
-	escapes = egg_regex_fetch (egg_regex, 1, regex);
-	tmp = egg_regex_fetch (egg_regex, 2, regex);
+	escapes = g_match_info_fetch (match_info, 1);
+	tmp = g_match_info_fetch (match_info, 2);
 
 	g_strstrip (tmp);
 
@@ -842,7 +841,8 @@ replace_by_id (const EggRegex *egg_regex,
 	if (subst == NULL)
 		g_set_error (&tmp_error,
 			     PARSER_ERROR, PARSER_ERROR_WRONG_ID,
-			     _("Unknown id '%s' in regex '%s'"), id, regex);
+			     _("Unknown id '%s' in regex '%s'"), id,
+			     g_match_info_get_subject_string (match_info));
 
 	if (tmp_error == NULL)
 	{
@@ -862,23 +862,23 @@ replace_by_id (const EggRegex *egg_regex,
 	return FALSE;
 }
 
-static EggRegexCompileFlags
-update_regex_flags (EggRegexCompileFlags flags,
-		    const gchar         *option_name,
-		    const xmlChar       *value)
+static GRegexCompileFlags
+update_regex_flags (GRegexCompileFlags  flags,
+		    const gchar        *option_name,
+		    const xmlChar      *value)
 {
-	EggRegexCompileFlags single_flag;
+	GRegexCompileFlags single_flag;
 
-	DEBUG (g_message ("setting the '%s' regex flag to %d", option_name, value));
+	DEBUG (g_message ("setting the '%s' regex flag to %s", option_name, value));
 
 	if (strcmp ("case-insensitive", option_name) == 0)
-		single_flag = EGG_REGEX_CASELESS;
+		single_flag = G_REGEX_CASELESS;
 	else if (strcmp ("extended", option_name) == 0)
-		single_flag = EGG_REGEX_EXTENDED;
+		single_flag = G_REGEX_EXTENDED;
 	else if (strcmp ("dot-match-all", option_name) == 0)
-		single_flag = EGG_REGEX_DOTALL;
+		single_flag = G_REGEX_DOTALL;
 	else if (strcmp ("dupnames", option_name) == 0)
-		single_flag = EGG_REGEX_DUPNAMES;
+		single_flag = G_REGEX_DUPNAMES;
 	else
 		return flags;
 
@@ -891,12 +891,13 @@ update_regex_flags (EggRegexCompileFlags flags,
 }
 
 static gboolean
-calc_regex_flags (const gchar *flags_string, EggRegexCompileFlags *flags)
+calc_regex_flags (const gchar *flags_string, GRegexCompileFlags *flags)
 {
 	gboolean add = TRUE;
 	while (*flags_string != '\0')
 	{
-		EggRegexCompileFlags single_flag = 0;
+		GRegexCompileFlags single_flag = 0;
+
 		switch (g_utf8_get_char (flags_string))
 		{
 			case '-':
@@ -906,18 +907,19 @@ calc_regex_flags (const gchar *flags_string, EggRegexCompileFlags *flags)
 				add = TRUE;
 				break;
 			case 'i':
-				single_flag = EGG_REGEX_CASELESS;
+				single_flag = G_REGEX_CASELESS;
 				break;
 			case 'x':
-				single_flag = EGG_REGEX_EXTENDED;
+				single_flag = G_REGEX_EXTENDED;
 				break;
 			case 's':
 				/* FIXME: do we need this? */
-				single_flag = EGG_REGEX_DOTALL;
+				single_flag = G_REGEX_DOTALL;
 				break;
 			default:
 				return FALSE;
 		}
+
 		if (single_flag != 0)
 		{
 			if (add)
@@ -925,6 +927,7 @@ calc_regex_flags (const gchar *flags_string, EggRegexCompileFlags *flags)
 			else
 				*flags &= ~single_flag;
 		}
+
 		flags_string = g_utf8_next_char (flags_string);
 	}
 
@@ -960,18 +963,18 @@ expand_regex_vars (ParserState *parser_state, gchar *regex, gint len, GError **e
 	 */
 	const gchar *re = "(?<!\\\\)(\\\\\\\\)*\\\\%\\{([^@]*?)\\}";
 	gchar *expanded_regex;
-	EggRegex *egg_re;
+	GRegex *egg_re;
 	struct ReplaceByIdData data;
 
 	if (regex == NULL)
 		return NULL;
 
-	egg_re = egg_regex_new (re, 0, 0, NULL);
+	egg_re = g_regex_new (re, 0, 0, NULL);
 
 	data.parser_state = parser_state;
 	data.error = NULL;
-	expanded_regex = egg_regex_replace_eval (egg_re, regex, len, 0, 0,
-						 replace_by_id, &data, NULL);
+	expanded_regex = g_regex_replace_eval (egg_re, regex, len, 0, 0,
+					       replace_by_id, &data, NULL);
 
 	if (data.error == NULL)
         {
@@ -979,7 +982,7 @@ expand_regex_vars (ParserState *parser_state, gchar *regex, gint len, GError **e
 				  regex, expanded_regex));
         }
 
-	egg_regex_free (egg_re);
+	g_regex_unref (egg_re);
 
 	if (data.error != NULL)
 	{
@@ -992,18 +995,17 @@ expand_regex_vars (ParserState *parser_state, gchar *regex, gint len, GError **e
 }
 
 static gboolean
-replace_delimiter (const EggRegex *egg_regex,
-		   const gchar    *regex,
-		   GString        *expanded_regex,
-		   gpointer        data)
+replace_delimiter (const GMatchInfo *match_info,
+		   GString          *expanded_regex,
+		   gpointer          data)
 {
 	gchar *delim, *escapes;
 	ParserState *parser_state = data;
 
-	escapes = egg_regex_fetch (egg_regex, 1, regex);
+	escapes = g_match_info_fetch (match_info, 1);
 	g_string_append (expanded_regex, escapes);
 
-	delim = egg_regex_fetch (egg_regex, 2, regex);
+	delim = g_match_info_fetch (match_info, 2);
 	DEBUG (g_message ("replacing '\\%%%s'", delim));
 
 	switch (delim[0])
@@ -1047,20 +1049,20 @@ expand_regex_delimiters (ParserState *parser_state,
 	 */
 	const gchar *re = "(?<!\\\\)(\\\\\\\\)*\\\\%(\\[|\\])";
 	gchar *expanded_regex;
-	EggRegex *egg_re;
+	GRegex *egg_re;
 
 	if (regex == NULL)
 		return NULL;
 
-	egg_re = egg_regex_new (re, 0, 0, NULL);
+	egg_re = g_regex_new (re, 0, 0, NULL);
 
-	expanded_regex = egg_regex_replace_eval (egg_re, regex, len, 0, 0,
-						 replace_delimiter, parser_state, NULL);
+	expanded_regex = g_regex_replace_eval (egg_re, regex, len, 0, 0,
+					       replace_delimiter, parser_state, NULL);
 
 	DEBUG (g_message ("expanded regex delims '%s' to '%s'",
 				regex, expanded_regex));
 
-	egg_regex_free (egg_re);
+	g_regex_unref (egg_re);
 
 	return expanded_regex;
 }
@@ -1068,7 +1070,7 @@ expand_regex_delimiters (ParserState *parser_state,
 static gchar *
 expand_regex (ParserState *parser_state,
 	      gchar *regex,
-	      EggRegexCompileFlags flags,
+	      GRegexCompileFlags flags,
 	      gboolean do_expand_vars,
 	      gboolean insert_parentheses,
 	      GError **error)
@@ -1084,26 +1086,26 @@ expand_regex (ParserState *parser_state,
 	if (regex == NULL)
 		return NULL;
 
-	if (egg_regex_match_simple ("(?<!\\\\)(\\\\\\\\)*\\\\[0-9]", regex, 0, 0))
+	if (g_regex_match_simple ("(?<!\\\\)(\\\\\\\\)*\\\\[0-9]", regex, 0, 0))
 	{
 		/* This may be a backreference, or it may be an octal character */
-		EggRegex *compiled;
+		GRegex *compiled;
 
-		compiled = egg_regex_new (regex, flags, 0, error);
+		compiled = g_regex_new (regex, flags, 0, error);
 
 		if (!compiled)
 			return NULL;
 
-		if (egg_regex_get_backrefmax (compiled) > 0)
+		if (g_regex_get_max_backref (compiled) > 0)
 		{
 			g_set_error (error, PARSER_ERROR, PARSER_ERROR_MALFORMED_REGEX,
 				     _("in regex '%s': backreferences are not supported"),
 				     regex);
-			egg_regex_free (compiled);
+			g_regex_unref (compiled);
 			return NULL;
 		}
 
-		egg_regex_free (compiled);
+		g_regex_unref (compiled);
 	}
 
 	if (g_utf8_get_char (regex) == '/')
@@ -1151,26 +1153,26 @@ expand_regex (ParserState *parser_state,
 	g_string_append (expanded_regex, "(?");
 	if (flags != 0)
 	{
-		if (flags & EGG_REGEX_CASELESS)
+		if (flags & G_REGEX_CASELESS)
 			g_string_append (expanded_regex, "i");
-		if (flags & EGG_REGEX_EXTENDED)
+		if (flags & G_REGEX_EXTENDED)
 			g_string_append (expanded_regex, "x");
-		if (flags & EGG_REGEX_DOTALL)
+		if (flags & G_REGEX_DOTALL)
 			g_string_append (expanded_regex, "s");
 		/* J is added here if it's used, but -J isn't added
 		 * below */
-		if (flags & EGG_REGEX_DUPNAMES)
+		if (flags & G_REGEX_DUPNAMES)
 			g_string_append (expanded_regex, "J");
 	}
-	if (flags != (EGG_REGEX_CASELESS | EGG_REGEX_EXTENDED |
-		      EGG_REGEX_DOTALL | EGG_REGEX_DUPNAMES))
+	if (flags != (G_REGEX_CASELESS | G_REGEX_EXTENDED |
+		      G_REGEX_DOTALL | G_REGEX_DUPNAMES))
 	{
 		g_string_append (expanded_regex, "-");
-		if (!(flags & EGG_REGEX_CASELESS))
+		if (!(flags & G_REGEX_CASELESS))
 			g_string_append (expanded_regex, "i");
-		if (!(flags & EGG_REGEX_EXTENDED))
+		if (!(flags & G_REGEX_EXTENDED))
 			g_string_append (expanded_regex, "x");
-		if (!(flags & EGG_REGEX_DOTALL))
+		if (!(flags & G_REGEX_DOTALL))
 			g_string_append (expanded_regex, "s");
 	}
 	g_string_append (expanded_regex, ")");
@@ -1180,10 +1182,9 @@ expand_regex (ParserState *parser_state,
 		/* The '\n' is needed otherwise, if the regex is "extended"
 		 * and it ends with a comment, the ')' is appended inside the
 		 * comment itself */
-		if (flags & EGG_REGEX_EXTENDED)
-		{
+		if (flags & G_REGEX_EXTENDED)
 			g_string_append (expanded_regex, "\n");
-		}
+
 		/* FIXME: if the regex is not extended this doesn't works */
 		g_string_append (expanded_regex, ")");
 	}
@@ -1202,7 +1203,7 @@ handle_define_regex_element (ParserState *parser_state,
 	gchar *expanded_regex;
 	int i;
 	const gchar *regex_options[] = {"extended", "case-insensitive", "dot-match-all", NULL};
-	EggRegexCompileFlags flags;
+	GRegexCompileFlags flags;
 	GError *tmp_error = NULL;
 
 	int type;
@@ -1368,7 +1369,7 @@ parse_style (ParserState *parser_state,
 	/* FIXME: actually use this name somehow */
 	if (name != NULL)
 	{
-		gchar *tmp2 = _gtk_source_language_translate_string (parser_state->language, 
+		gchar *tmp2 = _gtk_source_language_translate_string (parser_state->language,
 								     (gchar*) name);
 		tmp = xmlStrdup (BAD_CAST tmp2);
 		xmlFree (name);

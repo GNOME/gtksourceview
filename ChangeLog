@@ -1,3 +1,18 @@
+2007-05-30  Yevgen Muntyan  <muntyan@tamu.edu>
+
+	* gtksourceview/language-specs/gtkrc.lang: added line-comment attribute.
+
+	* gtksourceview/libegg: removed
+	* gtksourceview/regex: new folders, pcre and gregex.
+	* configure.in, acinclude.m4,
+	gtksourceview/Makefile.am,
+	gtksourceview/gtksourcecontextengine.c,
+	gtksourceview/gtksourcelanguage-parser-2.c:
+
+	Ported code from EggRegex to GRegex, updated pcre to verion 7.0.
+	pcre now lives in gtksourceview/regex/pcre/; gregex is in gtksourceview/regex/glib,
+	so good #include <glib/gregex.h> works.
+
 2007-05-28  Yevgen Muntyan  <muntyan@tamu.edu>
 
 	* gtksourceview/language-specs/def.lang: made highlighting inet

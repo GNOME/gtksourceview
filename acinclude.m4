@@ -1,11 +1,4 @@
-##############################################################################
-# GTK_SOURCE_VIEW_AC_PCRE
-# This is essentially pcre's configure.in, contains checks and defines
-# needed for pcre
-#
-AC_DEFUN([GTK_SOURCE_VIEW_AC_PCRE],[
-
-# FIXME some day, BUILD_EGG_REGEX may be false
+AC_DEFUN([GTK_SOURCE_VIEW_AC_REGEX],[
 
 AC_ARG_WITH([system-pcre],
 AC_HELP_STRING([--with-system-pcre], [whether to use system copy of pcre library (default = YES)]),[
@@ -18,10 +11,17 @@ AC_HELP_STRING([--with-system-pcre], [whether to use system copy of pcre library
     USE_SYSTEM_PCRE="auto"
 ])
 
-if test "x$USE_SYSTEM_PCRE" != xno; then
+if $PKG_CONFIG --atleast-version=2.14.0 glib-2.0; then
+  BUILD_GREGEX=no
+  USE_SYSTEM_PCRE=yes
+else
+  BUILD_GREGEX=yes
+fi
+
+if test $BUILD_GREGEX = yes -a $USE_SYSTEM_PCRE != no; then
     have_pcre="no"
 
-    PKG_CHECK_MODULES(PCRE, [libpcre >= 6.7], [
+    PKG_CHECK_MODULES(PCRE, [libpcre >= 7.0], [
         have_pcre="yes"
     ], [
         have_pcre="no"
@@ -72,7 +72,8 @@ if test "x$USE_SYSTEM_PCRE" != xno; then
     fi
 fi
 
-if test x$USE_SYSTEM_PCRE != xno; then
+if test $BUILD_GREGEX = yes; then
+  if test $USE_SYSTEM_PCRE != no; then
     if test x$have_pcre = xyes; then
         USE_SYSTEM_PCRE="yes"
         AC_MSG_NOTICE([using installed libpcre])
@@ -82,16 +83,17 @@ if test x$USE_SYSTEM_PCRE != xno; then
         PCRE_LIBS=
         AC_MSG_NOTICE([building pcre library])
     fi
-else
+  else
     USE_SYSTEM_PCRE="no"
     AC_MSG_NOTICE([building pcre library])
+  fi
 fi
 
+AM_CONDITIONAL(BUILD_GREGEX, test x$BUILD_GREGEX = xyes)
 AM_CONDITIONAL(USE_SYSTEM_PCRE, test x$USE_SYSTEM_PCRE = xyes)
 if test x$USE_SYSTEM_PCRE = xyes; then
-    AC_DEFINE(USE_SYSTEM_PCRE,, [USE_SYSTEM_PCRE - use installed pcre library])
+  AC_DEFINE(USE_SYSTEM_PCRE,, [USE_SYSTEM_PCRE - use installed pcre library])
 fi
-
 
 ## ===================================================================
 ## build pcre
@@ -102,7 +104,7 @@ if test x$USE_SYSTEM_PCRE = xno; then
     AC_TYPE_SIZE_T
     AC_CHECK_FUNCS(memmove strerror)
 
-    AC_DEFINE(NEWLINE, '\n', [The value of NEWLINE determines the newline character used in pcre])
+    AC_DEFINE(NEWLINE, -1, [The value of NEWLINE determines the newline character used in pcre])
 
     AC_DEFINE(LINK_SIZE, 2, [The value of LINK_SIZE determines the number of bytes used to store dnl
     links as offsets within the compiled regex. The default is 2, which allows for dnl
@@ -139,13 +141,6 @@ if test x$USE_SYSTEM_PCRE = xno; then
     dnl pcre does "#if !EBCDIC", not "#ifndef EBCDIC"
     AC_DEFINE(EBCDIC, 0, [If you are compiling for a system that uses EBCDIC instead of ASCII dnl
     character codes, define this macro as 1.])
-
-    # AC_ARG_ENABLE(stack-for-recursion,
-    # [  --disable-stack-for-recursion  disable use of stack recursion when matching],
-    # if test "$enableval" = "no"; then
-    #   NO_RECURSE=-DNO_RECURSE
-    # fi
-    # )
 fi
 
-]) # end of MOO_AC_PCRE
+]) # end of GTK_SOURCE_VIEW_AC_REGEX
