@@ -166,13 +166,10 @@ gchar		 *g_regex_replace_eval		(const GRegex        *regex,
 gboolean	  g_regex_check_replacement	(const gchar         *replacement,
 						 gboolean            *has_references,
 						 GError             **error);
-gchar		 *g_regex_eval_replacement	(GMatchInfo          *match_info,
-						 const char          *replacement,
-						 GError             **error);
 
 /* Match info */
-GRegex		 *g_match_info_get_regex	(GMatchInfo          *match_info);
-const gchar      *g_match_info_get_subject_string (const GMatchInfo  *match_info);
+GRegex		 *g_match_info_get_regex	(const GMatchInfo    *match_info);
+const gchar      *g_match_info_get_string       (const GMatchInfo    *match_info);
 
 void		  g_match_info_free		(GMatchInfo          *match_info);
 gboolean	  g_match_info_next		(GMatchInfo          *match_info,

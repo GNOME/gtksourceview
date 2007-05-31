@@ -842,7 +842,7 @@ replace_by_id (const GMatchInfo *match_info,
 		g_set_error (&tmp_error,
 			     PARSER_ERROR, PARSER_ERROR_WRONG_ID,
 			     _("Unknown id '%s' in regex '%s'"), id,
-			     g_match_info_get_subject_string (match_info));
+			     g_match_info_get_string (match_info));
 
 	if (tmp_error == NULL)
 	{

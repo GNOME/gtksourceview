@@ -1,5 +1,14 @@
 2007-05-30  Yevgen Muntyan  <muntyan@tamu.edu>
 
+	* gtksourceview/regex/glib/gregex.c,
+	gtksourceview/regex/glib/gregex-real.h: synced with glib.
+	* gtksourceview/Makefile.am: made it work with system pcre and with
+	glib from svn.
+	* gtksourceview/gtksourcelanguage-parser-2.c: updated for changed
+	GRegex API.
+
+2007-05-30  Yevgen Muntyan  <muntyan@tamu.edu>
+
 	* gtksourceview/language-specs/gtkrc.lang: added line-comment attribute.
 
 	* gtksourceview/libegg: removed

@@ -2,21 +2,26 @@ DIST_SUBDIRS = language-specs regex
 SUBDIRS = language-specs
 
 REGEX_LIBS =
+REGEX_CFLAGS =
 
 if BUILD_GREGEX
 REGEX_LIBS += regex/glib/libgregex.la
-REGEX_CFLAGS = -I$(srcdir)/regex
+REGEX_CFLAGS += -I$(srcdir)/regex
 SUBDIRS += regex
 endif
+
 if !USE_SYSTEM_PCRE
 REGEX_LIBS += regex/pcre/libpcre.la
+else
+REGEX_LIBS += $(PCRE_LIBS)
+REGEX_CFLAGS += $(PCRE_CFLAGS)
 endif
 
 INCLUDES = 				\
+	$(REGEX_CFLAGS)			\
 	-DDATADIR=\""$(datadir)"\" 	\
 	-DG_LOG_DOMAIN=\"GtkSourceView\"\
 	-I$(top_srcdir) -I$(srcdir) 	\
-	$(REGEX_CFLAGS)			\
 	$(DISABLE_DEPRECATED_CFLAGS)	\
 	$(WARN_CFLAGS) 			\
 	$(DEP_CFLAGS)
