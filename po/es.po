@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: gtksourceview.HEAD.es\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-05-26 03:25+0100\n"
-"PO-Revision-Date: 2007-05-28 22:19+0200\n"
+"PO-Revision-Date: 2007-06-02 21:19+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -82,11 +82,11 @@ msgstr ""
 #: ../gtksourceview/gtksourcecontextengine.c:2216
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
-msgstr ""
+msgstr "Falta la definición de lenguaje principal (id = «%s».)"
 
 #: ../gtksourceview/gtksourcecontextengine.c:2515
 msgid "using \\C is not supported in language definitions"
-msgstr ""
+msgstr "el uso de \\C no está soportado en las definiciones del lenguaje"
 
 #. regex_new could fail, for instance if there are different
 #. * named sub-patterns with the same name or if resulting regex is
@@ -99,17 +99,19 @@ msgid ""
 "process will be slower than usual.\n"
 "The error was: %s"
 msgstr ""
+"No se puede crear una expresión regular para todas las transiciones, el proceso de resaltado de sintaxis será más lento de lo habitual.\n"
+"El error fue: %s"
 
 #: ../gtksourceview/gtksourcecontextengine.c:5577
 #, c-format
 msgid "context '%s' cannot contain a \\%%{...@start} command"
-msgstr ""
+msgstr "el contexto «%s» no puede contener un comando \\%%{...@start} command"
 
 #: ../gtksourceview/gtksourcecontextengine.c:5720
 #: ../gtksourceview/gtksourcecontextengine.c:5804
 #, c-format
 msgid "duplicated context id '%s'"
-msgstr ""
+msgstr "id de contexto duplicado «%s»"
 
 #: ../gtksourceview/gtksourcecontextengine.c:5917
 #: ../gtksourceview/gtksourcecontextengine.c:5977
@@ -139,12 +141,12 @@ msgstr ""
 #: ../gtksourceview/gtksourcelanguage-parser-2.c:845
 #, c-format
 msgid "Unknown id '%s' in regex '%s'"
-msgstr ""
+msgstr "Id «%s» desconocido en la expresión regular «%s»"
 
 #: ../gtksourceview/gtksourcelanguage-parser-2.c:1100
 #, c-format
 msgid "in regex '%s': backreferences are not supported"
-msgstr ""
+msgstr "en la expresión regular «%s»: las retroreferencias no se soportan"
 
 #: ../gtksourceview/gtksourcelanguage-parser-2.c:1116
 #, c-format
@@ -270,7 +272,9 @@ msgstr ""
 
 #: ../gtksourceview/gtksourcestylemanager.c:130
 msgid "List of directories where the style scheme files (.styles) are located"
-msgstr "Lista de directorios en los que se hallan los archivo de especificación de estilos (.styles)"
+msgstr ""
+"Lista de directorios en los que se hallan los archivo de especificación de "
+"estilos (.styles)"
 
 #: ../gtksourceview/gtksourcestylescheme.c:144
 #: ../gtksourceview/gtksourcestylescheme.c:145
@@ -1082,7 +1086,7 @@ msgstr "Include"
 
 #: ../gtksourceview/language-specs/latex.lang.h:4
 msgid "Inline Math Mode"
-msgstr ""
+msgstr "Modo matemático en línea"
 
 #: ../gtksourceview/language-specs/latex.lang.h:5
 msgid "LaTeX"
@@ -1090,7 +1094,7 @@ msgstr "LaTeX"
 
 #: ../gtksourceview/language-specs/latex.lang.h:7
 msgid "Math Mode"
-msgstr ""
+msgstr "Modo matemático"
 
 #: ../gtksourceview/language-specs/latex.lang.h:8
 msgid "Verbatim"
