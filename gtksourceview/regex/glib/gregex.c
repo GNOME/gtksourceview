@@ -222,7 +222,11 @@ match_info_new (const GRegex *regex,
  * g_match_info_get_regex:
  * @match_info: a #GMatchInfo
  *
- * Returns #GRegex object used in @match_info
+ * Returns #GRegex object used in @match_info. It belongs to glib
+ * and must not be freed. Use g_regex_ref() if you need to keep it
+ * after you free @match_info object.
+ *
+ * Returns: #GRegex object used in @match_info
  *
  * Since: 2.14
  */
@@ -237,7 +241,11 @@ g_match_info_get_regex (const GMatchInfo *match_info)
  * g_match_info_get_string:
  * @match_info: a #GMatchInfo
  *
- * Returns the string searched with @match_info
+ * Returns the string searched with @match_info. This is the
+ * string passed to g_regex_match() or g_regex_replace() so
+ * you may not free it before calling this function.
+ *
+ * Returns: the string searched with @match_info
  *
  * Since: 2.14
  */
@@ -609,8 +617,20 @@ get_matched_substring_number (const GMatchInfo *match_info,
   gchar *first, *last;
   guchar *entry;
 
+  /*
+   * FIXME: (?J) may be used inside the pattern as the equivalent of
+   * DUPNAMES compile option. In this case we can't know about it,
+   * and pcre doesn't tell us about it either, it uses private flag
+   * PCRE_JCHANGED for this. So we have to always search string
+   * table, unlike pcre which uses pcre_get_stringnumber() shortcut
+   * when possible. It shouldn't be too bad since pcre_get_stringtable_entries()
+   * uses binary search; still would be better to fix it, to be not
+   * worse than pcre.
+   */
+#if 0
   if ((match_info->regex->compile_opts & G_REGEX_DUPNAMES) == 0)
     return pcre_get_stringnumber (match_info->regex->pcre_re, name);
+#endif
 
   /* This code is copied from pcre_get.c: get_first_set() */
   entrysize = pcre_get_stringtable_entries (match_info->regex->pcre_re, 
@@ -773,13 +793,15 @@ g_regex_error_quark (void)
  *
  * Increases reference count of @regex by 1.
  *
+ * Returns: @regex
+ *
  * Since: 2.14
  */
 GRegex *
 g_regex_ref (GRegex *regex)
 {
-  if (regex)
-    g_atomic_int_inc ((gint*) &regex->ref_count);
+  g_return_val_if_fail (regex != NULL, NULL);
+  g_atomic_int_inc ((gint*) &regex->ref_count);
   return regex;
 }
 
@@ -795,7 +817,9 @@ g_regex_ref (GRegex *regex)
 void
 g_regex_unref (GRegex *regex)
 {
-  if (regex && g_atomic_int_exchange_and_add ((gint *) &regex->ref_count, -1) - 1 == 0)
+  g_return_if_fail (regex != NULL);
+
+  if (g_atomic_int_exchange_and_add ((gint *) &regex->ref_count, -1) - 1 == 0)
     {
       g_free (regex->pattern);
       if (regex->pcre_re != NULL)
@@ -1118,6 +1142,10 @@ g_regex_match (const GRegex    *regex,
  * in @match_info if not %NULL. Note that if @match_info is not %NULL then
  * it is created even if the function returns %FALSE, i.e. you must free it
  * regardless if regular expression actually matched.
+ *
+ * @string is not copied and is used in #GMatchInfo internally. If you use
+ * any #GMatchInfo method (except g_match_info_free()) after freeing or
+ * modifying @string then the behaviour is undefined.
  *
  * To retrieve all the non-overlapping matches of the pattern in string you
  * can use g_match_info_next().
