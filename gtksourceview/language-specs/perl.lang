@@ -7,11 +7,12 @@
   </metadata>
 
   <styles>
-    <style id="comment" name="Comment" map-to="def:comment"/>
-    <style id="data-type" name="Data Type" map-to="def:data-type"/>
-    <style id="string" name="String" map-to="def:string"/>
-    <style id="keyword" name="Keyword" map-to="def:keyword"/>
-    <style id="others" name="Others"/>
+    <style id="comment" _name="Comment" map-to="def:comment"/>
+    <style id="data-type" _name="Data Type" map-to="def:data-type"/>
+    <style id="string" _name="String" map-to="def:string"/>
+    <style id="keyword" _name="Keyword" map-to="def:keyword"/>
+    <style id="operator" _name="Operator" map-to="def:keyword"/>
+    <style id="others" _name="Others"/>
   </styles>
 
   <definitions>
@@ -66,221 +67,239 @@
       <match>-&gt;[a-zA-Z_][a-zA-Z0-9_]*</match>
     </context>
 
-    <context id="keywords" style-ref="keyword">
+    <context id="operators" style-ref="operator">
+      <keyword>and</keyword>
+      <keyword>cmp</keyword>
       <keyword>eq</keyword>
+      <keyword>ge</keyword>
+      <keyword>gt</keyword>
+      <keyword>le</keyword>
+      <keyword>lt</keyword>
+      <keyword>m</keyword>
       <keyword>ne</keyword>
       <keyword>not</keyword>
       <keyword>or</keyword>
-      <keyword>read</keyword>
-      <keyword>keys</keyword>
-      <keyword>chomp</keyword>
-      <keyword>if</keyword>
-      <keyword>else</keyword>
-      <keyword>elsif</keyword>
-      <keyword>unless</keyword>
-      <keyword>open</keyword>
-      <keyword>close</keyword>
-      <keyword>split</keyword>
-      <keyword>for</keyword>
-      <keyword>while</keyword>
-      <keyword>foreach</keyword>
-      <keyword>exit</keyword>
-      <keyword>sub</keyword>
-      <keyword>print</keyword>
-      <keyword>use</keyword>
-      <keyword>require</keyword>
-      <keyword>elseif</keyword>
-      <keyword>continue</keyword>
-      <keyword>until</keyword>
-      <keyword>do</keyword>
-      <keyword>last</keyword>
-      <keyword>next</keyword>
-      <keyword>redo</keyword>
-      <keyword>goto</keyword>
-      <keyword>chop</keyword>
-      <keyword>chr</keyword>
-      <keyword>crypt</keyword>
-      <keyword>hex</keyword>
-      <keyword>index</keyword>
-      <keyword>lc</keyword>
-      <keyword>lcfirst</keyword>
-      <keyword>length</keyword>
-      <keyword>oct</keyword>
-      <keyword>ord</keyword>
-      <keyword>reverse</keyword>
-      <keyword>rindex</keyword>
-      <keyword>printf</keyword>
-      <keyword>sprintf</keyword>
-      <keyword>substr</keyword>
-      <keyword>uc</keyword>
-      <keyword>ucfirst</keyword>
-      <keyword>pos</keyword>
-      <keyword>quotemeta</keyword>
-      <keyword>study</keyword>
+      <keyword>q</keyword>
+      <keyword>qq</keyword>
+      <keyword>qr</keyword>
+      <keyword>qw</keyword>
+      <keyword>qx</keyword>
+      <keyword>s</keyword>
+      <keyword>tr</keyword>
+      <keyword>xor</keyword>
+    </context>
+
+    <context id="keywords" style-ref="keyword">
       <keyword>abs</keyword>
+      <keyword>accept</keyword>
+      <keyword>alarm</keyword>
       <keyword>atan2</keyword>
-      <keyword>cos</keyword>
-      <keyword>exp</keyword>
-      <keyword>int</keyword>
-      <keyword>log</keyword>
-      <keyword>rand</keyword>
-      <keyword>sin</keyword>
-      <keyword>sqrt</keyword>
-      <keyword>srand</keyword>
-      <keyword>pop</keyword>
-      <keyword>push</keyword>
-      <keyword>shift</keyword>
-      <keyword>splice</keyword>
-      <keyword>unshift</keyword>
-      <keyword>grep</keyword>
-      <keyword>join</keyword>
-      <keyword>map</keyword>
-      <keyword>sort</keyword>
-      <keyword>unpack</keyword>
-      <keyword>pack</keyword>
-      <keyword>delete</keyword>
-      <keyword>each</keyword>
-      <keyword>exists</keyword>
-      <keyword>values</keyword>
+      <keyword>bind</keyword>
       <keyword>binmode</keyword>
-      <keyword>closedir</keyword>
-      <keyword>dbmclose</keyword>
-      <keyword>dbmopen</keyword>
-      <keyword>die</keyword>
-      <keyword>eof</keyword>
-      <keyword>fileno</keyword>
-      <keyword>flock</keyword>
-      <keyword>format</keyword>
-      <keyword>getc</keyword>
-      <keyword>readdir</keyword>
-      <keyword>rewinddir</keyword>
-      <keyword>seek</keyword>
-      <keyword>seekdir</keyword>
-      <keyword>select</keyword>
-      <keyword>syscall</keyword>
-      <keyword>sysread</keyword>
-      <keyword>sysseek</keyword>
-      <keyword>syswrite</keyword>
-      <keyword>tell</keyword>
-      <keyword>telldir</keyword>
-      <keyword>truncate</keyword>
-      <keyword>warn</keyword>
-      <keyword>write</keyword>
-      <keyword>vec</keyword>
+      <keyword>bless</keyword>
+      <keyword>caller</keyword>
       <keyword>chdir</keyword>
       <keyword>chmod</keyword>
+      <keyword>chomp</keyword>
+      <keyword>chop</keyword>
       <keyword>chown</keyword>
+      <keyword>chr</keyword>
       <keyword>chroot</keyword>
-      <keyword>fcntl</keyword>
-      <keyword>glob</keyword>
-      <keyword>ioctl</keyword>
-      <keyword>link</keyword>
-      <keyword>lstat</keyword>
-      <keyword>mkdir</keyword>
-      <keyword>opendir</keyword>
-      <keyword>readlink</keyword>
-      <keyword>rename</keyword>
-      <keyword>rmdir</keyword>
-      <keyword>stat</keyword>
-      <keyword>symlink</keyword>
-      <keyword>umask</keyword>
-      <keyword>unlink</keyword>
-      <keyword>utime</keyword>
-      <keyword>caller</keyword>
-      <keyword>dump</keyword>
-      <keyword>eval</keyword>
-      <keyword>return</keyword>
-      <keyword>wantarray</keyword>
-      <keyword>import</keyword>
-      <keyword>local</keyword>
-      <keyword>my</keyword>
-      <keyword>our</keyword>
-      <keyword>package</keyword>
+      <keyword>closedir</keyword>
+      <keyword>close</keyword>
+      <keyword>connect</keyword>
+      <keyword>continue</keyword>
+      <keyword>cos</keyword>
+      <keyword>crypt</keyword>
+      <keyword>dbmclose</keyword>
+      <keyword>dbmopen</keyword>
       <keyword>defined</keyword>
-      <keyword>formline</keyword>
-      <keyword>prototype</keyword>
-      <keyword>reset</keyword>
-      <keyword>scalar</keyword>
-      <keyword>undef</keyword>
-      <keyword>alarm</keyword>
+      <keyword>delete</keyword>
+      <keyword>die</keyword>
+      <keyword>do</keyword>
+      <keyword>dump</keyword>
+      <keyword>each</keyword>
+      <keyword>elseif</keyword>
+      <keyword>else</keyword>
+      <keyword>elsif</keyword>
+      <keyword>endgrent</keyword>
+      <keyword>endhostent</keyword>
+      <keyword>endnetent</keyword>
+      <keyword>endprotoent</keyword>
+      <keyword>endpwent</keyword>
+      <keyword>endservent</keyword>
+      <keyword>eof</keyword>
+      <keyword>eval</keyword>
       <keyword>exec</keyword>
+      <keyword>exists</keyword>
+      <keyword>exit</keyword>
+      <keyword>exp</keyword>
+      <keyword>fcntl</keyword>
+      <keyword>fileno</keyword>
+      <keyword>flock</keyword>
+      <keyword>foreach</keyword>
+      <keyword>for</keyword>
       <keyword>fork</keyword>
+      <keyword>format</keyword>
+      <keyword>formline</keyword>
+      <keyword>getc</keyword>
+      <keyword>getgrent</keyword>
+      <keyword>getgrgid</keyword>
+      <keyword>getgrnam</keyword>
+      <keyword>gethostbyaddr</keyword>
+      <keyword>gethostbyname</keyword>
+      <keyword>gethostent</keyword>
+      <keyword>getlogin</keyword>
+      <keyword>getnetbyaddr</keyword>
+      <keyword>getnetbyname</keyword>
+      <keyword>getnetent</keyword>
+      <keyword>getpeername</keyword>
       <keyword>getpgrp</keyword>
       <keyword>getppid</keyword>
       <keyword>getpriority</keyword>
-      <keyword>kill</keyword>
-      <keyword>pipe</keyword>
-      <keyword>setpgrp</keyword>
-      <keyword>setpriority</keyword>
-      <keyword>sleep</keyword>
-      <keyword>system</keyword>
-      <keyword>times</keyword>
-      <keyword>wait</keyword>
-      <keyword>waitpid</keyword>
-      <keyword>no</keyword>
-      <keyword>bless</keyword>
-      <keyword>ref</keyword>
-      <keyword>tie</keyword>
-      <keyword>tied</keyword>
-      <keyword>untie</keyword>
-      <keyword>accept</keyword>
-      <keyword>bind</keyword>
-      <keyword>connect</keyword>
-      <keyword>getpeername</keyword>
+      <keyword>getprotobyname</keyword>
+      <keyword>getprotobynumber</keyword>
+      <keyword>getprotoent</keyword>
+      <keyword>getpwent</keyword>
+      <keyword>getpwnam</keyword>
+      <keyword>getpwuid</keyword>
+      <keyword>getservbyname</keyword>
+      <keyword>getservbyport</keyword>
+      <keyword>getservent</keyword>
       <keyword>getsockname</keyword>
       <keyword>getsockopt</keyword>
+      <keyword>glob</keyword>
+      <keyword>gmtime</keyword>
+      <keyword>goto</keyword>
+      <keyword>grep</keyword>
+      <keyword>hex</keyword>
+      <keyword>if</keyword>
+      <keyword>import</keyword>
+      <keyword>index</keyword>
+      <keyword>int</keyword>
+      <keyword>ioctl</keyword>
+      <keyword>join</keyword>
+      <keyword>keys</keyword>
+      <keyword>kill</keyword>
+      <keyword>last</keyword>
+      <keyword>lcfirst</keyword>
+      <keyword>lc</keyword>
+      <keyword>length</keyword>
+      <keyword>link</keyword>
       <keyword>listen</keyword>
-      <keyword>recv</keyword>
-      <keyword>send</keyword>
-      <keyword>setsockopt</keyword>
-      <keyword>shutdown</keyword>
-      <keyword>socket</keyword>
-      <keyword>socketpair</keyword>
+      <keyword>local</keyword>
+      <keyword>localtime</keyword>
+      <keyword>log</keyword>
+      <keyword>lstat</keyword>
+      <keyword>map</keyword>
+      <keyword>mkdir</keyword>
       <keyword>msgctl</keyword>
       <keyword>msgget</keyword>
       <keyword>msgrcv</keyword>
       <keyword>msgsnd</keyword>
+      <keyword>my</keyword>
+      <keyword>next</keyword>
+      <keyword>no</keyword>
+      <keyword>oct</keyword>
+      <keyword>opendir</keyword>
+      <keyword>open</keyword>
+      <keyword>ord</keyword>
+      <keyword>our</keyword>
+      <keyword>package</keyword>
+      <keyword>pack</keyword>
+      <keyword>pipe</keyword>
+      <keyword>pop</keyword>
+      <keyword>pos</keyword>
+      <keyword>printf</keyword>
+      <keyword>print</keyword>
+      <keyword>prototype</keyword>
+      <keyword>push</keyword>
+      <keyword>quotemeta</keyword>
+      <keyword>rand</keyword>
+      <keyword>readdir</keyword>
+      <keyword>read</keyword>
+      <keyword>readlink</keyword>
+      <keyword>recv</keyword>
+      <keyword>redo</keyword>
+      <keyword>ref</keyword>
+      <keyword>rename</keyword>
+      <keyword>require</keyword>
+      <keyword>reset</keyword>
+      <keyword>return</keyword>
+      <keyword>reverse</keyword>
+      <keyword>rewinddir</keyword>
+      <keyword>rindex</keyword>
+      <keyword>rmdir</keyword>
+      <keyword>scalar</keyword>
+      <keyword>seekdir</keyword>
+      <keyword>seek</keyword>
+      <keyword>select</keyword>
       <keyword>semctl</keyword>
       <keyword>semget</keyword>
       <keyword>semop</keyword>
+      <keyword>send</keyword>
+      <keyword>setgrent</keyword>
+      <keyword>sethostent</keyword>
+      <keyword>setnetent</keyword>
+      <keyword>setpgrp</keyword>
+      <keyword>setpriority</keyword>
+      <keyword>setprotoent</keyword>
+      <keyword>setpwent</keyword>
+      <keyword>setservent</keyword>
+      <keyword>setsockopt</keyword>
+      <keyword>shift</keyword>
       <keyword>shmctl</keyword>
       <keyword>shmget</keyword>
       <keyword>shmread</keyword>
       <keyword>shmwrite</keyword>
-      <keyword>endgrent</keyword>
-      <keyword>endhostent</keyword>
-      <keyword>endnetent</keyword>
-      <keyword>endpwent</keyword>
-      <keyword>getgrent</keyword>
-      <keyword>getgrgid</keyword>
-      <keyword>getgrnam</keyword>
-      <keyword>getlogin</keyword>
-      <keyword>getpwent</keyword>
-      <keyword>getpwnam</keyword>
-      <keyword>getpwuid</keyword>
-      <keyword>setgrent</keyword>
-      <keyword>setpwent</keyword>
-      <keyword>endprotoent</keyword>
-      <keyword>endservent</keyword>
-      <keyword>gethostbyaddr</keyword>
-      <keyword>gethostbyname</keyword>
-      <keyword>gethostent</keyword>
-      <keyword>getnetbyaddr</keyword>
-      <keyword>getnetbyname</keyword>
-      <keyword>getnetent</keyword>
-      <keyword>getprotobyname</keyword>
-      <keyword>getprotobynumber</keyword>
-      <keyword>getprotoent</keyword>
-      <keyword>getservbyname</keyword>
-      <keyword>getservbyport</keyword>
-      <keyword>getservent</keyword>
-      <keyword>sethostent</keyword>
-      <keyword>setnetent</keyword>
-      <keyword>setprotoent</keyword>
-      <keyword>setservent</keyword>
-      <keyword>gmtime</keyword>
-      <keyword>localtime</keyword>
+      <keyword>shutdown</keyword>
+      <keyword>sin</keyword>
+      <keyword>sleep</keyword>
+      <keyword>socket</keyword>
+      <keyword>socketpair</keyword>
+      <keyword>sort</keyword>
+      <keyword>splice</keyword>
+      <keyword>split</keyword>
+      <keyword>sprintf</keyword>
+      <keyword>sqrt</keyword>
+      <keyword>srand</keyword>
+      <keyword>stat</keyword>
+      <keyword>study</keyword>
+      <keyword>sub</keyword>
+      <keyword>substr</keyword>
+      <keyword>symlink</keyword>
+      <keyword>syscall</keyword>
+      <keyword>sysread</keyword>
+      <keyword>sysseek</keyword>
+      <keyword>system</keyword>
+      <keyword>syswrite</keyword>
+      <keyword>telldir</keyword>
+      <keyword>tell</keyword>
+      <keyword>tied</keyword>
+      <keyword>tie</keyword>
       <keyword>time</keyword>
+      <keyword>times</keyword>
+      <keyword>truncate</keyword>
+      <keyword>ucfirst</keyword>
+      <keyword>uc</keyword>
+      <keyword>umask</keyword>
+      <keyword>undef</keyword>
+      <keyword>unless</keyword>
+      <keyword>unlink</keyword>
+      <keyword>unpack</keyword>
+      <keyword>unshift</keyword>
+      <keyword>untie</keyword>
+      <keyword>until</keyword>
+      <keyword>use</keyword>
+      <keyword>utime</keyword>
+      <keyword>values</keyword>
+      <keyword>vec</keyword>
+      <keyword>wait</keyword>
+      <keyword>waitpid</keyword>
+      <keyword>wantarray</keyword>
+      <keyword>warn</keyword>
+      <keyword>while</keyword>
+      <keyword>write</keyword>
     </context>
 
     <context id="perl">
@@ -294,6 +313,7 @@
         <context ref="variables"/>
         <context ref="function-call"/>
         <context ref="method-call"/>
+        <context ref="operators"/>
         <context ref="keywords"/>
       </include>
     </context>
