@@ -222,7 +222,7 @@ match_info_new (const GRegex *regex,
  * g_match_info_get_regex:
  * @match_info: a #GMatchInfo
  *
- * Returns #GRegex object used in @match_info. It belongs to glib
+ * Returns #GRegex object used in @match_info. It belongs to Glib
  * and must not be freed. Use g_regex_ref() if you need to keep it
  * after you free @match_info object.
  *
@@ -623,9 +623,9 @@ get_matched_substring_number (const GMatchInfo *match_info,
    * and pcre doesn't tell us about it either, it uses private flag
    * PCRE_JCHANGED for this. So we have to always search string
    * table, unlike pcre which uses pcre_get_stringnumber() shortcut
-   * when possible. It shouldn't be too bad since pcre_get_stringtable_entries()
-   * uses binary search; still would be better to fix it, to be not
-   * worse than pcre.
+   * when possible. It shouldn't be actually bad since
+   * pcre_get_stringtable_entries() uses binary search; still would 
+   * be better to fix it, to be not worse than pcre.
    */
 #if 0
   if ((match_info->regex->compile_opts & G_REGEX_DUPNAMES) == 0)

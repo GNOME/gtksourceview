@@ -1,3 +1,11 @@
+2007-06-05  Yevgen Muntyan  <muntyan@tamu.edu>
+
+	* docs/reference/tmpl/stylescheme.sgml: added some docs about style
+	scheme files.
+	* gtksourceview/regex/glib/gregex.c: synced with Glib.
+	* gtksourceview/gtksourcelanguagemanager.c (gtk_source_language_manager_init):
+	do not allocate (and leak) GtkSourceLanguageManagerPrivate structure.
+
 2007-06-02  Paolo Borelli  <pborelli@katamail.com>
 
 	* gtksourceview/language-specs/ocaml.lang: Port the ocaml.lang

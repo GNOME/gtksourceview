@@ -138,7 +138,6 @@ gtk_source_language_manager_init (GtkSourceLanguageManager *lm)
 {
 	lm->priv = G_TYPE_INSTANCE_GET_PRIVATE (lm, GTK_TYPE_SOURCE_LANGUAGE_MANAGER,
 						GtkSourceLanguageManagerPrivate);
-	lm->priv = g_new0 (GtkSourceLanguageManagerPrivate, 1);
 	lm->priv->language_ids = NULL;
 	lm->priv->available_languages = NULL;
 	lm->priv->lang_dirs = NULL;
