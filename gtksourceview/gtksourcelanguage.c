@@ -104,9 +104,30 @@ _gtk_source_language_new_from_file (const gchar              *filename,
     	}
 
 	if (lang != NULL)
+	{
 		lang->priv->language_manager = lm;
+		g_object_add_weak_pointer (G_OBJECT (lm),
+					   (gpointer*) &lang->priv->language_manager);
+	}
 
 	return lang;
+}
+
+static void
+gtk_source_language_dispose (GObject *object)
+{
+	GtkSourceLanguage *lang;
+
+	lang = GTK_SOURCE_LANGUAGE (object);
+
+	if (lang->priv->language_manager != NULL)
+	{
+		g_object_remove_weak_pointer (G_OBJECT (lang->priv->language_manager),
+					      (gpointer*) &lang->priv->language_manager);
+		lang->priv->language_manager = NULL;
+	}
+
+	G_OBJECT_CLASS (gtk_source_language_parent_class)->finalize (object);
 }
 
 static void
@@ -135,6 +156,7 @@ gtk_source_language_class_init (GtkSourceLanguageClass *klass)
 {
 	GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
+	object_class->dispose	= gtk_source_language_dispose;
 	object_class->finalize	= gtk_source_language_finalize;
 
 	g_type_class_add_private (object_class, sizeof(GtkSourceLanguagePrivate));
@@ -534,23 +556,31 @@ _gtk_source_language_create_engine (GtkSourceLanguage *language)
 		gboolean success = FALSE;
 		GtkSourceContextData *ctx_data;
 
-		ctx_data = _gtk_source_context_data_new	(language);
-
-		switch (language->priv->version)
+		if (language->priv->language_manager == NULL)
 		{
-			case GTK_SOURCE_LANGUAGE_VERSION_1_0:
-				success = _gtk_source_language_file_parse_version1 (language, ctx_data);
-				break;
-
-			case GTK_SOURCE_LANGUAGE_VERSION_2_0:
-				success = _gtk_source_language_file_parse_version2 (language, ctx_data);
-				break;
+			g_critical ("_gtk_source_language_create_engine() is called after "
+				    "language manager was finalized");
 		}
-
-		if (!success)
-			_gtk_source_context_data_unref (ctx_data);
 		else
-			language->priv->ctx_data = ctx_data;
+		{
+			ctx_data = _gtk_source_context_data_new	(language);
+
+			switch (language->priv->version)
+			{
+				case GTK_SOURCE_LANGUAGE_VERSION_1_0:
+					success = _gtk_source_language_file_parse_version1 (language, ctx_data);
+					break;
+
+				case GTK_SOURCE_LANGUAGE_VERSION_2_0:
+					success = _gtk_source_language_file_parse_version2 (language, ctx_data);
+					break;
+			}
+
+			if (!success)
+				_gtk_source_context_data_unref (ctx_data);
+			else
+				language->priv->ctx_data = ctx_data;
+		}
 	}
 	else
 	{

@@ -1,3 +1,10 @@
+2007-06-09  Yevgen Muntyan  <muntyan@tamu.edu>
+
+	* gtksourceview/gtksourcelanguage.c: (_gtk_source_language_new_from_file):
+	add weak reference to the language manager; (gtk_source_language_dispose):
+	drop it here; (_gtk_source_language_create_engine): fail if language
+	manager died.
+
 2007-06-08  Yevgen Muntyan  <muntyan@tamu.edu>
 
 	* gtksourceview/gtksourcestylescheme.c: Added secondary-cursor
