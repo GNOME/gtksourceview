@@ -11,7 +11,7 @@ GtkSourceLanguage
 
 <!-- ##### SECTION See_Also ##### -->
 <para>
-
+#GtkSourceLanguageManager
 </para>
 
 <!-- ##### SECTION Stability_Level ##### -->
@@ -19,16 +19,10 @@ GtkSourceLanguage
 
 <!-- ##### STRUCT GtkSourceLanguage ##### -->
 <para>
-
+<structname>GtkSourceLanguage</structname> structure contains only
+private members and should not be accessed directly.
 </para>
 
-
-<!-- ##### STRUCT GtkSourceLanguageClass ##### -->
-<para>
-
-</para>
-
-@parent_class: 
 
 <!-- ##### FUNCTION gtk_source_language_get_id ##### -->
 <para>

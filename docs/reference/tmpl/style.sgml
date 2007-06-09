@@ -19,7 +19,8 @@ GtkSourceStyle
 
 <!-- ##### ENUM GtkSourceStyleMask ##### -->
 <para>
-
+Each flag determines whether corresponding #GtkSourceStyle
+structure member is used.
 </para>
 
 @GTK_SOURCE_STYLE_USE_BACKGROUND: 
@@ -31,16 +32,25 @@ GtkSourceStyle
 
 <!-- ##### STRUCT GtkSourceStyle ##### -->
 <para>
-
+The #GtkSourceStyle structure is used to describe text attributes
+which are set when given style is used.
 </para>
 
-@mask: 
-@foreground: 
-@background: 
-@italic: 
-@bold: 
-@underline: 
-@strikethrough: 
+@mask: which fields of #GtkSourceStyle structure are taken
+    into account. Note that mask unset for given attribute
+    is not the same as the mask set and attribute being %FALSE.
+    For instance, if GTK_SOURCE_STYLE_USE_BOLD is unset then
+    whether text will be bold is determined using other styles
+    applied to the text, while if GTK_SOURCE_STYLE_USE_BOLD
+    is set and @bold is %FALSE then text will not be bold (given
+    that the style has the top priority among the styles applied
+    to given text).
+@foreground: foreground color
+@background: background color
+@italic: italic
+@bold: bold
+@underline: underline
+@strikethrough: strikethrough
 
 <!-- ##### FUNCTION gtk_source_style_new ##### -->
 <para>

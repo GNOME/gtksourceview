@@ -154,7 +154,8 @@ drawn</para></listitem>
 
 <!-- ##### STRUCT GtkSourceStyleScheme ##### -->
 <para>
-
+<structname>GtkSourceStyleScheme</structname> structure contains only
+private members and should not be accessed directly.
 </para>
 
 
@@ -167,15 +168,6 @@ drawn</para></listitem>
 <para>
 
 </para>
-
-<!-- ##### STRUCT GtkSourceStyleSchemeClass ##### -->
-<para>
-
-</para>
-
-@base_class: 
-@_gtk_source_reserved1: 
-@_gtk_source_reserved2: 
 
 <!-- ##### FUNCTION gtk_source_style_scheme_get_id ##### -->
 <para>

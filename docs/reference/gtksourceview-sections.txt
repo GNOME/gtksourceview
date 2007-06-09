@@ -89,7 +89,6 @@ gtk_source_view_get_type
 <TITLE>GtkSourceLanguage</TITLE>
 <INCLUDE>gtksourceview/gtksourcelanguage.h</INCLUDE>
 GtkSourceLanguage
-GtkSourceLanguageClass
 gtk_source_language_get_id
 gtk_source_language_get_name
 gtk_source_language_get_metadata
@@ -97,6 +96,7 @@ gtk_source_language_get_mime_types
 gtk_source_language_get_globs
 gtk_source_language_get_section
 <SUBSECTION Standard>
+GtkSourceLanguageClass
 GTK_IS_SOURCE_LANGUAGE
 GTK_IS_SOURCE_LANGUAGE_CLASS
 GTK_SOURCE_LANGUAGE
@@ -112,13 +112,13 @@ gtk_source_language_get_type
 <TITLE>GtkSourceLanguageManager</TITLE>
 <INCLUDE>gtksourceview/gtksourcelanguagemanager.h</INCLUDE>
 GtkSourceLanguageManager
-GtkSourceLanguageManagerClass
 gtk_source_language_manager_new
 gtk_source_language_manager_get_available_languages
 gtk_source_language_manager_get_language_by_id
 gtk_source_language_manager_set_search_path
 gtk_source_language_manager_get_search_path
 <SUBSECTION Standard>
+GtkSourceLanguageManagerClass
 GTK_IS_SOURCE_LANGUAGE_MANAGER
 GTK_IS_SOURCE_LANGUAGE_MANAGER_CLASS
 GTK_SOURCE_LANGUAGE_MANAGER
@@ -171,13 +171,13 @@ gtk_source_style_get_type
 <TITLE>GtkSourceStyleManager</TITLE>
 <INCLUDE>gtksourceview/gtksourcestylemanager.h</INCLUDE>
 GtkSourceStyleManager
-GtkSourceStyleManagerClass
 gtk_source_style_manager_new
 gtk_source_style_manager_get_scheme
 gtk_source_style_manager_list_schemes
 gtk_source_style_manager_set_search_path
 gtk_source_style_manager_get_search_path
 <SUBSECTION Standard>
+GtkSourceStyleManagerClass
 GTK_IS_SOURCE_STYLE_MANAGER
 GTK_IS_SOURCE_STYLE_MANAGER_CLASS
 GTK_SOURCE_STYLE_MANAGER
@@ -193,7 +193,6 @@ GtkSourceStyleManagerPrivate
 <TITLE>GtkSourceStyleScheme</TITLE>
 <INCLUDE>gtksourceview/gtksourcestylescheme.h</INCLUDE>
 GtkSourceStyleScheme
-GtkSourceStyleSchemeClass
 gtk_source_style_scheme_get_id
 gtk_source_style_scheme_get_name
 gtk_source_style_scheme_get_matching_brackets_style
@@ -201,6 +200,7 @@ gtk_source_style_scheme_get_current_line_color
 gtk_source_style_scheme_set_style
 gtk_source_style_scheme_get_style
 <SUBSECTION Standard>
+GtkSourceStyleSchemeClass
 GTK_IS_SOURCE_STYLE_SCHEME
 GTK_IS_SOURCE_STYLE_SCHEME_CLASS
 GTK_SOURCE_STYLE_SCHEME

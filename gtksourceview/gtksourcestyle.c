@@ -37,6 +37,18 @@ gtk_source_style_get_type (void)
  * gtk_source_style_new:
  * @mask: a #GtkSourceStyleMask which defines what fields will be used.
  *
+ * Creates new #GtkSourceStyle structure.
+ *
+ * <example id="gtk_source_style_new"><title>Using gtk_source_style_new</title>
+ * <programlisting><![CDATA[
+ * GtkSourceStyle *style;
+ * style = gtk_source_style_new (GTK_SOURCE_STYLE_USE_FOREGROUND | GTK_SOURCE_STYLE_USE_BOLD);
+ * style->bold = TRUE;
+ * gdk_color_parse ("green", &style->foreground);
+ * ...
+ * gtk_source_style_free (style);]]>
+ * </programlisting></example>
+ *
  * Returns: newly allocated #GtkSourceStyle structure, free with
  * gtk_source_style_free().
  *

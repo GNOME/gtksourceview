@@ -11,7 +11,7 @@ GtkSourceStyleManager
 
 <!-- ##### SECTION See_Also ##### -->
 <para>
-
+#GtkSourceStyleScheme
 </para>
 
 <!-- ##### SECTION Stability_Level ##### -->
@@ -19,7 +19,8 @@ GtkSourceStyleManager
 
 <!-- ##### STRUCT GtkSourceStyleManager ##### -->
 <para>
-
+<structname>GtkSourceStyleManager</structname> structure contains only
+private members and should not be accessed directly.
 </para>
 
 
@@ -34,18 +35,6 @@ GtkSourceStyleManager
 <para>
 
 </para>
-
-<!-- ##### STRUCT GtkSourceStyleManagerClass ##### -->
-<para>
-
-</para>
-
-@parent_class: 
-@changed: 
-@_gtk_source_reserved1: 
-@_gtk_source_reserved2: 
-@_gtk_source_reserved3: 
-@_gtk_source_reserved4: 
 
 <!-- ##### FUNCTION gtk_source_style_manager_new ##### -->
 <para>
