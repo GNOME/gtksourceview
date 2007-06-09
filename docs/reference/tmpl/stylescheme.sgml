@@ -114,12 +114,23 @@ The following are names of styles which control #GtkSourceView appearance:
 </varlistentry>
 <varlistentry>
 <term><code>cursor</code></term>
-<listitem><para>Text cursor style. Only <code>foreground</code> attribute makes
-sense for this style</para></listitem>
+<listitem><para>Text cursor style. Only <code>foreground</code> attribute is used
+for this style</para></listitem>
+</varlistentry>
+<varlistentry>
+<term><code>secondary-cursor</code></term>
+<listitem><para>Secondary cursor style (used in bidi text). Only <code>foreground</code> attribute
+is used for this style. If this is not set while "cursor" is, then a color between text background
+and cursor colors is chosen, so it is enough to use "cursor" style only.</para></listitem>
 </varlistentry>
 <varlistentry>
 <term><code>current-line</code></term>
 <listitem><para>Current line style. Only <code>foreground</code> attribute is used</para></listitem>
+</varlistentry>
+<varlistentry>
+<term><code>line-numbers</code></term>
+<listitem><para>Text and background colors for the left margin, on which line numbers are 
+drawn</para></listitem>
 </varlistentry>
 <varlistentry>
 <term><code>bracket-match</code></term>

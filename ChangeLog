@@ -1,5 +1,14 @@
 2007-06-08  Yevgen Muntyan  <muntyan@tamu.edu>
 
+	* gtksourceview/gtksourcestylescheme.c: Added secondary-cursor
+	and line-numbers styles; made cursor-color styles work in gtk < 2.11.3
+	using widget name and rc string trick.
+	* docs/reference/tmpl/stylescheme.sgml: documented new styles.
+	* gtksourceview/language-specs/testdark.styles: test theme, with black
+	background and yellow line numbers.
+
+2007-06-08  Yevgen Muntyan  <muntyan@tamu.edu>
+
 	* gtksourceview/language-specs/pkgconfig.lang: highlight variables
 	containing dot (e.g. "Requires.private").
 

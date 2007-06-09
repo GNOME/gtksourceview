@@ -32,7 +32,9 @@
 #define STYLE_BRACKET_MATCH	"bracket-match"
 #define STYLE_BRACKET_MISMATCH	"bracket-mismatch"
 #define STYLE_CURSOR		"cursor"
+#define STYLE_SECONDARY_CURSOR	"secondary-cursor"
 #define STYLE_CURRENT_LINE	"current-line"
+#define STYLE_LINE_NUMBERS	"line-numbers"
 
 enum {
 	PROP_0,
@@ -355,17 +357,101 @@ set_text_style (GtkWidget      *widget,
 }
 
 static void
-set_cursor_color (GtkWidget      *widget,
-		  GtkSourceStyle *style)
+set_line_numbers_style (GtkWidget      *widget,
+			GtkSourceStyle *style)
 {
-	GdkColor *color;
+	gint i;
+	GdkColor *fg = NULL;
+	GdkColor *bg = NULL;
 
 	if (style != NULL && STYLE_HAS_FOREGROUND (style))
-		color = &style->foreground;
-	else
-		color = &widget->style->text[GTK_STATE_NORMAL];
+		fg = &style->foreground;
+	if (style != NULL && STYLE_HAS_BACKGROUND (style))
+		bg = &style->background;
 
-	g_print ("implement me\n");
+	for (i = 0; i < 5; ++i)
+	{
+		gtk_widget_modify_fg (widget, i, fg);
+		gtk_widget_modify_bg (widget, i, bg);
+	}
+}
+
+static void
+set_cursor_colors (GtkWidget      *widget,
+		   const GdkColor *primary,
+		   const GdkColor *secondary)
+{
+#if !GTK_CHECK_VERSION(2,11,3)
+	char *rc_string;
+	char *widget_name;
+
+	widget_name = g_strdup_printf ("gtk-source-view-%p", (gpointer) widget);
+
+	if (strcmp (widget_name, gtk_widget_get_name (widget)) != 0)
+		gtk_widget_set_name (widget, widget_name);
+
+	rc_string = g_strdup_printf (
+		"style \"%p\"\n"
+		"{\n"
+		"   GtkWidget::cursor-color = \"#%02x%02x%02x\"\n"
+		"   GtkWidget::secondary-cursor-color = \"#%02x%02x%02x\"\n"
+		"}\n"
+		"widget \"*.%s\" style \"%p\"\n",
+		(gpointer) widget,
+		primary->red >> 8, primary->green >> 8, primary->blue >> 8,
+		secondary->red >> 8, secondary->green >> 8, secondary->blue >> 8,
+		widget_name,
+		(gpointer) widget
+	);
+
+	gtk_rc_parse_string (rc_string);
+
+	g_free (rc_string);
+	g_free (widget_name);
+#else
+	gtk_widget_modify_cursor (widget, primary, secondary);
+#endif
+}
+
+static void
+unset_cursor_colors (GtkWidget *widget)
+{
+#if !GTK_CHECK_VERSION(2,11,3)
+	set_cursor_colors (widget,
+			   &widget->style->text[GTK_STATE_NORMAL],
+			   &widget->style->text_aa[GTK_STATE_NORMAL]);
+#else
+	gtk_widget_modify_cursor (widget, NULL, NULL);
+#endif
+}
+
+static void
+update_cursor_colors (GtkWidget      *widget,
+		      GtkSourceStyle *style_primary,
+		      GtkSourceStyle *style_secondary)
+{
+	GdkColor color;
+	GdkColor *primary = NULL, *secondary = NULL;
+
+	if (style_primary != NULL && STYLE_HAS_FOREGROUND (style_primary))
+		primary = &style_primary->foreground;
+
+	if (style_secondary != NULL && STYLE_HAS_FOREGROUND (style_secondary))
+		secondary = &style_secondary->foreground;
+
+	if (primary != NULL && secondary == NULL)
+	{
+		GdkColor tmp = widget->style->base[GTK_STATE_NORMAL];
+		color.red = ((gint) tmp.red + primary->red) / 2;
+		color.green = ((gint) tmp.green + primary->green) / 2;
+		color.blue = ((gint) tmp.blue + primary->blue) / 2;
+		secondary = &color;
+	}
+
+	if (primary != NULL)
+		set_cursor_colors (widget, primary, secondary);
+	else
+		unset_cursor_colors (widget);
 }
 
 /**
@@ -386,7 +472,7 @@ _gtk_source_style_scheme_apply (GtkSourceStyleScheme *scheme,
 
 	if (scheme != NULL)
 	{
-		GtkSourceStyle *style;
+		GtkSourceStyle *style, *style2;
 
 		gtk_widget_ensure_style (widget);
 
@@ -401,8 +487,14 @@ _gtk_source_style_scheme_apply (GtkSourceStyleScheme *scheme,
 		set_text_style (widget, style, GTK_STATE_SELECTED);
 		gtk_source_style_free (style);
 
+		style = gtk_source_style_scheme_get_style (scheme, STYLE_LINE_NUMBERS);
+		set_line_numbers_style (widget, style);
+		gtk_source_style_free (style);
+
 		style = gtk_source_style_scheme_get_style (scheme, STYLE_CURSOR);
-		set_cursor_color (widget, style);
+		style2 = gtk_source_style_scheme_get_style (scheme, STYLE_SECONDARY_CURSOR);
+		update_cursor_colors (widget, style, style2);
+		gtk_source_style_free (style2);
 		gtk_source_style_free (style);
 	}
 	else
@@ -412,7 +504,8 @@ _gtk_source_style_scheme_apply (GtkSourceStyleScheme *scheme,
 		set_text_style (widget, NULL, GTK_STATE_PRELIGHT);
 		set_text_style (widget, NULL, GTK_STATE_INSENSITIVE);
 		set_text_style (widget, NULL, GTK_STATE_SELECTED);
-		set_cursor_color (widget, NULL);
+		set_line_numbers_style (widget, NULL);
+		unset_cursor_colors (widget);
 	}
 }
 
