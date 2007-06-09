@@ -26,7 +26,7 @@
         </context>
 
         <context end-at-line-end="true">
-          <start>^([\w_]+)\s*\:\s*</start>
+          <start>^([\w_\.]+)\s*\:\s*</start>
           <include>
             <context sub-pattern="1" where="start" style-ref="info"/>
             <context ref="var-value"/>
