@@ -230,7 +230,6 @@ lang_id_is_already_loaded (ParserState *parser_state, gchar *lang_id)
 	return g_hash_table_lookup (parser_state->loaded_lang_ids, lang_id) != NULL;
 }
 
-
 static GRegexCompileFlags
 get_regex_flags (xmlNode             *node,
 		 GRegexCompileFlags flags)
@@ -502,14 +501,9 @@ add_ref (ParserState               *parser_state,
 	 const gchar               *style,
 	 GError	                  **error)
 {
-	gchar *container_id;
 	gboolean all = FALSE;
 	gchar *ref_id;
-	gchar *lang_id;
-
-	GtkSourceLanguageManager *lm;
-	GtkSourceLanguage *imported_language;
-
+	gchar *lang_id = NULL;
 	GError *tmp_error = NULL;
 
 	/* Return if an error is already set */
@@ -519,6 +513,9 @@ add_ref (ParserState               *parser_state,
 	{
 		if (!lang_id_is_already_loaded (parser_state, lang_id))
 		{
+			GtkSourceLanguageManager *lm;
+			GtkSourceLanguage *imported_language;
+
 			lm = _gtk_source_language_get_language_manager (parser_state->language);
 			imported_language = gtk_source_language_manager_get_language_by_id (lm, lang_id);
 
@@ -554,7 +551,6 @@ add_ref (ParserState               *parser_state,
 			}
 		}
 		ref_id = g_strdup (ref);
-		g_free (lang_id);
 	}
 	else
 	{
@@ -575,12 +571,14 @@ add_ref (ParserState               *parser_state,
 				     PARSER_ERROR_WRONG_STYLE,
 				     "style override used with wildcard context reference"
 				     " in language '%s' in ref '%s'",
-				     lang_id, ref);
+				     lang_id != NULL ? lang_id : parser_state->current_lang_id, ref);
 		}
 	}
 
 	if (tmp_error == NULL && parser_state->ctx_data != NULL)
 	{
+		gchar *container_id;
+
 		container_id = g_queue_peek_head (parser_state->curr_parents);
 
 		/* If the document is validated container_id is never NULL */
@@ -597,6 +595,7 @@ add_ref (ParserState               *parser_state,
 		DEBUG (g_message ("appended %s in %s", ref_id, container_id));
 	}
 
+	g_free (lang_id);
 	g_free (ref_id);
 
 	if (tmp_error != NULL)
@@ -764,7 +763,6 @@ handle_context_element (ParserState *parser_state,
 
 		g_free (id);
 	}
-
 
 	g_free (style_ref);
 	xmlFree (sub_pattern);

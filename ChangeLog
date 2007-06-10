@@ -1,3 +1,8 @@
+2007-06-10  Paolo Borelli  <pborelli@katamail.com>
+
+	* gtksourceview/gtksourcelanguage-parser-2.c: avoid using
+	unitialized lang_id variable in the GError message.
+
 2007-06-09  Yevgen Muntyan  <muntyan@tamu.edu>
 
 	* docs/reference/gtksourceview-sections.txt:
