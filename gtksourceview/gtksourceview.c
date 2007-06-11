@@ -106,6 +106,7 @@ struct _GtkSourceViewPrivate
 	gint             cached_margin_width;
 	GtkSourceViewSmartHomeEndType smart_home_end;
 
+	gboolean	 style_scheme_applied;
 	GtkSourceStyleScheme *style_scheme;
 	GdkGC		*current_line_gc;
 	GHashTable 	*pixmap_cache;
@@ -2897,9 +2898,17 @@ update_current_line_gc (GtkSourceView *view)
 static void
 gtk_source_view_realize (GtkWidget *widget)
 {
+	GtkSourceView *view = GTK_SOURCE_VIEW (widget);
+
 	GTK_WIDGET_CLASS (gtk_source_view_parent_class)->realize (widget);
 
-	update_current_line_gc (GTK_SOURCE_VIEW (widget));
+	if (view->priv->style_scheme != NULL && !view->priv->style_scheme_applied)
+	{
+		_gtk_source_style_scheme_apply (view->priv->style_scheme, widget);
+		view->priv->style_scheme_applied = TRUE;
+	}
+
+	update_current_line_gc (view);
 }
 
 static void
@@ -2934,7 +2943,14 @@ gtk_source_view_update_style_scheme (GtkSourceView *view)
 		view->priv->style_scheme = new_scheme;
 		if (new_scheme)
 			g_object_ref (new_scheme);
-		_gtk_source_style_scheme_apply (new_scheme, GTK_WIDGET (view));
-		update_current_line_gc (view);
+
+		if (GTK_WIDGET_REALIZED (view))
+		{
+			_gtk_source_style_scheme_apply (new_scheme, GTK_WIDGET (view));
+			update_current_line_gc (view);
+			view->priv->style_scheme_applied = TRUE;
+		}
+		else
+			view->priv->style_scheme_applied = FALSE;
 	}
 }

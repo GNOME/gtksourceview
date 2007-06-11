@@ -59,6 +59,7 @@ struct _GtkSourceLanguageManagerClass
 GType			  gtk_source_language_manager_get_type			(void) G_GNUC_CONST;
 
 GtkSourceLanguageManager *gtk_source_language_manager_new			(void);
+GtkSourceLanguageManager *gtk_source_language_manager_get_default		(void);
 
 const GSList		 *gtk_source_language_manager_get_available_languages	(GtkSourceLanguageManager *lm);
 

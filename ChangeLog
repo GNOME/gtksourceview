@@ -1,3 +1,27 @@
+2007-06-11  Yevgen Muntyan  <muntyan@tamu.edu>
+
+	* gtksourceview/gtksourcebuffer.c: made "highlight" property
+	TRUE by default; (gtk_source_buffer_init): use default scheme;
+	(gtk_source_buffer_dispose), (gtk_source_buffer_finalize): moved
+	style scheme destroying to dispose().
+	* gtksourceview/gtksourcelanguagemanager.h:
+	* gtksourceview/gtksourcelanguagemanager.c:
+	new function gtk_source_language_manager_get_default().
+	* gtksourceview/gtksourcestylemanager.h:
+	* gtksourceview/gtksourcestylemanager.c:
+	new function gtk_source_style_manager_get_default();
+	(gtk_source_style_manager_reload): removed stuff related to
+	default scheme (it didn't actually work)
+	* gtksourceview/gtksourcestylescheme.h:
+	* gtksourceview/gtksourcestylescheme.c:
+	renamed _gtk_source_style_scheme_default_new (didn't do anything)
+	to _gtk_source_style_scheme_get_default (returns default style scheme now,
+	using default style manager instance).
+	* gtksourceview/gtksourceview.c (gtk_source_view_realize),
+	(gtk_source_view_set_style_scheme): do not apply style scheme until the
+	widget is realized.
+	* tests/test-widget.c: use new api, no more g_object_set_data (buffer, "lang-manager").
+
 2007-06-10  Paolo Borelli  <pborelli@katamail.com>
 
 	* gtksourceview/gtksourcelanguage-parser-2.c: avoid using

@@ -176,7 +176,7 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 							       _("Highlight"),
 							       _("Whether to highlight syntax "
 								 "in the buffer"),
-							       FALSE,
+							       TRUE,
 							       G_PARAM_READWRITE));
 
 	g_object_class_install_property (object_class,
@@ -276,6 +276,11 @@ gtk_source_buffer_init (GtkSourceBuffer *buffer)
 
 	priv->markers = g_array_new (FALSE, FALSE, sizeof (GtkSourceMarker *));
 
+	priv->highlight = TRUE;
+	priv->style_scheme = _gtk_source_style_scheme_get_default ();
+	if (priv->style_scheme != NULL)
+		g_object_ref (priv->style_scheme);
+
 	g_signal_connect (G_OBJECT (buffer),
 			  "mark_set",
 			  G_CALLBACK (gtk_source_buffer_move_cursor),
@@ -305,9 +310,6 @@ gtk_source_buffer_finalize (GObject *object)
 
 	if (buffer->priv->markers)
 		g_array_free (buffer->priv->markers, TRUE);
-
-	if (buffer->priv->style_scheme)
-		g_object_unref (buffer->priv->style_scheme);
 
 	G_OBJECT_CLASS (gtk_source_buffer_parent_class)->finalize (object);
 }
@@ -340,6 +342,12 @@ gtk_source_buffer_dispose (GObject *object)
 	{
 		g_object_unref (buffer->priv->language);
 		buffer->priv->language = NULL;
+	}
+
+	if (buffer->priv->style_scheme != NULL)
+	{
+		g_object_unref (buffer->priv->style_scheme);
+		buffer->priv->style_scheme = NULL;
 	}
 
 	G_OBJECT_CLASS (gtk_source_buffer_parent_class)->dispose (object);

@@ -282,15 +282,16 @@ remove_all_markers (GtkSourceBuffer *buffer)
 /* Note this is wrong for several reasons, e.g. g_pattern_match is broken
  * for glob matching. */
 static GtkSourceLanguage *
-get_language_for_filename (GtkSourceLanguageManager *manager,
-			   const gchar              *filename)
+get_language_for_filename (const gchar *filename)
 {
 	const GSList *list;
 	gchar *filename_utf8;
+	GtkSourceLanguageManager *manager;
 
 	filename_utf8 = g_filename_to_utf8 (filename, -1, NULL, NULL, NULL);
 	g_return_val_if_fail (filename_utf8 != NULL, NULL);
 
+	manager = gtk_source_language_manager_get_default ();
 	list = gtk_source_language_manager_get_available_languages (manager);
 
 	while (list != NULL)
@@ -326,11 +327,12 @@ get_language_for_filename (GtkSourceLanguageManager *manager,
  * It's fine to use in a simplish program like this, but is unacceptable
  * in a serious text editor. */
 static GtkSourceLanguage *
-get_language_for_mime_type (GtkSourceLanguageManager *manager,
-			    const gchar              *mime)
+get_language_for_mime_type (const gchar *mime)
 {
 	const GSList *list;
+	GtkSourceLanguageManager *manager;
 
+	manager = gtk_source_language_manager_get_default ();
 	list = gtk_source_language_manager_get_available_languages (manager);
 
 	while (list != NULL)
@@ -362,8 +364,7 @@ get_language_for_mime_type (GtkSourceLanguageManager *manager,
 }
 
 static GtkSourceLanguage *
-get_language_for_file (GtkSourceLanguageManager *manager,
-		       const gchar              *filename)
+get_language_for_file (const gchar *filename)
 {
 	GtkSourceLanguage *language = NULL;
 
@@ -387,14 +388,14 @@ get_language_for_file (GtkSourceLanguageManager *manager,
 	}
 
 	if ((mime_type = gnome_vfs_get_mime_type (uri)))
-		language = get_language_for_mime_type (manager, mime_type);
+		language = get_language_for_mime_type (mime_type);
 
 	g_free (mime_type);
 	g_free (uri);
 #endif
 
 	if (!language)
-		language = get_language_for_filename (manager, filename);
+		language = get_language_for_filename (filename);
 
 	return language;
 }
@@ -402,12 +403,9 @@ get_language_for_file (GtkSourceLanguageManager *manager,
 static gboolean
 open_file (GtkSourceBuffer *buffer, const gchar *filename)
 {
-	GtkSourceLanguageManager *manager;
 	GtkSourceLanguage *language = NULL;
 	gchar *freeme = NULL;
 	gboolean success = FALSE;
-
-	manager = g_object_get_data (G_OBJECT (buffer), "language-manager");
 
 	if (!g_path_is_absolute (filename))
 	{
@@ -424,7 +422,7 @@ open_file (GtkSourceBuffer *buffer, const gchar *filename)
 	if (!success)
 		goto out;
 
-	language = get_language_for_file (manager, filename);
+	language = get_language_for_file (filename);
 
 	if (language == NULL)
 		g_print ("No language found for file `%s'\n", filename);
@@ -1068,22 +1066,6 @@ create_main_window (GtkSourceBuffer *buffer)
 }
 
 
-/* Buffer creation -------------------------------------------------------------- */
-
-static GtkSourceBuffer *
-create_source_buffer (GtkSourceLanguageManager *manager)
-{
-	GtkSourceBuffer *buffer;
-
-	buffer = GTK_SOURCE_BUFFER (gtk_source_buffer_new (NULL));
-	g_object_set (G_OBJECT (buffer), "highlight", TRUE, NULL);
-	g_object_set_data_full (G_OBJECT (buffer), "language-manager",
-				g_object_ref (manager), (GDestroyNotify) g_object_unref);
-
-	return buffer;
-}
-
-
 /* XML memory management and verification functions ----------------------------- */
 
 #ifdef TEST_XML_MEM
@@ -1204,17 +1186,16 @@ main (int argc, char *argv[])
 
 	/* we do not use defaults so we don't need to install the library */
 	lang_dirs = use_default_paths ? NULL : builtin_lang_dirs;
-	lm = g_object_new (GTK_TYPE_SOURCE_LANGUAGE_MANAGER, "search-path", lang_dirs, NULL);
-	sm = g_object_new (GTK_TYPE_SOURCE_STYLE_MANAGER, "search-path", lang_dirs, NULL);
+	lm = gtk_source_language_manager_get_default ();
+	gtk_source_language_manager_set_search_path (lm, lang_dirs);
+	sm = gtk_source_style_manager_get_default ();
+	gtk_source_style_manager_set_search_path (sm, lang_dirs);
 
 	if (style_scheme_id != NULL)
 		style_scheme = gtk_source_style_manager_get_scheme (sm, style_scheme_id);
-	if (style_scheme == NULL)
-		style_scheme = gtk_source_style_manager_get_scheme (sm, "gvim");
 
 	/* create buffer */
-	buffer = create_source_buffer (lm);
-	g_object_unref (lm);
+	buffer = gtk_source_buffer_new (NULL);
 
 	if (argc > 1)
 		open_file (buffer, argv [1]);
@@ -1234,7 +1215,6 @@ main (int argc, char *argv[])
 	g_list_free (windows);
 	g_object_unref (buffer);
 
-	g_object_unref (sm);
 	g_free (style_scheme_id);
 
 #ifdef USE_GNOME_VFS

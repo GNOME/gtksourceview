@@ -75,7 +75,7 @@ void			 gtk_source_style_scheme_set_style	(GtkSourceStyleScheme *scheme,
 void			 _gtk_source_style_scheme_apply		(GtkSourceStyleScheme *scheme,
 								 GtkWidget            *widget);
 GtkSourceStyleScheme	*_gtk_source_style_scheme_new_from_file (const gchar          *filename);
-GtkSourceStyleScheme	*_gtk_source_style_scheme_default_new	(void);
+GtkSourceStyleScheme	*_gtk_source_style_scheme_get_default	(void);
 const gchar		*_gtk_source_style_scheme_get_parent_id	(GtkSourceStyleScheme *scheme);
 void			 _gtk_source_style_scheme_set_parent	(GtkSourceStyleScheme *scheme,
 								 GtkSourceStyleScheme *parent_scheme);

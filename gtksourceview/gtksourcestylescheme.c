@@ -19,7 +19,7 @@
  */
 
 #include "gtksourceview-i18n.h"
-#include "gtksourcestylescheme.h"
+#include "gtksourcestylemanager.h"
 #include "gtksourceview.h"
 #include "gtksourcelanguage-private.h"
 #include <string.h>
@@ -857,14 +857,19 @@ _gtk_source_style_scheme_set_parent (GtkSourceStyleScheme *scheme,
 }
 
 /**
- * _gtk_source_style_scheme_default_new:
+ * _gtk_source_style_scheme_get_default:
  *
- * Returns: new default style scheme. Not clear what it means though.
+ * Returns: default style scheme to be used when user didn't set
+ * style scheme explicitly.
  *
  * Since: 2.0
  */
 GtkSourceStyleScheme *
-_gtk_source_style_scheme_default_new (void)
+_gtk_source_style_scheme_get_default (void)
 {
-	return _gtk_source_style_scheme_new ("gvim", "GVim");
+	GtkSourceStyleManager *manager;
+
+	manager = gtk_source_style_manager_get_default ();
+
+	return gtk_source_style_manager_get_scheme (manager, "gvim");
 }
