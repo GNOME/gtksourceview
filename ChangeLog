@@ -1,3 +1,27 @@
+2007-06-17  Yevgen Muntyan  <muntyan@tamu.edu>
+
+	Beginning of great relicensing.
+
+	* README: added a paragraph about licenses.
+	* COPYING.lib, Makefile.am: added COPYING.lib with LGPL text.
+
+	* gtksourceview/gtksourcecontextengine.c,
+	gtksourceview/gtksourceengine.h,
+	gtksourceview/gtksourcecontextengine.h,
+	gtksourceview/gtksourcestylescheme.c,
+	gtksourceview/gtksourcestylescheme.h,
+	gtksourceview/gtktextregion.c,
+	gtksourceview/gtksourceview-utils.c,
+	gtksourceview/gtktextregion.h,
+	gtksourceview/gtksourceview-utils.h,
+	gtksourceview/gtksourceview-i18n.c,
+	gtksourceview/gtksourceview-i18n.h,
+	gtksourceview/gtksourceundomanager.c,
+	gtksourceview/gtksourceundomanager.h,
+	gtksourceview/gtksourceengine.c:
+
+	Changed license in headers to LGPL.
+
 2007-06-11  Yevgen Muntyan  <muntyan@tamu.edu>
 
 	* gtksourceview/gtksourcebuffer.c: made "highlight" property

@@ -15,6 +15,7 @@ EXTRA_DIST = \
 	intltool-update.in \
 	gtksourceview-2.0.pc.in	\
 	gtksourceview-zip.in \
+	COPYING.lib \
 	HACKING \
 	MAINTAINERS \
 	TODO
