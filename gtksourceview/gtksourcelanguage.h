@@ -49,6 +49,10 @@ struct _GtkSourceLanguage
 struct _GtkSourceLanguageClass
 {
 	GObjectClass              parent_class;
+
+	/* Padding for future expansion */
+	void (*_gtk_source_reserved1) (void);
+	void (*_gtk_source_reserved2) (void);
 };
 
 GType            	 gtk_source_language_get_type 			(void) G_GNUC_CONST;

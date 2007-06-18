@@ -63,6 +63,7 @@ struct _GtkSourceViewClass
 	void (*_gtk_source_reserved1) (void);
 	void (*_gtk_source_reserved2) (void);
 	void (*_gtk_source_reserved3) (void);
+	void (*_gtk_source_reserved4) (void);
 };
 
 typedef enum
