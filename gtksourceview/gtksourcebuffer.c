@@ -38,6 +38,7 @@
 #include "gtksourceview-marshal.h"
 #include "gtksourceiter.h"
 #include "gtksourcestylemanager.h"
+#include "gtksourcestyle-private.h"
 
 /*
 #define ENABLE_DEBUG
@@ -1073,7 +1074,8 @@ update_bracket_match_style (GtkSourceBuffer *buffer)
 		if (buffer->priv->style_scheme)
 			style = gtk_source_style_scheme_get_matching_brackets_style (buffer->priv->style_scheme);
 		_gtk_source_style_apply (style, buffer->priv->bracket_match_tag);
-		gtk_source_style_free (style);
+		if (style != NULL)
+			g_object_unref (style);
 	}
 }
 

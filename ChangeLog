@@ -1,5 +1,43 @@
 2007-06-18  Yevgen Muntyan  <muntyan@tamu.edu>
 
+	Made GtkSourceStyle a GObject, with properties for text attributes,
+	similar to GtkTextTag;
+	made GtkSourceStyle keep colors as strings interned with g_intern_string,
+	in order not to waste memory;
+	style schemes use background attribute of sourcestyle for current line
+	color now.
+
+	* gtksourceview/gtksourcestyle.h:
+	* gtksourceview/gtksourcestyle.c:
+	implemented above changes.
+	* gtksourceview/gtksourcestyle-private.h: new file to keep GtkSourceStyle
+	structure.
+
+	* gtksourceview/Makefile.am: added gtksourcestyle-private.h; made
+	gtksourceview-typebuiltins.[ch] build in builddir, to make distcheck
+	very happy.
+
+	* gtksourceview/gtksourcestylescheme.h:
+	* gtksourceview/gtksourcestylescheme.c:
+	* gtksourceview/gtksourcecontextengine.c:
+	* gtksourceview/gtksourcebuffer.c:
+	updated for new GtkSourceStyle API.
+
+	* docs/reference/gtksourceview-sections.txt:
+	* docs/reference/tmpl/style.sgml:
+	* docs/reference/tmpl/stylescheme.sgml:
+	* docs/reference/tmpl/view.sgml:
+	updated.
+
+	* gtksourceview/language-specs/testdark.styles:
+	* gtksourceview/language-specs/testdark.xml:
+	renamed testdark.styles to testdark.xml.
+
+	* gtksourceview/language-specs/kate.xml: use correct attribute for current
+	line color.
+
+2007-06-18  Yevgen Muntyan  <muntyan@tamu.edu>
+
 	* po/mg.po:
 	* po/bs.po:
 	* po/cs.po:

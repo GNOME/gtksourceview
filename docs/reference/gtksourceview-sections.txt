@@ -156,11 +156,9 @@ gtk_source_marker_get_type
 <FILE>style</FILE>
 <TITLE>GtkSourceStyle</TITLE>
 <INCLUDE>gtksourceview/gtksourcestyle.h</INCLUDE>
-GtkSourceStyleMask
 GtkSourceStyle
 gtk_source_style_new
 gtk_source_style_copy
-gtk_source_style_free
 <SUBSECTION Standard>
 GTK_TYPE_SOURCE_STYLE
 gtk_source_style_get_type

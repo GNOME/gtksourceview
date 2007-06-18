@@ -60,7 +60,7 @@ GtkSourceStyleScheme	*_gtk_source_style_scheme_new		(const gchar          *id,
 const gchar             *gtk_source_style_scheme_get_id         (GtkSourceStyleScheme *scheme);
 const gchar             *gtk_source_style_scheme_get_name       (GtkSourceStyleScheme *scheme);
 
-/* Return value must be freed with gtk_source_style_free */
+/* Return value must be freed with g_object_unref */
 GtkSourceStyle		*gtk_source_style_scheme_get_style	(GtkSourceStyleScheme *scheme,
 								 const gchar          *style_name);
 GtkSourceStyle		*gtk_source_style_scheme_get_matching_brackets_style

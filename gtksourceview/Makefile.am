@@ -63,6 +63,7 @@ libgtksourceview_2_0_la_SOURCES = 	\
 	gtksourceview-i18n.c		\
 	gtksourceview-utils.h 		\
 	gtksourceview-utils.c 		\
+	gtksourcestyle-private.h	\
 	gtksourcestyle.c		\
 	gtksourcestylemanager.c		\
 	gtksourcestylescheme.c		\
@@ -89,9 +90,11 @@ gtksourceview-marshal.c: gtksourceview-marshal.list $(GLIB_GENMARSHAL)
 	echo "#include \"gtksourceview-marshal.h\"" > $@ && \
 	$(GLIB_GENMARSHAL) $< --body --prefix=_gtksourceview_marshal >> $@
 
-$(srcdir)/gtksourceview-typebuiltins.c: Makefile.am $(libgtksourceview_headers)
-	cd $(srcdir) \
-	&& glib-mkenums \
+gtksourceview-typebuiltins.c: stamp-gtksourceview-typebuiltins.c
+	@true
+stamp-gtksourceview-typebuiltins.c: Makefile.am $(libgtksourceview_headers)
+	(cd $(srcdir) \
+	 && glib-mkenums \
 			--fhead "#include <glib-object.h>\n" \
 			--fhead "#include \"gtksourceview-typebuiltins.h\"\n\n" \
 			--fprod "\n/* enumerations from \"@filename@\" */" \
@@ -103,13 +106,15 @@ $(srcdir)/gtksourceview-typebuiltins.c: Makefile.am $(libgtksourceview_headers)
 			--vtail "  if (!type)\n" \
 			--vtail "    type = g_@type@_register_static (\"@EnumName@\", _@enum_name@_values);\n\n" \
 			--vtail "  return type;\n}\n\n" \
-		$(libgtksourceview_headers) > xgen-gtbec \
-	&& (cmp -s xgen-gtbec $(@F) || cp xgen-gtbec $(@F)) \
-	&& rm -f xgen-gtbec
+		$(libgtksourceview_headers) ) > xgen-gtbec \
+	&& (cmp -s xgen-gtbec gtksourceview-typebuiltins.c || cp xgen-gtbec gtksourceview-typebuiltins.c) \
+	&& rm -f xgen-gtbec && echo stamp > $(@F)
 
-$(srcdir)/gtksourceview-typebuiltins.h: Makefile.am $(libgtksourceview_headers)
-	cd $(srcdir) \
-	&& glib-mkenums \
+gtksourceview-typebuiltins.h: stamp-gtksourceview-typebuiltins.h
+	@true
+stamp-gtksourceview-typebuiltins.h: Makefile.am $(libgtksourceview_headers)
+	(cd $(srcdir) \
+	 && glib-mkenums \
 			--fhead "#ifndef __GTKSOURCEVIEW_TYPEBUILTINS_H__\n" \
 			--fhead "#define __GTKSOURCEVIEW_TYPEBUILTINS_H__ 1\n\n" \
 			--ftail "#endif /* __GTKSOURCEVIEW_TYPEBUILTINS_H__ */\n" \
@@ -118,11 +123,11 @@ $(srcdir)/gtksourceview-typebuiltins.h: Makefile.am $(libgtksourceview_headers)
 			--eprod "#define GTK_TYPE_@ENUMSHORT@ @enum_name@_get_type()\n" \
 			--eprod "GType @enum_name@_get_type (void);\n" \
 			--eprod "G_END_DECLS\n\n" \
-		$(libgtksourceview_headers) > xgen-gth \
-	&& (cmp -s xgen-gth $(@F) || cp xgen-gth $(@F)) \
-	&& rm -f xgen-gth
+		$(libgtksourceview_headers) ) > xgen-gth \
+	&& (cmp -s xgen-gth gtksourceview-typebuiltins.h || cp xgen-gth gtksourceview-typebuiltins.h) \
+	&& rm -f xgen-gth && echo stamp > $(@F)
 
 EXTRA_DIST = \
 	gtksourceview-marshal.list
 
-CLEANFILES = $(BUILT_SOURCES)
+CLEANFILES = $(BUILT_SOURCES) stamp-gtksourceview-typebuiltins.h stamp-gtksourceview-typebuiltins.c

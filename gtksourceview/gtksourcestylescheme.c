@@ -22,11 +22,9 @@
 #include "gtksourcestylemanager.h"
 #include "gtksourceview.h"
 #include "gtksourcelanguage-private.h"
+#include "gtksourcestyle-private.h"
 #include <libxml/parser.h>
 #include <string.h>
-
-#define STYLE_HAS_FOREGROUND(s) ((s) && ((s)->mask & GTK_SOURCE_STYLE_USE_FOREGROUND))
-#define STYLE_HAS_BACKGROUND(s) ((s) && ((s)->mask & GTK_SOURCE_STYLE_USE_BACKGROUND))
 
 #define STYLE_TEXT		"text"
 #define STYLE_SELECTED		"text-selected"
@@ -177,7 +175,7 @@ gtk_source_style_scheme_init (GtkSourceStyleScheme *scheme)
 	scheme->priv = G_TYPE_INSTANCE_GET_PRIVATE (scheme, GTK_TYPE_SOURCE_STYLE_SCHEME,
 						    GtkSourceStyleSchemePrivate);
 	scheme->priv->styles = g_hash_table_new_full (g_str_hash, g_str_equal, g_free,
-						      (GDestroyNotify) gtk_source_style_free);
+						      (GDestroyNotify) g_object_unref);
 }
 
 /**
@@ -242,8 +240,8 @@ _gtk_source_style_scheme_new (const gchar *id,
  * @style_name: style name to find.
  *
  * Returns: style which corresponds to @style_name in the @scheme,
- * or %NULL when no style with this name found. Free it with
- * gtk_source_style_free().
+ * or %NULL when no style with this name found. Call g_object_unref()
+ * when you are done with it.
  *
  * Since: 2.0
  */
@@ -296,7 +294,7 @@ gtk_source_style_scheme_set_style (GtkSourceStyleScheme *scheme,
  * @scheme: a #GtkSourceStyleScheme.
  *
  * Returns: style which corresponds to "bracket-match" name, to use
- * in an editor. Free it with gtk_source_style_free().
+ * in an editor. Call g_object_unref() when you are done with it.
  *
  * Since: 2.0
  */
@@ -305,6 +303,43 @@ gtk_source_style_scheme_get_matching_brackets_style (GtkSourceStyleScheme *schem
 {
 	g_return_val_if_fail (GTK_IS_SOURCE_STYLE_SCHEME (scheme), NULL);
 	return gtk_source_style_scheme_get_style (scheme, STYLE_BRACKET_MATCH);
+}
+
+static gboolean
+get_color (GtkSourceStyle *style,
+	   gboolean        foreground,
+	   GdkColor       *dest)
+{
+	const gchar *color;
+	guint mask;
+
+	if (style == NULL)
+		return FALSE;
+
+	if (foreground)
+	{
+		color = style->foreground;
+		mask = GTK_SOURCE_STYLE_USE_FOREGROUND;
+	}
+	else
+	{
+		color = style->background;
+		mask = GTK_SOURCE_STYLE_USE_BACKGROUND;
+	}
+
+	if (style->mask & mask)
+	{
+		if (color == NULL || !gdk_color_parse (color, dest))
+		{
+			g_warning ("%s: invalid color '%s'", G_STRLOC,
+				   color != NULL ? color : "(null)");
+			return FALSE;
+		}
+
+		return TRUE;
+	}
+
+	return FALSE;
 }
 
 /**
@@ -329,13 +364,11 @@ gtk_source_style_scheme_get_current_line_color (GtkSourceStyleScheme *scheme,
 
 	style = gtk_source_style_scheme_get_style (scheme, STYLE_CURRENT_LINE);
 
-	if (STYLE_HAS_FOREGROUND (style))
-	{
-		*color = style->foreground;
-		ret = TRUE;
-	}
+	ret = get_color (style, FALSE, color);
 
-	gtk_source_style_free (style);
+	if (style != NULL)
+		g_object_unref (style);
+
 	return ret;
 }
 
@@ -344,21 +377,22 @@ set_text_style (GtkWidget      *widget,
 		GtkSourceStyle *style,
 		GtkStateType    state)
 {
-	GdkColor *color;
+	GdkColor color;
+	GdkColor *color_ptr;
 
-	if (style != NULL && STYLE_HAS_BACKGROUND (style))
-		color = &style->background;
+	if (get_color (style, FALSE, &color))
+		color_ptr = &color;
 	else
-		color = NULL;
+		color_ptr = NULL;
 
-	gtk_widget_modify_base (widget, state, color);
+	gtk_widget_modify_base (widget, state, color_ptr);
 
-	if (style != NULL && STYLE_HAS_FOREGROUND (style))
-		color = &style->foreground;
+	if (get_color (style, TRUE, &color))
+		color_ptr = &color;
 	else
-		color = NULL;
+		color_ptr = NULL;
 
-	gtk_widget_modify_text (widget, state, color);
+	gtk_widget_modify_text (widget, state, color_ptr);
 }
 
 static void
@@ -366,18 +400,20 @@ set_line_numbers_style (GtkWidget      *widget,
 			GtkSourceStyle *style)
 {
 	gint i;
-	GdkColor *fg = NULL;
-	GdkColor *bg = NULL;
+	GdkColor *fg_ptr = NULL;
+	GdkColor *bg_ptr = NULL;
+	GdkColor fg;
+	GdkColor bg;
 
-	if (style != NULL && STYLE_HAS_FOREGROUND (style))
-		fg = &style->foreground;
-	if (style != NULL && STYLE_HAS_BACKGROUND (style))
-		bg = &style->background;
+	if (get_color (style, TRUE, &fg))
+		fg_ptr = &fg;
+	if (get_color (style, FALSE, &bg))
+		bg_ptr = &bg;
 
 	for (i = 0; i < 5; ++i)
 	{
-		gtk_widget_modify_fg (widget, i, fg);
-		gtk_widget_modify_bg (widget, i, bg);
+		gtk_widget_modify_fg (widget, i, fg_ptr);
+		gtk_widget_modify_bg (widget, i, bg_ptr);
 	}
 }
 
@@ -435,22 +471,22 @@ update_cursor_colors (GtkWidget      *widget,
 		      GtkSourceStyle *style_primary,
 		      GtkSourceStyle *style_secondary)
 {
-	GdkColor color;
+	GdkColor primary_color, secondary_color;
 	GdkColor *primary = NULL, *secondary = NULL;
 
-	if (style_primary != NULL && STYLE_HAS_FOREGROUND (style_primary))
-		primary = &style_primary->foreground;
+	if (get_color (style_primary, TRUE, &primary_color))
+		primary = &primary_color;
 
-	if (style_secondary != NULL && STYLE_HAS_FOREGROUND (style_secondary))
-		secondary = &style_secondary->foreground;
+	if (get_color (style_primary, TRUE, &secondary_color))
+		secondary = &secondary_color;
 
 	if (primary != NULL && secondary == NULL)
 	{
-		GdkColor tmp = widget->style->base[GTK_STATE_NORMAL];
-		color.red = ((gint) tmp.red + primary->red) / 2;
-		color.green = ((gint) tmp.green + primary->green) / 2;
-		color.blue = ((gint) tmp.blue + primary->blue) / 2;
-		secondary = &color;
+		secondary_color = widget->style->base[GTK_STATE_NORMAL];
+		secondary_color.red = ((gint) secondary_color.red + primary->red) / 2;
+		secondary_color.green = ((gint) secondary_color.green + primary->green) / 2;
+		secondary_color.blue = ((gint) secondary_color.blue + primary->blue) / 2;
+		secondary = &secondary_color;
 	}
 
 	if (primary != NULL)
@@ -486,21 +522,26 @@ _gtk_source_style_scheme_apply (GtkSourceStyleScheme *scheme,
 		set_text_style (widget, style, GTK_STATE_ACTIVE);
 		set_text_style (widget, style, GTK_STATE_PRELIGHT);
 		set_text_style (widget, style, GTK_STATE_INSENSITIVE);
-		gtk_source_style_free (style);
+		if (style != NULL)
+			g_object_unref (style);
 
 		style = gtk_source_style_scheme_get_style (scheme, STYLE_SELECTED);
 		set_text_style (widget, style, GTK_STATE_SELECTED);
-		gtk_source_style_free (style);
+		if (style != NULL)
+			g_object_unref (style);
 
 		style = gtk_source_style_scheme_get_style (scheme, STYLE_LINE_NUMBERS);
 		set_line_numbers_style (widget, style);
-		gtk_source_style_free (style);
+		if (style != NULL)
+			g_object_unref (style);
 
 		style = gtk_source_style_scheme_get_style (scheme, STYLE_CURSOR);
 		style2 = gtk_source_style_scheme_get_style (scheme, STYLE_SECONDARY_CURSOR);
 		update_cursor_colors (widget, style, style2);
-		gtk_source_style_free (style2);
-		gtk_source_style_free (style);
+		if (style2 != NULL)
+			g_object_unref (style2);
+		if (style != NULL)
+			g_object_unref (style);
 	}
 	else
 	{
@@ -524,11 +565,11 @@ typedef struct {
 #define ERROR_QUARK (g_quark_from_static_string ("gtk-source-style-scheme-parser-error"))
 
 static void
-get_bool (xmlNode            *node,
-	  const char         *propname,
-	  GtkSourceStyleMask *mask,
-	  GtkSourceStyleMask  mask_value,
-	  gboolean           *value)
+get_bool (xmlNode    *node,
+	  const char *propname,
+	  guint      *mask,
+	  guint       mask_value,
+	  gboolean   *value)
 {
 	xmlChar *tmp = xmlGetProp (node, BAD_CAST propname);
 
@@ -554,7 +595,7 @@ parse_style (GtkSourceStyleScheme *scheme,
 	GtkSourceStyle *result = NULL;
 	xmlChar *fg = NULL, *bg = NULL;
 	gchar *style_name = NULL;
-	GtkSourceStyleMask mask = 0;
+	guint mask = 0;
 	gboolean bold = FALSE;
 	gboolean italic = FALSE;
 	gboolean underline = FALSE;
@@ -579,7 +620,7 @@ parse_style (GtkSourceStyleScheme *scheme,
 				     "in style '%s': duplicated use-style attribute",
 				     style_name);
 			g_free (style_name);
-			gtk_source_style_free (use_style);
+			g_object_unref (use_style);
 			return FALSE;
 		}
 
@@ -610,7 +651,7 @@ parse_style (GtkSourceStyleScheme *scheme,
 			g_set_error (error, ERROR_QUARK, 0,
 				     "in style '%s': style attributes used along with use-style",
 				     style_name);
-			gtk_source_style_free (use_style);
+			g_object_unref (use_style);
 			g_free (style_name);
 			xmlFree (fg);
 			xmlFree (bg);
@@ -622,8 +663,9 @@ parse_style (GtkSourceStyleScheme *scheme,
 	}
 	else
 	{
-		result = gtk_source_style_new (mask);
+		result = gtk_source_style_new ();
 
+		result->mask = mask;
 		result->bold = bold;
 		result->italic = italic;
 		result->underline = underline;
@@ -631,20 +673,14 @@ parse_style (GtkSourceStyleScheme *scheme,
 
 		if (fg != NULL)
 		{
-			if (gdk_color_parse ((char*) fg, &result->foreground))
-				result->mask |= GTK_SOURCE_STYLE_USE_FOREGROUND;
-			else
-				g_warning ("in style '%s': invalid color '%s'",
-					   style_name, fg);
+			result->foreground = g_intern_string ((char*) fg);
+			result->mask |= GTK_SOURCE_STYLE_USE_FOREGROUND;
 		}
 
 		if (bg != NULL)
 		{
-			if (gdk_color_parse ((char*) bg, &result->background))
-				result->mask |= GTK_SOURCE_STYLE_USE_BACKGROUND;
-			else
-				g_warning ("in style '%s': invalid color '%s'",
-					   style_name, bg);
+			result->background = g_intern_string ((char*) bg);
+			result->mask |= GTK_SOURCE_STYLE_USE_BACKGROUND;
 		}
 	}
 

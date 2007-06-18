@@ -18,77 +18,341 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
-#include "gtksourcestyle.h"
+#include "gtksourcestyle-private.h"
+#include "gtksourceview-i18n.h"
 
-GType
-gtk_source_style_get_type (void)
+
+static void	gtk_source_style_set_property	(GObject      *object,
+						 guint         prop_id,
+						 const GValue *value,
+						 GParamSpec   *pspec);
+static void	gtk_source_style_get_property	(GObject      *object,
+						 guint         prop_id,
+						 GValue       *value,
+						 GParamSpec   *pspec);
+
+typedef GObjectClass GtkSourceStyleClass;
+G_DEFINE_TYPE (GtkSourceStyle, gtk_source_style, G_TYPE_OBJECT)
+
+enum {
+	PROP_0,
+	PROP_BACKGROUND,
+	PROP_BACKGROUND_SET,
+	PROP_FOREGROUND,
+	PROP_FOREGROUND_SET,
+	PROP_BOLD,
+	PROP_BOLD_SET,
+	PROP_ITALIC,
+	PROP_ITALIC_SET,
+	PROP_UNDERLINE,
+	PROP_UNDERLINE_SET,
+	PROP_STRIKETHROUGH,
+	PROP_STRIKETHROUGH_SET
+};
+
+static void
+gtk_source_style_class_init (GtkSourceStyleClass *klass)
 {
-	static GType type;
+	GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
-	if (G_UNLIKELY (type == 0))
-		type = g_boxed_type_register_static ("GtkSourceStyle",
-						     (GBoxedCopyFunc) gtk_source_style_copy,
-						     (GBoxedFreeFunc) gtk_source_style_free);
+	object_class->set_property = gtk_source_style_set_property;
+	object_class->get_property = gtk_source_style_get_property;
 
-	return type;
+	g_object_class_install_property (object_class,
+					 PROP_BACKGROUND,
+					 g_param_spec_string ("background",
+							      _("Background"),
+							      _("Background color"),
+							      NULL,
+							      G_PARAM_READWRITE));
+
+	g_object_class_install_property (object_class,
+					 PROP_FOREGROUND,
+					 g_param_spec_string ("foreground",
+							      _("Foreground"),
+							      _("Foreground color"),
+							      NULL,
+							      G_PARAM_READWRITE));
+
+	g_object_class_install_property (object_class,
+					 PROP_BOLD,
+					 g_param_spec_boolean ("bold",
+							       _("Bold"),
+							       _("Bold"),
+							       FALSE,
+							       G_PARAM_READWRITE));
+
+	g_object_class_install_property (object_class,
+					 PROP_ITALIC,
+					 g_param_spec_boolean ("italic",
+							       _("Italic"),
+							       _("Italic"),
+							       FALSE,
+							       G_PARAM_READWRITE));
+
+	g_object_class_install_property (object_class,
+					 PROP_UNDERLINE,
+					 g_param_spec_boolean ("underline",
+							       _("Underline"),
+							       _("Underline"),
+							       FALSE,
+							       G_PARAM_READWRITE));
+
+	g_object_class_install_property (object_class,
+					 PROP_STRIKETHROUGH,
+					 g_param_spec_boolean ("strikethrough",
+							       _("Strikethrough"),
+							       _("Strikethrough"),
+							       FALSE,
+							       G_PARAM_READWRITE));
+
+	g_object_class_install_property (object_class,
+					 PROP_FOREGROUND_SET,
+					 g_param_spec_boolean ("foreground-set",
+							       _("Foreground set"),
+							       _("Whether foreground color is set"),
+							       FALSE,
+							       G_PARAM_READWRITE));
+
+	g_object_class_install_property (object_class,
+					 PROP_BACKGROUND_SET,
+					 g_param_spec_boolean ("background-set",
+							       _("Background set"),
+							       _("Whether background color is set"),
+							       FALSE,
+							       G_PARAM_READWRITE));
+
+	g_object_class_install_property (object_class,
+					 PROP_BOLD_SET,
+					 g_param_spec_boolean ("bold-set",
+							       _("Bold set"),
+							       _("Whether bold attribute is set"),
+							       FALSE,
+							       G_PARAM_READWRITE));
+
+	g_object_class_install_property (object_class,
+					 PROP_ITALIC_SET,
+					 g_param_spec_boolean ("italic-set",
+							       _("Italic set"),
+							       _("Whether italic attribute is set"),
+							       FALSE,
+							       G_PARAM_READWRITE));
+
+	g_object_class_install_property (object_class,
+					 PROP_UNDERLINE_SET,
+					 g_param_spec_boolean ("underline-set",
+							       _("Underline set"),
+							       _("Whether underline attribute is set"),
+							       FALSE,
+							       G_PARAM_READWRITE));
+
+	g_object_class_install_property (object_class,
+					 PROP_STRIKETHROUGH_SET,
+					 g_param_spec_boolean ("strikethrough-set",
+							       _("Strikethrough set"),
+							       _("Whether strikethrough attribute is set"),
+							       FALSE,
+							       G_PARAM_READWRITE));
 }
+
+static void
+gtk_source_style_init (G_GNUC_UNUSED GtkSourceStyle *style)
+{
+}
+
+#define SET_MASK(style,name) (style)->mask |= (GTK_SOURCE_STYLE_USE_##name)
+#define UNSET_MASK(style,name) (style)->mask &= (GTK_SOURCE_STYLE_USE_##name)
+
+#define MODIFY_MASK(style,value,name)		\
+G_STMT_START {					\
+	if (g_value_get_boolean (value))	\
+		SET_MASK (style, name);		\
+	else					\
+		UNSET_MASK (style, name);	\
+} G_STMT_END
+
+#define GET_MASK(style,value,name)		\
+	g_value_set_boolean (value, ((style)->mask & GTK_SOURCE_STYLE_USE_##name) != 0)
+
+static void
+gtk_source_style_set_property (GObject      *object,
+			       guint         prop_id,
+			       const GValue *value,
+			       GParamSpec   *pspec)
+{
+	GtkSourceStyle *style = GTK_SOURCE_STYLE (object);
+	const gchar *string;
+
+	switch (prop_id)
+	{
+		case PROP_FOREGROUND:
+			string = g_value_get_string (value);
+			if (string != NULL)
+				style->foreground = g_intern_string (string);
+			else
+				style->foreground = NULL;
+			SET_MASK (style, FOREGROUND);
+			break;
+		case PROP_BACKGROUND:
+			string = g_value_get_string (value);
+			if (string != NULL)
+				style->background = g_intern_string (string);
+			else
+				style->background = NULL;
+			SET_MASK (style, BACKGROUND);
+			break;
+
+		case PROP_BOLD:
+			style->bold = g_value_get_boolean (value) != 0;
+			SET_MASK (style, BOLD);
+			break;
+		case PROP_ITALIC:
+			style->italic = g_value_get_boolean (value) != 0;
+			SET_MASK (style, ITALIC);
+			break;
+		case PROP_UNDERLINE:
+			style->underline = g_value_get_boolean (value) != 0;
+			SET_MASK (style, UNDERLINE);
+			break;
+		case PROP_STRIKETHROUGH:
+			style->strikethrough = g_value_get_boolean (value) != 0;
+			SET_MASK (style, STRIKETHROUGH);
+			break;
+
+		case PROP_FOREGROUND_SET:
+			MODIFY_MASK (style, value, FOREGROUND);
+			break;
+		case PROP_BACKGROUND_SET:
+			MODIFY_MASK (style, value, BACKGROUND);
+			break;
+		case PROP_BOLD_SET:
+			MODIFY_MASK (style, value, BOLD);
+			break;
+		case PROP_ITALIC_SET:
+			MODIFY_MASK (style, value, ITALIC);
+			break;
+		case PROP_UNDERLINE_SET:
+			MODIFY_MASK (style, value, UNDERLINE);
+			break;
+		case PROP_STRIKETHROUGH_SET:
+			MODIFY_MASK (style, value, STRIKETHROUGH);
+			break;
+
+		default:
+			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+			break;
+	}
+}
+
+static void
+gtk_source_style_get_property (GObject      *object,
+			       guint         prop_id,
+			       GValue       *value,
+			       GParamSpec   *pspec)
+{
+	GtkSourceStyle *style = GTK_SOURCE_STYLE (object);
+
+	switch (prop_id)
+	{
+		case PROP_FOREGROUND:
+			g_value_set_string (value, style->foreground);
+			break;
+		case PROP_BACKGROUND:
+			g_value_set_string (value, style->background);
+			break;
+		case PROP_BOLD:
+			g_value_set_boolean (value, style->bold);
+			break;
+		case PROP_ITALIC:
+			g_value_set_boolean (value, style->italic);
+			break;
+		case PROP_UNDERLINE:
+			g_value_set_boolean (value, style->underline);
+			break;
+		case PROP_STRIKETHROUGH:
+			g_value_set_boolean (value, style->strikethrough);
+			break;
+
+		case PROP_FOREGROUND_SET:
+			GET_MASK (style, value, FOREGROUND);
+			break;
+		case PROP_BACKGROUND_SET:
+			GET_MASK (style, value, BACKGROUND);
+			break;
+		case PROP_BOLD_SET:
+			GET_MASK (style, value, BOLD);
+			break;
+		case PROP_ITALIC_SET:
+			GET_MASK (style, value, ITALIC);
+			break;
+		case PROP_UNDERLINE_SET:
+			GET_MASK (style, value, UNDERLINE);
+			break;
+		case PROP_STRIKETHROUGH_SET:
+			GET_MASK (style, value, STRIKETHROUGH);
+			break;
+
+		default:
+			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+			break;
+	}
+}
+
 
 /**
  * gtk_source_style_new:
- * @mask: a #GtkSourceStyleMask which defines what fields will be used.
  *
  * Creates new #GtkSourceStyle structure.
  *
  * <example id="gtk_source_style_new"><title>Using gtk_source_style_new</title>
  * <programlisting><![CDATA[
  * GtkSourceStyle *style;
- * style = gtk_source_style_new (GTK_SOURCE_STYLE_USE_FOREGROUND | GTK_SOURCE_STYLE_USE_BOLD);
- * style->bold = TRUE;
- * gdk_color_parse ("green", &style->foreground);
+ * style = gtk_source_style_new ();
+ * g_object_set (style, "bold", TRUE, "foreground", "green", NULL);
  * ...
- * gtk_source_style_free (style);]]>
+ * g_object_unref (style);]]>
  * </programlisting></example>
  *
- * Returns: newly allocated #GtkSourceStyle structure, free with
- * gtk_source_style_free().
+ * Returns: newly allocated #GtkSourceStyle structure, call g_object_unref()
+ * when you are done with it.
  *
  * Since: 2.0
  */
 GtkSourceStyle *
-gtk_source_style_new (GtkSourceStyleMask mask)
+gtk_source_style_new (void)
 {
-	GtkSourceStyle *style = g_new0 (GtkSourceStyle, 1);
-	style->mask = mask;
-	return style;
+	return g_object_new (GTK_TYPE_SOURCE_STYLE, NULL);
 }
 
 /**
  * gtk_source_style_copy:
  * @style: a #GtkSourceStyle structure to copy.
  *
- * Returns: copy of @style, free it with gtk_source_style_free().
+ * Creates a copy of @style, that is a new #GtkSourceStyle instance which
+ * has the same attributes set.
+ *
+ * Returns: copy of @style, call g_object_unref() when you are done with it.
  *
  * Since: 2.0
  */
 GtkSourceStyle *
 gtk_source_style_copy (const GtkSourceStyle *style)
 {
-	return g_memdup (style, sizeof (GtkSourceStyle));
-}
+	GtkSourceStyle *copy;
 
-/**
- * gtk_source_style_free:
- * @style: a #GtkSourceStyle structure to free.
- *
- * Frees #GtkSourceStyle structure allocated with gtk_source_style_new() or
- * gtk_source_style_copy().
- *
- * Since: 2.0
- */
-void
-gtk_source_style_free (GtkSourceStyle *style)
-{
-	g_free (style);
+	g_return_val_if_fail (style != NULL, NULL);
+
+	copy = g_object_new (GTK_TYPE_SOURCE_STYLE, NULL);
+
+	copy->foreground = style->foreground;
+	copy->background = style->background;
+	copy->italic = style->italic;
+	copy->bold = style->bold;
+	copy->underline = style->underline;
+	copy->strikethrough = style->strikethrough;
+	copy->mask = style->mask;
+
+	return copy;
 }
 
 /**
@@ -113,9 +377,9 @@ _gtk_source_style_apply (const GtkSourceStyle *style,
 		g_object_freeze_notify (G_OBJECT (tag));
 
 		if (style->mask & GTK_SOURCE_STYLE_USE_BACKGROUND)
-			g_object_set (tag, "background-gdk", &style->background, NULL);
+			g_object_set (tag, "background", style->background, NULL);
 		if (style->mask & GTK_SOURCE_STYLE_USE_FOREGROUND)
-			g_object_set (tag, "foreground-gdk", &style->foreground, NULL);
+			g_object_set (tag, "foreground", style->foreground, NULL);
 		if (style->mask & GTK_SOURCE_STYLE_USE_ITALIC)
 			g_object_set (tag, "style", style->italic ? PANGO_STYLE_ITALIC : PANGO_STYLE_NORMAL, NULL);
 		if (style->mask & GTK_SOURCE_STYLE_USE_BOLD)

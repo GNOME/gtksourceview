@@ -24,6 +24,7 @@
 #include "gtktextregion.h"
 #include "gtksourcelanguage-private.h"
 #include "gtksourcebuffer.h"
+#include "gtksourcestyle-private.h"
 #include <glib/gregex.h>
 #include <errno.h>
 #include <string.h>
@@ -564,7 +565,7 @@ set_tag_style (GtkSourceContextEngine *ce,
 	if (style != NULL)
 	{
 		_gtk_source_style_apply (style, tag);
-		gtk_source_style_free (style);
+		g_object_unref (style);
 	}
 }
 

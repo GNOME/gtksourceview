@@ -17,47 +17,78 @@ GtkSourceStyle
 <!-- ##### SECTION Stability_Level ##### -->
 
 
-<!-- ##### ENUM GtkSourceStyleMask ##### -->
-<para>
-Each flag determines whether corresponding #GtkSourceStyle
-structure member is used.
-</para>
-
-@GTK_SOURCE_STYLE_USE_BACKGROUND: 
-@GTK_SOURCE_STYLE_USE_FOREGROUND: 
-@GTK_SOURCE_STYLE_USE_ITALIC: 
-@GTK_SOURCE_STYLE_USE_BOLD: 
-@GTK_SOURCE_STYLE_USE_UNDERLINE: 
-@GTK_SOURCE_STYLE_USE_STRIKETHROUGH: 
-
 <!-- ##### STRUCT GtkSourceStyle ##### -->
 <para>
 The #GtkSourceStyle structure is used to describe text attributes
 which are set when given style is used.
 </para>
 
-@mask: which fields of #GtkSourceStyle structure are taken
-    into account. Note that mask unset for given attribute
-    is not the same as the mask set and attribute being %FALSE.
-    For instance, if GTK_SOURCE_STYLE_USE_BOLD is unset then
-    whether text will be bold is determined using other styles
-    applied to the text, while if GTK_SOURCE_STYLE_USE_BOLD
-    is set and @bold is %FALSE then text will not be bold (given
-    that the style has the top priority among the styles applied
-    to given text).
-@foreground: foreground color
-@background: background color
-@italic: italic
-@bold: bold
-@underline: underline
-@strikethrough: strikethrough
+
+<!-- ##### ARG GtkSourceStyle:background ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GtkSourceStyle:background-set ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GtkSourceStyle:bold ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GtkSourceStyle:bold-set ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GtkSourceStyle:foreground ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GtkSourceStyle:foreground-set ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GtkSourceStyle:italic ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GtkSourceStyle:italic-set ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GtkSourceStyle:strikethrough ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GtkSourceStyle:strikethrough-set ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GtkSourceStyle:underline ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GtkSourceStyle:underline-set ##### -->
+<para>
+
+</para>
 
 <!-- ##### FUNCTION gtk_source_style_new ##### -->
 <para>
 
 </para>
 
-@mask: 
 @Returns: 
 
 
@@ -68,13 +99,5 @@ which are set when given style is used.
 
 @style: 
 @Returns: 
-
-
-<!-- ##### FUNCTION gtk_source_style_free ##### -->
-<para>
-
-</para>
-
-@style: 
 
 

@@ -25,40 +25,17 @@
 
 G_BEGIN_DECLS
 
+#define GTK_TYPE_SOURCE_STYLE		(gtk_source_style_get_type ())
+#define GTK_SOURCE_STYLE(obj)		(G_TYPE_CHECK_INSTANCE_CAST ((obj), GTK_TYPE_SOURCE_STYLE, GtkSourceStyle))
+#define GTK_IS_SOURCE_STYLE(obj)	(G_TYPE_CHECK_INSTANCE_TYPE ((obj), GTK_TYPE_SOURCE_STYLE))
+
 typedef struct _GtkSourceStyle GtkSourceStyle;
-
-typedef enum {
-	GTK_SOURCE_STYLE_USE_BACKGROUND    = 1 << 0,	/*< nick=use_background >*/
-	GTK_SOURCE_STYLE_USE_FOREGROUND    = 1 << 1,	/*< nick=use_foreground >*/
-	GTK_SOURCE_STYLE_USE_ITALIC        = 1 << 2,	/*< nick=use_italic >*/
-	GTK_SOURCE_STYLE_USE_BOLD          = 1 << 3,	/*< nick=use_bold >*/
-	GTK_SOURCE_STYLE_USE_UNDERLINE     = 1 << 4,	/*< nick=use_underline >*/
-	GTK_SOURCE_STYLE_USE_STRIKETHROUGH = 1 << 5	/*< nick=use_strikethrough >*/
-} GtkSourceStyleMask;
-
-struct _GtkSourceStyle
-{
-	GtkSourceStyleMask mask;
-
-	GdkColor foreground;
-	GdkColor background;
-
-	guint italic : 1;
-	guint bold : 1;
-	guint underline : 1;
-	guint strikethrough : 1;
-};
-
-#define GTK_TYPE_SOURCE_STYLE     (gtk_source_style_get_type ())
 
 GType		 gtk_source_style_get_type	(void) G_GNUC_CONST;
 
-GtkSourceStyle	*gtk_source_style_new		(GtkSourceStyleMask    mask);
+GtkSourceStyle	*gtk_source_style_new		(void);
 GtkSourceStyle	*gtk_source_style_copy		(const GtkSourceStyle *style);
-void		 gtk_source_style_free		(GtkSourceStyle       *style);
 
-void		 _gtk_source_style_apply	(const GtkSourceStyle *style,
-						 GtkTextTag           *tag);
 
 G_END_DECLS
 
