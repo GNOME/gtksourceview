@@ -477,7 +477,7 @@ update_cursor_colors (GtkWidget      *widget,
 	if (get_color (style_primary, TRUE, &primary_color))
 		primary = &primary_color;
 
-	if (get_color (style_primary, TRUE, &secondary_color))
+	if (get_color (style_secondary, TRUE, &secondary_color))
 		secondary = &secondary_color;
 
 	if (primary != NULL && secondary == NULL)

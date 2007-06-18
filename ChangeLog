@@ -1,5 +1,10 @@
 2007-06-18  Yevgen Muntyan  <muntyan@tamu.edu>
 
+	* gtksourceview/gtksourcestylescheme.c (update_cursor_colors): don't
+	confuse primary and secondary.
+
+2007-06-18  Yevgen Muntyan  <muntyan@tamu.edu>
+
 	Made GtkSourceStyle a GObject, with properties for text attributes,
 	similar to GtkTextTag;
 	made GtkSourceStyle keep colors as strings interned with g_intern_string,
