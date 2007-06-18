@@ -1,5 +1,18 @@
+News in 1.90.1
+--------------
+
+* GtkSourceStyle is now a gobject
+* Be more careful about Language and LanguageManager lifecycles: add
+  gtk_source_[language|style_scheme]_manager_get_default to obtain
+  managers object owned by gtksourceview
+* Most of the files are now officially licensed under LGPL, still
+  waiting for a few approval before completely switching the license.
+* Port to GRegex
+* Misc lang file updates
+* Misc bugfixes
+
 News in 1.90.0
-==============
+--------------
 
 This marks the road to GtkSourceView 2.0, and breaks the API. It is still
 considererd API-unstable.

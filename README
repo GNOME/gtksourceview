@@ -1,7 +1,7 @@
 General Information
 ===================
 
-This is version 1.90.0 of GtkSourceView. 
+This is version 1.90.1 of GtkSourceView. 
 
 GtkSourceView is a text widget that extends the standard gtk+ 2.x 
 text widget GtkTextView.
@@ -25,6 +25,7 @@ specification files are released under the GNU Lesser General Public License
 whole library under the LGPL. All future contributions to the project
 (including language specification files) must be LGPL-licensed.
 
+
 Installation
 ============
 
@@ -32,33 +33,14 @@ GtkSourceView requires GTK+-2.8.x, libxml2 2.5.x and libgnomeprint 2.8.x.
 
 Simple install procedure:
 
-  % gzip -cd gtksourceview-1.5.6.tar.gz | tar xvf -    # unpack the sources
-  % cd gtksourceview-1.5.6		   # change to the toplevel directory
+  % gzip -cd gtksourceview-1.90.1.tar.gz | tar xvf -    # unpack the sources
+  % cd gtksourceview-1.90.1		   # change to the toplevel directory
   % ./configure				   # run the `configure' script
   % make				   # build gtksourceview
   [ Become root if necessary ]
   % make install			   # install gtksourceview
 
 See the file 'INSTALL' for more detailed information.
-
-
-Language spec files format
-==========================
-
-The Document Type Definition for the XML format used in .lang files is
-located at gtksourceview/language-specs/language.dtd.
-
-The format for regular expressions in the .lang files is the POSIX
-Extended Regular Expression Syntax, plus GNU operators (word operators
-and buffer operators).
-
-There is a limit of 250 keywords in <keyword-list> elements.
-Internally keyword lists generates a branched regular expression
-(i.e. "a|b|c|...") and a bug in GNU libc produces stack corruption
-(hence crashes the application) for more than 250 or so branches.
-
-Longer lists will then be truncated to 250 keywords.  To work around
-this, split your keyword list into smaller ones.
 
 
 How to report bugs
@@ -105,9 +87,6 @@ report.
 
 Otherwise, enter a new bug report that describes the problem the patch
 fixes, and attach it to that bug report.
-
-Bug reports containing patches should include the PATCH keyword in their
-keyword fields.
   
 Patches should be in unified diff form (use the -up options of GNU
 diff and cvs) and should follow the coding style described in the
