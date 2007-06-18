@@ -116,18 +116,16 @@ msgid "Font Description"
 msgstr "Huraian Font"
 
 #: gtksourceview/gtksourceprintjob.c:313
-#, fuzzy
 msgid "Font to use for the document text (e.g. \"Monospace 10\")"
-msgstr "Nama Gnomefont untuk digunakan pada teks dokumen (tiada lagi)"
+msgstr ""
 
 #: gtksourceview/gtksourceprintjob.c:320 gtksourceview/gtksourceprintjob.c:328
 msgid "Numbers Font"
 msgstr "Font Nombor"
 
 #: gtksourceview/gtksourceprintjob.c:321
-#, fuzzy
 msgid "GnomeFont name to use for the line numbers (deprecated)"
-msgstr "Font digunakan untuk mencetak nombor baris"
+msgstr ""
 
 #: gtksourceview/gtksourceprintjob.c:329
 msgid "Font description to use for the line numbers"
@@ -162,18 +160,16 @@ msgid "Header and Footer Font"
 msgstr "Pengepala dan Pengaki Font"
 
 #: gtksourceview/gtksourceprintjob.c:361
-#, fuzzy
 msgid "GnomeFont name to use for the header and footer (deprecated)"
-msgstr "Nama font untuk digunakan pada pengepala dan pengaki"
+msgstr ""
 
 #: gtksourceview/gtksourceprintjob.c:368
 msgid "Header and Footer Font Description"
 msgstr "Huraian Pengepala dan Pengaki Font"
 
 #: gtksourceview/gtksourceprintjob.c:369
-#, fuzzy
 msgid "Font to use for headers and footers (e.g. \"Monospace 10\")"
-msgstr "Nama font untuk digunakan pada pengepala dan pengaki"
+msgstr ""
 
 #: gtksourceview/gtksourcestylescheme.c:262
 msgid "Base-N Integer"
@@ -379,9 +375,8 @@ msgid "Highlight current line"
 msgstr ""
 
 #: gtksourceview/gtksourceview.c:276
-#, fuzzy
 msgid "Whether to highlight the current line"
-msgstr "Samada menyerlahkan sintals pada penimbal"
+msgstr ""
 
 #: gtksourceview/language-specs/ada.lang.h:1
 msgid "Ada"
@@ -659,9 +654,8 @@ msgstr "Nama Ciri-ciri"
 #: gtksourceview/language-specs/css.lang.h:51
 #: gtksourceview/language-specs/javascript.lang.h:20
 #: gtksourceview/language-specs/sh.lang.h:9
-#, fuzzy
 msgid "Punctuators"
-msgstr "Fungsi"
+msgstr ""
 
 #: gtksourceview/language-specs/css.lang.h:52
 msgid "Selector Grammar"
@@ -829,14 +823,12 @@ msgstr "Nombor Desimal"
 #: gtksourceview/language-specs/ini.lang.h:4
 #: gtksourceview/language-specs/R.lang.h:3
 #: gtksourceview/language-specs/gtkrc.lang.h:2
-#, fuzzy
 msgid "Double Quote String"
-msgstr "Rentetan Aneka Baris "
+msgstr ""
 
 #: gtksourceview/language-specs/ini.lang.h:6
-#, fuzzy
 msgid "Integer"
-msgstr "Integer Asas-N"
+msgstr ""
 
 #: gtksourceview/language-specs/ini.lang.h:11
 #: gtksourceview/language-specs/R.lang.h:11
@@ -1055,9 +1047,8 @@ msgid "Preprocessor Defines"
 msgstr "Takrifan Pra Pemproses"
 
 #: gtksourceview/language-specs/pascal.lang.h:19
-#, fuzzy
 msgid "Type, Class and Object Keywords"
-msgstr "Katakunci Kelas Jenis dan Objek"
+msgstr ""
 
 #: gtksourceview/language-specs/perl.lang.h:1
 msgid "Function Call"
@@ -1183,9 +1174,8 @@ msgid "Global Variables"
 msgstr "Pembolehubah Global"
 
 #: gtksourceview/language-specs/ruby.lang.h:7
-#, fuzzy
 msgid "Instance Variables"
-msgstr "Pembolehubah"
+msgstr ""
 
 #: gtksourceview/language-specs/ruby.lang.h:10
 msgid "Module Handlers"
@@ -1216,33 +1206,28 @@ msgid "Ruby"
 msgstr "Ruby"
 
 #: gtksourceview/language-specs/sh.lang.h:2
-#, fuzzy
 msgid "Built-in Commands"
-msgstr "Fungsi Dalaman"
+msgstr ""
 
 #: gtksourceview/language-specs/sh.lang.h:3
-#, fuzzy
 msgid "Common Commands"
-msgstr "Arahan Sering Digunakan"
+msgstr ""
 
 #: gtksourceview/language-specs/sh.lang.h:10
-#, fuzzy
 msgid "Redirections"
-msgstr "Takrifan"
+msgstr ""
 
 #: gtksourceview/language-specs/sh.lang.h:12
 msgid "Self"
 msgstr "Diri"
 
 #: gtksourceview/language-specs/sh.lang.h:15
-#, fuzzy
 msgid "Variable1"
-msgstr "Pembolehubah"
+msgstr ""
 
 #: gtksourceview/language-specs/sh.lang.h:16
-#, fuzzy
 msgid "Variable2"
-msgstr "Pembolehubah"
+msgstr ""
 
 #: gtksourceview/language-specs/sh.lang.h:17
 msgid "sh"
@@ -1354,9 +1339,8 @@ msgid "Binary Number"
 msgstr "Nombor Binari"
 
 #: gtksourceview/language-specs/verilog.lang.h:4
-#, fuzzy
 msgid "Gates"
-msgstr "Latex"
+msgstr ""
 
 #: gtksourceview/language-specs/verilog.lang.h:11
 msgid "Verilog"
@@ -1439,66 +1423,56 @@ msgid "VB.NET"
 msgstr "VB.NET"
 
 #: gtksourceview/language-specs/nemerle.lang.h:4
-#, fuzzy
 msgid "Core Keywords"
-msgstr "Katakunci Aliran"
+msgstr ""
 
 #: gtksourceview/language-specs/nemerle.lang.h:5
-#, fuzzy
 msgid "Core Types"
-msgstr "Jenis"
+msgstr ""
 
 #: gtksourceview/language-specs/nemerle.lang.h:9
 msgid "Keywords Defined by Macros"
 msgstr ""
 
 #: gtksourceview/language-specs/nemerle.lang.h:11
-#, fuzzy
 msgid "Nemerle"
-msgstr "Nombor"
+msgstr ""
 
 #: gtksourceview/language-specs/tcl.lang.h:6
 msgid "Tcl"
 msgstr ""
 
 #: gtksourceview/language-specs/vhdl.lang.h:7
-#, fuzzy
 msgid "True and False"
-msgstr "Benar atau Palsu"
+msgstr ""
 
 #: gtksourceview/language-specs/vhdl.lang.h:8
-#, fuzzy
 msgid "Type"
-msgstr "Jenis"
+msgstr ""
 
 #: gtksourceview/language-specs/vhdl.lang.h:9
 msgid "VHDL"
 msgstr ""
 
 #: gtksourceview/language-specs/R.lang.h:1
-#, fuzzy
 msgid "Assignment Operator"
-msgstr "Operator Matematik"
+msgstr ""
 
 #: gtksourceview/language-specs/R.lang.h:2
-#, fuzzy
 msgid "Delimiter"
-msgstr "Tanpa Had"
+msgstr ""
 
 #: gtksourceview/language-specs/R.lang.h:5
-#, fuzzy
 msgid "Integer Number"
-msgstr "Nombor Binari"
+msgstr ""
 
 #: gtksourceview/language-specs/R.lang.h:8
-#, fuzzy
 msgid "Reserved Class"
-msgstr "Perkataan Rizab ANSI"
+msgstr ""
 
 #: gtksourceview/language-specs/R.lang.h:9
-#, fuzzy
 msgid "Reserved Constant"
-msgstr "Kandungan Dijana"
+msgstr ""
 
 #: gtksourceview/language-specs/gtkrc.lang.h:3
 msgid "GtkRC"
@@ -1513,16 +1487,11 @@ msgid "Keysymbol"
 msgstr ""
 
 #: gtksourceview/language-specs/gtkrc.lang.h:11
-#, fuzzy
 msgid "State"
-msgstr "Latex"
+msgstr ""
 
 #~ msgid "Font description name to use for the document text"
 #~ msgstr "Ketarangan  font untuk digunakan bagi teks dokumen"
-
-#, fuzzy
-#~ msgid "Font description name to use for the header and footer"
-#~ msgstr "Nama font untuk digunakan pada pengepala dan pengaki"
 
 #~ msgid "Plain Old Documentation"
 #~ msgstr "Dokumentasi Jernih Lama"

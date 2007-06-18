@@ -28,18 +28,16 @@ msgid "Escape Character"
 msgstr ""
 
 #: gtksourceview/gtksourcebuffer.c:280
-#, fuzzy
 msgid "Escaping character for syntax patterns"
-msgstr "Inyuguti kugirango"
+msgstr ""
 
 #: gtksourceview/gtksourcebuffer.c:288
 msgid "Check Brackets"
 msgstr ""
 
 #: gtksourceview/gtksourcebuffer.c:289
-#, fuzzy
 msgid "Whether to check and highlight matching brackets"
-msgstr "Kuri Kugenzura... Na garagaza cyane Udusodeko"
+msgstr ""
 
 # 2808
 #: gtksourceview/gtksourcebuffer.c:297 gtksourceview/gtksourceprintjob.c:295
@@ -47,18 +45,16 @@ msgid "Highlight"
 msgstr "garagaza cyane"
 
 #: gtksourceview/gtksourcebuffer.c:298
-#, fuzzy
 msgid "Whether to highlight syntax in the buffer"
-msgstr "Kuri garagaza cyane in"
+msgstr ""
 
 #: gtksourceview/gtksourcebuffer.c:306
 msgid "Maximum Undo Levels"
 msgstr ""
 
 #: gtksourceview/gtksourcebuffer.c:307
-#, fuzzy
 msgid "Number of undo levels for the buffer"
-msgstr "Bya Isubiranyuma Intera kugirango"
+msgstr ""
 
 # setup2/source\ui\pages\plang.src:RESID_PAGE_PAGELANGUAGE.STR_LANGUAGE.text
 #: gtksourceview/gtksourcebuffer.c:317
@@ -68,21 +64,18 @@ msgid "Language"
 msgstr "Ururimi"
 
 #: gtksourceview/gtksourcebuffer.c:318
-#, fuzzy
 msgid "Language object to get highlighting patterns from"
-msgstr "Igikoresho Kuri Kubona Igaragaza cyane Bivuye"
+msgstr ""
 
 #: gtksourceview/gtksourcelanguagesmanager.c:119
-#, fuzzy
 msgid "Language specification directories"
-msgstr "ububiko bw'amaderese"
+msgstr ""
 
 #: gtksourceview/gtksourcelanguagesmanager.c:120
-#, fuzzy
 msgid ""
 "List of directories where the language specification files (.lang) are "
 "located"
-msgstr "Bya ububiko bw'amaderese Ururimi Idosiye"
+msgstr ""
 
 # #-#-#-#-#  sfx2.pot (Gnome 2.12)  #-#-#-#-#
 # sfx2/source\appl\app.src:STR_KEY_CONFIG_DIR.text
@@ -97,18 +90,16 @@ msgid "Configuration"
 msgstr "Iboneza"
 
 #: gtksourceview/gtksourceprintjob.c:265
-#, fuzzy
 msgid "Configuration options for the print job"
-msgstr "Amahitamo kugirango Gucapa"
+msgstr ""
 
 #: gtksourceview/gtksourceprintjob.c:272
 msgid "Source Buffer"
 msgstr ""
 
 #: gtksourceview/gtksourceprintjob.c:273
-#, fuzzy
 msgid "GtkSourceBuffer object to print"
-msgstr "Igikoresho Kuri Gucapa"
+msgstr ""
 
 #: gtksourceview/gtksourceprintjob.c:279 gtksourceview/gtksourceview.c:222
 #: gtksourceview/gtksourceview.c:223
@@ -116,109 +107,92 @@ msgid "Tabs Width"
 msgstr ""
 
 #: gtksourceview/gtksourceprintjob.c:280
-#, fuzzy
 msgid "Width in equivalent space characters of tabs"
-msgstr "in Umwanya Inyuguti Bya Amasimbuka"
+msgstr ""
 
 #: gtksourceview/gtksourceprintjob.c:287
-#, fuzzy
 msgid "Wrap Mode"
-msgstr "Uburyo bwo Gufunika:"
+msgstr ""
 
 #: gtksourceview/gtksourceprintjob.c:288
-#, fuzzy
 msgid "Word wrapping mode"
-msgstr "Ubwoko"
+msgstr ""
 
 #: gtksourceview/gtksourceprintjob.c:296
-#, fuzzy
 msgid "Whether to print the document with highlighted syntax"
-msgstr "Kuri Gucapa Inyandiko Na:"
+msgstr ""
 
 #: gtksourceview/gtksourceprintjob.c:304
 msgid "Font"
 msgstr "Intego-nyuguti"
 
 #: gtksourceview/gtksourceprintjob.c:305
-#, fuzzy
 msgid "GnomeFont name to use for the document text (deprecated)"
-msgstr "Izina: Kuri Gukoresha kugirango Inyandiko Umwandiko Bitemewe."
+msgstr ""
 
 #: gtksourceview/gtksourceprintjob.c:312
 msgid "Font Description"
 msgstr ""
 
 #: gtksourceview/gtksourceprintjob.c:313
-#, fuzzy
 msgid "Font to use for the document text (e.g. \"Monospace 10\")"
-msgstr "g."
+msgstr ""
 
 #: gtksourceview/gtksourceprintjob.c:320 gtksourceview/gtksourceprintjob.c:328
 msgid "Numbers Font"
 msgstr ""
 
 #: gtksourceview/gtksourceprintjob.c:321
-#, fuzzy
 msgid "GnomeFont name to use for the line numbers (deprecated)"
-msgstr "Izina: Kuri Gukoresha kugirango Umurongo Imibare Bitemewe."
+msgstr ""
 
 #: gtksourceview/gtksourceprintjob.c:329
-#, fuzzy
 msgid "Font description to use for the line numbers"
-msgstr "Isobanuramiterere Kuri Gukoresha kugirango Umurongo Imibare"
+msgstr ""
 
 #: gtksourceview/gtksourceprintjob.c:336
 msgid "Print Line Numbers"
 msgstr ""
 
 #: gtksourceview/gtksourceprintjob.c:337
-#, fuzzy
 msgid "Interval of printed line numbers (0 means no numbers)"
-msgstr "Bya Byacapwe Umurongo Imibare 0 Oya Imibare"
+msgstr ""
 
 #: gtksourceview/gtksourceprintjob.c:344
 msgid "Print Header"
 msgstr ""
 
 #: gtksourceview/gtksourceprintjob.c:345
-#, fuzzy
 msgid "Whether to print a header in each page"
-msgstr "Kuri Gucapa a Umutwempangano in Ipaji"
+msgstr ""
 
 #: gtksourceview/gtksourceprintjob.c:352
 msgid "Print Footer"
 msgstr ""
 
 #: gtksourceview/gtksourceprintjob.c:353
-#, fuzzy
 msgid "Whether to print a footer in each page"
-msgstr "Kuri Gucapa a Imperampangano in Ipaji"
+msgstr ""
 
 #: gtksourceview/gtksourceprintjob.c:360
-#, fuzzy
 msgid "Header and Footer Font"
-msgstr "Na"
+msgstr ""
 
 #: gtksourceview/gtksourceprintjob.c:361
-#, fuzzy
 msgid "GnomeFont name to use for the header and footer (deprecated)"
 msgstr ""
-"Izina: Kuri Gukoresha kugirango Umutwempangano Na Imperampangano Bitemewe."
 
 #: gtksourceview/gtksourceprintjob.c:368
-#, fuzzy
 msgid "Header and Footer Font Description"
-msgstr "Na"
+msgstr ""
 
 #: gtksourceview/gtksourceprintjob.c:369
-#, fuzzy
 msgid "Font to use for headers and footers (e.g. \"Monospace 10\")"
-msgstr "g."
+msgstr ""
 
 #: gtksourceview/gtksourcestylescheme.c:262
-#, fuzzy
 msgid "Base-N Integer"
-msgstr "Base"
+msgstr ""
 
 #: gtksourceview/gtksourcestylescheme.c:267
 msgid "Character"
@@ -234,9 +208,8 @@ msgstr "Icyo wongeraho"
 #. $this = (datatype)
 #: gtksourceview/gtksourcestylescheme.c:277
 #: gtksourceview/language-specs/php.lang.h:14
-#, fuzzy
 msgid "Data Type"
-msgstr "Ubwoko bw'ibyatanzwe"
+msgstr ""
 
 # #-#-#-#-#  sc.pot (Gnome 2.12)  #-#-#-#-#
 # sc/source\ui\dbgui\pvfundlg.src:RID_SCDLG_PIVOTSUBT.STR_DATAFUNC.text
@@ -340,14 +313,12 @@ msgid "Others"
 msgstr "Ibindi"
 
 #: gtksourceview/gtksourcestylescheme.c:324
-#, fuzzy
 msgid "Others 2"
-msgstr "2."
+msgstr ""
 
 #: gtksourceview/gtksourcestylescheme.c:329
-#, fuzzy
 msgid "Others 3"
-msgstr "3."
+msgstr ""
 
 #: gtksourceview/gtksourcestylescheme.c:366
 msgid "Default"
@@ -358,99 +329,82 @@ msgid "Tag ID"
 msgstr ""
 
 #: gtksourceview/gtksourcetag.c:109
-#, fuzzy
 msgid "ID used to refer to the source tag"
-msgstr "Kuri Kuri Inkomoko Itagi:"
+msgstr ""
 
 #: gtksourceview/gtksourcetag.c:116
-#, fuzzy
 msgid "Tag style"
-msgstr "IMISUSIRE"
+msgstr ""
 
 #: gtksourceview/gtksourcetag.c:117
-#, fuzzy
 msgid "The style associated to the source tag"
-msgstr "IMISUSIRE Kuri Inkomoko Itagi:"
+msgstr ""
 
 #: gtksourceview/gtksourceview.c:206
 msgid "Show Line Numbers"
 msgstr ""
 
 #: gtksourceview/gtksourceview.c:207
-#, fuzzy
 msgid "Whether to display line numbers"
-msgstr "Kuri Kugaragaza Umurongo Imibare"
+msgstr ""
 
 #: gtksourceview/gtksourceview.c:214
 msgid "Show Line Markers"
 msgstr ""
 
 #: gtksourceview/gtksourceview.c:215
-#, fuzzy
 msgid "Whether to display line marker pixbufs"
-msgstr "Kuri Kugaragaza Umurongo"
+msgstr ""
 
 #: gtksourceview/gtksourceview.c:232
 msgid "Auto Indentation"
 msgstr ""
 
 #: gtksourceview/gtksourceview.c:233
-#, fuzzy
 msgid "Whether to enable auto indentation"
-msgstr "Kuri Gushoboza Ikiyega"
+msgstr ""
 
 #: gtksourceview/gtksourceview.c:239
-#, fuzzy
 msgid "Insert Spaces Instead of Tabs"
-msgstr "Bya"
+msgstr ""
 
 #: gtksourceview/gtksourceview.c:240
-#, fuzzy
 msgid "Whether to insert spaces instead of tabs"
-msgstr "Kuri Kongeramo Imyanya Bya Amasimbuka"
+msgstr ""
 
 #: gtksourceview/gtksourceview.c:247
 msgid "Show Right Margin"
 msgstr ""
 
 #: gtksourceview/gtksourceview.c:248
-#, fuzzy
 msgid "Whether to display the right margin"
-msgstr "Kuri Kugaragaza Iburyo: Marije"
+msgstr ""
 
 #: gtksourceview/gtksourceview.c:255
-#, fuzzy
 msgid "Margin position"
-msgstr "Ibirindiro"
+msgstr ""
 
 #: gtksourceview/gtksourceview.c:256
-#, fuzzy
 msgid "Position of the right margin"
-msgstr "Bya Iburyo: Marije"
+msgstr ""
 
 #: gtksourceview/gtksourceview.c:265
-#, fuzzy
 msgid "Use smart home/end"
-msgstr "Cyiza Ku Ntangiriro Impera"
+msgstr ""
 
 #: gtksourceview/gtksourceview.c:266
-#, fuzzy
 msgid ""
 "HOME and END keys move to first/last characters on line first before going "
 "to the start/end of the line"
 msgstr ""
-"Na Utubuto Kwimura Kuri Itangira Iheruka Inyuguti ku Umurongo Itangira Mbere "
-"Kuri Gutangira Impera Bya Umurongo"
 
 #: gtksourceview/gtksourceview.c:275
-#, fuzzy
 msgid "Highlight current line"
-msgstr "KIGEZWEHO Umurongo"
+msgstr ""
 
 #: gtksourceview/gtksourceview.c:276
-#, fuzzy
 msgid "Whether to highlight the current line"
-msgstr "Kuri garagaza cyane KIGEZWEHO Umurongo"
+msgstr ""
 
 #: gtksourceview/language-specs/ada.lang.h:1
 msgid "Ada"
@@ -570,9 +524,8 @@ msgstr ""
 
 #: gtksourceview/language-specs/c.lang.h:1
 #: gtksourceview/language-specs/cpp.lang.h:1
-#, fuzzy
 msgid "'#if 0' Comment"
-msgstr "'#NIBA"
+msgstr ""
 
 #: gtksourceview/language-specs/c.lang.h:2
 #: gtksourceview/language-specs/cpp.lang.h:2
@@ -673,9 +626,8 @@ msgstr ""
 # #-#-#-#-#  sc.pot (Gnome 2.12)  #-#-#-#-#
 # sc/source\ui\src\scfuncs.src:RID_SC_FUNCTION_DESCRIPTIONS2.SC_OPCODE_WEIBULL.8.text
 #: gtksourceview/language-specs/cpp.lang.h:3
-#, fuzzy
 msgid "C++"
-msgstr "C"
+msgstr ""
 
 # #-#-#-#-#  sc.pot (Gnome 2.12)  #-#-#-#-#
 # sc/source\ui\src\scfuncs.src:RID_SC_FUNCTION_DESCRIPTIONS2.SC_OPCODE_BINOM_DIST.8.text
@@ -690,9 +642,8 @@ msgstr "C"
 # #-#-#-#-#  sc.pot (Gnome 2.12)  #-#-#-#-#
 # sc/source\ui\src\scfuncs.src:RID_SC_FUNCTION_DESCRIPTIONS2.SC_OPCODE_WEIBULL.8.text
 #: gtksourceview/language-specs/csharp.lang.h:2
-#, fuzzy
 msgid "C#"
-msgstr "C"
+msgstr ""
 
 #: gtksourceview/language-specs/csharp.lang.h:6
 #: gtksourceview/language-specs/java.lang.h:9
@@ -711,9 +662,8 @@ msgstr ""
 #: gtksourceview/language-specs/ruby.lang.h:19
 #: gtksourceview/language-specs/sh.lang.h:14
 #: gtksourceview/language-specs/vbnet.lang.h:8
-#, fuzzy
 msgid "String 2"
-msgstr "2."
+msgstr ""
 
 #.
 #. At rules must occur at the start of a line.
@@ -820,17 +770,8 @@ msgid "Unicode Range"
 msgstr ""
 
 #: gtksourceview/language-specs/desktop.lang.h:1
-#, fuzzy
 msgid ".desktop"
 msgstr ""
-".Project- Id- Version: basctl\n"
-"POT- Creation- Date: 2003- 12- 07 17: 13+ 02\n"
-"PO- Revision- Date: 2004- 11- 04 10: 13- 0700\n"
-"Last- Translator: Language- Team:< en@ li. org> MIME- Version: 1. 0\n"
-"Content- Type: text/ plain; charset= UTF- 8\n"
-"Content- Transfer- Encoding: 8bit\n"
-"X- Generator: KBabel 1. 0\n"
-"."
 
 # svx/source\dialog\numfmt.src:RID_SVXPAGE_NUMBERFORMAT.LB_CATEGORY.10.text
 #: gtksourceview/language-specs/desktop.lang.h:2
@@ -840,9 +781,8 @@ msgid "Boolean Value"
 msgstr "Agaciro nyabule"
 
 #: gtksourceview/language-specs/desktop.lang.h:3
-#, fuzzy
 msgid "Encoding"
-msgstr "Imisobekere:"
+msgstr ""
 
 #: gtksourceview/language-specs/desktop.lang.h:4
 msgid "Exec Parameter"
@@ -867,23 +807,20 @@ msgid "Standard Key"
 msgstr ""
 
 #: gtksourceview/language-specs/diff.lang.h:1
-#, fuzzy
 msgid "Added line"
-msgstr "Umurongo"
+msgstr ""
 
 #: gtksourceview/language-specs/diff.lang.h:2
-#, fuzzy
 msgid "Changed line"
-msgstr "Umurongo"
+msgstr ""
 
 #: gtksourceview/language-specs/diff.lang.h:3
 msgid "Diff"
 msgstr ""
 
 #: gtksourceview/language-specs/diff.lang.h:4
-#, fuzzy
 msgid "Diff file"
-msgstr "IDOSIYE"
+msgstr ""
 
 # #-#-#-#-#  officecfg.pot (Gnome 2.12)  #-#-#-#-#
 # officecfg/registry\schema\org\openoffice\Office\Writer.xcs:....Wizard.Agenda.Elements.Location.text
@@ -897,9 +834,8 @@ msgid "Location"
 msgstr "Ahantu"
 
 #: gtksourceview/language-specs/diff.lang.h:8
-#, fuzzy
 msgid "Removed line"
-msgstr "Umurongo"
+msgstr ""
 
 #: gtksourceview/language-specs/diff.lang.h:9
 msgid "Special case"
@@ -970,17 +906,8 @@ msgid "Sectional"
 msgstr ""
 
 #: gtksourceview/language-specs/ini.lang.h:1
-#, fuzzy
 msgid ".ini"
 msgstr ""
-".Project- Id- Version: basctl\n"
-"POT- Creation- Date: 2003- 12- 07 17: 13+ 02\n"
-"PO- Revision- Date: 2004- 11- 04 10: 13- 0700\n"
-"Last- Translator: Language- Team:< en@ li. org> MIME- Version: 1. 0\n"
-"Content- Type: text/ plain; charset= UTF- 8\n"
-"Content- Transfer- Encoding: 8bit\n"
-"X- Generator: KBabel 1. 0\n"
-"."
 
 #: gtksourceview/language-specs/ini.lang.h:3
 #: gtksourceview/language-specs/verilog.lang.h:3
@@ -1160,9 +1087,8 @@ msgid "Functions"
 msgstr "Imimaro"
 
 #: gtksourceview/language-specs/lua.lang.h:5
-#, fuzzy
 msgid "Line Comment 2"
-msgstr "2."
+msgstr ""
 
 #: gtksourceview/language-specs/lua.lang.h:6
 msgid "Lua"
@@ -1177,19 +1103,16 @@ msgstr ""
 #: gtksourceview/language-specs/lua.lang.h:8
 #: gtksourceview/language-specs/python.lang.h:10
 #: gtksourceview/language-specs/sh.lang.h:7
-#, fuzzy
 msgid "Multiline String 2"
-msgstr "2."
+msgstr ""
 
 #: gtksourceview/language-specs/pascal.lang.h:1
-#, fuzzy
 msgid "Block Comment 1"
-msgstr "1."
+msgstr ""
 
 #: gtksourceview/language-specs/pascal.lang.h:2
-#, fuzzy
 msgid "Block Comment 2"
-msgstr "2."
+msgstr ""
 
 #: gtksourceview/language-specs/pascal.lang.h:3
 msgid "Boolean Bitwise Operators"
@@ -1208,18 +1131,16 @@ msgid "Builtin Values"
 msgstr ""
 
 #: gtksourceview/language-specs/pascal.lang.h:7
-#, fuzzy
 msgid "Functions and Function Modifiers"
-msgstr "Na"
+msgstr ""
 
 #: gtksourceview/language-specs/pascal.lang.h:8
 msgid "General Format"
 msgstr ""
 
 #: gtksourceview/language-specs/pascal.lang.h:12
-#, fuzzy
 msgid "Loop, Flow, and Exceptions Keywords"
-msgstr "Na"
+msgstr ""
 
 #: gtksourceview/language-specs/pascal.lang.h:13
 msgid "Math Operators"
@@ -1234,9 +1155,8 @@ msgid "Preprocessor Defines"
 msgstr ""
 
 #: gtksourceview/language-specs/pascal.lang.h:19
-#, fuzzy
 msgid "Type, Class and Object Keywords"
-msgstr "Na"
+msgstr ""
 
 #: gtksourceview/language-specs/perl.lang.h:1
 msgid "Function Call"
@@ -1282,15 +1202,13 @@ msgstr ""
 
 #. /* C Block Comment
 #: gtksourceview/language-specs/php.lang.h:7
-#, fuzzy
 msgid "C Block Comment"
-msgstr "C"
+msgstr ""
 
 #. // C++ Line Comment
 #: gtksourceview/language-specs/php.lang.h:9
-#, fuzzy
 msgid "C++ Line Comment"
-msgstr "C"
+msgstr ""
 
 #: gtksourceview/language-specs/php.lang.h:10
 msgid "Case Insensitive Keyword"
@@ -1328,9 +1246,8 @@ msgid "Format"
 msgstr "Imiterere"
 
 #: gtksourceview/language-specs/po.lang.h:7
-#, fuzzy
 msgid "gettext translation"
-msgstr "Umwandiko wahinduwe ururimi"
+msgstr ""
 
 #: gtksourceview/language-specs/python.lang.h:1
 #: gtksourceview/language-specs/ruby.lang.h:2
@@ -1387,14 +1304,12 @@ msgstr ""
 
 # sc/source\ui\src\filter.src:RID_SCDLG_FILTER.BTN_REGEXP.text
 #: gtksourceview/language-specs/ruby.lang.h:14
-#, fuzzy
 msgid "Regular Expression"
-msgstr "Imvugo ndahinduka"
+msgstr ""
 
 #: gtksourceview/language-specs/ruby.lang.h:15
-#, fuzzy
 msgid "Regular Expression 2"
-msgstr "2."
+msgstr ""
 
 # sfx2/sdi\sfxslots.src:SID_RUBY_DIALOG.text
 #: gtksourceview/language-specs/ruby.lang.h:16
@@ -1402,9 +1317,8 @@ msgid "Ruby"
 msgstr "Rubi"
 
 #: gtksourceview/language-specs/sh.lang.h:2
-#, fuzzy
 msgid "Built-in Commands"
-msgstr "in"
+msgstr ""
 
 #: gtksourceview/language-specs/sh.lang.h:3
 msgid "Common Commands"
@@ -1440,9 +1354,8 @@ msgstr ""
 
 # 6049
 #: gtksourceview/language-specs/sql.lang.h:3
-#, fuzzy
 msgid "Aggregate Functions"
-msgstr "Imimaro rusange"
+msgstr ""
 
 #: gtksourceview/language-specs/sql.lang.h:4
 msgid "Analytic Functions"
@@ -1473,9 +1386,8 @@ msgid "Miscellaneous Single-Row Functions"
 msgstr ""
 
 #: gtksourceview/language-specs/sql.lang.h:13
-#, fuzzy
 msgid "Null"
-msgstr "NTAGIHARI"
+msgstr ""
 
 #: gtksourceview/language-specs/sql.lang.h:14
 msgid "Number Functions"
@@ -1490,9 +1402,8 @@ msgid "Object Reference Functions"
 msgstr ""
 
 #: gtksourceview/language-specs/sql.lang.h:17
-#, fuzzy
 msgid "Oracle Built-in Datatypes"
-msgstr "in"
+msgstr ""
 
 #: gtksourceview/language-specs/sql.lang.h:18
 msgid "Oracle Reserved Words"
@@ -1520,9 +1431,8 @@ msgid "SQL*Plus Slash"
 msgstr ""
 
 #: gtksourceview/language-specs/sql.lang.h:24
-#, fuzzy
 msgid "SQL/DS and DB2 Datatypes"
-msgstr "Na"
+msgstr ""
 
 #: gtksourceview/language-specs/sql.lang.h:25
 msgid "Size Clause"
@@ -1559,9 +1469,8 @@ msgstr "Itagi"
 
 # sc/source\ui\src\scfuncs.src:RID_SC_FUNCTION_DESCRIPTIONS2.SC_OPCODE_CONVERT.1.text
 #: gtksourceview/language-specs/xml.lang.h:9
-#, fuzzy
 msgid "XML"
-msgstr "xml"
+msgstr ""
 
 #: gtksourceview/language-specs/haskell.lang.h:5
 msgid "Haskell"
@@ -1572,9 +1481,8 @@ msgid "Keysymbols"
 msgstr ""
 
 #: gtksourceview/language-specs/haskell.lang.h:16
-#, fuzzy
 msgid "Type or Constructor"
-msgstr "Cyangwa"
+msgstr ""
 
 # #-#-#-#-#  sch.pot (Gnome 2.12)  #-#-#-#-#
 # sch/source\ui\dlg\attrib2.src:TAB_X_AXIS.1.RID_SVXPAGE_CHAR_NAME.text
@@ -1597,9 +1505,8 @@ msgid "Characters"
 msgstr "Inyuguti"
 
 #: gtksourceview/language-specs/texinfo.lang.h:3
-#, fuzzy
 msgid "File Attributes"
-msgstr "Idosiye"
+msgstr ""
 
 #: gtksourceview/language-specs/texinfo.lang.h:4
 msgid "Formatting"
@@ -1624,14 +1531,12 @@ msgid "Macros"
 msgstr "Makoro"
 
 #: gtksourceview/language-specs/texinfo.lang.h:13
-#, fuzzy
 msgid "Markup (block)"
-msgstr "Funga"
+msgstr ""
 
 #: gtksourceview/language-specs/texinfo.lang.h:14
-#, fuzzy
 msgid "Markup (inline)"
-msgstr "Mumurongo"
+msgstr ""
 
 #: gtksourceview/language-specs/texinfo.lang.h:15
 msgid "Sectioning"
@@ -1658,9 +1563,8 @@ msgid "Core Types"
 msgstr ""
 
 #: gtksourceview/language-specs/nemerle.lang.h:9
-#, fuzzy
 msgid "Keywords Defined by Macros"
-msgstr "ku"
+msgstr ""
 
 #: gtksourceview/language-specs/nemerle.lang.h:11
 msgid "Nemerle"
@@ -1671,9 +1575,8 @@ msgid "Tcl"
 msgstr ""
 
 #: gtksourceview/language-specs/vhdl.lang.h:7
-#, fuzzy
 msgid "True and False"
-msgstr "Na"
+msgstr ""
 
 # filter/source\xsltdialog\xmlfilterdialogstrings.src:STR_COLUMN_HEADER_TYPE.text
 #: gtksourceview/language-specs/vhdl.lang.h:8

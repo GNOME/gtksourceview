@@ -121,9 +121,8 @@ msgid "Font Description"
 msgstr "Opis Fonta"
 
 #: gtksourceview/gtksourceprintjob.c:313
-#, fuzzy
 msgid "Font to use for the document text (e.g. \"Monospace 10\")"
-msgstr "GnomeFont ime koje će se koristiti za tekst dokumenta (osuđivano)"
+msgstr ""
 
 #: gtksourceview/gtksourceprintjob.c:320 gtksourceview/gtksourceprintjob.c:328
 msgid "Numbers Font"
@@ -175,10 +174,8 @@ msgid "Header and Footer Font Description"
 msgstr "Opis Fonta Zaglavlja i Podnožja"
 
 #: gtksourceview/gtksourceprintjob.c:369
-#, fuzzy
 msgid "Font to use for headers and footers (e.g. \"Monospace 10\")"
 msgstr ""
-"Ime GnomeFonta koje će se koristiti za zaglavlje i podnožje (osuđivano)"
 
 #: gtksourceview/gtksourcestylescheme.c:262
 msgid "Base-N Integer"
@@ -384,9 +381,8 @@ msgid "Highlight current line"
 msgstr ""
 
 #: gtksourceview/gtksourceview.c:276
-#, fuzzy
 msgid "Whether to highlight the current line"
-msgstr "Da li istaknuti sintaku u bufferu"
+msgstr ""
 
 #: gtksourceview/language-specs/ada.lang.h:1
 msgid "Ada"
@@ -833,21 +829,18 @@ msgstr "Decimalni Broj"
 #: gtksourceview/language-specs/ini.lang.h:4
 #: gtksourceview/language-specs/R.lang.h:3
 #: gtksourceview/language-specs/gtkrc.lang.h:2
-#, fuzzy
 msgid "Double Quote String"
-msgstr "Dvostruko citirani string"
+msgstr ""
 
 #: gtksourceview/language-specs/ini.lang.h:6
-#, fuzzy
 msgid "Integer"
-msgstr "Base-N Cijeli Broj"
+msgstr ""
 
 #: gtksourceview/language-specs/ini.lang.h:11
 #: gtksourceview/language-specs/R.lang.h:11
 #: gtksourceview/language-specs/gtkrc.lang.h:10
-#, fuzzy
 msgid "Single Quote String"
-msgstr "Jednom citirani String"
+msgstr ""
 
 #. $variable, $$dynamic-variable and even $$$more
 #: gtksourceview/language-specs/ini.lang.h:12
@@ -1060,9 +1053,8 @@ msgid "Preprocessor Defines"
 msgstr "Preprocessor Definira"
 
 #: gtksourceview/language-specs/pascal.lang.h:19
-#, fuzzy
 msgid "Type, Class and Object Keywords"
-msgstr "Tipovi Klase i Ključne Riječi Objekta"
+msgstr ""
 
 #: gtksourceview/language-specs/perl.lang.h:1
 msgid "Function Call"
@@ -1220,33 +1212,28 @@ msgid "Ruby"
 msgstr "Ruby"
 
 #: gtksourceview/language-specs/sh.lang.h:2
-#, fuzzy
 msgid "Built-in Commands"
-msgstr "Funkcije Ugradnje"
+msgstr ""
 
 #: gtksourceview/language-specs/sh.lang.h:3
-#, fuzzy
 msgid "Common Commands"
-msgstr "Najviše Korištene Komande"
+msgstr ""
 
 #: gtksourceview/language-specs/sh.lang.h:10
-#, fuzzy
 msgid "Redirections"
-msgstr "Definicije"
+msgstr ""
 
 #: gtksourceview/language-specs/sh.lang.h:12
 msgid "Self"
 msgstr "Self"
 
 #: gtksourceview/language-specs/sh.lang.h:15
-#, fuzzy
 msgid "Variable1"
-msgstr "Varijabla"
+msgstr ""
 
 #: gtksourceview/language-specs/sh.lang.h:16
-#, fuzzy
 msgid "Variable2"
-msgstr "Varijabla"
+msgstr ""
 
 #: gtksourceview/language-specs/sh.lang.h:17
 msgid "sh"
@@ -1442,66 +1429,56 @@ msgid "VB.NET"
 msgstr "VB.NET"
 
 #: gtksourceview/language-specs/nemerle.lang.h:4
-#, fuzzy
 msgid "Core Keywords"
-msgstr "Tok Ključne riječi"
+msgstr ""
 
 #: gtksourceview/language-specs/nemerle.lang.h:5
-#, fuzzy
 msgid "Core Types"
-msgstr "Tipovi"
+msgstr ""
 
 #: gtksourceview/language-specs/nemerle.lang.h:9
 msgid "Keywords Defined by Macros"
 msgstr ""
 
 #: gtksourceview/language-specs/nemerle.lang.h:11
-#, fuzzy
 msgid "Nemerle"
-msgstr "Broj"
+msgstr ""
 
 #: gtksourceview/language-specs/tcl.lang.h:6
 msgid "Tcl"
 msgstr ""
 
 #: gtksourceview/language-specs/vhdl.lang.h:7
-#, fuzzy
 msgid "True and False"
-msgstr "Tačno i Netačno"
+msgstr ""
 
 #: gtksourceview/language-specs/vhdl.lang.h:8
-#, fuzzy
 msgid "Type"
-msgstr "Tipovi"
+msgstr ""
 
 #: gtksourceview/language-specs/vhdl.lang.h:9
 msgid "VHDL"
 msgstr ""
 
 #: gtksourceview/language-specs/R.lang.h:1
-#, fuzzy
 msgid "Assignment Operator"
-msgstr "Redovni Operatori"
+msgstr ""
 
 #: gtksourceview/language-specs/R.lang.h:2
-#, fuzzy
 msgid "Delimiter"
-msgstr "Neograničeno"
+msgstr ""
 
 #: gtksourceview/language-specs/R.lang.h:5
-#, fuzzy
 msgid "Integer Number"
-msgstr "Binarni Broj"
+msgstr ""
 
 #: gtksourceview/language-specs/R.lang.h:8
-#, fuzzy
 msgid "Reserved Class"
-msgstr "ANSI Rezervisane Riječi"
+msgstr ""
 
 #: gtksourceview/language-specs/R.lang.h:9
-#, fuzzy
 msgid "Reserved Constant"
-msgstr "Generisani Sadržaj"
+msgstr ""
 
 #: gtksourceview/language-specs/gtkrc.lang.h:3
 msgid "GtkRC"
@@ -1512,14 +1489,12 @@ msgid "Include Directive"
 msgstr ""
 
 #: gtksourceview/language-specs/gtkrc.lang.h:5
-#, fuzzy
 msgid "Keysymbol"
-msgstr "Ključni Simboli"
+msgstr ""
 
 #: gtksourceview/language-specs/gtkrc.lang.h:11
-#, fuzzy
 msgid "State"
-msgstr "Vrata"
+msgstr ""
 
 #~ msgid "Font description name to use for the document text"
 #~ msgstr "Ime opisa fonta koje će se koristiti za tekst dokumenta"

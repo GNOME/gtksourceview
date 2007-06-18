@@ -110,32 +110,28 @@ msgid "Font"
 msgstr "גופן"
 
 #: gtksourceview/gtksourceprintjob.c:305
-#, fuzzy
 msgid "GnomeFont name to use for the document text (deprecated)"
-msgstr "שם הגופן לשימוש בטקסט המסמך"
+msgstr ""
 
 #: gtksourceview/gtksourceprintjob.c:312
 msgid "Font Description"
 msgstr ""
 
 #: gtksourceview/gtksourceprintjob.c:313
-#, fuzzy
 msgid "Font to use for the document text (e.g. \"Monospace 10\")"
-msgstr "שם הגופן לשימוש בטקסט המסמך"
+msgstr ""
 
 #: gtksourceview/gtksourceprintjob.c:320 gtksourceview/gtksourceprintjob.c:328
 msgid "Numbers Font"
 msgstr "גופן מספרים"
 
 #: gtksourceview/gtksourceprintjob.c:321
-#, fuzzy
 msgid "GnomeFont name to use for the line numbers (deprecated)"
-msgstr "שם הגופן לשימוש במספרי השורות"
+msgstr ""
 
 #: gtksourceview/gtksourceprintjob.c:329
-#, fuzzy
 msgid "Font description to use for the line numbers"
-msgstr "שם הגופן לשימוש במספרי השורות"
+msgstr ""
 
 #: gtksourceview/gtksourceprintjob.c:336
 msgid "Print Line Numbers"
@@ -166,19 +162,16 @@ msgid "Header and Footer Font"
 msgstr "גופן כותרת ותחתית"
 
 #: gtksourceview/gtksourceprintjob.c:361
-#, fuzzy
 msgid "GnomeFont name to use for the header and footer (deprecated)"
-msgstr "שם הגופן לשימוש בכותרת ובתחתית"
+msgstr ""
 
 #: gtksourceview/gtksourceprintjob.c:368
-#, fuzzy
 msgid "Header and Footer Font Description"
-msgstr "גופן כותרת ותחתית"
+msgstr ""
 
 #: gtksourceview/gtksourceprintjob.c:369
-#, fuzzy
 msgid "Font to use for headers and footers (e.g. \"Monospace 10\")"
-msgstr "שם הגופן לשימוש בכותרת ובתחתית"
+msgstr ""
 
 #: gtksourceview/gtksourcestylescheme.c:262
 msgid "Base-N Integer"
@@ -384,9 +377,8 @@ msgid "Highlight current line"
 msgstr ""
 
 #: gtksourceview/gtksourceview.c:276
-#, fuzzy
 msgid "Whether to highlight the current line"
-msgstr "האם להדגיש תחביר במאגר"
+msgstr ""
 
 #: gtksourceview/language-specs/ada.lang.h:1
 msgid "Ada"
@@ -583,9 +575,8 @@ msgid "C++"
 msgstr "C++"
 
 #: gtksourceview/language-specs/csharp.lang.h:2
-#, fuzzy
 msgid "C#"
-msgstr "C"
+msgstr ""
 
 #: gtksourceview/language-specs/csharp.lang.h:6
 #: gtksourceview/language-specs/java.lang.h:9
@@ -633,9 +624,8 @@ msgstr ""
 #. length: #ffcc00 = #fc0.
 #.
 #: gtksourceview/language-specs/css.lang.h:22
-#, fuzzy
 msgid "Hexadecimal Color"
-msgstr "הקסאדצימלי"
+msgstr ""
 
 #.
 #. Upgrades a rule set's importance when several rule sets conflict.
@@ -666,9 +656,8 @@ msgstr ""
 #: gtksourceview/language-specs/css.lang.h:51
 #: gtksourceview/language-specs/javascript.lang.h:20
 #: gtksourceview/language-specs/sh.lang.h:9
-#, fuzzy
 msgid "Punctuators"
-msgstr "פונקציות"
+msgstr ""
 
 #: gtksourceview/language-specs/css.lang.h:52
 msgid "Selector Grammar"
@@ -830,36 +819,31 @@ msgstr ""
 
 #: gtksourceview/language-specs/ini.lang.h:3
 #: gtksourceview/language-specs/verilog.lang.h:3
-#, fuzzy
 msgid "Decimal Number"
-msgstr "מספר אוקטאלי"
+msgstr ""
 
 #: gtksourceview/language-specs/ini.lang.h:4
 #: gtksourceview/language-specs/R.lang.h:3
 #: gtksourceview/language-specs/gtkrc.lang.h:2
-#, fuzzy
 msgid "Double Quote String"
-msgstr "מחרוזת רב-שורתית"
+msgstr ""
 
 #: gtksourceview/language-specs/ini.lang.h:6
-#, fuzzy
 msgid "Integer"
-msgstr "מספר שלם בבסיס N"
+msgstr ""
 
 #: gtksourceview/language-specs/ini.lang.h:11
 #: gtksourceview/language-specs/R.lang.h:11
 #: gtksourceview/language-specs/gtkrc.lang.h:10
-#, fuzzy
 msgid "Single Quote String"
-msgstr "מחרוזת רב-שורתית"
+msgstr ""
 
 #. $variable, $$dynamic-variable and even $$$more
 #: gtksourceview/language-specs/ini.lang.h:12
 #: gtksourceview/language-specs/php.lang.h:25
 #: gtksourceview/language-specs/gtkrc.lang.h:12
-#, fuzzy
 msgid "Variable"
-msgstr "משתנים"
+msgstr ""
 
 #: gtksourceview/language-specs/java.lang.h:2
 msgid "Declarations"
@@ -899,23 +883,20 @@ msgid "Error Handling"
 msgstr ""
 
 #: gtksourceview/language-specs/javascript.lang.h:5
-#, fuzzy
 msgid "Floating-Point Number"
-msgstr "מספר נקודה צפה"
+msgstr ""
 
 #: gtksourceview/language-specs/javascript.lang.h:6
-#, fuzzy
 msgid "Flow Keywords"
-msgstr "מילת מפתח"
+msgstr ""
 
 #: gtksourceview/language-specs/javascript.lang.h:7
 msgid "Future Reserved Words"
 msgstr ""
 
 #: gtksourceview/language-specs/javascript.lang.h:8
-#, fuzzy
 msgid "Global Functions"
-msgstr "פונקציות"
+msgstr ""
 
 #: gtksourceview/language-specs/javascript.lang.h:9
 msgid "Global Properties"
@@ -923,9 +904,8 @@ msgstr ""
 
 #: gtksourceview/language-specs/javascript.lang.h:10
 #: gtksourceview/language-specs/verilog.lang.h:5
-#, fuzzy
 msgid "Hexadecimal Number"
-msgstr "הקסאדצימלי"
+msgstr ""
 
 #: gtksourceview/language-specs/javascript.lang.h:13
 msgid "Literals"
@@ -936,9 +916,8 @@ msgid "Math Value Properties"
 msgstr ""
 
 #: gtksourceview/language-specs/javascript.lang.h:16
-#, fuzzy
 msgid "Object Functions"
-msgstr "פונקציות"
+msgstr ""
 
 #: gtksourceview/language-specs/javascript.lang.h:17
 msgid "Object Properties"
@@ -984,9 +963,8 @@ msgid "Include"
 msgstr "כלול"
 
 #: gtksourceview/language-specs/latex.lang.h:4
-#, fuzzy
 msgid "LaTeX"
-msgstr "Latex"
+msgstr ""
 
 #: gtksourceview/language-specs/latex.lang.h:6
 msgid "Math"
@@ -1003,9 +981,8 @@ msgid "Functions"
 msgstr "פונקציות"
 
 #: gtksourceview/language-specs/lua.lang.h:5
-#, fuzzy
 msgid "Line Comment 2"
-msgstr "הערה שורה"
+msgstr ""
 
 #: gtksourceview/language-specs/lua.lang.h:6
 msgid "Lua"
@@ -1024,42 +1001,36 @@ msgid "Multiline String 2"
 msgstr "מחרוזת רב-שורתית 2"
 
 #: gtksourceview/language-specs/pascal.lang.h:1
-#, fuzzy
 msgid "Block Comment 1"
-msgstr "הערת בלוק"
+msgstr ""
 
 #: gtksourceview/language-specs/pascal.lang.h:2
-#, fuzzy
 msgid "Block Comment 2"
-msgstr "הערת בלוק"
+msgstr ""
 
 #: gtksourceview/language-specs/pascal.lang.h:3
 msgid "Boolean Bitwise Operators"
 msgstr ""
 
 #: gtksourceview/language-specs/pascal.lang.h:4
-#, fuzzy
 msgid "Builtin Functions"
-msgstr "פונקציות"
+msgstr ""
 
 #: gtksourceview/language-specs/pascal.lang.h:5
-#, fuzzy
 msgid "Builtin Types"
-msgstr "מובנה בפנים"
+msgstr ""
 
 #: gtksourceview/language-specs/pascal.lang.h:6
-#, fuzzy
 msgid "Builtin Values"
-msgstr "מובנה בפנים"
+msgstr ""
 
 #: gtksourceview/language-specs/pascal.lang.h:7
 msgid "Functions and Function Modifiers"
 msgstr ""
 
 #: gtksourceview/language-specs/pascal.lang.h:8
-#, fuzzy
 msgid "General Format"
-msgstr "מבנה"
+msgstr ""
 
 #: gtksourceview/language-specs/pascal.lang.h:12
 msgid "Loop, Flow, and Exceptions Keywords"
@@ -1074,9 +1045,8 @@ msgid "Pascal"
 msgstr ""
 
 #: gtksourceview/language-specs/pascal.lang.h:16
-#, fuzzy
 msgid "Preprocessor Defines"
-msgstr "הגדרות מעבד-קדם"
+msgstr ""
 
 #: gtksourceview/language-specs/pascal.lang.h:19
 msgid "Type, Class and Object Keywords"
@@ -1120,21 +1090,18 @@ msgstr ""
 
 #. # Bourne Shell Line Comment
 #: gtksourceview/language-specs/php.lang.h:5
-#, fuzzy
 msgid "Bash Line Comment"
-msgstr "הערה שורה"
+msgstr ""
 
 #. /* C Block Comment
 #: gtksourceview/language-specs/php.lang.h:7
-#, fuzzy
 msgid "C Block Comment"
-msgstr "הערת בלוק"
+msgstr ""
 
 #. // C++ Line Comment
 #: gtksourceview/language-specs/php.lang.h:9
-#, fuzzy
 msgid "C++ Line Comment"
-msgstr "הערה שורה"
+msgstr ""
 
 #: gtksourceview/language-specs/php.lang.h:10
 msgid "Case Insensitive Keyword"
@@ -1147,9 +1114,8 @@ msgstr ""
 
 #. "duble-quoted strings"
 #: gtksourceview/language-specs/php.lang.h:16
-#, fuzzy
 msgid "Double Quoted String"
-msgstr "מחרוזת רב-שורתית"
+msgstr ""
 
 #: gtksourceview/language-specs/php.lang.h:17
 msgid "First Open PHP Tag"
@@ -1190,53 +1156,44 @@ msgid "Python"
 msgstr "פייטון"
 
 #: gtksourceview/language-specs/ruby.lang.h:1
-#, fuzzy
 msgid "Attribute Definitions"
-msgstr "תכונות"
+msgstr ""
 
 #: gtksourceview/language-specs/ruby.lang.h:3
-#, fuzzy
 msgid "Class Variables"
-msgstr "משתנים"
+msgstr ""
 
 #: gtksourceview/language-specs/ruby.lang.h:4
 msgid "Constants"
 msgstr ""
 
 #: gtksourceview/language-specs/ruby.lang.h:5
-#, fuzzy
 msgid "Definitions"
-msgstr "הגדרות מעבד-קדם"
+msgstr ""
 
 #: gtksourceview/language-specs/ruby.lang.h:6
-#, fuzzy
 msgid "Global Variables"
-msgstr "משתנים"
+msgstr ""
 
 #: gtksourceview/language-specs/ruby.lang.h:7
-#, fuzzy
 msgid "Instance Variables"
-msgstr "משתנים"
+msgstr ""
 
 #: gtksourceview/language-specs/ruby.lang.h:10
-#, fuzzy
 msgid "Module Handlers"
-msgstr "ידית מודול"
+msgstr ""
 
 #: gtksourceview/language-specs/ruby.lang.h:11
-#, fuzzy
 msgid "Multiline Comment"
-msgstr "הערה שורה"
+msgstr ""
 
 #: gtksourceview/language-specs/ruby.lang.h:12
-#, fuzzy
 msgid "Pseudo Variables"
-msgstr "משתנים"
+msgstr ""
 
 #: gtksourceview/language-specs/ruby.lang.h:13
-#, fuzzy
 msgid "RegExp Variables"
-msgstr "משתנים"
+msgstr ""
 
 #: gtksourceview/language-specs/ruby.lang.h:14
 msgid "Regular Expression"
@@ -1251,56 +1208,48 @@ msgid "Ruby"
 msgstr ""
 
 #: gtksourceview/language-specs/sh.lang.h:2
-#, fuzzy
 msgid "Built-in Commands"
-msgstr "פונקציות"
+msgstr ""
 
 #: gtksourceview/language-specs/sh.lang.h:3
-#, fuzzy
 msgid "Common Commands"
-msgstr "הפקודות המשומשות ביותר"
+msgstr ""
 
 #: gtksourceview/language-specs/sh.lang.h:10
-#, fuzzy
 msgid "Redirections"
-msgstr "הגדרות מעבד-קדם"
+msgstr ""
 
 #: gtksourceview/language-specs/sh.lang.h:12
 msgid "Self"
 msgstr "עצמי"
 
 #: gtksourceview/language-specs/sh.lang.h:15
-#, fuzzy
 msgid "Variable1"
-msgstr "משתנים"
+msgstr ""
 
 #: gtksourceview/language-specs/sh.lang.h:16
-#, fuzzy
 msgid "Variable2"
-msgstr "משתנים"
+msgstr ""
 
 #: gtksourceview/language-specs/sh.lang.h:17
 msgid "sh"
 msgstr ""
 
 #: gtksourceview/language-specs/sql.lang.h:1
-#, fuzzy
 msgid "ANSI Datatypes"
-msgstr "סוג מידע"
+msgstr ""
 
 #: gtksourceview/language-specs/sql.lang.h:2
 msgid "ANSI Reserved Words"
 msgstr ""
 
 #: gtksourceview/language-specs/sql.lang.h:3
-#, fuzzy
 msgid "Aggregate Functions"
-msgstr "פונקציות"
+msgstr ""
 
 #: gtksourceview/language-specs/sql.lang.h:4
-#, fuzzy
 msgid "Analytic Functions"
-msgstr "פונקציות"
+msgstr ""
 
 #: gtksourceview/language-specs/sql.lang.h:6
 msgid "Character Functions Returning Character Values"
@@ -1311,14 +1260,12 @@ msgid "Character Functions Returning Number Values"
 msgstr ""
 
 #: gtksourceview/language-specs/sql.lang.h:8
-#, fuzzy
 msgid "Conversion Functions"
-msgstr "פונקציות"
+msgstr ""
 
 #: gtksourceview/language-specs/sql.lang.h:9
-#, fuzzy
 msgid "Datetime Functions"
-msgstr "פונקציות"
+msgstr ""
 
 #: gtksourceview/language-specs/sql.lang.h:10
 msgid "Integer Literals"
@@ -1333,9 +1280,8 @@ msgid "Null"
 msgstr ""
 
 #: gtksourceview/language-specs/sql.lang.h:14
-#, fuzzy
 msgid "Number Functions"
-msgstr "פונקציות"
+msgstr ""
 
 #: gtksourceview/language-specs/sql.lang.h:15
 msgid "Number Literals"
@@ -1391,14 +1337,12 @@ msgstr ""
 
 #: gtksourceview/language-specs/verilog.lang.h:1
 #: gtksourceview/language-specs/nemerle.lang.h:1
-#, fuzzy
 msgid "Binary Number"
-msgstr "מספר אוקטאלי"
+msgstr ""
 
 #: gtksourceview/language-specs/verilog.lang.h:4
-#, fuzzy
 msgid "Gates"
-msgstr "Latex"
+msgstr ""
 
 #: gtksourceview/language-specs/verilog.lang.h:11
 msgid "Verilog"
@@ -1429,98 +1373,84 @@ msgid "Type or Constructor"
 msgstr ""
 
 #: gtksourceview/language-specs/texinfo.lang.h:2
-#, fuzzy
 msgid "Characters"
-msgstr "תו"
+msgstr ""
 
 #: gtksourceview/language-specs/texinfo.lang.h:3
-#, fuzzy
 msgid "File Attributes"
-msgstr "תכונות"
+msgstr ""
 
 #: gtksourceview/language-specs/texinfo.lang.h:4
-#, fuzzy
 msgid "Formatting"
-msgstr "מבנה"
+msgstr ""
 
 #: gtksourceview/language-specs/texinfo.lang.h:5
-#, fuzzy
 msgid "Generated Content"
-msgstr "קבוע תו"
+msgstr ""
 
 #: gtksourceview/language-specs/texinfo.lang.h:7
-#, fuzzy
 msgid "Indexing"
-msgstr "קידוד"
+msgstr ""
 
 #: gtksourceview/language-specs/texinfo.lang.h:10
-#, fuzzy
 msgid "Macro Parameters"
-msgstr "פרמטר Exec"
+msgstr ""
 
 #: gtksourceview/language-specs/texinfo.lang.h:11
 msgid "Macros"
 msgstr ""
 
 #: gtksourceview/language-specs/texinfo.lang.h:13
-#, fuzzy
 msgid "Markup (block)"
-msgstr "Markup"
+msgstr ""
 
 #: gtksourceview/language-specs/texinfo.lang.h:14
 msgid "Markup (inline)"
 msgstr ""
 
 #: gtksourceview/language-specs/texinfo.lang.h:15
-#, fuzzy
 msgid "Sectioning"
-msgstr "חתכי"
+msgstr ""
 
 #: gtksourceview/language-specs/texinfo.lang.h:16
 msgid "Texinfo"
 msgstr ""
 
 #: gtksourceview/language-specs/vbnet.lang.h:3
-#, fuzzy
 msgid "Old Style Comment"
-msgstr "הערה שורה"
+msgstr ""
 
 #: gtksourceview/language-specs/vbnet.lang.h:9
 msgid "VB.NET"
 msgstr ""
 
 #: gtksourceview/language-specs/nemerle.lang.h:4
-#, fuzzy
 msgid "Core Keywords"
-msgstr "מילת מפתח"
+msgstr ""
 
 #: gtksourceview/language-specs/nemerle.lang.h:5
-#, fuzzy
 msgid "Core Types"
-msgstr "סוגים"
+msgstr ""
 
 #: gtksourceview/language-specs/nemerle.lang.h:9
 msgid "Keywords Defined by Macros"
 msgstr ""
 
 #: gtksourceview/language-specs/nemerle.lang.h:11
-#, fuzzy
 msgid "Nemerle"
-msgstr "מספר"
+msgstr ""
 
 #: gtksourceview/language-specs/tcl.lang.h:6
 msgid "Tcl"
 msgstr ""
 
 #: gtksourceview/language-specs/vhdl.lang.h:7
-#, fuzzy
 msgid "True and False"
-msgstr "אמת ושקר"
+msgstr ""
 
 #: gtksourceview/language-specs/vhdl.lang.h:8
-#, fuzzy
 msgid "Type"
-msgstr "סוגים"
+msgstr ""
 
 #: gtksourceview/language-specs/vhdl.lang.h:9
 msgid "VHDL"
@@ -1535,19 +1465,16 @@ msgid "Delimiter"
 msgstr ""
 
 #: gtksourceview/language-specs/R.lang.h:5
-#, fuzzy
 msgid "Integer Number"
-msgstr "מספר אוקטאלי"
+msgstr ""
 
 #: gtksourceview/language-specs/R.lang.h:8
-#, fuzzy
 msgid "Reserved Class"
-msgstr "קבוע תו"
+msgstr ""
 
 #: gtksourceview/language-specs/R.lang.h:9
-#, fuzzy
 msgid "Reserved Constant"
-msgstr "קבוע תו"
+msgstr ""
 
 #: gtksourceview/language-specs/gtkrc.lang.h:3
 msgid "GtkRC"
@@ -1562,14 +1489,5 @@ msgid "Keysymbol"
 msgstr ""
 
 #: gtksourceview/language-specs/gtkrc.lang.h:11
-#, fuzzy
 msgid "State"
-msgstr "Latex"
-
-#, fuzzy
-#~ msgid "Font description name to use for the document text"
-#~ msgstr "שם הגופן לשימוש בטקסט המסמך"
-
-#, fuzzy
-#~ msgid "Font description name to use for the header and footer"
-#~ msgstr "שם הגופן לשימוש בכותרת ובתחתית"
+msgstr ""
