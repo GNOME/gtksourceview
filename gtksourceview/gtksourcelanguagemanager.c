@@ -147,7 +147,9 @@ gtk_source_language_manager_init (GtkSourceLanguageManager *lm)
 /**
  * gtk_source_language_manager_new:
  *
- * Creates a new language manager.
+ * Creates a new language manager. If you do not need more than one language
+ * manager or a private language manager instance then use
+ * gtk_source_language_manager_get_default() instead.
  *
  * Returns: a #GtkSourceLanguageManager.
  **/

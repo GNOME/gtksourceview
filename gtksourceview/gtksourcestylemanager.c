@@ -24,7 +24,7 @@
 #include "gtksourceview-utils.h"
 #include <string.h>
 
-#define SCHEME_FILE_SUFFIX	".styles"
+#define SCHEME_FILE_SUFFIX	".xml"
 #define STYLES_DIR		"styles"
 
 
@@ -128,7 +128,7 @@ gtk_source_style_manager_class_init (GtkSourceStyleManagerClass *klass)
 					 g_param_spec_boxed ("search-path",
 						 	     _("Style scheme directories"),
 							     _("List of directories where the "
-							       "style scheme files (.styles) "
+							       "style scheme files "
 							       "are located"),
 							     G_TYPE_STRV,
 							     G_PARAM_READWRITE));
@@ -154,12 +154,28 @@ gtk_source_style_manager_init (GtkSourceStyleManager *mgr)
 	mgr->priv->need_reload = TRUE;
 }
 
+/**
+ * gtk_source_style_manager_new:
+ *
+ * Creates a new style manager. If you do not need more than one style
+ * manager then use gtk_source_style_manager_get_default() instead.
+ *
+ * Returns: a #GtkSourceStyleManager.
+ **/
 GtkSourceStyleManager *
 gtk_source_style_manager_new (void)
 {
 	return g_object_new (GTK_TYPE_SOURCE_STYLE_MANAGER, NULL);
 }
 
+/**
+ * gtk_source_style_manager_get_default:
+ *
+ * Returns the default #GtkSourceStyleManager instance.
+ *
+ * Returns: a #GtkSourceStyleManager. Return value is owned
+ * by GtkSourceView library and must not be unref'ed.
+ **/
 GtkSourceStyleManager *
 gtk_source_style_manager_get_default (void)
 {

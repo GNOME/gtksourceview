@@ -54,8 +54,8 @@ LANGUAGES =			\
 	yacc.lang
 
 STYLES =			\
-	gvim.styles		\
-	kate.styles
+	gvim.xml		\
+	kate.xml
 
 languagesdir = $(datadir)/gtksourceview-2.0/language-specs
 languages_DATA = $(LANGUAGES) language.rng language2.rng language.dtd \

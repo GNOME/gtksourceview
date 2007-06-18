@@ -1,5 +1,26 @@
 2007-06-17  Yevgen Muntyan  <muntyan@tamu.edu>
 
+	Added 'author' and 'description' tags to style scheme files.
+	Renamed style scheme files from "*.styles" to "*.xml" to make
+	intltool happy.
+
+	* gtksourceview/gtksourcestylescheme.c: parse new tags; use libxml
+	parser instead of GMarkup.
+	* gtksourceview/language-specs/gvim.styles:
+	* gtksourceview/language-specs/gvim.xml:
+	* gtksourceview/language-specs/kate.styles:
+	* gtksourceview/language-specs/kate.xml: renamed and added new tags.
+	* gtksourceview/language-specs/check.sh:
+	* gtksourceview/language-specs/Makefile.am: renamed scheme files.
+	* gtksourceview/gtksourcestylemanager.c: look for "*.xml" files now.
+
+	* gtksourceview/gtksourcelanguagemanager.c: little bit of docs.
+
+	* po/POTFILES.in: removed gtksourceprintjob.c and eggregex.c, added
+	style scheme files.
+
+2007-06-17  Yevgen Muntyan  <muntyan@tamu.edu>
+
 	Continuing great relicensing.
 
 	* README: updated the paragraph about licenses.

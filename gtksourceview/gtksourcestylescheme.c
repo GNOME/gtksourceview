@@ -22,6 +22,7 @@
 #include "gtksourcestylemanager.h"
 #include "gtksourceview.h"
 #include "gtksourcelanguage-private.h"
+#include <libxml/parser.h>
 #include <string.h>
 
 #define STYLE_HAS_FOREGROUND(s) ((s) && ((s)->mask & GTK_SOURCE_STYLE_USE_FOREGROUND))
@@ -46,6 +47,8 @@ struct _GtkSourceStyleSchemePrivate
 {
 	gchar *id;
 	gchar *name;
+	gchar *author;
+	gchar *description;
 	GtkSourceStyleScheme *parent;
 	gchar *parent_id;
 	GHashTable *styles;
@@ -59,6 +62,8 @@ gtk_source_style_scheme_finalize (GObject *object)
 	GtkSourceStyleScheme *scheme = GTK_SOURCE_STYLE_SCHEME (object);
 
 	g_hash_table_destroy (scheme->priv->styles);
+	g_free (scheme->priv->author);
+	g_free (scheme->priv->description);
 	g_free (scheme->priv->id);
 	g_free (scheme->priv->name);
 	g_free (scheme->priv->parent_id);
@@ -387,9 +392,6 @@ set_cursor_colors (GtkWidget      *widget,
 
 	widget_name = g_strdup_printf ("gtk-source-view-%p", (gpointer) widget);
 
-	if (strcmp (widget_name, gtk_widget_get_name (widget)) != 0)
-		gtk_widget_set_name (widget, widget_name);
-
 	rc_string = g_strdup_printf (
 		"style \"%p\"\n"
 		"{\n"
@@ -405,6 +407,9 @@ set_cursor_colors (GtkWidget      *widget,
 	);
 
 	gtk_rc_parse_string (rc_string);
+
+	if (strcmp (widget_name, gtk_widget_get_name (widget)) != 0)
+		gtk_widget_set_name (widget, widget_name);
 
 	g_free (rc_string);
 	g_free (widget_name);
@@ -518,100 +523,85 @@ typedef struct {
 
 #define ERROR_QUARK (g_quark_from_static_string ("gtk-source-style-scheme-parser-error"))
 
-static gboolean
-str_to_bool (const gchar *string)
+static void
+get_bool (xmlNode            *node,
+	  const char         *propname,
+	  GtkSourceStyleMask *mask,
+	  GtkSourceStyleMask  mask_value,
+	  gboolean           *value)
 {
-	return !g_ascii_strcasecmp (string, "true") ||
-		!g_ascii_strcasecmp (string, "yes") ||
-		!g_ascii_strcasecmp (string, "1");
+	xmlChar *tmp = xmlGetProp (node, BAD_CAST propname);
+
+	if (tmp != NULL)
+	{
+		*mask |= mask_value;
+		*value = g_ascii_strcasecmp ((char*) tmp, "true") == 0 ||
+			 g_ascii_strcasecmp ((char*) tmp, "yes") == 0 ||
+			 g_ascii_strcasecmp ((char*) tmp, "1") == 0;
+	}
+
+	xmlFree (tmp);
 }
 
 static gboolean
 parse_style (GtkSourceStyleScheme *scheme,
-	     const gchar         **names,
-	     const gchar         **values,
+	     xmlNode              *node,
 	     gchar               **style_name_p,
 	     GtkSourceStyle      **style_p,
 	     GError              **error)
 {
 	GtkSourceStyle *use_style = NULL;
 	GtkSourceStyle *result = NULL;
-	const gchar *fg = NULL, *bg = NULL;
-	const gchar *style_name = NULL;
+	xmlChar *fg = NULL, *bg = NULL;
+	gchar *style_name = NULL;
 	GtkSourceStyleMask mask = 0;
 	gboolean bold = FALSE;
 	gboolean italic = FALSE;
 	gboolean underline = FALSE;
 	gboolean strikethrough = FALSE;
+	xmlChar *tmp;
 
-	for ( ; names && *names; names++, values++)
+	tmp = xmlGetProp (node, BAD_CAST "name");
+	if (tmp == NULL)
 	{
-		const gchar *name = *names;
-		const gchar *val = *values;
+		g_set_error (error, ERROR_QUARK, 0, "name attribute missing");
+		return FALSE;
+	}
+	style_name = g_strdup ((char*) tmp);
+	xmlFree (tmp);
 
-		if (!strcmp (name, "name"))
-			style_name = val;
-		else if (!strcmp (name, "foreground"))
-			fg = val;
-		else if (!strcmp (name, "background"))
-			bg = val;
-		else if (!strcmp (name, "italic"))
-		{
-			mask |= GTK_SOURCE_STYLE_USE_ITALIC;
-			italic = str_to_bool (val);
-		}
-		else if (!strcmp (name, "bold"))
-		{
-			mask |= GTK_SOURCE_STYLE_USE_BOLD;
-			bold = str_to_bool (val);
-		}
-		else if (!strcmp (name, "underline"))
-		{
-			mask |= GTK_SOURCE_STYLE_USE_UNDERLINE;
-			underline = str_to_bool (val);
-		}
-		else if (!strcmp (name, "strikethrough"))
-		{
-			mask |= GTK_SOURCE_STYLE_USE_STRIKETHROUGH;
-			strikethrough = str_to_bool (val);
-		}
-		else if (!strcmp (name, "use-style"))
-		{
-			if (use_style != NULL)
-			{
-				g_set_error (error, ERROR_QUARK, 0,
-					     "in style '%s': duplicated use-style attribute",
-					     style_name ? style_name : "(null)");
-				gtk_source_style_free (use_style);
-				return FALSE;
-			}
-
-			use_style = gtk_source_style_scheme_get_style (scheme, val);
-
-			if (!use_style)
-			{
-				g_set_error (error, ERROR_QUARK, 0,
-					     "in style '%s': unknown style '%s'",
-					     style_name ? style_name : "(null)", val);
-				return FALSE;
-			}
-		}
-		else
+	tmp = xmlGetProp (node, BAD_CAST "use-style");
+	if (tmp != NULL)
+	{
+		if (use_style != NULL)
 		{
 			g_set_error (error, ERROR_QUARK, 0,
-				     "in style '%s': unexpected attribute '%s'",
-				     style_name ? style_name : "(null)", name);
+				     "in style '%s': duplicated use-style attribute",
+				     style_name);
+			g_free (style_name);
 			gtk_source_style_free (use_style);
 			return FALSE;
 		}
-	}
 
-	if (style_name == NULL)
-	{
-		g_set_error (error, ERROR_QUARK, 0, "name attribute missing");
-		gtk_source_style_free (use_style);
-		return FALSE;
+		use_style = gtk_source_style_scheme_get_style (scheme, (char*) tmp);
+
+		if (use_style == NULL)
+		{
+			g_set_error (error, ERROR_QUARK, 0,
+				     "in style '%s': unknown style '%s'",
+				     style_name, tmp);
+			g_free (style_name);
+			return FALSE;
+		}
 	}
+	xmlFree (tmp);
+
+	fg = xmlGetProp (node, BAD_CAST "foreground");
+	bg = xmlGetProp (node, BAD_CAST "background");
+	get_bool (node, "italic", &mask, GTK_SOURCE_STYLE_USE_ITALIC, &italic);
+	get_bool (node, "bold", &mask, GTK_SOURCE_STYLE_USE_BOLD, &bold);
+	get_bool (node, "underline", &mask, GTK_SOURCE_STYLE_USE_UNDERLINE, &underline);
+	get_bool (node, "strikethrough", &mask, GTK_SOURCE_STYLE_USE_STRIKETHROUGH, &strikethrough);
 
 	if (use_style)
 	{
@@ -621,6 +611,9 @@ parse_style (GtkSourceStyleScheme *scheme,
 				     "in style '%s': style attributes used along with use-style",
 				     style_name);
 			gtk_source_style_free (use_style);
+			g_free (style_name);
+			xmlFree (fg);
+			xmlFree (bg);
 			return FALSE;
 		}
 
@@ -630,6 +623,7 @@ parse_style (GtkSourceStyleScheme *scheme,
 	else
 	{
 		result = gtk_source_style_new (mask);
+
 		result->bold = bold;
 		result->italic = italic;
 		result->underline = underline;
@@ -637,7 +631,7 @@ parse_style (GtkSourceStyleScheme *scheme,
 
 		if (fg != NULL)
 		{
-			if (gdk_color_parse (fg, &result->foreground))
+			if (gdk_color_parse ((char*) fg, &result->foreground))
 				result->mask |= GTK_SOURCE_STYLE_USE_FOREGROUND;
 			else
 				g_warning ("in style '%s': invalid color '%s'",
@@ -646,7 +640,7 @@ parse_style (GtkSourceStyleScheme *scheme,
 
 		if (bg != NULL)
 		{
-			if (gdk_color_parse (bg, &result->background))
+			if (gdk_color_parse ((char*) bg, &result->background))
 				result->mask |= GTK_SOURCE_STYLE_USE_BACKGROUND;
 			else
 				g_warning ("in style '%s': invalid color '%s'",
@@ -655,116 +649,95 @@ parse_style (GtkSourceStyleScheme *scheme,
 	}
 
 	*style_p = result;
-	*style_name_p = g_strdup (style_name);
+	*style_name_p = style_name;
+
+	xmlFree (bg);
+	xmlFree (fg);
+
 	return TRUE;
 }
 
 static void
-start_element (G_GNUC_UNUSED GMarkupParseContext *context,
-	       const gchar         *element_name,
-	       const gchar        **attribute_names,
-	       const gchar        **attribute_values,
-	       gpointer             user_data,
-	       GError             **error)
+parse_style_scheme_element (GtkSourceStyleScheme *scheme,
+			    xmlNode              *scheme_node,
+			    GError              **error)
 {
-	ParserData *data = user_data;
-	GtkSourceStyle *style;
-	gchar *style_name;
+	xmlChar *tmp;
+	xmlNode *node;
 
-	if (data->done || (data->scheme == NULL && strcmp (element_name, "style-scheme") != 0))
+	if (strcmp ((char*) scheme_node->name, "style-scheme") != 0)
 	{
 		g_set_error (error, ERROR_QUARK, 0,
 			     "unexpected element '%s'",
-			     element_name);
+			     (char*) scheme_node->name);
 		return;
 	}
 
-	if (data->scheme == NULL)
+	tmp = xmlGetProp (scheme_node, BAD_CAST "id");
+	if (tmp == NULL)
 	{
-		data->scheme = g_object_new (GTK_TYPE_SOURCE_STYLE_SCHEME, NULL);
+		g_set_error (error, ERROR_QUARK, 0, "missing 'id' attribute");
+		return;
+	}
+	scheme->priv->id = g_strdup ((char*) tmp);
+	xmlFree (tmp);
 
-		while (attribute_names != NULL && *attribute_names != NULL)
+	tmp = xmlGetProp (scheme_node, BAD_CAST "_name");
+	if (tmp != NULL)
+		scheme->priv->name = g_strdup (_((char*) tmp));
+	else if ((tmp = xmlGetProp (scheme_node, BAD_CAST "name")) != NULL)
+		scheme->priv->name = g_strdup ((char*) tmp);
+	else
+	{
+		g_set_error (error, ERROR_QUARK, 0, "missing 'name' attribute");
+		return;
+	}
+	xmlFree (tmp);
+
+	tmp = xmlGetProp (scheme_node, BAD_CAST "parent-scheme");
+	if (tmp != NULL)
+		scheme->priv->parent_id = g_strdup ((char*) tmp);
+	xmlFree (tmp);
+
+	for (node = scheme_node->children; node != NULL; node = node->next)
+	{
+		if (node->type != XML_ELEMENT_NODE)
+			continue;
+
+		if (strcmp ((char*) node->name, "style") == 0)
 		{
-			gboolean error_set = FALSE;
+			GtkSourceStyle *style;
+			gchar *style_name;
 
-			if (!strcmp (*attribute_names, "id"))
-			{
-				data->scheme->priv->id = g_strdup (*attribute_values);
-			}
-			else if (!strcmp (*attribute_names, "_name"))
-			{
-				if (data->scheme->priv->name != NULL)
-				{
-					g_set_error (error, ERROR_QUARK, 0,
-						     "duplicated name attribute");
-					error_set = TRUE;
-				}
-				else
-				{
-					data->scheme->priv->name = g_strdup (_(*attribute_values));
-				}
-			}
-			else if (!strcmp (*attribute_names, "name"))
-			{
-				if (data->scheme->priv->name != NULL)
-				{
-					g_set_error (error, ERROR_QUARK, 0,
-						     "duplicated name attribute");
-					error_set = TRUE;
-				}
-				else
-				{
-					data->scheme->priv->name = g_strdup (*attribute_values);
-				}
-			}
-			else if (!strcmp (*attribute_names, "parent-scheme"))
-			{
-				data->scheme->priv->parent_id = g_strdup (*attribute_values);
-			}
-			else
-			{
-				g_set_error (error, ERROR_QUARK, 0,
-					     "unexpected attribute '%s' in element 'style-scheme'",
-					     *attribute_names);
-				error_set = TRUE;
-			}
-
-			if (error_set)
+			if (!parse_style (scheme, node, &style_name, &style, error))
 				return;
 
-			attribute_names++;
-			attribute_values++;
+			g_hash_table_insert (scheme->priv->styles, style_name, style);
 		}
-
-		return;
+		else if (strcmp ((char*) node->name, "author") == 0)
+		{
+			tmp = xmlNodeGetContent	(node);
+			scheme->priv->author = g_strdup ((char*) tmp);
+			xmlFree (tmp);
+		}
+		else if (strcmp ((char*) node->name, "description") == 0)
+		{
+			tmp = xmlNodeGetContent	(node);
+			scheme->priv->description = g_strdup ((char*) tmp);
+			xmlFree (tmp);
+		}
+		else if (strcmp ((char*) node->name, "_description") == 0)
+		{
+			tmp = xmlNodeGetContent	(node);
+			scheme->priv->description = g_strdup (_((char*) tmp));
+			xmlFree (tmp);
+		}
+		else
+		{
+			g_set_error (error, ERROR_QUARK, 0, "unknown node '%s'", node->name);
+			return;
+		}
 	}
-
-	if (strcmp (element_name, "style") != 0)
-	{
-		g_set_error (error, ERROR_QUARK, 0,
-			     "unexpected element '%s'",
-			     element_name);
-		return;
-	}
-
-	if (!parse_style (data->scheme, attribute_names, attribute_values,
-			  &style_name, &style, error))
-	{
-		return;
-	}
-
-	g_hash_table_insert (data->scheme->priv->styles, style_name, style);
-}
-
-static void
-end_element (G_GNUC_UNUSED GMarkupParseContext *context,
-	     const gchar         *element_name,
-	     gpointer             user_data,
-	     G_GNUC_UNUSED GError **error)
-{
-	ParserData *data = user_data;
-	if (!strcmp (element_name, "style-scheme"))
-		data->done = TRUE;
 }
 
 /**
@@ -779,41 +752,63 @@ end_element (G_GNUC_UNUSED GMarkupParseContext *context,
 GtkSourceStyleScheme *
 _gtk_source_style_scheme_new_from_file (const gchar *filename)
 {
-	GMarkupParseContext *ctx = NULL;
+	char *text;
+	gsize text_len;
+	xmlDoc *doc;
+	xmlNode *node;
 	GError *error = NULL;
-	char *text = NULL;
-	ParserData data;
-	GMarkupParser parser = {start_element, end_element, NULL, NULL, NULL};
+	GtkSourceStyleScheme *scheme;
 
 	g_return_val_if_fail (filename != NULL, NULL);
 
-	if (!g_file_get_contents (filename, &text, NULL, &error))
+	if (!g_file_get_contents (filename, &text, &text_len, &error))
 	{
+		gchar *filename_utf8 = g_filename_display_name (filename);
 		g_warning ("could not load style scheme file '%s': %s",
-			   filename, error->message);
+			   filename_utf8, error->message);
+		g_free (filename_utf8);
 		g_error_free (error);
 		return NULL;
 	}
 
-	data.scheme = NULL;
-	data.done = FALSE;
+	doc = xmlParseMemory (text, text_len);
 
-	ctx = g_markup_parse_context_new (&parser, 0, &data, NULL);
-
-	if (!g_markup_parse_context_parse (ctx, text, -1, &error) ||
-	    !g_markup_parse_context_end_parse (ctx, &error))
+	if (!doc)
 	{
-		if (data.scheme != NULL)
-			g_object_unref (data.scheme);
-		data.scheme = NULL;
-		g_warning ("could not load style scheme file '%s': %s",
-			   filename, error->message);
-		g_error_free (error);
+		gchar *filename_utf8 = g_filename_display_name (filename);
+		g_warning ("could not parse scheme file '%s'", filename_utf8);
+		g_free (filename_utf8);
+		g_free (text);
+		return NULL;
 	}
 
-	g_markup_parse_context_free (ctx);
+	node = xmlDocGetRootElement (doc);
+
+	if (node == NULL)
+	{
+		gchar *filename_utf8 = g_filename_display_name (filename);
+		g_warning ("could not load scheme file '%s': empty document", filename_utf8);
+		g_free (filename_utf8);
+		g_free (text);
+		return NULL;
+	}
+
+	scheme = g_object_new (GTK_TYPE_SOURCE_STYLE_SCHEME, NULL);
+	parse_style_scheme_element (scheme, node, &error);
+
+	if (error != NULL)
+	{
+		gchar *filename_utf8 = g_filename_display_name (filename);
+		g_warning ("could not load style scheme file '%s': %s",
+			   filename_utf8, error->message);
+		g_free (filename_utf8);
+		g_error_free (error);
+		g_object_unref (scheme);
+		scheme = NULL;
+	}
+
 	g_free (text);
-	return data.scheme;
+	return scheme;
 }
 
 /**

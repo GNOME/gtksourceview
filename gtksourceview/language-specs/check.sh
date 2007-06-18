@@ -14,7 +14,7 @@ langs="c.lang cpp.lang changelog.lang def.lang
        texinfo.lang gtk-doc.lang dtd.lang dpatch.lang
        libtool.lang pkgconfig.lang"
 
-styles="gvim.styles kate.styles"
+styles="gvim.xml kate.xml testdark.xml"
 
 if [ $1 ]; then
     langs=$*

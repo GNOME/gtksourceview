@@ -2,7 +2,6 @@ gtksourceview/gtksourcebuffer.c
 gtksourceview/gtksourcecontextengine.c
 gtksourceview/gtksourcelanguagemanager.c
 gtksourceview/gtksourcelanguage-parser-2.c
-gtksourceview/gtksourceprintjob.c
 gtksourceview/gtksourcestylemanager.c
 gtksourceview/gtksourcestylescheme.c
 gtksourceview/gtksourceview.c
@@ -21,6 +20,7 @@ gtksourceview/language-specs/docbook.lang
 gtksourceview/language-specs/dpatch.lang
 gtksourceview/language-specs/dtd.lang
 gtksourceview/language-specs/fortran.lang
+gtksourceview/language-specs/gap.lang
 gtksourceview/language-specs/gtk-doc.lang
 gtksourceview/language-specs/gtkrc.lang
 gtksourceview/language-specs/haskell.lang
@@ -58,4 +58,5 @@ gtksourceview/language-specs/verilog.lang
 gtksourceview/language-specs/vhdl.lang
 gtksourceview/language-specs/xml.lang
 gtksourceview/language-specs/yacc.lang
-gtksourceview/libegg/regex/eggregex.c
+gtksourceview/language-specs/gvim.xml
+gtksourceview/language-specs/kate.xml
