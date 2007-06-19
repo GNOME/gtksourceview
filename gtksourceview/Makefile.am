@@ -72,7 +72,10 @@ libgtksourceview_2_0_la_SOURCES = 	\
 	gtksourceengine.c		\
 	gtksourcecontextengine.h	\
 	gtksourcecontextengine.c	\
-	$(libgtksourceview_headers)	\
+	$(libgtksourceview_headers)
+
+# do not distribute generated files
+nodist_libgtksourceview_2_0_la_SOURCES =\
 	$(BUILT_SOURCES)
 
 libgtksourceview_2_0_la_LIBADD = $(DEP_LIBS) $(REGEX_LIBS) $(GNOMEPRINT_LIBS)
