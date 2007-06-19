@@ -1,5 +1,17 @@
 2007-06-19  Yevgen Muntyan  <muntyan@tamu.edu>
 
+	The library is LGPL now.
+
+	* gtksourceview/gtksourcebuffer.c:
+	* gtksourceview/gtksourcebuffer.h:
+	* gtksourceview/gtksourceview.h:
+	* gtksourceview/language-specs/boo.lang:
+	LGPL'ed.
+
+	* README: updated to say that the library is LGPL.
+
+2007-06-19  Yevgen Muntyan  <muntyan@tamu.edu>
+
 	* gtksourceview/gtksourcebuffer.c:
 	* gtksourceview/gtksourcebuffer.h:
 	removed GtkSourceBuffer.marker_updated virtual function too,
