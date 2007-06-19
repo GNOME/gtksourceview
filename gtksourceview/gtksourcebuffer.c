@@ -155,8 +155,6 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 	object_class->get_property = gtk_source_buffer_get_property;
 	object_class->set_property = gtk_source_buffer_set_property;
 
-	klass->marker_updated    = NULL;
-
 	/* Do not set these signals handlers directly on the parent_class since
 	 * that will cause problems (a loop). */
 	tb_class->insert_text 	= gtk_source_buffer_real_insert_text;
@@ -235,6 +233,7 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 
 	param_types[0] = GTK_TYPE_TEXT_ITER | G_SIGNAL_TYPE_STATIC_SCOPE;
 	param_types[1] = GTK_TYPE_TEXT_ITER | G_SIGNAL_TYPE_STATIC_SCOPE;
+
 	buffer_signals[HIGHLIGHT_UPDATED] =
 	    g_signal_newv ("highlight_updated",
 			   G_OBJECT_CLASS_TYPE (object_class),
@@ -246,15 +245,14 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 			   2, param_types);
 
 	buffer_signals[MARKER_UPDATED] =
-	    g_signal_new ("marker_updated",
-			  G_OBJECT_CLASS_TYPE (object_class),
-			  G_SIGNAL_RUN_LAST,
-			  G_STRUCT_OFFSET (GtkSourceBufferClass, marker_updated),
-			  NULL, NULL,
-			  _gtksourceview_marshal_VOID__BOXED,
-			  G_TYPE_NONE,
-			  1,
-			  GTK_TYPE_TEXT_ITER | G_SIGNAL_TYPE_STATIC_SCOPE);
+	    g_signal_newv ("marker_updated",
+			   G_OBJECT_CLASS_TYPE (object_class),
+			   G_SIGNAL_RUN_LAST,
+			   NULL,
+			   NULL, NULL,
+			   _gtksourceview_marshal_VOID__BOXED,
+			   G_TYPE_NONE,
+			   1, param_types);
 
 	g_type_class_add_private (object_class, sizeof(GtkSourceBufferPrivate));
 }

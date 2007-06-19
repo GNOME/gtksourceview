@@ -1,6 +1,16 @@
+2007-06-19  Yevgen Muntyan  <muntyan@tamu.edu>
+
+	* gtksourceview/gtksourcebuffer.c:
+	* gtksourceview/gtksourcebuffer.h:
+	removed GtkSourceBuffer.marker_updated virtual function too,
+	added extra padding in GtkSourceBufferClass structure.
+
+	* gtksourceview/language-specs/tcl.lang:
+	LGPL'ed.
+
 2007-06-19  Paolo Borelli  <pborelli@katamail.com>
 
-	* gtksourceview/language-specs/lua.lang: convert to new 
+	* gtksourceview/language-specs/lua.lang: convert to new
 	format and misc improvements. Patch by thelema@swbell.net.
 	Fixes bug #448517.
 

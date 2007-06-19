@@ -55,14 +55,13 @@ struct _GtkSourceBufferClass
 {
 	GtkTextBufferClass parent_class;
 
-	void (* marker_updated)         (GtkSourceBuffer *buffer,
-					 GtkTextIter     *where);
-
 	/* Padding for future expansion */
 	void (*_gtk_source_reserved1) (void);
 	void (*_gtk_source_reserved2) (void);
 	void (*_gtk_source_reserved3) (void);
 	void (*_gtk_source_reserved4) (void);
+	void (*_gtk_source_reserved5) (void);
+	void (*_gtk_source_reserved6) (void);
 };
 
 GType           	 gtk_source_buffer_get_type 		(void) G_GNUC_CONST;
