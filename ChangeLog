@@ -1,3 +1,9 @@
+2007-06-19  Yevgen Muntyan  <muntyan@tamu.edu>
+
+	* gtksourceview/gtksourcebuffer.c:
+	* gtksourceview/gtksourcebuffer.h:
+	removed GtkSourceBuffer.highlight_updated virtual function.
+
 2007-06-18  Yevgen Muntyan  <muntyan@tamu.edu>
 
 	* gtksourceview/language-specs/java.lang: LGPL'ed.

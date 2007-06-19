@@ -55,10 +55,6 @@ struct _GtkSourceBufferClass
 {
 	GtkTextBufferClass parent_class;
 
-	/* views connect to this signal */
-	void (* highlight_updated)      (GtkSourceBuffer *buffer,
-					 GtkTextIter     *start,
-					 GtkTextIter     *end);
 	void (* marker_updated)         (GtkSourceBuffer *buffer,
 					 GtkTextIter     *where);
 
