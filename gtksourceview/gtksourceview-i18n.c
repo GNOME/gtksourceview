@@ -35,6 +35,9 @@ _gtksourceview_gettext (const char *msgid)
 {
 	static gboolean initialized = FALSE;
 
+	G_GNUC_UNUSED const char translator_credits[] = N_("translator-credits");
+	/* above is a dummy variable to get the string into po files */
+
 	if (G_UNLIKELY (!initialized))
 	{
 		bindtextdomain (GETTEXT_PACKAGE, LOCALEDIR);
