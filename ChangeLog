@@ -1,5 +1,11 @@
 2007-06-20  Yevgen Muntyan  <muntyan@tamu.edu>
 
+	* gtksourceview/language-specs/csharp.lang:
+	* gtksourceview/language-specs/desktop.lang:
+	LGPL'ed.
+
+2007-06-20  Yevgen Muntyan  <muntyan@tamu.edu>
+
 	Removed leftovers (broken) of /regex/opts syntax in lang files;
 	removed dot-match-all (doing nothing) regex option. Made
 	default-regex-options element use attributes instead of content like "xi".
