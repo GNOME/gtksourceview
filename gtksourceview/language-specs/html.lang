@@ -46,7 +46,7 @@
                                  map-to="xml:error"/>
     </styles>
 
-    <default-regex-options>i</default-regex-options>
+    <default-regex-options case-insensitive="true"/>
 
     <definitions>
         <context id="entity" style-ref="entity">
@@ -79,10 +79,8 @@
                 <!-- Attribute in the form: name=value -->
                 <context id="attrib-unquoted" style-ref="attrib-value">
                     <start extended="true">
-                        /
-                            [a-z0-9:_-]+ # attribute name
-                            \s*=\s*      # "="
-                        /xi
+                        [a-z0-9:_-]+ # attribute name
+                        \s*=\s*      # "="
                     </start>
                     <end>(?=&gt;|\s)</end>
                     <include>
@@ -94,9 +92,7 @@
                 <!-- Attribute in the form: name -->
                 <context id="attrib-no-value" style-ref="attrib-name">
                     <match extended="true">
-                        /
-                            [a-z0-9:_-]+  # attribute name
-                        /xi
+                        [a-z0-9:_-]+  # attribute name
                     </match>
                 </context>
 
@@ -141,7 +137,7 @@
 
                 <context id="tag">
                     <start>&lt;\s*/?\s*[a-z0-9_-]+</start>
-                    <end>\/?\s*&gt;</end>
+                    <end>/?\s*&gt;</end>
                     <include>
                         <context sub-pattern="0" where="start" style-ref="tag"/>
                         <context sub-pattern="0" where="end" style-ref="tag"/>

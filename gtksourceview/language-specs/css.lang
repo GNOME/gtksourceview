@@ -58,18 +58,18 @@
   <definitions>
 
     <context id="comment" style-ref="comment">
-      <start>\/\*</start>
-      <end>\*\/</end>
+      <start>/\*</start>
+      <end>\*/</end>
       <include>
         <context style-ref="error" extend-parent="false">
-          <match>\/\*</match>
+          <match>/\*</match>
         </context>
         <context ref="def:in-comment"/>
       </include>
     </context>
 
     <context id="close-comment-outside-comment" style-ref="error">
-      <match>\*\/(?!\*)</match>
+      <match>\*/(?!\*)</match>
     </context>
 
     <context id="unicode-character-reference" style-ref="others-2">

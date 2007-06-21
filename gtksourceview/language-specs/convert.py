@@ -29,13 +29,7 @@ def escape_escape_char(ch):
     raise RuntimeError("don't know how to escape '%s'" % (ch,))
 
 def escape_regex(s):
-    new = ''
-    for c in s:
-        if c == '/':
-            new += '\\/'
-        else:
-            new += c
-    return cgi.escape(new)
+    return cgi.escape(s)
 
 def normalize_id(id):
     if id == "C#":

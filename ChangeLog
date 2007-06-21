@@ -1,5 +1,39 @@
 2007-06-20  Yevgen Muntyan  <muntyan@tamu.edu>
 
+	Removed leftovers (broken) of /regex/opts syntax in lang files;
+	removed dot-match-all (doing nothing) regex option. Made
+	default-regex-options element use attributes instead of content like "xi".
+
+	* gtksourceview/gtksourcelanguage-parser-2.c: above changes: do not
+	parse dot-match-all; handle new default-regex-options element format;
+	do not strip slashes from patterns.
+
+	* gtksourceview/language-specs/language2.rng:
+	new default-regex-options format; removed dot-match-all.
+
+	* gtksourceview/language-specs/c.lang:
+	* gtksourceview/language-specs/convert.py:
+	* gtksourceview/language-specs/csharp.lang:
+	* gtksourceview/language-specs/css.lang:
+	* gtksourceview/language-specs/gtk-doc.lang:
+	* gtksourceview/language-specs/idl.lang:
+	* gtksourceview/language-specs/java.lang:
+	* gtksourceview/language-specs/javascript.lang:
+	* gtksourceview/language-specs/pascal.lang:
+	* gtksourceview/language-specs/php.lang:
+	* gtksourceview/language-specs/scheme.lang:
+	* gtksourceview/language-specs/sql.lang:
+	* gtksourceview/language-specs/texinfo.lang:
+	* gtksourceview/language-specs/verilog.lang:
+	* gtksourceview/language-specs/xml.lang:
+	Do not escape slashes.
+
+	* gtksourceview/language-specs/html.lang:
+	* gtksourceview/language-specs/latex.lang:
+	Do not use /pattern/opts syntax.
+
+2007-06-20  Yevgen Muntyan  <muntyan@tamu.edu>
+
 	* gtksourceview/gtksourceview-i18n.c (_gtksourceview_gettext):
 	added "translator-credits" string.
 	* po/POTFILES.in: added gtksourcestyle.c and gtksourceview-i18n.c.

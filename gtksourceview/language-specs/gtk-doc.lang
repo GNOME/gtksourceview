@@ -37,7 +37,7 @@
 
     <definitions>
       <context id="skip-asterisk">
-        <match>^\s*\*(?!\/)\s*</match>
+        <match>^\s*\*(?!/)\s*</match>
       </context>
 
       <context id="inline-docs-body">
@@ -66,8 +66,8 @@
       </context>
 
       <context id="inline-docs" style-ref="inline-docs">
-        <start>\/\*\*(?!\S)</start>
-        <end>\*\/</end>
+        <start>/\*\*(?!\S)</start>
+        <end>\*/</end>
         <include>
           <context ref="skip-asterisk"/>
           <context extend-parent="false">

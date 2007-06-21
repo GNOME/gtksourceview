@@ -62,7 +62,7 @@
 
                 <!-- Comments -->
                 <context id="comment" style-ref="comment">
-                    <start>\/\/</start>
+                    <start>//</start>
                     <end>$</end>
                     <include>
                         <!-- FIXME no \n in patterns! -->
@@ -74,8 +74,8 @@
                 </context>
 
                 <context id="comment-multiline" style-ref="comment-multiline">
-                    <start>\/\*</start>
-                    <end>\*\/</end>
+                    <start>/\*</start>
+                    <end>\*/</end>
                     <include>
                         <context ref="def:in-comment"/>
                     </include>

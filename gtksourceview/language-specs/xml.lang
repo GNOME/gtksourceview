@@ -151,7 +151,7 @@
                -  <tag  [...]  tag>
                -->
             <start>&lt;\s*(\%{prefix}:)?\%{name}</start>
-            <end>\/\s*((\%{prefix}:)?\%{name}\s*&gt;)|/&gt;</end>
+            <end>/\s*((\%{prefix}:)?\%{name}\s*&gt;)|/&gt;</end>
             <include>
                 <context sub-pattern="1" where="start" style-ref="namespace" />
                 <context sub-pattern="0" where="start" style-ref="tags" />

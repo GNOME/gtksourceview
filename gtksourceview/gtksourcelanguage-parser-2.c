@@ -250,11 +250,6 @@ get_regex_flags (xmlNode             *node,
 			flags = update_regex_flags (flags, "case-insensitive",
 						    attribute->children->content);
 		}
-		else if (xmlStrcmp (BAD_CAST "dot-match-all", attribute->name) == 0)
-		{
-			flags = update_regex_flags (flags, "dot-match-all",
-						    attribute->children->content);
-		}
 		else if (xmlStrcmp (BAD_CAST "dupnames", attribute->name) == 0)
 		{
 			flags = update_regex_flags (flags, "dupnames",
@@ -873,8 +868,6 @@ update_regex_flags (GRegexCompileFlags  flags,
 		single_flag = G_REGEX_CASELESS;
 	else if (strcmp ("extended", option_name) == 0)
 		single_flag = G_REGEX_EXTENDED;
-	else if (strcmp ("dot-match-all", option_name) == 0)
-		single_flag = G_REGEX_DOTALL;
 	else if (strcmp ("dupnames", option_name) == 0)
 		single_flag = G_REGEX_DUPNAMES;
 	else
@@ -886,50 +879,6 @@ update_regex_flags (GRegexCompileFlags  flags,
 		flags &= ~single_flag;
 
 	return flags;
-}
-
-static gboolean
-calc_regex_flags (const gchar *flags_string, GRegexCompileFlags *flags)
-{
-	gboolean add = TRUE;
-	while (*flags_string != '\0')
-	{
-		GRegexCompileFlags single_flag = 0;
-
-		switch (g_utf8_get_char (flags_string))
-		{
-			case '-':
-				add = FALSE;
-				break;
-			case '+':
-				add = TRUE;
-				break;
-			case 'i':
-				single_flag = G_REGEX_CASELESS;
-				break;
-			case 'x':
-				single_flag = G_REGEX_EXTENDED;
-				break;
-			case 's':
-				/* FIXME: do we need this? */
-				single_flag = G_REGEX_DOTALL;
-				break;
-			default:
-				return FALSE;
-		}
-
-		if (single_flag != 0)
-		{
-			if (add)
-				*flags |= single_flag;
-			else
-				*flags &= ~single_flag;
-		}
-
-		flags_string = g_utf8_next_char (flags_string);
-	}
-
-	return TRUE;
 }
 
 static gchar *
@@ -1075,8 +1024,6 @@ expand_regex (ParserState *parser_state,
 {
 	gchar *tmp_regex;
 	GString *expanded_regex;
-	/* Length in *bytes* of the regex passed to expand_regex_vars. */
-	gint len;
 
 	g_assert (parser_state != NULL);
 	g_return_val_if_fail (error == NULL || *error == NULL, NULL);
@@ -1106,40 +1053,20 @@ expand_regex (ParserState *parser_state,
 		g_regex_unref (compiled);
 	}
 
-	if (g_utf8_get_char (regex) == '/')
-	{
-		gchar *regex_end = g_utf8_strrchr (regex, -1, '/');
-		if (regex_end == regex)
-		{
-			g_set_error (error,
-					PARSER_ERROR, PARSER_ERROR_MALFORMED_REGEX,
-					_ ("malformed regex '%s'"), regex);
-			return NULL;
-		}
-		regex = g_utf8_next_char (regex);
-		len = regex_end - regex;
-	}
-	else
-	{
-		len = -1;
-	}
-
 	if (do_expand_vars)
 	{
-		tmp_regex = expand_regex_vars (parser_state, regex, len, error);
+		tmp_regex = expand_regex_vars (parser_state, regex, -1, error);
 
 		if (tmp_regex == NULL)
 			return NULL;
 	}
 	else
 	{
-		if (len == -1)
-			len = strlen (regex);
-		tmp_regex = g_strndup (regex, len);
+		tmp_regex = g_strdup (regex);
 	}
 
 	regex = tmp_regex;
-	tmp_regex = expand_regex_delimiters (parser_state, regex, len);
+	tmp_regex = expand_regex_delimiters (parser_state, regex, -1);
 	g_free (regex);
 
 	/* Set the options and add not capturing parentheses if
@@ -1149,30 +1076,28 @@ expand_regex (ParserState *parser_state,
 	if (insert_parentheses)
 		g_string_append (expanded_regex, "(?:");
 	g_string_append (expanded_regex, "(?");
+
 	if (flags != 0)
 	{
 		if (flags & G_REGEX_CASELESS)
 			g_string_append (expanded_regex, "i");
 		if (flags & G_REGEX_EXTENDED)
 			g_string_append (expanded_regex, "x");
-		if (flags & G_REGEX_DOTALL)
-			g_string_append (expanded_regex, "s");
 		/* J is added here if it's used, but -J isn't added
 		 * below */
 		if (flags & G_REGEX_DUPNAMES)
 			g_string_append (expanded_regex, "J");
 	}
-	if (flags != (G_REGEX_CASELESS | G_REGEX_EXTENDED |
-		      G_REGEX_DOTALL | G_REGEX_DUPNAMES))
+
+	if ((flags & (G_REGEX_CASELESS | G_REGEX_EXTENDED)) != (G_REGEX_CASELESS | G_REGEX_EXTENDED))
 	{
 		g_string_append (expanded_regex, "-");
 		if (!(flags & G_REGEX_CASELESS))
 			g_string_append (expanded_regex, "i");
 		if (!(flags & G_REGEX_EXTENDED))
 			g_string_append (expanded_regex, "x");
-		if (!(flags & G_REGEX_DOTALL))
-			g_string_append (expanded_regex, "s");
 	}
+
 	g_string_append (expanded_regex, ")");
 	g_string_append (expanded_regex, tmp_regex);
 	if (insert_parentheses)
@@ -1200,7 +1125,7 @@ handle_define_regex_element (ParserState *parser_state,
 	xmlChar *tmp;
 	gchar *expanded_regex;
 	int i;
-	const gchar *regex_options[] = {"extended", "case-insensitive", "dot-match-all", NULL};
+	const gchar *regex_options[] = {"extended", "case-insensitive", "dupnames", NULL};
 	GRegexCompileFlags flags;
 	GError *tmp_error = NULL;
 
@@ -1266,37 +1191,16 @@ static void
 handle_default_regex_options_element (ParserState *parser_state,
 				      GError     **error)
 {
-	xmlChar *options;
-	int ret, type;
+	xmlNode *elm;
 
 	g_return_if_fail (error != NULL && *error == NULL);
 
 	if (parser_state->ctx_data == NULL)
 		return;
 
-	do {
-		ret = xmlTextReaderRead (parser_state->reader);
-		g_assert (ret == 1);
+	elm = xmlTextReaderCurrentNode	(parser_state->reader);
 
-		type = xmlTextReaderNodeType (parser_state->reader);
-
-	} while (type != XML_READER_TYPE_TEXT &&
-		 type != XML_READER_TYPE_CDATA);
-
-	options = xmlTextReaderValue (parser_state->reader);
-
-	g_strstrip ((gchar*) options);
-
-	if (!calc_regex_flags ((gchar*) options, &(parser_state->regex_compile_flags)))
-	{
-		g_set_error (error,
-			     PARSER_ERROR,
-			     PARSER_ERROR_MALFORMED_REGEX,
-			     _ ("malformed regex options '%s'"),
-			     (gchar*) options);
-	}
-
-	xmlFree (options);
+	parser_state->regex_compile_flags = get_regex_flags (elm, 0);
 }
 
 static void

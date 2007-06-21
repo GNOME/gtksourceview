@@ -37,15 +37,15 @@
 
   <definitions>
     <context id="block-comment" style-ref="comment">
-      <start>\/\*</start>
-      <end>\*\/</end>
+      <start>/\*</start>
+      <end>\*/</end>
       <include>
         <context ref="def:escape"/>
         <context ref="def:line-continue"/>
       </include>
     </context>
     <context id="line-comment" style-ref="comment" end-at-line-end="true">
-      <start>\/\/</start>
+      <start>//</start>
       <include>
         <context ref="def:escape"/>
         <context ref="def:line-continue"/>

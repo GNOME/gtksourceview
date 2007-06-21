@@ -146,15 +146,13 @@
 
                 <context id="verbatim-env" style-ref="verbatim">
                     <start extended="true">
-                        /
-                            \\begin\{
-                                (
-                                    verbatim\*?|
-                                    lstlisting|
-                                    alltt
-                                )
-                            \}
-                        /x
+                        \\begin\{
+                            (
+                                verbatim\*?|
+                                lstlisting|
+                                alltt
+                            )
+                        \}
                     </start>
                     <end>\\end\{\%{1@start}\}</end>
                 </context>

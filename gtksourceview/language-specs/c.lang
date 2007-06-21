@@ -81,22 +81,22 @@
 
                 <!-- Comments -->
                 <context id="comment" style-ref="comment" end-at-line-end="true">
-                    <start>\/\/</start>
+                    <start>//</start>
                     <include>
                       <context ref="def:in-line-comment"/>
                     </include>
                 </context>
 
                 <context id="comment-multiline" style-ref="comment">
-                    <start>\/\*</start>
-                    <end>\*\/</end>
+                    <start>/\*</start>
+                    <end>\*/</end>
                     <include>
                         <context ref="def:in-comment"/>
                     </include>
                 </context>
 
                 <context id="close-comment-outside-comment" style-ref="error">
-                    <match>\*\/(?!\*)</match>
+                    <match>\*/(?!\*)</match>
                 </context>
 
                 <!-- Preprocessor -->
