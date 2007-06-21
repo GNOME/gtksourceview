@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview.HEAD.es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-06-20 03:22+0100\n"
-"PO-Revision-Date: 2007-06-20 10:07+0200\n"
+"POT-Creation-Date: 2007-06-21 03:26+0100\n"
+"PO-Revision-Date: 2007-06-21 10:07+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -154,6 +154,86 @@ msgstr "expresión regular «%s» mal formada"
 msgid "malformed regex options '%s'"
 msgstr "opciones de la expresión regular «%s» mal formadas"
 
+#: ../gtksourceview/gtksourcestyle.c:64
+msgid "Background"
+msgstr "Fondo"
+
+#: ../gtksourceview/gtksourcestyle.c:65
+msgid "Background color"
+msgstr "Color de fondo"
+
+#: ../gtksourceview/gtksourcestyle.c:72
+msgid "Foreground"
+msgstr "Primer plano"
+
+#: ../gtksourceview/gtksourcestyle.c:73
+msgid "Foreground color"
+msgstr "Color de primer plano"
+
+#: ../gtksourceview/gtksourcestyle.c:80 ../gtksourceview/gtksourcestyle.c:81
+msgid "Bold"
+msgstr "Negrita"
+
+#: ../gtksourceview/gtksourcestyle.c:88 ../gtksourceview/gtksourcestyle.c:89
+msgid "Italic"
+msgstr "Cursiva"
+
+#: ../gtksourceview/gtksourcestyle.c:96 ../gtksourceview/gtksourcestyle.c:97
+msgid "Underline"
+msgstr "Subrayado"
+
+#: ../gtksourceview/gtksourcestyle.c:104 ../gtksourceview/gtksourcestyle.c:105
+msgid "Strikethrough"
+msgstr "Tachar"
+
+#: ../gtksourceview/gtksourcestyle.c:112
+msgid "Foreground set"
+msgstr "Establece el primer plano"
+
+#: ../gtksourceview/gtksourcestyle.c:113
+msgid "Whether foreground color is set"
+msgstr "Indica si el color de primer plano está establecido"
+
+#: ../gtksourceview/gtksourcestyle.c:120
+msgid "Background set"
+msgstr "Establece el fondo"
+
+#: ../gtksourceview/gtksourcestyle.c:121
+msgid "Whether background color is set"
+msgstr "Indica si el color de fondo está establecido"
+
+#: ../gtksourceview/gtksourcestyle.c:128
+msgid "Bold set"
+msgstr "Establecer negrita"
+
+#: ../gtksourceview/gtksourcestyle.c:129
+msgid "Whether bold attribute is set"
+msgstr "Indica si el atributo negrita está establecido"
+
+#: ../gtksourceview/gtksourcestyle.c:136
+msgid "Italic set"
+msgstr "Establecer cursiva"
+
+#: ../gtksourceview/gtksourcestyle.c:137
+msgid "Whether italic attribute is set"
+msgstr "Indica si el atributo cursiva está establecido"
+
+#: ../gtksourceview/gtksourcestyle.c:144
+msgid "Underline set"
+msgstr "Establecer subrayado"
+
+#: ../gtksourceview/gtksourcestyle.c:145
+msgid "Whether underline attribute is set"
+msgstr "Indica si el atributo subrayado está establecido"
+
+#: ../gtksourceview/gtksourcestyle.c:152
+msgid "Strikethrough set"
+msgstr "Establecer tachado"
+
+#: ../gtksourceview/gtksourcestyle.c:153
+msgid "Whether strikethrough attribute is set"
+msgstr "Indica si el atributo tachado está establecido"
+
 #: ../gtksourceview/gtksourcestylemanager.c:129
 msgid "Style scheme directories"
 msgstr "Directorios de estilos de esquemas"
@@ -293,6 +373,10 @@ msgstr "Color del margen sobrepuesto"
 #: ../gtksourceview/gtksourceview.c:406
 msgid "Color to use for drawing the margin overlay"
 msgstr "color usado para dibujar el margen sobrepuesto"
+
+#: ../gtksourceview/gtksourceview-i18n.c:38
+msgid "translator-credits"
+msgstr "Jorge González <jorgegonz@svn.gnome.org>, 2007"
 
 #: ../gtksourceview/language-specs/ada.lang.h:1
 msgid "Ada"
