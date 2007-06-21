@@ -36,6 +36,27 @@
     </choice>
 
     <optional>
+      <attribute name="parent-scheme"/>
+    </optional>
+
+    <optional>
+      <element name="author">
+        <text/>
+      </element>
+    </optional>
+
+    <optional>
+      <choice>
+        <element name="description">
+          <text/>
+        </element>
+        <element name="_description">
+          <text/>
+        </element>
+      </choice>
+    </optional>
+
+    <optional>
       <oneOrMore>
           <element name="style">
               <attribute name="name"/>

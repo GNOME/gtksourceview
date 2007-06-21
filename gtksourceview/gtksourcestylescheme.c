@@ -557,11 +557,6 @@ _gtk_source_style_scheme_apply (GtkSourceStyleScheme *scheme,
 
 /* --- PARSER ---------------------------------------------------------------- */
 
-typedef struct {
-	GtkSourceStyleScheme *scheme;
-	gboolean done;
-} ParserData;
-
 #define ERROR_QUARK (g_quark_from_static_string ("gtk-source-style-scheme-parser-error"))
 
 static void

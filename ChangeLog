@@ -1,5 +1,17 @@
 2007-06-20  Yevgen Muntyan  <muntyan@tamu.edu>
 
+	* gtksourceview/language-specs/css.lang:
+	* gtksourceview/language-specs/javascript.lang:
+	* gtksourceview/language-specs/makefile.lang:
+	LGPL'ed.
+
+	* gtksourceview/language-specs/styles.rng: updated.
+
+	* gtksourceview/gtksourcestylescheme.c: removed ParserState struct
+	left from old parser.
+
+2007-06-20  Yevgen Muntyan  <muntyan@tamu.edu>
+
 	* gtksourceview/language-specs/csharp.lang:
 	* gtksourceview/language-specs/desktop.lang:
 	LGPL'ed.
