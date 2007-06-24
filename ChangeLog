@@ -1,3 +1,16 @@
+2007-06-24  Yevgen Muntyan  <muntyan@tamu.edu>
+
+	Objective-C highlighting. Added chdr.lang to use specifically
+	with C/C++/ObjC headers, since C++ won't do anymore.
+
+	* gtksourceview/language-specs/objc.lang: actual definitions.
+	* gtksourceview/language-specs/chdr.lang: C headers highlighting.
+	* gtksourceview/language-specs/cpp.lang: added a context to
+	include from C headers.
+
+	* gtksourceview/language-specs/check.sh: updated.
+	* gtksourceview/language-specs/Makefile.am: added those files.
+
 2007-06-20  Yevgen Muntyan  <muntyan@tamu.edu>
 
 	* gtksourceview/language-specs/css.lang:

@@ -31,14 +31,16 @@
     </metadata>
 
     <styles>
-        <style id="common-defines"  _name="Common defines"  map-to="c:common-defines"/>
+        <style id="keyword" _name="Keyword" map-to="c:keyword"/>
+        <style id="data-type" _name="Data Type" map-to="c:data-type"/>
+        <style id="common-defines" _name="Common Defines" map-to="c:common-defines"/>
     </styles>
 
     <definitions>
-        <context id="cpp">
+        <!-- C++-specific stuff (i.e. stuff which is not C) -->
+        <context id="cpp-proper">
             <include>
-
-                <context id="keywords" style-ref="c:keyword">
+                <context id="keywords" style-ref="keyword">
                     <keyword>and</keyword>
                     <keyword>and_eq</keyword>
                     <keyword>bitand</keyword>
@@ -71,17 +73,17 @@
                     <keyword>xor_eq</keyword>
 
                     <keyword>class</keyword>
-                    <keyword>inline</keyword>
                     <keyword>namespace</keyword>
                     <keyword>typename</keyword>
                     <keyword>template</keyword>
                     <keyword>virtual</keyword>
                 </context>
 
-                <context id="types" style-ref="c:data-type">
+                <context id="types" style-ref="data-type">
                     <keyword>bool</keyword>
                     <keyword>explicit</keyword>
                     <keyword>export</keyword>
+                    <keyword>inline</keyword>
                     <keyword>mutable</keyword>
                     <keyword>wchar_t</keyword>
                 </context>
@@ -90,9 +92,14 @@
                     <keyword>__STDC__</keyword>
                     <keyword>__cplusplus</keyword>
                 </context>
+            </include>
+        </context>
 
+        <!-- actual language definition: C++-specific stuff plus everything from C -->
+        <context id="cpp">
+            <include>
+                <context ref="cpp-proper"/>
                 <context ref="c:c"/>
-
             </include>
         </context>
     </definitions>

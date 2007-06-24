@@ -3,6 +3,7 @@ LANGUAGES =			\
 	boo.lang		\
 	changelog.lang		\
 	c.lang			\
+	chdr.lang		\
 	cpp.lang		\
 	csharp.lang		\
 	css.lang		\
@@ -30,6 +31,7 @@ LANGUAGES =			\
 	makefile.lang		\
 	msil.lang		\
 	nemerle.lang		\
+	objc.lang		\
 	ocaml.lang		\
 	octave.lang		\
 	pascal.lang		\

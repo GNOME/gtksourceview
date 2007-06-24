@@ -3,16 +3,14 @@
 # "./check.sh" without arguments will validate lang and styles files
 # specified here.
 
-langs="c.lang cpp.lang changelog.lang def.lang
-       html.lang javascript.lang latex.lang
-       m4.lang makefile.lang xml.lang yacc.lang
-       sh.lang python.lang perl.lang ada.lang
-       csharp.lang css.lang desktop.lang fortran.lang
-       gtkrc.lang haskell.lang idl.lang ini.lang
-       java.lang octave.lang pascal.lang php.lang
-       po.lang ruby.lang scheme.lang sql.lang tcl.lang
-       texinfo.lang gtk-doc.lang dtd.lang dpatch.lang
-       libtool.lang pkgconfig.lang"
+langs="ada.lang changelog.lang chdr.lang c.lang cpp.lang csharp.lang
+       css.lang def.lang desktop.lang diff.lang dpatch.lang dtd.lang
+       fortran.lang gap.lang gtk-doc.lang gtkrc.lang haskell.lang
+       html.lang idl.lang ini.lang java.lang javascript.lang latex.lang
+       libtool.lang m4.lang makefile.lang objc.lang ocaml.lang
+       octave.lang pascal.lang perl.lang php.lang pkgconfig.lang po.lang
+       python.lang ruby.lang scheme.lang sh.lang sql.lang tcl.lang
+       texinfo.lang verilog.lang xml.lang yacc.lang"
 
 styles="gvim.xml kate.xml testdark.xml"
 
