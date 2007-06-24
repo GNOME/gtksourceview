@@ -40,6 +40,7 @@
     <context id="objc-header">
       <include>
         <context id="keywords" style-ref="keyword">
+          <prefix></prefix>
           <keyword>\@interface</keyword>
           <keyword>\@protocol</keyword>
           <keyword>\@implementation</keyword>
@@ -57,7 +58,7 @@
          good to highlight in C headers -->
     <context id="objc-source">
       <include>
-        <context id="keywords" style-ref="keyword">
+        <context id="objc-keywords" style-ref="keyword">
           <keyword>nil</keyword>
           <keyword>Nil</keyword>
           <keyword>private</keyword>
@@ -65,7 +66,7 @@
           <keyword>public</keyword>
         </context>
 
-        <context id="types" style-ref="data-type">
+        <context id="objc-types" style-ref="data-type">
           <keyword>apply_t</keyword>
           <keyword>Class</keyword>
           <keyword>id</keyword>
@@ -79,7 +80,7 @@
           <keyword>TypedStream</keyword>
         </context>
 
-        <context id="common-defines" style-ref="common-defines">
+        <context id="objc-common-defines" style-ref="common-defines">
           <keyword>METHOD_NULL</keyword>
           <keyword>NO</keyword>
           <keyword>YES</keyword>
