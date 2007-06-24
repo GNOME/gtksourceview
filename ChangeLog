@@ -1,5 +1,10 @@
 2007-06-24  Yevgen Muntyan  <muntyan@tamu.edu>
 
+	* gtksourceview/language-specs/cpp.lang: forgot to remove
+	headers globs and mime types from here.
+
+2007-06-24  Yevgen Muntyan  <muntyan@tamu.edu>
+
 	Objective-C highlighting. Added chdr.lang to use specifically
 	with C/C++/ObjC headers, since C++ won't do anymore.
 

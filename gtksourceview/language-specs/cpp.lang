@@ -23,8 +23,8 @@
 -->
 <language id="cpp" _name="C++" version="2.0" _section="Sources">
     <metadata>
-      <property name="mimetypes">text/x-c++;text/x-cpp;text/x-chdr;text/x-c++src;text/x-c++hdr</property>
-      <property name="globs">*.hh;*.hp;*.hpp;*.h++;*.cpp;*.cxx;*.cc;*.C;*.c++;*.h</property>
+      <property name="mimetypes">text/x-c++;text/x-cpp;text/x-c++src</property>
+      <property name="globs">*.cpp;*.cxx;*.cc;*.C;*.c++</property>
       <property name="line-comment-start">//</property>
       <property name="block-comment-start">/*</property>
       <property name="block-comment-end">*/</property>
