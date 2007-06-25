@@ -85,13 +85,13 @@ gtk_source_style_scheme_set_property (GObject 	   *object,
 	{
 	    case PROP_ID:
 		tmp = scheme->priv->id;
-		scheme->priv->id = g_strdup (g_value_get_string (value));
+		scheme->priv->id = g_value_dup_string (value);
 		g_free (tmp);
 		break;
 
 	    case PROP_NAME:
 		tmp = scheme->priv->name;
-		scheme->priv->name = g_strdup (g_value_get_string (value));
+		scheme->priv->name = g_value_dup_string (value);
 		g_free (tmp);
 		g_object_notify (object, "name");
 		break;

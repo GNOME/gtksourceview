@@ -1,3 +1,13 @@
+2007-06-25  Paolo Borelli  <pborelli@katamail.com>
+
+	* gtksourceview/gtksourcelanguage-parser-2.c:
+	* gtksourceview/language-specs/html.lang:
+	* gtksourceview/language-specs/language2.rng:
+	* gtksourceview/language-specs/def.lang:
+
+	Use case-sensitive="false" instead of case-insensitive="true".
+	It makes more sense.
+
 2007-06-24  Yevgen Muntyan  <muntyan@tamu.edu>
 
 	* gtksourceview/language-specs/objc.lang: oops, forgot

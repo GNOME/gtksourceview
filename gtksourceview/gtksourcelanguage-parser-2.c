@@ -125,7 +125,7 @@ static gboolean   file_parse                   (gchar                  *filename
 
 static GRegexCompileFlags
 		  update_regex_flags	       (GRegexCompileFlags flags,
-						const gchar   *option_name,
+						const xmlChar *option_name,
 						const xmlChar *bool_value);
 
 static gboolean   create_definition            (ParserState *parser_state,
@@ -240,21 +240,8 @@ get_regex_flags (xmlNode             *node,
 	{
 		g_return_val_if_fail (attribute->children != NULL, flags);
 
-		if (xmlStrcmp (BAD_CAST "extended", attribute->name) == 0)
-		{
-			flags = update_regex_flags (flags, "extended",
-						    attribute->children->content);
-		}
-		else if (xmlStrcmp (BAD_CAST "case-insensitive", attribute->name) == 0)
-		{
-			flags = update_regex_flags (flags, "case-insensitive",
-						    attribute->children->content);
-		}
-		else if (xmlStrcmp (BAD_CAST "dupnames", attribute->name) == 0)
-		{
-			flags = update_regex_flags (flags, "dupnames",
-						    attribute->children->content);
-		}
+		flags = update_regex_flags (flags, attribute->name,
+					    attribute->children->content);
 	}
 
 	return flags;
@@ -857,23 +844,35 @@ replace_by_id (const GMatchInfo *match_info,
 
 static GRegexCompileFlags
 update_regex_flags (GRegexCompileFlags  flags,
-		    const gchar        *option_name,
+		    const xmlChar      *option_name,
 		    const xmlChar      *value)
 {
 	GRegexCompileFlags single_flag;
+	gboolean set_flag;
 
 	DEBUG (g_message ("setting the '%s' regex flag to %s", option_name, value));
 
-	if (strcmp ("case-insensitive", option_name) == 0)
-		single_flag = G_REGEX_CASELESS;
-	else if (strcmp ("extended", option_name) == 0)
-		single_flag = G_REGEX_EXTENDED;
-	else if (strcmp ("dupnames", option_name) == 0)
-		single_flag = G_REGEX_DUPNAMES;
-	else
-		return flags;
+	set_flag = str_to_bool (value);
 
-	if (str_to_bool (value))
+	if (xmlStrcmp (BAD_CAST "case-sensitive", option_name) == 0)
+	{
+		single_flag = G_REGEX_CASELESS;
+		set_flag = !set_flag;
+	}
+	else if (xmlStrcmp (BAD_CAST "extended", option_name) == 0)
+	{
+		single_flag = G_REGEX_EXTENDED;
+	}
+	else if (xmlStrcmp (BAD_CAST "dupnames", option_name) == 0)
+	{
+		single_flag = G_REGEX_DUPNAMES;
+	}
+	else
+	{
+		return flags;
+	}
+
+	if (set_flag)
 		flags |= single_flag;
 	else
 		flags &= ~single_flag;
@@ -1125,7 +1124,7 @@ handle_define_regex_element (ParserState *parser_state,
 	xmlChar *tmp;
 	gchar *expanded_regex;
 	int i;
-	const gchar *regex_options[] = {"extended", "case-insensitive", "dupnames", NULL};
+	const gchar *regex_options[] = {"extended", "case-sensitive", "dupnames", NULL};
 	GRegexCompileFlags flags;
 	GError *tmp_error = NULL;
 
@@ -1155,10 +1154,13 @@ handle_define_regex_element (ParserState *parser_state,
 		tmp = xmlTextReaderGetAttribute (parser_state->reader,
 						 BAD_CAST regex_options[i]);
 		if (tmp != NULL)
-			flags = update_regex_flags (flags, regex_options[i], tmp);
+		{
+			flags = update_regex_flags (flags,
+						    BAD_CAST regex_options[i],
+						    tmp);
+		}
 		xmlFree (tmp);
 	}
-
 
 	xmlTextReaderRead (parser_state->reader);
 

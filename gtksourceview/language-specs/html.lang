@@ -46,7 +46,7 @@
                                  map-to="xml:error"/>
     </styles>
 
-    <default-regex-options case-insensitive="true"/>
+    <default-regex-options case-sensitive="false"/>
 
     <definitions>
         <context id="entity" style-ref="entity">

@@ -62,7 +62,7 @@
             (?&lt;![\w\.]) 0 [xX] [0-9a-fA-F]+ (?![\w\.])
         </define-regex>
         <!-- FIXME: these one is broken, and is it useful at all? -->
-        <define-regex id="float" extended="true" case-insensitive="true">
+        <define-regex id="float" extended="true" case-sensitive="false">
                 \b
                 ([0-9]+ e [-+]? [0-9]+ |
                  ([0-9]* \. [0-9]+ | [0-9]+ \.)
@@ -84,14 +84,14 @@
         </context>
 
         <!-- FIXME no \n in patterns! -->
-        <define-regex id="net-address" extended="true" case-insensitive="true">
+        <define-regex id="net-address" extended="true" case-sensitive="false">
                 \%[                                         # separator
                 (https?|ftp|nntp|news|javascript|about):    # protocol
                 [^\ \n]* [^\ \n.:;,?&gt;&lt;)]              # address
                 (?![a-z0-9_.-])                             # separator
         </define-regex>
 
-        <define-regex id="email-address" extended="true" case-insensitive="true">
+        <define-regex id="email-address" extended="true" case-sensitive="false">
                 \%[                 # separator
                 (mailto:)?          # optional "mailto:"
                 [a-z0-9_.-]+        # user name
