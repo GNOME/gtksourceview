@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview.HEAD.es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-06-22 04:22+0100\n"
-"PO-Revision-Date: 2007-06-24 13:28+0200\n"
+"POT-Creation-Date: 2007-06-25 03:23+0100\n"
+"PO-Revision-Date: 2007-06-25 07:52+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -115,7 +115,9 @@ msgstr "id de contexto duplicado «%s»"
 msgid ""
 "style override used with wildcard context reference in language '%s' in ref "
 "'%s'"
-msgstr "el salto de estilo se usó con comodín de contexto de referencia en el lenguaje «%s» referencia «%s»"
+msgstr ""
+"el salto de estilo se usó con comodín de contexto de referencia en el "
+"lenguaje «%s» referencia «%s»"
 
 #: ../gtksourceview/gtksourcecontextengine.c:6006
 #, c-format
@@ -405,6 +407,7 @@ msgstr "Comentario"
 #. map-to="def:others"
 #: ../gtksourceview/language-specs/ada.lang.h:3
 #: ../gtksourceview/language-specs/c.lang.h:5
+#: ../gtksourceview/language-specs/cpp.lang.h:3
 #: ../gtksourceview/language-specs/csharp.lang.h:3
 #: ../gtksourceview/language-specs/css.lang.h:4
 #: ../gtksourceview/language-specs/def.lang.h:5
@@ -447,6 +450,7 @@ msgstr "Decimal"
 
 #: ../gtksourceview/language-specs/ada.lang.h:5
 #: ../gtksourceview/language-specs/c.lang.h:13
+#: ../gtksourceview/language-specs/cpp.lang.h:4
 #: ../gtksourceview/language-specs/csharp.lang.h:5
 #: ../gtksourceview/language-specs/css.lang.h:9
 #: ../gtksourceview/language-specs/def.lang.h:12
@@ -497,7 +501,7 @@ msgstr "Preprocesador"
 #: ../gtksourceview/language-specs/ada.lang.h:7
 #: ../gtksourceview/language-specs/boo.lang.h:6
 #: ../gtksourceview/language-specs/c.lang.h:16
-#: ../gtksourceview/language-specs/cpp.lang.h:3
+#: ../gtksourceview/language-specs/cpp.lang.h:5
 #: ../gtksourceview/language-specs/csharp.lang.h:7
 #: ../gtksourceview/language-specs/d.lang.h:13
 #: ../gtksourceview/language-specs/fortran.lang.h:8
@@ -614,7 +618,6 @@ msgid "Character"
 msgstr "Carácter"
 
 #: ../gtksourceview/language-specs/c.lang.h:4
-#: ../gtksourceview/language-specs/cpp.lang.h:2
 msgid "Common defines"
 msgstr "Definiciones comunes"
 
@@ -665,6 +668,10 @@ msgstr "conversión printf"
 #: ../gtksourceview/language-specs/cpp.lang.h:1
 msgid "C++"
 msgstr "C++"
+
+#: ../gtksourceview/language-specs/cpp.lang.h:2
+msgid "Common Defines"
+msgstr "Definiciones comunes"
 
 #: ../gtksourceview/language-specs/csharp.lang.h:1
 msgid "C#"
