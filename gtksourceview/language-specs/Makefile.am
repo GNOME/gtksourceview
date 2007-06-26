@@ -1,5 +1,6 @@
 LANGUAGES =			\
 	ada.lang		\
+	awk.lang		\
 	boo.lang		\
 	changelog.lang		\
 	c.lang			\

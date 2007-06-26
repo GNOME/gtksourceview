@@ -40,8 +40,6 @@
                                  map-to="xml:attribute-value"/>
         <style id="dtd"          _name="DTD"
                                  map-to="xml:doctype"/>
-        <style id="entity"       _name="Entity"
-                                 map-to="xml:entity"/>
         <style id="error"        _name="Error"
                                  map-to="xml:error"/>
     </styles>
@@ -49,8 +47,18 @@
     <default-regex-options case-sensitive="false"/>
 
     <definitions>
-        <context id="entity" style-ref="entity">
-            <match>&amp;[a-z]+;</match>
+        <!-- Html comments are more permissive than xml comments -->
+        <context id="comment" style-ref="xml:comment">
+            <start>&lt;!--</start>
+            <end>--\s*&gt;</end>
+            <include>
+                <context ref="def:in-comment"/>
+            </include>
+        </context>
+
+        <context id="dtd" style-ref="dtd">
+            <start>&lt;!</start>
+            <end>&gt;</end>
         </context>
 
         <context id="generic-tag">
@@ -70,7 +78,8 @@
                         <context id="string" extend-parent="false" end-at-line-end="true" style-ref="attrib-value">
                             <start>\%{def:always-match}</start>
                             <include>
-                                <context ref="entity"/>
+                                <context ref="xml:entity"/>
+                                <context ref="xml:character-reference"/>
                             </include>
                         </context>
                     </include>
@@ -85,7 +94,8 @@
                     <end>(?=&gt;|\s)</end>
                     <include>
                         <context sub-pattern="0" where="start" style-ref="attrib-name"/>
-                        <context ref="entity"/>
+                        <context ref="xml:entity"/>
+                        <context ref="xml:character-reference"/>
                     </include>
                 </context>
 
@@ -99,53 +109,45 @@
             </include>
         </context>
 
-        <context id="html">
+        <context id="script">
+            <start>&lt;\s*script\%]</start>
+            <end>&lt;\s*/\s*script\s*&gt;</end>
+
             <include>
-
-                <context id="comment" style-ref="xml:comment">
-                    <start>&lt;!--</start>
-                    <end>--&gt;</end>
-                    <include>
-                        <context ref="def:in-comment"/>
-                    </include>
-                </context>
-
-                <context id="dtd" style-ref="dtd">
-                    <start>&lt;!</start>
-                    <end>&gt;</end>
-                </context>
-
-                <context ref="entity"/>
-
-                <context id="script">
-                    <start>&lt;\s*script\%]</start>
-                    <end>&lt;\s*/\s*script\s*&gt;</end>
-
+                <context sub-pattern="0" where="start" style-ref="tag"/>
+                <context sub-pattern="0" where="end" style-ref="tag"/>
+                <context ref="generic-tag"/>
+                <context id="js-code" extend-parent="false">
+                    <start>&gt;</start>
                     <include>
                         <context sub-pattern="0" where="start" style-ref="tag"/>
-                        <context sub-pattern="0" where="end" style-ref="tag"/>
-                        <context ref="generic-tag"/>
-                        <context id="js-code" extend-parent="false">
-                            <start>&gt;</start>
-                            <include>
-                                <context sub-pattern="0" where="start" style-ref="tag"/>
-                                <context ref="js:js"/>
-                            </include>
-                        </context>
+                        <context ref="js:js"/>
                     </include>
                 </context>
-
-                <context id="tag">
-                    <start>&lt;\s*/?\s*[a-z0-9_-]+</start>
-                    <end>/?\s*&gt;</end>
-                    <include>
-                        <context sub-pattern="0" where="start" style-ref="tag"/>
-                        <context sub-pattern="0" where="end" style-ref="tag"/>
-                        <context ref="generic-tag"/>
-                    </include>
-                </context>
-
             </include>
         </context>
+
+        <context id="tag">
+            <start>&lt;\s*/?\s*[a-z0-9_-]+</start>
+            <end>/?\s*&gt;</end>
+            <include>
+                <context sub-pattern="0" where="start" style-ref="tag"/>
+                <context sub-pattern="0" where="end" style-ref="tag"/>
+                <context ref="generic-tag"/>
+            </include>
+        </context>
+
+        <context id="html">
+            <include>
+                <context ref="xml:doctype"/>
+                <context ref="xml:entity"/>
+                <context ref="xml:character-reference"/>
+                <context ref="comment"/>
+                <context ref="dtd"/>
+                <context ref="script"/>
+                <context ref="tag"/>
+            </include>
+        </context>
+
     </definitions>
 </language>
