@@ -22,6 +22,7 @@
 #define __GTK_SOURCE_STYLE_PRIVATE_H__
 
 #include "gtksourcestyle.h"
+#include <gtk/gtktexttag.h>
 
 G_BEGIN_DECLS
 
@@ -41,6 +42,9 @@ enum {
 struct _GtkSourceStyle
 {
 	GObject base_instance;
+	/* foreground and background are strings interned with
+	 * with g_intern_string(), so we don't need to copy/free
+	 * them. */
 	const gchar *foreground;
 	const gchar *background;
 	guint italic : 1;

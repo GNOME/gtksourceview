@@ -1069,11 +1069,11 @@ update_bracket_match_style (GtkSourceBuffer *buffer)
 	if (buffer->priv->bracket_match_tag != NULL)
 	{
 		GtkSourceStyle *style = NULL;
+
 		if (buffer->priv->style_scheme)
 			style = gtk_source_style_scheme_get_matching_brackets_style (buffer->priv->style_scheme);
+
 		_gtk_source_style_apply (style, buffer->priv->bracket_match_tag);
-		if (style != NULL)
-			g_object_unref (style);
 	}
 }
 
@@ -1100,21 +1100,14 @@ gtk_source_buffer_get_highlight (GtkSourceBuffer *buffer)
  * @highlight: %TRUE if you want to activate highlighting.
  *
  * Controls whether text is highlighted in the buffer.  If @highlight
- * is %TRUE, the text will be highlighted according to the patterns
- * installed in the buffer (either set with
- * gtk_source_buffer_set_language() or by adding individual
- * #GtkSourceTag tags to the buffer's tag table).  Otherwise, any
- * current highlighted text will be restored to the default buffer
- * style.
+ * is %TRUE, the text will be highlighted according to the syntax
+ * highlighting specification installed in the buffer with
+ * gtk_source_buffer_set_language(). Otherwise, any current highlighted
+ * text will be restored to the default buffer style.
  *
  * Tags not of #GtkSourceTag type will not be removed by this option,
  * and normal #GtkTextTag priority settings apply when highlighting is
  * enabled.
- *
- * If not using a #GtkSourceLanguage for setting the highlighting
- * patterns in the buffer, it is recommended for performance reasons
- * that you add all the #GtkSourceTag tags with highlighting disabled
- * and enable it when finished.
  **/
 void
 gtk_source_buffer_set_highlight (GtkSourceBuffer *buffer,

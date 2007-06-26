@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<style-scheme id="dark" _name="dark" parent-scheme="gvim">
-  <style name="text"              foreground="white" background="black"/>
-  <style name="text-selected"     foreground="magenta" background="grey"/>
-  <style name="cursor"            foreground="white"/>
-  <style name="secondary-cursor"  foreground="grey"/>
-  <style name="current-line"      background="grey"/>
-  <style name="line-numbers"      foreground="yellow" background="darkgreen"/>
-  <style name="current-line"      background="lightgreen"/>
+<style-scheme id="dark" _name="dark" parent-scheme="gvim" version="1.0">
+  <style name="text"              foreground="#white" background="#black"/>
+  <style name="text-selected"     foreground="#magenta" background="#grey"/>
+  <style name="cursor"            foreground="#white"/>
+  <style name="secondary-cursor"  foreground="#grey"/>
+  <style name="current-line"      background="#grey"/>
+  <style name="line-numbers"      foreground="#yellow" background="#darkgreen"/>
+  <style name="current-line"      background="#lightgreen"/>
 </style-scheme>

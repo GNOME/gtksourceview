@@ -39,6 +39,10 @@
       <attribute name="parent-scheme"/>
     </optional>
 
+    <attribute name="version">
+      <value>1.0</value>
+    </attribute>
+
     <optional>
       <element name="author">
         <text/>
@@ -54,6 +58,23 @@
           <text/>
         </element>
       </choice>
+    </optional>
+
+    <optional>
+      <oneOrMore>
+          <element name="color">
+              <attribute name="name">
+                <data type="string">
+                  <param name="pattern">([a-zA-Z0-9_]|-)+</param>
+                </data>
+              </attribute>
+              <attribute name="value">
+                <data type="string">
+                  <param name="pattern">#.*</param>
+                </data>
+              </attribute>
+          </element>
+      </oneOrMore>
     </optional>
 
     <optional>

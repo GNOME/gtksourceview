@@ -60,7 +60,6 @@ GtkSourceStyleScheme	*_gtk_source_style_scheme_new		(const gchar          *id,
 const gchar             *gtk_source_style_scheme_get_id         (GtkSourceStyleScheme *scheme);
 const gchar             *gtk_source_style_scheme_get_name       (GtkSourceStyleScheme *scheme);
 
-/* Return value must be freed with g_object_unref */
 GtkSourceStyle		*gtk_source_style_scheme_get_style	(GtkSourceStyleScheme *scheme,
 								 const gchar          *style_name);
 GtkSourceStyle		*gtk_source_style_scheme_get_matching_brackets_style
@@ -68,9 +67,6 @@ GtkSourceStyle		*gtk_source_style_scheme_get_matching_brackets_style
 gboolean		 gtk_source_style_scheme_get_current_line_color
 								(GtkSourceStyleScheme *scheme,
 								 GdkColor             *color);
-void			 gtk_source_style_scheme_set_style	(GtkSourceStyleScheme *scheme,
-								 const gchar          *name,
-								 const GtkSourceStyle *style);
 
 void			 _gtk_source_style_scheme_apply		(GtkSourceStyleScheme *scheme,
 								 GtkWidget            *widget);

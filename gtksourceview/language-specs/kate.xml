@@ -20,38 +20,46 @@
  Boston, MA 02111-1307, USA.
 
 -->
-<style-scheme id="kate" _name="Kate">
+<style-scheme id="kate" _name="Kate" version="1.0">
   <author>GtkSourceView team</author>
-  <_description>Color scheme used in Kate text editor</_description>
+  <_description>Color scheme used in the Kate text editor</_description>
+
+  <color name="red"                         value="#FF0000"/>
+  <color name="blue"                        value="#0000FF"/>
+  <color name="dark-red"                    value="#800000"/>
+  <color name="dark-green"                  value="#008000"/>
+  <color name="grey"                        value="#808080"/>
+  <color name="white"                       value="#FFFFFF"/>
+
   <style name="current-line"                background="#EEF6FF"/>
   <style name="bracket-match"               background="#FFFF99" bold="true"/>
-  <style name="bracket-mismatch"            background="#FF0000" bold="true"/>
+  <style name="bracket-mismatch"            background="red" bold="true"/>
 
-  <style name="Others"                      foreground="#800000"/>
+  <style name="Others"                      foreground="dark-red"/>
   <style name="Others 2"                    bold="true"/>
-  <style name="Others 3"                    foreground="#008000"/>
+  <style name="Others 3"                    foreground="dark-green"/>
 
   <style name="def:string"                  foreground="#DD0000"/>
-  <style name="def:comment"                 foreground="#808080" italic="true" bold="false"/>
+  <style name="def:comment"                 foreground="grey" italic="true" bold="false"/>
   <style name="def:base-n-integer"          foreground="#008080"/>
   <style name="def:complex"                 use-style="def:base-n-integer"/>
   <style name="def:keyword"                 bold="true"/>
-  <style name="def:data-type"               foreground="#800000"/>
-  <style name="def:decimal"                 foreground="#0000FF"/>
+  <style name="def:data-type"               foreground="dark-red"/>
+  <style name="def:decimal"                 foreground="blue"/>
   <style name="def:floating-point"          foreground="#800080"/>
   <style name="def:character"               foreground="#FF00FF"/>
-  <style name="def:note"                    foreground="#FFFFFF" background="#FFCCCC" bold="true" italic="false"/>
+  <style name="def:note"                    foreground="white" background="#FFCCCC" bold="true" italic="false"/>
   <style name="def:function"                foreground="#000080"/>
-  <style name="def:error"                   foreground="#FF0000" underline="true"/>
-  <style name="def:shebang"                 foreground="#808080" bold="true"/>
+  <style name="def:error"                   foreground="red" underline="true"/>
+  <style name="def:shebang"                 foreground="grey" bold="true"/>
   <style name="def:net-address-in-comment"  underline="true"/>
   <style name="def:escape"                  foreground="#FF00FF"/>
 
-  <style name="def:specials"                foreground="#FFFFFF" background="#FF0000"/>
-  <style name="def:preprocessor"            foreground="#008000"/>
+  <style name="def:specials"                foreground="white" background="red"/>
+  <style name="def:preprocessor"            foreground="dark-green"/>
 
-  <style name="c:common-defines"            foreground="#0095ff" bold="true"/>
-  <style name="c:preprocessor"              foreground="#008000"/>
+  <style name="c:common-defines"            foreground="#0095FF" bold="true"/>
+  <style name="c:preprocessor"              foreground="dark-green"/>
 
   <style name="gtk-doc:inline-docs"         foreground="blue"/>
 
@@ -62,37 +70,37 @@
   <style name="diff:special-case"/>
   <style name="diff:location"               use-style="def:data-type"/>
 
-  <style name="xml:attribute-name"          foreground="#008000"/>
+  <style name="xml:attribute-name"          foreground="dark-green"/>
   <style name="xml:tags"                    bold="true"/>
-  <style name="xml:namespace"               foreground="#008000"/>
-  <style name="xml:entity"                  foreground="#0000FF"/>
+  <style name="xml:namespace"               foreground="dark-green"/>
+  <style name="xml:entity"                  foreground="blue"/>
   <style name="xml:cdata-delim"             foreground="#008080" bold="true"/>
   <style name="xml:processing-instruction"  bold="true"/>
-  <style name="xml:doctype"                 foreground="#800000" bold="true"/>
+  <style name="xml:doctype"                 foreground="dark-red" bold="true"/>
 
-  <style name="js:object"                   foreground="#008000"/>
+  <style name="js:object"                   foreground="dark-green"/>
   <style name="js:constructors"             bold="true"/>
 
   <style name="mooscript:special-vars"      use-style="c:preprocessor"/>
 
   <style name="latex:display-math"          background="#C0FFC0"/>
-  <style name="latex:inline-math"           foreground="DarkGreen"/>
+  <style name="latex:inline-math"           foreground="#006400"/>
   <style name="latex:math-bound"            bold="true"/>
-  <style name="latex:common-commands"       foreground="#800000"/>
+  <style name="latex:common-commands"       foreground="dark-red"/>
   <style name="latex:command"               foreground="#7000DF"/>
   <style name="latex:structure"             bold="true"/>
   <style name="latex:section"               foreground="#7000DF" bold="true"/>
 
-  <style name="changelog:release"           foreground="#0095ff" bold="true"/>
+  <style name="changelog:release"           foreground="#0095FF" bold="true"/>
 
-  <style name="python:string-conversion"    background="grey"/>
+  <style name="python:string-conversion"    background="#BEBEBE"/>
 
   <style name="changelog:email"             use-style="c:preprocessor"/>
 
   <style name="scheme:parens"               use-style="def:keyword"/>
   <style name="scheme:any-function"         use-style="def:keyword"/>
 
-  <style name="sh:dollar"                   foreground="#008000" bold="true"/>
+  <style name="sh:dollar"                   foreground="dark-green" bold="true"/>
 
-  <style name="makefile:trailing-tab"       background="pink"/>
+  <style name="makefile:trailing-tab"       background="#FFC0CB"/>
 </style-scheme>

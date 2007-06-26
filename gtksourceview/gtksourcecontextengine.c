@@ -563,10 +563,7 @@ set_tag_style (GtkSourceContextEngine *ce,
 	/* not having style is fine, since parser checks validity of every style reference,
 	 * so we don't need to spit a warning here */
 	if (style != NULL)
-	{
 		_gtk_source_style_apply (style, tag);
-		g_object_unref (style);
-	}
 }
 
 static GtkTextTag *

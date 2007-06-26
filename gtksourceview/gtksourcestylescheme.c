@@ -35,6 +35,12 @@
 #define STYLE_CURRENT_LINE	"current-line"
 #define STYLE_LINE_NUMBERS	"line-numbers"
 
+#define STYLE_SCHEME_VERSION	"1.0"
+
+static const gchar *get_color_by_name  (GtkSourceStyleScheme *scheme,
+					const gchar          *name);
+
+
 enum {
 	PROP_0,
 	PROP_ID,
@@ -49,7 +55,9 @@ struct _GtkSourceStyleSchemePrivate
 	gchar *description;
 	GtkSourceStyleScheme *parent;
 	gchar *parent_id;
-	GHashTable *styles;
+	GHashTable *defined_styles;
+	GHashTable *style_cache;
+	GHashTable *named_colors;
 };
 
 G_DEFINE_TYPE (GtkSourceStyleScheme, gtk_source_style_scheme, G_TYPE_OBJECT)
@@ -59,7 +67,9 @@ gtk_source_style_scheme_finalize (GObject *object)
 {
 	GtkSourceStyleScheme *scheme = GTK_SOURCE_STYLE_SCHEME (object);
 
-	g_hash_table_destroy (scheme->priv->styles);
+	g_hash_table_destroy (scheme->priv->named_colors);
+	g_hash_table_destroy (scheme->priv->style_cache);
+	g_hash_table_destroy (scheme->priv->defined_styles);
 	g_free (scheme->priv->author);
 	g_free (scheme->priv->description);
 	g_free (scheme->priv->id);
@@ -170,12 +180,23 @@ gtk_source_style_scheme_class_init (GtkSourceStyleSchemeClass *klass)
 }
 
 static void
+unref_if_not_null (gpointer object)
+{
+	if (object != NULL)
+		g_object_unref (object);
+}
+
+static void
 gtk_source_style_scheme_init (GtkSourceStyleScheme *scheme)
 {
 	scheme->priv = G_TYPE_INSTANCE_GET_PRIVATE (scheme, GTK_TYPE_SOURCE_STYLE_SCHEME,
 						    GtkSourceStyleSchemePrivate);
-	scheme->priv->styles = g_hash_table_new_full (g_str_hash, g_str_equal, g_free,
-						      (GDestroyNotify) g_object_unref);
+	scheme->priv->defined_styles = g_hash_table_new_full (g_str_hash, g_str_equal,
+							      g_free, g_object_unref);
+	scheme->priv->style_cache = g_hash_table_new_full (g_str_hash, g_str_equal,
+							   g_free, unref_if_not_null);
+	scheme->priv->named_colors = g_hash_table_new_full (g_str_hash, g_str_equal,
+							    g_free, g_free);
 }
 
 /**
@@ -234,38 +255,137 @@ _gtk_source_style_scheme_new (const gchar *id,
 	return scheme;
 }
 
+static GtkSourceStyle *
+fix_style_colors (GtkSourceStyleScheme *scheme,
+		  GtkSourceStyle       *real_style)
+{
+	GtkSourceStyle *style;
+
+	style = gtk_source_style_copy (real_style);
+
+	if (style->mask & GTK_SOURCE_STYLE_USE_BACKGROUND)
+	{
+		const gchar *color = get_color_by_name (scheme, style->background);
+
+		if (color == NULL)
+			/* warning is spit out in get_color_by_name,
+			 * here we make sure style doesn't have NULL color */
+			style->mask &= ~GTK_SOURCE_STYLE_USE_BACKGROUND;
+		else
+			style->background = g_intern_string (color);
+	}
+
+	if (style->mask & GTK_SOURCE_STYLE_USE_FOREGROUND)
+	{
+		const gchar *color = get_color_by_name (scheme, style->foreground);
+
+		if (color == NULL)
+			style->mask &= ~GTK_SOURCE_STYLE_USE_FOREGROUND;
+		else
+			style->foreground = g_intern_string (color);
+	}
+
+	return style;
+}
+
 /**
  * gtk_source_style_scheme_get_style:
  * @scheme: a #GtkSourceStyleScheme.
  * @style_name: style name to find.
  *
  * Returns: style which corresponds to @style_name in the @scheme,
- * or %NULL when no style with this name found. Call g_object_unref()
- * when you are done with it.
+ * or %NULL when no style with this name found. It is owned by @sheme
+ * and may not be unref'ed.
  *
  * Since: 2.0
+ */
+/*
+ * It's a little weird because we have named colors: styles loaded from
+ * scheme file can have "#red" or "blue", and we want to give out styles
+ * which have nice colors suitable for gdk_color_parse(), so that GtkSourceStyle
+ * foreground and background properties are the same as GtkTextTag's.
+ * So, defined_styles hash has named colors; styles returned with get_style()
+ * have real colors.
  */
 GtkSourceStyle *
 gtk_source_style_scheme_get_style (GtkSourceStyleScheme *scheme,
 				   const gchar          *style_name)
 {
 	GtkSourceStyle *style = NULL;
+	GtkSourceStyle *real_style;
 
 	g_return_val_if_fail (GTK_IS_SOURCE_STYLE_SCHEME (scheme), NULL);
 	g_return_val_if_fail (style_name != NULL, NULL);
 
-	style = g_hash_table_lookup (scheme->priv->styles, style_name);
+	if (g_hash_table_lookup_extended (scheme->priv->style_cache, style_name,
+					  NULL, (gpointer *) &style))
+		return style;
 
-	if (style != NULL)
-		return gtk_source_style_copy (style);
+	real_style = g_hash_table_lookup (scheme->priv->defined_styles, style_name);
 
-	if (scheme->priv->parent != NULL)
-		return gtk_source_style_scheme_get_style (scheme->priv->parent,
-							  style_name);
+	if (real_style == NULL)
+	{
+		if (scheme->priv->parent != NULL)
+			style = gtk_source_style_scheme_get_style (scheme->priv->parent,
+								   style_name);
+		if (style != NULL)
+			g_object_ref (style);
+	}
 	else
-		return NULL;
+	{
+		style = fix_style_colors (scheme, real_style);
+	}
+
+	g_hash_table_insert (scheme->priv->style_cache, g_strdup (style_name), style);
+	return style;
 }
 
+/**
+ * get_color_by_name:
+ * @scheme: a #GtkSourceStyleScheme.
+ * @name: color name to find.
+ *
+ * Returns: color which corresponds to @name in the @scheme.
+ * Returned value is actual color string suitable for gdk_color_parse().
+ * It may be @name or part of @name so copy it or something, if you need
+ * it to stay around.
+ *
+ * Since: 2.0
+ */
+static const gchar *
+get_color_by_name (GtkSourceStyleScheme *scheme,
+		   const gchar          *name)
+{
+	const char *color;
+
+	g_return_val_if_fail (name != NULL, NULL);
+
+	if (name[0] == '#')
+	{
+		GdkColor dummy;
+
+		if (gdk_color_parse (name + 1, &dummy))
+			color = name + 1;
+		else if (gdk_color_parse (name, &dummy))
+			color = name;
+		else
+			g_warning ("could not parse color '%s'", name);
+	}
+	else
+	{
+		color = g_hash_table_lookup (scheme->priv->named_colors, name);
+
+		if (color == NULL && scheme->priv->parent != NULL)
+			color = get_color_by_name (scheme->priv->parent, name);
+
+		if (color == NULL)
+			g_warning ("no color named '%s'", name);
+	}
+
+	return color;
+}
+
+#if 0
 /**
  * gtk_source_style_scheme_set_style:
  * @scheme: a #GtkSourceStyleScheme.
@@ -288,13 +408,14 @@ gtk_source_style_scheme_set_style (GtkSourceStyleScheme *scheme,
 	else
 		g_hash_table_remove (scheme->priv->styles, name);
 }
+#endif
 
 /**
  * gtk_source_style_scheme_get_matching_brackets_style:
  * @scheme: a #GtkSourceStyleScheme.
  *
  * Returns: style which corresponds to "bracket-match" name, to use
- * in an editor. Call g_object_unref() when you are done with it.
+ * in an editor. It is owned by @scheme and may not be unref'ed.
  *
  * Since: 2.0
  */
@@ -357,19 +478,13 @@ gtk_source_style_scheme_get_current_line_color (GtkSourceStyleScheme *scheme,
 						GdkColor             *color)
 {
 	GtkSourceStyle *style;
-	gboolean ret = FALSE;
 
 	g_return_val_if_fail (GTK_IS_SOURCE_STYLE_SCHEME (scheme), FALSE);
 	g_return_val_if_fail (color != NULL, FALSE);
 
 	style = gtk_source_style_scheme_get_style (scheme, STYLE_CURRENT_LINE);
 
-	ret = get_color (style, FALSE, color);
-
-	if (style != NULL)
-		g_object_unref (style);
-
-	return ret;
+	return get_color (style, FALSE, color);
 }
 
 static void
@@ -522,26 +637,16 @@ _gtk_source_style_scheme_apply (GtkSourceStyleScheme *scheme,
 		set_text_style (widget, style, GTK_STATE_ACTIVE);
 		set_text_style (widget, style, GTK_STATE_PRELIGHT);
 		set_text_style (widget, style, GTK_STATE_INSENSITIVE);
-		if (style != NULL)
-			g_object_unref (style);
 
 		style = gtk_source_style_scheme_get_style (scheme, STYLE_SELECTED);
 		set_text_style (widget, style, GTK_STATE_SELECTED);
-		if (style != NULL)
-			g_object_unref (style);
 
 		style = gtk_source_style_scheme_get_style (scheme, STYLE_LINE_NUMBERS);
 		set_line_numbers_style (widget, style);
-		if (style != NULL)
-			g_object_unref (style);
 
 		style = gtk_source_style_scheme_get_style (scheme, STYLE_CURSOR);
 		style2 = gtk_source_style_scheme_get_style (scheme, STYLE_SECONDARY_CURSOR);
 		update_cursor_colors (widget, style, style2);
-		if (style2 != NULL)
-			g_object_unref (style2);
-		if (style != NULL)
-			g_object_unref (style);
 	}
 	else
 	{
@@ -629,6 +734,8 @@ parse_style (GtkSourceStyleScheme *scheme,
 			g_free (style_name);
 			return FALSE;
 		}
+
+		g_object_ref (use_style);
 	}
 	xmlFree (tmp);
 
@@ -658,7 +765,7 @@ parse_style (GtkSourceStyleScheme *scheme,
 	}
 	else
 	{
-		result = gtk_source_style_new ();
+		result = g_object_new (GTK_TYPE_SOURCE_STYLE, NULL);
 
 		result->mask = mask;
 		result->bold = bold;
@@ -688,6 +795,86 @@ parse_style (GtkSourceStyleScheme *scheme,
 	return TRUE;
 }
 
+static gboolean
+parse_color (GtkSourceStyleScheme *scheme,
+	     xmlNode              *node,
+	     GError              **error)
+{
+	xmlChar *name, *value;
+	gboolean result = FALSE;
+
+	name = xmlGetProp (node, BAD_CAST "name");
+	value = xmlGetProp (node, BAD_CAST "value");
+
+	if (name == NULL || name[0] == 0)
+		g_set_error (error, ERROR_QUARK, 0, "name attribute missing in 'color' tag");
+	else if (value == NULL)
+		g_set_error (error, ERROR_QUARK, 0, "value attribute missing in 'color' tag");
+	else if (value[0] != '#' || value[1] == 0)
+		g_set_error (error, ERROR_QUARK, 0, "value in 'color' tag is not of the form '#RGB' or '#name'");
+	else if (g_hash_table_lookup (scheme->priv->named_colors, name) != NULL)
+		g_set_error (error, ERROR_QUARK, 0, "duplicated color '%s'", name);
+	else
+		result = TRUE;
+
+	if (result)
+		g_hash_table_insert (scheme->priv->named_colors,
+				     g_strdup ((char *) name),
+				     g_strdup ((char *) value));
+
+	xmlFree (value);
+	xmlFree (name);
+
+	return result;
+}
+
+static gboolean
+parse_style_scheme_child (GtkSourceStyleScheme *scheme,
+			  xmlNode              *node,
+			  GError              **error)
+{
+	if (strcmp ((char*) node->name, "style") == 0)
+	{
+		GtkSourceStyle *style;
+		gchar *style_name;
+
+		if (!parse_style (scheme, node, &style_name, &style, error))
+			return FALSE;
+
+		g_hash_table_insert (scheme->priv->defined_styles, style_name, style);
+	}
+	else if (strcmp ((char*) node->name, "color") == 0)
+	{
+		if (!parse_color (scheme, node, error))
+			return FALSE;
+	}
+	else if (strcmp ((char*) node->name, "author") == 0)
+	{
+		xmlChar *tmp = xmlNodeGetContent (node);
+		scheme->priv->author = g_strdup ((char*) tmp);
+		xmlFree (tmp);
+	}
+	else if (strcmp ((char*) node->name, "description") == 0)
+	{
+		xmlChar *tmp = xmlNodeGetContent (node);
+		scheme->priv->description = g_strdup ((char*) tmp);
+		xmlFree (tmp);
+	}
+	else if (strcmp ((char*) node->name, "_description") == 0)
+	{
+		xmlChar *tmp = xmlNodeGetContent (node);
+		scheme->priv->description = g_strdup (_((char*) tmp));
+		xmlFree (tmp);
+	}
+	else
+	{
+		g_set_error (error, ERROR_QUARK, 0, "unknown node '%s'", node->name);
+		return FALSE;
+	}
+
+	return TRUE;
+}
+
 static void
 parse_style_scheme_element (GtkSourceStyleScheme *scheme,
 			    xmlNode              *scheme_node,
@@ -703,6 +890,20 @@ parse_style_scheme_element (GtkSourceStyleScheme *scheme,
 			     (char*) scheme_node->name);
 		return;
 	}
+
+	tmp = xmlGetProp (scheme_node, BAD_CAST "version");
+	if (tmp == NULL)
+	{
+		g_set_error (error, ERROR_QUARK, 0, "missing 'version' attribute");
+		return;
+	}
+	if (strcmp ((char*) tmp, STYLE_SCHEME_VERSION) != 0)
+	{
+		g_set_error (error, ERROR_QUARK, 0, "unsupported version '%s'", (char*) tmp);
+		xmlFree (tmp);
+		return;
+	}
+	xmlFree (tmp);
 
 	tmp = xmlGetProp (scheme_node, BAD_CAST "id");
 	if (tmp == NULL)
@@ -731,44 +932,9 @@ parse_style_scheme_element (GtkSourceStyleScheme *scheme,
 	xmlFree (tmp);
 
 	for (node = scheme_node->children; node != NULL; node = node->next)
-	{
-		if (node->type != XML_ELEMENT_NODE)
-			continue;
-
-		if (strcmp ((char*) node->name, "style") == 0)
-		{
-			GtkSourceStyle *style;
-			gchar *style_name;
-
-			if (!parse_style (scheme, node, &style_name, &style, error))
+		if (node->type == XML_ELEMENT_NODE)
+			if (!parse_style_scheme_child (scheme, node, error))
 				return;
-
-			g_hash_table_insert (scheme->priv->styles, style_name, style);
-		}
-		else if (strcmp ((char*) node->name, "author") == 0)
-		{
-			tmp = xmlNodeGetContent	(node);
-			scheme->priv->author = g_strdup ((char*) tmp);
-			xmlFree (tmp);
-		}
-		else if (strcmp ((char*) node->name, "description") == 0)
-		{
-			tmp = xmlNodeGetContent	(node);
-			scheme->priv->description = g_strdup ((char*) tmp);
-			xmlFree (tmp);
-		}
-		else if (strcmp ((char*) node->name, "_description") == 0)
-		{
-			tmp = xmlNodeGetContent	(node);
-			scheme->priv->description = g_strdup (_((char*) tmp));
-			xmlFree (tmp);
-		}
-		else
-		{
-			g_set_error (error, ERROR_QUARK, 0, "unknown node '%s'", node->name);
-			return;
-		}
-	}
 }
 
 /**

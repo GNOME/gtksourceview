@@ -58,13 +58,17 @@ gtk_source_style_class_init (GtkSourceStyleClass *klass)
 	object_class->set_property = gtk_source_style_set_property;
 	object_class->get_property = gtk_source_style_get_property;
 
+	/* All properties are CONSTRUCT_ONLY so we can safely return references
+	 * from style_scheme_get_style(). But style scheme is of course cheating
+	 * and sets everything after construction (but nobody can notice it). */
+
 	g_object_class_install_property (object_class,
 					 PROP_BACKGROUND,
 					 g_param_spec_string ("background",
 							      _("Background"),
 							      _("Background color"),
 							      NULL,
-							      G_PARAM_READWRITE));
+							      G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
 
 	g_object_class_install_property (object_class,
 					 PROP_FOREGROUND,
@@ -72,7 +76,7 @@ gtk_source_style_class_init (GtkSourceStyleClass *klass)
 							      _("Foreground"),
 							      _("Foreground color"),
 							      NULL,
-							      G_PARAM_READWRITE));
+							      G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
 
 	g_object_class_install_property (object_class,
 					 PROP_BOLD,
@@ -80,7 +84,7 @@ gtk_source_style_class_init (GtkSourceStyleClass *klass)
 							       _("Bold"),
 							       _("Bold"),
 							       FALSE,
-							       G_PARAM_READWRITE));
+							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
 
 	g_object_class_install_property (object_class,
 					 PROP_ITALIC,
@@ -88,7 +92,7 @@ gtk_source_style_class_init (GtkSourceStyleClass *klass)
 							       _("Italic"),
 							       _("Italic"),
 							       FALSE,
-							       G_PARAM_READWRITE));
+							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
 
 	g_object_class_install_property (object_class,
 					 PROP_UNDERLINE,
@@ -96,7 +100,7 @@ gtk_source_style_class_init (GtkSourceStyleClass *klass)
 							       _("Underline"),
 							       _("Underline"),
 							       FALSE,
-							       G_PARAM_READWRITE));
+							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
 
 	g_object_class_install_property (object_class,
 					 PROP_STRIKETHROUGH,
@@ -104,7 +108,7 @@ gtk_source_style_class_init (GtkSourceStyleClass *klass)
 							       _("Strikethrough"),
 							       _("Strikethrough"),
 							       FALSE,
-							       G_PARAM_READWRITE));
+							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
 
 	g_object_class_install_property (object_class,
 					 PROP_FOREGROUND_SET,
@@ -112,7 +116,7 @@ gtk_source_style_class_init (GtkSourceStyleClass *klass)
 							       _("Foreground set"),
 							       _("Whether foreground color is set"),
 							       FALSE,
-							       G_PARAM_READWRITE));
+							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
 
 	g_object_class_install_property (object_class,
 					 PROP_BACKGROUND_SET,
@@ -120,7 +124,7 @@ gtk_source_style_class_init (GtkSourceStyleClass *klass)
 							       _("Background set"),
 							       _("Whether background color is set"),
 							       FALSE,
-							       G_PARAM_READWRITE));
+							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
 
 	g_object_class_install_property (object_class,
 					 PROP_BOLD_SET,
@@ -128,7 +132,7 @@ gtk_source_style_class_init (GtkSourceStyleClass *klass)
 							       _("Bold set"),
 							       _("Whether bold attribute is set"),
 							       FALSE,
-							       G_PARAM_READWRITE));
+							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
 
 	g_object_class_install_property (object_class,
 					 PROP_ITALIC_SET,
@@ -136,7 +140,7 @@ gtk_source_style_class_init (GtkSourceStyleClass *klass)
 							       _("Italic set"),
 							       _("Whether italic attribute is set"),
 							       FALSE,
-							       G_PARAM_READWRITE));
+							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
 
 	g_object_class_install_property (object_class,
 					 PROP_UNDERLINE_SET,
@@ -144,7 +148,7 @@ gtk_source_style_class_init (GtkSourceStyleClass *klass)
 							       _("Underline set"),
 							       _("Whether underline attribute is set"),
 							       FALSE,
-							       G_PARAM_READWRITE));
+							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
 
 	g_object_class_install_property (object_class,
 					 PROP_STRIKETHROUGH_SET,
@@ -152,12 +156,14 @@ gtk_source_style_class_init (GtkSourceStyleClass *klass)
 							       _("Strikethrough set"),
 							       _("Whether strikethrough attribute is set"),
 							       FALSE,
-							       G_PARAM_READWRITE));
+							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
 }
 
 static void
-gtk_source_style_init (G_GNUC_UNUSED GtkSourceStyle *style)
+gtk_source_style_init (GtkSourceStyle *style)
 {
+	style->foreground = NULL;
+	style->background = NULL;
 }
 
 #define SET_MASK(style,name) (style)->mask |= (GTK_SOURCE_STYLE_USE_##name)
@@ -188,18 +194,29 @@ gtk_source_style_set_property (GObject      *object,
 		case PROP_FOREGROUND:
 			string = g_value_get_string (value);
 			if (string != NULL)
+			{
 				style->foreground = g_intern_string (string);
+				SET_MASK (style, FOREGROUND);
+			}
 			else
+			{
 				style->foreground = NULL;
-			SET_MASK (style, FOREGROUND);
+				UNSET_MASK (style, FOREGROUND);
+			}
 			break;
+
 		case PROP_BACKGROUND:
 			string = g_value_get_string (value);
 			if (string != NULL)
+			{
 				style->background = g_intern_string (string);
+				SET_MASK (style, BACKGROUND);
+			}
 			else
+			{
 				style->background = NULL;
-			SET_MASK (style, BACKGROUND);
+				UNSET_MASK (style, BACKGROUND);
+			}
 			break;
 
 		case PROP_BOLD:
@@ -300,31 +317,6 @@ gtk_source_style_get_property (GObject      *object,
 
 
 /**
- * gtk_source_style_new:
- *
- * Creates new #GtkSourceStyle structure.
- *
- * <example id="gtk_source_style_new"><title>Using gtk_source_style_new</title>
- * <programlisting><![CDATA[
- * GtkSourceStyle *style;
- * style = gtk_source_style_new ();
- * g_object_set (style, "bold", TRUE, "foreground", "green", NULL);
- * ...
- * g_object_unref (style);]]>
- * </programlisting></example>
- *
- * Returns: newly allocated #GtkSourceStyle structure, call g_object_unref()
- * when you are done with it.
- *
- * Since: 2.0
- */
-GtkSourceStyle *
-gtk_source_style_new (void)
-{
-	return g_object_new (GTK_TYPE_SOURCE_STYLE, NULL);
-}
-
-/**
  * gtk_source_style_copy:
  * @style: a #GtkSourceStyle structure to copy.
  *
@@ -378,8 +370,10 @@ _gtk_source_style_apply (const GtkSourceStyle *style,
 
 		if (style->mask & GTK_SOURCE_STYLE_USE_BACKGROUND)
 			g_object_set (tag, "background", style->background, NULL);
+
 		if (style->mask & GTK_SOURCE_STYLE_USE_FOREGROUND)
 			g_object_set (tag, "foreground", style->foreground, NULL);
+
 		if (style->mask & GTK_SOURCE_STYLE_USE_ITALIC)
 			g_object_set (tag, "style", style->italic ? PANGO_STYLE_ITALIC : PANGO_STYLE_NORMAL, NULL);
 		if (style->mask & GTK_SOURCE_STYLE_USE_BOLD)

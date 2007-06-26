@@ -1,3 +1,34 @@
+2007-06-26  Yevgen Muntyan  <muntyan@tamu.edu>
+
+	GtkSourceStyleScheme stuff:
+	It's possible to name colors in style scheme files and use those
+	names instead of #RRGGBB values; to use X color names, they should
+	be prefixed with #, e.g. #DarkRed.
+	Style scheme files now carry mandatory version attribute.
+	gtk_source_style_scheme_get_style() no longer returns new object,
+	old code which unref's return value will crash.
+
+	* gtksourceview/language-specs/gvim.xml:
+	* gtksourceview/language-specs/kate.xml:
+	* gtksourceview/language-specs/styles.rng:
+	* gtksourceview/language-specs/testdark.xml:
+	Updated.
+
+	* gtksourceview/gtksourcebuffer.c:
+	* gtksourceview/gtksourcecontextengine.c:
+	Do not unref style returned from style scheme.
+
+	* gtksourceview/gtksourcestyle-private.h:
+	* gtksourceview/gtksourcestyle.h:
+	* gtksourceview/gtksourcestyle.c:
+	Made GtkSourceStyle CONSTRUCT_ONLY; removed gtk_source_style_new()
+	which doesn't do much good after that.
+
+	* gtksourceview/gtksourcestylescheme.h:
+	* gtksourceview/gtksourcestylescheme.c:
+	Implemented above stuff; removed gtk_source_style_scheme_set_style()
+	until it's clear what it should do with regard to named colors.
+
 2007-06-26  Paolo Borelli  <pborelli@katamail.com>
 
 	* gtksourceview/language-specs/awk.lang: add.

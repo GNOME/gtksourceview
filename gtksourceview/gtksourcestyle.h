@@ -21,7 +21,7 @@
 #ifndef __GTK_SOURCE_STYLE_H__
 #define __GTK_SOURCE_STYLE_H__
 
-#include <gtk/gtktexttag.h>
+#include <glib-object.h>
 
 G_BEGIN_DECLS
 
@@ -33,7 +33,6 @@ typedef struct _GtkSourceStyle GtkSourceStyle;
 
 GType		 gtk_source_style_get_type	(void) G_GNUC_CONST;
 
-GtkSourceStyle	*gtk_source_style_new		(void);
 GtkSourceStyle	*gtk_source_style_copy		(const GtkSourceStyle *style);
 
 
