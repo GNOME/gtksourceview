@@ -33,6 +33,7 @@
     <style id="keyword" _name="Keyword" map-to="c:keyword"/>
     <style id="data-type" _name="Data Type" map-to="c:data-type"/>
     <style id="common-defines" _name="Common Defines" map-to="c:common-defines"/>
+    <style id="string" _name="String" map-to="c:string"/>
   </styles>
 
   <definitions>
@@ -40,16 +41,35 @@
     <context id="objc-header">
       <include>
         <context id="keywords" style-ref="keyword">
-          <prefix></prefix>
-          <keyword>\@interface</keyword>
-          <keyword>\@protocol</keyword>
-          <keyword>\@implementation</keyword>
-          <keyword>\@class</keyword>
-          <keyword>\@end</keyword>
+          <prefix>\@</prefix>
+          <keyword>interface</keyword>
+          <keyword>protocol</keyword>
+          <keyword>implementation</keyword>
+          <keyword>end</keyword>
+          <keyword>class</keyword>
+          <keyword>selector</keyword>
+          <keyword>encode</keyword>
+          <keyword>defs</keyword>
+          <keyword>synchronized</keyword>
+          <keyword>private</keyword>
+          <keyword>protected</keyword>
+          <keyword>public</keyword>
+          <keyword>try</keyword>
+          <keyword>throw</keyword>
+          <keyword>catch</keyword>
+          <keyword>finally</keyword>
         </context>
 
         <context id="types" style-ref="data-type">
           <keyword>BOOL</keyword>
+        </context>
+
+        <context id="objc-string-literal" style-ref="string" end-at-line-end="true">
+          <start>\@"</start>
+          <end>"</end>
+          <include>
+            <context ref="c:string:*"/>
+          </include>
         </context>
       </include>
     </context>
@@ -61,9 +81,6 @@
         <context id="objc-keywords" style-ref="keyword">
           <keyword>nil</keyword>
           <keyword>Nil</keyword>
-          <keyword>private</keyword>
-          <keyword>protected</keyword>
-          <keyword>public</keyword>
         </context>
 
         <context id="objc-types" style-ref="data-type">
