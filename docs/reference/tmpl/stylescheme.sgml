@@ -11,14 +11,14 @@ Object controlling apperance of #GtkSourceView
 in #GtkSourceView and #GtkSourceBuffer. For instance, it contains
 text styles for syntax highlighting, it may contain foreground
 and background color for non-highlighted text, etc.
-<para>
-
 </para>
+
+<para>
 Style schemes are stored in XML files. The format of scheme file is
 the following.
-<para>
-
 </para>
+
+<para>
 The toplevel tag in a style scheme file is <code>&lt;style-scheme&gt;</code>.
 It has the following attributes:
 <variablelist>
@@ -50,12 +50,57 @@ in the scheme will be taken from the parent scheme. In this way a scheme may
 be customized without copying all its content.
 </para></listitem>
 </varlistentry>
+<varlistentry>
+<term><code>version</code> (mandatory)</term>
+<listitem><para>
+Style scheme format identifier. At the moment it must be "1.0".
+</para></listitem>
+</varlistentry>
 </variablelist>
-<para>
-
 </para>
-<code>style-scheme</code> content is list of <code>style</code> tags. Each
-<code>style</code> tag describes a single element of style scheme (it corresponds
+
+<para>
+<code>style-scheme</code> tag may contain the following tags:
+<variablelist>
+<varlistentry>
+<term><code>author</code></term>
+<listitem><para>
+Name of the style scheme author.
+</para></listitem>
+</varlistentry>
+<varlistentry>
+<term><code>description</code></term>
+<listitem><para>
+Description of the style scheme.
+</para></listitem>
+</varlistentry>
+<varlistentry>
+<term><code>_description</code></term>
+<listitem><para>
+Same as <code>description</code> except it will be localized.
+</para></listitem>
+</varlistentry>
+<varlistentry>
+<term><code>color</code> tags</term>
+<listitem><para>
+These define color names to be used in <code>style</code> tags.
+It has two attributes: <code>name</code> and <code>value</code>.
+<code>value</code> is the hexadecimal color specification like
+"&num;000000" or named color understood by Gdk prefixed with "&num;",
+e.g. "&num;beige".
+</para></listitem>
+</varlistentry>
+<varlistentry>
+<term><code>style</code> tags</term>
+<listitem><para>
+See below for their format description.
+</para></listitem>
+</varlistentry>
+</variablelist>
+</para>
+
+<para>
+Each <code>style</code> tag describes a single element of style scheme (it corresponds
 to #GtkSourceStyle object). It has the following attributes:
 <variablelist>
 <varlistentry>
@@ -71,15 +116,15 @@ bookmarks.
 <varlistentry>
 <term><code>foreground</code></term>
 <listitem><para>
-Foreground color, in hexadecimal format, e.g. "&num;000000", or symbolic name understood
-by Gdk, e.g. "magenta" or "darkred".
+Foreground color. It may be name defined in one of <code>color</code> tags, or value in 
+hexadecimal format, e.g. "&num;000000", or symbolic name understood
+by Gdk, prefixed with "&num;", e.g. "&num;magenta" or "&num;darkred".
 </para></listitem>
 </varlistentry>
 <varlistentry>
 <term><code>background</code></term>
 <listitem><para>
-Background color, in hexadecimal format, e.g. "&num;000000", or symbolic name understood
-by Gdk, e.g. "magenta" or "darkred".
+Background color.
 </para></listitem>
 </varlistentry>
 <varlistentry>
@@ -99,9 +144,9 @@ by Gdk, e.g. "magenta" or "darkred".
 <listitem><para>"true" or "false"</para></listitem>
 </varlistentry>
 </variablelist>
-<para>
-
 </para>
+
+<para>
 The following are names of styles which control #GtkSourceView appearance:
 <variablelist>
 <varlistentry>
@@ -141,7 +186,6 @@ drawn</para></listitem>
 <listitem><para>Style to use for mismatching brackets.</para></listitem>
 </varlistentry>
 </variablelist>
-
 </para>
 
 <!-- ##### SECTION See_Also ##### -->
@@ -204,16 +248,6 @@ private members and should not be accessed directly.
 @scheme: 
 @color: 
 @Returns: 
-
-
-<!-- ##### FUNCTION gtk_source_style_scheme_set_style ##### -->
-<para>
-
-</para>
-
-@scheme: 
-@name: 
-@style: 
 
 
 <!-- ##### FUNCTION gtk_source_style_scheme_get_style ##### -->
