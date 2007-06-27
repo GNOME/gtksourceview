@@ -356,7 +356,7 @@ static const gchar *
 get_color_by_name (GtkSourceStyleScheme *scheme,
 		   const gchar          *name)
 {
-	const char *color;
+	const char *color = NULL;
 
 	g_return_val_if_fail (name != NULL, NULL);
 
