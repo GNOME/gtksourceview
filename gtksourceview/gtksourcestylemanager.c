@@ -376,20 +376,17 @@ reload_if_needed (GtkSourceStyleManager *mgr)
  *
  * Returns the list of style schemes.
  *
- * Returns: a list of #GtkSourceStyleScheme objects. Returned value
- * is owned by @manager and must not be modified or freed. It may
- * become invalid when style schemes are added or removed, so copy
- * the list and reference its elements if you need to keep the list
- * around.
+ * Returns: a list of #GtkSourceStyleScheme objects. It must be freed with
+ * g_slist_free(), but its elements must not be unref'ed
  **/
-const GSList *
+GSList *
 gtk_source_style_manager_list_schemes (GtkSourceStyleManager *manager)
 {
 	g_return_val_if_fail (GTK_IS_SOURCE_STYLE_MANAGER (manager), NULL);
 
 	reload_if_needed (manager);
 
-	return manager->priv->schemes;
+	return g_slist_copy (manager->priv->schemes);
 }
 
 /**

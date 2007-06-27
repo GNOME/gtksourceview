@@ -284,7 +284,7 @@ remove_all_markers (GtkSourceBuffer *buffer)
 static GtkSourceLanguage *
 get_language_for_filename (const gchar *filename)
 {
-	const GSList *list;
+	GSList *list;
 	gchar *filename_utf8;
 	GtkSourceLanguageManager *manager;
 
@@ -292,7 +292,7 @@ get_language_for_filename (const gchar *filename)
 	g_return_val_if_fail (filename_utf8 != NULL, NULL);
 
 	manager = gtk_source_language_manager_get_default ();
-	list = gtk_source_language_manager_get_available_languages (manager);
+	list = gtk_source_language_manager_list_languages (manager);
 
 	while (list != NULL)
 	{
@@ -300,7 +300,7 @@ get_language_for_filename (const gchar *filename)
 		gchar **globs, **p;
 
 		lang = list->data;
-		list = list->next;
+		list = g_slist_delete_link (list, list);
 
 		globs = gtk_source_language_get_globs (lang);
 		if (globs == NULL)
@@ -312,6 +312,7 @@ get_language_for_filename (const gchar *filename)
 			{
 				g_strfreev (globs);
 				g_free (filename_utf8);
+				g_slist_free (list);
 				return lang;
 			}
 		}
@@ -329,11 +330,11 @@ get_language_for_filename (const gchar *filename)
 static GtkSourceLanguage *
 get_language_for_mime_type (const gchar *mime)
 {
-	const GSList *list;
+	GSList *list;
 	GtkSourceLanguageManager *manager;
 
 	manager = gtk_source_language_manager_get_default ();
-	list = gtk_source_language_manager_get_available_languages (manager);
+	list = gtk_source_language_manager_list_languages (manager);
 
 	while (list != NULL)
 	{
@@ -341,7 +342,7 @@ get_language_for_mime_type (const gchar *mime)
 		gchar **mimetypes, **p;
 
 		lang = list->data;
-		list = list->next;
+		list = g_slist_delete_link (list, list);
 
 		mimetypes = gtk_source_language_get_mime_types (lang);
 
@@ -353,6 +354,7 @@ get_language_for_mime_type (const gchar *mime)
 			if (strcmp (*p, mime) == 0)
 			{
 				g_strfreev (mimetypes);
+				g_slist_free (list);
 				return lang;
 			}
 		}

@@ -317,7 +317,7 @@
         <context sub-pattern="0" where="start" style-ref="keyword"/>
         <context sub-pattern="0" where="end" style-ref="keyword"/>
         <context style-ref="others">
-          <match>[^\)\s]+\)|;;</match>
+          <match>[^\)\s]+\s*\)|;;</match>
         </context>
         <context ref="sh"/>
       </include>

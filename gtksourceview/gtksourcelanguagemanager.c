@@ -326,15 +326,17 @@ ensure_languages (GtkSourceLanguageManager *lm)
  *
  * Gets a list of available languages for the given language manager.
  *
- * Returns: a list of #GtkSourceLanguage. Return value is owned by @lm and should
- * not be modified or freed.
+ * Returns: a list of #GtkSourceLanguage objects. It must be freed with
+ * g_slist_free(), but its elements must not be unref'ed.
  **/
-const GSList *
-gtk_source_language_manager_get_available_languages (GtkSourceLanguageManager *lm)
+GSList *
+gtk_source_language_manager_list_languages (GtkSourceLanguageManager *lm)
 {
 	g_return_val_if_fail (GTK_IS_SOURCE_LANGUAGE_MANAGER (lm), NULL);
+
 	ensure_languages (lm);
-	return lm->priv->available_languages;
+
+	return g_slist_copy (lm->priv->available_languages);
 }
 
 /**
