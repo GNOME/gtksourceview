@@ -86,6 +86,10 @@ struct _ParserState
 	 * mapping is id -> id */
 	GHashTable *loaded_lang_ids;
 
+	/* The list of replacements. The queue object is owned by the caller,
+	 * so parser_state only adds stuff to it */
+	GQueue *replacements;
+
 	/* A serial number incremented to get unique generated names */
 	guint id_cookie;
 
@@ -111,6 +115,7 @@ static ParserState *parser_state_new           (GtkSourceLanguage      *language
                                                 GtkSourceContextData   *ctx_data,
                                                 GHashTable             *defined_regexes,
                                                 GHashTable             *styles_mapping,
+						GQueue                 *replacements,
                                                 xmlTextReader          *reader,
                                                 GHashTable             *loaded_lang_ids);
 static void       parser_state_destroy         (ParserState *parser_state);
@@ -121,6 +126,7 @@ static gboolean   file_parse                   (gchar                  *filename
                                                 GHashTable             *defined_regexes,
                                                 GHashTable             *styles,
                                                 GHashTable             *loaded_lang_ids,
+						GQueue                 *replacements,
                                                 GError                **error);
 
 static GRegexCompileFlags
@@ -143,6 +149,7 @@ static void       handle_define_regex_element  (ParserState *parser_state,
 static void       handle_default_regex_options_element
                                                (ParserState *parser_state,
                                                 GError **error);
+static void       handle_replace_element       (ParserState *parser_state);
 static void       element_start                (ParserState *parser_state,
 						GError **error);
 static void       element_end                  (ParserState *parser_state);
@@ -517,6 +524,7 @@ add_ref (ParserState               *parser_state,
 					    parser_state->defined_regexes,
 					    parser_state->styles_mapping,
 					    parser_state->loaded_lang_ids,
+					    parser_state->replacements,
 					    &tmp_error);
 
 				if (tmp_error != NULL)
@@ -689,6 +697,11 @@ handle_context_element (ParserState *parser_state,
 
 	if (ref != NULL)
 	{
+		tmp = xmlTextReaderGetAttribute (parser_state->reader, BAD_CAST "original");
+		if (tmp != NULL && str_to_bool (tmp))
+			options |= GTK_SOURCE_CONTEXT_REF_ORIGINAL;
+		xmlFree (tmp);
+
 		if (style_ref != NULL)
 			options |= GTK_SOURCE_CONTEXT_OVERRIDE_STYLE;
 
@@ -755,6 +768,29 @@ handle_context_element (ParserState *parser_state,
 		g_propagate_error (error, tmp_error);
 		return;
 	}
+}
+
+static void
+handle_replace_element (ParserState *parser_state)
+{
+	xmlChar *id, *ref;
+	GtkSourceContextReplace *repl;
+	gchar *replace_with;
+
+	id = xmlTextReaderGetAttribute (parser_state->reader, BAD_CAST "id");
+	ref = xmlTextReaderGetAttribute (parser_state->reader, BAD_CAST "ref");
+
+	if (id_is_decorated ((gchar*) ref, NULL))
+		replace_with = g_strdup ((gchar *) ref);
+	else
+		replace_with = decorate_id (parser_state, (gchar*) ref);
+
+	repl = _gtk_source_context_replace_new ((const gchar *) id, replace_with);
+	g_queue_push_tail (parser_state->replacements, repl);
+
+	g_free (replace_with);
+	xmlFree (ref);
+	xmlFree (id);
 }
 
 static void
@@ -1235,6 +1271,7 @@ parse_language_with_id (ParserState *parser_state,
 			    parser_state->defined_regexes,
 			    parser_state->styles_mapping,
 			    parser_state->loaded_lang_ids,
+			    parser_state->replacements,
 			    &tmp_error);
 	}
 
@@ -1420,6 +1457,10 @@ element_start (ParserState *parser_state,
 	{
 		handle_context_element (parser_state, &tmp_error);
 	}
+	else if (xmlStrcmp (BAD_CAST "replace", name) == 0)
+	{
+		handle_replace_element (parser_state);
+	}
 	else if (xmlStrcmp (BAD_CAST "define-regex", name) == 0)
 	{
 		handle_define_regex_element (parser_state, &tmp_error);
@@ -1456,7 +1497,7 @@ element_end (ParserState *parser_state)
 
 	name = xmlTextReaderConstName (parser_state->reader);
 
-	if (!xmlStrcmp (name, BAD_CAST "context"))
+	if (xmlStrcmp (name, BAD_CAST "context") == 0)
 	{
 		/* pop the first element in the curr_parents list */
 		popped_id = g_queue_pop_head (parser_state->curr_parents);
@@ -1484,6 +1525,7 @@ file_parse (gchar                     *filename,
 	    GHashTable                *defined_regexes,
 	    GHashTable                *styles,
 	    GHashTable                *loaded_lang_ids,
+	    GQueue                    *replacements,
 	    GError                   **error)
 {
 	ParserState *parser_state;
@@ -1539,7 +1581,8 @@ file_parse (gchar                     *filename,
 
 	parser_state = parser_state_new (language, ctx_data,
 					 defined_regexes, styles,
-					 reader, loaded_lang_ids);
+					 replacements, reader,
+					 loaded_lang_ids);
 	xmlTextReaderSetStructuredErrorHandler (reader,
 						(xmlStructuredErrorFunc) text_reader_structured_error_func,
 						&tmp_error);
@@ -1589,11 +1632,12 @@ parser_state_new (GtkSourceLanguage       *language,
 		  GtkSourceContextData    *ctx_data,
 		  GHashTable              *defined_regexes,
 		  GHashTable              *styles_mapping,
+		  GQueue                  *replacements,
 		  xmlTextReader	          *reader,
 		  GHashTable              *loaded_lang_ids)
 {
 	ParserState *parser_state;
-	parser_state = g_new (ParserState, 1);
+	parser_state = g_slice_new (ParserState);
 
 	parser_state->language = language;
 	parser_state->ctx_data = ctx_data;
@@ -1607,6 +1651,7 @@ parser_state_new (GtkSourceLanguage       *language,
 
 	parser_state->defined_regexes = defined_regexes;
 	parser_state->styles_mapping = styles_mapping;
+	parser_state->replacements = replacements;
 
 	parser_state->loaded_lang_ids = loaded_lang_ids;
 
@@ -1630,7 +1675,7 @@ parser_state_destroy (ParserState *parser_state)
 	g_free (parser_state->opening_delimiter);
 	g_free (parser_state->closing_delimiter);
 
-	g_free (parser_state);
+	g_slice_free (ParserState, parser_state);
 }
 
 static gboolean
@@ -1656,6 +1701,7 @@ _gtk_source_language_file_parse_version2 (GtkSourceLanguage       *language,
 	GError *error = NULL;
 	gchar *filename;
 	GHashTable *loaded_lang_ids;
+	GQueue *replacements;
 
 	g_return_val_if_fail (ctx_data != NULL, FALSE);
 
@@ -1677,19 +1723,23 @@ _gtk_source_language_file_parse_version2 (GtkSourceLanguage       *language,
 	loaded_lang_ids = g_hash_table_new_full (g_str_hash, g_str_equal,
 						 (GDestroyNotify) xmlFree,
 						 NULL);
+	replacements = g_queue_new ();
 
 	success = file_parse (filename, language, ctx_data,
 			      defined_regexes, styles,
-			      loaded_lang_ids, &error);
+			      loaded_lang_ids, replacements,
+			      &error);
 
 	if (success)
-		success = _gtk_source_context_data_resolve_refs (ctx_data, &error);
+		success = _gtk_source_context_data_finish_parse (ctx_data, replacements->head, &error);
 
 	if (success)
 		g_hash_table_foreach_steal (styles,
 					    (GHRFunc) steal_styles_mapping,
 					    language->priv->styles);
 
+	g_queue_foreach (replacements, (GFunc) _gtk_source_context_replace_free, NULL);
+	g_queue_free (replacements);
 	g_hash_table_destroy (loaded_lang_ids);
 	g_hash_table_destroy (defined_regexes);
 	g_hash_table_destroy (styles);

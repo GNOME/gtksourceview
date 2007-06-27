@@ -187,6 +187,9 @@
             <zeroOrMore>
                 <ref name="define-regex"/>
             </zeroOrMore>
+            <zeroOrMore>
+                <ref name="replace-context"/>
+            </zeroOrMore>
         </interleave>
     </element>
 </define>
@@ -407,11 +410,13 @@
                 <attribute name="ignore-style">
                     <ref name="boolean-value"/>
                 </attribute>
+                <attribute name="original">
+                    <ref name="boolean-value"/>
+                </attribute>
             </choice>
         </optional>
     </element>
 </define>
-
 
 
 <define name="define-regex">
@@ -421,6 +426,17 @@
         </attribute>
         <ref name="regex-options"/>
         <text/>
+    </element>
+</define>
+
+<define name="replace-context">
+    <element name="replace">
+        <attribute name="id">
+            <ref name="ref-type"/>
+        </attribute>
+        <attribute name="ref">
+            <ref name="ref-type"/>
+        </attribute>
     </element>
 </define>
 

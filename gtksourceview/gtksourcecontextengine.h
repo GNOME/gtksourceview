@@ -35,6 +35,8 @@ G_BEGIN_DECLS
 #define GTK_SOURCE_CONTEXT_ENGINE_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), GTK_TYPE_SOURCE_CONTEXT_ENGINE, GtkSourceContextEngineClass))
 
 typedef struct _GtkSourceContextData          GtkSourceContextData;
+typedef struct _GtkSourceContextReplace       GtkSourceContextReplace;
+
 typedef struct _GtkSourceContextEngine        GtkSourceContextEngine;
 typedef struct _GtkSourceContextEngineClass   GtkSourceContextEngineClass;
 typedef struct _GtkSourceContextEnginePrivate GtkSourceContextEnginePrivate;
@@ -63,7 +65,8 @@ typedef enum {
 
 typedef enum {
 	GTK_SOURCE_CONTEXT_IGNORE_STYLE		= 1 << 0,
-	GTK_SOURCE_CONTEXT_OVERRIDE_STYLE	= 1 << 1
+	GTK_SOURCE_CONTEXT_OVERRIDE_STYLE	= 1 << 1,
+	GTK_SOURCE_CONTEXT_REF_ORIGINAL		= 1 << 2
 } GtkSourceContextRefOptions;
 
 GType		 _gtk_source_context_engine_get_type	(void) G_GNUC_CONST;
@@ -102,7 +105,13 @@ gboolean	 _gtk_source_context_data_add_ref 	(GtkSourceContextData	 *data,
 							 gboolean		  all,
 							 GError			**error);
 
-gboolean	 _gtk_source_context_data_resolve_refs	(GtkSourceContextData	 *data,
+GtkSourceContextReplace *
+		 _gtk_source_context_replace_new	(const gchar             *to_replace_id,
+							 const gchar             *replace_with_id);
+void		 _gtk_source_context_replace_free	(GtkSourceContextReplace *repl);
+
+gboolean	 _gtk_source_context_data_finish_parse	(GtkSourceContextData	 *data,
+							 GList                   *overrides,
 							 GError			**error);
 
 /* Only for lang files version 1, do not use it */

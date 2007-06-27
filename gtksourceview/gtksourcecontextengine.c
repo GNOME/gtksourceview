@@ -200,7 +200,8 @@ struct _ContextDefinition
 	 * context. */
 	Regex			*reg_all;
 
-	GtkSourceContextFlags    flags;
+	guint                    flags : 8;
+	guint                    ref_count : 24;
 };
 
 struct _SubPatternDefinition
@@ -287,6 +288,12 @@ struct _ContextPtr
 		GHashTable	*hash; /* char* -> Context* */
 	} u;
 	guint			 fixed : 1;
+};
+
+struct _GtkSourceContextReplace
+{
+	gchar			*id;
+	gchar			*replace_with;
 };
 
 struct _Segment
@@ -460,7 +467,8 @@ static void		find_insertion_place	(Segment		*segment,
 						 Segment		*hint);
 static void		segment_destroy		(GtkSourceContextEngine	*ce,
 						 Segment		*segment);
-static void		context_definition_free	(ContextDefinition	*definition);
+static ContextDefinition *context_definition_ref(ContextDefinition	*definition);
+static void		context_definition_unref(ContextDefinition	*definition);
 
 static void		segment_extend		(Segment		*state,
 						 gint			 end_at);
@@ -2392,7 +2400,7 @@ _gtk_source_context_data_new (GtkSourceLanguage *lang)
 	ctx_data->ref_count = 1;
 	ctx_data->lang = lang;
 	ctx_data->definitions = g_hash_table_new_full (g_str_hash, g_str_equal, g_free,
-						       (GDestroyNotify) context_definition_free);
+						       (GDestroyNotify) context_definition_unref);
 
 	return ctx_data;
 }
@@ -5467,27 +5475,26 @@ out:
 
 static DefinitionChild *
 definition_child_new (ContextDefinition *definition,
-		      ContextDefinition *child_def,
 		      const gchar       *child_id,
 		      const gchar       *style,
 		      gboolean           override_style,
-		      gboolean           is_ref_all)
+		      gboolean           is_ref_all,
+		      gboolean           original_ref)
 {
 	DefinitionChild *ch;
 
-	g_return_val_if_fail (child_def != NULL || child_id != NULL, NULL);
-	g_return_val_if_fail (child_def == NULL || child_id == NULL, NULL);
+	g_return_val_if_fail (child_id != NULL, NULL);
 
 	ch = g_new0 (DefinitionChild, 1);
 
-	if (child_id != NULL)
-		ch->u.id = g_strdup (child_id);
+	if (original_ref)
+		ch->u.id = g_strdup_printf ("@%s", child_id);
 	else
-		ch->u.definition = child_def;
+		ch->u.id = g_strdup (child_id);
 
 	ch->style = g_strdup (style);
 	ch->is_ref_all = is_ref_all;
-	ch->resolved = child_def != NULL;
+	ch->resolved = FALSE;
 	ch->override_style = override_style;
 
 	definition->children = g_slist_append (definition->children, ch);
@@ -5597,6 +5604,7 @@ context_definition_new (const gchar        *id,
 		return NULL;
 	}
 
+	definition->ref_count = 1;
 	definition->id = g_strdup (id);
 	definition->default_style = g_strdup (style);
 	definition->type = type;
@@ -5608,12 +5616,20 @@ context_definition_new (const gchar        *id,
 	return definition;
 }
 
+static ContextDefinition *
+context_definition_ref (ContextDefinition *definition)
+{
+	g_return_val_if_fail (definition != NULL, NULL);
+	definition->ref_count += 1;
+	return definition;
+}
+
 static void
-context_definition_free (ContextDefinition *definition)
+context_definition_unref (ContextDefinition *definition)
 {
 	GSList *sub_pattern_list;
 
-	if (definition == NULL)
+	if (definition == NULL || --definition->ref_count != 0)
 		return;
 
 	switch (definition->type)
@@ -5715,7 +5731,7 @@ _gtk_source_context_data_define_context (GtkSourceContextData *ctx_data,
 {
 	ContextDefinition *definition, *parent = NULL;
 	ContextType type;
-
+	gchar *original_id;
 	gboolean wrong_args = FALSE;
 
 	g_return_val_if_fail (ctx_data != NULL, FALSE);
@@ -5779,9 +5795,12 @@ _gtk_source_context_data_define_context (GtkSourceContextData *ctx_data,
 		return FALSE;
 
 	g_hash_table_insert (ctx_data->definitions, g_strdup (id), definition);
+	original_id = g_strdup_printf ("@%s", id);
+	g_hash_table_insert (ctx_data->definitions, original_id,
+			     context_definition_ref (definition));
 
 	if (parent != NULL)
-		definition_child_new (parent, definition, NULL, NULL, FALSE, FALSE);
+		definition_child_new (parent, id, NULL, FALSE, FALSE, FALSE);
 
 	return TRUE;
 }
@@ -5935,8 +5954,8 @@ _gtk_source_context_data_add_ref (GtkSourceContextData *ctx_data,
 	if (options & (GTK_SOURCE_CONTEXT_IGNORE_STYLE | GTK_SOURCE_CONTEXT_OVERRIDE_STYLE))
 		override_style = TRUE;
 
-	definition_child_new (parent, ref, (ref == NULL) ? ref_id : NULL,
-			      style, override_style, all);
+	definition_child_new (parent, ref_id, style, override_style, all,
+			      (options & GTK_SOURCE_CONTEXT_REF_ORIGINAL) != 0);
 
 	return TRUE;
 }
@@ -5945,7 +5964,7 @@ _gtk_source_context_data_add_ref (GtkSourceContextData *ctx_data,
  * resolve_reference:
  *
  * Checks whether all children of a context definition refer to valid
- * contexts. Called from _gtk_source_context_data_resolve_refs.
+ * contexts. Called from _gtk_source_context_data_finish_parse.
  */
 struct ResolveRefData {
 	GtkSourceContextData *ctx_data;
@@ -6005,18 +6024,79 @@ resolve_reference (G_GNUC_UNUSED const gchar *id,
 	}
 }
 
+static gboolean
+process_replace (GtkSourceContextData *ctx_data,
+		 const gchar          *id,
+		 const gchar          *replace_with,
+		 GError              **error)
+{
+	ContextDefinition *to_replace, *new;
+
+	to_replace = LOOKUP_DEFINITION (ctx_data, id);
+
+	if (to_replace == NULL)
+	{
+		g_set_error (error, GTK_SOURCE_CONTEXT_ENGINE_ERROR,
+			     GTK_SOURCE_CONTEXT_ENGINE_ERROR_INVALID_REF,
+			     _("unknown context '%s'"), id);
+		return FALSE;
+	}
+
+	new = LOOKUP_DEFINITION (ctx_data, replace_with);
+
+	if (new == NULL)
+	{
+		g_set_error (error, GTK_SOURCE_CONTEXT_ENGINE_ERROR,
+			     GTK_SOURCE_CONTEXT_ENGINE_ERROR_INVALID_REF,
+			     _("unknown context '%s'"), replace_with);
+		return FALSE;
+	}
+
+	g_hash_table_insert (ctx_data->definitions, g_strdup (id), context_definition_ref (new));
+
+	return TRUE;
+}
+
+GtkSourceContextReplace *
+_gtk_source_context_replace_new	(const gchar *to_replace_id,
+				 const gchar *replace_with_id)
+{
+	GtkSourceContextReplace *repl;
+
+	g_return_val_if_fail (to_replace_id != NULL, NULL);
+	g_return_val_if_fail (replace_with_id != NULL, NULL);
+
+	repl = g_slice_new (GtkSourceContextReplace);
+	repl->id = g_strdup (to_replace_id);
+	repl->replace_with = g_strdup (replace_with_id);
+
+	return repl;
+}
+
+void
+_gtk_source_context_replace_free (GtkSourceContextReplace *repl)
+{
+	if (repl != NULL)
+	{
+		g_free (repl->id);
+		g_free (repl->replace_with);
+		g_slice_free (GtkSourceContextReplace, repl);
+	}
+}
+
 /**
- * _gtk_source_context_data_resolve_refs:
+ * _gtk_source_context_data_finish_parse:
  *
  * @ctx_data: #GtkSourceContextData.
+ * @overrides: list of #GtkSourceContextOverride objects.
  * @error: error structure to be filled in when failed.
  *
- * Checks all context references. Lang file may use cross-references
- * between contexts, e.g. context A may include context B, and context
- * B in turn include context A. Hence during parsing it just records
- * referenced context id (if it's not present already), and then it
- * needs to check the references and replace them with actual context
- * definitions.
+ * Checks all context references and applies overrides. Lang file may
+ * use cross-references between contexts, e.g. context A may include
+ * context B, and context B in turn include context A. Hence during
+ * parsing it just records referenced context id, and then it needs to
+ * check the references and replace them with actual context definitions
+ * (which in turn may be overridden using <override> or <replace> tags).
  * May be called any number of times, must be called after parsing is
  * done.
  *
@@ -6024,13 +6104,26 @@ resolve_reference (G_GNUC_UNUSED const gchar *id,
  * references.
  */
 gboolean
-_gtk_source_context_data_resolve_refs (GtkSourceContextData *ctx_data,
+_gtk_source_context_data_finish_parse (GtkSourceContextData *ctx_data,
+				       GList                *overrides,
 				       GError		   **error)
 {
 	struct ResolveRefData data;
 
 	g_return_val_if_fail (ctx_data != NULL, FALSE);
 	g_return_val_if_fail (error != NULL && *error == NULL, FALSE);
+
+	while (overrides != NULL)
+	{
+		GtkSourceContextReplace *repl = overrides->data;
+
+		g_return_val_if_fail (repl != NULL, FALSE);
+
+		if (!process_replace (ctx_data, repl->id, repl->replace_with, error))
+			return FALSE;
+
+		overrides = overrides->next;
+	}
 
 	data.ctx_data = ctx_data;
 	data.error = NULL;

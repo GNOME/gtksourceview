@@ -1,11 +1,24 @@
 2007-06-27  Yevgen Muntyan  <muntyan@tamu.edu>
 
+	Made it possible to replace contexts: <replace id="what" ref="replace-with">.
+	<context ref="foo" original="true"/> refers to the original context.
+
+	* gtksourceview/language-specs/language2.rng: added new tag and attribute.
+	* gtksourceview/language-specs/m4.lang: use it here.
+
+	* gtksourceview/gtksourcecontextengine.h:
+	* gtksourceview/gtksourcecontextengine.c:
+	* gtksourceview/gtksourcelanguage-parser-2.c:
+	above changes.
+
+2007-06-27  Yevgen Muntyan  <muntyan@tamu.edu>
+
 	* gtksourceview/language-specs/m4.lang: added AC_LANG, AC_LINK_IFELSE,
 	and AC_LANG_OBJC.
 	* gtksourceview/language-specs/check.sh: added awk.lang.
 
 	* gtksourceview/gtksourcestylemanager.h:
-	* gtksourceview/gtksourcestylemanager.c (gtksourceview/gtksourcestylemanager.c):
+	* gtksourceview/gtksourcestylemanager.c (gtk_source_style_manager_list_schemes):
 	return pointer to internal list instead of a copy.
 
 2007-06-26  Yevgen Muntyan  <muntyan@tamu.edu>

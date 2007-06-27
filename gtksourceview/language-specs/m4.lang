@@ -220,7 +220,7 @@
     </context>
 
     <context id="func-ms">
-      <start>\b(AC_DEFUN(_ONCE)?|AM_CONDITIONAL)\s*(\()</start>
+      <start>\b(AC_DEFUN(_ONCE)?|AM_CONDITIONAL|glib_DEFUN)\s*(\()</start>
       <end>\)</end>
       <include>
         <context sub-pattern="1" where="start" style-ref="ac-macro"/>
@@ -295,10 +295,12 @@
       </include>
     </context>
 
+    <replace id="sh:sh" ref="m4"/>
+
     <context id="m4">
       <include>
         <context ref="m4-pure"/>
-        <context ref="sh:sh"/>
+        <context ref="sh:sh" original="true"/>
         <context id="bad-paren" extend-parent="false" style-ref="def:error">
           <match>\)</match>
         </context>
