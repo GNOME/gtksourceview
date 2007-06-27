@@ -370,33 +370,50 @@ reload_if_needed (GtkSourceStyleManager *mgr)
 		gtk_source_style_manager_reload (mgr);
 }
 
-GSList *
-gtk_source_style_manager_list_schemes (GtkSourceStyleManager *mgr)
+/**
+ * gtk_source_style_manager_list_schemes:
+ * @manager: a #GtkSourceStyleManager
+ *
+ * Returns the list of style schemes.
+ *
+ * Returns: a list of #GtkSourceStyleScheme objects. Returned value
+ * is owned by @manager and must not be modified or freed. It may
+ * become invalid when style schemes are added or removed, so copy
+ * the list and reference its elements if you need to keep the list
+ * around.
+ **/
+const GSList *
+gtk_source_style_manager_list_schemes (GtkSourceStyleManager *manager)
 {
-	GSList *list;
+	g_return_val_if_fail (GTK_IS_SOURCE_STYLE_MANAGER (manager), NULL);
 
-	g_return_val_if_fail (GTK_IS_SOURCE_STYLE_MANAGER (mgr), NULL);
+	reload_if_needed (manager);
 
-	reload_if_needed (mgr);
-
-	list = g_slist_copy (mgr->priv->schemes);
-	g_slist_foreach (list, (GFunc) g_object_ref, NULL);
-
-	return list;
+	return manager->priv->schemes;
 }
 
+/**
+ * gtk_source_style_manager_get_scheme:
+ * @manager: a #GtkSourceStyleManager
+ * @scheme_id: style scheme id to find
+ *
+ * Looks up style scheme by id.
+ *
+ * Returns: a #GtkSourceStyleScheme object. Returned value is owned by
+ * @manager and must not be unref'ed.
+ **/
 GtkSourceStyleScheme *
-gtk_source_style_manager_get_scheme (GtkSourceStyleManager *mgr,
+gtk_source_style_manager_get_scheme (GtkSourceStyleManager *manager,
 				     const gchar           *scheme_id)
 {
 	GSList *l;
 
-	g_return_val_if_fail (GTK_IS_SOURCE_STYLE_MANAGER (mgr), NULL);
+	g_return_val_if_fail (GTK_IS_SOURCE_STYLE_MANAGER (manager), NULL);
 	g_return_val_if_fail (scheme_id != NULL, NULL);
 
-	reload_if_needed (mgr);
+	reload_if_needed (manager);
 
-	for (l = mgr->priv->schemes; l != NULL; l = l->next)
+	for (l = manager->priv->schemes; l != NULL; l = l->next)
 		if (!strcmp (scheme_id, gtk_source_style_scheme_get_id (l->data)))
 			return l->data;
 

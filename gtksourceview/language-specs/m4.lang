@@ -208,6 +208,17 @@
       <context ref="TO-ARGS-MSSM"/>
     </include></context>
 
+    <context id="func-m">
+      <start>\b(AC_LANG)\s*(\()</start>
+      <end>\)</end>
+      <include>
+        <context sub-pattern="1" where="start" style-ref="ac-macro"/>
+        <context sub-pattern="2" where="start" style-ref="ac-macro"/>
+        <context sub-pattern="0" where="end" style-ref="ac-macro"/>
+        <context ref="ARGS-M"/>
+      </include>
+    </context>
+
     <context id="func-ms">
       <start>\b(AC_DEFUN(_ONCE)?|AM_CONDITIONAL)\s*(\()</start>
       <end>\)</end>
@@ -253,7 +264,7 @@
     </context>
 
     <context id="func-mss">
-      <start>\b(AC_CONFIG_COMMANDS|AC_ENABLE|AC_WITH|AC_TRY_CPP|AC_CHECK_HEADER)\s*(\()</start>
+      <start>\b(AC_CONFIG_COMMANDS|AC_ENABLE|AC_WITH|AC_TRY_CPP|AC_CHECK_HEADER|AC_LINK_IFELSE)\s*(\()</start>
       <end>\)</end>
       <include>
         <context sub-pattern="1" where="start" style-ref="ac-macro"/>
@@ -266,6 +277,7 @@
     <context id="m4-pure">
       <include>
         <context ref="m4-comment"/>
+        <context ref="func-m"/>
         <context ref="func-ms"/>
         <context ref="func-mms"/>
         <context ref="func-mmss"/>
@@ -619,6 +631,7 @@
       <keyword>LANG_C</keyword>
       <keyword>LANG_CPLUSPLUS</keyword>
       <keyword>LANG_FORTRAN77</keyword>
+      <keyword>LANG_OBJC</keyword>
       <keyword>LANG_RESTORE</keyword>
       <keyword>LANG_SAVE</keyword>
       <keyword>LIBTOOL_DLOPEN</keyword>

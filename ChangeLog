@@ -1,3 +1,13 @@
+2007-06-27  Yevgen Muntyan  <muntyan@tamu.edu>
+
+	* gtksourceview/language-specs/m4.lang: added AC_LANG, AC_LINK_IFELSE,
+	and AC_LANG_OBJC.
+	* gtksourceview/language-specs/check.sh: added awk.lang.
+
+	* gtksourceview/gtksourcestylemanager.h:
+	* gtksourceview/gtksourcestylemanager.c (gtksourceview/gtksourcestylemanager.c):
+	return pointer to internal list instead of a copy.
+
 2007-06-26  Yevgen Muntyan  <muntyan@tamu.edu>
 
 	* docs/reference/tmpl/*: updated GtkSourceStyleScheme documentation.

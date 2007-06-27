@@ -71,8 +71,8 @@ gchar		       **gtk_source_style_manager_get_search_path	(GtkSourceStyleManager	
 gboolean		 gtk_source_style_manager_add_scheme		(GtkSourceStyleManager	*manager,
 						    			 const gchar		*filename);
 
-/* Newly allocated list of schemes (to free: unref each one and call g_slist_free) */
-GSList			*gtk_source_style_manager_list_schemes		(GtkSourceStyleManager	*manager);
+/* Pointer to internal list, do not modify */
+const GSList		*gtk_source_style_manager_list_schemes		(GtkSourceStyleManager	*manager);
 
 GtkSourceStyleScheme	*gtk_source_style_manager_get_scheme		(GtkSourceStyleManager	*manager,
 									 const gchar		*scheme_id);
