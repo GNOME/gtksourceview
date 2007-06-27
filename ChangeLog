@@ -1,16 +1,6 @@
 2007-06-27  Yevgen Muntyan  <muntyan@tamu.edu>
 
-	* gtksourceview/language-specs/sh.lang: highlight "foo )" as "foo)" in case/esac.
-
-	* gtksourceview/gtksourcecontextengine.c: use g_slice for all structures.
-
-	* gtksourceview/gtksourcelanguagemanager.h:
-	* gtksourceview/gtksourcelanguagemanager.c: renamed get_available_languages()
-	to list_languages(), and made it return a copy of the list.
-	* gtksourceview/gtksourcestylemanager.h:
-	* gtksourceview/gtksourcestylemanager.c: made list_schemes() return a copy of the list.
-
-	* tests/test-widget.c: free the list returned by list_languages().
+	* docs/reference/*: renamed gtk-doc package to gtksourceview-2.0.
 
 2007-06-27  Yevgen Muntyan  <muntyan@tamu.edu>
 

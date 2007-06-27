@@ -5,7 +5,7 @@ GTKDOC_LIBS = $(top_builddir)/gtksourceview/libgtksourceview-2.0.la
 AUTOMAKE_OPTIONS = 1.7
 
 # The name of the module.
-DOC_MODULE = gtksourceview
+DOC_MODULE = gtksourceview-2.0
 
 # The top-level SGML file.
 DOC_MAIN_SGML_FILE = gtksourceview-docs.sgml
