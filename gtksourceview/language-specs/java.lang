@@ -36,7 +36,7 @@
     <style id="string" _name="String" map-to="def:string"/>
     <style id="keyword" _name="Keyword" map-to="def:keyword"/>
     <style id="decimal" _name="Decimal" map-to="def:decimal"/>
-    <style id="specials" _name="Specials" map-to="def:specials"/>
+    <style id="reserved" _name="Future Reserved Keywords" map-to="def:error"/>
     <style id="data-type" _name="Data Type" map-to="def:data-type"/>
     <style id="others" _name="Others"/>
   </styles>
@@ -138,7 +138,7 @@
       <keyword>void</keyword>
     </context>
 
-    <context id="future-reserved-words" style-ref="specials">
+    <context id="future-reserved-words" style-ref="reserved">
       <keyword>const</keyword>
       <keyword>goto</keyword>
     </context>

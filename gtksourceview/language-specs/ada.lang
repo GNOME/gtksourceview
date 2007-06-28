@@ -33,7 +33,7 @@
     <style id="string" _name="String" map-to="def:string"/>
     <style id="keyword" _name="Keyword" map-to="def:keyword"/>
     <style id="decimal" _name="Decimal" map-to="def:decimal"/>
-    <style id="specials" _name="Specials" map-to="def:specials"/>
+    <style id="boolean" _name="Boolean" map-to="def:string"/>
     <style id="data-type" _name="Data Type" map-to="def:data-type"/>
     <style id="preprocessor" _name="Preprocessor" map-to="def:preprocessor"/>
     <style id="base-n-number" _name="Arbitrary base number" map-to="def:base-n-integer"/>
@@ -173,7 +173,7 @@
         (?![\w\.])
       </match>
     </context>
-    <context id="true-and-false" style-ref="specials">
+    <context id="true-and-false" style-ref="boolean">
       <keyword>true</keyword>
       <keyword>false</keyword>
     </context>

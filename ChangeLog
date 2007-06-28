@@ -1,5 +1,20 @@
 2007-06-28  Paolo Borelli  <pborelli@katamail.com>
 
+	* gtksourceview/language-specs/javascript.lang:
+	* gtksourceview/language-specs/c.lang:
+	* gtksourceview/language-specs/gtk-doc.lang:
+	* gtksourceview/language-specs/gvim.xml:
+	* gtksourceview/language-specs/kate.xml:
+	* gtksourceview/language-specs/java.lang:
+	* gtksourceview/language-specs/ada.lang:
+	* gtksourceview/language-specs/def.lang:
+
+	Remove def:specials since it is redundant with def:error (it
+	was used for future reserved keywords), add def:inline-docs
+	and modify themes to use it.
+
+2007-06-28  Paolo Borelli  <pborelli@katamail.com>
+
 	* gtksourceview/language-specs/ada.lang: misc improvements 
 	by thelema@swbell.net. Bug #451325.
 
