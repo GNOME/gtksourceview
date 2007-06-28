@@ -43,6 +43,14 @@
       </include>
     </context>
 
+    <context id="m4-quoted-shell">
+      <start>\[</start>
+      <end>\]</end>
+      <include>
+        <context ref="m4"/>
+      </include>
+    </context>
+
     <context id="m4-function-call"><!-- style-ref="test:_violet"-->
       <start>(?&lt;=[\w\d_])\((?!\))</start>
       <end>\)</end>
@@ -220,7 +228,7 @@
     </context>
 
     <context id="func-ms">
-      <start>\b(AC_DEFUN(_ONCE)?|AM_CONDITIONAL|glib_DEFUN)\s*(\()</start>
+      <start>\b(AC_DEFUN(_ONCE)?|AM_CONDITIONAL|glib_DEFUN|AC_CACHE_VAL|AC_SUBST)\s*(\()</start>
       <end>\)</end>
       <include>
         <context sub-pattern="1" where="start" style-ref="ac-macro"/>
@@ -230,8 +238,19 @@
       </include>
     </context>
 
+    <context id="func-ss">
+      <start>\b(AC_OUTPUT_COMMANDS)\s*(\()</start>
+      <end>\)</end>
+      <include>
+        <context sub-pattern="1" where="start" style-ref="ac-macro"/>
+        <context sub-pattern="2" where="start" style-ref="ac-macro"/>
+        <context sub-pattern="0" where="end" style-ref="ac-macro"/>
+        <context ref="ARGS-SS"/>
+      </include>
+    </context>
+
     <context id="func-mms">
-      <start>\b(m4_foreach)\s*(\()</start>
+      <start>\b(m4_foreach|AC_CACHE_CHECK)\s*(\()</start>
       <end>\)</end>
       <include>
         <context sub-pattern="1" where="start" style-ref="m4-macro"/>
@@ -264,13 +283,24 @@
     </context>
 
     <context id="func-mss">
-      <start>\b(AC_CONFIG_COMMANDS|AC_ENABLE|AC_WITH|AC_TRY_CPP|AC_CHECK_HEADER|AC_LINK_IFELSE)\s*(\()</start>
+      <start>\b(AC_(CONFIG_COMMANDS|ENABLE|WITH|TRY_CPP|LINK_IFELSE|CHECK_FUNCS?))\s*(\()</start>
+      <end>\)</end>
+      <include>
+        <context sub-pattern="1" where="start" style-ref="ac-macro"/>
+        <context sub-pattern="3" where="start" style-ref="ac-macro"/>
+        <context sub-pattern="0" where="end" style-ref="ac-macro"/>
+        <context ref="ARGS-MSS"/>
+      </include>
+    </context>
+
+    <context id="func-mssm">
+      <start>\b(AC_CHECK_HEADERS?)\s*(\()</start>
       <end>\)</end>
       <include>
         <context sub-pattern="1" where="start" style-ref="ac-macro"/>
         <context sub-pattern="2" where="start" style-ref="ac-macro"/>
         <context sub-pattern="0" where="end" style-ref="ac-macro"/>
-        <context ref="ARGS-MSS"/>
+        <context ref="ARGS-MSSM"/>
       </include>
     </context>
 
@@ -279,8 +309,13 @@
         <context ref="m4-comment"/>
         <context ref="func-m"/>
         <context ref="func-ms"/>
+        <context ref="func-ss"/>
+        <context ref="func-mss"/>
         <context ref="func-mms"/>
         <context ref="func-mmss"/>
+        <context ref="func-mssm"/>
+        <context ref="func-mmssm"/>
+        <context ref="ac-m4-macro"/>
         <context ref="m4-macro"/>
         <context ref="ac-macros-1"/>
         <context ref="ac-macros-2"/>
@@ -295,10 +330,19 @@
       </include>
     </context>
 
+    <context id="shell-line-comment" style-ref="sh:comment" end-at-line-end="true">
+      <start>(?&lt;!\S)#|(?&lt;=\[)#</start>
+      <include>
+        <context ref="sh:line-comment" original="true"/>
+      </include>
+    </context>
+
     <replace id="sh:sh" ref="m4"/>
+    <replace id="sh:line-comment" ref="shell-line-comment"/>
 
     <context id="m4">
       <include>
+        <context ref="m4-quoted-shell"/>
         <context ref="m4-pure"/>
         <context ref="sh:sh" original="true"/>
         <context id="bad-paren" extend-parent="false" style-ref="def:error">
@@ -307,7 +351,7 @@
       </include>
     </context>
 
-    <context id="m4-macro" style-ref="m4-macro">
+    <context id="ac-m4-macro" style-ref="m4-macro">
       <prefix>\bm4_</prefix>
       <keyword>append(_uniq)?</keyword>
       <keyword>bpatsubst</keyword>
@@ -351,6 +395,10 @@
       <keyword>wrap</keyword>
     </context>
 
+    <context id="m4-macro" style-ref="m4-macro">
+      <keyword>define</keyword>
+    </context>
+
     <context id="ac-macros-1" style-ref="ac-macro">
       <prefix>\bAC_</prefix>
       <keyword>AC_PROG_MKDIR_P</keyword>
@@ -366,8 +414,8 @@
       <keyword>CHECK_ALIGNOF</keyword>
       <keyword>CHECK_DECL(S(_ONCE)?)?</keyword>
       <keyword>CHECK_FILES?</keyword>
-      <keyword>CHECK_FUNC(S(_ONCE)?)?</keyword>
-      <keyword>CHECK_HEADER(S(_ONCE)?)?</keyword>
+      <keyword>CHECK_FUNCS_ONCE</keyword>
+      <keyword>CHECK_HEADERS_ONCE</keyword>
       <keyword>CHECK_LIB</keyword>
       <keyword>CHECK_MEMBERS?</keyword>
       <keyword>CHECK_PROGS?</keyword>
@@ -537,7 +585,6 @@
       <keyword>STRUCT_TIMEZONE</keyword>
       <keyword>STRUCT_TM</keyword>
       <keyword>SUBST_FILE</keyword>
-      <keyword>SUBST</keyword>
       <keyword>SYS_INTERPRETER</keyword>
       <keyword>SYS_LARGEFILE</keyword>
       <keyword>SYS_LONG_FILE_NAMES</keyword>

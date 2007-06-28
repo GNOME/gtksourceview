@@ -55,6 +55,15 @@
         <context ref="def:line-continue"/>
       </include>
     </context>
+    <context id="subshell">
+      <start>\(</start>
+      <end>\)</end>
+      <include>
+        <context sub-pattern="0" where="start" style-ref="keyword"/>
+        <context sub-pattern="0" where="end" style-ref="keyword"/>
+        <context ref="sh"/>
+      </include>
+    </context>
     <context id="backtick-string" style-ref="function">
       <start>`</start>
       <end>`</end>
@@ -328,6 +337,7 @@
         <context ref="def:escape"/>
         <context ref="string"/>
         <context ref="string-2"/>
+        <context ref="subshell"/>
         <context ref="backtick-string"/>
         <context ref="line-comment"/>
         <context ref="case"/>

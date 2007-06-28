@@ -1,5 +1,11 @@
 2007-06-27  Yevgen Muntyan  <muntyan@tamu.edu>
 
+	* gtksourceview/language-specs/sh.lang: parse (...), so ')' isn't
+	highlighted as mismatched parenthesis in m4.
+	* gtksourceview/language-specs/m4.lang: more autoconf macros.
+
+2007-06-27  Yevgen Muntyan  <muntyan@tamu.edu>
+
 	* docs/reference/*: renamed gtk-doc package to gtksourceview-2.0.
 
 2007-06-27  Yevgen Muntyan  <muntyan@tamu.edu>
