@@ -36,7 +36,13 @@
     <style id="specials" _name="Specials" map-to="def:specials"/>
     <style id="data-type" _name="Data Type" map-to="def:data-type"/>
     <style id="preprocessor" _name="Preprocessor" map-to="def:preprocessor"/>
+    <style id="base-n-number" _name="Arbitrary base number" map-to="def:base-n-integer"/>
+    <style id="real" _name="Real number" map-to="def:floating-point"/>
+    <style id="escape" _name="Character Escape" map-to="def:escape"/>
+    <style id="ident" _name="Ada Identifier"/>
   </styles>
+
+  <default-regex-options case-sensitive="false"/>
 
   <definitions>
     <context id="line-comment" style-ref="comment" end-at-line-end="true">
@@ -45,6 +51,12 @@
     <context id="string" style-ref="string" end-at-line-end="true">
       <start>"</start>
       <end>"</end>
+      <!-- no escapes possible except for "" = literal " -->
+      <include>
+         <context id="string-esc" style-ref="escape" extend-parent="true">
+            <match>""</match>
+         </context>
+       </include>
     </context>
     <context id="character-constant" style-ref="string">
       <match>'.'</match>
@@ -138,8 +150,28 @@
       <keyword>short_integer</keyword>
       <keyword>string</keyword>
     </context>
+    <define-regex id="hexnum">[0-9a-f][0-9a-f_]*</define-regex>
+    <define-regex id="exponent">[Ee][+-]?[0-9][0-9_]*</define-regex>
+    <context id="based-numeral" style-ref="base-n-number">
+      <match extended="true">
+        (?&lt;![\w\.])
+        [0-9][0-9_]*\#\%{hexnum}(\.\%{hexnum})?\#\%{exponent}?
+        (?![\w\.])
+      </match>
+    </context>
+    <context id="real" style-ref="real">
+      <match extended="true">
+        (?&lt;![\w\.])
+        [0-9][0-9_]*\.[0-9][0-9_]*\%{exponent}?
+        (?![\w\.])
+      </match>
+    </context>
     <context id="number" style-ref="decimal">
-      <match>\b[0-9][0-9\.]*\b</match>
+      <match extended="true">
+        (?&lt;![\w\.])
+        [0-9][0-9_]*(E[+]?[0-9][0-9_]*)?
+        (?![\w\.])
+      </match>
     </context>
     <context id="true-and-false" style-ref="specials">
       <keyword>true</keyword>
@@ -154,6 +186,8 @@
         <context ref="function"/>
         <context ref="keyword"/>
         <context ref="type"/>
+        <context ref="based-numeral"/>
+        <context ref="real"/>
         <context ref="number"/>
         <context ref="true-and-false"/>
       </include>
