@@ -7,15 +7,15 @@ msgid ""
 ""
 msgstr "Project-Id-Version: gtksourceview 1.90.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-06-25 03:23+0100\n"
-"PO-Revision-Date: 2007-06-27 16:48+0930\n"
+"POT-Creation-Date: 2007-06-28 03:21+0100\n"
+"PO-Revision-Date: 2007-06-28 16:01+0930\n"
 "Last-Translator: Clytie Siddall <clytie@riverland.net.au>\n"
 "Language-Team: Vietnamese <gnomevi-list@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: LocFactoryEditor 1.6.4a5\n"
+"X-Generator: LocFactoryEditor 1.6.4a6\n"
 
 #: ../gtksourceview/gtksourcebuffer.c:166
 msgid "Check Brackets"
@@ -70,16 +70,16 @@ msgstr "Thao tác « Làm lại » có thể làm không"
 msgid "Style scheme"
 msgstr "Lược đồ kiểu dáng"
 
-#: ../gtksourceview/gtksourcecontextengine.c:2223
+#: ../gtksourceview/gtksourcecontextengine.c:2228
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "Thiếu lời xác định ngôn ngữ chính (id = \"%s\".)"
 
-#: ../gtksourceview/gtksourcecontextengine.c:2526
+#: ../gtksourceview/gtksourcecontextengine.c:2531
 msgid "using \\C is not supported in language definitions"
 msgstr "trong lời xác định ngôn ngữ, không hỗ trợ khả năng sử dụng \\C"
 
-#: ../gtksourceview/gtksourcecontextengine.c:3118
+#: ../gtksourceview/gtksourcecontextengine.c:3123
 #, c-format
 #. regex_new could fail, for instance if there are different
 #. * named sub-patterns with the same name or if resulting regex is
@@ -88,32 +88,40 @@ msgstr "trong lời xác định ngôn ngữ, không hỗ trợ khả năng sử
 msgid "Cannot create a regex for all the transitions, the syntax highlighting "
 "process will be slower than usual.\n"
 "The error was: %s"
-msgstr "Không thể tạo một biểu thức chính quy cho mọi việc chuyển tiếp, tiến trình tô sáng cú pháp sẽ chạy chậm hơn trường hợp bình thường.\n"
+msgstr "Không thể tạo một biểu thức chính quy cho mọi việc chuyển tiếp, tiến trình "
+"tô sáng cú pháp sẽ chạy chậm hơn trường hợp bình thường.\n"
 "Lỗi: %s"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5592
+#: ../gtksourceview/gtksourcecontextengine.c:5596
 #, c-format
 msgid "context '%s' cannot contain a \\%%{...@start} command"
 msgstr "ngữ cảnh « %s » không thể chứa lệnh kiểu \\%%{...@start}"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5735
-#: ../gtksourceview/gtksourcecontextengine.c:5819
+#: ../gtksourceview/gtksourcecontextengine.c:5748
+#: ../gtksourceview/gtksourcecontextengine.c:5835
 #, c-format
 msgid "duplicated context id '%s'"
 msgstr "id ngữ cảnh trùng « %s »"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5932
-#: ../gtksourceview/gtksourcecontextengine.c:5992
+#: ../gtksourceview/gtksourcecontextengine.c:5948
+#: ../gtksourceview/gtksourcecontextengine.c:6008
 #, c-format
 msgid ""
 "style override used with wildcard context reference in language '%s' in ref "
 "'%s'"
-msgstr "sự ghi đè kiểu dáng được dùng với tham chiếu ngữ cảnh đại diện trong ngôn ngữ « %s » trong tham chiếu « %s »"
+msgstr "sự ghi đè kiểu dáng được dùng với tham chiếu ngữ cảnh đại diện trong ngôn "
+"ngữ « %s » trong tham chiếu « %s »"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6006
+#: ../gtksourceview/gtksourcecontextengine.c:6022
 #, c-format
 msgid "invalid reference '%s'"
 msgstr "tham chiếu không hợp lệ « %s »"
+
+#: ../gtksourceview/gtksourcecontextengine.c:6041
+#: ../gtksourceview/gtksourcecontextengine.c:6051
+#, c-format
+msgid "unknown context '%s'"
+msgstr "ngữ cảnh không rõ « %s »"
 
 #: ../gtksourceview/gtksourcelanguagemanager.c:126
 msgid "Language specification directories"
@@ -125,97 +133,97 @@ msgid ""
 "located"
 msgstr "Danh sách thư mục chứa tập tin đặc tả ngôn ngữ (.lang)"
 
-#: ../gtksourceview/gtksourcelanguage-parser-2.c:837
+#: ../gtksourceview/gtksourcelanguage-parser-2.c:860
 #, c-format
 msgid "Unknown id '%s' in regex '%s'"
 msgstr "id không rõ « %s » trong biểu thức chính quy « %s »"
 
-#: ../gtksourceview/gtksourcelanguage-parser-2.c:1047
+#: ../gtksourceview/gtksourcelanguage-parser-2.c:1082
 #, c-format
 msgid "in regex '%s': backreferences are not supported"
 msgstr "trong biểu thức chính quy « %s »: không hỗ trợ tham chiếu ngược"
 
-#: ../gtksourceview/gtksourcestyle.c:64
+#: ../gtksourceview/gtksourcestyle.c:68
 msgid "Background"
 msgstr "Nền"
 
-#: ../gtksourceview/gtksourcestyle.c:65
+#: ../gtksourceview/gtksourcestyle.c:69
 msgid "Background color"
 msgstr "Màu nền"
 
-#: ../gtksourceview/gtksourcestyle.c:72
+#: ../gtksourceview/gtksourcestyle.c:76
 msgid "Foreground"
 msgstr "Cảnh gần"
 
-#: ../gtksourceview/gtksourcestyle.c:73
+#: ../gtksourceview/gtksourcestyle.c:77
 msgid "Foreground color"
 msgstr "Màu cảnh gần"
 
-#: ../gtksourceview/gtksourcestyle.c:80
-#: ../gtksourceview/gtksourcestyle.c:81
+#: ../gtksourceview/gtksourcestyle.c:84
+#: ../gtksourceview/gtksourcestyle.c:85
 msgid "Bold"
 msgstr "Đậm"
 
-#: ../gtksourceview/gtksourcestyle.c:88
-#: ../gtksourceview/gtksourcestyle.c:89
+#: ../gtksourceview/gtksourcestyle.c:92
+#: ../gtksourceview/gtksourcestyle.c:93
 msgid "Italic"
 msgstr "Nghiêng"
 
-#: ../gtksourceview/gtksourcestyle.c:96
-#: ../gtksourceview/gtksourcestyle.c:97
+#: ../gtksourceview/gtksourcestyle.c:100
+#: ../gtksourceview/gtksourcestyle.c:101
 msgid "Underline"
 msgstr "Gạch dưới"
 
-#: ../gtksourceview/gtksourcestyle.c:104
-#: ../gtksourceview/gtksourcestyle.c:105
+#: ../gtksourceview/gtksourcestyle.c:108
+#: ../gtksourceview/gtksourcestyle.c:109
 msgid "Strikethrough"
 msgstr "Gạch đè"
 
-#: ../gtksourceview/gtksourcestyle.c:112
+#: ../gtksourceview/gtksourcestyle.c:116
 msgid "Foreground set"
 msgstr "Cảnh gần đã đặt"
 
-#: ../gtksourceview/gtksourcestyle.c:113
+#: ../gtksourceview/gtksourcestyle.c:117
 msgid "Whether foreground color is set"
 msgstr "Màu cảnh gần đã được đặt chưa"
 
-#: ../gtksourceview/gtksourcestyle.c:120
+#: ../gtksourceview/gtksourcestyle.c:124
 msgid "Background set"
 msgstr "Nền đã đặt"
 
-#: ../gtksourceview/gtksourcestyle.c:121
+#: ../gtksourceview/gtksourcestyle.c:125
 msgid "Whether background color is set"
 msgstr "Màu nền đã được đặt chưa"
 
-#: ../gtksourceview/gtksourcestyle.c:128
+#: ../gtksourceview/gtksourcestyle.c:132
 msgid "Bold set"
 msgstr "Đậm đã đặt"
 
-#: ../gtksourceview/gtksourcestyle.c:129
+#: ../gtksourceview/gtksourcestyle.c:133
 msgid "Whether bold attribute is set"
 msgstr "Thuộc tính in đậm đã được đặt chưa"
 
-#: ../gtksourceview/gtksourcestyle.c:136
+#: ../gtksourceview/gtksourcestyle.c:140
 msgid "Italic set"
 msgstr "Nghiêng đã đặt"
 
-#: ../gtksourceview/gtksourcestyle.c:137
+#: ../gtksourceview/gtksourcestyle.c:141
 msgid "Whether italic attribute is set"
 msgstr "Thuộc tính in nghiêng đã được đặt chưa"
 
-#: ../gtksourceview/gtksourcestyle.c:144
+#: ../gtksourceview/gtksourcestyle.c:148
 msgid "Underline set"
 msgstr "Gạch dưới đã đặt"
 
-#: ../gtksourceview/gtksourcestyle.c:145
+#: ../gtksourceview/gtksourcestyle.c:149
 msgid "Whether underline attribute is set"
 msgstr "Thuộc tính gạch dưới đã được đặt chưa"
 
-#: ../gtksourceview/gtksourcestyle.c:152
+#: ../gtksourceview/gtksourcestyle.c:156
 msgid "Strikethrough set"
 msgstr "Gạch đè đã đặt"
 
-#: ../gtksourceview/gtksourcestyle.c:153
+#: ../gtksourceview/gtksourcestyle.c:157
 msgid "Whether strikethrough attribute is set"
 msgstr "Thuộc tính gạch đè đã được đặt chưa"
 
@@ -227,13 +235,13 @@ msgstr "Thư mục lược đồ kiểu dáng"
 msgid "List of directories where the style scheme files are located"
 msgstr "Danh sách các thư mục chứa tập tin lược đồ kiểu dáng"
 
-#: ../gtksourceview/gtksourcestylescheme.c:149
-#: ../gtksourceview/gtksourcestylescheme.c:150
+#: ../gtksourceview/gtksourcestylescheme.c:159
+#: ../gtksourceview/gtksourcestylescheme.c:160
 msgid "Style scheme id"
 msgstr "id lược đồ kiểu dáng"
 
-#: ../gtksourceview/gtksourcestylescheme.c:164
-#: ../gtksourceview/gtksourcestylescheme.c:165
+#: ../gtksourceview/gtksourcestylescheme.c:174
+#: ../gtksourceview/gtksourcestylescheme.c:175
 msgid "Style scheme name"
 msgstr "Tên lược đồ kiểu dáng"
 
@@ -408,6 +416,7 @@ msgstr "Ghi chú"
 #: ../gtksourceview/language-specs/ini.lang.h:3
 #: ../gtksourceview/language-specs/java.lang.h:2
 #: ../gtksourceview/language-specs/javascript.lang.h:4
+#: ../gtksourceview/language-specs/objc.lang.h:2
 #: ../gtksourceview/language-specs/ocaml.lang.h:5
 #: ../gtksourceview/language-specs/pascal.lang.h:2
 #: ../gtksourceview/language-specs/perl.lang.h:2
@@ -453,6 +462,7 @@ msgstr "Thập phân"
 #: ../gtksourceview/language-specs/java.lang.h:6
 #: ../gtksourceview/language-specs/javascript.lang.h:11
 #: ../gtksourceview/language-specs/lua.lang.h:4
+#: ../gtksourceview/language-specs/objc.lang.h:3
 #: ../gtksourceview/language-specs/ocaml.lang.h:9
 #: ../gtksourceview/language-specs/octave.lang.h:6
 #: ../gtksourceview/language-specs/pascal.lang.h:4
@@ -492,6 +502,7 @@ msgstr "Bộ tiền xử lý"
 #: ../gtksourceview/language-specs/ada.lang.h:7
 #: ../gtksourceview/language-specs/boo.lang.h:6
 #: ../gtksourceview/language-specs/c.lang.h:16
+#: ../gtksourceview/language-specs/chdr.lang.h:2
 #: ../gtksourceview/language-specs/cpp.lang.h:5
 #: ../gtksourceview/language-specs/csharp.lang.h:7
 #: ../gtksourceview/language-specs/d.lang.h:13
@@ -501,6 +512,7 @@ msgstr "Bộ tiền xử lý"
 #: ../gtksourceview/language-specs/java.lang.h:8
 #: ../gtksourceview/language-specs/makefile.lang.h:2
 #: ../gtksourceview/language-specs/nemerle.lang.h:14
+#: ../gtksourceview/language-specs/objc.lang.h:5
 #: ../gtksourceview/language-specs/ocaml.lang.h:15
 #: ../gtksourceview/language-specs/pascal.lang.h:7
 #: ../gtksourceview/language-specs/scheme.lang.h:6
@@ -532,6 +544,7 @@ msgstr "Đặc biệt"
 #: ../gtksourceview/language-specs/javascript.lang.h:16
 #: ../gtksourceview/language-specs/lua.lang.h:8
 #: ../gtksourceview/language-specs/nemerle.lang.h:15
+#: ../gtksourceview/language-specs/objc.lang.h:6
 #: ../gtksourceview/language-specs/ocaml.lang.h:16
 #: ../gtksourceview/language-specs/octave.lang.h:10
 #: ../gtksourceview/language-specs/pascal.lang.h:8
@@ -616,7 +629,7 @@ msgstr "Định nghĩa dùng chung"
 #: ../gtksourceview/language-specs/csharp.lang.h:4
 #: ../gtksourceview/language-specs/css.lang.h:7
 #: ../gtksourceview/language-specs/def.lang.h:8
-#: ../gtksourceview/language-specs/html.lang.h:6
+#: ../gtksourceview/language-specs/html.lang.h:5
 #: ../gtksourceview/language-specs/java.lang.h:4
 #: ../gtksourceview/language-specs/javascript.lang.h:5
 #: ../gtksourceview/language-specs/ocaml.lang.h:7
@@ -657,11 +670,16 @@ msgstr "Bát phân"
 msgid "printf conversion"
 msgstr "Chuyển đổi printf"
 
+#: ../gtksourceview/language-specs/chdr.lang.h:1
+msgid "C/C++/ObjC Header"
+msgstr "Phần đầu C/C++/ObjC"
+
 #: ../gtksourceview/language-specs/cpp.lang.h:1
 msgid "C++"
 msgstr "C++"
 
 #: ../gtksourceview/language-specs/cpp.lang.h:2
+#: ../gtksourceview/language-specs/objc.lang.h:1
 msgid "Common Defines"
 msgstr "Định nghĩa dùng chung"
 
@@ -882,7 +900,6 @@ msgid "DocBook"
 msgstr "DocBook"
 
 #: ../gtksourceview/language-specs/docbook.lang.h:5
-#: ../gtksourceview/language-specs/html.lang.h:5
 #: ../gtksourceview/language-specs/xml.lang.h:7
 msgid "Entity"
 msgstr "Thực thể"
@@ -906,7 +923,7 @@ msgstr "Thập lục"
 #: ../gtksourceview/language-specs/docbook.lang.h:10
 #: ../gtksourceview/language-specs/dtd.lang.h:2
 #: ../gtksourceview/language-specs/gtk-doc.lang.h:1
-#: ../gtksourceview/language-specs/html.lang.h:8
+#: ../gtksourceview/language-specs/html.lang.h:7
 #: ../gtksourceview/language-specs/latex.lang.h:6
 #: ../gtksourceview/language-specs/texinfo.lang.h:3
 #: ../gtksourceview/language-specs/xml.lang.h:10
@@ -997,11 +1014,11 @@ msgstr "Tên thuộc tính"
 msgid "Attribute Value"
 msgstr "Thuộc tính"
 
-#: ../gtksourceview/language-specs/html.lang.h:7
+#: ../gtksourceview/language-specs/html.lang.h:6
 msgid "HTML"
 msgstr "HTML"
 
-#: ../gtksourceview/language-specs/html.lang.h:9
+#: ../gtksourceview/language-specs/html.lang.h:8
 #: ../gtksourceview/language-specs/xml.lang.h:14
 msgid "Tag"
 msgstr "Thẻ"
@@ -1144,6 +1161,10 @@ msgstr "Nemerle"
 #: ../gtksourceview/language-specs/vbnet.lang.h:9
 msgid "Primitives"
 msgstr "Nguyên thuỷ"
+
+#: ../gtksourceview/language-specs/objc.lang.h:4
+msgid "Objective-C"
+msgstr "Objective-C"
 
 #: ../gtksourceview/language-specs/ocaml.lang.h:2
 msgid "Boolean constant"
@@ -1468,7 +1489,7 @@ msgid "GVim"
 msgstr "GVim"
 
 #: ../gtksourceview/language-specs/kate.xml.h:1
-msgid "Color scheme used in Kate text editor"
+msgid "Color scheme used in the Kate text editor"
 msgstr "Lược đồ màu dùng trong trình soạn thảo văn bản Kate"
 
 #: ../gtksourceview/language-specs/kate.xml.h:2
