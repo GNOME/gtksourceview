@@ -38,7 +38,8 @@
         <style id="character"               _name="Character"/>
         <style id="function"                _name="Function"/>
         <style id="shebang"                 _name="Shebang"/>
-        <style id="inline-docs"             _name="Inline Documentation"/>
+        <style id="doc-comment"             _name="Documentation Comment" map-to="def:comment"/>
+        <style id="doc-comment-element"     _name="Documentation Comment Element"/>
         <!-- FIXME and this is real nonsense -->
         <style id="preprocessor"            _name="Preprocessor"/>
     </styles>

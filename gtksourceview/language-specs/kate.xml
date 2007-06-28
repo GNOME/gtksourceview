@@ -52,7 +52,8 @@
   <style name="def:function"                foreground="#000080"/>
   <style name="def:error"                   foreground="red" underline="true"/>
   <style name="def:shebang"                 foreground="grey" bold="true"/>
-  <style name="def:inline-docs"             bold="true"/>
+  <style name="def:doc-comment"             foreground="blue"/>
+  <style name="def:doc-comment-element"     bold="true"/>
 
   <style name="def:net-address-in-comment"  underline="true"/>
   <style name="def:escape"                  foreground="#FF00FF"/>
@@ -61,8 +62,6 @@
 
   <style name="c:common-defines"            foreground="#0095FF" bold="true"/>
   <style name="c:preprocessor"              foreground="dark-green"/>
-
-  <style name="gtk-doc:inline-docs-section" foreground="blue"/>
 
   <style name="diff:diff-file"              use-style="def:keyword"/>
   <style name="diff:added-line"             use-style="def:decimal"/>
