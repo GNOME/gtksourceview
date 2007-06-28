@@ -39,6 +39,13 @@
 
   <definitions>
     <define-regex id="identifier">[A-Za-z_][A-Za-z0-9_]*</define-regex>
+    <define-regex id="weekday">Mon|Tue|Wed|Thu|Fri|Sat|Sun</define-regex>
+    <define-regex id="month">Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec</define-regex>
+
+    <define-regex id="date" extended="true">
+      \%{weekday}\s+\%{month}\s+\d{1,2}\s+\d{1,2}:\d{1,2}:\d{1,2}\s+\d{4} |   # Wed Jun 27 13:27:21 2007
+      \d{4}-\d{2}-\d{2}                                                       # 2007-06-28
+    </define-regex>
 
     <context id="changelog">
       <include>
@@ -46,11 +53,15 @@
           <!-- FIXME: how to match date here? The date and name line is
             something like (DATE) (NAME) <EMAIL>, where DATE and NAME may
             be quite arbitrary. -->
-          <match>^(\S+)\s+(.*)\s+(\&lt;[^\&lt;]+\&gt;)\s*$</match>
+          <match extended="true">
+            ^(?P&lt;date&gt;\%{date})\s+
+            (?P&lt;name&gt;.*)\s+
+            (?P&lt;email&gt;\&lt;[^\&lt;]+\&gt;)\s*$
+          </match>
           <include>
-            <context sub-pattern="1" style-ref="date"/>
-            <context sub-pattern="2" style-ref="name"/>
-            <context sub-pattern="3" style-ref="email"/>
+            <context sub-pattern="date" style-ref="date"/>
+            <context sub-pattern="name" style-ref="name"/>
+            <context sub-pattern="email" style-ref="email"/>
           </include>
         </context>
         <context id="release" style-ref="release">

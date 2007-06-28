@@ -1,3 +1,17 @@
+2007-06-28  Yevgen Muntyan  <muntyan@tamu.edu>
+
+	* gtksourceview/gtksourcelanguage-parser-2.c (handle_define_regex_element):
+	expand patterns in define-regex elements.
+	(handle_context_element): treat empty contexts as contexts with match="$^".
+
+	* gtksourceview/language-specs/language2.rng:
+	allow empty contexts.
+
+	* gtksourceview/language-specs/check.sh: added lua.lang, made it look
+	at extension of files passed to it on command line.
+
+	* gtksourceview/language-specs/changelog.lang: fancier date matching.
+
 2007-06-28  Paolo Borelli  <pborelli@katamail.com>
 
 	* gtksourceview/language-specs/gtk-doc.lang:
@@ -24,7 +38,7 @@
 
 2007-06-28  Paolo Borelli  <pborelli@katamail.com>
 
-	* gtksourceview/language-specs/ada.lang: misc improvements 
+	* gtksourceview/language-specs/ada.lang: misc improvements
 	by thelema@swbell.net. Bug #451325.
 
 2007-06-27  Yevgen Muntyan  <muntyan@tamu.edu>

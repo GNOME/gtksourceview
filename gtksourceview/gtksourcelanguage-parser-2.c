@@ -742,8 +742,19 @@ handle_context_element (ParserState *parser_state,
 				is_empty = xmlTextReaderIsEmptyElement (
 						parser_state->reader);
 
-				success = create_definition (parser_state, id, parent_id,
-						style_ref, &tmp_error);
+				if (is_empty)
+					success = _gtk_source_context_data_define_context (parser_state->ctx_data,
+											   id,
+											   parent_id,
+											   "$^",
+											   NULL,
+											   NULL,
+											   NULL,
+											   0,
+											   &tmp_error);
+				else
+					success = create_definition (parser_state, id, parent_id,
+								     style_ref, &tmp_error);
 
 				if (success && !is_empty)
 				{
@@ -1208,7 +1219,7 @@ handle_define_regex_element (ParserState *parser_state,
 		regex = xmlStrdup (BAD_CAST "");
 
 	expanded_regex = expand_regex (parser_state, (gchar*) regex, flags,
-				       FALSE, TRUE, &tmp_error);
+				       TRUE, TRUE, &tmp_error);
 
 	if (tmp_error == NULL)
 	{

@@ -182,6 +182,7 @@
                     <ref name="context-container"/>
                     <ref name="context-simple"/>
                     <ref name="context-reference"/>
+                    <ref name="context-placeholder"/>
                 </choice>
             </oneOrMore>
             <zeroOrMore>
@@ -321,6 +322,7 @@
                             <ref name="context-to-be-included"/>
                             <ref name="context-subpattern-container"/>
                             <ref name="context-reference"/>
+                            <ref name="context-placeholder"/>
                         </choice>
                     </oneOrMore>
                     <zeroOrMore>
@@ -346,6 +348,7 @@
                         <ref name="context-simple"/>
                         <ref name="context-to-be-included"/>
                         <ref name="context-reference"/>
+                        <ref name="context-placeholder"/>
                     </choice>
                 </oneOrMore>
                 <zeroOrMore>
@@ -418,6 +421,13 @@
     </element>
 </define>
 
+<define name="context-placeholder">
+    <element name="context">
+        <attribute name="id">
+            <ref name="id-type"/>
+        </attribute>
+    </element>
+</define>
 
 <define name="define-regex">
     <element name="define-regex">
