@@ -3,6 +3,9 @@
 	* gtksourceview/language-specs/ruby.lang: do not detect :foo
 	inside ::foo a symbol and other tweaks.
 
+	* gtksourceview/language-specs/java.lang: do not use Others
+	style.
+
 2007-06-28  Yevgen Muntyan  <muntyan@tamu.edu>
 
 	* gtksourceview/gtksourcelanguage-parser-2.c (handle_define_regex_element):
