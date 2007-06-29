@@ -163,7 +163,7 @@
     </context>
 
     <context id="symbols" style-ref="data-type">
-      <match>:[a-zA-Z0-9_]+</match>
+      <match>(?&lt;!:):[a-zA-Z0-9_]+</match>
     </context>
 
     <context id="regexp-variables" style-ref="decimal">
