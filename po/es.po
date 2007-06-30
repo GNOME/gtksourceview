@@ -12,10 +12,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview.HEAD.es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-06-28 03:21+0100\n"
-"PO-Revision-Date: 2007-06-28 11:45+0200\n"
-"Last-Translator: Jorge Gonzalez <jorgegonz@svn.gnome.org>\n"
-"Language-Team: Español <traductores@es.gnome.org>\n"
+"POT-Creation-Date: 2007-06-30 03:20+0100\n"
+"PO-Revision-Date: 2007-06-30 15:40+0200\n"
+"Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
+"Language-Team: Spanish <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -143,12 +143,12 @@ msgstr ""
 "Lista de directorios en los que se hallan los archivo de especificación de "
 "lenguajes (.lang)."
 
-#: ../gtksourceview/gtksourcelanguage-parser-2.c:860
+#: ../gtksourceview/gtksourcelanguage-parser-2.c:871
 #, c-format
 msgid "Unknown id '%s' in regex '%s'"
 msgstr "Id «%s» desconocido en la expresión regular «%s»"
 
-#: ../gtksourceview/gtksourcelanguage-parser-2.c:1082
+#: ../gtksourceview/gtksourcelanguage-parser-2.c:1093
 #, c-format
 msgid "in regex '%s': backreferences are not supported"
 msgstr "en la expresión regular «%s»: las retroreferencias no se soportan"
@@ -382,6 +382,28 @@ msgid "Ada"
 msgstr "Ada"
 
 #: ../gtksourceview/language-specs/ada.lang.h:2
+msgid "Ada Identifier"
+msgstr "Identificador Ada"
+
+#: ../gtksourceview/language-specs/ada.lang.h:3
+msgid "Arbitrary base number"
+msgstr "Número base arbitrario"
+
+#: ../gtksourceview/language-specs/ada.lang.h:4
+#: ../gtksourceview/language-specs/boo.lang.h:1
+#: ../gtksourceview/language-specs/desktop.lang.h:2
+#: ../gtksourceview/language-specs/java.lang.h:1
+#: ../gtksourceview/language-specs/libtool.lang.h:1
+#: ../gtksourceview/language-specs/scheme.lang.h:1
+msgid "Boolean"
+msgstr "Booleano"
+
+#: ../gtksourceview/language-specs/ada.lang.h:5
+#: ../gtksourceview/language-specs/lua.lang.h:1
+msgid "Character Escape"
+msgstr "Carácter de escape"
+
+#: ../gtksourceview/language-specs/ada.lang.h:6
 #: ../gtksourceview/language-specs/c.lang.h:3
 #: ../gtksourceview/language-specs/csharp.lang.h:2
 #: ../gtksourceview/language-specs/css.lang.h:3
@@ -392,7 +414,7 @@ msgstr "Ada"
 #: ../gtksourceview/language-specs/html.lang.h:3
 #: ../gtksourceview/language-specs/idl.lang.h:1
 #: ../gtksourceview/language-specs/ini.lang.h:2
-#: ../gtksourceview/language-specs/java.lang.h:1
+#: ../gtksourceview/language-specs/java.lang.h:2
 #: ../gtksourceview/language-specs/javascript.lang.h:1
 #: ../gtksourceview/language-specs/latex.lang.h:2
 #: ../gtksourceview/language-specs/lua.lang.h:2
@@ -402,7 +424,7 @@ msgstr "Ada"
 #: ../gtksourceview/language-specs/perl.lang.h:1
 #: ../gtksourceview/language-specs/php.lang.h:1
 #: ../gtksourceview/language-specs/po.lang.h:1
-#: ../gtksourceview/language-specs/ruby.lang.h:1
+#: ../gtksourceview/language-specs/ruby.lang.h:3
 #: ../gtksourceview/language-specs/scheme.lang.h:2
 #: ../gtksourceview/language-specs/sql.lang.h:1
 #: ../gtksourceview/language-specs/texinfo.lang.h:1
@@ -412,7 +434,7 @@ msgid "Comment"
 msgstr "Comentario"
 
 #. map-to="def:others"
-#: ../gtksourceview/language-specs/ada.lang.h:3
+#: ../gtksourceview/language-specs/ada.lang.h:7
 #: ../gtksourceview/language-specs/c.lang.h:5
 #: ../gtksourceview/language-specs/cpp.lang.h:3
 #: ../gtksourceview/language-specs/csharp.lang.h:3
@@ -423,20 +445,20 @@ msgstr "Comentario"
 #: ../gtksourceview/language-specs/haskell.lang.h:3
 #: ../gtksourceview/language-specs/idl.lang.h:2
 #: ../gtksourceview/language-specs/ini.lang.h:3
-#: ../gtksourceview/language-specs/java.lang.h:2
+#: ../gtksourceview/language-specs/java.lang.h:3
 #: ../gtksourceview/language-specs/javascript.lang.h:4
 #: ../gtksourceview/language-specs/objc.lang.h:2
 #: ../gtksourceview/language-specs/ocaml.lang.h:5
 #: ../gtksourceview/language-specs/pascal.lang.h:2
 #: ../gtksourceview/language-specs/perl.lang.h:2
 #: ../gtksourceview/language-specs/php.lang.h:2
-#: ../gtksourceview/language-specs/ruby.lang.h:2
+#: ../gtksourceview/language-specs/ruby.lang.h:4
 #: ../gtksourceview/language-specs/sql.lang.h:2
 #: ../gtksourceview/language-specs/tcl.lang.h:1
 msgid "Data Type"
 msgstr "Tipo de dato"
 
-#: ../gtksourceview/language-specs/ada.lang.h:4
+#: ../gtksourceview/language-specs/ada.lang.h:8
 #: ../gtksourceview/language-specs/c.lang.h:6
 #: ../gtksourceview/language-specs/css.lang.h:5
 #: ../gtksourceview/language-specs/def.lang.h:6
@@ -445,29 +467,30 @@ msgstr "Tipo de dato"
 #: ../gtksourceview/language-specs/gtkrc.lang.h:3
 #: ../gtksourceview/language-specs/haskell.lang.h:4
 #: ../gtksourceview/language-specs/ini.lang.h:4
-#: ../gtksourceview/language-specs/java.lang.h:3
+#: ../gtksourceview/language-specs/java.lang.h:4
 #: ../gtksourceview/language-specs/nemerle.lang.h:6
 #: ../gtksourceview/language-specs/ocaml.lang.h:6
 #: ../gtksourceview/language-specs/octave.lang.h:3
 #: ../gtksourceview/language-specs/pascal.lang.h:3
 #: ../gtksourceview/language-specs/python.lang.h:4
-#: ../gtksourceview/language-specs/ruby.lang.h:3
+#: ../gtksourceview/language-specs/ruby.lang.h:5
 #: ../gtksourceview/language-specs/sql.lang.h:3
 msgid "Decimal"
 msgstr "Decimal"
 
-#: ../gtksourceview/language-specs/ada.lang.h:5
+#: ../gtksourceview/language-specs/ada.lang.h:9
+#: ../gtksourceview/language-specs/awk.lang.h:1
 #: ../gtksourceview/language-specs/c.lang.h:13
 #: ../gtksourceview/language-specs/cpp.lang.h:4
 #: ../gtksourceview/language-specs/csharp.lang.h:5
 #: ../gtksourceview/language-specs/css.lang.h:9
-#: ../gtksourceview/language-specs/def.lang.h:12
+#: ../gtksourceview/language-specs/def.lang.h:14
 #: ../gtksourceview/language-specs/fortran.lang.h:7
 #: ../gtksourceview/language-specs/gtkrc.lang.h:5
 #: ../gtksourceview/language-specs/haskell.lang.h:7
 #: ../gtksourceview/language-specs/idl.lang.h:4
 #: ../gtksourceview/language-specs/ini.lang.h:6
-#: ../gtksourceview/language-specs/java.lang.h:6
+#: ../gtksourceview/language-specs/java.lang.h:8
 #: ../gtksourceview/language-specs/javascript.lang.h:11
 #: ../gtksourceview/language-specs/lua.lang.h:4
 #: ../gtksourceview/language-specs/objc.lang.h:3
@@ -479,7 +502,7 @@ msgstr "Decimal"
 #: ../gtksourceview/language-specs/po.lang.h:2
 #: ../gtksourceview/language-specs/python.lang.h:8
 #: ../gtksourceview/language-specs/R.lang.h:6
-#: ../gtksourceview/language-specs/ruby.lang.h:4
+#: ../gtksourceview/language-specs/ruby.lang.h:6
 #: ../gtksourceview/language-specs/scheme.lang.h:4
 #: ../gtksourceview/language-specs/sql.lang.h:6
 #: ../gtksourceview/language-specs/tcl.lang.h:2
@@ -490,24 +513,27 @@ msgid "Keyword"
 msgstr "Palabra reservada"
 
 #. FIXME and this is real nonsense
-#: ../gtksourceview/language-specs/ada.lang.h:6
+#: ../gtksourceview/language-specs/ada.lang.h:10
 #: ../gtksourceview/language-specs/c.lang.h:15
 #: ../gtksourceview/language-specs/csharp.lang.h:6
 #: ../gtksourceview/language-specs/css.lang.h:13
-#: ../gtksourceview/language-specs/def.lang.h:16
+#: ../gtksourceview/language-specs/def.lang.h:18
 #: ../gtksourceview/language-specs/gtkrc.lang.h:7
 #: ../gtksourceview/language-specs/haskell.lang.h:8
 #: ../gtksourceview/language-specs/idl.lang.h:5
 #: ../gtksourceview/language-specs/ini.lang.h:8
 #: ../gtksourceview/language-specs/octave.lang.h:8
 #: ../gtksourceview/language-specs/pascal.lang.h:6
-#: ../gtksourceview/language-specs/ruby.lang.h:6
 #: ../gtksourceview/language-specs/sql.lang.h:7
 #: ../gtksourceview/language-specs/texinfo.lang.h:5
 msgid "Preprocessor"
 msgstr "Preprocesador"
 
-#: ../gtksourceview/language-specs/ada.lang.h:7
+#: ../gtksourceview/language-specs/ada.lang.h:11
+msgid "Real number"
+msgstr "Número real"
+
+#: ../gtksourceview/language-specs/ada.lang.h:12
 #: ../gtksourceview/language-specs/boo.lang.h:6
 #: ../gtksourceview/language-specs/c.lang.h:16
 #: ../gtksourceview/language-specs/chdr.lang.h:2
@@ -517,7 +543,7 @@ msgstr "Preprocesador"
 #: ../gtksourceview/language-specs/fortran.lang.h:8
 #: ../gtksourceview/language-specs/haskell.lang.h:9
 #: ../gtksourceview/language-specs/idl.lang.h:6
-#: ../gtksourceview/language-specs/java.lang.h:8
+#: ../gtksourceview/language-specs/java.lang.h:10
 #: ../gtksourceview/language-specs/makefile.lang.h:2
 #: ../gtksourceview/language-specs/nemerle.lang.h:14
 #: ../gtksourceview/language-specs/objc.lang.h:5
@@ -531,14 +557,7 @@ msgstr "Preprocesador"
 msgid "Sources"
 msgstr "Fuentes"
 
-#. FIXME this "specials" doesn't make sense
-#: ../gtksourceview/language-specs/ada.lang.h:8
-#: ../gtksourceview/language-specs/def.lang.h:19
-#: ../gtksourceview/language-specs/java.lang.h:9
-msgid "Specials"
-msgstr "Especiales"
-
-#: ../gtksourceview/language-specs/ada.lang.h:9
+#: ../gtksourceview/language-specs/ada.lang.h:13
 #: ../gtksourceview/language-specs/c.lang.h:17
 #: ../gtksourceview/language-specs/csharp.lang.h:8
 #: ../gtksourceview/language-specs/css.lang.h:14
@@ -548,7 +567,7 @@ msgstr "Especiales"
 #: ../gtksourceview/language-specs/haskell.lang.h:10
 #: ../gtksourceview/language-specs/idl.lang.h:7
 #: ../gtksourceview/language-specs/ini.lang.h:9
-#: ../gtksourceview/language-specs/java.lang.h:10
+#: ../gtksourceview/language-specs/java.lang.h:11
 #: ../gtksourceview/language-specs/javascript.lang.h:16
 #: ../gtksourceview/language-specs/lua.lang.h:8
 #: ../gtksourceview/language-specs/nemerle.lang.h:15
@@ -568,12 +587,34 @@ msgstr "Especiales"
 msgid "String"
 msgstr "Cadena"
 
-#: ../gtksourceview/language-specs/boo.lang.h:1
-#: ../gtksourceview/language-specs/desktop.lang.h:2
-#: ../gtksourceview/language-specs/libtool.lang.h:1
-#: ../gtksourceview/language-specs/scheme.lang.h:1
-msgid "Boolean"
-msgstr "Booleano"
+#: ../gtksourceview/language-specs/awk.lang.h:2
+msgid "Pattern"
+msgstr "Patrón"
+
+#: ../gtksourceview/language-specs/awk.lang.h:3
+#: ../gtksourceview/language-specs/javascript.lang.h:15
+#: ../gtksourceview/language-specs/lua.lang.h:7
+#: ../gtksourceview/language-specs/m4.lang.h:1
+#: ../gtksourceview/language-specs/perl.lang.h:7
+#: ../gtksourceview/language-specs/php.lang.h:6
+#: ../gtksourceview/language-specs/python.lang.h:12
+#: ../gtksourceview/language-specs/R.lang.h:10
+#: ../gtksourceview/language-specs/ruby.lang.h:9
+#: ../gtksourceview/language-specs/sh.lang.h:1
+#: ../gtksourceview/language-specs/tcl.lang.h:3
+msgid "Scripts"
+msgstr "Scripts"
+
+#: ../gtksourceview/language-specs/awk.lang.h:4
+#: ../gtksourceview/language-specs/gtk-doc.lang.h:11
+#: ../gtksourceview/language-specs/verilog.lang.h:8
+#: ../gtksourceview/language-specs/vhdl.lang.h:8
+msgid "Type"
+msgstr "Tipo"
+
+#: ../gtksourceview/language-specs/awk.lang.h:5
+msgid "awk"
+msgstr "awk"
 
 #: ../gtksourceview/language-specs/boo.lang.h:2
 #: ../gtksourceview/language-specs/d.lang.h:9
@@ -606,14 +647,12 @@ msgstr "ChangeLog"
 #: ../gtksourceview/language-specs/dpatch.lang.h:2
 #: ../gtksourceview/language-specs/gtkrc.lang.h:6
 #: ../gtksourceview/language-specs/ini.lang.h:7
-#: ../gtksourceview/language-specs/java.lang.h:7
 #: ../gtksourceview/language-specs/libtool.lang.h:2
 #: ../gtksourceview/language-specs/msil.lang.h:2
 #: ../gtksourceview/language-specs/perl.lang.h:5
 #: ../gtksourceview/language-specs/php.lang.h:4
 #: ../gtksourceview/language-specs/pkgconfig.lang.h:1
 #: ../gtksourceview/language-specs/po.lang.h:4
-#: ../gtksourceview/language-specs/ruby.lang.h:5
 #: ../gtksourceview/language-specs/spec.lang.h:12
 #: ../gtksourceview/language-specs/texinfo.lang.h:4
 #: ../gtksourceview/language-specs/yacc.lang.h:2
@@ -637,9 +676,9 @@ msgstr "Definiciones comunes"
 #: ../gtksourceview/language-specs/c.lang.h:7
 #: ../gtksourceview/language-specs/csharp.lang.h:4
 #: ../gtksourceview/language-specs/css.lang.h:7
-#: ../gtksourceview/language-specs/def.lang.h:8
+#: ../gtksourceview/language-specs/def.lang.h:10
 #: ../gtksourceview/language-specs/html.lang.h:5
-#: ../gtksourceview/language-specs/java.lang.h:4
+#: ../gtksourceview/language-specs/java.lang.h:5
 #: ../gtksourceview/language-specs/javascript.lang.h:5
 #: ../gtksourceview/language-specs/ocaml.lang.h:7
 #: ../gtksourceview/language-specs/verilog.lang.h:4
@@ -648,7 +687,7 @@ msgid "Error"
 msgstr "Error"
 
 #: ../gtksourceview/language-specs/c.lang.h:8
-#: ../gtksourceview/language-specs/def.lang.h:9
+#: ../gtksourceview/language-specs/def.lang.h:11
 #: ../gtksourceview/language-specs/javascript.lang.h:6
 msgid "Escape"
 msgstr "Escape"
@@ -707,7 +746,8 @@ msgid "Dimension"
 msgstr "Dimensión"
 
 #: ../gtksourceview/language-specs/css.lang.h:8
-#: ../gtksourceview/language-specs/def.lang.h:11
+#: ../gtksourceview/language-specs/def.lang.h:13
+#: ../gtksourceview/language-specs/gtk-doc.lang.h:2
 #: ../gtksourceview/language-specs/javascript.lang.h:7
 #: ../gtksourceview/language-specs/lua.lang.h:3
 #: ../gtksourceview/language-specs/octave.lang.h:5
@@ -743,7 +783,15 @@ msgstr "Número complejo"
 msgid "Defaults"
 msgstr "Predeterminados"
 
-#: ../gtksourceview/language-specs/def.lang.h:10
+#: ../gtksourceview/language-specs/def.lang.h:8
+msgid "Documentation Comment"
+msgstr "Comentario de la documentación"
+
+#: ../gtksourceview/language-specs/def.lang.h:9
+msgid "Documentation Comment Element"
+msgstr "Elemento de tipo comentario en la documentación"
+
+#: ../gtksourceview/language-specs/def.lang.h:12
 #: ../gtksourceview/language-specs/fortran.lang.h:5
 #: ../gtksourceview/language-specs/ini.lang.h:5
 #: ../gtksourceview/language-specs/ocaml.lang.h:8
@@ -752,15 +800,15 @@ msgstr "Predeterminados"
 msgid "Floating Point"
 msgstr "Coma flotante"
 
-#: ../gtksourceview/language-specs/def.lang.h:13
+#: ../gtksourceview/language-specs/def.lang.h:15
 msgid "Net Address"
 msgstr "Dirección de red"
 
-#: ../gtksourceview/language-specs/def.lang.h:14
+#: ../gtksourceview/language-specs/def.lang.h:16
 msgid "Note"
 msgstr "Nota"
 
-#: ../gtksourceview/language-specs/def.lang.h:17
+#: ../gtksourceview/language-specs/def.lang.h:19
 msgid "Shebang"
 msgstr "Shebang (#!)"
 
@@ -929,7 +977,7 @@ msgstr "Hexadecimal"
 
 #: ../gtksourceview/language-specs/docbook.lang.h:10
 #: ../gtksourceview/language-specs/dtd.lang.h:2
-#: ../gtksourceview/language-specs/gtk-doc.lang.h:1
+#: ../gtksourceview/language-specs/gtk-doc.lang.h:5
 #: ../gtksourceview/language-specs/html.lang.h:7
 #: ../gtksourceview/language-specs/latex.lang.h:6
 #: ../gtksourceview/language-specs/texinfo.lang.h:3
@@ -974,25 +1022,41 @@ msgstr "GAP"
 msgid "Scientific"
 msgstr "Científico"
 
-#: ../gtksourceview/language-specs/gtk-doc.lang.h:2
-msgid "function-name"
-msgstr "nombre-de-la-función"
+#: ../gtksourceview/language-specs/gtk-doc.lang.h:1
+msgid "Constant"
+msgstr "Constante"
 
 #: ../gtksourceview/language-specs/gtk-doc.lang.h:3
-msgid "gtk-doc"
-msgstr "gtk-doc"
+msgid "Function Name"
+msgstr "Nombre de la función"
 
 #: ../gtksourceview/language-specs/gtk-doc.lang.h:4
-msgid "inline-docs"
-msgstr "inline-docs"
-
-#: ../gtksourceview/language-specs/gtk-doc.lang.h:5
-msgid "property-name"
-msgstr "property-name"
+msgid "Inline Documentation Section"
+msgstr "Sección de la documentación en línea"
 
 #: ../gtksourceview/language-specs/gtk-doc.lang.h:6
-msgid "signal-name"
-msgstr "signal-name"
+msgid "Parameter"
+msgstr "Parámetro"
+
+#: ../gtksourceview/language-specs/gtk-doc.lang.h:7
+msgid "Property Name"
+msgstr "Nombre de la propiedad"
+
+#: ../gtksourceview/language-specs/gtk-doc.lang.h:8
+msgid "Return"
+msgstr "Devolver"
+
+#: ../gtksourceview/language-specs/gtk-doc.lang.h:9
+msgid "Signal Name"
+msgstr "Nombre de la señal"
+
+#: ../gtksourceview/language-specs/gtk-doc.lang.h:10
+msgid "Since"
+msgstr "Desde"
+
+#: ../gtksourceview/language-specs/gtk-doc.lang.h:12
+msgid "gtk-doc"
+msgstr "gtk-doc"
 
 #: ../gtksourceview/language-specs/gtkrc.lang.h:4
 msgid "GtkRC"
@@ -1035,18 +1099,23 @@ msgstr "IDL"
 msgid ".ini"
 msgstr ".ini"
 
-#: ../gtksourceview/language-specs/java.lang.h:5
+#. map-to="def:others2"
+#: ../gtksourceview/language-specs/java.lang.h:6
+#: ../gtksourceview/language-specs/javascript.lang.h:9
+msgid "Future Reserved Keywords"
+msgstr "Futura palabra clave reservada"
+
+#: ../gtksourceview/language-specs/java.lang.h:7
 msgid "Java"
 msgstr "Java"
+
+#: ../gtksourceview/language-specs/java.lang.h:9
+msgid "Null Value"
+msgstr "Valor nulo"
 
 #: ../gtksourceview/language-specs/javascript.lang.h:2
 msgid "Constructors"
 msgstr "Constructores"
-
-#. map-to="def:others2"
-#: ../gtksourceview/language-specs/javascript.lang.h:9
-msgid "Future Words"
-msgstr "Palabras futuras"
 
 #: ../gtksourceview/language-specs/javascript.lang.h:10
 msgid "Javascript"
@@ -1063,19 +1132,6 @@ msgstr "Objeto"
 #: ../gtksourceview/language-specs/javascript.lang.h:14
 msgid "Properties"
 msgstr "Propiedades"
-
-#: ../gtksourceview/language-specs/javascript.lang.h:15
-#: ../gtksourceview/language-specs/lua.lang.h:7
-#: ../gtksourceview/language-specs/m4.lang.h:1
-#: ../gtksourceview/language-specs/perl.lang.h:7
-#: ../gtksourceview/language-specs/php.lang.h:6
-#: ../gtksourceview/language-specs/python.lang.h:12
-#: ../gtksourceview/language-specs/R.lang.h:10
-#: ../gtksourceview/language-specs/ruby.lang.h:8
-#: ../gtksourceview/language-specs/sh.lang.h:1
-#: ../gtksourceview/language-specs/tcl.lang.h:3
-msgid "Scripts"
-msgstr "Scripts"
 
 #: ../gtksourceview/language-specs/latex.lang.h:1
 msgid "Command"
@@ -1108,10 +1164,6 @@ msgstr "math-bound"
 #: ../gtksourceview/language-specs/libtool.lang.h:3
 msgid "libtool"
 msgstr "libtool"
-
-#: ../gtksourceview/language-specs/lua.lang.h:1
-msgid "Character Escape"
-msgstr "Carácter de escape"
 
 #: ../gtksourceview/language-specs/lua.lang.h:5
 msgid "Lua"
@@ -1256,6 +1308,7 @@ msgid "Escaped character"
 msgstr "Carácter de escape"
 
 #: ../gtksourceview/language-specs/python.lang.h:9
+#: ../gtksourceview/language-specs/ruby.lang.h:7
 msgid "Module handler"
 msgstr "Manejador de módulo"
 
@@ -1307,7 +1360,15 @@ msgstr "Constante reservada"
 msgid "Single Quoted String"
 msgstr "Cadena entrecomillada simple"
 
-#: ../gtksourceview/language-specs/ruby.lang.h:7
+#: ../gtksourceview/language-specs/ruby.lang.h:1
+msgid "Attribute Definition"
+msgstr "Definición del atributo"
+
+#: ../gtksourceview/language-specs/ruby.lang.h:2
+msgid "Builtin"
+msgstr "Integrado"
+
+#: ../gtksourceview/language-specs/ruby.lang.h:8
 msgid "Ruby"
 msgstr "Ruby"
 
@@ -1387,6 +1448,10 @@ msgstr "SQL"
 msgid "Tcl"
 msgstr "Tcl"
 
+#: ../gtksourceview/language-specs/testdark.xml.h:1
+msgid "dark"
+msgstr "oscuro"
+
 #: ../gtksourceview/language-specs/texinfo.lang.h:7
 msgid "Texinfo"
 msgstr "Texinfo"
@@ -1410,11 +1475,6 @@ msgstr "Directiva del compilador"
 #: ../gtksourceview/language-specs/verilog.lang.h:5
 msgid "Gate"
 msgstr "Puerta"
-
-#: ../gtksourceview/language-specs/verilog.lang.h:8
-#: ../gtksourceview/language-specs/vhdl.lang.h:8
-msgid "Type"
-msgstr "Tipo"
 
 #: ../gtksourceview/language-specs/verilog.lang.h:9
 msgid "Verilog"
@@ -1480,4 +1540,114 @@ msgstr "Esquema de colores usado en el editor de textos Kate"
 #: ../gtksourceview/language-specs/kate.xml.h:2
 msgid "Kate"
 msgstr "Kate"
+
+#: ../gtksourceview/regex/glib/gregex.c:126
+msgid "corrupted object"
+msgstr "objeto corrupto"
+
+#: ../gtksourceview/regex/glib/gregex.c:128
+msgid "internal error or corrupted object"
+msgstr "error interno u objeto corrupto"
+
+#: ../gtksourceview/regex/glib/gregex.c:130
+msgid "out of memory"
+msgstr "sin memoria"
+
+#: ../gtksourceview/regex/glib/gregex.c:135
+msgid "backtracking limit reached"
+msgstr "se alcanzó el límite de «backtracking»"
+
+#: ../gtksourceview/regex/glib/gregex.c:147
+#: ../gtksourceview/regex/glib/gregex.c:155
+msgid "the pattern contains items not supported for partial matching"
+msgstr "el patrón contiene elementos no soportados para una coincidencia parcial"
+
+#: ../gtksourceview/regex/glib/gregex.c:149
+msgid "internal error"
+msgstr "error interno"
+
+#: ../gtksourceview/regex/glib/gregex.c:157
+msgid "back references as conditions are not supported for partial matching"
+msgstr "no se soportan referencias anteriores como condiciones para coincidencias parciales"
+
+#: ../gtksourceview/regex/glib/gregex.c:166
+msgid "recursion limit reached"
+msgstr "se alcanzó el límite de recursividad"
+
+#: ../gtksourceview/regex/glib/gregex.c:168
+msgid "workspace limit for empty substrings reached"
+msgstr "límite del espacio de trabajo cuando se alcanzan subcadenas vacías"
+
+#: ../gtksourceview/regex/glib/gregex.c:170
+msgid "invalid combination of newline flags"
+msgstr "combinación de banderas de nueva línea inválidas"
+
+#: ../gtksourceview/regex/glib/gregex.c:174
+msgid "unknown error"
+msgstr "error desconocido"
+
+#: ../gtksourceview/regex/glib/gregex.c:315
+#: ../gtksourceview/regex/glib/gregex.c:1343
+#, c-format
+msgid "Error while matching regular expression %s: %s"
+msgstr "Error al coincidir con la expresión regular %s: %s"
+
+#: ../gtksourceview/regex/glib/gregex.c:874
+msgid "PCRE library is compiled without UTF8 support"
+msgstr "La biblioteca PCRE está compilada sin soporte para UTF8"
+
+#: ../gtksourceview/regex/glib/gregex.c:883
+msgid "PCRE library is compiled without UTF8 properties support"
+msgstr "La biblioteca PCRE está compilada sin soporte para las propiedades de UTF8"
+
+#: ../gtksourceview/regex/glib/gregex.c:928
+#, c-format
+msgid "Error while compiling regular expression %s at char %d: %s"
+msgstr "Error al compilar la expresión regular %s en el carácter %d: %s"
+
+#: ../gtksourceview/regex/glib/gregex.c:950
+#, c-format
+msgid "Error while optimizing regular expression %s: %s"
+msgstr "Error al optimizar la expresión regular %s: %s"
+
+#: ../gtksourceview/regex/glib/gregex.c:1769
+msgid "hexadecimal digit or '}' expected"
+msgstr "se esperaba un dígito hexadecimal o «}»"
+
+#: ../gtksourceview/regex/glib/gregex.c:1785
+msgid "hexadecimal digit expected"
+msgstr "se esperaba un dígito hexadecimal"
+
+#: ../gtksourceview/regex/glib/gregex.c:1825
+msgid "missing '<' in symbolic reference"
+msgstr "falta «<» en la referencia simbólica"
+
+#: ../gtksourceview/regex/glib/gregex.c:1834
+msgid "unfinished symbolic reference"
+msgstr "referencia de símbolo sin terminar"
+
+#: ../gtksourceview/regex/glib/gregex.c:1841
+msgid "zero-length symbolic reference"
+msgstr "referencia simbólica de longitud cero"
+
+#: ../gtksourceview/regex/glib/gregex.c:1852
+msgid "digit expected"
+msgstr "se esperaba un dígito"
+
+#: ../gtksourceview/regex/glib/gregex.c:1870
+msgid "illegal symbolic reference"
+msgstr "referencia simbólica ilegal"
+
+#: ../gtksourceview/regex/glib/gregex.c:1932
+msgid "stray final '\\'"
+msgstr "«\\» al final de la cadena"
+
+#: ../gtksourceview/regex/glib/gregex.c:1936
+msgid "unknown escape sequence"
+msgstr "secuencia de escape desconocida"
+
+#: ../gtksourceview/regex/glib/gregex.c:1946
+#, c-format
+msgid "Error while parsing replacement text \"%s\" at char %lu: %s"
+msgstr "Error al analizar el texto de reemplazo «%s» en el carácter %lu: %s"
 
