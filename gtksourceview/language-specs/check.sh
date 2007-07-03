@@ -12,15 +12,10 @@ langs="ada.lang awk.lang changelog.lang chdr.lang c.lang cpp.lang csharp.lang
        po.lang python.lang ruby.lang scheme.lang sh.lang sql.lang tcl.lang
        texinfo.lang verilog.lang xml.lang yacc.lang"
 
-styles="gvim.xml kate.xml testdark.xml tango.xml"
+styles="gvim.xml kate.xml tango.xml"
 
-if [ $1 ]; then
-  langs=$*
-  styles=
-fi
-
-for file in $langs $styles; do
-  case $file in
+check_file() {
+  case $1 in
   *.xml)
     xmllint --relaxng styles.rng --noout $file || exit 1
     ;;
@@ -28,4 +23,19 @@ for file in $langs $styles; do
     xmllint --relaxng language2.rng --noout $file || exit 1
     ;;
   esac
+}
+
+if [ $1 ]; then
+  for file in $@; do
+    check_file $file
+  done
+  exit 0
+fi
+
+if [ "$srcdir" ]; then
+  cd $srcdir
+fi
+
+for file in $langs $styles; do
+  check_file $file
 done

@@ -1,6 +1,16 @@
+2007-07-03  Yevgen Muntyan  <muntyan@tamu.edu>
+
+	* gtksourceview/language-specs/Makefile.am: run check.sh on make check.
+	* gtksourceview/language-specs/check.sh: made it work in make check,
+	removed testdark.xml.
+
+	* po/POTFILES.in:
+	* po/POTFILES.skip: moved testdark.xml and gregex.c to POTFILES.skip,
+	hopefully nobody will add those into POTFILES.in again.
+
 2007-07-03  Paolo Borelli  <pborelli@katamail.com>
 
-	* gtksourceview/language-specs/tango.xml: first cut of a 
+	* gtksourceview/language-specs/tango.xml: first cut of a
 	tango style scheme, contributed by Michael Monreal.
 
 2007-07-03  Paolo Borelli  <pborelli@katamail.com>

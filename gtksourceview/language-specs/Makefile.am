@@ -1,3 +1,5 @@
+TESTS = check.sh
+
 LANGUAGES =			\
 	ada.lang		\
 	awk.lang		\
