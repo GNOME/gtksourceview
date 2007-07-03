@@ -49,6 +49,7 @@ gtk_source_buffer_get_type
 <INCLUDE>gtksourceview/gtksourceview.h</INCLUDE>
 GtkSourceView
 GtkSourceViewClass
+GtkSourceSmartHomeEndType
 gtk_source_view_new
 gtk_source_view_new_with_buffer
 gtk_source_view_set_auto_indent

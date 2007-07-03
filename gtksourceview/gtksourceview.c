@@ -104,7 +104,7 @@ struct _GtkSourceViewPrivate
 	gboolean	 indent_on_tab;
 	guint		 margin;
 	gint             cached_margin_width;
-	GtkSourceViewSmartHomeEndType smart_home_end;
+	GtkSourceSmartHomeEndType smart_home_end;
 
 	gboolean	 style_scheme_applied;
 	GtkSourceStyleScheme *style_scheme;
@@ -300,7 +300,7 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 							    _("HOME and END keys move to first/last "
 							      "non whitespace characters on line before going "
 							      "to the start/end of the line"),
-							    GTK_TYPE_SOURCE_VIEW_SMART_HOME_END_TYPE,
+							    GTK_TYPE_SOURCE_SMART_HOME_END_TYPE,
 							    GTK_SOURCE_SMART_HOME_END_DISABLED,
 							    G_PARAM_READWRITE));
 
@@ -2801,14 +2801,14 @@ gtk_source_view_set_margin (GtkSourceView *view, guint margin)
 /**
  * gtk_source_view_set_smart_home_end:
  * @view: a #GtkSourceView.
- * @smart_he: the desired behavior among #GtkSourceViewSmartHomeEndType
+ * @smart_he: the desired behavior among #GtkSourceSmartHomeEndType
  *
  * Set the desired movement of the cursor when HOME and END keys
  * are pressed.
  **/
 void
-gtk_source_view_set_smart_home_end (GtkSourceView                 *view,
-				    GtkSourceViewSmartHomeEndType  smart_he)
+gtk_source_view_set_smart_home_end (GtkSourceView             *view,
+				    GtkSourceSmartHomeEndType  smart_he)
 {
 	g_return_if_fail (GTK_IS_SOURCE_VIEW (view));
 
@@ -2824,10 +2824,10 @@ gtk_source_view_set_smart_home_end (GtkSourceView                 *view,
  * gtk_source_view_get_smart_home_end:
  * @view: a #GtkSourceView.
  *
- * Returns a #GtkSourceViewSmartHomeEndTypeend value specifying
+ * Returns a #GtkSourceSmartHomeEndTypeend value specifying
  * how the cursor will move when HOME and END keys are pressed.
  **/
-GtkSourceViewSmartHomeEndType
+GtkSourceSmartHomeEndType
 gtk_source_view_get_smart_home_end (GtkSourceView *view)
 {
 	g_return_val_if_fail (GTK_IS_SOURCE_VIEW (view), FALSE);

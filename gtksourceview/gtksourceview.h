@@ -65,13 +65,25 @@ struct _GtkSourceViewClass
 	void (*_gtk_source_reserved4) (void);
 };
 
+/**
+ * GtkSourceSmartHomeEndType:
+ * @GTK_SOURCE_SMART_HOME_END_DISABLED: smart-home-end disabled.
+ * @GTK_SOURCE_SMART_HOME_END_BEFORE: move to the first/last
+ * non-whitespace character on the first press of the HOME/END keys and
+ * to the beginning/end of the line on the second press.
+ * @GTK_SOURCE_SMART_HOME_END_AFTER: move to the beginning/end of the
+ * line on the first press of the HOME/END keys and to the first/last
+ * non-whitespace character on the second press.
+ * @GTK_SOURCE_SMART_HOME_END_ALWAYS: always move to the first/last
+ * non-whitespace character when the HOME/END keys are pressed.
+ **/
 typedef enum
 {
 	GTK_SOURCE_SMART_HOME_END_DISABLED,
 	GTK_SOURCE_SMART_HOME_END_BEFORE,
 	GTK_SOURCE_SMART_HOME_END_AFTER,
 	GTK_SOURCE_SMART_HOME_END_ALWAYS
-} GtkSourceViewSmartHomeEndType;
+} GtkSourceSmartHomeEndType;
 
 GType		 gtk_source_view_get_type 		(void) G_GNUC_CONST;
 
@@ -126,9 +138,9 @@ void             gtk_source_view_set_marker_pixbuf      (GtkSourceView   *view,
 GdkPixbuf	*gtk_source_view_get_marker_pixbuf      (GtkSourceView   *view,
 				       			 const gchar     *marker_type);
 
-void		 gtk_source_view_set_smart_home_end	(GtkSourceView                 *view,
-							 GtkSourceViewSmartHomeEndType  smart_he);
-GtkSourceViewSmartHomeEndType
+void		 gtk_source_view_set_smart_home_end	(GtkSourceView             *view,
+							 GtkSourceSmartHomeEndType  smart_he);
+GtkSourceSmartHomeEndType
 		 gtk_source_view_get_smart_home_end	(GtkSourceView   *view);
 
 G_END_DECLS
