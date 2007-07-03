@@ -11,7 +11,7 @@ AC_HELP_STRING([--with-system-pcre], [whether to use system copy of pcre library
     USE_SYSTEM_PCRE="auto"
 ])
 
-if $PKG_CONFIG --atleast-version=2.14.0 glib-2.0; then
+if $PKG_CONFIG --atleast-version=2.13.6 glib-2.0; then
   BUILD_GREGEX=no
   USE_SYSTEM_PCRE=yes
 else
