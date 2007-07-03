@@ -21,7 +21,9 @@ LANGUAGES =			\
 	gap.lang		\
 	gtk-doc.lang		\
 	gtkrc.lang		\
+	haddock.lang		\
 	haskell.lang		\
+	haskell-literate.lang	\
 	html.lang		\
 	idl.lang		\
 	ini.lang		\
