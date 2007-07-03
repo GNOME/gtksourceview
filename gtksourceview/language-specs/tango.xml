@@ -88,9 +88,9 @@
 
   <style name="changelog:email"             use-style="def:net-address-in-comment"/>
 
-  <style name="diff:added-line"             use-style="chameleon3"/>
+  <style name="diff:added-line"             foreground="chameleon3"/>
+  <style name="diff:removed-line"           foreground="plum3"/>
   <style name="diff:changed-line"           use-style="c:preprocessor"/>
-  <style name="diff:removed-line"           use-style="plum3"/>
   <style name="diff:diff-file"              use-style="def:data-type"/>
   <style name="diff:location"               use-style="def:keyword"/>
   
@@ -99,14 +99,14 @@
   <style name="js:object"                   foreground="chameleon3" bold="true"/>
   <style name="js:constructors"             foreground="chameleon3"/>
 
-  <style name="latex:display-math"          use-style="plum3"/>
+  <style name="latex:display-math"          foreground="plum3"/>
   <style name="latex:command"               foreground="chameleon3" bold="true"/>
   <style name="latex:include"               use-style="c:preprocessor"/>
 
-  <style name="python:builtins"             use-style="Others"/>
+  <style name="python:builtins"             foreground="chameleon3" bold="true"/>
 
-  <style name="sh:variable1"                use-style="plum3"/>
-  <style name="sh:variable2"                use-style="chameleon3"/>
+  <style name="sh:variable1"                foreground="plum3"/>
+  <style name="sh:variable2"                foreground="chameleon3"/>
 
   <style name="xml:attribute-name"          foreground="plum3"/>
   <style name="xml:tags"                    foreground="chameleon3"/>
