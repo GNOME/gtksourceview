@@ -46,6 +46,9 @@
     <context id="string" style-ref="string">
       <start>"</start>
       <end>"</end>
+      <include>
+        <context ref="def:escape"/>
+      </include>
     </context>
 
     <context id="keyword" style-ref="keyword">

@@ -34,6 +34,7 @@ LANGUAGES =			\
 	nemerle.lang		\
 	objc.lang		\
 	ocaml.lang		\
+	ocl.lang		\
 	octave.lang		\
 	pascal.lang		\
 	perl.lang		\

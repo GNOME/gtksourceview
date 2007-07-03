@@ -1,3 +1,18 @@
+2007-07-03  Paolo Borelli  <pborelli@katamail.com>
+
+	* gtksourceview/language-specs/scheme.lang: escape " in strings
+	* gtksourceview/language-specs/ocl.lang: New, contributed by
+	Mario Carrión. Bug #345911.
+
+2007-07-03  Paolo Borelli  <pborelli@katamail.com>
+
+	* gtksourceview/gtksourceview.c:
+	* gtksourceview/gtksourceview.h:
+	* tests/test-widget.c:
+
+	Rename smart-home end enum to be consistent with other constants
+	and to make python bindings happy.
+
 2007-07-03  Yevgen Muntyan  <muntyan@tamu.edu>
 
 	* gtksourceview/gtksourcestylescheme.c (_gtk_source_style_scheme_new_from_file):
