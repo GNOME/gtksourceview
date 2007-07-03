@@ -1,6 +1,6 @@
 # Vietnamese translation for GTK Source View.
 # Copyright © 2007 Gnome i18n Project for Vietnamese.
-# Nguyễn Thái Ngọc Duy <pclouds@gmx.net>, 2002, 2007.
+# Nguyễn Thái Ngọc Duy <pclouds@gmail.com>, 2002, 2007.
 # Clytie Siddall <clytie@riverland.net.au>, 2005-2007.
 # 
 msgid ""
@@ -35,7 +35,7 @@ msgstr "Có nên tô sáng cú pháp trong vùng đệm hay không"
 
 #: ../gtksourceview/gtksourcebuffer.c:184
 msgid "Maximum Undo Levels"
-msgstr "Cấp hủy bước tối đa"
+msgstr "Mức hủy bước tối đa"
 
 #: ../gtksourceview/gtksourcebuffer.c:185
 msgid "Number of undo levels for the buffer"
@@ -153,11 +153,11 @@ msgstr "Màu nền"
 
 #: ../gtksourceview/gtksourcestyle.c:76
 msgid "Foreground"
-msgstr "Cảnh gần"
+msgstr "Chữ"
 
 #: ../gtksourceview/gtksourcestyle.c:77
 msgid "Foreground color"
-msgstr "Màu cảnh gần"
+msgstr "Màu chữ"
 
 #: ../gtksourceview/gtksourcestyle.c:84
 #: ../gtksourceview/gtksourcestyle.c:85
@@ -172,7 +172,7 @@ msgstr "Nghiêng"
 #: ../gtksourceview/gtksourcestyle.c:100
 #: ../gtksourceview/gtksourcestyle.c:101
 msgid "Underline"
-msgstr "Gạch dưới"
+msgstr "Gạch chân"
 
 #: ../gtksourceview/gtksourcestyle.c:108
 #: ../gtksourceview/gtksourcestyle.c:109
@@ -375,7 +375,7 @@ msgstr "Ada"
 
 #: ../gtksourceview/language-specs/ada.lang.h:2
 msgid "Ada Identifier"
-msgstr "Bộ nhận diện Ada"
+msgstr "Định danh Ada"
 
 #: ../gtksourceview/language-specs/ada.lang.h:3
 msgid "Arbitrary base number"
@@ -393,7 +393,7 @@ msgstr "Luận lý"
 #: ../gtksourceview/language-specs/ada.lang.h:5
 #: ../gtksourceview/language-specs/lua.lang.h:1
 msgid "Character Escape"
-msgstr "Thoát ký tự"
+msgstr "Ký tự thoát"
 
 #: ../gtksourceview/language-specs/ada.lang.h:6
 #: ../gtksourceview/language-specs/c.lang.h:3
@@ -523,7 +523,7 @@ msgstr "Bộ tiền xử lý"
 
 #: ../gtksourceview/language-specs/ada.lang.h:11
 msgid "Real number"
-msgstr "Số thật"
+msgstr "Số chấm động"
 
 #: ../gtksourceview/language-specs/ada.lang.h:12
 #: ../gtksourceview/language-specs/boo.lang.h:6
@@ -686,11 +686,11 @@ msgstr "Thoát"
 
 #: ../gtksourceview/language-specs/c.lang.h:9
 msgid "Escaped Character"
-msgstr "Ký tự đã thoát"
+msgstr "Ký tự thoát"
 
 #: ../gtksourceview/language-specs/c.lang.h:10
 msgid "Float"
-msgstr "Nổi"
+msgstr "Chấm động"
 
 #: ../gtksourceview/language-specs/c.lang.h:11
 msgid "Hex"
@@ -791,7 +791,7 @@ msgstr "Yếu tố ghi chú tài liệu"
 #: ../gtksourceview/language-specs/octave.lang.h:4
 #: ../gtksourceview/language-specs/sql.lang.h:4
 msgid "Floating Point"
-msgstr "Điểm phù động"
+msgstr "Chấm động"
 
 #: ../gtksourceview/language-specs/def.lang.h:15
 msgid "Net Address"
@@ -890,7 +890,7 @@ msgstr "D"
 #: ../gtksourceview/language-specs/nemerle.lang.h:7
 #: ../gtksourceview/language-specs/R.lang.h:4
 msgid "Floating Point Number"
-msgstr "Số điểm phù động"
+msgstr "Số chấm động"
 
 #: ../gtksourceview/language-specs/d.lang.h:7
 msgid "Grave Literal"
@@ -916,7 +916,7 @@ msgstr "Ghi chú dòng"
 
 #: ../gtksourceview/language-specs/d.lang.h:11
 msgid "Nested Comment"
-msgstr "Ghi chú lồng nhau"
+msgstr "Ghi chú lồng"
 
 #: ../gtksourceview/language-specs/d.lang.h:12
 #: ../gtksourceview/language-specs/nemerle.lang.h:12
@@ -1060,7 +1060,7 @@ msgstr "GtkRC"
 #: ../gtksourceview/language-specs/haskell.lang.h:5
 #: ../gtksourceview/language-specs/python.lang.h:6
 msgid "Floating point"
-msgstr "Điểm phù động"
+msgstr "Chấm động"
 
 # Name: don't translate / Tên: đừng dịch
 #: ../gtksourceview/language-specs/haskell.lang.h:6
@@ -1129,7 +1129,7 @@ msgstr "Đối tượng"
 
 #: ../gtksourceview/language-specs/javascript.lang.h:14
 msgid "Properties"
-msgstr "Tài sản"
+msgstr "Thuộc tính"
 
 #: ../gtksourceview/language-specs/latex.lang.h:1
 msgid "Command"
@@ -1172,7 +1172,7 @@ msgstr "Lua"
 
 #: ../gtksourceview/language-specs/lua.lang.h:6
 msgid "Reserved Identifier"
-msgstr "Bộ nhận diện đã dành riêng"
+msgstr "Định danh dành riêng"
 
 #: ../gtksourceview/language-specs/m4.lang.h:2
 msgid "m4"
@@ -1310,7 +1310,7 @@ msgstr "Dựng sẵn"
 
 #: ../gtksourceview/language-specs/python.lang.h:5
 msgid "Escaped character"
-msgstr "Ký tự đã thoát"
+msgstr "Ký tự thoát"
 
 #: ../gtksourceview/language-specs/python.lang.h:9
 #: ../gtksourceview/language-specs/ruby.lang.h:7
@@ -1352,11 +1352,11 @@ msgstr "Chuỗi nháy đôi"
 
 #: ../gtksourceview/language-specs/R.lang.h:5
 msgid "Integer Number"
-msgstr "Số là số nguyên"
+msgstr "Số nguyên"
 
 #: ../gtksourceview/language-specs/R.lang.h:8
 msgid "Reserved Class"
-msgstr "Hàng dữ trữ"
+msgstr "Lớp dành riêng"
 
 #: ../gtksourceview/language-specs/R.lang.h:9
 msgid "Reserved Constant"
@@ -1368,7 +1368,7 @@ msgstr "Chuỗi nháy đơn"
 
 #: ../gtksourceview/language-specs/ruby.lang.h:1
 msgid "Attribute Definition"
-msgstr "Lời định nghĩa thuộc tính"
+msgstr "Định nghĩa thuộc tính"
 
 #: ../gtksourceview/language-specs/ruby.lang.h:2
 msgid "Builtin"
@@ -1486,7 +1486,7 @@ msgstr "Chỉ thị trình biên dịch"
 # Name: don't translate / Tên: đừng dịch
 #: ../gtksourceview/language-specs/verilog.lang.h:5
 msgid "Gate"
-msgstr "Cửa đập"
+msgstr "Cổng"
 
 # Name: don't translate / Tên: đừng dịch
 #: ../gtksourceview/language-specs/verilog.lang.h:9
@@ -1504,7 +1504,7 @@ msgstr "VHDL"
 
 #: ../gtksourceview/language-specs/xml.lang.h:4
 msgid "CDATA Delimiters"
-msgstr "Bộ giới hạn CDATA"
+msgstr "Phân cách CDATA"
 
 #: ../gtksourceview/language-specs/xml.lang.h:6
 msgid "DOCTYPE"
@@ -1803,7 +1803,7 @@ msgstr "Gặp lỗi khi phân tách văn bản thay thế « %s » ở ký tự 
 #~ msgstr "Điều sửa đổi độ quan trọng"
 
 #~ msgid "Known Property Values"
-#~ msgstr "Giá trị tài sản đã biết"
+#~ msgstr "Giá trị thuộc tính đã biết"
 
 #~ msgid "Operators"
 #~ msgstr "Toán tử"
@@ -1900,19 +1900,19 @@ msgstr "Gặp lỗi khi phân tách văn bản thay thế « %s » ở ký tự 
 #~ msgstr "Hàm toàn cục"
 
 #~ msgid "Global Properties"
-#~ msgstr "Tài sản toàn cục"
+#~ msgstr "Thuộc tính toàn cục"
 
 #~ msgid "Hexadecimal Number"
 #~ msgstr "Số thập lục"
 
 #~ msgid "Math Value Properties"
-#~ msgstr "Tài sản giá trị toán"
+#~ msgstr "Thuộc tính giá trị toán"
 
 #~ msgid "Object Functions"
 #~ msgstr "Hàm đối tượng"
 
 #~ msgid "Object Properties"
-#~ msgstr "Tài sản đối tượng"
+#~ msgstr "Thuộc tính đối tượng"
 
 #~ msgid "Word Operators"
 #~ msgstr "Toán tử từ"
