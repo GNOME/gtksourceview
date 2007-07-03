@@ -136,13 +136,13 @@ static GtkRadioActionEntry radio_entries[] = {
 
 static GtkRadioActionEntry smart_home_end_entries[] = {
 	{ "SmartHomeEndDisabled", NULL, "Disabled", NULL,
-	  "Smart Home/End disabled", GTKSOURCEVIEW_SMART_HOME_END_DISABLED },
+	  "Smart Home/End disabled", GTK_SOURCE_SMART_HOME_END_DISABLED },
 	{ "SmartHomeEndBefore", NULL, "Before", NULL,
-	  "Smart Home/End before", GTKSOURCEVIEW_SMART_HOME_END_BEFORE },
+	  "Smart Home/End before", GTK_SOURCE_SMART_HOME_END_BEFORE },
 	{ "SmartHomeEndAfter", NULL, "After", NULL,
-	  "Smart Home/End after", GTKSOURCEVIEW_SMART_HOME_END_AFTER },
+	  "Smart Home/End after", GTK_SOURCE_SMART_HOME_END_AFTER },
 	{ "SmartHomeEndAlways", NULL, "Always", NULL,
-	  "Smart Home/End always", GTKSOURCEVIEW_SMART_HOME_END_ALWAYS }
+	  "Smart Home/End always", GTK_SOURCE_SMART_HOME_END_ALWAYS }
 };
 
 static const gchar *view_ui_description =

@@ -301,7 +301,7 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 							      "non whitespace characters on line before going "
 							      "to the start/end of the line"),
 							    GTK_TYPE_SOURCE_VIEW_SMART_HOME_END_TYPE,
-							    GTKSOURCEVIEW_SMART_HOME_END_DISABLED,
+							    GTK_SOURCE_SMART_HOME_END_DISABLED,
 							    G_PARAM_READWRITE));
 
 	g_object_class_install_property (object_class,
@@ -610,7 +610,7 @@ gtk_source_view_init (GtkSourceView *view)
 	view->priv->margin = DEFAULT_MARGIN;
 	view->priv->cached_margin_width = -1;
 	view->priv->indent_on_tab = TRUE;
-	view->priv->smart_home_end = GTKSOURCEVIEW_SMART_HOME_END_DISABLED;
+	view->priv->smart_home_end = GTK_SOURCE_SMART_HOME_END_DISABLED;
 
 	view->priv->pixmap_cache = g_hash_table_new_full (g_str_hash, g_str_equal,
 							  (GDestroyNotify) g_free,
@@ -1007,7 +1007,7 @@ gtk_source_view_move_cursor (GtkTextView    *text_view,
 
 		switch (source_view->priv->smart_home_end) {
 
-		case GTKSOURCEVIEW_SMART_HOME_END_BEFORE:
+		case GTK_SOURCE_SMART_HOME_END_BEFORE:
 			if (!gtk_text_iter_equal (&cur, &iter) ||
 			    gtk_text_iter_starts_line (&cur))
 			{
@@ -1016,7 +1016,7 @@ gtk_source_view_move_cursor (GtkTextView    *text_view,
 			}
 			break;
 
-		case GTKSOURCEVIEW_SMART_HOME_END_AFTER:
+		case GTK_SOURCE_SMART_HOME_END_AFTER:
 			if (gtk_text_iter_starts_line (&cur))
 			{
 				do_cursor_move (text_view, &cur, &iter, extend_selection);
@@ -1024,7 +1024,7 @@ gtk_source_view_move_cursor (GtkTextView    *text_view,
 			}
 			break;
 
-		case GTKSOURCEVIEW_SMART_HOME_END_ALWAYS:
+		case GTK_SOURCE_SMART_HOME_END_ALWAYS:
 			do_cursor_move (text_view, &cur, &iter, extend_selection);
 			return;
 
@@ -1038,7 +1038,7 @@ gtk_source_view_move_cursor (GtkTextView    *text_view,
 
 		switch (source_view->priv->smart_home_end) {
 
-		case GTKSOURCEVIEW_SMART_HOME_END_BEFORE:
+		case GTK_SOURCE_SMART_HOME_END_BEFORE:
 			if (!gtk_text_iter_equal (&cur, &iter) ||
 			    gtk_text_iter_ends_line (&cur))
 			{
@@ -1047,7 +1047,7 @@ gtk_source_view_move_cursor (GtkTextView    *text_view,
 			}
 			break;
 
-		case GTKSOURCEVIEW_SMART_HOME_END_AFTER:
+		case GTK_SOURCE_SMART_HOME_END_AFTER:
 			if (gtk_text_iter_ends_line (&cur))
 			{
 				do_cursor_move (text_view, &cur, &iter, extend_selection);
@@ -1055,7 +1055,7 @@ gtk_source_view_move_cursor (GtkTextView    *text_view,
 			}
 			break;
 
-		case GTKSOURCEVIEW_SMART_HOME_END_ALWAYS:
+		case GTK_SOURCE_SMART_HOME_END_ALWAYS:
 			do_cursor_move (text_view, &cur, &iter, extend_selection);
 			return;
 
