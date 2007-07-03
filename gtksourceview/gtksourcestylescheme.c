@@ -986,6 +986,7 @@ _gtk_source_style_scheme_new_from_file (const gchar *filename)
 		gchar *filename_utf8 = g_filename_display_name (filename);
 		g_warning ("could not load scheme file '%s': empty document", filename_utf8);
 		g_free (filename_utf8);
+		xmlFreeDoc (doc);
 		g_free (text);
 		return NULL;
 	}
@@ -1004,6 +1005,7 @@ _gtk_source_style_scheme_new_from_file (const gchar *filename)
 		scheme = NULL;
 	}
 
+	xmlFreeDoc (doc);
 	g_free (text);
 	return scheme;
 }

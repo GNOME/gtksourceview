@@ -1,3 +1,8 @@
+2007-07-03  Yevgen Muntyan  <muntyan@tamu.edu>
+
+	* gtksourceview/gtksourcestylescheme.c (_gtk_source_style_scheme_new_from_file):
+	do not leak xml.
+
 2007-06-29  Paolo Borelli  <pborelli@katamail.com>
 
 	* gtksourceview/language-specs/ruby.lang: do not detect :foo
