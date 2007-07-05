@@ -644,7 +644,7 @@ _gtk_source_style_scheme_apply (GtkSourceStyleScheme *scheme,
 		style2 = gtk_source_style_scheme_get_style (scheme, STYLE_SELECTED_UNFOCUSED);
 		if (style2 == NULL)
 			style2 = style;
-		set_text_style (widget, style, GTK_STATE_ACTIVE);
+		set_text_style (widget, style2, GTK_STATE_ACTIVE);
 
 		style = gtk_source_style_scheme_get_style (scheme, STYLE_LINE_NUMBERS);
 		set_line_numbers_style (widget, style);
