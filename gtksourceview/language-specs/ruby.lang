@@ -29,13 +29,18 @@
   </metadata>
 
   <styles>
-    <style id="comment" _name="Comment" map-to="def:comment"/>
+    <style id="comment"              _name="Comment"              map-to="def:comment"/>
     <style id="attribute-definition" _name="Attribute Definition" map-to="def:data-type"/>
-    <style id="module-handler" _name="Module handler" map-to="def:preprocessor"/>
-    <style id="keyword" _name="Keyword" map-to="def:keyword"/>
-    <style id="decimal" _name="Decimal" map-to="def:decimal"/>
-    <style id="data-type" _name="Data Type" map-to="def:data-type"/>
-    <style id="builtin" _name="Builtin" map-to="def:data-type"/>
+    <style id="module-handler"       _name="Module handler"       map-to="def:preprocessor"/>
+    <style id="keyword"              _name="Keyword"              map-to="def:keyword"/>
+    <style id="floating-point"       _name="Floating point"       map-to="def:floating-point"/>
+    <style id="decimal"              _name="Decimal"              map-to="def:decimal"/>
+    <style id="base-n-integer"       _name="Base-N integer"       map-to="def:base-n-integer"/>
+    <style id="numeric-literal"      _name="Numeric literal"      map-to="def:base-n-integer"/>
+    <style id="string"               _name="String"               map-to="def:string"/>
+    <style id="builtin"              _name="Builtin"              map-to="def:data-type"/>
+    <style id="constant"             _name="Constant"             map-to="def:data-type"/>
+    <style id="variable"             _name="Variable"             map-to="def:function"/>
   </styles>
 
   <definitions>
@@ -65,7 +70,7 @@
       <keyword>undef</keyword>
     </context>
 
-    <context id="pseudo-variables" style-ref="data-type">
+    <context id="pseudo-variables" style-ref="variable">
       <keyword>self</keyword>
       <keyword>super</keyword>
       <keyword>nil</keyword>
@@ -153,37 +158,158 @@
       <keyword>TrueClass</keyword>
     </context>
 
-    <context id="class-variables" style-ref="data-type">
+    <context id="class-variables" style-ref="variable">
       <match>@@[a-zA-Z_][a-zA-Z0-9_]*</match>
     </context>
 
-    <context id="instance-variables" style-ref="data-type">
+    <context id="instance-variables" style-ref="variable">
       <match>@[a-zA-Z_][a-zA-Z0-9_]*</match>
     </context>
 
-    <context id="global-variables" style-ref="data-type">
+    <context id="global-variables" style-ref="variable">
       <match>\$[a-zA-Z_][a-zA-Z0-9_]*</match>
     </context>
 
-    <context id="symbols" style-ref="data-type">
+    <context id="predefined-variables" style-ref="variable">
+      <match>\$(-[a-zA-Z]|\pP)</match>
+    </context>
+
+    <context id="symbols" style-ref="string">
       <match>(?&lt;!:):[a-zA-Z0-9_]+</match>
     </context>
 
-    <context id="regexp-variables" style-ref="decimal">
+    <context id="regexp-variables" style-ref="variable">
       <match>\$[1-9][0-9]*</match>
     </context>
 
-    <context id="constants" style-ref="decimal">
-      <match>\b[A-Z_][A-Za-z0-9_:]*\b</match>
+    <context id="constants" style-ref="constant">
+      <match>(::)?\b[A-Z][A-Za-z0-9_]*\b</match>
+    </context>
+
+    <define-regex id="float" extended="true">
+      ( (\d+)?\.\d+ | \d+\. ) |
+      ( (\d+|(\d+)?\.\d+|\d+\.)[eE][+-]?\d+ )
+    </define-regex>
+
+    <context id="float" style-ref="floating-point">
+      <match>(?&lt;![\w\.])\%{float}(?![\w\.])</match>
+    </context>
+
+    <context id="decimal" style-ref="decimal">
+      <match>(?&lt;![\w\.])([1-9][0-9]*|0)[lL]?(?![\w\.])</match>
+    </context>
+
+    <context id="octal" style-ref="base-n-integer">
+      <match>(?&lt;![\w\.])0[0-7]+[lL]?(?![\w\.])</match>
+    </context>
+
+    <context id="hex" style-ref="base-n-integer">
+      <match>(?&lt;![\w\.])0[xX][0-9A-Fa-f]+[lL]?(?![\w\.])</match>
+    </context>
+
+    <context id="numeric-literal" style-ref="numeric-literal">
+      <match>\?((\\[MC]-){1,2}|\\?)\S</match>
+    </context>
+
+    <!-- in double quotes and backticks -->
+    <context id="simple-interpolation">
+      <start>#</start>
+      <end></end>
+      <include>
+        <context ref="class-variables"/>
+        <context ref="instance-variables"/>
+        <context ref="global-variables"/>
+        <context ref="predefined-variables"/>
+      </include>
+    </context>
+
+    <!-- in double quotes and backticks -->
+    <!-- FIXME: really would like for the syntax highlight to go back
+         to none here, as any ruby code could go here -->
+    <context id="complex-interpolation">
+      <start>#{</start>
+      <end>}</end>
+      <include>
+        <context ref="ruby"/>
+      </include>
+    </context>
+
+    <!-- ruby strings do not end at line end,
+         so we cannot use def:string 
+         (parts lifted from perl.lang) -->
+    <context id="double-quoted-string" style-ref="string">
+      <start>"</start>
+      <end>"</end>
+      <include>
+        <context ref="def:escape"/>
+        <context ref="def:line-continue"/>
+        <context ref="complex-interpolation"/>
+        <context ref="simple-interpolation"/>
+      </include>
+    </context>
+
+    <context id="single-quoted-string" style-ref="string">
+      <start>'</start>
+      <end>'</end>
+      <include>
+        <context ref="def:escape"/>
+        <context ref="def:line-continue"/>
+      </include>
+    </context>
+
+    <context id="backtick-quoted-string" style-ref="string">
+      <start>`</start>
+      <end>`</end>
+      <include>
+        <context ref="def:escape"/>
+        <context ref="def:line-continue"/>
+        <context ref="complex-interpolation"/>
+        <context ref="simple-interpolation"/>
+      </include>
+    </context>
+
+    <context id="heredoc-string" style-ref="string" style-inside="true">
+      <start>&lt;&lt;(\w+)</start>
+      <end>\%{1@start}</end>
+      <include>
+        <context ref="def:escape"/>
+        <context ref="def:line-continue"/>
+        <context ref="complex-interpolation"/>
+        <context ref="simple-interpolation"/>
+      </include>
+    </context>
+
+    <context id="heredoc-single-quoted-string" style-ref="string" style-inside="true">
+      <start>&lt;&lt;'(\w+)'</start>
+      <end>\%{1@start}</end>
+      <include>
+        <context ref="def:escape"/>
+        <context ref="def:line-continue"/>
+      </include>
+    </context>
+
+    <context id="heredoc-double-quoted-string" style-ref="string" style-inside="true">
+      <start>&lt;&lt;"(\w+)"</start>
+      <end>\%{1@start}</end>
+      <include>
+        <context ref="def:escape"/>
+        <context ref="def:line-continue"/>
+        <context ref="complex-interpolation"/>
+        <context ref="simple-interpolation"/>
+      </include>
     </context>
 
     <context id="ruby">
       <include>
         <context ref="def:shebang"/>
         <context ref="def:shell-like-comment"/>
-        <context ref="def:string"/>
-        <context ref="def:single-quoted-string"/>
         <context ref="multiline-comment"/>
+        <context ref="heredoc-string"/>
+        <context ref="heredoc-single-quoted-string"/>
+        <context ref="heredoc-double-quoted-string"/>
+        <context ref="double-quoted-string"/>
+        <context ref="single-quoted-string"/>
+        <context ref="backtick-quoted-string"/>
         <context ref="attribute-definitions"/>
         <context ref="definitions"/>
         <context ref="pseudo-variables"/>
@@ -193,9 +319,16 @@
         <context ref="class-variables"/>
         <context ref="instance-variables"/>
         <context ref="global-variables"/>
+        <context ref="predefined-variables"/>
         <context ref="symbols"/>
         <context ref="regexp-variables"/>
         <context ref="constants"/>
+        <context ref="float"/>
+        <context ref="decimal"/>
+        <context ref="octal"/>
+        <context ref="hex"/>
+        <context ref="numeric-literal"/>
+        
       </include>
     </context>
   </definitions>
