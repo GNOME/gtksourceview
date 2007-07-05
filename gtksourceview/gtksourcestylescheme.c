@@ -26,14 +26,15 @@
 #include <libxml/parser.h>
 #include <string.h>
 
-#define STYLE_TEXT		"text"
-#define STYLE_SELECTED		"text-selected"
-#define STYLE_BRACKET_MATCH	"bracket-match"
-#define STYLE_BRACKET_MISMATCH	"bracket-mismatch"
-#define STYLE_CURSOR		"cursor"
-#define STYLE_SECONDARY_CURSOR	"secondary-cursor"
-#define STYLE_CURRENT_LINE	"current-line"
-#define STYLE_LINE_NUMBERS	"line-numbers"
+#define STYLE_TEXT			"text"
+#define STYLE_SELECTED			"selection"
+#define STYLE_SELECTED_UNFOCUSED	"selection-unfocused"
+#define STYLE_BRACKET_MATCH		"bracket-match"
+#define STYLE_BRACKET_MISMATCH		"bracket-mismatch"
+#define STYLE_CURSOR			"cursor"
+#define STYLE_SECONDARY_CURSOR		"secondary-cursor"
+#define STYLE_CURRENT_LINE		"current-line"
+#define STYLE_LINE_NUMBERS		"line-numbers"
 
 #define STYLE_SCHEME_VERSION	"1.0"
 
@@ -634,12 +635,16 @@ _gtk_source_style_scheme_apply (GtkSourceStyleScheme *scheme,
 
 		style = gtk_source_style_scheme_get_style (scheme, STYLE_TEXT);
 		set_text_style (widget, style, GTK_STATE_NORMAL);
-		set_text_style (widget, style, GTK_STATE_ACTIVE);
 		set_text_style (widget, style, GTK_STATE_PRELIGHT);
 		set_text_style (widget, style, GTK_STATE_INSENSITIVE);
 
 		style = gtk_source_style_scheme_get_style (scheme, STYLE_SELECTED);
 		set_text_style (widget, style, GTK_STATE_SELECTED);
+
+		style2 = gtk_source_style_scheme_get_style (scheme, STYLE_SELECTED_UNFOCUSED);
+		if (style2 == NULL)
+			style2 = style;
+		set_text_style (widget, style, GTK_STATE_ACTIVE);
 
 		style = gtk_source_style_scheme_get_style (scheme, STYLE_LINE_NUMBERS);
 		set_line_numbers_style (widget, style);
