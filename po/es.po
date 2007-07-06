@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview.HEAD.es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-07-04 03:27+0100\n"
-"PO-Revision-Date: 2007-07-04 16:56+0200\n"
+"POT-Creation-Date: 2007-07-06 03:25+0100\n"
+"PO-Revision-Date: 2007-07-06 15:49+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -241,13 +241,13 @@ msgstr "Directorios de estilos de esquemas"
 msgid "List of directories where the style scheme files are located"
 msgstr "Lista de directorios en los que se hallan los archivos de estilos de esquemas"
 
-#: ../gtksourceview/gtksourcestylescheme.c:159
 #: ../gtksourceview/gtksourcestylescheme.c:160
+#: ../gtksourceview/gtksourcestylescheme.c:161
 msgid "Style scheme id"
 msgstr "ID del estilo del esquema"
 
-#: ../gtksourceview/gtksourcestylescheme.c:174
 #: ../gtksourceview/gtksourcestylescheme.c:175
+#: ../gtksourceview/gtksourcestylescheme.c:176
 msgid "Style scheme name"
 msgstr "Nombre del estilo del esquema"
 
@@ -425,7 +425,7 @@ msgstr "Carácter de escape"
 #: ../gtksourceview/language-specs/perl.lang.h:1
 #: ../gtksourceview/language-specs/php.lang.h:1
 #: ../gtksourceview/language-specs/po.lang.h:1
-#: ../gtksourceview/language-specs/ruby.lang.h:3
+#: ../gtksourceview/language-specs/ruby.lang.h:4
 #: ../gtksourceview/language-specs/scheme.lang.h:2
 #: ../gtksourceview/language-specs/sql.lang.h:1
 #: ../gtksourceview/language-specs/texinfo.lang.h:1
@@ -454,7 +454,6 @@ msgstr "Comentario"
 #: ../gtksourceview/language-specs/pascal.lang.h:2
 #: ../gtksourceview/language-specs/perl.lang.h:2
 #: ../gtksourceview/language-specs/php.lang.h:2
-#: ../gtksourceview/language-specs/ruby.lang.h:4
 #: ../gtksourceview/language-specs/sql.lang.h:2
 #: ../gtksourceview/language-specs/tcl.lang.h:1
 msgid "Data Type"
@@ -475,7 +474,7 @@ msgstr "Tipo de dato"
 #: ../gtksourceview/language-specs/octave.lang.h:3
 #: ../gtksourceview/language-specs/pascal.lang.h:3
 #: ../gtksourceview/language-specs/python.lang.h:4
-#: ../gtksourceview/language-specs/ruby.lang.h:5
+#: ../gtksourceview/language-specs/ruby.lang.h:6
 #: ../gtksourceview/language-specs/sql.lang.h:3
 msgid "Decimal"
 msgstr "Decimal"
@@ -505,7 +504,7 @@ msgstr "Decimal"
 #: ../gtksourceview/language-specs/po.lang.h:2
 #: ../gtksourceview/language-specs/python.lang.h:8
 #: ../gtksourceview/language-specs/R.lang.h:6
-#: ../gtksourceview/language-specs/ruby.lang.h:6
+#: ../gtksourceview/language-specs/ruby.lang.h:8
 #: ../gtksourceview/language-specs/scheme.lang.h:4
 #: ../gtksourceview/language-specs/sql.lang.h:6
 #: ../gtksourceview/language-specs/tcl.lang.h:2
@@ -583,6 +582,7 @@ msgstr "Fuentes"
 #: ../gtksourceview/language-specs/php.lang.h:7
 #: ../gtksourceview/language-specs/po.lang.h:5
 #: ../gtksourceview/language-specs/python.lang.h:14
+#: ../gtksourceview/language-specs/ruby.lang.h:13
 #: ../gtksourceview/language-specs/scheme.lang.h:7
 #: ../gtksourceview/language-specs/sql.lang.h:10
 #: ../gtksourceview/language-specs/texinfo.lang.h:6
@@ -603,7 +603,7 @@ msgstr "Patrón"
 #: ../gtksourceview/language-specs/php.lang.h:6
 #: ../gtksourceview/language-specs/python.lang.h:12
 #: ../gtksourceview/language-specs/R.lang.h:10
-#: ../gtksourceview/language-specs/ruby.lang.h:9
+#: ../gtksourceview/language-specs/ruby.lang.h:12
 #: ../gtksourceview/language-specs/sh.lang.h:1
 #: ../gtksourceview/language-specs/tcl.lang.h:3
 msgid "Scripts"
@@ -1032,6 +1032,7 @@ msgid "Scientific"
 msgstr "Científico"
 
 #: ../gtksourceview/language-specs/gtk-doc.lang.h:1
+#: ../gtksourceview/language-specs/ruby.lang.h:5
 msgid "Constant"
 msgstr "Constante"
 
@@ -1081,6 +1082,7 @@ msgstr "Símbolo"
 
 #: ../gtksourceview/language-specs/haskell.lang.h:15
 #: ../gtksourceview/language-specs/pkgconfig.lang.h:3
+#: ../gtksourceview/language-specs/ruby.lang.h:14
 msgid "Variable"
 msgstr "Variable"
 
@@ -1317,6 +1319,7 @@ msgid "gettext translation"
 msgstr "traducción gettext"
 
 #: ../gtksourceview/language-specs/python.lang.h:1
+#: ../gtksourceview/language-specs/ruby.lang.h:2
 msgid "Base-N integer"
 msgstr "Entero en base-N"
 
@@ -1329,11 +1332,12 @@ msgid "Escaped character"
 msgstr "Carácter de escape"
 
 #: ../gtksourceview/language-specs/python.lang.h:6
+#: ../gtksourceview/language-specs/ruby.lang.h:7
 msgid "Floating point"
 msgstr "Coma flotante"
 
 #: ../gtksourceview/language-specs/python.lang.h:9
-#: ../gtksourceview/language-specs/ruby.lang.h:7
+#: ../gtksourceview/language-specs/ruby.lang.h:9
 msgid "Module handler"
 msgstr "Manejador de módulo"
 
@@ -1389,11 +1393,15 @@ msgstr "Cadena entrecomillada simple"
 msgid "Attribute Definition"
 msgstr "Definición del atributo"
 
-#: ../gtksourceview/language-specs/ruby.lang.h:2
+#: ../gtksourceview/language-specs/ruby.lang.h:3
 msgid "Builtin"
 msgstr "Integrado"
 
-#: ../gtksourceview/language-specs/ruby.lang.h:8
+#: ../gtksourceview/language-specs/ruby.lang.h:10
+msgid "Numeric literal"
+msgstr "Numérico literal"
+
+#: ../gtksourceview/language-specs/ruby.lang.h:11
 msgid "Ruby"
 msgstr "Ruby"
 
