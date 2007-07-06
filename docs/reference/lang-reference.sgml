@@ -18,7 +18,7 @@ meaning and usage of every element and attribute.  The formal definition is
 stored in the RelaxNG schema file <filename>language2.rng</filename> which
 should be installed on your system in the directory
 <filename>${PREFIX}/share/gtksourceview-2.0/</filename> (where
-${PREFIX} can be <filename>/usr/</filename> or
+<filename>${PREFIX}</filename> can be <filename>/usr/</filename> or
 <filename>/usr/local/</filename> if you have installed from source.
 </para>
 </refsect1>
@@ -231,32 +231,42 @@ Contained elements: none.
 <title>Tag <code>&lt;default-regex-options&gt;</code></title>
 
 <para>
-A string that will set the default regular expression options.
-Avaliable options are:
+Used to set global options for how regular expressions are processed.
 </para>
-
-<itemizedlist>
-<listitem><para>
-<code>i</code>: case insensitive;
-</para></listitem>
-
-<listitem><para>
-<code>x</code>: extended (spaces are ignored and it is possible to
-put comments starting with "<code>#</code>" and ending at the end of the
-line);
-</para></listitem>
-
-<listitem><para>
-<code>s</code>: the metacharacter "<code>.</code>" matches the "<code>\n</code>".
-</para></listitem>
-</itemizedlist>
 
 <para>
-Those options can be overridden in every regular espression using the
-<code>/regex/options</code> syntax: to disable a group of enabled options,
-put an hyphen brefore them (e.g. <code>/[A-Z][a-z]*/-i</code> matches are
-case sensitive even if the default is to ignore case differencies).
+Contained elements: none.
 </para>
+
+<variablelist>
+<title>Attributes</title>
+<varlistentry>
+<term><code>case-sensitive</code> (optional)</term>
+<listitem><para>Set to <code>false</code> to make regular expressions
+ignore case.  
+Defaults to <code>true</code>.
+</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><code>extended</code> (optional)</term>
+<listitem><para>Setting this to <code>true</code> makes the regular
+expression engine ignore spaces and comments. These comments start with
+"<code>#</code>" and continue to the end of the line.
+Defaults to <code>false</code>.
+</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><code>dupnames</code> (optional)</term>
+<listitem><para>Setting this to true allows one to repeat an identifier
+for capturing parentheses.  This is useful for some patterns that you
+know only one instance of a named subpattern can ever be matched.
+Defaults to <code>false</code>.
+</para></listitem>
+</varlistentry>
+
+</variablelist>
 
 <para>
 Contained elements: none.
@@ -643,8 +653,11 @@ Contained elements:
 <title>Tag <code>&lt;match&gt;</code></title>
 
 <para>
-Contains the regular expression for the current simple context. The
-expression is in the same form used in <code>&lt;define-regex&gt;</code> elements.
+Contains the regular expression for the current simple context. 
+The expression is in the same form used in
+<code>&lt;define-regex&gt;</code> elements.
+It is allowed to use any of the attributes from 
+<code>&lt;default-regex-opts&gt;</code> as attributes of this tag.
 </para>
 
 <para>
@@ -660,6 +673,8 @@ Contained elements: none.
 Contains the starting regular expression for the current container context.
 The expression is in the same form used in <code>&lt;define-regex&gt;</code>
 elements.
+It is allowed to use any of the attributes from 
+<code>&lt;default-regex-opts&gt;</code> as attributes of this tag.
 </para>
 
 <para>
@@ -688,6 +703,10 @@ implement shell-style here-documents with this code:
 &lt;/context&gt;
 </programlisting>
 
+<para>
+It is also possible to use any of the attributes from 
+<code>&lt;default-regex-opts&gt;</code> as attributes of this tag.
+</para>
 <para>
 Contained elements: none.
 </para>
@@ -740,4 +759,43 @@ Contained elements: none.
 
 </refsect1>
 
+<refsect1>
+<title>Tag <code>&lt;replace&gt;</code></title>
+
+<para>
+The replace tag allows you to change one context so it functions as 
+another context.  For example, in the <code>html.lang</code> definition, 
+there are a few references to a null context with id 
+"<code>external</code>".  In <code>php.lang</code>, that context is 
+replaced like this: <code>&lt;replace id="html:external" 
+ref="php-block"&gt;</code>, so that php blocks are recognized within the 
+<code>html:html</code> context at the points where the 
+<code>external</code> context appears.
+</para>
+
+<para>
+Contained elements: none.
+</para>
+
+<variablelist>
+<title>Attributes:</title>
+
+<varlistentry>
+<term><code>id</code> (mandatory)</term>
+<listitem><para>
+The id of the context to replace. Ex: <code>id="html:external"</code>
+</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><code>ref</code> (mandatory)</term>
+<listitem><para>
+The id of the context to put in place of the context being replaced. Ex: <code>ref="php-block"</code>
+</para></listitem>
+</varlistentry>
+
+</variablelist>
+
+</refsect1>
+ 
 </refentry>
