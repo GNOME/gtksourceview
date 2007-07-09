@@ -3,6 +3,15 @@
 	* docs/reference/language-reference.sgml: lang format
 	specification updates by thelema@swbell.net.
 
+2007-07-05  Yevgen Muntyan  <muntyan@tamu.edu>
+
+	* gtksourceview/language-specs/testdark.xml:
+	* gtksourceview/gtksourcestylescheme.c: renamed "text-selected"
+	to "selection", and added "selection-unfocused".
+
+	* gtksourceview/language-specs/lua.lang:
+	removed <!DOCTYPE language SYSTEM "language.dtd"> bit.
+
 2007-07-05  Paolo Borelli  <pborelli@katamail.com>
 
 	* gtksourceview/language-specs/ruby.lang: many improvements
