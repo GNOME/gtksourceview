@@ -154,8 +154,12 @@ The following are names of styles which control #GtkSourceView appearance:
 <listitem><para>Default style of text.</para></listitem>
 </varlistentry>
 <varlistentry>
-<term><code>text-selected</code></term>
+<term><code>selection</code></term>
 <listitem><para>Style of selected text.</para></listitem>
+</varlistentry>
+<varlistentry>
+<term><code>selection-unfocused</code></term>
+<listitem><para>Style of selected text when the widget doesn't have input focus.</para></listitem>
 </varlistentry>
 <varlistentry>
 <term><code>cursor</code></term>

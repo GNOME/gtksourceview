@@ -103,7 +103,7 @@
                 <define-regex id="preproc-start">^\s*#\s*</define-regex>
 
                 <context id="if0-comment" style-ref="comment">
-                    <start>\%{preproc-start}if\s*0\b</start>
+                    <start>\%{preproc-start}if\b\s*0\b</start>
                     <end>\%{preproc-start}(endif|else|elif)\b</end>
                     <include>
                         <context id="if-in-if0">

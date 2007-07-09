@@ -1,3 +1,11 @@
+2007-07-09  Yevgen Muntyan  <muntyan@tamu.edu>
+
+	* docs/reference/tmpl/stylescheme.sgml:
+	document "selection" and "selection-unfocused" styles.
+
+	* gtksourceview/language-specs/c.lang:
+	do not highlight "#if0" as "#if 0".
+
 2007-07-06  Paolo Borelli  <pborelli@katamail.com>
 
 	* docs/reference/language-reference.sgml: lang format
