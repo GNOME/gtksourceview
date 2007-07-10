@@ -2521,6 +2521,7 @@ regex_new (const gchar           *pattern,
 	   GError               **error)
 {
 	Regex *regex;
+	static GRegex *start_ref_re = NULL;
 
 	g_return_val_if_fail (error == NULL || *error == NULL, NULL);
 
@@ -2535,7 +2536,15 @@ regex_new (const gchar           *pattern,
 	regex = g_slice_new0 (Regex);
 	regex->ref_count = 1;
 
-	if (g_regex_match_simple (START_REF_REGEX, pattern, 0, 0))
+	if (start_ref_re == NULL)
+		start_ref_re = g_regex_new (START_REF_REGEX,
+					    /* http://bugzilla.gnome.org/show_bug.cgi?id=455640
+					     * we don't care about line ends anyway */
+					    G_REGEX_OPTIMIZE | G_REGEX_NEWLINE_LF,
+					    0,
+					    NULL);
+
+	if (g_regex_match (start_ref_re, pattern, 0, NULL))
 	{
 		regex->resolved = FALSE;
 		regex->u.info.pattern = g_strdup (pattern);
@@ -2545,7 +2554,7 @@ regex_new (const gchar           *pattern,
 	{
 		regex->resolved = TRUE;
 		regex->u.regex.regex = g_regex_new (pattern,
-						    flags | G_REGEX_OPTIMIZE, 0,
+						    flags | G_REGEX_OPTIMIZE | G_REGEX_NEWLINE_LF, 0,
 						    error);
 
 		if (regex->u.regex.regex == NULL)
@@ -2662,7 +2671,7 @@ regex_resolve (Regex       *regex,
 	if (regex == NULL || regex->resolved)
 		return regex_ref (regex);
 
-	start_ref = g_regex_new (START_REF_REGEX, 0, 0, NULL);
+	start_ref = g_regex_new (START_REF_REGEX, G_REGEX_NEWLINE_LF, 0, NULL);
 	data.start_regex = start_regex;
 	data.matched_text = matched_text;
 	expanded_regex = g_regex_replace_eval (start_ref,

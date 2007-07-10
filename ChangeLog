@@ -1,3 +1,16 @@
+2007-07-10  Yevgen Muntyan  <muntyan@tamu.edu>
+
+	* gtksourceview/gtksourcecontextengine.c (regex_new), (regex_resolve):
+	* gtksourceview/gtksourcelanguage-parser-2.c (expand_regex_vars),
+	(expand_regex_delimiters), (expand_regex):
+	Use static variables for often used regexes instead of using
+	g_regex_match_simple().
+	Use G_REGEX_NEWLINE_LF with all regexes to workaround bug #455640.
+
+	* gtksourceview/language-specs/changelog.lang:
+	parse little more dates, do not break when empty lines are not actually
+	empty but contain whitespace.
+
 2007-07-10  Paolo Borelli  <pborelli@katamail.com>
 
 	* gtksourceview/gtksourcestylescheme.c: add description getter.
