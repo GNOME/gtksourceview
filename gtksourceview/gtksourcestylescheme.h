@@ -59,6 +59,7 @@ GtkSourceStyleScheme	*_gtk_source_style_scheme_new		(const gchar          *id,
 
 const gchar             *gtk_source_style_scheme_get_id         (GtkSourceStyleScheme *scheme);
 const gchar             *gtk_source_style_scheme_get_name       (GtkSourceStyleScheme *scheme);
+const gchar             *gtk_source_style_scheme_get_description(GtkSourceStyleScheme *scheme);
 
 GtkSourceStyle		*gtk_source_style_scheme_get_style	(GtkSourceStyleScheme *scheme,
 								 const gchar          *style_name);

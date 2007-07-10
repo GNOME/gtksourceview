@@ -233,6 +233,22 @@ gtk_source_style_scheme_get_name (GtkSourceStyleScheme *scheme)
 }
 
 /**
+ * gtk_source_style_scheme_get_description:
+ * @scheme: a #GtkSourceStyleScheme.
+ *
+ * Returns: @scheme description.
+ *
+ * Since: 2.0
+ */
+const gchar *
+gtk_source_style_scheme_get_description (GtkSourceStyleScheme *scheme)
+{
+	g_return_val_if_fail (GTK_IS_SOURCE_STYLE_SCHEME (scheme), NULL);
+	g_return_val_if_fail (scheme->priv->description != NULL, "");
+	return scheme->priv->description;
+}
+
+/**
  * _gtk_source_style_scheme_new:
  * @id: scheme id.
  * @name: scheme name.
