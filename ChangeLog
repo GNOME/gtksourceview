@@ -1,3 +1,13 @@
+2007-07-12  Steve Frécinaux  <code@istique.net>
+
+	* gtksourceview/language-specs/perl.lang: new lang file, much more
+	complete than the old one, designed to stick as closely as possible to
+	what /usr/bin/perl does.:
+	 - pattern highlighting
+	 - heredoc
+	 - POD
+	 - ...
+
 2007-07-12  Paolo Borelli  <pborelli@katamail.com>
 
 	* gtksourceview/gtksourceview-utils.c: look in the correct dir
