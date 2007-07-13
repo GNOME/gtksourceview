@@ -37,7 +37,7 @@ FIXME: =pod should require an empty line before/after, as written in perlpod
     <style id="builtin-function"  _name="Function"           map-to="def:function"/>
     <style id="here-doc"          _name="Heredoc"            map-to="def:string" />
     <style id="here-doc-bound"    _name="Heredoc bound"      map-to="def:string"/>
-    <style id="command-line"      _name="Command line"       map-to="def:string"/>
+    <style id="system-command"    _name="System command"     map-to="def:string"/>
     <style id="operator"          _name="Operator"           map-to="def:keyword"/>
     <style id="variable"          _name="Variable"           map-to="def:data-type"/>
     <style id="file-descriptor"   _name="File descriptor"    map-to="perl:variable"/>
@@ -426,11 +426,11 @@ FIXME: =pod should require an empty line before/after, as written in perlpod
 
     <context id="system-command">
       <include>
-        <context style-ref="command-line">
+        <context style-ref="system-command">
           <start>`</start><end>`</end>
           <include><context ref="in-pattern"/></include>
         </context>
-        <context style-ref="command-line">
+        <context style-ref="system-command">
           <start>\%{pattern-before}qx\b</start>
           <end>\%{end-of-pattern}</end>
           <include><context ref="simple-pattern"/></include>
@@ -490,7 +490,7 @@ FIXME: =pod should require an empty line before/after, as written in perlpod
 
     <!-- #### HEREDOC STRINGS ############################################# -->
 
-    <define-regex id="here-doc-bound-char">[^\s'"=]</define-regex>
+    <define-regex id="here-doc-bound-char">[^\s'"=;]</define-regex>
 
     <context id="here-doc-no-ve">
       <start>&lt;&lt;\'(?P&lt;HDB&gt;\%{here-doc-bound-char}*)\'</start>
