@@ -45,7 +45,8 @@ static const gchar *get_color_by_name  (GtkSourceStyleScheme *scheme,
 enum {
 	PROP_0,
 	PROP_ID,
-	PROP_NAME
+	PROP_NAME,
+	PROP_FILENAME
 };
 
 struct _GtkSourceStyleSchemePrivate
@@ -54,6 +55,7 @@ struct _GtkSourceStyleSchemePrivate
 	gchar *name;
 	gchar *author;
 	gchar *description;
+	gchar *filename;
 	GtkSourceStyleScheme *parent;
 	gchar *parent_id;
 	GHashTable *defined_styles;
@@ -71,6 +73,7 @@ gtk_source_style_scheme_finalize (GObject *object)
 	g_hash_table_destroy (scheme->priv->named_colors);
 	g_hash_table_destroy (scheme->priv->style_cache);
 	g_hash_table_destroy (scheme->priv->defined_styles);
+	g_free (scheme->priv->filename);
 	g_free (scheme->priv->author);
 	g_free (scheme->priv->description);
 	g_free (scheme->priv->id);
@@ -85,7 +88,7 @@ gtk_source_style_scheme_finalize (GObject *object)
 
 static void
 gtk_source_style_scheme_set_property (GObject 	   *object,
-				      guint 	    prop_id,
+				      guint         prop_id,
 				      const GValue *value,
 				      GParamSpec   *pspec)
 {
@@ -94,22 +97,22 @@ gtk_source_style_scheme_set_property (GObject 	   *object,
 
 	switch (prop_id)
 	{
-	    case PROP_ID:
-		tmp = scheme->priv->id;
-		scheme->priv->id = g_value_dup_string (value);
-		g_free (tmp);
-		break;
+		case PROP_ID:
+			tmp = scheme->priv->id;
+			scheme->priv->id = g_value_dup_string (value);
+			g_free (tmp);
+			break;
 
-	    case PROP_NAME:
-		tmp = scheme->priv->name;
-		scheme->priv->name = g_value_dup_string (value);
-		g_free (tmp);
-		g_object_notify (object, "name");
-		break;
+		case PROP_NAME:
+			tmp = scheme->priv->name;
+			scheme->priv->name = g_value_dup_string (value);
+			g_free (tmp);
+			g_object_notify (object, "name");
+			break;
 
-	    default:
-		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-		break;
+		default:
+			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+			break;
 	}
 }
 
@@ -123,17 +126,21 @@ gtk_source_style_scheme_get_property (GObject 	 *object,
 
 	switch (prop_id)
 	{
-	    case PROP_ID:
-		    g_value_set_string (value, scheme->priv->id);
-		    break;
+		case PROP_ID:
+			g_value_set_string (value, scheme->priv->id);
+			break;
 
-	    case PROP_NAME:
-		    g_value_set_string (value, scheme->priv->name);
-		    break;
+		case PROP_NAME:
+			g_value_set_string (value, scheme->priv->name);
+			break;
 
-	    default:
-		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-		break;
+		case PROP_FILENAME:
+			g_value_set_string (value, scheme->priv->filename);
+			break;
+
+		default:
+			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+			break;
 	}
 }
 
@@ -176,6 +183,21 @@ gtk_source_style_scheme_class_init (GtkSourceStyleSchemeClass *klass)
 							      _("Style scheme name"),
 							      NULL,
 							      G_PARAM_READWRITE));
+
+	/**
+	 * GtkSourceStyleScheme:filename:
+	 *
+	 * Style scheme filename or NULL.
+	 *
+	 * Since: 2.0
+	 */
+	g_object_class_install_property (object_class,
+					 PROP_FILENAME,
+					 g_param_spec_string ("filename",
+						 	      _("Style scheme filename"),
+							      _("Style scheme filename"),
+							      NULL,
+							      G_PARAM_READABLE));
 
 	g_type_class_add_private (object_class, sizeof (GtkSourceStyleSchemePrivate));
 }
@@ -236,7 +258,7 @@ gtk_source_style_scheme_get_name (GtkSourceStyleScheme *scheme)
  * gtk_source_style_scheme_get_description:
  * @scheme: a #GtkSourceStyleScheme.
  *
- * Returns: @scheme description.
+ * Returns: @scheme description (if defined) or NULL.
  *
  * Since: 2.0
  */
@@ -244,8 +266,23 @@ const gchar *
 gtk_source_style_scheme_get_description (GtkSourceStyleScheme *scheme)
 {
 	g_return_val_if_fail (GTK_IS_SOURCE_STYLE_SCHEME (scheme), NULL);
-	g_return_val_if_fail (scheme->priv->description != NULL, "");
 	return scheme->priv->description;
+}
+
+/**
+ * gtk_source_style_scheme_get_filename:
+ * @scheme: a #GtkSourceStyleScheme.
+ *
+ * Returns: @scheme file name if the scheme was created parsing a 
+ * style scheme file or NULL in the other cases.
+ *
+ * Since: 2.0
+ */
+const gchar *
+gtk_source_style_scheme_get_filename (GtkSourceStyleScheme *scheme)
+{
+	g_return_val_if_fail (GTK_IS_SOURCE_STYLE_SCHEME (scheme), NULL);
+	return scheme->priv->filename;
 }
 
 /**
@@ -308,10 +345,10 @@ fix_style_colors (GtkSourceStyleScheme *scheme,
 /**
  * gtk_source_style_scheme_get_style:
  * @scheme: a #GtkSourceStyleScheme.
- * @style_name: style name to find.
+ * @style_id: id of the style to retrieve.
  *
- * Returns: style which corresponds to @style_name in the @scheme,
- * or %NULL when no style with this name found. It is owned by @sheme
+ * Returns: style which corresponds to @style_id in the @scheme,
+ * or %NULL when no style with this name found. It is owned by @scheme
  * and may not be unref'ed.
  *
  * Since: 2.0
@@ -326,7 +363,7 @@ fix_style_colors (GtkSourceStyleScheme *scheme,
  */
 GtkSourceStyle *
 gtk_source_style_scheme_get_style (GtkSourceStyleScheme *scheme,
-				   const gchar          *style_name)
+				   const gchar          *style_id)
 {
 	GtkSourceStyle *style = NULL;
 	GtkSourceStyle *real_style;
@@ -334,17 +371,17 @@ gtk_source_style_scheme_get_style (GtkSourceStyleScheme *scheme,
 	g_return_val_if_fail (GTK_IS_SOURCE_STYLE_SCHEME (scheme), NULL);
 	g_return_val_if_fail (style_name != NULL, NULL);
 
-	if (g_hash_table_lookup_extended (scheme->priv->style_cache, style_name,
+	if (g_hash_table_lookup_extended (scheme->priv->style_cache, style_id,
 					  NULL, (gpointer *) &style))
 		return style;
 
-	real_style = g_hash_table_lookup (scheme->priv->defined_styles, style_name);
+	real_style = g_hash_table_lookup (scheme->priv->defined_styles, style_id);
 
 	if (real_style == NULL)
 	{
 		if (scheme->priv->parent != NULL)
 			style = gtk_source_style_scheme_get_style (scheme->priv->parent,
-								   style_name);
+								   style_id);
 		if (style != NULL)
 			g_object_ref (style);
 	}
@@ -353,7 +390,10 @@ gtk_source_style_scheme_get_style (GtkSourceStyleScheme *scheme,
 		style = fix_style_colors (scheme, real_style);
 	}
 
-	g_hash_table_insert (scheme->priv->style_cache, g_strdup (style_name), style);
+	g_hash_table_insert (scheme->priv->style_cache,
+			     g_strdup (style_id),
+			     style);
+
 	return style;
 }
 
@@ -1028,6 +1068,9 @@ _gtk_source_style_scheme_new_from_file (const gchar *filename)
 
 	xmlFreeDoc (doc);
 	g_free (text);
+
+	scheme->priv->filename = g_strdup (filename);
+
 	return scheme;
 }
 
