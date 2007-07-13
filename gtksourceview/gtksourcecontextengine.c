@@ -240,8 +240,10 @@ struct _DefinitionChild
 	guint			 is_ref_all : 1;
 	/* Whether it is resolved, i.e. points to actual context definition. */
 	guint			 resolved : 1;
-	/* Whether it is resolved, i.e. points to actual context definition. */
+	/* Whether style is overridden, i.e. use child->style instead of what definition says. */
 	guint			 override_style : 1;
+	/* Whether style should be ignored for this and all child contexts. */
+	guint			 override_style_deep : 1;
 };
 
 struct _DefinitionsIter
@@ -272,9 +274,10 @@ struct _Context
 	guint			 ref_count;
 	/* see context_freeze() */
 	guint                    frozen : 1;
-
 	/* Do all the ancestors extend their parent? */
 	guint			 all_ancestors_extend : 1;
+	/* Do not apply styles to children contexts */
+	guint			 ignore_children_style : 1;
 };
 
 struct _ContextPtr
@@ -344,6 +347,11 @@ struct _SubPattern
  * big deal: line end can't be highlighted anyway; if a rule needs to match it, it can
  * can use "$" as start and "^" as end (not in a single pattern of course, "$^" will
  * never match).
+ *
+ * UPDATE: the above isn't true anymore, pcre can do arbitrary line terminators.
+ * BUT: how do we know whether we should get one/two/N lines to match? Single-line
+ * case to highlight end of line is covered by above ($). I do not feel brave enough
+ * to modify this now for no real benefit. (muntyan)
  */
 #define NEXT_LINE_OFFSET(l_) ((l_)->start_at + (l_)->length + (l_)->eol_length)
 struct _LineInfo
@@ -448,7 +456,8 @@ static Segment	       *segment_new		(GtkSourceContextEngine *ce,
 static Context	       *context_new		(Context		*parent,
 						 ContextDefinition	*definition,
 						 const gchar		*line_text,
-						 const gchar		*style);
+						 const gchar		*style,
+						 gboolean                ignore_children_style);
 static void		context_unref		(Context		*context);
 static void		context_freeze		(Context		*context);
 static void		context_thaw		(Context		*context);
@@ -2231,7 +2240,7 @@ gtk_source_context_engine_attach_buffer (GtkSourceEngine *engine,
 			return;
 		}
 
-		ce->priv->root_context = context_new (NULL, main_definition, NULL, NULL);
+		ce->priv->root_context = context_new (NULL, main_definition, NULL, NULL, FALSE);
 		ce->priv->root_segment = create_segment (ce, NULL, ce->priv->root_context, 0, 0, TRUE, NULL);
 
 		ce->priv->tags = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, NULL);
@@ -3152,7 +3161,8 @@ static Context *
 context_new (Context           *parent,
 	     ContextDefinition *definition,
 	     const gchar       *line_text,
-	     const gchar       *style)
+	     const gchar       *style,
+	     gboolean           ignore_children_style)
 {
 	Context *context;
 
@@ -3160,7 +3170,15 @@ context_new (Context           *parent,
 	context->ref_count = 1;
 	context->definition = definition;
 	context->parent = parent;
+
 	context->style = style;
+	context->ignore_children_style = ignore_children_style;
+
+	if (parent != NULL && parent->ignore_children_style)
+	{
+		context->ignore_children_style = TRUE;
+		context->style = NULL;
+	}
 
 	if (!parent || (parent->all_ancestors_extend && CONTEXT_EXTENDS_PARENT (parent)))
 	{
@@ -3478,9 +3496,12 @@ create_child_context (Context           *parent,
 		return context_ref (context);
 	}
 
-	context = context_new (parent, definition, line_text,
+	context = context_new (parent,
+			       definition,
+			       line_text,
 			       child_def->override_style ? child_def->style :
-					child_def->u.definition->default_style);
+					child_def->u.definition->default_style,
+			       child_def->override_style ? child_def->override_style_deep : FALSE);
 	g_return_val_if_fail (context != NULL, NULL);
 
 	if (ptr->fixed)
@@ -5505,6 +5526,7 @@ definition_child_new (ContextDefinition *definition,
 	ch->is_ref_all = is_ref_all;
 	ch->resolved = FALSE;
 	ch->override_style = override_style;
+	ch->override_style_deep = (override_style && style == NULL);
 
 	definition->children = g_slist_append (definition->children, ch);
 
@@ -6120,7 +6142,7 @@ _gtk_source_context_data_finish_parse (GtkSourceContextData *ctx_data,
 	struct ResolveRefData data;
 
 	g_return_val_if_fail (ctx_data != NULL, FALSE);
-	g_return_val_if_fail (error != NULL && *error == NULL, FALSE);
+	g_return_val_if_fail (error == NULL || *error == NULL, FALSE);
 
 	while (overrides != NULL)
 	{

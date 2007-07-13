@@ -1,3 +1,23 @@
+2007-07-13  Yevgen Muntyan  <muntyan@tamu.edu>
+
+	* gtksourceview/gtksourcecontextengine.c:
+	Ignore styles in all child contexts when use-style="no" is used.
+	DefinitionChild.override_style_deep, Context.ignore_children_style:
+	new struct members;
+	(context_new): new argument, ignore_children_style;
+	Context.ignore_children_style is propagated from parent context if not
+	set explicitely.
+	(_gtk_source_context_data_finish_parse): do not require error
+	argument to be non-NULL.
+
+	* gtksourceview/gtksourceview/gtksourcelanguage-parser-1.c:
+	(_gtk_source_language_file_parse_version1): call
+	_gtk_source_context_data_finish_parse(), this unbreaks loading old lang
+	files.
+
+	* gtksourceview/language-specs/check.sh: use a list of version-1 files,
+	and check the rest.
+
 2007-07-13  Steve Frécinaux  <code@istique.net>
 
 	* gtksourceview/language-specs/perl.lang: fix highlighting of

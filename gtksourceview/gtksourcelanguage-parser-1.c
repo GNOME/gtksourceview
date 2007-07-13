@@ -777,6 +777,7 @@ _gtk_source_language_file_parse_version1 (GtkSourceLanguage    *language,
 	if (esc_char != 0)
 		_gtk_source_context_data_set_escape_char (ctx_data, esc_char);
 
+	_gtk_source_context_data_finish_parse (ctx_data, NULL, NULL);
 	_gtk_source_language_define_language_styles (language);
 
 	xmlFreeDoc (doc);

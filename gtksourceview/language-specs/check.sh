@@ -1,19 +1,7 @@
 #!/bin/sh
 # "./check.sh files..." will validate files given on command line.
-# "./check.sh" without arguments will validate lang and styles files
-# specified here.
-
-langs="ada.lang awk.lang changelog.lang chdr.lang c.lang cpp.lang csharp.lang
-       css.lang def.lang desktop.lang diff.lang dpatch.lang dtd.lang
-       fortran.lang gap.lang gtk-doc.lang gtkrc.lang haddock.lang
-       haskell.lang haskell-literate.lang html.lang idl.lang ini.lang
-       java.lang javascript.lang latex.lang libtool.lang lua.lang
-       m4.lang makefile.lang objc.lang ocaml.lang ocl.lang octave.lang
-       pascal.lang perl.lang php.lang pkgconfig.lang po.lang
-       python.lang ruby.lang scheme.lang sh.lang sql.lang tcl.lang
-       texinfo.lang verilog.lang xml.lang yacc.lang"
-
-styles="gvim.xml kate.xml tango.xml"
+# "./check.sh" without arguments will validate all lang and styles files
+# in the source directory
 
 check_file() {
   case $1 in
@@ -37,6 +25,24 @@ if [ "$srcdir" ]; then
   cd $srcdir
 fi
 
-for file in $langs $styles; do
+langs=""
+for l in *.lang; do
+  case $l in
+    boo.lang) ;;
+    d.lang) ;;
+    docbook.lang) ;;
+    msil.lang) ;;
+    nemerle.lang) ;;
+    R.lang) ;;
+    spec.lang) ;;
+    vbnet.lang) ;;
+    vhdl.lang) ;;
+    *)
+      langs="$langs $l"
+      ;;
+  esac
+done
+
+for file in $langs *.xml; do
   check_file $file
 done
