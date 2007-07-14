@@ -369,7 +369,7 @@ gtk_source_style_scheme_get_style (GtkSourceStyleScheme *scheme,
 	GtkSourceStyle *real_style;
 
 	g_return_val_if_fail (GTK_IS_SOURCE_STYLE_SCHEME (scheme), NULL);
-	g_return_val_if_fail (style_name != NULL, NULL);
+	g_return_val_if_fail (style_id != NULL, NULL);
 
 	if (g_hash_table_lookup_extended (scheme->priv->style_cache, style_id,
 					  NULL, (gpointer *) &style))

@@ -32,11 +32,12 @@ struct _GtkSourceStyleManagerPrivate
 {
 	GSList		*schemes;
 	gchar	       **_dirs;
+	GSList          *added_files;
 	gboolean	 need_reload;
 };
 
 enum {
-	CHANGED,
+	LIST_CHANGED,
 	N_SIGNALS
 };
 
@@ -110,6 +111,8 @@ gtk_source_style_manager_finalize (GObject *object)
 	g_slist_foreach (schemes, (GFunc) g_object_unref, NULL);
 	g_slist_free (schemes);
 	g_strfreev (mgr->priv->_dirs);
+	g_slist_foreach (mgr->priv->added_files, (GFunc) g_free, NULL);
+	g_slist_free (mgr->priv->added_files);
 
 	G_OBJECT_CLASS (gtk_source_style_manager_parent_class)->finalize (object);
 }
@@ -133,13 +136,13 @@ gtk_source_style_manager_class_init (GtkSourceStyleManagerClass *klass)
 							     G_TYPE_STRV,
 							     G_PARAM_READWRITE));
 
-	signals[CHANGED] = g_signal_new ("changed",
-					 G_OBJECT_CLASS_TYPE (object_class),
-					 G_SIGNAL_RUN_LAST,
-					 G_STRUCT_OFFSET (GtkSourceStyleManagerClass, changed),
-					 NULL, NULL,
-					 _gtksourceview_marshal_VOID__VOID,
-					 G_TYPE_NONE, 0);
+	signals[LIST_CHANGED] = g_signal_new ("list-changed",
+					      G_OBJECT_CLASS_TYPE (object_class),
+					      G_SIGNAL_RUN_LAST,
+					      G_STRUCT_OFFSET (GtkSourceStyleManagerClass, list_changed),
+					      NULL, NULL,
+					      _gtksourceview_marshal_VOID__VOID,
+					      G_TYPE_NONE, 0);
 
 	g_type_class_add_private (object_class, sizeof(GtkSourceStyleManagerPrivate));
 }
@@ -279,19 +282,54 @@ gtk_source_style_manager_changed (GtkSourceStyleManager *mgr)
 	if (!mgr->priv->need_reload)
 	{
 		mgr->priv->need_reload = TRUE;
-		g_signal_emit (mgr, signals[CHANGED], 0);
+		g_signal_emit (mgr, signals[LIST_CHANGED], 0);
 	}
 }
 
-static void
-gtk_source_style_manager_reload (GtkSourceStyleManager *mgr)
+static GSList *
+add_scheme_from_file_real (GSList                *schemes,
+			   GHashTable            *schemes_hash,
+			   const gchar           *filename,
+			   GtkSourceStyleScheme **new_scheme)
 {
+	GtkSourceStyleScheme *scheme;
+
+	scheme = _gtk_source_style_scheme_new_from_file (filename);
+
+	if (scheme != NULL)
+	{
+		const gchar *id = gtk_source_style_scheme_get_id (scheme);
+		GtkSourceStyleScheme *old;
+
+		old = g_hash_table_lookup (schemes_hash, id);
+		if (old != NULL)
+			schemes = g_slist_remove (schemes, old);
+
+		schemes = g_slist_prepend (schemes, scheme);
+		g_hash_table_insert (schemes_hash, g_strdup (id), g_object_ref (scheme));
+	}
+
+	if (new_scheme != NULL)
+		*new_scheme = scheme;
+
+	return schemes;
+}
+
+/* Load all the scheme files found in the search path and
+ * all the files that have been manually added so far.
+ * If new_file is not NULL, it tries to add it to the list
+ * of schemes and if it succeeds the new scheme is returned */
+static GtkSourceStyleScheme *
+gtk_source_style_manager_reload (GtkSourceStyleManager *mgr,
+				 const gchar           *new_file)
+{
+	GtkSourceStyleScheme *new_scheme = NULL;
 	GHashTable *schemes_hash;
 	GSList *schemes = NULL;
 	GSList *files;
 	GSList *l;
 
-	g_return_if_fail (GTK_IS_SOURCE_STYLE_MANAGER (mgr));
+	g_return_val_if_fail (GTK_IS_SOURCE_STYLE_MANAGER (mgr), NULL);
 
 	schemes = mgr->priv->schemes;
 	mgr->priv->schemes = NULL;
@@ -299,75 +337,141 @@ gtk_source_style_manager_reload (GtkSourceStyleManager *mgr)
 	g_slist_free (schemes);
 
 	schemes_hash = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, g_object_unref);
+
+	/* files in the search path */
 	files = _gtk_source_view_get_file_list (gtk_source_style_manager_get_search_path (mgr),
 						SCHEME_FILE_SUFFIX);
 
 	for (l = files; l != NULL; l = l->next)
 	{
-		GtkSourceStyleScheme *scheme;
-		gchar *filename;
+		schemes = add_scheme_from_file_real (schemes,
+						     schemes_hash,
+						     l->data,
+						     NULL);
+	}
 
-		filename = l->data;
+	g_slist_foreach (files, (GFunc) g_free, NULL);
+	g_slist_free (files);
 
-		scheme = _gtk_source_style_scheme_new_from_file (filename);
+	/* files added in the past */
+	for (l = mgr->priv->added_files; l != NULL; l = l->next)
+	{
+		schemes = add_scheme_from_file_real (schemes,
+						     schemes_hash,
+						     l->data,
+						     NULL);
+	}
 
-		if (scheme != NULL)
+	/* file we are adding (if any) */
+	if (new_file)
+	{
+		schemes = add_scheme_from_file_real (schemes,
+						     schemes_hash,
+						     new_file,
+						     &new_scheme);
+
+		if (new_scheme != NULL)
 		{
-			const gchar *id = gtk_source_style_scheme_get_id (scheme);
-			GtkSourceStyleScheme *old;
-
-			old = g_hash_table_lookup (schemes_hash, id);
-
-			if (old != NULL)
-				schemes = g_slist_remove (schemes, old);
-
-			schemes = g_slist_prepend (schemes, scheme);
-			g_hash_table_insert (schemes_hash, g_strdup (id), g_object_ref (scheme));
+			/* can go away in check_parents() */
+			g_object_add_weak_pointer (G_OBJECT (new_scheme),
+						   (gpointer *)&new_scheme);
 		}
 	}
 
 	schemes = check_parents (schemes, schemes_hash);
 	g_hash_table_destroy (schemes_hash);
 
-	g_slist_foreach (files, (GFunc) g_free, NULL);
-	g_slist_free (files);
+	if (new_scheme != NULL)
+	{
+		g_object_remove_weak_pointer (G_OBJECT (new_scheme),
+					      (gpointer *)&new_scheme);
+	}
 
 	mgr->priv->schemes = schemes;
 	mgr->priv->need_reload = FALSE;
+
+	return new_scheme;
 }
 
+/**
+ * gtk_source_style_manager_add_scheme_from_file()
+ * @manager: the style manager
+ * @filename: file path of the scheme to add
+ *
+ * Add a style scheme loaded from @filename.
+ *
+ * Return: the id of the newly added scheme or NULL if an error occurs.
+ */
+const gchar *
+gtk_source_style_manager_add_scheme_from_file (GtkSourceStyleManager *manager,
+					       const gchar           *filename)
+{
+	GtkSourceStyleScheme *scheme;
+
+	g_return_val_if_fail (GTK_IS_SOURCE_STYLE_MANAGER (manager), NULL);
+	g_return_val_if_fail (filename != NULL, NULL);
+
+	scheme = gtk_source_style_manager_reload (manager, filename);
+	if (scheme == NULL)
+		return NULL;
+
+	/* append because it has to take priority in case of same id */
+	manager->priv->added_files = g_slist_append (manager->priv->added_files,
+						     g_strdup (filename));
+
+	return gtk_source_style_scheme_get_id (scheme);
+}
+
+/**
+ * gtk_source_style_manager_set_search_path:
+ * @manager: a #GtkSourceStyleManager.
+ * @dirs: a %NULL-terminated array of strings or %NULL.
+ *
+ * Sets the list of directories where the given language manager
+ * looks for style files.
+ * @dirs == %NULL resets directories list to the default.
+ */
 void
-gtk_source_style_manager_set_search_path (GtkSourceStyleManager	*mgr,
+gtk_source_style_manager_set_search_path (GtkSourceStyleManager	*manager,
 					  gchar		       **dirs)
 {
 	char **tmp;
 
-	g_return_if_fail (GTK_IS_SOURCE_STYLE_MANAGER (mgr));
+	g_return_if_fail (GTK_IS_SOURCE_STYLE_MANAGER (manager));
 
-	tmp = mgr->priv->_dirs;
-	mgr->priv->_dirs = g_strdupv (dirs);
+	tmp = manager->priv->_dirs;
+	manager->priv->_dirs = g_strdupv (dirs);
 	g_strfreev (tmp);
 
-	g_object_notify (G_OBJECT (mgr), "search-path");
-	gtk_source_style_manager_changed (mgr);
+	g_object_notify (G_OBJECT (manager), "search-path");
+	gtk_source_style_manager_changed (manager);
 }
 
+/**
+ * gtk_source_style_manager_get_search_path:
+ * @manager: a #GtkSourceStyleManager.
+ *
+ * Gets the list of directories where @manager looks for style files.
+ *
+ * Returns: %NULL-terminated array containg a list of style files directories.
+ * It is owned by @manager and must not be modified or freed.
+ */
 gchar **
-gtk_source_style_manager_get_search_path (GtkSourceStyleManager	*mgr)
+gtk_source_style_manager_get_search_path (GtkSourceStyleManager	*manager)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_STYLE_MANAGER (mgr), NULL);
+	g_return_val_if_fail (GTK_IS_SOURCE_STYLE_MANAGER (manager), NULL);
 
-	if (mgr->priv->_dirs == NULL)
-		mgr->priv->_dirs = _gtk_source_view_get_default_dirs (STYLES_DIR, FALSE);
+	if (manager->priv->_dirs == NULL)
+		manager->priv->_dirs = _gtk_source_view_get_default_dirs (STYLES_DIR, FALSE);
 
-	return mgr->priv->_dirs;
+	return manager->priv->_dirs;
 }
 
 static void
 reload_if_needed (GtkSourceStyleManager *mgr)
 {
 	if (mgr->priv->need_reload)
-		gtk_source_style_manager_reload (mgr);
+		gtk_source_style_manager_reload (mgr, NULL);
 }
 
 /**
