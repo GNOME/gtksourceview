@@ -42,7 +42,7 @@ FIXME: =pod should require an empty line before/after, as written in perlpod
     <style id="variable"          _name="Variable"           map-to="def:data-type"/>
     <style id="file-descriptor"   _name="File descriptor"    map-to="perl:variable"/>
     <style id="control"           _name="Control"            map-to="def:preprocessor"/>
-    <style id="regex"             _name="Regular expression" map-to="def:preprocessor"/>
+    <style id="regex"             _name="Regular expression" map-to="def:string"/>
     <style id="error"             _name="Error"              map-to="def:error"/>
     <style id="pod-escape"        _name="POD Escape"         map-to="def:escape"/>
     <style id="pod-keyword"       _name="POD keyword"        map-to="def:keyword"/>
@@ -89,6 +89,29 @@ FIXME: =pod should require an empty line before/after, as written in perlpod
       <match>\S</match>
     </context>
 
+    <define-regex id="operator" extended="true">
+      \-&gt; |
+      \+\+ | \-\- |
+      \*\* |
+      \! | \~ | \\ | \+ | \- |
+      [!=]\~ |
+      \* | / | % |
+      &lt;&lt; | &gt;&gt; |
+      &lt; | &gt; | [&lt;&gt;=!]= | &lt;=&gt; |
+      &amp; | \| | \^ |
+      &amp;&amp; |
+      \.\. | \.\.\. |
+      \? | : |
+      = | \*\*= | \+= | \*= | &amp;= | &lt;&lt;= | &amp;&amp;= | \-= | /= |
+      \|= | &gt;&gt;= | \|\|= | \.= | %= | \^= | \bx= |
+      =&gt; |
+      \b(x|lt|gt|le|ge|eq|ne|cmp|not|and|or|xor)\b
+    </define-regex>
+
+    <context id="operator" style-ref="operator"><!-- see `man perlop` -->
+      <match>\%{operator}</match>
+    </context>
+
     <!-- #### VARIABLES ################################################### -->
 
     <!-- $ is not defined in this regexp because it would conflict with
@@ -104,15 +127,26 @@ FIXME: =pod should require an empty line before/after, as written in perlpod
       ([$@%]|\$\#)\$*[a-zA-Z_][a-zA-Z0-9_]*
     </define-regex>
 
-    <context id="variable">
+    <context id="plain-variable">
       <include>
         <context style-ref="variable">
           <start>[$@%]{</start>
           <end>}</end>
         </context>
         <context style-ref="variable">
-          <match>\%{special-variable}|\%{plain-variable}</match>
+          <match>\%{plain-variable}</match>
         </context>
+      </include>
+    </context>
+
+    <context id="special-variable" style-ref="variable">
+      <match>\%{special-variable}</match>
+    </context>
+
+    <context id="variable">
+      <include>
+        <context ref="plain-variable"/>
+        <context ref="special-variable"/>
       </include>
     </context>
 
@@ -135,7 +169,15 @@ FIXME: =pod should require an empty line before/after, as written in perlpod
     <context id="in-pattern">
       <include>
         <context ref="def:escape"/>
-        <context ref="variable"/>
+        <context ref="plain-variable"/>
+        <context extend-parent="false">
+          <start>(?=\$)</start>
+          <include>
+            <!-- some variables are not recognized in patterns -->
+            <context><match>\$(?=[|)])</match></context>
+            <context ref="special-variable"/>
+          </include>
+        </context>
       </include>
     </context>
 
@@ -300,6 +342,16 @@ FIXME: =pod should require an empty line before/after, as written in perlpod
       <start/>
       <include>
         <context end-parent="true">
+          <start>'</start>
+          <end>'</end>
+          <include>
+            <context once-only="true">
+              <start>(?&lt;=(?P&lt;RD&gt;.))</start>
+              <end>\%{RD@start}</end>
+            </context>
+          </include>
+        </context>
+        <context end-parent="true">
           <start>(?P&lt;RD&gt;\%{pattern-delimiter})</start>
           <end>\%{RD@start}</end>
           <include>
@@ -460,29 +512,35 @@ FIXME: =pod should require an empty line before/after, as written in perlpod
          “Below some hacks to recognise the // variant. This is virtually
           impossible to catch in all cases as the / is used in so many other
           ways, but these should be the most obvious ones.” -->
-    <context id="in-regex-slashslash" extend-parent="false" style-ref="regex">
-      <start/><include><context ref="in-pattern"/></include>
-    </context>
-
     <context id="match-slashslash">
       <include>
-        <context>
+        <context style-inside="true" style-ref="regex">
           <start>(^|[^$@%&amp;])(split|while|if)\s+(/)</start>
           <end>/[cgimosx]*</end>
           <include>
             <context sub-pattern="2" where="start" style-ref="builtin-function"/>
             <context sub-pattern="3" where="start" style-ref="regex"/>
             <context sub-pattern="0" where="end" style-ref="regex"/>
-            <context ref="in-regex-slashslash"/>
+            <context ref="in-pattern"/>
           </include>
         </context>
-        <context>
-          <start>(^|(?&lt;=[(~=!]))\s*(/)</start>
+        <context style-inside="true" style-ref="regex">
+          <start>(^|(?&lt;=[\(\{]))\s*(/)</start>
           <end>/[cgimosx]*</end>
           <include>
             <context sub-pattern="2" where="start" style-ref="regex"/>
             <context sub-pattern="0" where="end" style-ref="regex"/>
-            <context ref="in-regex-slashslash"/>
+            <context ref="in-pattern"/>
+          </include>
+        </context>
+        <context style-inside="true" style-ref="regex">
+          <start>\%{operator}\s*(/)</start>
+          <end>/[cgimosx]*</end>
+          <include>
+            <context sub-pattern="1" where="start" style-ref="operator"/>
+            <context sub-pattern="2" where="start" style-ref="regex"/>
+            <context sub-pattern="0" where="end" style-ref="regex"/>
+            <context ref="in-pattern"/>
           </include>
         </context>
       </include>
@@ -631,21 +689,6 @@ FIXME: =pod should require an empty line before/after, as written in perlpod
       <keyword>__FILE__</keyword>
       <keyword>__LINE__</keyword>
       <keyword>__PACKAGE__</keyword>
-    </context>
-
-    <context id="operator" style-ref="operator"><!-- see `man perlop` -->
-      <match extended="true">
-        \-&gt; |
-        [+*\-&lt;&gt;&amp;|]{2} |
-        [!~\\+\-*/%&lt;&gt;&amp;|^?:=] |
-        \.{1,3} |
-        [=!]\~ |
-        [=!&lt;&gt;%\-*/.%&amp;|^]= |
-        [*|&amp;&gt;&lt;]{2}= |
-        &lt;=&gt; |
-        \bx= |
-        \b(x|lt|gt|le|ge|eq|ne|cmp|not|and|or|xor)\b
-      </match>       
     </context>
 
     <context id="builtin-function" style-ref="builtin-function">
