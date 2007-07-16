@@ -72,21 +72,28 @@ _gtk_source_view_get_default_dirs (const char *basename,
 }
 
 static GSList *
-build_file_listing (const gchar *directory,
+build_file_listing (const gchar *item,
 		    GSList      *filenames,
-		    const gchar *suffix)
+		    const gchar *suffix,
+		    gboolean     only_dirs)
 {
 	GDir *dir;
 	const gchar *name;
+	
+	if (!only_dirs && g_file_test (item, G_FILE_TEST_IS_REGULAR)) 
+	{
+		filenames = g_slist_prepend (filenames, g_strdup(item));
+		return filenames;
+		
+	}
+	dir = g_dir_open (item, 0, NULL);
 
-	dir = g_dir_open (directory, 0, NULL);
-
-	if (dir == NULL)
+	if (dir == NULL) 
 		return filenames;
 
 	while ((name = g_dir_read_name (dir)) != NULL)
 	{
-		gchar *full_path = g_build_filename (directory, name, NULL);
+		gchar *full_path = g_build_filename (item, name, NULL);
 
 		if (!g_file_test (full_path, G_FILE_TEST_IS_DIR) &&
 		    g_str_has_suffix (name, suffix))
@@ -105,13 +112,14 @@ build_file_listing (const gchar *directory,
 }
 
 GSList *
-_gtk_source_view_get_file_list (char      **dirs,
-				const char *suffix)
+_gtk_source_view_get_file_list (gchar       **path,
+				const gchar  *suffix,
+				gboolean      only_dirs)
 {
 	GSList *files = NULL;
 
-	for ( ; dirs && *dirs; ++dirs)
-		files = build_file_listing (*dirs, files, suffix);
+	for ( ; path && *path; ++path)
+		files = build_file_listing (*path, files, suffix, only_dirs);
 
 	return g_slist_reverse (files);
 }

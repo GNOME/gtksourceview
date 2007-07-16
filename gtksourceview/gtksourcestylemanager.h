@@ -48,13 +48,11 @@ struct _GtkSourceStyleManagerClass
 {
 	GObjectClass parent_class;
 
-	void (*changed) (GtkSourceStyleManager *mgr);
-
 	/* Padding for future expansion */
 	void (*_gtk_source_reserved1) (void);
 	void (*_gtk_source_reserved2) (void);
 	void (*_gtk_source_reserved3) (void);
-	void (*_gtk_source_reserved4) (void);
+	void (*_gtk_source_reserved4) (void);	
 };
 
 
@@ -64,15 +62,21 @@ GtkSourceStyleManager	*gtk_source_style_manager_new			(void);
 GtkSourceStyleManager	*gtk_source_style_manager_get_default		(void);
 
 void			 gtk_source_style_manager_set_search_path	(GtkSourceStyleManager	*manager,
-						    			 gchar	               **path);
-gchar		       **gtk_source_style_manager_get_search_path	(GtkSourceStyleManager	*manager);
+						    			 gchar                 **path);
+						    			 
+void 			 gtk_source_style_manager_append_search_path    (GtkSourceStyleManager	*manager,
+						    			 const gchar            *path);
 
-/* Do we need to add a GError? I don't think so, we can print a warning message on the terminal */
-gboolean		 gtk_source_style_manager_add_scheme		(GtkSourceStyleManager	*manager,
-						    			 const gchar		*filename);
+void 			 gtk_source_style_manager_prepend_search_path   (GtkSourceStyleManager	*manager,
+						    			 const gchar            *path);
 
-/* list must be freed, its elements no */
-GSList			*gtk_source_style_manager_list_schemes		(GtkSourceStyleManager	*manager);
+const gchar* const * gtk_source_style_manager_get_search_path	
+									(GtkSourceStyleManager	*manager);
+
+void			 gtk_source_style_manager_force_rescan		(GtkSourceStyleManager	*manager);
+
+const gchar* const * gtk_source_style_manager_get_scheme_ids	
+									(GtkSourceStyleManager	*manager);
 
 GtkSourceStyleScheme	*gtk_source_style_manager_get_scheme		(GtkSourceStyleManager	*manager,
 									 const gchar		*scheme_id);

@@ -1,3 +1,24 @@
+2007-07-16  Paolo Maggi  <paolo@gnome.org>
+
+	GtkSourceStyleManager API revisited
+	
+	* gtksourceview/gtksourcelanguagemanager.c
+	(gtk_source_language_manager_get_default): silent a gcc warning
+	(gtk_source_language_manager_set_search_path): code cleanup
+	 (ensure_languages): use the new _gtk_source_view_get_file_list 
+	signature
+	
+	* gtksourceview/gtksourcestylemanager.[ch]: almost rewritted to 
+	use the updated API.
+
+	* gtksourceview/gtksourceview-utils.[ch] (build_file_listing): added
+	a only_dirs parameter
+	
+	(_gtk_source_view_get_file_list): ditto
+	
+	* tests/test-scheme.xml: test scheme 
+	* tests/test-widget.c: print available style schemes at startup
+
 2007-07-14  Steve Frécinaux  <code@istique.net>
 
 	* gtksourceview/language-specs/perl.lang: fix special variable

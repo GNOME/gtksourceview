@@ -1,7 +1,7 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8; coding: utf-8 -*-
  *  gtksourcestylemanager.c
  *
- *  Copyright (C) 2003 - Paolo Maggi <paolo.maggi@polito.it>
+ *  Copyright (C) 2003-2007 - Paolo Maggi <paolo@gnome.org>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU Library General Public License as published by
@@ -30,22 +30,21 @@
 
 struct _GtkSourceStyleManagerPrivate
 {
-	GSList		*schemes;
-	gchar	       **_dirs;
+	GHashTable	*schemes_hash;
+
+	gchar          **search_path;
 	gboolean	 need_reload;
+	
+	gchar          **ids; /* Cache the IDs of the available schemes */
 };
 
-enum {
-	CHANGED,
-	N_SIGNALS
-};
 
 enum {
 	PROP_0,
-	PROP_SEARCH_PATH
+	PROP_SEARCH_PATH,
+	PROP_SCHEME_IDS
 };
 
-static guint signals[N_SIGNALS];
 
 G_DEFINE_TYPE (GtkSourceStyleManager, gtk_source_style_manager, G_TYPE_OBJECT)
 
@@ -88,6 +87,10 @@ gtk_source_style_manager_get_property (GObject    *object,
 		case PROP_SEARCH_PATH:
 			g_value_set_boxed (value, gtk_source_style_manager_get_search_path (sm));
 			break;
+			
+		case PROP_SCHEME_IDS:
+			g_value_set_boxed (value, gtk_source_style_manager_get_scheme_ids (sm));
+			break;			
 
 		default:
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object,
@@ -98,18 +101,28 @@ gtk_source_style_manager_get_property (GObject    *object,
 }
 
 static void
+free_schemes (GtkSourceStyleManager *mgr)
+{	
+	if (mgr->priv->schemes_hash != NULL) 
+	{
+		g_hash_table_destroy (mgr->priv->schemes_hash);
+		mgr->priv->schemes_hash = NULL;
+	}
+
+	g_strfreev (mgr->priv->ids);
+	mgr->priv->ids = NULL;
+}
+
+static void
 gtk_source_style_manager_finalize (GObject *object)
 {
 	GtkSourceStyleManager *mgr;
-	GSList *schemes;
 
 	mgr = GTK_SOURCE_STYLE_MANAGER (object);
 
-	schemes = mgr->priv->schemes;
-	mgr->priv->schemes = NULL;
-	g_slist_foreach (schemes, (GFunc) g_object_unref, NULL);
-	g_slist_free (schemes);
-	g_strfreev (mgr->priv->_dirs);
+	free_schemes (mgr);
+
+	g_strfreev (mgr->priv->search_path);
 
 	G_OBJECT_CLASS (gtk_source_style_manager_parent_class)->finalize (object);
 }
@@ -126,20 +139,20 @@ gtk_source_style_manager_class_init (GtkSourceStyleManagerClass *klass)
 	g_object_class_install_property (object_class,
 					 PROP_SEARCH_PATH,
 					 g_param_spec_boxed ("search-path",
-						 	     _("Style scheme directories"),
-							     _("List of directories where the "
-							       "style scheme files "
-							       "are located"),
+						 	     _("Style scheme search path"),
+							     _("List of directories and files where the "
+							       "style schemes are located"),
 							     G_TYPE_STRV,
 							     G_PARAM_READWRITE));
-
-	signals[CHANGED] = g_signal_new ("changed",
-					 G_OBJECT_CLASS_TYPE (object_class),
-					 G_SIGNAL_RUN_LAST,
-					 G_STRUCT_OFFSET (GtkSourceStyleManagerClass, changed),
-					 NULL, NULL,
-					 _gtksourceview_marshal_VOID__VOID,
-					 G_TYPE_NONE, 0);
+							     
+	g_object_class_install_property (object_class,
+					 PROP_SCHEME_IDS,
+					 g_param_spec_boxed ("scheme-ids",
+						 	     _("Scheme ids"),
+							     _("List of the ids of the available "
+							       "style schemes"),
+							     G_TYPE_STRV,
+							     G_PARAM_READABLE));							     
 
 	g_type_class_add_private (object_class, sizeof(GtkSourceStyleManagerPrivate));
 }
@@ -149,8 +162,9 @@ gtk_source_style_manager_init (GtkSourceStyleManager *mgr)
 {
 	mgr->priv = G_TYPE_INSTANCE_GET_PRIVATE (mgr, GTK_TYPE_SOURCE_STYLE_MANAGER,
 						GtkSourceStyleManagerPrivate);
-	mgr->priv->schemes = NULL;
-	mgr->priv->_dirs = NULL;
+	mgr->priv->schemes_hash = NULL;
+	mgr->priv->ids = NULL;	
+	mgr->priv->search_path = NULL;
 	mgr->priv->need_reload = TRUE;
 }
 
@@ -185,10 +199,24 @@ gtk_source_style_manager_get_default (void)
 	{
 		instance = gtk_source_style_manager_new ();
 		g_object_add_weak_pointer (G_OBJECT (instance),
-					   (gpointer*) &instance);
+					   (gpointer) &instance);
 	}
 
 	return instance;
+}
+
+static GSList *
+ids_list_remove (GSList *ids, const gchar *id, gboolean free_data)
+{
+	GSList *o = g_slist_find_custom (ids, id, (GCompareFunc) strcmp);
+	if (o != NULL)
+	{
+		if (free_data)
+			g_free (o->data);
+		ids = g_slist_delete_link (ids, o);
+	}
+	
+	return ids;
 }
 
 static gboolean
@@ -215,14 +243,14 @@ build_reference_chain (GtkSourceStyleScheme *scheme,
 
 		if (parent_scheme == NULL)
 		{
-			g_warning ("unknown parent scheme %s in scheme %s",
+			g_message ("Unknown parent scheme '%s' in scheme '%s'",
 				   parent_id, gtk_source_style_scheme_get_id (scheme));
 			retval = FALSE;
 			break;
 		}
 		else if (g_slist_find (chain, parent_scheme) != NULL)
 		{
-			g_warning ("reference cycle in scheme %s", parent_id);
+			g_message ("Reference cycle in scheme '%s'", parent_id);
 			retval = FALSE;
 			break;
 		}
@@ -240,67 +268,81 @@ build_reference_chain (GtkSourceStyleScheme *scheme,
 }
 
 static GSList *
-check_parents (GSList     *schemes,
+check_parents (GSList     *ids,
 	       GHashTable *hash)
 {
 	GSList *to_check;
 
-	to_check = g_slist_copy (schemes);
+	to_check = g_slist_copy (ids);
 
 	while (to_check != NULL)
 	{
 		GSList *chain;
 		gboolean valid;
-
-		valid = build_reference_chain (to_check->data, hash, &chain);
+		GtkSourceStyleScheme *scheme_to_check;
+		
+		scheme_to_check = g_hash_table_lookup (hash, to_check->data);
+		g_return_val_if_fail (scheme_to_check != NULL, NULL);
+		
+		valid = build_reference_chain (scheme_to_check, hash, &chain);
 
 		while (chain != NULL)
 		{
+			const gchar *id;
 			GtkSourceStyleScheme *scheme = chain->data;
-			to_check = g_slist_remove (to_check, scheme);
+
+			id = gtk_source_style_scheme_get_id (scheme);
+			
+			to_check = ids_list_remove (to_check, id, FALSE);
 
 			if (!valid)
 			{
-				schemes = g_slist_remove (schemes, scheme);
-				g_hash_table_remove (hash, gtk_source_style_scheme_get_id (scheme));
-				g_object_unref (scheme);
+				ids = ids_list_remove (ids, id, TRUE);
+				g_hash_table_remove (hash, id);
 			}
 
 			chain = g_slist_delete_link (chain, chain);
 		}
 	}
 
-	return schemes;
+	return ids;
 }
 
-static void
-gtk_source_style_manager_changed (GtkSourceStyleManager *mgr)
+static gchar **
+slist_to_strv (GSList *list)
 {
-	if (!mgr->priv->need_reload)
+	gchar **res;
+	guint i = 0;
+	
+	res = g_new (gchar *, g_slist_length (list) + 1);
+	
+	for ( ; list != NULL; list = g_slist_next (list))
 	{
-		mgr->priv->need_reload = TRUE;
-		g_signal_emit (mgr, signals[CHANGED], 0);
+		res[i] = (gchar *)list->data;
+		++i;
 	}
+	
+	res[i] = NULL;
+	
+	return res;
 }
 
 static void
-gtk_source_style_manager_reload (GtkSourceStyleManager *mgr)
+reload_if_needed (GtkSourceStyleManager *mgr)
 {
-	GHashTable *schemes_hash;
-	GSList *schemes = NULL;
+	GSList *ids = NULL;
 	GSList *files;
 	GSList *l;
-
-	g_return_if_fail (GTK_IS_SOURCE_STYLE_MANAGER (mgr));
-
-	schemes = mgr->priv->schemes;
-	mgr->priv->schemes = NULL;
-	g_slist_foreach (schemes, (GFunc) g_object_unref, NULL);
-	g_slist_free (schemes);
+	GHashTable *schemes_hash;
+	
+	if (!mgr->priv->need_reload)
+		return;
 
 	schemes_hash = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, g_object_unref);
-	files = _gtk_source_view_get_file_list (gtk_source_style_manager_get_search_path (mgr),
-						SCHEME_FILE_SUFFIX);
+		
+	files = _gtk_source_view_get_file_list ((gchar **)gtk_source_style_manager_get_search_path (mgr),
+						SCHEME_FILE_SUFFIX,
+						FALSE);
 
 	for (l = files; l != NULL; l = l->next)
 	{
@@ -315,78 +357,160 @@ gtk_source_style_manager_reload (GtkSourceStyleManager *mgr)
 		{
 			const gchar *id = gtk_source_style_scheme_get_id (scheme);
 			GtkSourceStyleScheme *old;
-
+			
 			old = g_hash_table_lookup (schemes_hash, id);
 
-			if (old != NULL)
-				schemes = g_slist_remove (schemes, old);
-
-			schemes = g_slist_prepend (schemes, scheme);
-			g_hash_table_insert (schemes_hash, g_strdup (id), g_object_ref (scheme));
+			if (old != NULL) 
+				ids = ids_list_remove (ids, id, TRUE);
+				
+			ids = g_slist_prepend (ids, g_strdup (id));
+			g_hash_table_insert (schemes_hash, g_strdup (id), scheme);
 		}
 	}
 
-	schemes = check_parents (schemes, schemes_hash);
-	g_hash_table_destroy (schemes_hash);
+	ids = check_parents (ids, schemes_hash);
 
 	g_slist_foreach (files, (GFunc) g_free, NULL);
 	g_slist_free (files);
 
-	mgr->priv->schemes = schemes;
+	free_schemes (mgr);
+	
 	mgr->priv->need_reload = FALSE;
-}
-
-void
-gtk_source_style_manager_set_search_path (GtkSourceStyleManager	*mgr,
-					  gchar		       **dirs)
-{
-	char **tmp;
-
-	g_return_if_fail (GTK_IS_SOURCE_STYLE_MANAGER (mgr));
-
-	tmp = mgr->priv->_dirs;
-	mgr->priv->_dirs = g_strdupv (dirs);
-	g_strfreev (tmp);
-
-	g_object_notify (G_OBJECT (mgr), "search-path");
-	gtk_source_style_manager_changed (mgr);
-}
-
-gchar **
-gtk_source_style_manager_get_search_path (GtkSourceStyleManager	*mgr)
-{
-	g_return_val_if_fail (GTK_IS_SOURCE_STYLE_MANAGER (mgr), NULL);
-
-	if (mgr->priv->_dirs == NULL)
-		mgr->priv->_dirs = _gtk_source_view_get_default_dirs (STYLES_DIR, FALSE);
-
-	return mgr->priv->_dirs;
+	mgr->priv->schemes_hash = schemes_hash;
+	
+	mgr->priv->ids = slist_to_strv (ids);
+	g_slist_free (ids); /* slist_to_strv trasfer the onwnership of the strings
+	                       to the string array */
 }
 
 static void
-reload_if_needed (GtkSourceStyleManager *mgr)
+notify_search_path (GtkSourceStyleManager *mgr)
 {
-	if (mgr->priv->need_reload)
-		gtk_source_style_manager_reload (mgr);
+	mgr->priv->need_reload = TRUE;
+	
+	g_object_notify (G_OBJECT (mgr), "search-path");
+	g_object_notify (G_OBJECT (mgr), "scheme-ids");
+}
+
+void
+gtk_source_style_manager_set_search_path (GtkSourceStyleManager	 *manager,
+					  gchar	                **path)
+{
+	g_return_if_fail (GTK_IS_SOURCE_STYLE_MANAGER (manager));
+	
+	g_strfreev (manager->priv->search_path);
+
+	if (path == NULL)
+		manager->priv->search_path = _gtk_source_view_get_default_dirs (STYLES_DIR, FALSE);
+	else		
+		manager->priv->search_path = g_strdupv (path);
+
+	notify_search_path (manager);
+}
+
+void
+gtk_source_style_manager_append_search_path (GtkSourceStyleManager  *manager,
+					     const gchar            *path)
+{
+	guint len = 0;
+	
+	g_return_if_fail (GTK_IS_SOURCE_STYLE_MANAGER (manager));
+	g_return_if_fail (path != NULL);
+		
+	if (manager->priv->search_path != NULL)
+		len = g_strv_length (manager->priv->search_path);
+
+	manager->priv->search_path = g_renew (gchar *,
+					      manager->priv->search_path,
+					      len + 2); /* old path + new entry + NULL */
+						
+	manager->priv->search_path[len] = g_strdup (path);
+	manager->priv->search_path[len + 1] = NULL;
+
+	notify_search_path (manager);
+}
+
+void
+gtk_source_style_manager_prepend_search_path (GtkSourceStyleManager *manager,
+					      const gchar           *path)
+{
+	guint len = 0;
+	gchar **new_search_path;
+			
+	g_return_if_fail (GTK_IS_SOURCE_STYLE_MANAGER (manager));
+	g_return_if_fail (path != NULL);
+	
+	if (manager->priv->search_path != NULL)
+		len = g_strv_length (manager->priv->search_path);	
+
+	new_search_path = g_new (gchar *, len + 2);
+	
+	new_search_path[0] = g_strdup (path);
+	
+	memcpy (new_search_path + 1, manager->priv->search_path, (len + 1) * sizeof (gchar*));
+	
+	g_free (manager->priv->search_path);
+	
+	manager->priv->search_path = new_search_path;
+
+	notify_search_path (manager);
 }
 
 /**
- * gtk_source_style_manager_list_schemes:
+ * gtk_source_style_manager_get_search_path:
  * @manager: a #GtkSourceStyleManager
  *
- * Returns the list of style schemes.
+ * Returns the current search path for the @manager. 
+ * See gtk_source_style_manager_set_search_path() for details.
  *
- * Returns: a list of #GtkSourceStyleScheme objects. It must be freed with
- * g_slist_free(), but its elements must not be unref'ed
+ * Returns: a NULL-terminated array of string containing the search path. 
+ * The array is owned by the @manager and must not be modified.
  **/
-GSList *
-gtk_source_style_manager_list_schemes (GtkSourceStyleManager *manager)
+const gchar* const *
+gtk_source_style_manager_get_search_path (GtkSourceStyleManager	*manager)
+{
+	g_return_val_if_fail (GTK_IS_SOURCE_STYLE_MANAGER (manager), NULL);
+
+	if (manager->priv->search_path == NULL)
+		manager->priv->search_path = _gtk_source_view_get_default_dirs (STYLES_DIR, FALSE);
+
+	return (const gchar * const *)manager->priv->search_path;
+}
+
+/**
+ * gtk_source_style_manager_force_rescan:
+ * @manager: a #GtkSourceStyleManager
+ *
+ * Mark any currently cached information about the available style scehems 
+ * as invalid. All the available style schemes will be reloaded next time 
+ * the @manager is accessed.
+ */
+void
+gtk_source_style_manager_force_rescan (GtkSourceStyleManager *manager)
+{
+	manager->priv->need_reload = TRUE;
+	
+	g_object_notify (G_OBJECT (manager), "scheme-ids");	
+}
+
+/**
+ * gtk_source_style_manager_get_scheme_ids:
+ * @manager: a #GtkSourceStyleManager
+ *
+ * Returns the ids of the available style schemes.
+ *
+ * Returns: a NULL-terminated array of string containing the ids of the 
+ * available style schemes or NULL if no style scheme is available. The array
+ * is owned by the @manager and must not be modified.
+ **/
+const gchar* const *
+gtk_source_style_manager_get_scheme_ids	(GtkSourceStyleManager	*manager)
 {
 	g_return_val_if_fail (GTK_IS_SOURCE_STYLE_MANAGER (manager), NULL);
 
 	reload_if_needed (manager);
 
-	return g_slist_copy (manager->priv->schemes);
+	return (const gchar * const *)manager->priv->ids;
 }
 
 /**
@@ -403,16 +527,10 @@ GtkSourceStyleScheme *
 gtk_source_style_manager_get_scheme (GtkSourceStyleManager *manager,
 				     const gchar           *scheme_id)
 {
-	GSList *l;
-
 	g_return_val_if_fail (GTK_IS_SOURCE_STYLE_MANAGER (manager), NULL);
 	g_return_val_if_fail (scheme_id != NULL, NULL);
 
 	reload_if_needed (manager);
 
-	for (l = manager->priv->schemes; l != NULL; l = l->next)
-		if (!strcmp (scheme_id, gtk_source_style_scheme_get_id (l->data)))
-			return l->data;
-
-	return NULL;
+	return g_hash_table_lookup (manager->priv->schemes_hash, scheme_id);
 }

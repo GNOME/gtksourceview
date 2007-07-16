@@ -176,7 +176,7 @@ gtk_source_language_manager_get_default (void)
 	{
 		instance = gtk_source_language_manager_new ();
 		g_object_add_weak_pointer (G_OBJECT (instance),
-					   (gpointer*) &instance);
+					   (gpointer) &instance);
 	}
 
 	return instance;
@@ -194,15 +194,14 @@ void
 gtk_source_language_manager_set_search_path (GtkSourceLanguageManager *lm,
 					     gchar                   **dirs)
 {
-	char **tmp;
-
 	g_return_if_fail (GTK_IS_SOURCE_LANGUAGE_MANAGER (lm));
-	/* FIXME: so what do we do? rescan, refresh? */
+	
+	/* Search path cannot be changed in the list of available languages
+	 * as been already changed */
 	g_return_if_fail (lm->priv->available_languages == NULL);
 
-	tmp = lm->priv->lang_dirs;
+	g_strfreev (lm->priv->lang_dirs);
 	lm->priv->lang_dirs = g_strdupv (dirs);
-	g_strfreev (tmp);
 
 	g_object_notify (G_OBJECT (lm), "search-path");
 }
@@ -285,7 +284,8 @@ ensure_languages (GtkSourceLanguageManager *lm)
 							g_free, g_object_unref);
 
 	filenames = _gtk_source_view_get_file_list (gtk_source_language_manager_get_search_path (lm),
-						    LANG_FILE_SUFFIX);
+						    LANG_FILE_SUFFIX,
+						    TRUE);
 
 	for (l = filenames; l != NULL; l = l->next)
 	{
