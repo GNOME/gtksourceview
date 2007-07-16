@@ -416,9 +416,13 @@ gtk_source_style_manager_append_search_path (GtkSourceStyleManager  *manager,
 	
 	g_return_if_fail (GTK_IS_SOURCE_STYLE_MANAGER (manager));
 	g_return_if_fail (path != NULL);
+	
+	if (manager->priv->search_path == NULL)
+		manager->priv->search_path = _gtk_source_view_get_default_dirs (STYLES_DIR, FALSE);
 		
-	if (manager->priv->search_path != NULL)
-		len = g_strv_length (manager->priv->search_path);
+	g_return_if_fail (manager->priv->search_path != NULL);
+	
+	len = g_strv_length (manager->priv->search_path);
 
 	manager->priv->search_path = g_renew (gchar *,
 					      manager->priv->search_path,
@@ -440,8 +444,12 @@ gtk_source_style_manager_prepend_search_path (GtkSourceStyleManager *manager,
 	g_return_if_fail (GTK_IS_SOURCE_STYLE_MANAGER (manager));
 	g_return_if_fail (path != NULL);
 	
-	if (manager->priv->search_path != NULL)
-		len = g_strv_length (manager->priv->search_path);	
+	if (manager->priv->search_path == NULL)
+		manager->priv->search_path = _gtk_source_view_get_default_dirs (STYLES_DIR, FALSE);
+		
+	g_return_if_fail (manager->priv->search_path != NULL);
+	
+	len = g_strv_length (manager->priv->search_path);
 
 	new_search_path = g_new (gchar *, len + 2);
 	
