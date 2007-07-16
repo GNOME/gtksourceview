@@ -1,5 +1,10 @@
 2007-07-16  Paolo Maggi  <paolo@gnome.org>
 
+	* gtksourceview/gtksourcemarker.[ch]: use const instead of 
+	G_CONST_RETURN
+
+2007-07-16  Paolo Maggi  <paolo@gnome.org>
+
 	GtkSourceStyleManager API revisited
 	
 	* gtksourceview/gtksourcelanguagemanager.c
