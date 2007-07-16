@@ -110,7 +110,7 @@ gtk_source_marker_get_line (GtkSourceMarker *marker)
  *
  * Return value: the name.
  **/
-G_CONST_RETURN gchar *
+const gchar *
 gtk_source_marker_get_name (GtkSourceMarker *marker)
 {
 	g_return_val_if_fail (marker != NULL, NULL);
