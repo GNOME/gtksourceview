@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview.HEAD.es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-07-14 03:27+0100\n"
-"PO-Revision-Date: 2007-07-15 14:25+0200\n"
+"POT-Creation-Date: 2007-07-17 03:22+0100\n"
+"PO-Revision-Date: 2007-07-17 12:17+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -233,13 +233,21 @@ msgstr "Establecer tachado"
 msgid "Whether strikethrough attribute is set"
 msgstr "Indica si el atributo tachado está establecido"
 
-#: ../gtksourceview/gtksourcestylemanager.c:129
-msgid "Style scheme directories"
-msgstr "Directorios de estilos de esquemas"
+#: ../gtksourceview/gtksourcestylemanager.c:142
+msgid "Style scheme search path"
+msgstr "Ruta de búsqueda del estilo del esquema"
 
-#: ../gtksourceview/gtksourcestylemanager.c:130
-msgid "List of directories where the style scheme files are located"
-msgstr "Lista de directorios en los que se hallan los archivos de estilos de esquemas"
+#: ../gtksourceview/gtksourcestylemanager.c:143
+msgid "List of directories and files where the style schemes are located"
+msgstr "Lista de directorios y archivos en los que se hallan los archivos de estilos de esquemas"
+
+#: ../gtksourceview/gtksourcestylemanager.c:151
+msgid "Scheme ids"
+msgstr "Identificadores de esquema"
+
+#: ../gtksourceview/gtksourcestylemanager.c:152
+msgid "List of the ids of the available style schemes"
+msgstr "Lista de los identificadores de los estilos de esquemas disponibles"
 
 #: ../gtksourceview/gtksourcestylescheme.c:167
 #: ../gtksourceview/gtksourcestylescheme.c:168
