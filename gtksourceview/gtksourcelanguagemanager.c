@@ -194,14 +194,17 @@ void
 gtk_source_language_manager_set_search_path (GtkSourceLanguageManager *lm,
 					     gchar                   **dirs)
 {
+	gchar **tmp;
+
 	g_return_if_fail (GTK_IS_SOURCE_LANGUAGE_MANAGER (lm));
-	
+
 	/* Search path cannot be changed in the list of available languages
 	 * as been already changed */
 	g_return_if_fail (lm->priv->available_languages == NULL);
 
-	g_strfreev (lm->priv->lang_dirs);
+	tmp = lm->priv->lang_dirs;
 	lm->priv->lang_dirs = g_strdupv (dirs);
+	g_strfreev (tmp);
 
 	g_object_notify (G_OBJECT (lm), "search-path");
 }

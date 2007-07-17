@@ -1,8 +1,28 @@
+2007-07-17  Yevgen Muntyan  <muntyan@tamu.edu>
+
+	* gtksourceview/gtksourcelanguage.c (_gtk_source_language_new_from_file),
+	(gtk_source_language_dispose):
+	* gtksourceview/gtksourcestylescheme.c (gtk_source_style_scheme_get_style):
+	cast pointer to a pointer to a pointer, so gcc strict aliasing thing is
+	fooled by implicit conversion from a pointer to a pointer to a pointer.
+
+	* gtksourceview/gtksourcestylemanager.c:
+	(build_reference_chain): use g_warning instead of g_message;
+	(slist_to_strv): don't cast void* to char*;
+	(gtk_source_style_manager_set_search_path): free priv->search_path after
+	setting it, so it won't break on set_search_path(get_search_path()).
+
+	* gtksourceview/gtksourcelanguagemanager.c:
+	(gtk_source_language_manager_set_search_path): same thing for
+	priv->search_path.
+
+	* tests/test-widget.c (main): do not pass NULL to g_print.
+
 2007-07-16  Paolo Maggi  <paolo@gnome.org>
-	* gtksourceview/gtksourcestylemanager.c 
+	* gtksourceview/gtksourcestylemanager.c
 	(gtk_source_style_manager_get_scheme_ids): use %NULL instead of NULL
 	in API documentation
-	
+
 2007-07-16  Paolo Maggi  <paolo@gnome.org>
 
 	* gtksourceview/gtksourcestylemanager.c
@@ -12,28 +32,28 @@
 
 2007-07-16  Paolo Maggi  <paolo@gnome.org>
 
-	* gtksourceview/gtksourcemarker.[ch]: use const instead of 
+	* gtksourceview/gtksourcemarker.[ch]: use const instead of
 	G_CONST_RETURN
 
 2007-07-16  Paolo Maggi  <paolo@gnome.org>
 
 	GtkSourceStyleManager API revisited
-	
+
 	* gtksourceview/gtksourcelanguagemanager.c
 	(gtk_source_language_manager_get_default): silent a gcc warning
 	(gtk_source_language_manager_set_search_path): code cleanup
-	 (ensure_languages): use the new _gtk_source_view_get_file_list 
+	 (ensure_languages): use the new _gtk_source_view_get_file_list
 	signature
-	
-	* gtksourceview/gtksourcestylemanager.[ch]: almost rewritted to 
+
+	* gtksourceview/gtksourcestylemanager.[ch]: almost rewritted to
 	use the updated API.
 
 	* gtksourceview/gtksourceview-utils.[ch] (build_file_listing): added
 	a only_dirs parameter
-	
+
 	(_gtk_source_view_get_file_list): ditto
-	
-	* tests/test-scheme.xml: test scheme 
+
+	* tests/test-scheme.xml: test scheme
 	* tests/test-widget.c: print available style schemes at startup
 
 2007-07-14  Steve Frécinaux  <code@istique.net>

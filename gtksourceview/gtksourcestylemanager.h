@@ -52,7 +52,7 @@ struct _GtkSourceStyleManagerClass
 	void (*_gtk_source_reserved1) (void);
 	void (*_gtk_source_reserved2) (void);
 	void (*_gtk_source_reserved3) (void);
-	void (*_gtk_source_reserved4) (void);	
+	void (*_gtk_source_reserved4) (void);
 };
 
 
@@ -63,19 +63,19 @@ GtkSourceStyleManager	*gtk_source_style_manager_get_default		(void);
 
 void			 gtk_source_style_manager_set_search_path	(GtkSourceStyleManager	*manager,
 						    			 gchar                 **path);
-						    			 
+
 void 			 gtk_source_style_manager_append_search_path    (GtkSourceStyleManager	*manager,
 						    			 const gchar            *path);
 
 void 			 gtk_source_style_manager_prepend_search_path   (GtkSourceStyleManager	*manager,
 						    			 const gchar            *path);
 
-const gchar* const * gtk_source_style_manager_get_search_path	
+const gchar* const * gtk_source_style_manager_get_search_path
 									(GtkSourceStyleManager	*manager);
 
 void			 gtk_source_style_manager_force_rescan		(GtkSourceStyleManager	*manager);
 
-const gchar* const * gtk_source_style_manager_get_scheme_ids	
+const gchar* const * gtk_source_style_manager_get_scheme_ids
 									(GtkSourceStyleManager	*manager);
 
 GtkSourceStyleScheme	*gtk_source_style_manager_get_scheme		(GtkSourceStyleManager	*manager,

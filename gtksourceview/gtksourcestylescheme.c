@@ -273,7 +273,7 @@ gtk_source_style_scheme_get_description (GtkSourceStyleScheme *scheme)
  * gtk_source_style_scheme_get_filename:
  * @scheme: a #GtkSourceStyleScheme.
  *
- * Returns: @scheme file name if the scheme was created parsing a 
+ * Returns: @scheme file name if the scheme was created parsing a
  * style scheme file or NULL in the other cases.
  *
  * Since: 2.0
@@ -372,7 +372,7 @@ gtk_source_style_scheme_get_style (GtkSourceStyleScheme *scheme,
 	g_return_val_if_fail (style_id != NULL, NULL);
 
 	if (g_hash_table_lookup_extended (scheme->priv->style_cache, style_id,
-					  NULL, (gpointer *) &style))
+					  NULL, (gpointer) &style))
 		return style;
 
 	real_style = g_hash_table_lookup (scheme->priv->defined_styles, style_id);

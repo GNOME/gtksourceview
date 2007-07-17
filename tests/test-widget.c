@@ -1156,7 +1156,7 @@ main (int argc, char *argv[])
 	GtkSourceBuffer *buffer;
 
 	gchar *builtin_lang_dirs[] = {TOP_SRCDIR "/gtksourceview/language-specs", NULL};
-	gchar *builtin_sm_dirs[] = {TOP_SRCDIR "/gtksourceview/language-specs", NULL};	
+	gchar *builtin_sm_dirs[] = {TOP_SRCDIR "/gtksourceview/language-specs", NULL};
 	gchar **lang_dirs;
 	const gchar * const * schemes;
 	gboolean use_default_paths = FALSE;
@@ -1191,30 +1191,31 @@ main (int argc, char *argv[])
 	lang_dirs = use_default_paths ? NULL : builtin_lang_dirs;
 	lm = gtk_source_language_manager_get_default ();
 	gtk_source_language_manager_set_search_path (lm, lang_dirs);
-	
+
 	lang_dirs = use_default_paths ? NULL : builtin_sm_dirs;
-	
+
 	sm = gtk_source_style_manager_get_default ();
 	gtk_source_style_manager_set_search_path (sm, lang_dirs);
-	
+
 	if (!use_default_paths)
 		gtk_source_style_manager_append_search_path (sm, TOP_SRCDIR "/tests/test-scheme.xml");
 
 	schemes = gtk_source_style_manager_get_scheme_ids (sm);
 	g_print ("Available style schemes:\n");
-	while (*schemes != NULL) 
+	while (*schemes != NULL)
 	{
 		style_scheme = gtk_source_style_manager_get_scheme (sm, *schemes);
 
-		g_print (" - [%s] %s: %s\n", 
+		g_print (" - [%s] %s: %s\n",
 			 gtk_source_style_scheme_get_id (style_scheme),
 			 gtk_source_style_scheme_get_name (style_scheme),
-			 gtk_source_style_scheme_get_description (style_scheme));
-			 
+			 gtk_source_style_scheme_get_description (style_scheme) ?
+				gtk_source_style_scheme_get_description (style_scheme) : "");
+
 		++schemes;
 	}
 	g_print("\n");
-	
+
 	if (style_scheme_id != NULL)
 		style_scheme = gtk_source_style_manager_get_scheme (sm, style_scheme_id);
 	else

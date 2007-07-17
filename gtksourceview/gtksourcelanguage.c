@@ -107,7 +107,7 @@ _gtk_source_language_new_from_file (const gchar              *filename,
 	{
 		lang->priv->language_manager = lm;
 		g_object_add_weak_pointer (G_OBJECT (lm),
-					   (gpointer*) &lang->priv->language_manager);
+					   (gpointer) &lang->priv->language_manager);
 	}
 
 	return lang;
@@ -123,7 +123,7 @@ gtk_source_language_dispose (GObject *object)
 	if (lang->priv->language_manager != NULL)
 	{
 		g_object_remove_weak_pointer (G_OBJECT (lang->priv->language_manager),
-					      (gpointer*) &lang->priv->language_manager);
+					      (gpointer) &lang->priv->language_manager);
 		lang->priv->language_manager = NULL;
 	}
 
