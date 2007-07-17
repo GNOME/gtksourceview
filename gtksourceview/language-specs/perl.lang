@@ -31,18 +31,19 @@ FIXME: =pod should require an empty line before/after, as written in perlpod
 
   <styles>
     <style id="comment"           _name="Comment"            map-to="def:comment"/>
-    <style id="line-directive"    _name="Line directive"     map-to="def:preprocessor"/>
+    <style id="line-directive"    _name="Line Directive"     map-to="def:preprocessor"/>
+    <style id="include-statement" _name="Include Statement"  map-to="def:preprocessor"/>
     <style id="string"            _name="String"             map-to="def:string"/>
     <style id="keyword"           _name="Keyword"            map-to="def:keyword"/>
     <style id="builtin-function"  _name="Function"           map-to="def:function"/>
     <style id="here-doc"          _name="Heredoc"            map-to="def:string" />
-    <style id="here-doc-bound"    _name="Heredoc bound"      map-to="def:string"/>
-    <style id="system-command"    _name="System command"     map-to="def:string"/>
+    <style id="here-doc-bound"    _name="Heredoc Bound"      map-to="def:string"/>
+    <style id="system-command"    _name="System Command"     map-to="def:string"/>
     <style id="operator"          _name="Operator"           map-to="def:keyword"/>
     <style id="variable"          _name="Variable"           map-to="def:data-type"/>
-    <style id="file-descriptor"   _name="File descriptor"    map-to="perl:variable"/>
+    <style id="file-descriptor"   _name="File Descriptor"    map-to="perl:variable"/>
     <style id="control"           _name="Control"            map-to="def:preprocessor"/>
-    <style id="regex"             _name="Regular expression" map-to="def:string"/>
+    <style id="regex"             _name="Regular Expression" map-to="def:string"/>
     <style id="error"             _name="Error"              map-to="def:error"/>
     <style id="pod-escape"        _name="POD Escape"         map-to="def:escape"/>
     <style id="pod-keyword"       _name="POD keyword"        map-to="def:keyword"/>
@@ -613,7 +614,7 @@ FIXME: =pod should require an empty line before/after, as written in perlpod
 
     <context id="include-statement">
       <include>
-        <context style-ref="def:preprocessor">
+        <context style-ref="include-statement">
           <keyword>require</keyword>
         </context>
         <context>
@@ -622,8 +623,8 @@ FIXME: =pod should require an empty line before/after, as written in perlpod
           <start>(use|no)\s</start>
           <end>;</end>
           <include>
-            <context sub-pattern="0" where="start" style-ref="def:preprocessor"/>
-            <context once-only="true" style-ref="def:preprocessor">
+            <context sub-pattern="0" where="start" style-ref="include-statement"/>
+            <context once-only="true" style-ref="include-statement">
               <keyword>attributes</keyword>
               <keyword>autouse</keyword>
               <keyword>base</keyword>

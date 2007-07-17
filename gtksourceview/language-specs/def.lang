@@ -40,8 +40,10 @@
         <style id="shebang"                 _name="Shebang"/>
         <style id="doc-comment"             _name="Documentation Comment" map-to="def:comment"/>
         <style id="doc-comment-element"     _name="Documentation Comment Element"/>
-        <!-- FIXME and this is real nonsense -->
-        <style id="preprocessor"            _name="Preprocessor"/>
+        <!-- This one is for '#include <foo.h>' and "#pragma blah", or 'use foobar', etc.. -->
+        <style id="preprocessor"            _name="Preprocessor directive"/>
+        <!-- For things like TRUE and NULL in C. -->
+        <style id="special-value"           _name="Special value" map-to="def:preprocessor"/>
     </styles>
 
     <definitions>
@@ -61,7 +63,6 @@
         <define-regex id="hexadecimal" extended="true">
             (?&lt;![\w\.]) 0 [xX] [0-9a-fA-F]+ (?![\w\.])
         </define-regex>
-        <!-- FIXME: these one is broken, and is it useful at all? -->
         <define-regex id="float" extended="true" case-sensitive="false">
                 \b
                 ([0-9]+ e [-+]? [0-9]+ |

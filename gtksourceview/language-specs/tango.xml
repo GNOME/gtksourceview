@@ -52,7 +52,7 @@
   <color name="aluminium4"                  value="#888a85"/>
   <color name="aluminium5"                  value="#555753"/>
   <color name="aluminium6"                  value="#2e3436"/>
- 
+
   <!-- legacy styles for old lang files: do NOT use them in lang files -->
   <style name="Others"                      foreground="chameleon3" bold="true"/>
   <style name="Others 2"                    foreground="chameleon3"/>
@@ -84,16 +84,14 @@
   <style name="def:preprocessor"            foreground="chocolate2"/>
 
   <!-- Language specific -->
-  <style name="c:preprocessor"              use-style="def:preprocessor"/>
-
   <style name="changelog:email"             use-style="def:net-address-in-comment"/>
 
   <style name="diff:added-line"             foreground="chameleon3"/>
   <style name="diff:removed-line"           foreground="plum3"/>
-  <style name="diff:changed-line"           use-style="c:preprocessor"/>
+  <style name="diff:changed-line"           use-style="def:preprocessor"/>
   <style name="diff:diff-file"              use-style="def:data-type"/>
   <style name="diff:location"               use-style="def:keyword"/>
-  
+
   <style name="diff:special-case"           use-style="def:string"/>
 
   <style name="js:object"                   foreground="chameleon3" bold="true"/>
@@ -101,7 +99,7 @@
 
   <style name="latex:display-math"          foreground="plum3"/>
   <style name="latex:command"               foreground="chameleon3" bold="true"/>
-  <style name="latex:include"               use-style="c:preprocessor"/>
+  <style name="latex:include"               use-style="def:preprocessor"/>
 
   <style name="python:builtins"             foreground="chameleon3" bold="true"/>
 
@@ -111,7 +109,7 @@
   <style name="xml:attribute-name"          foreground="plum3"/>
   <style name="xml:tags"                    foreground="chameleon3"/>
   <style name="xml:namespace"               foreground="chameleon3" bold="true"/>
-  <style name="xml:doctype"                 use-style="c:preprocessor"/>
-  <style name="xml:cdata-delim"             use-style="c:preprocessor"/>
-  <style name="xml:processing-instruction"  use-style="c:preprocessor"/>
+  <style name="xml:doctype"                 use-style="def:preprocessor"/>
+  <style name="xml:cdata-delim"             use-style="def:preprocessor"/>
+  <style name="xml:processing-instruction"  use-style="def:preprocessor"/>
 </style-scheme>

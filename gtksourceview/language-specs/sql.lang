@@ -35,7 +35,7 @@
     <style id="function" _name="Function" map-to="def:function"/>
     <style id="decimal" _name="Decimal" map-to="def:decimal"/>
     <style id="data-type" _name="Data Type" map-to="def:data-type"/>
-    <style id="preprocessor" _name="Preprocessor" map-to="def:preprocessor"/>
+    <style id="some-thing" _name="No idea what it is" map-to="def:preprocessor"/>
   </styles>
 
   <definitions>
@@ -450,16 +450,16 @@
       <keyword>REGEXP_LIKE</keyword>
       <keyword>(NOT[ \t]+)?SUBMULTISET([ \t]+OF)?</keyword>
     </context>
-    <context id="sql-plus-at-sign" style-ref="preprocessor">
+    <context id="sql-plus-at-sign" style-ref="some-thing">
       <match>^[ \t]*@</match>
     </context>
-    <context id="sql-plus-double-at-sign" style-ref="preprocessor">
+    <context id="sql-plus-double-at-sign" style-ref="some-thing">
       <match>^[ \t]*@@</match>
     </context>
-    <context id="sql-plus-slash" style-ref="preprocessor">
+    <context id="sql-plus-slash" style-ref="some-thing">
       <match>^[ \t]*/</match>
     </context>
-    <context id="sql-plus-commands" style-ref="preprocessor">
+    <context id="sql-plus-commands" style-ref="some-thing">
       <prefix>^[ \t]*</prefix>
       <keyword>ACC(EPT)?</keyword>
       <keyword>A(PPEND)?</keyword>

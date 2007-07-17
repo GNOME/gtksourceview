@@ -36,7 +36,7 @@
     <style id="base-n-integer" _name="Base-N Integer" map-to="def:base-n-integer"/>
     <style id="function" _name="Function" map-to="def:function"/>
     <style id="decimal" _name="Decimal" map-to="def:decimal"/>
-    <style id="preprocessor" _name="Preprocessor" map-to="def:preprocessor"/>
+    <style id="reserved-constant" _name="Reserved constant" map-to="def:special-value"/>
   </styles>
 
   <definitions>
@@ -79,7 +79,7 @@
         <context ref="def:line-continue"/>
       </include>
     </context>
-    <context id="reserved-constant" style-ref="preprocessor">
+    <context id="reserved-constant" style-ref="reserved-constant">
       <keyword>false</keyword>
       <keyword>true</keyword>
       <keyword>Inf</keyword>

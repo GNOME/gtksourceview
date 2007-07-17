@@ -32,6 +32,7 @@
   <color name="white"                       value="#FFFFFF"/>
 
   <style name="current-line"                background="#EEF6FF"/>
+  <style name="right-margin"                background="#ADD4FF"/>
   <style name="bracket-match"               background="#FFFF99" bold="true"/>
   <style name="bracket-mismatch"            background="red" bold="true"/>
 
@@ -58,10 +59,11 @@
   <style name="def:net-address-in-comment"  underline="true"/>
   <style name="def:escape"                  foreground="#FF00FF"/>
 
-  <style name="def:preprocessor"            foreground="dark-green"/>
+  <style name="def:special-value"           bold="true"/>
+  <style name="def:preprocessor"            bold="true"/>
 
-  <style name="c:common-defines"            foreground="#0095FF" bold="true"/>
   <style name="c:preprocessor"              foreground="dark-green"/>
+  <style name="c:common-defines"            foreground="#0095FF" bold="true"/>
 
   <style name="diff:diff-file"              use-style="def:keyword"/>
   <style name="diff:added-line"             use-style="def:decimal"/>
@@ -94,6 +96,7 @@
   <style name="changelog:release"           foreground="#0095FF" bold="true"/>
 
   <style name="python:string-conversion"    background="#BEBEBE"/>
+  <style name="python:module-handler"       use-style="def:character"/>
 
   <style name="changelog:email"             use-style="c:preprocessor"/>
 

@@ -33,7 +33,7 @@
     <style id="keyword" _name="Keyword" map-to="def:keyword"/>
     <style id="decimal" _name="Decimal" map-to="def:decimal"/>
     <style id="data-type" _name="Data Type" map-to="def:data-type"/>
-    <style id="preprocessor" _name="Preprocessor" map-to="def:preprocessor"/>
+    <style id="boolean-value" _name="Boolean value" map-to="def:special-value"/>
   </styles>
 
   <definitions>
@@ -53,7 +53,7 @@
     <context id="variable" style-ref="data-type">
       <match>^[a-zA-Z_][a-zA-Z0-9_.]*</match>
     </context>
-    <context id="boolean-value" style-ref="preprocessor">
+    <context id="boolean-value" style-ref="boolean-value">
       <keyword>true</keyword>
       <keyword>false</keyword>
       <keyword>on</keyword>

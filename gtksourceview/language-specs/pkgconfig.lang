@@ -38,6 +38,8 @@
 
     <context id="pkgconfig">
       <include>
+        <context ref="def:shell-like-comment"/>
+
         <context end-at-line-end="true">
           <start>^([\w_]+)\s*=\s*</start>
           <include>

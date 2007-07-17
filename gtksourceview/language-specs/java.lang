@@ -35,8 +35,8 @@
     <style id="error" _name="Error" map-to="def:error"/>
     <style id="string" _name="String" map-to="def:string"/>
     <style id="keyword" _name="Keyword" map-to="def:keyword"/>
-    <style id="null-value" _name="Null Value" map-to="def:preprocessor"/>
-    <style id="boolean" _name="Boolean" map-to="def:preprocessor"/>
+    <style id="null-value" _name="Null Value" map-to="def:special-value"/>
+    <style id="boolean" _name="Boolean" map-to="def:special-value"/>
     <style id="decimal" _name="Decimal" map-to="def:decimal"/>
     <style id="reserved" _name="Future Reserved Keywords" map-to="def:error"/>
     <style id="data-type" _name="Data Type" map-to="def:data-type"/>

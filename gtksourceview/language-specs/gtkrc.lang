@@ -33,7 +33,9 @@
     <style id="keyword" _name="Keyword" map-to="def:keyword"/>
     <style id="decimal" _name="Decimal" map-to="def:decimal"/>
     <style id="data-type" _name="Data Type" map-to="def:data-type"/>
-    <style id="preprocessor" _name="Preprocessor" map-to="def:preprocessor"/>
+    <style id="state" _name="Widget State" map-to="def:special-value"/>
+    <style id="include-directive" _name="Include directive" map-to="def:preprocessor"/>
+    <style id="boolean-value" _name="Boolean value" map-to="def:special-value"/>
   </styles>
 
   <definitions>
@@ -80,17 +82,17 @@
       <keyword>base</keyword>
       <keyword>text</keyword>
     </context>
-    <context id="state" style-ref="preprocessor">
+    <context id="state" style-ref="state">
       <keyword>ACTIVE</keyword>
       <keyword>SELECTED</keyword>
       <keyword>NORMAL</keyword>
       <keyword>PRELIGHT</keyword>
       <keyword>INSENSITIVE</keyword>
     </context>
-    <context id="include-directive" style-ref="preprocessor">
+    <context id="include-directive" style-ref="include-directive">
       <keyword>include</keyword>
     </context>
-    <context id="boolean-value" style-ref="preprocessor">
+    <context id="boolean-value" style-ref="boolean-value">
       <keyword>TRUE</keyword>
       <keyword>FALSE</keyword>
     </context>

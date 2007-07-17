@@ -33,7 +33,10 @@
     <style id="others" _name="Others"/>
     <style id="string" _name="String" map-to="def:string"/>
     <style id="keyword" _name="Keyword" map-to="def:keyword"/>
-    <style id="preprocessor" _name="Preprocessor" map-to="def:preprocessor"/>
+    <style id="macros" _name="Macros" map-to="def:keyword"/>
+    <style id="file-attributes" _name="File Attributes" map-to="def:keyword"/>
+    <style id="generated-content" _name="Generated Content" map-to="def:keyword"/>
+    <style id="include" _name="Include" map-to="def:preprocessor"/>
   </styles>
 
   <definitions>
@@ -67,18 +70,18 @@
         <context ref="generated-line-escape"/>
       </include>
     </context>
-    <context id="macros" style-ref="preprocessor">
+    <context id="macros" style-ref="macros">
       <prefix>^@</prefix>
       <suffix></suffix>
-      <keyword>alias</keyword>
+      <keyword>alias\b</keyword>
       <keyword>bye$</keyword>
-      <keyword>clear</keyword>
-      <keyword>defcodeindex</keyword>
-      <keyword>defindex</keyword>
-      <keyword>definfoenclose</keyword>
+      <keyword>clear\b</keyword>
+      <keyword>defcodeindex\b</keyword>
+      <keyword>defindex\b</keyword>
+      <keyword>definfoenclose\b</keyword>
       <keyword>(end )?docbook$</keyword>
       <keyword>(end )?html$</keyword>
-      <keyword>ifclear</keyword>
+      <keyword>ifclear\b</keyword>
       <keyword>end ifclear$</keyword>
       <keyword>(end )?if(not)?docbook$</keyword>
       <keyword>(end )?if(not)?html$</keyword>
@@ -86,21 +89,20 @@
       <keyword>(end )?if(not)?plaintext$</keyword>
       <keyword>(end )?if(not)?tex$</keyword>
       <keyword>(end )?if(not)?xml$</keyword>
-      <keyword>ifset</keyword>
+      <keyword>ifset\b</keyword>
       <keyword>end ifset$</keyword>
       <keyword>lowersections$</keyword>
-      <keyword>macro</keyword>
+      <keyword>macro\b</keyword>
       <keyword>end macro$</keyword>
       <keyword>raisesections$</keyword>
-      <keyword>set</keyword>
-      <keyword>syncodeindex</keyword>
-      <keyword>synindex</keyword>
+      <keyword>set\b</keyword>
+      <keyword>syncodeindex\b</keyword>
+      <keyword>synindex\b</keyword>
       <keyword>(end )?tex$</keyword>
       <keyword>(end )?xml$</keyword>
     </context>
     <context id="indexing" style-ref="keyword">
       <prefix>^@</prefix>
-      <suffix></suffix>
       <keyword>cindex</keyword>
       <keyword>findex</keyword>
       <keyword>kindex</keyword>
@@ -108,40 +110,40 @@
       <keyword>tindex</keyword>
       <keyword>vindex</keyword>
     </context>
-    <context id="file-attributes" style-ref="preprocessor">
+    <context id="file-attributes" style-ref="file-attributes">
       <prefix>^@</prefix>
       <suffix></suffix>
       <keyword>afivepaper$</keyword>
       <keyword>afourlatex$</keyword>
       <keyword>afourpaper$</keyword>
       <keyword>afourwide$</keyword>
-      <keyword>dircategory</keyword>
+      <keyword>dircategory\b</keyword>
       <keyword>(end )?direntry$</keyword>
       <keyword>(end )?documentdescription$</keyword>
-      <keyword>documentencoding</keyword>
-      <keyword>documentlanguage</keyword>
-      <keyword>evenfooting</keyword>
-      <keyword>evenheading</keyword>
-      <keyword>everyfooting</keyword>
-      <keyword>everyheading</keyword>
+      <keyword>documentencoding\b</keyword>
+      <keyword>documentlanguage\b</keyword>
+      <keyword>evenfooting\b</keyword>
+      <keyword>evenheading\b</keyword>
+      <keyword>everyfooting\b</keyword>
+      <keyword>everyheading\b</keyword>
       <keyword>finalout$</keyword>
-      <keyword>footnotestyle</keyword>
-      <keyword>headings</keyword>
-      <keyword>kbdinputstyle</keyword>
+      <keyword>footnotestyle\b</keyword>
+      <keyword>headings\b</keyword>
+      <keyword>kbdinputstyle\b</keyword>
       <keyword>novalidate$</keyword>
-      <keyword>oddfooting</keyword>
-      <keyword>oddheading</keyword>
-      <keyword>pagesizes</keyword>
-      <keyword>paragraphindent</keyword>
-      <keyword>setchapternewpage</keyword>
+      <keyword>oddfooting\b</keyword>
+      <keyword>oddheading\b</keyword>
+      <keyword>pagesizes\b</keyword>
+      <keyword>paragraphindent\b</keyword>
+      <keyword>setchapternewpage\b</keyword>
       <keyword>setcontentsaftertitlepage$</keyword>
-      <keyword>setfilename</keyword>
+      <keyword>setfilename\b</keyword>
       <keyword>setshortcontentsaftertitlepage$</keyword>
-      <keyword>settitle</keyword>
+      <keyword>settitle\b</keyword>
       <keyword>smallbook$</keyword>
-      <keyword>titlefont</keyword>
+      <keyword>titlefont\b</keyword>
     </context>
-    <context id="generated-content" style-ref="preprocessor">
+    <context id="generated-content" style-ref="generated-content">
       <prefix></prefix>
       <suffix></suffix>
       <keyword>^@contents$</keyword>
@@ -151,27 +153,25 @@
       <keyword>^@shortcontents$</keyword>
       <keyword>^@shorttitlepage$</keyword>
       <keyword>^@summarycontents$</keyword>
-      <keyword>@thischapter</keyword>
-      <keyword>@thischaptername</keyword>
-      <keyword>@thisfile</keyword>
-      <keyword>@thispage</keyword>
-      <keyword>@thistitle</keyword>
-      <keyword>@today</keyword>
-      <keyword>@value</keyword>
-      <keyword>@verb</keyword>
+      <keyword>@thischapter\b</keyword>
+      <keyword>@thischaptername\b</keyword>
+      <keyword>@thisfile\b</keyword>
+      <keyword>@thispage\b</keyword>
+      <keyword>@thistitle\b</keyword>
+      <keyword>@today\b</keyword>
+      <keyword>@value\b</keyword>
+      <keyword>@verb\b</keyword>
       <keyword>^@(end )?verbatim$</keyword>
-      <keyword>^@verbatiminclude</keyword>
+      <keyword>^@verbatiminclude\b</keyword>
     </context>
-    <context id="include" style-ref="preprocessor">
+    <context id="include" style-ref="include">
       <prefix></prefix>
-      <suffix></suffix>
       <keyword>^\\input</keyword>
       <keyword>^@include</keyword>
       <keyword>@image</keyword>
     </context>
     <context id="markup-inline" style-ref="keyword">
       <prefix>@</prefix>
-      <suffix></suffix>
       <keyword>acronym</keyword>
       <keyword>anchor</keyword>
       <keyword>caption</keyword>
@@ -203,93 +203,93 @@
     <context id="markup-block" style-ref="keyword">
       <prefix>^@</prefix>
       <suffix></suffix>
-      <keyword>author</keyword>
+      <keyword>author\b</keyword>
       <keyword>(end )?copying$</keyword>
-      <keyword>defcv(x)?</keyword>
+      <keyword>defcv(x)?\b</keyword>
       <keyword>end defcv$</keyword>
-      <keyword>deff(u)?n(x)?</keyword>
+      <keyword>deff(u)?n(x)?\b</keyword>
       <keyword>end def(u)?n$</keyword>
-      <keyword>defivar(x)?</keyword>
+      <keyword>defivar(x)?\b</keyword>
       <keyword>end defivar$</keyword>
-      <keyword>defmac(x)?</keyword>
+      <keyword>defmac(x)?\b</keyword>
       <keyword>end defmac$</keyword>
-      <keyword>defmethod(x)?</keyword>
+      <keyword>defmethod(x)?\b</keyword>
       <keyword>end defmethod$</keyword>
-      <keyword>defop(x)?</keyword>
+      <keyword>defop(x)?\b</keyword>
       <keyword>end defop$</keyword>
-      <keyword>defopt(x)?</keyword>
+      <keyword>defopt(x)?\b</keyword>
       <keyword>end defopt$</keyword>
-      <keyword>defspec(x)?</keyword>
+      <keyword>defspec(x)?\b</keyword>
       <keyword>end defspec$</keyword>
-      <keyword>deftp(x)?</keyword>
+      <keyword>deftp(x)?\b</keyword>
       <keyword>end deftp$</keyword>
-      <keyword>deftypecv(x)?</keyword>
+      <keyword>deftypecv(x)?\b</keyword>
       <keyword>end deftypecv$</keyword>
-      <keyword>deftypef(u)?n(x)?</keyword>
+      <keyword>deftypef(u)?n(x)?\b</keyword>
       <keyword>end deftypef(u)?n$</keyword>
-      <keyword>deftypeivar(x)?</keyword>
+      <keyword>deftypeivar(x)?\b</keyword>
       <keyword>end deftypevar$</keyword>
-      <keyword>deftypemethod(x)?</keyword>
+      <keyword>deftypemethod(x)?\b</keyword>
       <keyword>end deftypemethod$</keyword>
-      <keyword>deftypeop(x)?</keyword>
+      <keyword>deftypeop(x)?\b</keyword>
       <keyword>end deftypeop$</keyword>
-      <keyword>deftypevar(x)?</keyword>
+      <keyword>deftypevar(x)?\b</keyword>
       <keyword>end deftypevar$</keyword>
-      <keyword>deftypevr(x)?</keyword>
+      <keyword>deftypevr(x)?\b</keyword>
       <keyword>end deftypevr$</keyword>
-      <keyword>defv(a)?r(x)?</keyword>
+      <keyword>defv(a)?r(x)?\b</keyword>
       <keyword>end defv(a)?r$</keyword>
       <keyword>(end )?display$</keyword>
-      <keyword>enumerate</keyword>
+      <keyword>enumerate\b</keyword>
       <keyword>end enumerate$</keyword>
       <keyword>(end )?example$</keyword>
       <keyword>(end )?exampleindent$</keyword>
       <keyword>(end )?format$</keyword>
-      <keyword>ftable</keyword>
+      <keyword>ftable\b</keyword>
       <keyword>end ftable$</keyword>
       <keyword>item$</keyword>
-      <keyword>itemize</keyword>
+      <keyword>itemize\b</keyword>
       <keyword>end itemize$</keyword>
       <keyword>itemx$</keyword>
       <keyword>(end )?lisp$</keyword>
-      <keyword>multitable</keyword>
+      <keyword>multitable\b</keyword>
       <keyword>end multitable$</keyword>
       <keyword>(end )?quotation$</keyword>
       <keyword>(end )?smalldisplay$</keyword>
       <keyword>(end )?smallexample$</keyword>
       <keyword>(end )?smallformat$</keyword>
       <keyword>(end )?smalllisp$</keyword>
-      <keyword>subtitle</keyword>
-      <keyword>tab</keyword>
-      <keyword>table</keyword>
+      <keyword>subtitle\b</keyword>
+      <keyword>tab\b</keyword>
+      <keyword>table\b</keyword>
       <keyword>end table$</keyword>
-      <keyword>title</keyword>
-      <keyword>vtable</keyword>
+      <keyword>title\b</keyword>
+      <keyword>vtable\b</keyword>
       <keyword>end vtable$</keyword>
     </context>
     <context id="sectioning" style-ref="keyword">
       <prefix>^@</prefix>
       <suffix></suffix>
-      <keyword>appendix</keyword>
-      <keyword>appendixsec(tion)?</keyword>
-      <keyword>appendixsub(sub)?sec</keyword>
-      <keyword>centerchap</keyword>
-      <keyword>chapter</keyword>
-      <keyword>chapheading</keyword>
+      <keyword>appendix\b</keyword>
+      <keyword>appendixsec(tion)?\b</keyword>
+      <keyword>appendixsub(sub)?sec\b</keyword>
+      <keyword>centerchap\b</keyword>
+      <keyword>chapter\b</keyword>
+      <keyword>chapheading\b</keyword>
       <keyword>(end )?detailmenu$</keyword>
       <keyword>(end )?group$</keyword>
-      <keyword>heading</keyword>
-      <keyword>majorheading</keyword>
+      <keyword>heading\b</keyword>
+      <keyword>majorheading\b</keyword>
       <keyword>(end )?menu$</keyword>
-      <keyword>node</keyword>
-      <keyword>section</keyword>
-      <keyword>sub(sub)?heading</keyword>
-      <keyword>sub(sub)?section</keyword>
+      <keyword>node\b</keyword>
+      <keyword>section\b</keyword>
+      <keyword>sub(sub)?heading\b</keyword>
+      <keyword>sub(sub)?section\b</keyword>
       <keyword>(end )?titlepage$</keyword>
-      <keyword>top</keyword>
-      <keyword>unnumbered</keyword>
-      <keyword>unnumberedsec</keyword>
-      <keyword>unnumberedsub(sub)?sec</keyword>
+      <keyword>top\b</keyword>
+      <keyword>unnumbered\b</keyword>
+      <keyword>unnumberedsec\b</keyword>
+      <keyword>unnumberedsub(sub)?sec\b</keyword>
     </context>
     <context id="formatting" style-ref="keyword">
       <prefix></prefix>
@@ -302,24 +302,24 @@
       <keyword>^@asis$</keyword>
       <keyword>@b</keyword>
       <keyword>^@(end )?cartouche$</keyword>
-      <keyword>^@center</keyword>
-      <keyword>^@exdent</keyword>
+      <keyword>^@center\b</keyword>
+      <keyword>^@exdent\b</keyword>
       <keyword>^@(end )?float$</keyword>
       <keyword>^@(end )?flushleft$</keyword>
       <keyword>^@(end )?flushright$</keyword>
-      <keyword>@hyphenation</keyword>
-      <keyword>@i</keyword>
-      <keyword>^@need</keyword>
+      <keyword>@hyphenation\b</keyword>
+      <keyword>@i\b</keyword>
+      <keyword>^@need\b</keyword>
       <keyword>^@noindent$</keyword>
       <keyword>^@page$</keyword>
-      <keyword>@r</keyword>
+      <keyword>@r\b</keyword>
       <keyword>^@refill$</keyword>
-      <keyword>@sc</keyword>
-      <keyword>^@sp</keyword>
-      <keyword>@t</keyword>
-      <keyword>@tie</keyword>
-      <keyword>^@vskip</keyword>
-      <keyword>@w</keyword>
+      <keyword>@sc\b</keyword>
+      <keyword>^@sp\b</keyword>
+      <keyword>@t\b</keyword>
+      <keyword>@tie\b</keyword>
+      <keyword>^@vskip\b</keyword>
+      <keyword>@w\b</keyword>
     </context>
     <context id="characters" style-ref="keyword">
       <prefix>@</prefix>
@@ -344,14 +344,14 @@
       <keyword>bullet\{\}</keyword>
       <keyword>comma\{\}</keyword>
       <keyword>copyright\{\}</keyword>
-      <keyword>dotaccent</keyword>
+      <keyword>dotaccent\b</keyword>
       <keyword>dots\{\}</keyword>
       <keyword>enddots\{\}</keyword>
       <keyword>equiv\{\}</keyword>
       <keyword>error\{\}</keyword>
       <keyword>exclamdown\{\}</keyword>
       <keyword>expansion\{\}</keyword>
-      <keyword>H</keyword>
+      <keyword>H\b</keyword>
       <keyword>L\{\}</keyword>
       <keyword>l\{\}</keyword>
       <keyword>LaTeX\{\}</keyword>
@@ -369,11 +369,11 @@
       <keyword>ringaccent\{\}</keyword>
       <keyword>ss\{\}</keyword>
       <keyword>TeX\{\}</keyword>
-      <keyword>tieaccent</keyword>
-      <keyword>u</keyword>
-      <keyword>ubaraccent</keyword>
-      <keyword>udotaccent</keyword>
-      <keyword>v</keyword>
+      <keyword>tieaccent\b</keyword>
+      <keyword>u\b</keyword>
+      <keyword>ubaraccent\b</keyword>
+      <keyword>udotaccent\b</keyword>
+      <keyword>v\b</keyword>
     </context>
     <context id="keyword" style-ref="others">
       <match>((^[\\])|([@]))(end )?[a-zA-Z]+(\{\})?</match>

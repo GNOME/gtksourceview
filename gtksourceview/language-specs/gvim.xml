@@ -48,14 +48,11 @@
   <style name="def:shebang"                 foreground="#0000FF" bold="true"/>
   <style name="def:doc-comment-element"     italic="true"/>
 
-  <style name="def:specials"                foreground="#FFFFFF" background="#FF0000"/>
   <style name="def:preprocessor"            foreground="#A020F0"/>
-
-  <style name="c:preprocessor"              foreground="#A020F0"/>
 
   <style name="diff:added-line"             use-style="Others 2"/>
   <style name="diff:removed-line"           use-style="Others 3"/>
-  <style name="diff:changed-line"           use-style="c:preprocessor"/>
+  <style name="diff:changed-line"           use-style="def:preprocessor"/>
   <style name="diff:special-case"           use-style="def:string"/>
   <style name="diff:location"               use-style="def:keyword"/>
   <style name="diff:diff-file"              use-style="def:data-type"/>
@@ -63,16 +60,16 @@
   <style name="xml:attribute-name"          foreground="#6A5ACD"/>
   <style name="xml:tags"                    foreground="#008B8B"/>
   <style name="xml:namespace"               foreground="#2E8B57" bold="true"/>
-  <style name="xml:doctype"                 use-style="c:preprocessor"/>
-  <style name="xml:cdata-delim"             use-style="c:preprocessor"/>
-  <style name="xml:processing-instruction"  use-style="c:preprocessor"/>
+  <style name="xml:doctype"                 use-style="def:preprocessor"/>
+  <style name="xml:cdata-delim"             use-style="def:preprocessor"/>
+  <style name="xml:processing-instruction"  use-style="def:preprocessor"/>
 
   <style name="js:object"                   foreground="#2E8B57" bold="true"/>
   <style name="js:constructors"             foreground="#008B8B"/>
 
   <style name="latex:display-math"          use-style="Others 3"/>
   <style name="latex:command"               foreground="#2E8B57" bold="true"/>
-  <style name="latex:include"               use-style="c:preprocessor"/>
+  <style name="latex:include"               use-style="def:preprocessor"/>
 
   <style name="sh:variable1"                use-style="Others 3"/>
   <style name="sh:variable2"                use-style="Others 2"/>

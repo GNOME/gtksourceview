@@ -29,7 +29,7 @@
  	Tested with:
  		http://www.simplebits.com/css/simple.css
 
-	Submitted by 
+	Submitted by
 
         Converted to new format with convert.py
 -->
@@ -52,7 +52,7 @@
     <style id="decimal" _name="Decimal" map-to="def:decimal"/>
     <style id="dimension" _name="Dimension" map-to="def:floating-point"/>
     <style id="data-type" _name="Data Type" map-to="def:data-type"/>
-    <style id="preprocessor" _name="Preprocessor" map-to="def:preprocessor"/>
+    <style id="at-rules" _name="at-rules" map-to="def:keyword"/>
     <style id="keyword" _name="Keyword" map-to="def:keyword"/>
   </styles>
 
@@ -94,7 +94,7 @@
       <keyword>lang</keyword>
     </context>
 
-    <context id="at-rules" style-ref="preprocessor">
+    <context id="at-rules" style-ref="at-rules">
       <prefix>^[ \t]*@</prefix>
       <keyword>charset</keyword>
       <keyword>font-face</keyword>
