@@ -1,4 +1,9 @@
 2007-07-16  Paolo Maggi  <paolo@gnome.org>
+	* gtksourceview/gtksourcestylemanager.c 
+	(gtk_source_style_manager_get_scheme_ids): use %NULL instead of NULL
+	in API documentation
+	
+2007-07-16  Paolo Maggi  <paolo@gnome.org>
 
 	* gtksourceview/gtksourcestylemanager.c
 	(gtk_source_style_manager_append_search_path),

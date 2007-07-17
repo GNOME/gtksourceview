@@ -507,8 +507,8 @@ gtk_source_style_manager_force_rescan (GtkSourceStyleManager *manager)
  *
  * Returns the ids of the available style schemes.
  *
- * Returns: a NULL-terminated array of string containing the ids of the 
- * available style schemes or NULL if no style scheme is available. The array
+ * Returns: a %NULL-terminated array of string containing the ids of the 
+ * available style schemes or %NULL if no style scheme is available. The array
  * is owned by the @manager and must not be modified.
  **/
 const gchar* const *
