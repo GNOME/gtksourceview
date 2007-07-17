@@ -1,5 +1,5 @@
 # Swedish messages for gtksourceview.
-# Copyright (C) 2003, 2004, 2005, 2006, 2007 Free Software Foundation, Inc.
+# Copyright (C) 2003-2007 Free Software Foundation, Inc.
 # Daniel Nylander <po@danielnylander.se>, 2006, 2007.
 # Christian Rose <menthos@menthos.com>, 2003, 2004, 2005.
 #
@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-05-26 03:25+0100\n"
-"PO-Revision-Date: 2007-05-28 08:12+0100\n"
+"POT-Creation-Date: 2007-07-17 03:22+0100\n"
+"PO-Revision-Date: 2007-07-17 20:56+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "MIME-Version: 1.0\n"
@@ -27,66 +27,65 @@ msgstr ""
 # På svenska brukar vi använda "parenteser" i det fallet.  Så jag tycker
 # du bör översätta "brackets" med "parenteser".
 #
-#: ../gtksourceview/gtksourcebuffer.c:167
+#: ../gtksourceview/gtksourcebuffer.c:166
 msgid "Check Brackets"
 msgstr "Kontrollera parenteser"
 
-#: ../gtksourceview/gtksourcebuffer.c:168
+#: ../gtksourceview/gtksourcebuffer.c:167
 msgid "Whether to check and highlight matching brackets"
 msgstr "Huruvida matchande parenteser ska kontrolleras och färgmarkeras"
 
-#: ../gtksourceview/gtksourcebuffer.c:176
-#: ../gtksourceview/gtksourceprintjob.c:296
+#: ../gtksourceview/gtksourcebuffer.c:175
 msgid "Highlight"
 msgstr "Färgmarkera"
 
-#: ../gtksourceview/gtksourcebuffer.c:177
+#: ../gtksourceview/gtksourcebuffer.c:176
 msgid "Whether to highlight syntax in the buffer"
 msgstr "Huruvida syntaxen ska färgmarkeras i bufferten"
 
-#: ../gtksourceview/gtksourcebuffer.c:185
+#: ../gtksourceview/gtksourcebuffer.c:184
 msgid "Maximum Undo Levels"
 msgstr "Maximalt antal ångrandenivåer"
 
-#: ../gtksourceview/gtksourcebuffer.c:186
+#: ../gtksourceview/gtksourcebuffer.c:185
 msgid "Number of undo levels for the buffer"
 msgstr "Antal ångrandenivåer för bufferten"
 
-#: ../gtksourceview/gtksourcebuffer.c:196
+#: ../gtksourceview/gtksourcebuffer.c:195
 msgid "Language"
 msgstr "Språk"
 
-#: ../gtksourceview/gtksourcebuffer.c:197
+#: ../gtksourceview/gtksourcebuffer.c:196
 msgid "Language object to get highlighting patterns from"
 msgstr "Språkobjekt att hämta färgmarkeringsmönster från"
 
-#: ../gtksourceview/gtksourcebuffer.c:205
+#: ../gtksourceview/gtksourcebuffer.c:204
 msgid "Can undo"
 msgstr "Kan ångra"
 
-#: ../gtksourceview/gtksourcebuffer.c:206
+#: ../gtksourceview/gtksourcebuffer.c:205
 msgid "Whether Undo operation is possible"
 msgstr "Huruvida en Ångra-åtgärd är möjlig"
 
-#: ../gtksourceview/gtksourcebuffer.c:213
+#: ../gtksourceview/gtksourcebuffer.c:212
 msgid "Can redo"
 msgstr "Kan göra om"
 
-#: ../gtksourceview/gtksourcebuffer.c:214
+#: ../gtksourceview/gtksourcebuffer.c:213
 msgid "Whether Redo operation is possible"
 msgstr "Huruvida en Gör om-åtgärd är möjlig"
 
+#: ../gtksourceview/gtksourcebuffer.c:229
 #: ../gtksourceview/gtksourcebuffer.c:230
-#: ../gtksourceview/gtksourcebuffer.c:231
 msgid "Style scheme"
 msgstr "Stilschema"
 
-#: ../gtksourceview/gtksourcecontextengine.c:2216
+#: ../gtksourceview/gtksourcecontextengine.c:2237
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "Saknar huvudspråkdefinition (id = \"%s\".)"
 
-#: ../gtksourceview/gtksourcecontextengine.c:2515
+#: ../gtksourceview/gtksourcecontextengine.c:2541
 msgid "using \\C is not supported in language definitions"
 msgstr "användning av \\C stöds inte i språkdefinitioner"
 
@@ -94,7 +93,7 @@ msgstr "användning av \\C stöds inte i språkdefinitioner"
 #. * named sub-patterns with the same name or if resulting regex is
 #. * too long. In this case fixing lang file helps (e.g. renaming
 #. * subpatterns, making huge keywords use bigger prefixes, etc.)
-#: ../gtksourceview/gtksourcecontextengine.c:3103
+#: ../gtksourceview/gtksourcecontextengine.c:3141
 #, c-format
 msgid ""
 "Cannot create a regex for all the transitions, the syntax highlighting process will be slower than usual.\n"
@@ -103,27 +102,33 @@ msgstr ""
 "Kan inte skapa ett reguljärt uttryck för alla övergångarna, syntaxmärkningsprocessen kommer att vara\n"
 "långsammare än vanligt. Felet var: %s"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5577
+#: ../gtksourceview/gtksourcecontextengine.c:5627
 #, c-format
 msgid "context '%s' cannot contain a \\%%{...@start} command"
 msgstr "kontexten \"%s\" får inte innehålla kommandot \\%%{...@start}"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5720
-#: ../gtksourceview/gtksourcecontextengine.c:5804
+#: ../gtksourceview/gtksourcecontextengine.c:5779
+#: ../gtksourceview/gtksourcecontextengine.c:5866
 #, c-format
 msgid "duplicated context id '%s'"
 msgstr "dubblett av kontext-id \"%s\""
 
-#: ../gtksourceview/gtksourcecontextengine.c:5917
-#: ../gtksourceview/gtksourcecontextengine.c:5977
+#: ../gtksourceview/gtksourcecontextengine.c:5979
+#: ../gtksourceview/gtksourcecontextengine.c:6039
 #, c-format
 msgid "style override used with wildcard context reference in language '%s' in ref '%s'"
 msgstr "åsidosättning av stil används i kontextreferens med jokertecken för språket \"%s\" i referensen \"%s\""
 
-#: ../gtksourceview/gtksourcecontextengine.c:5991
+#: ../gtksourceview/gtksourcecontextengine.c:6053
 #, c-format
 msgid "invalid reference '%s'"
 msgstr "ogiltig referens \"%s\""
+
+#: ../gtksourceview/gtksourcecontextengine.c:6072
+#: ../gtksourceview/gtksourcecontextengine.c:6082
+#, c-format
+msgid "unknown context '%s'"
+msgstr "okänd kontext \"%s\""
 
 #: ../gtksourceview/gtksourcelanguagemanager.c:126
 msgid "Language specification directories"
@@ -133,268 +138,284 @@ msgstr "Kataloger för språkspecifikationer"
 msgid "List of directories where the language specification files (.lang) are located"
 msgstr "Lista med kataloger där språkspecifikationsfiler (.lang) finns"
 
-#: ../gtksourceview/gtksourcelanguage-parser-2.c:845
+#: ../gtksourceview/gtksourcelanguage-parser-2.c:871
 #, c-format
 msgid "Unknown id '%s' in regex '%s'"
 msgstr "Okänt id \"%s\" i regex \"%s\""
 
-#: ../gtksourceview/gtksourcelanguage-parser-2.c:1100
+#: ../gtksourceview/gtksourcelanguage-parser-2.c:1099
 #, c-format
 msgid "in regex '%s': backreferences are not supported"
 msgstr "i regex \"%s\": bakåtreferenser stöds inte"
 
-#: ../gtksourceview/gtksourcelanguage-parser-2.c:1116
-#, c-format
-msgid "malformed regex '%s'"
-msgstr "felformulerat regex \"%s\""
+#: ../gtksourceview/gtksourcestyle.c:68
+msgid "Background"
+msgstr "Bakgrund"
 
-#: ../gtksourceview/gtksourcelanguage-parser-2.c:1296
-#, c-format
-msgid "malformed regex options '%s'"
-msgstr "felformulerade regex-flaggor \"%s\""
+#: ../gtksourceview/gtksourcestyle.c:69
+msgid "Background color"
+msgstr "Bakgrundsfärg"
 
-#: ../gtksourceview/gtksourceprintjob.c:265
-msgid "Configuration"
-msgstr "Konfiguration"
+#: ../gtksourceview/gtksourcestyle.c:76
+msgid "Foreground"
+msgstr "Förgrund"
 
-#: ../gtksourceview/gtksourceprintjob.c:266
-msgid "Configuration options for the print job"
-msgstr "Konfigurationsalternativ för utskriftsjobbet"
+#: ../gtksourceview/gtksourcestyle.c:77
+msgid "Foreground color"
+msgstr "Förgrundsfärg"
 
-#: ../gtksourceview/gtksourceprintjob.c:273
-msgid "Source Buffer"
-msgstr "Källkodsbuffert"
+#: ../gtksourceview/gtksourcestyle.c:84
+#: ../gtksourceview/gtksourcestyle.c:85
+msgid "Bold"
+msgstr "Fet"
 
-#: ../gtksourceview/gtksourceprintjob.c:274
-msgid "GtkSourceBuffer object to print"
-msgstr "GtkSourceBuffer-objekt att skriva ut"
+#: ../gtksourceview/gtksourcestyle.c:92
+#: ../gtksourceview/gtksourcestyle.c:93
+msgid "Italic"
+msgstr "Kursiv"
 
-#: ../gtksourceview/gtksourceprintjob.c:280
-#: ../gtksourceview/gtksourceview.c:247
-#: ../gtksourceview/gtksourceview.c:248
-msgid "Tabs Width"
-msgstr "Tabulatorbredd"
+#: ../gtksourceview/gtksourcestyle.c:100
+#: ../gtksourceview/gtksourcestyle.c:101
+msgid "Underline"
+msgstr "Understruken"
 
-#: ../gtksourceview/gtksourceprintjob.c:281
-msgid "Width in equivalent space characters of tabs"
-msgstr "Bredd i ekvivalenta blanksteg för tabulatorsteg"
+#: ../gtksourceview/gtksourcestyle.c:108
+#: ../gtksourceview/gtksourcestyle.c:109
+msgid "Strikethrough"
+msgstr "Genomstruken"
 
-#: ../gtksourceview/gtksourceprintjob.c:288
-msgid "Wrap Mode"
-msgstr "Radbrytningsläge"
+#: ../gtksourceview/gtksourcestyle.c:116
+msgid "Foreground set"
+msgstr "Förgrund inställd"
 
-#: ../gtksourceview/gtksourceprintjob.c:289
-msgid "Word wrapping mode"
-msgstr "Ordbrytningsläge"
+#: ../gtksourceview/gtksourcestyle.c:117
+msgid "Whether foreground color is set"
+msgstr "Huruvida förgrundsfärg är inställd"
 
-#: ../gtksourceview/gtksourceprintjob.c:297
-msgid "Whether to print the document with highlighted syntax"
-msgstr "Huruvida dokumentet ska skrivas ut med färgmarkerad syntax"
+#: ../gtksourceview/gtksourcestyle.c:124
+msgid "Background set"
+msgstr "Bakgrund inställd"
 
-#: ../gtksourceview/gtksourceprintjob.c:305
-msgid "Font"
-msgstr "Typsnitt"
+#: ../gtksourceview/gtksourcestyle.c:125
+msgid "Whether background color is set"
+msgstr "Huruvida bakgrundsfärg är inställd"
 
-#: ../gtksourceview/gtksourceprintjob.c:306
-msgid "GnomeFont name to use for the document text (deprecated)"
-msgstr "GnomeFont-namn att använda för dokumenttexten (föråldrat)"
+#: ../gtksourceview/gtksourcestyle.c:132
+msgid "Bold set"
+msgstr "Fet text inställd"
 
-#: ../gtksourceview/gtksourceprintjob.c:313
-msgid "Font Description"
-msgstr "Typsnittsbeskrivning"
+#: ../gtksourceview/gtksourcestyle.c:133
+msgid "Whether bold attribute is set"
+msgstr "Huruvida attribut för fet text är inställt"
 
-#: ../gtksourceview/gtksourceprintjob.c:314
-msgid "Font to use for the document text (e.g. \"Monospace 10\")"
-msgstr "Typsnitt att använda för dokumenttexten (t.ex. \"Monospace 10\")"
+#: ../gtksourceview/gtksourcestyle.c:140
+msgid "Italic set"
+msgstr "Kursiv text inställd"
 
-#: ../gtksourceview/gtksourceprintjob.c:321
-#: ../gtksourceview/gtksourceprintjob.c:329
-msgid "Numbers Font"
-msgstr "Taltypsnitt"
+#: ../gtksourceview/gtksourcestyle.c:141
+msgid "Whether italic attribute is set"
+msgstr "Huruvida kursivt textattribut är inställt"
 
-#: ../gtksourceview/gtksourceprintjob.c:322
-msgid "GnomeFont name to use for the line numbers (deprecated)"
-msgstr "GnomeFont-namn att använda för radnummer (föråldrat)"
+#: ../gtksourceview/gtksourcestyle.c:148
+msgid "Underline set"
+msgstr "Understruken inställd"
 
-#: ../gtksourceview/gtksourceprintjob.c:330
-msgid "Font description to use for the line numbers"
-msgstr "Typsnittsbeskrivning att använda för radnumren"
+#: ../gtksourceview/gtksourcestyle.c:149
+msgid "Whether underline attribute is set"
+msgstr "Huruvida understrukningsattribut är inställt"
 
-#: ../gtksourceview/gtksourceprintjob.c:337
-msgid "Print Line Numbers"
-msgstr "Skriv ut radnummer"
+#: ../gtksourceview/gtksourcestyle.c:156
+msgid "Strikethrough set"
+msgstr "Genomstruken inställd"
 
-#: ../gtksourceview/gtksourceprintjob.c:338
-msgid "Interval of printed line numbers (0 means no numbers)"
-msgstr "Intervall för utskrivna radnummer (0 betyder inga nummer)"
+#: ../gtksourceview/gtksourcestyle.c:157
+msgid "Whether strikethrough attribute is set"
+msgstr "Huruvida genomstruket attribut är inställt"
 
-#: ../gtksourceview/gtksourceprintjob.c:345
-msgid "Print Header"
-msgstr "Skriv ut sidhuvud"
+#: ../gtksourceview/gtksourcestylemanager.c:142
+msgid "Style scheme search path"
+msgstr "Sökväg för stilscheman"
 
-#: ../gtksourceview/gtksourceprintjob.c:346
-msgid "Whether to print a header in each page"
-msgstr "Huruvida ett sidhuvud ska skrivas ut på var sida"
+#: ../gtksourceview/gtksourcestylemanager.c:143
+msgid "List of directories and files where the style schemes are located"
+msgstr "Lista över kataloger och filer där stilscheman finns"
 
-#: ../gtksourceview/gtksourceprintjob.c:353
-msgid "Print Footer"
-msgstr "Skriv ut sidfot"
+#: ../gtksourceview/gtksourcestylemanager.c:151
+msgid "Scheme ids"
+msgstr "Schema-id:n"
 
-#: ../gtksourceview/gtksourceprintjob.c:354
-msgid "Whether to print a footer in each page"
-msgstr "Huruvida en sidfot ska skrivas ut på var sida"
+#: ../gtksourceview/gtksourcestylemanager.c:152
+msgid "List of the ids of the available style schemes"
+msgstr "Lista över id:n för tillgängliga stilscheman"
 
-#: ../gtksourceview/gtksourceprintjob.c:361
-msgid "Header and Footer Font"
-msgstr "Typsnitt för sidhuvud och sidfot"
-
-#: ../gtksourceview/gtksourceprintjob.c:362
-msgid "GnomeFont name to use for the header and footer (deprecated)"
-msgstr "GnomeFont-namn att använda för sidhuvudet och sidfoten (föråldrat)"
-
-#: ../gtksourceview/gtksourceprintjob.c:369
-msgid "Header and Footer Font Description"
-msgstr "Typsnittsbeskrivning för sidhuvud och sidfot"
-
-#: ../gtksourceview/gtksourceprintjob.c:370
-msgid "Font to use for headers and footers (e.g. \"Monospace 10\")"
-msgstr "Typsnitt att använda för sidhuvud och sidfötter (t.ex. \"Monospace 10\")"
-
-#: ../gtksourceview/gtksourcestylemanager.c:129
-msgid "Style scheme directories"
-msgstr "Stilschemakataloger"
-
-#: ../gtksourceview/gtksourcestylemanager.c:130
-msgid "List of directories where the style scheme files (.styles) are located"
-msgstr "Lista över kataloger där stilschemafiler (.styles) finns"
-
-#: ../gtksourceview/gtksourcestylescheme.c:144
-#: ../gtksourceview/gtksourcestylescheme.c:145
+#: ../gtksourceview/gtksourcestylescheme.c:167
+#: ../gtksourceview/gtksourcestylescheme.c:168
 msgid "Style scheme id"
 msgstr "Stilschema-id"
 
-#: ../gtksourceview/gtksourcestylescheme.c:159
-#: ../gtksourceview/gtksourcestylescheme.c:160
+#: ../gtksourceview/gtksourcestylescheme.c:182
+#: ../gtksourceview/gtksourcestylescheme.c:183
 msgid "Style scheme name"
 msgstr "Stilschemanamn"
 
-#: ../gtksourceview/gtksourceview.c:231
+#: ../gtksourceview/gtksourcestylescheme.c:197
+#: ../gtksourceview/gtksourcestylescheme.c:198
+msgid "Style scheme filename"
+msgstr "Stilschemafilnamn"
+
+#: ../gtksourceview/gtksourceview.c:232
 msgid "Show Line Numbers"
 msgstr "Visa radnummer"
 
-#: ../gtksourceview/gtksourceview.c:232
+#: ../gtksourceview/gtksourceview.c:233
 msgid "Whether to display line numbers"
 msgstr "Huruvida radnummer ska visas"
 
-#: ../gtksourceview/gtksourceview.c:239
+#: ../gtksourceview/gtksourceview.c:240
 msgid "Show Line Markers"
 msgstr "Visa radmarkörer"
 
-#: ../gtksourceview/gtksourceview.c:240
+#: ../gtksourceview/gtksourceview.c:241
 msgid "Whether to display line marker pixbufs"
 msgstr "Huruvida bilder för radmarkörer ska visas"
 
-#: ../gtksourceview/gtksourceview.c:257
+#: ../gtksourceview/gtksourceview.c:248
+#: ../gtksourceview/gtksourceview.c:249
+msgid "Tabs Width"
+msgstr "Tabulatorbredd"
+
+#: ../gtksourceview/gtksourceview.c:258
 msgid "Auto Indentation"
 msgstr "Automatiskt indrag"
 
-#: ../gtksourceview/gtksourceview.c:258
+#: ../gtksourceview/gtksourceview.c:259
 msgid "Whether to enable auto indentation"
 msgstr "Huruvida automatiskt indrag ska aktiveras"
 
-#: ../gtksourceview/gtksourceview.c:265
+#: ../gtksourceview/gtksourceview.c:266
 msgid "Insert Spaces Instead of Tabs"
 msgstr "Infoga blanksteg istället för tabulatortecken"
 
-#: ../gtksourceview/gtksourceview.c:266
+#: ../gtksourceview/gtksourceview.c:267
 msgid "Whether to insert spaces instead of tabs"
 msgstr "Huruvida blanksteg ska infogas istället för tabulatortecken"
 
-#: ../gtksourceview/gtksourceview.c:273
+#: ../gtksourceview/gtksourceview.c:274
 msgid "Show Right Margin"
 msgstr "Visa högermarginal"
 
-#: ../gtksourceview/gtksourceview.c:274
+#: ../gtksourceview/gtksourceview.c:275
 msgid "Whether to display the right margin"
 msgstr "Huruvida högermarginalen ska visas"
 
-#: ../gtksourceview/gtksourceview.c:281
+#: ../gtksourceview/gtksourceview.c:282
 msgid "Margin position"
 msgstr "Marginalposition"
 
-#: ../gtksourceview/gtksourceview.c:282
+#: ../gtksourceview/gtksourceview.c:283
 msgid "Position of the right margin"
 msgstr "Position för högermarginalen"
 
-#: ../gtksourceview/gtksourceview.c:298
+#: ../gtksourceview/gtksourceview.c:299
 msgid "Smart Home/End"
 msgstr "Intelligent home/end"
 
-#: ../gtksourceview/gtksourceview.c:299
+#: ../gtksourceview/gtksourceview.c:300
 msgid "HOME and END keys move to first/last non whitespace characters on line before going to the start/end of the line"
 msgstr "HOME- och END-tangenterna flyttar till första/sista tecknen på raden innan de går till början/slutet på raden"
 
-#: ../gtksourceview/gtksourceview.c:309
+#: ../gtksourceview/gtksourceview.c:310
 msgid "Highlight current line"
 msgstr "Färgmarkera aktuell rad"
 
-#: ../gtksourceview/gtksourceview.c:310
+#: ../gtksourceview/gtksourceview.c:311
 msgid "Whether to highlight the current line"
 msgstr "Huruvida den aktuella raden ska färgmarkeras"
 
-#: ../gtksourceview/gtksourceview.c:317
+#: ../gtksourceview/gtksourceview.c:318
 msgid "Indent on tab"
 msgstr "Dra in med tabulator"
 
-#: ../gtksourceview/gtksourceview.c:318
+#: ../gtksourceview/gtksourceview.c:319
 msgid "Whether to indent the selected text when the tab key is pressed"
 msgstr "Huruvida indragning av markerad text ska göras när tabulatorn trycks"
 
-#: ../gtksourceview/gtksourceview.c:334
+#: ../gtksourceview/gtksourceview.c:335
 msgid "Margin Line Alpha"
 msgstr "Alfa för marginalrad"
 
-#: ../gtksourceview/gtksourceview.c:335
+#: ../gtksourceview/gtksourceview.c:336
 msgid "Transparency of the margin line"
 msgstr "Transparens för marginalraden"
 
-#: ../gtksourceview/gtksourceview.c:352
+#: ../gtksourceview/gtksourceview.c:353
 msgid "Margin Line Color"
 msgstr "Färg på marginalrad"
 
-#: ../gtksourceview/gtksourceview.c:353
+#: ../gtksourceview/gtksourceview.c:354
 msgid "Color to use for the right margin line"
 msgstr "Färg som ska användas på högermarginalraden"
 
-#: ../gtksourceview/gtksourceview.c:369
+#: ../gtksourceview/gtksourceview.c:370
 msgid "Margin Overlay Toggle"
 msgstr "Växla överliggande marginal"
 
-#: ../gtksourceview/gtksourceview.c:370
+#: ../gtksourceview/gtksourceview.c:371
 msgid "Whether to draw the right margin overlay"
 msgstr "Huruvida den överliggande högermarginalen ska ritas upp"
 
-#: ../gtksourceview/gtksourceview.c:386
+#: ../gtksourceview/gtksourceview.c:387
 msgid "Margin Overlay Alpha"
 msgstr "Alfa för överliggande marginal"
 
-#: ../gtksourceview/gtksourceview.c:387
+#: ../gtksourceview/gtksourceview.c:388
 msgid "Transparency of the margin overlay"
 msgstr "Transparens för överliggande marginal"
 
-#: ../gtksourceview/gtksourceview.c:404
+#: ../gtksourceview/gtksourceview.c:405
 msgid "Margin Overlay Color"
 msgstr "Färg på överliggande marginal"
 
-#: ../gtksourceview/gtksourceview.c:405
+#: ../gtksourceview/gtksourceview.c:406
 msgid "Color to use for drawing the margin overlay"
 msgstr "Färg att använda för att rita den överliggande marginalen"
+
+#: ../gtksourceview/gtksourceview-i18n.c:38
+msgid "translator-credits"
+msgstr ""
+"Daniel Nylander\n"
+"Christian Rose\n"
+"\n"
+"Skicka synpunkter på översättningen till\n"
+"tp-sv@listor.tp-sv.se"
 
 #: ../gtksourceview/language-specs/ada.lang.h:1
 msgid "Ada"
 msgstr "Ada"
 
 #: ../gtksourceview/language-specs/ada.lang.h:2
+msgid "Ada Identifier"
+msgstr "Ada-identifierare"
+
+#: ../gtksourceview/language-specs/ada.lang.h:3
+msgid "Arbitrary base number"
+msgstr "Godtyckligt bastal"
+
+#: ../gtksourceview/language-specs/ada.lang.h:4
+#: ../gtksourceview/language-specs/boo.lang.h:1
+#: ../gtksourceview/language-specs/desktop.lang.h:2
+#: ../gtksourceview/language-specs/java.lang.h:1
+#: ../gtksourceview/language-specs/libtool.lang.h:1
+#: ../gtksourceview/language-specs/scheme.lang.h:1
+msgid "Boolean"
+msgstr "Boolesk"
+
+#: ../gtksourceview/language-specs/ada.lang.h:5
+#: ../gtksourceview/language-specs/lua.lang.h:1
+msgid "Character Escape"
+msgstr "Kontrolltecken"
+
+#: ../gtksourceview/language-specs/ada.lang.h:6
 #: ../gtksourceview/language-specs/c.lang.h:3
 #: ../gtksourceview/language-specs/csharp.lang.h:2
 #: ../gtksourceview/language-specs/css.lang.h:3
@@ -405,15 +426,18 @@ msgstr "Ada"
 #: ../gtksourceview/language-specs/html.lang.h:3
 #: ../gtksourceview/language-specs/idl.lang.h:1
 #: ../gtksourceview/language-specs/ini.lang.h:2
-#: ../gtksourceview/language-specs/java.lang.h:1
+#: ../gtksourceview/language-specs/java.lang.h:2
 #: ../gtksourceview/language-specs/javascript.lang.h:1
 #: ../gtksourceview/language-specs/latex.lang.h:2
+#: ../gtksourceview/language-specs/lua.lang.h:2
 #: ../gtksourceview/language-specs/ocaml.lang.h:4
+#: ../gtksourceview/language-specs/ocl.lang.h:1
 #: ../gtksourceview/language-specs/octave.lang.h:2
 #: ../gtksourceview/language-specs/pascal.lang.h:1
+#: ../gtksourceview/language-specs/perl.lang.h:1
 #: ../gtksourceview/language-specs/php.lang.h:1
 #: ../gtksourceview/language-specs/po.lang.h:1
-#: ../gtksourceview/language-specs/ruby.lang.h:1
+#: ../gtksourceview/language-specs/ruby.lang.h:4
 #: ../gtksourceview/language-specs/scheme.lang.h:2
 #: ../gtksourceview/language-specs/sql.lang.h:1
 #: ../gtksourceview/language-specs/texinfo.lang.h:1
@@ -423,8 +447,9 @@ msgid "Comment"
 msgstr "Kommentar"
 
 #. map-to="def:others"
-#: ../gtksourceview/language-specs/ada.lang.h:3
+#: ../gtksourceview/language-specs/ada.lang.h:7
 #: ../gtksourceview/language-specs/c.lang.h:5
+#: ../gtksourceview/language-specs/cpp.lang.h:3
 #: ../gtksourceview/language-specs/csharp.lang.h:3
 #: ../gtksourceview/language-specs/css.lang.h:4
 #: ../gtksourceview/language-specs/def.lang.h:5
@@ -433,17 +458,19 @@ msgstr "Kommentar"
 #: ../gtksourceview/language-specs/haskell.lang.h:3
 #: ../gtksourceview/language-specs/idl.lang.h:2
 #: ../gtksourceview/language-specs/ini.lang.h:3
-#: ../gtksourceview/language-specs/java.lang.h:2
+#: ../gtksourceview/language-specs/java.lang.h:3
 #: ../gtksourceview/language-specs/javascript.lang.h:4
+#: ../gtksourceview/language-specs/objc.lang.h:2
+#: ../gtksourceview/language-specs/ocaml.lang.h:5
+#: ../gtksourceview/language-specs/ocl.lang.h:2
 #: ../gtksourceview/language-specs/pascal.lang.h:2
 #: ../gtksourceview/language-specs/php.lang.h:2
-#: ../gtksourceview/language-specs/ruby.lang.h:2
 #: ../gtksourceview/language-specs/sql.lang.h:2
 #: ../gtksourceview/language-specs/tcl.lang.h:1
 msgid "Data Type"
 msgstr "Datatyp"
 
-#: ../gtksourceview/language-specs/ada.lang.h:4
+#: ../gtksourceview/language-specs/ada.lang.h:8
 #: ../gtksourceview/language-specs/c.lang.h:6
 #: ../gtksourceview/language-specs/css.lang.h:5
 #: ../gtksourceview/language-specs/def.lang.h:6
@@ -452,36 +479,43 @@ msgstr "Datatyp"
 #: ../gtksourceview/language-specs/gtkrc.lang.h:3
 #: ../gtksourceview/language-specs/haskell.lang.h:4
 #: ../gtksourceview/language-specs/ini.lang.h:4
-#: ../gtksourceview/language-specs/java.lang.h:3
+#: ../gtksourceview/language-specs/java.lang.h:4
 #: ../gtksourceview/language-specs/nemerle.lang.h:6
-#: ../gtksourceview/language-specs/ocaml.lang.h:5
+#: ../gtksourceview/language-specs/ocaml.lang.h:6
 #: ../gtksourceview/language-specs/octave.lang.h:3
 #: ../gtksourceview/language-specs/pascal.lang.h:3
 #: ../gtksourceview/language-specs/python.lang.h:4
-#: ../gtksourceview/language-specs/ruby.lang.h:3
+#: ../gtksourceview/language-specs/ruby.lang.h:6
 #: ../gtksourceview/language-specs/sql.lang.h:3
 msgid "Decimal"
 msgstr "Decimal"
 
-#: ../gtksourceview/language-specs/ada.lang.h:5
+#: ../gtksourceview/language-specs/ada.lang.h:9
+#: ../gtksourceview/language-specs/awk.lang.h:1
 #: ../gtksourceview/language-specs/c.lang.h:13
+#: ../gtksourceview/language-specs/cpp.lang.h:4
 #: ../gtksourceview/language-specs/csharp.lang.h:5
 #: ../gtksourceview/language-specs/css.lang.h:9
-#: ../gtksourceview/language-specs/def.lang.h:12
+#: ../gtksourceview/language-specs/def.lang.h:14
 #: ../gtksourceview/language-specs/fortran.lang.h:7
 #: ../gtksourceview/language-specs/gtkrc.lang.h:5
-#: ../gtksourceview/language-specs/haskell.lang.h:7
+#: ../gtksourceview/language-specs/haskell.lang.h:9
 #: ../gtksourceview/language-specs/idl.lang.h:4
 #: ../gtksourceview/language-specs/ini.lang.h:6
-#: ../gtksourceview/language-specs/java.lang.h:6
+#: ../gtksourceview/language-specs/java.lang.h:8
 #: ../gtksourceview/language-specs/javascript.lang.h:11
+#: ../gtksourceview/language-specs/lua.lang.h:4
+#: ../gtksourceview/language-specs/objc.lang.h:3
+#: ../gtksourceview/language-specs/ocaml.lang.h:9
+#: ../gtksourceview/language-specs/ocl.lang.h:3
 #: ../gtksourceview/language-specs/octave.lang.h:6
 #: ../gtksourceview/language-specs/pascal.lang.h:4
+#: ../gtksourceview/language-specs/perl.lang.h:8
 #: ../gtksourceview/language-specs/php.lang.h:3
 #: ../gtksourceview/language-specs/po.lang.h:2
 #: ../gtksourceview/language-specs/python.lang.h:8
 #: ../gtksourceview/language-specs/R.lang.h:6
-#: ../gtksourceview/language-specs/ruby.lang.h:4
+#: ../gtksourceview/language-specs/ruby.lang.h:8
 #: ../gtksourceview/language-specs/scheme.lang.h:4
 #: ../gtksourceview/language-specs/sql.lang.h:6
 #: ../gtksourceview/language-specs/tcl.lang.h:2
@@ -492,36 +526,41 @@ msgid "Keyword"
 msgstr "Nyckelord"
 
 #. FIXME and this is real nonsense
-#: ../gtksourceview/language-specs/ada.lang.h:6
+#: ../gtksourceview/language-specs/ada.lang.h:10
 #: ../gtksourceview/language-specs/c.lang.h:15
 #: ../gtksourceview/language-specs/csharp.lang.h:6
 #: ../gtksourceview/language-specs/css.lang.h:13
-#: ../gtksourceview/language-specs/def.lang.h:16
+#: ../gtksourceview/language-specs/def.lang.h:18
 #: ../gtksourceview/language-specs/gtkrc.lang.h:7
-#: ../gtksourceview/language-specs/haskell.lang.h:8
+#: ../gtksourceview/language-specs/haskell.lang.h:11
 #: ../gtksourceview/language-specs/idl.lang.h:5
 #: ../gtksourceview/language-specs/ini.lang.h:8
 #: ../gtksourceview/language-specs/octave.lang.h:8
 #: ../gtksourceview/language-specs/pascal.lang.h:6
-#: ../gtksourceview/language-specs/ruby.lang.h:6
 #: ../gtksourceview/language-specs/sql.lang.h:7
 #: ../gtksourceview/language-specs/texinfo.lang.h:5
 msgid "Preprocessor"
 msgstr "Preprocessor"
 
-#: ../gtksourceview/language-specs/ada.lang.h:7
+#: ../gtksourceview/language-specs/ada.lang.h:11
+msgid "Real number"
+msgstr "Verkligt tal"
+
+#: ../gtksourceview/language-specs/ada.lang.h:12
 #: ../gtksourceview/language-specs/boo.lang.h:6
 #: ../gtksourceview/language-specs/c.lang.h:16
-#: ../gtksourceview/language-specs/cpp.lang.h:3
+#: ../gtksourceview/language-specs/chdr.lang.h:2
+#: ../gtksourceview/language-specs/cpp.lang.h:5
 #: ../gtksourceview/language-specs/csharp.lang.h:7
 #: ../gtksourceview/language-specs/d.lang.h:13
 #: ../gtksourceview/language-specs/fortran.lang.h:8
-#: ../gtksourceview/language-specs/haskell.lang.h:9
+#: ../gtksourceview/language-specs/haskell.lang.h:12
 #: ../gtksourceview/language-specs/idl.lang.h:6
-#: ../gtksourceview/language-specs/java.lang.h:8
+#: ../gtksourceview/language-specs/java.lang.h:10
 #: ../gtksourceview/language-specs/makefile.lang.h:2
 #: ../gtksourceview/language-specs/nemerle.lang.h:14
-#: ../gtksourceview/language-specs/ocaml.lang.h:13
+#: ../gtksourceview/language-specs/objc.lang.h:5
+#: ../gtksourceview/language-specs/ocaml.lang.h:15
 #: ../gtksourceview/language-specs/pascal.lang.h:7
 #: ../gtksourceview/language-specs/scheme.lang.h:6
 #: ../gtksourceview/language-specs/sql.lang.h:9
@@ -531,33 +570,30 @@ msgstr "Preprocessor"
 msgid "Sources"
 msgstr "Källkoder"
 
-#. FIXME this "specials" doesn't make sense
-#: ../gtksourceview/language-specs/ada.lang.h:8
-#: ../gtksourceview/language-specs/def.lang.h:19
-#: ../gtksourceview/language-specs/java.lang.h:9
-msgid "Specials"
-msgstr "Specialtecken"
-
-#: ../gtksourceview/language-specs/ada.lang.h:9
+#: ../gtksourceview/language-specs/ada.lang.h:13
 #: ../gtksourceview/language-specs/c.lang.h:17
 #: ../gtksourceview/language-specs/csharp.lang.h:8
 #: ../gtksourceview/language-specs/css.lang.h:14
 #: ../gtksourceview/language-specs/def.lang.h:20
 #: ../gtksourceview/language-specs/docbook.lang.h:11
 #: ../gtksourceview/language-specs/gtkrc.lang.h:8
-#: ../gtksourceview/language-specs/haskell.lang.h:10
+#: ../gtksourceview/language-specs/haskell.lang.h:13
 #: ../gtksourceview/language-specs/idl.lang.h:7
 #: ../gtksourceview/language-specs/ini.lang.h:9
-#: ../gtksourceview/language-specs/java.lang.h:10
+#: ../gtksourceview/language-specs/java.lang.h:11
 #: ../gtksourceview/language-specs/javascript.lang.h:16
-#: ../gtksourceview/language-specs/lua.lang.h:10
+#: ../gtksourceview/language-specs/lua.lang.h:8
 #: ../gtksourceview/language-specs/nemerle.lang.h:15
-#: ../gtksourceview/language-specs/ocaml.lang.h:14
+#: ../gtksourceview/language-specs/objc.lang.h:6
+#: ../gtksourceview/language-specs/ocaml.lang.h:16
+#: ../gtksourceview/language-specs/ocl.lang.h:7
 #: ../gtksourceview/language-specs/octave.lang.h:10
 #: ../gtksourceview/language-specs/pascal.lang.h:8
+#: ../gtksourceview/language-specs/perl.lang.h:17
 #: ../gtksourceview/language-specs/php.lang.h:7
 #: ../gtksourceview/language-specs/po.lang.h:5
 #: ../gtksourceview/language-specs/python.lang.h:14
+#: ../gtksourceview/language-specs/ruby.lang.h:13
 #: ../gtksourceview/language-specs/scheme.lang.h:7
 #: ../gtksourceview/language-specs/sql.lang.h:10
 #: ../gtksourceview/language-specs/texinfo.lang.h:6
@@ -566,17 +602,37 @@ msgstr "Specialtecken"
 msgid "String"
 msgstr "Sträng"
 
-#: ../gtksourceview/language-specs/boo.lang.h:1
-#: ../gtksourceview/language-specs/desktop.lang.h:2
-#: ../gtksourceview/language-specs/libtool.lang.h:1
-#: ../gtksourceview/language-specs/scheme.lang.h:1
-msgid "Boolean"
-msgstr "Boolesk"
+#: ../gtksourceview/language-specs/awk.lang.h:2
+msgid "Pattern"
+msgstr "Mönster"
+
+#: ../gtksourceview/language-specs/awk.lang.h:3
+#: ../gtksourceview/language-specs/javascript.lang.h:15
+#: ../gtksourceview/language-specs/lua.lang.h:7
+#: ../gtksourceview/language-specs/m4.lang.h:1
+#: ../gtksourceview/language-specs/perl.lang.h:16
+#: ../gtksourceview/language-specs/php.lang.h:6
+#: ../gtksourceview/language-specs/python.lang.h:12
+#: ../gtksourceview/language-specs/R.lang.h:10
+#: ../gtksourceview/language-specs/ruby.lang.h:12
+#: ../gtksourceview/language-specs/sh.lang.h:1
+#: ../gtksourceview/language-specs/tcl.lang.h:3
+msgid "Scripts"
+msgstr "Skript"
+
+#: ../gtksourceview/language-specs/awk.lang.h:4
+#: ../gtksourceview/language-specs/gtk-doc.lang.h:11
+#: ../gtksourceview/language-specs/verilog.lang.h:8
+#: ../gtksourceview/language-specs/vhdl.lang.h:8
+msgid "Type"
+msgstr "Typ"
+
+#: ../gtksourceview/language-specs/awk.lang.h:5
+msgid "awk"
+msgstr "awk"
 
 #: ../gtksourceview/language-specs/boo.lang.h:2
 #: ../gtksourceview/language-specs/d.lang.h:9
-#: ../gtksourceview/language-specs/lua.lang.h:3
-#: ../gtksourceview/language-specs/ocaml.lang.h:8
 #: ../gtksourceview/language-specs/vbnet.lang.h:1
 msgid "Keywords"
 msgstr "Nyckelord"
@@ -606,13 +662,12 @@ msgstr "Ändringslogg"
 #: ../gtksourceview/language-specs/dpatch.lang.h:2
 #: ../gtksourceview/language-specs/gtkrc.lang.h:6
 #: ../gtksourceview/language-specs/ini.lang.h:7
-#: ../gtksourceview/language-specs/java.lang.h:7
 #: ../gtksourceview/language-specs/libtool.lang.h:2
 #: ../gtksourceview/language-specs/msil.lang.h:2
+#: ../gtksourceview/language-specs/ocl.lang.h:6
 #: ../gtksourceview/language-specs/php.lang.h:4
 #: ../gtksourceview/language-specs/pkgconfig.lang.h:1
 #: ../gtksourceview/language-specs/po.lang.h:4
-#: ../gtksourceview/language-specs/ruby.lang.h:5
 #: ../gtksourceview/language-specs/spec.lang.h:12
 #: ../gtksourceview/language-specs/texinfo.lang.h:4
 #: ../gtksourceview/language-specs/yacc.lang.h:2
@@ -625,11 +680,11 @@ msgstr "C"
 
 #: ../gtksourceview/language-specs/c.lang.h:2
 #: ../gtksourceview/language-specs/def.lang.h:2
+#: ../gtksourceview/language-specs/haskell.lang.h:1
 msgid "Character"
 msgstr "Tecken"
 
 #: ../gtksourceview/language-specs/c.lang.h:4
-#: ../gtksourceview/language-specs/cpp.lang.h:2
 msgid "Common defines"
 msgstr "Allmänna definieringar"
 
@@ -637,30 +692,35 @@ msgstr "Allmänna definieringar"
 #: ../gtksourceview/language-specs/c.lang.h:7
 #: ../gtksourceview/language-specs/csharp.lang.h:4
 #: ../gtksourceview/language-specs/css.lang.h:7
-#: ../gtksourceview/language-specs/def.lang.h:8
-#: ../gtksourceview/language-specs/html.lang.h:6
-#: ../gtksourceview/language-specs/java.lang.h:4
+#: ../gtksourceview/language-specs/def.lang.h:10
+#: ../gtksourceview/language-specs/html.lang.h:5
+#: ../gtksourceview/language-specs/java.lang.h:5
 #: ../gtksourceview/language-specs/javascript.lang.h:5
+#: ../gtksourceview/language-specs/ocaml.lang.h:7
+#: ../gtksourceview/language-specs/perl.lang.h:3
 #: ../gtksourceview/language-specs/verilog.lang.h:4
 #: ../gtksourceview/language-specs/xml.lang.h:9
 msgid "Error"
 msgstr "Fel"
 
 #: ../gtksourceview/language-specs/c.lang.h:8
-#: ../gtksourceview/language-specs/def.lang.h:9
+#: ../gtksourceview/language-specs/def.lang.h:11
 #: ../gtksourceview/language-specs/javascript.lang.h:6
 msgid "Escape"
 msgstr "Escape"
 
 #: ../gtksourceview/language-specs/c.lang.h:9
+#: ../gtksourceview/language-specs/haskell.lang.h:5
 msgid "Escaped Character"
 msgstr "Tecken efter Escape-tecken"
 
 #: ../gtksourceview/language-specs/c.lang.h:10
+#: ../gtksourceview/language-specs/haskell.lang.h:6
 msgid "Float"
 msgstr "Flyt"
 
 #: ../gtksourceview/language-specs/c.lang.h:11
+#: ../gtksourceview/language-specs/haskell.lang.h:8
 msgid "Hex"
 msgstr "Hex"
 
@@ -669,6 +729,7 @@ msgid "Included File"
 msgstr "Inkluderad fil"
 
 #: ../gtksourceview/language-specs/c.lang.h:14
+#: ../gtksourceview/language-specs/haskell.lang.h:10
 msgid "Octal"
 msgstr "Oktal"
 
@@ -676,9 +737,18 @@ msgstr "Oktal"
 msgid "printf conversion"
 msgstr "printf-konvertering"
 
+#: ../gtksourceview/language-specs/chdr.lang.h:1
+msgid "C/C++/ObjC Header"
+msgstr "C/C++/ObjC-huvud"
+
 #: ../gtksourceview/language-specs/cpp.lang.h:1
 msgid "C++"
 msgstr "C++"
+
+#: ../gtksourceview/language-specs/cpp.lang.h:2
+#: ../gtksourceview/language-specs/objc.lang.h:1
+msgid "Common Defines"
+msgstr "Allmänna definieringar"
 
 #: ../gtksourceview/language-specs/csharp.lang.h:1
 msgid "C#"
@@ -697,9 +767,12 @@ msgid "Dimension"
 msgstr "Dimension"
 
 #: ../gtksourceview/language-specs/css.lang.h:8
-#: ../gtksourceview/language-specs/def.lang.h:11
+#: ../gtksourceview/language-specs/def.lang.h:13
+#: ../gtksourceview/language-specs/gtk-doc.lang.h:2
 #: ../gtksourceview/language-specs/javascript.lang.h:7
+#: ../gtksourceview/language-specs/lua.lang.h:3
 #: ../gtksourceview/language-specs/octave.lang.h:5
+#: ../gtksourceview/language-specs/perl.lang.h:5
 #: ../gtksourceview/language-specs/python.lang.h:7
 #: ../gtksourceview/language-specs/scheme.lang.h:3
 #: ../gtksourceview/language-specs/sql.lang.h:5
@@ -716,7 +789,7 @@ msgstr "Andra 3"
 
 #: ../gtksourceview/language-specs/def.lang.h:1
 #: ../gtksourceview/language-specs/fortran.lang.h:1
-#: ../gtksourceview/language-specs/haskell.lang.h:1
+#: ../gtksourceview/language-specs/ocaml.lang.h:1
 #: ../gtksourceview/language-specs/octave.lang.h:1
 #: ../gtksourceview/language-specs/verilog.lang.h:1
 msgid "Base-N Integer"
@@ -731,24 +804,33 @@ msgstr "Komplext tal"
 msgid "Defaults"
 msgstr "Standardvärden"
 
-#: ../gtksourceview/language-specs/def.lang.h:10
+#: ../gtksourceview/language-specs/def.lang.h:8
+msgid "Documentation Comment"
+msgstr "Dokumentationskommentar"
+
+#: ../gtksourceview/language-specs/def.lang.h:9
+msgid "Documentation Comment Element"
+msgstr "Element för dokumentationskommentar"
+
+#: ../gtksourceview/language-specs/def.lang.h:12
 #: ../gtksourceview/language-specs/fortran.lang.h:5
 #: ../gtksourceview/language-specs/ini.lang.h:5
+#: ../gtksourceview/language-specs/ocaml.lang.h:8
 #: ../gtksourceview/language-specs/octave.lang.h:4
 #: ../gtksourceview/language-specs/sql.lang.h:4
 msgid "Floating Point"
 msgstr "Flyttal"
 
-#: ../gtksourceview/language-specs/def.lang.h:13
+#: ../gtksourceview/language-specs/def.lang.h:15
 msgid "Net Address"
 msgstr "Nätadress"
 
 # Eller Observera?
-#: ../gtksourceview/language-specs/def.lang.h:14
+#: ../gtksourceview/language-specs/def.lang.h:16
 msgid "Note"
 msgstr "Anteckning"
 
-#: ../gtksourceview/language-specs/def.lang.h:17
+#: ../gtksourceview/language-specs/def.lang.h:19
 msgid "Shebang"
 msgstr "Shebang"
 
@@ -816,13 +898,11 @@ msgstr "Specialfall"
 
 #: ../gtksourceview/language-specs/d.lang.h:1
 #: ../gtksourceview/language-specs/nemerle.lang.h:1
-#: ../gtksourceview/language-specs/ocaml.lang.h:1
 msgid "Binary Number"
 msgstr "Binärtal"
 
 #: ../gtksourceview/language-specs/d.lang.h:2
 #: ../gtksourceview/language-specs/docbook.lang.h:2
-#: ../gtksourceview/language-specs/lua.lang.h:1
 #: ../gtksourceview/language-specs/nemerle.lang.h:2
 msgid "Block Comment"
 msgstr "Blockkommentar"
@@ -838,7 +918,6 @@ msgstr "D"
 
 #: ../gtksourceview/language-specs/d.lang.h:6
 #: ../gtksourceview/language-specs/nemerle.lang.h:7
-#: ../gtksourceview/language-specs/ocaml.lang.h:6
 #: ../gtksourceview/language-specs/R.lang.h:4
 msgid "Floating Point Number"
 msgstr "Flyttal"
@@ -849,7 +928,6 @@ msgstr "Grave-literal"
 
 #: ../gtksourceview/language-specs/d.lang.h:8
 #: ../gtksourceview/language-specs/nemerle.lang.h:8
-#: ../gtksourceview/language-specs/ocaml.lang.h:7
 msgid "Hex Number"
 msgstr "Hexadecimalt tal"
 
@@ -858,7 +936,6 @@ msgstr "Hexadecimalt tal"
 #. <end-regex>&apos;</end-regex>
 #. </string>
 #: ../gtksourceview/language-specs/d.lang.h:10
-#: ../gtksourceview/language-specs/lua.lang.h:4
 #: ../gtksourceview/language-specs/nemerle.lang.h:10
 #: ../gtksourceview/language-specs/R.lang.h:7
 #: ../gtksourceview/language-specs/spec.lang.h:10
@@ -873,7 +950,6 @@ msgstr "Nästlad kommentar"
 
 #: ../gtksourceview/language-specs/d.lang.h:12
 #: ../gtksourceview/language-specs/nemerle.lang.h:12
-#: ../gtksourceview/language-specs/ocaml.lang.h:12
 msgid "Octal Number"
 msgstr "Oktalt tal"
 
@@ -904,7 +980,6 @@ msgid "DocBook"
 msgstr "DocBook"
 
 #: ../gtksourceview/language-specs/docbook.lang.h:5
-#: ../gtksourceview/language-specs/html.lang.h:5
 #: ../gtksourceview/language-specs/xml.lang.h:7
 msgid "Entity"
 msgstr "Entitet"
@@ -928,8 +1003,8 @@ msgstr "Hexadecimalt"
 # http://www.nada.kth.se/dataterm/fos-lista.html#f91 är inte entydig om markup.
 #: ../gtksourceview/language-specs/docbook.lang.h:10
 #: ../gtksourceview/language-specs/dtd.lang.h:2
-#: ../gtksourceview/language-specs/gtk-doc.lang.h:1
-#: ../gtksourceview/language-specs/html.lang.h:8
+#: ../gtksourceview/language-specs/gtk-doc.lang.h:5
+#: ../gtksourceview/language-specs/html.lang.h:7
 #: ../gtksourceview/language-specs/latex.lang.h:6
 #: ../gtksourceview/language-specs/texinfo.lang.h:3
 #: ../gtksourceview/language-specs/xml.lang.h:10
@@ -964,38 +1039,70 @@ msgstr "DTD"
 msgid "Fortran 95"
 msgstr "Fortran 95"
 
-#: ../gtksourceview/language-specs/gtk-doc.lang.h:2
-msgid "function-name"
-msgstr "function-name"
+#: ../gtksourceview/language-specs/gap.lang.h:1
+msgid "GAP"
+msgstr "GAP"
+
+#: ../gtksourceview/language-specs/gap.lang.h:2
+#: ../gtksourceview/language-specs/octave.lang.h:9
+msgid "Scientific"
+msgstr "Vetenskaplig"
+
+#: ../gtksourceview/language-specs/gtk-doc.lang.h:1
+#: ../gtksourceview/language-specs/ruby.lang.h:5
+msgid "Constant"
+msgstr "Konstant"
 
 #: ../gtksourceview/language-specs/gtk-doc.lang.h:3
-msgid "gtk-doc"
-msgstr "gtk-doc"
+msgid "Function Name"
+msgstr "Funktionsnamn"
 
 #: ../gtksourceview/language-specs/gtk-doc.lang.h:4
-msgid "inline-docs"
-msgstr "inline-docs"
-
-#: ../gtksourceview/language-specs/gtk-doc.lang.h:5
-msgid "property-name"
-msgstr "property-name"
+msgid "Inline Documentation Section"
+msgstr "Avsnitt inuti dokumentation"
 
 #: ../gtksourceview/language-specs/gtk-doc.lang.h:6
-msgid "signal-name"
-msgstr "signal-name"
+msgid "Parameter"
+msgstr "Parameter"
+
+#: ../gtksourceview/language-specs/gtk-doc.lang.h:7
+msgid "Property Name"
+msgstr "Egenskapsnamn"
+
+#: ../gtksourceview/language-specs/gtk-doc.lang.h:8
+msgid "Return"
+msgstr "Return"
+
+#: ../gtksourceview/language-specs/gtk-doc.lang.h:9
+msgid "Signal Name"
+msgstr "Signalnamn"
+
+#: ../gtksourceview/language-specs/gtk-doc.lang.h:10
+msgid "Since"
+msgstr "Sedan"
+
+#: ../gtksourceview/language-specs/gtk-doc.lang.h:12
+msgid "gtk-doc"
+msgstr "gtk-doc"
 
 #: ../gtksourceview/language-specs/gtkrc.lang.h:4
 msgid "GtkRC"
 msgstr "GtkRC"
 
-#: ../gtksourceview/language-specs/haskell.lang.h:5
-#: ../gtksourceview/language-specs/python.lang.h:6
-msgid "Floating point"
-msgstr "Flyttal"
-
-#: ../gtksourceview/language-specs/haskell.lang.h:6
+#: ../gtksourceview/language-specs/haskell.lang.h:7
 msgid "Haskell"
 msgstr "Haskell"
+
+#: ../gtksourceview/language-specs/haskell.lang.h:14
+msgid "Symbol"
+msgstr "Symbol"
+
+#: ../gtksourceview/language-specs/haskell.lang.h:15
+#: ../gtksourceview/language-specs/perl.lang.h:19
+#: ../gtksourceview/language-specs/pkgconfig.lang.h:3
+#: ../gtksourceview/language-specs/ruby.lang.h:14
+msgid "Variable"
+msgstr "Variabel"
 
 #: ../gtksourceview/language-specs/html.lang.h:1
 #: ../gtksourceview/language-specs/xml.lang.h:1
@@ -1008,11 +1115,11 @@ msgstr "Attributnamn"
 msgid "Attribute Value"
 msgstr "Attributvärde"
 
-#: ../gtksourceview/language-specs/html.lang.h:7
+#: ../gtksourceview/language-specs/html.lang.h:6
 msgid "HTML"
 msgstr "HTML"
 
-#: ../gtksourceview/language-specs/html.lang.h:9
+#: ../gtksourceview/language-specs/html.lang.h:8
 #: ../gtksourceview/language-specs/xml.lang.h:14
 msgid "Tag"
 msgstr "Tagg"
@@ -1025,18 +1132,23 @@ msgstr "IDL"
 msgid ".ini"
 msgstr ".ini"
 
-#: ../gtksourceview/language-specs/java.lang.h:5
+#. map-to="def:others2"
+#: ../gtksourceview/language-specs/java.lang.h:6
+#: ../gtksourceview/language-specs/javascript.lang.h:9
+msgid "Future Reserved Keywords"
+msgstr "Framtida reserverade nyckelord"
+
+#: ../gtksourceview/language-specs/java.lang.h:7
 msgid "Java"
 msgstr "Java"
+
+#: ../gtksourceview/language-specs/java.lang.h:9
+msgid "Null Value"
+msgstr "Nollvärde"
 
 #: ../gtksourceview/language-specs/javascript.lang.h:2
 msgid "Constructors"
 msgstr "Konstruktorer"
-
-#. map-to="def:others2"
-#: ../gtksourceview/language-specs/javascript.lang.h:9
-msgid "Future Words"
-msgstr "Framtida ord"
 
 #: ../gtksourceview/language-specs/javascript.lang.h:10
 msgid "Javascript"
@@ -1053,19 +1165,6 @@ msgstr "Objekt"
 #: ../gtksourceview/language-specs/javascript.lang.h:14
 msgid "Properties"
 msgstr "Egenskaper"
-
-#: ../gtksourceview/language-specs/javascript.lang.h:15
-#: ../gtksourceview/language-specs/lua.lang.h:9
-#: ../gtksourceview/language-specs/m4.lang.h:1
-#: ../gtksourceview/language-specs/perl.lang.h:2
-#: ../gtksourceview/language-specs/php.lang.h:6
-#: ../gtksourceview/language-specs/python.lang.h:12
-#: ../gtksourceview/language-specs/R.lang.h:10
-#: ../gtksourceview/language-specs/ruby.lang.h:8
-#: ../gtksourceview/language-specs/sh.lang.h:1
-#: ../gtksourceview/language-specs/tcl.lang.h:3
-msgid "Scripts"
-msgstr "Skript"
 
 #: ../gtksourceview/language-specs/latex.lang.h:1
 msgid "Command"
@@ -1099,29 +1198,13 @@ msgstr "math-bound"
 msgid "libtool"
 msgstr "libtool"
 
-#: ../gtksourceview/language-specs/lua.lang.h:2
-msgid "Functions"
-msgstr "Funktioner"
-
 #: ../gtksourceview/language-specs/lua.lang.h:5
-msgid "Line Comment 2"
-msgstr "Radkommentar 2"
-
-#: ../gtksourceview/language-specs/lua.lang.h:6
 msgid "Lua"
 msgstr "Lua"
 
-#: ../gtksourceview/language-specs/lua.lang.h:7
-msgid "Multiline String"
-msgstr "Flerradig sträng"
-
-#: ../gtksourceview/language-specs/lua.lang.h:8
-msgid "Multiline String 2"
-msgstr "Flerradig sträng 2"
-
-#: ../gtksourceview/language-specs/lua.lang.h:11
-msgid "String 2"
-msgstr "Sträng 2"
+#: ../gtksourceview/language-specs/lua.lang.h:6
+msgid "Reserved Identifier"
+msgstr "Reserverad identifierare"
 
 #: ../gtksourceview/language-specs/m4.lang.h:2
 msgid "m4"
@@ -1136,7 +1219,6 @@ msgid "MSIL"
 msgstr "MSIL"
 
 #: ../gtksourceview/language-specs/nemerle.lang.h:3
-#: ../gtksourceview/language-specs/ocaml.lang.h:3
 #: ../gtksourceview/language-specs/vhdl.lang.h:1
 msgid "Character Constant"
 msgstr "Teckenkonstant"
@@ -1162,37 +1244,121 @@ msgstr "Nemerle"
 msgid "Primitives"
 msgstr "Primitiver"
 
+#: ../gtksourceview/language-specs/objc.lang.h:4
+msgid "Objective-C"
+msgstr "Objective-C"
+
 #: ../gtksourceview/language-specs/ocaml.lang.h:2
-msgid "Boolean Constant"
+msgid "Boolean constant"
 msgstr "Boolesk konstant"
 
-#: ../gtksourceview/language-specs/ocaml.lang.h:9
-msgid "Label"
-msgstr "Etikett"
+#: ../gtksourceview/language-specs/ocaml.lang.h:3
+msgid "Builtin-function keyword"
+msgstr "Inbyggt funktionsnyckelord"
 
 #: ../gtksourceview/language-specs/ocaml.lang.h:10
-msgid "Module"
-msgstr "Modul"
+msgid "Labeled argument"
+msgstr "Etiketterat argument"
 
 #: ../gtksourceview/language-specs/ocaml.lang.h:11
+msgid "Module Path"
+msgstr "Modulsökväg"
+
+#: ../gtksourceview/language-specs/ocaml.lang.h:12
 msgid "Objective Caml"
 msgstr "Objektiv Caml"
+
+#: ../gtksourceview/language-specs/ocaml.lang.h:13
+msgid "Ocamldoc Comments"
+msgstr "Ocamldoc-kommentarer"
+
+#: ../gtksourceview/language-specs/ocaml.lang.h:14
+msgid "Polymorphic Variant"
+msgstr "Polymorfisk variant"
+
+#: ../gtksourceview/language-specs/ocaml.lang.h:17
+msgid "String/Char escape"
+msgstr "Kontrolltecken för sträng/tecken"
+
+#: ../gtksourceview/language-specs/ocaml.lang.h:18
+msgid "Type Variable"
+msgstr "Typvariabel"
+
+#: ../gtksourceview/language-specs/ocaml.lang.h:19
+msgid "Type, module or object keyword"
+msgstr "Typ-, modul- eller objektnyckelord"
+
+#: ../gtksourceview/language-specs/ocaml.lang.h:20
+msgid "Variant Constructor"
+msgstr "Variantkonstruktor"
+
+#: ../gtksourceview/language-specs/ocl.lang.h:4
+msgid "OCL"
+msgstr "OCL"
+
+#: ../gtksourceview/language-specs/ocl.lang.h:5
+msgid "Operation operator"
+msgstr "Åtgärdsoperator"
+
+#: ../gtksourceview/language-specs/ocl.lang.h:8
+msgid "Type Operators"
+msgstr "Typoperatorer"
 
 #: ../gtksourceview/language-specs/octave.lang.h:7
 msgid "Octave"
 msgstr "Octave"
 
-#: ../gtksourceview/language-specs/octave.lang.h:9
-msgid "Scientific"
-msgstr "Vetenskaplig"
-
 #: ../gtksourceview/language-specs/pascal.lang.h:5
 msgid "Pascal"
 msgstr "Pascal"
 
-#: ../gtksourceview/language-specs/perl.lang.h:1
+#: ../gtksourceview/language-specs/perl.lang.h:2
+msgid "Control"
+msgstr "Control"
+
+#: ../gtksourceview/language-specs/perl.lang.h:4
+msgid "File descriptor"
+msgstr "Filhandtag"
+
+#: ../gtksourceview/language-specs/perl.lang.h:6
+msgid "Heredoc"
+msgstr "Heredoc"
+
+#: ../gtksourceview/language-specs/perl.lang.h:7
+msgid "Heredoc bound"
+msgstr "Heredoc bound"
+
+#: ../gtksourceview/language-specs/perl.lang.h:9
+msgid "Line directive"
+msgstr "Raddirektiv"
+
+#: ../gtksourceview/language-specs/perl.lang.h:10
+msgid "Operator"
+msgstr "Operator"
+
+#: ../gtksourceview/language-specs/perl.lang.h:11
+msgid "POD Escape"
+msgstr "POD-kontrolltecken"
+
+#: ../gtksourceview/language-specs/perl.lang.h:12
+msgid "POD heading"
+msgstr "POD-rubrik"
+
+#: ../gtksourceview/language-specs/perl.lang.h:13
+msgid "POD keyword"
+msgstr "POD-nyckelord"
+
+#: ../gtksourceview/language-specs/perl.lang.h:14
 msgid "Perl"
 msgstr "Perl"
+
+#: ../gtksourceview/language-specs/perl.lang.h:15
+msgid "Regular expression"
+msgstr "Reguljärt uttryck"
+
+#: ../gtksourceview/language-specs/perl.lang.h:18
+msgid "System command"
+msgstr "Systemkommando"
 
 #: ../gtksourceview/language-specs/php.lang.h:5
 msgid "PHP"
@@ -1201,10 +1367,6 @@ msgstr "PHP"
 #: ../gtksourceview/language-specs/pkgconfig.lang.h:2
 msgid "Package Info"
 msgstr "Paketinformation"
-
-#: ../gtksourceview/language-specs/pkgconfig.lang.h:3
-msgid "Variable"
-msgstr "Variabel"
 
 #: ../gtksourceview/language-specs/pkgconfig.lang.h:4
 msgid "pkg-config"
@@ -1215,6 +1377,7 @@ msgid "gettext translation"
 msgstr "gettext-översättning"
 
 #: ../gtksourceview/language-specs/python.lang.h:1
+#: ../gtksourceview/language-specs/ruby.lang.h:2
 msgid "Base-N integer"
 msgstr "Heltal i bas N"
 
@@ -1226,7 +1389,13 @@ msgstr "Inbyggda"
 msgid "Escaped character"
 msgstr "Escapetecken"
 
+#: ../gtksourceview/language-specs/python.lang.h:6
+#: ../gtksourceview/language-specs/ruby.lang.h:7
+msgid "Floating point"
+msgstr "Flyttal"
+
 #: ../gtksourceview/language-specs/python.lang.h:9
+#: ../gtksourceview/language-specs/ruby.lang.h:9
 msgid "Module handler"
 msgstr "Modulhanterare"
 
@@ -1278,7 +1447,20 @@ msgstr "Reserverad konstant"
 msgid "Single Quoted String"
 msgstr "Enkelciterad sträng"
 
-#: ../gtksourceview/language-specs/ruby.lang.h:7
+#: ../gtksourceview/language-specs/ruby.lang.h:1
+msgid "Attribute Definition"
+msgstr "Attributdefinition"
+
+#: ../gtksourceview/language-specs/ruby.lang.h:3
+msgid "Builtin"
+msgstr "Inbyggd"
+
+# Osäker
+#: ../gtksourceview/language-specs/ruby.lang.h:10
+msgid "Numeric literal"
+msgstr "Numerisk literal"
+
+#: ../gtksourceview/language-specs/ruby.lang.h:11
 msgid "Ruby"
 msgstr "Ruby"
 
@@ -1382,11 +1564,6 @@ msgstr "Kompilatordirektiv"
 msgid "Gate"
 msgstr "Grind"
 
-#: ../gtksourceview/language-specs/verilog.lang.h:8
-#: ../gtksourceview/language-specs/vhdl.lang.h:8
-msgid "Type"
-msgstr "Typ"
-
 #: ../gtksourceview/language-specs/verilog.lang.h:9
 msgid "Verilog"
 msgstr "Verilog"
@@ -1436,155 +1613,147 @@ msgstr "grammatik"
 msgid "keyword"
 msgstr "nyckelord"
 
-#: ../gtksourceview/libegg/regex/eggregex.c:113
-msgid "unknown error"
-msgstr "okänt fel"
+#: ../gtksourceview/language-specs/gvim.xml.h:1
+msgid "Color scheme used in GVim"
+msgstr "Färgschema använt i GVim"
 
-#. PCRE_ERROR_BADOPTION
-#: ../gtksourceview/libegg/regex/eggregex.c:117
-msgid "corrupted object"
-msgstr "skadat objekt"
+#: ../gtksourceview/language-specs/gvim.xml.h:2
+msgid "GVim"
+msgstr "GVim"
 
-#. PCRE_ERROR_BADMAGIC
-#: ../gtksourceview/libegg/regex/eggregex.c:118
-msgid "internal error or corrupted object"
-msgstr "internt fel eller skadat objekt"
+#: ../gtksourceview/language-specs/kate.xml.h:1
+msgid "Color scheme used in the Kate text editor"
+msgstr "Färgschema använt i textredigeraren Kate"
 
-#. PCRE_ERROR_UNKNOWN_NODE
-#: ../gtksourceview/libegg/regex/eggregex.c:119
-msgid "out of memory"
-msgstr "slut på minne"
+#: ../gtksourceview/language-specs/kate.xml.h:2
+msgid "Kate"
+msgstr "Kate"
 
-#. PCRE_ERROR_NOMEMORY
-#. PCRE_ERROR_NOSUBSTRING, not used by pcre_exec()
-#: ../gtksourceview/libegg/regex/eggregex.c:121
-msgid "backtracking limit reached"
-msgstr "bakåtspårningsgräns nådd"
+#: ../gtksourceview/language-specs/tango.xml.h:1
+msgid "Color scheme using Tango color palette"
+msgstr "Färgschema som använder Tango-färgpalett"
 
-#. PCRE_ERROR_MATCHLIMIT
-#. PCRE_ERROR_CALLOUT, used with callouts
-#. PCRE_ERROR_BADUTF8, we do not check UTF-8
-#. PCRE_ERROR_BADUTF8_OFFSET, we do not check UTF-8
-#. PCRE_ERROR_PARTIAL, not an error
-#. PCRE_ERROR_INTERNAL
-#. PCRE_ERROR_BADCOUNT, negative ovecsize, should not happen
-#: ../gtksourceview/libegg/regex/eggregex.c:126
-#: ../gtksourceview/libegg/regex/eggregex.c:129
-msgid "the pattern contains items not supported for partial matching"
-msgstr "mönstret som innehåller objekt stöds inte för delvis matchning"
+#: ../gtksourceview/language-specs/tango.xml.h:2
+msgid "Tango"
+msgstr "Tango"
 
-#. PCRE_ERROR_BADPARTIAL
-#: ../gtksourceview/libegg/regex/eggregex.c:127
-msgid "internal error"
-msgstr "internt fel"
-
-#. PCRE_ERROR_DFA_UITEM
-#: ../gtksourceview/libegg/regex/eggregex.c:130
-msgid "back references as conditions are not supported for partial matching"
-msgstr "bakåtreferenser som villkor stöds inte för delvis matchning"
-
-#. PCRE_ERROR_DFA_UCOND
-#. PCRE_ERROR_DFA_UMLIMIT, should not happen
-#. PCRE_ERROR_DFA_WSSIZE, handled expanding the workspace
-#: ../gtksourceview/libegg/regex/eggregex.c:133
-msgid "recursion limit reached"
-msgstr "rekursionsgräns nådd"
-
-#: ../gtksourceview/libegg/regex/eggregex.c:328
-msgid "PCRE library is compiled without UTF8 support"
-msgstr "PCRE-bibliotek är byggt utan UTF8-stöd"
-
-#: ../gtksourceview/libegg/regex/eggregex.c:337
-msgid "PCRE library is compiled without UTF8 properties support"
-msgstr "PCRE-bibliotek är byggt utan stöd för UTF8-egenskaper"
-
-#: ../gtksourceview/libegg/regex/eggregex.c:369
-#, c-format
-msgid "Error while compiling regular expression %s at char %d: %s"
-msgstr "Fel vid kompilering av reguljära uttrycket %s vid tecknet %d: %s"
-
-#: ../gtksourceview/libegg/regex/eggregex.c:510
-#, c-format
-msgid "Error while optimizing regular expression %s: %s"
-msgstr "Fel vid optimering av reguljära uttrycket %s: %s"
-
-#: ../gtksourceview/libegg/regex/eggregex.c:642
-#: ../gtksourceview/libegg/regex/eggregex.c:761
-#: ../gtksourceview/libegg/regex/eggregex.c:910
-#, c-format
-msgid "Error while matching regular expression %s: %s"
-msgstr "Fel vid matchande av reguljära uttrycket %s: %s"
-
-#: ../gtksourceview/libegg/regex/eggregex.c:724
-msgid "egg_regex_match_next_full: called without a previous call to egg_regex_clear()"
-msgstr "egg_regex_match_next_full: anropad utan ett tidigare anrop till egg_regex_clear()"
-
-#: ../gtksourceview/libegg/regex/eggregex.c:1778
-msgid "hexadecimal digit or '}' expected"
-msgstr "hexadecimal siffra eller \"}\" förväntades"
-
-#: ../gtksourceview/libegg/regex/eggregex.c:1794
-msgid "hexadecimal digit expected"
-msgstr "hexadecimal siffra förväntades"
-
-#: ../gtksourceview/libegg/regex/eggregex.c:1834
-msgid "missing '<' in symbolic reference"
-msgstr "saknar \"<\" i symbolisk referens"
-
-#: ../gtksourceview/libegg/regex/eggregex.c:1843
-msgid "unfinished symbolic reference"
-msgstr "oavslutad symbolisk referens"
-
-#: ../gtksourceview/libegg/regex/eggregex.c:1850
-msgid "zero-length symbolic reference"
-msgstr "symbolisk referens med noll längd"
-
-#: ../gtksourceview/libegg/regex/eggregex.c:1861
-msgid "digit expected"
-msgstr "siffra förväntades"
-
-#: ../gtksourceview/libegg/regex/eggregex.c:1879
-msgid "illegal symbolic reference"
-msgstr "ogiltig symbolisk referens"
-
-# Osäker
-#: ../gtksourceview/libegg/regex/eggregex.c:1941
-msgid "stray final '\\'"
-msgstr "stray final '\\'"
-
-#: ../gtksourceview/libegg/regex/eggregex.c:1945
-msgid "unknown escape sequence"
-msgstr "okänd escapesekvens"
-
-#: ../gtksourceview/libegg/regex/eggregex.c:1954
-msgid "Error while parsing replacement text \"%s\" at char %"
-msgstr "Fel vid tolkning av ersättningstexten \"%s\" vid tecknet %"
-
-#: ../gtksourceview/libegg/regex/eggregex.c:1955
-#, c-format
-msgid ": %s"
-msgstr ": %s"
-
-#~ msgid "Escaping character for syntax patterns"
-#~ msgstr "Escapetecken för syntaxmönster"
-#~ msgid "Tag ID"
-#~ msgstr "Tagg-ID"
-#~ msgid "ID used to refer to the source tag"
-#~ msgstr "ID som används för att referera till källtaggen"
-#~ msgid "Tag style"
-#~ msgstr "Taggstil"
-#~ msgid "The style associated with the source tag"
-#~ msgstr "Stilen som är associerad med källtaggen"
-#~ msgid "Preprocessor Keyword"
-#~ msgstr "Preprocessor-nyckelord"
-#~ msgid "True And False"
-#~ msgstr "Sant och falskt"
-#~ msgid "'#if 0' Comment"
-#~ msgstr "\"#if 0\"-kommentar"
-#~ msgid "Common Macro"
-#~ msgstr "Gemensamt makro"
-#~ msgid "Include/Pragma"
-#~ msgstr "Inkludering/Pragma"
-#~ msgid "File"
-#~ msgstr "Fil"
+#~ msgid "malformed regex '%s'"
+#~ msgstr "felformulerat regex \"%s\""
+#~ msgid "malformed regex options '%s'"
+#~ msgstr "felformulerade regex-flaggor \"%s\""
+#~ msgid "Configuration"
+#~ msgstr "Konfiguration"
+#~ msgid "Configuration options for the print job"
+#~ msgstr "Konfigurationsalternativ för utskriftsjobbet"
+#~ msgid "Source Buffer"
+#~ msgstr "Källkodsbuffert"
+#~ msgid "GtkSourceBuffer object to print"
+#~ msgstr "GtkSourceBuffer-objekt att skriva ut"
+#~ msgid "Width in equivalent space characters of tabs"
+#~ msgstr "Bredd i ekvivalenta blanksteg för tabulatorsteg"
+#~ msgid "Wrap Mode"
+#~ msgstr "Radbrytningsläge"
+#~ msgid "Word wrapping mode"
+#~ msgstr "Ordbrytningsläge"
+#~ msgid "Whether to print the document with highlighted syntax"
+#~ msgstr "Huruvida dokumentet ska skrivas ut med färgmarkerad syntax"
+#~ msgid "Font"
+#~ msgstr "Typsnitt"
+#~ msgid "GnomeFont name to use for the document text (deprecated)"
+#~ msgstr "GnomeFont-namn att använda för dokumenttexten (föråldrat)"
+#~ msgid "Font to use for the document text (e.g. \"Monospace 10\")"
+#~ msgstr "Typsnitt att använda för dokumenttexten (t.ex. \"Monospace 10\")"
+#~ msgid "Numbers Font"
+#~ msgstr "Taltypsnitt"
+#~ msgid "GnomeFont name to use for the line numbers (deprecated)"
+#~ msgstr "GnomeFont-namn att använda för radnummer (föråldrat)"
+#~ msgid "Font description to use for the line numbers"
+#~ msgstr "Typsnittsbeskrivning att använda för radnumren"
+#~ msgid "Print Line Numbers"
+#~ msgstr "Skriv ut radnummer"
+#~ msgid "Interval of printed line numbers (0 means no numbers)"
+#~ msgstr "Intervall för utskrivna radnummer (0 betyder inga nummer)"
+#~ msgid "Print Header"
+#~ msgstr "Skriv ut sidhuvud"
+#~ msgid "Whether to print a header in each page"
+#~ msgstr "Huruvida ett sidhuvud ska skrivas ut på var sida"
+#~ msgid "Print Footer"
+#~ msgstr "Skriv ut sidfot"
+#~ msgid "Whether to print a footer in each page"
+#~ msgstr "Huruvida en sidfot ska skrivas ut på var sida"
+#~ msgid "Header and Footer Font"
+#~ msgstr "Typsnitt för sidhuvud och sidfot"
+#~ msgid "GnomeFont name to use for the header and footer (deprecated)"
+#~ msgstr "GnomeFont-namn att använda för sidhuvudet och sidfoten (föråldrat)"
+#~ msgid "Header and Footer Font Description"
+#~ msgstr "Typsnittsbeskrivning för sidhuvud och sidfot"
+#~ msgid "Font to use for headers and footers (e.g. \"Monospace 10\")"
+#~ msgstr ""
+#~ "Typsnitt att använda för sidhuvud och sidfötter (t.ex. \"Monospace 10\")"
+#~ msgid "Style scheme directories"
+#~ msgstr "Stilschemakataloger"
+#~ msgid "Specials"
+#~ msgstr "Specialtecken"
+#~ msgid "inline-docs"
+#~ msgstr "inline-docs"
+#~ msgid "Functions"
+#~ msgstr "Funktioner"
+#~ msgid "Line Comment 2"
+#~ msgstr "Radkommentar 2"
+#~ msgid "Multiline String"
+#~ msgstr "Flerradig sträng"
+#~ msgid "Multiline String 2"
+#~ msgstr "Flerradig sträng 2"
+#~ msgid "String 2"
+#~ msgstr "Sträng 2"
+#~ msgid "Label"
+#~ msgstr "Etikett"
+#~ msgid "unknown error"
+#~ msgstr "okänt fel"
+#~ msgid "corrupted object"
+#~ msgstr "skadat objekt"
+#~ msgid "internal error or corrupted object"
+#~ msgstr "internt fel eller skadat objekt"
+#~ msgid "out of memory"
+#~ msgstr "slut på minne"
+#~ msgid "backtracking limit reached"
+#~ msgstr "bakåtspårningsgräns nådd"
+#~ msgid "the pattern contains items not supported for partial matching"
+#~ msgstr "mönstret som innehåller objekt stöds inte för delvis matchning"
+#~ msgid "internal error"
+#~ msgstr "internt fel"
+#~ msgid "back references as conditions are not supported for partial matching"
+#~ msgstr "bakåtreferenser som villkor stöds inte för delvis matchning"
+#~ msgid "recursion limit reached"
+#~ msgstr "rekursionsgräns nådd"
+#~ msgid "PCRE library is compiled without UTF8 support"
+#~ msgstr "PCRE-bibliotek är byggt utan UTF8-stöd"
+#~ msgid "PCRE library is compiled without UTF8 properties support"
+#~ msgstr "PCRE-bibliotek är byggt utan stöd för UTF8-egenskaper"
+#~ msgid "Error while compiling regular expression %s at char %d: %s"
+#~ msgstr "Fel vid kompilering av reguljära uttrycket %s vid tecknet %d: %s"
+#~ msgid "Error while optimizing regular expression %s: %s"
+#~ msgstr "Fel vid optimering av reguljära uttrycket %s: %s"
+#~ msgid "Error while matching regular expression %s: %s"
+#~ msgstr "Fel vid matchande av reguljära uttrycket %s: %s"
+#~ msgid ""
+#~ "egg_regex_match_next_full: called without a previous call to "
+#~ "egg_regex_clear()"
+#~ msgstr ""
+#~ "egg_regex_match_next_full: anropad utan ett tidigare anrop till "
+#~ "egg_regex_clear()"
+#~ msgid "hexadecimal digit or '}' expected"
+#~ msgstr "hexadecimal siffra eller \"}\" förväntades"
+#~ msgid "hexadecimal digit expected"
+#~ msgstr "hexadecimal siffra förväntades"
+#~ msgid "missing '<' in symbolic reference"
+#~ msgstr "saknar \"<\" i symbolisk referens"
+#~ msgid "unfinished symbolic reference"
+#~ msgstr "oavslutad symbolisk referens"
+#~ msgid "zero-length symbolic reference"
+#~ msgstr "symbolisk referens med noll längd"
+#~ msgid "digit expected"
+#~ msgstr "siffra förväntades"
+#~ msgid "illegal symbolic reference"
+#~ msgstr "ogiltig symbolisk referens"
 
