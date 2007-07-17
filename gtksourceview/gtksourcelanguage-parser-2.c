@@ -65,6 +65,8 @@ struct _ParserState
 	GtkSourceLanguage *language;
 	GtkSourceContextData *ctx_data;
 
+	gchar *language_decoration;
+	
 	/* A stack of id that representing parent contexts */
 	GQueue *curr_parents;
 
@@ -75,11 +77,15 @@ struct _ParserState
 	 * resolve references (the key is the id) */
 	GHashTable *defined_regexes;
 
-	/* The mapping between style ids and their default styles.
-	 * If lang file 'mama' contains this:
-	 * <style id="foo" map-to="def:blah"/>
-	 * <style id="bar"/>
-	 * then in styles_mapping: "mama:foo"->"def:blah", "mama:bar"->"mama:bar". */
+	/* Maps style ids to GtkSourceStyleInfo objects.
+	 * Contains all the styles defined in the lang files parsed
+	 * while parsing the main language file. For example, if the main
+	 * language is C, also styles in def.lang, gtk-doc.lang, etc. are
+	 * stored in this hash table. For styles defined in language files
+	 * different from the main one, the name is _not_ stored, since it
+	 * is not used in other places of the code. So, if the main language is
+	 * C, only the name of styles defined in c.lang is stored, while for 
+	 * the styles defined in def.lang, etc. the name is not stored. */
 	GHashTable *styles_mapping;
 
 	/* The list of loaded languages (the item are xmlChar pointers),
@@ -99,9 +105,8 @@ struct _ParserState
 	gchar *opening_delimiter;
 	gchar *closing_delimiter;
 };
+
 typedef struct _ParserState ParserState;
-
-
 
 static GQuark     parser_error_quark           (void);
 static gboolean   str_to_bool                  (const xmlChar *string);
@@ -1324,7 +1329,6 @@ parse_style (ParserState *parser_state,
 	name = xmlTextReaderGetAttribute (parser_state->reader,
 					  BAD_CAST "_name");
 
-	/* FIXME: actually use this name somehow */
 	if (name != NULL)
 	{
 		gchar *tmp2 = _gtk_source_language_translate_string (parser_state->language,
@@ -1364,10 +1368,22 @@ parse_style (ParserState *parser_state,
 	DEBUG (g_message ("style %s (%s) to be mapped to '%s'",
 			  name, id, map_to ? (char*) map_to : "(null)"));
 
-	if (tmp_error == NULL)
-		g_hash_table_insert (parser_state->styles_mapping, g_strdup (id),
-				     map_to ? g_strdup ((char*) map_to) : g_strdup (id));
+	if (tmp_error == NULL) {
+	
+		GtkSourceStyleInfo *info;
+	
+		/* Remember the style name only if the style has been defined in
+		 * the lang file we are parsing */	
+		if (g_str_has_prefix (id, parser_state->language_decoration))
+			info = _gtk_source_style_info_new ((gchar *) name, 
+							   (gchar *) map_to);
+		else
+			info = _gtk_source_style_info_new (NULL, 
+							   (gchar *) map_to);
 
+		g_hash_table_insert (parser_state->styles_mapping, g_strdup (id), info);
+	}
+	
 	g_free (lang_id);
 	g_free (id);
 	xmlFree (name);
@@ -1659,6 +1675,9 @@ parser_state_new (GtkSourceLanguage       *language,
 	parser_state->language = language;
 	parser_state->ctx_data = ctx_data;
 
+	g_return_val_if_fail (language->priv->id != NULL, NULL);
+	parser_state->language_decoration = g_strdup_printf ("%s:", language->priv->id);
+	
 	parser_state->current_lang_id = NULL;
 
 	parser_state->id_cookie = 0;
@@ -1692,21 +1711,19 @@ parser_state_destroy (ParserState *parser_state)
 	g_free (parser_state->opening_delimiter);
 	g_free (parser_state->closing_delimiter);
 
+	g_free (parser_state->language_decoration);
+	
 	g_slice_free (ParserState, parser_state);
 }
 
 static gboolean
-steal_styles_mapping (char       *style,
-		      char       *map_to,
-		      GHashTable *styles)
-{
-	if (strcmp (style, map_to) != 0)
-	{
-		g_hash_table_insert (styles, style, map_to);
-		return TRUE;
-	}
-
-	return FALSE;
+steal_styles_mapping (gchar              *style_id,
+		      GtkSourceStyleInfo *info,
+		      GHashTable         *styles)
+{		 
+	g_hash_table_insert (styles, style_id, info);
+	
+	return TRUE;
 }
 
 gboolean
@@ -1735,8 +1752,10 @@ _gtk_source_language_file_parse_version2 (GtkSourceLanguage       *language,
 
 	defined_regexes = g_hash_table_new_full (g_str_hash, g_str_equal,
 						 g_free, g_free);
-	styles = g_hash_table_new_full (g_str_hash, g_str_equal,
-					g_free, g_free);
+	styles = g_hash_table_new_full (g_str_hash, 
+					g_str_equal,
+					g_free, 
+					(GDestroyNotify)_gtk_source_style_info_free);
 	loaded_lang_ids = g_hash_table_new_full (g_str_hash, g_str_equal,
 						 (GDestroyNotify) xmlFree,
 						 NULL);
@@ -1750,7 +1769,7 @@ _gtk_source_language_file_parse_version2 (GtkSourceLanguage       *language,
 	if (success)
 		success = _gtk_source_context_data_finish_parse (ctx_data, replacements->head, &error);
 
-	if (success)
+	if (success)		
 		g_hash_table_foreach_steal (styles,
 					    (GHRFunc) steal_styles_mapping,
 					    language->priv->styles);

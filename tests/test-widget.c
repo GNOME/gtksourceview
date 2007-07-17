@@ -408,7 +408,7 @@ open_file (GtkSourceBuffer *buffer, const gchar *filename)
 	GtkSourceLanguage *language = NULL;
 	gchar *freeme = NULL;
 	gboolean success = FALSE;
-
+		
 	if (!g_path_is_absolute (filename))
 	{
 		gchar *curdir = g_get_current_dir ();
@@ -434,6 +434,37 @@ open_file (GtkSourceBuffer *buffer, const gchar *filename)
 				"filename", g_strdup (filename),
 				(GDestroyNotify) g_free);
 
+	if (language != NULL)
+	{
+		gchar **styles;
+		
+		styles = gtk_source_language_get_style_ids (language);
+		
+		if (styles == NULL)
+			g_print ("No styles in language '%s'\n", gtk_source_language_get_name (language));
+		else 
+		{
+			gchar **ids;
+			g_print ("Styles in in language '%s':\n", gtk_source_language_get_name (language));
+			
+			ids = styles;
+			
+			while (*ids != NULL) 
+			{
+				const gchar *name;
+				
+				name = gtk_source_language_get_style_name (language, *ids);
+
+				g_print ("- %s (name: '%s')\n", *ids, name);
+
+				++ids;
+			}
+			
+			g_strfreev (styles);		
+		}	
+		
+		g_print("\n");
+	}
 out:
 	g_free (freeme);
 	return success;

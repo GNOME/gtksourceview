@@ -1,5 +1,31 @@
 2007-07-17  Paolo Maggi  <paolo@gnome.org>
 
+	Implements new gtk_source_language_get_style_ids and
+	gtk_source_language_get_style_name functions.
+	
+	* gtksourceview/gtksourcecontextengine.c (set_tag_style): check
+	for dependencies cycles. Adapt the code to the fact the 
+	ENGINE_STYLES_MAP is now containing GtkSourceStyleInfo objects
+	(create_tag): s/style_name/style_id
+	* gtksourceview/gtksourcelanguage-parser-2.c (parse_style),
+	(parser_state_new), (parser_state_destroy), (steal_styles_mapping),
+	(_gtk_source_language_file_parse_version2): the styles_mapping hashtable
+	now contains GtkSourceStyleInfo objects
+	* gtksourceview/gtksourcelanguage-private.h: define GtkSourceStyleInfo
+	and a couple of helper functions
+	* gtksourceview/gtksourcelanguage.c (gtk_source_language_dispose),
+	(gtk_source_language_finalize), (gtk_source_language_init),
+	(_gtk_source_language_define_language_styles), (add_style_id),
+	(get_style_ids), (force_styles),
+	(gtk_source_language_get_style_ids), (get_style_info),
+	(gtk_source_language_get_style_name), (_gtk_source_style_info_new),
+	(_gtk_source_style_info_free): implements the two new functions
+	
+	* tests/test-widget.c (open_file): print the styles defined in the
+	corresponding lang file when opening a file
+
+2007-07-17  Paolo Maggi  <paolo@gnome.org>
+
 	* gtksourceview/language-specs/testfiles.sh: generate file.spec
 	
 2007-07-17  Yevgen Muntyan  <muntyan@tamu.edu>

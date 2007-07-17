@@ -541,35 +541,49 @@ unhighlight_region (GtkSourceContextEngine *ce,
 	g_hash_table_foreach (ce->priv->tags, (GHFunc) unhighlight_region_cb, &data);
 }
 
+#define MAX_STYLE_DEPENDENCY_DEPTH	50
+
 static void
 set_tag_style (GtkSourceContextEngine *ce,
 	       GtkTextTag             *tag,
-	       const gchar            *style_name)
+	       const gchar            *style_id)
 {
 	GtkSourceStyle *style;
 
 	g_return_if_fail (GTK_IS_TEXT_TAG (tag));
-	g_return_if_fail (style_name != NULL);
+	g_return_if_fail (style_id != NULL);
 
 	_gtk_source_style_apply (NULL, tag);
 
 	if (ce->priv->style_scheme == NULL)
 		return;
 
-	style = gtk_source_style_scheme_get_style (ce->priv->style_scheme, style_name);
+	style = gtk_source_style_scheme_get_style (ce->priv->style_scheme, style_id);
 
 	if (style == NULL)
 	{
-		const char *map_to = style_name;
+		const char *map_to = style_id;
 
+		int guard = 0;
+		
 		while (style == NULL)
 		{
-			/* XXX Style references really must be fixed, both parser for
+			GtkSourceStyleInfo *info;
+			
+			if (guard > MAX_STYLE_DEPENDENCY_DEPTH)
+			{
+				g_warning ("Potential circular dependency between styles detected for style '%s'", style_id);
+				break;
+			}
+			
+			++guard;
+			
+			/* FIXME Style references really must be fixed, both parser for
 			 * sane use in lang files, and engine for safe use. */
-			/* FIXME This may be an infinite loop *if* we allow circular
-			 * references between lang files. */
-			map_to = g_hash_table_lookup (ENGINE_STYLES_MAP(ce), map_to);
+			info = g_hash_table_lookup (ENGINE_STYLES_MAP(ce), map_to);
 
+			map_to = info->map_to;
+			
 			if (!map_to)
 				break;
 
@@ -585,20 +599,20 @@ set_tag_style (GtkSourceContextEngine *ce,
 
 static GtkTextTag *
 create_tag (GtkSourceContextEngine *ce,
-	    const gchar            *style_name)
+	    const gchar            *style_id)
 {
 	GSList *tags;
 	GtkTextTag *new_tag;
 
-	g_assert (style_name != NULL);
+	g_assert (style_id != NULL);
 
-	tags = g_hash_table_lookup (ce->priv->tags, style_name);
+	tags = g_hash_table_lookup (ce->priv->tags, style_id);
 
 	new_tag = gtk_text_buffer_create_tag (ce->priv->buffer, NULL, NULL);
-	set_tag_style (ce, new_tag, style_name);
+	set_tag_style (ce, new_tag, style_id);
 
 	tags = g_slist_prepend (tags, g_object_ref (new_tag));
-	g_hash_table_insert (ce->priv->tags, g_strdup (style_name), tags);
+	g_hash_table_insert (ce->priv->tags, g_strdup (style_id), tags);
 
 	return new_tag;
 }

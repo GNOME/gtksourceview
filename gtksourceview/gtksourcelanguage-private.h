@@ -30,43 +30,62 @@ G_BEGIN_DECLS
 #define GTK_SOURCE_LANGUAGE_VERSION_1_0  100
 #define GTK_SOURCE_LANGUAGE_VERSION_2_0  200
 
+typedef struct _GtkSourceStyleInfo GtkSourceStyleInfo;
+
+struct _GtkSourceStyleInfo
+{
+	gchar *name;
+	gchar *map_to;
+};
+
 struct _GtkSourceLanguagePrivate
 {
-	gchar			*lang_file_name;
-	gchar                   *translation_domain;
+	gchar                    *lang_file_name;
+	gchar                    *translation_domain;
 
-	gchar			*id;
-	gchar			*name;
-	gchar			*section;
+	gchar                    *id;
+	gchar                    *name;
+	gchar                    *section;
 
-	/* maps style names to default styles (e.g. "comment" to "def:comment") */
-	GHashTable		*styles;
+	/* Maps ids to GtkSourceStyleInfo objects */
+	/* Names of styles defined in other lang files are not stored */
+	GHashTable               *styles;
 
-	gint                     version;
-	gboolean		 hidden;
+	gint                      version;
+	gboolean                  hidden;
 
-	GHashTable		*properties;
+	GHashTable               *properties;
 
 	GtkSourceLanguageManager *language_manager;
 
-	GtkSourceContextData    *ctx_data;
+	GtkSourceContextData     *ctx_data;
 };
 
-GtkSourceLanguage *_gtk_source_language_new_from_file (const gchar		*filename,
-						       GtkSourceLanguageManager	*lm);
+GtkSourceLanguage 	 *_gtk_source_language_new_from_file 		(const gchar		   *filename,
+									 GtkSourceLanguageManager  *lm);
 
-GtkSourceLanguageManager *_gtk_source_language_get_language_manager (GtkSourceLanguage *language);
-const gchar *_gtk_source_language_manager_get_rng_file (GtkSourceLanguageManager *lm);
+GtkSourceLanguageManager *_gtk_source_language_get_language_manager 	(GtkSourceLanguage        *language);
 
-gchar       *_gtk_source_language_translate_string (GtkSourceLanguage     *language,
-						    const gchar           *string);
+const gchar		 *_gtk_source_language_manager_get_rng_file	(GtkSourceLanguageManager *lm);
 
-void _gtk_source_language_define_language_styles  (GtkSourceLanguage      *language);
-gboolean _gtk_source_language_file_parse_version1 (GtkSourceLanguage      *language,
-						   GtkSourceContextData   *ctx_data);
-gboolean _gtk_source_language_file_parse_version2 (GtkSourceLanguage      *language,
-						   GtkSourceContextData   *ctx_data);
-GtkSourceEngine *_gtk_source_language_create_engine (GtkSourceLanguage *language);
+gchar       		 *_gtk_source_language_translate_string 	(GtkSourceLanguage        *language,
+									 const gchar              *string);
+
+void 			  _gtk_source_language_define_language_styles	(GtkSourceLanguage        *language);
+
+gboolean 		  _gtk_source_language_file_parse_version1 	(GtkSourceLanguage        *language,
+									 GtkSourceContextData     *ctx_data);
+									 
+gboolean 		  _gtk_source_language_file_parse_version2	(GtkSourceLanguage        *language,
+									 GtkSourceContextData     *ctx_data);
+									 
+GtkSourceEngine 	 *_gtk_source_language_create_engine		(GtkSourceLanguage	  *language);
+
+/* Utility functions for GtkSourceStyleInfo */
+GtkSourceStyleInfo 	 *_gtk_source_style_info_new 			(const gchar		  *name,
+									 const gchar              *map_to);
+
+void			  _gtk_source_style_info_free			(GtkSourceStyleInfo       *info);
 
 G_END_DECLS
 
