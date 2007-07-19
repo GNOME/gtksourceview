@@ -24,12 +24,10 @@ private members and should not be accessed directly.
 </para>
 
 
-<!-- ##### SIGNAL GtkSourceStyleManager::list-changed ##### -->
+<!-- ##### ARG GtkSourceStyleManager:scheme-ids ##### -->
 <para>
 
 </para>
-
-@sourcestylemanager: the object which received the signal.
 
 <!-- ##### ARG GtkSourceStyleManager:search-path ##### -->
 <para>
@@ -44,26 +42,33 @@ private members and should not be accessed directly.
 @Returns: 
 
 
-<!-- ##### FUNCTION gtk_source_style_manager_get_scheme ##### -->
+<!-- ##### FUNCTION gtk_source_style_manager_get_default ##### -->
 <para>
 
 </para>
 
-@manager: 
-@scheme_id: 
-@Returns: 
-
-
-<!-- ##### FUNCTION gtk_source_style_manager_list_schemes ##### -->
-<para>
-
-</para>
-
-@manager: 
 @Returns: 
 
 
 <!-- ##### FUNCTION gtk_source_style_manager_set_search_path ##### -->
+<para>
+
+</para>
+
+@manager: 
+@path: 
+
+
+<!-- ##### FUNCTION gtk_source_style_manager_append_search_path ##### -->
+<para>
+
+</para>
+
+@manager: 
+@path: 
+
+
+<!-- ##### FUNCTION gtk_source_style_manager_prepend_search_path ##### -->
 <para>
 
 </para>
@@ -78,6 +83,24 @@ private members and should not be accessed directly.
 </para>
 
 @manager: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gtk_source_style_manager_force_rescan ##### -->
+<para>
+
+</para>
+
+@manager: 
+
+
+<!-- ##### FUNCTION gtk_source_style_manager_get_scheme ##### -->
+<para>
+
+</para>
+
+@manager: 
+@scheme_id: 
 @Returns: 
 
 

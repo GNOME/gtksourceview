@@ -175,7 +175,7 @@ gtk_source_style_manager_init (GtkSourceStyleManager *mgr)
  * manager then use gtk_source_style_manager_get_default() instead.
  *
  * Returns: a #GtkSourceStyleManager.
- **/
+ */
 GtkSourceStyleManager *
 gtk_source_style_manager_new (void)
 {
@@ -189,7 +189,7 @@ gtk_source_style_manager_new (void)
  *
  * Returns: a #GtkSourceStyleManager. Return value is owned
  * by GtkSourceView library and must not be unref'ed.
- **/
+ */
 GtkSourceStyleManager *
 gtk_source_style_manager_get_default (void)
 {
@@ -392,6 +392,15 @@ notify_search_path (GtkSourceStyleManager *mgr)
 	g_object_notify (G_OBJECT (mgr), "scheme-ids");
 }
 
+/**
+ * gtk_source_style_manager_set_search_path:
+ * @manager: a #GtkSourceStyleManager.
+ * @path: a %NULL-terminated array of strings or %NULL.
+ *
+ * Sets the list of directories where the @manager looks for
+ * style scheme files.
+ * If @dirs is %NULL, the search path is reset to default.
+ */
 void
 gtk_source_style_manager_set_search_path (GtkSourceStyleManager	 *manager,
 					  gchar	                **path)
@@ -412,6 +421,15 @@ gtk_source_style_manager_set_search_path (GtkSourceStyleManager	 *manager,
 	notify_search_path (manager);
 }
 
+/**
+ * gtk_source_style_manager_append_search_path:
+ * @manager: a #GtkSourceStyleManager.
+ * @path: a directory or a filename.
+ *
+ * Appends @path to the list of directories where the @manager looks for
+ * style scheme files.
+ * See gtk_source_style_manager_set_search_path() for details.
+ */
 void
 gtk_source_style_manager_append_search_path (GtkSourceStyleManager  *manager,
 					     const gchar            *path)
@@ -438,6 +456,15 @@ gtk_source_style_manager_append_search_path (GtkSourceStyleManager  *manager,
 	notify_search_path (manager);
 }
 
+/**
+ * gtk_source_style_manager_prepend_search_path:
+ * @manager: a #GtkSourceStyleManager.
+ * @path: a directory or a filename.
+ *
+ * Prepends @path to the list of directories where the @manager looks
+ * for style scheme files.
+ * See gtk_source_style_manager_set_search_path() for details.
+ */
 void
 gtk_source_style_manager_prepend_search_path (GtkSourceStyleManager *manager,
 					      const gchar           *path)
@@ -470,15 +497,15 @@ gtk_source_style_manager_prepend_search_path (GtkSourceStyleManager *manager,
 
 /**
  * gtk_source_style_manager_get_search_path:
- * @manager: a #GtkSourceStyleManager
+ * @manager: a #GtkSourceStyleManager.
  *
  * Returns the current search path for the @manager.
  * See gtk_source_style_manager_set_search_path() for details.
  *
  * Returns: a NULL-terminated array of string containing the search path.
  * The array is owned by the @manager and must not be modified.
- **/
-const gchar* const *
+ */
+G_CONST_RETURN gchar* G_CONST_RETURN *
 gtk_source_style_manager_get_search_path (GtkSourceStyleManager	*manager)
 {
 	g_return_val_if_fail (GTK_IS_SOURCE_STYLE_MANAGER (manager), NULL);
@@ -514,8 +541,8 @@ gtk_source_style_manager_force_rescan (GtkSourceStyleManager *manager)
  * Returns: a %NULL-terminated array of string containing the ids of the
  * available style schemes or %NULL if no style scheme is available. The array
  * is owned by the @manager and must not be modified.
- **/
-const gchar* const *
+ */
+const gchar* G_CONST_RETURN *
 gtk_source_style_manager_get_scheme_ids	(GtkSourceStyleManager	*manager)
 {
 	g_return_val_if_fail (GTK_IS_SOURCE_STYLE_MANAGER (manager), NULL);
@@ -534,7 +561,7 @@ gtk_source_style_manager_get_scheme_ids	(GtkSourceStyleManager	*manager)
  *
  * Returns: a #GtkSourceStyleScheme object. Returned value is owned by
  * @manager and must not be unref'ed.
- **/
+ */
 GtkSourceStyleScheme *
 gtk_source_style_manager_get_scheme (GtkSourceStyleManager *manager,
 				     const gchar           *scheme_id)

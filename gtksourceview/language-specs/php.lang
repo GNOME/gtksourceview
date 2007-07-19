@@ -28,6 +28,8 @@
     <property name="mimetypes">text/x-php;application/x-php;text/x-php-source;application/x-php-source</property>
     <property name="globs">*.php;*.php3;*.php4</property>
     <property name="line-comment-start">#</property>
+    <property name="block-comment-start">/*</property>
+    <property name="block-comment-end">*/</property>
   </metadata>
 
   <styles>

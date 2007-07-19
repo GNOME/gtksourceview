@@ -152,7 +152,7 @@ gtk_source_language_manager_init (GtkSourceLanguageManager *lm)
  * gtk_source_language_manager_get_default() instead.
  *
  * Returns: a #GtkSourceLanguageManager.
- **/
+ */
 GtkSourceLanguageManager *
 gtk_source_language_manager_new (void)
 {
@@ -166,7 +166,7 @@ gtk_source_language_manager_new (void)
  *
  * Returns: a #GtkSourceLanguageManager. Return value is owned
  * by GtkSourceView library and must not be unref'ed.
- **/
+ */
 GtkSourceLanguageManager *
 gtk_source_language_manager_get_default (void)
 {
@@ -187,9 +187,19 @@ gtk_source_language_manager_get_default (void)
  * @lm: a #GtkSourceLanguageManager.
  * @dirs: a %NULL-terminated array of strings or %NULL.
  *
- * Sets a list of language files directories for the given language manager.
- * @dirs == %NULL resets directories list to default.
- **/
+ * Sets the list of directories where the @lm looks for
+ * language files.
+ * If @dirs is %NULL, the search path is reset to default.
+ *
+ * <note>
+ *   <para>
+ *     At the moment this function can be called only before the
+ *     language files are loaded for the first time. In practice
+ *     to set a custom search path for a #GtkSourceLanguageManager,
+ *     you have to call this function right after creating it.
+ *   </para>
+ * </note>
+ */
 void
 gtk_source_language_manager_set_search_path (GtkSourceLanguageManager *lm,
 					     gchar                   **dirs)
@@ -213,11 +223,11 @@ gtk_source_language_manager_set_search_path (GtkSourceLanguageManager *lm,
  * gtk_source_language_manager_get_search_path:
  * @lm: a #GtkSourceLanguageManager.
  *
- * Gets a list of language files directories for the given language manager.
+ * Gets the list directories where @lm looks for language files.
  *
  * Returns: %NULL-terminated array containg a list of language files directories.
  * It is owned by @lm and must not be modified or freed.
- **/
+ */
 gchar **
 gtk_source_language_manager_get_search_path (GtkSourceLanguageManager *lm)
 {
@@ -236,7 +246,7 @@ gtk_source_language_manager_get_search_path (GtkSourceLanguageManager *lm)
  * Returns location of the RNG schema file for lang files version 2.
  *
  * Returns: path to RNG file. It belongs to %lm and must not be freed or modified.
- **/
+ */
 const char *
 _gtk_source_language_manager_get_rng_file (GtkSourceLanguageManager *lm)
 {
@@ -331,7 +341,7 @@ ensure_languages (GtkSourceLanguageManager *lm)
  *
  * Returns: a list of #GtkSourceLanguage objects. It must be freed with
  * g_slist_free(), but its elements must not be unref'ed.
- **/
+ */
 GSList *
 gtk_source_language_manager_list_languages (GtkSourceLanguageManager *lm)
 {
@@ -353,7 +363,7 @@ gtk_source_language_manager_list_languages (GtkSourceLanguageManager *lm)
  * Returns: a #GtkSourceLanguage, or %NULL if there is no language
  * identified by the given @id. Return value is owned by @lm and should not
  * be freed.
- **/
+ */
 GtkSourceLanguage *
 gtk_source_language_manager_get_language_by_id (GtkSourceLanguageManager *lm,
 						const gchar              *id)

@@ -70,12 +70,14 @@ void 			 gtk_source_style_manager_append_search_path    (GtkSourceStyleManager	*
 void 			 gtk_source_style_manager_prepend_search_path   (GtkSourceStyleManager	*manager,
 						    			 const gchar            *path);
 
-const gchar* const * gtk_source_style_manager_get_search_path
+G_CONST_RETURN gchar* G_CONST_RETURN *
+			 gtk_source_style_manager_get_search_path
 									(GtkSourceStyleManager	*manager);
 
 void			 gtk_source_style_manager_force_rescan		(GtkSourceStyleManager	*manager);
 
-const gchar* const * gtk_source_style_manager_get_scheme_ids
+G_CONST_RETURN gchar * G_CONST_RETURN *
+			 gtk_source_style_manager_get_scheme_ids
 									(GtkSourceStyleManager	*manager);
 
 GtkSourceStyleScheme	*gtk_source_style_manager_get_scheme		(GtkSourceStyleManager	*manager,
