@@ -1,3 +1,8 @@
+2007-07-20  Paolo Maggi  <paolo@gnome.org>
+
+	* gtksourceview/gtksourcestylemanager.[ch]: use const instead of
+	G_CONST_RETURN
+
 2007-07-19  Paolo Borelli  <pborelli@katamail.com>
 
 	* docs/reference/gtksourceview-2.0-sections.txt:
