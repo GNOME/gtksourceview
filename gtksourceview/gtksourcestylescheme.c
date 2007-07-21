@@ -1053,6 +1053,8 @@ _gtk_source_style_scheme_new_from_file (const gchar *filename)
 	}
 
 	scheme = g_object_new (GTK_TYPE_SOURCE_STYLE_SCHEME, NULL);
+	scheme->priv->filename = g_strdup (filename);
+	
 	parse_style_scheme_element (scheme, node, &error);
 
 	if (error != NULL)
@@ -1068,9 +1070,7 @@ _gtk_source_style_scheme_new_from_file (const gchar *filename)
 
 	xmlFreeDoc (doc);
 	g_free (text);
-
-	scheme->priv->filename = g_strdup (filename);
-
+	
 	return scheme;
 }
 

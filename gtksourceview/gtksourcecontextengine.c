@@ -550,6 +550,10 @@ set_tag_style (GtkSourceContextEngine *ce,
 {
 	GtkSourceStyle *style;
 
+	const char *map_to = style_id;
+
+	int guard = 0;
+		
 	g_return_if_fail (GTK_IS_TEXT_TAG (tag));
 	g_return_if_fail (style_id != NULL);
 
@@ -559,36 +563,29 @@ set_tag_style (GtkSourceContextEngine *ce,
 		return;
 
 	style = gtk_source_style_scheme_get_style (ce->priv->style_scheme, style_id);
-
-	if (style == NULL)
-	{
-		const char *map_to = style_id;
-
-		int guard = 0;
 		
-		while (style == NULL)
+	while (style == NULL)
+	{
+		GtkSourceStyleInfo *info;
+		
+		if (guard > MAX_STYLE_DEPENDENCY_DEPTH)
 		{
-			GtkSourceStyleInfo *info;
-			
-			if (guard > MAX_STYLE_DEPENDENCY_DEPTH)
-			{
-				g_warning ("Potential circular dependency between styles detected for style '%s'", style_id);
-				break;
-			}
-			
-			++guard;
-			
-			/* FIXME Style references really must be fixed, both parser for
-			 * sane use in lang files, and engine for safe use. */
-			info = g_hash_table_lookup (ENGINE_STYLES_MAP(ce), map_to);
-
-			map_to = info->map_to;
-			
-			if (!map_to)
-				break;
-
-			style = gtk_source_style_scheme_get_style (ce->priv->style_scheme, map_to);
+			g_warning ("Potential circular dependency between styles detected for style '%s'", style_id);
+			break;
 		}
+		
+		++guard;
+		
+		/* FIXME Style references really must be fixed, both parser for
+		 * sane use in lang files, and engine for safe use. */
+		info = g_hash_table_lookup (ENGINE_STYLES_MAP(ce), map_to);
+
+		map_to = (info != NULL) ? info->map_to : NULL;
+		
+		if (!map_to)
+			break;
+
+		style = gtk_source_style_scheme_get_style (ce->priv->style_scheme, map_to);
 	}
 
 	/* not having style is fine, since parser checks validity of every style reference,
