@@ -34,7 +34,13 @@
 
 #include <string.h>
 #include <fcntl.h>
+#ifdef HAVE_UNISTD_H
 #include <unistd.h>
+#endif
+#ifdef G_OS_WIN32
+#include <io.h>
+#endif
+
 #include <libxml/xmlreader.h>
 #include <glib/gstdio.h>
 #include "gtksourceview-i18n.h"
