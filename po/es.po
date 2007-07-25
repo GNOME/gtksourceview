@@ -7,13 +7,12 @@
 # Francisco Javier F. Serrador <serrador@cvs.gnome.org>, 2003-2005, 2006.
 # Claudio Saavedra <csaavedra@alumnos.utalca.cl>, 2007.
 # Jorge González <jorgegonz@svn.gnome.org>, 2007.
-# Jorge Gonzalez <jorgegonz@svn.gnome.org>, 2007.
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview.HEAD.es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-07-17 19:57+0100\n"
-"PO-Revision-Date: 2007-07-18 02:02+0200\n"
+"POT-Creation-Date: 2007-07-25 19:06+0100\n"
+"PO-Revision-Date: 2007-07-26 00:51+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -75,12 +74,12 @@ msgstr "Indica si la operación de rehacer está disponible"
 msgid "Style scheme"
 msgstr "Estilos de esquemas"
 
-#: ../gtksourceview/gtksourcecontextengine.c:2251
+#: ../gtksourceview/gtksourcecontextengine.c:2248
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "Falta la definición de lenguaje principal (id = «%s».)"
 
-#: ../gtksourceview/gtksourcecontextengine.c:2555
+#: ../gtksourceview/gtksourcecontextengine.c:2552
 msgid "using \\C is not supported in language definitions"
 msgstr "el uso de \\C no está soportado en las definiciones del lenguaje"
 
@@ -88,7 +87,7 @@ msgstr "el uso de \\C no está soportado en las definiciones del lenguaje"
 #. * named sub-patterns with the same name or if resulting regex is
 #. * too long. In this case fixing lang file helps (e.g. renaming
 #. * subpatterns, making huge keywords use bigger prefixes, etc.)
-#: ../gtksourceview/gtksourcecontextengine.c:3155
+#: ../gtksourceview/gtksourcecontextengine.c:3152
 #, c-format
 msgid ""
 "Cannot create a regex for all the transitions, the syntax highlighting "
@@ -99,19 +98,19 @@ msgstr ""
 "proceso de resaltado de sintaxis será más lento de lo habitual.\n"
 "El error fue: %s"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5641
+#: ../gtksourceview/gtksourcecontextengine.c:5638
 #, c-format
 msgid "context '%s' cannot contain a \\%%{...@start} command"
 msgstr "el contexto «%s» no puede contener un comando \\%%{...@start} command"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5793
-#: ../gtksourceview/gtksourcecontextengine.c:5880
+#: ../gtksourceview/gtksourcecontextengine.c:5790
+#: ../gtksourceview/gtksourcecontextengine.c:5877
 #, c-format
 msgid "duplicated context id '%s'"
 msgstr "id de contexto duplicado «%s»"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5993
-#: ../gtksourceview/gtksourcecontextengine.c:6053
+#: ../gtksourceview/gtksourcecontextengine.c:5990
+#: ../gtksourceview/gtksourcecontextengine.c:6050
 #, c-format
 msgid ""
 "style override used with wildcard context reference in language '%s' in ref "
@@ -120,13 +119,13 @@ msgstr ""
 "el salto de estilo se usó con comodín de contexto de referencia en el "
 "lenguaje «%s» referencia «%s»"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6067
+#: ../gtksourceview/gtksourcecontextengine.c:6064
 #, c-format
 msgid "invalid reference '%s'"
 msgstr "referencia inválida «%s»"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6086
-#: ../gtksourceview/gtksourcecontextengine.c:6096
+#: ../gtksourceview/gtksourcecontextengine.c:6083
+#: ../gtksourceview/gtksourcecontextengine.c:6093
 #, c-format
 msgid "unknown context '%s'"
 msgstr "contexto desconocido «%s»"
@@ -143,12 +142,12 @@ msgstr ""
 "Lista de directorios en los que se hallan los archivo de especificación de "
 "lenguajes (.lang)."
 
-#: ../gtksourceview/gtksourcelanguage-parser-2.c:876
+#: ../gtksourceview/gtksourcelanguage-parser-2.c:882
 #, c-format
 msgid "Unknown id '%s' in regex '%s'"
 msgstr "Id «%s» desconocido en la expresión regular «%s»"
 
-#: ../gtksourceview/gtksourcelanguage-parser-2.c:1104
+#: ../gtksourceview/gtksourcelanguage-parser-2.c:1110
 #, c-format
 msgid "in regex '%s': backreferences are not supported"
 msgstr "en la expresión regular «%s»: las retroreferencias no se soportan"
@@ -440,7 +439,7 @@ msgstr "Carácter de escape"
 #: ../gtksourceview/language-specs/perl.lang.h:1
 #: ../gtksourceview/language-specs/php.lang.h:1
 #: ../gtksourceview/language-specs/po.lang.h:1
-#: ../gtksourceview/language-specs/ruby.lang.h:4
+#: ../gtksourceview/language-specs/ruby.lang.h:5
 #: ../gtksourceview/language-specs/scheme.lang.h:2
 #: ../gtksourceview/language-specs/sql.lang.h:1
 #: ../gtksourceview/language-specs/texinfo.lang.h:1
@@ -488,7 +487,7 @@ msgstr "Tipo de dato"
 #: ../gtksourceview/language-specs/octave.lang.h:3
 #: ../gtksourceview/language-specs/pascal.lang.h:3
 #: ../gtksourceview/language-specs/python.lang.h:4
-#: ../gtksourceview/language-specs/ruby.lang.h:6
+#: ../gtksourceview/language-specs/ruby.lang.h:7
 #: ../gtksourceview/language-specs/sql.lang.h:3
 msgid "Decimal"
 msgstr "Decimal"
@@ -518,7 +517,7 @@ msgstr "Decimal"
 #: ../gtksourceview/language-specs/po.lang.h:2
 #: ../gtksourceview/language-specs/python.lang.h:8
 #: ../gtksourceview/language-specs/R.lang.h:6
-#: ../gtksourceview/language-specs/ruby.lang.h:8
+#: ../gtksourceview/language-specs/ruby.lang.h:9
 #: ../gtksourceview/language-specs/scheme.lang.h:4
 #: ../gtksourceview/language-specs/sql.lang.h:6
 #: ../gtksourceview/language-specs/tcl.lang.h:2
@@ -549,6 +548,7 @@ msgstr "Número real"
 #: ../gtksourceview/language-specs/csharp.lang.h:7
 #: ../gtksourceview/language-specs/d.lang.h:13
 #: ../gtksourceview/language-specs/fortran.lang.h:8
+#: ../gtksourceview/language-specs/haskell-literate.lang.h:2
 #: ../gtksourceview/language-specs/haskell.lang.h:12
 #: ../gtksourceview/language-specs/idl.lang.h:6
 #: ../gtksourceview/language-specs/java.lang.h:10
@@ -566,7 +566,7 @@ msgid "Sources"
 msgstr "Fuentes"
 
 #: ../gtksourceview/language-specs/ada.lang.h:13
-#: ../gtksourceview/language-specs/c.lang.h:17
+#: ../gtksourceview/language-specs/c.lang.h:18
 #: ../gtksourceview/language-specs/csharp.lang.h:8
 #: ../gtksourceview/language-specs/css.lang.h:13
 #: ../gtksourceview/language-specs/def.lang.h:22
@@ -588,7 +588,7 @@ msgstr "Fuentes"
 #: ../gtksourceview/language-specs/php.lang.h:7
 #: ../gtksourceview/language-specs/po.lang.h:5
 #: ../gtksourceview/language-specs/python.lang.h:14
-#: ../gtksourceview/language-specs/ruby.lang.h:13
+#: ../gtksourceview/language-specs/ruby.lang.h:15
 #: ../gtksourceview/language-specs/scheme.lang.h:7
 #: ../gtksourceview/language-specs/sql.lang.h:10
 #: ../gtksourceview/language-specs/texinfo.lang.h:9
@@ -609,7 +609,7 @@ msgstr "Patrón"
 #: ../gtksourceview/language-specs/php.lang.h:6
 #: ../gtksourceview/language-specs/python.lang.h:12
 #: ../gtksourceview/language-specs/R.lang.h:10
-#: ../gtksourceview/language-specs/ruby.lang.h:12
+#: ../gtksourceview/language-specs/ruby.lang.h:14
 #: ../gtksourceview/language-specs/sh.lang.h:1
 #: ../gtksourceview/language-specs/tcl.lang.h:3
 msgid "Scripts"
@@ -702,6 +702,7 @@ msgstr "Error"
 
 #: ../gtksourceview/language-specs/c.lang.h:8
 #: ../gtksourceview/language-specs/def.lang.h:11
+#: ../gtksourceview/language-specs/haddock.lang.h:6
 msgid "Escape"
 msgstr "Escape"
 
@@ -729,7 +730,11 @@ msgstr "Archivo incluido"
 msgid "Octal"
 msgstr "Octal"
 
-#: ../gtksourceview/language-specs/c.lang.h:18
+#: ../gtksourceview/language-specs/c.lang.h:17
+msgid "Storage Class"
+msgstr "Clase de almacenamiento"
+
+#: ../gtksourceview/language-specs/c.lang.h:19
 msgid "printf Conversion"
 msgstr "Conversión printf"
 
@@ -1004,6 +1009,7 @@ msgstr "Hexadecimal"
 #: ../gtksourceview/language-specs/docbook.lang.h:10
 #: ../gtksourceview/language-specs/dtd.lang.h:2
 #: ../gtksourceview/language-specs/gtk-doc.lang.h:5
+#: ../gtksourceview/language-specs/haddock.lang.h:14
 #: ../gtksourceview/language-specs/html.lang.h:7
 #: ../gtksourceview/language-specs/latex.lang.h:6
 #: ../gtksourceview/language-specs/texinfo.lang.h:7
@@ -1049,7 +1055,7 @@ msgid "Scientific"
 msgstr "Científico"
 
 #: ../gtksourceview/language-specs/gtk-doc.lang.h:1
-#: ../gtksourceview/language-specs/ruby.lang.h:5
+#: ../gtksourceview/language-specs/ruby.lang.h:6
 msgid "Constant"
 msgstr "Constante"
 
@@ -1059,7 +1065,7 @@ msgstr "Nombre de la función"
 
 #: ../gtksourceview/language-specs/gtk-doc.lang.h:4
 msgid "Inline Documentation Section"
-msgstr "Sección de la documentación en línea"
+msgstr "Sección de documentación en línea"
 
 #: ../gtksourceview/language-specs/gtk-doc.lang.h:6
 msgid "Parameter"
@@ -1102,6 +1108,66 @@ msgstr "Directiva include"
 msgid "Widget State"
 msgstr "Estado del widget"
 
+#: ../gtksourceview/language-specs/haddock.lang.h:1
+msgid "Anchor"
+msgstr "Anclaje"
+
+#: ../gtksourceview/language-specs/haddock.lang.h:2
+msgid "Code Block"
+msgstr "Bloque de código"
+
+#: ../gtksourceview/language-specs/haddock.lang.h:3
+msgid "Definition list"
+msgstr "Lista de definición"
+
+#: ../gtksourceview/language-specs/haddock.lang.h:4
+msgid "Emphasis"
+msgstr "Énfasis"
+
+#: ../gtksourceview/language-specs/haddock.lang.h:5
+msgid "Enumerated list"
+msgstr "Lista enumerada"
+
+#: ../gtksourceview/language-specs/haddock.lang.h:7
+msgid "Haddock"
+msgstr "Haddock"
+
+#: ../gtksourceview/language-specs/haddock.lang.h:8
+msgid "Haddock Directive"
+msgstr "Directiva haddock"
+
+#: ../gtksourceview/language-specs/haddock.lang.h:9
+msgid "Header Property"
+msgstr "Propiedad de cabecera"
+
+#: ../gtksourceview/language-specs/haddock.lang.h:10
+msgid "Hyperlinked Identifier"
+msgstr "Identificador hiperenlazado"
+
+#: ../gtksourceview/language-specs/haddock.lang.h:11
+msgid "Hyperlinked Module Name"
+msgstr "Nombre del módulo hiperenlazado"
+
+#: ../gtksourceview/language-specs/haddock.lang.h:12
+msgid "Inline Haddock Section"
+msgstr "Sección de haddock en línea"
+
+#: ../gtksourceview/language-specs/haddock.lang.h:13
+msgid "Itemized list"
+msgstr "Lista de elementos"
+
+#: ../gtksourceview/language-specs/haddock.lang.h:15
+msgid "Monospace"
+msgstr "Monoespacio"
+
+#: ../gtksourceview/language-specs/haddock.lang.h:16
+msgid "URL"
+msgstr "URL"
+
+#: ../gtksourceview/language-specs/haskell-literate.lang.h:1
+msgid "Literate Haskell"
+msgstr "Haskell literario"
+
 #: ../gtksourceview/language-specs/haskell.lang.h:7
 msgid "Haskell"
 msgstr "Haskell"
@@ -1113,7 +1179,7 @@ msgstr "Símbolo"
 #: ../gtksourceview/language-specs/haskell.lang.h:15
 #: ../gtksourceview/language-specs/perl.lang.h:20
 #: ../gtksourceview/language-specs/pkgconfig.lang.h:3
-#: ../gtksourceview/language-specs/ruby.lang.h:14
+#: ../gtksourceview/language-specs/ruby.lang.h:16
 msgid "Variable"
 msgstr "Variable"
 
@@ -1412,12 +1478,12 @@ msgid "Escaped character"
 msgstr "Carácter de escape"
 
 #: ../gtksourceview/language-specs/python.lang.h:6
-#: ../gtksourceview/language-specs/ruby.lang.h:7
+#: ../gtksourceview/language-specs/ruby.lang.h:8
 msgid "Floating point"
 msgstr "Coma flotante"
 
 #: ../gtksourceview/language-specs/python.lang.h:9
-#: ../gtksourceview/language-specs/ruby.lang.h:9
+#: ../gtksourceview/language-specs/ruby.lang.h:10
 msgid "Module handler"
 msgstr "Manejador de módulo"
 
@@ -1474,14 +1540,22 @@ msgid "Attribute Definition"
 msgstr "Definición del atributo"
 
 #: ../gtksourceview/language-specs/ruby.lang.h:3
+msgid "Boolean Constant"
+msgstr "Constante booleana"
+
+#: ../gtksourceview/language-specs/ruby.lang.h:4
 msgid "Builtin"
 msgstr "Integrado"
 
-#: ../gtksourceview/language-specs/ruby.lang.h:10
+#: ../gtksourceview/language-specs/ruby.lang.h:11
+msgid "Nil Constant"
+msgstr "Constante nula"
+
+#: ../gtksourceview/language-specs/ruby.lang.h:12
 msgid "Numeric literal"
 msgstr "Numérico literal"
 
-#: ../gtksourceview/language-specs/ruby.lang.h:11
+#: ../gtksourceview/language-specs/ruby.lang.h:13
 msgid "Ruby"
 msgstr "Ruby"
 
