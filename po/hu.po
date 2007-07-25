@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview.HEAD.hu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-07-21 15:59+0100\n"
-"PO-Revision-Date: 2007-07-21 16:32+0100\n"
+"POT-Creation-Date: 2007-07-25 19:07+0200\n"
+"PO-Revision-Date: 2007-07-25 20:01+0200\n"
 "Last-Translator: Gabor Kelemen <kelemeng@gnome.hu>\n"
 "Language-Team: Hungarian <gnome@gnome.hu>\n"
 "MIME-Version: 1.0\n"
@@ -72,12 +72,12 @@ msgstr "Az Újra művelet lehetséges-e"
 msgid "Style scheme"
 msgstr "Stílusséma"
 
-#: ../gtksourceview/gtksourcecontextengine.c:2251
+#: ../gtksourceview/gtksourcecontextengine.c:2248
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "Az elsődleges nyelvmeghatározás hiányzik (azonosító: \"%s\".)"
 
-#: ../gtksourceview/gtksourcecontextengine.c:2555
+#: ../gtksourceview/gtksourcecontextengine.c:2552
 msgid "using \\C is not supported in language definitions"
 msgstr "A \\C használata nem támogatott a nyelvmeghatározásokban"
 
@@ -85,7 +85,7 @@ msgstr "A \\C használata nem támogatott a nyelvmeghatározásokban"
 #. * named sub-patterns with the same name or if resulting regex is
 #. * too long. In this case fixing lang file helps (e.g. renaming
 #. * subpatterns, making huge keywords use bigger prefixes, etc.)
-#: ../gtksourceview/gtksourcecontextengine.c:3155
+#: ../gtksourceview/gtksourcecontextengine.c:3152
 #, c-format
 msgid ""
 "Cannot create a regex for all the transitions, the syntax highlighting "
@@ -96,19 +96,19 @@ msgstr ""
 "szintaxiskiemelési folyamat lassabb lesz a megszokottnál.\n"
 "A hiba: %s"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5641
+#: ../gtksourceview/gtksourcecontextengine.c:5638
 #, c-format
 msgid "context '%s' cannot contain a \\%%{...@start} command"
 msgstr "A(z) \"%s\" kontextus nem  tartalmazhat \\%%{...@start} parancsot"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5793
-#: ../gtksourceview/gtksourcecontextengine.c:5880
+#: ../gtksourceview/gtksourcecontextengine.c:5790
+#: ../gtksourceview/gtksourcecontextengine.c:5877
 #, c-format
 msgid "duplicated context id '%s'"
 msgstr "többszörös kontextusazonosító: \"%s\""
 
-#: ../gtksourceview/gtksourcecontextengine.c:5993
-#: ../gtksourceview/gtksourcecontextengine.c:6053
+#: ../gtksourceview/gtksourcecontextengine.c:5990
+#: ../gtksourceview/gtksourcecontextengine.c:6050
 #, c-format
 msgid ""
 "style override used with wildcard context reference in language '%s' in ref "
@@ -117,13 +117,13 @@ msgstr ""
 "a helyettesítő karakteres kontextushivatkozáshoz stílusfelülbírálás került "
 "felhasználásra a(z) \"%s\" nyelv \"%s\" hivatkozásában."
 
-#: ../gtksourceview/gtksourcecontextengine.c:6067
+#: ../gtksourceview/gtksourcecontextengine.c:6064
 #, c-format
 msgid "invalid reference '%s'"
 msgstr "érvénytelen hivatkozás: %s"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6086
-#: ../gtksourceview/gtksourcecontextengine.c:6096
+#: ../gtksourceview/gtksourcecontextengine.c:6083
+#: ../gtksourceview/gtksourcecontextengine.c:6093
 #, c-format
 msgid "unknown context '%s'"
 msgstr "ismeretlen kontextus: \"%s\""
@@ -138,12 +138,12 @@ msgid ""
 "located"
 msgstr "A nyelvspecifikációs fájlokat (.lang) tartalmazó könyvtárak listája"
 
-#: ../gtksourceview/gtksourcelanguage-parser-2.c:876
+#: ../gtksourceview/gtksourcelanguage-parser-2.c:882
 #, c-format
 msgid "Unknown id '%s' in regex '%s'"
 msgstr "Ismeretlen azonosító (%s) a(z) \"%s\" reguláris kifejezésben"
 
-#: ../gtksourceview/gtksourcelanguage-parser-2.c:1104
+#: ../gtksourceview/gtksourcelanguage-parser-2.c:1110
 #, c-format
 msgid "in regex '%s': backreferences are not supported"
 msgstr "\"%s\" regulásris kifejezés: a visszahivatkozások nem támogatottak"
@@ -434,7 +434,7 @@ msgstr "Karakter escape"
 #: ../gtksourceview/language-specs/perl.lang.h:1
 #: ../gtksourceview/language-specs/php.lang.h:1
 #: ../gtksourceview/language-specs/po.lang.h:1
-#: ../gtksourceview/language-specs/ruby.lang.h:4
+#: ../gtksourceview/language-specs/ruby.lang.h:5
 #: ../gtksourceview/language-specs/scheme.lang.h:2
 #: ../gtksourceview/language-specs/sql.lang.h:1
 #: ../gtksourceview/language-specs/texinfo.lang.h:1
@@ -482,7 +482,7 @@ msgstr "Adattípus"
 #: ../gtksourceview/language-specs/octave.lang.h:3
 #: ../gtksourceview/language-specs/pascal.lang.h:3
 #: ../gtksourceview/language-specs/python.lang.h:4
-#: ../gtksourceview/language-specs/ruby.lang.h:6
+#: ../gtksourceview/language-specs/ruby.lang.h:7
 #: ../gtksourceview/language-specs/sql.lang.h:3
 msgid "Decimal"
 msgstr "Decimális"
@@ -512,7 +512,7 @@ msgstr "Decimális"
 #: ../gtksourceview/language-specs/po.lang.h:2
 #: ../gtksourceview/language-specs/python.lang.h:8
 #: ../gtksourceview/language-specs/R.lang.h:6
-#: ../gtksourceview/language-specs/ruby.lang.h:8
+#: ../gtksourceview/language-specs/ruby.lang.h:9
 #: ../gtksourceview/language-specs/scheme.lang.h:4
 #: ../gtksourceview/language-specs/sql.lang.h:6
 #: ../gtksourceview/language-specs/tcl.lang.h:2
@@ -543,6 +543,7 @@ msgstr "Valós szám"
 #: ../gtksourceview/language-specs/csharp.lang.h:7
 #: ../gtksourceview/language-specs/d.lang.h:13
 #: ../gtksourceview/language-specs/fortran.lang.h:8
+#: ../gtksourceview/language-specs/haskell-literate.lang.h:2
 #: ../gtksourceview/language-specs/haskell.lang.h:12
 #: ../gtksourceview/language-specs/idl.lang.h:6
 #: ../gtksourceview/language-specs/java.lang.h:10
@@ -560,7 +561,7 @@ msgid "Sources"
 msgstr "Forráskód"
 
 #: ../gtksourceview/language-specs/ada.lang.h:13
-#: ../gtksourceview/language-specs/c.lang.h:17
+#: ../gtksourceview/language-specs/c.lang.h:18
 #: ../gtksourceview/language-specs/csharp.lang.h:8
 #: ../gtksourceview/language-specs/css.lang.h:13
 #: ../gtksourceview/language-specs/def.lang.h:22
@@ -582,7 +583,7 @@ msgstr "Forráskód"
 #: ../gtksourceview/language-specs/php.lang.h:7
 #: ../gtksourceview/language-specs/po.lang.h:5
 #: ../gtksourceview/language-specs/python.lang.h:14
-#: ../gtksourceview/language-specs/ruby.lang.h:13
+#: ../gtksourceview/language-specs/ruby.lang.h:15
 #: ../gtksourceview/language-specs/scheme.lang.h:7
 #: ../gtksourceview/language-specs/sql.lang.h:10
 #: ../gtksourceview/language-specs/texinfo.lang.h:9
@@ -603,7 +604,7 @@ msgstr "Minta"
 #: ../gtksourceview/language-specs/php.lang.h:6
 #: ../gtksourceview/language-specs/python.lang.h:12
 #: ../gtksourceview/language-specs/R.lang.h:10
-#: ../gtksourceview/language-specs/ruby.lang.h:12
+#: ../gtksourceview/language-specs/ruby.lang.h:14
 #: ../gtksourceview/language-specs/sh.lang.h:1
 #: ../gtksourceview/language-specs/tcl.lang.h:3
 msgid "Scripts"
@@ -696,6 +697,7 @@ msgstr "Hiba"
 
 #: ../gtksourceview/language-specs/c.lang.h:8
 #: ../gtksourceview/language-specs/def.lang.h:11
+#: ../gtksourceview/language-specs/haddock.lang.h:6
 msgid "Escape"
 msgstr "Escape"
 
@@ -723,7 +725,11 @@ msgstr "Include-olt fájl"
 msgid "Octal"
 msgstr "Oktális"
 
-#: ../gtksourceview/language-specs/c.lang.h:18
+#: ../gtksourceview/language-specs/c.lang.h:17
+msgid "Storage Class"
+msgstr "Tárolóosztály"
+
+#: ../gtksourceview/language-specs/c.lang.h:19
 msgid "printf Conversion"
 msgstr "printf átalakítás"
 
@@ -999,6 +1005,7 @@ msgstr "Hexadecimális"
 #: ../gtksourceview/language-specs/docbook.lang.h:10
 #: ../gtksourceview/language-specs/dtd.lang.h:2
 #: ../gtksourceview/language-specs/gtk-doc.lang.h:5
+#: ../gtksourceview/language-specs/haddock.lang.h:14
 #: ../gtksourceview/language-specs/html.lang.h:7
 #: ../gtksourceview/language-specs/latex.lang.h:6
 #: ../gtksourceview/language-specs/texinfo.lang.h:7
@@ -1044,7 +1051,7 @@ msgid "Scientific"
 msgstr "Tudományos"
 
 #: ../gtksourceview/language-specs/gtk-doc.lang.h:1
-#: ../gtksourceview/language-specs/ruby.lang.h:5
+#: ../gtksourceview/language-specs/ruby.lang.h:6
 msgid "Constant"
 msgstr "Állandó"
 
@@ -1097,6 +1104,66 @@ msgstr "Include direktíva"
 msgid "Widget State"
 msgstr "Felületi elem állapota"
 
+#: ../gtksourceview/language-specs/haddock.lang.h:1
+msgid "Anchor"
+msgstr "Horgony"
+
+#: ../gtksourceview/language-specs/haddock.lang.h:2
+msgid "Code Block"
+msgstr "Kódblokk"
+
+#: ../gtksourceview/language-specs/haddock.lang.h:3
+msgid "Definition list"
+msgstr "Definíciólista"
+
+#: ../gtksourceview/language-specs/haddock.lang.h:4
+msgid "Emphasis"
+msgstr "Kiemelés"
+
+#: ../gtksourceview/language-specs/haddock.lang.h:5
+msgid "Enumerated list"
+msgstr "Felsorolásos lista"
+
+#: ../gtksourceview/language-specs/haddock.lang.h:7
+msgid "Haddock"
+msgstr "Haddock"
+
+#: ../gtksourceview/language-specs/haddock.lang.h:8
+msgid "Haddock Directive"
+msgstr "Haddock direktíva"
+
+#: ../gtksourceview/language-specs/haddock.lang.h:9
+msgid "Header Property"
+msgstr "Fejléctulajdonság"
+
+#: ../gtksourceview/language-specs/haddock.lang.h:10
+msgid "Hyperlinked Identifier"
+msgstr "Hiperhivatkozott azonosító"
+
+#: ../gtksourceview/language-specs/haddock.lang.h:11
+msgid "Hyperlinked Module Name"
+msgstr "Hiperhivatkozott modulnév"
+
+#: ../gtksourceview/language-specs/haddock.lang.h:12
+msgid "Inline Haddock Section"
+msgstr "Beágyazott haddock szakasz"
+
+#: ../gtksourceview/language-specs/haddock.lang.h:13
+msgid "Itemized list"
+msgstr "Felsorolásos lista"
+
+#: ../gtksourceview/language-specs/haddock.lang.h:15
+msgid "Monospace"
+msgstr "Rögzített szélességű"
+
+#: ../gtksourceview/language-specs/haddock.lang.h:16
+msgid "URL"
+msgstr "URL"
+
+#: ../gtksourceview/language-specs/haskell-literate.lang.h:1
+msgid "Literate Haskell"
+msgstr "Irodalmi Haskell"
+
 #: ../gtksourceview/language-specs/haskell.lang.h:7
 msgid "Haskell"
 msgstr "Haskell"
@@ -1108,7 +1175,7 @@ msgstr "Szimbólum"
 #: ../gtksourceview/language-specs/haskell.lang.h:15
 #: ../gtksourceview/language-specs/perl.lang.h:20
 #: ../gtksourceview/language-specs/pkgconfig.lang.h:3
-#: ../gtksourceview/language-specs/ruby.lang.h:14
+#: ../gtksourceview/language-specs/ruby.lang.h:16
 msgid "Variable"
 msgstr "Változó"
 
@@ -1407,12 +1474,12 @@ msgid "Escaped character"
 msgstr "Escape-elt karakter"
 
 #: ../gtksourceview/language-specs/python.lang.h:6
-#: ../gtksourceview/language-specs/ruby.lang.h:7
+#: ../gtksourceview/language-specs/ruby.lang.h:8
 msgid "Floating point"
 msgstr "Lebegőpontos"
 
 #: ../gtksourceview/language-specs/python.lang.h:9
-#: ../gtksourceview/language-specs/ruby.lang.h:9
+#: ../gtksourceview/language-specs/ruby.lang.h:10
 msgid "Module handler"
 msgstr "Modulkezelő"
 
@@ -1469,14 +1536,22 @@ msgid "Attribute Definition"
 msgstr "Attribútumdefiníció"
 
 #: ../gtksourceview/language-specs/ruby.lang.h:3
+msgid "Boolean Constant"
+msgstr "Logikai állandó"
+
+#: ../gtksourceview/language-specs/ruby.lang.h:4
 msgid "Builtin"
 msgstr "Beépített"
 
-#: ../gtksourceview/language-specs/ruby.lang.h:10
+#: ../gtksourceview/language-specs/ruby.lang.h:11
+msgid "Nil Constant"
+msgstr "Nil állandó"
+
+#: ../gtksourceview/language-specs/ruby.lang.h:12
 msgid "Numeric literal"
 msgstr "Numerikus literál"
 
-#: ../gtksourceview/language-specs/ruby.lang.h:11
+#: ../gtksourceview/language-specs/ruby.lang.h:13
 msgid "Ruby"
 msgstr "Ruby"
 
