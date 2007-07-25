@@ -43,6 +43,7 @@
     <style id="builtin"              _name="Builtin"              map-to="def:data-type"/>
     <style id="constant"             _name="Constant"             map-to="def:data-type"/>
     <style id="variable"             _name="Variable"             map-to="def:function"/>
+    <style id="regex"                _name="Regular Expression"   map-to="def:function"/>
   </styles>
 
   <definitions>
@@ -177,7 +178,7 @@
       <match>(?&lt;!:):[a-zA-Z0-9_]+</match>
     </context>
 
-    <context id="regexp-variables" style-ref="variable">
+    <context id="regexp-variables" style-ref="regex">
       <match>\$[1-9][0-9]*</match>
     </context>
 
@@ -194,9 +195,11 @@
        <keyword>true</keyword>
     </context>
 
+    <define-regex id="underscore_num">\d(_?\d)*</define-regex>
+
     <define-regex id="float" extended="true">
-      ( (\d+)?\.\d+ | \d+\. ) |
-      ( (\d+|(\d+)?\.\d+|\d+\.)[eE][+-]?\d+ )
+      ( (\%{underscore_num})?\.\%{underscore_num} | \%{underscore_num}\. ) |
+      ( (\%{underscore_num}|(\%{underscore_num})?\.\%{underscore_num}|\%{underscore_num}\.)[eE][+-]?\%{underscore_num} )
     </define-regex>
 
     <context id="float" style-ref="floating-point">
@@ -204,15 +207,19 @@
     </context>
 
     <context id="decimal" style-ref="decimal">
-      <match>(?&lt;![\w\.])([1-9][0-9]*|0)[lL]?(?![\w\.])</match>
-    </context>
-
-    <context id="octal" style-ref="base-n-integer">
-      <match>(?&lt;![\w\.])0[0-7]+[lL]?(?![\w\.])</match>
+      <match>(?&lt;![\w\.])([1-9](_?[0-9])*|0)(?![\w\.])</match>
     </context>
 
     <context id="hex" style-ref="base-n-integer">
-      <match>(?&lt;![\w\.])0[xX][0-9A-Fa-f]+[lL]?(?![\w\.])</match>
+      <match>(?&lt;![\w\.])0[xX][0-9A-Fa-f](_?[0-9A-Fa-f])*(?![\w\.])</match>
+    </context>
+
+    <context id="octal" style-ref="base-n-integer">
+      <match>(?&lt;![\w\.])0[0-7](_?[0-7])*(?![\w\.])</match>
+    </context>
+
+    <context id="binary" style-ref="base-n-integer">
+      <match>(?&lt;![\w\.])0[bB][01](_?[01])*(?![\w\.])</match>
     </context>
 
     <context id="numeric-literal" style-ref="numeric-literal">
@@ -335,8 +342,9 @@
         <context ref="boolean"/>
         <context ref="float"/>
         <context ref="decimal"/>
-        <context ref="octal"/>
         <context ref="hex"/>
+        <context ref="octal"/>
+        <context ref="binary"/>
         <context ref="numeric-literal"/>
         
       </include>
