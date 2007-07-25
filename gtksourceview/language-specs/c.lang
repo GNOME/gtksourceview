@@ -41,6 +41,7 @@
         <style id="char"              _name="Character"           map-to="def:character"/>
         <style id="keyword"           _name="Keyword"             map-to="def:keyword"/>
         <style id="data-type"         _name="Data Type"           map-to="def:data-type"/>
+        <style id="storage-class"     _name="Storage Class"       map-to="def:data-type"/>
         <style id="printf"            _name="printf Conversion"   map-to="def:character"/>
         <style id="escaped-character" _name="Escaped Character"   map-to="def:escape"/>
         <style id="floating-point"    _name="Float"               map-to="def:floating-point"/>
@@ -221,23 +222,26 @@
                     <keyword>_Bool</keyword>
                     <keyword>_Complex</keyword>
                     <keyword>_Imaginary</keyword>
-                    <keyword>auto</keyword>
                     <keyword>char</keyword>
-                    <keyword>const</keyword>
                     <keyword>double</keyword>
-                    <keyword>extern</keyword>
                     <keyword>float</keyword>
                     <keyword>int</keyword>
-                    <keyword>inline</keyword>
                     <keyword>long</keyword>
-                    <keyword>register</keyword>
-                    <keyword>restrict</keyword>
                     <keyword>short</keyword>
                     <keyword>signed</keyword>
                     <keyword>size_t</keyword>
-                    <keyword>static</keyword>
                     <keyword>unsigned</keyword>
                     <keyword>void</keyword>
+                </context>
+
+                <context id="storage-class" style-ref="storage-class">
+                    <keyword>auto</keyword>
+                    <keyword>const</keyword>
+                    <keyword>extern</keyword>
+                    <keyword>inline</keyword>
+                    <keyword>register</keyword>
+                    <keyword>restrict</keyword>
+                    <keyword>static</keyword>
                     <keyword>volatile</keyword>
                 </context>
 

@@ -1,5 +1,7 @@
 2007-07-25  Paolo Borelli  <pborelli@katamail.com>
 
+	* gtksourceview/language-specs/c.lang: split storage-class
+	* gtksourceview/language-specs/ruby.lang:: highlight bullet
 	* gtksourceview/language-specs/ruby.lang: split booleans and
 	nil from the pseudovariables context and use def:special-value
 	to highlight them.
