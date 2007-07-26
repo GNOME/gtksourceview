@@ -129,7 +129,12 @@ GtkSourceStyleScheme    *gtk_source_buffer_get_style_scheme     (GtkSourceBuffer
 void			 gtk_source_buffer_set_style_scheme     (GtkSourceBuffer        *buffer,
 								 GtkSourceStyleScheme   *scheme);
 
-void			 _gtk_source_buffer_update_highlight    (GtkSourceBuffer        *buffer,
+void			 gtk_source_buffer_ensure_highlight     (GtkSourceBuffer        *buffer,
+								 const GtkTextIter      *start,
+								 const GtkTextIter      *end);
+
+/* private */
+void			 _gtk_source_buffer_update_highlight	(GtkSourceBuffer        *buffer,
 								 const GtkTextIter      *start,
 								 const GtkTextIter      *end,
 								 gboolean                synchronous);

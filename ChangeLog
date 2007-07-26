@@ -1,3 +1,9 @@
+2007-07-26  Paolo Borelli  <pborelli@katamail.com>
+
+	* gtksourceview/gtksourcebuffer.[ch]: add a function to 
+	force the highlighting of a not yet exposed region to use
+	when printing.
+
 2007-07-25  Paolo Borelli  <pborelli@katamail.com>
 
 	* gtksourceview/language-specs/ruby.lang:: fix some number

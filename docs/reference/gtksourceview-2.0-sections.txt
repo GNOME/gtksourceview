@@ -32,6 +32,7 @@ gtk_source_buffer_get_markers_in_region
 gtk_source_buffer_get_next_marker
 gtk_source_buffer_get_prev_marker
 gtk_source_buffer_get_iter_at_marker
+gtk_source_buffer_ensure_highlight
 <SUBSECTION Standard>
 GTK_IS_SOURCE_BUFFER
 GTK_IS_SOURCE_BUFFER_CLASS

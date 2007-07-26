@@ -1222,6 +1222,33 @@ _gtk_source_buffer_update_highlight (GtkSourceBuffer   *buffer,
 }
 
 /**
+ * gtk_source_buffer_ensure_highlight:
+ * @buffer: a #GtkSourceBuffer.
+ * @start: start of the area to highlight.
+ * @end: end of the area to highlight.
+ *
+ * Forces buffer to analyze and highlight the given area synchronously.
+ *
+ * <note>
+ *   <para>
+ *     This is a potentially slow operation and should be used only
+ *     when you need to make sure that some text not currently
+ *     visible is highlighted, for instance before printing.
+ *   </para>
+ * </note>
+ **/
+void
+gtk_source_buffer_ensure_highlight (GtkSourceBuffer   *buffer,
+				    const GtkTextIter *start,
+				    const GtkTextIter *end)
+{
+	_gtk_source_buffer_update_highlight (buffer,
+					     start,
+					     end,
+					     TRUE);
+}
+
+/**
  * gtk_source_buffer_set_style_scheme:
  * @buffer: a #GtkSourceBuffer.
  * @scheme: style scheme.
