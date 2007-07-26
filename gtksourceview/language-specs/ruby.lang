@@ -42,6 +42,8 @@
     <style id="string"               _name="String"               map-to="def:string"/>
     <style id="builtin"              _name="Builtin"              map-to="def:data-type"/>
     <style id="constant"             _name="Constant"             map-to="def:data-type"/>
+    <style id="symbol"               _name="Symbol"               map-to="def:string"/>
+    <style id="reserved-variable"    _name="Reserved Variable"    map-to="def:function"/>
     <style id="variable"             _name="Variable"             map-to="def:function"/>
     <style id="regex"                _name="Regular Expression"   map-to="def:function"/>
   </styles>
@@ -151,7 +153,7 @@
       <keyword>TrueClass</keyword>
     </context>
 
-    <context id="pseudo-variables" style-ref="variable">
+    <context id="reserved-variables" style-ref="reserved-variable">
       <keyword>self</keyword>
       <keyword>super</keyword>
       <keyword>__FILE__</keyword>
@@ -174,7 +176,7 @@
       <match>\$(-[a-zA-Z]|\pP)</match>
     </context>
 
-    <context id="symbols" style-ref="string">
+    <context id="symbols" style-ref="symbol">
       <match>(?&lt;!:):[a-zA-Z0-9_]+</match>
     </context>
 
@@ -330,7 +332,7 @@
         <context ref="module-handlers"/>
         <context ref="keywords"/>
         <context ref="builtins"/>
-        <context ref="pseudo-variables"/>
+        <context ref="reserved-variables"/>
         <context ref="class-variables"/>
         <context ref="instance-variables"/>
         <context ref="global-variables"/>
