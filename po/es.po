@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview.HEAD.es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-07-26 13:07+0100\n"
-"PO-Revision-Date: 2007-07-26 18:10+0200\n"
+"POT-Creation-Date: 2007-07-26 17:14+0100\n"
+"PO-Revision-Date: 2007-07-26 18:17+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -406,6 +406,7 @@ msgstr "Número base arbitrario"
 #: ../gtksourceview/language-specs/ada.lang.h:4
 #: ../gtksourceview/language-specs/boo.lang.h:1
 #: ../gtksourceview/language-specs/desktop.lang.h:2
+#: ../gtksourceview/language-specs/d.lang.h:2
 #: ../gtksourceview/language-specs/java.lang.h:1
 #: ../gtksourceview/language-specs/libtool.lang.h:1
 #: ../gtksourceview/language-specs/scheme.lang.h:1
@@ -422,6 +423,7 @@ msgstr "Carácter de escape"
 #: ../gtksourceview/language-specs/csharp.lang.h:2
 #: ../gtksourceview/language-specs/css.lang.h:3
 #: ../gtksourceview/language-specs/def.lang.h:3
+#: ../gtksourceview/language-specs/d.lang.h:3
 #: ../gtksourceview/language-specs/fortran.lang.h:2
 #: ../gtksourceview/language-specs/gtkrc.lang.h:2
 #: ../gtksourceview/language-specs/haskell.lang.h:2
@@ -499,6 +501,7 @@ msgstr "Decimal"
 #: ../gtksourceview/language-specs/csharp.lang.h:5
 #: ../gtksourceview/language-specs/css.lang.h:9
 #: ../gtksourceview/language-specs/def.lang.h:14
+#: ../gtksourceview/language-specs/d.lang.h:9
 #: ../gtksourceview/language-specs/fortran.lang.h:7
 #: ../gtksourceview/language-specs/gtkrc.lang.h:7
 #: ../gtksourceview/language-specs/haskell.lang.h:9
@@ -546,7 +549,7 @@ msgstr "Número real"
 #: ../gtksourceview/language-specs/chdr.lang.h:2
 #: ../gtksourceview/language-specs/cpp.lang.h:5
 #: ../gtksourceview/language-specs/csharp.lang.h:7
-#: ../gtksourceview/language-specs/d.lang.h:13
+#: ../gtksourceview/language-specs/d.lang.h:12
 #: ../gtksourceview/language-specs/fortran.lang.h:8
 #: ../gtksourceview/language-specs/haskell-literate.lang.h:2
 #: ../gtksourceview/language-specs/haskell.lang.h:12
@@ -570,6 +573,7 @@ msgstr "Fuentes"
 #: ../gtksourceview/language-specs/csharp.lang.h:8
 #: ../gtksourceview/language-specs/css.lang.h:13
 #: ../gtksourceview/language-specs/def.lang.h:22
+#: ../gtksourceview/language-specs/d.lang.h:14
 #: ../gtksourceview/language-specs/docbook.lang.h:11
 #: ../gtksourceview/language-specs/gtkrc.lang.h:9
 #: ../gtksourceview/language-specs/haskell.lang.h:13
@@ -616,6 +620,7 @@ msgid "Scripts"
 msgstr "Scripts"
 
 #: ../gtksourceview/language-specs/awk.lang.h:4
+#: ../gtksourceview/language-specs/d.lang.h:15
 #: ../gtksourceview/language-specs/gtk-doc.lang.h:11
 #: ../gtksourceview/language-specs/verilog.lang.h:8
 #: ../gtksourceview/language-specs/vhdl.lang.h:8
@@ -627,7 +632,6 @@ msgid "awk"
 msgstr "awk"
 
 #: ../gtksourceview/language-specs/boo.lang.h:2
-#: ../gtksourceview/language-specs/d.lang.h:9
 #: ../gtksourceview/language-specs/vbnet.lang.h:1
 msgid "Keywords"
 msgstr "Palabras reservadas"
@@ -690,6 +694,7 @@ msgstr "Definiciones comunes"
 #: ../gtksourceview/language-specs/csharp.lang.h:4
 #: ../gtksourceview/language-specs/css.lang.h:7
 #: ../gtksourceview/language-specs/def.lang.h:10
+#: ../gtksourceview/language-specs/d.lang.h:6
 #: ../gtksourceview/language-specs/html.lang.h:5
 #: ../gtksourceview/language-specs/java.lang.h:5
 #: ../gtksourceview/language-specs/javascript.lang.h:5
@@ -726,6 +731,7 @@ msgid "Included File"
 msgstr "Archivo incluido"
 
 #: ../gtksourceview/language-specs/c.lang.h:14
+#: ../gtksourceview/language-specs/d.lang.h:11
 #: ../gtksourceview/language-specs/haskell.lang.h:10
 msgid "Octal"
 msgstr "Octal"
@@ -813,6 +819,7 @@ msgid "Documentation Comment Element"
 msgstr "Elemento de tipo comentario en la documentación"
 
 #: ../gtksourceview/language-specs/def.lang.h:12
+#: ../gtksourceview/language-specs/d.lang.h:7
 #: ../gtksourceview/language-specs/fortran.lang.h:5
 #: ../gtksourceview/language-specs/ini.lang.h:6
 #: ../gtksourceview/language-specs/ocaml.lang.h:8
@@ -906,76 +913,35 @@ msgid "Special case"
 msgstr "Caso especial"
 
 #: ../gtksourceview/language-specs/d.lang.h:1
-#: ../gtksourceview/language-specs/nemerle.lang.h:1
-msgid "Binary Number"
-msgstr "Número binario"
-
-#: ../gtksourceview/language-specs/d.lang.h:2
-#: ../gtksourceview/language-specs/docbook.lang.h:2
-#: ../gtksourceview/language-specs/nemerle.lang.h:2
-msgid "Block Comment"
-msgstr "Comentario de bloque"
-
-#: ../gtksourceview/language-specs/d.lang.h:3
-msgid "Char Literal"
-msgstr "Carácter literal"
+msgid "Binary"
+msgstr "Binario"
 
 #: ../gtksourceview/language-specs/d.lang.h:4
 msgid "D"
 msgstr "D"
 
-#: ../gtksourceview/language-specs/d.lang.h:6
-#: ../gtksourceview/language-specs/nemerle.lang.h:7
-#: ../gtksourceview/language-specs/R.lang.h:4
-msgid "Floating Point Number"
-msgstr "Número en coma flotante"
-
-#: ../gtksourceview/language-specs/d.lang.h:7
-msgid "Grave Literal"
-msgstr "Grave literal"
-
 #: ../gtksourceview/language-specs/d.lang.h:8
-#: ../gtksourceview/language-specs/nemerle.lang.h:8
-msgid "Hex Number"
-msgstr "Número hex"
+#: ../gtksourceview/language-specs/docbook.lang.h:9
+msgid "Hexadecimal"
+msgstr "Hexadecimal"
 
-#. <string _name = "String 2" style = "String" end-at-line-end = "TRUE">
-#. <start-regex>&apos;</start-regex>
-#. <end-regex>&apos;</end-regex>
-#. </string>
 #: ../gtksourceview/language-specs/d.lang.h:10
-#: ../gtksourceview/language-specs/nemerle.lang.h:10
-#: ../gtksourceview/language-specs/R.lang.h:7
-#: ../gtksourceview/language-specs/spec.lang.h:10
-#: ../gtksourceview/language-specs/vbnet.lang.h:6
-#: ../gtksourceview/language-specs/vhdl.lang.h:3
-msgid "Line Comment"
-msgstr "Comentario de línea"
+#: ../gtksourceview/language-specs/java.lang.h:9
+msgid "Null Value"
+msgstr "Valor nulo"
 
-#: ../gtksourceview/language-specs/d.lang.h:11
-msgid "Nested Comment"
-msgstr "Comentario anidado"
-
-#: ../gtksourceview/language-specs/d.lang.h:12
-#: ../gtksourceview/language-specs/nemerle.lang.h:12
-msgid "Octal Number"
-msgstr "Número octal"
-
-#: ../gtksourceview/language-specs/d.lang.h:14
-msgid "Special Tokens"
-msgstr "Tokens especiales"
-
-#: ../gtksourceview/language-specs/d.lang.h:15
-msgid "String Literal"
-msgstr "Cadena literal"
-
-#: ../gtksourceview/language-specs/d.lang.h:16
-msgid "Types"
-msgstr "Tipos"
+#: ../gtksourceview/language-specs/d.lang.h:13
+msgid "Special Token"
+msgstr "Token especiales"
 
 #: ../gtksourceview/language-specs/docbook.lang.h:1
 msgid "Attribute"
 msgstr "Atributo"
+
+#: ../gtksourceview/language-specs/docbook.lang.h:2
+#: ../gtksourceview/language-specs/nemerle.lang.h:2
+msgid "Block Comment"
+msgstr "Comentario de bloque"
 
 #: ../gtksourceview/language-specs/docbook.lang.h:3
 msgid "Closing Bracket"
@@ -1001,10 +967,6 @@ msgstr "Elementos de IU"
 #: ../gtksourceview/language-specs/docbook.lang.h:8
 msgid "Header Elements"
 msgstr "Elementos de encabezado"
-
-#: ../gtksourceview/language-specs/docbook.lang.h:9
-msgid "Hexadecimal"
-msgstr "Hexadecimal"
 
 #: ../gtksourceview/language-specs/docbook.lang.h:10
 #: ../gtksourceview/language-specs/dtd.lang.h:2
@@ -1222,10 +1184,6 @@ msgstr "Futura palabra clave reservada"
 msgid "Java"
 msgstr "Java"
 
-#: ../gtksourceview/language-specs/java.lang.h:9
-msgid "Null Value"
-msgstr "Valor nulo"
-
 #: ../gtksourceview/language-specs/javascript.lang.h:2
 msgid "Constructors"
 msgstr "Constructores"
@@ -1299,6 +1257,10 @@ msgstr "Makefile"
 msgid "MSIL"
 msgstr "MSIL"
 
+#: ../gtksourceview/language-specs/nemerle.lang.h:1
+msgid "Binary Number"
+msgstr "Número binario"
+
 #: ../gtksourceview/language-specs/nemerle.lang.h:3
 #: ../gtksourceview/language-specs/vhdl.lang.h:1
 msgid "Character Constant"
@@ -1312,13 +1274,38 @@ msgstr "Palabras reservadas principales"
 msgid "Core Types"
 msgstr "Tipos incluidos"
 
+#: ../gtksourceview/language-specs/nemerle.lang.h:7
+#: ../gtksourceview/language-specs/R.lang.h:4
+msgid "Floating Point Number"
+msgstr "Número en coma flotante"
+
+#: ../gtksourceview/language-specs/nemerle.lang.h:8
+msgid "Hex Number"
+msgstr "Número hex"
+
 #: ../gtksourceview/language-specs/nemerle.lang.h:9
 msgid "Keywords Defined by Macros"
 msgstr "Palabras reservadas definidas por macros"
 
+#. <string _name = "String 2" style = "String" end-at-line-end = "TRUE">
+#. <start-regex>&apos;</start-regex>
+#. <end-regex>&apos;</end-regex>
+#. </string>
+#: ../gtksourceview/language-specs/nemerle.lang.h:10
+#: ../gtksourceview/language-specs/R.lang.h:7
+#: ../gtksourceview/language-specs/spec.lang.h:10
+#: ../gtksourceview/language-specs/vbnet.lang.h:6
+#: ../gtksourceview/language-specs/vhdl.lang.h:3
+msgid "Line Comment"
+msgstr "Comentario de línea"
+
 #: ../gtksourceview/language-specs/nemerle.lang.h:11
 msgid "Nemerle"
 msgstr "Nemerle"
+
+#: ../gtksourceview/language-specs/nemerle.lang.h:12
+msgid "Octal Number"
+msgstr "Número octal"
 
 #: ../gtksourceview/language-specs/nemerle.lang.h:13
 #: ../gtksourceview/language-specs/vbnet.lang.h:9
