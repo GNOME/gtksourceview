@@ -44,6 +44,7 @@
     <style id="constant"             _name="Constant"             map-to="def:data-type"/>
     <style id="symbol"               _name="Symbol"               map-to="def:string"/>
     <style id="reserved-variable"    _name="Reserved Variable"    map-to="def:function"/>
+    <style id="predefined-variable"  _name="Predefined Variable"  map-to="def:function"/>
     <style id="variable"             _name="Variable"             map-to="def:function"/>
     <style id="regex"                _name="Regular Expression"   map-to="def:function"/>
   </styles>
@@ -160,20 +161,26 @@
       <keyword>__LINE__</keyword>
     </context>
 
-    <context id="class-variables" style-ref="variable">
-      <match>@@[a-zA-Z_][a-zA-Z0-9_]*</match>
-    </context>
-
-    <context id="instance-variables" style-ref="variable">
-      <match>@[a-zA-Z_][a-zA-Z0-9_]*</match>
+    <context id="predefined-variables" style-ref="predefined-variable">
+      <match extended="true">
+        \$([!$&amp;"'*+,./0:;&lt;=&gt;?@\`~1-9]|
+           -[0FIKadilpvw]|
+           deferr|defout|stderr|stdin|stdout|
+           DEBUG|FILENAME|KCODE|LOADED_FEATURES|LOAD_PATH|
+           PROGRAM_NAME|SAFE|VERBOSE)
+      </match>
     </context>
 
     <context id="global-variables" style-ref="variable">
       <match>\$[a-zA-Z_][a-zA-Z0-9_]*</match>
     </context>
 
-    <context id="predefined-variables" style-ref="variable">
-      <match>\$(-[a-zA-Z]|\pP)</match>
+    <context id="class-variables" style-ref="variable">
+      <match>@@[a-zA-Z_][a-zA-Z0-9_]*</match>
+    </context>
+
+    <context id="instance-variables" style-ref="variable">
+      <match>@[a-zA-Z_][a-zA-Z0-9_]*</match>
     </context>
 
     <context id="symbols" style-ref="symbol">
@@ -333,10 +340,10 @@
         <context ref="keywords"/>
         <context ref="builtins"/>
         <context ref="reserved-variables"/>
+        <context ref="predefined-variables"/>
+        <context ref="global-variables"/>
         <context ref="class-variables"/>
         <context ref="instance-variables"/>
-        <context ref="global-variables"/>
-        <context ref="predefined-variables"/>
         <context ref="symbols"/>
         <context ref="regexp-variables"/>
         <context ref="constants"/>
