@@ -36,7 +36,7 @@
         <style id="string"            _name="String"              map-to="def:string"/>
         <style id="preprocessor"      _name="Preprocessor"        map-to="def:preprocessor"/>
         <style id="common-defines"    _name="Common Defines"      map-to="def:special-constant"/>
-        <style id="included-file"     _name="Included File"       map-to="c:preprocessor"/>
+        <style id="included-file"     _name="Included File"       map-to="def:string"/>
         <style id="char"              _name="Character"           map-to="def:character"/>
         <style id="keyword"           _name="Keyword"             map-to="def:keyword"/>
         <style id="type"              _name="Data Type"           map-to="def:type"/>
@@ -125,7 +125,7 @@
                             (".*?"|&lt;.*&gt;)
                     </match>
                     <include>
-                        <context id="included-file" sub-pattern="1" style-ref="included-file"/>
+                        <context id="included-file" sub-pattern="2" style-ref="included-file"/>
                     </include>
                 </context>
 

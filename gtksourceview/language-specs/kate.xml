@@ -75,6 +75,7 @@
 
   <!-- Language specific styles -->
   <style name="c:preprocessor"              foreground="dark-green"/>
+  <style name="c:included-file"             use-style="c:preprocessor"/>
   <style name="c:common-defines"            foreground="#0095FF" bold="true"/>
 
   <style name="diff:diff-file"              use-style="def:statement"/>
