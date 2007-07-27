@@ -8,7 +8,7 @@ default_styles = {
     'String' : 'def:string',
     'Preprocessor' : 'def:preprocessor',
     'Keyword' : 'def:keyword',
-    'Data Type' : 'def:data-type',
+    'Data Type' : 'def:type',
     'Decimal' : 'def:decimal',
     'Specials' : 'def:specials',
     'Function' : 'def:function',

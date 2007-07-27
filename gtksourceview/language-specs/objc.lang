@@ -31,7 +31,7 @@
 
   <styles>
     <style id="keyword" _name="Keyword" map-to="c:keyword"/>
-    <style id="data-type" _name="Data Type" map-to="c:data-type"/>
+    <style id="type" _name="Data Type" map-to="c:type"/>
     <style id="common-defines" _name="Common Defines" map-to="c:common-defines"/>
     <style id="string" _name="String" map-to="c:string"/>
   </styles>
@@ -60,7 +60,7 @@
           <keyword>finally</keyword>
         </context>
 
-        <context id="types" style-ref="data-type">
+        <context id="types" style-ref="type">
           <keyword>BOOL</keyword>
         </context>
 
@@ -83,7 +83,7 @@
           <keyword>Nil</keyword>
         </context>
 
-        <context id="objc-types" style-ref="data-type">
+        <context id="objc-types" style-ref="type">
           <keyword>apply_t</keyword>
           <keyword>Class</keyword>
           <keyword>id</keyword>

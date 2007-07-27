@@ -33,7 +33,7 @@
     <style id="variable"     _name="Variable"                         />
     <style id="symbol"       _name="Symbol"                           />
     <style id="keyword"      _name="Keyword"      map-to="def:keyword"/>
-    <style id="data-type"    _name="Data Type"    map-to="def:data-type"/>
+    <style id="type"         _name="Data Type"    map-to="def:type"/>
     <style id="string"       _name="String"       map-to="def:string"/>
     <style id="character"    _name="Character"    map-to="def:character"/>
     <style id="char-escape"  _name="Escaped Character" map-to="def:escape"/>
@@ -76,7 +76,7 @@
       <match>\b[a-z_][0-9a-zA-Z_'#]*</match>
     </context>
 
-    <context id="type-or-constructor" style-ref="data-type">
+    <context id="type-or-constructor" style-ref="type">
       <match>\b[A-Z][0-9a-zA-Z._'#]*</match>
     </context>
 

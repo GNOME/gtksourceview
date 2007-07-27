@@ -32,7 +32,7 @@
     <style id="string" _name="String" map-to="def:string"/>
     <style id="keyword" _name="Keyword" map-to="def:keyword"/>
     <style id="decimal" _name="Decimal" map-to="def:decimal"/>
-    <style id="data-type" _name="Data Type" map-to="def:data-type"/>
+    <style id="variable" _name="Data Type" map-to="def:type"/>
     <style id="state" _name="Widget State" map-to="def:special-value"/>
     <style id="include-directive" _name="Include directive" map-to="def:preprocessor"/>
     <style id="boolean-value" _name="Boolean value" map-to="def:special-value"/>
@@ -75,7 +75,7 @@
       <keyword>class</keyword>
       <keyword>widget</keyword>
     </context>
-    <context id="variable" style-ref="data-type">
+    <context id="variable" style-ref="variable">
       <keyword>fg</keyword>
       <keyword>bg</keyword>
       <keyword>bg_pixmap</keyword>

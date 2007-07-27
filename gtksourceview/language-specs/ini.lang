@@ -32,7 +32,8 @@
     <style id="string" _name="String" map-to="def:string"/>
     <style id="keyword" _name="Keyword" map-to="def:keyword"/>
     <style id="decimal" _name="Decimal" map-to="def:decimal"/>
-    <style id="data-type" _name="Data Type" map-to="def:data-type"/>
+    <style id="variable" _name="Variable" map-to="def:type"/>
+    <style id="non-standard-key" _name="Data Type" map-to="def:type"/>
     <style id="boolean-value" _name="Boolean value" map-to="def:special-value"/>
   </styles>
 
@@ -44,13 +45,13 @@
       <start>^\[</start>
       <end>\]$</end>
     </context>
-    <context id="non-standard-key" style-ref="data-type">
+    <context id="non-standard-key" style-ref="non-standard-key">
       <match>^_?X\-[a-zA-Z\-]+</match>
     </context>
     <context id="language" style-ref="decimal">
       <match>\[[a-zA-Z_]+\]</match>
     </context>
-    <context id="variable" style-ref="data-type">
+    <context id="variable" style-ref="variable">
       <match>^[a-zA-Z_][a-zA-Z0-9_.]*</match>
     </context>
     <context id="boolean-value" style-ref="boolean-value">

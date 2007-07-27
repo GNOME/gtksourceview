@@ -29,7 +29,7 @@
 
   <styles>
     <style id="comment" _name="Comment" map-to="def:comment"/>
-    <style id="data-type" _name="Data Type" map-to="def:data-type"/>
+    <style id="type" _name="Data Type" map-to="def:type"/>
     <style id="preprocessor" _name="Preprocessor" map-to="def:preprocessor"/>
     <style id="keyword" _name="Keyword" map-to="def:keyword"/>
     <style id="string" _name="String" map-to="def:string"/>
@@ -107,7 +107,7 @@
       <keyword>union</keyword>
       <keyword>valuetype</keyword>
     </context>
-    <context id="types" style-ref="data-type">
+    <context id="types" style-ref="type">
       <keyword>any</keyword>
       <keyword>boolean</keyword>
       <keyword>char</keyword>

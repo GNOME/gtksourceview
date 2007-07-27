@@ -44,12 +44,12 @@
         <style id="keyword"           _name="Keyword"
                                       map-to="def:keyword"/>
         <style id="object"            _name="Object"/> <!--map-to="def:others"-->
-        <style id="data-type"         _name="Data Type"
-                                      map-to="def:data-type"/>
+        <style id="type"              _name="Data Type"
+                                      map-to="def:type"/>
         <style id="function"          _name="Function"
                                       map-to="def:function"/>
         <style id="properties"        _name="Properties"
-                                      map-to="def:data-type"/>
+                                      map-to="def:type"/>
         <style id="constructors"      _name="Constructors"/> <!--map-to="def:others2"-->
         <style id="future-words"      _name="Future Reserved Keywords"
                                       map-to="def:error"/>
@@ -140,7 +140,7 @@
                     <keyword>prototype</keyword>
                 </context>
 
-                <context id="types" style-ref="data-type">
+                <context id="types" style-ref="type">
                     <keyword>Infinity</keyword>
                     <keyword>NaN</keyword>
                     <keyword>Math</keyword>

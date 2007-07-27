@@ -40,8 +40,8 @@
         <style id="included-file"     _name="Included File"       map-to="c:preprocessor"/>
         <style id="char"              _name="Character"           map-to="def:character"/>
         <style id="keyword"           _name="Keyword"             map-to="def:keyword"/>
-        <style id="data-type"         _name="Data Type"           map-to="def:data-type"/>
-        <style id="storage-class"     _name="Storage Class"       map-to="def:data-type"/>
+        <style id="type"              _name="Data Type"           map-to="def:type"/>
+        <style id="storage-class"     _name="Storage Class"       map-to="def:type"/>
         <style id="printf"            _name="printf Conversion"   map-to="def:character"/>
         <style id="escaped-character" _name="Escaped Character"   map-to="def:escape"/>
         <style id="floating-point"    _name="Float"               map-to="def:floating-point"/>
@@ -218,7 +218,7 @@
                     <keyword>while</keyword>
                 </context>
 
-                <context id="types" style-ref="data-type">
+                <context id="types" style-ref="type">
                     <keyword>_Bool</keyword>
                     <keyword>_Complex</keyword>
                     <keyword>_Imaginary</keyword>

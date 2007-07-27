@@ -34,7 +34,7 @@
 
   <styles>
     <style id="comment" _name="Comment" map-to="def:comment"/>
-    <style id="data-type" _name="Data Type" map-to="def:data-type"/>
+    <style id="type" _name="Data Type" map-to="def:type"/>
     <style id="string" _name="String" map-to="def:string"/>
     <style id="keyword" _name="Keyword" map-to="def:keyword"/>
     <style id="others" _name="Others"/>
@@ -100,10 +100,10 @@
         <context ref="def:line-continue"/>
       </include>
     </context>
-    <context id="variable" style-ref="data-type">
+    <context id="variable" style-ref="type">
       <match>[$]+[a-zA-Z_][a-zA-Z0-9_]*</match>
     </context>
-    <context id="array-operators" style-ref="data-type">
+    <context id="array-operators" style-ref="type">
       <match>(\[|\])</match>
     </context>
     <context id="case-sensitive-keyword" style-ref="keyword">
@@ -166,7 +166,7 @@
     <context id="operators" style-ref="keyword">
       <match>[-.~^@;:/%|\=\+\*\!\?&amp;&lt;&gt;]</match>
     </context>
-    <context id="data-type" style-ref="data-type">
+    <context id="type" style-ref="type">
       <keyword>array</keyword>
       <keyword>bool</keyword>
       <keyword>boolean</keyword>
@@ -194,7 +194,7 @@
         <context ref="case-sensitive-keyword"/>
         <context ref="case-insensitive-keyword"/>
         <context ref="operators"/>
-        <context ref="data-type"/>
+        <context ref="type"/>
       </include>
     </context>
   </definitions>

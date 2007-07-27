@@ -1,5 +1,14 @@
 2007-07-27  Paolo Borelli  <pborelli@katamail.com>
 
+	* gtksourceview/language-specs/*.lang:
+
+	Replace all uses of def:data-type with the new def:type and
+	remove def:data-type from def.lang.
+	Note that this is a plain search and replace it doesn't fix
+	some lang file from abusing the type style.
+
+2007-07-27  Paolo Borelli  <pborelli@katamail.com>
+
 	* gtksourceview/language-specs/def.lang:
 
 	First cut at a big reorganization of default styles. Largely

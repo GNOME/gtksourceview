@@ -32,7 +32,7 @@
   <styles>
     <style id="comment" _name="Comment" map-to="def:comment"/>
     <style id="error" _name="Error" map-to="def:error"/>
-    <style id="data-type" _name="Data Type" map-to="def:data-type"/>
+    <style id="type" _name="Data Type" map-to="def:type"/>
     <style id="string" _name="String" map-to="def:string"/>
     <style id="keyword" _name="Keyword" map-to="def:keyword"/>
     <style id="preprocessor" _name="Preprocessor" map-to="def:preprocessor"/>
@@ -170,7 +170,7 @@
       <keyword>yield</keyword>
     </context>
 
-    <context id="primitives" style-ref="data-type">
+    <context id="primitives" style-ref="type">
       <keyword>bool</keyword>
       <keyword>byte</keyword>
       <keyword>char</keyword>

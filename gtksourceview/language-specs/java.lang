@@ -39,7 +39,7 @@
     <style id="boolean" _name="Boolean" map-to="def:special-value"/>
     <style id="decimal" _name="Decimal" map-to="def:decimal"/>
     <style id="reserved" _name="Future Reserved Keywords" map-to="def:error"/>
-    <style id="data-type" _name="Data Type" map-to="def:data-type"/>
+    <style id="type" _name="Data Type" map-to="def:type"/>
   </styles>
 
   <definitions>
@@ -87,7 +87,7 @@
       <keyword>throws</keyword>
     </context>
 
-    <context id="primitive-types" style-ref="data-type">
+    <context id="primitive-types" style-ref="type">
       <keyword>boolean</keyword>
       <keyword>byte</keyword>
       <keyword>char</keyword>

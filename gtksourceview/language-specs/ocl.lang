@@ -41,7 +41,7 @@
         <style id="string" _name="String" map-to="def:string"/>
         <style id="keyword" _name="Keyword" map-to="def:keyword"/>
         <style id="operators" _name="Type Operators" map-to="def:keyword"/>
-        <style id="data-type" _name="Data Type" map-to="def:data-type"/>
+        <style id="type" _name="Data Type" map-to="def:type"/>
         <style id="operation" _name="Operation operator" map-to="def:keyword"/>
     </styles>
 
@@ -119,7 +119,7 @@
                 </context>
 
                 <!-- Default data types -->
-                <context id="types" style-ref="data-type">
+                <context id="types" style-ref="type">
                     <keyword>Boolean</keyword>
                     <keyword>boolean</keyword>
                     <keyword>Integer</keyword>

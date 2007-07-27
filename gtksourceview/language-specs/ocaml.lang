@@ -40,12 +40,12 @@
     <style id="keyword" _name="Keyword" map-to="def:keyword"/>
     <style id="meta-keyword" _name="Type, module or object keyword" map-to="def:keyword"/>
     <style id="fun-keyword" _name="Builtin-function keyword" map-to="def:keyword"/>
-    <style id="data-type" _name="Data Type" map-to="def:data-type"/>
-    <style id="label" _name="Labeled argument" map-to="def:data-type"/>
-    <style id="poly-variant" _name="Polymorphic Variant" map-to="def:data-type"/>
-    <style id="variant" _name="Variant Constructor" map-to="def:data-type"/>
-    <style id="type-var" _name="Type Variable" map-to="def:data-type"/>
-    <style id="module" _name="Module Path" map-to="def:data-type"/>
+    <style id="type" _name="Data Type" map-to="def:type"/>
+    <style id="label" _name="Labeled argument" map-to="def:type"/>
+    <style id="poly-variant" _name="Polymorphic Variant" map-to="def:type"/>
+    <style id="variant" _name="Variant Constructor" map-to="def:type"/>
+    <style id="type-var" _name="Type Variable" map-to="def:type"/>
+    <style id="module" _name="Module Path" map-to="def:type"/>
     <style id="escape" _name="String/Char escape" map-to="def:escape"/>
     <style id="boolean" _name="Boolean constant" map-to="def:string"/>
     <style id="error" _name="Error" map-to="def:error"/>
@@ -216,7 +216,7 @@
 	  <!-- from pervasives, but same as others -->
 	  <keyword>lnot</keyword>
 	</context>
-	<context id="types" style-ref="data-type">
+	<context id="types" style-ref="type">
 	  <!-- pervasives types -->
 	  <keyword>option</keyword>
 	  <keyword>ignore</keyword>

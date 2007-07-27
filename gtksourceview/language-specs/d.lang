@@ -40,7 +40,7 @@
     <style id="error" _name="Error" map-to="def:error"/>
     <style id="string" _name="String" map-to="def:string"/>
     <style id="keyword" _name="Keyword" map-to="def:keyword"/>
-    <style id="data-type" _name="Type" map-to="def:data-type"/>
+    <style id="type" _name="Data Type" map-to="def:type"/>
     <style id="special-token" _name="Special Token" map-to="def:preprocessor"/>
     <style id="null-value" _name="Null Value" map-to="def:special-value"/>
     <style id="boolean" _name="Boolean" map-to="def:special-value"/>
@@ -161,7 +161,7 @@
       <keyword>with</keyword>
     </context>
 
-    <context id="types" style-ref="data-type">
+    <context id="types" style-ref="type">
       <keyword>alias</keyword>
       <keyword>bool</keyword>
       <keyword>byte</keyword>

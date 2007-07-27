@@ -28,13 +28,13 @@
   </metadata>
 
   <styles>
-    <style id="data-type" _name="Data Type" map-to="def:data-type"/>
+    <style id="variable" _name="Variable" map-to="def:type"/>
     <style id="keyword" _name="Keyword" map-to="def:keyword"/>
   </styles>
 
   <definitions>
 
-    <context id="variable" style-ref="data-type">
+    <context id="variable" style-ref="variable">
       <match>[$@%][$]?[a-zA-Z_][a-zA-Z0-9_]*</match>
     </context>
 

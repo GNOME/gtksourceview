@@ -31,9 +31,8 @@
     <style id="comment" name="Comment" map-to="def:comment"/>
     <style id="string" name="String" map-to="def:string"/>
     <style id="keyword" name="Keyword" map-to="def:keyword"/>
-    <style id="variable1" name="Variable 1" map-to="def:data-type"/>
-    <style id="variable2" name="Variable 2" map-to="def:data-type"/>
-    <style id="data-type" name="Data Type" map-to="def:data-type"/>
+    <style id="variable1" name="Variable 1" map-to="def:type"/> <!-- FIXME: need to sort out proper styles for variables -->
+    <style id="variable2" name="Variable 2" map-to="def:type"/>
     <style id="others" name="Others" map-to="def:keyword"/>
     <style id="common-command" name="Common Commands" map-to="def:keyword"/>
     <style id="here-doc-bound" name="here-doc" map-to="def:keyword"/>

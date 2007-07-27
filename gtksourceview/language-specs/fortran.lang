@@ -33,7 +33,7 @@
     <style id="keyword" _name="Keyword" map-to="def:keyword"/>
     <style id="base-n-integer" _name="Base-N Integer" map-to="def:base-n-integer"/>
     <style id="decimal" _name="Decimal" map-to="def:decimal"/>
-    <style id="data-type" _name="Data Type" map-to="def:data-type"/>
+    <style id="type" _name="Data Type" map-to="def:type"/>
   </styles>
 
   <definitions>
@@ -358,7 +358,7 @@
       <keyword>zsqrt</keyword>
     </context>
 
-    <context id="types" style-ref="data-type">
+    <context id="types" style-ref="type">
       <keyword>REAL</keyword>
       <keyword>INTEGER</keyword>
       <keyword>CHARACTER</keyword>

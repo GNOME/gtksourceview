@@ -34,12 +34,12 @@
     <style id="keyword" _name="Keyword" map-to="def:keyword"/>
     <style id="function" _name="Function" map-to="def:function"/>
     <style id="decimal" _name="Decimal" map-to="def:decimal"/>
-    <style id="data-type" _name="Data Type" map-to="def:data-type"/>
+    <style id="type" _name="Data Type" map-to="def:type"/>
     <style id="some-thing" _name="No idea what it is" map-to="def:preprocessor"/>
   </styles>
 
   <definitions>
-    <context id="oracle-built-in-datatypes" style-ref="data-type">
+    <context id="oracle-built-in-datatypes" style-ref="type">
       <keyword>N?VARCHAR2</keyword>
       <keyword>NUMBER</keyword>
       <keyword>LONG</keyword>
@@ -54,7 +54,7 @@
       <keyword>BFILE</keyword>
       <keyword>BINARY_(FLOAT|DOUBLE)</keyword>
     </context>
-    <context id="ansi-datatypes" style-ref="data-type">
+    <context id="ansi-datatypes" style-ref="type">
       <!-- FIXME no \n in patterns! -->
       <keyword>(NATIONAL[ \t\n]+)?CHAR(ACTER)?([ \t\n]+VARYING)?</keyword>
       <!-- FIXME no \n in patterns! -->
@@ -64,7 +64,7 @@
       <!-- FIXME no \n in patterns! -->
       <keyword>FLOAT|DOUBLE[ \t\n]+PRECISION|REAL</keyword>
     </context>
-    <context id="sql-ds-and-db2-datatypes" style-ref="data-type">
+    <context id="sql-ds-and-db2-datatypes" style-ref="type">
       <keyword>CHARACTER</keyword>
       <!-- FIXME no \n in patterns! -->
       <keyword>(LONG[ \t\n]+)?VARCHAR</keyword>
@@ -72,7 +72,7 @@
       <keyword>INTEGER|SMALLINT</keyword>
       <keyword>FLOAT</keyword>
     </context>
-    <context id="oracle-supplied-types" style-ref="data-type">
+    <context id="oracle-supplied-types" style-ref="type">
       <keyword>SYS\.ANY(TYPE|DATA(SET)?)</keyword>
       <keyword>XMLType</keyword>
       <keyword>(HTTP|XDB|DB)?URIType</keyword>

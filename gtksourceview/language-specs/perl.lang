@@ -40,7 +40,7 @@ FIXME: =pod should require an empty line before/after, as written in perlpod
     <style id="here-doc-bound"    _name="Heredoc Bound"      map-to="def:string"/>
     <style id="system-command"    _name="System Command"     map-to="def:string"/>
     <style id="operator"          _name="Operator"           map-to="def:keyword"/>
-    <style id="variable"          _name="Variable"           map-to="def:data-type"/>
+    <style id="variable"          _name="Variable"           map-to="def:type"/>
     <style id="file-descriptor"   _name="File Descriptor"    map-to="perl:variable"/>
     <style id="control"           _name="Control"            map-to="def:preprocessor"/>
     <style id="regex"             _name="Regular Expression" map-to="def:string"/>
