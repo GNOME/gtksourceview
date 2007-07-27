@@ -1,3 +1,18 @@
+2007-07-27  Paolo Borelli  <pborelli@katamail.com>
+
+	* gtksourceview/language-specs/def.lang:
+
+	First cut at a big reorganization of default styles. Largely
+	based on work by Paolo Maggi. Defaults styles are now
+	divided in groups providing sensible defaults even with
+	minimalistic style schemes.
+
+	* gtksourceview/language-specs/gvim.xml:
+	* gtksourceview/language-specs/kate.xml:
+
+	Adapted to the above (tango still to do, but it will be
+	probably be revisited once the style stuff settles)
+
 2007-07-26  Paolo Borelli  <pborelli@katamail.com>
 
 	* gtksourceview/gtksourcelanguage.[ch]: add getter/setter

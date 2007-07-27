@@ -36,41 +36,53 @@
   <style name="bracket-match"               background="#FFFF99" bold="true"/>
   <style name="bracket-mismatch"            background="red" bold="true"/>
 
+  <!-- legacy styles for old lang files -->
   <style name="Others"                      foreground="dark-red"/>
   <style name="Others 2"                    bold="true"/>
   <style name="Others 3"                    foreground="dark-green"/>
 
-  <style name="def:string"                  foreground="#DD0000"/>
+  <!-- Comments -->
   <style name="def:comment"                 foreground="grey" italic="true" bold="false"/>
-  <style name="def:base-n-integer"          foreground="#008080"/>
-  <style name="def:complex"                 use-style="def:base-n-integer"/>
-  <style name="def:keyword"                 bold="true"/>
-  <style name="def:data-type"               foreground="dark-red"/>
-  <style name="def:decimal"                 foreground="blue"/>
-  <style name="def:floating-point"          foreground="#800080"/>
-  <style name="def:character"               foreground="#FF00FF"/>
-  <style name="def:note"                    foreground="white" background="#FFCCCC" bold="true" italic="false"/>
-  <style name="def:function"                foreground="#000080"/>
-  <style name="def:error"                   foreground="red" underline="true"/>
   <style name="def:shebang"                 foreground="grey" bold="true"/>
   <style name="def:doc-comment"             foreground="blue"/>
   <style name="def:doc-comment-element"     bold="true"/>
 
-  <style name="def:net-address-in-comment"  underline="true"/>
-  <style name="def:escape"                  foreground="#FF00FF"/>
+  <!-- Constants -->
+  <style name="def:constant"                foreground="#DD0000"/>
+  <style name="def:decimal"                 foreground="blue"/>
+  <style name="def:base-n-integer"          foreground="#008080"/>
+  <style name="def:floating-point"          foreground="#800080"/>
+  <style name="def:complex"                 use-style="def:base-n-integer"/>
+  <style name="def:character"               foreground="#FF00FF"/>
+  <style name="def:string"                  foreground="#DD0000"/>
+  <style name="def:special-char"            foreground="#FF00FF"/>
+  <style name="def:special-constant"        bold="true"/>
 
-  <style name="def:special-value"           bold="true"/>
+  <!-- Identifiers -->
+  <style name="def:identifier"              foreground="#000080"/>
+
+  <!-- Statements -->
+  <style name="def:statement"               bold="true"/>
+
+  <!-- Types -->
+  <style name="def:type"                    foreground="dark-red"/>
+
+  <!-- Others -->
   <style name="def:preprocessor"            bold="true"/>
+  <style name="def:note"                    foreground="white" background="#FFCCCC" bold="true" italic="false"/>
+  <style name="def:error"                   foreground="red" underline="true"/>
+  <style name="def:underlined"              underline="true"/>
 
+  <!-- Language specific styles -->
   <style name="c:preprocessor"              foreground="dark-green"/>
   <style name="c:common-defines"            foreground="#0095FF" bold="true"/>
 
-  <style name="diff:diff-file"              use-style="def:keyword"/>
+  <style name="diff:diff-file"              use-style="def:statement"/>
   <style name="diff:added-line"             use-style="def:decimal"/>
   <style name="diff:removed-line"           use-style="def:string"/>
   <style name="diff:changed-line"           use-style="c:preprocessor"/>
   <style name="diff:special-case"/>
-  <style name="diff:location"               use-style="def:data-type"/>
+  <style name="diff:location"               use-style="def:type"/>
 
   <style name="xml:attribute-name"          foreground="dark-green"/>
   <style name="xml:tags"                    bold="true"/>
@@ -94,14 +106,13 @@
   <style name="latex:section"               foreground="#7000DF" bold="true"/>
 
   <style name="changelog:release"           foreground="#0095FF" bold="true"/>
+  <style name="changelog:email"             use-style="c:preprocessor"/>
 
   <style name="python:string-conversion"    background="#BEBEBE"/>
   <style name="python:module-handler"       use-style="def:character"/>
 
-  <style name="changelog:email"             use-style="c:preprocessor"/>
-
-  <style name="scheme:parens"               use-style="def:keyword"/>
-  <style name="scheme:any-function"         use-style="def:keyword"/>
+  <style name="scheme:parens"               use-style="def:statement"/>
+  <style name="scheme:any-function"         use-style="def:statement"/>
 
   <style name="sh:dollar"                   foreground="dark-green" bold="true"/>
 
