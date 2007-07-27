@@ -29,17 +29,17 @@
   </metadata>
 
   <styles>
-    <style id="special-variables" _name="Special variables" map-to="def:type"/>
-    <style id="module-handler"    _name="Module handler"    map-to="def:preprocessor"/>
+    <style id="special-variables" _name="Special Variables" map-to="def:type"/>
+    <style id="module-handler"    _name="Module Handler"    map-to="def:preprocessor"/>
     <style id="keyword"           _name="Keyword"           map-to="def:keyword"/>
     <style id="function"          _name="Function"          map-to="def:keyword"/>
     <style id="builtins"          _name="Builtins"          map-to="def:type"/>
     <style id="multiline-string"  _name="Multiline string"  map-to="def:string"/>
     <style id="string"            _name="String"            map-to="def:string"/>
-    <style id="escaped-char"      _name="Escaped character" map-to="def:escape"/>
-    <style id="format"            _name="format"            map-to="def:character"/>
+    <style id="escaped-char"      _name="Escaped Character" map-to="def:special-char"/>
+    <style id="format"            _name="Format"            map-to="def:character"/>
     <style id="string-conversion" _name="string-conversion"/>
-    <style id="floating-point"    _name="Floating point"    map-to="def:floating-point"/>
+    <style id="floating-point"    _name="Floating point number" map-to="def:floating-point"/>
     <style id="decimal"           _name="Decimal"           map-to="def:decimal"/>
     <style id="base-n-integer"    _name="Base-N integer"    map-to="def:base-n-integer"/>
     <style id="complex"           _name="Complex number"    map-to="def:complex"/>

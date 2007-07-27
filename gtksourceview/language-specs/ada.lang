@@ -38,7 +38,7 @@
     <style id="preprocessor" _name="Preprocessor" map-to="def:preprocessor"/>
     <style id="base-n-number" _name="Arbitrary base number" map-to="def:base-n-integer"/>
     <style id="real" _name="Real number" map-to="def:floating-point"/>
-    <style id="escape" _name="Character Escape" map-to="def:escape"/>
+    <style id="escaped-character" _name="Escaped Character" map-to="def:special-char"/>
     <style id="ident" _name="Ada Identifier"/>
   </styles>
 
@@ -53,7 +53,7 @@
       <end>"</end>
       <!-- no escapes possible except for "" = literal " -->
       <include>
-         <context id="string-esc" style-ref="escape" extend-parent="true">
+         <context id="string-esc" style-ref="escaped-character" extend-parent="true">
             <match>""</match>
          </context>
        </include>

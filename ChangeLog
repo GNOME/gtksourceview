@@ -2,6 +2,12 @@
 
 	* gtksourceview/language-specs/*.lang:
 
+	Replace all uses of def:escape style.
+
+2007-07-27  Paolo Borelli  <pborelli@katamail.com>
+
+	* gtksourceview/language-specs/*.lang:
+
 	Replace all uses of def:data-type with the new def:type and
 	remove def:data-type from def.lang.
 	Note that this is a plain search and replace it doesn't fix

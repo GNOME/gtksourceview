@@ -32,7 +32,7 @@
     <style id="comment" _name="Comment" map-to="def:comment"/>
     <style id="string" _name="String" map-to="def:string"/>
     <style id="keyword" _name="Keyword" map-to="def:keyword"/>
-    <style id="escape" _name="Character Escape" map-to="def:escape"/>
+    <style id="escape" _name="Escaped Character" map-to="def:special-char"/>
     <style id="reserved" _name="Reserved Identifier" map-to="def:keyword"/>
     <style id="function" _name="Function" map-to="def:keyword"/>
   </styles>

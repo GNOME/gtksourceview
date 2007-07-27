@@ -45,7 +45,7 @@ FIXME: =pod should require an empty line before/after, as written in perlpod
     <style id="control"           _name="Control"            map-to="def:preprocessor"/>
     <style id="regex"             _name="Regular Expression" map-to="def:string"/>
     <style id="error"             _name="Error"              map-to="def:error"/>
-    <style id="pod-escape"        _name="POD Escape"         map-to="def:escape"/>
+    <style id="pod-escape"        _name="POD Escape"         map-to="def:special-char"/>
     <style id="pod-keyword"       _name="POD keyword"        map-to="def:keyword"/>
     <style id="pod-heading"       _name="POD heading"        map-to="def:doc-comment-element"/>
   </styles>

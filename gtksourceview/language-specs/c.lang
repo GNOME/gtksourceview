@@ -34,7 +34,6 @@
         <style id="comment"           _name="Comment"             map-to="def:comment"/>
         <style id="error"             _name="Error"               map-to="def:error"/>
         <style id="string"            _name="String"              map-to="def:string"/>
-        <style id="escape"            _name="Escape"              map-to="def:escape"/>
         <style id="preprocessor"      _name="Preprocessor"        map-to="def:preprocessor"/>
         <style id="common-defines"    _name="Common Defines"      map-to="def:special-value"/>
         <style id="included-file"     _name="Included File"       map-to="c:preprocessor"/>
@@ -43,7 +42,7 @@
         <style id="type"              _name="Data Type"           map-to="def:type"/>
         <style id="storage-class"     _name="Storage Class"       map-to="def:type"/>
         <style id="printf"            _name="printf Conversion"   map-to="def:character"/>
-        <style id="escaped-character" _name="Escaped Character"   map-to="def:escape"/>
+        <style id="escaped-character" _name="Escaped Character" map-to="def:special-char"/>
         <style id="floating-point"    _name="Float"               map-to="def:floating-point"/>
         <style id="decimal"           _name="Decimal"             map-to="def:decimal"/>
         <style id="octal"             _name="Octal"               map-to="def:base-n-integer"/>
