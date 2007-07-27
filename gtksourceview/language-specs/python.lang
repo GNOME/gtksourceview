@@ -29,7 +29,6 @@
   </metadata>
 
   <styles>
-    <style id="special-variables" _name="Special Variables" map-to="def:type"/>
     <style id="module-handler"    _name="Module Handler"    map-to="def:preprocessor"/>
     <style id="keyword"           _name="Keyword"           map-to="def:keyword"/>
     <style id="function"          _name="Function"          map-to="def:keyword"/>
@@ -39,6 +38,8 @@
     <style id="escaped-char"      _name="Escaped Character" map-to="def:special-char"/>
     <style id="format"            _name="Format"            map-to="def:character"/>
     <style id="string-conversion" _name="string-conversion"/>
+    <style id="special-variables" _name="Special Variables" map-to="def:special-constant"/>
+    <style id="boolean"           _name="Boolean"           map-to="def:boolean"/>
     <style id="floating-point"    _name="Floating point number" map-to="def:floating-point"/>
     <style id="decimal"           _name="Decimal"           map-to="def:decimal"/>
     <style id="base-n-integer"    _name="Base-N integer"    map-to="def:base-n-integer"/>
@@ -138,11 +139,15 @@
 	<context id="special-variables" style-ref="special-variables">
           <prefix>(?&lt;![\w\.])</prefix>
           <keyword>self</keyword>
-          <keyword>False</keyword>
           <keyword>None</keyword>
-          <keyword>True</keyword>
           <keyword>__name__</keyword>
           <keyword>__debug__</keyword>
+	</context>
+
+	<context id="boolean" style-ref="boolean">
+          <prefix>(?&lt;![\w\.])</prefix>
+          <keyword>False</keyword>
+          <keyword>True</keyword>
 	</context>
 
         <define-regex id="float" extended="true">

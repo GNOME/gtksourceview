@@ -42,8 +42,8 @@
     <style id="keyword" _name="Keyword" map-to="def:keyword"/>
     <style id="type" _name="Data Type" map-to="def:type"/>
     <style id="special-token" _name="Special Token" map-to="def:preprocessor"/>
-    <style id="null-value" _name="Null Value" map-to="def:special-value"/>
-    <style id="boolean" _name="Boolean" map-to="def:special-value"/>
+    <style id="null-value" _name="Null Value" map-to="def:special-constant"/>
+    <style id="boolean" _name="Boolean" map-to="def:boolean"/>
     <style id="floating-point" _name="Floating Point" map-to="def:floating-point"/>
     <style id="decimal" _name="Decimal" map-to="def:decimal"/>
     <style id="binary" _name="Binary" map-to="def:base-n-integer"/>

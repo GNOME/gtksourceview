@@ -36,7 +36,8 @@
     <style id="base-n-integer" _name="Base-N Integer" map-to="def:base-n-integer"/>
     <style id="function" _name="Function" map-to="def:function"/>
     <style id="decimal" _name="Decimal" map-to="def:decimal"/>
-    <style id="reserved-constant" _name="Reserved constant" map-to="def:special-value"/>
+    <style id="boolean" _name="Boolean" map-to="def:boolean"/>
+    <style id="reserved-constant" _name="Reserved Constant" map-to="def:special-constant"/>
   </styles>
 
   <definitions>
@@ -79,9 +80,11 @@
         <context ref="def:line-continue"/>
       </include>
     </context>
-    <context id="reserved-constant" style-ref="reserved-constant">
+    <context id="boolean" style-ref="boolean">
       <keyword>false</keyword>
       <keyword>true</keyword>
+    </context>
+    <context id="reserved-constant" style-ref="reserved-constant">
       <keyword>Inf</keyword>
       <keyword>inf</keyword>
       <keyword>NaN</keyword>
@@ -199,6 +202,7 @@
         <context ref="multiline-single-quoted-string"/>
         <context ref="double-quoted-string"/>
         <context ref="single-quoted-string"/>
+        <context ref="boolean"/>
         <context ref="reserved-constant"/>
         <context ref="keyword"/>
         <context ref="decimal"/>

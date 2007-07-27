@@ -33,9 +33,9 @@
     <style id="keyword" _name="Keyword" map-to="def:keyword"/>
     <style id="decimal" _name="Decimal" map-to="def:decimal"/>
     <style id="variable" _name="Data Type" map-to="def:type"/>
-    <style id="state" _name="Widget State" map-to="def:special-value"/>
+    <style id="state" _name="Widget State" map-to="def:special-constant"/>
     <style id="include-directive" _name="Include directive" map-to="def:preprocessor"/>
-    <style id="boolean-value" _name="Boolean value" map-to="def:special-value"/>
+    <style id="boolean-value" _name="Boolean value" map-to="def:boolean"/>
   </styles>
 
   <definitions>

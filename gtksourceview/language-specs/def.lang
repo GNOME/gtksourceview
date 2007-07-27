@@ -69,9 +69,6 @@
              style for text which is already styled as a "string" -->
         <style id="special-char" _name="Special character (inside a string)" />
 
-        <!-- A boolean constant: TRUE, false -->
-        <style id="boolean" _name="Boolean value" map-to="def:constant"/>
-
         <!-- A generic number constant -->
         <style id="number" _name="Number" map-to="def:constant"/>
 
@@ -89,6 +86,9 @@
 
         <!-- A special constant like NULL in C or null in Java -->
         <style id="special-constant" _name="Special constant" map-to="def:constant"/>
+
+        <!-- A boolean constant: TRUE, false -->
+        <style id="boolean" _name="Boolean value" map-to="def:special-constant"/>
 
 
         <!-- Identifier group -->
@@ -139,34 +139,6 @@
         <!-- Text that stands out, HTML links, e-mail addresses, etc. -->
         <style id="underlined"          _name="Underlined"/>
 
-
-
-        <!-- TODO: The following are the old styles that should be replaced
-             with the above in all lang files. Will be removed as soon
-             as the transition it's over -->
-
-
-<!--        <style id="decimal"                 _name="Decimal"/> -->
-<!--        <style id="base-n-integer"          _name="Base-N Integer"/> -->
-<!--        <style id="complex"                 _name="Complex number"/> -->
-<!--        <style id="floating-point"          _name="Floating Point"/> -->
-<!--        <style id="net-address-in-comment"  _name="Net Address"/> -->
-<!--        <style id="note"                    _name="Note"/> -->
-<!--        <style id="escape"                  _name="Escape" map-to="def:special-char"/> -->
-<!--        <style id="comment"                 _name="Comment"/> -->
-<!--        <style id="error"                   _name="Error"/> -->
-<!--        <style id="string"                  _name="String"/> -->
-<!--        <style id="keyword"                 _name="Keyword"/> -->
-<!--        <style id="data-type"               _name="Data Type" map-to="def:type"/> -->
-<!--        <style id="character"               _name="Character"/> -->
-<!--        <style id="function"                _name="Function"/> -->
-<!--        <style id="shebang"                 _name="Shebang"/> -->
-<!--        <style id="doc-comment"             _name="Documentation Comment" map-to="def:comment"/> -->
-<!--        <style id="doc-comment-element"     _name="Documentation Comment Element"/> -->
-        <!-- This one is for '#include <foo.h>' and "#pragma blah", or 'use foobar', etc.. -->
-<!--        <style id="preprocessor"            _name="Preprocessor directive"/> -->
-        <!-- For things like TRUE and NULL in C. -->
-        <style id="special-value"           _name="Special value" map-to="def:special-constant"/>
     </styles>
 
     <definitions>
