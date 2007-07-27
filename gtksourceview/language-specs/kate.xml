@@ -105,8 +105,11 @@
   <style name="latex:structure"             bold="true"/>
   <style name="latex:section"               foreground="#7000DF" bold="true"/>
 
-  <style name="changelog:release"           foreground="#0095FF" bold="true"/>
   <style name="changelog:email"             use-style="c:preprocessor"/>
+  <style name="changelog:bullet"            foreground="blue"/>
+  <style name="changelog:file"              foreground="blue"/>
+  <style name="changelog:function"          foreground="blue"/>
+  <style name="changelog:release"           foreground="#0095FF" bold="true"/>
 
   <style name="python:string-conversion"    background="#BEBEBE"/>
   <style name="python:module-handler"       use-style="def:character"/>
