@@ -93,10 +93,11 @@ gtk_source_view_get_type
 GtkSourceLanguage
 gtk_source_language_get_id
 gtk_source_language_get_name
+gtk_source_language_get_section
+gtk_source_language_get_hidden
 gtk_source_language_get_metadata
 gtk_source_language_get_mime_types
 gtk_source_language_get_globs
-gtk_source_language_get_section
 <SUBSECTION Standard>
 GtkSourceLanguageClass
 GTK_IS_SOURCE_LANGUAGE

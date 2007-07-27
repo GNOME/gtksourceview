@@ -63,6 +63,8 @@ const gchar 	 *gtk_source_language_get_name		(GtkSourceLanguage *language);
 
 const gchar	 *gtk_source_language_get_section	(GtkSourceLanguage *language);
 
+gboolean	  gtk_source_language_get_hidden 	(GtkSourceLanguage *language);
+
 const gchar	 *gtk_source_language_get_metadata	(GtkSourceLanguage *language,
 							 const gchar       *name);
 

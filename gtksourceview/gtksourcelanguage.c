@@ -41,11 +41,19 @@
 
 #define DEFAULT_SECTION _("Others")
 
+/* Properties */
+enum {
+	PROP_0,
+	PROP_ID,
+	PROP_NAME,
+	PROP_SECTION,
+	PROP_HIDDEN
+};
+
 G_DEFINE_TYPE (GtkSourceLanguage, gtk_source_language, G_TYPE_OBJECT)
 
 static GtkSourceLanguage *process_language_node 		(xmlTextReaderPtr 		 reader,
 								 const gchar 			*filename);
-
 
 GtkSourceLanguage *
 _gtk_source_language_new_from_file (const gchar              *filename,
@@ -117,6 +125,58 @@ _gtk_source_language_new_from_file (const gchar              *filename,
 }
 
 static void
+gtk_source_language_set_property (GObject      *object,
+				  guint         prop_id,
+				  const GValue *value,
+				  GParamSpec   *pspec)
+{
+	g_return_if_fail (GTK_IS_SOURCE_LANGUAGE (object));
+
+	switch (prop_id)
+	{
+		default:
+			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+			break;
+	}
+}
+
+static void
+gtk_source_language_get_property (GObject    *object,
+				  guint       prop_id,
+				  GValue     *value,
+				  GParamSpec *pspec)
+{
+	GtkSourceLanguage *language;
+
+	g_return_if_fail (GTK_IS_SOURCE_LANGUAGE (object));
+
+	language = GTK_SOURCE_LANGUAGE (object);
+
+	switch (prop_id)
+	{
+		case PROP_ID:
+			g_value_set_string (value, language->priv->id);
+			break;
+
+		case PROP_NAME:
+			g_value_set_string (value, language->priv->name);
+			break;
+
+		case PROP_SECTION:
+			g_value_set_string (value, language->priv->name);
+			break;
+
+		case PROP_HIDDEN:
+			g_value_set_boolean (value, language->priv->hidden);
+			break;
+
+		default:
+			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+			break;
+	}
+}
+
+static void
 gtk_source_language_dispose (GObject *object)
 {
 	GtkSourceLanguage *lang;
@@ -160,8 +220,42 @@ gtk_source_language_class_init (GtkSourceLanguageClass *klass)
 {
 	GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
-	object_class->dispose	= gtk_source_language_dispose;
-	object_class->finalize	= gtk_source_language_finalize;
+	object_class->get_property = gtk_source_language_get_property;
+	object_class->set_property = gtk_source_language_set_property;
+	object_class->dispose = gtk_source_language_dispose;
+	object_class->finalize = gtk_source_language_finalize;
+
+	g_object_class_install_property (object_class,
+					 PROP_ID,
+					 g_param_spec_string ("id",
+						 	      _("Language id"),
+							      _("Language id"),
+							      NULL,
+							      G_PARAM_READABLE));
+
+	g_object_class_install_property (object_class,
+					 PROP_ID,
+					 g_param_spec_string ("name",
+						 	      _("Language name"),
+							      _("Language name"),
+							      NULL,
+							      G_PARAM_READABLE));
+
+	g_object_class_install_property (object_class,
+					 PROP_ID,
+					 g_param_spec_string ("section",
+						 	      _("Language section"),
+							      _("Language section"),
+							      NULL,
+							      G_PARAM_READABLE));
+
+	g_object_class_install_property (object_class,
+					 PROP_HIDDEN,
+					 g_param_spec_boolean ("hidden",
+							       _("Hidden"),
+							       _("Whether the language should be hidden from the user"),
+							       FALSE,
+							       G_PARAM_READABLE));
 
 	g_type_class_add_private (object_class, sizeof(GtkSourceLanguagePrivate));
 }
@@ -441,6 +535,22 @@ gtk_source_language_get_section	(GtkSourceLanguage *language)
 }
 
 /**
+ * gtk_source_language_get_hidden:
+ * @language: a #GtkSourceLanguage
+ *
+ * Returns whether the language should be hidden from the user.
+ *
+ * Returns: TRUE if the language should be hidden, FALSE otherwise.
+ */
+gboolean
+gtk_source_language_get_hidden (GtkSourceLanguage *language)
+{
+	g_return_val_if_fail (GTK_IS_SOURCE_LANGUAGE (language), FALSE);
+
+	return language->priv->hidden;
+}
+
+/**
  * gtk_source_language_get_metadata:
  * @language: a #GtkSourceLanguage.
  * @name: metadata property name.
@@ -554,13 +664,13 @@ _gtk_source_language_define_language_styles (GtkSourceLanguage *lang)
 	while (alias[i][0] != NULL) 
 	{
 		GtkSourceStyleInfo *info;
-		
+
 		info = _gtk_source_style_info_new (alias[i][0], alias[i][1]);
-		
+
 		g_hash_table_insert (lang->priv->styles, 
 				     g_strdup (alias[i][0]),
 				     info);
-		
+
 		++i;
 	}
 }

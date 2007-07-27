@@ -24,6 +24,26 @@ private members and should not be accessed directly.
 </para>
 
 
+<!-- ##### ARG GtkSourceLanguage:hidden ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GtkSourceLanguage:id ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GtkSourceLanguage:name ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GtkSourceLanguage:section ##### -->
+<para>
+
+</para>
+
 <!-- ##### FUNCTION gtk_source_language_get_id ##### -->
 <para>
 
@@ -34,6 +54,24 @@ private members and should not be accessed directly.
 
 
 <!-- ##### FUNCTION gtk_source_language_get_name ##### -->
+<para>
+
+</para>
+
+@language: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gtk_source_language_get_section ##### -->
+<para>
+
+</para>
+
+@language: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gtk_source_language_get_hidden ##### -->
 <para>
 
 </para>
@@ -62,15 +100,6 @@ private members and should not be accessed directly.
 
 
 <!-- ##### FUNCTION gtk_source_language_get_globs ##### -->
-<para>
-
-</para>
-
-@language: 
-@Returns: 
-
-
-<!-- ##### FUNCTION gtk_source_language_get_section ##### -->
 <para>
 
 </para>

@@ -1,5 +1,10 @@
 2007-07-26  Paolo Borelli  <pborelli@katamail.com>
 
+	* gtksourceview/gtksourcelanguage.[ch]: add getter/setter
+	for the 'hidden' property. Patch by Jesse van den Kieboom.
+
+2007-07-26  Paolo Borelli  <pborelli@katamail.com>
+
 	* gtksourceview/language-specs/ruby.lang: properly detect all
 	predefined variables.
 
