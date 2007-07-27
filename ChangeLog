@@ -1,5 +1,19 @@
 2007-07-27  Paolo Borelli  <pborelli@katamail.com>
 
+	* gtksourceview/language-specs/ada.lang:
+
+	Misc improvements.
+
+2007-07-27  Paolo Borelli  <pborelli@katamail.com>
+
+	* gtksourceview/language-specs/*.lang:
+
+	Replace all uses of def:special-value style.
+	Remove the compat cruft in def.lang, since it is not needed
+	anymore. 
+
+2007-07-27  Paolo Borelli  <pborelli@katamail.com>
+
 	* gtksourceview/language-specs/*.lang:
 
 	Replace all uses of def:escape style.
