@@ -34,10 +34,14 @@
     <style id="comment" _name="Comment" map-to="def:comment"/>
     <style id="error" _name="Error" map-to="def:error"/>
     <style id="string" _name="String" map-to="def:string"/>
+    <style id="external" _name="External" map-to="def:preprocessor"/>
+    <style id="declaration" _name="Declaration" map-to="def:type"/>
+    <style id="storage-class" _name="Storage Class" map-to="def:type"/>
+    <style id="scope-declaration" _name="Scope Declaration" map-to="def:type"/>
     <style id="keyword" _name="Keyword" map-to="def:keyword"/>
     <style id="null-value" _name="Null Value" map-to="def:special-constant"/>
-    <style id="boolean" _name="Boolean" map-to="def:boolean"/>
-    <style id="decimal" _name="Decimal" map-to="def:decimal"/>
+    <style id="boolean" _name="Boolean value" map-to="def:boolean"/>
+    <style id="number" _name="Number" map-to="def:decimal"/>
     <style id="reserved" _name="Future Reserved Keywords" map-to="def:error"/>
     <style id="type" _name="Data Type" map-to="def:type"/>
   </styles>
@@ -73,17 +77,19 @@
       <match>\*/(?!\*)</match>
     </context>
 
-    <context id="declarations" style-ref="keyword">
+    <context id="externals" style-ref="external">
+      <keyword>import</keyword>
+      <keyword>package</keyword>
+    </context>
+
+    <context id="declarations" style-ref="declaration">
       <keyword>class</keyword>
       <keyword>enum</keyword>
       <keyword>extends</keyword>
       <keyword>implements</keyword>
-      <keyword>import</keyword>
       <keyword>instanceof</keyword>
       <keyword>interface</keyword>
       <keyword>native</keyword>
-      <keyword>package</keyword>
-      <keyword>volatile</keyword>
       <keyword>throws</keyword>
     </context>
 
@@ -99,6 +105,22 @@
       <keyword>void</keyword>
     </context>
 
+    <context id="storage-class" style-ref="storage-class">
+      <keyword>abstract</keyword>
+      <keyword>final</keyword>
+      <keyword>static</keyword>
+      <keyword>strictfp</keyword>
+      <keyword>synchronized</keyword>
+      <keyword>transient</keyword>
+      <keyword>volatile</keyword>
+    </context>
+
+    <context id="scope-declarations" style-ref="scope-declaration">
+      <keyword>private</keyword>
+      <keyword>protected</keyword>
+      <keyword>public</keyword>
+    </context>
+
     <context id="flow" style-ref="keyword">
       <keyword>assert</keyword>
       <keyword>break</keyword>
@@ -112,22 +134,10 @@
       <keyword>for</keyword>
       <keyword>if</keyword>
       <keyword>return</keyword>
-      <keyword>synchronized</keyword>
       <keyword>throw</keyword>
       <keyword>switch</keyword>
       <keyword>try</keyword>
       <keyword>while</keyword>
-    </context>
-
-    <context id="modifiers" style-ref="keyword">
-      <keyword>abstract</keyword>
-      <keyword>final</keyword>
-      <keyword>private</keyword>
-      <keyword>protected</keyword>
-      <keyword>public</keyword>
-      <keyword>static</keyword>
-      <keyword>strictfp</keyword>
-      <keyword>transient</keyword>
     </context>
 
     <context id="memory" style-ref="keyword">
@@ -150,8 +160,13 @@
       <keyword>true</keyword>
     </context>
 
-    <context id="numeric" style-ref="decimal">
-      <match>(\b([0-9]+|0[xX][0-9a-fA-F]+)[Ll]?\b|\b(([0-9]+[Ee][-]?[0-9]+|([0-9]*\.[0-9]+|[0-9]+\.)([Ee][-]?[0-9]+)?)[fFdD]?|[0-9]+[FfDd]))</match>
+    <context id="numeric" style-ref="number">
+      <match extended="true">
+        (\b([0-9]+|0[xX][0-9a-fA-F]+)[Ll]?\b|
+         \b(([0-9]+[Ee][-]?[0-9]+|
+            ([0-9]*\.[0-9]+|[0-9]+\.)([Ee][-]?[0-9]+)?)[fFdD]?|
+            [0-9]+[FfDd]))
+      </match>
     </context>
 
     <context id="java">
@@ -161,10 +176,12 @@
         <context ref="line-comment"/>
         <context ref="block-comment"/>
         <context ref="close-comment-outside-comment"/>
+        <context ref="externals"/>
         <context ref="declarations"/>
         <context ref="primitive-types"/>
+        <context ref="storage-class"/>
+        <context ref="scope-declarations"/>
         <context ref="flow"/>
-        <context ref="modifiers"/>
         <context ref="memory"/>
         <context ref="future-reserved-words"/>
         <context ref="null-value"/>

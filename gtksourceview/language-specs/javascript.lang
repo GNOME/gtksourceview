@@ -23,36 +23,28 @@
  Boston, MA 02111-1307, USA.
 
 -->
-<!--
-    Based on the syntax file for the old engine written by
--->
 <language id="js" _name="Javascript" version="2.0" _section="Scripts">
     <metadata>
-      <property name="mimetypes">application/x-javascript;text/x-javascript;text/javascript;text/x-js</property>
-      <property name="globs">*.js</property>
+        <property name="mimetypes">application/x-javascript;text/x-javascript;text/javascript;text/x-js</property>
+        <property name="globs">*.js</property>
+        <property name="line-comment-start">//</property>
+        <property name="block-comment-start">/*</property>
+        <property name="block-comment-end">*/</property>
     </metadata>
 
     <styles>
-        <style id="comment"           _name="Comment"
-                                      map-to="def:comment"/>
-        <style id="comment-multiline" _name="Multiline Comment"
-                                      map-to="def:comment"/>
-        <style id="error"             _name="Error"
-                                      map-to="def:error"/>
-        <style id="string"            _name="String"
-                                      map-to="def:string"/>
-        <style id="keyword"           _name="Keyword"
-                                      map-to="def:keyword"/>
-        <style id="object"            _name="Object"/> <!--map-to="def:others"-->
-        <style id="type"              _name="Data Type"
-                                      map-to="def:type"/>
-        <style id="function"          _name="Function"
-                                      map-to="def:function"/>
-        <style id="properties"        _name="Properties"
-                                      map-to="def:type"/>
-        <style id="constructors"      _name="Constructors"/> <!--map-to="def:others2"-->
-        <style id="future-words"      _name="Future Reserved Keywords"
-                                      map-to="def:error"/>
+        <style id="comment" _name="Comment" map-to="def:comment"/>
+        <style id="error" _name="Error" map-to="def:error"/>
+        <style id="string" _name="String" map-to="def:string"/>
+        <style id="null-value" _name="Null Value" map-to="def:special-constant"/>
+        <style id="boolean" _name="Boolean value" map-to="def:boolean"/>
+        <style id="keyword" _name="Keyword" map-to="def:keyword"/>
+        <style id="object" _name="Object"/> <!--map-to="def:others"-->
+        <style id="type" _name="Data Type" map-to="def:type"/>
+        <style id="function" _name="Function" map-to="def:function"/>
+        <style id="properties" _name="Properties" map-to="def:statement"/>
+        <style id="constructors" _name="Constructors" map-to="def:type"/>
+        <style id="future-words" _name="Future Reserved Keywords" map-to="def:error"/>
     </styles>
 
     <definitions>
@@ -60,7 +52,7 @@
             <include>
 
                 <!-- Comments -->
-                <context id="comment" style-ref="comment">
+                <context id="line-comment" style-ref="comment">
                     <start>//</start>
                     <end>$</end>
                     <include>
@@ -69,12 +61,16 @@
                     </include>
                 </context>
 
-                <context id="comment-multiline" style-ref="comment-multiline">
+                <context id="block-comment" style-ref="comment">
                     <start>/\*</start>
                     <end>\*/</end>
                     <include>
                         <context ref="def:in-comment"/>
                     </include>
+                </context>
+
+                <context id="close-comment-outside-comment" style-ref="error">
+                    <match>\*/(?!\*)</match>
                 </context>
 
                 <!-- Strings -->
@@ -102,6 +98,15 @@
                 <context ref="def:octal"/>
                 <context ref="def:hexadecimal"/>
 
+                <!-- Constants -->
+                <context id="null-value" style-ref="null-value">
+                    <keyword>null</keyword>
+                </context>
+                <context id="boolean" style-ref="boolean">
+                    <keyword>false</keyword>
+                    <keyword>true</keyword>
+                </context>
+
                 <!-- Keywords -->
                 <context id="keywords" style-ref="keyword">
                     <keyword>const</keyword>
@@ -124,9 +129,6 @@
                     <keyword>try</keyword>
                     <keyword>catch</keyword>
                     <keyword>finally</keyword>
-                    <keyword>null</keyword>
-                    <keyword>true</keyword>
-                    <keyword>false</keyword>
                     <keyword>delete</keyword>
                     <keyword>instanceof</keyword>
                     <keyword>new</keyword>

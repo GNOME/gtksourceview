@@ -34,13 +34,16 @@
     <style id="keyword" _name="Keyword" map-to="def:keyword"/>
     <style id="escape" _name="Escaped Character" map-to="def:special-char"/>
     <style id="reserved" _name="Reserved Identifier" map-to="def:keyword"/>
-    <style id="function" _name="Function" map-to="def:keyword"/>
+    <style id="function" _name="Function" map-to="def:function"/>
+    <style id="nil-value" _name="Nil Constant" map-to="def:special-constant"/>
+    <style id="boolean" _name="Boolean value" map-to="def:boolean"/>
   </styles>
 
   <definitions>
     <context id="lua-escape" style-ref="escape">
       <match>\\([abfnrtv\"'0]|(\d\d\d))</match>
     </context>
+
     <context id="string" style-ref="string" end-at-line-end="true">
       <start>"</start>
       <end>"</end>
@@ -49,6 +52,7 @@
         <context ref="def:line-continue"/>
       </include>
     </context>
+
     <context id="string-2" style-ref="string" end-at-line-end="true">
       <start>'</start>
       <end>'</end>
@@ -57,6 +61,7 @@
         <context ref="def:line-continue"/>
       </include>
     </context>
+
     <context id="multi-line-string" style-ref="string">
       <start>\[(=*)\[</start>
       <end>]\%{1@start}]</end>
@@ -64,6 +69,7 @@
         <context ref="lua-escape"/>
       </include>
     </context>
+
     <context id="block-comment" style-ref="comment">
       <start>--\[(=*)\[</start>
       <end>]\%{1@start}]</end>
@@ -71,12 +77,14 @@
 	<context ref="def:in-comment"/>
       </include>
     </context>
+
     <context id="line-comment" style-ref="comment" end-at-line-end="true">
       <start>--</start>
       <include>
 	<context ref="def:in-comment"/>
       </include>
     </context>
+
     <context id="keywords" style-ref="keyword">
       <keyword>and</keyword>
       <keyword>break</keyword>
@@ -84,22 +92,20 @@
       <keyword>else</keyword>
       <keyword>elseif</keyword>
       <keyword>end</keyword>
-      <keyword>false</keyword>
       <keyword>for</keyword>
       <keyword>function</keyword>
       <keyword>if</keyword>
       <keyword>in</keyword>
       <keyword>local</keyword>
-      <keyword>nil</keyword>
       <keyword>not</keyword>
       <keyword>or</keyword>
       <keyword>repeat</keyword>
       <keyword>return</keyword>
       <keyword>then</keyword>
-      <keyword>true</keyword>
       <keyword>until</keyword>
       <keyword>while</keyword>
     </context>
+
     <context id="functions" style-ref="function">
       <keyword>assert</keyword>
       <keyword>collectgarbage</keyword>
@@ -128,9 +134,20 @@
       <keyword>unpack</keyword>
       <keyword>xpcall</keyword>
     </context>
+
     <context id="lua-reserved" style-ref="reserved">
       <match>_[A-Z]+</match>
     </context>
+
+    <context id="nil-value" style-ref="nil-value">
+       <keyword>nil</keyword>
+    </context>
+
+    <context id="boolean" style-ref="boolean">
+       <keyword>false</keyword>
+       <keyword>true</keyword>
+    </context>
+
     <context id="lua">
       <include>
         <context ref="def:shebang"/>
@@ -142,7 +159,10 @@
         <context ref="keywords"/>
 	<context ref="functions"/>
 	<context ref="lua-reserved"/>
+        <context ref="nil-value"/>
+        <context ref="boolean"/>
       </include>
     </context>
+
   </definitions>
 </language>

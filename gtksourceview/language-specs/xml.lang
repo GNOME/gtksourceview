@@ -23,22 +23,22 @@
 -->
 <language id="xml" _name="XML" version="2.0" _section="Markup">
     <metadata>
-      <property name="mimetypes">application/xml;text/xml</property>
-      <property name="globs">*.xml;*.xspf;*.siv;*.smil;*.smi;*.sml;*.kino;*.xul;*.xbel;*.abw;*.zabw;*.glade;*.jnlp;*.xhtml;*.svg;*.docbook;*.mml;*.rdf;*.rss;*.wml;*.xmi;*.fo;*.xslfo;*.xslt;*.xsl</property>
-      <property name="block-comment-start">&lt;!--</property>
-      <property name="block-comment-end">--&gt;</property>
+        <property name="mimetypes">application/xml;text/xml</property>
+        <property name="globs">*.xml;*.xspf;*.siv;*.smil;*.smi;*.sml;*.kino;*.xul;*.xbel;*.abw;*.zabw;*.glade;*.jnlp;*.xhtml;*.svg;*.docbook;*.mml;*.rdf;*.rss;*.wml;*.xmi;*.fo;*.xslfo;*.xslt;*.xsl</property>
+        <property name="block-comment-start">&lt;!--</property>
+        <property name="block-comment-end">--&gt;</property>
     </metadata>
 
     <styles>
         <style id="comment"                 _name="Comment"                 map-to="def:comment"/>
-        <style id="doctype"                 _name="DOCTYPE"/>
-        <style id="cdata-delim"             _name="CDATA Delimiters"/>
-        <style id="processing-instruction"  _name="Processing Instruction"/>
-        <style id="attribute-name"          _name="Attribute Name"/> <!--map-to="def:others3"-->
-        <style id="attribute-value"         _name="Attribute Value"         map-to="def:string"/>
-        <style id="entity"                  _name="Entity"                  map-to="def:statement"/>
-        <style id="tags"                    _name="Tag"/> <!--map-to="def:others2"-->
-        <style id="namespace"               _name="Namespace"/> <!--map-to="def:others"-->
+        <style id="doctype"                 _name="DOCTYPE"                 map-to="def:function"/>
+        <style id="cdata-delim"             _name="CDATA delimiter"         map-to="def:preprocessor"/>
+        <style id="processing-instruction"  _name="Processing instruction"  map-to="def:preprocessor"/>
+        <style id="attribute-name"          _name="Attribute name"          map-to="def:function"/>
+        <style id="attribute-value"         _name="Attribute value"         map-to="def:string"/>
+        <style id="entity"                  _name="Entity"                  map-to="def:preprocessor"/>
+        <style id="tags"                    _name="Tag"                     map-to="def:statement"/>
+        <style id="namespace"               _name="Namespace"               map-to="def:statement"/>
         <style id="error"                   _name="Error"                   map-to="def:error"/>
     </styles>
 
