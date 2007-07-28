@@ -33,7 +33,6 @@ for l in *.lang; do
     msil.lang) ;;
     nemerle.lang) ;;
     R.lang) ;;
-    spec.lang) ;;
     vbnet.lang) ;;
     vhdl.lang) ;;
     *)

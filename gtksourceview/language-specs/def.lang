@@ -190,9 +190,9 @@
         <define-regex id="email-address" extended="true" case-sensitive="false">
                 \%[                 # separator
                 (mailto:)?          # optional "mailto:"
-                [a-z0-9_.-]+        # user name
+                [a-z0-9_.+-]+       # user name
                 @                   # at
-                [a-z0-9_.-]+        # domain
+                [a-z0-9_.+-]+       # domain
                 \%]                 # separator
         </define-regex>
 

@@ -47,10 +47,10 @@ LANGUAGES =			\
 	po.lang			\
 	python.lang		\
 	R.lang			\
+	rpmspec.lang		\
 	ruby.lang		\
 	scheme.lang		\
 	sh.lang			\
-	spec.lang		\
 	sql.lang		\
 	styles.rng		\
 	tcl.lang		\
