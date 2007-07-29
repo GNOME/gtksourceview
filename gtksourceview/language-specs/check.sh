@@ -34,7 +34,6 @@ for l in *.lang; do
     nemerle.lang) ;;
     R.lang) ;;
     vbnet.lang) ;;
-    vhdl.lang) ;;
     *)
       langs="$langs $l"
       ;;
