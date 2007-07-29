@@ -43,10 +43,10 @@
         <style id="storage-class"     _name="Storage Class"       map-to="def:type"/>
         <style id="printf"            _name="printf Conversion"   map-to="def:character"/>
         <style id="escaped-character" _name="Escaped Character"   map-to="def:special-char"/>
-        <style id="floating-point"    _name="Float"               map-to="def:floating-point"/>
-        <style id="decimal"           _name="Decimal"             map-to="def:decimal"/>
-        <style id="octal"             _name="Octal"               map-to="def:base-n-integer"/>
-        <style id="hexadecimal"       _name="Hex"                 map-to="def:base-n-integer"/>
+        <style id="floating-point"    _name="Floating point number" map-to="def:floating-point"/>
+        <style id="decimal"           _name="Decimal number"      map-to="def:decimal"/>
+        <style id="octal"             _name="Octal number"        map-to="def:base-n-integer"/>
+        <style id="hexadecimal"       _name="Hexadecimal number"  map-to="def:base-n-integer"/>
     </styles>
 
     <definitions>

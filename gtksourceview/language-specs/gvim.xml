@@ -74,9 +74,6 @@
   <style name="xml:attribute-name"          foreground="#6A5ACD"/>
   <style name="xml:tags"                    foreground="#008B8B"/>
   <style name="xml:namespace"               foreground="#2E8B57" bold="true"/>
-  <style name="xml:doctype"                 use-style="def:preprocessor"/>
-  <style name="xml:cdata-delim"             use-style="def:preprocessor"/>
-  <style name="xml:processing-instruction"  use-style="def:preprocessor"/>
 
   <style name="js:object"                   foreground="#2E8B57" bold="true"/>
   <style name="js:constructors"             foreground="#008B8B"/>
@@ -89,7 +86,6 @@
   <style name="sh:variable2"                foreground="#008B8B"/>
 
   <style name="python:builtins"             foreground="#2E8B57" bold="true"/>
-  <style name="changelog:email"             use-style="def:comment"/>
 
   <!-- legacy styles for old lang files -->
   <style name="Others"                      foreground="#2E8B57" bold="true"/>
