@@ -27,6 +27,9 @@
   <metadata>
     <property name="mimetypes">text/x-csharpsrc;text/x-csharp</property>
     <property name="globs">*.cs</property>
+    <property name="line-comment-start">//</property>
+    <property name="block-comment-start">/*</property>
+    <property name="block-comment-end">*/</property>
   </metadata>
 
   <styles>
@@ -36,6 +39,11 @@
     <style id="string" _name="String" map-to="def:string"/>
     <style id="keyword" _name="Keyword" map-to="def:keyword"/>
     <style id="preprocessor" _name="Preprocessor" map-to="def:preprocessor"/>
+    <style id="null-value" _name="Null Value" map-to="def:special-constant"/>
+    <style id="boolean" _name="Boolean value" map-to="def:boolean"/>
+    <style id="decimal" _name="Decimal number" map-to="def:decimal"/>
+    <style id="hexadecimal" _name="Hexadecimal number" map-to="def:base-n-integer"/>
+    <style id="real" _name="Real number" map-to="def:floating-point"/>
   </styles>
 
   <definitions>
@@ -140,7 +148,6 @@
       <keyword>default</keyword>
       <keyword>do</keyword>
       <keyword>else</keyword>
-      <keyword>false</keyword>
       <keyword>finally</keyword>
       <keyword>for</keyword>
       <keyword>foreach</keyword>
@@ -150,7 +157,6 @@
       <keyword>in</keyword>
       <keyword>is</keyword>
       <keyword>new</keyword>
-      <keyword>null</keyword>
       <keyword>remove</keyword>
       <keyword>return</keyword>
       <keyword>set</keyword>
@@ -160,7 +166,6 @@
       <keyword>switch</keyword>
       <keyword>this</keyword>
       <keyword>throw</keyword>
-      <keyword>true</keyword>
       <keyword>try</keyword>
       <keyword>typeof</keyword>
       <keyword>unchecked</keyword>
@@ -189,6 +194,41 @@
       <keyword>ushort</keyword>
     </context>
 
+    <context id="null-value" style-ref="null-value">
+      <keyword>null</keyword>
+    </context>
+
+    <context id="boolean" style-ref="boolean">
+      <keyword>false</keyword>
+      <keyword>true</keyword>
+    </context>
+
+    <context id="decimal" style-ref="decimal">
+      <match extended="true">
+        (?&lt;![\w\.])
+        [0-9]+[uUlL]*
+        (?![\w\.])
+      </match>
+    </context>
+
+    <context id="hexadecimal" style-ref="hexadecimal">
+      <match extended="true">
+        (?&lt;![\w\.])
+        0[xX][a-fA-F0-9]+[uUlL]*
+        (?![\w\.])
+      </match>
+    </context>
+
+    <context id="real" style-ref="real">
+      <match extended="true">
+        (?&lt;![\w\.])
+        ((\.[0-9]+|[0-9]+\.[0-9]*)([Ee][+-]?[0-9]*)?[FfDdMm]?|
+         ([0-9]+[Ee][+-]?[0-9]*)[FfDdMm]? |
+         ([0-9]+)[FfDdMm])
+        (?![\w\.])
+      </match>
+    </context>
+
     <context id="c-sharp">
       <include>
         <context ref="def:string"/>
@@ -201,6 +241,11 @@
         <context ref="preprocessor"/>
         <context ref="keywords"/>
         <context ref="primitives"/>
+        <context ref="null-value"/>
+        <context ref="boolean"/>
+        <context ref="decimal"/>
+        <context ref="hexadecimal"/>
+        <context ref="real"/>
       </include>
     </context>
   </definitions>
