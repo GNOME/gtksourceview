@@ -656,11 +656,11 @@ _gtk_source_language_define_language_styles (GtkSourceLanguage *lang)
 		{"Preprocessor", "def:preprocessor"},
 		{"String", "def:string"},
 		{"Specials", "def:specials"},
-		{"Data Type", "def:data-type"}, 
+		{"Data Type", "def:type"}, 
 		{NULL, NULL}};
 
 	gint i = 0;
-	
+
 	while (alias[i][0] != NULL) 
 	{
 		GtkSourceStyleInfo *info;
