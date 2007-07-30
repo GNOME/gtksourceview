@@ -44,11 +44,11 @@
     <style id="special-token" _name="Special Token" map-to="def:preprocessor"/>
     <style id="null-value" _name="Null Value" map-to="def:special-constant"/>
     <style id="boolean" _name="Boolean" map-to="def:boolean"/>
-    <style id="floating-point" _name="Floating Point" map-to="def:floating-point"/>
-    <style id="decimal" _name="Decimal" map-to="def:decimal"/>
-    <style id="binary" _name="Binary" map-to="def:base-n-integer"/>
-    <style id="octal" _name="Octal" map-to="def:base-n-integer"/>
-    <style id="hexadecimal" _name="Hexadecimal" map-to="def:base-n-integer"/>
+    <style id="floating-point" _name="Floating point number" map-to="def:floating-point"/>
+    <style id="decimal" _name="Decimal number" map-to="def:decimal"/>
+    <style id="binary" _name="Binary number" map-to="def:base-n-integer"/>
+    <style id="octal" _name="Octal number" map-to="def:base-n-integer"/>
+    <style id="hexadecimal" _name="Hexadecimal number" map-to="def:base-n-integer"/>
   </styles>
 
   <definitions>

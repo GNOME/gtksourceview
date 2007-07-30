@@ -29,21 +29,22 @@
   </metadata>
 
   <styles>
-    <style id="module-handler"    _name="Module Handler"    map-to="def:preprocessor"/>
-    <style id="keyword"           _name="Keyword"           map-to="def:keyword"/>
-    <style id="function"          _name="Function"          map-to="def:keyword"/>
-    <style id="builtins"          _name="Builtins"          map-to="def:type"/>
-    <style id="multiline-string"  _name="Multiline string"  map-to="def:string"/>
-    <style id="string"            _name="String"            map-to="def:string"/>
-    <style id="escaped-char"      _name="Escaped Character" map-to="def:special-char"/>
-    <style id="format"            _name="Format"            map-to="def:character"/>
+    <style id="module-handler"    _name="Module Handler"        map-to="def:preprocessor"/>
+    <style id="keyword"           _name="Keyword"               map-to="def:keyword"/>
+    <style id="multiline-string"  _name="Multiline string"      map-to="def:string"/>
+    <style id="string"            _name="String"                map-to="def:string"/>
+    <style id="escaped-char"      _name="Escaped Character"     map-to="def:special-char"/>
+    <style id="format"            _name="Format"                map-to="def:character"/>
     <style id="string-conversion" _name="string-conversion"/>
-    <style id="special-variables" _name="Special Variables" map-to="def:special-constant"/>
-    <style id="boolean"           _name="Boolean"           map-to="def:boolean"/>
+    <style id="special-variable"  _name="Special Variable"      map-to="def:identifier"/>
+    <style id="boolean"           _name="Boolean"               map-to="def:boolean"/>
     <style id="floating-point"    _name="Floating point number" map-to="def:floating-point"/>
-    <style id="decimal"           _name="Decimal"           map-to="def:decimal"/>
-    <style id="base-n-integer"    _name="Base-N integer"    map-to="def:base-n-integer"/>
-    <style id="complex"           _name="Complex number"    map-to="def:complex"/>
+    <style id="decimal"           _name="Decimal number"        map-to="def:decimal"/>
+    <style id="base-n-integer"    _name="Base-N number"         map-to="def:base-n-integer"/>
+    <style id="complex"           _name="Complex number"        map-to="def:complex"/>
+    <style id="builtin-constant"  _name="Builtin Constant"      map-to="def:special-constant"/>
+    <style id="builtin-object"    _name="Builtin Object"        map-to="def:type"/>
+    <style id="builtin-function"  _name="Builtin Function"      map-to="def:builtin"/>
   </styles>
 
   <definitions>
@@ -136,19 +137,18 @@
           </include>
         </context>
 
-	<context id="special-variables" style-ref="special-variables">
+        <context id="special-variables" style-ref="special-variable">
           <prefix>(?&lt;![\w\.])</prefix>
           <keyword>self</keyword>
-          <keyword>None</keyword>
           <keyword>__name__</keyword>
           <keyword>__debug__</keyword>
-	</context>
+        </context>
 
-	<context id="boolean" style-ref="boolean">
+        <context id="boolean" style-ref="boolean">
           <prefix>(?&lt;![\w\.])</prefix>
           <keyword>False</keyword>
           <keyword>True</keyword>
-	</context>
+        </context>
 
         <define-regex id="float" extended="true">
           ( (\d+)?\.\d+ | \d+\. ) |
@@ -161,7 +161,7 @@
 
         <context id="float" style-ref="floating-point">
           <match>(?&lt;![\w\.])\%{float}(?![\w\.])</match>
-	</context>
+        </context>
 
         <context id="decimal" style-ref="decimal">
           <match>(?&lt;![\w\.])([1-9][0-9]*|0)[lL]?(?![\w\.])</match>
@@ -181,17 +181,13 @@
           <keyword>as</keyword>
         </context>
 
-        <context id="function" style-ref="function">
-          <keyword>def</keyword>
-          <keyword>class</keyword>
-          <keyword>return</keyword>
-        </context>
-
         <context id="keyword" style-ref="keyword">
           <keyword>and</keyword>
           <keyword>assert</keyword>
           <keyword>break</keyword>
+          <keyword>class</keyword>
           <keyword>continue</keyword>
+          <keyword>def</keyword>
           <keyword>del</keyword>
           <keyword>elif</keyword>
           <keyword>else</keyword>
@@ -209,12 +205,20 @@
           <keyword>pass</keyword>
           <keyword>print</keyword>
           <keyword>raise</keyword>
+          <keyword>return</keyword>
           <keyword>try</keyword>
           <keyword>while</keyword>
           <keyword>yield</keyword>
         </context>
 
-        <context id="builtins" style-ref="builtins">
+        <context id="builtin-constants" style-ref="builtin-constant">
+          <prefix>(?&lt;![\w\.])</prefix>
+          <keyword>Ellipsis</keyword>
+          <keyword>None</keyword>
+          <keyword>NotImplemented</keyword>
+        </context>
+
+        <context id="builtin-objects" style-ref="builtin-object">
           <prefix>(?&lt;![\w\.])</prefix>
           <keyword>ArithmeticError</keyword>
           <keyword>AssertionError</keyword>
@@ -261,7 +265,10 @@
           <keyword>OverflowWarning</keyword>
           <keyword>RuntimeWarning</keyword>
           <keyword>FutureWarning</keyword>
+        </context>
 
+        <context id="builtin-function" style-ref="builtin-function">
+          <prefix>(?&lt;![\w\.])</prefix>
           <keyword>__import__</keyword>
           <keyword>abs</keyword>
           <keyword>apply</keyword>
