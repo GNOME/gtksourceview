@@ -24,7 +24,7 @@
   <author>Michael Monreal</author>
   <_description>Color scheme using Tango color palette</_description>
 
-  <!-- Tango colors -->
+  <!-- Tango Palette -->
   <color name="butter1"                     value="#fce94f"/>
   <color name="butter2"                     value="#edd400"/>
   <color name="butter3"                     value="#c4a000"/>
@@ -58,41 +58,44 @@
   <style name="Others 2"                    foreground="chameleon3"/>
   <style name="Others 3"                    foreground="plum3"/>
 
-  <!-- global defines -->
+  <!-- Bracket Matching -->
   <style name="bracket-match"               foreground="aluminium1" background="aluminium3" bold="true"/>
   <style name="bracket-mismatch"            foreground="aluminium1" background="scarletred3" bold="true"/>
 
-  <style name="def:base-n-integer"          foreground="plum1"/>
-  <style name="def:decimal"                 foreground="plum1"/>
-  <style name="def:character"               foreground="plum1"/>
-  <style name="def:floating-point"          foreground="plum1"/>
-  <style name="def:string"                  foreground="plum1"/>
-
-  <style name="def:data-type"               foreground="chameleon3" bold="true"/>
-  <style name="def:function"                foreground="chameleon3"/>
-  <style name="def:keyword"                 foreground="scarletred3" bold="true"/>
-
-  <style name="def:comment"                 foreground="skyblue2"/>
-  <style name="def:net-address-in-comment"  foreground="skyblue2" italic="true" underline="true"/>
-  <style name="def:note"                    foreground="skyblue2" background="butter1" bold="true"/>
-  <style name="def:shebang"                 foreground="skyblue2" bold="true"/>
+  <!-- Comments -->
+  <style name="def:comment"                 foreground="skyblue3"/>
+  <style name="def:shebang"                 foreground="skyblue3" bold="true"/>
   <style name="def:doc-comment-element"     italic="true"/>
 
-  <style name="def:error"                   background="scarletred1" bold="true"/>
-  <style name="def:escape"                  foreground="orange2"/>
+  <!-- Constants -->
+  <style name="def:constant"                foreground="plum1"/>
+  <style name="def:special-char"            foreground="plum3"/>
 
-  <style name="def:preprocessor"            foreground="chocolate2"/>
+  <!-- Identifiers -->
+  <style name="def:identifier"              foreground="skyblue1"/>
+
+  <!-- Statements -->
+  <style name="def:statement"               foreground="scarletred3" bold="true"/>
+
+  <!-- Types -->
+  <style name="def:type"                    foreground="chameleon3" bold="true"/>
+
+  <!-- Others -->
+  <style name="def:preprocessor"            foreground="chocolate3"/>
+  <style name="def:error"                   background="scarletred2" bold="true"/>
+  <style name="def:note"                    background="butter1" bold="true"/>
+  <style name="def:underlined"              italic="true" underline="true"/>
 
   <!-- Language specific -->
-  <style name="changelog:email"             use-style="def:net-address-in-comment"/>
-
   <style name="diff:added-line"             foreground="chameleon3"/>
   <style name="diff:removed-line"           foreground="plum3"/>
   <style name="diff:changed-line"           use-style="def:preprocessor"/>
-  <style name="diff:diff-file"              use-style="def:data-type"/>
-  <style name="diff:location"               use-style="def:keyword"/>
+  <style name="diff:diff-file"              use-style="def:type"/>
+  <style name="diff:location"               use-style="def:statement"/>
+  <style name="diff:special-case"           use-style="def:constant"/>
 
-  <style name="diff:special-case"           use-style="def:string"/>
+  <style name="xml:tags"                    foreground="chameleon3"/>
+  <style name="xml:namespace"               bold="true"/>
 
   <style name="js:object"                   foreground="chameleon3" bold="true"/>
   <style name="js:constructors"             foreground="chameleon3"/>
@@ -101,15 +104,7 @@
   <style name="latex:command"               foreground="chameleon3" bold="true"/>
   <style name="latex:include"               use-style="def:preprocessor"/>
 
-  <style name="python:builtins"             foreground="chameleon3" bold="true"/>
-
   <style name="sh:variable1"                foreground="plum3"/>
   <style name="sh:variable2"                foreground="chameleon3"/>
 
-  <style name="xml:attribute-name"          foreground="plum3"/>
-  <style name="xml:tags"                    foreground="chameleon3"/>
-  <style name="xml:namespace"               foreground="chameleon3" bold="true"/>
-  <style name="xml:doctype"                 use-style="def:preprocessor"/>
-  <style name="xml:cdata-delim"             use-style="def:preprocessor"/>
-  <style name="xml:processing-instruction"  use-style="def:preprocessor"/>
 </style-scheme>

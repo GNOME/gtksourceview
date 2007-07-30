@@ -1,5 +1,11 @@
 2007-07-30  Paolo Borelli  <pborelli@katamail.com>
 
+	* gtksourceview/language-specs/tango.xml: fix it to work with
+	the new styles. But it needs to be reworked, colors are too
+	light.
+
+2007-07-30  Paolo Borelli  <pborelli@katamail.com>
+
 	* gtksourceview/gtksourcelanguage.c: map the old Data Type
 	style to def:type.
 
