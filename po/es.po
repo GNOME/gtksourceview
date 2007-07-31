@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: gtksourceview.HEAD.es\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-07-31 03:25+0100\n"
-"PO-Revision-Date: 2007-07-31 21:24+0200\n"
+"PO-Revision-Date: 2007-07-31 21:45+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -42,7 +42,7 @@ msgstr "Nivel máximo de deshacer"
 
 #: ../gtksourceview/gtksourcebuffer.c:185
 msgid "Number of undo levels for the buffer"
-msgstr "Número de niveles de deshacer para el búfer"
+msgstr "Número de niveles de deshacer para el búfer."
 
 #: ../gtksourceview/gtksourcebuffer.c:195
 msgid "Language"
@@ -71,7 +71,7 @@ msgstr "Indica si la operación de rehacer está disponible"
 #: ../gtksourceview/gtksourcebuffer.c:229
 #: ../gtksourceview/gtksourcebuffer.c:230
 msgid "Style scheme"
-msgstr "Estilos"
+msgstr "Estilos de esquemas"
 
 #: ../gtksourceview/gtksourcecontextengine.c:2248
 #, c-format
@@ -180,7 +180,9 @@ msgstr "Directorios de especificaciones de idiomas"
 msgid ""
 "List of directories where the language specification files (.lang) are "
 "located"
-msgstr "Lista de directorios en los que se hallan los archivo de especificación de lenguajes (.lang)"
+msgstr ""
+"Lista de directorios en los que se hallan los archivo de especificación de "
+"lenguajes (.lang)."
 
 #: ../gtksourceview/gtksourcelanguage-parser-2.c:882
 #, c-format
@@ -274,11 +276,13 @@ msgstr "Indica si el atributo tachado está establecido"
 
 #: ../gtksourceview/gtksourcestylemanager.c:142
 msgid "Style scheme search path"
-msgstr "Ruta de búsqueda del estilo"
+msgstr "Ruta de búsqueda del estilo del esquema"
 
 #: ../gtksourceview/gtksourcestylemanager.c:143
 msgid "List of directories and files where the style schemes are located"
-msgstr "Lista de directorios y archivos en los que se hallan los archivos de estilos"
+msgstr ""
+"Lista de directorios y archivos en los que se hallan los archivos de estilos "
+"de esquemas"
 
 #: ../gtksourceview/gtksourcestylemanager.c:151
 msgid "Scheme ids"
@@ -286,22 +290,22 @@ msgstr "Identificadores de esquema"
 
 #: ../gtksourceview/gtksourcestylemanager.c:152
 msgid "List of the ids of the available style schemes"
-msgstr "Lista de los identificadores de los estilos disponibles"
+msgstr "Lista de los identificadores de los estilos de esquemas disponibles"
 
 #: ../gtksourceview/gtksourcestylescheme.c:167
 #: ../gtksourceview/gtksourcestylescheme.c:168
 msgid "Style scheme id"
-msgstr "ID del estilo"
+msgstr "ID del estilo del esquema"
 
 #: ../gtksourceview/gtksourcestylescheme.c:182
 #: ../gtksourceview/gtksourcestylescheme.c:183
 msgid "Style scheme name"
-msgstr "Nombre del estilo"
+msgstr "Nombre del estilo del esquema"
 
 #: ../gtksourceview/gtksourcestylescheme.c:197
 #: ../gtksourceview/gtksourcestylescheme.c:198
 msgid "Style scheme filename"
-msgstr "Nombre del archivo de estilo"
+msgstr "Nombre del archivo de estilo del esquema"
 
 #: ../gtksourceview/gtksourceview.c:232
 msgid "Show Line Numbers"
@@ -309,7 +313,7 @@ msgstr "Mostrar número de línea"
 
 #: ../gtksourceview/gtksourceview.c:233
 msgid "Whether to display line numbers"
-msgstr "Indica si se mostrarán los números de las líneas"
+msgstr "Indica si se mostrarán los números de las líneas."
 
 #: ../gtksourceview/gtksourceview.c:240
 msgid "Show Line Markers"
@@ -317,7 +321,7 @@ msgstr "Mostrar marcadores de líneas"
 
 #: ../gtksourceview/gtksourceview.c:241
 msgid "Whether to display line marker pixbufs"
-msgstr "Indica si se mostrarán los marcadores de líneas"
+msgstr "Indica si se mostrarán los marcadores de líneas."
 
 #: ../gtksourceview/gtksourceview.c:248 ../gtksourceview/gtksourceview.c:249
 msgid "Tabs Width"
