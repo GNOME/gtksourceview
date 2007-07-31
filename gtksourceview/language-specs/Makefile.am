@@ -62,7 +62,7 @@ LANGUAGES =			\
 	yacc.lang
 
 STYLES =			\
-	gvim.xml		\
+	classic.xml		\
 	kate.xml		\
 	tango.xml
 

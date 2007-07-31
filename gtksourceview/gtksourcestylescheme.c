@@ -36,10 +36,9 @@
 #define STYLE_CURRENT_LINE		"current-line"
 #define STYLE_LINE_NUMBERS		"line-numbers"
 
-#define STYLE_SCHEME_VERSION	"1.0"
+#define STYLE_SCHEME_VERSION		"1.0"
 
-static const gchar *get_color_by_name  (GtkSourceStyleScheme *scheme,
-					const gchar          *name);
+#define DEFAULT_STYLE_SCHEME		"classic"
 
 
 enum {
@@ -309,6 +308,51 @@ _gtk_source_style_scheme_new (const gchar *id,
 	return scheme;
 }
 
+/**
+ * get_color_by_name:
+ * @scheme: a #GtkSourceStyleScheme.
+ * @name: color name to find.
+ *
+ * Returns: color which corresponds to @name in the @scheme.
+ * Returned value is actual color string suitable for gdk_color_parse().
+ * It may be @name or part of @name so copy it or something, if you need
+ * it to stay around.
+ *
+ * Since: 2.0
+ */
+static const gchar *
+get_color_by_name (GtkSourceStyleScheme *scheme,
+		   const gchar          *name)
+{
+	const char *color = NULL;
+
+	g_return_val_if_fail (name != NULL, NULL);
+
+	if (name[0] == '#')
+	{
+		GdkColor dummy;
+
+		if (gdk_color_parse (name + 1, &dummy))
+			color = name + 1;
+		else if (gdk_color_parse (name, &dummy))
+			color = name;
+		else
+			g_warning ("could not parse color '%s'", name);
+	}
+	else
+	{
+		color = g_hash_table_lookup (scheme->priv->named_colors, name);
+
+		if (color == NULL && scheme->priv->parent != NULL)
+			color = get_color_by_name (scheme->priv->parent, name);
+
+		if (color == NULL)
+			g_warning ("no color named '%s'", name);
+	}
+
+	return color;
+}
+
 static GtkSourceStyle *
 fix_style_colors (GtkSourceStyleScheme *scheme,
 		  GtkSourceStyle       *real_style)
@@ -395,51 +439,6 @@ gtk_source_style_scheme_get_style (GtkSourceStyleScheme *scheme,
 			     style);
 
 	return style;
-}
-
-/**
- * get_color_by_name:
- * @scheme: a #GtkSourceStyleScheme.
- * @name: color name to find.
- *
- * Returns: color which corresponds to @name in the @scheme.
- * Returned value is actual color string suitable for gdk_color_parse().
- * It may be @name or part of @name so copy it or something, if you need
- * it to stay around.
- *
- * Since: 2.0
- */
-static const gchar *
-get_color_by_name (GtkSourceStyleScheme *scheme,
-		   const gchar          *name)
-{
-	const char *color = NULL;
-
-	g_return_val_if_fail (name != NULL, NULL);
-
-	if (name[0] == '#')
-	{
-		GdkColor dummy;
-
-		if (gdk_color_parse (name + 1, &dummy))
-			color = name + 1;
-		else if (gdk_color_parse (name, &dummy))
-			color = name;
-		else
-			g_warning ("could not parse color '%s'", name);
-	}
-	else
-	{
-		color = g_hash_table_lookup (scheme->priv->named_colors, name);
-
-		if (color == NULL && scheme->priv->parent != NULL)
-			color = get_color_by_name (scheme->priv->parent, name);
-
-		if (color == NULL)
-			g_warning ("no color named '%s'", name);
-	}
-
-	return color;
 }
 
 #if 0
@@ -1129,5 +1128,6 @@ _gtk_source_style_scheme_get_default (void)
 
 	manager = gtk_source_style_manager_get_default ();
 
-	return gtk_source_style_manager_get_scheme (manager, "gvim");
+	return gtk_source_style_manager_get_scheme (manager,
+						    DEFAULT_STYLE_SCHEME);
 }

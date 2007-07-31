@@ -34,8 +34,8 @@
     <style id="comment" _name="Comment" map-to="def:comment"/>
     <style id="ocamldoc" _name="Ocamldoc Comments" map-to="def:note"/>
     <style id="base-n-integer" _name="Base-N Integer" map-to="def:base-n-integer"/>
-    <style id="floating-point" _name="Floating Point" map-to="def:floating-point"/>
-    <style id="decimal" _name="Decimal" map-to="def:decimal"/>
+    <style id="floating-point" _name="Floating Point number" map-to="def:floating-point"/>
+    <style id="decimal" _name="Decimal number" map-to="def:decimal"/>
     <style id="string" _name="String" map-to="def:string"/>
     <style id="keyword" _name="Keyword" map-to="def:keyword"/>
     <style id="meta-keyword" _name="Type, module or object keyword" map-to="def:keyword"/>
@@ -47,7 +47,7 @@
     <style id="type-var" _name="Type Variable" map-to="def:type"/>
     <style id="module" _name="Module Path" map-to="def:type"/>
     <style id="escape" _name="Escaped Character" map-to="def:special-char"/>
-    <style id="boolean" _name="Boolean constant" map-to="def:string"/>
+    <style id="boolean" _name="Boolean value" map-to="def:boolean"/>
     <style id="error" _name="Error" map-to="def:error"/>
   </styles>
 
