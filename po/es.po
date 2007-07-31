@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview.HEAD.es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-07-31 03:25+0100\n"
-"PO-Revision-Date: 2007-07-31 21:45+0200\n"
+"POT-Creation-Date: 2007-07-31 20:47+0100\n"
+"PO-Revision-Date: 2007-07-31 21:50+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -149,26 +149,26 @@ msgstr "contexto desconocido «%s»"
 msgid "Others"
 msgstr "Otros"
 
-#: ../gtksourceview/gtksourcelanguage.c:231
-#: ../gtksourceview/gtksourcelanguage.c:232
+#: ../gtksourceview/gtksourcelanguage.c:214
+#: ../gtksourceview/gtksourcelanguage.c:215
 msgid "Language id"
 msgstr "ID del Idioma"
 
-#: ../gtksourceview/gtksourcelanguage.c:239
-#: ../gtksourceview/gtksourcelanguage.c:240
+#: ../gtksourceview/gtksourcelanguage.c:222
+#: ../gtksourceview/gtksourcelanguage.c:223
 msgid "Language name"
 msgstr "Nombre del idioma"
 
-#: ../gtksourceview/gtksourcelanguage.c:247
-#: ../gtksourceview/gtksourcelanguage.c:248
+#: ../gtksourceview/gtksourcelanguage.c:230
+#: ../gtksourceview/gtksourcelanguage.c:231
 msgid "Language section"
 msgstr "Sección del idioma"
 
-#: ../gtksourceview/gtksourcelanguage.c:255
+#: ../gtksourceview/gtksourcelanguage.c:238
 msgid "Hidden"
 msgstr "Oculto"
 
-#: ../gtksourceview/gtksourcelanguage.c:256
+#: ../gtksourceview/gtksourcelanguage.c:239
 msgid "Whether the language should be hidden from the user"
 msgstr "Indica si se debería ocultar el idioma al usuario"
 
@@ -184,12 +184,12 @@ msgstr ""
 "Lista de directorios en los que se hallan los archivo de especificación de "
 "lenguajes (.lang)."
 
-#: ../gtksourceview/gtksourcelanguage-parser-2.c:882
+#: ../gtksourceview/gtksourcelanguage-parser-2.c:876
 #, c-format
 msgid "Unknown id '%s' in regex '%s'"
 msgstr "Id «%s» desconocido en la expresión regular «%s»"
 
-#: ../gtksourceview/gtksourcelanguage-parser-2.c:1110
+#: ../gtksourceview/gtksourcelanguage-parser-2.c:1104
 #, c-format
 msgid "in regex '%s': backreferences are not supported"
 msgstr "en la expresión regular «%s»: las retroreferencias no se soportan"
@@ -292,18 +292,18 @@ msgstr "Identificadores de esquema"
 msgid "List of the ids of the available style schemes"
 msgstr "Lista de los identificadores de los estilos de esquemas disponibles"
 
+#: ../gtksourceview/gtksourcestylescheme.c:166
 #: ../gtksourceview/gtksourcestylescheme.c:167
-#: ../gtksourceview/gtksourcestylescheme.c:168
 msgid "Style scheme id"
 msgstr "ID del estilo del esquema"
 
+#: ../gtksourceview/gtksourcestylescheme.c:181
 #: ../gtksourceview/gtksourcestylescheme.c:182
-#: ../gtksourceview/gtksourcestylescheme.c:183
 msgid "Style scheme name"
 msgstr "Nombre del estilo del esquema"
 
+#: ../gtksourceview/gtksourcestylescheme.c:196
 #: ../gtksourceview/gtksourcestylescheme.c:197
-#: ../gtksourceview/gtksourcestylescheme.c:198
 msgid "Style scheme filename"
 msgstr "Nombre del archivo de estilo del esquema"
 
@@ -450,6 +450,7 @@ msgstr "Número base arbitrario"
 #: ../gtksourceview/language-specs/java.lang.h:1
 #: ../gtksourceview/language-specs/javascript.lang.h:1
 #: ../gtksourceview/language-specs/lua.lang.h:1
+#: ../gtksourceview/language-specs/ocaml.lang.h:2
 #: ../gtksourceview/language-specs/ruby.lang.h:3
 #: ../gtksourceview/language-specs/vhdl.lang.h:2
 msgid "Boolean value"
@@ -517,6 +518,7 @@ msgstr "Tipo de dato"
 #: ../gtksourceview/language-specs/csharp.lang.h:5
 #: ../gtksourceview/language-specs/def.lang.h:19
 #: ../gtksourceview/language-specs/d.lang.h:6
+#: ../gtksourceview/language-specs/ocaml.lang.h:6
 #: ../gtksourceview/language-specs/python.lang.h:7
 #: ../gtksourceview/language-specs/ruby.lang.h:7
 msgid "Decimal number"
@@ -811,7 +813,6 @@ msgstr "Color"
 #: ../gtksourceview/language-specs/haskell.lang.h:4
 #: ../gtksourceview/language-specs/ini.lang.h:5
 #: ../gtksourceview/language-specs/nemerle.lang.h:6
-#: ../gtksourceview/language-specs/ocaml.lang.h:6
 #: ../gtksourceview/language-specs/octave.lang.h:4
 #: ../gtksourceview/language-specs/pascal.lang.h:3
 #: ../gtksourceview/language-specs/sql.lang.h:3
@@ -1106,7 +1107,6 @@ msgstr "Entero en base-N"
 
 #: ../gtksourceview/language-specs/fortran.lang.h:5
 #: ../gtksourceview/language-specs/ini.lang.h:6
-#: ../gtksourceview/language-specs/ocaml.lang.h:9
 #: ../gtksourceview/language-specs/octave.lang.h:5
 #: ../gtksourceview/language-specs/sql.lang.h:4
 msgid "Floating Point"
@@ -1436,13 +1436,13 @@ msgstr "Primitivas"
 msgid "Objective-C"
 msgstr "Objective-C"
 
-#: ../gtksourceview/language-specs/ocaml.lang.h:2
-msgid "Boolean constant"
-msgstr "Constante booleana"
-
 #: ../gtksourceview/language-specs/ocaml.lang.h:3
 msgid "Builtin-function keyword"
 msgstr "Palabra clave con función integrada"
+
+#: ../gtksourceview/language-specs/ocaml.lang.h:9
+msgid "Floating Point number"
+msgstr "Número en coma flotante"
 
 #: ../gtksourceview/language-specs/ocaml.lang.h:11
 msgid "Labeled argument"
@@ -1816,13 +1816,13 @@ msgstr "gramática"
 msgid "keyword"
 msgstr "Palabra clave"
 
-#: ../gtksourceview/language-specs/gvim.xml.h:1
-msgid "Color scheme used in GVim"
-msgstr "Esquema de colores a usar en GVim"
+#: ../gtksourceview/language-specs/classic.xml.h:1
+msgid "Classic"
+msgstr "Clásico"
 
-#: ../gtksourceview/language-specs/gvim.xml.h:2
-msgid "GVim"
-msgstr "GVim"
+#: ../gtksourceview/language-specs/classic.xml.h:2
+msgid "Classic color scheme"
+msgstr "Esquema de color clásico"
 
 #: ../gtksourceview/language-specs/kate.xml.h:1
 msgid "Color scheme used in the Kate text editor"
