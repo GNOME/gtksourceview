@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview.HEAD.es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-07-30 03:26+0100\n"
-"PO-Revision-Date: 2007-07-30 15:58+0200\n"
+"POT-Creation-Date: 2007-07-31 03:25+0100\n"
+"PO-Revision-Date: 2007-07-31 21:24+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -42,7 +42,7 @@ msgstr "Nivel máximo de deshacer"
 
 #: ../gtksourceview/gtksourcebuffer.c:185
 msgid "Number of undo levels for the buffer"
-msgstr "Número de niveles de deshacer para el búfer."
+msgstr "Número de niveles de deshacer para el búfer"
 
 #: ../gtksourceview/gtksourcebuffer.c:195
 msgid "Language"
@@ -71,7 +71,7 @@ msgstr "Indica si la operación de rehacer está disponible"
 #: ../gtksourceview/gtksourcebuffer.c:229
 #: ../gtksourceview/gtksourcebuffer.c:230
 msgid "Style scheme"
-msgstr "Estilos de esquemas"
+msgstr "Estilos"
 
 #: ../gtksourceview/gtksourcecontextengine.c:2248
 #, c-format
@@ -180,9 +180,7 @@ msgstr "Directorios de especificaciones de idiomas"
 msgid ""
 "List of directories where the language specification files (.lang) are "
 "located"
-msgstr ""
-"Lista de directorios en los que se hallan los archivo de especificación de "
-"lenguajes (.lang)."
+msgstr "Lista de directorios en los que se hallan los archivo de especificación de lenguajes (.lang)"
 
 #: ../gtksourceview/gtksourcelanguage-parser-2.c:882
 #, c-format
@@ -276,13 +274,11 @@ msgstr "Indica si el atributo tachado está establecido"
 
 #: ../gtksourceview/gtksourcestylemanager.c:142
 msgid "Style scheme search path"
-msgstr "Ruta de búsqueda del estilo del esquema"
+msgstr "Ruta de búsqueda del estilo"
 
 #: ../gtksourceview/gtksourcestylemanager.c:143
 msgid "List of directories and files where the style schemes are located"
-msgstr ""
-"Lista de directorios y archivos en los que se hallan los archivos de estilos "
-"de esquemas"
+msgstr "Lista de directorios y archivos en los que se hallan los archivos de estilos"
 
 #: ../gtksourceview/gtksourcestylemanager.c:151
 msgid "Scheme ids"
@@ -290,22 +286,22 @@ msgstr "Identificadores de esquema"
 
 #: ../gtksourceview/gtksourcestylemanager.c:152
 msgid "List of the ids of the available style schemes"
-msgstr "Lista de los identificadores de los estilos de esquemas disponibles"
+msgstr "Lista de los identificadores de los estilos disponibles"
 
 #: ../gtksourceview/gtksourcestylescheme.c:167
 #: ../gtksourceview/gtksourcestylescheme.c:168
 msgid "Style scheme id"
-msgstr "ID del estilo del esquema"
+msgstr "ID del estilo"
 
 #: ../gtksourceview/gtksourcestylescheme.c:182
 #: ../gtksourceview/gtksourcestylescheme.c:183
 msgid "Style scheme name"
-msgstr "Nombre del estilo del esquema"
+msgstr "Nombre del estilo"
 
 #: ../gtksourceview/gtksourcestylescheme.c:197
 #: ../gtksourceview/gtksourcestylescheme.c:198
 msgid "Style scheme filename"
-msgstr "Nombre del archivo de estilo del esquema"
+msgstr "Nombre del archivo de estilo"
 
 #: ../gtksourceview/gtksourceview.c:232
 msgid "Show Line Numbers"
@@ -313,7 +309,7 @@ msgstr "Mostrar número de línea"
 
 #: ../gtksourceview/gtksourceview.c:233
 msgid "Whether to display line numbers"
-msgstr "Indica si se mostrarán los números de las líneas."
+msgstr "Indica si se mostrarán los números de las líneas"
 
 #: ../gtksourceview/gtksourceview.c:240
 msgid "Show Line Markers"
@@ -321,7 +317,7 @@ msgstr "Mostrar marcadores de líneas"
 
 #: ../gtksourceview/gtksourceview.c:241
 msgid "Whether to display line marker pixbufs"
-msgstr "Indica si se mostrarán los marcadores de líneas."
+msgstr "Indica si se mostrarán los marcadores de líneas"
 
 #: ../gtksourceview/gtksourceview.c:248 ../gtksourceview/gtksourceview.c:249
 msgid "Tabs Width"
@@ -516,6 +512,9 @@ msgstr "Tipo de dato"
 #: ../gtksourceview/language-specs/c.lang.h:6
 #: ../gtksourceview/language-specs/csharp.lang.h:5
 #: ../gtksourceview/language-specs/def.lang.h:19
+#: ../gtksourceview/language-specs/d.lang.h:6
+#: ../gtksourceview/language-specs/python.lang.h:7
+#: ../gtksourceview/language-specs/ruby.lang.h:7
 msgid "Decimal number"
 msgstr "Número decimal"
 
@@ -524,7 +523,7 @@ msgstr "Número decimal"
 #: ../gtksourceview/language-specs/haskell.lang.h:5
 #: ../gtksourceview/language-specs/lua.lang.h:3
 #: ../gtksourceview/language-specs/ocaml.lang.h:8
-#: ../gtksourceview/language-specs/python.lang.h:6
+#: ../gtksourceview/language-specs/python.lang.h:8
 msgid "Escaped Character"
 msgstr "Carácter de escape"
 
@@ -553,7 +552,7 @@ msgstr "Carácter de escape"
 #: ../gtksourceview/language-specs/perl.lang.h:9
 #: ../gtksourceview/language-specs/php.lang.h:3
 #: ../gtksourceview/language-specs/po.lang.h:2
-#: ../gtksourceview/language-specs/python.lang.h:10
+#: ../gtksourceview/language-specs/python.lang.h:11
 #: ../gtksourceview/language-specs/R.lang.h:6
 #: ../gtksourceview/language-specs/ruby.lang.h:9
 #: ../gtksourceview/language-specs/scheme.lang.h:4
@@ -635,7 +634,7 @@ msgstr "Clase de almacenamiento"
 #: ../gtksourceview/language-specs/perl.lang.h:18
 #: ../gtksourceview/language-specs/php.lang.h:7
 #: ../gtksourceview/language-specs/po.lang.h:5
-#: ../gtksourceview/language-specs/python.lang.h:16
+#: ../gtksourceview/language-specs/python.lang.h:17
 #: ../gtksourceview/language-specs/ruby.lang.h:18
 #: ../gtksourceview/language-specs/scheme.lang.h:7
 #: ../gtksourceview/language-specs/sql.lang.h:10
@@ -655,9 +654,9 @@ msgstr "Patrón"
 #: ../gtksourceview/language-specs/m4.lang.h:1
 #: ../gtksourceview/language-specs/perl.lang.h:17
 #: ../gtksourceview/language-specs/php.lang.h:6
-#: ../gtksourceview/language-specs/python.lang.h:14
+#: ../gtksourceview/language-specs/python.lang.h:15
 #: ../gtksourceview/language-specs/R.lang.h:10
-#: ../gtksourceview/language-specs/ruby.lang.h:17
+#: ../gtksourceview/language-specs/ruby.lang.h:16
 #: ../gtksourceview/language-specs/sh.lang.h:1
 #: ../gtksourceview/language-specs/tcl.lang.h:2
 msgid "Scripts"
@@ -750,12 +749,15 @@ msgstr "Error"
 #. A floating point constant: 2.3e10
 #: ../gtksourceview/language-specs/c.lang.h:9
 #: ../gtksourceview/language-specs/def.lang.h:30
-#: ../gtksourceview/language-specs/python.lang.h:7
+#: ../gtksourceview/language-specs/d.lang.h:8
+#: ../gtksourceview/language-specs/python.lang.h:9
+#: ../gtksourceview/language-specs/ruby.lang.h:8
 msgid "Floating point number"
 msgstr "Número en coma flotante"
 
 #: ../gtksourceview/language-specs/c.lang.h:10
 #: ../gtksourceview/language-specs/csharp.lang.h:7
+#: ../gtksourceview/language-specs/d.lang.h:9
 msgid "Hexadecimal number"
 msgstr "Número hexadecimal"
 
@@ -764,6 +766,7 @@ msgid "Included File"
 msgstr "Archivo incluido"
 
 #: ../gtksourceview/language-specs/c.lang.h:13
+#: ../gtksourceview/language-specs/d.lang.h:12
 msgid "Octal number"
 msgstr "Número octal"
 
@@ -799,7 +802,6 @@ msgid "Color"
 msgstr "Color"
 
 #: ../gtksourceview/language-specs/css.lang.h:4
-#: ../gtksourceview/language-specs/d.lang.h:6
 #: ../gtksourceview/language-specs/fortran.lang.h:4
 #: ../gtksourceview/language-specs/gtkrc.lang.h:4
 #: ../gtksourceview/language-specs/haskell.lang.h:4
@@ -808,8 +810,6 @@ msgstr "Color"
 #: ../gtksourceview/language-specs/ocaml.lang.h:6
 #: ../gtksourceview/language-specs/octave.lang.h:4
 #: ../gtksourceview/language-specs/pascal.lang.h:3
-#: ../gtksourceview/language-specs/python.lang.h:5
-#: ../gtksourceview/language-specs/ruby.lang.h:7
 #: ../gtksourceview/language-specs/sql.lang.h:3
 msgid "Decimal"
 msgstr "Decimal"
@@ -825,7 +825,6 @@ msgstr "Dimensión"
 #: ../gtksourceview/language-specs/javascript.lang.h:7
 #: ../gtksourceview/language-specs/lua.lang.h:4
 #: ../gtksourceview/language-specs/octave.lang.h:6
-#: ../gtksourceview/language-specs/python.lang.h:9
 #: ../gtksourceview/language-specs/scheme.lang.h:3
 #: ../gtksourceview/language-specs/sql.lang.h:5
 msgid "Function"
@@ -849,6 +848,8 @@ msgstr "Reglas at"
 
 #. A base-N number: 0xFFFF
 #: ../gtksourceview/language-specs/def.lang.h:2
+#: ../gtksourceview/language-specs/python.lang.h:1
+#: ../gtksourceview/language-specs/ruby.lang.h:2
 msgid "Base-N number"
 msgstr "Entero en base-N"
 
@@ -860,7 +861,7 @@ msgstr "Identificador integrado"
 
 #. A complex number
 #: ../gtksourceview/language-specs/def.lang.h:13
-#: ../gtksourceview/language-specs/python.lang.h:4
+#: ../gtksourceview/language-specs/python.lang.h:6
 msgid "Complex number"
 msgstr "Número complejo"
 
@@ -1007,31 +1008,12 @@ msgid "Special case"
 msgstr "Caso especial"
 
 #: ../gtksourceview/language-specs/d.lang.h:1
-msgid "Binary"
-msgstr "Binario"
+msgid "Binary number"
+msgstr "Número binario"
 
 #: ../gtksourceview/language-specs/d.lang.h:4
 msgid "D"
 msgstr "D"
-
-#: ../gtksourceview/language-specs/d.lang.h:8
-#: ../gtksourceview/language-specs/fortran.lang.h:5
-#: ../gtksourceview/language-specs/ini.lang.h:6
-#: ../gtksourceview/language-specs/ocaml.lang.h:9
-#: ../gtksourceview/language-specs/octave.lang.h:5
-#: ../gtksourceview/language-specs/sql.lang.h:4
-msgid "Floating Point"
-msgstr "Coma flotante"
-
-#: ../gtksourceview/language-specs/d.lang.h:9
-#: ../gtksourceview/language-specs/docbook.lang.h:9
-msgid "Hexadecimal"
-msgstr "Hexadecimal"
-
-#: ../gtksourceview/language-specs/d.lang.h:12
-#: ../gtksourceview/language-specs/haskell.lang.h:10
-msgid "Octal"
-msgstr "Octal"
 
 #: ../gtksourceview/language-specs/d.lang.h:14
 msgid "Special Token"
@@ -1070,6 +1052,10 @@ msgstr "Elementos de IU"
 #: ../gtksourceview/language-specs/docbook.lang.h:8
 msgid "Header Elements"
 msgstr "Elementos de encabezado"
+
+#: ../gtksourceview/language-specs/docbook.lang.h:9
+msgid "Hexadecimal"
+msgstr "Hexadecimal"
 
 #: ../gtksourceview/language-specs/docbook.lang.h:10
 #: ../gtksourceview/language-specs/dtd.lang.h:2
@@ -1113,6 +1099,14 @@ msgstr "DTD"
 #: ../gtksourceview/language-specs/vhdl.lang.h:1
 msgid "Base-N Integer"
 msgstr "Entero en base-N"
+
+#: ../gtksourceview/language-specs/fortran.lang.h:5
+#: ../gtksourceview/language-specs/ini.lang.h:6
+#: ../gtksourceview/language-specs/ocaml.lang.h:9
+#: ../gtksourceview/language-specs/octave.lang.h:5
+#: ../gtksourceview/language-specs/sql.lang.h:4
+msgid "Floating Point"
+msgstr "Coma flotante"
 
 #: ../gtksourceview/language-specs/fortran.lang.h:6
 msgid "Fortran 95"
@@ -1252,6 +1246,10 @@ msgstr "Haskell"
 #: ../gtksourceview/language-specs/haskell.lang.h:8
 msgid "Hex"
 msgstr "Hexadecimal"
+
+#: ../gtksourceview/language-specs/haskell.lang.h:10
+msgid "Octal"
+msgstr "Octal"
 
 #: ../gtksourceview/language-specs/haskell.lang.h:14
 #: ../gtksourceview/language-specs/ruby.lang.h:19
@@ -1500,6 +1498,7 @@ msgid "Pascal"
 msgstr "Pascal"
 
 #: ../gtksourceview/language-specs/perl.lang.h:1
+#: ../gtksourceview/language-specs/python.lang.h:4
 msgid "Builtin Function"
 msgstr "Función integrada"
 
@@ -1568,36 +1567,36 @@ msgstr "pkg-config"
 msgid "gettext translation"
 msgstr "traducción gettext"
 
-#: ../gtksourceview/language-specs/python.lang.h:1
-#: ../gtksourceview/language-specs/ruby.lang.h:2
-msgid "Base-N integer"
-msgstr "Entero en base-N"
-
 #: ../gtksourceview/language-specs/python.lang.h:3
-msgid "Builtins"
-msgstr "Integrados"
+msgid "Builtin Constant"
+msgstr "Constante integrada"
 
-#: ../gtksourceview/language-specs/python.lang.h:8
+#: ../gtksourceview/language-specs/python.lang.h:5
+msgid "Builtin Object"
+msgstr "Objeto integrado"
+
+#: ../gtksourceview/language-specs/python.lang.h:10
 msgid "Format"
 msgstr "Formato"
 
-#: ../gtksourceview/language-specs/python.lang.h:11
+#: ../gtksourceview/language-specs/python.lang.h:12
 msgid "Module Handler"
 msgstr "Manejador de módulo"
 
-#: ../gtksourceview/language-specs/python.lang.h:12
+#: ../gtksourceview/language-specs/python.lang.h:13
 msgid "Multiline string"
 msgstr "Cadena multilínea"
 
-#: ../gtksourceview/language-specs/python.lang.h:13
+#: ../gtksourceview/language-specs/python.lang.h:14
 msgid "Python"
 msgstr "Python"
 
-#: ../gtksourceview/language-specs/python.lang.h:15
-msgid "Special Variables"
-msgstr "Variables especiales"
+#: ../gtksourceview/language-specs/python.lang.h:16
+#: ../gtksourceview/language-specs/ruby.lang.h:17
+msgid "Special Variable"
+msgstr "Variable especial"
 
-#: ../gtksourceview/language-specs/python.lang.h:17
+#: ../gtksourceview/language-specs/python.lang.h:18
 msgid "string-conversion"
 msgstr "string-conversion"
 
@@ -1689,10 +1688,6 @@ msgstr "Definición del atributo"
 msgid "Builtin"
 msgstr "Integrado"
 
-#: ../gtksourceview/language-specs/ruby.lang.h:8
-msgid "Floating point"
-msgstr "Coma flotante"
-
 #: ../gtksourceview/language-specs/ruby.lang.h:10
 msgid "Module handler"
 msgstr "Manejador de módulo"
@@ -1706,10 +1701,6 @@ msgid "Predefined Variable"
 msgstr "Variable predefinida"
 
 #: ../gtksourceview/language-specs/ruby.lang.h:15
-msgid "Reserved Variable"
-msgstr "Variable resevada"
-
-#: ../gtksourceview/language-specs/ruby.lang.h:16
 msgid "Ruby"
 msgstr "Ruby"
 
