@@ -553,7 +553,7 @@ set_tag_style (GtkSourceContextEngine *ce,
 	const char *map_to = style_id;
 
 	int guard = 0;
-		
+
 	g_return_if_fail (GTK_IS_TEXT_TAG (tag));
 	g_return_if_fail (style_id != NULL);
 
@@ -563,25 +563,25 @@ set_tag_style (GtkSourceContextEngine *ce,
 		return;
 
 	style = gtk_source_style_scheme_get_style (ce->priv->style_scheme, style_id);
-		
+
 	while (style == NULL)
 	{
 		GtkSourceStyleInfo *info;
-		
+
 		if (guard > MAX_STYLE_DEPENDENCY_DEPTH)
 		{
 			g_warning ("Potential circular dependency between styles detected for style '%s'", style_id);
 			break;
 		}
-		
+
 		++guard;
-		
+
 		/* FIXME Style references really must be fixed, both parser for
 		 * sane use in lang files, and engine for safe use. */
 		info = g_hash_table_lookup (ENGINE_STYLES_MAP(ce), map_to);
 
 		map_to = (info != NULL) ? info->map_to : NULL;
-		
+
 		if (!map_to)
 			break;
 

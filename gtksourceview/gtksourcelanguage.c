@@ -125,22 +125,6 @@ _gtk_source_language_new_from_file (const gchar              *filename,
 }
 
 static void
-gtk_source_language_set_property (GObject      *object,
-				  guint         prop_id,
-				  const GValue *value,
-				  GParamSpec   *pspec)
-{
-	g_return_if_fail (GTK_IS_SOURCE_LANGUAGE (object));
-
-	switch (prop_id)
-	{
-		default:
-			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-			break;
-	}
-}
-
-static void
 gtk_source_language_get_property (GObject    *object,
 				  guint       prop_id,
 				  GValue     *value,
@@ -209,9 +193,9 @@ gtk_source_language_finalize (GObject *object)
 	g_free (lang->priv->section);
 	g_free (lang->priv->id);
 	g_hash_table_destroy (lang->priv->properties);
-		
+
 	g_hash_table_destroy (lang->priv->styles);
-	
+
 	G_OBJECT_CLASS (gtk_source_language_parent_class)->finalize (object);
 }
 
@@ -221,7 +205,6 @@ gtk_source_language_class_init (GtkSourceLanguageClass *klass)
 	GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
 	object_class->get_property = gtk_source_language_get_property;
-	object_class->set_property = gtk_source_language_set_property;
 	object_class->dispose = gtk_source_language_dispose;
 	object_class->finalize = gtk_source_language_finalize;
 
@@ -265,8 +248,8 @@ gtk_source_language_init (GtkSourceLanguage *lang)
 {
 	lang->priv = G_TYPE_INSTANCE_GET_PRIVATE (lang, GTK_TYPE_SOURCE_LANGUAGE,
 						  GtkSourceLanguagePrivate);
-	lang->priv->styles = g_hash_table_new_full (g_str_hash, 
-						    g_str_equal, 
+	lang->priv->styles = g_hash_table_new_full (g_str_hash,
+						    g_str_equal,
 						    g_free,
 						    (GDestroyNotify)_gtk_source_style_info_free);
 	lang->priv->properties = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, g_free);
@@ -645,7 +628,7 @@ _gtk_source_language_get_language_manager (GtkSourceLanguage *language)
 void
 _gtk_source_language_define_language_styles (GtkSourceLanguage *lang)
 {
-	static gchar *alias[][2] = {
+	static const gchar *alias[][2] = {
 		{"Base-N Integer", "def:base-n-integer"},
 		{"Character", "def:character"},
 		{"Comment", "def:comment"},
@@ -656,18 +639,18 @@ _gtk_source_language_define_language_styles (GtkSourceLanguage *lang)
 		{"Preprocessor", "def:preprocessor"},
 		{"String", "def:string"},
 		{"Specials", "def:specials"},
-		{"Data Type", "def:type"}, 
+		{"Data Type", "def:type"},
 		{NULL, NULL}};
 
 	gint i = 0;
 
-	while (alias[i][0] != NULL) 
+	while (alias[i][0] != NULL)
 	{
 		GtkSourceStyleInfo *info;
 
 		info = _gtk_source_style_info_new (alias[i][0], alias[i][1]);
 
-		g_hash_table_insert (lang->priv->styles, 
+		g_hash_table_insert (lang->priv->styles,
 				     g_strdup (alias[i][0]),
 				     info);
 
@@ -734,7 +717,7 @@ struct _AddStyleIdData
 };
 
 static void
-add_style_id (gchar *id, gpointer value, AddStyleIdData *data)
+add_style_id (gchar *id, G_GNUC_UNUSED gpointer value, AddStyleIdData *data)
 {
 	if (g_str_has_prefix (id, data->language_id))
 		g_ptr_array_add (data->ids_array, g_strdup (id));
@@ -745,32 +728,32 @@ get_style_ids (GtkSourceLanguage *language)
 {
 	GPtrArray *ids_array;
 	AddStyleIdData data;
-	
+
 	g_return_val_if_fail (language->priv->styles != NULL, NULL);
-			
+
 	ids_array = g_ptr_array_new ();
-	
+
 	data.language_id = g_strdup_printf ("%s:", language->priv->id);
 	data.ids_array = ids_array;
-	
+
 	g_hash_table_foreach (language->priv->styles,
-			      (GHFunc)add_style_id,
+			      (GHFunc) add_style_id,
 			      &data);
-			      
+
 	g_free (data.language_id);
-	
+
 	if (ids_array->len == 0)
 	{
 		/* No style defined in this language */
 		g_ptr_array_free (ids_array, TRUE);
- 
-		return NULL;		
+
+		return NULL;
 	}
 	else
 	{
 		/* Terminate the array with NULL */
 		g_ptr_array_add (ids_array, NULL);
-		
+
 		return (gchar **)g_ptr_array_free (ids_array, FALSE);
 	}
 }
@@ -779,12 +762,12 @@ static gboolean
 force_styles (GtkSourceLanguage *language)
 {
 	GtkSourceEngine *ce;
-	
+
 	/* To be sure to have the list of styles we need to create a
 	 * GtkSourceContextEngine.
-	 * In the future we can improve this avoiding to create a context 
+	 * In the future we can improve this avoiding to create a context
 	 * engine.
-	 */	 
+	 */
 	if (language->priv->ctx_data == NULL)
 	{
 		ce = _gtk_source_language_create_engine (language);
@@ -792,8 +775,8 @@ force_styles (GtkSourceLanguage *language)
 			return FALSE;
 		g_object_unref (ce);
 	}
-	
-	return TRUE;	
+
+	return TRUE;
 }
 
 /**
@@ -801,36 +784,36 @@ force_styles (GtkSourceLanguage *language)
  *
  * @language: a #GtkSourceLanguage
  *
- * Returns the ids of the styles defined by this @langage. 
+ * Returns the ids of the styles defined by this @langage.
  *
  * Returns: a  %NULL terminated array containing
- * ids of the styles defined by this @langage or %NULL if no style is 
+ * ids of the styles defined by this @langage or %NULL if no style is
  * defined.  The returned array must be freed with g_strfreev().
 */
 gchar **
 gtk_source_language_get_style_ids (GtkSourceLanguage *language)
-{	
+{
 	g_return_val_if_fail (GTK_IS_SOURCE_LANGUAGE (language), NULL);
 	g_return_val_if_fail (language->priv->id != NULL, NULL);
-	
+
 	if (!force_styles (language))
 		return NULL;
-			
+
 	return get_style_ids (language);
 }
 
 static GtkSourceStyleInfo *
 get_style_info (GtkSourceLanguage *language, const char *style_id)
 {
-	GtkSourceStyleInfo *info;	
-	
+	GtkSourceStyleInfo *info;
+
 	if (!force_styles (language))
 		return NULL;
-			
-	g_return_val_if_fail (language->priv->styles != NULL, NULL);	
-	
+
+	g_return_val_if_fail (language->priv->styles != NULL, NULL);
+
 	info = g_hash_table_lookup (language->priv->styles, style_id);
-	
+
 	return info;
 }
 
@@ -843,24 +826,24 @@ get_style_info (GtkSourceLanguage *language, const char *style_id)
  * Returns the name of the style with ID @style_id defined by this @language.
  *
  * Returns: the name of the style with ID @style_id defined by this @language or
- * %NULL if the style has no name or there is no style with ID @style_id defined 
+ * %NULL if the style has no name or there is no style with ID @style_id defined
  * by this @language. The returned string is owned by the @language and must
  * not be modified.
  */
 const char *
-gtk_source_language_get_style_name (GtkSourceLanguage *language, 
+gtk_source_language_get_style_name (GtkSourceLanguage *language,
 				    const char        *style_id)
 {
 	GtkSourceStyleInfo *info;
-	
+
 	g_return_val_if_fail (GTK_IS_SOURCE_LANGUAGE (language), NULL);
 	g_return_val_if_fail (language->priv->id != NULL, NULL);
 	g_return_val_if_fail (style_id != NULL, NULL);
-	
+
 	info = get_style_info (language, style_id);
 	if (info == NULL)
 		return NULL;
-		
+
 	return info->name;
 }
 
@@ -870,10 +853,10 @@ GtkSourceStyleInfo *
 _gtk_source_style_info_new (const gchar *name, const gchar *map_to)
 {
 	GtkSourceStyleInfo *info = g_new0 (GtkSourceStyleInfo, 1);
-	
-	info->name = g_strdup (name);	
+
+	info->name = g_strdup (name);
 	info->map_to = g_strdup (map_to);
-		
+
 	return info;
 }
 
@@ -885,7 +868,7 @@ _gtk_source_style_info_free (GtkSourceStyleInfo *info)
 
 	g_free (info->name);
 	g_free (info->map_to);
-	
+
 	g_free (info);
 }
 

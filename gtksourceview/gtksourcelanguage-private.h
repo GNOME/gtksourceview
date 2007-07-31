@@ -75,10 +75,10 @@ void 			  _gtk_source_language_define_language_styles	(GtkSourceLanguage        
 
 gboolean 		  _gtk_source_language_file_parse_version1 	(GtkSourceLanguage        *language,
 									 GtkSourceContextData     *ctx_data);
-									 
+
 gboolean 		  _gtk_source_language_file_parse_version2	(GtkSourceLanguage        *language,
 									 GtkSourceContextData     *ctx_data);
-									 
+
 GtkSourceEngine 	 *_gtk_source_language_create_engine		(GtkSourceLanguage	  *language);
 
 /* Utility functions for GtkSourceStyleInfo */

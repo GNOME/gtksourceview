@@ -74,7 +74,7 @@ gchar		**gtk_source_language_get_globs		(GtkSourceLanguage *language);
 
 gchar		**gtk_source_language_get_style_ids 	(GtkSourceLanguage *language);
 
-const char       *gtk_source_language_get_style_name	(GtkSourceLanguage *language, 
+const char       *gtk_source_language_get_style_name	(GtkSourceLanguage *language,
 							 const char        *style_id);
 
 G_END_DECLS

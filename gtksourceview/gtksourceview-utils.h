@@ -27,7 +27,7 @@ G_BEGIN_DECLS
 
 gchar 	**_gtk_source_view_get_default_dirs (const gchar  *basename,
 					     gboolean      compat);
-									  
+
 GSList 	 *_gtk_source_view_get_file_list    (gchar       **path,
 					     const gchar  *suffix,
 					     gboolean      only_dirs);

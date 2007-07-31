@@ -79,16 +79,16 @@ build_file_listing (const gchar *item,
 {
 	GDir *dir;
 	const gchar *name;
-	
-	if (!only_dirs && g_file_test (item, G_FILE_TEST_IS_REGULAR)) 
+
+	if (!only_dirs && g_file_test (item, G_FILE_TEST_IS_REGULAR))
 	{
 		filenames = g_slist_prepend (filenames, g_strdup(item));
 		return filenames;
-		
+
 	}
 	dir = g_dir_open (item, 0, NULL);
 
-	if (dir == NULL) 
+	if (dir == NULL)
 		return filenames;
 
 	while ((name = g_dir_read_name (dir)) != NULL)

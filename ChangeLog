@@ -1,3 +1,16 @@
+2007-07-31  Yevgen Muntyan  <muntyan@tamu.edu>
+
+	* configure.ac: check for unistd.h explicitly.
+
+	* gtksourceview/gtksourcelanguage-parser-2.c: store GError* right
+	in the ParserState structure, so XMl parser can set and we will
+	know about it. Fixes #460002.
+
+	* gtksourceview/gtksourcelanguage.c
+	(_gtk_source_language_define_language_styles): use const char* instead
+	of char* to avoid compiler warnings.
+	Removed gtk_source_language_set_property() which did nothing.
+
 2007-07-30  Paolo Borelli  <pborelli@katamail.com>
 
 	* gtksourceview/language-specs/tango.xml: fix it to work with
@@ -81,7 +94,7 @@
 
 	Replace all uses of def:special-value style.
 	Remove the compat cruft in def.lang, since it is not needed
-	anymore. 
+	anymore.
 
 2007-07-27  Paolo Borelli  <pborelli@katamail.com>
 
@@ -129,7 +142,7 @@
 
 2007-07-26  Paolo Borelli  <pborelli@katamail.com>
 
-	* gtksourceview/gtksourcebuffer.[ch]: add a function to 
+	* gtksourceview/gtksourcebuffer.[ch]: add a function to
 	force the highlighting of a not yet exposed region to use
 	when printing.
 
@@ -176,9 +189,9 @@
 
 	Implements new gtk_source_language_get_style_ids and
 	gtk_source_language_get_style_name functions.
-	
+
 	* gtksourceview/gtksourcecontextengine.c (set_tag_style): check
-	for dependencies cycles. Adapt the code to the fact the 
+	for dependencies cycles. Adapt the code to the fact the
 	ENGINE_STYLES_MAP is now containing GtkSourceStyleInfo objects
 	(create_tag): s/style_name/style_id
 	* gtksourceview/gtksourcelanguage-parser-2.c (parse_style),
@@ -194,14 +207,14 @@
 	(gtk_source_language_get_style_ids), (get_style_info),
 	(gtk_source_language_get_style_name), (_gtk_source_style_info_new),
 	(_gtk_source_style_info_free): implements the two new functions
-	
+
 	* tests/test-widget.c (open_file): print the styles defined in the
 	corresponding lang file when opening a file
 
 2007-07-17  Paolo Maggi  <paolo@gnome.org>
 
 	* gtksourceview/language-specs/testfiles.sh: generate file.spec
-	
+
 2007-07-17  Yevgen Muntyan  <muntyan@tamu.edu>
 
 	Attempt to fix usage of def:preprocessor style. def:preprocessor

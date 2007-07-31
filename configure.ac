@@ -30,7 +30,7 @@ GTK_DOC_CHECK([1.0])
 
 # Check for headers and functions
 AC_HEADER_STDC
-AC_CHECK_HEADERS([stdlib.h string.h])
+AC_CHECK_HEADERS([unistd.h])
 AC_CHECK_FUNCS([memset memmove strerror])
 
 # Dependencies
