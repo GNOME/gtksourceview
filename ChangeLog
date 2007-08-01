@@ -1,6 +1,8 @@
 2007-08-01  Paolo Borelli  <pborelli@katamail.com>
 
 	* gtksourceview/language-specs/R.lang: port to the new format.
+	* gtksourceview/language-specs/Ruby.lang: do not highlight
+	the .class method as a class keyword.
 
 === gtksourceview 1.90.3 ===
 
