@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview.HEAD.es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-07-31 20:47+0100\n"
-"PO-Revision-Date: 2007-07-31 21:50+0200\n"
+"POT-Creation-Date: 2007-08-01 19:27+0100\n"
+"PO-Revision-Date: 2007-08-01 21:39+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -46,7 +46,7 @@ msgstr "Número de niveles de deshacer para el búfer."
 
 #: ../gtksourceview/gtksourcebuffer.c:195
 msgid "Language"
-msgstr "Idioma"
+msgstr "Lenguaje"
 
 #: ../gtksourceview/gtksourcebuffer.c:196
 msgid "Language object to get highlighting patterns from"
@@ -152,17 +152,17 @@ msgstr "Otros"
 #: ../gtksourceview/gtksourcelanguage.c:214
 #: ../gtksourceview/gtksourcelanguage.c:215
 msgid "Language id"
-msgstr "ID del Idioma"
+msgstr "ID del lenguaje"
 
 #: ../gtksourceview/gtksourcelanguage.c:222
 #: ../gtksourceview/gtksourcelanguage.c:223
 msgid "Language name"
-msgstr "Nombre del idioma"
+msgstr "Nombre del lenguaje"
 
 #: ../gtksourceview/gtksourcelanguage.c:230
 #: ../gtksourceview/gtksourcelanguage.c:231
 msgid "Language section"
-msgstr "Sección del idioma"
+msgstr "Sección del lenguaje"
 
 #: ../gtksourceview/gtksourcelanguage.c:238
 msgid "Hidden"
@@ -170,11 +170,11 @@ msgstr "Oculto"
 
 #: ../gtksourceview/gtksourcelanguage.c:239
 msgid "Whether the language should be hidden from the user"
-msgstr "Indica si se debería ocultar el idioma al usuario"
+msgstr "Indica si se debería ocultar el lenguaje al usuario"
 
 #: ../gtksourceview/gtksourcelanguagemanager.c:126
 msgid "Language specification directories"
-msgstr "Directorios de especificaciones de idiomas"
+msgstr "Directorios de especificaciones de lenguajes"
 
 #: ../gtksourceview/gtksourcelanguagemanager.c:127
 msgid ""
@@ -451,6 +451,7 @@ msgstr "Número base arbitrario"
 #: ../gtksourceview/language-specs/javascript.lang.h:1
 #: ../gtksourceview/language-specs/lua.lang.h:1
 #: ../gtksourceview/language-specs/ocaml.lang.h:2
+#: ../gtksourceview/language-specs/R.lang.h:2
 #: ../gtksourceview/language-specs/ruby.lang.h:3
 #: ../gtksourceview/language-specs/vhdl.lang.h:2
 msgid "Boolean value"
@@ -661,7 +662,7 @@ msgstr "Patrón"
 #: ../gtksourceview/language-specs/perl.lang.h:17
 #: ../gtksourceview/language-specs/php.lang.h:6
 #: ../gtksourceview/language-specs/python.lang.h:15
-#: ../gtksourceview/language-specs/R.lang.h:10
+#: ../gtksourceview/language-specs/R.lang.h:9
 #: ../gtksourceview/language-specs/ruby.lang.h:16
 #: ../gtksourceview/language-specs/sh.lang.h:1
 #: ../gtksourceview/language-specs/tcl.lang.h:2
@@ -757,6 +758,7 @@ msgstr "Error"
 #: ../gtksourceview/language-specs/def.lang.h:30
 #: ../gtksourceview/language-specs/d.lang.h:8
 #: ../gtksourceview/language-specs/python.lang.h:9
+#: ../gtksourceview/language-specs/R.lang.h:4
 #: ../gtksourceview/language-specs/ruby.lang.h:8
 msgid "Floating point number"
 msgstr "Número en coma flotante"
@@ -1397,7 +1399,6 @@ msgid "Core Types"
 msgstr "Tipos incluidos"
 
 #: ../gtksourceview/language-specs/nemerle.lang.h:7
-#: ../gtksourceview/language-specs/R.lang.h:4
 msgid "Floating Point Number"
 msgstr "Número en coma flotante"
 
@@ -1414,7 +1415,6 @@ msgstr "Palabras reservadas definidas por macros"
 #. <end-regex>&apos;</end-regex>
 #. </string>
 #: ../gtksourceview/language-specs/nemerle.lang.h:10
-#: ../gtksourceview/language-specs/R.lang.h:7
 #: ../gtksourceview/language-specs/vbnet.lang.h:6
 msgid "Line Comment"
 msgstr "Comentario de línea"
@@ -1493,7 +1493,6 @@ msgid "Octave"
 msgstr "Octave"
 
 #: ../gtksourceview/language-specs/octave.lang.h:9
-#: ../gtksourceview/language-specs/R.lang.h:9
 msgid "Reserved Constant"
 msgstr "Constante reservada"
 
@@ -1608,25 +1607,25 @@ msgstr "string-conversion"
 msgid "Assignment Operator"
 msgstr "Operador de asignación"
 
-#: ../gtksourceview/language-specs/R.lang.h:2
+#: ../gtksourceview/language-specs/R.lang.h:3
 msgid "Delimiter"
 msgstr "Delimitador"
-
-#: ../gtksourceview/language-specs/R.lang.h:3
-msgid "Double Quoted String"
-msgstr "Cadena doblemente entrecomillada"
 
 #: ../gtksourceview/language-specs/R.lang.h:5
 msgid "Integer Number"
 msgstr "Número entero"
 
+#: ../gtksourceview/language-specs/R.lang.h:7
+msgid "R"
+msgstr "R"
+
 #: ../gtksourceview/language-specs/R.lang.h:8
 msgid "Reserved Class"
 msgstr "Clase reservada"
 
-#: ../gtksourceview/language-specs/R.lang.h:11
-msgid "Single Quoted String"
-msgstr "Cadena entrecomillada simple"
+#: ../gtksourceview/language-specs/R.lang.h:10
+msgid "Special Constant"
+msgstr "Constante especial"
 
 #: ../gtksourceview/language-specs/rpmspec.lang.h:1
 msgid "Command Macro"
