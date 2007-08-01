@@ -32,7 +32,6 @@ for l in *.lang; do
     docbook.lang) ;;
     msil.lang) ;;
     nemerle.lang) ;;
-    R.lang) ;;
     vbnet.lang) ;;
     *)
       langs="$langs $l"
