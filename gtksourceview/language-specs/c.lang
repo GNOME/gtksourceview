@@ -47,6 +47,7 @@
         <style id="decimal"           _name="Decimal number"      map-to="def:decimal"/>
         <style id="octal"             _name="Octal number"        map-to="def:base-n-integer"/>
         <style id="hexadecimal"       _name="Hexadecimal number"  map-to="def:base-n-integer"/>
+        <style id="boolean"           _name="Boolean value"       map-to="def:boolean"/>
     </styles>
 
     <definitions>
@@ -221,6 +222,7 @@
                     <keyword>_Bool</keyword>
                     <keyword>_Complex</keyword>
                     <keyword>_Imaginary</keyword>
+                    <keyword>bool</keyword>
                     <keyword>char</keyword>
                     <keyword>double</keyword>
                     <keyword>float</keyword>
@@ -246,8 +248,6 @@
 
                 <context id="common-defines" style-ref="common-defines">
                     <keyword>NULL</keyword>
-                    <keyword>TRUE</keyword>
-                    <keyword>FALSE</keyword>
                     <keyword>MAX</keyword>
                     <keyword>MIN</keyword>
                     <keyword>__LINE__</keyword>
@@ -256,6 +256,13 @@
                     <keyword>__func__</keyword>
                     <keyword>__TIME__</keyword>
                     <keyword>__STDC__</keyword>
+                </context>
+                
+                <context id="boolean" style-ref="boolean">
+                    <keyword>true</keyword>
+                    <keyword>false</keyword>
+                    <keyword>TRUE</keyword>
+                    <keyword>FALSE</keyword>
                 </context>
 
             </include>
