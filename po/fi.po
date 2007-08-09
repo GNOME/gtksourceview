@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-08-06 16:27+0300\n"
+"POT-Creation-Date: 2007-08-09 07:12+0300\n"
 "PO-Revision-Date: 2007-02-13 08:23+0300\n"
 "Last-Translator: Ilkka Tuohela <hile@iki.fi>\n"
 "Language-Team: Finnish <gnome-fi-laatu@lists.sourceforge.net>\n"
@@ -67,7 +67,7 @@ msgstr "Onko uudestaan tekeminen mahdollista"
 #: ../gtksourceview/gtksourcebuffer.c:229
 #: ../gtksourceview/gtksourcebuffer.c:230
 msgid "Style scheme"
-msgstr "Tyylimäärittely"
+msgstr "Tyylimalli"
 
 #: ../gtksourceview/gtksourcecontextengine.c:2248
 #, c-format
@@ -89,17 +89,20 @@ msgid ""
 "process will be slower than usual.\n"
 "The error was: %s"
 msgstr ""
+"Kaikille siirtymille ei voitu luoda säännöllistä lauseketta, syntaksin "
+"korostustoiminto saattaa olla hitaampi kuin yleensä.\n"
+"Virhe oli: %s"
 
 #: ../gtksourceview/gtksourcecontextengine.c:5638
 #, c-format
 msgid "context '%s' cannot contain a \\%%{...@start} command"
-msgstr ""
+msgstr "konteksti \"%s\" ei voi sisältää \\%%{...@start} -komentoa"
 
 #: ../gtksourceview/gtksourcecontextengine.c:5790
 #: ../gtksourceview/gtksourcecontextengine.c:5877
 #, c-format
 msgid "duplicated context id '%s'"
-msgstr ""
+msgstr "kahdennettu kontekstin tunniste \"%s\""
 
 #: ../gtksourceview/gtksourcecontextengine.c:5990
 #: ../gtksourceview/gtksourcecontextengine.c:6050
@@ -108,6 +111,8 @@ msgid ""
 "style override used with wildcard context reference in language '%s' in ref "
 "'%s'"
 msgstr ""
+"tyylin ohitusta käytettiin jokerimerkillisessä kontekstiviitteessä kielellä "
+"\"%s\" viitteessä \"%s\""
 
 #: ../gtksourceview/gtksourcecontextengine.c:6064
 #, c-format
@@ -161,7 +166,7 @@ msgstr "Piilotettu"
 
 #: ../gtksourceview/gtksourcelanguage.c:239
 msgid "Whether the language should be hidden from the user"
-msgstr ""
+msgstr "Piilotetaanko kieli käyttäjältä"
 
 #: ../gtksourceview/gtksourcelanguagemanager.c:126
 msgid "Language specification directories"
@@ -181,7 +186,7 @@ msgstr "Tuntematon tunniste \"%s\" säännöllisessä lauseessa \"%s\""
 #: ../gtksourceview/gtksourcelanguage-parser-2.c:1104
 #, c-format
 msgid "in regex '%s': backreferences are not supported"
-msgstr ""
+msgstr "lausekkeessa \"%s\": takaisinviittauksia ei tueta"
 
 #: ../gtksourceview/gtksourcestyle.c:68
 msgid "Background"
@@ -201,7 +206,7 @@ msgstr "Edustaväri"
 
 #: ../gtksourceview/gtksourcestyle.c:84 ../gtksourceview/gtksourcestyle.c:85
 msgid "Bold"
-msgstr ""
+msgstr "Lihavoitu"
 
 #: ../gtksourceview/gtksourcestyle.c:92 ../gtksourceview/gtksourcestyle.c:93
 msgid "Italic"
@@ -233,66 +238,66 @@ msgstr "Onko taustaväri asetettu"
 
 #: ../gtksourceview/gtksourcestyle.c:132
 msgid "Bold set"
-msgstr ""
+msgstr "Lihavoitu asetettu"
 
 #: ../gtksourceview/gtksourcestyle.c:133
 msgid "Whether bold attribute is set"
-msgstr ""
+msgstr "Onko lihavointimääre asetettu"
 
 #: ../gtksourceview/gtksourcestyle.c:140
 msgid "Italic set"
-msgstr ""
+msgstr "Kursiivi asetettu"
 
 #: ../gtksourceview/gtksourcestyle.c:141
 msgid "Whether italic attribute is set"
-msgstr ""
+msgstr "Onko kursiivimääre asetettu"
 
 #: ../gtksourceview/gtksourcestyle.c:148
 msgid "Underline set"
-msgstr ""
+msgstr "Alleviivaus asetettu"
 
 #: ../gtksourceview/gtksourcestyle.c:149
 msgid "Whether underline attribute is set"
-msgstr ""
+msgstr "Onko alleviivausmääre asetettu"
 
 #: ../gtksourceview/gtksourcestyle.c:156
 msgid "Strikethrough set"
-msgstr ""
+msgstr "Yliviivaus asetettu"
 
 #: ../gtksourceview/gtksourcestyle.c:157
 msgid "Whether strikethrough attribute is set"
-msgstr ""
+msgstr "Onko yliviivausmääre asetettu"
 
 #: ../gtksourceview/gtksourcestylemanager.c:142
 msgid "Style scheme search path"
-msgstr ""
+msgstr "Tyylimallien hakupolku"
 
 #: ../gtksourceview/gtksourcestylemanager.c:143
 msgid "List of directories and files where the style schemes are located"
-msgstr "Luettelo kansioista ja tiedostoista, joissa tyylimäärittelyt ovat"
+msgstr "Luettelo kansioista ja tiedostoista, joissa tyylimallit voivat sijaita"
 
 #: ../gtksourceview/gtksourcestylemanager.c:151
 msgid "Scheme ids"
-msgstr "Scheme-tunnisteet"
+msgstr "Mallitunnisteet"
 
 #: ../gtksourceview/gtksourcestylemanager.c:152
 msgid "List of the ids of the available style schemes"
-msgstr ""
+msgstr "Luettelo saatavilla olevista tyylimallien tunnisteista"
 
 #: ../gtksourceview/gtksourcestylescheme.c:166
 #: ../gtksourceview/gtksourcestylescheme.c:167
 msgid "Style scheme id"
-msgstr ""
+msgstr "Tyylimallin tunniste"
 
 #: ../gtksourceview/gtksourcestylescheme.c:181
 #: ../gtksourceview/gtksourcestylescheme.c:182
 msgid "Style scheme name"
-msgstr ""
+msgstr "Tyylimallin nimi"
 
 #: ../gtksourceview/gtksourcestylescheme.c:196
 #: ../gtksourceview/gtksourcestylescheme.c:197
 msgid "Style scheme filename"
-msgstr ""
+msgstr "Tyylimallin tiedostonimi"
 
 #: ../gtksourceview/gtksourceview.c:232
 msgid "Show Line Numbers"
@@ -427,10 +432,11 @@ msgstr "Ada"
 
 #: ../gtksourceview/language-specs/ada.lang.h:2
 msgid "Arbitrary base number"
-msgstr ""
+msgstr "Mielivaltaisen kannan numero"
 
 #. A boolean constant: TRUE, false
 #: ../gtksourceview/language-specs/ada.lang.h:3
+#: ../gtksourceview/language-specs/c.lang.h:1
 #: ../gtksourceview/language-specs/csharp.lang.h:1
 #: ../gtksourceview/language-specs/def.lang.h:4
 #: ../gtksourceview/language-specs/gtkrc.lang.h:1
@@ -447,7 +453,7 @@ msgstr "Totuusarvo"
 
 #. Any comment
 #: ../gtksourceview/language-specs/ada.lang.h:4
-#: ../gtksourceview/language-specs/c.lang.h:3
+#: ../gtksourceview/language-specs/c.lang.h:4
 #: ../gtksourceview/language-specs/csharp.lang.h:3
 #: ../gtksourceview/language-specs/css.lang.h:3
 #: ../gtksourceview/language-specs/def.lang.h:11
@@ -481,7 +487,7 @@ msgstr "Kommentti"
 
 #. map-to="def:others"
 #: ../gtksourceview/language-specs/ada.lang.h:5
-#: ../gtksourceview/language-specs/c.lang.h:5
+#: ../gtksourceview/language-specs/c.lang.h:6
 #: ../gtksourceview/language-specs/cpp.lang.h:3
 #: ../gtksourceview/language-specs/csharp.lang.h:4
 #: ../gtksourceview/language-specs/d.lang.h:5
@@ -503,7 +509,7 @@ msgstr "Tietotyyppi"
 
 #. A decimal number: 1234
 #: ../gtksourceview/language-specs/ada.lang.h:6
-#: ../gtksourceview/language-specs/c.lang.h:6
+#: ../gtksourceview/language-specs/c.lang.h:7
 #: ../gtksourceview/language-specs/csharp.lang.h:5
 #: ../gtksourceview/language-specs/def.lang.h:19
 #: ../gtksourceview/language-specs/d.lang.h:6
@@ -514,7 +520,7 @@ msgid "Decimal number"
 msgstr "Desimaaliluku"
 
 #: ../gtksourceview/language-specs/ada.lang.h:7
-#: ../gtksourceview/language-specs/c.lang.h:8
+#: ../gtksourceview/language-specs/c.lang.h:9
 #: ../gtksourceview/language-specs/haskell.lang.h:5
 #: ../gtksourceview/language-specs/lua.lang.h:3
 #: ../gtksourceview/language-specs/ocaml.lang.h:8
@@ -525,7 +531,7 @@ msgstr "Suojattu merkkijono"
 #. keywords: "if", "for", "while", etc.
 #: ../gtksourceview/language-specs/ada.lang.h:8
 #: ../gtksourceview/language-specs/awk.lang.h:1
-#: ../gtksourceview/language-specs/c.lang.h:12
+#: ../gtksourceview/language-specs/c.lang.h:13
 #: ../gtksourceview/language-specs/cpp.lang.h:4
 #: ../gtksourceview/language-specs/csharp.lang.h:8
 #: ../gtksourceview/language-specs/css.lang.h:8
@@ -560,7 +566,7 @@ msgid "Keyword"
 msgstr "Avainsana"
 
 #: ../gtksourceview/language-specs/ada.lang.h:9
-#: ../gtksourceview/language-specs/c.lang.h:14
+#: ../gtksourceview/language-specs/c.lang.h:15
 #: ../gtksourceview/language-specs/csharp.lang.h:10
 #: ../gtksourceview/language-specs/haskell.lang.h:11
 #: ../gtksourceview/language-specs/idl.lang.h:5
@@ -576,7 +582,7 @@ msgstr "Reaaliluku"
 
 #: ../gtksourceview/language-specs/ada.lang.h:11
 #: ../gtksourceview/language-specs/boo.lang.h:6
-#: ../gtksourceview/language-specs/c.lang.h:15
+#: ../gtksourceview/language-specs/c.lang.h:16
 #: ../gtksourceview/language-specs/chdr.lang.h:2
 #: ../gtksourceview/language-specs/cpp.lang.h:5
 #: ../gtksourceview/language-specs/csharp.lang.h:12
@@ -600,14 +606,14 @@ msgid "Sources"
 msgstr "Lähdekoodit"
 
 #: ../gtksourceview/language-specs/ada.lang.h:12
-#: ../gtksourceview/language-specs/c.lang.h:16
+#: ../gtksourceview/language-specs/c.lang.h:17
 #: ../gtksourceview/language-specs/java.lang.h:14
 msgid "Storage Class"
 msgstr "Säilöluokka"
 
 #. A string constant: "this is a string"
 #: ../gtksourceview/language-specs/ada.lang.h:13
-#: ../gtksourceview/language-specs/c.lang.h:17
+#: ../gtksourceview/language-specs/c.lang.h:18
 #: ../gtksourceview/language-specs/csharp.lang.h:13
 #: ../gtksourceview/language-specs/css.lang.h:13
 #: ../gtksourceview/language-specs/def.lang.h:57
@@ -707,26 +713,26 @@ msgstr "Primitiivi"
 msgid "ChangeLog"
 msgstr "ChangeLog"
 
-#: ../gtksourceview/language-specs/c.lang.h:1
+#: ../gtksourceview/language-specs/c.lang.h:2
 msgid "C"
 msgstr "C"
 
 #. A character constant: 'c'
-#: ../gtksourceview/language-specs/c.lang.h:2
+#: ../gtksourceview/language-specs/c.lang.h:3
 #: ../gtksourceview/language-specs/def.lang.h:9
 #: ../gtksourceview/language-specs/haskell.lang.h:1
 #: ../gtksourceview/language-specs/vhdl.lang.h:3
 msgid "Character"
 msgstr "Merkki"
 
-#: ../gtksourceview/language-specs/c.lang.h:4
+#: ../gtksourceview/language-specs/c.lang.h:5
 #: ../gtksourceview/language-specs/cpp.lang.h:2
 #: ../gtksourceview/language-specs/objc.lang.h:1
 msgid "Common Defines"
 msgstr "Yleiset määrittelyt"
 
 #. Any erroneous construct
-#: ../gtksourceview/language-specs/c.lang.h:7
+#: ../gtksourceview/language-specs/c.lang.h:8
 #: ../gtksourceview/language-specs/csharp.lang.h:6
 #: ../gtksourceview/language-specs/css.lang.h:6
 #: ../gtksourceview/language-specs/def.lang.h:28
@@ -742,7 +748,7 @@ msgid "Error"
 msgstr "Virhe"
 
 #. A floating point constant: 2.3e10
-#: ../gtksourceview/language-specs/c.lang.h:9
+#: ../gtksourceview/language-specs/c.lang.h:10
 #: ../gtksourceview/language-specs/def.lang.h:30
 #: ../gtksourceview/language-specs/d.lang.h:8
 #: ../gtksourceview/language-specs/python.lang.h:9
@@ -751,22 +757,22 @@ msgstr "Virhe"
 msgid "Floating point number"
 msgstr "Liukuluku"
 
-#: ../gtksourceview/language-specs/c.lang.h:10
+#: ../gtksourceview/language-specs/c.lang.h:11
 #: ../gtksourceview/language-specs/csharp.lang.h:7
 #: ../gtksourceview/language-specs/d.lang.h:9
 msgid "Hexadecimal number"
 msgstr "Heksadesimaaliluku"
 
-#: ../gtksourceview/language-specs/c.lang.h:11
+#: ../gtksourceview/language-specs/c.lang.h:12
 msgid "Included File"
 msgstr "Sisällytetty tiedosto"
 
-#: ../gtksourceview/language-specs/c.lang.h:13
+#: ../gtksourceview/language-specs/c.lang.h:14
 #: ../gtksourceview/language-specs/d.lang.h:12
 msgid "Octal number"
 msgstr "Oktaaliluku"
 
-#: ../gtksourceview/language-specs/c.lang.h:18
+#: ../gtksourceview/language-specs/c.lang.h:19
 msgid "printf Conversion"
 msgstr "printf-muunnos"
 
@@ -852,7 +858,7 @@ msgstr "N-kantainen luku"
 #. (see http://docs.python.org/lib/built-in-funcs.html)
 #: ../gtksourceview/language-specs/def.lang.h:7
 msgid "Built-in identifier"
-msgstr "Sisäänrakennettu-tunniste"
+msgstr "Varustunniste"
 
 #. A complex number
 #: ../gtksourceview/language-specs/def.lang.h:13
@@ -879,14 +885,12 @@ msgstr "Oletukset"
 #. A special comment containing documentation like in javadoc or
 #. gtk-doc
 #: ../gtksourceview/language-specs/def.lang.h:23
-#, fuzzy
 msgid "Documentation comment"
 msgstr "Dokumentaatiokommentti"
 
 #. This style doesn't map to anything since it must be used as an additional
 #. style for text which is already styled as a "doc-comment"
 #: ../gtksourceview/language-specs/def.lang.h:26
-#, fuzzy
 msgid "Documentation comment element"
 msgstr "Dokumentaatiokommenttin osa"
 
@@ -898,7 +902,7 @@ msgstr "Tunniste"
 #. Anything that needs extra attention; mostly the keywords TODO, FIXME and XXX
 #: ../gtksourceview/language-specs/def.lang.h:38
 msgid "Note (FIXME, TODO, XXX, etc.)"
-msgstr ""
+msgstr "Huomautus (FIXME, TODO, XXX jne.)"
 
 #. Operators: "+", "*", etc.
 #: ../gtksourceview/language-specs/def.lang.h:42
@@ -913,36 +917,32 @@ msgstr "Esikäsittelijän määrittely"
 
 #. Reserved keywords: like "const" and "goto" in Java
 #: ../gtksourceview/language-specs/def.lang.h:46
-#, fuzzy
 msgid "Reserved keyword"
-msgstr "Tulevaan käyttöön varatut sanat"
+msgstr "Varattu sana"
 
 #. A shebang: #!/bin/sh
 #: ../gtksourceview/language-specs/def.lang.h:48
 msgid "Shebang"
-msgstr ""
+msgstr "Shebang"
 
 #. This style doesn't map to anything since it must be used as an additional
 #. style for text which is already styled as a "string"
 #: ../gtksourceview/language-specs/def.lang.h:51
 msgid "Special character (inside a string)"
-msgstr ""
+msgstr "Erikoismerkki (merkkijoukon sisällä)"
 
 #. A special constant like NULL in C or null in Java
 #: ../gtksourceview/language-specs/def.lang.h:53
-#, fuzzy
 msgid "Special constant"
-msgstr "Erikoismerkit"
+msgstr "Erikoisvakio"
 
 #. Any statement
 #: ../gtksourceview/language-specs/def.lang.h:55
-#, fuzzy
 msgid "Statement"
-msgstr "Tila"
+msgstr "Lauseke"
 
 #. Text that stands out, HTML links, e-mail addresses, etc.
 #: ../gtksourceview/language-specs/def.lang.h:59
-#, fuzzy
 msgid "Underlined"
 msgstr "Alleviivattu"
 
@@ -1086,7 +1086,7 @@ msgstr "DPatch"
 
 #: ../gtksourceview/language-specs/dpatch.lang.h:3
 msgid "patch-start"
-msgstr ""
+msgstr "patch-alku"
 
 #: ../gtksourceview/language-specs/dtd.lang.h:1
 #: ../gtksourceview/language-specs/html.lang.h:4
@@ -1173,7 +1173,7 @@ msgstr "Ikkunaelementin tila"
 
 #: ../gtksourceview/language-specs/haddock.lang.h:1
 msgid "Anchor"
-msgstr ""
+msgstr "Ankkuri"
 
 #: ../gtksourceview/language-specs/haddock.lang.h:2
 msgid "Code Block"
@@ -1181,7 +1181,7 @@ msgstr "Koodilohko"
 
 #: ../gtksourceview/language-specs/haddock.lang.h:3
 msgid "Definition list"
-msgstr "Määrittelylista"
+msgstr "Määrittelyluettelo"
 
 #: ../gtksourceview/language-specs/haddock.lang.h:4
 msgid "Emphasis"
@@ -1189,7 +1189,7 @@ msgstr "Korostus"
 
 #: ../gtksourceview/language-specs/haddock.lang.h:5
 msgid "Enumerated list"
-msgstr ""
+msgstr "Numeroitu luettelo"
 
 #: ../gtksourceview/language-specs/haddock.lang.h:6
 msgid "Escape"
@@ -1197,48 +1197,43 @@ msgstr "Escape"
 
 #: ../gtksourceview/language-specs/haddock.lang.h:7
 msgid "Haddock"
-msgstr ""
+msgstr "Haddock"
 
 #: ../gtksourceview/language-specs/haddock.lang.h:8
-#, fuzzy
 msgid "Haddock Directive"
-msgstr "Ohjeet"
+msgstr "Haddock-direktiivi"
 
 #: ../gtksourceview/language-specs/haddock.lang.h:9
-#, fuzzy
 msgid "Header Property"
-msgstr "Otsake-elementit"
+msgstr "Otsakkeen ominaisuus"
 
 #: ../gtksourceview/language-specs/haddock.lang.h:10
-#, fuzzy
 msgid "Hyperlinked Identifier"
-msgstr "Varattu tunniste"
+msgstr "Hyperlinkitetty tunniste"
 
 #: ../gtksourceview/language-specs/haddock.lang.h:11
 msgid "Hyperlinked Module Name"
-msgstr ""
+msgstr "Hyperlinkitetty moduulin nimi"
 
 #: ../gtksourceview/language-specs/haddock.lang.h:12
-#, fuzzy
 msgid "Inline Haddock Section"
-msgstr "Sisäkkäinen dokumentaatio-osio"
+msgstr "Sisäkkäinen haddock-osio"
 
 #: ../gtksourceview/language-specs/haddock.lang.h:13
 msgid "Itemized list"
-msgstr ""
+msgstr "Järjestetty luettelo"
 
 #: ../gtksourceview/language-specs/haddock.lang.h:15
 msgid "Monospace"
-msgstr ""
+msgstr "Tasalevyinen"
 
 #: ../gtksourceview/language-specs/haddock.lang.h:16
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 #: ../gtksourceview/language-specs/haskell-literate.lang.h:1
-#, fuzzy
 msgid "Literate Haskell"
-msgstr "Haskell"
+msgstr ""
 
 #: ../gtksourceview/language-specs/haskell.lang.h:6
 msgid "Float"
@@ -1501,9 +1496,8 @@ msgstr "Pascal"
 
 #: ../gtksourceview/language-specs/perl.lang.h:1
 #: ../gtksourceview/language-specs/python.lang.h:4
-#, fuzzy
 msgid "Builtin Function"
-msgstr "Kokoelmafunktiot"
+msgstr "Varusfunktio"
 
 #: ../gtksourceview/language-specs/perl.lang.h:3
 msgid "Control"
@@ -1571,23 +1565,20 @@ msgid "gettext translation"
 msgstr "Gettext-käännös"
 
 #: ../gtksourceview/language-specs/python.lang.h:3
-#, fuzzy
 msgid "Builtin Constant"
-msgstr "Varuskomento"
+msgstr "Varusvakio"
 
 #: ../gtksourceview/language-specs/python.lang.h:5
-#, fuzzy
 msgid "Builtin Object"
-msgstr "Sisäänrakennettu"
+msgstr "Varusolio"
 
 #: ../gtksourceview/language-specs/python.lang.h:10
 msgid "Format"
 msgstr "Muotoilu"
 
 #: ../gtksourceview/language-specs/python.lang.h:12
-#, fuzzy
 msgid "Module Handler"
-msgstr "Moduulien käsittelimet"
+msgstr "Moduulin käsittelin"
 
 #: ../gtksourceview/language-specs/python.lang.h:13
 msgid "Multiline string"
@@ -1599,9 +1590,8 @@ msgstr "Python"
 
 #: ../gtksourceview/language-specs/python.lang.h:16
 #: ../gtksourceview/language-specs/ruby.lang.h:17
-#, fuzzy
 msgid "Special Variable"
-msgstr "Erityiset kohteet"
+msgstr "Erityinen muuttuja"
 
 #: ../gtksourceview/language-specs/python.lang.h:18
 msgid "string-conversion"
@@ -1621,16 +1611,15 @@ msgstr "Kokonaisluku"
 
 #: ../gtksourceview/language-specs/R.lang.h:7
 msgid "R"
-msgstr ""
+msgstr "R"
 
 #: ../gtksourceview/language-specs/R.lang.h:8
 msgid "Reserved Class"
 msgstr "Varattu luokka"
 
 #: ../gtksourceview/language-specs/R.lang.h:10
-#, fuzzy
 msgid "Special Constant"
-msgstr "Erikoismerkit"
+msgstr "Erikoisvakio"
 
 #: ../gtksourceview/language-specs/rpmspec.lang.h:1
 msgid "Command Macro"
@@ -1705,9 +1694,8 @@ msgid "Numeric literal"
 msgstr "Lukuarvot"
 
 #: ../gtksourceview/language-specs/ruby.lang.h:13
-#, fuzzy
 msgid "Predefined Variable"
-msgstr "Valemuuttujat"
+msgstr "Esimääritelty muuttuja"
 
 #: ../gtksourceview/language-specs/ruby.lang.h:15
 msgid "Ruby"
@@ -1778,19 +1766,16 @@ msgid "VHDL"
 msgstr "VHDL"
 
 #: ../gtksourceview/language-specs/xml.lang.h:1
-#, fuzzy
 msgid "Attribute name"
 msgstr "Määreen nimi"
 
 #: ../gtksourceview/language-specs/xml.lang.h:2
-#, fuzzy
 msgid "Attribute value"
 msgstr "Määreen arvo"
 
 #: ../gtksourceview/language-specs/xml.lang.h:3
-#, fuzzy
 msgid "CDATA delimiter"
-msgstr "CDATA-erottimet"
+msgstr "CDATA-erotin"
 
 #: ../gtksourceview/language-specs/xml.lang.h:5
 msgid "DOCTYPE"
@@ -1801,7 +1786,6 @@ msgid "Namespace"
 msgstr "Nimiavaruus"
 
 #: ../gtksourceview/language-specs/xml.lang.h:10
-#, fuzzy
 msgid "Processing instruction"
 msgstr "Prosessointikäsky"
 
@@ -1827,15 +1811,15 @@ msgstr "avainsana"
 
 #: ../gtksourceview/language-specs/classic.xml.h:1
 msgid "Classic"
-msgstr ""
+msgstr "Klassinen"
 
 #: ../gtksourceview/language-specs/classic.xml.h:2
 msgid "Classic color scheme"
-msgstr ""
+msgstr "Klassinen värimalli"
 
 #: ../gtksourceview/language-specs/kate.xml.h:1
 msgid "Color scheme used in the Kate text editor"
-msgstr "KATE-muokkaimessa käytetty värimäärittely"
+msgstr "KATE-muokkaimessa käytetty värimalli"
 
 #: ../gtksourceview/language-specs/kate.xml.h:2
 msgid "Kate"
@@ -1843,7 +1827,7 @@ msgstr "Kate"
 
 #: ../gtksourceview/language-specs/tango.xml.h:1
 msgid "Color scheme using Tango color palette"
-msgstr "Tango-väripaletissa käytetty värimäärittely"
+msgstr "Tango-väripaletissa käytetty värimalli"
 
 #: ../gtksourceview/language-specs/tango.xml.h:2
 msgid "Tango"
@@ -1910,7 +1894,7 @@ msgstr "Tango"
 #~ msgstr "Tosi ja epätosi"
 
 #~ msgid "Color scheme used in GVim"
-#~ msgstr "GVimissä käytetty värimäärittely"
+#~ msgstr "GVimissä käytetty värimalli"
 
 #~ msgid "GVim"
 #~ msgstr "GVim"
