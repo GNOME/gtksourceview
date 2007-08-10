@@ -26,9 +26,9 @@
     <property name="globs">*.sh</property>
     <property name="line-comment-start">#</property>
   </metadata>
+
   <styles>
     <style id="function" name="Function" map-to="def:function"/>
-    <style id="comment" name="Comment" map-to="def:comment"/>
     <style id="string" name="String" map-to="def:string"/>
     <style id="keyword" name="Keyword" map-to="def:keyword"/>
     <style id="variable1" name="Variable 1" map-to="def:type"/> <!-- FIXME: need to sort out proper styles for variables -->
@@ -37,7 +37,9 @@
     <style id="common-command" name="Common Commands" map-to="def:keyword"/>
     <style id="here-doc-bound" name="here-doc" map-to="def:keyword"/>
   </styles>
+
   <definitions>
+
     <context id="string" style-ref="string">
       <start>"</start>
       <end>"</end>
@@ -46,6 +48,7 @@
         <context ref="def:line-continue"/>
       </include>
     </context>
+
     <context id="string-2" style-ref="string">
       <start>'</start>
       <end>'</end>
@@ -54,6 +57,7 @@
         <context ref="def:line-continue"/>
       </include>
     </context>
+
     <context id="subshell">
       <start>\(</start>
       <end>\)</end>
@@ -63,6 +67,7 @@
         <context ref="sh"/>
       </include>
     </context>
+
     <context id="backtick-string" style-ref="function">
       <start>`</start>
       <end>`</end>
@@ -71,20 +76,15 @@
         <context ref="def:line-continue"/>
       </include>
     </context>
-    <context id="line-comment" style-ref="comment" end-at-line-end="true">
-      <start>(?&lt;!\S)#</start>
-      <include>
-        <context ref="def:escape"/>
-        <context ref="def:line-continue"/>
-        <context ref="def:in-comment"/>
-      </include>
-    </context>
+
     <context id="punctuator" style-ref="others">
       <match>[;\|&amp;/]</match>
     </context>
+
     <context id="function" style-ref="function">
       <match>\b[a-zA-Z_][a-zA-Z0-9_]+[ \t]*\(\)</match>
     </context>
+
     <context id="redirection" style-ref="others">
       <keyword>&gt;&amp;+[0-9]</keyword>
       <keyword>\b[0-9]+&gt;&amp;</keyword>
@@ -99,6 +99,7 @@
       <keyword>&lt;&lt;+[0-9]</keyword>
       <keyword>\b[0-9]+&lt;&lt;</keyword>
     </context>
+
     <context id="here-doc">
       <start extended="true" dupnames="true">
         &lt;&lt;-?\s*\\?(
@@ -113,6 +114,7 @@
         <context sub-pattern="0" where="end" style-ref="here-doc-bound"/>
       </include>
     </context>
+
     <context id="operator" style-ref="function">
       <keyword>\-a\b</keyword>
       <keyword>\-b\b</keyword>
@@ -151,12 +153,15 @@
       <keyword>\-gt\b</keyword>
       <keyword>\-ge\b</keyword>
     </context>
+
     <context id="variable1" style-ref="variable1">
       <match>\$+[@?*#\${a-zA-Z0-9_][}a-zA-Z0-9_]*</match>
     </context>
+
     <context id="variable2" style-ref="variable2">
       <match>[a-zA-Z_][a-zA-Z0-9_]*\=</match>
     </context>
+
     <context id="built-in-command-1" style-ref="keyword">
       <prefix></prefix>
       <suffix></suffix>
@@ -166,6 +171,7 @@
       <keyword>\:</keyword>
       <keyword>(?&lt;=\s)\.(?=\s)</keyword>
     </context>
+
     <context id="built-in-command-2" style-ref="keyword">
       <keyword>do</keyword>
       <keyword>done</keyword>
@@ -235,12 +241,14 @@
       <keyword>unset</keyword>
       <keyword>wait</keyword>
     </context>
+
     <context id="built-in-command">
       <include>
         <context ref="built-in-command-1"/>
         <context ref="built-in-command-2"/>
       </include>
     </context>
+
     <context id="common-command" style-ref="common-command">
       <prefix>(?&lt;![\w\-\.])</prefix>
       <suffix>(?![\w\-\.])</suffix>
@@ -318,6 +326,7 @@
       <keyword>xdialog</keyword>
       <keyword>zenity</keyword>
     </context>
+
     <context id="case">
       <start>\bcase\b</start>
       <end>\besac\b</end>
@@ -330,15 +339,16 @@
         <context ref="sh"/>
       </include>
     </context>
+
     <context id="sh">
       <include>
         <context ref="def:shebang"/>
+        <context ref="def:shell-like-comment"/>
         <context ref="def:escape"/>
         <context ref="string"/>
         <context ref="string-2"/>
         <context ref="subshell"/>
         <context ref="backtick-string"/>
-        <context ref="line-comment"/>
         <context ref="case"/>
         <context ref="punctuator"/>
         <context ref="function"/>
@@ -351,5 +361,6 @@
         <context ref="common-command"/>
       </include>
     </context>
+
   </definitions>
 </language>

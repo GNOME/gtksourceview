@@ -1,5 +1,10 @@
 2007-08-10  Paolo Borelli  <pborelli@katamail.com>
 
+	* gtksourceview/language-specs/sh.lang: comments cannot span
+	multiple lines. Fixes bug #337833.
+
+2007-08-10  Paolo Borelli  <pborelli@katamail.com>
+
 	* gtksourceview/language-specs/nemerle.lang: port to new format.
 	* gtksourceview/language-specs/vbnet.lang: ditto.
 
