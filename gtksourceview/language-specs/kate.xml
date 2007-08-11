@@ -29,6 +29,7 @@
   <color name="dark-red"                    value="#800000"/>
   <color name="dark-green"                  value="#008000"/>
   <color name="grey"                        value="#808080"/>
+  <color name="yellow"                      value="#FFFF00"/>  
   <color name="white"                       value="#FFFFFF"/>
 
   <style name="current-line"                background="#EEF6FF"/>
@@ -36,6 +37,9 @@
   <style name="bracket-match"               background="#FFFF99" bold="true"/>
   <style name="bracket-mismatch"            background="red" bold="true"/>
 
+  <!-- Search Matching -->
+  <style name="search-match"                background="yellow"/>  
+  
   <!-- legacy styles for old lang files -->
   <style name="Others"                      foreground="dark-red"/>
   <style name="Others 2"                    bold="true"/>

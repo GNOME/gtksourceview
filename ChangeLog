@@ -1,3 +1,14 @@
+2007-08-11  Paolo Borelli  <pborelli@katamail.com>
+
+	* gtksourceview/language-specs/classic.xml:
+	* gtksourceview/language-specs/kate.xml:
+	* gtksourceview/language-specs/tango.xml:
+
+	add a "search-match" style. GtkSourceView itself doesn't use
+	this style but editors like gedit can read it to use a color
+	that fits with the rest of the style scheme when highlighting
+	search matches.
+
 2007-08-10  Paolo Borelli  <pborelli@katamail.com>
 
 	* gtksourceview/language-specs/sh.lang: comments cannot span
