@@ -43,7 +43,7 @@ typedef struct _GtkSourceContextEnginePrivate GtkSourceContextEnginePrivate;
 
 struct _GtkSourceContextEngine
 {
-	GtkSourceEngine engine;
+	GtkSourceEngine parent_instance;
 
 	/*< private >*/
 	GtkSourceContextEnginePrivate *priv;

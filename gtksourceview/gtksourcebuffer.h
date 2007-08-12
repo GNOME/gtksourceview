@@ -46,7 +46,7 @@ typedef struct _GtkSourceBufferPrivate		GtkSourceBufferPrivate;
 
 struct _GtkSourceBuffer
 {
-	GtkTextBuffer text_buffer;
+	GtkTextBuffer parent_instance;
 
 	GtkSourceBufferPrivate *priv;
 };

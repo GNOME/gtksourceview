@@ -34,12 +34,12 @@ G_BEGIN_DECLS
 #define GTK_IS_SOURCE_ENGINE_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GTK_TYPE_SOURCE_ENGINE))
 #define GTK_SOURCE_ENGINE_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), GTK_TYPE_SOURCE_ENGINE, GtkSourceEngineClass))
 
-typedef struct _GtkSourceEngine	GtkSourceEngine;
+typedef struct _GtkSourceEngine		GtkSourceEngine;
 typedef struct _GtkSourceEngineClass	GtkSourceEngineClass;
 
 struct _GtkSourceEngine
 {
-	GObject g_object;
+	GObject parent_instance;
 };
 
 struct _GtkSourceEngineClass

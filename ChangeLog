@@ -1,3 +1,14 @@
+2007-08-12  Vincent Geddes  <vgeddes@gnome.org>
+
+	* gtksourceview/gtksourceengine.h,
+	  gtksourceview/gtksourcecontextengine.h,
+	  gtksourceview/gtksourcelanguage.h,
+	  gtksourceview/gtksourcebuffer.h,
+	  gtksourceview/gtksourcelanguagemanager.h:
+	  
+	  Rename names of parent structs to a consistent
+	  `parent_instance' (#464830).
+
 2007-08-11  Paolo Borelli  <pborelli@katamail.com>
 
 	* gtksourceview/language-specs/classic.xml:

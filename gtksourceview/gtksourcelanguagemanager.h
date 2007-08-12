@@ -39,14 +39,14 @@ typedef struct _GtkSourceLanguageManagerPrivate GtkSourceLanguageManagerPrivate;
 
 struct _GtkSourceLanguageManager
 {
-	GObject parent;
+	GObject parent_instance;
 
 	GtkSourceLanguageManagerPrivate *priv;
 };
 
 struct _GtkSourceLanguageManagerClass
 {
-	GObjectClass              parent_class;
+	GObjectClass parent_class;
 
 	/* Padding for future expansion */
 	void (*_gtk_source_reserved1) (void);

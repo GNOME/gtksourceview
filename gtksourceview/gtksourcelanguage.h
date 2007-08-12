@@ -41,7 +41,7 @@ typedef struct _GtkSourceLanguagePrivate	GtkSourceLanguagePrivate;
 
 struct _GtkSourceLanguage
 {
-	GObject                   parent;
+	GObject parent_instance;
 
 	GtkSourceLanguagePrivate *priv;
 };
