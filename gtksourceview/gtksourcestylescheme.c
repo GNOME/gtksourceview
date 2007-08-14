@@ -285,6 +285,21 @@ gtk_source_style_scheme_get_filename (GtkSourceStyleScheme *scheme)
 }
 
 /**
+ * gtk_source_style_scheme_get_author:
+ * @scheme: a #GtkSourceStyleScheme.
+ *
+ * Returns: @scheme author (if defined) or NULL.
+ *
+ * Since: 2.0
+ */
+const gchar *
+gtk_source_style_scheme_get_author (GtkSourceStyleScheme *scheme)
+{
+	g_return_val_if_fail (GTK_IS_SOURCE_STYLE_SCHEME (scheme), NULL);
+	return scheme->priv->author;
+}
+
+/**
  * _gtk_source_style_scheme_new:
  * @id: scheme id.
  * @name: scheme name.
