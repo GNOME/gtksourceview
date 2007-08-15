@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
- Authors: Marco Barisione, Emanuele Aina
+ Authors: Marco Barisione, Emanuele Aina, Paolo Borelli
  Copyright (C) 2005-2007 Marco Barisione <barisione@gmail.com>
  Copyright (C) 2005-2007 Emanuele Aina
+ Copyright (C) 2007 Paolo Borelli
 
  This library is free software; you can redistribute it and/or
  modify it under the terms of the GNU Library General Public
@@ -24,7 +25,7 @@
 <language id="xml" _name="XML" version="2.0" _section="Markup">
     <metadata>
         <property name="mimetypes">application/xml;text/xml</property>
-        <property name="globs">*.xml;*.xspf;*.siv;*.smil;*.smi;*.sml;*.kino;*.xul;*.xbel;*.abw;*.zabw;*.glade;*.jnlp;*.xhtml;*.svg;*.docbook;*.mml;*.rdf;*.rss;*.wml;*.xmi;*.fo;*.xslfo;*.xslt;*.xsl</property>
+        <property name="globs">*.xml;*.xspf;*.siv;*.smil;*.smi;*.sml;*.kino;*.xul;*.xbel;*.abw;*.zabw;*.glade;*.jnlp;*.xhtml;*.svg;*.mml;*.rdf;*.rss;*.wml;*.xmi;*.fo;*.xslfo;*.xslt;*.xsl</property>
         <property name="block-comment-start">&lt;!--</property>
         <property name="block-comment-end">--&gt;</property>
     </metadata>
@@ -34,11 +35,12 @@
         <style id="doctype"                 _name="DOCTYPE"                 map-to="def:preprocessor"/>
         <style id="cdata-delim"             _name="CDATA delimiter"         map-to="def:preprocessor"/>
         <style id="processing-instruction"  _name="Processing instruction"  map-to="def:preprocessor"/>
-        <style id="attribute-name"          _name="Attribute name"          map-to="def:function"/>
+        <style id="element-name"            _name="Element name"            map-to="def:identifier"/>
+        <style id="attribute-name"          _name="Attribute name"          map-to="def:type"/>
         <style id="attribute-value"         _name="Attribute value"         map-to="def:string"/>
         <style id="entity"                  _name="Entity"                  map-to="def:preprocessor"/>
-        <style id="tags"                    _name="Tag"                     map-to="def:statement"/>
-        <style id="namespace"               _name="Namespace"               map-to="def:statement"/>
+        <style id="tag"                     _name="Tag"                     map-to="def:identifier"/>
+        <style id="namespace"               _name="Namespace"               map-to="def:identifier"/>
         <style id="error"                   _name="Error"                   map-to="def:error"/>
     </styles>
 
@@ -57,18 +59,6 @@
 
         <context id="unallowed-chars" style-ref="error" extend-parent="false">
             <match>[&amp;&lt;]</match>
-        </context>
-
-        <context id="attribute" style-ref="attribute-value">
-            <start>((\%{prefix}:)?\%{name}\s*=\s*)(["'])</start>
-            <end>\%{3@start}</end>
-            <include>
-                <context sub-pattern="1" where="start" style-ref="attribute-name" />
-                <context sub-pattern="2" where="start" style-ref="namespace" />
-                <context ref="entity"/>
-                <context ref="character-reference"/>
-                <context ref="unallowed-chars"/>
-            </include>
         </context>
 
         <context id="comment" style-ref="comment">
@@ -125,62 +115,75 @@
             </include>
         </context>
 
+        <context id="processing-instruction" style-ref="processing-instruction">
+            <start>&lt;\?</start>
+            <end>\?&gt;</end>
+        </context>
+
+        <!-- The following three contexts can be <replace>d in xml
+             dialect lang files, to custommize highlighting, e.g.
+             highlighting docbook tags as keywords -->
+
+        <context id="namespace" style-ref="namespace">
+            <match>(?&lt;!:)\%{prefix}:</match>
+        </context>
+
+        <context id="element-name" once-only="true" style-ref="element-name">
+            <match>\b\%{name}\b(?!\=)</match>
+        </context>
+
+        <context id="attribute-name" style-ref="attribute-name">
+            <match>\b\%{name}\s*=</match>
+        </context>
+
+        <context id="attribute-value" style-ref="attribute-value" end-at-line-end="true">
+            <start>["']</start>
+            <end>\%{0@start}</end>
+            <include>
+                <context ref="entity"/>
+                <context ref="character-reference"/>
+                <context ref="unallowed-chars"/>
+            </include>
+        </context>
+
         <context id="prolog">
             <start>&lt;\?xml</start>
             <end>\?&gt;</end>
             <include>
                 <context sub-pattern="0" where="start" style-ref="processing-instruction"/>
                 <context sub-pattern="0" where="end" style-ref="processing-instruction"/>
-                <context ref="attribute"/>
+                <context ref="attribute-value"/>
             </include>
         </context>
 
-        <context id="processing-instruction" style-ref="processing-instruction">
-            <start>&lt;\?</start>
-            <end>\?&gt;</end>
+        <context id="start-tag" style-ref="tag">
+            <start>&lt;(?!/)</start>
+            <end>/?&gt;</end>
+            <include>
+                <context ref="entity"/>
+                <context ref="character-reference"/>
+                <context ref="unallowed-chars"/>
+                <context ref="namespace"/>
+                <context ref="element-name"/>
+                <context ref="attribute-name"/>
+                <context ref="attribute-value"/>
+                <context style-ref="error" extend-parent="false">
+                  <match>\S</match>
+                </context>
+            </include>
         </context>
 
-        <!-- Tags are divided in two parts, one external and one internal
-           -          <tag attr="foo">  [...]  <tag>
-           -          |____________________________|  external
-           -                         |_________|      internal
-           -               |________|                 attributes
-           -->
-        <context id="tag">
-            <!-- This matches the external portion
-               -  <tag  [...]  tag>
-               -->
-            <start>&lt;\s*(\%{prefix}:)?\%{name}</start>
-            <end>/\s*((\%{prefix}:)?\%{name}\s*&gt;)|/&gt;</end>
+        <context id="end-tag" style-ref="tag">
+            <start>&lt;/</start>
+            <end>&gt;</end>
             <include>
-                <context sub-pattern="1" where="start" style-ref="namespace" />
-                <context sub-pattern="0" where="start" style-ref="tags" />
-                <context sub-pattern="2" where="end" style-ref="namespace" />
-                <context sub-pattern="0" where="end" style-ref="tags" />
-
-                <context ref="attribute"/>
-
-                <context id="tag-internal">
-                <!-- This matches the internal portion
-                   -  >  [...]  <
-                   -->
-                    <start>&gt;</start>
-                    <end>&lt;(?=/)</end>
-                    <include>
-                        <context sub-pattern="0" where="start" style-ref="tags" />
-                        <context sub-pattern="0" where="end" style-ref="tags" />
-                        <context ref="tag"/>
-                        <context ref="comment"/>
-                        <context ref="entity"/>
-             	        <context ref="character-reference"/>
-                        <context ref="cdata"/>
-                        <context ref="processing-instruction"/>
-                        <context ref="unallowed-chars"/>
-                    </include>
-                </context>
-
+                <context ref="entity"/>
+                <context ref="character-reference"/>
+                <context ref="unallowed-chars"/>
+                <context ref="namespace"/>
+                <context ref="element-name"/>
                 <context style-ref="error" extend-parent="false">
-                    <match>\S</match>
+                  <match>\S</match>
                 </context>
             </include>
         </context>
@@ -192,12 +195,8 @@
                 <context ref="cdata"/>
                 <context ref="prolog"/>
                 <context ref="processing-instruction"/>
-
-                <context ref="tag"/>
-
-                <context style-ref="error">
-                    <match>\S</match>
-                </context>
+                <context ref="start-tag"/>
+                <context ref="end-tag"/>
             </include>
         </context>
     </definitions>
