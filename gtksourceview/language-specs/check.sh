@@ -28,8 +28,6 @@ fi
 langs=""
 for l in *.lang; do
   case $l in
-    boo.lang) ;;
-    docbook.lang) ;;
     msil.lang) ;;
     *)
       langs="$langs $l"
