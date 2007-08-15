@@ -250,6 +250,8 @@
                     <keyword>NULL</keyword>
                     <keyword>MAX</keyword>
                     <keyword>MIN</keyword>
+                    <keyword>TRUE</keyword>
+                    <keyword>FALSE</keyword>
                     <keyword>__LINE__</keyword>
                     <keyword>__DATA__</keyword>
                     <keyword>__FILE__</keyword>
@@ -257,12 +259,11 @@
                     <keyword>__TIME__</keyword>
                     <keyword>__STDC__</keyword>
                 </context>
-                
+
+                <!-- C99 booleans -->                
                 <context id="boolean" style-ref="boolean">
                     <keyword>true</keyword>
                     <keyword>false</keyword>
-                    <keyword>TRUE</keyword>
-                    <keyword>FALSE</keyword>
                 </context>
 
             </include>
