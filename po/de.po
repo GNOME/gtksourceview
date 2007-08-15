@@ -12,12 +12,12 @@ msgstr ""
 "Project-Id-Version: GtkSourceView HEAD\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-08-15 16:38+0200\n"
-"PO-Revision-Date: 2007-08-15 16:38+0200\n"
+"PO-Revision-Date: 2007-08-15 16:48+0200\n"
 "Last-Translator: Hendrik Richter <hendrikr@gnome.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: 8bit"
 
 #: ../gtksourceview/gtksourcebuffer.c:166
 msgid "Check Brackets"
@@ -69,9 +69,8 @@ msgstr ""
 
 #: ../gtksourceview/gtksourcebuffer.c:229
 #: ../gtksourceview/gtksourcebuffer.c:230
-#, fuzzy
 msgid "Style scheme"
-msgstr "Scheme"
+msgstr "Stilvorlage"
 
 #: ../gtksourceview/gtksourcecontextengine.c:2248
 #, c-format
@@ -146,21 +145,18 @@ msgstr "Sonstige"
 
 #: ../gtksourceview/gtksourcelanguage.c:214
 #: ../gtksourceview/gtksourcelanguage.c:215
-#, fuzzy
 msgid "Language id"
-msgstr "Sprache"
+msgstr "Sprach-ID"
 
 #: ../gtksourceview/gtksourcelanguage.c:222
 #: ../gtksourceview/gtksourcelanguage.c:223
-#, fuzzy
 msgid "Language name"
 msgstr "Sprache"
 
 #: ../gtksourceview/gtksourcelanguage.c:230
 #: ../gtksourceview/gtksourcelanguage.c:231
-#, fuzzy
 msgid "Language section"
-msgstr "Sprache"
+msgstr "Sprachsektion"
 
 #: ../gtksourceview/gtksourcelanguage.c:238
 msgid "Hidden"
@@ -217,9 +213,8 @@ msgid "Italic"
 msgstr ""
 
 #: ../gtksourceview/gtksourcestyle.c:100 ../gtksourceview/gtksourcestyle.c:101
-#, fuzzy
 msgid "Underline"
-msgstr "Hinzugefügte Zeile"
+msgstr "Unterstrichen"
 
 #: ../gtksourceview/gtksourcestyle.c:108 ../gtksourceview/gtksourcestyle.c:109
 msgid "Strikethrough"
@@ -278,16 +273,13 @@ msgid "Style scheme search path"
 msgstr ""
 
 #: ../gtksourceview/gtksourcestylemanager.c:143
-#, fuzzy
 msgid "List of directories and files where the style schemes are located"
 msgstr ""
-"Liste der Verzeichnisse, in denen sich die Sprachspezifikationdateien (."
-"lang) befinden"
+"Liste der Ordner und Dateien, in denen sich die Stilvorlagen befinden"
 
 #: ../gtksourceview/gtksourcestylemanager.c:151
-#, fuzzy
 msgid "Scheme ids"
-msgstr "Scheme"
+msgstr "Schemen-IDs"
 
 #: ../gtksourceview/gtksourcestylemanager.c:152
 msgid "List of the ids of the available style schemes"
@@ -361,9 +353,8 @@ msgid "Position of the right margin"
 msgstr "Position des rechten Rands"
 
 #: ../gtksourceview/gtksourceview.c:299
-#, fuzzy
 msgid "Smart Home/End"
-msgstr "Intelligentes Pos1/Ende verwenden"
+msgstr "Intelligentes Pos1/Ende"
 
 # CHECK
 #: ../gtksourceview/gtksourceview.c:300
@@ -461,7 +452,6 @@ msgstr ""
 #: ../gtksourceview/language-specs/ruby.lang.h:3
 #: ../gtksourceview/language-specs/vbnet.lang.h:1
 #: ../gtksourceview/language-specs/vhdl.lang.h:2
-#, fuzzy
 msgid "Boolean value"
 msgstr "Boolescher Wert"
 
@@ -536,7 +526,6 @@ msgstr "Datentyp"
 #: ../gtksourceview/language-specs/ocaml.lang.h:6
 #: ../gtksourceview/language-specs/python.lang.h:7
 #: ../gtksourceview/language-specs/ruby.lang.h:7
-#, fuzzy
 msgid "Decimal number"
 msgstr "Dezimalzahl"
 
@@ -546,7 +535,6 @@ msgstr "Dezimalzahl"
 #: ../gtksourceview/language-specs/lua.lang.h:3
 #: ../gtksourceview/language-specs/ocaml.lang.h:8
 #: ../gtksourceview/language-specs/python.lang.h:8
-#, fuzzy
 msgid "Escaped Character"
 msgstr "Maskierungszeichen"
 
@@ -603,7 +591,6 @@ msgstr "Präprozessor"
 #: ../gtksourceview/language-specs/ada.lang.h:10
 #: ../gtksourceview/language-specs/csharp.lang.h:11
 #: ../gtksourceview/language-specs/vhdl.lang.h:7
-#, fuzzy
 msgid "Real number"
 msgstr "Dezimalzahl"
 
@@ -635,9 +622,8 @@ msgstr "Quelltexte"
 #: ../gtksourceview/language-specs/ada.lang.h:12
 #: ../gtksourceview/language-specs/c.lang.h:17
 #: ../gtksourceview/language-specs/java.lang.h:14
-#, fuzzy
 msgid "Storage Class"
-msgstr "Selector-Pseudoklassen"
+msgstr "Speicherklasse"
 
 #. A string constant: "this is a string"
 #: ../gtksourceview/language-specs/ada.lang.h:13
@@ -755,9 +741,8 @@ msgstr "Zeichen"
 #: ../gtksourceview/language-specs/c.lang.h:5
 #: ../gtksourceview/language-specs/cpp.lang.h:2
 #: ../gtksourceview/language-specs/objc.lang.h:1
-#, fuzzy
 msgid "Common Defines"
-msgstr "Bedingte Definition"
+msgstr "Übliche Definition"
 
 #. Any erroneous construct
 #: ../gtksourceview/language-specs/c.lang.h:8
@@ -784,7 +769,6 @@ msgstr ""
 #: ../gtksourceview/language-specs/python.lang.h:9
 #: ../gtksourceview/language-specs/R.lang.h:4
 #: ../gtksourceview/language-specs/ruby.lang.h:8
-#, fuzzy
 msgid "Floating point number"
 msgstr "Fließkommazahl"
 
@@ -792,14 +776,12 @@ msgstr "Fließkommazahl"
 #: ../gtksourceview/language-specs/csharp.lang.h:7
 #: ../gtksourceview/language-specs/d.lang.h:9
 #: ../gtksourceview/language-specs/nemerle.lang.h:9
-#, fuzzy
 msgid "Hexadecimal number"
 msgstr "Hexadezimalzahl"
 
 #: ../gtksourceview/language-specs/c.lang.h:12
-#, fuzzy
 msgid "Included File"
-msgstr "Include"
+msgstr "Include-Datei"
 
 #: ../gtksourceview/language-specs/c.lang.h:14
 #: ../gtksourceview/language-specs/d.lang.h:12
@@ -810,11 +792,11 @@ msgstr "Oktalzahl"
 
 #: ../gtksourceview/language-specs/c.lang.h:19
 msgid "printf Conversion"
-msgstr ""
+msgstr "printf-Konvertierung"
 
 #: ../gtksourceview/language-specs/chdr.lang.h:1
 msgid "C/C++/ObjC Header"
-msgstr ""
+msgstr "C/C++/ObjC-Header"
 
 #: ../gtksourceview/language-specs/cpp.lang.h:1
 msgid "C++"
@@ -830,9 +812,8 @@ msgstr "C#"
 #: ../gtksourceview/language-specs/java.lang.h:10
 #: ../gtksourceview/language-specs/javascript.lang.h:11
 #: ../gtksourceview/language-specs/nemerle.lang.h:12
-#, fuzzy
 msgid "Null Value"
-msgstr "Mitgelieferte Werte"
+msgstr "Null-Wert"
 
 #: ../gtksourceview/language-specs/css.lang.h:1
 msgid "CSS"
@@ -871,7 +852,6 @@ msgid "Function"
 msgstr "Funktion"
 
 #: ../gtksourceview/language-specs/css.lang.h:9
-#, fuzzy
 msgid "Known Property Value"
 msgstr "Bekannte Eigenschaftswerte"
 
@@ -885,57 +865,49 @@ msgstr "Sonstige 3"
 
 # CHECK
 #: ../gtksourceview/language-specs/css.lang.h:14
-#, fuzzy
 msgid "at-rules"
-msgstr "At-Regeln"
+msgstr "at-Regeln"
 
 #. A base-N number: 0xFFFF
 #: ../gtksourceview/language-specs/def.lang.h:2
 #: ../gtksourceview/language-specs/python.lang.h:1
 #: ../gtksourceview/language-specs/ruby.lang.h:2
-#, fuzzy
 msgid "Base-N number"
 msgstr "Ganzzahl zur Basis N"
 
 #. A builtin name: like __import__, abs in Python
 #. (see http://docs.python.org/lib/built-in-funcs.html)
 #: ../gtksourceview/language-specs/def.lang.h:7
-#, fuzzy
 msgid "Built-in identifier"
-msgstr "Mitgelieferte Funktionen"
+msgstr "Mitgelieferte Bezeichner"
 
 #. A complex number
 #: ../gtksourceview/language-specs/def.lang.h:13
 #: ../gtksourceview/language-specs/python.lang.h:6
-#, fuzzy
 msgid "Complex number"
-msgstr "Hex-Zahl"
+msgstr "Komplexe Zahl"
 
 #. Any constant
 #: ../gtksourceview/language-specs/def.lang.h:15
 #: ../gtksourceview/language-specs/gtk-doc.lang.h:1
 #: ../gtksourceview/language-specs/ruby.lang.h:6
-#, fuzzy
 msgid "Constant"
-msgstr "Konstanten"
+msgstr "Konstante"
 
 #. A primitive data type: int, long, char, etc.
 #: ../gtksourceview/language-specs/def.lang.h:17
-#, fuzzy
 msgid "Data type"
 msgstr "Datentyp"
 
 #: ../gtksourceview/language-specs/def.lang.h:20
-#, fuzzy
 msgid "Defaults"
-msgstr "Vorgabe"
+msgstr "Vorgaben"
 
 #. A special comment containing documentation like in javadoc or
 #. gtk-doc
 #: ../gtksourceview/language-specs/def.lang.h:23
-#, fuzzy
 msgid "Documentation comment"
-msgstr "Kommentarbereich"
+msgstr "Dokumentations-Kommentar"
 
 #. This style doesn't map to anything since it must be used as an additional
 #. style for text which is already styled as a "doc-comment"
@@ -945,9 +917,8 @@ msgstr ""
 
 #. Any variable name
 #: ../gtksourceview/language-specs/def.lang.h:34
-#, fuzzy
 msgid "Identifier"
-msgstr "Modifikatoren"
+msgstr "Bezeichner"
 
 #. Anything that needs extra attention; mostly the keywords TODO, FIXME and XXX
 #: ../gtksourceview/language-specs/def.lang.h:38
@@ -962,15 +933,13 @@ msgstr "Operator"
 
 #. This one is for '#include <foo.h>' and "#pragma blah", or 'use foobar', etc..
 #: ../gtksourceview/language-specs/def.lang.h:44
-#, fuzzy
 msgid "Preprocessor directive"
-msgstr "Präprozessor-Definitionen"
+msgstr "Präprozessor-Direktive"
 
 #. Reserved keywords: like "const" and "goto" in Java
 #: ../gtksourceview/language-specs/def.lang.h:46
-#, fuzzy
 msgid "Reserved keyword"
-msgstr "Reservierte ANSI-Wörter"
+msgstr "Reserviertes Schlüsselwert"
 
 #. A shebang: #!/bin/sh
 #: ../gtksourceview/language-specs/def.lang.h:48
@@ -987,21 +956,18 @@ msgstr ""
 #. A special constant like NULL in C or null in Java
 #: ../gtksourceview/language-specs/def.lang.h:53
 #: ../gtksourceview/language-specs/vbnet.lang.h:7
-#, fuzzy
 msgid "Special constant"
-msgstr "Spezielles Zeichen"
+msgstr "Spezielle Konstante"
 
 #. Any statement
 #: ../gtksourceview/language-specs/def.lang.h:55
-#, fuzzy
 msgid "Statement"
-msgstr "SQL-Anweisung"
+msgstr "Anweisung"
 
 #. Text that stands out, HTML links, e-mail addresses, etc.
 #: ../gtksourceview/language-specs/def.lang.h:59
-#, fuzzy
 msgid "Underlined"
-msgstr "Unbegrenzt"
+msgstr "Unterstrichen"
 
 #: ../gtksourceview/language-specs/desktop.lang.h:1
 msgid ".desktop"
@@ -1016,7 +982,6 @@ msgid "Encoding"
 msgstr "Zeichenkodierung"
 
 #: ../gtksourceview/language-specs/desktop.lang.h:5
-#, fuzzy
 msgid "Exec parameter"
 msgstr "Parameter beim Ausführen"
 
@@ -1025,14 +990,12 @@ msgid "Group"
 msgstr "Gruppe"
 
 #: ../gtksourceview/language-specs/desktop.lang.h:7
-#, fuzzy
 msgid "Key"
-msgstr "Stichwort"
+msgstr "Schlüssel"
 
 #: ../gtksourceview/language-specs/desktop.lang.h:10
-#, fuzzy
 msgid "Translation"
-msgstr "gettext-Übersetzung"
+msgstr "Übersetzung"
 
 #: ../gtksourceview/language-specs/diff.lang.h:1
 msgid "Added line"
@@ -1071,7 +1034,6 @@ msgstr "Sonderfall"
 
 #: ../gtksourceview/language-specs/d.lang.h:1
 #: ../gtksourceview/language-specs/nemerle.lang.h:1
-#, fuzzy
 msgid "Binary number"
 msgstr "Binärzahl"
 
@@ -1080,12 +1042,10 @@ msgid "D"
 msgstr "D"
 
 #: ../gtksourceview/language-specs/d.lang.h:14
-#, fuzzy
 msgid "Special Token"
 msgstr "Spezielles Zeichen"
 
 #: ../gtksourceview/language-specs/docbook.lang.h:1
-#, fuzzy
 msgid "Docbook"
 msgstr "DocBook"
 
@@ -1118,9 +1078,8 @@ msgid "Structural Elements"
 msgstr "Strukturierende Elemente"
 
 #: ../gtksourceview/language-specs/dpatch.lang.h:1
-#, fuzzy
 msgid "DPatch"
-msgstr "Datum"
+msgstr "DPatch"
 
 #: ../gtksourceview/language-specs/dpatch.lang.h:3
 msgid "patch-start"
@@ -1160,21 +1119,18 @@ msgid "Scientific"
 msgstr ""
 
 #: ../gtksourceview/language-specs/gtk-doc.lang.h:3
-#, fuzzy
 msgid "Function Name"
-msgstr "Funktionsaufruf"
+msgstr "Funktionsname"
 
 #: ../gtksourceview/language-specs/gtk-doc.lang.h:4
 msgid "Inline Documentation Section"
 msgstr ""
 
 #: ../gtksourceview/language-specs/gtk-doc.lang.h:6
-#, fuzzy
 msgid "Parameter"
-msgstr "Parameter beim Ausführen"
+msgstr "Parameter"
 
 #: ../gtksourceview/language-specs/gtk-doc.lang.h:7
-#, fuzzy
 msgid "Property Name"
 msgstr "Eigenschaftsnamen"
 
@@ -1184,9 +1140,8 @@ msgstr ""
 
 # CHECK
 #: ../gtksourceview/language-specs/gtk-doc.lang.h:9
-#, fuzzy
 msgid "Signal Name"
-msgstr "Sonderfall"
+msgstr "Signalname"
 
 #: ../gtksourceview/language-specs/gtk-doc.lang.h:10
 msgid "Since"
@@ -1207,7 +1162,6 @@ msgid "GtkRC"
 msgstr "GtkRC"
 
 #: ../gtksourceview/language-specs/gtkrc.lang.h:6
-#, fuzzy
 msgid "Include directive"
 msgstr "Include-Anweisung"
 
@@ -1220,19 +1174,16 @@ msgid "Anchor"
 msgstr ""
 
 #: ../gtksourceview/language-specs/haddock.lang.h:2
-#, fuzzy
 msgid "Code Block"
-msgstr "HTML-Block"
+msgstr "Code-Block"
 
 #: ../gtksourceview/language-specs/haddock.lang.h:3
-#, fuzzy
 msgid "Definition list"
-msgstr "Definitionen"
+msgstr "Definitionsliste"
 
 #: ../gtksourceview/language-specs/haddock.lang.h:4
-#, fuzzy
 msgid "Emphasis"
-msgstr "E-Mail"
+msgstr "Hervorhebung"
 
 #: ../gtksourceview/language-specs/haddock.lang.h:5
 msgid "Enumerated list"
@@ -1247,9 +1198,8 @@ msgid "Haddock"
 msgstr ""
 
 #: ../gtksourceview/language-specs/haddock.lang.h:8
-#, fuzzy
 msgid "Haddock Directive"
-msgstr "Anweisungen"
+msgstr "Anweisungen							"
 
 #: ../gtksourceview/language-specs/haddock.lang.h:9
 #, fuzzy
