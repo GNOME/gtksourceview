@@ -28,6 +28,8 @@
   </metadata>
 
   <styles>
+    <style id="comment" _name="Comment" map-to="def:comment"/>
+    <style id="shebang" _name="Shebang" map-to="def:shebang"/>
     <style id="function" name="Function" map-to="def:function"/>
     <style id="string" name="String" map-to="def:string"/>
     <style id="keyword" name="Keyword" map-to="def:keyword"/>
@@ -342,8 +344,8 @@
 
     <context id="sh">
       <include>
-        <context ref="def:shebang"/>
-        <context ref="def:shell-like-comment"/>
+        <context ref="def:shebang" style-ref="shebang"/>
+        <context ref="def:shell-like-comment" style-ref="comment"/>
         <context ref="def:escape"/>
         <context ref="string"/>
         <context ref="string-2"/>

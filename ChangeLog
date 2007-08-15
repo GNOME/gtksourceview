@@ -1,5 +1,10 @@
 2007-08-15  Paolo Borelli  <pborelli@katamail.com>
 
+	* gtksourceview/language-specs/sh.lang: restore sh:comment
+	style since it is needed for m4.lang.
+
+2007-08-15  Paolo Borelli  <pborelli@katamail.com>
+
 	* gtksourceview/language-specs/xml.lang: new xml.lang file,
 	it is not validating, but it's way faster and allows to be
 	easily extended when creating xml dialects lang files.
