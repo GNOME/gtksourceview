@@ -188,6 +188,10 @@
             </include>
         </context>
 
+        <context id="close-tag-outside-tag" style-ref="error">
+          <match>/&gt;</match>
+        </context>
+
         <context id="xml">
             <include>
                 <context ref="comment"/>
@@ -197,6 +201,10 @@
                 <context ref="processing-instruction"/>
                 <context ref="start-tag"/>
                 <context ref="end-tag"/>
+                <context ref="entity"/>
+                <context ref="character-reference"/>
+                <context ref="unallowed-chars"/>
+                <context ref="close-tag-outside-tag"/>
             </include>
         </context>
     </definitions>
