@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-08-15 17:58+0300\n"
+"POT-Creation-Date: 2007-08-16 11:08+0300\n"
 "PO-Revision-Date: 2007-02-13 08:23+0300\n"
 "Last-Translator: Ilkka Tuohela <hile@iki.fi>\n"
 "Language-Team: Finnish <gnome-fi-laatu@lists.sourceforge.net>\n"
@@ -456,6 +456,7 @@ msgstr "Totuusarvo"
 
 #. Any comment
 #: ../gtksourceview/language-specs/ada.lang.h:4
+#: ../gtksourceview/language-specs/boo.lang.h:4
 #: ../gtksourceview/language-specs/c.lang.h:4
 #: ../gtksourceview/language-specs/csharp.lang.h:3
 #: ../gtksourceview/language-specs/css.lang.h:3
@@ -493,6 +494,7 @@ msgstr "Kommentti"
 
 #. map-to="def:others"
 #: ../gtksourceview/language-specs/ada.lang.h:5
+#: ../gtksourceview/language-specs/boo.lang.h:5
 #: ../gtksourceview/language-specs/c.lang.h:6
 #: ../gtksourceview/language-specs/cpp.lang.h:3
 #: ../gtksourceview/language-specs/csharp.lang.h:4
@@ -540,6 +542,7 @@ msgstr "Suojattu merkkijono"
 #. keywords: "if", "for", "while", etc.
 #: ../gtksourceview/language-specs/ada.lang.h:8
 #: ../gtksourceview/language-specs/awk.lang.h:1
+#: ../gtksourceview/language-specs/boo.lang.h:7
 #: ../gtksourceview/language-specs/c.lang.h:13
 #: ../gtksourceview/language-specs/cpp.lang.h:4
 #: ../gtksourceview/language-specs/csharp.lang.h:8
@@ -594,7 +597,7 @@ msgid "Real number"
 msgstr "Reaaliluku"
 
 #: ../gtksourceview/language-specs/ada.lang.h:11
-#: ../gtksourceview/language-specs/boo.lang.h:6
+#: ../gtksourceview/language-specs/boo.lang.h:13
 #: ../gtksourceview/language-specs/c.lang.h:16
 #: ../gtksourceview/language-specs/chdr.lang.h:2
 #: ../gtksourceview/language-specs/cpp.lang.h:5
@@ -626,6 +629,7 @@ msgstr "Säilöluokka"
 
 #. A string constant: "this is a string"
 #: ../gtksourceview/language-specs/ada.lang.h:13
+#: ../gtksourceview/language-specs/boo.lang.h:15
 #: ../gtksourceview/language-specs/c.lang.h:18
 #: ../gtksourceview/language-specs/csharp.lang.h:13
 #: ../gtksourceview/language-specs/css.lang.h:13
@@ -690,6 +694,10 @@ msgid "awk"
 msgstr "awk"
 
 #: ../gtksourceview/language-specs/boo.lang.h:1
+msgid "Boo"
+msgstr "Boo"
+
+#: ../gtksourceview/language-specs/boo.lang.h:2
 #: ../gtksourceview/language-specs/desktop.lang.h:2
 #: ../gtksourceview/language-specs/d.lang.h:2
 #: ../gtksourceview/language-specs/libtool.lang.h:1
@@ -699,16 +707,37 @@ msgstr "awk"
 msgid "Boolean"
 msgstr "Totuusarvo"
 
-#: ../gtksourceview/language-specs/boo.lang.h:2
-msgid "Keywords"
-msgstr "Avainsanat"
-
 #: ../gtksourceview/language-specs/boo.lang.h:3
-msgid "Literals"
-msgstr "Literaalit"
+#: ../gtksourceview/language-specs/perl.lang.h:1
+#: ../gtksourceview/language-specs/python.lang.h:4
+msgid "Builtin Function"
+msgstr "Varusfunktio"
+
+#: ../gtksourceview/language-specs/boo.lang.h:6
+msgid "Definition"
+msgstr "Määrittely"
+
+#: ../gtksourceview/language-specs/boo.lang.h:8
+#: ../gtksourceview/language-specs/python.lang.h:13
+msgid "Multiline string"
+msgstr "Monirivinen merkkijono"
+
+#: ../gtksourceview/language-specs/boo.lang.h:9
+#: ../gtksourceview/language-specs/xml.lang.h:10
+msgid "Namespace"
+msgstr "Nimiavaruus"
+
+#: ../gtksourceview/language-specs/boo.lang.h:10
+#: ../gtksourceview/language-specs/csharp.lang.h:9
+#: ../gtksourceview/language-specs/d.lang.h:11
+#: ../gtksourceview/language-specs/java.lang.h:10
+#: ../gtksourceview/language-specs/javascript.lang.h:11
+#: ../gtksourceview/language-specs/nemerle.lang.h:12
+msgid "Null Value"
+msgstr "NULL-arvo"
 
 #. A generic number constant
-#: ../gtksourceview/language-specs/boo.lang.h:4
+#: ../gtksourceview/language-specs/boo.lang.h:11
 #: ../gtksourceview/language-specs/def.lang.h:40
 #: ../gtksourceview/language-specs/desktop.lang.h:8
 #: ../gtksourceview/language-specs/java.lang.h:11
@@ -716,9 +745,17 @@ msgstr "Literaalit"
 msgid "Number"
 msgstr "Numero"
 
-#: ../gtksourceview/language-specs/boo.lang.h:5
-msgid "Primitive"
-msgstr "Primitiivi"
+#: ../gtksourceview/language-specs/boo.lang.h:12
+#: ../gtksourceview/language-specs/perl.lang.h:16
+#: ../gtksourceview/language-specs/ruby.lang.h:14
+msgid "Regular Expression"
+msgstr "Säännöllinen lauseke"
+
+#: ../gtksourceview/language-specs/boo.lang.h:14
+#: ../gtksourceview/language-specs/python.lang.h:16
+#: ../gtksourceview/language-specs/ruby.lang.h:17
+msgid "Special Variable"
+msgstr "Erityinen muuttuja"
 
 #: ../gtksourceview/language-specs/changelog.lang.h:1
 msgid "ChangeLog"
@@ -803,14 +840,6 @@ msgstr "C++"
 #: ../gtksourceview/language-specs/csharp.lang.h:2
 msgid "C#"
 msgstr "C#"
-
-#: ../gtksourceview/language-specs/csharp.lang.h:9
-#: ../gtksourceview/language-specs/d.lang.h:11
-#: ../gtksourceview/language-specs/java.lang.h:10
-#: ../gtksourceview/language-specs/javascript.lang.h:11
-#: ../gtksourceview/language-specs/nemerle.lang.h:12
-msgid "Null Value"
-msgstr "NULL-arvo"
 
 #: ../gtksourceview/language-specs/css.lang.h:1
 msgid "CSS"
@@ -1438,11 +1467,6 @@ msgstr "Varattu vakio"
 msgid "Pascal"
 msgstr "Pascal"
 
-#: ../gtksourceview/language-specs/perl.lang.h:1
-#: ../gtksourceview/language-specs/python.lang.h:4
-msgid "Builtin Function"
-msgstr "Varusfunktio"
-
 #: ../gtksourceview/language-specs/perl.lang.h:3
 msgid "Control"
 msgstr "Ohjain"
@@ -1483,11 +1507,6 @@ msgstr "POD-avainsana"
 msgid "Perl"
 msgstr "Perl"
 
-#: ../gtksourceview/language-specs/perl.lang.h:16
-#: ../gtksourceview/language-specs/ruby.lang.h:14
-msgid "Regular Expression"
-msgstr "Säännöllinen lauseke"
-
 #: ../gtksourceview/language-specs/perl.lang.h:19
 msgid "System Command"
 msgstr "Järjestelmäkomento"
@@ -1524,18 +1543,9 @@ msgstr "Muotoilu"
 msgid "Module Handler"
 msgstr "Moduulin käsittelin"
 
-#: ../gtksourceview/language-specs/python.lang.h:13
-msgid "Multiline string"
-msgstr "Monirivinen merkkijono"
-
 #: ../gtksourceview/language-specs/python.lang.h:14
 msgid "Python"
 msgstr "Python"
-
-#: ../gtksourceview/language-specs/python.lang.h:16
-#: ../gtksourceview/language-specs/ruby.lang.h:17
-msgid "Special Variable"
-msgstr "Erityinen muuttuja"
 
 #: ../gtksourceview/language-specs/python.lang.h:18
 msgid "string-conversion"
@@ -1725,10 +1735,6 @@ msgstr "Elementin nimi"
 msgid "Entity"
 msgstr "Entiteetti"
 
-#: ../gtksourceview/language-specs/xml.lang.h:10
-msgid "Namespace"
-msgstr "Nimiavaruus"
-
 #: ../gtksourceview/language-specs/xml.lang.h:11
 msgid "Processing instruction"
 msgstr "Prosessointikäsky"
@@ -1776,6 +1782,15 @@ msgstr "Tango-väripaletissa käytetty värimalli"
 #: ../gtksourceview/language-specs/tango.xml.h:2
 msgid "Tango"
 msgstr "Tango"
+
+#~ msgid "Keywords"
+#~ msgstr "Avainsanat"
+
+#~ msgid "Literals"
+#~ msgstr "Literaalit"
+
+#~ msgid "Primitive"
+#~ msgstr "Primitiivi"
 
 #~ msgid "Attribute"
 #~ msgstr "Määre"
