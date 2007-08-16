@@ -129,7 +129,7 @@
         </context>
 
         <context id="element-name" once-only="true" style-ref="element-name">
-            <match>\b\%{name}\b(?!\=)</match>
+            <match>\b\%{name}\b(?!\s*=)</match>
         </context>
 
         <context id="attribute-name" style-ref="attribute-name">

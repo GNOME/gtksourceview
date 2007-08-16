@@ -38,10 +38,11 @@
 
   <definitions>
 
-    <context id="header-elements" style-ref="header-elements">
+    <context id="header-elements" once-only="true" style-ref="header-elements">
+      <suffix>(?!\s*=)</suffix>
       <keyword>abstract</keyword>
-      <keyword>article</keyword>
       <keyword>articleinfo</keyword>
+      <keyword>article</keyword>
       <keyword>bookinfo</keyword>  
       <keyword>author</keyword>
       <keyword>authorgroup</keyword>
@@ -51,8 +52,8 @@
       <keyword>email</keyword>
       <keyword>firstname</keyword>
       <keyword>orgname</keyword>
-      <keyword>publisher</keyword>
       <keyword>publishername</keyword>
+      <keyword>publisher</keyword>
       <keyword>pubdate</keyword>
       <keyword>pubsnumber</keyword>    
       <keyword>releaseinfo</keyword>
@@ -61,9 +62,10 @@
       <keyword>revhistory</keyword>
       <keyword>revision</keyword>
       <keyword>revnumber</keyword>
-	  </context>
+    </context>
 	
-    <context id="formatting-elements" style-ref="formatting-elements">
+    <context id="formatting-elements" once-only="true" style-ref="formatting-elements">
+      <suffix>(?!\s*=)</suffix>
       <keyword>caution</keyword>
       <keyword>command</keyword>
       <keyword>computeroutput</keyword>
@@ -83,7 +85,8 @@
       <keyword>xref</keyword>
     </context>
 	
-    <context id="gui-elements" style-ref="gui-elements">
+    <context id="gui-elements" once-only="true" style-ref="gui-elements">
+      <suffix>(?!\s*=)</suffix>
       <keyword>accel</keyword>
       <keyword>application</keyword>
       <keyword>guibutton</keyword>
@@ -99,7 +102,8 @@
       <keyword>menuchoice</keyword>    
     </context>
 	
-    <context id="structural-elements" style-ref="structural-elements">
+    <context id="structural-elements" once-only="true" style-ref="structural-elements">
+      <suffix>(?!\s*=)</suffix>
       <keyword>appendix</keyword>
       <keyword>book</keyword>
       <keyword>chapter</keyword>
@@ -150,8 +154,8 @@
       <keyword>textobject</keyword>
       <keyword>tgroup</keyword>
       <keyword>thead</keyword>
-      <keyword>title</keyword>
       <keyword>titleabbrev</keyword>
+      <keyword>title</keyword>
       <keyword>uri</keyword>
       <keyword>userinput</keyword>
       <keyword>year</keyword>
@@ -162,9 +166,9 @@
       <keyword>address</keyword>
       <keyword>answer</keyword>
       <keyword>appendixinfo</keyword>
-      <keyword>area</keyword>
       <keyword>areaset</keyword>
       <keyword>areaspec</keyword>
+      <keyword>area</keyword>
       <keyword>arg</keyword>
       <keyword>artpagenums</keyword>
       <keyword>attribution</keyword>
@@ -188,8 +192,8 @@
       <keyword>blockinfo</keyword>
       <keyword>blockquote</keyword>
       <keyword>bridgehead</keyword>
-      <keyword>callout</keyword>
       <keyword>calloutlist</keyword>
+      <keyword>callout</keyword>
       <keyword>caption</keyword>
       <keyword>chapterinfo</keyword>
       <keyword>citation</keyword>
@@ -202,8 +206,8 @@
       <keyword>cmdsynopsis</keyword>
       <keyword>code</keyword>
       <keyword>colgroup</keyword>
-      <keyword>collab</keyword>
       <keyword>collabname</keyword>
+      <keyword>collab</keyword>
       <keyword>colophon</keyword>
       <keyword>confdates</keyword>
       <keyword>confgroup</keyword>
@@ -211,8 +215,8 @@
       <keyword>confsponsor</keyword>
       <keyword>conftitle</keyword>
       <keyword>constant</keyword>
-      <keyword>constraint</keyword>
       <keyword>constraintdef</keyword>
+      <keyword>constraint</keyword>
       <keyword>constructorsynopsis</keyword>
       <keyword>contractnum</keyword>
       <keyword>contractsponsor</keyword>
@@ -239,8 +243,8 @@
       <keyword>exceptionname</keyword>
       <keyword>fax</keyword>
       <keyword>fieldsynopsis</keyword>
-      <keyword>footnote</keyword>
       <keyword>footnoteref</keyword>
+      <keyword>footnote</keyword>
       <keyword>foreignphrase</keyword>
       <keyword>formalpara</keyword>
       <keyword>funcdef</keyword>
@@ -254,8 +258,8 @@
       <keyword>glosslist</keyword>
       <keyword>glosssee</keyword>
       <keyword>glossseealso</keyword>
-      <keyword>graphic</keyword>
       <keyword>graphicco</keyword>
+      <keyword>graphic</keyword>
       <keyword>hardware</keyword>
       <keyword>honorific</keyword>
       <keyword>imageobjectco</keyword>
@@ -277,8 +281,8 @@
       <keyword>itermset</keyword>
       <keyword>jobtitle</keyword>
       <keyword>keycode</keyword>
-      <keyword>keyword</keyword>
       <keyword>keywordset</keyword>
+      <keyword>keyword</keyword>
       <keyword>lhs</keyword>
       <keyword>lineage</keyword>
       <keyword>lineannotation</keyword>
@@ -296,7 +300,6 @@
       <keyword>modespec</keyword>
       <keyword>modifier</keyword>
       <keyword>mousebutton</keyword>
-      <keyword>msg</keyword>
       <keyword>msgaud</keyword>
       <keyword>msgentry</keyword>
       <keyword>msgexplan</keyword>
@@ -308,6 +311,7 @@
       <keyword>msgset</keyword>
       <keyword>msgsub</keyword>
       <keyword>msgtext</keyword>
+      <keyword>msg</keyword>
       <keyword>nonterminal</keyword>
       <keyword>objectinfo</keyword>
       <keyword>olink</keyword>
@@ -322,22 +326,22 @@
       <keyword>pagenums</keyword>
       <keyword>paramdef</keyword>
       <keyword>parameter</keyword>
-      <keyword>part</keyword>
       <keyword>partinfo</keyword>
       <keyword>partintro</keyword>
+      <keyword>part</keyword>
       <keyword>personblurb</keyword>
       <keyword>personname</keyword>
       <keyword>phone</keyword>
       <keyword>pob</keyword>
       <keyword>postcode</keyword>
-      <keyword>preface</keyword>
       <keyword>prefaceinfo</keyword>
+      <keyword>preface</keyword>
       <keyword>primaryie</keyword>
       <keyword>printhistory</keyword>
       <keyword>procedure</keyword>
-      <keyword>production</keyword>
       <keyword>productionrecap</keyword>
       <keyword>productionset</keyword>
+      <keyword>production</keyword>
       <keyword>productname</keyword>
       <keyword>productnumber</keyword>
       <keyword>programlistingco</keyword>
@@ -350,11 +354,11 @@
       <keyword>quote</keyword>
       <keyword>refclass</keyword>
       <keyword>refdescriptor</keyword>
-      <keyword>refentry</keyword>
       <keyword>refentryinfo</keyword>
       <keyword>refentrytitle</keyword>
-      <keyword>reference</keyword>
+      <keyword>refentry</keyword>
       <keyword>referenceinfo</keyword>
+      <keyword>reference</keyword>
       <keyword>refmeta</keyword>
       <keyword>refmiscinfo</keyword>
       <keyword>refname</keyword>
@@ -368,8 +372,8 @@
       <keyword>refsect3info</keyword>
       <keyword>refsection</keyword>
       <keyword>refsectioninfo</keyword>
-      <keyword>refsynopsisdiv</keyword>
       <keyword>refsynopsisdivinfo</keyword>
+      <keyword>refsynopsisdiv</keyword>
       <keyword>returnvalue</keyword>
       <keyword>revremark</keyword>
       <keyword>rhs</keyword>
@@ -381,21 +385,21 @@
       <keyword>sect2info</keyword>
       <keyword>sect3info</keyword>
       <keyword>sect4info</keyword>
-      <keyword>sect5</keyword>
       <keyword>sect5info</keyword>
+      <keyword>sect5</keyword>
       <keyword>sectioninfo</keyword>
-      <keyword>seealso</keyword>
       <keyword>seealsoie</keyword>
+      <keyword>seealso</keyword>
       <keyword>seeie</keyword>
-      <keyword>seg</keyword>
       <keyword>seglistitem</keyword>
       <keyword>segmentedlist</keyword>
       <keyword>segtitle</keyword>
+      <keyword>seg</keyword>
       <keyword>seriesvolnums</keyword>
-      <keyword>set</keyword>
-      <keyword>setindex</keyword>
       <keyword>setindexinfo</keyword>
+      <keyword>setindex</keyword>
       <keyword>setinfo</keyword>
+      <keyword>set</keyword>
       <keyword>sgmltag</keyword>
       <keyword>shortaffil</keyword>
       <keyword>sidebar</keyword>
@@ -406,8 +410,8 @@
       <keyword>simplesect</keyword>
       <keyword>spanspec</keyword>
       <keyword>state</keyword>
-      <keyword>step</keyword>
       <keyword>stepalternatives</keyword>
+      <keyword>step</keyword>
       <keyword>street</keyword>
       <keyword>structfield</keyword>
       <keyword>structname</keyword>
@@ -423,21 +427,21 @@
       <keyword>synopfragmentref</keyword>
       <keyword>synopsis</keyword>
       <keyword>systemitem</keyword>
-      <keyword>task</keyword>
       <keyword>taskprerequisites</keyword>
       <keyword>taskrelated</keyword>
       <keyword>tasksummary</keyword>
+      <keyword>task</keyword>
       <keyword>td</keyword>
       <keyword>tertiaryie</keyword>
       <keyword>textdata</keyword>
       <keyword>tfoot</keyword>
-      <keyword>toc</keyword>
       <keyword>tocback</keyword>
       <keyword>tocchap</keyword>
       <keyword>tocentry</keyword>
       <keyword>tocfront</keyword>
       <keyword>toclevel</keyword>
       <keyword>tocpart</keyword>
+      <keyword>toc</keyword>
       <keyword>token</keyword>
       <keyword>trademark</keyword>
       <keyword>type</keyword>
