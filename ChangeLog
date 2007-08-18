@@ -1,5 +1,23 @@
 2007-08-18  Yevgen Muntyan  <muntyan@tamu.edu>
 
+	* gtksourceview/gtksourcecontextengine.c (create_tag),
+	(gtk_source_context_engine_attach_buffer): remember number
+	of created tags and set priorities of newly created tags
+	accordingly, so that all highlighting tags have priority
+	lower than any other tags in buffer. It is not quite right
+	but is good enough as a workaround for the problem with user
+	tags.
+
+	* gtksourceview/gtksourcecontextengine.c (regex_resolve):
+	Do not leak a string here.
+
+	* gtksourceview/gtksourcelanguage-parser-2.c
+	(handle_keyword_char_class_element): removed confusing variable
+	which gets xmlTextReaderRead() return value, since we do not
+	actually check that value.
+
+2007-08-18  Yevgen Muntyan  <muntyan@tamu.edu>
+
 	* gtksourceview/gtksourcestylescheme.c (fix_style_colors),
 	(parse_style):
 	* gtksourceview/language-specs/styles.rng:

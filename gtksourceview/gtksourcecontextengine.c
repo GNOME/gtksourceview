@@ -396,6 +396,9 @@ struct _GtkSourceContextEnginePrivate
 
 	/* All tags indexed by style name: values are GSList's of tags, ref()'ed. */
 	GHashTable		*tags;
+	/* Number of all syntax tags created by the engine, needed to set correct
+	 * tag priorities */
+	guint			 n_tags;
 
 	/* Whether or not to actually highlight the buffer. */
 	gboolean		 highlight;
@@ -606,7 +609,11 @@ create_tag (GtkSourceContextEngine *ce,
 	tags = g_hash_table_lookup (ce->priv->tags, style_id);
 
 	new_tag = gtk_text_buffer_create_tag (ce->priv->buffer, NULL, NULL);
+	/* It must have priority lower than user tags but still
+	 * higher than highlighting tags created before */
+	gtk_text_tag_set_priority (new_tag, ce->priv->n_tags);
 	set_tag_style (ce, new_tag, style_id);
+	ce->priv->n_tags += 1;
 
 	tags = g_slist_prepend (tags, g_object_ref (new_tag));
 	g_hash_table_insert (ce->priv->tags, g_strdup (style_id), tags);
@@ -2219,8 +2226,13 @@ gtk_source_context_engine_attach_buffer (GtkSourceEngine *engine,
 		ce->priv->invalid_region.end = NULL;
 
 		/* this deletes tags from the tag table, therefore there is no need
-		 * in removing tags from the text (it may be very slow). */
+		 * in removing tags from the text (it may be very slow).
+		 * FIXME: don't we want to just destroy and forget everything when
+		 * the buffer is destroyed? Removing tags is still slower than doing
+		 * nothing. Caveat: if tag table is shared with other buffer, we do
+		 * need to remove tags. */
 		destroy_tags_hash (ce);
+		ce->priv->n_tags = 0;
 
 		if (ce->priv->refresh_region != NULL)
 			gtk_text_region_destroy (ce->priv->refresh_region, FALSE);
@@ -2710,6 +2722,7 @@ regex_resolve (Regex       *regex,
 		new_regex = regex_new ("$never-match^", 0, NULL);
 	}
 
+	g_free (expanded_regex);
 	g_regex_unref (start_ref);
 	return new_regex;
 }

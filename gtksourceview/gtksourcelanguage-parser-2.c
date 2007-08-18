@@ -1413,19 +1413,18 @@ handle_keyword_char_class_element (ParserState *parser_state)
 static void
 handle_styles_element (ParserState *parser_state)
 {
-	int ret, type;
+	int type;
 	const xmlChar *tag_name;
 
 	g_return_if_fail (parser_state->error == NULL);
 
 	while (parser_state->error == NULL)
 	{
-		ret = xmlTextReaderRead (parser_state->reader);
-
-		xmlTextReaderIsValid (parser_state->reader);
-
 		/* FIXME: is xmlTextReaderIsValid call needed here or
 		 * error func will be called? */
+		xmlTextReaderRead (parser_state->reader);
+		xmlTextReaderIsValid (parser_state->reader);
+
 		if (parser_state->error != NULL)
 			break;
 
