@@ -1,3 +1,17 @@
+2007-08-18  Yevgen Muntyan  <muntyan@tamu.edu>
+
+	* gtksourceview/gtksourcestylescheme.c (fix_style_colors),
+	(parse_style):
+	* gtksourceview/language-specs/styles.rng:
+	* gtksourceview/gtksourcestyle.c (gtk_source_style_class_init),
+	(gtk_source_style_init), (gtk_source_style_set_property),
+	(gtk_source_style_get_property), (gtk_source_style_copy),
+	(_gtk_source_style_apply):
+	* gtksourceview/gtksourcestyle-private.h:
+
+	New style attribute 'line-background', wrapper around
+	'paragraph-background' GtkTextTag property.
+
 2007-08-15  Paolo Borelli  <pborelli@katamail.com>
 
 	* gtksourceview/language-specs/xml.lang: catch some errors and
@@ -30,13 +44,13 @@
 2007-08-12  Vincent Geddes  <vgeddes@gnome.org>
 
 	* gtksourceview/gtksourceengine.h,
-	  gtksourceview/gtksourcecontextengine.h,
-	  gtksourceview/gtksourcelanguage.h,
-	  gtksourceview/gtksourcebuffer.h,
-	  gtksourceview/gtksourcelanguagemanager.h:
-	  
-	  Rename names of parent structs to a consistent
-	  `parent_instance' (#464830).
+	* gtksourceview/gtksourcecontextengine.h,
+	* gtksourceview/gtksourcelanguage.h,
+	* gtksourceview/gtksourcebuffer.h,
+	* gtksourceview/gtksourcelanguagemanager.h:
+
+	Rename names of parent structs to a consistent
+	`parent_instance' (#464830).
 
 2007-08-11  Paolo Borelli  <pborelli@katamail.com>
 

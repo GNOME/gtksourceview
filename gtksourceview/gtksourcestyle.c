@@ -36,6 +36,8 @@ G_DEFINE_TYPE (GtkSourceStyle, gtk_source_style, G_TYPE_OBJECT)
 
 enum {
 	PROP_0,
+	PROP_LINE_BACKGROUND,
+	PROP_LINE_BACKGROUND_SET,
 	PROP_BACKGROUND,
 	PROP_BACKGROUND_SET,
 	PROP_FOREGROUND,
@@ -61,6 +63,14 @@ gtk_source_style_class_init (GtkSourceStyleClass *klass)
 	/* All properties are CONSTRUCT_ONLY so we can safely return references
 	 * from style_scheme_get_style(). But style scheme is of course cheating
 	 * and sets everything after construction (but nobody can notice it). */
+
+	g_object_class_install_property (object_class,
+					 PROP_LINE_BACKGROUND,
+					 g_param_spec_string ("line-background",
+							      _("Line background"),
+							      _("Line background color"),
+							      NULL,
+							      G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
 
 	g_object_class_install_property (object_class,
 					 PROP_BACKGROUND,
@@ -107,6 +117,14 @@ gtk_source_style_class_init (GtkSourceStyleClass *klass)
 					 g_param_spec_boolean ("strikethrough",
 							       _("Strikethrough"),
 							       _("Strikethrough"),
+							       FALSE,
+							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
+
+	g_object_class_install_property (object_class,
+					 PROP_LINE_BACKGROUND_SET,
+					 g_param_spec_boolean ("line-background-set",
+							       _("Line background set"),
+							       _("Whether line background color is set"),
 							       FALSE,
 							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
 
@@ -164,6 +182,7 @@ gtk_source_style_init (GtkSourceStyle *style)
 {
 	style->foreground = NULL;
 	style->background = NULL;
+	style->line_background = NULL;
 }
 
 #define SET_MASK(style,name) (style)->mask |= (GTK_SOURCE_STYLE_USE_##name)
@@ -219,6 +238,20 @@ gtk_source_style_set_property (GObject      *object,
 			}
 			break;
 
+		case PROP_LINE_BACKGROUND:
+			string = g_value_get_string (value);
+			if (string != NULL)
+			{
+				style->line_background = g_intern_string (string);
+				SET_MASK (style, LINE_BACKGROUND);
+			}
+			else
+			{
+				style->line_background = NULL;
+				UNSET_MASK (style, LINE_BACKGROUND);
+			}
+			break;
+
 		case PROP_BOLD:
 			style->bold = g_value_get_boolean (value) != 0;
 			SET_MASK (style, BOLD);
@@ -241,6 +274,9 @@ gtk_source_style_set_property (GObject      *object,
 			break;
 		case PROP_BACKGROUND_SET:
 			MODIFY_MASK (style, value, BACKGROUND);
+			break;
+		case PROP_LINE_BACKGROUND_SET:
+			MODIFY_MASK (style, value, LINE_BACKGROUND);
 			break;
 		case PROP_BOLD_SET:
 			MODIFY_MASK (style, value, BOLD);
@@ -277,6 +313,9 @@ gtk_source_style_get_property (GObject      *object,
 		case PROP_BACKGROUND:
 			g_value_set_string (value, style->background);
 			break;
+		case PROP_LINE_BACKGROUND:
+			g_value_set_string (value, style->line_background);
+			break;
 		case PROP_BOLD:
 			g_value_set_boolean (value, style->bold);
 			break;
@@ -295,6 +334,9 @@ gtk_source_style_get_property (GObject      *object,
 			break;
 		case PROP_BACKGROUND_SET:
 			GET_MASK (style, value, BACKGROUND);
+			break;
+		case PROP_LINE_BACKGROUND_SET:
+			GET_MASK (style, value, LINE_BACKGROUND);
 			break;
 		case PROP_BOLD_SET:
 			GET_MASK (style, value, BOLD);
@@ -338,6 +380,7 @@ gtk_source_style_copy (const GtkSourceStyle *style)
 
 	copy->foreground = style->foreground;
 	copy->background = style->background;
+	copy->line_background = style->line_background;
 	copy->italic = style->italic;
 	copy->bold = style->bold;
 	copy->underline = style->underline;
@@ -354,7 +397,8 @@ gtk_source_style_copy (const GtkSourceStyle *style)
  *
  * Applies text styles set in @style if it's not %NULL, or
  * unsets style fields in @tag set with _gtk_source_style_apply()
- * if @style is %NULL.
+ * if @style is %NULL. Note that it does not touch fields which
+ * are not set in @style. To reset everything use @style == %NULL.
  *
  * Since: 2.0
  */
@@ -374,6 +418,9 @@ _gtk_source_style_apply (const GtkSourceStyle *style,
 		if (style->mask & GTK_SOURCE_STYLE_USE_FOREGROUND)
 			g_object_set (tag, "foreground", style->foreground, NULL);
 
+		if (style->mask & GTK_SOURCE_STYLE_USE_LINE_BACKGROUND)
+			g_object_set (tag, "paragraph-background", style->line_background, NULL);
+
 		if (style->mask & GTK_SOURCE_STYLE_USE_ITALIC)
 			g_object_set (tag, "style", style->italic ? PANGO_STYLE_ITALIC : PANGO_STYLE_NORMAL, NULL);
 		if (style->mask & GTK_SOURCE_STYLE_USE_BOLD)
@@ -390,6 +437,7 @@ _gtk_source_style_apply (const GtkSourceStyle *style,
 		g_object_set (tag,
 			      "background-set", FALSE,
 			      "foreground-set", FALSE,
+			      "paragraph-background-set", FALSE,
 			      "style-set", FALSE,
 			      "weight-set", FALSE,
 			      "underline-set", FALSE,

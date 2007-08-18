@@ -109,6 +109,9 @@
     <attribute name="background"/>
   </optional>
   <optional>
+    <attribute name="line-background"/>
+  </optional>
+  <optional>
     <attribute name="bold">
       <ref name="boolean-value"/>
     </attribute>
