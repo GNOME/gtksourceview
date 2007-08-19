@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview 1.1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-08-16 16:15+0700\n"
-"PO-Revision-Date: 2007-08-16 16:20+0700\n"
+"POT-Creation-Date: 2007-08-19 14:20+0700\n"
+"PO-Revision-Date: 2007-08-19 14:21+0700\n"
 "Last-Translator: Theppitak Karoonboonyanan <thep@linux.thai.net>\n"
 "Language-Team: Thai <thai-l10n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -68,12 +68,12 @@ msgstr "ระบุว่า การกระทำสามารถทำ�
 msgid "Style scheme"
 msgstr "ชุดสไตล์"
 
-#: gtksourceview/gtksourcecontextengine.c:2248
+#: gtksourceview/gtksourcecontextengine.c:2260
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "ไม่มีข้อกำหนดภาษาหลัก (id = \"%s\")"
 
-#: gtksourceview/gtksourcecontextengine.c:2552
+#: gtksourceview/gtksourcecontextengine.c:2564
 #, c-format
 msgid "using \\C is not supported in language definitions"
 msgstr "ไม่รองรับการใช้ \\C ในข้อกำหนดภาษา"
@@ -82,7 +82,7 @@ msgstr "ไม่รองรับการใช้ \\C ในข้อกำ�
 #. * named sub-patterns with the same name or if resulting regex is
 #. * too long. In this case fixing lang file helps (e.g. renaming
 #. * subpatterns, making huge keywords use bigger prefixes, etc.)
-#: gtksourceview/gtksourcecontextengine.c:3152
+#: gtksourceview/gtksourcecontextengine.c:3165
 #, c-format
 msgid ""
 "Cannot create a regex for all the transitions, the syntax highlighting "
@@ -93,32 +93,32 @@ msgstr ""
 "การเน้นข้อความตามไวยากรณ์อาจทำงานช้ากว่าปกติ\n"
 "ข้อผิดพลาดคือ: %s"
 
-#: gtksourceview/gtksourcecontextengine.c:5638
+#: gtksourceview/gtksourcecontextengine.c:5651
 #, c-format
 msgid "context '%s' cannot contain a \\%%{...@start} command"
 msgstr "บริบท '%s' จะมีคำสั่ง \\%%{...@start} ไม่ได้"
 
-#: gtksourceview/gtksourcecontextengine.c:5790
-#: gtksourceview/gtksourcecontextengine.c:5877
+#: gtksourceview/gtksourcecontextengine.c:5803
+#: gtksourceview/gtksourcecontextengine.c:5890
 #, c-format
 msgid "duplicated context id '%s'"
 msgstr "id ของบริบท '%s' ซ้ำกัน"
 
-#: gtksourceview/gtksourcecontextengine.c:5990
-#: gtksourceview/gtksourcecontextengine.c:6050
+#: gtksourceview/gtksourcecontextengine.c:6003
+#: gtksourceview/gtksourcecontextengine.c:6063
 #, c-format
 msgid ""
 "style override used with wildcard context reference in language '%s' in ref "
 "'%s'"
 msgstr "มีการทับค่าสไตล์ในตัวอ้างอิงบริบทที่เป็น wildcard ในภาษา '%s' ที่ตัวอ้างอิง '%s'"
 
-#: gtksourceview/gtksourcecontextengine.c:6064
+#: gtksourceview/gtksourcecontextengine.c:6077
 #, c-format
 msgid "invalid reference '%s'"
 msgstr "ตัวอ้างอิง '%s' ใช้การไม่ได้"
 
-#: gtksourceview/gtksourcecontextengine.c:6083
-#: gtksourceview/gtksourcecontextengine.c:6093
+#: gtksourceview/gtksourcecontextengine.c:6096
+#: gtksourceview/gtksourcecontextengine.c:6106
 #, c-format
 msgid "unknown context '%s'"
 msgstr "ไม่รู้จักบริบท '%s'"
@@ -186,83 +186,99 @@ msgstr "ไม่รู้จัก id '%s' ใน regex '%s'"
 msgid "in regex '%s': backreferences are not supported"
 msgstr "ใน regex '%s': ไม่รองรับการอ้างอิงกลับ"
 
-#: gtksourceview/gtksourcestyle.c:68
+#: gtksourceview/gtksourcestyle.c:70
+msgid "Line background"
+msgstr "พื้นหลังบรรทัด"
+
+#: gtksourceview/gtksourcestyle.c:71
+msgid "Line background color"
+msgstr "สีพื้นหลังบรรทัด"
+
+#: gtksourceview/gtksourcestyle.c:78
 msgid "Background"
 msgstr "พื้นหลัง"
 
-#: gtksourceview/gtksourcestyle.c:69
+#: gtksourceview/gtksourcestyle.c:79
 msgid "Background color"
 msgstr "สีพื้นหลัง"
 
-#: gtksourceview/gtksourcestyle.c:76
+#: gtksourceview/gtksourcestyle.c:86
 msgid "Foreground"
 msgstr "ตัวอักษร"
 
-#: gtksourceview/gtksourcestyle.c:77
+#: gtksourceview/gtksourcestyle.c:87
 msgid "Foreground color"
 msgstr "ศีตัวอักษร"
 
-#: gtksourceview/gtksourcestyle.c:84 gtksourceview/gtksourcestyle.c:85
+#: gtksourceview/gtksourcestyle.c:94 gtksourceview/gtksourcestyle.c:95
 msgid "Bold"
 msgstr "หนา"
 
-#: gtksourceview/gtksourcestyle.c:92 gtksourceview/gtksourcestyle.c:93
+#: gtksourceview/gtksourcestyle.c:102 gtksourceview/gtksourcestyle.c:103
 msgid "Italic"
 msgstr "เอียง"
 
-#: gtksourceview/gtksourcestyle.c:100 gtksourceview/gtksourcestyle.c:101
+#: gtksourceview/gtksourcestyle.c:110 gtksourceview/gtksourcestyle.c:111
 msgid "Underline"
 msgstr "ขีดเส้นใต้"
 
-#: gtksourceview/gtksourcestyle.c:108 gtksourceview/gtksourcestyle.c:109
+#: gtksourceview/gtksourcestyle.c:118 gtksourceview/gtksourcestyle.c:119
 msgid "Strikethrough"
 msgstr "ขีดฆ่า"
 
-#: gtksourceview/gtksourcestyle.c:116
+#: gtksourceview/gtksourcestyle.c:126
+msgid "Line background set"
+msgstr "ใช้สีพื้นหลังบรรทัด"
+
+#: gtksourceview/gtksourcestyle.c:127
+msgid "Whether line background color is set"
+msgstr "ระบุว่ามีการกำหนดสีพื้นหลังของบรรทัดหรือไม่"
+
+#: gtksourceview/gtksourcestyle.c:134
 msgid "Foreground set"
 msgstr "ใช้สีตัวอักษร"
 
-#: gtksourceview/gtksourcestyle.c:117
+#: gtksourceview/gtksourcestyle.c:135
 msgid "Whether foreground color is set"
 msgstr "ระบุว่ามีการกำหนดสีตัวอักษรหรือไม่"
 
-#: gtksourceview/gtksourcestyle.c:124
+#: gtksourceview/gtksourcestyle.c:142
 msgid "Background set"
 msgstr "ใช้สีพื้นหลัง"
 
-#: gtksourceview/gtksourcestyle.c:125
+#: gtksourceview/gtksourcestyle.c:143
 msgid "Whether background color is set"
 msgstr "ระบุว่ามีการกำหนดสีพื้นหลังหรือไม่"
 
-#: gtksourceview/gtksourcestyle.c:132
+#: gtksourceview/gtksourcestyle.c:150
 msgid "Bold set"
 msgstr "ใช้ตัวหนา"
 
-#: gtksourceview/gtksourcestyle.c:133
+#: gtksourceview/gtksourcestyle.c:151
 msgid "Whether bold attribute is set"
 msgstr "กำหนดว่ากำหนดรูปแบบเป็นตัวหนาหรือไม่"
 
-#: gtksourceview/gtksourcestyle.c:140
+#: gtksourceview/gtksourcestyle.c:158
 msgid "Italic set"
 msgstr "ใช้ตัวเอียง"
 
-#: gtksourceview/gtksourcestyle.c:141
+#: gtksourceview/gtksourcestyle.c:159
 msgid "Whether italic attribute is set"
 msgstr "ระบุว่ามีการกำหนดรูปแบบเป็นตัวเอียงหรือไม่"
 
-#: gtksourceview/gtksourcestyle.c:148
+#: gtksourceview/gtksourcestyle.c:166
 msgid "Underline set"
 msgstr "ใช้ตัวขีดเส้นใต้"
 
-#: gtksourceview/gtksourcestyle.c:149
+#: gtksourceview/gtksourcestyle.c:167
 msgid "Whether underline attribute is set"
 msgstr "ระบุว่ามีการกำหนดรูปแบบเป็นตัวขีดเส้นใต้หรือไม่"
 
-#: gtksourceview/gtksourcestyle.c:156
+#: gtksourceview/gtksourcestyle.c:174
 msgid "Strikethrough set"
 msgstr "ใช้ตัวขีดฆ่า"
 
-#: gtksourceview/gtksourcestyle.c:157
+#: gtksourceview/gtksourcestyle.c:175
 msgid "Whether strikethrough attribute is set"
 msgstr "ระบุว่ามีการกำหนดรูปแบบเป็นตัวขีดฆ่าหรือไม่"
 
