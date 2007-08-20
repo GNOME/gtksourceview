@@ -29,6 +29,7 @@
   </metadata>
 
   <styles>
+    <style id="escape"               _name="Escaped Character"      map-to="def:special-char"/>
     <style id="comment"              _name="Comment"               map-to="def:comment"/>
     <style id="attribute-definition" _name="Attribute Definition"  map-to="def:statement"/>
     <style id="module-handler"       _name="Module handler"        map-to="def:preprocessor"/>
@@ -46,17 +47,22 @@
     <style id="special-variable"     _name="Special Variable"      map-to="def:identifier"/>
     <style id="predefined-variable"  _name="Predefined Variable"   map-to="def:identifier"/>
     <style id="variable"             _name="Variable"              map-to="def:identifier"/>
+    <style id="here-doc"             _name="Heredoc"               map-to="def:string" />
+    <style id="here-doc-bound"       _name="Heredoc Bound"         map-to="def:string"/>
     <style id="regex"                _name="Regular Expression"    map-to="def:identifier"/>
   </styles>
 
   <definitions>
 
+    <context id="escape" style-ref="escape">
+      <match>\\((0-7){3}|(x[a-fA-F0-9]{2})|(c\S)|([CM]-\S)|(M-C-\S)|.)</match>
+    </context>
+
     <context id="multiline-comment" style-ref="comment">
       <start>^=begin</start>
       <end>^=end</end>
       <include>
-        <context ref="def:escape"/>
-        <context ref="def:line-continue"/>
+        <context ref="escape"/>
         <context ref="def:in-comment"/>
       </include>
     </context>
@@ -239,13 +245,12 @@
 
     <!-- in double quotes and backticks -->
     <context id="simple-interpolation">
-      <start>#</start>
+      <start>#(?=[@$])</start> <!-- need assertion to not highlight single # -->
       <end></end>
       <include>
         <context ref="class-variables"/>
         <context ref="instance-variables"/>
         <context ref="global-variables"/>
-        <context ref="predefined-variables"/>
       </include>
     </context>
 
@@ -256,7 +261,7 @@
       <start>#{</start>
       <end>}</end>
       <include>
-        <context ref="ruby"/>
+        <context ref="ruby:*"/>
       </include>
     </context>
 
@@ -267,7 +272,7 @@
       <start>"</start>
       <end>"</end>
       <include>
-        <context ref="def:escape"/>
+        <context ref="escape"/>
         <context ref="def:line-continue"/>
         <context ref="complex-interpolation"/>
         <context ref="simple-interpolation"/>
@@ -278,8 +283,9 @@
       <start>'</start>
       <end>'</end>
       <include>
-        <context ref="def:escape"/>
-        <context ref="def:line-continue"/>
+        <context style-ref="escape">
+          <match>\\['\\]</match>
+        </context>
       </include>
     </context>
 
@@ -287,41 +293,94 @@
       <start>`</start>
       <end>`</end>
       <include>
-        <context ref="def:escape"/>
+        <context ref="escape"/>
         <context ref="def:line-continue"/>
         <context ref="complex-interpolation"/>
         <context ref="simple-interpolation"/>
       </include>
     </context>
 
-    <context id="heredoc-string" style-ref="string" style-inside="true">
+    <context id="here-doc-string" style-ref="here-doc" style-inside="true">
       <start>&lt;&lt;(\w+)</start>
-      <end>\%{1@start}</end>
+      <end>^\%{1@start}</end>
       <include>
-        <context ref="def:escape"/>
+        <context ref="escape"/>
         <context ref="def:line-continue"/>
         <context ref="complex-interpolation"/>
         <context ref="simple-interpolation"/>
       </include>
     </context>
 
-    <context id="heredoc-single-quoted-string" style-ref="string" style-inside="true">
+    <context id="here-doc-indented-string" style-ref="here-doc" style-inside="true">
+      <start>&lt;&lt;-(\w+)</start>
+      <end>^\s*\%{1@start}</end>
+      <include>
+        <context ref="escape"/>
+        <context ref="def:line-continue"/>
+        <context ref="complex-interpolation"/>
+        <context ref="simple-interpolation"/>
+      </include>
+    </context>
+
+    <context id="here-doc-single-quoted-string" style-ref="here-doc" style-inside="true">
       <start>&lt;&lt;'(\w+)'</start>
-      <end>\%{1@start}</end>
+      <end>^\%{1@start}</end>
       <include>
-        <context ref="def:escape"/>
-        <context ref="def:line-continue"/>
+        <context sub-pattern="0" where="start" style-ref="here-doc-bound"/>
+        <context sub-pattern="0" where="end" style-ref="here-doc-bound"/>
       </include>
     </context>
 
-    <context id="heredoc-double-quoted-string" style-ref="string" style-inside="true">
+    <context id="here-doc-double-quoted-string" style-ref="here-doc" style-inside="true">
       <start>&lt;&lt;"(\w+)"</start>
-      <end>\%{1@start}</end>
+      <end>^\%{1@start}</end>
       <include>
-        <context ref="def:escape"/>
+        <context sub-pattern="0" where="start" style-ref="here-doc-bound"/>
+        <context sub-pattern="0" where="end" style-ref="here-doc-bound"/>
+        <context ref="escape"/>
         <context ref="def:line-continue"/>
         <context ref="complex-interpolation"/>
         <context ref="simple-interpolation"/>
+      </include>
+    </context>
+
+    <define-regex id="regex-opts">[iomx]*[neus]?[iomx]*</define-regex>
+
+    <context id="regex-bracketed" style-ref="escape" style-inside="true">
+      <start>(?&lt;!\\)[[]</start>
+      <end>(?&lt;!\\)]</end>
+    </context>
+
+    <context id="regex-alt-form" style-ref="regex">
+      <start>\%r\|</start>
+      <end>\|\%{regex-opts}</end>
+      <include>
+        <context ref="escape"/>
+        <context ref="def:line-continue"/>
+        <context ref="complex-interpolation"/>
+        <context ref="simple-interpolation"/>
+        <context ref="regex-bracketed"/>
+       </include>
+     </context>
+
+    <context id="regex-simple" style-ref="regex">
+      <start extended="true">
+        ((?&lt;=([(]|\s))|^)
+        \/
+        (?=
+          ([^/\\]*(\\.))*
+          [^/]*
+          \/
+          \%{regex-opts}
+          ([),;.]|\s|$)
+        )</start>
+      <end>\/\%{regex-opts}</end>
+      <include>
+        <context ref="escape"/>
+        <context ref="def:line-continue"/>
+        <context ref="complex-interpolation"/>
+        <context ref="simple-interpolation"/>
+        <context ref="regex-bracketed"/>
       </include>
     </context>
 
@@ -330,9 +389,10 @@
         <context ref="def:shebang"/>
         <context ref="def:shell-like-comment"/>
         <context ref="multiline-comment"/>
-        <context ref="heredoc-string"/>
-        <context ref="heredoc-single-quoted-string"/>
-        <context ref="heredoc-double-quoted-string"/>
+        <context ref="here-doc-single-quoted-string"/>
+        <context ref="here-doc-double-quoted-string"/>
+        <context ref="here-doc-string"/>
+        <context ref="here-doc-indented-string"/>
         <context ref="double-quoted-string"/>
         <context ref="single-quoted-string"/>
         <context ref="backtick-quoted-string"/>
@@ -357,8 +417,10 @@
         <context ref="octal"/>
         <context ref="binary"/>
         <context ref="numeric-literal"/>
-        
+        <context ref="regex-alt-form"/>
+        <context ref="regex-simple"/>
       </include>
     </context>
+
   </definitions>
 </language>

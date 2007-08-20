@@ -614,6 +614,11 @@ They contain a list of <code>&lt;keyword&gt;</code> and matches every keyword
 listed. You can also put a <code>&lt;prefix&gt;</code> and/or a
 <code>&lt;suffix&gt;</code> common to every keyword.
 </para>
+<para>
+Note that keywords are matched in the order they are listed, so if you
+have both a keyword "foo" and a keyword "foobar", you should always list
+foobar before foo, or it will never be matched.
+</para>
 
 <para>
 Contained elements:
