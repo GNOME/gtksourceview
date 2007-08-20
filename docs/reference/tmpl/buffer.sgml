@@ -21,10 +21,7 @@ convenience function which allows you to initially set a
 
 <para>
 By default highlighting is enabled, but you can disable it with
-gtk_source_buffer_set_highlight().  This can be useful if you're not
-using #GtkSourceLanguage objects to set the highlighting patterns, and
-instead you're manually adding #GtkSourceTag objects to the buffer's
-tag table.
+gtk_source_buffer_set_highlight().
 </para>
 
 <!-- ##### SECTION See_Also ##### -->
