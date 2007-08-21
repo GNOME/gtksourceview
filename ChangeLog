@@ -1,3 +1,8 @@
+2007-08-21  Paolo Borelli  <pborelli@katamail.com>
+
+	* gtksourceview/language-specs/ruby.lang: do not highlight $stderr in
+	$stderrfoo. Bug #460652.
+
 2007-08-20  Paolo Maggi  <paolo@gnome.org>
 
 	* docs/reference/tmpl/buffer.sgml: GtkSourceTag class does not exist
