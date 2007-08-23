@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview.HEAD.gu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-08-16 03:23+0100\n"
-"PO-Revision-Date: 2007-08-16 13:28+0530\n"
+"POT-Creation-Date: 2007-08-18 22:46+0100\n"
+"PO-Revision-Date: 2007-08-23 17:41+0530\n"
 "Last-Translator: Ankit Patel <ankit@redhat.com>\n"
 "Language-Team: Gujarati <fedora-trans-gu@redhat.com>\n"
 "MIME-Version: 1.0\n"
@@ -14,6 +14,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
 "Plural-Forms:  nplurals=2; plural=(n!=1);\n\n"
+"\n"
 "\n"
 "\n"
 "\n"
@@ -83,12 +84,12 @@ msgstr "શું પુનઃકરો પ્રક્રિયા શક્ય
 msgid "Style scheme"
 msgstr "શૈલી પદ્ધતિ"
 
-#: ../gtksourceview/gtksourcecontextengine.c:2248
+#: ../gtksourceview/gtksourcecontextengine.c:2260
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "મુખ્ય ભાષા વ્યાખ્યા ગુમ થયેલ (id = \"%s\".)"
 
-#: ../gtksourceview/gtksourcecontextengine.c:2552
+#: ../gtksourceview/gtksourcecontextengine.c:2564
 msgid "using \\C is not supported in language definitions"
 msgstr "\\C વાપરવાનું એ ભાષા વ્યાખ્યાઓમાં આધારભૂત નથી"
 
@@ -96,7 +97,7 @@ msgstr "\\C વાપરવાનું એ ભાષા વ્યાખ્ય�
 #. * named sub-patterns with the same name or if resulting regex is
 #. * too long. In this case fixing lang file helps (e.g. renaming
 #. * subpatterns, making huge keywords use bigger prefixes, etc.)
-#: ../gtksourceview/gtksourcecontextengine.c:3152
+#: ../gtksourceview/gtksourcecontextengine.c:3165
 #, c-format
 msgid ""
 "Cannot create a regex for all the transitions, the syntax highlighting "
@@ -107,32 +108,32 @@ msgstr ""
 "હશે.\n"
 "ભૂલ આ હતી: %s"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5638
+#: ../gtksourceview/gtksourcecontextengine.c:5651
 #, c-format
 msgid "context '%s' cannot contain a \\%%{...@start} command"
 msgstr "સંદર્ભ '%s' એ \\%%{...@start} આદેશ સમાવી શકતો નથી"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5790
-#: ../gtksourceview/gtksourcecontextengine.c:5877
+#: ../gtksourceview/gtksourcecontextengine.c:5803
+#: ../gtksourceview/gtksourcecontextengine.c:5890
 #, c-format
 msgid "duplicated context id '%s'"
 msgstr "નકલી સંદર્ભ id '%s'"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5990
-#: ../gtksourceview/gtksourcecontextengine.c:6050
+#: ../gtksourceview/gtksourcecontextengine.c:6003
+#: ../gtksourceview/gtksourcecontextengine.c:6063
 #, c-format
 msgid ""
 "style override used with wildcard context reference in language '%s' in ref "
 "'%s'"
 msgstr "ભાષા '%s' માં '%s' ના સંદર્ભે વાઈલ્ડકાર્ડ સંદર્ભ સાથે વપરાઈ રહેલ શૈલી ઓવરરાઈડ કરો"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6064
+#: ../gtksourceview/gtksourcecontextengine.c:6077
 #, c-format
 msgid "invalid reference '%s'"
 msgstr "અયોગ્ય સંદર્ભ '%s'"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6083
-#: ../gtksourceview/gtksourcecontextengine.c:6093
+#: ../gtksourceview/gtksourcecontextengine.c:6096
+#: ../gtksourceview/gtksourcecontextengine.c:6106
 #, c-format
 msgid "unknown context '%s'"
 msgstr "અજ્ઞાત સંદર્ભ '%s'"
@@ -209,83 +210,99 @@ msgstr "અજ્ઞાત id '%s' regex '%s' માં"
 msgid "in regex '%s': backreferences are not supported"
 msgstr "regex '%s' માં: પાશ્વસંદર્ભો આધારભૂત નથી"
 
-#: ../gtksourceview/gtksourcestyle.c:68
+#: ../gtksourceview/gtksourcestyle.c:70
+msgid "Line background"
+msgstr "લીટી પાશ્વભાગ"
+
+#: ../gtksourceview/gtksourcestyle.c:71
+msgid "Line background color"
+msgstr "લીટી પાશ્વભાગ રંગ"
+
+#: ../gtksourceview/gtksourcestyle.c:78
 msgid "Background"
 msgstr "પાશ્વભાગ"
 
-#: ../gtksourceview/gtksourcestyle.c:69
+#: ../gtksourceview/gtksourcestyle.c:79
 msgid "Background color"
 msgstr "પાશ્વભાગ રંગ"
 
-#: ../gtksourceview/gtksourcestyle.c:76
+#: ../gtksourceview/gtksourcestyle.c:86
 msgid "Foreground"
 msgstr "અગ્રભાગ"
 
-#: ../gtksourceview/gtksourcestyle.c:77
+#: ../gtksourceview/gtksourcestyle.c:87
 msgid "Foreground color"
 msgstr "અગ્રભાગ રંગ"
 
-#: ../gtksourceview/gtksourcestyle.c:84 ../gtksourceview/gtksourcestyle.c:85
+#: ../gtksourceview/gtksourcestyle.c:94 ../gtksourceview/gtksourcestyle.c:95
 msgid "Bold"
 msgstr "ઘાટું"
 
-#: ../gtksourceview/gtksourcestyle.c:92 ../gtksourceview/gtksourcestyle.c:93
+#: ../gtksourceview/gtksourcestyle.c:102 ../gtksourceview/gtksourcestyle.c:103
 msgid "Italic"
 msgstr "ત્રાંસુ"
 
-#: ../gtksourceview/gtksourcestyle.c:100 ../gtksourceview/gtksourcestyle.c:101
+#: ../gtksourceview/gtksourcestyle.c:110 ../gtksourceview/gtksourcestyle.c:111
 msgid "Underline"
 msgstr "નીચે લીટી"
 
-#: ../gtksourceview/gtksourcestyle.c:108 ../gtksourceview/gtksourcestyle.c:109
+#: ../gtksourceview/gtksourcestyle.c:118 ../gtksourceview/gtksourcestyle.c:119
 msgid "Strikethrough"
 msgstr "ચેકી નાંખો"
 
-#: ../gtksourceview/gtksourcestyle.c:116
+#: ../gtksourceview/gtksourcestyle.c:126
+msgid "Line background set"
+msgstr "લીટી પાશ્વભાગ સમૂહ"
+
+#: ../gtksourceview/gtksourcestyle.c:127
+msgid "Whether line background color is set"
+msgstr "શું લીટી પાશ્વભાગ રંગ સુયોજીત છે"
+
+#: ../gtksourceview/gtksourcestyle.c:134
 msgid "Foreground set"
 msgstr "અગ્રભાગ સમૂહ"
 
-#: ../gtksourceview/gtksourcestyle.c:117
+#: ../gtksourceview/gtksourcestyle.c:135
 msgid "Whether foreground color is set"
 msgstr "શું અગ્રભાગ રંગ સુયોજીત છે"
 
-#: ../gtksourceview/gtksourcestyle.c:124
+#: ../gtksourceview/gtksourcestyle.c:142
 msgid "Background set"
 msgstr "પાશ્વભાગ સમૂહ"
 
-#: ../gtksourceview/gtksourcestyle.c:125
+#: ../gtksourceview/gtksourcestyle.c:143
 msgid "Whether background color is set"
 msgstr "શું પાશ્વભાગ રંગ સુયોજીત છે"
 
-#: ../gtksourceview/gtksourcestyle.c:132
+#: ../gtksourceview/gtksourcestyle.c:150
 msgid "Bold set"
 msgstr "ઘાટું સુયોજીત"
 
-#: ../gtksourceview/gtksourcestyle.c:133
+#: ../gtksourceview/gtksourcestyle.c:151
 msgid "Whether bold attribute is set"
 msgstr "શું ઘાટું લક્ષણ સુયોજીત છે"
 
-#: ../gtksourceview/gtksourcestyle.c:140
+#: ../gtksourceview/gtksourcestyle.c:158
 msgid "Italic set"
 msgstr "ત્રાંસા સમૂહ"
 
-#: ../gtksourceview/gtksourcestyle.c:141
+#: ../gtksourceview/gtksourcestyle.c:159
 msgid "Whether italic attribute is set"
 msgstr "શું ત્રાંસા લક્ષણ સુયોજીત છે"
 
-#: ../gtksourceview/gtksourcestyle.c:148
+#: ../gtksourceview/gtksourcestyle.c:166
 msgid "Underline set"
 msgstr "નીચે લીટી સમૂહ"
 
-#: ../gtksourceview/gtksourcestyle.c:149
+#: ../gtksourceview/gtksourcestyle.c:167
 msgid "Whether underline attribute is set"
 msgstr "શું નીચે લીટી લક્ષણ સુયોજીત છે"
 
-#: ../gtksourceview/gtksourcestyle.c:156
+#: ../gtksourceview/gtksourcestyle.c:174
 msgid "Strikethrough set"
 msgstr "ચેકી નાંખો સમૂહ"
 
-#: ../gtksourceview/gtksourcestyle.c:157
+#: ../gtksourceview/gtksourcestyle.c:175
 msgid "Whether strikethrough attribute is set"
 msgstr "શું ચેકી નાંખો સમૂહ સુયોજીત છે"
 
