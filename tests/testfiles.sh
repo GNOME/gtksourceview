@@ -107,6 +107,56 @@ for i in [1, 2, 3] do
 od;
 EOFEOF
 
+cat > $dir/file.php <<\EOFEOF
+<?php
+$great = 'fantastic';
+// Won't work, outputs: This is { fantastic}
+echo "This is { $great}";
+// Works, outputs: This is fantastic
+echo "This is {$great}";
+echo "This is ${great}";
+echo "This square is {$square->width}00 centimeters broad.";
+echo "This works: {$arr[4][3]}";
+// Works.  When using multi-dimensional arrays, always use
+echo "This works: {$arr['foo'][3]}";
+// Works.
+echo "This works: " . $arr['foo'][3];
+echo "You can even write {$obj->values[3]->name}";
+echo "This is the value of the var named $name: {${$name}}";
+?> 
+<?php
+$Fname = $_POST["Fname"];
+$Lname = $_POST["Lname"];
+$gender = $_POST["gender"];
+?>
+<html> <head> <title>Personal INFO</title> </head> <body>
+<form method="post" action="<?php echo $PHP_SELF;?>">
+First Name:<input type="text" size="12" maxlength="12" name="Fname"><br />
+Last Name:<input type="text" size="12" maxlength="36" name="Lname"><br />
+Gender:<br />
+Male:<input <?php echo "type=\"radio\""?> value="Male" name="gender"><br />
+<!-- important: look for php highlighting in html in 2 places -->
+<input type="submit" value="submit" name="submit">
+</form>
+
+<?
+$var = "var has value $var now";      // $var in quotes should be highlighted
+$var = ('the literal $var');    // $var in singles should not be highlighted
+$var = '\123 is \l\i\t\e\r\a\l, only \' is escape';
+$var = "\123 is escape, \" \n \r \t \$ are also";
+?>
+
+<? // this is comment ?>
+echo "not php";
+
+<?
+echo("yahoo");
+echo <<< HTML
+<?xml version="1.0" encoding="UTF-8"?>
+HTML;
+?>
+EOFEOF
+
 cat > $dir/file.py <<EOFEOF
 import sys
 class Hello(object):
@@ -114,7 +164,11 @@ class Hello(object):
         object.__init__(self)
     def hello(self):
         print >> sys.stderr, "Hi there!"
-Hello().hello()
+    def add3(self, i):
+        return i + 3
+
+if __name__ == "__main__":
+    Hello().hello()
 EOFEOF
 
 cat > $dir/file.xml <<EOFEOF

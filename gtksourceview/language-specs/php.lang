@@ -26,7 +26,7 @@
 <language id="php" _name="PHP" version="2.0" _section="Scripts">
   <metadata>
     <property name="mimetypes">text/x-php;application/x-php;text/x-php-source;application/x-php-source</property>
-    <property name="globs">*.php;*.php3;*.php4</property>
+    <property name="globs">*.php;*.php3;*.php4;*.phtml</property>
     <property name="line-comment-start">#</property>
     <property name="block-comment-start">/*</property>
     <property name="block-comment-end">*/</property>
@@ -34,40 +34,58 @@
 
   <styles>
     <style id="comment" _name="Comment" map-to="def:comment"/>
-    <style id="type" _name="Data Type" map-to="def:type"/>
+    <style id="error" _name="Error" map-to="def:error"/>
+    <style id="variable" _name="Variable" map-to="def:identifier"/>
+    <style id="escape" _name="Escaped Character" map-to="def:special-char"/>
     <style id="string" _name="String" map-to="def:string"/>
+    <style id="here-doc" _name="Heredoc" map-to="def:string"/>
+    <style id="here-doc-bound" _name="Heredoc Bound" map-to="def:string"/>
     <style id="keyword" _name="Keyword" map-to="def:keyword"/>
+    <style id="operator" _name="Operator" map-to="def:operator"/>
+    <style id="type" _name="Data Type" map-to="def:type"/>
+    <style id="null-value" _name="Null Value" map-to="def:special-constant"/>
+    <style id="boolean" _name="Boolean value" map-to="def:boolean"/>
+    <style id="floating-point" _name="Floating point number" map-to="def:floating-point"/>
+    <style id="decimal" _name="Decimal number" map-to="def:decimal"/>
+    <style id="octal" _name="Octal number" map-to="def:base-n-integer"/>
+    <style id="hexadecimal" _name="Hexadecimal number" map-to="def:base-n-integer"/>
     <style id="others" _name="Others"/>
   </styles>
 
   <!-- FIXME: keywords before a '(' is hightlined as a function call instead of a keyword -->
 
   <definitions>
-    <context id="cpp-line-comment" style-ref="comment" end-at-line-end="true">
-      <start>//</start>
-      <include>
-        <context ref="def:escape"/>
-        <context ref="def:line-continue"/>
-      </include>
-    </context>
-    <context id="bash-line-comment" style-ref="comment" end-at-line-end="true">
+
+    <context id="bash-line-comment" style-ref="comment" end-at-line-end="true" extend-parent="false">
       <start>#</start>
       <include>
-        <context ref="def:escape"/>
-        <context ref="def:line-continue"/>
+        <context ref="def:in-line-comment"/>
       </include>
     </context>
+
+    <context id="cpp-line-comment" style-ref="comment" end-at-line-end="true" extend-parent="false">
+      <start>//</start>
+      <include>
+        <context ref="def:in-line-comment"/>
+      </include>
+    </context>
+
     <context id="c-block-comment" style-ref="comment">
       <start>/\*</start>
       <end>\*/</end>
       <include>
-        <context ref="def:escape"/>
-        <context ref="def:line-continue"/>
+        <context ref="def:in-line-comment"/>
       </include>
     </context>
+
+    <context id="close-comment-outside-comment" style-ref="error">
+      <match>\*/(?!\*)</match>
+    </context>
+
     <context id="first-open-php-tag" style-ref="others">
       <match>&lt;(%|[?](php)?)</match>
     </context>
+
     <context id="html-block" style-ref="others">
       <start>[%?]&gt;</start>
       <end>&lt;(%|[?](php)?)</end>
@@ -76,37 +94,82 @@
         <context ref="def:line-continue"/>
       </include>
     </context>
-    <context id="double-quoted-string" style-ref="string">
+
+    <context id="escape" style-ref="escape">
+      <match>\\((\\|"|n|t|\$|r)|[0-7]{1,3}|x[0-9a-fA-F]{1,2})</match>
+    </context>
+
+    <context id="variable" style-ref="variable">
+      <match>[$]+[a-zA-Z_][a-zA-Z0-9_]*</match>
+    </context>
+
+    <context id="array-operators" style-ref="variable">
+      <match>(\[|\])</match>
+    </context>
+
+    <context id="string-var">
+      <include>
+        <context ref="variable"/>
+        <context id="curly-var" style-ref="variable" >
+          <start>{(?=\$)</start>
+          <end>}</end>
+          <include>
+            <context ref="string-var"/>
+          </include>
+        </context>
+        <context id="backwards-curly-var" style-ref="variable">
+          <start>\${</start>
+          <end>}</end>
+          <include>
+            <context ref="string-var"/>
+          </include>
+        </context>
+      </include>
+    </context>
+
+    <context id="double-quoted-string" style-ref="string" extend-parent="false">
       <start>"</start>
       <end>"</end>
       <include>
-        <context ref="def:escape"/>
+        <context ref="escape"/>
+        <context ref="string-var"/>
         <context ref="def:line-continue"/>
       </include>
     </context>
-    <context id="single-quoted-string" style-ref="string">
+
+    <context id="single-quoted-string" style-ref="string" extend-parent="false">
       <start>'</start>
       <end>'</end>
       <include>
-        <context ref="def:escape"/>
+        <context style-ref="def:special-char">
+          <match>\\['\\]</match>
+        </context>
         <context ref="def:line-continue"/>
       </include>
     </context>
-    <context id="backtick-string" style-ref="string">
+
+    <context id="backtick-string" style-ref="string" extend-parent="false">
       <start>`</start>
       <end>`</end>
       <include>
-        <context ref="def:escape"/>
+        <context ref="escape"/>
         <context ref="def:line-continue"/>
       </include>
     </context>
-    <context id="variable" style-ref="type">
-      <match>[$]+[a-zA-Z_][a-zA-Z0-9_]*</match>
-    </context>
-    <context id="array-operators" style-ref="type">
-      <match>(\[|\])</match>
-    </context>
-    <context id="case-sensitive-keyword" style-ref="keyword">
+
+    <context id="here-doc-string" style-ref="here-doc" extend-parent="true">
+      <start>(&lt;&lt;&lt;)\s?([a-zA-Z_][a-zA-Z0-9_]*)</start>
+      <end>^(\%{2@start});?$</end>
+       <include>
+       <context sub-pattern="0" where="start" style-ref="here-doc-bound"/>
+       <context sub-pattern="1" where="end" style-ref="here-doc-bound"/>
+       <context ref="escape"/>
+       <context ref="string-var"/>
+       <context ref="def:line-continue"/>
+       </include>
+     </context>
+
+    <context id="keywords" style-ref="keyword">
       <keyword>abstract</keyword>
       <keyword>and</keyword>
       <keyword>as</keyword>
@@ -158,14 +221,11 @@
       <keyword>while</keyword>
       <keyword>xor</keyword>
     </context>
-    <context id="case-insensitive-keyword" style-ref="keyword">
-      <keyword>true</keyword>
-      <keyword>false</keyword>
-      <keyword>null</keyword>
-    </context>
-    <context id="operators" style-ref="keyword">
+
+    <context id="operators" style-ref="operator" extend-parent="false">
       <match>[-.~^@;:/%|\=\+\*\!\?&amp;&lt;&gt;]</match>
     </context>
+
     <context id="type" style-ref="type">
       <keyword>array</keyword>
       <keyword>bool</keyword>
@@ -179,6 +239,51 @@
       <keyword>string</keyword>
       <keyword>unset</keyword>
     </context>
+
+    <context id="null-value" style-ref="null-value">
+      <prefix>(?i)</prefix> <!-- case insensitive -->
+      <keyword>null</keyword>
+    </context>
+
+    <context id="boolean" style-ref="boolean">
+      <prefix>(?i)</prefix> <!-- case insensitive -->
+      <keyword>false</keyword>
+      <keyword>true</keyword>
+    </context>
+
+    <context id="float" style-ref="floating-point">
+      <match extended="true">
+        (?&lt;![\w\.])
+        ([0-9]+[Ee][+-]?[0-9]+ |
+         ([0-9]*\.[0-9]+ | [0-9]+\.[0-9]*)([Ee][+-]?[0-9]+)?)
+        (?![\w\.])
+      </match>
+    </context>
+
+    <context id="decimal-number" style-ref="decimal">
+      <match extended="true">
+        (?&lt;![\w\.])
+        [+-]?([1-9][0-9]*|0)
+        (?![\w\.])
+      </match>
+    </context>
+
+    <context id="octal-number" style-ref="octal">
+      <match extended="true">
+        (?&lt;![\w\.])
+        [+-]?0[0-7]+
+        (?![\w\.])
+      </match>
+    </context>
+
+    <context id="hexadecimal-number" style-ref="hexadecimal">
+      <match extended="true">
+        (?&lt;![\w\.])
+        [+-]?0x[0-9a-fA-F]+
+        (?![\w\.])
+      </match>
+    </context>
+
     <context id="php">
       <include>
         <context ref="cpp-line-comment"/>
@@ -189,12 +294,18 @@
         <context ref="double-quoted-string"/>
         <context ref="single-quoted-string"/>
         <context ref="backtick-string"/>
+        <context ref="here-doc-string"/>
         <context ref="variable"/>
         <context ref="array-operators"/>
-        <context ref="case-sensitive-keyword"/>
-        <context ref="case-insensitive-keyword"/>
+        <context ref="keywords"/>
         <context ref="operators"/>
         <context ref="type"/>
+        <context ref="null-value"/>
+        <context ref="boolean"/>
+        <context ref="float"/>
+        <context ref="decimal-number"/>
+        <context ref="octal-number"/>
+        <context ref="hexadecimal-number"/>
       </include>
     </context>
   </definitions>
