@@ -192,6 +192,8 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 	g_object_class_install_property (object_class,
 					 PROP_LANGUAGE,
 					 g_param_spec_object ("language",
+							      /* Translators: "Language" stands for 
+							       * "programming language", not "spoken language" */
 							      _("Language"),
 							      _("Language object to get "
 								"highlighting patterns from"),
