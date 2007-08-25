@@ -2883,7 +2883,7 @@ update_current_line_gc (GtkSourceView *view)
 	}
 
 	if (view->priv->style_scheme &&
-	    gtk_source_style_scheme_get_current_line_color (view->priv->style_scheme, &color))
+	    _gtk_source_style_scheme_get_current_line_color (view->priv->style_scheme, &color))
 	{
 		GdkGCValues values;
 		gdk_colormap_alloc_color (gtk_widget_get_colormap (widget),

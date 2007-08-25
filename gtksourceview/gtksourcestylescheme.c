@@ -45,6 +45,7 @@ enum {
 	PROP_0,
 	PROP_ID,
 	PROP_NAME,
+	PROP_DESCRIPTION,
 	PROP_FILENAME
 };
 
@@ -102,13 +103,6 @@ gtk_source_style_scheme_set_property (GObject 	   *object,
 			g_free (tmp);
 			break;
 
-		case PROP_NAME:
-			tmp = scheme->priv->name;
-			scheme->priv->name = g_value_dup_string (value);
-			g_free (tmp);
-			g_object_notify (object, "name");
-			break;
-
 		default:
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
 			break;
@@ -131,6 +125,10 @@ gtk_source_style_scheme_get_property (GObject 	 *object,
 
 		case PROP_NAME:
 			g_value_set_string (value, scheme->priv->name);
+			break;
+
+		case PROP_DESCRIPTION:
+			g_value_set_string (value, scheme->priv->description);
 			break;
 
 		case PROP_FILENAME:
@@ -157,8 +155,6 @@ gtk_source_style_scheme_class_init (GtkSourceStyleSchemeClass *klass)
 	 *
 	 * Style scheme id, a unique string used to identify the style scheme
 	 * in #GtkSourceStyleManager.
-	 *
-	 * Since: 2.0
 	 */
 	g_object_class_install_property (object_class,
 					 PROP_ID,
@@ -172,8 +168,6 @@ gtk_source_style_scheme_class_init (GtkSourceStyleSchemeClass *klass)
 	 * GtkSourceStyleScheme:name:
 	 *
 	 * Style scheme name, a translatable string to present to user.
-	 *
-	 * Since: 2.0
 	 */
 	g_object_class_install_property (object_class,
 					 PROP_NAME,
@@ -181,14 +175,25 @@ gtk_source_style_scheme_class_init (GtkSourceStyleSchemeClass *klass)
 						 	      _("Style scheme name"),
 							      _("Style scheme name"),
 							      NULL,
-							      G_PARAM_READWRITE));
+							      G_PARAM_READABLE));
+
+	/**
+	 * GtkSourceStyleScheme:name:
+	 *
+	 * Style scheme name, a translatable string to present to user.
+	 */
+	g_object_class_install_property (object_class,
+					 PROP_NAME,
+					 g_param_spec_string ("description",
+						 	      _("Style scheme description"),
+							      _("Style scheme description"),
+							      NULL,
+							      G_PARAM_READABLE));
 
 	/**
 	 * GtkSourceStyleScheme:filename:
 	 *
 	 * Style scheme filename or NULL.
-	 *
-	 * Since: 2.0
 	 */
 	g_object_class_install_property (object_class,
 					 PROP_FILENAME,
@@ -472,17 +477,8 @@ gtk_source_style_scheme_set_style (GtkSourceStyleScheme *scheme,
 }
 #endif
 
-/**
- * gtk_source_style_scheme_get_matching_brackets_style:
- * @scheme: a #GtkSourceStyleScheme.
- *
- * Returns: style which corresponds to "bracket-match" name, to use
- * in an editor. It is owned by @scheme and may not be unref'ed.
- *
- * Since: 2.0
- */
 GtkSourceStyle *
-gtk_source_style_scheme_get_matching_brackets_style (GtkSourceStyleScheme *scheme)
+_gtk_source_style_scheme_get_matching_brackets_style (GtkSourceStyleScheme *scheme)
 {
 	g_return_val_if_fail (GTK_IS_SOURCE_STYLE_SCHEME (scheme), NULL);
 	return gtk_source_style_scheme_get_style (scheme, STYLE_BRACKET_MATCH);
@@ -525,19 +521,12 @@ get_color (GtkSourceStyle *style,
 	return FALSE;
 }
 
-/**
- * gtk_source_style_scheme_get_current_line_color:
- * @scheme: a #GtkSourceStyleScheme.
- * @color: a #GdkColor structure to fill.
- *
- * Returns: %TRUE if @scheme has style for current line set, or %FALSE
- * otherwise.
- *
- * Since: 2.0
+/*
+ * Returns TRUE if the style for current-line set in the scheme
  */
 gboolean
-gtk_source_style_scheme_get_current_line_color (GtkSourceStyleScheme *scheme,
-						GdkColor             *color)
+_gtk_source_style_scheme_get_current_line_color (GtkSourceStyleScheme *scheme,
+						 GdkColor             *color)
 {
 	GtkSourceStyle *style;
 

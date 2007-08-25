@@ -1,5 +1,15 @@
 2007-08-25  Paolo Borelli  <pborelli@katamail.com>
 
+	* gtksourceview/gtksourcestylescheme.c: add the "description" property
+	and make _gtk_source_style_scheme_get_matching_brackets_style and
+	_gtk_source_style_scheme_get_current_line_color private since they are
+	just for internal use.
+
+	* gtksourceview/gtksourcebuffer.c: adapt to the above.
+	* gtksourceview/gtksourceview.c: ditto.
+
+2007-08-25  Paolo Borelli  <pborelli@katamail.com>
+
 	* gtksourceview/language-specs/makefile.lang: fix highlighting of a rule
 	following an empty rule.
 
