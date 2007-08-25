@@ -102,7 +102,7 @@ static GtkActionEntry view_action_entries[] = {
 	{ "ViewMenu", NULL, "_View" },
 	{ "NewView", GTK_STOCK_NEW, "_New View", NULL,
 	  "Create a new view of the file", G_CALLBACK (new_view_cb) },
-	{ "TabsWidth", NULL, "_Tabs Width" },
+	{ "TabWidth", NULL, "_Tab Width" },
 	{ "IndentWidth", NULL, "I_ndent Width" },
 	{ "SmartHomeEnd", NULL, "_Smart Home/End" },
 	{ "DebugThing3", GTK_STOCK_FIND_AND_REPLACE, "Search and _Replace", "<control>R",
@@ -131,11 +131,11 @@ static GtkToggleActionEntry toggle_entries[] = {
 };
 
 static GtkRadioActionEntry tabs_radio_entries[] = {
-	{ "TabsWidth4", NULL, "4", NULL, "Set tabulation width to 4 spaces", 4 },
-	{ "TabsWidth6", NULL, "6", NULL, "Set tabulation width to 6 spaces", 6 },
-	{ "TabsWidth8", NULL, "8", NULL, "Set tabulation width to 8 spaces", 8 },
-	{ "TabsWidth10", NULL, "10", NULL, "Set tabulation width to 10 spaces", 10 },
-	{ "TabsWidth12", NULL, "12", NULL, "Set tabulation width to 12 spaces", 12 }
+	{ "TabWidth4", NULL, "4", NULL, "Set tabulation width to 4 spaces", 4 },
+	{ "TabWidth6", NULL, "6", NULL, "Set tabulation width to 6 spaces", 6 },
+	{ "TabWidth8", NULL, "8", NULL, "Set tabulation width to 8 spaces", 8 },
+	{ "TabWidth10", NULL, "10", NULL, "Set tabulation width to 10 spaces", 10 },
+	{ "TabWidth12", NULL, "12", NULL, "Set tabulation width to 12 spaces", 12 }
 };
 
 static GtkRadioActionEntry indent_radio_entries[] = {
@@ -177,12 +177,12 @@ static const gchar *view_ui_description =
 "      <menuitem action=\"AutoIndent\"/>"
 "      <menuitem action=\"InsertSpaces\"/>"
 "      <separator/>"
-"      <menu action=\"TabsWidth\">"
-"        <menuitem action=\"TabsWidth4\"/>"
-"        <menuitem action=\"TabsWidth6\"/>"
-"        <menuitem action=\"TabsWidth8\"/>"
-"        <menuitem action=\"TabsWidth10\"/>"
-"        <menuitem action=\"TabsWidth12\"/>"
+"      <menu action=\"TabWidth\">"
+"        <menuitem action=\"TabWidth4\"/>"
+"        <menuitem action=\"TabWidth6\"/>"
+"        <menuitem action=\"TabWidth8\"/>"
+"        <menuitem action=\"TabWidth10\"/>"
+"        <menuitem action=\"TabWidth12\"/>"
 "      </menu>"
 "      <menu action=\"IndentWidth\">"
 "        <menuitem action=\"IndentWidthUnset\"/>"
@@ -556,7 +556,7 @@ tabs_toggled_cb (GtkAction *action,
 		 gpointer user_data)
 {
 	g_return_if_fail (GTK_IS_RADIO_ACTION (action) && GTK_IS_SOURCE_VIEW (user_data));
-	gtk_source_view_set_tabs_width (
+	gtk_source_view_set_tab_width (
 		GTK_SOURCE_VIEW (user_data),
 		gtk_radio_action_get_current_value (GTK_RADIO_ACTION (action)));
 }
@@ -753,7 +753,7 @@ update_cursor_position (GtkTextBuffer *buffer, gpointer user_data)
 	g_return_if_fail (GTK_IS_SOURCE_VIEW (user_data));
 
 	view = GTK_SOURCE_VIEW (user_data);
-	tabwidth = gtk_source_view_get_tabs_width (view);
+	tabwidth = gtk_source_view_get_tab_width (view);
 	pos_label = GTK_LABEL (g_object_get_data (G_OBJECT (view), "pos_label"));
 
 	gtk_text_buffer_get_iter_at_mark (buffer,
@@ -1037,8 +1037,7 @@ create_view_window (GtkSourceBuffer *buffer, GtkSourceView *from)
 			GTK_TOGGLE_ACTION (action),
 			gtk_source_view_get_insert_spaces_instead_of_tabs (from));
 
-
-		tmp = g_strdup_printf ("TabsWidth%d", gtk_source_view_get_tabs_width (from));
+		tmp = g_strdup_printf ("TabWidth%d", gtk_source_view_get_tab_width (from));
 		action = gtk_action_group_get_action (action_group, tmp);
 		if (action)
 			gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), TRUE);
@@ -1133,7 +1132,7 @@ create_main_window (GtkSourceBuffer *buffer)
 	action = gtk_action_group_get_action (action_group, "InsertSpaces");
 	gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), FALSE);
 
-	action = gtk_action_group_get_action (action_group, "TabsWidth8");
+	action = gtk_action_group_get_action (action_group, "TabWidth8");
 	gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), TRUE);
 
 	action = gtk_action_group_get_action (action_group, "IndentWidthUnset");

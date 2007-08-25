@@ -87,7 +87,7 @@ GtkSourceView
 
 </para>
 
-<!-- ##### ARG GtkSourceView:tabs-width ##### -->
+<!-- ##### ARG GtkSourceView:tab-width ##### -->
 <para>
 
 </para>
@@ -185,6 +185,24 @@ GtkSourceView
 
 
 <!-- ##### FUNCTION gtk_source_view_get_indent_on_tab ##### -->
+<para>
+
+</para>
+
+@view: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gtk_source_view_set_indent_width ##### -->
+<para>
+
+</para>
+
+@view: 
+@width: 
+
+
+<!-- ##### FUNCTION gtk_source_view_get_indent_width ##### -->
 <para>
 
 </para>
@@ -339,7 +357,7 @@ GtkSourceView
 @Returns: 
 
 
-<!-- ##### FUNCTION gtk_source_view_set_tabs_width ##### -->
+<!-- ##### FUNCTION gtk_source_view_set_tab_width ##### -->
 <para>
 
 </para>
@@ -348,7 +366,7 @@ GtkSourceView
 @width: 
 
 
-<!-- ##### FUNCTION gtk_source_view_get_tabs_width ##### -->
+<!-- ##### FUNCTION gtk_source_view_get_tab_width ##### -->
 <para>
 
 </para>
