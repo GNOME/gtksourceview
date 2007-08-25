@@ -1999,10 +1999,10 @@ enable_highlight (GtkSourceContextEngine *ce,
 }
 
 static void
-buffer_notify_highlight_cb (GtkSourceContextEngine *ce)
+buffer_notify_highlight_syntax_cb (GtkSourceContextEngine *ce)
 {
 	gboolean highlight;
-	g_object_get (ce->priv->buffer, "highlight", &highlight, NULL);
+	g_object_get (ce->priv->buffer, "highlight-syntax", &highlight, NULL);
 	enable_highlight (ce, highlight);
 }
 
@@ -2196,7 +2196,7 @@ gtk_source_context_engine_attach_buffer (GtkSourceEngine *engine,
 	if (ce->priv->buffer != NULL)
 	{
 		g_signal_handlers_disconnect_by_func (ce->priv->buffer,
-						      (gpointer) buffer_notify_highlight_cb,
+						      (gpointer) buffer_notify_highlight_syntax_cb,
 						      ce);
 
 		if (ce->priv->first_update != 0)
@@ -2285,12 +2285,14 @@ gtk_source_context_engine_attach_buffer (GtkSourceEngine *engine,
 			ce->priv->invalid_region.delta = 0;
 		}
 
-		g_object_get (ce->priv->buffer, "highlight", &ce->priv->highlight, NULL);
+		g_object_get (ce->priv->buffer, "highlight-syntax", &ce->priv->highlight, NULL);
 		ce->priv->refresh_region = gtk_text_region_new (buffer);
 		ce->priv->highlight_requests = gtk_text_region_new (buffer);
 
-		g_signal_connect_swapped (buffer, "notify::highlight",
-					  G_CALLBACK (buffer_notify_highlight_cb), ce);
+		g_signal_connect_swapped (buffer,
+					  "notify::highlight-syntax",
+					  G_CALLBACK (buffer_notify_highlight_syntax_cb),
+					  ce);
 
 		install_first_update (ce);
 	}

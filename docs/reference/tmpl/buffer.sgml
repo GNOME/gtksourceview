@@ -72,7 +72,7 @@ in a view widget.
 
 </para>
 
-<!-- ##### ARG GtkSourceBuffer:check-brackets ##### -->
+<!-- ##### ARG GtkSourceBuffer:highlight-matching-brackets ##### -->
 <para>
 
 </para>
@@ -164,16 +164,16 @@ in a view widget.
 @Returns: 
 
 
-<!-- ##### FUNCTION gtk_source_buffer_set_check_brackets ##### -->
+<!-- ##### FUNCTION gtk_source_buffer_set_highlight_matching_brackets ##### -->
 <para>
 
 </para>
 
 @buffer: 
-@check_brackets: 
+@highlight: 
 
 
-<!-- ##### FUNCTION gtk_source_buffer_get_check_brackets ##### -->
+<!-- ##### FUNCTION gtk_source_buffer_get_highlight_matching_brackets ##### -->
 <para>
 
 </para>

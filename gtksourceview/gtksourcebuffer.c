@@ -73,8 +73,8 @@ enum {
 	PROP_0,
 	PROP_CAN_UNDO,
 	PROP_CAN_REDO,
-	PROP_CHECK_BRACKETS,
 	PROP_HIGHLIGHT_SYNTAX,
+	PROP_HIGHLIGHT_MATCHING_BRACKETS,
 	PROP_MAX_UNDO_LEVELS,
 	PROP_LANGUAGE,
 	PROP_STYLE_SCHEME
@@ -83,7 +83,7 @@ enum {
 struct _GtkSourceBufferPrivate
 {
 	gint                   highlight_syntax:1;
-	gint                   check_brackets:1;
+	gint                   highlight_brackets:1;
 
 	GtkTextTag            *bracket_match_tag;
 	GtkTextMark           *bracket_mark;
@@ -158,15 +158,6 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 	tb_class->insert_text 	= gtk_source_buffer_real_insert_text;
 	tb_class->delete_range 	= gtk_source_buffer_real_delete_range;
 
-	g_object_class_install_property (object_class,
-					 PROP_CHECK_BRACKETS,
-					 g_param_spec_boolean ("check_brackets",
-							       _("Check Brackets"),
-							       _("Whether to check and "
-								 "highlight matching brackets"),
-							       TRUE,
-							       G_PARAM_READWRITE));
-
 	/**
 	 * GtkSourceBuffer:highlight-syntax:
 	 *
@@ -178,6 +169,19 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 							       _("Highlight Syntax"),
 							       _("Whether to highlight syntax "
 								 "in the buffer"),
+							       TRUE,
+							       G_PARAM_READWRITE));
+
+	/**
+	 * GtkSourceBuffer:highlight-matching-brackets:
+	 *
+	 * Whether to highlight matching brackets in the buffer.
+	 */
+	g_object_class_install_property (object_class,
+					 PROP_HIGHLIGHT_MATCHING_BRACKETS,
+					 g_param_spec_boolean ("highlight-matching-brackets",
+							       _("Highlight Matching Brackets"),
+							       _("Whether to highlight matching brackets"),
 							       TRUE,
 							       G_PARAM_READWRITE));
 
@@ -272,28 +276,26 @@ gtk_source_buffer_init (GtkSourceBuffer *buffer)
 
 	priv->undo_manager = gtk_source_undo_manager_new (GTK_TEXT_BUFFER (buffer));
 
-	priv->check_brackets = TRUE;
+	priv->highlight_syntax = TRUE;
+	priv->highlight_brackets = TRUE;
 	priv->bracket_mark = NULL;
 	priv->bracket_found = FALSE;
 
 	priv->markers = g_array_new (FALSE, FALSE, sizeof (GtkSourceMarker *));
 
-	priv->highlight_syntax = TRUE;
 	priv->style_scheme = _gtk_source_style_scheme_get_default ();
 	if (priv->style_scheme != NULL)
 		g_object_ref (priv->style_scheme);
 
-	g_signal_connect (G_OBJECT (buffer),
+	g_signal_connect (buffer,
 			  "mark_set",
 			  G_CALLBACK (gtk_source_buffer_move_cursor),
 			  NULL);
-
-	g_signal_connect (G_OBJECT (priv->undo_manager),
+	g_signal_connect (priv->undo_manager,
 			  "can_undo",
 			  G_CALLBACK (gtk_source_buffer_can_undo_handler),
 			  buffer);
-
-	g_signal_connect (G_OBJECT (priv->undo_manager),
+	g_signal_connect (priv->undo_manager,
 			  "can_redo",
 			  G_CALLBACK (gtk_source_buffer_can_redo_handler),
 			  buffer);
@@ -369,13 +371,13 @@ gtk_source_buffer_set_property (GObject      *object,
 
 	switch (prop_id)
 	{
-		case PROP_CHECK_BRACKETS:
-			gtk_source_buffer_set_check_brackets (source_buffer,
+		case PROP_HIGHLIGHT_SYNTAX:
+			gtk_source_buffer_set_highlight_syntax (source_buffer,
 							      g_value_get_boolean (value));
 			break;
 
-		case PROP_HIGHLIGHT_SYNTAX:
-			gtk_source_buffer_set_highlight_syntax (source_buffer,
+		case PROP_HIGHLIGHT_MATCHING_BRACKETS:
+			gtk_source_buffer_set_highlight_matching_brackets (source_buffer,
 								g_value_get_boolean (value));
 			break;
 
@@ -414,14 +416,14 @@ gtk_source_buffer_get_property (GObject    *object,
 
 	switch (prop_id)
 	{
-		case PROP_CHECK_BRACKETS:
-			g_value_set_boolean (value,
-					     source_buffer->priv->check_brackets);
-			break;
-
 		case PROP_HIGHLIGHT_SYNTAX:
 			g_value_set_boolean (value,
 					     source_buffer->priv->highlight_syntax);
+			break;
+
+		case PROP_HIGHLIGHT_MATCHING_BRACKETS:
+			g_value_set_boolean (value,
+					     source_buffer->priv->highlight_brackets);
 			break;
 
 		case PROP_MAX_UNDO_LEVELS:
@@ -571,7 +573,7 @@ gtk_source_buffer_move_cursor (GtkTextBuffer     *buffer,
 					    &iter2);
 	}
 
-	if (!GTK_SOURCE_BUFFER (buffer)->priv->check_brackets)
+	if (!GTK_SOURCE_BUFFER (buffer)->priv->highlight_brackets)
 		return;
 
 	iter1 = *iter;
@@ -1038,7 +1040,7 @@ gtk_source_buffer_end_not_undoable_action (GtkSourceBuffer *buffer)
 }
 
 /**
- * gtk_source_buffer_get_check_brackets:
+ * gtk_source_buffer_get_highlight_matching_brackets:
  * @buffer: a #GtkSourceBuffer.
  *
  * Determines whether bracket match highlighting is activated for the
@@ -1048,17 +1050,17 @@ gtk_source_buffer_end_not_undoable_action (GtkSourceBuffer *buffer)
  * brackets.
  **/
 gboolean
-gtk_source_buffer_get_check_brackets (GtkSourceBuffer *buffer)
+gtk_source_buffer_get_highlight_matching_brackets (GtkSourceBuffer *buffer)
 {
 	g_return_val_if_fail (GTK_IS_SOURCE_BUFFER (buffer), FALSE);
 
-	return buffer->priv->check_brackets;
+	return buffer->priv->highlight_brackets;
 }
 
 /**
- * gtk_source_buffer_set_check_brackets:
+ * gtk_source_buffer_set_highlight_matching_brackets:
  * @buffer: a #GtkSourceBuffer.
- * @check_brackets: %TRUE if you want matching brackets highlighted.
+ * @highlight: %TRUE if you want matching brackets highlighted.
  *
  * Controls the bracket match highlighting function in the buffer.  If
  * activated, when you position your cursor over a bracket character
@@ -1068,17 +1070,17 @@ gtk_source_buffer_get_check_brackets (GtkSourceBuffer *buffer)
  * function.
  **/
 void
-gtk_source_buffer_set_check_brackets (GtkSourceBuffer *buffer,
-				      gboolean         check_brackets)
+gtk_source_buffer_set_highlight_matching_brackets (GtkSourceBuffer *buffer,
+						   gboolean         highlight)
 {
 	g_return_if_fail (GTK_IS_SOURCE_BUFFER (buffer));
 
-	check_brackets = (check_brackets != FALSE);
+	highlight = (highlight != FALSE);
 
-	if (check_brackets != buffer->priv->check_brackets)
+	if (highlight != buffer->priv->highlight_brackets)
 	{
-		buffer->priv->check_brackets = check_brackets;
-		g_object_notify (G_OBJECT (buffer), "check_brackets");
+		buffer->priv->highlight_brackets = highlight;
+		g_object_notify (G_OBJECT (buffer), "highlight-matching-brackets");
 	}
 }
 
@@ -1122,12 +1124,11 @@ gtk_source_buffer_set_highlight_syntax (GtkSourceBuffer *buffer,
 
 	highlight = (highlight != FALSE);
 
-	if (buffer->priv->highlight_syntax == highlight)
-		return;
-
+	if (buffer->priv->highlight_syntax != highlight)
+	{
 	buffer->priv->highlight_syntax = highlight;
-
 	g_object_notify (G_OBJECT (buffer), "highlight-syntax");
+	}
 }
 
 /**

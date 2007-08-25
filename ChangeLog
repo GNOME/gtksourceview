@@ -1,5 +1,10 @@
 2007-08-25  Paolo Borelli  <pborelli@katamail.com>
 
+	* gtksourceview/gtksourcebuffer.[ch]: api review: check-brackets ->
+	highlight-matching-brackets
+
+2007-08-25  Paolo Borelli  <pborelli@katamail.com>
+
 	* gtksourceview/gtksourcebuffer.[ch]: api review: highlight ->
 	highlight_syntax
 

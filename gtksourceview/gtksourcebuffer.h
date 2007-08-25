@@ -72,13 +72,15 @@ GtkSourceBuffer	 	*gtk_source_buffer_new 			(GtkTextTagTable        *table);
 GtkSourceBuffer 	*gtk_source_buffer_new_with_language 	(GtkSourceLanguage      *language);
 
 /* Properties. */
-gboolean		 gtk_source_buffer_get_check_brackets   (GtkSourceBuffer        *buffer);
-void			 gtk_source_buffer_set_check_brackets	(GtkSourceBuffer        *buffer,
-							       	 gboolean                check_brackets);
-
 gboolean		 gtk_source_buffer_get_highlight_syntax	(GtkSourceBuffer        *buffer);
 void			 gtk_source_buffer_set_highlight_syntax	(GtkSourceBuffer        *buffer,
 								 gboolean                highlight);
+
+gboolean		 gtk_source_buffer_get_highlight_matching_brackets
+								(GtkSourceBuffer        *buffer);
+void			 gtk_source_buffer_set_highlight_matching_brackets
+								(GtkSourceBuffer        *buffer,
+							       	 gboolean                highlight);
 
 gint			 gtk_source_buffer_get_max_undo_levels	(GtkSourceBuffer        *buffer);
 void			 gtk_source_buffer_set_max_undo_levels	(GtkSourceBuffer        *buffer,
