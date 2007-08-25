@@ -76,8 +76,8 @@ gboolean		 gtk_source_buffer_get_check_brackets   (GtkSourceBuffer        *buffe
 void			 gtk_source_buffer_set_check_brackets	(GtkSourceBuffer        *buffer,
 							       	 gboolean                check_brackets);
 
-gboolean		 gtk_source_buffer_get_highlight	(GtkSourceBuffer        *buffer);
-void			 gtk_source_buffer_set_highlight	(GtkSourceBuffer        *buffer,
+gboolean		 gtk_source_buffer_get_highlight_syntax	(GtkSourceBuffer        *buffer);
+void			 gtk_source_buffer_set_highlight_syntax	(GtkSourceBuffer        *buffer,
 								 gboolean                highlight);
 
 gint			 gtk_source_buffer_get_max_undo_levels	(GtkSourceBuffer        *buffer);

@@ -74,7 +74,7 @@ enum {
 	PROP_CAN_UNDO,
 	PROP_CAN_REDO,
 	PROP_CHECK_BRACKETS,
-	PROP_HIGHLIGHT,
+	PROP_HIGHLIGHT_SYNTAX,
 	PROP_MAX_UNDO_LEVELS,
 	PROP_LANGUAGE,
 	PROP_STYLE_SCHEME
@@ -82,7 +82,7 @@ enum {
 
 struct _GtkSourceBufferPrivate
 {
-	gint                   highlight:1;
+	gint                   highlight_syntax:1;
 	gint                   check_brackets:1;
 
 	GtkTextTag            *bracket_match_tag;
@@ -167,10 +167,15 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 							       TRUE,
 							       G_PARAM_READWRITE));
 
+	/**
+	 * GtkSourceBuffer:highlight-syntax:
+	 *
+	 * Whether to highlight syntax in the buffer.
+	 */
 	g_object_class_install_property (object_class,
-					 PROP_HIGHLIGHT,
-					 g_param_spec_boolean ("highlight",
-							       _("Highlight"),
+					 PROP_HIGHLIGHT_SYNTAX,
+					 g_param_spec_boolean ("highlight-syntax",
+							       _("Highlight Syntax"),
 							       _("Whether to highlight syntax "
 								 "in the buffer"),
 							       TRUE,
@@ -220,8 +225,6 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 	 * Style scheme. It contains styles for syntax highlighting, optionally
 	 * foreground, background, cursor color, current line color, and matching
 	 * brackets style.
-	 *
-	 * Since: 2.0
 	 */
 	g_object_class_install_property (object_class,
 					 PROP_STYLE_SCHEME,
@@ -275,7 +278,7 @@ gtk_source_buffer_init (GtkSourceBuffer *buffer)
 
 	priv->markers = g_array_new (FALSE, FALSE, sizeof (GtkSourceMarker *));
 
-	priv->highlight = TRUE;
+	priv->highlight_syntax = TRUE;
 	priv->style_scheme = _gtk_source_style_scheme_get_default ();
 	if (priv->style_scheme != NULL)
 		g_object_ref (priv->style_scheme);
@@ -371,9 +374,9 @@ gtk_source_buffer_set_property (GObject      *object,
 							      g_value_get_boolean (value));
 			break;
 
-		case PROP_HIGHLIGHT:
-			gtk_source_buffer_set_highlight (source_buffer,
-							 g_value_get_boolean (value));
+		case PROP_HIGHLIGHT_SYNTAX:
+			gtk_source_buffer_set_highlight_syntax (source_buffer,
+								g_value_get_boolean (value));
 			break;
 
 		case PROP_MAX_UNDO_LEVELS:
@@ -412,11 +415,13 @@ gtk_source_buffer_get_property (GObject    *object,
 	switch (prop_id)
 	{
 		case PROP_CHECK_BRACKETS:
-			g_value_set_boolean (value, source_buffer->priv->check_brackets);
+			g_value_set_boolean (value,
+					     source_buffer->priv->check_brackets);
 			break;
 
-		case PROP_HIGHLIGHT:
-			g_value_set_boolean (value, source_buffer->priv->highlight);
+		case PROP_HIGHLIGHT_SYNTAX:
+			g_value_set_boolean (value,
+					     source_buffer->priv->highlight_syntax);
 			break;
 
 		case PROP_MAX_UNDO_LEVELS:
@@ -1078,28 +1083,28 @@ gtk_source_buffer_set_check_brackets (GtkSourceBuffer *buffer,
 }
 
 /**
- * gtk_source_buffer_get_highlight:
+ * gtk_source_buffer_get_highlight_syntax:
  * @buffer: a #GtkSourceBuffer.
  *
- * Determines whether text highlighting is activated in the source
+ * Determines whether syntax highlighting is activated in the source
  * buffer.
  *
  * Return value: %TRUE if highlighting is enabled.
  **/
 gboolean
-gtk_source_buffer_get_highlight (GtkSourceBuffer *buffer)
+gtk_source_buffer_get_highlight_syntax (GtkSourceBuffer *buffer)
 {
 	g_return_val_if_fail (GTK_IS_SOURCE_BUFFER (buffer), FALSE);
 
-	return buffer->priv->highlight;
+	return buffer->priv->highlight_syntax;
 }
 
 /**
- * gtk_source_buffer_set_highlight:
+ * gtk_source_buffer_set_highlight_syntax:
  * @buffer: a #GtkSourceBuffer.
  * @highlight: %TRUE if you want to activate highlighting.
  *
- * Controls whether text is highlighted in the buffer.  If @highlight
+ * Controls whether syntax is highlighted in the buffer. If @highlight
  * is %TRUE, the text will be highlighted according to the syntax
  * highlighting specification installed in the buffer with
  * gtk_source_buffer_set_language(). Otherwise, any current highlighted
@@ -1110,21 +1115,20 @@ gtk_source_buffer_get_highlight (GtkSourceBuffer *buffer)
  * enabled.
  **/
 void
-gtk_source_buffer_set_highlight (GtkSourceBuffer *buffer,
-				 gboolean         highlight)
+gtk_source_buffer_set_highlight_syntax (GtkSourceBuffer *buffer,
+					gboolean         highlight)
 {
 	g_return_if_fail (GTK_IS_SOURCE_BUFFER (buffer));
 
 	highlight = (highlight != FALSE);
 
-	if (buffer->priv->highlight == highlight)
+	if (buffer->priv->highlight_syntax == highlight)
 		return;
 
-	buffer->priv->highlight = highlight;
+	buffer->priv->highlight_syntax = highlight;
 
-	g_object_notify (G_OBJECT (buffer), "highlight");
+	g_object_notify (G_OBJECT (buffer), "highlight-syntax");
 }
-
 
 /**
  * gtk_source_buffer_set_language:
