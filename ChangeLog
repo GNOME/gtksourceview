@@ -1,5 +1,10 @@
 2007-08-25  Paolo Borelli  <pborelli@katamail.com>
 
+	* gtksourceview/language-specs/makefile.lang: fix highlighting of a rule
+	following an empty rule.
+
+2007-08-25  Paolo Borelli  <pborelli@katamail.com>
+
 	* gtksourceview/language-specs/php.lang: many improvements (here-doc
 	strings, numbers highlighting, string variables, ...) based on a patch
 	by Eric Norige on bug #448513.

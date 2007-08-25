@@ -158,7 +158,7 @@
           <include>
             <context sub-pattern="1" where="start" style-ref="targets"/>
             <context id="prereq" end-at-line-end="true" style-ref="prereq">
-              <start>(?&lt;=:)</start>
+              <start>(?&lt;=:)(?=.)</start>
               <end>;</end>
               <include>
                 <context ref="def:escape"/>
