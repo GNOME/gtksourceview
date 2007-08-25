@@ -80,6 +80,9 @@ static void       insert_spaces_toggled_cb       (GtkAction       *action,
 static void       tabs_toggled_cb                (GtkAction       *action,
 						  GtkAction       *current,
 						  gpointer         user_data);
+static void       indent_toggled_cb              (GtkAction       *action,
+						  GtkAction       *current,
+						  gpointer         user_data);
 
 static GtkWidget *create_view_window             (GtkSourceBuffer *buffer,
 						  GtkSourceView   *from);
@@ -100,6 +103,7 @@ static GtkActionEntry view_action_entries[] = {
 	{ "NewView", GTK_STOCK_NEW, "_New View", NULL,
 	  "Create a new view of the file", G_CALLBACK (new_view_cb) },
 	{ "TabsWidth", NULL, "_Tabs Width" },
+	{ "IndentWidth", NULL, "I_ndent Width" },
 	{ "SmartHomeEnd", NULL, "_Smart Home/End" },
 	{ "DebugThing3", GTK_STOCK_FIND_AND_REPLACE, "Search and _Replace", "<control>R",
 	  "Search and Replace", G_CALLBACK (debug_thing_3_cb) },
@@ -126,12 +130,21 @@ static GtkToggleActionEntry toggle_entries[] = {
 	  G_CALLBACK (insert_spaces_toggled_cb), FALSE }
 };
 
-static GtkRadioActionEntry radio_entries[] = {
+static GtkRadioActionEntry tabs_radio_entries[] = {
 	{ "TabsWidth4", NULL, "4", NULL, "Set tabulation width to 4 spaces", 4 },
 	{ "TabsWidth6", NULL, "6", NULL, "Set tabulation width to 6 spaces", 6 },
 	{ "TabsWidth8", NULL, "8", NULL, "Set tabulation width to 8 spaces", 8 },
 	{ "TabsWidth10", NULL, "10", NULL, "Set tabulation width to 10 spaces", 10 },
 	{ "TabsWidth12", NULL, "12", NULL, "Set tabulation width to 12 spaces", 12 }
+};
+
+static GtkRadioActionEntry indent_radio_entries[] = {
+	{ "IndentWidthUnset", NULL, "Use Tab Width", NULL, "Set indent width same as tab width", -1 },
+	{ "IndentWidth4", NULL, "4", NULL, "Set indent width to 4 spaces", 4 },
+	{ "IndentWidth6", NULL, "6", NULL, "Set indent width to 6 spaces", 6 },
+	{ "IndentWidth8", NULL, "8", NULL, "Set indent width to 8 spaces", 8 },
+	{ "IndentWidth10", NULL, "10", NULL, "Set indent width to 10 spaces", 10 },
+	{ "IndentWidth12", NULL, "12", NULL, "Set indent width to 12 spaces", 12 }
 };
 
 static GtkRadioActionEntry smart_home_end_entries[] = {
@@ -170,6 +183,14 @@ static const gchar *view_ui_description =
 "        <menuitem action=\"TabsWidth8\"/>"
 "        <menuitem action=\"TabsWidth10\"/>"
 "        <menuitem action=\"TabsWidth12\"/>"
+"      </menu>"
+"      <menu action=\"IndentWidth\">"
+"        <menuitem action=\"IndentWidthUnset\"/>"
+"        <menuitem action=\"IndentWidth4\"/>"
+"        <menuitem action=\"IndentWidth6\"/>"
+"        <menuitem action=\"IndentWidth8\"/>"
+"        <menuitem action=\"IndentWidth10\"/>"
+"        <menuitem action=\"IndentWidth12\"/>"
 "      </menu>"
 "      <separator/>"
 "      <menu action=\"SmartHomeEnd\">"
@@ -509,7 +530,6 @@ hl_line_toggled_cb (GtkAction *action, gpointer user_data)
 		gtk_toggle_action_get_active (GTK_TOGGLE_ACTION (action)));
 }
 
-
 static void
 auto_indent_toggled_cb (GtkAction *action,
 			gpointer   user_data)
@@ -537,6 +557,17 @@ tabs_toggled_cb (GtkAction *action,
 {
 	g_return_if_fail (GTK_IS_RADIO_ACTION (action) && GTK_IS_SOURCE_VIEW (user_data));
 	gtk_source_view_set_tabs_width (
+		GTK_SOURCE_VIEW (user_data),
+		gtk_radio_action_get_current_value (GTK_RADIO_ACTION (action)));
+}
+
+static void
+indent_toggled_cb (GtkAction *action,
+		   GtkAction *current,
+		   gpointer user_data)
+{
+	g_return_if_fail (GTK_IS_RADIO_ACTION (action) && GTK_IS_SOURCE_VIEW (user_data));
+	gtk_source_view_set_indent_width (
 		GTK_SOURCE_VIEW (user_data),
 		gtk_radio_action_get_current_value (GTK_RADIO_ACTION (action)));
 }
@@ -921,9 +952,12 @@ create_view_window (GtkSourceBuffer *buffer, GtkSourceView *from)
 				      G_N_ELEMENTS (view_action_entries), view);
 	gtk_action_group_add_toggle_actions (action_group, toggle_entries,
 					     G_N_ELEMENTS (toggle_entries), view);
-	gtk_action_group_add_radio_actions (action_group, radio_entries,
-					    G_N_ELEMENTS (radio_entries),
+	gtk_action_group_add_radio_actions (action_group, tabs_radio_entries,
+					    G_N_ELEMENTS (tabs_radio_entries),
 					    -1, G_CALLBACK (tabs_toggled_cb), view);
+	gtk_action_group_add_radio_actions (action_group, indent_radio_entries,
+					    G_N_ELEMENTS (indent_radio_entries),
+					    -1, G_CALLBACK (indent_toggled_cb), view);
 	gtk_action_group_add_radio_actions (action_group, smart_home_end_entries,
 					    G_N_ELEMENTS (smart_home_end_entries),
 					    -1, G_CALLBACK (smart_home_end_toggled_cb), view);
@@ -975,6 +1009,7 @@ create_view_window (GtkSourceBuffer *buffer, GtkSourceView *from)
 	if (from)
 	{
 		gchar *tmp;
+		gint i;
 		GtkAction *action;
 
 		action = gtk_action_group_get_action (action_group, "ShowNumbers");
@@ -1004,6 +1039,13 @@ create_view_window (GtkSourceBuffer *buffer, GtkSourceView *from)
 
 
 		tmp = g_strdup_printf ("TabsWidth%d", gtk_source_view_get_tabs_width (from));
+		action = gtk_action_group_get_action (action_group, tmp);
+		if (action)
+			gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), TRUE);
+		g_free (tmp);
+
+		i = gtk_source_view_get_indent_width (from);
+		tmp = i < 0 ? g_strdup ("IndentWidthUnset") : g_strdup_printf ("IndentWidth%d", i);
 		action = gtk_action_group_get_action (action_group, tmp);
 		if (action)
 			gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), TRUE);
@@ -1092,6 +1134,9 @@ create_main_window (GtkSourceBuffer *buffer)
 	gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), FALSE);
 
 	action = gtk_action_group_get_action (action_group, "TabsWidth8");
+	gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), TRUE);
+
+	action = gtk_action_group_get_action (action_group, "IndentWidthUnset");
 	gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), TRUE);
 
 	return window;

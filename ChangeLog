@@ -1,5 +1,13 @@
 2007-08-25  Paolo Borelli  <pborelli@katamail.com>
 
+	* gtksourceview/gtksourceview.[ch]: introduce a indent-width property
+	that decouples the indentation step from the tab-width setting.
+	Fixes bug #352847. Based on a patch by Steve Frécinaux.
+
+	* tests/test-widget.c: test the new functionality.
+
+2007-08-25  Paolo Borelli  <pborelli@katamail.com>
+
 	* gtksourceview/gtksourcestylescheme.c: add the "description" property
 	and make _gtk_source_style_scheme_get_matching_brackets_style and
 	_gtk_source_style_scheme_get_current_line_color private since they are

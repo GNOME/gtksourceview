@@ -66,6 +66,7 @@
 #define DEFAULT_TAB_WIDTH 		8
 #define MIN_NUMBER_WINDOW_WIDTH		20
 #define MAX_TAB_WIDTH			32
+#define MAX_INDENT_WIDTH		32
 
 #define DEFAULT_MARGIN			80
 #define MAX_MARGIN			200
@@ -83,6 +84,7 @@ enum {
 	PROP_SHOW_LINE_NUMBERS,
 	PROP_SHOW_LINE_MARKERS,
 	PROP_TABS_WIDTH,
+	PROP_INDENT_WIDTH,
 	PROP_AUTO_INDENT,
 	PROP_INSERT_SPACES,
 	PROP_SHOW_MARGIN,
@@ -95,6 +97,7 @@ enum {
 struct _GtkSourceViewPrivate
 {
 	guint		 tabs_width;
+	gint		 indent_width;
 	gboolean 	 show_line_numbers;
 	gboolean	 show_line_markers;
 	gboolean	 auto_indent;
@@ -251,6 +254,21 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 							    MAX_TAB_WIDTH,
 							    DEFAULT_TAB_WIDTH,
 							    G_PARAM_READWRITE));
+
+	/**
+	 * GtkSourceView:indent-width:
+	 *
+	 * Width of an indentation step expressed in number of spaces.
+	 */
+	g_object_class_install_property (object_class,
+					 PROP_INDENT_WIDTH,
+					 g_param_spec_int ("indent-width",
+							   _("Indent Width"),
+							   _("Number of spaces to use for each step of indent"),
+							   -1,
+							   MAX_INDENT_WIDTH,
+							   -1,
+							   G_PARAM_READWRITE));
 
 	g_object_class_install_property (object_class,
 					 PROP_AUTO_INDENT,
@@ -475,6 +493,11 @@ gtk_source_view_set_property (GObject      *object,
 							g_value_get_uint (value));
 			break;
 
+		case PROP_INDENT_WIDTH:
+			gtk_source_view_set_indent_width (view,
+							  g_value_get_int (value));
+			break;
+
 		case PROP_AUTO_INDENT:
 			gtk_source_view_set_auto_indent (view,
 							 g_value_get_boolean (value));
@@ -548,6 +571,11 @@ gtk_source_view_get_property (GObject    *object,
 					  gtk_source_view_get_tabs_width (view));
 			break;
 
+		case PROP_INDENT_WIDTH:
+			g_value_set_int (value,
+					 gtk_source_view_get_indent_width (view));
+			break;
+
 		case PROP_AUTO_INDENT:
 			g_value_set_boolean (value,
 					     gtk_source_view_get_auto_indent (view));
@@ -607,6 +635,7 @@ gtk_source_view_init (GtkSourceView *view)
 						  GtkSourceViewPrivate);
 
 	view->priv->tabs_width = DEFAULT_TAB_WIDTH;
+	view->priv->indent_width = -1;
 	view->priv->margin = DEFAULT_MARGIN;
 	view->priv->cached_margin_width = -1;
 	view->priv->indent_on_tab = TRUE;
@@ -1919,23 +1948,6 @@ gtk_source_view_set_show_line_markers (GtkSourceView *view,
 	}
 }
 
-/**
- * gtk_source_view_get_tabs_width:
- * @view: a #GtkSourceView.
- *
- * Returns the width of tabulation in characters.
- *
- * Return value: width of tab.
- **/
-guint
-gtk_source_view_get_tabs_width (GtkSourceView *view)
-{
-	g_return_val_if_fail (view != NULL, FALSE);
-	g_return_val_if_fail (GTK_IS_SOURCE_VIEW (view), FALSE);
-
-	return view->priv->tabs_width;
-}
-
 static gboolean
 set_tab_stops_internal (GtkSourceView *view)
 {
@@ -1964,8 +1976,7 @@ set_tab_stops_internal (GtkSourceView *view)
  * @width: width of tab in characters.
  *
  * Sets the width of tabulation in characters.
- *
- **/
+ */
 void
 gtk_source_view_set_tabs_width (GtkSourceView *view,
 				guint          width)
@@ -1973,8 +1984,7 @@ gtk_source_view_set_tabs_width (GtkSourceView *view,
 	guint save_width;
 
 	g_return_if_fail (GTK_SOURCE_VIEW (view));
-	g_return_if_fail (width <= MAX_TAB_WIDTH);
-	g_return_if_fail (width > 0);
+	g_return_if_fail (width > 0 && width <= MAX_TAB_WIDTH);
 
 	if (view->priv->tabs_width == width)
 		return;
@@ -1995,13 +2005,70 @@ gtk_source_view_set_tabs_width (GtkSourceView *view,
 }
 
 /**
+ * gtk_source_view_get_tabs_width:
+ * @view: a #GtkSourceView.
+ *
+ * Returns the width of tabulation in characters.
+ *
+ * Return value: width of tab.
+ */
+guint
+gtk_source_view_get_tabs_width (GtkSourceView *view)
+{
+	g_return_val_if_fail (view != NULL, FALSE);
+	g_return_val_if_fail (GTK_IS_SOURCE_VIEW (view), FALSE);
+
+	return view->priv->tabs_width;
+}
+
+/**
+ * gtk_source_view_set_indent_width:
+ * @view: a #GtkSourceView.
+ * @width: indent width in characters.
+ *
+ * Sets the number of spaces to use for each step of indent.
+ * If @width is -1, the value of the GtkSourceView::tabs-width property
+ * will be used.
+ */
+void
+gtk_source_view_set_indent_width (GtkSourceView *view,
+				  gint          width)
+{
+	g_return_if_fail (GTK_SOURCE_VIEW (view));
+	g_return_if_fail ((width == -1) || (width > 0 && width <= MAX_INDENT_WIDTH));
+
+	if (view->priv->indent_width != width)
+	{
+		view->priv->indent_width = width;
+		g_object_notify (G_OBJECT (view), "indent-width");
+	}
+}
+
+/**
+ * gtk_source_view_get_indent_width:
+ * @view: a #GtkSourceView.
+ *
+ * Returns the number of spaces to use for each step of indent.
+ * See gtk_source_view_set_indent_width() for details.
+ *
+ * Return value: indent width.
+ */
+gint
+gtk_source_view_get_indent_width (GtkSourceView *view)
+{
+	g_return_val_if_fail (view != NULL && GTK_IS_SOURCE_VIEW (view), 0);
+
+	return view->priv->indent_width;
+}
+
+/**
  * gtk_source_view_set_marker_pixbuf:
  * @view: a #GtkSourceView.
  * @marker_type: a marker type.
  * @pixbuf: a #GdkPixbuf.
  *
  * Associates a given @pixbuf with a given @marker_type.
- **/
+ */
 void
 gtk_source_view_set_marker_pixbuf (GtkSourceView *view,
 				   const gchar   *marker_type,
@@ -2052,7 +2119,7 @@ gtk_source_view_set_marker_pixbuf (GtkSourceView *view,
  * Gets the pixbuf which is associated with the given @marker_type.
  *
  * Return value: a #GdkPixbuf if found, or %NULL if not found.
- **/
+ */
 GdkPixbuf *
 gtk_source_view_get_marker_pixbuf (GtkSourceView *view,
 				   const gchar   *marker_type)
@@ -2108,13 +2175,38 @@ compute_indentation (GtkSourceView *view,
 	return gtk_text_iter_get_slice (&start, &end);
 }
 
+static gint
+get_real_indent_width (GtkSourceView *view)
+{
+	return view->priv->indent_width < 0 ?
+	       view->priv->tabs_width :
+	       view->priv->indent_width;
+}
+
+static gchar *
+get_indent_string (gint tabs, gint spaces)
+{
+	gchar *str;
+
+	str = g_malloc (tabs + spaces + 1);
+	if (tabs > 0)
+		memset (str, '\t', tabs);
+	if (spaces > 0)
+		memset (str + tabs, ' ', spaces);
+	str[tabs + spaces] = '\0';
+
+	return str;
+}
+
 static void
 indent_lines (GtkSourceView *view, GtkTextIter *start, GtkTextIter *end)
 {
 	GtkTextBuffer *buf;
 	gint start_line, end_line;
-	gint i;
 	gchar *tab_buffer = NULL;
+	gint tabs = 0;
+	gint spaces = 0;
+	gint i;
 
 	buf = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
 
@@ -2127,15 +2219,25 @@ indent_lines (GtkSourceView *view, GtkTextIter *start, GtkTextIter *end)
 		end_line--;
 	}
 
-	if (gtk_source_view_get_insert_spaces_instead_of_tabs (view))
+	if (view->priv->insert_spaces)
 	{
-		gint tabs_size;
+		spaces = get_real_indent_width (view);
 
-		tabs_size = view->priv->tabs_width;
-		tab_buffer = g_strnfill (tabs_size, ' ');
+		tab_buffer = g_strnfill (spaces, ' ');
+	}
+	else if (view->priv->indent_width > 0)
+	{
+		gint indent_width;
+
+		indent_width = get_real_indent_width (view);
+		spaces = indent_width % view->priv->tabs_width;
+		tabs = indent_width / view->priv->tabs_width;		
+
+		tab_buffer = get_indent_string (tabs, spaces);
 	}
 	else
 	{
+		tabs = 1;
 		tab_buffer = g_strdup ("\t");
 	}
 
@@ -2144,14 +2246,52 @@ indent_lines (GtkSourceView *view, GtkTextIter *start, GtkTextIter *end)
 	for (i = start_line; i <= end_line; i++)
 	{
 		GtkTextIter iter;
+		GtkTextIter iter2;
+		gint replaced_spaces = 0;
 
 		gtk_text_buffer_get_iter_at_line (buf, &iter, i);
+
+		/* add spaces always after tabs, to avoid the case
+		 * where "\t" becomes "  \t" with no visual difference */
+		while (gtk_text_iter_get_char (&iter) == '\t')
+		{
+			gtk_text_iter_forward_char (&iter);
+		}
 
 		/* don't add indentation on empty lines */
 		if (gtk_text_iter_ends_line (&iter))
 			continue;
 
-		gtk_text_buffer_insert (buf, &iter, tab_buffer, -1);
+		/* if tabs are allowed try to merge the spaces
+		 * with the tab we are going to insert (if any) */
+		iter2 = iter;
+		while (!view->priv->insert_spaces &&
+		       (gtk_text_iter_get_char (&iter2) == ' ') &&
+			replaced_spaces < view->priv->tabs_width)
+		{
+			++replaced_spaces;
+
+			gtk_text_iter_forward_char (&iter2);
+		}
+
+		if (replaced_spaces > 0)
+		{
+			gchar *indent_buf;
+			gint t, s;
+
+			t = tabs + (spaces + replaced_spaces) / view->priv->tabs_width;
+			s = (spaces + replaced_spaces) % view->priv->tabs_width;
+			indent_buf = get_indent_string (t, s);
+
+			gtk_text_buffer_delete (buf, &iter, &iter2);
+			gtk_text_buffer_insert (buf, &iter, indent_buf, -1);
+
+			g_free (indent_buf);
+		}
+		else
+		{
+			gtk_text_buffer_insert (buf, &iter, tab_buffer, -1);
+		}
 	}
 
 	gtk_text_buffer_end_user_action (buf);
@@ -2167,6 +2307,8 @@ unindent_lines (GtkSourceView *view, GtkTextIter *start, GtkTextIter *end)
 {
 	GtkTextBuffer *buf;
 	gint start_line, end_line;
+	gint tabs_width;
+	gint indent_width;
 	gint i;
 
 	buf = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
@@ -2180,52 +2322,49 @@ unindent_lines (GtkSourceView *view, GtkTextIter *start, GtkTextIter *end)
 		end_line--;
 	}
 
+	tabs_width = view->priv->tabs_width;
+	indent_width = get_real_indent_width (view);
+
 	gtk_text_buffer_begin_user_action (buf);
 
 	for (i = start_line; i <= end_line; i++)
 	{
 		GtkTextIter iter, iter2;
+		gint to_delete = 0;
+		gint to_delete_equiv = 0;
 
 		gtk_text_buffer_get_iter_at_line (buf, &iter, i);
 
-		if (gtk_text_iter_get_char (&iter) == '\t')
+		iter2 = iter;
+
+		while (!gtk_text_iter_ends_line (&iter2) &&
+		       to_delete_equiv < indent_width)
 		{
-			iter2 = iter;
+			gunichar c;
+
+			c = gtk_text_iter_get_char (&iter2);
+			if (c == '\t')
+			{
+				to_delete_equiv += tabs_width - to_delete_equiv % tabs_width;
+				++to_delete;
+			}
+			else if (c == ' ')
+			{
+				++to_delete_equiv;
+				++to_delete;
+			}
+			else
+			{
+				break;
+			}
+
 			gtk_text_iter_forward_char (&iter2);
-			gtk_text_buffer_delete (buf, &iter, &iter2);
 		}
-		else if (gtk_text_iter_get_char (&iter) == ' ')
+
+		if (to_delete > 0)
 		{
-			gint spaces = 0;
-
-			iter2 = iter;
-
-			while (!gtk_text_iter_ends_line (&iter2))
-			{
-				if (gtk_text_iter_get_char (&iter2) == ' ')
-					spaces++;
-				else
-					break;
-
-				gtk_text_iter_forward_char (&iter2);
-			}
-
-			if (spaces > 0)
-			{
-				gint tabs = 0;
-				gint tabs_size = view->priv->tabs_width;
-
-				tabs = spaces / tabs_size;
-				spaces = spaces - (tabs * tabs_size);
-
-				if (spaces == 0)
-					spaces = tabs_size;
-
-				iter2 = iter;
-
-				gtk_text_iter_forward_chars (&iter2, spaces);
-				gtk_text_buffer_delete (buf, &iter, &iter2);
-			}
+			gtk_text_iter_set_line_offset (&iter2, to_delete);
+			gtk_text_buffer_delete (buf, &iter, &iter2);
 		}
 	}
 
@@ -2235,42 +2374,114 @@ unindent_lines (GtkSourceView *view, GtkTextIter *start, GtkTextIter *end)
 					    gtk_text_buffer_get_insert (buf));
 }
 
+static gint
+get_line_offset_in_equivalent_spaces (GtkSourceView *view,
+				      GtkTextIter *iter)
+{
+	GtkTextIter i;
+	gint tabs_width;
+	gint n = 0;
+
+	tabs_width = view->priv->tabs_width;
+
+	i = *iter;
+	gtk_text_iter_set_line_offset (&i, 0);
+
+	while (!gtk_text_iter_equal (&i, iter))
+	{
+		gunichar c;
+
+		c = gtk_text_iter_get_char (&i);
+		if (c == '\t')
+			n += tabs_width - n % tabs_width;
+		else
+			++n;
+
+		gtk_text_iter_forward_char (&i);
+	}
+
+	return n;
+}
+
 static void
-insert_tab_or_spaces (GtkSourceView *view, GtkTextIter *start, GtkTextIter *end)
+insert_tab_or_spaces (GtkSourceView *view,
+		      GtkTextIter   *start,
+		      GtkTextIter   *end)
 {
 	GtkTextBuffer *buf;
 	gchar *tab_buf;
+	gint cursor_offset = 0;
 
 	if (view->priv->insert_spaces)
 	{
-		gint tabs_size;
+		gint indent_width;
+		gint pos;
+		gint spaces;
+
+		indent_width = get_real_indent_width (view);
+
+		/* CHECK: is this a performance problem? */
+		pos = get_line_offset_in_equivalent_spaces (view, start);
+		spaces = indent_width - pos % indent_width;
+
+		tab_buf = g_strnfill (spaces, ' ');
+	}
+	else if (view->priv->indent_width > 0)
+	{
 		GtkTextIter iter;
-		gint cur_pos;
-		gint tab_pos;
-		gint num_of_equivalent_spaces;
+		gint i;
+		gint tabs_width;
+		gint indent_width;
+		gint from;
+		gint to;
+		gint preceding_spaces = 0;
+		gint following_tabs = 0;
+		gint equiv_spaces;
+		gint tabs;
+		gint spaces;
 
-		tabs_size = view->priv->tabs_width;
+		tabs_width = view->priv->tabs_width;
+		indent_width = get_real_indent_width (view);
 
+		/* CHECK: is this a performance problem? */
+		from = get_line_offset_in_equivalent_spaces (view, start);
+		to = indent_width * (1 + from / indent_width);
+		equiv_spaces = to - from;
+
+		/* extend the selection to include
+		 * preceding spaces so that if indentation
+		 * width < tab width, two conseutive indentation
+		 * width units get compressed into a tab */
 		iter = *start;
-
-		cur_pos = gtk_text_iter_get_line_offset (start);
-		tab_pos = cur_pos;
-
-		/* If there are tabs in the line take them into account */
-		while (tab_pos > 0)
+		for (i = 0; i < tabs_width; ++i)
 		{
-			gunichar c;
-
 			gtk_text_iter_backward_char (&iter);
-			c = gtk_text_iter_get_char (&iter);
-			if (c == '\t')
+
+			if (gtk_text_iter_get_char (&iter) == ' ')
+				++preceding_spaces;
+			else
 				break;
-			tab_pos--;
 		}
 
-		num_of_equivalent_spaces = tabs_size - (cur_pos - tab_pos) % tabs_size;
+		gtk_text_iter_backward_chars (start, preceding_spaces);
 
-		tab_buf = g_strnfill (num_of_equivalent_spaces, ' ');
+		/* now also extend the selection to the following tabs
+		 * since we do not want to insert spaces before a tab
+		 * since it may have no visual effect */
+		while (gtk_text_iter_get_char (end) == '\t')
+		{
+			++following_tabs;
+			gtk_text_iter_forward_char (end);
+		}
+
+		tabs = (preceding_spaces + equiv_spaces) / tabs_width;
+		spaces = (preceding_spaces + equiv_spaces) % tabs_width;
+
+		tab_buf = get_indent_string (tabs + following_tabs, spaces);
+
+		cursor_offset = gtk_text_iter_get_offset (start) +
+			        tabs +
+		                (following_tabs > 0 ? 1 : spaces);
 	}
 	else
 	{
@@ -2280,15 +2491,27 @@ insert_tab_or_spaces (GtkSourceView *view, GtkTextIter *start, GtkTextIter *end)
 	buf = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
 
 	gtk_text_buffer_begin_user_action (buf);
+
 	gtk_text_buffer_delete (buf, start, end);
 	gtk_text_buffer_insert (buf, start, tab_buf, -1);
+
+	/* adjust cursor position if needed */
+	if (cursor_offset > 0)
+	{
+		GtkTextIter iter;
+
+		gtk_text_buffer_get_iter_at_offset (buf, &iter, cursor_offset);
+		gtk_text_buffer_place_cursor (buf, &iter);
+	}
+
 	gtk_text_buffer_end_user_action (buf);
 
 	g_free (tab_buf);
 }
 
 static gboolean
-gtk_source_view_key_press_event (GtkWidget *widget, GdkEventKey *event)
+gtk_source_view_key_press_event (GtkWidget   *widget,
+				 GdkEventKey *event)
 {
 	GtkSourceView *view;
 	GtkTextBuffer *buf;
@@ -2331,7 +2554,7 @@ gtk_source_view_key_press_event (GtkWidget *widget, GdkEventKey *event)
 			if (gtk_im_context_filter_keypress (GTK_TEXT_VIEW(view)->im_context, event))
 				return TRUE;
 
-			/* If an input method has inserted some test while handling the key press event,
+			/* If an input method has inserted some text while handling the key press event,
 			 * the cur iterm may be invalid, so get the iter again */
 			gtk_text_buffer_get_iter_at_mark (buf, &cur, mark);
 

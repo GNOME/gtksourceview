@@ -104,6 +104,10 @@ void 		 gtk_source_view_set_tabs_width 	(GtkSourceView   *view,
 							 guint            width);
 guint            gtk_source_view_get_tabs_width         (GtkSourceView   *view);
 
+void		 gtk_source_view_set_indent_width 	(GtkSourceView   *view,
+							 gint             width);
+gint		 gtk_source_view_get_indent_width	(GtkSourceView   *view);
+
 void		 gtk_source_view_set_auto_indent 	(GtkSourceView   *view,
 							 gboolean         enable);
 gboolean	 gtk_source_view_get_auto_indent 	(GtkSourceView   *view);
