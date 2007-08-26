@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-08-26 12:05+0200\n"
-"PO-Revision-Date: 2007-08-26 12:07+0100\n"
+"POT-Creation-Date: 2007-08-26 22:12+0200\n"
+"PO-Revision-Date: 2007-08-26 22:13+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "MIME-Version: 1.0\n"
@@ -491,6 +491,7 @@ msgstr "Booleskt värde"
 #: ../gtksourceview/language-specs/css.lang.h:3
 #: ../gtksourceview/language-specs/def.lang.h:11
 #: ../gtksourceview/language-specs/d.lang.h:3
+#: ../gtksourceview/language-specs/erlang.lang.h:4
 #: ../gtksourceview/language-specs/fortran.lang.h:2
 #: ../gtksourceview/language-specs/gtkrc.lang.h:2
 #: ../gtksourceview/language-specs/haskell.lang.h:2
@@ -552,6 +553,7 @@ msgstr "Datatyp"
 #: ../gtksourceview/language-specs/csharp.lang.h:5
 #: ../gtksourceview/language-specs/def.lang.h:19
 #: ../gtksourceview/language-specs/d.lang.h:6
+#: ../gtksourceview/language-specs/erlang.lang.h:6
 #: ../gtksourceview/language-specs/nemerle.lang.h:6
 #: ../gtksourceview/language-specs/ocaml.lang.h:6
 #: ../gtksourceview/language-specs/php.lang.h:4
@@ -581,6 +583,7 @@ msgstr "Tecken efter Escape-tecken"
 #: ../gtksourceview/language-specs/css.lang.h:8
 #: ../gtksourceview/language-specs/def.lang.h:36
 #: ../gtksourceview/language-specs/d.lang.h:10
+#: ../gtksourceview/language-specs/erlang.lang.h:9
 #: ../gtksourceview/language-specs/fortran.lang.h:7
 #: ../gtksourceview/language-specs/gtkrc.lang.h:7
 #: ../gtksourceview/language-specs/haskell.lang.h:9
@@ -630,14 +633,15 @@ msgstr "Verkligt tal"
 
 #: ../gtksourceview/language-specs/ada.lang.h:11
 #: ../gtksourceview/language-specs/boo.lang.h:13
-#: ../gtksourceview/language-specs/c.lang.h:16
 #: ../gtksourceview/language-specs/chdr.lang.h:2
+#: ../gtksourceview/language-specs/c.lang.h:16
 #: ../gtksourceview/language-specs/cpp.lang.h:5
 #: ../gtksourceview/language-specs/csharp.lang.h:12
 #: ../gtksourceview/language-specs/d.lang.h:13
+#: ../gtksourceview/language-specs/erlang.lang.h:11
 #: ../gtksourceview/language-specs/fortran.lang.h:8
-#: ../gtksourceview/language-specs/haskell-literate.lang.h:2
 #: ../gtksourceview/language-specs/haskell.lang.h:12
+#: ../gtksourceview/language-specs/haskell-literate.lang.h:2
 #: ../gtksourceview/language-specs/idl.lang.h:6
 #: ../gtksourceview/language-specs/java.lang.h:13
 #: ../gtksourceview/language-specs/makefile.lang.h:2
@@ -667,6 +671,7 @@ msgstr "Lagringsklass"
 #: ../gtksourceview/language-specs/css.lang.h:13
 #: ../gtksourceview/language-specs/def.lang.h:57
 #: ../gtksourceview/language-specs/d.lang.h:15
+#: ../gtksourceview/language-specs/erlang.lang.h:12
 #: ../gtksourceview/language-specs/gtkrc.lang.h:9
 #: ../gtksourceview/language-specs/haskell.lang.h:13
 #: ../gtksourceview/language-specs/idl.lang.h:7
@@ -795,6 +800,10 @@ msgstr "Specialvariabel"
 msgid "ChangeLog"
 msgstr "Ändringslogg"
 
+#: ../gtksourceview/language-specs/chdr.lang.h:1
+msgid "C/C++/ObjC Header"
+msgstr "C/C++/ObjC-huvud"
+
 #: ../gtksourceview/language-specs/c.lang.h:2
 msgid "C"
 msgstr "C"
@@ -836,6 +845,7 @@ msgstr "Fel"
 #: ../gtksourceview/language-specs/c.lang.h:10
 #: ../gtksourceview/language-specs/def.lang.h:30
 #: ../gtksourceview/language-specs/d.lang.h:8
+#: ../gtksourceview/language-specs/erlang.lang.h:8
 #: ../gtksourceview/language-specs/nemerle.lang.h:8
 #: ../gtksourceview/language-specs/php.lang.h:7
 #: ../gtksourceview/language-specs/python.lang.h:9
@@ -867,9 +877,13 @@ msgstr "Oktalt tal"
 msgid "printf Conversion"
 msgstr "printf-konvertering"
 
-#: ../gtksourceview/language-specs/chdr.lang.h:1
-msgid "C/C++/ObjC Header"
-msgstr "C/C++/ObjC-huvud"
+#: ../gtksourceview/language-specs/classic.xml.h:1
+msgid "Classic"
+msgstr "Klassisk"
+
+#: ../gtksourceview/language-specs/classic.xml.h:2
+msgid "Classic color scheme"
+msgstr "Klassiskt färgschema"
 
 #: ../gtksourceview/language-specs/cpp.lang.h:1
 msgid "C++"
@@ -989,6 +1003,7 @@ msgstr "Anteckning (FIXME, TODO, ATTGÖRA, XXX, etc.)"
 
 #. Operators: "+", "*", etc.
 #: ../gtksourceview/language-specs/def.lang.h:42
+#: ../gtksourceview/language-specs/erlang.lang.h:10
 #: ../gtksourceview/language-specs/perl.lang.h:11
 #: ../gtksourceview/language-specs/php.lang.h:14
 msgid "Operator"
@@ -1156,6 +1171,11 @@ msgstr "patch-start"
 msgid "DTD"
 msgstr "DTD"
 
+#: ../gtksourceview/language-specs/erlang.lang.h:1
+msgid "Atom"
+msgstr "Atom"
+
+#: ../gtksourceview/language-specs/erlang.lang.h:2
 #: ../gtksourceview/language-specs/fortran.lang.h:1
 #: ../gtksourceview/language-specs/ocaml.lang.h:1
 #: ../gtksourceview/language-specs/octave.lang.h:1
@@ -1163,6 +1183,20 @@ msgstr "DTD"
 #: ../gtksourceview/language-specs/vhdl.lang.h:1
 msgid "Base-N Integer"
 msgstr "Heltal i bas N"
+
+#: ../gtksourceview/language-specs/erlang.lang.h:3
+#: ../gtksourceview/language-specs/ruby.lang.h:4
+msgid "Builtin"
+msgstr "Inbyggd"
+
+#: ../gtksourceview/language-specs/erlang.lang.h:5
+#: ../gtksourceview/language-specs/verilog.lang.h:3
+msgid "Compiler Directive"
+msgstr "Kompilatordirektiv"
+
+#: ../gtksourceview/language-specs/erlang.lang.h:7
+msgid "Erlang"
+msgstr "Erlang"
 
 #: ../gtksourceview/language-specs/fortran.lang.h:5
 #: ../gtksourceview/language-specs/ini.lang.h:6
@@ -1294,10 +1328,6 @@ msgstr "Monospace"
 msgid "URL"
 msgstr "URL"
 
-#: ../gtksourceview/language-specs/haskell-literate.lang.h:1
-msgid "Literate Haskell"
-msgstr "Literate Haskell"
-
 #: ../gtksourceview/language-specs/haskell.lang.h:6
 msgid "Float"
 msgstr "Flyt"
@@ -1318,6 +1348,10 @@ msgstr "Oktal"
 #: ../gtksourceview/language-specs/ruby.lang.h:22
 msgid "Symbol"
 msgstr "Symbol"
+
+#: ../gtksourceview/language-specs/haskell-literate.lang.h:1
+msgid "Literate Haskell"
+msgstr "Literate Haskell"
 
 #: ../gtksourceview/language-specs/html.lang.h:1
 msgid "Attribute Name"
@@ -1380,6 +1414,14 @@ msgstr "Objekt"
 #: ../gtksourceview/language-specs/javascript.lang.h:13
 msgid "Properties"
 msgstr "Egenskaper"
+
+#: ../gtksourceview/language-specs/kate.xml.h:1
+msgid "Color scheme used in the Kate text editor"
+msgstr "Färgschema använt i textredigeraren Kate"
+
+#: ../gtksourceview/language-specs/kate.xml.h:2
+msgid "Kate"
+msgstr "Kate"
 
 #: ../gtksourceview/language-specs/latex.lang.h:1
 msgid "Command"
@@ -1446,6 +1488,14 @@ msgstr "Nemerle"
 #: ../gtksourceview/language-specs/objc.lang.h:4
 msgid "Objective-C"
 msgstr "Objective-C"
+
+#: ../gtksourceview/language-specs/oblivion.xml.h:1
+msgid "Dark color scheme using the Tango color palette"
+msgstr "Mörkt färgschema som använder Tango-färgpaletten"
+
+#: ../gtksourceview/language-specs/oblivion.xml.h:2
+msgid "Oblivion"
+msgstr "Oblivion"
 
 #: ../gtksourceview/language-specs/ocaml.lang.h:3
 msgid "Builtin-function keyword"
@@ -1684,10 +1734,6 @@ msgstr "Växling"
 msgid "Attribute Definition"
 msgstr "Attributdefinition"
 
-#: ../gtksourceview/language-specs/ruby.lang.h:4
-msgid "Builtin"
-msgstr "Inbyggd"
-
 #: ../gtksourceview/language-specs/ruby.lang.h:13
 msgid "Module handler"
 msgstr "Modulhanterare"
@@ -1721,6 +1767,14 @@ msgstr "Ingen aning vad det här är"
 msgid "SQL"
 msgstr "SQL"
 
+#: ../gtksourceview/language-specs/tango.xml.h:1
+msgid "Color scheme using Tango color palette"
+msgstr "Färgschema som använder Tango-färgpalett"
+
+#: ../gtksourceview/language-specs/tango.xml.h:2
+msgid "Tango"
+msgstr "Tango"
+
 #: ../gtksourceview/language-specs/tcl.lang.h:3
 msgid "Tcl"
 msgstr "Tcl"
@@ -1744,10 +1798,6 @@ msgstr "Texinfo"
 #: ../gtksourceview/language-specs/vbnet.lang.h:9
 msgid "VB.NET"
 msgstr "VB.NET"
-
-#: ../gtksourceview/language-specs/verilog.lang.h:3
-msgid "Compiler Directive"
-msgstr "Kompilatordirektiv"
 
 #: ../gtksourceview/language-specs/verilog.lang.h:5
 msgid "Gate"
@@ -1808,30 +1858,6 @@ msgstr "grammatik"
 #: ../gtksourceview/language-specs/yacc.lang.h:5
 msgid "keyword"
 msgstr "nyckelord"
-
-#: ../gtksourceview/language-specs/classic.xml.h:1
-msgid "Classic"
-msgstr "Klassisk"
-
-#: ../gtksourceview/language-specs/classic.xml.h:2
-msgid "Classic color scheme"
-msgstr "Klassiskt färgschema"
-
-#: ../gtksourceview/language-specs/kate.xml.h:1
-msgid "Color scheme used in the Kate text editor"
-msgstr "Färgschema använt i textredigeraren Kate"
-
-#: ../gtksourceview/language-specs/kate.xml.h:2
-msgid "Kate"
-msgstr "Kate"
-
-#: ../gtksourceview/language-specs/tango.xml.h:1
-msgid "Color scheme using Tango color palette"
-msgstr "Färgschema som använder Tango-färgpalett"
-
-#: ../gtksourceview/language-specs/tango.xml.h:2
-msgid "Tango"
-msgstr "Tango"
 
 #: ../tests/test-scheme.xml.h:1
 msgid "Test"
