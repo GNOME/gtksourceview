@@ -353,7 +353,7 @@ gtk_source_language_manager_list_languages (GtkSourceLanguageManager *lm)
 }
 
 /**
- * gtk_source_language_manager_get_language_by_id:
+ * gtk_source_language_manager_get_language:
  * @lm: a #GtkSourceLanguageManager.
  * @id: a language id.
  *
@@ -365,8 +365,8 @@ gtk_source_language_manager_list_languages (GtkSourceLanguageManager *lm)
  * be freed.
  */
 GtkSourceLanguage *
-gtk_source_language_manager_get_language_by_id (GtkSourceLanguageManager *lm,
-						const gchar              *id)
+gtk_source_language_manager_get_language (GtkSourceLanguageManager *lm,
+					  const gchar              *id)
 {
 	g_return_val_if_fail (id != NULL, NULL);
 	ensure_languages (lm);

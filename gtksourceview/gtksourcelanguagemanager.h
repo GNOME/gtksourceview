@@ -64,7 +64,7 @@ GtkSourceLanguageManager *gtk_source_language_manager_get_default		(void);
 /* list must be freed, its elements no */
 GSList			 *gtk_source_language_manager_list_languages		(GtkSourceLanguageManager *lm);
 
-GtkSourceLanguage	 *gtk_source_language_manager_get_language_by_id	(GtkSourceLanguageManager *lm,
+GtkSourceLanguage	 *gtk_source_language_manager_get_language		(GtkSourceLanguageManager *lm,
 										 const gchar              *id);
 
 gchar			**gtk_source_language_manager_get_search_path		(GtkSourceLanguageManager *lm);
