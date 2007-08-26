@@ -17,6 +17,7 @@ LANGUAGES =			\
 	docbook.lang		\
 	dpatch.lang		\
 	dtd.lang		\
+	erlang.lang		\
 	fortran.lang		\
 	gap.lang		\
 	gtk-doc.lang		\
