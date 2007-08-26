@@ -65,6 +65,7 @@ LANGUAGES =			\
 STYLES =			\
 	classic.xml		\
 	kate.xml		\
+	oblivion.xml		\
 	tango.xml
 
 languagesdir = $(datadir)/gtksourceview-2.0/language-specs
