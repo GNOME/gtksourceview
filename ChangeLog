@@ -1,3 +1,8 @@
+2007-08-27  Paolo Borelli  <pborelli@katamail.com>
+
+	* gtksourceview/gtksourcebuffer.c: rise the max value for the
+	max-undo-levels property and allow -1 to mean 'no limit'.
+
 2007-08-26  Paolo Borelli  <pborelli@katamail.com>
 
 	* gtksourceview/language-specs/oblivion.lang: add oblivion style

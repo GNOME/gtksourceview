@@ -185,22 +185,27 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 							       TRUE,
 							       G_PARAM_READWRITE));
 
+	/**
+	 * GtkSourceBuffer:max-undo-levels:
+	 *
+	 * Number of undo levels for the buffer. -1 means no limit.
+	 */
 	g_object_class_install_property (object_class,
 					 PROP_MAX_UNDO_LEVELS,
-					 g_param_spec_int ("max_undo_levels",
+					 g_param_spec_int ("max-undo-levels",
 							   _("Maximum Undo Levels"),
 							   _("Number of undo levels for "
 							     "the buffer"),
-							   0,
-							   200,
-							   25,
+							   -1,
+							   G_MAXINT,
+							   1000,
 							   G_PARAM_READWRITE));
 
 	g_object_class_install_property (object_class,
 					 PROP_LANGUAGE,
 					 g_param_spec_object ("language",
-							      /* Translators: "Language" stands for 
-							       * "programming language", not "spoken language" */
+							      /* Translators: throughout gtksourceview "language" stands
+							       * for "programming language", not "spoken language" */
 							      _("Language"),
 							      _("Language object to get "
 								"highlighting patterns from"),
@@ -961,7 +966,8 @@ gtk_source_buffer_redo (GtkSourceBuffer *buffer)
  * Determines the number of undo levels the buffer will track for
  * buffer edits.
  *
- * Return value: the maximum number of possible undo levels.
+ * Return value: the maximum number of possible undo levels or
+ *               -1 if no limit is set.
  **/
 gint
 gtk_source_buffer_get_max_undo_levels (GtkSourceBuffer *buffer)
@@ -979,6 +985,8 @@ gtk_source_buffer_get_max_undo_levels (GtkSourceBuffer *buffer)
  * Sets the number of undo levels for user actions the buffer will
  * track.  If the number of user actions exceeds the limit set by this
  * function, older actions will be discarded.
+ *
+ * If @max_undo_levels is -1, no limit is set.
  *
  * A new action is started whenever the function
  * gtk_text_buffer_begin_user_action() is called.  In general, this
@@ -998,7 +1006,7 @@ gtk_source_buffer_set_max_undo_levels (GtkSourceBuffer *buffer,
 	{
 		gtk_source_undo_manager_set_max_undo_levels (buffer->priv->undo_manager,
 							     max_undo_levels);
-		g_object_notify (G_OBJECT (buffer), "max_undo_levels");
+		g_object_notify (G_OBJECT (buffer), "max-undo-levels");
 	}
 }
 
