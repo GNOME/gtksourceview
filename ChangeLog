@@ -1,3 +1,11 @@
+2007-08-27  Paolo Borelli  <pborelli@katamail.com>
+
+	* gtksourceview/gtksourcestyleschememanager.[ch]: api review:
+	style-manager -> style-scheme-manager.
+
+	* gtksourceview/gtksourcebuffer.c: adapt to the above.
+	* gtksourceview/gtksourcestylescheme.c: adapt to the above.
+
 2007-08-27  Paolo Maggi  <paolo@gnome.org>
 
 	* gtksourceview/gtksourcebuffer.[ch]: documentation fixes

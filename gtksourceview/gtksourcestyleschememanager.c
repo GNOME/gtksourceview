@@ -18,7 +18,7 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
-#include "gtksourcestylemanager.h"
+#include "gtksourcestyleschememanager.h"
 #include "gtksourceview-marshal.h"
 #include "gtksourceview-i18n.h"
 #include "gtksourceview-utils.h"
@@ -28,7 +28,7 @@
 #define STYLES_DIR		"styles"
 
 
-struct _GtkSourceStyleManagerPrivate
+struct _GtkSourceStyleSchemeManagerPrivate
 {
 	GHashTable	*schemes_hash;
 
@@ -46,22 +46,23 @@ enum {
 };
 
 
-G_DEFINE_TYPE (GtkSourceStyleManager, gtk_source_style_manager, G_TYPE_OBJECT)
+G_DEFINE_TYPE (GtkSourceStyleSchemeManager, gtk_source_style_scheme_manager, G_TYPE_OBJECT)
 
 static void
-gtk_source_style_manager_set_property (GObject 	    *object,
-				       guint 	     prop_id,
-				       const GValue *value,
-				       GParamSpec   *pspec)
+gtk_source_style_scheme_manager_set_property (GObject 	   *object,
+					      guint         prop_id,
+					      const GValue *value,
+					      GParamSpec   *pspec)
 {
-	GtkSourceStyleManager *sm;
+	GtkSourceStyleSchemeManager *sm;
 
-	sm = GTK_SOURCE_STYLE_MANAGER (object);
+	sm = GTK_SOURCE_STYLE_SCHEME_MANAGER (object);
 
 	switch (prop_id)
 	{
 		case PROP_SEARCH_PATH:
-			gtk_source_style_manager_set_search_path (sm, g_value_get_boxed (value));
+			gtk_source_style_scheme_manager_set_search_path
+					(sm, g_value_get_boxed (value));
 			break;
 
 		default:
@@ -73,23 +74,25 @@ gtk_source_style_manager_set_property (GObject 	    *object,
 }
 
 static void
-gtk_source_style_manager_get_property (GObject    *object,
-				       guint       prop_id,
-				       GValue     *value,
-				       GParamSpec *pspec)
+gtk_source_style_scheme_manager_get_property (GObject    *object,
+					      guint       prop_id,
+					      GValue     *value,
+					      GParamSpec *pspec)
 {
-	GtkSourceStyleManager *sm;
+	GtkSourceStyleSchemeManager *sm;
 
-	sm = GTK_SOURCE_STYLE_MANAGER (object);
+	sm = GTK_SOURCE_STYLE_SCHEME_MANAGER (object);
 
 	switch (prop_id)
 	{
 		case PROP_SEARCH_PATH:
-			g_value_set_boxed (value, gtk_source_style_manager_get_search_path (sm));
+			g_value_set_boxed (value,
+					   gtk_source_style_scheme_manager_get_search_path (sm));
 			break;
 
 		case PROP_SCHEME_IDS:
-			g_value_set_boxed (value, gtk_source_style_manager_get_scheme_ids (sm));
+			g_value_set_boxed (value,
+					   gtk_source_style_scheme_manager_get_scheme_ids (sm));
 			break;
 
 		default:
@@ -101,7 +104,7 @@ gtk_source_style_manager_get_property (GObject    *object,
 }
 
 static void
-free_schemes (GtkSourceStyleManager *mgr)
+free_schemes (GtkSourceStyleSchemeManager *mgr)
 {
 	if (mgr->priv->schemes_hash != NULL)
 	{
@@ -114,27 +117,27 @@ free_schemes (GtkSourceStyleManager *mgr)
 }
 
 static void
-gtk_source_style_manager_finalize (GObject *object)
+gtk_source_style_scheme_manager_finalize (GObject *object)
 {
-	GtkSourceStyleManager *mgr;
+	GtkSourceStyleSchemeManager *mgr;
 
-	mgr = GTK_SOURCE_STYLE_MANAGER (object);
+	mgr = GTK_SOURCE_STYLE_SCHEME_MANAGER (object);
 
 	free_schemes (mgr);
 
 	g_strfreev (mgr->priv->search_path);
 
-	G_OBJECT_CLASS (gtk_source_style_manager_parent_class)->finalize (object);
+	G_OBJECT_CLASS (gtk_source_style_scheme_manager_parent_class)->finalize (object);
 }
 
 static void
-gtk_source_style_manager_class_init (GtkSourceStyleManagerClass *klass)
+gtk_source_style_scheme_manager_class_init (GtkSourceStyleSchemeManagerClass *klass)
 {
 	GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
-	object_class->finalize	= gtk_source_style_manager_finalize;
-	object_class->set_property = gtk_source_style_manager_set_property;
-	object_class->get_property = gtk_source_style_manager_get_property;
+	object_class->finalize	= gtk_source_style_scheme_manager_finalize;
+	object_class->set_property = gtk_source_style_scheme_manager_set_property;
+	object_class->get_property = gtk_source_style_scheme_manager_get_property;
 
 	g_object_class_install_property (object_class,
 					 PROP_SEARCH_PATH,
@@ -154,14 +157,15 @@ gtk_source_style_manager_class_init (GtkSourceStyleManagerClass *klass)
 							     G_TYPE_STRV,
 							     G_PARAM_READABLE));
 
-	g_type_class_add_private (object_class, sizeof(GtkSourceStyleManagerPrivate));
+	g_type_class_add_private (object_class, sizeof(GtkSourceStyleSchemeManagerPrivate));
 }
 
 static void
-gtk_source_style_manager_init (GtkSourceStyleManager *mgr)
+gtk_source_style_scheme_manager_init (GtkSourceStyleSchemeManager *mgr)
 {
-	mgr->priv = G_TYPE_INSTANCE_GET_PRIVATE (mgr, GTK_TYPE_SOURCE_STYLE_MANAGER,
-						GtkSourceStyleManagerPrivate);
+	mgr->priv = G_TYPE_INSTANCE_GET_PRIVATE (mgr,
+						 GTK_TYPE_SOURCE_STYLE_SCHEME_MANAGER,
+						 GtkSourceStyleSchemeManagerPrivate);
 	mgr->priv->schemes_hash = NULL;
 	mgr->priv->ids = NULL;
 	mgr->priv->search_path = NULL;
@@ -169,35 +173,35 @@ gtk_source_style_manager_init (GtkSourceStyleManager *mgr)
 }
 
 /**
- * gtk_source_style_manager_new:
+ * gtk_source_style_scheme_manager_new:
  *
  * Creates a new style manager. If you do not need more than one style
- * manager then use gtk_source_style_manager_get_default() instead.
+ * manager then use gtk_source_style_scheme_manager_get_default() instead.
  *
- * Returns: a #GtkSourceStyleManager.
+ * Returns: a #GtkSourceStyleSchemeManager.
  */
-GtkSourceStyleManager *
-gtk_source_style_manager_new (void)
+GtkSourceStyleSchemeManager *
+gtk_source_style_scheme_manager_new (void)
 {
-	return g_object_new (GTK_TYPE_SOURCE_STYLE_MANAGER, NULL);
+	return g_object_new (GTK_TYPE_SOURCE_STYLE_SCHEME_MANAGER, NULL);
 }
 
 /**
- * gtk_source_style_manager_get_default:
+ * gtk_source_style_scheme_manager_get_default:
  *
- * Returns the default #GtkSourceStyleManager instance.
+ * Returns the default #GtkSourceStyleSchemeManager instance.
  *
- * Returns: a #GtkSourceStyleManager. Return value is owned
+ * Returns: a #GtkSourceStyleSchemeManager. Return value is owned
  * by GtkSourceView library and must not be unref'ed.
  */
-GtkSourceStyleManager *
-gtk_source_style_manager_get_default (void)
+GtkSourceStyleSchemeManager *
+gtk_source_style_scheme_manager_get_default (void)
 {
-	static GtkSourceStyleManager *instance;
+	static GtkSourceStyleSchemeManager *instance;
 
 	if (instance == NULL)
 	{
-		instance = gtk_source_style_manager_new ();
+		instance = gtk_source_style_scheme_manager_new ();
 		g_object_add_weak_pointer (G_OBJECT (instance),
 					   (gpointer) &instance);
 	}
@@ -328,7 +332,7 @@ slist_to_strv (GSList *list)
 }
 
 static void
-reload_if_needed (GtkSourceStyleManager *mgr)
+reload_if_needed (GtkSourceStyleSchemeManager *mgr)
 {
 	GSList *ids = NULL;
 	GSList *files;
@@ -340,7 +344,7 @@ reload_if_needed (GtkSourceStyleManager *mgr)
 
 	schemes_hash = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, g_object_unref);
 
-	files = _gtk_source_view_get_file_list ((gchar **)gtk_source_style_manager_get_search_path (mgr),
+	files = _gtk_source_view_get_file_list ((gchar **)gtk_source_style_scheme_manager_get_search_path (mgr),
 						SCHEME_FILE_SUFFIX,
 						FALSE);
 
@@ -384,7 +388,7 @@ reload_if_needed (GtkSourceStyleManager *mgr)
 }
 
 static void
-notify_search_path (GtkSourceStyleManager *mgr)
+notify_search_path (GtkSourceStyleSchemeManager *mgr)
 {
 	mgr->priv->need_reload = TRUE;
 
@@ -393,8 +397,8 @@ notify_search_path (GtkSourceStyleManager *mgr)
 }
 
 /**
- * gtk_source_style_manager_set_search_path:
- * @manager: a #GtkSourceStyleManager.
+ * gtk_source_style_scheme_manager_set_search_path:
+ * @manager: a #GtkSourceStyleSchemeManager.
  * @path: a %NULL-terminated array of strings or %NULL.
  *
  * Sets the list of directories where the @manager looks for
@@ -402,12 +406,12 @@ notify_search_path (GtkSourceStyleManager *mgr)
  * If @dirs is %NULL, the search path is reset to default.
  */
 void
-gtk_source_style_manager_set_search_path (GtkSourceStyleManager	 *manager,
+gtk_source_style_scheme_manager_set_search_path (GtkSourceStyleSchemeManager	 *manager,
 					  gchar	                **path)
 {
 	gchar **tmp;
 
-	g_return_if_fail (GTK_IS_SOURCE_STYLE_MANAGER (manager));
+	g_return_if_fail (GTK_IS_SOURCE_STYLE_SCHEME_MANAGER (manager));
 
 	tmp = manager->priv->search_path;
 
@@ -422,21 +426,21 @@ gtk_source_style_manager_set_search_path (GtkSourceStyleManager	 *manager,
 }
 
 /**
- * gtk_source_style_manager_append_search_path:
- * @manager: a #GtkSourceStyleManager.
+ * gtk_source_style_scheme_manager_append_search_path:
+ * @manager: a #GtkSourceStyleSchemeManager.
  * @path: a directory or a filename.
  *
  * Appends @path to the list of directories where the @manager looks for
  * style scheme files.
- * See gtk_source_style_manager_set_search_path() for details.
+ * See gtk_source_style_scheme_manager_set_search_path() for details.
  */
 void
-gtk_source_style_manager_append_search_path (GtkSourceStyleManager  *manager,
+gtk_source_style_scheme_manager_append_search_path (GtkSourceStyleSchemeManager  *manager,
 					     const gchar            *path)
 {
 	guint len = 0;
 
-	g_return_if_fail (GTK_IS_SOURCE_STYLE_MANAGER (manager));
+	g_return_if_fail (GTK_IS_SOURCE_STYLE_SCHEME_MANAGER (manager));
 	g_return_if_fail (path != NULL);
 
 	if (manager->priv->search_path == NULL)
@@ -457,22 +461,22 @@ gtk_source_style_manager_append_search_path (GtkSourceStyleManager  *manager,
 }
 
 /**
- * gtk_source_style_manager_prepend_search_path:
- * @manager: a #GtkSourceStyleManager.
+ * gtk_source_style_scheme_manager_prepend_search_path:
+ * @manager: a #GtkSourceStyleSchemeManager.
  * @path: a directory or a filename.
  *
  * Prepends @path to the list of directories where the @manager looks
  * for style scheme files.
- * See gtk_source_style_manager_set_search_path() for details.
+ * See gtk_source_style_scheme_manager_set_search_path() for details.
  */
 void
-gtk_source_style_manager_prepend_search_path (GtkSourceStyleManager *manager,
+gtk_source_style_scheme_manager_prepend_search_path (GtkSourceStyleSchemeManager *manager,
 					      const gchar           *path)
 {
 	guint len = 0;
 	gchar **new_search_path;
 
-	g_return_if_fail (GTK_IS_SOURCE_STYLE_MANAGER (manager));
+	g_return_if_fail (GTK_IS_SOURCE_STYLE_SCHEME_MANAGER (manager));
 	g_return_if_fail (path != NULL);
 
 	if (manager->priv->search_path == NULL)
@@ -483,32 +487,29 @@ gtk_source_style_manager_prepend_search_path (GtkSourceStyleManager *manager,
 	len = g_strv_length (manager->priv->search_path);
 
 	new_search_path = g_new (gchar *, len + 2);
-
 	new_search_path[0] = g_strdup (path);
-
 	memcpy (new_search_path + 1, manager->priv->search_path, (len + 1) * sizeof (gchar*));
 
 	g_free (manager->priv->search_path);
-
 	manager->priv->search_path = new_search_path;
 
 	notify_search_path (manager);
 }
 
 /**
- * gtk_source_style_manager_get_search_path:
- * @manager: a #GtkSourceStyleManager.
+ * gtk_source_style_scheme_manager_get_search_path:
+ * @manager: a #GtkSourceStyleSchemeManager.
  *
  * Returns the current search path for the @manager.
- * See gtk_source_style_manager_set_search_path() for details.
+ * See gtk_source_style_scheme_manager_set_search_path() for details.
  *
  * Returns: a NULL-terminated array of string containing the search path.
  * The array is owned by the @manager and must not be modified.
  */
 G_CONST_RETURN gchar* G_CONST_RETURN *
-gtk_source_style_manager_get_search_path (GtkSourceStyleManager	*manager)
+gtk_source_style_scheme_manager_get_search_path (GtkSourceStyleSchemeManager *manager)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_STYLE_MANAGER (manager), NULL);
+	g_return_val_if_fail (GTK_IS_SOURCE_STYLE_SCHEME_MANAGER (manager), NULL);
 
 	if (manager->priv->search_path == NULL)
 		manager->priv->search_path = _gtk_source_view_get_default_dirs (STYLES_DIR, FALSE);
@@ -517,15 +518,15 @@ gtk_source_style_manager_get_search_path (GtkSourceStyleManager	*manager)
 }
 
 /**
- * gtk_source_style_manager_force_rescan:
- * @manager: a #GtkSourceStyleManager
+ * gtk_source_style_scheme_manager_force_rescan:
+ * @manager: a #GtkSourceStyleSchemeManager
  *
  * Mark any currently cached information about the available style scehems
  * as invalid. All the available style schemes will be reloaded next time
  * the @manager is accessed.
  */
 void
-gtk_source_style_manager_force_rescan (GtkSourceStyleManager *manager)
+gtk_source_style_scheme_manager_force_rescan (GtkSourceStyleSchemeManager *manager)
 {
 	manager->priv->need_reload = TRUE;
 
@@ -533,8 +534,8 @@ gtk_source_style_manager_force_rescan (GtkSourceStyleManager *manager)
 }
 
 /**
- * gtk_source_style_manager_get_scheme_ids:
- * @manager: a #GtkSourceStyleManager
+ * gtk_source_style_scheme_manager_get_scheme_ids:
+ * @manager: a #GtkSourceStyleSchemeManager
  *
  * Returns the ids of the available style schemes.
  *
@@ -543,9 +544,9 @@ gtk_source_style_manager_force_rescan (GtkSourceStyleManager *manager)
  * is owned by the @manager and must not be modified.
  */
 const gchar* G_CONST_RETURN *
-gtk_source_style_manager_get_scheme_ids	(GtkSourceStyleManager	*manager)
+gtk_source_style_scheme_manager_get_scheme_ids	(GtkSourceStyleSchemeManager	*manager)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_STYLE_MANAGER (manager), NULL);
+	g_return_val_if_fail (GTK_IS_SOURCE_STYLE_SCHEME_MANAGER (manager), NULL);
 
 	reload_if_needed (manager);
 
@@ -553,8 +554,8 @@ gtk_source_style_manager_get_scheme_ids	(GtkSourceStyleManager	*manager)
 }
 
 /**
- * gtk_source_style_manager_get_scheme:
- * @manager: a #GtkSourceStyleManager
+ * gtk_source_style_scheme_manager_get_scheme:
+ * @manager: a #GtkSourceStyleSchemeManager
  * @scheme_id: style scheme id to find
  *
  * Looks up style scheme by id.
@@ -563,10 +564,10 @@ gtk_source_style_manager_get_scheme_ids	(GtkSourceStyleManager	*manager)
  * @manager and must not be unref'ed.
  */
 GtkSourceStyleScheme *
-gtk_source_style_manager_get_scheme (GtkSourceStyleManager *manager,
+gtk_source_style_scheme_manager_get_scheme (GtkSourceStyleSchemeManager *manager,
 				     const gchar           *scheme_id)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_STYLE_MANAGER (manager), NULL);
+	g_return_val_if_fail (GTK_IS_SOURCE_STYLE_SCHEME_MANAGER (manager), NULL);
 	g_return_val_if_fail (scheme_id != NULL, NULL);
 
 	reload_if_needed (manager);

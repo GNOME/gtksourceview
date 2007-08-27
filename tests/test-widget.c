@@ -33,7 +33,7 @@
 #include <gtksourceview/gtksourceview.h>
 #include <gtksourceview/gtksourcelanguage.h>
 #include <gtksourceview/gtksourcelanguagemanager.h>
-#include <gtksourceview/gtksourcestylemanager.h>
+#include <gtksourceview/gtksourcestyleschememanager.h>
 #ifdef TEST_XML_MEM
 #include <libxml/xmlreader.h>
 #endif
@@ -1227,7 +1227,7 @@ main (int argc, char *argv[])
 {
 	GtkWidget *window;
 	GtkSourceLanguageManager *lm;
-	GtkSourceStyleManager *sm;
+	GtkSourceStyleSchemeManager *sm;
 	GtkSourceBuffer *buffer;
 
 	gchar *builtin_lang_dirs[] = {TOP_SRCDIR "/gtksourceview/language-specs", NULL};
@@ -1269,19 +1269,20 @@ main (int argc, char *argv[])
 
 	lang_dirs = use_default_paths ? NULL : builtin_sm_dirs;
 
-	sm = gtk_source_style_manager_get_default ();
-	gtk_source_style_manager_set_search_path (sm, lang_dirs);
+	sm = gtk_source_style_scheme_manager_get_default ();
+	gtk_source_style_scheme_manager_set_search_path (sm, lang_dirs);
 
 	if (!use_default_paths)
-		gtk_source_style_manager_append_search_path (sm, TOP_SRCDIR "/tests/test-scheme.xml");
+		gtk_source_style_scheme_manager_append_search_path (sm, TOP_SRCDIR "/tests/test-scheme.xml");
 
-	schemes = gtk_source_style_manager_get_scheme_ids (sm);
+	schemes = gtk_source_style_scheme_manager_get_scheme_ids (sm);
 	g_print ("Available style schemes:\n");
 	while (*schemes != NULL)
 	{
 		const gchar* const *authors;
 		gchar *authors_str = NULL;
-		style_scheme = gtk_source_style_manager_get_scheme (sm, *schemes);
+
+		style_scheme = gtk_source_style_scheme_manager_get_scheme (sm, *schemes);
 
 		authors = gtk_source_style_scheme_get_authors (style_scheme);
 		if (authors != NULL)
@@ -1303,7 +1304,7 @@ main (int argc, char *argv[])
 	g_print("\n");
 
 	if (style_scheme_id != NULL)
-		style_scheme = gtk_source_style_manager_get_scheme (sm, style_scheme_id);
+		style_scheme = gtk_source_style_scheme_manager_get_scheme (sm, style_scheme_id);
 	else
 		style_scheme = NULL;
 
