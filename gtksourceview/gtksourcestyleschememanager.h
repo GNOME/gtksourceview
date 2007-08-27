@@ -1,7 +1,7 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8; coding: utf-8 -*-
  *  gtksourcestyleschememanager.h
  *
- *  Copyright (C) 2003 - Paolo Maggi <paolo.maggi@polito.it>
+ *  Copyright (C) 2003-2007 - Paolo Maggi <paolo.maggi@polito.it>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU Library General Public License as published by
@@ -78,7 +78,7 @@ G_CONST_RETURN gchar* G_CONST_RETURN *
 
 void			 gtk_source_style_scheme_manager_force_rescan		(GtkSourceStyleSchemeManager	*manager);
 
-G_CONST_RETURN gchar * G_CONST_RETURN *
+G_CONST_RETURN gchar* G_CONST_RETURN *
 			 gtk_source_style_scheme_manager_get_scheme_ids		(GtkSourceStyleSchemeManager	*manager);
 
 GtkSourceStyleScheme	*gtk_source_style_scheme_manager_get_scheme		(GtkSourceStyleSchemeManager	*manager,

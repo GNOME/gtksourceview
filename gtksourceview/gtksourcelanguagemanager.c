@@ -1,7 +1,7 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8; coding: utf-8 -*-
  *  gtksourcelanguagemanager.c
  *
- *  Copyright (C) 2003 - Paolo Maggi <paolo.maggi@polito.it>
+ *  Copyright (C) 2003-2007 - Paolo Maggi <paolo.maggi@polito.it>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU Library General Public License as published by
@@ -34,15 +34,18 @@
 
 enum {
 	PROP_0,
-	PROP_SEARCH_PATH
+	PROP_SEARCH_PATH,
+	PROP_LANGUAGE_IDS
 };
 
 struct _GtkSourceLanguageManagerPrivate
 {
 	GHashTable	*language_ids;
-	GSList 		*available_languages;
-	char	       **lang_dirs;
-	char		*rng_file;
+
+	gchar	       **lang_dirs;
+	gchar		*rng_file;
+
+	gchar          **ids; /* Cache the IDs of the available languages */
 };
 
 G_DEFINE_TYPE (GtkSourceLanguageManager, gtk_source_language_manager, G_TYPE_OBJECT)
@@ -86,6 +89,10 @@ gtk_source_language_manager_get_property (GObject 	*object,
 			g_value_set_boxed (value, gtk_source_language_manager_get_search_path (lm));
 			break;
 
+		case PROP_LANGUAGE_IDS:
+			g_value_set_boxed (value, gtk_source_language_manager_get_language_ids (lm));
+			break;
+
 		default:
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
 			break;
@@ -102,8 +109,8 @@ gtk_source_language_manager_finalize (GObject *object)
 	if (lm->priv->language_ids)
 		g_hash_table_destroy (lm->priv->language_ids);
 
-	g_slist_foreach (lm->priv->available_languages, (GFunc) g_object_unref, NULL);
-	g_slist_free (lm->priv->available_languages);
+	g_strfreev (lm->priv->ids);
+
 	g_strfreev (lm->priv->lang_dirs);
 	g_free (lm->priv->rng_file);
 
@@ -130,6 +137,15 @@ gtk_source_language_manager_class_init (GtkSourceLanguageManagerClass *klass)
 							     G_TYPE_STRV,
 							     G_PARAM_READWRITE));
 
+	g_object_class_install_property (object_class,
+					 PROP_LANGUAGE_IDS,
+					 g_param_spec_boxed ("language-ids",
+						 	     _("Language ids"),
+							     _("List of the ids of the available "
+							       "languages"),
+							     G_TYPE_STRV,
+							     G_PARAM_READABLE));
+
 	g_type_class_add_private (object_class, sizeof(GtkSourceLanguageManagerPrivate));
 }
 
@@ -139,7 +155,7 @@ gtk_source_language_manager_init (GtkSourceLanguageManager *lm)
 	lm->priv = G_TYPE_INSTANCE_GET_PRIVATE (lm, GTK_TYPE_SOURCE_LANGUAGE_MANAGER,
 						GtkSourceLanguageManagerPrivate);
 	lm->priv->language_ids = NULL;
-	lm->priv->available_languages = NULL;
+	lm->priv->ids = NULL;
 	lm->priv->lang_dirs = NULL;
 	lm->priv->rng_file = NULL;
 }
@@ -182,6 +198,13 @@ gtk_source_language_manager_get_default (void)
 	return instance;
 }
 
+static void
+notify_search_path (GtkSourceLanguageManager *mgr)
+{
+	g_object_notify (G_OBJECT (mgr), "search-path");
+	g_object_notify (G_OBJECT (mgr), "language-ids");
+}
+
 /**
  * gtk_source_language_manager_set_search_path:
  * @lm: a #GtkSourceLanguageManager.
@@ -209,14 +232,19 @@ gtk_source_language_manager_set_search_path (GtkSourceLanguageManager *lm,
 	g_return_if_fail (GTK_IS_SOURCE_LANGUAGE_MANAGER (lm));
 
 	/* Search path cannot be changed in the list of available languages
-	 * as been already changed */
-	g_return_if_fail (lm->priv->available_languages == NULL);
+	 * as been already computed */
+	g_return_if_fail (lm->priv->ids == NULL);
 
 	tmp = lm->priv->lang_dirs;
-	lm->priv->lang_dirs = g_strdupv (dirs);
+
+	if (dirs == NULL)
+		lm->priv->lang_dirs = _gtk_source_view_get_default_dirs (LANGUAGE_DIR, TRUE);
+	else
+		lm->priv->lang_dirs = g_strdupv (dirs);
+
 	g_strfreev (tmp);
 
-	g_object_notify (G_OBJECT (lm), "search-path");
+	notify_search_path (lm);
 }
 
 /**
@@ -226,9 +254,9 @@ gtk_source_language_manager_set_search_path (GtkSourceLanguageManager *lm,
  * Gets the list directories where @lm looks for language files.
  *
  * Returns: %NULL-terminated array containg a list of language files directories.
- * It is owned by @lm and must not be modified or freed.
+ * The array is owned by @lm and must not be modified.
  */
-gchar **
+G_CONST_RETURN gchar* G_CONST_RETURN *
 gtk_source_language_manager_get_search_path (GtkSourceLanguageManager *lm)
 {
 	g_return_val_if_fail (GTK_IS_SOURCE_LANGUAGE_MANAGER (lm), NULL);
@@ -236,7 +264,7 @@ gtk_source_language_manager_get_search_path (GtkSourceLanguageManager *lm)
 	if (lm->priv->lang_dirs == NULL)
 		lm->priv->lang_dirs = _gtk_source_view_get_default_dirs (LANGUAGE_DIR, TRUE);
 
-	return lm->priv->lang_dirs;
+	return (const gchar * const *)lm->priv->lang_dirs;
 }
 
 /**
@@ -254,7 +282,7 @@ _gtk_source_language_manager_get_rng_file (GtkSourceLanguageManager *lm)
 
 	if (lm->priv->rng_file == NULL)
 	{
-		gchar **dirs;
+		const gchar * const *dirs;
 
 		for (dirs = gtk_source_language_manager_get_search_path (lm);
 		     dirs != NULL && *dirs != NULL;
@@ -277,18 +305,10 @@ _gtk_source_language_manager_get_rng_file (GtkSourceLanguageManager *lm)
 }
 
 static void
-prepend_lang (G_GNUC_UNUSED gchar      *id,
-	      GtkSourceLanguage        *lang,
-	      GtkSourceLanguageManager *lm)
-{
-	lm->priv->available_languages =
-		g_slist_prepend (lm->priv->available_languages, g_object_ref (lang));
-}
-
-static void
 ensure_languages (GtkSourceLanguageManager *lm)
 {
 	GSList *filenames, *l;
+	GPtrArray *ids_array = NULL;
 
 	if (lm->priv->language_ids != NULL)
 		return;
@@ -296,7 +316,7 @@ ensure_languages (GtkSourceLanguageManager *lm)
 	lm->priv->language_ids = g_hash_table_new_full (g_str_hash, g_str_equal,
 							g_free, g_object_unref);
 
-	filenames = _gtk_source_view_get_file_list (gtk_source_language_manager_get_search_path (lm),
+	filenames = _gtk_source_view_get_file_list ((gchar **)gtk_source_language_manager_get_search_path (lm),
 						    LANG_FILE_SUFFIX,
 						    TRUE);
 
@@ -320,6 +340,11 @@ ensure_languages (GtkSourceLanguageManager *lm)
 			g_hash_table_insert (lm->priv->language_ids,
 					     g_strdup (lang->priv->id),
 					     lang);
+
+			if (ids_array == NULL)
+				ids_array = g_ptr_array_new ();
+
+			g_ptr_array_add (ids_array, g_strdup (lang->priv->id));
 		}
 		else
 		{
@@ -327,29 +352,36 @@ ensure_languages (GtkSourceLanguageManager *lm)
 		}
 	}
 
-	g_hash_table_foreach (lm->priv->language_ids, (GHFunc) prepend_lang, lm);
+	if (ids_array != NULL)
+	{
+		/* Ensure the array is NULL terminated */
+		g_ptr_array_add (ids_array, NULL);
+		lm->priv->ids = (gchar **)g_ptr_array_free (ids_array, FALSE);
+	}
 
 	g_slist_foreach (filenames, (GFunc) g_free, NULL);
 	g_slist_free (filenames);
 }
 
+
 /**
- * gtk_source_language_manager_get_available_languages:
- * @lm: a #GtkSourceLanguageManager.
+ * gtk_source_language_manager_get_language_ids:
+ * @lm: a #GtkSourceLanguageManager
  *
- * Gets a list of available languages for the given language manager.
+ * Returns the ids of the available languages.
  *
- * Returns: a list of #GtkSourceLanguage objects. It must be freed with
- * g_slist_free(), but its elements must not be unref'ed.
+ * Returns: a %NULL-terminated array of string containing the ids of the
+ * available languages or %NULL if no language is available. The array
+ * is owned by @lm and must not be modified.
  */
-GSList *
-gtk_source_language_manager_list_languages (GtkSourceLanguageManager *lm)
+G_CONST_RETURN gchar* G_CONST_RETURN *
+gtk_source_language_manager_get_language_ids (GtkSourceLanguageManager *lm)
 {
 	g_return_val_if_fail (GTK_IS_SOURCE_LANGUAGE_MANAGER (lm), NULL);
 
 	ensure_languages (lm);
 
-	return g_slist_copy (lm->priv->available_languages);
+	return (const gchar * const *)lm->priv->ids;
 }
 
 /**
@@ -368,8 +400,11 @@ GtkSourceLanguage *
 gtk_source_language_manager_get_language (GtkSourceLanguageManager *lm,
 					  const gchar              *id)
 {
+	g_return_val_if_fail (GTK_IS_SOURCE_LANGUAGE_MANAGER (lm), NULL);
 	g_return_val_if_fail (id != NULL, NULL);
+
 	ensure_languages (lm);
+
 	return g_hash_table_lookup (lm->priv->language_ids, id);
 }
 

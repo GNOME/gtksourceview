@@ -1,5 +1,5 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8; coding: utf-8 -*-
- *  gtksourcestylemanager.c
+ *  gtksourcestyleschememanager.c
  *
  *  Copyright (C) 2003-2007 - Paolo Maggi <paolo@gnome.org>
  *
@@ -213,6 +213,7 @@ static GSList *
 ids_list_remove (GSList *ids, const gchar *id, gboolean free_data)
 {
 	GSList *o = g_slist_find_custom (ids, id, (GCompareFunc) strcmp);
+
 	if (o != NULL)
 	{
 		if (free_data)
@@ -406,8 +407,8 @@ notify_search_path (GtkSourceStyleSchemeManager *mgr)
  * If @dirs is %NULL, the search path is reset to default.
  */
 void
-gtk_source_style_scheme_manager_set_search_path (GtkSourceStyleSchemeManager	 *manager,
-					  gchar	                **path)
+gtk_source_style_scheme_manager_set_search_path (GtkSourceStyleSchemeManager  *manager,
+						 gchar	                     **path)
 {
 	gchar **tmp;
 
@@ -435,8 +436,8 @@ gtk_source_style_scheme_manager_set_search_path (GtkSourceStyleSchemeManager	 *m
  * See gtk_source_style_scheme_manager_set_search_path() for details.
  */
 void
-gtk_source_style_scheme_manager_append_search_path (GtkSourceStyleSchemeManager  *manager,
-					     const gchar            *path)
+gtk_source_style_scheme_manager_append_search_path (GtkSourceStyleSchemeManager *manager,
+						    const gchar                 *path)
 {
 	guint len = 0;
 
@@ -471,7 +472,7 @@ gtk_source_style_scheme_manager_append_search_path (GtkSourceStyleSchemeManager 
  */
 void
 gtk_source_style_scheme_manager_prepend_search_path (GtkSourceStyleSchemeManager *manager,
-					      const gchar           *path)
+						     const gchar                 *path)
 {
 	guint len = 0;
 	gchar **new_search_path;
@@ -543,8 +544,8 @@ gtk_source_style_scheme_manager_force_rescan (GtkSourceStyleSchemeManager *manag
  * available style schemes or %NULL if no style scheme is available. The array
  * is owned by the @manager and must not be modified.
  */
-const gchar* G_CONST_RETURN *
-gtk_source_style_scheme_manager_get_scheme_ids	(GtkSourceStyleSchemeManager	*manager)
+G_CONST_RETURN gchar* G_CONST_RETURN *
+gtk_source_style_scheme_manager_get_scheme_ids (GtkSourceStyleSchemeManager *manager)
 {
 	g_return_val_if_fail (GTK_IS_SOURCE_STYLE_SCHEME_MANAGER (manager), NULL);
 
@@ -565,7 +566,7 @@ gtk_source_style_scheme_manager_get_scheme_ids	(GtkSourceStyleSchemeManager	*man
  */
 GtkSourceStyleScheme *
 gtk_source_style_scheme_manager_get_scheme (GtkSourceStyleSchemeManager *manager,
-				     const gchar           *scheme_id)
+					    const gchar                 *scheme_id)
 {
 	g_return_val_if_fail (GTK_IS_SOURCE_STYLE_SCHEME_MANAGER (manager), NULL);
 	g_return_val_if_fail (scheme_id != NULL, NULL);

@@ -59,17 +59,22 @@ struct _GtkSourceLanguageManagerClass
 GType			  gtk_source_language_manager_get_type			(void) G_GNUC_CONST;
 
 GtkSourceLanguageManager *gtk_source_language_manager_new			(void);
+
 GtkSourceLanguageManager *gtk_source_language_manager_get_default		(void);
 
-/* list must be freed, its elements no */
-GSList			 *gtk_source_language_manager_list_languages		(GtkSourceLanguageManager *lm);
+G_CONST_RETURN gchar* G_CONST_RETURN *
+			  gtk_source_language_manager_get_search_path		(GtkSourceLanguageManager *lm);
+
+void			  gtk_source_language_manager_set_search_path		(GtkSourceLanguageManager *lm,
+										 gchar                   **dirs);
+
+G_CONST_RETURN gchar* G_CONST_RETURN *
+			  gtk_source_language_manager_get_language_ids		(GtkSourceLanguageManager *lm);
 
 GtkSourceLanguage	 *gtk_source_language_manager_get_language		(GtkSourceLanguageManager *lm,
 										 const gchar              *id);
 
-gchar			**gtk_source_language_manager_get_search_path		(GtkSourceLanguageManager *lm);
-void			  gtk_source_language_manager_set_search_path		(GtkSourceLanguageManager *lm,
-										 gchar                   **dirs);
+
 
 G_END_DECLS
 

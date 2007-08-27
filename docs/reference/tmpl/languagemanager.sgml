@@ -24,6 +24,11 @@ private members and should not be accessed directly.
 </para>
 
 
+<!-- ##### ARG GtkSourceLanguageManager:language-ids ##### -->
+<para>
+
+</para>
+
 <!-- ##### ARG GtkSourceLanguageManager:search-path ##### -->
 <para>
 
@@ -45,25 +50,6 @@ private members and should not be accessed directly.
 @Returns: 
 
 
-<!-- ##### FUNCTION gtk_source_language_manager_list_languages ##### -->
-<para>
-
-</para>
-
-@lm: 
-@Returns: 
-
-
-<!-- ##### FUNCTION gtk_source_language_manager_get_language ##### -->
-<para>
-
-</para>
-
-@lm: 
-@id: 
-@Returns: 
-
-
 <!-- ##### FUNCTION gtk_source_language_manager_set_search_path ##### -->
 <para>
 
@@ -73,12 +59,13 @@ private members and should not be accessed directly.
 @dirs: 
 
 
-<!-- ##### FUNCTION gtk_source_language_manager_get_search_path ##### -->
+<!-- ##### FUNCTION gtk_source_language_manager_get_language ##### -->
 <para>
 
 </para>
 
 @lm: 
+@id: 
 @Returns: 
 
 

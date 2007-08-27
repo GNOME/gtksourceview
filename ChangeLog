@@ -1,3 +1,18 @@
+2007-08-27  Paolo Maggi  <paolo@gnome.org>
+
+	* docs/reference/gtksourceview-2.0-sections.txt:
+	* docs/reference/tmpl/languagemanager.sgml: updated
+
+	* gtksourceview/gtksourcelanguagemanager.[ch]: modified according
+	to API review, in particular list_languages has been removed and
+	replace with get_language_ids.
+
+	* gtksourceview/gtksourcestylescheme.h: 
+	* gtksourceview/gtksourcestyleschememanager.[ch]: indentation changes
+
+	* tests/test-widget.c (get_language_for_filename),
+	(get_language_for_mime_type): work with the new API
+
 2007-08-27  Paolo Borelli  <pborelli@katamail.com>
 
 	* gtksourceview/gtksourcestyleschememanager.[ch]: api review:
