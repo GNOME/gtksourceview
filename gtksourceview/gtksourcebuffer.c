@@ -460,7 +460,7 @@ gtk_source_buffer_get_property (GObject    *object,
 
 /**
  * gtk_source_buffer_new:
- * @table: a #GtkSourceTagTable, or %NULL to create a new one.
+ * @table: a #GtkTextTagTable, or %NULL to create a new one.
  *
  * Creates a new source buffer.
  *
@@ -480,11 +480,10 @@ gtk_source_buffer_new (GtkTextTagTable *table)
  *
  * Creates a new source buffer using the highlighting patterns in
  * @language.  This is equivalent to creating a new source buffer with
- * the default tag table and then calling
- * gtk_source_buffer_set_language().
+ * a new tag table and then calling gtk_source_buffer_set_language().
  *
  * Return value: a new source buffer which will highlight text
- * according to @language.
+ * according to the highlighting patterns in @language.
  **/
 GtkSourceBuffer *
 gtk_source_buffer_new_with_language (GtkSourceLanguage *language)
@@ -1099,7 +1098,7 @@ gtk_source_buffer_set_highlight_matching_brackets (GtkSourceBuffer *buffer,
  * Determines whether syntax highlighting is activated in the source
  * buffer.
  *
- * Return value: %TRUE if highlighting is enabled.
+ * Return value: %TRUE if syntax highlighting is enabled, %FALSE otherwise.
  **/
 gboolean
 gtk_source_buffer_get_highlight_syntax (GtkSourceBuffer *buffer)
@@ -1112,17 +1111,14 @@ gtk_source_buffer_get_highlight_syntax (GtkSourceBuffer *buffer)
 /**
  * gtk_source_buffer_set_highlight_syntax:
  * @buffer: a #GtkSourceBuffer.
- * @highlight: %TRUE if you want to activate highlighting.
+ * @highlight: %TRUE to enable syntax highlighting, %FALSE to disable it.
  *
  * Controls whether syntax is highlighted in the buffer. If @highlight
  * is %TRUE, the text will be highlighted according to the syntax
- * highlighting specification installed in the buffer with
- * gtk_source_buffer_set_language(). Otherwise, any current highlighted
- * text will be restored to the default buffer style.
- *
- * Tags not of #GtkSourceTag type will not be removed by this option,
- * and normal #GtkTextTag priority settings apply when highlighting is
- * enabled.
+ * patterns specified in the language set with
+ * gtk_source_buffer_set_language(). If @highlight is %FALSE, syntax highlighting
+ * is disabled and all the GtkTextTag objects that have been added by the 
+ * syntax highlighting engine are removed from the buffer.
  **/
 void
 gtk_source_buffer_set_highlight_syntax (GtkSourceBuffer *buffer,
@@ -1144,10 +1140,13 @@ gtk_source_buffer_set_highlight_syntax (GtkSourceBuffer *buffer,
  * @buffer: a #GtkSourceBuffer.
  * @language: a #GtkSourceLanguage to set, or %NULL.
  *
- * Sets the #GtkSourceLanguage the source buffer will use, adding
- * #GtkSourceTag tags with the language's patterns. Note that
- * this will remove any #GtkSourceTag tags currently in the buffer's
- * tag table.  The buffer holds a reference to the @language set.
+ * Associate a #GtkSourceLanguage with the source buffer. If @language is 
+ * not-%NULL and syntax highlighting is enabled (see gtk_source_buffer_set_highlight()),
+ * the syntax patterns defined in @language will be used to highlight the text
+ * contained in the buffer. If @language is %NULL, the text contained in the 
+ * buffer is not highlighted.
+ * 
+ * The buffer holds a reference to @language.
  **/
 void
 gtk_source_buffer_set_language (GtkSourceBuffer   *buffer,
@@ -1196,11 +1195,11 @@ gtk_source_buffer_set_language (GtkSourceBuffer   *buffer,
  * gtk_source_buffer_get_language:
  * @buffer: a #GtkSourceBuffer.
  *
- * Determines the #GtkSourceLanguage used by the buffer.  The returned
- * object should not be unreferenced by the user.
+ * Returns the #GtkSourceLanguage associated with the buffer, 
+ * see gtk_source_buffer_set_language().  The returned object should not be
+ * unreferenced by the user.
  *
- * Return value: the #GtkSourceLanguage set by
- * gtk_source_buffer_set_language(), or %NULL.
+ * Return value: #GtkSourceLanguage associated with the buffer, or %NULL.
  **/
 GtkSourceLanguage *
 gtk_source_buffer_get_language (GtkSourceBuffer *buffer)

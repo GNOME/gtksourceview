@@ -71,7 +71,7 @@ GType           	 gtk_source_buffer_get_type 		(void) G_GNUC_CONST;
 GtkSourceBuffer	 	*gtk_source_buffer_new 			(GtkTextTagTable        *table);
 GtkSourceBuffer 	*gtk_source_buffer_new_with_language 	(GtkSourceLanguage      *language);
 
-/* Properties. */
+/* Properties */
 gboolean		 gtk_source_buffer_get_highlight_syntax	(GtkSourceBuffer        *buffer);
 void			 gtk_source_buffer_set_highlight_syntax	(GtkSourceBuffer        *buffer,
 								 gboolean                highlight);
@@ -93,6 +93,15 @@ void			 gtk_source_buffer_set_language 	(GtkSourceBuffer        *buffer,
 gboolean		 gtk_source_buffer_can_undo		(GtkSourceBuffer        *buffer);
 gboolean		 gtk_source_buffer_can_redo		(GtkSourceBuffer        *buffer);
 
+GtkSourceStyleScheme    *gtk_source_buffer_get_style_scheme     (GtkSourceBuffer        *buffer);
+void			 gtk_source_buffer_set_style_scheme     (GtkSourceBuffer        *buffer,
+								 GtkSourceStyleScheme   *scheme);
+
+/* Force highlighting */
+void			 gtk_source_buffer_ensure_highlight     (GtkSourceBuffer        *buffer,
+								 const GtkTextIter      *start,
+								 const GtkTextIter      *end);
+
 /* Undo/redo methods */
 void			 gtk_source_buffer_undo			(GtkSourceBuffer        *buffer);
 void			 gtk_source_buffer_redo			(GtkSourceBuffer        *buffer);
@@ -100,7 +109,7 @@ void			 gtk_source_buffer_redo			(GtkSourceBuffer        *buffer);
 void			 gtk_source_buffer_begin_not_undoable_action (GtkSourceBuffer   *buffer);
 void			 gtk_source_buffer_end_not_undoable_action   (GtkSourceBuffer   *buffer);
 
-/* marker methods. */
+/* Marker methods */
 GtkSourceMarker         *gtk_source_buffer_create_marker        (GtkSourceBuffer        *buffer,
 								 const gchar            *name,
 								 const gchar            *type,
@@ -126,14 +135,6 @@ GtkSourceMarker         *gtk_source_buffer_get_next_marker      (GtkSourceBuffer
 								 GtkTextIter            *iter);
 GtkSourceMarker         *gtk_source_buffer_get_prev_marker      (GtkSourceBuffer        *buffer,
 								 GtkTextIter            *iter);
-
-GtkSourceStyleScheme    *gtk_source_buffer_get_style_scheme     (GtkSourceBuffer        *buffer);
-void			 gtk_source_buffer_set_style_scheme     (GtkSourceBuffer        *buffer,
-								 GtkSourceStyleScheme   *scheme);
-
-void			 gtk_source_buffer_ensure_highlight     (GtkSourceBuffer        *buffer,
-								 const GtkTextIter      *start,
-								 const GtkTextIter      *end);
 
 /* private */
 void			 _gtk_source_buffer_update_highlight	(GtkSourceBuffer        *buffer,
