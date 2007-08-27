@@ -116,7 +116,7 @@ static GtkToggleActionEntry toggle_entries[] = {
 	{ "ShowMarkers", NULL, "Show _Markers", NULL,
 	  "Toggle visibility of markers in the left margin",
 	  G_CALLBACK (markers_toggled_cb), FALSE },
-	{ "ShowMargin", NULL, "Show M_argin", NULL,
+	{ "ShowMargin", NULL, "Show Right M_argin", NULL,
 	  "Toggle visibility of right margin indicator",
 	  G_CALLBACK (margin_toggled_cb), FALSE },
 	{ "HlLine", NULL, "_Highlight Current Line", NULL,
@@ -516,7 +516,7 @@ static void
 margin_toggled_cb (GtkAction *action, gpointer user_data)
 {
 	g_return_if_fail (GTK_IS_TOGGLE_ACTION (action) && GTK_IS_SOURCE_VIEW (user_data));
-	gtk_source_view_set_show_margin (
+	gtk_source_view_set_show_right_margin (
 		GTK_SOURCE_VIEW (user_data),
 		gtk_toggle_action_get_active (GTK_TOGGLE_ACTION (action)));
 }
@@ -1022,7 +1022,7 @@ create_view_window (GtkSourceBuffer *buffer, GtkSourceView *from)
 
 		action = gtk_action_group_get_action (action_group, "ShowMargin");
 		gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action),
-					      gtk_source_view_get_show_margin (from));
+					      gtk_source_view_get_show_right_margin (from));
 
 		action = gtk_action_group_get_action (action_group, "HlLine");
 		gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action),

@@ -118,10 +118,6 @@ void		 gtk_source_view_set_insert_spaces_instead_of_tabs
 gboolean	 gtk_source_view_get_insert_spaces_instead_of_tabs
 							(GtkSourceView   *view);
 
-void		 gtk_source_view_set_show_margin 	(GtkSourceView   *view,
-							 gboolean         show);
-gboolean 	 gtk_source_view_get_show_margin 	(GtkSourceView   *view);
-
 void		 gtk_source_view_set_indent_on_tab 	(GtkSourceView   *view,
 							 gboolean         enable);
 gboolean	 gtk_source_view_get_indent_on_tab 	(GtkSourceView   *view);
@@ -132,9 +128,15 @@ void		 gtk_source_view_set_highlight_current_line
 gboolean 	 gtk_source_view_get_highlight_current_line
 							(GtkSourceView   *view);
 
-void		 gtk_source_view_set_margin 		(GtkSourceView   *view,
-							 guint            margin);
-guint		 gtk_source_view_get_margin 		(GtkSourceView   *view);
+void		 gtk_source_view_set_show_right_margin 	(GtkSourceView   *view,
+							 gboolean         show);
+gboolean 	 gtk_source_view_get_show_right_margin 	(GtkSourceView   *view);
+
+void		 gtk_source_view_set_right_margin_position
+					 		(GtkSourceView   *view,
+							 guint            pos);
+guint		 gtk_source_view_get_right_margin_position
+					 		(GtkSourceView   *view);
 
 void             gtk_source_view_set_marker_pixbuf      (GtkSourceView   *view,
 							 const gchar     *marker_type,

@@ -62,7 +62,7 @@ GtkSourceView
 
 </para>
 
-<!-- ##### ARG GtkSourceView:margin ##### -->
+<!-- ##### ARG GtkSourceView:right-margin-position ##### -->
 <para>
 
 </para>
@@ -77,7 +77,7 @@ GtkSourceView
 
 </para>
 
-<!-- ##### ARG GtkSourceView:show-margin ##### -->
+<!-- ##### ARG GtkSourceView:show-right-margin ##### -->
 <para>
 
 </para>
@@ -247,24 +247,6 @@ GtkSourceView
 @Returns: 
 
 
-<!-- ##### FUNCTION gtk_source_view_set_margin ##### -->
-<para>
-
-</para>
-
-@view: 
-@margin: 
-
-
-<!-- ##### FUNCTION gtk_source_view_get_margin ##### -->
-<para>
-
-</para>
-
-@view: 
-@Returns: 
-
-
 <!-- ##### FUNCTION gtk_source_view_set_marker_pixbuf ##### -->
 <para>
 
@@ -339,7 +321,7 @@ GtkSourceView
 @Returns: 
 
 
-<!-- ##### FUNCTION gtk_source_view_set_show_margin ##### -->
+<!-- ##### FUNCTION gtk_source_view_set_show_right_margin ##### -->
 <para>
 
 </para>
@@ -348,7 +330,25 @@ GtkSourceView
 @show: 
 
 
-<!-- ##### FUNCTION gtk_source_view_get_show_margin ##### -->
+<!-- ##### FUNCTION gtk_source_view_get_show_right_margin ##### -->
+<para>
+
+</para>
+
+@view: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gtk_source_view_set_right_margin_position ##### -->
+<para>
+
+</para>
+
+@view: 
+@pos: 
+
+
+<!-- ##### FUNCTION gtk_source_view_get_right_margin_position ##### -->
 <para>
 
 </para>

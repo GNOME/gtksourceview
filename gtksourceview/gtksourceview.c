@@ -68,8 +68,8 @@
 #define MAX_TAB_WIDTH			32
 #define MAX_INDENT_WIDTH		32
 
-#define DEFAULT_MARGIN_POSITION		80
-#define MAX_MARGIN_POSITION		200
+#define DEFAULT_RIGHT_MARGIN_POSITION	80
+#define MAX_RIGHT_MARGIN_POSITION	200
 
 /* Signals */
 enum {
@@ -87,8 +87,8 @@ enum {
 	PROP_INDENT_WIDTH,
 	PROP_AUTO_INDENT,
 	PROP_INSERT_SPACES,
-	PROP_SHOW_MARGIN,
-	PROP_MARGIN,
+	PROP_SHOW_RIGHT_MARGIN,
+	PROP_RIGHT_MARGIN_POSITION,
 	PROP_SMART_HOME_END,
 	PROP_HIGHLIGHT_CURRENT_LINE,
 	PROP_INDENT_ON_TAB
@@ -102,12 +102,13 @@ struct _GtkSourceViewPrivate
 	gboolean	 show_line_markers;
 	gboolean	 auto_indent;
 	gboolean	 insert_spaces;
-	gboolean	 show_margin;
 	gboolean	 highlight_current_line;
 	gboolean	 indent_on_tab;
-	guint		 margin;
-	gint             cached_margin_width;
 	GtkSourceSmartHomeEndType smart_home_end;
+
+	gboolean	 show_right_margin;
+	guint		 right_margin_pos;
+	gint             cached_right_margin_pos;
 
 	gboolean	 style_scheme_applied;
 	GtkSourceStyleScheme *style_scheme;
@@ -291,22 +292,32 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 							       FALSE,
 							       G_PARAM_READWRITE));
 
+	/**
+	 * GtkSourceView:show-right-margin:
+	 *
+	 * Whether to display the right margin.
+	 */
 	g_object_class_install_property (object_class,
-					 PROP_SHOW_MARGIN,
-					 g_param_spec_boolean ("show_margin",
+					 PROP_SHOW_RIGHT_MARGIN,
+					 g_param_spec_boolean ("show-right-margin",
 							       _("Show Right Margin"),
 							       _("Whether to display the right margin"),
 							       FALSE,
 							       G_PARAM_READWRITE));
 
+	/**
+	 * GtkSourceView:right-margin-position:
+	 *
+	 * Position of the right margin.
+	 */
 	g_object_class_install_property (object_class,
-					 PROP_MARGIN,
-					 g_param_spec_uint ("margin",
-							    _("Margin position"),
+					 PROP_RIGHT_MARGIN_POSITION,
+					 g_param_spec_uint ("right-margin-position",
+							    _("Right Margin Position"),
 							    _("Position of the right margin"),
 							    1,
-							    MAX_MARGIN_POSITION,
-							    DEFAULT_MARGIN_POSITION,
+							    MAX_RIGHT_MARGIN_POSITION,
+							    DEFAULT_RIGHT_MARGIN_POSITION,
 							    G_PARAM_READWRITE));
 
 	/**
@@ -514,14 +525,14 @@ gtk_source_view_set_property (GObject      *object,
 							g_value_get_boolean (value));
 			break;
 
-		case PROP_SHOW_MARGIN:
-			gtk_source_view_set_show_margin (view,
-							 g_value_get_boolean (value));
+		case PROP_SHOW_RIGHT_MARGIN:
+			gtk_source_view_set_show_right_margin (view,
+							       g_value_get_boolean (value));
 			break;
 
-		case PROP_MARGIN:
-			gtk_source_view_set_margin (view,
-						    g_value_get_uint (value));
+		case PROP_RIGHT_MARGIN_POSITION:
+			gtk_source_view_set_right_margin_position (view,
+								   g_value_get_uint (value));
 			break;
 
 		case PROP_SMART_HOME_END:
@@ -589,14 +600,14 @@ gtk_source_view_get_property (GObject    *object,
 					     gtk_source_view_get_insert_spaces_instead_of_tabs (view));
 			break;
 
-		case PROP_SHOW_MARGIN:
+		case PROP_SHOW_RIGHT_MARGIN:
 			g_value_set_boolean (value,
-					     gtk_source_view_get_show_margin (view));
+					     gtk_source_view_get_show_right_margin (view));
 			break;
 
-		case PROP_MARGIN:
+		case PROP_RIGHT_MARGIN_POSITION:
 			g_value_set_uint (value,
-					  gtk_source_view_get_margin (view));
+					  gtk_source_view_get_right_margin_position (view));
 			break;
 
 		case PROP_SMART_HOME_END:
@@ -636,10 +647,10 @@ gtk_source_view_init (GtkSourceView *view)
 
 	view->priv->tab_width = DEFAULT_TAB_WIDTH;
 	view->priv->indent_width = -1;
-	view->priv->margin = DEFAULT_MARGIN_POSITION;
-	view->priv->cached_margin_width = -1;
 	view->priv->indent_on_tab = TRUE;
 	view->priv->smart_home_end = GTK_SOURCE_SMART_HOME_END_DISABLED;
+	view->priv->right_margin_pos = DEFAULT_RIGHT_MARGIN_POSITION;
+	view->priv->cached_right_margin_pos = -1;
 
 	view->priv->pixmap_cache = g_hash_table_new_full (g_str_hash, g_str_equal,
 							  (GDestroyNotify) g_free,
@@ -1589,9 +1600,14 @@ gtk_source_view_expose (GtkWidget      *widget,
 				gc = widget->style->bg_gc[GTK_WIDGET_STATE (widget)];
 
 			if (text_view->hadjustment)
-				margin = gtk_text_view_get_left_margin (text_view) - (int) text_view->hadjustment->value;
+			{
+				margin = gtk_text_view_get_left_margin (text_view) -
+					 (int) text_view->hadjustment->value;
+			}
 			else
+			{
 				margin = gtk_text_view_get_left_margin (text_view);
+			}
 
 			gdk_draw_rectangle (event->window,
 					    gc,
@@ -1608,7 +1624,7 @@ gtk_source_view_expose (GtkWidget      *widget,
 				GTK_WIDGET_CLASS (gtk_source_view_parent_class)->expose_event (widget, event);
 
 		/* Draw the right margin vertical line + overlay. */
-		if (view->priv->show_margin &&
+		if (view->priv->show_right_margin &&
 		    (event->window == gtk_text_view_get_window (text_view, GTK_TEXT_WINDOW_TEXT)))
 		{
 			GdkRectangle visible_rect;
@@ -1623,9 +1639,13 @@ gtk_source_view_expose (GtkWidget      *widget,
 			static GTimer *timer = NULL;
 #endif
 
-			if (view->priv->cached_margin_width < 0)
-				view->priv->cached_margin_width =
-					calculate_real_tab_width (view, view->priv->margin, '_');
+			if (view->priv->cached_right_margin_pos < 0)
+			{
+				view->priv->cached_right_margin_pos =
+					calculate_real_tab_width (view,
+								  view->priv->right_margin_pos,
+								  '_');
+			}
 
 #ifdef ENABLE_PROFILE
 			if (timer == NULL)
@@ -1654,7 +1674,7 @@ gtk_source_view_expose (GtkWidget      *widget,
 			cairo_clip (cr);
 
 			/* Offset with 0.5 is needed for a sharp line. */
-			x = view->priv->cached_margin_width -
+			x = view->priv->cached_right_margin_pos -
 				visible_rect.x + redraw_rect.x + 0.5 +
 				gtk_text_view_get_left_margin (text_view);
 
@@ -1718,7 +1738,8 @@ gtk_source_view_expose (GtkWidget      *widget,
 
 			PROFILE ({
 				g_timer_stop (timer);
-				g_message ("Time to draw the margin: %g (sec * 1000)", g_timer_elapsed (timer, NULL) * 1000);
+				g_message ("Time to draw the margin: %g (sec * 1000)",
+				           g_timer_elapsed (timer, NULL) * 1000);
 			});
 		}
 	}
@@ -2899,46 +2920,6 @@ view_dnd_drop (GtkTextView *view,
 }
 
 /**
- * gtk_source_view_get_show_margin:
- * @view: a #GtkSourceView.
- *
- * Returns whether a margin is displayed.
- *
- * Return value: %TRUE if the margin is showed.
- **/
-gboolean
-gtk_source_view_get_show_margin (GtkSourceView *view)
-{
-	g_return_val_if_fail (GTK_IS_SOURCE_VIEW (view), FALSE);
-
-	return view->priv->show_margin;
-}
-
-/**
- * gtk_source_view_set_show_margin:
- * @view: a #GtkSourceView.
- * @show: whether to show a margin.
- *
- * If %TRUE a margin is displayed
- **/
-void
-gtk_source_view_set_show_margin (GtkSourceView *view, gboolean show)
-{
-	g_return_if_fail (GTK_IS_SOURCE_VIEW (view));
-
-	show = (show != FALSE);
-
-	if (view->priv->show_margin == show)
-		return;
-
-	view->priv->show_margin = show;
-
-	gtk_widget_queue_draw (GTK_WIDGET (view));
-
-	g_object_notify (G_OBJECT (view), "show_margin");
-}
-
-/**
  * gtk_source_view_get_highlight_current_line:
  * @view: a #GtkSourceView
  *
@@ -2979,7 +2960,47 @@ gtk_source_view_set_highlight_current_line (GtkSourceView *view, gboolean hl)
 }
 
 /**
- * gtk_source_view_get_margin:
+ * gtk_source_view_get_show_right_margin:
+ * @view: a #GtkSourceView.
+ *
+ * Returns whether a right margin is displayed.
+ *
+ * Return value: %TRUE if the right margin is shown.
+ **/
+gboolean
+gtk_source_view_get_show_right_margin (GtkSourceView *view)
+{
+	g_return_val_if_fail (GTK_IS_SOURCE_VIEW (view), FALSE);
+
+	return view->priv->show_right_margin;
+}
+
+/**
+ * gtk_source_view_set_show_right_margin:
+ * @view: a #GtkSourceView.
+ * @show: whether to show a right margin.
+ *
+ * If %TRUE a right margin is displayed
+ **/
+void
+gtk_source_view_set_show_right_margin (GtkSourceView *view, gboolean show)
+{
+	g_return_if_fail (GTK_IS_SOURCE_VIEW (view));
+
+	show = (show != FALSE);
+
+	if (view->priv->show_right_margin != show)
+	{
+		view->priv->show_right_margin = show;
+
+		gtk_widget_queue_draw (GTK_WIDGET (view));
+
+		g_object_notify (G_OBJECT (view), "show-right-margin");
+	}
+}
+
+/**
+ * gtk_source_view_get_right_margin_position:
  * @view: a #GtkSourceView.
  *
  * Gets the position of the right margin in the given @view.
@@ -2987,39 +3008,37 @@ gtk_source_view_set_highlight_current_line (GtkSourceView *view, gboolean hl)
  * Return value: the position of the right margin.
  **/
 guint
-gtk_source_view_get_margin  (GtkSourceView *view)
+gtk_source_view_get_right_margin_position  (GtkSourceView *view)
 {
 	g_return_val_if_fail (GTK_IS_SOURCE_VIEW (view),
-			      DEFAULT_MARGIN_POSITION);
+			      DEFAULT_RIGHT_MARGIN_POSITION);
 
-	return view->priv->margin;
-
+	return view->priv->right_margin_pos;
 }
 
 /**
- * gtk_source_view_set_margin:
+ * gtk_source_view_set_right_margin_position:
  * @view: a #GtkSourceView.
  * @margin: the position of the margin to set.
  *
  * Sets the position of the right margin in the given @view.
- *
  **/
 void
-gtk_source_view_set_margin (GtkSourceView *view, guint margin)
+gtk_source_view_set_right_margin_position (GtkSourceView *view, guint pos)
 {
 	g_return_if_fail (GTK_IS_SOURCE_VIEW (view));
-	g_return_if_fail (margin >= 1);
-	g_return_if_fail (margin <= MAX_MARGIN_POSITION);
+	g_return_if_fail (pos >= 1);
+	g_return_if_fail (pos <= MAX_RIGHT_MARGIN_POSITION);
 
-	if (view->priv->margin == margin)
-		return;
+	if (view->priv->right_margin_pos != pos)
+	{
+		view->priv->right_margin_pos = pos;
+		view->priv->cached_right_margin_pos = -1;
 
-	view->priv->margin = margin;
-	view->priv->cached_margin_width = -1;
+		gtk_widget_queue_draw (GTK_WIDGET (view));
 
-	gtk_widget_queue_draw (GTK_WIDGET (view));
-
-	g_object_notify (G_OBJECT (view), "margin");
+		g_object_notify (G_OBJECT (view), "right-margin-position");
+	}
 }
 
 /**
@@ -3086,8 +3105,9 @@ gtk_source_view_style_set (GtkWidget *widget, GtkStyle *previous_style)
 
 		/* re-set tab stops */
 		set_tab_stops_internal (view);
-		/* make sure the margin width is recalculated on next expose */
-		view->priv->cached_margin_width = -1;
+
+		/* make sure the margin position is recalculated on next expose */
+		view->priv->cached_right_margin_pos = -1;
 	}
 }
 
