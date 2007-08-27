@@ -1,3 +1,14 @@
+2007-08-27  Paolo Maggi  <paolo@gnome.org>
+
+	* gtksourceview/gtksourcestylescheme.[ch]: 
+	add gtk_source_style_scheme_get_authors	method
+
+	* gtksourceview/language-specs/language2.rng: support multiple
+	<author> elements
+	* gtksourceview/language-specs/styles.rng: ditto
+	* tests/test-widget.c (main): test for the 
+	gtk_source_style_scheme_get_authors method
+
 2007-08-27  Paolo Borelli  <pborelli@katamail.com>
 
 	* gtksourceview/gtksourceview.[ch]: api review: margin ->
