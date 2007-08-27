@@ -2925,7 +2925,7 @@ view_dnd_drop (GtkTextView *view,
  *
  * Returns whether the current line is highlighted
  *
- * Return value: TRUE if the current line is highlighted
+ * Return value: %TRUE if the current line is highlighted.
  **/
 gboolean
 gtk_source_view_get_highlight_current_line (GtkSourceView *view)
@@ -2940,7 +2940,7 @@ gtk_source_view_get_highlight_current_line (GtkSourceView *view)
  * @view: a #GtkSourceView
  * @show: whether to highlight the current line
  *
- * If TRUE the current line is highlighted
+ * If @show is %TRUE the current line is highlighted.
  **/
 void
 gtk_source_view_set_highlight_current_line (GtkSourceView *view, gboolean hl)
