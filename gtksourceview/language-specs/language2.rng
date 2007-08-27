@@ -55,6 +55,14 @@
         </optional>
 
         <optional>
+            <oneOrMore>
+                <element name="author">
+                    <text/>
+                </element>
+            </oneOrMore>        
+        </optional>
+    
+        <optional>
             <ref name="metadata"/>
         </optional>
 

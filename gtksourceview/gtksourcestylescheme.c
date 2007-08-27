@@ -53,7 +53,7 @@ struct _GtkSourceStyleSchemePrivate
 {
 	gchar *id;
 	gchar *name;
-	gchar *author;
+	GPtrArray *authors;
 	gchar *description;
 	gchar *filename;
 	GtkSourceStyleScheme *parent;
@@ -74,7 +74,13 @@ gtk_source_style_scheme_finalize (GObject *object)
 	g_hash_table_destroy (scheme->priv->style_cache);
 	g_hash_table_destroy (scheme->priv->defined_styles);
 	g_free (scheme->priv->filename);
-	g_free (scheme->priv->author);
+	
+	if (scheme->priv->authors != NULL) 
+	{
+		g_ptr_array_foreach (scheme->priv->authors, (GFunc)g_free, NULL);
+		g_ptr_array_free (scheme->priv->authors, TRUE);
+	}
+	
 	g_free (scheme->priv->description);
 	g_free (scheme->priv->id);
 	g_free (scheme->priv->name);
@@ -271,6 +277,27 @@ gtk_source_style_scheme_get_description (GtkSourceStyleScheme *scheme)
 {
 	g_return_val_if_fail (GTK_IS_SOURCE_STYLE_SCHEME (scheme), NULL);
 	return scheme->priv->description;
+}
+
+/**
+ * gtk_source_style_scheme_get_authors:
+ * @scheme: a #GtkSourceStyleScheme.
+ *
+ * Returns: a %NULL-terminated array containing the @scheme authors or 
+ * %NULL if no author is specified by the style
+ * scheme.
+ *
+ * Since: 2.0
+ */
+G_CONST_RETURN gchar* G_CONST_RETURN *
+gtk_source_style_scheme_get_authors (GtkSourceStyleScheme *scheme)
+{
+	g_return_val_if_fail (GTK_IS_SOURCE_STYLE_SCHEME (scheme), NULL);
+
+	if (scheme->priv->authors == NULL)
+		return NULL;
+
+	return (G_CONST_RETURN gchar* G_CONST_RETURN *)scheme->priv->authors->pdata;
 }
 
 /**
@@ -913,7 +940,11 @@ parse_style_scheme_child (GtkSourceStyleScheme *scheme,
 	else if (strcmp ((char*) node->name, "author") == 0)
 	{
 		xmlChar *tmp = xmlNodeGetContent (node);
-		scheme->priv->author = g_strdup ((char*) tmp);
+		if (scheme->priv->authors == NULL)
+			scheme->priv->authors = g_ptr_array_new ();
+
+		g_ptr_array_add (scheme->priv->authors, g_strdup ((char*) tmp));
+		
 		xmlFree (tmp);
 	}
 	else if (strcmp ((char*) node->name, "description") == 0)
@@ -997,6 +1028,10 @@ parse_style_scheme_element (GtkSourceStyleScheme *scheme,
 		if (node->type == XML_ELEMENT_NODE)
 			if (!parse_style_scheme_child (scheme, node, error))
 				return;
+				
+	/* NULL-terminate the array of authors */
+	if (scheme->priv->authors != NULL)
+		g_ptr_array_add (scheme->priv->authors, NULL);
 }
 
 /**
