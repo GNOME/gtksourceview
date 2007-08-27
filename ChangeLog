@@ -1,3 +1,8 @@
+2007-08-27  Paolo Maggi  <paolo@gnome.org>
+
+	* tests/test-widget.c (get_language_for_filename),
+	(get_language_for_mime_type): fix the check in the while cycle
+
 2007-08-27  Paolo Borelli  <pborelli@katamail.com>
 
 	* docs/reference/gtksourceview-docs.sgml: fix style scheme manager docs.

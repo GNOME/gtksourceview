@@ -315,14 +315,14 @@ get_language_for_filename (const gchar *filename)
 	manager = gtk_source_language_manager_get_default ();
 	languages = gtk_source_language_manager_get_language_ids (manager);
 
-	while (languages != NULL)
+	while (*languages != NULL)
 	{
 		GtkSourceLanguage *lang;
 		gchar **globs, **p;
 
 		lang = gtk_source_language_manager_get_language (manager,
 								 *languages);
-
+		g_return_val_if_fail (GTK_IS_SOURCE_LANGUAGE (lang), NULL);
 		++languages;
 
 		globs = gtk_source_language_get_globs (lang);
@@ -359,14 +359,14 @@ get_language_for_mime_type (const gchar *mime)
 	manager = gtk_source_language_manager_get_default ();
 	languages = gtk_source_language_manager_get_language_ids (manager);
 
-	while (languages != NULL)
+	while (*languages != NULL)
 	{
 		GtkSourceLanguage *lang;
 		gchar **mimetypes, **p;
 
 		lang = gtk_source_language_manager_get_language (manager,
 								 *languages);
-
+		g_return_val_if_fail (GTK_IS_SOURCE_LANGUAGE (lang), NULL);
 		++languages;
 
 		mimetypes = gtk_source_language_get_mime_types (lang);
