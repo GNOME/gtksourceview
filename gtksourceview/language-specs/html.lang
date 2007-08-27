@@ -30,25 +30,19 @@
     </metadata>
 
     <styles>
-        <style id="comment"      _name="Comment"
-                                 map-to="xml:comment"/>
-        <style id="tag"          _name="Tag"
-                                 map-to="xml:tags"/>
-        <style id="attrib-name"  _name="Attribute Name"
-                                 map-to="xml:attribute-name"/>
-        <style id="attrib-value" _name="Attribute Value"
-                                 map-to="xml:attribute-value"/>
-        <style id="dtd"          _name="DTD"
-                                 map-to="xml:doctype"/>
-        <style id="error"        _name="Error"
-                                 map-to="xml:error"/>
+        <style id="comment" _name="Comment" map-to="xml:comment"/>
+        <style id="tag" _name="Tag" map-to="xml:tags"/>
+        <style id="attrib-name" _name="Attribute Name" map-to="xml:attribute-name"/>
+        <style id="attrib-value" _name="Attribute Value" map-to="xml:attribute-value"/>
+        <style id="dtd" _name="DTD" map-to="xml:doctype"/>
+        <style id="error" _name="Error" map-to="xml:error"/>
     </styles>
 
     <default-regex-options case-sensitive="false"/>
 
     <definitions>
         <!-- Html comments are more permissive than xml comments -->
-        <context id="comment" style-ref="xml:comment">
+        <context id="comment" style-ref="comment">
             <start>&lt;!--</start>
             <end>--\s*&gt;</end>
             <include>
@@ -59,6 +53,15 @@
         <context id="dtd" style-ref="dtd">
             <start>&lt;!</start>
             <end>&gt;</end>
+        </context>
+
+        <!-- This is a placeholder context intended to be <replace>d
+             in languages like php that need to embedd contexts inside
+             html tags and attributes.
+        -->
+        <context id="embedded-lang-hook">
+            <start>\%{def:never-match}</start>
+            <end></end>
         </context>
 
         <context id="generic-tag">
@@ -80,6 +83,7 @@
                             <include>
                                 <context ref="xml:entity"/>
                                 <context ref="xml:character-reference"/>
+                                <context ref="embedded-lang-hook"/>
                             </include>
                         </context>
                     </include>
@@ -105,6 +109,8 @@
                         [a-z0-9:_-]+  # attribute name
                     </match>
                 </context>
+
+                <context ref="embedded-lang-hook"/>
 
             </include>
         </context>

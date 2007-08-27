@@ -1,5 +1,13 @@
 2007-08-27  Paolo Borelli  <pborelli@katamail.com>
 
+	* gtksourceview/language-specs/html.lang:
+	* gtksourceview/language-specs/php.lang:
+
+	Detect html inside php and viceversa. Patch by Eric Norige,
+	fixes remaining part of bug #448513.
+
+2007-08-27  Paolo Borelli  <pborelli@katamail.com>
+
 	* gtksourceview/gtksourcebuffer.c: rise the max value for the
 	max-undo-levels property and allow -1 to mean 'no limit'.
 
