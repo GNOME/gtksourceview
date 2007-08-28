@@ -42,6 +42,15 @@
 
   <definitions>
 
+    <!-- we cannot use def:shell-like-comment, because
+         m4.lang needs to replace this context -->
+    <context id="line-comment" style-ref="comment" end-at-line-end="true">
+      <start>#</start>
+      <include>
+        <context ref="def:in-comment"/>
+      </include>
+    </context>
+
     <context id="string" style-ref="string">
       <start>"</start>
       <end>"</end>
@@ -345,7 +354,7 @@
     <context id="sh">
       <include>
         <context ref="def:shebang" style-ref="shebang"/>
-        <context ref="def:shell-like-comment" style-ref="comment"/>
+        <context ref="line-comment"/>
         <context ref="def:escape"/>
         <context ref="string"/>
         <context ref="string-2"/>
