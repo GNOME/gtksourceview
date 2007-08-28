@@ -79,6 +79,8 @@ void			 _gtk_source_style_scheme_apply		(GtkSourceStyleScheme *scheme,
 								 GtkWidget            *widget);
 GtkSourceStyle		*_gtk_source_style_scheme_get_matching_brackets_style
 								(GtkSourceStyleScheme *scheme);
+GtkSourceStyle		*_gtk_source_style_scheme_get_right_margin_style
+								(GtkSourceStyleScheme *scheme);
 gboolean		 _gtk_source_style_scheme_get_current_line_color
 								(GtkSourceStyleScheme *scheme,
 								 GdkColor             *color);

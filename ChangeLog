@@ -1,3 +1,25 @@
+2007-08-28  Paolo Maggi  <paolo@gnome.org>
+
+	Style schemes can now optionally define the color of the right margin
+	line and overlay using the "right-margin" style.
+	The foreground color is used for the line, while the background one, 
+	if defined, is used for the overlay.
+	If no background color is set the overlay is disabled.
+	A 40/255 alpha value is applied to the line color and a 15/255 one is 
+	applied to the overlay color.
+	
+	* gtksourceview/gtksourcestylescheme.[ch]
+	(_gtk_source_style_scheme_get_right_margin_style): new function
+	to get the right-margin style
+	
+	* gtksourceview/gtksourceview.c (gtk_source_view_class_init),
+	(gtk_source_view_init), (gtk_source_view_finalize),
+	(gtk_source_view_expose), (update_right_margin_colors),
+	(gtk_source_view_realize), (gtk_source_view_update_style_scheme):
+	kill the old style properties and use the right-margin style
+	
+	* gtksourceview/language-specs/oblivion.xml: 
+	* gtksourceview/language-specs/tango.xml: set right-margin style
 
 === gtksourceview 1.90.4 ===
 

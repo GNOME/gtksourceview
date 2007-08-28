@@ -71,6 +71,9 @@
 #define DEFAULT_RIGHT_MARGIN_POSITION	80
 #define MAX_RIGHT_MARGIN_POSITION	200
 
+#define RIGHT_MARING_LINE_ALPHA		40
+#define RIGHT_MARING_OVERLAY_ALPHA	15
+
 /* Signals */
 enum {
 	UNDO,
@@ -114,6 +117,8 @@ struct _GtkSourceViewPrivate
 	GtkSourceStyleScheme *style_scheme;
 	GdkGC		*current_line_gc;
 	GHashTable 	*pixmap_cache;
+	GdkColor        *right_margin_line_color;
+	GdkColor        *right_margin_overlay_color;
 
 	GtkSourceBuffer *source_buffer;
 	gint		 old_lines;
@@ -354,93 +359,6 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 							       TRUE,
 							       G_PARAM_READWRITE));
 
-	/**
-	 * GtkSourceView:right-margin-line-alpha:
-	 *
-	 * The ::right-margin-line-alpha determines the alpha component with
-	 * which the vertical line will be drawn. 0 means it is fully transparent
-	 * (invisible). 255 means it has full opacity (text under the line won't
-	 * be visible).
-	 *
-	 * Since: 1.6
-	 */
-	gtk_widget_class_install_style_property (widget_class,
-		g_param_spec_int ("right-margin-line-alpha",
-				  _("Margin Line Alpha"),
-				  _("Transparency of the margin line"),
-				  0,
-				  255,
-				  40,
-				  G_PARAM_READABLE));
-
-	/**
-	 * GtkSourceView:right-margin-line-color:
-	 *
-	 * The ::right-margin-line-color property contains the color with
-	 * which the right margin line (vertical line indicating the right
-	 * margin) will be drawn.
-	 *
-	 * Since: 1.6
-	 */
-	gtk_widget_class_install_style_property (widget_class,
-		g_param_spec_boxed ("right-margin-line-color",
-				    _("Margin Line Color"),
-				    _("Color to use for the right margin line"),
-				    GDK_TYPE_COLOR,
-				    G_PARAM_READABLE));
-
-	/**
-	 * GtkSourceView:right-margin-overlay-toggle:
-	 *
-	 * The ::right-margin-overlay-toggle property determines whether the
-	 * widget will draw a transparent overlay on top of the area on the
-	 * right side of the right margin line. On some systems, this has a
-	 * noticable performance impact, so this property is FALSE by default.
-	 *
-	 * Since: 1.6
-	 */
-	gtk_widget_class_install_style_property (widget_class,
-		g_param_spec_string ("right-margin-overlay-toggle",
-				     _("Margin Overlay Toggle"),
-				     _("Whether to draw the right margin overlay"),
-				     "FALSE",
-				     G_PARAM_READABLE));
-
-	/**
-	 * GtkSourceView:right-margin-overlay-alpha:
-	 *
-	 * The ::right-margin-overlay-alpha determines the alpha component with
-	 * which the overlay will be drawn. 0 means it is fully transparent
-	 * (invisible). 255 means it has full opacity (text under the overlay
-	 * won't be visible).
-	 *
-	 * Since: 1.6
-	 */
-	gtk_widget_class_install_style_property (widget_class,
-		g_param_spec_int ("right-margin-overlay-alpha",
-				  _("Margin Overlay Alpha"),
-				  _("Transparency of the margin overlay"),
-				  0,
-				  255,
-				  15,
-				  G_PARAM_READABLE));
-
-	/**
-	 * GtkSourceView:right-margin-overlay-color:
-	 *
-	 * The ::right-margin-overlay-color property contains the color with
-	 * which the right margin overlay will be drawn. Setting this property
-	 * will only have an effect if ::right-margin-overlay-toggle is TRUE.
-	 *
-	 * Since: 1.6
-	 */
-	gtk_widget_class_install_style_property (widget_class,
-		g_param_spec_boxed ("right-margin-overlay-color",
-				    _("Margin Overlay Color"),
-				    _("Color to use for drawing the margin overlay"),
-				    GDK_TYPE_COLOR,
-				    G_PARAM_READABLE));
-
 	signals [UNDO] =
 		g_signal_new ("undo",
 			      G_TYPE_FROM_CLASS (klass),
@@ -658,6 +576,9 @@ gtk_source_view_init (GtkSourceView *view)
 
 	gtk_text_view_set_left_margin (GTK_TEXT_VIEW (view), 2);
 	gtk_text_view_set_right_margin (GTK_TEXT_VIEW (view), 2);
+	
+	view->priv->right_margin_line_color = NULL;
+	view->priv->right_margin_overlay_color = NULL;
 
 	tl = gtk_drag_dest_get_target_list (GTK_WIDGET (view));
 	g_return_if_fail (tl != NULL);
@@ -708,6 +629,12 @@ gtk_source_view_finalize (GObject *object)
 
 	if (view->priv->pixmap_cache)
 		g_hash_table_destroy (view->priv->pixmap_cache);
+
+	if (view->priv->right_margin_line_color != NULL)
+		gdk_color_free (view->priv->right_margin_line_color);
+
+	if (view->priv->right_margin_overlay_color != NULL)
+		gdk_color_free (view->priv->right_margin_overlay_color);
 
 	set_source_buffer (view, NULL);
 
@@ -1631,13 +1558,13 @@ gtk_source_view_expose (GtkWidget      *widget,
 			GdkRectangle redraw_rect;
 			cairo_t *cr;
 			double x;
-			GdkColor *line_color;
-			gchar *toggle;
-			guchar alpha;
 
 #ifdef ENABLE_PROFILE
 			static GTimer *timer = NULL;
 #endif
+
+			g_return_val_if_fail (view->priv->right_margin_line_color != NULL, 
+					      event_handled);
 
 			if (view->priv->cached_right_margin_pos < 0)
 			{
@@ -1684,56 +1611,33 @@ gtk_source_view_expose (GtkWidget      *widget,
 			cairo_move_to (cr, x, redraw_rect.y);
 			cairo_line_to (cr, x, redraw_rect.y + redraw_rect.height);
 
-			gtk_widget_style_get (widget,
-					      "right-margin-line-alpha", &alpha,
-					      "right-margin-line-color", &line_color,
-					      "right-margin-overlay-toggle", &toggle,
-					      NULL);
-
-			if (!line_color)
-				line_color = gdk_color_copy (&widget->style->text[GTK_STATE_NORMAL]);
-
 			cairo_set_source_rgba (cr,
-					       line_color->red / 65535.,
-					       line_color->green / 65535.,
-					       line_color->blue / 65535.,
-					       alpha / 255.);
-			gdk_color_free (line_color);
+					       view->priv->right_margin_line_color->red / 65535.,
+					       view->priv->right_margin_line_color->green / 65535.,
+					       view->priv->right_margin_line_color->blue / 65535.,
+					       RIGHT_MARING_LINE_ALPHA / 255.);
+
 			cairo_stroke (cr);
 
-			/* g_strstrip doesn't allocate a new string. */
-			toggle = g_strstrip (toggle);
-
-			/* Only draw the overlay when the theme explicitly permits it. */
-			if (g_ascii_strcasecmp ("TRUE", toggle) == 0 ||
-			    strcmp ("1", toggle) == 0)
-			{
-				GdkColor *overlay_color;
-
-				gtk_widget_style_get (widget,
-						      "right-margin-overlay-alpha", &alpha,
-						      "right-margin-overlay-color", &overlay_color,
-						      NULL);
-
-				if (!overlay_color)
-					overlay_color = gdk_color_copy (&widget->style->text[GTK_STATE_NORMAL]);
-
+			/* Only draw the overlay when the style scheme explicitly sets it. */
+			if (view->priv->right_margin_overlay_color != NULL)
+			{	
 				/* Draw the rectangle next to the line (x+.5). */
 				cairo_rectangle (cr,
 						 x + .5,
 						 redraw_rect.y,
 						 redraw_rect.width - x - .5,
 						 redraw_rect.y + redraw_rect.height);
+
 				cairo_set_source_rgba (cr,
-						       overlay_color->red / 65535.,
-						       overlay_color->green / 65535.,
-						       overlay_color->blue / 65535.,
-						       alpha / 255.);
-				gdk_color_free (overlay_color);
+						       view->priv->right_margin_overlay_color->red / 65535.,
+						       view->priv->right_margin_overlay_color->green / 65535.,
+						       view->priv->right_margin_overlay_color->blue / 65535.,
+						       RIGHT_MARING_OVERLAY_ALPHA / 255.);
+
 				cairo_fill (cr);
 			}
 
-			g_free (toggle);
 			cairo_destroy (cr);
 
 			PROFILE ({
@@ -3140,6 +3044,69 @@ update_current_line_gc (GtkSourceView *view)
 }
 
 static void
+update_right_margin_colors (GtkSourceView *view)
+{
+	GtkWidget *widget = GTK_WIDGET (view);
+
+	if (!GTK_WIDGET_REALIZED (view))
+		return;
+
+	if (view->priv->right_margin_line_color != NULL)
+	{
+		gdk_color_free (view->priv->right_margin_line_color);
+		view->priv->right_margin_line_color = NULL;
+	}
+
+	if (view->priv->right_margin_overlay_color != NULL)
+	{
+		gdk_color_free (view->priv->right_margin_overlay_color);
+		view->priv->right_margin_overlay_color = NULL;
+	}
+
+	if (view->priv->style_scheme) 
+	{
+		GtkSourceStyle	*style;
+
+		style = _gtk_source_style_scheme_get_right_margin_style (view->priv->style_scheme);
+
+		if (style != NULL)
+		{
+			gchar *color_str = NULL;
+			gboolean color_set;
+			GdkColor color;
+			
+			g_object_get (style, 
+				      "foreground-set", &color_set,
+				      "foreground", &color_str,
+				      NULL);
+
+			if (color_set && (color_str != NULL) && gdk_color_parse (color_str, &color))
+			{
+				view->priv->right_margin_line_color = gdk_color_copy (&color);
+			}
+			
+			g_free (color_str);
+			color_str = NULL;
+			
+			g_object_get (style, 
+				      "background-set", &color_set,
+				      "background", &color_str,
+				      NULL);
+
+			if (color_set && (color_str != NULL) && gdk_color_parse (color_str, &color))
+			{
+				view->priv->right_margin_overlay_color = gdk_color_copy (&color);
+			}
+
+			g_free (color_str);
+		}
+	}
+	
+	if (view->priv->right_margin_line_color == NULL)
+		view->priv->right_margin_line_color = gdk_color_copy (&widget->style->text[GTK_STATE_NORMAL]);
+}
+
+static void
 gtk_source_view_realize (GtkWidget *widget)
 {
 	GtkSourceView *view = GTK_SOURCE_VIEW (widget);
@@ -3153,6 +3120,7 @@ gtk_source_view_realize (GtkWidget *widget)
 	}
 
 	update_current_line_gc (view);
+	update_right_margin_colors (view);
 }
 
 static void
@@ -3192,6 +3160,7 @@ gtk_source_view_update_style_scheme (GtkSourceView *view)
 		{
 			_gtk_source_style_scheme_apply (new_scheme, GTK_WIDGET (view));
 			update_current_line_gc (view);
+			update_right_margin_colors (view);
 			view->priv->style_scheme_applied = TRUE;
 		}
 		else

@@ -35,6 +35,7 @@
 #define STYLE_SECONDARY_CURSOR		"secondary-cursor"
 #define STYLE_CURRENT_LINE		"current-line"
 #define STYLE_LINE_NUMBERS		"line-numbers"
+#define STYLE_RIGHT_MARGIN		"right-margin"
 
 #define STYLE_SCHEME_VERSION		"1.0"
 
@@ -509,6 +510,13 @@ _gtk_source_style_scheme_get_matching_brackets_style (GtkSourceStyleScheme *sche
 {
 	g_return_val_if_fail (GTK_IS_SOURCE_STYLE_SCHEME (scheme), NULL);
 	return gtk_source_style_scheme_get_style (scheme, STYLE_BRACKET_MATCH);
+}
+
+GtkSourceStyle *
+_gtk_source_style_scheme_get_right_margin_style (GtkSourceStyleScheme *scheme)
+{
+	g_return_val_if_fail (GTK_IS_SOURCE_STYLE_SCHEME (scheme), NULL);
+	return gtk_source_style_scheme_get_style (scheme, STYLE_RIGHT_MARGIN);
 }
 
 static gboolean
