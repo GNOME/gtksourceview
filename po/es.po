@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview.HEAD.es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-08-27 14:33+0100\n"
-"PO-Revision-Date: 2007-08-27 16:05+0200\n"
+"POT-Creation-Date: 2007-08-28 13:40+0100\n"
+"PO-Revision-Date: 2007-08-28 15:02+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -170,17 +170,25 @@ msgstr "Oculto"
 msgid "Whether the language should be hidden from the user"
 msgstr "Indica si se debería ocultar el lenguaje al usuario"
 
-#: ../gtksourceview/gtksourcelanguagemanager.c:126
+#: ../gtksourceview/gtksourcelanguagemanager.c:133
 msgid "Language specification directories"
 msgstr "Directorios de especificaciones de lenguajes"
 
-#: ../gtksourceview/gtksourcelanguagemanager.c:127
+#: ../gtksourceview/gtksourcelanguagemanager.c:134
 msgid ""
 "List of directories where the language specification files (.lang) are "
 "located"
 msgstr ""
 "Lista de directorios en los que se hallan los archivo de especificación de "
 "lenguajes (.lang)."
+
+#: ../gtksourceview/gtksourcelanguagemanager.c:143
+msgid "Language ids"
+msgstr "ID del lenguaje"
+
+#: ../gtksourceview/gtksourcelanguagemanager.c:144
+msgid "List of the ids of the available languages"
+msgstr "Lista de los identificadores de los lenguajes disponibles"
 
 #: ../gtksourceview/gtksourcelanguage-parser-2.c:876
 #, c-format
@@ -288,39 +296,39 @@ msgstr "Establecer tachado"
 msgid "Whether strikethrough attribute is set"
 msgstr "Indica si el atributo tachado está establecido"
 
-#: ../gtksourceview/gtksourcestylemanager.c:142
+#: ../gtksourceview/gtksourcestyleschememanager.c:145
 msgid "Style scheme search path"
 msgstr "Ruta de búsqueda del estilo"
 
-#: ../gtksourceview/gtksourcestylemanager.c:143
+#: ../gtksourceview/gtksourcestyleschememanager.c:146
 msgid "List of directories and files where the style schemes are located"
 msgstr "Lista de directorios y archivos en los que se hallan los archivos de estilos"
 
-#: ../gtksourceview/gtksourcestylemanager.c:151
+#: ../gtksourceview/gtksourcestyleschememanager.c:154
 msgid "Scheme ids"
 msgstr "Identificadores de esquema"
 
-#: ../gtksourceview/gtksourcestylemanager.c:152
+#: ../gtksourceview/gtksourcestyleschememanager.c:155
 msgid "List of the ids of the available style schemes"
 msgstr "Lista de los identificadores de los estilos disponibles"
 
-#: ../gtksourceview/gtksourcestylescheme.c:162
-#: ../gtksourceview/gtksourcestylescheme.c:163
+#: ../gtksourceview/gtksourcestylescheme.c:168
+#: ../gtksourceview/gtksourcestylescheme.c:169
 msgid "Style scheme id"
 msgstr "ID del estilo"
 
-#: ../gtksourceview/gtksourcestylescheme.c:175
-#: ../gtksourceview/gtksourcestylescheme.c:176
+#: ../gtksourceview/gtksourcestylescheme.c:181
+#: ../gtksourceview/gtksourcestylescheme.c:182
 msgid "Style scheme name"
 msgstr "Nombre del estilo"
 
-#: ../gtksourceview/gtksourcestylescheme.c:188
-#: ../gtksourceview/gtksourcestylescheme.c:189
+#: ../gtksourceview/gtksourcestylescheme.c:194
+#: ../gtksourceview/gtksourcestylescheme.c:195
 msgid "Style scheme description"
 msgstr "Descripción del estilo"
 
-#: ../gtksourceview/gtksourcestylescheme.c:201
-#: ../gtksourceview/gtksourcestylescheme.c:202
+#: ../gtksourceview/gtksourcestylescheme.c:207
+#: ../gtksourceview/gtksourcestylescheme.c:208
 msgid "Style scheme filename"
 msgstr "Nombre del archivo de estilo"
 
