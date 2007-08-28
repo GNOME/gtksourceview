@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-08-26 22:12+0200\n"
-"PO-Revision-Date: 2007-08-26 22:13+0100\n"
+"POT-Creation-Date: 2007-08-28 17:12+0200\n"
+"PO-Revision-Date: 2007-08-28 17:12+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "MIME-Version: 1.0\n"
@@ -31,42 +31,42 @@ msgstr "Färgmarkera matchande parenteser"
 msgid "Whether to highlight matching brackets"
 msgstr "Huruvida matchande parenteser ska färgmarkeras"
 
-#: ../gtksourceview/gtksourcebuffer.c:191
+#: ../gtksourceview/gtksourcebuffer.c:196
 msgid "Maximum Undo Levels"
 msgstr "Maximalt antal ångrandenivåer"
 
-#: ../gtksourceview/gtksourcebuffer.c:192
+#: ../gtksourceview/gtksourcebuffer.c:197
 msgid "Number of undo levels for the buffer"
 msgstr "Antal ångrandenivåer för bufferten"
 
-#. Translators: "Language" stands for
-#. * "programming language", not "spoken language"
-#: ../gtksourceview/gtksourcebuffer.c:204
+#. Translators: throughout gtksourceview "language" stands
+#. * for "programming language", not "spoken language"
+#: ../gtksourceview/gtksourcebuffer.c:209
 msgid "Language"
 msgstr "Språk"
 
-#: ../gtksourceview/gtksourcebuffer.c:205
+#: ../gtksourceview/gtksourcebuffer.c:210
 msgid "Language object to get highlighting patterns from"
 msgstr "Språkobjekt att hämta färgmarkeringsmönster från"
 
-#: ../gtksourceview/gtksourcebuffer.c:213
+#: ../gtksourceview/gtksourcebuffer.c:218
 msgid "Can undo"
 msgstr "Kan ångra"
 
-#: ../gtksourceview/gtksourcebuffer.c:214
+#: ../gtksourceview/gtksourcebuffer.c:219
 msgid "Whether Undo operation is possible"
 msgstr "Huruvida en Ångra-åtgärd är möjlig"
 
-#: ../gtksourceview/gtksourcebuffer.c:221
+#: ../gtksourceview/gtksourcebuffer.c:226
 msgid "Can redo"
 msgstr "Kan göra om"
 
-#: ../gtksourceview/gtksourcebuffer.c:222
+#: ../gtksourceview/gtksourcebuffer.c:227
 msgid "Whether Redo operation is possible"
 msgstr "Huruvida en Gör om-åtgärd är möjlig"
 
-#: ../gtksourceview/gtksourcebuffer.c:236
-#: ../gtksourceview/gtksourcebuffer.c:237
+#: ../gtksourceview/gtksourcebuffer.c:241
+#: ../gtksourceview/gtksourcebuffer.c:242
 msgid "Style scheme"
 msgstr "Stilschema"
 
@@ -132,7 +132,6 @@ msgstr "okänd kontext \"%s\""
 #: ../gtksourceview/language-specs/libtool.lang.h:2
 #: ../gtksourceview/language-specs/msil.lang.h:2
 #: ../gtksourceview/language-specs/ocl.lang.h:6
-#: ../gtksourceview/language-specs/php.lang.h:15
 #: ../gtksourceview/language-specs/pkgconfig.lang.h:1
 #: ../gtksourceview/language-specs/po.lang.h:4
 #: ../gtksourceview/language-specs/rpmspec.lang.h:10
@@ -164,13 +163,21 @@ msgstr "Dold"
 msgid "Whether the language should be hidden from the user"
 msgstr "Huruvida språket ska döljas för användaren"
 
-#: ../gtksourceview/gtksourcelanguagemanager.c:126
+#: ../gtksourceview/gtksourcelanguagemanager.c:133
 msgid "Language specification directories"
 msgstr "Kataloger för språkspecifikationer"
 
-#: ../gtksourceview/gtksourcelanguagemanager.c:127
+#: ../gtksourceview/gtksourcelanguagemanager.c:134
 msgid "List of directories where the language specification files (.lang) are located"
 msgstr "Lista med kataloger där språkspecifikationsfiler (.lang) finns"
+
+#: ../gtksourceview/gtksourcelanguagemanager.c:143
+msgid "Language ids"
+msgstr "Språk-id:n"
+
+#: ../gtksourceview/gtksourcelanguagemanager.c:144
+msgid "List of the ids of the available languages"
+msgstr "Lista över id:n för tillgängliga språk"
 
 #: ../gtksourceview/gtksourcelanguage-parser-2.c:876
 #, c-format
@@ -282,169 +289,129 @@ msgstr "Genomstruken inställd"
 msgid "Whether strikethrough attribute is set"
 msgstr "Huruvida genomstruket attribut är inställt"
 
-#: ../gtksourceview/gtksourcestylemanager.c:142
+#: ../gtksourceview/gtksourcestyleschememanager.c:145
 msgid "Style scheme search path"
 msgstr "Sökväg för stilscheman"
 
-#: ../gtksourceview/gtksourcestylemanager.c:143
+#: ../gtksourceview/gtksourcestyleschememanager.c:146
 msgid "List of directories and files where the style schemes are located"
 msgstr "Lista över kataloger och filer där stilscheman finns"
 
-#: ../gtksourceview/gtksourcestylemanager.c:151
+#: ../gtksourceview/gtksourcestyleschememanager.c:154
 msgid "Scheme ids"
 msgstr "Schema-id:n"
 
-#: ../gtksourceview/gtksourcestylemanager.c:152
+#: ../gtksourceview/gtksourcestyleschememanager.c:155
 msgid "List of the ids of the available style schemes"
 msgstr "Lista över id:n för tillgängliga stilscheman"
 
-#: ../gtksourceview/gtksourcestylescheme.c:162
-#: ../gtksourceview/gtksourcestylescheme.c:163
+#: ../gtksourceview/gtksourcestylescheme.c:169
+#: ../gtksourceview/gtksourcestylescheme.c:170
 msgid "Style scheme id"
 msgstr "Stilschema-id"
 
-#: ../gtksourceview/gtksourcestylescheme.c:175
-#: ../gtksourceview/gtksourcestylescheme.c:176
+#: ../gtksourceview/gtksourcestylescheme.c:182
+#: ../gtksourceview/gtksourcestylescheme.c:183
 msgid "Style scheme name"
 msgstr "Stilschemanamn"
 
-#: ../gtksourceview/gtksourcestylescheme.c:188
-#: ../gtksourceview/gtksourcestylescheme.c:189
+#: ../gtksourceview/gtksourcestylescheme.c:195
+#: ../gtksourceview/gtksourcestylescheme.c:196
 msgid "Style scheme description"
 msgstr "Stilschemabeskrivning"
 
-#: ../gtksourceview/gtksourcestylescheme.c:201
-#: ../gtksourceview/gtksourcestylescheme.c:202
+#: ../gtksourceview/gtksourcestylescheme.c:208
+#: ../gtksourceview/gtksourcestylescheme.c:209
 msgid "Style scheme filename"
 msgstr "Stilschemafilnamn"
 
-#: ../gtksourceview/gtksourceview.c:235
+#: ../gtksourceview/gtksourceview.c:241
 msgid "Show Line Numbers"
 msgstr "Visa radnummer"
 
-#: ../gtksourceview/gtksourceview.c:236
+#: ../gtksourceview/gtksourceview.c:242
 msgid "Whether to display line numbers"
 msgstr "Huruvida radnummer ska visas"
 
-#: ../gtksourceview/gtksourceview.c:243
+#: ../gtksourceview/gtksourceview.c:249
 msgid "Show Line Markers"
 msgstr "Visa radmarkörer"
 
-#: ../gtksourceview/gtksourceview.c:244
+#: ../gtksourceview/gtksourceview.c:250
 msgid "Whether to display line marker pixbufs"
 msgstr "Huruvida bilder för radmarkörer ska visas"
 
-#: ../gtksourceview/gtksourceview.c:256
+#: ../gtksourceview/gtksourceview.c:262
 msgid "Tab Width"
 msgstr "Tabulatorbredd"
 
-#: ../gtksourceview/gtksourceview.c:257
+#: ../gtksourceview/gtksourceview.c:263
 msgid "Width of a tab character expressed in spaces"
 msgstr "Bredd på ett tabulatortecken uttryckt i blanksteg"
 
-#: ../gtksourceview/gtksourceview.c:271
+#: ../gtksourceview/gtksourceview.c:277
 msgid "Indent Width"
 msgstr "Indenteringsbredd"
 
-#: ../gtksourceview/gtksourceview.c:272
+#: ../gtksourceview/gtksourceview.c:278
 msgid "Number of spaces to use for each step of indent"
 msgstr "Antal blanksteg att använda för att indenteringssteg"
 
-#: ../gtksourceview/gtksourceview.c:281
+#: ../gtksourceview/gtksourceview.c:287
 msgid "Auto Indentation"
 msgstr "Automatiskt indrag"
 
-#: ../gtksourceview/gtksourceview.c:282
+#: ../gtksourceview/gtksourceview.c:288
 msgid "Whether to enable auto indentation"
 msgstr "Huruvida automatiskt indrag ska aktiveras"
 
-#: ../gtksourceview/gtksourceview.c:289
+#: ../gtksourceview/gtksourceview.c:295
 msgid "Insert Spaces Instead of Tabs"
 msgstr "Infoga blanksteg istället för tabulatortecken"
 
-#: ../gtksourceview/gtksourceview.c:290
+#: ../gtksourceview/gtksourceview.c:296
 msgid "Whether to insert spaces instead of tabs"
 msgstr "Huruvida blanksteg ska infogas istället för tabulatortecken"
 
-#: ../gtksourceview/gtksourceview.c:297
+#: ../gtksourceview/gtksourceview.c:308
 msgid "Show Right Margin"
 msgstr "Visa högermarginal"
 
-#: ../gtksourceview/gtksourceview.c:298
+#: ../gtksourceview/gtksourceview.c:309
 msgid "Whether to display the right margin"
 msgstr "Huruvida högermarginalen ska visas"
 
-#: ../gtksourceview/gtksourceview.c:305
-msgid "Margin position"
-msgstr "Marginalposition"
+#: ../gtksourceview/gtksourceview.c:321
+msgid "Right Margin Position"
+msgstr "Höger marginalposition"
 
-#: ../gtksourceview/gtksourceview.c:306
+#: ../gtksourceview/gtksourceview.c:322
 msgid "Position of the right margin"
 msgstr "Position för högermarginalen"
 
-#: ../gtksourceview/gtksourceview.c:322
+#: ../gtksourceview/gtksourceview.c:338
 msgid "Smart Home/End"
 msgstr "Intelligent home/end"
 
-#: ../gtksourceview/gtksourceview.c:323
+#: ../gtksourceview/gtksourceview.c:339
 msgid "HOME and END keys move to first/last non whitespace characters on line before going to the start/end of the line"
 msgstr "HOME- och END-tangenterna flyttar till första/sista tecknen på raden innan de går till början/slutet på raden"
 
-#: ../gtksourceview/gtksourceview.c:333
+#: ../gtksourceview/gtksourceview.c:349
 msgid "Highlight current line"
 msgstr "Färgmarkera aktuell rad"
 
-#: ../gtksourceview/gtksourceview.c:334
+#: ../gtksourceview/gtksourceview.c:350
 msgid "Whether to highlight the current line"
 msgstr "Huruvida den aktuella raden ska färgmarkeras"
 
-#: ../gtksourceview/gtksourceview.c:341
+#: ../gtksourceview/gtksourceview.c:357
 msgid "Indent on tab"
 msgstr "Dra in med tabulator"
 
-#: ../gtksourceview/gtksourceview.c:342
+#: ../gtksourceview/gtksourceview.c:358
 msgid "Whether to indent the selected text when the tab key is pressed"
 msgstr "Huruvida indragning av markerad text ska göras när tabulatorn trycks"
-
-#: ../gtksourceview/gtksourceview.c:358
-msgid "Margin Line Alpha"
-msgstr "Alfa för marginalrad"
-
-#: ../gtksourceview/gtksourceview.c:359
-msgid "Transparency of the margin line"
-msgstr "Transparens för marginalraden"
-
-#: ../gtksourceview/gtksourceview.c:376
-msgid "Margin Line Color"
-msgstr "Färg på marginalrad"
-
-#: ../gtksourceview/gtksourceview.c:377
-msgid "Color to use for the right margin line"
-msgstr "Färg som ska användas på högermarginalraden"
-
-#: ../gtksourceview/gtksourceview.c:393
-msgid "Margin Overlay Toggle"
-msgstr "Växla överliggande marginal"
-
-#: ../gtksourceview/gtksourceview.c:394
-msgid "Whether to draw the right margin overlay"
-msgstr "Huruvida den överliggande högermarginalen ska ritas upp"
-
-#: ../gtksourceview/gtksourceview.c:410
-msgid "Margin Overlay Alpha"
-msgstr "Alfa för överliggande marginal"
-
-#: ../gtksourceview/gtksourceview.c:411
-msgid "Transparency of the margin overlay"
-msgstr "Transparens för överliggande marginal"
-
-#: ../gtksourceview/gtksourceview.c:428
-msgid "Margin Overlay Color"
-msgstr "Färg på överliggande marginal"
-
-#: ../gtksourceview/gtksourceview.c:429
-msgid "Color to use for drawing the margin overlay"
-msgstr "Färg att använda för att rita den överliggande marginalen"
 
 #: ../gtksourceview/gtksourceview-i18n.c:38
 msgid "translator-credits"
@@ -633,15 +600,15 @@ msgstr "Verkligt tal"
 
 #: ../gtksourceview/language-specs/ada.lang.h:11
 #: ../gtksourceview/language-specs/boo.lang.h:13
-#: ../gtksourceview/language-specs/chdr.lang.h:2
 #: ../gtksourceview/language-specs/c.lang.h:16
+#: ../gtksourceview/language-specs/chdr.lang.h:2
 #: ../gtksourceview/language-specs/cpp.lang.h:5
 #: ../gtksourceview/language-specs/csharp.lang.h:12
 #: ../gtksourceview/language-specs/d.lang.h:13
 #: ../gtksourceview/language-specs/erlang.lang.h:11
 #: ../gtksourceview/language-specs/fortran.lang.h:8
-#: ../gtksourceview/language-specs/haskell.lang.h:12
 #: ../gtksourceview/language-specs/haskell-literate.lang.h:2
+#: ../gtksourceview/language-specs/haskell.lang.h:12
 #: ../gtksourceview/language-specs/idl.lang.h:6
 #: ../gtksourceview/language-specs/java.lang.h:13
 #: ../gtksourceview/language-specs/makefile.lang.h:2
@@ -686,7 +653,7 @@ msgstr "Lagringsklass"
 #: ../gtksourceview/language-specs/octave.lang.h:11
 #: ../gtksourceview/language-specs/pascal.lang.h:8
 #: ../gtksourceview/language-specs/perl.lang.h:18
-#: ../gtksourceview/language-specs/php.lang.h:18
+#: ../gtksourceview/language-specs/php.lang.h:17
 #: ../gtksourceview/language-specs/po.lang.h:5
 #: ../gtksourceview/language-specs/python.lang.h:17
 #: ../gtksourceview/language-specs/ruby.lang.h:21
@@ -707,7 +674,7 @@ msgstr "Mönster"
 #: ../gtksourceview/language-specs/lua.lang.h:9
 #: ../gtksourceview/language-specs/m4.lang.h:1
 #: ../gtksourceview/language-specs/perl.lang.h:17
-#: ../gtksourceview/language-specs/php.lang.h:17
+#: ../gtksourceview/language-specs/php.lang.h:16
 #: ../gtksourceview/language-specs/python.lang.h:15
 #: ../gtksourceview/language-specs/R.lang.h:9
 #: ../gtksourceview/language-specs/ruby.lang.h:19
@@ -720,7 +687,7 @@ msgstr "Skript"
 #: ../gtksourceview/language-specs/haskell.lang.h:15
 #: ../gtksourceview/language-specs/ini.lang.h:10
 #: ../gtksourceview/language-specs/perl.lang.h:20
-#: ../gtksourceview/language-specs/php.lang.h:19
+#: ../gtksourceview/language-specs/php.lang.h:18
 #: ../gtksourceview/language-specs/pkgconfig.lang.h:3
 #: ../gtksourceview/language-specs/ruby.lang.h:23
 #: ../gtksourceview/language-specs/tcl.lang.h:4
@@ -800,10 +767,6 @@ msgstr "Specialvariabel"
 msgid "ChangeLog"
 msgstr "Ändringslogg"
 
-#: ../gtksourceview/language-specs/chdr.lang.h:1
-msgid "C/C++/ObjC Header"
-msgstr "C/C++/ObjC-huvud"
-
 #: ../gtksourceview/language-specs/c.lang.h:2
 msgid "C"
 msgstr "C"
@@ -877,13 +840,9 @@ msgstr "Oktalt tal"
 msgid "printf Conversion"
 msgstr "printf-konvertering"
 
-#: ../gtksourceview/language-specs/classic.xml.h:1
-msgid "Classic"
-msgstr "Klassisk"
-
-#: ../gtksourceview/language-specs/classic.xml.h:2
-msgid "Classic color scheme"
-msgstr "Klassiskt färgschema"
+#: ../gtksourceview/language-specs/chdr.lang.h:1
+msgid "C/C++/ObjC Header"
+msgstr "C/C++/ObjC-huvud"
 
 #: ../gtksourceview/language-specs/cpp.lang.h:1
 msgid "C++"
@@ -1328,6 +1287,10 @@ msgstr "Monospace"
 msgid "URL"
 msgstr "URL"
 
+#: ../gtksourceview/language-specs/haskell-literate.lang.h:1
+msgid "Literate Haskell"
+msgstr "Literate Haskell"
+
 #: ../gtksourceview/language-specs/haskell.lang.h:6
 msgid "Float"
 msgstr "Flyt"
@@ -1348,10 +1311,6 @@ msgstr "Oktal"
 #: ../gtksourceview/language-specs/ruby.lang.h:22
 msgid "Symbol"
 msgstr "Symbol"
-
-#: ../gtksourceview/language-specs/haskell-literate.lang.h:1
-msgid "Literate Haskell"
-msgstr "Literate Haskell"
 
 #: ../gtksourceview/language-specs/html.lang.h:1
 msgid "Attribute Name"
@@ -1414,14 +1373,6 @@ msgstr "Objekt"
 #: ../gtksourceview/language-specs/javascript.lang.h:13
 msgid "Properties"
 msgstr "Egenskaper"
-
-#: ../gtksourceview/language-specs/kate.xml.h:1
-msgid "Color scheme used in the Kate text editor"
-msgstr "Färgschema använt i textredigeraren Kate"
-
-#: ../gtksourceview/language-specs/kate.xml.h:2
-msgid "Kate"
-msgstr "Kate"
 
 #: ../gtksourceview/language-specs/latex.lang.h:1
 msgid "Command"
@@ -1488,14 +1439,6 @@ msgstr "Nemerle"
 #: ../gtksourceview/language-specs/objc.lang.h:4
 msgid "Objective-C"
 msgstr "Objective-C"
-
-#: ../gtksourceview/language-specs/oblivion.xml.h:1
-msgid "Dark color scheme using the Tango color palette"
-msgstr "Mörkt färgschema som använder Tango-färgpaletten"
-
-#: ../gtksourceview/language-specs/oblivion.xml.h:2
-msgid "Oblivion"
-msgstr "Oblivion"
 
 #: ../gtksourceview/language-specs/ocaml.lang.h:3
 msgid "Builtin-function keyword"
@@ -1609,7 +1552,7 @@ msgstr "Perl"
 msgid "System Command"
 msgstr "Systemkommando"
 
-#: ../gtksourceview/language-specs/php.lang.h:16
+#: ../gtksourceview/language-specs/php.lang.h:15
 msgid "PHP"
 msgstr "PHP"
 
@@ -1767,14 +1710,6 @@ msgstr "Ingen aning vad det här är"
 msgid "SQL"
 msgstr "SQL"
 
-#: ../gtksourceview/language-specs/tango.xml.h:1
-msgid "Color scheme using Tango color palette"
-msgstr "Färgschema som använder Tango-färgpalett"
-
-#: ../gtksourceview/language-specs/tango.xml.h:2
-msgid "Tango"
-msgstr "Tango"
-
 #: ../gtksourceview/language-specs/tcl.lang.h:3
 msgid "Tcl"
 msgstr "Tcl"
@@ -1859,11 +1794,60 @@ msgstr "grammatik"
 msgid "keyword"
 msgstr "nyckelord"
 
-#: ../tests/test-scheme.xml.h:1
-msgid "Test"
-msgstr "Test"
+#: ../gtksourceview/language-specs/classic.xml.h:1
+msgid "Classic"
+msgstr "Klassisk"
 
-#: ../tests/test-scheme.xml.h:2
-msgid "This is a test scheme"
-msgstr "Det här är ett testschema"
+#: ../gtksourceview/language-specs/classic.xml.h:2
+msgid "Classic color scheme"
+msgstr "Klassiskt färgschema"
+
+#: ../gtksourceview/language-specs/kate.xml.h:1
+msgid "Color scheme used in the Kate text editor"
+msgstr "Färgschema använt i textredigeraren Kate"
+
+#: ../gtksourceview/language-specs/kate.xml.h:2
+msgid "Kate"
+msgstr "Kate"
+
+#: ../gtksourceview/language-specs/oblivion.xml.h:1
+msgid "Dark color scheme using the Tango color palette"
+msgstr "Mörkt färgschema som använder Tango-färgpaletten"
+
+#: ../gtksourceview/language-specs/oblivion.xml.h:2
+msgid "Oblivion"
+msgstr "Oblivion"
+
+#: ../gtksourceview/language-specs/tango.xml.h:1
+msgid "Color scheme using Tango color palette"
+msgstr "Färgschema som använder Tango-färgpalett"
+
+#: ../gtksourceview/language-specs/tango.xml.h:2
+msgid "Tango"
+msgstr "Tango"
+
+#~ msgid "Margin Line Alpha"
+#~ msgstr "Alfa för marginalrad"
+#~ msgid "Transparency of the margin line"
+#~ msgstr "Transparens för marginalraden"
+#~ msgid "Margin Line Color"
+#~ msgstr "Färg på marginalrad"
+#~ msgid "Color to use for the right margin line"
+#~ msgstr "Färg som ska användas på högermarginalraden"
+#~ msgid "Margin Overlay Toggle"
+#~ msgstr "Växla överliggande marginal"
+#~ msgid "Whether to draw the right margin overlay"
+#~ msgstr "Huruvida den överliggande högermarginalen ska ritas upp"
+#~ msgid "Margin Overlay Alpha"
+#~ msgstr "Alfa för överliggande marginal"
+#~ msgid "Transparency of the margin overlay"
+#~ msgstr "Transparens för överliggande marginal"
+#~ msgid "Margin Overlay Color"
+#~ msgstr "Färg på överliggande marginal"
+#~ msgid "Color to use for drawing the margin overlay"
+#~ msgstr "Färg att använda för att rita den överliggande marginalen"
+#~ msgid "Test"
+#~ msgstr "Test"
+#~ msgid "This is a test scheme"
+#~ msgstr "Det här är ett testschema"
 
