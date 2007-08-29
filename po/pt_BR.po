@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-08-27 14:33+0100\n"
-"PO-Revision-Date: 2007-08-27 10:44-0300\n"
+"POT-Creation-Date: 2007-08-28 16:13+0100\n"
+"PO-Revision-Date: 2007-08-28 22:35-0300\n"
 "Last-Translator: Og Maciel <ogmaciel@gnome.org>\n"
 "Language-Team: Brazilian Portuguese <gnome-l10n-br@listas.cipsga.org.br>\n"
 "MIME-Version: 1.0\n"
@@ -166,13 +166,21 @@ msgstr "Oculto"
 msgid "Whether the language should be hidden from the user"
 msgstr "Se a linguagem deve ser oculta do usuário"
 
-#: ../gtksourceview/gtksourcelanguagemanager.c:126
+#: ../gtksourceview/gtksourcelanguagemanager.c:133
 msgid "Language specification directories"
 msgstr "Diretórios de especificação da linguagem"
 
-#: ../gtksourceview/gtksourcelanguagemanager.c:127
+#: ../gtksourceview/gtksourcelanguagemanager.c:134
 msgid "List of directories where the language specification files (.lang) are located"
 msgstr "Lista de diretórios onde os arquivos de especificação da linguagem (.lang) estão localizados"
+
+#: ../gtksourceview/gtksourcelanguagemanager.c:143
+msgid "Language ids"
+msgstr "Identificações de linguagem"
+
+#: ../gtksourceview/gtksourcelanguagemanager.c:144
+msgid "List of the ids of the available languages"
+msgstr "Lista de identificações (ids) das linguagens disponíveis"
 
 #: ../gtksourceview/gtksourcelanguage-parser-2.c:876
 #, c-format
@@ -284,169 +292,129 @@ msgstr "Tachar definido"
 msgid "Whether strikethrough attribute is set"
 msgstr "Se o atributo tachar é definido"
 
-#: ../gtksourceview/gtksourcestylemanager.c:142
+#: ../gtksourceview/gtksourcestyleschememanager.c:145
 msgid "Style scheme search path"
 msgstr "Caminho de pesquisa de esquema de estilo"
 
-#: ../gtksourceview/gtksourcestylemanager.c:143
+#: ../gtksourceview/gtksourcestyleschememanager.c:146
 msgid "List of directories and files where the style schemes are located"
 msgstr "Lista de diretórios e arquivos onde os esquemas de estilo estão localizados"
 
-#: ../gtksourceview/gtksourcestylemanager.c:151
+#: ../gtksourceview/gtksourcestyleschememanager.c:154
 msgid "Scheme ids"
 msgstr "Identificações de esquema"
 
-#: ../gtksourceview/gtksourcestylemanager.c:152
+#: ../gtksourceview/gtksourcestyleschememanager.c:155
 msgid "List of the ids of the available style schemes"
 msgstr "Lista de identificações (ids) dos esquemas de estilo disponíveis"
 
-#: ../gtksourceview/gtksourcestylescheme.c:162
-#: ../gtksourceview/gtksourcestylescheme.c:163
+#: ../gtksourceview/gtksourcestylescheme.c:169
+#: ../gtksourceview/gtksourcestylescheme.c:170
 msgid "Style scheme id"
 msgstr "Identificação do esquema de estilo"
 
-#: ../gtksourceview/gtksourcestylescheme.c:175
-#: ../gtksourceview/gtksourcestylescheme.c:176
+#: ../gtksourceview/gtksourcestylescheme.c:182
+#: ../gtksourceview/gtksourcestylescheme.c:183
 msgid "Style scheme name"
 msgstr "Nome do esquema de estilo"
 
-#: ../gtksourceview/gtksourcestylescheme.c:188
-#: ../gtksourceview/gtksourcestylescheme.c:189
+#: ../gtksourceview/gtksourcestylescheme.c:195
+#: ../gtksourceview/gtksourcestylescheme.c:196
 msgid "Style scheme description"
 msgstr "Descrição do esquema de estilo"
 
-#: ../gtksourceview/gtksourcestylescheme.c:201
-#: ../gtksourceview/gtksourcestylescheme.c:202
+#: ../gtksourceview/gtksourcestylescheme.c:208
+#: ../gtksourceview/gtksourcestylescheme.c:209
 msgid "Style scheme filename"
 msgstr "Nome do arquivo de esquema de estilo"
 
-#: ../gtksourceview/gtksourceview.c:236
+#: ../gtksourceview/gtksourceview.c:241
 msgid "Show Line Numbers"
 msgstr "Mostra numeração de linha"
 
-#: ../gtksourceview/gtksourceview.c:237
+#: ../gtksourceview/gtksourceview.c:242
 msgid "Whether to display line numbers"
 msgstr "Mostrar ou não a numeração de linha"
 
-#: ../gtksourceview/gtksourceview.c:244
+#: ../gtksourceview/gtksourceview.c:249
 msgid "Show Line Markers"
 msgstr "Mostrar marcadores de linha"
 
-#: ../gtksourceview/gtksourceview.c:245
+#: ../gtksourceview/gtksourceview.c:250
 msgid "Whether to display line marker pixbufs"
 msgstr "Mostrar ou não os pixbufs marcadores de linha"
 
-#: ../gtksourceview/gtksourceview.c:257
+#: ../gtksourceview/gtksourceview.c:262
 msgid "Tab Width"
 msgstr "Largura de Tabulação"
 
-#: ../gtksourceview/gtksourceview.c:258
+#: ../gtksourceview/gtksourceview.c:263
 msgid "Width of a tab character expressed in spaces"
 msgstr "Largura do caractere de tabulação expressa em espaços"
 
-#: ../gtksourceview/gtksourceview.c:272
+#: ../gtksourceview/gtksourceview.c:277
 msgid "Indent Width"
 msgstr "Largura de Recuo"
 
-#: ../gtksourceview/gtksourceview.c:273
+#: ../gtksourceview/gtksourceview.c:278
 msgid "Number of spaces to use for each step of indent"
 msgstr "Número de espaços a usar para cada passo de recuo"
 
-#: ../gtksourceview/gtksourceview.c:282
+#: ../gtksourceview/gtksourceview.c:287
 msgid "Auto Indentation"
 msgstr "Recuo Automático"
 
-#: ../gtksourceview/gtksourceview.c:283
+#: ../gtksourceview/gtksourceview.c:288
 msgid "Whether to enable auto indentation"
 msgstr "Ativar ou não recuo automático"
 
-#: ../gtksourceview/gtksourceview.c:290
+#: ../gtksourceview/gtksourceview.c:295
 msgid "Insert Spaces Instead of Tabs"
 msgstr "Inserir espaços em vez de tabulações"
 
-#: ../gtksourceview/gtksourceview.c:291
+#: ../gtksourceview/gtksourceview.c:296
 msgid "Whether to insert spaces instead of tabs"
 msgstr "Inserir ou não espaços ao invés de tabulações"
 
-#: ../gtksourceview/gtksourceview.c:303
+#: ../gtksourceview/gtksourceview.c:308
 msgid "Show Right Margin"
 msgstr "Mostrar Margem Direita"
 
-#: ../gtksourceview/gtksourceview.c:304
+#: ../gtksourceview/gtksourceview.c:309
 msgid "Whether to display the right margin"
 msgstr "Mostrar ou não a margem direita"
 
-#: ../gtksourceview/gtksourceview.c:316
+#: ../gtksourceview/gtksourceview.c:321
 msgid "Right Margin Position"
 msgstr "Posição da margem direita"
 
-#: ../gtksourceview/gtksourceview.c:317
+#: ../gtksourceview/gtksourceview.c:322
 msgid "Position of the right margin"
 msgstr "Posição da margem direita"
 
-#: ../gtksourceview/gtksourceview.c:333
+#: ../gtksourceview/gtksourceview.c:338
 msgid "Smart Home/End"
 msgstr "Home/End Inteligente"
 
-#: ../gtksourceview/gtksourceview.c:334
+#: ../gtksourceview/gtksourceview.c:339
 msgid "HOME and END keys move to first/last non whitespace characters on line before going to the start/end of the line"
 msgstr "As teclas HOME e END movem para o primeiro/último caractere não-branco da linha antes de ir para o início/fim da linha"
 
-#: ../gtksourceview/gtksourceview.c:344
+#: ../gtksourceview/gtksourceview.c:349
 msgid "Highlight current line"
 msgstr "Destaca a linha atual"
 
-#: ../gtksourceview/gtksourceview.c:345
+#: ../gtksourceview/gtksourceview.c:350
 msgid "Whether to highlight the current line"
 msgstr "Destacar ou não linha atual"
 
-#: ../gtksourceview/gtksourceview.c:352
+#: ../gtksourceview/gtksourceview.c:357
 msgid "Indent on tab"
 msgstr "Recuar com tab"
 
-#: ../gtksourceview/gtksourceview.c:353
+#: ../gtksourceview/gtksourceview.c:358
 msgid "Whether to indent the selected text when the tab key is pressed"
 msgstr "Recuar ou não o texto selecionado quanto a tecla tab for pressionada"
-
-#: ../gtksourceview/gtksourceview.c:369
-msgid "Margin Line Alpha"
-msgstr "Alfa da Linha de Margem"
-
-#: ../gtksourceview/gtksourceview.c:370
-msgid "Transparency of the margin line"
-msgstr "Transparência da linha de margem"
-
-#: ../gtksourceview/gtksourceview.c:387
-msgid "Margin Line Color"
-msgstr "Cor da Linha de Margem"
-
-#: ../gtksourceview/gtksourceview.c:388
-msgid "Color to use for the right margin line"
-msgstr "Cor usada para a linha da margem direita"
-
-#: ../gtksourceview/gtksourceview.c:404
-msgid "Margin Overlay Toggle"
-msgstr "Alterna a Camada da Margem"
-
-#: ../gtksourceview/gtksourceview.c:405
-msgid "Whether to draw the right margin overlay"
-msgstr "Desenhar ou não a camada da margem direita"
-
-#: ../gtksourceview/gtksourceview.c:421
-msgid "Margin Overlay Alpha"
-msgstr "Alfa da Camada da Margem"
-
-#: ../gtksourceview/gtksourceview.c:422
-msgid "Transparency of the margin overlay"
-msgstr "Transparência da camada da margem"
-
-#: ../gtksourceview/gtksourceview.c:439
-msgid "Margin Overlay Color"
-msgstr "Cor da Camada da Margem"
-
-#: ../gtksourceview/gtksourceview.c:440
-msgid "Color to use for drawing the margin overlay"
-msgstr "Cor a usar para desenhar a camada da margem"
 
 #: ../gtksourceview/gtksourceview-i18n.c:38
 msgid "translator-credits"
@@ -1857,6 +1825,26 @@ msgstr "Esquema de cor usando a paleta de cor Tango"
 msgid "Tango"
 msgstr "Tango"
 
+#~ msgid "Margin Line Alpha"
+#~ msgstr "Alfa da Linha de Margem"
+#~ msgid "Transparency of the margin line"
+#~ msgstr "Transparência da linha de margem"
+#~ msgid "Margin Line Color"
+#~ msgstr "Cor da Linha de Margem"
+#~ msgid "Color to use for the right margin line"
+#~ msgstr "Cor usada para a linha da margem direita"
+#~ msgid "Margin Overlay Toggle"
+#~ msgstr "Alterna a Camada da Margem"
+#~ msgid "Whether to draw the right margin overlay"
+#~ msgstr "Desenhar ou não a camada da margem direita"
+#~ msgid "Margin Overlay Alpha"
+#~ msgstr "Alfa da Camada da Margem"
+#~ msgid "Transparency of the margin overlay"
+#~ msgstr "Transparência da camada da margem"
+#~ msgid "Margin Overlay Color"
+#~ msgstr "Cor da Camada da Margem"
+#~ msgid "Color to use for drawing the margin overlay"
+#~ msgstr "Cor a usar para desenhar a camada da margem"
 #~ msgid "Check Brackets"
 #~ msgstr "Verificar Colchetes"
 #~ msgid "Keywords"
