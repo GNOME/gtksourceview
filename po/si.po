@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: si\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-08-29 08:16+0100\n"
-"PO-Revision-Date: 2007-08-29 13:04+0530\n"
+"PO-Revision-Date: 2007-08-31 15:00+0530\n"
 "Last-Translator: Danishka Navin <snavin@redhat.com>\n"
 "Language-Team: Sinhala <en@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -150,16 +150,16 @@ msgstr ""
 #: ../gtksourceview/gtksourcelanguage.c:222
 #: ../gtksourceview/gtksourcelanguage.c:223
 msgid "Language name"
-msgstr ""
+msgstr "භෂා නම"
 
 #: ../gtksourceview/gtksourcelanguage.c:230
 #: ../gtksourceview/gtksourcelanguage.c:231
 msgid "Language section"
-msgstr ""
+msgstr "භාෂා අංශය"
 
 #: ../gtksourceview/gtksourcelanguage.c:238
 msgid "Hidden"
-msgstr ""
+msgstr "සැඟවුනු"
 
 #: ../gtksourceview/gtksourcelanguage.c:239
 msgid "Whether the language should be hidden from the user"
@@ -211,7 +211,7 @@ msgstr "පසුබිම් වර්‍ණය"
 
 #: ../gtksourceview/gtksourcestyle.c:86
 msgid "Foreground"
-msgstr ""
+msgstr "පුර්‍වබිම"
 
 #: ../gtksourceview/gtksourcestyle.c:87
 msgid "Foreground color"
@@ -259,7 +259,7 @@ msgstr ""
 
 #: ../gtksourceview/gtksourcestyle.c:150
 msgid "Bold set"
-msgstr ""
+msgstr "තදකුරු එකතුව"
 
 #: ../gtksourceview/gtksourcestyle.c:151
 msgid "Whether bold attribute is set"
@@ -267,7 +267,7 @@ msgstr ""
 
 #: ../gtksourceview/gtksourcestyle.c:158
 msgid "Italic set"
-msgstr ""
+msgstr "ඇලකුරු එකතුව"
 
 #: ../gtksourceview/gtksourcestyle.c:159
 msgid "Whether italic attribute is set"
@@ -275,7 +275,7 @@ msgstr ""
 
 #: ../gtksourceview/gtksourcestyle.c:166
 msgid "Underline set"
-msgstr ""
+msgstr "යටිඉරි එකතුව"
 
 #: ../gtksourceview/gtksourcestyle.c:167
 msgid "Whether underline attribute is set"
@@ -421,7 +421,7 @@ msgstr "පරිවර්තන ස්තුතිය"
 
 #: ../gtksourceview/language-specs/ada.lang.h:1
 msgid "Ada"
-msgstr ""
+msgstr "Ada"
 
 #: ../gtksourceview/language-specs/ada.lang.h:2
 msgid "Arbitrary base number"
@@ -693,11 +693,11 @@ msgstr "විචල්‍යය"
 
 #: ../gtksourceview/language-specs/awk.lang.h:5
 msgid "awk"
-msgstr ""
+msgstr "awk"
 
 #: ../gtksourceview/language-specs/boo.lang.h:1
 msgid "Boo"
-msgstr ""
+msgstr "Boo"
 
 #: ../gtksourceview/language-specs/boo.lang.h:2
 #: ../gtksourceview/language-specs/desktop.lang.h:2
@@ -839,19 +839,19 @@ msgstr ""
 
 #: ../gtksourceview/language-specs/chdr.lang.h:1
 msgid "C/C++/ObjC Header"
-msgstr ""
+msgstr "C/C++/ObjC Header"
 
 #: ../gtksourceview/language-specs/cpp.lang.h:1
 msgid "C++"
-msgstr ""
+msgstr "C++"
 
 #: ../gtksourceview/language-specs/csharp.lang.h:2
 msgid "C#"
-msgstr ""
+msgstr "C#"
 
 #: ../gtksourceview/language-specs/css.lang.h:1
 msgid "CSS"
-msgstr ""
+msgstr "CSS"
 
 #: ../gtksourceview/language-specs/css.lang.h:2
 msgid "Color"
@@ -898,7 +898,7 @@ msgstr ""
 
 #: ../gtksourceview/language-specs/css.lang.h:14
 msgid "at-rules"
-msgstr ""
+msgstr "at-rules"
 
 #. A base-N number: 0xFFFF
 #: ../gtksourceview/language-specs/def.lang.h:2
@@ -1005,7 +1005,7 @@ msgstr ""
 
 #: ../gtksourceview/language-specs/desktop.lang.h:1
 msgid ".desktop"
-msgstr ""
+msgstr ".desktop"
 
 #: ../gtksourceview/language-specs/desktop.lang.h:3
 msgid "Category"
@@ -1044,7 +1044,7 @@ msgstr ""
 
 #: ../gtksourceview/language-specs/diff.lang.h:4
 msgid "Diff"
-msgstr ""
+msgstr "Diff"
 
 #. Keyword
 #: ../gtksourceview/language-specs/diff.lang.h:6
@@ -1113,7 +1113,7 @@ msgstr ""
 
 #: ../gtksourceview/language-specs/dpatch.lang.h:1
 msgid "DPatch"
-msgstr ""
+msgstr "DPatch"
 
 #: ../gtksourceview/language-specs/dpatch.lang.h:3
 msgid "patch-start"
@@ -1126,7 +1126,7 @@ msgstr "DTD"
 
 #: ../gtksourceview/language-specs/erlang.lang.h:1
 msgid "Atom"
-msgstr ""
+msgstr "Atom"
 
 #: ../gtksourceview/language-specs/erlang.lang.h:2
 #: ../gtksourceview/language-specs/fortran.lang.h:1
@@ -1160,11 +1160,11 @@ msgstr ""
 
 #: ../gtksourceview/language-specs/fortran.lang.h:6
 msgid "Fortran 95"
-msgstr ""
+msgstr "Fortran 95"
 
 #: ../gtksourceview/language-specs/gap.lang.h:1
 msgid "GAP"
-msgstr ""
+msgstr "GAP"
 
 #: ../gtksourceview/language-specs/gap.lang.h:2
 #: ../gtksourceview/language-specs/octave.lang.h:10
@@ -1207,11 +1207,11 @@ msgstr "වර්‍ගය"
 
 #: ../gtksourceview/language-specs/gtk-doc.lang.h:12
 msgid "gtk-doc"
-msgstr ""
+msgstr "gtk-doc"
 
 #: ../gtksourceview/language-specs/gtkrc.lang.h:5
 msgid "GtkRC"
-msgstr ""
+msgstr "GtkRC"
 
 #: ../gtksourceview/language-specs/gtkrc.lang.h:6
 msgid "Include directive"
@@ -1291,11 +1291,11 @@ msgstr ""
 
 #: ../gtksourceview/language-specs/haskell.lang.h:7
 msgid "Haskell"
-msgstr ""
+msgstr "Haskell"
 
 #: ../gtksourceview/language-specs/haskell.lang.h:8
 msgid "Hex"
-msgstr ""
+msgstr "Hex"
 
 #: ../gtksourceview/language-specs/haskell.lang.h:10
 msgid "Octal"
@@ -1325,11 +1325,11 @@ msgstr "ඇමුණුම"
 
 #: ../gtksourceview/language-specs/idl.lang.h:3
 msgid "IDL"
-msgstr ""
+msgstr "IDL"
 
 #: ../gtksourceview/language-specs/ini.lang.h:1
 msgid ".ini"
-msgstr ""
+msgstr ".ini"
 
 #: ../gtksourceview/language-specs/java.lang.h:4
 msgid "Declaration"
@@ -1346,7 +1346,7 @@ msgstr ""
 
 #: ../gtksourceview/language-specs/java.lang.h:8
 msgid "Java"
-msgstr "ජාවා"
+msgstr "Java"
 
 #: ../gtksourceview/language-specs/java.lang.h:12
 msgid "Scope Declaration"
@@ -1358,7 +1358,7 @@ msgstr ""
 
 #: ../gtksourceview/language-specs/javascript.lang.h:9
 msgid "Javascript"
-msgstr ""
+msgstr "Javascript"
 
 #: ../gtksourceview/language-specs/javascript.lang.h:12
 msgid "Object"
@@ -1383,7 +1383,7 @@ msgstr ""
 
 #: ../gtksourceview/language-specs/latex.lang.h:5
 msgid "LaTeX"
-msgstr ""
+msgstr "LaTeX"
 
 #: ../gtksourceview/language-specs/latex.lang.h:7
 msgid "Math Mode"
@@ -1399,11 +1399,11 @@ msgstr ""
 
 #: ../gtksourceview/language-specs/libtool.lang.h:3
 msgid "libtool"
-msgstr ""
+msgstr "libtool"
 
 #: ../gtksourceview/language-specs/lua.lang.h:6
 msgid "Lua"
-msgstr ""
+msgstr "Lua"
 
 #: ../gtksourceview/language-specs/lua.lang.h:7
 #: ../gtksourceview/language-specs/ruby.lang.h:14
@@ -1416,15 +1416,15 @@ msgstr ""
 
 #: ../gtksourceview/language-specs/m4.lang.h:2
 msgid "m4"
-msgstr ""
+msgstr "m4"
 
 #: ../gtksourceview/language-specs/makefile.lang.h:1
 msgid "Makefile"
-msgstr ""
+msgstr "Makefile"
 
 #: ../gtksourceview/language-specs/msil.lang.h:1
 msgid "MSIL"
-msgstr ""
+msgstr "MSIL"
 
 #: ../gtksourceview/language-specs/nemerle.lang.h:11
 msgid "Nemerle"
@@ -1432,7 +1432,7 @@ msgstr ""
 
 #: ../gtksourceview/language-specs/objc.lang.h:4
 msgid "Objective-C"
-msgstr ""
+msgstr "Objective-C"
 
 #: ../gtksourceview/language-specs/ocaml.lang.h:3
 msgid "Builtin-function keyword"
@@ -1476,7 +1476,7 @@ msgstr ""
 
 #: ../gtksourceview/language-specs/ocl.lang.h:4
 msgid "OCL"
-msgstr ""
+msgstr "OCL"
 
 #: ../gtksourceview/language-specs/ocl.lang.h:5
 msgid "Operation operator"
@@ -1496,7 +1496,7 @@ msgstr ""
 
 #: ../gtksourceview/language-specs/pascal.lang.h:5
 msgid "Pascal"
-msgstr ""
+msgstr "Pascal"
 
 #: ../gtksourceview/language-specs/perl.lang.h:3
 msgid "Control"
@@ -1540,15 +1540,15 @@ msgstr ""
 
 #: ../gtksourceview/language-specs/perl.lang.h:15
 msgid "Perl"
-msgstr ""
+msgstr "Perl"
 
 #: ../gtksourceview/language-specs/perl.lang.h:19
 msgid "System Command"
-msgstr ""
+msgstr "පද්ධති විධාන"
 
 #: ../gtksourceview/language-specs/php.lang.h:15
 msgid "PHP"
-msgstr ""
+msgstr "PHP"
 
 #: ../gtksourceview/language-specs/pkgconfig.lang.h:2
 msgid "Package Info"
@@ -1556,7 +1556,7 @@ msgstr ""
 
 #: ../gtksourceview/language-specs/pkgconfig.lang.h:4
 msgid "pkg-config"
-msgstr ""
+msgstr "pkg-config"
 
 #: ../gtksourceview/language-specs/po.lang.h:6
 msgid "gettext translation"
@@ -1580,7 +1580,7 @@ msgstr ""
 
 #: ../gtksourceview/language-specs/python.lang.h:14
 msgid "Python"
-msgstr ""
+msgstr "Python"
 
 #: ../gtksourceview/language-specs/python.lang.h:18
 msgid "string-conversion"
@@ -1652,7 +1652,7 @@ msgstr ""
 
 #: ../gtksourceview/language-specs/rpmspec.lang.h:12
 msgid "RPM spec"
-msgstr ""
+msgstr "RPM spec"
 
 #: ../gtksourceview/language-specs/rpmspec.lang.h:13
 msgid "Section"
@@ -1664,7 +1664,7 @@ msgstr ""
 
 #: ../gtksourceview/language-specs/rpmspec.lang.h:15
 msgid "Switch"
-msgstr ""
+msgstr "මාරුවීම"
 
 #: ../gtksourceview/language-specs/ruby.lang.h:1
 msgid "Attribute Definition"
@@ -1684,7 +1684,7 @@ msgstr ""
 
 #: ../gtksourceview/language-specs/ruby.lang.h:18
 msgid "Ruby"
-msgstr "වෛරොඩි"
+msgstr "Ruby"
 
 #: ../gtksourceview/language-specs/scheme.lang.h:5
 msgid "Scheme"
@@ -1692,7 +1692,7 @@ msgstr ""
 
 #: ../gtksourceview/language-specs/sh.lang.h:4
 msgid "sh"
-msgstr ""
+msgstr "sh"
 
 #: ../gtksourceview/language-specs/sql.lang.h:7
 msgid "No idea what it is"
@@ -1704,7 +1704,7 @@ msgstr "SQL"
 
 #: ../gtksourceview/language-specs/tcl.lang.h:3
 msgid "Tcl"
-msgstr ""
+msgstr "Tcl"
 
 #: ../gtksourceview/language-specs/texinfo.lang.h:2
 msgid "File Attributes"
@@ -1716,15 +1716,15 @@ msgstr ""
 
 #: ../gtksourceview/language-specs/texinfo.lang.h:6
 msgid "Macros"
-msgstr ""
+msgstr "මැක්‍රෝ"
 
 #: ../gtksourceview/language-specs/texinfo.lang.h:10
 msgid "Texinfo"
-msgstr ""
+msgstr "Texinfo"
 
 #: ../gtksourceview/language-specs/vbnet.lang.h:9
 msgid "VB.NET"
-msgstr ""
+msgstr "VB.NET"
 
 #: ../gtksourceview/language-specs/verilog.lang.h:5
 msgid "Gate"
@@ -1732,11 +1732,11 @@ msgstr ""
 
 #: ../gtksourceview/language-specs/verilog.lang.h:9
 msgid "Verilog"
-msgstr ""
+msgstr "Verilog"
 
 #: ../gtksourceview/language-specs/vhdl.lang.h:11
 msgid "VHDL"
-msgstr ""
+msgstr "VHDL"
 
 #: ../gtksourceview/language-specs/xml.lang.h:1
 msgid "Attribute name"
@@ -1752,7 +1752,7 @@ msgstr ""
 
 #: ../gtksourceview/language-specs/xml.lang.h:5
 msgid "DOCTYPE"
-msgstr ""
+msgstr "DOCTYPE"
 
 #: ../gtksourceview/language-specs/xml.lang.h:6
 msgid "Element name"
@@ -1768,7 +1768,7 @@ msgstr ""
 
 #: ../gtksourceview/language-specs/xml.lang.h:13
 msgid "XML"
-msgstr ""
+msgstr "XML"
 
 #: ../gtksourceview/language-specs/yacc.lang.h:1
 msgid "Inline C Code"
@@ -1776,7 +1776,7 @@ msgstr ""
 
 #: ../gtksourceview/language-specs/yacc.lang.h:3
 msgid "Yacc"
-msgstr ""
+msgstr "Yacc"
 
 #: ../gtksourceview/language-specs/yacc.lang.h:4
 msgid "grammar"
@@ -1800,7 +1800,7 @@ msgstr ""
 
 #: ../gtksourceview/language-specs/kate.xml.h:2
 msgid "Kate"
-msgstr ""
+msgstr "Kate"
 
 #: ../gtksourceview/language-specs/oblivion.xml.h:1
 msgid "Dark color scheme using the Tango color palette"
@@ -1808,7 +1808,7 @@ msgstr ""
 
 #: ../gtksourceview/language-specs/oblivion.xml.h:2
 msgid "Oblivion"
-msgstr ""
+msgstr "Oblivion"
 
 #: ../gtksourceview/language-specs/tango.xml.h:1
 msgid "Color scheme using Tango color palette"
