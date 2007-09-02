@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview 1.1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-08-26 22:37+0700\n"
-"PO-Revision-Date: 2007-08-26 22:46+0700\n"
+"POT-Creation-Date: 2007-09-02 21:01+0700\n"
+"PO-Revision-Date: 2007-09-02 21:06+0700\n"
 "Last-Translator: Theppitak Karoonboonyanan <thep@linux.thai.net>\n"
 "Language-Team: Thai <thai-l10n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -31,42 +31,42 @@ msgstr "เน้นคู่วงเล็บเปิด-ปิด"
 msgid "Whether to highlight matching brackets"
 msgstr "กำหนดว่าจะเน้นคู่วงเล็บเปิด-ปิดหรือไม่"
 
-#: gtksourceview/gtksourcebuffer.c:191
+#: gtksourceview/gtksourcebuffer.c:196
 msgid "Maximum Undo Levels"
 msgstr "จำนวนขั้นการเรียกคืนสูงสุด"
 
-#: gtksourceview/gtksourcebuffer.c:192
+#: gtksourceview/gtksourcebuffer.c:197
 msgid "Number of undo levels for the buffer"
 msgstr "จำนวนขั้นของการเรียกคืนการทำคำสั่งในบัฟเฟอร์"
 
-#. Translators: "Language" stands for
-#. * "programming language", not "spoken language"
-#: gtksourceview/gtksourcebuffer.c:204
+#. Translators: throughout gtksourceview "language" stands
+#. * for "programming language", not "spoken language"
+#: gtksourceview/gtksourcebuffer.c:209
 msgid "Language"
 msgstr "ภาษา"
 
-#: gtksourceview/gtksourcebuffer.c:205
+#: gtksourceview/gtksourcebuffer.c:210
 msgid "Language object to get highlighting patterns from"
 msgstr "อ็อบเจกต์ภาษาที่เก็บรูปแบบการเน้นข้อความ"
 
-#: gtksourceview/gtksourcebuffer.c:213
+#: gtksourceview/gtksourcebuffer.c:218
 msgid "Can undo"
 msgstr "สามารถเรียกคืนได้"
 
-#: gtksourceview/gtksourcebuffer.c:214
+#: gtksourceview/gtksourcebuffer.c:219
 msgid "Whether Undo operation is possible"
 msgstr "ระบุว่า การกระทำสามารถเรียกคืนได้หรือไม่"
 
-#: gtksourceview/gtksourcebuffer.c:221
+#: gtksourceview/gtksourcebuffer.c:226
 msgid "Can redo"
 msgstr "สามารถทำซ้ำได้"
 
-#: gtksourceview/gtksourcebuffer.c:222
+#: gtksourceview/gtksourcebuffer.c:227
 msgid "Whether Redo operation is possible"
 msgstr "ระบุว่า การกระทำสามารถทำซ้ำได้หรือไม่"
 
-#: gtksourceview/gtksourcebuffer.c:236
-#: gtksourceview/gtksourcebuffer.c:237
+#: gtksourceview/gtksourcebuffer.c:241
+#: gtksourceview/gtksourcebuffer.c:242
 msgid "Style scheme"
 msgstr "ชุดสไตล์"
 
@@ -136,7 +136,6 @@ msgstr "ไม่รู้จักบริบท '%s'"
 #: gtksourceview/language-specs/libtool.lang.h:2
 #: gtksourceview/language-specs/msil.lang.h:2
 #: gtksourceview/language-specs/ocl.lang.h:6
-#: gtksourceview/language-specs/php.lang.h:15
 #: gtksourceview/language-specs/pkgconfig.lang.h:1
 #: gtksourceview/language-specs/po.lang.h:4
 #: gtksourceview/language-specs/rpmspec.lang.h:10
@@ -168,15 +167,23 @@ msgstr "ซ่อน"
 msgid "Whether the language should be hidden from the user"
 msgstr "ระบุว่าควรซ่อนภาษานี้ไม่ให้ผู้ใช้เห็นหรือไม่"
 
-#: gtksourceview/gtksourcelanguagemanager.c:126
+#: gtksourceview/gtksourcelanguagemanager.c:133
 msgid "Language specification directories"
 msgstr "ไดเรกทอรีข้อกำหนดภาษา"
 
-#: gtksourceview/gtksourcelanguagemanager.c:127
+#: gtksourceview/gtksourcelanguagemanager.c:134
 msgid ""
 "List of directories where the language specification files (.lang) are "
 "located"
 msgstr "รายการไดเรกทอรีที่เก็บแฟ้มข้อกำหนดภาษา (.lang)"
+
+#: gtksourceview/gtksourcelanguagemanager.c:143
+msgid "Language ids"
+msgstr "id ภาษาที่มี"
+
+#: gtksourceview/gtksourcelanguagemanager.c:144
+msgid "List of the ids of the available languages"
+msgstr "รายการของ id ของภาษาที่มี"
 
 #: gtksourceview/gtksourcelanguage-parser-2.c:876
 #, c-format
@@ -284,111 +291,111 @@ msgstr "ใช้ตัวขีดฆ่า"
 msgid "Whether strikethrough attribute is set"
 msgstr "ระบุว่ามีการกำหนดรูปแบบเป็นตัวขีดฆ่าหรือไม่"
 
-#: gtksourceview/gtksourcestylemanager.c:142
+#: gtksourceview/gtksourcestyleschememanager.c:145
 msgid "Style scheme search path"
 msgstr "พาธสำหรับค้นหาชุดสไตล์"
 
-#: gtksourceview/gtksourcestylemanager.c:143
+#: gtksourceview/gtksourcestyleschememanager.c:146
 msgid "List of directories and files where the style schemes are located"
 msgstr "รายการไดเรกทอรีและแฟ้มที่เก็บชุดสไตล์"
 
-#: gtksourceview/gtksourcestylemanager.c:151
+#: gtksourceview/gtksourcestyleschememanager.c:154
 msgid "Scheme ids"
 msgstr "id ของชุดสไตล์ที่มี"
 
-#: gtksourceview/gtksourcestylemanager.c:152
+#: gtksourceview/gtksourcestyleschememanager.c:155
 msgid "List of the ids of the available style schemes"
 msgstr "รายการของ id ของชุดสไตล์ที่มี"
 
-#: gtksourceview/gtksourcestylescheme.c:162
-#: gtksourceview/gtksourcestylescheme.c:163
+#: gtksourceview/gtksourcestylescheme.c:169
+#: gtksourceview/gtksourcestylescheme.c:170
 msgid "Style scheme id"
 msgstr "id ของชุดสไตล์"
 
-#: gtksourceview/gtksourcestylescheme.c:175
-#: gtksourceview/gtksourcestylescheme.c:176
+#: gtksourceview/gtksourcestylescheme.c:182
+#: gtksourceview/gtksourcestylescheme.c:183
 msgid "Style scheme name"
 msgstr "ชื่อของชุดสไตล์"
 
-#: gtksourceview/gtksourcestylescheme.c:188
-#: gtksourceview/gtksourcestylescheme.c:189
+#: gtksourceview/gtksourcestylescheme.c:195
+#: gtksourceview/gtksourcestylescheme.c:196
 msgid "Style scheme description"
 msgstr "คำบรรยายของชุดสไตล์"
 
-#: gtksourceview/gtksourcestylescheme.c:201
-#: gtksourceview/gtksourcestylescheme.c:202
+#: gtksourceview/gtksourcestylescheme.c:208
+#: gtksourceview/gtksourcestylescheme.c:209
 msgid "Style scheme filename"
 msgstr "ชื่อแฟ้มชุดสไตล์"
 
-#: gtksourceview/gtksourceview.c:235
+#: gtksourceview/gtksourceview.c:241
 msgid "Show Line Numbers"
 msgstr "แสดงเลขบรรทัด"
 
-#: gtksourceview/gtksourceview.c:236
+#: gtksourceview/gtksourceview.c:242
 msgid "Whether to display line numbers"
 msgstr "กำหนดว่าจะแสดงเลขบรรทัดหรือไม่"
 
-#: gtksourceview/gtksourceview.c:243
+#: gtksourceview/gtksourceview.c:249
 msgid "Show Line Markers"
 msgstr "แสดงการทำเครื่องหมายบรรทัด"
 
-#: gtksourceview/gtksourceview.c:244
+#: gtksourceview/gtksourceview.c:250
 msgid "Whether to display line marker pixbufs"
 msgstr "กำหนดว่าจะแสดงรูปเล็กๆ ที่ใช้ทำเครื่องหมายบรรทัดหรือไม่"
 
-#: gtksourceview/gtksourceview.c:256
+#: gtksourceview/gtksourceview.c:262
 msgid "Tab Width"
 msgstr "ความกว้างแท็บ"
 
-#: gtksourceview/gtksourceview.c:257
+#: gtksourceview/gtksourceview.c:263
 msgid "Width of a tab character expressed in spaces"
 msgstr "ความกว้างของอักขระแท็บ นับในหน่วยจำนวนอักขระเว้นวรรค"
 
-#: gtksourceview/gtksourceview.c:271
+#: gtksourceview/gtksourceview.c:277
 msgid "Indent Width"
 msgstr "ระยะร่นบรรทัด"
 
-#: gtksourceview/gtksourceview.c:272
+#: gtksourceview/gtksourceview.c:278
 msgid "Number of spaces to use for each step of indent"
 msgstr "จำนวนอักขระเว้นวรรคที่จะใช้ในการร่นบรรทัดแต่ละขั้น"
 
-#: gtksourceview/gtksourceview.c:281
+#: gtksourceview/gtksourceview.c:287
 msgid "Auto Indentation"
 msgstr "ร่นบรรทัดอัตโนมัติ"
 
-#: gtksourceview/gtksourceview.c:282
+#: gtksourceview/gtksourceview.c:288
 msgid "Whether to enable auto indentation"
 msgstr "กำหนดว่าจะเปิดใช้การร่นบรรทัดอัตโนมัติหรือไม่"
 
-#: gtksourceview/gtksourceview.c:289
+#: gtksourceview/gtksourceview.c:295
 msgid "Insert Spaces Instead of Tabs"
 msgstr "แทรกช่องว่างแทนแท็บ"
 
-#: gtksourceview/gtksourceview.c:290
+#: gtksourceview/gtksourceview.c:296
 msgid "Whether to insert spaces instead of tabs"
 msgstr "กำหนดว่าจะแทรกช่องว่างแทนแท็บหรือไม่"
 
-#: gtksourceview/gtksourceview.c:297
+#: gtksourceview/gtksourceview.c:308
 msgid "Show Right Margin"
 msgstr "แสดงกั้นหน้าขวา"
 
-#: gtksourceview/gtksourceview.c:298
+#: gtksourceview/gtksourceview.c:309
 msgid "Whether to display the right margin"
 msgstr "กำหนดว่าจะแสดงกั้นหน้าขวาหรือไม่"
 
-#: gtksourceview/gtksourceview.c:305
-msgid "Margin position"
-msgstr "ตำแหน่งกั้นหน้า"
+#: gtksourceview/gtksourceview.c:321
+msgid "Right Margin Position"
+msgstr "ตำแหน่งกั้นหน้าขวา"
 
-#: gtksourceview/gtksourceview.c:306
+#: gtksourceview/gtksourceview.c:322
 msgid "Position of the right margin"
 msgstr "ตำแหน่งของกั้นหน้าขวา"
 
-#: gtksourceview/gtksourceview.c:322
+#: gtksourceview/gtksourceview.c:338
 msgid "Smart Home/End"
 msgstr "ใช้ home/end พิเศษ"
 
-#: gtksourceview/gtksourceview.c:323
+#: gtksourceview/gtksourceview.c:339
 msgid ""
 "HOME and END keys move to first/last non whitespace characters on line "
 "before going to the start/end of the line"
@@ -396,61 +403,21 @@ msgstr ""
 "ปุ่ม HOME และ END จะเคลื่อนไปที่อักขระแรก/สุดท้ายที่ไม่ใช่ช่องว่างของบรรทัด ก่อนที่จะไปที่ต้น/"
 "ท้ายบรรทัด"
 
-#: gtksourceview/gtksourceview.c:333
+#: gtksourceview/gtksourceview.c:349
 msgid "Highlight current line"
 msgstr "เน้นบรรทัดปัจจุบัน"
 
-#: gtksourceview/gtksourceview.c:334
+#: gtksourceview/gtksourceview.c:350
 msgid "Whether to highlight the current line"
 msgstr "กำหนดว่าจะเน้นบรรทัดปัจจุบันหรือไม่"
 
-#: gtksourceview/gtksourceview.c:341
+#: gtksourceview/gtksourceview.c:357
 msgid "Indent on tab"
 msgstr "เยื้องบรรทัดเมื่อกดแท็บ"
 
-#: gtksourceview/gtksourceview.c:342
+#: gtksourceview/gtksourceview.c:358
 msgid "Whether to indent the selected text when the tab key is pressed"
 msgstr "กำหนดว่าจะเยื้องข้อความที่เลือกเมื่อกดปุ่มแท็บหรือไม่"
-
-#: gtksourceview/gtksourceview.c:358
-msgid "Margin Line Alpha"
-msgstr "ค่าอัลฟาของเส้นกั้นหน้า"
-
-#: gtksourceview/gtksourceview.c:359
-msgid "Transparency of the margin line"
-msgstr "ความโปร่งแสงของเส้นกั้นหน้า"
-
-#: gtksourceview/gtksourceview.c:376
-msgid "Margin Line Color"
-msgstr "สีของเส้นกั้นหน้า"
-
-#: gtksourceview/gtksourceview.c:377
-msgid "Color to use for the right margin line"
-msgstr "สีของเส้นกั้นขอบขวา"
-
-#: gtksourceview/gtksourceview.c:393
-msgid "Margin Overlay Toggle"
-msgstr "เปิด-ปิดการวาดเส้นกั้นหน้าแบบลอยตัว"
-
-#: gtksourceview/gtksourceview.c:394
-msgid "Whether to draw the right margin overlay"
-msgstr "กำหนดว่าจะแสดงกั้นหน้าขวาแบบลอยตัวหรือไม่"
-
-#: gtksourceview/gtksourceview.c:410
-msgid "Margin Overlay Alpha"
-msgstr "ค่าอัลฟาของเส้นกั้นหน้าขวาแบบลอยตัว"
-
-#: gtksourceview/gtksourceview.c:411
-msgid "Transparency of the margin overlay"
-msgstr "ความโปร่งแสงของเส้นกั้นหน้าแบบลอยตัว"
-
-#: gtksourceview/gtksourceview.c:428
-msgid "Margin Overlay Color"
-msgstr "สีของเส้นกั้นหน้าแบบลอยตัว"
-
-#: gtksourceview/gtksourceview.c:429
-msgid "Color to use for drawing the margin overlay"
-msgstr "สีของเส้นกั้นหน้าแบบลอยตัว"
 
 #: gtksourceview/gtksourceview-i18n.c:38
 msgid "translator-credits"
@@ -492,6 +459,7 @@ msgstr "ค่าบูลีน"
 #: gtksourceview/language-specs/css.lang.h:3
 #: gtksourceview/language-specs/def.lang.h:11
 #: gtksourceview/language-specs/d.lang.h:3
+#: gtksourceview/language-specs/erlang.lang.h:4
 #: gtksourceview/language-specs/fortran.lang.h:2
 #: gtksourceview/language-specs/gtkrc.lang.h:2
 #: gtksourceview/language-specs/haskell.lang.h:2
@@ -553,6 +521,7 @@ msgstr "ชนิดข้อมูล"
 #: gtksourceview/language-specs/csharp.lang.h:5
 #: gtksourceview/language-specs/def.lang.h:19
 #: gtksourceview/language-specs/d.lang.h:6
+#: gtksourceview/language-specs/erlang.lang.h:6
 #: gtksourceview/language-specs/nemerle.lang.h:6
 #: gtksourceview/language-specs/ocaml.lang.h:6
 #: gtksourceview/language-specs/php.lang.h:4
@@ -582,6 +551,7 @@ msgstr "อักขระหลีก"
 #: gtksourceview/language-specs/css.lang.h:8
 #: gtksourceview/language-specs/def.lang.h:36
 #: gtksourceview/language-specs/d.lang.h:10
+#: gtksourceview/language-specs/erlang.lang.h:9
 #: gtksourceview/language-specs/fortran.lang.h:7
 #: gtksourceview/language-specs/gtkrc.lang.h:7
 #: gtksourceview/language-specs/haskell.lang.h:9
@@ -636,6 +606,7 @@ msgstr "จำนวนจริง"
 #: gtksourceview/language-specs/cpp.lang.h:5
 #: gtksourceview/language-specs/csharp.lang.h:12
 #: gtksourceview/language-specs/d.lang.h:13
+#: gtksourceview/language-specs/erlang.lang.h:11
 #: gtksourceview/language-specs/fortran.lang.h:8
 #: gtksourceview/language-specs/haskell-literate.lang.h:2
 #: gtksourceview/language-specs/haskell.lang.h:12
@@ -668,6 +639,7 @@ msgstr "ลักษณะการใช้ที่เก็บข้อมู
 #: gtksourceview/language-specs/css.lang.h:13
 #: gtksourceview/language-specs/def.lang.h:57
 #: gtksourceview/language-specs/d.lang.h:15
+#: gtksourceview/language-specs/erlang.lang.h:12
 #: gtksourceview/language-specs/gtkrc.lang.h:9
 #: gtksourceview/language-specs/haskell.lang.h:13
 #: gtksourceview/language-specs/idl.lang.h:7
@@ -682,7 +654,7 @@ msgstr "ลักษณะการใช้ที่เก็บข้อมู
 #: gtksourceview/language-specs/octave.lang.h:11
 #: gtksourceview/language-specs/pascal.lang.h:8
 #: gtksourceview/language-specs/perl.lang.h:18
-#: gtksourceview/language-specs/php.lang.h:18
+#: gtksourceview/language-specs/php.lang.h:17
 #: gtksourceview/language-specs/po.lang.h:5
 #: gtksourceview/language-specs/python.lang.h:17
 #: gtksourceview/language-specs/ruby.lang.h:21
@@ -703,7 +675,7 @@ msgstr "แพตเทิร์น"
 #: gtksourceview/language-specs/lua.lang.h:9
 #: gtksourceview/language-specs/m4.lang.h:1
 #: gtksourceview/language-specs/perl.lang.h:17
-#: gtksourceview/language-specs/php.lang.h:17
+#: gtksourceview/language-specs/php.lang.h:16
 #: gtksourceview/language-specs/python.lang.h:15
 #: gtksourceview/language-specs/R.lang.h:9
 #: gtksourceview/language-specs/ruby.lang.h:19
@@ -716,7 +688,7 @@ msgstr "สคริปต์"
 #: gtksourceview/language-specs/haskell.lang.h:15
 #: gtksourceview/language-specs/ini.lang.h:10
 #: gtksourceview/language-specs/perl.lang.h:20
-#: gtksourceview/language-specs/php.lang.h:19
+#: gtksourceview/language-specs/php.lang.h:18
 #: gtksourceview/language-specs/pkgconfig.lang.h:3
 #: gtksourceview/language-specs/ruby.lang.h:23
 #: gtksourceview/language-specs/tcl.lang.h:4
@@ -837,6 +809,7 @@ msgstr "ข้อผิดพลาด"
 #: gtksourceview/language-specs/c.lang.h:10
 #: gtksourceview/language-specs/def.lang.h:30
 #: gtksourceview/language-specs/d.lang.h:8
+#: gtksourceview/language-specs/erlang.lang.h:8
 #: gtksourceview/language-specs/nemerle.lang.h:8
 #: gtksourceview/language-specs/php.lang.h:7
 #: gtksourceview/language-specs/python.lang.h:9
@@ -990,6 +963,7 @@ msgstr "ข้อสังเกต (FIXME, TODO, XXX ฯลฯ)"
 
 #. Operators: "+", "*", etc.
 #: gtksourceview/language-specs/def.lang.h:42
+#: gtksourceview/language-specs/erlang.lang.h:10
 #: gtksourceview/language-specs/perl.lang.h:11
 #: gtksourceview/language-specs/php.lang.h:14
 msgid "Operator"
@@ -1154,6 +1128,11 @@ msgstr "จุดเริ่มต้นแพตช์"
 msgid "DTD"
 msgstr "DTD"
 
+#: gtksourceview/language-specs/erlang.lang.h:1
+msgid "Atom"
+msgstr "อะตอม"
+
+#: gtksourceview/language-specs/erlang.lang.h:2
 #: gtksourceview/language-specs/fortran.lang.h:1
 #: gtksourceview/language-specs/ocaml.lang.h:1
 #: gtksourceview/language-specs/octave.lang.h:1
@@ -1161,6 +1140,20 @@ msgstr "DTD"
 #: gtksourceview/language-specs/vhdl.lang.h:1
 msgid "Base-N Integer"
 msgstr "เลขจำนวนเต็มฐาน N"
+
+#: gtksourceview/language-specs/erlang.lang.h:3
+#: gtksourceview/language-specs/ruby.lang.h:4
+msgid "Builtin"
+msgstr "ในตัว"
+
+#: gtksourceview/language-specs/erlang.lang.h:5
+#: gtksourceview/language-specs/verilog.lang.h:3
+msgid "Compiler Directive"
+msgstr "คำสั่งสำหรับคอมไพเลอร์"
+
+#: gtksourceview/language-specs/erlang.lang.h:7
+msgid "Erlang"
+msgstr "Erlang"
 
 #: gtksourceview/language-specs/fortran.lang.h:5
 #: gtksourceview/language-specs/ini.lang.h:6
@@ -1557,7 +1550,7 @@ msgstr "Perl"
 msgid "System Command"
 msgstr "คำสั่งระบบ"
 
-#: gtksourceview/language-specs/php.lang.h:16
+#: gtksourceview/language-specs/php.lang.h:15
 msgid "PHP"
 msgstr "PHP"
 
@@ -1681,10 +1674,6 @@ msgstr "ตัวเลือกในบรรทัดคำสั่ง"
 msgid "Attribute Definition"
 msgstr "ข้อกำหนดแอตทริบิวต์"
 
-#: gtksourceview/language-specs/ruby.lang.h:4
-msgid "Builtin"
-msgstr "ในตัว"
-
 #: gtksourceview/language-specs/ruby.lang.h:13
 msgid "Module handler"
 msgstr "การจัดการมอดูล"
@@ -1740,10 +1729,6 @@ msgstr "Texinfo"
 #: gtksourceview/language-specs/vbnet.lang.h:9
 msgid "VB.NET"
 msgstr "VB.NET"
-
-#: gtksourceview/language-specs/verilog.lang.h:3
-msgid "Compiler Directive"
-msgstr "คำสั่งสำหรับคอมไพเลอร์"
 
 #: gtksourceview/language-specs/verilog.lang.h:5
 msgid "Gate"
@@ -1821,6 +1806,14 @@ msgstr "ชุดสีที่ใช้ในโปรแกรมแก้ไ
 msgid "Kate"
 msgstr "Kate"
 
+#: gtksourceview/language-specs/oblivion.xml.h:1
+msgid "Dark color scheme using the Tango color palette"
+msgstr "ชุดสีเข้มซึ่งใช้สีจากจานสีของ Tango"
+
+#: gtksourceview/language-specs/oblivion.xml.h:2
+msgid "Oblivion"
+msgstr "Oblivion"
+
 #: gtksourceview/language-specs/tango.xml.h:1
 msgid "Color scheme using Tango color palette"
 msgstr "ชุดสีซึ่งใช้สีจากจานสีของ Tango"
@@ -1828,6 +1821,36 @@ msgstr "ชุดสีซึ่งใช้สีจากจานสีขอ
 #: gtksourceview/language-specs/tango.xml.h:2
 msgid "Tango"
 msgstr "Tango"
+
+#~ msgid "Margin Line Alpha"
+#~ msgstr "ค่าอัลฟาของเส้นกั้นหน้า"
+
+#~ msgid "Transparency of the margin line"
+#~ msgstr "ความโปร่งแสงของเส้นกั้นหน้า"
+
+#~ msgid "Margin Line Color"
+#~ msgstr "สีของเส้นกั้นหน้า"
+
+#~ msgid "Color to use for the right margin line"
+#~ msgstr "สีของเส้นกั้นขอบขวา"
+
+#~ msgid "Margin Overlay Toggle"
+#~ msgstr "เปิด-ปิดการวาดเส้นกั้นหน้าแบบลอยตัว"
+
+#~ msgid "Whether to draw the right margin overlay"
+#~ msgstr "กำหนดว่าจะแสดงกั้นหน้าขวาแบบลอยตัวหรือไม่"
+
+#~ msgid "Margin Overlay Alpha"
+#~ msgstr "ค่าอัลฟาของเส้นกั้นหน้าขวาแบบลอยตัว"
+
+#~ msgid "Transparency of the margin overlay"
+#~ msgstr "ความโปร่งแสงของเส้นกั้นหน้าแบบลอยตัว"
+
+#~ msgid "Margin Overlay Color"
+#~ msgstr "สีของเส้นกั้นหน้าแบบลอยตัว"
+
+#~ msgid "Color to use for drawing the margin overlay"
+#~ msgstr "สีของเส้นกั้นหน้าแบบลอยตัว"
 
 #~ msgid "Check Brackets"
 #~ msgstr "ตรวจคู่วงเล็บ"
