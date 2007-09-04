@@ -1,3 +1,10 @@
+2007-09-04  Juerg Billeter  <j@bitron.ch>
+
+	* gtksourceview/language-specs/Makefile.am:
+	* gtksourceview/language-specs/vala.lang:
+	* po/POTFILES.in:
+	Add syntax highlighting file for Vala. Fixes #471058.
+
 2007-09-03  Yevgen Muntyan  <muntyan@tamu.edu>
 
 	* gtksourceview/gtksourcecontextengine.c (container_context_starts_here):

@@ -56,6 +56,7 @@ LANGUAGES =			\
 	styles.rng		\
 	tcl.lang		\
 	texinfo.lang		\
+	vala.lang		\
 	vbnet.lang		\
 	verilog.lang		\
 	vhdl.lang		\
