@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: gtksourceview HEAD\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-08-28 16:13+0100\n"
-"PO-Revision-Date: 2007-09-05 08:58+0300\n"
+"PO-Revision-Date: 2007-09-05 17:33+0300\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -31,14 +31,12 @@ msgid "Whether to highlight syntax in the buffer"
 msgstr "Kas puhvrisolevat süntaksit tõstetakse esile"
 
 #: ../gtksourceview/gtksourcebuffer.c:183
-#, fuzzy
 msgid "Highlight Matching Brackets"
-msgstr "Kas tuua esile ja märkida kokkukäivad sulud"
+msgstr ""
 
 #: ../gtksourceview/gtksourcebuffer.c:184
-#, fuzzy
 msgid "Whether to highlight matching brackets"
-msgstr "Kas tuua esile ja märkida kokkukäivad sulud"
+msgstr ""
 
 #: ../gtksourceview/gtksourcebuffer.c:196
 msgid "Maximum Undo Levels"
@@ -60,19 +58,19 @@ msgstr "Keeleobjekt, mille järgi esiletõstmist teostatakse"
 
 #: ../gtksourceview/gtksourcebuffer.c:218
 msgid "Can undo"
-msgstr ""
+msgstr "Unustamise võimalus"
 
 #: ../gtksourceview/gtksourcebuffer.c:219
 msgid "Whether Undo operation is possible"
-msgstr ""
+msgstr "Kas tegevuse unustamine on võimalik või mitte"
 
 #: ../gtksourceview/gtksourcebuffer.c:226
 msgid "Can redo"
-msgstr ""
+msgstr "Taastamise võimalus"
 
 #: ../gtksourceview/gtksourcebuffer.c:227
 msgid "Whether Redo operation is possible"
-msgstr ""
+msgstr "Kas unustatud tegevuse taastamine on võimalik või mitte"
 
 #: ../gtksourceview/gtksourcebuffer.c:241
 #: ../gtksourceview/gtksourcebuffer.c:242
@@ -86,7 +84,7 @@ msgstr ""
 
 #: ../gtksourceview/gtksourcecontextengine.c:2566
 msgid "using \\C is not supported in language definitions"
-msgstr ""
+msgstr "\\C kasutamine keelekirjeldustes pole toetatud"
 
 #. regex_new could fail, for instance if there are different
 #. * named sub-patterns with the same name or if resulting regex is
@@ -128,7 +126,7 @@ msgstr ""
 #: ../gtksourceview/gtksourcecontextengine.c:6108
 #, c-format
 msgid "unknown context '%s'"
-msgstr ""
+msgstr "tundmatu kontekst '%s'"
 
 #: ../gtksourceview/gtksourcelanguage.c:42
 #: ../gtksourceview/language-specs/changelog.lang.h:2
@@ -170,7 +168,7 @@ msgstr "Peidetud"
 
 #: ../gtksourceview/gtksourcelanguage.c:239
 msgid "Whether the language should be hidden from the user"
-msgstr ""
+msgstr "Kas keel peab kasutaja eest olema peidetud või mitte"
 
 #: ../gtksourceview/gtksourcelanguagemanager.c:133
 msgid "Language specification directories"
@@ -301,14 +299,12 @@ msgid "Style scheme search path"
 msgstr ""
 
 #: ../gtksourceview/gtksourcestyleschememanager.c:146
-#, fuzzy
 msgid "List of directories and files where the style schemes are located"
-msgstr "Kataloogide loend, kus keelekirjelduste failid (.lang) asuvad"
+msgstr ""
 
 #: ../gtksourceview/gtksourcestyleschememanager.c:154
-#, fuzzy
 msgid "Scheme ids"
-msgstr "Scheme"
+msgstr ""
 
 #: ../gtksourceview/gtksourcestyleschememanager.c:155
 msgid "List of the ids of the available style schemes"
@@ -360,11 +356,11 @@ msgstr ""
 
 #: ../gtksourceview/gtksourceview.c:277
 msgid "Indent Width"
-msgstr ""
+msgstr "Joonduse laius"
 
 #: ../gtksourceview/gtksourceview.c:278
 msgid "Number of spaces to use for each step of indent"
-msgstr ""
+msgstr "Joonduse iga sammu jaoks määratud tühikite arv"
 
 #: ../gtksourceview/gtksourceview.c:287
 msgid "Auto Indentation"
@@ -846,11 +842,11 @@ msgstr "Kaheksandarv"
 
 #: ../gtksourceview/language-specs/c.lang.h:19
 msgid "printf Conversion"
-msgstr ""
+msgstr "printf teisendus"
 
 #: ../gtksourceview/language-specs/chdr.lang.h:1
 msgid "C/C++/ObjC Header"
-msgstr ""
+msgstr "C/C++/ObjC päis"
 
 #: ../gtksourceview/language-specs/cpp.lang.h:1
 msgid "C++"
@@ -896,9 +892,8 @@ msgid "Function"
 msgstr "Funktsioon"
 
 #: ../gtksourceview/language-specs/css.lang.h:9
-#, fuzzy
 msgid "Known Property Value"
-msgstr "Omaduste nimed"
+msgstr ""
 
 #: ../gtksourceview/language-specs/css.lang.h:11
 msgid "Others 2"
@@ -951,13 +946,13 @@ msgstr "Vaikeväärtused"
 #. gtk-doc
 #: ../gtksourceview/language-specs/def.lang.h:23
 msgid "Documentation comment"
-msgstr ""
+msgstr "Dokumenteerimiskommentaar"
 
 #. This style doesn't map to anything since it must be used as an additional
 #. style for text which is already styled as a "doc-comment"
 #: ../gtksourceview/language-specs/def.lang.h:26
 msgid "Documentation comment element"
-msgstr ""
+msgstr "Dokumenteerimiskommentaari kirje"
 
 #. Any variable name
 #: ../gtksourceview/language-specs/def.lang.h:34
@@ -967,7 +962,7 @@ msgstr "Identifikaator"
 #. Anything that needs extra attention; mostly the keywords TODO, FIXME and XXX
 #: ../gtksourceview/language-specs/def.lang.h:38
 msgid "Note (FIXME, TODO, XXX, etc.)"
-msgstr ""
+msgstr "Märkus (FIXME, TODO, XXX, jms.)"
 
 #. Operators: "+", "*", etc.
 #: ../gtksourceview/language-specs/def.lang.h:42
@@ -1219,7 +1214,7 @@ msgstr "Tüübid"
 
 #: ../gtksourceview/language-specs/gtk-doc.lang.h:12
 msgid "gtk-doc"
-msgstr ""
+msgstr "gtk-doc"
 
 #: ../gtksourceview/language-specs/gtkrc.lang.h:5
 msgid "GtkRC"
@@ -1235,11 +1230,11 @@ msgstr ""
 
 #: ../gtksourceview/language-specs/haddock.lang.h:1
 msgid "Anchor"
-msgstr ""
+msgstr "Ankur"
 
 #: ../gtksourceview/language-specs/haddock.lang.h:2
 msgid "Code Block"
-msgstr ""
+msgstr "Koodiblokk"
 
 #: ../gtksourceview/language-specs/haddock.lang.h:3
 msgid "Definition list"
@@ -1398,9 +1393,8 @@ msgid "LaTeX"
 msgstr "LaTex"
 
 #: ../gtksourceview/language-specs/latex.lang.h:7
-#, fuzzy
 msgid "Math Mode"
-msgstr "Murdmisrežiim"
+msgstr ""
 
 #: ../gtksourceview/language-specs/latex.lang.h:8
 msgid "Verbatim"
@@ -1412,7 +1406,7 @@ msgstr ""
 
 #: ../gtksourceview/language-specs/libtool.lang.h:3
 msgid "libtool"
-msgstr ""
+msgstr "libtool"
 
 #: ../gtksourceview/language-specs/lua.lang.h:6
 msgid "Lua"
@@ -1420,14 +1414,12 @@ msgstr "Lua"
 
 #: ../gtksourceview/language-specs/lua.lang.h:7
 #: ../gtksourceview/language-specs/ruby.lang.h:14
-#, fuzzy
 msgid "Nil Constant"
-msgstr "Konstandid"
+msgstr ""
 
 #: ../gtksourceview/language-specs/lua.lang.h:8
-#, fuzzy
 msgid "Reserved Identifier"
-msgstr "Reserveeritud konstant"
+msgstr "Reserveeritud identifikaator"
 
 #: ../gtksourceview/language-specs/m4.lang.h:2
 msgid "m4"
@@ -1567,11 +1559,11 @@ msgstr "PHP"
 
 #: ../gtksourceview/language-specs/pkgconfig.lang.h:2
 msgid "Package Info"
-msgstr ""
+msgstr "Paki andmed"
 
 #: ../gtksourceview/language-specs/pkgconfig.lang.h:4
 msgid "pkg-config"
-msgstr ""
+msgstr "pkg-config"
 
 #: ../gtksourceview/language-specs/po.lang.h:6
 msgid "gettext translation"
@@ -1591,7 +1583,7 @@ msgstr "Vorming"
 
 #: ../gtksourceview/language-specs/python.lang.h:12
 msgid "Module Handler"
-msgstr ""
+msgstr "Moodulikäsitleja"
 
 #: ../gtksourceview/language-specs/python.lang.h:14
 msgid "Python"
