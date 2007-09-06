@@ -1,3 +1,9 @@
+2007-09-06  Paolo Borelli  <pborelli@katamail.com>
+
+	* gtksourceview/language-specs/octave.lang: try to not misdetect
+	the transpose operator as the start of a string and other minor
+	fixes. Bug #413940.
+
 2007-09-04  Juerg Billeter  <j@bitron.ch>
 
 	* gtksourceview/language-specs/Makefile.am:
