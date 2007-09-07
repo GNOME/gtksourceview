@@ -294,6 +294,13 @@ author=Some Guy
 version=3.1415926
 EOFEOF
 
+cat > $dir/file.sql <<EOFEOF
+-- SQL Join
+SELECT *  
+FROM   employee, department 
+WHERE  employee.DepartmentID = department.DepartmentID
+EOFEOF
+
 cat > $dir/file.pl <<EOFEOF
 #!/usr/bin/perl -- # -*- Perl -*-
 #
