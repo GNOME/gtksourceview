@@ -271,6 +271,8 @@
           <prefix>(?&lt;![\w\.])</prefix>
           <keyword>__import__</keyword>
           <keyword>abs</keyword>
+          <keyword>all</keyword>
+          <keyword>any</keyword>
           <keyword>apply</keyword>
           <keyword>basestring</keyword>
           <keyword>bool</keyword>
@@ -323,10 +325,12 @@
           <keyword>reduce</keyword>
           <keyword>reload</keyword>
           <keyword>repr</keyword>
+          <keyword>reversed</keyword>
           <keyword>round</keyword>
           <keyword>setattr</keyword>
           <keyword>set</keyword>
           <keyword>slice</keyword>
+          <keyword>sorted</keyword>
           <keyword>staticmethod</keyword>
           <keyword>str</keyword>
           <keyword>sum</keyword>
