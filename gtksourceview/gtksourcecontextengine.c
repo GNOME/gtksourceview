@@ -6093,7 +6093,7 @@ resolve_reference (G_GNUC_UNUSED const gchar *id,
 		{
 			g_set_error (&data->error, GTK_SOURCE_CONTEXT_ENGINE_ERROR,
 				     GTK_SOURCE_CONTEXT_ENGINE_ERROR_INVALID_REF,
-				     _("invalid reference '%s'"), child_def->u.id);
+				     _("invalid context reference '%s'"), child_def->u.id);
 		}
 	}
 }
