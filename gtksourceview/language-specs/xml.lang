@@ -39,8 +39,8 @@
         <style id="attribute-name"          _name="Attribute name"          map-to="def:type"/>
         <style id="attribute-value"         _name="Attribute value"         map-to="def:string"/>
         <style id="entity"                  _name="Entity"                  map-to="def:preprocessor"/>
-        <style id="tag"                     _name="Tag"                     map-to="def:identifier"/>
-        <style id="namespace"               _name="Namespace"               map-to="def:identifier"/>
+        <style id="tag"                     _name="Tag"/>
+        <style id="namespace"               _name="Namespace"               map-to="xml:element-name"/>
         <style id="error"                   _name="Error"                   map-to="def:error"/>
     </styles>
 
@@ -136,7 +136,7 @@
             <match>\b\%{name}\s*=</match>
         </context>
 
-        <context id="attribute-value" style-ref="attribute-value" end-at-line-end="true">
+        <context id="attribute-value" style-ref="attribute-value">
             <start>["']</start>
             <end>\%{0@start}</end>
             <include>
@@ -153,6 +153,7 @@
                 <context sub-pattern="0" where="start" style-ref="processing-instruction"/>
                 <context sub-pattern="0" where="end" style-ref="processing-instruction"/>
                 <context ref="attribute-value"/>
+                <context ref="attribute-name"/>
             </include>
         </context>
 
@@ -160,6 +161,8 @@
             <start>&lt;(?!/)</start>
             <end>/?&gt;</end>
             <include>
+                <context sub-pattern="0" where="start" style-ref="element-name"/>
+                <context sub-pattern="0" where="end" style-ref="element-name"/>
                 <context ref="entity"/>
                 <context ref="character-reference"/>
                 <context ref="unallowed-chars"/>
@@ -177,6 +180,8 @@
             <start>&lt;/</start>
             <end>&gt;</end>
             <include>
+                <context sub-pattern="0" where="start" style-ref="element-name"/>
+                <context sub-pattern="0" where="end" style-ref="element-name"/>
                 <context ref="entity"/>
                 <context ref="character-reference"/>
                 <context ref="unallowed-chars"/>

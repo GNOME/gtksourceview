@@ -31,7 +31,7 @@
 
     <styles>
         <style id="comment" _name="Comment" map-to="xml:comment"/>
-        <style id="tag" _name="Tag" map-to="xml:tags"/>
+        <style id="tag" _name="Tag" map-to="xml:element-name"/>
         <style id="attrib-name" _name="Attribute Name" map-to="xml:attribute-name"/>
         <style id="attrib-value" _name="Attribute Value" map-to="xml:attribute-value"/>
         <style id="dtd" _name="DTD" map-to="xml:doctype"/>

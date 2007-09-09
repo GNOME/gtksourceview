@@ -29,7 +29,7 @@ FIXME: =pod should require an empty line before/after, as written in perlpod
     <property name="line-comment-start">#</property>
   </metadata>
 
-	  <styles>
+  <styles>
     <style id="comment"           _name="Comment"            map-to="def:comment"/>
     <style id="line-directive"    _name="Line Directive"     map-to="def:preprocessor"/>
     <style id="include-statement" _name="Include Statement"  map-to="def:preprocessor"/>
@@ -45,6 +45,7 @@ FIXME: =pod should require an empty line before/after, as written in perlpod
     <style id="control"           _name="Control"            map-to="def:preprocessor"/>
     <style id="regex"             _name="Regular Expression" map-to="def:string"/>
     <style id="error"             _name="Error"              map-to="def:error"/>
+    <style id="pod"               _name="POD"                map-to="def:comment"/>
     <style id="pod-escape"        _name="POD Escape"         map-to="def:special-char"/>
     <style id="pod-keyword"       _name="POD keyword"        map-to="def:keyword"/>
     <style id="pod-heading"       _name="POD heading"        map-to="def:doc-comment-element"/>
@@ -296,7 +297,7 @@ FIXME: =pod should require an empty line before/after, as written in perlpod
           <!-- '' doesn't usually have var expansion. -->
           <start>'</start><end>'</end>
           <include>
-            <context style-ref="def:escape">
+            <context style-ref="def:special-char">
               <match>\\\\|\\'</match>
             </context>
           </include>
@@ -412,7 +413,7 @@ FIXME: =pod should require an empty line before/after, as written in perlpod
         <context style-ref="string">
           <start>'</start><end>'</end>
           <include>
-            <context style-ref="def:escape">
+            <context style-ref="def:special-char">
               <match>\\\\|\\'</match>
             </context>
           </include>
@@ -980,7 +981,7 @@ FIXME: =pod should require an empty line before/after, as written in perlpod
       </include>
     </context>
 
-    <context id="pod" style-ref="comment">
+    <context id="pod" style-ref="pod">
       <start>^(?=(=[a-z]))</start>
       <end>^=(cut)$</end>
       <include>

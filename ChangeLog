@@ -1,5 +1,33 @@
 2007-09-09  Yevgen Muntyan  <muntyan@tamu.edu>
 
+	* gtksourceview/language-specs/perl.lang: added "pod" style
+	for the POD thing; fixed invalid style references.
+
+	* gtksourceview/language-specs/docbook.lang: use \b in keywords
+	suffixes, since we don't want to match <param> as <para>, etc.
+
+	* gtksourceview/language-specs/libtool.lang: added "constant"
+	style for both booleans and numbers.
+
+	* gtksourceview/language-specs/texinfo.lang: allow trailing whitespace
+	for commands like @ignore.
+
+	* gtksourceview/language-specs/html.lang: fixed invalid style reference.
+
+	* gtksourceview/language-specs/rpmspec.lang: use changelog styles
+	to highlight changelog stuff.
+
+	* gtksourceview/language-specs/xml.lang: allow multiline attribute
+	values; do not highlight whole tags by default, but do highlight tag
+	names with element-name style.
+
+	* gtksourceview/language-specs/kate.xml: fixed.
+
+	* gtksourceview/language-specs/testfiles.sh: added more stuff to some
+	files, to make it easier to see if something broke.
+
+2007-09-09  Yevgen Muntyan  <muntyan@tamu.edu>
+
 	* gtksourceview/gtksourcecontextengine.c (resolve_reference):
 	Say "context reference" instead of "reference".
 

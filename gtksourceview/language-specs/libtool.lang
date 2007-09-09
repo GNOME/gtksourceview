@@ -28,7 +28,8 @@
   </metadata>
 
   <styles>
-    <style id="boolean" _name="Boolean" map-to="def:decimal"/>
+    <style id="constant" _name="Constant" map-to="def:constant"/>
+    <style id="boolean" _name="Boolean" map-to="libtool:constant"/>
   </styles>
 
   <definitions>
@@ -41,7 +42,7 @@
             <context ref="def:single-quoted-string"/>
             <context ref="def:string"/>
             <context ref="def:shell-like-comment"/>
-            <context ref="def:decimal"/>
+            <context ref="def:decimal" style-ref="constant"/>
             <context style-ref="boolean">
               <keyword>yes</keyword>
               <keyword>no</keyword>
