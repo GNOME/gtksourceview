@@ -63,28 +63,7 @@
       <keyword>revision</keyword>
       <keyword>revnumber</keyword>
     </context>
-	
-    <context id="formatting-elements" once-only="true" style-ref="formatting-elements">
-      <suffix>(?!\s*=)</suffix>
-      <keyword>caution</keyword>
-      <keyword>command</keyword>
-      <keyword>computeroutput</keyword>
-      <keyword>filename</keyword>
-      <keyword>firstterm</keyword>
-      <keyword>link</keyword>
-      <keyword>note</keyword>
-      <keyword>option</keyword>
-      <keyword>para</keyword>
-      <keyword>remark</keyword>
-      <keyword>replaceable</keyword>
-      <keyword>tip</keyword>
-      <keyword>ulink</keyword>
-      <keyword>variablelist</keyword>
-      <keyword>varlistentry</keyword>
-      <keyword>warning</keyword>
-      <keyword>xref</keyword>
-    </context>
-	
+
     <context id="gui-elements" once-only="true" style-ref="gui-elements">
       <suffix>(?!\s*=)</suffix>
       <keyword>accel</keyword>
@@ -361,8 +340,8 @@
       <keyword>reference</keyword>
       <keyword>refmeta</keyword>
       <keyword>refmiscinfo</keyword>
-      <keyword>refname</keyword>
       <keyword>refnamediv</keyword>
+      <keyword>refname</keyword>
       <keyword>refpurpose</keyword>
       <keyword>refsect1</keyword>
       <keyword>refsect1info</keyword>
@@ -454,12 +433,33 @@
       <keyword>wordasword</keyword>    
     </context>
 
+    <context id="formatting-elements" once-only="true" style-ref="formatting-elements">
+      <suffix>(?!\s*=)</suffix>
+      <keyword>caution</keyword>
+      <keyword>command</keyword>
+      <keyword>computeroutput</keyword>
+      <keyword>filename</keyword>
+      <keyword>firstterm</keyword>
+      <keyword>link</keyword>
+      <keyword>note</keyword>
+      <keyword>option</keyword>
+      <keyword>para</keyword>
+      <keyword>remark</keyword>
+      <keyword>replaceable</keyword>
+      <keyword>tip</keyword>
+      <keyword>ulink</keyword>
+      <keyword>variablelist</keyword>
+      <keyword>varlistentry</keyword>
+      <keyword>warning</keyword>
+      <keyword>xref</keyword>
+    </context>
+
     <context id="dockbook-tags">
       <include>
         <context ref="header-elements"/>
-        <context ref="formatting-elements"/>
         <context ref="gui-elements"/>
         <context ref="structural-elements"/>
+        <context ref="formatting-elements"/>
         <context ref="xml:element-name" original="true"/>
       </include>
     </context>
