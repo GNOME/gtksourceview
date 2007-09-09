@@ -28,7 +28,6 @@
 
 #include <gtk/gtk.h>
 #include <gtksourceview/gtksourcelanguage.h>
-#include <gtksourceview/gtksourcemarker.h>
 #include <gtksourceview/gtksourcestylescheme.h>
 
 G_BEGIN_DECLS
@@ -108,33 +107,6 @@ void			 gtk_source_buffer_redo			(GtkSourceBuffer        *buffer);
 
 void			 gtk_source_buffer_begin_not_undoable_action (GtkSourceBuffer   *buffer);
 void			 gtk_source_buffer_end_not_undoable_action   (GtkSourceBuffer   *buffer);
-
-/* Marker methods */
-GtkSourceMarker         *gtk_source_buffer_create_marker        (GtkSourceBuffer        *buffer,
-								 const gchar            *name,
-								 const gchar            *type,
-								 const GtkTextIter      *where);
-
-void                     gtk_source_buffer_move_marker          (GtkSourceBuffer        *buffer,
-								 GtkSourceMarker        *marker,
-								 const GtkTextIter      *where);
-void                     gtk_source_buffer_delete_marker        (GtkSourceBuffer        *buffer,
-								 GtkSourceMarker        *marker);
-GtkSourceMarker         *gtk_source_buffer_get_marker           (GtkSourceBuffer        *buffer,
-								 const gchar            *name);
-GSList                  *gtk_source_buffer_get_markers_in_region
-                                                                (GtkSourceBuffer        *buffer,
-								 const GtkTextIter      *begin,
-								 const GtkTextIter      *end);
-GtkSourceMarker         *gtk_source_buffer_get_first_marker     (GtkSourceBuffer        *buffer);
-GtkSourceMarker         *gtk_source_buffer_get_last_marker      (GtkSourceBuffer        *buffer);
-void                     gtk_source_buffer_get_iter_at_marker   (GtkSourceBuffer        *buffer,
-								 GtkTextIter            *iter,
-								 GtkSourceMarker        *marker);
-GtkSourceMarker         *gtk_source_buffer_get_next_marker      (GtkSourceBuffer        *buffer,
-								 GtkTextIter            *iter);
-GtkSourceMarker         *gtk_source_buffer_get_prev_marker      (GtkSourceBuffer        *buffer,
-								 GtkTextIter            *iter);
 
 /* private */
 void			 _gtk_source_buffer_update_highlight	(GtkSourceBuffer        *buffer,

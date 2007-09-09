@@ -67,11 +67,6 @@ GtkSourceView
 
 </para>
 
-<!-- ##### ARG GtkSourceView:show-line-markers ##### -->
-<para>
-
-</para>
-
 <!-- ##### ARG GtkSourceView:show-line-numbers ##### -->
 <para>
 
@@ -88,31 +83,6 @@ GtkSourceView
 </para>
 
 <!-- ##### ARG GtkSourceView:tab-width ##### -->
-<para>
-
-</para>
-
-<!-- ##### ARG GtkSourceView:right-margin-line-alpha ##### -->
-<para>
-
-</para>
-
-<!-- ##### ARG GtkSourceView:right-margin-line-color ##### -->
-<para>
-
-</para>
-
-<!-- ##### ARG GtkSourceView:right-margin-overlay-alpha ##### -->
-<para>
-
-</para>
-
-<!-- ##### ARG GtkSourceView:right-margin-overlay-color ##### -->
-<para>
-
-</para>
-
-<!-- ##### ARG GtkSourceView:right-margin-overlay-toggle ##### -->
 <para>
 
 </para>
@@ -247,26 +217,6 @@ GtkSourceView
 @Returns: 
 
 
-<!-- ##### FUNCTION gtk_source_view_set_marker_pixbuf ##### -->
-<para>
-
-</para>
-
-@view: 
-@marker_type: 
-@pixbuf: 
-
-
-<!-- ##### FUNCTION gtk_source_view_get_marker_pixbuf ##### -->
-<para>
-
-</para>
-
-@view: 
-@marker_type: 
-@Returns: 
-
-
 <!-- ##### FUNCTION gtk_source_view_set_highlight_current_line ##### -->
 <para>
 
@@ -277,24 +227,6 @@ GtkSourceView
 
 
 <!-- ##### FUNCTION gtk_source_view_get_highlight_current_line ##### -->
-<para>
-
-</para>
-
-@view: 
-@Returns: 
-
-
-<!-- ##### FUNCTION gtk_source_view_set_show_line_markers ##### -->
-<para>
-
-</para>
-
-@view: 
-@show: 
-
-
-<!-- ##### FUNCTION gtk_source_view_get_show_line_markers ##### -->
 <para>
 
 </para>

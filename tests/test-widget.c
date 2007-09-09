@@ -52,9 +52,6 @@ static GtkSourceStyleScheme *style_scheme = NULL;
 
 #define READ_BUFFER_SIZE   4096
 
-#define MARKER_TYPE_1      "one"
-#define MARKER_TYPE_2      "two"
-
 
 /* Private prototypes -------------------------------------------------------- */
 
@@ -66,8 +63,6 @@ static void       debug_thing_3_cb		 (GtkAction       *action,
 static void       new_view_cb                    (GtkAction       *action,
 						  gpointer         user_data);
 static void       numbers_toggled_cb             (GtkAction       *action,
-						  gpointer         user_data);
-static void       markers_toggled_cb             (GtkAction       *action,
 						  gpointer         user_data);
 static void       margin_toggled_cb              (GtkAction       *action,
 						  gpointer         user_data);
@@ -113,9 +108,6 @@ static GtkToggleActionEntry toggle_entries[] = {
 	{ "ShowNumbers", NULL, "Show _Line Numbers", NULL,
 	  "Toggle visibility of line numbers in the left margin",
 	  G_CALLBACK (numbers_toggled_cb), FALSE },
-	{ "ShowMarkers", NULL, "Show _Markers", NULL,
-	  "Toggle visibility of markers in the left margin",
-	  G_CALLBACK (markers_toggled_cb), FALSE },
 	{ "ShowMargin", NULL, "Show Right M_argin", NULL,
 	  "Toggle visibility of right margin indicator",
 	  G_CALLBACK (margin_toggled_cb), FALSE },
@@ -170,7 +162,6 @@ static const gchar *view_ui_description =
 "      <menuitem action=\"NewView\"/>"
 "      <separator/>"
 "      <menuitem action=\"ShowNumbers\"/>"
-"      <menuitem action=\"ShowMarkers\"/>"
 "      <menuitem action=\"ShowMargin\"/>"
 "      <menuitem action=\"HlLine\"/>"
 "      <separator/>"
@@ -281,23 +272,6 @@ gtk_source_buffer_load_file (GtkSourceBuffer *source_buffer,
 
 	g_free (buffer);
 	return TRUE;
-}
-
-static void
-remove_all_markers (GtkSourceBuffer *buffer)
-{
-	GSList *markers;
-	GtkTextIter begin, end;
-
-	gtk_text_buffer_get_bounds (GTK_TEXT_BUFFER (buffer), &begin, &end);
-	markers = gtk_source_buffer_get_markers_in_region (buffer, &begin, &end);
-	while (markers)
-	{
-		GtkSourceMarker *marker = markers->data;
-
-		gtk_source_buffer_delete_marker (buffer, marker);
-		markers = g_slist_delete_link (markers, markers);
-	}
 }
 
 /* Note this is wrong for several reasons, e.g. g_pattern_match is broken
@@ -441,8 +415,6 @@ open_file (GtkSourceBuffer *buffer, const gchar *filename)
 		g_free (curdir);
 	}
 
-	remove_all_markers (buffer);
-
 	success = gtk_source_buffer_load_file (buffer, filename, NULL);
 
 	if (!success)
@@ -502,15 +474,6 @@ numbers_toggled_cb (GtkAction *action, gpointer user_data)
 {
 	g_return_if_fail (GTK_IS_TOGGLE_ACTION (action) && GTK_IS_SOURCE_VIEW (user_data));
 	gtk_source_view_set_show_line_numbers (
-		GTK_SOURCE_VIEW (user_data),
-		gtk_toggle_action_get_active (GTK_TOGGLE_ACTION (action)));
-}
-
-static void
-markers_toggled_cb (GtkAction *action, gpointer user_data)
-{
-	g_return_if_fail (GTK_IS_TOGGLE_ACTION (action) && GTK_IS_SOURCE_VIEW (user_data));
-	gtk_source_view_set_show_line_markers (
 		GTK_SOURCE_VIEW (user_data),
 		gtk_toggle_action_get_active (GTK_TOGGLE_ACTION (action)));
 }
@@ -834,88 +797,6 @@ window_deleted_cb (GtkWidget *widget, GdkEvent *ev, gpointer user_data)
 	return TRUE;
 }
 
-static gboolean
-button_press_cb (GtkWidget *widget, GdkEventButton *ev, gpointer user_data)
-{
-	GtkSourceView *view;
-	GtkSourceBuffer *buffer;
-
-	g_return_val_if_fail (GTK_IS_SOURCE_VIEW (widget), FALSE);
-
-	view = GTK_SOURCE_VIEW (widget);
-	buffer = GTK_SOURCE_BUFFER (gtk_text_view_get_buffer (GTK_TEXT_VIEW (view)));
-
-	if (!gtk_source_view_get_show_line_markers (view))
-		return FALSE;
-
-	/* check that the click was on the left gutter */
-	if (ev->window == gtk_text_view_get_window (GTK_TEXT_VIEW (view),
-						    GTK_TEXT_WINDOW_LEFT))
-	{
-		gint y_buf;
-		GtkTextIter line_start, line_end;
-		GSList *marker_list, *list_iter;
-		GtkSourceMarker *marker;
-		const gchar *marker_type;
-
-		if (ev->button == 1)
-			marker_type = MARKER_TYPE_1;
-		else
-			marker_type = MARKER_TYPE_2;
-
-		gtk_text_view_window_to_buffer_coords (GTK_TEXT_VIEW (view),
-						       GTK_TEXT_WINDOW_LEFT,
-						       ev->x, ev->y,
-						       NULL, &y_buf);
-
-		/* get line bounds */
-		gtk_text_view_get_line_at_y (GTK_TEXT_VIEW (view),
-					     &line_start,
-					     y_buf,
-					     NULL);
-
-		line_end = line_start;
-		gtk_text_iter_forward_to_line_end (&line_end);
-
-		/* get the markers already in the line */
-		marker_list = gtk_source_buffer_get_markers_in_region (buffer,
-								       &line_start,
-								       &line_end);
-
-		/* search for the marker corresponding to the button pressed */
-		marker = NULL;
-		for (list_iter = marker_list;
-		     list_iter && !marker;
-		     list_iter = g_slist_next (list_iter))
-		{
-			GtkSourceMarker *tmp = list_iter->data;
-			gchar *tmp_type = gtk_source_marker_get_marker_type (tmp);
-
-			if (tmp_type && !strcmp (tmp_type, marker_type))
-			{
-				marker = tmp;
-			}
-			g_free (tmp_type);
-		}
-		g_slist_free (marker_list);
-
-		if (marker)
-		{
-			/* a marker was found, so delete it */
-			gtk_source_buffer_delete_marker (buffer, marker);
-		}
-		else
-		{
-			/* no marker found -> create one */
-			marker = gtk_source_buffer_create_marker (buffer, NULL,
-								  marker_type, &line_start);
-		}
-	}
-
-	return FALSE;
-}
-
-
 /* Window creation functions -------------------------------------------------------- */
 
 static GtkWidget *
@@ -923,7 +804,6 @@ create_view_window (GtkSourceBuffer *buffer, GtkSourceView *from)
 {
 	GtkWidget *window, *sw, *view, *vbox, *pos_label, *menu;
 	PangoFontDescription *font_desc = NULL;
-	GdkPixbuf *pixbuf;
 	GtkAccelGroup *accel_group;
 	GtkActionGroup *action_group;
 	GtkUIManager *ui_manager;
@@ -946,7 +826,6 @@ create_view_window (GtkSourceBuffer *buffer, GtkSourceView *from)
 
 	g_signal_connect (buffer, "mark_set", G_CALLBACK (move_cursor_cb), view);
 	g_signal_connect (buffer, "changed", G_CALLBACK (update_cursor_position), view);
-	g_signal_connect (view, "button-press-event", G_CALLBACK (button_press_cb), NULL);
 	g_signal_connect (window, "delete-event", (GCallback) window_deleted_cb, view);
 
 	/* action group and UI manager */
@@ -1019,10 +898,6 @@ create_view_window (GtkSourceBuffer *buffer, GtkSourceView *from)
 		gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action),
 					      gtk_source_view_get_show_line_numbers (from));
 
-		action = gtk_action_group_get_action (action_group, "ShowMarkers");
-		gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action),
-					      gtk_source_view_get_show_line_markers (from));
-
 		action = gtk_action_group_get_action (action_group, "ShowMargin");
 		gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action),
 					      gtk_source_view_get_show_right_margin (from));
@@ -1052,33 +927,6 @@ create_view_window (GtkSourceBuffer *buffer, GtkSourceView *from)
 		if (action)
 			gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), TRUE);
 		g_free (tmp);
-	}
-
-	/* add marker pixbufs */
-	error = NULL;
-	if ((pixbuf = gdk_pixbuf_new_from_file (DATADIR "/pixmaps/apple-green.png", &error)))
-	{
-		gtk_source_view_set_marker_pixbuf (GTK_SOURCE_VIEW (view), MARKER_TYPE_1, pixbuf);
-		g_object_unref (pixbuf);
-	}
-	else
-	{
-		g_message ("could not load marker 1 image.  Spurious messages might get triggered: %s",
-		error->message);
-		g_error_free (error);
-	}
-
-	error = NULL;
-	if ((pixbuf = gdk_pixbuf_new_from_file (DATADIR "/pixmaps/apple-red.png", &error)))
-	{
-		gtk_source_view_set_marker_pixbuf (GTK_SOURCE_VIEW (view), MARKER_TYPE_2, pixbuf);
-		g_object_unref (pixbuf);
-	}
-	else
-	{
-		g_message ("could not load marker 2 image.  Spurious messages might get triggered: %s",
-		error->message);
-		g_error_free (error);
 	}
 
 	gtk_widget_show_all (vbox);
@@ -1121,9 +969,6 @@ create_main_window (GtkSourceBuffer *buffer)
 	action_group = g_list_nth_data (groups, 0);
 
 	action = gtk_action_group_get_action (action_group, "ShowNumbers");
-	gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), TRUE);
-
-	action = gtk_action_group_get_action (action_group, "ShowMarkers");
 	gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), TRUE);
 
 	action = gtk_action_group_get_action (action_group, "ShowMargin");

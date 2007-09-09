@@ -54,14 +54,6 @@ in a view widget.
 @arg1: 
 @arg2: 
 
-<!-- ##### SIGNAL GtkSourceBuffer::marker-updated ##### -->
-<para>
-
-</para>
-
-@sourcebuffer: the object which received the signal.
-@arg1: 
-
 <!-- ##### ARG GtkSourceBuffer:can-redo ##### -->
 <para>
 
@@ -266,106 +258,6 @@ in a view widget.
 </para>
 
 @buffer: 
-
-
-<!-- ##### FUNCTION gtk_source_buffer_create_marker ##### -->
-<para>
-
-</para>
-
-@buffer: 
-@name: 
-@type: 
-@where: 
-@Returns: 
-
-
-<!-- ##### FUNCTION gtk_source_buffer_delete_marker ##### -->
-<para>
-
-</para>
-
-@buffer: 
-@marker: 
-
-
-<!-- ##### FUNCTION gtk_source_buffer_move_marker ##### -->
-<para>
-
-</para>
-
-@buffer: 
-@marker: 
-@where: 
-
-
-<!-- ##### FUNCTION gtk_source_buffer_get_first_marker ##### -->
-<para>
-
-</para>
-
-@buffer: 
-@Returns: 
-
-
-<!-- ##### FUNCTION gtk_source_buffer_get_last_marker ##### -->
-<para>
-
-</para>
-
-@buffer: 
-@Returns: 
-
-
-<!-- ##### FUNCTION gtk_source_buffer_get_marker ##### -->
-<para>
-
-</para>
-
-@buffer: 
-@name: 
-@Returns: 
-
-
-<!-- ##### FUNCTION gtk_source_buffer_get_markers_in_region ##### -->
-<para>
-
-</para>
-
-@buffer: 
-@begin: 
-@end: 
-@Returns: 
-
-
-<!-- ##### FUNCTION gtk_source_buffer_get_next_marker ##### -->
-<para>
-
-</para>
-
-@buffer: 
-@iter: 
-@Returns: 
-
-
-<!-- ##### FUNCTION gtk_source_buffer_get_prev_marker ##### -->
-<para>
-
-</para>
-
-@buffer: 
-@iter: 
-@Returns: 
-
-
-<!-- ##### FUNCTION gtk_source_buffer_get_iter_at_marker ##### -->
-<para>
-
-</para>
-
-@buffer: 
-@iter: 
-@marker: 
 
 
 <!-- ##### FUNCTION gtk_source_buffer_ensure_highlight ##### -->

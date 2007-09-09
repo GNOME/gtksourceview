@@ -1,5 +1,16 @@
 2007-09-09  Paolo Borelli  <pborelli@katamail.com>
 
+	* gtksourceview/gtksourcebuffer.[ch]:
+	* gtksourceview/gtksourceview.[ch]:
+	* gtksourceview/gtksourcemarker.[ch]:
+	* gtksourceview/Makefile.am:
+	* tests/test-widget.c:
+
+	Remove SourceMarkers: API is not ready. The feature will be reconsidered
+	in the next release.
+
+2007-09-09  Paolo Borelli  <pborelli@katamail.com>
+
 	* gtksourceview/language-specs/python.lang: Add 'all', 'any', 'sorted'
 	and 'reversed' builtins.
 
