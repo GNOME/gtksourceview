@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: gtksourceview HEAD\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-08-28 16:13+0100\n"
-"PO-Revision-Date: 2007-09-05 17:33+0300\n"
+"PO-Revision-Date: 2007-09-09 15:53+0300\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -416,11 +416,11 @@ msgstr "Kas käesolevat rida tõstetakse esile"
 
 #: ../gtksourceview/gtksourceview.c:357
 msgid "Indent on tab"
-msgstr ""
+msgstr "Tab-klahviga joondamine"
 
 #: ../gtksourceview/gtksourceview.c:358
 msgid "Whether to indent the selected text when the tab key is pressed"
-msgstr ""
+msgstr "Kas valitud tekst joondatakse tab klahvi vajutamise peale või mitte"
 
 #: ../gtksourceview/gtksourceview-i18n.c:38
 msgid "translator-credits"
@@ -1034,7 +1034,7 @@ msgstr "Grupp"
 #. side in a myoption=something line in a .desktop file
 #: ../gtksourceview/language-specs/desktop.lang.h:9
 msgid "Key"
-msgstr ""
+msgstr "Võti"
 
 #: ../gtksourceview/language-specs/desktop.lang.h:12
 msgid "Translation"
@@ -1246,7 +1246,7 @@ msgstr ""
 
 #: ../gtksourceview/language-specs/haddock.lang.h:5
 msgid "Enumerated list"
-msgstr ""
+msgstr "Nummerdatud loetelu"
 
 #: ../gtksourceview/language-specs/haddock.lang.h:6
 msgid "Escape"
@@ -1278,7 +1278,7 @@ msgstr ""
 
 #: ../gtksourceview/language-specs/haddock.lang.h:13
 msgid "Itemized list"
-msgstr ""
+msgstr "Nummerdamata loetelu"
 
 #: ../gtksourceview/language-specs/haddock.lang.h:15
 msgid "Monospace"
