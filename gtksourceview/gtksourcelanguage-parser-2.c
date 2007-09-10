@@ -67,6 +67,7 @@ struct _ParserState
 {
 	/* The args passed to _file_parse_version2() */
 	xmlTextReader *reader;
+	char *filename;
 	GtkSourceLanguage *language;
 	GtkSourceContextData *ctx_data;
 
@@ -130,6 +131,7 @@ static ParserState *parser_state_new           (GtkSourceLanguage      *language
                                                 GHashTable             *styles_mapping,
 						GQueue                 *replacements,
                                                 xmlTextReader          *reader,
+						const char             *filename,
                                                 GHashTable             *loaded_lang_ids);
 static void       parser_state_destroy         (ParserState *parser_state);
 
@@ -693,14 +695,15 @@ handle_context_element (ParserState *parser_state)
 		options |= GTK_SOURCE_CONTEXT_IGNORE_STYLE;
 
 		if (style_ref != NULL)
-			g_warning ("style-ref and ignore-style used simultaneously");
+			g_warning ("in file %s: style-ref and ignore-style used simultaneously",
+				   parser_state->filename);
 	}
 
 	/* XXX */
 	if (!ignore_style && style_ref != NULL &&
 	    g_hash_table_lookup (parser_state->styles_mapping, style_ref) == NULL)
 	{
-		g_warning ("style '%s' not defined", style_ref);
+		g_warning ("in file %s: style '%s' not defined", parser_state->filename, style_ref);
 	}
 
 	if (ref != NULL)
@@ -1356,6 +1359,12 @@ parse_style (ParserState *parser_state)
 	DEBUG (g_message ("style %s (%s) to be mapped to '%s'",
 			  name, id, map_to ? (char*) map_to : "(null)"));
 
+	if (map_to != NULL &&
+	    g_hash_table_lookup (parser_state->styles_mapping, map_to) == NULL)
+	{
+		g_warning ("in file %s: style '%s' not defined", parser_state->filename, map_to);
+	}
+
 	if (parser_state->error == NULL)
 	{
 
@@ -1571,7 +1580,7 @@ file_parse (gchar                     *filename,
 	parser_state = parser_state_new (language, ctx_data,
 					 defined_regexes, styles,
 					 replacements, reader,
-					 loaded_lang_ids);
+					 filename, loaded_lang_ids);
 	xmlTextReaderSetStructuredErrorHandler (reader,
 						(xmlStructuredErrorFunc) text_reader_structured_error_func,
 						parser_state);
@@ -1629,6 +1638,7 @@ parser_state_new (GtkSourceLanguage       *language,
 		  GHashTable              *styles_mapping,
 		  GQueue                  *replacements,
 		  xmlTextReader	          *reader,
+		  const char              *filename,
 		  GHashTable              *loaded_lang_ids)
 {
 	ParserState *parser_state;
@@ -1646,6 +1656,7 @@ parser_state_new (GtkSourceLanguage       *language,
 	parser_state->regex_compile_flags = 0;
 
 	parser_state->reader = reader;
+	parser_state->filename = g_filename_display_name (filename);
 	parser_state->error = NULL;
 
 	parser_state->defined_regexes = defined_regexes;
@@ -1678,6 +1689,7 @@ parser_state_destroy (ParserState *parser_state)
 	g_free (parser_state->closing_delimiter);
 
 	g_free (parser_state->language_decoration);
+	g_free (parser_state->filename);
 
 	g_slice_free (ParserState, parser_state);
 }

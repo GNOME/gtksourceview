@@ -75,13 +75,13 @@ gtk_source_style_scheme_finalize (GObject *object)
 	g_hash_table_destroy (scheme->priv->style_cache);
 	g_hash_table_destroy (scheme->priv->defined_styles);
 	g_free (scheme->priv->filename);
-	
-	if (scheme->priv->authors != NULL) 
+
+	if (scheme->priv->authors != NULL)
 	{
 		g_ptr_array_foreach (scheme->priv->authors, (GFunc)g_free, NULL);
 		g_ptr_array_free (scheme->priv->authors, TRUE);
 	}
-	
+
 	g_free (scheme->priv->description);
 	g_free (scheme->priv->id);
 	g_free (scheme->priv->name);
@@ -284,7 +284,7 @@ gtk_source_style_scheme_get_description (GtkSourceStyleScheme *scheme)
  * gtk_source_style_scheme_get_authors:
  * @scheme: a #GtkSourceStyleScheme.
  *
- * Returns: a %NULL-terminated array containing the @scheme authors or 
+ * Returns: a %NULL-terminated array containing the @scheme authors or
  * %NULL if no author is specified by the style
  * scheme.
  *
@@ -648,6 +648,10 @@ set_cursor_colors (GtkWidget      *widget,
 	if (strcmp (widget_name, gtk_widget_get_name (widget)) != 0)
 		gtk_widget_set_name (widget, widget_name);
 
+	g_object_set_data (G_OBJECT (widget),
+			   "gtk-source-view-cursor-color-set",
+			   GINT_TO_POINTER (TRUE));
+
 	g_free (rc_string);
 	g_free (widget_name);
 #else
@@ -659,9 +663,10 @@ static void
 unset_cursor_colors (GtkWidget *widget)
 {
 #if !GTK_CHECK_VERSION(2,11,3)
-	set_cursor_colors (widget,
-			   &widget->style->text[GTK_STATE_NORMAL],
-			   &widget->style->text_aa[GTK_STATE_NORMAL]);
+	if (g_object_get_data (G_OBJECT (widget), "gtk-source-view-cursor-color-set") != NULL)
+		set_cursor_colors (widget,
+				   &widget->style->text[GTK_STATE_NORMAL],
+				   &widget->style->text_aa[GTK_STATE_NORMAL]);
 #else
 	gtk_widget_modify_cursor (widget, NULL, NULL);
 #endif
@@ -952,7 +957,7 @@ parse_style_scheme_child (GtkSourceStyleScheme *scheme,
 			scheme->priv->authors = g_ptr_array_new ();
 
 		g_ptr_array_add (scheme->priv->authors, g_strdup ((char*) tmp));
-		
+
 		xmlFree (tmp);
 	}
 	else if (strcmp ((char*) node->name, "description") == 0)
@@ -1036,7 +1041,7 @@ parse_style_scheme_element (GtkSourceStyleScheme *scheme,
 		if (node->type == XML_ELEMENT_NODE)
 			if (!parse_style_scheme_child (scheme, node, error))
 				return;
-				
+
 	/* NULL-terminate the array of authors */
 	if (scheme->priv->authors != NULL)
 		g_ptr_array_add (scheme->priv->authors, NULL);

@@ -39,11 +39,11 @@
   <definitions>
 
     <context id="header-elements" once-only="true" style-ref="header-elements">
-      <suffix>(?!\s*=)</suffix>
+      <suffix>\b(?!\s*=)</suffix>
       <keyword>abstract</keyword>
       <keyword>articleinfo</keyword>
       <keyword>article</keyword>
-      <keyword>bookinfo</keyword>  
+      <keyword>bookinfo</keyword>
       <keyword>authorgroup</keyword>
       <keyword>author</keyword>
       <keyword>affiliation</keyword>
@@ -55,7 +55,7 @@
       <keyword>publishername</keyword>
       <keyword>publisher</keyword>
       <keyword>pubdate</keyword>
-      <keyword>pubsnumber</keyword>    
+      <keyword>pubsnumber</keyword>
       <keyword>releaseinfo</keyword>
       <keyword>surname</keyword>
       <keyword>revdescription</keyword>
@@ -64,12 +64,33 @@
       <keyword>revnumber</keyword>
     </context>
 
+    <context id="formatting-elements" once-only="true" style-ref="formatting-elements">
+      <suffix>\b(?!\s*=)</suffix>
+      <keyword>caution</keyword>
+      <keyword>command</keyword>
+      <keyword>computeroutput</keyword>
+      <keyword>filename</keyword>
+      <keyword>firstterm</keyword>
+      <keyword>link</keyword>
+      <keyword>note</keyword>
+      <keyword>option</keyword>
+      <keyword>para</keyword>
+      <keyword>remark</keyword>
+      <keyword>replaceable</keyword>
+      <keyword>tip</keyword>
+      <keyword>ulink</keyword>
+      <keyword>variablelist</keyword>
+      <keyword>varlistentry</keyword>
+      <keyword>warning</keyword>
+      <keyword>xref</keyword>
+    </context>
+
     <context id="gui-elements" once-only="true" style-ref="gui-elements">
-      <suffix>(?!\s*=)</suffix>
+      <suffix>\b(?!\s*=)</suffix>
       <keyword>accel</keyword>
       <keyword>application</keyword>
       <keyword>guibutton</keyword>
-      <keyword>guiicon</keyword>    
+      <keyword>guiicon</keyword>
       <keyword>guilabel</keyword>
       <keyword>guimenuitem</keyword>
       <keyword>guimenu</keyword>
@@ -77,12 +98,12 @@
       <keyword>interface</keyword>
       <keyword>keycap</keyword>
       <keyword>keycombo</keyword>
-      <keyword>keysym</keyword>    
-      <keyword>menuchoice</keyword>    
+      <keyword>keysym</keyword>
+      <keyword>menuchoice</keyword>
     </context>
-	
+
     <context id="structural-elements" once-only="true" style-ref="structural-elements">
-      <suffix>(?!\s*=)</suffix>
+      <suffix>\b(?!\s*=)</suffix>
       <keyword>appendix</keyword>
       <keyword>book</keyword>
       <keyword>chapter</keyword>
@@ -101,7 +122,7 @@
       <keyword>sect3</keyword>
       <keyword>sect4</keyword>
       <keyword>section</keyword>
-      
+
       <keyword>highlights</keyword>
       <keyword>holder</keyword>
       <keyword>imagedata</keyword>
@@ -118,14 +139,14 @@
       <keyword>phrase</keyword>
       <keyword>primary</keyword>
       <keyword>programlisting</keyword>
-      
+
       <keyword>row</keyword>
       <keyword>screen</keyword>
       <keyword>screenshot</keyword>
       <keyword>secondary</keyword>
       <keyword>see</keyword>
       <keyword>shortcut</keyword>
-      
+
       <keyword>table</keyword>
       <keyword>tbody</keyword>
       <keyword>term</keyword>
@@ -138,7 +159,7 @@
       <keyword>uri</keyword>
       <keyword>userinput</keyword>
       <keyword>year</keyword>
-      
+
       <keyword>ackno</keyword>
       <keyword>acronym</keyword>
       <keyword>action</keyword>
@@ -340,8 +361,8 @@
       <keyword>reference</keyword>
       <keyword>refmeta</keyword>
       <keyword>refmiscinfo</keyword>
-      <keyword>refnamediv</keyword>
       <keyword>refname</keyword>
+      <keyword>refnamediv</keyword>
       <keyword>refpurpose</keyword>
       <keyword>refsect1</keyword>
       <keyword>refsect1info</keyword>
@@ -430,36 +451,15 @@
       <keyword>videoobject</keyword>
       <keyword>void</keyword>
       <keyword>volumenum</keyword>
-      <keyword>wordasword</keyword>    
-    </context>
-
-    <context id="formatting-elements" once-only="true" style-ref="formatting-elements">
-      <suffix>(?!\s*=)</suffix>
-      <keyword>caution</keyword>
-      <keyword>command</keyword>
-      <keyword>computeroutput</keyword>
-      <keyword>filename</keyword>
-      <keyword>firstterm</keyword>
-      <keyword>link</keyword>
-      <keyword>note</keyword>
-      <keyword>option</keyword>
-      <keyword>para</keyword>
-      <keyword>remark</keyword>
-      <keyword>replaceable</keyword>
-      <keyword>tip</keyword>
-      <keyword>ulink</keyword>
-      <keyword>variablelist</keyword>
-      <keyword>varlistentry</keyword>
-      <keyword>warning</keyword>
-      <keyword>xref</keyword>
+      <keyword>wordasword</keyword>
     </context>
 
     <context id="dockbook-tags">
       <include>
         <context ref="header-elements"/>
+        <context ref="formatting-elements"/>
         <context ref="gui-elements"/>
         <context ref="structural-elements"/>
-        <context ref="formatting-elements"/>
         <context ref="xml:element-name" original="true"/>
       </include>
     </context>

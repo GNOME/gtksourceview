@@ -26,10 +26,11 @@
 
   <color name="red"                         value="#FF0000"/>
   <color name="blue"                        value="#0000FF"/>
+  <color name="dark-blue"                   value="#000080"/>
   <color name="dark-red"                    value="#800000"/>
   <color name="dark-green"                  value="#008000"/>
   <color name="grey"                        value="#808080"/>
-  <color name="yellow"                      value="#FFFF00"/>  
+  <color name="yellow"                      value="#FFFF00"/>
   <color name="white"                       value="#FFFFFF"/>
 
   <style name="current-line"                background="#EEF6FF"/>
@@ -38,8 +39,8 @@
   <style name="bracket-mismatch"            background="red" bold="true"/>
 
   <!-- Search Matching -->
-  <style name="search-match"                background="yellow"/>  
-  
+  <style name="search-match"                background="yellow"/>
+
   <!-- legacy styles for old lang files -->
   <style name="Others"                      foreground="dark-red"/>
   <style name="Others 2"                    bold="true"/>
@@ -52,7 +53,7 @@
   <style name="def:doc-comment-element"     bold="true"/>
 
   <!-- Constants -->
-  <style name="def:constant"                foreground="#DD0000"/>
+  <style name="def:constant"                foreground="#800080"/>
   <style name="def:decimal"                 foreground="blue"/>
   <style name="def:base-n-integer"          foreground="#008080"/>
   <style name="def:floating-point"          foreground="#800080"/>
@@ -60,10 +61,10 @@
   <style name="def:character"               foreground="#FF00FF"/>
   <style name="def:string"                  foreground="#DD0000"/>
   <style name="def:special-char"            foreground="#FF00FF"/>
-  <style name="def:special-constant"        bold="true"/>
 
   <!-- Identifiers -->
-  <style name="def:identifier"              foreground="#000080"/>
+  <style name="def:identifier"              foreground="dark-blue"/>
+  <style name="def:function"                use-style="def:identifier"/>
 
   <!-- Statements -->
   <style name="def:statement"               bold="true"/>
@@ -90,8 +91,7 @@
   <style name="diff:location"               use-style="def:type"/>
 
   <style name="xml:attribute-name"          foreground="dark-green"/>
-  <style name="xml:tags"                    bold="true"/>
-  <style name="xml:namespace"               foreground="dark-green"/>
+  <style name="xml:element-name"            bold="true"/>
   <style name="xml:entity"                  foreground="blue"/>
   <style name="xml:cdata-delim"             foreground="#008080" bold="true"/>
   <style name="xml:processing-instruction"  bold="true"/>
@@ -110,14 +110,21 @@
   <style name="latex:structure"             bold="true"/>
   <style name="latex:section"               foreground="#7000DF" bold="true"/>
 
+  <style name="changelog:date"              use-style="def:type"/>
   <style name="changelog:email"             use-style="c:preprocessor"/>
-  <style name="changelog:bullet"            foreground="blue"/>
-  <style name="changelog:file"              foreground="blue"/>
-  <style name="changelog:function"          foreground="blue"/>
+  <style name="changelog:file"              use-style="def:function"/>
+  <style name="changelog:bullet"            use-style="changelog:file"/>
   <style name="changelog:release"           foreground="#0095FF" bold="true"/>
+
+  <style name="perl:pod"                    foreground="grey"/>
 
   <style name="python:string-conversion"    background="#BEBEBE"/>
   <style name="python:module-handler"       use-style="def:character"/>
+  <style name="python:special-variable"     use-style="def:type"/>
+  <style name="python:builtin-constant"     use-style="def:type"/>
+  <style name="python:builtin-object"       use-style="def:type"/>
+  <style name="python:builtin-function"     use-style="def:type"/>
+  <style name="python:boolean"              use-style="def:type"/>
 
   <style name="scheme:parens"               use-style="def:statement"/>
   <style name="scheme:any-function"         use-style="def:statement"/>

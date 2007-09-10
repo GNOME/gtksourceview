@@ -784,10 +784,10 @@ force_styles (GtkSourceLanguage *language)
  *
  * @language: a #GtkSourceLanguage
  *
- * Returns the ids of the styles defined by this @langage.
+ * Returns the ids of the styles defined by this @language.
  *
  * Returns: a  %NULL terminated array containing
- * ids of the styles defined by this @langage or %NULL if no style is
+ * ids of the styles defined by this @language or %NULL if no style is
  * defined.  The returned array must be freed with g_strfreev().
 */
 gchar **

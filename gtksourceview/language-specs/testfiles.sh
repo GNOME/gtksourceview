@@ -16,18 +16,27 @@ mkdir -p $dir/
 
 cat > $dir/file.cc <<EOFEOF
 #include <iostream>
-int main ()
-{
-    std::cout << "Hi there!" << std::endl;
-    return 0;
-}
+
+class A : B {
+public:
+    A();
+private:
+    foobar() const;
+};
 EOFEOF
 
 cat > $dir/file.c <<EOFEOF
+// Comment
+
 #include <stdio.h>
+
 int main (void)
 {
-    printf ("Hi there!\n");
+    int a = 0x89;
+    int b = 089;
+    int c = 89.;
+    int d = 'a';
+    printf ("Hello %s!\n", "world");
     return 0;
 }
 EOFEOF
@@ -71,6 +80,8 @@ class Boo {
 EOFEOF
 
 cat > $dir/ChangeLog <<EOFEOF
+= Release =
+
 2006-12-10  Kristian Rietveld  <kris@gtk.org>
 
 	* gtk/gtkcellrenderertext.c (gtk_cell_renderer_text_focus_out_event):
@@ -90,21 +101,19 @@ EOFEOF
 
 cat > $dir/file.html <<EOFEOF
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<!-- Comment -->
 <html>
   <head>
     <title>Hi there!</title>
     <meta http-equiv="Content-Type" content="text/html; charset=us-ascii">
-    <style type="text/css"><!--
+    <style type="text/css">
       a.summary-letter {text-decoration: none}
       pre.display {font-family: serif}
       pre.format {font-family: serif}
-      pre.menu-comment {font-family: serif}
-      pre.menu-preformatted {font-family: serif}
-      pre.smalldisplay {font-family: serif; font-size: smaller}
-      ul.toc {list-style: none}
-    --></style>
+    </style>
   </head>
-  <body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+  <body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF"
+        vlink="#800080" alink="#FF0000">
     Hi there!
   </body>
 </html>
@@ -120,6 +129,7 @@ EOFEOF
 cat > $dir/file.m4 <<EOFEOF
 dnl an m4 file
 AC_DEFINE([foo],[echo "Hi there!"])
+AC_CHECK_FUNC([foo],[yes=yes],[yes=no])
 foo()
 EOFEOF
 
@@ -135,22 +145,15 @@ bar:
 	echo "Hello world!"
 EOFEOF
 
-cat > $dir/file.ms <<EOFEOF
-# -*- mooscript -*-
-a = 1;
-for i in [1, 2, 3] do
-  a *= i;
-  a += 18;
-od;
-EOFEOF
-
 cat > $dir/file.py <<EOFEOF
 import sys
+from sys import *
 class Hello(object):
     def __init__(self):
         object.__init__(self)
     def hello(self):
         print >> sys.stderr, "Hi there!"
+    None, True, False
 Hello().hello()
 EOFEOF
 
@@ -530,24 +533,20 @@ relink_command="(cd /home/muntyan/projects/gtk/build/moo/moo; /bin/sh ../libtool
 EOFEOF
 
 cat > $dir/file.pc <<EOFEOF
-prefix=/usr/local/gtk
+# A comment
+prefix=/usr
 exec_prefix=${prefix}
-includedir=${prefix}/include
-datarootdir=${prefix}/share
-datadir=${datarootdir}
 libdir=${exec_prefix}/lib
+includedir=${prefix}/include
 
-langfilesdir=${datarootdir}/moo/language-specs
-pluginsdir=${exec_prefix}/lib/moo/plugins
-moolibdir=${exec_prefix}/lib/moo
-moodatadir=${datarootdir}/moo
+Name: cairo
+Description: Multi-platform 2D graphics library
+Version: 1.4.10
 
-Name: moo
-Description: A text editor and terminal emulator library
-Requires: gtk+-2.0 libxml-2.0
-Version:
-Cflags: -I${prefix}/include/moo
-Libs: -L${libdir} -lmoo -L/usr/lib/python2.4 -lpython2.4  -lpthread -ldl  -lutil
+Requires.private: freetype2 >= 8.0.2 fontconfig libpng12 xrender >= 0.6 x11
+Libs: -L${libdir} -lcairo
+Libs.private: -lz -lm
+Cflags: -I${includedir}/cairo
 EOFEOF
 
 cat > $dir/file.spec <<EOFEOF
@@ -607,7 +606,7 @@ Provides:   libgtksourceview1.0-devel = %{version}-%{release}
 Obsoletes:   libgtksourceview1.0-devel
 
 %description -n %{lib_name}-devel
-GtkSourceView development files 
+GtkSourceView development files
 
 
 %prep
@@ -638,7 +637,7 @@ rm -rf %{buildroot}
 %doc AUTHORS ChangeLog NEWS README TODO
 %{_datadir}/gtksourceview-%{api_version}
 
-%files -n %{lib_name} 
+%files -n %{lib_name}
 %defattr(-,root,root)
 %{_libdir}/*.so.*
 
