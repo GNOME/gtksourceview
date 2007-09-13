@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview.HEAD.hu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-08-26 03:24+0100\n"
-"PO-Revision-Date: 2007-08-26 14:38+0200\n"
+"POT-Creation-Date: 2007-09-10 03:51+0100\n"
+"PO-Revision-Date: 2007-09-13 21:57+0200\n"
 "Last-Translator: Gabor Kelemen <kelemeng@gnome.hu>\n"
 "Language-Team: Hungarian <gnome@gnome.hu>\n"
 "MIME-Version: 1.0\n"
@@ -20,58 +20,58 @@ msgstr ""
 "X-Generator: KBabel 1.11.4\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
-#: ../gtksourceview/gtksourcebuffer.c:169
+#: ../gtksourceview/gtksourcebuffer.c:166
 msgid "Highlight Syntax"
 msgstr "Szintaxiskiemelés"
 
-#: ../gtksourceview/gtksourcebuffer.c:170
+#: ../gtksourceview/gtksourcebuffer.c:167
 msgid "Whether to highlight syntax in the buffer"
 msgstr "Kiemelje-e a nyelvtani elemeket a szerkesztőablakban"
 
-#: ../gtksourceview/gtksourcebuffer.c:183
+#: ../gtksourceview/gtksourcebuffer.c:180
 msgid "Highlight Matching Brackets"
 msgstr "Zárójelpárok kiemelése"
 
-#: ../gtksourceview/gtksourcebuffer.c:184
+#: ../gtksourceview/gtksourcebuffer.c:181
 msgid "Whether to highlight matching brackets"
 msgstr "Kiemelje-e a zárójelpárokat"
 
-#: ../gtksourceview/gtksourcebuffer.c:191
+#: ../gtksourceview/gtksourcebuffer.c:193
 msgid "Maximum Undo Levels"
 msgstr "Visszavonások maximális száma"
 
-#: ../gtksourceview/gtksourcebuffer.c:192
+#: ../gtksourceview/gtksourcebuffer.c:194
 msgid "Number of undo levels for the buffer"
 msgstr "Visszavonások száma a pufferhez"
 
-#. Translators: "Language" stands for
-#. * "programming language", not "spoken language"
-#: ../gtksourceview/gtksourcebuffer.c:204
+#. Translators: throughout gtksourceview "language" stands
+#. * for "programming language", not "spoken language"
+#: ../gtksourceview/gtksourcebuffer.c:206
 msgid "Language"
 msgstr "Nyelv"
 
-#: ../gtksourceview/gtksourcebuffer.c:205
+#: ../gtksourceview/gtksourcebuffer.c:207
 msgid "Language object to get highlighting patterns from"
 msgstr "Nyelvobjektum, ahonnan a kiemelési minták beszerezhetőek"
 
-#: ../gtksourceview/gtksourcebuffer.c:213
+#: ../gtksourceview/gtksourcebuffer.c:215
 msgid "Can undo"
 msgstr "Visszavonhat"
 
-#: ../gtksourceview/gtksourcebuffer.c:214
+#: ../gtksourceview/gtksourcebuffer.c:216
 msgid "Whether Undo operation is possible"
 msgstr "A Visszavonás művelet lehetséges-e"
 
-#: ../gtksourceview/gtksourcebuffer.c:221
+#: ../gtksourceview/gtksourcebuffer.c:223
 msgid "Can redo"
 msgstr "Újra"
 
-#: ../gtksourceview/gtksourcebuffer.c:222
+#: ../gtksourceview/gtksourcebuffer.c:224
 msgid "Whether Redo operation is possible"
 msgstr "Az Újra művelet lehetséges-e"
 
-#: ../gtksourceview/gtksourcebuffer.c:236
-#: ../gtksourceview/gtksourcebuffer.c:237
+#: ../gtksourceview/gtksourcebuffer.c:238
+#: ../gtksourceview/gtksourcebuffer.c:239
 msgid "Style scheme"
 msgstr "Stílusséma"
 
@@ -99,19 +99,19 @@ msgstr ""
 "szintaxiskiemelési folyamat lassabb lesz a megszokottnál.\n"
 "A hiba: %s"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5653
+#: ../gtksourceview/gtksourcecontextengine.c:5670
 #, c-format
 msgid "context '%s' cannot contain a \\%%{...@start} command"
 msgstr "A(z) \"%s\" kontextus nem  tartalmazhat \\%%{...@start} parancsot"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5805
-#: ../gtksourceview/gtksourcecontextengine.c:5892
+#: ../gtksourceview/gtksourcecontextengine.c:5822
+#: ../gtksourceview/gtksourcecontextengine.c:5909
 #, c-format
 msgid "duplicated context id '%s'"
 msgstr "többszörös kontextusazonosító: \"%s\""
 
-#: ../gtksourceview/gtksourcecontextengine.c:6005
-#: ../gtksourceview/gtksourcecontextengine.c:6065
+#: ../gtksourceview/gtksourcecontextengine.c:6022
+#: ../gtksourceview/gtksourcecontextengine.c:6082
 #, c-format
 msgid ""
 "style override used with wildcard context reference in language '%s' in ref "
@@ -120,13 +120,13 @@ msgstr ""
 "a helyettesítő karakteres kontextushivatkozáshoz stílus-felülbírálás került "
 "felhasználásra a(z) \"%s\" nyelv \"%s\" hivatkozásában."
 
-#: ../gtksourceview/gtksourcecontextengine.c:6079
+#: ../gtksourceview/gtksourcecontextengine.c:6096
 #, c-format
 msgid "invalid reference '%s'"
 msgstr "érvénytelen hivatkozás: %s"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6098
-#: ../gtksourceview/gtksourcecontextengine.c:6108
+#: ../gtksourceview/gtksourcecontextengine.c:6115
+#: ../gtksourceview/gtksourcecontextengine.c:6125
 #, c-format
 msgid "unknown context '%s'"
 msgstr "ismeretlen kontextus: \"%s\""
@@ -142,7 +142,6 @@ msgstr "ismeretlen kontextus: \"%s\""
 #: ../gtksourceview/language-specs/libtool.lang.h:2
 #: ../gtksourceview/language-specs/msil.lang.h:2
 #: ../gtksourceview/language-specs/ocl.lang.h:6
-#: ../gtksourceview/language-specs/php.lang.h:15
 #: ../gtksourceview/language-specs/pkgconfig.lang.h:1
 #: ../gtksourceview/language-specs/po.lang.h:4
 #: ../gtksourceview/language-specs/rpmspec.lang.h:10
@@ -174,15 +173,23 @@ msgstr "Rejtett"
 msgid "Whether the language should be hidden from the user"
 msgstr "A nyelv elrejtésre kerüljön-e a felhasználó elől"
 
-#: ../gtksourceview/gtksourcelanguagemanager.c:126
+#: ../gtksourceview/gtksourcelanguagemanager.c:133
 msgid "Language specification directories"
 msgstr "Nyelvmeghatározási könyvtárak"
 
-#: ../gtksourceview/gtksourcelanguagemanager.c:127
+#: ../gtksourceview/gtksourcelanguagemanager.c:134
 msgid ""
 "List of directories where the language specification files (.lang) are "
 "located"
 msgstr "A nyelvspecifikációs fájlokat (.lang) tartalmazó könyvtárak listája"
+
+#: ../gtksourceview/gtksourcelanguagemanager.c:143
+msgid "Language ids"
+msgstr "Nyelvazonosítók"
+
+#: ../gtksourceview/gtksourcelanguagemanager.c:144
+msgid "List of the ids of the available languages"
+msgstr "Az elérhető nyelvek azonosítóinak listája"
 
 #: ../gtksourceview/gtksourcelanguage-parser-2.c:876
 #, c-format
@@ -290,111 +297,103 @@ msgstr "Áthúzott beállítva"
 msgid "Whether strikethrough attribute is set"
 msgstr "Az áthúzott attribútum be van-e állítva"
 
-#: ../gtksourceview/gtksourcestylemanager.c:142
+#: ../gtksourceview/gtksourcestyleschememanager.c:145
 msgid "Style scheme search path"
 msgstr "Stílusséma keresési útvonala"
 
-#: ../gtksourceview/gtksourcestylemanager.c:143
+#: ../gtksourceview/gtksourcestyleschememanager.c:146
 msgid "List of directories and files where the style schemes are located"
 msgstr "A stílussémákat tartalmazó könyvtárak és fájlok listája"
 
-#: ../gtksourceview/gtksourcestylemanager.c:151
+#: ../gtksourceview/gtksourcestyleschememanager.c:154
 msgid "Scheme ids"
 msgstr "Sémaazonosítók"
 
-#: ../gtksourceview/gtksourcestylemanager.c:152
+#: ../gtksourceview/gtksourcestyleschememanager.c:155
 msgid "List of the ids of the available style schemes"
 msgstr "Az elérhető stílussémák azonosítóinak listája"
 
-#: ../gtksourceview/gtksourcestylescheme.c:162
-#: ../gtksourceview/gtksourcestylescheme.c:163
+#: ../gtksourceview/gtksourcestylescheme.c:169
+#: ../gtksourceview/gtksourcestylescheme.c:170
 msgid "Style scheme id"
 msgstr "Stílusséma azonosítója"
 
-#: ../gtksourceview/gtksourcestylescheme.c:175
-#: ../gtksourceview/gtksourcestylescheme.c:176
+#: ../gtksourceview/gtksourcestylescheme.c:182
+#: ../gtksourceview/gtksourcestylescheme.c:183
 msgid "Style scheme name"
 msgstr "Stílusséma neve"
 
-#: ../gtksourceview/gtksourcestylescheme.c:188
-#: ../gtksourceview/gtksourcestylescheme.c:189
+#: ../gtksourceview/gtksourcestylescheme.c:195
+#: ../gtksourceview/gtksourcestylescheme.c:196
 msgid "Style scheme description"
 msgstr "Stílusséma leírása"
 
-#: ../gtksourceview/gtksourcestylescheme.c:201
-#: ../gtksourceview/gtksourcestylescheme.c:202
+#: ../gtksourceview/gtksourcestylescheme.c:208
+#: ../gtksourceview/gtksourcestylescheme.c:209
 msgid "Style scheme filename"
 msgstr "Stílusséma fájlneve"
 
-#: ../gtksourceview/gtksourceview.c:235
+#: ../gtksourceview/gtksourceview.c:239
 msgid "Show Line Numbers"
 msgstr "Sorszámozás megjelenítése"
 
-#: ../gtksourceview/gtksourceview.c:236
+#: ../gtksourceview/gtksourceview.c:240
 msgid "Whether to display line numbers"
 msgstr "Megjelenítse-e a sorok számát"
 
-#: ../gtksourceview/gtksourceview.c:243
-msgid "Show Line Markers"
-msgstr "Sorjelek megjelenítése"
-
-#: ../gtksourceview/gtksourceview.c:244
-msgid "Whether to display line marker pixbufs"
-msgstr "Megjelenjenek-e a sorjelző pixbuf-ok"
-
-#: ../gtksourceview/gtksourceview.c:256
+#: ../gtksourceview/gtksourceview.c:252
 msgid "Tab Width"
 msgstr "Tabulátorok szélessége"
 
-#: ../gtksourceview/gtksourceview.c:257
+#: ../gtksourceview/gtksourceview.c:253
 msgid "Width of a tab character expressed in spaces"
 msgstr "Tab karakter szélessége szóközökben kifejezve"
 
-#: ../gtksourceview/gtksourceview.c:271
+#: ../gtksourceview/gtksourceview.c:267
 msgid "Indent Width"
 msgstr "Behúzás szélessége"
 
-#: ../gtksourceview/gtksourceview.c:272
+#: ../gtksourceview/gtksourceview.c:268
 msgid "Number of spaces to use for each step of indent"
 msgstr "Az egyes behúzási lépésekhez használandó szóközök száma"
 
-#: ../gtksourceview/gtksourceview.c:281
+#: ../gtksourceview/gtksourceview.c:277
 msgid "Auto Indentation"
 msgstr "Automatikus behúzás"
 
-#: ../gtksourceview/gtksourceview.c:282
+#: ../gtksourceview/gtksourceview.c:278
 msgid "Whether to enable auto indentation"
 msgstr "Engedélyezve legyen-e az automatikus behúzás"
 
-#: ../gtksourceview/gtksourceview.c:289
+#: ../gtksourceview/gtksourceview.c:285
 msgid "Insert Spaces Instead of Tabs"
 msgstr "Szóközök beillesztése tabulátorok helyett"
 
-#: ../gtksourceview/gtksourceview.c:290
+#: ../gtksourceview/gtksourceview.c:286
 msgid "Whether to insert spaces instead of tabs"
 msgstr "Tabulátorok helyett szóközöket illesszen-e be"
 
-#: ../gtksourceview/gtksourceview.c:297
+#: ../gtksourceview/gtksourceview.c:298
 msgid "Show Right Margin"
 msgstr "Jobb oldali margó megjelenítése"
 
-#: ../gtksourceview/gtksourceview.c:298
+#: ../gtksourceview/gtksourceview.c:299
 msgid "Whether to display the right margin"
 msgstr "Megjelenítse-e a jobb oldali margót"
 
-#: ../gtksourceview/gtksourceview.c:305
-msgid "Margin position"
-msgstr "Margó pozíciója"
+#: ../gtksourceview/gtksourceview.c:311
+msgid "Right Margin Position"
+msgstr "Jobb margó pozíciója"
 
-#: ../gtksourceview/gtksourceview.c:306
+#: ../gtksourceview/gtksourceview.c:312
 msgid "Position of the right margin"
 msgstr "Jobb oldali margó pozíciója"
 
-#: ../gtksourceview/gtksourceview.c:322
+#: ../gtksourceview/gtksourceview.c:328
 msgid "Smart Home/End"
 msgstr "Okos home/end"
 
-#: ../gtksourceview/gtksourceview.c:323
+#: ../gtksourceview/gtksourceview.c:329
 msgid ""
 "HOME and END keys move to first/last non whitespace characters on line "
 "before going to the start/end of the line"
@@ -402,61 +401,21 @@ msgstr ""
 "A HOME és END billentyűk a sor első/utolsó nem üreshely karakterére ugranak, "
 "mielőtt a sor elejére/végére állnának"
 
-#: ../gtksourceview/gtksourceview.c:333
+#: ../gtksourceview/gtksourceview.c:339
 msgid "Highlight current line"
 msgstr "A jelenlegi sor kiemelése"
 
-#: ../gtksourceview/gtksourceview.c:334
+#: ../gtksourceview/gtksourceview.c:340
 msgid "Whether to highlight the current line"
 msgstr "Kiemelje-e a jelenlegi sort?"
 
-#: ../gtksourceview/gtksourceview.c:341
+#: ../gtksourceview/gtksourceview.c:347
 msgid "Indent on tab"
 msgstr "Behúzás tabnál"
 
-#: ../gtksourceview/gtksourceview.c:342
+#: ../gtksourceview/gtksourceview.c:348
 msgid "Whether to indent the selected text when the tab key is pressed"
 msgstr "Behúzza-e a kijelölt szöveget a tab billentyű lenyomásakor"
-
-#: ../gtksourceview/gtksourceview.c:358
-msgid "Margin Line Alpha"
-msgstr "Margóvonal alfája"
-
-#: ../gtksourceview/gtksourceview.c:359
-msgid "Transparency of the margin line"
-msgstr "A margóvonal átlátszósága"
-
-#: ../gtksourceview/gtksourceview.c:376
-msgid "Margin Line Color"
-msgstr "Margóvonal színe"
-
-#: ../gtksourceview/gtksourceview.c:377
-msgid "Color to use for the right margin line"
-msgstr "A jobb margóvonalhoz használandó szín "
-
-#: ../gtksourceview/gtksourceview.c:393
-msgid "Margin Overlay Toggle"
-msgstr "Margó átfedés átváltása"
-
-#: ../gtksourceview/gtksourceview.c:394
-msgid "Whether to draw the right margin overlay"
-msgstr "Megjelenítse-e a jobb oldali margó átfedését"
-
-#: ../gtksourceview/gtksourceview.c:410
-msgid "Margin Overlay Alpha"
-msgstr "Margóátfedés alfája"
-
-#: ../gtksourceview/gtksourceview.c:411
-msgid "Transparency of the margin overlay"
-msgstr "A margóátfedés áttetszősége"
-
-#: ../gtksourceview/gtksourceview.c:428
-msgid "Margin Overlay Color"
-msgstr "A margóátfedés színe"
-
-#: ../gtksourceview/gtksourceview.c:429
-msgid "Color to use for drawing the margin overlay"
-msgstr "A margóátfedés rajzolásakor használandó szín"
 
 #: ../gtksourceview/gtksourceview-i18n.c:38
 msgid "translator-credits"
@@ -488,6 +447,7 @@ msgstr "Tetszőleges alapszám"
 #: ../gtksourceview/language-specs/php.lang.h:1
 #: ../gtksourceview/language-specs/R.lang.h:2
 #: ../gtksourceview/language-specs/ruby.lang.h:3
+#: ../gtksourceview/language-specs/vala.lang.h:1
 #: ../gtksourceview/language-specs/vbnet.lang.h:1
 #: ../gtksourceview/language-specs/vhdl.lang.h:2
 msgid "Boolean value"
@@ -501,6 +461,7 @@ msgstr "Logikai érték"
 #: ../gtksourceview/language-specs/css.lang.h:3
 #: ../gtksourceview/language-specs/def.lang.h:11
 #: ../gtksourceview/language-specs/d.lang.h:3
+#: ../gtksourceview/language-specs/erlang.lang.h:4
 #: ../gtksourceview/language-specs/fortran.lang.h:2
 #: ../gtksourceview/language-specs/gtkrc.lang.h:2
 #: ../gtksourceview/language-specs/haskell.lang.h:2
@@ -524,6 +485,7 @@ msgstr "Logikai érték"
 #: ../gtksourceview/language-specs/sh.lang.h:1
 #: ../gtksourceview/language-specs/sql.lang.h:1
 #: ../gtksourceview/language-specs/texinfo.lang.h:1
+#: ../gtksourceview/language-specs/vala.lang.h:2
 #: ../gtksourceview/language-specs/vbnet.lang.h:2
 #: ../gtksourceview/language-specs/verilog.lang.h:2
 #: ../gtksourceview/language-specs/vhdl.lang.h:4
@@ -552,6 +514,7 @@ msgstr "Megjegyzés"
 #: ../gtksourceview/language-specs/pascal.lang.h:2
 #: ../gtksourceview/language-specs/php.lang.h:3
 #: ../gtksourceview/language-specs/sql.lang.h:2
+#: ../gtksourceview/language-specs/vala.lang.h:3
 #: ../gtksourceview/language-specs/vbnet.lang.h:3
 msgid "Data Type"
 msgstr "Adattípus"
@@ -562,11 +525,13 @@ msgstr "Adattípus"
 #: ../gtksourceview/language-specs/csharp.lang.h:5
 #: ../gtksourceview/language-specs/def.lang.h:19
 #: ../gtksourceview/language-specs/d.lang.h:6
+#: ../gtksourceview/language-specs/erlang.lang.h:6
 #: ../gtksourceview/language-specs/nemerle.lang.h:6
 #: ../gtksourceview/language-specs/ocaml.lang.h:6
 #: ../gtksourceview/language-specs/php.lang.h:4
 #: ../gtksourceview/language-specs/python.lang.h:7
 #: ../gtksourceview/language-specs/ruby.lang.h:7
+#: ../gtksourceview/language-specs/vala.lang.h:4
 msgid "Decimal number"
 msgstr "Decimális szám"
 
@@ -591,6 +556,7 @@ msgstr "Escape-elt karakter"
 #: ../gtksourceview/language-specs/css.lang.h:8
 #: ../gtksourceview/language-specs/def.lang.h:36
 #: ../gtksourceview/language-specs/d.lang.h:10
+#: ../gtksourceview/language-specs/erlang.lang.h:9
 #: ../gtksourceview/language-specs/fortran.lang.h:7
 #: ../gtksourceview/language-specs/gtkrc.lang.h:7
 #: ../gtksourceview/language-specs/haskell.lang.h:9
@@ -615,6 +581,7 @@ msgstr "Escape-elt karakter"
 #: ../gtksourceview/language-specs/sql.lang.h:6
 #: ../gtksourceview/language-specs/tcl.lang.h:1
 #: ../gtksourceview/language-specs/texinfo.lang.h:5
+#: ../gtksourceview/language-specs/vala.lang.h:7
 #: ../gtksourceview/language-specs/vbnet.lang.h:4
 #: ../gtksourceview/language-specs/verilog.lang.h:6
 #: ../gtksourceview/language-specs/vhdl.lang.h:5
@@ -634,6 +601,7 @@ msgstr "Előfeldolgozó"
 
 #: ../gtksourceview/language-specs/ada.lang.h:10
 #: ../gtksourceview/language-specs/csharp.lang.h:11
+#: ../gtksourceview/language-specs/vala.lang.h:9
 #: ../gtksourceview/language-specs/vhdl.lang.h:7
 msgid "Real number"
 msgstr "Valós szám"
@@ -645,6 +613,7 @@ msgstr "Valós szám"
 #: ../gtksourceview/language-specs/cpp.lang.h:5
 #: ../gtksourceview/language-specs/csharp.lang.h:12
 #: ../gtksourceview/language-specs/d.lang.h:13
+#: ../gtksourceview/language-specs/erlang.lang.h:11
 #: ../gtksourceview/language-specs/fortran.lang.h:8
 #: ../gtksourceview/language-specs/haskell-literate.lang.h:2
 #: ../gtksourceview/language-specs/haskell.lang.h:12
@@ -657,6 +626,7 @@ msgstr "Valós szám"
 #: ../gtksourceview/language-specs/pascal.lang.h:7
 #: ../gtksourceview/language-specs/scheme.lang.h:6
 #: ../gtksourceview/language-specs/sql.lang.h:9
+#: ../gtksourceview/language-specs/vala.lang.h:10
 #: ../gtksourceview/language-specs/vbnet.lang.h:6
 #: ../gtksourceview/language-specs/verilog.lang.h:7
 #: ../gtksourceview/language-specs/vhdl.lang.h:8
@@ -677,6 +647,7 @@ msgstr "Tárolóosztály"
 #: ../gtksourceview/language-specs/css.lang.h:13
 #: ../gtksourceview/language-specs/def.lang.h:57
 #: ../gtksourceview/language-specs/d.lang.h:15
+#: ../gtksourceview/language-specs/erlang.lang.h:12
 #: ../gtksourceview/language-specs/gtkrc.lang.h:9
 #: ../gtksourceview/language-specs/haskell.lang.h:13
 #: ../gtksourceview/language-specs/idl.lang.h:7
@@ -691,13 +662,14 @@ msgstr "Tárolóosztály"
 #: ../gtksourceview/language-specs/octave.lang.h:11
 #: ../gtksourceview/language-specs/pascal.lang.h:8
 #: ../gtksourceview/language-specs/perl.lang.h:18
-#: ../gtksourceview/language-specs/php.lang.h:18
+#: ../gtksourceview/language-specs/php.lang.h:17
 #: ../gtksourceview/language-specs/po.lang.h:5
 #: ../gtksourceview/language-specs/python.lang.h:17
 #: ../gtksourceview/language-specs/ruby.lang.h:21
 #: ../gtksourceview/language-specs/scheme.lang.h:7
 #: ../gtksourceview/language-specs/sql.lang.h:10
 #: ../gtksourceview/language-specs/texinfo.lang.h:9
+#: ../gtksourceview/language-specs/vala.lang.h:11
 #: ../gtksourceview/language-specs/vbnet.lang.h:8
 #: ../gtksourceview/language-specs/vhdl.lang.h:9
 msgid "String"
@@ -712,7 +684,7 @@ msgstr "Minta"
 #: ../gtksourceview/language-specs/lua.lang.h:9
 #: ../gtksourceview/language-specs/m4.lang.h:1
 #: ../gtksourceview/language-specs/perl.lang.h:17
-#: ../gtksourceview/language-specs/php.lang.h:17
+#: ../gtksourceview/language-specs/php.lang.h:16
 #: ../gtksourceview/language-specs/python.lang.h:15
 #: ../gtksourceview/language-specs/R.lang.h:9
 #: ../gtksourceview/language-specs/ruby.lang.h:19
@@ -725,7 +697,7 @@ msgstr "Parancsfájlok"
 #: ../gtksourceview/language-specs/haskell.lang.h:15
 #: ../gtksourceview/language-specs/ini.lang.h:10
 #: ../gtksourceview/language-specs/perl.lang.h:20
-#: ../gtksourceview/language-specs/php.lang.h:19
+#: ../gtksourceview/language-specs/php.lang.h:18
 #: ../gtksourceview/language-specs/pkgconfig.lang.h:3
 #: ../gtksourceview/language-specs/ruby.lang.h:23
 #: ../gtksourceview/language-specs/tcl.lang.h:4
@@ -777,6 +749,7 @@ msgstr "Névtér"
 #: ../gtksourceview/language-specs/javascript.lang.h:11
 #: ../gtksourceview/language-specs/nemerle.lang.h:12
 #: ../gtksourceview/language-specs/php.lang.h:12
+#: ../gtksourceview/language-specs/vala.lang.h:8
 msgid "Null Value"
 msgstr "Null érték"
 
@@ -837,6 +810,7 @@ msgstr "Általános definíció"
 #: ../gtksourceview/language-specs/ocaml.lang.h:7
 #: ../gtksourceview/language-specs/perl.lang.h:4
 #: ../gtksourceview/language-specs/php.lang.h:5
+#: ../gtksourceview/language-specs/vala.lang.h:5
 #: ../gtksourceview/language-specs/verilog.lang.h:4
 #: ../gtksourceview/language-specs/xml.lang.h:8
 msgid "Error"
@@ -846,6 +820,7 @@ msgstr "Hiba"
 #: ../gtksourceview/language-specs/c.lang.h:10
 #: ../gtksourceview/language-specs/def.lang.h:30
 #: ../gtksourceview/language-specs/d.lang.h:8
+#: ../gtksourceview/language-specs/erlang.lang.h:8
 #: ../gtksourceview/language-specs/nemerle.lang.h:8
 #: ../gtksourceview/language-specs/php.lang.h:7
 #: ../gtksourceview/language-specs/python.lang.h:9
@@ -859,6 +834,7 @@ msgstr "Lebegőpontos szám"
 #: ../gtksourceview/language-specs/d.lang.h:9
 #: ../gtksourceview/language-specs/nemerle.lang.h:9
 #: ../gtksourceview/language-specs/php.lang.h:10
+#: ../gtksourceview/language-specs/vala.lang.h:6
 msgid "Hexadecimal number"
 msgstr "Hexadecimális szám"
 
@@ -999,6 +975,7 @@ msgstr "Megjegyzés (FIXME, TODO, XXX, stb.)"
 
 #. Operators: "+", "*", etc.
 #: ../gtksourceview/language-specs/def.lang.h:42
+#: ../gtksourceview/language-specs/erlang.lang.h:10
 #: ../gtksourceview/language-specs/perl.lang.h:11
 #: ../gtksourceview/language-specs/php.lang.h:14
 msgid "Operator"
@@ -1163,6 +1140,11 @@ msgstr "Folt kezdete"
 msgid "DTD"
 msgstr "DTD"
 
+#: ../gtksourceview/language-specs/erlang.lang.h:1
+msgid "Atom"
+msgstr "Atom"
+
+#: ../gtksourceview/language-specs/erlang.lang.h:2
 #: ../gtksourceview/language-specs/fortran.lang.h:1
 #: ../gtksourceview/language-specs/ocaml.lang.h:1
 #: ../gtksourceview/language-specs/octave.lang.h:1
@@ -1170,6 +1152,20 @@ msgstr "DTD"
 #: ../gtksourceview/language-specs/vhdl.lang.h:1
 msgid "Base-N Integer"
 msgstr "N-alapú egész"
+
+#: ../gtksourceview/language-specs/erlang.lang.h:3
+#: ../gtksourceview/language-specs/ruby.lang.h:4
+msgid "Builtin"
+msgstr "Beépített"
+
+#: ../gtksourceview/language-specs/erlang.lang.h:5
+#: ../gtksourceview/language-specs/verilog.lang.h:3
+msgid "Compiler Directive"
+msgstr "Fordítódirektíva"
+
+#: ../gtksourceview/language-specs/erlang.lang.h:7
+msgid "Erlang"
+msgstr "Erlang"
 
 #: ../gtksourceview/language-specs/fortran.lang.h:5
 #: ../gtksourceview/language-specs/ini.lang.h:6
@@ -1566,7 +1562,7 @@ msgstr "Perl"
 msgid "System Command"
 msgstr "Rendszerparancs"
 
-#: ../gtksourceview/language-specs/php.lang.h:16
+#: ../gtksourceview/language-specs/php.lang.h:15
 msgid "PHP"
 msgstr "PHP"
 
@@ -1690,10 +1686,6 @@ msgstr "Kapcsoló"
 msgid "Attribute Definition"
 msgstr "Attribútumdefiníció"
 
-#: ../gtksourceview/language-specs/ruby.lang.h:4
-msgid "Builtin"
-msgstr "Beépített"
-
 #: ../gtksourceview/language-specs/ruby.lang.h:13
 msgid "Module handler"
 msgstr "Modulkezelő"
@@ -1749,10 +1741,6 @@ msgstr "Texinfo"
 #: ../gtksourceview/language-specs/vbnet.lang.h:9
 msgid "VB.NET"
 msgstr "VB.NET"
-
-#: ../gtksourceview/language-specs/verilog.lang.h:3
-msgid "Compiler Directive"
-msgstr "Fordítódirektíva"
 
 #: ../gtksourceview/language-specs/verilog.lang.h:5
 msgid "Gate"
@@ -1830,9 +1818,17 @@ msgstr "A Kate szövegszerkesztőben használt színséma"
 msgid "Kate"
 msgstr "Kate"
 
+#: ../gtksourceview/language-specs/oblivion.xml.h:1
+msgid "Dark color scheme using the Tango color palette"
+msgstr "A Tango színpalettát használó sötét színséma"
+
+#: ../gtksourceview/language-specs/oblivion.xml.h:2
+msgid "Oblivion"
+msgstr "Oblivion"
+
 #: ../gtksourceview/language-specs/tango.xml.h:1
 msgid "Color scheme using Tango color palette"
-msgstr "A Tango színpalettában használt színséma"
+msgstr "A Tango színpalettát használó színséma"
 
 #: ../gtksourceview/language-specs/tango.xml.h:2
 msgid "Tango"
