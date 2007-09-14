@@ -5,10 +5,10 @@
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: gtksourceview 1.90.1\n"
+"Project-Id-Version: gtksourceview 1.90.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-08-28 16:13+0100\n"
-"PO-Revision-Date: 2007-09-03 20:45+0930\n"
+"POT-Creation-Date: 2007-09-10 03:51+0100\n"
+"PO-Revision-Date: 2007-09-14 21:05+0930\n"
 "Last-Translator: Clytie Siddall <clytie@riverland.net.au>\n"
 "Language-Team: Vietnamese <gnomevi-list@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -17,58 +17,58 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: LocFactoryEditor 1.7b1\n"
 
-#: ../gtksourceview/gtksourcebuffer.c:169
+#: ../gtksourceview/gtksourcebuffer.c:166
 msgid "Highlight Syntax"
 msgstr "Tô sáng cú pháp"
 
-#: ../gtksourceview/gtksourcebuffer.c:170
+#: ../gtksourceview/gtksourcebuffer.c:167
 msgid "Whether to highlight syntax in the buffer"
 msgstr "Có nên tô sáng cú pháp trong vùng đệm hay không"
 
-#: ../gtksourceview/gtksourcebuffer.c:183
+#: ../gtksourceview/gtksourcebuffer.c:180
 msgid "Highlight Matching Brackets"
 msgstr "Tô sáng cặp dấu ngoặc"
 
-#: ../gtksourceview/gtksourcebuffer.c:184
+#: ../gtksourceview/gtksourcebuffer.c:181
 msgid "Whether to highlight matching brackets"
 msgstr "Có nên tô sáng mỗi cặp dấu ngoặc tương ứng hay không"
 
-#: ../gtksourceview/gtksourcebuffer.c:196
+#: ../gtksourceview/gtksourcebuffer.c:193
 msgid "Maximum Undo Levels"
 msgstr "Cấp hủy bước tối đa"
 
-#: ../gtksourceview/gtksourcebuffer.c:197
+#: ../gtksourceview/gtksourcebuffer.c:194
 msgid "Number of undo levels for the buffer"
 msgstr "Số cấp hủy bước trong vùng đệm"
 
-#: ../gtksourceview/gtksourcebuffer.c:209
+#: ../gtksourceview/gtksourcebuffer.c:206
 #. Translators: throughout gtksourceview "language" stands
 #. * for "programming language", not "spoken language"
 msgid "Language"
 msgstr "Ngôn ngữ"
 
-#: ../gtksourceview/gtksourcebuffer.c:210
+#: ../gtksourceview/gtksourcebuffer.c:207
 msgid "Language object to get highlighting patterns from"
 msgstr "Đối tượng ngôn ngữ từ đó cần lấy mẫu tô sáng"
 
-#: ../gtksourceview/gtksourcebuffer.c:218
+#: ../gtksourceview/gtksourcebuffer.c:215
 msgid "Can undo"
 msgstr "Có thể hủy bước"
 
-#: ../gtksourceview/gtksourcebuffer.c:219
+#: ../gtksourceview/gtksourcebuffer.c:216
 msgid "Whether Undo operation is possible"
 msgstr "Thao tác « Hùy bước » có thể làm không"
 
-#: ../gtksourceview/gtksourcebuffer.c:226
+#: ../gtksourceview/gtksourcebuffer.c:223
 msgid "Can redo"
 msgstr "Có thể làm lại"
 
-#: ../gtksourceview/gtksourcebuffer.c:227
+#: ../gtksourceview/gtksourcebuffer.c:224
 msgid "Whether Redo operation is possible"
 msgstr "Thao tác « Làm lại » có thể làm không"
 
-#: ../gtksourceview/gtksourcebuffer.c:241
-#: ../gtksourceview/gtksourcebuffer.c:242
+#: ../gtksourceview/gtksourcebuffer.c:238
+#: ../gtksourceview/gtksourcebuffer.c:239
 msgid "Style scheme"
 msgstr "Lược đồ kiểu dáng"
 
@@ -96,34 +96,34 @@ msgstr ""
 "tô sáng cú pháp sẽ chạy chậm hơn trường hợp bình thường.\n"
 "Lỗi: %s"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5653
+#: ../gtksourceview/gtksourcecontextengine.c:5670
 #, c-format
 msgid "context '%s' cannot contain a \\%%{...@start} command"
 msgstr "ngữ cảnh « %s » không thể chứa lệnh kiểu \\%%{...@start}"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5805
-#: ../gtksourceview/gtksourcecontextengine.c:5892
+#: ../gtksourceview/gtksourcecontextengine.c:5822
+#: ../gtksourceview/gtksourcecontextengine.c:5909
 #, c-format
 msgid "duplicated context id '%s'"
 msgstr "id ngữ cảnh trùng « %s »"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6005
-#: ../gtksourceview/gtksourcecontextengine.c:6065
+#: ../gtksourceview/gtksourcecontextengine.c:6022
+#: ../gtksourceview/gtksourcecontextengine.c:6082
 #, c-format
 msgid ""
 "style override used with wildcard context reference in language '%s' in ref "
 "'%s'"
 msgstr ""
-"quyền kiểu dáng cao hơn được dùng với tham chiếu ngữ cảnh ký tự đại diện bằng ngôn "
-"ngữ « %s » trong tham chiếu « %s »"
+"quyền kiểu dáng cao hơn được dùng với tham chiếu ngữ cảnh ký tự đại diện "
+"bằng ngôn ngữ « %s » trong tham chiếu « %s »"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6079
+#: ../gtksourceview/gtksourcecontextengine.c:6096
 #, c-format
 msgid "invalid reference '%s'"
 msgstr "tham chiếu không hợp lệ « %s »"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6098
-#: ../gtksourceview/gtksourcecontextengine.c:6108
+#: ../gtksourceview/gtksourcecontextengine.c:6115
+#: ../gtksourceview/gtksourcecontextengine.c:6125
 #, c-format
 msgid "unknown context '%s'"
 msgstr "ngữ cảnh không rõ « %s »"
@@ -182,7 +182,7 @@ msgstr "Danh sách các thư mục chứa tập tin đặc tả ngôn ngữ (.la
 
 #: ../gtksourceview/gtksourcelanguagemanager.c:143
 msgid "Language ids"
-msgstr "Các nã ngôn ngữ"
+msgstr "Các mã ngôn ngữ"
 
 #: ../gtksourceview/gtksourcelanguagemanager.c:144
 msgid "List of the ids of the available languages"
@@ -334,94 +334,87 @@ msgstr "Mô tả lược đồ kiểu dáng"
 msgid "Style scheme filename"
 msgstr "Tên tập tin lược đồ kiểu dáng"
 
-#: ../gtksourceview/gtksourceview.c:241
+#: ../gtksourceview/gtksourceview.c:239
 msgid "Show Line Numbers"
 msgstr "Hiện số thứ tự dòng"
 
-#: ../gtksourceview/gtksourceview.c:242
+#: ../gtksourceview/gtksourceview.c:240
 msgid "Whether to display line numbers"
 msgstr "Có nên hiển thị số thứ tự dòng hay không"
 
-#: ../gtksourceview/gtksourceview.c:249
-msgid "Show Line Markers"
-msgstr "Hiện dấu dòng"
-
-#: ../gtksourceview/gtksourceview.c:250
-msgid "Whether to display line marker pixbufs"
-msgstr "Có nên hiển thị ký hiệu đánh dấu dòng không"
-
-#: ../gtksourceview/gtksourceview.c:262
+#: ../gtksourceview/gtksourceview.c:252
 msgid "Tab Width"
 msgstr "Cột tab"
 
-#: ../gtksourceview/gtksourceview.c:263
+#: ../gtksourceview/gtksourceview.c:253
 msgid "Width of a tab character expressed in spaces"
 msgstr "Chiều rộng của mỗi ký tự Tab, theo dấu cách"
 
-#: ../gtksourceview/gtksourceview.c:277
+#: ../gtksourceview/gtksourceview.c:267
 msgid "Indent Width"
 msgstr "Khoảng thụt lề"
 
-#: ../gtksourceview/gtksourceview.c:278
+#: ../gtksourceview/gtksourceview.c:268
 msgid "Number of spaces to use for each step of indent"
 msgstr "Số dấu cách của mỗi bước thụt lề"
 
-#: ../gtksourceview/gtksourceview.c:287
+#: ../gtksourceview/gtksourceview.c:277
 msgid "Auto Indentation"
 msgstr "Tự động thụt lề"
 
-#: ../gtksourceview/gtksourceview.c:288
+#: ../gtksourceview/gtksourceview.c:278
 msgid "Whether to enable auto indentation"
 msgstr "Có nên bật khả năng tự động thụt lề hay không"
 
-#: ../gtksourceview/gtksourceview.c:295
+#: ../gtksourceview/gtksourceview.c:285
 msgid "Insert Spaces Instead of Tabs"
 msgstr "Chèn dấu cách thay cho cột Tab"
 
-#: ../gtksourceview/gtksourceview.c:296
+#: ../gtksourceview/gtksourceview.c:286
 msgid "Whether to insert spaces instead of tabs"
 msgstr "Có nên chèn dấu cách thay cho khoảng Tab hay không"
 
-#: ../gtksourceview/gtksourceview.c:308
+#: ../gtksourceview/gtksourceview.c:298
 msgid "Show Right Margin"
 msgstr "Hiện lề bên phải"
 
-#: ../gtksourceview/gtksourceview.c:309
+#: ../gtksourceview/gtksourceview.c:299
 msgid "Whether to display the right margin"
 msgstr "Có nên hiển thị lề bên phải hay không"
 
-#: ../gtksourceview/gtksourceview.c:321
+#: ../gtksourceview/gtksourceview.c:311
 msgid "Right Margin Position"
 msgstr "Vị trí lề bên phải"
 
-#: ../gtksourceview/gtksourceview.c:322
+#: ../gtksourceview/gtksourceview.c:312
 msgid "Position of the right margin"
 msgstr "Vị trí của lề bên phải"
 
-#: ../gtksourceview/gtksourceview.c:338
+#: ../gtksourceview/gtksourceview.c:328
 msgid "Smart Home/End"
 msgstr "Home/End khéo"
 
-#: ../gtksourceview/gtksourceview.c:339
+#: ../gtksourceview/gtksourceview.c:329
 msgid ""
 "HOME and END keys move to first/last non whitespace characters on line "
 "before going to the start/end of the line"
 msgstr ""
-"Phím HOME và END di chuyển đến ký tự không khoảng trắng thứ nhất/cuối cùng trên dòng, trước khi chuyển đến đầu/cuối của dòng"
+"Phím HOME và END di chuyển đến ký tự không khoảng trắng thứ nhất/cuối cùng "
+"trên dòng, trước khi chuyển đến đầu/cuối của dòng"
 
-#: ../gtksourceview/gtksourceview.c:349
+#: ../gtksourceview/gtksourceview.c:339
 msgid "Highlight current line"
 msgstr "Tô sáng dòng hiện tại"
 
-#: ../gtksourceview/gtksourceview.c:350
+#: ../gtksourceview/gtksourceview.c:340
 msgid "Whether to highlight the current line"
 msgstr "Có nên tô sáng dòng hiện thời hay không"
 
-#: ../gtksourceview/gtksourceview.c:357
+#: ../gtksourceview/gtksourceview.c:347
 msgid "Indent on tab"
 msgstr "Thụt lề bằng Tab"
 
-#: ../gtksourceview/gtksourceview.c:358
+#: ../gtksourceview/gtksourceview.c:348
 msgid "Whether to indent the selected text when the tab key is pressed"
 msgstr "Có nên thụt lề đoạn đã chọn khi phím Tab được bấm hay không"
 
@@ -451,6 +444,7 @@ msgstr "Số cơ sở tùy ý"
 #: ../gtksourceview/language-specs/php.lang.h:1
 #: ../gtksourceview/language-specs/R.lang.h:2
 #: ../gtksourceview/language-specs/ruby.lang.h:3
+#: ../gtksourceview/language-specs/vala.lang.h:1
 #: ../gtksourceview/language-specs/vbnet.lang.h:1
 #: ../gtksourceview/language-specs/vhdl.lang.h:2
 #. A boolean constant: TRUE, false
@@ -488,6 +482,7 @@ msgstr "Giá trị lôgic"
 #: ../gtksourceview/language-specs/sh.lang.h:1
 #: ../gtksourceview/language-specs/sql.lang.h:1
 #: ../gtksourceview/language-specs/texinfo.lang.h:1
+#: ../gtksourceview/language-specs/vala.lang.h:2
 #: ../gtksourceview/language-specs/vbnet.lang.h:2
 #: ../gtksourceview/language-specs/verilog.lang.h:2
 #: ../gtksourceview/language-specs/vhdl.lang.h:4
@@ -516,6 +511,7 @@ msgstr "Ghi chú"
 #: ../gtksourceview/language-specs/pascal.lang.h:2
 #: ../gtksourceview/language-specs/php.lang.h:3
 #: ../gtksourceview/language-specs/sql.lang.h:2
+#: ../gtksourceview/language-specs/vala.lang.h:3
 #: ../gtksourceview/language-specs/vbnet.lang.h:3
 #. map-to="def:others"
 msgid "Data Type"
@@ -532,6 +528,7 @@ msgstr "Kiểu dữ liệu"
 #: ../gtksourceview/language-specs/php.lang.h:4
 #: ../gtksourceview/language-specs/python.lang.h:7
 #: ../gtksourceview/language-specs/ruby.lang.h:7
+#: ../gtksourceview/language-specs/vala.lang.h:4
 #. A decimal number: 1234
 msgid "Decimal number"
 msgstr "Số thập phân"
@@ -581,6 +578,7 @@ msgstr "Ký tự đã thoát"
 #: ../gtksourceview/language-specs/sql.lang.h:6
 #: ../gtksourceview/language-specs/tcl.lang.h:1
 #: ../gtksourceview/language-specs/texinfo.lang.h:5
+#: ../gtksourceview/language-specs/vala.lang.h:7
 #: ../gtksourceview/language-specs/vbnet.lang.h:4
 #: ../gtksourceview/language-specs/verilog.lang.h:6
 #: ../gtksourceview/language-specs/vhdl.lang.h:5
@@ -601,6 +599,7 @@ msgstr "Bộ tiền xử lý"
 
 #: ../gtksourceview/language-specs/ada.lang.h:10
 #: ../gtksourceview/language-specs/csharp.lang.h:11
+#: ../gtksourceview/language-specs/vala.lang.h:9
 #: ../gtksourceview/language-specs/vhdl.lang.h:7
 msgid "Real number"
 msgstr "Số thực"
@@ -625,6 +624,7 @@ msgstr "Số thực"
 #: ../gtksourceview/language-specs/pascal.lang.h:7
 #: ../gtksourceview/language-specs/scheme.lang.h:6
 #: ../gtksourceview/language-specs/sql.lang.h:9
+#: ../gtksourceview/language-specs/vala.lang.h:10
 #: ../gtksourceview/language-specs/vbnet.lang.h:6
 #: ../gtksourceview/language-specs/verilog.lang.h:7
 #: ../gtksourceview/language-specs/vhdl.lang.h:8
@@ -666,6 +666,7 @@ msgstr "Hạng cất giữ"
 #: ../gtksourceview/language-specs/scheme.lang.h:7
 #: ../gtksourceview/language-specs/sql.lang.h:10
 #: ../gtksourceview/language-specs/texinfo.lang.h:9
+#: ../gtksourceview/language-specs/vala.lang.h:11
 #: ../gtksourceview/language-specs/vbnet.lang.h:8
 #: ../gtksourceview/language-specs/vhdl.lang.h:9
 #. A string constant: "this is a string"
@@ -746,6 +747,7 @@ msgstr "Miền tên"
 #: ../gtksourceview/language-specs/javascript.lang.h:11
 #: ../gtksourceview/language-specs/nemerle.lang.h:12
 #: ../gtksourceview/language-specs/php.lang.h:12
+#: ../gtksourceview/language-specs/vala.lang.h:8
 msgid "Null Value"
 msgstr "Vô giá trị"
 
@@ -805,6 +807,7 @@ msgstr "Định nghĩa dùng chung"
 #: ../gtksourceview/language-specs/ocaml.lang.h:7
 #: ../gtksourceview/language-specs/perl.lang.h:4
 #: ../gtksourceview/language-specs/php.lang.h:5
+#: ../gtksourceview/language-specs/vala.lang.h:5
 #: ../gtksourceview/language-specs/verilog.lang.h:4
 #: ../gtksourceview/language-specs/xml.lang.h:8
 #. Any erroneous construct
@@ -829,6 +832,7 @@ msgstr "Số chấm động"
 #: ../gtksourceview/language-specs/d.lang.h:9
 #: ../gtksourceview/language-specs/nemerle.lang.h:9
 #: ../gtksourceview/language-specs/php.lang.h:10
+#: ../gtksourceview/language-specs/vala.lang.h:6
 msgid "Hexadecimal number"
 msgstr "Số thập lục"
 
@@ -1346,7 +1350,7 @@ msgstr ".ini"
 
 #: ../gtksourceview/language-specs/java.lang.h:4
 msgid "Declaration"
-msgstr "Lời tuyên bố"
+msgstr "Khai báo"
 
 #: ../gtksourceview/language-specs/java.lang.h:6
 msgid "External"
@@ -1364,7 +1368,7 @@ msgstr "Java"
 
 #: ../gtksourceview/language-specs/java.lang.h:12
 msgid "Scope Declaration"
-msgstr "Lời tuyên bố phạm vi"
+msgstr "Khai báo phạm vi"
 
 #: ../gtksourceview/language-specs/javascript.lang.h:3
 msgid "Constructors"
@@ -1849,6 +1853,12 @@ msgstr "Lược đồ màu dùng bảng chọn màu Tango"
 #: ../gtksourceview/language-specs/tango.xml.h:2
 msgid "Tango"
 msgstr "Tango"
+
+#~ msgid "Show Line Markers"
+#~ msgstr "Hiện dấu dòng"
+
+#~ msgid "Whether to display line marker pixbufs"
+#~ msgstr "Có nên hiển thị ký hiệu đánh dấu dòng không"
 
 #~ msgid "Check Brackets"
 #~ msgstr "Kiểm tra ngoặc"
