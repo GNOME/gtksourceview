@@ -112,7 +112,7 @@
       </include>
     </context>
 
-    <context id="double-quoted-string" style-ref="string" extend-parent="false">
+    <context id="double-quoted-string" style-ref="string">
       <start>"</start>
       <end>"</end>
       <include>
@@ -122,7 +122,7 @@
       </include>
     </context>
 
-    <context id="single-quoted-string" style-ref="string" extend-parent="false">
+    <context id="single-quoted-string" style-ref="string">
       <start>'</start>
       <end>'</end>
       <include>
