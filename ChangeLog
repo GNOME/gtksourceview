@@ -1,3 +1,8 @@
+2007-09-15  Yevgen Muntyan  <muntyan@tamu.edu>
+
+	* gtksourceview/language-specs/sh.lang: case-esac context: match
+	strings before "*)" to work around its great lameness.
+
 2007-09-14  Yevgen Muntyan  <muntyan@tamu.edu>
 
 	* gtksourceview/language-specs/php.lang: made extend-parent="true"
