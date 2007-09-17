@@ -17,8 +17,7 @@ EXTRA_DIST = \
 	gtksourceview-zip.in \
 	COPYING.lib \
 	HACKING \
-	MAINTAINERS \
-	TODO
+	MAINTAINERS
 
 DISTCLEANFILES = \
 	intltool-extract \
