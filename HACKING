@@ -16,15 +16,14 @@ consistent for multiple branched statements suchs as if/else if/else.
 If you add new API to GtkSourceView you must provide gtk-doc style
 comments fully documenting all the functions you're adding.
 
-CVS guidelines for gtksourceview
-================================
+Subversion guidelines for gtksourceview
+=======================================
 
-Please don't commit directly to the CVS unless you have been
-given the green light to commit freely to gtksourceview.  
+Please don't commit directly to the subversion repository unless you have
+been given the green light to commit freely to gtksourceview.  
 When in doubt assume you haven't ;-). 
 
-Please submit patches to bugzilla.gnome.org, and optionally send them
-to gustavo.giraldez@gmx.net and paolo@gnome.org.  We will review
+Please submit patches to bugzilla.gnome.org. We will review
 them with much pleasure.
 
 If you are a translator feel free to mark strings for translation,
@@ -38,5 +37,8 @@ before applying.
 If you are a "build sheriff", feel free to commit fixes for build and 
 configure (please, send us an e-mail with the patch you have applied).
 
+
 Thanks,
-Gustavo and Paolo
+
+  the GtkSourceView team
+
