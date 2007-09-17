@@ -58,11 +58,11 @@ struct _GtkSourceStyleSchemeManagerClass
 
 GType			 gtk_source_style_scheme_manager_get_type		(void) G_GNUC_CONST;
 
-GtkSourceStyleSchemeManager
-			*gtk_source_style_scheme_manager_new			(void);
+GtkSourceStyleSchemeManager *
+			 gtk_source_style_scheme_manager_new			(void);
 
-GtkSourceStyleSchemeManager
-			*gtk_source_style_scheme_manager_get_default		(void);
+GtkSourceStyleSchemeManager *
+			 gtk_source_style_scheme_manager_get_default		(void);
 
 void			 gtk_source_style_scheme_manager_set_search_path	(GtkSourceStyleSchemeManager	*manager,
 						    				 gchar			       **path);
