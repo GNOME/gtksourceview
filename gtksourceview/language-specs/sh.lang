@@ -344,6 +344,8 @@
       <include>
         <context sub-pattern="0" where="start" style-ref="keyword"/>
         <context sub-pattern="0" where="end" style-ref="keyword"/>
+        <context ref="string"/>
+        <context ref="string-2"/>
         <context style-ref="others">
           <match>[^\)\s]+\s*\)|;;</match>
         </context>

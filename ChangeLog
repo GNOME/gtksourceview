@@ -1,3 +1,17 @@
+2007-09-15  Yevgen Muntyan  <muntyan@tamu.edu>
+
+	* gtksourceview/language-specs/sh.lang: case-esac context: match
+	strings before "*)" to work around its great lameness.
+
+2007-09-14  Yevgen Muntyan  <muntyan@tamu.edu>
+
+	* gtksourceview/language-specs/php.lang: made extend-parent="true"
+	for string contexts, fixes 476692.
+
+2007-09-11  Paolo Borelli  <pborelli@katamail.com>
+
+	* gtksourceview/language-specs/python.lang: relicense to LGPL, all
+	authors agreed.
 
 === gtksourceview 2.0.0 ===
 
