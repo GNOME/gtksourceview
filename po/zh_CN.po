@@ -7,73 +7,75 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-07-25 19:06+0100\n"
-"PO-Revision-Date: 2007-07-26 19:53+0800\n"
-"Last-Translator: Funda Wang <fundawang@linux.net.cn>\n"
-"Language-Team: zh_CN <i18n-translation@lists.linux.net.cn>\n"
+"POT-Creation-Date: 2007-09-10 03:51+0100\n"
+"PO-Revision-Date: 2007-09-18 15:25+0800\n"
+"Last-Translator: YangZhang <zyangmath@gmail.com>\n"
+"Language-Team: Chinese i18n <i18n-zh@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../gtksourceview/gtksourcebuffer.c:166
-msgid "Check Brackets"
-msgstr "检查括号"
+msgid "Highlight Syntax"
+msgstr "语法加亮"
 
 #: ../gtksourceview/gtksourcebuffer.c:167
-msgid "Whether to check and highlight matching brackets"
-msgstr "是否检查并加亮匹配括号"
-
-#: ../gtksourceview/gtksourcebuffer.c:175
-msgid "Highlight"
-msgstr "加亮"
-
-#: ../gtksourceview/gtksourcebuffer.c:176
 msgid "Whether to highlight syntax in the buffer"
 msgstr "是否在缓冲区突出显示语法"
 
-#: ../gtksourceview/gtksourcebuffer.c:184
+#: ../gtksourceview/gtksourcebuffer.c:180
+msgid "Highlight Matching Brackets"
+msgstr "加亮匹配括号"
+
+#: ../gtksourceview/gtksourcebuffer.c:181
+msgid "Whether to highlight matching brackets"
+msgstr "是否加亮突出显示匹配括号"
+
+#: ../gtksourceview/gtksourcebuffer.c:193
 msgid "Maximum Undo Levels"
 msgstr "最多撤消级别"
 
-#: ../gtksourceview/gtksourcebuffer.c:185
+#: ../gtksourceview/gtksourcebuffer.c:194
 msgid "Number of undo levels for the buffer"
 msgstr "缓冲区中的撤消级别"
 
-#: ../gtksourceview/gtksourcebuffer.c:195
+#. Translators: throughout gtksourceview "language" stands
+#. * for "programming language", not "spoken language"
+#: ../gtksourceview/gtksourcebuffer.c:206
 msgid "Language"
 msgstr "语言"
 
-#: ../gtksourceview/gtksourcebuffer.c:196
+#: ../gtksourceview/gtksourcebuffer.c:207
 msgid "Language object to get highlighting patterns from"
 msgstr "用于获得加亮显示模式语言对象"
 
-#: ../gtksourceview/gtksourcebuffer.c:204
+#: ../gtksourceview/gtksourcebuffer.c:215
 msgid "Can undo"
 msgstr "可以撤消"
 
-#: ../gtksourceview/gtksourcebuffer.c:205
+#: ../gtksourceview/gtksourcebuffer.c:216
 msgid "Whether Undo operation is possible"
 msgstr "撤消操作是否可能"
 
-#: ../gtksourceview/gtksourcebuffer.c:212
+#: ../gtksourceview/gtksourcebuffer.c:223
 msgid "Can redo"
 msgstr "可以重做"
 
-#: ../gtksourceview/gtksourcebuffer.c:213
+#: ../gtksourceview/gtksourcebuffer.c:224
 msgid "Whether Redo operation is possible"
 msgstr "重做操作是否可能"
 
-#: ../gtksourceview/gtksourcebuffer.c:229
-#: ../gtksourceview/gtksourcebuffer.c:230
+#: ../gtksourceview/gtksourcebuffer.c:238
+#: ../gtksourceview/gtksourcebuffer.c:239
 msgid "Style scheme"
 msgstr "样式大纲"
 
-#: ../gtksourceview/gtksourcecontextengine.c:2248
+#: ../gtksourceview/gtksourcecontextengine.c:2260
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "缺少主要语言定义(id = “%s”)。"
 
-#: ../gtksourceview/gtksourcecontextengine.c:2552
+#: ../gtksourceview/gtksourcecontextengine.c:2566
 msgid "using \\C is not supported in language definitions"
 msgstr "语言定义中不支持使用 \\C"
 
@@ -81,332 +83,373 @@ msgstr "语言定义中不支持使用 \\C"
 #. * named sub-patterns with the same name or if resulting regex is
 #. * too long. In this case fixing lang file helps (e.g. renaming
 #. * subpatterns, making huge keywords use bigger prefixes, etc.)
-#: ../gtksourceview/gtksourcecontextengine.c:3152
+#: ../gtksourceview/gtksourcecontextengine.c:3167
 #, c-format
 msgid ""
 "Cannot create a regex for all the transitions, the syntax highlighting "
 "process will be slower than usual.\n"
 "The error was: %s"
 msgstr ""
+"无法为所有的转换创建正则表达式，语法加亮进程将会比正常情况慢。\n"
+"错误是：%s"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5638
+#: ../gtksourceview/gtksourcecontextengine.c:5670
 #, c-format
 msgid "context '%s' cannot contain a \\%%{...@start} command"
-msgstr ""
+msgstr "上下文‘%s’不能包含一个 \\%%{...@start} 命令"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5790
-#: ../gtksourceview/gtksourcecontextengine.c:5877
+#: ../gtksourceview/gtksourcecontextengine.c:5822
+#: ../gtksourceview/gtksourcecontextengine.c:5909
 #, c-format
 msgid "duplicated context id '%s'"
-msgstr ""
+msgstr "重复的上下文 id ‘%s’"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5990
-#: ../gtksourceview/gtksourcecontextengine.c:6050
-#, c-format
+#: ../gtksourceview/gtksourcecontextengine.c:6022
+#: ../gtksourceview/gtksourcecontextengine.c:6082
+#, fuzzy, c-format
 msgid ""
 "style override used with wildcard context reference in language '%s' in ref "
 "'%s'"
 msgstr ""
+"参考‘%s’中的语言‘%s’中的与通配符上下文引用一同使用的样式覆盖"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6064
+#: ../gtksourceview/gtksourcecontextengine.c:6096
 #, c-format
 msgid "invalid reference '%s'"
-msgstr ""
+msgstr "无效的引用‘%s’"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6083
-#: ../gtksourceview/gtksourcecontextengine.c:6093
+#: ../gtksourceview/gtksourcecontextengine.c:6115
+#: ../gtksourceview/gtksourcecontextengine.c:6125
 #, c-format
 msgid "unknown context '%s'"
-msgstr ""
+msgstr "未知的上下文‘%s’"
 
-#: ../gtksourceview/gtksourcelanguagemanager.c:126
+#: ../gtksourceview/gtksourcelanguage.c:42
+#: ../gtksourceview/language-specs/changelog.lang.h:2
+#: ../gtksourceview/language-specs/css.lang.h:10
+#: ../gtksourceview/language-specs/desktop.lang.h:11
+#: ../gtksourceview/language-specs/diff.lang.h:9
+#: ../gtksourceview/language-specs/dpatch.lang.h:2
+#: ../gtksourceview/language-specs/gtkrc.lang.h:8
+#: ../gtksourceview/language-specs/ini.lang.h:8
+#: ../gtksourceview/language-specs/libtool.lang.h:2
+#: ../gtksourceview/language-specs/msil.lang.h:2
+#: ../gtksourceview/language-specs/ocl.lang.h:6
+#: ../gtksourceview/language-specs/pkgconfig.lang.h:1
+#: ../gtksourceview/language-specs/po.lang.h:4
+#: ../gtksourceview/language-specs/rpmspec.lang.h:10
+#: ../gtksourceview/language-specs/texinfo.lang.h:8
+#: ../gtksourceview/language-specs/yacc.lang.h:2
+msgid "Others"
+msgstr "其它"
+
+#: ../gtksourceview/gtksourcelanguage.c:214
+#: ../gtksourceview/gtksourcelanguage.c:215
+msgid "Language id"
+msgstr "语言 id"
+
+#: ../gtksourceview/gtksourcelanguage.c:222
+#: ../gtksourceview/gtksourcelanguage.c:223
+msgid "Language name"
+msgstr "语言名称"
+
+#: ../gtksourceview/gtksourcelanguage.c:230
+#: ../gtksourceview/gtksourcelanguage.c:231
+msgid "Language section"
+msgstr "语言部分"
+
+#: ../gtksourceview/gtksourcelanguage.c:238
+msgid "Hidden"
+msgstr "隐藏"
+
+#: ../gtksourceview/gtksourcelanguage.c:239
+msgid "Whether the language should be hidden from the user"
+msgstr "是否向用户隐藏语言"
+
+#: ../gtksourceview/gtksourcelanguagemanager.c:133
 msgid "Language specification directories"
 msgstr "语言规范目录"
 
-#: ../gtksourceview/gtksourcelanguagemanager.c:127
+#: ../gtksourceview/gtksourcelanguagemanager.c:134
 msgid ""
 "List of directories where the language specification files (.lang) are "
 "located"
 msgstr "列出语言规范文件(.lang)所在的目录"
 
-#: ../gtksourceview/gtksourcelanguage-parser-2.c:882
+#: ../gtksourceview/gtksourcelanguagemanager.c:143
+msgid "Language ids"
+msgstr "语言 id"
+
+#: ../gtksourceview/gtksourcelanguagemanager.c:144
+msgid "List of the ids of the available languages"
+msgstr "可用的语言的 id 的列表"
+
+#: ../gtksourceview/gtksourcelanguage-parser-2.c:876
 #, c-format
 msgid "Unknown id '%s' in regex '%s'"
-msgstr ""
+msgstr "正则表达式‘%2$s’中的未知 id ‘%1$s’"
 
-#: ../gtksourceview/gtksourcelanguage-parser-2.c:1110
+#: ../gtksourceview/gtksourcelanguage-parser-2.c:1104
 #, c-format
 msgid "in regex '%s': backreferences are not supported"
-msgstr ""
+msgstr "于正则表达式‘%s’中：后向引用不被支持"
 
-#: ../gtksourceview/gtksourcestyle.c:68
+#: ../gtksourceview/gtksourcestyle.c:70
+msgid "Line background"
+msgstr "行背景"
+
+#: ../gtksourceview/gtksourcestyle.c:71
+msgid "Line background color"
+msgstr "行背景颜色"
+
+#: ../gtksourceview/gtksourcestyle.c:78
 msgid "Background"
 msgstr "背景"
 
-#: ../gtksourceview/gtksourcestyle.c:69
+#: ../gtksourceview/gtksourcestyle.c:79
 msgid "Background color"
 msgstr "背景颜色"
 
-#: ../gtksourceview/gtksourcestyle.c:76
+#: ../gtksourceview/gtksourcestyle.c:86
 msgid "Foreground"
 msgstr "前景"
 
-#: ../gtksourceview/gtksourcestyle.c:77
+#: ../gtksourceview/gtksourcestyle.c:87
 msgid "Foreground color"
 msgstr "前景颜色"
 
-#: ../gtksourceview/gtksourcestyle.c:84 ../gtksourceview/gtksourcestyle.c:85
+#: ../gtksourceview/gtksourcestyle.c:94 ../gtksourceview/gtksourcestyle.c:95
 msgid "Bold"
 msgstr "粗体"
 
-#: ../gtksourceview/gtksourcestyle.c:92 ../gtksourceview/gtksourcestyle.c:93
+#: ../gtksourceview/gtksourcestyle.c:102 ../gtksourceview/gtksourcestyle.c:103
 msgid "Italic"
 msgstr "斜体"
 
-#: ../gtksourceview/gtksourcestyle.c:100 ../gtksourceview/gtksourcestyle.c:101
+#: ../gtksourceview/gtksourcestyle.c:110 ../gtksourceview/gtksourcestyle.c:111
 msgid "Underline"
 msgstr "下划线"
 
-#: ../gtksourceview/gtksourcestyle.c:108 ../gtksourceview/gtksourcestyle.c:109
+#: ../gtksourceview/gtksourcestyle.c:118 ../gtksourceview/gtksourcestyle.c:119
 msgid "Strikethrough"
 msgstr "删除线"
 
-#: ../gtksourceview/gtksourcestyle.c:116
+#: ../gtksourceview/gtksourcestyle.c:126
+msgid "Line background set"
+msgstr "行背景设定"
+
+#: ../gtksourceview/gtksourcestyle.c:127
+msgid "Whether line background color is set"
+msgstr "是否设定行背景颜色"
+
+#: ../gtksourceview/gtksourcestyle.c:134
 msgid "Foreground set"
 msgstr "前景设定"
 
-#: ../gtksourceview/gtksourcestyle.c:117
+#: ../gtksourceview/gtksourcestyle.c:135
 msgid "Whether foreground color is set"
 msgstr "是否设定了前景颜色"
 
-#: ../gtksourceview/gtksourcestyle.c:124
+#: ../gtksourceview/gtksourcestyle.c:142
 msgid "Background set"
 msgstr "背景设定"
 
-#: ../gtksourceview/gtksourcestyle.c:125
+#: ../gtksourceview/gtksourcestyle.c:143
 msgid "Whether background color is set"
 msgstr "是否设定了背景颜色"
 
-#: ../gtksourceview/gtksourcestyle.c:132
+#: ../gtksourceview/gtksourcestyle.c:150
 msgid "Bold set"
 msgstr "粗体设定"
 
-#: ../gtksourceview/gtksourcestyle.c:133
+#: ../gtksourceview/gtksourcestyle.c:151
 msgid "Whether bold attribute is set"
-msgstr "是否设定了粗体属性"
+msgstr "是否设定粗体属性"
 
-#: ../gtksourceview/gtksourcestyle.c:140
+#: ../gtksourceview/gtksourcestyle.c:158
 msgid "Italic set"
 msgstr "斜体设定"
 
-#: ../gtksourceview/gtksourcestyle.c:141
+#: ../gtksourceview/gtksourcestyle.c:159
 msgid "Whether italic attribute is set"
-msgstr ""
+msgstr "是否设定斜体属性"
 
-#: ../gtksourceview/gtksourcestyle.c:148
+#: ../gtksourceview/gtksourcestyle.c:166
 msgid "Underline set"
-msgstr ""
+msgstr "下划线设定"
 
-#: ../gtksourceview/gtksourcestyle.c:149
-#, fuzzy
+#: ../gtksourceview/gtksourcestyle.c:167
 msgid "Whether underline attribute is set"
-msgstr "撤消操作是否可能"
+msgstr "下划线属性是否设定"
 
-#: ../gtksourceview/gtksourcestyle.c:156
+#: ../gtksourceview/gtksourcestyle.c:174
 msgid "Strikethrough set"
-msgstr ""
+msgstr "删除线设定"
 
-#: ../gtksourceview/gtksourcestyle.c:157
+#: ../gtksourceview/gtksourcestyle.c:175
 msgid "Whether strikethrough attribute is set"
-msgstr ""
+msgstr "是否设定删除线属性"
 
-#: ../gtksourceview/gtksourcestylemanager.c:142
-#, fuzzy
+#: ../gtksourceview/gtksourcestyleschememanager.c:145
 msgid "Style scheme search path"
-msgstr "样式大纲"
+msgstr "样式大纲搜索路径"
 
-#: ../gtksourceview/gtksourcestylemanager.c:143
-#, fuzzy
+#: ../gtksourceview/gtksourcestyleschememanager.c:146
 msgid "List of directories and files where the style schemes are located"
-msgstr "列出语言规范文件(.lang)所在的目录"
+msgstr "样式大纲所在的目录与文件的列表"
 
-#: ../gtksourceview/gtksourcestylemanager.c:151
-#, fuzzy
+#: ../gtksourceview/gtksourcestyleschememanager.c:154
 msgid "Scheme ids"
-msgstr "大纲"
+msgstr "大纲 id"
 
-#: ../gtksourceview/gtksourcestylemanager.c:152
+#: ../gtksourceview/gtksourcestyleschememanager.c:155
 msgid "List of the ids of the available style schemes"
-msgstr ""
+msgstr "可用的样式大纲的 id 的列表"
 
-#: ../gtksourceview/gtksourcestylescheme.c:167
-#: ../gtksourceview/gtksourcestylescheme.c:168
+#: ../gtksourceview/gtksourcestylescheme.c:169
+#: ../gtksourceview/gtksourcestylescheme.c:170
 msgid "Style scheme id"
-msgstr ""
+msgstr "样式大纲 id"
 
 #: ../gtksourceview/gtksourcestylescheme.c:182
 #: ../gtksourceview/gtksourcestylescheme.c:183
 msgid "Style scheme name"
-msgstr ""
+msgstr "样式大纲名称"
 
-#: ../gtksourceview/gtksourcestylescheme.c:197
-#: ../gtksourceview/gtksourcestylescheme.c:198
+#: ../gtksourceview/gtksourcestylescheme.c:195
+#: ../gtksourceview/gtksourcestylescheme.c:196
+msgid "Style scheme description"
+msgstr "样式大纲描述"
+
+#: ../gtksourceview/gtksourcestylescheme.c:208
+#: ../gtksourceview/gtksourcestylescheme.c:209
 msgid "Style scheme filename"
 msgstr "样式大纲文件名"
 
-#: ../gtksourceview/gtksourceview.c:232
+#: ../gtksourceview/gtksourceview.c:239
 msgid "Show Line Numbers"
 msgstr "显示行号"
 
-#: ../gtksourceview/gtksourceview.c:233
+#: ../gtksourceview/gtksourceview.c:240
 msgid "Whether to display line numbers"
 msgstr "是否显示行号"
 
-#: ../gtksourceview/gtksourceview.c:240
-msgid "Show Line Markers"
-msgstr "显示水线"
+#: ../gtksourceview/gtksourceview.c:252
+msgid "Tab Width"
+msgstr "Tab 宽度"
 
-#: ../gtksourceview/gtksourceview.c:241
-msgid "Whether to display line marker pixbufs"
-msgstr "是否显示行的水线"
+#: ../gtksourceview/gtksourceview.c:253
+msgid "Width of a tab character expressed in spaces"
+msgstr "以空格记的 Tab 字符的宽度"
 
-#: ../gtksourceview/gtksourceview.c:248 ../gtksourceview/gtksourceview.c:249
-msgid "Tabs Width"
-msgstr "跳格宽度"
+#: ../gtksourceview/gtksourceview.c:267
+msgid "Indent Width"
+msgstr "缩进宽度"
 
-#: ../gtksourceview/gtksourceview.c:258
+#: ../gtksourceview/gtksourceview.c:268
+msgid "Number of spaces to use for each step of indent"
+msgstr "每次缩进的空格的数目"
+
+#: ../gtksourceview/gtksourceview.c:277
 msgid "Auto Indentation"
 msgstr "自动缩进"
 
-#: ../gtksourceview/gtksourceview.c:259
+#: ../gtksourceview/gtksourceview.c:278
 msgid "Whether to enable auto indentation"
 msgstr "是否允许自动缩进"
 
-#: ../gtksourceview/gtksourceview.c:266
+#: ../gtksourceview/gtksourceview.c:285
 msgid "Insert Spaces Instead of Tabs"
 msgstr "插入空格替代跳格"
 
-#: ../gtksourceview/gtksourceview.c:267
+#: ../gtksourceview/gtksourceview.c:286
 msgid "Whether to insert spaces instead of tabs"
 msgstr "在插入时是否以空格替代跳格"
 
-#: ../gtksourceview/gtksourceview.c:274
+#: ../gtksourceview/gtksourceview.c:298
 msgid "Show Right Margin"
 msgstr "显示右边距"
 
-#: ../gtksourceview/gtksourceview.c:275
+#: ../gtksourceview/gtksourceview.c:299
 msgid "Whether to display the right margin"
 msgstr "是否显示右边距"
 
-#: ../gtksourceview/gtksourceview.c:282
-msgid "Margin position"
-msgstr "边距位置"
+#: ../gtksourceview/gtksourceview.c:311
+msgid "Right Margin Position"
+msgstr "右边距位置"
 
-#: ../gtksourceview/gtksourceview.c:283
+#: ../gtksourceview/gtksourceview.c:312
 msgid "Position of the right margin"
 msgstr "右边距的位置"
 
-#: ../gtksourceview/gtksourceview.c:299
+#: ../gtksourceview/gtksourceview.c:328
 msgid "Smart Home/End"
-msgstr "智能行首/行尾"
+msgstr "智能 Home/End"
 
-#: ../gtksourceview/gtksourceview.c:300
+#: ../gtksourceview/gtksourceview.c:329
 msgid ""
 "HOME and END keys move to first/last non whitespace characters on line "
 "before going to the start/end of the line"
 msgstr "HOME 和 END 键将会跳到行内的第一个/最后一个字符，而不是跳到行首/尾"
 
-#: ../gtksourceview/gtksourceview.c:310
+#: ../gtksourceview/gtksourceview.c:339
 msgid "Highlight current line"
 msgstr "加亮显示当前行"
 
-#: ../gtksourceview/gtksourceview.c:311
+#: ../gtksourceview/gtksourceview.c:340
 msgid "Whether to highlight the current line"
 msgstr "是否加亮显示当前行"
 
-#: ../gtksourceview/gtksourceview.c:318
+#: ../gtksourceview/gtksourceview.c:347
 msgid "Indent on tab"
-msgstr "跳格锁进"
+msgstr "tab 缩进"
 
-#: ../gtksourceview/gtksourceview.c:319
+#: ../gtksourceview/gtksourceview.c:348
 msgid "Whether to indent the selected text when the tab key is pressed"
-msgstr "按下跳格键时缩进选中文本"
-
-#: ../gtksourceview/gtksourceview.c:335
-msgid "Margin Line Alpha"
-msgstr "边距线透明度"
-
-#: ../gtksourceview/gtksourceview.c:336
-msgid "Transparency of the margin line"
-msgstr "边距线透明度"
-
-#: ../gtksourceview/gtksourceview.c:353
-msgid "Margin Line Color"
-msgstr "边距线颜色"
-
-#: ../gtksourceview/gtksourceview.c:354
-msgid "Color to use for the right margin line"
-msgstr "右侧边距线所使用的颜色"
-
-#: ../gtksourceview/gtksourceview.c:370
-msgid "Margin Overlay Toggle"
-msgstr "边距覆盖切换"
-
-#: ../gtksourceview/gtksourceview.c:371
-msgid "Whether to draw the right margin overlay"
-msgstr "是否绘制右侧边距覆盖"
-
-#: ../gtksourceview/gtksourceview.c:387
-msgid "Margin Overlay Alpha"
-msgstr "边距覆盖透明度"
-
-#: ../gtksourceview/gtksourceview.c:388
-msgid "Transparency of the margin overlay"
-msgstr "边距覆盖的透明度"
-
-#: ../gtksourceview/gtksourceview.c:405
-msgid "Margin Overlay Color"
-msgstr "边距覆盖颜色"
-
-#: ../gtksourceview/gtksourceview.c:406
-msgid "Color to use for drawing the margin overlay"
-msgstr "绘制边距覆盖所使用的颜色"
+msgstr "按下 tab 键时缩进选中文本"
 
 #: ../gtksourceview/gtksourceview-i18n.c:38
 msgid "translator-credits"
-msgstr ""
+msgstr "YangZhang <zyangmath@gmail.com> 2007"
 
 #: ../gtksourceview/language-specs/ada.lang.h:1
 msgid "Ada"
 msgstr "Ada"
 
 #: ../gtksourceview/language-specs/ada.lang.h:2
-msgid "Ada Identifier"
-msgstr "Ada 标识符"
-
-#: ../gtksourceview/language-specs/ada.lang.h:3
 msgid "Arbitrary base number"
-msgstr ""
+msgstr "任意基数"
 
-#: ../gtksourceview/language-specs/ada.lang.h:4
-#: ../gtksourceview/language-specs/boo.lang.h:1
-#: ../gtksourceview/language-specs/desktop.lang.h:2
+#. A boolean constant: TRUE, false
+#: ../gtksourceview/language-specs/ada.lang.h:3
+#: ../gtksourceview/language-specs/c.lang.h:1
+#: ../gtksourceview/language-specs/csharp.lang.h:1
+#: ../gtksourceview/language-specs/def.lang.h:4
+#: ../gtksourceview/language-specs/gtkrc.lang.h:1
+#: ../gtksourceview/language-specs/ini.lang.h:2
 #: ../gtksourceview/language-specs/java.lang.h:1
-#: ../gtksourceview/language-specs/libtool.lang.h:1
-#: ../gtksourceview/language-specs/scheme.lang.h:1
-msgid "Boolean"
+#: ../gtksourceview/language-specs/javascript.lang.h:1
+#: ../gtksourceview/language-specs/lua.lang.h:1
+#: ../gtksourceview/language-specs/nemerle.lang.h:2
+#: ../gtksourceview/language-specs/ocaml.lang.h:2
+#: ../gtksourceview/language-specs/php.lang.h:1
+#: ../gtksourceview/language-specs/R.lang.h:2
+#: ../gtksourceview/language-specs/ruby.lang.h:3
+#: ../gtksourceview/language-specs/vala.lang.h:1
+#: ../gtksourceview/language-specs/vbnet.lang.h:1
+#: ../gtksourceview/language-specs/vhdl.lang.h:2
+msgid "Boolean value"
 msgstr "布尔值"
 
-#: ../gtksourceview/language-specs/ada.lang.h:5
-#: ../gtksourceview/language-specs/lua.lang.h:1
-msgid "Character Escape"
-msgstr "字符转码"
-
-#: ../gtksourceview/language-specs/ada.lang.h:6
-#: ../gtksourceview/language-specs/c.lang.h:3
-#: ../gtksourceview/language-specs/csharp.lang.h:2
+#. Any comment
+#: ../gtksourceview/language-specs/ada.lang.h:4
+#: ../gtksourceview/language-specs/boo.lang.h:4
+#: ../gtksourceview/language-specs/c.lang.h:4
+#: ../gtksourceview/language-specs/csharp.lang.h:3
 #: ../gtksourceview/language-specs/css.lang.h:3
-#: ../gtksourceview/language-specs/def.lang.h:3
+#: ../gtksourceview/language-specs/def.lang.h:11
+#: ../gtksourceview/language-specs/d.lang.h:3
+#: ../gtksourceview/language-specs/erlang.lang.h:4
 #: ../gtksourceview/language-specs/fortran.lang.h:2
 #: ../gtksourceview/language-specs/gtkrc.lang.h:2
 #: ../gtksourceview/language-specs/haskell.lang.h:2
@@ -414,171 +457,209 @@ msgstr "字符转码"
 #: ../gtksourceview/language-specs/idl.lang.h:1
 #: ../gtksourceview/language-specs/ini.lang.h:3
 #: ../gtksourceview/language-specs/java.lang.h:2
-#: ../gtksourceview/language-specs/javascript.lang.h:1
+#: ../gtksourceview/language-specs/javascript.lang.h:2
 #: ../gtksourceview/language-specs/latex.lang.h:2
 #: ../gtksourceview/language-specs/lua.lang.h:2
+#: ../gtksourceview/language-specs/nemerle.lang.h:4
 #: ../gtksourceview/language-specs/ocaml.lang.h:4
 #: ../gtksourceview/language-specs/ocl.lang.h:1
-#: ../gtksourceview/language-specs/octave.lang.h:2
+#: ../gtksourceview/language-specs/octave.lang.h:3
 #: ../gtksourceview/language-specs/pascal.lang.h:1
-#: ../gtksourceview/language-specs/perl.lang.h:1
-#: ../gtksourceview/language-specs/php.lang.h:1
+#: ../gtksourceview/language-specs/perl.lang.h:2
+#: ../gtksourceview/language-specs/php.lang.h:2
 #: ../gtksourceview/language-specs/po.lang.h:1
 #: ../gtksourceview/language-specs/ruby.lang.h:5
 #: ../gtksourceview/language-specs/scheme.lang.h:2
+#: ../gtksourceview/language-specs/sh.lang.h:1
 #: ../gtksourceview/language-specs/sql.lang.h:1
 #: ../gtksourceview/language-specs/texinfo.lang.h:1
+#: ../gtksourceview/language-specs/vala.lang.h:2
+#: ../gtksourceview/language-specs/vbnet.lang.h:2
 #: ../gtksourceview/language-specs/verilog.lang.h:2
-#: ../gtksourceview/language-specs/xml.lang.h:5
+#: ../gtksourceview/language-specs/vhdl.lang.h:4
+#: ../gtksourceview/language-specs/xml.lang.h:4
 msgid "Comment"
 msgstr "注释"
 
 #. map-to="def:others"
-#: ../gtksourceview/language-specs/ada.lang.h:7
-#: ../gtksourceview/language-specs/c.lang.h:5
+#: ../gtksourceview/language-specs/ada.lang.h:5
+#: ../gtksourceview/language-specs/boo.lang.h:5
+#: ../gtksourceview/language-specs/c.lang.h:6
 #: ../gtksourceview/language-specs/cpp.lang.h:3
-#: ../gtksourceview/language-specs/csharp.lang.h:3
-#: ../gtksourceview/language-specs/css.lang.h:4
-#: ../gtksourceview/language-specs/def.lang.h:5
+#: ../gtksourceview/language-specs/csharp.lang.h:4
+#: ../gtksourceview/language-specs/d.lang.h:5
 #: ../gtksourceview/language-specs/fortran.lang.h:3
 #: ../gtksourceview/language-specs/gtkrc.lang.h:3
 #: ../gtksourceview/language-specs/haskell.lang.h:3
 #: ../gtksourceview/language-specs/idl.lang.h:2
 #: ../gtksourceview/language-specs/ini.lang.h:4
 #: ../gtksourceview/language-specs/java.lang.h:3
-#: ../gtksourceview/language-specs/javascript.lang.h:4
+#: ../gtksourceview/language-specs/javascript.lang.h:5
+#: ../gtksourceview/language-specs/nemerle.lang.h:5
 #: ../gtksourceview/language-specs/objc.lang.h:2
 #: ../gtksourceview/language-specs/ocaml.lang.h:5
 #: ../gtksourceview/language-specs/ocl.lang.h:2
 #: ../gtksourceview/language-specs/pascal.lang.h:2
-#: ../gtksourceview/language-specs/php.lang.h:2
+#: ../gtksourceview/language-specs/php.lang.h:3
 #: ../gtksourceview/language-specs/sql.lang.h:2
-#: ../gtksourceview/language-specs/tcl.lang.h:1
+#: ../gtksourceview/language-specs/vala.lang.h:3
+#: ../gtksourceview/language-specs/vbnet.lang.h:3
 msgid "Data Type"
 msgstr "数据类型"
 
-#: ../gtksourceview/language-specs/ada.lang.h:8
-#: ../gtksourceview/language-specs/c.lang.h:6
-#: ../gtksourceview/language-specs/css.lang.h:5
-#: ../gtksourceview/language-specs/def.lang.h:6
-#: ../gtksourceview/language-specs/d.lang.h:5
-#: ../gtksourceview/language-specs/fortran.lang.h:4
-#: ../gtksourceview/language-specs/gtkrc.lang.h:4
-#: ../gtksourceview/language-specs/haskell.lang.h:4
-#: ../gtksourceview/language-specs/ini.lang.h:5
-#: ../gtksourceview/language-specs/java.lang.h:4
+#. A decimal number: 1234
+#: ../gtksourceview/language-specs/ada.lang.h:6
+#: ../gtksourceview/language-specs/c.lang.h:7
+#: ../gtksourceview/language-specs/csharp.lang.h:5
+#: ../gtksourceview/language-specs/def.lang.h:19
+#: ../gtksourceview/language-specs/d.lang.h:6
+#: ../gtksourceview/language-specs/erlang.lang.h:6
 #: ../gtksourceview/language-specs/nemerle.lang.h:6
 #: ../gtksourceview/language-specs/ocaml.lang.h:6
-#: ../gtksourceview/language-specs/octave.lang.h:3
-#: ../gtksourceview/language-specs/pascal.lang.h:3
-#: ../gtksourceview/language-specs/python.lang.h:4
+#: ../gtksourceview/language-specs/php.lang.h:4
+#: ../gtksourceview/language-specs/python.lang.h:7
 #: ../gtksourceview/language-specs/ruby.lang.h:7
-#: ../gtksourceview/language-specs/sql.lang.h:3
-msgid "Decimal"
-msgstr "小数"
+#: ../gtksourceview/language-specs/vala.lang.h:4
+msgid "Decimal number"
+msgstr "十进制数"
 
-#: ../gtksourceview/language-specs/ada.lang.h:9
+#: ../gtksourceview/language-specs/ada.lang.h:7
+#: ../gtksourceview/language-specs/c.lang.h:9
+#: ../gtksourceview/language-specs/haskell.lang.h:5
+#: ../gtksourceview/language-specs/lua.lang.h:3
+#: ../gtksourceview/language-specs/ocaml.lang.h:8
+#: ../gtksourceview/language-specs/php.lang.h:6
+#: ../gtksourceview/language-specs/python.lang.h:8
+#: ../gtksourceview/language-specs/ruby.lang.h:8
+msgid "Escaped Character"
+msgstr "转码字符"
+
+#. keywords: "if", "for", "while", etc.
+#: ../gtksourceview/language-specs/ada.lang.h:8
 #: ../gtksourceview/language-specs/awk.lang.h:1
+#: ../gtksourceview/language-specs/boo.lang.h:7
 #: ../gtksourceview/language-specs/c.lang.h:13
 #: ../gtksourceview/language-specs/cpp.lang.h:4
-#: ../gtksourceview/language-specs/csharp.lang.h:5
-#: ../gtksourceview/language-specs/css.lang.h:9
-#: ../gtksourceview/language-specs/def.lang.h:14
+#: ../gtksourceview/language-specs/csharp.lang.h:8
+#: ../gtksourceview/language-specs/css.lang.h:8
+#: ../gtksourceview/language-specs/def.lang.h:36
+#: ../gtksourceview/language-specs/d.lang.h:10
+#: ../gtksourceview/language-specs/erlang.lang.h:9
 #: ../gtksourceview/language-specs/fortran.lang.h:7
 #: ../gtksourceview/language-specs/gtkrc.lang.h:7
 #: ../gtksourceview/language-specs/haskell.lang.h:9
 #: ../gtksourceview/language-specs/idl.lang.h:4
 #: ../gtksourceview/language-specs/ini.lang.h:7
-#: ../gtksourceview/language-specs/java.lang.h:8
+#: ../gtksourceview/language-specs/java.lang.h:9
 #: ../gtksourceview/language-specs/javascript.lang.h:10
-#: ../gtksourceview/language-specs/lua.lang.h:4
+#: ../gtksourceview/language-specs/lua.lang.h:5
+#: ../gtksourceview/language-specs/nemerle.lang.h:10
 #: ../gtksourceview/language-specs/objc.lang.h:3
-#: ../gtksourceview/language-specs/ocaml.lang.h:9
+#: ../gtksourceview/language-specs/ocaml.lang.h:10
 #: ../gtksourceview/language-specs/ocl.lang.h:3
-#: ../gtksourceview/language-specs/octave.lang.h:6
+#: ../gtksourceview/language-specs/octave.lang.h:7
 #: ../gtksourceview/language-specs/pascal.lang.h:4
 #: ../gtksourceview/language-specs/perl.lang.h:9
-#: ../gtksourceview/language-specs/php.lang.h:3
+#: ../gtksourceview/language-specs/php.lang.h:11
 #: ../gtksourceview/language-specs/po.lang.h:2
-#: ../gtksourceview/language-specs/python.lang.h:8
+#: ../gtksourceview/language-specs/python.lang.h:11
 #: ../gtksourceview/language-specs/R.lang.h:6
-#: ../gtksourceview/language-specs/ruby.lang.h:9
+#: ../gtksourceview/language-specs/ruby.lang.h:12
 #: ../gtksourceview/language-specs/scheme.lang.h:4
 #: ../gtksourceview/language-specs/sql.lang.h:6
-#: ../gtksourceview/language-specs/tcl.lang.h:2
+#: ../gtksourceview/language-specs/tcl.lang.h:1
 #: ../gtksourceview/language-specs/texinfo.lang.h:5
+#: ../gtksourceview/language-specs/vala.lang.h:7
+#: ../gtksourceview/language-specs/vbnet.lang.h:4
 #: ../gtksourceview/language-specs/verilog.lang.h:6
-#: ../gtksourceview/language-specs/vhdl.lang.h:2
+#: ../gtksourceview/language-specs/vhdl.lang.h:5
 msgid "Keyword"
 msgstr "关键字"
 
-#: ../gtksourceview/language-specs/ada.lang.h:10
+#: ../gtksourceview/language-specs/ada.lang.h:9
 #: ../gtksourceview/language-specs/c.lang.h:15
-#: ../gtksourceview/language-specs/csharp.lang.h:6
+#: ../gtksourceview/language-specs/csharp.lang.h:10
 #: ../gtksourceview/language-specs/haskell.lang.h:11
 #: ../gtksourceview/language-specs/idl.lang.h:5
+#: ../gtksourceview/language-specs/nemerle.lang.h:14
 #: ../gtksourceview/language-specs/pascal.lang.h:6
+#: ../gtksourceview/language-specs/vbnet.lang.h:5
 msgid "Preprocessor"
 msgstr "预处理器"
 
-#: ../gtksourceview/language-specs/ada.lang.h:11
+#: ../gtksourceview/language-specs/ada.lang.h:10
+#: ../gtksourceview/language-specs/csharp.lang.h:11
+#: ../gtksourceview/language-specs/vala.lang.h:9
+#: ../gtksourceview/language-specs/vhdl.lang.h:7
 msgid "Real number"
 msgstr "实数"
 
-#: ../gtksourceview/language-specs/ada.lang.h:12
-#: ../gtksourceview/language-specs/boo.lang.h:6
+#: ../gtksourceview/language-specs/ada.lang.h:11
+#: ../gtksourceview/language-specs/boo.lang.h:13
 #: ../gtksourceview/language-specs/c.lang.h:16
 #: ../gtksourceview/language-specs/chdr.lang.h:2
 #: ../gtksourceview/language-specs/cpp.lang.h:5
-#: ../gtksourceview/language-specs/csharp.lang.h:7
+#: ../gtksourceview/language-specs/csharp.lang.h:12
 #: ../gtksourceview/language-specs/d.lang.h:13
+#: ../gtksourceview/language-specs/erlang.lang.h:11
 #: ../gtksourceview/language-specs/fortran.lang.h:8
 #: ../gtksourceview/language-specs/haskell-literate.lang.h:2
 #: ../gtksourceview/language-specs/haskell.lang.h:12
 #: ../gtksourceview/language-specs/idl.lang.h:6
-#: ../gtksourceview/language-specs/java.lang.h:10
+#: ../gtksourceview/language-specs/java.lang.h:13
 #: ../gtksourceview/language-specs/makefile.lang.h:2
-#: ../gtksourceview/language-specs/nemerle.lang.h:14
+#: ../gtksourceview/language-specs/nemerle.lang.h:15
 #: ../gtksourceview/language-specs/objc.lang.h:5
-#: ../gtksourceview/language-specs/ocaml.lang.h:15
+#: ../gtksourceview/language-specs/ocaml.lang.h:16
 #: ../gtksourceview/language-specs/pascal.lang.h:7
 #: ../gtksourceview/language-specs/scheme.lang.h:6
 #: ../gtksourceview/language-specs/sql.lang.h:9
-#: ../gtksourceview/language-specs/vbnet.lang.h:10
+#: ../gtksourceview/language-specs/vala.lang.h:10
+#: ../gtksourceview/language-specs/vbnet.lang.h:6
 #: ../gtksourceview/language-specs/verilog.lang.h:7
-#: ../gtksourceview/language-specs/vhdl.lang.h:5
+#: ../gtksourceview/language-specs/vhdl.lang.h:8
 msgid "Sources"
 msgstr "源代码"
 
+#: ../gtksourceview/language-specs/ada.lang.h:12
+#: ../gtksourceview/language-specs/c.lang.h:17
+#: ../gtksourceview/language-specs/java.lang.h:14
+msgid "Storage Class"
+msgstr "存储类"
+
+#. A string constant: "this is a string"
 #: ../gtksourceview/language-specs/ada.lang.h:13
+#: ../gtksourceview/language-specs/boo.lang.h:15
 #: ../gtksourceview/language-specs/c.lang.h:18
-#: ../gtksourceview/language-specs/csharp.lang.h:8
+#: ../gtksourceview/language-specs/csharp.lang.h:13
 #: ../gtksourceview/language-specs/css.lang.h:13
-#: ../gtksourceview/language-specs/def.lang.h:22
-#: ../gtksourceview/language-specs/docbook.lang.h:11
+#: ../gtksourceview/language-specs/def.lang.h:57
+#: ../gtksourceview/language-specs/d.lang.h:15
+#: ../gtksourceview/language-specs/erlang.lang.h:12
 #: ../gtksourceview/language-specs/gtkrc.lang.h:9
 #: ../gtksourceview/language-specs/haskell.lang.h:13
 #: ../gtksourceview/language-specs/idl.lang.h:7
 #: ../gtksourceview/language-specs/ini.lang.h:9
-#: ../gtksourceview/language-specs/java.lang.h:11
+#: ../gtksourceview/language-specs/java.lang.h:15
 #: ../gtksourceview/language-specs/javascript.lang.h:15
-#: ../gtksourceview/language-specs/lua.lang.h:8
-#: ../gtksourceview/language-specs/nemerle.lang.h:15
+#: ../gtksourceview/language-specs/lua.lang.h:10
+#: ../gtksourceview/language-specs/nemerle.lang.h:16
 #: ../gtksourceview/language-specs/objc.lang.h:6
-#: ../gtksourceview/language-specs/ocaml.lang.h:16
+#: ../gtksourceview/language-specs/ocaml.lang.h:17
 #: ../gtksourceview/language-specs/ocl.lang.h:7
-#: ../gtksourceview/language-specs/octave.lang.h:10
+#: ../gtksourceview/language-specs/octave.lang.h:11
 #: ../gtksourceview/language-specs/pascal.lang.h:8
 #: ../gtksourceview/language-specs/perl.lang.h:18
-#: ../gtksourceview/language-specs/php.lang.h:7
+#: ../gtksourceview/language-specs/php.lang.h:17
 #: ../gtksourceview/language-specs/po.lang.h:5
-#: ../gtksourceview/language-specs/python.lang.h:14
-#: ../gtksourceview/language-specs/ruby.lang.h:15
+#: ../gtksourceview/language-specs/python.lang.h:17
+#: ../gtksourceview/language-specs/ruby.lang.h:21
 #: ../gtksourceview/language-specs/scheme.lang.h:7
 #: ../gtksourceview/language-specs/sql.lang.h:10
 #: ../gtksourceview/language-specs/texinfo.lang.h:9
-#: ../gtksourceview/language-specs/vbnet.lang.h:11
-#: ../gtksourceview/language-specs/vhdl.lang.h:6
+#: ../gtksourceview/language-specs/vala.lang.h:11
+#: ../gtksourceview/language-specs/vbnet.lang.h:8
+#: ../gtksourceview/language-specs/vhdl.lang.h:9
 msgid "String"
 msgstr "字符串"
 
@@ -588,122 +669,161 @@ msgstr "模式"
 
 #: ../gtksourceview/language-specs/awk.lang.h:3
 #: ../gtksourceview/language-specs/javascript.lang.h:14
-#: ../gtksourceview/language-specs/lua.lang.h:7
+#: ../gtksourceview/language-specs/lua.lang.h:9
 #: ../gtksourceview/language-specs/m4.lang.h:1
 #: ../gtksourceview/language-specs/perl.lang.h:17
-#: ../gtksourceview/language-specs/php.lang.h:6
-#: ../gtksourceview/language-specs/python.lang.h:12
-#: ../gtksourceview/language-specs/R.lang.h:10
-#: ../gtksourceview/language-specs/ruby.lang.h:14
-#: ../gtksourceview/language-specs/sh.lang.h:1
-#: ../gtksourceview/language-specs/tcl.lang.h:3
+#: ../gtksourceview/language-specs/php.lang.h:16
+#: ../gtksourceview/language-specs/python.lang.h:15
+#: ../gtksourceview/language-specs/R.lang.h:9
+#: ../gtksourceview/language-specs/ruby.lang.h:19
+#: ../gtksourceview/language-specs/sh.lang.h:2
+#: ../gtksourceview/language-specs/tcl.lang.h:2
 msgid "Scripts"
 msgstr "脚本"
 
 #: ../gtksourceview/language-specs/awk.lang.h:4
-#: ../gtksourceview/language-specs/gtk-doc.lang.h:11
-#: ../gtksourceview/language-specs/verilog.lang.h:8
-#: ../gtksourceview/language-specs/vhdl.lang.h:8
-msgid "Type"
-msgstr "类型"
+#: ../gtksourceview/language-specs/haskell.lang.h:15
+#: ../gtksourceview/language-specs/ini.lang.h:10
+#: ../gtksourceview/language-specs/perl.lang.h:20
+#: ../gtksourceview/language-specs/php.lang.h:18
+#: ../gtksourceview/language-specs/pkgconfig.lang.h:3
+#: ../gtksourceview/language-specs/ruby.lang.h:23
+#: ../gtksourceview/language-specs/tcl.lang.h:4
+msgid "Variable"
+msgstr "变量"
 
 #: ../gtksourceview/language-specs/awk.lang.h:5
 msgid "awk"
 msgstr "awk"
 
+#: ../gtksourceview/language-specs/boo.lang.h:1
+msgid "Boo"
+msgstr "Boo"
+
 #: ../gtksourceview/language-specs/boo.lang.h:2
-#: ../gtksourceview/language-specs/d.lang.h:9
-#: ../gtksourceview/language-specs/vbnet.lang.h:1
-msgid "Keywords"
-msgstr "关键字"
+#: ../gtksourceview/language-specs/desktop.lang.h:2
+#: ../gtksourceview/language-specs/d.lang.h:2
+#: ../gtksourceview/language-specs/libtool.lang.h:1
+#: ../gtksourceview/language-specs/octave.lang.h:2
+#: ../gtksourceview/language-specs/python.lang.h:2
+#: ../gtksourceview/language-specs/scheme.lang.h:1
+msgid "Boolean"
+msgstr "布尔值"
 
 #: ../gtksourceview/language-specs/boo.lang.h:3
-msgid "Literals"
-msgstr "字面"
+#: ../gtksourceview/language-specs/perl.lang.h:1
+#: ../gtksourceview/language-specs/python.lang.h:4
+msgid "Builtin Function"
+msgstr "内置函数"
 
-#: ../gtksourceview/language-specs/boo.lang.h:4
-#: ../gtksourceview/language-specs/desktop.lang.h:8
-#: ../gtksourceview/language-specs/vhdl.lang.h:4
+#: ../gtksourceview/language-specs/boo.lang.h:6
+msgid "Definition"
+msgstr "定义"
+
+#: ../gtksourceview/language-specs/boo.lang.h:8
+#: ../gtksourceview/language-specs/python.lang.h:13
+msgid "Multiline string"
+msgstr "多行字符串"
+
+#: ../gtksourceview/language-specs/boo.lang.h:9
+#: ../gtksourceview/language-specs/xml.lang.h:10
+msgid "Namespace"
+msgstr "命名空间"
+
+#: ../gtksourceview/language-specs/boo.lang.h:10
+#: ../gtksourceview/language-specs/csharp.lang.h:9
+#: ../gtksourceview/language-specs/d.lang.h:11
+#: ../gtksourceview/language-specs/java.lang.h:10
+#: ../gtksourceview/language-specs/javascript.lang.h:11
+#: ../gtksourceview/language-specs/nemerle.lang.h:12
+#: ../gtksourceview/language-specs/php.lang.h:12
+#: ../gtksourceview/language-specs/vala.lang.h:8
+msgid "Null Value"
+msgstr "Null 值"
+
+#. A generic number constant
+#: ../gtksourceview/language-specs/boo.lang.h:11
+#: ../gtksourceview/language-specs/def.lang.h:40
+#: ../gtksourceview/language-specs/desktop.lang.h:10
+#: ../gtksourceview/language-specs/java.lang.h:11
+#: ../gtksourceview/language-specs/vhdl.lang.h:6
 msgid "Number"
 msgstr "数字"
 
-#: ../gtksourceview/language-specs/boo.lang.h:5
-msgid "Primitive"
-msgstr "原始"
+#: ../gtksourceview/language-specs/boo.lang.h:12
+#: ../gtksourceview/language-specs/perl.lang.h:16
+#: ../gtksourceview/language-specs/ruby.lang.h:17
+msgid "Regular Expression"
+msgstr "正则表达式"
+
+#: ../gtksourceview/language-specs/boo.lang.h:14
+#: ../gtksourceview/language-specs/python.lang.h:16
+#: ../gtksourceview/language-specs/ruby.lang.h:20
+msgid "Special Variable"
+msgstr "特殊变量"
 
 #: ../gtksourceview/language-specs/changelog.lang.h:1
 msgid "ChangeLog"
 msgstr "ChangeLog"
 
-#: ../gtksourceview/language-specs/changelog.lang.h:2
-#: ../gtksourceview/language-specs/css.lang.h:10
-#: ../gtksourceview/language-specs/desktop.lang.h:9
-#: ../gtksourceview/language-specs/diff.lang.h:9
-#: ../gtksourceview/language-specs/dpatch.lang.h:2
-#: ../gtksourceview/language-specs/gtkrc.lang.h:8
-#: ../gtksourceview/language-specs/ini.lang.h:8
-#: ../gtksourceview/language-specs/libtool.lang.h:2
-#: ../gtksourceview/language-specs/msil.lang.h:2
-#: ../gtksourceview/language-specs/ocl.lang.h:6
-#: ../gtksourceview/language-specs/php.lang.h:4
-#: ../gtksourceview/language-specs/pkgconfig.lang.h:1
-#: ../gtksourceview/language-specs/po.lang.h:4
-#: ../gtksourceview/language-specs/spec.lang.h:12
-#: ../gtksourceview/language-specs/texinfo.lang.h:8
-#: ../gtksourceview/language-specs/yacc.lang.h:2
-msgid "Others"
-msgstr "其它"
-
-#: ../gtksourceview/language-specs/c.lang.h:1
+#: ../gtksourceview/language-specs/c.lang.h:2
 msgid "C"
 msgstr "C"
 
-#: ../gtksourceview/language-specs/c.lang.h:2
-#: ../gtksourceview/language-specs/def.lang.h:2
+#. A character constant: 'c'
+#: ../gtksourceview/language-specs/c.lang.h:3
+#: ../gtksourceview/language-specs/def.lang.h:9
 #: ../gtksourceview/language-specs/haskell.lang.h:1
+#: ../gtksourceview/language-specs/nemerle.lang.h:3
+#: ../gtksourceview/language-specs/vhdl.lang.h:3
 msgid "Character"
 msgstr "字符"
 
-#: ../gtksourceview/language-specs/c.lang.h:4
+#: ../gtksourceview/language-specs/c.lang.h:5
 #: ../gtksourceview/language-specs/cpp.lang.h:2
 #: ../gtksourceview/language-specs/objc.lang.h:1
 msgid "Common Defines"
 msgstr "公共定义"
 
-#. map-to="def:others"
-#: ../gtksourceview/language-specs/c.lang.h:7
-#: ../gtksourceview/language-specs/csharp.lang.h:4
-#: ../gtksourceview/language-specs/css.lang.h:7
-#: ../gtksourceview/language-specs/def.lang.h:10
+#. Any erroneous construct
+#: ../gtksourceview/language-specs/c.lang.h:8
+#: ../gtksourceview/language-specs/csharp.lang.h:6
+#: ../gtksourceview/language-specs/css.lang.h:6
+#: ../gtksourceview/language-specs/def.lang.h:28
+#: ../gtksourceview/language-specs/d.lang.h:7
 #: ../gtksourceview/language-specs/html.lang.h:5
 #: ../gtksourceview/language-specs/java.lang.h:5
-#: ../gtksourceview/language-specs/javascript.lang.h:5
+#: ../gtksourceview/language-specs/javascript.lang.h:6
+#: ../gtksourceview/language-specs/nemerle.lang.h:7
 #: ../gtksourceview/language-specs/ocaml.lang.h:7
-#: ../gtksourceview/language-specs/perl.lang.h:3
+#: ../gtksourceview/language-specs/perl.lang.h:4
+#: ../gtksourceview/language-specs/php.lang.h:5
+#: ../gtksourceview/language-specs/vala.lang.h:5
 #: ../gtksourceview/language-specs/verilog.lang.h:4
-#: ../gtksourceview/language-specs/xml.lang.h:9
+#: ../gtksourceview/language-specs/xml.lang.h:8
 msgid "Error"
 msgstr "错误"
 
-#: ../gtksourceview/language-specs/c.lang.h:8
-#: ../gtksourceview/language-specs/def.lang.h:11
-#: ../gtksourceview/language-specs/haddock.lang.h:6
-msgid "Escape"
-msgstr "转码"
-
-#: ../gtksourceview/language-specs/c.lang.h:9
-#: ../gtksourceview/language-specs/haskell.lang.h:5
-msgid "Escaped Character"
-msgstr "转码字符"
-
+#. A floating point constant: 2.3e10
 #: ../gtksourceview/language-specs/c.lang.h:10
-#: ../gtksourceview/language-specs/haskell.lang.h:6
-msgid "Float"
+#: ../gtksourceview/language-specs/def.lang.h:30
+#: ../gtksourceview/language-specs/d.lang.h:8
+#: ../gtksourceview/language-specs/erlang.lang.h:8
+#: ../gtksourceview/language-specs/nemerle.lang.h:8
+#: ../gtksourceview/language-specs/php.lang.h:7
+#: ../gtksourceview/language-specs/python.lang.h:9
+#: ../gtksourceview/language-specs/R.lang.h:4
+#: ../gtksourceview/language-specs/ruby.lang.h:9
+msgid "Floating point number"
 msgstr "浮点数"
 
 #: ../gtksourceview/language-specs/c.lang.h:11
-#: ../gtksourceview/language-specs/haskell.lang.h:8
-msgid "Hex"
+#: ../gtksourceview/language-specs/csharp.lang.h:7
+#: ../gtksourceview/language-specs/d.lang.h:9
+#: ../gtksourceview/language-specs/nemerle.lang.h:9
+#: ../gtksourceview/language-specs/php.lang.h:10
+#: ../gtksourceview/language-specs/vala.lang.h:6
+msgid "Hexadecimal number"
 msgstr "十六进制数"
 
 #: ../gtksourceview/language-specs/c.lang.h:12
@@ -711,13 +831,11 @@ msgid "Included File"
 msgstr "包含文件"
 
 #: ../gtksourceview/language-specs/c.lang.h:14
-#: ../gtksourceview/language-specs/haskell.lang.h:10
-msgid "Octal"
+#: ../gtksourceview/language-specs/d.lang.h:12
+#: ../gtksourceview/language-specs/nemerle.lang.h:13
+#: ../gtksourceview/language-specs/php.lang.h:13
+msgid "Octal number"
 msgstr "八进制数"
-
-#: ../gtksourceview/language-specs/c.lang.h:17
-msgid "Storage Class"
-msgstr "存储类"
 
 #: ../gtksourceview/language-specs/c.lang.h:19
 msgid "printf Conversion"
@@ -731,7 +849,7 @@ msgstr "C/C++/ObjC 头"
 msgid "C++"
 msgstr "C++"
 
-#: ../gtksourceview/language-specs/csharp.lang.h:1
+#: ../gtksourceview/language-specs/csharp.lang.h:2
 msgid "C#"
 msgstr "C#"
 
@@ -743,22 +861,36 @@ msgstr "CSS"
 msgid "Color"
 msgstr "色彩"
 
-#: ../gtksourceview/language-specs/css.lang.h:6
+#: ../gtksourceview/language-specs/css.lang.h:4
+#: ../gtksourceview/language-specs/fortran.lang.h:4
+#: ../gtksourceview/language-specs/gtkrc.lang.h:4
+#: ../gtksourceview/language-specs/haskell.lang.h:4
+#: ../gtksourceview/language-specs/ini.lang.h:5
+#: ../gtksourceview/language-specs/octave.lang.h:4
+#: ../gtksourceview/language-specs/pascal.lang.h:3
+#: ../gtksourceview/language-specs/sql.lang.h:3
+msgid "Decimal"
+msgstr "小数"
+
+#: ../gtksourceview/language-specs/css.lang.h:5
 msgid "Dimension"
 msgstr "尺寸"
 
-#: ../gtksourceview/language-specs/css.lang.h:8
-#: ../gtksourceview/language-specs/def.lang.h:13
+#. A function name (also: methods for classes)
+#: ../gtksourceview/language-specs/css.lang.h:7
+#: ../gtksourceview/language-specs/def.lang.h:32
 #: ../gtksourceview/language-specs/gtk-doc.lang.h:2
-#: ../gtksourceview/language-specs/javascript.lang.h:6
-#: ../gtksourceview/language-specs/lua.lang.h:3
-#: ../gtksourceview/language-specs/octave.lang.h:5
-#: ../gtksourceview/language-specs/perl.lang.h:5
-#: ../gtksourceview/language-specs/python.lang.h:7
+#: ../gtksourceview/language-specs/javascript.lang.h:7
+#: ../gtksourceview/language-specs/lua.lang.h:4
+#: ../gtksourceview/language-specs/octave.lang.h:6
 #: ../gtksourceview/language-specs/scheme.lang.h:3
 #: ../gtksourceview/language-specs/sql.lang.h:5
 msgid "Function"
 msgstr "函数"
+
+#: ../gtksourceview/language-specs/css.lang.h:9
+msgid "Known Property Value"
+msgstr "已知属性名称"
 
 #: ../gtksourceview/language-specs/css.lang.h:11
 msgid "Others 2"
@@ -772,61 +904,108 @@ msgstr "其它 3"
 msgid "at-rules"
 msgstr "at 规则"
 
-#: ../gtksourceview/language-specs/def.lang.h:1
-#: ../gtksourceview/language-specs/fortran.lang.h:1
-#: ../gtksourceview/language-specs/ocaml.lang.h:1
-#: ../gtksourceview/language-specs/octave.lang.h:1
-#: ../gtksourceview/language-specs/verilog.lang.h:1
-msgid "Base-N Integer"
+#. A base-N number: 0xFFFF
+#: ../gtksourceview/language-specs/def.lang.h:2
+#: ../gtksourceview/language-specs/python.lang.h:1
+#: ../gtksourceview/language-specs/ruby.lang.h:2
+msgid "Base-N number"
 msgstr "N 进制整数"
 
-#: ../gtksourceview/language-specs/def.lang.h:4
-#: ../gtksourceview/language-specs/python.lang.h:3
+#. A builtin name: like __import__, abs in Python
+#. (see http://docs.python.org/lib/built-in-funcs.html)
+#: ../gtksourceview/language-specs/def.lang.h:7
+msgid "Built-in identifier"
+msgstr "内置标识符"
+
+#. A complex number
+#: ../gtksourceview/language-specs/def.lang.h:13
+#: ../gtksourceview/language-specs/python.lang.h:6
 msgid "Complex number"
 msgstr "复数"
 
-#: ../gtksourceview/language-specs/def.lang.h:7
+#. Any constant
+#: ../gtksourceview/language-specs/def.lang.h:15
+#: ../gtksourceview/language-specs/gtk-doc.lang.h:1
+#: ../gtksourceview/language-specs/ruby.lang.h:6
+msgid "Constant"
+msgstr "常量"
+
+#. A primitive data type: int, long, char, etc.
+#: ../gtksourceview/language-specs/def.lang.h:17
+msgid "Data type"
+msgstr "数据类型"
+
+#: ../gtksourceview/language-specs/def.lang.h:20
 msgid "Defaults"
 msgstr "默认值"
 
-#: ../gtksourceview/language-specs/def.lang.h:8
-msgid "Documentation Comment"
+#. A special comment containing documentation like in javadoc or
+#. gtk-doc
+#: ../gtksourceview/language-specs/def.lang.h:23
+msgid "Documentation comment"
 msgstr "文档注释"
 
-#: ../gtksourceview/language-specs/def.lang.h:9
-msgid "Documentation Comment Element"
+#. This style doesn't map to anything since it must be used as an additional
+#. style for text which is already styled as a "doc-comment"
+#: ../gtksourceview/language-specs/def.lang.h:26
+msgid "Documentation comment element"
 msgstr "文档注释元素"
 
-#: ../gtksourceview/language-specs/def.lang.h:12
-#: ../gtksourceview/language-specs/fortran.lang.h:5
-#: ../gtksourceview/language-specs/ini.lang.h:6
-#: ../gtksourceview/language-specs/ocaml.lang.h:8
-#: ../gtksourceview/language-specs/octave.lang.h:4
-#: ../gtksourceview/language-specs/sql.lang.h:4
-msgid "Floating Point"
-msgstr "浮点数"
+#. Any variable name
+#: ../gtksourceview/language-specs/def.lang.h:34
+msgid "Identifier"
+msgstr "标识符"
 
-#: ../gtksourceview/language-specs/def.lang.h:15
-msgid "Net Address"
-msgstr "网络地址"
+#. Anything that needs extra attention; mostly the keywords TODO, FIXME and XXX
+#: ../gtksourceview/language-specs/def.lang.h:38
+msgid "Note (FIXME, TODO, XXX, etc.)"
+msgstr "注释 (FIXME、TODO、XXX 等)"
 
-#: ../gtksourceview/language-specs/def.lang.h:16
-msgid "Note"
-msgstr "笔记"
+#. Operators: "+", "*", etc.
+#: ../gtksourceview/language-specs/def.lang.h:42
+#: ../gtksourceview/language-specs/erlang.lang.h:10
+#: ../gtksourceview/language-specs/perl.lang.h:11
+#: ../gtksourceview/language-specs/php.lang.h:14
+msgid "Operator"
+msgstr "操作符"
 
 #. This one is for '#include <foo.h>' and "#pragma blah", or 'use foobar', etc..
-#: ../gtksourceview/language-specs/def.lang.h:18
+#: ../gtksourceview/language-specs/def.lang.h:44
 msgid "Preprocessor directive"
 msgstr "预处理指令"
 
-#: ../gtksourceview/language-specs/def.lang.h:19
+#. Reserved keywords: like "const" and "goto" in Java
+#: ../gtksourceview/language-specs/def.lang.h:46
+msgid "Reserved keyword"
+msgstr "保留关键字"
+
+#. A shebang: #!/bin/sh
+#: ../gtksourceview/language-specs/def.lang.h:48
+#: ../gtksourceview/language-specs/sh.lang.h:3
 msgid "Shebang"
 msgstr "Shebang"
 
-#. For things like TRUE and NULL in C.
-#: ../gtksourceview/language-specs/def.lang.h:21
-msgid "Special value"
-msgstr "特殊值"
+#. This style doesn't map to anything since it must be used as an additional
+#. style for text which is already styled as a "string"
+#: ../gtksourceview/language-specs/def.lang.h:51
+msgid "Special character (inside a string)"
+msgstr "字符串内部的特殊字符"
+
+#. A special constant like NULL in C or null in Java
+#: ../gtksourceview/language-specs/def.lang.h:53
+#: ../gtksourceview/language-specs/vbnet.lang.h:7
+msgid "Special constant"
+msgstr "特殊常数"
+
+#. Any statement
+#: ../gtksourceview/language-specs/def.lang.h:55
+msgid "Statement"
+msgstr "语句"
+
+#. Text that stands out, HTML links, e-mail addresses, etc.
+#: ../gtksourceview/language-specs/def.lang.h:59
+msgid "Underlined"
+msgstr "加下划线的"
 
 #: ../gtksourceview/language-specs/desktop.lang.h:1
 msgid ".desktop"
@@ -848,11 +1027,13 @@ msgstr "执行参数"
 msgid "Group"
 msgstr "组"
 
-#: ../gtksourceview/language-specs/desktop.lang.h:7
+#. Translators: "Key" here means key value, that is the left hand
+#. side in a myoption=something line in a .desktop file
+#: ../gtksourceview/language-specs/desktop.lang.h:9
 msgid "Key"
 msgstr "关键字"
 
-#: ../gtksourceview/language-specs/desktop.lang.h:10
+#: ../gtksourceview/language-specs/desktop.lang.h:12
 msgid "Translation"
 msgstr "翻译"
 
@@ -892,126 +1073,47 @@ msgstr "特例"
 
 #: ../gtksourceview/language-specs/d.lang.h:1
 #: ../gtksourceview/language-specs/nemerle.lang.h:1
-msgid "Binary Number"
+msgid "Binary number"
 msgstr "二进制数"
-
-#: ../gtksourceview/language-specs/d.lang.h:2
-#: ../gtksourceview/language-specs/docbook.lang.h:2
-#: ../gtksourceview/language-specs/nemerle.lang.h:2
-msgid "Block Comment"
-msgstr "块注释"
-
-#: ../gtksourceview/language-specs/d.lang.h:3
-msgid "Char Literal"
-msgstr "字面字符"
 
 #: ../gtksourceview/language-specs/d.lang.h:4
 msgid "D"
 msgstr "D"
 
-#: ../gtksourceview/language-specs/d.lang.h:6
-#: ../gtksourceview/language-specs/nemerle.lang.h:7
-#: ../gtksourceview/language-specs/R.lang.h:4
-msgid "Floating Point Number"
-msgstr "浮点数"
-
-#: ../gtksourceview/language-specs/d.lang.h:7
-msgid "Grave Literal"
-msgstr "字面标记"
-
-#: ../gtksourceview/language-specs/d.lang.h:8
-#: ../gtksourceview/language-specs/nemerle.lang.h:8
-msgid "Hex Number"
-msgstr "十六进制数"
-
-#. <string _name = "String 2" style = "String" end-at-line-end = "TRUE">
-#. <start-regex>&apos;</start-regex>
-#. <end-regex>&apos;</end-regex>
-#. </string>
-#: ../gtksourceview/language-specs/d.lang.h:10
-#: ../gtksourceview/language-specs/nemerle.lang.h:10
-#: ../gtksourceview/language-specs/R.lang.h:7
-#: ../gtksourceview/language-specs/spec.lang.h:10
-#: ../gtksourceview/language-specs/vbnet.lang.h:6
-#: ../gtksourceview/language-specs/vhdl.lang.h:3
-msgid "Line Comment"
-msgstr "行注释"
-
-#: ../gtksourceview/language-specs/d.lang.h:11
-msgid "Nested Comment"
-msgstr "嵌入注释"
-
-#: ../gtksourceview/language-specs/d.lang.h:12
-#: ../gtksourceview/language-specs/nemerle.lang.h:12
-msgid "Octal Number"
-msgstr "八进制数"
-
 #: ../gtksourceview/language-specs/d.lang.h:14
-msgid "Special Tokens"
+msgid "Special Token"
 msgstr "特殊符号"
 
-#: ../gtksourceview/language-specs/d.lang.h:15
-msgid "String Literal"
-msgstr "字面字符串"
-
-#: ../gtksourceview/language-specs/d.lang.h:16
-msgid "Types"
-msgstr "类型"
-
 #: ../gtksourceview/language-specs/docbook.lang.h:1
-msgid "Attribute"
-msgstr "属性"
+msgid "Docbook"
+msgstr "Docbook"
 
-#: ../gtksourceview/language-specs/docbook.lang.h:3
-msgid "Closing Bracket"
-msgstr "右括号"
-
-#: ../gtksourceview/language-specs/docbook.lang.h:4
-msgid "DocBook"
-msgstr "DocBook"
-
-#: ../gtksourceview/language-specs/docbook.lang.h:5
-#: ../gtksourceview/language-specs/xml.lang.h:7
-msgid "Entity"
-msgstr "实体"
-
-#: ../gtksourceview/language-specs/docbook.lang.h:6
+#: ../gtksourceview/language-specs/docbook.lang.h:2
 msgid "Formatting Elements"
 msgstr "格式化元素"
 
-#: ../gtksourceview/language-specs/docbook.lang.h:7
+#: ../gtksourceview/language-specs/docbook.lang.h:3
 msgid "GUI Elements"
 msgstr "GUI 元素"
 
-#: ../gtksourceview/language-specs/docbook.lang.h:8
+#: ../gtksourceview/language-specs/docbook.lang.h:4
 msgid "Header Elements"
 msgstr "标题元素"
 
-#: ../gtksourceview/language-specs/docbook.lang.h:9
-msgid "Hexadecimal"
-msgstr "十六进制"
-
-#: ../gtksourceview/language-specs/docbook.lang.h:10
+#: ../gtksourceview/language-specs/docbook.lang.h:5
 #: ../gtksourceview/language-specs/dtd.lang.h:2
 #: ../gtksourceview/language-specs/gtk-doc.lang.h:5
 #: ../gtksourceview/language-specs/haddock.lang.h:14
 #: ../gtksourceview/language-specs/html.lang.h:7
 #: ../gtksourceview/language-specs/latex.lang.h:6
 #: ../gtksourceview/language-specs/texinfo.lang.h:7
-#: ../gtksourceview/language-specs/xml.lang.h:10
+#: ../gtksourceview/language-specs/xml.lang.h:9
 msgid "Markup"
 msgstr "标记语言"
 
-#: ../gtksourceview/language-specs/docbook.lang.h:12
+#: ../gtksourceview/language-specs/docbook.lang.h:6
 msgid "Structural Elements"
 msgstr "结构化元素"
-
-#. This split keeps each keyword-list under 250 elements.
-#. See bug #110991 for further details.
-#.
-#: ../gtksourceview/language-specs/docbook.lang.h:16
-msgid "Structural Elements 2"
-msgstr "结构化元素 2"
 
 #: ../gtksourceview/language-specs/dpatch.lang.h:1
 msgid "DPatch"
@@ -1026,6 +1128,40 @@ msgstr "patch-start"
 msgid "DTD"
 msgstr "DTD"
 
+#: ../gtksourceview/language-specs/erlang.lang.h:1
+msgid "Atom"
+msgstr "原子"
+
+#: ../gtksourceview/language-specs/erlang.lang.h:2
+#: ../gtksourceview/language-specs/fortran.lang.h:1
+#: ../gtksourceview/language-specs/ocaml.lang.h:1
+#: ../gtksourceview/language-specs/octave.lang.h:1
+#: ../gtksourceview/language-specs/verilog.lang.h:1
+#: ../gtksourceview/language-specs/vhdl.lang.h:1
+msgid "Base-N Integer"
+msgstr "N 进制整数"
+
+#: ../gtksourceview/language-specs/erlang.lang.h:3
+#: ../gtksourceview/language-specs/ruby.lang.h:4
+msgid "Builtin"
+msgstr "内置"
+
+#: ../gtksourceview/language-specs/erlang.lang.h:5
+#: ../gtksourceview/language-specs/verilog.lang.h:3
+msgid "Compiler Directive"
+msgstr "编译器指令"
+
+#: ../gtksourceview/language-specs/erlang.lang.h:7
+msgid "Erlang"
+msgstr "Erlang"
+
+#: ../gtksourceview/language-specs/fortran.lang.h:5
+#: ../gtksourceview/language-specs/ini.lang.h:6
+#: ../gtksourceview/language-specs/octave.lang.h:5
+#: ../gtksourceview/language-specs/sql.lang.h:4
+msgid "Floating Point"
+msgstr "浮点数"
+
 #: ../gtksourceview/language-specs/fortran.lang.h:6
 msgid "Fortran 95"
 msgstr "Fortran 95"
@@ -1035,14 +1171,9 @@ msgid "GAP"
 msgstr "GAP"
 
 #: ../gtksourceview/language-specs/gap.lang.h:2
-#: ../gtksourceview/language-specs/octave.lang.h:9
+#: ../gtksourceview/language-specs/octave.lang.h:10
 msgid "Scientific"
 msgstr "科学"
-
-#: ../gtksourceview/language-specs/gtk-doc.lang.h:1
-#: ../gtksourceview/language-specs/ruby.lang.h:6
-msgid "Constant"
-msgstr "常量"
 
 #: ../gtksourceview/language-specs/gtk-doc.lang.h:3
 msgid "Function Name"
@@ -1070,16 +1201,17 @@ msgstr "信号名称"
 
 #: ../gtksourceview/language-specs/gtk-doc.lang.h:10
 msgid "Since"
-msgstr ""
+msgstr "Since"
+
+#: ../gtksourceview/language-specs/gtk-doc.lang.h:11
+#: ../gtksourceview/language-specs/verilog.lang.h:8
+#: ../gtksourceview/language-specs/vhdl.lang.h:10
+msgid "Type"
+msgstr "类型"
 
 #: ../gtksourceview/language-specs/gtk-doc.lang.h:12
 msgid "gtk-doc"
 msgstr "gtk-doc"
-
-#: ../gtksourceview/language-specs/gtkrc.lang.h:1
-#: ../gtksourceview/language-specs/ini.lang.h:2
-msgid "Boolean value"
-msgstr "布尔值"
 
 #: ../gtksourceview/language-specs/gtkrc.lang.h:5
 msgid "GtkRC"
@@ -1113,70 +1245,76 @@ msgstr "强调"
 msgid "Enumerated list"
 msgstr "穷举列表"
 
+#: ../gtksourceview/language-specs/haddock.lang.h:6
+msgid "Escape"
+msgstr "转码"
+
 #: ../gtksourceview/language-specs/haddock.lang.h:7
 msgid "Haddock"
-msgstr ""
+msgstr "Haddock"
 
 #: ../gtksourceview/language-specs/haddock.lang.h:8
-#, fuzzy
 msgid "Haddock Directive"
-msgstr "编译器指令"
+msgstr "Haddock 指令"
 
 #: ../gtksourceview/language-specs/haddock.lang.h:9
 msgid "Header Property"
-msgstr ""
+msgstr "头属性"
 
 #: ../gtksourceview/language-specs/haddock.lang.h:10
 msgid "Hyperlinked Identifier"
-msgstr ""
+msgstr "加超链接的标志符"
 
 #: ../gtksourceview/language-specs/haddock.lang.h:11
 msgid "Hyperlinked Module Name"
-msgstr ""
+msgstr "加超链接的模块名称"
 
 #: ../gtksourceview/language-specs/haddock.lang.h:12
 msgid "Inline Haddock Section"
-msgstr ""
+msgstr "内嵌 Haddock 节"
 
 #: ../gtksourceview/language-specs/haddock.lang.h:13
 msgid "Itemized list"
-msgstr ""
+msgstr "项目列表"
 
 #: ../gtksourceview/language-specs/haddock.lang.h:15
 msgid "Monospace"
-msgstr ""
+msgstr "Monospace"
 
 #: ../gtksourceview/language-specs/haddock.lang.h:16
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 #: ../gtksourceview/language-specs/haskell-literate.lang.h:1
 msgid "Literate Haskell"
 msgstr "字面 Haskell"
 
+#: ../gtksourceview/language-specs/haskell.lang.h:6
+msgid "Float"
+msgstr "浮点数"
+
 #: ../gtksourceview/language-specs/haskell.lang.h:7
 msgid "Haskell"
 msgstr "Haskell"
 
+#: ../gtksourceview/language-specs/haskell.lang.h:8
+msgid "Hex"
+msgstr "十六进制数"
+
+#: ../gtksourceview/language-specs/haskell.lang.h:10
+msgid "Octal"
+msgstr "八进制数"
+
 #: ../gtksourceview/language-specs/haskell.lang.h:14
+#: ../gtksourceview/language-specs/ruby.lang.h:22
 msgid "Symbol"
 msgstr "符号"
 
-#: ../gtksourceview/language-specs/haskell.lang.h:15
-#: ../gtksourceview/language-specs/perl.lang.h:20
-#: ../gtksourceview/language-specs/pkgconfig.lang.h:3
-#: ../gtksourceview/language-specs/ruby.lang.h:16
-msgid "Variable"
-msgstr "变量"
-
 #: ../gtksourceview/language-specs/html.lang.h:1
-#: ../gtksourceview/language-specs/xml.lang.h:1
 msgid "Attribute Name"
 msgstr "属性名称"
 
-#. map-to="def:others3"
 #: ../gtksourceview/language-specs/html.lang.h:2
-#: ../gtksourceview/language-specs/xml.lang.h:3
 msgid "Attribute Value"
 msgstr "属性值"
 
@@ -1185,7 +1323,7 @@ msgid "HTML"
 msgstr "HTML"
 
 #: ../gtksourceview/language-specs/html.lang.h:8
-#: ../gtksourceview/language-specs/xml.lang.h:14
+#: ../gtksourceview/language-specs/xml.lang.h:12
 msgid "Tag"
 msgstr "标记"
 
@@ -1197,31 +1335,34 @@ msgstr "IDL"
 msgid ".ini"
 msgstr ".ini"
 
-#. map-to="def:others2"
+#: ../gtksourceview/language-specs/java.lang.h:4
+msgid "Declaration"
+msgstr "声明"
+
 #: ../gtksourceview/language-specs/java.lang.h:6
+msgid "External"
+msgstr "External"
+
+#: ../gtksourceview/language-specs/java.lang.h:7
 #: ../gtksourceview/language-specs/javascript.lang.h:8
 msgid "Future Reserved Keywords"
 msgstr "未来保留字"
 
-#: ../gtksourceview/language-specs/java.lang.h:7
+#: ../gtksourceview/language-specs/java.lang.h:8
 msgid "Java"
 msgstr "Java"
 
-#: ../gtksourceview/language-specs/java.lang.h:9
-msgid "Null Value"
-msgstr "Null 值"
+#: ../gtksourceview/language-specs/java.lang.h:12
+msgid "Scope Declaration"
+msgstr "作用域声明"
 
-#: ../gtksourceview/language-specs/javascript.lang.h:2
+#: ../gtksourceview/language-specs/javascript.lang.h:3
 msgid "Constructors"
 msgstr "构造器"
 
 #: ../gtksourceview/language-specs/javascript.lang.h:9
 msgid "Javascript"
 msgstr "Javascript"
-
-#: ../gtksourceview/language-specs/javascript.lang.h:11
-msgid "Multiline Comment"
-msgstr "多行注释"
 
 #: ../gtksourceview/language-specs/javascript.lang.h:12
 msgid "Object"
@@ -1254,21 +1395,26 @@ msgstr "数学模式"
 
 #: ../gtksourceview/language-specs/latex.lang.h:8
 msgid "Verbatim"
-msgstr ""
+msgstr "Verbatim"
 
 #: ../gtksourceview/language-specs/latex.lang.h:9
 msgid "math-bound"
-msgstr ""
+msgstr "math-bound"
 
 #: ../gtksourceview/language-specs/libtool.lang.h:3
 msgid "libtool"
-msgstr ""
+msgstr "libtool"
 
-#: ../gtksourceview/language-specs/lua.lang.h:5
+#: ../gtksourceview/language-specs/lua.lang.h:6
 msgid "Lua"
 msgstr "Lua"
 
-#: ../gtksourceview/language-specs/lua.lang.h:6
+#: ../gtksourceview/language-specs/lua.lang.h:7
+#: ../gtksourceview/language-specs/ruby.lang.h:14
+msgid "Nil Constant"
+msgstr "Nil 常量"
+
+#: ../gtksourceview/language-specs/lua.lang.h:8
 msgid "Reserved Identifier"
 msgstr "保留标识符"
 
@@ -1284,67 +1430,41 @@ msgstr "Makefile"
 msgid "MSIL"
 msgstr "MSIL"
 
-#: ../gtksourceview/language-specs/nemerle.lang.h:3
-#: ../gtksourceview/language-specs/vhdl.lang.h:1
-msgid "Character Constant"
-msgstr "字符常量"
-
-#: ../gtksourceview/language-specs/nemerle.lang.h:4
-msgid "Core Keywords"
-msgstr "核心关键字"
-
-#: ../gtksourceview/language-specs/nemerle.lang.h:5
-msgid "Core Types"
-msgstr "核心类型"
-
-#: ../gtksourceview/language-specs/nemerle.lang.h:9
-msgid "Keywords Defined by Macros"
-msgstr "宏定义的关键字"
-
 #: ../gtksourceview/language-specs/nemerle.lang.h:11
 msgid "Nemerle"
 msgstr "Nemerle"
-
-#: ../gtksourceview/language-specs/nemerle.lang.h:13
-#: ../gtksourceview/language-specs/vbnet.lang.h:9
-msgid "Primitives"
-msgstr "原生"
 
 #: ../gtksourceview/language-specs/objc.lang.h:4
 msgid "Objective-C"
 msgstr "Objective-C"
 
-#: ../gtksourceview/language-specs/ocaml.lang.h:2
-msgid "Boolean constant"
-msgstr "布尔型常量"
-
 #: ../gtksourceview/language-specs/ocaml.lang.h:3
 msgid "Builtin-function keyword"
 msgstr "内嵌函数关键字"
 
-#: ../gtksourceview/language-specs/ocaml.lang.h:10
-msgid "Labeled argument"
-msgstr ""
+#: ../gtksourceview/language-specs/ocaml.lang.h:9
+msgid "Floating Point number"
+msgstr "浮点数"
 
 #: ../gtksourceview/language-specs/ocaml.lang.h:11
+msgid "Labeled argument"
+msgstr "加标签的 argument"
+
+#: ../gtksourceview/language-specs/ocaml.lang.h:12
 msgid "Module Path"
 msgstr "模块路径"
 
-#: ../gtksourceview/language-specs/ocaml.lang.h:12
+#: ../gtksourceview/language-specs/ocaml.lang.h:13
 msgid "Objective Caml"
 msgstr "Objective Caml"
 
-#: ../gtksourceview/language-specs/ocaml.lang.h:13
+#: ../gtksourceview/language-specs/ocaml.lang.h:14
 msgid "Ocamldoc Comments"
 msgstr "Ocamldoc 块注释"
 
-#: ../gtksourceview/language-specs/ocaml.lang.h:14
+#: ../gtksourceview/language-specs/ocaml.lang.h:15
 msgid "Polymorphic Variant"
-msgstr ""
-
-#: ../gtksourceview/language-specs/ocaml.lang.h:17
-msgid "String/Char escape"
-msgstr "字符串/字符转码"
+msgstr "多态变种"
 
 #: ../gtksourceview/language-specs/ocaml.lang.h:18
 msgid "Type Variable"
@@ -1370,31 +1490,35 @@ msgstr "操作操作符"
 msgid "Type Operators"
 msgstr "类型操作符"
 
-#: ../gtksourceview/language-specs/octave.lang.h:7
+#: ../gtksourceview/language-specs/octave.lang.h:8
 msgid "Octave"
 msgstr "Octave"
 
-#: ../gtksourceview/language-specs/octave.lang.h:8
-msgid "Reserved constant"
+#: ../gtksourceview/language-specs/octave.lang.h:9
+msgid "Reserved Constant"
 msgstr "保留常量"
 
 #: ../gtksourceview/language-specs/pascal.lang.h:5
 msgid "Pascal"
 msgstr "Pascal"
 
-#: ../gtksourceview/language-specs/perl.lang.h:2
+#: ../gtksourceview/language-specs/perl.lang.h:3
 msgid "Control"
 msgstr "控制"
 
-#: ../gtksourceview/language-specs/perl.lang.h:4
+#: ../gtksourceview/language-specs/perl.lang.h:5
 msgid "File Descriptor"
 msgstr "文件描述符"
 
 #: ../gtksourceview/language-specs/perl.lang.h:6
+#: ../gtksourceview/language-specs/php.lang.h:8
+#: ../gtksourceview/language-specs/ruby.lang.h:10
 msgid "Heredoc"
 msgstr "Heredoc"
 
 #: ../gtksourceview/language-specs/perl.lang.h:7
+#: ../gtksourceview/language-specs/php.lang.h:9
+#: ../gtksourceview/language-specs/ruby.lang.h:11
 msgid "Heredoc Bound"
 msgstr "Heredoc 包围"
 
@@ -1405,10 +1529,6 @@ msgstr "包含语句"
 #: ../gtksourceview/language-specs/perl.lang.h:10
 msgid "Line Directive"
 msgstr "行指令"
-
-#: ../gtksourceview/language-specs/perl.lang.h:11
-msgid "Operator"
-msgstr "操作符"
 
 #: ../gtksourceview/language-specs/perl.lang.h:12
 msgid "POD Escape"
@@ -1426,15 +1546,11 @@ msgstr "POD 关键字"
 msgid "Perl"
 msgstr "Perl"
 
-#: ../gtksourceview/language-specs/perl.lang.h:16
-msgid "Regular Expression"
-msgstr "正则表达式"
-
 #: ../gtksourceview/language-specs/perl.lang.h:19
 msgid "System Command"
 msgstr "系统命令"
 
-#: ../gtksourceview/language-specs/php.lang.h:5
+#: ../gtksourceview/language-specs/php.lang.h:15
 msgid "PHP"
 msgstr "PHP"
 
@@ -1450,46 +1566,27 @@ msgstr "pkg-config"
 msgid "gettext translation"
 msgstr "gettext 翻译"
 
-#: ../gtksourceview/language-specs/python.lang.h:1
-#: ../gtksourceview/language-specs/ruby.lang.h:2
-msgid "Base-N integer"
-msgstr "N 进制整数"
-
-#: ../gtksourceview/language-specs/python.lang.h:2
-msgid "Builtins"
-msgstr "内置"
+#: ../gtksourceview/language-specs/python.lang.h:3
+msgid "Builtin Constant"
+msgstr "内置常量"
 
 #: ../gtksourceview/language-specs/python.lang.h:5
-msgid "Escaped character"
-msgstr "转码字符"
-
-#: ../gtksourceview/language-specs/python.lang.h:6
-#: ../gtksourceview/language-specs/ruby.lang.h:8
-msgid "Floating point"
-msgstr "浮点"
-
-#: ../gtksourceview/language-specs/python.lang.h:9
-#: ../gtksourceview/language-specs/ruby.lang.h:10
-msgid "Module handler"
-msgstr "模块句柄"
+msgid "Builtin Object"
+msgstr "内置对象"
 
 #: ../gtksourceview/language-specs/python.lang.h:10
-msgid "Multiline string"
-msgstr "多行字符串"
+msgid "Format"
+msgstr "格式"
 
-#: ../gtksourceview/language-specs/python.lang.h:11
+#: ../gtksourceview/language-specs/python.lang.h:12
+msgid "Module Handler"
+msgstr "模块句柄"
+
+#: ../gtksourceview/language-specs/python.lang.h:14
 msgid "Python"
 msgstr "Python"
 
-#: ../gtksourceview/language-specs/python.lang.h:13
-msgid "Special variables"
-msgstr "特殊变量"
-
-#: ../gtksourceview/language-specs/python.lang.h:15
-msgid "format"
-msgstr "格式"
-
-#: ../gtksourceview/language-specs/python.lang.h:16
+#: ../gtksourceview/language-specs/python.lang.h:18
 msgid "string-conversion"
 msgstr "字符串转换"
 
@@ -1497,51 +1594,99 @@ msgstr "字符串转换"
 msgid "Assignment Operator"
 msgstr "赋值操作符"
 
-#: ../gtksourceview/language-specs/R.lang.h:2
+#: ../gtksourceview/language-specs/R.lang.h:3
 msgid "Delimiter"
 msgstr "分隔符"
-
-#: ../gtksourceview/language-specs/R.lang.h:3
-msgid "Double Quoted String"
-msgstr "双引号字符串"
 
 #: ../gtksourceview/language-specs/R.lang.h:5
 msgid "Integer Number"
 msgstr "整数"
 
+#: ../gtksourceview/language-specs/R.lang.h:7
+msgid "R"
+msgstr "R"
+
 #: ../gtksourceview/language-specs/R.lang.h:8
 msgid "Reserved Class"
 msgstr "保留类"
 
-#: ../gtksourceview/language-specs/R.lang.h:9
-msgid "Reserved Constant"
-msgstr "保留常量"
+#: ../gtksourceview/language-specs/R.lang.h:10
+msgid "Special Constant"
+msgstr "特殊常量"
 
-#: ../gtksourceview/language-specs/R.lang.h:11
-msgid "Single Quoted String"
-msgstr "单引号字符串"
+#: ../gtksourceview/language-specs/rpmspec.lang.h:1
+msgid "Command Macro"
+msgstr "命令宏"
+
+#: ../gtksourceview/language-specs/rpmspec.lang.h:2
+msgid "Conditional Macro"
+msgstr "条件宏"
+
+#: ../gtksourceview/language-specs/rpmspec.lang.h:3
+msgid "Date"
+msgstr "日期"
+
+#: ../gtksourceview/language-specs/rpmspec.lang.h:4
+msgid "Define"
+msgstr "定义"
+
+#: ../gtksourceview/language-specs/rpmspec.lang.h:5
+msgid "Directory Macro"
+msgstr "目录宏"
+
+#: ../gtksourceview/language-specs/rpmspec.lang.h:6
+msgid "Email"
+msgstr "电子邮件"
+
+#: ../gtksourceview/language-specs/rpmspec.lang.h:7
+msgid "Flow Conditional"
+msgstr "流程条件"
+
+#: ../gtksourceview/language-specs/rpmspec.lang.h:8
+msgid "Header"
+msgstr "头"
+
+#: ../gtksourceview/language-specs/rpmspec.lang.h:9
+msgid "Other Macro"
+msgstr "其它宏"
+
+#: ../gtksourceview/language-specs/rpmspec.lang.h:11
+msgid "RPM Variable"
+msgstr "RPM 变量"
+
+#: ../gtksourceview/language-specs/rpmspec.lang.h:12
+msgid "RPM spec"
+msgstr "RPM spec"
+
+#: ../gtksourceview/language-specs/rpmspec.lang.h:13
+msgid "Section"
+msgstr "节"
+
+#: ../gtksourceview/language-specs/rpmspec.lang.h:14
+msgid "Spec Macro"
+msgstr "Spec 宏"
+
+#: ../gtksourceview/language-specs/rpmspec.lang.h:15
+msgid "Switch"
+msgstr "开关"
 
 #: ../gtksourceview/language-specs/ruby.lang.h:1
 msgid "Attribute Definition"
 msgstr "属性定义"
 
-#: ../gtksourceview/language-specs/ruby.lang.h:3
-msgid "Boolean Constant"
-msgstr "布尔型常量"
+#: ../gtksourceview/language-specs/ruby.lang.h:13
+msgid "Module handler"
+msgstr "模块句柄"
 
-#: ../gtksourceview/language-specs/ruby.lang.h:4
-msgid "Builtin"
-msgstr "内置"
-
-#: ../gtksourceview/language-specs/ruby.lang.h:11
-msgid "Nil Constant"
-msgstr "Nil 常量"
-
-#: ../gtksourceview/language-specs/ruby.lang.h:12
+#: ../gtksourceview/language-specs/ruby.lang.h:15
 msgid "Numeric literal"
 msgstr "字面数字"
 
-#: ../gtksourceview/language-specs/ruby.lang.h:13
+#: ../gtksourceview/language-specs/ruby.lang.h:16
+msgid "Predefined Variable"
+msgstr "预定义变量"
+
+#: ../gtksourceview/language-specs/ruby.lang.h:18
 msgid "Ruby"
 msgstr "Ruby"
 
@@ -1549,79 +1694,19 @@ msgstr "Ruby"
 msgid "Scheme"
 msgstr "大纲"
 
-#: ../gtksourceview/language-specs/sh.lang.h:2
+#: ../gtksourceview/language-specs/sh.lang.h:4
 msgid "sh"
 msgstr "sh"
 
-#: ../gtksourceview/language-specs/spec.lang.h:1
-msgid "Command Macro"
-msgstr "命令宏"
-
-#: ../gtksourceview/language-specs/spec.lang.h:2
-msgid "Conditional Define"
-msgstr "条件定义"
-
-#: ../gtksourceview/language-specs/spec.lang.h:3
-msgid "Conditional Macro"
-msgstr "条件宏"
-
-#: ../gtksourceview/language-specs/spec.lang.h:4
-msgid "Date"
-msgstr "日期"
-
-#: ../gtksourceview/language-specs/spec.lang.h:5
-msgid "Define"
-msgstr "定义"
-
-#: ../gtksourceview/language-specs/spec.lang.h:6
-msgid "Directory Macro"
-msgstr "目录宏"
-
-#: ../gtksourceview/language-specs/spec.lang.h:7
-msgid "Email"
-msgstr "电子邮件"
-
-#: ../gtksourceview/language-specs/spec.lang.h:8
-msgid "Flow Conditional"
-msgstr "流程条件"
-
-#: ../gtksourceview/language-specs/spec.lang.h:9
-msgid "Header"
-msgstr "头"
-
-#: ../gtksourceview/language-specs/spec.lang.h:11
-msgid "Other Macro"
-msgstr "其它宏"
-
-#: ../gtksourceview/language-specs/spec.lang.h:13
-msgid "RPM Variable"
-msgstr "RPM 变量"
-
-#: ../gtksourceview/language-specs/spec.lang.h:14
-msgid "RPM spec"
-msgstr "RPM spec"
-
-#: ../gtksourceview/language-specs/spec.lang.h:15
-msgid "Section"
-msgstr "节"
-
-#: ../gtksourceview/language-specs/spec.lang.h:16
-msgid "Spec Macro"
-msgstr "Spec 宏"
-
-#: ../gtksourceview/language-specs/spec.lang.h:17
-msgid "Switch"
-msgstr "开关"
-
 #: ../gtksourceview/language-specs/sql.lang.h:7
 msgid "No idea what it is"
-msgstr ""
+msgstr "未知"
 
 #: ../gtksourceview/language-specs/sql.lang.h:8
 msgid "SQL"
 msgstr "SQL"
 
-#: ../gtksourceview/language-specs/tcl.lang.h:4
+#: ../gtksourceview/language-specs/tcl.lang.h:3
 msgid "Tcl"
 msgstr "Tcl"
 
@@ -1641,21 +1726,9 @@ msgstr "宏"
 msgid "Texinfo"
 msgstr "Texinfo"
 
-#: ../gtksourceview/language-specs/vbnet.lang.h:7
-msgid "Old Style Comment"
-msgstr "旧风格注释"
-
-#: ../gtksourceview/language-specs/vbnet.lang.h:8
-msgid "Preprocessor Definitions"
-msgstr "预处理定义"
-
-#: ../gtksourceview/language-specs/vbnet.lang.h:12
+#: ../gtksourceview/language-specs/vbnet.lang.h:9
 msgid "VB.NET"
 msgstr "VB.NET"
-
-#: ../gtksourceview/language-specs/verilog.lang.h:3
-msgid "Compiler Directive"
-msgstr "编译器指令"
 
 #: ../gtksourceview/language-specs/verilog.lang.h:5
 msgid "Gate"
@@ -1665,32 +1738,39 @@ msgstr "门"
 msgid "Verilog"
 msgstr "Verilog"
 
-#: ../gtksourceview/language-specs/vhdl.lang.h:7
-msgid "True and False"
-msgstr "真和假"
-
-#: ../gtksourceview/language-specs/vhdl.lang.h:9
+#: ../gtksourceview/language-specs/vhdl.lang.h:11
 msgid "VHDL"
 msgstr "VHDL"
 
-#: ../gtksourceview/language-specs/xml.lang.h:4
-msgid "CDATA Delimiters"
+#: ../gtksourceview/language-specs/xml.lang.h:1
+msgid "Attribute name"
+msgstr "属性名称"
+
+#: ../gtksourceview/language-specs/xml.lang.h:2
+msgid "Attribute value"
+msgstr "属性值"
+
+#: ../gtksourceview/language-specs/xml.lang.h:3
+msgid "CDATA delimiter"
 msgstr "CDATA 分隔符"
 
-#: ../gtksourceview/language-specs/xml.lang.h:6
+#: ../gtksourceview/language-specs/xml.lang.h:5
 msgid "DOCTYPE"
 msgstr "DOCTYPE"
 
-#. map-to="def:others2"
-#: ../gtksourceview/language-specs/xml.lang.h:12
-msgid "Namespace"
-msgstr "命名空间"
+#: ../gtksourceview/language-specs/xml.lang.h:6
+msgid "Element name"
+msgstr "元素名称"
 
-#: ../gtksourceview/language-specs/xml.lang.h:13
-msgid "Processing Instruction"
+#: ../gtksourceview/language-specs/xml.lang.h:7
+msgid "Entity"
+msgstr "实体"
+
+#: ../gtksourceview/language-specs/xml.lang.h:11
+msgid "Processing instruction"
 msgstr "处理指令"
 
-#: ../gtksourceview/language-specs/xml.lang.h:15
+#: ../gtksourceview/language-specs/xml.lang.h:13
 msgid "XML"
 msgstr "XML"
 
@@ -1710,13 +1790,13 @@ msgstr "语法"
 msgid "keyword"
 msgstr "关键字"
 
-#: ../gtksourceview/language-specs/gvim.xml.h:1
-msgid "Color scheme used in GVim"
-msgstr "GVim 中的配色方案"
+#: ../gtksourceview/language-specs/classic.xml.h:1
+msgid "Classic"
+msgstr "经典"
 
-#: ../gtksourceview/language-specs/gvim.xml.h:2
-msgid "GVim"
-msgstr "GVim"
+#: ../gtksourceview/language-specs/classic.xml.h:2
+msgid "Classic color scheme"
+msgstr "经典配色方案"
 
 #: ../gtksourceview/language-specs/kate.xml.h:1
 msgid "Color scheme used in the Kate text editor"
@@ -1726,10 +1806,174 @@ msgstr "使用 Kate 调色板中的配色方案"
 msgid "Kate"
 msgstr "Kate"
 
+#: ../gtksourceview/language-specs/oblivion.xml.h:1
+msgid "Dark color scheme using the Tango color palette"
+msgstr "使用 Tango 调色板的暗配色方案"
+
+#: ../gtksourceview/language-specs/oblivion.xml.h:2
+msgid "Oblivion"
+msgstr "Oblivion"
+
 #: ../gtksourceview/language-specs/tango.xml.h:1
 msgid "Color scheme using Tango color palette"
-msgstr "使用 Tango 调色板中的配色方案"
+msgstr "使用 Tango 调色板中配色方案"
 
 #: ../gtksourceview/language-specs/tango.xml.h:2
 msgid "Tango"
 msgstr "Tango"
+
+#~ msgid "Check Brackets"
+#~ msgstr "检查括号"
+
+#~ msgid "Show Line Markers"
+#~ msgstr "显示水线"
+
+#~ msgid "Whether to display line marker pixbufs"
+#~ msgstr "是否显示行的水线"
+
+#~ msgid "Margin Line Alpha"
+#~ msgstr "边距线透明度"
+
+#~ msgid "Transparency of the margin line"
+#~ msgstr "边距线透明度"
+
+#~ msgid "Margin Line Color"
+#~ msgstr "边距线颜色"
+
+#~ msgid "Color to use for the right margin line"
+#~ msgstr "右侧边距线所使用的颜色"
+
+#~ msgid "Margin Overlay Toggle"
+#~ msgstr "边距覆盖切换"
+
+#~ msgid "Whether to draw the right margin overlay"
+#~ msgstr "是否绘制右侧边距覆盖"
+
+#~ msgid "Margin Overlay Alpha"
+#~ msgstr "边距覆盖透明度"
+
+#~ msgid "Transparency of the margin overlay"
+#~ msgstr "边距覆盖的透明度"
+
+#~ msgid "Margin Overlay Color"
+#~ msgstr "边距覆盖颜色"
+
+#~ msgid "Color to use for drawing the margin overlay"
+#~ msgstr "绘制边距覆盖所使用的颜色"
+
+#~ msgid "Character Escape"
+#~ msgstr "字符转码"
+
+#~ msgid "Keywords"
+#~ msgstr "关键字"
+
+#~ msgid "Primitive"
+#~ msgstr "原始"
+
+#~ msgid "Net Address"
+#~ msgstr "网络地址"
+
+#~ msgid "Note"
+#~ msgstr "笔记"
+
+#~ msgid "Special value"
+#~ msgstr "特殊值"
+
+#~ msgid "Block Comment"
+#~ msgstr "块注释"
+
+#~ msgid "Char Literal"
+#~ msgstr "字面字符"
+
+#~ msgid "Grave Literal"
+#~ msgstr "字面标记"
+
+#~ msgid "Hex Number"
+#~ msgstr "十六进制数"
+
+#~ msgid "Line Comment"
+#~ msgstr "行注释"
+
+#~ msgid "Nested Comment"
+#~ msgstr "嵌入注释"
+
+#~ msgid "String Literal"
+#~ msgstr "字面字符串"
+
+#~ msgid "Types"
+#~ msgstr "类型"
+
+#~ msgid "Attribute"
+#~ msgstr "属性"
+
+#~ msgid "Closing Bracket"
+#~ msgstr "右括号"
+
+#~ msgid "Structural Elements 2"
+#~ msgstr "结构化元素 2"
+
+#~ msgid "Multiline Comment"
+#~ msgstr "多行注释"
+
+#~ msgid "Character Constant"
+#~ msgstr "字符常量"
+
+#~ msgid "Core Keywords"
+#~ msgstr "核心关键字"
+
+#~ msgid "Core Types"
+#~ msgstr "核心类型"
+
+#~ msgid "Keywords Defined by Macros"
+#~ msgstr "宏定义的关键字"
+
+#~ msgid "Primitives"
+#~ msgstr "原生"
+
+#~ msgid "Boolean constant"
+#~ msgstr "布尔型常量"
+
+#~ msgid "String/Char escape"
+#~ msgstr "字符串/字符转码"
+
+#~ msgid "Reserved constant"
+#~ msgstr "保留常量"
+
+#~ msgid "Base-N integer"
+#~ msgstr "N 进制整数"
+
+#~ msgid "Builtins"
+#~ msgstr "内置"
+
+#~ msgid "Escaped character"
+#~ msgstr "转码字符"
+
+#~ msgid "Floating point"
+#~ msgstr "浮点"
+
+#~ msgid "Double Quoted String"
+#~ msgstr "双引号字符串"
+
+#~ msgid "Single Quoted String"
+#~ msgstr "单引号字符串"
+
+#~ msgid "Boolean Constant"
+#~ msgstr "布尔型常量"
+
+#~ msgid "Conditional Define"
+#~ msgstr "条件定义"
+
+#~ msgid "Old Style Comment"
+#~ msgstr "旧风格注释"
+
+#~ msgid "Preprocessor Definitions"
+#~ msgstr "预处理定义"
+
+#~ msgid "True and False"
+#~ msgstr "真和假"
+
+#~ msgid "Color scheme used in GVim"
+#~ msgstr "GVim 中的配色方案"
+
+#~ msgid "GVim"
+#~ msgstr "GVim"
