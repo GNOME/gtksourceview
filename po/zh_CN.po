@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-09-10 03:51+0100\n"
-"PO-Revision-Date: 2007-09-12 21:51+0800\n"
+"PO-Revision-Date: 2007-09-18 15:25+0800\n"
 "Last-Translator: YangZhang <zyangmath@gmail.com>\n"
 "Language-Team: Chinese i18n <i18n-zh@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -90,36 +90,39 @@ msgid ""
 "process will be slower than usual.\n"
 "The error was: %s"
 msgstr ""
+"无法为所有的转换创建正则表达式，语法加亮进程将会比正常情况慢。\n"
+"错误是：%s"
 
 #: ../gtksourceview/gtksourcecontextengine.c:5670
 #, c-format
 msgid "context '%s' cannot contain a \\%%{...@start} command"
-msgstr ""
+msgstr "上下文‘%s’不能包含一个 \\%%{...@start} 命令"
 
 #: ../gtksourceview/gtksourcecontextengine.c:5822
 #: ../gtksourceview/gtksourcecontextengine.c:5909
 #, c-format
 msgid "duplicated context id '%s'"
-msgstr ""
+msgstr "重复的上下文 id ‘%s’"
 
 #: ../gtksourceview/gtksourcecontextengine.c:6022
 #: ../gtksourceview/gtksourcecontextengine.c:6082
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "style override used with wildcard context reference in language '%s' in ref "
 "'%s'"
 msgstr ""
+"参考‘%s’中的语言‘%s’中的与通配符上下文引用一同使用的样式覆盖"
 
 #: ../gtksourceview/gtksourcecontextengine.c:6096
 #, c-format
 msgid "invalid reference '%s'"
-msgstr ""
+msgstr "无效的引用‘%s’"
 
 #: ../gtksourceview/gtksourcecontextengine.c:6115
 #: ../gtksourceview/gtksourcecontextengine.c:6125
 #, c-format
 msgid "unknown context '%s'"
-msgstr ""
+msgstr "未知的上下文‘%s’"
 
 #: ../gtksourceview/gtksourcelanguage.c:42
 #: ../gtksourceview/language-specs/changelog.lang.h:2
@@ -1461,7 +1464,7 @@ msgstr "Ocamldoc 块注释"
 
 #: ../gtksourceview/language-specs/ocaml.lang.h:15
 msgid "Polymorphic Variant"
-msgstr ""
+msgstr "多态变种"
 
 #: ../gtksourceview/language-specs/ocaml.lang.h:18
 msgid "Type Variable"
