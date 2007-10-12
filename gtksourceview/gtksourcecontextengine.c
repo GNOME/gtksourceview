@@ -134,7 +134,8 @@ typedef enum {
 	GTK_SOURCE_CONTEXT_ENGINE_ERROR_INVALID_WHERE,
 	GTK_SOURCE_CONTEXT_ENGINE_ERROR_INVALID_START_REF,
 	GTK_SOURCE_CONTEXT_ENGINE_ERROR_INVALID_REGEX,
-	GTK_SOURCE_CONTEXT_ENGINE_ERROR_INVALID_STYLE
+	GTK_SOURCE_CONTEXT_ENGINE_ERROR_INVALID_STYLE,
+	GTK_SOURCE_CONTEXT_ENGINE_ERROR_BAD_FILE
 } GtkSourceContextEngineError;
 
 typedef enum {
@@ -2255,13 +2256,9 @@ gtk_source_context_engine_attach_buffer (GtkSourceEngine *engine,
 		main_definition = LOOKUP_DEFINITION (ce->priv->ctx_data, root_id);
 		g_free (root_id);
 
-		if (main_definition == NULL)
-		{
-			g_warning (_("Missing main language "
-				     "definition (id = \"%s\".)"),
-				   ENGINE_ID (ce));
-			return;
-		}
+		/* If we don't abort here, we will crash later (#485661). But it should
+		 * never happen, _gtk_source_context_data_finish_parse checks main context. */
+		g_assert (main_definition != NULL);
 
 		ce->priv->root_context = context_new (NULL, main_definition, NULL, NULL, FALSE);
 		ce->priv->root_segment = create_segment (ce, NULL, ce->priv->root_context, 0, 0, TRUE, NULL);
@@ -6183,8 +6180,11 @@ _gtk_source_context_data_finish_parse (GtkSourceContextData *ctx_data,
 				       GError		   **error)
 {
 	struct ResolveRefData data;
+	gchar *root_id;
+	ContextDefinition *main_definition;
 
 	g_return_val_if_fail (ctx_data != NULL, FALSE);
+	g_return_val_if_fail (ctx_data->lang != NULL, FALSE);
 	g_return_val_if_fail (error == NULL || *error == NULL, FALSE);
 
 	while (overrides != NULL)
@@ -6209,10 +6209,23 @@ _gtk_source_context_data_finish_parse (GtkSourceContextData *ctx_data,
 		g_propagate_error (error, data.error);
 		return FALSE;
 	}
-	else
+
+	/* Sanity check: user may have screwed up the files by now (#485661) */
+	root_id = g_strdup_printf ("%s:%s", ctx_data->lang->priv->id, ctx_data->lang->priv->id);
+	main_definition = LOOKUP_DEFINITION (ctx_data, root_id);
+	g_free (root_id);
+
+	if (main_definition == NULL)
 	{
-		return TRUE;
+		g_set_error (error, GTK_SOURCE_CONTEXT_ENGINE_ERROR,
+			     GTK_SOURCE_CONTEXT_ENGINE_ERROR_BAD_FILE,
+			     _("Missing main language "
+			       "definition (id = \"%s\".)"),
+			     ctx_data->lang->priv->id);
+		return FALSE;
 	}
+
+	return TRUE;
 }
 
 static void
