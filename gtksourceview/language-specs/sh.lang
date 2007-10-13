@@ -63,10 +63,6 @@
     <context id="string-2" style-ref="string">
       <start>'</start>
       <end>'</end>
-      <include>
-        <context ref="def:escape"/>
-        <context ref="def:line-continue"/>
-      </include>
     </context>
 
     <context id="subshell">

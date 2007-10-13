@@ -1,3 +1,14 @@
+2007-10-12  Yevgen Muntyan  <muntyan@tamu.edu>
+
+	* gtksourceview/language-specs/sh.lang: there is no escaping in
+	single-quoted strings.
+
+2007-10-12  Yevgen Muntyan  <muntyan@tamu.edu>
+
+	* gtksourceview/gtksourcecontextengine.c (gtk_source_context_engine_attach_buffer),
+	(_gtk_source_context_data_finish_parse): check main context in finish_parse(),
+	so it doesn't crash later. Fixes #485661 (Mildred).
+
 2007-10-03  Paolo Borelli  <pborelli@katamail.com>
 
 	* gtksourceview/language-specs/csharp.lang: add 'partial' keyword.
