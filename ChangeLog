@@ -1,3 +1,8 @@
+2007-10-14  Paolo Borelli  <pborelli@katamail.com>
+
+	* gtksourceview/gtksourceview.c: do not use gtk_text_view_get_buffer
+	because it causes the buffer to be recreated.
+
 2007-10-12  Yevgen Muntyan  <muntyan@tamu.edu>
 
 	* gtksourceview/language-specs/sh.lang: there is no escaping in

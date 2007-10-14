@@ -532,7 +532,10 @@ gtk_source_view_get_property (GObject    *object,
 static void
 notify_buffer (GtkSourceView *view)
 {
-	set_source_buffer (view, gtk_text_view_get_buffer (GTK_TEXT_VIEW (view)));
+	/* we use view->buffer directly instead of get_buffer()
+	 * since the latter causes the buffer to be recreated and that
+	 * is not a good idea when finalizing */
+	set_source_buffer (view, GTK_TEXT_VIEW (view)->buffer);
 }
 
 static void
