@@ -101,6 +101,22 @@
             <match>\\[a-zA-Z]+</match>
         </context>
 
+        <context id="in-math">
+            <include>
+                <context ref="common-commands"/>
+                <context ref="specials-symbol"/>
+                <context ref="command"/>
+            </include>
+        </context>
+
+        <context id="in-inline-math">
+            <include>
+                <context ref="common-commands"/>
+                <context ref="specials-symbol"/>
+                <context ref="command"/>
+            </include>
+        </context>
+
         <context id="latex">
             <include>
 
@@ -120,27 +136,43 @@
                     </include>
                 </context>
 
-                <context id="math" style-ref="math">
+                <context id="math-1" style-ref="math">
                     <start>\$\$</start>
                     <end>\$\$</end>
                     <include>
                         <context sub-pattern="0" where="start" style-ref="math-bound"/>
                         <context sub-pattern="0" where="end" style-ref="math-bound"/>
-                        <context ref="common-commands"/>
-                        <context ref="specials-symbol"/>
-                        <context ref="command"/>
+                        <context ref="in-math"/>
                     </include>
                 </context>
 
-                <context id="inline-math" style-ref="inline-math">
+                <context id="math-2" style-ref="math">
+                    <start>\\\[</start>
+                    <end>\\\]</end>
+                    <include>
+                        <context sub-pattern="0" where="start" style-ref="math-bound"/>
+                        <context sub-pattern="0" where="end" style-ref="math-bound"/>
+                        <context ref="in-math"/>
+                    </include>
+                </context>
+
+                <context id="inline-math-1" style-ref="inline-math">
                     <start>\$</start>
                     <end>\$</end>
                     <include>
                         <context sub-pattern="0" where="start" style-ref="math-bound"/>
                         <context sub-pattern="0" where="end" style-ref="math-bound"/>
-                        <context ref="common-commands"/>
-                        <context ref="specials-symbol"/>
-                        <context ref="command"/>
+                        <context ref="in-inline-math"/>
+                    </include>
+                </context>
+
+                <context id="inline-math-2" style-ref="inline-math">
+                    <start>\\\(</start>
+                    <end>\\\)</end>
+                    <include>
+                        <context sub-pattern="0" where="start" style-ref="math-bound"/>
+                        <context sub-pattern="0" where="end" style-ref="math-bound"/>
+                        <context ref="in-inline-math"/>
                     </include>
                 </context>
 
