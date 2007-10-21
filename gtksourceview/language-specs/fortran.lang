@@ -36,6 +36,8 @@
     <style id="type" _name="Data Type" map-to="def:type"/>
   </styles>
 
+  <default-regex-options case-sensitive="false"/>
+
   <definitions>
 
     <!-- Note: contains an hack to avoid considering ^COMMON a comment -->
