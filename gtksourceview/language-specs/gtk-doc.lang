@@ -71,7 +71,7 @@
         <include>
           <context ref="skip-asterisk"/>
           <context extend-parent="false">
-            <start>(([\w_]+\:\:[\w_-]+)|([\w_]+\:[\w_-]+)|([\w_]+))\:?</start>
+            <start>(([\w_]+\:\:[\w_-]+)|([\w_]+\:[\w_-]+)|([\w_]+))\:\s*$</start>
             <include>
               <context sub-pattern="2" where="start" style-ref="function-name"/>
               <context sub-pattern="3" where="start" style-ref="signal-name"/>
