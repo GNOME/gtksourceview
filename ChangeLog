@@ -1,5 +1,11 @@
 2007-10-24  Yevgen Muntyan  <muntyan@tamu.edu>
 
+	* gtksourceview/language-specs/po.lang: highlight C and Python strings,
+	XML tags, and mnemonics in a special way.
+	Patch by Ignacio Casal Quinteiro (#485519).
+
+2007-10-24  Yevgen Muntyan  <muntyan@tamu.edu>
+
 	* gtksourceview/language-specs/gtk-doc.lang: require trailing
 	colon after a function/signal/property name (#489736).
 
