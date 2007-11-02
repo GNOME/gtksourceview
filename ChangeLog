@@ -1,3 +1,18 @@
+2007-11-02  Yevgen Muntyan  <muntyan@tamu.edu>
+
+	Get styles mappings from def.lang when parsing version 1 lang files.
+
+	* gtksourceview/gtksourcelanguage-private.h: new field in
+	GtkSourceLanguagePrivate: 'styles_loaded', to avoid reloading
+	lang file if styles are already there.
+	* gtksourceview/gtksourcelanguage.c:
+	(_gtk_source_language_define_language_styles): parse def.lang to get
+	default styles mapping;
+	(gtk_source_language_parse_file): new function, to be used in
+	_gtk_source_language_create_engine and force_styles.
+	* gtksourceview/language-specs/def.lang: added dummy def:def context
+	needed in force_styles().
+
 2007-10-24  Yevgen Muntyan  <muntyan@tamu.edu>
 
 	* gtksourceview/language-specs/po.lang: highlight C and Python strings,

@@ -50,6 +50,7 @@ struct _GtkSourceLanguagePrivate
 	/* Maps ids to GtkSourceStyleInfo objects */
 	/* Names of styles defined in other lang files are not stored */
 	GHashTable               *styles;
+	gboolean		  styles_loaded;
 
 	gint                      version;
 	gboolean                  hidden;
@@ -84,7 +85,7 @@ GtkSourceEngine 	 *_gtk_source_language_create_engine		(GtkSourceLanguage	  *lan
 /* Utility functions for GtkSourceStyleInfo */
 GtkSourceStyleInfo 	 *_gtk_source_style_info_new 			(const gchar		  *name,
 									 const gchar              *map_to);
-
+GtkSourceStyleInfo 	 *_gtk_source_style_info_copy			(GtkSourceStyleInfo       *info);
 void			  _gtk_source_style_info_free			(GtkSourceStyleInfo       *info);
 
 G_END_DECLS
