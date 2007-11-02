@@ -9,10 +9,22 @@
 # gap.lang gtkrc.lang html.lang ini.lang latex.lang m4.lang
 # makefile.lang ms.lang perl.lang po.lang python.lang sh.lang
 # texinfo.lang xml.lang yacc.lang libtool.lang pkgconfig.lang
-# objc.lang chdr.lang
+# objc.lang chdr.lang testv1.lang
 
 dir="testdir"
 mkdir -p $dir/
+
+cat > $dir/file.testv1 <<EOFEOF
+// gtk-source-lang: testv1
+// comment
+/* comment! */
+"A string"
+'And a string too'
+bambom - keyword, Others
+bumbam - keyword, Others2
+kwkw - keyword, Keyword
+Numbers: 0.1 1234 0233
+EOFEOF
 
 cat > $dir/file.cc <<EOFEOF
 #include <iostream>

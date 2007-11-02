@@ -1,5 +1,14 @@
 2007-11-02  Yevgen Muntyan  <muntyan@tamu.edu>
 
+	* tests/test-widget.c: parse "gtk-source-lang: foo" on the first
+	line of file, modeline for poor.
+	* gtksourceview/language-specs/testv1.lang: a version 1 lang file,
+	for testing.
+	* gtksourceview/language-specs/testfiles.sh: output file.testv1 to
+	test with testv1.lang.
+
+2007-11-02  Yevgen Muntyan  <muntyan@tamu.edu>
+
 	Get styles mappings from def.lang when parsing version 1 lang files.
 
 	* gtksourceview/gtksourcelanguage-private.h: new field in
