@@ -36,6 +36,8 @@
     <style id="preprocessor" _name="Preprocessor" map-to="def:preprocessor"/>
   </styles>
 
+  <default-regex-options case-sensitive="false"/>
+
   <definitions>
 
     <context id="string" style-ref="string">
@@ -145,7 +147,9 @@
       <keyword>Abstract</keyword>
       <keyword>Override</keyword>
       <keyword>Property</keyword>
+      <keyword>ReadLn</keyword>
       <keyword>Read</keyword>
+      <keyword>WriteLn</keyword>
       <keyword>Write</keyword>
       <keyword>default</keyword>
       <keyword>With</keyword>
