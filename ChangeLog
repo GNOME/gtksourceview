@@ -1,3 +1,10 @@
+2007-11-12  Yevgen Muntyan  <muntyan@tamu.edu>
+
+	* gtksourceview/gtksourcecontextengine.c: Improve performance
+	with long text lines: use byte offsets in all functions which
+	deal with regex matching; use less gtk_text_buffer_get_iter_at_offset()
+	in apply_tags();
+
 2007-11-10  Paolo Borelli  <pborelli@katamail.com>
 
 	* gtksourceview/language-specs/pascal.lang: pascal is not case

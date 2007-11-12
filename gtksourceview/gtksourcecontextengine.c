@@ -354,18 +354,19 @@ struct _SubPattern
  * case to highlight end of line is covered by above ($). I do not feel brave enough
  * to modify this now for no real benefit. (muntyan)
  */
-#define NEXT_LINE_OFFSET(l_) ((l_)->start_at + (l_)->length + (l_)->eol_length)
+#define NEXT_LINE_OFFSET(l_) ((l_)->start_at + (l_)->char_length + (l_)->eol_length)
 struct _LineInfo
 {
 	/* Line text. */
 	gchar			*text;
 	/* Character offset of the line in text buffer. */
 	gint			 start_at;
-	/* Character length of <text>. */
-	gint			 length;
 	/* Character length of line terminator, or 0 if it's the
 	 * last line in buffer. */
 	gint			 eol_length;
+	/* Length of the line text not including line terminator */
+	gint			 char_length;
+	gint			 byte_length;
 };
 
 struct _InvalidRegion
@@ -746,6 +747,7 @@ apply_tags (GtkSourceContextEngine *ce,
 {
 	GtkTextTag *tag;
 	GtkTextIter start_iter, end_iter;
+	GtkTextBuffer *buffer = ce->priv->buffer;
 	SubPattern *sp;
 	Segment *child;
 
@@ -781,8 +783,9 @@ apply_tags (GtkSourceContextEngine *ce,
 		}
 		else
 		{
-			gtk_text_buffer_get_iter_at_offset (ce->priv->buffer, &start_iter, style_start_at);
-			gtk_text_buffer_get_iter_at_offset (ce->priv->buffer, &end_iter, style_end_at);
+			gtk_text_buffer_get_iter_at_offset (buffer, &start_iter, style_start_at);
+			end_iter = start_iter;
+			gtk_text_iter_forward_chars (&end_iter, style_end_at - style_start_at);
 			gtk_text_buffer_apply_tag (ce->priv->buffer, tag, &start_iter, &end_iter);
 		}
 	}
@@ -795,10 +798,11 @@ apply_tags (GtkSourceContextEngine *ce,
 
 			if (tag != NULL)
 			{
-				gtk_text_buffer_get_iter_at_offset (ce->priv->buffer, &start_iter,
-								    MAX (start_offset, sp->start_at));
-				gtk_text_buffer_get_iter_at_offset (ce->priv->buffer, &end_iter,
-								    MIN (end_offset, sp->end_at));
+				gint start = MAX (start_offset, sp->start_at);
+				gint end = MIN (end_offset, sp->end_at);
+				gtk_text_buffer_get_iter_at_offset (buffer, &start_iter, start);
+				end_iter = start_iter;
+				gtk_text_iter_forward_chars (&end_iter, end - start);
 				gtk_text_buffer_apply_tag (ce->priv->buffer, tag, &start_iter, &end_iter);
 			}
 		}
@@ -2729,20 +2733,12 @@ regex_resolve (Regex       *regex,
 static gboolean
 regex_match (Regex       *regex,
 	     const gchar *line,
-	     gint         line_length,
-	     gint         line_pos)
+	     gint         byte_length,
+	     gint         byte_pos)
 {
-	gint byte_length = line_length;
-	gint byte_pos = line_pos;
 	gboolean result;
 
 	g_assert (regex->resolved);
-
-	if (line_length > 0)
-		byte_length = (g_utf8_offset_to_pointer (line, line_length) - line);
-
-	if (line_pos > 0)
-		byte_pos = (g_utf8_offset_to_pointer (line, line_pos) - line);
 
 	if (regex->u.regex.match)
 	{
@@ -2770,8 +2766,8 @@ static void
 regex_fetch_pos (Regex       *regex,
 		 const gchar *text,
 		 gint         num,
-		 gint        *start_pos,
-		 gint        *end_pos)
+		 gint        *start_pos, /* character offsets */
+		 gint        *end_pos)   /* character offsets */
 {
 	gint byte_start_pos, byte_end_pos;
 
@@ -2794,11 +2790,34 @@ regex_fetch_pos (Regex       *regex,
 }
 
 static void
+regex_fetch_pos_bytes (Regex *regex,
+		       gint   num,
+		       gint  *start_pos_p, /* byte offsets */
+		       gint  *end_pos_p)   /* byte offsets */
+{
+	gint start_pos;
+	gint end_pos;
+
+	g_assert (regex->resolved);
+
+	if (!g_match_info_fetch_pos (regex->u.regex.match, num, &start_pos, &end_pos))
+	{
+		start_pos = -1;
+		end_pos = -1;
+	}
+
+	if (start_pos_p != NULL)
+		*start_pos_p = start_pos;
+	if (end_pos_p != NULL)
+		*end_pos_p = end_pos;
+}
+
+static void
 regex_fetch_named_pos (Regex       *regex,
 		       const gchar *text,
 		       const gchar *name,
-		       gint        *start_pos,
-		       gint        *end_pos)
+		       gint        *start_pos, /* character offsets */
+		       gint        *end_pos)   /* character offsets */
 {
 	gint byte_start_pos, byte_end_pos;
 
@@ -2917,8 +2936,8 @@ apply_sub_patterns (Segment         *state,
  *
  * @state: the current state of the parser.
  * @line: the line to analyze.
- * @match_start: start position of match.
- * @match_end: where to put end of match.
+ * @match_start: start position of match, bytes.
+ * @match_end: where to put end of match, bytes.
  * @where: kind of sub patterns to apply.
  *
  * See apply_match(), this function is a helper function
@@ -2939,9 +2958,9 @@ can_apply_match (Context  *state,
 
 	ancestor_ends = FALSE;
 	/* end_match_pos is the position of the end of the matched regex. */
-	regex_fetch_pos (regex, line->text, 0, NULL, &end_match_pos);
+	regex_fetch_pos_bytes (regex, 0, NULL, &end_match_pos);
 
-	g_assert (end_match_pos <= line->length);
+	g_assert (end_match_pos <= line->byte_length);
 
 	/* Verify if an ancestor ends in the matched text. */
 	if (ANCESTOR_CAN_END_CONTEXT (state) &&
@@ -2958,7 +2977,7 @@ can_apply_match (Context  *state,
 				break;
 			}
 
-			pos++;
+			pos = g_utf8_next_char (line->text + pos) - line->text;
 		}
 	}
 	else
@@ -2986,11 +3005,21 @@ can_apply_match (Context  *state,
 	return TRUE;
 }
 
+static gint
+line_pos_to_offset (LineInfo *line,
+		    gint      pos)
+{
+	if (line->char_length != line->byte_length)
+		pos = g_utf8_pointer_to_offset (line->text, line->text + pos);
+	return line->start_at + pos;
+}
+
 /**
  * apply_match:
  *
  * @state: the current state of the parser.
  * @line: the line to analyze.
+ * @line_pos: position in the line, bytes.
  * @regex: regex that matched.
  * @where: kind of sub patterns to apply.
  *
@@ -3016,11 +3045,9 @@ apply_match (Segment         *state,
 	if (!can_apply_match (state->context, line, *line_pos, &match_end, regex))
 		return FALSE;
 
-	segment_extend (state, line->start_at + match_end);
+	segment_extend (state, line_pos_to_offset (line, match_end));
 	apply_sub_patterns (state, line, regex, where);
 	*line_pos = match_end;
-
-	g_assert (state->end_at >= line->start_at + *line_pos);
 
 	return TRUE;
 }
@@ -3541,8 +3568,8 @@ create_child_context (Context           *parent,
  * @ce: the engine.
  * @parent: parent segment (%NULL for the root segment).
  * @context: context for this segment (%NULL for invalid segments).
- * @start_at: start offset.
- * @end_at: end offset.
+ * @start_at: start offset in the buffer, characters.
+ * @end_at: end offset in the buffer, characters.
  * @is_start: is_start flag.
  *
  * Creates a new segment structure. It doesn't take care about
@@ -3703,8 +3730,8 @@ find_segment_position (Segment  *parent,
  * @ce: the engine.
  * @parent: parent segment (%NULL for the root segment).
  * @context: context for this segment (%NULL for invalid segments).
- * @start_at: start offset.
- * @end_at: end offset.
+ * @start_at: start offset, characters.
+ * @end_at: end offset, characters.
  * @is_start: is_start flag.
  * @hint: a segment somewhere near new one, to omtimize search.
  *
@@ -3771,7 +3798,7 @@ create_segment (GtkSourceContextEngine *ce,
  * segment_extend:
  *
  * @state: the semgent.
- * @end_at: new end offset.
+ * @end_at: new end offset, characters.
  *
  * Updates end offset in the segment and its ancestors.
  */
@@ -3867,7 +3894,7 @@ container_context_starts_here (GtkSourceContextEngine  *ce,
 			       Segment                 *state,
 			       DefinitionChild         *child_def,
 			       LineInfo                *line,
-			       gint                    *line_pos,
+			       gint                    *line_pos, /* bytes */
 			       Segment                **new_state)
 {
 	Context *new_context;
@@ -3875,7 +3902,7 @@ container_context_starts_here (GtkSourceContextEngine  *ce,
 	gint match_end;
 	ContextDefinition *definition = child_def->u.definition;
 
-	g_assert (*line_pos <= line->length);
+	g_assert (*line_pos <= line->byte_length);
 
 	/* We can have a container context definition (i.e. the main
 	 * language definition) without start_end.start. */
@@ -3883,7 +3910,7 @@ container_context_starts_here (GtkSourceContextEngine  *ce,
 		return FALSE;
 
 	if (!regex_match (definition->u.start_end.start,
-			  line->text, line->length, *line_pos))
+			  line->text, line->byte_length, *line_pos))
 	{
 		return FALSE;
 	}
@@ -3898,12 +3925,12 @@ container_context_starts_here (GtkSourceContextEngine  *ce,
 		return FALSE;
 	}
 
-	g_assert (match_end <= line->length);
+	g_assert (match_end <= line->byte_length);
 
-        segment_extend (state, line->start_at + match_end);
+        segment_extend (state, line_pos_to_offset (line, match_end));
         new_segment = create_segment (ce, state, new_context,
-				      line->start_at + *line_pos,
-				      line->start_at + match_end,
+				      line_pos_to_offset (line, *line_pos),
+				      line_pos_to_offset (line, match_end),
 				      TRUE,
 				      ce->priv->hint2);
 
@@ -3917,7 +3944,7 @@ container_context_starts_here (GtkSourceContextEngine  *ce,
 	    new_segment->prev != NULL &&
 	    new_segment->prev->context == new_segment->context &&
 	    new_segment->prev->start_at == new_segment->prev->end_at &&
-	    new_segment->prev->start_at == line->start_at + *line_pos)
+	    new_segment->prev->start_at == line_pos_to_offset (line, *line_pos))
 	{
 		segment_remove (ce, new_segment);
 		return FALSE;
@@ -3943,7 +3970,7 @@ simple_context_starts_here (GtkSourceContextEngine *ce,
 			    Segment                *state,
 			    DefinitionChild        *child_def,
 			    LineInfo               *line,
-			    gint                   *line_pos,
+			    gint                   *line_pos, /* bytes */
 			    Segment               **new_state)
 {
 	gint match_end;
@@ -3952,9 +3979,9 @@ simple_context_starts_here (GtkSourceContextEngine *ce,
 
 	g_return_val_if_fail (definition->u.match != NULL, FALSE);
 
-	g_assert (*line_pos <= line->length);
+	g_assert (*line_pos <= line->byte_length);
 
-	if (!regex_match (definition->u.match, line->text, line->length, *line_pos))
+	if (!regex_match (definition->u.match, line->text, line->byte_length, *line_pos))
 		return FALSE;
 
 	new_context = create_child_context (state->context, child_def, line->text);
@@ -3973,22 +4000,23 @@ simple_context_starts_here (GtkSourceContextEngine *ce,
 	 * parent context then, but then we again can get parent context be recreated here and
 	 * so on). */
 	if (*line_pos == match_end &&
-	    (!CONTEXT_ENDS_PARENT (new_context) || *line_pos == state->start_at))
+	    (!CONTEXT_ENDS_PARENT (new_context) ||
+		line_pos_to_offset (line, *line_pos) == state->start_at))
 	{
 		context_unref (new_context);
 		return FALSE;
 	}
 
-	g_assert (match_end <= line->length);
-	segment_extend (state, line->start_at + match_end);
+	g_assert (match_end <= line->byte_length);
+	segment_extend (state, line_pos_to_offset (line, match_end));
 
 	if (*line_pos != match_end)
 	{
 		/* Normal non-zero-length match, create a child segment */
 		Segment *new_segment;
 		new_segment = create_segment (ce, state, new_context,
-					      line->start_at + *line_pos,
-					      line->start_at + match_end,
+					      line_pos_to_offset (line, *line_pos),
+					      line_pos_to_offset (line, match_end),
 					      TRUE,
 					      ce->priv->hint2);
 		apply_sub_patterns (new_segment, line, definition->u.match, SUB_PATTERN_WHERE_DEFAULT);
@@ -4019,7 +4047,7 @@ simple_context_starts_here (GtkSourceContextEngine *ce,
  * @state: current state.
  * @child_def: the child.
  * @line: line to analyze.
- * @line_pos: the position inside @line.
+ * @line_pos: the position inside @line, bytes.
  * @new_state: where to store the new state.
  *
  * Verifies if a context of the type in @curr_definition starts at
@@ -4064,7 +4092,7 @@ child_starts_here (GtkSourceContextEngine *ce,
  *
  * @state: the segment.
  * @line: analyzed line.
- * @pos: the position inside @line.
+ * @pos: the position inside @line, bytes.
  *
  * Checks whether given segment ends at pos. Unlike
  * child_starts_here() it doesn't modify tree, it merely
@@ -4080,7 +4108,7 @@ segment_ends_here (Segment  *state,
 	return state->context->definition->u.start_end.end &&
 		regex_match (state->context->end,
 			     line->text,
-			     line->length,
+			     line->byte_length,
 			     pos);
 }
 
@@ -4089,7 +4117,7 @@ segment_ends_here (Segment  *state,
  *
  * @state: current context.
  * @line: the line to analyze.
- * @line_pos: the position inside @line.
+ * @line_pos: the position inside @line, bytes.
  *
  * Verifies if some ancestor context ends at the current position.
  * This function only checks conetxts and does not modify the tree,
@@ -4132,7 +4160,7 @@ ancestor_context_ends_here (Context                *state,
 		    current_context->end->u.regex.regex &&
 		    regex_match (current_context->end,
 				 line->text,
-				 line->length,
+				 line->byte_length,
 				 line_pos))
 		{
 			terminating_context = current_context;
@@ -4151,7 +4179,7 @@ ancestor_context_ends_here (Context                *state,
  *
  * @state: current state.
  * @line: the line to analyze.
- * @line_pos: the position inside @line.
+ * @line_pos: the position inside @line, bytes.
  * @new_state: where to store the new state.
  *
  * Verifies if some ancestor context ends at given position. If
@@ -4194,7 +4222,7 @@ ancestor_ends_here (Segment                *state,
  * @ce: #GtkSourceContextEngine.
  * @state: current state.
  * @line: analyzed line.
- * @line_pos: position inside @line.
+ * @line_pos: position inside @line, bytes.
  * @new_state: where to store the new state.
  * @hint: child of @state used to optimize tree operations.
  *
@@ -4213,9 +4241,9 @@ next_segment (GtkSourceContextEngine  *ce,
 	gint pos = *line_pos;
 
 	g_assert (!ce->priv->hint2 || ce->priv->hint2->parent == state);
-	g_assert (pos <= line->length);
+	g_assert (pos <= line->byte_length);
 
-	while (pos <= line->length)
+	while (pos <= line->byte_length)
 	{
 		DefinitionsIter def_iter;
 		gboolean context_end_found;
@@ -4225,22 +4253,22 @@ next_segment (GtkSourceContextEngine  *ce,
 		{
 			if (!regex_match (state->context->reg_all,
 					  line->text,
-					  line->length,
+					  line->byte_length,
 					  pos))
 			{
 				return FALSE;
 			}
 
-			regex_fetch_pos (state->context->reg_all,
-					 line->text, 0, &pos, NULL);
+			regex_fetch_pos_bytes (state->context->reg_all,
+					       0, &pos, NULL);
 		}
 
 		/* Does an ancestor end here? */
 		if (ANCESTOR_CAN_END_CONTEXT (state->context) &&
 		    ancestor_ends_here (state, line, pos, new_state))
 		{
-			g_assert (pos <= line->length);
-			segment_extend (state, line->start_at + pos);
+			g_assert (pos <= line->byte_length);
+			segment_extend (state, line_pos_to_offset (line, pos));
 			*line_pos = pos;
 			return TRUE;
 		}
@@ -4288,7 +4316,7 @@ next_segment (GtkSourceContextEngine  *ce,
 				if (child_starts_here (ce, state, child_def,
 						       line, &pos, new_state))
 				{
-					g_assert (pos <= line->length);
+					g_assert (pos <= line->byte_length);
 					*line_pos = pos;
 					definition_iter_destroy (&def_iter);
 					return TRUE;
@@ -4309,7 +4337,7 @@ next_segment (GtkSourceContextEngine  *ce,
 			 * checks this. */
 			if (apply_match (state, line, &pos, state->context->end, SUB_PATTERN_WHERE_END))
 			{
-				g_assert (pos <= line->length);
+				g_assert (pos <= line->byte_length);
 
 				while (SEGMENT_ENDS_PARENT (state))
 					state = state->parent;
@@ -4322,7 +4350,7 @@ next_segment (GtkSourceContextEngine  *ce,
 		}
 
 		/* Nothing new at this position, go to next char. */
-		pos++;
+		pos = g_utf8_next_char (line->text + pos) - line->text;
 	}
 
 	return FALSE;
@@ -4463,7 +4491,7 @@ analyze_line (GtkSourceContextEngine *ce,
         g_assert (!ce->priv->hint2 || ce->priv->hint2->parent == state);
 
 	/* Find the contexts in the line. */
-	while (line_pos <= line->length)
+	while (line_pos <= line->byte_length)
 	{
 		Segment *new_state = NULL;
 
@@ -4484,13 +4512,13 @@ analyze_line (GtkSourceContextEngine *ce,
 		 * into infinite loop in that case. */
 		/* state may be extended later, so not all elements of new_segments
 		 * really have zero length */
-		if (state->start_at == line->length)
+		if (state->start_at == line->char_length)
 			end_segments = g_list_prepend (end_segments, state);
 	}
 
 	/* Extend current state to the end of line. */
-	segment_extend (state, line->start_at + line->length);
-	g_assert (line_pos <= line->length);
+	segment_extend (state, line->start_at + line->char_length);
+	g_assert (line_pos <= line->byte_length);
 
 	/* Verify if we need to close the context because we are at
 	 * the end of the line. */
@@ -4541,7 +4569,8 @@ get_line_info (GtkTextBuffer     *buffer,
 	if (!gtk_text_iter_starts_line (line_end))
 	{
 		line->eol_length = 0;
-		line->length = g_utf8_strlen (line->text, -1);
+		line->char_length = g_utf8_strlen (line->text, -1);
+		line->byte_length = strlen (line->text);
 	}
 	else
 	{
@@ -4553,12 +4582,13 @@ get_line_info (GtkTextBuffer     *buffer,
 
 		g_assert (eol_index < next_line_index);
 
-		line->length = g_utf8_strlen (line->text, eol_index);
+		line->char_length = g_utf8_strlen (line->text, eol_index);
 		line->eol_length = g_utf8_strlen (line->text + eol_index, -1);
+		line->byte_length = eol_index;
 	}
 
 	g_assert (gtk_text_iter_get_offset (line_end) ==
-			line->start_at + line->length + line->eol_length);
+			line->start_at + line->char_length + line->eol_length);
 }
 
 /**
@@ -4809,7 +4839,7 @@ get_segment_ (Segment *segment,
  *
  * @ce: #GtkSoucreContextEngine.
  * @hint: segment to start search from or %NULL.
- * @offset: the offset.
+ * @offset: the offset, characters.
  *
  * Finds the deepest segment "at @offset".
  * More precisely, it returns toplevel segment if
@@ -5000,8 +5030,8 @@ segment_erase_middle_ (GtkSourceContextEngine *ce,
  *
  * @ce: #GtkSourceContextEngine.
  * @segment: the segment.
- * @start: start offset of range to erase.
- * @end: end offset of range to erase.
+ * @start: start offset of range to erase, characters.
+ * @end: end offset of range to erase, characters.
  *
  * Recurisvely removes segments from [@start, @end] interval
  * starting from @segment. If @segment belongs to the range,
@@ -5209,8 +5239,8 @@ segment_merge (GtkSourceContextEngine *ce,
  * erase_segments:
  *
  * @ce: #GtkSourceContextEngine.
- * @start: start offset of region to erase.
- * @end: end offset of region to erase.
+ * @start: start offset of region to erase, characters.
+ * @end: end offset of region to erase, characters.
  * @hint: segment around @start to make it faster.
  *
  * Erases all non-toplevel segments in the interval
