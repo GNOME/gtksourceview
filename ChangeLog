@@ -1,3 +1,8 @@
+2007-11-16  Steve Frécinaux  <code@istique.net>
+
+	* gtksourceview/language-specs/php.lang: fix highlighting of null,
+	true and false (e.g. is_null was highlighted as is_ null).
+
 2007-11-12  Yevgen Muntyan  <muntyan@tamu.edu>
 
 	* gtksourceview/gtksourcecontextengine.c: Improve performance
