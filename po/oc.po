@@ -1,21 +1,24 @@
+# translation of oc.po to Occitan
 # Occitan translation of gtksourceview.
 # Copyright (C) 2003-2007 Free Software Foundation, Inc.
 # This file is distributed under the same license as the gtksourceview package.
 #
 # Yannig MARCHEGAY (yannig@marchegay.org) - 2006-2007
 #
+# Yannig Marchegay (Kokoyaya) <yannig@marchegay.org>, 2007.
 msgid ""
 msgstr ""
-"Project-Id-Version: gtksourceview 1.7.2\n"
+"Project-Id-Version: oc\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-08-28 16:13+0100\n"
-"PO-Revision-Date: 2007-09-01 19:34+0200\n"
-"Last-Translator: Yannig MARCHEGAY (Kokoyaya) <yannig@marchegay.org>\n"
-"Language-Team: Occitan (post 1500) <ubuntu-l10n-oci@lists.ubuntu.com>\n"
+"PO-Revision-Date: 2007-11-20 14:31+0100\n"
+"Last-Translator: Yannig Marchegay (Kokoyaya) <yannig@marchegay.org>\n"
+"Language-Team: Occitan <ubuntu-l10n-oci@lists.ubuntu.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);"
+"Plural-Forms: nplurals=2; plural=(n > 1);X-Generator: KBabel 1.11.4\n"
+"X-Generator: KBabel 1.11.4\n"
 
 #: ../gtksourceview/gtksourcebuffer.c:169
 msgid "Highlight Syntax"
@@ -215,7 +218,7 @@ msgstr ""
 
 #: ../gtksourceview/gtksourcestyle.c:87
 msgid "Foreground color"
-msgstr ""
+msgstr "Color de _fons"
 
 #: ../gtksourceview/gtksourcestyle.c:94 ../gtksourceview/gtksourcestyle.c:95
 msgid "Bold"
@@ -924,7 +927,7 @@ msgstr ""
 #: ../gtksourceview/language-specs/gtk-doc.lang.h:1
 #: ../gtksourceview/language-specs/ruby.lang.h:6
 msgid "Constant"
-msgstr ""
+msgstr "Contrast"
 
 #. A primitive data type: int, long, char, etc.
 #: ../gtksourceview/language-specs/def.lang.h:17
@@ -1181,7 +1184,7 @@ msgstr ""
 
 #: ../gtksourceview/language-specs/gtk-doc.lang.h:6
 msgid "Parameter"
-msgstr ""
+msgstr "Paramètre"
 
 #: ../gtksourceview/language-specs/gtk-doc.lang.h:7
 msgid "Property Name"
@@ -1295,7 +1298,7 @@ msgstr ""
 
 #: ../gtksourceview/language-specs/haskell.lang.h:8
 msgid "Hex"
-msgstr ""
+msgstr "Exa"
 
 #: ../gtksourceview/language-specs/haskell.lang.h:10
 msgid "Octal"
@@ -1684,7 +1687,7 @@ msgstr ""
 
 #: ../gtksourceview/language-specs/ruby.lang.h:18
 msgid "Ruby"
-msgstr ""
+msgstr "Robís"
 
 #: ../gtksourceview/language-specs/scheme.lang.h:5
 msgid "Scheme"
@@ -1818,38 +1821,3 @@ msgstr ""
 msgid "Tango"
 msgstr "Tangò"
 
-#~ msgid "Configuration"
-#~ msgstr "Configuracion"
-
-#~ msgid "Font"
-#~ msgstr "Poliça"
-
-#~ msgid "Print Line Numbers"
-#~ msgstr "Estampar los numeròs de linha"
-
-#~ msgid "Types"
-#~ msgstr "Tipes"
-
-#~ msgid "File"
-#~ msgstr "Fichièr"
-
-#~ msgid "Integer"
-#~ msgstr "Entièr"
-
-#~ msgid "Memory"
-#~ msgstr "Memòria"
-
-#~ msgid "Functions"
-#~ msgstr "Foncions"
-
-#~ msgid "Label"
-#~ msgstr "Etiqueta"
-
-#~ msgid "Variables"
-#~ msgstr "Variables"
-
-#~ msgid "Characters"
-#~ msgstr "Caractèrs"
-
-#~ msgid "Formatting"
-#~ msgstr "Formatatge"
