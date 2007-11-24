@@ -1,3 +1,9 @@
+2007-11-24  Yevgen Muntyan  <muntyan@tamu.edu>
+
+	* gtksourceview/gtksourceundomanager.c: replaced a singly-linked
+	list of actions with an array, to avoid freezing when undoing/redoing
+	big number of actions.
+
 2007-11-16  Steve Frécinaux  <code@istique.net>
 
 	* gtksourceview/language-specs/php.lang: fix highlighting of null,

@@ -36,6 +36,16 @@
 
 #define DEFAULT_MAX_UNDO_LEVELS		-1
 
+/*
+ * The old code which used a GSList and g_slist_nth_element
+ * was way too slow for many operations (search/replace, hit Ctrl-Z,
+ * see gedit freezes). GSList was replaced with a GPtrArray with
+ * minimal changes to the code: to avoid insertions at the beginning
+ * of the array it uses array beginning as the list end and vice versa;
+ * hence bunch of ugly action_list_* functions.
+ * FIXME: so, somebody please rewrite this stuff using some nice data
+ * structures or something.
+ */
 
 typedef struct _GtkSourceUndoAction  			GtkSourceUndoAction;
 typedef struct _GtkSourceUndoInsertAction		GtkSourceUndoInsertAction;
@@ -97,7 +107,7 @@ struct _GtkSourceUndoManagerPrivate
 {
 	GtkTextBuffer	*document;
 
-	GList*		 actions;
+	GPtrArray	*actions;
 	gint 		 next_redo;
 
 	gint 		 actions_in_current_group;
@@ -203,7 +213,7 @@ gtk_source_undo_manager_init (GtkSourceUndoManager *um)
 	um->priv = G_TYPE_INSTANCE_GET_PRIVATE (um, GTK_TYPE_SOURCE_UNDO_MANAGER,
 						GtkSourceUndoManagerPrivate);
 
-	um->priv->actions = NULL;
+	um->priv->actions = g_ptr_array_new ();
 	um->priv->next_redo = 0;
 
 	um->priv->can_undo = FALSE;
@@ -232,10 +242,8 @@ gtk_source_undo_manager_finalize (GObject *object)
 
 	g_return_if_fail (um->priv != NULL);
 
-	if (um->priv->actions != NULL)
-	{
-		gtk_source_undo_manager_free_action_list (um);
-	}
+	gtk_source_undo_manager_free_action_list (um);
+	g_ptr_array_free (um->priv->actions, TRUE);
 
 	g_signal_handlers_disconnect_by_func (G_OBJECT (um->priv->document),
 			  G_CALLBACK (gtk_source_undo_manager_delete_range_handler),
@@ -403,11 +411,48 @@ get_chars (GtkTextBuffer *buffer, gint start, gint end)
 	return gtk_text_buffer_get_slice (buffer, &start_iter, &end_iter, TRUE);
 }
 
+static GtkSourceUndoAction *
+action_list_nth_data (GPtrArray *array,
+		      gint       n)
+{
+	if (n < 0 || n >= (gint)array->len)
+		return NULL;
+	else
+		return array->pdata[array->len - 1 - n];
+}
+
+static void
+action_list_prepend (GPtrArray           *array,
+		     GtkSourceUndoAction *action)
+{
+	g_ptr_array_add (array, action);
+}
+
+static GtkSourceUndoAction *
+action_list_last_data (GPtrArray *array)
+{
+	if (array->len != 0)
+		return array->pdata[0];
+	else
+		return NULL;
+}
+
+static void
+action_list_delete_last (GPtrArray *array)
+{
+	if (array->len != 0)
+	{
+		memmove (&array->pdata[0], &array->pdata[1], (array->len - 1)*sizeof (gpointer));
+		g_ptr_array_set_size (array, array->len - 1);
+	}
+}
+
 void
 gtk_source_undo_manager_undo (GtkSourceUndoManager *um)
 {
 	GtkSourceUndoAction *undo_action;
 	gboolean modified = FALSE;
+	gint cursor_pos = -1;
 
 	g_return_if_fail (GTK_SOURCE_IS_UNDO_MANAGER (um));
 	g_return_if_fail (um->priv != NULL);
@@ -419,7 +464,7 @@ gtk_source_undo_manager_undo (GtkSourceUndoManager *um)
 
 	do
 	{
-		undo_action = g_list_nth_data (um->priv->actions, um->priv->next_redo + 1);
+		undo_action = action_list_nth_data (um->priv->actions, um->priv->next_redo + 1);
 		g_return_if_fail (undo_action != NULL);
 
 		/* undo_action->modified can be TRUE only if undo_action->order_in_group <= 1 */
@@ -444,13 +489,9 @@ gtk_source_undo_manager_undo (GtkSourceUndoManager *um)
 					strlen (undo_action->action.delete.text));
 
 				if (undo_action->action.delete.forward)
-					set_cursor (
-						um->priv->document,
-						undo_action->action.delete.start);
+					cursor_pos = undo_action->action.delete.start;
 				else
-					set_cursor (
-						um->priv->document,
-						undo_action->action.delete.end);
+					cursor_pos = undo_action->action.delete.end;
 
 				break;
 
@@ -461,9 +502,7 @@ gtk_source_undo_manager_undo (GtkSourceUndoManager *um)
 					undo_action->action.insert.pos +
 						undo_action->action.insert.chars);
 
-				set_cursor (
-					um->priv->document,
-					undo_action->action.insert.pos);
+				cursor_pos = undo_action->action.insert.pos;
 				break;
 
 			default:
@@ -474,6 +513,9 @@ gtk_source_undo_manager_undo (GtkSourceUndoManager *um)
 		++um->priv->next_redo;
 
 	} while (undo_action->order_in_group > 1);
+
+	if (cursor_pos >= 0)
+		set_cursor (um->priv->document, cursor_pos);
 
 	if (modified)
 	{
@@ -495,7 +537,7 @@ gtk_source_undo_manager_undo (GtkSourceUndoManager *um)
 			       TRUE);
 	}
 
-	if (um->priv->next_redo >= (gint)(g_list_length (um->priv->actions) - 1))
+	if (um->priv->next_redo >= (gint)um->priv->actions->len - 1)
 	{
 		um->priv->can_undo = FALSE;
 		g_signal_emit (G_OBJECT (um),
@@ -510,12 +552,13 @@ gtk_source_undo_manager_redo (GtkSourceUndoManager *um)
 {
 	GtkSourceUndoAction *undo_action;
 	gboolean modified = FALSE;
+	gint cursor_pos = -1;
 
 	g_return_if_fail (GTK_SOURCE_IS_UNDO_MANAGER (um));
 	g_return_if_fail (um->priv != NULL);
 	g_return_if_fail (um->priv->can_redo);
 
-	undo_action = g_list_nth_data (um->priv->actions, um->priv->next_redo);
+	undo_action = action_list_nth_data (um->priv->actions, um->priv->next_redo);
 	g_return_if_fail (undo_action != NULL);
 
 	gtk_source_undo_manager_begin_not_undoable_action (um);
@@ -538,16 +581,13 @@ gtk_source_undo_manager_redo (GtkSourceUndoManager *um)
 					undo_action->action.delete.start,
 					undo_action->action.delete.end);
 
-				set_cursor (
-					um->priv->document,
-					undo_action->action.delete.start);
+				cursor_pos = undo_action->action.delete.start;
 
 				break;
 
 			case GTK_SOURCE_UNDO_ACTION_INSERT:
-				set_cursor (
-					um->priv->document,
-					undo_action->action.insert.pos);
+				cursor_pos = undo_action->action.insert.pos +
+						undo_action->action.insert.length;
 
 				insert_text (
 					um->priv->document,
@@ -566,9 +606,12 @@ gtk_source_undo_manager_redo (GtkSourceUndoManager *um)
 		if (um->priv->next_redo < 0)
 			undo_action = NULL;
 		else
-			undo_action = g_list_nth_data (um->priv->actions, um->priv->next_redo);
+			undo_action = action_list_nth_data (um->priv->actions, um->priv->next_redo);
 
 	} while ((undo_action != NULL) && (undo_action->order_in_group > 1));
+
+	if (cursor_pos >= 0)
+		set_cursor (um->priv->document, cursor_pos);
 
 	if (modified)
 	{
@@ -611,13 +654,11 @@ gtk_source_undo_action_free (GtkSourceUndoAction *action)
 static void
 gtk_source_undo_manager_free_action_list (GtkSourceUndoManager *um)
 {
-	GList *l;
+	gint i;
 
-	l = um->priv->actions;
-
-	while (l != NULL)
+	for (i = (gint)um->priv->actions->len - 1; i >= 0; i--)
 	{
-		GtkSourceUndoAction *action = l->data;
+		GtkSourceUndoAction *action = um->priv->actions->pdata[i];
 
 		if (action->order_in_group == 1)
 			--um->priv->num_of_groups;
@@ -626,12 +667,18 @@ gtk_source_undo_manager_free_action_list (GtkSourceUndoManager *um)
 			um->priv->modified_action = INVALID;
 
 		gtk_source_undo_action_free (action);
-
-		l = g_list_next (l);
 	}
 
-	g_list_free (um->priv->actions);
-	um->priv->actions = NULL;
+	/* Some arbitrary limit, to avoid wasting space */
+	if (um->priv->actions->len > 2048)
+	{
+		g_ptr_array_free (um->priv->actions, TRUE);
+		um->priv->actions = g_ptr_array_new ();
+	}
+	else
+	{
+		g_ptr_array_set_size (um->priv->actions, 0);
+	}
 }
 
 static void
@@ -758,7 +805,7 @@ gtk_source_undo_manager_add_action (GtkSourceUndoManager 	*um,
 		if (action->order_in_group == 1)
 			++um->priv->num_of_groups;
 
-		um->priv->actions = g_list_prepend (um->priv->actions, action);
+		action_list_prepend (um->priv->actions, action);
 	}
 
 	gtk_source_undo_manager_check_list_size (um);
@@ -782,12 +829,12 @@ gtk_source_undo_manager_free_first_n_actions (GtkSourceUndoManager	*um,
 {
 	gint i;
 
-	if (um->priv->actions == NULL)
+	if (um->priv->actions->len == 0)
 		return;
 
 	for (i = 0; i < n; i++)
 	{
-		GtkSourceUndoAction *action = g_list_first (um->priv->actions)->data;
+		GtkSourceUndoAction *action = um->priv->actions->pdata[um->priv->actions->len - 1];
 
 		if (action->order_in_group == 1)
 			--um->priv->num_of_groups;
@@ -797,10 +844,9 @@ gtk_source_undo_manager_free_first_n_actions (GtkSourceUndoManager	*um,
 
 		gtk_source_undo_action_free (action);
 
-		um->priv->actions = g_list_delete_link (um->priv->actions,
-							um->priv->actions);
+		g_ptr_array_set_size (um->priv->actions, um->priv->actions->len - 1);
 
-		if (um->priv->actions == NULL)
+		if (um->priv->actions->len == 0)
 			return;
 	}
 }
@@ -821,15 +867,11 @@ gtk_source_undo_manager_check_list_size (GtkSourceUndoManager *um)
 	if (um->priv->num_of_groups > undo_levels)
 	{
 		GtkSourceUndoAction *undo_action;
-		GList *last;
 
-		last = g_list_last (um->priv->actions);
-		undo_action = (GtkSourceUndoAction*) last->data;
+		undo_action = action_list_last_data (um->priv->actions);
 
 		do
 		{
-			GList *tmp;
-
 			if (undo_action->order_in_group == 1)
 				--um->priv->num_of_groups;
 
@@ -838,12 +880,10 @@ gtk_source_undo_manager_check_list_size (GtkSourceUndoManager *um)
 
 			gtk_source_undo_action_free (undo_action);
 
-			tmp = g_list_previous (last);
-			um->priv->actions = g_list_delete_link (um->priv->actions, last);
-			last = tmp;
-			g_return_if_fail (last != NULL);
+			action_list_delete_last (um->priv->actions);
 
-			undo_action = (GtkSourceUndoAction*) last->data;
+			undo_action = action_list_last_data (um->priv->actions);
+			g_return_if_fail (undo_action != NULL);
 
 		} while ((undo_action->order_in_group > 1) ||
 			 (um->priv->num_of_groups > undo_levels));
@@ -870,10 +910,10 @@ gtk_source_undo_manager_merge_action (GtkSourceUndoManager 	*um,
 	g_return_val_if_fail (GTK_SOURCE_IS_UNDO_MANAGER (um), FALSE);
 	g_return_val_if_fail (um->priv != NULL, FALSE);
 
-	if (um->priv->actions == NULL)
+	if (um->priv->actions->len == 0)
 		return FALSE;
 
-	last_action = (GtkSourceUndoAction*) g_list_nth_data (um->priv->actions, 0);
+	last_action = action_list_nth_data (um->priv->actions, 0);
 
 	if (!last_action->mergeable)
 		return FALSE;
@@ -1020,7 +1060,7 @@ gtk_source_undo_manager_set_max_undo_levels (GtkSourceUndoManager	*um,
 		}
 
 		if (um->priv->can_undo &&
-		    um->priv->next_redo >= (gint)(g_list_length (um->priv->actions) - 1))
+		    um->priv->next_redo >= (gint)um->priv->actions->len - 1)
 		{
 			um->priv->can_undo = FALSE;
 			g_signal_emit (G_OBJECT (um), undo_manager_signals [CAN_UNDO], 0, FALSE);
@@ -1033,20 +1073,16 @@ gtk_source_undo_manager_modified_changed_handler (GtkTextBuffer        *buffer,
                                             	  GtkSourceUndoManager *um)
 {
 	GtkSourceUndoAction *action;
-	GList *list;
+	gint index;
 
 	g_return_if_fail (GTK_SOURCE_IS_UNDO_MANAGER (um));
 	g_return_if_fail (um->priv != NULL);
 
-	if (um->priv->actions == NULL)
+	if (um->priv->actions->len == 0)
 		return;
 
-	list = g_list_nth (um->priv->actions, um->priv->next_redo + 1);
-
-	if (list != NULL)
-		action = (GtkSourceUndoAction*) list->data;
-	else
-		action = NULL;
+	index = um->priv->next_redo + 1;
+	action = action_list_nth_data (um->priv->actions, index);
 
 	if (gtk_text_buffer_get_modified (buffer) == FALSE)
 	{
@@ -1085,10 +1121,7 @@ gtk_source_undo_manager_modified_changed_handler (GtkTextBuffer        *buffer,
 
 	while (action->order_in_group > 1)
 	{
-		list = g_list_next (list);
-		g_return_if_fail (list != NULL);
-
-		action = (GtkSourceUndoAction*) list->data;
+		action = action_list_nth_data (um->priv->actions, ++index);
 		g_return_if_fail (action != NULL);
 	}
 
