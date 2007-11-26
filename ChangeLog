@@ -1,5 +1,10 @@
 2007-11-26  Yevgen Muntyan  <muntyan@tamu.edu>
 
+	* gtksourceview/language-specs/docbook.lang: reverted last styles
+	change, docbook elements should not look like regular xml tags.
+
+2007-11-26  Yevgen Muntyan  <muntyan@tamu.edu>
+
 	* gtksourceview/language-specs/testv1.lang: do not mark anything
 	for translation.
 	* gtksourceview/language-specs/docbook.lang: use xml:element-name
