@@ -61,7 +61,7 @@
     </context>
 
     <context id="block-comment-2" style-ref="comment">
-      <start>\{[^\$]</start>
+      <start>\{</start>
       <end>\}</end>
       <include>
         <context ref="def:in-comment"/>
@@ -213,9 +213,9 @@
       <include>
         <context ref="string"/>
         <context ref="line-comment"/>
+        <context ref="preprocessor-defines"/>
         <context ref="block-comment-1"/>
         <context ref="block-comment-2"/>
-        <context ref="preprocessor-defines"/>
         <context ref="general-format"/>
         <context ref="functions-and-function-modifiers"/>
         <context ref="boolean-bitwise-operators"/>

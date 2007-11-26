@@ -1,3 +1,9 @@
+2007-11-26  Yevgen Muntyan  <muntyan@tamu.edu>
+
+	* gtksourceview/language-specs/pascal.lang: fixed {} comments
+	when { is the last character on the line. Patch by Oliver Sauder,
+	#499675.
+
 2007-11-24  Yevgen Muntyan  <muntyan@tamu.edu>
 
 	* gtksourceview/gtksourceundomanager.c: replaced a singly-linked
