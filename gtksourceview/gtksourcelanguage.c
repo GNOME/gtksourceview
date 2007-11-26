@@ -52,8 +52,9 @@ enum {
 
 G_DEFINE_TYPE (GtkSourceLanguage, gtk_source_language, G_TYPE_OBJECT)
 
-static GtkSourceLanguage *process_language_node 		(xmlTextReaderPtr 		 reader,
-								 const gchar 			*filename);
+static GtkSourceLanguage *process_language_node (xmlTextReaderPtr	 reader,
+						 const gchar		*filename);
+static gboolean		  force_styles		(GtkSourceLanguage	*language);
 
 GtkSourceLanguage *
 _gtk_source_language_new_from_file (const gchar              *filename,
@@ -274,11 +275,10 @@ static void
 process_properties (xmlTextReaderPtr   reader,
 		    GtkSourceLanguage *language)
 {
-	gint ret;
 	xmlNodePtr child;
 	xmlNodePtr node = NULL;
 
-	while (node == NULL && (ret = xmlTextReaderRead (reader)) == 1)
+	while (node == NULL && xmlTextReaderRead (reader) == 1)
 	{
 		xmlChar *name;
 
@@ -625,6 +625,15 @@ _gtk_source_language_get_language_manager (GtkSourceLanguage *language)
 
 /* Highlighting engine creation ------------------------------------------ */
 
+static void
+copy_style_info (const char         *style_id,
+		 GtkSourceStyleInfo *info,
+		 GHashTable         *dest)
+{
+	g_hash_table_insert (dest, g_strdup (style_id),
+			     _gtk_source_style_info_copy (info));
+}
+
 void
 _gtk_source_language_define_language_styles (GtkSourceLanguage *lang)
 {
@@ -643,6 +652,8 @@ _gtk_source_language_define_language_styles (GtkSourceLanguage *lang)
 		{NULL, NULL}};
 
 	gint i = 0;
+	GtkSourceLanguageManager *lm;
+	GtkSourceLanguage *def_lang;
 
 	while (alias[i][0] != NULL)
 	{
@@ -656,13 +667,26 @@ _gtk_source_language_define_language_styles (GtkSourceLanguage *lang)
 
 		++i;
 	}
+
+	/* We translate String to def:string, but def:string is mapped-to
+	 * def:constant in def.lang, so we got to take style mappings from def.lang */
+
+	lm = _gtk_source_language_get_language_manager (lang);
+	def_lang = gtk_source_language_manager_get_language (lm, "def");
+
+	if (def_lang != NULL)
+	{
+		force_styles (def_lang);
+		g_hash_table_foreach (def_lang->priv->styles,
+				      (GHFunc) copy_style_info,
+				      lang->priv->styles);
+	}
 }
 
-GtkSourceEngine *
-_gtk_source_language_create_engine (GtkSourceLanguage *language)
+/* returns new reference, which _must_ be unref'ed */
+static GtkSourceContextData *
+gtk_source_language_parse_file (GtkSourceLanguage *language)
 {
-	GtkSourceContextEngine *ce = NULL;
-
 	if (language->priv->ctx_data == NULL)
 	{
 		gboolean success = FALSE;
@@ -699,10 +723,21 @@ _gtk_source_language_create_engine (GtkSourceLanguage *language)
 		_gtk_source_context_data_ref (language->priv->ctx_data);
 	}
 
-	if (language->priv->ctx_data)
+	return language->priv->ctx_data;
+}
+
+GtkSourceEngine *
+_gtk_source_language_create_engine (GtkSourceLanguage *language)
+{
+	GtkSourceContextEngine *ce = NULL;
+	GtkSourceContextData *ctx_data;
+
+	ctx_data = gtk_source_language_parse_file (language);
+
+	if (ctx_data != NULL)
 	{
-		ce = _gtk_source_context_engine_new (language->priv->ctx_data);
-		_gtk_source_context_data_unref (language->priv->ctx_data);
+		ce = _gtk_source_context_engine_new (ctx_data);
+		_gtk_source_context_data_unref (ctx_data);
 	}
 
 	return ce ? GTK_SOURCE_ENGINE (ce) : NULL;
@@ -761,19 +796,20 @@ get_style_ids (GtkSourceLanguage *language)
 static gboolean
 force_styles (GtkSourceLanguage *language)
 {
-	GtkSourceEngine *ce;
-
-	/* To be sure to have the list of styles we need to create a
-	 * GtkSourceContextEngine.
-	 * In the future we can improve this avoiding to create a context
-	 * engine.
+	/* To be sure to have the list of styles we need to parse lang file
+	 * as if we were to create an engine. In the future we can improve
+	 * this by parsing styles only.
 	 */
-	if (language->priv->ctx_data == NULL)
+	if (!language->priv->styles_loaded && language->priv->ctx_data == NULL)
 	{
-		ce = _gtk_source_language_create_engine (language);
-		if (ce == NULL)
+		GtkSourceContextData *ctx_data;
+
+		ctx_data = gtk_source_language_parse_file (language);
+		if (ctx_data == NULL)
 			return FALSE;
-		g_object_unref (ce);
+
+		language->priv->styles_loaded = TRUE;
+		_gtk_source_context_data_unref (ctx_data);
 	}
 
 	return TRUE;
@@ -858,6 +894,13 @@ _gtk_source_style_info_new (const gchar *name, const gchar *map_to)
 	info->map_to = g_strdup (map_to);
 
 	return info;
+}
+
+GtkSourceStyleInfo *
+_gtk_source_style_info_copy (GtkSourceStyleInfo *info)
+{
+	g_return_val_if_fail (info != NULL, NULL);
+	return _gtk_source_style_info_new (info->name, info->map_to);
 }
 
 void

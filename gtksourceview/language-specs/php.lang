@@ -226,12 +226,12 @@
     </context>
 
     <context id="null-value" style-ref="null-value">
-      <prefix>(?i)</prefix> <!-- case insensitive -->
+      <prefix>(?i)\b</prefix> <!-- case insensitive -->
       <keyword>null</keyword>
     </context>
 
     <context id="boolean" style-ref="boolean">
-      <prefix>(?i)</prefix> <!-- case insensitive -->
+      <prefix>(?i)\b</prefix> <!-- case insensitive -->
       <keyword>false</keyword>
       <keyword>true</keyword>
     </context>

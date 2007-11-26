@@ -36,6 +36,8 @@
     <style id="preprocessor" _name="Preprocessor" map-to="def:preprocessor"/>
   </styles>
 
+  <default-regex-options case-sensitive="false"/>
+
   <definitions>
 
     <context id="string" style-ref="string">
@@ -59,7 +61,7 @@
     </context>
 
     <context id="block-comment-2" style-ref="comment">
-      <start>\{[^\$]</start>
+      <start>\{</start>
       <end>\}</end>
       <include>
         <context ref="def:in-comment"/>
@@ -145,7 +147,9 @@
       <keyword>Abstract</keyword>
       <keyword>Override</keyword>
       <keyword>Property</keyword>
+      <keyword>ReadLn</keyword>
       <keyword>Read</keyword>
+      <keyword>WriteLn</keyword>
       <keyword>Write</keyword>
       <keyword>default</keyword>
       <keyword>With</keyword>
@@ -209,9 +213,9 @@
       <include>
         <context ref="string"/>
         <context ref="line-comment"/>
+        <context ref="preprocessor-defines"/>
         <context ref="block-comment-1"/>
         <context ref="block-comment-2"/>
-        <context ref="preprocessor-defines"/>
         <context ref="general-format"/>
         <context ref="functions-and-function-modifiers"/>
         <context ref="boolean-bitwise-operators"/>

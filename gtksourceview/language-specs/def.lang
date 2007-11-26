@@ -48,7 +48,7 @@
         <style id="doc-comment" _name="Documentation comment" map-to="def:comment"/>
 
         <!-- A element inside a documentation comment: @author -->
-        <!-- This style doesn't map to anything since it must be used as an additional 
+        <!-- This style doesn't map to anything since it must be used as an additional
              style for text which is already styled as a "doc-comment" -->
         <style id="doc-comment-element" _name="Documentation comment element" />
 
@@ -61,11 +61,11 @@
         <!-- A character constant: 'c' -->
         <style id="character" _name="Character" map-to="def:constant"/>
 
-        <!-- A string constant: "this is a string" -->	
+        <!-- A string constant: "this is a string" -->
         <style id="string" _name="String" map-to="def:constant"/>
 
         <!-- Special character in a string constant: "%s", "\t" -->
-        <!-- This style doesn't map to anything since it must be used as an additional 
+        <!-- This style doesn't map to anything since it must be used as an additional
              style for text which is already styled as a "string" -->
         <style id="special-char" _name="Special character (inside a string)" />
 
@@ -99,7 +99,7 @@
         <!-- A function name (also: methods for classes) -->
         <style id="function" _name="Function" map-to="def:identifier"/>
 
-        <!-- A builtin name: like __import__, abs in Python 
+        <!-- A builtin name: like __import__, abs in Python
             (see http://docs.python.org/lib/built-in-funcs.html) -->
         <style id="builtin" _name="Built-in identifier" map-to="def:identifier"/>
 
@@ -260,6 +260,9 @@
                 <context ref="line-continue"/>
             </include>
         </context>
+
+        <!-- Dummy context, needed to load the style mappings when parsing v1 files -->
+        <context id="def"/>
 
     </definitions>
 </language>

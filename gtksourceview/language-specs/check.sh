@@ -5,6 +5,7 @@
 
 check_file() {
   case $1 in
+  testv1.lang) ;; # skip test file for old format
   *.xml)
     xmllint --relaxng styles.rng --noout $file || exit 1
     ;;

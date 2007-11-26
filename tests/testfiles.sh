@@ -129,6 +129,9 @@ $Fname = $_POST["Fname"];
 $Lname = $_POST["Lname"];
 $gender = $_POST["gender"];
 ?>
+<?php
+echo "a string containing ?>"
+?>
 <html> <head> <title>Personal INFO</title> </head> <body>
 <form method="post" action="<?php echo $PHP_SELF;?>">
 First Name:<input type="text" size="12" maxlength="12" name="Fname"><br />

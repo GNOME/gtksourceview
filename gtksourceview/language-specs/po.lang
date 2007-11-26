@@ -32,6 +32,8 @@
     <style id="location" _name="Location" map-to="def:comment"/>
     <style id="string" _name="String" map-to="def:string"/>
     <style id="keyword" _name="Keyword" map-to="def:keyword"/>
+    <!-- FIXME make it some nice name and mark it translatable -->
+    <style id="special" name="Special" map-to="def:special-char"/>
   </styles>
 
   <definitions>
@@ -41,6 +43,16 @@
       <include>
         <context ref="def:escape"/>
         <context ref="def:line-continue"/>
+        <context ref="def:email-address"/>
+        <context ref="def:net-address"/>
+        <context id="mnemonic" style-ref="special">
+          <match>[&amp;_][a-zA-Z]</match>
+        </context>
+        <context id="tag" style-ref="special">
+	  <match>&lt;[a-zA-Z\=\"\/ ]+&gt;</match>
+	</context>
+        <context ref="python:format" style-ref="special"/>
+        <context ref="c:printf" style-ref="special"/>
       </include>
     </context>
     <context id="format" style-ref="comment" end-at-line-end="true">

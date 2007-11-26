@@ -1,3 +1,80 @@
+2007-11-26  Paolo Borelli  <pborelli@katamail.com>
+
+	* gtksourceview/language-specs/check.sh: skip check for the lang v1
+	test file.
+
+2007-11-26  Yevgen Muntyan  <muntyan@tamu.edu>
+
+	* gtksourceview/language-specs/docbook.lang: reverted last styles
+	change, docbook elements should not look like regular xml tags.
+
+2007-11-26  Yevgen Muntyan  <muntyan@tamu.edu>
+
+	* gtksourceview/language-specs/testv1.lang: do not mark anything
+	for translation.
+	* gtksourceview/language-specs/docbook.lang: use xml:element-name
+	default style for docbook elements instead of def:keyword.
+	* gtksourceview/language-specs/kate.xml: changed docbook elements
+	colors.
+
+2007-11-26  Yevgen Muntyan  <muntyan@tamu.edu>
+
+	* gtksourceview/language-specs/pascal.lang: fixed {} comments
+	when { is the last character on the line. Patch by Oliver Sauder,
+	#499675.
+
+2007-11-16  Steve Frécinaux  <code@istique.net>
+
+	* gtksourceview/language-specs/php.lang: fix highlighting of null,
+	true and false (e.g. is_null was highlighted as is_ null).
+
+2007-11-12  Yevgen Muntyan  <muntyan@tamu.edu>
+
+	* gtksourceview/gtksourcecontextengine.c: Improve performance
+	with long text lines: use byte offsets in all functions which
+	deal with regex matching; use less gtk_text_buffer_get_iter_at_offset()
+	in apply_tags();
+
+2007-11-10  Paolo Borelli  <pborelli@katamail.com>
+
+	* gtksourceview/language-specs/pascal.lang: pascal is not case
+	sensitive. Patch by Adrien Cunin, fixes bug #495666.
+
+2007-11-02  Yevgen Muntyan  <muntyan@tamu.edu>
+
+	* tests/test-widget.c: parse "gtk-source-lang: foo" on the first
+	line of file, modeline for poor.
+	* gtksourceview/language-specs/testv1.lang: a version 1 lang file,
+	for testing.
+	* gtksourceview/language-specs/testfiles.sh: output file.testv1 to
+	test with testv1.lang.
+
+2007-11-02  Yevgen Muntyan  <muntyan@tamu.edu>
+
+	Get styles mappings from def.lang when parsing version 1 lang files.
+
+	* gtksourceview/gtksourcelanguage-private.h: new field in
+	GtkSourceLanguagePrivate: 'styles_loaded', to avoid reloading
+	lang file if styles are already there.
+	* gtksourceview/gtksourcelanguage.c:
+	(_gtk_source_language_define_language_styles): parse def.lang to get
+	default styles mapping;
+	(gtk_source_language_parse_file): new function, to be used in
+	_gtk_source_language_create_engine and force_styles.
+	* gtksourceview/language-specs/def.lang: added dummy def:def context
+	needed in force_styles().
+
+2007-10-24  Yevgen Muntyan  <muntyan@tamu.edu>
+
+	* gtksourceview/language-specs/po.lang: highlight C and Python strings,
+	XML tags, and mnemonics in a special way.
+	Patch by Ignacio Casal Quinteiro (#485519).
+
+2007-10-24  Yevgen Muntyan  <muntyan@tamu.edu>
+
+	* gtksourceview/language-specs/gtk-doc.lang: require trailing
+	colon after a function/signal/property name (#489736).
+
 2007-10-21  Paolo Borelli  <pborelli@katamail.com>
 
 	* gtksourceview/language-specs/fortran.lang: fortran in not case

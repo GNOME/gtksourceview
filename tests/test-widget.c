@@ -68,6 +68,8 @@ static void       margin_toggled_cb              (GtkAction       *action,
 						  gpointer         user_data);
 static void       hl_line_toggled_cb             (GtkAction       *action,
 						  gpointer         user_data);
+static void       wrap_lines_toggled_cb          (GtkAction       *action,
+						  gpointer         user_data);
 static void       auto_indent_toggled_cb         (GtkAction       *action,
 						  gpointer         user_data);
 static void       insert_spaces_toggled_cb       (GtkAction       *action,
@@ -114,6 +116,9 @@ static GtkToggleActionEntry toggle_entries[] = {
 	{ "HlLine", NULL, "_Highlight Current Line", NULL,
 	  "Toggle highlighting of current line",
 	  G_CALLBACK (hl_line_toggled_cb), FALSE },
+	{ "WrapLines", NULL, "_Wrap Lines", NULL,
+	  "Toggle line wrapping",
+	  G_CALLBACK (wrap_lines_toggled_cb), FALSE },
 	{ "AutoIndent", NULL, "Enable _Auto Indent", NULL,
 	  "Toggle automatic auto indentation of text",
 	  G_CALLBACK (auto_indent_toggled_cb), FALSE },
@@ -164,6 +169,7 @@ static const gchar *view_ui_description =
 "      <menuitem action=\"ShowNumbers\"/>"
 "      <menuitem action=\"ShowMargin\"/>"
 "      <menuitem action=\"HlLine\"/>"
+"      <menuitem action=\"WrapLines\"/>"
 "      <separator/>"
 "      <menuitem action=\"AutoIndent\"/>"
 "      <menuitem action=\"InsertSpaces\"/>"
@@ -400,6 +406,51 @@ get_language_for_file (const gchar *filename)
 	return language;
 }
 
+static GtkSourceLanguage *
+get_language_by_id (const gchar *id)
+{
+	GtkSourceLanguageManager *manager;
+	manager = gtk_source_language_manager_get_default ();
+	return gtk_source_language_manager_get_language (manager, id);
+}
+
+static GtkSourceLanguage *
+get_language (GtkTextBuffer *buffer, const gchar *filename)
+{
+	GtkSourceLanguage *language = NULL;
+	GtkTextIter start, end;
+	gchar *text;
+	const gchar *lang_string;
+
+	gtk_text_buffer_get_start_iter (buffer, &start);
+	end = start;
+	gtk_text_iter_forward_line (&end);
+
+#define LANG_STRING "gtk-source-lang:"
+	text = gtk_text_iter_get_slice (&start, &end);
+	lang_string = strstr (text, LANG_STRING);
+	if (lang_string != NULL)
+	{
+		gchar **tokens;
+
+		lang_string += strlen (LANG_STRING);
+		g_strchug (lang_string);
+
+		tokens = g_strsplit_set (lang_string, " \t\n", 2);
+
+		if (tokens != NULL && tokens[0] != NULL)
+			language = get_language_by_id (tokens[0]);
+
+		g_strfreev (tokens);
+	}
+
+	if (!language)
+		language = get_language_for_file (filename);
+
+	g_free (text);
+	return language;
+}
+
 static gboolean
 open_file (GtkSourceBuffer *buffer, const gchar *filename)
 {
@@ -420,7 +471,7 @@ open_file (GtkSourceBuffer *buffer, const gchar *filename)
 	if (!success)
 		goto out;
 
-	language = get_language_for_file (filename);
+	language = get_language (GTK_TEXT_BUFFER (buffer), filename);
 
 	if (language == NULL)
 		g_print ("No language found for file `%s'\n", filename);
@@ -494,6 +545,15 @@ hl_line_toggled_cb (GtkAction *action, gpointer user_data)
 	gtk_source_view_set_highlight_current_line (
 		GTK_SOURCE_VIEW (user_data),
 		gtk_toggle_action_get_active (GTK_TOGGLE_ACTION (action)));
+}
+
+static void
+wrap_lines_toggled_cb (GtkAction *action, gpointer user_data)
+{
+	g_return_if_fail (GTK_IS_TOGGLE_ACTION (action) && GTK_IS_SOURCE_VIEW (user_data));
+	gtk_text_view_set_wrap_mode (user_data,
+				     gtk_toggle_action_get_active (GTK_TOGGLE_ACTION (action)) ?
+					GTK_WRAP_WORD : GTK_WRAP_NONE);
 }
 
 static void
@@ -905,6 +965,10 @@ create_view_window (GtkSourceBuffer *buffer, GtkSourceView *from)
 		action = gtk_action_group_get_action (action_group, "HlLine");
 		gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action),
 					      gtk_source_view_get_highlight_current_line (from));
+
+		action = gtk_action_group_get_action (action_group, "WrapLines");
+		gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action),
+					      gtk_text_view_get_wrap_mode (GTK_TEXT_VIEW (from)) != GTK_WRAP_NONE);
 
 		action = gtk_action_group_get_action (action_group, "AutoIndent");
 		gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action),
