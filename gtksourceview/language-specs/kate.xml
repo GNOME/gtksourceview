@@ -97,6 +97,12 @@
   <style name="xml:processing-instruction"  bold="true"/>
   <style name="xml:doctype"                 foreground="dark-red" bold="true"/>
 
+  <style name="docbook-element"             foreground="#004141" bold="true"/>
+  <style name="docbook:header-elements"     use-style="docbook-element"/>
+  <style name="docbook:formatting-elements" use-style="docbook-element"/>
+  <style name="docbook:gui-elements"        use-style="docbook-element"/>
+  <style name="docbook:structural-elements" use-style="docbook-element"/>
+
   <style name="js:object"                   foreground="dark-green"/>
   <style name="js:constructors"             bold="true"/>
 

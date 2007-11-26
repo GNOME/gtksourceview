@@ -1,5 +1,14 @@
 2007-11-26  Yevgen Muntyan  <muntyan@tamu.edu>
 
+	* gtksourceview/language-specs/testv1.lang: do not mark anything
+	for translation.
+	* gtksourceview/language-specs/docbook.lang: use xml:element-name
+	default style for docbook elements instead of def:keyword.
+	* gtksourceview/language-specs/kate.xml: changed docbook elements
+	colors.
+
+2007-11-26  Yevgen Muntyan  <muntyan@tamu.edu>
+
 	* gtksourceview/language-specs/pascal.lang: fixed {} comments
 	when { is the last character on the line. Patch by Oliver Sauder,
 	#499675.

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE language SYSTEM "language.dtd">
-<language _name="testv1" version="1.0" _section="Others">
+<language name="testv1" version="1.0" section="Others">
 
 	<escape-char>\</escape-char>
 
@@ -42,15 +42,15 @@
 		<keyword>wkwk</keyword>
 	</keyword-list>
 
-        <pattern-item _name = "Floats" style = "Floating Point">
+        <pattern-item name = "Floats" style = "Floating Point">
                 <regex>\b([0-9]*\.[0-9]+[eE@][-+]?[0-9]+|[0-9]+[eE@][-+]?[0-9]+|[0-9]*\.[0-9]+)\b</regex>
         </pattern-item>
 
-        <pattern-item _name = "Base-N Integers" style = "Base-N Integer">
+        <pattern-item name = "Base-N Integers" style = "Base-N Integer">
                 <regex>\b(([1-3][0-9]|[1-9])\\[0-9a-zA-Z]+|0x[0-9a-fA-F]+|0[0-7]+)\b</regex>
         </pattern-item>
 
-        <pattern-item _name = "Decimal Integers" style = "Decimal">
+        <pattern-item name = "Decimal Integers" style = "Decimal">
                 <regex>\b([1-9][0-9]*|0)\b</regex>
         </pattern-item>
 
