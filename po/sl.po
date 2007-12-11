@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: gtksourcereview\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-09-10 03:50+0100\n"
-"PO-Revision-Date: 2007-12-01 08:11+0100\n"
+"PO-Revision-Date: 2007-12-11 18:15+0100\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian <SL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -56,19 +56,19 @@ msgstr "Predmet za pridobivanje vzorcev jezikov za poudarjanje"
 
 #: ../gtksourceview/gtksourcebuffer.c:218
 msgid "Can undo"
-msgstr ""
+msgstr "Možnost razveljavitve"
 
 #: ../gtksourceview/gtksourcebuffer.c:219
 msgid "Whether Undo operation is possible"
-msgstr ""
+msgstr "Ali je mogoče razveljaviti dejanje"
 
 #: ../gtksourceview/gtksourcebuffer.c:226
 msgid "Can redo"
-msgstr ""
+msgstr "Možnost ponovne naloge"
 
 #: ../gtksourceview/gtksourcebuffer.c:227
 msgid "Whether Redo operation is possible"
-msgstr ""
+msgstr "Ali je mogoče dejanje ponovno uporabiti po razveljavitvi"
 
 #: ../gtksourceview/gtksourcebuffer.c:241
 #: ../gtksourceview/gtksourcebuffer.c:242
@@ -77,7 +77,7 @@ msgstr "Oblika sheme"
 
 #: ../gtksourceview/gtksourcecontextengine.c:2567
 msgid "using \\C is not supported in language definitions"
-msgstr ""
+msgstr "uporaba \\C ni podprta v določilih jezika"
 
 #. regex_new could fail, for instance if there are different
 #. * named sub-patterns with the same name or if resulting regex is
@@ -121,7 +121,7 @@ msgstr ""
 #: ../gtksourceview/gtksourcecontextengine.c:6252
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
-msgstr ""
+msgstr "Manjka določilo glavnega jezika (id = \"%s\".)"
 
 #: ../gtksourceview/gtksourcelanguage.c:42
 #: ../gtksourceview/language-specs/changelog.lang.h:2
@@ -163,7 +163,7 @@ msgstr "Skrito"
 
 #: ../gtksourceview/gtksourcelanguage.c:240
 msgid "Whether the language should be hidden from the user"
-msgstr ""
+msgstr "Ali naj bo jezik skrit pred uporabnikom"
 
 #: ../gtksourceview/gtksourcelanguagemanager.c:133
 msgid "Language specification directories"
@@ -185,7 +185,7 @@ msgstr ""
 #: ../gtksourceview/gtksourcelanguage-parser-2.c:879
 #, c-format
 msgid "Unknown id '%s' in regex '%s'"
-msgstr ""
+msgstr "Naznan ID '%s' v logičnem izrazu '%s'"
 
 #: ../gtksourceview/gtksourcelanguage-parser-2.c:1107
 #, c-format
@@ -328,7 +328,7 @@ msgstr "Opis sloga sheme"
 #: ../gtksourceview/gtksourcestylescheme.c:208
 #: ../gtksourceview/gtksourcestylescheme.c:209
 msgid "Style scheme filename"
-msgstr ""
+msgstr "Ime datoteke sloga sheme"
 
 #: ../gtksourceview/gtksourceview.c:241
 msgid "Show Line Numbers"
@@ -352,7 +352,7 @@ msgstr "Širina tabulatorja"
 
 #: ../gtksourceview/gtksourceview.c:263
 msgid "Width of a tab character expressed in spaces"
-msgstr ""
+msgstr "Širina tabulatorja določena v presledkih"
 
 #: ../gtksourceview/gtksourceview.c:277
 msgid "Indent Width"
@@ -755,9 +755,8 @@ msgstr "Imenski prostor"
 #: ../gtksourceview/language-specs/nemerle.lang.h:12
 #: ../gtksourceview/language-specs/php.lang.h:12
 #: ../gtksourceview/language-specs/vala.lang.h:8
-#, fuzzy
 msgid "Null Value"
-msgstr "Vgrajene vrednosti"
+msgstr "Nična vrednost"
 
 #. A generic number constant
 #: ../gtksourceview/language-specs/boo.lang.h:11
@@ -777,9 +776,8 @@ msgstr "Logični izraz"
 #: ../gtksourceview/language-specs/boo.lang.h:14
 #: ../gtksourceview/language-specs/python.lang.h:16
 #: ../gtksourceview/language-specs/ruby.lang.h:20
-#, fuzzy
 msgid "Special Variable"
-msgstr "Posebna velikost"
+msgstr "Posebna spremenljivka"
 
 #: ../gtksourceview/language-specs/changelog.lang.h:1
 msgid "ChangeLog"
@@ -846,21 +844,19 @@ msgid "Hexadecimal number"
 msgstr "Šestnajstiško število"
 
 #: ../gtksourceview/language-specs/c.lang.h:12
-#, fuzzy
 msgid "Included File"
-msgstr "Vključi"
+msgstr "Vključena datoteka"
 
 #: ../gtksourceview/language-specs/c.lang.h:14
 #: ../gtksourceview/language-specs/d.lang.h:12
 #: ../gtksourceview/language-specs/nemerle.lang.h:13
 #: ../gtksourceview/language-specs/php.lang.h:13
-#, fuzzy
 msgid "Octal number"
 msgstr "Osmiško število"
 
 #: ../gtksourceview/language-specs/c.lang.h:19
 msgid "printf Conversion"
-msgstr ""
+msgstr "printf pretvorba"
 
 #: ../gtksourceview/language-specs/chdr.lang.h:1
 msgid "C/C++/ObjC Header"
@@ -910,7 +906,6 @@ msgid "Function"
 msgstr "Funkcija"
 
 #: ../gtksourceview/language-specs/css.lang.h:9
-#, fuzzy
 msgid "Known Property Value"
 msgstr "Znane vrednosti lastnosti"
 
@@ -931,32 +926,28 @@ msgstr "Pravila At"
 #: ../gtksourceview/language-specs/def.lang.h:2
 #: ../gtksourceview/language-specs/python.lang.h:1
 #: ../gtksourceview/language-specs/ruby.lang.h:2
-#, fuzzy
 msgid "Base-N number"
-msgstr "Številka Base-N"
+msgstr "Število z osnovo N"
 
 #. A builtin name: like __import__, abs in Python
 #. (see http://docs.python.org/lib/built-in-funcs.html)
 #: ../gtksourceview/language-specs/def.lang.h:7
-#, fuzzy
 msgid "Built-in identifier"
-msgstr "Vgrajene funkcije"
+msgstr "Vgrajeno določilo"
 
 #. A complex number
 #: ../gtksourceview/language-specs/def.lang.h:13
 #: ../gtksourceview/language-specs/python.lang.h:6
-#, fuzzy
 msgid "Complex number"
-msgstr "Šestnajstiško število"
+msgstr "Kompleksno število"
 
 #. Any constant
 #: ../gtksourceview/language-specs/def.lang.h:15
 #: ../gtksourceview/language-specs/gtk-doc.lang.h:1
 #: ../gtksourceview/language-specs/libtool.lang.h:2
 #: ../gtksourceview/language-specs/ruby.lang.h:6
-#, fuzzy
 msgid "Constant"
-msgstr "Konstante"
+msgstr "Konstanta"
 
 #. A primitive data type: int, long, char, etc.
 #: ../gtksourceview/language-specs/def.lang.h:17
@@ -971,13 +962,13 @@ msgstr "Privzete vrednosti"
 #. gtk-doc
 #: ../gtksourceview/language-specs/def.lang.h:23
 msgid "Documentation comment"
-msgstr ""
+msgstr "Opomba dokumentacije"
 
 #. This style doesn't map to anything since it must be used as an additional
 #. style for text which is already styled as a "doc-comment"
 #: ../gtksourceview/language-specs/def.lang.h:26
 msgid "Documentation comment element"
-msgstr ""
+msgstr "Element opombe dokumentacije"
 
 #. Any variable name
 #: ../gtksourceview/language-specs/def.lang.h:34
@@ -987,7 +978,7 @@ msgstr "Določilo"
 #. Anything that needs extra attention; mostly the keywords TODO, FIXME and XXX
 #: ../gtksourceview/language-specs/def.lang.h:38
 msgid "Note (FIXME, TODO, XXX, etc.)"
-msgstr ""
+msgstr "Opomba (PopraviMe, Naloge, XXX, etc.)"
 
 #. Operators: "+", "*", etc.
 #: ../gtksourceview/language-specs/def.lang.h:42
@@ -999,15 +990,13 @@ msgstr "Operator"
 
 #. This one is for '#include <foo.h>' and "#pragma blah", or 'use foobar', etc..
 #: ../gtksourceview/language-specs/def.lang.h:44
-#, fuzzy
 msgid "Preprocessor directive"
-msgstr "Predprocesor določa"
+msgstr "Določilo predprocesorja"
 
 #. Reserved keywords: like "const" and "goto" in Java
 #: ../gtksourceview/language-specs/def.lang.h:46
-#, fuzzy
 msgid "Reserved keyword"
-msgstr "Rezervirane besede ANSI"
+msgstr "Rezervirana beseda"
 
 #. A shebang: #!/bin/sh
 #: ../gtksourceview/language-specs/def.lang.h:48
@@ -1019,7 +1008,7 @@ msgstr "Shebang"
 #. style for text which is already styled as a "string"
 #: ../gtksourceview/language-specs/def.lang.h:51
 msgid "Special character (inside a string)"
-msgstr ""
+msgstr "Poseben znak (znotraj niza)"
 
 #. A special constant like NULL in C or null in Java
 #: ../gtksourceview/language-specs/def.lang.h:53
@@ -1125,7 +1114,7 @@ msgstr "Oblikovni elemeni"
 
 #: ../gtksourceview/language-specs/docbook.lang.h:3
 msgid "GUI Elements"
-msgstr ""
+msgstr "GUI elementi"
 
 #: ../gtksourceview/language-specs/docbook.lang.h:4
 msgid "Header Elements"
@@ -1228,9 +1217,8 @@ msgid "Return"
 msgstr ""
 
 #: ../gtksourceview/language-specs/gtk-doc.lang.h:9
-#, fuzzy
 msgid "Signal Name"
-msgstr "Posebna velikost"
+msgstr "Ime signala"
 
 #: ../gtksourceview/language-specs/gtk-doc.lang.h:10
 msgid "Since"
@@ -1251,7 +1239,6 @@ msgid "GtkRC"
 msgstr "GtkRC"
 
 #: ../gtksourceview/language-specs/gtkrc.lang.h:6
-#, fuzzy
 msgid "Include directive"
 msgstr "Vključi direktivo"
 
@@ -1265,7 +1252,7 @@ msgstr "Sidro"
 
 #: ../gtksourceview/language-specs/haddock.lang.h:2
 msgid "Code Block"
-msgstr ""
+msgstr "Enota kode"
 
 #: ../gtksourceview/language-specs/haddock.lang.h:3
 msgid "Definition list"
@@ -1322,9 +1309,8 @@ msgid "URL"
 msgstr "URL"
 
 #: ../gtksourceview/language-specs/haskell-literate.lang.h:1
-#, fuzzy
 msgid "Literate Haskell"
-msgstr "Haskell"
+msgstr ""
 
 #: ../gtksourceview/language-specs/haskell.lang.h:6
 msgid "Float"
@@ -1339,9 +1325,8 @@ msgid "Hex"
 msgstr "Hex"
 
 #: ../gtksourceview/language-specs/haskell.lang.h:10
-#, fuzzy
 msgid "Octal"
-msgstr "Octave"
+msgstr "Osmiško"
 
 #: ../gtksourceview/language-specs/haskell.lang.h:14
 #: ../gtksourceview/language-specs/ruby.lang.h:22
@@ -1383,18 +1368,16 @@ msgstr "Zunanji"
 
 #: ../gtksourceview/language-specs/java.lang.h:7
 #: ../gtksourceview/language-specs/javascript.lang.h:8
-#, fuzzy
 msgid "Future Reserved Keywords"
-msgstr "V prihodnosti rezervirane besede"
+msgstr "Prihodnje rezervirane besede"
 
 #: ../gtksourceview/language-specs/java.lang.h:8
 msgid "Java"
 msgstr "Java"
 
 #: ../gtksourceview/language-specs/java.lang.h:12
-#, fuzzy
 msgid "Scope Declaration"
-msgstr "Deklaracije"
+msgstr "Deklaracije obsega"
 
 #: ../gtksourceview/language-specs/javascript.lang.h:3
 msgid "Constructors"
@@ -1481,9 +1464,8 @@ msgid "Objective-C"
 msgstr "Objekti"
 
 #: ../gtksourceview/language-specs/ocaml.lang.h:3
-#, fuzzy
 msgid "Builtin-function keyword"
-msgstr "Vgrajene funkcije"
+msgstr "Vgrajene ključne besede funkcije"
 
 #: ../gtksourceview/language-specs/ocaml.lang.h:9
 msgid "Floating Point number"
@@ -1494,9 +1476,8 @@ msgid "Labeled argument"
 msgstr ""
 
 #: ../gtksourceview/language-specs/ocaml.lang.h:12
-#, fuzzy
 msgid "Module Path"
-msgstr "_Pot do modula:"
+msgstr "Pot modula"
 
 #: ../gtksourceview/language-specs/ocaml.lang.h:13
 msgid "Objective Caml"
@@ -1586,11 +1567,11 @@ msgstr "POD"
 
 #: ../gtksourceview/language-specs/perl.lang.h:13
 msgid "POD Escape"
-msgstr ""
+msgstr "POD Escape"
 
 #: ../gtksourceview/language-specs/perl.lang.h:14
 msgid "POD heading"
-msgstr ""
+msgstr "POD glava"
 
 #: ../gtksourceview/language-specs/perl.lang.h:15
 #, fuzzy
@@ -1643,7 +1624,7 @@ msgstr "Python"
 
 #: ../gtksourceview/language-specs/python.lang.h:18
 msgid "string-conversion"
-msgstr ""
+msgstr "pretvorba-niti"
 
 #: ../gtksourceview/language-specs/R.lang.h:1
 msgid "Assignment Operator"
@@ -1683,7 +1664,7 @@ msgstr "Datum"
 
 #: ../gtksourceview/language-specs/rpmspec.lang.h:4
 msgid "Define"
-msgstr ""
+msgstr "Določi"
 
 #: ../gtksourceview/language-specs/rpmspec.lang.h:5
 msgid "Directory Macro"
@@ -1728,9 +1709,8 @@ msgid "Switch"
 msgstr "Stikalo"
 
 #: ../gtksourceview/language-specs/ruby.lang.h:1
-#, fuzzy
 msgid "Attribute Definition"
-msgstr "Definicije atributov"
+msgstr "Določilo atributa"
 
 #: ../gtksourceview/language-specs/ruby.lang.h:13
 msgid "Module handler"
