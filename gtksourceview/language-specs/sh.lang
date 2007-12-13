@@ -45,7 +45,7 @@
     <!-- we cannot use def:shell-like-comment, because
          m4.lang needs to replace this context -->
     <context id="line-comment" style-ref="comment" end-at-line-end="true">
-      <start>#</start>
+      <start>(?&lt;!\S)#</start>
       <include>
         <context ref="def:in-comment"/>
       </include>
@@ -180,6 +180,8 @@
     </context>
 
     <context id="built-in-command-2" style-ref="keyword">
+      <prefix>(?&lt;![^\s;\(\)])</prefix>
+      <suffix>(?![^\s;\(\)])</suffix>
       <keyword>do</keyword>
       <keyword>done</keyword>
       <keyword>elif</keyword>

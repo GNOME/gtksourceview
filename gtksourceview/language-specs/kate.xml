@@ -41,6 +41,9 @@
   <!-- Search Matching -->
   <style name="search-match"                background="yellow"/>
 
+  <!-- Bookmarks -->
+  <style name="bookmark"                    background="#E5E5FF"/>
+
   <!-- legacy styles for old lang files -->
   <style name="Others"                      foreground="dark-red"/>
   <style name="Others 2"                    bold="true"/>
@@ -115,6 +118,8 @@
   <style name="latex:command"               foreground="#7000DF"/>
   <style name="latex:structure"             bold="true"/>
   <style name="latex:section"               foreground="#7000DF" bold="true"/>
+  <style name="latex:include"               use-style="latex:common-commands"/>
+  <style name="latex:use-package"           use-style="latex:common-commands"/>
 
   <style name="changelog:date"              use-style="def:type"/>
   <style name="changelog:email"             use-style="c:preprocessor"/>

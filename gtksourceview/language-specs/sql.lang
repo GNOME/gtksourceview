@@ -88,8 +88,8 @@
     </context>
 
     <context id="text-literals" style-ref="string">
-      <start>([Nn]?[Qq]?|[Uu]?)'</start>
-      <end>'</end>
+      <start>[NnQqUu]?(['`])</start>
+      <end>\%{1@start}</end>
       <include>
         <context ref="def:escape"/>
         <context ref="def:line-continue"/>
