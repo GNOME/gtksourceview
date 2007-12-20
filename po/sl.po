@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: gtksourcereview\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-09-10 03:50+0100\n"
-"PO-Revision-Date: 2007-12-13 17:30+0100\n"
+"PO-Revision-Date: 2007-12-20 14:38+0100\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian <SL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -105,7 +105,7 @@ msgstr "podvojen ID vsebine '%s'"
 #: ../gtksourceview/gtksourcecontextengine.c:6109
 #, c-format
 msgid "style override used with wildcard context reference in language '%s' in ref '%s'"
-msgstr ""
+msgstr "prepis sloga uporabljen z posebnimi določilnimi znaki (wildcards) v jeziku '%s' v referenci '%s'"
 
 #: ../gtksourceview/gtksourcecontextengine.c:6123
 #, c-format
@@ -425,7 +425,7 @@ msgstr "Ada"
 
 #: ../gtksourceview/language-specs/ada.lang.h:2
 msgid "Arbitrary base number"
-msgstr ""
+msgstr "Privzeta številčna osnova"
 
 #. A boolean constant: TRUE, false
 #: ../gtksourceview/language-specs/ada.lang.h:3
@@ -790,7 +790,7 @@ msgstr "Znak"
 #: ../gtksourceview/language-specs/cpp.lang.h:2
 #: ../gtksourceview/language-specs/objc.lang.h:1
 msgid "Common Defines"
-msgstr ""
+msgstr "Običajna določila"
 
 #. Any erroneous construct
 #: ../gtksourceview/language-specs/c.lang.h:8
@@ -1129,7 +1129,7 @@ msgstr "DPatch"
 
 #: ../gtksourceview/language-specs/dpatch.lang.h:3
 msgid "patch-start"
-msgstr ""
+msgstr "patch-start"
 
 #: ../gtksourceview/language-specs/dtd.lang.h:1
 #: ../gtksourceview/language-specs/html.lang.h:4
@@ -1189,7 +1189,7 @@ msgstr "Ime funkcije"
 
 #: ../gtksourceview/language-specs/gtk-doc.lang.h:4
 msgid "Inline Documentation Section"
-msgstr ""
+msgstr "Medvrstično območje dokumentacije"
 
 #: ../gtksourceview/language-specs/gtk-doc.lang.h:6
 msgid "Parameter"
@@ -1201,7 +1201,7 @@ msgstr "Ime lastnosti"
 
 #: ../gtksourceview/language-specs/gtk-doc.lang.h:8
 msgid "Return"
-msgstr ""
+msgstr "Return"
 
 #: ../gtksourceview/language-specs/gtk-doc.lang.h:9
 msgid "Signal Name"
@@ -1209,7 +1209,7 @@ msgstr "Ime signala"
 
 #: ../gtksourceview/language-specs/gtk-doc.lang.h:10
 msgid "Since"
-msgstr ""
+msgstr "Odkar"
 
 #: ../gtksourceview/language-specs/gtk-doc.lang.h:11
 #: ../gtksourceview/language-specs/verilog.lang.h:8
@@ -1295,7 +1295,7 @@ msgstr "URL"
 
 #: ../gtksourceview/language-specs/haskell-literate.lang.h:1
 msgid "Literate Haskell"
-msgstr ""
+msgstr "Haskell območje"
 
 #: ../gtksourceview/language-specs/haskell.lang.h:6
 msgid "Float"
@@ -1407,7 +1407,7 @@ msgstr "Verbatim"
 
 #: ../gtksourceview/language-specs/latex.lang.h:9
 msgid "math-bound"
-msgstr ""
+msgstr "math-bound"
 
 #: ../gtksourceview/language-specs/libtool.lang.h:4
 msgid "libtool"
@@ -1464,7 +1464,7 @@ msgstr "Pot modula"
 
 #: ../gtksourceview/language-specs/ocaml.lang.h:13
 msgid "Objective Caml"
-msgstr ""
+msgstr "Objektni Caml"
 
 #: ../gtksourceview/language-specs/ocaml.lang.h:14
 msgid "Ocamldoc Comments"
@@ -1484,7 +1484,7 @@ msgstr "Ključna beseda vrste, enote ali predmeta"
 
 #: ../gtksourceview/language-specs/ocaml.lang.h:20
 msgid "Variant Constructor"
-msgstr ""
+msgstr "izgradnja različic"
 
 #: ../gtksourceview/language-specs/ocl.lang.h:4
 msgid "OCL"
@@ -1492,7 +1492,7 @@ msgstr "OCL"
 
 #: ../gtksourceview/language-specs/ocl.lang.h:5
 msgid "Operation operator"
-msgstr ""
+msgstr "Operator operacije"
 
 #: ../gtksourceview/language-specs/ocl.lang.h:8
 msgid "Type Operators"
@@ -1528,11 +1528,11 @@ msgstr "Heredoc"
 #: ../gtksourceview/language-specs/php.lang.h:9
 #: ../gtksourceview/language-specs/ruby.lang.h:11
 msgid "Heredoc Bound"
-msgstr ""
+msgstr "Heredoc"
 
 #: ../gtksourceview/language-specs/perl.lang.h:8
 msgid "Include Statement"
-msgstr ""
+msgstr "Vključi stavek"
 
 #: ../gtksourceview/language-specs/perl.lang.h:10
 msgid "Line Directive"
@@ -1644,7 +1644,7 @@ msgstr "Določi"
 
 #: ../gtksourceview/language-specs/rpmspec.lang.h:5
 msgid "Directory Macro"
-msgstr ""
+msgstr "Makro imenika"
 
 #: ../gtksourceview/language-specs/rpmspec.lang.h:6
 msgid "Email"
@@ -1652,7 +1652,7 @@ msgstr "E-pošta"
 
 #: ../gtksourceview/language-specs/rpmspec.lang.h:7
 msgid "Flow Conditional"
-msgstr ""
+msgstr "Pogojnik pretoka"
 
 #: ../gtksourceview/language-specs/rpmspec.lang.h:8
 msgid "Header"
@@ -1692,7 +1692,7 @@ msgstr "Upravljalec modulov"
 
 #: ../gtksourceview/language-specs/ruby.lang.h:15
 msgid "Numeric literal"
-msgstr ""
+msgstr "Številčno območje"
 
 #: ../gtksourceview/language-specs/ruby.lang.h:16
 msgid "Predefined Variable"
@@ -1712,7 +1712,7 @@ msgstr "sh"
 
 #: ../gtksourceview/language-specs/sql.lang.h:7
 msgid "No idea what it is"
-msgstr ""
+msgstr "Neznan dogodek brez prave osnove"
 
 #: ../gtksourceview/language-specs/sql.lang.h:8
 msgid "SQL"
@@ -1788,7 +1788,7 @@ msgstr "XML"
 
 #: ../gtksourceview/language-specs/yacc.lang.h:1
 msgid "Inline C Code"
-msgstr ""
+msgstr "medvrstična koda C"
 
 #: ../gtksourceview/language-specs/yacc.lang.h:3
 msgid "Yacc"
@@ -1812,7 +1812,7 @@ msgstr "Običajna barvna shema"
 
 #: ../gtksourceview/language-specs/kate.xml.h:1
 msgid "Color scheme used in the Kate text editor"
-msgstr ""
+msgstr "Barvna shema uporabljena v Kate urejevalniku besedil"
 
 #: ../gtksourceview/language-specs/kate.xml.h:2
 msgid "Kate"
