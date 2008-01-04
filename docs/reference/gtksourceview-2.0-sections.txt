@@ -100,6 +100,8 @@ gtk_source_language_get_hidden
 gtk_source_language_get_metadata
 gtk_source_language_get_mime_types
 gtk_source_language_get_globs
+gtk_source_language_get_style_name
+gtk_source_language_get_style_ids
 <SUBSECTION Standard>
 GtkSourceLanguageClass
 GTK_IS_SOURCE_LANGUAGE

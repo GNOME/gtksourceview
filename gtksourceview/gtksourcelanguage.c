@@ -555,7 +555,6 @@ gtk_source_language_get_metadata (GtkSourceLanguage *language,
 
 /**
  * gtk_source_language_get_mime_types:
- *
  * @language: a #GtkSourceLanguage.
  *
  * Returns the mime types associated to this language. This is just
@@ -583,7 +582,6 @@ gtk_source_language_get_mime_types (GtkSourceLanguage *language)
 
 /**
  * gtk_source_language_get_globs:
- *
  * @language: a #GtkSourceLanguage.
  *
  * Returns the globs associated to this language. This is just
@@ -817,7 +815,6 @@ force_styles (GtkSourceLanguage *language)
 
 /**
  * gtk_source_language_get_style_ids:
- *
  * @language: a #GtkSourceLanguage
  *
  * Returns the ids of the styles defined by this @language.
@@ -855,7 +852,6 @@ get_style_info (GtkSourceLanguage *language, const char *style_id)
 
 /**
  * gtk_source_language_get_style_name:
- *
  * @language: a #GtkSourceLanguage
  * @style_id: a style ID
  *

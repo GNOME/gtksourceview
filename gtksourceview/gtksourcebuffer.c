@@ -1141,7 +1141,7 @@ gtk_source_buffer_set_highlight_syntax (GtkSourceBuffer *buffer,
  * @language: a #GtkSourceLanguage to set, or %NULL.
  *
  * Associate a #GtkSourceLanguage with the source buffer. If @language is 
- * not-%NULL and syntax highlighting is enabled (see gtk_source_buffer_set_highlight()),
+ * not-%NULL and syntax highlighting is enabled (see gtk_source_buffer_set_highlight_syntax()),
  * the syntax patterns defined in @language will be used to highlight the text
  * contained in the buffer. If @language is %NULL, the text contained in the 
  * buffer is not highlighted.
