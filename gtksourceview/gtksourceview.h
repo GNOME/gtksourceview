@@ -96,10 +96,6 @@ void 		 gtk_source_view_set_show_line_numbers 	(GtkSourceView   *view,
 							 gboolean         show);
 gboolean 	 gtk_source_view_get_show_line_numbers 	(GtkSourceView   *view);
 
-void 		 gtk_source_view_set_show_line_markers  (GtkSourceView   *view,
-							 gboolean         show);
-gboolean	 gtk_source_view_get_show_line_markers  (GtkSourceView   *view);
-
 void 		 gtk_source_view_set_tab_width          (GtkSourceView   *view,
 							 guint            width);
 guint            gtk_source_view_get_tab_width          (GtkSourceView   *view);
@@ -138,11 +134,25 @@ void		 gtk_source_view_set_right_margin_position
 guint		 gtk_source_view_get_right_margin_position
 					 		(GtkSourceView   *view);
 
-void             gtk_source_view_set_marker_pixbuf      (GtkSourceView   *view,
-							 const gchar     *marker_type,
+void 		 gtk_source_view_set_show_line_marks    (GtkSourceView   *view,
+							 gboolean         show);
+gboolean	 gtk_source_view_get_show_line_marks    (GtkSourceView   *view);
+
+void             gtk_source_view_set_mark_category_pixbuf
+							(GtkSourceView   *view,
+							 const gchar     *category,
 							 GdkPixbuf       *pixbuf);
-GdkPixbuf	*gtk_source_view_get_marker_pixbuf      (GtkSourceView   *view,
-				       			 const gchar     *marker_type);
+GdkPixbuf	*gtk_source_view_get_mark_category_pixbuf
+							(GtkSourceView   *view,
+				       			 const gchar     *category);
+
+void             gtk_source_view_set_mark_category_priority
+							(GtkSourceView   *view,
+							 const gchar     *category,
+							 gint priority);
+gint		 gtk_source_view_get_mark_category_priority
+							(GtkSourceView   *view,
+				       			 const gchar     *category);
 
 void		 gtk_source_view_set_smart_home_end	(GtkSourceView             *view,
 							 GtkSourceSmartHomeEndType  smart_he);

@@ -37,6 +37,7 @@
 
 #include "gtksourceview-marshal.h"
 #include "gtksourceview-typebuiltins.h"
+#include "gtksourcemark.h"
 #include "gtksourceview.h"
 
 /*
@@ -85,7 +86,7 @@ enum {
 enum {
 	PROP_0,
 	PROP_SHOW_LINE_NUMBERS,
-	PROP_SHOW_LINE_MARKERS,
+	PROP_SHOW_LINE_MARKS,
 	PROP_TAB_WIDTH,
 	PROP_INDENT_WIDTH,
 	PROP_AUTO_INDENT,
@@ -102,7 +103,7 @@ struct _GtkSourceViewPrivate
 	guint		 tab_width;
 	gint		 indent_width;
 	gboolean 	 show_line_numbers;
-	gboolean	 show_line_markers;
+	gboolean	 show_line_marks;
 	gboolean	 auto_indent;
 	gboolean	 insert_spaces;
 	gboolean	 highlight_current_line;
@@ -116,9 +117,10 @@ struct _GtkSourceViewPrivate
 	gboolean	 style_scheme_applied;
 	GtkSourceStyleScheme *style_scheme;
 	GdkGC		*current_line_gc;
-	GHashTable 	*pixmap_cache;
 	GdkColor        *right_margin_line_color;
 	GdkColor        *right_margin_overlay_color;
+
+	GHashTable 	*mark_categories;
 
 	GtkSourceBuffer *source_buffer;
 	gint		 old_lines;
@@ -139,6 +141,11 @@ static const GtkTargetEntry drop_types[] = {
 
 static guint signals[LAST_SIGNAL] = { 0 };
 
+typedef struct 
+{
+	gint priority;
+	GdkPixbuf *pixbuf;
+} MarkCategory;
 
 /* Prototypes. */
 static GObject *gtk_source_view_constructor		(GType               type,
@@ -203,6 +210,10 @@ static void	gtk_source_view_realize			(GtkWidget         *widget);
 static void	gtk_source_view_unrealize		(GtkWidget         *widget);
 static void	gtk_source_view_update_style_scheme	(GtkSourceView     *view);
 
+static MarkCategory *
+		mark_category_new			(gint               priority,
+							 GdkPixbuf         *pixbuf);
+static void	mark_category_free			(MarkCategory      *cat);
 
 /* Private functions. */
 static void
@@ -234,20 +245,29 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 
 	klass->undo = gtk_source_view_undo;
 	klass->redo = gtk_source_view_redo;
-
+	
+	/**
+	 * GtkSourceView:show-line-numbers:
+	 *
+	 * Whether to display line numbers
+	 */
 	g_object_class_install_property (object_class,
 					 PROP_SHOW_LINE_NUMBERS,
-					 g_param_spec_boolean ("show_line_numbers",
+					 g_param_spec_boolean ("show-line-numbers",
 							       _("Show Line Numbers"),
 							       _("Whether to display line numbers"),
 							       FALSE,
 							       G_PARAM_READWRITE));
-
+	/**
+	 * GtkSourceView:show-line-marks:
+	 *
+	 * Whether to display line mark pixbufs
+	 */
 	g_object_class_install_property (object_class,
-					 PROP_SHOW_LINE_MARKERS,
-					 g_param_spec_boolean ("show_line_markers",
-							       _("Show Line Markers"),
-							       _("Whether to display line marker pixbufs"),
+					 PROP_SHOW_LINE_MARKS,
+					 g_param_spec_boolean ("show-line-marks",
+							       _("Show Line Marks"),
+							       _("Whether to display line mark pixbufs"),
 							       FALSE,
 							       G_PARAM_READWRITE));
 
@@ -417,9 +437,9 @@ gtk_source_view_set_property (GObject      *object,
 							       g_value_get_boolean (value));
 			break;
 
-		case PROP_SHOW_LINE_MARKERS:
-			gtk_source_view_set_show_line_markers (view,
-							       g_value_get_boolean (value));
+		case PROP_SHOW_LINE_MARKS:
+			gtk_source_view_set_show_line_marks (view,
+							     g_value_get_boolean (value));
 			break;
 
 		case PROP_TAB_WIDTH:
@@ -493,9 +513,9 @@ gtk_source_view_get_property (GObject    *object,
 					     gtk_source_view_get_show_line_numbers (view));
 			break;
 
-		case PROP_SHOW_LINE_MARKERS:
+		case PROP_SHOW_LINE_MARKS:
 			g_value_set_boolean (value,
-					     gtk_source_view_get_show_line_markers (view));
+					     gtk_source_view_get_show_line_marks (view));
 			break;
 
 		case PROP_TAB_WIDTH:
@@ -573,15 +593,15 @@ gtk_source_view_init (GtkSourceView *view)
 	view->priv->right_margin_pos = DEFAULT_RIGHT_MARGIN_POSITION;
 	view->priv->cached_right_margin_pos = -1;
 
-	view->priv->pixmap_cache = g_hash_table_new_full (g_str_hash, g_str_equal,
-							  (GDestroyNotify) g_free,
-							  (GDestroyNotify) g_object_unref);
-
 	gtk_text_view_set_left_margin (GTK_TEXT_VIEW (view), 2);
 	gtk_text_view_set_right_margin (GTK_TEXT_VIEW (view), 2);
-	
+
 	view->priv->right_margin_line_color = NULL;
 	view->priv->right_margin_overlay_color = NULL;
+
+	view->priv->mark_categories = g_hash_table_new_full (g_str_hash, g_str_equal,
+							     (GDestroyNotify) g_free,
+							     (GDestroyNotify) mark_category_free);
 
 	tl = gtk_drag_dest_get_target_list (GTK_WIDGET (view));
 	g_return_if_fail (tl != NULL);
@@ -629,15 +649,15 @@ gtk_source_view_finalize (GObject *object)
 
 	if (view->priv->style_scheme)
 		g_object_unref (view->priv->style_scheme);
-
-	if (view->priv->pixmap_cache)
-		g_hash_table_destroy (view->priv->pixmap_cache);
-
+	
 	if (view->priv->right_margin_line_color != NULL)
 		gdk_color_free (view->priv->right_margin_line_color);
 
 	if (view->priv->right_margin_overlay_color != NULL)
 		gdk_color_free (view->priv->right_margin_overlay_color);
+
+	if (view->priv->mark_categories)
+		g_hash_table_destroy (view->priv->mark_categories);
 
 	set_source_buffer (view, NULL);
 
@@ -711,47 +731,19 @@ highlight_updated_cb (GtkSourceBuffer *buffer,
 }
 
 static void
-marker_updated_cb (GtkSourceBuffer *buffer,
-		   GtkTextIter     *where,
-		   GtkTextView     *text_view)
+source_mark_updated_cb (GtkSourceBuffer *buffer,
+			GtkSourceMark	*mark,
+			GtkTextView     *text_view)
 {
-	GdkRectangle visible_rect;
-	GdkRectangle updated_rect;
-	GdkRectangle redraw_rect;
-	gint y, height;
+	GdkWindow *margin;
 
-	g_return_if_fail (text_view != NULL && GTK_IS_SOURCE_VIEW (text_view));
-
-	if (!GTK_SOURCE_VIEW (text_view)->priv->show_line_markers)
-		return;
-
-	/* get visible area */
-	gtk_text_view_get_visible_rect (text_view, &visible_rect);
-
-	/* get updated rectangle */
-	gtk_text_view_get_line_yrange (text_view, where, &y, &height);
-	updated_rect.y = y;
-	updated_rect.height = height;
-	updated_rect.x = visible_rect.x;
-	updated_rect.width = visible_rect.width;
-
-	/* intersect both rectangles to see whether we need to queue a redraw */
-	if (gdk_rectangle_intersect (&updated_rect, &visible_rect, &redraw_rect))
+	margin = gtk_text_view_get_window (text_view, GTK_TEXT_WINDOW_LEFT);
+	if (margin != NULL)
 	{
-		gint y_win, width;
+		GdkRegion *region;
 
-		gtk_text_view_buffer_to_window_coords (text_view,
-						       GTK_TEXT_WINDOW_WIDGET,
-						       0,
-						       redraw_rect.y,
-						       NULL,
-						       &y_win);
-
-		width = gtk_text_view_get_border_window_size (text_view,
-							      GTK_TEXT_WINDOW_LEFT);
-
-		gtk_widget_queue_draw_area (GTK_WIDGET (text_view),
-					    0, y_win, width, height);
+		region = gdk_drawable_get_visible_region (GDK_DRAWABLE (margin));
+		gdk_window_invalidate_region (margin, region, TRUE);
 	}
 }
 
@@ -776,7 +768,7 @@ set_source_buffer (GtkSourceView *view,
 						      highlight_updated_cb,
 						      view);
 		g_signal_handlers_disconnect_by_func (view->priv->source_buffer,
-						      marker_updated_cb,
+						      source_mark_updated_cb,
 						      view);
 		g_signal_handlers_disconnect_by_func (view->priv->source_buffer,
 						      buffer_style_scheme_changed_cb,
@@ -793,8 +785,8 @@ set_source_buffer (GtkSourceView *view,
 				  G_CALLBACK (highlight_updated_cb),
 				  view);
 		g_signal_connect (buffer,
-				  "marker_updated",
-				  G_CALLBACK (marker_updated_cb),
+				  "source_mark_updated",
+				  G_CALLBACK (source_mark_updated_cb),
 				  view);
 		g_signal_connect (buffer,
 				  "notify::style-scheme",
@@ -1071,8 +1063,7 @@ gtk_source_view_get_lines (GtkTextView  *text_view,
 	gtk_text_view_get_line_at_y (text_view, &iter, first_y, NULL);
 
 	/* For each iter, get its location and add it to the arrays.
-	 * Stop when we pass last_y
-	*/
+	 * Stop when we pass last_y */
 	count = 0;
   	size = 0;
 
@@ -1114,39 +1105,72 @@ gtk_source_view_get_lines (GtkTextView  *text_view,
 	*countp = count;
 }
 
-static GSList *
-draw_line_markers (GtkSourceView *view,
-		   GSList        *current_marker,
-		   gint          *line_number,
-		   gint           x,
-		   gint           y)
+static gint
+sort_marks_by_priority (gconstpointer m1, 
+			gconstpointer m2,
+			gpointer data)
 {
-	GdkPixbuf *pixbuf, *composite;
-	GtkSourceMarker *marker;
-	gint width, height;
-	gint next_line;
-	gchar *marker_type;
+	GtkSourceMark *mark1 = GTK_SOURCE_MARK (m1);
+	GtkSourceMark *mark2 = GTK_SOURCE_MARK (m2);
+	GtkSourceView *view = GTK_SOURCE_VIEW (data);
+	GtkTextIter iter1, iter2;
+	gint line1;
+	gint line2;
 
-	g_assert (current_marker);
+	gtk_text_buffer_get_iter_at_mark (gtk_text_mark_get_buffer (GTK_TEXT_MARK (mark1)),
+					  &iter1, 
+					  GTK_TEXT_MARK (mark1));
+	gtk_text_buffer_get_iter_at_mark (gtk_text_mark_get_buffer (GTK_TEXT_MARK (mark2)),
+					  &iter2, 
+					  GTK_TEXT_MARK (mark2));
+
+	line1 = gtk_text_iter_get_line (&iter1);
+	line2 = gtk_text_iter_get_line (&iter2);
+
+	if (line1 == line2)
+	{
+		guint priority1 = gtk_source_view_get_mark_category_priority (view,
+						gtk_source_mark_get_category (mark1));
+		guint priority2 = gtk_source_view_get_mark_category_priority (view,
+						gtk_source_mark_get_category (mark2));
+
+		return priority2 - priority1;
+	}
+	else
+	{
+		return line2 - line1;
+	}
+}
+
+static void
+draw_line_marks (GtkSourceView *view,
+		 GSList        *marks,
+		 gint           x,
+		 gint           y)
+{
+	GdkPixbuf *composite;
+	gint width, height;
+
+	/* Draw the mark with higher priority */
+	marks = g_slist_sort_with_data (marks, sort_marks_by_priority, view);
 
 	composite = NULL;
 	width = height = 0;
 
-	/* composite all the pixbufs for the markers present at the line */
+	/* composite all the pixbufs for the marks present at the line */
 	do
 	{
-		marker = current_marker->data;
+		GtkSourceMark *mark;
+		GdkPixbuf *pixbuf;
 
-		next_line = gtk_source_marker_get_line (marker);
-		if (next_line != *line_number)
-			break;
+		mark = marks->data;
 
-		marker_type = gtk_source_marker_get_marker_type (marker);
-		pixbuf = gtk_source_view_get_marker_pixbuf (view, marker_type);
+		pixbuf = gtk_source_view_get_mark_category_pixbuf (view,
+					gtk_source_mark_get_category (mark));
 
-		if (pixbuf)
+		if (pixbuf != NULL)
 		{
-			if (!composite)
+			if (composite == NULL)
 			{
 				composite = gdk_pixbuf_copy (pixbuf);
 				width = gdk_pixbuf_get_width (composite);
@@ -1170,19 +1194,13 @@ draw_line_markers (GtkSourceView *view,
 						      COMPOSITE_ALPHA);
 			}
 			g_object_unref (pixbuf);
+		}
 
-		} else
-			g_warning ("Unknown marker '%s' used", marker_type);
-
-		g_free (marker_type);
-		current_marker = g_slist_next (current_marker);
+		marks = g_slist_next (marks);
 	}
-	while (current_marker);
+	while (marks);
 
-	*line_number = next_line;
-
-	/* render the result to the left window */
-	if (composite)
+	if (composite != NULL)
 	{
 		GdkWindow *window;
 
@@ -1195,8 +1213,6 @@ draw_line_markers (GtkSourceView *view,
 				 GDK_RGB_DITHER_NORMAL, 0, 0);
 		g_object_unref (composite);
 	}
-
-	return current_marker;
 }
 
 static void
@@ -1208,8 +1224,6 @@ gtk_source_view_paint_margin (GtkSourceView *view,
 	PangoLayout *layout;
 	GArray *numbers;
 	GArray *pixels;
-	GSList *markers, *current_marker;
-	gint marker_line = 0;
 	gchar str [8];  /* we don't expect more than ten million lines ;-) */
 	gint y1, y2;
 	gint count;
@@ -1221,7 +1235,7 @@ gtk_source_view_paint_margin (GtkSourceView *view,
 
 	text_view = GTK_TEXT_VIEW (view);
 
-	if (!view->priv->show_line_numbers && !view->priv->show_line_markers)
+	if (!view->priv->show_line_numbers && !view->priv->show_line_marks)
 	{
 		gtk_text_view_set_border_window_size (GTK_TEXT_VIEW (text_view),
 						      GTK_TEXT_WINDOW_LEFT,
@@ -1298,57 +1312,26 @@ gtk_source_view_paint_margin (GtkSourceView *view,
 
 	x_pixmap = margin_width;
 
-	if (view->priv->show_line_markers)
+	if (view->priv->show_line_marks)
 		margin_width += GUTTER_PIXMAP;
 
-	g_return_if_fail (margin_width != 0);
+	/* no line & no marks case is short circuited before */
+	g_assert (margin_width != 0);
 
 	gtk_text_view_set_border_window_size (GTK_TEXT_VIEW (text_view),
 					      GTK_TEXT_WINDOW_LEFT,
 					      margin_width);
 
-	/* get markers for the exposed region */
-	markers = NULL;
-	if (view->priv->source_buffer && view->priv->show_line_markers)
-	{
-		GtkTextIter begin, end;
-
-		/* get markers in the exposed area */
-		gtk_text_buffer_get_iter_at_line (text_view->buffer,
-						  &begin,
-						  g_array_index (numbers, gint, 0));
-		gtk_text_buffer_get_iter_at_line (text_view->buffer,
-						  &end,
-						  g_array_index (numbers, gint, count - 1));
-		if (!gtk_text_iter_ends_line (&end))
-			gtk_text_iter_forward_to_line_end (&end);
-
-		markers = gtk_source_buffer_get_markers_in_region (
-			view->priv->source_buffer, &begin, &end);
-
-		DEBUG ({
-			g_message ("Painting markers for lines %d - %d",
-				   gtk_text_iter_get_line (&begin),
-				   gtk_text_iter_get_line (&end));
-		});
-	}
-
-	i = 0;
-	current_marker = markers;
-	if (current_marker)
-		marker_line = gtk_source_marker_get_line (
-			GTK_SOURCE_MARKER (current_marker->data));
-
-
 	gtk_text_buffer_get_iter_at_mark (text_view->buffer,
 					  &cur,
 					  gtk_text_buffer_get_insert (text_view->buffer));
 
-	cur_line = gtk_text_iter_get_line (&cur) + 1;
+	cur_line = gtk_text_iter_get_line (&cur);
 
-	while (i < count)
+	for (i = 0; i < count; ++i)
 	{
 		gint pos;
+		gint line_to_paint;
 
 		gtk_text_view_buffer_to_window_coords (text_view,
 						       GTK_TEXT_WINDOW_LEFT,
@@ -1357,14 +1340,16 @@ gtk_source_view_paint_margin (GtkSourceView *view,
 						       NULL,
 						       &pos);
 
+		line_to_paint = g_array_index (numbers, gint, i);
+
 		if (view->priv->show_line_numbers)
 		{
-			gint line_to_paint = g_array_index (numbers, gint, i) + 1;
-
 			if (line_to_paint == cur_line)
 			{
 				gchar *markup;
-				markup = g_strdup_printf ("<b>%d</b>", line_to_paint);
+
+				/* +1 because displayed line numbers start from 1 */
+				markup = g_strdup_printf ("<b>%d</b>", 1 + line_to_paint);
 
 				pango_layout_set_markup (layout, markup, -1);
 
@@ -1372,8 +1357,7 @@ gtk_source_view_paint_margin (GtkSourceView *view,
 			}
 			else
 			{
-				g_snprintf (str, sizeof (str),
-					    "%d", line_to_paint);
+				g_snprintf (str, sizeof (str), "%d", 1 + line_to_paint);
 
 				pango_layout_set_markup (layout, str, -1);
 			}
@@ -1390,26 +1374,22 @@ gtk_source_view_paint_margin (GtkSourceView *view,
 					  layout);
 		}
 
-		if (view->priv->show_line_markers && current_marker)
+		if (view->priv->show_line_marks)
 		{
-			if (marker_line == g_array_index (numbers, gint, i))
+			GSList *marks;
+
+			marks = gtk_source_buffer_get_marks_at_line (view->priv->source_buffer,
+								     line_to_paint,
+								     NULL);
+
+			if (marks != NULL)
 			{
-				/* draw markers for the line */
-				current_marker = draw_line_markers (view,
-								    current_marker,
-								    &marker_line,
-								    x_pixmap,
-								    pos);
+				/* draw marks for the line */
+				draw_line_marks (view, marks, x_pixmap, pos);
 			}
 		}
-
-		++i;
 	}
 
-	/* we should have used all markers */
-	g_assert (current_marker == NULL);
-
-	g_slist_free (markers);
 	g_array_free (pixels, TRUE);
 	g_array_free (numbers, TRUE);
 
@@ -1783,7 +1763,7 @@ gtk_source_view_set_show_line_numbers (GtkSourceView *view,
 			/* Set left margin to minimum width if no margin is
 			   visible yet. Otherwise, just queue a redraw, so the
 			   expose handler will automatically adjust the margin. */
-			if (!view->priv->show_line_markers)
+			if (!view->priv->show_line_marks)
 				gtk_text_view_set_border_window_size (GTK_TEXT_VIEW (view),
 								      GTK_TEXT_WINDOW_LEFT,
 								      MIN_NUMBER_WINDOW_WIDTH);
@@ -1810,42 +1790,43 @@ gtk_source_view_set_show_line_numbers (GtkSourceView *view,
 }
 
 /**
- * gtk_source_view_get_show_line_markers:
+ * gtk_source_view_get_show_line_marks:
  * @view: a #GtkSourceView.
  *
- * Returns whether line markers are displayed beside the text.
+ * Returns whether line marks are displayed beside the text.
  *
- * Return value: %TRUE if the line markers are displayed.
+ * Return value: %TRUE if the line marks are displayed.
+ *
+ * Since: 2.2
  **/
 gboolean
-gtk_source_view_get_show_line_markers (GtkSourceView *view)
+gtk_source_view_get_show_line_marks (GtkSourceView *view)
 {
-	g_return_val_if_fail (view != NULL, FALSE);
 	g_return_val_if_fail (GTK_IS_SOURCE_VIEW (view), FALSE);
 
-	return view->priv->show_line_markers;
+	return (view->priv->show_line_marks != FALSE);
 }
 
 /**
- * gtk_source_view_set_show_line_markers:
+ * gtk_source_view_set_show_line_marks:
  * @view: a #GtkSourceView.
- * @show: whether line markers should be displayed.
+ * @show: whether line marks should be displayed.
  *
- * If %TRUE line markers will be displayed beside the text.
+ * If %TRUE line marks will be displayed beside the text.
  *
+ * Since: 2.2
  **/
 void
-gtk_source_view_set_show_line_markers (GtkSourceView *view,
-				       gboolean       show)
+gtk_source_view_set_show_line_marks (GtkSourceView *view,
+				     gboolean       show)
 {
-	g_return_if_fail (view != NULL);
 	g_return_if_fail (GTK_IS_SOURCE_VIEW (view));
 
 	show = (show != FALSE);
 
 	if (show)
 	{
-		if (!view->priv->show_line_markers)
+		if (!view->priv->show_line_marks)
 		{
 			/* Set left margin to minimum width if no margin is
 			   visible yet. Otherwise, just queue a redraw, so the
@@ -1857,21 +1838,21 @@ gtk_source_view_set_show_line_markers (GtkSourceView *view,
 			else
 				gtk_widget_queue_draw (GTK_WIDGET (view));
 
-			view->priv->show_line_markers = show;
+			view->priv->show_line_marks = show;
 
-			g_object_notify (G_OBJECT (view), "show_line_markers");
+			g_object_notify (G_OBJECT (view), "show-line-marks");
 		}
 	}
 	else
 	{
-		if (view->priv->show_line_markers)
+		if (view->priv->show_line_marks)
 		{
-			view->priv->show_line_markers = show;
+			view->priv->show_line_marks = show;
 
 			/* force expose event, which will adjust margin. */
 			gtk_widget_queue_draw (GTK_WIDGET (view));
 
-			g_object_notify (G_OBJECT (view), "show_line_markers");
+			g_object_notify (G_OBJECT (view), "show-line-marks");
 		}
 	}
 }
@@ -1989,25 +1970,54 @@ gtk_source_view_get_indent_width (GtkSourceView *view)
 	return view->priv->indent_width;
 }
 
+static MarkCategory *
+mark_category_new (gint priority, GdkPixbuf *pixbuf)
+{
+	MarkCategory *cat;
+
+	cat = g_slice_new0 (MarkCategory);
+	cat->priority = priority;
+	if (pixbuf != NULL)
+		cat->pixbuf = g_object_ref (pixbuf);
+	else
+		cat->pixbuf = NULL;
+
+	return cat;
+}
+
+static void
+mark_category_free (MarkCategory *cat)
+{
+	if (cat->pixbuf)
+		g_object_unref (cat->pixbuf);
+	g_slice_free (MarkCategory, cat);
+}
+
 /**
- * gtk_source_view_set_marker_pixbuf:
+ * gtk_source_view_set_mark_category_pixbuf:
  * @view: a #GtkSourceView.
- * @marker_type: a marker type.
- * @pixbuf: a #GdkPixbuf.
+ * @category: a mark category.
+ * @pixbuf: a #GdkPixbuf or #NULL.
  *
- * Associates a given @pixbuf with a given @marker_type.
+ * Associates a given @pixbuf with a given mark @category.
+ * If @pixbuf is #NULL, the pixbuf is unset.
+ *
+ * Since: 2.2
  */
 void
-gtk_source_view_set_marker_pixbuf (GtkSourceView *view,
-				   const gchar   *marker_type,
-				   GdkPixbuf     *pixbuf)
+gtk_source_view_set_mark_category_pixbuf (GtkSourceView *view,
+					  const gchar   *category,
+					  GdkPixbuf     *pixbuf)
 {
-	g_return_if_fail (view != NULL);
+	MarkCategory *cat;
+
 	g_return_if_fail (GTK_IS_SOURCE_VIEW (view));
-	g_return_if_fail (marker_type != NULL);
+	g_return_if_fail (category != NULL);
 	g_return_if_fail (pixbuf == NULL || GDK_IS_PIXBUF (pixbuf));
 
-	if (pixbuf)
+	cat = g_hash_table_lookup (view->priv->mark_categories, category);
+
+	if (pixbuf != NULL)
 	{
 		gint width;
 		gint height;
@@ -2026,44 +2036,125 @@ gtk_source_view_set_marker_pixbuf (GtkSourceView *view,
 		else
 		{
 			/* we own a reference of the pixbuf */
-			g_object_ref (G_OBJECT (pixbuf));
+			g_object_ref (pixbuf);
 		}
 
-		g_hash_table_insert (view->priv->pixmap_cache,
-				     g_strdup (marker_type),
-				     pixbuf);
+		if (cat != NULL)
+		{
+			if (cat->pixbuf != NULL)
+				g_object_unref (cat->pixbuf);
+			cat->pixbuf = g_object_ref (pixbuf);
+		}
+		else
+		{
+			cat = mark_category_new (0, pixbuf);
+			g_hash_table_insert (view->priv->mark_categories,
+					     g_strdup (category),
+					     cat);
+		}
+
+		g_object_unref (pixbuf);
 	}
 	else
 	{
-		g_hash_table_remove (view->priv->pixmap_cache, marker_type);
+		if (cat != NULL && cat->pixbuf != NULL)
+		{
+			g_object_unref (cat->pixbuf);
+			cat->pixbuf = NULL;
+		}
 	}
 }
 
 /**
- * gtk_source_view_get_marker_pixbuf:
+ * gtk_source_view_get_mark_category_pixbuf:
  * @view: a #GtkSourceView.
- * @marker_type: a marker type.
+ * @category: a mark category.
  *
- * Gets the pixbuf which is associated with the given @marker_type.
+ * Gets the pixbuf which is associated with the given mark @category.
  *
- * Return value: a #GdkPixbuf if found, or %NULL if not found.
+ * Return value: the associated #GdkPixbuf, or %NULL if not found.
+ *
+ * Since: 2.2
  */
 GdkPixbuf *
-gtk_source_view_get_marker_pixbuf (GtkSourceView *view,
-				   const gchar   *marker_type)
+gtk_source_view_get_mark_category_pixbuf (GtkSourceView *view,
+					  const gchar   *category)
 {
-	GdkPixbuf *pixbuf;
+	MarkCategory *cat;
 
-	g_return_val_if_fail (view != NULL, NULL);
-	g_return_val_if_fail (GTK_IS_SOURCE_VIEW (view), NULL);
-	g_return_val_if_fail (marker_type != NULL, NULL);
+	g_return_val_if_fail (GTK_IS_SOURCE_VIEW (view), 0);
+	g_return_val_if_fail (category != NULL, 0);
 
-	pixbuf = g_hash_table_lookup (view->priv->pixmap_cache, marker_type);
+	cat = g_hash_table_lookup (view->priv->mark_categories, category);
+	if (cat != NULL)
+		return g_object_ref (cat->pixbuf);
+	else
+		return NULL;
+}
 
-	if (pixbuf)
-		g_object_ref (pixbuf);
+/**
+ * gtk_source_view_set_mark_category_priority:
+ * @view: a #GtkSourceView.
+ * @category: a mark category.
+ * @priority: the priority for the category
+ *
+ * Set the @priority for the given mark @category. When there are
+ * multiple marks on the same line, marks of categories with
+ * higher priorities will be drawn on top.
+ * 
+ * Since: 2.2
+ */
+void
+gtk_source_view_set_mark_category_priority (GtkSourceView *view,
+					    const gchar   *category,
+					    gint          priority)
+{
+	MarkCategory *cat;
 
-	return pixbuf;
+	g_return_if_fail (GTK_IS_SOURCE_VIEW (view));
+	g_return_if_fail (category != NULL);
+
+	cat = g_hash_table_lookup (view->priv->mark_categories, category);
+	if (cat == NULL)
+	{
+		cat = mark_category_new (priority, NULL);
+		g_hash_table_insert (view->priv->mark_categories,
+				     g_strdup (category),
+				     cat);
+	}
+	else
+		cat->priority = priority;
+}
+
+/**
+ * gtk_source_view_get_mark_category_priority:
+ * @view: a #GtkSourceView.
+ * @category: a mark category.
+ *
+ * Gets the priority which is associated with the given @category.
+ *
+ * Return value: the priority or if @category
+ * exists but no priority was set, it defaults to 0.
+ *
+ * Since: 2.2
+ */
+gint
+gtk_source_view_get_mark_category_priority (GtkSourceView *view,
+					    const gchar   *category)
+{
+	MarkCategory *cat;
+
+	g_return_val_if_fail (GTK_IS_SOURCE_VIEW (view), 0);
+	g_return_val_if_fail (category != NULL, 0);
+
+	cat = g_hash_table_lookup (view->priv->mark_categories, category);
+	if (cat != NULL)
+		return cat->priority;
+	else
+	{
+		g_warning ("Marker Category %s does not exist!", category);
+		return 0;
+	}
 }
 
 static gchar *
@@ -2926,7 +3017,7 @@ gtk_source_view_get_right_margin_position  (GtkSourceView *view)
 /**
  * gtk_source_view_set_right_margin_position:
  * @view: a #GtkSourceView.
- * @margin: the position of the margin to set.
+ * @pos: the position of the margin to set.
  * @pos: the width in characters where to position the right margin.
  *
  * Sets the position of the right margin in the given @view.

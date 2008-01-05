@@ -2,11 +2,13 @@
 GtkSourceView
 
 <!-- ##### SECTION Short_Description ##### -->
-
+The view object
 
 <!-- ##### SECTION Long_Description ##### -->
 <para>
-
+GtkSourceView is the main object of the gtksourceview library. It provides
+a text view which syntax highlighting, undo/redo and text marks. Use a 
+#GtkSourceBuffer to display text with a GtkSourceView.
 </para>
 
 <!-- ##### SECTION See_Also ##### -->
@@ -67,7 +69,7 @@ GtkSourceView
 
 </para>
 
-<!-- ##### ARG GtkSourceView:show-line-markers ##### -->
+<!-- ##### ARG GtkSourceView:show-line-marks ##### -->
 <para>
 
 </para>
@@ -222,23 +224,43 @@ GtkSourceView
 @Returns: 
 
 
-<!-- ##### FUNCTION gtk_source_view_set_marker_pixbuf ##### -->
+<!-- ##### FUNCTION gtk_source_view_set_mark_category_pixbuf ##### -->
 <para>
 
 </para>
 
 @view: 
-@marker_type: 
+@category: 
 @pixbuf: 
 
 
-<!-- ##### FUNCTION gtk_source_view_get_marker_pixbuf ##### -->
+<!-- ##### FUNCTION gtk_source_view_get_mark_category_pixbuf ##### -->
 <para>
 
 </para>
 
 @view: 
-@marker_type: 
+@category: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gtk_source_view_set_mark_category_priority ##### -->
+<para>
+
+</para>
+
+@view: 
+@category: 
+@priority: 
+
+
+<!-- ##### FUNCTION gtk_source_view_get_mark_category_priority ##### -->
+<para>
+
+</para>
+
+@view: 
+@category: 
 @Returns: 
 
 
@@ -260,7 +282,7 @@ GtkSourceView
 @Returns: 
 
 
-<!-- ##### FUNCTION gtk_source_view_set_show_line_markers ##### -->
+<!-- ##### FUNCTION gtk_source_view_set_show_line_marks ##### -->
 <para>
 
 </para>
@@ -269,7 +291,7 @@ GtkSourceView
 @show: 
 
 
-<!-- ##### FUNCTION gtk_source_view_get_show_line_markers ##### -->
+<!-- ##### FUNCTION gtk_source_view_get_show_line_marks ##### -->
 <para>
 
 </para>

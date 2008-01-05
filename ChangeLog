@@ -1,3 +1,66 @@
+2008-01-05  Paolo Borelli  <pborelli@katamail.com>
+            Johannes Schmid <jhs@gnome.org>
+
+	* configure.ac:
+	Bumped version to 2.1.0
+	
+	* docs/reference/gtksourceview-2.0-sections.txt:
+	* docs/reference/gtksourceview-2.0.types:
+	* docs/reference/gtksourceview-docs.sgml:
+	* docs/reference/tmpl/buffer.sgml:
+	* docs/reference/tmpl/languagemanager.sgml:
+	* docs/reference/tmpl/mark.sgml:
+	* docs/reference/tmpl/marker.sgml: (removed)
+	* docs/reference/tmpl/stylescheme.sgml:
+	* docs/reference/tmpl/view.sgml:
+	
+	Updated docs for new GtkSourceMark API
+	
+	* gtksourceview/Makefile.am:
+	* gtksourceview/gtksourcebuffer.c: (gtk_source_buffer_class_init),
+	(gtk_source_buffer_init), (gtk_source_buffer_finalize),
+	(gtk_source_buffer_move_cursor),
+	(gtk_source_buffer_real_insert_text),
+	(gtk_source_buffer_real_delete_range), (source_mark_remove),
+	(source_mark_bsearch), (source_mark_insert),
+	(gtk_source_buffer_real_mark_set),
+	(gtk_source_buffer_real_mark_deleted),
+	(gtk_source_buffer_create_mark), (_gtk_source_buffer_mark_next),
+	(_gtk_source_buffer_mark_prev),
+	(gtk_source_buffer_forward_iter_to_mark),
+	(gtk_source_buffer_backward_iter_to_mark),
+	(gtk_source_buffer_get_marks_at_iter),
+	(gtk_source_buffer_get_marks_at_line),
+	(gtk_source_buffer_remove_marks):
+	* gtksourceview/gtksourcebuffer.h:
+	* gtksourceview/gtksourcemark.c: (gtk_source_mark_set_property),
+	(gtk_source_mark_get_property), (gtk_source_mark_class_init),
+	(gtk_source_mark_init), (gtk_source_mark_new),
+	(gtk_source_mark_get_category), (gtk_source_mark_next),
+	(gtk_source_mark_prev):
+	* gtksourceview/gtksourcemark.h:
+	* gtksourceview/gtksourcemarker.c: (removed)
+	* gtksourceview/gtksourcemarker.h: (removed)
+	* gtksourceview/gtksourceview.c: (gtk_source_view_class_init),
+	(gtk_source_view_set_property), (gtk_source_view_get_property),
+	(gtk_source_view_init), (gtk_source_view_finalize),
+	(source_mark_updated_cb), (set_source_buffer),
+	(gtk_source_view_get_lines), (sort_marks_by_priority),
+	(draw_line_marks), (gtk_source_view_paint_margin),
+	(gtk_source_view_set_show_line_numbers),
+	(gtk_source_view_get_show_line_marks),
+	(gtk_source_view_set_show_line_marks), (mark_category_new),
+	(mark_category_free), (gtk_source_view_set_mark_category_pixbuf),
+	(gtk_source_view_get_mark_category_pixbuf),
+	(gtk_source_view_set_mark_category_priority),
+	(gtk_source_view_get_mark_category_priority):
+	* gtksourceview/gtksourceview.h:
+	* tests/test-widget.c: (remove_all_marks), (open_file),
+	(marks_toggled_cb), (button_press_cb), (create_view_window),
+	(create_main_window):
+	
+	Added new GtkTextMark-based GtkSourceMark API (#487098)
+
 2000-01-05  Gian Mario Tagliaretti  <gianmt@gnome.org>
 
 	* gtksourceview/gtksourcelanguage.c

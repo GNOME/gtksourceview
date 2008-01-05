@@ -54,7 +54,7 @@ in a view widget.
 @arg1: 
 @arg2: 
 
-<!-- ##### SIGNAL GtkSourceBuffer::marker-updated ##### -->
+<!-- ##### SIGNAL GtkSourceBuffer::source-mark-updated ##### -->
 <para>
 
 </para>
@@ -268,104 +268,71 @@ in a view widget.
 @buffer: 
 
 
-<!-- ##### FUNCTION gtk_source_buffer_create_marker ##### -->
+<!-- ##### FUNCTION gtk_source_buffer_create_mark ##### -->
 <para>
 
 </para>
 
 @buffer: 
 @name: 
-@type: 
+@category: 
 @where: 
 @Returns: 
 
 
-<!-- ##### FUNCTION gtk_source_buffer_delete_marker ##### -->
+<!-- ##### FUNCTION gtk_source_buffer_get_marks_at_line ##### -->
 <para>
 
 </para>
 
 @buffer: 
-@marker: 
-
-
-<!-- ##### FUNCTION gtk_source_buffer_move_marker ##### -->
-<para>
-
-</para>
-
-@buffer: 
-@marker: 
-@where: 
-
-
-<!-- ##### FUNCTION gtk_source_buffer_get_first_marker ##### -->
-<para>
-
-</para>
-
-@buffer: 
+@line: 
+@category: 
 @Returns: 
 
 
-<!-- ##### FUNCTION gtk_source_buffer_get_last_marker ##### -->
+<!-- ##### FUNCTION gtk_source_buffer_get_marks_at_iter ##### -->
 <para>
 
 </para>
 
 @buffer: 
+@iter: 
+@category: 
 @Returns: 
 
 
-<!-- ##### FUNCTION gtk_source_buffer_get_marker ##### -->
+<!-- ##### FUNCTION gtk_source_buffer_remove_marks ##### -->
 <para>
 
 </para>
 
 @buffer: 
-@name: 
-@Returns: 
-
-
-<!-- ##### FUNCTION gtk_source_buffer_get_markers_in_region ##### -->
-<para>
-
-</para>
-
-@buffer: 
-@begin: 
+@start: 
 @end: 
-@Returns: 
+@category: 
 
 
-<!-- ##### FUNCTION gtk_source_buffer_get_next_marker ##### -->
+<!-- ##### FUNCTION gtk_source_buffer_forward_iter_to_mark ##### -->
 <para>
 
 </para>
 
 @buffer: 
 @iter: 
+@category: 
 @Returns: 
 
 
-<!-- ##### FUNCTION gtk_source_buffer_get_prev_marker ##### -->
+<!-- ##### FUNCTION gtk_source_buffer_backward_iter_to_mark ##### -->
 <para>
 
 </para>
 
 @buffer: 
 @iter: 
+@category: 
 @Returns: 
-
-
-<!-- ##### FUNCTION gtk_source_buffer_get_iter_at_marker ##### -->
-<para>
-
-</para>
-
-@buffer: 
-@iter: 
-@marker: 
 
 
 <!-- ##### FUNCTION gtk_source_buffer_ensure_highlight ##### -->
