@@ -1,14 +1,14 @@
 # Vietnamese translation for GTK Source View.
-# Copyright © 2007 Gnome i18n Project for Vietnamese.
+# Copyright © 2008 Gnome i18n Project for Vietnamese.
 # Nguyễn Thái Ngọc Duy <pclouds@gmail.com>, 2002, 2007.
-# Clytie Siddall <clytie@riverland.net.au>, 2005-2007.
+# Clytie Siddall <clytie@riverland.net.au>, 2005-2008.
 # 
 msgid ""
-msgstr ""
-"Project-Id-Version: gtksourceview 1.90.1\n"
+""
+msgstr "Project-Id-Version: gtksourceview 1.90.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-08-28 16:13+0100\n"
-"PO-Revision-Date: 2007-09-03 20:45+0930\n"
+"POT-Creation-Date: 2007-09-10 03:50+0100\n"
+"PO-Revision-Date: 2008-01-05 18:55+1030\n"
 "Last-Translator: Clytie Siddall <clytie@riverland.net.au>\n"
 "Language-Team: Vietnamese <gnomevi-list@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -41,9 +41,9 @@ msgstr "Cấp hủy bước tối đa"
 msgid "Number of undo levels for the buffer"
 msgstr "Số cấp hủy bước trong vùng đệm"
 
+#.Translators: throughout gtksourceview "language" stands
+#.* for "programming language", not "spoken language"
 #: ../gtksourceview/gtksourcebuffer.c:209
-#. Translators: throughout gtksourceview "language" stands
-#. * for "programming language", not "spoken language"
 msgid "Language"
 msgstr "Ngôn ngữ"
 
@@ -81,49 +81,47 @@ msgstr "Thiếu lời xác định ngôn ngữ chính (id = \"%s\".)"
 msgid "using \\C is not supported in language definitions"
 msgstr "trong lời xác định ngôn ngữ, không hỗ trợ khả năng sử dụng \\C"
 
+#.regex_new could fail, for instance if there are different
+#.* named sub-patterns with the same name or if resulting regex is
+#.* too long. In this case fixing lang file helps (e.g. renaming
+#.* subpatterns, making huge keywords use bigger prefixes, etc.)
 #: ../gtksourceview/gtksourcecontextengine.c:3167
 #, c-format
-#. regex_new could fail, for instance if there are different
-#. * named sub-patterns with the same name or if resulting regex is
-#. * too long. In this case fixing lang file helps (e.g. renaming
-#. * subpatterns, making huge keywords use bigger prefixes, etc.)
 msgid ""
 "Cannot create a regex for all the transitions, the syntax highlighting "
 "process will be slower than usual.\n"
 "The error was: %s"
-msgstr ""
-"Không thể tạo một biểu thức chính quy cho mọi việc chuyển tiếp, tiến trình "
+msgstr "Không thể tạo một biểu thức chính quy cho mọi việc chuyển tiếp, tiến trình "
 "tô sáng cú pháp sẽ chạy chậm hơn trường hợp bình thường.\n"
 "Lỗi: %s"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5653
+#: ../gtksourceview/gtksourcecontextengine.c:5670
 #, c-format
 msgid "context '%s' cannot contain a \\%%{...@start} command"
 msgstr "ngữ cảnh « %s » không thể chứa lệnh kiểu \\%%{...@start}"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5805
-#: ../gtksourceview/gtksourcecontextengine.c:5892
+#: ../gtksourceview/gtksourcecontextengine.c:5822
+#: ../gtksourceview/gtksourcecontextengine.c:5909
 #, c-format
 msgid "duplicated context id '%s'"
 msgstr "id ngữ cảnh trùng « %s »"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6005
-#: ../gtksourceview/gtksourcecontextengine.c:6065
+#: ../gtksourceview/gtksourcecontextengine.c:6022
+#: ../gtksourceview/gtksourcecontextengine.c:6082
 #, c-format
 msgid ""
 "style override used with wildcard context reference in language '%s' in ref "
 "'%s'"
-msgstr ""
-"quyền kiểu dáng cao hơn được dùng với tham chiếu ngữ cảnh ký tự đại diện bằng ngôn "
-"ngữ « %s » trong tham chiếu « %s »"
+msgstr "quyền kiểu dáng cao hơn được dùng với tham chiếu ngữ cảnh ký tự đại diện "
+"bằng ngôn ngữ « %s » trong tham chiếu « %s »"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6079
+#: ../gtksourceview/gtksourcecontextengine.c:6096
 #, c-format
-msgid "invalid reference '%s'"
-msgstr "tham chiếu không hợp lệ « %s »"
+msgid "invalid context reference '%s'"
+msgstr "tham chiếu ngữ cảnh không hợp lệ « %s »"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6098
-#: ../gtksourceview/gtksourcecontextengine.c:6108
+#: ../gtksourceview/gtksourcecontextengine.c:6115
+#: ../gtksourceview/gtksourcecontextengine.c:6125
 #, c-format
 msgid "unknown context '%s'"
 msgstr "ngữ cảnh không rõ « %s »"
@@ -136,7 +134,7 @@ msgstr "ngữ cảnh không rõ « %s »"
 #: ../gtksourceview/language-specs/dpatch.lang.h:2
 #: ../gtksourceview/language-specs/gtkrc.lang.h:8
 #: ../gtksourceview/language-specs/ini.lang.h:8
-#: ../gtksourceview/language-specs/libtool.lang.h:2
+#: ../gtksourceview/language-specs/libtool.lang.h:3
 #: ../gtksourceview/language-specs/msil.lang.h:2
 #: ../gtksourceview/language-specs/ocl.lang.h:6
 #: ../gtksourceview/language-specs/pkgconfig.lang.h:1
@@ -188,12 +186,12 @@ msgstr "Các nã ngôn ngữ"
 msgid "List of the ids of the available languages"
 msgstr "Danh sách các mã ngôn ngữ sẵn sàng"
 
-#: ../gtksourceview/gtksourcelanguage-parser-2.c:876
+#: ../gtksourceview/gtksourcelanguage-parser-2.c:879
 #, c-format
 msgid "Unknown id '%s' in regex '%s'"
 msgstr "id không rõ « %s » trong biểu thức chính quy « %s »"
 
-#: ../gtksourceview/gtksourcelanguage-parser-2.c:1104
+#: ../gtksourceview/gtksourcelanguage-parser-2.c:1107
 #, c-format
 msgid "in regex '%s': backreferences are not supported"
 msgstr "trong biểu thức chính quy « %s »: không hỗ trợ tham chiếu ngược"
@@ -406,8 +404,8 @@ msgstr "Home/End khéo"
 msgid ""
 "HOME and END keys move to first/last non whitespace characters on line "
 "before going to the start/end of the line"
-msgstr ""
-"Phím HOME và END di chuyển đến ký tự không khoảng trắng thứ nhất/cuối cùng trên dòng, trước khi chuyển đến đầu/cuối của dòng"
+msgstr "Phím HOME và END di chuyển đến ký tự không khoảng trắng thứ nhất/cuối cùng "
+"trên dòng, trước khi chuyển đến đầu/cuối của dòng"
 
 #: ../gtksourceview/gtksourceview.c:349
 msgid "Highlight current line"
@@ -437,6 +435,7 @@ msgstr "Ada"
 msgid "Arbitrary base number"
 msgstr "Số cơ sở tùy ý"
 
+#.A boolean constant: TRUE, false
 #: ../gtksourceview/language-specs/ada.lang.h:3
 #: ../gtksourceview/language-specs/c.lang.h:1
 #: ../gtksourceview/language-specs/csharp.lang.h:1
@@ -451,12 +450,13 @@ msgstr "Số cơ sở tùy ý"
 #: ../gtksourceview/language-specs/php.lang.h:1
 #: ../gtksourceview/language-specs/R.lang.h:2
 #: ../gtksourceview/language-specs/ruby.lang.h:3
+#: ../gtksourceview/language-specs/vala.lang.h:1
 #: ../gtksourceview/language-specs/vbnet.lang.h:1
 #: ../gtksourceview/language-specs/vhdl.lang.h:2
-#. A boolean constant: TRUE, false
 msgid "Boolean value"
 msgstr "Giá trị lôgic"
 
+#.Any comment
 #: ../gtksourceview/language-specs/ada.lang.h:4
 #: ../gtksourceview/language-specs/boo.lang.h:4
 #: ../gtksourceview/language-specs/c.lang.h:4
@@ -488,14 +488,15 @@ msgstr "Giá trị lôgic"
 #: ../gtksourceview/language-specs/sh.lang.h:1
 #: ../gtksourceview/language-specs/sql.lang.h:1
 #: ../gtksourceview/language-specs/texinfo.lang.h:1
+#: ../gtksourceview/language-specs/vala.lang.h:2
 #: ../gtksourceview/language-specs/vbnet.lang.h:2
 #: ../gtksourceview/language-specs/verilog.lang.h:2
 #: ../gtksourceview/language-specs/vhdl.lang.h:4
 #: ../gtksourceview/language-specs/xml.lang.h:4
-#. Any comment
 msgid "Comment"
 msgstr "Ghi chú"
 
+#.map-to="def:others"
 #: ../gtksourceview/language-specs/ada.lang.h:5
 #: ../gtksourceview/language-specs/boo.lang.h:5
 #: ../gtksourceview/language-specs/c.lang.h:6
@@ -516,11 +517,12 @@ msgstr "Ghi chú"
 #: ../gtksourceview/language-specs/pascal.lang.h:2
 #: ../gtksourceview/language-specs/php.lang.h:3
 #: ../gtksourceview/language-specs/sql.lang.h:2
+#: ../gtksourceview/language-specs/vala.lang.h:3
 #: ../gtksourceview/language-specs/vbnet.lang.h:3
-#. map-to="def:others"
 msgid "Data Type"
 msgstr "Kiểu dữ liệu"
 
+#.A decimal number: 1234
 #: ../gtksourceview/language-specs/ada.lang.h:6
 #: ../gtksourceview/language-specs/c.lang.h:7
 #: ../gtksourceview/language-specs/csharp.lang.h:5
@@ -532,7 +534,7 @@ msgstr "Kiểu dữ liệu"
 #: ../gtksourceview/language-specs/php.lang.h:4
 #: ../gtksourceview/language-specs/python.lang.h:7
 #: ../gtksourceview/language-specs/ruby.lang.h:7
-#. A decimal number: 1234
+#: ../gtksourceview/language-specs/vala.lang.h:4
 msgid "Decimal number"
 msgstr "Số thập phân"
 
@@ -547,6 +549,7 @@ msgstr "Số thập phân"
 msgid "Escaped Character"
 msgstr "Ký tự đã thoát"
 
+#.keywords: "if", "for", "while", etc.
 #: ../gtksourceview/language-specs/ada.lang.h:8
 #: ../gtksourceview/language-specs/awk.lang.h:1
 #: ../gtksourceview/language-specs/boo.lang.h:7
@@ -581,10 +584,10 @@ msgstr "Ký tự đã thoát"
 #: ../gtksourceview/language-specs/sql.lang.h:6
 #: ../gtksourceview/language-specs/tcl.lang.h:1
 #: ../gtksourceview/language-specs/texinfo.lang.h:5
+#: ../gtksourceview/language-specs/vala.lang.h:7
 #: ../gtksourceview/language-specs/vbnet.lang.h:4
 #: ../gtksourceview/language-specs/verilog.lang.h:6
 #: ../gtksourceview/language-specs/vhdl.lang.h:5
-#. keywords: "if", "for", "while", etc.
 msgid "Keyword"
 msgstr "Từ khóa"
 
@@ -601,6 +604,7 @@ msgstr "Bộ tiền xử lý"
 
 #: ../gtksourceview/language-specs/ada.lang.h:10
 #: ../gtksourceview/language-specs/csharp.lang.h:11
+#: ../gtksourceview/language-specs/vala.lang.h:9
 #: ../gtksourceview/language-specs/vhdl.lang.h:7
 msgid "Real number"
 msgstr "Số thực"
@@ -625,6 +629,7 @@ msgstr "Số thực"
 #: ../gtksourceview/language-specs/pascal.lang.h:7
 #: ../gtksourceview/language-specs/scheme.lang.h:6
 #: ../gtksourceview/language-specs/sql.lang.h:9
+#: ../gtksourceview/language-specs/vala.lang.h:10
 #: ../gtksourceview/language-specs/vbnet.lang.h:6
 #: ../gtksourceview/language-specs/verilog.lang.h:7
 #: ../gtksourceview/language-specs/vhdl.lang.h:8
@@ -637,6 +642,7 @@ msgstr "Nguồn"
 msgid "Storage Class"
 msgstr "Hạng cất giữ"
 
+#.A string constant: "this is a string"
 #: ../gtksourceview/language-specs/ada.lang.h:13
 #: ../gtksourceview/language-specs/boo.lang.h:15
 #: ../gtksourceview/language-specs/c.lang.h:18
@@ -658,7 +664,7 @@ msgstr "Hạng cất giữ"
 #: ../gtksourceview/language-specs/ocl.lang.h:7
 #: ../gtksourceview/language-specs/octave.lang.h:11
 #: ../gtksourceview/language-specs/pascal.lang.h:8
-#: ../gtksourceview/language-specs/perl.lang.h:18
+#: ../gtksourceview/language-specs/perl.lang.h:19
 #: ../gtksourceview/language-specs/php.lang.h:17
 #: ../gtksourceview/language-specs/po.lang.h:5
 #: ../gtksourceview/language-specs/python.lang.h:17
@@ -666,9 +672,9 @@ msgstr "Hạng cất giữ"
 #: ../gtksourceview/language-specs/scheme.lang.h:7
 #: ../gtksourceview/language-specs/sql.lang.h:10
 #: ../gtksourceview/language-specs/texinfo.lang.h:9
+#: ../gtksourceview/language-specs/vala.lang.h:11
 #: ../gtksourceview/language-specs/vbnet.lang.h:8
 #: ../gtksourceview/language-specs/vhdl.lang.h:9
-#. A string constant: "this is a string"
 msgid "String"
 msgstr "Chuỗi"
 
@@ -680,7 +686,7 @@ msgstr "Mẫu"
 #: ../gtksourceview/language-specs/javascript.lang.h:14
 #: ../gtksourceview/language-specs/lua.lang.h:9
 #: ../gtksourceview/language-specs/m4.lang.h:1
-#: ../gtksourceview/language-specs/perl.lang.h:17
+#: ../gtksourceview/language-specs/perl.lang.h:18
 #: ../gtksourceview/language-specs/php.lang.h:16
 #: ../gtksourceview/language-specs/python.lang.h:15
 #: ../gtksourceview/language-specs/R.lang.h:9
@@ -693,7 +699,7 @@ msgstr "Văn lệnh"
 #: ../gtksourceview/language-specs/awk.lang.h:4
 #: ../gtksourceview/language-specs/haskell.lang.h:15
 #: ../gtksourceview/language-specs/ini.lang.h:10
-#: ../gtksourceview/language-specs/perl.lang.h:20
+#: ../gtksourceview/language-specs/perl.lang.h:21
 #: ../gtksourceview/language-specs/php.lang.h:18
 #: ../gtksourceview/language-specs/pkgconfig.lang.h:3
 #: ../gtksourceview/language-specs/ruby.lang.h:23
@@ -746,20 +752,21 @@ msgstr "Miền tên"
 #: ../gtksourceview/language-specs/javascript.lang.h:11
 #: ../gtksourceview/language-specs/nemerle.lang.h:12
 #: ../gtksourceview/language-specs/php.lang.h:12
+#: ../gtksourceview/language-specs/vala.lang.h:8
 msgid "Null Value"
 msgstr "Vô giá trị"
 
+#.A generic number constant
 #: ../gtksourceview/language-specs/boo.lang.h:11
 #: ../gtksourceview/language-specs/def.lang.h:40
 #: ../gtksourceview/language-specs/desktop.lang.h:10
 #: ../gtksourceview/language-specs/java.lang.h:11
 #: ../gtksourceview/language-specs/vhdl.lang.h:6
-#. A generic number constant
 msgid "Number"
 msgstr "Số"
 
 #: ../gtksourceview/language-specs/boo.lang.h:12
-#: ../gtksourceview/language-specs/perl.lang.h:16
+#: ../gtksourceview/language-specs/perl.lang.h:17
 #: ../gtksourceview/language-specs/ruby.lang.h:17
 msgid "Regular Expression"
 msgstr "Biểu thức chính quy"
@@ -778,12 +785,12 @@ msgstr "Bản ghi đổi"
 msgid "C"
 msgstr "C"
 
+#.A character constant: 'c'
 #: ../gtksourceview/language-specs/c.lang.h:3
 #: ../gtksourceview/language-specs/def.lang.h:9
 #: ../gtksourceview/language-specs/haskell.lang.h:1
 #: ../gtksourceview/language-specs/nemerle.lang.h:3
 #: ../gtksourceview/language-specs/vhdl.lang.h:3
-#. A character constant: 'c'
 msgid "Character"
 msgstr "Ký tự"
 
@@ -793,6 +800,7 @@ msgstr "Ký tự"
 msgid "Common Defines"
 msgstr "Định nghĩa dùng chung"
 
+#.Any erroneous construct
 #: ../gtksourceview/language-specs/c.lang.h:8
 #: ../gtksourceview/language-specs/csharp.lang.h:6
 #: ../gtksourceview/language-specs/css.lang.h:6
@@ -805,12 +813,13 @@ msgstr "Định nghĩa dùng chung"
 #: ../gtksourceview/language-specs/ocaml.lang.h:7
 #: ../gtksourceview/language-specs/perl.lang.h:4
 #: ../gtksourceview/language-specs/php.lang.h:5
+#: ../gtksourceview/language-specs/vala.lang.h:5
 #: ../gtksourceview/language-specs/verilog.lang.h:4
 #: ../gtksourceview/language-specs/xml.lang.h:8
-#. Any erroneous construct
 msgid "Error"
 msgstr "Lỗi"
 
+#.A floating point constant: 2.3e10
 #: ../gtksourceview/language-specs/c.lang.h:10
 #: ../gtksourceview/language-specs/def.lang.h:30
 #: ../gtksourceview/language-specs/d.lang.h:8
@@ -820,7 +829,6 @@ msgstr "Lỗi"
 #: ../gtksourceview/language-specs/python.lang.h:9
 #: ../gtksourceview/language-specs/R.lang.h:4
 #: ../gtksourceview/language-specs/ruby.lang.h:9
-#. A floating point constant: 2.3e10
 msgid "Floating point number"
 msgstr "Số chấm động"
 
@@ -829,6 +837,7 @@ msgstr "Số chấm động"
 #: ../gtksourceview/language-specs/d.lang.h:9
 #: ../gtksourceview/language-specs/nemerle.lang.h:9
 #: ../gtksourceview/language-specs/php.lang.h:10
+#: ../gtksourceview/language-specs/vala.lang.h:6
 msgid "Hexadecimal number"
 msgstr "Số thập lục"
 
@@ -882,6 +891,7 @@ msgstr "Thập phân"
 msgid "Dimension"
 msgstr "Chiều"
 
+#.A function name (also: methods for classes)
 #: ../gtksourceview/language-specs/css.lang.h:7
 #: ../gtksourceview/language-specs/def.lang.h:32
 #: ../gtksourceview/language-specs/gtk-doc.lang.h:2
@@ -890,7 +900,6 @@ msgstr "Chiều"
 #: ../gtksourceview/language-specs/octave.lang.h:6
 #: ../gtksourceview/language-specs/scheme.lang.h:3
 #: ../gtksourceview/language-specs/sql.lang.h:5
-#. A function name (also: methods for classes)
 msgid "Function"
 msgstr "Hàm"
 
@@ -910,34 +919,35 @@ msgstr "Khác 3"
 msgid "at-rules"
 msgstr "Quy tắc at"
 
+#.A base-N number: 0xFFFF
 #: ../gtksourceview/language-specs/def.lang.h:2
 #: ../gtksourceview/language-specs/python.lang.h:1
 #: ../gtksourceview/language-specs/ruby.lang.h:2
-#. A base-N number: 0xFFFF
 msgid "Base-N number"
 msgstr "Số cơ số N"
 
+#.A builtin name: like __import__, abs in Python
+#.(see http://docs.python.org/lib/built-in-funcs.html)
 #: ../gtksourceview/language-specs/def.lang.h:7
-#. A builtin name: like __import__, abs in Python
-#. (see http://docs.python.org/lib/built-in-funcs.html)
 msgid "Built-in identifier"
 msgstr "Bộ nhận diện dựng sẵn"
 
+#.A complex number
 #: ../gtksourceview/language-specs/def.lang.h:13
 #: ../gtksourceview/language-specs/python.lang.h:6
-#. A complex number
 msgid "Complex number"
 msgstr "Số phức tạp"
 
+#.Any constant
 #: ../gtksourceview/language-specs/def.lang.h:15
 #: ../gtksourceview/language-specs/gtk-doc.lang.h:1
+#: ../gtksourceview/language-specs/libtool.lang.h:2
 #: ../gtksourceview/language-specs/ruby.lang.h:6
-#. Any constant
 msgid "Constant"
 msgstr "Hằng"
 
+#.A primitive data type: int, long, char, etc.
 #: ../gtksourceview/language-specs/def.lang.h:17
-#. A primitive data type: int, long, char, etc.
 msgid "Data type"
 msgstr "Kiểu dữ liệu"
 
@@ -945,71 +955,71 @@ msgstr "Kiểu dữ liệu"
 msgid "Defaults"
 msgstr "Mặc định"
 
+#.A special comment containing documentation like in javadoc or
+#.gtk-doc
 #: ../gtksourceview/language-specs/def.lang.h:23
-#. A special comment containing documentation like in javadoc or
-#. gtk-doc
 msgid "Documentation comment"
 msgstr "Ghi chú về tài liệu"
 
+#.This style doesn't map to anything since it must be used as an additional
+#.style for text which is already styled as a "doc-comment"
 #: ../gtksourceview/language-specs/def.lang.h:26
-#. This style doesn't map to anything since it must be used as an additional
-#. style for text which is already styled as a "doc-comment"
 msgid "Documentation comment element"
 msgstr "Yếu tố ghi chú về tài liệu"
 
+#.Any variable name
 #: ../gtksourceview/language-specs/def.lang.h:34
-#. Any variable name
 msgid "Identifier"
 msgstr "Bộ nhận diện"
 
+#.Anything that needs extra attention; mostly the keywords TODO, FIXME and XXX
 #: ../gtksourceview/language-specs/def.lang.h:38
-#. Anything that needs extra attention; mostly the keywords TODO, FIXME and XXX
 msgid "Note (FIXME, TODO, XXX, etc.)"
 msgstr "Ghi chú (SỬA ĐI, CẦN LÀM, XXX v.v.)"
 
+#.Operators: "+", "*", etc.
 #: ../gtksourceview/language-specs/def.lang.h:42
 #: ../gtksourceview/language-specs/erlang.lang.h:10
 #: ../gtksourceview/language-specs/perl.lang.h:11
 #: ../gtksourceview/language-specs/php.lang.h:14
-#. Operators: "+", "*", etc.
 msgid "Operator"
 msgstr "Toán tử"
 
+#.This one is for '#include <foo.h>' and "#pragma blah", or 'use foobar', etc..
 #: ../gtksourceview/language-specs/def.lang.h:44
-#. This one is for '#include <foo.h>' and "#pragma blah", or 'use foobar', etc..
 msgid "Preprocessor directive"
 msgstr "Chỉ thị tiền xử lý"
 
+#.Reserved keywords: like "const" and "goto" in Java
 #: ../gtksourceview/language-specs/def.lang.h:46
-#. Reserved keywords: like "const" and "goto" in Java
 msgid "Reserved keyword"
 msgstr "Từ khoá dành riêng"
 
+#.A shebang: #!/bin/sh
 #: ../gtksourceview/language-specs/def.lang.h:48
 #: ../gtksourceview/language-specs/sh.lang.h:3
-#. A shebang: #!/bin/sh
 msgid "Shebang"
 msgstr "Shebang"
 
+#.This style doesn't map to anything since it must be used as an additional
+#.style for text which is already styled as a "string"
 #: ../gtksourceview/language-specs/def.lang.h:51
-#. This style doesn't map to anything since it must be used as an additional
-#. style for text which is already styled as a "string"
 msgid "Special character (inside a string)"
 msgstr "Ký tự đặc biệt (bên trong chuỗi)"
 
+#.A special constant like NULL in C or null in Java
 #: ../gtksourceview/language-specs/def.lang.h:53
 #: ../gtksourceview/language-specs/vbnet.lang.h:7
-#. A special constant like NULL in C or null in Java
 msgid "Special constant"
 msgstr "Hằng đặc biệt"
 
+#.Any statement
 #: ../gtksourceview/language-specs/def.lang.h:55
-#. Any statement
 msgid "Statement"
 msgstr "Câu lệnh"
 
+#.Text that stands out, HTML links, e-mail addresses, etc.
 #: ../gtksourceview/language-specs/def.lang.h:59
-#. Text that stands out, HTML links, e-mail addresses, etc.
 msgid "Underlined"
 msgstr "Gạch dưới"
 
@@ -1033,9 +1043,9 @@ msgstr "Tham số thực hiện"
 msgid "Group"
 msgstr "Nhóm"
 
+#.Translators: "Key" here means key value, that is the left hand
+#.side in a myoption=something line in a .desktop file
 #: ../gtksourceview/language-specs/desktop.lang.h:9
-#. Translators: "Key" here means key value, that is the left hand
-#. side in a myoption=something line in a .desktop file
 msgid "Key"
 msgstr "Khoá"
 
@@ -1047,8 +1057,8 @@ msgstr "Bản dịch"
 msgid "Added line"
 msgstr "Dòng bị thêm"
 
+#.Others 3
 #: ../gtksourceview/language-specs/diff.lang.h:3
-#. Others 3
 msgid "Changed line"
 msgstr "Dòng bị sửa đổi"
 
@@ -1056,24 +1066,24 @@ msgstr "Dòng bị sửa đổi"
 msgid "Diff"
 msgstr "Khác biệt"
 
+#.Keyword
 #: ../gtksourceview/language-specs/diff.lang.h:6
-#. Keyword
 msgid "Ignore"
 msgstr "Bỏ qua"
 
+#.String
 #: ../gtksourceview/language-specs/diff.lang.h:8
 #: ../gtksourceview/language-specs/po.lang.h:3
-#. String
 msgid "Location"
 msgstr "Vị trí"
 
+#.Others 2
 #: ../gtksourceview/language-specs/diff.lang.h:11
-#. Others 2
 msgid "Removed line"
 msgstr "Dòng bị xoá"
 
+#.Preprocessor
 #: ../gtksourceview/language-specs/diff.lang.h:13
-#. Preprocessor
 msgid "Special case"
 msgstr "Trường hợp đặc biệt"
 
@@ -1414,7 +1424,7 @@ msgstr "Đúng nguyên văn"
 msgid "math-bound"
 msgstr "kết hợp với toán học"
 
-#: ../gtksourceview/language-specs/libtool.lang.h:3
+#: ../gtksourceview/language-specs/libtool.lang.h:4
 msgid "libtool"
 msgstr "libtool"
 
@@ -1548,23 +1558,27 @@ msgid "Line Directive"
 msgstr "Chỉ thị đường"
 
 #: ../gtksourceview/language-specs/perl.lang.h:12
+msgid "POD"
+msgstr "POD"
+
+#: ../gtksourceview/language-specs/perl.lang.h:13
 msgid "POD Escape"
 msgstr "Thoát POD"
 
-#: ../gtksourceview/language-specs/perl.lang.h:13
+#: ../gtksourceview/language-specs/perl.lang.h:14
 msgid "POD heading"
 msgstr "Tiêu đề POD"
 
-#: ../gtksourceview/language-specs/perl.lang.h:14
+#: ../gtksourceview/language-specs/perl.lang.h:15
 msgid "POD keyword"
 msgstr "Từ khóa POD"
 
 # Name: don't translate / Tên: đừng dịch
-#: ../gtksourceview/language-specs/perl.lang.h:15
+#: ../gtksourceview/language-specs/perl.lang.h:16
 msgid "Perl"
 msgstr "Perl"
 
-#: ../gtksourceview/language-specs/perl.lang.h:19
+#: ../gtksourceview/language-specs/perl.lang.h:20
 msgid "System Command"
 msgstr "Lệnh hệ thống"
 
@@ -2040,8 +2054,7 @@ msgstr "Tango"
 #~ msgstr "Thư viện PCRE đã được biên dịch không có khả năng hỗ trợ UTF-8"
 
 #~ msgid "PCRE library is compiled without UTF8 properties support"
-#~ msgstr ""
-#~ "hư viện PCRE đã được biên dịch không có khả năng hỗ trợ thuộc tính UTF-8"
+#~ msgstr "hư viện PCRE đã được biên dịch không có khả năng hỗ trợ thuộc tính UTF-8"
 
 #~ msgid "Error while compiling regular expression %s at char %d: %s"
 #~ msgstr "Gặp lỗi khi biên dịch biểu thức chính quy %s ở ký tự %d: %s"
@@ -2116,20 +2129,17 @@ msgstr "Tango"
 #~ msgstr "Phông chữ"
 
 #~ msgid "GnomeFont name to use for the document text (deprecated)"
-#~ msgstr ""
-#~ "Tên GnomeFont (phông chữ Gnome) cần dùng cho chữ tài liệu (bị phản đối)"
+#~ msgstr "Tên GnomeFont (phông chữ Gnome) cần dùng cho chữ tài liệu (bị phản đối)"
 
 #~ msgid "Font to use for the document text (e.g. \"Monospace 10\")"
-#~ msgstr ""
-#~ "Phông chữ cần dùng cho chữ tài liệu (v.d. « Monospace 10 » là phông chữ "
+#~ msgstr "Phông chữ cần dùng cho chữ tài liệu (v.d. « Monospace 10 » là phông chữ "
 #~ "đơn cách, kích cỡ 10 điểm)"
 
 #~ msgid "Numbers Font"
 #~ msgstr "Phông chữ Số"
 
 #~ msgid "GnomeFont name to use for the line numbers (deprecated)"
-#~ msgstr ""
-#~ "Tên GnomeFont (phông chữ Gnome) cần dùng cho số thứ tự dòng (bị phản đối)"
+#~ msgstr "Tên GnomeFont (phông chữ Gnome) cần dùng cho số thứ tự dòng (bị phản đối)"
 
 #~ msgid "Font description to use for the line numbers"
 #~ msgstr "Mô tả phông chữ cho số thứ tự dòng"
@@ -2138,8 +2148,7 @@ msgstr "Tango"
 #~ msgstr "In số thứ tự dòng"
 
 #~ msgid "Interval of printed line numbers (0 means no numbers)"
-#~ msgstr ""
-#~ "Khoảng cách các số thứ tự dòng được in (0 nghĩa là không in số thứ tự "
+#~ msgstr "Khoảng cách các số thứ tự dòng được in (0 nghĩa là không in số thứ tự "
 #~ "dòng)"
 
 #~ msgid "Print Header"
@@ -2158,16 +2167,14 @@ msgstr "Tango"
 #~ msgstr "Phông chữ đầu và chân trang"
 
 #~ msgid "GnomeFont name to use for the header and footer (deprecated)"
-#~ msgstr ""
-#~ "Tên GnomeFont (phông chữ Gnome) cần dùng cho đầu và chân trang (bị phải "
+#~ msgstr "Tên GnomeFont (phông chữ Gnome) cần dùng cho đầu và chân trang (bị phải "
 #~ "đối)"
 
 #~ msgid "Header and Footer Font Description"
 #~ msgstr "Mô tả phông chữ cho đầu và chân trang"
 
 #~ msgid "Font to use for headers and footers (e.g. \"Monospace 10\")"
-#~ msgstr ""
-#~ "Phông chữ cần dùng cho đầu và chân trang (v.d. « Monospace 10 » là phông "
+#~ msgstr "Phông chữ cần dùng cho đầu và chân trang (v.d. « Monospace 10 » là phông "
 #~ "chữ đơn cách, kích cỡ 10 điểm)"
 
 #~ msgid "Tag ID"
@@ -2371,9 +2378,6 @@ msgstr "Tango"
 
 #~ msgid "Method Call"
 #~ msgstr "Lời gọi phương pháp"
-
-#~ msgid "POD"
-#~ msgstr "POD"
 
 #~ msgid "String2"
 #~ msgstr "Chuỗi2"
