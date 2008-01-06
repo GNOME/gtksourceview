@@ -1,83 +1,78 @@
-# SOME DESCRIPTIVE TITLE.
+# translation of gtksourceview.HEAD.po to Español
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 #
-# Jorge González <jorgegonz@svn.gnome.org>, 2007.
+# Jorge González <jorgegonz@svn.gnome.org>, 2007, 2008.
 msgid ""
 msgstr ""
-"Project-Id-Version: gtksourceview.HEAD.es\n"
+"Project-Id-Version: gtksourceview.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-10 03:50+0100\n"
-"PO-Revision-Date: 2007-09-26 23:54+0200\n"
+"POT-Creation-Date: 2008-01-05 13:03+0000\n"
+"PO-Revision-Date: 2008-01-06 12:15+0100\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
-"Language-Team: Spanish <traductores@es.gnome.org>\n"
+"Language-Team: Español <<gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
-#: ../gtksourceview/gtksourcebuffer.c:169
+#: ../gtksourceview/gtksourcebuffer.c:168
 msgid "Highlight Syntax"
 msgstr "Resaltar sintaxis"
 
-#: ../gtksourceview/gtksourcebuffer.c:170
+#: ../gtksourceview/gtksourcebuffer.c:169
 msgid "Whether to highlight syntax in the buffer"
 msgstr "Indica si se resalta la sintaxis en el búfer"
 
-#: ../gtksourceview/gtksourcebuffer.c:183
+#: ../gtksourceview/gtksourcebuffer.c:182
 msgid "Highlight Matching Brackets"
 msgstr "Resaltar corchetes coincidentes"
 
-#: ../gtksourceview/gtksourcebuffer.c:184
+#: ../gtksourceview/gtksourcebuffer.c:183
 msgid "Whether to highlight matching brackets"
 msgstr "Indica si resaltan los corchetes coincidentes"
 
-#: ../gtksourceview/gtksourcebuffer.c:196
+#: ../gtksourceview/gtksourcebuffer.c:195
 msgid "Maximum Undo Levels"
 msgstr "Nivel máximo de deshacer"
 
-#: ../gtksourceview/gtksourcebuffer.c:197
+#: ../gtksourceview/gtksourcebuffer.c:196
 msgid "Number of undo levels for the buffer"
 msgstr "Número de niveles de deshacer para el búfer."
 
 #. Translators: throughout gtksourceview "language" stands
 #. * for "programming language", not "spoken language"
-#: ../gtksourceview/gtksourcebuffer.c:209
+#: ../gtksourceview/gtksourcebuffer.c:208
 msgid "Language"
 msgstr "Lenguaje"
 
-#: ../gtksourceview/gtksourcebuffer.c:210
+#: ../gtksourceview/gtksourcebuffer.c:209
 msgid "Language object to get highlighting patterns from"
 msgstr "El objeto de lenguaje del que se obtienen los patrones de resaltado"
 
-#: ../gtksourceview/gtksourcebuffer.c:218
+#: ../gtksourceview/gtksourcebuffer.c:217
 msgid "Can undo"
 msgstr "Se puede deshacer"
 
-#: ../gtksourceview/gtksourcebuffer.c:219
+#: ../gtksourceview/gtksourcebuffer.c:218
 msgid "Whether Undo operation is possible"
 msgstr "Indica si la operación de deshacer está disponible"
 
-#: ../gtksourceview/gtksourcebuffer.c:226
+#: ../gtksourceview/gtksourcebuffer.c:225
 msgid "Can redo"
 msgstr "Se puede rehacer"
 
-#: ../gtksourceview/gtksourcebuffer.c:227
+#: ../gtksourceview/gtksourcebuffer.c:226
 msgid "Whether Redo operation is possible"
 msgstr "Indica si la operación de rehacer está disponible"
 
+#: ../gtksourceview/gtksourcebuffer.c:240
 #: ../gtksourceview/gtksourcebuffer.c:241
-#: ../gtksourceview/gtksourcebuffer.c:242
 msgid "Style scheme"
 msgstr "Estilo"
 
-#: ../gtksourceview/gtksourcecontextengine.c:2260
-#, c-format
-msgid "Missing main language definition (id = \"%s\".)"
-msgstr "Falta la definición de lenguaje principal (id = «%s».)"
-
-#: ../gtksourceview/gtksourcecontextengine.c:2566
+#: ../gtksourceview/gtksourcecontextengine.c:2567
 msgid "using \\C is not supported in language definitions"
 msgstr "el uso de \\C no está soportado en las definiciones del lenguaje"
 
@@ -85,7 +80,7 @@ msgstr "el uso de \\C no está soportado en las definiciones del lenguaje"
 #. * named sub-patterns with the same name or if resulting regex is
 #. * too long. In this case fixing lang file helps (e.g. renaming
 #. * subpatterns, making huge keywords use bigger prefixes, etc.)
-#: ../gtksourceview/gtksourcecontextengine.c:3167
+#: ../gtksourceview/gtksourcecontextengine.c:3191
 #, c-format
 msgid ""
 "Cannot create a regex for all the transitions, the syntax highlighting "
@@ -96,19 +91,19 @@ msgstr ""
 "proceso de resaltado de sintaxis será más lento de lo habitual.\n"
 "El error fue: %s"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5670
+#: ../gtksourceview/gtksourcecontextengine.c:5697
 #, c-format
 msgid "context '%s' cannot contain a \\%%{...@start} command"
 msgstr "el contexto «%s» no puede contener un comando \\%%{...@start} command"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5822
-#: ../gtksourceview/gtksourcecontextengine.c:5909
+#: ../gtksourceview/gtksourcecontextengine.c:5849
+#: ../gtksourceview/gtksourcecontextengine.c:5936
 #, c-format
 msgid "duplicated context id '%s'"
 msgstr "id de contexto duplicado «%s»"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6022
-#: ../gtksourceview/gtksourcecontextengine.c:6082
+#: ../gtksourceview/gtksourcecontextengine.c:6049
+#: ../gtksourceview/gtksourcecontextengine.c:6109
 #, c-format
 msgid ""
 "style override used with wildcard context reference in language '%s' in ref "
@@ -117,16 +112,21 @@ msgstr ""
 "el salto de estilo se usó con comodín de contexto de referencia en el "
 "lenguaje «%s» referencia «%s»"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6096
+#: ../gtksourceview/gtksourcecontextengine.c:6123
 #, c-format
 msgid "invalid context reference '%s'"
 msgstr "referencia de contexto inválida «%s»"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6115
-#: ../gtksourceview/gtksourcecontextengine.c:6125
+#: ../gtksourceview/gtksourcecontextengine.c:6142
+#: ../gtksourceview/gtksourcecontextengine.c:6152
 #, c-format
 msgid "unknown context '%s'"
 msgstr "contexto desconocido «%s»"
+
+#: ../gtksourceview/gtksourcecontextengine.c:6252
+#, c-format
+msgid "Missing main language definition (id = \"%s\".)"
+msgstr "Falta la definición de lenguaje principal (id = «%s».)"
 
 #: ../gtksourceview/gtksourcelanguage.c:42
 #: ../gtksourceview/language-specs/changelog.lang.h:2
@@ -147,26 +147,26 @@ msgstr "contexto desconocido «%s»"
 msgid "Others"
 msgstr "Otros"
 
-#: ../gtksourceview/gtksourcelanguage.c:214
 #: ../gtksourceview/gtksourcelanguage.c:215
+#: ../gtksourceview/gtksourcelanguage.c:216
 msgid "Language id"
 msgstr "ID del lenguaje"
 
-#: ../gtksourceview/gtksourcelanguage.c:222
 #: ../gtksourceview/gtksourcelanguage.c:223
+#: ../gtksourceview/gtksourcelanguage.c:224
 msgid "Language name"
 msgstr "Nombre del lenguaje"
 
-#: ../gtksourceview/gtksourcelanguage.c:230
 #: ../gtksourceview/gtksourcelanguage.c:231
+#: ../gtksourceview/gtksourcelanguage.c:232
 msgid "Language section"
 msgstr "Sección del lenguaje"
 
-#: ../gtksourceview/gtksourcelanguage.c:238
+#: ../gtksourceview/gtksourcelanguage.c:239
 msgid "Hidden"
 msgstr "Oculto"
 
-#: ../gtksourceview/gtksourcelanguage.c:239
+#: ../gtksourceview/gtksourcelanguage.c:240
 msgid "Whether the language should be hidden from the user"
 msgstr "Indica si se debería ocultar el lenguaje al usuario"
 
@@ -332,75 +332,75 @@ msgstr "Descripción del estilo"
 msgid "Style scheme filename"
 msgstr "Nombre del archivo de estilo"
 
-#: ../gtksourceview/gtksourceview.c:241
+#: ../gtksourceview/gtksourceview.c:257
 msgid "Show Line Numbers"
 msgstr "Mostrar número de línea"
 
-#: ../gtksourceview/gtksourceview.c:242
+#: ../gtksourceview/gtksourceview.c:258
 msgid "Whether to display line numbers"
 msgstr "Indica si se mostrarán los números de las líneas."
 
-#: ../gtksourceview/gtksourceview.c:249
-msgid "Show Line Markers"
+#: ../gtksourceview/gtksourceview.c:269
+msgid "Show Line Marks"
 msgstr "Mostrar marcadores de líneas"
 
-#: ../gtksourceview/gtksourceview.c:250
-msgid "Whether to display line marker pixbufs"
-msgstr "Indica si se mostrarán los marcadores de líneas."
+#: ../gtksourceview/gtksourceview.c:270
+msgid "Whether to display line mark pixbufs"
+msgstr "Indica si se mostrarán los búfer de píxeles de marcadores de líneas"
 
-#: ../gtksourceview/gtksourceview.c:262
+#: ../gtksourceview/gtksourceview.c:282
 msgid "Tab Width"
 msgstr "Ancho de la tabulación"
 
-#: ../gtksourceview/gtksourceview.c:263
+#: ../gtksourceview/gtksourceview.c:283
 msgid "Width of a tab character expressed in spaces"
 msgstr "Anchura de una carácter tabulación expresado en espacios"
 
-#: ../gtksourceview/gtksourceview.c:277
+#: ../gtksourceview/gtksourceview.c:297
 msgid "Indent Width"
 msgstr "Anchura del sangrado"
 
-#: ../gtksourceview/gtksourceview.c:278
+#: ../gtksourceview/gtksourceview.c:298
 msgid "Number of spaces to use for each step of indent"
 msgstr "Número de espacios a usar para cada paso de sangrado"
 
-#: ../gtksourceview/gtksourceview.c:287
+#: ../gtksourceview/gtksourceview.c:307
 msgid "Auto Indentation"
 msgstr "Sangría automática"
 
-#: ../gtksourceview/gtksourceview.c:288
+#: ../gtksourceview/gtksourceview.c:308
 msgid "Whether to enable auto indentation"
 msgstr "Indica si se habilita el sangrado automático"
 
-#: ../gtksourceview/gtksourceview.c:295
+#: ../gtksourceview/gtksourceview.c:315
 msgid "Insert Spaces Instead of Tabs"
 msgstr "Insertar espacios en vez de tabuladores"
 
-#: ../gtksourceview/gtksourceview.c:296
+#: ../gtksourceview/gtksourceview.c:316
 msgid "Whether to insert spaces instead of tabs"
 msgstr "Indica si se insertarán espacios en vez de tabuladores"
 
-#: ../gtksourceview/gtksourceview.c:308
+#: ../gtksourceview/gtksourceview.c:328
 msgid "Show Right Margin"
 msgstr "Mostrar margen derecho"
 
-#: ../gtksourceview/gtksourceview.c:309
+#: ../gtksourceview/gtksourceview.c:329
 msgid "Whether to display the right margin"
 msgstr "Indica si se mostrará el margen derecho"
 
-#: ../gtksourceview/gtksourceview.c:321
+#: ../gtksourceview/gtksourceview.c:341
 msgid "Right Margin Position"
 msgstr "Posición del margen derecho"
 
-#: ../gtksourceview/gtksourceview.c:322
+#: ../gtksourceview/gtksourceview.c:342
 msgid "Position of the right margin"
 msgstr "Posición del margen derecho"
 
-#: ../gtksourceview/gtksourceview.c:338
+#: ../gtksourceview/gtksourceview.c:358
 msgid "Smart Home/End"
 msgstr "Inicio/fin inteligente"
 
-#: ../gtksourceview/gtksourceview.c:339
+#: ../gtksourceview/gtksourceview.c:359
 msgid ""
 "HOME and END keys move to first/last non whitespace characters on line "
 "before going to the start/end of the line"
@@ -408,19 +408,19 @@ msgstr ""
 "Las teclas «Inicio» y «Fin» situarán el cursor en el primer/último carácter "
 "no blanco de la línea antes de ir al inicio/fin de la línea"
 
-#: ../gtksourceview/gtksourceview.c:349
+#: ../gtksourceview/gtksourceview.c:369
 msgid "Highlight current line"
 msgstr "Resaltar la línea actual"
 
-#: ../gtksourceview/gtksourceview.c:350
+#: ../gtksourceview/gtksourceview.c:370
 msgid "Whether to highlight the current line"
 msgstr "Indica si se resalta la línea actual"
 
-#: ../gtksourceview/gtksourceview.c:357
+#: ../gtksourceview/gtksourceview.c:377
 msgid "Indent on tab"
 msgstr "Sangrar al pulsar tabulador"
 
-#: ../gtksourceview/gtksourceview.c:358
+#: ../gtksourceview/gtksourceview.c:378
 msgid "Whether to indent the selected text when the tab key is pressed"
 msgstr ""
 "Indica si se debe sangrar el texto seleccionado cuando se pulse la tecla "
@@ -428,7 +428,7 @@ msgstr ""
 
 #: ../gtksourceview/gtksourceview-i18n.c:38
 msgid "translator-credits"
-msgstr "Jorge González <jorgegonz@svn.gnome.org>, 2007"
+msgstr "Jorge González <jorgegonz@svn.gnome.org>, 2007-2008"
 
 #: ../gtksourceview/language-specs/ada.lang.h:1
 msgid "Ada"
