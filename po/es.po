@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-05 13:03+0000\n"
-"PO-Revision-Date: 2008-01-06 12:15+0100\n"
+"POT-Creation-Date: 2008-01-07 07:00+0000\n"
+"PO-Revision-Date: 2008-01-09 15:04+0100\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <<gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -199,6 +199,14 @@ msgstr "Id «%s» desconocido en la expresión regular «%s»"
 #, c-format
 msgid "in regex '%s': backreferences are not supported"
 msgstr "en la expresión regular «%s»: las retroreferencias no se soportan"
+
+#: ../gtksourceview/gtksourcemark.c:108
+msgid "category"
+msgstr "categoría"
+
+#: ../gtksourceview/gtksourcemark.c:109
+msgid "The mark category"
+msgstr "La marca de la categoría"
 
 #: ../gtksourceview/gtksourcestyle.c:70
 msgid "Line background"
