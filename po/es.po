@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-07 07:00+0000\n"
-"PO-Revision-Date: 2008-01-09 15:04+0100\n"
+"POT-Creation-Date: 2008-01-14 17:42+0000\n"
+"PO-Revision-Date: 2008-01-14 21:15+0100\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <<gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -18,6 +18,7 @@ msgstr ""
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
 #: ../gtksourceview/gtksourcebuffer.c:168
+#: ../gtksourceview/gtksourceprintcompositor.c:471
 msgid "Highlight Syntax"
 msgstr "Resaltar sintaxis"
 
@@ -208,6 +209,104 @@ msgstr "categoría"
 msgid "The mark category"
 msgstr "La marca de la categoría"
 
+#: ../gtksourceview/gtksourceprintcompositor.c:411
+msgid "Source Buffer"
+msgstr "Búfer de origen"
+
+#: ../gtksourceview/gtksourceprintcompositor.c:412
+msgid "The GtkSourceBuffer object to print"
+msgstr "El objeto GtkSourceBuffer que imprimir"
+
+#: ../gtksourceview/gtksourceprintcompositor.c:429
+#: ../gtksourceview/gtksourceview.c:282
+msgid "Tab Width"
+msgstr "Ancho de la tabulación"
+
+#: ../gtksourceview/gtksourceprintcompositor.c:430
+#: ../gtksourceview/gtksourceview.c:283
+msgid "Width of a tab character expressed in spaces"
+msgstr "Anchura de una carácter tabulación expresado en espacios"
+
+#: ../gtksourceview/gtksourceprintcompositor.c:450
+msgid "Wrap Mode"
+msgstr "Modo de ajuste"
+
+#: ../gtksourceview/gtksourceprintcompositor.c:451
+msgid "Whether to wrap lines never, at word boundaries, or at character boundaries."
+msgstr "Indica si nunca se debe ajustar a las líneas, en los límites de las palabras o en los límites de los caracteres."
+
+#: ../gtksourceview/gtksourceprintcompositor.c:472
+msgid "Whether to print the document with highlighted syntax"
+msgstr "Indica si se imprimirá el documento con sintaxis resaltada"
+
+#: ../gtksourceview/gtksourceprintcompositor.c:493
+msgid "Print Line Numbers"
+msgstr "Imprimir números de línea"
+
+#: ../gtksourceview/gtksourceprintcompositor.c:494
+msgid "Interval of printed line numbers (0 means no numbers)"
+msgstr "Intervalo de los números de línea imprimidos (0 indica sin números)"
+
+#: ../gtksourceview/gtksourceprintcompositor.c:516
+msgid "Print Header"
+msgstr "Imprimir cabecera"
+
+#: ../gtksourceview/gtksourceprintcompositor.c:517
+msgid "Whether to print a header in each page"
+msgstr "Indica si se imprimirá una cabecera en cada página"
+
+#: ../gtksourceview/gtksourceprintcompositor.c:539
+msgid "Print Footer"
+msgstr "Imprimir pie"
+
+#: ../gtksourceview/gtksourceprintcompositor.c:540
+msgid "Whether to print a footer in each page"
+msgstr "Indica si se imprimirá un pie en cada página"
+
+#: ../gtksourceview/gtksourceprintcompositor.c:562
+msgid "Body Font Name"
+msgstr "Nombre de la tipografía del cuerpo"
+
+#: ../gtksourceview/gtksourceprintcompositor.c:563
+msgid "Name of the font to use for the text body (e.g. \"Monospace 10\")"
+msgstr "Nombre de la tipografía que usar para el cuerpo del texto (ej. «Monospace 10»)"
+
+#: ../gtksourceview/gtksourceprintcompositor.c:586
+msgid "Line Numbers Font Name"
+msgstr "Nombre de la tipografía de los números de línea"
+
+#: ../gtksourceview/gtksourceprintcompositor.c:587
+msgid "Name of the font to use for the line numbers (e.g. \"Monospace 10\")"
+msgstr "Nombre de la tipografía que usar para los números de línea (ej. «Monospace 10»)"
+
+#: ../gtksourceview/gtksourceprintcompositor.c:610
+msgid "Header Font Name"
+msgstr "Nombre de la tipografía de la cabecera"
+
+#: ../gtksourceview/gtksourceprintcompositor.c:611
+msgid "Name of the font to use for the page header (e.g. \"Monospace 10\")"
+msgstr "Nombre de la tipografía que usar para la cabecera de la página (ej. «Monospace 10»)"
+
+#: ../gtksourceview/gtksourceprintcompositor.c:634
+msgid "Footer Font Name"
+msgstr "Nombre de la tipografía del pie"
+
+#: ../gtksourceview/gtksourceprintcompositor.c:635
+msgid "Name of the font to use for the page footer (e.g. \"Monospace 10\")"
+msgstr "Nombre de la tipografía que usar para el pie de la página (ej. «Monospace 10»)"
+
+#: ../gtksourceview/gtksourceprintcompositor.c:651
+msgid "Number of pages"
+msgstr "Número de páginas"
+
+#: ../gtksourceview/gtksourceprintcompositor.c:652
+msgid ""
+"The number of pages in the document (-1 means the document has not been "
+"completely paginated)."
+msgstr ""
+"El número de páginas en el documento (-1 indica que el documento no ha sido "
+"paginado completamente)."
+
 #: ../gtksourceview/gtksourcestyle.c:70
 msgid "Line background"
 msgstr "Fondo de línea"
@@ -355,14 +454,6 @@ msgstr "Mostrar marcadores de líneas"
 #: ../gtksourceview/gtksourceview.c:270
 msgid "Whether to display line mark pixbufs"
 msgstr "Indica si se mostrarán los búfer de píxeles de marcadores de líneas"
-
-#: ../gtksourceview/gtksourceview.c:282
-msgid "Tab Width"
-msgstr "Ancho de la tabulación"
-
-#: ../gtksourceview/gtksourceview.c:283
-msgid "Width of a tab character expressed in spaces"
-msgstr "Anchura de una carácter tabulación expresado en espacios"
 
 #: ../gtksourceview/gtksourceview.c:297
 msgid "Indent Width"
