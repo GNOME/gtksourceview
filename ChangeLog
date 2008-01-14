@@ -1,3 +1,20 @@
+2008-01-14  Paolo Maggi  <paolo@gnome.org>
+
+	Added new gtk-print based printing API.
+	
+	* docs/reference/gtksourceview-2.0-sections.txt: updated
+	* docs/reference/gtksourceview-2.0.types: updated
+	* docs/reference/gtksourceview-docs.sgml: updated
+	* docs/reference/tmpl/printjob.sgml: removed
+	* docs/reference/tmpl/printcompositor.sgml: new file
+	* gtksourceview/gtksourceprintcompositor.c: new file
+	* gtksourceview/gtksourceprintcompositor.h: new file
+	* gtksourceview/gtksourcebuffer.c: normalize returned value
+	for boolean getters 
+	* gtksourceview/gtksourceview.c: ditto
+	* gtksourceview/Makefile.am: updated
+	* tests/test-widget.c: added test for printing
+	
 2008-01-13  Jonathon Jongsma  <jjongsma@gnome.org>
 
 	* gtksourceview/gtksourceview.c: sort the list of marks with lowest-priority
