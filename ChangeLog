@@ -1,3 +1,8 @@
+2008-01-13  Jonathon Jongsma  <jjongsma@gnome.org>
+
+	* gtksourceview/gtksourceview.c: sort the list of marks with lowest-priority
+	marks first so that they get drawn on the bottom.  Fixes bug #509167
+
 2000-01-05  Gian Mario Tagliaretti  <gianmt@gnome.org>
 
 	* docs/reference/tmpl/stylescheme.sgml:

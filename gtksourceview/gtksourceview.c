@@ -1134,7 +1134,7 @@ sort_marks_by_priority (gconstpointer m1,
 		guint priority2 = gtk_source_view_get_mark_category_priority (view,
 						gtk_source_mark_get_category (mark2));
 
-		return priority2 - priority1;
+		return priority1 - priority2;
 	}
 	else
 	{
