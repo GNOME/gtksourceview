@@ -1,72 +1,73 @@
 # Swedish messages for gtksourceview.
-# Copyright (C) 2003-2007 Free Software Foundation, Inc.
-# Daniel Nylander <po@danielnylander.se>, 2006, 2007.
+# Copyright (C) 2003-2008 Free Software Foundation, Inc.
+# Daniel Nylander <po@danielnylander.se>, 2006, 2007, 2008.
 # Christian Rose <menthos@menthos.com>, 2003, 2004, 2005.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-12-17 16:36+0100\n"
-"PO-Revision-Date: 2007-12-17 16:36+0100\n"
+"POT-Creation-Date: 2008-01-15 09:36+0100\n"
+"PO-Revision-Date: 2008-01-15 09:46+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../gtksourceview/gtksourcebuffer.c:169
+#: ../gtksourceview/gtksourcebuffer.c:168
+#: ../gtksourceview/gtksourceprintcompositor.c:471
 msgid "Highlight Syntax"
 msgstr "Färgmarkeringssyntax"
 
-#: ../gtksourceview/gtksourcebuffer.c:170
+#: ../gtksourceview/gtksourcebuffer.c:169
 msgid "Whether to highlight syntax in the buffer"
 msgstr "Huruvida syntaxen ska färgmarkeras i bufferten"
 
-#: ../gtksourceview/gtksourcebuffer.c:183
+#: ../gtksourceview/gtksourcebuffer.c:182
 msgid "Highlight Matching Brackets"
 msgstr "Färgmarkera matchande parenteser"
 
-#: ../gtksourceview/gtksourcebuffer.c:184
+#: ../gtksourceview/gtksourcebuffer.c:183
 msgid "Whether to highlight matching brackets"
 msgstr "Huruvida matchande parenteser ska färgmarkeras"
 
-#: ../gtksourceview/gtksourcebuffer.c:196
+#: ../gtksourceview/gtksourcebuffer.c:195
 msgid "Maximum Undo Levels"
 msgstr "Maximalt antal ångrandenivåer"
 
-#: ../gtksourceview/gtksourcebuffer.c:197
+#: ../gtksourceview/gtksourcebuffer.c:196
 msgid "Number of undo levels for the buffer"
 msgstr "Antal ångrandenivåer för bufferten"
 
 #. Translators: throughout gtksourceview "language" stands
 #. * for "programming language", not "spoken language"
-#: ../gtksourceview/gtksourcebuffer.c:209
+#: ../gtksourceview/gtksourcebuffer.c:208
 msgid "Language"
 msgstr "Språk"
 
-#: ../gtksourceview/gtksourcebuffer.c:210
+#: ../gtksourceview/gtksourcebuffer.c:209
 msgid "Language object to get highlighting patterns from"
 msgstr "Språkobjekt att hämta färgmarkeringsmönster från"
 
-#: ../gtksourceview/gtksourcebuffer.c:218
+#: ../gtksourceview/gtksourcebuffer.c:217
 msgid "Can undo"
 msgstr "Kan ångra"
 
-#: ../gtksourceview/gtksourcebuffer.c:219
+#: ../gtksourceview/gtksourcebuffer.c:218
 msgid "Whether Undo operation is possible"
 msgstr "Huruvida en Ångra-åtgärd är möjlig"
 
-#: ../gtksourceview/gtksourcebuffer.c:226
+#: ../gtksourceview/gtksourcebuffer.c:225
 msgid "Can redo"
 msgstr "Kan göra om"
 
-#: ../gtksourceview/gtksourcebuffer.c:227
+#: ../gtksourceview/gtksourcebuffer.c:226
 msgid "Whether Redo operation is possible"
 msgstr "Huruvida en Gör om-åtgärd är möjlig"
 
+#: ../gtksourceview/gtksourcebuffer.c:240
 #: ../gtksourceview/gtksourcebuffer.c:241
-#: ../gtksourceview/gtksourcebuffer.c:242
 msgid "Style scheme"
 msgstr "Stilschema"
 
@@ -188,6 +189,108 @@ msgstr "Okänt id \"%s\" i regex \"%s\""
 #, c-format
 msgid "in regex '%s': backreferences are not supported"
 msgstr "i regex \"%s\": bakåtreferenser stöds inte"
+
+#: ../gtksourceview/gtksourcemark.c:108
+msgid "category"
+msgstr "kategori"
+
+#: ../gtksourceview/gtksourcemark.c:109
+msgid "The mark category"
+msgstr "Markörkategorin"
+
+#: ../gtksourceview/gtksourceprintcompositor.c:411
+msgid "Source Buffer"
+msgstr "Källbuffert"
+
+#: ../gtksourceview/gtksourceprintcompositor.c:412
+msgid "The GtkSourceBuffer object to print"
+msgstr "GtkSourceBuffer-objektet att skriva ut"
+
+#: ../gtksourceview/gtksourceprintcompositor.c:429
+#: ../gtksourceview/gtksourceview.c:282
+msgid "Tab Width"
+msgstr "Tabulatorbredd"
+
+#: ../gtksourceview/gtksourceprintcompositor.c:430
+#: ../gtksourceview/gtksourceview.c:283
+msgid "Width of a tab character expressed in spaces"
+msgstr "Bredd på ett tabulatortecken uttryckt i blanksteg"
+
+#: ../gtksourceview/gtksourceprintcompositor.c:450
+msgid "Wrap Mode"
+msgstr "Radbrytningsläge"
+
+#: ../gtksourceview/gtksourceprintcompositor.c:451
+msgid "Whether to wrap lines never, at word boundaries, or at character boundaries."
+msgstr "Huruvida rader aldrig ska radbrytas, brytas vid ordgränser, eller vid teckengränser."
+
+#: ../gtksourceview/gtksourceprintcompositor.c:472
+msgid "Whether to print the document with highlighted syntax"
+msgstr "Huruvida dokumentet ska skrivas ut med färgmarkerad syntax"
+
+#: ../gtksourceview/gtksourceprintcompositor.c:493
+msgid "Print Line Numbers"
+msgstr "Skriv ut radnummer"
+
+#: ../gtksourceview/gtksourceprintcompositor.c:494
+msgid "Interval of printed line numbers (0 means no numbers)"
+msgstr "Intervall av utskrivna radnummer (0 betyder inga nummer)"
+
+#: ../gtksourceview/gtksourceprintcompositor.c:516
+msgid "Print Header"
+msgstr "Skriv ut sidhuvud"
+
+#: ../gtksourceview/gtksourceprintcompositor.c:517
+msgid "Whether to print a header in each page"
+msgstr "Huruvida ett sidhuvud ska skrivas ut på varje sida"
+
+#: ../gtksourceview/gtksourceprintcompositor.c:539
+msgid "Print Footer"
+msgstr "Skriv ut sidfot"
+
+#: ../gtksourceview/gtksourceprintcompositor.c:540
+msgid "Whether to print a footer in each page"
+msgstr "Huruvida en sidfot ska skrivas ut på varje sida"
+
+#: ../gtksourceview/gtksourceprintcompositor.c:562
+msgid "Body Font Name"
+msgstr "Typsnittsnamn för text"
+
+#: ../gtksourceview/gtksourceprintcompositor.c:563
+msgid "Name of the font to use for the text body (e.g. \"Monospace 10\")"
+msgstr "Namn på typsnittet att använda för texten (t.ex. \"Monospace 10\")"
+
+#: ../gtksourceview/gtksourceprintcompositor.c:586
+msgid "Line Numbers Font Name"
+msgstr "Typsnittsnamn för radnummer"
+
+#: ../gtksourceview/gtksourceprintcompositor.c:587
+msgid "Name of the font to use for the line numbers (e.g. \"Monospace 10\")"
+msgstr "Namn på typsnittet att använda för radnumren (t.ex. \"Monospace 10\")"
+
+#: ../gtksourceview/gtksourceprintcompositor.c:610
+msgid "Header Font Name"
+msgstr "Typsnittsnamn för sidhuvud"
+
+#: ../gtksourceview/gtksourceprintcompositor.c:611
+msgid "Name of the font to use for the page header (e.g. \"Monospace 10\")"
+msgstr "Namn på typsnittet att använda för sidhuvudet (t.ex. \"Monospace 10\")"
+
+#: ../gtksourceview/gtksourceprintcompositor.c:634
+msgid "Footer Font Name"
+msgstr "Typsnittsnamn för sidfot"
+
+#: ../gtksourceview/gtksourceprintcompositor.c:635
+msgid "Name of the font to use for the page footer (e.g. \"Monospace 10\")"
+msgstr "Namn på typsnittet att använda för sidfoten (t.ex. \"Monospace 10\")"
+
+#: ../gtksourceview/gtksourceprintcompositor.c:651
+msgid "Number of pages"
+msgstr "Antal sidor"
+
+#: ../gtksourceview/gtksourceprintcompositor.c:652
+msgid "The number of pages in the document (-1 means the document has not been completely paginated)."
+msgstr "Antalet sidor i dokumentet (-1 betyder att dokumentet inte har sidnumrerats helt)."
 
 #: ../gtksourceview/gtksourcestyle.c:70
 msgid "Line background"
@@ -325,91 +428,83 @@ msgstr "Stilschemabeskrivning"
 msgid "Style scheme filename"
 msgstr "Stilschemafilnamn"
 
-#: ../gtksourceview/gtksourceview.c:241
+#: ../gtksourceview/gtksourceview.c:257
 msgid "Show Line Numbers"
 msgstr "Visa radnummer"
 
-#: ../gtksourceview/gtksourceview.c:242
+#: ../gtksourceview/gtksourceview.c:258
 msgid "Whether to display line numbers"
 msgstr "Huruvida radnummer ska visas"
 
-#: ../gtksourceview/gtksourceview.c:249
-msgid "Show Line Markers"
+#: ../gtksourceview/gtksourceview.c:269
+msgid "Show Line Marks"
 msgstr "Visa radmarkörer"
 
-#: ../gtksourceview/gtksourceview.c:250
-msgid "Whether to display line marker pixbufs"
-msgstr "Huruvida bilder för radmarkörer ska visas"
+#: ../gtksourceview/gtksourceview.c:270
+msgid "Whether to display line mark pixbufs"
+msgstr "Huruvida radmarkörer ska visas"
 
-#: ../gtksourceview/gtksourceview.c:262
-msgid "Tab Width"
-msgstr "Tabulatorbredd"
-
-#: ../gtksourceview/gtksourceview.c:263
-msgid "Width of a tab character expressed in spaces"
-msgstr "Bredd på ett tabulatortecken uttryckt i blanksteg"
-
-#: ../gtksourceview/gtksourceview.c:277
+#: ../gtksourceview/gtksourceview.c:297
 msgid "Indent Width"
 msgstr "Indenteringsbredd"
 
-#: ../gtksourceview/gtksourceview.c:278
+#: ../gtksourceview/gtksourceview.c:298
 msgid "Number of spaces to use for each step of indent"
 msgstr "Antal blanksteg att använda för att indenteringssteg"
 
-#: ../gtksourceview/gtksourceview.c:287
+#: ../gtksourceview/gtksourceview.c:307
 msgid "Auto Indentation"
 msgstr "Automatiskt indrag"
 
-#: ../gtksourceview/gtksourceview.c:288
+#: ../gtksourceview/gtksourceview.c:308
 msgid "Whether to enable auto indentation"
 msgstr "Huruvida automatiskt indrag ska aktiveras"
 
-#: ../gtksourceview/gtksourceview.c:295
+#: ../gtksourceview/gtksourceview.c:315
 msgid "Insert Spaces Instead of Tabs"
 msgstr "Infoga blanksteg istället för tabulatortecken"
 
-#: ../gtksourceview/gtksourceview.c:296
+#: ../gtksourceview/gtksourceview.c:316
 msgid "Whether to insert spaces instead of tabs"
 msgstr "Huruvida blanksteg ska infogas istället för tabulatortecken"
 
-#: ../gtksourceview/gtksourceview.c:308
+#: ../gtksourceview/gtksourceview.c:328
 msgid "Show Right Margin"
 msgstr "Visa högermarginal"
 
-#: ../gtksourceview/gtksourceview.c:309
+#: ../gtksourceview/gtksourceview.c:329
 msgid "Whether to display the right margin"
 msgstr "Huruvida högermarginalen ska visas"
 
-#: ../gtksourceview/gtksourceview.c:321
+#: ../gtksourceview/gtksourceview.c:341
 msgid "Right Margin Position"
 msgstr "Höger marginalposition"
 
-#: ../gtksourceview/gtksourceview.c:322
+#: ../gtksourceview/gtksourceview.c:342
 msgid "Position of the right margin"
 msgstr "Position för högermarginalen"
 
-#: ../gtksourceview/gtksourceview.c:338
+#: ../gtksourceview/gtksourceview.c:358
 msgid "Smart Home/End"
 msgstr "Intelligent home/end"
 
-#: ../gtksourceview/gtksourceview.c:339
+#: ../gtksourceview/gtksourceview.c:359
 msgid "HOME and END keys move to first/last non whitespace characters on line before going to the start/end of the line"
 msgstr "HOME- och END-tangenterna flyttar till första/sista tecknen på raden innan de går till början/slutet på raden"
 
-#: ../gtksourceview/gtksourceview.c:349
+#: ../gtksourceview/gtksourceview.c:369
 msgid "Highlight current line"
 msgstr "Färgmarkera aktuell rad"
 
-#: ../gtksourceview/gtksourceview.c:350
+#: ../gtksourceview/gtksourceview.c:370
 msgid "Whether to highlight the current line"
 msgstr "Huruvida den aktuella raden ska färgmarkeras"
 
-#: ../gtksourceview/gtksourceview.c:357
+#: ../gtksourceview/gtksourceview.c:377
 msgid "Indent on tab"
 msgstr "Dra in med tabulator"
 
-#: ../gtksourceview/gtksourceview.c:358
+#: ../gtksourceview/gtksourceview.c:378
 msgid "Whether to indent the selected text when the tab key is pressed"
 msgstr "Huruvida indragning av markerad text ska göras när tabulatorn trycks"
 
