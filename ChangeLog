@@ -1,10 +1,16 @@
+2008-01-17  Yevgen Muntyan  <muntyan@tamu.edu>
+
+	* gtksourceview/language-specs/fortran.lang: added comment
+	property, patch by rsachetto@gmail.com (#510032).
+	* gtksourceview/language-specs/docbook.lang: removed obsolete
+	dtd line.
 
 === gtksourceview 2.1.0 ===
 
 2008-01-14  Paolo Maggi  <paolo@gnome.org>
 
 	Added new gtk-print based printing API.
-	
+
 	* docs/reference/gtksourceview-2.0-sections.txt: updated
 	* docs/reference/gtksourceview-2.0.types: updated
 	* docs/reference/gtksourceview-docs.sgml: updated
@@ -13,11 +19,11 @@
 	* gtksourceview/gtksourceprintcompositor.c: new file
 	* gtksourceview/gtksourceprintcompositor.h: new file
 	* gtksourceview/gtksourcebuffer.c: normalize returned value
-	for boolean getters 
+	for boolean getters
 	* gtksourceview/gtksourceview.c: ditto
 	* gtksourceview/Makefile.am: updated
 	* tests/test-widget.c: added test for printing
-	
+
 2008-01-13  Jonathon Jongsma  <jjongsma@gnome.org>
 
 	* gtksourceview/gtksourceview.c: sort the list of marks with lowest-priority
@@ -27,7 +33,7 @@
 
 	* docs/reference/tmpl/stylescheme.sgml:
 	* docs/reference/tmpl/languagemanager.sgml:
-	
+
 	Restore docs templates, use gtk-doc from trunk.
 
 2008-01-05  Paolo Borelli  <pborelli@katamail.com>
@@ -35,7 +41,7 @@
 
 	* configure.ac:
 	Bumped version to 2.1.0
-	
+
 	* docs/reference/gtksourceview-2.0-sections.txt:
 	* docs/reference/gtksourceview-2.0.types:
 	* docs/reference/gtksourceview-docs.sgml:
@@ -45,9 +51,9 @@
 	* docs/reference/tmpl/marker.sgml: (removed)
 	* docs/reference/tmpl/stylescheme.sgml:
 	* docs/reference/tmpl/view.sgml:
-	
+
 	Updated docs for new GtkSourceMark API
-	
+
 	* gtksourceview/Makefile.am:
 	* gtksourceview/gtksourcebuffer.c: (gtk_source_buffer_class_init),
 	(gtk_source_buffer_init), (gtk_source_buffer_finalize),
@@ -90,7 +96,7 @@
 	* tests/test-widget.c: (remove_all_marks), (open_file),
 	(marks_toggled_cb), (button_press_cb), (create_view_window),
 	(create_main_window):
-	
+
 	Added new GtkTextMark-based GtkSourceMark API (#487098)
 
 2000-01-05  Gian Mario Tagliaretti  <gianmt@gnome.org>
