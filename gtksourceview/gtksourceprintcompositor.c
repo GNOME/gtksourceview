@@ -1250,7 +1250,7 @@ set_font_description_from_name (GtkSourcePrintCompositor  *compositor,
 /**
  * gtk_source_print_compositor_set_body_font_name:
  * @compositor: a #GtkSourcePrintCompositor.
- * @font_name: the name of the default font for the body of text.
+ * @font_name: the name of the default font for the body text.
  *
  * Sets the default font for the printed text. 
  *
@@ -1364,7 +1364,7 @@ gtk_source_print_compositor_get_line_numbers_font_name (GtkSourcePrintCompositor
 /**
  * gtk_source_print_compositor_set_header_font_name:
  * @compositor: a #GtkSourcePrintCompositor.
- * @font_name: the name of the font for line numbers, or %NULL.
+ * @font_name: the name of the font for header text, or %NULL.
  *
  * Sets the font for printing the page header. If
  * %NULL is supplied, the default font (i.e. the one being used for the
@@ -1426,7 +1426,7 @@ gtk_source_print_compositor_get_header_font_name (GtkSourcePrintCompositor *comp
 /**
  * gtk_source_print_compositor_set_footer_font_name:
  * @compositor: a #GtkSourcePrintCompositor.
- * @font_name: the name of the font for line numbers, or %NULL.
+ * @font_name: the name of the font for the footer text, or %NULL.
  *
  * Sets the font for printing the page footer. If
  * %NULL is supplied, the default font (i.e. the one being used for the
@@ -1632,7 +1632,7 @@ gtk_source_print_compositor_set_right_margin (GtkSourcePrintCompositor *composit
  * 
  * Gets the right margin in units of @unit.
  * 
- * Return value: the top margin
+ * Return value: the right margin
  *
  * Since: 2.2
  */
