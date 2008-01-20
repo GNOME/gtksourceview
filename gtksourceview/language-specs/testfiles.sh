@@ -14,6 +14,17 @@
 dir="testdir"
 mkdir -p $dir/
 
+cat > $dir/file.frt <<EOFEOF
+\ gtk-source-lang: forth
+-- comment
+(* comment! 
+  here still comment
+*)
+NEEDS something
+IF 0 THEN ENDIF
+Numbers: 1234 $233 #345325 %01000
+EOFEOF
+
 cat > $dir/file.testv1 <<EOFEOF
 // gtk-source-lang: testv1
 // comment

@@ -1,3 +1,11 @@
+2000-01-20  Yevgen Muntyan  <muntyan@tamu.edu>
+
+	* gtksourceview/language-specs/forth.lang: new lang file,
+	for Forth programming language, by Jens-Hanno Schwalm (#504730).
+	* gtksourceview/language-specs/Makefile.am:
+	* gtksourceview/language-specs/testfiles.sh:
+	added it.
+
 2000-01-20  Gian Mario Tagliaretti  <gianmt@gnome.org>
 
 	* gtksourceview/gtksourceprintcompositor.c: fix a couple of
