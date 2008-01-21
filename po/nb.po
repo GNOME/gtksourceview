@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview 1.2.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-07 07:57+0100\n"
+"POT-Creation-Date: 2008-01-21 22:21+0100\n"
 "PO-Revision-Date: 2008-01-07 07:59+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian Bokmål <i18n-nb@lister.ping.uio.no>\n"
@@ -15,6 +15,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../gtksourceview/gtksourcebuffer.c:168
+#: ../gtksourceview/gtksourceprintcompositor.c:471
 msgid "Highlight Syntax"
 msgstr "Uthev syntaks"
 
@@ -202,6 +203,112 @@ msgstr "kategori"
 msgid "The mark category"
 msgstr "Kategori for merking"
 
+#: ../gtksourceview/gtksourceprintcompositor.c:411
+#, fuzzy
+msgid "Source Buffer"
+msgstr "Kildekode"
+
+#: ../gtksourceview/gtksourceprintcompositor.c:412
+msgid "The GtkSourceBuffer object to print"
+msgstr ""
+
+#: ../gtksourceview/gtksourceprintcompositor.c:429
+#: ../gtksourceview/gtksourceview.c:282
+msgid "Tab Width"
+msgstr "Tabulatorbredde"
+
+#: ../gtksourceview/gtksourceprintcompositor.c:430
+#: ../gtksourceview/gtksourceview.c:283
+msgid "Width of a tab character expressed in spaces"
+msgstr ""
+
+#: ../gtksourceview/gtksourceprintcompositor.c:450
+#, fuzzy
+msgid "Wrap Mode"
+msgstr "Mattemodus"
+
+#: ../gtksourceview/gtksourceprintcompositor.c:451
+msgid ""
+"Whether to wrap lines never, at word boundaries, or at character boundaries."
+msgstr ""
+
+#: ../gtksourceview/gtksourceprintcompositor.c:472
+#, fuzzy
+msgid "Whether to print the document with highlighted syntax"
+msgstr "Om aktiv linje skal utheves"
+
+#: ../gtksourceview/gtksourceprintcompositor.c:493
+#, fuzzy
+msgid "Print Line Numbers"
+msgstr "Vis linjenummer"
+
+#: ../gtksourceview/gtksourceprintcompositor.c:494
+msgid "Interval of printed line numbers (0 means no numbers)"
+msgstr ""
+
+#: ../gtksourceview/gtksourceprintcompositor.c:516
+#, fuzzy
+msgid "Print Header"
+msgstr "Topptekst"
+
+#: ../gtksourceview/gtksourceprintcompositor.c:517
+#, fuzzy
+msgid "Whether to print a header in each page"
+msgstr "Om mellomrom skal settes inn i stedet for tabulator"
+
+#: ../gtksourceview/gtksourceprintcompositor.c:539
+msgid "Print Footer"
+msgstr ""
+
+#: ../gtksourceview/gtksourceprintcompositor.c:540
+#, fuzzy
+msgid "Whether to print a footer in each page"
+msgstr "Om mellomrom skal settes inn i stedet for tabulator"
+
+#: ../gtksourceview/gtksourceprintcompositor.c:562
+msgid "Body Font Name"
+msgstr ""
+
+#: ../gtksourceview/gtksourceprintcompositor.c:563
+msgid "Name of the font to use for the text body (e.g. \"Monospace 10\")"
+msgstr ""
+
+#: ../gtksourceview/gtksourceprintcompositor.c:586
+#, fuzzy
+msgid "Line Numbers Font Name"
+msgstr "Vis linjenummer"
+
+#: ../gtksourceview/gtksourceprintcompositor.c:587
+msgid "Name of the font to use for the line numbers (e.g. \"Monospace 10\")"
+msgstr ""
+
+#: ../gtksourceview/gtksourceprintcompositor.c:610
+msgid "Header Font Name"
+msgstr ""
+
+#: ../gtksourceview/gtksourceprintcompositor.c:611
+msgid "Name of the font to use for the page header (e.g. \"Monospace 10\")"
+msgstr ""
+
+#: ../gtksourceview/gtksourceprintcompositor.c:634
+#, fuzzy
+msgid "Footer Font Name"
+msgstr "Funksjonsnavn"
+
+#: ../gtksourceview/gtksourceprintcompositor.c:635
+msgid "Name of the font to use for the page footer (e.g. \"Monospace 10\")"
+msgstr ""
+
+#: ../gtksourceview/gtksourceprintcompositor.c:651
+msgid "Number of pages"
+msgstr ""
+
+#: ../gtksourceview/gtksourceprintcompositor.c:652
+msgid ""
+"The number of pages in the document (-1 means the document has not been "
+"completely paginated)."
+msgstr ""
+
 #: ../gtksourceview/gtksourcestyle.c:70
 msgid "Line background"
 msgstr "Bakgrunn for linje"
@@ -352,14 +459,6 @@ msgstr "Vis linjemarkører"
 msgid "Whether to display line mark pixbufs"
 msgstr "Om bilder skal vises for linjemarkører"
 
-#: ../gtksourceview/gtksourceview.c:282
-msgid "Tab Width"
-msgstr "Tabulatorbredde"
-
-#: ../gtksourceview/gtksourceview.c:283
-msgid "Width of a tab character expressed in spaces"
-msgstr ""
-
 #: ../gtksourceview/gtksourceview.c:297
 #, fuzzy
 msgid "Indent Width"
@@ -471,6 +570,7 @@ msgstr "Bolsk verdi"
 #: ../gtksourceview/language-specs/def.lang.h:11
 #: ../gtksourceview/language-specs/d.lang.h:3
 #: ../gtksourceview/language-specs/erlang.lang.h:4
+#: ../gtksourceview/language-specs/forth.lang.h:1
 #: ../gtksourceview/language-specs/fortran.lang.h:2
 #: ../gtksourceview/language-specs/gtkrc.lang.h:2
 #: ../gtksourceview/language-specs/haskell.lang.h:2
@@ -509,6 +609,7 @@ msgstr "Kommentar"
 #: ../gtksourceview/language-specs/cpp.lang.h:3
 #: ../gtksourceview/language-specs/csharp.lang.h:4
 #: ../gtksourceview/language-specs/d.lang.h:5
+#: ../gtksourceview/language-specs/forth.lang.h:3
 #: ../gtksourceview/language-specs/fortran.lang.h:3
 #: ../gtksourceview/language-specs/gtkrc.lang.h:3
 #: ../gtksourceview/language-specs/haskell.lang.h:3
@@ -567,6 +668,7 @@ msgstr "Escape-tegn"
 #: ../gtksourceview/language-specs/def.lang.h:36
 #: ../gtksourceview/language-specs/d.lang.h:10
 #: ../gtksourceview/language-specs/erlang.lang.h:9
+#: ../gtksourceview/language-specs/forth.lang.h:7
 #: ../gtksourceview/language-specs/fortran.lang.h:7
 #: ../gtksourceview/language-specs/gtkrc.lang.h:7
 #: ../gtksourceview/language-specs/haskell.lang.h:9
@@ -601,6 +703,7 @@ msgstr "Nøkkelord"
 #: ../gtksourceview/language-specs/ada.lang.h:9
 #: ../gtksourceview/language-specs/c.lang.h:15
 #: ../gtksourceview/language-specs/csharp.lang.h:10
+#: ../gtksourceview/language-specs/forth.lang.h:9
 #: ../gtksourceview/language-specs/haskell.lang.h:11
 #: ../gtksourceview/language-specs/idl.lang.h:5
 #: ../gtksourceview/language-specs/nemerle.lang.h:14
@@ -624,6 +727,7 @@ msgstr "Reelt tall"
 #: ../gtksourceview/language-specs/csharp.lang.h:12
 #: ../gtksourceview/language-specs/d.lang.h:13
 #: ../gtksourceview/language-specs/erlang.lang.h:11
+#: ../gtksourceview/language-specs/forth.lang.h:10
 #: ../gtksourceview/language-specs/fortran.lang.h:8
 #: ../gtksourceview/language-specs/haskell-literate.lang.h:2
 #: ../gtksourceview/language-specs/haskell.lang.h:12
@@ -658,6 +762,7 @@ msgstr "Lagringsklasse"
 #: ../gtksourceview/language-specs/def.lang.h:57
 #: ../gtksourceview/language-specs/d.lang.h:15
 #: ../gtksourceview/language-specs/erlang.lang.h:12
+#: ../gtksourceview/language-specs/forth.lang.h:11
 #: ../gtksourceview/language-specs/gtkrc.lang.h:9
 #: ../gtksourceview/language-specs/haskell.lang.h:13
 #: ../gtksourceview/language-specs/idl.lang.h:7
@@ -767,6 +872,7 @@ msgstr "Null verdi"
 #: ../gtksourceview/language-specs/boo.lang.h:11
 #: ../gtksourceview/language-specs/def.lang.h:40
 #: ../gtksourceview/language-specs/desktop.lang.h:10
+#: ../gtksourceview/language-specs/forth.lang.h:8
 #: ../gtksourceview/language-specs/java.lang.h:11
 #: ../gtksourceview/language-specs/vhdl.lang.h:6
 msgid "Number"
@@ -1177,6 +1283,25 @@ msgstr "Kompilator-direktiv"
 #: ../gtksourceview/language-specs/erlang.lang.h:7
 msgid "Erlang"
 msgstr ""
+
+#: ../gtksourceview/language-specs/forth.lang.h:2
+#, fuzzy
+msgid "Compiler opt"
+msgstr "Kompilator-direktiv"
+
+#: ../gtksourceview/language-specs/forth.lang.h:4
+msgid "Debug Code"
+msgstr ""
+
+#: ../gtksourceview/language-specs/forth.lang.h:5
+#, fuzzy
+msgid "Error text"
+msgstr "Feil"
+
+#: ../gtksourceview/language-specs/forth.lang.h:6
+#, fuzzy
+msgid "Forth"
+msgstr "Format"
 
 #: ../gtksourceview/language-specs/fortran.lang.h:5
 #: ../gtksourceview/language-specs/ini.lang.h:6
