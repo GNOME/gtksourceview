@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-14 17:42+0000\n"
-"PO-Revision-Date: 2008-01-14 21:15+0100\n"
+"POT-Creation-Date: 2008-01-21 21:22+0000\n"
+"PO-Revision-Date: 2008-01-22 10:16+0100\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <<gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -233,7 +233,9 @@ msgstr "Modo de ajuste"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:451
 msgid "Whether to wrap lines never, at word boundaries, or at character boundaries."
-msgstr "Indica si nunca se debe ajustar a las líneas, en los límites de las palabras o en los límites de los caracteres."
+msgstr ""
+"Indica si nunca se debe ajustar a las líneas, en los límites de las palabras "
+"o en los límites de los caracteres."
 
 #: ../gtksourceview/gtksourceprintcompositor.c:472
 msgid "Whether to print the document with highlighted syntax"
@@ -269,7 +271,9 @@ msgstr "Nombre de la tipografía del cuerpo"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:563
 msgid "Name of the font to use for the text body (e.g. \"Monospace 10\")"
-msgstr "Nombre de la tipografía que usar para el cuerpo del texto (ej. «Monospace 10»)"
+msgstr ""
+"Nombre de la tipografía que usar para el cuerpo del texto (ej. «Monospace "
+"10»)"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:586
 msgid "Line Numbers Font Name"
@@ -277,7 +281,9 @@ msgstr "Nombre de la tipografía de los números de línea"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:587
 msgid "Name of the font to use for the line numbers (e.g. \"Monospace 10\")"
-msgstr "Nombre de la tipografía que usar para los números de línea (ej. «Monospace 10»)"
+msgstr ""
+"Nombre de la tipografía que usar para los números de línea (ej. «Monospace "
+"10»)"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:610
 msgid "Header Font Name"
@@ -285,7 +291,9 @@ msgstr "Nombre de la tipografía de la cabecera"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:611
 msgid "Name of the font to use for the page header (e.g. \"Monospace 10\")"
-msgstr "Nombre de la tipografía que usar para la cabecera de la página (ej. «Monospace 10»)"
+msgstr ""
+"Nombre de la tipografía que usar para la cabecera de la página (ej. "
+"«Monospace 10»)"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:634
 msgid "Footer Font Name"
@@ -293,7 +301,9 @@ msgstr "Nombre de la tipografía del pie"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:635
 msgid "Name of the font to use for the page footer (e.g. \"Monospace 10\")"
-msgstr "Nombre de la tipografía que usar para el pie de la página (ej. «Monospace 10»)"
+msgstr ""
+"Nombre de la tipografía que usar para el pie de la página (ej. «Monospace "
+"10»)"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:651
 msgid "Number of pages"
@@ -567,6 +577,7 @@ msgstr "Valor booleano"
 #: ../gtksourceview/language-specs/def.lang.h:11
 #: ../gtksourceview/language-specs/d.lang.h:3
 #: ../gtksourceview/language-specs/erlang.lang.h:4
+#: ../gtksourceview/language-specs/forth.lang.h:1
 #: ../gtksourceview/language-specs/fortran.lang.h:2
 #: ../gtksourceview/language-specs/gtkrc.lang.h:2
 #: ../gtksourceview/language-specs/haskell.lang.h:2
@@ -605,6 +616,7 @@ msgstr "Comentario"
 #: ../gtksourceview/language-specs/cpp.lang.h:3
 #: ../gtksourceview/language-specs/csharp.lang.h:4
 #: ../gtksourceview/language-specs/d.lang.h:5
+#: ../gtksourceview/language-specs/forth.lang.h:3
 #: ../gtksourceview/language-specs/fortran.lang.h:3
 #: ../gtksourceview/language-specs/gtkrc.lang.h:3
 #: ../gtksourceview/language-specs/haskell.lang.h:3
@@ -662,6 +674,7 @@ msgstr "Carácter de escape"
 #: ../gtksourceview/language-specs/def.lang.h:36
 #: ../gtksourceview/language-specs/d.lang.h:10
 #: ../gtksourceview/language-specs/erlang.lang.h:9
+#: ../gtksourceview/language-specs/forth.lang.h:7
 #: ../gtksourceview/language-specs/fortran.lang.h:7
 #: ../gtksourceview/language-specs/gtkrc.lang.h:7
 #: ../gtksourceview/language-specs/haskell.lang.h:9
@@ -696,6 +709,7 @@ msgstr "Palabra reservada"
 #: ../gtksourceview/language-specs/ada.lang.h:9
 #: ../gtksourceview/language-specs/c.lang.h:15
 #: ../gtksourceview/language-specs/csharp.lang.h:10
+#: ../gtksourceview/language-specs/forth.lang.h:9
 #: ../gtksourceview/language-specs/haskell.lang.h:11
 #: ../gtksourceview/language-specs/idl.lang.h:5
 #: ../gtksourceview/language-specs/nemerle.lang.h:14
@@ -719,6 +733,7 @@ msgstr "Número real"
 #: ../gtksourceview/language-specs/csharp.lang.h:12
 #: ../gtksourceview/language-specs/d.lang.h:13
 #: ../gtksourceview/language-specs/erlang.lang.h:11
+#: ../gtksourceview/language-specs/forth.lang.h:10
 #: ../gtksourceview/language-specs/fortran.lang.h:8
 #: ../gtksourceview/language-specs/haskell-literate.lang.h:2
 #: ../gtksourceview/language-specs/haskell.lang.h:12
@@ -753,6 +768,7 @@ msgstr "Clase de almacenamiento"
 #: ../gtksourceview/language-specs/def.lang.h:57
 #: ../gtksourceview/language-specs/d.lang.h:15
 #: ../gtksourceview/language-specs/erlang.lang.h:12
+#: ../gtksourceview/language-specs/forth.lang.h:11
 #: ../gtksourceview/language-specs/gtkrc.lang.h:9
 #: ../gtksourceview/language-specs/haskell.lang.h:13
 #: ../gtksourceview/language-specs/idl.lang.h:7
@@ -862,6 +878,7 @@ msgstr "Valor nulo"
 #: ../gtksourceview/language-specs/boo.lang.h:11
 #: ../gtksourceview/language-specs/def.lang.h:40
 #: ../gtksourceview/language-specs/desktop.lang.h:10
+#: ../gtksourceview/language-specs/forth.lang.h:8
 #: ../gtksourceview/language-specs/java.lang.h:11
 #: ../gtksourceview/language-specs/vhdl.lang.h:6
 msgid "Number"
@@ -1272,6 +1289,22 @@ msgstr "Directiva del compilador"
 #: ../gtksourceview/language-specs/erlang.lang.h:7
 msgid "Erlang"
 msgstr "Erlang"
+
+#: ../gtksourceview/language-specs/forth.lang.h:2
+msgid "Compiler opt"
+msgstr "Opciones del compilador"
+
+#: ../gtksourceview/language-specs/forth.lang.h:4
+msgid "Debug Code"
+msgstr "Código de depuración"
+
+#: ../gtksourceview/language-specs/forth.lang.h:5
+msgid "Error text"
+msgstr "Texto del error"
+
+#: ../gtksourceview/language-specs/forth.lang.h:6
+msgid "Forth"
+msgstr "Forth"
 
 #: ../gtksourceview/language-specs/fortran.lang.h:5
 #: ../gtksourceview/language-specs/ini.lang.h:6
