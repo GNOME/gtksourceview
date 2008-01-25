@@ -47,7 +47,6 @@ libgtksourceview_headers =			\
 	gtksourcemark.h				\
 	gtksourceprintcompositor.h
 
-
 libgtksourceview_2_0_la_SOURCES = 	\
 	gtksourcebuffer.c 		\
 	gtksourceiter.c			\
@@ -81,7 +80,7 @@ libgtksourceview_2_0_la_SOURCES = 	\
 nodist_libgtksourceview_2_0_la_SOURCES =\
 	$(BUILT_SOURCES)
 
-libgtksourceview_2_0_la_LIBADD = $(DEP_LIBS) $(REGEX_LIBS) $(GNOMEPRINT_LIBS)
+libgtksourceview_2_0_la_LIBADD = $(DEP_LIBS) $(REGEX_LIBS)
 libgtksourceview_2_0_la_LDFLAGS = -no-undefined -export-symbols-regex "^gtk_source_.*"
 libgtksourceview_2_0_includedir = $(includedir)/gtksourceview-2.0/gtksourceview
 
