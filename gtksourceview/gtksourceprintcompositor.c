@@ -2437,7 +2437,7 @@ line_is_numbered (GtkSourcePrintCompositor *compositor,
 		  gint                      line_number)
 {
 	return (compositor->priv->print_line_numbers > 0) &&
-	       (line_number % compositor->priv->print_line_numbers == 0);
+	       ((line_number + 1) % compositor->priv->print_line_numbers == 0);
 }
 
 static void

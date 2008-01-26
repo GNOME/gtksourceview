@@ -1,5 +1,10 @@
 2008-01-25  Paolo Borelli  <pborelli@katamail.com>
 
+	* gtksourceview/gtksourceprintcompositor.c: count from 1 when deciding
+	which lines should have a number.
+
+2008-01-25  Paolo Borelli  <pborelli@katamail.com>
+
 	* gtksourceview/Makefile.am: remove leftover var
 
 2008-01-20  Yevgen Muntyan  <muntyan@tamu.edu>
