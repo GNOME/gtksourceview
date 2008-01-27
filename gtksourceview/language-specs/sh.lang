@@ -55,7 +55,14 @@
       <start>"</start>
       <end>"</end>
       <include>
-        <context ref="def:escape"/>
+        <!-- highlight escaped chars -->
+        <context style-ref="def:special-char">
+            <match>\\[$`"\\]</match>
+        </context>
+        <!-- skip backslash where it's not an escaping char -->
+        <context>
+            <match>\\</match>
+        </context>
         <context ref="def:line-continue"/>
       </include>
     </context>
@@ -162,7 +169,7 @@
     </context>
 
     <context id="variable1" style-ref="variable1">
-      <match>\$+[@?*#\${a-zA-Z0-9_][}a-zA-Z0-9_]*</match>
+      <match>\$+[!@?*#\${a-zA-Z0-9_][}a-zA-Z0-9_]*</match>
     </context>
 
     <context id="variable2" style-ref="variable2">

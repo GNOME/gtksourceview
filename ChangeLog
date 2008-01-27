@@ -1,3 +1,17 @@
+2008-01-27  Yevgen Muntyan  <muntyan@tamu.edu>
+
+	* gtksourceview/language-specs/fortran.lang: highlight floating
+	point constants properly; highlight BOZ literals (#496781).
+	* gtksourceview/language-specs/makefile.lang: escaped quote does
+	not start a string.
+	* gtksourceview/language-specs/sh.lang: def:escape is wrong in
+	shell strings; highlight $! (Luca Cavalli, #512141).
+	* gtksourceview/language-specs/lua.lang: properly highlight escaped
+	characters in strings.
+	* gtksourceview/language-specs/forth.lang: updated.
+	* gtksourceview/language-specs/testfiles.sh: added a fortran file.
+	* gtksourceview/language-specs/kate.xml: nicer def:constant color.
+
 2008-01-25  Paolo Borelli  <pborelli@katamail.com>
 
 	* gtksourceview/gtksourceprintcompositor.c: count from 1 when deciding

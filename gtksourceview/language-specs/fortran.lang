@@ -32,7 +32,7 @@
     <style id="comment" _name="Comment" map-to="def:comment"/>
     <style id="floating-point" _name="Floating Point" map-to="def:floating-point"/>
     <style id="keyword" _name="Keyword" map-to="def:keyword"/>
-    <style id="base-n-integer" _name="Base-N Integer" map-to="def:base-n-integer"/>
+    <style id="boz-literal" _name="BOZ Literal" map-to="def:base-n-integer"/>
     <style id="decimal" _name="Decimal" map-to="def:decimal"/>
     <style id="type" _name="Data Type" map-to="def:type"/>
   </styles>
@@ -380,24 +380,37 @@
       <keyword>allocatable</keyword>
     </context>
 
-    <context id="decimal" style-ref="decimal">
-      <match>\b([1-9][0-9]*|0)([Uu]([Ll]|LL|ll)?|([Ll]|LL|ll)[Uu]?)?\b</match>
-    </context>
-
     <context id="floating-point-number" style-ref="floating-point">
-      <match>\b([0-9]+[Ee][-]?[0-9]+|([0-9]*\.[0-9]+|[0-9]+\.)([Ee][-]?[0-9]+)?)[fFlL]?</match>
+      <match extended="true">
+        (?&lt;![\w\.])
+        [+-]?
+        ((\.[0-9]+ | [0-9]+\.[0-9]*) ([ed][+-]?[0-9]*)? |
+         ([0-9]+[ed][+-]?[0-9]*))
+        (?![\w\.])
+      </match>
     </context>
 
-    <context id="octal-number" style-ref="base-n-integer">
-      <match>\b0[0-7]+([Uu]([Ll]|LL|ll)?|([Ll]|LL|ll)[Uu]?)?\b</match>
+    <context id="decimal" style-ref="decimal">
+      <match extended="true">
+        (?&lt;![\w\.])
+        [+-]? ([1-9][0-9]*|0)
+        (?![\w\.])
+      </match>
     </context>
 
-    <context id="hex-number" style-ref="base-n-integer">
-      <match>\b0[xX][0-9a-fA-F]+([Uu]([Ll]|LL|ll)?|([Ll]|LL|ll)[Uu]?)?\b</match>
+    <context id="boz-literal" style-ref="boz-literal">
+      <match extended="true">
+        \bb'[01]+'|\bb"[01]+"|
+        \bo'[0-7]+'|\bo"[0-7]+"|
+        \bz'[0-9a-f]+'|\bz"[0-9a-f]+"
+      </match>
     </context>
 
     <context id="fortran">
       <include>
+        <context ref="floating-point-number"/>
+        <context ref="decimal"/>
+        <context ref="boz-literal"/>
         <context ref="def:string"/>
         <context ref="def:single-quoted-string"/>
         <context ref="line-comment"/>
@@ -407,10 +420,6 @@
         <context ref="input-output"/>
         <context ref="intrinsics"/>
         <context ref="types"/>
-        <context ref="decimal"/>
-        <context ref="floating-point-number"/>
-        <context ref="octal-number"/>
-        <context ref="hex-number"/>
       </include>
     </context>
 

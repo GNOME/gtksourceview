@@ -73,13 +73,23 @@
       </include>
     </context>
 
+    <context id="string">
+      <include>
+	<!-- skip escaped characters -->
+        <context>
+          <match>\\.</match>
+        </context>
+        <context ref="def:string"/>
+      </include>
+    </context>
+
     <context id="assignment-rhs" style-ref="assignment-rhs" end-at-line-end="true">
       <start></start>
       <include>
         <context ref="def:line-continue"/>
         <context ref="def:shell-like-comment"/>
         <context ref="variable"/>
-        <context ref="def:string"/>
+        <context ref="string"/>
         <context ref="def:single-quoted-string"/>
         <context ref="backtick-string"/>
       </include>
@@ -91,7 +101,7 @@
         <context ref="def:line-continue"/>
         <context ref="def:shell-like-comment"/>
         <context ref="variable"/>
-        <context ref="def:string"/>
+        <context ref="string"/>
         <context ref="def:single-quoted-string"/>
         <context ref="backtick-string"/>
       </include>
@@ -179,97 +189,5 @@
 
       </include>
     </context>
-
-<!--    <context id="somecontext">
-      <include>
-        <context ref="def:shebang"/>
-        <context ref="def:shell-like-comment"/>
-        <context ref="def:string"/>
-        <context ref="def:single-quoted-string"/>
-
-        <context id="backtick-string" style-ref="function" end-at-line-end="true">
-          <start>`</start>
-          <end>`</end>
-          <include>
-            <context ref="def:escape"/>
-            <context ref="def:line-continue"/>
-          </include>
-        </context>
-
-        <context id="variable-1" style-ref="variable" end-at-line-end="true">
-          <start>^(\%{variable})\s*=</start>
-          <include>
-            <context sub-pattern="1" where="start"/>
-            <context ref="variable"/>
-            <context ref="def:line-continue"/>
-          </include>
-        </context>
-
-        <context id="targets">
-          <match>^([^\t\:][^\:]*)\:</match>
-          <include>
-            <context sub-pattern="1" style-ref="target"/>
-          </include>
-        </context>
-
-        <context id="trailing-tab" style-ref="trailing-tab">
-          <match>^\t+$</match>
-        </context>
-
-        <context id="directives" style-ref="keyword">
-          <keyword>define</keyword>
-          <keyword>else</keyword>
-          <keyword>endef</keyword>
-          <keyword>endif</keyword>
-          <keyword>if</keyword>
-          <keyword>ifdef</keyword>
-          <keyword>ifeq</keyword>
-          <keyword>ifndef</keyword>
-          <keyword>ifneq</keyword>
-          <keyword>include</keyword>
-          <keyword>override</keyword>
-          <keyword>unexport</keyword>
-        </context>
-
-        <context id="functions" style-ref="function">
-          <keyword>addprefix</keyword>
-          <keyword>addsuffix</keyword>
-          <keyword>basename</keyword>
-          <keyword>call</keyword>
-          <keyword>dir</keyword>
-          <keyword>error</keyword>
-          <keyword>filter</keyword>
-          <keyword>filter-out</keyword>
-          <keyword>findstring</keyword>
-          <keyword>firstword</keyword>
-          <keyword>foreach</keyword>
-          <keyword>join</keyword>
-          <keyword>notdir</keyword>
-          <keyword>origin</keyword>
-          <keyword>patsubst</keyword>
-          <keyword>shell</keyword>
-          <keyword>sort</keyword>
-          <keyword>strip</keyword>
-          <keyword>subst</keyword>
-          <keyword>suffix</keyword>
-          <keyword>warning</keyword>
-          <keyword>wildcard</keyword>
-          <keyword>word</keyword>
-          <keyword>words</keyword>
-        </context>
-
-        <context id="special-targets" style-ref="keyword">
-          <prefix>^</prefix>
-          <suffix>\b</suffix>
-          <keyword>\.DEFAULT</keyword>
-          <keyword>\.EXPORT_ALL_VARIABLES</keyword>
-          <keyword>\.IGNORE</keyword>
-          <keyword>\.PHONY</keyword>
-          <keyword>\.PRECIOUS</keyword>
-          <keyword>\.SILENT</keyword>
-          <keyword>\.SUFFIXES</keyword>
-        </context>
-      </include>
-    </context>-->
   </definitions>
 </language>

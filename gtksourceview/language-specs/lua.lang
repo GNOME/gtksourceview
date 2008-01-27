@@ -41,21 +41,12 @@
 
   <definitions>
     <context id="lua-escape" style-ref="escape">
-      <match>\\([abfnrtv\"'0]|(\d\d\d))</match>
+      <match>\\(\d\d?\d?|.)</match>
     </context>
 
     <context id="string" style-ref="string" end-at-line-end="true">
-      <start>"</start>
-      <end>"</end>
-      <include>
-        <context ref="lua-escape"/>
-        <context ref="def:line-continue"/>
-      </include>
-    </context>
-
-    <context id="string-2" style-ref="string" end-at-line-end="true">
-      <start>'</start>
-      <end>'</end>
+      <start>["']</start>
+      <end>\%{0@start}</end>
       <include>
         <context ref="lua-escape"/>
         <context ref="def:line-continue"/>
@@ -65,9 +56,6 @@
     <context id="multi-line-string" style-ref="string">
       <start>\[(=*)\[</start>
       <end>]\%{1@start}]</end>
-      <include>
-        <context ref="lua-escape"/>
-      </include>
     </context>
 
     <context id="block-comment" style-ref="comment">
@@ -153,7 +141,6 @@
         <context ref="def:shebang"/>
         <context ref="multi-line-string"/>
         <context ref="string"/>
-        <context ref="string-2"/>
         <context ref="block-comment"/>
         <context ref="line-comment"/>
         <context ref="keywords"/>

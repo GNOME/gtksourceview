@@ -112,8 +112,8 @@
         <context id="definers" style-ref="type">
           <match extended="true">
             (?&lt;![^\s])
-            (POSTPONE|\[COMPILE\]|\[CHAR\]|\['\]|COMPILE|CHAR|VALUE|DVALUE|FVALUE|VARIABLE|DVARIABLE|FVARIABLE|USER|CODE|LOCAL|DLOCAL|
-            FLOCAL|CONSTANT|DCONSTANT|FCONSTANT|=\:|==\:|DEFER|V\:|\:|H\:|T\:|M\:)\s+[^\s]+
+            (POSTPONE|\[COMPILE\]|\[CHAR\]|\['\]|COMPILE|CHAR|[DFT]?VALUE|[2FT]?VARIABLE|[DS]?FVARIABLE|[T]?USER|[T]?CODE|[DZFT]?LOCAL|
+            [2FT]?CONSTANT|TCONSTANT-|TSUB|=\:|==\:|DEFER|HC\:|[VHTM]?\:)\s+[^\s]+
             (?![^\s])
           </match>
         </context>
@@ -122,7 +122,7 @@
         <context id="locals" style-ref="type">
           <match extended="true">
             (?&lt;![^\s])
-            (LOCALS|DLOCALS|FLOCALS)\|\s+[^\|]+[\|]
+            ([DFZ]?LOCALS)\|\s+[^\|]+[\|]
             (?![^\s])
           </match>
         </context>
@@ -173,7 +173,7 @@
           <match extended="true">
             (?&lt;![^\s])
             (\[IF\]|\[ELSE\]|\[THEN\]|\[DEFINED\]|\[UNDEFINED\]|\?DEF|\?UNDEF|THROW|CASE|ENDCASE|OF|ENDOF|FOR|NEXT|
-                    IF|ELSE|THEN|ENDIF|BEGIN|WHILE|REPEAT|UNTIL|AGAIN|DO|LOOP|\?DO|\+LOOP|LEAVE|\?LEAVE|UNLOOP|EXIT|\?EXIT|
+                    IF[,]?|ELSE[,]?|THEN[,]?|ENDIF[,]?|BEGIN[,]?|WHILE[,]?|REPEAT[,]?|UNTIL[,]?|AGAIN[,]?|DO|LOOP|\?DO|\+LOOP|LEAVE|\?LEAVE|UNLOOP|EXIT|\?EXIT|
                     PAR|ENDPAR|STARTP|ENDP)
             (?![^\s])
           </match>

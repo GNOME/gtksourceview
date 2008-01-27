@@ -14,10 +14,20 @@
 dir="testdir"
 mkdir -p $dir/
 
+cat > $dir/file.f <<EOFEOF
+! gtk-source-lang: fortran
+c comment
+if .TRUE.
+.FALSE.
+endif
+Numbers: 1234 o'10176' b'10101' z'23FF'
+12. .12 12.12 1.23e+09 1.23D+09
+EOFEOF
+
 cat > $dir/file.frt <<EOFEOF
 \ gtk-source-lang: forth
 -- comment
-(* comment! 
+(* comment!
   here still comment
 *)
 NEEDS something
