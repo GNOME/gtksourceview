@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-28 09:29+0100\n"
-"PO-Revision-Date: 2008-01-28 09:31+0100\n"
+"POT-Creation-Date: 2008-01-28 23:41+0100\n"
+"PO-Revision-Date: 2008-01-28 23:41+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "MIME-Version: 1.0\n"
@@ -136,6 +136,7 @@ msgstr "Saknar huvudspråkdefinition (id = \"%s\".)"
 #: ../gtksourceview/language-specs/pkgconfig.lang.h:1
 #: ../gtksourceview/language-specs/po.lang.h:4
 #: ../gtksourceview/language-specs/rpmspec.lang.h:10
+#: ../gtksourceview/language-specs/sh.lang.h:6
 #: ../gtksourceview/language-specs/texinfo.lang.h:8
 #: ../gtksourceview/language-specs/yacc.lang.h:2
 msgid "Others"
@@ -674,6 +675,7 @@ msgstr "Tecken efter Escape-tecken"
 #: ../gtksourceview/language-specs/R.lang.h:6
 #: ../gtksourceview/language-specs/ruby.lang.h:12
 #: ../gtksourceview/language-specs/scheme.lang.h:4
+#: ../gtksourceview/language-specs/sh.lang.h:5
 #: ../gtksourceview/language-specs/sql.lang.h:6
 #: ../gtksourceview/language-specs/tcl.lang.h:1
 #: ../gtksourceview/language-specs/texinfo.lang.h:5
@@ -766,6 +768,7 @@ msgstr "Lagringsklass"
 #: ../gtksourceview/language-specs/python.lang.h:17
 #: ../gtksourceview/language-specs/ruby.lang.h:21
 #: ../gtksourceview/language-specs/scheme.lang.h:7
+#: ../gtksourceview/language-specs/sh.lang.h:9
 #: ../gtksourceview/language-specs/sql.lang.h:10
 #: ../gtksourceview/language-specs/texinfo.lang.h:9
 #: ../gtksourceview/language-specs/vala.lang.h:11
@@ -787,7 +790,7 @@ msgstr "Mönster"
 #: ../gtksourceview/language-specs/python.lang.h:15
 #: ../gtksourceview/language-specs/R.lang.h:9
 #: ../gtksourceview/language-specs/ruby.lang.h:19
-#: ../gtksourceview/language-specs/sh.lang.h:2
+#: ../gtksourceview/language-specs/sh.lang.h:7
 #: ../gtksourceview/language-specs/tcl.lang.h:2
 msgid "Scripts"
 msgstr "Skript"
@@ -799,6 +802,7 @@ msgstr "Skript"
 #: ../gtksourceview/language-specs/php.lang.h:18
 #: ../gtksourceview/language-specs/pkgconfig.lang.h:3
 #: ../gtksourceview/language-specs/ruby.lang.h:23
+#: ../gtksourceview/language-specs/sh.lang.h:11
 #: ../gtksourceview/language-specs/tcl.lang.h:4
 msgid "Variable"
 msgstr "Variabel"
@@ -996,6 +1000,7 @@ msgstr "Dimension"
 #: ../gtksourceview/language-specs/lua.lang.h:4
 #: ../gtksourceview/language-specs/octave.lang.h:6
 #: ../gtksourceview/language-specs/scheme.lang.h:3
+#: ../gtksourceview/language-specs/sh.lang.h:3
 #: ../gtksourceview/language-specs/sql.lang.h:5
 msgid "Function"
 msgstr "Funktion"
@@ -1094,7 +1099,7 @@ msgstr "Reserverat nyckelord"
 
 #. A shebang: #!/bin/sh
 #: ../gtksourceview/language-specs/def.lang.h:48
-#: ../gtksourceview/language-specs/sh.lang.h:3
+#: ../gtksourceview/language-specs/sh.lang.h:8
 msgid "Shebang"
 msgstr "Shebang"
 
@@ -1654,6 +1659,7 @@ msgstr "Heredoc"
 #: ../gtksourceview/language-specs/perl.lang.h:7
 #: ../gtksourceview/language-specs/php.lang.h:9
 #: ../gtksourceview/language-specs/ruby.lang.h:11
+#: ../gtksourceview/language-specs/sh.lang.h:4
 msgid "Heredoc Bound"
 msgstr "Heredoc bound"
 
@@ -1835,7 +1841,20 @@ msgstr "Ruby"
 msgid "Scheme"
 msgstr "Scheme"
 
-#: ../gtksourceview/language-specs/sh.lang.h:4
+#: ../gtksourceview/language-specs/sh.lang.h:2
+msgid "Common Commands"
+msgstr "Vanliga kommandon"
+
+#: ../gtksourceview/language-specs/sh.lang.h:10
+msgid "Subshell"
+msgstr "Underskal"
+
+#. FIXME: need to sort out proper styles for variables
+#: ../gtksourceview/language-specs/sh.lang.h:13
+msgid "Variable Definition"
+msgstr "Variabeldefinition"
+
+#: ../gtksourceview/language-specs/sh.lang.h:14
 msgid "sh"
 msgstr "sh"
 
