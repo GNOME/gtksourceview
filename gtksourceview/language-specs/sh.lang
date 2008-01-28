@@ -3,6 +3,7 @@
 
  Author: Silian Della Ragione <silian87@gechi.it>
  Copyright (C) 2005 Silian Della Ragione <silian87@gechi.it>
+ Copyright (C) 2008 Steve Frécinaux <code@istique.net>
 
  This library is free software; you can redistribute it and/or
  modify it under the terms of the GNU Library General Public
@@ -28,16 +29,17 @@
   </metadata>
 
   <styles>
-    <style id="comment" _name="Comment" map-to="def:comment"/>
-    <style id="shebang" _name="Shebang" map-to="def:shebang"/>
-    <style id="function" name="Function" map-to="def:function"/>
-    <style id="string" name="String" map-to="def:string"/>
-    <style id="keyword" name="Keyword" map-to="def:keyword"/>
-    <style id="variable1" name="Variable 1" map-to="def:type"/> <!-- FIXME: need to sort out proper styles for variables -->
-    <style id="variable2" name="Variable 2" map-to="def:type"/>
-    <style id="others" name="Others" map-to="def:keyword"/>
-    <style id="common-command" name="Common Commands" map-to="def:keyword"/>
-    <style id="here-doc-bound" name="here-doc" map-to="def:keyword"/>
+    <style id="comment"             _name="Comment"             map-to="def:comment"/>
+    <style id="shebang"             _name="Shebang"             map-to="def:shebang"/>
+    <style id="function"            _name="Function"            map-to="def:function"/>
+    <style id="string"              _name="String"              map-to="def:string"/>
+    <style id="keyword"             _name="Keyword"             map-to="def:keyword"/>
+    <style id="variable"            _name="Variable"            map-to="def:type"/> <!-- FIXME: need to sort out proper styles for variables -->
+    <style id="variable-definition" _name="Variable Definition" map-to="sh:variable"/>
+    <style id="others"              _name="Others"              map-to="def:keyword"/>
+    <style id="common-command"      _name="Common Commands"     map-to="def:keyword"/>
+    <style id="here-doc-bound"      _name="Heredoc Bound"       map-to="def:keyword"/>
+    <style id="subshell"            _name="Subshell"            map-to="def:preprocessor"/>
   </styles>
 
   <definitions>
@@ -51,7 +53,7 @@
       </include>
     </context>
 
-    <context id="string" style-ref="string">
+    <context id="double-quoted-string" style-ref="string">
       <start>"</start>
       <end>"</end>
       <include>
@@ -64,10 +66,12 @@
             <match>\\</match>
         </context>
         <context ref="def:line-continue"/>
+	<context ref="variable"/>
+	<context ref="backtick-subshell"/>
       </include>
     </context>
 
-    <context id="string-2" style-ref="string">
+    <context id="single-quoted-string" style-ref="string">
       <start>'</start>
       <end>'</end>
     </context>
@@ -82,12 +86,17 @@
       </include>
     </context>
 
-    <context id="backtick-string" style-ref="function">
+    <context id="backtick-subshell" style-ref="subshell">
       <start>`</start>
       <end>`</end>
       <include>
         <context ref="def:escape"/>
         <context ref="def:line-continue"/>
+        <context ref="variable"/>
+        <context ref="built-in-command"/>
+        <context ref="common-command"/>
+        <context ref="single-quoted-string"/>
+        <context ref="double-quoted-string"/>
       </include>
     </context>
 
@@ -168,12 +177,15 @@
       <keyword>\-ge\b</keyword>
     </context>
 
-    <context id="variable1" style-ref="variable1">
+    <context id="variable" style-ref="variable">
       <match>\$+[!@?*#\${a-zA-Z0-9_][}a-zA-Z0-9_]*</match>
     </context>
 
-    <context id="variable2" style-ref="variable2">
-      <match>[a-zA-Z_][a-zA-Z0-9_]*\=</match>
+    <context id="variable-definition">
+      <match>(^|(?&lt;=then|else|do|export))\s*([a-zA-Z_][a-zA-Z0-9_]*)\=</match>
+      <include>
+        <context sub-pattern="2" style-ref="variable-definition"/>
+      </include>
     </context>
 
     <context id="built-in-command-1" style-ref="keyword">
@@ -184,6 +196,18 @@
       <keyword>\}</keyword>
       <keyword>\:</keyword>
       <keyword>(?&lt;=\s)\.(?=\s)</keyword>
+    </context>
+
+    <context id="for-command">
+      <start>\bfor\b</start>
+      <end>\bin\b</end>
+      <include>
+        <context sub-pattern="0" where="start" style-ref="keyword"/>
+        <context sub-pattern="0" where="end" style-ref="keyword"/>
+        <context style-ref="variable-definition" once-only="true">
+          <match>\w+</match>
+        </context>
+      </include>
     </context>
 
     <context id="built-in-command-2" style-ref="keyword">
@@ -261,6 +285,7 @@
     <context id="built-in-command">
       <include>
         <context ref="built-in-command-1"/>
+        <context ref="for-command"/>
         <context ref="built-in-command-2"/>
       </include>
     </context>
@@ -351,8 +376,8 @@
       <include>
         <context sub-pattern="0" where="start" style-ref="keyword"/>
         <context sub-pattern="0" where="end" style-ref="keyword"/>
-        <context ref="string"/>
-        <context ref="string-2"/>
+        <context ref="double-quoted-string"/>
+        <context ref="single-quoted-string"/>
         <context style-ref="others">
           <match>[^\)\s]+\s*\)|;;</match>
         </context>
@@ -365,18 +390,18 @@
         <context ref="def:shebang" style-ref="shebang"/>
         <context ref="line-comment"/>
         <context ref="def:escape"/>
-        <context ref="string"/>
-        <context ref="string-2"/>
+        <context ref="single-quoted-string"/>
+        <context ref="double-quoted-string"/>
         <context ref="subshell"/>
-        <context ref="backtick-string"/>
+        <context ref="backtick-subshell"/>
         <context ref="case"/>
         <context ref="punctuator"/>
         <context ref="function"/>
         <context ref="here-doc"/>
         <context ref="redirection"/>
         <context ref="operator"/>
-        <context ref="variable1"/>
-        <context ref="variable2"/>
+        <context ref="variable"/>
+        <context ref="variable-definition"/>
         <context ref="built-in-command"/>
         <context ref="common-command"/>
       </include>

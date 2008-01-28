@@ -1,3 +1,13 @@
+2008-01-28  Steve Frécinaux  <code@istique.net>
+
+	* gtksourceview/language-specs/sh.lang: highlight variables inside of
+	strings, and other minor highlighting improvements; rename a few
+	contextes.
+
+	* gtksourceview/language-specs/classic.xml:
+	* gtksourceview/language-specs/tango.xml:
+	Adapt for above changes
+
 2008-01-27  Yevgen Muntyan  <muntyan@tamu.edu>
 
 	* gtksourceview/language-specs/fortran.lang: highlight floating
