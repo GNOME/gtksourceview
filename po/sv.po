@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-15 09:36+0100\n"
-"PO-Revision-Date: 2008-01-15 09:46+0100\n"
+"POT-Creation-Date: 2008-01-28 09:29+0100\n"
+"PO-Revision-Date: 2008-01-28 09:31+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "MIME-Version: 1.0\n"
@@ -555,6 +555,7 @@ msgstr "Booleskt värde"
 #: ../gtksourceview/language-specs/def.lang.h:11
 #: ../gtksourceview/language-specs/d.lang.h:3
 #: ../gtksourceview/language-specs/erlang.lang.h:4
+#: ../gtksourceview/language-specs/forth.lang.h:1
 #: ../gtksourceview/language-specs/fortran.lang.h:2
 #: ../gtksourceview/language-specs/gtkrc.lang.h:2
 #: ../gtksourceview/language-specs/haskell.lang.h:2
@@ -593,6 +594,7 @@ msgstr "Kommentar"
 #: ../gtksourceview/language-specs/cpp.lang.h:3
 #: ../gtksourceview/language-specs/csharp.lang.h:4
 #: ../gtksourceview/language-specs/d.lang.h:5
+#: ../gtksourceview/language-specs/forth.lang.h:3
 #: ../gtksourceview/language-specs/fortran.lang.h:3
 #: ../gtksourceview/language-specs/gtkrc.lang.h:3
 #: ../gtksourceview/language-specs/haskell.lang.h:3
@@ -650,6 +652,7 @@ msgstr "Tecken efter Escape-tecken"
 #: ../gtksourceview/language-specs/def.lang.h:36
 #: ../gtksourceview/language-specs/d.lang.h:10
 #: ../gtksourceview/language-specs/erlang.lang.h:9
+#: ../gtksourceview/language-specs/forth.lang.h:7
 #: ../gtksourceview/language-specs/fortran.lang.h:7
 #: ../gtksourceview/language-specs/gtkrc.lang.h:7
 #: ../gtksourceview/language-specs/haskell.lang.h:9
@@ -684,6 +687,7 @@ msgstr "Nyckelord"
 #: ../gtksourceview/language-specs/ada.lang.h:9
 #: ../gtksourceview/language-specs/c.lang.h:15
 #: ../gtksourceview/language-specs/csharp.lang.h:10
+#: ../gtksourceview/language-specs/forth.lang.h:9
 #: ../gtksourceview/language-specs/haskell.lang.h:11
 #: ../gtksourceview/language-specs/idl.lang.h:5
 #: ../gtksourceview/language-specs/nemerle.lang.h:14
@@ -707,6 +711,7 @@ msgstr "Verkligt tal"
 #: ../gtksourceview/language-specs/csharp.lang.h:12
 #: ../gtksourceview/language-specs/d.lang.h:13
 #: ../gtksourceview/language-specs/erlang.lang.h:11
+#: ../gtksourceview/language-specs/forth.lang.h:10
 #: ../gtksourceview/language-specs/fortran.lang.h:8
 #: ../gtksourceview/language-specs/haskell-literate.lang.h:2
 #: ../gtksourceview/language-specs/haskell.lang.h:12
@@ -741,6 +746,7 @@ msgstr "Lagringsklass"
 #: ../gtksourceview/language-specs/def.lang.h:57
 #: ../gtksourceview/language-specs/d.lang.h:15
 #: ../gtksourceview/language-specs/erlang.lang.h:12
+#: ../gtksourceview/language-specs/forth.lang.h:11
 #: ../gtksourceview/language-specs/gtkrc.lang.h:9
 #: ../gtksourceview/language-specs/haskell.lang.h:13
 #: ../gtksourceview/language-specs/idl.lang.h:7
@@ -850,6 +856,7 @@ msgstr "Nollvärde"
 #: ../gtksourceview/language-specs/boo.lang.h:11
 #: ../gtksourceview/language-specs/def.lang.h:40
 #: ../gtksourceview/language-specs/desktop.lang.h:10
+#: ../gtksourceview/language-specs/forth.lang.h:8
 #: ../gtksourceview/language-specs/java.lang.h:11
 #: ../gtksourceview/language-specs/vhdl.lang.h:6
 msgid "Number"
@@ -1242,7 +1249,6 @@ msgid "Atom"
 msgstr "Atom"
 
 #: ../gtksourceview/language-specs/erlang.lang.h:2
-#: ../gtksourceview/language-specs/fortran.lang.h:1
 #: ../gtksourceview/language-specs/ocaml.lang.h:1
 #: ../gtksourceview/language-specs/octave.lang.h:1
 #: ../gtksourceview/language-specs/verilog.lang.h:1
@@ -1263,6 +1269,26 @@ msgstr "Kompilatordirektiv"
 #: ../gtksourceview/language-specs/erlang.lang.h:7
 msgid "Erlang"
 msgstr "Erlang"
+
+#: ../gtksourceview/language-specs/forth.lang.h:2
+msgid "Compiler opt"
+msgstr "Kompilatordirektiv"
+
+#: ../gtksourceview/language-specs/forth.lang.h:4
+msgid "Debug Code"
+msgstr "Felsökningskod"
+
+#: ../gtksourceview/language-specs/forth.lang.h:5
+msgid "Error text"
+msgstr "Feltext"
+
+#: ../gtksourceview/language-specs/forth.lang.h:6
+msgid "Forth"
+msgstr "Forth"
+
+#: ../gtksourceview/language-specs/fortran.lang.h:1
+msgid "BOZ Literal"
+msgstr "BOZ-literal"
 
 #: ../gtksourceview/language-specs/fortran.lang.h:5
 #: ../gtksourceview/language-specs/ini.lang.h:6
