@@ -17,6 +17,7 @@ LANGUAGES =			\
 	docbook.lang		\
 	dpatch.lang		\
 	dtd.lang		\
+	eiffel.lang		\
 	erlang.lang		\
 	forth.lang		\
 	fortran.lang		\
