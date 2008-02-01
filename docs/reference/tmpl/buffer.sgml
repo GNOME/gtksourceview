@@ -268,7 +268,7 @@ in a view widget.
 @buffer: 
 
 
-<!-- ##### FUNCTION gtk_source_buffer_create_mark ##### -->
+<!-- ##### FUNCTION gtk_source_buffer_create_source_mark ##### -->
 <para>
 
 </para>
@@ -280,7 +280,7 @@ in a view widget.
 @Returns: 
 
 
-<!-- ##### FUNCTION gtk_source_buffer_get_marks_at_line ##### -->
+<!-- ##### FUNCTION gtk_source_buffer_get_source_marks_at_line ##### -->
 <para>
 
 </para>
@@ -291,7 +291,7 @@ in a view widget.
 @Returns: 
 
 
-<!-- ##### FUNCTION gtk_source_buffer_get_marks_at_iter ##### -->
+<!-- ##### FUNCTION gtk_source_buffer_get_source_marks_at_iter ##### -->
 <para>
 
 </para>
@@ -302,7 +302,7 @@ in a view widget.
 @Returns: 
 
 
-<!-- ##### FUNCTION gtk_source_buffer_remove_marks ##### -->
+<!-- ##### FUNCTION gtk_source_buffer_remove_source_marks ##### -->
 <para>
 
 </para>
@@ -313,7 +313,7 @@ in a view widget.
 @category: 
 
 
-<!-- ##### FUNCTION gtk_source_buffer_forward_iter_to_mark ##### -->
+<!-- ##### FUNCTION gtk_source_buffer_forward_iter_to_source_mark ##### -->
 <para>
 
 </para>
@@ -324,7 +324,7 @@ in a view widget.
 @Returns: 
 
 
-<!-- ##### FUNCTION gtk_source_buffer_backward_iter_to_mark ##### -->
+<!-- ##### FUNCTION gtk_source_buffer_backward_iter_to_source_mark ##### -->
 <para>
 
 </para>

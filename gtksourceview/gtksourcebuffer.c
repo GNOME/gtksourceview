@@ -1415,7 +1415,7 @@ gtk_source_buffer_real_mark_deleted (GtkTextBuffer *buffer,
 }
 
 /**
- * gtk_source_buffer_create_mark:
+ * gtk_source_buffer_create_source_mark:
  * @buffer: a #GtkSourceBuffer.
  * @name: the name of the mark, or %NULL.
  * @category: a string defining the mark category.
@@ -1440,10 +1440,10 @@ gtk_source_buffer_real_mark_deleted (GtkTextBuffer *buffer,
  * Since: 2.2
  **/
 GtkSourceMark *
-gtk_source_buffer_create_mark (GtkSourceBuffer   *buffer,
-			       const gchar       *name,
-			       const gchar       *category,
-			       const GtkTextIter *where)
+gtk_source_buffer_create_source_mark (GtkSourceBuffer   *buffer,
+				      const gchar       *name,
+				      const gchar       *category,
+				      const GtkTextIter *where)
 {
 	GtkSourceMark *mark;
 
@@ -1460,9 +1460,9 @@ gtk_source_buffer_create_mark (GtkSourceBuffer   *buffer,
 }
 
 GtkSourceMark *
-_gtk_source_buffer_mark_next (GtkSourceBuffer *buffer,
-			      GtkSourceMark   *mark,
-			      const gchar     *category)
+_gtk_source_buffer_source_mark_next (GtkSourceBuffer *buffer,
+				     GtkSourceMark   *mark,
+				     const gchar     *category)
 {
 	GtkTextIter iter;
 	gint index, cmp;
@@ -1504,9 +1504,9 @@ _gtk_source_buffer_mark_next (GtkSourceBuffer *buffer,
 }
 
 GtkSourceMark *
-_gtk_source_buffer_mark_prev (GtkSourceBuffer *buffer,
-			      GtkSourceMark   *mark,
-			      const gchar     *category)
+_gtk_source_buffer_source_mark_prev (GtkSourceBuffer *buffer,
+				     GtkSourceMark   *mark,
+				     const gchar     *category)
 {
 	GtkTextIter iter;
 	gint index, cmp;
@@ -1548,7 +1548,7 @@ _gtk_source_buffer_mark_prev (GtkSourceBuffer *buffer,
 }
 
 /**
- * gtk_source_buffer_forward_iter_to_mark:
+ * gtk_source_buffer_forward_iter_to_source_mark:
  * @buffer: a #GtkSourceBuffer.
  * @iter: an iterator.
  * @category: category to search for or %NULL
@@ -1562,9 +1562,9 @@ _gtk_source_buffer_mark_prev (GtkSourceBuffer *buffer,
  * Since: 2.2
  **/
 gboolean
-gtk_source_buffer_forward_iter_to_mark (GtkSourceBuffer *buffer,
-					GtkTextIter     *iter,
-					const gchar     *category)
+gtk_source_buffer_forward_iter_to_source_mark (GtkSourceBuffer *buffer,
+					       GtkTextIter     *iter,
+					       const gchar     *category)
 {
 	GtkTextIter i;
 	gint index, cmp;
@@ -1607,7 +1607,7 @@ gtk_source_buffer_forward_iter_to_mark (GtkSourceBuffer *buffer,
 }
 
 /**
- * gtk_source_buffer_backward_iter_to_mark:
+ * gtk_source_buffer_backward_iter_to_source_mark:
  * @buffer: a #GtkSourceBuffer.
  * @iter: an iterator.
  * @category: category to search for or %NULL
@@ -1621,9 +1621,9 @@ gtk_source_buffer_forward_iter_to_mark (GtkSourceBuffer *buffer,
  * Since: 2.2
  **/
 gboolean
-gtk_source_buffer_backward_iter_to_mark (GtkSourceBuffer *buffer,
-					 GtkTextIter     *iter,
-					 const gchar     *category)
+gtk_source_buffer_backward_iter_to_source_mark (GtkSourceBuffer *buffer,
+						GtkTextIter     *iter,
+						const gchar     *category)
 {
 	GtkTextIter i;
 	gint index, cmp;
@@ -1665,7 +1665,7 @@ gtk_source_buffer_backward_iter_to_mark (GtkSourceBuffer *buffer,
 }
 
 /**
- * gtk_source_buffer_get_marks_at_iter:
+ * gtk_source_buffer_get_source_marks_at_iter:
  * @buffer: a #GtkSourceBuffer.
  * @iter: an iterator.
  * @category: category to search for or %NULL
@@ -1678,9 +1678,9 @@ gtk_source_buffer_backward_iter_to_mark (GtkSourceBuffer *buffer,
  * Since: 2.2
  **/
 GSList *
-gtk_source_buffer_get_marks_at_iter (GtkSourceBuffer *buffer,
-				     GtkTextIter     *iter,
-				     const gchar     *category)
+gtk_source_buffer_get_source_marks_at_iter (GtkSourceBuffer *buffer,
+					    GtkTextIter     *iter,
+					    const gchar     *category)
 {
 	GSList *marks, *l, *res;
 
@@ -1706,7 +1706,7 @@ gtk_source_buffer_get_marks_at_iter (GtkSourceBuffer *buffer,
 }
 
 /**
- * gtk_source_buffer_get_marks_at_line:
+ * gtk_source_buffer_get_source_marks_at_line:
  * @buffer: a #GtkSourceBuffer.
  * @line: a line number.
  * @category: category to search for or %NULL
@@ -1719,9 +1719,9 @@ gtk_source_buffer_get_marks_at_iter (GtkSourceBuffer *buffer,
  * Since: 2.2
  **/
 GSList *
-gtk_source_buffer_get_marks_at_line (GtkSourceBuffer *buffer,
-				     gint             line,
-				     const gchar     *category)
+gtk_source_buffer_get_source_marks_at_line (GtkSourceBuffer *buffer,
+					    gint             line,
+					    const gchar     *category)
 {
 	GtkTextIter iter;
 	GSList *res;
@@ -1731,21 +1731,21 @@ gtk_source_buffer_get_marks_at_line (GtkSourceBuffer *buffer,
 	gtk_text_buffer_get_iter_at_line (GTK_TEXT_BUFFER (buffer),
 					  &iter, line);
 
-	res = gtk_source_buffer_get_marks_at_iter (buffer,
-						   &iter,
-						   category); 
+	res = gtk_source_buffer_get_source_marks_at_iter (buffer,
+							  &iter,
+							  category); 
 
-	while (gtk_source_buffer_forward_iter_to_mark (buffer,
-						       &iter,
-						       category))
+	while (gtk_source_buffer_forward_iter_to_source_mark (buffer,
+							      &iter,
+							      category))
 	{
 		if (gtk_text_iter_get_line (&iter) == line)
 		{
 			GSList *l;
 
-			l =  gtk_source_buffer_get_marks_at_iter (buffer,
-								  &iter,
-								  category);
+			l =  gtk_source_buffer_get_source_marks_at_iter (buffer,
+									 &iter,
+									 category);
 
 			res = g_slist_concat (res, l);
 		}
@@ -1759,7 +1759,7 @@ gtk_source_buffer_get_marks_at_line (GtkSourceBuffer *buffer,
 }
 
 /**
- * gtk_source_buffer_remove_marks:
+ * gtk_source_buffer_remove_source_marks:
  * @buffer: a #GtkSourceBuffer.
  * @start: a #GtkTextIter
  * @end: a #GtkTextIter
@@ -1771,10 +1771,10 @@ gtk_source_buffer_get_marks_at_line (GtkSourceBuffer *buffer,
  * Since: 2.2
  **/
 void
-gtk_source_buffer_remove_marks (GtkSourceBuffer *buffer,
-				GtkTextIter     *start,
-				GtkTextIter     *end,
-				const gchar     *category)
+gtk_source_buffer_remove_source_marks (GtkSourceBuffer *buffer,
+				       GtkTextIter     *start,
+				       GtkTextIter     *end,
+				       const gchar     *category)
 {
 	GtkTextIter iter;
 	GSList *list;
@@ -1786,19 +1786,19 @@ gtk_source_buffer_remove_marks (GtkSourceBuffer *buffer,
 
 	iter = *start;
 
-	list = gtk_source_buffer_get_marks_at_iter (buffer,
-						    &iter,
-						    category); 
+	list = gtk_source_buffer_get_source_marks_at_iter (buffer,
+							   &iter,
+							   category); 
 
-	while (gtk_source_buffer_forward_iter_to_mark (buffer,
-						       &iter,
-						       category))
+	while (gtk_source_buffer_forward_iter_to_source_mark (buffer,
+							      &iter,
+							      category))
 	{
 		if (gtk_text_iter_compare (&iter, end) <= 0)
 		{
-			l =  gtk_source_buffer_get_marks_at_iter (buffer,
-								  &iter,
-								  category);
+			l =  gtk_source_buffer_get_source_marks_at_iter (buffer,
+									 &iter,
+									 category);
 
 			list = g_slist_concat (list, l);
 		}

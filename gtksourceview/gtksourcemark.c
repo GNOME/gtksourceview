@@ -183,7 +183,6 @@ gtk_source_mark_get_category (GtkSourceMark *mark)
  *
  * Since: 2.2
  */
-
 GtkSourceMark *
 gtk_source_mark_next (GtkSourceMark *mark,
 		      const gchar   *category)
@@ -194,8 +193,8 @@ gtk_source_mark_next (GtkSourceMark *mark,
 
 	buffer = gtk_text_mark_get_buffer (GTK_TEXT_MARK (mark));
 	if (buffer != NULL)
-		return _gtk_source_buffer_mark_next (GTK_SOURCE_BUFFER (buffer),
-						     mark, category);
+		return _gtk_source_buffer_source_mark_next (GTK_SOURCE_BUFFER (buffer),
+							    mark, category);
 	else
 		return NULL;
 }
@@ -224,8 +223,8 @@ gtk_source_mark_prev (GtkSourceMark *mark,
 
 	buffer = gtk_text_mark_get_buffer (GTK_TEXT_MARK (mark));
 	if (buffer != NULL)
-		return _gtk_source_buffer_mark_prev (GTK_SOURCE_BUFFER (buffer),
-						     mark, category);
+		return _gtk_source_buffer_source_mark_prev (GTK_SOURCE_BUFFER (buffer),
+							    mark, category);
 	else
 		return NULL;
 }

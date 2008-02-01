@@ -1378,9 +1378,9 @@ gtk_source_view_paint_margin (GtkSourceView *view,
 		{
 			GSList *marks;
 
-			marks = gtk_source_buffer_get_marks_at_line (view->priv->source_buffer,
-								     line_to_paint,
-								     NULL);
+			marks = gtk_source_buffer_get_source_marks_at_line (view->priv->source_buffer,
+									    line_to_paint,
+									    NULL);
 
 			if (marks != NULL)
 			{

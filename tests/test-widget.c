@@ -302,7 +302,7 @@ remove_all_marks (GtkSourceBuffer *buffer)
 
 	gtk_text_buffer_get_bounds (GTK_TEXT_BUFFER (buffer), &s, &e);
 
-	gtk_source_buffer_remove_marks (buffer, &s, &e, NULL);
+	gtk_source_buffer_remove_source_marks (buffer, &s, &e, NULL);
 }
 
 /* Note this is wrong for several reasons, e.g. g_pattern_match is broken
@@ -1143,9 +1143,9 @@ button_press_cb (GtkWidget *widget, GdkEventButton *ev, gpointer user_data)
 					     NULL);
 
 		/* get the marks already in the line */
-		mark_list = gtk_source_buffer_get_marks_at_line (buffer,
-								 gtk_text_iter_get_line (&line_start),
-								 mark_type);
+		mark_list = gtk_source_buffer_get_source_marks_at_line (buffer,
+									gtk_text_iter_get_line (&line_start),
+									mark_type);
 
 		if (mark_list != NULL)
 		{
@@ -1156,8 +1156,10 @@ button_press_cb (GtkWidget *widget, GdkEventButton *ev, gpointer user_data)
 		else
 		{
 			/* no mark found: create one */
-			gtk_source_buffer_create_mark (buffer, NULL,
-						       mark_type, &line_start);
+			gtk_source_buffer_create_source_mark (buffer,
+							      NULL,
+							      mark_type,
+							      &line_start);
 		}
 
 		g_slist_free (mark_list);
@@ -1195,7 +1197,7 @@ create_view_window (GtkSourceBuffer *buffer, GtkSourceView *from)
 	if (style_scheme)
 		gtk_source_buffer_set_style_scheme (buffer, style_scheme);
 
-	g_signal_connect (buffer, "mark_set", G_CALLBACK (move_cursor_cb), view);
+	g_signal_connect (buffer, "mark-set", G_CALLBACK (move_cursor_cb), view);
 	g_signal_connect (buffer, "changed", G_CALLBACK (update_cursor_position), view);
 	g_signal_connect (view, "button-press-event", G_CALLBACK (button_press_cb), NULL);
 	g_signal_connect (window, "delete-event", (GCallback) window_deleted_cb, view);

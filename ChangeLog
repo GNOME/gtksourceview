@@ -1,3 +1,13 @@
+2008-01-29  Paolo Borelli  <pborelli@katamail.com>
+
+	* gtksourceview/gtksourcebuffer.c:
+	* gtksourceview/gtksourcebuffer.h:
+	* gtksourceview/gtksourceview.c:
+	* gtksourceview/gtksourcemark.c:
+	* tests/test-widget.c:
+
+	Rename some of the buffer mark methods to avoid potential conflicts
+	with GtkTextBuffer methods in the bindings. Bug #512481.
 
 === gtksourceview 2.1.1 ===
 

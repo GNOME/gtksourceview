@@ -110,23 +110,27 @@ void			 gtk_source_buffer_begin_not_undoable_action (GtkSourceBuffer   *buffer);
 void			 gtk_source_buffer_end_not_undoable_action   (GtkSourceBuffer   *buffer);
 
 /* Mark methods */
-GtkSourceMark		*gtk_source_buffer_create_mark		(GtkSourceBuffer        *buffer,
+GtkSourceMark		*gtk_source_buffer_create_source_mark	(GtkSourceBuffer        *buffer,
 								 const gchar            *name,
 								 const gchar            *category,
 								 const GtkTextIter      *where);
-gboolean		 gtk_source_buffer_forward_iter_to_mark	(GtkSourceBuffer        *buffer,
+gboolean		 gtk_source_buffer_forward_iter_to_source_mark
+								(GtkSourceBuffer        *buffer,
 								 GtkTextIter            *iter,
 								 const gchar            *category);
-gboolean		 gtk_source_buffer_backward_iter_to_mark(GtkSourceBuffer        *buffer,
+gboolean		 gtk_source_buffer_backward_iter_to_source_mark
+								(GtkSourceBuffer        *buffer,
 								 GtkTextIter            *iter,
 								 const gchar            *category);
-GSList			*gtk_source_buffer_get_marks_at_iter    (GtkSourceBuffer        *buffer,
+GSList			*gtk_source_buffer_get_source_marks_at_iter
+								(GtkSourceBuffer        *buffer,
 								 GtkTextIter            *iter,
 								 const gchar            *category);
-GSList			*gtk_source_buffer_get_marks_at_line	(GtkSourceBuffer        *buffer,
+GSList			*gtk_source_buffer_get_source_marks_at_line
+								(GtkSourceBuffer        *buffer,
 								 gint 			 line,
 								 const gchar		*category);
-void			 gtk_source_buffer_remove_marks		(GtkSourceBuffer        *buffer,
+void			 gtk_source_buffer_remove_source_marks	(GtkSourceBuffer        *buffer,
 								 GtkTextIter            *start,
 								 GtkTextIter            *end,
 								 const gchar            *category);
@@ -136,10 +140,10 @@ void			 _gtk_source_buffer_update_highlight	(GtkSourceBuffer        *buffer,
 								 const GtkTextIter      *end,
 								 gboolean                synchronous);
 
-GtkSourceMark		*_gtk_source_buffer_mark_next		(GtkSourceBuffer        *buffer,
+GtkSourceMark		*_gtk_source_buffer_source_mark_next	(GtkSourceBuffer        *buffer,
 								 GtkSourceMark          *mark, 
 								 const gchar            *category);
-GtkSourceMark		*_gtk_source_buffer_mark_prev		(GtkSourceBuffer        *buffer,
+GtkSourceMark		*_gtk_source_buffer_source_mark_prev	(GtkSourceBuffer        *buffer,
 								 GtkSourceMark          *mark, 
 								 const gchar            *category);
 G_END_DECLS
