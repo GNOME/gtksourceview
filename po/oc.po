@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: oc\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-20 16:46+0100\n"
-"PO-Revision-Date: 2007-12-27 13:33+0100\n"
+"POT-Creation-Date: 2008-02-02 21:28+0100\n"
+"PO-Revision-Date: 2008-02-02 21:28+0100\n"
 "Last-Translator: Yannig Marchegay (Kokoyaya) <yannig@marchegay.org>\n"
 "Language-Team: Occitan <ubuntu-l10n-oci@lists.ubuntu.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);"
 
 #: ../gtksourceview/gtksourcebuffer.c:168
 #: ../gtksourceview/gtksourceprintcompositor.c:471
@@ -138,6 +138,7 @@ msgstr ""
 #: ../gtksourceview/language-specs/pkgconfig.lang.h:1
 #: ../gtksourceview/language-specs/po.lang.h:4
 #: ../gtksourceview/language-specs/rpmspec.lang.h:10
+#: ../gtksourceview/language-specs/sh.lang.h:6
 #: ../gtksourceview/language-specs/texinfo.lang.h:8
 #: ../gtksourceview/language-specs/yacc.lang.h:2
 msgid "Others"
@@ -194,8 +195,8 @@ msgstr ""
 msgid "in regex '%s': backreferences are not supported"
 msgstr ""
 
-#: ../gtksourceview/gtksourcemark.c:108
 #
+#: ../gtksourceview/gtksourcemark.c:108
 msgid "category"
 msgstr "categoria"
 
@@ -242,8 +243,8 @@ msgstr ""
 msgid "Interval of printed line numbers (0 means no numbers)"
 msgstr ""
 
-#: ../gtksourceview/gtksourceprintcompositor.c:516
 #
+#: ../gtksourceview/gtksourceprintcompositor.c:516
 msgid "Print Header"
 msgstr "Estampar l'encap"
 
@@ -283,8 +284,8 @@ msgstr ""
 msgid "Name of the font to use for the page header (e.g. \"Monospace 10\")"
 msgstr ""
 
-#: ../gtksourceview/gtksourceprintcompositor.c:634
 #
+#: ../gtksourceview/gtksourceprintcompositor.c:634
 msgid "Footer Font Name"
 msgstr ""
 
@@ -557,7 +558,9 @@ msgstr ""
 #: ../gtksourceview/language-specs/css.lang.h:3
 #: ../gtksourceview/language-specs/def.lang.h:11
 #: ../gtksourceview/language-specs/d.lang.h:3
+#: ../gtksourceview/language-specs/eiffel.lang.h:3
 #: ../gtksourceview/language-specs/erlang.lang.h:4
+#: ../gtksourceview/language-specs/forth.lang.h:1
 #: ../gtksourceview/language-specs/fortran.lang.h:2
 #: ../gtksourceview/language-specs/gtkrc.lang.h:2
 #: ../gtksourceview/language-specs/haskell.lang.h:2
@@ -596,6 +599,8 @@ msgstr "Comentari"
 #: ../gtksourceview/language-specs/cpp.lang.h:3
 #: ../gtksourceview/language-specs/csharp.lang.h:4
 #: ../gtksourceview/language-specs/d.lang.h:5
+#: ../gtksourceview/language-specs/eiffel.lang.h:4
+#: ../gtksourceview/language-specs/forth.lang.h:3
 #: ../gtksourceview/language-specs/fortran.lang.h:3
 #: ../gtksourceview/language-specs/gtkrc.lang.h:3
 #: ../gtksourceview/language-specs/haskell.lang.h:3
@@ -621,6 +626,7 @@ msgstr ""
 #: ../gtksourceview/language-specs/csharp.lang.h:5
 #: ../gtksourceview/language-specs/def.lang.h:19
 #: ../gtksourceview/language-specs/d.lang.h:6
+#: ../gtksourceview/language-specs/eiffel.lang.h:6
 #: ../gtksourceview/language-specs/erlang.lang.h:6
 #: ../gtksourceview/language-specs/nemerle.lang.h:6
 #: ../gtksourceview/language-specs/ocaml.lang.h:6
@@ -652,7 +658,9 @@ msgstr ""
 #: ../gtksourceview/language-specs/css.lang.h:8
 #: ../gtksourceview/language-specs/def.lang.h:36
 #: ../gtksourceview/language-specs/d.lang.h:10
+#: ../gtksourceview/language-specs/eiffel.lang.h:11
 #: ../gtksourceview/language-specs/erlang.lang.h:9
+#: ../gtksourceview/language-specs/forth.lang.h:7
 #: ../gtksourceview/language-specs/fortran.lang.h:7
 #: ../gtksourceview/language-specs/gtkrc.lang.h:7
 #: ../gtksourceview/language-specs/haskell.lang.h:9
@@ -674,6 +682,7 @@ msgstr ""
 #: ../gtksourceview/language-specs/R.lang.h:6
 #: ../gtksourceview/language-specs/ruby.lang.h:12
 #: ../gtksourceview/language-specs/scheme.lang.h:4
+#: ../gtksourceview/language-specs/sh.lang.h:5
 #: ../gtksourceview/language-specs/sql.lang.h:6
 #: ../gtksourceview/language-specs/tcl.lang.h:1
 #: ../gtksourceview/language-specs/texinfo.lang.h:5
@@ -687,6 +696,7 @@ msgstr ""
 #: ../gtksourceview/language-specs/ada.lang.h:9
 #: ../gtksourceview/language-specs/c.lang.h:15
 #: ../gtksourceview/language-specs/csharp.lang.h:10
+#: ../gtksourceview/language-specs/forth.lang.h:9
 #: ../gtksourceview/language-specs/haskell.lang.h:11
 #: ../gtksourceview/language-specs/idl.lang.h:5
 #: ../gtksourceview/language-specs/nemerle.lang.h:14
@@ -709,7 +719,9 @@ msgstr ""
 #: ../gtksourceview/language-specs/cpp.lang.h:5
 #: ../gtksourceview/language-specs/csharp.lang.h:12
 #: ../gtksourceview/language-specs/d.lang.h:13
+#: ../gtksourceview/language-specs/eiffel.lang.h:13
 #: ../gtksourceview/language-specs/erlang.lang.h:11
+#: ../gtksourceview/language-specs/forth.lang.h:10
 #: ../gtksourceview/language-specs/fortran.lang.h:8
 #: ../gtksourceview/language-specs/haskell-literate.lang.h:2
 #: ../gtksourceview/language-specs/haskell.lang.h:12
@@ -743,7 +755,9 @@ msgstr ""
 #: ../gtksourceview/language-specs/css.lang.h:13
 #: ../gtksourceview/language-specs/def.lang.h:57
 #: ../gtksourceview/language-specs/d.lang.h:15
+#: ../gtksourceview/language-specs/eiffel.lang.h:14
 #: ../gtksourceview/language-specs/erlang.lang.h:12
+#: ../gtksourceview/language-specs/forth.lang.h:11
 #: ../gtksourceview/language-specs/gtkrc.lang.h:9
 #: ../gtksourceview/language-specs/haskell.lang.h:13
 #: ../gtksourceview/language-specs/idl.lang.h:7
@@ -763,6 +777,7 @@ msgstr ""
 #: ../gtksourceview/language-specs/python.lang.h:17
 #: ../gtksourceview/language-specs/ruby.lang.h:21
 #: ../gtksourceview/language-specs/scheme.lang.h:7
+#: ../gtksourceview/language-specs/sh.lang.h:9
 #: ../gtksourceview/language-specs/sql.lang.h:10
 #: ../gtksourceview/language-specs/texinfo.lang.h:9
 #: ../gtksourceview/language-specs/vala.lang.h:11
@@ -784,7 +799,7 @@ msgstr "Motiu"
 #: ../gtksourceview/language-specs/python.lang.h:15
 #: ../gtksourceview/language-specs/R.lang.h:9
 #: ../gtksourceview/language-specs/ruby.lang.h:19
-#: ../gtksourceview/language-specs/sh.lang.h:2
+#: ../gtksourceview/language-specs/sh.lang.h:7
 #: ../gtksourceview/language-specs/tcl.lang.h:2
 msgid "Scripts"
 msgstr ""
@@ -796,6 +811,7 @@ msgstr ""
 #: ../gtksourceview/language-specs/php.lang.h:18
 #: ../gtksourceview/language-specs/pkgconfig.lang.h:3
 #: ../gtksourceview/language-specs/ruby.lang.h:23
+#: ../gtksourceview/language-specs/sh.lang.h:11
 #: ../gtksourceview/language-specs/tcl.lang.h:4
 msgid "Variable"
 msgstr "Variable"
@@ -853,6 +869,7 @@ msgstr ""
 #: ../gtksourceview/language-specs/boo.lang.h:11
 #: ../gtksourceview/language-specs/def.lang.h:40
 #: ../gtksourceview/language-specs/desktop.lang.h:10
+#: ../gtksourceview/language-specs/forth.lang.h:8
 #: ../gtksourceview/language-specs/java.lang.h:11
 #: ../gtksourceview/language-specs/vhdl.lang.h:6
 msgid "Number"
@@ -928,6 +945,7 @@ msgstr ""
 #: ../gtksourceview/language-specs/c.lang.h:11
 #: ../gtksourceview/language-specs/csharp.lang.h:7
 #: ../gtksourceview/language-specs/d.lang.h:9
+#: ../gtksourceview/language-specs/eiffel.lang.h:10
 #: ../gtksourceview/language-specs/nemerle.lang.h:9
 #: ../gtksourceview/language-specs/php.lang.h:10
 #: ../gtksourceview/language-specs/vala.lang.h:6
@@ -992,6 +1010,7 @@ msgstr ""
 #: ../gtksourceview/language-specs/lua.lang.h:4
 #: ../gtksourceview/language-specs/octave.lang.h:6
 #: ../gtksourceview/language-specs/scheme.lang.h:3
+#: ../gtksourceview/language-specs/sh.lang.h:3
 #: ../gtksourceview/language-specs/sql.lang.h:5
 msgid "Function"
 msgstr "Foncion"
@@ -1090,7 +1109,7 @@ msgstr ""
 
 #. A shebang: #!/bin/sh
 #: ../gtksourceview/language-specs/def.lang.h:48
-#: ../gtksourceview/language-specs/sh.lang.h:3
+#: ../gtksourceview/language-specs/sh.lang.h:8
 msgid "Shebang"
 msgstr ""
 
@@ -1237,12 +1256,44 @@ msgstr ""
 msgid "DTD"
 msgstr "DTD"
 
+#: ../gtksourceview/language-specs/eiffel.lang.h:1
+msgid "Assertion"
+msgstr ""
+
+#: ../gtksourceview/language-specs/eiffel.lang.h:2
+msgid "Boolean Value"
+msgstr ""
+
+#: ../gtksourceview/language-specs/eiffel.lang.h:5
+msgid "Debug"
+msgstr ""
+
+#: ../gtksourceview/language-specs/eiffel.lang.h:7
+msgid "Design by Contract"
+msgstr ""
+
+#: ../gtksourceview/language-specs/eiffel.lang.h:8
+msgid "Eiffel"
+msgstr ""
+
+#: ../gtksourceview/language-specs/eiffel.lang.h:9
+msgid "Exception Handling"
+msgstr ""
+
+#: ../gtksourceview/language-specs/eiffel.lang.h:12
+#: ../gtksourceview/language-specs/ruby.lang.h:16
+msgid "Predefined Variable"
+msgstr ""
+
+#: ../gtksourceview/language-specs/eiffel.lang.h:15
+msgid "Void Value"
+msgstr ""
+
 #: ../gtksourceview/language-specs/erlang.lang.h:1
 msgid "Atom"
 msgstr ""
 
 #: ../gtksourceview/language-specs/erlang.lang.h:2
-#: ../gtksourceview/language-specs/fortran.lang.h:1
 #: ../gtksourceview/language-specs/ocaml.lang.h:1
 #: ../gtksourceview/language-specs/octave.lang.h:1
 #: ../gtksourceview/language-specs/verilog.lang.h:1
@@ -1262,6 +1313,26 @@ msgstr ""
 
 #: ../gtksourceview/language-specs/erlang.lang.h:7
 msgid "Erlang"
+msgstr ""
+
+#: ../gtksourceview/language-specs/forth.lang.h:2
+msgid "Compiler opt"
+msgstr ""
+
+#: ../gtksourceview/language-specs/forth.lang.h:4
+msgid "Debug Code"
+msgstr ""
+
+#: ../gtksourceview/language-specs/forth.lang.h:5
+msgid "Error text"
+msgstr ""
+
+#: ../gtksourceview/language-specs/forth.lang.h:6
+msgid "Forth"
+msgstr ""
+
+#: ../gtksourceview/language-specs/fortran.lang.h:1
+msgid "BOZ Literal"
 msgstr ""
 
 #: ../gtksourceview/language-specs/fortran.lang.h:5
@@ -1628,6 +1699,7 @@ msgstr ""
 #: ../gtksourceview/language-specs/perl.lang.h:7
 #: ../gtksourceview/language-specs/php.lang.h:9
 #: ../gtksourceview/language-specs/ruby.lang.h:11
+#: ../gtksourceview/language-specs/sh.lang.h:4
 msgid "Heredoc Bound"
 msgstr ""
 
@@ -1795,10 +1867,6 @@ msgstr ""
 msgid "Numeric literal"
 msgstr ""
 
-#: ../gtksourceview/language-specs/ruby.lang.h:16
-msgid "Predefined Variable"
-msgstr ""
-
 #: ../gtksourceview/language-specs/ruby.lang.h:18
 msgid "Ruby"
 msgstr "Robís"
@@ -1807,7 +1875,20 @@ msgstr "Robís"
 msgid "Scheme"
 msgstr ""
 
-#: ../gtksourceview/language-specs/sh.lang.h:4
+#: ../gtksourceview/language-specs/sh.lang.h:2
+msgid "Common Commands"
+msgstr ""
+
+#: ../gtksourceview/language-specs/sh.lang.h:10
+msgid "Subshell"
+msgstr ""
+
+#. FIXME: need to sort out proper styles for variables
+#: ../gtksourceview/language-specs/sh.lang.h:13
+msgid "Variable Definition"
+msgstr ""
+
+#: ../gtksourceview/language-specs/sh.lang.h:14
 msgid "sh"
 msgstr "sh"
 
@@ -1934,3 +2015,4 @@ msgstr ""
 #: ../gtksourceview/language-specs/tango.xml.h:2
 msgid "Tango"
 msgstr "Tangò"
+
