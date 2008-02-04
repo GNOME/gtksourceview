@@ -15,7 +15,11 @@ EOF
 zip $ZIP share/gtksourceview-2.0/language-specs/*.lang
 zip $ZIP share/gtksourceview-2.0/language-specs/*.dtd
 
-zip $ZIP lib/locale/*/LC_MESSAGES/gtksourceview-2.0.mo
+if [ -f share/locale/de/LC_MESSAGES/gtksourceview-2.0.mo ]; then
+  zip $ZIP share/locale/*/LC_MESSAGES/gtksourceview-2.0.mo
+else
+  zip $ZIP lib/locale/*/LC_MESSAGES/gtksourceview-2.0.mo
+fi
 
 rm $DEVZIP
 

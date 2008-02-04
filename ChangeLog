@@ -1,3 +1,8 @@
+2008-02-04  Tor Lillqvist  <tml@novell.com>
+
+	* gtksourceview-zip.in: Look for catalogs in share/locale first,
+	as that is where they will be with a properly built GNU gettext.
+
 === gtksourceview 2.1.2 ===
 
 2008-01-29  Paolo Borelli  <pborelli@katamail.com>
