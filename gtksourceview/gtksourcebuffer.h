@@ -131,8 +131,8 @@ GSList			*gtk_source_buffer_get_source_marks_at_line
 								 gint 			 line,
 								 const gchar		*category);
 void			 gtk_source_buffer_remove_source_marks	(GtkSourceBuffer        *buffer,
-								 GtkTextIter            *start,
-								 GtkTextIter            *end,
+								 const GtkTextIter      *start,
+								 const GtkTextIter      *end,
 								 const gchar            *category);
 /* private */
 void			 _gtk_source_buffer_update_highlight	(GtkSourceBuffer        *buffer,

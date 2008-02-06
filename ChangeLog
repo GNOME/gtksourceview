@@ -1,3 +1,11 @@
+2008-02-06  Murray Cumming  <murrayc@murrayc.com>
+
+	* gtksourceview/gtksourcebuffer.c:
+	* gtksourceview/gtksourcebuffer.h:
+	(gtk_source_buffer_remove_source_marks): Make the GtkTextIter* 
+	parameters const, as they are when used in this way elsewhere in this 
+	API. Bug #514655.
+
 2008-02-04  Tor Lillqvist  <tml@novell.com>
 
 	* gtksourceview-zip.in: Look for catalogs in share/locale first,

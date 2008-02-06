@@ -1771,10 +1771,10 @@ gtk_source_buffer_get_source_marks_at_line (GtkSourceBuffer *buffer,
  * Since: 2.2
  **/
 void
-gtk_source_buffer_remove_source_marks (GtkSourceBuffer *buffer,
-				       GtkTextIter     *start,
-				       GtkTextIter     *end,
-				       const gchar     *category)
+gtk_source_buffer_remove_source_marks (GtkSourceBuffer   *buffer,
+				       const GtkTextIter *start,
+				       const GtkTextIter *end,
+				       const gchar       *category)
 {
 	GtkTextIter iter;
 	GSList *list;
