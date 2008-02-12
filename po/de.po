@@ -2,16 +2,15 @@
 # Copyright (C) 2002-2005 Free Software Foundation, Inc.
 # This file is distributed under the same license as the GtkSourceView package.
 # Christian Neumair <chris@gnome-de.org>, 2003, 2004.
-# Hendrik Richter <hendrikr@gnome.org>, 2005, 2006, 2007.
+# Hendrik Richter <hendrikr@gnome.org>, 2005, 2006, 2007, 2008.
 # Hendrik Brandt <heb@gnome-de.org>, 2007.
-# Hendrik Richter <hendrikr@gnome.org>, 2007.
 # Philipp Kerling <k.philipp@gmail.com>, 2008.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: GtkSourceView HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-02 14:51+0100\n"
+"POT-Creation-Date: 2008-02-12 17:11+0100\n"
 "PO-Revision-Date: 2008-02-12 16:46+0100\n"
 "Last-Translator: Philipp Kerling <k.philipp@gmail.com>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
@@ -245,7 +244,7 @@ msgstr ""
 #: ../gtksourceview/gtksourceprintcompositor.c:472
 msgid "Whether to print the document with highlighted syntax"
 msgstr ""
-"Legt·fest, ob beim Drucken die Syntax des Dokuments hervorgehoben werden soll"
+"Legt fest, ob beim Drucken die Syntax des Dokuments hervorgehoben werden soll"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:493
 msgid "Print Line Numbers"
@@ -261,7 +260,7 @@ msgstr "Kopfzeile drucken"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:517
 msgid "Whether to print a header in each page"
-msgstr "Legt·fest, ob auf jeder Seite eine Kopfzeile gedruckt werden soll"
+msgstr "Legt fest, ob auf jeder Seite eine Kopfzeile gedruckt werden soll"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:539
 msgid "Print Footer"
@@ -453,7 +452,7 @@ msgstr "Zeilennummern anzeigen"
 
 #: ../gtksourceview/gtksourceview.c:258
 msgid "Whether to display line numbers"
-msgstr "Legt·fest, ob Zeilennummern angezeigt werden sollen"
+msgstr "Legt fest, ob Zeilennummern angezeigt werden sollen"
 
 #: ../gtksourceview/gtksourceview.c:269
 msgid "Show Line Marks"
@@ -477,7 +476,7 @@ msgstr "Auto-Einrücken"
 
 #: ../gtksourceview/gtksourceview.c:308
 msgid "Whether to enable auto indentation"
-msgstr "Legt·fest, ob das Einrücken automatisch erfolgen soll"
+msgstr "Legt fest, ob das Einrücken automatisch erfolgen soll"
 
 #: ../gtksourceview/gtksourceview.c:315
 msgid "Insert Spaces Instead of Tabs"
@@ -485,7 +484,7 @@ msgstr "Leerzeichen statt Tabulatoren einfügen"
 
 #: ../gtksourceview/gtksourceview.c:316
 msgid "Whether to insert spaces instead of tabs"
-msgstr "Legt·fest, ob Leerzeichen statt Tabulatoren eingefügt werden sollen"
+msgstr "Legt fest, ob Leerzeichen statt Tabulatoren eingefügt werden sollen"
 
 #: ../gtksourceview/gtksourceview.c:328
 msgid "Show Right Margin"
@@ -493,7 +492,7 @@ msgstr "Rechten Rand anzeigen"
 
 #: ../gtksourceview/gtksourceview.c:329
 msgid "Whether to display the right margin"
-msgstr "Legt·fest, ob der rechte Rand angezeigt werden soll"
+msgstr "Legt fest, ob der rechte Rand angezeigt werden soll"
 
 #: ../gtksourceview/gtksourceview.c:341
 msgid "Right Margin Position"
@@ -513,7 +512,7 @@ msgid ""
 "HOME and END keys move to first/last non whitespace characters on line "
 "before going to the start/end of the line"
 msgstr ""
-"Legt·fest, ob die Pos1- bzw. die Ende-Taste zum ersten/letzten sichtbare "
+"Legt fest, ob die Pos1- bzw. die Ende-Taste zum ersten/letzten sichtbare "
 "Zeichen einer Zeile springen soll, bevor sie zum Anfang/Ende der jeweiligen "
 "Zeile springt"
 
@@ -523,7 +522,7 @@ msgstr "Aktuelle Zeile hervorheben"
 
 #: ../gtksourceview/gtksourceview.c:370
 msgid "Whether to highlight the current line"
-msgstr "Legt·fest, ob die aktuelle Zeile hervorgehoben werden soll"
+msgstr "Legt fest, ob die aktuelle Zeile hervorgehoben werden soll"
 
 #: ../gtksourceview/gtksourceview.c:377
 msgid "Indent on tab"
@@ -532,7 +531,7 @@ msgstr "Einrücken mit Tabulator"
 #: ../gtksourceview/gtksourceview.c:378
 msgid "Whether to indent the selected text when the tab key is pressed"
 msgstr ""
-"Legt·fest, ob der markierte Text eingerückt werden soll, wenn die Tabulator-"
+"Legt fest, ob der markierte Text eingerückt werden soll, wenn die Tabulator-"
 "Taste gedrückt wird"
 
 #: ../gtksourceview/gtksourceview-i18n.c:38
@@ -2072,7 +2071,7 @@ msgstr "Tango"
 
 #~ msgid "Whether to draw the right margin overlay"
 #~ msgstr ""
-#~ "Legt·fest, ob die Überlagerung des rechten Rand angezeigt werden soll"
+#~ "Legt fest, ob die Überlagerung des rechten Rand angezeigt werden soll"
 
 #~ msgid "Margin Overlay Alpha"
 #~ msgstr "Randüberlagerungs-Alpha"
