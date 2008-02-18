@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: gtksourcereview\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-09-10 03:50+0100\n"
-"PO-Revision-Date: 2008-01-26 09:32+0100\n"
+"PO-Revision-Date: 2008-02-17 19:43+0100\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian <SL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -140,6 +140,7 @@ msgstr "Manjka določilo glavnega jezika (id = \"%s\".)"
 #: ../gtksourceview/language-specs/pkgconfig.lang.h:1
 #: ../gtksourceview/language-specs/po.lang.h:4
 #: ../gtksourceview/language-specs/rpmspec.lang.h:10
+#: ../gtksourceview/language-specs/sh.lang.h:6
 #: ../gtksourceview/language-specs/texinfo.lang.h:8
 #: ../gtksourceview/language-specs/yacc.lang.h:2
 msgid "Others"
@@ -553,6 +554,7 @@ msgstr "Boolova vrednost"
 #: ../gtksourceview/language-specs/css.lang.h:3
 #: ../gtksourceview/language-specs/def.lang.h:11
 #: ../gtksourceview/language-specs/d.lang.h:3
+#: ../gtksourceview/language-specs/eiffel.lang.h:3
 #: ../gtksourceview/language-specs/erlang.lang.h:4
 #: ../gtksourceview/language-specs/forth.lang.h:1
 #: ../gtksourceview/language-specs/fortran.lang.h:2
@@ -593,6 +595,7 @@ msgstr "Komentar"
 #: ../gtksourceview/language-specs/cpp.lang.h:3
 #: ../gtksourceview/language-specs/csharp.lang.h:4
 #: ../gtksourceview/language-specs/d.lang.h:5
+#: ../gtksourceview/language-specs/eiffel.lang.h:4
 #: ../gtksourceview/language-specs/forth.lang.h:3
 #: ../gtksourceview/language-specs/fortran.lang.h:3
 #: ../gtksourceview/language-specs/gtkrc.lang.h:3
@@ -619,6 +622,7 @@ msgstr "Podatkovna vrsta"
 #: ../gtksourceview/language-specs/csharp.lang.h:5
 #: ../gtksourceview/language-specs/def.lang.h:19
 #: ../gtksourceview/language-specs/d.lang.h:6
+#: ../gtksourceview/language-specs/eiffel.lang.h:6
 #: ../gtksourceview/language-specs/erlang.lang.h:6
 #: ../gtksourceview/language-specs/nemerle.lang.h:6
 #: ../gtksourceview/language-specs/ocaml.lang.h:6
@@ -650,6 +654,7 @@ msgstr "Ubežni znak"
 #: ../gtksourceview/language-specs/css.lang.h:8
 #: ../gtksourceview/language-specs/def.lang.h:36
 #: ../gtksourceview/language-specs/d.lang.h:10
+#: ../gtksourceview/language-specs/eiffel.lang.h:11
 #: ../gtksourceview/language-specs/erlang.lang.h:9
 #: ../gtksourceview/language-specs/forth.lang.h:7
 #: ../gtksourceview/language-specs/fortran.lang.h:7
@@ -673,6 +678,7 @@ msgstr "Ubežni znak"
 #: ../gtksourceview/language-specs/R.lang.h:6
 #: ../gtksourceview/language-specs/ruby.lang.h:12
 #: ../gtksourceview/language-specs/scheme.lang.h:4
+#: ../gtksourceview/language-specs/sh.lang.h:5
 #: ../gtksourceview/language-specs/sql.lang.h:6
 #: ../gtksourceview/language-specs/tcl.lang.h:1
 #: ../gtksourceview/language-specs/texinfo.lang.h:5
@@ -709,6 +715,7 @@ msgstr "Realno število"
 #: ../gtksourceview/language-specs/cpp.lang.h:5
 #: ../gtksourceview/language-specs/csharp.lang.h:12
 #: ../gtksourceview/language-specs/d.lang.h:13
+#: ../gtksourceview/language-specs/eiffel.lang.h:13
 #: ../gtksourceview/language-specs/erlang.lang.h:11
 #: ../gtksourceview/language-specs/forth.lang.h:10
 #: ../gtksourceview/language-specs/fortran.lang.h:8
@@ -744,6 +751,7 @@ msgstr "Razred shranjevanja"
 #: ../gtksourceview/language-specs/css.lang.h:13
 #: ../gtksourceview/language-specs/def.lang.h:57
 #: ../gtksourceview/language-specs/d.lang.h:15
+#: ../gtksourceview/language-specs/eiffel.lang.h:14
 #: ../gtksourceview/language-specs/erlang.lang.h:12
 #: ../gtksourceview/language-specs/forth.lang.h:11
 #: ../gtksourceview/language-specs/gtkrc.lang.h:9
@@ -765,6 +773,7 @@ msgstr "Razred shranjevanja"
 #: ../gtksourceview/language-specs/python.lang.h:17
 #: ../gtksourceview/language-specs/ruby.lang.h:21
 #: ../gtksourceview/language-specs/scheme.lang.h:7
+#: ../gtksourceview/language-specs/sh.lang.h:9
 #: ../gtksourceview/language-specs/sql.lang.h:10
 #: ../gtksourceview/language-specs/texinfo.lang.h:9
 #: ../gtksourceview/language-specs/vala.lang.h:11
@@ -786,7 +795,7 @@ msgstr "Vzorec"
 #: ../gtksourceview/language-specs/python.lang.h:15
 #: ../gtksourceview/language-specs/R.lang.h:9
 #: ../gtksourceview/language-specs/ruby.lang.h:19
-#: ../gtksourceview/language-specs/sh.lang.h:2
+#: ../gtksourceview/language-specs/sh.lang.h:7
 #: ../gtksourceview/language-specs/tcl.lang.h:2
 msgid "Scripts"
 msgstr "Skripte"
@@ -798,6 +807,7 @@ msgstr "Skripte"
 #: ../gtksourceview/language-specs/php.lang.h:18
 #: ../gtksourceview/language-specs/pkgconfig.lang.h:3
 #: ../gtksourceview/language-specs/ruby.lang.h:23
+#: ../gtksourceview/language-specs/sh.lang.h:11
 #: ../gtksourceview/language-specs/tcl.lang.h:4
 msgid "Variable"
 msgstr "Spremenljivka"
@@ -931,6 +941,7 @@ msgstr "Število s plavajočo vejico"
 #: ../gtksourceview/language-specs/c.lang.h:11
 #: ../gtksourceview/language-specs/csharp.lang.h:7
 #: ../gtksourceview/language-specs/d.lang.h:9
+#: ../gtksourceview/language-specs/eiffel.lang.h:10
 #: ../gtksourceview/language-specs/nemerle.lang.h:9
 #: ../gtksourceview/language-specs/php.lang.h:10
 #: ../gtksourceview/language-specs/vala.lang.h:6
@@ -995,6 +1006,7 @@ msgstr "Mere"
 #: ../gtksourceview/language-specs/lua.lang.h:4
 #: ../gtksourceview/language-specs/octave.lang.h:6
 #: ../gtksourceview/language-specs/scheme.lang.h:3
+#: ../gtksourceview/language-specs/sh.lang.h:3
 #: ../gtksourceview/language-specs/sql.lang.h:5
 msgid "Function"
 msgstr "Funkcija"
@@ -1093,7 +1105,7 @@ msgstr "Rezervirana beseda"
 
 #. A shebang: #!/bin/sh
 #: ../gtksourceview/language-specs/def.lang.h:48
-#: ../gtksourceview/language-specs/sh.lang.h:3
+#: ../gtksourceview/language-specs/sh.lang.h:8
 msgid "Shebang"
 msgstr "Shebang"
 
@@ -1240,12 +1252,44 @@ msgstr "patch-start"
 msgid "DTD"
 msgstr "DTD"
 
+#: ../gtksourceview/language-specs/eiffel.lang.h:1
+msgid "Assertion"
+msgstr "Napoved"
+
+#: ../gtksourceview/language-specs/eiffel.lang.h:2
+msgid "Boolean Value"
+msgstr "Boolova vrednost"
+
+#: ../gtksourceview/language-specs/eiffel.lang.h:5
+msgid "Debug"
+msgstr "Razhroščevanje"
+
+#: ../gtksourceview/language-specs/eiffel.lang.h:7
+msgid "Design by Contract"
+msgstr "Oblikovanje po pogodbi"
+
+#: ../gtksourceview/language-specs/eiffel.lang.h:8
+msgid "Eiffel"
+msgstr "Eiffel"
+
+#: ../gtksourceview/language-specs/eiffel.lang.h:9
+msgid "Exception Handling"
+msgstr "Upravljanje z izjemami"
+
+#: ../gtksourceview/language-specs/eiffel.lang.h:12
+#: ../gtksourceview/language-specs/ruby.lang.h:16
+msgid "Predefined Variable"
+msgstr "Predhodno določene spremenljivke"
+
+#: ../gtksourceview/language-specs/eiffel.lang.h:15
+msgid "Void Value"
+msgstr "Nična vrednost"
+
 #: ../gtksourceview/language-specs/erlang.lang.h:1
 msgid "Atom"
 msgstr "Atom"
 
 #: ../gtksourceview/language-specs/erlang.lang.h:2
-#: ../gtksourceview/language-specs/fortran.lang.h:1
 #: ../gtksourceview/language-specs/ocaml.lang.h:1
 #: ../gtksourceview/language-specs/octave.lang.h:1
 #: ../gtksourceview/language-specs/verilog.lang.h:1
@@ -1282,6 +1326,10 @@ msgstr "Napaka besedila"
 #: ../gtksourceview/language-specs/forth.lang.h:6
 msgid "Forth"
 msgstr "Forth"
+
+#: ../gtksourceview/language-specs/fortran.lang.h:1
+msgid "BOZ Literal"
+msgstr "BOZ Literal"
 
 #: ../gtksourceview/language-specs/fortran.lang.h:5
 #: ../gtksourceview/language-specs/ini.lang.h:6
@@ -1647,6 +1695,7 @@ msgstr "Heredoc"
 #: ../gtksourceview/language-specs/perl.lang.h:7
 #: ../gtksourceview/language-specs/php.lang.h:9
 #: ../gtksourceview/language-specs/ruby.lang.h:11
+#: ../gtksourceview/language-specs/sh.lang.h:4
 msgid "Heredoc Bound"
 msgstr "Heredoc"
 
@@ -1814,10 +1863,6 @@ msgstr "Upravljalec modulov"
 msgid "Numeric literal"
 msgstr "Številčno območje"
 
-#: ../gtksourceview/language-specs/ruby.lang.h:16
-msgid "Predefined Variable"
-msgstr "Predhodno določene spremenljivke"
-
 #: ../gtksourceview/language-specs/ruby.lang.h:18
 msgid "Ruby"
 msgstr "Ruby"
@@ -1826,7 +1871,20 @@ msgstr "Ruby"
 msgid "Scheme"
 msgstr "Shema"
 
-#: ../gtksourceview/language-specs/sh.lang.h:4
+#: ../gtksourceview/language-specs/sh.lang.h:2
+msgid "Common Commands"
+msgstr "Splošni ukazi"
+
+#: ../gtksourceview/language-specs/sh.lang.h:10
+msgid "Subshell"
+msgstr "Podlupina"
+
+#. FIXME: need to sort out proper styles for variables
+#: ../gtksourceview/language-specs/sh.lang.h:13
+msgid "Variable Definition"
+msgstr "Določilo spremenljivke"
+
+#: ../gtksourceview/language-specs/sh.lang.h:14
 msgid "sh"
 msgstr "sh"
 
