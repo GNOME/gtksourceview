@@ -1,5 +1,10 @@
 2008-02-24  Paolo Borelli  <pborelli@katamail.com>
 
+	* gtksourceview/gtksourcemark.c: do not leak the category string.
+	Spotted by Johannes Schmid.
+
+2008-02-24  Paolo Borelli  <pborelli@katamail.com>
+
 	* gtksourceview/language-specs/oblivion.xml: fix typo in
 	the "def:shebang" style. Spotted by Chris Hollenbeck.
 

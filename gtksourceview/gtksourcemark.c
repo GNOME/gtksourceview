@@ -89,12 +89,23 @@ gtk_source_mark_get_property (GObject    *object,
 }
 
 static void
+gtk_source_mark_finalize (GObject *object)
+{
+	GtkSourceMark *mark;
+
+	g_free (mark->priv->category);
+}
+
+static void
 gtk_source_mark_class_init (GtkSourceMarkClass *klass)
 {
-	GObjectClass* object_class = G_OBJECT_CLASS (klass);
+	GObjectClass *object_class;
+
+	object_class = G_OBJECT_CLASS (klass);
 
 	object_class->set_property = gtk_source_mark_set_property;
 	object_class->get_property = gtk_source_mark_get_property;
+	object_class->finalize = gtk_source_mark_finalize;
 
 	/**
 	 * GtkSourceMark:category:
@@ -143,7 +154,7 @@ gtk_source_mark_new (const gchar *name,
 		     const gchar *category)
 {
 	g_return_val_if_fail (category != NULL, NULL);
-	
+
 	return GTK_SOURCE_MARK (g_object_new (GTK_TYPE_SOURCE_MARK, 
 					      "category", category, 
 					      "name", name,
