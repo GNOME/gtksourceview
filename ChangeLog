@@ -1,3 +1,8 @@
+2008-02-25  Johannes Schmid <jhs@gnome.org>
+
+	* gtksourceview/gtksourcemark.c: (gtk_source_mark_finalize):
+	Initialize object correctly (will crash otherwise)
+
 2008-02-24  Paolo Borelli  <pborelli@katamail.com>
 
 	* gtksourceview/gtksourcemark.c: do not leak the category string.
