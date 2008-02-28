@@ -1386,6 +1386,7 @@ gtk_source_view_paint_margin (GtkSourceView *view,
 			{
 				/* draw marks for the line */
 				draw_line_marks (view, marks, x_pixmap, pos);
+				g_slist_free (marks);
 			}
 		}
 	}

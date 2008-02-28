@@ -1,3 +1,7 @@
+2008-02-28  Johannes Schmid <jhs@gnome.org>
+
+	* gtksourceview/gtksourceview.c: (gtk_source_view_paint_margin):
+	Fixed a small memory leak
 
 === gtksourceview 2.1.3 ===
 
