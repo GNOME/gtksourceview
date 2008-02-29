@@ -1,3 +1,14 @@
+2008-02-29  Yevgen Muntyan  <muntyan@tamu.edu>
+
+	* gtksourceview/language-specs/c.lang: (printf): highlight
+	width and precision given as '*';
+	(escaped-character): highlight \b; hex digit is \\x[HEX]+,
+	not \\x[HEX]{0,2};
+	(string), (char): highlight 'L' prefix in wide char literals.
+	* gtksourceview/language-specs/yacc.lang: prettified.
+	* gtksourceview/language-specs/lua.lang: do not highlight
+	_G.* in the middle of idenitifiers.
+
 2008-02-28  Johannes Schmid <jhs@gnome.org>
 
 	* gtksourceview/gtksourceview.c: (gtk_source_view_paint_margin):
@@ -32,8 +43,8 @@
 
 	* gtksourceview/gtksourcebuffer.c:
 	* gtksourceview/gtksourcebuffer.h:
-	(gtk_source_buffer_remove_source_marks): Make the GtkTextIter* 
-	parameters const, as they are when used in this way elsewhere in this 
+	(gtk_source_buffer_remove_source_marks): Make the GtkTextIter*
+	parameters const, as they are when used in this way elsewhere in this
 	API. Bug #514655.
 
 2008-02-04  Tor Lillqvist  <tml@novell.com>

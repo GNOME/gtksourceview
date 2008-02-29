@@ -2,7 +2,7 @@
 <!--
 
  Author: Yevgen Muntyan <muntyan@tamu.edu>
- Copyright (C) 2006-2007 Yevgen Muntyan <muntyan@tamu.edu>
+ Copyright (C) 2006-2008 Yevgen Muntyan <muntyan@tamu.edu>
 
  This library is free software; you can redistribute it and/or
  modify it under the terms of the GNU Library General Public
@@ -30,9 +30,10 @@
   </metadata>
 
   <styles>
-    <style id="inline-c" _name="Inline C Code" map-to="def:keyword"/>
-    <style id="grammar" _name="grammar" map-to="def:keyword"/>
-    <style id="keyword" _name="keyword" map-to="def:keyword"/>
+    <!--FIXME make it better names, and make them translatable -->
+    <style id="keyword" name="keyword" map-to="def:keyword"/>
+    <style id="token-type" name="token-type" map-to="def:type"/>
+    <style id="rule" name="rule" map-to="def:identifier"/>
   </styles>
 
   <definitions>
@@ -40,42 +41,124 @@
       <start>^%{</start>
       <end>^%}</end>
       <include>
-        <context sub-pattern="0" where="start" style-ref="inline-c" />
-        <context sub-pattern="0" where="end" style-ref="inline-c" />
+        <context sub-pattern="0" where="start" style-ref="keyword"/>
+        <context sub-pattern="0" where="end" style-ref="keyword"/>
         <context ref="c:c"/>
       </include>
     </context>
 
-    <context id="keywords" style-ref="keyword">
+    <context id="options" style-ref="keyword">
       <prefix>^%</prefix>
-      <keyword>name-prefix</keyword>
+      <keyword>debug</keyword>
+      <keyword>defines</keyword>
+      <keyword>destructor</keyword>
+      <keyword>dprec</keyword>
       <keyword>error-verbose</keyword>
-      <keyword>lex-param</keyword>
-      <keyword>parse-param</keyword>
       <keyword>expect</keyword>
-      <keyword>union</keyword>
-      <keyword>token</keyword>
-      <keyword>type</keyword>
+      <keyword>glr-parser</keyword>
+      <keyword>initial-action</keyword>
       <keyword>left</keyword>
+      <keyword>lex-param</keyword>
+      <keyword>locations</keyword>
+      <keyword>merge</keyword>
+      <keyword>name-prefix</keyword>
+      <keyword>no[_-]lines</keyword>
+      <keyword>nonassoc</keyword>
+      <keyword>output</keyword>
+      <keyword>parse-param</keyword>
+      <keyword>prec</keyword>
+      <keyword>pure[_-]parser</keyword>
+      <keyword>raw</keyword>
+      <keyword>require</keyword>
       <keyword>right</keyword>
+      <keyword>start</keyword>
+      <keyword>token[_-]table</keyword>
+      <keyword>union</keyword>
+    </context>
+
+    <context id="token">
+      <start>^(%(token|type))(&lt;[A-Za-z_][A-Za-z0-9_]*&gt;)?(?![\w_-])</start>
+      <end></end>
+      <include>
+        <context sub-pattern="1" where="start" style-ref="keyword"/>
+        <context sub-pattern="3" where="start" style-ref="token-type"/>
+      </include>
+    </context>
+
+    <context id="before-grammar">
+      <include>
+        <context ref="inline-c"/>
+        <context ref="options"/>
+        <context ref="token"/>
+        <context ref="c:comment"/>
+        <context ref="c:comment-multiline"/>
+      </include>
+    </context>
+
+    <context id="after-grammar">
+      <start>^%%</start>
+      <include>
+        <context sub-pattern="0" where="start" style-ref="keyword"/>
+        <context ref="c:c"/>
+      </include>
+    </context>
+
+    <context id="c-with-brackets">
+      <include>
+        <context>
+          <start>{</start>
+          <end>}</end>
+          <include>
+            <context ref="c-with-brackets"/>
+          </include>
+        </context>
+        <context ref="c:c"/>
+      </include>
+    </context>
+
+    <context id="rule-code">
+      <start>{</start>
+      <end>}</end>
+      <include>
+        <context sub-pattern="0" where="start" style-ref="keyword"/>
+        <context sub-pattern="0" where="end" style-ref="keyword"/>
+        <context ref="c-with-brackets"/>
+        <context style-ref="keyword">
+          <match>\$(&lt;[\w\d_-]*&gt;)?[\$0-9]</match>
+        </context>
+      </include>
+    </context>
+
+    <context id="rule">
+      <start>[a-zA-Z_.][a-zA-Z0-9_.]*</start>
+      <end>;</end>
+      <include>
+        <context sub-pattern="0" where="start" style-ref="rule"/>
+        <context ref="c:comment"/>
+        <context ref="c:comment-multiline"/>
+        <context ref="c:char"/>
+        <context ref="c:string"/>
+        <context ref="rule-code"/>
+      </include>
     </context>
 
     <context id="grammar">
       <start>^%%</start>
-      <end>^%%</end>
       <include>
-        <context sub-pattern="0" where="start" style-ref="grammar" />
-        <context sub-pattern="0" where="end" style-ref="grammar" />
+        <context sub-pattern="0" where="start" style-ref="keyword"/>
+        <context ref="c:comment"/>
+        <context ref="c:comment-multiline"/>
+        <context ref="c:char"/>
+        <context ref="c:string"/>
+        <context ref="rule"/>
+        <context ref="after-grammar"/>
       </include>
     </context>
 
     <context id="yacc">
       <include>
-        <context ref="inline-c"/>
+        <context ref="before-grammar"/>
         <context ref="grammar"/>
-        <context ref="keywords"/>
-        <context ref="c:comment"/>
-        <context ref="c:comment-multiline"/>
       </include>
     </context>
   </definitions>

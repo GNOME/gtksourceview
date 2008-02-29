@@ -124,7 +124,7 @@
     </context>
 
     <context id="lua-reserved" style-ref="reserved">
-      <match>_[A-Z]+</match>
+      <keyword>_[A-Z][A-Za-z0-9_]*</keyword>
     </context>
 
     <context id="nil-value" style-ref="nil-value">
