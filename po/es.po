@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-28 23:54+0000\n"
-"PO-Revision-Date: 2008-01-29 13:19+0100\n"
+"POT-Creation-Date: 2008-02-29 17:07+0000\n"
+"PO-Revision-Date: 2008-03-02 16:23+0100\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -40,7 +40,7 @@ msgstr "Nivel máximo de deshacer"
 
 #: ../gtksourceview/gtksourcebuffer.c:196
 msgid "Number of undo levels for the buffer"
-msgstr "Número de niveles de deshacer para el búfer."
+msgstr "Número de niveles de deshacer para el búfer"
 
 #. Translators: throughout gtksourceview "language" stands
 #. * for "programming language", not "spoken language"
@@ -74,6 +74,7 @@ msgid "Style scheme"
 msgstr "Estilo"
 
 #: ../gtksourceview/gtksourcecontextengine.c:2567
+#, c-format
 msgid "using \\C is not supported in language definitions"
 msgstr "el uso de \\C no está soportado en las definiciones del lenguaje"
 
@@ -145,7 +146,7 @@ msgstr "Falta la definición de lenguaje principal (id = «%s».)"
 #: ../gtksourceview/language-specs/rpmspec.lang.h:10
 #: ../gtksourceview/language-specs/sh.lang.h:6
 #: ../gtksourceview/language-specs/texinfo.lang.h:8
-#: ../gtksourceview/language-specs/yacc.lang.h:2
+#: ../gtksourceview/language-specs/yacc.lang.h:1
 msgid "Others"
 msgstr "Otros"
 
@@ -182,7 +183,7 @@ msgid ""
 "located"
 msgstr ""
 "Lista de directorios en los que se hallan los archivo de especificación de "
-"lenguajes (.lang)."
+"lenguajes (.lang)"
 
 #: ../gtksourceview/gtksourcelanguagemanager.c:143
 msgid "Language ids"
@@ -202,11 +203,11 @@ msgstr "Id «%s» desconocido en la expresión regular «%s»"
 msgid "in regex '%s': backreferences are not supported"
 msgstr "en la expresión regular «%s»: las retroreferencias no se soportan"
 
-#: ../gtksourceview/gtksourcemark.c:108
+#: ../gtksourceview/gtksourcemark.c:119
 msgid "category"
 msgstr "categoría"
 
-#: ../gtksourceview/gtksourcemark.c:109
+#: ../gtksourceview/gtksourcemark.c:120
 msgid "The mark category"
 msgstr "La marca de la categoría"
 
@@ -456,7 +457,7 @@ msgstr "Mostrar número de línea"
 
 #: ../gtksourceview/gtksourceview.c:258
 msgid "Whether to display line numbers"
-msgstr "Indica si se mostrarán los números de las líneas."
+msgstr "Indica si se mostrarán los números de las líneas"
 
 #: ../gtksourceview/gtksourceview.c:269
 msgid "Show Line Marks"
@@ -1844,7 +1845,7 @@ msgstr "Correo-e"
 
 #: ../gtksourceview/language-specs/rpmspec.lang.h:7
 msgid "Flow Conditional"
-msgstr "Condicion de flujo"
+msgstr "Condición de flujo"
 
 #: ../gtksourceview/language-specs/rpmspec.lang.h:8
 msgid "Header"
@@ -1987,21 +1988,9 @@ msgstr "Instrucción de procesamiento"
 msgid "XML"
 msgstr "XML"
 
-#: ../gtksourceview/language-specs/yacc.lang.h:1
-msgid "Inline C Code"
-msgstr "Código C en línea"
-
-#: ../gtksourceview/language-specs/yacc.lang.h:3
+#: ../gtksourceview/language-specs/yacc.lang.h:2
 msgid "Yacc"
 msgstr "Yacc"
-
-#: ../gtksourceview/language-specs/yacc.lang.h:4
-msgid "grammar"
-msgstr "gramática"
-
-#: ../gtksourceview/language-specs/yacc.lang.h:5
-msgid "keyword"
-msgstr "Palabra clave"
 
 #: ../gtksourceview/language-specs/classic.xml.h:1
 msgid "Classic"
