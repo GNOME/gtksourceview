@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-24 09:29-0300\n"
-"PO-Revision-Date: 2008-02-24 12:49-0300\n"
+"POT-Creation-Date: 2008-03-08 14:51-0300\n"
+"PO-Revision-Date: 2008-03-08 14:49-0300\n"
 "Last-Translator: Og Maciel <ogmaciel@gnome.org>\n"
 "Language-Team: Brazilian Portuguese <gnome-l10n-br@listas.cipsga.org.br>\n"
 "MIME-Version: 1.0\n"
@@ -76,6 +76,7 @@ msgid "Style scheme"
 msgstr "Esquema de estilo"
 
 #: ../gtksourceview/gtksourcecontextengine.c:2567
+#, c-format
 msgid "using \\C is not supported in language definitions"
 msgstr "usar \\C não é suportado em definições de linguagem"
 
@@ -148,7 +149,7 @@ msgstr "Faltando a definição para a linguagem principal (id = \"%s\".)"
 #: ../gtksourceview/language-specs/rpmspec.lang.h:10
 #: ../gtksourceview/language-specs/sh.lang.h:6
 #: ../gtksourceview/language-specs/texinfo.lang.h:8
-#: ../gtksourceview/language-specs/yacc.lang.h:2
+#: ../gtksourceview/language-specs/yacc.lang.h:1
 msgid "Others"
 msgstr "Outros"
 
@@ -205,11 +206,11 @@ msgstr "Identificação \"%s\" desconhecida na expressão regular \"%s\""
 msgid "in regex '%s': backreferences are not supported"
 msgstr "na expressão regular \"%s\": referências próprias não são suportadas"
 
-#: ../gtksourceview/gtksourcemark.c:108
+#: ../gtksourceview/gtksourcemark.c:119
 msgid "category"
 msgstr "categoria"
 
-#: ../gtksourceview/gtksourcemark.c:109
+#: ../gtksourceview/gtksourcemark.c:120
 msgid "The mark category"
 msgstr "A categoria de marcação"
 
@@ -1335,9 +1336,10 @@ msgstr "Diretiva de compilador"
 msgid "Erlang"
 msgstr "Erlang"
 
+# Leia: http://bugzilla.gnome.org/show_bug.cgi?id=518437
 #: ../gtksourceview/language-specs/forth.lang.h:2
 msgid "Compiler opt"
-msgstr "Compilador opt"
+msgstr "Opção de Compilador"
 
 #: ../gtksourceview/language-specs/forth.lang.h:4
 msgid "Debug Code"
@@ -1988,21 +1990,9 @@ msgstr "Instrução de processamento"
 msgid "XML"
 msgstr "XML"
 
-#: ../gtksourceview/language-specs/yacc.lang.h:1
-msgid "Inline C Code"
-msgstr "Código C Embutido"
-
-#: ../gtksourceview/language-specs/yacc.lang.h:3
+#: ../gtksourceview/language-specs/yacc.lang.h:2
 msgid "Yacc"
 msgstr "Yacc"
-
-#: ../gtksourceview/language-specs/yacc.lang.h:4
-msgid "grammar"
-msgstr "gramática"
-
-#: ../gtksourceview/language-specs/yacc.lang.h:5
-msgid "keyword"
-msgstr "palavra-chave"
 
 #: ../gtksourceview/language-specs/classic.xml.h:1
 msgid "Classic"
@@ -2035,6 +2025,15 @@ msgstr "Esquema de cor usando a paleta de cor Tango"
 #: ../gtksourceview/language-specs/tango.xml.h:2
 msgid "Tango"
 msgstr "Tango"
+
+#~ msgid "Inline C Code"
+#~ msgstr "Código C Embutido"
+
+#~ msgid "grammar"
+#~ msgstr "gramática"
+
+#~ msgid "keyword"
+#~ msgstr "palavra-chave"
 
 #~ msgid "Margin Line Alpha"
 #~ msgstr "Alfa da Linha de Margem"
