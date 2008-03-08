@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: oc\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-19 20:25+0100\n"
+"POT-Creation-Date: 2008-03-07 10:22+0100\n"
 "PO-Revision-Date: 2008-02-02 21:28+0100\n"
 "Last-Translator: Yannig Marchegay (Kokoyaya) <yannig@marchegay.org>\n"
 "Language-Team: Occitan <ubuntu-l10n-oci@lists.ubuntu.com>\n"
@@ -140,7 +140,7 @@ msgstr ""
 #: ../gtksourceview/language-specs/rpmspec.lang.h:10
 #: ../gtksourceview/language-specs/sh.lang.h:6
 #: ../gtksourceview/language-specs/texinfo.lang.h:8
-#: ../gtksourceview/language-specs/yacc.lang.h:2
+#: ../gtksourceview/language-specs/yacc.lang.h:1
 msgid "Others"
 msgstr "Autres"
 
@@ -196,11 +196,11 @@ msgid "in regex '%s': backreferences are not supported"
 msgstr ""
 
 #
-#: ../gtksourceview/gtksourcemark.c:108
+#: ../gtksourceview/gtksourcemark.c:119
 msgid "category"
 msgstr "categoria"
 
-#: ../gtksourceview/gtksourcemark.c:109
+#: ../gtksourceview/gtksourcemark.c:120
 msgid "The mark category"
 msgstr ""
 
@@ -1968,20 +1968,8 @@ msgstr ""
 msgid "XML"
 msgstr "XML"
 
-#: ../gtksourceview/language-specs/yacc.lang.h:1
-msgid "Inline C Code"
-msgstr ""
-
-#: ../gtksourceview/language-specs/yacc.lang.h:3
+#: ../gtksourceview/language-specs/yacc.lang.h:2
 msgid "Yacc"
-msgstr ""
-
-#: ../gtksourceview/language-specs/yacc.lang.h:4
-msgid "grammar"
-msgstr ""
-
-#: ../gtksourceview/language-specs/yacc.lang.h:5
-msgid "keyword"
 msgstr ""
 
 #: ../gtksourceview/language-specs/classic.xml.h:1
