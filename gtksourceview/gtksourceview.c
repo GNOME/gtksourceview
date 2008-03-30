@@ -2528,6 +2528,61 @@ insert_tab_or_spaces (GtkSourceView *view,
 	g_free (tab_buf);
 }
 
+static void
+move_lines (GtkTextView *view, gboolean down)
+{
+	GtkTextBuffer *buf;
+	GtkTextIter s, e;
+	GtkTextMark *mark;
+	gchar *text;
+
+	buf = gtk_text_view_get_buffer (view);
+
+	gtk_text_buffer_get_selection_bounds (buf, &s, &e);
+
+	/* get the entire lines, including the last \n */
+	gtk_text_iter_set_line_offset (&s, 0);
+	if (!gtk_text_iter_starts_line (&e) ||
+	     gtk_text_iter_get_line (&s) == gtk_text_iter_get_line (&e))
+	{
+		gtk_text_iter_forward_line (&e);
+	}
+
+	if ((down && (gtk_text_buffer_get_line_count (buf) == gtk_text_iter_get_line (&e))) ||
+	    (!down && (0 == gtk_text_iter_get_line (&s))))
+	{
+		return;
+	}
+
+	text = gtk_text_buffer_get_slice (buf, &s, &e, TRUE);
+
+	gtk_text_buffer_begin_user_action (buf);
+
+	gtk_text_buffer_delete (buf, &s, &e);
+
+	if (down)
+		gtk_text_iter_forward_line (&e);
+	else
+		gtk_text_iter_backward_line (&e);
+
+	/* use anon mark to be able to select after insertion */
+	mark = gtk_text_buffer_create_mark (buf, NULL, &e, TRUE);
+
+	gtk_text_buffer_insert (buf, &e, text, -1);
+
+	gtk_text_buffer_end_user_action (buf);
+
+	g_free (text);
+
+	/* select the moved text */
+	gtk_text_buffer_get_iter_at_mark (buf, &s, mark);
+	gtk_text_buffer_select_range (buf, &s, &e);
+	gtk_text_view_scroll_mark_onscreen (view,
+					    gtk_text_buffer_get_insert (buf));
+
+	gtk_text_buffer_delete_mark (buf, mark);
+}
+
 static gboolean
 gtk_source_view_key_press_event (GtkWidget   *widget,
 				 GdkEventKey *event)
@@ -2627,7 +2682,15 @@ gtk_source_view_key_press_event (GtkWidget   *widget,
  		return TRUE;
 	}
 
-	return (* GTK_WIDGET_CLASS (gtk_source_view_parent_class)->key_press_event) (widget, event);
+	/* Alt+up/down moves the lines */
+	if ((key == GDK_Up || key == GDK_Down) &&
+	    ((event->state & modifiers) == GDK_MOD1_MASK))
+	{
+		move_lines (GTK_TEXT_VIEW (widget), key == GDK_Down);
+		return TRUE;
+	}
+
+	return GTK_WIDGET_CLASS (gtk_source_view_parent_class)->key_press_event (widget, event);
 }
 
 static void

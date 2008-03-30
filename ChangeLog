@@ -1,5 +1,10 @@
 2008-03-30  Paolo Borelli  <pborelli@katamail.com>
 
+	* gtksourceview/gtksourceview.c: make Alt+up/down move the current
+	or selected line in the buffer.
+
+2008-03-30  Paolo Borelli  <pborelli@katamail.com>
+
 	* gtksourceview/gtksourceview.c: fix compiler warning.
 
 === gtksourceview 2.2.0 ===
