@@ -1690,7 +1690,7 @@ calculate_real_tab_width (GtkSourceView *view, guint tab_size, gchar c)
  * Return value: a new #GtkSourceView
  **/
 GtkWidget *
-gtk_source_view_new ()
+gtk_source_view_new (void)
 {
 	GtkWidget *widget;
 	GtkSourceBuffer *buffer;
@@ -2082,8 +2082,8 @@ gtk_source_view_get_mark_category_pixbuf (GtkSourceView *view,
 {
 	MarkCategory *cat;
 
-	g_return_val_if_fail (GTK_IS_SOURCE_VIEW (view), 0);
-	g_return_val_if_fail (category != NULL, 0);
+	g_return_val_if_fail (GTK_IS_SOURCE_VIEW (view), NULL);
+	g_return_val_if_fail (category != NULL, NULL);
 
 	cat = g_hash_table_lookup (view->priv->mark_categories, category);
 	if (cat != NULL)
