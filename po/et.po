@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: gtksourceview HEAD\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-02-29 17:07+0000\n"
-"PO-Revision-Date: 2008-03-01 16:22+0200\n"
+"PO-Revision-Date: 2008-03-27 06:51+0200\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -76,7 +76,7 @@ msgstr "Kas unustatud tegevuse taastamine on võimalik või mitte"
 #: ../gtksourceview/gtksourcebuffer.c:240
 #: ../gtksourceview/gtksourcebuffer.c:241
 msgid "Style scheme"
-msgstr ""
+msgstr "Laadi skeem"
 
 #: ../gtksourceview/gtksourcecontextengine.c:2567
 #, c-format
@@ -94,6 +94,9 @@ msgid ""
 "process will be slower than usual.\n"
 "The error was: %s"
 msgstr ""
+"Kõigi üleminekute kohta pole võimalik regulaaravaldist luua, seetõttu on "
+"süntaksti esiletõstmine tavalisest aeglasem.\n"
+"Vea kirjeldus: %s"
 
 #: ../gtksourceview/gtksourcecontextengine.c:5697
 #, c-format
@@ -199,7 +202,7 @@ msgstr "Tundmatu id '%s' regulaaravaldises '%s'"
 #: ../gtksourceview/gtksourcelanguage-parser-2.c:1107
 #, c-format
 msgid "in regex '%s': backreferences are not supported"
-msgstr ""
+msgstr "regulaaravaldis '%s': tagasiviited pole toetatud"
 
 #: ../gtksourceview/gtksourcemark.c:119
 msgid "category"
@@ -406,39 +409,39 @@ msgstr "Kas läbijoonimise laad on seatud või mitte"
 
 #: ../gtksourceview/gtksourcestyleschememanager.c:145
 msgid "Style scheme search path"
-msgstr ""
+msgstr "Laadiskeemi otsingurada"
 
 #: ../gtksourceview/gtksourcestyleschememanager.c:146
 msgid "List of directories and files where the style schemes are located"
-msgstr ""
+msgstr "Laadiskeemi sisaldavate kataloogide ja failide nimekiri"
 
 #: ../gtksourceview/gtksourcestyleschememanager.c:154
 msgid "Scheme ids"
-msgstr ""
+msgstr "Skeemi ID-d"
 
 #: ../gtksourceview/gtksourcestyleschememanager.c:155
 msgid "List of the ids of the available style schemes"
-msgstr ""
+msgstr "Saadaolevate laadiskeemide ID-de nimekiri"
 
 #: ../gtksourceview/gtksourcestylescheme.c:169
 #: ../gtksourceview/gtksourcestylescheme.c:170
 msgid "Style scheme id"
-msgstr ""
+msgstr "Laadi skeemi ID"
 
 #: ../gtksourceview/gtksourcestylescheme.c:182
 #: ../gtksourceview/gtksourcestylescheme.c:183
 msgid "Style scheme name"
-msgstr ""
+msgstr "Laadi skeemi nimi"
 
 #: ../gtksourceview/gtksourcestylescheme.c:195
 #: ../gtksourceview/gtksourcestylescheme.c:196
 msgid "Style scheme description"
-msgstr ""
+msgstr "Laadi skeemi kirjeldus"
 
 #: ../gtksourceview/gtksourcestylescheme.c:208
 #: ../gtksourceview/gtksourcestylescheme.c:209
 msgid "Style scheme filename"
-msgstr ""
+msgstr "Laadi skeemi failinimi"
 
 #: ../gtksourceview/gtksourceview.c:257
 msgid "Show Line Numbers"
@@ -1371,7 +1374,7 @@ msgstr "Funktsiooni nimi"
 
 #: ../gtksourceview/language-specs/gtk-doc.lang.h:4
 msgid "Inline Documentation Section"
-msgstr ""
+msgstr "Sisese dokumentatsiooni lõik"
 
 #: ../gtksourceview/language-specs/gtk-doc.lang.h:6
 msgid "Parameter"
@@ -1704,7 +1707,7 @@ msgstr "Failideskriptor"
 #: ../gtksourceview/language-specs/php.lang.h:8
 #: ../gtksourceview/language-specs/ruby.lang.h:10
 msgid "Heredoc"
-msgstr ""
+msgstr "Heredoc"
 
 #: ../gtksourceview/language-specs/perl.lang.h:7
 #: ../gtksourceview/language-specs/php.lang.h:9
@@ -1715,7 +1718,7 @@ msgstr ""
 
 #: ../gtksourceview/language-specs/perl.lang.h:8
 msgid "Include Statement"
-msgstr ""
+msgstr "Include-lause"
 
 #: ../gtksourceview/language-specs/perl.lang.h:10
 msgid "Line Directive"
