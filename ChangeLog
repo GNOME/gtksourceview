@@ -1,3 +1,10 @@
+2008-04-05  Paolo Maggi  <paolo@gnome.org>
+
+	* gtksourceview/gtksourceview.c (gtk_source_view_class_init): add
+	keybindings for move_viewport. You can now scroll one line up/down,
+	one page up/down and to the beginning/end of the document without moving
+	the cursor (use Shit + Alt + Up|Down|PageUp|PageDown|Home|End).
+
 2008-04-05  Paolo Borelli  <pborelli@katamail.com>
 
 	* gtksourceview/language-specs/python.lang: fix line-continue
