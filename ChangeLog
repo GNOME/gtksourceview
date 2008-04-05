@@ -1,3 +1,8 @@
+2008-04-05  Paolo Borelli  <pborelli@katamail.com>
+
+	* gtksourceview/language-specs/python.lang: fix line-continue
+	in double quoted strings. Bug #525751.
+
 2008-03-30  Paolo Borelli  <pborelli@katamail.com>
 
 	* gtksourceview/gtksourceview.c: make Alt+up/down move the current
