@@ -123,7 +123,6 @@
       <include>
         <context ref="def:shebang"/>
         <context ref="def:shell-like-comment"/>
-        <context ref="def:line-continue"/>
 
         <context ref="multiline-double-quoted-string"/>
         <context ref="multiline-single-quoted-string"/>

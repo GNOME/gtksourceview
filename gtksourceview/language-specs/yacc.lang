@@ -76,12 +76,19 @@
       <keyword>union</keyword>
     </context>
 
-    <context id="token">
+    <context id="token" end-at-line-end="true">
       <start>^(%(token|type))(&lt;[A-Za-z_][A-Za-z0-9_]*&gt;)?(?![\w_-])</start>
-      <end></end>
       <include>
         <context sub-pattern="1" where="start" style-ref="keyword"/>
         <context sub-pattern="3" where="start" style-ref="token-type"/>
+        <context ref="c:string"/>
+        <context ref="c:char"/>
+        <context ref="c:float"/>
+        <context ref="c:hexadecimal"/>
+        <context ref="c:octal"/>
+        <context ref="c:decimal"/>
+        <context ref="c:comment"/>
+        <context ref="c:comment-multiline"/>
       </include>
     </context>
 
@@ -112,6 +119,9 @@
             <context ref="c-with-brackets"/>
           </include>
         </context>
+        <context style-ref="keyword">
+          <match>(\$(&lt;[\w\d_-]*&gt;)?[\$0-9]|[@][$0-9])</match>
+        </context>
         <context ref="c:c"/>
       </include>
     </context>
@@ -123,9 +133,6 @@
         <context sub-pattern="0" where="start" style-ref="keyword"/>
         <context sub-pattern="0" where="end" style-ref="keyword"/>
         <context ref="c-with-brackets"/>
-        <context style-ref="keyword">
-          <match>\$(&lt;[\w\d_-]*&gt;)?[\$0-9]</match>
-        </context>
       </include>
     </context>
 

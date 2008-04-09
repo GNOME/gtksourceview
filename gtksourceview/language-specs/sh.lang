@@ -200,7 +200,7 @@
 
     <context id="for-command">
       <start>\bfor\b</start>
-      <end>\bin\b</end>
+      <end>\b(in|do)\b</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="keyword"/>
         <context sub-pattern="0" where="end" style-ref="keyword"/>

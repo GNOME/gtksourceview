@@ -1,3 +1,10 @@
+2008-04-09  Yevgen Muntyan  <muntyan@tamu.edu>
+
+	* gtksourceview/language-specs/python.lang: def:line-continue
+	is not needed in the main context.
+	* gtksourceview/language-specs/sh.lang: 'for' loops work
+	without 'in' too.
+	* gtksourceview/language-specs/yacc.lang: prettified.
 
 === gtksourceview 2.2.1 ===
 
