@@ -33,12 +33,7 @@ IGNORE_HFILES =					\
 	gtktextregion.h				\
 	gtksourceengine.h			\
 	gtksourcecontextengine.h		\
-	gtksourceprintjob.h			\
-	eggregex.h				\
-	pcre.h					\
-	pcre_internal.h				\
-	ucp.h					\
-	ucpinternal.h
+	gtksourceprintjob.h
 
 # Extra options to supply to gtkdoc-mkdb
 MKDB_OPTIONS = --sgml-mode --output-format=xml --ignore-files=trio

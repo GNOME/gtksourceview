@@ -1,5 +1,17 @@
 2008-04-09  Yevgen Muntyan  <muntyan@tamu.edu>
 
+	gtksourceview depends on gtk-2.12 now, so it will not be
+	built with glib older than 2.14, so pcre stuff may go now.
+
+	* configure.ac:
+	* gtksourceview/Makefile.am:
+	* docs/reference/Makefile.am: removed regex stuff.
+
+	* acinclude.m4:
+	* gtksourceview/regex: deleted.
+
+2008-04-09  Yevgen Muntyan  <muntyan@tamu.edu>
+
 	* gtksourceview/language-specs/python.lang: def:line-continue
 	is not needed in the main context.
 	* gtksourceview/language-specs/sh.lang: 'for' loops work

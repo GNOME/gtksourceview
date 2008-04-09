@@ -67,13 +67,6 @@ PKG_CHECK_MODULES(DEP, [
 AC_SUBST(DEP_CFLAGS)
 AC_SUBST(DEP_LIBS)
 
-# If the regex system is included in glib we should check that
-BUILD_EGG_REGEX=true
-AM_CONDITIONAL(BUILD_EGG_REGEX,$BUILD_EGG_REGEX)
-
-# this macro is defined in acinclude.m4
-GTK_SOURCE_VIEW_AC_REGEX
-
 # Do we build optional tests?
 AC_ARG_ENABLE(build_tests,
               AC_HELP_STRING([--disable-build-tests],
@@ -116,9 +109,6 @@ Makefile
 gtksourceview-zip
 po/Makefile.in
 gtksourceview/Makefile
-gtksourceview/regex/Makefile
-gtksourceview/regex/pcre/Makefile
-gtksourceview/regex/glib/Makefile
 gtksourceview/language-specs/Makefile
 docs/Makefile
 docs/reference/Makefile
@@ -136,5 +126,4 @@ Configuration:
 	Source code location:	${srcdir}
 	Compiler:		${CC}
 	build tests:		$msg_tests
-        use system pcre:        $USE_SYSTEM_PCRE
 "
