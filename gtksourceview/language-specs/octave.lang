@@ -59,7 +59,7 @@
     </context>
 
     <context id="single-quoted-string" style-ref="string" end-at-line-end="true">
-      <!-- 
+      <!--
        To do not misdetect the transpose operator ' as the start of a string
        we assert to not follow a variable name (letters, digits and underscores)
        or a closing bracket (round, square or curly) or a dot (to form the
@@ -67,7 +67,7 @@
       <start>(?&lt;![0-9a-zA-Z_)\]}\.])'</start>
       <end>'</end>
       <include>
-        <context style-ref="escape">
+        <context style-ref="def:special-char">
           <match>''</match>
         </context>
         <context ref="def:line-continue"/>
