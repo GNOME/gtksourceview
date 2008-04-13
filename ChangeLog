@@ -1,3 +1,10 @@
+2008-04-13  Armin Burgmeier  <armin@arbur.net>
+
+	* gtksourceview/gtksourceundomanager.c
+	(gtk_source_undo_manager_add_action),
+	(gtk_source_undo_manager_insert_text_handler): Handle insertion of
+	non-null-terminated strings correctly.
+
 2008-04-11  Yevgen Muntyan  <muntyan@tamu.edu>
 
 	* gtksourceview/language-specs/octave.lang: corrected
