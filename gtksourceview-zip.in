@@ -14,6 +14,7 @@ EOF
 
 zip $ZIP share/gtksourceview-2.0/language-specs/*.lang
 zip $ZIP share/gtksourceview-2.0/language-specs/*.dtd
+zip $ZIP share/gtksourceview-2.0/styles/*.xml
 
 if [ -f share/locale/de/LC_MESSAGES/gtksourceview-2.0.mo ]; then
   zip $ZIP share/locale/*/LC_MESSAGES/gtksourceview-2.0.mo
@@ -27,5 +28,5 @@ zip -r $DEVZIP -@ <<EOF
 include/gtksourceview-2.0
 lib/libgtksourceview-2.0.dll.a
 lib/pkgconfig/gtksourceview-2.0.pc
-share/gtk-doc/html/gtksourceview
+share/gtk-doc/html/gtksourceview-2.0
 EOF
