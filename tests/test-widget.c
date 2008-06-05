@@ -445,7 +445,7 @@ get_language (GtkTextBuffer *buffer, const gchar *filename)
 	GtkSourceLanguage *language = NULL;
 	GtkTextIter start, end;
 	gchar *text;
-	const gchar *lang_string;
+	gchar *lang_string;
 
 	gtk_text_buffer_get_start_iter (buffer, &start);
 	end = start;
