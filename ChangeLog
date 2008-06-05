@@ -1,3 +1,8 @@
+2008-06-05  Paolo Borelli  <pborelli@katamail.com>
+
+	* gtksourceview/gtksourceview.c: do not (un)indent if the view is
+	not editable. Bug #536554.
+
 2008-04-27  Paolo Borelli  <pborelli@katamail.com>
 
 	* gtksourceview-zip.in: zip style schemes and fix docs dir.

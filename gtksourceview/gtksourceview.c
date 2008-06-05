@@ -2677,9 +2677,12 @@ gtk_source_view_key_press_event (GtkWidget   *widget,
 	GtkTextMark *mark;
 	guint modifiers;
 	gint key;
+	gboolean editable;
 
 	view = GTK_SOURCE_VIEW (widget);
 	buf = gtk_text_view_get_buffer (GTK_TEXT_VIEW (widget));
+
+	editable = gtk_text_view_get_editable (GTK_TEXT_VIEW (widget));
 
 	/* Be careful when testing for modifier state equality:
 	 * caps lock, num lock,etc need to be taken into account */
@@ -2733,7 +2736,8 @@ gtk_source_view_key_press_event (GtkWidget   *widget,
 	 */
 	if ((key == GDK_Tab || key == GDK_KP_Tab || key == GDK_ISO_Left_Tab) &&
 	    ((event->state & modifiers) == 0 ||
-	     (event->state & modifiers) == GDK_SHIFT_MASK))
+	     (event->state & modifiers) == GDK_SHIFT_MASK) &&
+	    editable)
 	{
 		GtkTextIter s, e;
 		gboolean has_selection;
@@ -2768,7 +2772,8 @@ gtk_source_view_key_press_event (GtkWidget   *widget,
 
 	/* Alt+up/down moves the lines */
 	if ((key == GDK_Up || key == GDK_Down) &&
-	    ((event->state & modifiers) == GDK_MOD1_MASK))
+	    ((event->state & modifiers) == GDK_MOD1_MASK) &&
+	    editable)
 	{
 		move_lines (GTK_TEXT_VIEW (widget), key == GDK_Down);
 		return TRUE;
