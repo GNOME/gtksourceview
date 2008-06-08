@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-11 22:55+0100\n"
-"PO-Revision-Date: 2008-02-05 14:56+0100\n"
+"POT-Creation-Date: 2008-06-08 20:18+0200\n"
+"PO-Revision-Date: 2008-06-08 20:18+0200\n"
 "Last-Translator: Gil Forcada <gilforcada@guifi.net>\n"
 "Language-Team: Catalan <tradgnome@softcatala.org>\n"
 "MIME-Version: 1.0\n"
@@ -146,7 +146,7 @@ msgstr "Falta la definició del llenguatge principal (id = «%s».)"
 #: ../gtksourceview/language-specs/rpmspec.lang.h:10
 #: ../gtksourceview/language-specs/sh.lang.h:6
 #: ../gtksourceview/language-specs/texinfo.lang.h:8
-#: ../gtksourceview/language-specs/yacc.lang.h:2
+#: ../gtksourceview/language-specs/yacc.lang.h:1
 msgid "Others"
 msgstr "Altres"
 
@@ -203,11 +203,11 @@ msgstr "Identificador «%s» desconegut en l'expressió regular «%s»"
 msgid "in regex '%s': backreferences are not supported"
 msgstr "en l'expressió regular «%s»: no es permeten les referències anteriors"
 
-#: ../gtksourceview/gtksourcemark.c:108
+#: ../gtksourceview/gtksourcemark.c:119
 msgid "category"
 msgstr "categoria"
 
-#: ../gtksourceview/gtksourcemark.c:109
+#: ../gtksourceview/gtksourcemark.c:120
 msgid "The mark category"
 msgstr "La categoria de la marca"
 
@@ -1775,7 +1775,7 @@ msgstr "pkg-config"
 
 #: ../gtksourceview/language-specs/po.lang.h:6
 msgid "gettext translation"
-msgstr "traducció del gettext"
+msgstr "Traducció del gettext"
 
 #: ../gtksourceview/language-specs/python.lang.h:3
 msgid "Builtin Constant"
@@ -1995,21 +1995,9 @@ msgstr "Instrucció de processament"
 msgid "XML"
 msgstr "XML"
 
-#: ../gtksourceview/language-specs/yacc.lang.h:1
-msgid "Inline C Code"
-msgstr "Codi C en línia"
-
-#: ../gtksourceview/language-specs/yacc.lang.h:3
+#: ../gtksourceview/language-specs/yacc.lang.h:2
 msgid "Yacc"
 msgstr "Yacc"
-
-#: ../gtksourceview/language-specs/yacc.lang.h:4
-msgid "grammar"
-msgstr "gramàtica"
-
-#: ../gtksourceview/language-specs/yacc.lang.h:5
-msgid "keyword"
-msgstr "paraula clau"
 
 #: ../gtksourceview/language-specs/classic.xml.h:1
 msgid "Classic"
@@ -2042,6 +2030,15 @@ msgstr "Esquema de color que utilitza la paleta de colors de Tango"
 #: ../gtksourceview/language-specs/tango.xml.h:2
 msgid "Tango"
 msgstr "Tango"
+
+#~ msgid "Inline C Code"
+#~ msgstr "Codi C en línia"
+
+#~ msgid "grammar"
+#~ msgstr "gramàtica"
+
+#~ msgid "keyword"
+#~ msgstr "paraula clau"
 
 #~ msgid "Escaping character for syntax patterns"
 #~ msgstr "Caràcter d'escapada pels patrons de sintaxi"
