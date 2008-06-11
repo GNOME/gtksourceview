@@ -1,4 +1,4 @@
-# translation of gtksourceview.HEAD.ar.po to Arabic
+# translation of gtksourceview.HEAD.po to Arabic
 # Arabic translation of PACKAGE.
 # Copyright (C) 2003 THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
@@ -7,31 +7,30 @@
 # Arafat Medini <lumina@silverpen.de>, 2003.
 # Abdulaziz Al-Arfaj <alarfaj0@yahoo.com>, 2004.
 # Djihed Afifi <djihed@gmail.com>, 2006.
-# Khaled Hosny <khaledhosny@eglug.org>, 2007.
+# Khaled Hosny <khaledhosny@eglug.org>, 2007, 2008.
 # Abderrahim Kitouni <a.kitouni@gmail.com>, 2007.
 msgid ""
 msgstr ""
-"Project-Id-Version: gtksourceview.HEAD.ar\n"
+"Project-Id-Version: gtksourceview.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-02-29 17:07+0000\n"
-"PO-Revision-Date: 2008-02-18 18:31-0000\n"
-"Last-Translator: Abou Manal <aboumanal@gmail.com>\n"
+"PO-Revision-Date: 2008-05-24 20:47+0300\n"
+"Last-Translator: Khaled Hosny <khaledhosny@eglug.org>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
-"Plural-Forms: Plural-Forms: nplurals=4; plural=n==1 ? 0 : n==2 ? 1 : n>=3 && "
-"n<=10 ? 2 : 3\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 
 #: ../gtksourceview/gtksourcebuffer.c:168
 #: ../gtksourceview/gtksourceprintcompositor.c:471
 msgid "Highlight Syntax"
-msgstr "أبرِز التراكيب"
+msgstr "أبرِز الصيغة"
 
 #: ../gtksourceview/gtksourcebuffer.c:169
 msgid "Whether to highlight syntax in the buffer"
-msgstr "ما اذا يبرز التركيب في الذاكرة الوسيطة"
+msgstr "ما إذا ستبرز الصيغة في الصوان"
 
 #: ../gtksourceview/gtksourcebuffer.c:182
 msgid "Highlight Matching Brackets"
@@ -117,8 +116,7 @@ msgstr "معرف السياق '%s' مكرر"
 msgid ""
 "style override used with wildcard context reference in language '%s' in ref "
 "'%s'"
-msgstr ""
-"أسلوب التجاوز المستعمل مع بدل مرجع السياق في اللغة  '%s' في المرجع '%s'"
+msgstr "أسلوب التجاوز المستعمل مع بدل مرجع السياق في اللغة  '%s' في المرجع '%s'"
 
 #: ../gtksourceview/gtksourcecontextengine.c:6123
 #, c-format
@@ -173,7 +171,7 @@ msgstr "قسم اللغة"
 
 #: ../gtksourceview/gtksourcelanguage.c:239
 msgid "Hidden"
-msgstr "مخفي"
+msgstr "خفي"
 
 #: ../gtksourceview/gtksourcelanguage.c:240
 msgid "Whether the language should be hidden from the user"
@@ -238,8 +236,7 @@ msgid "Wrap Mode"
 msgstr "نمط الالتفاف"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:451
-msgid ""
-"Whether to wrap lines never, at word boundaries, or at character boundaries."
+msgid "Whether to wrap lines never, at word boundaries, or at character boundaries."
 msgstr "فيما ينبغي لف السطور عند حدود الكلمة، أو عند حدود المِحرف."
 
 #: ../gtksourceview/gtksourceprintcompositor.c:472
@@ -310,8 +307,7 @@ msgstr "عدد الصفحات"
 msgid ""
 "The number of pages in the document (-1 means the document has not been "
 "completely paginated)."
-msgstr ""
-"عدد الصفحات في الوثيقة (-1 تعني أن الوثيقة لم يتم إنهاء تشكيل صفحاتها)."
+msgstr "عدد الصفحات في الوثيقة (-1 تعني أن الوثيقة لم يتم إنهاء تشكيل صفحاتها)."
 
 #: ../gtksourceview/gtksourcestyle.c:70
 msgid "Line background"
@@ -542,7 +538,7 @@ msgstr ""
 
 #: ../gtksourceview/language-specs/ada.lang.h:1
 msgid "Ada"
-msgstr "Ada"
+msgstr "أدا"
 
 #: ../gtksourceview/language-specs/ada.lang.h:2
 msgid "Arbitrary base number"
@@ -637,7 +633,7 @@ msgstr "تعليق"
 #: ../gtksourceview/language-specs/vala.lang.h:3
 #: ../gtksourceview/language-specs/vbnet.lang.h:3
 msgid "Data Type"
-msgstr "نوع البيانات"
+msgstr "نوع بيانات"
 
 #. A decimal number: 1234
 #: ../gtksourceview/language-specs/ada.lang.h:6
@@ -710,7 +706,7 @@ msgstr "مِحرف متجاوز"
 #: ../gtksourceview/language-specs/verilog.lang.h:6
 #: ../gtksourceview/language-specs/vhdl.lang.h:5
 msgid "Keyword"
-msgstr "الكلمة المفتاح"
+msgstr "كلمة مفتاحية"
 
 #: ../gtksourceview/language-specs/ada.lang.h:9
 #: ../gtksourceview/language-specs/c.lang.h:15
@@ -722,7 +718,7 @@ msgstr "الكلمة المفتاح"
 #: ../gtksourceview/language-specs/pascal.lang.h:6
 #: ../gtksourceview/language-specs/vbnet.lang.h:5
 msgid "Preprocessor"
-msgstr "Preprocessor"
+msgstr "معالج أولي"
 
 #: ../gtksourceview/language-specs/ada.lang.h:10
 #: ../gtksourceview/language-specs/csharp.lang.h:11
@@ -758,13 +754,13 @@ msgstr "عدد حقيقي"
 #: ../gtksourceview/language-specs/verilog.lang.h:7
 #: ../gtksourceview/language-specs/vhdl.lang.h:8
 msgid "Sources"
-msgstr "المصادر"
+msgstr "مصادر"
 
 #: ../gtksourceview/language-specs/ada.lang.h:12
 #: ../gtksourceview/language-specs/c.lang.h:17
 #: ../gtksourceview/language-specs/java.lang.h:14
 msgid "Storage Class"
-msgstr "صنف التخزين"
+msgstr "صنف تخزين"
 
 #. A string constant: "this is a string"
 #: ../gtksourceview/language-specs/ada.lang.h:13
@@ -821,7 +817,7 @@ msgstr "نمط"
 #: ../gtksourceview/language-specs/sh.lang.h:7
 #: ../gtksourceview/language-specs/tcl.lang.h:2
 msgid "Scripts"
-msgstr "نصوص تشفيرية"
+msgstr "نصوص شفرية"
 
 #: ../gtksourceview/language-specs/awk.lang.h:4
 #: ../gtksourceview/language-specs/haskell.lang.h:15
@@ -833,15 +829,15 @@ msgstr "نصوص تشفيرية"
 #: ../gtksourceview/language-specs/sh.lang.h:11
 #: ../gtksourceview/language-specs/tcl.lang.h:4
 msgid "Variable"
-msgstr "متغيرة"
+msgstr "متغير"
 
 #: ../gtksourceview/language-specs/awk.lang.h:5
 msgid "awk"
-msgstr "awk"
+msgstr "أوْك"
 
 #: ../gtksourceview/language-specs/boo.lang.h:1
 msgid "Boo"
-msgstr "Boo"
+msgstr "بو"
 
 #: ../gtksourceview/language-specs/boo.lang.h:2
 #: ../gtksourceview/language-specs/desktop.lang.h:2
@@ -851,7 +847,7 @@ msgstr "Boo"
 #: ../gtksourceview/language-specs/python.lang.h:2
 #: ../gtksourceview/language-specs/scheme.lang.h:1
 msgid "Boolean"
-msgstr "قيمة منطقية"
+msgstr "منطقي"
 
 #: ../gtksourceview/language-specs/boo.lang.h:3
 #: ../gtksourceview/language-specs/perl.lang.h:1
@@ -871,7 +867,7 @@ msgstr "سلسلة متعددة السطور"
 #: ../gtksourceview/language-specs/boo.lang.h:9
 #: ../gtksourceview/language-specs/xml.lang.h:10
 msgid "Namespace"
-msgstr "مجال الأسماء"
+msgstr "نطاق أسماء"
 
 #: ../gtksourceview/language-specs/boo.lang.h:10
 #: ../gtksourceview/language-specs/csharp.lang.h:9
@@ -882,7 +878,7 @@ msgstr "مجال الأسماء"
 #: ../gtksourceview/language-specs/php.lang.h:12
 #: ../gtksourceview/language-specs/vala.lang.h:8
 msgid "Null Value"
-msgstr "قيمة غير صالحة"
+msgstr "قيمة عدميّة"
 
 #. A generic number constant
 #: ../gtksourceview/language-specs/boo.lang.h:11
@@ -892,13 +888,13 @@ msgstr "قيمة غير صالحة"
 #: ../gtksourceview/language-specs/java.lang.h:11
 #: ../gtksourceview/language-specs/vhdl.lang.h:6
 msgid "Number"
-msgstr "الرقم"
+msgstr "عدد"
 
 #: ../gtksourceview/language-specs/boo.lang.h:12
 #: ../gtksourceview/language-specs/perl.lang.h:17
 #: ../gtksourceview/language-specs/ruby.lang.h:17
 msgid "Regular Expression"
-msgstr "عبارة منتظمة"
+msgstr "تعبير اعتيادي"
 
 #: ../gtksourceview/language-specs/boo.lang.h:14
 #: ../gtksourceview/language-specs/python.lang.h:16
@@ -908,11 +904,11 @@ msgstr "متغير خاص"
 
 #: ../gtksourceview/language-specs/changelog.lang.h:1
 msgid "ChangeLog"
-msgstr "التغيرات:"
+msgstr "سجب التغييرات"
 
 #: ../gtksourceview/language-specs/c.lang.h:2
 msgid "C"
-msgstr "C"
+msgstr "سي"
 
 #. A character constant: 'c'
 #: ../gtksourceview/language-specs/c.lang.h:3
@@ -921,7 +917,7 @@ msgstr "C"
 #: ../gtksourceview/language-specs/nemerle.lang.h:3
 #: ../gtksourceview/language-specs/vhdl.lang.h:3
 msgid "Character"
-msgstr "الرمز"
+msgstr "محرف"
 
 #: ../gtksourceview/language-specs/c.lang.h:5
 #: ../gtksourceview/language-specs/cpp.lang.h:2
@@ -969,7 +965,7 @@ msgstr "عدد عشري"
 #: ../gtksourceview/language-specs/php.lang.h:10
 #: ../gtksourceview/language-specs/vala.lang.h:6
 msgid "Hexadecimal number"
-msgstr "عدد سادس عشري"
+msgstr "عدد ست عشري"
 
 #: ../gtksourceview/language-specs/c.lang.h:12
 msgid "Included File"
@@ -992,19 +988,19 @@ msgstr "ترويسة C/C++/ObjC"
 
 #: ../gtksourceview/language-specs/cpp.lang.h:1
 msgid "C++"
-msgstr "C++"
+msgstr "سي++"
 
 #: ../gtksourceview/language-specs/csharp.lang.h:2
 msgid "C#"
-msgstr "C#"
+msgstr "سي#"
 
 #: ../gtksourceview/language-specs/css.lang.h:1
 msgid "CSS"
-msgstr "CSS"
+msgstr "صفحات الطرز المتراصة"
 
 #: ../gtksourceview/language-specs/css.lang.h:2
 msgid "Color"
-msgstr "اللون"
+msgstr "لون"
 
 #: ../gtksourceview/language-specs/css.lang.h:4
 #: ../gtksourceview/language-specs/fortran.lang.h:4
@@ -1019,7 +1015,7 @@ msgstr "عشري"
 
 #: ../gtksourceview/language-specs/css.lang.h:5
 msgid "Dimension"
-msgstr "الحجم"
+msgstr "أبعاد"
 
 #. A function name (also: methods for classes)
 #: ../gtksourceview/language-specs/css.lang.h:7
@@ -1032,7 +1028,7 @@ msgstr "الحجم"
 #: ../gtksourceview/language-specs/sh.lang.h:3
 #: ../gtksourceview/language-specs/sql.lang.h:5
 msgid "Function"
-msgstr "الوظيفة"
+msgstr "دالّة"
 
 #: ../gtksourceview/language-specs/css.lang.h:9
 msgid "Known Property Value"
@@ -1084,7 +1080,7 @@ msgstr "نوع بيانات"
 
 #: ../gtksourceview/language-specs/def.lang.h:20
 msgid "Defaults"
-msgstr "الإفتراضيّات"
+msgstr "المبدئيات"
 
 #. A special comment containing documentation like in javadoc or
 #. gtk-doc
@@ -1119,7 +1115,7 @@ msgstr "عملية"
 #. This one is for '#include <foo.h>' and "#pragma blah", or 'use foobar', etc..
 #: ../gtksourceview/language-specs/def.lang.h:44
 msgid "Preprocessor directive"
-msgstr "تعليمة ال‍ Preprocessor"
+msgstr "تعليمة معالج أولي"
 
 #. Reserved keywords: like "const" and "goto" in Java
 #: ../gtksourceview/language-specs/def.lang.h:46
@@ -1130,7 +1126,7 @@ msgstr "كلمات مخصصة"
 #: ../gtksourceview/language-specs/def.lang.h:48
 #: ../gtksourceview/language-specs/sh.lang.h:8
 msgid "Shebang"
-msgstr "Shebang"
+msgstr "شيبانغ"
 
 #. This style doesn't map to anything since it must be used as an additional
 #. style for text which is already styled as a "string"
@@ -1147,7 +1143,7 @@ msgstr "ثابت خاص"
 #. Any statement
 #: ../gtksourceview/language-specs/def.lang.h:55
 msgid "Statement"
-msgstr "بيان"
+msgstr "إفادة"
 
 #. Text that stands out, HTML links, e-mail addresses, etc.
 #: ../gtksourceview/language-specs/def.lang.h:59
@@ -1164,11 +1160,11 @@ msgstr "فئة"
 
 #: ../gtksourceview/language-specs/desktop.lang.h:4
 msgid "Encoding"
-msgstr "التشفيرة"
+msgstr "ترميز"
 
 #: ../gtksourceview/language-specs/desktop.lang.h:5
 msgid "Exec parameter"
-msgstr "عوامل التنفيذ"
+msgstr "معاملات التنفيذ"
 
 #: ../gtksourceview/language-specs/desktop.lang.h:6
 msgid "Group"
@@ -1225,7 +1221,7 @@ msgstr "عدد ثنائي"
 
 #: ../gtksourceview/language-specs/d.lang.h:4
 msgid "D"
-msgstr "D"
+msgstr "دي"
 
 #: ../gtksourceview/language-specs/d.lang.h:14
 msgid "Special Token"
@@ -1233,7 +1229,7 @@ msgstr "علامة خاصة"
 
 #: ../gtksourceview/language-specs/docbook.lang.h:1
 msgid "Docbook"
-msgstr "Docbook"
+msgstr "دوك‌بوك"
 
 #: ../gtksourceview/language-specs/docbook.lang.h:2
 msgid "Formatting Elements"
@@ -1256,7 +1252,7 @@ msgstr "عناصر الترويسة"
 #: ../gtksourceview/language-specs/texinfo.lang.h:7
 #: ../gtksourceview/language-specs/xml.lang.h:9
 msgid "Markup"
-msgstr "تعليم"
+msgstr "رقْم"
 
 #: ../gtksourceview/language-specs/docbook.lang.h:6
 msgid "Structural Elements"
@@ -1285,7 +1281,7 @@ msgstr "قيمة منطقية"
 
 #: ../gtksourceview/language-specs/eiffel.lang.h:5
 msgid "Debug"
-msgstr "نقّح"
+msgstr "تنقيح"
 
 #: ../gtksourceview/language-specs/eiffel.lang.h:7
 msgid "Design by Contract"
@@ -1297,7 +1293,7 @@ msgstr "Eiffel"
 
 #: ../gtksourceview/language-specs/eiffel.lang.h:9
 msgid "Exception Handling"
-msgstr "التعامل مع الإستثناء"
+msgstr "التعامل مع الاستثناء"
 
 #: ../gtksourceview/language-specs/eiffel.lang.h:12
 #: ../gtksourceview/language-specs/ruby.lang.h:16
@@ -1328,7 +1324,7 @@ msgstr "مُضمَّن"
 #: ../gtksourceview/language-specs/erlang.lang.h:5
 #: ../gtksourceview/language-specs/verilog.lang.h:3
 msgid "Compiler Directive"
-msgstr "تعليمة مجمع"
+msgstr "تعليمة مصرّف"
 
 #: ../gtksourceview/language-specs/erlang.lang.h:7
 msgid "Erlang"
@@ -1340,7 +1336,7 @@ msgstr "خيار المُصرف"
 
 #: ../gtksourceview/language-specs/forth.lang.h:4
 msgid "Debug Code"
-msgstr "نقِّح الشيفرة"
+msgstr "كود التنقيح"
 
 #: ../gtksourceview/language-specs/forth.lang.h:5
 msgid "Error text"
@@ -1348,7 +1344,7 @@ msgstr "نص الخطأ"
 
 #: ../gtksourceview/language-specs/forth.lang.h:6
 msgid "Forth"
-msgstr "Forth"
+msgstr "فورث"
 
 #: ../gtksourceview/language-specs/fortran.lang.h:1
 msgid "BOZ Literal"
@@ -1363,7 +1359,7 @@ msgstr "عشري"
 
 #: ../gtksourceview/language-specs/fortran.lang.h:6
 msgid "Fortran 95"
-msgstr "Fortran 95"
+msgstr "فورتران 95"
 
 #: ../gtksourceview/language-specs/gap.lang.h:1
 msgid "GAP"
@@ -1372,7 +1368,7 @@ msgstr "GAP"
 #: ../gtksourceview/language-specs/gap.lang.h:2
 #: ../gtksourceview/language-specs/octave.lang.h:10
 msgid "Scientific"
-msgstr "علميّ"
+msgstr "علمي"
 
 #: ../gtksourceview/language-specs/gtk-doc.lang.h:3
 msgid "Function Name"
@@ -1384,7 +1380,7 @@ msgstr "فقرة توثيق داخلية"
 
 #: ../gtksourceview/language-specs/gtk-doc.lang.h:6
 msgid "Parameter"
-msgstr "مُوسِط"
+msgstr "معامل"
 
 #: ../gtksourceview/language-specs/gtk-doc.lang.h:7
 msgid "Property Name"
@@ -1430,7 +1426,7 @@ msgstr "مرساة"
 
 #: ../gtksourceview/language-specs/haddock.lang.h:2
 msgid "Code Block"
-msgstr "كتلة شفرة"
+msgstr "لبنة كود"
 
 #: ../gtksourceview/language-specs/haddock.lang.h:3
 msgid "Definition list"
@@ -1482,7 +1478,7 @@ msgstr "Monospace"
 
 #: ../gtksourceview/language-specs/haddock.lang.h:16
 msgid "URL"
-msgstr "عنوان URL"
+msgstr "مسار"
 
 #: ../gtksourceview/language-specs/haskell-literate.lang.h:1
 msgid "Literate Haskell"
@@ -1498,7 +1494,7 @@ msgstr "هاسكيل"
 
 #: ../gtksourceview/language-specs/haskell.lang.h:8
 msgid "Hex"
-msgstr "عدد سادس عشري"
+msgstr "عدد ست عشري"
 
 #: ../gtksourceview/language-specs/haskell.lang.h:10
 msgid "Octal"
@@ -1524,7 +1520,7 @@ msgstr "HTML"
 #: ../gtksourceview/language-specs/html.lang.h:8
 #: ../gtksourceview/language-specs/xml.lang.h:12
 msgid "Tag"
-msgstr "شارة"
+msgstr "وسم"
 
 #: ../gtksourceview/language-specs/idl.lang.h:3
 msgid "IDL"
@@ -1549,7 +1545,7 @@ msgstr "كلمات مخصصة مستقبلية"
 
 #: ../gtksourceview/language-specs/java.lang.h:8
 msgid "Java"
-msgstr "Java"
+msgstr "جافا"
 
 #: ../gtksourceview/language-specs/java.lang.h:12
 msgid "Scope Declaration"
@@ -1561,11 +1557,11 @@ msgstr "البنائات"
 
 #: ../gtksourceview/language-specs/javascript.lang.h:9
 msgid "Javascript"
-msgstr "Javascript"
+msgstr "جافا سكربت"
 
 #: ../gtksourceview/language-specs/javascript.lang.h:12
 msgid "Object"
-msgstr "شيء"
+msgstr "كائن"
 
 #: ../gtksourceview/language-specs/javascript.lang.h:13
 msgid "Properties"
@@ -1586,7 +1582,7 @@ msgstr "نمط رياضيات داخلي"
 
 #: ../gtksourceview/language-specs/latex.lang.h:5
 msgid "LaTeX"
-msgstr "LaTeX"
+msgstr "لاتك"
 
 #: ../gtksourceview/language-specs/latex.lang.h:7
 msgid "Math Mode"
@@ -1606,7 +1602,7 @@ msgstr "libtool"
 
 #: ../gtksourceview/language-specs/lua.lang.h:6
 msgid "Lua"
-msgstr "Lua"
+msgstr "لوا"
 
 #: ../gtksourceview/language-specs/lua.lang.h:7
 #: ../gtksourceview/language-specs/ruby.lang.h:14
@@ -1647,7 +1643,7 @@ msgstr "عدد عشري"
 
 #: ../gtksourceview/language-specs/ocaml.lang.h:11
 msgid "Labeled argument"
-msgstr "معامِل مُعنون"
+msgstr "معطى مُعنون"
 
 #: ../gtksourceview/language-specs/ocaml.lang.h:12
 msgid "Module Path"
@@ -1663,7 +1659,7 @@ msgstr "تعليقات Ocamldoc"
 
 #: ../gtksourceview/language-specs/ocaml.lang.h:15
 msgid "Polymorphic Variant"
-msgstr "تنويعة متعددة الاشكال"
+msgstr "تنويعة متعددة الأشكال"
 
 #: ../gtksourceview/language-specs/ocaml.lang.h:18
 msgid "Type Variable"
@@ -1671,7 +1667,7 @@ msgstr "متغيِّر النوع"
 
 #: ../gtksourceview/language-specs/ocaml.lang.h:19
 msgid "Type, module or object keyword"
-msgstr "كلمة مفتاحية لِ النوع, الوحدة أو  العنصر"
+msgstr "كلمة مفتاحية للنوع أو الوحدة أو العنصر"
 
 #: ../gtksourceview/language-specs/ocaml.lang.h:20
 msgid "Variant Constructor"
@@ -1699,7 +1695,7 @@ msgstr "رمزُ ثابت مشغول"
 
 #: ../gtksourceview/language-specs/pascal.lang.h:5
 msgid "Pascal"
-msgstr "Pascal"
+msgstr "باسكال"
 
 #: ../gtksourceview/language-specs/perl.lang.h:3
 msgid "Control"
@@ -1728,7 +1724,7 @@ msgstr "بيان التضمين"
 
 #: ../gtksourceview/language-specs/perl.lang.h:10
 msgid "Line Directive"
-msgstr "سطر الأوامر"
+msgstr "تعليمة سطر"
 
 #: ../gtksourceview/language-specs/perl.lang.h:12
 msgid "POD"
@@ -1748,7 +1744,7 @@ msgstr "كلمة مفتاحية لِ بود"
 
 #: ../gtksourceview/language-specs/perl.lang.h:16
 msgid "Perl"
-msgstr "Perl"
+msgstr "پيرل"
 
 #: ../gtksourceview/language-specs/perl.lang.h:20
 msgid "System Command"
@@ -1768,7 +1764,7 @@ msgstr "pkg-config"
 
 #: ../gtksourceview/language-specs/po.lang.h:6
 msgid "gettext translation"
-msgstr "ترجمة gettext"
+msgstr "ترجمة جتكست"
 
 #: ../gtksourceview/language-specs/python.lang.h:3
 msgid "Builtin Constant"
@@ -1788,7 +1784,7 @@ msgstr "معالج الوحدات"
 
 #: ../gtksourceview/language-specs/python.lang.h:14
 msgid "Python"
-msgstr "Python"
+msgstr "پيثون"
 
 #: ../gtksourceview/language-specs/python.lang.h:18
 msgid "string-conversion"
@@ -1808,11 +1804,11 @@ msgstr "عدد صحيح"
 
 #: ../gtksourceview/language-specs/R.lang.h:7
 msgid "R"
-msgstr "R"
+msgstr "آر"
 
 #: ../gtksourceview/language-specs/R.lang.h:8
 msgid "Reserved Class"
-msgstr "صنف مشغول"
+msgstr "صنف محجوز"
 
 #: ../gtksourceview/language-specs/R.lang.h:10
 msgid "Special Constant"
@@ -1856,15 +1852,15 @@ msgstr "مركبات أخرى"
 
 #: ../gtksourceview/language-specs/rpmspec.lang.h:11
 msgid "RPM Variable"
-msgstr "متغير أر بي ام RPM "
+msgstr "RPM Variable"
 
 #: ../gtksourceview/language-specs/rpmspec.lang.h:12
 msgid "RPM spec"
-msgstr "تحديد أر بي ام RPM "
+msgstr "RPM spec"
 
 #: ../gtksourceview/language-specs/rpmspec.lang.h:13
 msgid "Section"
-msgstr "مقطع"
+msgstr "قسم"
 
 #: ../gtksourceview/language-specs/rpmspec.lang.h:14
 msgid "Spec Macro"
@@ -1872,7 +1868,7 @@ msgstr "مركّب تحديد"
 
 #: ../gtksourceview/language-specs/rpmspec.lang.h:15
 msgid "Switch"
-msgstr "اداة تغيير (Switch)"
+msgstr "Switch"
 
 #: ../gtksourceview/language-specs/ruby.lang.h:1
 msgid "Attribute Definition"
@@ -1892,7 +1888,7 @@ msgstr "روبي"
 
 #: ../gtksourceview/language-specs/scheme.lang.h:5
 msgid "Scheme"
-msgstr "مخطط"
+msgstr "سكيم"
 
 #: ../gtksourceview/language-specs/sh.lang.h:2
 msgid "Common Commands"
@@ -1937,7 +1933,7 @@ msgstr "مركّبات"
 
 #: ../gtksourceview/language-specs/texinfo.lang.h:10
 msgid "Texinfo"
-msgstr "تكس إنفو"
+msgstr "تخ‌إنفو"
 
 #: ../gtksourceview/language-specs/vbnet.lang.h:9
 msgid "VB.NET"
@@ -2009,7 +2005,7 @@ msgstr "Kate"
 
 #: ../gtksourceview/language-specs/oblivion.xml.h:1
 msgid "Dark color scheme using the Tango color palette"
-msgstr "مخطَّط الألوان الغامقة باستعمال لوحة ألوان طانغو"
+msgstr "مخطَّط الألوان الغامقة باستعمال لوحة ألوان تانجو"
 
 #: ../gtksourceview/language-specs/oblivion.xml.h:2
 msgid "Oblivion"
@@ -2017,512 +2013,9 @@ msgstr "نسيان"
 
 #: ../gtksourceview/language-specs/tango.xml.h:1
 msgid "Color scheme using Tango color palette"
-msgstr "مخطَّط الألوان باستعمال لوحة ألوان طانغو"
+msgstr "مخطَّط الألوان باستعمال لوحة ألوان تانجو"
 
 #: ../gtksourceview/language-specs/tango.xml.h:2
 msgid "Tango"
 msgstr "تانجو"
 
-#~ msgid "Inline C Code"
-#~ msgstr "شفرة سي داخلية"
-
-#~ msgid "grammar"
-#~ msgstr "نحو"
-
-#~ msgid "keyword"
-#~ msgstr "كلمة مفتاحية"
-
-#~ msgid "Margin Line Alpha"
-#~ msgstr "ألفا خط الحاشية "
-
-#~ msgid "Transparency of the margin line"
-#~ msgstr "شفافية خط الحاشية "
-
-#~ msgid "Margin Line Color"
-#~ msgstr "لون خط الحاشية "
-
-#~ msgid "Color to use for the right margin line"
-#~ msgstr "لون خط الحاشية الأيمن"
-
-#~ msgid "Margin Overlay Toggle"
-#~ msgstr "تفعيل الحاشية الأيمن"
-
-#~ msgid "Whether to draw the right margin overlay"
-#~ msgstr "ما اذا سيعرض الحاشية الأيمن"
-
-#~ msgid "Margin Overlay Alpha"
-#~ msgstr "ألفا الحاشية"
-
-#~ msgid "Transparency of the margin overlay"
-#~ msgstr "شفافية الحاشية"
-
-#~ msgid "Margin Overlay Color"
-#~ msgstr "لون الحاشية "
-
-#~ msgid "Color to use for drawing the margin overlay"
-#~ msgstr "لون المستعمل للحاشية"
-
-#~ msgid "Escaping character for syntax patterns"
-#~ msgstr "رمز الإفلات لأنماط التراكيب"
-
-#~ msgid "Check Brackets"
-#~ msgstr "مراجعة القوسان"
-
-#~ msgid "Configuration"
-#~ msgstr "إعدادات"
-
-#~ msgid "Configuration options for the print job"
-#~ msgstr "خيارات الإعدادات لمهمة الطبع"
-
-#~ msgid "Width in equivalent space characters of tabs"
-#~ msgstr "العرض بما يقابله من فضائات رموز الألسنة"
-
-#~ msgid "Word wrapping mode"
-#~ msgstr "نسق كسر الكلمة"
-
-#~ msgid "Font"
-#~ msgstr "الخط"
-
-#~ msgid "GnomeFont name to use for the document text (deprecated)"
-#~ msgstr "اسم خط جنوم فونت الذي سيستخدم لنص المستند (ملغى)"
-
-#~ msgid "GnomeFont name to use for the line numbers (deprecated)"
-#~ msgstr "اسم خط جنوم فونت الذي سيستخدم لأرقام السّطور (ملغى)"
-
-#~ msgid "Font description to use for the line numbers"
-#~ msgstr "وصف الخط الذي سيستخدم لأرقام السّطور"
-
-#~ msgid "Header and Footer Font"
-#~ msgstr "خط الترويسة و الهامش"
-
-#~ msgid "GnomeFont name to use for the header and footer (deprecated)"
-#~ msgstr "اسم خط جنوم فونت الذي سيستخدم للتّرويسة و التّذييل (ملغى)"
-
-#~ msgid "Header and Footer Font Description"
-#~ msgstr "وصف خط التّرويسة و التّذييل"
-
-#~ msgid "Specials"
-#~ msgstr "خاصة"
-
-#~ msgid "Tag ID"
-#~ msgstr "هوية الشارة"
-
-#~ msgid "ID used to refer to the source tag"
-#~ msgstr "الهوية المستخدمة للاشارة لشارة المصدر"
-
-#~ msgid "Tag style"
-#~ msgstr "أسلوب الشارة"
-
-#~ msgid "The style associated with the source tag"
-#~ msgstr "الأسلوب المترابط مع شارة المصدر"
-
-#~ msgid "Character Constant"
-#~ msgstr "رمزُ ثابت"
-
-#~ msgid "Line Comment"
-#~ msgstr "تعليق عن السطر"
-
-#~ msgid "Preprocessor Keyword"
-#~ msgstr "تعريفات الـ Preprocessor"
-
-#~ msgid "True And False"
-#~ msgstr "True و False"
-
-#~ msgid "Keywords"
-#~ msgstr "الكلمات المفاتيح"
-
-#~ msgid "Primitive"
-#~ msgstr "البدائيات"
-
-#~ msgid "'#if 0' Comment"
-#~ msgstr "تعليق '#if 0'"
-
-#~ msgid "Common Macro"
-#~ msgstr "مركب متداول"
-
-#~ msgid "Include/Pragma"
-#~ msgstr "تضمين/Pragma"
-
-#~ msgid "Preprocessor Definitions"
-#~ msgstr "تعريفات الـ Preprocessor"
-
-#~ msgid "Types"
-#~ msgstr "أنواع"
-
-#~ msgid "File"
-#~ msgstr "ملف"
-
-#~ msgid "Marker"
-#~ msgstr "تعليم"
-
-#~ msgid "Primitives"
-#~ msgstr "البدائيات"
-
-#~ msgid "String 2"
-#~ msgstr "سلسلة 2"
-
-#~ msgid "Attribute Value Delimiters"
-#~ msgstr "حدود قيم الصّفة"
-
-#~ msgid "Hexadecimal Color"
-#~ msgstr "اللون بالنظام الثماني"
-
-#~ msgid "Importance Modifier"
-#~ msgstr "متغير الأهمية"
-
-#~ msgid "Punctuators"
-#~ msgstr "تنقيط"
-
-#~ msgid "Selector Grammar"
-#~ msgstr "نحو المنتقي "
-
-#~ msgid "Selector Pseudo Elements"
-#~ msgstr "شبه العناصر للمنتقي "
-
-#~ msgid "Unicode Character Reference"
-#~ msgstr "مرجع حروف اليونيكود"
-
-#~ msgid "Unicode Range"
-#~ msgstr "مجال اليونيكود"
-
-#~ msgid "Grave Literal"
-#~ msgstr "رمز"
-
-#~ msgid "Nested Comment"
-#~ msgstr "تعليق"
-
-#~ msgid "String Literal"
-#~ msgstr "نص"
-
-#~ msgid "Non Standard Key"
-#~ msgstr "مفتاح غير قياسي"
-
-#~ msgid "Standard Key"
-#~ msgstr "مفتاح قياسي"
-
-#~ msgid "Diff file"
-#~ msgstr "ملف الاختلافات"
-
-#~ msgid "Closing Bracket"
-#~ msgstr "القوس الغالق"
-
-#~ msgid "Hexadecimal"
-#~ msgstr "سادس عشري"
-
-#~ msgid "Structural Elements 2"
-#~ msgstr "عناصر بنائيّة 2"
-
-#~ msgid "Input/Output"
-#~ msgstr "خروج/دخول"
-
-#~ msgid "Intrinsics"
-#~ msgstr "البديهيات"
-
-#~ msgid "Read/Write"
-#~ msgstr "قراءة/كتابة"
-
-#~ msgid "Double Quoted String"
-#~ msgstr "سلسلة ذات رمز تصاريح مضاعف"
-
-#~ msgid "Keysymbol"
-#~ msgstr "رمز المفتاح"
-
-#~ msgid "Single Quoted String"
-#~ msgstr "سلسلة ذات رمز تصريح وحيد"
-
-#~ msgid "State"
-#~ msgstr "الحالة"
-
-#~ msgid "Type or Constructor"
-#~ msgstr "الفئة أو البنّاء"
-
-#~ msgid "Sectional"
-#~ msgstr "مقطع"
-
-#~ msgid "Integer"
-#~ msgstr "عدد صحيح"
-
-#~ msgid "Flow"
-#~ msgstr "الدفق"
-
-#~ msgid "Memory"
-#~ msgstr "الذاكرة"
-
-#~ msgid "Numeric"
-#~ msgstr "رقمي"
-
-#~ msgid "Array Operators"
-#~ msgstr "عوامل الصفيفة"
-
-#~ msgid "Floating-Point Number"
-#~ msgstr "عدد عشري"
-
-#~ msgid "Flow Keywords"
-#~ msgstr "الكلمات النسقية"
-
-#~ msgid "Global Functions"
-#~ msgstr "وظائف عالمية"
-
-#~ msgid "Global Properties"
-#~ msgstr "خصائص عالمية"
-
-#~ msgid "Math Value Properties"
-#~ msgstr "خصائص القيم الرياضية"
-
-#~ msgid "Object Functions"
-#~ msgstr "وظائف الجسم"
-
-#~ msgid "Object Properties"
-#~ msgstr "خاصيات الجسم"
-
-#~ msgid "Unicode Escape Sequence"
-#~ msgstr "متتالية الهروب لليونيكود"
-
-#~ msgid "Word Operators"
-#~ msgstr "العمليات الأساسية"
-
-#~ msgid "Functions"
-#~ msgstr "دالات"
-
-#~ msgid "Line Comment 2"
-#~ msgstr "تعليق السّطر 2"
-
-#~ msgid "Multiline String 2"
-#~ msgstr "سلسلة ذات سطور متعددة 2"
-
-#~ msgid "Backtick String"
-#~ msgstr "سلسلة Backtick"
-
-#~ msgid "Special Targets"
-#~ msgstr "الأهداف الخاصة"
-
-#~ msgid "Targets"
-#~ msgstr "أهداف"
-
-#~ msgid "Variable1"
-#~ msgstr "متغير1"
-
-#~ msgid "Variable2"
-#~ msgstr "متغير2"
-
-#~ msgid "Core Keywords"
-#~ msgstr "الكلمات النووية"
-
-#~ msgid "Core Types"
-#~ msgstr "الأنواع الأساسية"
-
-#~ msgid "Keywords Defined by Macros"
-#~ msgstr "كلمات "
-
-#~ msgid "Label"
-#~ msgstr "عنوان"
-
-#~ msgid "Multiline Double Quoted String"
-#~ msgstr "عبارة متعددة السطور بالرمز الثنائي"
-
-#~ msgid "Multiline Single Quoted String"
-#~ msgstr "عبارة متعددة السطور بالرمز الأحادي"
-
-#~ msgid "Block Comment 1"
-#~ msgstr "تعليق 1"
-
-#~ msgid "Block Comment 2"
-#~ msgstr "تعليق 2"
-
-#~ msgid "Boolean Bitwise Operators"
-#~ msgstr "عمليات رياضية على الببتات"
-
-#~ msgid "Functions and Function Modifiers"
-#~ msgstr "الوظائف و متغيرات الوظائف"
-
-#~ msgid "General Format"
-#~ msgstr "تنسيق عام"
-
-#~ msgid "Loop, Flow, and Exceptions Keywords"
-#~ msgstr "كلمات الدوائر, النسق و الإستثناءات"
-
-#~ msgid "Method Call"
-#~ msgstr "نداء طريقة"
-
-#~ msgid "String2"
-#~ msgstr "سلسلة2"
-
-#~ msgid "String3"
-#~ msgstr "سلسلة3"
-
-#~ msgid "Variables"
-#~ msgstr "متغيرات"
-
-#~ msgid "Bash Line Comment"
-#~ msgstr "تعليق سطر Bash"
-
-#~ msgid "C Block Comment"
-#~ msgstr "تعليق مقولب لـ C"
-
-#~ msgid "C++ Line Comment"
-#~ msgstr "تعليق سطر C++"
-
-#~ msgid "Case Insensitive Keyword"
-#~ msgstr "كلمة مفتاح غير حساسة للحالة"
-
-#~ msgid "Case Sensitive Keyword"
-#~ msgstr "كلمة مفتاح حاسة للحالة"
-
-#~ msgid "First Open PHP Tag"
-#~ msgstr "شارة Open PHP الأولى"
-
-#~ msgid "Class Variables"
-#~ msgstr "متّغيرات الأصناف"
-
-#~ msgid "Global Variables"
-#~ msgstr "متغيّرات عامّة"
-
-#~ msgid "Instance Variables"
-#~ msgstr "متغيّرات نموذجيّة"
-
-#~ msgid "Module Handlers"
-#~ msgstr "معالجات الوحدات"
-
-#~ msgid "Multiline Comment"
-#~ msgstr "تعليق متعدّد الأسطر"
-
-#~ msgid "RegExp Variables"
-#~ msgstr "متغيّرات تعابير رياضيّة"
-
-#~ msgid "Built-in Command"
-#~ msgstr "أمر مبني"
-
-#~ msgid "Punctuator"
-#~ msgstr "منقٌط"
-
-#~ msgid "Redirection"
-#~ msgstr "توجيه"
-
-#~ msgid "Self"
-#~ msgstr "ذاته"
-
-#~ msgid "ANSI Datatypes"
-#~ msgstr "أنواع بيانات ANSI"
-
-#~ msgid "Aggregate Functions"
-#~ msgstr "تجمع دالات"
-
-#~ msgid "Analytic Functions"
-#~ msgstr "دالات أنالوطيقا"
-
-#~ msgid "Character Functions Returning Character Values"
-#~ msgstr "دالات رموز مرجعة لقيم رموز"
-
-#~ msgid "Character Functions Returning Number Values"
-#~ msgstr "دالات رموز مرجعة لقيم أرقام"
-
-#~ msgid "Collection Functions"
-#~ msgstr "وظائف المجموعات"
-
-#~ msgid "Conditions"
-#~ msgstr "الشروط"
-
-#~ msgid "Conversion Functions"
-#~ msgstr "دالات محولة"
-
-#~ msgid "Data Mining Functions"
-#~ msgstr "وظائف تنقيب البيانات"
-
-#~ msgid "Datetime Functions"
-#~ msgstr "دالات التاريخ و الساعة"
-
-#~ msgid "Encoding and Decoding Functions"
-#~ msgstr "وظائف التشفير و فك التشفير"
-
-#~ msgid "Environment and Identifier Functions"
-#~ msgstr "وظائف و أسماء المحيط"
-
-#~ msgid "General Comparison Functions"
-#~ msgstr "وظائف المقارنة العامة"
-
-#~ msgid "Hierarchical Function"
-#~ msgstr "وظيفة هيكلية"
-
-#~ msgid "Integer Literals"
-#~ msgstr "محدّدات الأعداد الصحيحة"
-
-#~ msgid "Large Object Functions"
-#~ msgstr "وضائف الأجسام الكبيرة"
-
-#~ msgid "Model Functions"
-#~ msgstr "وظائف العرض"
-
-#~ msgid "NLS Character Functions"
-#~ msgstr "وظائف رموز NLS"
-
-#~ msgid "NULL-Related Functions"
-#~ msgstr "الوضائف المتعلقة ب NULL"
-
-#~ msgid "Null"
-#~ msgstr "مصفر"
-
-#~ msgid "Numeric Functions"
-#~ msgstr "الوظائف الرقمية"
-
-#~ msgid "Object Reference Functions"
-#~ msgstr "الدالات المرجعية للأجسام"
-
-#~ msgid "Oracle Built-in Datatypes"
-#~ msgstr "أنواع البيانات المركبة في Oracle"
-
-#~ msgid "Oracle Reserved Words"
-#~ msgstr "كلمات مخصصة لـ Oracle"
-
-#~ msgid "Oracle-Supplied Types"
-#~ msgstr "الفئات المقدمة من أوركل"
-
-#~ msgid "SQL*Plus At Sign"
-#~ msgstr "رمز آت لـ SQL*Plus"
-
-#~ msgid "SQL*Plus Commands"
-#~ msgstr "أوامر SQL*Plus"
-
-#~ msgid "SQL*Plus Double At Sign"
-#~ msgstr "رمز آت مضاعف لـ SQL*Plus"
-
-#~ msgid "SQL*Plus Slash"
-#~ msgstr "رمز قاطع لـ SQL*Plus"
-
-#~ msgid "SQL/DS and DB2 Datatypes"
-#~ msgstr "أنواع بيانات SQL/DS و DB2"
-
-#~ msgid "Size Clause"
-#~ msgstr "شرط الحجم"
-
-#~ msgid "Text Literals"
-#~ msgstr "محددّات النص"
-
-#~ msgid "XML Functions"
-#~ msgstr "وظائف ال XML"
-
-#~ msgid "Characters"
-#~ msgstr "حروف"
-
-#~ msgid "Formatting"
-#~ msgstr "تنسيق"
-
-#~ msgid "Indexing"
-#~ msgstr "فهرسة"
-
-#~ msgid "Macro Parameters"
-#~ msgstr "معطيات مركّبات"
-
-#~ msgid "Markup (block)"
-#~ msgstr "تعليم (كتلي)"
-
-#~ msgid "Markup (inline)"
-#~ msgstr "تعليم (سياقي)"
-
-#~ msgid "Sectioning"
-#~ msgstr "التّقسيم"
-
-#~ msgid "Old Style Comment"
-#~ msgstr "تعليق أسلوب قديم"
-
-#~ msgid "True and False"
-#~ msgstr "True و False"
