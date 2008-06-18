@@ -173,9 +173,9 @@
       <match extended="true">
         \$([!$&amp;"'*+,./0:;&lt;=&gt;?@\`~1-9]|
            -[0FIKadilpvw]|
-           deferr|defout|stderr|stdin|stdout|
-           DEBUG|FILENAME|KCODE|LOADED_FEATURES|LOAD_PATH|
-           PROGRAM_NAME|SAFE|VERBOSE)\b
+           (deferr|defout|stderr|stdin|stdout|
+            DEBUG|FILENAME|KCODE|LOADED_FEATURES|LOAD_PATH|
+            PROGRAM_NAME|SAFE|VERBOSE)\b)
       </match>
     </context>
 
@@ -266,7 +266,7 @@
     </context>
 
     <!-- ruby strings do not end at line end,
-         so we cannot use def:string 
+         so we cannot use def:string
          (parts lifted from perl.lang) -->
     <context id="double-quoted-string" style-ref="string">
       <start>"</start>

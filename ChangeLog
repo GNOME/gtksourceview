@@ -1,3 +1,10 @@
+2008-06-18  Yevgen Muntyan  <muntyan@tamu.edu>
+
+	* gtksourceview/language-specs/ruby.lang (predefined-variables):
+        do not use \b after non-word characters, fixes bug #538967.
+	* gtksourceview/language-specs/objc.lang: highlight self and
+        super; highlight nil and Nil as YES and NO.
+
 2008-06-05  Ignacio Casal Quinteiro  <nacho.resa@gmail.com>
 
 	* tests/test-widget.c: Fixed compilation warning.

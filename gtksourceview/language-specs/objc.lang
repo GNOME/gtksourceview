@@ -79,8 +79,8 @@
     <context id="objc-source">
       <include>
         <context id="objc-keywords" style-ref="keyword">
-          <keyword>nil</keyword>
-          <keyword>Nil</keyword>
+          <keyword>self</keyword>
+          <keyword>super</keyword>
         </context>
 
         <context id="objc-types" style-ref="type">
@@ -99,6 +99,8 @@
 
         <context id="objc-common-defines" style-ref="common-defines">
           <keyword>METHOD_NULL</keyword>
+          <keyword>nil</keyword>
+          <keyword>Nil</keyword>
           <keyword>NO</keyword>
           <keyword>YES</keyword>
         </context>
