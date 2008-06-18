@@ -164,8 +164,11 @@ FIXME: =pod should require an empty line before/after, as written in perlpod
     <!-- this assertion is shared by all the regex contexts to avoid wrong
          highlighing of function calls, etc.
          \b can't be used because of $var, @var, &func, %func.              -->
+    <!-- FIXME I added { and ( to the list to fix #507075 and #535703. Someone
+         please look at it, it seems wrong. It probably should be a positive
+         look-behind. -->
     <define-regex id="pattern-before" extended="true">
-      (?&lt;![a-zA-Z0-9@%])
+      (?&lt;![a-zA-Z0-9@%{(])
     </define-regex>
 
     <context id="in-pattern">

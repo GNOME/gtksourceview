@@ -1,5 +1,10 @@
 2008-06-18  Yevgen Muntyan  <muntyan@tamu.edu>
 
+	* gtksourceview/language-specs/perl.lang: try to avoid problems
+        with pattern rules, bugs 507075 and 535703.
+
+2008-06-18  Yevgen Muntyan  <muntyan@tamu.edu>
+
 	* gtksourceview/gtksourcebuffer.c: use a limit of 10000
         instead of 2000 for searching matching brackets.
 
