@@ -59,7 +59,7 @@
 #define PROFILE(x)
 #endif
 
-#define MAX_CHARS_BEFORE_FINDING_A_MATCH    2000
+#define MAX_CHARS_BEFORE_FINDING_A_MATCH    10000
 
 /* Signals */
 enum {
