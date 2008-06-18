@@ -1,5 +1,10 @@
 2008-06-18  Yevgen Muntyan  <muntyan@tamu.edu>
 
+	* gtksourceview/language-specs/ocaml.lang: fix camlCase
+        highlighting. Bug 532698.
+
+2008-06-18  Yevgen Muntyan  <muntyan@tamu.edu>
+
 	* gtksourceview/language-specs/haskell.lang: {- -} comments
         may be nested, bug #532964.
 
