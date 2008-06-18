@@ -1,5 +1,10 @@
 2008-06-18  Yevgen Muntyan  <muntyan@tamu.edu>
 
+	* gtksourceview/language-specs/sh.lang: do not treat <<< as
+        here-document start. Bug #538762.
+
+2008-06-18  Yevgen Muntyan  <muntyan@tamu.edu>
+
 	* gtksourceview/language-specs/ruby.lang (predefined-variables):
         do not use \b after non-word characters, fixes bug #538967.
 	* gtksourceview/language-specs/objc.lang: highlight self and
