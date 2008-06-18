@@ -64,6 +64,7 @@
         <context ref="def:in-comment"/>
         <context ref="haddock:block-paragraph"/>
         <context ref="haddock:directive"/>
+        <context ref="block-comment"/>
       </include>
     </context>
 
@@ -137,7 +138,7 @@
         </context>
         <context once-only="true" extend-parent="false">
           <match>.</match>
-        </context>        
+        </context>
         <context style-ref="def:error" extend-parent="false">
           <match>.</match>
         </context>

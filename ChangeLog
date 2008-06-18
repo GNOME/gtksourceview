@@ -1,5 +1,10 @@
 2008-06-18  Yevgen Muntyan  <muntyan@tamu.edu>
 
+	* gtksourceview/language-specs/haskell.lang: {- -} comments
+        may be nested, bug #532964.
+
+2008-06-18  Yevgen Muntyan  <muntyan@tamu.edu>
+
 	* gtksourceview/language-specs/sh.lang: do not treat <<< as
         here-document start. Bug #538762.
 
