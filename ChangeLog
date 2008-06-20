@@ -2,6 +2,7 @@
 
 	* gtksourceview-2.0.pc.in: moved libxml-2.0 from Requires to
         Requires.private, added minimal versions for gtk+-2.0 and libxml-2.0.
+        Bugs 501515, 508591.
 
 2008-06-18  Yevgen Muntyan  <muntyan@tamu.edu>
 
