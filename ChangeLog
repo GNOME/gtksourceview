@@ -1,5 +1,10 @@
 2008-06-18  Yevgen Muntyan  <muntyan@tamu.edu>
 
+	* gtksourceview-2.0.pc.in: moved libxml-2.0 from Requires to
+        Requires.private, added minimal versions for gtk+-2.0 and libxml-2.0.
+
+2008-06-18  Yevgen Muntyan  <muntyan@tamu.edu>
+
 	* gtksourceview/language-specs/php.lang: added parentheses and
         comma to the operators list. Bug #497376, Étienne Bersac.
 

@@ -6,6 +6,7 @@ includedir=@includedir@
 Name: @PACKAGE_NAME@
 Description: GTK+ 2.0 Source Editing Widget
 Version: @PACKAGE_VERSION@
-Requires: gtk+-2.0 libxml-2.0
+Requires: gtk+-2.0 >= @GTK_REQUIRED_VERSION@
+Requires.private: libxml-2.0 >= @LIBXML_REQUIRED_VERSION@
 Libs: -L${libdir} -lgtksourceview-2.0
 Cflags: -I${includedir}/gtksourceview-2.0
