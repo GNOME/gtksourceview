@@ -1,3 +1,12 @@
+2008-06-21  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* gtksourceview/gtksourcelanguage.c:
+	* gtksourceview/gtksourcelanguage.h:
+	* gtksourceview/gtksourcelanguagesmanager.h:
+	* gtksourceview/gtksourceregex.c:
+	* gtksourceview/gtksourceundomanager.h:
+	Don't use deprecated GTK_CHECK* macros.
+
 2007-05-15  Paolo Borelli  <pborelli@katamail.com>
 
 	* gtksourceview/language-specs/vhdl.lang: fix typo in std_logic
