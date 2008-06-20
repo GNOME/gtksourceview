@@ -127,39 +127,198 @@
     </context>
 
     <context id="builtins" style-ref="builtin">
+      <keyword>ARGF</keyword>
+      <keyword>ARGV</keyword>
+      <keyword>Abbrev</keyword>
+      <keyword>ArgumentError</keyword>
       <keyword>Array</keyword>
+      <keyword>Base64</keyword>
+      <keyword>Benchmark::Tms</keyword>
+      <keyword>Benchmark</keyword>
       <keyword>Bignum</keyword>
       <keyword>Binding</keyword>
+      <keyword>CGI::Cookie</keyword>
+      <keyword>CGI::HtmlExtension</keyword>
+      <keyword>CGI::QueryExtension</keyword>
+      <keyword>CGI::Session::FileStore</keyword>
+      <keyword>CGI::Session::MemoryStore</keyword>
+      <keyword>CGI::Session</keyword>
+      <keyword>CGI</keyword>
       <keyword>Class</keyword>
+      <keyword>Comparable</keyword>
+      <keyword>Complex</keyword>
+      <keyword>ConditionVariable</keyword>
       <keyword>Continuation</keyword>
+      <keyword>DATA</keyword>
+      <keyword>Data</keyword>
+      <keyword>Date</keyword>
+      <keyword>DateTime</keyword>
+      <keyword>Delegator</keyword>
       <keyword>Dir</keyword>
+      <keyword>ENV</keyword>
+      <keyword>EOFError</keyword>
+      <keyword>ERB::Util</keyword>
+      <keyword>ERB</keyword>
+      <keyword>Enumerable::Enumerator</keyword>
+      <keyword>Enumerable</keyword>
+      <keyword>Errno</keyword>
       <keyword>Exception</keyword>
       <keyword>FalseClass</keyword>
+      <keyword>File::Constants</keyword>
       <keyword>File::Stat</keyword>
       <keyword>File</keyword>
+      <keyword>FileTest</keyword>
+      <keyword>FileUtils::DryRun</keyword>
+      <keyword>FileUtils::NoWrite</keyword>
+      <keyword>FileUtils::StreamUtils</keyword>
+      <keyword>FileUtils::Verbose</keyword>
+      <keyword>FileUtils</keyword>
+      <keyword>Find</keyword>
       <keyword>Fixnum</keyword>
       <keyword>Float</keyword>
+      <keyword>FloatDomainError</keyword>
+      <keyword>Forwardable</keyword>
+      <keyword>GC</keyword>
+      <keyword>Generator</keyword>
       <keyword>Hash</keyword>
-      <keyword>Integer</keyword>
       <keyword>IO</keyword>
+      <keyword>IOError</keyword>
+      <keyword>Iconv::BrokenLibrary</keyword>
+      <keyword>Iconv::Failure</keyword>
+      <keyword>Iconv::IllegalSequence</keyword>
+      <keyword>Iconv::InvalidCharacter</keyword>
+      <keyword>Iconv::InvalidEncoding</keyword>
+      <keyword>Iconv::OutOfRange</keyword>
+      <keyword>Iconv</keyword>
+      <keyword>IndexError</keyword>
+      <keyword>Integer</keyword>
+      <keyword>Interrupt</keyword>
+      <keyword>Kernel</keyword>
+      <keyword>LoadError</keyword>
+      <keyword>LocalJumpError</keyword>
+      <keyword>Logger::Application</keyword>
+      <keyword>Logger::Error</keyword>
+      <keyword>Logger::Formatter</keyword>
+      <keyword>Logger::LogDevice::LogDeviceMutex</keyword>
+      <keyword>Logger::LogDevice</keyword>
+      <keyword>Logger::Severity</keyword>
+      <keyword>Logger::ShiftingError</keyword>
+      <keyword>Logger</keyword>
+      <keyword>Marshal</keyword>
       <keyword>MatchData</keyword>
+      <keyword>Math</keyword>
+      <keyword>Matrix</keyword>
       <keyword>Method</keyword>
       <keyword>Module</keyword>
+      <keyword>Mutex</keyword>
+      <keyword>NameError::message</keyword>
+      <keyword>NameError</keyword>
       <keyword>NilClass</keyword>
+      <keyword>NoMemoryError</keyword>
+      <keyword>NoMethodError</keyword>
+      <keyword>NotImplementedError</keyword>
       <keyword>Numeric</keyword>
       <keyword>Object</keyword>
+      <keyword>ObjectSpace</keyword>
+      <keyword>Observable</keyword>
+      <keyword>PStore::Error</keyword>
+      <keyword>PStore</keyword>
+      <keyword>Pathname</keyword>
+      <keyword>Precision</keyword>
       <keyword>Proc</keyword>
+      <keyword>Process::GID</keyword>
+      <keyword>Process::Status</keyword>
+      <keyword>Process::Sys</keyword>
+      <keyword>Process::UID</keyword>
+      <keyword>Process</keyword>
+      <keyword>Queue</keyword>
+      <keyword>RUBY_PLATFORM</keyword>
+      <keyword>RUBY_RELEASE_DATE</keyword>
+      <keyword>RUBY_VERSION</keyword>
       <keyword>Range</keyword>
+      <keyword>RangeError</keyword>
+      <keyword>Rational</keyword>
       <keyword>Regexp</keyword>
+      <keyword>RegexpError</keyword>
+      <keyword>RuntimeError</keyword>
+      <keyword>STDERR</keyword>
+      <keyword>STDIN</keyword>
+      <keyword>STDOUT</keyword>
+      <keyword>ScriptError</keyword>
+      <keyword>SecurityError</keyword>
+      <keyword>Set</keyword>
+      <keyword>Shellwords</keyword>
+      <keyword>Signal</keyword>
+      <keyword>SignalException</keyword>
+      <keyword>SimpleDelegator</keyword>
+      <keyword>SingleForwardable</keyword>
+      <keyword>Singleton</keyword>
+      <keyword>SingletonClassMethods</keyword>
+      <keyword>SizedQueue</keyword>
+      <keyword>SortedSet</keyword>
+      <keyword>StandardError</keyword>
       <keyword>String</keyword>
+      <keyword>StringIO</keyword>
+      <keyword>StringScanner::Error</keyword>
+      <keyword>StringScanner</keyword>
       <keyword>Struct::Tms</keyword>
       <keyword>Struct</keyword>
       <keyword>Symbol</keyword>
-      <keyword>Symbol</keyword>
-      <keyword>ThreadGroup</keyword>
+      <keyword>SyncEnumerator</keyword>
+      <keyword>SyntaxError</keyword>
+      <keyword>SystemCallError</keyword>
+      <keyword>SystemExit</keyword>
+      <keyword>SystemStackError</keyword>
+      <keyword>Tempfile</keyword>
+      <keyword>Test::Unit</keyword>
+      <keyword>Test</keyword>
       <keyword>Thread</keyword>
+      <keyword>ThreadError</keyword>
+      <keyword>ThreadGroup</keyword>
+      <keyword>ThreadsWait</keyword>
       <keyword>Time</keyword>
+      <keyword>Timeout::Error</keyword>
+      <keyword>Timeout</keyword>
       <keyword>TrueClass</keyword>
+      <keyword>TypeError</keyword>
+      <keyword>URI::BadURIError</keyword>
+      <keyword>URI::Error</keyword>
+      <keyword>URI::Escape</keyword>
+      <keyword>URI::FTP</keyword>
+      <keyword>URI::Generic</keyword>
+      <keyword>URI::HTTP</keyword>
+      <keyword>URI::HTTPS</keyword>
+      <keyword>URI::InvalidComponentError</keyword>
+      <keyword>URI::InvalidURIError</keyword>
+      <keyword>URI::LDAP</keyword>
+      <keyword>URI::MailTo</keyword>
+      <keyword>URI::REGEXP::PATTERN</keyword>
+      <keyword>URI::REGEXP</keyword>
+      <keyword>URI</keyword>
+      <keyword>UnboundMethod</keyword>
+      <keyword>Vector</keyword>
+      <keyword>YAML</keyword>
+      <keyword>ZeroDivisionError</keyword>
+      <keyword>Zlib::BufError</keyword>
+      <keyword>Zlib::DataError</keyword>
+      <keyword>Zlib::Deflate</keyword>
+      <keyword>Zlib::Error</keyword>
+      <keyword>Zlib::GzipFile::CRCError</keyword>
+      <keyword>Zlib::GzipFile::Error</keyword>
+      <keyword>Zlib::GzipFile::LengthError</keyword>
+      <keyword>Zlib::GzipFile::NoFooter</keyword>
+      <keyword>Zlib::GzipFile</keyword>
+      <keyword>Zlib::GzipReader</keyword>
+      <keyword>Zlib::GzipWriter</keyword>
+      <keyword>Zlib::Inflate</keyword>
+      <keyword>Zlib::MemError</keyword>
+      <keyword>Zlib::NeedDict</keyword>
+      <keyword>Zlib::StreamEnd</keyword>
+      <keyword>Zlib::StreamError</keyword>
+      <keyword>Zlib::VersionError</keyword>
+      <keyword>Zlib::ZStream</keyword>
+      <keyword>Zlib</keyword>
+      <keyword>fatal</keyword>
     </context>
 
     <context id="special-variables" style-ref="special-variable">
@@ -204,12 +363,15 @@
     </context>
 
     <context id="nil-value" style-ref="nil-value">
-       <keyword>nil</keyword>
+      <keyword>NIL</keyword>
+      <keyword>nil</keyword>
     </context>
 
     <context id="boolean" style-ref="boolean">
-       <keyword>false</keyword>
-       <keyword>true</keyword>
+      <keyword>FALSE</keyword>
+      <keyword>TRUE</keyword>
+      <keyword>false</keyword>
+      <keyword>true</keyword>
     </context>
 
     <define-regex id="underscore_num">\d(_?\d)*</define-regex>
