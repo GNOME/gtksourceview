@@ -1,5 +1,12 @@
 2008-06-18  Yevgen Muntyan  <muntyan@tamu.edu>
 
+	* gtksourceview/gtksourceview.c (gtk_source_view_undo),
+        (gtk_source_view_redo), (gtk_source_view_populate_popup),
+        (gtk_source_view_paint_margin): check whether the buffer
+        is a GtkSourceBuffer, bug #139461.
+
+2008-06-18  Yevgen Muntyan  <muntyan@tamu.edu>
+
 	* gtksourceview/language-specs/perl.lang: try to avoid problems
         with pattern rules, bugs 507075 and 535703.
 

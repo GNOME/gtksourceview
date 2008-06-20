@@ -882,6 +882,9 @@ set_source_buffer (GtkSourceView *view,
 		view->priv->source_buffer = NULL;
 	}
 
+	/* if buffer isn't NULL then we aren't being destroyed, so call
+	 * gtk_source_view_update_style_scheme(), that will check whether it's
+	 * a GtkSourceBuffer or not */
 	if (buffer)
 		gtk_source_view_update_style_scheme (view);
 }
@@ -896,6 +899,7 @@ gtk_source_view_undo (GtkSourceView *view)
 	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
 
 	if (gtk_text_view_get_editable (GTK_TEXT_VIEW (view)) &&
+	    GTK_IS_SOURCE_BUFFER (buffer) &&
 	    gtk_source_buffer_can_undo (GTK_SOURCE_BUFFER (buffer)))
 	{
 		gtk_source_buffer_undo (GTK_SOURCE_BUFFER (buffer));
@@ -914,6 +918,7 @@ gtk_source_view_redo (GtkSourceView *view)
 	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
 
 	if (gtk_text_view_get_editable (GTK_TEXT_VIEW (view)) &&
+	    GTK_IS_SOURCE_BUFFER (buffer) &&
 	    gtk_source_buffer_can_redo (GTK_SOURCE_BUFFER (buffer)))
 	{
 		gtk_source_buffer_redo (GTK_SOURCE_BUFFER (buffer));
@@ -930,7 +935,7 @@ gtk_source_view_populate_popup (GtkTextView *text_view,
 	GtkWidget *menu_item;
 
 	buffer = gtk_text_view_get_buffer (text_view);
-	if (!buffer && !GTK_IS_SOURCE_BUFFER (buffer))
+	if (!GTK_IS_SOURCE_BUFFER (buffer))
 		return;
 
 	/* separator */
@@ -1458,7 +1463,7 @@ gtk_source_view_paint_margin (GtkSourceView *view,
 					  layout);
 		}
 
-		if (view->priv->show_line_marks)
+		if (view->priv->show_line_marks && view->priv->source_buffer != NULL)
 		{
 			GSList *marks;
 
@@ -2732,7 +2737,7 @@ gtk_source_view_key_press_event (GtkWidget   *widget,
 	}
 
 	/* if tab or shift+tab:
-	 * with shift+tab key is GDK_ISO_Left_Tab (depends on X?)
+	 * with shift+tab key is GDK_ISO_Left_Tab (yay! on win32 and mac too!)
 	 */
 	if ((key == GDK_Tab || key == GDK_KP_Tab || key == GDK_ISO_Left_Tab) &&
 	    ((event->state & modifiers) == 0 ||
