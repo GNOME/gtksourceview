@@ -221,7 +221,7 @@
     </context>
 
     <context id="operators" style-ref="operator" extend-parent="false">
-      <match>[-.~^@;:/%|\=\+\*\!\?&amp;&lt;&gt;]</match>
+      <match>[-.~^@,;:/%|\=\+\*\!\?&amp;&lt;&gt;()]</match>
     </context>
 
     <context id="type" style-ref="type">
