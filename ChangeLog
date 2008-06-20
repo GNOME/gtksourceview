@@ -1,5 +1,10 @@
 2008-06-18  Yevgen Muntyan  <muntyan@tamu.edu>
 
+	* gtksourceview/language-specs/php.lang: added some keywords.
+        Bug #150396, patch by Patryk Zawadzki.
+
+2008-06-18  Yevgen Muntyan  <muntyan@tamu.edu>
+
 	* gtksourceview/gtksourceview.c (gtk_source_view_undo),
         (gtk_source_view_redo), (gtk_source_view_populate_popup),
         (gtk_source_view_paint_margin): check whether the buffer
