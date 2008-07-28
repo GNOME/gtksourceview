@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: GtkSourceView HEAD\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-02-12 17:11+0100\n"
-"PO-Revision-Date: 2008-02-12 16:46+0100\n"
+"PO-Revision-Date: 2008-07-28 18:18+0200\n"
 "Last-Translator: Philipp Kerling <k.philipp@gmail.com>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -63,11 +63,11 @@ msgstr "Legt fest, ob Rückgängig-Operationen möglich sind"
 
 #: ../gtksourceview/gtksourcebuffer.c:225
 msgid "Can redo"
-msgstr "Wiederherstellen mögliche"
+msgstr "Wiederherstellen möglich"
 
 #: ../gtksourceview/gtksourcebuffer.c:226
 msgid "Whether Redo operation is possible"
-msgstr "Legt fest, ob Wiederherstellen-Optionen möglich sind"
+msgstr "Legt fest, ob Wiederherstellen-Operationen möglich sind"
 
 #: ../gtksourceview/gtksourcebuffer.c:240
 #: ../gtksourceview/gtksourcebuffer.c:241
@@ -183,7 +183,7 @@ msgid ""
 "List of directories where the language specification files (.lang) are "
 "located"
 msgstr ""
-"Liste der Verzeichnisse, in denen sich die Sprachspezifikationdateien (."
+"Liste der Verzeichnisse, in denen sich die Sprachspezifikationsdateien (."
 "lang) befinden"
 
 #: ../gtksourceview/gtksourcelanguagemanager.c:143
@@ -512,7 +512,7 @@ msgid ""
 "HOME and END keys move to first/last non whitespace characters on line "
 "before going to the start/end of the line"
 msgstr ""
-"Legt fest, ob die Pos1- bzw. die Ende-Taste zum ersten/letzten sichtbare "
+"Legt fest, ob die Pos1- bzw. die Ende-Taste zum ersten/letzten sichtbaren "
 "Zeichen einer Zeile springen soll, bevor sie zum Anfang/Ende der jeweiligen "
 "Zeile springt"
 
@@ -1128,7 +1128,7 @@ msgstr "Präprozessor-Direktive"
 #. Reserved keywords: like "const" and "goto" in Java
 #: ../gtksourceview/language-specs/def.lang.h:46
 msgid "Reserved keyword"
-msgstr "Reserviertes Schlüsselwert"
+msgstr "Reserviertes Schlüsselwort"
 
 #. A shebang: #!/bin/sh
 #: ../gtksourceview/language-specs/def.lang.h:48
@@ -1670,7 +1670,7 @@ msgstr "Objective Caml"
 
 #: ../gtksourceview/language-specs/ocaml.lang.h:14
 msgid "Ocamldoc Comments"
-msgstr "Ocalmdoc-Kommentare"
+msgstr "Ocamldoc-Kommentare"
 
 #: ../gtksourceview/language-specs/ocaml.lang.h:15
 msgid "Polymorphic Variant"
