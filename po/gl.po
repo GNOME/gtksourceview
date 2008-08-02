@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-13 22:41+0100\n"
-"PO-Revision-Date: 2008-03-13 23:20+0100\n"
+"POT-Creation-Date: 2008-08-02 23:34+0200\n"
+"PO-Revision-Date: 2008-08-02 23:35+0200\n"
 "Last-Translator: Ignacio Casal Quinteiro <nacho.resa@gmail.com>\n"
 "Language-Team: Galician <trasno@ceu.fi.udc.es>\n"
 "MIME-Version: 1.0\n"
@@ -71,7 +71,7 @@ msgstr "Indica se a operación de refacer está dispoñible"
 msgid "Style scheme"
 msgstr "Esquema de estilo"
 
-#: ../gtksourceview/gtksourcecontextengine.c:2567
+#: ../gtksourceview/gtksourcecontextengine.c:2594
 #, c-format
 msgid "using \\C is not supported in language definitions"
 msgstr "o uso de \\C non está soportado nas definicións da linguaxe"
@@ -80,7 +80,7 @@ msgstr "o uso de \\C non está soportado nas definicións da linguaxe"
 #. * named sub-patterns with the same name or if resulting regex is
 #. * too long. In this case fixing lang file helps (e.g. renaming
 #. * subpatterns, making huge keywords use bigger prefixes, etc.)
-#: ../gtksourceview/gtksourcecontextengine.c:3191
+#: ../gtksourceview/gtksourcecontextengine.c:3218
 #, c-format
 msgid ""
 "Cannot create a regex for all the transitions, the syntax highlighting "
@@ -91,19 +91,27 @@ msgstr ""
 "proceso de realzado de sintaxe será máis lento do habitual.\n"
 "O erro foi: %s"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5697
+#: ../gtksourceview/gtksourcecontextengine.c:4533
+msgid ""
+"Highlighting a single line took too much time, syntax highlighting will be "
+"disabled"
+msgstr ""
+"O realzado dunha simple liña levou demasiado tempo, desactivarase o realzado "
+"de sintaxe"
+
+#: ../gtksourceview/gtksourcecontextengine.c:5743
 #, c-format
 msgid "context '%s' cannot contain a \\%%{...@start} command"
 msgstr "o contexto '%s' non pode conter un comando \\%%{...@start}"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5849
-#: ../gtksourceview/gtksourcecontextengine.c:5936
+#: ../gtksourceview/gtksourcecontextengine.c:5895
+#: ../gtksourceview/gtksourcecontextengine.c:5982
 #, c-format
 msgid "duplicated context id '%s'"
 msgstr "id de contexto duplicado '%s'"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6049
-#: ../gtksourceview/gtksourcecontextengine.c:6109
+#: ../gtksourceview/gtksourcecontextengine.c:6095
+#: ../gtksourceview/gtksourcecontextengine.c:6155
 #, c-format
 msgid ""
 "style override used with wildcard context reference in language '%s' in ref "
@@ -112,18 +120,18 @@ msgstr ""
 "o salto de estilo usouse cun comodín de contexto de referencia na linguaxe '%"
 "s' na referencia '%s'"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6123
+#: ../gtksourceview/gtksourcecontextengine.c:6169
 #, c-format
 msgid "invalid context reference '%s'"
 msgstr "referencia de contexto inválida '%s'"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6142
-#: ../gtksourceview/gtksourcecontextengine.c:6152
+#: ../gtksourceview/gtksourcecontextengine.c:6188
+#: ../gtksourceview/gtksourcecontextengine.c:6198
 #, c-format
 msgid "unknown context '%s'"
 msgstr "contexto descoñecido '%s'"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6252
+#: ../gtksourceview/gtksourcecontextengine.c:6298
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "Falta a definición de linguaxe principal (id = \"%s\".)"
