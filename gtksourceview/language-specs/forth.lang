@@ -30,15 +30,15 @@
   </metadata>
 
   <styles>
-    <style id="comment"       _name="Comment"       map-to="def:comment"/>
-    <style id="string"        _name="String"        map-to="def:string"/>
-    <style id="preprocessor"  _name="Preprocessor"  map-to="def:preprocessor"/>
-    <style id="keyword"       _name="Keyword"       map-to="def:statement"/>
-    <style id="type"          _name="Data Type"     map-to="def:type"/>
-    <style id="number"        _name="Number"        map-to="def:decimal"/>
-    <style id="debugs"        _name="Debug Code"    map-to="def:comment"/>
-    <style id="error"         _name="Error text"    map-to="def:error"/>
-    <style id="compiler"      _name="Compiler opt"  map-to="def:identifier"/>
+    <style id="comment"       _name="Comment"            map-to="def:comment"/>
+    <style id="string"        _name="String"             map-to="def:string"/>
+    <style id="preprocessor"  _name="Preprocessor"       map-to="def:preprocessor"/>
+    <style id="keyword"       _name="Keyword"            map-to="def:statement"/>
+    <style id="type"          _name="Data Type"          map-to="def:type"/>
+    <style id="number"        _name="Number"             map-to="def:decimal"/>
+    <style id="debugs"        _name="Debug Code"         map-to="def:comment"/>
+    <style id="error"         _name="Error Text"         map-to="def:error"/>
+    <style id="compiler"      _name="Compiler Directive" map-to="def:identifier"/>
   </styles>
 
   <default-regex-options case-sensitive="false"/>

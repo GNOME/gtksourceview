@@ -1,5 +1,10 @@
 2008-08-02  Yevgen Muntyan  <muntyan@tamu.edu>
 
+	* gtksourceview/language-specs/forth.lang: changed "Compiler opt"
+	style name to "Compiler Directive", bug #518437.
+
+2008-08-02  Yevgen Muntyan  <muntyan@tamu.edu>
+
 	Bug 114337 – long lines kill GtkSourceView.
 	Worked it around by disabling syntax highlighting if analyzing
 	single line took more than 2 seconds.
