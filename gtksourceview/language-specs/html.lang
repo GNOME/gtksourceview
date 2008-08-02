@@ -117,7 +117,7 @@
 
         <context id="script">
             <start>&lt;\s*script\%]</start>
-            <end>&lt;\s*/\s*script\s*&gt;</end>
+            <end>/&gt;|&lt;\s*/\s*script\s*&gt;</end>
 
             <include>
                 <context sub-pattern="0" where="start" style-ref="tag"/>

@@ -1,5 +1,11 @@
 2008-08-02  Yevgen Muntyan  <muntyan@tamu.edu>
 
+	Bug 543313 – Self closed <script> tags are not accounted correctly
+	in html.
+	* gtksourceview/language-specs/html.lang: committed fix by pbor.
+
+2008-08-02  Yevgen Muntyan  <muntyan@tamu.edu>
+
 	* gtksourceview/gtksourcecontextengine.c (analyze_line):
 	* gtksourceview/language-specs/forth.lang:
 	branched for 2.22, un-un-done the last two string changes.
