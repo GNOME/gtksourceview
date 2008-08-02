@@ -1,3 +1,17 @@
+2008-08-02  Yevgen Muntyan  <muntyan@tamu.edu>
+
+	Bug 114337 – long lines kill GtkSourceView.
+	Worked it around by disabling syntax highlighting if analyzing
+	single line took more than 2 seconds.
+
+	* gtksourceview/gtksourcecontextengine.c:
+	(GtkSourceContextEnginePrivate::disabled): new field,
+	(gtk_source_context_engine_update_highlight): check that field,
+	(analyze_line): check elapsed time on every iteration and abort
+	in two seconds,
+	(update_syntax): check whether analyze_line() has disabled
+	highlighting,
+	(disable_highlighting): new function to turn highlighting off.
 
 === gtksourceview 2.2.2 ===
 

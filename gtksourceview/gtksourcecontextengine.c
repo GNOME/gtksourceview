@@ -71,6 +71,10 @@
 /* Maximal amount of time allowed to spent in one cycle of background idle. */
 #define INCREMENTAL_UPDATE_TIME_SLICE	30
 
+/* Maximal amount of time allowed to spent highlihting a single line. If it
+ * is not enough, then highlighting is disabled. */
+#define MAX_TIME_FOR_ONE_LINE		2000
+
 #define GTK_SOURCE_CONTEXT_ENGINE_ERROR (gtk_source_context_engine_error_quark ())
 
 /* Returns the definition corrsponding to the specified id. */
@@ -404,6 +408,9 @@ struct _GtkSourceContextEnginePrivate
 
 	/* Whether or not to actually highlight the buffer. */
 	gboolean		 highlight;
+
+	/* Whether highlighting was disabled because of errors. */
+	gboolean		 disabled;
 
 	/* Region covering the unhighlighted text. */
 	GtkTextRegion		*refresh_region;
@@ -1937,7 +1944,7 @@ gtk_source_context_engine_update_highlight (GtkSourceEngine   *engine,
 	gint end_line;
 	GtkSourceContextEngine *ce = GTK_SOURCE_CONTEXT_ENGINE (engine);
 
-	if (!ce->priv->highlight)
+	if (!ce->priv->highlight || ce->priv->disabled)
 		return;
 
 	invalid_line = get_invalid_line (ce);
@@ -2296,6 +2303,26 @@ gtk_source_context_engine_attach_buffer (GtkSourceEngine *engine,
 					  ce);
 
 		install_first_update (ce);
+	}
+}
+
+/**
+ * disable_highlighting:
+ *
+ * @ce: #GtkSourceContextEngine.
+ *
+ * Dsiables highlighting in case of errors (currently if highlighting
+ * a single line took too long, so that highlighting doesn't freeze
+ * text editor).
+ */
+static void
+disable_highlighting (GtkSourceContextEngine *ce)
+{
+	if (!ce->priv->disabled)
+	{
+		ce->priv->disabled = TRUE;
+		gtk_source_context_engine_attach_buffer (GTK_SOURCE_ENGINE (ce), NULL);
+		/* FIXME maybe emit some signal here? */
 	}
 }
 
@@ -4483,12 +4510,15 @@ analyze_line (GtkSourceContextEngine *ce,
 {
 	gint line_pos = 0;
 	GList *end_segments = NULL;
+	GTimer *timer;
 
 	g_assert (SEGMENT_IS_CONTAINER (state));
 
         if (ce->priv->hint2 == NULL || ce->priv->hint2->parent != state)
                 ce->priv->hint2 = state->last_child;
         g_assert (!ce->priv->hint2 || ce->priv->hint2->parent == state);
+
+	timer = g_timer_new ();
 
 	/* Find the contexts in the line. */
 	while (line_pos <= line->byte_length)
@@ -4497,6 +4527,14 @@ analyze_line (GtkSourceContextEngine *ce,
 
 		if (!next_segment (ce, state, line, &line_pos, &new_state))
 			break;
+
+		if (g_timer_elapsed (timer, NULL) * 1000 > MAX_TIME_FOR_ONE_LINE)
+		{
+			g_critical (_("Highlighting a single line took too much time, "
+				      "syntax highlighting will be disabled"));
+			disable_highlighting (ce);
+			break;
+		}
 
 		g_assert (new_state != NULL);
 		g_assert (SEGMENT_IS_CONTAINER (new_state));
@@ -4515,6 +4553,10 @@ analyze_line (GtkSourceContextEngine *ce,
 		if (state->start_at == line->char_length)
 			end_segments = g_list_prepend (end_segments, state);
 	}
+
+	g_timer_destroy (timer);
+	if (ce->priv->disabled)
+		return NULL;
 
 	/* Extend current state to the end of line. */
 	segment_extend (state, line->start_at + line->char_length);
@@ -5458,6 +5500,10 @@ update_syntax (GtkSourceContextEngine *ce,
 			ce->priv->hint2 = NULL;
 
 		state = analyze_line (ce, state, &line);
+
+		/* At this point analyze_line() could have disabled highlighting */
+		if (ce->priv->disabled)
+			return;
 
 #ifdef ENABLE_CHECK_TREE
 		{
