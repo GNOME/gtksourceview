@@ -1,5 +1,10 @@
 2008-08-02  Yevgen Muntyan  <muntyan@tamu.edu>
 
+	* gtksourceview/language-specs/def.lang: do not allow backslash
+	in net-address. Fixes bug #541791.
+
+2008-08-02  Yevgen Muntyan  <muntyan@tamu.edu>
+
 	Bug 545096 – highlighting problems for DTD entities inside xml.
 
 	* gtksourceview/language-specs/dtd.lang: do not highlight any
