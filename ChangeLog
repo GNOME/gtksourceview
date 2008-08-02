@@ -1,7 +1,15 @@
 2008-08-02  Yevgen Muntyan  <muntyan@tamu.edu>
 
+	Bug 545096 – highlighting problems for DTD entities inside xml.
+
+	* gtksourceview/language-specs/dtd.lang: do not highlight any
+	unknown text as error.
+
+2008-08-02  Yevgen Muntyan  <muntyan@tamu.edu>
+
 	Bug 543313 – Self closed <script> tags are not accounted correctly
 	in html.
+
 	* gtksourceview/language-specs/html.lang: committed fix by pbor.
 
 2008-08-02  Yevgen Muntyan  <muntyan@tamu.edu>
