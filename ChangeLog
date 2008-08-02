@@ -1,5 +1,11 @@
 2008-08-02  Yevgen Muntyan  <muntyan@tamu.edu>
 
+	* gtksourceview/gtksourcecontextengine.c (analyze_line):
+	* gtksourceview/language-specs/forth.lang:
+	branched for 2.22, un-un-done the last two string changes.
+
+2008-08-02  Yevgen Muntyan  <muntyan@tamu.edu>
+
 	* gtksourceview/gtksourcecontextengine.c: (analyze_line):
 	un-marked the new string as translatable, since strings are
 	frozen.

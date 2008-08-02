@@ -4530,9 +4530,8 @@ analyze_line (GtkSourceContextEngine *ce,
 
 		if (g_timer_elapsed (timer, NULL) * 1000 > MAX_TIME_FOR_ONE_LINE)
 		{
-			/* FIXME mark translatable after string freeze */
-			g_critical ("Highlighting a single line took too much time, "
-				    "syntax highlighting will be disabled");
+			g_critical (_("Highlighting a single line took too much time, "
+				      "syntax highlighting will be disabled"));
 			disable_highlighting (ce);
 			break;
 		}
