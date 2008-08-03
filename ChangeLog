@@ -1,5 +1,10 @@
 2008-08-02  Yevgen Muntyan  <muntyan@tamu.edu>
 
+	* gtksourceview/language-specs/php.lang: added 'identifier'
+	context, bug #497376.
+
+2008-08-02  Yevgen Muntyan  <muntyan@tamu.edu>
+
 	Bug 317861 – sourceview is ignoring tab settings which are set before
 	it is mapped or realized.
 

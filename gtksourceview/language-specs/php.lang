@@ -37,6 +37,7 @@
     <style id="comment" _name="Comment" map-to="def:comment"/>
     <style id="error" _name="Error" map-to="def:error"/>
     <style id="variable" _name="Variable" map-to="def:identifier"/>
+    <style id="identifier" _name="Identifier"/> <!-- map to nothing -->
     <style id="escape" _name="Escaped Character" map-to="def:special-char"/>
     <style id="string" _name="String" map-to="def:string"/>
     <style id="here-doc" _name="Heredoc" map-to="def:string"/>
@@ -152,6 +153,10 @@
         <context ref="string-var"/>
         <context ref="def:line-continue"/>
       </include>
+    </context>
+
+    <context id="identifier" style-ref="identifier">
+      <match>[a-zA-Z_][a-zA-Z0-9_]*</match>
     </context>
 
     <context id="keywords" style-ref="keyword">
@@ -306,6 +311,7 @@
         <context ref="decimal-number"/>
         <context ref="octal-number"/>
         <context ref="hexadecimal-number"/>
+	<context ref="identifier"/>
       </include>
     </context>
 
