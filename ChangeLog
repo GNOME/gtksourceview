@@ -1,5 +1,26 @@
 2008-08-02  Yevgen Muntyan  <muntyan@tamu.edu>
 
+	Started new code folding branch. This is Jeroen's folding+newhl branch,
+	adapted for current code.
+
+	* gtksourceview/gtksourcefoldlabel.c:
+	* gtksourceview/gtksourcefoldlabel.h:
+	* gtksourceview/gtksourcefold-private.h:
+	* gtksourceview/gtksourcefold.c:
+	* gtksourceview/gtksourcefold.h:
+	* tests/test-fold.c
+	New files.
+
+	* gtksourceview/gtksourcebuffer.c
+	* gtksourceview/gtksourceview.c
+	* gtksourceview/gtksourcebuffer.h
+	* gtksourceview/gtksourcebuffer-private.h
+	* gtksourceview/Makefile.am
+	* tests/test-widget.c
+	Modified.
+
+2008-08-02  Yevgen Muntyan  <muntyan@tamu.edu>
+
 	* gtksourceview/gtksourcebuffer.c (gtk_source_buffer_real_insert_text):
 	Start search for matching brackets from cursor location, not from the
 	location where text has been inserted.

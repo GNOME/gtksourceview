@@ -34,6 +34,7 @@
 #include "gtksourceview-i18n.h"
 #include "gtksourcelanguage-private.h"
 #include "gtksourcebuffer.h"
+#include "gtksourcefold-private.h"
 #include "gtksourceundomanager.h"
 #include "gtksourceview-marshal.h"
 #include "gtksourceiter.h"
@@ -65,6 +66,8 @@
 enum {
 	HIGHLIGHT_UPDATED,
 	SOURCE_MARK_UPDATED,
+	FOLD_ADDED,
+	FOLD_REMOVE,
 	LAST_SIGNAL
 };
 
@@ -77,17 +80,21 @@ enum {
 	PROP_HIGHLIGHT_MATCHING_BRACKETS,
 	PROP_MAX_UNDO_LEVELS,
 	PROP_LANGUAGE,
-	PROP_STYLE_SCHEME
+	PROP_STYLE_SCHEME,
+	PROP_FOLDS
 };
 
 struct _GtkSourceBufferPrivate
 {
+	GList                 *folds;
+	gint                   enable_folds:1;
+
 	gint                   highlight_syntax:1;
 	gint                   highlight_brackets:1;
 
+	guint                  bracket_found:1;
 	GtkTextTag            *bracket_match_tag;
 	GtkTextMark           *bracket_mark;
-	guint                  bracket_found:1;
 
 	GArray                *source_marks;
 
@@ -103,6 +110,9 @@ G_DEFINE_TYPE (GtkSourceBuffer, gtk_source_buffer, GTK_TYPE_TEXT_BUFFER)
 
 static guint 	 buffer_signals[LAST_SIGNAL];
 
+static GObject  *gtk_source_buffer_constructor          (GType                    type,
+							 guint                    n_construct_properties,
+							 GObjectConstructParam   *construct_param);
 static void 	 gtk_source_buffer_finalize		(GObject                 *object);
 static void 	 gtk_source_buffer_dispose		(GObject                 *object);
 static void      gtk_source_buffer_set_property         (GObject                 *object,
@@ -134,6 +144,9 @@ static void 	 gtk_source_buffer_real_mark_deleted	(GtkTextBuffer		 *buffer,
 static gboolean	 gtk_source_buffer_find_bracket_match_with_limit (GtkTextIter    *orig,
 								  gint            max_chars);
 
+static void	 gtk_source_buffer_real_remove_fold	(GtkSourceBuffer         *buffer,
+							 GtkSourceFold           *fold);
+
 static void
 gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 {
@@ -144,6 +157,7 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 	object_class 	= G_OBJECT_CLASS (klass);
 	tb_class	= GTK_TEXT_BUFFER_CLASS (klass);
 
+	object_class->constructor  = gtk_source_buffer_constructor;
 	object_class->finalize	   = gtk_source_buffer_finalize;
 	object_class->dispose	   = gtk_source_buffer_dispose;
 	object_class->get_property = gtk_source_buffer_get_property;
@@ -156,6 +170,9 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 
 	tb_class->mark_set	= gtk_source_buffer_real_mark_set;
 	tb_class->mark_deleted	= gtk_source_buffer_real_mark_deleted;
+
+	klass->fold_added       = NULL;
+	klass->fold_remove	= gtk_source_buffer_real_remove_fold;
 
 	/**
 	 * GtkSourceBuffer:highlight-syntax:
@@ -242,6 +259,14 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 							      GTK_TYPE_SOURCE_STYLE_SCHEME,
 							      G_PARAM_READWRITE));
 
+	g_object_class_install_property (object_class,
+					 PROP_FOLDS,
+					 g_param_spec_boolean ("folds",
+							       _("Folds"),
+							       _("Whether folds are enabled"),
+							       FALSE,
+							       G_PARAM_READWRITE));
+
 	param_types[0] = GTK_TYPE_TEXT_ITER | G_SIGNAL_TYPE_STATIC_SCOPE;
 	param_types[1] = GTK_TYPE_TEXT_ITER | G_SIGNAL_TYPE_STATIC_SCOPE;
 
@@ -271,6 +296,28 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 			   G_TYPE_NONE,
 			   1, GTK_TYPE_TEXT_MARK);
 
+	buffer_signals[FOLD_ADDED] =
+	    g_signal_new ("fold_added",
+			  G_OBJECT_CLASS_TYPE (object_class),
+			  G_SIGNAL_RUN_LAST,
+			  G_STRUCT_OFFSET (GtkSourceBufferClass, fold_added),
+			  NULL, NULL,
+			  _gtksourceview_marshal_VOID__BOXED,
+			  G_TYPE_NONE,
+			  1,
+			  GTK_TYPE_SOURCE_FOLD | G_SIGNAL_TYPE_STATIC_SCOPE);
+
+	buffer_signals[FOLD_REMOVE] =
+	    g_signal_new ("fold_remove",
+			  G_OBJECT_CLASS_TYPE (object_class),
+			  G_SIGNAL_RUN_LAST,
+			  G_STRUCT_OFFSET (GtkSourceBufferClass, fold_remove),
+			  NULL, NULL,
+			  _gtksourceview_marshal_VOID__BOXED,
+			  G_TYPE_NONE,
+			  1,
+			  GTK_TYPE_SOURCE_FOLD | G_SIGNAL_TYPE_STATIC_SCOPE);
+
 	g_type_class_add_private (object_class, sizeof(GtkSourceBufferPrivate));
 }
 
@@ -290,6 +337,8 @@ gtk_source_buffer_init (GtkSourceBuffer *buffer)
 	priv->highlight_brackets = TRUE;
 	priv->bracket_mark = NULL;
 	priv->bracket_found = FALSE;
+	priv->enable_folds = FALSE;
+	priv->folds = NULL;
 
 	priv->source_marks = g_array_new (FALSE, FALSE, sizeof (GtkSourceMark *));
 
@@ -305,6 +354,25 @@ gtk_source_buffer_init (GtkSourceBuffer *buffer)
 			  "can_redo",
 			  G_CALLBACK (gtk_source_buffer_can_redo_handler),
 			  buffer);
+}
+
+static GObject *
+gtk_source_buffer_constructor (GType                  type,
+			       guint                  n_construct_properties,
+			       GObjectConstructParam *construct_param)
+{
+	GObject *object;
+
+	object = G_OBJECT_CLASS (gtk_source_buffer_parent_class)->
+					constructor (type,
+						     n_construct_properties,
+						     construct_param);
+
+	/* Create invisibility tag for folding lines. */
+	gtk_text_buffer_create_tag (GTK_TEXT_BUFFER (object),
+				    INVISIBLE_LINE, "invisible", TRUE, NULL);
+
+	return object;
 }
 
 static void
@@ -402,6 +470,10 @@ gtk_source_buffer_set_property (GObject      *object,
 							    g_value_get_object (value));
 			break;
 
+		case PROP_FOLDS:
+			gtk_source_buffer_set_folds_enabled (source_buffer,
+							     g_value_get_boolean (value));
+
 		default:
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
 			break;
@@ -452,6 +524,9 @@ gtk_source_buffer_get_property (GObject    *object,
 		case PROP_CAN_REDO:
 			g_value_set_boolean (value, gtk_source_buffer_can_redo (source_buffer));
 			break;
+
+		case PROP_FOLDS:
+			g_value_set_boolean (value, source_buffer->priv->enable_folds);
 
 		default:
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -618,6 +693,7 @@ gtk_source_buffer_real_insert_text (GtkTextBuffer *buffer,
 	GtkTextIter insert_iter;
 	gint start_offset, end_offset;
 	GtkSourceBuffer *source_buffer = GTK_SOURCE_BUFFER (buffer);
+	GtkSourceFold *fold;
 
 	g_return_if_fail (GTK_IS_SOURCE_BUFFER (buffer));
 	g_return_if_fail (iter != NULL);
@@ -625,6 +701,18 @@ gtk_source_buffer_real_insert_text (GtkTextBuffer *buffer,
 	g_return_if_fail (gtk_text_iter_get_buffer (iter) == buffer);
 
 	start_offset = gtk_text_iter_get_offset (iter);
+
+	/* XXX this is very wrong, this method isn't only for user interaction */
+	/* if the user tries to insert text into a folded section, don't insert
+	 * the text, but unfold the region.
+	 */
+	fold = gtk_source_buffer_get_fold_at_iter (GTK_SOURCE_BUFFER (buffer),
+						   iter);
+	if (fold != NULL && fold->folded)
+	{
+		gtk_source_fold_set_folded (fold, FALSE);
+		return;
+	}
 
 	/*
 	 * iter is invalidated when
@@ -661,6 +749,48 @@ gtk_source_buffer_real_delete_range (GtkTextBuffer *buffer,
 	g_return_if_fail (end != NULL);
 	g_return_if_fail (gtk_text_iter_get_buffer (start) == buffer);
 	g_return_if_fail (gtk_text_iter_get_buffer (end) == buffer);
+
+	/* XXX same thing, this is wrong */
+	/* if the delete range intersects a folded region, don't delete any text;
+	 * unfold the region instead. */
+	if (source_buffer->priv->enable_folds)
+	{
+		GtkSourceFold *fold;
+
+		/* do we start in a folded region? */
+		fold = gtk_source_buffer_get_fold_at_iter (source_buffer, start);
+
+		if (fold != NULL && fold->folded)
+		{
+			GtkTextIter fold_begin;
+
+			/* If the start of delete range is the same as the start
+			 * of the fold, allow the delete to proceed. */
+			gtk_source_fold_get_bounds (fold, &fold_begin, NULL);
+			if (!gtk_text_iter_equal (start, &fold_begin))
+			{
+				gtk_source_fold_set_folded (fold, FALSE);
+				return;
+			}
+		}
+
+		/* do we end in a folded region? */
+		fold = gtk_source_buffer_get_fold_at_iter (source_buffer, end);
+
+		if (fold != NULL && fold->folded)
+		{
+			GtkTextIter fold_end;
+
+			/* If the end of delete range is the same as the end
+			 * of the fold, allow the delete to proceed. */
+			gtk_source_fold_get_bounds (fold, NULL, &fold_end);
+			if (!gtk_text_iter_equal (end, &fold_end))
+			{
+				gtk_source_fold_set_folded (fold, FALSE);
+				return;
+			}
+		}
+	}
 
 	gtk_text_iter_order (start, end);
 	offset = gtk_text_iter_get_offset (start);
@@ -1736,7 +1866,7 @@ gtk_source_buffer_get_source_marks_at_line (GtkSourceBuffer *buffer,
 	GtkTextIter iter;
 	GSList *res;
 
- 	g_return_val_if_fail (GTK_IS_SOURCE_BUFFER (buffer), NULL);
+	g_return_val_if_fail (GTK_IS_SOURCE_BUFFER (buffer), NULL);
 
 	gtk_text_buffer_get_iter_at_line (GTK_TEXT_BUFFER (buffer),
 					  &iter, line);
@@ -1790,9 +1920,9 @@ gtk_source_buffer_remove_source_marks (GtkSourceBuffer   *buffer,
 	GSList *list;
 	GSList *l;
 
- 	g_return_if_fail (GTK_IS_SOURCE_BUFFER (buffer));
- 	g_return_if_fail (start != NULL);
- 	g_return_if_fail (end != NULL);
+	g_return_if_fail (GTK_IS_SOURCE_BUFFER (buffer));
+	g_return_if_fail (start != NULL);
+	g_return_if_fail (end != NULL);
 
 	iter = *start;
 
@@ -1827,3 +1957,711 @@ gtk_source_buffer_remove_source_marks (GtkSourceBuffer   *buffer,
 	g_slist_free (list);
 }
 
+/**************************************************************************/
+/* Code folding
+ */
+
+gboolean
+gtk_source_buffer_get_folds_enabled (GtkSourceBuffer *buffer)
+{
+	g_return_val_if_fail (GTK_IS_SOURCE_BUFFER (buffer), FALSE);
+	return buffer->priv->enable_folds;
+}
+
+static void
+foreach_fold_region (gpointer data, gpointer user_data)
+{
+	gtk_source_buffer_real_remove_fold (GTK_SOURCE_BUFFER (user_data), data);
+}
+
+void
+gtk_source_buffer_set_folds_enabled (GtkSourceBuffer *buffer,
+				     gboolean         enable_folds)
+{
+	g_return_if_fail (GTK_IS_SOURCE_BUFFER (buffer));
+
+	enable_folds = (enable_folds != FALSE);
+
+	if (buffer->priv->enable_folds == enable_folds)
+		return;
+
+	buffer->priv->enable_folds = enable_folds;
+
+	/* Remove all existing folds if folds are disabled. */
+	if (!enable_folds && buffer->priv->folds != NULL)
+	{
+		GList *folds = g_list_copy (buffer->priv->folds);
+		g_list_foreach (folds, foreach_fold_region, buffer);
+		g_list_free (folds);
+	}
+
+	g_object_notify (G_OBJECT (buffer), "folds");
+}
+
+static GQuark
+gtk_source_buffer_error_quark (void)
+{
+	static GQuark q = 0;
+
+	if (q == 0)
+		q = g_quark_from_static_string ("gtk-source-buffer-error-quark");
+
+	return q;
+}
+
+/**
+ * insert_child_fold:
+ * @buffer: a #GtkSourceBuffer.
+ * @child: the new #GtkSourceFold to insert.
+ * @parent: the #GtkSourceFold parent to which we are trying to insert the child.
+ * @error: a possible #GError returned through the recursive loop.
+ *
+ * Inserts the specified child #GtkSourceFold into the fold tree somewhere or
+ * returns FALSE. In the latter case, a #GError is also set to indicate an
+ * illegal operation.
+ *
+ * This method is called from gtk_source_buffer_add_fold initially with a
+ * top-level #GtkSourceFold. After that, the method calls itself recursively
+ * until it has either found a #GtkSourceFold where it can insert the child or
+ * detected an illegal operation and set @error.
+ *
+ * Return value: TRUE if the insertion was succesful, FALSE if not. @error is
+ * set when FALSE is returned.
+ **/
+static gboolean
+insert_child_fold (GtkSourceBuffer *buffer,
+		   GtkSourceFold   *child,
+		   GtkSourceFold   *parent,
+		   GError         **error)
+{
+	GtkTextIter begin, end, pbegin, pend, iter;
+
+	/* If error is set, then return immediately; don't recurse further. */
+	if (*error)
+		return FALSE;
+
+	gtk_text_buffer_get_iter_at_mark (GTK_TEXT_BUFFER (buffer),
+					  &begin, child->start_line);
+	gtk_text_buffer_get_iter_at_mark (GTK_TEXT_BUFFER (buffer),
+					  &end, child->end_line);
+
+	gtk_text_buffer_get_iter_at_mark (GTK_TEXT_BUFFER (buffer),
+					  &pbegin, parent->start_line);
+	gtk_text_buffer_get_iter_at_mark (GTK_TEXT_BUFFER (buffer),
+					  &pend, parent->end_line);
+
+	DEBUG (g_message ("insert child (%d, %d) into parent (%d, %d)",
+			  gtk_text_iter_get_line (&begin),
+			  gtk_text_iter_get_line (&end),
+			  gtk_text_iter_get_line (&pbegin),
+			  gtk_text_iter_get_line (&pend)));
+
+	/* There are 3 major codepaths in this method:
+	 * 1. The child fold falls completely inside the parent fold. Try to add
+	 *    the child fold to children of the parent fold recursively. Otherwise
+	 *    append the child fold to the parent.
+	 * 2. The child fold overlapses the parent fold. This means that the
+	 *    start of the child fold is before the start of the parent and the
+	 *    end of the child is after the end of the parent. In this case,
+	 *    parent & child need to be reparented (parent becomes child and
+	 *    child becomes the parent. There's additional logic to check if any
+	 *    siblings of the parent need to be reparented.
+	 * 3. The child fold intersects with the parent fold. This is an illegal
+	 *    operation and will results in FALSE being returned through the
+	 *    recursion and the error parameter to be set.
+	 */
+
+	/* check if the child fold is within the parent fold. */
+	if (gtk_text_iter_compare (&pbegin, &begin) == -1 &&
+	    gtk_text_iter_compare (&pend, &end) == 1)
+	{
+		GList *folds = parent->children;
+		GList *last_fold = folds;
+
+		/* fold already has children; try inserting it into one. */
+		while (folds != NULL)
+		{
+			GtkSourceFold *child_fold = folds->data;
+
+			gtk_text_buffer_get_iter_at_mark (GTK_TEXT_BUFFER (buffer),
+							  &iter, child_fold->start_line);
+			/* check if the current fold is past the new fold. */
+			if (gtk_text_iter_compare (&iter, &end) == 1)
+			{
+				DEBUG (g_message ("adding fold before child @ %d",
+						  gtk_text_iter_get_line (&iter)));
+				parent->children = g_list_insert_before (parent->children,
+									 folds, child);
+				child->parent = parent;
+				return TRUE;
+			}
+
+			/* try inserting the child fold recursively. */
+			if (insert_child_fold (buffer, child, child_fold, error))
+				return TRUE;
+
+			if (*error)
+				return FALSE;
+
+			last_fold = folds;
+			folds = g_list_next (folds);
+		}
+
+		/* Fold is inside parent, but not inside a child of parent.
+		 * Append the child fold to the parent. If the child was added
+		 * succesfully already, then we never get to this point (we
+		 * return in the while loop above). */
+		DEBUG (g_message ("adding fold to parent fold @ %d",
+				  gtk_text_iter_get_line (&pbegin)));
+		if (last_fold == NULL)
+			parent->children = g_list_append (NULL, child);
+		else
+			parent->children = g_list_append (last_fold, child);
+		child->parent = parent;
+		return TRUE;
+	}
+	/* check if the child fold overlaps the parent fold. */
+	else if (gtk_text_iter_compare (&pbegin, &begin) == 1 &&
+		 gtk_text_iter_compare (&pend, &end) == -1)
+	{
+		GtkSourceFold *sibling;
+		GList *siblings, *reparent, *l, *first, *last;
+
+		/* If the parent is a root fold, the "siblings" are actually
+		 * the other root folds. Else just get the fold children. */
+		if (parent->parent != NULL)
+			siblings = g_list_find (parent->parent->children, parent);
+		else
+			siblings = g_list_find (buffer->priv->folds, parent);
+
+		reparent = g_list_append (NULL, parent);
+
+		DEBUG (g_message ("child overlaps parent; need to reparent..."));
+
+		/* We need to determine which siblings the child overlapses.
+		 * Those siblings need to be reparented to the child. If the
+		 * child intersects a sibling, then this operation is invalid.
+		 *
+		 * |		<- parent fold
+		 * | |		<- child fold (to be inserted)
+		 * | | [	<- first sibling (reparent)
+		 * | |
+		 * | | [	<- second sibling (reparent)
+		 * | |
+		 * |
+		 * | [		<- third sibling (don't reparent)
+		 * |
+		 */
+
+		/* The parent fold is the first in the list. Since we've already
+		 * added it to the reparent list, we skip it here. */
+		siblings = g_list_next (siblings);
+
+		/* First determine which children to reparent. */
+		while (siblings != NULL)
+		{
+			sibling = siblings->data;
+
+			gtk_text_buffer_get_iter_at_mark (GTK_TEXT_BUFFER (buffer),
+							  &pend, sibling->end_line);
+
+			/* check if we are past the last overlapped sibling. */
+			if (gtk_text_iter_compare (&end, &pend) == -1)
+			{
+				gtk_text_buffer_get_iter_at_mark (GTK_TEXT_BUFFER (buffer),
+								  &pbegin, sibling->start_line);
+				if (gtk_text_iter_compare (&end, &pbegin) != -1)
+				{
+					g_set_error (error,
+						     gtk_source_buffer_error_quark (),
+						     0,
+						     "Cannot add child fold: new fold [%d-%d] intersects with [%d-%d]",
+						     gtk_text_iter_get_line (&begin),
+						     gtk_text_iter_get_line (&end),
+						     gtk_text_iter_get_line (&pbegin),
+						     gtk_text_iter_get_line (&pend));
+					g_list_free (reparent);
+					return FALSE;
+				}
+
+				break;
+			}
+
+			DEBUG (g_message ("reparenting @ %d", gtk_text_iter_get_line (&pend)));
+
+			reparent = g_list_prepend (reparent, sibling);
+			siblings = g_list_next (siblings);
+		}
+
+		/* reparent first sibling to child. */
+		reparent = g_list_reverse (reparent);
+		sibling = reparent->data;
+
+		/* if sibling->parent is NULL, then it's a root fold. */
+		if (sibling->parent == NULL)
+		{
+			siblings = g_list_find (buffer->priv->folds, sibling);
+			g_return_val_if_fail (siblings != NULL, FALSE);
+			siblings->data = child;
+			child->children = g_list_append (child->children, sibling);
+			child->parent = NULL;
+			sibling->parent = child;
+		}
+		else
+		{
+			siblings = g_list_find (sibling->parent->children, sibling);
+			g_return_val_if_fail (siblings != NULL, FALSE);
+			siblings->data = child;
+			child->children = g_list_append (child->children, sibling);
+			child->parent = sibling->parent;
+			sibling->parent = child;
+		}
+
+		/* reparent all the following siblings as well. */
+		l = g_list_next (reparent);
+		first = last = NULL;
+		while (l != NULL)
+		{
+			sibling = l->data;
+
+			if (first == NULL)
+			{
+				if (sibling->parent != NULL)
+					first = g_list_find (sibling->parent->children,
+							     sibling);
+				else
+					first = g_list_find (buffer->priv->folds,
+							     sibling);
+
+				g_return_val_if_fail (first != NULL, FALSE);
+
+				last = first;
+			}
+
+			sibling->parent = child;
+
+			last = g_list_next (last);
+			l = g_list_next (l);
+		}
+
+		/* Check if there are any siblings left to reparent. */
+		if (first != NULL)
+		{
+			if (first->prev)
+				first->prev->next = last;
+
+			if (last)
+			{
+				last->prev->next = NULL;
+				last->prev = first->prev;
+			}
+
+			first->prev = NULL;
+
+			child->children = g_list_concat (child->children, first);
+		}
+
+		g_list_free (reparent);
+
+		return TRUE;
+	}
+	else if (gtk_text_iter_in_range (&pbegin, &begin, &end) ||
+		 gtk_text_iter_in_range (&pend, &begin, &end) ||
+		 gtk_text_iter_equal (&pbegin, &begin) ||
+		 gtk_text_iter_equal (&pend, &end))
+	{
+		g_set_error (error,
+			     gtk_source_buffer_error_quark (),
+			     0,
+			     "Cannot add child fold: new fold [%d-%d] intersects with [%d-%d]",
+			     gtk_text_iter_get_line (&begin),
+			     gtk_text_iter_get_line (&end),
+			     gtk_text_iter_get_line (&pbegin),
+			     gtk_text_iter_get_line (&pend));
+	}
+
+	return FALSE;
+}
+
+GtkSourceFold *
+gtk_source_buffer_add_fold (GtkSourceBuffer   *buffer,
+			    const GtkTextIter *begin,
+			    const GtkTextIter *end)
+{
+	GList *folds, *last_fold;
+	GtkSourceFold *fold, *parent;
+	GtkTextIter iter;
+
+	g_return_val_if_fail (GTK_IS_SOURCE_BUFFER (buffer), NULL);
+	g_return_val_if_fail (begin != NULL, NULL);
+	g_return_val_if_fail (end != NULL, NULL);
+
+	DEBUG (g_message ("add fold @ %d, %d",
+			  gtk_text_iter_get_line (begin),
+			  gtk_text_iter_get_line (end)));
+
+	fold = _gtk_source_fold_new (buffer, begin, end);
+
+	/* Insert the fold either at the root level or as a child of an existing fold. */
+	folds = buffer->priv->folds;
+	last_fold = folds;
+	while (folds != NULL)
+	{
+		GError *error = NULL;
+
+		parent = folds->data;
+
+		/* check if the current fold is past the new fold. */
+		gtk_text_buffer_get_iter_at_mark (GTK_TEXT_BUFFER (buffer),
+						  &iter, parent->start_line);
+		if (gtk_text_iter_compare (&iter, end) == 1)
+		{
+			DEBUG (g_message ("adding fold before root %d", gtk_text_iter_get_line (&iter)));
+			buffer->priv->folds = g_list_insert_before (buffer->priv->folds,
+								    folds, fold);
+			break;
+		}
+
+		/* try adding the child to all folds in the region. */
+		if (insert_child_fold (buffer, fold, parent, &error))
+			break;
+
+		if (error != NULL)
+		{
+			g_critical (error->message);
+			g_error_free (error);
+			gtk_source_fold_free (fold);
+			return NULL;
+		}
+
+		last_fold = folds;
+		folds = g_list_next (folds);
+	}
+
+	/* add the fold at the end of the list. */
+	if (folds == NULL)
+	{
+		GList *dummy;
+
+		DEBUG (g_message ("adding fold at end of root"));
+		if (last_fold == NULL)
+			buffer->priv->folds = g_list_append (NULL, fold);
+		else
+			dummy = g_list_append (last_fold, fold);
+	}
+
+	g_signal_emit (G_OBJECT (buffer), buffer_signals [FOLD_ADDED], 0, fold);
+
+	return fold;
+}
+
+static void
+gtk_source_buffer_real_remove_fold (GtkSourceBuffer *buffer,
+				    GtkSourceFold   *fold)
+{
+	GList *l;
+
+	g_return_if_fail (GTK_IS_SOURCE_BUFFER (buffer));
+	g_return_if_fail (fold != NULL);
+
+	if (fold->folded)
+		gtk_source_fold_set_folded (fold, FALSE);
+
+	gtk_text_buffer_delete_mark (GTK_TEXT_BUFFER (buffer), fold->start_line);
+	gtk_text_buffer_delete_mark (GTK_TEXT_BUFFER (buffer), fold->end_line);
+
+	l = g_list_find (buffer->priv->folds, fold);
+	if (l != NULL)
+		buffer->priv->folds = g_list_delete_link (buffer->priv->folds, l);
+
+	g_list_foreach (fold->children, foreach_fold_region, buffer);
+
+	gtk_source_fold_free (fold);
+}
+
+void
+gtk_source_buffer_remove_fold (GtkSourceBuffer *buffer,
+			       GtkSourceFold   *fold)
+{
+	g_signal_emit (G_OBJECT (buffer), buffer_signals [FOLD_REMOVE], 0, fold);
+}
+
+/**
+ * get_folds_in_region:
+ * @buffer: a #GtkSourceBuffer.
+ * @begin: the begin point of the region.
+ * @end: the end point of the region.
+ * @fold: #GtkSourceFold which might or might not lie in the region.
+ * @list: the list of #GtkSourceFold's in the region.
+ *
+ * This method is called from gtk_source_buffer_get_folds_in_region to create a
+ * list of #GtkSourceFold's of which the *start* lies in the specified region.
+ * This method recurses through the fold hierarchy to create the flattened list.
+ * See gtk_source_buffer_get_folds_in_region for more information.
+ **/
+static void
+get_folds_in_region (GtkTextBuffer     *buffer,
+		     const GtkTextIter *begin,
+		     const GtkTextIter *end,
+		     GtkSourceFold     *fold,
+		     GList            **list)
+{
+	GtkTextIter fbegin, fend;
+	GList *children;
+
+	gtk_text_buffer_get_iter_at_mark (buffer, &fbegin, fold->start_line);
+	gtk_text_buffer_get_iter_at_mark (buffer, &fend, fold->end_line);
+
+	/* the region lies in the fold, so add possible children in the region. */
+	if (gtk_text_iter_compare (&fbegin, begin) == -1 &&
+	    gtk_text_iter_compare (&fend, begin) == 1)
+	{
+		children = fold->children;
+		while (!fold->folded && children != NULL)
+		{
+			get_folds_in_region (buffer, begin, end, children->data, list);
+			children = g_list_next (children);
+		}
+	}
+	/* the entire fold lies in the region, so add the fold + children. */
+	else if ((gtk_text_iter_compare (&fbegin, begin) >= 0 &&
+	          gtk_text_iter_compare (&fend, end) <= 0) ||
+	/* start iter is in the region, so add the fold first. */
+	         (gtk_text_iter_compare (&fbegin, begin) >= 0 &&
+	          gtk_text_iter_compare (&fbegin, end) <= 0))
+	{
+		*list = g_list_append (*list, fold);
+		children = fold->children;
+		while (!fold->folded && children != NULL)
+		{
+			get_folds_in_region (buffer, begin, end, children->data, list);
+			children = g_list_next (children);
+		}
+	}
+}
+
+/**
+ * gtk_source_buffer_get_folds_in_region:
+ * @buffer: a #GtkSourceBuffer.
+ * @begin: the begin point of the region.
+ * @end: the end point of the region.
+ *
+ * Returns a list of all folds in the specified region. This is a flattened list
+ * of the parent->child fold hierarchy. This function is mainly used in
+ * gtk_source_view_get_lines to determine which folds to draw.
+ *
+ * This method returns the folds of which the start lies in the region. So if
+ * a fold begins before the region, the fold itself isn't returned, but its
+ * children might.
+ *
+ * Return value: a #GList of the #GtkSourceFold's in the region, or %NULL if
+ * there are no folds in the region.
+ **/
+GList *
+_gtk_source_buffer_get_folds_in_region (GtkSourceBuffer   *buffer,
+					const GtkTextIter *begin,
+					const GtkTextIter *end)
+{
+	GList *result, *folds;
+
+	g_return_val_if_fail (GTK_IS_SOURCE_BUFFER (buffer), NULL);
+	g_return_val_if_fail (begin != NULL && end != NULL, NULL);
+
+	result = NULL;
+	folds = buffer->priv->folds;
+	while (folds != NULL)
+	{
+		GtkSourceFold *fold = folds->data;
+		GtkTextIter iter;
+
+		/* break when we are past the end of the region. */
+		gtk_text_buffer_get_iter_at_mark (GTK_TEXT_BUFFER (buffer),
+						  &iter, fold->start_line);
+		if (gtk_text_iter_compare (&iter, end) == 1)
+			break;
+
+		get_folds_in_region (GTK_TEXT_BUFFER (buffer), begin, end, fold, &result);
+
+		folds = g_list_next (folds);
+	}
+
+	return result;
+}
+
+static void
+remove_folds_in_region (GtkTextBuffer     *buffer,
+			const GtkTextIter *begin,
+			const GtkTextIter *end,
+			GtkSourceFold     *fold)
+{
+	GtkTextIter fbegin, fend;
+	GList *children;
+
+	gtk_text_buffer_get_iter_at_mark (buffer, &fbegin, fold->start_line);
+	gtk_text_buffer_get_iter_at_mark (buffer, &fend, fold->end_line);
+
+	/* the region lies in the fold, so remove possible children in the region. */
+	if (gtk_text_iter_compare (&fbegin, begin) == -1 &&
+	    gtk_text_iter_compare (&fend, begin) == 1)
+	{
+		children = fold->children;
+		while (!fold->folded && children != NULL)
+		{
+			remove_folds_in_region (buffer, begin, end, children->data);
+			children = g_list_next (children);
+		}
+	}
+	/* start iter is in the region, so add the fold first. */
+	else if (gtk_text_iter_compare (&fbegin, begin) >= 0 &&
+	         gtk_text_iter_compare (&fbegin, end) <= 0)
+	{
+		gtk_source_buffer_remove_fold (GTK_SOURCE_BUFFER (buffer), fold);
+	}
+}
+
+void
+gtk_source_buffer_remove_folds_in_region (GtkSourceBuffer   *buffer,
+					  const GtkTextIter *begin,
+					  const GtkTextIter *end)
+{
+	GList *folds;
+
+	g_return_if_fail (GTK_IS_SOURCE_BUFFER (buffer));
+	g_return_if_fail (begin != NULL && end != NULL);
+
+	folds = buffer->priv->folds;
+	while (folds != NULL)
+	{
+		GtkSourceFold *fold = folds->data;
+		GtkTextIter iter;
+
+		/* break when we are past the end of the region. */
+		gtk_text_buffer_get_iter_at_mark (GTK_TEXT_BUFFER (buffer),
+						  &iter, fold->start_line);
+		if (gtk_text_iter_compare (&iter, end) == 1)
+			break;
+
+		remove_folds_in_region (GTK_TEXT_BUFFER (buffer), begin, end, fold);
+
+		folds = g_list_next (folds);
+	}
+}
+
+static GtkSourceFold *
+find_fold_at_line (GtkTextBuffer *buffer,
+		   GList         *folds,
+		   gint           line)
+{
+	GtkSourceFold *fold;
+	GtkTextIter iter;
+	gint start_line, end_line;
+
+	while (folds != NULL)
+	{
+		fold = folds->data;
+
+		gtk_text_buffer_get_iter_at_mark (buffer, &iter, fold->start_line);
+		start_line = gtk_text_iter_get_line (&iter);
+		gtk_text_buffer_get_iter_at_mark (buffer, &iter, fold->end_line);
+
+		/* The end iter of the fold is on the next line, so if the end
+		 * iter is at the start of the line, go back a line. */
+		if (gtk_text_iter_starts_line (&iter))
+			gtk_text_iter_backward_line (&iter);
+		end_line = gtk_text_iter_get_line (&iter);
+
+		if (line >= start_line && line <= end_line)
+		{
+			GtkSourceFold *child;
+
+			if (!fold->children)
+				return fold;
+
+			child = find_fold_at_line (buffer, fold->children, line);
+			if (child)
+				return child;
+			else
+				return fold;
+		}
+		else if (line < start_line)
+		{
+			return NULL;
+		}
+
+		folds = g_list_next (folds);
+	}
+
+	return NULL;
+}
+
+GtkSourceFold *
+_gtk_source_buffer_get_fold_at_line (GtkSourceBuffer *buffer,
+				     gint             line)
+{
+	g_return_val_if_fail (GTK_IS_SOURCE_BUFFER (buffer), NULL);
+	g_return_val_if_fail (line >= 0, NULL);
+
+	return find_fold_at_line (GTK_TEXT_BUFFER (buffer),
+				  buffer->priv->folds,
+				  line);
+}
+
+static GtkSourceFold *
+find_fold_at_iter (GtkTextBuffer     *buffer,
+		   GList             *folds,
+		   const GtkTextIter *iter)
+{
+	GtkSourceFold *fold;
+	GtkTextIter start_iter, end_iter;
+
+	while (folds != NULL)
+	{
+		fold = folds->data;
+
+		gtk_text_buffer_get_iter_at_mark (buffer, &start_iter, fold->start_line);
+		gtk_text_buffer_get_iter_at_mark (buffer, &end_iter, fold->end_line);
+
+		if (gtk_text_iter_compare (&start_iter, iter) <= 0 &&
+		    gtk_text_iter_compare (&end_iter, iter) >= 0)
+		{
+			GtkSourceFold *child;
+
+			if (!fold->children)
+				return fold;
+
+			child = find_fold_at_iter (buffer, fold->children, iter);
+			if (child)
+				return child;
+			else
+				return fold;
+		}
+		else if (gtk_text_iter_compare (iter, &start_iter) == -1)
+		{
+			return NULL;
+		}
+
+		folds = g_list_next (folds);
+	}
+
+	return NULL;
+}
+
+GtkSourceFold *
+gtk_source_buffer_get_fold_at_iter (GtkSourceBuffer   *buffer,
+				    const GtkTextIter *iter)
+{
+	g_return_val_if_fail (GTK_IS_SOURCE_BUFFER (buffer), NULL);
+	g_return_val_if_fail (iter != NULL, NULL);
+
+	return find_fold_at_iter (GTK_TEXT_BUFFER (buffer),
+				  buffer->priv->folds,
+				  iter);
+}
+
+const GList *
+gtk_source_buffer_get_root_folds (GtkSourceBuffer *buffer)
+{
+	g_return_val_if_fail (GTK_IS_SOURCE_BUFFER (buffer), NULL);
+
+	return buffer->priv->folds;
+}
