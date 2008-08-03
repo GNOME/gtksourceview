@@ -101,6 +101,7 @@ enum {
 struct _GtkSourceViewPrivate
 {
 	guint		 tab_width;
+	gboolean	 tabs_set;
 	gint		 indent_width;
 	gboolean 	 show_line_numbers;
 	gboolean	 show_line_marks;
@@ -141,7 +142,7 @@ static const GtkTargetEntry drop_types[] = {
 
 static guint signals[LAST_SIGNAL] = { 0 };
 
-typedef struct 
+typedef struct
 {
 	gint priority;
 	GdkPixbuf *pixbuf;
@@ -245,7 +246,7 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 
 	klass->undo = gtk_source_view_undo;
 	klass->redo = gtk_source_view_redo;
-	
+
 	/**
 	 * GtkSourceView:show-line-numbers:
 	 *
@@ -671,6 +672,7 @@ gtk_source_view_init (GtkSourceView *view)
 						  GtkSourceViewPrivate);
 
 	view->priv->tab_width = DEFAULT_TAB_WIDTH;
+	view->priv->tabs_set = FALSE;
 	view->priv->indent_width = -1;
 	view->priv->indent_on_tab = TRUE;
 	view->priv->smart_home_end = GTK_SOURCE_SMART_HOME_END_DISABLED;
@@ -733,7 +735,7 @@ gtk_source_view_finalize (GObject *object)
 
 	if (view->priv->style_scheme)
 		g_object_unref (view->priv->style_scheme);
-	
+
 	if (view->priv->right_margin_line_color != NULL)
 		gdk_color_free (view->priv->right_margin_line_color);
 
@@ -1195,7 +1197,7 @@ gtk_source_view_get_lines (GtkTextView  *text_view,
 }
 
 static gint
-sort_marks_by_priority (gconstpointer m1, 
+sort_marks_by_priority (gconstpointer m1,
 			gconstpointer m2,
 			gpointer data)
 {
@@ -1207,10 +1209,10 @@ sort_marks_by_priority (gconstpointer m1,
 	gint line2;
 
 	gtk_text_buffer_get_iter_at_mark (gtk_text_mark_get_buffer (GTK_TEXT_MARK (mark1)),
-					  &iter1, 
+					  &iter1,
 					  GTK_TEXT_MARK (mark1));
 	gtk_text_buffer_get_iter_at_mark (gtk_text_mark_get_buffer (GTK_TEXT_MARK (mark2)),
-					  &iter2, 
+					  &iter2,
 					  GTK_TEXT_MARK (mark2));
 
 	line1 = gtk_text_iter_get_line (&iter1);
@@ -1636,7 +1638,7 @@ gtk_source_view_expose (GtkWidget      *widget,
 			static GTimer *timer = NULL;
 #endif
 
-			g_return_val_if_fail (view->priv->right_margin_line_color != NULL, 
+			g_return_val_if_fail (view->priv->right_margin_line_color != NULL,
 					      event_handled);
 
 			if (view->priv->cached_right_margin_pos < 0)
@@ -1694,7 +1696,7 @@ gtk_source_view_expose (GtkWidget      *widget,
 
 			/* Only draw the overlay when the style scheme explicitly sets it. */
 			if (view->priv->right_margin_overlay_color != NULL)
-			{	
+			{
 				/* Draw the rectangle next to the line (x+.5). */
 				cairo_rectangle (cr,
 						 x + .5,
@@ -1963,6 +1965,7 @@ set_tab_stops_internal (GtkSourceView *view)
 
 	gtk_text_view_set_tabs (GTK_TEXT_VIEW (view),
 				tab_array);
+	view->priv->tabs_set = TRUE;
 
 	pango_tab_array_free (tab_array);
 
@@ -2190,7 +2193,7 @@ gtk_source_view_get_mark_category_pixbuf (GtkSourceView *view,
  * Set the @priority for the given mark @category. When there are
  * multiple marks on the same line, marks of categories with
  * higher priorities will be drawn on top.
- * 
+ *
  * Since: 2.2
  */
 void
@@ -2339,7 +2342,7 @@ indent_lines (GtkSourceView *view, GtkTextIter *start, GtkTextIter *end)
 
 		indent_width = get_real_indent_width (view);
 		spaces = indent_width % view->priv->tab_width;
-		tabs = indent_width / view->priv->tab_width;		
+		tabs = indent_width / view->priv->tab_width;
 
 		tab_buffer = get_indent_string (tabs, spaces);
 	}
@@ -3260,8 +3263,10 @@ gtk_source_view_style_set (GtkWidget *widget, GtkStyle *previous_style)
 		 * emission and we can't set the tab array since the
 		 * text view doesn't have a default style yet */
 
-		/* re-set tab stops */
-		set_tab_stops_internal (view);
+		/* re-set tab stops, but only if we already modified them, i.e.
+		 * do nothing with good old 8-space tabs */
+		if (view->priv->tabs_set)
+			set_tab_stops_internal (view);
 
 		/* make sure the margin position is recalculated on next expose */
 		view->priv->cached_right_margin_pos = -1;
@@ -3316,7 +3321,7 @@ update_right_margin_colors (GtkSourceView *view)
 		view->priv->right_margin_overlay_color = NULL;
 	}
 
-	if (view->priv->style_scheme) 
+	if (view->priv->style_scheme)
 	{
 		GtkSourceStyle	*style;
 
@@ -3327,8 +3332,8 @@ update_right_margin_colors (GtkSourceView *view)
 			gchar *color_str = NULL;
 			gboolean color_set;
 			GdkColor color;
-			
-			g_object_get (style, 
+
+			g_object_get (style,
 				      "foreground-set", &color_set,
 				      "foreground", &color_str,
 				      NULL);
@@ -3337,11 +3342,11 @@ update_right_margin_colors (GtkSourceView *view)
 			{
 				view->priv->right_margin_line_color = gdk_color_copy (&color);
 			}
-			
+
 			g_free (color_str);
 			color_str = NULL;
-			
-			g_object_get (style, 
+
+			g_object_get (style,
 				      "background-set", &color_set,
 				      "background", &color_str,
 				      NULL);
@@ -3354,7 +3359,7 @@ update_right_margin_colors (GtkSourceView *view)
 			g_free (color_str);
 		}
 	}
-	
+
 	if (view->priv->right_margin_line_color == NULL)
 		view->priv->right_margin_line_color = gdk_color_copy (&widget->style->text[GTK_STATE_NORMAL]);
 }

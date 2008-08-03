@@ -1,5 +1,21 @@
 2008-08-02  Yevgen Muntyan  <muntyan@tamu.edu>
 
+	Bug 317861 – sourceview is ignoring tab settings which are set before
+	it is mapped or realized.
+
+	* gtksourceview/gtksourceview.c:
+	GtkSourceViewPrivate::tabs_set - new field, which gets set in
+	set_tab_stops_internal() when gtk_text_view_set_tabs() is called;
+	(gtk_source_view_style_set): do not call set_tab_stops_internal()
+	if tabs were not modified.
+
+	This way gtk_text_view_set_tabs() is called only when
+	gtk_source_view_set_tab_width() is called with something other than 8,
+	and so GtkSourceView users (like meld in the bug above) may use
+	gtk_text_view_set_tabs() themselves.
+
+2008-08-02  Yevgen Muntyan  <muntyan@tamu.edu>
+
 	Bug 329883 – evaluate bracket matching as soon as it's turned on.
 	* gtksourceview/gtksourcebuffer.c
 	(gtk_source_buffer_set_highlight_matching_brackets):
