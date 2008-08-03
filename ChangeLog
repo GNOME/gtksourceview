@@ -1,5 +1,13 @@
 2008-08-02  Yevgen Muntyan  <muntyan@tamu.edu>
 
+	* gtksourceview/gtksourcebuffer.c (gtk_source_buffer_real_insert_text):
+	Start search for matching brackets from cursor location, not from the
+	location where text has been inserted.
+
+	Patch by Armin Burgmeier, bug #543325.
+
+2008-08-02  Yevgen Muntyan  <muntyan@tamu.edu>
+
 	* gtksourceview/language-specs/php.lang: added 'identifier'
 	context, bug #497376.
 

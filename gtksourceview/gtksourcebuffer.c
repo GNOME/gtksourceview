@@ -614,6 +614,8 @@ gtk_source_buffer_real_insert_text (GtkTextBuffer *buffer,
 				    const gchar   *text,
 				    gint           len)
 {
+	GtkTextMark *mark;
+	GtkTextIter insert_iter;
 	gint start_offset, end_offset;
 	GtkSourceBuffer *source_buffer = GTK_SOURCE_BUFFER (buffer);
 
@@ -632,9 +634,9 @@ gtk_source_buffer_real_insert_text (GtkTextBuffer *buffer,
 	 */
 	GTK_TEXT_BUFFER_CLASS (gtk_source_buffer_parent_class)->insert_text (buffer, iter, text, len);
 
-	gtk_source_buffer_move_cursor (buffer,
-				       iter,
-				       gtk_text_buffer_get_insert (buffer));
+	mark = gtk_text_buffer_get_insert (buffer);
+	gtk_text_buffer_get_iter_at_mark (buffer, &insert_iter, mark);
+	gtk_source_buffer_move_cursor (buffer, &insert_iter, mark);
 
 	end_offset = gtk_text_iter_get_offset (iter);
 
