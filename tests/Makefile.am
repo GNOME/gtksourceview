@@ -31,3 +31,7 @@ testregion_SOURCES = testregion.c
 testregion_LDADD = 			\
 	$(top_builddir)/gtksourceview/libgtksourceview-2.0.la \
 	$(DEP_LIBS)
+
+EXTRA_DIST =				\
+	apple-red.png			\
+	gnome-gmush.png

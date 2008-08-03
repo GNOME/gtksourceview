@@ -62,7 +62,7 @@ static GtkSourceStyleScheme *style_scheme = NULL;
 static void       open_file_cb                   (GtkAction       *action,
 						  gpointer         user_data);
 static void       print_file_cb                  (GtkAction       *action,
-						  gpointer         user_data);						  
+						  gpointer         user_data);
 static void       debug_thing_3_cb		 (GtkAction       *action,
 						  gpointer         user_data);
 
@@ -805,12 +805,12 @@ open_file_cb (GtkAction *action, gpointer user_data)
 #ifndef NON_BLOCKING_PAGINATION
 
 static void
-begin_print (GtkPrintOperation        *operation, 
+begin_print (GtkPrintOperation        *operation,
 	     GtkPrintContext          *context,
 	     GtkSourcePrintCompositor *compositor)
 {
 	gint n_pages;
-	
+
 	while (!gtk_source_print_compositor_paginate (compositor, context))
 		;
 
@@ -821,27 +821,27 @@ begin_print (GtkPrintOperation        *operation,
 #else
 
 static gboolean
-paginate (GtkPrintOperation        *operation, 
+paginate (GtkPrintOperation        *operation,
 	  GtkPrintContext          *context,
 	  GtkSourcePrintCompositor *compositor)
 {
 	g_print ("Pagination progress: %.2f %%\n", gtk_source_print_compositor_get_pagination_progress (compositor) * 100.0);
-	
+
 	if (gtk_source_print_compositor_paginate (compositor, context))
 	{
 		gint n_pages;
 
 		g_assert (gtk_source_print_compositor_get_pagination_progress (compositor) == 1.0);
 		g_print ("Pagination progress: %.2f %%\n", gtk_source_print_compositor_get_pagination_progress (compositor) * 100.0);
-		        
+
 		n_pages = gtk_source_print_compositor_get_n_pages (compositor);
 		gtk_print_operation_set_n_pages (operation, n_pages);
 
 
-		
+
 		return TRUE;
 	}
-     
+
 	return FALSE;
 }
 
@@ -865,11 +865,11 @@ draw_page (GtkPrintOperation        *operation,
 	PangoFontDescription *desc;
 	PangoRectangle rect;
 
-	
+
 	cr = gtk_print_context_get_cairo_context (context);
-	
+
 	cairo_save (cr);
-	
+
 	layout = gtk_print_context_create_pango_layout (context);
 
 	pango_layout_set_text (layout, "Draft", -1);
@@ -878,15 +878,15 @@ draw_page (GtkPrintOperation        *operation,
 	pango_layout_set_font_description (layout, desc);
 	pango_font_description_free (desc);
 
-	
+
 	pango_layout_get_extents (layout, NULL, &rect);
-		
-  	cairo_move_to (cr, 
+
+  	cairo_move_to (cr,
   		       (gtk_print_context_get_width (context) - ((double) rect.width / (double) PANGO_SCALE)) / 2,
   		       (gtk_print_context_get_height (context) - ((double) rect.height / (double) PANGO_SCALE)) / 2);
-	  		       
+
 	pango_cairo_layout_path (cr, layout);
-	
+
   	/* Font Outline */
 	cairo_set_source_rgba (cr, 0.85, 0.85, 0.85, 0.80);
 	cairo_set_line_width (cr, 0.5);
@@ -895,7 +895,7 @@ draw_page (GtkPrintOperation        *operation,
 	/* Font Fill */
 	cairo_set_source_rgba (cr, 0.8, 0.8, 0.8, 0.60);
 	cairo_fill (cr);
-	  	  
+
 	g_object_unref (layout);
 	cairo_restore (cr);
 #endif
@@ -905,7 +905,7 @@ draw_page (GtkPrintOperation        *operation,
 }
 
 static void
-end_print (GtkPrintOperation        *operation, 
+end_print (GtkPrintOperation        *operation,
 	   GtkPrintContext          *context,
 	   GtkSourcePrintCompositor *compositor)
 {
@@ -916,12 +916,12 @@ end_print (GtkPrintOperation        *operation,
 #define HEADER_FONT_NAME	"Sans 11"
 #define FOOTER_FONT_NAME	"Sans 11"
 #define BODY_FONT_NAME		"Monospace 9"
-	
+
 /*
-#define SETUP_FROM_VIEW 
+#define SETUP_FROM_VIEW
 */
 
-#undef SETUP_FROM_VIEW 
+#undef SETUP_FROM_VIEW
 
 
 static void
@@ -930,23 +930,23 @@ print_file_cb (GtkAction *action, gpointer user_data)
 	GtkSourceView *view;
 	GtkSourceBuffer *buffer;
 	GtkSourcePrintCompositor *compositor;
-	GtkPrintOperation *operation;	
+	GtkPrintOperation *operation;
 	const gchar *filename;
 	gchar *basename;
-	
+
 	g_return_if_fail (GTK_IS_SOURCE_VIEW (user_data));
-	
+
 	view = GTK_SOURCE_VIEW (user_data);
 
-	buffer = GTK_SOURCE_BUFFER (gtk_text_view_get_buffer (GTK_TEXT_VIEW (view))); 
-	
-	filename = g_object_get_data (G_OBJECT (buffer), "filename");	
+	buffer = GTK_SOURCE_BUFFER (gtk_text_view_get_buffer (GTK_TEXT_VIEW (view)));
+
+	filename = g_object_get_data (G_OBJECT (buffer), "filename");
 	basename = g_filename_display_basename (filename);
-	
+
 #ifdef SETUP_FROM_VIEW
 	compositor = gtk_source_print_compositor_new_from_view (view);
 #else
-	
+
 	compositor = gtk_source_print_compositor_new (buffer);
 
 	gtk_source_print_compositor_set_tab_width (compositor,
@@ -984,26 +984,26 @@ print_file_cb (GtkAction *action, gpointer user_data)
 
 	gtk_source_print_compositor_set_footer_font_name (compositor,
 							  FOOTER_FONT_NAME);
-#endif	
+#endif
 	operation = gtk_print_operation_new ();
-			
+
 	gtk_print_operation_set_job_name (operation, basename);
-	
+
 	gtk_print_operation_set_show_progress (operation, TRUE);
 
-#ifndef NON_BLOCKING_PAGINATION	
-  	g_signal_connect (G_OBJECT (operation), "begin-print", 
+#ifndef NON_BLOCKING_PAGINATION
+  	g_signal_connect (G_OBJECT (operation), "begin-print",
 			  G_CALLBACK (begin_print), compositor);
 #else
-  	g_signal_connect (G_OBJECT (operation), "paginate", 
+  	g_signal_connect (G_OBJECT (operation), "paginate",
 			  G_CALLBACK (paginate), compositor);
 #endif
-	g_signal_connect (G_OBJECT (operation), "draw-page", 
+	g_signal_connect (G_OBJECT (operation), "draw-page",
 			  G_CALLBACK (draw_page), compositor);
-	g_signal_connect (G_OBJECT (operation), "end-print", 
+	g_signal_connect (G_OBJECT (operation), "end-print",
 			  G_CALLBACK (end_print), compositor);
 
-	gtk_print_operation_run (operation, 
+	gtk_print_operation_run (operation,
 				 GTK_PRINT_OPERATION_ACTION_PRINT_DIALOG,
 				 NULL, NULL);
 
@@ -1313,7 +1313,7 @@ create_view_window (GtkSourceBuffer *buffer, GtkSourceView *from)
 
 	/* add source mark pixbufs */
 	error = NULL;
-	if ((pixbuf = gdk_pixbuf_new_from_file (DATADIR "/pixmaps/apple-green.png", &error)))
+	if ((pixbuf = gdk_pixbuf_new_from_file (TOP_SRCDIR "/tests/gnome-gmush.png", &error)))
 	{
 		gtk_source_view_set_mark_category_pixbuf (GTK_SOURCE_VIEW (view), MARK_TYPE_1, pixbuf);
 		gtk_source_view_set_mark_category_priority (GTK_SOURCE_VIEW (view), MARK_TYPE_1, 1);
@@ -1327,7 +1327,7 @@ create_view_window (GtkSourceBuffer *buffer, GtkSourceView *from)
 	}
 
 	error = NULL;
-	if ((pixbuf = gdk_pixbuf_new_from_file (DATADIR "/pixmaps/apple-red.png", &error)))
+	if ((pixbuf = gdk_pixbuf_new_from_file (TOP_SRCDIR "/tests/apple-red.png", &error)))
 	{
 		gtk_source_view_set_mark_category_pixbuf (GTK_SOURCE_VIEW (view), MARK_TYPE_2, pixbuf);
 		gtk_source_view_set_mark_category_priority (GTK_SOURCE_VIEW (view), MARK_TYPE_2, 2);

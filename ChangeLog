@@ -1,5 +1,14 @@
 2008-08-02  Yevgen Muntyan  <muntyan@tamu.edu>
 
+	* tests/apple-red.png:
+	* tests/gnome-gmush.png:
+	* tests/test-widget.c:
+	* tests/Makefile.am:
+	Added apple and mushroom icons, so that line marks in test-widget
+	finally show up without gnome.
+
+2008-08-02  Yevgen Muntyan  <muntyan@tamu.edu>
+
 	* gtksourceview/language-specs/def.lang: do not allow backslash
 	in net-address. Fixes bug #541791.
 
