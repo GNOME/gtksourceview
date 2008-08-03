@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-02 23:34+0200\n"
-"PO-Revision-Date: 2008-08-02 23:35+0200\n"
+"POT-Creation-Date: 2008-08-03 11:51+0200\n"
+"PO-Revision-Date: 2008-08-03 11:51+0200\n"
 "Last-Translator: Ignacio Casal Quinteiro <nacho.resa@gmail.com>\n"
 "Language-Team: Galician <trasno@ceu.fi.udc.es>\n"
 "MIME-Version: 1.0\n"
@@ -226,12 +226,12 @@ msgid "The GtkSourceBuffer object to print"
 msgstr "O obxecto GtkSourceBuffer para imprimir"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:429
-#: ../gtksourceview/gtksourceview.c:282
+#: ../gtksourceview/gtksourceview.c:283
 msgid "Tab Width"
 msgstr "Largura da tabulación"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:430
-#: ../gtksourceview/gtksourceview.c:283
+#: ../gtksourceview/gtksourceview.c:284
 msgid "Width of a tab character expressed in spaces"
 msgstr "Largura dun carácter tabulación expresado en espazos"
 
@@ -455,67 +455,67 @@ msgstr "Descrición do esquema de estilo"
 msgid "Style scheme filename"
 msgstr "Nome de ficheiro do esquema de estilo"
 
-#: ../gtksourceview/gtksourceview.c:257
+#: ../gtksourceview/gtksourceview.c:258
 msgid "Show Line Numbers"
 msgstr "Mostrar números de liña"
 
-#: ../gtksourceview/gtksourceview.c:258
+#: ../gtksourceview/gtksourceview.c:259
 msgid "Whether to display line numbers"
 msgstr "Indica se se mostran os números das liñas"
 
-#: ../gtksourceview/gtksourceview.c:269
+#: ../gtksourceview/gtksourceview.c:270
 msgid "Show Line Marks"
 msgstr "Mostrar os marcadores de liñas"
 
-#: ../gtksourceview/gtksourceview.c:270
+#: ../gtksourceview/gtksourceview.c:271
 msgid "Whether to display line mark pixbufs"
 msgstr "Indica se se mostrarán os marcadores de liñas dos pixbufs"
 
-#: ../gtksourceview/gtksourceview.c:297
+#: ../gtksourceview/gtksourceview.c:298
 msgid "Indent Width"
 msgstr "Largura do sangrado"
 
-#: ../gtksourceview/gtksourceview.c:298
+#: ../gtksourceview/gtksourceview.c:299
 msgid "Number of spaces to use for each step of indent"
 msgstr "Número de espazos a usar para cada paso de sangrado"
 
-#: ../gtksourceview/gtksourceview.c:307
+#: ../gtksourceview/gtksourceview.c:308
 msgid "Auto Indentation"
 msgstr "Sangría automática"
 
-#: ../gtksourceview/gtksourceview.c:308
+#: ../gtksourceview/gtksourceview.c:309
 msgid "Whether to enable auto indentation"
 msgstr "Indica se se activa a sangría automática"
 
-#: ../gtksourceview/gtksourceview.c:315
+#: ../gtksourceview/gtksourceview.c:316
 msgid "Insert Spaces Instead of Tabs"
 msgstr "Inserir espazos en lugar de separadores"
 
-#: ../gtksourceview/gtksourceview.c:316
+#: ../gtksourceview/gtksourceview.c:317
 msgid "Whether to insert spaces instead of tabs"
 msgstr "Indica se se insiren espazos en lugar de separadores"
 
-#: ../gtksourceview/gtksourceview.c:328
+#: ../gtksourceview/gtksourceview.c:329
 msgid "Show Right Margin"
 msgstr "Mostrar a marxe dereita"
 
-#: ../gtksourceview/gtksourceview.c:329
+#: ../gtksourceview/gtksourceview.c:330
 msgid "Whether to display the right margin"
 msgstr "Indica se se mostra a marxe dereita"
 
-#: ../gtksourceview/gtksourceview.c:341
+#: ../gtksourceview/gtksourceview.c:342
 msgid "Right Margin Position"
 msgstr "Posición da marxe dereita"
 
-#: ../gtksourceview/gtksourceview.c:342
+#: ../gtksourceview/gtksourceview.c:343
 msgid "Position of the right margin"
 msgstr "Posición da marxe dereita"
 
-#: ../gtksourceview/gtksourceview.c:358
+#: ../gtksourceview/gtksourceview.c:359
 msgid "Smart Home/End"
 msgstr "Inicio/fin intelixente"
 
-#: ../gtksourceview/gtksourceview.c:359
+#: ../gtksourceview/gtksourceview.c:360
 msgid ""
 "HOME and END keys move to first/last non whitespace characters on line "
 "before going to the start/end of the line"
@@ -523,19 +523,19 @@ msgstr ""
 "As teclas INICIO e FIN situarán o cursor no primeiro/último carácter da liña "
 "que non sexa un espazo en branco antes de ir ao inicio/fin da liña"
 
-#: ../gtksourceview/gtksourceview.c:369
+#: ../gtksourceview/gtksourceview.c:370
 msgid "Highlight current line"
 msgstr "Realzar a liña actual"
 
-#: ../gtksourceview/gtksourceview.c:370
+#: ../gtksourceview/gtksourceview.c:371
 msgid "Whether to highlight the current line"
 msgstr "Indica se se realza a liña actual"
 
-#: ../gtksourceview/gtksourceview.c:377
+#: ../gtksourceview/gtksourceview.c:378
 msgid "Indent on tab"
 msgstr "Sangrar co separador"
 
-#: ../gtksourceview/gtksourceview.c:378
+#: ../gtksourceview/gtksourceview.c:379
 msgid "Whether to indent the selected text when the tab key is pressed"
 msgstr ""
 "Indica se se sangra o texto seleccionado ao premer a tecla do separador"
@@ -660,12 +660,13 @@ msgstr "Tipo de dato"
 msgid "Decimal number"
 msgstr "Número decimal"
 
+#. map to nothing
 #: ../gtksourceview/language-specs/ada.lang.h:7
 #: ../gtksourceview/language-specs/c.lang.h:9
 #: ../gtksourceview/language-specs/haskell.lang.h:5
 #: ../gtksourceview/language-specs/lua.lang.h:3
 #: ../gtksourceview/language-specs/ocaml.lang.h:8
-#: ../gtksourceview/language-specs/php.lang.h:6
+#: ../gtksourceview/language-specs/php.lang.h:7
 #: ../gtksourceview/language-specs/python.lang.h:8
 #: ../gtksourceview/language-specs/ruby.lang.h:8
 msgid "Escaped Character"
@@ -699,7 +700,7 @@ msgstr "Carácter de escape"
 #: ../gtksourceview/language-specs/octave.lang.h:7
 #: ../gtksourceview/language-specs/pascal.lang.h:4
 #: ../gtksourceview/language-specs/perl.lang.h:9
-#: ../gtksourceview/language-specs/php.lang.h:11
+#: ../gtksourceview/language-specs/php.lang.h:13
 #: ../gtksourceview/language-specs/po.lang.h:2
 #: ../gtksourceview/language-specs/python.lang.h:11
 #: ../gtksourceview/language-specs/R.lang.h:6
@@ -795,7 +796,7 @@ msgstr "Clase de almacenamento"
 #: ../gtksourceview/language-specs/octave.lang.h:11
 #: ../gtksourceview/language-specs/pascal.lang.h:8
 #: ../gtksourceview/language-specs/perl.lang.h:19
-#: ../gtksourceview/language-specs/php.lang.h:17
+#: ../gtksourceview/language-specs/php.lang.h:19
 #: ../gtksourceview/language-specs/po.lang.h:5
 #: ../gtksourceview/language-specs/python.lang.h:17
 #: ../gtksourceview/language-specs/ruby.lang.h:21
@@ -818,7 +819,7 @@ msgstr "Patrón"
 #: ../gtksourceview/language-specs/lua.lang.h:9
 #: ../gtksourceview/language-specs/m4.lang.h:1
 #: ../gtksourceview/language-specs/perl.lang.h:18
-#: ../gtksourceview/language-specs/php.lang.h:16
+#: ../gtksourceview/language-specs/php.lang.h:18
 #: ../gtksourceview/language-specs/python.lang.h:15
 #: ../gtksourceview/language-specs/R.lang.h:9
 #: ../gtksourceview/language-specs/ruby.lang.h:19
@@ -831,7 +832,7 @@ msgstr "Scripts"
 #: ../gtksourceview/language-specs/haskell.lang.h:15
 #: ../gtksourceview/language-specs/ini.lang.h:10
 #: ../gtksourceview/language-specs/perl.lang.h:21
-#: ../gtksourceview/language-specs/php.lang.h:18
+#: ../gtksourceview/language-specs/php.lang.h:20
 #: ../gtksourceview/language-specs/pkgconfig.lang.h:3
 #: ../gtksourceview/language-specs/ruby.lang.h:23
 #: ../gtksourceview/language-specs/sh.lang.h:11
@@ -883,7 +884,7 @@ msgstr "Espazo de nomes"
 #: ../gtksourceview/language-specs/java.lang.h:10
 #: ../gtksourceview/language-specs/javascript.lang.h:11
 #: ../gtksourceview/language-specs/nemerle.lang.h:12
-#: ../gtksourceview/language-specs/php.lang.h:12
+#: ../gtksourceview/language-specs/php.lang.h:14
 #: ../gtksourceview/language-specs/vala.lang.h:8
 msgid "Null Value"
 msgstr "Valor nulo"
@@ -958,7 +959,7 @@ msgstr "Erro"
 #: ../gtksourceview/language-specs/d.lang.h:8
 #: ../gtksourceview/language-specs/erlang.lang.h:8
 #: ../gtksourceview/language-specs/nemerle.lang.h:8
-#: ../gtksourceview/language-specs/php.lang.h:7
+#: ../gtksourceview/language-specs/php.lang.h:8
 #: ../gtksourceview/language-specs/python.lang.h:9
 #: ../gtksourceview/language-specs/R.lang.h:4
 #: ../gtksourceview/language-specs/ruby.lang.h:9
@@ -970,7 +971,7 @@ msgstr "Número de coma flotante"
 #: ../gtksourceview/language-specs/d.lang.h:9
 #: ../gtksourceview/language-specs/eiffel.lang.h:10
 #: ../gtksourceview/language-specs/nemerle.lang.h:9
-#: ../gtksourceview/language-specs/php.lang.h:10
+#: ../gtksourceview/language-specs/php.lang.h:11
 #: ../gtksourceview/language-specs/vala.lang.h:6
 msgid "Hexadecimal number"
 msgstr "Número hexadecimal"
@@ -982,7 +983,7 @@ msgstr "Ficheiro incluído"
 #: ../gtksourceview/language-specs/c.lang.h:14
 #: ../gtksourceview/language-specs/d.lang.h:12
 #: ../gtksourceview/language-specs/nemerle.lang.h:13
-#: ../gtksourceview/language-specs/php.lang.h:13
+#: ../gtksourceview/language-specs/php.lang.h:15
 msgid "Octal number"
 msgstr "Número Octal"
 
@@ -1104,6 +1105,7 @@ msgstr "Elemento de comentario de documentación"
 
 #. Any variable name
 #: ../gtksourceview/language-specs/def.lang.h:34
+#: ../gtksourceview/language-specs/php.lang.h:12
 msgid "Identifier"
 msgstr "Identificador"
 
@@ -1116,7 +1118,7 @@ msgstr "Nota (FIXME, TODO, XXX, etc.)"
 #: ../gtksourceview/language-specs/def.lang.h:42
 #: ../gtksourceview/language-specs/erlang.lang.h:10
 #: ../gtksourceview/language-specs/perl.lang.h:11
-#: ../gtksourceview/language-specs/php.lang.h:14
+#: ../gtksourceview/language-specs/php.lang.h:16
 msgid "Operator"
 msgstr "Operador"
 
@@ -1330,6 +1332,7 @@ msgid "Builtin"
 msgstr "Incorporado"
 
 #: ../gtksourceview/language-specs/erlang.lang.h:5
+#: ../gtksourceview/language-specs/forth.lang.h:2
 #: ../gtksourceview/language-specs/verilog.lang.h:3
 msgid "Compiler Directive"
 msgstr "Directiva do compilador"
@@ -1338,16 +1341,12 @@ msgstr "Directiva do compilador"
 msgid "Erlang"
 msgstr "Erlang"
 
-#: ../gtksourceview/language-specs/forth.lang.h:2
-msgid "Compiler opt"
-msgstr "Opcións do compilador"
-
 #: ../gtksourceview/language-specs/forth.lang.h:4
 msgid "Debug Code"
 msgstr "Código de depuración"
 
 #: ../gtksourceview/language-specs/forth.lang.h:5
-msgid "Error text"
+msgid "Error Text"
 msgstr "Texto de erro"
 
 #: ../gtksourceview/language-specs/forth.lang.h:6
@@ -1714,13 +1713,13 @@ msgid "File Descriptor"
 msgstr "Descritor de ficheiro"
 
 #: ../gtksourceview/language-specs/perl.lang.h:6
-#: ../gtksourceview/language-specs/php.lang.h:8
+#: ../gtksourceview/language-specs/php.lang.h:9
 #: ../gtksourceview/language-specs/ruby.lang.h:10
 msgid "Heredoc"
 msgstr "Documento aquí"
 
 #: ../gtksourceview/language-specs/perl.lang.h:7
-#: ../gtksourceview/language-specs/php.lang.h:9
+#: ../gtksourceview/language-specs/php.lang.h:10
 #: ../gtksourceview/language-specs/ruby.lang.h:11
 #: ../gtksourceview/language-specs/sh.lang.h:4
 msgid "Heredoc Bound"
@@ -1758,7 +1757,7 @@ msgstr "Perl"
 msgid "System Command"
 msgstr "Comando do sistema"
 
-#: ../gtksourceview/language-specs/php.lang.h:15
+#: ../gtksourceview/language-specs/php.lang.h:17
 msgid "PHP"
 msgstr "PHP"
 
@@ -2026,6 +2025,9 @@ msgstr "Esquema de cores usando a paleta de cores de Tango"
 #: ../gtksourceview/language-specs/tango.xml.h:2
 msgid "Tango"
 msgstr "Tango"
+
+#~ msgid "Compiler opt"
+#~ msgstr "Opcións do compilador"
 
 #, fuzzy
 #~ msgid "keyword"
