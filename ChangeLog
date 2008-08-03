@@ -1,5 +1,14 @@
 2008-08-02  Yevgen Muntyan  <muntyan@tamu.edu>
 
+	Bug 329883 – evaluate bracket matching as soon as it's turned on.
+	* gtksourceview/gtksourcebuffer.c
+	(gtk_source_buffer_set_highlight_matching_brackets):
+	update matching bracket immediately.
+	* tests/test-widget.c: added a menu item for highlighting matching
+	brackets.
+
+2008-08-02  Yevgen Muntyan  <muntyan@tamu.edu>
+
 	* tests/apple-red.png:
 	* tests/gnome-gmush.png:
 	* tests/test-widget.c:

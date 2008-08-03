@@ -74,6 +74,8 @@ static void       marks_toggled_cb               (GtkAction       *action,
 						  gpointer         user_data);
 static void       margin_toggled_cb              (GtkAction       *action,
 						  gpointer         user_data);
+static void       hl_bracket_toggled_cb          (GtkAction       *action,
+						  gpointer         user_data);
 static void       hl_line_toggled_cb             (GtkAction       *action,
 						  gpointer         user_data);
 static void       wrap_lines_toggled_cb          (GtkAction       *action,
@@ -117,6 +119,9 @@ static GtkActionEntry view_action_entries[] = {
 };
 
 static GtkToggleActionEntry toggle_entries[] = {
+	{ "HlBracket", NULL, "Highlight Matching _Bracket", NULL,
+	  "Toggle highlighting of matching bracket",
+	  G_CALLBACK (hl_bracket_toggled_cb), FALSE },
 	{ "ShowNumbers", NULL, "Show _Line Numbers", NULL,
 	  "Toggle visibility of line numbers in the left margin",
 	  G_CALLBACK (numbers_toggled_cb), FALSE },
@@ -179,6 +184,7 @@ static const gchar *view_ui_description =
 "    <menu action=\"ViewMenu\">"
 "      <menuitem action=\"NewView\"/>"
 "      <separator/>"
+"      <menuitem action=\"HlBracket\"/>"
 "      <menuitem action=\"ShowNumbers\"/>"
 "      <menuitem action=\"ShowMarks\"/>"
 "      <menuitem action=\"ShowMargin\"/>"
@@ -571,6 +577,17 @@ margin_toggled_cb (GtkAction *action, gpointer user_data)
 	g_return_if_fail (GTK_IS_TOGGLE_ACTION (action) && GTK_IS_SOURCE_VIEW (user_data));
 	gtk_source_view_set_show_right_margin (
 		GTK_SOURCE_VIEW (user_data),
+		gtk_toggle_action_get_active (GTK_TOGGLE_ACTION (action)));
+}
+
+static void
+hl_bracket_toggled_cb (GtkAction *action, gpointer user_data)
+{
+	GtkTextBuffer *buffer;
+	g_return_if_fail (GTK_IS_TOGGLE_ACTION (action) && GTK_IS_SOURCE_VIEW (user_data));
+	buffer = gtk_text_view_get_buffer (user_data);
+	gtk_source_buffer_set_highlight_matching_brackets (
+		GTK_SOURCE_BUFFER (buffer),
 		gtk_toggle_action_get_active (GTK_TOGGLE_ACTION (action)));
 }
 
@@ -1378,6 +1395,9 @@ create_main_window (GtkSourceBuffer *buffer)
 	groups = gtk_ui_manager_get_action_groups (ui_manager);
 	/* retrieve the view action group at position 0 in the list */
 	action_group = g_list_nth_data (groups, 0);
+
+	action = gtk_action_group_get_action (action_group, "HlBracket");
+	gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), TRUE);
 
 	action = gtk_action_group_get_action (action_group, "ShowNumbers");
 	gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), TRUE);

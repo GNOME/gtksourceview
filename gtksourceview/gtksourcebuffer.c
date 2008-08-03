@@ -98,7 +98,7 @@ struct _GtkSourceBufferPrivate
 
 	GtkSourceUndoManager  *undo_manager;
 };
-	
+
 G_DEFINE_TYPE (GtkSourceBuffer, gtk_source_buffer, GTK_TYPE_TEXT_BUFFER)
 
 static guint 	 buffer_signals[LAST_SIGNAL];
@@ -153,7 +153,7 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 	 * that will cause problems (a loop). */
 	tb_class->delete_range  = gtk_source_buffer_real_delete_range;
 	tb_class->insert_text 	= gtk_source_buffer_real_insert_text;
-	
+
 	tb_class->mark_set	= gtk_source_buffer_real_mark_set;
 	tb_class->mark_deleted	= gtk_source_buffer_real_mark_deleted;
 
@@ -258,7 +258,7 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 	 * GtkSourceBuffer::source-mark-updated
 	 * @buffer: the buffer that received the signal
 	 *
-	 * The ::source_mark_updated signal is emitted each time 
+	 * The ::source_mark_updated signal is emitted each time
 	 * a mark is added to, moved or removed from the @buffer.
 	 **/
 	buffer_signals[SOURCE_MARK_UPDATED] =
@@ -1048,7 +1048,15 @@ gtk_source_buffer_set_highlight_matching_brackets (GtkSourceBuffer *buffer,
 
 	if (highlight != buffer->priv->highlight_brackets)
 	{
+		GtkTextIter iter;
+		GtkTextMark *mark;
+
 		buffer->priv->highlight_brackets = highlight;
+
+		mark = gtk_text_buffer_get_insert (GTK_TEXT_BUFFER (buffer));
+		gtk_text_buffer_get_iter_at_mark (GTK_TEXT_BUFFER (buffer), &iter, mark);
+		gtk_source_buffer_move_cursor (GTK_TEXT_BUFFER (buffer), &iter, mark);
+
 		g_object_notify (G_OBJECT (buffer), "highlight-matching-brackets");
 	}
 }
@@ -1079,7 +1087,7 @@ gtk_source_buffer_get_highlight_syntax (GtkSourceBuffer *buffer)
  * is %TRUE, the text will be highlighted according to the syntax
  * patterns specified in the language set with
  * gtk_source_buffer_set_language(). If @highlight is %FALSE, syntax highlighting
- * is disabled and all the GtkTextTag objects that have been added by the 
+ * is disabled and all the GtkTextTag objects that have been added by the
  * syntax highlighting engine are removed from the buffer.
  **/
 void
@@ -1102,12 +1110,12 @@ gtk_source_buffer_set_highlight_syntax (GtkSourceBuffer *buffer,
  * @buffer: a #GtkSourceBuffer.
  * @language: a #GtkSourceLanguage to set, or %NULL.
  *
- * Associate a #GtkSourceLanguage with the source buffer. If @language is 
+ * Associate a #GtkSourceLanguage with the source buffer. If @language is
  * not-%NULL and syntax highlighting is enabled (see gtk_source_buffer_set_highlight_syntax()),
  * the syntax patterns defined in @language will be used to highlight the text
- * contained in the buffer. If @language is %NULL, the text contained in the 
+ * contained in the buffer. If @language is %NULL, the text contained in the
  * buffer is not highlighted.
- * 
+ *
  * The buffer holds a reference to @language.
  **/
 void
@@ -1157,7 +1165,7 @@ gtk_source_buffer_set_language (GtkSourceBuffer   *buffer,
  * gtk_source_buffer_get_language:
  * @buffer: a #GtkSourceBuffer.
  *
- * Returns the #GtkSourceLanguage associated with the buffer, 
+ * Returns the #GtkSourceLanguage associated with the buffer,
  * see gtk_source_buffer_set_language().  The returned object should not be
  * unreferenced by the user.
  *
@@ -1398,7 +1406,7 @@ gtk_source_buffer_real_mark_set	(GtkTextBuffer     *buffer,
 	GTK_TEXT_BUFFER_CLASS (gtk_source_buffer_parent_class)->mark_set (buffer, location, mark);
 }
 
-static void 	 
+static void
 gtk_source_buffer_real_mark_deleted (GtkTextBuffer *buffer,
 				     GtkTextMark *mark)
 {
@@ -1733,7 +1741,7 @@ gtk_source_buffer_get_source_marks_at_line (GtkSourceBuffer *buffer,
 
 	res = gtk_source_buffer_get_source_marks_at_iter (buffer,
 							  &iter,
-							  category); 
+							  category);
 
 	while (gtk_source_buffer_forward_iter_to_source_mark (buffer,
 							      &iter,
@@ -1788,7 +1796,7 @@ gtk_source_buffer_remove_source_marks (GtkSourceBuffer   *buffer,
 
 	list = gtk_source_buffer_get_source_marks_at_iter (buffer,
 							   &iter,
-							   category); 
+							   category);
 
 	while (gtk_source_buffer_forward_iter_to_source_mark (buffer,
 							      &iter,
