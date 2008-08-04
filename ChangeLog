@@ -1,3 +1,32 @@
+2008-08-04  Yevgen Muntyan  <muntyan@tamu.edu>
+
+	Bug 315055 – Change the backgound color of lines containing markers
+	New API: gtk_source_view_set_mark_category_background(),
+	gtk_source_view_get_mark_category_background(), similar to methods
+	for priority and pixbuf.
+
+	* gtksourceview/gtksourceview.c: replaced GtkSourceViewPrivate::current_line_gc
+	with current_line_color and current_line_color_set;
+	added MarkCategory::background and MarkCategory::background_set;
+	removed gtk_source_view_unrealize() since current line GdkGC is removed;
+	(source_mark_updated_cb): call gtk_widget_queue_draw() instead of invalidating
+	only margin window;
+	(gtk_source_view_get_lines): added an array argument to get line heights,
+	to use in line background drawing code;
+	(gtk_source_view_paint_line_background), (gtk_source_view_paint_marks_background):
+	new functions;
+	(gtk_source_view_expose): use those; do not draw current line background if
+	the widget is insensitive;
+	(mark_category_set_background), (gtk_source_view_set_mark_category_background),
+	(gtk_source_view_get_mark_category_background): new functions;
+	(gtk_source_view_set_mark_category_pixbuf), (gtk_source_view_set_mark_category_priority):
+	call gtk_widget_queue_draw() here;
+	(update_current_line_color), (gtk_source_view_realize), (gtk_source_view_update_style_scheme):
+	only update current line color, no need to fiddle with GdkGC anymore.
+	* gtksourceview/gtksourceview.h: gtk_source_view_set_mark_category_background(),
+	gtk_source_view_get_mark_category_background().
+	* tests/test-widget.c: set background color for marks.
+
 2008-08-03  Yevgen Muntyan  <muntyan@tamu.edu>
 
 	* tests/test-widget.c (main): corrected description of -d option.

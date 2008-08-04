@@ -1332,6 +1332,9 @@ create_view_window (GtkSourceBuffer *buffer, GtkSourceView *from)
 	error = NULL;
 	if ((pixbuf = gdk_pixbuf_new_from_file (TOP_SRCDIR "/tests/gnome-gmush.png", &error)))
 	{
+		GdkColor color;
+		gdk_color_parse ("lightgreen", &color);
+		gtk_source_view_set_mark_category_background (GTK_SOURCE_VIEW (view), MARK_TYPE_1, &color);
 		gtk_source_view_set_mark_category_pixbuf (GTK_SOURCE_VIEW (view), MARK_TYPE_1, pixbuf);
 		gtk_source_view_set_mark_category_priority (GTK_SOURCE_VIEW (view), MARK_TYPE_1, 1);
 		g_object_unref (pixbuf);
@@ -1346,6 +1349,9 @@ create_view_window (GtkSourceBuffer *buffer, GtkSourceView *from)
 	error = NULL;
 	if ((pixbuf = gdk_pixbuf_new_from_file (TOP_SRCDIR "/tests/apple-red.png", &error)))
 	{
+		GdkColor color;
+		gdk_color_parse ("pink", &color);
+		gtk_source_view_set_mark_category_background (GTK_SOURCE_VIEW (view), MARK_TYPE_2, &color);
 		gtk_source_view_set_mark_category_pixbuf (GTK_SOURCE_VIEW (view), MARK_TYPE_2, pixbuf);
 		gtk_source_view_set_mark_category_priority (GTK_SOURCE_VIEW (view), MARK_TYPE_2, 2);
 		g_object_unref (pixbuf);

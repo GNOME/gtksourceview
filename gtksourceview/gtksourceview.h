@@ -146,6 +146,15 @@ GdkPixbuf	*gtk_source_view_get_mark_category_pixbuf
 							(GtkSourceView   *view,
 				       			 const gchar     *category);
 
+void             gtk_source_view_set_mark_category_background
+							(GtkSourceView   *view,
+							 const gchar     *category,
+							 const GdkColor  *color);
+gboolean         gtk_source_view_get_mark_category_background
+							(GtkSourceView   *view,
+							 const gchar     *category,
+							 GdkColor        *dest);
+
 void             gtk_source_view_set_mark_category_priority
 							(GtkSourceView   *view,
 							 const gchar     *category,

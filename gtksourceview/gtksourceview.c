@@ -117,7 +117,6 @@ struct _GtkSourceViewPrivate
 
 	gboolean	 style_scheme_applied;
 	GtkSourceStyleScheme *style_scheme;
-	GdkGC		*current_line_gc;
 	GdkColor        *right_margin_line_color;
 	GdkColor        *right_margin_overlay_color;
 
@@ -125,6 +124,9 @@ struct _GtkSourceViewPrivate
 
 	GtkSourceBuffer *source_buffer;
 	gint		 old_lines;
+
+	GdkColor         current_line_color;
+	guint            current_line_color_set : 1;
 };
 
 
@@ -146,6 +148,8 @@ typedef struct
 {
 	gint priority;
 	GdkPixbuf *pixbuf;
+	GdkColor background;
+	guint background_set;
 } MarkCategory;
 
 /* Prototypes. */
@@ -175,6 +179,7 @@ static void 	gtk_source_view_get_lines 		(GtkTextView       *text_view,
 				       			 gint               first_y,
 				       			 gint               last_y,
 				       			 GArray            *buffer_coords,
+				       			 GArray            *line_heights,
 				       			 GArray            *numbers,
 				       			 gint              *countp);
 static gint     gtk_source_view_expose 			(GtkWidget         *widget,
@@ -208,7 +213,6 @@ static void	gtk_source_view_get_property		(GObject           *object,
 static void     gtk_source_view_style_set               (GtkWidget         *widget,
 							 GtkStyle          *previous_style);
 static void	gtk_source_view_realize			(GtkWidget         *widget);
-static void	gtk_source_view_unrealize		(GtkWidget         *widget);
 static void	gtk_source_view_update_style_scheme	(GtkSourceView     *view);
 
 static MarkCategory *
@@ -239,7 +243,6 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	widget_class->expose_event = gtk_source_view_expose;
 	widget_class->style_set = gtk_source_view_style_set;
 	widget_class->realize = gtk_source_view_realize;
-	widget_class->unrealize = gtk_source_view_unrealize;
 
 	textview_class->populate_popup = gtk_source_view_populate_popup;
 	textview_class->move_cursor = gtk_source_view_move_cursor;
@@ -821,16 +824,9 @@ source_mark_updated_cb (GtkSourceBuffer *buffer,
 			GtkSourceMark	*mark,
 			GtkTextView     *text_view)
 {
-	GdkWindow *margin;
-
-	margin = gtk_text_view_get_window (text_view, GTK_TEXT_WINDOW_LEFT);
-	if (margin != NULL)
-	{
-		GdkRegion *region;
-
-		region = gdk_drawable_get_visible_region (GDK_DRAWABLE (margin));
-		gdk_window_invalidate_region (margin, region, TRUE);
-	}
+	/* TODO do something more intelligent here, namely
+	 * invalidate only the area under the mark if possible */
+	gtk_widget_queue_draw (GTK_WIDGET (text_view));
 }
 
 static void
@@ -1139,6 +1135,7 @@ gtk_source_view_get_lines (GtkTextView  *text_view,
 			   gint          first_y,
 			   gint          last_y,
 			   GArray       *buffer_coords,
+			   GArray       *line_heights,
 			   GArray       *numbers,
 			   gint         *countp)
 {
@@ -1149,6 +1146,8 @@ gtk_source_view_get_lines (GtkTextView  *text_view,
 
 	g_array_set_size (buffer_coords, 0);
 	g_array_set_size (numbers, 0);
+	if (line_heights != NULL)
+		g_array_set_size (line_heights, 0);
 
 	/* Get iter at first y */
 	gtk_text_view_get_line_at_y (text_view, &iter, first_y, NULL);
@@ -1165,6 +1164,8 @@ gtk_source_view_get_lines (GtkTextView  *text_view,
 		gtk_text_view_get_line_yrange (text_view, &iter, &y, &height);
 
 		g_array_append_val (buffer_coords, y);
+		if (line_heights)
+			g_array_append_val (line_heights, height);
 		last_line_num = gtk_text_iter_get_line (&iter);
 		g_array_append_val (numbers, last_line_num);
 
@@ -1188,6 +1189,8 @@ gtk_source_view_get_lines (GtkTextView  *text_view,
 		if (line_num != last_line_num)
 		{
 			g_array_append_val (buffer_coords, y);
+			if (line_heights)
+				g_array_append_val (line_heights, height);
 			g_array_append_val (numbers, line_num);
 			++count;
 		}
@@ -1364,6 +1367,7 @@ gtk_source_view_paint_margin (GtkSourceView *view,
 				   y1,
 				   y2,
 				   pixels,
+				   NULL,
 				   numbers,
 				   &count);
 
@@ -1488,6 +1492,163 @@ gtk_source_view_paint_margin (GtkSourceView *view,
 	g_object_unref (G_OBJECT (layout));
 }
 
+static void
+gtk_source_view_paint_line_background (GtkTextView    *text_view,
+				       GdkEventExpose *event,
+				       int             y, /* in buffer coordinates */
+				       int             height,
+				       const GdkColor *color)
+{
+	GdkRectangle visible_rect;
+	GdkRectangle line_rect;
+	gint win_y;
+	gint margin;
+	cairo_t *cr;
+
+	gtk_text_view_get_visible_rect (text_view, &visible_rect);
+
+	gtk_text_view_buffer_to_window_coords (text_view,
+					       GTK_TEXT_WINDOW_TEXT,
+					       visible_rect.x,
+					       y,
+					       &line_rect.x,
+					       &win_y);
+
+	line_rect.x = 0;
+	line_rect.width = visible_rect.width;
+	line_rect.y = win_y;
+	line_rect.height = height;
+
+	if (text_view->hadjustment)
+		margin = gtk_text_view_get_left_margin (text_view) -
+			 (int) text_view->hadjustment->value;
+	else
+		margin = gtk_text_view_get_left_margin (text_view);
+
+	line_rect.x += MAX (0, margin - 1);
+
+	cr = gdk_cairo_create (event->window);
+	gdk_cairo_set_source_color (cr, color);
+	cairo_set_line_width (cr, 1);
+	cairo_rectangle (cr, line_rect.x + .5, line_rect.y + .5,
+			 line_rect.width - 1, line_rect.height - 1);
+	cairo_stroke_preserve (cr);
+	cairo_fill (cr);
+}
+
+static void
+gtk_source_view_paint_marks_background (GtkSourceView  *view,
+					GdkEventExpose *event)
+{
+	GtkTextView *text_view;
+	GArray *numbers;
+	GArray *pixels;
+	GArray *heights;
+	gint y1, y2;
+	gint count;
+	gint i;
+
+	if (view->priv->source_buffer == NULL)
+		return;
+
+	text_view = GTK_TEXT_VIEW (view);
+
+	y1 = event->area.y;
+	y2 = y1 + event->area.height;
+
+	/* get the extents of the line printing */
+	gtk_text_view_window_to_buffer_coords (text_view,
+					       GTK_TEXT_WINDOW_TEXT,
+					       0,
+					       y1,
+					       NULL,
+					       &y1);
+
+	gtk_text_view_window_to_buffer_coords (text_view,
+					       GTK_TEXT_WINDOW_TEXT,
+					       0,
+					       y2,
+					       NULL,
+					       &y2);
+
+	numbers = g_array_new (FALSE, FALSE, sizeof (gint));
+	pixels = g_array_new (FALSE, FALSE, sizeof (gint));
+	heights = g_array_new (FALSE, FALSE, sizeof (gint));
+
+	/* get the line numbers and y coordinates. */
+	gtk_source_view_get_lines (text_view,
+				   y1,
+				   y2,
+				   pixels,
+				   heights,
+				   numbers,
+				   &count);
+
+	if (count == 0)
+	{
+		gint n = 0;
+		gint y;
+		gint height;
+		GtkTextIter iter;
+
+		gtk_text_buffer_get_start_iter (gtk_text_view_get_buffer (text_view), &iter);
+		gtk_text_view_get_line_yrange (text_view, &iter, &y, &height);
+
+		g_array_append_val (pixels, y);
+		g_array_append_val (pixels, height);
+		g_array_append_val (numbers, n);
+		count = 1;
+	}
+
+	DEBUG ({
+		g_message ("Painting marks background for line numbers %d - %d",
+			   g_array_index (numbers, gint, 0),
+			   g_array_index (numbers, gint, count - 1));
+	});
+
+	for (i = 0; i < count; ++i)
+	{
+		gint line_to_paint;
+		GSList *marks;
+		GdkColor *background;
+		int priority;
+
+		line_to_paint = g_array_index (numbers, gint, i);
+
+		marks = gtk_source_buffer_get_source_marks_at_line (view->priv->source_buffer,
+								    line_to_paint,
+								    NULL);
+
+		background = NULL;
+		priority = -1;
+
+		while (marks != NULL)
+		{
+			const gchar *category;
+			MarkCategory *cat = NULL;
+			category = gtk_source_mark_get_category (marks->data);
+			if (category != NULL)
+				cat = g_hash_table_lookup (view->priv->mark_categories, category);
+			if (cat != NULL && cat->background_set && cat->priority > priority)
+			{
+				background = &cat->background;
+				priority = cat->priority;
+			}
+			marks = g_slist_delete_link (marks, marks);
+		}
+
+		if (background != NULL)
+			gtk_source_view_paint_line_background (text_view, event,
+							       g_array_index (pixels, gint, i),
+							       g_array_index (heights, gint, i),
+							       background);
+	}
+
+	g_array_free (heights, TRUE);
+	g_array_free (pixels, TRUE);
+	g_array_free (numbers, TRUE);
+}
+
 static gint
 gtk_source_view_expose (GtkWidget      *widget,
 			GdkEventExpose *event)
@@ -1559,66 +1720,28 @@ gtk_source_view_expose (GtkWidget      *widget,
 				gdk_window_invalidate_rect (w, NULL, FALSE);
 		}
 
-		if (view->priv->highlight_current_line &&
+		if (GTK_WIDGET_IS_SENSITIVE(view) && view->priv->highlight_current_line &&
 		    (event->window == gtk_text_view_get_window (text_view, GTK_TEXT_WINDOW_TEXT)))
 		{
-			GdkRectangle visible_rect;
-			GdkRectangle redraw_rect;
 			GtkTextIter cur;
-			gint y;
-			gint height;
-			gint win_y;
-			GdkGC *gc;
-			gint margin;
+			gint y, height;
+			GdkColor *color;
 
 			gtk_text_buffer_get_iter_at_mark (text_view->buffer,
 							  &cur,
 							  gtk_text_buffer_get_insert (text_view->buffer));
-
 			gtk_text_view_get_line_yrange (text_view, &cur, &y, &height);
 
-			gtk_text_view_get_visible_rect (text_view, &visible_rect);
-
-			gtk_text_view_buffer_to_window_coords (text_view,
-						       GTK_TEXT_WINDOW_TEXT,
-						       visible_rect.x,
-						       visible_rect.y,
-						       &redraw_rect.x,
-						       &redraw_rect.y);
-
-			gtk_text_view_buffer_to_window_coords (text_view,
-						       GTK_TEXT_WINDOW_TEXT,
-						       0,
-						       y,
-						       NULL,
-						       &win_y);
-
-			redraw_rect.width = visible_rect.width;
-			redraw_rect.height = visible_rect.height;
-
-			if (view->priv->current_line_gc)
-				gc = view->priv->current_line_gc;
+			if (view->priv->current_line_color_set)
+				color = &view->priv->current_line_color;
 			else
-				gc = widget->style->bg_gc[GTK_WIDGET_STATE (widget)];
+				color = &widget->style->bg[GTK_WIDGET_STATE (widget)];
 
-			if (text_view->hadjustment)
-			{
-				margin = gtk_text_view_get_left_margin (text_view) -
-					 (int) text_view->hadjustment->value;
-			}
-			else
-			{
-				margin = gtk_text_view_get_left_margin (text_view);
-			}
-
-			gdk_draw_rectangle (event->window,
-					    gc,
-					    TRUE,
-					    redraw_rect.x + MAX (0, margin - 1),
-					    win_y,
-					    redraw_rect.width,
-					    height);
+			gtk_source_view_paint_line_background (text_view, event, y, height, color);
 		}
+
+		if (event->window == gtk_text_view_get_window (text_view, GTK_TEXT_WINDOW_TEXT))
+			gtk_source_view_paint_marks_background (view, event);
 
 		/* Have GtkTextView draw the text first. */
 		if (GTK_WIDGET_CLASS (gtk_source_view_parent_class)->expose_event)
@@ -2062,6 +2185,20 @@ gtk_source_view_get_indent_width (GtkSourceView *view)
 	return view->priv->indent_width;
 }
 
+static void
+mark_category_set_background (MarkCategory *cat, const GdkColor *background)
+{
+	if (background != NULL)
+	{
+		cat->background_set = TRUE;
+		cat->background = *background;
+	}
+	else
+	{
+		cat->background_set = FALSE;
+	}
+}
+
 static MarkCategory *
 mark_category_new (gint priority, GdkPixbuf *pixbuf)
 {
@@ -2155,6 +2292,9 @@ gtk_source_view_set_mark_category_pixbuf (GtkSourceView *view,
 			cat->pixbuf = NULL;
 		}
 	}
+
+	/* We may need to redraw the margin now */
+	gtk_widget_queue_draw (GTK_WIDGET (view));
 }
 
 /**
@@ -2182,6 +2322,80 @@ gtk_source_view_get_mark_category_pixbuf (GtkSourceView *view,
 		return g_object_ref (cat->pixbuf);
 	else
 		return NULL;
+}
+
+/**
+ * gtk_source_view_set_mark_category_background:
+ * @view: a #GtkSourceView.
+ * @category: a mark category.
+ * @color: background color or %NULL to unset it.
+ *
+ * Sets given background @color for mark @category.
+ * If @color is #NULL, the background color is unset.
+ *
+ * Since: 2.4
+ */
+void
+gtk_source_view_set_mark_category_background (GtkSourceView  *view,
+					      const gchar    *category,
+					      const GdkColor *color)
+{
+	MarkCategory *cat;
+
+	g_return_if_fail (GTK_IS_SOURCE_VIEW (view));
+	g_return_if_fail (category != NULL);
+
+	cat = g_hash_table_lookup (view->priv->mark_categories, category);
+
+	if (color != NULL && cat == NULL)
+	{
+		cat = mark_category_new (0, NULL);
+		g_hash_table_insert (view->priv->mark_categories,
+				     g_strdup (category),
+				     cat);
+	}
+
+	if (cat != NULL)
+		mark_category_set_background (cat, color);
+
+	/* We may need to redraw the text background now */
+	gtk_widget_queue_draw (GTK_WIDGET (view));
+}
+
+/**
+ * gtk_source_view_get_mark_category_background:
+ * @view: a #GtkSourceView.
+ * @category: a mark category.
+ * @dest: destination #GdkColor structure to fill in.
+ *
+ * Gets the background color associated with given @category.
+ *
+ * Return value: %TRUE if background color for @category was set
+ * and @dest is set to a valid color, or %FALSE otherwise.
+ *
+ * Since: 2.4
+ */
+gboolean
+gtk_source_view_get_mark_category_background (GtkSourceView *view,
+					      const gchar   *category,
+					      GdkColor      *dest)
+{
+	MarkCategory *cat;
+
+	g_return_val_if_fail (GTK_IS_SOURCE_VIEW (view), FALSE);
+	g_return_val_if_fail (category != NULL, FALSE);
+	g_return_val_if_fail (dest != NULL, FALSE);
+
+	cat = g_hash_table_lookup (view->priv->mark_categories, category);
+	if (cat != NULL && cat->background_set)
+	{
+		*dest = cat->background;
+		return TRUE;
+	}
+	else
+	{
+		return FALSE;
+	}
 }
 
 /**
@@ -2216,6 +2430,9 @@ gtk_source_view_set_mark_category_priority (GtkSourceView *view,
 	}
 	else
 		cat->priority = priority;
+
+	/* We may need to redraw now, if the priorities affect appearance */
+	gtk_widget_queue_draw (GTK_WIDGET (view));
 }
 
 /**
@@ -3274,31 +3491,11 @@ gtk_source_view_style_set (GtkWidget *widget, GtkStyle *previous_style)
 }
 
 static void
-update_current_line_gc (GtkSourceView *view)
+update_current_line_color (GtkSourceView *view)
 {
-	GdkColor color;
-	GtkWidget *widget = GTK_WIDGET (view);
-
-	if (!GTK_WIDGET_REALIZED (view))
-		return;
-
-	if (view->priv->current_line_gc)
-	{
-		g_object_unref (view->priv->current_line_gc);
-		view->priv->current_line_gc = NULL;
-	}
-
-	if (view->priv->style_scheme &&
-	    _gtk_source_style_scheme_get_current_line_color (view->priv->style_scheme, &color))
-	{
-		GdkGCValues values;
-		gdk_colormap_alloc_color (gtk_widget_get_colormap (widget),
-					  &color, TRUE, TRUE);
-		values.foreground = color;
-		view->priv->current_line_gc = gdk_gc_new_with_values (widget->window,
-								      &values,
-								      GDK_GC_FOREGROUND);
-	}
+	view->priv->current_line_color_set =
+		_gtk_source_style_scheme_get_current_line_color (view->priv->style_scheme,
+								 &view->priv->current_line_color);
 }
 
 static void
@@ -3377,20 +3574,8 @@ gtk_source_view_realize (GtkWidget *widget)
 		view->priv->style_scheme_applied = TRUE;
 	}
 
-	update_current_line_gc (view);
+	update_current_line_color (view);
 	update_right_margin_colors (view);
-}
-
-static void
-gtk_source_view_unrealize (GtkWidget *widget)
-{
-	GtkSourceView *view = GTK_SOURCE_VIEW (widget);
-
-	if (view->priv->current_line_gc)
-		g_object_unref (view->priv->current_line_gc);
-	view->priv->current_line_gc = NULL;
-
-	GTK_WIDGET_CLASS (gtk_source_view_parent_class)->unrealize (widget);
 }
 
 static void
@@ -3417,7 +3602,7 @@ gtk_source_view_update_style_scheme (GtkSourceView *view)
 		if (GTK_WIDGET_REALIZED (view))
 		{
 			_gtk_source_style_scheme_apply (new_scheme, GTK_WIDGET (view));
-			update_current_line_gc (view);
+			update_current_line_color (view);
 			update_right_margin_colors (view);
 			view->priv->style_scheme_applied = TRUE;
 		}
