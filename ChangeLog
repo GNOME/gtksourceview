@@ -1,5 +1,11 @@
 2008-08-04  Yevgen Muntyan  <muntyan@tamu.edu>
 
+	* gtksourceview/language-specs/csharp.lang: added {...} format regex
+	to strings (see bug #507125 for reference), replaced single-quoted
+	string with a character context like in c.lang.
+
+2008-08-04  Yevgen Muntyan  <muntyan@tamu.edu>
+
 	Bug 315055 – Change the backgound color of lines containing markers
 	New API: gtk_source_view_set_mark_category_background(),
 	gtk_source_view_get_mark_category_background(), similar to methods
