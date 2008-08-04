@@ -1523,7 +1523,7 @@ main (int argc, char *argv[])
 
 	GOptionEntry entries[] = {
 	  { "style-scheme", 's', 0, G_OPTION_ARG_STRING, &style_scheme_id, "Style scheme name to use", "SCHEME"},
-	  { "default-paths", 'd', 0, G_OPTION_ARG_NONE, &use_default_paths, "Style scheme name to use", "SCHEME"},
+	  { "default-paths", 'd', 0, G_OPTION_ARG_NONE, &use_default_paths, "Use default search paths", NULL},
 	  { NULL }
 	};
 
