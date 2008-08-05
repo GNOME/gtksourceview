@@ -1,5 +1,9 @@
 2008-08-05  Yevgen Muntyan  <muntyan@tamu.edu>
 
+	* gtksourceview/gtksourcestylescheme.c (parse_style): do not leak line_bg.
+
+2008-08-05  Yevgen Muntyan  <muntyan@tamu.edu>
+
 	* gtksourceview/language-specs/csharp.lang: use different style for
 	format strings.
 

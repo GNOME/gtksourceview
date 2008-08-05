@@ -788,7 +788,9 @@ parse_style (GtkSourceStyleScheme *scheme,
 {
 	GtkSourceStyle *use_style = NULL;
 	GtkSourceStyle *result = NULL;
-	xmlChar *fg = NULL, *bg = NULL, *line_bg = NULL;
+	xmlChar *fg = NULL;
+	xmlChar *bg = NULL;
+	xmlChar *line_bg = NULL;
 	gchar *style_name = NULL;
 	guint mask = 0;
 	gboolean bold = FALSE;
@@ -853,6 +855,7 @@ parse_style (GtkSourceStyleScheme *scheme,
 			g_free (style_name);
 			xmlFree (fg);
 			xmlFree (bg);
+			xmlFree (line_bg);
 			return FALSE;
 		}
 
@@ -891,6 +894,7 @@ parse_style (GtkSourceStyleScheme *scheme,
 	*style_p = result;
 	*style_name_p = style_name;
 
+	xmlFree (line_bg);
 	xmlFree (bg);
 	xmlFree (fg);
 
