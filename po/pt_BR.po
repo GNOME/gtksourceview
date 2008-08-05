@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-04 14:38-0400\n"
-"PO-Revision-Date: 2008-08-04 14:40-0500\n"
+"POT-Creation-Date: 2008-08-04 22:06-0400\n"
+"PO-Revision-Date: 2008-08-04 22:07-0500\n"
 "Last-Translator: Og Maciel <ogmaciel@gnome.org>\n"
 "Language-Team: Brazilian Portuguese <gnome-l10n-br@listas.cipsga.org.br>\n"
 "MIME-Version: 1.0\n"
@@ -87,15 +87,21 @@ msgstr "usar \\C não é suportado em definições de linguagem"
 #: ../gtksourceview/gtksourcecontextengine.c:3218
 #, c-format
 msgid ""
-"Cannot create a regex for all the transitions, the syntax highlighting process will be slower than usual.\n"
+"Cannot create a regex for all the transitions, the syntax highlighting "
+"process will be slower than usual.\n"
 "The error was: %s"
 msgstr ""
-"Não foi possível criar uma expressão regular (regex) para todas as transições; o processo de destaque de sintaxe será um pouco mais lento que o usual.\n"
+"Não foi possível criar uma expressão regular (regex) para todas as "
+"transições; o processo de destaque de sintaxe será um pouco mais lento que o "
+"usual.\n"
 "O erro foi: %s"
 
 #: ../gtksourceview/gtksourcecontextengine.c:4533
-msgid "Highlighting a single line took too much time, syntax highlighting will be disabled"
-msgstr "Destacando uma linha só demorou muito, desabiltando o destaque de sintaxe"
+msgid ""
+"Highlighting a single line took too much time, syntax highlighting will be "
+"disabled"
+msgstr ""
+"Destacando uma linha só demorou muito, desabiltando o destaque de sintaxe"
 
 #: ../gtksourceview/gtksourcecontextengine.c:5743
 #, c-format
@@ -111,8 +117,12 @@ msgstr "contexto de identificação \"%s\" duplicado"
 #: ../gtksourceview/gtksourcecontextengine.c:6095
 #: ../gtksourceview/gtksourcecontextengine.c:6155
 #, c-format
-msgid "style override used with wildcard context reference in language '%s' in ref '%s'"
-msgstr "estilo de sobrescrever usado com referência de contexto coringa na linguagem \"%s\" na referência \"%s\""
+msgid ""
+"style override used with wildcard context reference in language '%s' in ref "
+"'%s'"
+msgstr ""
+"estilo de sobrescrever usado com referência de contexto coringa na linguagem "
+"\"%s\" na referência \"%s\""
 
 #: ../gtksourceview/gtksourcecontextengine.c:6169
 #, c-format
@@ -178,8 +188,12 @@ msgid "Language specification directories"
 msgstr "Diretórios de especificação da linguagem"
 
 #: ../gtksourceview/gtksourcelanguagemanager.c:134
-msgid "List of directories where the language specification files (.lang) are located"
-msgstr "Lista de diretórios onde os arquivos de especificação da linguagem (.lang) estão localizados"
+msgid ""
+"List of directories where the language specification files (.lang) are "
+"located"
+msgstr ""
+"Lista de diretórios onde os arquivos de especificação da linguagem (.lang) "
+"estão localizados"
 
 #: ../gtksourceview/gtksourcelanguagemanager.c:143
 msgid "Language ids"
@@ -216,12 +230,12 @@ msgid "The GtkSourceBuffer object to print"
 msgstr "O objeto GtkSourceBuffer a ser impresso"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:429
-#: ../gtksourceview/gtksourceview.c:283
+#: ../gtksourceview/gtksourceview.c:286
 msgid "Tab Width"
 msgstr "Largura de tabulação"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:430
-#: ../gtksourceview/gtksourceview.c:284
+#: ../gtksourceview/gtksourceview.c:287
 msgid "Width of a tab character expressed in spaces"
 msgstr "Largura do caractere de tabulação expressa em espaços"
 
@@ -230,8 +244,10 @@ msgid "Wrap Mode"
 msgstr "Modo de ajuste"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:451
-msgid "Whether to wrap lines never, at word boundaries, or at character boundaries."
-msgstr "Quebrar ou não as linhas em limites de palavra ou limites de caractere."
+msgid ""
+"Whether to wrap lines never, at word boundaries, or at character boundaries."
+msgstr ""
+"Quebrar ou não as linhas em limites de palavra ou limites de caractere."
 
 #: ../gtksourceview/gtksourceprintcompositor.c:472
 msgid "Whether to print the document with highlighted syntax"
@@ -243,7 +259,8 @@ msgstr "Imprimir numeração das linhas"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:494
 msgid "Interval of printed line numbers (0 means no numbers)"
-msgstr "Intervalo dos números de linha a serem impressos (0 significa nenhum número)"
+msgstr ""
+"Intervalo dos números de linha a serem impressos (0 significa nenhum número)"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:516
 msgid "Print Header"
@@ -298,8 +315,12 @@ msgid "Number of pages"
 msgstr "Número de páginas"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:652
-msgid "The number of pages in the document (-1 means the document has not been completely paginated)."
-msgstr "O número de páginas no documento (-1 significa que o documento não foi completamente paginado)."
+msgid ""
+"The number of pages in the document (-1 means the document has not been "
+"completely paginated)."
+msgstr ""
+"O número de páginas no documento (-1 significa que o documento não foi "
+"completamente paginado)."
 
 #: ../gtksourceview/gtksourcestyle.c:70
 msgid "Line background"
@@ -325,23 +346,19 @@ msgstr "Primeiro plano"
 msgid "Foreground color"
 msgstr "Cor de primeiro plano"
 
-#: ../gtksourceview/gtksourcestyle.c:94
-#: ../gtksourceview/gtksourcestyle.c:95
+#: ../gtksourceview/gtksourcestyle.c:94 ../gtksourceview/gtksourcestyle.c:95
 msgid "Bold"
 msgstr "Negrito"
 
-#: ../gtksourceview/gtksourcestyle.c:102
-#: ../gtksourceview/gtksourcestyle.c:103
+#: ../gtksourceview/gtksourcestyle.c:102 ../gtksourceview/gtksourcestyle.c:103
 msgid "Italic"
 msgstr "Itálico"
 
-#: ../gtksourceview/gtksourcestyle.c:110
-#: ../gtksourceview/gtksourcestyle.c:111
+#: ../gtksourceview/gtksourcestyle.c:110 ../gtksourceview/gtksourcestyle.c:111
 msgid "Underline"
 msgstr "Sublinhar"
 
-#: ../gtksourceview/gtksourcestyle.c:118
-#: ../gtksourceview/gtksourcestyle.c:119
+#: ../gtksourceview/gtksourcestyle.c:118 ../gtksourceview/gtksourcestyle.c:119
 msgid "Strikethrough"
 msgstr "Tachar"
 
@@ -407,7 +424,8 @@ msgstr "Caminho de pesquisa de esquema de estilo"
 
 #: ../gtksourceview/gtksourcestyleschememanager.c:146
 msgid "List of directories and files where the style schemes are located"
-msgstr "Lista de diretórios e arquivos onde os esquemas de estilo estão localizados"
+msgstr ""
+"Lista de diretórios e arquivos onde os esquemas de estilo estão localizados"
 
 #: ../gtksourceview/gtksourcestyleschememanager.c:154
 msgid "Scheme ids"
@@ -437,83 +455,87 @@ msgstr "Descrição do esquema de estilo"
 msgid "Style scheme filename"
 msgstr "Nome do arquivo de esquema de estilo"
 
-#: ../gtksourceview/gtksourceview.c:258
+#: ../gtksourceview/gtksourceview.c:261
 msgid "Show Line Numbers"
 msgstr "Mostra numeração de linha"
 
-#: ../gtksourceview/gtksourceview.c:259
+#: ../gtksourceview/gtksourceview.c:262
 msgid "Whether to display line numbers"
 msgstr "Mostrar ou não a numeração de linha"
 
-#: ../gtksourceview/gtksourceview.c:270
+#: ../gtksourceview/gtksourceview.c:273
 msgid "Show Line Marks"
 msgstr "Mostrar linhas de marcação"
 
-#: ../gtksourceview/gtksourceview.c:271
+#: ../gtksourceview/gtksourceview.c:274
 msgid "Whether to display line mark pixbufs"
 msgstr "Mostrar ou não os pixbufs marcadores de linha"
 
-#: ../gtksourceview/gtksourceview.c:298
+#: ../gtksourceview/gtksourceview.c:301
 msgid "Indent Width"
 msgstr "Largura de recuo"
 
-#: ../gtksourceview/gtksourceview.c:299
+#: ../gtksourceview/gtksourceview.c:302
 msgid "Number of spaces to use for each step of indent"
 msgstr "Número de espaços a usar para cada passo de recuo"
 
-#: ../gtksourceview/gtksourceview.c:308
+#: ../gtksourceview/gtksourceview.c:311
 msgid "Auto Indentation"
 msgstr "Recuo automático"
 
-#: ../gtksourceview/gtksourceview.c:309
+#: ../gtksourceview/gtksourceview.c:312
 msgid "Whether to enable auto indentation"
 msgstr "Habilitar recuo automático"
 
-#: ../gtksourceview/gtksourceview.c:316
+#: ../gtksourceview/gtksourceview.c:319
 msgid "Insert Spaces Instead of Tabs"
 msgstr "Inserir espaços em vez de tabulações"
 
-#: ../gtksourceview/gtksourceview.c:317
+#: ../gtksourceview/gtksourceview.c:320
 msgid "Whether to insert spaces instead of tabs"
 msgstr "Inserir ou não espaços ao invés de tabulações"
 
-#: ../gtksourceview/gtksourceview.c:329
+#: ../gtksourceview/gtksourceview.c:332
 msgid "Show Right Margin"
 msgstr "Mostrar margem direita"
 
-#: ../gtksourceview/gtksourceview.c:330
+#: ../gtksourceview/gtksourceview.c:333
 msgid "Whether to display the right margin"
 msgstr "Mostrar ou não a margem direita"
 
-#: ../gtksourceview/gtksourceview.c:342
+#: ../gtksourceview/gtksourceview.c:345
 msgid "Right Margin Position"
 msgstr "Posição da margem direita"
 
-#: ../gtksourceview/gtksourceview.c:343
+#: ../gtksourceview/gtksourceview.c:346
 msgid "Position of the right margin"
 msgstr "Posição da margem direita"
 
-#: ../gtksourceview/gtksourceview.c:359
+#: ../gtksourceview/gtksourceview.c:362
 msgid "Smart Home/End"
 msgstr "Home/End inteligente"
 
-#: ../gtksourceview/gtksourceview.c:360
-msgid "HOME and END keys move to first/last non whitespace characters on line before going to the start/end of the line"
-msgstr "As teclas HOME e END movem para o primeiro/último caractere não-branco da linha antes de ir para o início/fim da linha"
+#: ../gtksourceview/gtksourceview.c:363
+msgid ""
+"HOME and END keys move to first/last non whitespace characters on line "
+"before going to the start/end of the line"
+msgstr ""
+"As teclas HOME e END movem para o primeiro/último caractere não-branco da "
+"linha antes de ir para o início/fim da linha"
 
-#: ../gtksourceview/gtksourceview.c:370
+#: ../gtksourceview/gtksourceview.c:373
 msgid "Highlight current line"
 msgstr "Destaca a linha atual"
 
-#: ../gtksourceview/gtksourceview.c:371
+#: ../gtksourceview/gtksourceview.c:374
 msgid "Whether to highlight the current line"
 msgstr "Destacar ou não linha atual"
 
-#: ../gtksourceview/gtksourceview.c:378
+#: ../gtksourceview/gtksourceview.c:381
 msgid "Indent on tab"
 msgstr "Recuar com tab"
 
-#: ../gtksourceview/gtksourceview.c:379
+#: ../gtksourceview/gtksourceview.c:382
 msgid "Whether to indent the selected text when the tab key is pressed"
 msgstr "Recuar ou não o texto selecionado quanto a tecla tab for pressionada"
 
@@ -560,7 +582,7 @@ msgstr "Valor booleano"
 #: ../gtksourceview/language-specs/ada.lang.h:4
 #: ../gtksourceview/language-specs/boo.lang.h:4
 #: ../gtksourceview/language-specs/c.lang.h:4
-#: ../gtksourceview/language-specs/csharp.lang.h:3
+#: ../gtksourceview/language-specs/csharp.lang.h:4
 #: ../gtksourceview/language-specs/css.lang.h:3
 #: ../gtksourceview/language-specs/def.lang.h:11
 #: ../gtksourceview/language-specs/d.lang.h:3
@@ -603,7 +625,7 @@ msgstr "Comentário"
 #: ../gtksourceview/language-specs/boo.lang.h:5
 #: ../gtksourceview/language-specs/c.lang.h:6
 #: ../gtksourceview/language-specs/cpp.lang.h:3
-#: ../gtksourceview/language-specs/csharp.lang.h:4
+#: ../gtksourceview/language-specs/csharp.lang.h:5
 #: ../gtksourceview/language-specs/d.lang.h:5
 #: ../gtksourceview/language-specs/eiffel.lang.h:4
 #: ../gtksourceview/language-specs/forth.lang.h:3
@@ -629,7 +651,7 @@ msgstr "Tipo de dados"
 #. A decimal number: 1234
 #: ../gtksourceview/language-specs/ada.lang.h:6
 #: ../gtksourceview/language-specs/c.lang.h:7
-#: ../gtksourceview/language-specs/csharp.lang.h:5
+#: ../gtksourceview/language-specs/csharp.lang.h:6
 #: ../gtksourceview/language-specs/def.lang.h:19
 #: ../gtksourceview/language-specs/d.lang.h:6
 #: ../gtksourceview/language-specs/eiffel.lang.h:6
@@ -646,6 +668,7 @@ msgstr "Número decimal"
 #. map to nothing
 #: ../gtksourceview/language-specs/ada.lang.h:7
 #: ../gtksourceview/language-specs/c.lang.h:9
+#: ../gtksourceview/language-specs/csharp.lang.h:8
 #: ../gtksourceview/language-specs/haskell.lang.h:5
 #: ../gtksourceview/language-specs/lua.lang.h:3
 #: ../gtksourceview/language-specs/ocaml.lang.h:8
@@ -661,7 +684,7 @@ msgstr "Caractere de escape"
 #: ../gtksourceview/language-specs/boo.lang.h:7
 #: ../gtksourceview/language-specs/c.lang.h:13
 #: ../gtksourceview/language-specs/cpp.lang.h:4
-#: ../gtksourceview/language-specs/csharp.lang.h:8
+#: ../gtksourceview/language-specs/csharp.lang.h:10
 #: ../gtksourceview/language-specs/css.lang.h:8
 #: ../gtksourceview/language-specs/def.lang.h:36
 #: ../gtksourceview/language-specs/d.lang.h:10
@@ -702,7 +725,7 @@ msgstr "Palavra-chave"
 
 #: ../gtksourceview/language-specs/ada.lang.h:9
 #: ../gtksourceview/language-specs/c.lang.h:15
-#: ../gtksourceview/language-specs/csharp.lang.h:10
+#: ../gtksourceview/language-specs/csharp.lang.h:12
 #: ../gtksourceview/language-specs/forth.lang.h:9
 #: ../gtksourceview/language-specs/haskell.lang.h:11
 #: ../gtksourceview/language-specs/idl.lang.h:5
@@ -713,7 +736,7 @@ msgid "Preprocessor"
 msgstr "Pré-processador"
 
 #: ../gtksourceview/language-specs/ada.lang.h:10
-#: ../gtksourceview/language-specs/csharp.lang.h:11
+#: ../gtksourceview/language-specs/csharp.lang.h:13
 #: ../gtksourceview/language-specs/vala.lang.h:9
 #: ../gtksourceview/language-specs/vhdl.lang.h:7
 msgid "Real number"
@@ -724,7 +747,7 @@ msgstr "Número real"
 #: ../gtksourceview/language-specs/c.lang.h:16
 #: ../gtksourceview/language-specs/chdr.lang.h:2
 #: ../gtksourceview/language-specs/cpp.lang.h:5
-#: ../gtksourceview/language-specs/csharp.lang.h:12
+#: ../gtksourceview/language-specs/csharp.lang.h:14
 #: ../gtksourceview/language-specs/d.lang.h:13
 #: ../gtksourceview/language-specs/eiffel.lang.h:13
 #: ../gtksourceview/language-specs/erlang.lang.h:11
@@ -758,7 +781,7 @@ msgstr "Classe de armazenamento"
 #: ../gtksourceview/language-specs/ada.lang.h:13
 #: ../gtksourceview/language-specs/boo.lang.h:15
 #: ../gtksourceview/language-specs/c.lang.h:18
-#: ../gtksourceview/language-specs/csharp.lang.h:13
+#: ../gtksourceview/language-specs/csharp.lang.h:15
 #: ../gtksourceview/language-specs/css.lang.h:13
 #: ../gtksourceview/language-specs/def.lang.h:57
 #: ../gtksourceview/language-specs/d.lang.h:15
@@ -862,7 +885,7 @@ msgid "Namespace"
 msgstr "Namespace"
 
 #: ../gtksourceview/language-specs/boo.lang.h:10
-#: ../gtksourceview/language-specs/csharp.lang.h:9
+#: ../gtksourceview/language-specs/csharp.lang.h:11
 #: ../gtksourceview/language-specs/d.lang.h:11
 #: ../gtksourceview/language-specs/java.lang.h:10
 #: ../gtksourceview/language-specs/javascript.lang.h:11
@@ -904,6 +927,7 @@ msgstr "C"
 
 #. A character constant: 'c'
 #: ../gtksourceview/language-specs/c.lang.h:3
+#: ../gtksourceview/language-specs/csharp.lang.h:3
 #: ../gtksourceview/language-specs/def.lang.h:9
 #: ../gtksourceview/language-specs/haskell.lang.h:1
 #: ../gtksourceview/language-specs/nemerle.lang.h:3
@@ -919,7 +943,7 @@ msgstr "Definições comuns"
 
 #. Any erroneous construct
 #: ../gtksourceview/language-specs/c.lang.h:8
-#: ../gtksourceview/language-specs/csharp.lang.h:6
+#: ../gtksourceview/language-specs/csharp.lang.h:7
 #: ../gtksourceview/language-specs/css.lang.h:6
 #: ../gtksourceview/language-specs/def.lang.h:28
 #: ../gtksourceview/language-specs/d.lang.h:7
@@ -950,7 +974,7 @@ msgid "Floating point number"
 msgstr "Número de ponto flutuante"
 
 #: ../gtksourceview/language-specs/c.lang.h:11
-#: ../gtksourceview/language-specs/csharp.lang.h:7
+#: ../gtksourceview/language-specs/csharp.lang.h:9
 #: ../gtksourceview/language-specs/d.lang.h:9
 #: ../gtksourceview/language-specs/eiffel.lang.h:10
 #: ../gtksourceview/language-specs/nemerle.lang.h:9
@@ -985,6 +1009,10 @@ msgstr "C++"
 #: ../gtksourceview/language-specs/csharp.lang.h:2
 msgid "C#"
 msgstr "C#"
+
+#: ../gtksourceview/language-specs/csharp.lang.h:16
+msgid "String Format"
+msgstr "Formato de texto"
 
 #: ../gtksourceview/language-specs/css.lang.h:1
 msgid "CSS"
@@ -2008,4 +2036,3 @@ msgstr "Esquema de cor usando a paleta de cor Tango"
 #: ../gtksourceview/language-specs/tango.xml.h:2
 msgid "Tango"
 msgstr "Tango"
-
