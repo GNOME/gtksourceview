@@ -1,3 +1,8 @@
+2008-08-05  Yevgen Muntyan  <muntyan@tamu.edu>
+
+	* gtksourceview/language-specs/csharp.lang: use different style for
+	format strings.
+
 2008-08-04  Yevgen Muntyan  <muntyan@tamu.edu>
 
 	* gtksourceview/language-specs/csharp.lang: added {...} format regex
@@ -108,6 +113,8 @@
 	* gtksourceview/gtksourcecontextengine.c (analyze_line):
 	* gtksourceview/language-specs/forth.lang:
 	branched for 2.22, un-un-done the last two string changes.
+
+=== branched for gnome-2.22 ===
 
 2008-08-02  Yevgen Muntyan  <muntyan@tamu.edu>
 
