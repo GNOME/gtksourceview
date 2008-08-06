@@ -30,6 +30,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <gtk/gtk.h>
+#include <gio/gio.h>
 #include <gtksourceview/gtksourceview.h>
 #include <gtksourceview/gtksourcelanguage.h>
 #include <gtksourceview/gtksourcelanguagemanager.h>
@@ -37,11 +38,6 @@
 #include <gtksourceview/gtksourceprintcompositor.h>
 #ifdef TEST_XML_MEM
 #include <libxml/xmlreader.h>
-#endif
-#ifdef USE_GNOME_VFS
-#include <libgnomevfs/gnome-vfs-init.h>
-#include <libgnomevfs/gnome-vfs-mime-utils.h>
-#include <libgnomevfs/gnome-vfs-utils.h>
 #endif
 
 /* Global list of open windows */
@@ -311,129 +307,45 @@ remove_all_marks (GtkSourceBuffer *buffer)
 	gtk_source_buffer_remove_source_marks (buffer, &s, &e, NULL);
 }
 
-/* Note this is wrong for several reasons, e.g. g_pattern_match is broken
- * for glob matching. */
 static GtkSourceLanguage *
-get_language_for_filename (const gchar *filename)
+get_language_for_file (GtkTextBuffer *buffer, const gchar *filename)
 {
-	const gchar * const *languages;
-	gchar *filename_utf8;
 	GtkSourceLanguageManager *manager;
+	GtkSourceLanguage *language;
+	GtkTextIter start, end;
+	gchar *text;
+	gchar *content_type;
+	gboolean result_uncertain;
 
-	filename_utf8 = g_filename_to_utf8 (filename, -1, NULL, NULL, NULL);
-	g_return_val_if_fail (filename_utf8 != NULL, NULL);
-
-	manager = gtk_source_language_manager_get_default ();
-	languages = gtk_source_language_manager_get_language_ids (manager);
-
-	while (*languages != NULL)
-	{
-		GtkSourceLanguage *lang;
-		gchar **globs, **p;
-
-		lang = gtk_source_language_manager_get_language (manager,
-								 *languages);
-		g_return_val_if_fail (GTK_IS_SOURCE_LANGUAGE (lang), NULL);
-		++languages;
-
-		globs = gtk_source_language_get_globs (lang);
-		if (globs == NULL)
-			continue;
-
-		for (p = globs; *p != NULL; p++)
-		{
-			if (g_pattern_match_simple (*p, filename_utf8))
-			{
-				g_strfreev (globs);
-				g_free (filename_utf8);
-
-				return lang;
-			}
-		}
-
-		g_strfreev (globs);
-	}
-
-	g_free (filename_utf8);
-	return NULL;
-}
-
-/* Note this is wrong, because it ignores mime parent types and subtypes.
- * It's fine to use in a simplish program like this, but is unacceptable
- * in a serious text editor. */
-static GtkSourceLanguage *
-get_language_for_mime_type (const gchar *mime)
-{
-	const gchar * const *languages;
-	GtkSourceLanguageManager *manager;
-
-	manager = gtk_source_language_manager_get_default ();
-	languages = gtk_source_language_manager_get_language_ids (manager);
-
-	while (*languages != NULL)
-	{
-		GtkSourceLanguage *lang;
-		gchar **mimetypes, **p;
-
-		lang = gtk_source_language_manager_get_language (manager,
-								 *languages);
-		g_return_val_if_fail (GTK_IS_SOURCE_LANGUAGE (lang), NULL);
-		++languages;
-
-		mimetypes = gtk_source_language_get_mime_types (lang);
-
-		if (mimetypes == NULL)
-			continue;
-
-		for (p = mimetypes; *p != NULL; p++)
-		{
-			if (strcmp (*p, mime) == 0)
-			{
-				g_strfreev (mimetypes);
-				return lang;
-			}
-		}
-
-		g_strfreev (mimetypes);
-	}
-
-	return NULL;
-}
-
-static GtkSourceLanguage *
-get_language_for_file (const gchar *filename)
-{
-	GtkSourceLanguage *language = NULL;
-
-#if defined(USE_GNOME_VFS)
-	gchar *mime_type;
-	gchar *uri;
-
-	/* I hate this! */
-	if (g_path_is_absolute (filename))
-	{
-		uri = gnome_vfs_get_uri_from_local_path (filename);
-	}
+	gtk_text_buffer_get_start_iter (buffer, &start);
+	if (gtk_text_buffer_get_char_count (buffer) < 1024)
+		gtk_text_buffer_get_end_iter (buffer, &end);
 	else
+		gtk_text_buffer_get_iter_at_offset (buffer, &end, 1024);
+	text = gtk_text_buffer_get_slice (buffer, &start, &end, TRUE);
+
+	content_type = g_content_type_guess (filename,
+					     (guchar*) text,
+					     strlen (text),
+					     &result_uncertain);
+	if (result_uncertain)
 	{
-		gchar *curdir, *path;
-		curdir = g_get_current_dir ();
-		path = g_strconcat (curdir, "/", filename, NULL);
-		g_free (curdir);
-		uri = gnome_vfs_get_uri_from_local_path (path);
-		g_free (path);
+		g_free (content_type);
+		content_type = NULL;
 	}
 
-	if ((mime_type = gnome_vfs_get_mime_type (uri)))
-		language = get_language_for_mime_type (mime_type);
+	manager = gtk_source_language_manager_get_default ();
+	language = gtk_source_language_manager_guess_language (manager,
+							       filename,
+							       content_type);
 
-	g_free (mime_type);
-	g_free (uri);
-#endif
+	g_message ("Detected '%s' mime type for file %s, chose language %s",
+		   content_type ? content_type : "(null)",
+		   filename,
+		   language ? gtk_source_language_get_id (language) : "(none)");
 
-	if (!language)
-		language = get_language_for_filename (filename);
-
+	g_free (content_type);
+	g_free (text);
 	return language;
 }
 
@@ -476,7 +388,7 @@ get_language (GtkTextBuffer *buffer, const gchar *filename)
 	}
 
 	if (!language)
-		language = get_language_for_file (filename);
+		language = get_language_for_file (buffer, filename);
 
 	g_free (text);
 	return language;
@@ -1533,8 +1445,6 @@ main (int argc, char *argv[])
 	  { NULL }
 	};
 
-	g_thread_init (NULL);
-
 #ifdef TEST_XML_MEM
 	init_mem_stuff ();
 #endif
@@ -1545,10 +1455,6 @@ main (int argc, char *argv[])
 	g_option_context_parse (context, &argc, &argv, NULL);
 
 // 	gdk_window_set_debug_updates (TRUE);
-
-#ifdef USE_GNOME_VFS
-	gnome_vfs_init ();
-#endif
 
 	/* we do not use defaults so we don't need to install the library */
 	lang_dirs = use_default_paths ? NULL : builtin_lang_dirs;
@@ -1618,10 +1524,6 @@ main (int argc, char *argv[])
 	g_object_unref (buffer);
 
 	g_free (style_scheme_id);
-
-#ifdef USE_GNOME_VFS
-	gnome_vfs_shutdown ();
-#endif
 
 	return 0;
 }

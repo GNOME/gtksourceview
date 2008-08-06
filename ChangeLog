@@ -1,5 +1,25 @@
 2008-08-05  Yevgen Muntyan  <muntyan@tamu.edu>
 
+	New API: gtk_source_language_manager_guess_language(), bug #546060.
+
+	* gtksourceview/gtksourcelanguagemanager.h:
+	* gtksourceview/gtksourcelanguagemanager.c: (pick_lang_for_filename),
+	(pick_lang_for_mime_type_pass), (pick_lang_for_mime_type),
+	(grok_win32_content_type), (gtk_source_language_manager_guess_language):
+	new functions.
+
+	* tests/test-widget.c: use it here.
+
+	* tests/Makefile.am:
+	* configure.ac: removed gnome-vfs and added gio dependency.
+
+	* docs/reference/gtksourceview-2.0-sections.txt:
+	* docs/reference/tmpl/languagemanager.sgml:
+	* docs/reference/tmpl/language.sgml:
+	* docs/reference/tmpl/view.sgml: updated.
+
+2008-08-05  Yevgen Muntyan  <muntyan@tamu.edu>
+
 	* gtksourceview/gtksourcestylescheme.c (parse_style): do not leak line_bg.
 
 2008-08-05  Yevgen Muntyan  <muntyan@tamu.edu>

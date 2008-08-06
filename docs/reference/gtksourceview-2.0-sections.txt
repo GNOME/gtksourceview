@@ -59,10 +59,12 @@ gtk_source_view_set_insert_spaces_instead_of_tabs
 gtk_source_view_get_insert_spaces_instead_of_tabs
 gtk_source_view_set_smart_home_end
 gtk_source_view_get_smart_home_end
-gtk_source_view_set_mark_category_pixbuf
-gtk_source_view_get_mark_category_pixbuf
 gtk_source_view_set_mark_category_priority
 gtk_source_view_get_mark_category_priority
+gtk_source_view_set_mark_category_pixbuf
+gtk_source_view_get_mark_category_pixbuf
+gtk_source_view_get_mark_category_background
+gtk_source_view_set_mark_category_background
 gtk_source_view_set_highlight_current_line
 gtk_source_view_get_highlight_current_line
 gtk_source_view_set_show_line_marks
@@ -123,6 +125,7 @@ gtk_source_language_manager_set_search_path
 gtk_source_language_manager_get_search_path
 gtk_source_language_manager_get_language_ids
 gtk_source_language_manager_get_language
+gtk_source_language_manager_guess_language
 <SUBSECTION Standard>
 GtkSourceLanguageManagerClass
 GTK_IS_SOURCE_LANGUAGE_MANAGER
@@ -146,6 +149,7 @@ gtk_source_mark_next
 gtk_source_mark_prev
 <SUBSECTION Standard>
 GtkSourceMarkClass
+GtkSourceMarkPrivate
 GTK_IS_SOURCE_MARK
 GTK_IS_SOURCE_MARK_CLASS
 GTK_SOURCE_MARK
@@ -163,6 +167,11 @@ GtkSourceStyle
 gtk_source_style_copy
 <SUBSECTION Standard>
 GTK_TYPE_SOURCE_STYLE
+GTK_IS_SOURCE_STYLE
+GTK_IS_SOURCE_STYLE_CLASS
+GTK_SOURCE_STYLE
+GTK_SOURCE_STYLE_CLASS
+GTK_SOURCE_STYLE_GET_CLASS
 gtk_source_style_get_type
 </SECTION>
 
@@ -276,5 +285,6 @@ GTK_SOURCE_PRINT_COMPOSITOR_CLASS
 GTK_IS_SOURCE_PRINT_COMPOSITOR_CLASS
 GTK_SOURCE_PRINT_COMPOSITOR_GET_CLASS
 GtkSourcePrintCompositorPrivate
+GtkSourcePrintCompositorClass
 </SECTION>
 

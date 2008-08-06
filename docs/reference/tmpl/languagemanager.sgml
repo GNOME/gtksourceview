@@ -2,11 +2,16 @@
 GtkSourceLanguageManager
 
 <!-- ##### SECTION Short_Description ##### -->
-
+Object which provides access to #GtkSourceLanguage<!-- -->s
 
 <!-- ##### SECTION Long_Description ##### -->
 <para>
-
+#GtkSourceLanguageManager is an object which processes language description
+files and creates and stores #GtkSourceLanguage objects, and provides API to
+access them.
+</para><para>Use gtk_source_language_manager_get_default() to retrieve the default
+instance of #GtkSourceLanguageManager, and gtk_source_language_manager_guess_language()
+to get a #GtkSourceLanguage for given file name and content type.
 </para>
 
 <!-- ##### SECTION See_Also ##### -->
@@ -39,7 +44,7 @@ private members and should not be accessed directly.
 
 </para>
 
-@Returns: 
+@Returns:
 
 
 <!-- ##### FUNCTION gtk_source_language_manager_get_default ##### -->
@@ -47,7 +52,7 @@ private members and should not be accessed directly.
 
 </para>
 
-@Returns: 
+@Returns:
 
 
 <!-- ##### FUNCTION gtk_source_language_manager_set_search_path ##### -->
@@ -55,8 +60,8 @@ private members and should not be accessed directly.
 
 </para>
 
-@lm: 
-@dirs: 
+@lm:
+@dirs:
 
 
 <!-- ##### FUNCTION gtk_source_language_manager_get_search_path ##### -->
@@ -64,8 +69,8 @@ private members and should not be accessed directly.
 
 </para>
 
-@lm: 
-@Returns: 
+@lm:
+@Returns:
 
 
 <!-- ##### FUNCTION gtk_source_language_manager_get_language_ids ##### -->
@@ -73,8 +78,8 @@ private members and should not be accessed directly.
 
 </para>
 
-@lm: 
-@Returns: 
+@lm:
+@Returns:
 
 
 <!-- ##### FUNCTION gtk_source_language_manager_get_language ##### -->
@@ -82,8 +87,19 @@ private members and should not be accessed directly.
 
 </para>
 
-@lm: 
-@id: 
-@Returns: 
+@lm:
+@id:
+@Returns:
+
+
+<!-- ##### FUNCTION gtk_source_language_manager_guess_language ##### -->
+<para>
+
+</para>
+
+@lm:
+@filename:
+@content_type:
+@Returns:
 
 

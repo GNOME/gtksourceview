@@ -2,11 +2,14 @@
 GtkSourceLanguage
 
 <!-- ##### SECTION Short_Description ##### -->
-
+Syntax highlighting language
 
 <!-- ##### SECTION Long_Description ##### -->
 <para>
-
+#GtkSourceLanguage encapsulates syntax and highlighting styles for a
+particular language. Use #GtkSourceLanguageManager to obtain a
+#GtkSourceLanguage instance, and gtk_source_buffer_set_language()
+to apply it to a #GtkSourceBuffer.
 </para>
 
 <!-- ##### SECTION See_Also ##### -->
@@ -49,8 +52,8 @@ private members and should not be accessed directly.
 
 </para>
 
-@language: 
-@Returns: 
+@language:
+@Returns:
 
 
 <!-- ##### FUNCTION gtk_source_language_get_name ##### -->
@@ -58,8 +61,8 @@ private members and should not be accessed directly.
 
 </para>
 
-@language: 
-@Returns: 
+@language:
+@Returns:
 
 
 <!-- ##### FUNCTION gtk_source_language_get_section ##### -->
@@ -67,8 +70,8 @@ private members and should not be accessed directly.
 
 </para>
 
-@language: 
-@Returns: 
+@language:
+@Returns:
 
 
 <!-- ##### FUNCTION gtk_source_language_get_hidden ##### -->
@@ -76,8 +79,8 @@ private members and should not be accessed directly.
 
 </para>
 
-@language: 
-@Returns: 
+@language:
+@Returns:
 
 
 <!-- ##### FUNCTION gtk_source_language_get_metadata ##### -->
@@ -85,9 +88,9 @@ private members and should not be accessed directly.
 
 </para>
 
-@language: 
-@name: 
-@Returns: 
+@language:
+@name:
+@Returns:
 
 
 <!-- ##### FUNCTION gtk_source_language_get_mime_types ##### -->
@@ -95,8 +98,8 @@ private members and should not be accessed directly.
 
 </para>
 
-@language: 
-@Returns: 
+@language:
+@Returns:
 
 
 <!-- ##### FUNCTION gtk_source_language_get_globs ##### -->
@@ -104,8 +107,8 @@ private members and should not be accessed directly.
 
 </para>
 
-@language: 
-@Returns: 
+@language:
+@Returns:
 
 
 <!-- ##### FUNCTION gtk_source_language_get_style_name ##### -->
@@ -113,9 +116,9 @@ private members and should not be accessed directly.
 
 </para>
 
-@language: 
-@style_id: 
-@Returns: 
+@language:
+@style_id:
+@Returns:
 
 
 <!-- ##### FUNCTION gtk_source_language_get_style_ids ##### -->
@@ -123,7 +126,7 @@ private members and should not be accessed directly.
 
 </para>
 
-@language: 
-@Returns: 
+@language:
+@Returns:
 
 

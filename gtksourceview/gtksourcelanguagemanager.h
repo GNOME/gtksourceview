@@ -74,6 +74,10 @@ G_CONST_RETURN gchar* G_CONST_RETURN *
 GtkSourceLanguage	 *gtk_source_language_manager_get_language		(GtkSourceLanguageManager *lm,
 										 const gchar              *id);
 
+GtkSourceLanguage	 *gtk_source_language_manager_guess_language		(GtkSourceLanguageManager *lm,
+										 const gchar		  *filename,
+										 const gchar		  *content_type);
+
 
 
 G_END_DECLS

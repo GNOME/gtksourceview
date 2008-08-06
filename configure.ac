@@ -63,9 +63,8 @@ fi
 PKG_CHECK_MODULES(DEP, [
 	gtk+-2.0 >= $GTK_REQUIRED_VERSION
 	libxml-2.0 >= $LIBXML_REQUIRED_VERSION
+	gio-2.0
 ])
-AC_SUBST(DEP_CFLAGS)
-AC_SUBST(DEP_LIBS)
 
 # Do we build optional tests?
 AC_ARG_ENABLE(build_tests,
@@ -80,15 +79,11 @@ esac],
 
 msg_tests=no
 AM_CONDITIONAL(BUILD_TESTS, false)
-AM_CONDITIONAL(USE_GNOME_VFS, false)
 
 if test x$build_tests = xtrue; then
 	AM_CONDITIONAL(BUILD_TESTS, true)
 	AC_DEFINE(BUILD_TESTS, [], [build test suite])
 	msg_tests=yes
-	PKG_CHECK_MODULES(TESTS, gnome-vfs-2.0,
-			  AM_CONDITIONAL(USE_GNOME_VFS, true),
-			  [PKG_CHECK_MODULES(TESTS, gthread-2.0)])
         # test-widget uses this to find lang files and gtksourcebuffer.c
         ABS_TOP_SRCDIR=`cd $srcdir && pwd`
         AC_SUBST(ABS_TOP_SRCDIR)
