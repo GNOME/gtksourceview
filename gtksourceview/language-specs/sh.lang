@@ -296,81 +296,83 @@
     <context id="common-command" style-ref="common-command">
       <prefix>(?&lt;![\w\-\.])</prefix>
       <suffix>(?![\w\-\.])</suffix>
-      <keyword>cp</keyword>
-      <keyword>rm</keyword>
-      <keyword>mv</keyword>
-      <keyword>which</keyword>
-      <keyword>cat</keyword>
-      <keyword>grep</keyword>
-      <keyword>sed</keyword>
       <keyword>awk</keyword>
-      <keyword>mkdir</keyword>
-      <keyword>rmdir</keyword>
-      <keyword>ls</keyword>
-      <keyword>ps</keyword>
-      <keyword>killall</keyword>
-      <keyword>pidof</keyword>
-      <keyword>diff</keyword>
-      <keyword>head</keyword>
-      <keyword>tail</keyword>
-      <keyword>chown</keyword>
-      <keyword>chmod</keyword>
-      <keyword>dd</keyword>
-      <keyword>find</keyword>
-      <keyword>locate</keyword>
-      <keyword>tar</keyword>
-      <keyword>gunzip</keyword>
-      <keyword>gzip</keyword>
+      <keyword>beep</keyword>
       <keyword>bunzip2</keyword>
       <keyword>bzip2</keyword>
-      <keyword>zip</keyword>
-      <keyword>unzip</keyword>
-      <keyword>mount</keyword>
-      <keyword>umount</keyword>
-      <keyword>sh</keyword>
+      <keyword>cat</keyword>
+      <keyword>chmod</keyword>
+      <keyword>chown</keyword>
       <keyword>clear</keyword>
-      <keyword>wget</keyword>
+      <keyword>cp</keyword>
       <keyword>date</keyword>
+      <keyword>dd</keyword>
+      <keyword>df</keyword>
+      <keyword>dialog</keyword>
+      <keyword>diff</keyword>
       <keyword>dir</keyword>
       <keyword>du</keyword>
+      <keyword>eject</keyword>
       <keyword>expr</keyword>
-      <keyword>su</keyword>
-      <keyword>passwd</keyword>
-      <keyword>man</keyword>
-      <keyword>info</keyword>
+      <keyword>file</keyword>
+      <keyword>find</keyword>
+      <keyword>gcc</keyword>
+      <keyword>grep</keyword>
+      <keyword>gunzip</keyword>
+      <keyword>gzip</keyword>
+      <keyword>head</keyword>
       <keyword>id</keyword>
       <keyword>ifconfig</keyword>
-      <keyword>gcc</keyword>
-      <keyword>make</keyword>
-      <keyword>ld</keyword>
-      <keyword>ln</keyword>
-      <keyword>lsmod</keyword>
+      <keyword>info</keyword>
       <keyword>insmod</keyword>
-      <keyword>modprobe</keyword>
+      <keyword>killall</keyword>
+      <keyword>ld</keyword>
       <keyword>less</keyword>
+      <keyword>ln</keyword>
+      <keyword>locate</keyword>
+      <keyword>ls</keyword>
+      <keyword>lsmod</keyword>
+      <keyword>make</keyword>
+      <keyword>man</keyword>
+      <keyword>mkdir</keyword>
+      <keyword>modprobe</keyword>
       <keyword>more</keyword>
+      <keyword>mount</keyword>
+      <keyword>mv</keyword>
+      <keyword>nice</keyword>
+      <keyword>passwd</keyword>
       <keyword>patch</keyword>
+      <keyword>pidof</keyword>
       <keyword>ping</keyword>
       <keyword>pkg-config</keyword>
-      <keyword>nice</keyword>
+      <keyword>ps</keyword>
       <keyword>renice</keyword>
-      <keyword>file</keyword>
+      <keyword>rmdir</keyword>
+      <keyword>rm</keyword>
+      <keyword>sed</keyword>
+      <keyword>sh</keyword>
+      <keyword>sleep</keyword>
+      <keyword>sort</keyword>
       <keyword>sudo</keyword>
-      <keyword>beep</keyword>
+      <keyword>su</keyword>
+      <keyword>tail</keyword>
+      <keyword>tar</keyword>
       <keyword>tempfile</keyword>
       <keyword>touch</keyword>
-      <keyword>eject</keyword>
+      <keyword>tr</keyword>
+      <keyword>umount</keyword>
       <keyword>uname</keyword>
+      <keyword>uniq</keyword>
+      <keyword>unzip</keyword>
       <keyword>uptime</keyword>
+      <keyword>wget</keyword>
+      <keyword>whereis</keyword>
+      <keyword>which</keyword>
       <keyword>whoami</keyword>
       <keyword>who</keyword>
-      <keyword>whereis</keyword>
-      <keyword>sleep</keyword>
-      <keyword>dialog</keyword>
       <keyword>xdialog</keyword>
       <keyword>zenity</keyword>
-      <keyword>sort</keyword>
-      <keyword>uniq</keyword>
+      <keyword>zip</keyword>
     </context>
 
     <context id="case">
