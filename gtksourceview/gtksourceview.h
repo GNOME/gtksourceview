@@ -94,6 +94,8 @@ typedef enum
  *
  * GtkSourceDrawSpacesFlags determine what kind of spaces whould be drawn.
  */
+/* TODO: it would be nice to have flags to specify to draw
+ * just leading/trailing whitespaces */
 typedef enum
 {
 	GTK_SOURCE_DRAW_SPACES_SPACE      = 1 << 0,
@@ -102,9 +104,6 @@ typedef enum
 	GTK_SOURCE_DRAW_SPACES_ALL        = (GTK_SOURCE_DRAW_SPACES_SPACE   | \
 	                                     GTK_SOURCE_DRAW_SPACES_TAB     | \
 	                                     GTK_SOURCE_DRAW_SPACES_NEWLINE)
-
-	/* TODO: it would be nice to have flags to specify to draw
-	 * just leading/trailing whitespaces */
 } GtkSourceDrawSpacesFlags;
 
 

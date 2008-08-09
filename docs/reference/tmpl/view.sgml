@@ -44,6 +44,11 @@ a text view which syntax highlighting, undo/redo and text marks. Use a
 
 </para>
 
+<!-- ##### ARG GtkSourceView:draw-spaces ##### -->
+<para>
+
+</para>
+
 <!-- ##### ARG GtkSourceView:highlight-current-line ##### -->
 <para>
 
@@ -116,6 +121,16 @@ a text view which syntax highlighting, undo/redo and text marks. Use a
 @GTK_SOURCE_SMART_HOME_END_BEFORE: 
 @GTK_SOURCE_SMART_HOME_END_AFTER: 
 @GTK_SOURCE_SMART_HOME_END_ALWAYS: 
+
+<!-- ##### ENUM GtkSourceDrawSpacesFlags ##### -->
+<para>
+
+</para>
+
+@GTK_SOURCE_DRAW_SPACES_SPACE: 
+@GTK_SOURCE_DRAW_SPACES_TAB: 
+@GTK_SOURCE_DRAW_SPACES_NEWLINE: 
+@GTK_SOURCE_DRAW_SPACES_ALL: 
 
 <!-- ##### FUNCTION gtk_source_view_new ##### -->
 <para>
@@ -385,6 +400,24 @@ a text view which syntax highlighting, undo/redo and text marks. Use a
 
 
 <!-- ##### FUNCTION gtk_source_view_get_tab_width ##### -->
+<para>
+
+</para>
+
+@view: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gtk_source_view_set_draw_spaces ##### -->
+<para>
+
+</para>
+
+@view: 
+@flags: 
+
+
+<!-- ##### FUNCTION gtk_source_view_get_draw_spaces ##### -->
 <para>
 
 </para>

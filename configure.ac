@@ -3,8 +3,8 @@ dnl Process this file with autoconf to produce a configure script.
 AC_PREREQ(2.59)
 
 m4_define(gtksourceview_major_version, 2)
-m4_define(gtksourceview_minor_version, 2)
-m4_define(gtksourceview_micro_version, 2)
+m4_define(gtksourceview_minor_version, 3)
+m4_define(gtksourceview_micro_version, 0)
 m4_define(gtksourceview_version, gtksourceview_major_version.gtksourceview_minor_version.gtksourceview_micro_version)
 
 AC_INIT(gtksourceview, gtksourceview_version, http://bugzilla.gnome.org/enter_bug.cgi?product=gtksourceview)
@@ -61,35 +61,12 @@ if test "x$enable_deprecations" = "xyes"; then
 fi
 
 PKG_CHECK_MODULES(DEP, [
+	gio-2.0
 	gtk+-2.0 >= $GTK_REQUIRED_VERSION
 	libxml-2.0 >= $LIBXML_REQUIRED_VERSION
-	gio-2.0
 ])
 
-# Do we build optional tests?
-AC_ARG_ENABLE(build_tests,
-              AC_HELP_STRING([--disable-build-tests],
-                             [disable building of the test programs]),
-[case "${enableval}" in
-    yes) build_tests=true ;;
-    no)  build_tests=false ;;
-    *) AC_MSG_ERROR(bad value ${enableval} for --disable-build-tests) ;;
-esac],
-[build_tests=true])
-
-msg_tests=no
-AM_CONDITIONAL(BUILD_TESTS, false)
-
-if test x$build_tests = xtrue; then
-	AM_CONDITIONAL(BUILD_TESTS, true)
-	AC_DEFINE(BUILD_TESTS, [], [build test suite])
-	msg_tests=yes
-        # test-widget uses this to find lang files and gtksourcebuffer.c
-        ABS_TOP_SRCDIR=`cd $srcdir && pwd`
-        AC_SUBST(ABS_TOP_SRCDIR)
-fi
-
-# I18N stuff
+# i18N stuff
 GETTEXT_PACKAGE=gtksourceview-2.0
 AC_SUBST(GETTEXT_PACKAGE)
 AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE, "$GETTEXT_PACKAGE", [Package name for gettext])
@@ -120,5 +97,4 @@ Configuration:
 
 	Source code location:	${srcdir}
 	Compiler:		${CC}
-	build tests:		$msg_tests
 "
