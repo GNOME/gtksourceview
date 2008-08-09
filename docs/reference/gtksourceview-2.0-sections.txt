@@ -47,6 +47,7 @@ gtk_source_buffer_get_type
 GtkSourceView
 GtkSourceViewClass
 GtkSourceSmartHomeEndType
+GtkSourceDrawSpacesFlags
 gtk_source_view_new
 gtk_source_view_new_with_buffer
 gtk_source_view_set_auto_indent
@@ -77,6 +78,8 @@ gtk_source_view_set_right_margin_position
 gtk_source_view_get_right_margin_position
 gtk_source_view_set_tab_width
 gtk_source_view_get_tab_width
+gtk_source_view_set_draw_spaces
+gtk_source_view_get_draw_spaces
 <SUBSECTION Standard>
 GTK_IS_SOURCE_VIEW
 GTK_IS_SOURCE_VIEW_CLASS

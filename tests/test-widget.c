@@ -74,6 +74,8 @@ static void       hl_bracket_toggled_cb          (GtkAction       *action,
 						  gpointer         user_data);
 static void       hl_line_toggled_cb             (GtkAction       *action,
 						  gpointer         user_data);
+static void       draw_spaces_toggled_cb	 (GtkAction       *action,
+						  gpointer         user_data);
 static void       wrap_lines_toggled_cb          (GtkAction       *action,
 						  gpointer         user_data);
 static void       auto_indent_toggled_cb         (GtkAction       *action,
@@ -130,6 +132,9 @@ static GtkToggleActionEntry toggle_entries[] = {
 	{ "HlLine", NULL, "_Highlight Current Line", NULL,
 	  "Toggle highlighting of current line",
 	  G_CALLBACK (hl_line_toggled_cb), FALSE },
+	{ "DrawSpaces", NULL, "_Draw Spaces", NULL,
+	  "Draw Spaces",
+	  G_CALLBACK (draw_spaces_toggled_cb), FALSE },
 	{ "WrapLines", NULL, "_Wrap Lines", NULL,
 	  "Toggle line wrapping",
 	  G_CALLBACK (wrap_lines_toggled_cb), FALSE },
@@ -185,6 +190,7 @@ static const gchar *view_ui_description =
 "      <menuitem action=\"ShowMarks\"/>"
 "      <menuitem action=\"ShowMargin\"/>"
 "      <menuitem action=\"HlLine\"/>"
+"      <menuitem action=\"DrawSpaces\"/>"
 "      <menuitem action=\"WrapLines\"/>"
 "      <separator/>"
 "      <menuitem action=\"AutoIndent\"/>"
@@ -510,6 +516,22 @@ hl_line_toggled_cb (GtkAction *action, gpointer user_data)
 	gtk_source_view_set_highlight_current_line (
 		GTK_SOURCE_VIEW (user_data),
 		gtk_toggle_action_get_active (GTK_TOGGLE_ACTION (action)));
+}
+
+static void
+draw_spaces_toggled_cb (GtkAction *action, gpointer user_data)
+{
+	gboolean draw_spaces;
+
+	g_return_if_fail (GTK_IS_TOGGLE_ACTION (action) && GTK_IS_SOURCE_VIEW (user_data));
+	draw_spaces = gtk_toggle_action_get_active (GTK_TOGGLE_ACTION (action));
+
+	if (draw_spaces)
+		gtk_source_view_set_draw_spaces (GTK_SOURCE_VIEW (user_data),
+						 GTK_SOURCE_DRAW_SPACES_ALL);
+	else
+		gtk_source_view_set_draw_spaces (GTK_SOURCE_VIEW (user_data),
+						 0);
 }
 
 static void

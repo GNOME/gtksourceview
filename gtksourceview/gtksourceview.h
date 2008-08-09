@@ -85,6 +85,29 @@ typedef enum
 	GTK_SOURCE_SMART_HOME_END_ALWAYS
 } GtkSourceSmartHomeEndType;
 
+/**
+ * GtkSourceDrawSpacesFlags:
+ * @GTK_SOURCE_DRAW_SPACES_SPACE: whether the space character should be drawn.
+ * @GTK_SOURCE_DRAW_SPACES_TAB: whether the tab character should be drawn.
+ * @GTK_SOURCE_DRAW_SPACES_NEWLINE: whether the line breaks should be drawn.
+ * @GTK_SOURCE_DRAW_SPACES_ALL: wheter all kind of spaces should be drawn.
+ *
+ * GtkSourceDrawSpacesFlags determine what kind of spaces whould be drawn.
+ */
+typedef enum
+{
+	GTK_SOURCE_DRAW_SPACES_SPACE      = 1 << 0,
+	GTK_SOURCE_DRAW_SPACES_TAB        = 1 << 1,
+	GTK_SOURCE_DRAW_SPACES_NEWLINE    = 1 << 2,
+	GTK_SOURCE_DRAW_SPACES_ALL        = (GTK_SOURCE_DRAW_SPACES_SPACE   | \
+	                                     GTK_SOURCE_DRAW_SPACES_TAB     | \
+	                                     GTK_SOURCE_DRAW_SPACES_NEWLINE)
+
+	/* TODO: it would be nice to have flags to specify to draw
+	 * just leading/trailing whitespaces */
+} GtkSourceDrawSpacesFlags;
+
+
 GType		 gtk_source_view_get_type 		(void) G_GNUC_CONST;
 
 /* Constructors */
@@ -167,6 +190,11 @@ void		 gtk_source_view_set_smart_home_end	(GtkSourceView             *view,
 							 GtkSourceSmartHomeEndType  smart_he);
 GtkSourceSmartHomeEndType
 		 gtk_source_view_get_smart_home_end	(GtkSourceView   *view);
+
+void		 gtk_source_view_set_draw_spaces	(GtkSourceView   *view,
+							 GtkSourceDrawSpacesFlags flags);
+GtkSourceDrawSpacesFlags
+		gtk_source_view_get_draw_spaces		(GtkSourceView   *view);
 
 G_END_DECLS
 #endif				/* end of SOURCE_VIEW_H__ */

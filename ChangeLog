@@ -1,3 +1,17 @@
+2008-08-09  Paolo Borelli  <paolo.borelli@katamail.com>
+
+	New API: gtk_source_view_[set|get]_draw_spaces, bug #441513.
+
+	* gtksourceview/gtksourceview.h:
+	* gtksourceview/gtksourceview.c:
+	Allow to draw spaces, tabs and newlines
+
+	* gtksourceview/gtksourcestylescheme.h:
+	* gtksourceview/gtksourcestylescheme.c:
+	Get the color for drawing spaces
+
+	* tests/test-widget.c: use the new feature.
+
 2008-08-06  Ignacio Casal Quinteiro  <nacho.resa@gmail.com>
 
 	* gtksourceview/language-specs/c.lang:

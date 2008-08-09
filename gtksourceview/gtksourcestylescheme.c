@@ -36,6 +36,7 @@
 #define STYLE_CURRENT_LINE		"current-line"
 #define STYLE_LINE_NUMBERS		"line-numbers"
 #define STYLE_RIGHT_MARGIN		"right-margin"
+#define STYLE_DRAW_SPACES		"draw-spaces"
 
 #define STYLE_SCHEME_VERSION		"1.0"
 
@@ -246,6 +247,7 @@ gtk_source_style_scheme_get_id (GtkSourceStyleScheme *scheme)
 {
 	g_return_val_if_fail (GTK_IS_SOURCE_STYLE_SCHEME (scheme), NULL);
 	g_return_val_if_fail (scheme->priv->id != NULL, "");
+
 	return scheme->priv->id;
 }
 
@@ -262,6 +264,7 @@ gtk_source_style_scheme_get_name (GtkSourceStyleScheme *scheme)
 {
 	g_return_val_if_fail (GTK_IS_SOURCE_STYLE_SCHEME (scheme), NULL);
 	g_return_val_if_fail (scheme->priv->name != NULL, "");
+
 	return scheme->priv->name;
 }
 
@@ -277,6 +280,7 @@ const gchar *
 gtk_source_style_scheme_get_description (GtkSourceStyleScheme *scheme)
 {
 	g_return_val_if_fail (GTK_IS_SOURCE_STYLE_SCHEME (scheme), NULL);
+
 	return scheme->priv->description;
 }
 
@@ -314,6 +318,7 @@ const gchar *
 gtk_source_style_scheme_get_filename (GtkSourceStyleScheme *scheme)
 {
 	g_return_val_if_fail (GTK_IS_SOURCE_STYLE_SCHEME (scheme), NULL);
+
 	return scheme->priv->filename;
 }
 
@@ -509,6 +514,7 @@ GtkSourceStyle *
 _gtk_source_style_scheme_get_matching_brackets_style (GtkSourceStyleScheme *scheme)
 {
 	g_return_val_if_fail (GTK_IS_SOURCE_STYLE_SCHEME (scheme), NULL);
+
 	return gtk_source_style_scheme_get_style (scheme, STYLE_BRACKET_MATCH);
 }
 
@@ -516,7 +522,16 @@ GtkSourceStyle *
 _gtk_source_style_scheme_get_right_margin_style (GtkSourceStyleScheme *scheme)
 {
 	g_return_val_if_fail (GTK_IS_SOURCE_STYLE_SCHEME (scheme), NULL);
+
 	return gtk_source_style_scheme_get_style (scheme, STYLE_RIGHT_MARGIN);
+}
+
+GtkSourceStyle *
+_gtk_source_style_scheme_get_draw_spaces_style (GtkSourceStyleScheme *scheme)
+{
+	g_return_val_if_fail (GTK_IS_SOURCE_STYLE_SCHEME (scheme), NULL);
+
+	return gtk_source_style_scheme_get_style (scheme, STYLE_DRAW_SPACES);
 }
 
 static gboolean

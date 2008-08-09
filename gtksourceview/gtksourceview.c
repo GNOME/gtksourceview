@@ -95,7 +95,8 @@ enum {
 	PROP_RIGHT_MARGIN_POSITION,
 	PROP_SMART_HOME_END,
 	PROP_HIGHLIGHT_CURRENT_LINE,
-	PROP_INDENT_ON_TAB
+	PROP_INDENT_ON_TAB,
+	PROP_DRAW_SPACES
 };
 
 struct _GtkSourceViewPrivate
@@ -119,6 +120,9 @@ struct _GtkSourceViewPrivate
 	GtkSourceStyleScheme *style_scheme;
 	GdkColor        *right_margin_line_color;
 	GdkColor        *right_margin_overlay_color;
+
+	GtkSourceDrawSpacesFlags draw_spaces;
+	GdkColor        *spaces_color;
 
 	GHashTable 	*mark_categories;
 
@@ -383,6 +387,22 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 							       TRUE,
 							       G_PARAM_READWRITE));
 
+	/**
+	 * GtkSourceView:draw-spaces:
+	 *
+	 * Set if and how the spaces should be visualized.
+	 *
+	 * Since: 2.4
+	 */
+	g_object_class_install_property (object_class,
+					 PROP_DRAW_SPACES,
+					 g_param_spec_flags ("draw-spaces",
+							    _("Draw Spaces"),
+							    _("Set if and how the spaces should be visualized"),
+							    GTK_TYPE_SOURCE_DRAW_SPACES_FLAGS,
+							    0,
+							    G_PARAM_READWRITE));
+
 	signals [UNDO] =
 		g_signal_new ("undo",
 			      G_TYPE_FROM_CLASS (klass),
@@ -576,6 +596,11 @@ gtk_source_view_set_property (GObject      *object,
 							   g_value_get_boolean (value));
 			break;
 
+		case PROP_DRAW_SPACES:
+			gtk_source_view_set_draw_spaces (view,
+							 g_value_get_flags (value));
+			break;
+
 		default:
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
 			break;
@@ -637,8 +662,8 @@ gtk_source_view_get_property (GObject    *object,
 			break;
 
 		case PROP_SMART_HOME_END:
-			g_value_set_flags (value,
-					   gtk_source_view_get_smart_home_end (view));
+			g_value_set_enum (value,
+					  gtk_source_view_get_smart_home_end (view));
 			break;
 
 		case PROP_HIGHLIGHT_CURRENT_LINE:
@@ -649,6 +674,11 @@ gtk_source_view_get_property (GObject    *object,
 		case PROP_INDENT_ON_TAB:
 			g_value_set_boolean (value,
 					     gtk_source_view_get_indent_on_tab (view));
+			break;
+
+		case PROP_DRAW_SPACES:
+			g_value_set_flags (value,
+					   gtk_source_view_get_draw_spaces (view));
 			break;
 
 		default:
@@ -687,6 +717,7 @@ gtk_source_view_init (GtkSourceView *view)
 
 	view->priv->right_margin_line_color = NULL;
 	view->priv->right_margin_overlay_color = NULL;
+	view->priv->spaces_color = NULL;
 
 	view->priv->mark_categories = g_hash_table_new_full (g_str_hash, g_str_equal,
 							     (GDestroyNotify) g_free,
@@ -744,6 +775,9 @@ gtk_source_view_finalize (GObject *object)
 
 	if (view->priv->right_margin_overlay_color != NULL)
 		gdk_color_free (view->priv->right_margin_overlay_color);
+		
+	if (view->priv->spaces_color != NULL)
+		gdk_color_free (view->priv->spaces_color);
 
 	if (view->priv->mark_categories)
 		g_hash_table_destroy (view->priv->mark_categories);
@@ -1528,7 +1562,7 @@ gtk_source_view_paint_line_background (GtkTextView    *text_view,
 	line_rect.x += MAX (0, margin - 1);
 
 	cr = gdk_cairo_create (event->window);
-	gdk_cairo_set_source_color (cr, color);
+	gdk_cairo_set_source_color (cr, (GdkColor *)color);
 	cairo_set_line_width (cr, 1);
 	cairo_rectangle (cr, line_rect.x + .5, line_rect.y + .5,
 			 line_rect.width - 1, line_rect.height - 1);
@@ -1647,6 +1681,211 @@ gtk_source_view_paint_marks_background (GtkSourceView  *view,
 	g_array_free (heights, TRUE);
 	g_array_free (pixels, TRUE);
 	g_array_free (numbers, TRUE);
+}
+
+static void
+draw_space_at_iter (cairo_t      *cr,
+		    GtkTextView  *view,
+		    GtkTextIter  *iter,
+		    GdkRectangle  rect)
+{
+	gint x, y;
+
+	gtk_text_view_buffer_to_window_coords (view,
+					       GTK_TEXT_WINDOW_TEXT,
+					       rect.x + rect.width / 2,
+					       rect.y + rect.height * 2 / 3,
+					       &x,
+					       &y);
+
+	cairo_save (cr);
+	cairo_move_to (cr, x, y);
+	cairo_arc (cr, x, y, 0.8, 0, 2 * G_PI);
+	cairo_restore (cr);
+}
+
+static void
+draw_tab_at_iter (cairo_t      *cr,
+		  GtkTextView  *view,
+		  GtkTextIter  *iter,
+		  GdkRectangle  rect)
+{
+	gint x, y;
+	double w, h;
+
+	gtk_text_view_buffer_to_window_coords (view,
+					       GTK_TEXT_WINDOW_TEXT,
+					       rect.x,
+					       rect.y + rect.height * 2 / 3,
+					       &x,
+					       &y);
+
+	w = rect.width;
+	h = rect.height;
+
+	cairo_save (cr);
+	cairo_move_to (cr, x + w * 1 / 8, y);
+	cairo_rel_line_to (cr, w * 6 / 8, 0);
+	cairo_rel_line_to (cr, -h * 1 / 4, -h * 1 / 4);
+	cairo_rel_move_to (cr, +h * 1 / 4, +h * 1 / 4);
+	cairo_rel_line_to (cr, -h * 1 / 4, +h * 1 / 4);
+	cairo_restore (cr);
+}
+
+static void
+draw_newline_at_iter (cairo_t      *cr,
+		      GtkTextView  *view,
+		      GtkTextIter  *iter,
+		      GdkRectangle  rect)
+{
+	gint x, y;
+	double w, h;
+
+	gtk_text_view_buffer_to_window_coords (view,
+					       GTK_TEXT_WINDOW_TEXT,
+					       rect.x,
+					       rect.y + rect.height * 1 / 3,
+					       &x,
+					       &y);
+
+	/* width for new line is 0, we use 2 * h */
+	w = 2 * rect.height;
+	h = rect.height;
+
+	cairo_save (cr);
+	if (gtk_widget_get_default_direction () == GTK_TEXT_DIR_LTR)
+	{
+		cairo_move_to (cr, x + w * 7 / 8, y);
+		cairo_rel_line_to (cr, 0, h * 1 / 3);
+		cairo_rel_line_to (cr, -w * 6 / 8, 0);
+		cairo_rel_line_to (cr, +h * 1 / 4, -h * 1 / 4);
+		cairo_rel_move_to (cr, -h * 1 / 4, +h * 1 / 4);
+		cairo_rel_line_to (cr, +h * 1 / 4, +h * 1 / 4);
+	}
+	else
+	{
+		cairo_move_to (cr, x + w * 1 / 8, y);
+		cairo_rel_line_to (cr, 0, h * 1 / 3);
+		cairo_rel_line_to (cr, w * 6 / 8, 0);
+		cairo_rel_line_to (cr, -h * 1 / 4, -h * 1 / 4);
+		cairo_rel_move_to (cr, +h * 1 / 4, +h * 1 / 4);
+		cairo_rel_line_to (cr, -h * 1 / 4, -h * 1 / 4);
+	}
+
+	cairo_restore (cr);
+}
+
+static void
+draw_spaces_at_iter (cairo_t       *cr,
+		     GtkSourceView *view,
+		     GtkTextIter   *iter,
+		     GdkRectangle   rect)
+{
+	gunichar c;
+
+	c = gtk_text_iter_get_char (iter);
+
+	if (view->priv->draw_spaces & GTK_SOURCE_DRAW_SPACES_TAB &&
+	    c == '\t')
+	{
+		draw_tab_at_iter (cr, GTK_TEXT_VIEW (view), iter, rect);
+	}
+	else if (view->priv->draw_spaces & GTK_SOURCE_DRAW_SPACES_SPACE &&
+	         g_unichar_type (c) == G_UNICODE_SPACE_SEPARATOR)
+	{
+		draw_space_at_iter (cr, GTK_TEXT_VIEW (view), iter, rect);
+	}
+	else if (view->priv->draw_spaces & GTK_SOURCE_DRAW_SPACES_NEWLINE &&
+		 gtk_text_iter_ends_line (iter))
+	{
+		draw_newline_at_iter (cr, GTK_TEXT_VIEW (view), iter, rect);
+	}
+}
+
+static void
+draw_tabs_and_spaces (GtkSourceView  *view,
+		      GdkEventExpose *event)
+{
+	GtkTextView *text_view;
+	gint x1, y1, x2, y2;
+	GtkTextIter s, e;
+	cairo_t *cr;
+
+	text_view = GTK_TEXT_VIEW (view);
+
+	x1 = event->area.x;
+	y1 = event->area.y;
+	x2 = x1 + event->area.width;
+	y2 = y1 + event->area.height;
+
+	gtk_text_view_window_to_buffer_coords (text_view,
+					       GTK_TEXT_WINDOW_TEXT,
+					       x1,
+					       y1,
+					       &x1,
+					       &y1);
+
+	gtk_text_view_window_to_buffer_coords (text_view,
+					       GTK_TEXT_WINDOW_TEXT,
+					       x2,
+					       y2,
+					       &x2,
+					       &y2);
+
+	gtk_text_view_get_iter_at_location  (text_view,
+                                             &s,
+                                             x1, y1);
+	gtk_text_view_get_iter_at_location  (text_view,
+                                             &e,
+                                             x2, y2);
+
+	cr = gdk_cairo_create (event->window);
+
+	cairo_set_source_rgba (cr,
+			       view->priv->spaces_color->red / 65535.,
+			       view->priv->spaces_color->green / 65535.,
+			       view->priv->spaces_color->blue / 65535.,
+			       1);
+	cairo_set_line_width (cr, 0.8);
+
+	do {
+		GdkRectangle rect;
+		gint ly;
+
+		gtk_text_view_get_iter_location (text_view, &s, &rect);
+
+		/* just iterate on the text that is in the exposed area */
+		if (rect.x > x2)
+		{
+			if (!gtk_text_iter_forward_line	(&s))
+				break;
+
+			/* move to the first iter in the exposed area of
+			 * the next line */
+			gtk_text_view_get_line_yrange (text_view, &s, &ly, NULL);
+
+			gtk_text_view_get_iter_at_location  (text_view,
+							     &s,
+							     x1, ly);
+
+			/* move back one char otherwise tabs may not
+			 * be redrawn */
+			if (!gtk_text_iter_starts_line (&s))
+				gtk_text_iter_backward_char (&s);
+
+			continue;
+		}
+
+		draw_spaces_at_iter (cr, view, &s, rect);
+
+		if (!gtk_text_iter_forward_char (&s))
+			break;
+
+	} while (gtk_text_iter_compare (&s, &e) <= 0);
+
+	cairo_stroke (cr);
+
+	cairo_destroy (cr);
 }
 
 static gint
@@ -1843,6 +2082,12 @@ gtk_source_view_expose (GtkWidget      *widget,
 				g_message ("Time to draw the margin: %g (sec * 1000)",
 				           g_timer_elapsed (timer, NULL) * 1000);
 			});
+		}
+
+		if (view->priv->draw_spaces != 0 &&
+		    (event->window == gtk_text_view_get_window (text_view, GTK_TEXT_WINDOW_TEXT)))
+		{
+			draw_tabs_and_spaces (view, event);
 		}
 	}
 
@@ -3456,6 +3701,48 @@ gtk_source_view_get_smart_home_end (GtkSourceView *view)
 }
 
 /**
+ * gtk_source_view_set_draw_spaces:
+ * @view: a #GtkSourceView.
+ * @flags: #GtkSourceDrawSpacesFlags specifing how white spaces should
+ * be displayed
+ *
+ * Set if and how the spaces should be visualized. Specifying @flags as 0 will
+ * disable display of spaces.
+ **/
+void
+gtk_source_view_set_draw_spaces (GtkSourceView            *view,
+				 GtkSourceDrawSpacesFlags  flags)
+{
+	g_return_if_fail (GTK_IS_SOURCE_VIEW (view));
+
+	if (view->priv->draw_spaces == flags)
+		return;
+
+	view->priv->draw_spaces = flags;
+
+	gtk_widget_queue_draw (GTK_WIDGET (view));
+
+	g_object_notify (G_OBJECT (view), "draw-spaces");
+}
+
+/**
+ * gtk_source_view_get_draw_spaces:
+ * @view: a #GtkSourceView
+ *
+ * Returns the #GtkSourceDrawSpacesFlags specifying if and how spaces
+ * should be displayed for this @view.
+ * 
+ * Returns: the #GtkSourceDrawSpacesFlags, 0 if no spaces should be drawn.
+ **/
+GtkSourceDrawSpacesFlags
+gtk_source_view_get_draw_spaces (GtkSourceView *view)
+{
+	g_return_val_if_fail (GTK_IS_SOURCE_VIEW (view), 0);
+
+	return view->priv->draw_spaces;
+}
+
+/**
  * gtk_source_view_style_set:
  * @widget: a #GtkSourceView.
  * @previous_style:
@@ -3562,6 +3849,48 @@ update_right_margin_colors (GtkSourceView *view)
 }
 
 static void
+update_spaces_color (GtkSourceView *view)
+{
+	GtkWidget *widget = GTK_WIDGET (view);
+
+	if (!GTK_WIDGET_REALIZED (view))
+		return;
+
+	if (view->priv->spaces_color != NULL)
+	{
+		gdk_color_free (view->priv->spaces_color);
+		view->priv->spaces_color = NULL;
+	}
+
+	if (view->priv->style_scheme)
+	{
+		GtkSourceStyle	*style;
+
+		style = _gtk_source_style_scheme_get_draw_spaces_style (view->priv->style_scheme);
+
+		if (style != NULL)
+		{
+			gchar *color_str = NULL;
+			GdkColor color;
+
+			g_object_get (style,
+				      "foreground", &color_str,
+				      NULL);
+
+			if (color_str != NULL && gdk_color_parse (color_str, &color))
+			{
+				view->priv->spaces_color = gdk_color_copy (&color);
+			}
+
+			g_free (color_str);
+		}
+	}
+
+	if (view->priv->spaces_color == NULL)
+		view->priv->spaces_color = gdk_color_copy (&widget->style->text[GTK_STATE_INSENSITIVE]);
+}
+
+static void
 gtk_source_view_realize (GtkWidget *widget)
 {
 	GtkSourceView *view = GTK_SOURCE_VIEW (widget);
@@ -3576,6 +3905,7 @@ gtk_source_view_realize (GtkWidget *widget)
 
 	update_current_line_color (view);
 	update_right_margin_colors (view);
+	update_spaces_color (view);
 }
 
 static void
@@ -3604,6 +3934,7 @@ gtk_source_view_update_style_scheme (GtkSourceView *view)
 			_gtk_source_style_scheme_apply (new_scheme, GTK_WIDGET (view));
 			update_current_line_color (view);
 			update_right_margin_colors (view);
+			update_spaces_color (view);
 			view->priv->style_scheme_applied = TRUE;
 		}
 		else
