@@ -1568,6 +1568,7 @@ gtk_source_view_paint_line_background (GtkTextView    *text_view,
 			 line_rect.width - 1, line_rect.height - 1);
 	cairo_stroke_preserve (cr);
 	cairo_fill (cr);
+	cairo_destroy (cr);
 }
 
 static void
