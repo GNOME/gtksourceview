@@ -1,5 +1,10 @@
 2008-08-10  Paolo Borelli  <paolo.borelli@katamail.com>
 
+	* configure.ac: restore variable used by test-widget that I removed
+	by mistake.
+
+2008-08-10  Paolo Borelli  <paolo.borelli@katamail.com>
+
 	* gtksourceview/gtksourceview.c
 	(gtk_source_view_paint_line_background):
 	destroy cairo context

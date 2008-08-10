@@ -74,6 +74,10 @@ AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE, "$GETTEXT_PACKAGE", [Package name for gettex
 AM_GLIB_GNU_GETTEXT
 AM_GLIB_DEFINE_LOCALEDIR(LOCALEDIR)
 
+# test-widget uses this to find lang files and gtksourcebuffer.c 	 
+ABS_TOP_SRCDIR=`cd $srcdir && pwd` 	 
+AC_SUBST(ABS_TOP_SRCDIR)
+
 # Output files
 AC_CONFIG_FILES([
 gtksourceview-2.0.pc
