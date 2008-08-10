@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-04 23:23+0000\n"
-"PO-Revision-Date: 2008-08-06 00:16+0200\n"
+"POT-Creation-Date: 2008-08-09 10:47+0000\n"
+"PO-Revision-Date: 2008-08-10 12:40+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -181,11 +181,11 @@ msgstr "Oculto"
 msgid "Whether the language should be hidden from the user"
 msgstr "Indica si se debería ocultar el lenguaje al usuario"
 
-#: ../gtksourceview/gtksourcelanguagemanager.c:133
+#: ../gtksourceview/gtksourcelanguagemanager.c:134
 msgid "Language specification directories"
 msgstr "Directorios de especificaciones de lenguajes"
 
-#: ../gtksourceview/gtksourcelanguagemanager.c:134
+#: ../gtksourceview/gtksourcelanguagemanager.c:135
 msgid ""
 "List of directories where the language specification files (.lang) are "
 "located"
@@ -193,11 +193,11 @@ msgstr ""
 "Lista de directorios en los que se hallan los archivo de especificación de "
 "lenguajes (.lang)"
 
-#: ../gtksourceview/gtksourcelanguagemanager.c:143
+#: ../gtksourceview/gtksourcelanguagemanager.c:144
 msgid "Language ids"
 msgstr "ID del lenguaje"
 
-#: ../gtksourceview/gtksourcelanguagemanager.c:144
+#: ../gtksourceview/gtksourcelanguagemanager.c:145
 msgid "List of the ids of the available languages"
 msgstr "Lista de los identificadores de los lenguajes disponibles"
 
@@ -228,12 +228,12 @@ msgid "The GtkSourceBuffer object to print"
 msgstr "El objeto GtkSourceBuffer que imprimir"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:429
-#: ../gtksourceview/gtksourceview.c:286
+#: ../gtksourceview/gtksourceview.c:290
 msgid "Tab Width"
 msgstr "Ancho de la tabulación"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:430
-#: ../gtksourceview/gtksourceview.c:287
+#: ../gtksourceview/gtksourceview.c:291
 msgid "Width of a tab character expressed in spaces"
 msgstr "Anchura de una carácter tabulación expresado en espacios"
 
@@ -435,87 +435,87 @@ msgstr "Identificadores de esquema"
 msgid "List of the ids of the available style schemes"
 msgstr "Lista de los identificadores de los estilos disponibles"
 
-#: ../gtksourceview/gtksourcestylescheme.c:169
 #: ../gtksourceview/gtksourcestylescheme.c:170
+#: ../gtksourceview/gtksourcestylescheme.c:171
 msgid "Style scheme id"
 msgstr "ID del estilo"
 
-#: ../gtksourceview/gtksourcestylescheme.c:182
 #: ../gtksourceview/gtksourcestylescheme.c:183
+#: ../gtksourceview/gtksourcestylescheme.c:184
 msgid "Style scheme name"
 msgstr "Nombre del estilo"
 
-#: ../gtksourceview/gtksourcestylescheme.c:195
 #: ../gtksourceview/gtksourcestylescheme.c:196
+#: ../gtksourceview/gtksourcestylescheme.c:197
 msgid "Style scheme description"
 msgstr "Descripción del estilo"
 
-#: ../gtksourceview/gtksourcestylescheme.c:208
 #: ../gtksourceview/gtksourcestylescheme.c:209
+#: ../gtksourceview/gtksourcestylescheme.c:210
 msgid "Style scheme filename"
 msgstr "Nombre del archivo de estilo"
 
-#: ../gtksourceview/gtksourceview.c:261
+#: ../gtksourceview/gtksourceview.c:265
 msgid "Show Line Numbers"
 msgstr "Mostrar número de línea"
 
-#: ../gtksourceview/gtksourceview.c:262
+#: ../gtksourceview/gtksourceview.c:266
 msgid "Whether to display line numbers"
 msgstr "Indica si se mostrarán los números de las líneas"
 
-#: ../gtksourceview/gtksourceview.c:273
+#: ../gtksourceview/gtksourceview.c:277
 msgid "Show Line Marks"
 msgstr "Mostrar marcadores de líneas"
 
-#: ../gtksourceview/gtksourceview.c:274
+#: ../gtksourceview/gtksourceview.c:278
 msgid "Whether to display line mark pixbufs"
 msgstr "Indica si se mostrarán los búfer de píxeles de marcadores de líneas"
 
-#: ../gtksourceview/gtksourceview.c:301
+#: ../gtksourceview/gtksourceview.c:305
 msgid "Indent Width"
 msgstr "Anchura del sangrado"
 
-#: ../gtksourceview/gtksourceview.c:302
+#: ../gtksourceview/gtksourceview.c:306
 msgid "Number of spaces to use for each step of indent"
 msgstr "Número de espacios a usar para cada paso de sangrado"
 
-#: ../gtksourceview/gtksourceview.c:311
+#: ../gtksourceview/gtksourceview.c:315
 msgid "Auto Indentation"
 msgstr "Sangría automática"
 
-#: ../gtksourceview/gtksourceview.c:312
+#: ../gtksourceview/gtksourceview.c:316
 msgid "Whether to enable auto indentation"
 msgstr "Indica si se habilita el sangrado automático"
 
-#: ../gtksourceview/gtksourceview.c:319
+#: ../gtksourceview/gtksourceview.c:323
 msgid "Insert Spaces Instead of Tabs"
 msgstr "Insertar espacios en vez de tabuladores"
 
-#: ../gtksourceview/gtksourceview.c:320
+#: ../gtksourceview/gtksourceview.c:324
 msgid "Whether to insert spaces instead of tabs"
 msgstr "Indica si se insertarán espacios en vez de tabuladores"
 
-#: ../gtksourceview/gtksourceview.c:332
+#: ../gtksourceview/gtksourceview.c:336
 msgid "Show Right Margin"
 msgstr "Mostrar margen derecho"
 
-#: ../gtksourceview/gtksourceview.c:333
+#: ../gtksourceview/gtksourceview.c:337
 msgid "Whether to display the right margin"
 msgstr "Indica si se mostrará el margen derecho"
 
-#: ../gtksourceview/gtksourceview.c:345
+#: ../gtksourceview/gtksourceview.c:349
 msgid "Right Margin Position"
 msgstr "Posición del margen derecho"
 
-#: ../gtksourceview/gtksourceview.c:346
+#: ../gtksourceview/gtksourceview.c:350
 msgid "Position of the right margin"
 msgstr "Posición del margen derecho"
 
-#: ../gtksourceview/gtksourceview.c:362
+#: ../gtksourceview/gtksourceview.c:366
 msgid "Smart Home/End"
 msgstr "Inicio/fin inteligente"
 
-#: ../gtksourceview/gtksourceview.c:363
+#: ../gtksourceview/gtksourceview.c:367
 msgid ""
 "HOME and END keys move to first/last non whitespace characters on line "
 "before going to the start/end of the line"
@@ -523,23 +523,31 @@ msgstr ""
 "Las teclas «Inicio» y «Fin» situarán el cursor en el primer/último carácter no "
 "blanco de la línea antes de ir al inicio/fin de la línea"
 
-#: ../gtksourceview/gtksourceview.c:373
+#: ../gtksourceview/gtksourceview.c:377
 msgid "Highlight current line"
 msgstr "Resaltar la línea actual"
 
-#: ../gtksourceview/gtksourceview.c:374
+#: ../gtksourceview/gtksourceview.c:378
 msgid "Whether to highlight the current line"
 msgstr "Indica si se resalta la línea actual"
 
-#: ../gtksourceview/gtksourceview.c:381
+#: ../gtksourceview/gtksourceview.c:385
 msgid "Indent on tab"
 msgstr "Sangrar al pulsar tabulador"
 
-#: ../gtksourceview/gtksourceview.c:382
+#: ../gtksourceview/gtksourceview.c:386
 msgid "Whether to indent the selected text when the tab key is pressed"
 msgstr ""
 "Indica si se debe sangrar el texto seleccionado cuando se pulse la tecla "
 "tabulador"
+
+#: ../gtksourceview/gtksourceview.c:400
+msgid "Draw Spaces"
+msgstr "Dibujar espacios"
+
+#: ../gtksourceview/gtksourceview.c:401
+msgid "Set if and how the spaces should be visualized"
+msgstr "Establecer si se deben visualizar los espacios y cómo"
 
 #: ../gtksourceview/gtksourceview-i18n.c:38
 msgid "translator-credits"
