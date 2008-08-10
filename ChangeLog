@@ -1,5 +1,11 @@
 2008-08-10  Paolo Borelli  <paolo.borelli@katamail.com>
 
+	* gtksourceview/gtksourcebuffer.c 
+	(gtk_source_buffer_get_source_marks_at_iter):
+	do not leak list of marks.
+
+2008-08-10  Paolo Borelli  <paolo.borelli@katamail.com>
+
 	* configure.ac: restore variable used by test-widget that I removed
 	by mistake.
 

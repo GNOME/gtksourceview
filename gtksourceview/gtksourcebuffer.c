@@ -1712,6 +1712,8 @@ gtk_source_buffer_get_source_marks_at_iter (GtkSourceBuffer *buffer,
 		}
 	}
 
+	g_slist_free (marks);
+
 	return g_slist_reverse (res);
 }
 
