@@ -1,3 +1,9 @@
+2008-08-11  Paolo Borelli  <paolo.borelli@katamail.com>
+
+	* gtksourceview/gtksourcebuffer.c:
+	track when the object has been constructed so that we know the 
+	tag-table is there and we can check bracket matches etc. 
+
 2008-08-10  Paolo Borelli  <paolo.borelli@katamail.com>
 
 	* gtksourceview/gtksourcebuffer.c 

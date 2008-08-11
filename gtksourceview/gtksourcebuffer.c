@@ -85,6 +85,8 @@ struct _GtkSourceBufferPrivate
 	gint                   highlight_syntax:1;
 	gint                   highlight_brackets:1;
 
+	gint                   constructed:1;
+
 	GtkTextTag            *bracket_match_tag;
 	GtkTextMark           *bracket_mark;
 	guint                  bracket_found:1;
@@ -103,6 +105,9 @@ G_DEFINE_TYPE (GtkSourceBuffer, gtk_source_buffer, GTK_TYPE_TEXT_BUFFER)
 
 static guint 	 buffer_signals[LAST_SIGNAL];
 
+static GObject	*gtk_source_buffer_constructor		(GType                    type,
+							 guint                    n_construct_properties,
+							 GObjectConstructParam   *construct_param);
 static void 	 gtk_source_buffer_finalize		(GObject                 *object);
 static void 	 gtk_source_buffer_dispose		(GObject                 *object);
 static void      gtk_source_buffer_set_property         (GObject                 *object,
@@ -144,6 +149,7 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 	object_class 	= G_OBJECT_CLASS (klass);
 	tb_class	= GTK_TEXT_BUFFER_CLASS (klass);
 
+	object_class->constructor  = gtk_source_buffer_constructor;
 	object_class->finalize	   = gtk_source_buffer_finalize;
 	object_class->dispose	   = gtk_source_buffer_dispose;
 	object_class->get_property = gtk_source_buffer_get_property;
@@ -305,6 +311,23 @@ gtk_source_buffer_init (GtkSourceBuffer *buffer)
 			  "can_redo",
 			  G_CALLBACK (gtk_source_buffer_can_redo_handler),
 			  buffer);
+}
+
+static GObject *
+gtk_source_buffer_constructor (GType                  type,
+			       guint                  n_construct_properties,
+			       GObjectConstructParam *construct_param)
+{
+	GObject *object;
+
+	object = G_OBJECT_CLASS(gtk_source_buffer_parent_class)->constructor (type,
+									      n_construct_properties,
+									      construct_param);
+
+	/* we need to know that the tag-table was set */
+	GTK_SOURCE_BUFFER (object)->priv->constructed = TRUE;
+
+	return object;
 }
 
 static void
@@ -1055,9 +1078,16 @@ gtk_source_buffer_set_highlight_matching_brackets (GtkSourceBuffer *buffer,
 
 		buffer->priv->highlight_brackets = highlight;
 
-		mark = gtk_text_buffer_get_insert (GTK_TEXT_BUFFER (buffer));
-		gtk_text_buffer_get_iter_at_mark (GTK_TEXT_BUFFER (buffer), &iter, mark);
-		gtk_source_buffer_move_cursor (GTK_TEXT_BUFFER (buffer), &iter, mark);
+		/* try to see if there is already a bracket match at the
+		 * current position, but only if the tag table is already set
+		 * otherwise we have problems when calling this function
+		 * on init (get_insert creates the tag table as a side effect */
+		if (buffer->priv->constructed)
+		{
+			mark = gtk_text_buffer_get_insert (GTK_TEXT_BUFFER (buffer));
+			gtk_text_buffer_get_iter_at_mark (GTK_TEXT_BUFFER (buffer), &iter, mark);
+			gtk_source_buffer_move_cursor (GTK_TEXT_BUFFER (buffer), &iter, mark);
+		}
 
 		g_object_notify (G_OBJECT (buffer), "highlight-matching-brackets");
 	}
