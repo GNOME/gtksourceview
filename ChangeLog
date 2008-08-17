@@ -1,3 +1,7 @@
+2008-08-17  Paolo Borelli  <paolo.borelli@katamail.com>
+
+	* gtksourceview/gtksourceview.c (draw_spaces_at_iter): special case
+	the end iter.
 
 === gtksourceview 2.3.1 ===
 

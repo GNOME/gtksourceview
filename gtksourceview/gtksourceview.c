@@ -1797,7 +1797,7 @@ draw_spaces_at_iter (cairo_t       *cr,
 		draw_space_at_iter (cr, GTK_TEXT_VIEW (view), iter, rect);
 	}
 	else if (view->priv->draw_spaces & GTK_SOURCE_DRAW_SPACES_NEWLINE &&
-		 gtk_text_iter_ends_line (iter))
+		 gtk_text_iter_ends_line (iter) && !gtk_text_iter_is_end (iter))
 	{
 		draw_newline_at_iter (cr, GTK_TEXT_VIEW (view), iter, rect);
 	}
