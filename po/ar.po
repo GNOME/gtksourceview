@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-06 09:20+0100\n"
+"POT-Creation-Date: 2008-08-18 15:06+0100\n"
 "PO-Revision-Date: 2008-05-24 20:47+0300\n"
 "Last-Translator: Khaled Hosny <khaledhosny@eglug.org>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
@@ -24,59 +24,59 @@ msgstr ""
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 
-#: ../gtksourceview/gtksourcebuffer.c:168
+#: ../gtksourceview/gtksourcebuffer.c:174
 #: ../gtksourceview/gtksourceprintcompositor.c:471
 msgid "Highlight Syntax"
 msgstr "أبرِز الصيغة"
 
-#: ../gtksourceview/gtksourcebuffer.c:169
+#: ../gtksourceview/gtksourcebuffer.c:175
 msgid "Whether to highlight syntax in the buffer"
 msgstr "ما إذا ستبرز الصيغة في الصوان"
 
-#: ../gtksourceview/gtksourcebuffer.c:182
+#: ../gtksourceview/gtksourcebuffer.c:188
 msgid "Highlight Matching Brackets"
 msgstr "ظَلِّل الأقواس الموافقة"
 
-#: ../gtksourceview/gtksourcebuffer.c:183
+#: ../gtksourceview/gtksourcebuffer.c:189
 msgid "Whether to highlight matching brackets"
 msgstr "فيما إذا سيقع إبراز الأقواس المطابقة"
 
-#: ../gtksourceview/gtksourcebuffer.c:195
+#: ../gtksourceview/gtksourcebuffer.c:201
 msgid "Maximum Undo Levels"
 msgstr "مستويات التراجع القصوى"
 
-#: ../gtksourceview/gtksourcebuffer.c:196
+#: ../gtksourceview/gtksourcebuffer.c:202
 msgid "Number of undo levels for the buffer"
 msgstr "عدد مستويات التراجع للذاكرة الوسيطة"
 
 #. Translators: throughout gtksourceview "language" stands
 #. * for "programming language", not "spoken language"
-#: ../gtksourceview/gtksourcebuffer.c:208
+#: ../gtksourceview/gtksourcebuffer.c:214
 msgid "Language"
 msgstr "اللغة"
 
-#: ../gtksourceview/gtksourcebuffer.c:209
+#: ../gtksourceview/gtksourcebuffer.c:215
 msgid "Language object to get highlighting patterns from"
 msgstr "أجسام اللغة لتلقي أنماط الإبراز منها"
 
-#: ../gtksourceview/gtksourcebuffer.c:217
+#: ../gtksourceview/gtksourcebuffer.c:223
 msgid "Can undo"
 msgstr "يمكنه التراجع"
 
-#: ../gtksourceview/gtksourcebuffer.c:218
+#: ../gtksourceview/gtksourcebuffer.c:224
 msgid "Whether Undo operation is possible"
 msgstr "فيما إذا كانت عملية التراجع ممكنة"
 
-#: ../gtksourceview/gtksourcebuffer.c:225
+#: ../gtksourceview/gtksourcebuffer.c:231
 msgid "Can redo"
 msgstr "يمكنه الإعادة"
 
-#: ../gtksourceview/gtksourcebuffer.c:226
+#: ../gtksourceview/gtksourcebuffer.c:232
 msgid "Whether Redo operation is possible"
 msgstr "فيما إذا كانت عملية الإعادة ممكنة"
 
-#: ../gtksourceview/gtksourcebuffer.c:240
-#: ../gtksourceview/gtksourcebuffer.c:241
+#: ../gtksourceview/gtksourcebuffer.c:246
+#: ../gtksourceview/gtksourcebuffer.c:247
 msgid "Style scheme"
 msgstr "مخطط الطرز"
 
@@ -230,12 +230,12 @@ msgid "The GtkSourceBuffer object to print"
 msgstr "كائن GtkSourceBuffer للطبع"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:429
-#: ../gtksourceview/gtksourceview.c:286
+#: ../gtksourceview/gtksourceview.c:290
 msgid "Tab Width"
 msgstr "عرض الشريط"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:430
-#: ../gtksourceview/gtksourceview.c:287
+#: ../gtksourceview/gtksourceview.c:291
 msgid "Width of a tab character expressed in spaces"
 msgstr "عرض شريط بالمسافات"
 
@@ -431,87 +431,87 @@ msgstr "معرفات المخطط"
 msgid "List of the ids of the available style schemes"
 msgstr "قائمة معرفات مخططات الطرز المتوفرة"
 
-#: ../gtksourceview/gtksourcestylescheme.c:169
 #: ../gtksourceview/gtksourcestylescheme.c:170
+#: ../gtksourceview/gtksourcestylescheme.c:171
 msgid "Style scheme id"
 msgstr "معرف مخطط الطرز"
 
-#: ../gtksourceview/gtksourcestylescheme.c:182
 #: ../gtksourceview/gtksourcestylescheme.c:183
+#: ../gtksourceview/gtksourcestylescheme.c:184
 msgid "Style scheme name"
 msgstr "اسم مخطط الطرز"
 
-#: ../gtksourceview/gtksourcestylescheme.c:195
 #: ../gtksourceview/gtksourcestylescheme.c:196
+#: ../gtksourceview/gtksourcestylescheme.c:197
 msgid "Style scheme description"
 msgstr "وصف مخطط الطرز"
 
-#: ../gtksourceview/gtksourcestylescheme.c:208
 #: ../gtksourceview/gtksourcestylescheme.c:209
+#: ../gtksourceview/gtksourcestylescheme.c:210
 msgid "Style scheme filename"
 msgstr "اسم ملف مخطط الطرز"
 
-#: ../gtksourceview/gtksourceview.c:261
+#: ../gtksourceview/gtksourceview.c:265
 msgid "Show Line Numbers"
 msgstr "اظهار أرقام السطور"
 
-#: ../gtksourceview/gtksourceview.c:262
+#: ../gtksourceview/gtksourceview.c:266
 msgid "Whether to display line numbers"
 msgstr "ما اذا ستعرض أرقام السطور"
 
-#: ../gtksourceview/gtksourceview.c:273
+#: ../gtksourceview/gtksourceview.c:277
 msgid "Show Line Marks"
 msgstr "أظهر علامات السطر"
 
-#: ../gtksourceview/gtksourceview.c:274
+#: ../gtksourceview/gtksourceview.c:278
 msgid "Whether to display line mark pixbufs"
 msgstr "فيما إذا ستُعرض pixbufs علامة السطر"
 
-#: ../gtksourceview/gtksourceview.c:301
+#: ../gtksourceview/gtksourceview.c:305
 msgid "Indent Width"
 msgstr "عرض الازاحة"
 
-#: ../gtksourceview/gtksourceview.c:302
+#: ../gtksourceview/gtksourceview.c:306
 msgid "Number of spaces to use for each step of indent"
 msgstr "عدد الفراغات للاستعمال في كل خطوة إزاحة"
 
-#: ../gtksourceview/gtksourceview.c:311
+#: ../gtksourceview/gtksourceview.c:315
 msgid "Auto Indentation"
 msgstr "تجويف النص للملإ آليا"
 
-#: ../gtksourceview/gtksourceview.c:312
+#: ../gtksourceview/gtksourceview.c:316
 msgid "Whether to enable auto indentation"
 msgstr "ما اذا سيفعل التجويف الآلي للنص"
 
-#: ../gtksourceview/gtksourceview.c:319
+#: ../gtksourceview/gtksourceview.c:323
 msgid "Insert Spaces Instead of Tabs"
 msgstr "ادخال فراغات عوض منظمات الجداول (tabulator)"
 
-#: ../gtksourceview/gtksourceview.c:320
+#: ../gtksourceview/gtksourceview.c:324
 msgid "Whether to insert spaces instead of tabs"
 msgstr "ما اذا ستدخل فراغات عوض منظمات الجداول (tabulator)"
 
-#: ../gtksourceview/gtksourceview.c:332
+#: ../gtksourceview/gtksourceview.c:336
 msgid "Show Right Margin"
 msgstr "اظهار الهامش الأيمن"
 
-#: ../gtksourceview/gtksourceview.c:333
+#: ../gtksourceview/gtksourceview.c:337
 msgid "Whether to display the right margin"
 msgstr "ما اذا سيعرض الهامش الأيمن"
 
-#: ../gtksourceview/gtksourceview.c:345
+#: ../gtksourceview/gtksourceview.c:349
 msgid "Right Margin Position"
 msgstr "موقع الهامش الأيمن"
 
-#: ../gtksourceview/gtksourceview.c:346
+#: ../gtksourceview/gtksourceview.c:350
 msgid "Position of the right margin"
 msgstr "موقع الهامش الأيمن"
 
-#: ../gtksourceview/gtksourceview.c:362
+#: ../gtksourceview/gtksourceview.c:366
 msgid "Smart Home/End"
 msgstr "إستخدام حاذق لِ بداية /نهاية "
 
-#: ../gtksourceview/gtksourceview.c:363
+#: ../gtksourceview/gtksourceview.c:367
 msgid ""
 "HOME and END keys move to first/last non whitespace characters on line "
 "before going to the start/end of the line"
@@ -519,21 +519,29 @@ msgstr ""
 "مفتاحا HOME و END ينقلان للرموز الأولى/الأخيرة على السطر قبل الذهاب إلى "
 "بداية/نهاية السطر"
 
-#: ../gtksourceview/gtksourceview.c:373
+#: ../gtksourceview/gtksourceview.c:377
 msgid "Highlight current line"
 msgstr "إبراز السطر الحالي"
 
-#: ../gtksourceview/gtksourceview.c:374
+#: ../gtksourceview/gtksourceview.c:378
 msgid "Whether to highlight the current line"
 msgstr "فيما إذا يجب إبراز السطر الحالي."
 
-#: ../gtksourceview/gtksourceview.c:381
+#: ../gtksourceview/gtksourceview.c:385
 msgid "Indent on tab"
 msgstr "مساحة خالية عند التاب"
 
-#: ../gtksourceview/gtksourceview.c:382
+#: ../gtksourceview/gtksourceview.c:386
 msgid "Whether to indent the selected text when the tab key is pressed"
 msgstr "إذا يجب إضافة مساحة عند ضغط مفتاح تاب"
+
+#: ../gtksourceview/gtksourceview.c:400
+msgid "Draw Spaces"
+msgstr ""
+
+#: ../gtksourceview/gtksourceview.c:401
+msgid "Set if and how the spaces should be visualized"
+msgstr ""
 
 #: ../gtksourceview/gtksourceview-i18n.c:38
 msgid "translator-credits"
