@@ -181,6 +181,18 @@ cat > $dir/file.xml <<EOFEOF
 </foolala>
 EOFEOF
 
+cat > $dir/file.xsl <<EOFEOF
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version='1.0'>
+  <xsl:param name="foo" select="'@bar'"/>
+  <xsl:template match="baz">
+    <p>
+      <b><xsl:value-of select="@lala"/></b>
+    </p>
+  </xsl:template>
+</xsl:stylesheet>
+EOFEOF
+
 cat > $dir/file.y <<EOFEOF
 %{
 #include <stdio.h>

@@ -128,10 +128,9 @@
             <match>(?&lt;!:)\%{prefix}:</match>
         </context>
 
-        <context id="element-name" once-only="true" style-ref="element-name">
-            <match>\b\%{name}\b(?!\s*=)</match>
-        </context>
-
+        <!-- Match attribute-name before element-name otherwise
+             "text" in <fo:block text-align="left"> is detected as
+             element -->
         <context id="attribute-name" style-ref="attribute-name">
             <match>\b\%{name}\s*=</match>
         </context>
@@ -144,6 +143,10 @@
                 <context ref="character-reference"/>
                 <context ref="unallowed-chars"/>
             </include>
+        </context>
+
+        <context id="element-name" once-only="true" style-ref="element-name">
+            <match>\b\%{name}\b(?!\s*=)</match>
         </context>
 
         <context id="prolog">
@@ -167,9 +170,9 @@
                 <context ref="character-reference"/>
                 <context ref="unallowed-chars"/>
                 <context ref="namespace"/>
-                <context ref="element-name"/>
                 <context ref="attribute-name"/>
                 <context ref="attribute-value"/>
+                <context ref="element-name"/>
                 <context style-ref="error" extend-parent="false">
                   <match>\S</match>
                 </context>

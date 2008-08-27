@@ -63,6 +63,7 @@ LANGUAGES =			\
 	verilog.lang		\
 	vhdl.lang		\
 	xml.lang		\
+	xslt.lang		\
 	yacc.lang
 
 STYLES =			\
