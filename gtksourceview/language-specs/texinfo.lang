@@ -30,6 +30,7 @@
 
   <styles>
     <style id="comment" _name="Comment" map-to="def:comment"/>
+    <style id="escaped-character" _name="Escaped Character" map-to="def:special-char"/>
     <style id="others" _name="Others"/>
     <style id="string" _name="String" map-to="def:string"/>
     <style id="keyword" _name="Keyword" map-to="def:keyword"/>
@@ -40,35 +41,29 @@
   </styles>
 
   <definitions>
-    <context id="generated-escape">
-      <match>@.</match>
-    </context>
-    <context id="generated-line-escape">
-      <start>@$</start>
-      <end>^</end>
-    </context>
+
     <context id="line-comment" style-ref="comment" end-at-line-end="true">
       <start>@c(omment)? </start>
       <include>
-        <context ref="generated-escape"/>
-        <context ref="generated-line-escape"/>
+        <context ref="def:in-comment"/>
       </include>
     </context>
+
     <context id="block-comment" style-ref="comment">
       <start>^@ignore\s*$</start>
       <end>^@end ignore\s*$</end>
       <include>
-        <context ref="generated-escape"/>
-        <context ref="generated-line-escape"/>
+        <context ref="def:in-comment"/>
       </include>
     </context>
+
+    <context id="escaped-characters" style-ref="escaped-character">
+      <match>@(@|{|})</match>
+    </context>
+
     <context id="macro-parameters" style-ref="string">
       <start>\{[^}]</start>
       <end>\}</end>
-      <include>
-        <context ref="generated-escape"/>
-        <context ref="generated-line-escape"/>
-      </include>
     </context>
 
     <context id="macros-b" style-ref="macros">
@@ -86,6 +81,7 @@
       <keyword>syncodeindex</keyword>
       <keyword>synindex</keyword>
     </context>
+
     <context id="macros-dollar" style-ref="macros">
       <prefix>^@</prefix>
       <suffix>\s*$</suffix>
@@ -106,6 +102,7 @@
       <keyword>(end )?tex</keyword>
       <keyword>(end )?xml</keyword>
     </context>
+
     <context id="macros">
       <include>
         <context ref="macros-b"/>
@@ -145,6 +142,7 @@
       <keyword>settitle</keyword>
       <keyword>titlefont</keyword>
     </context>
+
     <context id="file-attributes-dollar" style-ref="file-attributes">
       <prefix>^@</prefix>
       <suffix>\s*$</suffix>
@@ -160,6 +158,7 @@
       <keyword>setshortcontentsaftertitlepage</keyword>
       <keyword>smallbook</keyword>
     </context>
+
     <context id="file-attributes">
       <include>
         <context ref="file-attributes-b"/>
@@ -188,12 +187,14 @@
       <keyword>^@(end )?verbatim\s*$</keyword>
       <keyword>^@verbatiminclude\b</keyword>
     </context>
+
     <context id="include" style-ref="include">
       <prefix></prefix>
       <keyword>^\\input</keyword>
       <keyword>^@include</keyword>
       <keyword>@image</keyword>
     </context>
+
     <context id="markup-inline" style-ref="keyword">
       <prefix>@</prefix>
       <keyword>acronym</keyword>
@@ -256,6 +257,7 @@
       <keyword>title</keyword>
       <keyword>vtable</keyword>
     </context>
+
     <context id="markup-block-dollar" style-ref="keyword">
       <prefix>^@</prefix>
       <suffix>\s*$</suffix>
@@ -296,6 +298,7 @@
       <keyword>end table</keyword>
       <keyword>end vtable</keyword>
     </context>
+
     <context id="markup-block">
       <include>
         <context ref="markup-block-b"/>
@@ -327,6 +330,7 @@
       <keyword>unnumberedsec\b</keyword>
       <keyword>unnumberedsub(sub)?sec\b</keyword>
     </context>
+
     <context id="formatting" style-ref="keyword">
       <prefix></prefix>
       <suffix></suffix>
@@ -357,6 +361,7 @@
       <keyword>^@vskip\b</keyword>
       <keyword>@w\b</keyword>
     </context>
+
     <context id="characters" style-ref="keyword">
       <prefix>@</prefix>
       <suffix></suffix>
@@ -411,13 +416,16 @@
       <keyword>udotaccent\b</keyword>
       <keyword>v\b</keyword>
     </context>
+
     <context id="keyword" style-ref="others">
       <match>((^[\\])|([@]))(end )?[a-zA-Z]+(\{\})?</match>
     </context>
+
     <context id="texinfo">
       <include>
         <context ref="line-comment"/>
         <context ref="block-comment"/>
+        <context ref="escaped-characters"/>
         <context ref="macro-parameters"/>
         <context ref="macros"/>
         <context ref="indexing"/>

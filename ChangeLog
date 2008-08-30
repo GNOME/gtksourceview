@@ -1,5 +1,10 @@
 2008-08-30  Paolo Borelli  <paolo.borelli@katamail.com>
 
+	* gtksourceview/language-specs/texinfo.lang:
+	fix bug #549044, never ending @ignore block.
+
+2008-08-30  Paolo Borelli  <paolo.borelli@katamail.com>
+
 	* gtksourceview/language-specs/python.lang: handle raw string
 	separately since they do not contain escaped chars.
 
