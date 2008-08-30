@@ -1,3 +1,8 @@
+2008-08-30  Paolo Borelli  <paolo.borelli@katamail.com>
+
+	* gtksourceview/language-specs/python.lang: handle raw string
+	separately since they do not contain escaped chars.
+
 2008-08-27  Paolo Borelli  <paolo.borelli@katamail.com>
 
 	* gtksourceview/language-specs/xslt.lang: add lang file for xslt.

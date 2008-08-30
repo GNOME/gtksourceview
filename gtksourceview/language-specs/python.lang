@@ -79,7 +79,8 @@
       </match>
     </context>
 
-    <define-regex id="string-prefix">(r|u|ur|R|U|UR|Ur|uR)?</define-regex>
+    <define-regex id="string-prefix">(u|U)?</define-regex>
+    <define-regex id="raw-string-prefix">(r|ur|R|UR|Ur|uR)</define-regex>
 
     <context id="multiline-double-quoted-string" style-ref="multiline-string">
       <start>\%{string-prefix}"""</start>
@@ -119,6 +120,40 @@
       </include>
     </context>
 
+    <context id="multiline-double-quoted-raw-string" style-ref="multiline-string">
+      <start>\%{raw-string-prefix}"""</start>
+      <end>"""</end>
+      <include>
+        <context ref="format"/>
+      </include>
+    </context>
+
+    <context id="multiline-single-quoted-raw-string" style-ref="multiline-string">
+      <start>\%{raw-string-prefix}'''</start>
+      <end>'''</end>
+      <include>
+        <context ref="format"/>
+      </include>
+    </context>
+
+    <context id="double-quoted-raw-string" style-ref="string" end-at-line-end="true">
+      <start>\%{raw-string-prefix}"</start>
+      <end>"</end>
+      <include>
+        <context ref="format"/>
+        <context ref="def:line-continue"/>
+      </include>
+    </context>
+
+    <context id="single-quoted-raw-string" style-ref="string" end-at-line-end="true">
+      <start>\%{raw-string-prefix}'</start>
+      <end>'</end>
+      <include>
+        <context ref="format"/>
+        <context ref="def:line-continue"/>
+      </include>
+    </context>
+
     <context id="python">
       <include>
         <context ref="def:shebang"/>
@@ -128,6 +163,11 @@
         <context ref="multiline-single-quoted-string"/>
         <context ref="double-quoted-string"/>
         <context ref="single-quoted-string"/>
+
+        <context ref="multiline-double-quoted-raw-string"/>
+        <context ref="multiline-single-quoted-raw-string"/>
+        <context ref="double-quoted-raw-string"/>
+        <context ref="single-quoted-raw-string"/>
 
         <context id="string-conversion" style-ref="string-conversion" end-at-line-end="true">
           <start>`</start>
