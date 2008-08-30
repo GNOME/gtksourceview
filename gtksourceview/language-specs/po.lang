@@ -31,6 +31,7 @@
     <style id="comment" _name="Comment" map-to="def:comment"/>
     <style id="location" _name="Location" map-to="def:comment"/>
     <style id="string" _name="String" map-to="def:string"/>
+    <style id="fuzzy" name="Fuzzy" map-to="def:note"/>
     <style id="keyword" _name="Keyword" map-to="def:keyword"/>
     <!-- FIXME make it some nice name and mark it translatable -->
     <style id="special" name="Special" map-to="def:special-char"/>
@@ -60,6 +61,9 @@
       <include>
         <context ref="def:escape"/>
         <context ref="def:line-continue"/>
+        <context id="fuzzy" style-ref="fuzzy">
+          <match>\bfuzzy\b</match>
+        </context>
       </include>
     </context>
     <context id="location" style-ref="location" end-at-line-end="true">
@@ -75,6 +79,7 @@
       <keyword>msgid</keyword>
       <keyword>msgid_plural</keyword>
       <keyword>msgstr</keyword>
+      <keyword>msgctxt</keyword>
     </context>
     <context id="gettext-translation">
       <include>
