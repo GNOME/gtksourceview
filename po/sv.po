@@ -7,67 +7,67 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-05 11:35+0200\n"
-"PO-Revision-Date: 2008-08-05 11:38+0100\n"
+"POT-Creation-Date: 2008-09-02 14:45+0200\n"
+"PO-Revision-Date: 2008-09-02 14:46+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../gtksourceview/gtksourcebuffer.c:168
+#: ../gtksourceview/gtksourcebuffer.c:174
 #: ../gtksourceview/gtksourceprintcompositor.c:471
 msgid "Highlight Syntax"
 msgstr "Färgmarkeringssyntax"
 
-#: ../gtksourceview/gtksourcebuffer.c:169
+#: ../gtksourceview/gtksourcebuffer.c:175
 msgid "Whether to highlight syntax in the buffer"
 msgstr "Huruvida syntaxen ska färgmarkeras i bufferten"
 
-#: ../gtksourceview/gtksourcebuffer.c:182
+#: ../gtksourceview/gtksourcebuffer.c:188
 msgid "Highlight Matching Brackets"
 msgstr "Färgmarkera matchande parenteser"
 
-#: ../gtksourceview/gtksourcebuffer.c:183
+#: ../gtksourceview/gtksourcebuffer.c:189
 msgid "Whether to highlight matching brackets"
 msgstr "Huruvida matchande parenteser ska färgmarkeras"
 
-#: ../gtksourceview/gtksourcebuffer.c:195
+#: ../gtksourceview/gtksourcebuffer.c:201
 msgid "Maximum Undo Levels"
 msgstr "Maximalt antal ångrandenivåer"
 
-#: ../gtksourceview/gtksourcebuffer.c:196
+#: ../gtksourceview/gtksourcebuffer.c:202
 msgid "Number of undo levels for the buffer"
 msgstr "Antal ångrandenivåer för bufferten"
 
 #. Translators: throughout gtksourceview "language" stands
 #. * for "programming language", not "spoken language"
-#: ../gtksourceview/gtksourcebuffer.c:208
+#: ../gtksourceview/gtksourcebuffer.c:214
 msgid "Language"
 msgstr "Språk"
 
-#: ../gtksourceview/gtksourcebuffer.c:209
+#: ../gtksourceview/gtksourcebuffer.c:215
 msgid "Language object to get highlighting patterns from"
 msgstr "Språkobjekt att hämta färgmarkeringsmönster från"
 
-#: ../gtksourceview/gtksourcebuffer.c:217
+#: ../gtksourceview/gtksourcebuffer.c:223
 msgid "Can undo"
 msgstr "Kan ångra"
 
-#: ../gtksourceview/gtksourcebuffer.c:218
+#: ../gtksourceview/gtksourcebuffer.c:224
 msgid "Whether Undo operation is possible"
 msgstr "Huruvida en Ångra-åtgärd är möjlig"
 
-#: ../gtksourceview/gtksourcebuffer.c:225
+#: ../gtksourceview/gtksourcebuffer.c:231
 msgid "Can redo"
 msgstr "Kan göra om"
 
-#: ../gtksourceview/gtksourcebuffer.c:226
+#: ../gtksourceview/gtksourcebuffer.c:232
 msgid "Whether Redo operation is possible"
 msgstr "Huruvida en Gör om-åtgärd är möjlig"
 
-#: ../gtksourceview/gtksourcebuffer.c:240
-#: ../gtksourceview/gtksourcebuffer.c:241
+#: ../gtksourceview/gtksourcebuffer.c:246
+#: ../gtksourceview/gtksourcebuffer.c:247
 msgid "Style scheme"
 msgstr "Stilschema"
 
@@ -141,7 +141,7 @@ msgstr "Saknar huvudspråkdefinition (id = \"%s\".)"
 #: ../gtksourceview/language-specs/po.lang.h:4
 #: ../gtksourceview/language-specs/rpmspec.lang.h:10
 #: ../gtksourceview/language-specs/sh.lang.h:6
-#: ../gtksourceview/language-specs/texinfo.lang.h:8
+#: ../gtksourceview/language-specs/texinfo.lang.h:9
 #: ../gtksourceview/language-specs/yacc.lang.h:1
 msgid "Others"
 msgstr "Andra"
@@ -169,19 +169,19 @@ msgstr "Dold"
 msgid "Whether the language should be hidden from the user"
 msgstr "Huruvida språket ska döljas för användaren"
 
-#: ../gtksourceview/gtksourcelanguagemanager.c:133
+#: ../gtksourceview/gtksourcelanguagemanager.c:134
 msgid "Language specification directories"
 msgstr "Kataloger för språkspecifikationer"
 
-#: ../gtksourceview/gtksourcelanguagemanager.c:134
+#: ../gtksourceview/gtksourcelanguagemanager.c:135
 msgid "List of directories where the language specification files (.lang) are located"
 msgstr "Lista med kataloger där språkspecifikationsfiler (.lang) finns"
 
-#: ../gtksourceview/gtksourcelanguagemanager.c:143
+#: ../gtksourceview/gtksourcelanguagemanager.c:144
 msgid "Language ids"
 msgstr "Språk-id:n"
 
-#: ../gtksourceview/gtksourcelanguagemanager.c:144
+#: ../gtksourceview/gtksourcelanguagemanager.c:145
 msgid "List of the ids of the available languages"
 msgstr "Lista över id:n för tillgängliga språk"
 
@@ -212,12 +212,12 @@ msgid "The GtkSourceBuffer object to print"
 msgstr "GtkSourceBuffer-objektet att skriva ut"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:429
-#: ../gtksourceview/gtksourceview.c:286
+#: ../gtksourceview/gtksourceview.c:290
 msgid "Tab Width"
 msgstr "Tabulatorbredd"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:430
-#: ../gtksourceview/gtksourceview.c:287
+#: ../gtksourceview/gtksourceview.c:291
 msgid "Width of a tab character expressed in spaces"
 msgstr "Bredd på ett tabulatortecken uttryckt i blanksteg"
 
@@ -413,105 +413,113 @@ msgstr "Schema-id:n"
 msgid "List of the ids of the available style schemes"
 msgstr "Lista över id:n för tillgängliga stilscheman"
 
-#: ../gtksourceview/gtksourcestylescheme.c:169
 #: ../gtksourceview/gtksourcestylescheme.c:170
+#: ../gtksourceview/gtksourcestylescheme.c:171
 msgid "Style scheme id"
 msgstr "Stilschema-id"
 
-#: ../gtksourceview/gtksourcestylescheme.c:182
 #: ../gtksourceview/gtksourcestylescheme.c:183
+#: ../gtksourceview/gtksourcestylescheme.c:184
 msgid "Style scheme name"
 msgstr "Stilschemanamn"
 
-#: ../gtksourceview/gtksourcestylescheme.c:195
 #: ../gtksourceview/gtksourcestylescheme.c:196
+#: ../gtksourceview/gtksourcestylescheme.c:197
 msgid "Style scheme description"
 msgstr "Stilschemabeskrivning"
 
-#: ../gtksourceview/gtksourcestylescheme.c:208
 #: ../gtksourceview/gtksourcestylescheme.c:209
+#: ../gtksourceview/gtksourcestylescheme.c:210
 msgid "Style scheme filename"
 msgstr "Stilschemafilnamn"
 
-#: ../gtksourceview/gtksourceview.c:261
+#: ../gtksourceview/gtksourceview.c:265
 msgid "Show Line Numbers"
 msgstr "Visa radnummer"
 
-#: ../gtksourceview/gtksourceview.c:262
+#: ../gtksourceview/gtksourceview.c:266
 msgid "Whether to display line numbers"
 msgstr "Huruvida radnummer ska visas"
 
-#: ../gtksourceview/gtksourceview.c:273
+#: ../gtksourceview/gtksourceview.c:277
 msgid "Show Line Marks"
 msgstr "Visa radmarkörer"
 
-#: ../gtksourceview/gtksourceview.c:274
+#: ../gtksourceview/gtksourceview.c:278
 msgid "Whether to display line mark pixbufs"
 msgstr "Huruvida radmarkörer ska visas"
 
-#: ../gtksourceview/gtksourceview.c:301
+#: ../gtksourceview/gtksourceview.c:305
 msgid "Indent Width"
 msgstr "Indenteringsbredd"
 
-#: ../gtksourceview/gtksourceview.c:302
+#: ../gtksourceview/gtksourceview.c:306
 msgid "Number of spaces to use for each step of indent"
 msgstr "Antal blanksteg att använda för att indenteringssteg"
 
-#: ../gtksourceview/gtksourceview.c:311
+#: ../gtksourceview/gtksourceview.c:315
 msgid "Auto Indentation"
 msgstr "Automatiskt indrag"
 
-#: ../gtksourceview/gtksourceview.c:312
+#: ../gtksourceview/gtksourceview.c:316
 msgid "Whether to enable auto indentation"
 msgstr "Huruvida automatiskt indrag ska aktiveras"
 
-#: ../gtksourceview/gtksourceview.c:319
+#: ../gtksourceview/gtksourceview.c:323
 msgid "Insert Spaces Instead of Tabs"
 msgstr "Infoga blanksteg istället för tabulatortecken"
 
-#: ../gtksourceview/gtksourceview.c:320
+#: ../gtksourceview/gtksourceview.c:324
 msgid "Whether to insert spaces instead of tabs"
 msgstr "Huruvida blanksteg ska infogas istället för tabulatortecken"
 
-#: ../gtksourceview/gtksourceview.c:332
+#: ../gtksourceview/gtksourceview.c:336
 msgid "Show Right Margin"
 msgstr "Visa högermarginal"
 
-#: ../gtksourceview/gtksourceview.c:333
+#: ../gtksourceview/gtksourceview.c:337
 msgid "Whether to display the right margin"
 msgstr "Huruvida högermarginalen ska visas"
 
-#: ../gtksourceview/gtksourceview.c:345
+#: ../gtksourceview/gtksourceview.c:349
 msgid "Right Margin Position"
 msgstr "Höger marginalposition"
 
-#: ../gtksourceview/gtksourceview.c:346
+#: ../gtksourceview/gtksourceview.c:350
 msgid "Position of the right margin"
 msgstr "Position för högermarginalen"
 
-#: ../gtksourceview/gtksourceview.c:362
+#: ../gtksourceview/gtksourceview.c:366
 msgid "Smart Home/End"
 msgstr "Intelligent home/end"
 
-#: ../gtksourceview/gtksourceview.c:363
+#: ../gtksourceview/gtksourceview.c:367
 msgid "HOME and END keys move to first/last non whitespace characters on line before going to the start/end of the line"
 msgstr "HOME- och END-tangenterna flyttar till första/sista tecknen på raden innan de går till början/slutet på raden"
 
-#: ../gtksourceview/gtksourceview.c:373
+#: ../gtksourceview/gtksourceview.c:377
 msgid "Highlight current line"
 msgstr "Färgmarkera aktuell rad"
 
-#: ../gtksourceview/gtksourceview.c:374
+#: ../gtksourceview/gtksourceview.c:378
 msgid "Whether to highlight the current line"
 msgstr "Huruvida den aktuella raden ska färgmarkeras"
 
-#: ../gtksourceview/gtksourceview.c:381
+#: ../gtksourceview/gtksourceview.c:385
 msgid "Indent on tab"
 msgstr "Dra in med tabulator"
 
-#: ../gtksourceview/gtksourceview.c:382
+#: ../gtksourceview/gtksourceview.c:386
 msgid "Whether to indent the selected text when the tab key is pressed"
 msgstr "Huruvida indragning av markerad text ska göras när tabulatorn trycks"
+
+#: ../gtksourceview/gtksourceview.c:400
+msgid "Draw Spaces"
+msgstr "Rita ut blanksteg"
+
+#: ../gtksourceview/gtksourceview.c:401
+msgid "Set if and how the spaces should be visualized"
+msgstr "Ställ in om och hur blanksteg ska visualiseras"
 
 #: ../gtksourceview/gtksourceview-i18n.c:38
 msgid "translator-credits"
@@ -648,6 +656,7 @@ msgstr "Decimaltal"
 #: ../gtksourceview/language-specs/php.lang.h:7
 #: ../gtksourceview/language-specs/python.lang.h:8
 #: ../gtksourceview/language-specs/ruby.lang.h:8
+#: ../gtksourceview/language-specs/texinfo.lang.h:2
 msgid "Escaped Character"
 msgstr "Tecken efter Escape-tecken"
 
@@ -688,7 +697,7 @@ msgstr "Tecken efter Escape-tecken"
 #: ../gtksourceview/language-specs/sh.lang.h:5
 #: ../gtksourceview/language-specs/sql.lang.h:6
 #: ../gtksourceview/language-specs/tcl.lang.h:1
-#: ../gtksourceview/language-specs/texinfo.lang.h:5
+#: ../gtksourceview/language-specs/texinfo.lang.h:6
 #: ../gtksourceview/language-specs/vala.lang.h:7
 #: ../gtksourceview/language-specs/vbnet.lang.h:4
 #: ../gtksourceview/language-specs/verilog.lang.h:6
@@ -782,7 +791,7 @@ msgstr "Lagringsklass"
 #: ../gtksourceview/language-specs/scheme.lang.h:7
 #: ../gtksourceview/language-specs/sh.lang.h:9
 #: ../gtksourceview/language-specs/sql.lang.h:10
-#: ../gtksourceview/language-specs/texinfo.lang.h:9
+#: ../gtksourceview/language-specs/texinfo.lang.h:10
 #: ../gtksourceview/language-specs/vala.lang.h:11
 #: ../gtksourceview/language-specs/vbnet.lang.h:8
 #: ../gtksourceview/language-specs/vhdl.lang.h:9
@@ -1246,8 +1255,9 @@ msgstr "Sidhuvudselement"
 #: ../gtksourceview/language-specs/haddock.lang.h:14
 #: ../gtksourceview/language-specs/html.lang.h:7
 #: ../gtksourceview/language-specs/latex.lang.h:6
-#: ../gtksourceview/language-specs/texinfo.lang.h:7
+#: ../gtksourceview/language-specs/texinfo.lang.h:8
 #: ../gtksourceview/language-specs/xml.lang.h:9
+#: ../gtksourceview/language-specs/xslt.lang.h:1
 msgid "Markup"
 msgstr "Märkning"
 
@@ -1566,7 +1576,7 @@ msgid "Command"
 msgstr "Kommando"
 
 #: ../gtksourceview/language-specs/latex.lang.h:3
-#: ../gtksourceview/language-specs/texinfo.lang.h:4
+#: ../gtksourceview/language-specs/texinfo.lang.h:5
 msgid "Include"
 msgstr "Inkludering"
 
@@ -1915,19 +1925,19 @@ msgstr "SQL"
 msgid "Tcl"
 msgstr "Tcl"
 
-#: ../gtksourceview/language-specs/texinfo.lang.h:2
+#: ../gtksourceview/language-specs/texinfo.lang.h:3
 msgid "File Attributes"
 msgstr "Filattribut"
 
-#: ../gtksourceview/language-specs/texinfo.lang.h:3
+#: ../gtksourceview/language-specs/texinfo.lang.h:4
 msgid "Generated Content"
 msgstr "Genererad konstant"
 
-#: ../gtksourceview/language-specs/texinfo.lang.h:6
+#: ../gtksourceview/language-specs/texinfo.lang.h:7
 msgid "Macros"
 msgstr "Makron"
 
-#: ../gtksourceview/language-specs/texinfo.lang.h:10
+#: ../gtksourceview/language-specs/texinfo.lang.h:11
 msgid "Texinfo"
 msgstr "Texinfo"
 
