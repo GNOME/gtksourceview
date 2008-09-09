@@ -1,3 +1,4 @@
+# translation of te.po to Telugu
 # Telugu translation of gtksourceview
 # Copyright (C) Krishna Babu K <kkrothap@redhat.com>, 2008.
 # This file is distributed under the same license as the gtksourceview package.
@@ -5,17 +6,17 @@
 # Krishna Babu K <kkrothap@redhat.com>, 2008.
 msgid ""
 msgstr ""
-"Project-Id-Version: gtksourceview\n"
+"Project-Id-Version: te\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-08-30 16:30+0530\n"
-"PO-Revision-Date: 2008-02-05 15:35+0530\n"
+"PO-Revision-Date: 2008-09-09 18:14+0530\n"
 "Last-Translator: Krishna Babu K <kkrothap@redhat.com>\n"
 "Language-Team: Telugu <en@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
-"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n\n"
 "\n"
 
 #: ../gtksourceview/gtksourcebuffer.c:174
@@ -97,6 +98,8 @@ msgid ""
 "Highlighting a single line took too much time, syntax highlighting will be "
 "disabled"
 msgstr ""
+"ఒంటరి వరుసను ఉద్దీపనంచేయుటకు యెక్కువ సమయంపడుతుంది, సిన్టాక్స్‍ ఉద్దీపనం "
+"అచేతనం చేయబడుతుంది"
 
 #: ../gtksourceview/gtksourcecontextengine.c:5743
 #, c-format
@@ -235,8 +238,7 @@ msgid "Wrap Mode"
 msgstr "మలుపు రీతి"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:451
-msgid ""
-"Whether to wrap lines never, at word boundaries, or at character boundaries."
+msgid "Whether to wrap lines never, at word boundaries, or at character boundaries."
 msgstr "పద హద్దులవద్ద, లేదా అక్షర హద్దులవద్ద, ఎప్పటికి వరుసలను మలచవద్దా."
 
 #: ../gtksourceview/gtksourceprintcompositor.c:472
@@ -527,11 +529,11 @@ msgstr "ఎంపికచేసిన పాఠ్యమును టాబ్ 
 
 #: ../gtksourceview/gtksourceview.c:400
 msgid "Draw Spaces"
-msgstr ""
+msgstr "ఖాళీలను గీయుము"
 
 #: ../gtksourceview/gtksourceview.c:401
 msgid "Set if and how the spaces should be visualized"
-msgstr ""
+msgstr "ఖాళీలు కనిపించాలా మరియు కనిపిస్తే యెలాకనిపించాలి అమర్చుము"
 
 #: ../gtksourceview/gtksourceview-i18n.c:38
 msgid "translator-credits"
@@ -999,9 +1001,8 @@ msgid "C#"
 msgstr "C#"
 
 #: ../gtksourceview/language-specs/csharp.lang.h:16
-#, fuzzy
 msgid "String Format"
-msgstr "స్ట్రింగ్"
+msgstr "స్ట్రింగ్ రూపీకరణ"
 
 #: ../gtksourceview/language-specs/css.lang.h:1
 msgid "CSS"
@@ -1347,7 +1348,6 @@ msgid "Debug Code"
 msgstr "డీబగ్ కోడ్"
 
 #: ../gtksourceview/language-specs/forth.lang.h:5
-#, fuzzy
 msgid "Error Text"
 msgstr "దోష పాఠ్యము"
 
@@ -2028,14 +2028,3 @@ msgstr "Tango వర్ణపు పాలెట్ ను ఉపయోగిస
 msgid "Tango"
 msgstr "Tango"
 
-#~ msgid "Compiler opt"
-#~ msgstr "కంపైలర్ opt"
-
-#~ msgid "Inline C Code"
-#~ msgstr "ఇన్‌లైన్ C కోడ్"
-
-#~ msgid "grammar"
-#~ msgstr "వ్యాకరణం"
-
-#~ msgid "keyword"
-#~ msgstr "కీపదము"
