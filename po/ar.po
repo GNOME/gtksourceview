@@ -14,15 +14,14 @@ msgstr ""
 "Project-Id-Version: gtksourceview.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-09-14 11:09+0100\n"
-"PO-Revision-Date: 2008-05-24 20:47+0300\n"
-"Last-Translator: Khaled Hosny <khaledhosny@eglug.org>\n"
+"PO-Revision-Date: 2008-09-18 02:21+0100\n"
+"Last-Translator: Djihed Afifi <djihed@gmail.com>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
-"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
-"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 
 #: ../gtksourceview/gtksourcebuffer.c:174
 #: ../gtksourceview/gtksourceprintcompositor.c:471
@@ -92,19 +91,15 @@ msgstr "استعمال \\C في تعريف اللغات غير مدعوم"
 #: ../gtksourceview/gtksourcecontextengine.c:3218
 #, c-format
 msgid ""
-"Cannot create a regex for all the transitions, the syntax highlighting "
-"process will be slower than usual.\n"
+"Cannot create a regex for all the transitions, the syntax highlighting process will be slower than usual.\n"
 "The error was: %s"
 msgstr ""
-"لا يمكن انشاء عبارة منتظمة من أجل كل الحالات الانتقالية، سيكون ابراز الصياغة "
-"أبطأ من المعتاد.\n"
+"لا يمكن انشاء عبارة منتظمة من أجل كل الحالات الانتقالية، سيكون ابراز الصياغة أبطأ من المعتاد.\n"
 "الخطأ هو: %s"
 
 #: ../gtksourceview/gtksourcecontextengine.c:4533
-msgid ""
-"Highlighting a single line took too much time, syntax highlighting will be "
-"disabled"
-msgstr ""
+msgid "Highlighting a single line took too much time, syntax highlighting will be disabled"
+msgstr "أخذ تلوين سطر واحد وقتا كبيرا، لذا سيتم تعطيل التلوين"
 
 #: ../gtksourceview/gtksourcecontextengine.c:5743
 #, c-format
@@ -120,11 +115,8 @@ msgstr "معرف السياق '%s' مكرر"
 #: ../gtksourceview/gtksourcecontextengine.c:6095
 #: ../gtksourceview/gtksourcecontextengine.c:6155
 #, c-format
-msgid ""
-"style override used with wildcard context reference in language '%s' in ref "
-"'%s'"
-msgstr ""
-"أسلوب التجاوز المستعمل مع بدل مرجع السياق في اللغة  '%s' في المرجع '%s'"
+msgid "style override used with wildcard context reference in language '%s' in ref '%s'"
+msgstr "أسلوب التجاوز المستعمل مع بدل مرجع السياق في اللغة  '%s' في المرجع '%s'"
 
 #: ../gtksourceview/gtksourcecontextengine.c:6169
 #, c-format
@@ -190,9 +182,7 @@ msgid "Language specification directories"
 msgstr "دلائل خصائص اللغة"
 
 #: ../gtksourceview/gtksourcelanguagemanager.c:135
-msgid ""
-"List of directories where the language specification files (.lang) are "
-"located"
+msgid "List of directories where the language specification files (.lang) are located"
 msgstr "قائمة الدلائل الحاوية لملفات خصائص اللغة (.lang)"
 
 #: ../gtksourceview/gtksourcelanguagemanager.c:144
@@ -244,8 +234,7 @@ msgid "Wrap Mode"
 msgstr "نمط الالتفاف"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:451
-msgid ""
-"Whether to wrap lines never, at word boundaries, or at character boundaries."
+msgid "Whether to wrap lines never, at word boundaries, or at character boundaries."
 msgstr "فيما ينبغي لف السطور عند حدود الكلمة، أو عند حدود المِحرف."
 
 #: ../gtksourceview/gtksourceprintcompositor.c:472
@@ -313,11 +302,8 @@ msgid "Number of pages"
 msgstr "عدد الصفحات"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:652
-msgid ""
-"The number of pages in the document (-1 means the document has not been "
-"completely paginated)."
-msgstr ""
-"عدد الصفحات في الوثيقة (-1 تعني أن الوثيقة لم يتم إنهاء تشكيل صفحاتها)."
+msgid "The number of pages in the document (-1 means the document has not been completely paginated)."
+msgstr "عدد الصفحات في الوثيقة (-1 تعني أن الوثيقة لم يتم إنهاء تشكيل صفحاتها)."
 
 #: ../gtksourceview/gtksourcestyle.c:70
 msgid "Line background"
@@ -343,19 +329,23 @@ msgstr "الواجهة الأمامية"
 msgid "Foreground color"
 msgstr "لون الواجهة الأمامية"
 
-#: ../gtksourceview/gtksourcestyle.c:94 ../gtksourceview/gtksourcestyle.c:95
+#: ../gtksourceview/gtksourcestyle.c:94
+#: ../gtksourceview/gtksourcestyle.c:95
 msgid "Bold"
 msgstr "سميك"
 
-#: ../gtksourceview/gtksourcestyle.c:102 ../gtksourceview/gtksourcestyle.c:103
+#: ../gtksourceview/gtksourcestyle.c:102
+#: ../gtksourceview/gtksourcestyle.c:103
 msgid "Italic"
 msgstr "مائل"
 
-#: ../gtksourceview/gtksourcestyle.c:110 ../gtksourceview/gtksourcestyle.c:111
+#: ../gtksourceview/gtksourcestyle.c:110
+#: ../gtksourceview/gtksourcestyle.c:111
 msgid "Underline"
 msgstr "تسطير"
 
-#: ../gtksourceview/gtksourcestyle.c:118 ../gtksourceview/gtksourcestyle.c:119
+#: ../gtksourceview/gtksourcestyle.c:118
+#: ../gtksourceview/gtksourcestyle.c:119
 msgid "Strikethrough"
 msgstr "تشريط"
 
@@ -512,12 +502,8 @@ msgid "Smart Home/End"
 msgstr "إستخدام حاذق لِ بداية /نهاية "
 
 #: ../gtksourceview/gtksourceview.c:367
-msgid ""
-"HOME and END keys move to first/last non whitespace characters on line "
-"before going to the start/end of the line"
-msgstr ""
-"مفتاحا HOME و END ينقلان للرموز الأولى/الأخيرة على السطر قبل الذهاب إلى "
-"بداية/نهاية السطر"
+msgid "HOME and END keys move to first/last non whitespace characters on line before going to the start/end of the line"
+msgstr "مفتاحا HOME و END ينقلان للرموز الأولى/الأخيرة على السطر قبل الذهاب إلى بداية/نهاية السطر"
 
 #: ../gtksourceview/gtksourceview.c:377
 msgid "Highlight current line"
@@ -537,11 +523,11 @@ msgstr "إذا يجب إضافة مساحة عند ضغط مفتاح تاب"
 
 #: ../gtksourceview/gtksourceview.c:400
 msgid "Draw Spaces"
-msgstr ""
+msgstr "ارسم الفراغات"
 
 #: ../gtksourceview/gtksourceview.c:401
 msgid "Set if and how the spaces should be visualized"
-msgstr ""
+msgstr "حدّد امكانية وكيفية اظهار الفراغات"
 
 #: ../gtksourceview/gtksourceview-i18n.c:38
 msgid "translator-credits"
@@ -1019,9 +1005,8 @@ msgid "C#"
 msgstr "سي#"
 
 #: ../gtksourceview/language-specs/csharp.lang.h:16
-#, fuzzy
 msgid "String Format"
-msgstr "سلسلة"
+msgstr "هيئة النصّ"
 
 #: ../gtksourceview/language-specs/css.lang.h:1
 msgid "CSS"
@@ -1367,7 +1352,6 @@ msgid "Debug Code"
 msgstr "كود التنقيح"
 
 #: ../gtksourceview/language-specs/forth.lang.h:5
-#, fuzzy
 msgid "Error Text"
 msgstr "نص الخطأ"
 
@@ -2050,3 +2034,4 @@ msgstr "تانجو"
 
 #~ msgid "Compiler opt"
 #~ msgstr "خيار المُصرف"
+
