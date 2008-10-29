@@ -128,6 +128,12 @@ static void 	 gtk_source_buffer_real_insert_text 	(GtkTextBuffer           *buff
 							 GtkTextIter             *iter,
 							 const gchar             *text,
 							 gint                     len);
+static void	 gtk_source_buffer_real_insert_pixbuf	(GtkTextBuffer           *buffer,
+							 GtkTextIter             *pos,
+							 GdkPixbuf               *pixbuf);
+static void	 gtk_source_buffer_real_insert_anchor	(GtkTextBuffer           *buffer,
+							 GtkTextIter             *pos,
+							 GtkTextChildAnchor      *anchor);
 static void 	 gtk_source_buffer_real_delete_range 	(GtkTextBuffer           *buffer,
 							 GtkTextIter             *iter,
 							 GtkTextIter             *end);
@@ -155,10 +161,10 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 	object_class->get_property = gtk_source_buffer_get_property;
 	object_class->set_property = gtk_source_buffer_set_property;
 
-	/* Do not set these signals handlers directly on the parent_class since
-	 * that will cause problems (a loop). */
-	tb_class->delete_range  = gtk_source_buffer_real_delete_range;
-	tb_class->insert_text 	= gtk_source_buffer_real_insert_text;
+	tb_class->delete_range        = gtk_source_buffer_real_delete_range;
+	tb_class->insert_text 	      = gtk_source_buffer_real_insert_text;
+	tb_class->insert_pixbuf       = gtk_source_buffer_real_insert_pixbuf;
+	tb_class->insert_child_anchor = gtk_source_buffer_real_insert_anchor;
 
 	tb_class->mark_set	= gtk_source_buffer_real_mark_set;
 	tb_class->mark_deleted	= gtk_source_buffer_real_mark_deleted;
@@ -632,15 +638,31 @@ gtk_source_buffer_move_cursor (GtkTextBuffer     *buffer,
 }
 
 static void
+gtk_source_buffer_content_inserted (GtkTextBuffer *buffer,
+				    gint           start_offset,
+				    gint           end_offset)
+{
+	GtkTextMark *mark;
+	GtkTextIter insert_iter;
+	GtkSourceBuffer *source_buffer = GTK_SOURCE_BUFFER (buffer);
+
+	mark = gtk_text_buffer_get_insert (buffer);
+	gtk_text_buffer_get_iter_at_mark (buffer, &insert_iter, mark);
+	gtk_source_buffer_move_cursor (buffer, &insert_iter, mark);
+
+	if (source_buffer->priv->highlight_engine != NULL)
+		_gtk_source_engine_text_inserted (source_buffer->priv->highlight_engine,
+						  start_offset,
+						  end_offset);
+}
+
+static void
 gtk_source_buffer_real_insert_text (GtkTextBuffer *buffer,
 				    GtkTextIter   *iter,
 				    const gchar   *text,
 				    gint           len)
 {
-	GtkTextMark *mark;
-	GtkTextIter insert_iter;
-	gint start_offset, end_offset;
-	GtkSourceBuffer *source_buffer = GTK_SOURCE_BUFFER (buffer);
+	gint start_offset;
 
 	g_return_if_fail (GTK_IS_SOURCE_BUFFER (buffer));
 	g_return_if_fail (iter != NULL);
@@ -657,16 +679,64 @@ gtk_source_buffer_real_insert_text (GtkTextBuffer *buffer,
 	 */
 	GTK_TEXT_BUFFER_CLASS (gtk_source_buffer_parent_class)->insert_text (buffer, iter, text, len);
 
-	mark = gtk_text_buffer_get_insert (buffer);
-	gtk_text_buffer_get_iter_at_mark (buffer, &insert_iter, mark);
-	gtk_source_buffer_move_cursor (buffer, &insert_iter, mark);
+	gtk_source_buffer_content_inserted (buffer,
+					    start_offset,
+					    gtk_text_iter_get_offset (iter));
+}
 
-	end_offset = gtk_text_iter_get_offset (iter);
+/* insert_pixbuf and insert_child_anchor do nothing except notifying
+ * the highlighting engine about the change, because engine's idea
+ * of buffer char count must be correct at all times */
+static void
+gtk_source_buffer_real_insert_pixbuf (GtkTextBuffer *buffer,
+				      GtkTextIter   *iter,
+				      GdkPixbuf     *pixbuf)
+{
+	gint start_offset;
 
-	if (source_buffer->priv->highlight_engine != NULL)
-		_gtk_source_engine_text_inserted (source_buffer->priv->highlight_engine,
-						  start_offset,
-						  end_offset);
+	g_return_if_fail (GTK_IS_SOURCE_BUFFER (buffer));
+	g_return_if_fail (iter != NULL);
+	g_return_if_fail (gtk_text_iter_get_buffer (iter) == buffer);
+
+	start_offset = gtk_text_iter_get_offset (iter);
+
+	/*
+	 * iter is invalidated when
+	 * insertion occurs (because the buffer contents change), but the
+	 * default signal handler revalidates it to point to the end of the
+	 * inserted text
+	 */
+	GTK_TEXT_BUFFER_CLASS (gtk_source_buffer_parent_class)->insert_pixbuf (buffer, iter, pixbuf);
+
+	gtk_source_buffer_content_inserted (buffer,
+					    start_offset,
+					    gtk_text_iter_get_offset (iter));
+}
+
+static void
+gtk_source_buffer_real_insert_anchor (GtkTextBuffer      *buffer,
+				      GtkTextIter        *iter,
+				      GtkTextChildAnchor *anchor)
+{
+	gint start_offset;
+
+	g_return_if_fail (GTK_IS_SOURCE_BUFFER (buffer));
+	g_return_if_fail (iter != NULL);
+	g_return_if_fail (gtk_text_iter_get_buffer (iter) == buffer);
+
+	start_offset = gtk_text_iter_get_offset (iter);
+
+	/*
+	 * iter is invalidated when
+	 * insertion occurs (because the buffer contents change), but the
+	 * default signal handler revalidates it to point to the end of the
+	 * inserted text
+	 */
+	GTK_TEXT_BUFFER_CLASS (gtk_source_buffer_parent_class)->insert_child_anchor (buffer, iter, anchor);
+
+	gtk_source_buffer_content_inserted (buffer,
+					    start_offset,
+					    gtk_text_iter_get_offset (iter));
 }
 
 static void
