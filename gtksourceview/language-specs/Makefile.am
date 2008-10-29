@@ -15,6 +15,7 @@ LANGUAGES =			\
 	diff.lang		\
 	d.lang			\
 	docbook.lang		\
+	dot.lang		\
 	dpatch.lang		\
 	dtd.lang		\
 	eiffel.lang		\
