@@ -82,42 +82,44 @@
     <context id="reserved-constant" style-ref="reserved-constant">
       <keyword>pi</keyword>
       <keyword>eps</keyword>
+      <keyword>Inf</keyword>
       <keyword>inf</keyword>
-      <keyword>nan</keyword>
       <keyword>NaN</keyword>
+      <keyword>nan</keyword>
+      <keyword>NA</keyword>
     </context>
 
     <context id="keyword" style-ref="keyword">
-      <keyword>function</keyword>
-      <keyword>endfunction</keyword>
-      <keyword>switch</keyword>
-      <keyword>case</keyword>
-      <keyword>endswitch</keyword>
-      <keyword>otherwise</keyword>
-      <keyword>unwind_protect</keyword>
-      <keyword>unwind_protect_cleanup</keyword>
-      <keyword>end_unwind_protect</keyword>
-      <keyword>try</keyword>
-      <keyword>catch</keyword>
-      <keyword>end_try_catch</keyword>
-      <keyword>end</keyword>
-      <keyword>if</keyword>
-      <keyword>else</keyword>
-      <keyword>elseif</keyword>
-      <keyword>endif</keyword>
+      <keyword>assert</keyword>
       <keyword>break</keyword>
+      <keyword>case</keyword>
+      <keyword>catch</keyword>
       <keyword>continue</keyword>
-      <keyword>for</keyword>
-      <keyword>endfor</keyword>
-      <keyword>return</keyword>
       <keyword>do</keyword>
-      <keyword>until</keyword>
-      <keyword>while</keyword>
+      <keyword>elseif</keyword>
+      <keyword>else</keyword>
+      <keyword>endfor</keyword>
+      <keyword>endfunction</keyword>
+      <keyword>endif</keyword>
+      <keyword>end</keyword>
+      <keyword>endswitch</keyword>
+      <keyword>end_try_catch</keyword>
+      <keyword>end_unwind_protect</keyword>
       <keyword>endwhile</keyword>
+      <keyword>for</keyword>
+      <keyword>function</keyword>
       <keyword>global</keyword>
+      <keyword>if</keyword>
       <keyword>nargin</keyword>
       <keyword>nargout</keyword>
-      <keyword>assert</keyword>
+      <keyword>otherwise</keyword>
+      <keyword>return</keyword>
+      <keyword>switch</keyword>
+      <keyword>try</keyword>
+      <keyword>until</keyword>
+      <keyword>unwind_protect_cleanup</keyword>
+      <keyword>unwind_protect</keyword>
+      <keyword>while</keyword>
     </context>
 
     <context id="decimal" style-ref="decimal">
@@ -137,65 +139,71 @@
     </context>
 
     <context id="function" style-ref="function">
-      <keyword>size</keyword>
-      <keyword>zeros</keyword>
-      <keyword>ones</keyword>
-      <keyword>min</keyword>
-      <keyword>max</keyword>
-      <keyword>varargs</keyword>
-      <keyword>sqrt</keyword>
-      <keyword>atan2</keyword>
-      <keyword>asin</keyword>
-      <keyword>acos</keyword>
-      <keyword>log10</keyword>
-      <keyword>log</keyword>
-      <keyword>real</keyword>
-      <keyword>error</keyword>
-      <keyword>isscalar</keyword>
-      <keyword>isstr</keyword>
-      <keyword>strcmp</keyword>
-      <keyword>log2</keyword>
-      <keyword>Inf</keyword>
-      <keyword>isvector</keyword>
-      <keyword>strcat</keyword>
-      <keyword>fsolve</keyword>
-      <keyword>islogical</keyword>
-      <keyword>isempty</keyword>
-      <keyword>isnumeric</keyword>
-      <keyword>prod</keyword>
-      <keyword>round</keyword>
-      <keyword>dims</keyword>
-      <keyword>cumprod</keyword>
-      <keyword>ismatrix</keyword>
-      <keyword>floor</keyword>
-      <keyword>sort</keyword>
-      <keyword>ceil</keyword>
-      <keyword>linspace</keyword>
-      <keyword>isnan</keyword>
-      <keyword>isinf</keyword>
-      <keyword>nan_inf</keyword>
-      <keyword>repmat</keyword>
-      <keyword>colums</keyword>
-      <keyword>rows</keyword>
-      <keyword>sum</keyword>
-      <keyword>rem</keyword>
-      <keyword>reshape</keyword>
-      <keyword>conv</keyword>
-      <keyword>length</keyword>
-      <keyword>usage</keyword>
-      <keyword>log2</keyword>
       <keyword>abs</keyword>
-      <keyword>setstr</keyword>
-      <keyword>printf</keyword>
-      <keyword>sprintf</keyword>
+      <keyword>acos</keyword>
+      <keyword>asin</keyword>
+      <keyword>atan2</keyword>
+      <keyword>atan</keyword>
+      <keyword>ceil</keyword>
+      <keyword>colums</keyword>
+      <keyword>conv</keyword>
+      <keyword>cosh</keyword>
+      <keyword>cos</keyword>
+      <keyword>cumprod</keyword>
+      <keyword>dims</keyword>
+      <keyword>error</keyword>
+      <keyword>fclose</keyword>
+      <keyword>floor</keyword>
+      <keyword>fopen</keyword>
       <keyword>fprintf</keyword>
       <keyword>fread</keyword>
-      <keyword>fopen</keyword>
-      <keyword>fclose</keyword>
+      <keyword>fsolve</keyword>
+      <keyword>imag</keyword>
+      <keyword>isempty</keyword>
+      <keyword>isinf</keyword>
+      <keyword>islogical</keyword>
+      <keyword>ismatrix</keyword>
+      <keyword>isnan</keyword>
+      <keyword>isna</keyword>
+      <keyword>isnumeric</keyword>
+      <keyword>isscalar</keyword>
+      <keyword>isstr</keyword>
+      <keyword>isvector</keyword>
+      <keyword>length</keyword>
+      <keyword>linspace</keyword>
+      <keyword>log10</keyword>
+      <keyword>log2</keyword>
+      <keyword>log</keyword>
+      <keyword>max</keyword>
+      <keyword>min</keyword>
+      <keyword>ones</keyword>
+      <keyword>printf</keyword>
+      <keyword>prod</keyword>
+      <keyword>real</keyword>
+      <keyword>rem</keyword>
+      <keyword>repmat</keyword>
+      <keyword>reshape</keyword>
+      <keyword>round</keyword>
+      <keyword>rows</keyword>
+      <keyword>setstr</keyword>
+      <keyword>sinh</keyword>
+      <keyword>sin</keyword>
+      <keyword>size</keyword>
+      <keyword>sort</keyword>
+      <keyword>sprintf</keyword>
+      <keyword>sqrt</keyword>
+      <keyword>strcat</keyword>
+      <keyword>strcmp</keyword>
+      <keyword>sum</keyword>
       <keyword>system</keyword>
+      <keyword>tanh</keyword>
+      <keyword>tan</keyword>
       <keyword>unlink</keyword>
-      <keyword>error</keyword>
+      <keyword>usage</keyword>
+      <keyword>varargin</keyword>
+      <keyword>varargout</keyword>
       <keyword>warning</keyword>
+      <keyword>zeros</keyword>
     </context>
 
     <context id="octave">
