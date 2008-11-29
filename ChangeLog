@@ -1,3 +1,10 @@
+2008-11-29  Yevgen Muntyan  <muntyan@tamu.edu>
+
+	* gtksourceview/gtksourceiter.c: (forward_chars_with_skipping):
+	call g_utf8_casefold() before normalizing, to match behavior
+	of the search code. Bug #496780.
+	* tests/test-widget.c: added Find command.
+
 === gtksourceview 2.4.1 ===
 
 2008-11-01  Paolo Borelli  <paolo.borelli@katamail.com>
