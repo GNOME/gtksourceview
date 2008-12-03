@@ -1824,8 +1824,7 @@ draw_spaces_at_iter (cairo_t       *cr,
 		draw_nbsp_at_iter (cr, GTK_TEXT_VIEW (view), iter, rect);
 	}
 	else if (view->priv->draw_spaces & GTK_SOURCE_DRAW_SPACES_SPACE &&
-	         g_unichar_type (c) == G_UNICODE_SPACE_SEPARATOR &&
-	         g_unichar_break_type (c) != G_UNICODE_BREAK_NON_BREAKING_GLUE)
+	         g_unichar_type (c) == G_UNICODE_SPACE_SEPARATOR)
 	{
 		draw_space_at_iter (cr, GTK_TEXT_VIEW (view), iter, rect);
 	}
