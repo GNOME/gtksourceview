@@ -1777,6 +1777,33 @@ draw_newline_at_iter (cairo_t      *cr,
 }
 
 static void
+draw_nbsp_at_iter (cairo_t      *cr,
+		   GtkTextView  *view,
+		   GtkTextIter  *iter,
+		   GdkRectangle  rect)
+{
+	gint x, y;
+	gdouble w, h;
+
+	gtk_text_view_buffer_to_window_coords (view,
+					       GTK_TEXT_WINDOW_TEXT,
+					       rect.x,
+					       rect.y + rect.height / 2,
+					       &x,
+					       &y);
+
+	w = rect.width;
+	h = rect.height;
+
+	cairo_save (cr);
+	cairo_move_to (cr, x + w * 1 / 6, y);
+	cairo_rel_line_to (cr, w * 4 / 6, 0);
+	cairo_rel_line_to (cr, -w * 2 / 6, +h * 1 / 4);
+	cairo_rel_line_to (cr, -w * 2 / 6, -h * 1 / 4);
+	cairo_restore (cr);
+}
+
+static void
 draw_spaces_at_iter (cairo_t       *cr,
 		     GtkSourceView *view,
 		     GtkTextIter   *iter,
@@ -1791,8 +1818,14 @@ draw_spaces_at_iter (cairo_t       *cr,
 	{
 		draw_tab_at_iter (cr, GTK_TEXT_VIEW (view), iter, rect);
 	}
+	else if (view->priv->draw_spaces & GTK_SOURCE_DRAW_SPACES_NBSP &&
+		 g_unichar_break_type (c) == G_UNICODE_BREAK_NON_BREAKING_GLUE)
+	{
+		draw_nbsp_at_iter (cr, GTK_TEXT_VIEW (view), iter, rect);
+	}
 	else if (view->priv->draw_spaces & GTK_SOURCE_DRAW_SPACES_SPACE &&
-	         g_unichar_type (c) == G_UNICODE_SPACE_SEPARATOR)
+	         g_unichar_type (c) == G_UNICODE_SPACE_SEPARATOR &&
+	         g_unichar_break_type (c) != G_UNICODE_BREAK_NON_BREAKING_GLUE)
 	{
 		draw_space_at_iter (cr, GTK_TEXT_VIEW (view), iter, rect);
 	}

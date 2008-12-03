@@ -90,6 +90,7 @@ typedef enum
  * @GTK_SOURCE_DRAW_SPACES_SPACE: whether the space character should be drawn.
  * @GTK_SOURCE_DRAW_SPACES_TAB: whether the tab character should be drawn.
  * @GTK_SOURCE_DRAW_SPACES_NEWLINE: whether the line breaks should be drawn.
+ * @GTK_SOURCE_DRAW_SPACES_NBSP: whether the non-breaking whitespaces should be drawn.
  * @GTK_SOURCE_DRAW_SPACES_ALL: wheter all kind of spaces should be drawn.
  *
  * GtkSourceDrawSpacesFlags determine what kind of spaces whould be drawn.
@@ -101,9 +102,11 @@ typedef enum
 	GTK_SOURCE_DRAW_SPACES_SPACE      = 1 << 0,
 	GTK_SOURCE_DRAW_SPACES_TAB        = 1 << 1,
 	GTK_SOURCE_DRAW_SPACES_NEWLINE    = 1 << 2,
+	GTK_SOURCE_DRAW_SPACES_NBSP       = 1 << 3,
 	GTK_SOURCE_DRAW_SPACES_ALL        = (GTK_SOURCE_DRAW_SPACES_SPACE   | \
 	                                     GTK_SOURCE_DRAW_SPACES_TAB     | \
-	                                     GTK_SOURCE_DRAW_SPACES_NEWLINE)
+	                                     GTK_SOURCE_DRAW_SPACES_NEWLINE | \
+	                                     GTK_SOURCE_DRAW_SPACES_NBSP)
 } GtkSourceDrawSpacesFlags;
 
 
