@@ -33,6 +33,7 @@
         <style id="function" _name="Function" map-to="def:doc-comment-element"/>
         <style id="return" _name="Return" map-to="def:doc-comment-element"/>
         <style id="since" _name="Since" map-to="def:doc-comment-element"/>
+        <style id="deprecated" _name="Deprecated" map-to="def:doc-comment-element"/>
     </styles>
 
     <definitions>
@@ -61,6 +62,9 @@
           </context>
           <context style-ref="since">
             <match>Since\:</match>
+          </context>
+          <context style-ref="deprecated">
+            <match>Deprecated\:</match>
           </context>
         </include>
       </context>
