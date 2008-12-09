@@ -31,10 +31,10 @@
     <style id="comment" _name="Comment" map-to="def:comment"/>
     <style id="location" _name="Location" map-to="def:comment"/>
     <style id="string" _name="String" map-to="def:string"/>
-    <style id="fuzzy" name="Fuzzy" map-to="def:note"/>
+    <style id="fuzzy" _name="Fuzzy" map-to="def:note"/>
     <style id="keyword" _name="Keyword" map-to="def:keyword"/>
     <!-- FIXME make it some nice name and mark it translatable -->
-    <style id="special" name="Special" map-to="def:special-char"/>
+    <style id="special" _name="Special" map-to="def:special-char"/>
   </styles>
 
   <definitions>

@@ -29,15 +29,15 @@
   </metadata>
 
   <styles>
-    <style id="variable"        name="Variable" map-to="def:type"/>
-    <style id="assignment-rhs"  name="assignment-rhs"/>
-    <style id="assignment-lhs"  name="assignment-lhs"/>
-    <style id="targets"         name="targets" map-to="def:function"/>
-    <style id="prereq"          name="prereq"/>
-    <style id="command"         name="command"/>
-    <style id="trailing-tab"    name="Trailing Tab"/>
-    <style id="function"        name="function" map-to="def:function"/>
-    <style id="keyword"         name="keyword" map-to="def:keyword"/>
+    <style id="variable"        _name="Variable" map-to="def:type"/>
+    <style id="assignment-rhs"  _name="assignment-rhs"/>
+    <style id="assignment-lhs"  _name="assignment-lhs"/>
+    <style id="targets"         _name="targets" map-to="def:function"/>
+    <style id="prereq"          _name="prereq"/>
+    <style id="command"         _name="command"/>
+    <style id="trailing-tab"    _name="Trailing Tab"/>
+    <style id="function"        _name="function" map-to="def:function"/>
+    <style id="keyword"         _name="keyword" map-to="def:keyword"/>
   </styles>
 
   <definitions>

@@ -29,13 +29,13 @@
   </metadata>
 
   <styles>
-    <style id="date" name="Date" map-to="def:number"/>
-    <style id="name" name="Name" map-to="def:statement"/>
-    <style id="email" name="E-mail address" map-to="def:identifier"/>
-    <style id="file" name="File" map-to="def:comment"/>
-    <style id="bullet" name="Bullet" map-to="def:type"/>
-    <style id="function" name="Function" map-to="def:function"/>
-    <style id="release" name="Release" map-to="def:statement"/>
+    <style id="date" _name="Date" map-to="def:number"/>
+    <style id="name" _name="Name" map-to="def:statement"/>
+    <style id="email" _name="E-mail address" map-to="def:identifier"/>
+    <style id="file" _name="File" map-to="def:comment"/>
+    <style id="bullet" _name="Bullet" map-to="def:type"/>
+    <style id="function" _name="Function" map-to="def:function"/>
+    <style id="release" _name="Release" map-to="def:statement"/>
   </styles>
 
   <definitions>
