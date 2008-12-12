@@ -191,7 +191,7 @@ gtk_source_style_scheme_class_init (GtkSourceStyleSchemeClass *klass)
 	 * Style scheme name, a translatable string to present to user.
 	 */
 	g_object_class_install_property (object_class,
-					 PROP_NAME,
+					 PROP_DESCRIPTION,
 					 g_param_spec_string ("description",
 						 	      _("Style scheme description"),
 							      _("Style scheme description"),
