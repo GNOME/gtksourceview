@@ -126,7 +126,7 @@ gtk_source_style_class_init (GtkSourceStyleClass *klass)
 							       _("Line background set"),
 							       _("Whether line background color is set"),
 							       FALSE,
-							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
+							       G_PARAM_READWRITE));
 
 	g_object_class_install_property (object_class,
 					 PROP_FOREGROUND_SET,
@@ -134,7 +134,7 @@ gtk_source_style_class_init (GtkSourceStyleClass *klass)
 							       _("Foreground set"),
 							       _("Whether foreground color is set"),
 							       FALSE,
-							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
+							       G_PARAM_READWRITE));
 
 	g_object_class_install_property (object_class,
 					 PROP_BACKGROUND_SET,
@@ -142,7 +142,7 @@ gtk_source_style_class_init (GtkSourceStyleClass *klass)
 							       _("Background set"),
 							       _("Whether background color is set"),
 							       FALSE,
-							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
+							       G_PARAM_READWRITE));
 
 	g_object_class_install_property (object_class,
 					 PROP_BOLD_SET,
@@ -150,7 +150,7 @@ gtk_source_style_class_init (GtkSourceStyleClass *klass)
 							       _("Bold set"),
 							       _("Whether bold attribute is set"),
 							       FALSE,
-							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
+							       G_PARAM_READWRITE));
 
 	g_object_class_install_property (object_class,
 					 PROP_ITALIC_SET,
@@ -158,7 +158,7 @@ gtk_source_style_class_init (GtkSourceStyleClass *klass)
 							       _("Italic set"),
 							       _("Whether italic attribute is set"),
 							       FALSE,
-							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
+							       G_PARAM_READWRITE));
 
 	g_object_class_install_property (object_class,
 					 PROP_UNDERLINE_SET,
@@ -166,7 +166,7 @@ gtk_source_style_class_init (GtkSourceStyleClass *klass)
 							       _("Underline set"),
 							       _("Whether underline attribute is set"),
 							       FALSE,
-							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
+							       G_PARAM_READWRITE));
 
 	g_object_class_install_property (object_class,
 					 PROP_STRIKETHROUGH_SET,
@@ -174,7 +174,7 @@ gtk_source_style_class_init (GtkSourceStyleClass *klass)
 							       _("Strikethrough set"),
 							       _("Whether strikethrough attribute is set"),
 							       FALSE,
-							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
+							       G_PARAM_READWRITE));
 }
 
 static void
@@ -186,15 +186,7 @@ gtk_source_style_init (GtkSourceStyle *style)
 }
 
 #define SET_MASK(style,name) (style)->mask |= (GTK_SOURCE_STYLE_USE_##name)
-#define UNSET_MASK(style,name) (style)->mask &= (GTK_SOURCE_STYLE_USE_##name)
-
-#define MODIFY_MASK(style,value,name)		\
-G_STMT_START {					\
-	if (g_value_get_boolean (value))	\
-		SET_MASK (style, name);		\
-	else					\
-		UNSET_MASK (style, name);	\
-} G_STMT_END
+#define UNSET_MASK(style,name) (style)->mask &= ~(GTK_SOURCE_STYLE_USE_##name)
 
 #define GET_MASK(style,value,name)		\
 	g_value_set_boolean (value, ((style)->mask & GTK_SOURCE_STYLE_USE_##name) != 0)
@@ -269,26 +261,18 @@ gtk_source_style_set_property (GObject      *object,
 			SET_MASK (style, STRIKETHROUGH);
 			break;
 
+		/* These properties have to stay WRITABLE for backwards compatibility,
+		 * but they must not work either, see
+		 * http://bugzilla.gnome.org/show_bug.cgi?id=564425 for discussion */
 		case PROP_FOREGROUND_SET:
-			MODIFY_MASK (style, value, FOREGROUND);
-			break;
 		case PROP_BACKGROUND_SET:
-			MODIFY_MASK (style, value, BACKGROUND);
-			break;
 		case PROP_LINE_BACKGROUND_SET:
-			MODIFY_MASK (style, value, LINE_BACKGROUND);
-			break;
 		case PROP_BOLD_SET:
-			MODIFY_MASK (style, value, BOLD);
-			break;
 		case PROP_ITALIC_SET:
-			MODIFY_MASK (style, value, ITALIC);
-			break;
 		case PROP_UNDERLINE_SET:
-			MODIFY_MASK (style, value, UNDERLINE);
-			break;
 		case PROP_STRIKETHROUGH_SET:
-			MODIFY_MASK (style, value, STRIKETHROUGH);
+			g_warning ("property '%s' of object '%s' may not be modified",
+				   pspec->name, g_type_name (G_OBJECT_TYPE (object)));
 			break;
 
 		default:
