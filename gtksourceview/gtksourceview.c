@@ -2596,7 +2596,7 @@ gtk_source_view_get_mark_category_pixbuf (GtkSourceView *view,
 	g_return_val_if_fail (category != NULL, NULL);
 
 	cat = g_hash_table_lookup (view->priv->mark_categories, category);
-	if (cat != NULL)
+	if (cat != NULL && cat->pixbuf != NULL)
 		return g_object_ref (cat->pixbuf);
 	else
 		return NULL;

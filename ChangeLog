@@ -1,3 +1,9 @@
+2008-12-16  Yevgen Muntyan  <muntyan@tamu.edu>
+
+	* gtksourceview/gtksourceview.c
+	(gtk_source_view_get_mark_category_pixbuf): do not call
+	g_object_ref() on a NULL. Bug #564714, patch by Mike Spivey.
+
 2008-12-12  Ignacio Casal Quinteiro  <nacho.resa@gmail.com>
 
 	* gtksourceview/language-specs/awk.lang:
@@ -11,7 +17,7 @@
 2008-12-10  Paolo Borelli  <paolo.borelli@katamail.com>
 
 	* gtksourceview/gtksourcelanguage.c: fix cut and paste error
-	causing wrong values in gobject properties. Bug #564142. 
+	causing wrong values in gobject properties. Bug #564142.
 
 2008-12-08  Ignacio Casal Quinteiro  <nacho.resa@gmail.com>
 
