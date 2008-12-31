@@ -1,5 +1,19 @@
 2008-12-31  Yevgen Muntyan  <muntyan@tamu.edu>
 
+	* gtksourceview/language-specs/nsis.lang
+	* gtksourceview/language-specs/t2t.lang
+	* gtksourceview/language-specs/cmake.lang
+	* gtksourceview/language-specs/Makefile.am:
+	New lang files: CMake, NSIS, and txt2tags.
+	* gtksourceview/language-specs/ini.lang: variable names may
+	contain dash.
+	* gtksourceview/language-specs/desktop.lang: added bunch of
+	catefories from the f.d.o. spec.
+	* gtksourceview/language-specs/kate.xml,
+	* gtksourceview/language-specs/testfiles.sh: updated.
+
+2008-12-31  Yevgen Muntyan  <muntyan@tamu.edu>
+
 	* gtksourceview/gtksourcecontextengine.c
 	(gtk_source_context_engine_text_inserted):
 	Bug 566131 – Syntax highlightig bug; Backspace and Enter.

@@ -7,6 +7,7 @@ LANGUAGES =			\
 	changelog.lang		\
 	c.lang			\
 	chdr.lang		\
+	cmake.lang		\
 	cpp.lang		\
 	csharp.lang		\
 	css.lang		\
@@ -40,6 +41,7 @@ LANGUAGES =			\
 	makefile.lang		\
 	msil.lang		\
 	nemerle.lang		\
+	nsis.lang		\
 	objc.lang		\
 	ocaml.lang		\
 	ocl.lang		\
@@ -57,6 +59,7 @@ LANGUAGES =			\
 	sh.lang			\
 	sql.lang		\
 	styles.rng		\
+	t2t.lang		\
 	tcl.lang		\
 	texinfo.lang		\
 	vala.lang		\

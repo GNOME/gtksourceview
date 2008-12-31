@@ -55,6 +55,9 @@
   <style name="def:doc-comment"             foreground="blue"/>
   <style name="def:doc-comment-element"     bold="true"/>
 
+  <!-- Types -->
+  <style name="def:type"                    foreground="dark-red"/>
+
   <!-- Constants -->
   <style name="def:constant"                foreground="dark-red"/>
   <style name="def:decimal"                 foreground="blue"/>
@@ -64,6 +67,7 @@
   <style name="def:character"               foreground="#FF00FF"/>
   <style name="def:string"                  foreground="#DD0000"/>
   <style name="def:special-char"            foreground="#FF00FF"/>
+  <style name="def:builtin"                 use-style="def:type"/>
 
   <!-- Identifiers -->
   <style name="def:identifier"              foreground="dark-blue"/>
@@ -71,9 +75,6 @@
 
   <!-- Statements -->
   <style name="def:statement"               bold="true"/>
-
-  <!-- Types -->
-  <style name="def:type"                    foreground="dark-red"/>
 
   <!-- Others -->
   <style name="def:preprocessor"            bold="true"/>
@@ -143,4 +144,11 @@
   <style name="sh:dollar"                   foreground="dark-green" bold="true"/>
 
   <style name="makefile:trailing-tab"       background="#FFC0CB"/>
+
+  <style name="t2t:italic"                  italic="true"/>
+  <style name="t2t:bold"                    bold="true"/>
+  <style name="t2t:verbatim"                background="#lightgrey"/>
+  <style name="t2t:verbatim-block"          line-background="#lightgrey"/>
+  <style name="t2t:comment"                 foreground="dark-green"/>
+  <style name="t2t:option"                  foreground="dark-green"/>
 </style-scheme>
