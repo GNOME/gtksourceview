@@ -1,3 +1,9 @@
+2008-12-31  Yevgen Muntyan  <muntyan@tamu.edu>
+
+	* gtksourceview/gtksourcecontextengine.c
+	(gtk_source_context_engine_text_inserted):
+	Bug 566131 – Syntax highlightig bug; Backspace and Enter.
+
 2008-12-28  Ignacio Casal Quinteiro  <nacho.resa@gmail.com>
 
 	* gtksourceview/language-specs/pascal.lang:
