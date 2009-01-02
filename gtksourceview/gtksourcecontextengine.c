@@ -1675,6 +1675,8 @@ gtk_source_context_engine_text_inserted (GtkSourceEngine *engine,
 
 	g_return_if_fail (start_offset < end_offset);
 
+	invalidate_region (ce, start_offset, end_offset - start_offset);
+
 	/* If end_offset is at the start of a line (enter key pressed) then
 	 * we need to invalidate the whole new line, otherwise it may not be
 	 * highlighted because the engine analyzes the previous line, end
@@ -1684,10 +1686,8 @@ gtk_source_context_engine_text_inserted (GtkSourceEngine *engine,
 	if (gtk_text_iter_starts_line (&iter) && !gtk_text_iter_ends_line (&iter))
 	{
 		gtk_text_iter_forward_to_line_end (&iter);
-		end_offset = gtk_text_iter_get_offset (&iter);
+		invalidate_region (ce, gtk_text_iter_get_offset (&iter), 0);
 	}
-
-	invalidate_region (ce, start_offset, end_offset - start_offset);
 }
 
 /**

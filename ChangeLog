@@ -1,5 +1,12 @@
 2008-12-31  Yevgen Muntyan  <muntyan@tamu.edu>
 
+	* gtksourceview/gtksourcecontextengine.c
+	(gtk_source_context_engine_text_inserted):
+	The commit before the last one was broken, now bug #566131
+	is really fixed.
+
+2008-12-31  Yevgen Muntyan  <muntyan@tamu.edu>
+
 	* gtksourceview/language-specs/nsis.lang
 	* gtksourceview/language-specs/t2t.lang
 	* gtksourceview/language-specs/cmake.lang
