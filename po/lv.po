@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: lv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-04-04 11:01+0300\n"
-"PO-Revision-Date: 2007-04-04 11:28+0300\n"
+"PO-Revision-Date: 2007-04-04 13:24+0000\n"
 "Last-Translator: Raivis Dejus <orvils@gmail.com>\n"
 "Language-Team: Latvian <locale@laka.lv>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
-"Plural-Forms:  nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : 2);\n"
+"X-Launchpad-Export-Date: 2009-01-04 13:24+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
 
 #: ../gtksourceview/gtksourcebuffer.c:278
 msgid "Escape Character"
@@ -93,7 +93,7 @@ msgstr "Ciļņu platums"
 
 #: ../gtksourceview/gtksourceprintjob.c:281
 msgid "Width in equivalent space characters of tabs"
-msgstr "Platums vienādās tabulēšanas rakstzīmju atstarpēs "
+msgstr "Platums vienādās tabulēšanas rakstzīmju atstarpēs"
 
 #: ../gtksourceview/gtksourceprintjob.c:288
 msgid "Wrap Mode"
@@ -208,7 +208,7 @@ msgstr "Datu tips"
 #: ../gtksourceview/language-specs/scheme.lang.h:2
 #: ../gtksourceview/language-specs/sh.lang.h:4
 msgid "Function"
-msgstr "Funkcija "
+msgstr "Funkcija"
 
 #: ../gtksourceview/gtksourcestylescheme.c:289
 #: ../gtksourceview/language-specs/c.lang.h:6
@@ -221,7 +221,7 @@ msgstr "Funkcija "
 #: ../gtksourceview/language-specs/octave.lang.h:1
 #: ../gtksourceview/language-specs/python.lang.h:2
 msgid "Decimal"
-msgstr "Decimāls "
+msgstr "Decimāls"
 
 #: ../gtksourceview/gtksourcestylescheme.c:294
 msgid "Floating Point"
@@ -251,7 +251,7 @@ msgstr "Atslēgvārds"
 
 #: ../gtksourceview/gtksourcestylescheme.c:304
 msgid "Preprocessor"
-msgstr "Priekšprocesors "
+msgstr "Priekšprocesors"
 
 #.
 #. <pattern-item _name = "Operator" style = "Operators">
@@ -297,7 +297,7 @@ msgstr "Priekšprocesors "
 #: ../gtksourceview/language-specs/vhdl.lang.h:6
 #: ../gtksourceview/language-specs/xml.lang.h:7
 msgid "String"
-msgstr "Virkne "
+msgstr "Virkne"
 
 #: ../gtksourceview/gtksourcestylescheme.c:314
 msgid "Specials"
@@ -314,19 +314,19 @@ msgstr "Īpašie"
 #: ../gtksourceview/language-specs/po.lang.h:5
 #: ../gtksourceview/language-specs/spec.lang.h:12
 msgid "Others"
-msgstr "Citi "
+msgstr "Citi"
 
 #: ../gtksourceview/gtksourcestylescheme.c:326
 msgid "Others 2"
-msgstr "Citi 2 "
+msgstr "Citi 2"
 
 #: ../gtksourceview/gtksourcestylescheme.c:331
 msgid "Others 3"
-msgstr "Citi 3 "
+msgstr "Citi 3"
 
 #: ../gtksourceview/gtksourcestylescheme.c:368
 msgid "Default"
-msgstr "Noklusētais "
+msgstr "Noklusētais"
 
 #: ../gtksourceview/gtksourcetag.c:109
 msgid "Tag ID"
@@ -426,7 +426,7 @@ msgstr "Malas līnija Alfa"
 
 #: ../gtksourceview/gtksourceview.c:314
 msgid "Transparency of the margin line"
-msgstr "Malas līnijas caurspīdīgums "
+msgstr "Malas līnijas caurspīdīgums"
 
 #: ../gtksourceview/gtksourceview.c:331
 msgid "Margin Line Color"
@@ -462,7 +462,7 @@ msgstr "Krāsa, ko izmanto malas pārklājuma zīmēšanai"
 
 #: ../gtksourceview/language-specs/ada.lang.h:1
 msgid "Ada"
-msgstr "Ada "
+msgstr "Ada"
 
 #: ../gtksourceview/language-specs/ada.lang.h:2
 #: ../gtksourceview/language-specs/c.lang.h:4
@@ -528,7 +528,7 @@ msgstr "Rindas komentārs"
 #: ../gtksourceview/language-specs/pascal.lang.h:14
 #: ../gtksourceview/language-specs/vhdl.lang.h:4
 msgid "Number"
-msgstr "Skaitlis "
+msgstr "Skaitlis"
 
 #: ../gtksourceview/language-specs/ada.lang.h:7
 msgid "Preprocessor Keyword"
@@ -820,7 +820,7 @@ msgstr "Punktuātori"
 #.
 #: ../gtksourceview/language-specs/css.lang.h:47
 msgid "Selector Grammar"
-msgstr "Gramatikas iezīmētājs "
+msgstr "Gramatikas iezīmētājs"
 
 #.
 #. Pseudo-class rules. Good to have syntax highlighting for these
@@ -1871,4 +1871,3 @@ msgstr "VHDL"
 #: ../gtksourceview/language-specs/xml.lang.h:9
 msgid "XML"
 msgstr "XML"
-
