@@ -1274,16 +1274,17 @@ static void
 draw_line_marks (GtkSourceView *view,
 		 GSList        *marks,
 		 gint           x,
-		 gint           y)
+		 gint           y,
+		 gint		height)
 {
 	GdkPixbuf *composite;
-	gint width, height;
+	gint mark_width, mark_height;
 
 	/* Draw the mark with higher priority */
 	marks = g_slist_sort_with_data (marks, sort_marks_by_priority, view);
 
 	composite = NULL;
-	width = height = 0;
+	mark_width = mark_height = 0;
 
 	/* composite all the pixbufs for the marks present at the line */
 	do
@@ -1301,8 +1302,8 @@ draw_line_marks (GtkSourceView *view,
 			if (composite == NULL)
 			{
 				composite = gdk_pixbuf_copy (pixbuf);
-				width = gdk_pixbuf_get_width (composite);
-				height = gdk_pixbuf_get_height (composite);
+				mark_width = gdk_pixbuf_get_width (composite);
+				mark_height = gdk_pixbuf_get_height (composite);
 			}
 			else
 			{
@@ -1314,10 +1315,10 @@ draw_line_marks (GtkSourceView *view,
 				gdk_pixbuf_composite (pixbuf,
 						      composite,
 						      0, 0,
-						      width, height,
+						      mark_width, mark_height,
 						      0, 0,
-						      (double) pixbuf_w / width,
-						      (double) pixbuf_h / height,
+						      (double) pixbuf_w / mark_width,
+						      (double) pixbuf_h / mark_height,
 						      GDK_INTERP_BILINEAR,
 						      COMPOSITE_ALPHA);
 			}
@@ -1334,10 +1335,10 @@ draw_line_marks (GtkSourceView *view,
 
 		window = gtk_text_view_get_window (GTK_TEXT_VIEW (view),
 						   GTK_TEXT_WINDOW_LEFT);
-
+						   
 		gdk_draw_pixbuf (GDK_DRAWABLE (window), NULL, composite,
-				 0, 0, x, y,
-				 width, height,
+				 0, 0, x, y + (height - mark_height) / 2.0,
+				 mark_width, mark_height,
 				 GDK_RGB_DITHER_NORMAL, 0, 0);
 		g_object_unref (composite);
 	}
@@ -1513,8 +1514,19 @@ gtk_source_view_paint_margin (GtkSourceView *view,
 
 			if (marks != NULL)
 			{
+				GtkTextIter iter;
+				gint height;
+			
+				gtk_text_buffer_get_iter_at_line (GTK_TEXT_BUFFER (view->priv->source_buffer),
+								  &iter,
+								  line_to_paint);
+				gtk_text_view_get_line_yrange (GTK_TEXT_VIEW (view),
+							       &iter,
+							       NULL,
+							       &height);
+
 				/* draw marks for the line */
-				draw_line_marks (view, marks, x_pixmap, pos);
+				draw_line_marks (view, marks, x_pixmap, pos, height);
 				g_slist_free (marks);
 			}
 		}
