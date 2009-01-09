@@ -2,6 +2,7 @@ TESTS = check.sh
 
 LANGUAGES =			\
 	ada.lang		\
+	asp.lang		\
 	awk.lang		\
 	boo.lang		\
 	changelog.lang		\
