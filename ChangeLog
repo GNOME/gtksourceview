@@ -1,5 +1,11 @@
 2009-01-09  Ignacio Casal Quinteiro  <nacho.resa@gmail.com>
 
+	* gtksourceview/language-specs/makefile.lang:
+	Use proper strings for translation and add context.
+	(Fixes bug #567247)
+
+2009-01-09  Ignacio Casal Quinteiro  <nacho.resa@gmail.com>
+
         * gtksourceview/language-specs/asp.lang:
         * gtksourceview/language-specs/Makefile.am:
         * gtksourceview/language-specs/testfiles.sh:

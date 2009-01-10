@@ -30,11 +30,13 @@
 
   <styles>
     <style id="variable"        _name="Variable" map-to="def:type"/>
-    <style id="assignment-rhs"  _name="assignment-rhs"/>
-    <style id="assignment-lhs"  _name="assignment-lhs"/>
+    <style id="assignment-rhs"  _name="Assignment Right Hand Side"/>
+    <style id="assignment-lhs"  _name="Assignment Left Hand Side"/>
     <style id="targets"         _name="targets" map-to="def:function"/>
     <style id="prereq"          _name="prereq"/>
     <style id="command"         _name="command"/>
+    <!-- Translators: Trailing Tabs refers to tabulation characters present at
+         the end of the line -->
     <style id="trailing-tab"    _name="Trailing Tab"/>
     <style id="function"        _name="function" map-to="def:function"/>
     <style id="keyword"         _name="keyword" map-to="def:keyword"/>
