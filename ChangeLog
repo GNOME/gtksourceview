@@ -1,13 +1,16 @@
-2008-12-03  Ignacio Casal Quinteiro  <nacho.resa@gmail.com>
+=== gtksourceview 2.4.2 ===
 
-	* gtksourceview/gtksourceview.c:
-	Removed check.
+2009-01-10  Paolo Borelli  <paolo.borelli@katamail.com>
 
-2008-12-03  Ignacio Casal Quinteiro  <nacho.resa@gmail.com>
+	* configure.ac:
+	* README:
+	* NEWS:
 
-	* gtksourceview/gtksourceview.c:
-	* gtksourceview/gtksourceview.h:
-	Added non-breaking spaces drawing.
+	Release 2.4.2
+
+2009-01-10  Paolo Borelli  <paolo.borelli@katamail.com>
+
+	* gtksourceview/*: backport bugfixes from trunk
 
 2008-11-29  Yevgen Muntyan  <muntyan@tamu.edu>
 
