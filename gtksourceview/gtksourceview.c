@@ -1274,16 +1274,17 @@ static void
 draw_line_marks (GtkSourceView *view,
 		 GSList        *marks,
 		 gint           x,
-		 gint           y)
+		 gint           y,
+		 gint		height)
 {
 	GdkPixbuf *composite;
-	gint width, height;
+	gint mark_width, mark_height;
 
 	/* Draw the mark with higher priority */
 	marks = g_slist_sort_with_data (marks, sort_marks_by_priority, view);
 
 	composite = NULL;
-	width = height = 0;
+	mark_width = mark_height = 0;
 
 	/* composite all the pixbufs for the marks present at the line */
 	do
@@ -1301,8 +1302,8 @@ draw_line_marks (GtkSourceView *view,
 			if (composite == NULL)
 			{
 				composite = gdk_pixbuf_copy (pixbuf);
-				width = gdk_pixbuf_get_width (composite);
-				height = gdk_pixbuf_get_height (composite);
+				mark_width = gdk_pixbuf_get_width (composite);
+				mark_height = gdk_pixbuf_get_height (composite);
 			}
 			else
 			{
@@ -1314,10 +1315,10 @@ draw_line_marks (GtkSourceView *view,
 				gdk_pixbuf_composite (pixbuf,
 						      composite,
 						      0, 0,
-						      width, height,
+						      mark_width, mark_height,
 						      0, 0,
-						      (double) pixbuf_w / width,
-						      (double) pixbuf_h / height,
+						      (double) pixbuf_w / mark_width,
+						      (double) pixbuf_h / mark_height,
 						      GDK_INTERP_BILINEAR,
 						      COMPOSITE_ALPHA);
 			}
@@ -1334,10 +1335,10 @@ draw_line_marks (GtkSourceView *view,
 
 		window = gtk_text_view_get_window (GTK_TEXT_VIEW (view),
 						   GTK_TEXT_WINDOW_LEFT);
-
+						   
 		gdk_draw_pixbuf (GDK_DRAWABLE (window), NULL, composite,
-				 0, 0, x, y,
-				 width, height,
+				 0, 0, x, y + (height - mark_height) / 2.0,
+				 mark_width, mark_height,
 				 GDK_RGB_DITHER_NORMAL, 0, 0);
 		g_object_unref (composite);
 	}
@@ -1513,8 +1514,19 @@ gtk_source_view_paint_margin (GtkSourceView *view,
 
 			if (marks != NULL)
 			{
+				GtkTextIter iter;
+				gint height;
+			
+				gtk_text_buffer_get_iter_at_line (GTK_TEXT_BUFFER (view->priv->source_buffer),
+								  &iter,
+								  line_to_paint);
+				gtk_text_view_get_line_yrange (GTK_TEXT_VIEW (view),
+							       &iter,
+							       NULL,
+							       &height);
+
 				/* draw marks for the line */
-				draw_line_marks (view, marks, x_pixmap, pos);
+				draw_line_marks (view, marks, x_pixmap, pos, height);
 				g_slist_free (marks);
 			}
 		}
@@ -1777,33 +1789,6 @@ draw_newline_at_iter (cairo_t      *cr,
 }
 
 static void
-draw_nbsp_at_iter (cairo_t      *cr,
-		   GtkTextView  *view,
-		   GtkTextIter  *iter,
-		   GdkRectangle  rect)
-{
-	gint x, y;
-	gdouble w, h;
-
-	gtk_text_view_buffer_to_window_coords (view,
-					       GTK_TEXT_WINDOW_TEXT,
-					       rect.x,
-					       rect.y + rect.height / 2,
-					       &x,
-					       &y);
-
-	w = rect.width;
-	h = rect.height;
-
-	cairo_save (cr);
-	cairo_move_to (cr, x + w * 1 / 6, y);
-	cairo_rel_line_to (cr, w * 4 / 6, 0);
-	cairo_rel_line_to (cr, -w * 2 / 6, +h * 1 / 4);
-	cairo_rel_line_to (cr, -w * 2 / 6, -h * 1 / 4);
-	cairo_restore (cr);
-}
-
-static void
 draw_spaces_at_iter (cairo_t       *cr,
 		     GtkSourceView *view,
 		     GtkTextIter   *iter,
@@ -1817,11 +1802,6 @@ draw_spaces_at_iter (cairo_t       *cr,
 	    c == '\t')
 	{
 		draw_tab_at_iter (cr, GTK_TEXT_VIEW (view), iter, rect);
-	}
-	else if (view->priv->draw_spaces & GTK_SOURCE_DRAW_SPACES_NBSP &&
-		 g_unichar_break_type (c) == G_UNICODE_BREAK_NON_BREAKING_GLUE)
-	{
-		draw_nbsp_at_iter (cr, GTK_TEXT_VIEW (view), iter, rect);
 	}
 	else if (view->priv->draw_spaces & GTK_SOURCE_DRAW_SPACES_SPACE &&
 	         g_unichar_type (c) == G_UNICODE_SPACE_SEPARATOR)
@@ -2596,7 +2576,7 @@ gtk_source_view_get_mark_category_pixbuf (GtkSourceView *view,
 	g_return_val_if_fail (category != NULL, NULL);
 
 	cat = g_hash_table_lookup (view->priv->mark_categories, category);
-	if (cat != NULL)
+	if (cat != NULL && cat->pixbuf != NULL)
 		return g_object_ref (cat->pixbuf);
 	else
 		return NULL;
