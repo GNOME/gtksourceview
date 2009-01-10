@@ -101,11 +101,14 @@
       <keyword>else</keyword>
       <keyword>is</keyword>
       <keyword>and</keyword>
+      <keyword>and_then</keyword>
       <keyword>not</keyword>
       <keyword>or</keyword>
+      <keyword>or_else</keyword>
       <keyword>xor</keyword>
       <keyword>shr</keyword>
       <keyword>shl</keyword>
+      <keyword>otherwise</keyword>
     </context>
 
     <context id="math-operators" style-ref="keyword">
@@ -128,6 +131,8 @@
       <keyword>except</keyword>
       <keyword>finally</keyword>
       <keyword>raise</keyword>
+      <keyword>downto</keyword>
+      <keyword>in</keyword>
     </context>
 
     <context id="type-class-and-object-keywords" style-ref="keyword">
@@ -156,6 +161,30 @@
       <keyword>As</keyword>
       <keyword>self</keyword>
       <keyword>Inherited</keyword>
+      <keyword>Forward</keyword>
+      <keyword>Implements</keyword>
+      <keyword>varargs</keyword>
+      <keyword>far</keyword>
+      <keyword>near</keyword>
+      <keyword>absolute</keyword>
+      <keyword>all</keyword>
+      <keyword>asm</keyword>
+      <keyword>attribute</keyword>
+      <keyword>bindable</keyword>
+      <keyword>export</keyword>
+      <keyword>exports</keyword>
+      <keyword>external</keyword>
+      <keyword>file</keyword>
+      <keyword>goto</keyword>
+      <keyword>import</keyword>
+      <keyword>interrupt</keyword>
+      <keyword>published</keyword>
+      <keyword>qualified</keyword>
+      <keyword>resident</keyword>
+      <keyword>restricted</keyword>
+      <keyword>segment</keyword>
+      <keyword>set</keyword>
+      <keyword>value</keyword>
     </context>
 
     <context id="builtin-types" style-ref="type">
@@ -185,6 +214,7 @@
       <keyword>odd</keyword>
       <keyword>eof</keyword>
       <keyword>eoln</keyword>
+      <keyword>pow</keyword>
     </context>
 
     <context id="builtin-values" style-ref="keyword">
