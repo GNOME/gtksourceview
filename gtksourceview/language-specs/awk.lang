@@ -31,6 +31,7 @@
     <style id="keyword" _name="Keyword" map-to="def:keyword"/>
     <style id="pattern" _name="Pattern" map-to="def:preprocessor"/>
     <style id="variable" _name="Variable" map-to="def:identifier"/>
+    <style id="builtin-function" _name="Builtin Function" map-to="def:builtin"/>
   </styles>
 
   <definitions>
@@ -87,6 +88,31 @@
       <keyword>RLENGTH</keyword>
       <keyword>TEXTDOMAIN</keyword>
     </context>
+    
+    <context id="built-in-functions" style-ref="builtin-function">
+      <keyword>gsub</keyword>
+      <keyword>index</keyword>
+      <keyword>length</keyword>
+      <keyword>match</keyword>
+      <keyword>split</keyword>
+      <keyword>sprintf</keyword>
+      <keyword>sub</keyword>
+      <keyword>substr</keyword>
+      <keyword>tolower</keyword>
+      <keyword>toupper</keyword>
+    </context>
+    
+    <context id="arithmetic-functions" style-ref="builtin-function">
+      <keyword>atan2</keyword>
+      <keyword>cos</keyword>
+      <keyword>exp</keyword>
+      <keyword>int</keyword>
+      <keyword>log</keyword>
+      <keyword>rand</keyword>
+      <keyword>sin</keyword>
+      <keyword>sqrt</keyword>
+      <keyword>srand</keyword>
+    </context>
 
     <context id="field-variable" style-ref="variable">
       <match>\$\d+</match>
@@ -101,6 +127,8 @@
         <context ref="patterns"/>
         <context ref="variables"/>
         <context ref="field-variable"/>
+        <context ref="built-in-functions"/>
+        <context ref="arithmetic-functions"/>
       </include>
     </context>
 
