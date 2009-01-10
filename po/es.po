@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: gtksourceview.HEAD\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&component=general\n"
-"POT-Creation-Date: 2009-01-09 13:12+0000\n"
-"PO-Revision-Date: 2009-01-10 03:17+0100\n"
+"POT-Creation-Date: 2009-01-10 13:09+0000\n"
+"PO-Revision-Date: 2009-01-10 14:25+0100\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -785,7 +785,7 @@ msgstr "Número real"
 #: ../gtksourceview/language-specs/haskell-literate.lang.h:2
 #: ../gtksourceview/language-specs/idl.lang.h:6
 #: ../gtksourceview/language-specs/java.lang.h:15
-#: ../gtksourceview/language-specs/makefile.lang.h:2
+#: ../gtksourceview/language-specs/makefile.lang.h:4
 #: ../gtksourceview/language-specs/nemerle.lang.h:15
 #: ../gtksourceview/language-specs/objc.lang.h:5
 #: ../gtksourceview/language-specs/ocaml.lang.h:16
@@ -932,7 +932,7 @@ msgstr "Scripts"
 #: ../gtksourceview/language-specs/cmake.lang.h:8
 #: ../gtksourceview/language-specs/haskell.lang.h:15
 #: ../gtksourceview/language-specs/ini.lang.h:10
-#: ../gtksourceview/language-specs/makefile.lang.h:4
+#: ../gtksourceview/language-specs/makefile.lang.h:8
 #: ../gtksourceview/language-specs/nsis.lang.h:6
 #: ../gtksourceview/language-specs/perl.lang.h:21
 #: ../gtksourceview/language-specs/php.lang.h:20
@@ -1802,40 +1802,42 @@ msgid "m4-comment"
 msgstr "comentario de m4"
 
 #: ../gtksourceview/language-specs/makefile.lang.h:1
+msgid "Assignment Left Hand Side"
+msgstr "Asignación a mano izquierda"
+
+#: ../gtksourceview/language-specs/makefile.lang.h:2
+msgid "Assignment Right Hand Side"
+msgstr "Asignación a mano derecha"
+
+#: ../gtksourceview/language-specs/makefile.lang.h:3
 msgid "Makefile"
 msgstr "Makefile"
 
-#: ../gtksourceview/language-specs/makefile.lang.h:3
-msgid "Trailing Tab"
-msgstr ""
-
-#: ../gtksourceview/language-specs/makefile.lang.h:5
-msgid "assignment-lhs"
-msgstr ""
-
-#: ../gtksourceview/language-specs/makefile.lang.h:6
-msgid "assignment-rhs"
-msgstr ""
-
+#. Translators: Trailing Tabs refers to tabulation characters present at
+#. the end of the line
 #: ../gtksourceview/language-specs/makefile.lang.h:7
+msgid "Trailing Tab"
+msgstr "Tabuladores sobrantes"
+
+#: ../gtksourceview/language-specs/makefile.lang.h:9
 msgid "command"
 msgstr "comando"
 
-#: ../gtksourceview/language-specs/makefile.lang.h:8
+#: ../gtksourceview/language-specs/makefile.lang.h:10
 msgid "function"
 msgstr "función"
 
 #. FIXME make it better names, and make them translatable
-#: ../gtksourceview/language-specs/makefile.lang.h:9
+#: ../gtksourceview/language-specs/makefile.lang.h:11
 #: ../gtksourceview/language-specs/yacc.lang.h:4
 msgid "keyword"
 msgstr "palabra clave"
 
-#: ../gtksourceview/language-specs/makefile.lang.h:10
+#: ../gtksourceview/language-specs/makefile.lang.h:12
 msgid "prereq"
 msgstr "prerequisitos"
 
-#: ../gtksourceview/language-specs/makefile.lang.h:11
+#: ../gtksourceview/language-specs/makefile.lang.h:13
 msgid "targets"
 msgstr "objetivos"
 
