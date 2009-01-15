@@ -84,6 +84,7 @@
       <keyword>do</keyword>
       <keyword>each</keyword>
       <keyword>else</keyword>
+      <keyword>elseif</keyword>
       <keyword>end</keyword>
       <keyword>erase</keyword>
       <keyword>error</keyword>
@@ -548,10 +549,12 @@
       <keyword>vbByte</keyword>
       <keyword>vbArray</keyword>
       <!-- ADO constants -->
+      <!--   CursorTypeEnum Values -->
       <keyword>adOpenForwardOnly</keyword>
       <keyword>adOpenKeyset</keyword>
       <keyword>adOpenDynamic</keyword>
       <keyword>adOpenStatic</keyword>
+      <!--   CursorOptionEnum Values -->
       <keyword>adHoldRecords</keyword>
       <keyword>adMovePrevious</keyword>
       <keyword>adAddNew</keyword>
@@ -565,23 +568,29 @@
       <keyword>adFind</keyword>
       <keyword>adSeek</keyword>
       <keyword>adIndex</keyword>
+      <!--   LockTypeEnum Values -->
       <keyword>adLockReadOnly</keyword>
       <keyword>adLockPessimistic</keyword>
       <keyword>adLockOptimistic</keyword>
       <keyword>adLockBatchOptimistic</keyword>
-      <keyword>adRunAsync</keyword>
+      <!--   ExecuteOptionEnum Values -->
       <keyword>adAsyncExecute</keyword>
       <keyword>adAsyncFetch</keyword>
       <keyword>adAsyncFetchNonBlocking</keyword>
       <keyword>adExecuteNoRecords</keyword>
+      <keyword>adExecuteStream</keyword>
+      <!--   ConnectOptionEnum Values -->
       <keyword>adAsyncConnect</keyword>
+      <!--   ObjectStateEnum Values -->
       <keyword>adStateClosed</keyword>
       <keyword>adStateOpen</keyword>
       <keyword>adStateConnecting</keyword>
       <keyword>adStateExecuting</keyword>
       <keyword>adStateFetching</keyword>
+      <!--   CursorLocationEnum Values -->
       <keyword>adUseServer</keyword>
       <keyword>adUseClient</keyword>
+      <!--   DataTypeEnum Values -->
       <keyword>adEmpty</keyword>
       <keyword>adTinyInt</keyword>
       <keyword>adSmallInt</keyword>
@@ -619,9 +628,10 @@
       <keyword>adLongVarBinary</keyword>
       <keyword>adChapter</keyword>
       <keyword>adFileTime</keyword>
-      <keyword>adDBFileTime</keyword>
       <keyword>adPropVariant</keyword>
       <keyword>adVarNumeric</keyword>
+      <keyword>adArray</keyword>
+      <!--   FieldAttributeEnum Values -->
       <keyword>adFldMayDefer</keyword>
       <keyword>adFldUpdatable</keyword>
       <keyword>adFldUnknownUpdatable</keyword>
@@ -632,11 +642,18 @@
       <keyword>adFldRowID</keyword>
       <keyword>adFldRowVersion</keyword>
       <keyword>adFldCacheDeferred</keyword>
+      <keyword>adFldIsChapter</keyword>
+      <keyword>adFldNegativeScale</keyword>
       <keyword>adFldKeyColumn</keyword>
+      <keyword>adFldIsRowURL</keyword>
+      <keyword>adFldIsDefaultStream</keyword>
+      <keyword>adFldIsCollection</keyword>
+      <!--   EditModeEnum Values -->
       <keyword>adEditNone</keyword>
       <keyword>adEditInProgress</keyword>
       <keyword>adEditAdd</keyword>
       <keyword>adEditDelete</keyword>
+      <!--   RecordStatusEnum Values -->
       <keyword>adRecOK</keyword>
       <keyword>adRecNew</keyword>
       <keyword>adRecModified</keyword>
@@ -655,43 +672,52 @@
       <keyword>adRecPermissionDenied</keyword>
       <keyword>adRecSchemaViolation</keyword>
       <keyword>adRecDBDeleted</keyword>
+      <!--   GetRowsOptionEnum Values -->
       <keyword>adGetRowsRest</keyword>
+      <!--   PositionEnum Values -->
       <keyword>adPosUnknown</keyword>
       <keyword>adPosBOF</keyword>
       <keyword>adPosEOF</keyword>
+      <!--   BookmarkEnum Values -->
       <keyword>adBookmarkCurrent</keyword>
       <keyword>adBookmarkFirst</keyword>
       <keyword>adBookmarkLast</keyword>
+      <!--   MarshalOptionsEnum Values -->
       <keyword>adMarshalAll</keyword>
       <keyword>adMarshalModifiedOnly</keyword>
+      <!--   AffectEnum Values -->
       <keyword>adAffectCurrent</keyword>
       <keyword>adAffectGroup</keyword>
-      <keyword>adAffectAll</keyword>
       <keyword>adAffectAllChapters</keyword>
+      <!--   ResyncEnum Values -->
       <keyword>adResyncUnderlyingValues</keyword>
       <keyword>adResyncAllValues</keyword>
+      <!--   CompareEnum Values -->
       <keyword>adCompareLessThan</keyword>
       <keyword>adCompareEqual</keyword>
       <keyword>adCompareGreaterThan</keyword>
       <keyword>adCompareNotEqual</keyword>
       <keyword>adCompareNotComparable</keyword>
+      <!--   FilterGroupEnum Values -->
       <keyword>adFilterNone</keyword>
       <keyword>adFilterPendingRecords</keyword>
       <keyword>adFilterAffectedRecords</keyword>
       <keyword>adFilterFetchedRecords</keyword>
-      <keyword>adFilterPredicate</keyword>
       <keyword>adFilterConflictingRecords</keyword>
+      <!--   SearchDirectionEnum Values -->
       <keyword>adSearchForward</keyword>
       <keyword>adSearchBackward</keyword>
+      <!--   PersistFormatEnum Values -->
       <keyword>adPersistADTG</keyword>
       <keyword>adPersistXML</keyword>
-      <keyword>adStringXML</keyword>
-      <keyword>adStringHTML</keyword>
+      <!--   StringFormatEnum Values -->
       <keyword>adClipString</keyword>
+      <!--   ConnectPromptEnum Values -->
       <keyword>adPromptAlways</keyword>
       <keyword>adPromptComplete</keyword>
       <keyword>adPromptCompleteRequired</keyword>
       <keyword>adPromptNever</keyword>
+      <!--   ConnectModeEnum Values -->
       <keyword>adModeUnknown</keyword>
       <keyword>adModeRead</keyword>
       <keyword>adModeWrite</keyword>
@@ -700,6 +726,22 @@
       <keyword>adModeShareDenyWrite</keyword>
       <keyword>adModeShareExclusive</keyword>
       <keyword>adModeShareDenyNone</keyword>
+      <keyword>adModeRecursive</keyword>
+      <!--   RecordCreateOptionsEnum Values -->
+      <keyword>adCreateCollection</keyword>
+      <keyword>adCreateStructDoc</keyword>
+      <keyword>adCreateNonCollection</keyword>
+      <keyword>adOpenIfExists</keyword>
+      <keyword>adCreateOverwrite</keyword>
+      <keyword>adFailIfNotExists</keyword>
+      <!--   RecordOpenOptionsEnum Values -->
+      <keyword>adOpenRecordUnspecified</keyword>
+      <keyword>adOpenOutput</keyword>
+      <keyword>adOpenAsync</keyword>
+      <keyword>adDelayFetchStream</keyword>
+      <keyword>adDelayFetchFields</keyword>
+      <keyword>adOpenExecuteCommand</keyword>
+      <!--   IsolationLevelEnum Values -->
       <keyword>adXactUnspecified</keyword>
       <keyword>adXactChaos</keyword>
       <keyword>adXactReadUncommitted</keyword>
@@ -709,16 +751,24 @@
       <keyword>adXactRepeatableRead</keyword>
       <keyword>adXactSerializable</keyword>
       <keyword>adXactIsolated</keyword>
+      <!--   XactAttributeEnum Values -->
       <keyword>adXactCommitRetaining</keyword>
       <keyword>adXactAbortRetaining</keyword>
+      <!--   PropertyAttributesEnum Values -->
       <keyword>adPropNotSupported</keyword>
       <keyword>adPropRequired</keyword>
       <keyword>adPropOptional</keyword>
       <keyword>adPropRead</keyword>
       <keyword>adPropWrite</keyword>
+      <!--   ErrorValueEnum Values -->
+      <keyword>adErrProviderFailed</keyword>
       <keyword>adErrInvalidArgument</keyword>
+      <keyword>adErrOpeningFile</keyword>
+      <keyword>adErrReadFile</keyword>
+      <keyword>adErrWriteFile</keyword>
       <keyword>adErrNoCurrentRecord</keyword>
       <keyword>adErrIllegalOperation</keyword>
+      <keyword>adErrCantChangeProvider</keyword>
       <keyword>adErrInTransaction</keyword>
       <keyword>adErrFeatureNotAvailable</keyword>
       <keyword>adErrItemNotFound</keyword>
@@ -735,27 +785,70 @@
       <keyword>adErrStillExecuting</keyword>
       <keyword>adErrOperationCancelled</keyword>
       <keyword>adErrStillConnecting</keyword>
-      <keyword>adErrNotExecuting</keyword>
+      <keyword>adErrInvalidTransaction</keyword>
       <keyword>adErrUnsafeOperation</keyword>
+      <keyword>adwrnSecurityDialog</keyword>
+      <keyword>adwrnSecurityDialogHeader</keyword>
+      <keyword>adErrIntegrityViolation</keyword>
+      <keyword>adErrPermissionDenied</keyword>
+      <keyword>adErrDataOverflow</keyword>
+      <keyword>adErrSchemaViolation</keyword>
+      <keyword>adErrSignMismatch</keyword>
+      <keyword>adErrCantConvertvalue</keyword>
+      <keyword>adErrCantCreate</keyword>
+      <keyword>adErrColumnNotOnThisRow</keyword>
+      <keyword>adErrURLIntegrViolSetColumns</keyword>
+      <keyword>adErrURLDoesNotExist</keyword>
+      <keyword>adErrTreePermissionDenied</keyword>
+      <keyword>adErrInvalidURL</keyword>
+      <keyword>adErrResourceLocked</keyword>
+      <keyword>adErrResourceExists</keyword>
+      <keyword>adErrCannotComplete</keyword>
+      <keyword>adErrVolumeNotFound</keyword>
+      <keyword>adErrOutOfSpace</keyword>
+      <keyword>adErrResourceOutOfScope</keyword>
+      <keyword>adErrUnavailable</keyword>
+      <keyword>adErrURLNamedRowDoesNotExist</keyword>
+      <keyword>adErrDelResOutOfScope</keyword>
+      <keyword>adErrPropInvalidColumn</keyword>
+      <keyword>adErrPropInvalidOption</keyword>
+      <keyword>adErrPropInvalidValue</keyword>
+      <keyword>adErrPropConflicting</keyword>
+      <keyword>adErrPropNotAllSettable</keyword>
+      <keyword>adErrPropNotSet</keyword>
+      <keyword>adErrPropNotSettable</keyword>
+      <keyword>adErrPropNotSupported</keyword>
+      <keyword>adErrCatalogNotSet</keyword>
+      <keyword>adErrCantChangeConnection</keyword>
+      <keyword>adErrFieldsUpdateFailed</keyword>
+      <keyword>adErrDenyNotSupported</keyword>
+      <keyword>adErrDenyTypeNotSupported</keyword>
+      <keyword>adErrProviderNotSpecified</keyword>
+      <keyword>adErrConnectionStringTooLong</keyword>
+      <!--   ParameterAttributesEnum Values -->
       <keyword>adParamSigned</keyword>
       <keyword>adParamNullable</keyword>
       <keyword>adParamLong</keyword>
+      <!--   ParameterDirectionEnum Values -->
       <keyword>adParamUnknown</keyword>
       <keyword>adParamInput</keyword>
       <keyword>adParamOutput</keyword>
       <keyword>adParamInputOutput</keyword>
       <keyword>adParamReturnValue</keyword>
+      <!--   CommandTypeEnum Values -->
       <keyword>adCmdUnknown</keyword>
       <keyword>adCmdText</keyword>
       <keyword>adCmdTable</keyword>
       <keyword>adCmdStoredProc</keyword>
       <keyword>adCmdFile</keyword>
       <keyword>adCmdTableDirect</keyword>
+      <!--   EventStatusEnum Values -->
       <keyword>adStatusOK</keyword>
       <keyword>adStatusErrorsOccurred</keyword>
       <keyword>adStatusCantDeny</keyword>
       <keyword>adStatusCancel</keyword>
       <keyword>adStatusUnwantedEvent</keyword>
+      <!--   EventReasonEnum Values -->
       <keyword>adRsnAddNew</keyword>
       <keyword>adRsnDelete</keyword>
       <keyword>adRsnUpdate</keyword>
@@ -771,6 +864,7 @@
       <keyword>adRsnMoveNext</keyword>
       <keyword>adRsnMovePrevious</keyword>
       <keyword>adRsnMoveLast</keyword>
+      <!--   SchemaEnum Values -->
       <keyword>adSchemaProviderSpecific</keyword>
       <keyword>adSchemaAsserts</keyword>
       <keyword>adSchemaCatalogs</keyword>
@@ -811,29 +905,107 @@
       <keyword>adSchemaMeasures</keyword>
       <keyword>adSchemaProperties</keyword>
       <keyword>adSchemaMembers</keyword>
+      <keyword>adSchemaTrustees</keyword>
+      <keyword>adSchemaFunctions</keyword>
+      <keyword>adSchemaActions</keyword>
+      <keyword>adSchemaCommands</keyword>
+      <keyword>adSchemaSets</keyword>
+      <!--   FieldStatusEnum Values -->
+      <keyword>adFieldOK</keyword>
+      <keyword>adFieldCantConvertValue</keyword>
+      <keyword>adFieldIsNull</keyword>
+      <keyword>adFieldTruncated</keyword>
+      <keyword>adFieldSignMismatch</keyword>
+      <keyword>adFieldDataOverflow</keyword>
+      <keyword>adFieldCantCreate</keyword>
+      <keyword>adFieldUnavailable</keyword>
+      <keyword>adFieldPermissionDenied</keyword>
+      <keyword>adFieldIntegrityViolation</keyword>
+      <keyword>adFieldSchemaViolation</keyword>
+      <keyword>adFieldBadStatus</keyword>
+      <keyword>adFieldDefault</keyword>
+      <keyword>adFieldIgnore</keyword>
+      <keyword>adFieldDoesNotExist</keyword>
+      <keyword>adFieldInvalidURL</keyword>
+      <keyword>adFieldResourceLocked</keyword>
+      <keyword>adFieldResourceExists</keyword>
+      <keyword>adFieldCannotComplete</keyword>
+      <keyword>adFieldVolumeNotFound</keyword>
+      <keyword>adFieldOutOfSpace</keyword>
+      <keyword>adFieldCannotDeleteSource</keyword>
+      <keyword>adFieldReadOnly</keyword>
+      <keyword>adFieldResourceOutOfScope</keyword>
+      <keyword>adFieldAlreadyExists</keyword>
+      <keyword>adFieldPendingInsert</keyword>
+      <keyword>adFieldPendingDelete</keyword>
+      <keyword>adFieldPendingChange</keyword>
+      <keyword>adFieldPendingUnknown</keyword>
+      <keyword>adFieldPendingUnknownDelete</keyword>
+      <!--   SeekEnum Values -->
       <keyword>adSeekFirstEQ</keyword>
       <keyword>adSeekLastEQ</keyword>
       <keyword>adSeekAfterEQ</keyword>
       <keyword>adSeekAfter</keyword>
       <keyword>adSeekBeforeEQ</keyword>
       <keyword>adSeekBefore</keyword>
+      <!--   ADCPROP_UPDATECRITERIA_ENUM Values -->
       <keyword>adCriteriaKey</keyword>
       <keyword>adCriteriaAllCols</keyword>
       <keyword>adCriteriaUpdCols</keyword>
       <keyword>adCriteriaTimeStamp</keyword>
+      <!--   ADCPROP_ASYNCTHREADPRIORITY_ENUM Values -->
       <keyword>adPriorityLowest</keyword>
       <keyword>adPriorityBelowNormal</keyword>
       <keyword>adPriorityNormal</keyword>
       <keyword>adPriorityAboveNormal</keyword>
       <keyword>adPriorityHighest</keyword>
+      <!--   ADCPROP_AUTORECALC_ENUM Values -->
+      <keyword>adRecalcUpFront</keyword>
+      <keyword>adRecalcAlways</keyword>
+      <!--   ADCPROP_UPDATERESYNC_ENUM Values -->
       <keyword>adResyncNone</keyword>
       <keyword>adResyncAutoIncrement</keyword>
       <keyword>adResyncConflicts</keyword>
       <keyword>adResyncUpdates</keyword>
       <keyword>adResyncInserts</keyword>
       <keyword>adResyncAll</keyword>
-      <keyword>adRecalcUpFront</keyword>
-      <keyword>adRecalcAlways</keyword>
+      <!--   MoveRecordOptionsEnum Values -->
+      <keyword>adMoveUnspecified</keyword>
+      <keyword>adMoveOverWrite</keyword>
+      <keyword>adMoveDontUpdateLinks</keyword>
+      <keyword>adMoveAllowEmulation</keyword>
+      <!--   CopyRecordOptionsEnum Values -->
+      <keyword>adCopyUnspecified</keyword>
+      <keyword>adCopyOverWrite</keyword>
+      <keyword>adCopyAllowEmulation</keyword>
+      <keyword>adCopyNonRecursive</keyword>
+      <!--   StreamTypeEnum Values -->
+      <keyword>adTypeBinary</keyword>
+      <keyword>adTypeText</keyword>
+      <!--   LineSeparatorEnum Values -->
+      <keyword>adLF</keyword>
+      <keyword>adCR</keyword>
+      <keyword>adCRLF</keyword>
+      <!--   StreamOpenOptionsEnum Values -->
+      <keyword>adOpenStreamUnspecified</keyword>
+      <keyword>adOpenStreamAsync</keyword>
+      <keyword>adOpenStreamFromRecord</keyword>
+      <!--   StreamWriteEnum Values -->
+      <keyword>adWriteChar</keyword>
+      <keyword>adWriteLine</keyword>
+      <!--   SaveOptionsEnum Values -->
+      <keyword>adSaveCreateNotExist</keyword>
+      <keyword>adSaveCreateOverWrite</keyword>
+      <!--   FieldEnum Values -->
+      <keyword>adDefaultStream</keyword>
+      <keyword>adRecordURL</keyword>
+      <!--   StreamReadEnum Values -->
+      <keyword>adReadAll</keyword>
+      <keyword>adReadLine</keyword>
+      <!--   RecordTypeEnum Values -->
+      <keyword>adSimpleRecord</keyword>
+      <keyword>adCollectionRecord</keyword>
+      <keyword>adStructDoc</keyword>
     </context>
 
     <context id="types" style-ref="type">
@@ -889,6 +1061,22 @@
         <context ref="special-constants"/>
         <context ref="boolean"/>
         <context ref="numeric"/>
+<!--//
+
+ASP(Active Server Pages) technology allows almost any programming language with
+support to ActiveScripting to be used with it, but including the languages below
+doesn't work as expected because of definitions conflicts between them. I've
+tested and recommend to just change the Syntax Highlighting to the desired
+language if it's another than VBScript. VBScript was chosen here because it's
+the standard language for ASP.
+
+        <context ref="js:js"/>
+        <context ref="perl:perl"/>
+        <context ref="python:python"/>
+        <context ref="tcl:tcl"/>
+        <context ref="php:php"/>
+
+//-->
       </include>
     </context>
 
