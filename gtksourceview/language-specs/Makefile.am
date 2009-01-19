@@ -17,6 +17,7 @@ LANGUAGES =			\
 	diff.lang		\
 	d.lang			\
 	docbook.lang		\
+	dosbatch.lang		\
 	dot.lang		\
 	dpatch.lang		\
 	dtd.lang		\

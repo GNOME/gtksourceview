@@ -587,3 +587,15 @@ Version:
 Cflags: -I${prefix}/include/moo
 Libs: -L${libdir} -lmoo -L/usr/lib/python2.4 -lpython2.4  -lpthread -ldl  -lutil
 EOFEOF
+
+cat > $dir/file.bat <<EOFEOF
+:: This is a comment
+rem This is a comment too
+
+cls
+echo Your path is %PATH%
+pause
+goto DONE
+
+:DONE
+EOFEOF
