@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: gtksourceview.HEAD\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&component=general\n"
-"POT-Creation-Date: 2009-01-10 13:09+0000\n"
-"PO-Revision-Date: 2009-01-10 14:25+0100\n"
+"POT-Creation-Date: 2009-01-19 19:46+0000\n"
+"PO-Revision-Date: 2009-01-20 16:54+0100\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -602,6 +602,7 @@ msgstr "Valor booleano"
 #: ../gtksourceview/language-specs/css.lang.h:3
 #: ../gtksourceview/language-specs/def.lang.h:11
 #: ../gtksourceview/language-specs/d.lang.h:3
+#: ../gtksourceview/language-specs/dosbatch.lang.h:2
 #: ../gtksourceview/language-specs/dot.lang.h:2
 #: ../gtksourceview/language-specs/eiffel.lang.h:3
 #: ../gtksourceview/language-specs/erlang.lang.h:4
@@ -712,6 +713,7 @@ msgstr "Carácter de escape"
 #: ../gtksourceview/language-specs/css.lang.h:8
 #: ../gtksourceview/language-specs/def.lang.h:36
 #: ../gtksourceview/language-specs/d.lang.h:10
+#: ../gtksourceview/language-specs/dosbatch.lang.h:4
 #: ../gtksourceview/language-specs/dot.lang.h:5
 #: ../gtksourceview/language-specs/eiffel.lang.h:11
 #: ../gtksourceview/language-specs/erlang.lang.h:9
@@ -814,6 +816,7 @@ msgstr "Clase de almacenamiento"
 #: ../gtksourceview/language-specs/css.lang.h:13
 #: ../gtksourceview/language-specs/def.lang.h:57
 #: ../gtksourceview/language-specs/d.lang.h:15
+#: ../gtksourceview/language-specs/dosbatch.lang.h:6
 #: ../gtksourceview/language-specs/eiffel.lang.h:14
 #: ../gtksourceview/language-specs/erlang.lang.h:12
 #: ../gtksourceview/language-specs/forth.lang.h:11
@@ -915,6 +918,7 @@ msgid "Pattern"
 msgstr "Patrón"
 
 #: ../gtksourceview/language-specs/awk.lang.h:4
+#: ../gtksourceview/language-specs/dosbatch.lang.h:5
 #: ../gtksourceview/language-specs/javascript.lang.h:14
 #: ../gtksourceview/language-specs/lua.lang.h:9
 #: ../gtksourceview/language-specs/m4.lang.h:3
@@ -1390,6 +1394,16 @@ msgstr "Marcado"
 msgid "Structural Elements"
 msgstr "Elementos estructurales"
 
+#: ../gtksourceview/language-specs/dosbatch.lang.h:1
+#: ../gtksourceview/language-specs/latex.lang.h:1
+msgid "Command"
+msgstr "Comando"
+
+#: ../gtksourceview/language-specs/dosbatch.lang.h:3
+#| msgid "DPatch"
+msgid "Dos Batch"
+msgstr "Batch de DOS"
+
 #: ../gtksourceview/language-specs/dot.lang.h:1
 #: ../gtksourceview/language-specs/xml.lang.h:1
 msgid "Attribute name"
@@ -1733,10 +1747,6 @@ msgstr "Esquema de colores usado en el editor de textos Kate"
 #: ../gtksourceview/language-specs/kate.xml.h:2
 msgid "Kate"
 msgstr "Kate"
-
-#: ../gtksourceview/language-specs/latex.lang.h:1
-msgid "Command"
-msgstr "Comando"
 
 #: ../gtksourceview/language-specs/latex.lang.h:3
 #: ../gtksourceview/language-specs/texinfo.lang.h:5
