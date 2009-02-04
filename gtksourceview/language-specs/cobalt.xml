@@ -42,6 +42,7 @@
   <color name="pale_grey"                   value="#eeeeee"/>
   <color name="steel_grey"                  value="#333333"/>
   <color name="spring_green"                value="#3ad900"/>
+  <color name="sea_green"                   value="#00BF8C"/>
   <color name="light_grey"                  value="#cccccc"/>
   <color name="dark_maroon"                 value="#002f29"/>
   <color name="bluish_grey"                 value="#777777"/>
@@ -50,7 +51,7 @@
   <!-- Global Settings -->
 
   <style name="text"                        foreground="white" background="dark_blue"/>
-  <style name="selection"                   foreground="white" background="#5598d7"/>
+  <style name="selection"                   foreground="white" background="sky_blue"/>
   <style name="cursor"                      foreground="white"/>
   <style name="current-line"                background="medium_blue"/>
   <style name="line-numbers"                foreground="light_blue" background="black_blue"/>
@@ -59,7 +60,9 @@
   <!-- Bracket Matching -->
   <style name="bracket-match"               background="steelblue3"/>
   <style name="bracket-mismatch"            background="dark_maroon" bold="true"/>
-  <style name="search-match"                foreground="white" background="sky_blue"/>
+  
+  <!-- Search Matching -->
+  <style name="search-match"                foreground="white" background="sea_green"/>
 
   <!-- Bookmarks FIXME -->
   <style name="bookmark"                    background="white"/>
@@ -67,8 +70,7 @@
   <!-- Comments -->
   <style name="def:comment"                 foreground="sky_blue" italic="true"/>
   <style name="def:shebang"                 foreground="sky_blue" italic="true"/>
-  <style name="def:doc-comment-element"     foreground="spring_green"/>
-  <style name="def:doc-comment"             foreground="sky_blue" bold="true"/>
+  <style name="def:doc-comment-element"     bold="true"/>
 
   <!-- Constants and Variables-->
   <style name="def:constant"                foreground="faded_yellow"/>
