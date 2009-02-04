@@ -74,6 +74,7 @@ LANGUAGES =			\
 
 STYLES =			\
 	classic.xml		\
+	cobalt.xml		\
 	kate.xml		\
 	oblivion.xml		\
 	tango.xml
