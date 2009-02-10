@@ -3825,9 +3825,12 @@ gtk_source_view_style_set (GtkWidget *widget, GtkStyle *previous_style)
 static void
 update_current_line_color (GtkSourceView *view)
 {
-	view->priv->current_line_color_set =
-		_gtk_source_style_scheme_get_current_line_color (view->priv->style_scheme,
-								 &view->priv->current_line_color);
+	if (view->priv->style_scheme)
+	{
+		view->priv->current_line_color_set =
+			_gtk_source_style_scheme_get_current_line_color (view->priv->style_scheme,
+			                                                 &view->priv->current_line_color);
+	}
 }
 
 static void
