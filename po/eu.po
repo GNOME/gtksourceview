@@ -3,80 +3,80 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER, 2003.
 #
 # Piarres Beobide <pi@beobide.net>, 2003.
-# Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>, 2003, 2004, 2005, 2006, 2007, 2008.
+# Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>, 2003, 2004, 2005, 2006, 2007, 2008, 2009.
 # Iñaki Larrañaga Murgoitio <dooteo@zundan.com>, 2007.
 msgid ""
 msgstr ""
 "Project-Id-Version: eu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-23 13:24+0200\n"
-"PO-Revision-Date: 2008-08-23 13:27+0200\n"
+"POT-Creation-Date: 2009-02-12 20:14+0100\n"
+"PO-Revision-Date: 2009-02-12 20:28+0100\n"
 "Last-Translator: Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>\n"
 "Language-Team: Basque <itzulpena@euskalgnu.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 "\n"
 
-#: ../gtksourceview/gtksourcebuffer.c:174
+#: ../gtksourceview/gtksourcebuffer.c:180
 #: ../gtksourceview/gtksourceprintcompositor.c:471
 msgid "Highlight Syntax"
 msgstr "Nabarmendu sintaxia"
 
-#: ../gtksourceview/gtksourcebuffer.c:175
+#: ../gtksourceview/gtksourcebuffer.c:181
 msgid "Whether to highlight syntax in the buffer"
 msgstr "Buferreko sintaxia nabarmenduko den ala ez"
 
-#: ../gtksourceview/gtksourcebuffer.c:188
+#: ../gtksourceview/gtksourcebuffer.c:194
 msgid "Highlight Matching Brackets"
 msgstr "Nabarmendu kortxete bikoteak"
 
-#: ../gtksourceview/gtksourcebuffer.c:189
+#: ../gtksourceview/gtksourcebuffer.c:195
 msgid "Whether to highlight matching brackets"
 msgstr "Kortxete bikoteak nabarmenduko diren ala ez"
 
-#: ../gtksourceview/gtksourcebuffer.c:201
+#: ../gtksourceview/gtksourcebuffer.c:207
 msgid "Maximum Undo Levels"
 msgstr "Gehienezko desegite maila"
 
-#: ../gtksourceview/gtksourcebuffer.c:202
+#: ../gtksourceview/gtksourcebuffer.c:208
 msgid "Number of undo levels for the buffer"
 msgstr "Buferrean egin daitezken desegite mailaren kopurua"
 
 #. Translators: throughout gtksourceview "language" stands
 #. * for "programming language", not "spoken language"
-#: ../gtksourceview/gtksourcebuffer.c:214
+#: ../gtksourceview/gtksourcebuffer.c:220
 msgid "Language"
 msgstr "Hizkuntza"
 
-#: ../gtksourceview/gtksourcebuffer.c:215
+#: ../gtksourceview/gtksourcebuffer.c:221
 msgid "Language object to get highlighting patterns from"
 msgstr "Hizkuntz-objektuak, nabarmendutako ereduak lortzeko"
 
-#: ../gtksourceview/gtksourcebuffer.c:223
+#: ../gtksourceview/gtksourcebuffer.c:229
 msgid "Can undo"
 msgstr "Desegin daiteke"
 
-#: ../gtksourceview/gtksourcebuffer.c:224
+#: ../gtksourceview/gtksourcebuffer.c:230
 msgid "Whether Undo operation is possible"
 msgstr "Desegitea posible den ala ez"
 
-#: ../gtksourceview/gtksourcebuffer.c:231
+#: ../gtksourceview/gtksourcebuffer.c:237
 msgid "Can redo"
 msgstr "Berregin daiteke"
 
-#: ../gtksourceview/gtksourcebuffer.c:232
+#: ../gtksourceview/gtksourcebuffer.c:238
 msgid "Whether Redo operation is possible"
 msgstr "Berregitea posible den ala ez"
 
-#: ../gtksourceview/gtksourcebuffer.c:246
-#: ../gtksourceview/gtksourcebuffer.c:247
+#: ../gtksourceview/gtksourcebuffer.c:252
+#: ../gtksourceview/gtksourcebuffer.c:253
 msgid "Style scheme"
 msgstr "Estilo-eskema"
 
-#: ../gtksourceview/gtksourcecontextengine.c:2594
+#: ../gtksourceview/gtksourcecontextengine.c:2608
 #, c-format
 msgid "using \\C is not supported in language definitions"
 msgstr "\\C erabiltzea ez dago onartuta hizkuntzen definizioetan"
@@ -85,7 +85,7 @@ msgstr "\\C erabiltzea ez dago onartuta hizkuntzen definizioetan"
 #. * named sub-patterns with the same name or if resulting regex is
 #. * too long. In this case fixing lang file helps (e.g. renaming
 #. * subpatterns, making huge keywords use bigger prefixes, etc.)
-#: ../gtksourceview/gtksourcecontextengine.c:3218
+#: ../gtksourceview/gtksourcecontextengine.c:3232
 #, c-format
 msgid ""
 "Cannot create a regex for all the transitions, the syntax highlighting "
@@ -96,7 +96,7 @@ msgstr ""
 "nabarmentzeko prozesua ohizkoa baino motelagoa izango da.\n"
 "Errorea: %s"
 
-#: ../gtksourceview/gtksourcecontextengine.c:4533
+#: ../gtksourceview/gtksourcecontextengine.c:4547
 msgid ""
 "Highlighting a single line took too much time, syntax highlighting will be "
 "disabled"
@@ -104,19 +104,19 @@ msgstr ""
 "Lerro bakarra nabarmentzeak denbora asko hartu du, sintaxia nabarmentzea "
 "desgaitu egingo da"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5743
+#: ../gtksourceview/gtksourcecontextengine.c:5757
 #, c-format
 msgid "context '%s' cannot contain a \\%%{...@start} command"
 msgstr "'%s' testuinguruak ezin du \\%%{...@start} komandorik eduki"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5895
-#: ../gtksourceview/gtksourcecontextengine.c:5982
+#: ../gtksourceview/gtksourcecontextengine.c:5909
+#: ../gtksourceview/gtksourcecontextengine.c:5996
 #, c-format
 msgid "duplicated context id '%s'"
 msgstr "testuinguruko '%s' id-a bikoiztuta"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6095
-#: ../gtksourceview/gtksourcecontextengine.c:6155
+#: ../gtksourceview/gtksourcecontextengine.c:6109
+#: ../gtksourceview/gtksourcecontextengine.c:6169
 #, c-format
 msgid ""
 "style override used with wildcard context reference in language '%s' in ref "
@@ -125,38 +125,41 @@ msgstr ""
 "estiloa gainjartzea testuinguruko erreferentziako komondinarekin erabilita '%"
 "s' hizkuntzako '%s' erreferentzian"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6169
+#: ../gtksourceview/gtksourcecontextengine.c:6183
 #, c-format
 msgid "invalid context reference '%s'"
 msgstr "baliogabeko testuinguruko '%s' erreferentzia"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6188
-#: ../gtksourceview/gtksourcecontextengine.c:6198
+#: ../gtksourceview/gtksourcecontextengine.c:6202
+#: ../gtksourceview/gtksourcecontextengine.c:6212
 #, c-format
 msgid "unknown context '%s'"
 msgstr "'%s' testuinguru ezezaguna"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6298
+#: ../gtksourceview/gtksourcecontextengine.c:6312
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "Hizkuntza nagusiaren definizioa falta da (id=\"%s\")"
 
 #: ../gtksourceview/gtksourcelanguage.c:42
-#: ../gtksourceview/language-specs/changelog.lang.h:2
+#: ../gtksourceview/language-specs/changelog.lang.h:8
+#: ../gtksourceview/language-specs/cmake.lang.h:7
 #: ../gtksourceview/language-specs/css.lang.h:10
 #: ../gtksourceview/language-specs/desktop.lang.h:11
 #: ../gtksourceview/language-specs/diff.lang.h:9
+#: ../gtksourceview/language-specs/dot.lang.h:6
 #: ../gtksourceview/language-specs/dpatch.lang.h:2
 #: ../gtksourceview/language-specs/gtkrc.lang.h:8
 #: ../gtksourceview/language-specs/ini.lang.h:8
 #: ../gtksourceview/language-specs/libtool.lang.h:3
 #: ../gtksourceview/language-specs/msil.lang.h:2
+#: ../gtksourceview/language-specs/nsis.lang.h:4
 #: ../gtksourceview/language-specs/ocl.lang.h:6
 #: ../gtksourceview/language-specs/pkgconfig.lang.h:1
-#: ../gtksourceview/language-specs/po.lang.h:4
+#: ../gtksourceview/language-specs/po.lang.h:5
 #: ../gtksourceview/language-specs/rpmspec.lang.h:10
 #: ../gtksourceview/language-specs/sh.lang.h:6
-#: ../gtksourceview/language-specs/texinfo.lang.h:8
+#: ../gtksourceview/language-specs/texinfo.lang.h:9
 #: ../gtksourceview/language-specs/yacc.lang.h:1
 msgid "Others"
 msgstr "Bestelakoak"
@@ -347,10 +350,12 @@ msgid "Foreground color"
 msgstr "Aurreko planoko kolorea"
 
 #: ../gtksourceview/gtksourcestyle.c:94 ../gtksourceview/gtksourcestyle.c:95
+#: ../gtksourceview/language-specs/t2t.lang.h:2
 msgid "Bold"
 msgstr "Lodia"
 
 #: ../gtksourceview/gtksourcestyle.c:102 ../gtksourceview/gtksourcestyle.c:103
+#: ../gtksourceview/language-specs/t2t.lang.h:5
 msgid "Italic"
 msgstr "Etzana"
 
@@ -418,22 +423,6 @@ msgstr "Marratuaren ezarpena"
 msgid "Whether strikethrough attribute is set"
 msgstr "Marratua atributua ezarrita dagoen ala ez"
 
-#: ../gtksourceview/gtksourcestyleschememanager.c:145
-msgid "Style scheme search path"
-msgstr "Estilo-eskema bilatzeko bide-izena"
-
-#: ../gtksourceview/gtksourcestyleschememanager.c:146
-msgid "List of directories and files where the style schemes are located"
-msgstr "Estilo-eskemak kokatuta dauden direktorioen eta fitxategien zerrenda"
-
-#: ../gtksourceview/gtksourcestyleschememanager.c:154
-msgid "Scheme ids"
-msgstr "Eskemen IDak"
-
-#: ../gtksourceview/gtksourcestyleschememanager.c:155
-msgid "List of the ids of the available style schemes"
-msgstr "Estilo-eskema erabilgarrien IDen zerrenda"
-
 #: ../gtksourceview/gtksourcestylescheme.c:170
 #: ../gtksourceview/gtksourcestylescheme.c:171
 msgid "Style scheme id"
@@ -453,6 +442,22 @@ msgstr "Estilo-eskemaren azalpena"
 #: ../gtksourceview/gtksourcestylescheme.c:210
 msgid "Style scheme filename"
 msgstr "Estilo-eskemaren fitxategia"
+
+#: ../gtksourceview/gtksourcestyleschememanager.c:145
+msgid "Style scheme search path"
+msgstr "Estilo-eskema bilatzeko bide-izena"
+
+#: ../gtksourceview/gtksourcestyleschememanager.c:146
+msgid "List of directories and files where the style schemes are located"
+msgstr "Estilo-eskemak kokatuta dauden direktorioen eta fitxategien zerrenda"
+
+#: ../gtksourceview/gtksourcestyleschememanager.c:154
+msgid "Scheme ids"
+msgstr "Eskemen IDak"
+
+#: ../gtksourceview/gtksourcestyleschememanager.c:155
+msgid "List of the ids of the available style schemes"
+msgstr "Estilo-eskema erabilgarrien IDen zerrenda"
 
 #: ../gtksourceview/gtksourceview.c:265
 msgid "Show Line Numbers"
@@ -563,6 +568,7 @@ msgstr "Hautazko oinarri zenbakia"
 
 #. A boolean constant: TRUE, false
 #: ../gtksourceview/language-specs/ada.lang.h:3
+#: ../gtksourceview/language-specs/asp.lang.h:3
 #: ../gtksourceview/language-specs/c.lang.h:1
 #: ../gtksourceview/language-specs/csharp.lang.h:1
 #: ../gtksourceview/language-specs/def.lang.h:4
@@ -584,26 +590,31 @@ msgstr "Balio boolearra"
 
 #. Any comment
 #: ../gtksourceview/language-specs/ada.lang.h:4
+#: ../gtksourceview/language-specs/asp.lang.h:4
 #: ../gtksourceview/language-specs/boo.lang.h:4
 #: ../gtksourceview/language-specs/c.lang.h:4
 #: ../gtksourceview/language-specs/csharp.lang.h:4
 #: ../gtksourceview/language-specs/css.lang.h:3
 #: ../gtksourceview/language-specs/def.lang.h:11
 #: ../gtksourceview/language-specs/d.lang.h:3
+#: ../gtksourceview/language-specs/dosbatch.lang.h:2
+#: ../gtksourceview/language-specs/dot.lang.h:2
 #: ../gtksourceview/language-specs/eiffel.lang.h:3
 #: ../gtksourceview/language-specs/erlang.lang.h:4
 #: ../gtksourceview/language-specs/forth.lang.h:1
 #: ../gtksourceview/language-specs/fortran.lang.h:2
+#: ../gtksourceview/language-specs/gap.lang.h:2
 #: ../gtksourceview/language-specs/gtkrc.lang.h:2
 #: ../gtksourceview/language-specs/haskell.lang.h:2
 #: ../gtksourceview/language-specs/html.lang.h:3
 #: ../gtksourceview/language-specs/idl.lang.h:1
 #: ../gtksourceview/language-specs/ini.lang.h:3
-#: ../gtksourceview/language-specs/java.lang.h:2
+#: ../gtksourceview/language-specs/java.lang.h:3
 #: ../gtksourceview/language-specs/javascript.lang.h:2
 #: ../gtksourceview/language-specs/latex.lang.h:2
 #: ../gtksourceview/language-specs/lua.lang.h:2
 #: ../gtksourceview/language-specs/nemerle.lang.h:4
+#: ../gtksourceview/language-specs/nsis.lang.h:1
 #: ../gtksourceview/language-specs/ocaml.lang.h:4
 #: ../gtksourceview/language-specs/ocl.lang.h:1
 #: ../gtksourceview/language-specs/octave.lang.h:3
@@ -615,6 +626,7 @@ msgstr "Balio boolearra"
 #: ../gtksourceview/language-specs/scheme.lang.h:2
 #: ../gtksourceview/language-specs/sh.lang.h:1
 #: ../gtksourceview/language-specs/sql.lang.h:1
+#: ../gtksourceview/language-specs/t2t.lang.h:3
 #: ../gtksourceview/language-specs/texinfo.lang.h:1
 #: ../gtksourceview/language-specs/vala.lang.h:2
 #: ../gtksourceview/language-specs/vbnet.lang.h:2
@@ -626,6 +638,7 @@ msgstr "Iruzkina"
 
 #. map-to="def:others"
 #: ../gtksourceview/language-specs/ada.lang.h:5
+#: ../gtksourceview/language-specs/asp.lang.h:5
 #: ../gtksourceview/language-specs/boo.lang.h:5
 #: ../gtksourceview/language-specs/c.lang.h:6
 #: ../gtksourceview/language-specs/cpp.lang.h:3
@@ -638,7 +651,7 @@ msgstr "Iruzkina"
 #: ../gtksourceview/language-specs/haskell.lang.h:3
 #: ../gtksourceview/language-specs/idl.lang.h:2
 #: ../gtksourceview/language-specs/ini.lang.h:4
-#: ../gtksourceview/language-specs/java.lang.h:3
+#: ../gtksourceview/language-specs/java.lang.h:4
 #: ../gtksourceview/language-specs/javascript.lang.h:5
 #: ../gtksourceview/language-specs/nemerle.lang.h:5
 #: ../gtksourceview/language-specs/objc.lang.h:2
@@ -674,17 +687,20 @@ msgstr "Zenbaki hamartarra"
 #: ../gtksourceview/language-specs/c.lang.h:9
 #: ../gtksourceview/language-specs/csharp.lang.h:8
 #: ../gtksourceview/language-specs/haskell.lang.h:5
+#: ../gtksourceview/language-specs/java.lang.h:7
 #: ../gtksourceview/language-specs/lua.lang.h:3
 #: ../gtksourceview/language-specs/ocaml.lang.h:8
 #: ../gtksourceview/language-specs/php.lang.h:7
 #: ../gtksourceview/language-specs/python.lang.h:8
 #: ../gtksourceview/language-specs/ruby.lang.h:8
+#: ../gtksourceview/language-specs/texinfo.lang.h:2
 msgid "Escaped Character"
 msgstr "Ihes karakterea"
 
 #. keywords: "if", "for", "while", etc.
 #: ../gtksourceview/language-specs/ada.lang.h:8
-#: ../gtksourceview/language-specs/awk.lang.h:1
+#: ../gtksourceview/language-specs/asp.lang.h:7
+#: ../gtksourceview/language-specs/awk.lang.h:2
 #: ../gtksourceview/language-specs/boo.lang.h:7
 #: ../gtksourceview/language-specs/c.lang.h:13
 #: ../gtksourceview/language-specs/cpp.lang.h:4
@@ -692,15 +708,18 @@ msgstr "Ihes karakterea"
 #: ../gtksourceview/language-specs/css.lang.h:8
 #: ../gtksourceview/language-specs/def.lang.h:36
 #: ../gtksourceview/language-specs/d.lang.h:10
+#: ../gtksourceview/language-specs/dosbatch.lang.h:4
+#: ../gtksourceview/language-specs/dot.lang.h:5
 #: ../gtksourceview/language-specs/eiffel.lang.h:11
 #: ../gtksourceview/language-specs/erlang.lang.h:9
 #: ../gtksourceview/language-specs/forth.lang.h:7
 #: ../gtksourceview/language-specs/fortran.lang.h:7
+#: ../gtksourceview/language-specs/gap.lang.h:6
 #: ../gtksourceview/language-specs/gtkrc.lang.h:7
 #: ../gtksourceview/language-specs/haskell.lang.h:9
 #: ../gtksourceview/language-specs/idl.lang.h:4
 #: ../gtksourceview/language-specs/ini.lang.h:7
-#: ../gtksourceview/language-specs/java.lang.h:9
+#: ../gtksourceview/language-specs/java.lang.h:11
 #: ../gtksourceview/language-specs/javascript.lang.h:10
 #: ../gtksourceview/language-specs/lua.lang.h:5
 #: ../gtksourceview/language-specs/nemerle.lang.h:10
@@ -711,7 +730,7 @@ msgstr "Ihes karakterea"
 #: ../gtksourceview/language-specs/pascal.lang.h:4
 #: ../gtksourceview/language-specs/perl.lang.h:9
 #: ../gtksourceview/language-specs/php.lang.h:13
-#: ../gtksourceview/language-specs/po.lang.h:2
+#: ../gtksourceview/language-specs/po.lang.h:3
 #: ../gtksourceview/language-specs/python.lang.h:11
 #: ../gtksourceview/language-specs/R.lang.h:6
 #: ../gtksourceview/language-specs/ruby.lang.h:12
@@ -719,7 +738,7 @@ msgstr "Ihes karakterea"
 #: ../gtksourceview/language-specs/sh.lang.h:5
 #: ../gtksourceview/language-specs/sql.lang.h:6
 #: ../gtksourceview/language-specs/tcl.lang.h:1
-#: ../gtksourceview/language-specs/texinfo.lang.h:5
+#: ../gtksourceview/language-specs/texinfo.lang.h:6
 #: ../gtksourceview/language-specs/vala.lang.h:7
 #: ../gtksourceview/language-specs/vbnet.lang.h:4
 #: ../gtksourceview/language-specs/verilog.lang.h:6
@@ -728,6 +747,7 @@ msgid "Keyword"
 msgstr "Gako-hitza"
 
 #: ../gtksourceview/language-specs/ada.lang.h:9
+#: ../gtksourceview/language-specs/asp.lang.h:10
 #: ../gtksourceview/language-specs/c.lang.h:15
 #: ../gtksourceview/language-specs/csharp.lang.h:12
 #: ../gtksourceview/language-specs/forth.lang.h:9
@@ -747,9 +767,10 @@ msgid "Real number"
 msgstr "Zenbaki erreala"
 
 #: ../gtksourceview/language-specs/ada.lang.h:11
+#: ../gtksourceview/language-specs/asp.lang.h:11
 #: ../gtksourceview/language-specs/boo.lang.h:13
-#: ../gtksourceview/language-specs/c.lang.h:16
 #: ../gtksourceview/language-specs/chdr.lang.h:2
+#: ../gtksourceview/language-specs/c.lang.h:16
 #: ../gtksourceview/language-specs/cpp.lang.h:5
 #: ../gtksourceview/language-specs/csharp.lang.h:14
 #: ../gtksourceview/language-specs/d.lang.h:13
@@ -757,11 +778,11 @@ msgstr "Zenbaki erreala"
 #: ../gtksourceview/language-specs/erlang.lang.h:11
 #: ../gtksourceview/language-specs/forth.lang.h:10
 #: ../gtksourceview/language-specs/fortran.lang.h:8
-#: ../gtksourceview/language-specs/haskell-literate.lang.h:2
 #: ../gtksourceview/language-specs/haskell.lang.h:12
+#: ../gtksourceview/language-specs/haskell-literate.lang.h:2
 #: ../gtksourceview/language-specs/idl.lang.h:6
-#: ../gtksourceview/language-specs/java.lang.h:13
-#: ../gtksourceview/language-specs/makefile.lang.h:2
+#: ../gtksourceview/language-specs/java.lang.h:15
+#: ../gtksourceview/language-specs/makefile.lang.h:4
 #: ../gtksourceview/language-specs/nemerle.lang.h:15
 #: ../gtksourceview/language-specs/objc.lang.h:5
 #: ../gtksourceview/language-specs/ocaml.lang.h:16
@@ -777,18 +798,20 @@ msgstr "Iturburuak"
 
 #: ../gtksourceview/language-specs/ada.lang.h:12
 #: ../gtksourceview/language-specs/c.lang.h:17
-#: ../gtksourceview/language-specs/java.lang.h:14
+#: ../gtksourceview/language-specs/java.lang.h:16
 msgid "Storage Class"
 msgstr "Biltegi klasea"
 
 #. A string constant: "this is a string"
 #: ../gtksourceview/language-specs/ada.lang.h:13
+#: ../gtksourceview/language-specs/asp.lang.h:13
 #: ../gtksourceview/language-specs/boo.lang.h:15
 #: ../gtksourceview/language-specs/c.lang.h:18
 #: ../gtksourceview/language-specs/csharp.lang.h:15
 #: ../gtksourceview/language-specs/css.lang.h:13
 #: ../gtksourceview/language-specs/def.lang.h:57
 #: ../gtksourceview/language-specs/d.lang.h:15
+#: ../gtksourceview/language-specs/dosbatch.lang.h:6
 #: ../gtksourceview/language-specs/eiffel.lang.h:14
 #: ../gtksourceview/language-specs/erlang.lang.h:12
 #: ../gtksourceview/language-specs/forth.lang.h:11
@@ -796,10 +819,11 @@ msgstr "Biltegi klasea"
 #: ../gtksourceview/language-specs/haskell.lang.h:13
 #: ../gtksourceview/language-specs/idl.lang.h:7
 #: ../gtksourceview/language-specs/ini.lang.h:9
-#: ../gtksourceview/language-specs/java.lang.h:15
+#: ../gtksourceview/language-specs/java.lang.h:17
 #: ../gtksourceview/language-specs/javascript.lang.h:15
 #: ../gtksourceview/language-specs/lua.lang.h:10
 #: ../gtksourceview/language-specs/nemerle.lang.h:16
+#: ../gtksourceview/language-specs/nsis.lang.h:5
 #: ../gtksourceview/language-specs/objc.lang.h:6
 #: ../gtksourceview/language-specs/ocaml.lang.h:17
 #: ../gtksourceview/language-specs/ocl.lang.h:7
@@ -807,40 +831,107 @@ msgstr "Biltegi klasea"
 #: ../gtksourceview/language-specs/pascal.lang.h:8
 #: ../gtksourceview/language-specs/perl.lang.h:19
 #: ../gtksourceview/language-specs/php.lang.h:19
-#: ../gtksourceview/language-specs/po.lang.h:5
+#: ../gtksourceview/language-specs/po.lang.h:8
 #: ../gtksourceview/language-specs/python.lang.h:17
 #: ../gtksourceview/language-specs/ruby.lang.h:21
 #: ../gtksourceview/language-specs/scheme.lang.h:7
 #: ../gtksourceview/language-specs/sh.lang.h:9
 #: ../gtksourceview/language-specs/sql.lang.h:10
-#: ../gtksourceview/language-specs/texinfo.lang.h:9
+#: ../gtksourceview/language-specs/texinfo.lang.h:10
 #: ../gtksourceview/language-specs/vala.lang.h:11
 #: ../gtksourceview/language-specs/vbnet.lang.h:8
 #: ../gtksourceview/language-specs/vhdl.lang.h:9
 msgid "String"
 msgstr "Katea"
 
-#: ../gtksourceview/language-specs/awk.lang.h:2
+#: ../gtksourceview/language-specs/asp.lang.h:1
+msgid "ASP"
+msgstr "ASP"
+
+#: ../gtksourceview/language-specs/asp.lang.h:2
+msgid "ASP Object"
+msgstr "ASP objektua"
+
+#. A function name (also: methods for classes)
+#: ../gtksourceview/language-specs/asp.lang.h:6
+#: ../gtksourceview/language-specs/changelog.lang.h:6
+#: ../gtksourceview/language-specs/css.lang.h:7
+#: ../gtksourceview/language-specs/def.lang.h:32
+#: ../gtksourceview/language-specs/gap.lang.h:4
+#: ../gtksourceview/language-specs/gtk-doc.lang.h:3
+#: ../gtksourceview/language-specs/javascript.lang.h:7
+#: ../gtksourceview/language-specs/lua.lang.h:4
+#: ../gtksourceview/language-specs/octave.lang.h:6
+#: ../gtksourceview/language-specs/scheme.lang.h:3
+#: ../gtksourceview/language-specs/sh.lang.h:3
+#: ../gtksourceview/language-specs/sql.lang.h:5
+msgid "Function"
+msgstr "Funtzioa"
+
+#. A generic number constant
+#: ../gtksourceview/language-specs/asp.lang.h:8
+#: ../gtksourceview/language-specs/boo.lang.h:11
+#: ../gtksourceview/language-specs/def.lang.h:40
+#: ../gtksourceview/language-specs/desktop.lang.h:10
+#: ../gtksourceview/language-specs/forth.lang.h:8
+#: ../gtksourceview/language-specs/java.lang.h:13
+#: ../gtksourceview/language-specs/vhdl.lang.h:6
+msgid "Number"
+msgstr "Zenbakia"
+
+#. Operators: "+", "*", etc.
+#: ../gtksourceview/language-specs/asp.lang.h:9
+#: ../gtksourceview/language-specs/cmake.lang.h:6
+#: ../gtksourceview/language-specs/def.lang.h:42
+#: ../gtksourceview/language-specs/erlang.lang.h:10
+#: ../gtksourceview/language-specs/nsis.lang.h:3
+#: ../gtksourceview/language-specs/perl.lang.h:11
+#: ../gtksourceview/language-specs/php.lang.h:16
+msgid "Operator"
+msgstr "Eragilea"
+
+#. A special constant like NULL in C or null in Java
+#: ../gtksourceview/language-specs/asp.lang.h:12
+#: ../gtksourceview/language-specs/def.lang.h:53
+#: ../gtksourceview/language-specs/vbnet.lang.h:7
+msgid "Special constant"
+msgstr "Konstante berezia"
+
+#: ../gtksourceview/language-specs/asp.lang.h:14
+msgid "VBScript and ADO constants"
+msgstr "VBScript eta ADO konstanteak"
+
+#: ../gtksourceview/language-specs/awk.lang.h:1
+#: ../gtksourceview/language-specs/boo.lang.h:3
+#: ../gtksourceview/language-specs/perl.lang.h:1
+#: ../gtksourceview/language-specs/python.lang.h:4
+msgid "Builtin Function"
+msgstr "Funtzio barneratua"
+
+#: ../gtksourceview/language-specs/awk.lang.h:3
 msgid "Pattern"
 msgstr "Eredua"
 
-#: ../gtksourceview/language-specs/awk.lang.h:3
+#: ../gtksourceview/language-specs/awk.lang.h:4
+#: ../gtksourceview/language-specs/dosbatch.lang.h:5
 #: ../gtksourceview/language-specs/javascript.lang.h:14
 #: ../gtksourceview/language-specs/lua.lang.h:9
-#: ../gtksourceview/language-specs/m4.lang.h:1
+#: ../gtksourceview/language-specs/m4.lang.h:3
 #: ../gtksourceview/language-specs/perl.lang.h:18
 #: ../gtksourceview/language-specs/php.lang.h:18
 #: ../gtksourceview/language-specs/python.lang.h:15
-#: ../gtksourceview/language-specs/R.lang.h:9
 #: ../gtksourceview/language-specs/ruby.lang.h:19
 #: ../gtksourceview/language-specs/sh.lang.h:7
 #: ../gtksourceview/language-specs/tcl.lang.h:2
 msgid "Scripts"
 msgstr "Skript-ak"
 
-#: ../gtksourceview/language-specs/awk.lang.h:4
+#: ../gtksourceview/language-specs/awk.lang.h:5
+#: ../gtksourceview/language-specs/cmake.lang.h:8
 #: ../gtksourceview/language-specs/haskell.lang.h:15
 #: ../gtksourceview/language-specs/ini.lang.h:10
+#: ../gtksourceview/language-specs/makefile.lang.h:8
+#: ../gtksourceview/language-specs/nsis.lang.h:6
 #: ../gtksourceview/language-specs/perl.lang.h:21
 #: ../gtksourceview/language-specs/php.lang.h:20
 #: ../gtksourceview/language-specs/pkgconfig.lang.h:3
@@ -850,7 +941,7 @@ msgstr "Skript-ak"
 msgid "Variable"
 msgstr "Aldagaia"
 
-#: ../gtksourceview/language-specs/awk.lang.h:5
+#: ../gtksourceview/language-specs/awk.lang.h:6
 msgid "awk"
 msgstr "Awk"
 
@@ -868,12 +959,6 @@ msgstr "Boo"
 msgid "Boolean"
 msgstr "Boolearra"
 
-#: ../gtksourceview/language-specs/boo.lang.h:3
-#: ../gtksourceview/language-specs/perl.lang.h:1
-#: ../gtksourceview/language-specs/python.lang.h:4
-msgid "Builtin Function"
-msgstr "Funtzio barneratua"
-
 #: ../gtksourceview/language-specs/boo.lang.h:6
 msgid "Definition"
 msgstr "Definizioa"
@@ -885,29 +970,20 @@ msgstr "Lerro anitzeko katea"
 
 #: ../gtksourceview/language-specs/boo.lang.h:9
 #: ../gtksourceview/language-specs/xml.lang.h:10
+#: ../gtksourceview/language-specs/xslt.lang.h:3
 msgid "Namespace"
 msgstr "Izen-lekua"
 
 #: ../gtksourceview/language-specs/boo.lang.h:10
 #: ../gtksourceview/language-specs/csharp.lang.h:11
 #: ../gtksourceview/language-specs/d.lang.h:11
-#: ../gtksourceview/language-specs/java.lang.h:10
+#: ../gtksourceview/language-specs/java.lang.h:12
 #: ../gtksourceview/language-specs/javascript.lang.h:11
 #: ../gtksourceview/language-specs/nemerle.lang.h:12
 #: ../gtksourceview/language-specs/php.lang.h:14
 #: ../gtksourceview/language-specs/vala.lang.h:8
 msgid "Null Value"
 msgstr "NULUA balioa"
-
-#. A generic number constant
-#: ../gtksourceview/language-specs/boo.lang.h:11
-#: ../gtksourceview/language-specs/def.lang.h:40
-#: ../gtksourceview/language-specs/desktop.lang.h:10
-#: ../gtksourceview/language-specs/forth.lang.h:8
-#: ../gtksourceview/language-specs/java.lang.h:11
-#: ../gtksourceview/language-specs/vhdl.lang.h:6
-msgid "Number"
-msgstr "Zenbakia"
 
 #: ../gtksourceview/language-specs/boo.lang.h:12
 #: ../gtksourceview/language-specs/perl.lang.h:17
@@ -922,8 +998,37 @@ msgid "Special Variable"
 msgstr "Aldagai berezia"
 
 #: ../gtksourceview/language-specs/changelog.lang.h:1
+msgid "Bullet"
+msgstr "Buleta"
+
+#: ../gtksourceview/language-specs/changelog.lang.h:2
 msgid "ChangeLog"
 msgstr "ChangeLog"
+
+#: ../gtksourceview/language-specs/changelog.lang.h:3
+#: ../gtksourceview/language-specs/rpmspec.lang.h:3
+msgid "Date"
+msgstr "Data"
+
+#: ../gtksourceview/language-specs/changelog.lang.h:4
+msgid "E-mail address"
+msgstr "Helbide elektronikoa"
+
+#: ../gtksourceview/language-specs/changelog.lang.h:5
+msgid "File"
+msgstr "Fitxategia"
+
+#: ../gtksourceview/language-specs/changelog.lang.h:7
+msgid "Name"
+msgstr "Izena"
+
+#: ../gtksourceview/language-specs/changelog.lang.h:9
+msgid "Release"
+msgstr "Argitalpena"
+
+#: ../gtksourceview/language-specs/chdr.lang.h:1
+msgid "C/C++/ObjC Header"
+msgstr "C/C++/ObjC goiburua"
 
 #: ../gtksourceview/language-specs/c.lang.h:2
 msgid "C"
@@ -933,7 +1038,9 @@ msgstr "C"
 #: ../gtksourceview/language-specs/c.lang.h:3
 #: ../gtksourceview/language-specs/csharp.lang.h:3
 #: ../gtksourceview/language-specs/def.lang.h:9
+#: ../gtksourceview/language-specs/gap.lang.h:1
 #: ../gtksourceview/language-specs/haskell.lang.h:1
+#: ../gtksourceview/language-specs/java.lang.h:2
 #: ../gtksourceview/language-specs/nemerle.lang.h:3
 #: ../gtksourceview/language-specs/vhdl.lang.h:3
 msgid "Character"
@@ -951,8 +1058,9 @@ msgstr "Definizio komunak"
 #: ../gtksourceview/language-specs/css.lang.h:6
 #: ../gtksourceview/language-specs/def.lang.h:28
 #: ../gtksourceview/language-specs/d.lang.h:7
+#: ../gtksourceview/language-specs/dot.lang.h:3
 #: ../gtksourceview/language-specs/html.lang.h:5
-#: ../gtksourceview/language-specs/java.lang.h:5
+#: ../gtksourceview/language-specs/java.lang.h:6
 #: ../gtksourceview/language-specs/javascript.lang.h:6
 #: ../gtksourceview/language-specs/nemerle.lang.h:7
 #: ../gtksourceview/language-specs/ocaml.lang.h:7
@@ -1002,9 +1110,46 @@ msgstr "Zenbaki zortzitarra"
 msgid "printf Conversion"
 msgstr "printf bihurketa"
 
-#: ../gtksourceview/language-specs/chdr.lang.h:1
-msgid "C/C++/ObjC Header"
-msgstr "C/C++/ObjC goiburua"
+#: ../gtksourceview/language-specs/classic.xml.h:1
+msgid "Classic"
+msgstr "klasikoa"
+
+#: ../gtksourceview/language-specs/classic.xml.h:2
+msgid "Classic color scheme"
+msgstr "Kolore-eskema klasikoa"
+
+#: ../gtksourceview/language-specs/cmake.lang.h:1
+msgid "Bulit-in Command"
+msgstr "Komando integratua"
+
+#: ../gtksourceview/language-specs/cmake.lang.h:2
+msgid "Bulit-in Variable"
+msgstr "Aldagai barneratua"
+
+#: ../gtksourceview/language-specs/cmake.lang.h:3
+msgid "CMake"
+msgstr "CMake"
+
+#. Any constant
+#: ../gtksourceview/language-specs/cmake.lang.h:4
+#: ../gtksourceview/language-specs/def.lang.h:15
+#: ../gtksourceview/language-specs/gtk-doc.lang.h:1
+#: ../gtksourceview/language-specs/libtool.lang.h:2
+#: ../gtksourceview/language-specs/ruby.lang.h:6
+msgid "Constant"
+msgstr "Konstantea"
+
+#: ../gtksourceview/language-specs/cmake.lang.h:5
+msgid "Control Keyword"
+msgstr "Kontroleko gako-hitza"
+
+#: ../gtksourceview/language-specs/cobalt.xml.h:1
+msgid "Blue based color scheme"
+msgstr "Urdinean oinarritutako kolore-eskema"
+
+#: ../gtksourceview/language-specs/cobalt.xml.h:2
+msgid "Cobalt"
+msgstr "Kobaltoa"
 
 #: ../gtksourceview/language-specs/cpp.lang.h:1
 msgid "C++"
@@ -1028,6 +1173,7 @@ msgstr "Kolorea"
 
 #: ../gtksourceview/language-specs/css.lang.h:4
 #: ../gtksourceview/language-specs/fortran.lang.h:4
+#: ../gtksourceview/language-specs/gap.lang.h:3
 #: ../gtksourceview/language-specs/gtkrc.lang.h:4
 #: ../gtksourceview/language-specs/haskell.lang.h:4
 #: ../gtksourceview/language-specs/ini.lang.h:5
@@ -1040,19 +1186,6 @@ msgstr "Hamartarra"
 #: ../gtksourceview/language-specs/css.lang.h:5
 msgid "Dimension"
 msgstr "Neurria"
-
-#. A function name (also: methods for classes)
-#: ../gtksourceview/language-specs/css.lang.h:7
-#: ../gtksourceview/language-specs/def.lang.h:32
-#: ../gtksourceview/language-specs/gtk-doc.lang.h:2
-#: ../gtksourceview/language-specs/javascript.lang.h:7
-#: ../gtksourceview/language-specs/lua.lang.h:4
-#: ../gtksourceview/language-specs/octave.lang.h:6
-#: ../gtksourceview/language-specs/scheme.lang.h:3
-#: ../gtksourceview/language-specs/sh.lang.h:3
-#: ../gtksourceview/language-specs/sql.lang.h:5
-msgid "Function"
-msgstr "Funtzioa"
 
 #: ../gtksourceview/language-specs/css.lang.h:9
 msgid "Known Property Value"
@@ -1089,14 +1222,6 @@ msgstr "Identifikatzaile barneratua"
 msgid "Complex number"
 msgstr "Zenbaki konplexua"
 
-#. Any constant
-#: ../gtksourceview/language-specs/def.lang.h:15
-#: ../gtksourceview/language-specs/gtk-doc.lang.h:1
-#: ../gtksourceview/language-specs/libtool.lang.h:2
-#: ../gtksourceview/language-specs/ruby.lang.h:6
-msgid "Constant"
-msgstr "Konstantea"
-
 #. A primitive data type: int, long, char, etc.
 #: ../gtksourceview/language-specs/def.lang.h:17
 msgid "Data type"
@@ -1129,14 +1254,6 @@ msgstr "Identifikatzailea"
 msgid "Note (FIXME, TODO, XXX, etc.)"
 msgstr "Oharra (FINKATZEKO, EGITEKO, XXX, e.a.)"
 
-#. Operators: "+", "*", etc.
-#: ../gtksourceview/language-specs/def.lang.h:42
-#: ../gtksourceview/language-specs/erlang.lang.h:10
-#: ../gtksourceview/language-specs/perl.lang.h:11
-#: ../gtksourceview/language-specs/php.lang.h:16
-msgid "Operator"
-msgstr "Eragilea"
-
 #. This one is for '#include <foo.h>' and "#pragma blah", or 'use foobar', etc..
 #: ../gtksourceview/language-specs/def.lang.h:44
 msgid "Preprocessor directive"
@@ -1158,12 +1275,6 @@ msgstr "Shebang (#!)"
 #: ../gtksourceview/language-specs/def.lang.h:51
 msgid "Special character (inside a string)"
 msgstr "Karaktere berezia (katearen barnean)"
-
-#. A special constant like NULL in C or null in Java
-#: ../gtksourceview/language-specs/def.lang.h:53
-#: ../gtksourceview/language-specs/vbnet.lang.h:7
-msgid "Special constant"
-msgstr "Konstante berezia"
 
 #. Any statement
 #: ../gtksourceview/language-specs/def.lang.h:55
@@ -1225,7 +1336,7 @@ msgstr "Ez ikusi egin"
 
 #. String
 #: ../gtksourceview/language-specs/diff.lang.h:8
-#: ../gtksourceview/language-specs/po.lang.h:3
+#: ../gtksourceview/language-specs/po.lang.h:4
 msgid "Location"
 msgstr "Kokalekua"
 
@@ -1270,18 +1381,38 @@ msgstr "Goiburuko elementuak"
 
 #: ../gtksourceview/language-specs/docbook.lang.h:5
 #: ../gtksourceview/language-specs/dtd.lang.h:2
-#: ../gtksourceview/language-specs/gtk-doc.lang.h:5
+#: ../gtksourceview/language-specs/gtk-doc.lang.h:6
 #: ../gtksourceview/language-specs/haddock.lang.h:14
 #: ../gtksourceview/language-specs/html.lang.h:7
 #: ../gtksourceview/language-specs/latex.lang.h:6
-#: ../gtksourceview/language-specs/texinfo.lang.h:7
+#: ../gtksourceview/language-specs/t2t.lang.h:6
+#: ../gtksourceview/language-specs/texinfo.lang.h:8
 #: ../gtksourceview/language-specs/xml.lang.h:9
+#: ../gtksourceview/language-specs/xslt.lang.h:2
 msgid "Markup"
 msgstr "Marka"
 
 #: ../gtksourceview/language-specs/docbook.lang.h:6
 msgid "Structural Elements"
 msgstr "Egiturako elementuak"
+
+#: ../gtksourceview/language-specs/dosbatch.lang.h:1
+#: ../gtksourceview/language-specs/latex.lang.h:1
+msgid "Command"
+msgstr "Komandoa"
+
+#: ../gtksourceview/language-specs/dosbatch.lang.h:3
+msgid "Dos Batch"
+msgstr "Dos-eko batch"
+
+#: ../gtksourceview/language-specs/dot.lang.h:1
+#: ../gtksourceview/language-specs/xml.lang.h:1
+msgid "Attribute name"
+msgstr "Atributuaren izena"
+
+#: ../gtksourceview/language-specs/dot.lang.h:4
+msgid "Graphviz Dot"
+msgstr "Graphviz-eko Dot"
 
 #: ../gtksourceview/language-specs/dpatch.lang.h:1
 msgid "DPatch"
@@ -1295,6 +1426,22 @@ msgstr "adabaki-hasiera"
 #: ../gtksourceview/language-specs/html.lang.h:4
 msgid "DTD"
 msgstr "DTD"
+
+#: ../gtksourceview/language-specs/dtd.lang.h:3
+msgid "decl"
+msgstr "dekl"
+
+#: ../gtksourceview/language-specs/dtd.lang.h:4
+msgid "entity"
+msgstr "entitatea"
+
+#: ../gtksourceview/language-specs/dtd.lang.h:5
+msgid "error"
+msgstr "errorea"
+
+#: ../gtksourceview/language-specs/dtd.lang.h:6
+msgid "quoted-value"
+msgstr "aipu-balioa"
 
 #: ../gtksourceview/language-specs/eiffel.lang.h:1
 msgid "Assertion"
@@ -1383,50 +1530,55 @@ msgstr "Koma mugikorra"
 msgid "Fortran 95"
 msgstr "Fortran 95"
 
-#: ../gtksourceview/language-specs/gap.lang.h:1
+#: ../gtksourceview/language-specs/gap.lang.h:5
 msgid "GAP"
 msgstr "GAP"
 
-#: ../gtksourceview/language-specs/gap.lang.h:2
+#: ../gtksourceview/language-specs/gap.lang.h:7
 #: ../gtksourceview/language-specs/octave.lang.h:10
+#: ../gtksourceview/language-specs/R.lang.h:9
 msgid "Scientific"
 msgstr "Zientifikoa"
 
-#: ../gtksourceview/language-specs/gtk-doc.lang.h:3
+#: ../gtksourceview/language-specs/gtk-doc.lang.h:2
+msgid "Deprecated"
+msgstr "Zaharkitua"
+
+#: ../gtksourceview/language-specs/gtk-doc.lang.h:4
 msgid "Function Name"
 msgstr "Funtzioaren izena"
 
-#: ../gtksourceview/language-specs/gtk-doc.lang.h:4
+#: ../gtksourceview/language-specs/gtk-doc.lang.h:5
 msgid "Inline Documentation Section"
 msgstr "Barneko dokumentazioaren atala"
 
-#: ../gtksourceview/language-specs/gtk-doc.lang.h:6
+#: ../gtksourceview/language-specs/gtk-doc.lang.h:7
 msgid "Parameter"
 msgstr "Parametroa"
 
-#: ../gtksourceview/language-specs/gtk-doc.lang.h:7
+#: ../gtksourceview/language-specs/gtk-doc.lang.h:8
 msgid "Property Name"
 msgstr "Propietatearen izena"
 
-#: ../gtksourceview/language-specs/gtk-doc.lang.h:8
+#: ../gtksourceview/language-specs/gtk-doc.lang.h:9
 msgid "Return"
 msgstr "Itzuli"
 
-#: ../gtksourceview/language-specs/gtk-doc.lang.h:9
+#: ../gtksourceview/language-specs/gtk-doc.lang.h:10
 msgid "Signal Name"
 msgstr "Seinalearen izena"
 
-#: ../gtksourceview/language-specs/gtk-doc.lang.h:10
+#: ../gtksourceview/language-specs/gtk-doc.lang.h:11
 msgid "Since"
 msgstr "Noiztik"
 
-#: ../gtksourceview/language-specs/gtk-doc.lang.h:11
+#: ../gtksourceview/language-specs/gtk-doc.lang.h:12
 #: ../gtksourceview/language-specs/verilog.lang.h:8
 #: ../gtksourceview/language-specs/vhdl.lang.h:10
 msgid "Type"
 msgstr "Mota"
 
-#: ../gtksourceview/language-specs/gtk-doc.lang.h:12
+#: ../gtksourceview/language-specs/gtk-doc.lang.h:13
 msgid "gtk-doc"
 msgstr "gtk-doc"
 
@@ -1443,6 +1595,7 @@ msgid "Widget State"
 msgstr "Trepetaren egoera"
 
 #: ../gtksourceview/language-specs/haddock.lang.h:1
+#: ../gtksourceview/language-specs/t2t.lang.h:1
 msgid "Anchor"
 msgstr "Ainguratu"
 
@@ -1502,10 +1655,6 @@ msgstr "Tarte bakarrekoa"
 msgid "URL"
 msgstr "URLa"
 
-#: ../gtksourceview/language-specs/haskell-literate.lang.h:1
-msgid "Literate Haskell"
-msgstr "Haskell literala"
-
 #: ../gtksourceview/language-specs/haskell.lang.h:6
 msgid "Float"
 msgstr "Mugikorra"
@@ -1526,6 +1675,10 @@ msgstr "Zortzitarra"
 #: ../gtksourceview/language-specs/ruby.lang.h:22
 msgid "Symbol"
 msgstr "Ikurra"
+
+#: ../gtksourceview/language-specs/haskell-literate.lang.h:1
+msgid "Literate Haskell"
+msgstr "Haskell literala"
 
 #: ../gtksourceview/language-specs/html.lang.h:1
 msgid "Attribute Name"
@@ -1552,24 +1705,24 @@ msgstr "IDL"
 msgid ".ini"
 msgstr ".ini"
 
-#: ../gtksourceview/language-specs/java.lang.h:4
+#: ../gtksourceview/language-specs/java.lang.h:5
 msgid "Declaration"
 msgstr "Deklarazioa"
 
-#: ../gtksourceview/language-specs/java.lang.h:6
+#: ../gtksourceview/language-specs/java.lang.h:8
 msgid "External"
 msgstr "Kanpokoa"
 
-#: ../gtksourceview/language-specs/java.lang.h:7
+#: ../gtksourceview/language-specs/java.lang.h:9
 #: ../gtksourceview/language-specs/javascript.lang.h:8
 msgid "Future Reserved Keywords"
 msgstr "Etorkizunerako gordetako gako-hitzak"
 
-#: ../gtksourceview/language-specs/java.lang.h:8
+#: ../gtksourceview/language-specs/java.lang.h:10
 msgid "Java"
 msgstr "Java"
 
-#: ../gtksourceview/language-specs/java.lang.h:12
+#: ../gtksourceview/language-specs/java.lang.h:14
 msgid "Scope Declaration"
 msgstr "Deklarazioaren esparrua"
 
@@ -1589,12 +1742,16 @@ msgstr "Objektua"
 msgid "Properties"
 msgstr "Propietateak"
 
-#: ../gtksourceview/language-specs/latex.lang.h:1
-msgid "Command"
-msgstr "Komandoa"
+#: ../gtksourceview/language-specs/kate.xml.h:1
+msgid "Color scheme used in the Kate text editor"
+msgstr "Erabilitako kolore-eskema Kate testu-editorean"
+
+#: ../gtksourceview/language-specs/kate.xml.h:2
+msgid "Kate"
+msgstr "Kate"
 
 #: ../gtksourceview/language-specs/latex.lang.h:3
-#: ../gtksourceview/language-specs/texinfo.lang.h:4
+#: ../gtksourceview/language-specs/texinfo.lang.h:5
 msgid "Include"
 msgstr "Include"
 
@@ -1611,6 +1768,7 @@ msgid "Math Mode"
 msgstr "Matematika modua"
 
 #: ../gtksourceview/language-specs/latex.lang.h:8
+#: ../gtksourceview/language-specs/t2t.lang.h:16
 msgid "Verbatim"
 msgstr "Hitzez hitz"
 
@@ -1635,13 +1793,65 @@ msgstr "Konstante nulua"
 msgid "Reserved Identifier"
 msgstr "Identifikatzaile erreserbatua"
 
+#: ../gtksourceview/language-specs/m4.lang.h:1
+msgid "Autoconf Macro"
+msgstr "Autoconf makroa"
+
 #: ../gtksourceview/language-specs/m4.lang.h:2
+msgid "Obsolete Autoconf Macro"
+msgstr "Autoconf makro zaharkitua"
+
+#: ../gtksourceview/language-specs/m4.lang.h:4
 msgid "m4"
 msgstr "m4"
 
+#: ../gtksourceview/language-specs/m4.lang.h:5
+msgid "m4 Macro"
+msgstr "m4 makroa"
+
+#: ../gtksourceview/language-specs/m4.lang.h:6
+msgid "m4-comment"
+msgstr "m4-iruzkina"
+
 #: ../gtksourceview/language-specs/makefile.lang.h:1
+msgid "Assignment Left Hand Side"
+msgstr "Esku ezkertarrentzako esleipena"
+
+#: ../gtksourceview/language-specs/makefile.lang.h:2
+msgid "Assignment Right Hand Side"
+msgstr "Esku eskuintarrentzako esleipena"
+
+#: ../gtksourceview/language-specs/makefile.lang.h:3
 msgid "Makefile"
 msgstr "Makefile"
+
+#. Translators: Trailing Tabs refers to tabulation characters present at
+#. the end of the line
+#: ../gtksourceview/language-specs/makefile.lang.h:7
+msgid "Trailing Tab"
+msgstr "Amaierako tabulazioak"
+
+#: ../gtksourceview/language-specs/makefile.lang.h:9
+msgid "command"
+msgstr "komandoa"
+
+#: ../gtksourceview/language-specs/makefile.lang.h:10
+msgid "function"
+msgstr "funtzioa"
+
+#. FIXME make it better names, and make them translatable
+#: ../gtksourceview/language-specs/makefile.lang.h:11
+#: ../gtksourceview/language-specs/yacc.lang.h:4
+msgid "keyword"
+msgstr "gako-hitza"
+
+#: ../gtksourceview/language-specs/makefile.lang.h:12
+msgid "prereq"
+msgstr "aurre-eskakizunak"
+
+#: ../gtksourceview/language-specs/makefile.lang.h:13
+msgid "targets"
+msgstr "helburuak"
 
 #: ../gtksourceview/language-specs/msil.lang.h:1
 msgid "MSIL"
@@ -1651,9 +1861,21 @@ msgstr "MSIL"
 msgid "Nemerle"
 msgstr "Nemerle"
 
+#: ../gtksourceview/language-specs/nsis.lang.h:2
+msgid "NSIS"
+msgstr "NSIS"
+
 #: ../gtksourceview/language-specs/objc.lang.h:4
 msgid "Objective-C"
 msgstr "Objective-C"
+
+#: ../gtksourceview/language-specs/oblivion.xml.h:1
+msgid "Dark color scheme using the Tango color palette"
+msgstr "Tango kolore-paleta darabilen kolore-eskema iluna"
+
+#: ../gtksourceview/language-specs/oblivion.xml.h:2
+msgid "Oblivion"
+msgstr "Oblivion"
 
 #: ../gtksourceview/language-specs/ocaml.lang.h:3
 msgid "Builtin-function keyword"
@@ -1784,7 +2006,16 @@ msgstr "Paketearen informazioa"
 msgid "pkg-config"
 msgstr "pkg-config"
 
-#: ../gtksourceview/language-specs/po.lang.h:6
+#: ../gtksourceview/language-specs/po.lang.h:2
+msgid "Fuzzy"
+msgstr "Zalantzazkoa"
+
+#. FIXME make it some nice name and mark it translatable
+#: ../gtksourceview/language-specs/po.lang.h:7
+msgid "Special"
+msgstr "Berezia"
+
+#: ../gtksourceview/language-specs/po.lang.h:9
 msgid "gettext translation"
 msgstr "gettext itzulpena"
 
@@ -1844,10 +2075,6 @@ msgstr "Komandoaren makroa"
 msgid "Conditional Macro"
 msgstr "Baldintzako makroa"
 
-#: ../gtksourceview/language-specs/rpmspec.lang.h:3
-msgid "Date"
-msgstr "Data"
-
 #: ../gtksourceview/language-specs/rpmspec.lang.h:4
 msgid "Define"
 msgstr "Definizioa"
@@ -1865,6 +2092,7 @@ msgid "Flow Conditional"
 msgstr "Fluxuaren baldintza"
 
 #: ../gtksourceview/language-specs/rpmspec.lang.h:8
+#: ../gtksourceview/language-specs/t2t.lang.h:4
 msgid "Header"
 msgstr "Goiburua"
 
@@ -1881,6 +2109,7 @@ msgid "RPM spec"
 msgstr "RPM zehaztapenak"
 
 #: ../gtksourceview/language-specs/rpmspec.lang.h:13
+#: ../gtksourceview/language-specs/t2t.lang.h:9
 msgid "Section"
 msgstr "Atala"
 
@@ -1937,25 +2166,73 @@ msgstr "Hau zer den? Ideiarik ez!"
 msgid "SQL"
 msgstr "SQL"
 
+#: ../gtksourceview/language-specs/t2t.lang.h:7
+msgid "Option"
+msgstr "Aukera"
+
+#: ../gtksourceview/language-specs/t2t.lang.h:8
+msgid "Option Name"
+msgstr "Aukeraren izena"
+
+#: ../gtksourceview/language-specs/t2t.lang.h:10
+msgid "Section 1"
+msgstr "1. atala"
+
+#: ../gtksourceview/language-specs/t2t.lang.h:11
+msgid "Section 2"
+msgstr "2. atala"
+
+#: ../gtksourceview/language-specs/t2t.lang.h:12
+msgid "Section 3"
+msgstr "3. atala"
+
+#: ../gtksourceview/language-specs/t2t.lang.h:13
+msgid "Section 4"
+msgstr "4. atala"
+
+#: ../gtksourceview/language-specs/t2t.lang.h:14
+msgid "Section 5"
+msgstr "5. atala"
+
+#: ../gtksourceview/language-specs/t2t.lang.h:15
+msgid "Text2Tags"
+msgstr "txt2Tags"
+
+#: ../gtksourceview/language-specs/t2t.lang.h:17
+msgid "Verbatim Block"
+msgstr "Hitzez hitzeko blokea"
+
+#: ../gtksourceview/language-specs/tango.xml.h:1
+msgid "Color scheme using Tango color palette"
+msgstr "Tango kolore-paleta darabilen kolore-eskema"
+
+#: ../gtksourceview/language-specs/tango.xml.h:2
+msgid "Tango"
+msgstr "Tango"
+
 #: ../gtksourceview/language-specs/tcl.lang.h:3
 msgid "Tcl"
 msgstr "Tcl"
 
-#: ../gtksourceview/language-specs/texinfo.lang.h:2
+#: ../gtksourceview/language-specs/texinfo.lang.h:3
 msgid "File Attributes"
 msgstr "Fitxategiaren atributuak"
 
-#: ../gtksourceview/language-specs/texinfo.lang.h:3
+#: ../gtksourceview/language-specs/texinfo.lang.h:4
 msgid "Generated Content"
 msgstr "Sortutako edukia"
 
-#: ../gtksourceview/language-specs/texinfo.lang.h:6
+#: ../gtksourceview/language-specs/texinfo.lang.h:7
 msgid "Macros"
 msgstr "Makroak"
 
-#: ../gtksourceview/language-specs/texinfo.lang.h:10
+#: ../gtksourceview/language-specs/texinfo.lang.h:11
 msgid "Texinfo"
 msgstr "Texinfo"
+
+#: ../gtksourceview/language-specs/vala.lang.h:12
+msgid "Vala"
+msgstr "Vala"
 
 #: ../gtksourceview/language-specs/vbnet.lang.h:9
 msgid "VB.NET"
@@ -1972,10 +2249,6 @@ msgstr "Verilog"
 #: ../gtksourceview/language-specs/vhdl.lang.h:11
 msgid "VHDL"
 msgstr "VHDL"
-
-#: ../gtksourceview/language-specs/xml.lang.h:1
-msgid "Attribute name"
-msgstr "Atributuaren izena"
 
 #: ../gtksourceview/language-specs/xml.lang.h:2
 msgid "Attribute value"
@@ -2005,39 +2278,23 @@ msgstr "Prozesatzeko instrukzioa"
 msgid "XML"
 msgstr "XML"
 
+#: ../gtksourceview/language-specs/xslt.lang.h:1
+msgid "Element"
+msgstr "Elementua"
+
+#: ../gtksourceview/language-specs/xslt.lang.h:4
+msgid "XSLT"
+msgstr "XSLT"
+
 #: ../gtksourceview/language-specs/yacc.lang.h:2
 msgid "Yacc"
 msgstr "Yacc"
 
-#: ../gtksourceview/language-specs/classic.xml.h:1
-msgid "Classic"
-msgstr "klasikoa"
+#: ../gtksourceview/language-specs/yacc.lang.h:5
+msgid "rule"
+msgstr "araua"
 
-#: ../gtksourceview/language-specs/classic.xml.h:2
-msgid "Classic color scheme"
-msgstr "Kolore-eskema klasikoa"
-
-#: ../gtksourceview/language-specs/kate.xml.h:1
-msgid "Color scheme used in the Kate text editor"
-msgstr "Erabilitako kolore-eskema Kate testu-editorean"
-
-#: ../gtksourceview/language-specs/kate.xml.h:2
-msgid "Kate"
-msgstr "Kate"
-
-#: ../gtksourceview/language-specs/oblivion.xml.h:1
-msgid "Dark color scheme using the Tango color palette"
-msgstr "Tango kolore-paleta darabilen kolore-eskema iluna"
-
-#: ../gtksourceview/language-specs/oblivion.xml.h:2
-msgid "Oblivion"
-msgstr "Oblivion"
-
-#: ../gtksourceview/language-specs/tango.xml.h:1
-msgid "Color scheme using Tango color palette"
-msgstr "Tango kolore-paleta darabilen kolore-eskema"
-
-#: ../gtksourceview/language-specs/tango.xml.h:2
-msgid "Tango"
-msgstr "Tango"
+#: ../gtksourceview/language-specs/yacc.lang.h:6
+msgid "token-type"
+msgstr "token mota"
 
