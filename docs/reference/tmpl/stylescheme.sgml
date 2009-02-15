@@ -45,7 +45,7 @@ This is the same as <code>name</code> attribute, except it will be translated.
 <varlistentry>
 <term><code>parent-scheme</code> (optional)</term>
 <listitem><para>
-Style schemes may have <em>parent</em> schemes: all styles but those specified
+Style schemes may have <emphasis>parent</emphasis> schemes: all styles but those specified
 in the scheme will be taken from the parent scheme. In this way a scheme may
 be customized without copying all its content.
 </para></listitem>
@@ -106,7 +106,7 @@ to #GtkSourceStyle object). It has the following attributes:
 <varlistentry>
 <term><code>name</code> (mandatory)</term>
 <listitem><para>
-Name of the style. It can be anything, syntax highlighting uses <em>lang-id:style-id</em>, 
+Name of the style. It can be anything, syntax highlighting uses <emphasis>lang-id:style-id</emphasis>, 
 and there are few special styles which are used to control general appearance
 of the text. Style scheme may contain other names to be used in an application. For instance,
 it may define color to highlight compilation errors in a build log or a color for

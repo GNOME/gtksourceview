@@ -134,7 +134,7 @@ gtk_source_mark_init (GtkSourceMark *mark)
 /**
  * gtk_source_mark_new:
  * @name: Name of the #GtkSourceMark, can be NULL when not using a name
- * @category is used to classify marks according to common characteristics
+ * @category: is used to classify marks according to common characteristics
  * (e.g. all the marks representing a bookmark could belong to the "bookmark" 
  * category, or all the marks representing a compilation error could belong to 
  * "error" category).

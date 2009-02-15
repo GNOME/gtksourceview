@@ -754,6 +754,8 @@ gtk_source_print_compositor_new (GtkSourceBuffer *buffer)
  * #GtkSourcePrintCompositor:wrap-mode, #GtkSourcePrintCompositor:body-font-name and
  * #GtkSourcePrintCompositor:print-line-numbers.
  *
+ * Return value: a new print compositor object.
+ *
  * Since: 2.2
  **/
 GtkSourcePrintCompositor *

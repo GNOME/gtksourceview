@@ -346,7 +346,7 @@ _gtk_source_style_scheme_new (const gchar *id,
 	return scheme;
 }
 
-/**
+/*
  * get_color_by_name:
  * @scheme: a #GtkSourceStyleScheme.
  * @name: color name to find.

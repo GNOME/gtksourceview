@@ -3787,13 +3787,6 @@ gtk_source_view_get_draw_spaces (GtkSourceView *view)
 	return view->priv->draw_spaces;
 }
 
-/**
- * gtk_source_view_style_set:
- * @widget: a #GtkSourceView.
- * @previous_style:
- *
- *
- **/
 static void
 gtk_source_view_style_set (GtkWidget *widget, GtkStyle *previous_style)
 {
