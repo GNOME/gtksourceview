@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview.HEAD.hu\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gtksourceview&component=general\n"
-"POT-Creation-Date: 2009-02-05 13:46+0000\n"
-"PO-Revision-Date: 2009-02-08 11:11+0100\n"
+"POT-Creation-Date: 2009-02-14 11:52+0000\n"
+"PO-Revision-Date: 2009-02-17 22:31+0100\n"
 "Last-Translator: Gabor Kelemen <kelemeng@gnome.hu>\n"
 "Language-Team: Hungarian <gnome@fsf.hu>\n"
 "MIME-Version: 1.0\n"
@@ -841,12 +841,10 @@ msgid "String"
 msgstr "Karakterlánc"
 
 #: ../gtksourceview/language-specs/asp.lang.h:1
-#| msgid "GAP"
 msgid "ASP"
 msgstr "ASP"
 
 #: ../gtksourceview/language-specs/asp.lang.h:2
-#| msgid "Object"
 msgid "ASP Object"
 msgstr "ASP objektum"
 
@@ -896,7 +894,6 @@ msgid "Special constant"
 msgstr "Speciális konstans"
 
 #: ../gtksourceview/language-specs/asp.lang.h:14
-#| msgid "Special constant"
 msgid "VBScript and ADO constants"
 msgstr "VBScript és ADO konstansok"
 
@@ -997,7 +994,6 @@ msgid "Special Variable"
 msgstr "Speciális változó"
 
 #: ../gtksourceview/language-specs/changelog.lang.h:1
-#| msgid "Builtin"
 msgid "Bullet"
 msgstr "Felsorolásjel"
 
@@ -1019,7 +1015,6 @@ msgid "File"
 msgstr "Fájl"
 
 #: ../gtksourceview/language-specs/changelog.lang.h:7
-#| msgid "Namespace"
 msgid "Name"
 msgstr "Név"
 
@@ -1120,17 +1115,16 @@ msgid "Classic color scheme"
 msgstr "Klasszikus színséma"
 
 #: ../gtksourceview/language-specs/cmake.lang.h:1
-#| msgid "Builtin Constant"
-msgid "Bulit-in Command"
+#| msgid "Bulit-in Command"
+msgid "Builtin Command"
 msgstr "Beépített parancs"
 
 #: ../gtksourceview/language-specs/cmake.lang.h:2
-#| msgid "Variable"
-msgid "Bulit-in Variable"
+#| msgid "Bulit-in Variable"
+msgid "Builtin Variable"
 msgstr "Beépített változó"
 
 #: ../gtksourceview/language-specs/cmake.lang.h:3
-#| msgid "Makefile"
 msgid "CMake"
 msgstr "CMake"
 
@@ -1144,12 +1138,10 @@ msgid "Constant"
 msgstr "Állandó"
 
 #: ../gtksourceview/language-specs/cmake.lang.h:5
-#| msgid "Keyword"
 msgid "Control Keyword"
 msgstr "Vezérlő kulcsszó"
 
 #: ../gtksourceview/language-specs/cobalt.xml.h:1
-#| msgid "Classic color scheme"
 msgid "Blue based color scheme"
 msgstr "Kék alapú színséma"
 
@@ -1408,7 +1400,6 @@ msgid "Command"
 msgstr "Parancs"
 
 #: ../gtksourceview/language-specs/dosbatch.lang.h:3
-#| msgid "DPatch"
 msgid "Dos Batch"
 msgstr "Dos Batch"
 
@@ -1439,12 +1430,10 @@ msgid "decl"
 msgstr "deklaráció"
 
 #: ../gtksourceview/language-specs/dtd.lang.h:4
-#| msgid "Entity"
 msgid "entity"
 msgstr "entitás"
 
 #: ../gtksourceview/language-specs/dtd.lang.h:5
-#| msgid "Error"
 msgid "error"
 msgstr "hiba"
 
@@ -1815,12 +1804,10 @@ msgid "m4"
 msgstr "m4"
 
 #: ../gtksourceview/language-specs/m4.lang.h:5
-#| msgid "Macros"
 msgid "m4 Macro"
 msgstr "m4 makró"
 
 #: ../gtksourceview/language-specs/m4.lang.h:6
-#| msgid "Comment"
 msgid "m4-comment"
 msgstr "m4 megjegyzés"
 
@@ -1843,19 +1830,16 @@ msgid "Trailing Tab"
 msgstr "Záró tab"
 
 #: ../gtksourceview/language-specs/makefile.lang.h:9
-#| msgid "Command"
 msgid "command"
 msgstr "Parancs"
 
 #: ../gtksourceview/language-specs/makefile.lang.h:10
-#| msgid "Function"
 msgid "function"
 msgstr "Függvény"
 
 #. FIXME make it better names, and make them translatable
 #: ../gtksourceview/language-specs/makefile.lang.h:11
 #: ../gtksourceview/language-specs/yacc.lang.h:4
-#| msgid "Keyword"
 msgid "keyword"
 msgstr "Kulcsszó"
 
@@ -2026,7 +2010,6 @@ msgstr "Ellenőrzendő"
 
 #. FIXME make it some nice name and mark it translatable
 #: ../gtksourceview/language-specs/po.lang.h:7
-#| msgid "Special case"
 msgid "Special"
 msgstr "Speciális"
 
@@ -2182,37 +2165,30 @@ msgid "SQL"
 msgstr "SQL"
 
 #: ../gtksourceview/language-specs/t2t.lang.h:7
-#| msgid "Section"
 msgid "Option"
 msgstr "Kapcsoló"
 
 #: ../gtksourceview/language-specs/t2t.lang.h:8
-#| msgid "Function Name"
 msgid "Option Name"
 msgstr "Kapcsolónév"
 
 #: ../gtksourceview/language-specs/t2t.lang.h:10
-#| msgid "Section"
 msgid "Section 1"
 msgstr "1. szakasz"
 
 #: ../gtksourceview/language-specs/t2t.lang.h:11
-#| msgid "Section"
 msgid "Section 2"
 msgstr "2. szakasz"
 
 #: ../gtksourceview/language-specs/t2t.lang.h:12
-#| msgid "Section"
 msgid "Section 3"
 msgstr "3. szakasz"
 
 #: ../gtksourceview/language-specs/t2t.lang.h:13
-#| msgid "Section"
 msgid "Section 4"
 msgstr "4. szakasz"
 
 #: ../gtksourceview/language-specs/t2t.lang.h:14
-#| msgid "Section"
 msgid "Section 5"
 msgstr "5. szakasz"
 
@@ -2221,7 +2197,6 @@ msgid "Text2Tags"
 msgstr "Text2Tags"
 
 #: ../gtksourceview/language-specs/t2t.lang.h:17
-#| msgid "Verbatim"
 msgid "Verbatim Block"
 msgstr "Változatlan blokk"
 
@@ -2302,7 +2277,6 @@ msgid "XML"
 msgstr "XML"
 
 #: ../gtksourceview/language-specs/xslt.lang.h:1
-#| msgid "GUI Elements"
 msgid "Element"
 msgstr "Elem"
 
@@ -2315,7 +2289,6 @@ msgid "Yacc"
 msgstr "Yacc"
 
 #: ../gtksourceview/language-specs/yacc.lang.h:5
-#| msgid "at-rules"
 msgid "rule"
 msgstr "Szabály"
 
