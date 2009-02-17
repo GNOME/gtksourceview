@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-01-29 02:15+0900\n"
-"PO-Revision-Date: 2009-01-29 02:20+0900\n"
+"POT-Creation-Date: 2009-02-18 08:23+0900\n"
+"PO-Revision-Date: 2009-02-18 08:23+0900\n"
 "Last-Translator: Changwoo Ryu <cwryu@debian.org>\n"
 "Language-Team: GNOME Korean <gnome-kr-hackers@lists.kldp.net>\n"
 "MIME-Version: 1.0\n"
@@ -911,7 +911,6 @@ msgstr "패턴"
 #: ../gtksourceview/language-specs/perl.lang.h:18
 #: ../gtksourceview/language-specs/php.lang.h:18
 #: ../gtksourceview/language-specs/python.lang.h:15
-#: ../gtksourceview/language-specs/R.lang.h:9
 #: ../gtksourceview/language-specs/ruby.lang.h:19
 #: ../gtksourceview/language-specs/sh.lang.h:7
 #: ../gtksourceview/language-specs/tcl.lang.h:2
@@ -1111,11 +1110,11 @@ msgid "Classic color scheme"
 msgstr "클래식 색 양식"
 
 #: ../gtksourceview/language-specs/cmake.lang.h:1
-msgid "Bulit-in Command"
+msgid "Builtin Command"
 msgstr "내장 명령"
 
 #: ../gtksourceview/language-specs/cmake.lang.h:2
-msgid "Bulit-in Variable"
+msgid "Builtin Variable"
 msgstr "내장 변수"
 
 #: ../gtksourceview/language-specs/cmake.lang.h:3
@@ -1134,6 +1133,14 @@ msgstr "상수"
 #: ../gtksourceview/language-specs/cmake.lang.h:5
 msgid "Control Keyword"
 msgstr "컨트롤 키워드"
+
+#: ../gtksourceview/language-specs/cobalt.xml.h:1
+msgid "Blue based color scheme"
+msgstr "파란색 양식"
+
+#: ../gtksourceview/language-specs/cobalt.xml.h:2
+msgid "Cobalt"
+msgstr "Cobalt"
 
 #: ../gtksourceview/language-specs/cpp.lang.h:1
 msgid "C++"
@@ -1521,6 +1528,7 @@ msgstr "GAP"
 
 #: ../gtksourceview/language-specs/gap.lang.h:7
 #: ../gtksourceview/language-specs/octave.lang.h:10
+#: ../gtksourceview/language-specs/R.lang.h:9
 msgid "Scientific"
 msgstr "과학"
 
