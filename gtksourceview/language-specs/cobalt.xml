@@ -110,6 +110,12 @@
 
   <!-- Diff Styles -->
   <style name="diff:ignore"                 foreground="bluish_grey"/>
+  <style name="diff:added-line"             foreground="faded_yellow"/>
+  <style name="diff:removed-line"           foreground="spring_green"/>
+  <style name="diff:changed-line"           foreground="bright_orange"/>
+  <style name="diff:diff-file"              foreground="sky_blue" bold="true"/>
+  <style name="diff:location"               foreground="sky_blue"/>
+  <style name="diff:special-case"           foreground="nail_polish_pink" bold="true"/>
 
   <!-- Ruby Styles -->
   <style name="ruby:module-handler"         foreground="teal_blue"/>
