@@ -658,15 +658,15 @@ search_dialog (GtkWidget            *widget,
 			       "text", search_data.what ? search_data.what : "",
 			       "activates-default", TRUE,
 			       NULL);
-	gtk_box_pack_start_defaults (GTK_BOX (GTK_DIALOG (dialog)->vbox),
-				     GTK_WIDGET (entry1));
+	gtk_box_pack_start (GTK_BOX (GTK_DIALOG (dialog)->vbox),
+				     GTK_WIDGET (entry1), TRUE, TRUE, 0);
 	entry2 = g_object_new (GTK_TYPE_ENTRY,
 			       "visible", replace,
 			       "text", search_data.replacement ? search_data.replacement : "",
 			       "activates-default", TRUE,
 			       NULL);
-	gtk_box_pack_start_defaults (GTK_BOX (GTK_DIALOG (dialog)->vbox),
-				     GTK_WIDGET (entry2));
+	gtk_box_pack_start (GTK_BOX (GTK_DIALOG (dialog)->vbox),
+				     GTK_WIDGET (entry2), TRUE, TRUE, 0);
 
 	case_sensitive = g_object_new (GTK_TYPE_CHECK_BUTTON,
 				       "visible", TRUE,
