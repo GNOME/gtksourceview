@@ -91,9 +91,11 @@ gtk_source_mark_get_property (GObject    *object,
 static void
 gtk_source_mark_finalize (GObject *object)
 {
-	GtkSourceMark *mark = GTK_SOURCE_MARK(object);
+	GtkSourceMark *mark = GTK_SOURCE_MARK (object);
 
 	g_free (mark->priv->category);
+
+	G_OBJECT_CLASS (gtk_source_mark_parent_class)->finalize (object);
 }
 
 static void
