@@ -6,10 +6,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gtksourceview 2.3.3\n"
+"Project-Id-Version: gtksourceview 2.5.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-09 07:43+0800\n"
-"PO-Revision-Date: 2009-02-09 07:44+0800\n"
+"POT-Creation-Date: 2009-02-25 20:47+0800\n"
+"PO-Revision-Date: 2009-02-25 20:47+0800\n"
 "Last-Translator: Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>\n"
 "Language-Team: Chinese (Hong Kong) <community@linuxhall.org>\n"
 "MIME-Version: 1.0\n"
@@ -837,10 +837,8 @@ msgid "ASP"
 msgstr "ASP"
 
 #: ../gtksourceview/language-specs/asp.lang.h:2
-#, fuzzy
-#| msgid "Object"
 msgid "ASP Object"
-msgstr "物件識別碼 (%s)"
+msgstr "ASP 物件"
 
 #. A function name (also: methods for classes)
 #: ../gtksourceview/language-specs/asp.lang.h:6
@@ -888,10 +886,8 @@ msgid "Special constant"
 msgstr "特別常數"
 
 #: ../gtksourceview/language-specs/asp.lang.h:14
-#, fuzzy
-#| msgid "Special constant"
 msgid "VBScript and ADO constants"
-msgstr "特別常數"
+msgstr "VBScript 與 ADO 常數"
 
 #: ../gtksourceview/language-specs/awk.lang.h:1
 #: ../gtksourceview/language-specs/boo.lang.h:3
@@ -990,10 +986,8 @@ msgid "Special Variable"
 msgstr "特別變數"
 
 #: ../gtksourceview/language-specs/changelog.lang.h:1
-#, fuzzy
-#| msgid "Builtin"
 msgid "Bullet"
-msgstr "內置"
+msgstr "項目符號"
 
 #: ../gtksourceview/language-specs/changelog.lang.h:2
 msgid "ChangeLog"
@@ -1113,11 +1107,11 @@ msgid "Classic color scheme"
 msgstr "古典色彩架構"
 
 #: ../gtksourceview/language-specs/cmake.lang.h:1
-msgid "Bulit-in Command"
+msgid "Builtin Command"
 msgstr "內置指令"
 
 #: ../gtksourceview/language-specs/cmake.lang.h:2
-msgid "Bulit-in Variable"
+msgid "Builtin Variable"
 msgstr "內置變數"
 
 #: ../gtksourceview/language-specs/cmake.lang.h:3
@@ -1143,7 +1137,7 @@ msgstr "基於藍色的顏色配置"
 
 #: ../gtksourceview/language-specs/cobalt.xml.h:2
 msgid "Cobalt"
-msgstr ""
+msgstr "Cobalt"
 
 #: ../gtksourceview/language-specs/cpp.lang.h:1
 msgid "C++"
@@ -1405,9 +1399,8 @@ msgid "Attribute name"
 msgstr "屬性名稱"
 
 #: ../gtksourceview/language-specs/dot.lang.h:4
-#, fuzzy
 msgid "Graphviz Dot"
-msgstr "線點"
+msgstr "Graphviz Dot"
 
 #: ../gtksourceview/language-specs/dpatch.lang.h:1
 msgid "DPatch"
@@ -1424,7 +1417,7 @@ msgstr "DTD"
 
 #: ../gtksourceview/language-specs/dtd.lang.h:3
 msgid "decl"
-msgstr ""
+msgstr "宣告"
 
 #: ../gtksourceview/language-specs/dtd.lang.h:4
 msgid "entity"
@@ -1435,9 +1428,8 @@ msgid "error"
 msgstr "錯誤"
 
 #: ../gtksourceview/language-specs/dtd.lang.h:6
-#, fuzzy
 msgid "quoted-value"
-msgstr "<b>光圈值:</b>"
+msgstr "引用值"
 
 #: ../gtksourceview/language-specs/eiffel.lang.h:1
 msgid "Assertion"
@@ -1825,9 +1817,8 @@ msgstr "Makefile"
 #. Translators: Trailing Tabs refers to tabulation characters present at
 #. the end of the line
 #: ../gtksourceview/language-specs/makefile.lang.h:7
-#, fuzzy
 msgid "Trailing Tab"
-msgstr "轉為獨立視窗(_D)"
+msgstr "行末定位點"
 
 #: ../gtksourceview/language-specs/makefile.lang.h:9
 msgid "command"
@@ -1845,7 +1836,7 @@ msgstr "關鍵字"
 
 #: ../gtksourceview/language-specs/makefile.lang.h:12
 msgid "prereq"
-msgstr ""
+msgstr "prereq"
 
 #: ../gtksourceview/language-specs/makefile.lang.h:13
 msgid "targets"
@@ -1861,7 +1852,7 @@ msgstr "Nemerle"
 
 #: ../gtksourceview/language-specs/nsis.lang.h:2
 msgid "NSIS"
-msgstr ""
+msgstr "NSIS"
 
 #: ../gtksourceview/language-specs/objc.lang.h:4
 msgid "Objective-C"
@@ -2175,44 +2166,32 @@ msgid "Option Name"
 msgstr "選項名稱"
 
 #: ../gtksourceview/language-specs/t2t.lang.h:10
-#, fuzzy
-#| msgid "Section"
 msgid "Section 1"
-msgstr "Section"
+msgstr "第 1 節"
 
 #: ../gtksourceview/language-specs/t2t.lang.h:11
-#, fuzzy
-#| msgid "Section"
 msgid "Section 2"
-msgstr "Section"
+msgstr "第 2 節"
 
 #: ../gtksourceview/language-specs/t2t.lang.h:12
-#, fuzzy
-#| msgid "Section"
 msgid "Section 3"
-msgstr "Section"
+msgstr "第 3 節"
 
 #: ../gtksourceview/language-specs/t2t.lang.h:13
-#, fuzzy
-#| msgid "Section"
 msgid "Section 4"
-msgstr "Section"
+msgstr "第 4 節"
 
 #: ../gtksourceview/language-specs/t2t.lang.h:14
-#, fuzzy
-#| msgid "Section"
 msgid "Section 5"
-msgstr "Section"
+msgstr "第 5 節"
 
 #: ../gtksourceview/language-specs/t2t.lang.h:15
 msgid "Text2Tags"
-msgstr ""
+msgstr "Text2Tags"
 
 #: ../gtksourceview/language-specs/t2t.lang.h:17
-#, fuzzy
-#| msgid "Verbatim"
 msgid "Verbatim Block"
-msgstr "å¸æ´åå³¶"
+msgstr "Verbatim 區塊"
 
 #: ../gtksourceview/language-specs/tango.xml.h:1
 msgid "Color scheme using Tango color palette"
@@ -2244,7 +2223,7 @@ msgstr "Texinfo"
 
 #: ../gtksourceview/language-specs/vala.lang.h:12
 msgid "Vala"
-msgstr ""
+msgstr "Vala"
 
 #: ../gtksourceview/language-specs/vbnet.lang.h:9
 msgid "VB.NET"
@@ -2292,14 +2271,12 @@ msgid "XML"
 msgstr "XML"
 
 #: ../gtksourceview/language-specs/xslt.lang.h:1
-#, fuzzy
-#| msgid "GUI Elements"
 msgid "Element"
 msgstr "元件"
 
 #: ../gtksourceview/language-specs/xslt.lang.h:4
 msgid "XSLT"
-msgstr ""
+msgstr "XSLT"
 
 #: ../gtksourceview/language-specs/yacc.lang.h:2
 msgid "Yacc"
@@ -2312,9 +2289,8 @@ msgid "rule"
 msgstr "新增規則"
 
 #: ../gtksourceview/language-specs/yacc.lang.h:6
-#, fuzzy
 msgid "token-type"
-msgstr "位址型態"
+msgstr "記號-類型"
 
 #, fuzzy
 #~ msgid "Compiler opt"
