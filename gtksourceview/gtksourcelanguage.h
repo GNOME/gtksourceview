@@ -24,6 +24,7 @@
 #include <glib.h>
 #include <glib-object.h>
 #include <gtk/gtk.h>
+#include "gtksourceindenter.h"
 
 G_BEGIN_DECLS
 
@@ -76,6 +77,9 @@ gchar		**gtk_source_language_get_style_ids 	(GtkSourceLanguage *language);
 
 const char       *gtk_source_language_get_style_name	(GtkSourceLanguage *language,
 							 const char        *style_id);
+
+GtkSourceIndenter *
+		 _gtk_source_language_get_indenter	(GtkSourceLanguage *language);
 
 G_END_DECLS
 

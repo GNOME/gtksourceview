@@ -1,3 +1,28 @@
+2009-02-28  Ignacio Casal Quinteiro  <nacho.resa@gmail.com>
+
+	* gtksourceview/gtksourcelanguage.c:
+	* gtksourceview/gtksourcelanguage.h:
+	* gtksourceview/c-indenter.c:
+	* gtksourceview/gtksourceindentermanager.c:
+	* gtksourceview/c-indenter.h:
+	* gtksourceview/gtksourceindenter-utils.c:
+	* gtksourceview/simple-indenter.c:
+	* gtksourceview/gtksourceview-utils.c:
+	* gtksourceview/gtksourceindentermanager.h:
+	* gtksourceview/gtksourceindenter.c:
+	* gtksourceview/gtksourceview.c:
+	* gtksourceview/gtksourceindenter-utils.h:
+	* gtksourceview/gtksourceview-utils.h:
+	* gtksourceview/simple-indenter.h:
+	* gtksourceview/gtksourceindenter.h:
+	* gtksourceview/gtksourceview.h:
+	* gtksourceview/Makefile.am:
+	* tests/test-widget.c:
+	Added initial framework files.
+	Added a simple indenter that makes the same functionaly
+	that gsv had before, and added the c-indenter that tries
+	to be an smart indenter for c files.
+
 2009-02-26  Jesse van den Kieboom  <jesse@icecrew.nl>
 
 	* gtksourceview/language-specs/po.lang: added

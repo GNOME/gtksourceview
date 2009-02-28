@@ -23,6 +23,7 @@
 #endif
 
 #include "gtksourceview-utils.h"
+#include "gtksourceview.h"
 
 #define SOURCEVIEW_DIR "gtksourceview-2.0"
 
@@ -122,4 +123,15 @@ _gtk_source_view_get_file_list (gchar       **path,
 		files = build_file_listing (*path, files, suffix, only_dirs);
 
 	return g_slist_reverse (files);
+}
+
+/*********************** Indenter utils functions ****************************/
+
+gint
+_gtk_source_view_get_real_indent_width (GtkSourceView *view)
+{
+	gint indent_width = gtk_source_view_get_indent_width (view);
+	guint tab_width = gtk_source_view_get_tab_width (view);
+
+	return indent_width < 0 ? tab_width : indent_width;
 }

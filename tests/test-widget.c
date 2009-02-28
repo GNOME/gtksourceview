@@ -94,7 +94,8 @@ static void       indent_toggled_cb              (GtkAction       *action,
 
 static GtkWidget *create_view_window             (GtkSourceBuffer *buffer,
 						  GtkSourceView   *from);
-
+static void       reindent_cb			 (GtkAction       *action,
+						  gpointer         user_data);
 
 /* Actions & UI definition ---------------------------------------------------- */
 
@@ -119,6 +120,8 @@ static GtkActionEntry view_action_entries[] = {
 	  "Find", G_CALLBACK (find_cb) },
 	{ "Replace", GTK_STOCK_FIND_AND_REPLACE, "Search and _Replace", "<control>R",
 	  "Search and Replace", G_CALLBACK (replace_cb) },
+	{ "SmartIndent", GTK_STOCK_ADD, "Rein_dent", "<control>I",
+	  "Reindent code", G_CALLBACK (reindent_cb) },
 };
 
 static GtkToggleActionEntry toggle_entries[] = {
@@ -223,6 +226,8 @@ static const gchar *view_ui_description =
 "        <menuitem action=\"SmartHomeEndAfter\"/>"
 "        <menuitem action=\"SmartHomeEndAlways\"/>"
 "      </menu>"
+"      <separator/>"
+"      <menuitem action=\"SmartIndent\"/>"
 "    </menu>"
 "  </menubar>"
 "</ui>";
@@ -617,6 +622,30 @@ new_view_cb (GtkAction *action, gpointer user_data)
 	window = create_view_window (buffer, view);
 	gtk_window_set_default_size (GTK_WINDOW (window), 400, 400);
 	gtk_widget_show (window);
+}
+
+static void
+reindent_cb (GtkAction *action, gpointer user_data)
+{
+	GtkSourceView *view;
+	GtkTextBuffer *buf;
+	GtkTextIter start, end;
+	
+	g_return_if_fail (GTK_IS_SOURCE_VIEW (user_data));
+	
+	view = GTK_SOURCE_VIEW (user_data);
+	buf = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
+	
+	if (!gtk_text_buffer_get_selection_bounds (buf, &start, &end))
+	{
+		GtkTextMark *insert;
+		
+		insert = gtk_text_buffer_get_insert (buf);
+		gtk_text_buffer_get_iter_at_mark (buf, &start, insert);
+		end = start;
+	}
+	
+	gtk_source_view_reindent_lines (view, &start, &end);
 }
 
 

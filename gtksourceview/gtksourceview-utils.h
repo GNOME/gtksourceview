@@ -22,6 +22,8 @@
 #define __GTK_SOURCE_VIEW_UTILS_H__
 
 #include <glib.h>
+#include "gtksourceview.h"
+#include <gtk/gtk.h>
 
 G_BEGIN_DECLS
 
@@ -31,6 +33,8 @@ gchar 	**_gtk_source_view_get_default_dirs (const gchar  *basename,
 GSList 	 *_gtk_source_view_get_file_list    (gchar       **path,
 					     const gchar  *suffix,
 					     gboolean      only_dirs);
+
+gint	 _gtk_source_view_get_real_indent_width (GtkSourceView *view);
 
 G_END_DECLS
 

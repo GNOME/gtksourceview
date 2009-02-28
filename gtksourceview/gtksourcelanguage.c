@@ -38,6 +38,7 @@
 #include "gtksourcelanguage-private.h"
 #include "gtksourcelanguage.h"
 #include "gtksourceview-marshal.h"
+#include "gtksourceindentermanager.h"
 
 #define DEFAULT_SECTION _("Others")
 
@@ -877,6 +878,24 @@ gtk_source_language_get_style_name (GtkSourceLanguage *language,
 		return NULL;
 
 	return info->name;
+}
+
+GtkSourceIndenter *
+_gtk_source_language_get_indenter (GtkSourceLanguage *language)
+{
+	GtkSourceIndenterManager *manager;
+	GtkSourceIndenter *indenter;
+	
+	manager = gtk_source_indenter_manager_get_default ();
+
+	if (GTK_IS_SOURCE_LANGUAGE (language))
+		indenter = gtk_source_indenter_manager_get_indenter_by_id (manager,
+									   language->priv->id);
+	else
+		indenter = gtk_source_indenter_manager_get_indenter_by_id (manager,
+									   NULL);
+	
+	return indenter;
 }
 
 /* Utility functions for GtkSourceStyleInfo */

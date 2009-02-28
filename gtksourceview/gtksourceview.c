@@ -39,6 +39,7 @@
 #include "gtksourceview-typebuiltins.h"
 #include "gtksourcemark.h"
 #include "gtksourceview.h"
+#include "gtksourceview-utils.h"
 
 /*
 #define ENABLE_DEBUG
@@ -188,6 +189,9 @@ static void 	gtk_source_view_get_lines 		(GtkTextView       *text_view,
 				       			 gint              *countp);
 static gint     gtk_source_view_expose 			(GtkWidget         *widget,
 							 GdkEventExpose    *event);
+static void	gtk_source_view_event_after		(GtkWidget         *widget,
+							 GdkEvent          *event,
+							 gpointer           useless);
 static gboolean	gtk_source_view_key_press_event		(GtkWidget         *widget,
 							 GdkEventKey       *event);
 static gboolean	gtk_source_view_button_press_event	(GtkWidget         *widget,
@@ -736,6 +740,11 @@ gtk_source_view_init (GtkSourceView *view)
 	g_signal_connect (view,
 			  "notify::buffer",
 			  G_CALLBACK (notify_buffer),
+			  NULL);
+	
+	g_signal_connect (view,
+			  "event-after",
+			  G_CALLBACK (gtk_source_view_event_after),
 			  NULL);
 }
 
@@ -2757,51 +2766,6 @@ gtk_source_view_get_mark_category_priority (GtkSourceView *view,
 }
 
 static gchar *
-compute_indentation (GtkSourceView *view,
-		     GtkTextIter   *cur)
-{
-	GtkTextIter start;
-	GtkTextIter end;
-
-	gunichar ch;
-	gint line;
-
-	line = gtk_text_iter_get_line (cur);
-
-	gtk_text_buffer_get_iter_at_line (gtk_text_view_get_buffer (GTK_TEXT_VIEW (view)),
-					  &start,
-					  line);
-
-	end = start;
-
-	ch = gtk_text_iter_get_char (&end);
-
-	while (g_unichar_isspace (ch) &&
-	       (ch != '\n') &&
-	       (ch != '\r') &&
-	       (gtk_text_iter_compare (&end, cur) < 0))
-	{
-		if (!gtk_text_iter_forward_char (&end))
-			break;
-
-		ch = gtk_text_iter_get_char (&end);
-	}
-
-	if (gtk_text_iter_equal (&start, &end))
-		return NULL;
-
-	return gtk_text_iter_get_slice (&start, &end);
-}
-
-static gint
-get_real_indent_width (GtkSourceView *view)
-{
-	return view->priv->indent_width < 0 ?
-	       view->priv->tab_width :
-	       view->priv->indent_width;
-}
-
-static gchar *
 get_indent_string (gint tabs, gint spaces)
 {
 	gchar *str;
@@ -2814,6 +2778,31 @@ get_indent_string (gint tabs, gint spaces)
 	str[tabs + spaces] = '\0';
 
 	return str;
+}
+
+static gchar *
+get_indent_string_from_indent_level (GtkSourceView *view,
+				     gfloat level)
+{
+	gint tabs;
+	gint spaces;
+	gchar *indent = NULL;
+	gint indent_width;
+	
+	tabs = (gint)level;
+	spaces = round (10 * (gfloat)(level - tabs));
+	indent_width = _gtk_source_view_get_real_indent_width (view);
+	
+	if (view->priv->insert_spaces)
+	{
+		indent = g_strnfill (indent_width * tabs + spaces, ' ');
+	}
+	else
+	{
+		indent = get_indent_string (tabs, spaces);
+	}
+
+	return indent;
 }
 
 static void
@@ -2839,7 +2828,7 @@ indent_lines (GtkSourceView *view, GtkTextIter *start, GtkTextIter *end)
 
 	if (view->priv->insert_spaces)
 	{
-		spaces = get_real_indent_width (view);
+		spaces = _gtk_source_view_get_real_indent_width (view);
 
 		tab_buffer = g_strnfill (spaces, ' ');
 	}
@@ -2847,7 +2836,7 @@ indent_lines (GtkSourceView *view, GtkTextIter *start, GtkTextIter *end)
 	{
 		gint indent_width;
 
-		indent_width = get_real_indent_width (view);
+		indent_width = _gtk_source_view_get_real_indent_width (view);
 		spaces = indent_width % view->priv->tab_width;
 		tabs = indent_width / view->priv->tab_width;
 
@@ -2941,7 +2930,7 @@ unindent_lines (GtkSourceView *view, GtkTextIter *start, GtkTextIter *end)
 	}
 
 	tab_width = view->priv->tab_width;
-	indent_width = get_real_indent_width (view);
+	indent_width = _gtk_source_view_get_real_indent_width (view);
 
 	gtk_text_buffer_begin_user_action (buf);
 
@@ -3036,7 +3025,7 @@ insert_tab_or_spaces (GtkSourceView *view,
 		gint pos;
 		gint spaces;
 
-		indent_width = get_real_indent_width (view);
+		indent_width = _gtk_source_view_get_real_indent_width (view);
 
 		/* CHECK: is this a performance problem? */
 		pos = get_line_offset_in_equivalent_spaces (view, start);
@@ -3059,7 +3048,7 @@ insert_tab_or_spaces (GtkSourceView *view,
 		gint spaces;
 
 		tab_width = view->priv->tab_width;
-		indent_width = get_real_indent_width (view);
+		indent_width = _gtk_source_view_get_real_indent_width (view);
 
 		/* CHECK: is this a performance problem? */
 		from = get_line_offset_in_equivalent_spaces (view, start);
@@ -3183,11 +3172,192 @@ move_lines (GtkTextView *view, gboolean down)
 }
 
 static gboolean
+check_whitespaces (GtkTextIter *cur)
+{
+	GtkTextIter start;
+	gunichar c;
+	gboolean check = FALSE;
+	
+	start = *cur;
+	
+	gtk_text_iter_set_line_offset (&start, 0);
+	c = gtk_text_iter_get_char (&start);
+	
+	while (gtk_text_iter_compare (&start, cur) < 0)
+	{
+		if (!g_unichar_isspace (c))
+		{
+			check = FALSE;
+			break;
+		}
+		else
+			check = TRUE;
+		
+		gtk_text_iter_forward_char (&start);
+		c = gtk_text_iter_get_char (&start);
+	}
+	
+	return check;
+}
+
+static gchar *
+get_current_token (GtkTextBuffer *buf,
+		   GtkTextIter *cur)
+{
+	GtkTextIter start;
+	gchar *word = NULL;
+	gunichar w;
+	
+	start = *cur;
+	
+	if (gtk_text_iter_ends_word (cur) ||
+	    (gtk_text_iter_inside_word (cur) && gtk_text_iter_starts_word (cur)))
+	{
+		gtk_text_iter_backward_word_start (&start);
+		word = gtk_text_buffer_get_text (buf, &start, cur, FALSE);
+	}
+	
+	if (word == NULL && gtk_text_iter_backward_char (&start))
+	{
+		w = gtk_text_iter_get_char (&start);
+		if (!g_unichar_isspace (w))
+			word = g_strdup_printf ("%c", w);
+	}
+	
+	*cur = start;
+	
+	return word;
+}
+
+static void
+gtk_source_view_event_after (GtkWidget *widget,
+			     GdkEvent  *event,
+			     gpointer   useless)
+{
+	GtkSourceView *view;
+	GtkTextBuffer *buf;
+	GtkTextIter cur;
+	GtkTextMark *mark;
+	GtkSourceLanguage *lang;
+	GtkSourceIndenter *indenter;
+	GtkTextIter copy;
+	const gchar * const *relocatables;
+	gfloat level;
+	gint m = 0;
+	
+	if (event->type != GDK_KEY_PRESS || 
+	    event->key.state & (GDK_CONTROL_MASK | GDK_MOD1_MASK))
+		return;
+	
+	view = GTK_SOURCE_VIEW (widget);
+	buf = gtk_text_view_get_buffer (GTK_TEXT_VIEW (widget));
+	
+	mark = gtk_text_buffer_get_insert (buf);
+	gtk_text_buffer_get_iter_at_mark (buf, &cur, mark);
+	
+	lang = gtk_source_buffer_get_language (view->priv->source_buffer);
+	indenter = _gtk_source_language_get_indenter (lang);
+	
+	/*
+	 * Relocations
+	 */
+	relocatables = gtk_source_indenter_get_relocatables (indenter);
+	while (relocatables != NULL && relocatables[m] != NULL)
+	{
+		const gchar *reloc = relocatables[m];
+		GtkTextIter start;
+		gchar *word;
+		gchar *word2;
+		gchar *indent = NULL;
+		guint keyval;
+		
+		/*
+		 * Check that the key entered is the same as the last character
+		 * in reloc
+		 */
+		keyval = gdk_unicode_to_keyval (reloc[strlen (reloc) - 1]);
+		if (event->key.keyval != keyval)
+		{
+			m++;
+			continue;
+		}
+		
+		start = copy = cur;
+		gtk_text_iter_set_line_offset (&start, 0);
+		
+		/*
+		 * First check the word
+		 */
+		word = get_current_token (buf, &copy);
+		
+		if (word != NULL)
+		{
+			switch (reloc[0])
+			{
+				case '0': if (check_whitespaces (&copy))
+					  {
+						word2 = g_strndup (reloc + 1, strlen (reloc) - 1);
+						
+						if (strcmp (word, word2) == 0)
+						{
+							level = gtk_source_indenter_get_indentation_level (indenter,
+													   GTK_TEXT_VIEW (view),
+													   &copy,
+													   TRUE);
+							indent = get_indent_string_from_indent_level (view, level);
+						}
+						g_free (word2);
+					  }
+					  break;
+				default: if (strcmp (word, reloc) == 0)
+					 {
+						level = gtk_source_indenter_get_indentation_level (indenter,
+												   GTK_TEXT_VIEW (view),
+												   &copy,
+												   TRUE);
+						indent = get_indent_string_from_indent_level (view, level);
+					 }
+					 break;
+			}
+			g_free (word);
+		}
+		
+		if (indent != NULL)
+		{
+			GtkTextIter end;
+			gunichar c;
+			
+			gtk_text_iter_set_line_offset (&start, 0);
+			end = start;
+			
+			c = gtk_text_iter_get_char (&end);
+			while (g_unichar_isspace (c))
+			{
+				gtk_text_iter_forward_char (&end);
+				c = gtk_text_iter_get_char (&end);
+			}
+			
+			gtk_text_buffer_begin_user_action (buf);
+			gtk_text_buffer_delete (buf, &start, &end);
+			
+			gtk_text_buffer_insert (buf, &start, indent, -1);
+			gtk_text_buffer_end_user_action (buf);
+
+			g_free (indent);
+			break;
+		}
+		m++;
+	}
+}
+
+static gboolean
 gtk_source_view_key_press_event (GtkWidget   *widget,
 				 GdkEventKey *event)
 {
 	GtkSourceView *view;
 	GtkTextBuffer *buf;
+	GtkSourceLanguage *lang;
+	GtkSourceIndenter *indenter;
 	GtkTextIter cur;
 	GtkTextMark *mark;
 	guint modifiers;
@@ -3207,7 +3377,10 @@ gtk_source_view_key_press_event (GtkWidget   *widget,
 
 	mark = gtk_text_buffer_get_insert (buf);
 	gtk_text_buffer_get_iter_at_mark (buf, &cur, mark);
-
+	
+	lang = gtk_source_buffer_get_language (view->priv->source_buffer);
+	indenter = _gtk_source_language_get_indenter (lang);
+	
 	if ((key == GDK_Return || key == GDK_KP_Enter) &&
 	    !(event->state & GDK_SHIFT_MASK) &&
 	    view->priv->auto_indent)
@@ -3217,11 +3390,17 @@ gtk_source_view_key_press_event (GtkWidget   *widget,
 		 * level as the previous line.
 		 * SHIFT+ENTER allows to avoid autoindentation.
 		 */
+		gfloat indent_level;
 		gchar *indent = NULL;
 
 		/* Calculate line indentation and create indent string. */
-		indent = compute_indentation (view, &cur);
-
+		indent_level = gtk_source_indenter_get_indentation_level (indenter,
+									  GTK_TEXT_VIEW (view),
+									  &cur, FALSE);
+		indent = get_indent_string_from_indent_level (view, indent_level);
+		
+		g_warning ("%f", indent_level);
+		
 		if (indent != NULL)
 		{
 			/* Allow input methods to internally handle a key press event.
@@ -3235,6 +3414,7 @@ gtk_source_view_key_press_event (GtkWidget   *widget,
 			gtk_text_buffer_get_iter_at_mark (buf, &cur, mark);
 
 			/* Insert new line and auto-indent. */
+			//FIXME: Remove current indentation before insert the new one
 			gtk_text_buffer_begin_user_action (buf);
 			gtk_text_buffer_insert (buf, &cur, "\n", 1);
 			gtk_text_buffer_insert (buf, &cur, indent, strlen (indent));
@@ -3786,6 +3966,87 @@ gtk_source_view_get_draw_spaces (GtkSourceView *view)
 
 	return view->priv->draw_spaces;
 }
+
+/**
+ * gtk_source_view_reindent_lines:
+ * @view: a #GtkSourceView
+ * @start: iterator to initilize with selection start
+ * @end: iterator to initialize with selection end
+ *
+ * FIXME: Add a real doc.
+ * Reindent the lines from @start to @end
+ */
+void
+gtk_source_view_reindent_lines (GtkSourceView *view,
+				GtkTextIter *start,
+				GtkTextIter *end)
+{
+	GtkSourceLanguage *lang;
+	GtkSourceIndenter *indenter;
+	GtkTextBuffer *buf;
+	GtkTextMark *end_mark;
+	
+	g_return_if_fail (GTK_IS_SOURCE_VIEW (view));
+	g_return_if_fail (start != NULL && end != NULL);
+	
+	buf = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
+	lang = gtk_source_buffer_get_language (view->priv->source_buffer);
+	indenter = _gtk_source_language_get_indenter (lang);
+	
+	end_mark = gtk_text_buffer_create_mark (buf, NULL, end, FALSE);
+	gtk_text_buffer_get_iter_at_mark (buf, end, end_mark);
+	
+	while (gtk_text_iter_get_line (start) <=
+	       gtk_text_iter_get_line (end))
+	{
+		gfloat level;
+		gchar *str;
+		
+		/*
+		 * Put start in the end of the previous line
+		 */
+		gtk_text_iter_set_line_offset (start, 0);
+		//gtk_text_iter_backward_char (start);
+		
+		level = gtk_source_indenter_get_indentation_level (indenter,
+								   GTK_TEXT_VIEW (view),
+								   start,
+								   FALSE);
+		g_warning ("reindent level: %f", level);
+		str = get_indent_string_from_indent_level (view, level);
+		if (str != NULL)
+		{
+			GtkTextIter iter;
+			gunichar c;
+			
+			iter = *start;
+			
+			c = gtk_text_iter_get_char (&iter);
+			while (g_unichar_isspace (c) &&
+			       c != '\n' &&
+			       c != '\r')
+			{
+				gtk_text_iter_forward_char (&iter);
+				c = gtk_text_iter_get_char (&iter);
+			}
+			
+			gtk_text_buffer_begin_user_action (buf);
+			gtk_text_buffer_delete (buf, start, &iter);
+			
+			gtk_text_buffer_insert (buf, start, str, -1);
+			gtk_text_buffer_end_user_action (buf);
+			
+			g_free (str);
+		}
+		
+		gtk_text_buffer_get_iter_at_mark (buf, end, end_mark);
+		gtk_text_iter_forward_line (start);
+		//gtk_text_iter_forward_line (start);
+	}
+	
+	gtk_text_buffer_delete_mark (buf, end_mark);
+}
+
 
 static void
 gtk_source_view_style_set (GtkWidget *widget, GtkStyle *previous_style)

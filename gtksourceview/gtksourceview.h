@@ -198,5 +198,9 @@ void		 gtk_source_view_set_draw_spaces	(GtkSourceView   *view,
 GtkSourceDrawSpacesFlags
 		gtk_source_view_get_draw_spaces		(GtkSourceView   *view);
 
+void		gtk_source_view_reindent_lines		(GtkSourceView *view,
+							 GtkTextIter *start,
+							 GtkTextIter *end);
+
 G_END_DECLS
 #endif				/* end of SOURCE_VIEW_H__ */

@@ -27,7 +27,8 @@ libgtksourceview_headers =			\
 	gtksourcestyleschememanager.h		\
 	gtksourcestylescheme.h			\
 	gtksourcemark.h				\
-	gtksourceprintcompositor.h
+	gtksourceprintcompositor.h		\
+	gtksourceindenter.h
 
 libgtksourceview_2_0_la_SOURCES = 	\
 	gtksourcebuffer.c 		\
@@ -56,6 +57,15 @@ libgtksourceview_2_0_la_SOURCES = 	\
 	gtksourcecontextengine.c	\
 	gtksourcemark.c			\
 	gtksourceprintcompositor.c      \
+	gtksourceindenter.c		\
+	gtksourceindentermanager.c	\
+	gtksourceindentermanager.h	\
+	c-indenter.c			\
+	c-indenter.h			\
+	simple-indenter.c		\
+	simple-indenter.h		\
+	gtksourceindenter-utils.c	\
+	gtksourceindenter-utils.h	\
 	$(libgtksourceview_headers)
 
 # do not distribute generated files
