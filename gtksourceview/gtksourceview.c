@@ -3183,6 +3183,12 @@ check_whitespaces (GtkTextIter *cur)
 	gtk_text_iter_set_line_offset (&start, 0);
 	c = gtk_text_iter_get_char (&start);
 	
+	/*
+	 * Check the first char is not space
+	 */
+	if (!g_unichar_isspace (c))
+		return TRUE;
+	
 	while (gtk_text_iter_compare (&start, cur) < 0)
 	{
 		if (!g_unichar_isspace (c))

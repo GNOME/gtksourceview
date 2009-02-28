@@ -1,3 +1,8 @@
+2009-03-01  Ignacio Casal Quinteiro  <nacho.resa@gmail.com>
+
+	* gtksourceview/gtksourceview.c:
+	Relocate if the inserted char is at column 0.
+
 2009-02-28  Ignacio Casal Quinteiro  <nacho.resa@gmail.com>
 
 	* gtksourceview/c-indenter.c:
