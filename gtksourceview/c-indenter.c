@@ -100,8 +100,6 @@ is_caselabel (const gchar *label)
 	
 	while (case_label[i] != '\0')
 	{
-		g_warning ("%c|%c", c, case_label[i]);
-		
 		if (case_label[i] != c)
 		{
 			is_case = FALSE;
@@ -317,22 +315,36 @@ c_indenter_get_indentation_level (GtkSourceIndenter *indenter,
 	else
 	{
 		GtkTextIter copy;
-		gunichar ch;
 		
 		amount = gtk_source_indenter_get_amount_indents (view, &iter);
 		
-		/*
-		 * Now we have to check for the start of the line
-		 */
 		copy = iter;
 		
-		gtk_source_indenter_move_to_no_space (&copy, 1);
-		ch = gtk_text_iter_get_char (&copy);
-		
-		/* # is always indent 0. Example: #ifdef */
-		if (relocating && ch == '#')
+		/*
+		 * We tried all cases, so now look if we are at the end of a
+		 * func declaration
+		 */
+		if (c == ')')
 		{
-			amount = 0;
+			if (gtk_source_indenter_find_open_char (&copy, '(', ')',
+								FALSE))
+			{
+				amount = gtk_source_indenter_get_amount_indents (view,
+										 &copy);
+			}
+		}
+		else
+		{
+			gunichar ch;
+			
+			gtk_source_indenter_move_to_no_space (&copy, 1);
+			ch = gtk_text_iter_get_char (&copy);
+		
+			/* # is always indent 0. Example: #ifdef */
+			if (relocating && ch == '#')
+			{
+				amount = 0;
+			}
 		}
 	}
 	

@@ -1,5 +1,10 @@
 2009-02-28  Ignacio Casal Quinteiro  <nacho.resa@gmail.com>
 
+	* gtksourceview/c-indenter.c:
+	Set amount to 0 if we are in a function declaration.
+
+2009-02-28  Ignacio Casal Quinteiro  <nacho.resa@gmail.com>
+
 	* gtksourceview/gtksourcelanguage.c:
 	* gtksourceview/gtksourcelanguage.h:
 	* gtksourceview/c-indenter.c:
