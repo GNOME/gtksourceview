@@ -20,11 +20,11 @@
  * Boston, MA  02110-1301  USA
  */
 
-#ifndef __GTK_SOURCE_VIEW_UTILS_H__
-#define __GTK_SOURCE_VIEW_UTILS_H__
+#ifndef __GTK_SOURCE_INDENTER_UTILS_H__
+#define __GTK_SOURCE_INDENTER_UTILS_H__
 
 #include <glib.h>
-#include "gtksourceview.h"
+#include <gtk/gtk.h>
 
 G_BEGIN_DECLS
 

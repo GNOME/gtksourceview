@@ -1,5 +1,14 @@
 2009-03-01  Ignacio Casal Quinteiro  <nacho.resa@gmail.com>
 
+	* gtksourceview/gtksourceindentermanager.c:
+	* gtksourceview/gtksourceindenter-utils.c:
+	* gtksourceview/gtksourceview.c:
+	* gtksourceview/gtksourceindenter-utils.h:
+	* tests/test-widget.c:
+	Fix compilation warnings.
+
+2009-03-01  Ignacio Casal Quinteiro  <nacho.resa@gmail.com>
+
 	* gtksourceview/c-indenter.c:
 	Get the right indent level when having something like:
 	if (true)

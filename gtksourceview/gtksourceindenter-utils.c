@@ -27,7 +27,7 @@
 #include "gtksourceindenter-utils.h"
 #include "gtksourceview-utils.h"
 #include "gtksourceview.h"
-
+#include <math.h>
 
 gfloat
 gtk_source_indenter_get_amount_indents (GtkTextView *view,
@@ -255,7 +255,7 @@ gtk_source_indenter_add_space (GtkTextView *view,
 	
 	indent_width = _gtk_source_view_get_real_indent_width (GTK_SOURCE_VIEW (view));
 	tabs = (gint)current_level;
-	spaces = round (10 * (gfloat)(current_level - tabs));
+	spaces = rint (10 * (gfloat)(current_level - tabs));
 	
 	/*
 	 * We add the new space

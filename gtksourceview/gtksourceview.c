@@ -32,6 +32,7 @@
 #include <gtk/gtk.h>
 #include <gdk/gdkkeysyms.h>
 #include <pango/pango-tabs.h>
+#include <math.h>
 
 #include "gtksourceview-i18n.h"
 
@@ -2790,7 +2791,7 @@ get_indent_string_from_indent_level (GtkSourceView *view,
 	gint indent_width;
 	
 	tabs = (gint)level;
-	spaces = round (10 * (gfloat)(level - tabs));
+	spaces = rint (10 * (gfloat)(level - tabs));
 	indent_width = _gtk_source_view_get_real_indent_width (view);
 	
 	if (view->priv->insert_spaces)

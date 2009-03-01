@@ -266,7 +266,7 @@ error_dialog (GtkWindow *parent, const gchar *msg, ...)
 					 GTK_DIALOG_DESTROY_WITH_PARENT,
 					 GTK_MESSAGE_ERROR,
 					 GTK_BUTTONS_OK,
-					 tmp);
+					 "%s", tmp);
 	g_free (tmp);
 
 	gtk_dialog_run (GTK_DIALOG (dialog));

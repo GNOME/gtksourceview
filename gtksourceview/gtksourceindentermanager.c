@@ -21,7 +21,7 @@
 #include "gtksourceindentermanager.h"
 #include "c-indenter.h"
 #include "simple-indenter.h"
-
+#include <string.h>
 
 #define GTK_SOURCE_INDENTER_MANAGER_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE((object), GTK_TYPE_SOURCE_INDENTER_MANAGER, GtkSourceIndenterManagerPrivate))
 
