@@ -1,5 +1,15 @@
 2009-03-01  Ignacio Casal Quinteiro  <nacho.resa@gmail.com>
 
+	* gtksourceview/c-indenter.c:
+	Get the right indent level when having something like:
+	if (true)
+		hello ();
+
+	* gtksourceview/gtksourceview.c:
+	Fix a false positive when checking whitespaces.
+
+2009-03-01  Ignacio Casal Quinteiro  <nacho.resa@gmail.com>
+
 	* gtksourceview/gtksourceview.c:
 	Relocate if the inserted char is at column 0.
 

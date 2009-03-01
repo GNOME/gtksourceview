@@ -114,6 +114,29 @@ is_caselabel (const gchar *label)
 	return is_case;
 }
 
+static gboolean
+find_char_inline (GtkTextIter *iter,
+		  gunichar c)
+{
+	gunichar f;
+	gboolean found = FALSE;
+	
+	f = gtk_text_iter_get_char (iter);
+	
+	while (f != c && gtk_text_iter_get_line_offset (iter) != 0)
+	{
+		gtk_text_iter_backward_char (iter);
+		f = gtk_text_iter_get_char (iter);
+	}
+	
+	if (f == c)
+	{
+		found = TRUE;
+	}
+	
+	return found;
+}
+
 static gfloat
 c_indenter_get_indentation_level (GtkSourceIndenter *indenter,
 				  GtkTextView *view,
@@ -163,44 +186,58 @@ c_indenter_get_indentation_level (GtkSourceIndenter *indenter,
 	}
 	else if (c == ';')
 	{
-		gfloat current_indent;
+		GtkTextIter copy;
 		
-		current_indent = gtk_source_indenter_get_amount_indents (view,
-									 &iter);
-
+		copy = iter;
+		
 		/*
 		 * We have to check that we are not in something like:
 		 * hello (eoeo,
 		 *        eoeo);
 		 */
-		gtk_text_iter_backward_char (&iter);
-		c = gtk_text_iter_get_char (&iter);
-		if (c == ')' && gtk_source_indenter_find_open_char (&iter, '(', ')', FALSE))
+		if (find_char_inline (&copy, ')') &&
+		    gtk_source_indenter_find_open_char (&copy, '(', ')', FALSE))
 		{
 			amount = gtk_source_indenter_get_amount_indents (view,
-									 &iter);
+									 &copy);
+			
+			/*
+			 * We have to check if we are in just one line block
+			 */
+			while (!gtk_text_iter_ends_line (&copy) &&
+			       gtk_text_iter_backward_char (&copy))
+				continue;
+		
+			gtk_text_iter_backward_char (&copy);
+			
+			if (match_regexes (&copy))
+			{
+				gtk_source_indenter_find_open_char (&copy, '(', ')', FALSE);
+			
+				amount = gtk_source_indenter_get_amount_indents (view,
+										 &copy);
+			}
 		}
 		else
 		{
+			amount = gtk_source_indenter_get_amount_indents (view,
+									 &iter);
+			
 			/*
 			 * We have to check if we are in just one line block
 			 */
 			while (!gtk_text_iter_ends_line (&iter) &&
 			       gtk_text_iter_backward_char (&iter))
 				continue;
-			
+		
 			gtk_text_iter_backward_char (&iter);
-			
+		
 			if (match_regexes (&iter))
 			{
 				gtk_source_indenter_find_open_char (&iter, '(', ')', FALSE);
-				
+			
 				amount = gtk_source_indenter_get_amount_indents (view,
 										 &iter);
-			}
-			else
-			{
-				amount = current_indent;
 			}
 		}
 	}

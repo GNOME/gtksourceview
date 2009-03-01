@@ -3171,6 +3171,9 @@ move_lines (GtkTextView *view, gboolean down)
 	gtk_text_buffer_delete_mark (buf, mark);
 }
 
+/*
+ * This function tries to match the same as a regular expresion like: ^\s*
+ */
 static gboolean
 check_whitespaces (GtkTextIter *cur)
 {
@@ -3186,7 +3189,7 @@ check_whitespaces (GtkTextIter *cur)
 	/*
 	 * Check the first char is not space
 	 */
-	if (!g_unichar_isspace (c))
+	if (gtk_text_iter_get_line_offset (cur) == 0)
 		return TRUE;
 	
 	while (gtk_text_iter_compare (&start, cur) < 0)
