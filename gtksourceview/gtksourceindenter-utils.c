@@ -27,59 +27,36 @@
 #include "gtksourceindenter-utils.h"
 #include "gtksourceview-utils.h"
 #include "gtksourceview.h"
-#include <math.h>
 
-gfloat
+gint
 gtk_source_indenter_get_amount_indents (GtkTextView *view,
 					GtkTextIter *cur)
 {
-	gint indent_width;
 	GtkTextIter start;
 	gunichar c;
-	gint amount = 0;
-	gint rest = 0;
+	
+	g_return_val_if_fail (GTK_IS_TEXT_VIEW (view), 0);
+	g_return_val_if_fail (cur != NULL, 0);
 	
 	start = *cur;
 	gtk_text_iter_set_line_offset (&start, 0);
 	
 	c = gtk_text_iter_get_char (&start);
-	if (!g_unichar_isspace (c))
-		return 0;
-	
-	indent_width = _gtk_source_view_get_real_indent_width (GTK_SOURCE_VIEW (view));
 	
 	while (g_unichar_isspace (c) &&
 	       c != '\n' &&
-	       c != '\r' &&
-	       gtk_text_iter_compare (&start, cur) < 0)
+	       c != '\r')
 	{
-		if (c == '\t')
-		{
-			if (rest != 0)
-				rest = 0;
-			amount++;
-		}
-		else
-		{
-			rest++;
-		}
-		
-		if (rest == indent_width)
-		{
-			amount++;
-			rest = 0;
-		}
-		
 		if (!gtk_text_iter_forward_char (&start))
 			break;
 		
 		c = gtk_text_iter_get_char (&start);
 	}
 
-	return (gfloat)amount + (gfloat)(0.1 * rest);
+	return gtk_source_indenter_get_amount_indents_from_position (view, &start);
 }
 
-gfloat
+gint
 gtk_source_indenter_get_amount_indents_from_position (GtkTextView *view,
 						      GtkTextIter *cur)
 {
@@ -88,6 +65,9 @@ gtk_source_indenter_get_amount_indents_from_position (GtkTextView *view,
 	gunichar c;
 	gint amount = 0;
 	gint rest = 0;
+	
+	g_return_val_if_fail (GTK_IS_TEXT_VIEW (view), 0);
+	g_return_val_if_fail (cur != NULL, 0);
 	
 	indent_width = _gtk_source_view_get_real_indent_width (GTK_SOURCE_VIEW (view));
 	
@@ -102,7 +82,7 @@ gtk_source_indenter_get_amount_indents_from_position (GtkTextView *view,
 		{
 			if (rest != 0)
 				rest = 0;
-			amount++;
+			amount += indent_width;
 		}
 		else
 		{
@@ -111,7 +91,7 @@ gtk_source_indenter_get_amount_indents_from_position (GtkTextView *view,
 		
 		if (rest == indent_width)
 		{
-			amount++;
+			amount += indent_width;
 			rest = 0;
 		}
 		
@@ -121,7 +101,7 @@ gtk_source_indenter_get_amount_indents_from_position (GtkTextView *view,
 		c = gtk_text_iter_get_char (&start);
 	}
 	
-	return (gfloat)amount + (gfloat)(0.1 * rest);
+	return amount + rest;
 }
 
 gboolean
@@ -130,6 +110,8 @@ gtk_source_indenter_move_to_no_space (GtkTextIter *iter,
 {
 	gunichar c;
 	gboolean moved = TRUE;
+	
+	g_return_val_if_fail (iter != NULL, FALSE);
 	
 	c = gtk_text_iter_get_char (iter);
 	
@@ -150,6 +132,8 @@ gboolean
 gtk_source_indenter_move_to_no_comments (GtkTextIter *iter)
 {
 	gunichar c;
+	
+	g_return_val_if_fail (iter != NULL, FALSE);
 	
 	c = gtk_text_iter_get_char (iter);
 	
@@ -210,6 +194,8 @@ gtk_source_indenter_find_open_char (GtkTextIter *iter,
 	gboolean moved = FALSE;
 	gint counter = 0;
 	
+	g_return_val_if_fail (iter != NULL, FALSE);
+	
 	copy = *iter;
 	
 	/*
@@ -245,28 +231,15 @@ gtk_source_indenter_find_open_char (GtkTextIter *iter,
 	return moved;
 }
 
-gfloat
-gtk_source_indenter_add_space (GtkTextView *view,
-			       gfloat current_level)
+gint
+gtk_source_indenter_add_indent (GtkTextView *view,
+				gint current_level)
 {
 	gint indent_width;
-	gint spaces;
-	gint tabs;
+	
+	g_return_val_if_fail (GTK_IS_TEXT_VIEW (view), 0);
 	
 	indent_width = _gtk_source_view_get_real_indent_width (GTK_SOURCE_VIEW (view));
-	tabs = (gint)current_level;
-	spaces = rint (10 * (gfloat)(current_level - tabs));
 	
-	/*
-	 * We add the new space
-	 */
-	spaces++;
-	
-	if (spaces == indent_width)
-	{
-		spaces = 0;
-		tabs++;
-	}
-	
-	return (gfloat)tabs + (gfloat)(0.1 * spaces);
+	return current_level + indent_width;
 }

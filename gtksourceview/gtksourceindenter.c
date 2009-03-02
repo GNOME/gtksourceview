@@ -35,17 +35,6 @@ static const gchar * relocatables[] =
 	NULL
 };
 
-static const gchar * extra_indent_words[] =
-{
-	"if",
-	"else",
-	"while",
-	"do",
-	"for",
-	"switch",
-	NULL
-};
-
 /* Default implementation */
 static const gchar * const *
 gtk_source_indenter_get_relocatables_default (GtkSourceIndenter *self)
@@ -54,14 +43,7 @@ gtk_source_indenter_get_relocatables_default (GtkSourceIndenter *self)
 }
 
 /* Default implementation */
-static const gchar * const *
-gtk_source_indenter_get_extra_indent_words_default (GtkSourceIndenter *self)
-{
-	return extra_indent_words;
-}
-
-/* Default implementation */
-static gfloat
+static gint
 gtk_source_indenter_get_indentation_level_default (GtkSourceIndenter *self,
 						   GtkTextView       *view,
 						   GtkTextIter       *iter,
@@ -82,7 +64,6 @@ gtk_source_indenter_class_init (GtkSourceIndenterClass *klass)
 	GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
 	klass->get_relocatables = gtk_source_indenter_get_relocatables_default;
-	klass->get_extra_indent_words = gtk_source_indenter_get_extra_indent_words_default;
 	klass->get_indentation_level = gtk_source_indenter_get_indentation_level_default;
 
 	object_class->finalize = gtk_source_indenter_finalize;
@@ -109,7 +90,7 @@ gtk_source_indenter_init (GtkSourceIndenter *self)
  *
  * Returns: the indentation level for a line determined by @iter.
  */
-gfloat
+gint
 gtk_source_indenter_get_indentation_level (GtkSourceIndenter *self,
 					   GtkTextView       *view,
 					   GtkTextIter       *iter,
@@ -118,23 +99,6 @@ gtk_source_indenter_get_indentation_level (GtkSourceIndenter *self,
 	g_return_val_if_fail (GTK_IS_SOURCE_INDENTER (self), 0);
 	
 	return GTK_SOURCE_INDENTER_GET_CLASS (self)->get_indentation_level (self, view, iter, relocating);
-}
-
-/**
- * gtk_source_indenter_get_extra_indent_words:
- * @self: a #GtkSourceIndenter
- *
- * Gets the words that start an extra indent in the next line.
- * This will not change the indentation level.
- *
- * Returns: the words that start an extra indent in the next line.
- */
-const gchar * const *
-gtk_source_indenter_get_extra_indent_words (GtkSourceIndenter *self)
-{
-	g_return_val_if_fail (GTK_IS_SOURCE_INDENTER (self), NULL);
-	
-	return GTK_SOURCE_INDENTER_GET_CLASS (self)->get_extra_indent_words (self);
 }
 
 /**

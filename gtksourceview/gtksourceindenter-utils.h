@@ -28,10 +28,10 @@
 
 G_BEGIN_DECLS
 
-gfloat		 gtk_source_indenter_get_amount_indents		(GtkTextView *view,
+gint		 gtk_source_indenter_get_amount_indents		(GtkTextView *view,
 								 GtkTextIter *cur);
 
-gfloat		 gtk_source_indenter_get_amount_indents_from_position
+gint		 gtk_source_indenter_get_amount_indents_from_position
 								(GtkTextView *view,
 								 GtkTextIter *cur);
 
@@ -45,8 +45,8 @@ gboolean	 gtk_source_indenter_find_open_char		(GtkTextIter *iter,
 								 gchar close,
 								 gboolean skip_first);
 
-gfloat		 gtk_source_indenter_add_space			(GtkTextView *view,
-								 gfloat current_level);
+gint		 gtk_source_indenter_add_indent			(GtkTextView *view,
+								 gint current_level);
 
 G_END_DECLS
 

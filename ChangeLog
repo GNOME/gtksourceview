@@ -1,3 +1,14 @@
+2009-03-02  Ignacio Casal Quinteiro  <nacho.resa@gmail.com>
+
+	* gtksourceview/c-indenter.c:
+	* gtksourceview/gtksourceindenter-utils.c:
+	* gtksourceview/gtksourceindenter.c:
+	* gtksourceview/gtksourceview.c:
+	* gtksourceview/gtksourceindenter-utils.h:
+	* gtksourceview/gtksourceindenter.h:
+	Clean up the source code and change from the gfloat approach
+	to a gint approach when getting the indent level.
+
 2009-03-01  Ignacio Casal Quinteiro  <nacho.resa@gmail.com>
 
 	* gtksourceview/gtksourceindentermanager.c:

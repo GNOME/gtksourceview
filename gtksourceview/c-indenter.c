@@ -137,7 +137,7 @@ find_char_inline (GtkTextIter *iter,
 	return found;
 }
 
-static gfloat
+static gint
 c_indenter_get_indentation_level (GtkSourceIndenter *indenter,
 				  GtkTextView *view,
 				  GtkTextIter *cur,
@@ -149,18 +149,18 @@ c_indenter_get_indentation_level (GtkSourceIndenter *indenter,
 	 */
 	GtkTextIter iter;
 	gunichar c;
-	gfloat amount = 0.;
+	gint amount = 0;
 	
 	iter = *cur;
 	
 	if (!gtk_source_indenter_move_to_no_space (&iter, -1))
-		return 0.;
+		return 0;
 
 	/*
 	 * Check for comments
 	 */
 	if (!gtk_source_indenter_move_to_no_comments (&iter))
-		return 0.;
+		return 0;
 
 	c = gtk_text_iter_get_char (&iter);
 	g_warning ("char %c", c);
@@ -181,7 +181,7 @@ c_indenter_get_indentation_level (GtkSourceIndenter *indenter,
 		
 		if (ch == '/')
 		{
-			amount = gtk_source_indenter_add_space (view, amount);
+			amount++;
 		}
 	}
 	else if (c == ';')
@@ -282,7 +282,7 @@ c_indenter_get_indentation_level (GtkSourceIndenter *indenter,
 		}
 		else
 		{
-			amount++;
+			amount = gtk_source_indenter_add_indent (view, amount);
 		}
 	}
 	else if (c == ',' || c == '&' || c == '|')
@@ -296,7 +296,7 @@ c_indenter_get_indentation_level (GtkSourceIndenter *indenter,
 		if (gtk_source_indenter_find_open_char (&s, '(', ')', TRUE))
 		{
 			amount = gtk_source_indenter_get_amount_indents_from_position (view, &s);
-			amount = gtk_source_indenter_add_space (view, amount);
+			amount++;
 		}
 	}
 	else if (c == ')' && relocating)
@@ -324,7 +324,7 @@ c_indenter_get_indentation_level (GtkSourceIndenter *indenter,
 			
 			if (!is_caselabel (label))
 			{
-				amount = 0.;
+				amount = 0;
 			}
 			else
 			{
@@ -335,19 +335,23 @@ c_indenter_get_indentation_level (GtkSourceIndenter *indenter,
 		}
 		else
 		{
-			amount = 1.;
+			/*
+			 * FIXME: Is this OK with amount = 1 indent ??
+			 */
+			amount = gtk_source_indenter_add_indent (view, 0);
 		}
 	}
 	else if (c == '=')
 	{
-		amount = gtk_source_indenter_get_amount_indents (view, &iter) + 1;
+		amount = gtk_source_indenter_get_amount_indents (view, &iter);
+		amount = gtk_source_indenter_add_indent (view, amount);
 	}
 	else if (match_regexes (&iter))
 	{
 		gtk_source_indenter_find_open_char (&iter, '(', ')', FALSE);
 		
-		amount = gtk_source_indenter_get_amount_indents (view,
-								 &iter) + 1;
+		amount = gtk_source_indenter_get_amount_indents (view, &iter);
+		amount = gtk_source_indenter_add_indent (view, amount);
 	}
 	else
 	{

@@ -32,7 +32,6 @@
 #include <gtk/gtk.h>
 #include <gdk/gdkkeysyms.h>
 #include <pango/pango-tabs.h>
-#include <math.h>
 
 #include "gtksourceview-i18n.h"
 
@@ -2783,16 +2782,16 @@ get_indent_string (gint tabs, gint spaces)
 
 static gchar *
 get_indent_string_from_indent_level (GtkSourceView *view,
-				     gfloat level)
+				     gint level)
 {
 	gint tabs;
 	gint spaces;
 	gchar *indent = NULL;
 	gint indent_width;
 	
-	tabs = (gint)level;
-	spaces = rint (10 * (gfloat)(level - tabs));
 	indent_width = _gtk_source_view_get_real_indent_width (view);
+	tabs = level / indent_width;
+	spaces = level % indent_width;
 	
 	if (view->priv->insert_spaces)
 	{
@@ -3252,7 +3251,7 @@ gtk_source_view_event_after (GtkWidget *widget,
 	GtkSourceIndenter *indenter;
 	GtkTextIter copy;
 	const gchar * const *relocatables;
-	gfloat level;
+	gint level;
 	gint m = 0;
 	
 	if (event->type != GDK_KEY_PRESS || 
@@ -3400,7 +3399,7 @@ gtk_source_view_key_press_event (GtkWidget   *widget,
 		 * level as the previous line.
 		 * SHIFT+ENTER allows to avoid autoindentation.
 		 */
-		gfloat indent_level;
+		gint indent_level;
 		gchar *indent = NULL;
 
 		/* Calculate line indentation and create indent string. */
@@ -3409,7 +3408,7 @@ gtk_source_view_key_press_event (GtkWidget   *widget,
 									  &cur, FALSE);
 		indent = get_indent_string_from_indent_level (view, indent_level);
 		
-		g_warning ("%f", indent_level);
+		g_warning ("%d", indent_level);
 		
 		if (indent != NULL)
 		{
@@ -4009,7 +4008,7 @@ gtk_source_view_reindent_lines (GtkSourceView *view,
 	while (gtk_text_iter_get_line (start) <=
 	       gtk_text_iter_get_line (end))
 	{
-		gfloat level;
+		gint level;
 		gchar *str;
 		
 		/*
@@ -4022,7 +4021,7 @@ gtk_source_view_reindent_lines (GtkSourceView *view,
 								   GTK_TEXT_VIEW (view),
 								   start,
 								   FALSE);
-		g_warning ("reindent level: %f", level);
+		g_warning ("reindent level: %d", level);
 		str = get_indent_string_from_indent_level (view, level);
 		if (str != NULL)
 		{

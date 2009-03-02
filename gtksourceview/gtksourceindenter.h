@@ -56,9 +56,7 @@ struct _GtkSourceIndenterClass
 	
 	const gchar * const * (*get_relocatables)         (GtkSourceIndenter *self);
 	
-	const gchar * const * (*get_extra_indent_words)   (GtkSourceIndenter *self);
-	
-	gfloat		      (*get_indentation_level)    (GtkSourceIndenter *self,
+	gint		      (*get_indentation_level)    (GtkSourceIndenter *self,
 							   GtkTextView       *view,
 							   GtkTextIter       *iter,
 							   gboolean           relocating);
@@ -69,22 +67,11 @@ GType		 gtk_source_indenter_get_type		(void);
 const gchar * const *
 		 gtk_source_indenter_get_relocatables	(GtkSourceIndenter *self);
 
-const gchar * const *
-		 gtk_source_indenter_get_extra_indent_words
-		 					(GtkSourceIndenter *self);
-
-gfloat		 gtk_source_indenter_get_indentation_level
+gint		 gtk_source_indenter_get_indentation_level
 							(GtkSourceIndenter *self,
 							 GtkTextView       *buf,
 							 GtkTextIter       *iter,
 							 gboolean           relocating);
-
-gfloat		 gtk_source_indenter_get_amount_indents (GtkTextView *view,
-							 GtkTextIter *cur);
-
-gfloat		 gtk_source_indenter_get_amount_indents_from_position
-							(GtkTextView *view,
-							 GtkTextIter *cur);
 
 G_END_DECLS
 
