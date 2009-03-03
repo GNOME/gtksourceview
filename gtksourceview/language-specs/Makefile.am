@@ -54,6 +54,7 @@ LANGUAGES =			\
 	pkgconfig.lang		\
 	po.lang			\
 	python.lang		\
+	prolog.lang		\
 	R.lang			\
 	rpmspec.lang		\
 	ruby.lang		\
