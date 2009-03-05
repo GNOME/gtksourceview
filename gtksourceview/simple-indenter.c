@@ -22,7 +22,7 @@
 
 #include "simple-indenter.h"
 #include "gtksourceindenter.h"
-#include "gtksourceview-utils.h"
+#include "gtksourceindenter-utils.h"
 
 #define SIMPLE_INDENTER_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE((object),\
 					    SIMPLE_TYPE_INDENTER, SimpleIndenterPrivate))
@@ -33,7 +33,7 @@ struct _SimpleIndenterPrivate
 
 G_DEFINE_TYPE (SimpleIndenter, simple_indenter, GTK_TYPE_SOURCE_INDENTER)
 
-static gfloat
+static gint
 simple_indenter_get_indentation_level (GtkSourceIndenter *indenter,
 				       GtkTextView *view,
 				       GtkTextIter *iter,

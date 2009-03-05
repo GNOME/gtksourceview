@@ -3412,6 +3412,9 @@ gtk_source_view_key_press_event (GtkWidget   *widget,
 		
 		if (indent != NULL)
 		{
+			GtkTextIter copy;
+			gunichar c;
+			
 			/* Allow input methods to internally handle a key press event.
 			 * If this function returns TRUE, then no further processing should be done
 			 * for this keystroke. */
@@ -3422,9 +3425,21 @@ gtk_source_view_key_press_event (GtkWidget   *widget,
 			 * the cur iterm may be invalid, so get the iter again */
 			gtk_text_buffer_get_iter_at_mark (buf, &cur, mark);
 
-			/* Insert new line and auto-indent. */
-			//FIXME: Remove current indentation before insert the new one
+			copy = cur;
 			gtk_text_buffer_begin_user_action (buf);
+			
+			/* Remove current indentation before insert the new one */
+			c = gtk_text_iter_get_char (&copy);
+			while (g_unichar_isspace (c) &&
+			       c != '\n' &&
+			       c != '\r')
+			{
+				gtk_text_iter_forward_char (&copy);
+				c = gtk_text_iter_get_char (&copy);
+			}
+			
+			/* Insert new line and auto-indent. */
+			gtk_text_buffer_delete (buf, &cur, &copy);
 			gtk_text_buffer_insert (buf, &cur, "\n", 1);
 			gtk_text_buffer_insert (buf, &cur, indent, strlen (indent));
 			g_free (indent);

@@ -1,3 +1,12 @@
+2009-03-05  Ignacio Casal Quinteiro  <nacho.resa@gmail.com>
+
+	* gtksourceview/simple-indenter.c:
+	Use gint instead of gfloat for indentation level.
+
+	* gtksourceview/gtksourceview.c:
+	If we have any indentation when we press \n delete it 
+	before insert the new indentation.
+
 2009-03-02  Ignacio Casal Quinteiro  <nacho.resa@gmail.com>
 
 	* gtksourceview/c-indenter.c:
