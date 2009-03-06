@@ -89,25 +89,42 @@ match_regexes (GtkTextIter *iter)
 static gboolean
 is_caselabel (const gchar *label)
 {
-	const gchar *case_label = "case";
+	const gchar *case_label[] =
+	{
+		"case",
+		"default",
+		NULL
+	};
+	gboolean is_case = FALSE;
 	gchar *p;
 	gunichar c;
 	gint i = 0;
-	gboolean is_case = TRUE;
+	gint j;
 	
 	p = (gchar *)label;
 	c = g_utf8_get_char (p);
 	
-	while (case_label[i] != '\0')
+	while (case_label[i] != NULL && !is_case)
 	{
-		if (case_label[i] != c)
+		const gchar *word = case_label[i];
+		j = 0;
+		
+		while (word[j] != '\0' && word[j] == c)
 		{
-			is_case = FALSE;
-			break;
+			p = g_utf8_next_char (p);
+			c = g_utf8_get_char (p);
+			j++;
 		}
 		
-		p = g_utf8_next_char (p);
-		c = g_utf8_get_char (p);
+		if (word[j] == '\0')
+		{
+			is_case = TRUE;
+		}
+		else
+		{
+			is_case = FALSE;
+		}
+		
 		i++;
 	}
 	
@@ -311,17 +328,17 @@ c_indenter_get_indentation_level (GtkSourceIndenter *indenter,
 	}
 	else if (c == ':')
 	{
+		GtkTextIter start;
+		gchar *label;
+		
+		start = iter;
+		gtk_text_iter_set_line_offset (&start, 0);
+		gtk_source_indenter_move_to_no_space (&start, 1);
+		
+		label = gtk_text_iter_get_text (&start, &iter);
+		
 		if (relocating)
 		{
-			GtkTextIter start;
-			gchar *label;
-			
-			start = iter;
-			gtk_text_iter_set_line_offset (&start, 0);
-			gtk_source_indenter_move_to_no_space (&start, 1);
-			
-			label = gtk_text_iter_get_text (&start, &iter);
-			
 			if (!is_caselabel (label))
 			{
 				amount = 0;
@@ -330,16 +347,17 @@ c_indenter_get_indentation_level (GtkSourceIndenter *indenter,
 			{
 				amount = gtk_source_indenter_get_amount_indents (view, &iter);
 			}
-			
-			g_free (label);
 		}
 		else
 		{
-			/*
-			 * FIXME: Is this OK with amount = 1 indent ??
-			 */
-			amount = gtk_source_indenter_add_indent (view, 0);
+			if (is_caselabel (label))
+			{
+				amount = gtk_source_indenter_get_amount_indents (view, &iter);
+				amount = gtk_source_indenter_add_indent (view, amount);
+			}
 		}
+		
+		g_free (label);
 	}
 	else if (c == '=')
 	{
