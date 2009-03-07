@@ -41,8 +41,15 @@ static const gchar * regexes[] =
 	NULL
 };
 
+static const gchar * case_regexes[] =
+{
+	"^\\s*(default|case [^ ]*)\\s*:\\s*(if|while|else if|for|switch)\\s*\\(.*\\)\\s*$",
+	NULL
+};
+
 static gboolean
-match_regexes (GtkTextIter *iter)
+match_regexes (GtkTextIter *iter,
+	       const gchar * const *regexes)
 {
 	gint i = 0;
 	gboolean match = FALSE;
@@ -227,7 +234,7 @@ c_indenter_get_indentation_level (GtkSourceIndenter *indenter,
 		
 			gtk_text_iter_backward_char (&copy);
 			
-			if (match_regexes (&copy))
+			if (match_regexes (&copy, regexes))
 			{
 				gtk_source_indenter_find_open_char (&copy, '(', ')', FALSE);
 			
@@ -249,7 +256,7 @@ c_indenter_get_indentation_level (GtkSourceIndenter *indenter,
 		
 			gtk_text_iter_backward_char (&iter);
 		
-			if (match_regexes (&iter))
+			if (match_regexes (&iter, regexes))
 			{
 				gtk_source_indenter_find_open_char (&iter, '(', ')', FALSE);
 			
@@ -289,12 +296,50 @@ c_indenter_get_indentation_level (GtkSourceIndenter *indenter,
 		
 		if (relocating)
 		{
-			if (match_regexes (&iter))
+			if (match_regexes (&iter, regexes))
 			{
 				gtk_source_indenter_find_open_char (&iter, '(', ')', FALSE);
 			
 				amount = gtk_source_indenter_get_amount_indents (view,
 										 &iter);
+			}
+			else if (match_regexes (&iter, case_regexes))
+			{
+				gunichar ch;
+		
+				/* We are in a case label like: case 0: if (hello)
+				 * so we first look backward for the ':' and then look forward
+				 * for the first char
+				 */
+				find_char_inline (&iter, ':');
+				gtk_text_iter_forward_char (&iter);
+				ch = gtk_text_iter_get_char (&iter);
+		
+				while (g_unichar_isspace (ch))
+				{
+					gtk_text_iter_forward_char (&iter);
+					ch = gtk_text_iter_get_char (&iter);
+				}
+		
+				amount = gtk_source_indenter_get_amount_indents_from_position (view, &iter);
+			}
+			else
+			{
+				GtkTextIter start;
+				gchar *label;
+	
+				start = iter;
+				gtk_text_iter_set_line_offset (&start, 0);
+				gtk_source_indenter_move_to_no_space (&start, 1);
+	
+				label = gtk_text_iter_get_text (&start, &iter);
+				
+				if (is_caselabel (label))
+				{
+					amount = gtk_source_indenter_get_amount_indents (view, &iter);
+				}
+				
+				g_free (label);
 			}
 		}
 		else
@@ -364,11 +409,32 @@ c_indenter_get_indentation_level (GtkSourceIndenter *indenter,
 		amount = gtk_source_indenter_get_amount_indents (view, &iter);
 		amount = gtk_source_indenter_add_indent (view, amount);
 	}
-	else if (match_regexes (&iter))
+	else if (match_regexes (&iter, regexes))
 	{
 		gtk_source_indenter_find_open_char (&iter, '(', ')', FALSE);
 		
 		amount = gtk_source_indenter_get_amount_indents (view, &iter);
+		amount = gtk_source_indenter_add_indent (view, amount);
+	}
+	else if (match_regexes (&iter, case_regexes))
+	{
+		gunichar ch;
+		
+		/* We are in a case label like: case 0: if (hello)
+		 * so we first look backward for the ':' and then look forward
+		 * for the first char
+		 */
+		find_char_inline (&iter, ':');
+		gtk_text_iter_forward_char (&iter);
+		ch = gtk_text_iter_get_char (&iter);
+		
+		while (g_unichar_isspace (ch))
+		{
+			gtk_text_iter_forward_char (&iter);
+			ch = gtk_text_iter_get_char (&iter);
+		}
+		
+		amount = gtk_source_indenter_get_amount_indents_from_position (view, &iter);
 		amount = gtk_source_indenter_add_indent (view, amount);
 	}
 	else
