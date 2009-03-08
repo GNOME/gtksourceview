@@ -96,44 +96,11 @@ match_regexes (GtkTextIter *iter,
 static gboolean
 is_caselabel (const gchar *label)
 {
-	const gchar *case_label[] =
-	{
-		"case",
-		"default",
-		NULL
-	};
 	gboolean is_case = FALSE;
-	gchar *p;
-	gunichar c;
-	gint i = 0;
-	gint j;
 	
-	p = (gchar *)label;
-	c = g_utf8_get_char (p);
-	
-	while (case_label[i] != NULL && !is_case)
-	{
-		const gchar *word = case_label[i];
-		j = 0;
-		
-		while (word[j] != '\0' && word[j] == c)
-		{
-			p = g_utf8_next_char (p);
-			c = g_utf8_get_char (p);
-			j++;
-		}
-		
-		if (word[j] == '\0')
-		{
-			is_case = TRUE;
-		}
-		else
-		{
-			is_case = FALSE;
-		}
-		
-		i++;
-	}
+	if (g_str_has_prefix (label, "case") ||
+	    g_str_has_prefix (label, "default"))
+		is_case = TRUE;
 	
 	return is_case;
 }
