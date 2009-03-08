@@ -1,6 +1,11 @@
 2009-03-08  Ignacio Casal Quinteiro  <nacho.resa@gmail.com>
 
 	* gtksourceview/c-indenter.c:
+	Pass the backward iter when calculating the indent level.	
+
+2009-03-08  Ignacio Casal Quinteiro  <nacho.resa@gmail.com>
+
+	* gtksourceview/c-indenter.c:
 	Do not reinvent the wheel when checking case labels.
 
 2009-03-07  Ignacio Casal Quinteiro  <nacho.resa@gmail.com>
