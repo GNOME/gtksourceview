@@ -3403,7 +3403,8 @@ gtk_source_view_key_press_event (GtkWidget   *widget,
 		gchar *indent = NULL;
 
 		/* Move back one char to calculate the level */
-		gtk_text_iter_backward_char (&cur);
+		if (!gtk_text_iter_starts_line (&cur))
+			gtk_text_iter_backward_char (&cur);
 		
 		/* Calculate line indentation and create indent string. */
 		indent_level = gtk_source_indenter_get_indentation_level (indenter,

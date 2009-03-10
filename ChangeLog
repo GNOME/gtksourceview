@@ -1,3 +1,9 @@
+2009-03-10  Ignacio Casal Quinteiro  <nacho.resa@gmail.com>
+
+	* gtksourceview/gtksourceview.c:
+	Do not get the backward char if we are at the beginning
+	of the line.
+
 2009-03-08  Ignacio Casal Quinteiro  <nacho.resa@gmail.com>
 
 	* gtksourceview/c-indenter.c:
