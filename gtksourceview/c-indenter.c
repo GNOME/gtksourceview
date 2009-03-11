@@ -44,6 +44,7 @@ static const gchar * regexes[] =
 static const gchar * case_regexes[] =
 {
 	"^\\s*(default|case [^ ]*)\\s*:\\s*(if|while|else if|for|switch)\\s*\\(.*\\)\\s*$",
+	"^\\s*(default|case [^ ]*)\\s*:\\s*do\\s*$",
 	NULL
 };
 
@@ -143,6 +144,10 @@ c_indenter_get_indentation_level (GtkSourceIndenter *indenter,
 	gint amount = 0;
 	
 	iter = *cur;
+	
+	/* Skip all preprocessor sentences */
+	while (!relocating && gtk_source_indenter_move_to_no_preprocessor (&iter))
+		continue;
 	
 	if (!gtk_source_indenter_move_to_no_space (&iter, -1))
 		return 0;
@@ -371,11 +376,6 @@ c_indenter_get_indentation_level (GtkSourceIndenter *indenter,
 		
 		g_free (label);
 	}
-	else if (c == '=')
-	{
-		amount = gtk_source_indenter_get_amount_indents (view, &iter);
-		amount = gtk_source_indenter_add_indent (view, amount);
-	}
 	else if (match_regexes (&iter, regexes))
 	{
 		gtk_source_indenter_find_open_char (&iter, '(', ')', FALSE);
@@ -404,6 +404,11 @@ c_indenter_get_indentation_level (GtkSourceIndenter *indenter,
 		amount = gtk_source_indenter_get_amount_indents_from_position (view, &iter);
 		amount = gtk_source_indenter_add_indent (view, amount);
 	}
+	/* # is always indent 0. Example: #ifdef */
+	else if (relocating && c == '#')
+	{
+		amount = 0;
+	}
 	else
 	{
 		GtkTextIter copy;
@@ -425,18 +430,15 @@ c_indenter_get_indentation_level (GtkSourceIndenter *indenter,
 										 &copy);
 			}
 		}
-		else
+		/*
+		 * Are we in something like: if (hello\n
+		 */
+		else if (gtk_source_indenter_find_open_char (&copy, '(', ')',
+							     TRUE))
 		{
-			gunichar ch;
-			
-			gtk_source_indenter_move_to_no_space (&copy, 1);
-			ch = gtk_text_iter_get_char (&copy);
-		
-			/* # is always indent 0. Example: #ifdef */
-			if (relocating && ch == '#')
-			{
-				amount = 0;
-			}
+			amount = gtk_source_indenter_get_amount_indents_from_position (view,
+										       &copy);
+			amount += 1;
 		}
 	}
 	

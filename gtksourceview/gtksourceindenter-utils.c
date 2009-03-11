@@ -184,6 +184,42 @@ gtk_source_indenter_move_to_no_comments (GtkTextIter *iter)
 }
 
 gboolean
+gtk_source_indenter_move_to_no_preprocessor (GtkTextIter *iter)
+{
+	gunichar c;
+	GtkTextIter copy;
+	gboolean moved = TRUE;
+	
+	copy = *iter;
+	
+	gtk_text_iter_set_line_offset (&copy, 0);
+	gtk_source_indenter_move_to_no_space (&copy, 1);
+	
+	c = gtk_text_iter_get_char (&copy);
+	
+	if (c == '#')
+	{
+		/*
+		 * Move back until we get a no space char
+		 */
+		do
+		{
+			if (!gtk_text_iter_backward_char (&copy))
+				moved = FALSE;
+			c = gtk_text_iter_get_char (&copy);
+		} while (g_unichar_isspace (c));
+		
+		*iter = copy;
+	}
+	else
+	{
+		moved = FALSE;
+	}
+	
+	return moved;
+}
+
+gboolean
 gtk_source_indenter_find_open_char (GtkTextIter *iter,
 				    gchar open,
 				    gchar close,

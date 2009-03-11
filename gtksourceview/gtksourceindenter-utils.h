@@ -40,6 +40,8 @@ gboolean	 gtk_source_indenter_move_to_no_space		(GtkTextIter *iter,
 
 gboolean	 gtk_source_indenter_move_to_no_comments	(GtkTextIter *iter);
 
+gboolean	 gtk_source_indenter_move_to_no_preprocessor	(GtkTextIter *iter);
+
 gboolean	 gtk_source_indenter_find_open_char		(GtkTextIter *iter,
 								 gchar open,
 								 gchar close,
