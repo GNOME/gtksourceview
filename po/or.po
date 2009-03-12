@@ -1,4 +1,4 @@
-# translation of or.po to Oriya
+# translation of gtksourceview.HEAD.or.po to Oriya
 # This file is distributed under the same license as the PACKAGE package.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER.
 #
@@ -7,10 +7,10 @@
 # Manoj Kumar Giri <mgiri@redhat.com>, 2009.
 msgid ""
 msgstr ""
-"Project-Id-Version: or\n"
+"Project-Id-Version: gtksourceview.HEAD.or\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gtksourceview&component=general\n"
-"POT-Creation-Date: 2009-02-14 11:52+0000\n"
-"PO-Revision-Date: 2009-03-06 16:05+0530\n"
+"POT-Creation-Date: 2009-03-06 10:36+0000\n"
+"PO-Revision-Date: 2009-03-12 14:46+0530\n"
 "Last-Translator: Manoj Kumar Giri <mgiri@redhat.com>\n"
 "Language-Team: Oriya <oriya-it@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -18,6 +18,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
 "Plural-Forms:  nplurals=2; plural=(n!=1);\n\n"
+"\n"
+"\n"
 "\n"
 "\n"
 
@@ -74,7 +76,6 @@ msgstr "ପୁଣିଥରେ କରିବା ସମ୍ଭବ କି ନୁହ�
 
 #: ../gtksourceview/gtksourcebuffer.c:252
 #: ../gtksourceview/gtksourcebuffer.c:253
-#| msgid "Scheme"
 msgid "Style scheme"
 msgstr "ଶୈଳୀ ଯୋଜନା"
 
@@ -94,12 +95,17 @@ msgid ""
 "process will be slower than usual.\n"
 "The error was: %s"
 msgstr ""
+"ସମସ୍ତ ଅନୁବାଦ ପାଇଁ regex ନିର୍ମାଣ କରିପାରିବେ ନାହିଁ, ବାକ୍ୟ ବିନ୍ୟାସ ଆଲୋକିତ "
+"ପଦ୍ଧତିଟି ଅପେକ୍ଷାକୃତ ମନ୍ଥର।\n"
+"ତ୍ରୁଟିଟି ହେଉଛି: %s"
 
 #: ../gtksourceview/gtksourcecontextengine.c:4547
 msgid ""
 "Highlighting a single line took too much time, syntax highlighting will be "
 "disabled"
 msgstr ""
+"ଗୋଟିଏ ଧାଡ଼ିକୁ ଆଲୋକିତ କରିବା ପାଇଁ ଅଧିକ ସମୟ ଲାଗିଥିଲା, ବାକ୍ୟବିନ୍ୟାସ ଆଲୋକିତକୁ "
+"ନିଷ୍କ୍ରିୟ କରାଯାଇଥିଲା"
 
 #: ../gtksourceview/gtksourcecontextengine.c:5757
 #, c-format
@@ -118,7 +124,7 @@ msgstr "ନକଲି ପ୍ରସଙ୍ଗ id '%s'"
 msgid ""
 "style override used with wildcard context reference in language '%s' in ref "
 "'%s'"
-msgstr ""
+msgstr "ସନ୍ଦର୍ଭ '%s'ର ଭାଷା '%s' ରେ ୱାଇଲ୍ଡକାର୍ଡ ପ୍ରସଙ୍ଗ ସହିତ ବ୍ୟବହୃତ ଶୈଳୀ ନବଲିଖନ"
 
 #: ../gtksourceview/gtksourcecontextengine.c:6183
 #, c-format
@@ -161,19 +167,16 @@ msgstr "ଅନ୍ଯାନ୍ଯ"
 
 #: ../gtksourceview/gtksourcelanguage.c:215
 #: ../gtksourceview/gtksourcelanguage.c:216
-#| msgid "Language"
 msgid "Language id"
 msgstr "ଭାଷା id"
 
 #: ../gtksourceview/gtksourcelanguage.c:223
 #: ../gtksourceview/gtksourcelanguage.c:224
-#| msgid "Language"
 msgid "Language name"
 msgstr "ଭାଷା ନାମ"
 
 #: ../gtksourceview/gtksourcelanguage.c:231
 #: ../gtksourceview/gtksourcelanguage.c:232
-#| msgid "Language"
 msgid "Language section"
 msgstr "ଭାଷା ବିଭାଗ"
 
@@ -196,7 +199,6 @@ msgid ""
 msgstr "ଭାଷା ନିର୍ଦ୍ଦିଷ୍ଟକ ସୂଚନା ଫାଇଲଗୁଡ଼ିକ (.lang) ସ୍ଥିତବାନ ଡିରେକ୍ଟୋରୀଗୁଡ଼ିକର ତାଲିକା"
 
 #: ../gtksourceview/gtksourcelanguagemanager.c:144
-#| msgid "Language"
 msgid "Language ids"
 msgstr "ଭାଷା id ଗୁଡ଼ିକ"
 
@@ -214,11 +216,11 @@ msgstr "regex '%s'ରେ ଅଜଣା id '%s'"
 msgid "in regex '%s': backreferences are not supported"
 msgstr "regex '%s'ରେ: ପଛୁଆ ସନ୍ଦର୍ଭ ସମର୍ଥିତ ନୁହଁ"
 
-#: ../gtksourceview/gtksourcemark.c:119
+#: ../gtksourceview/gtksourcemark.c:121
 msgid "category"
 msgstr "ବିଭାଗ"
 
-#: ../gtksourceview/gtksourcemark.c:120
+#: ../gtksourceview/gtksourcemark.c:122
 msgid "The mark category"
 msgstr "ଚିହ୍ନିତ ବିଭାଗ"
 
@@ -285,7 +287,6 @@ msgid "Name of the font to use for the text body (e.g. \"Monospace 10\")"
 msgstr "ପାଠ୍ୟ ଶରୀର ପାଇଁ ବ୍ୟବହୃତ ଅକ୍ଷରରୂପର ନାମ (ଯେପରିକି \"Monospace 10\")"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:586
-#| msgid "Print Line Numbers"
 msgid "Line Numbers Font Name"
 msgstr "ଧାଡ଼ି ସଂଖ୍ଯା ଅକ୍ଷରରୂପ ନାମ"
 
@@ -446,7 +447,6 @@ msgid "List of directories and files where the style schemes are located"
 msgstr "ଶୈଳୀ ଯୋଜନା ଅବସ୍ଥିତ ଫାାଇ ଏବଂ ଡିରେକ୍ଟୋରୀ ଗୁଡ଼ିର ତାଲିକାକ"
 
 #: ../gtksourceview/gtksourcestyleschememanager.c:154
-#| msgid "Scheme"
 msgid "Scheme ids"
 msgstr "ଯୋଜନା idଗୁଡ଼ିକ"
 
@@ -518,7 +518,7 @@ msgstr "ଚତୁର Home/End"
 msgid ""
 "HOME and END keys move to first/last non whitespace characters on line "
 "before going to the start/end of the line"
-msgstr ""
+msgstr "HOME ଏବଂ END କିଗୁଡିକ ପ୍ରଥମ/ଶେଷ ରେଖାରେ  ଧଳା ଅନ୍ତର ହୋଇନଥିବା ଅକ୍ଷରଗୁଡିକ ନିକଟକୁ ଘୁଞ୍ଚେ ରେଖାର ଆରମ୍ଭ/ଶେଷକୁ ୟିବା ପୂର୍ବରୁ"
 
 #: ../gtksourceview/gtksourceview.c:377
 msgid "Highlight current line"
@@ -575,7 +575,6 @@ msgstr "ଇଚ୍ଛାମୁତାବକ ଆଧାର ସଂଖ୍ୟା"
 #: ../gtksourceview/language-specs/vala.lang.h:1
 #: ../gtksourceview/language-specs/vbnet.lang.h:1
 #: ../gtksourceview/language-specs/vhdl.lang.h:2
-#| msgid "Boolean"
 msgid "Boolean value"
 msgstr "ବୁଲିଆନ ମୂଲ୍ୟ"
 
@@ -613,6 +612,7 @@ msgstr "ବୁଲିଆନ ମୂଲ୍ୟ"
 #: ../gtksourceview/language-specs/perl.lang.h:2
 #: ../gtksourceview/language-specs/php.lang.h:2
 #: ../gtksourceview/language-specs/po.lang.h:1
+#: ../gtksourceview/language-specs/prolog.lang.h:1
 #: ../gtksourceview/language-specs/ruby.lang.h:5
 #: ../gtksourceview/language-specs/scheme.lang.h:2
 #: ../gtksourceview/language-specs/sh.lang.h:1
@@ -670,7 +670,6 @@ msgstr "ତଥ୍ଯ ପ୍ରକାର"
 #: ../gtksourceview/language-specs/python.lang.h:7
 #: ../gtksourceview/language-specs/ruby.lang.h:7
 #: ../gtksourceview/language-specs/vala.lang.h:4
-#| msgid "Decimal"
 msgid "Decimal number"
 msgstr "ଦଶମିକ ସଂଖ୍ୟା"
 
@@ -723,6 +722,7 @@ msgstr "ଛାଡ଼ିଯାଇଥିବା ଅକ୍ଷର"
 #: ../gtksourceview/language-specs/perl.lang.h:9
 #: ../gtksourceview/language-specs/php.lang.h:13
 #: ../gtksourceview/language-specs/po.lang.h:3
+#: ../gtksourceview/language-specs/prolog.lang.h:3
 #: ../gtksourceview/language-specs/python.lang.h:11
 #: ../gtksourceview/language-specs/R.lang.h:6
 #: ../gtksourceview/language-specs/ruby.lang.h:12
@@ -779,6 +779,7 @@ msgstr "ପ୍ରକୃତ ସଂଖ୍ୟା"
 #: ../gtksourceview/language-specs/objc.lang.h:5
 #: ../gtksourceview/language-specs/ocaml.lang.h:16
 #: ../gtksourceview/language-specs/pascal.lang.h:7
+#: ../gtksourceview/language-specs/prolog.lang.h:6
 #: ../gtksourceview/language-specs/scheme.lang.h:6
 #: ../gtksourceview/language-specs/sql.lang.h:9
 #: ../gtksourceview/language-specs/vala.lang.h:10
@@ -824,6 +825,7 @@ msgstr "ସଂଗ୍ରହାଳୟ ଶ୍ରେଣୀ"
 #: ../gtksourceview/language-specs/perl.lang.h:19
 #: ../gtksourceview/language-specs/php.lang.h:19
 #: ../gtksourceview/language-specs/po.lang.h:8
+#: ../gtksourceview/language-specs/prolog.lang.h:7
 #: ../gtksourceview/language-specs/python.lang.h:17
 #: ../gtksourceview/language-specs/ruby.lang.h:21
 #: ../gtksourceview/language-specs/scheme.lang.h:7
@@ -867,6 +869,7 @@ msgstr "ଫଳନ"
 #: ../gtksourceview/language-specs/desktop.lang.h:10
 #: ../gtksourceview/language-specs/forth.lang.h:8
 #: ../gtksourceview/language-specs/java.lang.h:13
+#: ../gtksourceview/language-specs/prolog.lang.h:4
 #: ../gtksourceview/language-specs/vhdl.lang.h:6
 msgid "Number"
 msgstr "ସଂଖ୍ୟା"
@@ -879,6 +882,7 @@ msgstr "ସଂଖ୍ୟା"
 #: ../gtksourceview/language-specs/nsis.lang.h:3
 #: ../gtksourceview/language-specs/perl.lang.h:11
 #: ../gtksourceview/language-specs/php.lang.h:16
+#: ../gtksourceview/language-specs/prolog.lang.h:5
 msgid "Operator"
 msgstr "ଚାଳକ"
 
@@ -886,7 +890,6 @@ msgstr "ଚାଳକ"
 #: ../gtksourceview/language-specs/asp.lang.h:12
 #: ../gtksourceview/language-specs/def.lang.h:53
 #: ../gtksourceview/language-specs/vbnet.lang.h:7
-#| msgid "Specials"
 msgid "Special constant"
 msgstr "ବିଶେଷ ସ୍ଥିରାଙ୍କ"
 
@@ -928,6 +931,7 @@ msgstr "ସ୍କ୍ରିପ୍ଟଗୁଡ଼ିକ"
 #: ../gtksourceview/language-specs/perl.lang.h:21
 #: ../gtksourceview/language-specs/php.lang.h:20
 #: ../gtksourceview/language-specs/pkgconfig.lang.h:3
+#: ../gtksourceview/language-specs/prolog.lang.h:8
 #: ../gtksourceview/language-specs/ruby.lang.h:23
 #: ../gtksourceview/language-specs/sh.lang.h:11
 #: ../gtksourceview/language-specs/tcl.lang.h:4
@@ -939,7 +943,6 @@ msgid "awk"
 msgstr "awk"
 
 #: ../gtksourceview/language-specs/boo.lang.h:1
-#| msgid "Boolean"
 msgid "Boo"
 msgstr "Boo"
 
@@ -988,7 +991,6 @@ msgstr "ନିୟମିତ ପରିପ୍ରକାଶ"
 #: ../gtksourceview/language-specs/boo.lang.h:14
 #: ../gtksourceview/language-specs/python.lang.h:16
 #: ../gtksourceview/language-specs/ruby.lang.h:20
-#| msgid "Variable"
 msgid "Special Variable"
 msgstr "ବିଶେଷ ପ୍ରାଚଳ"
 
@@ -1061,6 +1063,7 @@ msgstr "ସାଧାରଣ ସଜ୍ଞା"
 #: ../gtksourceview/language-specs/ocaml.lang.h:7
 #: ../gtksourceview/language-specs/perl.lang.h:4
 #: ../gtksourceview/language-specs/php.lang.h:5
+#: ../gtksourceview/language-specs/prolog.lang.h:2
 #: ../gtksourceview/language-specs/vala.lang.h:5
 #: ../gtksourceview/language-specs/verilog.lang.h:4
 #: ../gtksourceview/language-specs/xml.lang.h:8
@@ -1114,12 +1117,10 @@ msgid "Classic color scheme"
 msgstr "ଚିର ପ୍ରତିଷ୍ଠିତ ରଙ୍ଗ ଯୋଜନା"
 
 #: ../gtksourceview/language-specs/cmake.lang.h:1
-#| msgid "Command"
 msgid "Builtin Command"
 msgstr "ସୁନିର୍ମିତ ନିର୍ଦ୍ଦେଶ"
 
 #: ../gtksourceview/language-specs/cmake.lang.h:2
-#| msgid "Variable"
 msgid "Builtin Variable"
 msgstr "ସୁନିର୍ମିତ ପ୍ରାଚଳ"
 
@@ -1157,7 +1158,6 @@ msgid "C#"
 msgstr "C#"
 
 #: ../gtksourceview/language-specs/csharp.lang.h:16
-#| msgid "Format"
 msgid "String Format"
 msgstr "ବାକ୍ୟଖଣ୍ଡ ସଜ୍ଜିକରଣ ଶୈଳୀ"
 
@@ -1222,12 +1222,10 @@ msgstr "ଜଟିଳ ସଂଖ୍ୟା"
 
 #. A primitive data type: int, long, char, etc.
 #: ../gtksourceview/language-specs/def.lang.h:17
-#| msgid "Data Type"
 msgid "Data type"
 msgstr "ତଥ୍ଯ ପ୍ରକାର"
 
 #: ../gtksourceview/language-specs/def.lang.h:20
-#| msgid "Default"
 msgid "Defaults"
 msgstr "ପୂର୍ବ ନିର୍ଦ୍ଧାରିତ"
 
@@ -1246,7 +1244,6 @@ msgstr "ଦଲିଲକରଣ ଟିପ୍ପଣୀ ଉପାଦାନ"
 #. Any variable name
 #: ../gtksourceview/language-specs/def.lang.h:34
 #: ../gtksourceview/language-specs/php.lang.h:12
-#| msgid "Modifiers"
 msgid "Identifier"
 msgstr "ପରିଚାୟକ"
 
@@ -1279,13 +1276,11 @@ msgstr "ବିଶେଷ ଅକ୍ଷର (ଗୋଟିଏ ବାକ୍ୟଖଣ�
 
 #. Any statement
 #: ../gtksourceview/language-specs/def.lang.h:55
-#| msgid "State"
 msgid "Statement"
 msgstr "ଅଭିବ୍ୟକ୍ତି"
 
 #. Text that stands out, HTML links, e-mail addresses, etc.
 #: ../gtksourceview/language-specs/def.lang.h:59
-#| msgid "Unlimited"
 msgid "Underlined"
 msgstr "ଅବରେଖିତ (ରେଖାଙ୍କିତ)"
 
@@ -1363,7 +1358,6 @@ msgid "D"
 msgstr "D"
 
 #: ../gtksourceview/language-specs/d.lang.h:14
-#| msgid "Specials"
 msgid "Special Token"
 msgstr "ବିଶେଷ ଟକେନ"
 
@@ -1419,7 +1413,6 @@ msgid "Graphviz Dot"
 msgstr "Graphviz Dot"
 
 #: ../gtksourceview/language-specs/dpatch.lang.h:1
-#| msgid "Date"
 msgid "DPatch"
 msgstr "DPatch"
 
@@ -1441,7 +1434,6 @@ msgid "entity"
 msgstr "ବସ୍ତୁ"
 
 #: ../gtksourceview/language-specs/dtd.lang.h:5
-#| msgid "Operator"
 msgid "error"
 msgstr "ତ୍ରୁଟି"
 
@@ -1518,7 +1510,6 @@ msgid "Error Text"
 msgstr "ତ୍ରୁଟିମୟ ପାଠ୍ୟ"
 
 #: ../gtksourceview/language-specs/forth.lang.h:6
-#| msgid "Format"
 msgid "Forth"
 msgstr "ବାହାର"
 
@@ -1615,7 +1606,6 @@ msgid "Definition list"
 msgstr "ସଂଜ୍ଞା ତାଲିକା"
 
 #: ../gtksourceview/language-specs/haddock.lang.h:4
-#| msgid "Email"
 msgid "Emphasis"
 msgstr "ପ୍ରଭାବ"
 
@@ -1664,7 +1654,6 @@ msgid "URL"
 msgstr "URL"
 
 #: ../gtksourceview/language-specs/haskell.lang.h:6
-#| msgid "Format"
 msgid "Float"
 msgstr "ଚଳମାନ"
 
@@ -1682,7 +1671,6 @@ msgstr "ଅଷ୍ଟକ"
 
 #: ../gtksourceview/language-specs/haskell.lang.h:14
 #: ../gtksourceview/language-specs/ruby.lang.h:22
-#| msgid "Symbols"
 msgid "Symbol"
 msgstr "ପ୍ରତୀକ"
 
@@ -1716,7 +1704,6 @@ msgid ".ini"
 msgstr ".ini"
 
 #: ../gtksourceview/language-specs/java.lang.h:5
-#| msgid "Location"
 msgid "Declaration"
 msgstr "ଘୋଷଣା"
 
@@ -1758,7 +1745,6 @@ msgid "Color scheme used in the Kate text editor"
 msgstr "Kate ପାଠ୍ୟ ସମ୍ପାଦନରେ ବ୍ୟବହୃତ ହେଉଥିବା ରଙ୍ଗ ଯୋଜନା"
 
 #: ../gtksourceview/language-specs/kate.xml.h:2
-#| msgid "Date"
 msgid "Kate"
 msgstr "Kate"
 
@@ -1776,7 +1762,6 @@ msgid "LaTeX"
 msgstr "LaTeX"
 
 #: ../gtksourceview/language-specs/latex.lang.h:7
-#| msgid "Wrap Mode"
 msgid "Math Mode"
 msgstr "ଗଣିତ ଅବସ୍ଥା"
 
@@ -1819,12 +1804,10 @@ msgid "m4"
 msgstr "m4"
 
 #: ../gtksourceview/language-specs/m4.lang.h:5
-#| msgid "Macros"
 msgid "m4 Macro"
 msgstr "m4 Macro"
 
 #: ../gtksourceview/language-specs/m4.lang.h:6
-#| msgid "Comment"
 msgid "m4-comment"
 msgstr "m4-ଟିପ୍ପଣୀ"
 
@@ -1847,12 +1830,10 @@ msgid "Trailing Tab"
 msgstr "ପଛୁଆ ଟ୍ୟାବ"
 
 #: ../gtksourceview/language-specs/makefile.lang.h:9
-#| msgid "Command"
 msgid "command"
 msgstr "ନିର୍ଦ୍ଦେଶ"
 
 #: ../gtksourceview/language-specs/makefile.lang.h:10
-#| msgid "Location"
 msgid "function"
 msgstr "ଫଳନ"
 
@@ -1923,7 +1904,6 @@ msgid "Polymorphic Variant"
 msgstr "Polymorphic ବିବିଧତା"
 
 #: ../gtksourceview/language-specs/ocaml.lang.h:18
-#| msgid "Variable"
 msgid "Type Variable"
 msgstr "ପ୍ରକାର ଚଳ"
 
@@ -1940,12 +1920,10 @@ msgid "OCL"
 msgstr "OCL"
 
 #: ../gtksourceview/language-specs/ocl.lang.h:5
-#| msgid "Operator"
 msgid "Operation operator"
 msgstr "ପ୍ରୟୋଗ ଚାଳକ"
 
 #: ../gtksourceview/language-specs/ocl.lang.h:8
-#| msgid "Operator"
 msgid "Type Operators"
 msgstr "ପ୍ରକାର ଚାଳକ"
 
@@ -2011,7 +1989,6 @@ msgid "Perl"
 msgstr "Perl"
 
 #: ../gtksourceview/language-specs/perl.lang.h:20
-#| msgid "Command"
 msgid "System Command"
 msgstr "ତନ୍ତ୍ର ନିର୍ଦ୍ଦେଶ"
 
@@ -2033,7 +2010,6 @@ msgstr "ଅସ୍ପଷ୍ଟ"
 
 #. FIXME make it some nice name and mark it translatable
 #: ../gtksourceview/language-specs/po.lang.h:7
-#| msgid "Specials"
 msgid "Special"
 msgstr "ବିଶେଷ"
 
@@ -2086,12 +2062,10 @@ msgid "Reserved Class"
 msgstr "ସଂରକ୍ଷିତ ଶ୍ରେଣୀ"
 
 #: ../gtksourceview/language-specs/R.lang.h:10
-#| msgid "Specials"
 msgid "Special Constant"
 msgstr "ବିଶେଷ ସ୍ଥିରାଙ୍କ"
 
 #: ../gtksourceview/language-specs/rpmspec.lang.h:1
-#| msgid "Command"
 msgid "Command Macro"
 msgstr "ନିର୍ଦ୍ଦେଶ Macro"
 
@@ -2117,17 +2091,14 @@ msgstr "ସର୍ତ୍ତମୂଳକ ପ୍ରବାହ"
 
 #: ../gtksourceview/language-specs/rpmspec.lang.h:8
 #: ../gtksourceview/language-specs/t2t.lang.h:4
-#| msgid "Print Header"
 msgid "Header"
 msgstr "ଶୀର୍ଷକ"
 
 #: ../gtksourceview/language-specs/rpmspec.lang.h:9
-#| msgid "Others 2"
 msgid "Other Macro"
 msgstr "ଅନ୍ଯାନ୍ଯ Macro"
 
 #: ../gtksourceview/language-specs/rpmspec.lang.h:11
-#| msgid "Variable"
 msgid "RPM Variable"
 msgstr "RPM ଚଳ"
 
@@ -2137,12 +2108,10 @@ msgstr "RPM spec"
 
 #: ../gtksourceview/language-specs/rpmspec.lang.h:13
 #: ../gtksourceview/language-specs/t2t.lang.h:9
-#| msgid "Location"
 msgid "Section"
 msgstr "ଚୟନ"
 
 #: ../gtksourceview/language-specs/rpmspec.lang.h:14
-#| msgid "Macros"
 msgid "Spec Macro"
 msgstr "Spec Macro"
 
@@ -2171,7 +2140,6 @@ msgid "Scheme"
 msgstr "ଯୋଜନା"
 
 #: ../gtksourceview/language-specs/sh.lang.h:2
-#| msgid "Command"
 msgid "Common Commands"
 msgstr "ସାଧାରଣ ନିର୍ଦ୍ଦେଶ"
 
@@ -2269,7 +2237,6 @@ msgid "VB.NET"
 msgstr "VB.NET"
 
 #: ../gtksourceview/language-specs/verilog.lang.h:5
-#| msgid "Date"
 msgid "Gate"
 msgstr "Gate"
 
