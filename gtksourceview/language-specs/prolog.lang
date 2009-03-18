@@ -60,7 +60,7 @@
     </context>
 
     <context id="variable" style-ref="variable">
-      <match>[A-Z_][A-Za-z0-9_]*</match>
+      <match>(_|[A-Z][A-Za-z0-9_]*)</match>
     </context>
     
     <context id="operators" style-ref="operator">
@@ -196,6 +196,7 @@
       <keyword>peek_char</keyword>
       <keyword>false</keyword>
       <keyword>true</keyword>
+      <keyword>consult</keyword>
     </context>
 
     <context id="prolog">
