@@ -132,49 +132,6 @@ static guint signals[LAST_SIGNAL] = { 0 };
 
 G_DEFINE_TYPE(GtkSourceCompletion, gtk_source_completion, GTK_TYPE_WINDOW);
 
-/* **************** GtkTextView-GtkSourceCompletion Control *********** */
-
-/*
- * We save a map with a GtkTextView and his GtkSourceCompletion. If you 
- * call twice to gtk_source_completion_proposal_new, the second time it returns
- * the previous created GtkSourceCompletion, not creates a new one
- *
- * FIXME We will remove this functions when we will integrate 
- * Gsc in GtkSourceView
- */
-
-static GHashTable *gsccompletion_map = NULL;
-
-static GtkSourceCompletion* 
-completion_control_get_completion (GtkTextView *view)
-{
-	if (gsccompletion_map == NULL)
-		gsccompletion_map = g_hash_table_new (g_direct_hash,
-						      g_direct_equal);
-
-	return g_hash_table_lookup (gsccompletion_map, view);
-}
-
-static void 
-completion_control_add_completion (GtkTextView *view,
-				   GtkSourceCompletion *comp)
-{
-	if (gsccompletion_map == NULL)
-		gsccompletion_map = g_hash_table_new (g_direct_hash,
-						      g_direct_equal);
-	g_hash_table_insert (gsccompletion_map, view, comp);
-}
-
-static void 
-completion_control_remove_completion (GtkTextView *view)
-{
-	if (gsccompletion_map == NULL)
-		gsccompletion_map = g_hash_table_new (g_direct_hash,
-						      g_direct_equal);
-	g_hash_table_remove (gsccompletion_map, view);
-}
-/* ********************************************************************* */
-
 static gboolean
 get_selected_proposal (GtkSourceCompletionPage *page,
 		       GtkSourceCompletionProposal **proposal)
@@ -1036,8 +993,6 @@ gtk_source_completion_finalize (GObject *object)
 		g_list_free (self->priv->prov_trig);
 	}
 	
-	completion_control_remove_completion(self->priv->view);
-	
 	G_OBJECT_CLASS (gtk_source_completion_parent_class)->finalize (object);
 }
 
@@ -1525,21 +1480,19 @@ view_button_press_event_cb (GtkWidget *widget,
 }
 
 /**
- * gtk_source_completion_new:
+ * _gtk_source_completion_new:
  *
  * Returns The new #GtkSourceCompletion
  */
-GtkWidget*
-gtk_source_completion_new (GtkTextView *view)
+GtkSourceCompletion *
+_gtk_source_completion_new (GtkTextView *view)
 {
 	GtkSourceCompletion *self = GTK_SOURCE_COMPLETION (g_object_new (GTK_TYPE_SOURCE_COMPLETION,
 									 "type", GTK_WINDOW_POPUP,
 									 NULL));
 	self->priv->view = view;
 	
-	completion_control_add_completion (view, self);
-	
-	return GTK_WIDGET (self);
+	return self;
 }
 
 /**
@@ -2083,18 +2036,6 @@ gtk_source_completion_get_provider (GtkSourceCompletion *self,
 	}
 		
 	return NULL;
-}
-
-/**
- * gtk_source_completion_get_from_view:
- * @view: The #GtkTextView associated with a #GtkSourceCompletion
- *
- * Returns: The #GtkSourceCompletion associated with a @view or %NULL.
- */
-GtkSourceCompletion*
-gtk_source_completion_get_from_view (GtkTextView *view)
-{
-	return completion_control_get_completion (view);
 }
 
 /**

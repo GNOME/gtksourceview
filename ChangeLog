@@ -1,6 +1,14 @@
 2009-04-07  Ignacio Casal Quinteiro  <nacho.resa@gmail.com>
 
 	* gtksourceview/gtksourcecompletion.c:
+	* gtksourceview/gtksourceview.c:
+	* gtksourceview/gtksourcecompletion.h:
+	* gtksourceview/gtksourceview.h:
+	Integrate GtkSourceCompletion into GtkSourceView.
+
+2009-04-07  Ignacio Casal Quinteiro  <nacho.resa@gmail.com>
+
+	* gtksourceview/gtksourcecompletion.c:
 	* gtksourceview/gtksourcecompletioninfo.c:
 	* gtksourceview/gtksourcecompletionproposal.c:
 	Make the new files compile with the gtksourceview ones.

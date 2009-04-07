@@ -28,6 +28,7 @@
 #include <gtk/gtktextview.h>
 
 #include <gtksourceview/gtksourcebuffer.h>
+#include <gtksourceview/gtksourcecompletion.h>
 
 G_BEGIN_DECLS
 
@@ -197,6 +198,9 @@ void		 gtk_source_view_set_draw_spaces	(GtkSourceView   *view,
 							 GtkSourceDrawSpacesFlags flags);
 GtkSourceDrawSpacesFlags
 		gtk_source_view_get_draw_spaces		(GtkSourceView   *view);
+
+GtkSourceCompletion *
+		gtk_source_view_get_completion		(GtkSourceView   *view);
 
 G_END_DECLS
 #endif				/* end of SOURCE_VIEW_H__ */

@@ -83,7 +83,8 @@ GtkSourceCompletion	*gtk_source_completion_get_from_view	(GtkTextView *view);
 
 GType		 gtk_source_completion_get_type			(void) G_GNUC_CONST;
 
-GtkWidget	*gtk_source_completion_new			(GtkTextView *view);
+GtkSourceCompletion
+		*_gtk_source_completion_new			(GtkTextView *view);
 
 GtkTextView	*gtk_source_completion_get_view			(GtkSourceCompletion *self);
 
