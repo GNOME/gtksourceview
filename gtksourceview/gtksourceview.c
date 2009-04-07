@@ -787,7 +787,7 @@ gtk_source_view_finalize (GObject *object)
 		g_hash_table_destroy (view->priv->mark_categories);
 	
 	if (view->priv->completion != NULL)
-		g_object_unref (view->priv->completion);
+		gtk_widget_destroy (GTK_WIDGET (view->priv->completion));
 
 	set_source_buffer (view, NULL);
 
