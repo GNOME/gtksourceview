@@ -33,9 +33,8 @@
 #include "gtksourcecompletionutils.h"
 #include "gtksourceview-marshal.h"
 #include "gtksourcecompletion.h"
+#include "gtksourceview-i18n.h"
 #include <string.h>
-
-static gboolean lib_initialized = FALSE;
 
 #define WINDOW_WIDTH 350
 #define WINDOW_HEIGHT 200
@@ -1312,7 +1311,7 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 			      G_STRUCT_OFFSET (GtkSourceCompletionClass, proposal_selected),
 			      g_signal_accumulator_true_handled, 
 			      NULL,
-			      gtksourcecompletion_marshal_BOOLEAN__POINTER, 
+			      _gtksourceview_marshal_BOOLEAN__POINTER, 
 			      G_TYPE_BOOLEAN,
 			      1,
 			      GTK_TYPE_POINTER);
@@ -1331,7 +1330,7 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 			      G_STRUCT_OFFSET (GtkSourceCompletionClass, display_info),
 			      g_signal_accumulator_true_handled, 
 			      NULL,
-			      gtksourcecompletion_marshal_BOOLEAN__POINTER,
+			      _gtksourceview_marshal_BOOLEAN__POINTER,
 			      G_TYPE_BOOLEAN,
 			      1,
 			      GTK_TYPE_POINTER);
@@ -1345,13 +1344,6 @@ gtk_source_completion_init (GtkSourceCompletion *self)
 	GtkWidget *next_page_icon;
 	GtkWidget *prev_page_icon;
 	GtkWidget *vbox;
-
-	if (!lib_initialized)
-	{
-		bindtextdomain (GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR);
-		bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
-		lib_initialized = TRUE;
-	}
 
 	self->priv = GTK_SOURCE_COMPLETION_GET_PRIVATE (self);
 	self->priv->destroy_has_run = FALSE;

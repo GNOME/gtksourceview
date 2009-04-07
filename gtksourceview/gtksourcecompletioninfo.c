@@ -30,7 +30,7 @@
   
 #include "gtksourcecompletioninfo.h"
 #include "gtksourcecompletionutils.h"
-#include "gtksourcecompletioni18n.h"
+#include "gtksourceview-i18n.h"
 
 struct _GtkSourceCompletionInfoPrivate
 {

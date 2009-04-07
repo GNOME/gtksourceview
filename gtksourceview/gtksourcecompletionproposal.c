@@ -31,8 +31,7 @@
   
 #include "gtksourcecompletionproposal.h"
 #include "gtksourcecompletionutils.h"
-#include "gtksourcecompletionmarshal.h"
-#include "gtksourcecompletioni18n.h"
+#include "gtksourceview-i18n.h"
 
 #define GTK_SOURCE_COMPLETION_PROPOSAL_DEFAULT_PAGE _("Default")
 #define GTK_SOURCE_COMPLETION_PROPOSAL_DEFAULT_PRIORITY 10
