@@ -1,3 +1,21 @@
+2009-04-07  Ignacio Casal Quinteiro  <nacho.resa@gmail.com>
+
+	* gtksourceview/gtksourceview-marshal.list:
+	* gtksourceview/gtksourcecompletion.c:
+	* gtksourceview/gtksourcecompletion.h:
+	* gtksourceview/gtksourcecompletionprovider.c:
+	* gtksourceview/gtksourcecompletioninfo.c:
+	* gtksourceview/gtksourcecompletionproposal.c:
+	* gtksourceview/gtksourcecompletionprovider.h:
+	* gtksourceview/gtksourcecompletioninfo.h:
+	* gtksourceview/gtksourcecompletionutils.c:
+	* gtksourceview/gtksourcecompletiontrigger.c:
+	* gtksourceview/gtksourcecompletionproposal.h:
+	* gtksourceview/gtksourcecompletionutils.h:
+	* gtksourceview/Makefile.am:
+	* gtksourceview/gtksourcecompletiontrigger.h:
+	Added gtksourcecompletion files. (The port start).
+
 2009-03-18  Ignacio Casal Quinteiro  <nacho.resa@gmail.com>
 
 	* gtksourceview/language-specs/prolog.lang:

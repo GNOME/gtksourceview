@@ -27,7 +27,11 @@ libgtksourceview_headers =			\
 	gtksourcestyleschememanager.h		\
 	gtksourcestylescheme.h			\
 	gtksourcemark.h				\
-	gtksourceprintcompositor.h
+	gtksourceprintcompositor.h		\
+	gtksourcecompletion.h			\
+	gtksourcecompletionproposal.h		\
+	gtksourcecompletionprovider.h		\
+	gtksourcecompletiontrigger.h
 
 libgtksourceview_2_0_la_SOURCES = 	\
 	gtksourcebuffer.c 		\
@@ -56,6 +60,14 @@ libgtksourceview_2_0_la_SOURCES = 	\
 	gtksourcecontextengine.c	\
 	gtksourcemark.c			\
 	gtksourceprintcompositor.c      \
+	gtksourcecompletion.c		\
+	gtksourcecompletioninfo.c	\
+	gtksourcecompletioninfo.h	\
+	gtksourcecompletionproposal.c	\
+	gtksourcecompletionprovider.c	\
+	gtksourcecompletiontrigger.c	\
+	gtksourcecompletionutils.c	\
+	gtksourcecompletionutils.h	\
 	$(libgtksourceview_headers)
 
 # do not distribute generated files
