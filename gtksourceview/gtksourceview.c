@@ -714,7 +714,7 @@ gtk_source_view_init (GtkSourceView *view)
 	view->priv->smart_home_end = GTK_SOURCE_SMART_HOME_END_DISABLED;
 	view->priv->right_margin_pos = DEFAULT_RIGHT_MARGIN_POSITION;
 	view->priv->cached_right_margin_pos = -1;
-	view->priv->completion = _gtk_source_completion_new (GTK_TEXT_VIEW (view));
+	view->priv->completion = NULL;
 
 	gtk_text_view_set_left_margin (GTK_TEXT_VIEW (view), 2);
 	gtk_text_view_set_right_margin (GTK_TEXT_VIEW (view), 2);
@@ -4002,6 +4002,11 @@ GtkSourceCompletion *
 gtk_source_view_get_completion (GtkSourceView *view)
 {
 	g_return_val_if_fail (GTK_IS_SOURCE_VIEW (view), NULL);
+	
+	if (view->priv->completion == NULL)
+	{
+		view->priv->completion = _gtk_source_completion_new (GTK_TEXT_VIEW (view));
+	}
 	
 	return view->priv->completion;
 }
