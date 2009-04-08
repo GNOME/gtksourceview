@@ -29,9 +29,11 @@ libgtksourceview_headers =			\
 	gtksourcemark.h				\
 	gtksourceprintcompositor.h		\
 	gtksourcecompletion.h			\
+	gtksourcecompletioninfo.h		\
 	gtksourcecompletionproposal.h		\
 	gtksourcecompletionprovider.h		\
-	gtksourcecompletiontrigger.h
+	gtksourcecompletiontrigger.h		\
+	gtksourcecompletiontriggerkey.h
 
 libgtksourceview_2_0_la_SOURCES = 	\
 	gtksourcebuffer.c 		\
@@ -62,10 +64,10 @@ libgtksourceview_2_0_la_SOURCES = 	\
 	gtksourceprintcompositor.c      \
 	gtksourcecompletion.c		\
 	gtksourcecompletioninfo.c	\
-	gtksourcecompletioninfo.h	\
 	gtksourcecompletionproposal.c	\
 	gtksourcecompletionprovider.c	\
 	gtksourcecompletiontrigger.c	\
+	gtksourcecompletiontriggerkey.c	\
 	gtksourcecompletionutils.c	\
 	gtksourcecompletionutils.h	\
 	$(libgtksourceview_headers)
