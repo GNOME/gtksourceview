@@ -57,11 +57,13 @@ GType		 gtk_source_completion_trigger_key_get_type		(void) G_GNUC_CONST;
 
 GtkSourceCompletionTriggerKey
 		*gtk_source_completion_trigger_key_new			(GtkSourceCompletion *completion,
-								 	 const gchar         *trigger_name,
-								 	 const gchar         *accelerator);
+									 const gchar         *trigger_name,
+								 	 guint                key,
+								 	 GdkModifierType      modifier);
 
 void		 gtk_source_completion_trigger_key_set_accelerator	(GtkSourceCompletionTriggerKey *self,
-								 	 const gchar                   *keys);
+								 	 guint                          key,
+								 	 GdkModifierType                modifier);
 
 G_END_DECLS
 

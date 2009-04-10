@@ -141,7 +141,8 @@ gtk_source_completion_trigger_key_iface_init (GtkSourceCompletionTriggerIface *i
 GtkSourceCompletionTriggerKey * 
 gtk_source_completion_trigger_key_new (GtkSourceCompletion *completion,
 				       const gchar         *trigger_name,
-				       const gchar         *accelerator)
+				       guint                key,
+				       GdkModifierType      modifier)
 {
 	GtkSourceCompletionTriggerKey *self;
 	GtkTextView *view;
@@ -155,7 +156,7 @@ gtk_source_completion_trigger_key_new (GtkSourceCompletion *completion,
 	self->priv->completion = g_object_ref (completion);
 	self->priv->trigger_name = g_strdup (trigger_name);
 
-	gtk_source_completion_trigger_key_set_accelerator (self, accelerator);
+	gtk_source_completion_trigger_key_set_accelerator (self, key, modifier);
 	
 	view = gtk_source_completion_get_view (self->priv->completion);
 	
@@ -178,11 +179,13 @@ gtk_source_completion_trigger_key_new (GtkSourceCompletion *completion,
  */
 void
 gtk_source_completion_trigger_key_set_accelerator (GtkSourceCompletionTriggerKey *self,
-						   const gchar                   *accelerator)
+						   guint                          key,
+						   GdkModifierType                modifier)
 {
 	g_return_if_fail (GTK_IS_SOURCE_COMPLETION_TRIGGER_KEY (self));
 
-	gtk_accelerator_parse (accelerator, &self->priv->key, &self->priv->mod);
+	self->priv->key = key;
+	self->priv->mod = modifier;
 }
 
 
