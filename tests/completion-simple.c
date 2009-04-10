@@ -40,6 +40,14 @@ static GtkSourceCompletionInfo *info;
 
 static const gboolean change_keys = FALSE;
 
+typedef struct 
+{
+	GtkWidget *box;
+	GtkWidget *header;
+	GtkWidget *content;
+	GtkWidget *foot;
+} CustomWidget;
+
 static void
 show_completion_cb (GtkWidget *w,
 		    gpointer user_data)
@@ -110,6 +118,29 @@ select_on_show_toggled_cb (GtkToggleButton *button,
 	g_object_set (comp, "select-on-show",
 		      gtk_toggle_button_get_active (button),
 		      NULL);
+}
+
+static gboolean
+display_info_cb (GtkSourceCompletion *comp,
+		 GtkSourceCompletionProposal *prop,
+		 gpointer user_data)
+{
+	CustomWidget *cw = (CustomWidget *) user_data;
+	gchar *text;
+	
+	text = g_strdup_printf ("Header of: %s", gtk_source_completion_proposal_get_label (prop));
+	gtk_label_set_text (GTK_LABEL (cw->header), text);
+	g_free (text);
+	
+	text = g_strdup_printf ("Content: %s", gtk_source_completion_proposal_get_info (prop));
+	gtk_label_set_text (GTK_LABEL (cw->content), text);
+	g_free (text);
+	
+	text = g_strdup_printf ("Foot of: %s", gtk_source_completion_proposal_get_label (prop));
+	gtk_label_set_text (GTK_LABEL (cw->foot), text);
+	g_free (text);
+	
+	return TRUE;
 }
 
 static gboolean
@@ -225,10 +256,64 @@ create_window (void)
 }
 
 static void
+create_custom_info_widget (CustomWidget *custom)
+{
+	GtkWidget *btbox;
+	GtkWidget *next_page_icon;
+	GtkWidget *prev_page_icon;
+
+	custom->box = gtk_vbox_new (FALSE, 0);
+	custom->header = gtk_label_new ("Header");
+	custom->content = gtk_label_new ("Content");
+	custom->foot = gtk_label_new ("Foot");
+	
+	btbox = gtk_hbox_new (FALSE, 2);
+	next_page_icon = gtk_image_new_from_stock (GTK_STOCK_GO_FORWARD,
+						   GTK_ICON_SIZE_SMALL_TOOLBAR);
+	prev_page_icon = gtk_image_new_from_stock (GTK_STOCK_GO_BACK,
+						   GTK_ICON_SIZE_SMALL_TOOLBAR);
+	gtk_box_pack_start (GTK_BOX (btbox),
+			    next_page_icon,
+			    FALSE,
+			    FALSE,
+			    0);
+	gtk_box_pack_start (GTK_BOX (btbox),
+			    prev_page_icon,
+			    FALSE,
+			    FALSE,
+			    0);
+	
+	gtk_box_pack_start (GTK_BOX (custom->box),
+			    custom->header,
+			    FALSE,
+			    FALSE,
+			    1);
+	gtk_box_pack_start (GTK_BOX (custom->box),
+			    custom->content,
+			    TRUE,
+			    TRUE,
+			    1);
+	gtk_box_pack_start (GTK_BOX (custom->box),
+			    custom->foot,
+			    FALSE,
+			    FALSE,
+			    1);
+	gtk_box_pack_end (GTK_BOX (custom->box),
+			  btbox,
+			  FALSE,
+			  FALSE,
+			  1);
+	
+	gtk_widget_show_all (custom->box);
+}
+
+static void
 create_completion(void)
 {
 	GscProviderTest *prov_test;
 	GtkSourceCompletionTriggerKey *ur_trigger;
+	CustomWidget *custom;
+	GtkSourceCompletionInfo *info;
 	
 	prov_test = gsc_provider_test_new ();
 	
@@ -248,6 +333,16 @@ create_completion(void)
 	g_signal_connect (comp, "show", G_CALLBACK (show_completion_cb), NULL);
 	g_signal_connect (comp, "hide", G_CALLBACK (hide_completion_cb), NULL);
 	
+	/* Custom Widget */
+	custom = g_slice_new (CustomWidget);
+	
+	create_custom_info_widget (custom);
+	g_signal_connect(comp, "display-info",
+			 G_CALLBACK(display_info_cb),
+			 custom);
+			 
+	info = gtk_source_completion_get_info_widget (comp);
+	gtk_source_completion_info_set_custom (info, custom->box);
 }
 
 static void
