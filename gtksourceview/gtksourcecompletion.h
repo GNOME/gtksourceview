@@ -102,6 +102,8 @@ gboolean	 gtk_source_completion_remove_trigger		(GtkSourceCompletion *self,
 GtkSourceCompletionTrigger
 		*gtk_source_completion_get_active_trigger	(GtkSourceCompletion *self);
 
+void		 gtk_source_completion_finish			(GtkSourceCompletion *self);
+
 void		 gtk_source_completion_filter_proposals		(GtkSourceCompletion *self,
 								 GtkSourceCompletionFilterFunc func,
 								 gpointer user_data);

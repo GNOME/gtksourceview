@@ -1773,6 +1773,23 @@ gtk_source_completion_get_view (GtkSourceCompletion *self)
 }
 
 /**
+ * gtk_source_completion_finish:
+ * @self: a #GtkSourceCompletion
+ * 
+ * Finishes the completion if it is active (visible).
+ */
+void
+gtk_source_completion_finish (GtkSourceCompletion *self)
+{
+	g_return_if_fail (GTK_IS_SOURCE_COMPLETION (self));
+	
+	if (GTK_WIDGET_VISIBLE (self))
+	{
+		end_completion (self);
+	}
+}
+
+/**
  * gtk_source_completion_filter_proposals:
  * @self: the #GtkSourceCompletion
  * @func: function to filter the proposals visibility
