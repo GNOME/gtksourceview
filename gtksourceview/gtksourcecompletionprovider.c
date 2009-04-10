@@ -31,7 +31,7 @@
  */
 
 
-#include "gtksourcecompletionprovider.h"
+#include <gtksourceview/gtksourcecompletionprovider.h>
 
 /**
  * gtk_source_completion_provider_get_name:

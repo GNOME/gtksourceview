@@ -24,8 +24,8 @@
 #define GTK_SOURCE_COMPLETION_H
 
 #include <gtk/gtk.h>
-#include "gtksourcecompletionprovider.h"
-#include "gtksourcecompletioninfo.h"
+#include <gtksourceview/gtksourcecompletionprovider.h>
+#include <gtksourceview/gtksourcecompletioninfo.h>
 
 G_BEGIN_DECLS
 

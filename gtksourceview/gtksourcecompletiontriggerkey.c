@@ -33,7 +33,7 @@
 #include <glib/gprintf.h>
 #include <string.h>
 #include <ctype.h>
-#include "gtksourcecompletiontriggerkey.h"
+#include <gtksourceview/gtksourcecompletiontriggerkey.h>
 
 #define GTK_SOURCE_COMPLETION_TRIGGER_KEY_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), \
 							GTK_TYPE_SOURCE_COMPLETION_TRIGGER_KEY, \
@@ -77,7 +77,7 @@ view_key_press_event_cb (GtkWidget *view,
 	s = event->state & gtk_accelerator_get_default_mod_mask ();
 	key = gdk_keyval_to_lower (self->priv->key);
 	
-	if (s == self->priv->mod && gdk_keyval_to_lower(event->keyval) == key)
+	if (s == self->priv->mod && gdk_keyval_to_lower (event->keyval) == key)
 	{
 		gtk_source_completion_trigger_event (self->priv->completion,
 						     GTK_SOURCE_COMPLETION_TRIGGER (self));

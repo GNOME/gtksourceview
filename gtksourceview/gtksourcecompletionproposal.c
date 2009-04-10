@@ -29,7 +29,7 @@
  * shown, the help (info) and the apply when the user selects the proposal.
  */
   
-#include "gtksourcecompletionproposal.h"
+#include <gtksourceview/gtksourcecompletionproposal.h>
 #include "gtksourcecompletionutils.h"
 #include "gtksourceview-i18n.h"
 

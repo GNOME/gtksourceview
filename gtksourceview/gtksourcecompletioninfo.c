@@ -28,7 +28,7 @@
  * This object can be used to show a calltip or help. 
  */
   
-#include "gtksourcecompletioninfo.h"
+#include <gtksourceview/gtksourcecompletioninfo.h>
 #include "gtksourcecompletionutils.h"
 #include "gtksourceview-i18n.h"
 

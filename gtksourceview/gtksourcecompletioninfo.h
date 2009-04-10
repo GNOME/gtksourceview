@@ -57,7 +57,7 @@ struct _GtkSourceCompletionInfoClass
 GType		 gtk_source_completion_info_get_type		(void) G_GNUC_CONST;
 
 GtkSourceCompletionInfo
-		*gtk_source_completion_info_new			(void);
+		*gtk_source_completion_info_new		(void);
 
 void		 gtk_source_completion_info_move_to_cursor	(GtkSourceCompletionInfo* self,
 								 GtkTextView *view);

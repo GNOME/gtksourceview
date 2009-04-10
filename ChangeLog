@@ -1,5 +1,21 @@
 2009-04-10  Ignacio Casal Quinteiro  <nacho.resa@gmail.com>
 
+	* docs/reference/gtksourceview-2.0-sections.txt:
+	* docs/reference/gtksourceview-docs.sgml:
+	* gtksourceview/gtksourcecompletiontriggerkey.h:
+	* gtksourceview/gtksourcecompletion.c:
+	* gtksourceview/gtksourcecompletion.h:
+	* gtksourceview/gtksourcecompletionprovider.c:
+	* gtksourceview/gtksourcecompletioninfo.c:
+	* gtksourceview/gtksourcecompletionproposal.c:
+	* gtksourceview/gtksourcecompletionprovider.h:
+	* gtksourceview/gtksourcecompletioninfo.h:
+	* gtksourceview/gtksourcecompletiontrigger.c:
+	* gtksourceview/gtksourcecompletiontriggerkey.c:
+	Updated docs and use proper includes.
+
+2009-04-10  Ignacio Casal Quinteiro  <nacho.resa@gmail.com>
+
 	* tests/completion-simple.c:
 	Add a custom widget for infos.
 

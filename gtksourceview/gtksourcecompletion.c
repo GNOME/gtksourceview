@@ -32,7 +32,7 @@
 #include <gdk/gdkkeysyms.h> 
 #include "gtksourcecompletionutils.h"
 #include "gtksourceview-marshal.h"
-#include "gtksourcecompletion.h"
+#include <gtksourceview/gtksourcecompletion.h>
 #include "gtksourceview-i18n.h"
 #include <string.h>
 

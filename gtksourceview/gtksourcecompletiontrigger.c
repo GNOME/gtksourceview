@@ -29,7 +29,7 @@
  * 
  */
  
-#include "gtksourcecompletiontrigger.h"
+#include <gtksourceview/gtksourcecompletiontrigger.h>
 
 /**
  * gtk_source_completion_trigger_get_name:

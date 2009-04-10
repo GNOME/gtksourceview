@@ -26,8 +26,8 @@
 #include <glib.h>
 #include <glib-object.h>
 #include <gtk/gtk.h>
-#include "gtksourcecompletionproposal.h"
-#include "gtksourcecompletiontrigger.h"
+#include <gtksourceview/gtksourcecompletionproposal.h>
+#include <gtksourceview/gtksourcecompletiontrigger.h>
 
 G_BEGIN_DECLS
 
