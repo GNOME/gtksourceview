@@ -214,7 +214,6 @@ gtk_source_completion_item_init (GtkSourceCompletionItem *self)
 
 /** 
  * gtk_source_completion_item_new:
- *
  * @label: the item label
  * @icon: the item icon
  * @info: the item extra information
@@ -239,7 +238,6 @@ gtk_source_completion_item_new (const gchar *label,
 
 /** 
  * gtk_source_completion_item_new_from_stock:
- *
  * @label: the item label
  * @icon: the item icon
  * @info: the item extra information

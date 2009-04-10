@@ -55,8 +55,8 @@ struct _GtkSourceCompletionTriggerKeyClass
 
 GType		 gtk_source_completion_trigger_key_get_type		(void) G_GNUC_CONST;
 
-GtkSourceCompletionTriggerKey
-		*gtk_source_completion_trigger_key_new			(GtkSourceCompletion *completion,
+GtkSourceCompletionTriggerKey *
+		 gtk_source_completion_trigger_key_new			(GtkSourceCompletion *completion,
 									 const gchar         *trigger_name,
 								 	 guint                key,
 								 	 GdkModifierType      modifier);

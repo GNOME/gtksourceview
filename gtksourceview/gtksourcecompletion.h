@@ -72,17 +72,17 @@ struct _GtkSourceCompletionClass
 
 GType		 gtk_source_completion_get_type			(void) G_GNUC_CONST;
 
-GtkSourceCompletion
-		*_gtk_source_completion_new			(GtkTextView *view);
+GtkSourceCompletion *
+		_gtk_source_completion_new			(GtkTextView *view);
 
 GtkTextView	*gtk_source_completion_get_view			(GtkSourceCompletion *self);
 
-GtkSourceCompletionTrigger
-		*gtk_source_completion_get_trigger		(GtkSourceCompletion *self,
+GtkSourceCompletionTrigger *
+		 gtk_source_completion_get_trigger		(GtkSourceCompletion *self,
 								 const gchar *trigger_name);
 
-GtkSourceCompletionProvider
-		*gtk_source_completion_get_provider		(GtkSourceCompletion *self,
+GtkSourceCompletionProvider *
+		 gtk_source_completion_get_provider		(GtkSourceCompletion *self,
 								 const gchar *prov_name);
 
 gboolean	 gtk_source_completion_add_provider		(GtkSourceCompletion *self,
@@ -99,8 +99,8 @@ gboolean	 gtk_source_completion_add_trigger		(GtkSourceCompletion *self,
 gboolean	 gtk_source_completion_remove_trigger		(GtkSourceCompletion *self,
 								 GtkSourceCompletionTrigger *trigger);
 
-GtkSourceCompletionTrigger
-		*gtk_source_completion_get_active_trigger	(GtkSourceCompletion *self);
+GtkSourceCompletionTrigger *
+		 gtk_source_completion_get_active_trigger	(GtkSourceCompletion *self);
 
 void		 gtk_source_completion_finish			(GtkSourceCompletion *self);
 
@@ -115,8 +115,8 @@ gboolean	 gtk_source_completion_get_active 		(GtkSourceCompletion *self);
 
 GtkWidget	*gtk_source_completion_get_bottom_bar		(GtkSourceCompletion *self);
 
-GtkSourceCompletionInfo
-		*gtk_source_completion_get_info_widget		(GtkSourceCompletion *self);
+GtkSourceCompletionInfo *
+		 gtk_source_completion_get_info_widget		(GtkSourceCompletion *self);
 
 gint		 gtk_source_completion_get_page_pos		(GtkSourceCompletion *self,
 								 const gchar *page_name);
