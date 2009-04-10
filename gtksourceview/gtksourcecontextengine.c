@@ -2605,6 +2605,7 @@ regex_new (const gchar           *pattern,
 	{
 		g_set_error (error, GTK_SOURCE_CONTEXT_ENGINE_ERROR,
 			     GTK_SOURCE_CONTEXT_ENGINE_ERROR_INVALID_REGEX,
+			     "%s",
 			     _("using \\C is not supported in language definitions"));
 		return NULL;
 	}
@@ -4544,7 +4545,8 @@ analyze_line (GtkSourceContextEngine *ce,
 
 		if (g_timer_elapsed (timer, NULL) * 1000 > MAX_TIME_FOR_ONE_LINE)
 		{
-			g_critical (_("Highlighting a single line took too much time, "
+			g_critical ("%s",
+			            _("Highlighting a single line took too much time, "
 				      "syntax highlighting will be disabled"));
 			disable_highlighting (ce);
 			break;
