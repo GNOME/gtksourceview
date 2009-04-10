@@ -30,6 +30,7 @@ libgtksourceview_headers =			\
 	gtksourceprintcompositor.h		\
 	gtksourcecompletion.h			\
 	gtksourcecompletioninfo.h		\
+	gtksourcecompletionitem.h		\
 	gtksourcecompletionproposal.h		\
 	gtksourcecompletionprovider.h		\
 	gtksourcecompletiontrigger.h		\
@@ -64,6 +65,7 @@ libgtksourceview_2_0_la_SOURCES = 	\
 	gtksourceprintcompositor.c      \
 	gtksourcecompletion.c		\
 	gtksourcecompletioninfo.c	\
+	gtksourcecompletionitem.c	\
 	gtksourcecompletionproposal.c	\
 	gtksourcecompletionprovider.c	\
 	gtksourcecompletiontrigger.c	\

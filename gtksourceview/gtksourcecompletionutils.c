@@ -51,26 +51,29 @@ gtk_source_completion_utils_is_separator(const gunichar ch)
 }
 
 /**
-* gsc_utils_view_get_last_word_and_iter:
-* @text_view: The #GtkTextView
-* @start_word: if != NULL then assign it the start position of the word
-* @end_word: if != NULL then assing it the end position of the word
-* 
-* Returns: the last word written in the #GtkTextView or ""
-*
-**/
-gchar*
-gtk_source_completion_utils_get_word_iter(GtkTextView *text_view, 
-				      GtkTextIter *start_word, 
-				      GtkTextIter *end_word)
+ * gtk_source_completion_utils_get_word_iter:
+ *
+ * @source_buffer: The #GtkSourceBuffer
+ * @start_word: if != NULL then assign it the start position of the word
+ * @end_word: if != NULL then assing it the end position of the word
+ * 
+ * Returns: the current word
+ *
+ */
+gchar *
+gtk_source_completion_utils_get_word_iter (GtkSourceBuffer *source_buffer, 
+					   GtkTextIter     *start_word, 
+					   GtkTextIter     *end_word)
 {
-	GtkTextMark* insert_mark;
-	GtkTextBuffer* text_buffer;
-	GtkTextIter actual,temp;
+	GtkTextMark *insert_mark;
+	GtkTextBuffer *text_buffer;
+	GtkTextIter actual;
+	GtkTextIter temp;
 	GtkTextIter *start_iter;
-	gchar* text;
+	gchar *text;
 	gunichar ch;
-	gboolean found, no_doc_start;
+	gboolean found;
+	gboolean no_doc_start;
 	
 	if (start_word != NULL)
 	{
@@ -81,21 +84,24 @@ gtk_source_completion_utils_get_word_iter(GtkTextView *text_view,
 		start_iter = &temp;
 	}
 	
-	text_buffer = gtk_text_view_get_buffer(text_view);
-	insert_mark = gtk_text_buffer_get_insert(text_buffer);
-	gtk_text_buffer_get_iter_at_mark(text_buffer,&actual,insert_mark);
+	text_buffer = GTK_TEXT_BUFFER (source_buffer);
+	insert_mark = gtk_text_buffer_get_insert (text_buffer);
+	gtk_text_buffer_get_iter_at_mark (text_buffer ,&actual, insert_mark);
 	
 	*start_iter = actual;
-	if (end_word!=NULL)
+
+	if (end_word != NULL)
 	{
 		*end_word = actual;
 	}
 	
 	found = FALSE;
-	while ((no_doc_start = gtk_text_iter_backward_char(start_iter)) == TRUE)
+
+	while ((no_doc_start = gtk_text_iter_backward_char (start_iter)) == TRUE)
 	{
-		ch = gtk_text_iter_get_char(start_iter);
-		if (gtk_source_completion_utils_is_separator(ch))
+		ch = gtk_text_iter_get_char (start_iter);
+
+		if (gtk_source_completion_utils_is_separator (ch))
 		{
 			found = TRUE;
 			break;
@@ -104,7 +110,7 @@ gtk_source_completion_utils_get_word_iter(GtkTextView *text_view,
 	
 	if (!no_doc_start)
 	{
-		gtk_text_buffer_get_start_iter(text_buffer,start_iter);
+		gtk_text_buffer_get_start_iter (text_buffer, start_iter);
 		text = gtk_text_iter_get_text (start_iter, &actual);
 	}
 	else
@@ -112,14 +118,13 @@ gtk_source_completion_utils_get_word_iter(GtkTextView *text_view,
 	
 		if (found)
 		{
-			gtk_text_iter_forward_char(start_iter);
+			gtk_text_iter_forward_char (start_iter);
 			text = gtk_text_iter_get_text (start_iter, &actual);
 		}
 		else
 		{
 			*start_iter = actual;
-			/*FIXME dup this var?*/
-			text = "";
+			text = g_strdup ("");
 		}
 	}
 	
@@ -127,53 +132,56 @@ gtk_source_completion_utils_get_word_iter(GtkTextView *text_view,
 }
 
 /**
- * gsc_utils_view_get_last_word:
- * @text_view: The #GtkTextView
+ * gtk_source_completion_utils_get_word:
+ * @source_buffer: The #GtkSourceBuffer
  *
- * Returns: the last word written in the #GtkTextView or ""
+ * Returns: the current word
  */
-gchar*
-gtk_source_completion_utils_get_word(GtkTextView *text_view)
+gchar *
+gtk_source_completion_utils_get_word (GtkSourceBuffer *source_buffer)
 {
-	return gtk_source_completion_utils_get_word_iter (text_view, NULL, NULL);
+	return gtk_source_completion_utils_get_word_iter (source_buffer, NULL, NULL);
 }
 
 /** 
  * gsc_utils_view_get_cursor_pos:
- * @text_view: The #GtkTextView
+ * @source_view: The #GtksourceView
  * @x: Assign the x position of the cursor
  * @y: Assign the y position of the cursor
  *
  * Gets the cursor position on the screen.
  */
 void
-gtk_source_completion_utils_get_cursor_pos(GtkTextView *text_view, 
-			      gint *x, 
-			      gint *y)
+gtk_source_completion_utils_get_cursor_pos (GtkSourceView *source_view, 
+					    gint          *x, 
+					    gint          *y)
 {
 	GdkWindow *win;
-	GtkTextMark* insert_mark;
-	GtkTextBuffer* text_buffer;
+	GtkTextMark *insert_mark;
+	GtkTextView *text_view;
+	GtkTextBuffer *text_buffer;
 	GtkTextIter start;
 	GdkRectangle location;
-	gint win_x, win_y;
-	gint xx, yy;
+	gint win_x;
+	gint win_y;
+	gint xx;
+	gint yy;
 
-	text_buffer = gtk_text_view_get_buffer(text_view);
-	insert_mark = gtk_text_buffer_get_insert(text_buffer);
-	gtk_text_buffer_get_iter_at_mark(text_buffer,&start,insert_mark);
-	gtk_text_view_get_iter_location(text_view,
-					&start,
-					&location );
+	text_view = GTK_TEXT_VIEW (source_view);
+	text_buffer = gtk_text_view_get_buffer (text_view);
+	insert_mark = gtk_text_buffer_get_insert (text_buffer);
+
+	gtk_text_buffer_get_iter_at_mark (text_buffer, &start, insert_mark);
+	gtk_text_view_get_iter_location (text_view, &start, &location);
+
 	gtk_text_view_buffer_to_window_coords (text_view,
-						GTK_TEXT_WINDOW_WIDGET,
-						location.x, 
-						location.y,
-						&win_x, 
-						&win_y);
+					       GTK_TEXT_WINDOW_WIDGET,
+					       location.x, 
+					       location.y,
+					       &win_x, 
+					       &win_y);
 
-	win = gtk_text_view_get_window (text_view, 
-	                                GTK_TEXT_WINDOW_WIDGET);
+	win = gtk_text_view_get_window (text_view, GTK_TEXT_WINDOW_WIDGET);
 	gdk_window_get_origin (win, &xx, &yy);
 	
 	*x = win_x + xx;
@@ -182,33 +190,32 @@ gtk_source_completion_utils_get_cursor_pos(GtkTextView *text_view,
 
 /**
  * gsc_utils_view_replace_current_word:
- * @text_view: The #GtkTextView
+ * @source_buffer: The #GtkSourceBuffer
  * @text: The text to be inserted instead of the current word
  * 
- * Replaces the current word in the #GtkTextView with the new word
+ * Replaces the current word in the #GtkSourceBuffer with the new word
  *
  */
 void
-gtk_source_completion_utils_replace_current_word(GtkTextView *text_view, 
-				    const gchar* text)
+gtk_source_completion_utils_replace_current_word (GtkSourceBuffer *source_buffer, 
+						  const gchar     *text,
+						  gint             len)
 {
 	GtkTextBuffer *buffer;
-	GtkTextIter word_start, word_end;
+	gchar *word;
+	GtkTextIter word_start;
+	GtkTextIter word_end;
 	
-	buffer = gtk_text_view_get_buffer(text_view);
-	gtk_text_buffer_begin_user_action(buffer);
+	buffer = GTK_TEXT_BUFFER (source_buffer);
+	gtk_text_buffer_begin_user_action (buffer);
 	
-	gtk_source_completion_utils_get_word_iter (text_view,&word_start, &word_end);
+	word = gtk_source_completion_utils_get_word_iter (source_buffer, &word_start, &word_end);
+	g_free (word);
 
-	GtkTextMark *mark = gtk_text_buffer_create_mark(buffer,
-							"temp_replace",
-							&word_start,
-							TRUE);
-	gtk_text_buffer_delete(buffer,&word_start,&word_end);
-	gtk_text_buffer_get_iter_at_mark(buffer,&word_start,mark);
-	gtk_text_buffer_insert(buffer, &word_start, text,-1);
-	gtk_text_buffer_delete_mark(buffer,mark);
-	gtk_text_buffer_end_user_action(buffer);
+	gtk_text_buffer_delete (buffer, &word_start, &word_end);
+	gtk_text_buffer_insert (buffer, &word_start, text, len);
+
+	gtk_text_buffer_end_user_action (buffer);
 }
 
 /**
@@ -222,20 +229,37 @@ gtk_source_completion_utils_replace_current_word(GtkTextView *text_view,
  * the position is under the text.
  */
 gboolean 
-gtk_source_completion_utils_get_pos_at_cursor(GtkWindow *window,
-					GtkTextView *view,
-					gint *x,
-					gint *y,
-					gboolean *resized)
+gtk_source_completion_utils_get_pos_at_cursor (GtkWindow     *window,
+					       GtkSourceView *view,
+					       gint          *x, 
+					       gint          *y,
+					       gboolean      *resized)
 {
-	gint w, h, xtext, ytext, ytemp;
+	gint w;
+	gint h;
+	gint xtext;
+	gint ytext;
+	gint ytemp;
+	GdkScreen *screen;
 	gint sw = gdk_screen_width();
 	gint sh = gdk_screen_height();
 	gboolean resize = FALSE;
 	gboolean up = FALSE;
-	gtk_source_completion_utils_get_cursor_pos (view,x,y);
 	
-	gtk_window_get_size(window, &w, &h);
+	if (window != NULL)
+	{
+		screen = gtk_window_get_screen (window);
+	}
+	else
+	{
+		screen = gdk_screen_get_default ();
+	}
+	
+	sw = gdk_screen_get_width (screen);
+	sh = gdk_screen_get_height (screen);
+
+	gtk_source_completion_utils_get_cursor_pos (view, x, y);
+	gtk_window_get_size (window, &w, &h);
 	
 	/* Processing x position and width */
 	if (w > (sw - 8))

@@ -896,7 +896,9 @@ static gboolean
 gtk_source_completion_proposal_selected_default (GtkSourceCompletion *self,
 						 GtkSourceCompletionProposal *proposal)
 {
-	gtk_source_completion_proposal_apply (proposal, self->priv->view);
+	gtk_source_completion_proposal_activate (proposal, 
+	                                         GTK_SOURCE_BUFFER (gtk_text_view_get_buffer (
+	                                         	self->priv->view)));
 	end_completion (self);
 	
 	return FALSE;
@@ -1509,8 +1511,11 @@ trigger_activate_cb (GtkSourceCompletionTrigger *trigger,
 		GtkSourceCompletionPage *page;
 		
 		last_proposal = GTK_SOURCE_COMPLETION_PROPOSAL (data_list->data);
-		page = get_page_by_name (self,
-					 gtk_source_completion_proposal_get_page_name (last_proposal));
+		
+		/* FIXME: do something about the page */
+		/*page = get_page_by_name (self,
+					 gtk_source_completion_proposal_get_page_name (last_proposal));*/
+		page = get_page_by_name (self, DEFAULT_PAGE);
 		
 		add_proposal (page,
 			      last_proposal);
@@ -1527,7 +1532,7 @@ trigger_activate_cb (GtkSourceCompletionTrigger *trigger,
 	 *center_window, custom etc.
 	 */
 	gtk_source_completion_utils_get_pos_at_cursor (GTK_WINDOW (self),
-						       self->priv->view,
+						       GTK_SOURCE_VIEW (self->priv->view),
 						       &x, &y, NULL);
 
 	gtk_window_move (GTK_WINDOW (self),

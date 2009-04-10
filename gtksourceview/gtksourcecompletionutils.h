@@ -20,30 +20,35 @@
  * Boston, MA 02111-1307, USA.
  */
  
-#ifndef GTK_SOURCE_COMPLETION_UTILS_H
-#define GTK_SOURCE_COMPLETION_UTILS_H
+#ifndef __GTK_SOURCE_COMPLETION_UTILS_H__
+#define __GTK_SOURCE_COMPLETION_UTILS_H__
 
-#include <gtk/gtk.h>
+#include <gtksourceview/gtksourceview.h>
 
-gboolean	gtk_source_completion_utils_is_separator		(gunichar ch);
+G_BEGIN_DECLS
 
-gchar		*gtk_source_completion_utils_get_word_iter		(GtkTextView *text_view, 
-									 GtkTextIter *start_word, 
-									 GtkTextIter *end_word);
+gboolean	 gtk_source_completion_utils_is_separator		(gunichar         ch);
 
-gchar		*gtk_source_completion_utils_get_word			(GtkTextView *text_view);
+gchar		*gtk_source_completion_utils_get_word_iter		(GtkSourceBuffer *source_buffer, 
+									 GtkTextIter     *start_word, 
+									 GtkTextIter     *end_word);
 
-void		gtk_source_completion_utils_get_cursor_pos		(GtkTextView *text_view, 
-									 gint *x, 
-									 gint *y);
+gchar		*gtk_source_completion_utils_get_word			(GtkSourceBuffer *text_view);
 
-void		gtk_source_completion_utils_replace_current_word	(GtkTextView *text_view, 
-									 const gchar* text);
+void		 gtk_source_completion_utils_get_cursor_pos		(GtkSourceView   *source_view, 
+									 gint            *x, 
+									 gint            *y);
 
-gboolean	gtk_source_completion_utils_get_pos_at_cursor		(GtkWindow *window,
-									 GtkTextView *view,
-									 gint *x,
-									 gint *y,
-									 gboolean *resized);
+void		 gtk_source_completion_utils_replace_current_word	(GtkSourceBuffer *source_buffer, 
+									 const gchar     *text,
+									 gint             len);
 
-#endif 
+gboolean	 gtk_source_completion_utils_get_pos_at_cursor		(GtkWindow       *window,
+									 GtkSourceView   *view,
+									 gint            *x,
+									 gint            *y,
+									 gboolean        *resized);
+
+G_END_DECLS
+
+#endif /* __GTK_SOURCE_COMPLETION_ITEM_H__ */

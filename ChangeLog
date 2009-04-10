@@ -1,3 +1,22 @@
+2009-04-10  Jesse van den Kieboom  <jessevdk@gnome.org>
+
+	* gtksourceview/gtksourceview-marshal.list:
+	* gtksourceview/gtksourcecompletionitem.c:
+	* gtksourceview/gtksourcecompletionitem.h:
+	* gtksourceview/gtksourcecompletion.c:
+	* gtksourceview/gtksourcecompletioninfo.c:
+	* gtksourceview/gtksourcecompletionproposal.c:
+	* gtksourceview/gtksourcecompletionutils.c:
+	* gtksourceview/gtksourcecompletionproposal.h:
+	* gtksourceview/gtksourcecompletionutils.h:
+	* gtksourceview/Makefile.am:
+	* tests/gsc-provider-test.c:
+	
+	Made proposal into interface and GtkSourceCompletionItem a default
+	store implementation of GtkSourceCompletionProposal.
+	
+	Cleaned up utils
+	
 2009-04-10  Ignacio Casal Quinteiro  <nacho.resa@gmail.com>
 
 	* gtksourceview/gtksourcecompletion.c:

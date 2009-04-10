@@ -275,7 +275,7 @@ gtk_source_completion_info_move_to_cursor (GtkSourceCompletionInfo* self,
 	adjust_resize (self);
 	
 	gtk_source_completion_utils_get_pos_at_cursor (GTK_WINDOW (self),
-						       view,
+						       GTK_SOURCE_VIEW (view),
 						       &x,
 						       &y,
 						       &resized);

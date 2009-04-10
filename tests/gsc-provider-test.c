@@ -18,6 +18,7 @@
  */
 
 #include "gsc-provider-test.h"
+#include <gtksourceview/gtksourcecompletionitem.h>
 
 static void	 gsc_provider_test_iface_init	(GtkSourceCompletionProviderIface *iface);
 
@@ -27,34 +28,36 @@ G_DEFINE_TYPE_WITH_CODE (GscProviderTest,
 			 G_IMPLEMENT_INTERFACE (GTK_TYPE_SOURCE_COMPLETION_PROVIDER,
 				 		gsc_provider_test_iface_init))
 
-static const gchar* 
-gsc_provider_test_real_get_name (GtkSourceCompletionProvider* self)
+static const gchar * 
+gsc_provider_test_real_get_name (GtkSourceCompletionProvider *self)
 {
 	return GSC_PROVIDER_TEST_NAME;
 }
 
 static GList* 
-gsc_provider_test_real_get_proposals (GtkSourceCompletionProvider* base,
-						GtkSourceCompletionTrigger *trigger)
+gsc_provider_test_real_get_proposals (GtkSourceCompletionProvider *base,
+				      GtkSourceCompletionTrigger  *trigger)
 {
 	GList *list = NULL;
-	GtkSourceCompletionProposal *prop;
+	GtkSourceCompletionItem *prop;
 	
-	prop = gtk_source_completion_proposal_new("Proposal 1",
-				"Info proposal 1",
-				NULL);
+	prop = gtk_source_completion_item_new ("Proposal 1",
+	                                       NULL,
+	                                       "Info proposal 1");
+
 	list = g_list_append (list, prop);
-	prop = gtk_source_completion_proposal_new("Proposal 2",
-				"Info proposal 2",
-				NULL);
+	prop = gtk_source_completion_item_new ("Proposal 2",
+	                                       NULL,
+	                                       "Info proposal 2");
+
 	list = g_list_append (list, prop);
-	prop = gtk_source_completion_proposal_new("Proposal 3",
-				"Info proposal 3",
-				NULL);
+	prop = gtk_source_completion_item_new ("Proposal 3",
+	                                       NULL,
+	                                       "Info proposal 3");
 	list = g_list_append (list, prop);
 	
 	/*Page 2*/
-	prop = gtk_source_completion_proposal_new("Proposal 1,2",
+	/*prop = gtk_source_completion_proposal_new("Proposal 1,2",
 				"Info proposal 1,2",
 				NULL);
 	gtk_source_completion_proposal_set_page_name(prop,"Page 2");
@@ -73,7 +76,7 @@ gsc_provider_test_real_get_proposals (GtkSourceCompletionProvider* base,
 				"Info proposal fixed",
 				NULL);
 	gtk_source_completion_proposal_set_page_name(prop,"Fixed");
-	list = g_list_append (list, prop);
+	list = g_list_append (list, prop);*/
 	return list;
 }
 
