@@ -144,9 +144,8 @@ gtk_source_completion_trigger_key_iface_init (GtkSourceCompletionTriggerIface *i
  * gtk_source_completion_trigger_key_new:
  * @completion: The #GtkSourceCompletion
  * @trigger_name: The trigger name wich will be user the we trigger the event.
- * @accelerator: The string representation of the keys that we will
- * use to activate the event. You can get this 
- * string with #gtk_accelerator_name
+ * @key: the gdk key value for which the trigger will be activated
+ * @modifier: the gdk modifier key which activates the trigger
  *
  * This is a generic trigger. You tell the name and the key and the trigger
  * will be triggered when the user press this key (or keys).
@@ -187,9 +186,8 @@ gtk_source_completion_trigger_key_new (GtkSourceCompletion *completion,
 /**
  * gtk_source_completion_trigger_key_set_accelerator:
  * @self: The #GtkSourceCompletionTriggerKey 
- * @accelerator: The string representation of the keys that we will
- * use to activate the user request event. You can get this 
- * string with #gtk_accelerator_name
+ * @key: the gdk key value for which the trigger will be activated
+ * @modifier: the gdk modifier key which activates the trigger
  *
  * Assign the keys that we will use to activate the user request event.
  */
