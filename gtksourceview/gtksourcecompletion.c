@@ -1482,7 +1482,7 @@ view_button_press_event_cb (GtkWidget *widget,
 /**
  * _gtk_source_completion_new:
  *
- * Returns The new #GtkSourceCompletion
+ * Returns: The new #GtkSourceCompletion
  */
 GtkSourceCompletion *
 _gtk_source_completion_new (GtkTextView *view)
@@ -1537,7 +1537,7 @@ gtk_source_completion_register_trigger (GtkSourceCompletion *self,
  * gtk_source_completion_register_provider:
  * @self: the #GtkSourceCompletion
  * @provider: The #GtkSourceCompletionProvider.
- * @trigger_name: The trigger name what you want to register this provider
+ * @trigger: The trigger name what you want to register this provider
  *
  * This function register the provider into the completion and reference it. When 
  * an event is raised, completion call to the provider to get the data. When the user
@@ -1546,7 +1546,6 @@ gtk_source_completion_register_trigger (GtkSourceCompletion *self,
  * 
  * Returns: %TRUE if it was registered or %FALSE if not (because it has been already registered,
  * or the trigger doesn't exists)
- *
  **/
 gboolean
 gtk_source_completion_register_provider (GtkSourceCompletion *self,
@@ -1633,9 +1632,8 @@ gtk_source_completion_unregister_trigger (GtkSourceCompletion *self,
  *
  * This function unregister the provider.
  * 
- * Returns TRUE if it was unregistered or FALSE if not (because it doesn't exists,
+ * Returns: %TRUE if it was unregistered or %FALSE if not (because it doesn't exists,
  * or the trigger don't exists)
- * 
  **/
 gboolean
 gtk_source_completion_unregister_provider (GtkSourceCompletion *self,

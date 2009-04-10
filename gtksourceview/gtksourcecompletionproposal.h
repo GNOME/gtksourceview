@@ -68,7 +68,7 @@ const gchar		*gtk_source_completion_proposal_get_label	(GtkSourceCompletionPropo
 const GdkPixbuf		*gtk_source_completion_proposal_get_icon	(GtkSourceCompletionProposal *proposal);
 
 
-void			 gtk_source_completion_proposal_set_page_name	(GtkSourceCompletionProposal *self,
+void			 gtk_source_completion_proposal_set_page_name	(GtkSourceCompletionProposal *proposal,
 									 const gchar *page_name);
 
 const gchar		*gtk_source_completion_proposal_get_page_name	(GtkSourceCompletionProposal *proposal);

@@ -70,17 +70,6 @@ struct _GtkSourceCompletionClass
 				       GtkSourceCompletionProposal *proposal);
 };
 
-/* ********************* Control Functions ******************** */
-/* 
- * FIXME This functions will be deleted when we insert GtkSourceCompletion
- * into GtkSourceView. These functions store the relationship between the
- * GtkSourceCompletions and the GtkTextView.
- */
-
-GtkSourceCompletion	*gtk_source_completion_get_from_view	(GtkTextView *view);
-
-/* ************************************************************* */
-
 GType		 gtk_source_completion_get_type			(void) G_GNUC_CONST;
 
 GtkSourceCompletion
@@ -132,12 +121,12 @@ GtkWidget	*gtk_source_completion_get_bottom_bar		(GtkSourceCompletion *self);
 GtkSourceCompletionInfo
 		*gtk_source_completion_get_info_widget		(GtkSourceCompletion *self);
 
-gint		gtk_source_completion_get_page_pos		(GtkSourceCompletion *self,
+gint		 gtk_source_completion_get_page_pos		(GtkSourceCompletion *self,
 								 const gchar *page_name);
 
-gint		gtk_source_completion_get_n_pages		(GtkSourceCompletion *self);
+gint		 gtk_source_completion_get_n_pages		(GtkSourceCompletion *self);
 
-void	gtk_source_completion_set_page_pos		(GtkSourceCompletion *self,
+void		 gtk_source_completion_set_page_pos		(GtkSourceCompletion *self,
 								 const gchar *page_name,
 								 gint position);
 

@@ -274,79 +274,79 @@ gtk_source_completion_proposal_new (const gchar *label,
 
 /**
  * gtk_source_completion_proposal_get_label:
- * @self: The #GtkSourceCompletionProposal
+ * @proposal: The #GtkSourceCompletionProposal
  *
  * Returns: The proposal label that will be shown into the popup
  */
 const gchar *
-gtk_source_completion_proposal_get_label (GtkSourceCompletionProposal *self)
+gtk_source_completion_proposal_get_label (GtkSourceCompletionProposal *proposal)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_PROPOSAL (self), NULL);
+	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_PROPOSAL (proposal), NULL);
 	
-	return self->priv->label;
+	return proposal->priv->label;
 }
 
 /**
  * gtk_source_completion_proposal_get_icon:
- * @self: The #GtkSourceCompletionProposal
+ * @proposal: The #GtkSourceCompletionProposal
  *
  * Gets the icon of this @proposal that will be shown into the popup.
  *
  * Returns: the icon of this @proposal that will be shown into the popup
  */
 const GdkPixbuf *
-gtk_source_completion_proposal_get_icon (GtkSourceCompletionProposal *self)
+gtk_source_completion_proposal_get_icon (GtkSourceCompletionProposal *proposal)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_PROPOSAL (self), NULL);
+	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_PROPOSAL (proposal), NULL);
 
-	return self->priv->icon;
+	return proposal->priv->icon;
 }
 
 /**
  * gtk_source_completion_proposal_set_page_name:
- * @self: The #GtkSourceCompletionProposal
+ * @proposal: The #GtkSourceCompletionProposal
  * @page_name: The name for the page
  *
  * Sets the name of the page where this proposal will be shown.
  * If @page_name is %NULL the default page will be used.
  */
 void
-gtk_source_completion_proposal_set_page_name (GtkSourceCompletionProposal *self,
+gtk_source_completion_proposal_set_page_name (GtkSourceCompletionProposal *proposal,
 					      const gchar *page_name)
 {
-	g_return_if_fail (GTK_IS_SOURCE_COMPLETION_PROPOSAL (self));
+	g_return_if_fail (GTK_IS_SOURCE_COMPLETION_PROPOSAL (proposal));
 
-	g_free (self->priv->page_name);
+	g_free (proposal->priv->page_name);
 	
 	if (page_name == NULL)
 	{
-		self->priv->page_name = g_strdup (GTK_SOURCE_COMPLETION_PROPOSAL_DEFAULT_PAGE);
+		proposal->priv->page_name = g_strdup (GTK_SOURCE_COMPLETION_PROPOSAL_DEFAULT_PAGE);
 	}
 	else
 	{
-		self->priv->page_name = g_strdup (page_name);
+		proposal->priv->page_name = g_strdup (page_name);
 	}
 }
 
 /**
  * gtk_source_completion_proposal_get_page_name:
- * @self: The #GtkSourceCompletionProposal
+ * @proposal: The #GtkSourceCompletionProposal
  *
  * Gets the page name where the @proposal will be placed.
  *
  * Returns: the page name where the @proposal will be placed.
  */
 const gchar *
-gtk_source_completion_proposal_get_page_name (GtkSourceCompletionProposal *self)
+gtk_source_completion_proposal_get_page_name (GtkSourceCompletionProposal *proposal)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_PROPOSAL (self), NULL);
+	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_PROPOSAL (proposal), NULL);
 	
-	return self->priv->page_name;
+	return proposal->priv->page_name;
 }
 
 /**
  * gtk_source_completion_proposal_get_info:
- * @self: The #GtkSourceCompletionProposal
+ * @proposal: The #GtkSourceCompletionProposal
  *
  * The completion calls this function when the user wants to see the proposal info.
  * You can overwrite this function if you need to change the default mechanism.
@@ -354,16 +354,16 @@ gtk_source_completion_proposal_get_page_name (GtkSourceCompletionProposal *self)
  * Returns: The proposal info markup asigned for this proposal or NULL;
  */
 const gchar *
-gtk_source_completion_proposal_get_info (GtkSourceCompletionProposal *self)
+gtk_source_completion_proposal_get_info (GtkSourceCompletionProposal *proposal)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_PROPOSAL (self), NULL);
+	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_PROPOSAL (proposal), NULL);
 
-	return GTK_SOURCE_COMPLETION_PROPOSAL_GET_CLASS (self)->get_info (self);
+	return GTK_SOURCE_COMPLETION_PROPOSAL_GET_CLASS (proposal)->get_info (proposal);
 }
 
 /**
  * gtk_source_completion_proposal_apply:
- * @self: The #GtkSourceCompletionProposal
+ * @proposal: The #GtkSourceCompletionProposal
  * @view: The #GtkTextView
  * 
  * The completion calls this function when the user selects the proposal. 
@@ -371,12 +371,12 @@ gtk_source_completion_proposal_get_info (GtkSourceCompletionProposal *self)
  * You can overwrite this function.
  */
 void
-gtk_source_completion_proposal_apply (GtkSourceCompletionProposal *self,
+gtk_source_completion_proposal_apply (GtkSourceCompletionProposal *proposal,
 				      GtkTextView *view)
 {
-	g_return_if_fail (GTK_IS_SOURCE_COMPLETION_PROPOSAL (self));
+	g_return_if_fail (GTK_IS_SOURCE_COMPLETION_PROPOSAL (proposal));
 	
-	GTK_SOURCE_COMPLETION_PROPOSAL_GET_CLASS (self)->apply (self, view);
+	GTK_SOURCE_COMPLETION_PROPOSAL_GET_CLASS (proposal)->apply (proposal, view);
 }
 
 
