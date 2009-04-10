@@ -103,9 +103,24 @@ gtk_source_completion_trigger_key_finalize (GObject *object)
 	self = GTK_SOURCE_COMPLETION_TRIGGER_KEY (object);
 	
 	g_free (self->priv->trigger_name);
-	g_object_unref (self->priv->completion);
 
 	G_OBJECT_CLASS (gtk_source_completion_trigger_key_parent_class)->finalize (object);
+}
+
+static void
+gtk_source_completion_trigger_key_dispose (GObject *object)
+{
+	GtkSourceCompletionTriggerKey *self;
+	
+	self = GTK_SOURCE_COMPLETION_TRIGGER_KEY (object);
+	
+	if (self->priv->completion != NULL)
+	{
+		g_object_unref (self->priv->completion);
+		self->priv->completion = NULL;
+	}
+	
+	G_OBJECT_CLASS (gtk_source_completion_trigger_key_parent_class)->dispose (object);
 }
 
 static void 
@@ -113,9 +128,10 @@ gtk_source_completion_trigger_key_class_init (GtkSourceCompletionTriggerKeyClass
 {
 	GObjectClass *object_class = G_OBJECT_CLASS (klass);
 	
-	g_type_class_add_private (klass, sizeof (GtkSourceCompletionTriggerKeyPrivate));
-
 	object_class->finalize = gtk_source_completion_trigger_key_finalize;
+	object_class->dispose = gtk_source_completion_trigger_key_dispose;
+
+	g_type_class_add_private (klass, sizeof (GtkSourceCompletionTriggerKeyPrivate));
 }
 
 static void 
