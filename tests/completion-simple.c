@@ -28,8 +28,11 @@
 #include <gtksourceview/gtksourcecompletioninfo.h>
 #include <gtksourceview/gtksourcecompletiontriggerkey.h>
 
+#include <devhelp/dh-base.h>
+
 #include "gsc-utils-test.h"
 #include "gsc-provider-test.h"
+#include "gsc-provider-devhelp.h"
 
 #define TEST_PAGE "Page 3"
 #define FIXED_PAGE "Fixed"
@@ -311,11 +314,13 @@ static void
 create_completion(void)
 {
 	GscProviderTest *prov_test;
+	GscProviderDevhelp *prov_devhelp;
 	GtkSourceCompletionTriggerKey *ur_trigger;
 	CustomWidget *custom;
 	GtkSourceCompletionInfo *info;
 	
 	prov_test = gsc_provider_test_new ();
+	prov_devhelp = gsc_provider_devhelp_new (GTK_SOURCE_VIEW (view));
 	
 	comp = gtk_source_view_get_completion (GTK_SOURCE_VIEW (view));
 	
@@ -327,6 +332,9 @@ create_completion(void)
 	gtk_source_completion_add_trigger (comp, GTK_SOURCE_COMPLETION_TRIGGER (ur_trigger));
 
 	gtk_source_completion_add_provider (comp, GTK_SOURCE_COMPLETION_PROVIDER (prov_test),
+					    GTK_SOURCE_COMPLETION_TRIGGER (ur_trigger));
+
+	gtk_source_completion_add_provider (comp, GTK_SOURCE_COMPLETION_PROVIDER (prov_devhelp),
 					    GTK_SOURCE_COMPLETION_TRIGGER (ur_trigger));
 	
 	g_signal_connect (comp, "show", G_CALLBACK (show_completion_cb), NULL);

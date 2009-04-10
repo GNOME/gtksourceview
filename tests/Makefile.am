@@ -25,6 +25,8 @@ test_completion_SOURCES =		\
         completion-simple.c		\
         gsc-provider-test.h		\
         gsc-provider-test.c		\
+        gsc-provider-devhelp.h		\
+        gsc-provider-devhelp.c		\
 	gsc-utils-test.c		\
 	gsc-utils-test.h
 
