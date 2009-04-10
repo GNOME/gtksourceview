@@ -1578,7 +1578,7 @@ _gtk_source_completion_new (GtkTextView *view)
 }
 
 /**
- * gtk_source_completion_register_trigger:
+ * gtk_source_completion_add_trigger:
  * @self: The #GtkSourceCompletion
  * @trigger: The trigger to register
  *
@@ -1589,8 +1589,8 @@ _gtk_source_completion_new (GtkTextView *view)
  * Returns: %TRUE if the trigger has been registered
  */
 gboolean
-gtk_source_completion_register_trigger (GtkSourceCompletion *self,
-					GtkSourceCompletionTrigger *trigger)
+gtk_source_completion_add_trigger (GtkSourceCompletion *self,
+				   GtkSourceCompletionTrigger *trigger)
 {
 	GList *l;
 	
@@ -1616,7 +1616,7 @@ gtk_source_completion_register_trigger (GtkSourceCompletion *self,
 }
 
 /**
- * gtk_source_completion_register_provider:
+ * gtk_source_completion_add_provider:
  * @self: the #GtkSourceCompletion
  * @provider: The #GtkSourceCompletionProvider.
  * @trigger: The trigger name what you want to register this provider
@@ -1630,9 +1630,9 @@ gtk_source_completion_register_trigger (GtkSourceCompletion *self,
  * or the trigger doesn't exists)
  **/
 gboolean
-gtk_source_completion_register_provider (GtkSourceCompletion *self,
-					 GtkSourceCompletionProvider *provider,
-					 GtkSourceCompletionTrigger *trigger)
+gtk_source_completion_add_provider (GtkSourceCompletion *self,
+				    GtkSourceCompletionProvider *provider,
+				    GtkSourceCompletionTrigger *trigger)
 {
 	PTPair *ptp;
 	GList *l;
@@ -1662,7 +1662,7 @@ gtk_source_completion_register_provider (GtkSourceCompletion *self,
 }
 
 /**
- * gtk_source_completion_unregister_trigger:
+ * gtk_source_completion_remove_trigger:
  * @self: The #GtkSourceCompletion
  * @trigger: The trigger to unregister
  *
@@ -1674,8 +1674,8 @@ gtk_source_completion_register_provider (GtkSourceCompletion *self,
  * the trigger has not been registered)
  */
 gboolean
-gtk_source_completion_unregister_trigger (GtkSourceCompletion *self,
-					  GtkSourceCompletionTrigger *trigger)
+gtk_source_completion_remove_trigger (GtkSourceCompletion *self,
+				      GtkSourceCompletionTrigger *trigger)
 {
 	GList *l;
 	
@@ -1705,7 +1705,7 @@ gtk_source_completion_unregister_trigger (GtkSourceCompletion *self,
 }
 
 /**
- * gtk_source_completion_unregister_provider:
+ * gtk_source_completion_remove_provider:
  * @self: the #GtkSourceCompletion
  * @provider: The #GtkSourceCompletionProvider.
  * @trigger: The trigger what you want to unregister this provider
@@ -1716,9 +1716,9 @@ gtk_source_completion_unregister_trigger (GtkSourceCompletion *self,
  * or the trigger don't exists)
  **/
 gboolean
-gtk_source_completion_unregister_provider (GtkSourceCompletion *self,
-					   GtkSourceCompletionProvider *provider,
-					   GtkSourceCompletionTrigger *trigger)
+gtk_source_completion_remove_provider (GtkSourceCompletion *self,
+				       GtkSourceCompletionProvider *provider,
+				       GtkSourceCompletionTrigger *trigger)
 {
 	GList *l;
 	gboolean ret = FALSE;

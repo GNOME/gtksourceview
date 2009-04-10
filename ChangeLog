@@ -2,6 +2,13 @@
 
 	* gtksourceview/gtksourcecompletion.c:
 	* gtksourceview/gtksourcecompletion.h:
+	* tests/completion-simple.c:
+	Renamed register/unregister to add/remove.
+
+2009-04-10  Ignacio Casal Quinteiro  <nacho.resa@gmail.com>
+
+	* gtksourceview/gtksourcecompletion.c:
+	* gtksourceview/gtksourcecompletion.h:
 	* gtksourceview/gtksourcecompletiontrigger.c:
 	* gtksourceview/gtksourcecompletiontrigger.h:
 	* gtksourceview/gtksourcecompletiontriggerkey.c:

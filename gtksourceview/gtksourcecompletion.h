@@ -85,18 +85,18 @@ GtkSourceCompletionProvider
 		*gtk_source_completion_get_provider		(GtkSourceCompletion *self,
 								 const gchar *prov_name);
 
-gboolean	 gtk_source_completion_register_provider	(GtkSourceCompletion *self,
+gboolean	 gtk_source_completion_add_provider		(GtkSourceCompletion *self,
 								 GtkSourceCompletionProvider *provider,
 								 GtkSourceCompletionTrigger *trigger);
 
-gboolean	 gtk_source_completion_unregister_provider	(GtkSourceCompletion *self,
+gboolean	 gtk_source_completion_remove_provider		(GtkSourceCompletion *self,
 								 GtkSourceCompletionProvider *provider,
 								 GtkSourceCompletionTrigger *trigger);
 
-gboolean	 gtk_source_completion_register_trigger		(GtkSourceCompletion *self,
+gboolean	 gtk_source_completion_add_trigger		(GtkSourceCompletion *self,
 								 GtkSourceCompletionTrigger *trigger);
 
-gboolean	 gtk_source_completion_unregister_trigger	(GtkSourceCompletion *self,
+gboolean	 gtk_source_completion_remove_trigger		(GtkSourceCompletion *self,
 								 GtkSourceCompletionTrigger *trigger);
 
 GtkSourceCompletionTrigger
