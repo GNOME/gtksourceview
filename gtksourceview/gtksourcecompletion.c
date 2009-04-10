@@ -481,15 +481,6 @@ end_completion (GtkSourceCompletion *self)
 	}
 	else
 	{
-		GList *l;
-		
-		for (l = self->priv->prov_trig; l != NULL; l = g_list_next (l))
-		{
-			PTPair *ptp = (PTPair *)l->data;
-			if (ptp->trigger == self->priv->active_trigger)
-				gtk_source_completion_provider_finish (GTK_SOURCE_COMPLETION_PROVIDER (ptp->provider));
-		}
-		
 		self->priv->active_trigger = NULL;
 	}
 }

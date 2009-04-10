@@ -81,12 +81,6 @@ gsc_provider_test_real_get_proposals (GtkSourceCompletionProvider *base,
 }
 
 static void 
-gsc_provider_test_real_finish (GtkSourceCompletionProvider* base)
-{
-
-}
-
-static void 
 gsc_provider_test_finalize (GObject *object)
 {
 	G_OBJECT_CLASS (gsc_provider_test_parent_class)->finalize (object);
@@ -104,7 +98,6 @@ gsc_provider_test_iface_init (GtkSourceCompletionProviderIface *iface)
 {
 	iface->get_name = gsc_provider_test_real_get_name;
 	iface->get_proposals = gsc_provider_test_real_get_proposals;
-	iface->finish = gsc_provider_test_real_finish;
 }
 
 

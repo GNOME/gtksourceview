@@ -82,27 +82,6 @@ gtk_source_completion_provider_get_proposals_default (GtkSourceCompletionProvide
 	g_return_val_if_reached (NULL);
 }
 
-/**
- * gtk_source_completion_provider_finish:
- * @self: The #GtkSourceCompletionProvider
- *
- * The completion call this function when it is going to hide the popup (The 
- * user selects a proposal or hide the completion popup)
- */
-void
-gtk_source_completion_provider_finish (GtkSourceCompletionProvider* self)
-{
-	g_return_if_fail (GTK_IS_SOURCE_COMPLETION_PROVIDER (self));
-	GTK_SOURCE_COMPLETION_PROVIDER_GET_INTERFACE (self)->finish (self);
-}
-
-/* Default implementation */
-static void
-gtk_source_completion_provider_finish_default (GtkSourceCompletionProvider *self)
-{
-	g_return_if_reached ();
-}
-
 static void 
 gtk_source_completion_provider_base_init (GtkSourceCompletionProviderIface * iface)
 {
@@ -110,7 +89,6 @@ gtk_source_completion_provider_base_init (GtkSourceCompletionProviderIface * ifa
 	
 	iface->get_name = gtk_source_completion_provider_get_name_default;
 	iface->get_proposals = gtk_source_completion_provider_get_proposals_default;
-	iface->finish = gtk_source_completion_provider_finish_default;
 	
 	if (!initialized) {
 		initialized = TRUE;

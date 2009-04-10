@@ -47,7 +47,6 @@ struct _GtkSourceCompletionProviderIface
 	const gchar* (*get_name)       (GtkSourceCompletionProvider *self);
 	GList*       (*get_proposals)  (GtkSourceCompletionProvider *self,
 				        GtkSourceCompletionTrigger *trigger);
-	void         (*finish)         (GtkSourceCompletionProvider *self);
 };
 
 GType		 gtk_source_completion_provider_get_type	(void);
@@ -57,8 +56,6 @@ const gchar	*gtk_source_completion_provider_get_name	(GtkSourceCompletionProvide
 
 GList		*gtk_source_completion_provider_get_proposals	(GtkSourceCompletionProvider *self, 
 								 GtkSourceCompletionTrigger  *trigger);
-				
-void		 gtk_source_completion_provider_finish		(GtkSourceCompletionProvider *self);
 
 G_END_DECLS
 
