@@ -39,19 +39,12 @@
 							GTK_TYPE_SOURCE_COMPLETION_TRIGGER_KEY, \
 							GtkSourceCompletionTriggerKeyPrivate))
 
-/* User request signals */
-enum
-{
-	CKP_GTK_TEXT_VIEW_KP,
-	LAST_SIGNAL
-};
-
 struct _GtkSourceCompletionTriggerKeyPrivate
 {
 	GtkSourceCompletion *completion;
-	
-	gulong signals[LAST_SIGNAL];
+
 	gchar *trigger_name;
+
 	guint key;
 	GdkModifierType mod;
 };
@@ -65,8 +58,8 @@ G_DEFINE_TYPE_WITH_CODE (GtkSourceCompletionTriggerKey,
 				 		gtk_source_completion_trigger_key_iface_init))
 
 static gboolean
-view_key_press_event_cb (GtkWidget *view,
-			 GdkEventKey *event,
+view_key_press_event_cb (GtkWidget                     *view,
+			 GdkEventKey                   *event,
 			 GtkSourceCompletionTriggerKey *self)
 {
 	guint s;
@@ -95,7 +88,7 @@ gtk_source_completion_trigger_key_real_get_name (GtkSourceCompletionTrigger *bas
 }
 
 static void 
-gtk_source_completion_trigger_key_init (GtkSourceCompletionTriggerKey * self)
+gtk_source_completion_trigger_key_init (GtkSourceCompletionTriggerKey *self)
 {
 	self->priv = GTK_SOURCE_COMPLETION_TRIGGER_KEY_GET_PRIVATE (self);
 	
@@ -116,7 +109,7 @@ gtk_source_completion_trigger_key_finalize (GObject *object)
 }
 
 static void 
-gtk_source_completion_trigger_key_class_init (GtkSourceCompletionTriggerKeyClass * klass)
+gtk_source_completion_trigger_key_class_init (GtkSourceCompletionTriggerKeyClass *klass)
 {
 	GObjectClass *object_class = G_OBJECT_CLASS (klass);
 	
@@ -126,16 +119,16 @@ gtk_source_completion_trigger_key_class_init (GtkSourceCompletionTriggerKeyClass
 }
 
 static void 
-gtk_source_completion_trigger_key_iface_init (GtkSourceCompletionTriggerIface * iface)
+gtk_source_completion_trigger_key_iface_init (GtkSourceCompletionTriggerIface *iface)
 {
-	iface->get_name   = gtk_source_completion_trigger_key_real_get_name;
+	iface->get_name = gtk_source_completion_trigger_key_real_get_name;
 }
 
 /**
  * gtk_source_completion_trigger_key_new:
  * @completion: The #GtkSourceCompletion
  * @trigger_name: The trigger name wich will be user the we trigger the event.
- * @keys: The string representation of the keys that we will
+ * @accelerator: The string representation of the keys that we will
  * use to activate the event. You can get this 
  * string with #gtk_accelerator_name
  *
@@ -145,10 +138,10 @@ gtk_source_completion_trigger_key_iface_init (GtkSourceCompletionTriggerIface * 
  * Returns: a new #GtkSourceCompletionTriggerKey
  *
  */
-GtkSourceCompletionTriggerKey* 
+GtkSourceCompletionTriggerKey * 
 gtk_source_completion_trigger_key_new (GtkSourceCompletion *completion,
-				       const gchar *trigger_name,
-				       const gchar *keys)
+				       const gchar         *trigger_name,
+				       const gchar         *accelerator)
 {
 	GtkSourceCompletionTriggerKey *self;
 	GtkTextView *view;
@@ -161,10 +154,10 @@ gtk_source_completion_trigger_key_new (GtkSourceCompletion *completion,
 	
 	self->priv->completion = g_object_ref (completion);
 	self->priv->trigger_name = g_strdup (trigger_name);
-	gtk_source_completion_trigger_key_set_keys (self, keys);
+
+	gtk_source_completion_trigger_key_set_accelerator (self, accelerator);
 	
 	view = gtk_source_completion_get_view (self->priv->completion);
-	g_assert (GTK_IS_TEXT_VIEW (view));
 	
 	g_signal_connect (view,
 			  "key-press-event",
@@ -175,21 +168,21 @@ gtk_source_completion_trigger_key_new (GtkSourceCompletion *completion,
 }
 
 /**
- * gtk_source_completion_trigger_key_set_keys:
+ * gtk_source_completion_trigger_key_set_accelerator:
  * @self: The #GtkSourceCompletionTriggerKey 
- * @keys: The string representation of the keys that we will
+ * @accelerator: The string representation of the keys that we will
  * use to activate the user request event. You can get this 
  * string with #gtk_accelerator_name
  *
  * Assign the keys that we will use to activate the user request event.
  */
 void
-gtk_source_completion_trigger_key_set_keys (GtkSourceCompletionTriggerKey *self,
-					    const gchar *keys)
+gtk_source_completion_trigger_key_set_accelerator (GtkSourceCompletionTriggerKey *self,
+						   const gchar                   *accelerator)
 {
 	g_return_if_fail (GTK_IS_SOURCE_COMPLETION_TRIGGER_KEY (self));
 
-	gtk_accelerator_parse (keys, &self->priv->key, &self->priv->mod);
+	gtk_accelerator_parse (accelerator, &self->priv->key, &self->priv->mod);
 }
 
 

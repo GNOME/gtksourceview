@@ -53,15 +53,15 @@ struct _GtkSourceCompletionTriggerKeyClass
 	GObjectClass parent;
 };
 
-GType		 gtk_source_completion_trigger_key_get_type	(void) G_GNUC_CONST;
+GType		 gtk_source_completion_trigger_key_get_type		(void) G_GNUC_CONST;
 
 GtkSourceCompletionTriggerKey
-		*gtk_source_completion_trigger_key_new		(GtkSourceCompletion *completion,
-								 const gchar *trigger_name,
-								 const gchar *keys);
+		*gtk_source_completion_trigger_key_new			(GtkSourceCompletion *completion,
+								 	 const gchar         *trigger_name,
+								 	 const gchar         *accelerator);
 
-void		 gtk_source_completion_trigger_key_set_keys	(GtkSourceCompletionTriggerKey *self,
-								 const gchar *keys);
+void		 gtk_source_completion_trigger_key_set_accelerator	(GtkSourceCompletionTriggerKey *self,
+								 	 const gchar                   *keys);
 
 G_END_DECLS
 
