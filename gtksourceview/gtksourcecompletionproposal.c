@@ -180,6 +180,7 @@ gtk_source_completion_proposal_get_info (GtkSourceCompletionProposal *proposal)
 /**
  * gtk_source_completion_proposal_activate:
  * @proposal: The #GtkSourceCompletionProposal
+ * @buffer: The #GtkSourceBuffer
  * 
  * This emits the "activate" signal on @proposal. This function is generally 
  * called when @proposal is activated from the completion window. 

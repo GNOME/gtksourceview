@@ -49,7 +49,7 @@ G_BEGIN_DECLS
 typedef gboolean (* GtkSourceCompletionFilterFunc) (GtkSourceCompletionProposal *proposal,
 						    gpointer     user_data);
 
-typedef struct _GtkSourceCompletionPriv GtkSourceCompletionPriv;
+typedef struct _GtkSourceCompletionPrivate GtkSourceCompletionPrivate;
 typedef struct _GtkSourceCompletion GtkSourceCompletion;
 typedef struct _GtkSourceCompletionClass GtkSourceCompletionClass;
 
@@ -57,7 +57,7 @@ struct _GtkSourceCompletion
 {
 	GtkWindow parent;
 
-	GtkSourceCompletionPriv *priv;
+	GtkSourceCompletionPrivate *priv;
 };
 
 struct _GtkSourceCompletionClass

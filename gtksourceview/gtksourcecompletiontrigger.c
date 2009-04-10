@@ -62,7 +62,7 @@ gtk_source_completion_trigger_get_name_default (GtkSourceCompletionTrigger *self
 }
 
 /**
- * gtk_source_completion_trigger_event:
+ * gtk_source_completion_trigger_activate:
  * @self: the #GtkSourceCompletionTrigger
  *
  * Calling this function, the completion call to all providers to get data and, if 

@@ -41,7 +41,7 @@
 
 #define GTK_SOURCE_COMPLETION_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object),\
 						  GTK_TYPE_SOURCE_COMPLETION,           \
-						  GtkSourceCompletionPriv))
+						  GtkSourceCompletionPrivate))
 
 enum
 {
@@ -96,7 +96,7 @@ struct _GtkSourceCompletionPage
 	GtkSourceCompletionFilterFunc filter_func;
 };
 
-struct _GtkSourceCompletionPriv
+struct _GtkSourceCompletionPrivate
 {
 	/* Widget and popup variables*/
 	GtkWidget *info_window;
@@ -1203,7 +1203,7 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 	GtkObjectClass *gtkobject_class = GTK_OBJECT_CLASS (klass);
 	GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
 	
-	g_type_class_add_private (klass, sizeof (GtkSourceCompletionPriv));
+	g_type_class_add_private (klass, sizeof (GtkSourceCompletionPrivate));
 	
 	object_class->get_property = gtk_source_completion_get_property;
 	object_class->set_property = gtk_source_completion_set_property;
