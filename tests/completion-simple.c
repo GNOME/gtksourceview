@@ -327,8 +327,6 @@ create_completion(void)
 
 	gtk_source_completion_register_provider (comp, GTK_SOURCE_COMPLETION_PROVIDER (prov_test),
 						 GTK_SOURCE_COMPLETION_TRIGGER (ur_trigger));
-
-	gtk_source_completion_set_active (comp, TRUE);
 	
 	g_signal_connect (comp, "show", G_CALLBACK (show_completion_cb), NULL);
 	g_signal_connect (comp, "hide", G_CALLBACK (hide_completion_cb), NULL);

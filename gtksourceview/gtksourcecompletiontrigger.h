@@ -38,21 +38,22 @@ G_BEGIN_DECLS
 typedef struct _GtkSourceCompletionTrigger GtkSourceCompletionTrigger;
 typedef struct _GtkSourceCompletionTriggerIface GtkSourceCompletionTriggerIface;
 
-struct _GtkSourceCompletionTriggerIface {
+struct _GtkSourceCompletionTriggerIface
+{
 	GTypeInterface parent;
 	
-	const gchar* (*get_name)   (GtkSourceCompletionTrigger *self);
-	gboolean     (*activate)   (GtkSourceCompletionTrigger* self);
-	gboolean     (*deactivate) (GtkSourceCompletionTrigger* self);
+	/* Signals */
+	void			(*activate)	(GtkSourceCompletionTrigger *self);
+	
+	/* Virtual Table */
+	const gchar *		(*get_name)		(GtkSourceCompletionTrigger *self);
 };
 
 GType		 gtk_source_completion_trigger_get_type		(void);
 
 const gchar	*gtk_source_completion_trigger_get_name		(GtkSourceCompletionTrigger *self);
 
-gboolean	 gtk_source_completion_trigger_activate		(GtkSourceCompletionTrigger *self);
-				
-gboolean	 gtk_source_completion_trigger_deactivate	(GtkSourceCompletionTrigger *self);
+void		 gtk_source_completion_trigger_activate		(GtkSourceCompletionTrigger *self);
 
 G_END_DECLS
 

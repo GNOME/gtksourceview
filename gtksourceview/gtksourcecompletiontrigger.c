@@ -31,6 +31,14 @@
  
 #include <gtksourceview/gtksourcecompletiontrigger.h>
 
+enum
+{
+	ACTIVATE,
+	LAST_SIGNAL
+};
+
+static guint signals[LAST_SIGNAL] = { 0 };
+
 /**
  * gtk_source_completion_trigger_get_name:
  * @self: The #GtkSourceCompletionTrigger
@@ -39,7 +47,7 @@
  *
  * Returns: The trigger's name
  */
-const gchar*
+const gchar *
 gtk_source_completion_trigger_get_name (GtkSourceCompletionTrigger *self)
 {
 	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_TRIGGER (self), NULL);
@@ -54,47 +62,18 @@ gtk_source_completion_trigger_get_name_default (GtkSourceCompletionTrigger *self
 }
 
 /**
- * gtk_source_completion_trigger_activate:
- * @self: The #GtkSourceCompletionTrigger
+ * gtk_source_completion_trigger_event:
+ * @self: the #GtkSourceCompletionTrigger
  *
- * Activate the completion trigger.
- *
- * Returns: %TRUE if the activation was OK, %FALSE if not.
- */
-gboolean
+ * Calling this function, the completion call to all providers to get data and, if 
+ * they return data, it shows the completion to the user.
+ **/
+void
 gtk_source_completion_trigger_activate (GtkSourceCompletionTrigger *self)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_TRIGGER (self), FALSE);
-	return GTK_SOURCE_COMPLETION_TRIGGER_GET_INTERFACE (self)->activate (self);
-}
-
-/* Default implementation */
-static gboolean
-gtk_source_completion_trigger_activate_default (GtkSourceCompletionTrigger *self)
-{
-	g_return_val_if_reached (FALSE);
-}
-
-/**
- * gtk_source_completion_trigger_deactivate:
- * @self: The #GtkSourceCompletionTrigger
- *
- * Deactive the completion trigger
- *
- * Returns: TRUE if the deactivation was OK, FALSE if not.
- */
-gboolean
-gtk_source_completion_trigger_deactivate (GtkSourceCompletionTrigger* self)
-{
-	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_TRIGGER (self), FALSE);
-	return GTK_SOURCE_COMPLETION_TRIGGER_GET_INTERFACE (self)->deactivate (self);
-}
-
-/* Default implementation */
-static gboolean
-gtk_source_completion_trigger_deactivate_default (GtkSourceCompletionTrigger *self)
-{
-	g_return_val_if_reached (FALSE);
+	g_return_if_fail (GTK_IS_SOURCE_COMPLETION_TRIGGER (self));
+	
+	g_signal_emit (self, signals[ACTIVATE], 0);
 }
 
 static void 
@@ -103,10 +82,19 @@ gtk_source_completion_trigger_base_init (GtkSourceCompletionTriggerIface *iface)
 	static gboolean initialized = FALSE;
 	
 	iface->get_name = gtk_source_completion_trigger_get_name_default;
-	iface->activate = gtk_source_completion_trigger_activate_default;
-	iface->deactivate = gtk_source_completion_trigger_deactivate_default;
 	
-	if (!initialized) {
+	if (!initialized)
+	{
+		signals[ACTIVATE] =
+			g_signal_new ("activate",
+			GTK_TYPE_SOURCE_COMPLETION_TRIGGER,
+			G_SIGNAL_RUN_LAST,
+			G_STRUCT_OFFSET (GtkSourceCompletionTriggerIface, activate),
+			NULL, NULL,
+			g_cclosure_marshal_VOID__VOID,
+			G_TYPE_NONE,
+			0);
+	
 		initialized = TRUE;
 	}
 }

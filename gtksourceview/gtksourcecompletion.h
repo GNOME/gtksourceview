@@ -102,8 +102,8 @@ gboolean	 gtk_source_completion_unregister_trigger	(GtkSourceCompletion *self,
 GtkSourceCompletionTrigger
 		*gtk_source_completion_get_active_trigger	(GtkSourceCompletion *self);
 
-gboolean	 gtk_source_completion_trigger_event		(GtkSourceCompletion *self,
-								 GtkSourceCompletionTrigger *trigger);
+/*gboolean	 gtk_source_completion_trigger_event		(GtkSourceCompletion *self,
+								 GtkSourceCompletionTrigger *trigger);*/
 
 void		 gtk_source_completion_finish_completion	(GtkSourceCompletion *self);
 

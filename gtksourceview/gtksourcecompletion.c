@@ -64,14 +64,12 @@ enum
 	PROP_0,
 	PROP_MANAGE_KEYS,
 	PROP_REMEMBER_INFO_VISIBILITY,
-	PROP_SELECT_ON_SHOW,
-	PROP_ACTIVE
+	PROP_SELECT_ON_SHOW
 };
 
 enum
 {
 	TEXT_VIEW_KP,
-	TEXT_VIEW_DESTROY,
 	TEXT_VIEW_FOCUS_OUT,
 	TEXT_VIEW_BUTTON_PRESS,
 	LAST_EXTERNAL_SIGNAL
@@ -123,8 +121,6 @@ struct _GtkSourceCompletionPriv
 	GList *prov_trig;
 	GtkSourceCompletionTrigger *active_trigger;
 	
-	/*TRUE if the completion mechanism is active*/
-	gboolean active;
 	gulong signals_ids[LAST_EXTERNAL_SIGNAL];
 };
 
@@ -968,16 +964,43 @@ gtk_source_completion_configure_event (GtkWidget *widget,
 	return ret;
 }
 
+static gboolean
+view_focus_out_event_cb (GtkWidget *widget,
+			 GdkEventFocus *event,
+			 gpointer user_data)
+{
+	GtkSourceCompletion *self = GTK_SOURCE_COMPLETION (user_data);
+	
+	if (GTK_WIDGET_VISIBLE (self)
+	    && !GTK_WIDGET_HAS_FOCUS (self))
+		end_completion (self);
+	
+	return FALSE;
+}
+
+static gboolean
+view_button_press_event_cb (GtkWidget *widget,
+			    GdkEventButton *event,
+			    gpointer user_data)
+{
+	GtkSourceCompletion *self = GTK_SOURCE_COMPLETION (user_data);
+	
+	if (GTK_WIDGET_VISIBLE (self))
+		end_completion (self);
+
+	return FALSE;
+}
+
 static void
 gtk_source_completion_finalize (GObject *object)
 {
 	GtkSourceCompletion *self = GTK_SOURCE_COMPLETION (object);
 	
-	if (self->priv->active)
-		gtk_source_completion_set_active (self, FALSE);
-	
-	g_list_foreach (self->priv->pages, (GFunc) free_page, NULL);
-	g_list_free (self->priv->pages);
+	if (self->priv->pages != NULL)
+	{
+		g_list_foreach (self->priv->pages, (GFunc) free_page, NULL);
+		g_list_free (self->priv->pages);
+	}
 	
 	if (self->priv->triggers != NULL)
 	{
@@ -992,6 +1015,11 @@ gtk_source_completion_finalize (GObject *object)
 				NULL);
 		g_list_free (self->priv->prov_trig);
 	}
+	
+	g_signal_handler_disconnect (self->priv->view,
+				     self->priv->signals_ids[TEXT_VIEW_FOCUS_OUT]);
+	g_signal_handler_disconnect (self->priv->view,
+				     self->priv->signals_ids[TEXT_VIEW_BUTTON_PRESS]);
 	
 	G_OBJECT_CLASS (gtk_source_completion_parent_class)->finalize (object);
 }
@@ -1139,9 +1167,6 @@ gtk_source_completion_get_property (GObject    *object,
 		case PROP_SELECT_ON_SHOW:
 			g_value_set_boolean (value, self->priv->select_on_show);
 			break;
-		case PROP_ACTIVE:
-			g_value_set_boolean (value, self->priv->active);
-			break;
 		default:
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
 			break;
@@ -1171,9 +1196,6 @@ gtk_source_completion_set_property (GObject      *object,
 			break;
 		case PROP_SELECT_ON_SHOW:
 			self->priv->select_on_show = g_value_get_boolean (value);
-			break;
-		case PROP_ACTIVE:
-			gtk_source_completion_set_active (self, g_value_get_boolean (value));
 			break;
 		default:
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -1240,18 +1262,7 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 							      _("Completion mark as selected the first proposal on show"),
 							      FALSE,
 							      G_PARAM_READWRITE));
-	/**
-	 * GtkSourceCompletion:active:
-	 *
-	 * %TRUE if the completion mechanism is active. 
-	 */
-	g_object_class_install_property (object_class,
-					 PROP_ACTIVE,
-					 g_param_spec_boolean ("active",
-							      _("Set or get if the completion mechanism is active"),
-							      _("Set or get if the completion mechanism is active"),
-							      FALSE,
-							      G_PARAM_READWRITE));
+	
 	/**
 	 * GtkSourceCompletion::proposal-selected:
 	 * @completion: The #GtkSourceCompletion who emits the signal
@@ -1303,7 +1314,6 @@ gtk_source_completion_init (GtkSourceCompletion *self)
 	self->priv = GTK_SOURCE_COMPLETION_GET_PRIVATE (self);
 	self->priv->destroy_has_run = FALSE;
 	self->priv->active_trigger = NULL;
-	self->priv->active = FALSE;
 	self->priv->manage_keys = TRUE;
 	self->priv->remember_info_visibility = FALSE;
 	self->priv->info_visible = FALSE;
@@ -1444,39 +1454,97 @@ gtk_source_completion_init (GtkSourceCompletion *self)
 }
 
 static void
-view_destroy_event_cb (GtkWidget *widget,
-		       gpointer user_data)
+trigger_activate_cb (GtkSourceCompletionTrigger *trigger,
+		     GtkSourceCompletion *self)
 {
-	GtkSourceCompletion *self = GTK_SOURCE_COMPLETION (user_data);
-	
-	g_object_unref (self);
-}
+	GList *l;
+	GList *data_list;
+	GList *final_list = NULL;
+	GtkSourceCompletionProposal *last_proposal = NULL;
+	gint x, y;
 
-static gboolean
-view_focus_out_event_cb (GtkWidget *widget,
-			 GdkEventFocus *event,
-			 gpointer user_data)
-{
-	GtkSourceCompletion *self = GTK_SOURCE_COMPLETION (user_data);
+	g_return_if_fail (GTK_IS_SOURCE_COMPLETION (self));
+	g_return_if_fail (GTK_IS_SOURCE_COMPLETION_TRIGGER (trigger));
 	
+	/*
+	 * If the completion is visble and there is a trigger active, you cannot
+	 * raise a different trigger until the current trigger finish o_O
+	 */
 	if (GTK_WIDGET_VISIBLE (self)
-	    && !GTK_WIDGET_HAS_FOCUS (self))
-		end_completion (self);
+	    && self->priv->active_trigger != trigger)
+	{
+		return;
+	}
 	
-	return FALSE;
-}
-
-static gboolean
-view_button_press_event_cb (GtkWidget *widget,
-			    GdkEventButton *event,
-			    gpointer user_data)
-{
-	GtkSourceCompletion *self = GTK_SOURCE_COMPLETION (user_data);
+	end_completion (self);
+	gtk_source_completion_clear (self);
 	
-	if (GTK_WIDGET_VISIBLE (self))
-		end_completion (self);
+	for (l = self->priv->prov_trig; l != NULL; l = g_list_next (l))
+	{
+		PTPair *ptp = (PTPair *)l->data;
+		
+		if (ptp->trigger == trigger)
+		{
+			data_list = gtk_source_completion_provider_get_proposals (ptp->provider,
+										  trigger);
+			if (data_list != NULL)
+			{
+				final_list = g_list_concat (final_list,
+							    data_list);
+			}
+		}
+	}
+	
+	if (final_list == NULL)
+	{
+		if (GTK_WIDGET_VISIBLE (self))
+			end_completion (self);
+		return;
+	}
+	
+	data_list = final_list;
+	/* Insert the data into the model */
+	do
+	{
+		GtkSourceCompletionPage *page;
+		
+		last_proposal = GTK_SOURCE_COMPLETION_PROPOSAL (data_list->data);
+		page = get_page_by_name (self,
+					 gtk_source_completion_proposal_get_page_name (last_proposal));
+		
+		add_proposal (page,
+			      last_proposal);
+	} while ((data_list = g_list_next (data_list)) != NULL);
+	
+	g_list_free (final_list);
+	
+	if (!GTK_WIDGET_HAS_FOCUS (self->priv->view))
+		return;
+	
+	/*
+	 *FIXME Do it supports only cursor position? We can 
+	 *add a new "position-type": cursor, center_screen,
+	 *center_window, custom etc.
+	 */
+	gtk_source_completion_utils_get_pos_at_cursor (GTK_WINDOW (self),
+						       self->priv->view,
+						       &x, &y, NULL);
 
-	return FALSE;
+	gtk_window_move (GTK_WINDOW (self),
+			 x, y);
+	
+	/*
+	* We must call to gtk_widget_show and not to gsc_completion_show_or_update
+	* because if we don't call to gtk_widget_show, the show signal is not emitted
+	*/
+	gtk_widget_show (GTK_WIDGET (self));
+
+	gtk_widget_grab_focus (GTK_WIDGET (self->priv->view));
+
+	self->priv->active_trigger = trigger;
+	
+	if (self->priv->select_on_show)
+		select_first_proposal (self->priv->active_page);
 }
 
 /**
@@ -1491,6 +1559,20 @@ _gtk_source_completion_new (GtkTextView *view)
 									 "type", GTK_WINDOW_POPUP,
 									 NULL));
 	self->priv->view = view;
+	
+	self->priv->signals_ids[TEXT_VIEW_FOCUS_OUT] = 
+		g_signal_connect (self->priv->view,
+				  "focus-out-event",
+				  G_CALLBACK (view_focus_out_event_cb),
+				  self);
+	
+	self->priv->signals_ids[TEXT_VIEW_BUTTON_PRESS] =
+		g_signal_connect (self->priv->view,
+				  "button-press-event",
+				  G_CALLBACK (view_button_press_event_cb),
+				  self);
+	
+	set_manage_keys (self);
 	
 	return self;
 }
@@ -1523,10 +1605,10 @@ gtk_source_completion_register_trigger (GtkSourceCompletion *self,
 						      trigger);
 		g_object_ref (trigger);
 		
-		if (self->priv->active)
-		{
-			gtk_source_completion_trigger_activate (trigger);
-		}
+		g_signal_connect (trigger, "activate",
+				  G_CALLBACK (trigger_activate_cb),
+				  self);
+		
 		return TRUE;
 	}
 	
@@ -1603,11 +1685,6 @@ gtk_source_completion_unregister_trigger (GtkSourceCompletion *self,
 	
 	self->priv->triggers = g_list_remove (self->priv->triggers, trigger);
 	
-	if (self->priv->active)
-	{
-		gtk_source_completion_trigger_deactivate (trigger);
-	}
-	
 	for (l = self->priv->prov_trig; l != NULL; l = g_list_next (l))
 	{
 		PTPair *ptp = (PTPair *)l->data;
@@ -1620,7 +1697,10 @@ gtk_source_completion_unregister_trigger (GtkSourceCompletion *self,
 		}
 	}
 
+	g_signal_handlers_disconnect_by_func (trigger, trigger_activate_cb,
+					      self);
 	g_object_unref (trigger);
+	
 	return TRUE;
 }
 
@@ -1697,114 +1777,6 @@ gtk_source_completion_get_view (GtkSourceCompletion *self)
 }
 
 /**
- * gtk_source_completion_trigger_event:
- * @self: the #GtkSourceCompletion
- * @trigger: The trigger who trigger the event
- *
- * Calling this function, the completion call to all providers to get data and, if 
- * they return data, it shows the completion to the user. 
- *
- * Returns: %TRUE if the event has been triggered, %FALSE if not
- * 
- **/
-gboolean 
-gtk_source_completion_trigger_event (GtkSourceCompletion *self,
-				     GtkSourceCompletionTrigger *trigger)
-{
-	GList *l;
-	GList *data_list;
-	GList *final_list = NULL;
-	GtkSourceCompletionProposal *last_proposal = NULL;
-	gint x, y;
-
-	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION (self), FALSE);
-	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_TRIGGER (trigger), FALSE);
-	g_return_val_if_fail (self->priv->active, FALSE);
-	
-	/*
-	 * If the completion is visble and there is a trigger active, you cannot
-	 * raise a different trigger until the current trigger finish o_O
-	 */
-	if (GTK_WIDGET_VISIBLE (self)
-	    && self->priv->active_trigger != trigger)
-	{
-		return FALSE;
-	}
-	
-	end_completion (self);
-	gtk_source_completion_clear (self);
-	
-	for (l = self->priv->prov_trig; l != NULL; l = g_list_next (l))
-	{
-		PTPair *ptp = (PTPair *)l->data;
-		
-		if (ptp->trigger == trigger)
-		{
-			data_list = gtk_source_completion_provider_get_proposals (ptp->provider,
-										  trigger);
-			if (data_list != NULL)
-			{
-				final_list = g_list_concat (final_list,
-							    data_list);
-			}
-		}
-	}
-	
-	if (final_list == NULL)
-	{
-		if (GTK_WIDGET_VISIBLE (self))
-			end_completion (self);
-		return FALSE;
-	}
-	
-	data_list = final_list;
-	/* Insert the data into the model */
-	do
-	{
-		GtkSourceCompletionPage *page;
-		
-		last_proposal = GTK_SOURCE_COMPLETION_PROPOSAL (data_list->data);
-		page = get_page_by_name (self,
-					 gtk_source_completion_proposal_get_page_name (last_proposal));
-		
-		add_proposal (page,
-			      last_proposal);
-	} while ((data_list = g_list_next (data_list)) != NULL);
-	
-	g_list_free (final_list);
-	
-	if (!GTK_WIDGET_HAS_FOCUS (self->priv->view))
-		return FALSE;
-	
-	/*
-	 *FIXME Do it supports only cursor position? We can 
-	 *add a new "position-type": cursor, center_screen,
-	 *center_window, custom etc.
-	 */
-	gtk_source_completion_utils_get_pos_at_cursor (GTK_WINDOW (self),
-						       self->priv->view,
-						       &x, &y, NULL);
-
-	gtk_window_move (GTK_WINDOW (self),
-			 x, y);
-	
-	/*
-	* We must call to gtk_widget_show and not to gsc_completion_show_or_update
-	* because if we don't call to gtk_widget_show, the show signal is not emitted
-	*/
-	gtk_widget_show (GTK_WIDGET (self));
-
-	gtk_widget_grab_focus (GTK_WIDGET (self->priv->view));
-
-	self->priv->active_trigger = trigger;
-	
-	if (self->priv->select_on_show)
-		select_first_proposal (self->priv->active_page);
-
-	return TRUE;
-}
-
-/**
  * gtk_source_completion_finish_completion:
  * @self: The #GtkSourceCompletion
  *
@@ -1865,90 +1837,6 @@ gtk_source_completion_filter_proposals (GtkSourceCompletion *self,
 		if (self->priv->select_on_show)
 			select_first_proposal (self->priv->active_page);
 	}
-}
-
-/**
- * gtk_source_completion_set_active:
- * @self: The #GtkSourceCompletion
- * @active: %TRUE if you want to activate the completion mechanism.
- *
- * This function activate/deactivate the completion mechanism. The completion
- * connects/disconnect all signals and activate/deactivate all registered triggers.
- */
-void
-gtk_source_completion_set_active (GtkSourceCompletion *self,
-				  gboolean active)
-{
-	GList *l;
-	GtkSourceCompletionTrigger *trigger;
-	gint i;
-	
-	g_return_if_fail (GTK_IS_SOURCE_COMPLETION (self));
-	
-	if (active)
-	{
-		if (self->priv->active)
-			return;
-
-		self->priv->signals_ids[TEXT_VIEW_DESTROY] = 
-				g_signal_connect (self->priv->view,
-						  "destroy",
-						  G_CALLBACK (view_destroy_event_cb),
-						  self);
-		self->priv->signals_ids[TEXT_VIEW_FOCUS_OUT] = 
-				g_signal_connect (self->priv->view,
-						  "focus-out-event",
-						  G_CALLBACK (view_focus_out_event_cb),
-						  self);
-		self->priv->signals_ids[TEXT_VIEW_BUTTON_PRESS] = 
-				g_signal_connect (self->priv->view,
-						  "button-press-event",
-						  G_CALLBACK (view_button_press_event_cb),
-						  self);
-	
-		set_manage_keys (self);
-	
-		/* We activate the triggers */
-		for (l = self->priv->triggers; l != NULL; l = g_list_next (l))
-		{
-			trigger =  GTK_SOURCE_COMPLETION_TRIGGER (l->data);
-		
-			gtk_source_completion_trigger_activate (trigger);
-		}
-	}
-	else
-	{
-		for (i = 0; i < LAST_EXTERNAL_SIGNAL; i++)
-		{
-			if (g_signal_handler_is_connected (self->priv->view, 
-							   self->priv->signals_ids[i]))
-			{
-				g_signal_handler_disconnect (self->priv->view,
-							     self->priv->signals_ids[i]);
-			}
-			self->priv->signals_ids[i] = 0;
-		}
-	
-		for (l = self->priv->triggers; l != NULL; l = g_list_next (l))
-		{
-			trigger =  GTK_SOURCE_COMPLETION_TRIGGER (l->data);
-		
-			gtk_source_completion_trigger_deactivate (trigger);
-		}
-	}
-	self->priv->active = active;
-}
-
-/**
- * gtk_source_completion_get_active:
- * @self: The #GtkSourceCompletion
- *
- * Returns: %TRUE if the completion mechanism is active, %FALSE if not.
- */
-gboolean
-gtk_source_completion_get_active (GtkSourceCompletion *self)
-{
-	return self->priv->active;
 }
 
 /**

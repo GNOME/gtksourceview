@@ -66,21 +66,18 @@ G_DEFINE_TYPE_WITH_CODE (GtkSourceCompletionTriggerKey,
 
 static gboolean
 view_key_press_event_cb (GtkWidget *view,
-			 GdkEventKey *event, 
-			 gpointer user_data)
+			 GdkEventKey *event,
+			 GtkSourceCompletionTriggerKey *self)
 {
-	GtkSourceCompletionTriggerKey *self;
 	guint s;
 	guint key;
 	
-	self = GTK_SOURCE_COMPLETION_TRIGGER_KEY (user_data);
 	s = event->state & gtk_accelerator_get_default_mod_mask ();
 	key = gdk_keyval_to_lower (self->priv->key);
 	
 	if (s == self->priv->mod && gdk_keyval_to_lower (event->keyval) == key)
 	{
-		gtk_source_completion_trigger_event (self->priv->completion,
-						     GTK_SOURCE_COMPLETION_TRIGGER (self));
+		gtk_source_completion_trigger_activate (GTK_SOURCE_COMPLETION_TRIGGER (self));
 		return TRUE;
 	}
 	
@@ -95,41 +92,6 @@ gtk_source_completion_trigger_key_real_get_name (GtkSourceCompletionTrigger *bas
 	self = GTK_SOURCE_COMPLETION_TRIGGER_KEY (base);
 	
 	return self->priv->trigger_name;
-}
-
-static gboolean
-gtk_source_completion_trigger_key_real_activate (GtkSourceCompletionTrigger* base)
-{
-	GtkSourceCompletionTriggerKey *self;
-	GtkTextView *view;
-
-	self = GTK_SOURCE_COMPLETION_TRIGGER_KEY (base);
-	view = gtk_source_completion_get_view (self->priv->completion);
-	g_assert (GTK_IS_TEXT_VIEW (view));
-	
-	self->priv->signals[CKP_GTK_TEXT_VIEW_KP] =  
-			g_signal_connect_data (view,
-					       "key-press-event",
-					       G_CALLBACK (view_key_press_event_cb),
-					       self,
-					       NULL,
-					       0);
-	return TRUE;
-}
-
-static gboolean
-gtk_source_completion_trigger_key_real_deactivate (GtkSourceCompletionTrigger* base)
-{
-	GtkSourceCompletionTriggerKey *self;
-	GtkTextView *view;
-	
-	self = GTK_SOURCE_COMPLETION_TRIGGER_KEY (base);
-	view = gtk_source_completion_get_view (self->priv->completion);
-	
-	g_signal_handler_disconnect (view,
-				     self->priv->signals[CKP_GTK_TEXT_VIEW_KP]);
-	
-	return FALSE;
 }
 
 static void 
@@ -167,8 +129,6 @@ static void
 gtk_source_completion_trigger_key_iface_init (GtkSourceCompletionTriggerIface * iface)
 {
 	iface->get_name   = gtk_source_completion_trigger_key_real_get_name;
-	iface->activate   = gtk_source_completion_trigger_key_real_activate;
-	iface->deactivate = gtk_source_completion_trigger_key_real_deactivate;
 }
 
 /**
@@ -191,6 +151,7 @@ gtk_source_completion_trigger_key_new (GtkSourceCompletion *completion,
 				       const gchar *keys)
 {
 	GtkSourceCompletionTriggerKey *self;
+	GtkTextView *view;
 	
 	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION (completion), NULL);
 	g_return_val_if_fail (trigger_name != NULL, NULL);
@@ -201,6 +162,14 @@ gtk_source_completion_trigger_key_new (GtkSourceCompletion *completion,
 	self->priv->completion = g_object_ref (completion);
 	self->priv->trigger_name = g_strdup (trigger_name);
 	gtk_source_completion_trigger_key_set_keys (self, keys);
+	
+	view = gtk_source_completion_get_view (self->priv->completion);
+	g_assert (GTK_IS_TEXT_VIEW (view));
+	
+	g_signal_connect (view,
+			  "key-press-event",
+			  G_CALLBACK (view_key_press_event_cb),
+			  self);
 	
 	return self;
 }
