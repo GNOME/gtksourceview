@@ -324,10 +324,7 @@ create_completion(void)
 	
 	comp = gtk_source_view_get_completion (GTK_SOURCE_VIEW (view));
 	
-	ur_trigger = gtk_source_completion_trigger_key_new (comp,
-							    "User Request Trigger",
-							    GDK_Return,
-							    GDK_CONTROL_MASK);
+	ur_trigger = gtk_source_completion_trigger_key_new (comp, "Key Trigger");
 	
 	gtk_source_completion_add_trigger (comp, GTK_SOURCE_COMPLETION_TRIGGER (ur_trigger));
 
