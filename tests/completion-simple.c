@@ -27,6 +27,7 @@
 #include <gtksourceview/gtksourcecompletion.h>
 #include <gtksourceview/gtksourcecompletioninfo.h>
 #include <gtksourceview/gtksourcecompletiontriggerkey.h>
+#include <gtksourceview/gtksourcecompletiontriggerwords.h>
 
 #include <devhelp/dh-base.h>
 
@@ -316,6 +317,7 @@ create_completion(void)
 	GscProviderTest *prov_test;
 	GscProviderDevhelp *prov_devhelp;
 	GtkSourceCompletionTriggerKey *ur_trigger;
+	GtkSourceCompletionTriggerWords *words_trigger;
 	CustomWidget *custom;
 	GtkSourceCompletionInfo *info;
 	
@@ -333,6 +335,16 @@ create_completion(void)
 
 	gtk_source_completion_add_provider (comp, GTK_SOURCE_COMPLETION_PROVIDER (prov_devhelp),
 					    GTK_SOURCE_COMPLETION_TRIGGER (ur_trigger));
+	
+	words_trigger = gtk_source_completion_trigger_words_new (comp);
+	
+	gtk_source_completion_add_trigger (comp, GTK_SOURCE_COMPLETION_TRIGGER (words_trigger));
+	
+	gtk_source_completion_add_provider (comp, GTK_SOURCE_COMPLETION_PROVIDER (prov_devhelp),
+					    GTK_SOURCE_COMPLETION_TRIGGER (words_trigger));
+	
+	gtk_source_completion_add_provider (comp, GTK_SOURCE_COMPLETION_PROVIDER (prov_test),
+					    GTK_SOURCE_COMPLETION_TRIGGER (words_trigger));
 	
 	g_signal_connect (comp, "show", G_CALLBACK (show_completion_cb), NULL);
 	g_signal_connect (comp, "hide", G_CALLBACK (hide_completion_cb), NULL);

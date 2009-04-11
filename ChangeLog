@@ -1,5 +1,13 @@
 2009-04-11  Ignacio Casal Quinteiro  <nacho.resa@gmail.com>
 
+	* gtksourceview/gtksourcecompletiontriggerwords.c:
+	* gtksourceview/gtksourcecompletiontriggerwords.h:
+	* gtksourceview/Makefile.am:
+	* tests/completion-simple.c:
+	Added triggerwords, by Jesús Barbeito.
+
+2009-04-11  Ignacio Casal Quinteiro  <nacho.resa@gmail.com>
+
 	* gtksourceview/gtksourcecompletiontriggerkey.h:
 	* gtksourceview/gtksourcecompletiontriggerkey.c:
 	* tests/completion-simple.c:
