@@ -1239,11 +1239,13 @@ handle_define_regex_element (ParserState *parser_state)
 		DEBUG (g_message ("defined regex %s: \"%s\"", id, (gchar *)regex));
 		g_hash_table_insert (parser_state->defined_regexes, id, expanded_regex);
 	}
+	else
+	{
+		g_propagate_error (&parser_state->error, tmp_error);
+		g_free (id);
+	}
 
 	xmlFree (regex);
-
-	if (tmp_error != NULL)
-		g_propagate_error (&parser_state->error, tmp_error);
 }
 
 static void
