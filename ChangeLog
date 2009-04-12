@@ -1,5 +1,10 @@
 2009-04-12  Paolo Borelli  <paolo.borelli@katamail.com>
 
+	* gtksourceview/language-specs/asp.lang:
+	Add some missing keywords, patch Fabio Zendhi Nagao.
+
+2009-04-12  Paolo Borelli  <paolo.borelli@katamail.com>
+
 	* gtksourceview/gtksourcelanguage-parser-2.c: do not leak
 	id string on the error codepath.
 
