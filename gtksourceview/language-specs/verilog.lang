@@ -83,6 +83,7 @@
     <context id="keywords" style-ref="keyword">
       <keyword>always</keyword>
       <keyword>assign</keyword>
+      <keyword>attribute</keyword>
       <keyword>begin</keyword>
       <keyword>case</keyword>
       <keyword>casex</keyword>
@@ -93,17 +94,18 @@
       <keyword>disable</keyword>
       <keyword>edge</keyword>
       <keyword>else</keyword>
-      <keyword>end</keyword>
+      <keyword>endattribute</keyword>
       <keyword>endcase</keyword>
-      <keyword>endmodule</keyword>
       <keyword>endfunction</keyword>
+      <keyword>endmodule</keyword>
       <keyword>endprimitive</keyword>
       <keyword>endspecify</keyword>
       <keyword>endtable</keyword>
       <keyword>endtask</keyword>
-      <keyword>for</keyword>
+      <keyword>end</keyword>
       <keyword>force</keyword>
       <keyword>forever</keyword>
+      <keyword>fork</keyword>
       <keyword>for</keyword>
       <keyword>function</keyword>
       <keyword>highz0</keyword>
@@ -123,12 +125,16 @@
       <keyword>pull1</keyword>
       <keyword>release</keyword>
       <keyword>repeat</keyword>
+      <keyword>signed</keyword>
       <keyword>small</keyword>
       <keyword>specify</keyword>
       <keyword>specparam</keyword>
+      <keyword>strength</keyword>
       <keyword>strong0</keyword>
       <keyword>strong1</keyword>
+      <keyword>table</keyword>
       <keyword>task</keyword>
+      <keyword>unsigned</keyword>
       <keyword>wait</keyword>
       <keyword>weak0</keyword>
       <keyword>weak1</keyword>
