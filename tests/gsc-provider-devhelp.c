@@ -34,6 +34,12 @@ gsc_provider_devhelp_real_get_proposals (GtkSourceCompletionProvider *base,
 				         GtkSourceCompletionTrigger  *trigger)
 {
 	GscProviderDevhelp *devhelp = GSC_PROVIDER_DEVHELP(base);
+	static GdkPixbuf *pixbuf = NULL;
+	
+	if (pixbuf == NULL)
+	{
+		pixbuf = gdk_pixbuf_new_from_file ("/usr/share/icons/hicolor/16x16/apps/devhelp.png", NULL);
+	}
 	
 	gchar *word = gsc_get_last_word (GTK_TEXT_VIEW (devhelp->priv->view));
 	
@@ -43,7 +49,7 @@ gsc_provider_devhelp_real_get_proposals (GtkSourceCompletionProvider *base,
 	for (; items; items = g_list_next(items))
 	{
 		DhLink *link = (DhLink *)items->data;
-		ret = g_list_prepend(ret, gtk_source_completion_item_new (link->name, NULL, link->uri));
+		ret = g_list_prepend(ret, gtk_source_completion_item_new (link->name, pixbuf, link->uri));
 	}
 
 	g_free(word);

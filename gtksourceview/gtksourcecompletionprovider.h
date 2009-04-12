@@ -28,14 +28,16 @@
 #include <gtk/gtk.h>
 #include <gtksourceview/gtksourcecompletionproposal.h>
 #include <gtksourceview/gtksourcecompletiontrigger.h>
+#include <gtksourceview/gtksourcecompletionpage.h>
+#include <gtksourceview/gtksourcecompletioninfo.h>
 
 G_BEGIN_DECLS
 
 
-#define GTK_TYPE_SOURCE_COMPLETION_PROVIDER (gtk_source_completion_provider_get_type ())
-#define GTK_SOURCE_COMPLETION_PROVIDER(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), GTK_TYPE_SOURCE_COMPLETION_PROVIDER, GtkSourceCompletionProvider))
-#define GTK_IS_SOURCE_COMPLETION_PROVIDER(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GTK_TYPE_SOURCE_COMPLETION_PROVIDER))
-#define GTK_SOURCE_COMPLETION_PROVIDER_GET_INTERFACE(obj) (G_TYPE_INSTANCE_GET_INTERFACE ((obj), GTK_TYPE_SOURCE_COMPLETION_PROVIDER, GtkSourceCompletionProviderIface))
+#define GTK_TYPE_SOURCE_COMPLETION_PROVIDER 			(gtk_source_completion_provider_get_type ())
+#define GTK_SOURCE_COMPLETION_PROVIDER(obj) 			(G_TYPE_CHECK_INSTANCE_CAST ((obj), GTK_TYPE_SOURCE_COMPLETION_PROVIDER, GtkSourceCompletionProvider))
+#define GTK_IS_SOURCE_COMPLETION_PROVIDER(obj) 			(G_TYPE_CHECK_INSTANCE_TYPE ((obj), GTK_TYPE_SOURCE_COMPLETION_PROVIDER))
+#define GTK_SOURCE_COMPLETION_PROVIDER_GET_INTERFACE(obj) 	(G_TYPE_INSTANCE_GET_INTERFACE ((obj), GTK_TYPE_SOURCE_COMPLETION_PROVIDER, GtkSourceCompletionProviderIface))
 
 typedef struct _GtkSourceCompletionProvider GtkSourceCompletionProvider;
 typedef struct _GtkSourceCompletionProviderIface GtkSourceCompletionProviderIface;
@@ -44,18 +46,38 @@ struct _GtkSourceCompletionProviderIface
 {
 	GTypeInterface g_iface;
 	
-	const gchar* (*get_name)       (GtkSourceCompletionProvider *self);
-	GList*       (*get_proposals)  (GtkSourceCompletionProvider *self,
-				        GtkSourceCompletionTrigger *trigger);
+	const gchar	*(*get_name)       	(GtkSourceCompletionProvider *provider);
+	GList 		*(*get_proposals) 	(GtkSourceCompletionProvider *provider,
+						 GtkSourceCompletionTrigger  *trigger);
+	GtkSourceCompletionPage *
+			 (*get_page)		(GtkSourceCompletionProvider *provider,
+			 			 GtkSourceCompletionProposal *proposal);
+						 
+	GtkWidget 	*(*get_info_widget)	(GtkSourceCompletionProvider *provider,
+						 GtkSourceCompletionProposal *proposal);
+	void		 (*update_info)		(GtkSourceCompletionProvider *provider,
+						 GtkSourceCompletionProposal *proposal,
+						 GtkSourceCompletionInfo     *info);
 };
 
 GType		 gtk_source_completion_provider_get_type	(void);
 
 
-const gchar	*gtk_source_completion_provider_get_name	(GtkSourceCompletionProvider *self);
+const gchar	*gtk_source_completion_provider_get_name	(GtkSourceCompletionProvider *provider);
 
-GList		*gtk_source_completion_provider_get_proposals	(GtkSourceCompletionProvider *self, 
+GList		*gtk_source_completion_provider_get_proposals	(GtkSourceCompletionProvider *provider, 
 								 GtkSourceCompletionTrigger  *trigger);
+
+GtkWidget	*gtk_source_completion_provider_get_info_widget	(GtkSourceCompletionProvider *provider,
+								 GtkSourceCompletionProposal *proposal);
+
+void 		 gtk_source_completion_provider_update_info	(GtkSourceCompletionProvider *provider,
+								 GtkSourceCompletionProposal *proposal,
+								 GtkSourceCompletionInfo     *info);
+
+GtkSourceCompletionPage *
+		gtk_source_completion_provider_get_page		(GtkSourceCompletionProvider *provider,
+								 GtkSourceCompletionProposal *proposal);
 
 G_END_DECLS
 

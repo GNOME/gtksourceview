@@ -35,11 +35,14 @@ G_BEGIN_DECLS
 #define GSC_PROVIDER_TEST_NAME "GscProviderTest"
 
 typedef struct _GscProviderTest GscProviderTest;
+typedef struct _GscProviderTestPrivate GscProviderTestPrivate;
 typedef struct _GscProviderTestClass GscProviderTestClass;
 
 struct _GscProviderTest
 {
 	GObject parent;
+	
+	GscProviderTestPrivate *priv;
 };
 
 struct _GscProviderTestClass
@@ -49,7 +52,7 @@ struct _GscProviderTestClass
 
 GType		 gsc_provider_test_get_type	(void) G_GNUC_CONST;
 
-GscProviderTest *gsc_provider_test_new (void);
+GscProviderTest *gsc_provider_test_new (GtkSourceCompletionPage *page);
 
 G_END_DECLS
 

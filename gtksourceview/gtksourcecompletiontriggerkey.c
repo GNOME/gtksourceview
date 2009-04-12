@@ -46,7 +46,9 @@
 enum
 {
 	PROP_0,
-	PROP_ENABLE_FILTER
+	PROP_ENABLE_FILTER,
+	PROP_KEY,
+	PROP_MODIFIER
 };
 
 struct _GtkSourceCompletionTriggerKeyPrivate
@@ -153,7 +155,7 @@ insert_text_cb (GtkTextBuffer		      *buffer,
 		gint			       len,
 		GtkSourceCompletionTriggerKey *self)
 {
-	/* Raise the event if completion is not visible */
+	/* Raise the event if completion is visible */
 	if (GTK_WIDGET_VISIBLE (self->priv->completion) && self->priv->filter &&
 	    gtk_source_completion_get_active_trigger (self->priv->completion) == GTK_SOURCE_COMPLETION_TRIGGER (self))
 	{
@@ -195,11 +197,6 @@ gtk_source_completion_trigger_key_init (GtkSourceCompletionTriggerKey *self)
 	self->priv->line = 0;
 	self->priv->line_offset = 0;
 	self->priv->filter = TRUE;
-	
-	/* Default accelerator <Control>Space */
-	gtk_source_completion_trigger_key_set_accelerator (self,
-							   GDK_space,
-							   GDK_CONTROL_MASK);
 }
 
 static void 
@@ -248,6 +245,12 @@ gtk_source_completion_trigger_key_get_property (GObject    *object,
 			g_value_set_boolean (value,
 					     gtk_source_completion_trigger_key_get_enable_filter (self));
 			break;
+		case PROP_KEY:
+			g_value_set_uint (value, self->priv->key);
+			break;
+		case PROP_MODIFIER:
+			g_value_set_flags (value, self->priv->mod);
+			break;
 		default:
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
 			break;
@@ -271,6 +274,12 @@ gtk_source_completion_trigger_key_set_property (GObject      *object,
 		case PROP_ENABLE_FILTER:
 			gtk_source_completion_trigger_key_set_enable_filter (self,
 									     g_value_get_boolean (value));
+			break;
+		case PROP_KEY:
+			self->priv->key = g_value_get_uint (value);
+			break;
+		case PROP_MODIFIER:
+			self->priv->mod = g_value_get_flags (value);
 			break;
 		default:
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -299,8 +308,27 @@ gtk_source_completion_trigger_key_class_init (GtkSourceCompletionTriggerKeyClass
 							       _("Enable filter"),
 							       _("Whether the proposals must be filtered"),
 							       TRUE,
-							       G_PARAM_READWRITE));
+							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 
+	g_object_class_install_property (object_class,
+					 PROP_KEY,
+					 g_param_spec_uint ("key",
+							    _("Accelerator key"),
+							    _("The accelerator key which activates the trigger"),
+							    0,
+							    G_MAXUINT,
+							    GDK_space,
+							    G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+
+	g_object_class_install_property (object_class,
+					 PROP_MODIFIER,
+					 g_param_spec_flags ("modifier",
+							      _("Accelerator modifier"),
+							      _("The accelerator modifier which activates the trigger"),
+							       GDK_TYPE_MODIFIER_TYPE,
+							       GDK_CONTROL_MASK,
+							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+							       
 	g_type_class_add_private (klass, sizeof (GtkSourceCompletionTriggerKeyPrivate));
 }
 

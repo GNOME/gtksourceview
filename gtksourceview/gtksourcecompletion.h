@@ -24,15 +24,10 @@
 #define GTK_SOURCE_COMPLETION_H
 
 #include <gtk/gtk.h>
-#include <gtksourceview/gtksourcecompletionprovider.h>
 #include <gtksourceview/gtksourcecompletioninfo.h>
+#include <gtksourceview/gtksourcecompletionprovider.h>
 
 G_BEGIN_DECLS
-
-/*
- * FIXME: And this here?
- */
-#define USER_REQUEST_TRIGGER_NAME "user-request"
 
 /*
  * Type checking and casting macros
@@ -43,8 +38,6 @@ G_BEGIN_DECLS
 #define GTK_IS_SOURCE_COMPLETION(obj)           (G_TYPE_CHECK_INSTANCE_TYPE((obj), GTK_TYPE_SOURCE_COMPLETION))
 #define GTK_IS_SOURCE_COMPLETION_CLASS(klass)   (G_TYPE_CHECK_CLASS_TYPE ((klass), GTK_TYPE_SOURCE_COMPLETION))
 #define GTK_SOURCE_COMPLETION_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS((obj), GTK_TYPE_SOURCE_COMPLETION, GtkSourceCompletionClass))
-
-#define DEFAULT_PAGE "Default"
 
 typedef gboolean (* GtkSourceCompletionFilterFunc) (GtkSourceCompletionProposal *proposal,
 						    gpointer     user_data);
@@ -64,10 +57,8 @@ struct _GtkSourceCompletionClass
 {
 	GtkWindowClass parent_class;
 
-	gboolean (* proposal_selected)(GtkSourceCompletion *completion,
-				       GtkSourceCompletionProposal *proposal);
-	gboolean (* display_info)     (GtkSourceCompletion *completion,
-				       GtkSourceCompletionProposal *proposal);
+	gboolean (* proposal_activated)		(GtkSourceCompletion         *completion,
+						 GtkSourceCompletionProposal *proposal);
 };
 
 GType		 gtk_source_completion_get_type			(void) G_GNUC_CONST;
@@ -77,26 +68,12 @@ GtkSourceCompletion *
 
 GtkTextView	*gtk_source_completion_get_view			(GtkSourceCompletion *self);
 
-GtkSourceCompletionTrigger *
-		 gtk_source_completion_get_trigger		(GtkSourceCompletion *self,
-								 const gchar *trigger_name);
-
-GtkSourceCompletionProvider *
-		 gtk_source_completion_get_provider		(GtkSourceCompletion *self,
-								 const gchar *prov_name);
-
 gboolean	 gtk_source_completion_add_provider		(GtkSourceCompletion *self,
 								 GtkSourceCompletionProvider *provider,
 								 GtkSourceCompletionTrigger *trigger);
 
 gboolean	 gtk_source_completion_remove_provider		(GtkSourceCompletion *self,
 								 GtkSourceCompletionProvider *provider,
-								 GtkSourceCompletionTrigger *trigger);
-
-gboolean	 gtk_source_completion_add_trigger		(GtkSourceCompletion *self,
-								 GtkSourceCompletionTrigger *trigger);
-
-gboolean	 gtk_source_completion_remove_trigger		(GtkSourceCompletion *self,
 								 GtkSourceCompletionTrigger *trigger);
 
 GtkSourceCompletionTrigger *
@@ -108,25 +85,15 @@ void		 gtk_source_completion_filter_proposals		(GtkSourceCompletion *self,
 								 GtkSourceCompletionFilterFunc func,
 								 gpointer user_data);
 
-void		 gtk_source_completion_set_active 		(GtkSourceCompletion *self,
-								 gboolean active);
-
-gboolean	 gtk_source_completion_get_active 		(GtkSourceCompletion *self);
-
-GtkWidget	*gtk_source_completion_get_bottom_bar		(GtkSourceCompletion *self);
-
 GtkSourceCompletionInfo *
-		 gtk_source_completion_get_info_widget		(GtkSourceCompletion *self);
+		 gtk_source_completion_get_info_window		(GtkSourceCompletion *self);
 
-gint		 gtk_source_completion_get_page_pos		(GtkSourceCompletion *self,
-								 const gchar *page_name);
+GtkSourceCompletionPage *
+		gtk_source_completion_add_page			(GtkSourceCompletion *self,
+								 const gchar         *title);
 
-gint		 gtk_source_completion_get_n_pages		(GtkSourceCompletion *self);
-
-void		 gtk_source_completion_set_page_pos		(GtkSourceCompletion *self,
-								 const gchar *page_name,
-								 gint position);
-
+gboolean	gtk_source_completion_remove_page 		(GtkSourceCompletion     *completion,
+								 GtkSourceCompletionPage *page);
 G_END_DECLS
 
 #endif 

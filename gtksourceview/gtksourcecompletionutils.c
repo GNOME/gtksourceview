@@ -266,13 +266,13 @@ gtk_source_completion_utils_get_pos_at_cursor (GtkWindow     *window,
 	{
 		/* Resize to view all the window */
 		resize = TRUE;
-		w = sw -8;
+		w = sw - 8;
 	}
 	
 	/* Move position to view all the window */
 	if ((*x + w) > (sw - 4))
 	{
-		*x = sw - w -4;
+		*x = sw - w - 4;
 	}
 
 	/* Processing y position and height */
@@ -284,9 +284,11 @@ gtk_source_completion_utils_get_pos_at_cursor (GtkWindow     *window,
 	if ((*y + h) > sh)
 	{
 		PangoLayout* layout = 
-			gtk_widget_create_pango_layout(GTK_WIDGET(view), NULL);
-		pango_layout_get_pixel_size(layout,&xtext,&ytext);
+			gtk_widget_create_pango_layout (GTK_WIDGET(view), NULL);
+
+		pango_layout_get_pixel_size (layout, &xtext, &ytext);
 		ytemp = *y - ytext;
+
 		/* Cabe arriba? */
 		if ((ytemp - h) >= 4)
 		{
@@ -309,13 +311,15 @@ gtk_source_completion_utils_get_pos_at_cursor (GtkWindow     *window,
 				h = ytemp -4;
 				up = TRUE;
 			}
+
 			resize = TRUE;
 		}
-		g_object_unref(layout);
+
+		g_object_unref (layout);
 	}
 	
 	if (resize)
-		gtk_window_resize(window, w, h);
+		gtk_window_resize (window, w, h);
 
 	if (resized != NULL)
 		*resized = resize;

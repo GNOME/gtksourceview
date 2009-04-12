@@ -20,7 +20,14 @@
 #include "gsc-provider-test.h"
 #include <gtksourceview/gtksourcecompletionitem.h>
 
+#define GSC_PROVIDER_TEST_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE((object), GSC_TYPE_PROVIDER_TEST, GscProviderTestPrivate))
+
 static void	 gsc_provider_test_iface_init	(GtkSourceCompletionProviderIface *iface);
+
+struct _GscProviderTestPrivate
+{
+	GtkSourceCompletionPage *page;
+};
 
 G_DEFINE_TYPE_WITH_CODE (GscProviderTest,
 			 gsc_provider_test,
@@ -34,49 +41,32 @@ gsc_provider_test_real_get_name (GtkSourceCompletionProvider *self)
 	return GSC_PROVIDER_TEST_NAME;
 }
 
-static GList* 
+static GList *
+append_item (GList *list, const gchar *name, GdkPixbuf *icon, const gchar *info, GtkSourceCompletionPage *page)
+{
+	GtkSourceCompletionItem *prop;
+	
+	prop = gtk_source_completion_item_new (name, icon, info);
+	g_object_set_data (G_OBJECT (prop), "GscProviderTestPage", page);
+
+	return g_list_append (list, prop);
+}
+
+static GList *
 gsc_provider_test_real_get_proposals (GtkSourceCompletionProvider *base,
 				      GtkSourceCompletionTrigger  *trigger)
 {
+	GscProviderTest *self = GSC_PROVIDER_TEST (base);
 	GList *list = NULL;
-	GtkSourceCompletionItem *prop;
 	
-	prop = gtk_source_completion_item_new ("Proposal 1",
-	                                       NULL,
-	                                       "Info proposal 1");
-
-	list = g_list_append (list, prop);
-	prop = gtk_source_completion_item_new ("Proposal 2",
-	                                       NULL,
-	                                       "Info proposal 2");
-
-	list = g_list_append (list, prop);
-	prop = gtk_source_completion_item_new ("Proposal 3",
-	                                       NULL,
-	                                       "Info proposal 3");
-	list = g_list_append (list, prop);
+	list = append_item (list, "Proposal 1.1", NULL, "Info proposal 1.1", NULL);
+	list = append_item (list, "Proposal 1.2", NULL, "Info proposal 1.2", NULL);
+	list = append_item (list, "Proposal 1.3", NULL, "Info proposal 1.3", NULL);
 	
-	/*Page 2*/
-	/*prop = gtk_source_completion_proposal_new("Proposal 1,2",
-				"Info proposal 1,2",
-				NULL);
-	gtk_source_completion_proposal_set_page_name(prop,"Page 2");
-	list = g_list_append (list, prop);
-	prop = gtk_source_completion_proposal_new("Proposal 2,2",
-				"Info proposal 2,2",
-				NULL);
-	gtk_source_completion_proposal_set_page_name(prop,"Page 2");
-	list = g_list_append (list, prop);
-	prop = gtk_source_completion_proposal_new("Proposal 3,3",
-				"Info proposal 3,3",
-				NULL);
-	gtk_source_completion_proposal_set_page_name(prop,"Page 3");
-	list = g_list_append (list, prop);
-	prop = gtk_source_completion_proposal_new("Proposal Fixed page",
-				"Info proposal fixed",
-				NULL);
-	gtk_source_completion_proposal_set_page_name(prop,"Fixed");
-	list = g_list_append (list, prop);*/
+	list = append_item (list, "Proposal 2.1", NULL, "Info proposal 2.1", self->priv->page);
+	list = append_item (list, "Proposal 2.2", NULL, "Info proposal 2.2", self->priv->page);
+	list = append_item (list, "Proposal 2.3", NULL, "Info proposal 2.3", self->priv->page);
+
 	return list;
 }
 
@@ -90,7 +80,18 @@ gsc_provider_test_finalize (GObject *object)
 static void 
 gsc_provider_test_class_init (GscProviderTestClass *klass)
 {
-	G_OBJECT_CLASS (klass)->finalize = gsc_provider_test_finalize;
+	GObjectClass *object_class = G_OBJECT_CLASS (klass);
+	
+	object_class->finalize = gsc_provider_test_finalize;
+	
+	g_type_class_add_private (object_class, sizeof(GscProviderTestPrivate));
+}
+
+static GtkSourceCompletionPage *
+gsc_provider_test_real_get_page (GtkSourceCompletionProvider *provider,
+                                 GtkSourceCompletionProposal *proposal)
+{
+	return g_object_get_data (G_OBJECT (proposal), "GscProviderTestPage");
 }
 
 static void
@@ -98,17 +99,20 @@ gsc_provider_test_iface_init (GtkSourceCompletionProviderIface *iface)
 {
 	iface->get_name = gsc_provider_test_real_get_name;
 	iface->get_proposals = gsc_provider_test_real_get_proposals;
+	iface->get_page = gsc_provider_test_real_get_page;
 }
-
 
 static void 
 gsc_provider_test_init (GscProviderTest * self)
 {
+	self->priv = GSC_PROVIDER_TEST_GET_PRIVATE (self);
 }
 
 GscProviderTest *
-gsc_provider_test_new ()
+gsc_provider_test_new (GtkSourceCompletionPage *page)
 {
-	return GSC_PROVIDER_TEST (g_object_new (GSC_TYPE_PROVIDER_TEST, NULL));
+	GscProviderTest *ret = g_object_new (GSC_TYPE_PROVIDER_TEST, NULL);
+	ret->priv->page = page;
+	
+	return ret;
 }
-

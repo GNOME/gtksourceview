@@ -20,11 +20,10 @@
  * Boston, MA 02111-1307, USA.
  */
 
-#ifndef _GTK_SOURCE_COMPLETION_INFO_H
-#define _GTK_SOURCE_COMPLETION_INFO_H
+#ifndef __GTK_SOURCE_COMPLETION_INFO_H__
+#define __GTK_SOURCE_COMPLETION_INFO_H__
 
 #include <glib-object.h>
-#include <glib.h>
 #include <gtk/gtk.h>
 
 G_BEGIN_DECLS
@@ -52,32 +51,29 @@ typedef struct _GtkSourceCompletionInfoClass GtkSourceCompletionInfoClass;
 struct _GtkSourceCompletionInfoClass
 {
 	GtkWindowClass parent_class;
+	
+	void	(*before_show)	(GtkSourceCompletionInfo *info);
 };
 
 GType		 gtk_source_completion_info_get_type		(void) G_GNUC_CONST;
 
 GtkSourceCompletionInfo *
-		 gtk_source_completion_info_new		(void);
+		 gtk_source_completion_info_new			(void);
 
-void		 gtk_source_completion_info_move_to_cursor	(GtkSourceCompletionInfo* self,
-								 GtkTextView *view);
+void		 gtk_source_completion_info_move_to_cursor	(GtkSourceCompletionInfo *self,
+								 GtkTextView             *view);
 
-void		 gtk_source_completion_info_set_markup		(GtkSourceCompletionInfo* self,
-								 const gchar* markup);
+void		 gtk_source_completion_info_set_sizing		(GtkSourceCompletionInfo *self,
+								 gint                     width,
+								 gint                     height,
+								 gboolean                 shrink_width,
+								 gboolean                 shrink_height);
 
-void		 gtk_source_completion_info_set_adjust_height	(GtkSourceCompletionInfo* self,
-								 gboolean adjust,
-								 gint max_height);
+void		 gtk_source_completion_info_set_widget		(GtkSourceCompletionInfo *self,
+								 GtkWidget               *widget);
 
-void		 gtk_source_completion_info_set_adjust_width	(GtkSourceCompletionInfo* self,
-								 gboolean adjust,
-								 gint max_width);
-
-void		 gtk_source_completion_info_set_custom		(GtkSourceCompletionInfo* self,
-								 GtkWidget *custom_widget);
-
-GtkWidget	*gtk_source_completion_info_get_custom		(GtkSourceCompletionInfo* self);
+GtkWidget	*gtk_source_completion_info_get_widget		(GtkSourceCompletionInfo *self);
 
 G_END_DECLS
 
-#endif
+#endif /* __GTK_SOURCE_COMPLETION_INFO_H__ */

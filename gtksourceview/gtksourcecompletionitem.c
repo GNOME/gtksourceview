@@ -38,7 +38,7 @@ gtk_source_completion_proposal_activate_impl (GtkSourceCompletionProposal *self,
 	gtk_source_completion_utils_replace_current_word (buffer,
 							  item->priv->label,
 							  -1);
-	return FALSE;
+	return TRUE;
 }
 
 static const gchar *
