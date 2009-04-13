@@ -51,6 +51,13 @@ struct _GtkSourceCompletionModelClass {
 	GObjectClass parent_class;
 };
 
+typedef enum
+{
+	GTK_SOURCE_COMPLETION_MODEL_NONE,
+	GTK_SOURCE_COMPLETION_MODEL_FILTERED = 1 << 0,
+	GTK_SOURCE_COMPLETION_MODEL_COUNT = 1 << 1
+} GtkSourceCompletionModelFilterFlag;
+
 enum
 {
 	GTK_SOURCE_COMPLETION_MODEL_COLUMN_LABEL,
@@ -60,7 +67,7 @@ enum
 	GTK_SOURCE_COMPLETION_MODEL_N_COLUMNS
 };
 
-typedef gboolean (* GtkSourceCompletionModelVisibleFunc) (GtkSourceCompletionModel    *model,
+typedef GtkSourceCompletionModelFilterFlag (* GtkSourceCompletionModelVisibleFunc) (GtkSourceCompletionModel    *model,
                                                           GtkSourceCompletionProvider *provider,
                                                           GtkSourceCompletionProposal *proposal,
                                                           gpointer                     userdata);
@@ -79,7 +86,9 @@ gboolean 	gtk_source_completion_model_append 	(GtkSourceCompletionModel         
 gboolean 	gtk_source_completion_model_remove 	(GtkSourceCompletionModel           *model, 
 							 GtkTreeIter                        *iter);
 
-gboolean	gtk_source_completion_model_is_empty 	(GtkSourceCompletionModel           *model);
+gboolean	gtk_source_completion_model_is_empty 	(GtkSourceCompletionModel           *model,
+                                                         gboolean                            invisible);
+
 guint		gtk_source_completion_model_n_proposals (GtkSourceCompletionModel           *model,
                                                          GtkSourceCompletionProvider        *provider);
 

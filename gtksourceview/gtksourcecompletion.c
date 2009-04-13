@@ -337,7 +337,7 @@ do_refilter (GtkSourceCompletion *completion,
 	
 	/* Check if there are any proposals left */
 	if (finish_if_empty && 
-	    gtk_source_completion_model_is_empty (completion->priv->model_proposals))
+	    gtk_source_completion_model_is_empty (completion->priv->model_proposals, FALSE))
 	{
 		gtk_source_completion_finish (completion);
 	}
@@ -348,41 +348,78 @@ typedef GList * (*ListSelector)(GList *);
 static gboolean
 select_provider (GtkSourceCompletion *completion,
                  ListSelector         advance,
-                 ListSelector         c1,
-                 ListSelector         c2)
+                 ListSelector         cycle_first,
+                 ListSelector         cycle_last)
 {
-	GList *i1;
-	GList *i2;
-	GtkSourceCompletionProvider *p1;
-	GtkSourceCompletionProvider *p2;	
-	
+	GList *first;
+	GList *last;
+	GList *orig;
+	GList *current;
+	GtkSourceCompletionProvider *provider;
+
 	/* If there is only one provider, then there is no other selection */
 	if (completion->priv->active_providers->next == NULL)
 	{
 		return FALSE;
 	}
-	
-	i1 = c1 (completion->priv->active_providers);
-	p1 = GTK_SOURCE_COMPLETION_PROVIDER (i1->data);
-	
-	i2 = c2 (completion->priv->active_providers);
-	p2 = GTK_SOURCE_COMPLETION_PROVIDER (i2->data);
-	
-	if (completion->priv->filter_provider == NULL)
+
+	if (completion->priv->filter_provider != NULL)
 	{
-		completion->priv->filter_provider = p1;
-	}
-	else if (completion->priv->filter_provider == p2)
-	{
-		completion->priv->filter_provider = NULL;
+		orig = g_list_find (completion->priv->active_providers,
+		                    completion->priv->filter_provider);
 	}
 	else
 	{
-		i1 = advance (g_list_find (completion->priv->active_providers,
-		                             completion->priv->filter_provider));
-		p1 = GTK_SOURCE_COMPLETION_PROVIDER (i1->data);
+		orig = NULL;
+	}
+	
+	first = cycle_first (completion->priv->active_providers);
+	last = cycle_last (completion->priv->active_providers);
+	current = orig;
+	
+	do
+	{
+		if (current == NULL)
+		{
+			current = first;
+		}
+		else if (current == last)
+		{
+			current = NULL;
+		}
+		else
+		{
+			current = advance (current);
+		}
 		
-		completion->priv->filter_provider = p1;
+		if (current != NULL)
+		{
+			provider = GTK_SOURCE_COMPLETION_PROVIDER (current->data);
+	
+			if (gtk_source_completion_model_n_proposals (completion->priv->model_proposals,
+			                                             provider) != 0)
+			{
+				break;
+			}
+		}
+		else if (!gtk_source_completion_model_is_empty (completion->priv->model_proposals, TRUE))
+		{
+			break;
+		}
+	} while (orig != current);
+	
+	if (orig == current)
+	{
+		return FALSE;
+	}
+	
+	if (current != NULL)
+	{
+		completion->priv->filter_provider = current->data;
+	}
+	else
+	{
+		completion->priv->filter_provider = NULL;
 	}
 	
 	update_selection_label (completion);
@@ -445,29 +482,44 @@ update_info_position (GtkSourceCompletion *completion)
 	gtk_window_move (GTK_WINDOW (completion->priv->info_window), x, y);
 }
 
-static gboolean
+static GtkSourceCompletionModelFilterFlag
 proposals_filter_func (GtkSourceCompletionModel    *model,
                        GtkSourceCompletionProvider *provider,
                        GtkSourceCompletionProposal *proposal,
                        GtkSourceCompletion         *completion)
 {
-	gboolean ret;
+	GtkSourceCompletionModelFilterFlag ret = GTK_SOURCE_COMPLETION_MODEL_NONE;
+	gboolean visible;
+	gboolean count;
 	
 	/* Filter on provider */
-	if (completion->priv->filter_provider != NULL &&
-	    completion->priv->filter_provider != provider)
+	if (completion->priv->filter_provider != NULL && completion->priv->filter_provider != provider)
 	{
-		ret = FALSE;
+		visible = FALSE;
+		count = TRUE;
 	}
 	else if (completion->priv->filter_criteria == NULL)
 	{
-		return TRUE;
+		visible = TRUE;
+		count = FALSE;
 	}
 	else
 	{
-		ret = gtk_source_completion_provider_filter_proposal (provider,
-	                                                              proposal,
-	                                                              completion->priv->filter_criteria);
+		visible = gtk_source_completion_provider_filter_proposal (provider,
+	                                                                  proposal,
+	                                                                  completion->priv->filter_criteria);
+
+		count = FALSE;
+	}
+	
+	if (!visible)
+	{
+		ret |= GTK_SOURCE_COMPLETION_MODEL_FILTERED;
+		
+		if (count)
+		{
+			ret |= GTK_SOURCE_COMPLETION_MODEL_COUNT;
+		}
 	}
 	
 	return ret;
@@ -1510,7 +1562,7 @@ gtk_source_completion_popup (GtkSourceCompletion *completion,
 		g_list_reverse (completion->priv->active_providers);
 	
 	/* Check if there are any completions */
-	if (gtk_source_completion_model_is_empty (completion->priv->model_proposals))
+	if (gtk_source_completion_model_is_empty (completion->priv->model_proposals, FALSE))
 	{
 		gtk_source_completion_finish (completion);
 		return FALSE;

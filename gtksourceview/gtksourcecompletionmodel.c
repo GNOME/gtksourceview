@@ -7,7 +7,7 @@ typedef struct
 	GtkSourceCompletionProvider *provider;
 	GtkSourceCompletionProposal *proposal;
 	
-	gboolean filtered;
+	GtkSourceCompletionModelFilterFlag filtered;
 } ProposalNode;
 
 struct _GtkSourceCompletionModelPrivate
@@ -335,6 +335,12 @@ tree_model_row_inserted (GtkTreeModel *tree_model,
 }
 
 static void
+tree_model_row_deleted (GtkTreeModel *tree_model,
+			 GtkTreePath  *path)
+{
+}
+
+static void
 tree_model_iface_init (gpointer g_iface, 
                        gpointer iface_data)
 {
@@ -352,7 +358,9 @@ tree_model_iface_init (gpointer g_iface,
 	iface->iter_n_children = tree_model_iter_n_children;
 	iface->iter_nth_child = tree_model_iter_nth_child;
 	iface->iter_parent = tree_model_iter_parent;
+	
 	iface->row_inserted = tree_model_row_inserted;
+	iface->row_deleted = tree_model_row_deleted;
 }
 
 static void
@@ -398,11 +406,22 @@ gtk_source_completion_model_init (GtkSourceCompletionModel *self)
 }
 
 static void
-num_inc (GtkSourceCompletionModel    *model,
-         GtkSourceCompletionProvider *provider)
+num_inc (GtkSourceCompletionModel           *model,
+         GtkSourceCompletionProvider        *provider,
+         gboolean                            inc_local,
+         gboolean                            inc_global)
 {
 	guint *num;
-	++model->priv->num;
+	
+	if (inc_global)
+	{
+		++model->priv->num;
+	}
+	
+	if (!inc_local)
+	{
+		return;
+	}
 
 	num = g_hash_table_lookup (model->priv->num_per_provider, provider);
 	
@@ -421,12 +440,22 @@ num_inc (GtkSourceCompletionModel    *model,
 }
 
 static void
-num_dec (GtkSourceCompletionModel    *model,
-         GtkSourceCompletionProvider *provider)
+num_dec (GtkSourceCompletionModel           *model,
+         GtkSourceCompletionProvider        *provider,
+         gboolean                            dec_local,
+         gboolean                            dec_global)
 {
 	guint *num;
+	
+	if (dec_global)
+	{
+		--model->priv->num;
+	}
 
-	--model->priv->num;
+	if (!dec_local)
+	{
+		return;
+	}
 	
 	num = g_hash_table_lookup (model->priv->num_per_provider, provider);
 	
@@ -436,18 +465,18 @@ num_dec (GtkSourceCompletionModel    *model,
 	}
 }
 
-static gboolean
+static GtkSourceCompletionModelFilterFlag
 node_update_filter_state (GtkSourceCompletionModel *model, 
                           ProposalNode             *node)
 {
-	gboolean ret;
+	GtkSourceCompletionModelFilterFlag ret;
 	
 	ret = node->filtered;
 	
-	node->filtered = !model->priv->filter (model, 
-	                                       node->provider, 
-	                                       node->proposal, 
-	                                       model->priv->filter_data);
+	node->filtered = model->priv->filter (model, 
+	                                      node->provider, 
+	                                      node->proposal, 
+	                                      model->priv->filter_data);
 
 	return ret;
 }
@@ -467,7 +496,7 @@ remove_node (GtkSourceCompletionModel *model,
 {
 	ProposalNode *node;
 	GtkTreePath *path;
-	gboolean filtered;
+	GtkSourceCompletionModelFilterFlag filtered;
 	GtkSourceCompletionProvider *provider;
 	
 	path = path_from_list (model, item);
@@ -485,9 +514,13 @@ remove_node (GtkSourceCompletionModel *model,
 
 	model->priv->store = g_list_remove_link (model->priv->store, item);
 	
+	num_dec (model, 
+	         provider, 
+	         !filtered || (filtered & GTK_SOURCE_COMPLETION_MODEL_COUNT),
+	         !filtered);
+	
 	if (!filtered)
 	{
-		num_dec (model, provider);
 		gtk_tree_model_row_deleted (GTK_TREE_MODEL (model), path);
 	}
 
@@ -544,16 +577,19 @@ gtk_source_completion_model_append (GtkSourceCompletionModel    *model,
 	model->priv->last = item;
 	iter->user_data = item;
 	
+	num_inc (model, 
+	         node->provider, 
+	         !node->filtered || (node->filtered & GTK_SOURCE_COMPLETION_MODEL_COUNT),
+	         !node->filtered);
+
 	if (!node->filtered)
 	{
 		path = path_from_list (model, item);
 		
-		num_inc (model, node->provider);
-
 		gtk_tree_model_row_inserted (GTK_TREE_MODEL (model), path, iter);
 		gtk_tree_path_free (path);
 	}
-
+	
 	return TRUE;
 }
 
@@ -575,7 +611,7 @@ gtk_source_completion_model_clear (GtkSourceCompletionModel *model)
 	GtkTreePath *path;
 	ProposalNode *node;
 	GList *list;
-	gboolean filtered;
+	GtkSourceCompletionModelFilterFlag filtered;
 	
 	g_return_if_fail (GTK_IS_SOURCE_COMPLETION_MODEL (model));
 	
@@ -596,9 +632,13 @@ gtk_source_completion_model_clear (GtkSourceCompletionModel *model)
 			model->priv->last = NULL;
 		}
 		
+		num_dec (model, 
+		         node->provider, 
+		         !filtered || (filtered & GTK_SOURCE_COMPLETION_MODEL_COUNT),
+		         !filtered);
+		
 		if (!filtered)
 		{
-			num_dec (model, node->provider);
 			gtk_tree_model_row_deleted (GTK_TREE_MODEL (model), path);
 		}
 	}
@@ -613,7 +653,7 @@ void
 gtk_source_completion_model_refilter (GtkSourceCompletionModel *model)
 {
 	GList *item;
-	gboolean filtered;
+	GtkSourceCompletionModelFilterFlag filtered;
 	ProposalNode *node;
 	GtkTreePath *path;
 	GtkTreeIter iter;
@@ -629,7 +669,7 @@ gtk_source_completion_model_refilter (GtkSourceCompletionModel *model)
 		node = (ProposalNode *)item->data;
 		filtered = node_update_filter_state (model, node);
 		
-		if (filtered == node->filtered)
+		if ((filtered != 0) == (node->filtered != 0))
 		{
 			/* Keep the same, so increase path */
 			if (!filtered)
@@ -640,7 +680,11 @@ gtk_source_completion_model_refilter (GtkSourceCompletionModel *model)
 		else if (filtered)
 		{
 			/* Was filtered, but not any more, so insert it */
-			num_inc (model, node->provider);
+			num_inc (model, 
+			         node->provider,
+			         !(filtered & GTK_SOURCE_COMPLETION_MODEL_COUNT),
+			         TRUE);
+			         
 			gtk_tree_model_row_inserted (GTK_TREE_MODEL (model),
 			                             path,
 			                             &iter);
@@ -649,7 +693,11 @@ gtk_source_completion_model_refilter (GtkSourceCompletionModel *model)
 		else
 		{
 			/* Was not filtered, but is now, so remove it */
-			num_dec (model, node->provider);
+			num_dec (model, 
+			         node->provider,
+			         !(node->filtered & GTK_SOURCE_COMPLETION_MODEL_COUNT),
+			         TRUE);
+
 			gtk_tree_model_row_deleted (GTK_TREE_MODEL (model),
 			                            path);
 		}
@@ -659,11 +707,20 @@ gtk_source_completion_model_refilter (GtkSourceCompletionModel *model)
 }
 
 gboolean
-gtk_source_completion_model_is_empty (GtkSourceCompletionModel *model)
+gtk_source_completion_model_is_empty (GtkSourceCompletionModel *model,
+                                      gboolean                  invisible)
 {
 	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_MODEL (model), FALSE);
 	
-	return model->priv->num == 0;
+	if (invisible)
+	{
+		return model->priv->num == 0;
+	}
+	else
+	{
+		return model->priv->num == 0 || 
+		       gtk_tree_model_iter_n_children (GTK_TREE_MODEL (model), NULL) == 0;
+	}
 }
 
 guint
