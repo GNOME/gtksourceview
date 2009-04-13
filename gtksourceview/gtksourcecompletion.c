@@ -317,16 +317,58 @@ select_next_proposal (GtkSourceCompletion *completion,
 static void
 update_selection_label (GtkSourceCompletion *completion)
 {
+	GList *item;
+	gint pos = 1;
+	gint num = 1;
+	gint idx = 1;
+	gchar *name;
+	gchar *tmp;
+	
+	for (item = completion->priv->active_providers; item; item = g_list_next (item))
+	{
+		++idx;
+
+		if (item->data == completion->priv->filter_provider)
+		{
+			pos = idx;
+			++num;
+		}
+		else
+		{
+			/* See if it has anything */
+			if (gtk_source_completion_model_n_proposals (completion->priv->model_proposals,
+			                                             GTK_SOURCE_COMPLETION_PROVIDER (item->data)))
+			{
+				++num;
+			}
+		}
+	}
+	
 	if (completion->priv->filter_provider == NULL)
 	{
-		gtk_label_set_text (GTK_LABEL (completion->priv->selection_label),
-		                    _("All"));
+		name = g_strdup_printf("[<i>%s</i>]", _("All"));
 	}
 	else
 	{
-		gtk_label_set_text (GTK_LABEL (completion->priv->selection_label),
-		                    gtk_source_completion_provider_get_name (completion->priv->filter_provider));	
+		name = g_markup_escape_text (
+			gtk_source_completion_provider_get_name (completion->priv->filter_provider),
+			-1);
 	}
+	
+	if (num > 1)
+	{
+		tmp = g_strdup_printf ("%s (%d/%d)", name, pos, num);
+		gtk_label_set_markup (GTK_LABEL (completion->priv->selection_label),
+		                      tmp);
+		g_free (tmp);
+	}
+	else
+	{
+		gtk_label_set_markup (GTK_LABEL (completion->priv->selection_label),
+		                      name);		                    
+	}
+	
+	g_free (name);
 }
 
 static void
@@ -341,6 +383,8 @@ do_refilter (GtkSourceCompletion *completion,
 	{
 		gtk_source_completion_finish (completion);
 	}
+	
+	update_selection_label (completion);
 }
 
 typedef GList * (*ListSelector)(GList *);
