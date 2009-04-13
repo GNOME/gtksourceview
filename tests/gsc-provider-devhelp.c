@@ -1,6 +1,7 @@
 #include "gsc-provider-devhelp.h"
 #include <devhelp/dh-base.h>
 #include <devhelp/dh-link.h>
+#include <devhelp/dh-html.h>
 #include <gtksourceview/gtksourceview.h>
 #include <gtksourceview/gtksourcecompletionitem.h>
 
@@ -9,6 +10,8 @@
 struct _GscProviderDevhelpPrivate
 {
 	DhBase *dhbase;
+	DhHtml *dhhtml;
+
 	GList *proposals;
 };
 
@@ -53,6 +56,27 @@ gsc_provider_devhelp_can_auto_complete (GtkSourceCompletionProvider *provider)
 	return TRUE;
 }
 
+static GtkWidget *
+gsc_provider_devhelp_get_info_widget (GtkSourceCompletionProvider *provider,
+                                      GtkSourceCompletionProposal *proposal)
+{
+	return dh_html_get_widget (GSC_PROVIDER_DEVHELP (provider)->priv->dhhtml);
+}
+
+static void
+gsc_provider_devhelp_update_info (GtkSourceCompletionProvider *provider,
+                                  GtkSourceCompletionProposal *proposal,
+                                  GtkSourceCompletionInfo     *info)
+{
+	GscProviderDevhelp *self = GSC_PROVIDER_DEVHELP (provider);
+	const gchar *uri;
+	
+	uri = gtk_source_completion_proposal_get_info (proposal);
+
+	dh_html_open_uri (GSC_PROVIDER_DEVHELP (provider)->priv->dhhtml, uri);
+	dh_html_set_zoom (self->priv->dhhtml, 0.5);
+}
+
 static void
 gsc_provider_devhelp_iface_init (GtkSourceCompletionProviderIface *iface)
 {
@@ -60,6 +84,9 @@ gsc_provider_devhelp_iface_init (GtkSourceCompletionProviderIface *iface)
 	iface->get_proposals = gsc_provider_devhelp_get_proposals;
 	iface->can_auto_complete = gsc_provider_devhelp_can_auto_complete;
 	iface->filter_proposal = gsc_provider_devhelp_filter_proposal;
+	
+	iface->get_info_widget = gsc_provider_devhelp_get_info_widget;
+	iface->update_info = gsc_provider_devhelp_update_info;
 }
 
 static void
@@ -68,6 +95,7 @@ gsc_provider_devhelp_finalize (GObject *object)
 	GscProviderDevhelp *provider = GSC_PROVIDER_DEVHELP (object);
 	
 	g_object_unref (provider->priv->dhbase);
+	g_object_unref (provider->priv->dhhtml);
 	g_list_foreach (provider->priv->proposals, (GFunc)g_object_unref, NULL);
 
 	G_OBJECT_CLASS (gsc_provider_devhelp_parent_class)->finalize (object);
@@ -81,14 +109,6 @@ gsc_provider_devhelp_class_init (GscProviderDevhelpClass *klass)
 	object_class->finalize = gsc_provider_devhelp_finalize;
 
 	g_type_class_add_private (object_class, sizeof(GscProviderDevhelpPrivate));
-}
-
-static gchar *
-name_from_link (gpointer data)
-{
-	DhLink *link = (DhLink *)data;
-	
-	return link->name;
 }
 
 static void
@@ -110,6 +130,9 @@ gsc_provider_devhelp_init (GscProviderDevhelp *self)
 		ret = g_list_prepend (ret, gtk_source_completion_item_new (link->name, NULL, link->uri));
 	}
 	
+	
+	self->priv->dhhtml = dh_html_new ();
+
 	self->priv->proposals = g_list_reverse (ret);
 }
 

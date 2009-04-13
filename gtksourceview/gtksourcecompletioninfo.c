@@ -453,7 +453,8 @@ gtk_source_completion_info_set_widget (GtkSourceCompletionInfo *self,
 	if (self->priv->widget != NULL)
 	{
 		child = gtk_bin_get_child (GTK_BIN (self->priv->scroll));
-		
+		g_signal_handler_disconnect (self->priv->widget, self->priv->request_id);
+
 		if (child != self->priv->widget)
 		{
 			gtk_container_remove (GTK_CONTAINER (child), self->priv->widget);
@@ -464,8 +465,6 @@ gtk_source_completion_info_set_widget (GtkSourceCompletionInfo *self,
 			gtk_container_remove (GTK_CONTAINER (self->priv->scroll),
 			                      self->priv->widget);
 		}
-		
-		g_signal_handler_disconnect (self->priv->widget, self->priv->request_id);
 	}
 	
 	self->priv->widget = widget;
@@ -485,10 +484,10 @@ gtk_source_completion_info_set_widget (GtkSourceCompletionInfo *self,
 			child = gtk_viewport_new (NULL, NULL);
 			gtk_widget_show (child);
 
+			/* Keep it alive */
+			g_object_ref (widget);
 			gtk_container_add (GTK_CONTAINER (child), widget);
 		}
-		
-
 		
 		gtk_container_add (GTK_CONTAINER (self->priv->scroll), child);
 		gtk_widget_show (widget);

@@ -682,6 +682,7 @@ update_proposal_info_real (GtkSourceCompletion         *completion,
 {
 	GtkWidget *info_widget;
 	const gchar *text;
+	gboolean prov_update_info = FALSE;
 	
 	if (proposal == NULL)
 	{
@@ -702,10 +703,21 @@ update_proposal_info_real (GtkSourceCompletion         *completion,
 			
 			gtk_label_set_markup (GTK_LABEL (info_widget), text != NULL ? text : "");
 		}
+		else
+		{
+			prov_update_info = TRUE;
+		}
 	}
 
 	gtk_source_completion_info_set_widget (GTK_SOURCE_COMPLETION_INFO (completion->priv->info_window),
 	                                       info_widget);
+
+	if (prov_update_info)
+	{
+		gtk_source_completion_provider_update_info (provider, 
+			                                    proposal,
+			                                    GTK_SOURCE_COMPLETION_INFO (completion->priv->info_window));
+	}
 }
 
 static void
@@ -1430,7 +1442,7 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 	/**
 	 * GtkSourceCompletion:auto-complete-delay:
 	 *
-	 * The auto completion delay when typing
+	 * The auto completion delay (in milliseconds)
 	 */
 	g_object_class_install_property (object_class,
 					 PROP_AUTO_COMPLETE_DELAY,
@@ -1439,7 +1451,7 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 							    _("Auto completion delay when typing"),
 							    0,
 							    G_MAXUINT,
-							    500,
+							    250,
 							    G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 	/**
 	 * GtkSourceCompletion:min-len:
@@ -1761,6 +1773,10 @@ initialize_ui (GtkSourceCompletion *completion)
 
 	/* Info window */
 	completion->priv->info_window = GTK_WIDGET (gtk_source_completion_info_new ());
+	gtk_window_set_default_size (GTK_WINDOW (completion->priv->info_window),
+	                             500,
+	                             400);
+	                             
 	g_signal_connect (completion, 
 	                  "notify::transient-for",
 	                  G_CALLBACK (update_transient_for_info),
