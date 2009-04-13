@@ -40,6 +40,12 @@ gtk_source_completion_provider_get_name_default (GtkSourceCompletionProvider *pr
 	g_return_val_if_reached (NULL);
 }
 
+static const GdkPixbuf *
+gtk_source_completion_provider_get_icon_default (GtkSourceCompletionProvider *provider)
+{
+	return NULL;
+}
+
 static GList *
 gtk_source_completion_provider_get_proposals_default (GtkSourceCompletionProvider *provider)
 {
@@ -80,6 +86,8 @@ gtk_source_completion_provider_base_init (GtkSourceCompletionProviderIface *ifac
 	static gboolean initialized = FALSE;
 	
 	iface->get_name = gtk_source_completion_provider_get_name_default;
+	iface->get_icon = gtk_source_completion_provider_get_icon_default;
+
 	iface->get_proposals = gtk_source_completion_provider_get_proposals_default;
 	iface->filter_proposal = gtk_source_completion_provider_filter_proposal_default;
 	iface->can_auto_complete = gtk_source_completion_provider_can_auto_complete_default;
@@ -138,6 +146,13 @@ gtk_source_completion_provider_get_name (GtkSourceCompletionProvider *provider)
 {
 	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_PROVIDER (provider), NULL);
 	return GTK_SOURCE_COMPLETION_PROVIDER_GET_INTERFACE (provider)->get_name (provider);
+}
+
+const GdkPixbuf *
+gtk_source_completion_provider_get_icon (GtkSourceCompletionProvider *provider)
+{
+	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_PROVIDER (provider), NULL);
+	return GTK_SOURCE_COMPLETION_PROVIDER_GET_INTERFACE (provider)->get_icon (provider);
 }
 
 /**

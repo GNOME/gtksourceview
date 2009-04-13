@@ -83,9 +83,6 @@ gboolean 	gtk_source_completion_model_append 	(GtkSourceCompletionModel         
 							 GtkSourceCompletionProposal        *proposal,
 							 GtkTreeIter                        *iter);
 
-gboolean 	gtk_source_completion_model_remove 	(GtkSourceCompletionModel           *model, 
-							 GtkTreeIter                        *iter);
-
 gboolean	gtk_source_completion_model_is_empty 	(GtkSourceCompletionModel           *model,
                                                          gboolean                            invisible);
 
@@ -95,6 +92,18 @@ guint		gtk_source_completion_model_n_proposals (GtkSourceCompletionModel        
 void 		gtk_source_completion_model_clear 	(GtkSourceCompletionModel           *model);
 
 void		gtk_source_completion_model_refilter	(GtkSourceCompletionModel           *model);
+
+void 		gtk_source_completion_model_set_show_headers (GtkSourceCompletionModel      *model,
+							      gboolean                       show_headers);
+
+gboolean	gtk_source_completion_model_iter_is_header (GtkSourceCompletionModel        *model,
+                                                            GtkTreeIter                     *iter);
+
+gboolean 	gtk_source_completion_model_iter_previous (GtkSourceCompletionModel         *model,
+							   GtkTreeIter                      *iter);
+							 
+gboolean 	gtk_source_completion_model_iter_last 	(GtkSourceCompletionModel           *model,
+							 GtkTreeIter                        *iter);
 
 G_END_DECLS
 

@@ -52,7 +52,8 @@ struct _GscProviderTestClass
 
 GType		 gsc_provider_test_get_type	(void) G_GNUC_CONST;
 
-GscProviderTest *gsc_provider_test_new (const gchar *name);
+GscProviderTest *gsc_provider_test_new (const gchar *name,
+                                        GdkPixbuf   *icon);
 
 G_END_DECLS
 
