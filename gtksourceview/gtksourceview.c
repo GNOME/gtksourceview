@@ -4008,7 +4008,10 @@ gtk_source_view_destroy (GtkObject *object)
 	{
 		view->priv->destroy_has_run = TRUE;
 
-		gtk_widget_destroy (GTK_WIDGET (view->priv->completion));
+		if (view->priv->completion != NULL)
+		{
+			gtk_widget_destroy (GTK_WIDGET (view->priv->completion));
+		}
 	}
 
 	GTK_OBJECT_CLASS (gtk_source_view_parent_class)->destroy (object);
