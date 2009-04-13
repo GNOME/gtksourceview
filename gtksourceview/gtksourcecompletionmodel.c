@@ -551,9 +551,6 @@ update_show_headers (GtkSourceCompletionModel *model,
 				items = g_list_append (items, info);
 			}
 		}
-		
-		if (show && num > 1)
-			break;
 	}
 
 	if (show && num > 1 && items != NULL)
