@@ -1,5 +1,5 @@
 /*
- * gtksourcecompletionpage.h
+ * gtksourcecompletion-private.h
  * This file is part of gtksourcecompletion
  *
  * Copyright (C) 2009 - Jesse van den Kieboom
@@ -20,10 +20,14 @@
  * Boston, MA  02110-1301  USA
  */
 
-#ifndef __GTK_SOURCE_COMPLETION_PAGE_H__
-#define __GTK_SOURCE_COMPLETION_PAGE_H__
+#ifndef __GTK_SOURCE_COMPLETION_PIVATE_H__
+#define __GTK_SOURCE_COMPLETION_PIVATE_H__
 
-typedef struct _GtkSourceCompletionPage GtkSourceCompletionPage;
+#include <gtk/gtk.h>
+#include <gtksourceview/gtksourcecompletion.h>
 
-#endif /* __GTK_SOURCE_COMPLETION_PAGE_H__ */
+/* Use GtkTextView here to avoid cyclic dependency */
+GtkSourceCompletion *gtk_source_completion_new (GtkTextView *text_view);
+
+#endif /* __GTK_SOURCE_COMPLETION_PIVATE_H__ */
 

@@ -27,8 +27,6 @@
 #include <glib-object.h>
 #include <gtk/gtk.h>
 #include <gtksourceview/gtksourcecompletionproposal.h>
-#include <gtksourceview/gtksourcecompletiontrigger.h>
-#include <gtksourceview/gtksourcecompletionpage.h>
 #include <gtksourceview/gtksourcecompletioninfo.h>
 
 G_BEGIN_DECLS
@@ -47,11 +45,11 @@ struct _GtkSourceCompletionProviderIface
 	GTypeInterface g_iface;
 	
 	const gchar	*(*get_name)       	(GtkSourceCompletionProvider *provider);
-	GList 		*(*get_proposals) 	(GtkSourceCompletionProvider *provider,
-						 GtkSourceCompletionTrigger  *trigger);
-	GtkSourceCompletionPage *
-			 (*get_page)		(GtkSourceCompletionProvider *provider,
-			 			 GtkSourceCompletionProposal *proposal);
+	GList 		*(*get_proposals) 	(GtkSourceCompletionProvider *provider);
+	gboolean 	 (*filter_proposal) 	(GtkSourceCompletionProvider *provider,
+						 GtkSourceCompletionProposal *proposal,
+						 const gchar                 *criteria);
+	gboolean         (*can_auto_complete)	(GtkSourceCompletionProvider *provider);
 						 
 	GtkWidget 	*(*get_info_widget)	(GtkSourceCompletionProvider *provider,
 						 GtkSourceCompletionProposal *proposal);
@@ -65,8 +63,13 @@ GType		 gtk_source_completion_provider_get_type	(void);
 
 const gchar	*gtk_source_completion_provider_get_name	(GtkSourceCompletionProvider *provider);
 
-GList		*gtk_source_completion_provider_get_proposals	(GtkSourceCompletionProvider *provider, 
-								 GtkSourceCompletionTrigger  *trigger);
+GList		*gtk_source_completion_provider_get_proposals	(GtkSourceCompletionProvider *provider);
+
+gboolean	 gtk_source_completion_provider_filter_proposal	(GtkSourceCompletionProvider *provider,
+								 GtkSourceCompletionProposal *proposal,
+								 const gchar                 *criteria);
+
+gboolean 	 gtk_source_completion_provider_can_auto_complete (GtkSourceCompletionProvider *provider);
 
 GtkWidget	*gtk_source_completion_provider_get_info_widget	(GtkSourceCompletionProvider *provider,
 								 GtkSourceCompletionProposal *proposal);
@@ -74,10 +77,6 @@ GtkWidget	*gtk_source_completion_provider_get_info_widget	(GtkSourceCompletionPr
 void 		 gtk_source_completion_provider_update_info	(GtkSourceCompletionProvider *provider,
 								 GtkSourceCompletionProposal *proposal,
 								 GtkSourceCompletionInfo     *info);
-
-GtkSourceCompletionPage *
-		gtk_source_completion_provider_get_page		(GtkSourceCompletionProvider *provider,
-								 GtkSourceCompletionProposal *proposal);
 
 G_END_DECLS
 

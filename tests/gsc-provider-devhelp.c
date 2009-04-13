@@ -1,7 +1,6 @@
 #include "gsc-provider-devhelp.h"
 #include <devhelp/dh-base.h>
 #include <devhelp/dh-link.h>
-#include "gsc-utils-test.h"
 #include <gtksourceview/gtksourceview.h>
 #include <gtksourceview/gtksourcecompletionitem.h>
 
@@ -9,8 +8,8 @@
 
 struct _GscProviderDevhelpPrivate
 {
-	GCompletion *completion;
-	GtkSourceView *view;
+	DhBase *dhbase;
+	GList *proposals;
 };
 
 static void gsc_provider_devhelp_iface_init (GtkSourceCompletionProviderIface *iface);
@@ -21,52 +20,56 @@ G_DEFINE_TYPE_WITH_CODE (GscProviderDevhelp,
 			 G_IMPLEMENT_INTERFACE (GTK_TYPE_SOURCE_COMPLETION_PROVIDER,
 				 		gsc_provider_devhelp_iface_init))
 
-#define GSC_PROVIDER_DEVHELP_NAME "GscProviderDevhelp"
-
 static const gchar * 
-gsc_provider_devhelp_real_get_name (GtkSourceCompletionProvider *self)
+gsc_provider_devhelp_get_name (GtkSourceCompletionProvider *self)
 {
-	return GSC_PROVIDER_DEVHELP_NAME;
+	return "Devhelp";
 }
 
 static GList * 
-gsc_provider_devhelp_real_get_proposals (GtkSourceCompletionProvider *base,
-				         GtkSourceCompletionTrigger  *trigger)
+gsc_provider_devhelp_get_proposals (GtkSourceCompletionProvider *provider)
 {
-	GscProviderDevhelp *devhelp = GSC_PROVIDER_DEVHELP(base);
-	static GdkPixbuf *pixbuf = NULL;
+	GscProviderDevhelp *devhelp = GSC_PROVIDER_DEVHELP (provider);
 	
-	if (pixbuf == NULL)
-	{
-		pixbuf = gdk_pixbuf_new_from_file ("/usr/share/icons/hicolor/16x16/apps/devhelp.png", NULL);
-	}
-	
-	gchar *word = gsc_get_last_word (GTK_TEXT_VIEW (devhelp->priv->view));
-	
-	GList *items = g_completion_complete (devhelp->priv->completion, word, NULL);
-	GList *ret = NULL;
-	
-	for (; items; items = g_list_next(items))
-	{
-		DhLink *link = (DhLink *)items->data;
-		ret = g_list_prepend(ret, gtk_source_completion_item_new (link->name, pixbuf, link->uri));
-	}
+	g_list_foreach (devhelp->priv->proposals, (GFunc)g_object_ref, NULL);
 
-	g_free(word);
+	return g_list_copy (devhelp->priv->proposals);
+}
+
+static gboolean
+gsc_provider_devhelp_filter_proposal (GtkSourceCompletionProvider *provider,
+                                      GtkSourceCompletionProposal *proposal,
+                                      const gchar                 *criteria)
+{
+	const gchar *item;
 	
-	return g_list_reverse (ret);
+	item = gtk_source_completion_proposal_get_label (proposal);
+	return g_str_has_prefix (item, criteria);
+}
+
+static gboolean
+gsc_provider_devhelp_can_auto_complete (GtkSourceCompletionProvider *provider)
+{
+	return TRUE;
 }
 
 static void
 gsc_provider_devhelp_iface_init (GtkSourceCompletionProviderIface *iface)
 {
-	iface->get_name = gsc_provider_devhelp_real_get_name;
-	iface->get_proposals = gsc_provider_devhelp_real_get_proposals;
+	iface->get_name = gsc_provider_devhelp_get_name;
+	iface->get_proposals = gsc_provider_devhelp_get_proposals;
+	iface->can_auto_complete = gsc_provider_devhelp_can_auto_complete;
+	iface->filter_proposal = gsc_provider_devhelp_filter_proposal;
 }
 
 static void
 gsc_provider_devhelp_finalize (GObject *object)
 {
+	GscProviderDevhelp *provider = GSC_PROVIDER_DEVHELP (object);
+	
+	g_object_unref (provider->priv->dhbase);
+	g_list_foreach (provider->priv->proposals, (GFunc)g_object_unref, NULL);
+
 	G_OBJECT_CLASS (gsc_provider_devhelp_parent_class)->finalize (object);
 }
 
@@ -91,23 +94,29 @@ name_from_link (gpointer data)
 static void
 gsc_provider_devhelp_init (GscProviderDevhelp *self)
 {
+	GList *item;
+	GList *ret;
+	
 	self->priv = GSC_PROVIDER_DEVHELP_GET_PRIVATE (self);
 	
-	DhBase *base = dh_base_new ();
-	GList *keywords = dh_base_get_keywords (base);
+	self->priv->dhbase = dh_base_new ();
 	
-	self->priv->completion = g_completion_new (name_from_link);
-	g_completion_add_items (self->priv->completion, keywords);
+	ret = NULL;
 	
-	g_list_free (keywords);
-	g_object_unref (base);
+	for (item = dh_base_get_keywords (self->priv->dhbase); item; item = g_list_next (item))
+	{
+		DhLink *link = (DhLink *)item->data;
+		
+		ret = g_list_prepend (ret, gtk_source_completion_item_new (link->name, NULL, link->uri));
+	}
+	
+	self->priv->proposals = g_list_reverse (ret);
 }
 
 GscProviderDevhelp*
-gsc_provider_devhelp_new (GtkSourceView *view)
+gsc_provider_devhelp_new ()
 {
 	GscProviderDevhelp *ret = g_object_new (GSC_TYPE_PROVIDER_DEVHELP, NULL);
-	ret->priv->view = view;
 	
 	return ret;
 }

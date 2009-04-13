@@ -26,8 +26,6 @@
 #include <gtksourceview/gtksourceview.h>
 #include <gtksourceview/gtksourcecompletion.h>
 #include <gtksourceview/gtksourcecompletioninfo.h>
-#include <gtksourceview/gtksourcecompletiontriggerkey.h>
-#include <gtksourceview/gtksourcecompletiontriggerwords.h>
 
 #include <devhelp/dh-base.h>
 
@@ -47,16 +45,6 @@ typedef struct
 	GtkWidget *content;
 	GtkWidget *foot;
 } CustomWidget;
-
-static gboolean
-filter_func (GtkSourceCompletionProposal *proposal,
-	     gpointer user_data)
-{
-	const gchar *label;
-	
-	label = gtk_source_completion_proposal_get_label (proposal);
-	return g_str_has_prefix (label, "sp");
-}
 
 static void
 destroy_cb (GtkObject *object,
@@ -97,14 +85,7 @@ key_press (GtkWidget   *widget,
 	   GdkEventKey *event,
 	   gpointer     user_data)
 {
-	if (event->keyval == GDK_F9)
-	{
-		gtk_source_completion_filter_proposals (comp,
-							filter_func,
-							NULL);
-		return TRUE;
-	}
-	else if (event->keyval == GDK_F8)
+	if (event->keyval == GDK_F8)
 	{
 		GtkSourceCompletionInfo *gsc_info;
 		
@@ -178,35 +159,19 @@ create_window (void)
 static void
 create_completion(void)
 {
-	GscProviderTest *prov_test;
-	GscProviderDevhelp *prov_devhelp;
-	GtkSourceCompletionTriggerKey *ur_trigger;
-	GtkSourceCompletionTriggerWords *words_trigger;
-	GtkSourceCompletionPage *page;
+	GscProviderTest *prov_test1;
+	GscProviderTest *prov_test2;
+	//GscProviderDevhelp *prov_devhelp;
 	
 	comp = gtk_source_view_get_completion (GTK_SOURCE_VIEW (view));
-	page = gtk_source_completion_add_page (comp, "Second page");
 	
-	prov_test = gsc_provider_test_new (page);
-	prov_devhelp = gsc_provider_devhelp_new (GTK_SOURCE_VIEW (view));
+	prov_test1 = gsc_provider_test_new ("Test 1");
+	prov_test2 = gsc_provider_test_new ("Test 2");
+	//prov_devhelp = gsc_provider_devhelp_new ();
 	
-	
-	
-	ur_trigger = gtk_source_completion_trigger_key_new (comp, "Key Trigger");
-	
-	gtk_source_completion_add_provider (comp, GTK_SOURCE_COMPLETION_PROVIDER (prov_test),
-					    GTK_SOURCE_COMPLETION_TRIGGER (ur_trigger));
-
-	gtk_source_completion_add_provider (comp, GTK_SOURCE_COMPLETION_PROVIDER (prov_devhelp),
-					    GTK_SOURCE_COMPLETION_TRIGGER (ur_trigger));
-	
-	words_trigger = gtk_source_completion_trigger_words_new (comp);
-	
-	gtk_source_completion_add_provider (comp, GTK_SOURCE_COMPLETION_PROVIDER (prov_devhelp),
-					    GTK_SOURCE_COMPLETION_TRIGGER (words_trigger));
-	
-	gtk_source_completion_add_provider (comp, GTK_SOURCE_COMPLETION_PROVIDER (prov_test),
-					    GTK_SOURCE_COMPLETION_TRIGGER (words_trigger));
+	gtk_source_completion_add_provider (comp, GTK_SOURCE_COMPLETION_PROVIDER (prov_test1));
+	gtk_source_completion_add_provider (comp, GTK_SOURCE_COMPLETION_PROVIDER (prov_test2));
+	//gtk_source_completion_add_provider (comp, GTK_SOURCE_COMPLETION_PROVIDER (prov_devhelp));
 }
 
 int

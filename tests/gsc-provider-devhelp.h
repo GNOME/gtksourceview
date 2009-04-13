@@ -29,7 +29,7 @@ struct _GscProviderDevhelpClass {
 };
 
 GType gsc_provider_devhelp_get_type (void) G_GNUC_CONST;
-GscProviderDevhelp *gsc_provider_devhelp_new (GtkSourceView *view);
+GscProviderDevhelp *gsc_provider_devhelp_new (void);
 
 
 G_END_DECLS

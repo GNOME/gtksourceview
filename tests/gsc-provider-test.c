@@ -26,7 +26,7 @@ static void	 gsc_provider_test_iface_init	(GtkSourceCompletionProviderIface *ifa
 
 struct _GscProviderTestPrivate
 {
-	GtkSourceCompletionPage *page;
+	gchar *name;
 };
 
 G_DEFINE_TYPE_WITH_CODE (GscProviderTest,
@@ -36,36 +36,32 @@ G_DEFINE_TYPE_WITH_CODE (GscProviderTest,
 				 		gsc_provider_test_iface_init))
 
 static const gchar * 
-gsc_provider_test_real_get_name (GtkSourceCompletionProvider *self)
+gsc_provider_test_get_name (GtkSourceCompletionProvider *self)
 {
-	return GSC_PROVIDER_TEST_NAME;
+	return GSC_PROVIDER_TEST (self)->priv->name;
 }
 
 static GList *
-append_item (GList *list, const gchar *name, GdkPixbuf *icon, const gchar *info, GtkSourceCompletionPage *page)
+append_item (GList *list, const gchar *name, GdkPixbuf *icon, const gchar *info)
 {
 	GtkSourceCompletionItem *prop;
 	
 	prop = gtk_source_completion_item_new (name, icon, info);
-	g_object_set_data (G_OBJECT (prop), "GscProviderTestPage", page);
-
 	return g_list_append (list, prop);
 }
 
 static GList *
-gsc_provider_test_real_get_proposals (GtkSourceCompletionProvider *base,
-				      GtkSourceCompletionTrigger  *trigger)
+gsc_provider_test_get_proposals (GtkSourceCompletionProvider *base)
 {
-	GscProviderTest *self = GSC_PROVIDER_TEST (base);
 	GList *list = NULL;
 	
-	list = append_item (list, "Proposal 1.1", NULL, "Info proposal 1.1", NULL);
-	list = append_item (list, "Proposal 1.2", NULL, "Info proposal 1.2", NULL);
-	list = append_item (list, "Proposal 1.3", NULL, "Info proposal 1.3", NULL);
+	list = append_item (list, "Proposal 1.1", NULL, "Info proposal 1.1");
+	list = append_item (list, "Proposal 1.2", NULL, "Info proposal 1.2");
+	list = append_item (list, "Proposal 1.3", NULL, "Info proposal 1.3");
 	
-	list = append_item (list, "Proposal 2.1", NULL, "Info proposal 2.1", self->priv->page);
-	list = append_item (list, "Proposal 2.2", NULL, "Info proposal 2.2", self->priv->page);
-	list = append_item (list, "Proposal 2.3", NULL, "Info proposal 2.3", self->priv->page);
+	list = append_item (list, "Proposal 2.1", NULL, "Info proposal 2.1");
+	list = append_item (list, "Proposal 2.2", NULL, "Info proposal 2.2");
+	list = append_item (list, "Proposal 2.3", NULL, "Info proposal 2.3");
 
 	return list;
 }
@@ -73,6 +69,10 @@ gsc_provider_test_real_get_proposals (GtkSourceCompletionProvider *base,
 static void 
 gsc_provider_test_finalize (GObject *object)
 {
+	GscProviderTest *provider = GSC_PROVIDER_TEST (object);
+	
+	g_free (provider->priv->name);
+
 	G_OBJECT_CLASS (gsc_provider_test_parent_class)->finalize (object);
 }
 
@@ -87,19 +87,11 @@ gsc_provider_test_class_init (GscProviderTestClass *klass)
 	g_type_class_add_private (object_class, sizeof(GscProviderTestPrivate));
 }
 
-static GtkSourceCompletionPage *
-gsc_provider_test_real_get_page (GtkSourceCompletionProvider *provider,
-                                 GtkSourceCompletionProposal *proposal)
-{
-	return g_object_get_data (G_OBJECT (proposal), "GscProviderTestPage");
-}
-
 static void
 gsc_provider_test_iface_init (GtkSourceCompletionProviderIface *iface)
 {
-	iface->get_name = gsc_provider_test_real_get_name;
-	iface->get_proposals = gsc_provider_test_real_get_proposals;
-	iface->get_page = gsc_provider_test_real_get_page;
+	iface->get_name = gsc_provider_test_get_name;
+	iface->get_proposals = gsc_provider_test_get_proposals;
 }
 
 static void 
@@ -109,10 +101,10 @@ gsc_provider_test_init (GscProviderTest * self)
 }
 
 GscProviderTest *
-gsc_provider_test_new (GtkSourceCompletionPage *page)
+gsc_provider_test_new (const gchar *name)
 {
 	GscProviderTest *ret = g_object_new (GSC_TYPE_PROVIDER_TEST, NULL);
-	ret->priv->page = page;
 	
+	ret->priv->name = g_strdup (name);
 	return ret;
 }
