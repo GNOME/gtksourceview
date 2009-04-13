@@ -55,15 +55,29 @@ gsc_provider_test_get_proposals (GtkSourceCompletionProvider *base)
 {
 	GList *list = NULL;
 	
-	list = append_item (list, "Proposal 1.1", NULL, "Info proposal 1.1");
-	list = append_item (list, "Proposal 1.2", NULL, "Info proposal 1.2");
-	list = append_item (list, "Proposal 1.3", NULL, "Info proposal 1.3");
+	list = append_item (list, "aa", NULL, "Info proposal 1.1");
+	list = append_item (list, "ab", NULL, "Info proposal 1.2");
+	list = append_item (list, "bc", NULL, "Info proposal 1.3");
+	list = append_item (list, "bd", NULL, "Info proposal 1.3");
 	
-	list = append_item (list, "Proposal 2.1", NULL, "Info proposal 2.1");
-	list = append_item (list, "Proposal 2.2", NULL, "Info proposal 2.2");
-	list = append_item (list, "Proposal 2.3", NULL, "Info proposal 2.3");
-
 	return list;
+}
+
+static gboolean
+gsc_provider_test_filter_proposal (GtkSourceCompletionProvider *provider,
+                                   GtkSourceCompletionProposal *proposal,
+                                   const gchar                 *criteria)
+{
+	const gchar *label;
+	
+	label = gtk_source_completion_proposal_get_label (proposal);
+	return g_str_has_prefix (label, criteria);
+}
+
+static gboolean
+gsc_provider_test_can_auto_complete (GtkSourceCompletionProvider *provider)
+{
+	return TRUE;
 }
 
 static void 
@@ -92,6 +106,8 @@ gsc_provider_test_iface_init (GtkSourceCompletionProviderIface *iface)
 {
 	iface->get_name = gsc_provider_test_get_name;
 	iface->get_proposals = gsc_provider_test_get_proposals;
+	iface->filter_proposal = gsc_provider_test_filter_proposal;
+	iface->can_auto_complete = gsc_provider_test_can_auto_complete;
 }
 
 static void 

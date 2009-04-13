@@ -160,18 +160,15 @@ static void
 create_completion(void)
 {
 	GscProviderTest *prov_test1;
-	GscProviderTest *prov_test2;
-	//GscProviderDevhelp *prov_devhelp;
+	GscProviderDevhelp *prov_devhelp;
 	
 	comp = gtk_source_view_get_completion (GTK_SOURCE_VIEW (view));
 	
 	prov_test1 = gsc_provider_test_new ("Test 1");
-	prov_test2 = gsc_provider_test_new ("Test 2");
-	//prov_devhelp = gsc_provider_devhelp_new ();
+	prov_devhelp = gsc_provider_devhelp_new ();
 	
 	gtk_source_completion_add_provider (comp, GTK_SOURCE_COMPLETION_PROVIDER (prov_test1));
-	gtk_source_completion_add_provider (comp, GTK_SOURCE_COMPLETION_PROVIDER (prov_test2));
-	//gtk_source_completion_add_provider (comp, GTK_SOURCE_COMPLETION_PROVIDER (prov_devhelp));
+	gtk_source_completion_add_provider (comp, GTK_SOURCE_COMPLETION_PROVIDER (prov_devhelp));
 }
 
 int
@@ -190,5 +187,3 @@ main (int argc, char *argv[])
 	gtk_main ();
 	return 0;
 }
-
-

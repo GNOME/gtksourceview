@@ -69,7 +69,7 @@ gboolean	 gtk_source_completion_add_provider		(GtkSourceCompletion         *comp
 gboolean	 gtk_source_completion_remove_provider		(GtkSourceCompletion         *completion,
 								 GtkSourceCompletionProvider *provider);
 
-void		 gtk_source_completion_popup			(GtkSourceCompletion         *completion,
+gboolean	 gtk_source_completion_popup			(GtkSourceCompletion         *completion,
 								 GList                       *providers,
 								 const gchar                 *criteria);
 

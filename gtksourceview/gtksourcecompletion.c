@@ -33,6 +33,7 @@
 #include "gtksourceview-marshal.h"
 #include <gtksourceview/gtksourcecompletion.h>
 #include "gtksourceview-i18n.h"
+#include "gtksourcecompletionmodel.h"
 #include <string.h>
 #include <gtksourceview/gtksourceview.h>
 #include "gtksourcecompletion-private.h"
@@ -44,15 +45,6 @@
 #define GTK_SOURCE_COMPLETION_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object),\
 						  GTK_TYPE_SOURCE_COMPLETION,           \
 						  GtkSourceCompletionPrivate))
-
-enum
-{
-	COLUMN_PIXBUF,
-	COLUMN_NAME,
-	COLUMN_PROPOSAL,
-	COLUMN_PROVIDER,
-	N_COLUMNS
-};
 
 /* Signals */
 enum
@@ -93,8 +85,7 @@ struct _GtkSourceCompletionPrivate
 	GtkWidget *default_info;
 	
 	GtkWidget *tree_view_proposals;
-	GtkListStore *list_store_proposals;
-	GtkTreeModelFilter *model_filter_proposals;
+	GtkSourceCompletionModel *model_proposals;
 	
 	gboolean destroy_has_run;
 	gboolean manage_keys;
@@ -139,10 +130,10 @@ get_selected_proposal (GtkSourceCompletion          *completion,
 	
 	if (gtk_tree_selection_get_selected (selection, NULL, &piter))
 	{
-		model = GTK_TREE_MODEL (completion->priv->model_filter_proposals);
+		model = GTK_TREE_MODEL (completion->priv->model_proposals);
 		
 		gtk_tree_model_get (model, &piter,
-				    COLUMN_PROPOSAL,
+				    GTK_SOURCE_COMPLETION_MODEL_COLUMN_PROPOSAL,
 				    proposal, -1);
 		
 		if (iter != NULL)
@@ -198,7 +189,7 @@ select_proposal (GtkSourceCompletion *completion,
 		return FALSE;
 	}
 
-	model = GTK_TREE_MODEL (completion->priv->model_filter_proposals);
+	model = GTK_TREE_MODEL (completion->priv->model_proposals);
 	
 	hasselection = gtk_tree_selection_get_selected (selection, NULL, &iter);
 	
@@ -338,6 +329,20 @@ update_selection_label (GtkSourceCompletion *completion)
 	}
 }
 
+static void
+do_refilter (GtkSourceCompletion *completion,
+             gboolean             finish_if_empty)
+{
+	gtk_source_completion_model_refilter (completion->priv->model_proposals);
+	
+	/* Check if there are any proposals left */
+	if (finish_if_empty && 
+	    gtk_source_completion_model_is_empty (completion->priv->model_proposals))
+	{
+		gtk_source_completion_finish (completion);
+	}
+}
+
 typedef GList * (*ListSelector)(GList *);
 
 static gboolean
@@ -380,8 +385,8 @@ select_provider (GtkSourceCompletion *completion,
 		completion->priv->filter_provider = p1;
 	}
 	
-	update_selection_label (completion);	
-	gtk_tree_model_filter_refilter (completion->priv->model_filter_proposals);
+	update_selection_label (completion);
+	do_refilter (completion, FALSE);	
 	
 	return TRUE;
 }
@@ -441,23 +446,12 @@ update_info_position (GtkSourceCompletion *completion)
 }
 
 static gboolean
-proposals_filter_func (GtkTreeModel        *model,
-                       GtkTreeIter         *iter,
-                       GtkSourceCompletion *completion)
+proposals_filter_func (GtkSourceCompletionModel    *model,
+                       GtkSourceCompletionProvider *provider,
+                       GtkSourceCompletionProposal *proposal,
+                       GtkSourceCompletion         *completion)
 {
-	GtkSourceCompletionProvider *provider;
-	GtkSourceCompletionProposal *proposal;
 	gboolean ret;
-	
-	gtk_tree_model_get (model, iter,
-	                    COLUMN_PROVIDER, &provider,
-	                    COLUMN_PROPOSAL, &proposal,
-	                    -1);
-	
-	if (provider == NULL)
-	{
-		return TRUE;
-	}
 	
 	/* Filter on provider */
 	if (completion->priv->filter_provider != NULL &&
@@ -476,11 +470,7 @@ proposals_filter_func (GtkTreeModel        *model,
 	                                                              completion->priv->filter_criteria);
 	}
 	
-	g_object_unref (provider);
-	g_object_unref (proposal);
-	
 	return ret;
-
 }
 
 static void
@@ -535,8 +525,8 @@ update_proposal_info (GtkSourceCompletion *completion)
 	
 	if (get_selected_proposal (completion, &iter, &proposal))
 	{
-		model = GTK_TREE_MODEL (completion->priv->model_filter_proposals);
-		gtk_tree_model_get (model, &iter, COLUMN_PROVIDER, &provider, -1);
+		model = GTK_TREE_MODEL (completion->priv->model_proposals);
+		gtk_tree_model_get (model, &iter, GTK_SOURCE_COMPLETION_MODEL_COLUMN_PROVIDER, &provider, -1);
 		
 		update_proposal_info_real (completion, provider, proposal);
 		
@@ -566,14 +556,10 @@ add_proposal (GtkSourceCompletion         *completion,
 {
 	GtkTreeIter iter;
 
-	gtk_list_store_append (completion->priv->list_store_proposals, &iter);
-	gtk_list_store_set (completion->priv->list_store_proposals, 
-			    &iter,
-			    COLUMN_PIXBUF, gtk_source_completion_proposal_get_icon (proposal),
-			    COLUMN_NAME, gtk_source_completion_proposal_get_label (proposal),
-			    COLUMN_PROPOSAL, proposal,
-			    COLUMN_PROVIDER, provider,
-			    -1);
+	gtk_source_completion_model_append (completion->priv->model_proposals,
+	                                    provider,
+	                                    proposal,
+	                                    &iter);
 }
 
 static void
@@ -663,7 +649,7 @@ gtk_source_completion_finish_real (GtkSourceCompletion *completion)
 
 	gtk_label_set_markup (GTK_LABEL (completion->priv->default_info), "");
 
-	gtk_list_store_clear (completion->priv->list_store_proposals);
+	gtk_source_completion_model_clear (completion->priv->model_proposals);
 
 	g_list_free (completion->priv->active_providers);
 	completion->priv->active_providers = NULL;
@@ -814,6 +800,7 @@ view_key_press_event_cb (GtkSourceView       *view,
 					!gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (completion->priv->info_button)));
 				ret = TRUE;
 			}
+			break;
 		}
 		case GDK_Left:
 		{
@@ -845,8 +832,25 @@ refilter_proposals_with_word (GtkSourceCompletion *completion)
 	
 	completion->priv->filter_criteria = 
 		gtk_source_completion_utils_get_word (GTK_SOURCE_BUFFER (gtk_text_view_get_buffer (view)));
+	
+	do_refilter (completion, TRUE);
+}
 
-	gtk_tree_model_filter_refilter (completion->priv->model_filter_proposals);
+static void
+update_typing_offsets (GtkSourceCompletion *completion)
+{
+	GtkTextBuffer *buffer;
+	GtkTextMark *mark;
+	GtkTextIter iter;
+
+	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (completion->priv->view));
+	mark = gtk_text_buffer_get_insert (buffer);
+
+	/* Check if the user has changed the cursor position.If yes, we don't complete */
+	gtk_text_buffer_get_iter_at_mark (buffer, &iter, mark);
+
+	completion->priv->typing_line = gtk_text_iter_get_line (&iter);
+	completion->priv->typing_line_offset = gtk_text_iter_get_line_offset (&iter);
 }
 
 static gboolean
@@ -924,19 +928,21 @@ buffer_insert_text_cb (GtkTextBuffer       *buffer,
 	
 	if (!GTK_WIDGET_VISIBLE (completion))
 	{
-		completion->priv->typing_line = gtk_text_iter_get_line (location);
-		completion->priv->typing_line_offset = gtk_text_iter_get_line_offset (location);
-
-		if (completion->priv->show_timed_out_id != 0)
+		if (completion->priv->auto_providers != NULL)
 		{
-			g_source_remove (completion->priv->show_timed_out_id);
-			completion->priv->show_timed_out_id = 0;
-		}
+			update_typing_offsets (completion);
+		
+			if (completion->priv->show_timed_out_id != 0)
+			{
+				g_source_remove (completion->priv->show_timed_out_id);
+				completion->priv->show_timed_out_id = 0;
+			}
 
-		completion->priv->show_timed_out_id = 
-			g_timeout_add (completion->priv->auto_complete_delay,
-			               (GSourceFunc)show_auto_completion,
-			               completion);
+			completion->priv->show_timed_out_id = 
+				g_timeout_add (completion->priv->auto_complete_delay,
+					       (GSourceFunc)show_auto_completion,
+					       completion);
+		}
 	}
 	else
 	{
@@ -1265,26 +1271,15 @@ initialize_proposals_ui (GtkSourceCompletion *completion)
 {
 	GtkCellRenderer *renderer;
 	GtkTreeViewColumn *column;
-	GtkTreeModel *model;
 	GtkTreeSelection *selection;
 	GtkWidget *scrolled_window;
 	GtkWidget *tree_view;
 	
-	completion->priv->list_store_proposals = gtk_list_store_new (N_COLUMNS,
-					                             GDK_TYPE_PIXBUF, 
-					                             G_TYPE_STRING, 
-					                             G_TYPE_OBJECT, 
-					                             G_TYPE_OBJECT);
+	completion->priv->model_proposals = 
+		gtk_source_completion_model_new ((GtkSourceCompletionModelVisibleFunc)proposals_filter_func, 
+		                                 completion);
 
-	model = gtk_tree_model_filter_new (GTK_TREE_MODEL (completion->priv->list_store_proposals), NULL);
-	completion->priv->model_filter_proposals = GTK_TREE_MODEL_FILTER (model);
-
-	gtk_tree_model_filter_set_visible_func (completion->priv->model_filter_proposals,
-						(GtkTreeModelFilterVisibleFunc)proposals_filter_func,
-						completion,
-						NULL);
-
-	tree_view = gtk_tree_view_new_with_model (model);
+	tree_view = gtk_tree_view_new_with_model (GTK_TREE_MODEL (completion->priv->model_proposals));
 	completion->priv->tree_view_proposals = tree_view;
 	
 	gtk_widget_show (tree_view);
@@ -1297,12 +1292,12 @@ initialize_proposals_ui (GtkSourceCompletion *completion)
 	renderer = gtk_cell_renderer_pixbuf_new ();
 	
 	gtk_tree_view_column_pack_start (column, renderer, FALSE);
-	gtk_tree_view_column_set_attributes (column, renderer, "pixbuf", COLUMN_PIXBUF, NULL);
+	gtk_tree_view_column_set_attributes (column, renderer, "pixbuf", GTK_SOURCE_COMPLETION_MODEL_COLUMN_ICON, NULL);
 	
 	renderer = gtk_cell_renderer_text_new ();
 	gtk_tree_view_column_pack_start (column, renderer, TRUE);
 
-	gtk_tree_view_column_set_attributes (column, renderer, "text", COLUMN_NAME, NULL);
+	gtk_tree_view_column_set_attributes (column, renderer, "text", GTK_SOURCE_COMPLETION_MODEL_COLUMN_LABEL, NULL);
 	gtk_tree_view_append_column (GTK_TREE_VIEW (tree_view), column);
 
 	g_signal_connect (tree_view,
@@ -1469,7 +1464,7 @@ add_proposals (GtkSourceCompletion         *completion,
 	g_list_free (proposals);
 }
 
-void
+gboolean
 gtk_source_completion_popup (GtkSourceCompletion *completion,
                              GList               *providers,
                              const gchar         *criteria)
@@ -1477,7 +1472,7 @@ gtk_source_completion_popup (GtkSourceCompletion *completion,
 	GList *l;
 	gint x, y;
 
-	g_return_if_fail (GTK_IS_SOURCE_COMPLETION (completion));
+	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION (completion), FALSE);
 	
 	/* Make sure to clear any active completion */
 	gtk_source_completion_finish_real (completion);
@@ -1491,10 +1486,11 @@ gtk_source_completion_popup (GtkSourceCompletion *completion,
 	if (providers == NULL)
 	{
 		gtk_source_completion_finish (completion);
-		return;
+		return FALSE;
 	}
 	
 	completion->priv->filter_criteria = g_strdup (criteria);
+	update_typing_offsets (completion);
 	
 	/* Make sure all providers are ours */
 	for (l = providers; l; l = g_list_next (l))
@@ -1512,6 +1508,13 @@ gtk_source_completion_popup (GtkSourceCompletion *completion,
 	
 	completion->priv->active_providers = 
 		g_list_reverse (completion->priv->active_providers);
+	
+	/* Check if there are any completions */
+	if (gtk_source_completion_model_is_empty (completion->priv->model_proposals))
+	{
+		gtk_source_completion_finish (completion);
+		return FALSE;
+	}
 
 	update_selection_label (completion);	
 
@@ -1529,6 +1532,8 @@ gtk_source_completion_popup (GtkSourceCompletion *completion,
 	{
 		select_first_proposal (completion);
 	}
+	
+	return TRUE;
 }
 
 /**
