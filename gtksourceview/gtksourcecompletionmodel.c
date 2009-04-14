@@ -845,20 +845,20 @@ guint
 gtk_source_completion_model_n_proposals (GtkSourceCompletionModel    *model,
                                          GtkSourceCompletionProvider *provider)
 {
-	guint *num;
+	HeaderInfo *info;
 	
 	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_MODEL (model), 0);
 	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_PROVIDER (provider), 0);
 	
-	num = g_hash_table_lookup (model->priv->num_per_provider, provider);
+	info = g_hash_table_lookup (model->priv->num_per_provider, provider);
 	
-	if (num == NULL)
+	if (info == NULL)
 	{
 		return 0;
 	}
 	else
 	{
-		return *num;
+		return info->num;
 	}
 }
 

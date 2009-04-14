@@ -407,23 +407,19 @@ select_next_proposal (GtkSourceCompletion *completion,
 }
 
 static void
-update_selection_label (GtkSourceCompletion *completion)
+get_num_visible_providers (GtkSourceCompletion *completion,
+                           guint               *num,
+                           guint               *current)
 {
 	GList *item;
-	gint pos = 1;
-	gint num = 1;
-	gint idx = 1;
-	gchar *name;
-	gchar *tmp;
+	*num = 0;
+	*current = 0;
 	
 	for (item = completion->priv->active_providers; item; item = g_list_next (item))
 	{
-		++idx;
-
 		if (item->data == completion->priv->filter_provider)
 		{
-			pos = idx;
-			++num;
+			*current = ++*num;
 		}
 		else
 		{
@@ -431,10 +427,21 @@ update_selection_label (GtkSourceCompletion *completion)
 			if (gtk_source_completion_model_n_proposals (completion->priv->model_proposals,
 			                                             GTK_SOURCE_COMPLETION_PROVIDER (item->data)))
 			{
-				++num;
+				++*num;
 			}
 		}
 	}
+}
+
+static void
+update_selection_label (GtkSourceCompletion *completion)
+{
+	guint pos;
+	guint num;
+	gchar *name;
+	gchar *tmp;
+	
+	get_num_visible_providers (completion, &num, &pos);
 	
 	if (completion->priv->filter_provider == NULL)
 	{
@@ -454,7 +461,7 @@ update_selection_label (GtkSourceCompletion *completion)
 	
 	if (num > 1)
 	{
-		tmp = g_strdup_printf ("%s (%d/%d)", name, pos, num);
+		tmp = g_strdup_printf ("%s (%d/%d)", name, pos + 1, num + 1);
 		gtk_label_set_markup (GTK_LABEL (completion->priv->selection_label),
 		                      tmp);
 		g_free (tmp);
@@ -497,10 +504,29 @@ select_provider (GtkSourceCompletion *completion,
 	GList *orig;
 	GList *current;
 	GtkSourceCompletionProvider *provider;
-
+	guint num;
+	guint pos;
+	
 	/* If there is only one provider, then there is no other selection */
 	if (completion->priv->active_providers->next == NULL)
 	{
+		return FALSE;
+	}
+	
+	get_num_visible_providers (completion, &num, &pos);
+	
+	if (num <= 1)
+	{
+		if (completion->priv->filter_provider != NULL)
+		{
+			completion->priv->filter_provider = NULL;
+			
+			update_selection_label (completion);
+			do_refilter (completion, FALSE);
+			
+			return TRUE;
+		}
+
 		return FALSE;
 	}
 
