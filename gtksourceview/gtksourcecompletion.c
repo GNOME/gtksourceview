@@ -79,6 +79,7 @@ enum
 struct _GtkSourceCompletionPrivate
 {
 	/* Widget and popup variables*/
+	GtkWidget *window;
 	GtkWidget *info_window;
 	GtkWidget *info_button;
 	GtkWidget *selection_label;
@@ -118,7 +119,7 @@ struct _GtkSourceCompletionPrivate
 
 static guint signals[LAST_SIGNAL] = { 0 };
 
-G_DEFINE_TYPE(GtkSourceCompletion, gtk_source_completion, GTK_TYPE_WINDOW);
+G_DEFINE_TYPE(GtkSourceCompletion, gtk_source_completion, G_TYPE_OBJECT);
 
 static gboolean
 get_selected_proposal (GtkSourceCompletion          *completion,
@@ -628,11 +629,12 @@ update_info_position (GtkSourceCompletion *completion)
 	gint info_width;
 	GdkScreen *screen;
 	
-	gtk_window_get_position (GTK_WINDOW (completion), &x, &y);
-	gtk_window_get_size (GTK_WINDOW (completion), &width, &height);
+	gtk_window_get_position (GTK_WINDOW (completion->priv->window), &x, &y);
+	gtk_window_get_size (GTK_WINDOW (completion->priv->window),
+			     &width, &height);
 	gtk_window_get_size (GTK_WINDOW (completion->priv->info_window), &info_width, NULL);
 
-	screen = gtk_window_get_screen (GTK_WINDOW (completion));
+	screen = gtk_window_get_screen (GTK_WINDOW (completion->priv->window));
 	sw = gdk_screen_get_width (screen);
 	sh = gdk_screen_get_height (screen);
 	
@@ -794,24 +796,6 @@ add_proposal (GtkSourceCompletion         *completion,
 }
 
 static void
-gtk_source_completion_show (GtkWidget *widget)
-{
-	/* Only show the popup, the positions is set before this function */
-	GtkSourceCompletion *completion = GTK_SOURCE_COMPLETION (widget);
-
-	if (!GTK_WIDGET_VISIBLE (completion))
-	{
-		GTK_WIDGET_CLASS (gtk_source_completion_parent_class)->show (widget);
-		
-		if (!completion->priv->remember_info_visibility)
-			completion->priv->info_visible = FALSE;
-		
-		gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (completion->priv->info_button),
-					      completion->priv->info_visible);
-	}
-}
-
-static void
 info_toggled_cb (GtkToggleButton     *widget,
 		 GtkSourceCompletion *completion)
 {
@@ -829,7 +813,7 @@ static void
 show_info_cb (GtkWidget           *widget,
 	      GtkSourceCompletion *completion)
 {
-	g_return_if_fail (GTK_WIDGET_VISIBLE (GTK_WIDGET (completion)));
+	g_return_if_fail (GTK_WIDGET_VISIBLE (GTK_WIDGET (completion->priv->window)));
 	
 	update_info_position (completion);
 	update_proposal_info (completion);
@@ -842,7 +826,7 @@ static void
 show_info_after_cb (GtkWidget           *widget,
 	            GtkSourceCompletion *completion)
 {
-	g_return_if_fail (GTK_WIDGET_VISIBLE (GTK_WIDGET (completion)));
+	g_return_if_fail (GTK_WIDGET_VISIBLE (GTK_WIDGET (completion->priv->window)));
 	
 	/* We do this here because GtkLabel does not properly handle
 	 * can-focus = FALSE and selects all the text when it gets focus from
@@ -888,47 +872,31 @@ gtk_source_completion_finish_real (GtkSourceCompletion *completion)
 	g_free (completion->priv->filter_criteria);
 	completion->priv->filter_criteria = NULL;
 	
-	gtk_widget_hide (GTK_WIDGET (completion->priv->info_window));
-}
-
-static void
-gtk_source_completion_hide (GtkWidget *widget)
-{
-	GtkSourceCompletion *completion = GTK_SOURCE_COMPLETION (widget);
-
 	completion->priv->info_visible = GTK_WIDGET_VISIBLE (completion->priv->info_window);
-
-	GTK_WIDGET_CLASS (gtk_source_completion_parent_class)->hide (widget);	
-
-	gtk_source_completion_finish_real (completion);
+	
+	gtk_widget_hide (completion->priv->info_window);
+	gtk_widget_hide (completion->priv->window);
 }
 
 static void
-gtk_source_completion_realize (GtkWidget *widget)
+gtk_source_completion_realize (GtkWidget *widget,
+			       GtkSourceCompletion *completion)
 {
-	GtkSourceCompletion *completion = GTK_SOURCE_COMPLETION (widget);
-	
-	gtk_container_set_border_width (GTK_CONTAINER (completion), 1);
-	gtk_widget_set_size_request (GTK_WIDGET (completion),
+	gtk_container_set_border_width (GTK_CONTAINER (completion->priv->window), 1);
+	gtk_widget_set_size_request (GTK_WIDGET (completion->priv->window),
 				     WINDOW_WIDTH, WINDOW_HEIGHT);
-	gtk_window_set_resizable (GTK_WINDOW (completion), TRUE);
-	
-	GTK_WIDGET_CLASS (gtk_source_completion_parent_class)->realize (widget);
+	gtk_window_set_resizable (GTK_WINDOW (completion->priv->window), TRUE);
 }
 
 static gboolean
 gtk_source_completion_configure_event (GtkWidget *widget,
-				       GdkEventConfigure *event)
+				       GdkEventConfigure *event,
+				       GtkSourceCompletion *completion)
 {
-	GtkSourceCompletion *completion = GTK_SOURCE_COMPLETION (widget);
-	gboolean ret;
-	
-	ret = GTK_WIDGET_CLASS (gtk_source_completion_parent_class)->configure_event (widget, event);
-	
-	if (ret && GTK_WIDGET_VISIBLE (completion->priv->info_window))
+	if (GTK_WIDGET_VISIBLE (completion->priv->info_window))
 		update_info_position (completion);
 	
-	return ret;
+	return FALSE;
 }
 
 static gboolean
@@ -938,7 +906,8 @@ view_focus_out_event_cb (GtkWidget *widget,
 {
 	GtkSourceCompletion *completion = GTK_SOURCE_COMPLETION (user_data);
 	
-	if (GTK_WIDGET_VISIBLE (completion) && !GTK_WIDGET_HAS_FOCUS (completion))
+	if (GTK_WIDGET_VISIBLE (completion->priv->window)
+	    && !GTK_WIDGET_HAS_FOCUS (completion->priv->window))
 	{
 		gtk_source_completion_finish (completion);
 	}
@@ -953,7 +922,7 @@ view_button_press_event_cb (GtkWidget      *widget,
 {
 	GtkSourceCompletion *completion = GTK_SOURCE_COMPLETION (user_data);
 	
-	if (GTK_WIDGET_VISIBLE (completion))
+	if (GTK_WIDGET_VISIBLE (completion->priv->window))
 	{
 		gtk_source_completion_finish (completion);
 	}
@@ -971,7 +940,8 @@ view_key_press_event_cb (GtkSourceView       *view,
 	
 	mod = gtk_accelerator_get_default_mod_mask () & event->state;
 	
-	if (!GTK_WIDGET_VISIBLE (completion) || !completion->priv->manage_keys)
+	if (!GTK_WIDGET_VISIBLE (completion->priv->window)
+	    || !completion->priv->manage_keys)
 	{
 		return FALSE;
 	}
@@ -980,7 +950,7 @@ view_key_press_event_cb (GtkSourceView       *view,
  	{
 		case GDK_Escape:
 		{
-			gtk_widget_hide (GTK_WIDGET (completion));
+			gtk_source_completion_finish (completion);
 			ret = TRUE;
 			break;
 		}
@@ -1020,7 +990,7 @@ view_key_press_event_cb (GtkSourceView       *view,
 		case GDK_Tab:
 		{
 			ret = activate_current_proposal (completion);
-			gtk_widget_hide (GTK_WIDGET (completion));
+			gtk_source_completion_finish (completion);
 			break;
 		}
 		case GDK_i:
@@ -1090,7 +1060,7 @@ buffer_delete_range_cb (GtkTextBuffer       *buffer,
                         GtkTextIter         *end,
                         GtkSourceCompletion *completion)
 {
-	if (!GTK_WIDGET_VISIBLE (completion))
+	if (!GTK_WIDGET_VISIBLE (completion->priv->window))
 	{
 		return FALSE;
 	}
@@ -1153,11 +1123,11 @@ buffer_insert_text_cb (GtkTextBuffer       *buffer,
 	/* Only handle typed text */
 	if (len > 1)
 	{
-		gtk_source_completion_finish (completion);		
+		gtk_source_completion_finish (completion);
 		return;
 	}
 	
-	if (!GTK_WIDGET_VISIBLE (completion))
+	if (!GTK_WIDGET_VISIBLE (completion->priv->window))
 	{
 		if (completion->priv->auto_providers != NULL)
 		{
@@ -1252,6 +1222,22 @@ connect_view (GtkSourceCompletion *completion)
 }
 
 static void
+gtk_source_completion_dispose (GObject *object)
+{
+	GtkSourceCompletion *completion = GTK_SOURCE_COMPLETION (object);
+	
+	if (completion->priv->view != NULL)
+	{
+		disconnect_view (completion);
+		g_object_unref (completion->priv->view);
+		
+		completion->priv->view = NULL;
+	}
+	
+	G_OBJECT_CLASS (gtk_source_completion_parent_class)->dispose (object);
+}
+
+static void
 gtk_source_completion_finalize (GObject *object)
 {
 	GtkSourceCompletion *completion = GTK_SOURCE_COMPLETION (object);
@@ -1261,28 +1247,15 @@ gtk_source_completion_finalize (GObject *object)
 		g_source_remove (completion->priv->show_timed_out_id);
 	}
 	
-	g_free (completion->priv->filter_criteria);
-	
-	G_OBJECT_CLASS (gtk_source_completion_parent_class)->finalize (object);
-}
-
-static void
-gtk_source_completion_destroy (GtkObject *object)
-{
-	GtkSourceCompletion *completion = GTK_SOURCE_COMPLETION (object);
-	
-	if (!completion->priv->destroy_has_run)
+	if (completion->priv->providers != NULL)
 	{
 		g_list_foreach (completion->priv->providers, (GFunc)g_object_unref, NULL);
 		g_list_free (completion->priv->providers);
-		
-		disconnect_view (completion);
-		g_object_unref (completion->priv->view);
-
-		completion->priv->destroy_has_run = TRUE;
 	}
-
-	GTK_OBJECT_CLASS (gtk_source_completion_parent_class)->destroy (object);
+	
+	g_free (completion->priv->filter_criteria);
+	
+	G_OBJECT_CLASS (gtk_source_completion_parent_class)->finalize (object);
 }
 
 static void
@@ -1379,21 +1352,13 @@ static void
 gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 {
 	GObjectClass *object_class = G_OBJECT_CLASS (klass);
-	GtkObjectClass *gtkobject_class = GTK_OBJECT_CLASS (klass);
-	GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
 	
 	g_type_class_add_private (klass, sizeof (GtkSourceCompletionPrivate));
 	
 	object_class->get_property = gtk_source_completion_get_property;
 	object_class->set_property = gtk_source_completion_set_property;
 	object_class->finalize = gtk_source_completion_finalize;
-	
-	gtkobject_class->destroy = gtk_source_completion_destroy;
-	
-	widget_class->show = gtk_source_completion_show;
-	widget_class->hide = gtk_source_completion_hide;
-	widget_class->realize = gtk_source_completion_realize;
-	widget_class->configure_event = gtk_source_completion_configure_event;
+	object_class->dispose = gtk_source_completion_dispose;
 
 	klass->proposal_activated = gtk_source_completion_proposal_activated_default;
 
@@ -1515,11 +1480,12 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 }
 
 static void
-update_transient_for_info (GtkSourceCompletion *completion,
-                           GParamSpec          *spec)
+update_transient_for_info (GObject             *window,
+                           GParamSpec          *spec,
+                           GtkSourceCompletion *completion)
 {
 	gtk_window_set_transient_for (GTK_WINDOW (completion->priv->info_window),
-				      gtk_window_get_transient_for (GTK_WINDOW (completion)));
+				      gtk_window_get_transient_for (GTK_WINDOW (completion->priv->window)));
 
 }
 
@@ -1670,7 +1636,7 @@ initialize_proposals_ui (GtkSourceCompletion *completion)
 	gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (tree_view), FALSE);
 	
 	/* Create the tree */
-	column = gtk_tree_view_column_new ();	
+	column = gtk_tree_view_column_new ();
 	renderer = gtk_cell_renderer_pixbuf_new ();
 	
 	gtk_tree_view_column_pack_start (column, renderer, FALSE);
@@ -1728,10 +1694,16 @@ initialize_ui (GtkSourceCompletion *completion)
 	GtkWidget *vbox;
 	GtkWidget *container;
 
-	gtk_window_set_type_hint (GTK_WINDOW (completion), GDK_WINDOW_TYPE_HINT_NORMAL);
-	gtk_window_set_focus_on_map (GTK_WINDOW (completion), FALSE);
-	gtk_widget_set_size_request (GTK_WIDGET (completion), WINDOW_WIDTH, WINDOW_HEIGHT);
-	gtk_window_set_decorated (GTK_WINDOW (completion), FALSE);
+	/* Window */
+	completion->priv->window = gtk_window_new (GTK_WINDOW_POPUP);
+
+	gtk_window_set_type_hint (GTK_WINDOW (completion->priv->window),
+				  GDK_WINDOW_TYPE_HINT_NORMAL);
+	gtk_window_set_focus_on_map (GTK_WINDOW (completion->priv->window),
+				     FALSE);
+	gtk_widget_set_size_request (GTK_WIDGET (completion->priv->window),
+				     WINDOW_WIDTH, WINDOW_HEIGHT);
+	gtk_window_set_decorated (GTK_WINDOW (completion->priv->window), FALSE);
 
 	/* Bottom bar */
 	completion->priv->bottom_bar = gtk_hbox_new (FALSE, 1);
@@ -1795,7 +1767,7 @@ initialize_ui (GtkSourceCompletion *completion)
 	                  FALSE, 
 	                  0);
 
-	gtk_container_add (GTK_CONTAINER (completion), vbox);
+	gtk_container_add (GTK_CONTAINER (completion->priv->window), vbox);
 
 	/* Info window */
 	completion->priv->info_window = GTK_WIDGET (gtk_source_completion_info_new ());
@@ -1803,10 +1775,10 @@ initialize_ui (GtkSourceCompletion *completion)
 	                             500,
 	                             400);
 	                             
-	g_signal_connect (completion, 
+	g_signal_connect (completion->priv->window, 
 	                  "notify::transient-for",
 	                  G_CALLBACK (update_transient_for_info),
-	                  NULL);
+	                  completion);
 
 	/* Default info widget */
 	completion->priv->default_info = gtk_label_new (NULL);
@@ -1819,7 +1791,17 @@ initialize_ui (GtkSourceCompletion *completion)
 	                                       completion->priv->default_info);
 
 	/* Connect signals */
-	g_signal_connect (completion,
+	g_signal_connect_after (completion->priv->window,
+				"configure-event",
+				G_CALLBACK (gtk_source_completion_configure_event),
+				completion);
+	
+	g_signal_connect (completion->priv->window,
+			  "realize",
+			  G_CALLBACK (gtk_source_completion_realize),
+			  completion);
+	
+	g_signal_connect (completion->priv->window,
 			  "delete-event",
 			  G_CALLBACK (gtk_widget_hide_on_delete),
 			  NULL);
@@ -1923,16 +1905,25 @@ gtk_source_completion_popup (GtkSourceCompletion *completion,
 		return FALSE;
 	}
 
-	update_selection_label (completion);	
+	update_selection_label (completion);
 
 	/* FIXME: Maybe support are types of positioning */
-	gtk_source_completion_utils_get_pos_at_cursor (GTK_WINDOW (completion),
+	gtk_source_completion_utils_get_pos_at_cursor (GTK_WINDOW (completion->priv->window),
 						       GTK_SOURCE_VIEW (completion->priv->view),
 						       &x, &y, NULL);
 
-	gtk_window_move (GTK_WINDOW (completion), x, y);
+	gtk_window_move (GTK_WINDOW (completion->priv->window), x, y);
 	
-	gtk_widget_show (GTK_WIDGET (completion));
+	if (!GTK_WIDGET_VISIBLE (completion->priv->window))
+	{
+		if (!completion->priv->remember_info_visibility)
+			completion->priv->info_visible = FALSE;
+		
+		gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (completion->priv->info_button),
+					      completion->priv->info_visible);
+	}
+	
+	gtk_widget_show (GTK_WIDGET (completion->priv->window));
 	gtk_widget_grab_focus (GTK_WIDGET (completion->priv->view));
 
 	if (completion->priv->select_on_show)
@@ -1957,7 +1948,6 @@ gtk_source_completion_new (GtkTextView *view)
 	g_return_val_if_fail (GTK_IS_SOURCE_VIEW (view), NULL);
 
 	return g_object_new (GTK_TYPE_SOURCE_COMPLETION,
-	                    "type", GTK_WINDOW_POPUP,
 	                    "view", view,
 	                    NULL);
 }
@@ -2051,9 +2041,9 @@ gtk_source_completion_finish (GtkSourceCompletion *completion)
 	g_return_if_fail (GTK_IS_SOURCE_COMPLETION (completion));
 	
 	/* Hiding the completion window will trigger the actual finish */
-	if (GTK_WIDGET_VISIBLE (completion))
+	if (GTK_WIDGET_VISIBLE (completion->priv->window))
 	{
-		gtk_widget_hide (GTK_WIDGET (completion));
+		gtk_source_completion_finish_real (completion);
 	}
 }
 

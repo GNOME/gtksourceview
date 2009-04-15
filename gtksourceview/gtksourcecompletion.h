@@ -48,14 +48,14 @@ struct _GtkSourceView;
 
 struct _GtkSourceCompletion
 {
-	GtkWindow parent;
+	GObject parent;
 
 	GtkSourceCompletionPrivate *priv;
 };
 
 struct _GtkSourceCompletionClass
 {
-	GtkWindowClass parent_class;
+	GObjectClass parent_class;
 
 	gboolean (* proposal_activated)		(GtkSourceCompletion         *completion,
 						 GtkSourceCompletionProposal *proposal);

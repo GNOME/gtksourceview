@@ -4010,7 +4010,8 @@ gtk_source_view_destroy (GtkObject *object)
 
 		if (view->priv->completion != NULL)
 		{
-			gtk_widget_destroy (GTK_WIDGET (view->priv->completion));
+			g_object_unref (view->priv->completion);
+			view->priv->completion = NULL;
 		}
 	}
 
