@@ -32,6 +32,13 @@ a text view which syntax highlighting, undo/redo and text marks. Use a
 
 @sourceview: the object which received the signal.
 
+<!-- ##### SIGNAL GtkSourceView::show-completion ##### -->
+<para>
+
+</para>
+
+@sourceview: the object which received the signal.
+
 <!-- ##### SIGNAL GtkSourceView::undo ##### -->
 <para>
 
@@ -40,6 +47,11 @@ a text view which syntax highlighting, undo/redo and text marks. Use a
 @sourceview: the object which received the signal.
 
 <!-- ##### ARG GtkSourceView:auto-indent ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GtkSourceView:completion ##### -->
 <para>
 
 </para>
@@ -107,10 +119,10 @@ a text view which syntax highlighting, undo/redo and text marks. Use a
 @parent_class: 
 @undo: 
 @redo: 
+@show_completion: 
 @_gtk_source_reserved1: 
 @_gtk_source_reserved2: 
 @_gtk_source_reserved3: 
-@_gtk_source_reserved4: 
 
 <!-- ##### ENUM GtkSourceSmartHomeEndType ##### -->
 <para>

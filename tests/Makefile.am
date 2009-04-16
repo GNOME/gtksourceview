@@ -25,8 +25,6 @@ test_completion_SOURCES =		\
         completion-simple.c		\
         gsc-provider-test.h		\
         gsc-provider-test.c		\
-        gsc-provider-devhelp.h		\
-        gsc-provider-devhelp.c		\
 	gsc-utils-test.c		\
 	gsc-utils-test.h
 
@@ -34,6 +32,13 @@ test_completion_LDADD = 			\
 	$(top_builddir)/gtksourceview/libgtksourceview-2.0.la \
 	$(DEP_LIBS)                     \
 	$(TESTS_LIBS)
+
+if USE_DEVHELP
+test_completion_SOURCES += gsc-provider-devhelp.h gsc-provider-devhelp.c
+test_completion_LDADD += $(DEVHELP_LIBS)
+INCLUDES += $(DEVHELP_CFLAGS)
+endif
+
 
 testregion_SOURCES = testregion.c
 

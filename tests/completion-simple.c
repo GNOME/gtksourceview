@@ -21,17 +21,21 @@
  * 	Boston, MA  02110-1301, USA.
  */
 
+#include <config.h>
+
 #include <gtk/gtk.h>
 #include <gdk/gdkkeysyms.h>
 #include <gtksourceview/gtksourceview.h>
 #include <gtksourceview/gtksourcecompletion.h>
 #include <gtksourceview/gtksourcecompletioninfo.h>
 
-#include <devhelp/dh-base.h>
-
 #include "gsc-utils-test.h"
 #include "gsc-provider-test.h"
+
+#ifdef HAVE_DEVHELP
+#include <devhelp/dh-base.h>
 #include "gsc-provider-devhelp.h"
+#endif
 
 static GtkWidget *view;
 static GtkSourceCompletion *comp;
@@ -176,7 +180,6 @@ static void
 create_completion(void)
 {
 	GscProviderTest *prov_test1;
-	GscProviderDevhelp *prov_devhelp;
 	GdkPixbuf *icon;
 	
 	comp = gtk_source_view_get_completion (GTK_SOURCE_VIEW (view));
@@ -189,8 +192,6 @@ create_completion(void)
 	{
 		g_object_unref (icon);
 	}
-
-	prov_devhelp = gsc_provider_devhelp_new ();
 	
 	gtk_source_completion_add_provider (comp, GTK_SOURCE_COMPLETION_PROVIDER (prov_test1));
 	
@@ -204,7 +205,13 @@ create_completion(void)
 	
 	gtk_source_completion_add_provider (comp, GTK_SOURCE_COMPLETION_PROVIDER (prov_test1));
 
+#ifdef HAVE_DEVHELP
+	GscProviderDevhelp *prov_devhelp;
+
+	prov_devhelp = gsc_provider_devhelp_new ();
+	
 	gtk_source_completion_add_provider (comp, GTK_SOURCE_COMPLETION_PROVIDER (prov_devhelp));
+#endif
 }
 
 int

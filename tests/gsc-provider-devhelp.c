@@ -1,7 +1,7 @@
 #include "gsc-provider-devhelp.h"
 #include <devhelp/dh-base.h>
 #include <devhelp/dh-link.h>
-#include <devhelp/dh-html.h>
+#include <devhelp/dh-assistant-view.h>
 #include <gtksourceview/gtksourceview.h>
 #include <gtksourceview/gtksourcecompletionitem.h>
 
@@ -10,7 +10,7 @@
 struct _GscProviderDevhelpPrivate
 {
 	DhBase *dhbase;
-	DhHtml *dhhtml;
+	GtkWidget *view;
 
 	GList *proposals;
 };
@@ -60,7 +60,7 @@ static GtkWidget *
 gsc_provider_devhelp_get_info_widget (GtkSourceCompletionProvider *provider,
                                       GtkSourceCompletionProposal *proposal)
 {
-	return dh_html_get_widget (GSC_PROVIDER_DEVHELP (provider)->priv->dhhtml);
+	return GSC_PROVIDER_DEVHELP (provider)->priv->view;
 }
 
 static void
@@ -71,10 +71,9 @@ gsc_provider_devhelp_update_info (GtkSourceCompletionProvider *provider,
 	GscProviderDevhelp *self = GSC_PROVIDER_DEVHELP (provider);
 	const gchar *uri;
 	
-	uri = gtk_source_completion_proposal_get_info (proposal);
+	uri = gtk_source_completion_proposal_get_label (proposal);
 
-	dh_html_open_uri (GSC_PROVIDER_DEVHELP (provider)->priv->dhhtml, uri);
-	dh_html_set_zoom (self->priv->dhhtml, 0.5);
+	dh_assistant_view_search (DH_ASSISTANT_VIEW (self->priv->view), uri);
 }
 
 static void
@@ -95,7 +94,6 @@ gsc_provider_devhelp_finalize (GObject *object)
 	GscProviderDevhelp *provider = GSC_PROVIDER_DEVHELP (object);
 	
 	g_object_unref (provider->priv->dhbase);
-	g_object_unref (provider->priv->dhhtml);
 	g_list_foreach (provider->priv->proposals, (GFunc)g_object_unref, NULL);
 
 	G_OBJECT_CLASS (gsc_provider_devhelp_parent_class)->finalize (object);
@@ -127,11 +125,14 @@ gsc_provider_devhelp_init (GscProviderDevhelp *self)
 	{
 		DhLink *link = (DhLink *)item->data;
 		
-		ret = g_list_prepend (ret, gtk_source_completion_item_new (link->name, NULL, link->uri));
+		ret = g_list_prepend (ret, gtk_source_completion_item_new (dh_link_get_name (link),
+									   NULL,
+									   dh_link_get_uri (link)));
 	}
 	
 	
-	self->priv->dhhtml = dh_html_new ();
+	self->priv->view = dh_assistant_view_new ();
+	dh_assistant_view_set_base (DH_ASSISTANT_VIEW (self->priv->view), self->priv->dhbase);
 
 	self->priv->proposals = g_list_reverse (ret);
 }
