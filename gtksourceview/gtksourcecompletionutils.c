@@ -146,21 +146,20 @@ gtk_source_completion_utils_get_word (GtkSourceBuffer *source_buffer)
 /** 
  * gsc_utils_view_get_cursor_pos:
  * @source_view: The #GtksourceView
+ * @iter: a #GtkTextIter
  * @x: Assign the x position of the cursor
  * @y: Assign the y position of the cursor
  *
  * Gets the cursor position on the screen.
  */
 void
-gtk_source_completion_utils_get_cursor_pos (GtkSourceView *source_view, 
-					    gint          *x, 
-					    gint          *y)
+gtk_source_completion_utils_get_iter_pos (GtkSourceView *source_view, 
+					  GtkTextIter   *iter,
+					  gint          *x,
+					  gint          *y)
 {
 	GdkWindow *win;
-	GtkTextMark *insert_mark;
 	GtkTextView *text_view;
-	GtkTextBuffer *text_buffer;
-	GtkTextIter start;
 	GdkRectangle location;
 	gint win_x;
 	gint win_y;
@@ -168,11 +167,8 @@ gtk_source_completion_utils_get_cursor_pos (GtkSourceView *source_view,
 	gint yy;
 
 	text_view = GTK_TEXT_VIEW (source_view);
-	text_buffer = gtk_text_view_get_buffer (text_view);
-	insert_mark = gtk_text_buffer_get_insert (text_buffer);
-
-	gtk_text_buffer_get_iter_at_mark (text_buffer, &start, insert_mark);
-	gtk_text_view_get_iter_location (text_view, &start, &location);
+	
+	gtk_text_view_get_iter_location (text_view, iter, &location);
 
 	gtk_text_view_buffer_to_window_coords (text_view,
 					       GTK_TEXT_WINDOW_WIDGET,
@@ -219,21 +215,23 @@ gtk_source_completion_utils_replace_current_word (GtkSourceBuffer *source_buffer
 }
 
 /**
- * gsc_utils_window_get_position_at_cursor:
+ * gtk_source_completion_utils_get_pos_at_iter:
  * @window: Window to set
+ * @iter: a #GtkTextIter
  * @view: Parent view where we get the cursor position
  * @x: The returned x position
  * @y: The returned y position
  *
- * Returns: TRUE if the position is over the text and FALSE if 
+ * Returns: %TRUE if the position is over the text and %FALSE if 
  * the position is under the text.
  */
 gboolean 
-gtk_source_completion_utils_get_pos_at_cursor (GtkWindow     *window,
-					       GtkSourceView *view,
-					       gint          *x, 
-					       gint          *y,
-					       gboolean      *resized)
+gtk_source_completion_utils_get_pos_at_iter (GtkWindow     *window,
+					     GtkSourceView *view,
+					     GtkTextIter   *iter,
+					     gint          *x, 
+					     gint          *y,
+					     gboolean      *resized)
 {
 	gint w;
 	gint h;
@@ -258,7 +256,7 @@ gtk_source_completion_utils_get_pos_at_cursor (GtkWindow     *window,
 	sw = gdk_screen_get_width (screen);
 	sh = gdk_screen_get_height (screen);
 
-	gtk_source_completion_utils_get_cursor_pos (view, x, y);
+	gtk_source_completion_utils_get_iter_pos (view, iter, x, y);
 	gtk_window_get_size (window, &w, &h);
 	
 	/* Processing x position and width */
@@ -327,3 +325,34 @@ gtk_source_completion_utils_get_pos_at_cursor (GtkWindow     *window,
 	return up;
 }
 
+/**
+ * gtk_source_completion_utils_get_pos_at_cursor:
+ * @window: Window to set
+ * @view: Parent view where we get the cursor position
+ * @x: The returned x position
+ * @y: The returned y position
+ *
+ * Returns: %TRUE if the position is over the text and %FALSE if 
+ * the position is under the text.
+ */
+gboolean 
+gtk_source_completion_utils_get_pos_at_cursor (GtkWindow     *window,
+					       GtkSourceView *view,
+					       gint          *x, 
+					       gint          *y,
+					       gboolean      *resized)
+{
+	GtkTextBuffer *buffer;
+	GtkTextMark *insert_mark;
+	GtkTextIter insert;
+	
+	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
+	insert_mark = gtk_text_buffer_get_insert (buffer);
+	gtk_text_buffer_get_iter_at_mark (buffer, &insert, insert_mark);
+	
+	return gtk_source_completion_utils_get_pos_at_iter (window,
+							    view,
+							    &insert,
+							    x, y,
+							    resized);
+}

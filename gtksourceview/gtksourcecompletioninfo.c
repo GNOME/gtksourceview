@@ -352,29 +352,46 @@ gtk_source_completion_info_new (void)
 }
 
 /**
- * gtk_source_completion_info_move_to_cursor:
+ * gtk_source_completion_info_move_to_iter:
  * @self: The #GtkSourceCompletionInfo
  * @view: The current GtkTextView where we want to show the info
+ * @iter: a #GtkTextIter
  *
- * Moves the #GtkSourceCompletionInfo to under the @view cursor. If it cannot be shown down,
- * it will be shown up
+ * Moves the #GtkSourceCompletionInfo to under the @iter. If it cannot be shown down,
+ * it will be shown up. If @iter is %NULL @self is moved to the cursor position.
  *
  */
 void
-gtk_source_completion_info_move_to_cursor (GtkSourceCompletionInfo *self,
-					   GtkTextView             *view)
+gtk_source_completion_info_move_to_iter (GtkSourceCompletionInfo *self,
+					 GtkTextView             *view,
+					 GtkTextIter             *iter)
 {
+	GtkTextBuffer *buffer;
+	GtkTextMark *insert_mark;
+	GtkTextIter start;
 	gint x;
 	gint y;
 	
 	g_return_if_fail (GTK_IS_SOURCE_COMPLETION_INFO (self));
 	g_return_if_fail (GTK_IS_SOURCE_VIEW (view));
 	
-	gtk_source_completion_utils_get_pos_at_cursor (GTK_WINDOW (self),
-						       GTK_SOURCE_VIEW (view),
-						       &x,
-						       &y,
-						       NULL);
+	if (iter == NULL)
+	{
+		buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
+		insert_mark = gtk_text_buffer_get_insert (buffer);
+		gtk_text_buffer_get_iter_at_mark (buffer, &start, insert_mark);
+	}
+	else
+	{
+		start = *iter;
+	}
+	
+	gtk_source_completion_utils_get_pos_at_iter (GTK_WINDOW (self),
+						     GTK_SOURCE_VIEW (view),
+						     &start,
+						     &x,
+						     &y,
+						     NULL);
 
 	gtk_window_move (GTK_WINDOW (self), x, y);
 }

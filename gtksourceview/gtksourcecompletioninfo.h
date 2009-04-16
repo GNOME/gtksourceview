@@ -60,8 +60,9 @@ GType		 gtk_source_completion_info_get_type		(void) G_GNUC_CONST;
 GtkSourceCompletionInfo *
 		 gtk_source_completion_info_new			(void);
 
-void		 gtk_source_completion_info_move_to_cursor	(GtkSourceCompletionInfo *self,
-								 GtkTextView             *view);
+void		 gtk_source_completion_info_move_to_iter	(GtkSourceCompletionInfo *self,
+								 GtkTextView             *view,
+								 GtkTextIter             *iter);
 
 void		 gtk_source_completion_info_set_sizing		(GtkSourceCompletionInfo *self,
 								 gint                     width,
