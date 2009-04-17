@@ -1854,6 +1854,16 @@ add_proposals (GtkSourceCompletion         *completion,
 	g_list_free (proposals);
 }
 
+/**
+ * gtk_source_completion_popup:
+ * @completion: the #GtkSourceCompletion
+ * @providers: the list of #GtkSourceCompletionProvider
+ * @criteria: the filter criteria
+ *
+ * Shows the popup completion window.
+ *
+ * Returns: %TRUE if it was possible show the popup completion window.
+ */
 gboolean
 gtk_source_completion_popup (GtkSourceCompletion *completion,
                              GList               *providers,
@@ -2063,7 +2073,7 @@ gtk_source_completion_finish (GtkSourceCompletion *completion)
 }
 
 /**
- * gtk_source_completion_get_info_widget:
+ * gtk_source_completion_get_info_window:
  * @completion: The #GtkSourceCompletion
  *
  * The info widget is the window where the completion shows the

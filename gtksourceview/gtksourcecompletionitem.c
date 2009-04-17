@@ -239,13 +239,13 @@ gtk_source_completion_item_new (const gchar *label,
 /** 
  * gtk_source_completion_item_new_from_stock:
  * @label: the item label
- * @icon: the item icon
+ * @stock: the stock icon
  * @info: the item extra information
  *
- * Create a new #GtkSourceCompletionItem from a stock item. If @label is NULL, 
+ * Creates a new #GtkSourceCompletionItem from a stock item. If @label is %NULL, 
  * the stock label will be used.
  *
- * Return value: the newly constructed #GtkSourceCompletionItem
+ * Returns: the newly constructed #GtkSourceCompletionItem
  *
  */
 GtkSourceCompletionItem *
