@@ -155,6 +155,14 @@ gtk_source_completion_provider_get_name (GtkSourceCompletionProvider *provider)
 	return GTK_SOURCE_COMPLETION_PROVIDER_GET_INTERFACE (provider)->get_name (provider);
 }
 
+/**
+ * gtk_source_completion_provider_get_icon:
+ * @provider: The #GtkSourceCompletionProvider
+ *
+ * Get the icon of the provider.
+ *
+ * Returns: The icon to be used for the provider, or %NULL
+ */
 const GdkPixbuf *
 gtk_source_completion_provider_get_icon (GtkSourceCompletionProvider *provider)
 {
@@ -169,7 +177,8 @@ gtk_source_completion_provider_get_icon (GtkSourceCompletionProvider *provider)
  * Get proposals from the provider for completion
  *
  * Returns: a list of #GtkSourceViewProposal or NULL if there are no proposals.
- *          The returned list is owned by the caller.
+ *          The returned list and the contained #GtkSourceViewProposal are 
+ *          owned by the caller and will be freed when no longer needed.
  */
 GList * 
 gtk_source_completion_provider_get_proposals (GtkSourceCompletionProvider *provider)

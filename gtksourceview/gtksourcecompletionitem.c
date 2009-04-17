@@ -193,7 +193,7 @@ gtk_source_completion_item_class_init (GtkSourceCompletionItemClass *klass)
 	/**
 	 * GtkSourceCompletionItem:info:
 	 *
-	 * Info to be shown for this item
+	 * Optional extra information to be shown for this item
 	 */
 	g_object_class_install_property (object_class,
 					 PROP_INFO,
