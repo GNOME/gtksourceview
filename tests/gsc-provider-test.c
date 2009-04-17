@@ -85,7 +85,7 @@ gsc_provider_test_filter_proposal (GtkSourceCompletionProvider *provider,
 }
 
 static gboolean
-gsc_provider_test_can_auto_complete (GtkSourceCompletionProvider *provider)
+gsc_provider_test_get_interactive (GtkSourceCompletionProvider *provider)
 {
 	return TRUE;
 }
@@ -129,7 +129,7 @@ gsc_provider_test_iface_init (GtkSourceCompletionProviderIface *iface)
 
 	iface->get_proposals = gsc_provider_test_get_proposals;
 	iface->filter_proposal = gsc_provider_test_filter_proposal;
-	iface->can_auto_complete = gsc_provider_test_can_auto_complete;
+	iface->get_interactive = gsc_provider_test_get_interactive;
 }
 
 static void 

@@ -51,7 +51,7 @@ gsc_provider_devhelp_filter_proposal (GtkSourceCompletionProvider *provider,
 }
 
 static gboolean
-gsc_provider_devhelp_can_auto_complete (GtkSourceCompletionProvider *provider)
+gsc_provider_devhelp_get_interactive(GtkSourceCompletionProvider *provider)
 {
 	return TRUE;
 }
@@ -81,7 +81,7 @@ gsc_provider_devhelp_iface_init (GtkSourceCompletionProviderIface *iface)
 {
 	iface->get_name = gsc_provider_devhelp_get_name;
 	iface->get_proposals = gsc_provider_devhelp_get_proposals;
-	iface->can_auto_complete = gsc_provider_devhelp_can_auto_complete;
+	iface->get_interactive = gsc_provider_devhelp_get_interactive;
 	iface->filter_proposal = gsc_provider_devhelp_filter_proposal;
 	
 	iface->get_info_widget = gsc_provider_devhelp_get_info_widget;

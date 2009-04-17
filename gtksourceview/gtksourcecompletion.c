@@ -101,7 +101,8 @@ struct _GtkSourceCompletionPrivate
 	GtkSourceView *view;
 
 	GList *providers;
-	GList *auto_providers;
+	GList *automatic_providers;
+	GList *interactive_providers;
 	GList *active_providers;
 	
 	guint show_timed_out_id;
@@ -1105,7 +1106,7 @@ show_auto_completion (GtkSourceCompletion *completion)
 	/* Check minimum amount of characters */
 	if (g_utf8_strlen (word, -1) >= completion->priv->minimum_auto_complete_length)
 	{
-		gtk_source_completion_popup (completion, completion->priv->auto_providers, word);
+		gtk_source_completion_popup (completion, completion->priv->interactive_providers, word);
 	}
 
 	g_free (word);
@@ -1129,7 +1130,7 @@ buffer_insert_text_cb (GtkTextBuffer       *buffer,
 	
 	if (!GTK_WIDGET_VISIBLE (completion->priv->window))
 	{
-		if (completion->priv->auto_providers != NULL)
+		if (completion->priv->interactive_providers != NULL)
 		{
 			update_typing_offsets (completion);
 		
@@ -1247,11 +1248,11 @@ gtk_source_completion_finalize (GObject *object)
 		g_source_remove (completion->priv->show_timed_out_id);
 	}
 	
-	if (completion->priv->providers != NULL)
-	{
-		g_list_foreach (completion->priv->providers, (GFunc)g_object_unref, NULL);
-		g_list_free (completion->priv->providers);
-	}
+	g_list_free (completion->priv->automatic_providers);
+	g_list_free (completion->priv->interactive_providers);
+	
+	g_list_foreach (completion->priv->providers, (GFunc)g_object_unref, NULL);
+	g_list_free (completion->priv->providers);
 	
 	g_free (completion->priv->filter_criteria);
 	
@@ -1869,7 +1870,7 @@ gtk_source_completion_popup (GtkSourceCompletion *completion,
 	/* Use all registered providers if no providers were specified */
 	if (providers == NULL)
 	{
-		providers = completion->priv->providers;
+		providers = completion->priv->automatic_providers;
 	}
 	
 	if (providers == NULL)
@@ -1979,10 +1980,17 @@ gtk_source_completion_add_provider (GtkSourceCompletion         *completion,
 	completion->priv->providers = g_list_append (completion->priv->providers, 
 	                                              g_object_ref (provider));
 
-	if (gtk_source_completion_provider_can_auto_complete (provider))
+	if (gtk_source_completion_provider_get_interactive (provider))
 	{
-		completion->priv->auto_providers = 
-			g_list_append (completion->priv->auto_providers,
+		completion->priv->interactive_providers = 
+			g_list_append (completion->priv->interactive_providers,
+			               provider);
+	}
+	
+	if (gtk_source_completion_provider_get_automatic (provider))
+	{
+		completion->priv->automatic_providers = 
+			g_list_append (completion->priv->automatic_providers,
 			               provider);
 	}
 	                                              
@@ -2011,10 +2019,17 @@ gtk_source_completion_remove_provider (GtkSourceCompletion         *completion,
 
 	if (item != NULL)
 	{
-		if (gtk_source_completion_provider_can_auto_complete (provider))
+		if (gtk_source_completion_provider_get_interactive (provider))
 		{
-			completion->priv->auto_providers = 
-				g_list_remove (completion->priv->auto_providers,
+			completion->priv->interactive_providers = 
+				g_list_remove (completion->priv->interactive_providers,
+				               provider);
+		}
+		
+		if (gtk_source_completion_provider_get_automatic (provider))
+		{
+			completion->priv->automatic_providers = 
+				g_list_remove (completion->priv->automatic_providers,
 				               provider);
 		}
 

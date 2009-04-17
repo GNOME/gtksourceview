@@ -50,7 +50,9 @@ struct _GtkSourceCompletionProviderIface
 	gboolean 	 (*filter_proposal) 	(GtkSourceCompletionProvider *provider,
 						 GtkSourceCompletionProposal *proposal,
 						 const gchar                 *criteria);
-	gboolean         (*can_auto_complete)	(GtkSourceCompletionProvider *provider);
+
+	gboolean         (*get_automatic)	(GtkSourceCompletionProvider *provider);
+	gboolean         (*get_interactive)	(GtkSourceCompletionProvider *provider);
 						 
 	GtkWidget 	*(*get_info_widget)	(GtkSourceCompletionProvider *provider,
 						 GtkSourceCompletionProposal *proposal);
@@ -72,7 +74,8 @@ gboolean	 gtk_source_completion_provider_filter_proposal	(GtkSourceCompletionPro
 								 GtkSourceCompletionProposal *proposal,
 								 const gchar                 *criteria);
 
-gboolean 	 gtk_source_completion_provider_can_auto_complete (GtkSourceCompletionProvider *provider);
+gboolean 	 gtk_source_completion_provider_get_automatic	(GtkSourceCompletionProvider *provider);
+gboolean 	 gtk_source_completion_provider_get_interactive	(GtkSourceCompletionProvider *provider);
 
 GtkWidget	*gtk_source_completion_provider_get_info_widget	(GtkSourceCompletionProvider *provider,
 								 GtkSourceCompletionProposal *proposal);
