@@ -40,7 +40,7 @@ gtk_source_completion_provider_get_name_default (GtkSourceCompletionProvider *pr
 	g_return_val_if_reached (NULL);
 }
 
-static const GdkPixbuf *
+static GdkPixbuf *
 gtk_source_completion_provider_get_icon_default (GtkSourceCompletionProvider *provider)
 {
 	return NULL;
@@ -163,7 +163,7 @@ gtk_source_completion_provider_get_name (GtkSourceCompletionProvider *provider)
  *
  * Returns: The icon to be used for the provider, or %NULL
  */
-const GdkPixbuf *
+GdkPixbuf *
 gtk_source_completion_provider_get_icon (GtkSourceCompletionProvider *provider)
 {
 	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_PROVIDER (provider), NULL);

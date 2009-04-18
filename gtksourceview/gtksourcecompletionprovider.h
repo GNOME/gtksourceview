@@ -45,7 +45,7 @@ struct _GtkSourceCompletionProviderIface
 	GTypeInterface g_iface;
 	
 	const gchar	*(*get_name)       	(GtkSourceCompletionProvider *provider);
-	const GdkPixbuf	*(*get_icon)       	(GtkSourceCompletionProvider *provider);
+	GdkPixbuf	*(*get_icon)       	(GtkSourceCompletionProvider *provider);
 	GList 		*(*get_proposals) 	(GtkSourceCompletionProvider *provider);
 	gboolean 	 (*filter_proposal) 	(GtkSourceCompletionProvider *provider,
 						 GtkSourceCompletionProposal *proposal,
@@ -66,7 +66,7 @@ GType		 gtk_source_completion_provider_get_type	(void);
 
 const gchar	*gtk_source_completion_provider_get_name	(GtkSourceCompletionProvider *provider);
 
-const GdkPixbuf	*gtk_source_completion_provider_get_icon	(GtkSourceCompletionProvider *provider);
+GdkPixbuf	*gtk_source_completion_provider_get_icon	(GtkSourceCompletionProvider *provider);
 
 GList		*gtk_source_completion_provider_get_proposals	(GtkSourceCompletionProvider *provider);
 

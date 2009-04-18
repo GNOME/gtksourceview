@@ -50,12 +50,26 @@ gtk_source_completion_proposal_get_label_default (GtkSourceCompletionProposal *p
 	g_return_val_if_reached (NULL);
 }
 
+static GdkPixbuf *
+gtk_source_completion_proposal_get_icon_default (GtkSourceCompletionProposal *proposal)
+{
+	return NULL;
+}
+
+static const gchar *
+gtk_source_completion_proposal_get_info_default (GtkSourceCompletionProposal *proposal)
+{
+	return NULL;
+}
+
 static void 
 gtk_source_completion_proposal_init (GtkSourceCompletionProposalIface *iface)
 {
 	static gboolean initialized = FALSE;
 	
 	iface->get_label = gtk_source_completion_proposal_get_label_default;
+	iface->get_icon = gtk_source_completion_proposal_get_icon_default;
+	iface->get_info = gtk_source_completion_proposal_get_info_default;
 	
 	if (!initialized)
 	{
@@ -128,23 +142,11 @@ gtk_source_completion_proposal_get_label (GtkSourceCompletionProposal *proposal)
  *
  * Returns: The icon of @proposal
  */
-const GdkPixbuf *
+GdkPixbuf *
 gtk_source_completion_proposal_get_icon (GtkSourceCompletionProposal *proposal)
 {
-	GtkSourceCompletionProposalIface *iface;
-	
 	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_PROPOSAL (proposal), NULL);
-
-	iface = GTK_SOURCE_COMPLETION_PROPOSAL_GET_INTERFACE (proposal);
-	
-	if (iface->get_icon)
-	{
-		return iface->get_icon (proposal);
-	}
-	else
-	{
-		return NULL;
-	}
+	return GTK_SOURCE_COMPLETION_PROPOSAL_GET_INTERFACE (proposal)->get_icon (proposal);
 }
 
 /**
@@ -161,20 +163,8 @@ gtk_source_completion_proposal_get_icon (GtkSourceCompletionProposal *proposal)
 const gchar *
 gtk_source_completion_proposal_get_info (GtkSourceCompletionProposal *proposal)
 {
-	GtkSourceCompletionProposalIface *iface;
-	
 	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_PROPOSAL (proposal), NULL);
-
-	iface = GTK_SOURCE_COMPLETION_PROPOSAL_GET_INTERFACE (proposal);
-	
-	if (iface->get_info)
-	{
-		return iface->get_info (proposal);
-	}
-	else
-	{
-		return NULL;
-	}
+	return GTK_SOURCE_COMPLETION_PROPOSAL_GET_INTERFACE (proposal)->get_info (proposal);
 }
 
 /**
