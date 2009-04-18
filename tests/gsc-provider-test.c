@@ -43,7 +43,7 @@ gsc_provider_test_get_name (GtkSourceCompletionProvider *self)
 	return GSC_PROVIDER_TEST (self)->priv->name;
 }
 
-static const GdkPixbuf * 
+static GdkPixbuf * 
 gsc_provider_test_get_icon (GtkSourceCompletionProvider *self)
 {
 	return GSC_PROVIDER_TEST (self)->priv->icon;
