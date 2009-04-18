@@ -957,7 +957,7 @@ view_key_press_event_cb (GtkSourceView       *view,
 		}
  		case GDK_Down:
 		{
-			select_next_proposal (completion, 1);
+			ret = select_next_proposal (completion, 1);
 			break;
 		}
 		case GDK_Page_Down:
