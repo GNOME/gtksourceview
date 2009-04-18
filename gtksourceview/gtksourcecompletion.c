@@ -1870,7 +1870,6 @@ gtk_source_completion_popup (GtkSourceCompletion *completion,
                              const gchar         *criteria)
 {
 	GList *l;
-	gint x, y;
 
 	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION (completion), FALSE);
 	
@@ -1918,12 +1917,8 @@ gtk_source_completion_popup (GtkSourceCompletion *completion,
 
 	update_selection_label (completion);
 
-	/* FIXME: Maybe support are types of positioning */
-	gtk_source_completion_utils_get_pos_at_cursor (GTK_WINDOW (completion->priv->window),
-						       GTK_SOURCE_VIEW (completion->priv->view),
-						       &x, &y, NULL);
-
-	gtk_window_move (GTK_WINDOW (completion->priv->window), x, y);
+	gtk_source_completion_utils_move_to_cursor (GTK_WINDOW (completion->priv->window),
+						    GTK_SOURCE_VIEW (completion->priv->view));
 	
 	if (!GTK_WIDGET_VISIBLE (completion->priv->window))
 	{

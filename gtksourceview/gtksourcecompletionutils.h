@@ -35,27 +35,16 @@ gchar		*gtk_source_completion_utils_get_word_iter		(GtkSourceBuffer *source_buff
 
 gchar		*gtk_source_completion_utils_get_word			(GtkSourceBuffer *text_view);
 
-void		 gtk_source_completion_utils_get_iter_pos		(GtkSourceView   *source_view, 
-									 GtkTextIter     *iter,
-									 gint            *x, 
-									 gint            *y);
-
 void		 gtk_source_completion_utils_replace_current_word	(GtkSourceBuffer *source_buffer, 
 									 const gchar     *text,
 									 gint             len);
 
-gboolean	 gtk_source_completion_utils_get_pos_at_iter		(GtkWindow       *window,
+void		 gtk_source_completion_utils_move_to_iter		(GtkWindow       *window,
 									 GtkSourceView   *view,
-									 GtkTextIter     *iter,
-									 gint            *x,
-									 gint            *y,
-									 gboolean        *resized);
+									 GtkTextIter     *iter);
 
-gboolean	 gtk_source_completion_utils_get_pos_at_cursor		(GtkWindow       *window,
-									 GtkSourceView   *view,
-									 gint            *x,
-									 gint            *y,
-									 gboolean        *resized);
+void		 gtk_source_completion_utils_move_to_cursor		(GtkWindow       *window,
+									 GtkSourceView   *view);
 
 G_END_DECLS
 

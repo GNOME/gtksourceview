@@ -369,8 +369,6 @@ gtk_source_completion_info_move_to_iter (GtkSourceCompletionInfo *self,
 	GtkTextBuffer *buffer;
 	GtkTextMark *insert_mark;
 	GtkTextIter start;
-	gint x;
-	gint y;
 	
 	g_return_if_fail (GTK_IS_SOURCE_COMPLETION_INFO (self));
 	g_return_if_fail (GTK_IS_SOURCE_VIEW (view));
@@ -386,14 +384,9 @@ gtk_source_completion_info_move_to_iter (GtkSourceCompletionInfo *self,
 		start = *iter;
 	}
 	
-	gtk_source_completion_utils_get_pos_at_iter (GTK_WINDOW (self),
-						     GTK_SOURCE_VIEW (view),
-						     &start,
-						     &x,
-						     &y,
-						     NULL);
-
-	gtk_window_move (GTK_WINDOW (self), x, y);
+	gtk_source_completion_utils_move_to_iter (GTK_WINDOW (self),
+						  GTK_SOURCE_VIEW (view),
+						  &start);
 }
 
 /**

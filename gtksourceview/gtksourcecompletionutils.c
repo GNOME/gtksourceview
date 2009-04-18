@@ -143,20 +143,12 @@ gtk_source_completion_utils_get_word (GtkSourceBuffer *source_buffer)
 	return gtk_source_completion_utils_get_word_iter (source_buffer, NULL, NULL);
 }
 
-/** 
- * gsc_utils_view_get_cursor_pos:
- * @source_view: The #GtksourceView
- * @iter: a #GtkTextIter
- * @x: Assign the x position of the cursor
- * @y: Assign the y position of the cursor
- *
- * Gets the cursor position on the screen.
- */
-void
-gtk_source_completion_utils_get_iter_pos (GtkSourceView *source_view, 
-					  GtkTextIter   *iter,
-					  gint          *x,
-					  gint          *y)
+static void
+get_iter_pos (GtkSourceView *source_view, 
+              GtkTextIter   *iter,
+              gint          *x,
+              gint          *y,
+              gint          *height)
 {
 	GdkWindow *win;
 	GtkTextView *text_view;
@@ -182,6 +174,7 @@ gtk_source_completion_utils_get_iter_pos (GtkSourceView *source_view,
 	
 	*x = win_x + xx;
 	*y = win_y + yy + location.height;
+	*height = location.height;
 }
 
 /**
@@ -214,35 +207,104 @@ gtk_source_completion_utils_replace_current_word (GtkSourceBuffer *source_buffer
 	gtk_text_buffer_end_user_action (buffer);
 }
 
-/**
- * gtk_source_completion_utils_get_pos_at_iter:
- * @window: Window to set
- * @iter: a #GtkTextIter
- * @view: Parent view where we get the cursor position
- * @x: The returned x position
- * @y: The returned y position
- *
- * Returns: %TRUE if the position is over the text and %FALSE if 
- * the position is under the text.
- */
-gboolean 
-gtk_source_completion_utils_get_pos_at_iter (GtkWindow     *window,
-					     GtkSourceView *view,
-					     GtkTextIter   *iter,
-					     gint          *x, 
-					     gint          *y,
-					     gboolean      *resized)
+static void
+compensate_for_gravity (GtkWindow *window,
+                        gint      *x,
+                        gint      *y,
+                        gint      w,
+                        gint      h)
 {
+	GdkGravity gravity;
+	
+	gravity = gtk_window_get_gravity (window);
+	
+	/* Horizontal */
+	switch (gravity)
+	{
+		case GDK_GRAVITY_NORTH:
+		case GDK_GRAVITY_SOUTH:
+		case GDK_GRAVITY_CENTER:
+			*x = w / 2;
+			break;
+		case GDK_GRAVITY_NORTH_EAST:
+		case GDK_GRAVITY_SOUTH_EAST:
+		case GDK_GRAVITY_EAST:
+			*x = w;
+			break;
+		default:
+			*x = 0;
+			break;
+	}
+	
+	/* Vertical */
+	switch (gravity)
+	{
+		case GDK_GRAVITY_WEST:
+		case GDK_GRAVITY_CENTER:
+		case GDK_GRAVITY_EAST:
+			*y = w / 2;
+			break;
+		case GDK_GRAVITY_SOUTH_EAST:
+		case GDK_GRAVITY_SOUTH:
+		case GDK_GRAVITY_SOUTH_WEST:
+			*y = w;
+			break;
+		default:
+			*y = 0;
+			break;
+	}
+}
+
+static void
+move_overlap (gint     *x,
+              gint     *y,
+              gint      w,
+              gint      h,
+              gint      oy,
+              gint      cx,
+              gint      cy,
+              gint      line_height,
+              gboolean  move_up)
+{
+	/* Test if there is overlap */
+	if (*y - cy < oy && *y - cy + h > oy - line_height)
+	{
+		if (move_up)
+		{
+			*y = oy - line_height - h + cy;
+		}
+		else
+		{
+			*y = oy + cy;
+		}
+	}
+}
+
+/**
+ * gtk_source_completion_utils_move_to_iter:
+ * @window: the #GtkWindow to move
+ * @view: the view 
+ * @iter: the iter to move @window to
+ *
+ */
+void
+gtk_source_completion_utils_move_to_iter (GtkWindow     *window,
+					  GtkSourceView *view,
+					  GtkTextIter   *iter)
+{
+	gint x;
+	gint y;
 	gint w;
 	gint h;
-	gint xtext;
-	gint ytext;
-	gint ytemp;
+	gint cx;
+	gint cy;
+	gint oy;
+	gint height;
 	GdkScreen *screen;
+	gboolean overlapup;
+
 	gint sw = gdk_screen_width();
 	gint sh = gdk_screen_height();
-	gboolean resize = FALSE;
-	gboolean up = FALSE;
 	
 	if (window != NULL)
 	{
@@ -256,103 +318,60 @@ gtk_source_completion_utils_get_pos_at_iter (GtkWindow     *window,
 	sw = gdk_screen_get_width (screen);
 	sh = gdk_screen_get_height (screen);
 
-	gtk_source_completion_utils_get_iter_pos (view, iter, x, y);
+	get_iter_pos (view, iter, &x, &y, &height);
 	gtk_window_get_size (window, &w, &h);
 	
-	/* Processing x position and width */
-	if (w > (sw - 8))
+	oy = y;
+	compensate_for_gravity (window, &cx, &cy, w, h);
+
+	/* Push window inside screen */
+	if (x - cx + w > sw)
 	{
-		/* Resize to view all the window */
-		resize = TRUE;
-		w = sw - 8;
+		x = (sw - w) + cx;
+	}
+	else if (x - cx < 0)
+	{
+		x = cx;
+	}
+
+	if (y - cy + h > sh)
+	{
+		y = (sh - h) + cy;
+		overlapup = TRUE;
+	}
+	else if (y - cy < 0)
+	{
+		y = cy;
+		overlapup = FALSE;
+	}
+	else
+	{
+		overlapup = TRUE;
 	}
 	
-	/* Move position to view all the window */
-	if ((*x + w) > (sw - 4))
-	{
-		*x = sw - w - 4;
-	}
-
-	/* Processing y position and height */
+	/* Make sure that text is still readable */
+	move_overlap (&x, &y, w, h, oy, cx, cy, height, overlapup);
 	
-	/* 
-	If we cannot show it down, we show it up and if we cannot show it up, we
-	show the window at the largest position 
-	*/
-	if ((*y + h) > sh)
-	{
-		PangoLayout* layout = 
-			gtk_widget_create_pango_layout (GTK_WIDGET(view), NULL);
-
-		pango_layout_get_pixel_size (layout, &xtext, &ytext);
-		ytemp = *y - ytext;
-
-		/* Cabe arriba? */
-		if ((ytemp - h) >= 4)
-		{
-			*y = ytemp - h;
-			up = TRUE;
-		}
-		else
-		{
-			/* 
-			Si no cabe arriba, lo ponemos donde haya más espacio
-			y redimensionamos la ventana
-			*/
-			if ((sh - *y) > ytemp)
-			{
-				h = sh - *y - 4;
-			}
-			else
-			{
-				*y = 4;
-				h = ytemp -4;
-				up = TRUE;
-			}
-
-			resize = TRUE;
-		}
-
-		g_object_unref (layout);
-	}
-	
-	if (resize)
-		gtk_window_resize (window, w, h);
-
-	if (resized != NULL)
-		*resized = resize;
-	
-	return up;
+	gtk_window_move (window, x, y);
 }
 
 /**
  * gtk_source_completion_utils_get_pos_at_cursor:
- * @window: Window to set
- * @view: Parent view where we get the cursor position
- * @x: The returned x position
- * @y: The returned y position
+ * @window: the #GtkWindow to move
+ * @view: the view 
  *
- * Returns: %TRUE if the position is over the text and %FALSE if 
- * the position is under the text.
  */
-gboolean 
-gtk_source_completion_utils_get_pos_at_cursor (GtkWindow     *window,
-					       GtkSourceView *view,
-					       gint          *x, 
-					       gint          *y,
-					       gboolean      *resized)
+void 
+gtk_source_completion_utils_move_to_cursor (GtkWindow     *window,
+					    GtkSourceView *view)
 {
 	GtkTextBuffer *buffer;
-	GtkTextMark *insert_mark;
 	GtkTextIter insert;
 	
 	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
-	insert_mark = gtk_text_buffer_get_insert (buffer);
-	gtk_text_buffer_get_iter_at_mark (buffer, &insert, insert_mark);
+	gtk_text_buffer_get_iter_at_mark (buffer, &insert, gtk_text_buffer_get_insert (buffer));
 	
-	return gtk_source_completion_utils_get_pos_at_iter (window,
-							    view,
-							    &insert,
-							    x, y,
-							    resized);
+	gtk_source_completion_utils_move_to_iter (window,
+	                                          view,
+	                                          &insert);
 }

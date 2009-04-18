@@ -47,7 +47,7 @@ gtk_source_completion_proposal_get_label_impl (GtkSourceCompletionProposal *self
 	return GTK_SOURCE_COMPLETION_ITEM (self)->priv->label;
 }
 
-static const GdkPixbuf *
+static GdkPixbuf *
 gtk_source_completion_proposal_get_icon_impl (GtkSourceCompletionProposal *self)
 {
 	return GTK_SOURCE_COMPLETION_ITEM (self)->priv->icon;
