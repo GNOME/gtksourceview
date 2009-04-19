@@ -79,33 +79,61 @@ G_DEFINE_TYPE(GtkSourceCompletionInfo, gtk_source_completion_info, GTK_TYPE_WIND
 #define GTK_SOURCE_COMPLETION_INFO_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), GTK_TYPE_SOURCE_COMPLETION_INFO, GtkSourceCompletionInfoPrivate))
 
 static void
+get_scrolled_window_sizing (GtkSourceCompletionInfo *self,
+                            gint                    *border,
+                            gint                    *hscroll,
+                            gint                    *vscroll)
+{
+	GtkWidget *scrollbar;
+
+	*border = 0;
+	*hscroll = 0;
+	*vscroll = 0;
+
+	if (self->priv->scroll != NULL)
+	{
+		*border = gtk_container_get_border_width (GTK_CONTAINER (self));
+		
+		scrollbar = gtk_scrolled_window_get_hscrollbar (GTK_SCROLLED_WINDOW (self->priv->scroll));
+
+		if (GTK_WIDGET_VISIBLE (scrollbar))
+		{
+			*hscroll = scrollbar->allocation.height;
+		}
+
+		scrollbar = gtk_scrolled_window_get_vscrollbar (GTK_SCROLLED_WINDOW (self->priv->scroll));
+
+		if (GTK_WIDGET_VISIBLE (scrollbar))
+		{
+			*vscroll = scrollbar->allocation.height;
+		}
+	}
+}
+
+static void
 window_resize (GtkSourceCompletionInfo *self)
 {
 	GtkRequisition req;
 	gint width;
 	gint height;
 	gint off;
-	GtkWidget *scrollbar;
+	gint border;
+	gint hscroll;
+	gint vscroll;
 	GtkStyle *style = GTK_WIDGET (self)->style;
 
 	gtk_window_get_default_size (GTK_WINDOW (self), &width, &height);
-
+	
 	if (self->priv->widget != NULL)
 	{
 		/* Try to resize to fit widget, if necessary */
 		gtk_widget_size_request (self->priv->widget, &req);
-		off = (gtk_container_get_border_width (GTK_CONTAINER (self)) +
-		       gtk_container_get_border_width (GTK_CONTAINER (self->priv->scroll))) * 2;
+		
+		get_scrolled_window_sizing (self, &border, &hscroll, &vscroll);
+		off = (gtk_container_get_border_width (GTK_CONTAINER (self)) + border) * 2;
 
 		if (self->priv->shrink_height)
 		{
-			scrollbar = gtk_scrolled_window_get_hscrollbar (GTK_SCROLLED_WINDOW (self->priv->scroll));
-			
-			if (GTK_WIDGET_VISIBLE (scrollbar))
-			{
-				off = off + scrollbar->allocation.height;
-			}
-			
 			if (self->priv->max_height == -1)
 			{
 				height = req.height + style->ythickness * 2;
@@ -114,17 +142,12 @@ window_resize (GtkSourceCompletionInfo *self)
 			{
 				height = MIN (req.height + style->ythickness * 2, self->priv->max_height);
 			}
+			
+			height += off + hscroll;
 		}
 	
 		if (self->priv->shrink_width)
 		{
-			scrollbar = gtk_scrolled_window_get_vscrollbar (GTK_SCROLLED_WINDOW (self->priv->scroll));
-			
-			if (GTK_WIDGET_VISIBLE (scrollbar))
-			{
-				off = off + scrollbar->allocation.width;
-			}
-			
 			if (self->priv->max_width == -1)
 			{
 				width = req.width + style->xthickness * 2;
@@ -133,6 +156,8 @@ window_resize (GtkSourceCompletionInfo *self)
 			{
 				width = MIN (req.width + style->xthickness * 2, self->priv->max_width);
 			}
+			
+			width += off + vscroll;
 		}
 	}
 	
@@ -153,16 +178,7 @@ gtk_source_completion_info_init (GtkSourceCompletionInfo *self)
 				  GDK_WINDOW_TYPE_HINT_NORMAL);
 
 	gtk_window_set_default_size (GTK_WINDOW (self), 300, 200);
-
-	/* Create scrolled window main widget */
-	self->priv->scroll = gtk_scrolled_window_new (NULL, NULL);
-
-	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (self->priv->scroll),
-					GTK_POLICY_AUTOMATIC,
-					GTK_POLICY_AUTOMATIC);
-
-	gtk_widget_show (self->priv->scroll);
-	gtk_container_add (GTK_CONTAINER (self), self->priv->scroll);
+	gtk_container_set_border_width (GTK_CONTAINER (self), 1);
 }
 
 static gboolean
@@ -265,6 +281,27 @@ gtk_source_completion_info_show (GtkWidget *widget)
 	GTK_WIDGET_CLASS (gtk_source_completion_info_parent_class)->show (widget);	
 }
 
+static gboolean
+gtk_source_completion_info_expose (GtkWidget      *widget,
+                                   GdkEventExpose *expose)
+{
+	GTK_WIDGET_CLASS (gtk_source_completion_info_parent_class)->expose_event (widget, expose);
+
+	gtk_paint_shadow (widget->style,
+			  widget->window,
+			  GTK_STATE_NORMAL,
+			  GTK_SHADOW_OUT,
+			  NULL,
+			  widget,
+			  NULL,
+			  widget->allocation.x,
+			  widget->allocation.y,
+			  widget->allocation.width,
+			  widget->allocation.height);
+
+	return FALSE;
+}
+
 static void
 gtk_source_completion_info_class_init (GtkSourceCompletionInfoClass *klass)
 {
@@ -276,6 +313,7 @@ gtk_source_completion_info_class_init (GtkSourceCompletionInfoClass *klass)
 	object_class->finalize = gtk_source_completion_info_finalize;
 	
 	widget_class->show = gtk_source_completion_info_show;
+	widget_class->expose_event = gtk_source_completion_info_expose;
 	
 	/**
 	 * GtkSourceCompletionInfo::show-info:
@@ -343,7 +381,7 @@ gtk_source_completion_info_class_init (GtkSourceCompletionInfoClass *klass)
  * Returns: The new GtkSourceCompletionInfo.
  *
  */
-GtkSourceCompletionInfo*
+GtkSourceCompletionInfo *
 gtk_source_completion_info_new (void)
 {
 	return g_object_new (GTK_TYPE_SOURCE_COMPLETION_INFO, 
@@ -438,6 +476,44 @@ widget_size_request_cb (GtkWidget               *widget,
 	queue_resize (info);
 }
 
+static gboolean
+use_scrolled_window (GtkSourceCompletionInfo *info,
+                     GtkWidget               *widget)
+{
+	GtkRequisition req;
+	
+	if (!needs_viewport (widget))
+	{
+		return TRUE;
+	}
+	
+	if (info->priv->max_width == -1 && info->priv->max_height == -1)
+	{
+		return FALSE;
+	}
+	
+	gtk_widget_size_request (widget, &req);
+	
+	return (info->priv->max_width < req.width || info->priv->max_height < req.height);
+}
+
+static void
+create_scrolled_window (GtkSourceCompletionInfo *info)
+{
+	/* Create scrolled window main widget */
+	info->priv->scroll = gtk_scrolled_window_new (NULL, NULL);
+
+
+	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (info->priv->scroll),
+					GTK_POLICY_AUTOMATIC,
+					GTK_POLICY_AUTOMATIC);
+
+	gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (info->priv->scroll),
+	                                     GTK_SHADOW_NONE);
+	gtk_widget_show (info->priv->scroll);
+	gtk_container_add (GTK_CONTAINER (info), info->priv->scroll);
+}
+
 /**
  * gtk_source_completion_info_set_widget:
  * @self: The #GtkSourceCompletionInfo
@@ -462,18 +538,15 @@ gtk_source_completion_info_set_widget (GtkSourceCompletionInfo *self,
 	
 	if (self->priv->widget != NULL)
 	{
-		child = gtk_bin_get_child (GTK_BIN (self->priv->scroll));
 		g_signal_handler_disconnect (self->priv->widget, self->priv->request_id);
+		
+		gtk_container_remove (GTK_CONTAINER (gtk_widget_get_parent (self->priv->widget)),
+		                      self->priv->widget);
 
-		if (child != self->priv->widget)
+		if (self->priv->scroll != NULL)
 		{
-			gtk_container_remove (GTK_CONTAINER (child), self->priv->widget);
-			gtk_widget_destroy (child);
-		}
-		else
-		{
-			gtk_container_remove (GTK_CONTAINER (self->priv->scroll),
-			                      self->priv->widget);
+			gtk_widget_destroy (self->priv->scroll);
+			self->priv->scroll = NULL;
 		}
 	}
 	
@@ -481,28 +554,42 @@ gtk_source_completion_info_set_widget (GtkSourceCompletionInfo *self,
 	
 	if (widget != NULL)
 	{
-		child = widget;
-
+		/* Keep it alive */
+		if (g_object_is_floating (widget))
+		{
+			g_object_ref (widget);
+		}
+		
 		self->priv->request_id = g_signal_connect_after (widget, 
                                                                  "size-request", 
                                                                  G_CALLBACK (widget_size_request_cb), 
                                                                  self);
 		
 		/* See if it needs a viewport */
-		if (needs_viewport (widget))
+		if (use_scrolled_window (self, widget))
 		{
-			child = gtk_viewport_new (NULL, NULL);
-			gtk_widget_show (child);
+			create_scrolled_window (self);
+			child = widget;
+			
+			if (needs_viewport (widget))
+			{
+				child = gtk_viewport_new (NULL, NULL);
+				gtk_viewport_set_shadow_type (GTK_VIEWPORT (child), GTK_SHADOW_NONE);
+				gtk_widget_show (child);
 
-			/* Keep it alive */
-			g_object_ref (widget);
-			gtk_container_add (GTK_CONTAINER (child), widget);
+				gtk_container_add (GTK_CONTAINER (child), widget);
+			}
+			
+			gtk_container_add (GTK_CONTAINER (self->priv->scroll), child);
+		}
+		else
+		{
+			gtk_container_add (GTK_CONTAINER (self), widget);
 		}
 		
-		gtk_container_add (GTK_CONTAINER (self->priv->scroll), child);
 		gtk_widget_show (widget);
 	}
-	
+
 	window_resize (self);
 }
 
