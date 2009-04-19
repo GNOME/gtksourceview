@@ -732,7 +732,7 @@ update_proposal_info_real (GtkSourceCompletion         *completion,
 	{
 		/* Set to default widget */
 		info_widget = completion->priv->default_info;
-		gtk_label_set_markup (GTK_LABEL (info_widget), "");
+		gtk_label_set_markup (GTK_LABEL (info_widget), _("No extra information available"));
 	}
 	else
 	{
@@ -745,16 +745,22 @@ update_proposal_info_real (GtkSourceCompletion         *completion,
 			info_widget = completion->priv->default_info;
 			text = gtk_source_completion_proposal_get_info (proposal);
 			
-			gtk_label_set_markup (GTK_LABEL (info_widget), text != NULL ? text : "");
+			gtk_label_set_markup (GTK_LABEL (info_widget), text != NULL ? text : _("No extra information available"));
 		}
 		else
 		{
 			prov_update_info = TRUE;
 		}
 	}
-
+	
 	gtk_source_completion_info_set_widget (GTK_SOURCE_COMPLETION_INFO (completion->priv->info_window),
 	                                       info_widget);
+
+	if (info_widget == completion->priv->default_info)
+	{
+		gtk_source_completion_info_set_sizing (GTK_SOURCE_COMPLETION_INFO (completion->priv->info_window),
+		                                       -1, -1, TRUE, TRUE);
+	}
 
 	if (prov_update_info)
 	{
@@ -1654,7 +1660,7 @@ render_proposal_text_func (GtkTreeViewColumn   *column,
 		                    -1);
 
 		g_object_set (cell, 
-		              "text", name, 
+		              "markup", name, 
 		              "background-set", FALSE, 
 		              "foreground-set", FALSE,
 		              NULL);
@@ -1846,9 +1852,11 @@ initialize_ui (GtkSourceCompletion *completion)
 
 	/* Info window */
 	completion->priv->info_window = GTK_WIDGET (gtk_source_completion_info_new ());
-	gtk_window_set_default_size (GTK_WINDOW (completion->priv->info_window),
-	                             500,
-	                             400);
+	gtk_source_completion_info_set_sizing (GTK_SOURCE_COMPLETION_INFO (completion->priv->info_window),
+	                                       WINDOW_WIDTH,
+	                                       WINDOW_HEIGHT,
+	                                       TRUE,
+	                                       TRUE);
 	                             
 	g_signal_connect (completion->priv->window, 
 	                  "notify::transient-for",
@@ -1858,7 +1866,7 @@ initialize_ui (GtkSourceCompletion *completion)
 	/* Default info widget */
 	completion->priv->default_info = gtk_label_new (NULL);
 	
-	gtk_misc_set_alignment (GTK_MISC (completion->priv->default_info), 0, 0.5);
+	gtk_misc_set_alignment (GTK_MISC (completion->priv->default_info), 0.5, 0.5);
 	gtk_label_set_selectable (GTK_LABEL (completion->priv->default_info), TRUE);
 	gtk_widget_show (completion->priv->default_info);
 	
