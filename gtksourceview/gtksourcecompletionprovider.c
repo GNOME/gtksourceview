@@ -32,6 +32,10 @@
 
 
 #include <gtksourceview/gtksourcecompletionprovider.h>
+#include <gtksourceview/gtksourcecompletion.h>
+#include <gtksourceview/gtksourceview.h>
+
+#include "gtksourcecompletionutils.h"
 
 /* Default implementations */
 static const gchar *
@@ -86,6 +90,24 @@ gtk_source_completion_provider_update_info_default (GtkSourceCompletionProvider 
 {
 }
 
+static gboolean
+gtk_source_completion_provider_activate_proposal_default (GtkSourceCompletionProvider *provider,
+                                                          GtkSourceCompletionProposal *proposal)
+{
+	GtkSourceCompletion *completion;
+	GtkSourceView *view;
+	GtkSourceBuffer *buffer;
+	
+	completion = gtk_source_completion_get_from_provider (provider);
+	view = gtk_source_completion_get_view (completion);
+	buffer = GTK_SOURCE_BUFFER (gtk_text_view_get_buffer (GTK_TEXT_VIEW (view)));
+	
+	gtk_source_completion_utils_replace_current_word (buffer,
+	                                                  gtk_source_completion_proposal_get_label (proposal),
+	                                                  -1);
+	return TRUE;
+}
+
 static void 
 gtk_source_completion_provider_base_init (GtkSourceCompletionProviderIface *iface)
 {
@@ -103,6 +125,8 @@ gtk_source_completion_provider_base_init (GtkSourceCompletionProviderIface *ifac
 	iface->get_info_widget = gtk_source_completion_provider_get_info_widget_default;
 	iface->update_info = gtk_source_completion_provider_update_info_default;
 	
+	iface->activate_proposal = gtk_source_completion_provider_activate_proposal_default;
+
 	if (!initialized)
 	{
 		initialized = TRUE;
@@ -289,4 +313,14 @@ gtk_source_completion_provider_update_info (GtkSourceCompletionProvider *provide
 	g_return_if_fail (GTK_IS_SOURCE_COMPLETION_INFO (info));
 	
 	GTK_SOURCE_COMPLETION_PROVIDER_GET_INTERFACE (provider)->update_info (provider, proposal, info);
+}
+
+gboolean
+gtk_source_completion_provider_activate_proposal (GtkSourceCompletionProvider *provider,
+                                                  GtkSourceCompletionProposal *proposal)
+{
+	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_PROVIDER (provider), FALSE);
+	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_PROPOSAL (proposal), FALSE);
+	
+	return GTK_SOURCE_COMPLETION_PROVIDER_GET_INTERFACE (provider)->activate_proposal (provider, proposal);
 }

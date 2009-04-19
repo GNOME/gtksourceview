@@ -51,6 +51,8 @@
 enum
 {
 	PROPOSAL_ACTIVATED,
+	POPUP,
+	FINISH,
 	LAST_SIGNAL
 };
 
@@ -157,14 +159,26 @@ static gboolean
 activate_current_proposal (GtkSourceCompletion *completion)
 {
 	gboolean activated = FALSE;
-	GtkSourceCompletionProposal *prop = NULL;
+	GtkTreeIter iter;
+	GtkSourceCompletionProposal *proposal = NULL;
+	GtkSourceCompletionProvider *provider = NULL;
 	
-	if (get_selected_proposal (completion, NULL, &prop))
+	if (get_selected_proposal (completion, &iter, &proposal))
 	{
-		g_signal_emit (G_OBJECT (completion), signals[PROPOSAL_ACTIVATED],
-			       0, prop, &activated);
+		gtk_tree_model_get (GTK_TREE_MODEL (completion->priv->model_proposals),
+		                    &iter,
+		                    GTK_SOURCE_COMPLETION_MODEL_COLUMN_PROVIDER, &provider,
+		                    -1);
+		                    
+		g_signal_emit (G_OBJECT (completion), 
+		               signals[PROPOSAL_ACTIVATED],
+			       0, 
+			       provider, 
+			       proposal, 
+			       &activated);
 		
-		g_object_unref (prop);
+		g_object_unref (provider);
+		g_object_unref (proposal);
 	}
 	
 	return activated;
@@ -848,36 +862,14 @@ hide_info_cb (GtkWidget *widget,
 
 static gboolean
 gtk_source_completion_proposal_activated_default (GtkSourceCompletion         *completion,
+						  GtkSourceCompletionProvider *provider,
 						  GtkSourceCompletionProposal *proposal)
 {
 	gboolean ret;
 	
-	ret = gtk_source_completion_proposal_activate (proposal, 
-	                                               GTK_SOURCE_BUFFER (gtk_text_view_get_buffer (
-	                                                                  GTK_TEXT_VIEW (completion->priv->view))));
+	ret = gtk_source_completion_provider_activate_proposal (provider, proposal); 
 	gtk_source_completion_finish (completion);
 	return ret;
-}
-
-static void
-gtk_source_completion_finish_real (GtkSourceCompletion *completion)
-{
-	completion->priv->filter_provider = NULL;
-
-	gtk_label_set_markup (GTK_LABEL (completion->priv->default_info), "");
-
-	gtk_source_completion_model_clear (completion->priv->model_proposals);
-
-	g_list_free (completion->priv->active_providers);
-	completion->priv->active_providers = NULL;
-	
-	g_free (completion->priv->filter_criteria);
-	completion->priv->filter_criteria = NULL;
-	
-	completion->priv->info_visible = GTK_WIDGET_VISIBLE (completion->priv->info_window);
-	
-	gtk_widget_hide (completion->priv->info_window);
-	gtk_widget_hide (completion->priv->window);
 }
 
 static void
@@ -1359,6 +1351,39 @@ gtk_source_completion_set_property (GObject      *object,
 }
 
 static void
+gtk_source_completion_finish_default (GtkSourceCompletion *completion)
+{
+	completion->priv->filter_provider = NULL;
+
+	gtk_label_set_markup (GTK_LABEL (completion->priv->default_info), "");
+
+	gtk_source_completion_model_clear (completion->priv->model_proposals);
+
+	g_list_free (completion->priv->active_providers);
+	completion->priv->active_providers = NULL;
+	
+	g_free (completion->priv->filter_criteria);
+	completion->priv->filter_criteria = NULL;
+	
+	completion->priv->info_visible = GTK_WIDGET_VISIBLE (completion->priv->info_window);
+	
+	gtk_widget_hide (completion->priv->info_window);
+	gtk_widget_hide (completion->priv->window);
+}
+
+static void
+gtk_source_completion_popup_default (GtkSourceCompletion *completion)
+{
+	gtk_widget_show (GTK_WIDGET (completion->priv->window));
+	gtk_widget_grab_focus (GTK_WIDGET (completion->priv->view));
+
+	if (completion->priv->select_on_show)
+	{
+		select_first_proposal (completion);
+	}
+}
+
+static void
 gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 {
 	GObjectClass *object_class = G_OBJECT_CLASS (klass);
@@ -1371,6 +1396,8 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 	object_class->dispose = gtk_source_completion_dispose;
 
 	klass->proposal_activated = gtk_source_completion_proposal_activated_default;
+	klass->popup = gtk_source_completion_popup_default;
+	klass->finish = gtk_source_completion_finish_default;
 
 	/**
 	 * GtkSourceCompletion:manage-completion-keys:
@@ -1483,10 +1510,48 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 			      G_STRUCT_OFFSET (GtkSourceCompletionClass, proposal_activated),
 			      g_signal_accumulator_true_handled, 
 			      NULL,
-			      _gtksourceview_marshal_BOOLEAN__OBJECT, 
+			      _gtksourceview_marshal_BOOLEAN__OBJECT_OBJECT, 
 			      G_TYPE_BOOLEAN,
-			      1,
+			      2,
+			      G_TYPE_OBJECT,
 			      G_TYPE_OBJECT);
+
+	/**
+	 * GtkSourceCompletion::popup:
+	 * @completion: The #GtkSourceCompletion who emits the signal
+	 *
+	 * Emitted when the completion window is popped up. The default handler
+	 * will actually show the window.
+	 **/
+	signals[POPUP] =
+		g_signal_new ("popup",
+			      G_TYPE_FROM_CLASS (klass),
+			      G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
+			      G_STRUCT_OFFSET (GtkSourceCompletionClass, popup),
+			      NULL, 
+			      NULL,
+			      g_cclosure_marshal_VOID__VOID, 
+			      G_TYPE_NONE,
+			      0);
+
+
+	/**
+	 * GtkSourceCompletion::finish:
+	 * @completion: The #GtkSourceCompletion who emits the signal
+	 *
+	 * Emitted when the completion window is popped up. The default handler
+	 * will actually show the window.
+	 **/
+	signals[FINISH] =
+		g_signal_new ("finish",
+			      G_TYPE_FROM_CLASS (klass),
+			      G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
+			      G_STRUCT_OFFSET (GtkSourceCompletionClass, finish),
+			      NULL, 
+			      NULL,
+			      g_cclosure_marshal_VOID__VOID, 
+			      G_TYPE_NONE,
+			      0);
 }
 
 static void
@@ -1883,7 +1948,7 @@ gtk_source_completion_popup (GtkSourceCompletion *completion,
 	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION (completion), FALSE);
 	
 	/* Make sure to clear any active completion */
-	gtk_source_completion_finish_real (completion);
+	gtk_source_completion_finish_default (completion);
 	
 	/* Use all registered providers if no providers were specified */
 	if (providers == NULL)
@@ -1938,13 +2003,7 @@ gtk_source_completion_popup (GtkSourceCompletion *completion,
 					      completion->priv->info_visible);
 	}
 	
-	gtk_widget_show (GTK_WIDGET (completion->priv->window));
-	gtk_widget_grab_focus (GTK_WIDGET (completion->priv->view));
-
-	if (completion->priv->select_on_show)
-	{
-		select_first_proposal (completion);
-	}
+	g_signal_emit (completion, signals[POPUP], 0);
 	
 	return TRUE;
 }
@@ -2083,7 +2142,7 @@ gtk_source_completion_finish (GtkSourceCompletion *completion)
 	/* Hiding the completion window will trigger the actual finish */
 	if (GTK_WIDGET_VISIBLE (completion->priv->window))
 	{
-		gtk_source_completion_finish_real (completion);
+		g_signal_emit (completion, signals[FINISH], 0);
 	}
 }
 

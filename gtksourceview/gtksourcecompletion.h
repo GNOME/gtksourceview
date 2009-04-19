@@ -57,8 +57,11 @@ struct _GtkSourceCompletionClass
 {
 	GObjectClass parent_class;
 
-	gboolean (* proposal_activated)		(GtkSourceCompletion         *completion,
-						 GtkSourceCompletionProposal *proposal);
+	gboolean 	(* proposal_activated)		(GtkSourceCompletion         *completion,
+	                                                 GtkSourceCompletionProvider *provider,
+							 GtkSourceCompletionProposal *proposal);
+	void 		(* popup)			(GtkSourceCompletion         *completion);
+	void		(* finish)			(GtkSourceCompletion         *completion);
 };
 
 GType		 gtk_source_completion_get_type			(void) G_GNUC_CONST;

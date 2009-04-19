@@ -26,7 +26,6 @@
 
 #include <glib-object.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
-#include <gtksourceview/gtksourcebuffer.h>
 
 G_BEGIN_DECLS
 
@@ -42,10 +41,6 @@ struct _GtkSourceCompletionProposalIface
 {
 	GTypeInterface parent;
 	
-	/* Signals */
-	gboolean	 (*activate)	(GtkSourceCompletionProposal *proposal,
-					 GtkSourceBuffer	     *buffer);
-	
 	/* Interface functions */
 	const gchar 	*(*get_label)	(GtkSourceCompletionProposal *proposal);
 	GdkPixbuf	*(*get_icon)	(GtkSourceCompletionProposal *proposal);
@@ -58,9 +53,6 @@ GType 			 gtk_source_completion_proposal_get_type 	(void) G_GNUC_CONST;
 const gchar		*gtk_source_completion_proposal_get_label	(GtkSourceCompletionProposal *proposal);
 GdkPixbuf		*gtk_source_completion_proposal_get_icon	(GtkSourceCompletionProposal *proposal);
 const gchar		*gtk_source_completion_proposal_get_info	(GtkSourceCompletionProposal *proposal);
-
-gboolean		 gtk_source_completion_proposal_activate	(GtkSourceCompletionProposal *proposal,
-									 GtkSourceBuffer             *buffer);
 
 G_END_DECLS
 

@@ -29,18 +29,6 @@ G_DEFINE_TYPE_WITH_CODE (GtkSourceCompletionItem,
 			 G_IMPLEMENT_INTERFACE (GTK_TYPE_SOURCE_COMPLETION_PROPOSAL,
 			 			gtk_source_completion_proposal_iface_init))
 
-static gboolean
-gtk_source_completion_proposal_activate_impl (GtkSourceCompletionProposal *self,
-					      GtkSourceBuffer		  *buffer)
-{
-	GtkSourceCompletionItem *item = GTK_SOURCE_COMPLETION_ITEM (self);
-
-	gtk_source_completion_utils_replace_current_word (buffer,
-							  item->priv->label,
-							  -1);
-	return TRUE;
-}
-
 static const gchar *
 gtk_source_completion_proposal_get_label_impl (GtkSourceCompletionProposal *self)
 {
@@ -64,9 +52,6 @@ gtk_source_completion_proposal_iface_init (gpointer g_iface,
 					   gpointer iface_data)
 {
 	GtkSourceCompletionProposalIface *iface = (GtkSourceCompletionProposalIface *)g_iface;
-	
-	/* Default activate handler */
-	iface->activate = gtk_source_completion_proposal_activate_impl;
 	
 	/* Interface data getter implementations */
 	iface->get_label = gtk_source_completion_proposal_get_label_impl;

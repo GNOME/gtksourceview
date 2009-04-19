@@ -72,19 +72,7 @@ gtk_source_completion_proposal_init (GtkSourceCompletionProposalIface *iface)
 	iface->get_info = gtk_source_completion_proposal_get_info_default;
 	
 	if (!initialized)
-	{
-		signals[ACTIVATE] = 
-			g_signal_new ("activate",
-			      G_TYPE_FROM_INTERFACE (iface),
-			      G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
-			      G_STRUCT_OFFSET (GtkSourceCompletionProposalIface, activate),
-			      g_signal_accumulator_true_handled, 
-			      NULL,
-			      _gtksourceview_marshal_BOOLEAN__OBJECT, 
-			      G_TYPE_BOOLEAN,
-			      1,
-			      GTK_TYPE_SOURCE_BUFFER);
-		
+	{	
 		initialized = TRUE;
 	}
 }
@@ -166,29 +154,3 @@ gtk_source_completion_proposal_get_info (GtkSourceCompletionProposal *proposal)
 	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_PROPOSAL (proposal), NULL);
 	return GTK_SOURCE_COMPLETION_PROPOSAL_GET_INTERFACE (proposal)->get_info (proposal);
 }
-
-/**
- * gtk_source_completion_proposal_activate:
- * @proposal: The #GtkSourceCompletionProposal
- * @buffer: The #GtkSourceBuffer
- * 
- * This emits the "activate" signal on @proposal. This function is generally 
- * called when @proposal is activated from the completion window. 
- * Implementations should take action in the default handler of the signal.
- *
- * Returns: %TRUE if @proposal was activated.
- */
-gboolean
-gtk_source_completion_proposal_activate (GtkSourceCompletionProposal *proposal,
-					 GtkSourceBuffer	     *buffer)
-{
-	gboolean ret = FALSE;
-
-	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_PROPOSAL (proposal), FALSE);
-	
-	g_signal_emit (proposal, signals[ACTIVATE], 0, buffer, &ret);
-
-	return ret;
-}
-
-
