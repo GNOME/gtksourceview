@@ -41,6 +41,7 @@
 
 #define WINDOW_WIDTH 350
 #define WINDOW_HEIGHT 200
+#define GTK_SOURCE_COMPLETION_PROVIDER_KEY "GtkSourceCompletionProviderKey"
 
 #define GTK_SOURCE_COMPLETION_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object),\
 						  GTK_TYPE_SOURCE_COMPLETION,           \
@@ -1239,6 +1240,14 @@ gtk_source_completion_dispose (GObject *object)
 }
 
 static void
+remove_provider (GtkSourceCompletionProvider *provider)
+{
+	g_object_set_data (G_OBJECT (provider), 
+	                   GTK_SOURCE_COMPLETION_PROVIDER_KEY, 
+	                   NULL);
+}
+
+static void
 gtk_source_completion_finalize (GObject *object)
 {
 	GtkSourceCompletion *completion = GTK_SOURCE_COMPLETION (object);
@@ -1251,7 +1260,7 @@ gtk_source_completion_finalize (GObject *object)
 	g_list_free (completion->priv->automatic_providers);
 	g_list_free (completion->priv->interactive_providers);
 	
-	g_list_foreach (completion->priv->providers, (GFunc)g_object_unref, NULL);
+	g_list_foreach (completion->priv->providers, (GFunc)remove_provider, NULL);
 	g_list_free (completion->priv->providers);
 	
 	g_free (completion->priv->filter_criteria);
@@ -1974,10 +1983,14 @@ gboolean
 gtk_source_completion_add_provider (GtkSourceCompletion         *completion,
 				    GtkSourceCompletionProvider *provider)
 {
+	GtkSourceCompletion *other;
+	
 	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION (completion), FALSE);
 	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_PROVIDER (provider), FALSE);
 	
-	if (g_list_find (completion->priv->providers, provider) != NULL)
+	other = gtk_source_completion_get_from_provider	(provider);
+
+	if (other != NULL)
 	{
 		return FALSE;
 	}
@@ -1998,7 +2011,10 @@ gtk_source_completion_add_provider (GtkSourceCompletion         *completion,
 			g_list_append (completion->priv->automatic_providers,
 			               provider);
 	}
-	                                              
+	
+	g_object_set_data (G_OBJECT (provider), 
+	                   GTK_SOURCE_COMPLETION_PROVIDER_KEY, 
+	                   completion);
 	return TRUE;
 }
 
@@ -2039,6 +2055,10 @@ gtk_source_completion_remove_provider (GtkSourceCompletion         *completion,
 		}
 
 		completion->priv->providers = g_list_remove_link (completion->priv->providers, item);
+		
+		g_object_set_data (G_OBJECT (provider), 
+		                   GTK_SOURCE_COMPLETION_PROVIDER_KEY, 
+		                   NULL);
 		g_object_unref (provider);
 
 		return TRUE;
@@ -2081,4 +2101,19 @@ GtkSourceCompletionInfo *
 gtk_source_completion_get_info_window (GtkSourceCompletion *completion)
 {
 	return GTK_SOURCE_COMPLETION_INFO (completion->priv->info_window);
+}
+
+GtkSourceCompletion *
+gtk_source_completion_get_from_provider	(GtkSourceCompletionProvider *provider)
+{
+	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_PROVIDER (provider), NULL);
+	return g_object_get_data (G_OBJECT (provider), GTK_SOURCE_COMPLETION_PROVIDER_KEY);
+}
+
+GtkSourceView *
+gtk_source_completion_get_view (GtkSourceCompletion *completion)
+{
+	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION (completion), NULL);
+	
+	return completion->priv->view;
 }
