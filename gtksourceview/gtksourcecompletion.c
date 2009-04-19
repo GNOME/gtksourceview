@@ -2017,7 +2017,7 @@ gtk_source_completion_popup (GtkSourceCompletion *completion,
  * Returns: The new #GtkSourceCompletion
  */
 GtkSourceCompletion *
-gtk_source_completion_new (GtkTextView *view)
+gtk_source_completion_new (GtkSourceView *view)
 {
 	g_return_val_if_fail (GTK_IS_SOURCE_VIEW (view), NULL);
 

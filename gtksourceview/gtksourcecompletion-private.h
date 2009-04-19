@@ -26,8 +26,7 @@
 #include <gtk/gtk.h>
 #include <gtksourceview/gtksourcecompletion.h>
 
-/* Use GtkTextView here to avoid cyclic dependency */
-GtkSourceCompletion *gtk_source_completion_new (GtkTextView *text_view);
+GtkSourceCompletion *gtk_source_completion_new (struct _GtkSourceView *source_view);
 
 #endif /* __GTK_SOURCE_COMPLETION_PIVATE_H__ */
 

@@ -4079,7 +4079,7 @@ gtk_source_view_get_completion (GtkSourceView *view)
 	
 	if (view->priv->completion == NULL)
 	{
-		view->priv->completion = gtk_source_completion_new (GTK_TEXT_VIEW (view));
+		view->priv->completion = gtk_source_completion_new (view);
 	}
 	
 	return view->priv->completion;
