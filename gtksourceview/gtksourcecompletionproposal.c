@@ -38,7 +38,7 @@
 /* Signals */
 enum
 {
-	ACTIVATE,
+	CHANGED,
 	NUM_SIGNALS
 };
 
@@ -72,7 +72,18 @@ gtk_source_completion_proposal_init (GtkSourceCompletionProposalIface *iface)
 	iface->get_info = gtk_source_completion_proposal_get_info_default;
 	
 	if (!initialized)
-	{	
+	{
+		signals[CHANGED] = 
+			g_signal_new ("changed",
+			      G_TYPE_FROM_INTERFACE (iface),
+			      G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
+			      G_STRUCT_OFFSET (GtkSourceCompletionProposalIface, changed),
+			      NULL, 
+			      NULL,
+			      g_cclosure_marshal_VOID__VOID, 
+			      G_TYPE_NONE,
+			      0);
+
 		initialized = TRUE;
 	}
 }
@@ -153,4 +164,19 @@ gtk_source_completion_proposal_get_info (GtkSourceCompletionProposal *proposal)
 {
 	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_PROPOSAL (proposal), NULL);
 	return GTK_SOURCE_COMPLETION_PROPOSAL_GET_INTERFACE (proposal)->get_info (proposal);
+}
+
+/**
+ * gtk_source_completion_proposal_changed:
+ * @proposal: The #GtkSourceCompletionProposal
+ *
+ * Emits the "changed" signal on @proposal. This should be called by
+ * implementations whenever the name, icon or info of the proposal has
+ * changed.
+ */
+void
+gtk_source_completion_proposal_changed (GtkSourceCompletionProposal *proposal)
+{
+	g_return_if_fail (GTK_IS_SOURCE_COMPLETION_PROPOSAL (proposal));
+	g_signal_emit (proposal, signals[CHANGED], 0);
 }

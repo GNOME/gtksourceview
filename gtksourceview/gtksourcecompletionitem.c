@@ -105,6 +105,12 @@ gtk_source_completion_item_get_property (GObject    *object,
 }
 
 static void
+emit_changed (GtkSourceCompletionItem *item)
+{
+	gtk_source_completion_proposal_changed (GTK_SOURCE_COMPLETION_PROPOSAL (item));
+}
+
+static void
 gtk_source_completion_item_set_property (GObject      *object,
 					 guint         prop_id,
 					 const GValue *value,
@@ -121,10 +127,14 @@ gtk_source_completion_item_set_property (GObject      *object,
 		case PROP_LABEL:
 			g_free (self->priv->label);
 			self->priv->label = g_value_dup_string (value);
+			
+			emit_changed (self);
 			break;
 		case PROP_INFO:
 			g_free (self->priv->info);
 			self->priv->info = g_value_dup_string (value);
+			
+			emit_changed (self);
 			break;
 		case PROP_ICON:
 			if (self->priv->icon != NULL)
@@ -133,6 +143,7 @@ gtk_source_completion_item_set_property (GObject      *object,
 			}
 			
 			self->priv->icon = GDK_PIXBUF (g_value_dup_object (value));
+			emit_changed (self);
 			break;
 		default:
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);

@@ -4,10 +4,13 @@
 
 typedef struct
 {
+	GtkSourceCompletionModel *model;
+
 	GtkSourceCompletionProvider *provider;
 	GtkSourceCompletionProposal *proposal;
 	
 	GtkSourceCompletionModelFilterFlag filtered;
+	gulong changed_id;
 } ProposalNode;
 
 typedef struct
@@ -505,6 +508,7 @@ free_node (ProposalNode *node)
 	
 	if (node->proposal != NULL)
 	{
+		g_signal_handler_disconnect (node->proposal, node->changed_id);
 		g_object_unref (node->proposal);
 	}
 	
@@ -656,6 +660,26 @@ append_list (GtkSourceCompletionModel *model,
 	model->priv->last = item;
 }
 
+static void
+on_proposal_changed (GtkSourceCompletionProposal *proposal,
+                     GList                       *item)
+{
+	GtkTreeIter iter;
+	ProposalNode *node = (ProposalNode *)item->data;
+	GtkTreePath *path;
+
+	if (!node->filtered)
+	{
+		iter.user_data = node;
+		path = path_from_list (node->model, item);
+
+		gtk_tree_model_row_changed (GTK_TREE_MODEL (node->model),
+		                            path,
+		                            &iter);
+		gtk_tree_path_free (path);
+	}
+}
+
 gboolean 
 gtk_source_completion_model_append (GtkSourceCompletionModel    *model,
                                     GtkSourceCompletionProvider *provider,
@@ -677,6 +701,7 @@ gtk_source_completion_model_append (GtkSourceCompletionModel    *model,
 	if (g_hash_table_lookup (model->priv->num_per_provider, provider) == NULL)
 	{
 		header = g_slice_new (ProposalNode);
+		header->model = model;
 		header->provider = g_object_ref (provider);
 		header->proposal = NULL;
 		header->filtered = GTK_SOURCE_COMPLETION_MODEL_FILTERED;
@@ -692,6 +717,7 @@ gtk_source_completion_model_append (GtkSourceCompletionModel    *model,
 	}
 
 	node = g_slice_new (ProposalNode);
+	node->model = model;
 	node->provider = g_object_ref (provider);
 	node->proposal = g_object_ref (proposal);
 
@@ -719,6 +745,11 @@ gtk_source_completion_model_append (GtkSourceCompletionModel    *model,
 		}
 	}
 	
+	node->changed_id = g_signal_connect (proposal, 
+	                                     "changed", 
+	                                     G_CALLBACK (on_proposal_changed),
+	                                     item);
+
 	return TRUE;
 }
 

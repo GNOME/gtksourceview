@@ -46,6 +46,8 @@ struct _GtkSourceCompletionProposalIface
 	GdkPixbuf	*(*get_icon)	(GtkSourceCompletionProposal *proposal);
 	const gchar	*(*get_info)	(GtkSourceCompletionProposal *proposal);
 	
+	/* Signals */
+	void		 (*changed)	(GtkSourceCompletionProposal *proposal);
 };
 
 GType 			 gtk_source_completion_proposal_get_type 	(void) G_GNUC_CONST;
@@ -53,6 +55,8 @@ GType 			 gtk_source_completion_proposal_get_type 	(void) G_GNUC_CONST;
 const gchar		*gtk_source_completion_proposal_get_label	(GtkSourceCompletionProposal *proposal);
 GdkPixbuf		*gtk_source_completion_proposal_get_icon	(GtkSourceCompletionProposal *proposal);
 const gchar		*gtk_source_completion_proposal_get_info	(GtkSourceCompletionProposal *proposal);
+
+void			 gtk_source_completion_proposal_changed		(GtkSourceCompletionProposal *proposal);
 
 G_END_DECLS
 
