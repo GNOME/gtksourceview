@@ -1,4 +1,28 @@
+/*
+ * gtksourcecompletionmodel.c
+ * This file is part of gtksourcecompletion
+ *
+ * Copyright (C) 2009 - Jesse van den Kieboom
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin St, Fifth Floor, 
+ * Boston, MA  02110-1301  USA
+ */
+
 #include "gtksourcecompletionmodel.h"
+
+#define ITEMS_PER_CALLBACK 500
 
 #define GTK_SOURCE_COMPLETION_MODEL_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE((object), GTK_TYPE_SOURCE_COMPLETION_MODEL, GtkSourceCompletionModelPrivate))
 
@@ -33,7 +57,19 @@ struct _GtkSourceCompletionModelPrivate
 	gpointer filter_data;
 	
 	gboolean show_headers;
+	
+	guint idle_id;
+	GQueue *item_queue;
 };
+
+/* Signals */
+enum
+{
+	ITEMS_ADDED,
+	LAST_SIGNAL
+};
+
+static guint signals[LAST_SIGNAL] = { 0 };
 
 static void tree_model_iface_init (gpointer g_iface, gpointer iface_data);
 
@@ -387,6 +423,47 @@ tree_model_iface_init (gpointer g_iface,
 }
 
 static void
+free_node (ProposalNode *node)
+{
+	g_object_unref (node->provider);
+	
+	if (node->proposal != NULL)
+	{
+		if (node->changed_id != 0)
+		{
+			g_signal_handler_disconnect (node->proposal,
+						     node->changed_id);
+		}
+		g_object_unref (node->proposal);
+	}
+	
+	g_slice_free (ProposalNode, node);
+}
+
+static void
+gtk_source_completion_model_dispose (GObject *object)
+{
+	GtkSourceCompletionModel *model = GTK_SOURCE_COMPLETION_MODEL (object);
+	
+	if (model->priv->idle_id != 0)
+	{
+		g_source_remove (model->priv->idle_id);
+		model->priv->idle_id = 0;
+	}
+	
+	if (model->priv->item_queue != NULL)
+	{
+		g_queue_foreach (model->priv->item_queue,
+				 (GFunc)free_node, NULL);
+		g_queue_free (model->priv->item_queue);
+		
+		model->priv->item_queue = NULL;
+	}
+
+	G_OBJECT_CLASS (gtk_source_completion_model_parent_class)->dispose (object);
+}
+
+static void
 gtk_source_completion_model_finalize (GObject *object)
 {
 	GtkSourceCompletionModel *model = GTK_SOURCE_COMPLETION_MODEL (object);
@@ -402,8 +479,20 @@ gtk_source_completion_model_class_init (GtkSourceCompletionModelClass *klass)
 	GObjectClass *object_class = G_OBJECT_CLASS (klass);
 	
 	object_class->finalize = gtk_source_completion_model_finalize;
+	object_class->dispose = gtk_source_completion_model_dispose;
 
 	g_type_class_add_private (object_class, sizeof(GtkSourceCompletionModelPrivate));
+	
+	signals[ITEMS_ADDED] =
+		g_signal_new ("items-added",
+			      G_TYPE_FROM_CLASS (klass),
+			      G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
+			      G_STRUCT_OFFSET (GtkSourceCompletionModelClass, items_added),
+			      NULL, 
+			      NULL,
+			      g_cclosure_marshal_VOID__VOID, 
+			      G_TYPE_NONE,
+			      0);
 }
 
 static void
@@ -426,6 +515,10 @@ gtk_source_completion_model_init (GtkSourceCompletionModel *self)
 	                                                      g_direct_equal,
 	                                                      NULL,
 	                                                      free_num);
+	
+	self->priv->idle_id = 0;
+	self->priv->item_queue = g_queue_new ();
+	g_queue_init (self->priv->item_queue);
 }
 
 static void
@@ -499,20 +592,6 @@ node_update_filter_state (GtkSourceCompletionModel *model,
 	                                      model->priv->filter_data);
 
 	return ret;
-}
-
-static void
-free_node (ProposalNode *node)
-{
-	g_object_unref (node->provider);
-	
-	if (node->proposal != NULL)
-	{
-		g_signal_handler_disconnect (node->proposal, node->changed_id);
-		g_object_unref (node->proposal);
-	}
-	
-	g_slice_free (ProposalNode, node);
 }
 
 static void
@@ -680,77 +759,109 @@ on_proposal_changed (GtkSourceCompletionProposal *proposal,
 	}
 }
 
-gboolean 
+static gboolean
+idle_append (gpointer data)
+{
+	GtkSourceCompletionModel *model = GTK_SOURCE_COMPLETION_MODEL (data);
+	HeaderInfo *info;
+	GtkTreePath *path;
+	GList *item;
+	gint i = 0;
+	
+	while (i < ITEMS_PER_CALLBACK)
+	{
+		ProposalNode *node = (ProposalNode *)g_queue_pop_head (model->priv->item_queue);
+		ProposalNode *header = NULL;
+		GtkTreeIter iter;
+		
+		if (node == NULL)
+		{
+			/* If we are here we added all elements of the queue */
+			g_signal_emit (model, signals[ITEMS_ADDED], 0);
+			
+			model->priv->idle_id = 0;
+			
+			return FALSE;
+		}
+		
+		/* Check if it is a header */
+		if (g_hash_table_lookup (model->priv->num_per_provider, node->provider) == NULL)
+		{
+			header = g_slice_new (ProposalNode);
+			header->provider = g_object_ref (node->provider);
+			header->proposal = NULL;
+			header->filtered = GTK_SOURCE_COMPLETION_MODEL_FILTERED;
+			
+			append_list (model, header);
+			
+			info = g_slice_new (HeaderInfo);
+			info->item = model->priv->last;
+			info->num = 0;
+			info->visible_items = 0;
+			
+			g_hash_table_insert (model->priv->num_per_provider, node->provider, info);
+		}
+		
+		node_update_filter_state (model, node);
+		
+		append_list (model, node);
+		
+		item = model->priv->last;
+		iter.user_data = item;
+
+		num_inc (model, 
+			 node->provider, 
+			 !node->filtered || (node->filtered & GTK_SOURCE_COMPLETION_MODEL_COUNT),
+			 !node->filtered);
+
+		if (!node->filtered)
+		{
+			path = path_from_list (model, item);
+			gtk_tree_model_row_inserted (GTK_TREE_MODEL (model), path, &iter);
+			gtk_tree_path_free (path);
+			
+			if (header != NULL)
+			{
+				update_show_headers (model, TRUE);
+			}
+		}
+		
+		node->changed_id = g_signal_connect (node->proposal, 
+	                                             "changed", 
+	                                             G_CALLBACK (on_proposal_changed),
+	                                             item);
+		
+		i++;
+	}
+	
+	return TRUE;
+}
+
+void
 gtk_source_completion_model_append (GtkSourceCompletionModel    *model,
                                     GtkSourceCompletionProvider *provider,
-                                    GtkSourceCompletionProposal *proposal,
-                                    GtkTreeIter                 *iter)
+                                    GtkSourceCompletionProposal *proposal)
 {
 	ProposalNode *node;
-	GList *item;
-	GtkTreePath *path;
-	ProposalNode *header = NULL;
-	HeaderInfo *info;
 	
-	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_MODEL (model), FALSE);
-	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_PROVIDER (provider), FALSE);
-	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_PROPOSAL (proposal), FALSE);
-	g_return_val_if_fail (iter != NULL, FALSE);
+	g_return_if_fail (GTK_IS_SOURCE_COMPLETION_MODEL (model));
+	g_return_if_fail (GTK_IS_SOURCE_COMPLETION_PROVIDER (provider));
+	g_return_if_fail (GTK_IS_SOURCE_COMPLETION_PROPOSAL (proposal));
 	
-	
-	if (g_hash_table_lookup (model->priv->num_per_provider, provider) == NULL)
-	{
-		header = g_slice_new (ProposalNode);
-		header->model = model;
-		header->provider = g_object_ref (provider);
-		header->proposal = NULL;
-		header->filtered = GTK_SOURCE_COMPLETION_MODEL_FILTERED;
-		
-		append_list (model, header);
-		
-		info = g_slice_new (HeaderInfo);
-		info->item = model->priv->last;
-		info->num = 0;
-		info->visible_items = 0;
-		
-		g_hash_table_insert (model->priv->num_per_provider, provider, info);
-	}
 
 	node = g_slice_new (ProposalNode);
-	node->model = model;
 	node->provider = g_object_ref (provider);
 	node->proposal = g_object_ref (proposal);
-
-	node_update_filter_state (model, node);
+	node->changed_id = 0;
 	
-	append_list (model, node);
-	item = model->priv->last;
+	g_queue_push_tail (model->priv->item_queue, node);
 	
-	iter->user_data = item;
-	
-	num_inc (model, 
-	         node->provider, 
-	         !node->filtered || (node->filtered & GTK_SOURCE_COMPLETION_MODEL_COUNT),
-	         !node->filtered);
-
-	if (!node->filtered)
+	if (model->priv->idle_id == 0)
 	{
-		path = path_from_list (model, item);
-		gtk_tree_model_row_inserted (GTK_TREE_MODEL (model), path, iter);
-		gtk_tree_path_free (path);
-		
-		if (header != NULL)
-		{
-			update_show_headers (model, TRUE);
-		}
+		model->priv->idle_id =
+			g_idle_add ((GSourceFunc)idle_append,
+				    model);
 	}
-	
-	node->changed_id = g_signal_connect (proposal, 
-	                                     "changed", 
-	                                     G_CALLBACK (on_proposal_changed),
-	                                     item);
-
-	return TRUE;
 }
 
 void
@@ -762,6 +873,12 @@ gtk_source_completion_model_clear (GtkSourceCompletionModel *model)
 	GtkSourceCompletionModelFilterFlag filtered;
 	
 	g_return_if_fail (GTK_IS_SOURCE_COMPLETION_MODEL (model));
+	
+	/* Clear the queue of missing elements to append */
+	g_queue_foreach (model->priv->item_queue,
+			 (GFunc)free_node, NULL);
+	g_queue_clear (model->priv->item_queue);
+	model->priv->idle_id = 0;
 	
 	path = gtk_tree_path_new_first ();
 	list = model->priv->store;

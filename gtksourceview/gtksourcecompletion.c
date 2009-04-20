@@ -76,6 +76,7 @@ enum
 	TEXT_VIEW_BUTTON_PRESS,
 	TEXT_BUFFER_DELETE_RANGE,
 	TEXT_BUFFER_INSERT_TEXT,
+	ROW_INSERTED,
 	LAST_EXTERNAL_SIGNAL
 };
 
@@ -117,6 +118,8 @@ struct _GtkSourceCompletionPrivate
 	
 	GtkSourceCompletionProvider *filter_provider;
 	gchar *filter_criteria;
+	
+	gboolean inserting_data;
 	
 	gulong signals_ids[LAST_EXTERNAL_SIGNAL];
 };
@@ -499,7 +502,7 @@ do_refilter (GtkSourceCompletion *completion,
 	gtk_source_completion_model_refilter (completion->priv->model_proposals);
 	
 	/* Check if there are any proposals left */
-	if (finish_if_empty && 
+	if (finish_if_empty && !completion->priv->inserting_data &&
 	    gtk_source_completion_model_is_empty (completion->priv->model_proposals, FALSE))
 	{
 		gtk_source_completion_finish (completion);
@@ -802,19 +805,6 @@ selection_changed_cb (GtkTreeSelection    *selection,
 	{
 		update_proposal_info (completion);
 	}
-}
-
-static void
-add_proposal (GtkSourceCompletion         *completion,
-              GtkSourceCompletionProvider *provider,
-              GtkSourceCompletionProposal *proposal)
-{
-	GtkTreeIter iter;
-
-	gtk_source_completion_model_append (completion->priv->model_proposals,
-	                                    provider,
-	                                    proposal,
-	                                    &iter);
 }
 
 static void
@@ -1380,6 +1370,9 @@ gtk_source_completion_finish_default (GtkSourceCompletion *completion)
 static void
 gtk_source_completion_popup_default (GtkSourceCompletion *completion)
 {
+	gtk_source_completion_utils_move_to_cursor (GTK_WINDOW (completion->priv->window),
+						    GTK_SOURCE_VIEW (completion->priv->view));
+	
 	gtk_widget_show (GTK_WIDGET (completion->priv->window));
 	gtk_widget_grab_focus (GTK_WIDGET (completion->priv->view));
 
@@ -1691,6 +1684,41 @@ selection_func (GtkTreeSelection    *selection,
 	}
 }
 
+static void
+on_row_inserted_cb (GtkTreeModel *tree_model,
+		    GtkTreePath  *path,
+		    GtkTreeIter  *iter,
+		    GtkSourceCompletion *completion)
+{
+	if (!GTK_WIDGET_VISIBLE (completion->priv->window))
+	{
+		update_selection_label (completion);
+	
+		if (!completion->priv->remember_info_visibility)
+			completion->priv->info_visible = FALSE;
+		
+		gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (completion->priv->info_button),
+					      completion->priv->info_visible);
+	
+		g_signal_emit (completion, signals[POPUP], 0);
+		
+		g_signal_handler_disconnect (tree_model, completion->priv->signals_ids[ROW_INSERTED]);
+	}
+}
+
+static void
+on_items_added_cb (GtkSourceCompletionModel *model,
+		   GtkSourceCompletion      *completion)
+{
+	completion->priv->inserting_data = FALSE;
+
+	/* Check if there are any completions */
+	if (gtk_source_completion_model_is_empty (model, FALSE))
+	{
+		gtk_source_completion_finish (completion);
+	}
+}
+
 static GtkWidget *
 initialize_proposals_ui (GtkSourceCompletion *completion)
 {
@@ -1703,6 +1731,11 @@ initialize_proposals_ui (GtkSourceCompletion *completion)
 	completion->priv->model_proposals = 
 		gtk_source_completion_model_new ((GtkSourceCompletionModelVisibleFunc)proposals_filter_func, 
 		                                 completion);
+	
+	g_signal_connect (completion->priv->model_proposals,
+			  "items-added",
+			  G_CALLBACK (on_items_added_cb),
+			  completion);
 
 	gtk_source_completion_model_set_show_headers (completion->priv->model_proposals,
 				                      completion->priv->show_headers);
@@ -1923,12 +1956,16 @@ add_proposals (GtkSourceCompletion         *completion,
 
 	proposals = gtk_source_completion_provider_get_proposals (provider);
 	
+	completion->priv->inserting_data = TRUE;
+	
 	for (item = proposals; item; item = g_list_next (item))
 	{
 		if (GTK_IS_SOURCE_COMPLETION_PROPOSAL (item->data))
 		{
 			proposal = GTK_SOURCE_COMPLETION_PROPOSAL (item->data);
-			add_proposal (completion, provider, proposal);
+			gtk_source_completion_model_append (completion->priv->model_proposals,
+	                                                    provider,
+	                                                    proposal);
 			g_object_unref (proposal);
 		}
 	}
@@ -1990,28 +2027,11 @@ gtk_source_completion_popup (GtkSourceCompletion *completion,
 	completion->priv->active_providers = 
 		g_list_reverse (completion->priv->active_providers);
 	
-	/* Check if there are any completions */
-	if (gtk_source_completion_model_is_empty (completion->priv->model_proposals, FALSE))
-	{
-		gtk_source_completion_finish (completion);
-		return FALSE;
-	}
-
-	update_selection_label (completion);
-
-	gtk_source_completion_utils_move_to_cursor (GTK_WINDOW (completion->priv->window),
-						    GTK_SOURCE_VIEW (completion->priv->view));
-	
-	if (!GTK_WIDGET_VISIBLE (completion->priv->window))
-	{
-		if (!completion->priv->remember_info_visibility)
-			completion->priv->info_visible = FALSE;
-		
-		gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (completion->priv->info_button),
-					      completion->priv->info_visible);
-	}
-	
-	g_signal_emit (completion, signals[POPUP], 0);
+	completion->priv->signals_ids[ROW_INSERTED] = 
+		g_signal_connect (completion->priv->model_proposals,
+				  "row-inserted",
+				  G_CALLBACK (on_row_inserted_cb),
+				  completion);
 	
 	return TRUE;
 }

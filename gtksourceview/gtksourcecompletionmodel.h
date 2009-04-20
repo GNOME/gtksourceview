@@ -49,6 +49,8 @@ struct _GtkSourceCompletionModel {
 
 struct _GtkSourceCompletionModelClass {
 	GObjectClass parent_class;
+	
+	void	(*items_added)	(GtkSourceCompletionModel *model);
 };
 
 typedef enum
@@ -78,10 +80,9 @@ GtkSourceCompletionModel *
 		gtk_source_completion_model_new 	(GtkSourceCompletionModelVisibleFunc func,
 							 gpointer                            userdata);
 
-gboolean 	gtk_source_completion_model_append 	(GtkSourceCompletionModel           *model,
+void		gtk_source_completion_model_append 	(GtkSourceCompletionModel           *model,
 							 GtkSourceCompletionProvider        *provider,
-							 GtkSourceCompletionProposal        *proposal,
-							 GtkTreeIter                        *iter);
+							 GtkSourceCompletionProposal        *proposal);
 
 gboolean	gtk_source_completion_model_is_empty 	(GtkSourceCompletionModel           *model,
                                                          gboolean                            invisible);
