@@ -76,7 +76,6 @@ enum
 	TEXT_VIEW_BUTTON_PRESS,
 	TEXT_BUFFER_DELETE_RANGE,
 	TEXT_BUFFER_INSERT_TEXT,
-	ROW_INSERTED,
 	LAST_EXTERNAL_SIGNAL
 };
 
@@ -120,7 +119,6 @@ struct _GtkSourceCompletionPrivate
 	gchar *filter_criteria;
 	
 	gboolean inserting_data;
-	
 	gulong signals_ids[LAST_EXTERNAL_SIGNAL];
 };
 
@@ -1701,9 +1699,11 @@ on_row_inserted_cb (GtkTreeModel *tree_model,
 					      completion->priv->info_visible);
 	
 		g_signal_emit (completion, signals[SHOW], 0);
-		
-		g_signal_handler_disconnect (tree_model, completion->priv->signals_ids[ROW_INSERTED]);
 	}
+	
+	gtk_tree_view_scroll_to_point (GTK_TREE_VIEW (completion->priv->tree_view_proposals),
+	                               0,
+	                               0);
 }
 
 static void
@@ -1741,6 +1741,11 @@ initialize_proposals_ui (GtkSourceCompletion *completion)
 				                      completion->priv->show_headers);
 	tree_view = gtk_tree_view_new_with_model (GTK_TREE_MODEL (completion->priv->model_proposals));
 	completion->priv->tree_view_proposals = tree_view;
+
+	g_signal_connect_after (completion->priv->model_proposals,
+	                        "row-inserted",
+	                        G_CALLBACK (on_row_inserted_cb),
+	                        completion);
 	
 	gtk_tree_view_set_show_expanders (GTK_TREE_VIEW (tree_view), FALSE);
 	
@@ -2028,12 +2033,6 @@ gtk_source_completion_show (GtkSourceCompletion *completion,
 	
 	completion->priv->active_providers = 
 		g_list_reverse (completion->priv->active_providers);
-	
-	completion->priv->signals_ids[ROW_INSERTED] = 
-		g_signal_connect (completion->priv->model_proposals,
-				  "row-inserted",
-				  G_CALLBACK (on_row_inserted_cb),
-				  completion);
 	
 	return TRUE;
 }

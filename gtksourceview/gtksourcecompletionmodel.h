@@ -50,7 +50,8 @@ struct _GtkSourceCompletionModel {
 struct _GtkSourceCompletionModelClass {
 	GObjectClass parent_class;
 	
-	void	(*items_added)	(GtkSourceCompletionModel *model);
+	void	(*items_added)		(GtkSourceCompletionModel *model);
+	void	(*filter_done)		(GtkSourceCompletionModel *model);
 };
 
 typedef enum
