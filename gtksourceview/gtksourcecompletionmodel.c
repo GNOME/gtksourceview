@@ -838,6 +838,17 @@ idle_append (gpointer data)
 }
 
 void
+gtk_source_completion_model_run_add_proposals (GtkSourceCompletionModel *model)
+{
+	if (idle_append (model))
+	{
+		model->priv->idle_id =
+			g_idle_add ((GSourceFunc)idle_append,
+				    model);
+	}
+}
+
+void
 gtk_source_completion_model_append (GtkSourceCompletionModel    *model,
                                     GtkSourceCompletionProvider *provider,
                                     GtkSourceCompletionProposal *proposal)
@@ -855,13 +866,6 @@ gtk_source_completion_model_append (GtkSourceCompletionModel    *model,
 	node->changed_id = 0;
 	
 	g_queue_push_tail (model->priv->item_queue, node);
-	
-	if (model->priv->idle_id == 0)
-	{
-		model->priv->idle_id =
-			g_idle_add ((GSourceFunc)idle_append,
-				    model);
-	}
 }
 
 void

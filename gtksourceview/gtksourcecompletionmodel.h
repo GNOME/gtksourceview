@@ -80,6 +80,8 @@ GtkSourceCompletionModel *
 		gtk_source_completion_model_new 	(GtkSourceCompletionModelVisibleFunc func,
 							 gpointer                            userdata);
 
+void		gtk_source_completion_model_run_add_proposals (GtkSourceCompletionModel *model);
+
 void		gtk_source_completion_model_append 	(GtkSourceCompletionModel           *model,
 							 GtkSourceCompletionProvider        *provider,
 							 GtkSourceCompletionProposal        *proposal);

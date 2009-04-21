@@ -1970,6 +1970,8 @@ add_proposals (GtkSourceCompletion         *completion,
 		}
 	}
 	
+	gtk_source_completion_model_run_add_proposals (completion->priv->model_proposals);
+	
 	g_list_free (proposals);
 }
 
