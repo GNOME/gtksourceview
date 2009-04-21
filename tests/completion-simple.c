@@ -29,7 +29,6 @@
 #include <gtksourceview/gtksourcecompletion.h>
 #include <gtksourceview/gtksourcecompletioninfo.h>
 
-#include "gsc-utils-test.h"
 #include "gsc-provider-test.h"
 
 #ifdef HAVE_DEVHELP
