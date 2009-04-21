@@ -4061,7 +4061,7 @@ gtk_source_view_show_completion	(GtkSourceView *view,
 	g_return_if_fail (GTK_IS_SOURCE_VIEW (view));
 
 	completion = gtk_source_view_get_completion (view);
-	gtk_source_completion_popup (completion, proposals, NULL);
+	gtk_source_completion_show (completion, proposals, NULL);
 }
 							 
 /**

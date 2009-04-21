@@ -60,8 +60,8 @@ struct _GtkSourceCompletionClass
 	gboolean 	(* proposal_activated)		(GtkSourceCompletion         *completion,
 	                                                 GtkSourceCompletionProvider *provider,
 							 GtkSourceCompletionProposal *proposal);
-	void 		(* popup)			(GtkSourceCompletion         *completion);
-	void		(* finish)			(GtkSourceCompletion         *completion);
+	void 		(* show)			(GtkSourceCompletion         *completion);
+	void		(* hide)			(GtkSourceCompletion         *completion);
 };
 
 GType		 gtk_source_completion_get_type			(void) G_GNUC_CONST;
@@ -75,11 +75,11 @@ gboolean	 gtk_source_completion_add_provider		(GtkSourceCompletion         *comp
 gboolean	 gtk_source_completion_remove_provider		(GtkSourceCompletion         *completion,
 								 GtkSourceCompletionProvider *provider);
 
-gboolean	 gtk_source_completion_popup			(GtkSourceCompletion         *completion,
+gboolean	 gtk_source_completion_show			(GtkSourceCompletion         *completion,
 								 GList                       *providers,
 								 const gchar                 *criteria);
 
-void		 gtk_source_completion_finish			(GtkSourceCompletion         *completion);
+void		 gtk_source_completion_hide			(GtkSourceCompletion         *completion);
 
 GtkSourceCompletionInfo *
 		 gtk_source_completion_get_info_window		(GtkSourceCompletion         *completion);
