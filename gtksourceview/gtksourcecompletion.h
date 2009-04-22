@@ -77,7 +77,8 @@ gboolean	 gtk_source_completion_remove_provider		(GtkSourceCompletion         *c
 
 gboolean	 gtk_source_completion_show			(GtkSourceCompletion         *completion,
 								 GList                       *providers,
-								 const gchar                 *criteria);
+								 const gchar                 *criteria,
+								 GtkTextIter                 *place);
 
 void		 gtk_source_completion_hide			(GtkSourceCompletion         *completion);
 

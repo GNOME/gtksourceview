@@ -1072,6 +1072,7 @@ show_auto_completion (GtkSourceCompletion *completion)
 	GtkTextBuffer *buffer;
 	GtkTextMark *insert_mark;
 	GtkTextIter iter;
+	GtkTextIter word_start;
 	gchar *word;
 	
 	completion->priv->show_timed_out_id = 0;
@@ -1088,12 +1089,14 @@ show_auto_completion (GtkSourceCompletion *completion)
 		return FALSE;
 	}
 	
-	word = gtk_source_completion_utils_get_word (GTK_SOURCE_BUFFER (buffer));
+	word = gtk_source_completion_utils_get_word_iter (GTK_SOURCE_BUFFER (buffer),
+							  &word_start, NULL);
 	
 	/* Check minimum amount of characters */
 	if (g_utf8_strlen (word, -1) >= completion->priv->minimum_auto_complete_length)
 	{
-		gtk_source_completion_show (completion, completion->priv->interactive_providers, word);
+		gtk_source_completion_show (completion, completion->priv->interactive_providers,
+					    word, &word_start);
 	}
 
 	g_free (word);
@@ -1368,9 +1371,6 @@ gtk_source_completion_hide_default (GtkSourceCompletion *completion)
 static void
 gtk_source_completion_show_default (GtkSourceCompletion *completion)
 {
-	gtk_source_completion_utils_move_to_cursor (GTK_WINDOW (completion->priv->window),
-						    GTK_SOURCE_VIEW (completion->priv->view));
-	
 	gtk_widget_show (GTK_WIDGET (completion->priv->window));
 	gtk_widget_grab_focus (GTK_WIDGET (completion->priv->view));
 
@@ -1985,15 +1985,18 @@ add_proposals (GtkSourceCompletion         *completion,
  * @completion: the #GtkSourceCompletion
  * @providers: the list of #GtkSourceCompletionProvider
  * @criteria: the filter criteria
+ * @place: the place where you want to situate the popup window, or %NULL
  *
- * Shows the show completion window.
+ * Shows the show completion window. If @place if %NULL the popup window will
+ * be placed on the cursor position.
  *
  * Returns: %TRUE if it was possible show the show completion window.
  */
 gboolean
 gtk_source_completion_show (GtkSourceCompletion *completion,
                             GList               *providers,
-                            const gchar         *criteria)
+                            const gchar         *criteria,
+                            GtkTextIter         *place)
 {
 	GList *l;
 
@@ -2033,6 +2036,18 @@ gtk_source_completion_show (GtkSourceCompletion *completion,
 	
 	completion->priv->active_providers = 
 		g_list_reverse (completion->priv->active_providers);
+	
+	if (place == NULL)
+	{
+		gtk_source_completion_utils_move_to_cursor (GTK_WINDOW (completion->priv->window),
+							    GTK_SOURCE_VIEW (completion->priv->view));
+	}
+	else
+	{
+		gtk_source_completion_utils_move_to_iter (GTK_WINDOW (completion->priv->window),
+							  GTK_SOURCE_VIEW (completion->priv->view),
+							  place);
+	}
 	
 	return TRUE;
 }
