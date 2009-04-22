@@ -1733,6 +1733,17 @@ on_items_added_cb (GtkSourceCompletionModel *model,
 	}
 }
 
+static void
+on_filter_done_cb (GtkSourceCompletionModel *model,
+		   GtkSourceCompletion      *completion)
+{
+	/* Check if there are any completions */
+	if (gtk_source_completion_model_is_empty (model, FALSE))
+	{
+		gtk_source_completion_hide (completion);
+	}
+}
+
 static GtkWidget *
 initialize_proposals_ui (GtkSourceCompletion *completion)
 {
@@ -1749,6 +1760,11 @@ initialize_proposals_ui (GtkSourceCompletion *completion)
 	g_signal_connect (completion->priv->model_proposals,
 			  "items-added",
 			  G_CALLBACK (on_items_added_cb),
+			  completion);
+
+	g_signal_connect (completion->priv->model_proposals,
+			  "filter-done",
+			  G_CALLBACK (on_filter_done_cb),
 			  completion);
 
 	gtk_source_completion_model_set_show_headers (completion->priv->model_proposals,
