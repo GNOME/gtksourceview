@@ -1029,41 +1029,16 @@ static void
 update_typing_offsets (GtkSourceCompletion *completion)
 {
 	GtkTextBuffer *buffer;
-	GtkTextMark *mark;
 	GtkTextIter iter;
+	gchar *word;
 
 	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (completion->priv->view));
-	mark = gtk_text_buffer_get_insert (buffer);
-
-	/* Check if the user has changed the cursor position.If yes, we don't complete */
-	gtk_text_buffer_get_iter_at_mark (buffer, &iter, mark);
+	word = gtk_source_completion_utils_get_word_iter (GTK_SOURCE_BUFFER (buffer),
+							  &iter, NULL);
+	g_free (word);
 
 	completion->priv->typing_line = gtk_text_iter_get_line (&iter);
 	completion->priv->typing_line_offset = gtk_text_iter_get_line_offset (&iter);
-}
-
-static gboolean
-buffer_delete_range_cb (GtkTextBuffer       *buffer,
-                        GtkTextIter         *start,
-                        GtkTextIter         *end,
-                        GtkSourceCompletion *completion)
-{
-	if (!GTK_WIDGET_VISIBLE (completion->priv->window))
-	{
-		return FALSE;
-	}
-
-	if (gtk_text_iter_get_line (start) != completion->priv->typing_line ||
-	    gtk_text_iter_get_line_offset (start) < completion->priv->typing_line_offset)
-	{
-		gtk_source_completion_hide (completion);
-	}
-	else
-	{
-		refilter_proposals_with_word (completion);
-	}
-	
-	return FALSE;
 }
 
 static gboolean
@@ -1083,8 +1058,7 @@ show_auto_completion (GtkSourceCompletion *completion)
 	/* Check if the user has changed the cursor position.If yes, we don't complete */
 	gtk_text_buffer_get_iter_at_mark (buffer, &iter, insert_mark);
 	
-	if ((gtk_text_iter_get_line (&iter) != completion->priv->typing_line) ||
-	    (gtk_text_iter_get_line_offset (&iter) != completion->priv->typing_line_offset))
+	if ((gtk_text_iter_get_line (&iter) != completion->priv->typing_line))
 	{
 		return FALSE;
 	}
@@ -1100,6 +1074,47 @@ show_auto_completion (GtkSourceCompletion *completion)
 	}
 
 	g_free (word);
+	
+	return FALSE;
+}
+
+static gboolean
+buffer_delete_range_cb (GtkTextBuffer       *buffer,
+                        GtkTextIter         *start,
+                        GtkTextIter         *end,
+                        GtkSourceCompletion *completion)
+{
+	if (!GTK_WIDGET_VISIBLE (completion->priv->window))
+	{
+		if (completion->priv->interactive_providers != NULL)
+		{
+			update_typing_offsets (completion);
+	
+			if (completion->priv->show_timed_out_id != 0)
+			{
+				g_source_remove (completion->priv->show_timed_out_id);
+				completion->priv->show_timed_out_id = 0;
+			}
+
+			completion->priv->show_timed_out_id = 
+				g_timeout_add (completion->priv->auto_complete_delay,
+					       (GSourceFunc)show_auto_completion,
+					       completion);
+		}
+	}
+	else
+	{
+		if (gtk_text_iter_get_line (start) != completion->priv->typing_line ||
+		    gtk_text_iter_get_line_offset (start) < completion->priv->typing_line_offset +
+		    completion->priv->minimum_auto_complete_length)
+		{
+			gtk_source_completion_hide (completion);
+		}
+		else
+		{
+			refilter_proposals_with_word (completion);
+		}
+	}
 	
 	return FALSE;
 }
@@ -1139,8 +1154,7 @@ buffer_insert_text_cb (GtkTextBuffer       *buffer,
 	else
 	{
 		if (gtk_source_completion_utils_is_separator (g_utf8_get_char (text)) ||
-		    gtk_text_iter_get_line (location) != completion->priv->typing_line ||
-		    gtk_text_iter_get_line_offset (location) < completion->priv->typing_line_offset)
+		    gtk_text_iter_get_line (location) != completion->priv->typing_line)
 		{
 			gtk_source_completion_hide (completion);
 		}
