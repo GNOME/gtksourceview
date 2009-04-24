@@ -1410,10 +1410,10 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 	klass->hide = gtk_source_completion_hide_default;
 
 	/**
-	 * GtkSourceCompletion:manage-completion-keys:
+	 * GtkSourceCompletion:view:
 	 *
-	 * %TRUE if this object must control the completion keys pressed into the
-	 * #GtkTextView associated (up next proposal, down previous proposal etc.)
+	 * The #GtkSourceView bound to the completion object.
+	 *
 	 */
 	g_object_class_install_property (object_class,
 					 PROP_VIEW,
@@ -1426,8 +1426,9 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 	/**
 	 * GtkSourceCompletion:manage-completion-keys:
 	 *
-	 * %TRUE if this object must control the completion keys pressed into the
-	 * #GtkTextView associated (up next proposal, down previous proposal etc.)
+	 * Determines whether the completion object should manage key presses
+	 * for navigating and activating proposals.
+	 *
 	 */
 	g_object_class_install_property (object_class,
 					 PROP_MANAGE_KEYS,
@@ -1439,8 +1440,10 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 	/**
 	 * GtkSourceCompletion:remember-info-visibility:
 	 *
-	 * %TRUE if the completion must remember the last info state
-	 * (visible or hidden)
+	 * Determines whether the visibility of the info window should be 
+	 * saved when the completion is hidden, and restored when the completion
+	 * is shown again.
+	 *
 	 */
 	g_object_class_install_property (object_class,
 					 PROP_REMEMBER_INFO_VISIBILITY,
@@ -1452,8 +1455,9 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 	/**
 	 * GtkSourceCompletion:select-on-show:
 	 *
-	 * %TRUE if the completion must to mark as selected the first proposal
-	 * on show (and when the filter is updated)
+	 * Determines whether the first proposal should be selected when the 
+	 * completion is first shown.
+	 *
 	 */
 	g_object_class_install_property (object_class,
 					 PROP_SELECT_ON_SHOW,
@@ -1466,8 +1470,9 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 	/**
 	 * GtkSourceCompletion:show-headers:
 	 *
-	 * %TRUE if providers should be shown as separator headers in the
-	 * popup when there are proposals from multiple providers
+	 * Determines whether provider headers should be shown in the proposal
+	 * list if there is more than one provider with proposals.
+	 *
 	 */
 	g_object_class_install_property (object_class,
 					 PROP_SHOW_HEADERS,
@@ -1480,13 +1485,15 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 	/**
 	 * GtkSourceCompletion:auto-complete-delay:
 	 *
-	 * The auto completion delay (in milliseconds)
+	 * Determines the popup delay (in milliseconds) at which the completion
+	 * will be shown for interactive completion.
+	 *
 	 */
 	g_object_class_install_property (object_class,
 					 PROP_AUTO_COMPLETE_DELAY,
 					 g_param_spec_uint ("auto-complete-delay",
 							    _("Auto Complete Delay"),
-							    _("Auto completion delay when typing"),
+							    _("Completion popup delay for interactive completion"),
 							    0,
 							    G_MAXUINT,
 							    250,
@@ -1494,7 +1501,8 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 	/**
 	 * GtkSourceCompletion:min-len:
 	 *
-	 * The minimum word length to initiate auto completion
+	 * The minimum word length to initiate interactive completion.
+	 *
 	 */
 	g_object_class_install_property (object_class,
 					 PROP_MINIMUM_AUTO_COMPLETE_LENGTH,
@@ -1510,9 +1518,10 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 	 * GtkSourceCompletion::show:
 	 * @completion: The #GtkSourceCompletion who emits the signal
 	 *
-	 * Emitted when the completion window is popped up. The default handler
+	 * Emitted when the completion window is shown. The default handler
 	 * will actually show the window.
-	 **/
+	 *
+	 */
 	signals[SHOW] =
 		g_signal_new ("show",
 			      G_TYPE_FROM_CLASS (klass),
@@ -1529,9 +1538,10 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 	 * GtkSourceCompletion::hide:
 	 * @completion: The #GtkSourceCompletion who emits the signal
 	 *
-	 * Emitted when the completion window is popped up. The default handler
+	 * Emitted when the completion window is hidden. The default handler
 	 * will actually hide the window.
-	 **/
+	 *
+	 */
 	signals[HIDE] =
 		g_signal_new ("hide",
 			      G_TYPE_FROM_CLASS (klass),
@@ -1989,15 +1999,15 @@ add_proposals (GtkSourceCompletion         *completion,
 
 /**
  * gtk_source_completion_show:
- * @completion: the #GtkSourceCompletion
- * @providers: the list of #GtkSourceCompletionProvider
- * @criteria: the filter criteria
- * @place: the place where you want to situate the popup window, or %NULL
+ * @completion: A #GtkSourceCompletion
+ * @providers: A list of #GtkSourceCompletionProvider
+ * @criteria: The filter criteria
+ * @place: The place where you want to position the popup window, or %NULL
  *
  * Shows the show completion window. If @place if %NULL the popup window will
  * be placed on the cursor position.
  *
- * Returns: %TRUE if it was possible show the show completion window.
+ * Returns: %TRUE if it was possible to the show completion window.
  */
 gboolean
 gtk_source_completion_show (GtkSourceCompletion *completion,
@@ -2074,11 +2084,11 @@ gtk_source_completion_error_quark (void)
 
 /**
  * gtk_source_completion_new:
- * @view: the #GtkSourceView to create the completion for
+ * @view: A #GtkSourceView
  *
- * Create a new #GtkSourceCompletion associated with @view
+ * Create a new #GtkSourceCompletion associated with @view.
  *
- * Returns: The new #GtkSourceCompletion
+ * Returns: The new #GtkSourceCompletion.
  */
 GtkSourceCompletion *
 gtk_source_completion_new (GtkSourceView *view)
@@ -2086,21 +2096,22 @@ gtk_source_completion_new (GtkSourceView *view)
 	g_return_val_if_fail (GTK_IS_SOURCE_VIEW (view), NULL);
 
 	return g_object_new (GTK_TYPE_SOURCE_COMPLETION,
-	                    "view", view,
-	                    NULL);
+	                     "view", view,
+	                     NULL);
 }
 
 /**
  * gtk_source_completion_add_provider:
- * @completion: the #GtkSourceCompletion
- * @provider: The #GtkSourceCompletionProvider.
+ * @completion: A #GtkSourceCompletion
+ * @provider: A #GtkSourceCompletionProvider
+ * @error: A #GError
  *
  * Add a new #GtkSourceCompletionProvider to the completion object. This will
  * add a reference @provider, so make sure to unref your own copy when you
  * no longer need it.
  *
- * Returns: %TRUE if @provider was successfully added to @completion, or %FALSE
- *          if @provider was already added to @completion before
+ * Returns: %TRUE if @provider was successfully added, otherwise if @error
+ *          is provided, it will be set with the error and %FALSE is returned.
  **/
 gboolean
 gtk_source_completion_add_provider (GtkSourceCompletion          *completion,
@@ -2150,12 +2161,14 @@ gtk_source_completion_add_provider (GtkSourceCompletion          *completion,
 
 /**
  * gtk_source_completion_remove_provider:
- * @completion: the #GtkSourceCompletion
- * @provider: The #GtkSourceCompletionProvider.
+ * @completion: A #GtkSourceCompletion
+ * @provider: A #GtkSourceCompletionProvider
+ * @error: A #GError
  *
  * Remove @provider from the completion.
  * 
- * Returns: %TRUE if @provider was successfully removed
+ * Returns: %TRUE if @provider was successfully removed, otherwise if @error
+ *          is provided, it will be set with the error and %FALSE is returned.
  **/
 gboolean
 gtk_source_completion_remove_provider (GtkSourceCompletion          *completion,
@@ -2211,7 +2224,7 @@ gtk_source_completion_remove_provider (GtkSourceCompletion          *completion,
 
 /**
  * gtk_source_completion_hide:
- * @completion: a #GtkSourceCompletion
+ * @completion: A #GtkSourceCompletion
  * 
  * Hides the completion if it is active (visible).
  */
@@ -2229,13 +2242,12 @@ gtk_source_completion_hide (GtkSourceCompletion *completion)
 
 /**
  * gtk_source_completion_get_info_window:
- * @completion: The #GtkSourceCompletion
+ * @completion: A #GtkSourceCompletion
  *
- * The info widget is the window where the completion shows the
- * proposal info or help. DO NOT USE IT (only to connect to some signal
- * or set the content in a custom widget).
+ * The info widget is the window where the completion displays optional extra
+ * information of the proposal.
  *
- * Returns: The internal #GtkSourceCompletionInfo widget.
+ * Returns: The #GtkSourceCompletionInfo window.
  */
 GtkSourceCompletionInfo *
 gtk_source_completion_get_info_window (GtkSourceCompletion *completion)
@@ -2243,6 +2255,14 @@ gtk_source_completion_get_info_window (GtkSourceCompletion *completion)
 	return GTK_SOURCE_COMPLETION_INFO (completion->priv->info_window);
 }
 
+/**
+ * gtk_source_completion_get_view:
+ * @completion: A #GtkSourceCompletion
+ *
+ * The #GtkSourceView associated with @completion.
+ *
+ * Returns: The #GtkSourceView associated with @completion.
+ */
 GtkSourceView *
 gtk_source_completion_get_view (GtkSourceCompletion *completion)
 {

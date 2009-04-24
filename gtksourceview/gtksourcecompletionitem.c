@@ -163,7 +163,7 @@ gtk_source_completion_item_class_init (GtkSourceCompletionItemClass *klass)
 	/**
 	 * GtkSourceCompletionItem:label:
 	 *
-	 * Label to be shown for this item
+	 * Label to be shown for this proposal.
 	 */
 	g_object_class_install_property (object_class,
 					 PROP_LABEL,
@@ -176,7 +176,7 @@ gtk_source_completion_item_class_init (GtkSourceCompletionItemClass *klass)
 	/**
 	 * GtkSourceCompletionItem:icon:
 	 *
-	 * Icon to be shown for this item
+	 * Icon to be shown for this proposal.
 	 */
 	g_object_class_install_property (object_class,
 					 PROP_ICON,
@@ -189,7 +189,7 @@ gtk_source_completion_item_class_init (GtkSourceCompletionItemClass *klass)
 	/**
 	 * GtkSourceCompletionItem:info:
 	 *
-	 * Optional extra information to be shown for this item
+	 * Optional extra information to be shown for this proposal.
 	 */
 	g_object_class_install_property (object_class,
 					 PROP_INFO,
@@ -210,14 +210,15 @@ gtk_source_completion_item_init (GtkSourceCompletionItem *self)
 
 /** 
  * gtk_source_completion_item_new:
- * @label: the item label
- * @icon: the item icon
- * @info: the item extra information
+ * @label: The item label
+ * @icon: The item icon
+ * @info: The item extra information
  *
  * Create a new #GtkSourceCompletionItem with label @label, icon @icon and 
- * extra information @info
+ * extra information @info. Both @icon and @info can be %NULL in which case 
+ * there will be no icon shown and no extra information available.
  *
- * Return value: the newly constructed #GtkSourceCompletionItem
+ * Returns: The new #GtkSourceCompletionItem.
  *
  */
 GtkSourceCompletionItem *
@@ -234,14 +235,14 @@ gtk_source_completion_item_new (const gchar *label,
 
 /** 
  * gtk_source_completion_item_new_from_stock:
- * @label: the item label
- * @stock: the stock icon
- * @info: the item extra information
+ * @label: The item label
+ * @stock: The stock icon
+ * @info: The item extra information
  *
  * Creates a new #GtkSourceCompletionItem from a stock item. If @label is %NULL, 
  * the stock label will be used.
  *
- * Returns: the newly constructed #GtkSourceCompletionItem
+ * Returns: the newly constructed #GtkSourceCompletionItem.
  *
  */
 GtkSourceCompletionItem *

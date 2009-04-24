@@ -161,9 +161,9 @@ gtk_source_completion_provider_get_type ()
  * @provider: The #GtkSourceCompletionProvider
  *
  * Get the name of the provider. This should be a translatable name for
- * display to the user. For example: _("Document word completion provider")
+ * display to the user. For example: _("Document word completion provider").
  *
- * Returns: The name of the provider
+ * Returns: The name of the provider.
  */
 const gchar *
 gtk_source_completion_provider_get_name (GtkSourceCompletionProvider *provider)
@@ -178,7 +178,8 @@ gtk_source_completion_provider_get_name (GtkSourceCompletionProvider *provider)
  *
  * Get the icon of the provider.
  *
- * Returns: The icon to be used for the provider, or %NULL
+ * Returns: The icon to be used for the provider, or %NULL if the provider does
+ *          not have a special icon.
  */
 GdkPixbuf *
 gtk_source_completion_provider_get_icon (GtkSourceCompletionProvider *provider)
@@ -192,7 +193,7 @@ gtk_source_completion_provider_get_icon (GtkSourceCompletionProvider *provider)
  * @provider: The #GtkSourceCompletionProvider
  * @iter: A #GtkTextIter
  *
- * Get proposals from the provider for completion
+ * Get proposals from the provider for completion.
  *
  * Returns: a list of #GtkSourceViewProposal or NULL if there are no proposals.
  *          The returned list and the contained #GtkSourceViewProposal are 
@@ -214,10 +215,12 @@ gtk_source_completion_provider_get_proposals (GtkSourceCompletionProvider *provi
  * @criteria: A string representing the filter criteria
  *
  * Determines whether to filter @proposal based on @criteria. It is guaranteed
- * that @criteria is always a valid UTF-8 string (and never %NULL)
+ * that @criteria is always a valid UTF-8 string (and never %NULL). 
+ * Implementations are not restricted to using @criteria as a filter criteria.
+ * They may also use @iter to do their own matching.
  *
- * Returns: %TRUE if @proposal conforms to @criteria and should be available,
- *          or %FALSE if @proposal should be hidden
+ * Returns: %TRUE if @proposal conforms to @criteria and should be show,
+ *          or %FALSE if @proposal should be hidden.
  */
 gboolean
 gtk_source_completion_provider_filter_proposal (GtkSourceCompletionProvider *provider,
@@ -240,9 +243,9 @@ gtk_source_completion_provider_filter_proposal (GtkSourceCompletionProvider *pro
  * @provider: The #GtkSourceCompletionProvider
  *
  * Get whether @provider responds to interactive completion (e.g. completion
- * when typing)
+ * when typing).
  *
- * Returns: %TRUE if @provider can be used interactively, or %FALSE otherwise
+ * Returns: %TRUE if @provider can be used interactively, or %FALSE otherwise.
  */
 gboolean
 gtk_source_completion_provider_get_interactive (GtkSourceCompletionProvider *provider)
@@ -255,9 +258,12 @@ gtk_source_completion_provider_get_interactive (GtkSourceCompletionProvider *pro
  * gtk_source_completion_provider_get_automatic:
  * @provider: The #GtkSourceCompletionProvider
  *
- * Get whether @provider is automatically included in the list of completions
+ * Get whether @provider is automatically included in the list of completions.
+ * This means that it will be shown in the default list of completions as 
+ * activated by the "show-completion" keybinding (<Ctrl>space by default) on
+ * the #GtkSourceView.
  *
- * Returns: %TRUE if @provider is automatically included, or %FALSE otherwise
+ * Returns: %TRUE if @provider is automatically included, or %FALSE otherwise.
  */
 gboolean
 gtk_source_completion_provider_get_automatic (GtkSourceCompletionProvider *provider)
@@ -271,16 +277,16 @@ gtk_source_completion_provider_get_automatic (GtkSourceCompletionProvider *provi
  * @provider: The #GtkSourceCompletionProvider
  * @proposal: The currently selected #GtkSourceCompletionProposal
  *
- * Get a customized info widget to show extra information of a proposal with.
+ * Get a customized info widget to show extra information of a proposal.
  * This allows for customized widgets on a proposal basis, although in general
  * providers will have the same custom widget for all their proposals and
- * @proposal can be ignored. The implementation of this function is optional, 
- * if implemented, #gtk_source_completion_provider_update_info MUST also be
+ * @proposal can be ignored. The implementation of this function is optional. 
+ * If implemented, #gtk_source_completion_provider_update_info MUST also be
  * implemented. If not implemented, the default 
  * #gtk_source_completion_proposal_get_info will be used to display extra
  * information about a #GtkSourceCompletionProposal.
  *
- * Returns: a custom #GtkWidget to show extra information about @proposal
+ * Returns: a custom #GtkWidget to show extra information about @proposal.
  */
 GtkWidget *
 gtk_source_completion_provider_get_info_widget (GtkSourceCompletionProvider *provider,
@@ -315,6 +321,19 @@ gtk_source_completion_provider_update_info (GtkSourceCompletionProvider *provide
 	GTK_SOURCE_COMPLETION_PROVIDER_GET_INTERFACE (provider)->update_info (provider, proposal, info);
 }
 
+/**
+ * gtk_source_completion_provider_activate_proposal:
+ * @provider: A #GtkSourceCompletionProvider
+ * @proposal: A #GtkSourceCompletionProposal
+ * @iter: A #GtkTextIter
+ *
+ * Activate @proposal at @iter. When this functions returns %FALSE, the default
+ * activation of @proposal will take place which replaces the word at @iter
+ * with the label of @proposal.
+ *
+ * Returns: %TRUE to indicate that the proposal activation has been handled,
+ *          %FALSE otherwise.
+ */
 gboolean
 gtk_source_completion_provider_activate_proposal (GtkSourceCompletionProvider *provider,
                                                   GtkSourceCompletionProposal *proposal,

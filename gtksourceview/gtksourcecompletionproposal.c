@@ -73,6 +73,14 @@ gtk_source_completion_proposal_init (GtkSourceCompletionProposalIface *iface)
 	
 	if (!initialized)
 	{
+		/**
+		 * GtkSourceCompletionProposal::changed:
+		 * @proposal: The #GtkSourceCompletionProposal
+		 *
+		 * Emitted when the proposal has changed. The completion popup
+		 * will react to this by updating the shown information.
+		 *
+		 */
 		signals[CHANGED] = 
 			g_signal_new ("changed",
 			      G_TYPE_FROM_INTERFACE (iface),
@@ -120,11 +128,13 @@ gtk_source_completion_proposal_get_type ()
 
 /**
  * gtk_source_completion_proposal_get_label:
- * @proposal: The #GtkSourceCompletionProposal
+ * @proposal: A #GtkSourceCompletionProposal
  *
- * Gets the label of @proposal
+ * Gets the label of @proposal. The label is shown in the list of proposals and
+ * may contain markup. It should be a valid UTF-8 string ready for display to
+ * the user.
  *
- * Returns: The label of @proposal
+ * Returns: The label of @proposal.
  */
 const gchar *
 gtk_source_completion_proposal_get_label (GtkSourceCompletionProposal *proposal)
@@ -135,11 +145,11 @@ gtk_source_completion_proposal_get_label (GtkSourceCompletionProposal *proposal)
 
 /**
  * gtk_source_completion_proposal_get_icon:
- * @proposal: The #GtkSourceCompletionProposal
+ * @proposal: A #GtkSourceCompletionProposal
  *
- * Gets the icon of @proposal
+ * Gets the icon of @proposal.
  *
- * Returns: The icon of @proposal
+ * Returns: The icon of @proposal.
  */
 GdkPixbuf *
 gtk_source_completion_proposal_get_icon (GtkSourceCompletionProposal *proposal)
@@ -150,14 +160,14 @@ gtk_source_completion_proposal_get_icon (GtkSourceCompletionProposal *proposal)
 
 /**
  * gtk_source_completion_proposal_get_info:
- * @proposal: The #GtkSourceCompletionProposal
+ * @proposal: A #GtkSourceCompletionProposal
  *
  * Gets extra information associated to the proposal. This information will be
  * used to present the user with extra, detailed information about the
  * selected proposal.
  *
  * Returns: The extra information of @proposal or %NULL if no extra information
- *          is associated to @proposal
+ *          is associated to @proposal.
  */
 const gchar *
 gtk_source_completion_proposal_get_info (GtkSourceCompletionProposal *proposal)
@@ -168,7 +178,7 @@ gtk_source_completion_proposal_get_info (GtkSourceCompletionProposal *proposal)
 
 /**
  * gtk_source_completion_proposal_changed:
- * @proposal: The #GtkSourceCompletionProposal
+ * @proposal: A #GtkSourceCompletionProposal
  *
  * Emits the "changed" signal on @proposal. This should be called by
  * implementations whenever the name, icon or info of the proposal has
