@@ -62,73 +62,49 @@ gtk_source_completion_utils_is_separator(const gunichar ch)
  */
 gchar *
 gtk_source_completion_utils_get_word_iter (GtkSourceBuffer *source_buffer, 
+                                           GtkTextIter     *current,
 					   GtkTextIter     *start_word, 
 					   GtkTextIter     *end_word)
 {
-	GtkTextMark *insert_mark;
 	GtkTextBuffer *text_buffer;
-	GtkTextIter actual;
-	GtkTextIter temp;
-	GtkTextIter *start_iter;
-	gchar *text;
 	gunichar ch;
-	gboolean found;
 	gboolean no_doc_start;
 	
-	if (start_word != NULL)
+	text_buffer = GTK_TEXT_BUFFER (source_buffer);
+	
+	if (current == NULL)
 	{
-		start_iter = start_word;
+		gtk_text_buffer_get_iter_at_mark (text_buffer,
+		                                  start_word,
+		                                  gtk_text_buffer_get_insert (text_buffer));
 	}
 	else
 	{
-		start_iter = &temp;
+		*start_word = *current;
 	}
 	
-	text_buffer = GTK_TEXT_BUFFER (source_buffer);
-	insert_mark = gtk_text_buffer_get_insert (text_buffer);
-	gtk_text_buffer_get_iter_at_mark (text_buffer ,&actual, insert_mark);
-	
-	*start_iter = actual;
+	*end_word = *start_word;
 
-	if (end_word != NULL)
+	while ((no_doc_start = gtk_text_iter_backward_char (start_word)) == TRUE)
 	{
-		*end_word = actual;
-	}
-	
-	found = FALSE;
-
-	while ((no_doc_start = gtk_text_iter_backward_char (start_iter)) == TRUE)
-	{
-		ch = gtk_text_iter_get_char (start_iter);
+		ch = gtk_text_iter_get_char (start_word);
 
 		if (gtk_source_completion_utils_is_separator (ch))
 		{
-			found = TRUE;
 			break;
 		}
 	}
 	
 	if (!no_doc_start)
 	{
-		gtk_text_buffer_get_start_iter (text_buffer, start_iter);
-		text = gtk_text_iter_get_text (start_iter, &actual);
+		gtk_text_buffer_get_start_iter (text_buffer, start_word);
+		return gtk_text_iter_get_text (start_word, end_word);
 	}
 	else
 	{
-	
-		if (found)
-		{
-			gtk_text_iter_forward_char (start_iter);
-			text = gtk_text_iter_get_text (start_iter, &actual);
-		}
-		else
-		{
-			*start_iter = actual;
-			text = g_strdup ("");
-		}
+		gtk_text_iter_forward_char (start_word);
+		return gtk_text_iter_get_text (start_word, end_word);
 	}
-	
-	return text;
 }
 
 /**
@@ -140,7 +116,10 @@ gtk_source_completion_utils_get_word_iter (GtkSourceBuffer *source_buffer,
 gchar *
 gtk_source_completion_utils_get_word (GtkSourceBuffer *source_buffer)
 {
-	return gtk_source_completion_utils_get_word_iter (source_buffer, NULL, NULL);
+	GtkTextIter start;
+	GtkTextIter end;
+	
+	return gtk_source_completion_utils_get_word_iter (source_buffer, NULL, &start, &end);
 }
 
 static void
@@ -177,6 +156,40 @@ get_iter_pos (GtkSourceView *source_view,
 	*height = location.height;
 }
 
+void
+gtk_source_completion_utils_replace_word (GtkSourceBuffer *source_buffer,
+					  GtkTextIter     *iter,
+					  const gchar     *text,
+					  gint             len)
+{
+	GtkTextBuffer *buffer;
+	gchar *word;
+	GtkTextIter word_start;
+	GtkTextIter word_end;
+	GtkTextMark *mark;
+
+	g_return_if_fail (GTK_IS_SOURCE_BUFFER (source_buffer));
+	
+	buffer = GTK_TEXT_BUFFER (source_buffer);
+	gtk_text_buffer_begin_user_action (buffer);
+	
+	mark = gtk_text_buffer_create_mark (buffer, NULL, iter, TRUE);
+	word = gtk_source_completion_utils_get_word_iter (source_buffer, iter, &word_start, &word_end);
+	g_free (word);
+
+	gtk_text_buffer_delete (buffer, &word_start, &word_end);
+	
+	if (text != NULL)
+	{
+		gtk_text_buffer_insert (buffer, &word_start, text, len);
+	}
+
+	/* Reinitialize iter */
+	gtk_text_buffer_get_iter_at_mark (buffer, iter, mark);
+	gtk_text_buffer_delete_mark (buffer, mark);
+	gtk_text_buffer_end_user_action (buffer);
+}
+
 /**
  * gsc_utils_view_replace_current_word:
  * @source_buffer: The #GtkSourceBuffer
@@ -190,21 +203,20 @@ gtk_source_completion_utils_replace_current_word (GtkSourceBuffer *source_buffer
 						  const gchar     *text,
 						  gint             len)
 {
-	GtkTextBuffer *buffer;
-	gchar *word;
-	GtkTextIter word_start;
-	GtkTextIter word_end;
+	GtkTextIter iter;
+	GtkTextMark *mark;
 	
-	buffer = GTK_TEXT_BUFFER (source_buffer);
-	gtk_text_buffer_begin_user_action (buffer);
-	
-	word = gtk_source_completion_utils_get_word_iter (source_buffer, &word_start, &word_end);
-	g_free (word);
+	g_return_if_fail (GTK_IS_SOURCE_BUFFER (source_buffer));
 
-	gtk_text_buffer_delete (buffer, &word_start, &word_end);
-	gtk_text_buffer_insert (buffer, &word_start, text, len);
+	mark = gtk_text_buffer_get_insert (GTK_TEXT_BUFFER (source_buffer));
+	gtk_text_buffer_get_iter_at_mark (GTK_TEXT_BUFFER (source_buffer),
+	                                  &iter,
+	                                  mark);
 
-	gtk_text_buffer_end_user_action (buffer);
+	gtk_source_completion_utils_replace_word (source_buffer,
+	                                          &iter,
+	                                          text,
+	                                          len);
 }
 
 static void

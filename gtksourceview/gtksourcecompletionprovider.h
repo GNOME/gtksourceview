@@ -46,9 +46,11 @@ struct _GtkSourceCompletionProviderIface
 	
 	const gchar	*(*get_name)       	(GtkSourceCompletionProvider *provider);
 	GdkPixbuf	*(*get_icon)       	(GtkSourceCompletionProvider *provider);
-	GList 		*(*get_proposals) 	(GtkSourceCompletionProvider *provider);
+	GList 		*(*get_proposals) 	(GtkSourceCompletionProvider *provider,
+						 GtkTextIter                 *iter);
 	gboolean 	 (*filter_proposal) 	(GtkSourceCompletionProvider *provider,
 						 GtkSourceCompletionProposal *proposal,
+						 GtkTextIter                 *iter,
 						 const gchar                 *criteria);
 
 	gboolean         (*get_automatic)	(GtkSourceCompletionProvider *provider);
@@ -61,7 +63,8 @@ struct _GtkSourceCompletionProviderIface
 						 GtkSourceCompletionInfo     *info);
 
 	gboolean	 (*activate_proposal)	(GtkSourceCompletionProvider *provider,
-						 GtkSourceCompletionProposal *proposal);
+						 GtkSourceCompletionProposal *proposal,
+						 GtkTextIter                 *iter);
 };
 
 GType		 gtk_source_completion_provider_get_type	(void);
@@ -71,10 +74,12 @@ const gchar	*gtk_source_completion_provider_get_name	(GtkSourceCompletionProvide
 
 GdkPixbuf	*gtk_source_completion_provider_get_icon	(GtkSourceCompletionProvider *provider);
 
-GList		*gtk_source_completion_provider_get_proposals	(GtkSourceCompletionProvider *provider);
+GList		*gtk_source_completion_provider_get_proposals	(GtkSourceCompletionProvider *provider,
+								 GtkTextIter                 *iter);
 
 gboolean	 gtk_source_completion_provider_filter_proposal	(GtkSourceCompletionProvider *provider,
 								 GtkSourceCompletionProposal *proposal,
+								 GtkTextIter                 *iter,
 								 const gchar                 *criteria);
 
 gboolean 	 gtk_source_completion_provider_get_automatic	(GtkSourceCompletionProvider *provider);
@@ -88,7 +93,8 @@ void 		 gtk_source_completion_provider_update_info	(GtkSourceCompletionProvider 
 								 GtkSourceCompletionInfo     *info);
 
 gboolean	 gtk_source_completion_provider_activate_proposal (GtkSourceCompletionProvider *provider,
-								   GtkSourceCompletionProposal *proposal);
+								   GtkSourceCompletionProposal *proposal,
+								   GtkTextIter                 *iter);
 
 G_END_DECLS
 

@@ -192,7 +192,7 @@ create_completion(void)
 		g_object_unref (icon);
 	}
 	
-	gtk_source_completion_add_provider (comp, GTK_SOURCE_COMPLETION_PROVIDER (prov_test1));
+	gtk_source_completion_add_provider (comp, GTK_SOURCE_COMPLETION_PROVIDER (prov_test1), NULL);
 	
 	icon = get_icon_from_theme (GTK_STOCK_OPEN);
 	prov_test1 = gsc_provider_test_new ("Open Files", icon);
@@ -202,14 +202,14 @@ create_completion(void)
 		g_object_unref (icon);
 	}
 	
-	gtk_source_completion_add_provider (comp, GTK_SOURCE_COMPLETION_PROVIDER (prov_test1));
+	gtk_source_completion_add_provider (comp, GTK_SOURCE_COMPLETION_PROVIDER (prov_test1), NULL);
 
 #ifdef HAVE_DEVHELP
 	GscProviderDevhelp *prov_devhelp;
 
 	prov_devhelp = gsc_provider_devhelp_new ();
 	
-	gtk_source_completion_add_provider (comp, GTK_SOURCE_COMPLETION_PROVIDER (prov_devhelp));
+	gtk_source_completion_add_provider (comp, GTK_SOURCE_COMPLETION_PROVIDER (prov_devhelp), NULL);
 #endif
 }
 

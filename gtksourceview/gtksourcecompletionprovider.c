@@ -30,12 +30,13 @@
  * 
  */
 
-
+#include <gtksourceview/gtksourcecompletion.h>
 #include <gtksourceview/gtksourcecompletionprovider.h>
 #include <gtksourceview/gtksourcecompletion.h>
 #include <gtksourceview/gtksourceview.h>
 
 #include "gtksourcecompletionutils.h"
+#include "gtksourceview-i18n.h"
 
 /* Default implementations */
 static const gchar *
@@ -51,7 +52,8 @@ gtk_source_completion_provider_get_icon_default (GtkSourceCompletionProvider *pr
 }
 
 static GList *
-gtk_source_completion_provider_get_proposals_default (GtkSourceCompletionProvider *provider)
+gtk_source_completion_provider_get_proposals_default (GtkSourceCompletionProvider *provider,
+                                                      GtkTextIter                 *iter)
 {
 	return NULL;
 }
@@ -59,6 +61,7 @@ gtk_source_completion_provider_get_proposals_default (GtkSourceCompletionProvide
 static gboolean
 gtk_source_completion_provider_filter_proposal_default (GtkSourceCompletionProvider *provider,
                                                         GtkSourceCompletionProposal *proposal,
+                                                        GtkTextIter                 *iter,
                                                         const gchar                 *criteria)
 {
 	return TRUE;
@@ -92,20 +95,10 @@ gtk_source_completion_provider_update_info_default (GtkSourceCompletionProvider 
 
 static gboolean
 gtk_source_completion_provider_activate_proposal_default (GtkSourceCompletionProvider *provider,
-                                                          GtkSourceCompletionProposal *proposal)
+                                                          GtkSourceCompletionProposal *proposal,
+                                                          GtkTextIter                 *iter)
 {
-	GtkSourceCompletion *completion;
-	GtkSourceView *view;
-	GtkSourceBuffer *buffer;
-	
-	completion = gtk_source_completion_get_from_provider (provider);
-	view = gtk_source_completion_get_view (completion);
-	buffer = GTK_SOURCE_BUFFER (gtk_text_view_get_buffer (GTK_TEXT_VIEW (view)));
-	
-	gtk_source_completion_utils_replace_current_word (buffer,
-	                                                  gtk_source_completion_proposal_get_label (proposal),
-	                                                  -1);
-	return TRUE;
+	return FALSE;
 }
 
 static void 
@@ -197,6 +190,7 @@ gtk_source_completion_provider_get_icon (GtkSourceCompletionProvider *provider)
 /**
  * gtk_source_completion_provider_get_proposals:
  * @provider: The #GtkSourceCompletionProvider
+ * @iter: A #GtkTextIter
  *
  * Get proposals from the provider for completion
  *
@@ -205,16 +199,18 @@ gtk_source_completion_provider_get_icon (GtkSourceCompletionProvider *provider)
  *          owned by the caller and will be freed when no longer needed.
  */
 GList * 
-gtk_source_completion_provider_get_proposals (GtkSourceCompletionProvider *provider)
+gtk_source_completion_provider_get_proposals (GtkSourceCompletionProvider *provider,
+                                              GtkTextIter                 *iter)
 {
 	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_PROVIDER (provider), NULL);
-	return GTK_SOURCE_COMPLETION_PROVIDER_GET_INTERFACE (provider)->get_proposals (provider);
+	return GTK_SOURCE_COMPLETION_PROVIDER_GET_INTERFACE (provider)->get_proposals (provider, iter);
 }
 
 /**
  * gtk_source_completion_provider_filter_proposal:
  * @provider: The #GtkSourceCompletionProvider
  * @proposal: A #GtkSourceCompletionProposal
+ * @iter: A #GtkTextIter
  * @criteria: A string representing the filter criteria
  *
  * Determines whether to filter @proposal based on @criteria. It is guaranteed
@@ -226,13 +222,17 @@ gtk_source_completion_provider_get_proposals (GtkSourceCompletionProvider *provi
 gboolean
 gtk_source_completion_provider_filter_proposal (GtkSourceCompletionProvider *provider,
                                                 GtkSourceCompletionProposal *proposal,
+                                                GtkTextIter                 *iter,
                                                 const gchar                 *criteria)
 {
 	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_PROVIDER (provider), FALSE);
 	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_PROPOSAL (proposal), FALSE);
 	g_return_val_if_fail (criteria != NULL, FALSE);
 
-	return GTK_SOURCE_COMPLETION_PROVIDER_GET_INTERFACE (provider)->filter_proposal (provider, proposal, criteria);
+	return GTK_SOURCE_COMPLETION_PROVIDER_GET_INTERFACE (provider)->filter_proposal (provider, 
+	                                                                                 proposal, 
+	                                                                                 iter, 
+	                                                                                 criteria);
 }
 
 /**
@@ -317,10 +317,13 @@ gtk_source_completion_provider_update_info (GtkSourceCompletionProvider *provide
 
 gboolean
 gtk_source_completion_provider_activate_proposal (GtkSourceCompletionProvider *provider,
-                                                  GtkSourceCompletionProposal *proposal)
+                                                  GtkSourceCompletionProposal *proposal,
+                                                  GtkTextIter                 *iter)
 {
 	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_PROVIDER (provider), FALSE);
 	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_PROPOSAL (proposal), FALSE);
 	
-	return GTK_SOURCE_COMPLETION_PROVIDER_GET_INTERFACE (provider)->activate_proposal (provider, proposal);
+	return GTK_SOURCE_COMPLETION_PROVIDER_GET_INTERFACE (provider)->activate_proposal (provider, 
+	                                                                                   proposal,
+	                                                                                   iter);
 }

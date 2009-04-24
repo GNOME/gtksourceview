@@ -30,7 +30,8 @@ gsc_provider_devhelp_get_name (GtkSourceCompletionProvider *self)
 }
 
 static GList * 
-gsc_provider_devhelp_get_proposals (GtkSourceCompletionProvider *provider)
+gsc_provider_devhelp_get_proposals (GtkSourceCompletionProvider *provider,
+                                    GtkTextIter                 *iter)
 {
 	GscProviderDevhelp *devhelp = GSC_PROVIDER_DEVHELP (provider);
 	
@@ -42,6 +43,7 @@ gsc_provider_devhelp_get_proposals (GtkSourceCompletionProvider *provider)
 static gboolean
 gsc_provider_devhelp_filter_proposal (GtkSourceCompletionProvider *provider,
                                       GtkSourceCompletionProposal *proposal,
+                                      GtkTextIter                 *iter,
                                       const gchar                 *criteria)
 {
 	const gchar *item;
@@ -133,6 +135,8 @@ gsc_provider_devhelp_init (GscProviderDevhelp *self)
 	
 	self->priv->view = dh_assistant_view_new ();
 	dh_assistant_view_set_base (DH_ASSISTANT_VIEW (self->priv->view), self->priv->dhbase);
+	
+	gtk_widget_set_size_request (self->priv->view, 400, 300);
 
 	self->priv->proposals = g_list_reverse (ret);
 }

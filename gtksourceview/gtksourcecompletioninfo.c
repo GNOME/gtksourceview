@@ -452,10 +452,20 @@ gtk_source_completion_info_set_sizing (GtkSourceCompletionInfo *self,
 {
 	g_return_if_fail  (GTK_IS_SOURCE_COMPLETION_INFO (self));
 
+	if (self->priv->max_width == width &&
+	    self->priv->max_height == height &&
+	    self->priv->shrink_width == shrink_width &&
+	    self->priv->shrink_height == shrink_height)
+	{
+		return;
+	}
+
 	self->priv->max_width = width;
 	self->priv->max_height = height;
 	self->priv->shrink_width = shrink_width;
 	self->priv->shrink_height = shrink_height;
+	
+	queue_resize (self);
 }
 
 static gboolean

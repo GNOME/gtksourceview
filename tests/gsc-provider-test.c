@@ -18,6 +18,7 @@
  */
 
 #include "gsc-provider-test.h"
+#include <gtksourceview/gtksourcecompletion.h>
 #include <gtksourceview/gtksourcecompletionitem.h>
 
 #define GSC_PROVIDER_TEST_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE((object), GSC_TYPE_PROVIDER_TEST, GscProviderTestPrivate))
@@ -60,7 +61,8 @@ append_item (GList *list, const gchar *name, GdkPixbuf *icon, const gchar *info)
 }
 
 static GList *
-gsc_provider_test_get_proposals (GtkSourceCompletionProvider *base)
+gsc_provider_test_get_proposals (GtkSourceCompletionProvider *base,
+                                 GtkTextIter                 *iter)
 {
 	GscProviderTest *provider = GSC_PROVIDER_TEST (base);
 	GList *list = NULL;
@@ -76,6 +78,7 @@ gsc_provider_test_get_proposals (GtkSourceCompletionProvider *base)
 static gboolean
 gsc_provider_test_filter_proposal (GtkSourceCompletionProvider *provider,
                                    GtkSourceCompletionProposal *proposal,
+                                   GtkTextIter                 *iter,
                                    const gchar                 *criteria)
 {
 	const gchar *label;
@@ -109,7 +112,6 @@ gsc_provider_test_finalize (GObject *object)
 
 	G_OBJECT_CLASS (gsc_provider_test_parent_class)->finalize (object);
 }
-
 
 static void 
 gsc_provider_test_class_init (GscProviderTestClass *klass)
