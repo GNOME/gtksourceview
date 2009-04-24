@@ -490,8 +490,11 @@ gtk_source_completion_model_dispose (GObject *object)
 	cancel_append (model);
 	cancel_refilter (model);
 	
-	g_queue_free (model->priv->item_queue);
-	model->priv->item_queue = NULL;
+	if (model->priv->item_queue != NULL)
+	{
+		g_queue_free (model->priv->item_queue);
+		model->priv->item_queue = NULL;
+	}
 	
 	if (model->priv->num_per_provider != NULL)
 	{
