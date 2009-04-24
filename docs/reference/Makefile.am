@@ -30,6 +30,7 @@ IGNORE_HFILES =					\
 	gtksourceview-marshal.h			\
 	gtksourceview-typebuiltins.h		\
 	gtksourceview-utils.h			\
+	gtksourcecompletionutils.h		\
 	gtktextregion.h				\
 	gtksourceengine.h			\
 	gtksourcecontextengine.h		\

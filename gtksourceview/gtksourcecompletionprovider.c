@@ -260,7 +260,7 @@ gtk_source_completion_provider_get_interactive (GtkSourceCompletionProvider *pro
  *
  * Get whether @provider is automatically included in the list of completions.
  * This means that it will be shown in the default list of completions as 
- * activated by the "show-completion" keybinding (<Ctrl>space by default) on
+ * activated by the "show-completion" keybinding (&lt;Ctrl&gt;space by default) on
  * the #GtkSourceView.
  *
  * Returns: %TRUE if @provider is automatically included, or %FALSE otherwise.

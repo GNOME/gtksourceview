@@ -60,20 +60,20 @@ GType		 gtk_source_completion_info_get_type		(void) G_GNUC_CONST;
 GtkSourceCompletionInfo *
 		 gtk_source_completion_info_new			(void);
 
-void		 gtk_source_completion_info_move_to_iter	(GtkSourceCompletionInfo *self,
+void		 gtk_source_completion_info_move_to_iter	(GtkSourceCompletionInfo *info,
 								 GtkTextView             *view,
 								 GtkTextIter             *iter);
 
-void		 gtk_source_completion_info_set_sizing		(GtkSourceCompletionInfo *self,
+void		 gtk_source_completion_info_set_sizing		(GtkSourceCompletionInfo *info,
 								 gint                     width,
 								 gint                     height,
 								 gboolean                 shrink_width,
 								 gboolean                 shrink_height);
 
-void		 gtk_source_completion_info_set_widget		(GtkSourceCompletionInfo *self,
+void		 gtk_source_completion_info_set_widget		(GtkSourceCompletionInfo *info,
 								 GtkWidget               *widget);
 
-GtkWidget	*gtk_source_completion_info_get_widget		(GtkSourceCompletionInfo *self);
+GtkWidget	*gtk_source_completion_info_get_widget		(GtkSourceCompletionInfo *info);
 
 G_END_DECLS
 

@@ -76,9 +76,6 @@ GType		 gtk_source_completion_get_type			(void) G_GNUC_CONST;
 
 GQuark		 gtk_source_completion_error_quark		(void);
 
-struct _GtkSourceView *
-		 gtk_source_completion_get_view			(GtkSourceCompletion	     *completion);
-
 gboolean	 gtk_source_completion_add_provider		(GtkSourceCompletion          *completion,
 								 GtkSourceCompletionProvider  *provider,
 								 GError                      **error);
@@ -96,6 +93,9 @@ void		 gtk_source_completion_hide			(GtkSourceCompletion         *completion);
 
 GtkSourceCompletionInfo *
 		 gtk_source_completion_get_info_window		(GtkSourceCompletion         *completion);
+
+struct _GtkSourceView *
+		 gtk_source_completion_get_view			(GtkSourceCompletion	     *completion);
 
 G_END_DECLS
 
