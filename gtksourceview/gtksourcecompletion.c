@@ -2042,7 +2042,19 @@ gtk_source_completion_show (GtkSourceCompletion *completion,
 	
 	completion->priv->filter_criteria = g_strdup (criteria);
 	update_typing_offsets (completion);
-	
+
+	if (place == NULL)
+	{
+		gtk_source_completion_utils_move_to_cursor (GTK_WINDOW (completion->priv->window),
+							    GTK_SOURCE_VIEW (completion->priv->view));
+	}
+	else
+	{
+		gtk_source_completion_utils_move_to_iter (GTK_WINDOW (completion->priv->window),
+							  GTK_SOURCE_VIEW (completion->priv->view),
+							  place);
+	}
+
 	/* Make sure all providers are ours */
 	for (l = providers; l; l = g_list_next (l))
 	{
@@ -2059,19 +2071,7 @@ gtk_source_completion_show (GtkSourceCompletion *completion,
 	
 	completion->priv->active_providers = 
 		g_list_reverse (completion->priv->active_providers);
-	
-	if (place == NULL)
-	{
-		gtk_source_completion_utils_move_to_cursor (GTK_WINDOW (completion->priv->window),
-							    GTK_SOURCE_VIEW (completion->priv->view));
-	}
-	else
-	{
-		gtk_source_completion_utils_move_to_iter (GTK_WINDOW (completion->priv->window),
-							  GTK_SOURCE_VIEW (completion->priv->view),
-							  place);
-	}
-	
+		
 	return TRUE;
 }
 
