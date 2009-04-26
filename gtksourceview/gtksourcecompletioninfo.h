@@ -75,6 +75,8 @@ void		 gtk_source_completion_info_set_widget		(GtkSourceCompletionInfo *info,
 
 GtkWidget	*gtk_source_completion_info_get_widget		(GtkSourceCompletionInfo *info);
 
+void		 gtk_source_completion_info_process_resize	(GtkSourceCompletionInfo *info);
+
 G_END_DECLS
 
 #endif /* __GTK_SOURCE_COMPLETION_INFO_H__ */

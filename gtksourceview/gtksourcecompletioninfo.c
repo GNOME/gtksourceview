@@ -343,7 +343,7 @@ gtk_source_completion_info_class_init (GtkSourceCompletionInfoClass *klass)
 							    -1,
 							    G_MAXINT,
 							    -1,
-							    G_PARAM_READWRITE));
+							    G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 
 	g_object_class_install_property (object_class,
 					 PROP_MAX_HEIGHT,
@@ -353,7 +353,7 @@ gtk_source_completion_info_class_init (GtkSourceCompletionInfoClass *klass)
 							    -1,
 							    G_MAXINT,
 							    -1,
-							    G_PARAM_READWRITE));
+							    G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 							    
 
 	g_object_class_install_property (object_class,
@@ -361,16 +361,16 @@ gtk_source_completion_info_class_init (GtkSourceCompletionInfoClass *klass)
 					 g_param_spec_boolean ("shrink-width",
 							       _("Shrink width"),
 							       _("Whether the window should shrink width to fit the contents"),
-							       FALSE,
-							       G_PARAM_READWRITE));
+							       TRUE,
+							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 
 	g_object_class_install_property (object_class,
 					 PROP_SHRINK_HEIGHT,
 					 g_param_spec_boolean ("shrink-height",
 							       _("Shrink height"),
 							       _("Whether the window should shrink height to fit the contents"),
-							       FALSE,
-							       G_PARAM_READWRITE));
+							       TRUE,
+							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 						       
 	g_type_class_add_private (object_class, sizeof (GtkSourceCompletionInfoPrivate));
 }
@@ -493,20 +493,14 @@ use_scrolled_window (GtkSourceCompletionInfo *info,
                      GtkWidget               *widget)
 {
 	GtkRequisition req;
+	gint mw;
+	gint mh;
 	
-	if (!needs_viewport (widget))
-	{
-		return TRUE;
-	}
-	
-	if (info->priv->max_width == -1 && info->priv->max_height == -1)
-	{
-		return FALSE;
-	}
-	
+	mw = info->priv->max_width;
+	mh = info->priv->max_height;
 	gtk_widget_size_request (widget, &req);
 	
-	return (info->priv->max_width < req.width || info->priv->max_height < req.height);
+	return (mw != -1 && mw < req.width) || (mh != -1 && mh < req.height);
 }
 
 static void
@@ -582,6 +576,7 @@ gtk_source_completion_info_set_widget (GtkSourceCompletionInfo *info,
 		/* See if it needs a viewport */
 		if (use_scrolled_window (info, widget))
 		{
+			g_message ("yes");
 			create_scrolled_window (info);
 			child = widget;
 			
@@ -604,7 +599,7 @@ gtk_source_completion_info_set_widget (GtkSourceCompletionInfo *info,
 		gtk_widget_show (widget);
 	}
 
-	window_resize (info);
+	queue_resize (info);
 }
 
 /**
@@ -624,5 +619,13 @@ gtk_source_completion_info_get_widget (GtkSourceCompletionInfo* info)
 	return info->priv->widget;
 }
 
+void
+gtk_source_completion_info_process_resize (GtkSourceCompletionInfo *info)
+{
+	g_return_if_fail (GTK_IS_SOURCE_COMPLETION_INFO (info));
+	
+	if (info->priv->idle_resize != 0)
+		window_resize (info);
+}
 
 

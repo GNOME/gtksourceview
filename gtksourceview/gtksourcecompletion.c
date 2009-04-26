@@ -753,8 +753,11 @@ update_proposal_info_real (GtkSourceCompletion         *completion,
 	GtkWidget *info_widget;
 	const gchar *text;
 	gboolean prov_update_info = FALSE;
+	GtkSourceCompletionInfo *info_window;
 	
-	gtk_source_completion_info_set_sizing (GTK_SOURCE_COMPLETION_INFO (completion->priv->info_window),
+	info_window = GTK_SOURCE_COMPLETION_INFO (completion->priv->info_window);
+	
+	gtk_source_completion_info_set_sizing (info_window,
 	                                       -1, -1, TRUE, TRUE);
 
 	if (proposal == NULL)
@@ -782,15 +785,17 @@ update_proposal_info_real (GtkSourceCompletion         *completion,
 		}
 	}
 	
-	gtk_source_completion_info_set_widget (GTK_SOURCE_COMPLETION_INFO (completion->priv->info_window),
+	gtk_source_completion_info_set_widget (info_window,
 	                                       info_widget);
 
 	if (prov_update_info)
 	{
 		gtk_source_completion_provider_update_info (provider, 
 			                                    proposal,
-			                                    GTK_SOURCE_COMPLETION_INFO (completion->priv->info_window));
+			                                    info_window);
 	}
+	
+	gtk_source_completion_info_process_resize (info_window);
 }
 
 static void
@@ -877,8 +882,17 @@ hide_info_cb (GtkWidget *widget,
 }
 
 static void
-gtk_source_completion_realize (GtkWidget *widget,
-			       GtkSourceCompletion *completion)
+info_size_allocate_cb (GtkWidget           *widget,
+                       GtkAllocation       *allocation,
+                       GtkSourceCompletion *completion)
+{
+	/* Update window position */
+	update_info_position (completion);
+}
+
+static void
+gtk_source_completion_realize (GtkWidget           *widget,
+                               GtkSourceCompletion *completion)
 {
 	gtk_container_set_border_width (GTK_CONTAINER (completion->priv->window), 1);
 	gtk_widget_set_size_request (GTK_WIDGET (completion->priv->window),
@@ -887,9 +901,9 @@ gtk_source_completion_realize (GtkWidget *widget,
 }
 
 static gboolean
-gtk_source_completion_configure_event (GtkWidget *widget,
-				       GdkEventConfigure *event,
-				       GtkSourceCompletion *completion)
+gtk_source_completion_configure_event (GtkWidget           *widget,
+                                       GdkEventConfigure   *event,
+                                       GtkSourceCompletion *completion)
 {
 	if (GTK_WIDGET_VISIBLE (completion->priv->info_window))
 		update_info_position (completion);
@@ -898,9 +912,9 @@ gtk_source_completion_configure_event (GtkWidget *widget,
 }
 
 static gboolean
-view_focus_out_event_cb (GtkWidget *widget,
-			 GdkEventFocus *event,
-			 gpointer user_data)
+view_focus_out_event_cb (GtkWidget     *widget,
+                         GdkEventFocus *event,
+                         gpointer       user_data)
 {
 	GtkSourceCompletion *completion = GTK_SOURCE_COMPLETION (user_data);
 	
@@ -1961,6 +1975,11 @@ initialize_ui (GtkSourceCompletion *completion)
 			  "hide",
 			  G_CALLBACK (hide_info_cb),
 			  completion);
+
+	g_signal_connect (completion->priv->info_window,
+	                  "size-allocate",
+	                  G_CALLBACK(info_size_allocate_cb),
+	                  completion);
 }
 
 static void
