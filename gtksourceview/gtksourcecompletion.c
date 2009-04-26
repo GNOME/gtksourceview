@@ -117,6 +117,7 @@ struct _GtkSourceCompletionPrivate
 	gchar *filter_criteria;
 	
 	gboolean inserting_data;
+	gboolean is_interactive;
 	gulong signals_ids[LAST_EXTERNAL_SIGNAL];
 };
 
@@ -1099,6 +1100,7 @@ show_auto_completion (GtkSourceCompletion *completion)
 	{
 		gtk_source_completion_show (completion, completion->priv->interactive_providers,
 					    word, &start);
+		completion->priv->is_interactive = TRUE;
 	}
 
 	g_free (word);
@@ -1133,8 +1135,9 @@ buffer_delete_range_cb (GtkTextBuffer       *buffer,
 	else
 	{
 		if (gtk_text_iter_get_line (start) != completion->priv->typing_line ||
-		    gtk_text_iter_get_line_offset (start) < completion->priv->typing_line_offset +
-		    completion->priv->minimum_auto_complete_length)
+		    (completion->priv->is_interactive && 
+		     gtk_text_iter_get_line_offset (start) < completion->priv->typing_line_offset +
+		     completion->priv->minimum_auto_complete_length))
 		{
 			gtk_source_completion_hide (completion);
 		}
@@ -1155,7 +1158,7 @@ buffer_insert_text_cb (GtkTextBuffer       *buffer,
                        GtkSourceCompletion *completion)
 {
 	/* Only handle typed text */
-	if (len > 1)
+	if (len > 1 && completion->priv->is_interactive)
 	{
 		gtk_source_completion_hide (completion);
 		return;
@@ -1181,7 +1184,8 @@ buffer_insert_text_cb (GtkTextBuffer       *buffer,
 	}
 	else
 	{
-		if (gtk_source_completion_utils_is_separator (g_utf8_get_char (text)) ||
+		if ((completion->priv->is_interactive && 
+		     gtk_source_completion_utils_is_separator (g_utf8_get_char (text))) ||
 		    gtk_text_iter_get_line (location) != completion->priv->typing_line)
 		{
 			gtk_source_completion_hide (completion);
@@ -2090,7 +2094,8 @@ gtk_source_completion_show (GtkSourceCompletion *completion,
 	
 	completion->priv->active_providers = 
 		g_list_reverse (completion->priv->active_providers);
-		
+
+	completion->priv->is_interactive = FALSE;		
 	return TRUE;
 }
 
