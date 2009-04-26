@@ -31,10 +31,17 @@ struct _GtkSourceCompletionItemClass {
 GType 			 gtk_source_completion_item_get_type 		(void) G_GNUC_CONST;
 
 GtkSourceCompletionItem *gtk_source_completion_item_new 		(const gchar *label,
+									 const gchar *action,
+									 GdkPixbuf   *icon,
+									 const gchar *info);
+
+GtkSourceCompletionItem *gtk_source_completion_item_new_with_markup	(const gchar *markup,
+									 const gchar *action,
 									 GdkPixbuf   *icon,
 									 const gchar *info);
 
 GtkSourceCompletionItem *gtk_source_completion_item_new_from_stock	(const gchar *label,
+								 	 const gchar *action,
 								 	 const gchar *stock,
 								 	 const gchar *info);
 

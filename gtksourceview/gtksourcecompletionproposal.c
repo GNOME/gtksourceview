@@ -50,6 +50,18 @@ gtk_source_completion_proposal_get_label_default (GtkSourceCompletionProposal *p
 	g_return_val_if_reached (NULL);
 }
 
+static const gchar *
+gtk_source_completion_proposal_get_markup_default (GtkSourceCompletionProposal *proposal)
+{
+	return NULL;
+}
+
+static const gchar *
+gtk_source_completion_proposal_get_action_default (GtkSourceCompletionProposal *proposal)
+{
+	return NULL;
+}
+
 static GdkPixbuf *
 gtk_source_completion_proposal_get_icon_default (GtkSourceCompletionProposal *proposal)
 {
@@ -68,6 +80,9 @@ gtk_source_completion_proposal_init (GtkSourceCompletionProposalIface *iface)
 	static gboolean initialized = FALSE;
 	
 	iface->get_label = gtk_source_completion_proposal_get_label_default;
+	iface->get_markup = gtk_source_completion_proposal_get_markup_default;
+	iface->get_action = gtk_source_completion_proposal_get_action_default;
+	
 	iface->get_icon = gtk_source_completion_proposal_get_icon_default;
 	iface->get_info = gtk_source_completion_proposal_get_info_default;
 	
@@ -130,9 +145,9 @@ gtk_source_completion_proposal_get_type ()
  * gtk_source_completion_proposal_get_label:
  * @proposal: A #GtkSourceCompletionProposal
  *
- * Gets the label of @proposal. The label is shown in the list of proposals and
- * may contain markup. It should be a valid UTF-8 string ready for display to
- * the user.
+ * Gets the label of @proposal. The label is shown in the list of proposals as
+ * plain text. If you need any markup (such as bold or italic text), you have
+ * to implement #gtk_source_completion_proposal_get_markup.
  *
  * Returns: The label of @proposal.
  */
@@ -141,6 +156,41 @@ gtk_source_completion_proposal_get_label (GtkSourceCompletionProposal *proposal)
 {
 	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_PROPOSAL (proposal), NULL);	
 	return GTK_SOURCE_COMPLETION_PROPOSAL_GET_INTERFACE (proposal)->get_label (proposal);
+}
+
+/**
+ * gtk_source_completion_proposal_get_markup:
+ * @proposal: A #GtkSourceCompletionProposal
+ *
+ * Gets the label of @proposal with markup. The label is shown in the list of 
+ * proposals and may contain markup. This will be used instead of
+ * #gtk_source_completion_proposal_get_label if implemented.
+ *
+ * Returns: The label of @proposal with markup.
+ */
+const gchar *
+gtk_source_completion_proposal_get_markup (GtkSourceCompletionProposal *proposal)
+{
+	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_PROPOSAL (proposal), NULL);	
+	return GTK_SOURCE_COMPLETION_PROPOSAL_GET_INTERFACE (proposal)->get_markup (proposal);
+}
+
+/**
+ * gtk_source_completion_proposal_get_action:
+ * @proposal: A #GtkSourceCompletionProposal
+ *
+ * Gets the action of @proposal. The action is the text that is inserted into
+ * the text buffer when the proposal is activated by the default activation.
+ * You are free to implement a custom activation handler in the provider and
+ * not implement this function.
+ *
+ * Returns: The action of @proposal.
+ */
+const gchar *
+gtk_source_completion_proposal_get_action (GtkSourceCompletionProposal *proposal)
+{
+	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_PROPOSAL (proposal), NULL);	
+	return GTK_SOURCE_COMPLETION_PROPOSAL_GET_INTERFACE (proposal)->get_action (proposal);
 }
 
 /**

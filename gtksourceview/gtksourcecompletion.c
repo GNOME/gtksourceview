@@ -176,6 +176,7 @@ activate_current_proposal (GtkSourceCompletion *completion)
 	GtkSourceCompletionProposal *proposal = NULL;
 	GtkSourceCompletionProvider *provider = NULL;
 	GtkTextBuffer *buffer;
+	const gchar *action;
 	
 	if (!get_selected_proposal (completion, &iter, &proposal))
 	{
@@ -196,8 +197,9 @@ activate_current_proposal (GtkSourceCompletion *completion)
 
 	if (!activated)
 	{
+		action = gtk_source_completion_proposal_get_action (proposal);
 		gtk_source_completion_utils_replace_current_word (GTK_SOURCE_BUFFER (buffer),
-				                                  gtk_source_completion_proposal_get_label (proposal),
+				                                  action ? action : NULL,
 				                                  -1);
 	}
 
@@ -1638,7 +1640,8 @@ render_proposal_text_func (GtkTreeViewColumn   *column,
                            GtkTreeIter         *iter,
                            GtkSourceCompletion *completion)
 {
-	gchar *name;
+	gchar *label;
+	gchar *markup;
 	GtkSourceCompletionProvider *provider;
 	gboolean isheader;
 	GtkStyle *style;
@@ -1654,18 +1657,18 @@ render_proposal_text_func (GtkTreeViewColumn   *column,
 		                    &provider, 
 		                    -1);
 		
-		name = g_strdup_printf ("<b>%s</b>", 
+		label = g_strdup_printf ("<b>%s</b>", 
 		                        g_markup_escape_text (gtk_source_completion_provider_get_name (provider),
 		                                              -1));
 
 		style = gtk_widget_get_style (GTK_WIDGET (completion->priv->tree_view_proposals));
 
 		g_object_set (cell, 
-		              "markup", name,
+		              "markup", label,
 		              "background-gdk", &(style->bg[GTK_STATE_INSENSITIVE]), 
 		              "foreground-gdk", &(style->fg[GTK_STATE_INSENSITIVE]), 
 		              NULL);
-		g_free (name);
+		g_free (label);
 		
 		g_object_unref (provider);
 	}
@@ -1674,16 +1677,24 @@ render_proposal_text_func (GtkTreeViewColumn   *column,
 		gtk_tree_model_get (model, 
 		                    iter, 
 		                    GTK_SOURCE_COMPLETION_MODEL_COLUMN_LABEL, 
-		                    &name, 
+		                    &label, 
+		                    GTK_SOURCE_COMPLETION_MODEL_COLUMN_MARKUP, 
+		                    &markup,
 		                    -1);
 
+		if (!markup)
+		{
+			markup = g_markup_escape_text (label ? label : "", -1);
+		}
+
 		g_object_set (cell, 
-		              "markup", name, 
+		              "markup", markup, 
 		              "background-set", FALSE, 
 		              "foreground-set", FALSE,
 		              NULL);
 
-		g_free (name);
+		g_free (label);
+		g_free (markup);
 	}
 }
 

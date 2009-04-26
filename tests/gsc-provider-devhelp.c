@@ -128,6 +128,7 @@ gsc_provider_devhelp_init (GscProviderDevhelp *self)
 		DhLink *link = (DhLink *)item->data;
 		
 		ret = g_list_prepend (ret, gtk_source_completion_item_new (dh_link_get_name (link),
+									   dh_link_get_name (link),
 									   NULL,
 									   dh_link_get_uri (link)));
 	}

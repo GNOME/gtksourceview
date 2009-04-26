@@ -252,6 +252,9 @@ tree_model_get_value (GtkTreeModel *tree_model,
 		case GTK_SOURCE_COMPLETION_MODEL_COLUMN_LABEL:
 			g_value_set_string (value, gtk_source_completion_proposal_get_label (node->proposal));
 			break;
+		case GTK_SOURCE_COMPLETION_MODEL_COLUMN_MARKUP:
+			g_value_set_string (value, gtk_source_completion_proposal_get_markup (node->proposal));
+			break;
 		case GTK_SOURCE_COMPLETION_MODEL_COLUMN_ICON:
 			if (node->proposal == NULL)
 			{
@@ -563,6 +566,7 @@ gtk_source_completion_model_init (GtkSourceCompletionModel *self)
 	self->priv->column_types[GTK_SOURCE_COMPLETION_MODEL_COLUMN_PROVIDER] = G_TYPE_OBJECT;
 	self->priv->column_types[GTK_SOURCE_COMPLETION_MODEL_COLUMN_PROPOSAL] = G_TYPE_OBJECT;
 	self->priv->column_types[GTK_SOURCE_COMPLETION_MODEL_COLUMN_LABEL] = G_TYPE_STRING;
+	self->priv->column_types[GTK_SOURCE_COMPLETION_MODEL_COLUMN_MARKUP] = G_TYPE_STRING;
 	self->priv->column_types[GTK_SOURCE_COMPLETION_MODEL_COLUMN_ICON] = GDK_TYPE_PIXBUF;
 	
 	self->priv->num_per_provider = g_hash_table_new_full (g_direct_hash,

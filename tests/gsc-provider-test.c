@@ -56,7 +56,7 @@ append_item (GList *list, const gchar *name, GdkPixbuf *icon, const gchar *info)
 {
 	GtkSourceCompletionItem *prop;
 	
-	prop = gtk_source_completion_item_new (name, icon, info);
+	prop = gtk_source_completion_item_new (name, name, icon, info);
 	return g_list_append (list, prop);
 }
 
