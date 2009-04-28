@@ -32,8 +32,7 @@ libgtksourceview_headers =			\
 	gtksourcecompletioninfo.h		\
 	gtksourcecompletionitem.h		\
 	gtksourcecompletionproposal.h		\
-	gtksourcecompletionprovider.h		\
-	gtksourcecompletionmodel.h
+	gtksourcecompletionprovider.h
 
 NOINST_H_FILES = \
 	gtksourcecompletionutils.h		\
@@ -72,6 +71,7 @@ libgtksourceview_2_0_la_SOURCES = 	\
 	gtksourcecompletionproposal.c	\
 	gtksourcecompletionprovider.c	\
 	gtksourcecompletionmodel.c	\
+	gtksourcecompletionmodel.h	\
 	gtksourcecompletionutils.c	\
 	$(libgtksourceview_headers)	\
 	$(NOINST_H_FILES)
