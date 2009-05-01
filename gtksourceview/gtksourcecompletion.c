@@ -2107,6 +2107,9 @@ gtk_source_completion_show (GtkSourceCompletion *completion,
 		g_list_reverse (completion->priv->active_providers);
 
 	completion->priv->is_interactive = FALSE;		
+
+	update_selection_label (completion);
+
 	return TRUE;
 }
 
