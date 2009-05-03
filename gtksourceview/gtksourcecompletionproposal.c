@@ -57,7 +57,7 @@ gtk_source_completion_proposal_get_markup_default (GtkSourceCompletionProposal *
 }
 
 static const gchar *
-gtk_source_completion_proposal_get_action_default (GtkSourceCompletionProposal *proposal)
+gtk_source_completion_proposal_get_text_default (GtkSourceCompletionProposal *proposal)
 {
 	return NULL;
 }
@@ -81,7 +81,7 @@ gtk_source_completion_proposal_init (GtkSourceCompletionProposalIface *iface)
 	
 	iface->get_label = gtk_source_completion_proposal_get_label_default;
 	iface->get_markup = gtk_source_completion_proposal_get_markup_default;
-	iface->get_action = gtk_source_completion_proposal_get_action_default;
+	iface->get_text = gtk_source_completion_proposal_get_text_default;
 	
 	iface->get_icon = gtk_source_completion_proposal_get_icon_default;
 	iface->get_info = gtk_source_completion_proposal_get_info_default;
@@ -176,21 +176,21 @@ gtk_source_completion_proposal_get_markup (GtkSourceCompletionProposal *proposal
 }
 
 /**
- * gtk_source_completion_proposal_get_action:
+ * gtk_source_completion_proposal_get_text:
  * @proposal: A #GtkSourceCompletionProposal
  *
- * Gets the action of @proposal. The action is the text that is inserted into
+ * Gets the text of @proposal. The text that is inserted into
  * the text buffer when the proposal is activated by the default activation.
  * You are free to implement a custom activation handler in the provider and
  * not implement this function.
  *
- * Returns: The action of @proposal.
+ * Returns: The text of @proposal.
  */
 const gchar *
-gtk_source_completion_proposal_get_action (GtkSourceCompletionProposal *proposal)
+gtk_source_completion_proposal_get_text (GtkSourceCompletionProposal *proposal)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_PROPOSAL (proposal), NULL);	
-	return GTK_SOURCE_COMPLETION_PROPOSAL_GET_INTERFACE (proposal)->get_action (proposal);
+	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_PROPOSAL (proposal), NULL);
+	return GTK_SOURCE_COMPLETION_PROPOSAL_GET_INTERFACE (proposal)->get_text (proposal);
 }
 
 /**

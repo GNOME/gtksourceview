@@ -176,7 +176,7 @@ activate_current_proposal (GtkSourceCompletion *completion)
 	GtkSourceCompletionProposal *proposal = NULL;
 	GtkSourceCompletionProvider *provider = NULL;
 	GtkTextBuffer *buffer;
-	const gchar *action;
+	const gchar *text;
 	
 	if (!get_selected_proposal (completion, &iter, &proposal))
 	{
@@ -197,9 +197,9 @@ activate_current_proposal (GtkSourceCompletion *completion)
 
 	if (!activated)
 	{
-		action = gtk_source_completion_proposal_get_action (proposal);
+		text = gtk_source_completion_proposal_get_text (proposal);
 		gtk_source_completion_utils_replace_current_word (GTK_SOURCE_BUFFER (buffer),
-				                                  action ? action : NULL,
+				                                  text ? text : NULL,
 				                                  -1);
 	}
 
