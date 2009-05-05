@@ -55,3 +55,5 @@ include $(top_srcdir)/gtk-doc.make
 
 # Other files to distribute
 EXTRA_DIST +=
+
+-include $(top_srcdir)/git.mk

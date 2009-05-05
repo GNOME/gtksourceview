@@ -30,3 +30,5 @@ testregion_LDADD = 			\
 EXTRA_DIST =				\
 	apple-red.png			\
 	gnome-gmush.png
+
+-include $(top_srcdir)/git.mk

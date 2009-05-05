@@ -88,3 +88,5 @@ stylesdir = $(datadir)/gtksourceview-2.0/styles
 styles_DATA = $(STYLES) styles.rng
 
 EXTRA_DIST = $(languages_DATA) $(styles_DATA)
+
+-include $(top_srcdir)/git.mk

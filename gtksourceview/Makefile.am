@@ -118,3 +118,5 @@ EXTRA_DIST = \
 	gtksourceview-marshal.list
 
 CLEANFILES = $(BUILT_SOURCES) stamp-gtksourceview-typebuiltins.h stamp-gtksourceview-typebuiltins.c
+
+-include $(top_srcdir)/git.mk
