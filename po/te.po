@@ -1,4 +1,4 @@
-# translation of gtksourceview.HEAD.te.po to Telugu
+# translation of gtksourceview.master.te.po to Telugu
 # Telugu translation of gtksourceview
 # Copyright (C) Krishna Babu K <kkrothap@redhat.com>, 2008.
 # This file is distributed under the same license as the gtksourceview package.
@@ -6,10 +6,10 @@
 # Krishna Babu K <kkrothap@redhat.com>, 2008, 2009.
 msgid ""
 msgstr ""
-"Project-Id-Version: gtksourceview.HEAD.te\n"
+"Project-Id-Version: gtksourceview.master.te\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gtksourceview&component=general\n"
-"POT-Creation-Date: 2009-02-14 11:52+0000\n"
-"PO-Revision-Date: 2009-03-11 13:29+0530\n"
+"POT-Creation-Date: 2009-04-18 16:44+0000\n"
+"PO-Revision-Date: 2009-05-15 13:36+0530\n"
 "Last-Translator: Krishna Babu K <kkrothap@redhat.com>\n"
 "Language-Team: Telugu <en@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -17,6 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n\n"
+"\n"
 "\n"
 "\n"
 
@@ -210,11 +211,11 @@ msgstr "regex '%s' నందు తెలియని id '%s'"
 msgid "in regex '%s': backreferences are not supported"
 msgstr "regex '%s': ప్రత్యామ్నాయసంప్రదింపులు మద్దతీయబడవు"
 
-#: ../gtksourceview/gtksourcemark.c:119
+#: ../gtksourceview/gtksourcemark.c:121
 msgid "category"
 msgstr "వర్గము"
 
-#: ../gtksourceview/gtksourcemark.c:120
+#: ../gtksourceview/gtksourcemark.c:122
 msgid "The mark category"
 msgstr "గుర్తు వర్గము"
 
@@ -608,6 +609,7 @@ msgstr "బులియన్ విలువ"
 #: ../gtksourceview/language-specs/perl.lang.h:2
 #: ../gtksourceview/language-specs/php.lang.h:2
 #: ../gtksourceview/language-specs/po.lang.h:1
+#: ../gtksourceview/language-specs/prolog.lang.h:1
 #: ../gtksourceview/language-specs/ruby.lang.h:5
 #: ../gtksourceview/language-specs/scheme.lang.h:2
 #: ../gtksourceview/language-specs/sh.lang.h:1
@@ -717,6 +719,7 @@ msgstr "ఎస్కేప్‌డ్ అక్షరం"
 #: ../gtksourceview/language-specs/perl.lang.h:9
 #: ../gtksourceview/language-specs/php.lang.h:13
 #: ../gtksourceview/language-specs/po.lang.h:3
+#: ../gtksourceview/language-specs/prolog.lang.h:3
 #: ../gtksourceview/language-specs/python.lang.h:11
 #: ../gtksourceview/language-specs/R.lang.h:6
 #: ../gtksourceview/language-specs/ruby.lang.h:12
@@ -773,6 +776,7 @@ msgstr "వాస్తవ సంఖ్య"
 #: ../gtksourceview/language-specs/objc.lang.h:5
 #: ../gtksourceview/language-specs/ocaml.lang.h:16
 #: ../gtksourceview/language-specs/pascal.lang.h:7
+#: ../gtksourceview/language-specs/prolog.lang.h:6
 #: ../gtksourceview/language-specs/scheme.lang.h:6
 #: ../gtksourceview/language-specs/sql.lang.h:9
 #: ../gtksourceview/language-specs/vala.lang.h:10
@@ -818,6 +822,7 @@ msgstr "నిల్వ తరగతి"
 #: ../gtksourceview/language-specs/perl.lang.h:19
 #: ../gtksourceview/language-specs/php.lang.h:19
 #: ../gtksourceview/language-specs/po.lang.h:8
+#: ../gtksourceview/language-specs/prolog.lang.h:7
 #: ../gtksourceview/language-specs/python.lang.h:17
 #: ../gtksourceview/language-specs/ruby.lang.h:21
 #: ../gtksourceview/language-specs/scheme.lang.h:7
@@ -831,16 +836,14 @@ msgid "String"
 msgstr "స్ట్రింగ్"
 
 #: ../gtksourceview/language-specs/asp.lang.h:1
-#, fuzzy
 #| msgid "GAP"
 msgid "ASP"
-msgstr "GAP"
+msgstr "ASP"
 
 #: ../gtksourceview/language-specs/asp.lang.h:2
-#, fuzzy
 #| msgid "Object"
 msgid "ASP Object"
-msgstr "ఆబ్టక్టు"
+msgstr "ASP ఆబ్జక్టు"
 
 #. A function name (also: methods for classes)
 #: ../gtksourceview/language-specs/asp.lang.h:6
@@ -865,6 +868,7 @@ msgstr "ఫంక్షన్"
 #: ../gtksourceview/language-specs/desktop.lang.h:10
 #: ../gtksourceview/language-specs/forth.lang.h:8
 #: ../gtksourceview/language-specs/java.lang.h:13
+#: ../gtksourceview/language-specs/prolog.lang.h:4
 #: ../gtksourceview/language-specs/vhdl.lang.h:6
 msgid "Number"
 msgstr "సంఖ్య"
@@ -877,6 +881,7 @@ msgstr "సంఖ్య"
 #: ../gtksourceview/language-specs/nsis.lang.h:3
 #: ../gtksourceview/language-specs/perl.lang.h:11
 #: ../gtksourceview/language-specs/php.lang.h:16
+#: ../gtksourceview/language-specs/prolog.lang.h:5
 msgid "Operator"
 msgstr "నిర్వాహకి"
 
@@ -888,10 +893,9 @@ msgid "Special constant"
 msgstr "ప్రత్యేక స్థిరరాశి"
 
 #: ../gtksourceview/language-specs/asp.lang.h:14
-#, fuzzy
 #| msgid "Special constant"
 msgid "VBScript and ADO constants"
-msgstr "ప్రత్యేక స్థిరరాశి"
+msgstr "VBScript మరియు ADO స్థిరరాశులు"
 
 #: ../gtksourceview/language-specs/awk.lang.h:1
 #: ../gtksourceview/language-specs/boo.lang.h:3
@@ -927,6 +931,7 @@ msgstr "లిపి"
 #: ../gtksourceview/language-specs/perl.lang.h:21
 #: ../gtksourceview/language-specs/php.lang.h:20
 #: ../gtksourceview/language-specs/pkgconfig.lang.h:3
+#: ../gtksourceview/language-specs/prolog.lang.h:8
 #: ../gtksourceview/language-specs/ruby.lang.h:23
 #: ../gtksourceview/language-specs/sh.lang.h:11
 #: ../gtksourceview/language-specs/tcl.lang.h:4
@@ -990,10 +995,9 @@ msgid "Special Variable"
 msgstr "ప్రత్యేక చరరాశి"
 
 #: ../gtksourceview/language-specs/changelog.lang.h:1
-#, fuzzy
 #| msgid "Builtin"
 msgid "Bullet"
-msgstr "బులెట్"
+msgstr "బుల్లెట్"
 
 #: ../gtksourceview/language-specs/changelog.lang.h:2
 msgid "ChangeLog"
@@ -1006,14 +1010,13 @@ msgstr "తేది"
 
 #: ../gtksourceview/language-specs/changelog.lang.h:4
 msgid "E-mail address"
-msgstr ""
+msgstr "ఈ-మెయిల్ చిరునామా"
 
 #: ../gtksourceview/language-specs/changelog.lang.h:5
 msgid "File"
 msgstr "దస్త్రం"
 
 #: ../gtksourceview/language-specs/changelog.lang.h:7
-#, fuzzy
 #| msgid "Namespace"
 msgid "Name"
 msgstr "నామము"
@@ -1062,6 +1065,7 @@ msgstr "ఉమ్మడి నిర్వచనం"
 #: ../gtksourceview/language-specs/ocaml.lang.h:7
 #: ../gtksourceview/language-specs/perl.lang.h:4
 #: ../gtksourceview/language-specs/php.lang.h:5
+#: ../gtksourceview/language-specs/prolog.lang.h:2
 #: ../gtksourceview/language-specs/vala.lang.h:5
 #: ../gtksourceview/language-specs/verilog.lang.h:4
 #: ../gtksourceview/language-specs/xml.lang.h:8
@@ -1115,22 +1119,19 @@ msgid "Classic color scheme"
 msgstr "సాంప్రదాయ వర్ణ పధకం"
 
 #: ../gtksourceview/language-specs/cmake.lang.h:1
-#, fuzzy
 #| msgid "Builtin Constant"
 msgid "Builtin Command"
-msgstr "నిర్మితమైన స్థిరరాశి"
+msgstr "అంతరనిర్మిత ఆదేశము"
 
 #: ../gtksourceview/language-specs/cmake.lang.h:2
-#, fuzzy
 #| msgid "Special Variable"
 msgid "Builtin Variable"
-msgstr "ప్రత్యేక చరరాశి"
+msgstr "అంతరనిర్మిత చరరాశి"
 
 #: ../gtksourceview/language-specs/cmake.lang.h:3
-#, fuzzy
 #| msgid "Makefile"
 msgid "CMake"
-msgstr "దస్త్రముతయారుచేయి"
+msgstr "CMake"
 
 #. Any constant
 #: ../gtksourceview/language-specs/cmake.lang.h:4
@@ -1142,20 +1143,18 @@ msgid "Constant"
 msgstr "స్థిరరాశి"
 
 #: ../gtksourceview/language-specs/cmake.lang.h:5
-#, fuzzy
 #| msgid "Keyword"
 msgid "Control Keyword"
-msgstr "కీపదము"
+msgstr "నియంత్రణ కీపదము"
 
 #: ../gtksourceview/language-specs/cobalt.xml.h:1
-#, fuzzy
 #| msgid "Classic color scheme"
 msgid "Blue based color scheme"
-msgstr "సాంప్రదాయ వర్ణ పధకం"
+msgstr "నిలం ప్రధానమైన వర్ణ పథకం"
 
 #: ../gtksourceview/language-specs/cobalt.xml.h:2
 msgid "Cobalt"
-msgstr ""
+msgstr "కోబాల్ట్"
 
 #: ../gtksourceview/language-specs/cpp.lang.h:1
 msgid "C++"
@@ -1408,10 +1407,9 @@ msgid "Command"
 msgstr "ఆదేశం"
 
 #: ../gtksourceview/language-specs/dosbatch.lang.h:3
-#, fuzzy
 #| msgid "DPatch"
 msgid "Dos Batch"
-msgstr "DPatch"
+msgstr "Dos Batch"
 
 #: ../gtksourceview/language-specs/dot.lang.h:1
 #: ../gtksourceview/language-specs/xml.lang.h:1
@@ -1420,7 +1418,7 @@ msgstr "యాట్రిబ్యూట్ నామము"
 
 #: ../gtksourceview/language-specs/dot.lang.h:4
 msgid "Graphviz Dot"
-msgstr ""
+msgstr "Graphviz Dot"
 
 #: ../gtksourceview/language-specs/dpatch.lang.h:1
 msgid "DPatch"
@@ -1437,23 +1435,21 @@ msgstr "DTD"
 
 #: ../gtksourceview/language-specs/dtd.lang.h:3
 msgid "decl"
-msgstr ""
+msgstr "decl"
 
 #: ../gtksourceview/language-specs/dtd.lang.h:4
-#, fuzzy
 #| msgid "Entity"
 msgid "entity"
-msgstr "ఎంటిటీ"
+msgstr "మూలకం"
 
 #: ../gtksourceview/language-specs/dtd.lang.h:5
-#, fuzzy
 #| msgid "Error"
 msgid "error"
 msgstr "దోషం"
 
 #: ../gtksourceview/language-specs/dtd.lang.h:6
 msgid "quoted-value"
-msgstr ""
+msgstr "కోట్‌చేసిన-విలువ"
 
 #: ../gtksourceview/language-specs/eiffel.lang.h:1
 msgid "Assertion"
@@ -1807,35 +1803,33 @@ msgstr "పొందిఉన్న గుర్తింపుదారి"
 
 #: ../gtksourceview/language-specs/m4.lang.h:1
 msgid "Autoconf Macro"
-msgstr ""
+msgstr "Autoconf Macro"
 
 #: ../gtksourceview/language-specs/m4.lang.h:2
 msgid "Obsolete Autoconf Macro"
-msgstr ""
+msgstr "Autoconf మాక్రోను తొలగించుము"
 
 #: ../gtksourceview/language-specs/m4.lang.h:4
 msgid "m4"
 msgstr "m4"
 
 #: ../gtksourceview/language-specs/m4.lang.h:5
-#, fuzzy
 #| msgid "Macros"
 msgid "m4 Macro"
-msgstr "Macros"
+msgstr "m4 మాక్రో"
 
 #: ../gtksourceview/language-specs/m4.lang.h:6
-#, fuzzy
 #| msgid "Comment"
 msgid "m4-comment"
-msgstr "వ్యాఖ్య"
+msgstr "m4-వ్యాఖ్య"
 
 #: ../gtksourceview/language-specs/makefile.lang.h:1
 msgid "Assignment Left Hand Side"
-msgstr ""
+msgstr "ఎడమచేతి వైపు అప్పగింత"
 
 #: ../gtksourceview/language-specs/makefile.lang.h:2
 msgid "Assignment Right Hand Side"
-msgstr ""
+msgstr "కుడిచేతి వైపు అప్పగింత"
 
 #: ../gtksourceview/language-specs/makefile.lang.h:3
 msgid "Makefile"
@@ -1845,16 +1839,14 @@ msgstr "దస్త్రముతయారుచేయి"
 #. the end of the line
 #: ../gtksourceview/language-specs/makefile.lang.h:7
 msgid "Trailing Tab"
-msgstr ""
+msgstr "ట్రెయిలింగ్ టాబ్"
 
 #: ../gtksourceview/language-specs/makefile.lang.h:9
-#, fuzzy
 #| msgid "Command"
 msgid "command"
 msgstr "ఆదేశం"
 
 #: ../gtksourceview/language-specs/makefile.lang.h:10
-#, fuzzy
 #| msgid "Function"
 msgid "function"
 msgstr "ఫంక్షన్"
@@ -1862,18 +1854,17 @@ msgstr "ఫంక్షన్"
 #. FIXME make it better names, and make them translatable
 #: ../gtksourceview/language-specs/makefile.lang.h:11
 #: ../gtksourceview/language-specs/yacc.lang.h:4
-#, fuzzy
 #| msgid "Keyword"
 msgid "keyword"
 msgstr "కీపదము"
 
 #: ../gtksourceview/language-specs/makefile.lang.h:12
 msgid "prereq"
-msgstr ""
+msgstr "prereq"
 
 #: ../gtksourceview/language-specs/makefile.lang.h:13
 msgid "targets"
-msgstr ""
+msgstr "లక్ష్యాలు"
 
 #: ../gtksourceview/language-specs/msil.lang.h:1
 msgid "MSIL"
@@ -1885,7 +1876,7 @@ msgstr "Nemerle"
 
 #: ../gtksourceview/language-specs/nsis.lang.h:2
 msgid "NSIS"
-msgstr ""
+msgstr "NSIS"
 
 #: ../gtksourceview/language-specs/objc.lang.h:4
 msgid "Objective-C"
@@ -2030,11 +2021,10 @@ msgstr "pkg-config"
 
 #: ../gtksourceview/language-specs/po.lang.h:2
 msgid "Fuzzy"
-msgstr ""
+msgstr "Fuzzy"
 
 #. FIXME make it some nice name and mark it translatable
 #: ../gtksourceview/language-specs/po.lang.h:7
-#, fuzzy
 #| msgid "Special case"
 msgid "Special"
 msgstr "ప్రత్యేకమైన"
@@ -2191,56 +2181,48 @@ msgid "SQL"
 msgstr "SQL"
 
 #: ../gtksourceview/language-specs/t2t.lang.h:7
-#, fuzzy
 #| msgid "Section"
 msgid "Option"
-msgstr "భాగము"
+msgstr "ఐచ్చికము"
 
 #: ../gtksourceview/language-specs/t2t.lang.h:8
-#, fuzzy
 #| msgid "Function Name"
 msgid "Option Name"
-msgstr "కార్యక్రమం నామము"
+msgstr "ఐచ్చికము నామము"
 
 #: ../gtksourceview/language-specs/t2t.lang.h:10
-#, fuzzy
 #| msgid "Section"
 msgid "Section 1"
-msgstr "భాగము"
+msgstr "భాగము 1"
 
 #: ../gtksourceview/language-specs/t2t.lang.h:11
-#, fuzzy
 #| msgid "Section"
 msgid "Section 2"
-msgstr "2 భాగము"
+msgstr "భాగము 2"
 
 #: ../gtksourceview/language-specs/t2t.lang.h:12
-#, fuzzy
 #| msgid "Section"
 msgid "Section 3"
-msgstr "భాగము"
+msgstr "భాగము 3"
 
 #: ../gtksourceview/language-specs/t2t.lang.h:13
-#, fuzzy
 #| msgid "Section"
 msgid "Section 4"
-msgstr "4 భాగము"
+msgstr "భాగము 4"
 
 #: ../gtksourceview/language-specs/t2t.lang.h:14
-#, fuzzy
 #| msgid "Section"
 msgid "Section 5"
-msgstr "5 భాగము"
+msgstr "భాగము 5"
 
 #: ../gtksourceview/language-specs/t2t.lang.h:15
 msgid "Text2Tags"
-msgstr ""
+msgstr "Text2Tags"
 
 #: ../gtksourceview/language-specs/t2t.lang.h:17
-#, fuzzy
 #| msgid "Verbatim"
 msgid "Verbatim Block"
-msgstr "Verbatim"
+msgstr "Verbatim బ్లాక్"
 
 #: ../gtksourceview/language-specs/tango.xml.h:1
 msgid "Color scheme using Tango color palette"
@@ -2272,7 +2254,7 @@ msgstr "Texinfo"
 
 #: ../gtksourceview/language-specs/vala.lang.h:12
 msgid "Vala"
-msgstr ""
+msgstr "Vala"
 
 #: ../gtksourceview/language-specs/vbnet.lang.h:9
 msgid "VB.NET"
@@ -2319,26 +2301,24 @@ msgid "XML"
 msgstr "XML"
 
 #: ../gtksourceview/language-specs/xslt.lang.h:1
-#, fuzzy
 #| msgid "GUI Elements"
 msgid "Element"
-msgstr "మూలపదార్ధం"
+msgstr "మూలకము"
 
 #: ../gtksourceview/language-specs/xslt.lang.h:4
 msgid "XSLT"
-msgstr ""
+msgstr "XSLT"
 
 #: ../gtksourceview/language-specs/yacc.lang.h:2
 msgid "Yacc"
 msgstr "Yacc"
 
 #: ../gtksourceview/language-specs/yacc.lang.h:5
-#, fuzzy
 #| msgid "at-rules"
 msgid "rule"
-msgstr "నియమాల-వద్ద"
+msgstr "నియమము"
 
 #: ../gtksourceview/language-specs/yacc.lang.h:6
 msgid "token-type"
-msgstr ""
+msgstr "టోకెన్-రకము"
 
