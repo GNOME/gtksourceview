@@ -26,16 +26,17 @@
 
   <color name="red"                         value="#FF0000"/>
   <color name="blue"                        value="#0000FF"/>
-  <color name="dark-blue"                   value="#000080"/>
+  <color name="dark-blue"                   value="#0057AE"/>
   <color name="dark-red"                    value="#800000"/>
   <color name="dark-green"                  value="#008000"/>
   <color name="grey"                        value="#808080"/>
   <color name="yellow"                      value="#FFFF00"/>
   <color name="white"                       value="#FFFFFF"/>
+  <color name="brown"                       value="#B07E00"/>
 
   <style name="current-line"                background="#EEF6FF"/>
   <style name="right-margin"                background="#ADD4FF"/>
-  <style name="bracket-match"               background="#FFFF99" bold="true"/>
+  <style name="bracket-match"               bold="true"/>
   <style name="bracket-mismatch"            background="red" bold="true"/>
 
   <!-- Search Matching -->
@@ -56,15 +57,15 @@
   <style name="def:doc-comment-element"     bold="true"/>
 
   <!-- Types -->
-  <style name="def:type"                    foreground="dark-red"/>
+  <style name="def:type"                    foreground="dark-blue"/>
 
   <!-- Constants -->
-  <style name="def:constant"                foreground="dark-red"/>
-  <style name="def:decimal"                 foreground="blue"/>
-  <style name="def:base-n-integer"          foreground="#008080"/>
-  <style name="def:floating-point"          foreground="#800080"/>
+  <style name="def:constant"                foreground="dark-blue"/>
+  <style name="def:decimal"                 foreground="brown"/>
+  <style name="def:base-n-integer"          foreground="brown"/>
+  <style name="def:floating-point"          foreground="brown"/>
   <style name="def:complex"                 use-style="def:base-n-integer"/>
-  <style name="def:character"               foreground="#FF00FF"/>
+  <style name="def:character"               foreground="#FF80E0"/>
   <style name="def:string"                  foreground="#DD0000"/>
   <style name="def:special-char"            foreground="#FF00FF"/>
   <style name="def:builtin"                 use-style="def:type"/>
@@ -78,7 +79,7 @@
 
   <!-- Others -->
   <style name="def:preprocessor"            bold="true"/>
-  <style name="def:note"                    foreground="white" background="#FFCCCC" bold="true" italic="false"/>
+  <style name="def:note"                    foreground="#BF0303" background="#F7E7E7" bold="true" italic="false"/>
   <style name="def:error"                   foreground="red" underline="true"/>
   <style name="def:underlined"              underline="true"/>
 
