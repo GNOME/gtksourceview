@@ -862,9 +862,9 @@ get_style_info (GtkSourceLanguage *language, const char *style_id)
  * by this @language. The returned string is owned by the @language and must
  * not be modified.
  */
-const char *
+const gchar *
 gtk_source_language_get_style_name (GtkSourceLanguage *language,
-				    const char        *style_id)
+				    const gchar       *style_id)
 {
 	GtkSourceStyleInfo *info;
 
