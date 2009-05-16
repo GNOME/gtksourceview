@@ -7,6 +7,7 @@ EXTRA_DIST = \
 	intltool-extract.in \
 	intltool-merge.in \
 	intltool-update.in \
+	gtksourceview.doap \
 	gtksourceview-2.0.pc.in	\
 	gtksourceview-zip.in \
 	COPYING.lib \
