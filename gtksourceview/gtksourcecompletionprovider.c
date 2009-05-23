@@ -67,16 +67,10 @@ gtk_source_completion_provider_filter_proposal_default (GtkSourceCompletionProvi
 	return TRUE;
 }
 
-static gboolean
-gtk_source_completion_provider_get_automatic_default (GtkSourceCompletionProvider *provider)
+static const gchar *
+gtk_source_completion_provider_get_capabilities_default (GtkSourceCompletionProvider *provider)
 {
-	return TRUE;
-}
-
-static gboolean
-gtk_source_completion_provider_get_interactive_default (GtkSourceCompletionProvider *provider)
-{
-	return FALSE;
+	return GTK_SOURCE_COMPLETION_CAPABILITY_AUTOMATIC;
 }
 
 static GtkWidget *
@@ -112,8 +106,7 @@ gtk_source_completion_provider_base_init (GtkSourceCompletionProviderIface *ifac
 	iface->get_proposals = gtk_source_completion_provider_get_proposals_default;
 	iface->filter_proposal = gtk_source_completion_provider_filter_proposal_default;
 	
-	iface->get_automatic = gtk_source_completion_provider_get_automatic_default;
-	iface->get_interactive = gtk_source_completion_provider_get_interactive_default;
+	iface->get_capabilities = gtk_source_completion_provider_get_capabilities_default;
 	
 	iface->get_info_widget = gtk_source_completion_provider_get_info_widget_default;
 	iface->update_info = gtk_source_completion_provider_update_info_default;
@@ -239,37 +232,18 @@ gtk_source_completion_provider_filter_proposal (GtkSourceCompletionProvider *pro
 }
 
 /**
- * gtk_source_completion_provider_get_interactive:
+ * gtk_source_completion_provider_get_capabilities:
  * @provider: The #GtkSourceCompletionProvider
  *
- * Get whether @provider responds to interactive completion (e.g. completion
- * when typing).
+ * A list of capabilities this provider supports
  *
- * Returns: %TRUE if @provider can be used interactively, or %FALSE otherwise.
+ * Returns: list of capabilities.
  */
-gboolean
-gtk_source_completion_provider_get_interactive (GtkSourceCompletionProvider *provider)
+const gchar *
+gtk_source_completion_provider_get_capabilities (GtkSourceCompletionProvider *provider)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_PROVIDER (provider), FALSE);
-	return GTK_SOURCE_COMPLETION_PROVIDER_GET_INTERFACE (provider)->get_interactive (provider);
-}
-
-/**
- * gtk_source_completion_provider_get_automatic:
- * @provider: The #GtkSourceCompletionProvider
- *
- * Get whether @provider is automatically included in the list of completions.
- * This means that it will be shown in the default list of completions as 
- * activated by the "show-completion" keybinding (&lt;Ctrl&gt;space by default) on
- * the #GtkSourceView.
- *
- * Returns: %TRUE if @provider is automatically included, or %FALSE otherwise.
- */
-gboolean
-gtk_source_completion_provider_get_automatic (GtkSourceCompletionProvider *provider)
-{
-	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_PROVIDER (provider), FALSE);
-	return GTK_SOURCE_COMPLETION_PROVIDER_GET_INTERFACE (provider)->get_automatic (provider);
+	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_PROVIDER (provider), NULL);
+	return GTK_SOURCE_COMPLETION_PROVIDER_GET_INTERFACE (provider)->get_capabilities (provider);
 }
 
 /**

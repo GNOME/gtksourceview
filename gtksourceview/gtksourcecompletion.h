@@ -84,6 +84,8 @@ gboolean	 gtk_source_completion_remove_provider		(GtkSourceCompletion          *
 								 GtkSourceCompletionProvider  *provider,
 								 GError                      **error);
 
+GList		*gtk_source_completion_get_providers		(GtkSourceCompletion         *completion,
+                                                                 const gchar                 *capabilities);
 gboolean	 gtk_source_completion_show			(GtkSourceCompletion         *completion,
 								 GList                       *providers,
 								 const gchar                 *criteria,

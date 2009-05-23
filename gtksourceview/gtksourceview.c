@@ -40,6 +40,7 @@
 #include "gtksourcemark.h"
 #include "gtksourceview.h"
 #include "gtksourcecompletion-private.h"
+#include "gtksourcecompletionutils.h"
 
 /*
 #define ENABLE_DEBUG
@@ -1006,7 +1007,25 @@ gtk_source_view_redo (GtkSourceView *view)
 static void
 gtk_source_view_show_completion_real (GtkSourceView *view)
 {
-	gtk_source_view_show_completion (view, NULL);
+	GtkSourceCompletion *completion;
+	GList *providers;
+	gchar *word;
+
+	completion = gtk_source_view_get_completion (view);
+	
+	providers = gtk_source_completion_get_providers (completion, 
+	                                                 GTK_SOURCE_COMPLETION_CAPABILITY_AUTOMATIC);
+
+	/* Show automatic providers at the cursor with the current word as the
+	   criteria */
+	word = gtk_source_completion_utils_get_word (
+			GTK_SOURCE_BUFFER (gtk_text_view_get_buffer (GTK_TEXT_VIEW (view))));
+
+	gtk_source_completion_show (completion, providers, word, NULL);
+
+	g_free (word);
+	g_list_foreach (providers, (GFunc)g_object_unref, NULL);
+	g_list_free (providers);
 }
 
 static void
@@ -4050,18 +4069,6 @@ gtk_source_view_update_style_scheme (GtkSourceView *view)
 		else
 			view->priv->style_scheme_applied = FALSE;
 	}
-}
-
-void
-gtk_source_view_show_completion	(GtkSourceView *view,
-                                 GList         *proposals)
-{
-	GtkSourceCompletion *completion;
-	
-	g_return_if_fail (GTK_IS_SOURCE_VIEW (view));
-
-	completion = gtk_source_view_get_completion (view);
-	gtk_source_completion_show (completion, proposals, NULL, NULL);
 }
 							 
 /**

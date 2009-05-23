@@ -31,11 +31,13 @@
 
 G_BEGIN_DECLS
 
-
 #define GTK_TYPE_SOURCE_COMPLETION_PROVIDER 			(gtk_source_completion_provider_get_type ())
 #define GTK_SOURCE_COMPLETION_PROVIDER(obj) 			(G_TYPE_CHECK_INSTANCE_CAST ((obj), GTK_TYPE_SOURCE_COMPLETION_PROVIDER, GtkSourceCompletionProvider))
 #define GTK_IS_SOURCE_COMPLETION_PROVIDER(obj) 			(G_TYPE_CHECK_INSTANCE_TYPE ((obj), GTK_TYPE_SOURCE_COMPLETION_PROVIDER))
 #define GTK_SOURCE_COMPLETION_PROVIDER_GET_INTERFACE(obj) 	(G_TYPE_INSTANCE_GET_INTERFACE ((obj), GTK_TYPE_SOURCE_COMPLETION_PROVIDER, GtkSourceCompletionProviderIface))
+
+#define GTK_SOURCE_COMPLETION_CAPABILITY_INTERACTIVE "standard::interactive"
+#define GTK_SOURCE_COMPLETION_CAPABILITY_AUTOMATIC "standard::automatic"
 
 typedef struct _GtkSourceCompletionProvider GtkSourceCompletionProvider;
 typedef struct _GtkSourceCompletionProviderIface GtkSourceCompletionProviderIface;
@@ -53,9 +55,8 @@ struct _GtkSourceCompletionProviderIface
 						 GtkTextIter                 *iter,
 						 const gchar                 *criteria);
 
-	gboolean         (*get_automatic)	(GtkSourceCompletionProvider *provider);
-	gboolean         (*get_interactive)	(GtkSourceCompletionProvider *provider);
-						 
+	const gchar     *(*get_capabilities)	(GtkSourceCompletionProvider *provider);
+
 	GtkWidget 	*(*get_info_widget)	(GtkSourceCompletionProvider *provider,
 						 GtkSourceCompletionProposal *proposal);
 	void		 (*update_info)		(GtkSourceCompletionProvider *provider,
@@ -82,8 +83,7 @@ gboolean	 gtk_source_completion_provider_filter_proposal	(GtkSourceCompletionPro
 								 GtkTextIter                 *iter,
 								 const gchar                 *criteria);
 
-gboolean 	 gtk_source_completion_provider_get_automatic	(GtkSourceCompletionProvider *provider);
-gboolean 	 gtk_source_completion_provider_get_interactive	(GtkSourceCompletionProvider *provider);
+const gchar 	*gtk_source_completion_provider_get_capabilities (GtkSourceCompletionProvider *provider);
 
 GtkWidget	*gtk_source_completion_provider_get_info_widget	(GtkSourceCompletionProvider *provider,
 								 GtkSourceCompletionProposal *proposal);

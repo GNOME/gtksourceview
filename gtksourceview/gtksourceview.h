@@ -199,9 +199,6 @@ void		 gtk_source_view_set_draw_spaces	(GtkSourceView   *view,
 GtkSourceDrawSpacesFlags
 		gtk_source_view_get_draw_spaces		(GtkSourceView   *view);
 
-void		 gtk_source_view_show_completion	(GtkSourceView   *view,
-							 GList           *proposals);
-
 GtkSourceCompletion *
 		gtk_source_view_get_completion		(GtkSourceView   *view);
 
