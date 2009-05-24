@@ -87,10 +87,11 @@ gsc_provider_test_filter_proposal (GtkSourceCompletionProvider *provider,
 	return g_str_has_prefix (label, criteria);
 }
 
-static gboolean
-gsc_provider_test_get_interactive (GtkSourceCompletionProvider *provider)
+static const gchar *
+gsc_provider_test_get_capabilities (GtkSourceCompletionProvider *provider)
 {
-	return TRUE;
+	return GTK_SOURCE_COMPLETION_CAPABILITY_INTERACTIVE ","
+	       GTK_SOURCE_COMPLETION_CAPABILITY_AUTOMATIC;
 }
 
 static void 
@@ -131,7 +132,7 @@ gsc_provider_test_iface_init (GtkSourceCompletionProviderIface *iface)
 
 	iface->get_proposals = gsc_provider_test_get_proposals;
 	iface->filter_proposal = gsc_provider_test_filter_proposal;
-	iface->get_interactive = gsc_provider_test_get_interactive;
+	iface->get_capabilities = gsc_provider_test_get_capabilities;
 }
 
 static void 

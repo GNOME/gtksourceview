@@ -52,10 +52,11 @@ gsc_provider_devhelp_filter_proposal (GtkSourceCompletionProvider *provider,
 	return g_str_has_prefix (item, criteria);
 }
 
-static gboolean
-gsc_provider_devhelp_get_interactive(GtkSourceCompletionProvider *provider)
+static const gchar *
+gsc_provider_devhelp_get_capabilities(GtkSourceCompletionProvider *provider)
 {
-	return TRUE;
+	return GTK_SOURCE_COMPLETION_CAPABILITY_AUTOMATIC ","
+	       GTK_SOURCE_COMPLETION_CAPABILITY_INTERACTIVE;
 }
 
 static GtkWidget *
@@ -83,7 +84,7 @@ gsc_provider_devhelp_iface_init (GtkSourceCompletionProviderIface *iface)
 {
 	iface->get_name = gsc_provider_devhelp_get_name;
 	iface->get_proposals = gsc_provider_devhelp_get_proposals;
-	iface->get_interactive = gsc_provider_devhelp_get_interactive;
+	iface->get_capabilities = gsc_provider_devhelp_get_capabilities;
 	iface->filter_proposal = gsc_provider_devhelp_filter_proposal;
 	
 	iface->get_info_widget = gsc_provider_devhelp_get_info_widget;
