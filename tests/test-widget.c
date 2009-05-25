@@ -1161,19 +1161,10 @@ button_press_cb (GtkWidget *widget, GdkEventButton *ev, gpointer user_data)
 			/* just take the first and delete it */
 			gtk_text_buffer_delete_mark (GTK_TEXT_BUFFER (buffer),
 						     GTK_TEXT_MARK (mark_list->data));
-			mark_list = g_slist_delete_link (mark_list, mark_list);
-			gtk_text_buffer_delete_mark (GTK_TEXT_BUFFER (buffer),
-						     GTK_TEXT_MARK (mark_list->data));
 		}
 		else
 		{
 			/* no mark found: create one */
-			gtk_source_buffer_create_source_mark (buffer,
-							      NULL,
-							      mark_type,
-							      &line_start);
-			gtk_text_iter_set_line_offset (&line_start,
-						       gtk_text_iter_get_chars_in_line (&line_start) - 1);
 			gtk_source_buffer_create_source_mark (buffer,
 							      NULL,
 							      mark_type,
