@@ -112,6 +112,16 @@ a text view which syntax highlighting, undo/redo and text marks. Use a
 @_gtk_source_reserved3: 
 @_gtk_source_reserved4: 
 
+<!-- ##### USER_FUNCTION GtkSourceViewMarkTooltipFunc ##### -->
+<para>
+Function type for setting up a tooltip for #GtkSourceMark.
+</para>
+
+@mark: the #GtkSourceMark
+@user_data: user data pointer which was passed to gtk_source_view_set_mark_category_tooltip_func()
+@Returns: a new-allocated text that is going to be shown as tooltip text.
+
+
 <!-- ##### ENUM GtkSourceSmartHomeEndType ##### -->
 <para>
 
@@ -299,6 +309,30 @@ a text view which syntax highlighting, undo/redo and text marks. Use a
 @view: 
 @category: 
 @color: 
+
+
+<!-- ##### FUNCTION gtk_source_view_set_mark_category_tooltip_func ##### -->
+<para>
+
+</para>
+
+@view: 
+@category: 
+@func: 
+@user_data: 
+@user_data_notify: 
+
+
+<!-- ##### FUNCTION gtk_source_view_set_mark_category_tooltip_markup_func ##### -->
+<para>
+
+</para>
+
+@view: 
+@category: 
+@markup_func: 
+@user_data: 
+@user_data_notify: 
 
 
 <!-- ##### FUNCTION gtk_source_view_set_highlight_current_line ##### -->

@@ -1161,10 +1161,19 @@ button_press_cb (GtkWidget *widget, GdkEventButton *ev, gpointer user_data)
 			/* just take the first and delete it */
 			gtk_text_buffer_delete_mark (GTK_TEXT_BUFFER (buffer),
 						     GTK_TEXT_MARK (mark_list->data));
+			mark_list = g_slist_delete_link (mark_list, mark_list);
+			gtk_text_buffer_delete_mark (GTK_TEXT_BUFFER (buffer),
+						     GTK_TEXT_MARK (mark_list->data));
 		}
 		else
 		{
 			/* no mark found: create one */
+			gtk_source_buffer_create_source_mark (buffer,
+							      NULL,
+							      mark_type,
+							      &line_start);
+			gtk_text_iter_set_line_offset (&line_start,
+						       gtk_text_iter_get_chars_in_line (&line_start) - 1);
 			gtk_source_buffer_create_source_mark (buffer,
 							      NULL,
 							      mark_type,
@@ -1179,6 +1188,26 @@ button_press_cb (GtkWidget *widget, GdkEventButton *ev, gpointer user_data)
 
 
 /* Window creation functions -------------------------------------------------------- */
+
+static gchar *
+mark_tooltip_func (GtkSourceMark *mark,
+		   gpointer	  user_data)
+{
+	GtkTextBuffer *buf;
+	GtkTextIter iter;
+	gint line, column;
+	
+	buf = gtk_text_mark_get_buffer (GTK_TEXT_MARK (mark));
+	
+	gtk_text_buffer_get_iter_at_mark (buf, &iter, GTK_TEXT_MARK (mark));
+	line = gtk_text_iter_get_line (&iter) + 1;
+	column = gtk_text_iter_get_line_offset (&iter);
+
+	if (strcmp (gtk_source_mark_get_category (mark), MARK_TYPE_1) == 0)
+		return g_strdup_printf ("Line: %d, Column: %d", line, column);
+	else
+		return g_strdup_printf ("<b>Line</b>: %d, <i>Column</i>: %d", line, column);
+}
 
 static GtkWidget *
 create_view_window (GtkSourceBuffer *buffer, GtkSourceView *from)
@@ -1329,6 +1358,11 @@ create_view_window (GtkSourceBuffer *buffer, GtkSourceView *from)
 		gtk_source_view_set_mark_category_background (GTK_SOURCE_VIEW (view), MARK_TYPE_1, &color);
 		gtk_source_view_set_mark_category_pixbuf (GTK_SOURCE_VIEW (view), MARK_TYPE_1, pixbuf);
 		gtk_source_view_set_mark_category_priority (GTK_SOURCE_VIEW (view), MARK_TYPE_1, 1);
+		gtk_source_view_set_mark_category_tooltip_func (GTK_SOURCE_VIEW (view),
+								MARK_TYPE_1,
+								mark_tooltip_func,
+								NULL,
+								NULL);
 		g_object_unref (pixbuf);
 	}
 	else
@@ -1346,6 +1380,11 @@ create_view_window (GtkSourceBuffer *buffer, GtkSourceView *from)
 		gtk_source_view_set_mark_category_background (GTK_SOURCE_VIEW (view), MARK_TYPE_2, &color);
 		gtk_source_view_set_mark_category_pixbuf (GTK_SOURCE_VIEW (view), MARK_TYPE_2, pixbuf);
 		gtk_source_view_set_mark_category_priority (GTK_SOURCE_VIEW (view), MARK_TYPE_2, 2);
+		gtk_source_view_set_mark_category_tooltip_markup_func (GTK_SOURCE_VIEW (view),
+								       MARK_TYPE_2,
+								       mark_tooltip_func,
+								       NULL,
+								       NULL);
 		g_object_unref (pixbuf);
 	}
 	else
