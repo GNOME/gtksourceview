@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: gtksourceview.HEAD\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&component=general\n"
-"POT-Creation-Date: 2009-02-14 11:52+0000\n"
-"PO-Revision-Date: 2009-02-14 13:56+0100\n"
+"POT-Creation-Date: 2009-05-24 16:51+0000\n"
+"PO-Revision-Date: 2009-05-26 08:08+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -75,7 +75,6 @@ msgid "Style scheme"
 msgstr "Estilo"
 
 #: ../gtksourceview/gtksourcecontextengine.c:2608
-#, c-format
 msgid "using \\C is not supported in language definitions"
 msgstr "el uso de \\C no está soportado en las definiciones del lenguaje"
 
@@ -215,11 +214,11 @@ msgstr "Id «%s» desconocido en la expresión regular «%s»"
 msgid "in regex '%s': backreferences are not supported"
 msgstr "en la expresión regular «%s»: las retroreferencias no se soportan"
 
-#: ../gtksourceview/gtksourcemark.c:119
+#: ../gtksourceview/gtksourcemark.c:121
 msgid "category"
 msgstr "categoría"
 
-#: ../gtksourceview/gtksourcemark.c:120
+#: ../gtksourceview/gtksourcemark.c:122
 msgid "The mark category"
 msgstr "La marca de la categoría"
 
@@ -627,6 +626,7 @@ msgstr "Valor booleano"
 #: ../gtksourceview/language-specs/perl.lang.h:2
 #: ../gtksourceview/language-specs/php.lang.h:2
 #: ../gtksourceview/language-specs/po.lang.h:1
+#: ../gtksourceview/language-specs/prolog.lang.h:1
 #: ../gtksourceview/language-specs/ruby.lang.h:5
 #: ../gtksourceview/language-specs/scheme.lang.h:2
 #: ../gtksourceview/language-specs/sh.lang.h:1
@@ -736,6 +736,7 @@ msgstr "Carácter de escape"
 #: ../gtksourceview/language-specs/perl.lang.h:9
 #: ../gtksourceview/language-specs/php.lang.h:13
 #: ../gtksourceview/language-specs/po.lang.h:3
+#: ../gtksourceview/language-specs/prolog.lang.h:3
 #: ../gtksourceview/language-specs/python.lang.h:11
 #: ../gtksourceview/language-specs/R.lang.h:6
 #: ../gtksourceview/language-specs/ruby.lang.h:12
@@ -792,6 +793,7 @@ msgstr "Número real"
 #: ../gtksourceview/language-specs/objc.lang.h:5
 #: ../gtksourceview/language-specs/ocaml.lang.h:16
 #: ../gtksourceview/language-specs/pascal.lang.h:7
+#: ../gtksourceview/language-specs/prolog.lang.h:7
 #: ../gtksourceview/language-specs/scheme.lang.h:6
 #: ../gtksourceview/language-specs/sql.lang.h:9
 #: ../gtksourceview/language-specs/vala.lang.h:10
@@ -837,6 +839,7 @@ msgstr "Clase de almacenamiento"
 #: ../gtksourceview/language-specs/perl.lang.h:19
 #: ../gtksourceview/language-specs/php.lang.h:19
 #: ../gtksourceview/language-specs/po.lang.h:8
+#: ../gtksourceview/language-specs/prolog.lang.h:8
 #: ../gtksourceview/language-specs/python.lang.h:17
 #: ../gtksourceview/language-specs/ruby.lang.h:21
 #: ../gtksourceview/language-specs/scheme.lang.h:7
@@ -880,6 +883,7 @@ msgstr "Función"
 #: ../gtksourceview/language-specs/desktop.lang.h:10
 #: ../gtksourceview/language-specs/forth.lang.h:8
 #: ../gtksourceview/language-specs/java.lang.h:13
+#: ../gtksourceview/language-specs/prolog.lang.h:4
 #: ../gtksourceview/language-specs/vhdl.lang.h:6
 msgid "Number"
 msgstr "Número"
@@ -892,6 +896,7 @@ msgstr "Número"
 #: ../gtksourceview/language-specs/nsis.lang.h:3
 #: ../gtksourceview/language-specs/perl.lang.h:11
 #: ../gtksourceview/language-specs/php.lang.h:16
+#: ../gtksourceview/language-specs/prolog.lang.h:5
 msgid "Operator"
 msgstr "Operador"
 
@@ -940,6 +945,7 @@ msgstr "Scripts"
 #: ../gtksourceview/language-specs/perl.lang.h:21
 #: ../gtksourceview/language-specs/php.lang.h:20
 #: ../gtksourceview/language-specs/pkgconfig.lang.h:3
+#: ../gtksourceview/language-specs/prolog.lang.h:9
 #: ../gtksourceview/language-specs/ruby.lang.h:23
 #: ../gtksourceview/language-specs/sh.lang.h:11
 #: ../gtksourceview/language-specs/tcl.lang.h:4
@@ -1071,6 +1077,7 @@ msgstr "Definiciones comunes"
 #: ../gtksourceview/language-specs/ocaml.lang.h:7
 #: ../gtksourceview/language-specs/perl.lang.h:4
 #: ../gtksourceview/language-specs/php.lang.h:5
+#: ../gtksourceview/language-specs/prolog.lang.h:2
 #: ../gtksourceview/language-specs/vala.lang.h:5
 #: ../gtksourceview/language-specs/verilog.lang.h:4
 #: ../gtksourceview/language-specs/xml.lang.h:8
@@ -1124,12 +1131,10 @@ msgid "Classic color scheme"
 msgstr "Esquema de color clásico"
 
 #: ../gtksourceview/language-specs/cmake.lang.h:1
-#| msgid "Bulit-in Command"
 msgid "Builtin Command"
 msgstr "Comando integrado"
 
 #: ../gtksourceview/language-specs/cmake.lang.h:2
-#| msgid "Bulit-in Variable"
 msgid "Builtin Variable"
 msgstr "Variable integrada"
 
@@ -2025,6 +2030,11 @@ msgstr "Especial"
 #: ../gtksourceview/language-specs/po.lang.h:9
 msgid "gettext translation"
 msgstr "traducción gettext"
+
+#: ../gtksourceview/language-specs/prolog.lang.h:6
+#| msgid "Verilog"
+msgid "Prolog"
+msgstr "Prolog"
 
 #: ../gtksourceview/language-specs/python.lang.h:3
 msgid "Builtin Constant"
