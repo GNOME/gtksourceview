@@ -3658,11 +3658,19 @@ gtk_source_view_query_tooltip (GtkWidget  *widget,
 		GSList *marks;
 		GtkSourceBuffer *buffer;
 		gint line;
+		gint buffer_x, buffer_y;
 
 		buffer = GTK_SOURCE_BUFFER (gtk_text_view_get_buffer (text_view));
+		gtk_text_view_window_to_buffer_coords (GTK_TEXT_VIEW (widget),
+						       GTK_TEXT_WINDOW_LEFT,
+						       x,
+						       y,
+						       &buffer_x,
+						       &buffer_y);
+		
 		gtk_text_view_get_line_at_y (GTK_TEXT_VIEW (widget),
 					     &line_iter,
-					     y,
+					     buffer_y,
 					     NULL);
 		line = gtk_text_iter_get_line (&line_iter);
 		marks = gtk_source_buffer_get_source_marks_at_line (buffer,
