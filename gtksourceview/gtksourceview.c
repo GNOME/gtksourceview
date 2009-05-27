@@ -3672,6 +3672,7 @@ gtk_source_view_query_tooltip (GtkWidget  *widget,
 		if (marks != NULL)
 		{
 			marks = g_slist_sort_with_data (marks, sort_marks_by_priority, view);
+			marks = g_slist_reverse (marks);
 			
 			set_tooltip_widget_from_marks (view, tooltip, marks);
 			
