@@ -171,13 +171,33 @@ void 		 gtk_source_view_set_show_line_marks    (GtkSourceView   *view,
 							 gboolean         show);
 gboolean	 gtk_source_view_get_show_line_marks    (GtkSourceView   *view);
 
-void             gtk_source_view_set_mark_category_pixbuf
+#ifndef GTKSOURCEVIEW_DISABLE_DEPRECATED
+void		 gtk_source_view_set_mark_category_pixbuf
+							(GtkSourceView   *view,
+							const gchar      *category,
+							GdkPixbuf        *pixbuf) G_GNUC_DEPRECATED;
+#endif
+
+void             gtk_source_view_set_mark_category_icon_from_pixbuf
 							(GtkSourceView   *view,
 							 const gchar     *category,
 							 GdkPixbuf       *pixbuf);
+
+void             gtk_source_view_set_mark_category_icon_from_stock
+							(GtkSourceView   *view,
+							 const gchar     *category,
+							 const gchar     *stock_id);
+
+void             gtk_source_view_set_mark_category_icon_from_icon_name
+							(GtkSourceView   *view,
+							 const gchar     *category,
+							 const gchar     *name);
+
+#ifndef GTKSOURCEVIEW_DISABLE_DEPRECATED
 GdkPixbuf	*gtk_source_view_get_mark_category_pixbuf
 							(GtkSourceView   *view,
-				       			 const gchar     *category);
+				       			 const gchar     *category) G_GNUC_DEPRECATED;
+#endif
 
 void             gtk_source_view_set_mark_category_background
 							(GtkSourceView   *view,

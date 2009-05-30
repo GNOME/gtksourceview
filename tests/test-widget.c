@@ -1172,7 +1172,7 @@ mark_tooltip_func (GtkSourceMark *mark,
 	if (strcmp (gtk_source_mark_get_category (mark), MARK_TYPE_1) == 0)
 		return g_strdup_printf ("Line: %d, Column: %d", line, column);
 	else
-		return g_strdup_printf ("<b>Line</b>: %d, <i>Column</i>: %d", line, column);
+		return g_strdup_printf ("<b>Line</b>: %d\n<i>Column</i>: %d", line, column);
 }
 
 static GtkWidget *
@@ -1180,7 +1180,6 @@ create_view_window (GtkSourceBuffer *buffer, GtkSourceView *from)
 {
 	GtkWidget *window, *sw, *view, *vbox, *pos_label, *menu;
 	PangoFontDescription *font_desc = NULL;
-	GdkPixbuf *pixbuf;
 	GtkAccelGroup *accel_group;
 	GtkActionGroup *action_group;
 	GtkUIManager *ui_manager;
@@ -1316,49 +1315,26 @@ create_view_window (GtkSourceBuffer *buffer, GtkSourceView *from)
 	}
 
 	/* add source mark pixbufs */
-	error = NULL;
-	if ((pixbuf = gdk_pixbuf_new_from_file (TOP_SRCDIR "/tests/gnome-gmush.png", &error)))
-	{
-		GdkColor color;
-		gdk_color_parse ("lightgreen", &color);
-		gtk_source_view_set_mark_category_background (GTK_SOURCE_VIEW (view), MARK_TYPE_1, &color);
-		gtk_source_view_set_mark_category_pixbuf (GTK_SOURCE_VIEW (view), MARK_TYPE_1, pixbuf);
-		gtk_source_view_set_mark_category_priority (GTK_SOURCE_VIEW (view), MARK_TYPE_1, 1);
-		gtk_source_view_set_mark_category_tooltip_func (GTK_SOURCE_VIEW (view),
-								MARK_TYPE_1,
-								mark_tooltip_func,
-								NULL,
-								NULL);
-		g_object_unref (pixbuf);
-	}
-	else
-	{
-		g_message ("could not load source mark 1 image. Spurious messages might get triggered: %s\n",
-		error->message);
-		g_error_free (error);
-	}
+	GdkColor color;
+	gdk_color_parse ("lightgreen", &color);
+	gtk_source_view_set_mark_category_background (GTK_SOURCE_VIEW (view), MARK_TYPE_1, &color);
+	gtk_source_view_set_mark_category_icon_from_stock (GTK_SOURCE_VIEW (view), MARK_TYPE_1, GTK_STOCK_YES);
+	gtk_source_view_set_mark_category_priority (GTK_SOURCE_VIEW (view), MARK_TYPE_1, 1);
+	gtk_source_view_set_mark_category_tooltip_func (GTK_SOURCE_VIEW (view),
+							MARK_TYPE_1,
+							mark_tooltip_func,
+							NULL,
+							NULL);
 
-	error = NULL;
-	if ((pixbuf = gdk_pixbuf_new_from_file (TOP_SRCDIR "/tests/apple-red.png", &error)))
-	{
-		GdkColor color;
-		gdk_color_parse ("pink", &color);
-		gtk_source_view_set_mark_category_background (GTK_SOURCE_VIEW (view), MARK_TYPE_2, &color);
-		gtk_source_view_set_mark_category_pixbuf (GTK_SOURCE_VIEW (view), MARK_TYPE_2, pixbuf);
-		gtk_source_view_set_mark_category_priority (GTK_SOURCE_VIEW (view), MARK_TYPE_2, 2);
-		gtk_source_view_set_mark_category_tooltip_markup_func (GTK_SOURCE_VIEW (view),
-								       MARK_TYPE_2,
-								       mark_tooltip_func,
-								       NULL,
-								       NULL);
-		g_object_unref (pixbuf);
-	}
-	else
-	{
-		g_message ("could not load source mark 2 image. Spurious messages might get triggered: %s\n",
-		error->message);
-		g_error_free (error);
-	}
+	gdk_color_parse ("pink", &color);
+	gtk_source_view_set_mark_category_background (GTK_SOURCE_VIEW (view), MARK_TYPE_2, &color);
+	gtk_source_view_set_mark_category_icon_from_stock (GTK_SOURCE_VIEW (view), MARK_TYPE_2, GTK_STOCK_NO);
+	gtk_source_view_set_mark_category_priority (GTK_SOURCE_VIEW (view), MARK_TYPE_2, 2);
+	gtk_source_view_set_mark_category_tooltip_markup_func (GTK_SOURCE_VIEW (view),
+							       MARK_TYPE_2,
+							       mark_tooltip_func,
+							       NULL,
+							       NULL);
 
 	gtk_widget_show_all (vbox);
 

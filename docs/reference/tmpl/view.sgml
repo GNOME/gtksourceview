@@ -299,6 +299,36 @@ Function type for setting up a tooltip for #GtkSourceMark.
 @Returns: 
 
 
+<!-- ##### FUNCTION gtk_source_view_set_mark_category_icon_from_pixbuf ##### -->
+<para>
+
+</para>
+
+@view: 
+@category: 
+@pixbuf: 
+
+
+<!-- ##### FUNCTION gtk_source_view_set_mark_category_icon_from_stock ##### -->
+<para>
+
+</para>
+
+@view: 
+@category: 
+@stock_id: 
+
+
+<!-- ##### FUNCTION gtk_source_view_set_mark_category_icon_from_icon_name ##### -->
+<para>
+
+</para>
+
+@view: 
+@category: 
+@name: 
+
+
 <!-- ##### FUNCTION gtk_source_view_get_mark_category_background ##### -->
 <para>
 
