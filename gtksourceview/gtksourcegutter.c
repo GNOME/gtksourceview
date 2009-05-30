@@ -441,6 +441,7 @@ append_renderer (GtkSourceGutter *gutter,
 			                        renderer,
 			                        (GCompareDataFunc)sort_by_position,
 			                        NULL);
+	revalidate_size (gutter);
 }
 
 GtkSourceGutter *
@@ -495,7 +496,6 @@ gtk_source_gutter_insert (GtkSourceGutter *gutter,
 	g_return_if_fail (GTK_IS_CELL_RENDERER (renderer));
 
 	append_renderer (gutter, renderer_new (renderer, position));
-	revalidate_size (gutter);
 }
 
 static gboolean
@@ -549,7 +549,8 @@ gtk_source_gutter_reorder (GtkSourceGutter *gutter,
 	if (renderer_find (gutter, renderer, &ret, &retlist))
 	{
 		gutter->priv->renderers = g_list_remove_link (gutter->priv->renderers, retlist);
-		append_renderer (gutter, renderer);
+		ret->position = position;
+		append_renderer (gutter, ret);
 	}
 }
 
