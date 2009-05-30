@@ -434,8 +434,6 @@ static void
 append_renderer (GtkSourceGutter *gutter,
                  Renderer        *renderer)
 {
-	GList *item;
-
 	gutter->priv->renderers = 
 		g_list_insert_sorted_with_data (gutter->priv->renderers,
 			                        renderer,
