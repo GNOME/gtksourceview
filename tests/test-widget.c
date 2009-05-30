@@ -1112,69 +1112,44 @@ window_deleted_cb (GtkWidget *widget, GdkEvent *ev, gpointer user_data)
 	return TRUE;
 }
 
-static gboolean
-button_press_cb (GtkWidget *widget, GdkEventButton *ev, gpointer user_data)
+static void
+line_mark_activated (GtkSourceGutter *gutter, 
+                     GtkTextIter     *iter,
+                     GdkEventButton  *ev,
+                     GtkSourceView   *view)
 {
-	GtkSourceView *view;
 	GtkSourceBuffer *buffer;
+	GSList *mark_list;
+	const gchar *mark_type;
 
-	g_return_val_if_fail (GTK_IS_SOURCE_VIEW (widget), FALSE);
+	if (ev->button == 1)
+		mark_type = MARK_TYPE_1;
+	else
+		mark_type = MARK_TYPE_2;
 
-	view = GTK_SOURCE_VIEW (widget);
 	buffer = GTK_SOURCE_BUFFER (gtk_text_view_get_buffer (GTK_TEXT_VIEW (view)));
 
-	if (!gtk_source_view_get_show_line_marks (view))
-		return FALSE;
+	/* get the marks already in the line */
+	mark_list = gtk_source_buffer_get_source_marks_at_line (buffer,
+								gtk_text_iter_get_line (iter),
+								mark_type);
 
-	/* check that the click was on the left gutter */
-	if (ev->window == gtk_text_view_get_window (GTK_TEXT_VIEW (view),
-						    GTK_TEXT_WINDOW_LEFT))
+	if (mark_list != NULL)
 	{
-		gint y_buf;
-		GtkTextIter line_start;
-		GSList *mark_list;
-		const gchar *mark_type;
-
-		if (ev->button == 1)
-			mark_type = MARK_TYPE_1;
-		else
-			mark_type = MARK_TYPE_2;
-
-		gtk_text_view_window_to_buffer_coords (GTK_TEXT_VIEW (view),
-						       GTK_TEXT_WINDOW_LEFT,
-						       ev->x, ev->y,
-						       NULL, &y_buf);
-
-		/* get line bounds */
-		gtk_text_view_get_line_at_y (GTK_TEXT_VIEW (view),
-					     &line_start,
-					     y_buf,
-					     NULL);
-
-		/* get the marks already in the line */
-		mark_list = gtk_source_buffer_get_source_marks_at_line (buffer,
-									gtk_text_iter_get_line (&line_start),
-									mark_type);
-
-		if (mark_list != NULL)
-		{
-			/* just take the first and delete it */
-			gtk_text_buffer_delete_mark (GTK_TEXT_BUFFER (buffer),
-						     GTK_TEXT_MARK (mark_list->data));
-		}
-		else
-		{
-			/* no mark found: create one */
-			gtk_source_buffer_create_source_mark (buffer,
-							      NULL,
-							      mark_type,
-							      &line_start);
-		}
-
-		g_slist_free (mark_list);
+		/* just take the first and delete it */
+		gtk_text_buffer_delete_mark (GTK_TEXT_BUFFER (buffer),
+					     GTK_TEXT_MARK (mark_list->data));
+	}
+	else
+	{
+		/* no mark found: create one */
+		gtk_source_buffer_create_source_mark (buffer,
+						      NULL,
+						      mark_type,
+						      iter);
 	}
 
-	return FALSE;
+	g_slist_free (mark_list);
 }
 
 
@@ -1222,13 +1197,13 @@ create_view_window (GtkSourceBuffer *buffer, GtkSourceView *from)
 
 	/* view */
 	view = gtk_source_view_new_with_buffer (buffer);
-
+	
 	if (style_scheme)
 		gtk_source_buffer_set_style_scheme (buffer, style_scheme);
 
 	g_signal_connect (buffer, "mark-set", G_CALLBACK (move_cursor_cb), view);
 	g_signal_connect (buffer, "changed", G_CALLBACK (update_cursor_position), view);
-	g_signal_connect (view, "button-press-event", G_CALLBACK (button_press_cb), NULL);
+	g_signal_connect (view, "line-mark-activated", G_CALLBACK (line_mark_activated), view);
 	g_signal_connect (window, "delete-event", (GCallback) window_deleted_cb, view);
 
 	/* action group and UI manager */
@@ -1289,7 +1264,7 @@ create_view_window (GtkSourceBuffer *buffer, GtkSourceView *from)
 		gtk_widget_modify_font (view, font_desc);
 		pango_font_description_free (font_desc);
 	}
-
+	
 	/* change view attributes to match those of from */
 	if (from)
 	{

@@ -28,6 +28,7 @@
 #include <gtk/gtktextview.h>
 
 #include <gtksourceview/gtksourcebuffer.h>
+#include <gtksourceview/gtksourcegutter.h>
 
 G_BEGIN_DECLS
 
@@ -38,6 +39,11 @@ G_BEGIN_DECLS
 #define GTK_IS_SOURCE_VIEW_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE ((klass), GTK_TYPE_SOURCE_VIEW))
 #define GTK_SOURCE_VIEW_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj), GTK_TYPE_SOURCE_VIEW, GtkSourceViewClass))
 
+typedef enum
+{
+	GTK_SOURCE_VIEW_GUTTER_POSITION_LINES = -30,
+	GTK_SOURCE_VIEW_GUTTER_POSITION_MARKS = -20
+} GtkSourceViewGutterPosition;
 
 typedef struct _GtkSourceView GtkSourceView;
 typedef struct _GtkSourceViewClass GtkSourceViewClass;
@@ -57,12 +63,14 @@ struct _GtkSourceViewClass
 
 	void (*undo) (GtkSourceView *view);
 	void (*redo) (GtkSourceView *view);
+	void (*line_mark_activated) (GtkSourceView *view, 
+	                             GtkTextIter   *iter,
+	                             GdkEvent      *event);
 
 	/* Padding for future expansion */
 	void (*_gtk_source_reserved1) (void);
 	void (*_gtk_source_reserved2) (void);
 	void (*_gtk_source_reserved3) (void);
-	void (*_gtk_source_reserved4) (void);
 };
 
 /**
@@ -212,6 +220,9 @@ void		 gtk_source_view_set_draw_spaces	(GtkSourceView   *view,
 							 GtkSourceDrawSpacesFlags flags);
 GtkSourceDrawSpacesFlags
 		gtk_source_view_get_draw_spaces		(GtkSourceView   *view);
+
+GtkSourceGutter *gtk_source_view_get_gutter		(GtkSourceView     *view,
+                                                         GtkTextWindowType  window_type);
 
 G_END_DECLS
 #endif				/* end of SOURCE_VIEW_H__ */

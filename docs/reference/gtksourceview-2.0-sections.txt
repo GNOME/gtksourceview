@@ -83,6 +83,7 @@ gtk_source_view_set_tab_width
 gtk_source_view_get_tab_width
 gtk_source_view_set_draw_spaces
 gtk_source_view_get_draw_spaces
+gtk_source_view_get_gutter
 <SUBSECTION Standard>
 GTK_IS_SOURCE_VIEW
 GTK_IS_SOURCE_VIEW_CLASS
@@ -92,6 +93,30 @@ GTK_SOURCE_VIEW_GET_CLASS
 GTK_TYPE_SOURCE_VIEW
 GtkSourceViewPrivate
 gtk_source_view_get_type
+</SECTION>
+
+<SECTION>
+<FILE>gutter</FILE>
+<TITLE>GtkSourceGutter</TITLE>
+<INCLUDE>gtksourceview/gtksourcegutter.h</INCLUDE>
+GtkSourceGutter
+gtk_source_gutter_get_window
+gtk_source_gutter_insert
+gtk_source_gutter_reorder
+gtk_source_gutter_remove
+gtk_source_gutter_set_cell_data_func
+gtk_source_gutter_set_cell_size_func
+gtk_source_gutter_queue_draw
+<SUBSECTION Standard>
+GtkSourceGutterClass
+GTK_IS_SOURCE_GUTTER
+GTK_IS_SOURCE_GUTTER_CLASS
+GTK_SOURCE_GUTTER
+GTK_SOURCE_GUTTER_CLASS
+GTK_SOURCE_GUTTER_GET_CLASS
+GTK_TYPE_SOURCE_GUTTER
+GtkSourceGutterPrivate
+gtk_source_gutter_get_type
 </SECTION>
 
 <SECTION>

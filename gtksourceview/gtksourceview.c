@@ -39,6 +39,7 @@
 #include "gtksourceview-typebuiltins.h"
 #include "gtksourcemark.h"
 #include "gtksourceview.h"
+#include "gtksourcegutter-private.h"
 
 /*
 #define ENABLE_DEBUG
@@ -65,7 +66,6 @@
 #define COMPOSITE_ALPHA                 225
 #define GUTTER_PIXMAP 			16
 #define DEFAULT_TAB_WIDTH 		8
-#define MIN_NUMBER_WINDOW_WIDTH		20
 #define MAX_TAB_WIDTH			32
 #define MAX_INDENT_WIDTH		32
 
@@ -79,6 +79,7 @@
 enum {
 	UNDO,
 	REDO,
+	LINE_MARK_ACTIVATED,
 	LAST_SIGNAL
 };
 
@@ -115,7 +116,6 @@ struct _GtkSourceViewPrivate
 	gboolean	 show_right_margin;
 	guint		 right_margin_pos;
 	gint             cached_right_margin_pos;
-	gint		 cached_line_number_width;
 
 	gboolean	 style_scheme_applied;
 	GtkSourceStyleScheme *style_scheme;
@@ -128,10 +128,15 @@ struct _GtkSourceViewPrivate
 	GHashTable 	*mark_categories;
 
 	GtkSourceBuffer *source_buffer;
-	gint		 old_lines;
 
 	GdkColor         current_line_color;
 	guint            current_line_color_set : 1;
+
+	GtkSourceGutter *left_gutter;
+	GtkSourceGutter *right_gutter;
+
+	GtkCellRenderer *line_renderer;
+	GtkCellRenderer *marks_renderer;
 };
 
 
@@ -153,11 +158,11 @@ typedef struct
 {
 	gint priority;
 	GdkPixbuf *pixbuf;
-	
+
 	GtkSourceViewMarkTooltipFunc tooltip_func;
 	gpointer tooltip_data;
 	GDestroyNotify tooltip_data_notify;
-	
+
 	GdkColor background;
 	guint background_set : 1;
 	guint tooltip_markup : 1;
@@ -197,8 +202,6 @@ static gint     gtk_source_view_expose 			(GtkWidget         *widget,
 							 GdkEventExpose    *event);
 static gboolean	gtk_source_view_key_press_event		(GtkWidget         *widget,
 							 GdkEventKey       *event);
-static gboolean	gtk_source_view_button_press_event	(GtkWidget         *widget,
-							 GdkEventButton    *event);
 static void 	view_dnd_drop 				(GtkTextView       *view,
 							 GdkDragContext    *context,
 							 gint               x,
@@ -224,11 +227,6 @@ static void	gtk_source_view_get_property		(GObject           *object,
 static void     gtk_source_view_style_set               (GtkWidget         *widget,
 							 GtkStyle          *previous_style);
 static void	gtk_source_view_realize			(GtkWidget         *widget);
-static gboolean gtk_source_view_query_tooltip		(GtkWidget	   *widget,
-							 gint		    x,
-							 gint               y,
-							 gboolean           keyboard_mode,
-							 GtkTooltip        *tooltip);
 static void	gtk_source_view_update_style_scheme	(GtkSourceView     *view);
 
 static MarkCategory *
@@ -262,11 +260,9 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	object_class->set_property = gtk_source_view_set_property;
 
 	widget_class->key_press_event = gtk_source_view_key_press_event;
-	widget_class->button_press_event = gtk_source_view_button_press_event;
 	widget_class->expose_event = gtk_source_view_expose;
 	widget_class->style_set = gtk_source_view_style_set;
 	widget_class->realize = gtk_source_view_realize;
-	widget_class->query_tooltip = gtk_source_view_query_tooltip;
 
 	textview_class->populate_popup = gtk_source_view_populate_popup;
 	textview_class->move_cursor = gtk_source_view_move_cursor;
@@ -443,6 +439,29 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 			      _gtksourceview_marshal_VOID__VOID,
 			      G_TYPE_NONE,
 			      0);
+
+	/**
+	 * GtkSourceView::line-mark-activated:
+	 * @view: the #GtkSourceView
+	 * @iter: a #GtkTextIter
+	 * @event: the #GdkEvent that activated the event
+	 *
+	 * Emitted when a line mark has been activated (for instance when there 
+	 * was a button press in the line marks gutter). You can use @iter to
+	 * determine on which line the activation took place.
+	 */
+	signals [LINE_MARK_ACTIVATED] =
+		g_signal_new ("line-mark-activated",
+			      G_TYPE_FROM_CLASS (klass),
+			      G_SIGNAL_RUN_LAST,
+			      G_STRUCT_OFFSET (GtkSourceViewClass, line_mark_activated),
+			      NULL,
+			      NULL,
+			      _gtksourceview_marshal_VOID__BOXED_POINTER,
+			      G_TYPE_NONE,
+			      2,
+			      GTK_TYPE_TEXT_ITER,
+			      G_TYPE_POINTER);
 
 	binding_set = gtk_binding_set_by_class (klass);
 
@@ -716,6 +735,443 @@ notify_buffer (GtkSourceView *view)
 	set_source_buffer (view, GTK_TEXT_VIEW (view)->buffer);
 }
 
+static gint
+sort_marks_by_priority (gconstpointer m1,
+			gconstpointer m2,
+			gpointer data)
+{
+	GtkSourceMark *mark1 = GTK_SOURCE_MARK (m1);
+	GtkSourceMark *mark2 = GTK_SOURCE_MARK (m2);
+	GtkSourceView *view = GTK_SOURCE_VIEW (data);
+	GtkTextIter iter1, iter2;
+	gint line1;
+	gint line2;
+
+	gtk_text_buffer_get_iter_at_mark (gtk_text_mark_get_buffer (GTK_TEXT_MARK (mark1)),
+					  &iter1,
+					  GTK_TEXT_MARK (mark1));
+	gtk_text_buffer_get_iter_at_mark (gtk_text_mark_get_buffer (GTK_TEXT_MARK (mark2)),
+					  &iter2,
+					  GTK_TEXT_MARK (mark2));
+
+	line1 = gtk_text_iter_get_line (&iter1);
+	line2 = gtk_text_iter_get_line (&iter2);
+
+	if (line1 == line2)
+	{
+		guint priority1 = gtk_source_view_get_mark_category_priority (view,
+						gtk_source_mark_get_category (mark1));
+		guint priority2 = gtk_source_view_get_mark_category_priority (view,
+						gtk_source_mark_get_category (mark2));
+
+		return priority1 - priority2;
+	}
+	else
+	{
+		return line2 - line1;
+	}
+}
+
+static GdkPixbuf *
+composite_marks (GtkSourceView *view,
+		 GSList        *marks)
+{
+	GdkPixbuf *composite;
+	gint mark_width, mark_height;
+
+	/* Draw the mark with higher priority */
+	marks = g_slist_sort_with_data (marks, sort_marks_by_priority, view);
+
+	composite = NULL;
+	mark_width = mark_height = 0;
+
+	/* composite all the pixbufs for the marks present at the line */
+	do
+	{
+		GtkSourceMark *mark;
+		GdkPixbuf *pixbuf;
+
+		mark = marks->data;
+
+		pixbuf = gtk_source_view_get_mark_category_pixbuf (view,
+					gtk_source_mark_get_category (mark));
+
+		if (pixbuf != NULL)
+		{
+			if (composite == NULL)
+			{
+				composite = gdk_pixbuf_copy (pixbuf);
+				mark_width = gdk_pixbuf_get_width (composite);
+				mark_height = gdk_pixbuf_get_height (composite);
+			}
+			else
+			{
+				gint pixbuf_w;
+				gint pixbuf_h;
+
+				pixbuf_w = gdk_pixbuf_get_width (pixbuf);
+				pixbuf_h = gdk_pixbuf_get_height (pixbuf);
+
+				gdk_pixbuf_composite (pixbuf,
+						      composite,
+						      0, 0,
+						      mark_width, mark_height,
+						      0, 0,
+						      (double) pixbuf_w / mark_width,
+						      (double) pixbuf_h / mark_height,
+						      GDK_INTERP_BILINEAR,
+						      COMPOSITE_ALPHA);
+			}
+
+			g_object_unref (pixbuf);
+		}
+
+		marks = g_slist_next (marks);
+	}
+	while (marks);
+
+	return composite;
+}
+
+static void
+marks_renderer_data_func (GtkSourceGutter *gutter,
+                          GtkCellRenderer *renderer,
+                          gint             line_number,
+                          gboolean         current_line,
+                          GtkSourceView   *view)
+{
+	GSList *marks;
+	GdkPixbuf *pixbuf = NULL;
+
+	if (view->priv->source_buffer)
+	{
+		marks = gtk_source_buffer_get_source_marks_at_line (view->priv->source_buffer,
+								    line_number,
+								    NULL);
+
+		if (marks != NULL)
+		{
+			GtkTextIter iter;
+
+			gtk_text_buffer_get_iter_at_line (GTK_TEXT_BUFFER (view->priv->source_buffer),
+							  &iter,
+							  line_number);
+
+			/* draw marks for the line */
+			pixbuf = composite_marks (view, marks);
+			g_slist_free (marks);
+		}
+	}
+
+	g_object_set (G_OBJECT (renderer),
+	              "pixbuf", pixbuf,
+	              "xpad", 2,
+	              "yalign", 0.0,
+	              "xalign", 0.5,
+	              "mode", GTK_CELL_RENDERER_MODE_ACTIVATABLE,
+	              NULL);
+}
+
+static void
+line_renderer_data_func (GtkSourceGutter *gutter,
+                         GtkCellRenderer *renderer,
+                         gint             line_number,
+                         gboolean         current_line,
+                         GtkSourceView   *view)
+{
+	gchar *text;
+
+	text = g_strdup_printf ("%d", line_number + 1);
+	g_object_set (G_OBJECT (renderer),
+	              "text", text,
+	              "xalign", 1.0,
+	              "yalign", 0.0,
+	              "xpad", 2,
+	              "ypad", 0,
+	              "weight", current_line ? PANGO_WEIGHT_BOLD : PANGO_WEIGHT_NORMAL,
+	              "mode", GTK_CELL_RENDERER_MODE_ACTIVATABLE,
+	              NULL);
+
+	GtkStyle *style = gtk_widget_get_style (GTK_WIDGET (view));
+
+	if (style)
+	{
+		g_object_set (G_OBJECT (renderer),
+			      "foreground-gdk", &style->fg[GTK_STATE_NORMAL],
+			      NULL);
+	}
+
+	g_object_set (G_OBJECT (renderer),
+	              "background-set", FALSE,
+	              NULL);
+
+	g_free (text);
+}
+
+static void
+line_renderer_size_func (GtkSourceGutter *gutter,
+                         GtkCellRenderer *renderer,
+                         GtkSourceView   *view)
+{
+	gchar *markup;
+	gint count;
+
+	count = gtk_text_buffer_get_line_count (gtk_text_view_get_buffer (GTK_TEXT_VIEW (view)));
+	markup = g_strdup_printf ("<b>%d</b>", MAX(99, count));
+
+	g_object_set (G_OBJECT (renderer),
+                      "markup", markup,
+                      "xpad", 2,
+                      "ypad", 0,
+                      NULL);
+	g_free (markup);
+}
+
+static void
+extend_selection_to_line (GtkTextBuffer *buf, GtkTextIter *line_start)
+{
+	GtkTextIter start;
+	GtkTextIter end;
+	GtkTextIter line_end;
+
+	gtk_text_buffer_get_selection_bounds (buf, &start, &end);
+
+	line_end = *line_start;
+	gtk_text_iter_forward_to_line_end (&line_end);
+
+	if (gtk_text_iter_compare (&start, line_start) < 0)
+	{
+		gtk_text_buffer_select_range (buf, &start, &line_end);
+	}
+	else if (gtk_text_iter_compare (&end, &line_end) < 0)
+	{
+		/* if the selection is in this line, extend
+		 * the selection to the whole line */
+		gtk_text_buffer_select_range (buf, &line_end, line_start);
+	}
+	else
+	{
+		gtk_text_buffer_select_range (buf, &end, line_start);
+	}
+}
+
+static void
+select_line (GtkTextBuffer *buf, GtkTextIter *line_start)
+{
+	GtkTextIter iter;
+
+	iter = *line_start;
+
+	if (!gtk_text_iter_ends_line (&iter))
+		gtk_text_iter_forward_to_line_end (&iter);
+
+	/* Select the line, put the cursor at the end of the line */
+	gtk_text_buffer_select_range (buf, &iter, line_start);
+}
+
+static void
+renderer_activated (GtkSourceGutter *gutter,
+                    GtkCellRenderer *renderer,
+                    GtkTextIter     *iter,
+                    GdkEvent        *event,
+                    GtkSourceView   *view)
+{
+	if (renderer == view->priv->marks_renderer)
+	{
+		g_signal_emit (view,
+		               signals[LINE_MARK_ACTIVATED],
+		               0,
+		               iter,
+		               event);
+	}
+	else if (renderer == view->priv->line_renderer)
+	{
+		GtkTextBuffer *buf = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
+
+		if (event->type == GDK_BUTTON_PRESS && (event->button.button == 1))
+		{
+			if ((event->button.state & GDK_CONTROL_MASK) != 0)
+			{
+				/* Single click + Ctrl -> select the line */
+				select_line (buf, iter);
+			}
+			else if ((event->button.state & GDK_SHIFT_MASK) != 0)
+			{
+				/* Single click + Shift -> extended current
+				   selection to include the clicked line */
+				extend_selection_to_line (buf, iter);
+			}
+			else
+			{
+				gtk_text_buffer_place_cursor (buf, iter);
+			}
+		}
+		else if (event->type == GDK_2BUTTON_PRESS && (event->button.button == 1))
+		{
+			select_line (buf, iter);
+		}
+	}
+}
+
+static void
+set_tooltip_widget_from_marks (GtkSourceView *view,
+			       GtkTooltip *tooltip,
+			       GSList *marks)
+{
+	GtkWidget *vbox;
+
+	vbox = gtk_vbox_new (FALSE, 0);
+	gtk_widget_show (vbox);
+
+	while (marks != NULL)
+	{
+		MarkCategory *cat;
+		GtkSourceMark *mark;
+
+		mark = marks->data;
+		cat = gtk_source_view_get_mark_category (view, mark);
+
+		if (cat != NULL)
+		{
+			GtkWidget *image;
+			GtkWidget *label;
+			GtkWidget *hbox;
+			GtkWidget *separator;
+			gchar *text;
+
+			hbox = gtk_hbox_new (FALSE, 4);
+			gtk_widget_show (hbox);
+			gtk_box_pack_start (GTK_BOX (vbox), hbox,
+					    FALSE, FALSE, 0);
+
+			text = cat->tooltip_func (mark, cat->tooltip_data);
+
+			if (text != NULL)
+			{
+				label = gtk_label_new (NULL);
+				if (cat->tooltip_markup)
+					gtk_label_set_markup (GTK_LABEL (label), text);
+				else
+					gtk_label_set_text (GTK_LABEL (label), text);
+
+				gtk_misc_set_alignment (GTK_MISC (label), 0, 0.5);
+				gtk_widget_show (label);
+
+				gtk_box_pack_end (GTK_BOX (hbox), label,
+						  TRUE, TRUE, 0);
+
+				if (cat->pixbuf != NULL)
+				{
+					image = gtk_image_new_from_pixbuf (cat->pixbuf);
+					gtk_widget_show (image);
+
+					gtk_box_pack_start (GTK_BOX (hbox), image,
+							    FALSE, FALSE, 0);
+				}
+
+				if (g_slist_length (marks) != 1)
+				{
+					separator = gtk_hseparator_new ();
+					gtk_widget_show (separator);
+					gtk_box_pack_start (GTK_BOX (vbox), separator,
+							    FALSE, FALSE, 0);
+				}
+
+				g_free (text);
+			}
+		}
+
+		marks = g_slist_delete_link (marks, marks);
+	}
+
+	gtk_tooltip_set_custom (tooltip, vbox);
+}
+
+static gboolean
+renderer_query_tooltip (GtkSourceGutter *gutter,
+                        GtkCellRenderer *renderer,
+                        GtkTextIter     *iter,
+                        GtkTooltip      *tooltip,
+                        GtkSourceView   *view)
+{
+	GSList *marks;
+	GtkSourceBuffer *buffer;
+	gint line;
+
+	if (renderer != view->priv->marks_renderer)
+	{
+		return FALSE;
+	}
+
+	buffer = GTK_SOURCE_BUFFER (gtk_text_view_get_buffer (GTK_TEXT_VIEW (view)));
+	line = gtk_text_iter_get_line (iter);
+
+	marks = gtk_source_buffer_get_source_marks_at_line (buffer,
+							    line,
+							    NULL);
+
+	if (marks != NULL)
+	{
+		marks = g_slist_sort_with_data (marks, sort_marks_by_priority, view);
+		marks = g_slist_reverse (marks);
+
+		set_tooltip_widget_from_marks (view, tooltip, marks);
+		return TRUE;
+	}
+
+	return FALSE;
+}
+
+static void
+init_left_gutter (GtkSourceView *view)
+{
+	GtkSourceGutter *gutter;
+
+	view->priv->line_renderer = gtk_cell_renderer_text_new ();
+	view->priv->marks_renderer = gtk_cell_renderer_pixbuf_new ();
+
+	gutter = gtk_source_view_get_gutter (view, GTK_TEXT_WINDOW_LEFT);
+
+	gtk_source_gutter_insert (gutter, 
+	                          view->priv->line_renderer, 
+	                          GTK_SOURCE_VIEW_GUTTER_POSITION_LINES);
+
+	gtk_source_gutter_insert (gutter, 
+	                          view->priv->marks_renderer,
+	                          GTK_SOURCE_VIEW_GUTTER_POSITION_MARKS);
+
+	gtk_cell_renderer_set_fixed_size (view->priv->line_renderer, 0, 0);
+	gtk_cell_renderer_set_fixed_size (view->priv->marks_renderer, 0, 0);
+
+	gtk_source_gutter_set_cell_data_func (gutter,
+	                                      view->priv->line_renderer,
+	                                      (GtkSourceGutterDataFunc)line_renderer_data_func,
+	                                      view,
+	                                      NULL);
+
+	gtk_source_gutter_set_cell_size_func (gutter,
+	                                      view->priv->line_renderer,
+	                                      (GtkSourceGutterSizeFunc)line_renderer_size_func,
+	                                      view,
+	                                      NULL);
+
+	gtk_source_gutter_set_cell_data_func (gutter,
+	                                      view->priv->marks_renderer,
+	                                      (GtkSourceGutterDataFunc)marks_renderer_data_func,
+	                                      view,
+	                                      NULL);
+
+	g_signal_connect (gutter,
+	                  "cell-activated",
+	                  G_CALLBACK (renderer_activated),
+	                  view);
+
+	g_signal_connect (gutter,
+	                  "query-tooltip",
+	                  G_CALLBACK (renderer_query_tooltip),
+	                  view);
+}
+
 static void
 gtk_source_view_init (GtkSourceView *view)
 {
@@ -731,7 +1187,6 @@ gtk_source_view_init (GtkSourceView *view)
 	view->priv->smart_home_end = GTK_SOURCE_SMART_HOME_END_DISABLED;
 	view->priv->right_margin_pos = DEFAULT_RIGHT_MARGIN_POSITION;
 	view->priv->cached_right_margin_pos = -1;
-	view->priv->cached_line_number_width = 0;
 
 	gtk_text_view_set_left_margin (GTK_TEXT_VIEW (view), 2);
 	gtk_text_view_set_right_margin (GTK_TEXT_VIEW (view), 2);
@@ -743,6 +1198,8 @@ gtk_source_view_init (GtkSourceView *view)
 	view->priv->mark_categories = g_hash_table_new_full (g_str_hash, g_str_equal,
 							     (GDestroyNotify) g_free,
 							     (GDestroyNotify) mark_category_free);
+
+	init_left_gutter (view);
 
 	tl = gtk_drag_dest_get_target_list (GTK_WIDGET (view));
 	g_return_if_fail (tl != NULL);
@@ -796,12 +1253,18 @@ gtk_source_view_finalize (GObject *object)
 
 	if (view->priv->right_margin_overlay_color != NULL)
 		gdk_color_free (view->priv->right_margin_overlay_color);
-		
+
 	if (view->priv->spaces_color != NULL)
 		gdk_color_free (view->priv->spaces_color);
 
 	if (view->priv->mark_categories)
 		g_hash_table_destroy (view->priv->mark_categories);
+
+	if (view->priv->left_gutter)
+		g_object_unref (view->priv->left_gutter);
+
+	if (view->priv->right_gutter)
+		g_object_unref (view->priv->right_gutter);
 
 	set_source_buffer (view, NULL);
 
@@ -1254,314 +1717,6 @@ gtk_source_view_get_lines (GtkTextView  *text_view,
 	*countp = count;
 }
 
-static gint
-sort_marks_by_priority (gconstpointer m1,
-			gconstpointer m2,
-			gpointer data)
-{
-	GtkSourceMark *mark1 = GTK_SOURCE_MARK (m1);
-	GtkSourceMark *mark2 = GTK_SOURCE_MARK (m2);
-	GtkSourceView *view = GTK_SOURCE_VIEW (data);
-	GtkTextIter iter1, iter2;
-	gint line1;
-	gint line2;
-
-	gtk_text_buffer_get_iter_at_mark (gtk_text_mark_get_buffer (GTK_TEXT_MARK (mark1)),
-					  &iter1,
-					  GTK_TEXT_MARK (mark1));
-	gtk_text_buffer_get_iter_at_mark (gtk_text_mark_get_buffer (GTK_TEXT_MARK (mark2)),
-					  &iter2,
-					  GTK_TEXT_MARK (mark2));
-
-	line1 = gtk_text_iter_get_line (&iter1);
-	line2 = gtk_text_iter_get_line (&iter2);
-
-	if (line1 == line2)
-	{
-		guint priority1 = gtk_source_view_get_mark_category_priority (view,
-						gtk_source_mark_get_category (mark1));
-		guint priority2 = gtk_source_view_get_mark_category_priority (view,
-						gtk_source_mark_get_category (mark2));
-
-		return priority1 - priority2;
-	}
-	else
-	{
-		return line2 - line1;
-	}
-}
-
-static void
-draw_line_marks (GtkSourceView *view,
-		 GSList        *marks,
-		 gint           x,
-		 gint           y,
-		 gint		height)
-{
-	GdkPixbuf *composite;
-	gint mark_width, mark_height;
-
-	/* Draw the mark with higher priority */
-	marks = g_slist_sort_with_data (marks, sort_marks_by_priority, view);
-	
-	composite = NULL;
-	mark_width = mark_height = 0;
-
-	/* composite all the pixbufs for the marks present at the line */
-	do
-	{
-		GtkSourceMark *mark;
-		GdkPixbuf *pixbuf;
-		MarkCategory *cat;
-
-		mark = marks->data;
-
-		cat = gtk_source_view_get_mark_category (view, mark);
-		if (cat != NULL && cat->pixbuf != NULL)
-			pixbuf = g_object_ref (cat->pixbuf);
-
-		if (pixbuf != NULL)
-		{
-			if (composite == NULL)
-			{
-				composite = gdk_pixbuf_copy (pixbuf);
-				mark_width = gdk_pixbuf_get_width (composite);
-				mark_height = gdk_pixbuf_get_height (composite);
-			}
-			else
-			{
-				gint pixbuf_w;
-				gint pixbuf_h;
-
-				pixbuf_w = gdk_pixbuf_get_width (pixbuf);
-				pixbuf_h = gdk_pixbuf_get_height (pixbuf);
-				gdk_pixbuf_composite (pixbuf,
-						      composite,
-						      0, 0,
-						      mark_width, mark_height,
-						      0, 0,
-						      (double) pixbuf_w / mark_width,
-						      (double) pixbuf_h / mark_height,
-						      GDK_INTERP_BILINEAR,
-						      COMPOSITE_ALPHA);
-			}
-			g_object_unref (pixbuf);
-		}
-
-		marks = g_slist_next (marks);
-	}
-	while (marks);
-
-	if (composite != NULL)
-	{
-		GdkWindow *window;
-
-		window = gtk_text_view_get_window (GTK_TEXT_VIEW (view),
-						   GTK_TEXT_WINDOW_LEFT);
-						   
-		gdk_draw_pixbuf (GDK_DRAWABLE (window), NULL, composite,
-				 0, 0, x, y + (height - mark_height) / 2.0,
-				 mark_width, mark_height,
-				 GDK_RGB_DITHER_NORMAL, 0, 0);
-		g_object_unref (composite);
-	}
-}
-
-static void
-gtk_source_view_paint_margin (GtkSourceView *view,
-			      GdkEventExpose *event)
-{
-	GtkTextView *text_view;
-	GdkWindow *win;
-	PangoLayout *layout;
-	GArray *numbers;
-	GArray *pixels;
-	gchar str [8];  /* we don't expect more than ten million lines ;-) */
-	gint y1, y2;
-	gint count;
-	gint margin_width;
-	gint text_width, x_pixmap;
-	gint i;
-	GtkTextIter cur;
-	gint cur_line;
-
-	text_view = GTK_TEXT_VIEW (view);
-
-	if (!view->priv->show_line_numbers && !view->priv->show_line_marks)
-	{
-		gtk_text_view_set_border_window_size (GTK_TEXT_VIEW (text_view),
-						      GTK_TEXT_WINDOW_LEFT,
-						      0);
-
-		return;
-	}
-
-	win = gtk_text_view_get_window (text_view,
-					GTK_TEXT_WINDOW_LEFT);
-
-	y1 = event->area.y;
-	y2 = y1 + event->area.height;
-
-	/* get the extents of the line printing */
-	gtk_text_view_window_to_buffer_coords (text_view,
-					       GTK_TEXT_WINDOW_LEFT,
-					       0,
-					       y1,
-					       NULL,
-					       &y1);
-
-	gtk_text_view_window_to_buffer_coords (text_view,
-					       GTK_TEXT_WINDOW_LEFT,
-					       0,
-					       y2,
-					       NULL,
-					       &y2);
-
-	numbers = g_array_new (FALSE, FALSE, sizeof (gint));
-	pixels = g_array_new (FALSE, FALSE, sizeof (gint));
-
-	/* get the line numbers and y coordinates. */
-	gtk_source_view_get_lines (text_view,
-				   y1,
-				   y2,
-				   pixels,
-				   NULL,
-				   numbers,
-				   &count);
-
-	/* A zero-lined document should display a "1"; we don't need to worry about
-	scrolling effects of the text widget in this special case */
-
-	if (count == 0)
-	{
-		gint y = 0;
-		gint n = 0;
-		count = 1;
-		g_array_append_val (pixels, y);
-		g_array_append_val (numbers, n);
-	}
-
-	DEBUG ({
-		g_message ("Painting line numbers %d - %d",
-			   g_array_index (numbers, gint, 0),
-			   g_array_index (numbers, gint, count - 1));
-	});
-
-	/* set size. */
-	g_snprintf (str, sizeof (str),
-		    "%d", MAX (99, gtk_text_buffer_get_line_count (text_view->buffer)));
-	layout = gtk_widget_create_pango_layout (GTK_WIDGET (view), str);
-
-	pango_layout_get_pixel_size (layout, &text_width, NULL);
-
-	pango_layout_set_width (layout, text_width);
-	pango_layout_set_alignment (layout, PANGO_ALIGN_RIGHT);
-
-	/* determine the width of the left margin. */
-	if (view->priv->show_line_numbers)
-		margin_width = text_width + 4;
-	else
-		margin_width = 0;
-	view->priv->cached_line_number_width = margin_width;
-
-	x_pixmap = margin_width;
-
-	if (view->priv->show_line_marks)
-		margin_width += GUTTER_PIXMAP;
-
-	/* no line & no marks case is short circuited before */
-	g_assert (margin_width != 0);
-
-	gtk_text_view_set_border_window_size (GTK_TEXT_VIEW (text_view),
-					      GTK_TEXT_WINDOW_LEFT,
-					      margin_width);
-
-	gtk_text_buffer_get_iter_at_mark (text_view->buffer,
-					  &cur,
-					  gtk_text_buffer_get_insert (text_view->buffer));
-
-	cur_line = gtk_text_iter_get_line (&cur);
-
-	for (i = 0; i < count; ++i)
-	{
-		gint pos;
-		gint line_to_paint;
-
-		gtk_text_view_buffer_to_window_coords (text_view,
-						       GTK_TEXT_WINDOW_LEFT,
-						       0,
-						       g_array_index (pixels, gint, i),
-						       NULL,
-						       &pos);
-
-		line_to_paint = g_array_index (numbers, gint, i);
-
-		if (view->priv->show_line_numbers)
-		{
-			if (line_to_paint == cur_line)
-			{
-				gchar *markup;
-
-				/* +1 because displayed line numbers start from 1 */
-				markup = g_strdup_printf ("<b>%d</b>", 1 + line_to_paint);
-
-				pango_layout_set_markup (layout, markup, -1);
-
-				g_free (markup);
-			}
-			else
-			{
-				g_snprintf (str, sizeof (str), "%d", 1 + line_to_paint);
-
-				pango_layout_set_markup (layout, str, -1);
-			}
-
-			gtk_paint_layout (GTK_WIDGET (view)->style,
-					  win,
-					  GTK_WIDGET_STATE (view),
-					  FALSE,
-					  NULL,
-					  GTK_WIDGET (view),
-					  NULL,
-					  text_width + 2,
-					  pos,
-					  layout);
-		}
-
-		if (view->priv->show_line_marks && view->priv->source_buffer != NULL)
-		{
-			GSList *marks;
-
-			marks = gtk_source_buffer_get_source_marks_at_line (view->priv->source_buffer,
-									    line_to_paint,
-									    NULL);
-
-			if (marks != NULL)
-			{
-				GtkTextIter iter;
-				gint height;
-			
-				gtk_text_buffer_get_iter_at_line (GTK_TEXT_BUFFER (view->priv->source_buffer),
-								  &iter,
-								  line_to_paint);
-				gtk_text_view_get_line_yrange (GTK_TEXT_VIEW (view),
-							       &iter,
-							       NULL,
-							       &height);
-
-				/* draw marks for the line */
-				draw_line_marks (view, marks, x_pixmap, pos, height);
-				g_slist_free (marks);
-			}
-		}
-	}
-
-	g_array_free (pixels, TRUE);
-	g_array_free (numbers, TRUE);
-
-	g_object_unref (G_OBJECT (layout));
-}
-
 static void
 gtk_source_view_paint_line_background (GtkTextView    *text_view,
 				       GdkEventExpose *event,
@@ -1957,6 +2112,104 @@ draw_tabs_and_spaces (GtkSourceView  *view,
 	cairo_destroy (cr);
 }
 
+static void
+gtk_source_view_paint_right_margin (GtkSourceView  *view,
+                                    GdkEventExpose *event)
+{
+	GdkRectangle visible_rect;
+	GdkRectangle redraw_rect;
+	cairo_t *cr;
+	double x;
+
+	GtkTextView *text_view = GTK_TEXT_VIEW (view);
+
+#ifdef ENABLE_PROFILE
+	static GTimer *timer = NULL;
+#endif
+
+	g_return_if_fail (view->priv->right_margin_line_color != NULL);
+
+	if (view->priv->cached_right_margin_pos < 0)
+	{
+		view->priv->cached_right_margin_pos =
+			calculate_real_tab_width (view,
+						  view->priv->right_margin_pos,
+						  '_');
+	}
+
+#ifdef ENABLE_PROFILE
+	if (timer == NULL)
+		timer = g_timer_new ();
+
+	g_timer_start (timer);
+#endif
+
+	gtk_text_view_get_visible_rect (text_view, &visible_rect);
+
+	gtk_text_view_buffer_to_window_coords (text_view,
+				       GTK_TEXT_WINDOW_TEXT,
+				       visible_rect.x,
+				       visible_rect.y,
+				       &redraw_rect.x,
+				       &redraw_rect.y);
+
+	redraw_rect.width = visible_rect.width;
+	redraw_rect.height = visible_rect.height;
+
+	cr = gdk_cairo_create (gtk_text_view_get_window (text_view, GTK_TEXT_WINDOW_TEXT));
+
+	/* Set a clip region for the expose event. */
+	cairo_rectangle (cr, event->area.x, event->area.y,
+			 event->area.width, event->area.height);
+	cairo_clip (cr);
+
+	/* Offset with 0.5 is needed for a sharp line. */
+	x = view->priv->cached_right_margin_pos -
+		visible_rect.x + redraw_rect.x + 0.5 +
+		gtk_text_view_get_left_margin (text_view);
+
+	/* Default line width is 2.0 which is too wide. */
+	cairo_set_line_width (cr, 1.0);
+
+	cairo_move_to (cr, x, redraw_rect.y);
+	cairo_line_to (cr, x, redraw_rect.y + redraw_rect.height);
+
+	cairo_set_source_rgba (cr,
+			       view->priv->right_margin_line_color->red / 65535.,
+			       view->priv->right_margin_line_color->green / 65535.,
+			       view->priv->right_margin_line_color->blue / 65535.,
+			       RIGHT_MARING_LINE_ALPHA / 255.);
+
+	cairo_stroke (cr);
+
+	/* Only draw the overlay when the style scheme explicitly sets it. */
+	if (view->priv->right_margin_overlay_color != NULL)
+	{
+		/* Draw the rectangle next to the line (x+.5). */
+		cairo_rectangle (cr,
+				 x + .5,
+				 redraw_rect.y,
+				 redraw_rect.width - x - .5,
+				 redraw_rect.y + redraw_rect.height);
+
+		cairo_set_source_rgba (cr,
+				       view->priv->right_margin_overlay_color->red / 65535.,
+				       view->priv->right_margin_overlay_color->green / 65535.,
+				       view->priv->right_margin_overlay_color->blue / 65535.,
+				       RIGHT_MARING_OVERLAY_ALPHA / 255.);
+
+		cairo_fill (cr);
+	}
+
+	cairo_destroy (cr);
+
+	PROFILE ({
+		g_timer_stop (timer);
+		g_message ("Time to draw the margin: %g (sec * 1000)",
+		           g_timer_elapsed (timer, NULL) * 1000);
+	});
+}
+
 static gint
 gtk_source_view_expose (GtkWidget      *widget,
 			GdkEventExpose *event)
@@ -2003,161 +2256,45 @@ gtk_source_view_expose (GtkWidget      *widget,
 						     &iter1, &iter2, FALSE);
 	}
 
-	/* now check for the left window, which contains the margin */
-	if (event->window == gtk_text_view_get_window (text_view,
-						       GTK_TEXT_WINDOW_LEFT))
+	if (GTK_WIDGET_IS_SENSITIVE(view) && view->priv->highlight_current_line &&
+		    (event->window == gtk_text_view_get_window (text_view, GTK_TEXT_WINDOW_TEXT)))
 	{
-		gtk_source_view_paint_margin (view, event);
-		event_handled = TRUE;
+		GtkTextIter cur;
+		gint y, height;
+		GdkColor *color;
+
+		gtk_text_buffer_get_iter_at_mark (text_view->buffer,
+						  &cur,
+						  gtk_text_buffer_get_insert (text_view->buffer));
+		gtk_text_view_get_line_yrange (text_view, &cur, &y, &height);
+
+		if (view->priv->current_line_color_set)
+			color = &view->priv->current_line_color;
+		else
+			color = &widget->style->bg[GTK_WIDGET_STATE (widget)];
+
+		gtk_source_view_paint_line_background (text_view, event, y, height, color);
 	}
-	else
+
+	if (event->window == gtk_text_view_get_window (text_view, GTK_TEXT_WINDOW_TEXT))
+		gtk_source_view_paint_marks_background (view, event);
+
+	/* Have GtkTextView draw the text first. */
+	if (GTK_WIDGET_CLASS (gtk_source_view_parent_class)->expose_event)
+		event_handled =
+			GTK_WIDGET_CLASS (gtk_source_view_parent_class)->expose_event (widget, event);
+
+	/* Draw the right margin vertical line + overlay. */
+	if (view->priv->show_right_margin &&
+	    (event->window == gtk_text_view_get_window (text_view, GTK_TEXT_WINDOW_TEXT)))
 	{
-		gint lines;
+		gtk_source_view_paint_right_margin (view, event);
+	}
 
-		/* FIXME: could it be a performances problem? - Paolo */
-		lines = gtk_text_buffer_get_line_count (text_view->buffer);
-
-		if (view->priv->old_lines != lines)
-		{
-			GdkWindow *w;
-			view->priv->old_lines = lines;
-
-			w = gtk_text_view_get_window (text_view, GTK_TEXT_WINDOW_LEFT);
-
-			if (w != NULL)
-				gdk_window_invalidate_rect (w, NULL, FALSE);
-		}
-
-		if (GTK_WIDGET_IS_SENSITIVE(view) && view->priv->highlight_current_line &&
-		    (event->window == gtk_text_view_get_window (text_view, GTK_TEXT_WINDOW_TEXT)))
-		{
-			GtkTextIter cur;
-			gint y, height;
-			GdkColor *color;
-
-			gtk_text_buffer_get_iter_at_mark (text_view->buffer,
-							  &cur,
-							  gtk_text_buffer_get_insert (text_view->buffer));
-			gtk_text_view_get_line_yrange (text_view, &cur, &y, &height);
-
-			if (view->priv->current_line_color_set)
-				color = &view->priv->current_line_color;
-			else
-				color = &widget->style->bg[GTK_WIDGET_STATE (widget)];
-
-			gtk_source_view_paint_line_background (text_view, event, y, height, color);
-		}
-
-		if (event->window == gtk_text_view_get_window (text_view, GTK_TEXT_WINDOW_TEXT))
-			gtk_source_view_paint_marks_background (view, event);
-
-		/* Have GtkTextView draw the text first. */
-		if (GTK_WIDGET_CLASS (gtk_source_view_parent_class)->expose_event)
-			event_handled =
-				GTK_WIDGET_CLASS (gtk_source_view_parent_class)->expose_event (widget, event);
-
-		/* Draw the right margin vertical line + overlay. */
-		if (view->priv->show_right_margin &&
-		    (event->window == gtk_text_view_get_window (text_view, GTK_TEXT_WINDOW_TEXT)))
-		{
-			GdkRectangle visible_rect;
-			GdkRectangle redraw_rect;
-			cairo_t *cr;
-			double x;
-
-#ifdef ENABLE_PROFILE
-			static GTimer *timer = NULL;
-#endif
-
-			g_return_val_if_fail (view->priv->right_margin_line_color != NULL,
-					      event_handled);
-
-			if (view->priv->cached_right_margin_pos < 0)
-			{
-				view->priv->cached_right_margin_pos =
-					calculate_real_tab_width (view,
-								  view->priv->right_margin_pos,
-								  '_');
-			}
-
-#ifdef ENABLE_PROFILE
-			if (timer == NULL)
-				timer = g_timer_new ();
-
-			g_timer_start (timer);
-#endif
-
-			gtk_text_view_get_visible_rect (text_view, &visible_rect);
-
-			gtk_text_view_buffer_to_window_coords (text_view,
-						       GTK_TEXT_WINDOW_TEXT,
-						       visible_rect.x,
-						       visible_rect.y,
-						       &redraw_rect.x,
-						       &redraw_rect.y);
-
-			redraw_rect.width = visible_rect.width;
-			redraw_rect.height = visible_rect.height;
-
-			cr = gdk_cairo_create (gtk_text_view_get_window (text_view, GTK_TEXT_WINDOW_TEXT));
-
-			/* Set a clip region for the expose event. */
-			cairo_rectangle (cr, event->area.x, event->area.y,
-					 event->area.width, event->area.height);
-			cairo_clip (cr);
-
-			/* Offset with 0.5 is needed for a sharp line. */
-			x = view->priv->cached_right_margin_pos -
-				visible_rect.x + redraw_rect.x + 0.5 +
-				gtk_text_view_get_left_margin (text_view);
-
-			/* Default line width is 2.0 which is too wide. */
-			cairo_set_line_width (cr, 1.0);
-
-			cairo_move_to (cr, x, redraw_rect.y);
-			cairo_line_to (cr, x, redraw_rect.y + redraw_rect.height);
-
-			cairo_set_source_rgba (cr,
-					       view->priv->right_margin_line_color->red / 65535.,
-					       view->priv->right_margin_line_color->green / 65535.,
-					       view->priv->right_margin_line_color->blue / 65535.,
-					       RIGHT_MARING_LINE_ALPHA / 255.);
-
-			cairo_stroke (cr);
-
-			/* Only draw the overlay when the style scheme explicitly sets it. */
-			if (view->priv->right_margin_overlay_color != NULL)
-			{
-				/* Draw the rectangle next to the line (x+.5). */
-				cairo_rectangle (cr,
-						 x + .5,
-						 redraw_rect.y,
-						 redraw_rect.width - x - .5,
-						 redraw_rect.y + redraw_rect.height);
-
-				cairo_set_source_rgba (cr,
-						       view->priv->right_margin_overlay_color->red / 65535.,
-						       view->priv->right_margin_overlay_color->green / 65535.,
-						       view->priv->right_margin_overlay_color->blue / 65535.,
-						       RIGHT_MARING_OVERLAY_ALPHA / 255.);
-
-				cairo_fill (cr);
-			}
-
-			cairo_destroy (cr);
-
-			PROFILE ({
-				g_timer_stop (timer);
-				g_message ("Time to draw the margin: %g (sec * 1000)",
-				           g_timer_elapsed (timer, NULL) * 1000);
-			});
-		}
-
-		if (view->priv->draw_spaces != 0 &&
-		    (event->window == gtk_text_view_get_window (text_view, GTK_TEXT_WINDOW_TEXT)))
-		{
-			draw_tabs_and_spaces (view, event);
-		}
+	if (view->priv->draw_spaces != 0 &&
+	    (event->window == gtk_text_view_get_window (text_view, GTK_TEXT_WINDOW_TEXT)))
+	{
+		draw_tabs_and_spaces (view, event);
 	}
 
 	DEBUG ({
@@ -2280,42 +2417,33 @@ void
 gtk_source_view_set_show_line_numbers (GtkSourceView *view,
 				       gboolean       show)
 {
+	GtkSourceGutter *gutter;
+
 	g_return_if_fail (view != NULL);
 	g_return_if_fail (GTK_IS_SOURCE_VIEW (view));
 
 	show = (show != FALSE);
 
+	if (show == view->priv->show_line_numbers)
+	{
+		return;
+	}
+
+	gutter = gtk_source_view_get_gutter (view, GTK_TEXT_WINDOW_LEFT);
+
 	if (show)
 	{
-		if (!view->priv->show_line_numbers)
-		{
-			/* Set left margin to minimum width if no margin is
-			   visible yet. Otherwise, just queue a redraw, so the
-			   expose handler will automatically adjust the margin. */
-			if (!view->priv->show_line_marks)
-				gtk_text_view_set_border_window_size (GTK_TEXT_VIEW (view),
-								      GTK_TEXT_WINDOW_LEFT,
-								      MIN_NUMBER_WINDOW_WIDTH);
-			else
-				gtk_widget_queue_draw (GTK_WIDGET (view));
-
-			view->priv->show_line_numbers = show;
-
-			g_object_notify (G_OBJECT (view), "show_line_numbers");
-		}
+		gtk_cell_renderer_set_fixed_size (view->priv->line_renderer, -1, -1);
 	}
 	else
 	{
-		if (view->priv->show_line_numbers)
-		{
-			view->priv->show_line_numbers = show;
-
-			/* force expose event, which will adjust margin. */
-			gtk_widget_queue_draw (GTK_WIDGET (view));
-
-			g_object_notify (G_OBJECT (view), "show_line_numbers");
-		}
+		gtk_cell_renderer_set_fixed_size (view->priv->line_renderer, 0, 0);
 	}
+
+	view->priv->show_line_numbers = show;
+	gtk_source_gutter_queue_draw (gutter);
+
+	g_object_notify (G_OBJECT (view), "show_line_numbers");
 }
 
 /**
@@ -2349,41 +2477,33 @@ void
 gtk_source_view_set_show_line_marks (GtkSourceView *view,
 				     gboolean       show)
 {
+	GtkSourceGutter *gutter;
+
 	g_return_if_fail (GTK_IS_SOURCE_VIEW (view));
 
 	show = (show != FALSE);
+	gutter = gtk_source_view_get_gutter (view, GTK_TEXT_WINDOW_LEFT);
+
+	if (show == view->priv->show_line_marks)
+	{
+		return;
+	}
+
+	gutter = gtk_source_view_get_gutter (view, GTK_TEXT_WINDOW_LEFT);
 
 	if (show)
 	{
-		if (!view->priv->show_line_marks)
-		{
-			/* Set left margin to minimum width if no margin is
-			   visible yet. Otherwise, just queue a redraw, so the
-			   expose handler will automatically adjust the margin. */
-			if (!view->priv->show_line_numbers)
-				gtk_text_view_set_border_window_size (GTK_TEXT_VIEW (view),
-								      GTK_TEXT_WINDOW_LEFT,
-								      MIN_NUMBER_WINDOW_WIDTH);
-			else
-				gtk_widget_queue_draw (GTK_WIDGET (view));
-
-			view->priv->show_line_marks = show;
-
-			g_object_notify (G_OBJECT (view), "show-line-marks");
-		}
+		gtk_cell_renderer_set_fixed_size (view->priv->marks_renderer, GUTTER_PIXMAP, GUTTER_PIXMAP);
 	}
 	else
 	{
-		if (view->priv->show_line_marks)
-		{
-			view->priv->show_line_marks = show;
-
-			/* force expose event, which will adjust margin. */
-			gtk_widget_queue_draw (GTK_WIDGET (view));
-
-			g_object_notify (G_OBJECT (view), "show-line-marks");
-		}
+		gtk_cell_renderer_set_fixed_size (view->priv->marks_renderer, 0, 0);
 	}
+
+	view->priv->show_line_marks = show;
+	gtk_source_gutter_queue_draw (gutter);
+
+	g_object_notify (G_OBJECT (view), "show_line_marks");
 }
 
 static gboolean
@@ -2722,7 +2842,7 @@ set_mark_category_tooltip_func (GtkSourceView   *view,
  *
  * Set a #GtkSourceViewMarkTooltipFunc used to set tooltip on marks from the
  * given mark @category. If @func is %NULL and @markup_func is %NULL then tooltips
- * will not be shown for marks from @category. If @markup_func is not %NULL 
+ * will not be shown for marks from @category. If @markup_func is not %NULL
  * @markup_func is going to be used instead of @func.
  *
  * <informalexample><programlisting>
@@ -3468,236 +3588,6 @@ gtk_source_view_key_press_event (GtkWidget   *widget,
 	return GTK_WIDGET_CLASS (gtk_source_view_parent_class)->key_press_event (widget, event);
 }
 
-static void
-extend_selection_to_line (GtkTextBuffer *buf, GtkTextIter *line_start)
-{
-	GtkTextIter start;
-	GtkTextIter end;
-	GtkTextIter line_end;
-
-	gtk_text_buffer_get_selection_bounds (buf, &start, &end);
-
-	line_end = *line_start;
-	gtk_text_iter_forward_to_line_end (&line_end);
-
-	if (gtk_text_iter_compare (&start, line_start) < 0)
-	{
-		gtk_text_buffer_select_range (buf, &start, &line_end);
-	}
-	else if (gtk_text_iter_compare (&end, &line_end) < 0)
-	{
-		/* if the selection is in this line, extend
-		 * the selection to the whole line */
-		gtk_text_buffer_select_range (buf, &line_end, line_start);
-	}
-	else
-	{
-		gtk_text_buffer_select_range (buf, &end, line_start);
-	}
-}
-
-static void
-select_line (GtkTextBuffer *buf, GtkTextIter *line_start)
-{
-	GtkTextIter iter;
-
-	iter = *line_start;
-
-	if (!gtk_text_iter_ends_line (&iter))
-		gtk_text_iter_forward_to_line_end (&iter);
-
-	/* Select the line, put the cursor at the end of the line */
-	gtk_text_buffer_select_range (buf, &iter, line_start);
-}
-
-static gboolean
-gtk_source_view_button_press_event (GtkWidget *widget, GdkEventButton *event)
-{
-	GtkSourceView *view;
-	GtkTextBuffer *buf;
-	int y_buf;
-	GtkTextIter line_start;
-
-	view = GTK_SOURCE_VIEW (widget);
-	buf = gtk_text_view_get_buffer (GTK_TEXT_VIEW (widget));
-
-	if (view->priv->show_line_numbers &&
-	    (event->window == gtk_text_view_get_window (GTK_TEXT_VIEW (view),
-						       GTK_TEXT_WINDOW_LEFT)))
-	{
-		gtk_text_view_window_to_buffer_coords (GTK_TEXT_VIEW (view),
-						       GTK_TEXT_WINDOW_LEFT,
-						       event->x, event->y,
-						       NULL, &y_buf);
-
-		gtk_text_view_get_line_at_y (GTK_TEXT_VIEW (view),
-					     &line_start,
-					     y_buf,
-					     NULL);
-
-		if (event->type == GDK_BUTTON_PRESS && (event->button == 1))
-		{
-			if ((event->state & GDK_CONTROL_MASK) != 0)
-			{
-				/* Single click + Ctrl -> select the line */
-				select_line (buf, &line_start);
-			}
-			else if ((event->state & GDK_SHIFT_MASK) != 0)
-			{
-				/* Single click + Shift -> extended current
-				   selection to include the clicked line */
-				extend_selection_to_line (buf, &line_start);
-			}
-			else
-			{
-				gtk_text_buffer_place_cursor (buf, &line_start);
-			}
-		}
-		else if (event->type == GDK_2BUTTON_PRESS && (event->button == 1))
-		{
-			select_line (buf, &line_start);
-		}
-
-		/* consume the event also on right click etc */
-		return TRUE;
-	}
-
-	return GTK_WIDGET_CLASS (gtk_source_view_parent_class)->button_press_event (widget, event);
-}
-
-static void
-set_tooltip_widget_from_marks (GtkSourceView *view,
-			       GtkTooltip *tooltip,
-			       GSList *marks)
-{
-	GtkWidget *vbox;
-	
-	vbox = gtk_vbox_new (FALSE, 0);
-	gtk_widget_show (vbox);
-
-	while (marks != NULL)
-	{
-		MarkCategory *cat;
-		GtkSourceMark *mark;
-
-		mark = marks->data;
-		cat = gtk_source_view_get_mark_category (view, mark);
-
-		if (cat != NULL)
-		{
-			GtkWidget *image;
-			GtkWidget *label;
-			GtkWidget *hbox;
-			GtkWidget *separator;
-			gchar *text;
-	
-			hbox = gtk_hbox_new (FALSE, 4);
-			gtk_widget_show (hbox);
-			gtk_box_pack_start (GTK_BOX (vbox), hbox,
-					    FALSE, FALSE, 0);
-			
-			text = cat->tooltip_func (mark, cat->tooltip_data);
-		
-			if (text != NULL)
-			{
-				label = gtk_label_new (NULL);
-				if (cat->tooltip_markup)
-					gtk_label_set_markup (GTK_LABEL (label), text);
-				else
-					gtk_label_set_text (GTK_LABEL (label), text);
-				
-				gtk_misc_set_alignment (GTK_MISC (label), 0, 0.5);
-				gtk_widget_show (label);
-			
-				gtk_box_pack_end (GTK_BOX (hbox), label,
-						  TRUE, TRUE, 0);
-			
-				if (cat->pixbuf != NULL)
-				{
-					image = gtk_image_new_from_pixbuf (cat->pixbuf);
-					gtk_widget_show (image);
-			
-					gtk_box_pack_start (GTK_BOX (hbox), image,
-							    FALSE, FALSE, 0);
-				}
-				
-				if (g_slist_length (marks) != 1)
-				{
-					separator = gtk_hseparator_new ();
-					gtk_widget_show (separator);
-					gtk_box_pack_start (GTK_BOX (vbox), separator,
-							    FALSE, FALSE, 0);
-				}
-				
-				g_free (text);
-			}
-		}
-
-		marks = g_slist_delete_link (marks, marks);
-	}
-	
-	gtk_tooltip_set_custom (tooltip, vbox);
-}
-
-static gboolean
-gtk_source_view_query_tooltip (GtkWidget  *widget,
-			       gint        x,
-			       gint        y,
-			       gboolean    keyboard_mode,
-			       GtkTooltip *tooltip)
-{
-	GtkTextView *text_view = GTK_TEXT_VIEW (widget);
-	GtkSourceView *view = GTK_SOURCE_VIEW (widget);
-
-	/* Check if we are inside the marker area */
-	/* TODO: when folding is in, correct this */
-	if (x < gtk_text_view_get_border_window_size (text_view, GTK_TEXT_WINDOW_LEFT) &&
-	    x > view->priv->cached_line_number_width)
-	{
-		GtkTextIter line_iter;
-		GSList *marks;
-		GtkSourceBuffer *buffer;
-		gint line;
-		gint buffer_x, buffer_y;
-
-		buffer = GTK_SOURCE_BUFFER (gtk_text_view_get_buffer (text_view));
-		gtk_text_view_window_to_buffer_coords (GTK_TEXT_VIEW (widget),
-						       GTK_TEXT_WINDOW_LEFT,
-						       x,
-						       y,
-						       &buffer_x,
-						       &buffer_y);
-		
-		gtk_text_view_get_line_at_y (GTK_TEXT_VIEW (widget),
-					     &line_iter,
-					     buffer_y,
-					     NULL);
-		line = gtk_text_iter_get_line (&line_iter);
-		marks = gtk_source_buffer_get_source_marks_at_line (buffer,
-								    line,
-								    NULL);
-
-		if (marks != NULL)
-		{
-			marks = g_slist_sort_with_data (marks, sort_marks_by_priority, view);
-			marks = g_slist_reverse (marks);
-			
-			set_tooltip_widget_from_marks (view, tooltip, marks);
-			
-			return TRUE;
-		}
-	}
-
-	if (GTK_WIDGET_CLASS (gtk_source_view_parent_class)->query_tooltip != NULL)
-		return GTK_WIDGET_CLASS (gtk_source_view_parent_class)->query_tooltip (widget,
-										       x,
-										       y,
-										       keyboard_mode,
-										       tooltip);
-	else
-		return FALSE;
-}
-
 /**
  * gtk_source_view_get_auto_indent:
  * @view: a #GtkSourceView.
@@ -4080,7 +3970,7 @@ gtk_source_view_set_draw_spaces (GtkSourceView            *view,
  *
  * Returns the #GtkSourceDrawSpacesFlags specifying if and how spaces
  * should be displayed for this @view.
- * 
+ *
  * Returns: the #GtkSourceDrawSpacesFlags, 0 if no spaces should be drawn.
  **/
 GtkSourceDrawSpacesFlags
@@ -4286,3 +4176,49 @@ gtk_source_view_update_style_scheme (GtkSourceView *view)
 			view->priv->style_scheme_applied = FALSE;
 	}
 }
+
+/**
+ * gtk_source_view_get_gutter:
+ * @view: a #GtkSourceView
+ * @window_type: the gutter window type
+ *
+ * Returns the #GtkSourceGutter object associated with @window_type for @view.
+ * Only GTK_TEXT_WINDOW_LEFT and GTK_TEXT_WINDOW_RIGHT are supported, 
+ * respectively corresponding to the left and right gutter. The line numbers
+ * and mark category icons are rendered in the gutter corresponding to
+ * GTK_TEXT_WINDOW_LEFT.
+ *
+ * Since: 2.8
+ *
+ * Returns: the #GtkSourceGutter.
+ **/
+GtkSourceGutter *
+gtk_source_view_get_gutter (GtkSourceView     *view,
+                            GtkTextWindowType  window_type)
+{
+	g_return_val_if_fail (GTK_IS_SOURCE_VIEW (view), NULL);
+	g_return_val_if_fail (window_type == GTK_TEXT_WINDOW_LEFT ||
+	                      window_type == GTK_TEXT_WINDOW_RIGHT, NULL);
+
+	if (window_type == GTK_TEXT_WINDOW_LEFT)
+	{
+		if (view->priv->left_gutter == NULL)
+		{
+			view->priv->left_gutter = gtk_source_gutter_new (view,
+			                                                 window_type);
+		}
+
+		return view->priv->left_gutter;
+	}
+	else
+	{
+		if (view->priv->right_gutter == NULL)
+		{
+			view->priv->right_gutter = gtk_source_gutter_new (view,
+			                                                 window_type);
+		}
+
+		return view->priv->right_gutter;
+	}
+}
+

@@ -1,0 +1,149 @@
+<!-- ##### SECTION Title ##### -->
+GtkSourceGutter
+
+<!-- ##### SECTION Short_Description ##### -->
+Gutter object for #GtkSourceView
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+The #GtkSourceGutter object represents the left and right gutters of the 
+text view. It is used by #GtkSourceView to draw the line numbers and category
+marks that might be present on a line. By packing additional #GtkCellRenderer
+objects in the gutter, you can extend the gutter by your own custom drawings.
+</para>
+<para>
+The gutter works very much the same way as cells rendered in a #GtkTreeView.
+The concept is similar, with the exception that the gutter does not have an
+underlying #GtkTreeModel. Instead, you should use 
+#gtk_source_gutter_set_cell_data_func to set a callback to fill in any
+of the cell renderers properties, given the line for which the cell is to be
+rendered. Renderers are inserted into the gutter at a certain position.
+The builtin line number renderer is at position 
+#GTK_SOURCE_VIEW_GUTTER_POSITION_LINES (-30) and the marks renderer is at 
+#GTK_SOURCE_VIEW_GUTTER_POSITION_MARKS (-20). You can use these values to
+position custom renderers accordingly.
+</para>
+<para>
+The width of a cell renderer can be specified as either fixed (using
+#gtk_cell_renderer_set_fixed_size) or dynamic, in which case you 
+<emphasis>MUST</emphasis> set
+#gtk_source_gutter_set_cell_size_func. This callback is used to set the
+properties of the renderer such that #gtk_cell_renderer_get_size yields the
+maximum width of the cell.
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT GtkSourceGutter ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SIGNAL GtkSourceGutter::cell-activated ##### -->
+<para>
+
+</para>
+
+@sourcegutter: the object which received the signal.
+@arg1: 
+@arg2: 
+@arg3: 
+
+<!-- ##### SIGNAL GtkSourceGutter::query-tooltip ##### -->
+<para>
+
+</para>
+
+@sourcegutter: the object which received the signal.
+@arg1: 
+@arg2: 
+@arg3: 
+@Returns: 
+
+<!-- ##### ARG GtkSourceGutter:view ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GtkSourceGutter:window-type ##### -->
+<para>
+
+</para>
+
+<!-- ##### FUNCTION gtk_source_gutter_get_window ##### -->
+<para>
+
+</para>
+
+@gutter: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gtk_source_gutter_insert ##### -->
+<para>
+
+</para>
+
+@gutter: 
+@renderer: 
+@position: 
+
+
+<!-- ##### FUNCTION gtk_source_gutter_reorder ##### -->
+<para>
+
+</para>
+
+@gutter: 
+@renderer: 
+@position: 
+
+
+<!-- ##### FUNCTION gtk_source_gutter_remove ##### -->
+<para>
+
+</para>
+
+@gutter: 
+@renderer: 
+
+
+<!-- ##### FUNCTION gtk_source_gutter_set_cell_data_func ##### -->
+<para>
+
+</para>
+
+@gutter: 
+@renderer: 
+@func: 
+@func_data: 
+@destroy: 
+
+
+<!-- ##### FUNCTION gtk_source_gutter_set_cell_size_func ##### -->
+<para>
+
+</para>
+
+@gutter: 
+@renderer: 
+@func: 
+@func_data: 
+@destroy: 
+
+
+<!-- ##### FUNCTION gtk_source_gutter_queue_draw ##### -->
+<para>
+
+</para>
+
+@gutter: 
+
+

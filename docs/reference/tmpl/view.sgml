@@ -25,6 +25,15 @@ a text view which syntax highlighting, undo/redo and text marks. Use a
 </para>
 
 
+<!-- ##### SIGNAL GtkSourceView::line-mark-activated ##### -->
+<para>
+
+</para>
+
+@sourceview: the object which received the signal.
+@arg1: 
+@arg2: 
+
 <!-- ##### SIGNAL GtkSourceView::redo ##### -->
 <para>
 
@@ -107,10 +116,10 @@ a text view which syntax highlighting, undo/redo and text marks. Use a
 @parent_class: 
 @undo: 
 @redo: 
+@line_mark_activated: 
 @_gtk_source_reserved1: 
 @_gtk_source_reserved2: 
 @_gtk_source_reserved3: 
-@_gtk_source_reserved4: 
 
 <!-- ##### USER_FUNCTION GtkSourceViewMarkTooltipFunc ##### -->
 <para>
@@ -458,6 +467,16 @@ Function type for setting up a tooltip for #GtkSourceMark.
 </para>
 
 @view: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gtk_source_view_get_gutter ##### -->
+<para>
+
+</para>
+
+@view: 
+@window_type: 
 @Returns: 
 
 

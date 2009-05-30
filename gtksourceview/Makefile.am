@@ -27,7 +27,8 @@ libgtksourceview_headers =			\
 	gtksourcestyleschememanager.h		\
 	gtksourcestylescheme.h			\
 	gtksourcemark.h				\
-	gtksourceprintcompositor.h
+	gtksourceprintcompositor.h		\
+	gtksourcegutter.h
 
 libgtksourceview_2_0_la_SOURCES = 	\
 	gtksourcebuffer.c 		\
@@ -56,6 +57,8 @@ libgtksourceview_2_0_la_SOURCES = 	\
 	gtksourcecontextengine.c	\
 	gtksourcemark.c			\
 	gtksourceprintcompositor.c      \
+	gtksourcegutter-private.h	\
+	gtksourcegutter.c		\
 	$(libgtksourceview_headers)
 
 # do not distribute generated files
