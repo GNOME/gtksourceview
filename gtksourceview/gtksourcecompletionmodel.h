@@ -54,13 +54,6 @@ struct _GtkSourceCompletionModelClass {
 	void	(*filter_done)		(GtkSourceCompletionModel *model);
 };
 
-typedef enum
-{
-	GTK_SOURCE_COMPLETION_MODEL_NONE,
-	GTK_SOURCE_COMPLETION_MODEL_FILTERED = 1 << 0,
-	GTK_SOURCE_COMPLETION_MODEL_COUNT = 1 << 1
-} GtkSourceCompletionModelFilterFlag;
-
 enum
 {
 	GTK_SOURCE_COMPLETION_MODEL_COLUMN_LABEL,
@@ -71,16 +64,10 @@ enum
 	GTK_SOURCE_COMPLETION_MODEL_N_COLUMNS
 };
 
-typedef GtkSourceCompletionModelFilterFlag (* GtkSourceCompletionModelVisibleFunc) (GtkSourceCompletionModel    *model,
-                                                          GtkSourceCompletionProvider *provider,
-                                                          GtkSourceCompletionProposal *proposal,
-                                                          gpointer                     userdata);
-
 GType gtk_source_completion_model_get_type (void) G_GNUC_CONST;
 
 GtkSourceCompletionModel *
-		gtk_source_completion_model_new 	(GtkSourceCompletionModelVisibleFunc func,
-							 gpointer                            userdata);
+		gtk_source_completion_model_new 	(void);
 
 void		gtk_source_completion_model_run_add_proposals (GtkSourceCompletionModel *model);
 

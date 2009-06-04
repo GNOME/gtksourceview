@@ -1021,7 +1021,7 @@ gtk_source_view_show_completion_real (GtkSourceView *view)
 	word = gtk_source_completion_utils_get_word (
 			GTK_SOURCE_BUFFER (gtk_text_view_get_buffer (GTK_TEXT_VIEW (view))));
 
-	gtk_source_completion_show (completion, providers, word, NULL);
+	gtk_source_completion_show (completion, providers, NULL);
 
 	g_free (word);
 	g_list_foreach (providers, (GFunc)g_object_unref, NULL);

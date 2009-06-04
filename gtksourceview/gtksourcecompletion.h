@@ -88,7 +88,6 @@ GList		*gtk_source_completion_get_providers		(GtkSourceCompletion         *compl
                                                                  const gchar                 *capabilities);
 gboolean	 gtk_source_completion_show			(GtkSourceCompletion         *completion,
 								 GList                       *providers,
-								 const gchar                 *criteria,
 								 GtkTextIter                 *place);
 
 void		 gtk_source_completion_hide			(GtkSourceCompletion         *completion);
