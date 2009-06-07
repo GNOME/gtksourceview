@@ -1105,9 +1105,8 @@ buffer_insert_text_cb (GtkTextBuffer       *buffer,
 	}
 	else
 	{
-		if ((completion->priv->is_interactive && 
-		     gtk_source_completion_utils_is_separator (g_utf8_get_char (text))) ||
-		    gtk_text_iter_get_line (location) != completion->priv->typing_line)
+		if ((completion->priv->is_interactive &&
+		    gtk_text_iter_get_line (location) != completion->priv->typing_line))
 		{
 			gtk_source_completion_hide (completion);
 		}
@@ -1662,7 +1661,7 @@ initialize_proposals_ui (GtkSourceCompletion *completion)
 	GtkWidget *tree_view;
 	
 	completion->priv->model_proposals = gtk_source_completion_model_new ();
-	g_warning ("1");
+	
 	g_signal_connect (completion->priv->model_proposals,
 			  "items-added",
 			  G_CALLBACK (on_items_added_cb),
@@ -1732,7 +1731,7 @@ initialize_proposals_ui (GtkSourceCompletion *completion)
 	
 	gtk_container_add (GTK_CONTAINER (scrolled_window),
 			   tree_view);
-	g_warning ("2");
+	
 	return scrolled_window;
 }
 
@@ -1895,7 +1894,7 @@ add_proposals (GtkSourceCompletion         *completion,
 	GList *item;
 	GtkSourceCompletionProposal *proposal;
 	GtkTextIter iter;
-g_warning ("3");
+
 	get_iter_at_insert (completion, &iter);
 	
 	proposals = gtk_source_completion_provider_get_proposals (provider, &iter);
@@ -1915,7 +1914,7 @@ g_warning ("3");
 	}
 
 	gtk_source_completion_model_run_add_proposals (completion->priv->model_proposals);
-	g_warning ("4");
+
 	g_list_free (proposals);
 }
 
