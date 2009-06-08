@@ -47,6 +47,7 @@ struct _GtkSourceCompletionModelPrivate
 	GType column_types[GTK_SOURCE_COMPLETION_MODEL_N_COLUMNS];
 	GList *store;
 	GList *last;
+	GHashTable *hash_store;
 	
 	guint num;
 	GHashTable *num_per_provider;
@@ -270,6 +271,7 @@ tree_model_iter_children (GtkTreeModel *tree_model,
 	g_return_val_if_fail (iter != NULL, FALSE);
 	g_return_val_if_fail (parent == NULL || parent->user_data != NULL, FALSE);
 	
+	/* FIXME: not sure if this should be: (GList *)iter->user_data, iter */
 	return get_next_element (GTK_SOURCE_COMPLETION_MODEL (tree_model)->priv->store, iter);
 }
 
@@ -425,6 +427,12 @@ gtk_source_completion_model_dispose (GObject *object)
 		model->priv->num_per_provider = NULL;
 	}
 	
+	if (model->priv->hash_store != NULL)
+	{
+		g_hash_table_destroy (model->priv->hash_store);
+		model->priv->hash_store = NULL;
+	}
+	
 	g_list_foreach (model->priv->store, (GFunc)free_node, NULL);
 	g_list_free (model->priv->store);
 	model->priv->store = NULL;
@@ -466,6 +474,61 @@ free_num (gpointer data)
 	g_slice_free (HeaderInfo, data);
 }
 
+/* We are going to compare only the label, if the label is the same the elements
+ * are the same, but in case anything else changed like the pixbuf or the changed
+ * we are going to substitute the previous element by the new one */
+ /* FIXME: add a equal func to be implemented by the user */
+static gboolean
+compare_nodes (gconstpointer a,
+	       gconstpointer b)
+{
+	ProposalNode *p1 = (ProposalNode *)a;
+	ProposalNode *p2 = (ProposalNode *)b;
+	const gchar *label1, *label2;
+	
+	label1 = gtk_source_completion_proposal_get_markup (p1->proposal);
+	label2 = gtk_source_completion_proposal_get_markup (p2->proposal);
+
+	if (label1 != NULL && label2 == NULL)
+	{
+		return FALSE;
+	}
+	else if (label2 != NULL && label1 == NULL)
+	{
+		return FALSE;
+	}
+	else if (label1 == NULL && label2 == NULL)
+	{
+		label1 = gtk_source_completion_proposal_get_label (p1->proposal);
+		label2 = gtk_source_completion_proposal_get_label (p2->proposal);
+	}
+
+	if (g_strcmp0 (label1, label2) == 0)
+	{
+		return TRUE;
+	}
+	else
+	{
+		return FALSE;
+	}
+}
+
+static guint
+hash_node (gconstpointer v)
+{
+	ProposalNode *node = (ProposalNode *)v;
+	const gchar *label;
+	
+	label = gtk_source_completion_proposal_get_markup (node->proposal);
+	
+	if (label == NULL)
+	{
+		label = gtk_source_completion_proposal_get_label (node->proposal);
+	}
+	
+	return g_str_hash (label);
+}
+
 static void
 gtk_source_completion_model_init (GtkSourceCompletionModel *self)
 {
@@ -481,6 +544,9 @@ gtk_source_completion_model_init (GtkSourceCompletionModel *self)
 	                                                      g_direct_equal,
 	                                                      NULL,
 	                                                      free_num);
+	
+	self->priv->hash_store = g_hash_table_new (hash_node,
+	                                           compare_nodes);
 	
 	self->priv->idle_id = 0;
 	self->priv->item_queue = g_queue_new ();
@@ -594,24 +660,43 @@ gtk_source_completion_model_new (void)
 	return g_object_new (GTK_TYPE_SOURCE_COMPLETION_MODEL, NULL);
 }
 
-static void
+static GList *
 append_list (GtkSourceCompletionModel *model,
-             ProposalNode             *node)
+             ProposalNode             *node,
+             gboolean                 *inserted)
 {
 	GList *item;
 	
-	item = g_list_append (model->priv->last, node);
+	item = g_hash_table_lookup (model->priv->hash_store, node);
 	
-	if (model->priv->store == NULL)
+	if (item == NULL)
 	{
-		model->priv->store = item;
+		item = g_list_append (model->priv->last, node);
+		
+		if (model->priv->store == NULL)
+		{
+			model->priv->store = item;
+		}
+		else
+		{
+			item = item->next;
+		}
+		
+		g_hash_table_insert (model->priv->hash_store,
+				     node, item);
+		*inserted = TRUE;
 	}
 	else
 	{
-		item = item->next;
+		/*g_hash_table_replace (model->priv->hash_store, node, item);
+		free_node (item->data);
+		item->data = node;*/
+		*inserted = FALSE;
 	}
 	
 	model->priv->last = item;
+	
+	return item;
 }
 
 static void
@@ -645,6 +730,7 @@ idle_append (gpointer data)
 		ProposalNode *node = (ProposalNode *)g_queue_pop_head (model->priv->item_queue);
 		ProposalNode *header = NULL;
 		GtkTreeIter iter;
+		gboolean inserted;
 		
 		if (node == NULL)
 		{
@@ -657,7 +743,7 @@ idle_append (gpointer data)
 		}
 		
 		/* Check if it is a header */
-		if (g_hash_table_lookup (model->priv->num_per_provider, node->provider) == NULL)
+		/*if (g_hash_table_lookup (model->priv->num_per_provider, node->provider) == NULL)
 		{
 			header = g_slice_new (ProposalNode);
 			header->provider = g_object_ref (node->provider);
@@ -670,20 +756,21 @@ idle_append (gpointer data)
 			info->num = 0;
 			
 			g_hash_table_insert (model->priv->num_per_provider, node->provider, info);
+		}*/
+		
+		item = append_list (model, node, &inserted);
+		
+		if (inserted)
+		{
+			iter.user_data = item;
+
+			num_inc (model, node->provider);
+
+			path = path_from_list (model, item);
+			gtk_tree_model_row_inserted (GTK_TREE_MODEL (model), path, &iter);
+			gtk_tree_path_free (path);
 		}
 		
-		append_list (model, node);
-		
-		item = model->priv->last;
-		iter.user_data = item;
-
-		num_inc (model, node->provider);
-
-		path = path_from_list (model, item);
-		g_warning ("path: %s", gtk_tree_path_to_string (path));
-		gtk_tree_model_row_inserted (GTK_TREE_MODEL (model), path, &iter);
-		gtk_tree_path_free (path);
-		return FALSE;
 		if (header != NULL)
 		{
 			g_warning ("header");
@@ -769,6 +856,7 @@ gtk_source_completion_model_clear (GtkSourceCompletionModel *model)
 	gtk_tree_path_free (path);
 	
 	g_hash_table_remove_all (model->priv->num_per_provider);
+	g_hash_table_remove_all (model->priv->hash_store);
 }
 
 gboolean
