@@ -1106,7 +1106,8 @@ buffer_insert_text_cb (GtkTextBuffer       *buffer,
 	else
 	{
 		if ((completion->priv->is_interactive &&
-		    gtk_text_iter_get_line (location) != completion->priv->typing_line))
+		    g_unichar_isspace (g_utf8_get_char (text))) ||
+		    gtk_text_iter_get_line (location) != completion->priv->typing_line)
 		{
 			gtk_source_completion_hide (completion);
 		}
@@ -2042,7 +2043,7 @@ gtk_source_completion_show (GtkSourceCompletion *completion,
 			add_proposals (completion, GTK_SOURCE_COMPLETION_PROVIDER (l->data));
 		}
 	}
-g_warning ("5");
+
 	completion->priv->active_providers = 
 		g_list_reverse (completion->priv->active_providers);
 
