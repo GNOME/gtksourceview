@@ -74,6 +74,59 @@ gtk_source_completion_proposal_get_info_default (GtkSourceCompletionProposal *pr
 	return NULL;
 }
 
+static guint
+gtk_source_completion_proposal_get_hash_default (GtkSourceCompletionProposal *proposal)
+{
+	const gchar *label;
+	
+	label = gtk_source_completion_proposal_get_label (proposal);
+	
+	if (label == NULL)
+		label = gtk_source_completion_proposal_get_markup (proposal);
+	
+	if (label != NULL)
+		return g_str_hash (label);
+	else
+		g_return_val_if_reached (0);
+}
+
+static gboolean
+gtk_source_completion_proposal_equals_default (GtkSourceCompletionProposal *proposal1,
+					       GtkSourceCompletionProposal *proposal2)
+{
+	const gchar *label1, *label2;
+	
+	label1 = gtk_source_completion_proposal_get_markup (proposal1);
+	label2 = gtk_source_completion_proposal_get_markup (proposal2);
+
+	if (label1 != NULL && label2 == NULL)
+	{
+		return FALSE;
+	}
+	else if (label2 != NULL && label1 == NULL)
+	{
+		return FALSE;
+	}
+	else if (label1 == NULL && label2 == NULL)
+	{
+		label1 = gtk_source_completion_proposal_get_label (proposal1);
+		label2 = gtk_source_completion_proposal_get_label (proposal2);
+	}
+
+	if (label1 != NULL && label2 != NULL)
+	{
+		/* FIXME: g_utf8_collate ??? */
+		if (g_strcmp0 (label1, label2) == 0)
+			return TRUE;
+		else
+			return FALSE;
+	}
+	else
+	{
+		g_return_val_if_reached (FALSE);
+	}
+}
+
 static void 
 gtk_source_completion_proposal_init (GtkSourceCompletionProposalIface *iface)
 {
@@ -85,6 +138,9 @@ gtk_source_completion_proposal_init (GtkSourceCompletionProposalIface *iface)
 	
 	iface->get_icon = gtk_source_completion_proposal_get_icon_default;
 	iface->get_info = gtk_source_completion_proposal_get_info_default;
+	
+	iface->get_hash = gtk_source_completion_proposal_get_hash_default;
+	iface->equals = gtk_source_completion_proposal_equals_default;
 	
 	if (!initialized)
 	{
@@ -224,6 +280,22 @@ gtk_source_completion_proposal_get_info (GtkSourceCompletionProposal *proposal)
 {
 	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_PROPOSAL (proposal), NULL);
 	return GTK_SOURCE_COMPLETION_PROPOSAL_GET_INTERFACE (proposal)->get_info (proposal);
+}
+
+guint
+gtk_source_completion_proposal_get_hash (GtkSourceCompletionProposal *proposal)
+{
+	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_PROPOSAL (proposal), 0);
+	return GTK_SOURCE_COMPLETION_PROPOSAL_GET_INTERFACE (proposal)->get_hash (proposal);
+}
+
+gboolean
+gtk_source_completion_proposal_equals (GtkSourceCompletionProposal *proposal1,
+				       GtkSourceCompletionProposal *proposal2)
+{
+	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_PROPOSAL (proposal1), FALSE);
+	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_PROPOSAL (proposal2), FALSE);
+	return GTK_SOURCE_COMPLETION_PROPOSAL_GET_INTERFACE (proposal1)->equals (proposal1, proposal2);
 }
 
 /**

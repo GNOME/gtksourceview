@@ -1301,6 +1301,9 @@ gtk_source_completion_set_property (GObject      *object,
 static void
 gtk_source_completion_hide_default (GtkSourceCompletion *completion)
 {
+	gtk_widget_hide (completion->priv->info_window);
+	gtk_widget_hide (completion->priv->window);
+
 	completion->priv->filter_provider = NULL;
 
 	gtk_label_set_markup (GTK_LABEL (completion->priv->default_info), "");
@@ -1311,9 +1314,6 @@ gtk_source_completion_hide_default (GtkSourceCompletion *completion)
 	completion->priv->active_providers = NULL;
 	
 	completion->priv->info_visible = GTK_WIDGET_VISIBLE (completion->priv->info_window);
-	
-	gtk_widget_hide (completion->priv->info_window);
-	gtk_widget_hide (completion->priv->window);
 }
 
 static void

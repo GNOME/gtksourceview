@@ -479,59 +479,22 @@ free_num (gpointer data)
 	g_slice_free (HeaderInfo, data);
 }
 
-/* We are going to compare only the label, if the label is the same the elements
- * are the same, but in case anything else changed like the pixbuf or the changed
- * we are going to substitute the previous element by the new one */
- /* FIXME: add a equal func to be implemented by the user */
 static gboolean
 compare_nodes (gconstpointer a,
 	       gconstpointer b)
 {
 	ProposalNode *p1 = (ProposalNode *)a;
 	ProposalNode *p2 = (ProposalNode *)b;
-	const gchar *label1, *label2;
 	
-	label1 = gtk_source_completion_proposal_get_markup (p1->proposal);
-	label2 = gtk_source_completion_proposal_get_markup (p2->proposal);
-
-	if (label1 != NULL && label2 == NULL)
-	{
-		return FALSE;
-	}
-	else if (label2 != NULL && label1 == NULL)
-	{
-		return FALSE;
-	}
-	else if (label1 == NULL && label2 == NULL)
-	{
-		label1 = gtk_source_completion_proposal_get_label (p1->proposal);
-		label2 = gtk_source_completion_proposal_get_label (p2->proposal);
-	}
-
-	if (g_strcmp0 (label1, label2) == 0)
-	{
-		return TRUE;
-	}
-	else
-	{
-		return FALSE;
-	}
+	return gtk_source_completion_proposal_equals (p1->proposal, p2->proposal);
 }
 
 static guint
 hash_node (gconstpointer v)
 {
 	ProposalNode *node = (ProposalNode *)v;
-	const gchar *label;
 	
-	label = gtk_source_completion_proposal_get_markup (node->proposal);
-	
-	if (label == NULL)
-	{
-		label = gtk_source_completion_proposal_get_label (node->proposal);
-	}
-	
-	return g_str_hash (label);
+	return gtk_source_completion_proposal_get_hash (node->proposal);
 }
 
 static void
