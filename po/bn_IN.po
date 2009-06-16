@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bn_IN\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gtksourceview&component=general\n"
-"POT-Creation-Date: 2009-05-16 21:11+0000\n"
-"PO-Revision-Date: 2009-06-16 17:11+0530\n"
+"POT-Creation-Date: 2009-06-10 09:48+0000\n"
+"PO-Revision-Date: 2009-06-16 17:15+0530\n"
 "Last-Translator: Runa Bhattacharjee <runab@redhat.com>\n"
 "Language-Team: Bengali INDIA <discuss@lists.ankur.org.in>\n"
 "MIME-Version: 1.0\n"
@@ -94,14 +94,17 @@ msgid ""
 "process will be slower than usual.\n"
 "The error was: %s"
 msgstr ""
-"সকল অস্থায়ী পরিবর্তনগুলির জন্য regex নির্মাণ করা সম্ভব হবে না, সিন্টেক্স উজ্জ্বল করে দর্শানোর প্রক্রিয়া অন্যান্য সময়ের থেকে ধীরে হবে।\n"
+"সকল অস্থায়ী পরিবর্তনগুলির জন্য regex নির্মাণ করা সম্ভব হবে না, সিন্টেক্স উজ্জ্বল করে "
+"দর্শানোর প্রক্রিয়া অন্যান্য সময়ের থেকে ধীরে হবে।\n"
 "উৎপন্ন ত্রুটি: %s"
 
 #: ../gtksourceview/gtksourcecontextengine.c:4547
 msgid ""
 "Highlighting a single line took too much time, syntax highlighting will be "
 "disabled"
-msgstr "একটি পংক্তিকে উজ্জ্বল করে প্রদর্শন করতে অধিক সময় ব্যয় হয়েছে, সিন্টেক্স উজ্জ্বল করে দর্শানোর প্রক্রিয়া নিষ্ক্রিয় করা হবে"
+msgstr ""
+"একটি পংক্তিকে উজ্জ্বল করে প্রদর্শন করতে অধিক সময় ব্যয় হয়েছে, সিন্টেক্স উজ্জ্বল করে "
+"দর্শানোর প্রক্রিয়া নিষ্ক্রিয় করা হবে"
 
 #: ../gtksourceview/gtksourcecontextengine.c:5757
 #, c-format
@@ -120,7 +123,9 @@ msgstr "কন্টেক্সট id '%s'-র দ্বৈত উপস্থ�
 msgid ""
 "style override used with wildcard context reference in language '%s' in ref "
 "'%s'"
-msgstr "'%s' ভাষার '%s' ref-র মধ্যে ওয়াইল্ড-কার্ড কনটেক্সট রেফারেন্সের সাথে বিন্যাস উপেক্ষার নির্দেশ প্রয়োগ করা হয়েছে"
+msgstr ""
+"'%s' ভাষার '%s' ref-র মধ্যে ওয়াইল্ড-কার্ড কনটেক্সট রেফারেন্সের সাথে বিন্যাস "
+"উপেক্ষার নির্দেশ প্রয়োগ করা হয়েছে"
 
 #: ../gtksourceview/gtksourcecontextengine.c:6183
 #, c-format
@@ -229,12 +234,12 @@ msgid "The GtkSourceBuffer object to print"
 msgstr "প্রিন্ট করার জন্য চিহ্নিত GtkSourceBuffer অবজেক্ট"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:429
-#: ../gtksourceview/gtksourceview.c:290
+#: ../gtksourceview/gtksourceview.c:319
 msgid "Tab Width"
 msgstr "ট্যাবের প্রস্থ"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:430
-#: ../gtksourceview/gtksourceview.c:291
+#: ../gtksourceview/gtksourceview.c:320
 msgid "Width of a tab character expressed in spaces"
 msgstr "শূণ্যস্থান দ্বারা চিহ্নিত ট্যাব অক্ষরের প্রস্থ"
 
@@ -244,7 +249,9 @@ msgstr "র‌্যাপ মোড"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:451
 msgid "Whether to wrap lines never, at word boundaries, or at character boundaries."
-msgstr "পংক্তি বিভাজনের ক্ষেত্রে তা শব্দের প্রান্তে, অথবা অক্ষরের প্রান্তে করা হবপ অথবা কখনো করা হবে না।"
+msgstr ""
+"পংক্তি বিভাজনের ক্ষেত্রে তা শব্দের প্রান্তে, অথবা অক্ষরের প্রান্তে করা হবপ অথবা কখনো "
+"করা হবে না।"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:472
 msgid "Whether to print the document with highlighted syntax"
@@ -452,67 +459,67 @@ msgstr "স্কিমের id"
 msgid "List of the ids of the available style schemes"
 msgstr "উপলব্ধ বিন্যাসের স্কিমের id-র তালিকা"
 
-#: ../gtksourceview/gtksourceview.c:265
+#: ../gtksourceview/gtksourceview.c:294
 msgid "Show Line Numbers"
 msgstr "লাইন নম্বর দেখাও"
 
-#: ../gtksourceview/gtksourceview.c:266
+#: ../gtksourceview/gtksourceview.c:295
 msgid "Whether to display line numbers"
 msgstr "লাইন নম্বর দেখানো হবে কিনা"
 
-#: ../gtksourceview/gtksourceview.c:277
+#: ../gtksourceview/gtksourceview.c:306
 msgid "Show Line Marks"
 msgstr "রেখা চিহ্ন প্রদর্শন করা হবে"
 
-#: ../gtksourceview/gtksourceview.c:278
+#: ../gtksourceview/gtksourceview.c:307
 msgid "Whether to display line mark pixbufs"
 msgstr "রেখা চিহ্নের পিক্সবাফ প্রদর্শিত হবে কি না"
 
-#: ../gtksourceview/gtksourceview.c:305
+#: ../gtksourceview/gtksourceview.c:334
 msgid "Indent Width"
 msgstr "অবচ্ছেদের প্রস্থ"
 
-#: ../gtksourceview/gtksourceview.c:306
+#: ../gtksourceview/gtksourceview.c:335
 msgid "Number of spaces to use for each step of indent"
 msgstr "অবচ্ছেদের প্রি ধাপে ব্যবহারযোগ্য শূণ্যস্থানের সংখ্যা"
 
-#: ../gtksourceview/gtksourceview.c:315
+#: ../gtksourceview/gtksourceview.c:344
 msgid "Auto Indentation"
 msgstr "স্বয়ংক্রীয় অবচ্ছেদ (ইন্ডেন্টেশন)"
 
-#: ../gtksourceview/gtksourceview.c:316
+#: ../gtksourceview/gtksourceview.c:345
 msgid "Whether to enable auto indentation"
 msgstr "স্বয়ংক্রীয় অবচ্ছেদ (ইন্ডেন্টেশন) চালু করা হবে কিনা"
 
-#: ../gtksourceview/gtksourceview.c:323
+#: ../gtksourceview/gtksourceview.c:352
 msgid "Insert Spaces Instead of Tabs"
 msgstr "ট্যাবের বদলে স্পেস ব্যবহার করো"
 
-#: ../gtksourceview/gtksourceview.c:324
+#: ../gtksourceview/gtksourceview.c:353
 msgid "Whether to insert spaces instead of tabs"
 msgstr "ট্যাবের বদলে স্পেস ব্যবহার করা হবে কিনা"
 
-#: ../gtksourceview/gtksourceview.c:336
+#: ../gtksourceview/gtksourceview.c:365
 msgid "Show Right Margin"
 msgstr "ডান দিকের মার্জিন দেখাও"
 
-#: ../gtksourceview/gtksourceview.c:337
+#: ../gtksourceview/gtksourceview.c:366
 msgid "Whether to display the right margin"
 msgstr "ডান দিকের মার্জিন দেখানো হবে কিনা"
 
-#: ../gtksourceview/gtksourceview.c:349
+#: ../gtksourceview/gtksourceview.c:378
 msgid "Right Margin Position"
 msgstr "ডানদিকের মার্জিনের অবস্থান"
 
-#: ../gtksourceview/gtksourceview.c:350
+#: ../gtksourceview/gtksourceview.c:379
 msgid "Position of the right margin"
 msgstr "ডানদিকের মার্জিনের অবস্থান"
 
-#: ../gtksourceview/gtksourceview.c:366
+#: ../gtksourceview/gtksourceview.c:395
 msgid "Smart Home/End"
 msgstr "স্মার্ট Home/End"
 
-#: ../gtksourceview/gtksourceview.c:367
+#: ../gtksourceview/gtksourceview.c:396
 msgid ""
 "HOME and END keys move to first/last non whitespace characters on line "
 "before going to the start/end of the line"
@@ -520,27 +527,27 @@ msgstr ""
 "HOME এবং END কী কার্সার-কে লাইনের প্রথমে/শেষে নিয়ে যাওয়ার আগে প্রথম/শেষ অক্ষরে "
 "নিয়ে যায়"
 
-#: ../gtksourceview/gtksourceview.c:377
+#: ../gtksourceview/gtksourceview.c:406
 msgid "Highlight current line"
 msgstr "বর্তমান লাইন চিহ্নিত করো"
 
-#: ../gtksourceview/gtksourceview.c:378
+#: ../gtksourceview/gtksourceview.c:407
 msgid "Whether to highlight the current line"
 msgstr "বর্তমান লাইন হাইলাইট করা হবে কিনা"
 
-#: ../gtksourceview/gtksourceview.c:385
+#: ../gtksourceview/gtksourceview.c:414
 msgid "Indent on tab"
 msgstr "ট্যাব দ্বারা ইন্ডেন্ট"
 
-#: ../gtksourceview/gtksourceview.c:386
+#: ../gtksourceview/gtksourceview.c:415
 msgid "Whether to indent the selected text when the tab key is pressed"
 msgstr "ট্যাব-কি টেপা হলে নির্বাচিত টেক্সট ইন্ডেন্ট করা হবে কি না"
 
-#: ../gtksourceview/gtksourceview.c:400
+#: ../gtksourceview/gtksourceview.c:429
 msgid "Draw Spaces"
 msgstr "শূণ্যস্থান আঁকা হবে"
 
-#: ../gtksourceview/gtksourceview.c:401
+#: ../gtksourceview/gtksourceview.c:430
 msgid "Set if and how the spaces should be visualized"
 msgstr "শূণ্য স্থান আঁকা হবে কি না ও সেটি আঁকার প্রদ্ধতি নির্ধারণ করুন"
 
@@ -783,7 +790,7 @@ msgstr "বাস্তব সংখ্যা"
 #: ../gtksourceview/language-specs/objc.lang.h:5
 #: ../gtksourceview/language-specs/ocaml.lang.h:16
 #: ../gtksourceview/language-specs/pascal.lang.h:7
-#: ../gtksourceview/language-specs/prolog.lang.h:6
+#: ../gtksourceview/language-specs/prolog.lang.h:7
 #: ../gtksourceview/language-specs/scheme.lang.h:6
 #: ../gtksourceview/language-specs/sql.lang.h:9
 #: ../gtksourceview/language-specs/vala.lang.h:10
@@ -829,7 +836,7 @@ msgstr "স্টোরেজ ক্লাস"
 #: ../gtksourceview/language-specs/perl.lang.h:19
 #: ../gtksourceview/language-specs/php.lang.h:19
 #: ../gtksourceview/language-specs/po.lang.h:8
-#: ../gtksourceview/language-specs/prolog.lang.h:7
+#: ../gtksourceview/language-specs/prolog.lang.h:8
 #: ../gtksourceview/language-specs/python.lang.h:17
 #: ../gtksourceview/language-specs/ruby.lang.h:21
 #: ../gtksourceview/language-specs/scheme.lang.h:7
@@ -935,7 +942,7 @@ msgstr "স্ক্রিপ্ট"
 #: ../gtksourceview/language-specs/perl.lang.h:21
 #: ../gtksourceview/language-specs/php.lang.h:20
 #: ../gtksourceview/language-specs/pkgconfig.lang.h:3
-#: ../gtksourceview/language-specs/prolog.lang.h:8
+#: ../gtksourceview/language-specs/prolog.lang.h:9
 #: ../gtksourceview/language-specs/ruby.lang.h:23
 #: ../gtksourceview/language-specs/sh.lang.h:11
 #: ../gtksourceview/language-specs/tcl.lang.h:4
@@ -2021,6 +2028,10 @@ msgstr "বিশেষ"
 #: ../gtksourceview/language-specs/po.lang.h:9
 msgid "gettext translation"
 msgstr "gettext অনুবাদ"
+
+#: ../gtksourceview/language-specs/prolog.lang.h:6
+msgid "Prolog"
+msgstr "Prolog"
 
 #: ../gtksourceview/language-specs/python.lang.h:3
 msgid "Builtin Constant"
