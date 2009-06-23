@@ -214,8 +214,8 @@
     </context>
 
     <context id="built-in-command-2" style-ref="keyword">
-      <prefix>(?&lt;![^\s;\(\)])</prefix>
-      <suffix>(?![^\s;\(\)])</suffix>
+      <prefix>(?&lt;![^\s;\(\)\`])</prefix>
+      <suffix>(?![^\s;\(\)\`])</suffix>
       <keyword>do</keyword>
       <keyword>done</keyword>
       <keyword>elif</keyword>
