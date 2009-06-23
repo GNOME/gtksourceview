@@ -107,11 +107,13 @@ struct _GtkSourceCompletionPrivate
 	
 	guint show_timed_out_id;
 	guint auto_complete_delay;
+	guint minimum_auto_complete_length;
 	
 	gint typing_line;
 	gint typing_line_offset;
 	
 	GtkSourceCompletionProvider *filter_provider;
+	gchar *filter_criteria;
 	
 	gboolean inserting_data;
 	gboolean is_interactive;
@@ -494,7 +496,7 @@ update_selection_label (GtkSourceCompletion *completion)
 	{
 		name = g_markup_escape_text (
 			gtk_source_completion_provider_get_name (completion->priv->filter_provider),
-								 -1);
+			-1);
 
 		gtk_image_set_from_pixbuf (GTK_IMAGE (completion->priv->selection_image),
                            (GdkPixbuf *)gtk_source_completion_provider_get_icon (completion->priv->filter_provider));
@@ -510,10 +512,26 @@ update_selection_label (GtkSourceCompletion *completion)
 	else
 	{
 		gtk_label_set_markup (GTK_LABEL (completion->priv->selection_label),
-		                      name);
+		                      name);		                    
 	}
 	
 	g_free (name);
+}
+
+static void
+do_refilter (GtkSourceCompletion *completion,
+             gboolean             hide_if_empty)
+{
+	gtk_source_completion_model_refilter (completion->priv->model_proposals);
+	
+	/* Check if there are any proposals left */
+	if (hide_if_empty && !completion->priv->inserting_data &&
+	    gtk_source_completion_model_is_empty (completion->priv->model_proposals, FALSE))
+	{
+		gtk_source_completion_hide (completion);
+	}
+	
+	update_selection_label (completion);
 }
 
 typedef GList * (*ListSelector)(GList *);
@@ -547,7 +565,7 @@ select_provider (GtkSourceCompletion *completion,
 			completion->priv->filter_provider = NULL;
 			
 			update_selection_label (completion);
-			//do_refilter (completion, FALSE);
+			do_refilter (completion, FALSE);
 			
 			return TRUE;
 		}
@@ -615,7 +633,7 @@ select_provider (GtkSourceCompletion *completion,
 	}
 	
 	update_selection_label (completion);
-	//do_refilter (completion, FALSE);
+	do_refilter (completion, FALSE);	
 	
 	return TRUE;
 }
@@ -673,6 +691,51 @@ update_info_position (GtkSourceCompletion *completion)
 	}
 
 	gtk_window_move (GTK_WINDOW (completion->priv->info_window), x, y);
+}
+
+static GtkSourceCompletionModelFilterFlag
+proposals_filter_func (GtkSourceCompletionModel    *model,
+                       GtkSourceCompletionProvider *provider,
+                       GtkSourceCompletionProposal *proposal,
+                       GtkSourceCompletion         *completion)
+{
+	GtkSourceCompletionModelFilterFlag ret = GTK_SOURCE_COMPLETION_MODEL_NONE;
+	gboolean visible;
+	gboolean count;
+	GtkTextIter iter;
+	
+	/* Filter on provider */
+	if (completion->priv->filter_provider != NULL && completion->priv->filter_provider != provider)
+	{
+		visible = FALSE;
+		count = TRUE;
+	}
+	else if (completion->priv->filter_criteria == NULL)
+	{
+		visible = TRUE;
+		count = FALSE;
+	}
+	else
+	{
+		visible = gtk_source_completion_provider_filter_proposal (provider,
+	                                                                  proposal,
+	                                                                  &iter,
+	                                                                  completion->priv->filter_criteria);
+
+		count = FALSE;
+	}
+	
+	if (!visible)
+	{
+		ret |= GTK_SOURCE_COMPLETION_MODEL_FILTERED;
+		
+		if (count)
+		{
+			ret |= GTK_SOURCE_COMPLETION_MODEL_COUNT;
+		}
+	}
+	
+	return ret;
 }
 
 static void
@@ -975,6 +1038,20 @@ view_key_press_event_cb (GtkSourceView       *view,
 }
 
 static void
+refilter_proposals_with_word (GtkSourceCompletion *completion)
+{
+	GtkTextView *view;
+	
+	g_free (completion->priv->filter_criteria);
+	view = GTK_TEXT_VIEW (completion->priv->view);
+	
+	completion->priv->filter_criteria = 
+		gtk_source_completion_utils_get_word (GTK_SOURCE_BUFFER (gtk_text_view_get_buffer (view)));
+	
+	do_refilter (completion, TRUE);
+}
+
+static void
 update_typing_offsets (GtkSourceCompletion *completion)
 {
 	GtkTextBuffer *buffer;
@@ -1029,9 +1106,10 @@ show_auto_completion (GtkSourceCompletion *completion)
 							  &end);
 	
 	/* Check minimum amount of characters */
-	if (g_utf8_strlen (word, -1) >= 1)
+	if (g_utf8_strlen (word, -1) >= completion->priv->minimum_auto_complete_length)
 	{
-		gtk_source_completion_show (completion, providers, &start);
+		gtk_source_completion_show (completion, providers,
+					    word, &start);
 		completion->priv->is_interactive = TRUE;
 	}
 
@@ -1071,14 +1149,14 @@ buffer_delete_range_cb (GtkTextBuffer       *buffer,
 	{
 		if (gtk_text_iter_get_line (start) != completion->priv->typing_line ||
 		    (completion->priv->is_interactive && 
-		     gtk_text_iter_get_line_offset (start) < completion->priv->typing_line_offset + 1))
+		     gtk_text_iter_get_line_offset (start) < completion->priv->typing_line_offset +
+		     completion->priv->minimum_auto_complete_length))
 		{
 			gtk_source_completion_hide (completion);
 		}
 		else
 		{
-			//FIXME create the context, remove items, and add new ones
-			//refilter_proposals_with_word (completion);
+			refilter_proposals_with_word (completion);
 		}
 	}
 	
@@ -1105,16 +1183,15 @@ buffer_insert_text_cb (GtkTextBuffer       *buffer,
 	}
 	else
 	{
-		if ((completion->priv->is_interactive &&
-		    g_unichar_isspace (g_utf8_get_char (text))) ||
+		if ((completion->priv->is_interactive && 
+		     gtk_source_completion_utils_is_separator (g_utf8_get_char (text))) ||
 		    gtk_text_iter_get_line (location) != completion->priv->typing_line)
 		{
 			gtk_source_completion_hide (completion);
 		}
 		else
 		{
-			//FIXME create the context, remove items, and add new ones
-			//refilter_proposals_with_word (completion);
+			refilter_proposals_with_word (completion);
 		}
 	}
 }
@@ -1211,6 +1288,8 @@ gtk_source_completion_finalize (GObject *object)
 	g_hash_table_destroy (completion->priv->capability_map);
 	g_list_free (completion->priv->providers);
 	
+	g_free (completion->priv->filter_criteria);
+	
 	G_OBJECT_CLASS (gtk_source_completion_parent_class)->finalize (object);
 }
 
@@ -1245,6 +1324,9 @@ gtk_source_completion_get_property (GObject    *object,
 			break;
 		case PROP_AUTO_COMPLETE_DELAY:
 			g_value_set_uint (value, completion->priv->auto_complete_delay);
+			break;
+		case PROP_MINIMUM_AUTO_COMPLETE_LENGTH:
+			g_value_set_uint (value, completion->priv->minimum_auto_complete_length);
 			break;
 		default:
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -1292,6 +1374,9 @@ gtk_source_completion_set_property (GObject      *object,
 		case PROP_AUTO_COMPLETE_DELAY:
 			completion->priv->auto_complete_delay = g_value_get_uint (value);
 			break;
+		case PROP_MINIMUM_AUTO_COMPLETE_LENGTH:
+			completion->priv->minimum_auto_complete_length = g_value_get_uint (value);
+			break;
 		default:
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
 			break;
@@ -1301,9 +1386,6 @@ gtk_source_completion_set_property (GObject      *object,
 static void
 gtk_source_completion_hide_default (GtkSourceCompletion *completion)
 {
-	gtk_widget_hide (completion->priv->info_window);
-	gtk_widget_hide (completion->priv->window);
-
 	completion->priv->filter_provider = NULL;
 
 	gtk_label_set_markup (GTK_LABEL (completion->priv->default_info), "");
@@ -1313,7 +1395,13 @@ gtk_source_completion_hide_default (GtkSourceCompletion *completion)
 	g_list_free (completion->priv->active_providers);
 	completion->priv->active_providers = NULL;
 	
+	g_free (completion->priv->filter_criteria);
+	completion->priv->filter_criteria = NULL;
+	
 	completion->priv->info_visible = GTK_WIDGET_VISIBLE (completion->priv->info_window);
+	
+	gtk_widget_hide (completion->priv->info_window);
+	gtk_widget_hide (completion->priv->window);
 }
 
 static void
@@ -1431,6 +1519,21 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 							    0,
 							    G_MAXUINT,
 							    250,
+							    G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+	/**
+	 * GtkSourceCompletion:min-len:
+	 *
+	 * The minimum word length to initiate interactive completion.
+	 *
+	 */
+	g_object_class_install_property (object_class,
+					 PROP_MINIMUM_AUTO_COMPLETE_LENGTH,
+					 g_param_spec_uint ("minimum-auto-complete-length",
+							    _("Minimum Auto Complete Length"),
+							    _("Minimum word length to initiate interactive completion"),
+							    0,
+							    G_MAXUINT,
+							    3,
 							    G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 
 	/**
@@ -1632,11 +1735,9 @@ on_row_inserted_cb (GtkTreeModel *tree_model,
 		g_signal_emit (completion, signals[SHOW], 0);
 	}
 	
-	/* FIXME this fixes the header visibility but produces the problem of
-	* scrolling */
-	/*gtk_tree_view_scroll_to_point (GTK_TREE_VIEW (completion->priv->tree_view_proposals),
+	gtk_tree_view_scroll_to_point (GTK_TREE_VIEW (completion->priv->tree_view_proposals),
 	                               0,
-	                               0);*/
+	                               0);
 }
 
 static void
@@ -1645,6 +1746,17 @@ on_items_added_cb (GtkSourceCompletionModel *model,
 {
 	completion->priv->inserting_data = FALSE;
 
+	/* Check if there are any completions */
+	if (gtk_source_completion_model_is_empty (model, FALSE))
+	{
+		gtk_source_completion_hide (completion);
+	}
+}
+
+static void
+on_filter_done_cb (GtkSourceCompletionModel *model,
+		   GtkSourceCompletion      *completion)
+{
 	/* Check if there are any completions */
 	if (gtk_source_completion_model_is_empty (model, FALSE))
 	{
@@ -1661,11 +1773,18 @@ initialize_proposals_ui (GtkSourceCompletion *completion)
 	GtkWidget *scrolled_window;
 	GtkWidget *tree_view;
 	
-	completion->priv->model_proposals = gtk_source_completion_model_new ();
+	completion->priv->model_proposals = 
+		gtk_source_completion_model_new ((GtkSourceCompletionModelVisibleFunc)proposals_filter_func, 
+		                                 completion);
 	
 	g_signal_connect (completion->priv->model_proposals,
 			  "items-added",
 			  G_CALLBACK (on_items_added_cb),
+			  completion);
+
+	g_signal_connect (completion->priv->model_proposals,
+			  "filter-done",
+			  G_CALLBACK (on_filter_done_cb),
 			  completion);
 
 	gtk_source_completion_model_set_show_headers (completion->priv->model_proposals,
@@ -1883,6 +2002,7 @@ gtk_source_completion_init (GtkSourceCompletion *completion)
 	                                                          g_str_equal,
 	                                                          (GDestroyNotify)g_free,
 	                                                          (GDestroyNotify)g_list_free);
+	                                                     
 
 	initialize_ui (completion);
 }
@@ -1915,7 +2035,7 @@ add_proposals (GtkSourceCompletion         *completion,
 	}
 
 	gtk_source_completion_model_run_add_proposals (completion->priv->model_proposals);
-
+	
 	g_list_free (proposals);
 }
 
@@ -1991,6 +2111,7 @@ remove_capabilities (GtkSourceCompletion          *completion,
  * gtk_source_completion_show:
  * @completion: A #GtkSourceCompletion
  * @providers: A list of #GtkSourceCompletionProvider
+ * @criteria: The filter criteria
  * @place: The place where you want to position the popup window, or %NULL
  *
  * Shows the show completion window. If @place if %NULL the popup window will
@@ -2001,6 +2122,7 @@ remove_capabilities (GtkSourceCompletion          *completion,
 gboolean
 gtk_source_completion_show (GtkSourceCompletion *completion,
                             GList               *providers,
+                            const gchar         *criteria,
                             GtkTextIter         *place)
 {
 	GList *l;
@@ -2016,6 +2138,7 @@ gtk_source_completion_show (GtkSourceCompletion *completion,
 		return FALSE;
 	}
 	
+	completion->priv->filter_criteria = g_strdup (criteria);
 	update_typing_offsets (completion);
 
 	if (place == NULL)
@@ -2043,11 +2166,11 @@ gtk_source_completion_show (GtkSourceCompletion *completion,
 			add_proposals (completion, GTK_SOURCE_COMPLETION_PROVIDER (l->data));
 		}
 	}
-
+		
 	completion->priv->active_providers = 
 		g_list_reverse (completion->priv->active_providers);
 
-	completion->priv->is_interactive = FALSE;
+	completion->priv->is_interactive = FALSE;		
 
 	update_selection_label (completion);
 	

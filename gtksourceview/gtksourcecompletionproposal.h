@@ -49,10 +49,6 @@ struct _GtkSourceCompletionProposalIface
 	GdkPixbuf	*(*get_icon)	(GtkSourceCompletionProposal *proposal);
 	const gchar	*(*get_info)	(GtkSourceCompletionProposal *proposal);
 	
-	guint		 (*get_hash)	(GtkSourceCompletionProposal *proposal);
-	gboolean	 (*equals)	(GtkSourceCompletionProposal *proposal1,
-					 GtkSourceCompletionProposal *proposal2);
-	
 	/* Signals */
 	void		 (*changed)	(GtkSourceCompletionProposal *proposal);
 };
@@ -65,10 +61,6 @@ const gchar		*gtk_source_completion_proposal_get_text	(GtkSourceCompletionPropos
 
 GdkPixbuf		*gtk_source_completion_proposal_get_icon	(GtkSourceCompletionProposal *proposal);
 const gchar		*gtk_source_completion_proposal_get_info	(GtkSourceCompletionProposal *proposal);
-
-guint			 gtk_source_completion_proposal_get_hash	(GtkSourceCompletionProposal *proposal);
-gboolean		 gtk_source_completion_proposal_equals		(GtkSourceCompletionProposal *proposal1,
-									 GtkSourceCompletionProposal *proposal2);
 
 void			 gtk_source_completion_proposal_changed		(GtkSourceCompletionProposal *proposal);
 
