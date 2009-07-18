@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: gtksourceview.HEAD\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&component=general\n"
-"POT-Creation-Date: 2009-07-14 18:12+0000\n"
-"PO-Revision-Date: 2009-07-16 09:30+0200\n"
+"POT-Creation-Date: 2009-07-18 11:50+0000\n"
+"PO-Revision-Date: 2009-07-18 14:10+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -1414,6 +1414,7 @@ msgstr "Elementos de encabezado"
 #: ../gtksourceview/language-specs/haddock.lang.h:14
 #: ../gtksourceview/language-specs/html.lang.h:7
 #: ../gtksourceview/language-specs/latex.lang.h:6
+#: ../gtksourceview/language-specs/mallard.lang.h:4
 #: ../gtksourceview/language-specs/t2t.lang.h:6
 #: ../gtksourceview/language-specs/texinfo.lang.h:8
 #: ../gtksourceview/language-specs/xml.lang.h:9
@@ -1881,6 +1882,30 @@ msgstr "prerequisitos"
 #: ../gtksourceview/language-specs/makefile.lang.h:13
 msgid "targets"
 msgstr "objetivos"
+
+#: ../gtksourceview/language-specs/mallard.lang.h:1
+#| msgid "GUI Elements"
+msgid "Block Elements"
+msgstr "Bloquear elementos"
+
+#: ../gtksourceview/language-specs/mallard.lang.h:2
+#| msgid "GUI Elements"
+msgid "Inline Elements"
+msgstr "Elementos en línea"
+
+#: ../gtksourceview/language-specs/mallard.lang.h:3
+msgid "Mallard"
+msgstr "Malla"
+
+#: ../gtksourceview/language-specs/mallard.lang.h:5
+#| msgid "Header Elements"
+msgid "Page Elements"
+msgstr "Elementos de la página"
+
+#: ../gtksourceview/language-specs/mallard.lang.h:6
+#| msgid "Formatting Elements"
+msgid "Section Elements"
+msgstr "Elementos de la sección"
 
 #: ../gtksourceview/language-specs/msil.lang.h:1
 msgid "MSIL"
