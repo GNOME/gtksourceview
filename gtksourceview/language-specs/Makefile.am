@@ -41,6 +41,7 @@ LANGUAGES =			\
 	lua.lang		\
 	m4.lang			\
 	makefile.lang		\
+	mallard.lang	\
 	msil.lang		\
 	nemerle.lang		\
 	nsis.lang		\
