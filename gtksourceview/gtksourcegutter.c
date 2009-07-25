@@ -122,7 +122,7 @@ renderer_new (GtkCellRenderer  *renderer,
 {
 	Renderer *ret = g_slice_new0 (Renderer);
 
-	ret->renderer = g_object_ref (renderer);
+	ret->renderer = g_object_ref_sink (renderer);
 	ret->position = position;
 
 	return ret;
