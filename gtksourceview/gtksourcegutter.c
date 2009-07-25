@@ -1128,7 +1128,7 @@ on_view_button_press_event (GtkSourceView    *view,
 		g_free (path);
 		do_redraw (gutter);
 
-		return TRUE;
+		return ret;
 	}
 
 	return FALSE;
