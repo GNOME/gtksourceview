@@ -961,6 +961,10 @@ on_view_expose_event (GtkSourceView   *view,
 		}
 	}
 
+	g_array_free (numbers, TRUE);
+	g_array_free (pixels, TRUE);
+	g_array_free (heights, TRUE);
+
 	return FALSE;
 }
 
