@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-07-07 12:45+0200\n"
-"PO-Revision-Date: 2009-07-07 21:40+0100\n"
+"POT-Creation-Date: 2009-07-28 02:03+0200\n"
+"PO-Revision-Date: 2009-07-28 02:04+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "MIME-Version: 1.0\n"
@@ -124,6 +124,22 @@ msgstr "okänd kontext \"%s\""
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "Saknar huvudspråkdefinition (id = \"%s\".)"
+
+#: ../gtksourceview/gtksourcegutter.c:336
+msgid "View"
+msgstr "Visa"
+
+#: ../gtksourceview/gtksourcegutter.c:337
+msgid "The gutters' GtkSourceView"
+msgstr "Gutterns GtkSourceView"
+
+#: ../gtksourceview/gtksourcegutter.c:349
+msgid "Window Type"
+msgstr "Fönstertyp"
+
+#: ../gtksourceview/gtksourcegutter.c:350
+msgid "The gutters text window type"
+msgstr "Gutterns textfönstertyp"
 
 #: ../gtksourceview/gtksourcelanguage.c:42
 #: ../gtksourceview/language-specs/changelog.lang.h:8
@@ -1373,6 +1389,7 @@ msgstr "Sidhuvudselement"
 #: ../gtksourceview/language-specs/haddock.lang.h:14
 #: ../gtksourceview/language-specs/html.lang.h:7
 #: ../gtksourceview/language-specs/latex.lang.h:6
+#: ../gtksourceview/language-specs/mallard.lang.h:4
 #: ../gtksourceview/language-specs/t2t.lang.h:6
 #: ../gtksourceview/language-specs/texinfo.lang.h:8
 #: ../gtksourceview/language-specs/xml.lang.h:9
@@ -1840,6 +1857,26 @@ msgstr "prereq"
 #: ../gtksourceview/language-specs/makefile.lang.h:13
 msgid "targets"
 msgstr "targets"
+
+#: ../gtksourceview/language-specs/mallard.lang.h:1
+msgid "Block Elements"
+msgstr "Blockelement"
+
+#: ../gtksourceview/language-specs/mallard.lang.h:2
+msgid "Inline Elements"
+msgstr "Inuti-element"
+
+#: ../gtksourceview/language-specs/mallard.lang.h:3
+msgid "Mallard"
+msgstr "Mallard"
+
+#: ../gtksourceview/language-specs/mallard.lang.h:5
+msgid "Page Elements"
+msgstr "Sidelement"
+
+#: ../gtksourceview/language-specs/mallard.lang.h:6
+msgid "Section Elements"
+msgstr "Avsnittselement"
 
 #: ../gtksourceview/language-specs/msil.lang.h:1
 msgid "MSIL"
