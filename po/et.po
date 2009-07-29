@@ -14,8 +14,8 @@ msgstr ""
 "Project-Id-Version: gtksourceview HEAD\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&component=general\n"
-"POT-Creation-Date: 2009-04-18 16:44+0000\n"
-"PO-Revision-Date: 2009-05-07 12:49+0300\n"
+"POT-Creation-Date: 2009-07-18 11:41+0000\n"
+"PO-Revision-Date: 2009-07-29 12:00+0300\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -64,7 +64,6 @@ msgstr "Kas unustatud tegevuse taastamine on võimalik või mitte"
 msgid "Style scheme"
 msgstr "Laadi skeem"
 
-#, c-format
 msgid "using \\C is not supported in language definitions"
 msgstr "\\C kasutamine keelekirjeldustes pole toetatud"
 
@@ -114,6 +113,18 @@ msgstr "tundmatu kontekst '%s'"
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "Puudub peamise keele definitsioon (id = \"%s\".)"
+
+msgid "View"
+msgstr ""
+
+msgid "The gutters' GtkSourceView"
+msgstr ""
+
+msgid "Window Type"
+msgstr ""
+
+msgid "The gutters text window type"
+msgstr ""
 
 msgid "Others"
 msgstr "Muud"
@@ -1096,6 +1107,21 @@ msgstr ""
 msgid "targets"
 msgstr "sihid"
 
+msgid "Block Elements"
+msgstr ""
+
+msgid "Inline Elements"
+msgstr ""
+
+msgid "Mallard"
+msgstr ""
+
+msgid "Page Elements"
+msgstr ""
+
+msgid "Section Elements"
+msgstr ""
+
 msgid "MSIL"
 msgstr "MSIL"
 
@@ -1216,6 +1242,9 @@ msgstr ""
 
 msgid "gettext translation"
 msgstr "gettext tõlge"
+
+msgid "Prolog"
+msgstr "Prolog"
 
 msgid "Builtin Constant"
 msgstr "Sisseehitatud konstant"
