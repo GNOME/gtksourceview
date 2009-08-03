@@ -1069,18 +1069,21 @@ line_renderer_size_func (GtkSourceGutter *gutter,
                          GtkCellRenderer *renderer,
                          GtkSourceView   *view)
 {
-	gchar *markup;
+	gchar *text;
 	gint count;
 
 	count = gtk_text_buffer_get_line_count (gtk_text_view_get_buffer (GTK_TEXT_VIEW (view)));
-	markup = g_strdup_printf ("<b>%d</b>", MAX(99, count));
+	text = g_strdup_printf ("%d", MAX(99, count));
 
+	/* measure with bold, just in case font is rendered larger */
 	g_object_set (G_OBJECT (renderer),
-                      "markup", markup,
-                      "xpad", 2,
-                      "ypad", 0,
-                      NULL);
-	g_free (markup);
+	              "text", text,
+	              "xpad", 2,
+	              "ypad", 0,
+	              "weight", PANGO_WEIGHT_BOLD,
+	               NULL);
+
+	g_free (text);
 }
 
 static void
