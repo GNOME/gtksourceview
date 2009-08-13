@@ -74,17 +74,17 @@ libgtksourceview_2_0_include_HEADERS =		\
 	gtksourceview-typebuiltins.h
 
 gtksourceview-marshal.h: gtksourceview-marshal.list $(GLIB_GENMARSHAL)
-	$(GLIB_GENMARSHAL) $< --header --prefix=_gtksourceview_marshal > $@
+	$(AM_V_GEN) $(GLIB_GENMARSHAL) $< --header --prefix=_gtksourceview_marshal > $@
 
 gtksourceview-marshal.c: gtksourceview-marshal.list $(GLIB_GENMARSHAL)
-	echo "#include \"gtksourceview-marshal.h\"" > $@ && \
+	$(AM_V_GEN) echo "#include \"gtksourceview-marshal.h\"" > $@ && \
 	$(GLIB_GENMARSHAL) $< --body --prefix=_gtksourceview_marshal >> $@
 
 gtksourceview-typebuiltins.c: stamp-gtksourceview-typebuiltins.c
 	@true
 stamp-gtksourceview-typebuiltins.c: Makefile.am $(libgtksourceview_headers)
-	(cd $(srcdir) \
-	 && glib-mkenums \
+	$(AM_V_GEN) (cd $(srcdir) \
+	 && $(GLIB_MKENUMS) \
 			--fhead "#include <glib-object.h>\n" \
 			--fhead "#include \"gtksourceview-typebuiltins.h\"\n\n" \
 			--fprod "\n/* enumerations from \"@filename@\" */" \
@@ -103,8 +103,8 @@ stamp-gtksourceview-typebuiltins.c: Makefile.am $(libgtksourceview_headers)
 gtksourceview-typebuiltins.h: stamp-gtksourceview-typebuiltins.h
 	@true
 stamp-gtksourceview-typebuiltins.h: Makefile.am $(libgtksourceview_headers)
-	(cd $(srcdir) \
-	 && glib-mkenums \
+	$(AM_V_GEN) (cd $(srcdir) \
+	 && $(GLIB_MKENUMS) \
 			--fhead "#ifndef __GTKSOURCEVIEW_TYPEBUILTINS_H__\n" \
 			--fhead "#define __GTKSOURCEVIEW_TYPEBUILTINS_H__ 1\n\n" \
 			--ftail "#endif /* __GTKSOURCEVIEW_TYPEBUILTINS_H__ */\n" \
