@@ -831,19 +831,8 @@ on_view_expose_event (GtkSourceView   *view,
 {
 	GdkWindow *window;
 	GtkTextView *text_view;
-	gint size;
-	gint y1, y2;
-	GArray *numbers;
-	GArray *pixels;
-	GArray *heights;
 	GArray *sizes;
-	GtkTextIter cur;
-	gint cur_line;
-	gint count;
-	gint i;
-	GList *item;
-	gint x;
-	gint y;
+	gint size;
 
 	window = gtk_source_gutter_get_window (gutter);
 
@@ -851,8 +840,6 @@ on_view_expose_event (GtkSourceView   *view,
 	{
 		return FALSE;
 	}
-
-	gdk_window_get_pointer (window, &x, &y, NULL);
 
 	text_view = GTK_TEXT_VIEW (view);
 	sizes = g_array_new (FALSE, FALSE, sizeof (gint));
@@ -863,108 +850,123 @@ on_view_expose_event (GtkSourceView   *view,
 	{
 		/* Will trigger a new expose */
 		gtk_text_view_set_border_window_size (text_view, gutter->priv->window_type, size);
-		return FALSE;
 	}
-
-	y1 = event->area.y;
-	y2 = y1 + event->area.height;
-
-	/* get the extents of the line printing */
-	gtk_text_view_window_to_buffer_coords (text_view,
-					       gutter->priv->window_type,
-					       0,
-					       y1,
-					       NULL,
-					       &y1);
-
-	gtk_text_view_window_to_buffer_coords (text_view,
-					       gutter->priv->window_type,
-					       0,
-					       y2,
-					       NULL,
-					       &y2);
-
-	numbers = g_array_new (FALSE, FALSE, sizeof (gint));
-	pixels = g_array_new (FALSE, FALSE, sizeof (gint));
-	heights = g_array_new (FALSE, FALSE, sizeof (gint));
-
-	/* get the line numbers and y coordinates. */
-	get_lines (text_view, y1, y2, pixels, heights, numbers, &count);
-
-	gtk_text_buffer_get_iter_at_mark (text_view->buffer,
-					  &cur,
-					  gtk_text_buffer_get_insert (text_view->buffer));
-
-	cur_line = gtk_text_iter_get_line (&cur);
-
-	for (i = 0; i < count; ++i)
+	else
 	{
-		gint pos;
-		gint line_to_paint;
-		GdkRectangle cell_area;
-		gint idx = 0;
+		gint x, y;
+		gint y1, y2;
+		GArray *numbers;
+		GArray *pixels;
+		GArray *heights;
+		GtkTextIter cur;
+		gint cur_line;
+		gint count;
+		gint i;
+		GList *item;
 
-		gtk_text_view_buffer_to_window_coords (text_view,
+		gdk_window_get_pointer (window, &x, &y, NULL);
+
+		y1 = event->area.y;
+		y2 = y1 + event->area.height;
+
+		/* get the extents of the line printing */
+		gtk_text_view_window_to_buffer_coords (text_view,
 						       gutter->priv->window_type,
 						       0,
-						       g_array_index (pixels, gint, i),
+						       y1,
 						       NULL,
-						       &pos);
+						       &y1);
 
-		line_to_paint = g_array_index (numbers, gint, i);
+		gtk_text_view_window_to_buffer_coords (text_view,
+						       gutter->priv->window_type,
+						       0,
+						       y2,
+						       NULL,
+						       &y2);
 
-		cell_area.x = 0;
-		cell_area.y = pos;
-		cell_area.height = g_array_index (heights, gint, i);
+		numbers = g_array_new (FALSE, FALSE, sizeof (gint));
+		pixels = g_array_new (FALSE, FALSE, sizeof (gint));
+		heights = g_array_new (FALSE, FALSE, sizeof (gint));
 
-		for (item = gutter->priv->renderers; item; item = g_list_next (item))
+		/* get the line numbers and y coordinates. */
+		get_lines (text_view, y1, y2, pixels, heights, numbers, &count);
+
+		gtk_text_buffer_get_iter_at_mark (text_view->buffer,
+						  &cur,
+						  gtk_text_buffer_get_insert (text_view->buffer));
+
+		cur_line = gtk_text_iter_get_line (&cur);
+
+		for (i = 0; i < count; ++i)
 		{
-			Renderer *renderer = (Renderer *)item->data;
-			gint width = g_array_index (sizes, gint, idx++);
-			GtkCellRendererState state = 0;
+			gint pos;
+			gint line_to_paint;
+			GdkRectangle cell_area;
+			gint idx = 0;
 
-			cell_area.width = width;
+			gtk_text_view_buffer_to_window_coords (text_view,
+							       gutter->priv->window_type,
+							       0,
+							       g_array_index (pixels, gint, i),
+							       NULL,
+							       &pos);
 
-			/* Call data func if needed */
-			if (renderer->data_func)
+			line_to_paint = g_array_index (numbers, gint, i);
+
+			cell_area.x = 0;
+			cell_area.y = pos;
+			cell_area.height = g_array_index (heights, gint, i);
+
+			for (item = gutter->priv->renderers; item; item = g_list_next (item))
 			{
-				renderer->data_func (gutter,
-				                     renderer->renderer,
-				                     line_to_paint,
-				                     line_to_paint == cur_line,
-				                     renderer->data_func_data);
+				Renderer *renderer = (Renderer *)item->data;
+				gint width = g_array_index (sizes, gint, idx++);
+				GtkCellRendererState state = 0;
+
+				cell_area.width = width;
+
+				/* Call data func if needed */
+				if (renderer->data_func)
+				{
+					renderer->data_func (gutter,
+						             renderer->renderer,
+						             line_to_paint,
+						             line_to_paint == cur_line,
+						             renderer->data_func_data);
+				}
+
+				if (x >= cell_area.x && x < cell_area.x + cell_area.width &&
+				    y >= cell_area.y && y < cell_area.y + cell_area.height)
+				{
+					GtkCellRendererMode mode;
+
+					g_object_get (G_OBJECT (renderer->renderer),
+						      "mode", &mode,
+						      NULL);
+
+					if (mode & GTK_CELL_RENDERER_MODE_ACTIVATABLE)
+						state = GTK_CELL_RENDERER_PRELIT;
+				}
+
+				/* Call render with correct area */
+				gtk_cell_renderer_render (renderer->renderer,
+					                  window,
+					                  GTK_WIDGET (view),
+					                  &cell_area,
+					                  &cell_area,
+					                  &cell_area,
+					                  state);
+
+				cell_area.x += cell_area.width;
 			}
-
-			if (x >= cell_area.x && x < cell_area.x + cell_area.width &&
-			    y >= cell_area.y && y < cell_area.y + cell_area.height)
-			{
-				GtkCellRendererMode mode;
-
-				g_object_get (G_OBJECT (renderer->renderer),
-				              "mode", &mode,
-				              NULL);
-
-				if (mode & GTK_CELL_RENDERER_MODE_ACTIVATABLE)
-					state = GTK_CELL_RENDERER_PRELIT;
-			}
-
-			/* Call render with correct area */
-			gtk_cell_renderer_render (renderer->renderer,
-			                          window,
-			                          GTK_WIDGET (view),
-			                          &cell_area,
-			                          &cell_area,
-			                          &cell_area,
-			                          state);
-
-			cell_area.x += cell_area.width;
 		}
+
+		g_array_free (numbers, TRUE);
+		g_array_free (pixels, TRUE);
+		g_array_free (heights, TRUE);
 	}
 
 	g_array_free (sizes, TRUE);
-	g_array_free (numbers, TRUE);
-	g_array_free (pixels, TRUE);
-	g_array_free (heights, TRUE);
 
 	return FALSE;
 }
