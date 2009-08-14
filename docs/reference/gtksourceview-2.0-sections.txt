@@ -103,6 +103,8 @@ gtk_source_view_get_type
 <TITLE>GtkSourceGutter</TITLE>
 <INCLUDE>gtksourceview/gtksourcegutter.h</INCLUDE>
 GtkSourceGutter
+GtkSourceGutterDataFunc
+GtkSourceGutterSizeFunc
 gtk_source_gutter_get_window
 gtk_source_gutter_insert
 gtk_source_gutter_reorder
