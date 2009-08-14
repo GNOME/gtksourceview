@@ -1036,6 +1036,16 @@ line_renderer_data_func (GtkSourceGutter *gutter,
                          GtkSourceView   *view)
 {
 	gchar *text;
+	int weight;
+
+	if (current_line && gtk_text_view_get_cursor_visible (GTK_TEXT_VIEW (view)))
+	{
+		weight = PANGO_WEIGHT_BOLD;
+	}
+	else
+	{
+		weight = PANGO_WEIGHT_NORMAL;
+	}
 
 	text = g_strdup_printf ("%d", line_number + 1);
 	g_object_set (G_OBJECT (renderer),
@@ -1044,7 +1054,7 @@ line_renderer_data_func (GtkSourceGutter *gutter,
 	              "yalign", 0.0,
 	              "xpad", 2,
 	              "ypad", 0,
-	              "weight", current_line ? PANGO_WEIGHT_BOLD : PANGO_WEIGHT_NORMAL,
+	              "weight", weight,
 	              "mode", GTK_CELL_RENDERER_MODE_ACTIVATABLE,
 	              NULL);
 
