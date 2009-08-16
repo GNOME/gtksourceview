@@ -129,14 +129,14 @@ struct _GtkSourceViewPrivate
 
 	GtkSourceBuffer *source_buffer;
 
-	GdkColor         current_line_color;
-	guint            current_line_color_set : 1;
-
 	GtkSourceGutter *left_gutter;
 	GtkSourceGutter *right_gutter;
 
 	GtkCellRenderer *line_renderer;
 	GtkCellRenderer *marks_renderer;
+	
+	GdkColor         current_line_color;
+	guint            current_line_color_set : 1;
 };
 
 
