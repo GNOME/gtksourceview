@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the gtksourceview package.
 # Pauli Virtanen <pauli.virtanen@hut.fi>, 2003-2005.
 # Ilkka Tuohela <hile@iki.fi>, 2005-2009.
+# Tommi Vainikainen <thv@iki.fi>, 2009.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-19 09:41+0300\n"
-"PO-Revision-Date: 2009-02-19 09:50+0300\n"
-"Last-Translator: Ilkka Tuohela <hile@iki.fi>\n"
+"POT-Creation-Date: 2009-08-16 14:15+0300\n"
+"PO-Revision-Date: 2009-08-16 14:14+0300\n"
+"Last-Translator: Tommi Vainikainen <thv@iki.fi>\n"
 "Language-Team: Finnish <gnome-fi-laatu@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -73,7 +74,6 @@ msgid "Style scheme"
 msgstr "Tyylimalli"
 
 #: ../gtksourceview/gtksourcecontextengine.c:2608
-#, c-format
 msgid "using \\C is not supported in language definitions"
 msgstr "Käytetään arvoa \\C tukemattomissa kielimäärittelyissä"
 
@@ -136,6 +136,22 @@ msgstr "tuntematon konteksti \"%s\""
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "Kielen päämäärittly puuttuu (tunniste = \"%s\".)"
+
+#: ../gtksourceview/gtksourcegutter.c:336
+msgid "View"
+msgstr "Näkymä"
+
+#: ../gtksourceview/gtksourcegutter.c:337
+msgid "The gutters' GtkSourceView"
+msgstr "Kourun GtkSourceView"
+
+#: ../gtksourceview/gtksourcegutter.c:349
+msgid "Window Type"
+msgstr "Ikkunatyyppi"
+
+#: ../gtksourceview/gtksourcegutter.c:350
+msgid "The gutters text window type"
+msgstr "Kourun teksti-ikkunatyyppi"
 
 #: ../gtksourceview/gtksourcelanguage.c:42
 #: ../gtksourceview/language-specs/changelog.lang.h:8
@@ -211,11 +227,11 @@ msgstr "Tuntematon tunniste \"%s\" säännöllisessä lauseessa \"%s\""
 msgid "in regex '%s': backreferences are not supported"
 msgstr "lausekkeessa \"%s\": takaisinviittauksia ei tueta"
 
-#: ../gtksourceview/gtksourcemark.c:119
+#: ../gtksourceview/gtksourcemark.c:121
 msgid "category"
 msgstr "luokka"
 
-#: ../gtksourceview/gtksourcemark.c:120
+#: ../gtksourceview/gtksourcemark.c:122
 msgid "The mark category"
 msgstr "Merkinnän luokka"
 
@@ -228,12 +244,12 @@ msgid "The GtkSourceBuffer object to print"
 msgstr "Tulostettava GtkSourceBuffer-olio"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:429
-#: ../gtksourceview/gtksourceview.c:290
+#: ../gtksourceview/gtksourceview.c:319
 msgid "Tab Width"
 msgstr "Sarkaimen leveys"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:430
-#: ../gtksourceview/gtksourceview.c:291
+#: ../gtksourceview/gtksourceview.c:320
 msgid "Width of a tab character expressed in spaces"
 msgstr "Sarkaimen leveys välilyönteinä esitettynä"
 
@@ -452,67 +468,67 @@ msgstr "Mallitunnisteet"
 msgid "List of the ids of the available style schemes"
 msgstr "Luettelo saatavilla olevista tyylimallien tunnisteista"
 
-#: ../gtksourceview/gtksourceview.c:265
+#: ../gtksourceview/gtksourceview.c:294
 msgid "Show Line Numbers"
 msgstr "Näytä rivinumerot"
 
-#: ../gtksourceview/gtksourceview.c:266
+#: ../gtksourceview/gtksourceview.c:295
 msgid "Whether to display line numbers"
 msgstr "Näkyvätkö rivinumerot"
 
-#: ../gtksourceview/gtksourceview.c:277
+#: ../gtksourceview/gtksourceview.c:306
 msgid "Show Line Marks"
 msgstr "Näytä rivimerkit"
 
-#: ../gtksourceview/gtksourceview.c:278
+#: ../gtksourceview/gtksourceview.c:307
 msgid "Whether to display line mark pixbufs"
 msgstr "Näytetäänkö rivimerkkien kuvapuskurit"
 
-#: ../gtksourceview/gtksourceview.c:305
+#: ../gtksourceview/gtksourceview.c:334
 msgid "Indent Width"
 msgstr "Sisennyksen leveys"
 
-#: ../gtksourceview/gtksourceview.c:306
+#: ../gtksourceview/gtksourceview.c:335
 msgid "Number of spaces to use for each step of indent"
 msgstr "Kullakin sisennystasolla käytetty leveys välilyönteinä"
 
-#: ../gtksourceview/gtksourceview.c:315
+#: ../gtksourceview/gtksourceview.c:344
 msgid "Auto Indentation"
 msgstr "Automaattinen sisennys"
 
-#: ../gtksourceview/gtksourceview.c:316
+#: ../gtksourceview/gtksourceview.c:345
 msgid "Whether to enable auto indentation"
 msgstr "Onko automaattinen sisennys käytössä"
 
-#: ../gtksourceview/gtksourceview.c:323
+#: ../gtksourceview/gtksourceview.c:352
 msgid "Insert Spaces Instead of Tabs"
 msgstr "Lisää välilyöntejä sarkainten sijaan"
 
-#: ../gtksourceview/gtksourceview.c:324
+#: ../gtksourceview/gtksourceview.c:353
 msgid "Whether to insert spaces instead of tabs"
 msgstr "Lisätäänkö välilyöntejä sarkainten sijaan"
 
-#: ../gtksourceview/gtksourceview.c:336
+#: ../gtksourceview/gtksourceview.c:365
 msgid "Show Right Margin"
 msgstr "Näytä oikea reunus"
 
-#: ../gtksourceview/gtksourceview.c:337
+#: ../gtksourceview/gtksourceview.c:366
 msgid "Whether to display the right margin"
 msgstr "Näkyykö oikea reunus"
 
-#: ../gtksourceview/gtksourceview.c:349
+#: ../gtksourceview/gtksourceview.c:378
 msgid "Right Margin Position"
 msgstr "Oikean reunuksen sijainti"
 
-#: ../gtksourceview/gtksourceview.c:350
+#: ../gtksourceview/gtksourceview.c:379
 msgid "Position of the right margin"
 msgstr "Oikean reunuksen sijainti"
 
-#: ../gtksourceview/gtksourceview.c:366
+#: ../gtksourceview/gtksourceview.c:395
 msgid "Smart Home/End"
 msgstr "Älykkäät home- ja end-näppäimet"
 
-#: ../gtksourceview/gtksourceview.c:367
+#: ../gtksourceview/gtksourceview.c:396
 msgid ""
 "HOME and END keys move to first/last non whitespace characters on line "
 "before going to the start/end of the line"
@@ -520,27 +536,27 @@ msgstr ""
 "Home- ja End-näppäimet siirtävät kohdistimen rivin ensimmäisen tai viimeisen "
 "merkin kohdalle ennen koko rivin alkuun tai loppuun siirtämistä."
 
-#: ../gtksourceview/gtksourceview.c:377
+#: ../gtksourceview/gtksourceview.c:406
 msgid "Highlight current line"
 msgstr "Korosta nykyinen rivi"
 
-#: ../gtksourceview/gtksourceview.c:378
+#: ../gtksourceview/gtksourceview.c:407
 msgid "Whether to highlight the current line"
 msgstr "Korostetaanko nykyinen rivi"
 
-#: ../gtksourceview/gtksourceview.c:385
+#: ../gtksourceview/gtksourceview.c:414
 msgid "Indent on tab"
 msgstr "Sisennä sarkaimella"
 
-#: ../gtksourceview/gtksourceview.c:386
+#: ../gtksourceview/gtksourceview.c:415
 msgid "Whether to indent the selected text when the tab key is pressed"
 msgstr "Sisennetäänkö valittu teksti painettaessa sarkainnäppäintä"
 
-#: ../gtksourceview/gtksourceview.c:400
+#: ../gtksourceview/gtksourceview.c:429
 msgid "Draw Spaces"
 msgstr "Piirrä tyhjeet"
 
-#: ../gtksourceview/gtksourceview.c:401
+#: ../gtksourceview/gtksourceview.c:430
 msgid "Set if and how the spaces should be visualized"
 msgstr "Aseta kuinka tyhjeet esitetään"
 
@@ -616,6 +632,7 @@ msgstr "Totuusarvo"
 #: ../gtksourceview/language-specs/perl.lang.h:2
 #: ../gtksourceview/language-specs/php.lang.h:2
 #: ../gtksourceview/language-specs/po.lang.h:1
+#: ../gtksourceview/language-specs/prolog.lang.h:1
 #: ../gtksourceview/language-specs/ruby.lang.h:5
 #: ../gtksourceview/language-specs/scheme.lang.h:2
 #: ../gtksourceview/language-specs/sh.lang.h:1
@@ -680,6 +697,7 @@ msgstr "Desimaaliluku"
 #: ../gtksourceview/language-specs/ada.lang.h:7
 #: ../gtksourceview/language-specs/c.lang.h:9
 #: ../gtksourceview/language-specs/csharp.lang.h:8
+#: ../gtksourceview/language-specs/eiffel.lang.h:9
 #: ../gtksourceview/language-specs/haskell.lang.h:5
 #: ../gtksourceview/language-specs/java.lang.h:7
 #: ../gtksourceview/language-specs/lua.lang.h:3
@@ -704,7 +722,7 @@ msgstr "Suojattu merkkijono"
 #: ../gtksourceview/language-specs/d.lang.h:10
 #: ../gtksourceview/language-specs/dosbatch.lang.h:4
 #: ../gtksourceview/language-specs/dot.lang.h:5
-#: ../gtksourceview/language-specs/eiffel.lang.h:11
+#: ../gtksourceview/language-specs/eiffel.lang.h:12
 #: ../gtksourceview/language-specs/erlang.lang.h:9
 #: ../gtksourceview/language-specs/forth.lang.h:7
 #: ../gtksourceview/language-specs/fortran.lang.h:7
@@ -725,6 +743,7 @@ msgstr "Suojattu merkkijono"
 #: ../gtksourceview/language-specs/perl.lang.h:9
 #: ../gtksourceview/language-specs/php.lang.h:13
 #: ../gtksourceview/language-specs/po.lang.h:3
+#: ../gtksourceview/language-specs/prolog.lang.h:3
 #: ../gtksourceview/language-specs/python.lang.h:11
 #: ../gtksourceview/language-specs/R.lang.h:6
 #: ../gtksourceview/language-specs/ruby.lang.h:12
@@ -768,7 +787,7 @@ msgstr "Reaaliluku"
 #: ../gtksourceview/language-specs/cpp.lang.h:5
 #: ../gtksourceview/language-specs/csharp.lang.h:14
 #: ../gtksourceview/language-specs/d.lang.h:13
-#: ../gtksourceview/language-specs/eiffel.lang.h:13
+#: ../gtksourceview/language-specs/eiffel.lang.h:14
 #: ../gtksourceview/language-specs/erlang.lang.h:11
 #: ../gtksourceview/language-specs/forth.lang.h:10
 #: ../gtksourceview/language-specs/fortran.lang.h:8
@@ -781,6 +800,7 @@ msgstr "Reaaliluku"
 #: ../gtksourceview/language-specs/objc.lang.h:5
 #: ../gtksourceview/language-specs/ocaml.lang.h:16
 #: ../gtksourceview/language-specs/pascal.lang.h:7
+#: ../gtksourceview/language-specs/prolog.lang.h:7
 #: ../gtksourceview/language-specs/scheme.lang.h:6
 #: ../gtksourceview/language-specs/sql.lang.h:9
 #: ../gtksourceview/language-specs/vala.lang.h:10
@@ -806,7 +826,7 @@ msgstr "Säilöluokka"
 #: ../gtksourceview/language-specs/def.lang.h:57
 #: ../gtksourceview/language-specs/d.lang.h:15
 #: ../gtksourceview/language-specs/dosbatch.lang.h:6
-#: ../gtksourceview/language-specs/eiffel.lang.h:14
+#: ../gtksourceview/language-specs/eiffel.lang.h:15
 #: ../gtksourceview/language-specs/erlang.lang.h:12
 #: ../gtksourceview/language-specs/forth.lang.h:11
 #: ../gtksourceview/language-specs/gtkrc.lang.h:9
@@ -826,6 +846,7 @@ msgstr "Säilöluokka"
 #: ../gtksourceview/language-specs/perl.lang.h:19
 #: ../gtksourceview/language-specs/php.lang.h:19
 #: ../gtksourceview/language-specs/po.lang.h:8
+#: ../gtksourceview/language-specs/prolog.lang.h:8
 #: ../gtksourceview/language-specs/python.lang.h:17
 #: ../gtksourceview/language-specs/ruby.lang.h:21
 #: ../gtksourceview/language-specs/scheme.lang.h:7
@@ -869,6 +890,7 @@ msgstr "Funktio"
 #: ../gtksourceview/language-specs/desktop.lang.h:10
 #: ../gtksourceview/language-specs/forth.lang.h:8
 #: ../gtksourceview/language-specs/java.lang.h:13
+#: ../gtksourceview/language-specs/prolog.lang.h:4
 #: ../gtksourceview/language-specs/vhdl.lang.h:6
 msgid "Number"
 msgstr "Numero"
@@ -881,6 +903,7 @@ msgstr "Numero"
 #: ../gtksourceview/language-specs/nsis.lang.h:3
 #: ../gtksourceview/language-specs/perl.lang.h:11
 #: ../gtksourceview/language-specs/php.lang.h:16
+#: ../gtksourceview/language-specs/prolog.lang.h:5
 msgid "Operator"
 msgstr "Operaattori"
 
@@ -929,6 +952,7 @@ msgstr "Komentojonot"
 #: ../gtksourceview/language-specs/perl.lang.h:21
 #: ../gtksourceview/language-specs/php.lang.h:20
 #: ../gtksourceview/language-specs/pkgconfig.lang.h:3
+#: ../gtksourceview/language-specs/prolog.lang.h:9
 #: ../gtksourceview/language-specs/ruby.lang.h:23
 #: ../gtksourceview/language-specs/sh.lang.h:11
 #: ../gtksourceview/language-specs/tcl.lang.h:4
@@ -1060,6 +1084,7 @@ msgstr "Yleiset määrittelyt"
 #: ../gtksourceview/language-specs/ocaml.lang.h:7
 #: ../gtksourceview/language-specs/perl.lang.h:4
 #: ../gtksourceview/language-specs/php.lang.h:5
+#: ../gtksourceview/language-specs/prolog.lang.h:2
 #: ../gtksourceview/language-specs/vala.lang.h:5
 #: ../gtksourceview/language-specs/verilog.lang.h:4
 #: ../gtksourceview/language-specs/xml.lang.h:8
@@ -1082,7 +1107,7 @@ msgstr "Liukuluku"
 #: ../gtksourceview/language-specs/c.lang.h:11
 #: ../gtksourceview/language-specs/csharp.lang.h:9
 #: ../gtksourceview/language-specs/d.lang.h:9
-#: ../gtksourceview/language-specs/eiffel.lang.h:10
+#: ../gtksourceview/language-specs/eiffel.lang.h:11
 #: ../gtksourceview/language-specs/nemerle.lang.h:9
 #: ../gtksourceview/language-specs/php.lang.h:11
 #: ../gtksourceview/language-specs/vala.lang.h:6
@@ -1379,6 +1404,7 @@ msgstr "Otsake-elementit"
 #: ../gtksourceview/language-specs/haddock.lang.h:14
 #: ../gtksourceview/language-specs/html.lang.h:7
 #: ../gtksourceview/language-specs/latex.lang.h:6
+#: ../gtksourceview/language-specs/mallard.lang.h:4
 #: ../gtksourceview/language-specs/t2t.lang.h:6
 #: ../gtksourceview/language-specs/texinfo.lang.h:8
 #: ../gtksourceview/language-specs/xml.lang.h:9
@@ -1457,16 +1483,16 @@ msgstr "Design by Contract"
 msgid "Eiffel"
 msgstr "Eiffel"
 
-#: ../gtksourceview/language-specs/eiffel.lang.h:9
+#: ../gtksourceview/language-specs/eiffel.lang.h:10
 msgid "Exception Handling"
 msgstr "Poikkeuskäsittely"
 
-#: ../gtksourceview/language-specs/eiffel.lang.h:12
+#: ../gtksourceview/language-specs/eiffel.lang.h:13
 #: ../gtksourceview/language-specs/ruby.lang.h:16
 msgid "Predefined Variable"
 msgstr "Esimääritelty muuttuja"
 
-#: ../gtksourceview/language-specs/eiffel.lang.h:15
+#: ../gtksourceview/language-specs/eiffel.lang.h:16
 msgid "Void Value"
 msgstr "Void-arvo"
 
@@ -1847,6 +1873,26 @@ msgstr "esivaatimukset"
 msgid "targets"
 msgstr "kohteet"
 
+#: ../gtksourceview/language-specs/mallard.lang.h:1
+msgid "Block Elements"
+msgstr "Kappale-elementit"
+
+#: ../gtksourceview/language-specs/mallard.lang.h:2
+msgid "Inline Elements"
+msgstr "Sisällytetyt elementit"
+
+#: ../gtksourceview/language-specs/mallard.lang.h:3
+msgid "Mallard"
+msgstr "Mallard"
+
+#: ../gtksourceview/language-specs/mallard.lang.h:5
+msgid "Page Elements"
+msgstr "Sivuelementit"
+
+#: ../gtksourceview/language-specs/mallard.lang.h:6
+msgid "Section Elements"
+msgstr "Lukuelementit"
+
 #: ../gtksourceview/language-specs/msil.lang.h:1
 msgid "MSIL"
 msgstr "MSIL"
@@ -2012,6 +2058,10 @@ msgstr "Erikoistapaus"
 #: ../gtksourceview/language-specs/po.lang.h:9
 msgid "gettext translation"
 msgstr "Gettext-käännös"
+
+#: ../gtksourceview/language-specs/prolog.lang.h:6
+msgid "Prolog"
+msgstr "Prolog"
 
 #: ../gtksourceview/language-specs/python.lang.h:3
 msgid "Builtin Constant"
@@ -2291,4 +2341,3 @@ msgstr "sääntö"
 #: ../gtksourceview/language-specs/yacc.lang.h:6
 msgid "token-type"
 msgstr "ohjaintyyppi"
-
