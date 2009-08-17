@@ -3152,7 +3152,9 @@ set_mark_category_tooltip_func (GtkSourceView   *view,
 	{
 		gtk_widget_set_has_tooltip (GTK_WIDGET (view), TRUE);
 		if (GTK_WIDGET_REALIZED (view))
+		{
 			gtk_widget_trigger_tooltip_query (GTK_WIDGET (view));
+		}
 	}
 }
 
@@ -3162,14 +3164,14 @@ set_mark_category_tooltip_func (GtkSourceView   *view,
  * @category: a mark category.
  * @func: a #GtkSourceViewMarkTooltipFunc or %NULL.
  * @user_data: user data which will be passed to @func.
- * @user_data_notify: if not %NULL, it will be called for @user_data when the
- * @view is destroyed or when gtk_source_view_set_mark_category_tooltip_func() or
- * gtk_source_view_set_mark_category_tooltip_markup_func() is called for @category again.
+ * @user_data_notify:a function to free the memory allocated for @user_data 
+ * or %NULL if you do not want to supply such a function.
  *
  * Set a #GtkSourceViewMarkTooltipFunc used to set tooltip on marks from the
- * given mark @category. If @func is %NULL and @markup_func is %NULL then tooltips
- * will not be shown for marks from @category. If @markup_func is not %NULL
- * @markup_func is going to be used instead of @func.
+ * given mark @category.
+ * If you also specified a function with
+ * gtk_source_view_set_mark_category_tooltip_markup_func()  the markup 
+ * variant takes precedence.
  *
  * <informalexample><programlisting><![CDATA[
  * static gchar *
@@ -3187,9 +3189,8 @@ set_mark_category_tooltip_func (GtkSourceView   *view,
  *
  * GtkSourceView *view;
  *
- * gtk_source_view_set_mark_category_tooltip_func (view, "my-mark", NULL, tooltip_func,
- *                                                 g_strdup ("<b>my string</b>"), g_free);
- * gtk_source_view_set_mark_category_tooltip_func (view, "other-mark", tooltip_func, NULL,
+ * gtk_source_view_set_mark_category_tooltip_func (view, "other-mark",
+ *                                                 tooltip_func,
  *                                                 NULL, NULL);
  * ]]></programlisting></informalexample>
  *
@@ -3212,9 +3213,8 @@ gtk_source_view_set_mark_category_tooltip_func (GtkSourceView   *view,
  * @category: a mark category.
  * @markup_func: a #GtkSourceViewMarkTooltipFunc or %NULL.
  * @user_data: user data which will be passed to @func.
- * @user_data_notify: if not %NULL, it will be called for @user_data when the
- * @view is destroyed or when gtk_source_view_set_mark_category_tooltip_func() or
- * gtk_source_view_set_mark_category_tooltip_markup_func() is called for @category again.
+ * @user_data_notify:a function to free the memory allocated for @user_data 
+ * or %NULL if you do not want to supply such a function.
  *
  * See gtk_source_view_set_mark_category_tooltip_func() for more information.
  *
