@@ -3171,7 +3171,7 @@ set_mark_category_tooltip_func (GtkSourceView   *view,
  * will not be shown for marks from @category. If @markup_func is not %NULL
  * @markup_func is going to be used instead of @func.
  *
- * <informalexample><programlisting>
+ * <informalexample><programlisting><![CDATA[
  * static gchar *
  * tooltip_func (GtkSourceMark *mark,
  *               gpointer       user_data)
@@ -3191,7 +3191,7 @@ set_mark_category_tooltip_func (GtkSourceView   *view,
  *                                                 g_strdup ("<b>my string</b>"), g_free);
  * gtk_source_view_set_mark_category_tooltip_func (view, "other-mark", tooltip_func, NULL,
  *                                                 NULL, NULL);
- * </programlisting></informalexample>
+ * ]]></programlisting></informalexample>
  *
  * Since: 2.8
  */
