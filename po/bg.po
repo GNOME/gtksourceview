@@ -7,10 +7,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gtksourceview trunk\n"
+"Project-Id-Version: gtksourceview master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-03-16 13:19+0200\n"
-"PO-Revision-Date: 2009-03-16 13:19+0200\n"
+"POT-Creation-Date: 2009-08-18 08:23+0300\n"
+"PO-Revision-Date: 2009-08-18 08:23+0300\n"
 "Last-Translator: Alexander Shopov <ash@contact.bg>\n"
 "Language-Team: Bulgarian <dict@fsa-bg.org>\n"
 "MIME-Version: 1.0\n"
@@ -75,7 +75,6 @@ msgid "Style scheme"
 msgstr "Стилова схема"
 
 #: ../gtksourceview/gtksourcecontextengine.c:2608
-#, c-format
 msgid "using \\C is not supported in language definitions"
 msgstr "използването на „\\C“ в дефинициите на езици не се поддържа"
 
@@ -138,6 +137,22 @@ msgstr "непознат контекст „%s“"
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "Основната дефиниция на език липсва (id = „%s“)."
+
+#: ../gtksourceview/gtksourcegutter.c:336
+msgid "View"
+msgstr "Изглед"
+
+#: ../gtksourceview/gtksourcegutter.c:337
+msgid "The gutters' GtkSourceView"
+msgstr "Поле за подвързване от GtkSourceView"
+
+#: ../gtksourceview/gtksourcegutter.c:349
+msgid "Window Type"
+msgstr "Вид на прозореца"
+
+#: ../gtksourceview/gtksourcegutter.c:350
+msgid "The gutters text window type"
+msgstr "Вид на прозореца на полето за подвързване"
 
 #: ../gtksourceview/gtksourcelanguage.c:42
 #: ../gtksourceview/language-specs/changelog.lang.h:8
@@ -233,12 +248,12 @@ msgid "The GtkSourceBuffer object to print"
 msgstr "Обектът „GtkSourceBuffer“ за печат"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:429
-#: ../gtksourceview/gtksourceview.c:290
+#: ../gtksourceview/gtksourceview.c:319
 msgid "Tab Width"
 msgstr "Дължина на табулаторите"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:430
-#: ../gtksourceview/gtksourceview.c:291
+#: ../gtksourceview/gtksourceview.c:320
 msgid "Width of a tab character expressed in spaces"
 msgstr "Колко знака интервал е дълъг един табулатор"
 
@@ -457,67 +472,67 @@ msgstr "Идентификатори на схеми"
 msgid "List of the ids of the available style schemes"
 msgstr "Списък с идентификатори на наличните стилови схеми"
 
-#: ../gtksourceview/gtksourceview.c:265
+#: ../gtksourceview/gtksourceview.c:294
 msgid "Show Line Numbers"
 msgstr "Номерация на редовете"
 
-#: ../gtksourceview/gtksourceview.c:266
+#: ../gtksourceview/gtksourceview.c:295
 msgid "Whether to display line numbers"
 msgstr "Дали редовете да се номерират"
 
-#: ../gtksourceview/gtksourceview.c:277
+#: ../gtksourceview/gtksourceview.c:306
 msgid "Show Line Marks"
 msgstr "Показване на маркери на редовете"
 
-#: ../gtksourceview/gtksourceview.c:278
+#: ../gtksourceview/gtksourceview.c:307
 msgid "Whether to display line mark pixbufs"
 msgstr "Дали да се показват маркери на редовете"
 
-#: ../gtksourceview/gtksourceview.c:305
+#: ../gtksourceview/gtksourceview.c:334
 msgid "Indent Width"
 msgstr "Размер на отстъпа"
 
-#: ../gtksourceview/gtksourceview.c:306
+#: ../gtksourceview/gtksourceview.c:335
 msgid "Number of spaces to use for each step of indent"
 msgstr "Брой интервали, които да се добавят за всяко ниво на отстъп"
 
-#: ../gtksourceview/gtksourceview.c:315
+#: ../gtksourceview/gtksourceview.c:344
 msgid "Auto Indentation"
 msgstr "Автоматичен отстъп"
 
-#: ../gtksourceview/gtksourceview.c:316
+#: ../gtksourceview/gtksourceview.c:345
 msgid "Whether to enable auto indentation"
 msgstr "Дали да автоматично да се вмъкват отстъпи"
 
-#: ../gtksourceview/gtksourceview.c:323
+#: ../gtksourceview/gtksourceview.c:352
 msgid "Insert Spaces Instead of Tabs"
 msgstr "Интервали вместо табулатори"
 
-#: ../gtksourceview/gtksourceview.c:324
+#: ../gtksourceview/gtksourceview.c:353
 msgid "Whether to insert spaces instead of tabs"
 msgstr "Дали новите табулатори да се заместват с интервали"
 
-#: ../gtksourceview/gtksourceview.c:336
+#: ../gtksourceview/gtksourceview.c:365
 msgid "Show Right Margin"
 msgstr "Поле отдясно"
 
-#: ../gtksourceview/gtksourceview.c:337
+#: ../gtksourceview/gtksourceview.c:366
 msgid "Whether to display the right margin"
 msgstr "Дали да се показва поле отдясно"
 
-#: ../gtksourceview/gtksourceview.c:349
+#: ../gtksourceview/gtksourceview.c:378
 msgid "Right Margin Position"
 msgstr "Позиция на дясното поле"
 
-#: ../gtksourceview/gtksourceview.c:350
+#: ../gtksourceview/gtksourceview.c:379
 msgid "Position of the right margin"
 msgstr "Позиция на дясното поле"
 
-#: ../gtksourceview/gtksourceview.c:366
+#: ../gtksourceview/gtksourceview.c:395
 msgid "Smart Home/End"
 msgstr "Умни „Home“/„End“"
 
-#: ../gtksourceview/gtksourceview.c:367
+#: ../gtksourceview/gtksourceview.c:396
 msgid ""
 "HOME and END keys move to first/last non whitespace characters on line "
 "before going to the start/end of the line"
@@ -525,28 +540,28 @@ msgstr ""
 "Клавишите „HOME“ и „END“ местят курсора първо при първия/последния значещ "
 "знак, преди да отиват в началото/края на реда"
 
-#: ../gtksourceview/gtksourceview.c:377
+#: ../gtksourceview/gtksourceview.c:406
 msgid "Highlight current line"
 msgstr "Оцветяване на текущия ред"
 
-#: ../gtksourceview/gtksourceview.c:378
+#: ../gtksourceview/gtksourceview.c:407
 msgid "Whether to highlight the current line"
 msgstr "Дали текущият ред да се оцветява"
 
-#: ../gtksourceview/gtksourceview.c:385
+#: ../gtksourceview/gtksourceview.c:414
 msgid "Indent on tab"
 msgstr "Отстъп при табулация"
 
-#: ../gtksourceview/gtksourceview.c:386
+#: ../gtksourceview/gtksourceview.c:415
 msgid "Whether to indent the selected text when the tab key is pressed"
 msgstr ""
 "Дали отстъпът на избрания текст да се увеличава при натискане на табулатора"
 
-#: ../gtksourceview/gtksourceview.c:400
+#: ../gtksourceview/gtksourceview.c:429
 msgid "Draw Spaces"
 msgstr "Показване на интервалите"
 
-#: ../gtksourceview/gtksourceview.c:401
+#: ../gtksourceview/gtksourceview.c:430
 msgid "Set if and how the spaces should be visualized"
 msgstr "Задаване кога и как да се визуализират интервалите"
 
@@ -689,6 +704,7 @@ msgstr "Десетично число"
 #: ../gtksourceview/language-specs/ada.lang.h:7
 #: ../gtksourceview/language-specs/c.lang.h:9
 #: ../gtksourceview/language-specs/csharp.lang.h:8
+#: ../gtksourceview/language-specs/eiffel.lang.h:9
 #: ../gtksourceview/language-specs/haskell.lang.h:5
 #: ../gtksourceview/language-specs/java.lang.h:7
 #: ../gtksourceview/language-specs/lua.lang.h:3
@@ -713,7 +729,7 @@ msgstr "Екраниран знак"
 #: ../gtksourceview/language-specs/d.lang.h:10
 #: ../gtksourceview/language-specs/dosbatch.lang.h:4
 #: ../gtksourceview/language-specs/dot.lang.h:5
-#: ../gtksourceview/language-specs/eiffel.lang.h:11
+#: ../gtksourceview/language-specs/eiffel.lang.h:12
 #: ../gtksourceview/language-specs/erlang.lang.h:9
 #: ../gtksourceview/language-specs/forth.lang.h:7
 #: ../gtksourceview/language-specs/fortran.lang.h:7
@@ -778,7 +794,7 @@ msgstr "Реално число"
 #: ../gtksourceview/language-specs/cpp.lang.h:5
 #: ../gtksourceview/language-specs/csharp.lang.h:14
 #: ../gtksourceview/language-specs/d.lang.h:13
-#: ../gtksourceview/language-specs/eiffel.lang.h:13
+#: ../gtksourceview/language-specs/eiffel.lang.h:14
 #: ../gtksourceview/language-specs/erlang.lang.h:11
 #: ../gtksourceview/language-specs/forth.lang.h:10
 #: ../gtksourceview/language-specs/fortran.lang.h:8
@@ -791,7 +807,7 @@ msgstr "Реално число"
 #: ../gtksourceview/language-specs/objc.lang.h:5
 #: ../gtksourceview/language-specs/ocaml.lang.h:16
 #: ../gtksourceview/language-specs/pascal.lang.h:7
-#: ../gtksourceview/language-specs/prolog.lang.h:6
+#: ../gtksourceview/language-specs/prolog.lang.h:7
 #: ../gtksourceview/language-specs/scheme.lang.h:6
 #: ../gtksourceview/language-specs/sql.lang.h:9
 #: ../gtksourceview/language-specs/vala.lang.h:10
@@ -817,7 +833,7 @@ msgstr "Клас за съхранение"
 #: ../gtksourceview/language-specs/def.lang.h:57
 #: ../gtksourceview/language-specs/d.lang.h:15
 #: ../gtksourceview/language-specs/dosbatch.lang.h:6
-#: ../gtksourceview/language-specs/eiffel.lang.h:14
+#: ../gtksourceview/language-specs/eiffel.lang.h:15
 #: ../gtksourceview/language-specs/erlang.lang.h:12
 #: ../gtksourceview/language-specs/forth.lang.h:11
 #: ../gtksourceview/language-specs/gtkrc.lang.h:9
@@ -837,7 +853,7 @@ msgstr "Клас за съхранение"
 #: ../gtksourceview/language-specs/perl.lang.h:19
 #: ../gtksourceview/language-specs/php.lang.h:19
 #: ../gtksourceview/language-specs/po.lang.h:8
-#: ../gtksourceview/language-specs/prolog.lang.h:7
+#: ../gtksourceview/language-specs/prolog.lang.h:8
 #: ../gtksourceview/language-specs/python.lang.h:17
 #: ../gtksourceview/language-specs/ruby.lang.h:21
 #: ../gtksourceview/language-specs/scheme.lang.h:7
@@ -943,7 +959,7 @@ msgstr "Скриптове"
 #: ../gtksourceview/language-specs/perl.lang.h:21
 #: ../gtksourceview/language-specs/php.lang.h:20
 #: ../gtksourceview/language-specs/pkgconfig.lang.h:3
-#: ../gtksourceview/language-specs/prolog.lang.h:8
+#: ../gtksourceview/language-specs/prolog.lang.h:9
 #: ../gtksourceview/language-specs/ruby.lang.h:23
 #: ../gtksourceview/language-specs/sh.lang.h:11
 #: ../gtksourceview/language-specs/tcl.lang.h:4
@@ -1098,7 +1114,7 @@ msgstr "Число с плаващата запетая"
 #: ../gtksourceview/language-specs/c.lang.h:11
 #: ../gtksourceview/language-specs/csharp.lang.h:9
 #: ../gtksourceview/language-specs/d.lang.h:9
-#: ../gtksourceview/language-specs/eiffel.lang.h:10
+#: ../gtksourceview/language-specs/eiffel.lang.h:11
 #: ../gtksourceview/language-specs/nemerle.lang.h:9
 #: ../gtksourceview/language-specs/php.lang.h:11
 #: ../gtksourceview/language-specs/vala.lang.h:6
@@ -1395,6 +1411,7 @@ msgstr "Заглавни елементи"
 #: ../gtksourceview/language-specs/haddock.lang.h:14
 #: ../gtksourceview/language-specs/html.lang.h:7
 #: ../gtksourceview/language-specs/latex.lang.h:6
+#: ../gtksourceview/language-specs/mallard.lang.h:4
 #: ../gtksourceview/language-specs/t2t.lang.h:6
 #: ../gtksourceview/language-specs/texinfo.lang.h:8
 #: ../gtksourceview/language-specs/xml.lang.h:9
@@ -1473,16 +1490,16 @@ msgstr "Договор на програмата"
 msgid "Eiffel"
 msgstr "Eiffel"
 
-#: ../gtksourceview/language-specs/eiffel.lang.h:9
+#: ../gtksourceview/language-specs/eiffel.lang.h:10
 msgid "Exception Handling"
 msgstr "Обработка на изключения"
 
-#: ../gtksourceview/language-specs/eiffel.lang.h:12
+#: ../gtksourceview/language-specs/eiffel.lang.h:13
 #: ../gtksourceview/language-specs/ruby.lang.h:16
 msgid "Predefined Variable"
 msgstr "Предефинирана променлива"
 
-#: ../gtksourceview/language-specs/eiffel.lang.h:15
+#: ../gtksourceview/language-specs/eiffel.lang.h:16
 msgid "Void Value"
 msgstr "Стойност void"
 
@@ -1863,6 +1880,26 @@ msgstr "изискано"
 msgid "targets"
 msgstr "цели"
 
+#: ../gtksourceview/language-specs/mallard.lang.h:1
+msgid "Block Elements"
+msgstr "Блокови елементи"
+
+#: ../gtksourceview/language-specs/mallard.lang.h:2
+msgid "Inline Elements"
+msgstr "Вмъкнати елементи"
+
+#: ../gtksourceview/language-specs/mallard.lang.h:3
+msgid "Mallard"
+msgstr "Mallard"
+
+#: ../gtksourceview/language-specs/mallard.lang.h:5
+msgid "Page Elements"
+msgstr "Елементи към страницата"
+
+#: ../gtksourceview/language-specs/mallard.lang.h:6
+msgid "Section Elements"
+msgstr "Елементи към раздела"
+
 #: ../gtksourceview/language-specs/msil.lang.h:1
 msgid "MSIL"
 msgstr "MSIL"
@@ -2028,6 +2065,10 @@ msgstr "специален случай"
 #: ../gtksourceview/language-specs/po.lang.h:9
 msgid "gettext translation"
 msgstr "Превод на gettext"
+
+#: ../gtksourceview/language-specs/prolog.lang.h:6
+msgid "Prolog"
+msgstr "Prolog"
 
 #: ../gtksourceview/language-specs/python.lang.h:3
 msgid "Builtin Constant"
