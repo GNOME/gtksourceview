@@ -1,4 +1,4 @@
-# translation of gtksourceview-master-po-gl.po to Galician
+# translation of gtksourceview.master.po to Galician
 # This file is distributed under the same license as the PACKAGE package.
 # Copyright (C) 2006 THE PACKAGE'S COPYRIGHT HOLDER.
 #
@@ -9,10 +9,10 @@
 # Antón Méixome <meixome@mancomun.org>, 2009.
 msgid ""
 msgstr ""
-"Project-Id-Version: gtksourceview-master-po-gl\n"
+"Project-Id-Version: gtksourceview.master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-08-12 13:43+0200\n"
-"PO-Revision-Date: 2009-07-10 13:06+0200\n"
+"POT-Creation-Date: 2009-08-19 14:08+0200\n"
+"PO-Revision-Date: 2009-08-18 13:38+0200\n"
 "Last-Translator: Antón Méixome <meixome@mancomun.org>\n"
 "Language-Team: Galician <gnome@mancomun.org>\n"
 "MIME-Version: 1.0\n"
@@ -80,7 +80,7 @@ msgstr "Esquema de estilo"
 
 #: ../gtksourceview/gtksourcecontextengine.c:2608
 msgid "using \\C is not supported in language definitions"
-msgstr "non é compatíbel o uso de \\C nas definicións de linguaxe"
+msgstr "non é compatíbel o uso de \\C nas definicións da linguaxe"
 
 #. regex_new could fail, for instance if there are different
 #. * named sub-patterns with the same name or if resulting regex is
@@ -144,19 +144,19 @@ msgstr "Falta a definición principal de linguaxe (id = \"%s\".)"
 
 #: ../gtksourceview/gtksourcegutter.c:336
 msgid "View"
-msgstr ""
+msgstr "Ver"
 
 #: ../gtksourceview/gtksourcegutter.c:337
 msgid "The gutters' GtkSourceView"
-msgstr ""
+msgstr "As canles de GtkSourceView"
 
 #: ../gtksourceview/gtksourcegutter.c:349
 msgid "Window Type"
-msgstr ""
+msgstr "Tipo de xanela"
 
 #: ../gtksourceview/gtksourcegutter.c:350
 msgid "The gutters text window type"
-msgstr ""
+msgstr "O tipo de canles de texto de xanela "
 
 #: ../gtksourceview/gtksourcelanguage.c:42
 #: ../gtksourceview/language-specs/changelog.lang.h:8
@@ -206,15 +206,15 @@ msgstr "Indica se se lle debería ocultar a linguaxe ao usuario"
 
 #: ../gtksourceview/gtksourcelanguagemanager.c:134
 msgid "Language specification directories"
-msgstr "Directorios de especificación de linguaxes"
+msgstr "Cartafoles de especificación de linguaxe"
 
 #: ../gtksourceview/gtksourcelanguagemanager.c:135
 msgid ""
 "List of directories where the language specification files (.lang) are "
 "located"
 msgstr ""
-"Lista de directorios nos que se localizan os ficheiros de especificación de "
-"linguaxes (.lang)"
+"Lista de cartafoles nos que se localizan os ficheiros de especificación de "
+"linguaxe (.lang)"
 
 #: ../gtksourceview/gtksourcelanguagemanager.c:144
 msgid "Language ids"
@@ -476,7 +476,7 @@ msgstr "Camiño de busca do esquema do estilo"
 #: ../gtksourceview/gtksourcestyleschememanager.c:146
 msgid "List of directories and files where the style schemes are located"
 msgstr ""
-"Lista de directorios e ficheiros onde están localizados os esquemas de estilo"
+"Lista de cartafoles e ficheiros onde están localizados os esquemas de estilo"
 
 #: ../gtksourceview/gtksourcestyleschememanager.c:154
 msgid "Scheme ids"
@@ -581,7 +581,9 @@ msgstr "Estabelecer se e como se deben visualizar os espazos"
 
 #: ../gtksourceview/gtksourceview-i18n.c:38
 msgid "translator-credits"
-msgstr "Suso Baleato <suso.baleato@xunta.es>"
+msgstr ""
+"Suso Baleato <suso.baleato@xunta.es>, 2009;\n"
+"Antón Méixome <meixome@mancomun.org>, 2009."
 
 #: ../gtksourceview/language-specs/ada.lang.h:1
 msgid "Ada"
@@ -1348,7 +1350,9 @@ msgstr "Chave"
 
 #: ../gtksourceview/language-specs/desktop.lang.h:12
 msgid "Translation"
-msgstr "Suso Baleato <suso.baleato@xunta.es>"
+msgstr ""
+"Suso Baleato <suso.baleato@xunta.es>, 2009;\n"
+"Antón Méixome <meixome@mancomun.org>, 2009."
 
 #: ../gtksourceview/language-specs/diff.lang.h:1
 msgid "Added line"
@@ -1868,7 +1872,7 @@ msgstr "Tabulación ao final"
 
 #: ../gtksourceview/language-specs/makefile.lang.h:9
 msgid "command"
-msgstr "comando"
+msgstr "orde"
 
 #: ../gtksourceview/language-specs/makefile.lang.h:10
 msgid "function"
@@ -1889,28 +1893,24 @@ msgid "targets"
 msgstr "destinos"
 
 #: ../gtksourceview/language-specs/mallard.lang.h:1
-#, fuzzy
 msgid "Block Elements"
-msgstr "Elementos da GUI"
+msgstr "Elementos de bloque"
 
 #: ../gtksourceview/language-specs/mallard.lang.h:2
-#, fuzzy
 msgid "Inline Elements"
 msgstr "Elementos da GUI"
 
 #: ../gtksourceview/language-specs/mallard.lang.h:3
 msgid "Mallard"
-msgstr ""
+msgstr "Mallard"
 
 #: ../gtksourceview/language-specs/mallard.lang.h:5
-#, fuzzy
 msgid "Page Elements"
-msgstr "Elementos da cabeceira"
+msgstr "Elementos da páxina"
 
 #: ../gtksourceview/language-specs/mallard.lang.h:6
-#, fuzzy
 msgid "Section Elements"
-msgstr "Elementos de formatado"
+msgstr "Elementos de sección"
 
 #: ../gtksourceview/language-specs/msil.lang.h:1
 msgid "MSIL"
@@ -2144,7 +2144,7 @@ msgstr "Define"
 
 #: ../gtksourceview/language-specs/rpmspec.lang.h:5
 msgid "Directory Macro"
-msgstr "Macro de directorio"
+msgstr "Macro de cartafol"
 
 #: ../gtksourceview/language-specs/rpmspec.lang.h:6
 msgid "Email"
@@ -2210,7 +2210,7 @@ msgstr "Ordes comúns"
 
 #: ../gtksourceview/language-specs/sh.lang.h:10
 msgid "Subshell"
-msgstr "Subshell"
+msgstr "Subintérprete de ordes"
 
 #. FIXME: need to sort out proper styles for variables
 #: ../gtksourceview/language-specs/sh.lang.h:13
