@@ -251,14 +251,14 @@ static GRegexCompileFlags
 get_regex_flags (xmlNode             *node,
 		 GRegexCompileFlags flags)
 {
-	xmlAttr *attribute;
+	xmlAttr *attr;
 
-	for (attribute = node->properties; attribute != NULL; attribute = attribute->next)
+	for (attr = node->properties; attr != NULL; attr = attr->next)
 	{
-		g_return_val_if_fail (attribute->children != NULL, flags);
+		g_return_val_if_fail (attr->children != NULL, flags);
 
-		flags = update_regex_flags (flags, attribute->name,
-					    attribute->children->content);
+		flags = update_regex_flags (flags, attr->name,
+					    attr->children->content);
 	}
 
 	return flags;

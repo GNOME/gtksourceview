@@ -106,15 +106,15 @@ static GtkActionEntry buffer_action_entries[] = {
 };
 
 static GtkActionEntry view_action_entries[] = {
-	{ "FileMenu", NULL, "_File" },
+	{ "FileMenu", NULL, "_File", NULL, NULL, NULL },
 	{ "Print", GTK_STOCK_PRINT, "_Print", "<control>P",
 	  "Print the current file", G_CALLBACK (print_file_cb) },
-	{ "ViewMenu", NULL, "_View" },
+	{ "ViewMenu", NULL, "_View", NULL, NULL, NULL },
 	{ "NewView", GTK_STOCK_NEW, "_New View", NULL,
 	  "Create a new view of the file", G_CALLBACK (new_view_cb) },
-	{ "TabWidth", NULL, "_Tab Width" },
-	{ "IndentWidth", NULL, "I_ndent Width" },
-	{ "SmartHomeEnd", NULL, "_Smart Home/End" },
+	{ "TabWidth", NULL, "_Tab Width", NULL, NULL, NULL },
+	{ "IndentWidth", NULL, "I_ndent Width", NULL, NULL, NULL },
+	{ "SmartHomeEnd", NULL, "_Smart Home/End", NULL, NULL, NULL },
 	{ "Find", GTK_STOCK_FIND, "_Find", "<control>F",
 	  "Find", G_CALLBACK (find_cb) },
 	{ "Replace", GTK_STOCK_FIND_AND_REPLACE, "Search and _Replace", "<control>R",
@@ -1175,6 +1175,32 @@ mark_tooltip_func (GtkSourceMark *mark,
 		return g_strdup_printf ("<b>Line</b>: %d\n<i>Column</i>: %d", line, column);
 }
 
+static void
+add_source_mark_pixbufs (GtkSourceView *view)
+{
+	GdkColor color;
+
+	gdk_color_parse ("lightgreen", &color);
+	gtk_source_view_set_mark_category_background (view, MARK_TYPE_1, &color);
+	gtk_source_view_set_mark_category_icon_from_stock (view, MARK_TYPE_1, GTK_STOCK_YES);
+	gtk_source_view_set_mark_category_priority (view, MARK_TYPE_1, 1);
+	gtk_source_view_set_mark_category_tooltip_func (view,
+							MARK_TYPE_1,
+							mark_tooltip_func,
+							NULL,
+							NULL);
+
+	gdk_color_parse ("pink", &color);
+	gtk_source_view_set_mark_category_background (view, MARK_TYPE_2, &color);
+	gtk_source_view_set_mark_category_icon_from_stock (view, MARK_TYPE_2, GTK_STOCK_NO);
+	gtk_source_view_set_mark_category_priority (view, MARK_TYPE_2, 2);
+	gtk_source_view_set_mark_category_tooltip_markup_func (view,
+							       MARK_TYPE_2,
+							       mark_tooltip_func,
+							       NULL,
+							       NULL);
+}
+
 static GtkWidget *
 create_view_window (GtkSourceBuffer *buffer, GtkSourceView *from)
 {
@@ -1314,27 +1340,7 @@ create_view_window (GtkSourceBuffer *buffer, GtkSourceView *from)
 		g_free (tmp);
 	}
 
-	/* add source mark pixbufs */
-	GdkColor color;
-	gdk_color_parse ("lightgreen", &color);
-	gtk_source_view_set_mark_category_background (GTK_SOURCE_VIEW (view), MARK_TYPE_1, &color);
-	gtk_source_view_set_mark_category_icon_from_stock (GTK_SOURCE_VIEW (view), MARK_TYPE_1, GTK_STOCK_YES);
-	gtk_source_view_set_mark_category_priority (GTK_SOURCE_VIEW (view), MARK_TYPE_1, 1);
-	gtk_source_view_set_mark_category_tooltip_func (GTK_SOURCE_VIEW (view),
-							MARK_TYPE_1,
-							mark_tooltip_func,
-							NULL,
-							NULL);
-
-	gdk_color_parse ("pink", &color);
-	gtk_source_view_set_mark_category_background (GTK_SOURCE_VIEW (view), MARK_TYPE_2, &color);
-	gtk_source_view_set_mark_category_icon_from_stock (GTK_SOURCE_VIEW (view), MARK_TYPE_2, GTK_STOCK_NO);
-	gtk_source_view_set_mark_category_priority (GTK_SOURCE_VIEW (view), MARK_TYPE_2, 2);
-	gtk_source_view_set_mark_category_tooltip_markup_func (GTK_SOURCE_VIEW (view),
-							       MARK_TYPE_2,
-							       mark_tooltip_func,
-							       NULL,
-							       NULL);
+	add_source_mark_pixbufs (GTK_SOURCE_VIEW (view));
 
 	gtk_widget_show_all (vbox);
 

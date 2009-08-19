@@ -222,7 +222,7 @@ static void 	view_dnd_drop 				(GtkTextView       *view,
 							 gint               y,
 							 GtkSelectionData  *selection_data,
 							 guint              info,
-							 guint              time,
+							 guint              timestamp,
 							 gpointer           data);
 
 static gint	calculate_real_tab_width 		(GtkSourceView     *view,
@@ -869,7 +869,7 @@ get_mark_category_pixbuf (GtkSourceView *view,
 	switch (cat->icon_type)
 	{
 		case ICON_TYPE_NONE:
-		break;
+			break;
 		case ICON_TYPE_PIXBUF:
 			if (cat->icon_pixbuf == NULL)
 			{
@@ -888,19 +888,21 @@ get_mark_category_pixbuf (GtkSourceView *view,
 					                                    size,
 					                                    GDK_INTERP_BILINEAR);
 			}
-		break;
+			break;
 		case ICON_TYPE_STOCK:
 			cat->cached_icon = get_icon_from_stock (view,
 			                                        cat->icon_stock,
 			                                        size);
-		break;
+			break;
 		case ICON_TYPE_NAME:
 			cat->cached_icon = get_icon_from_name (view,
 			                                       cat->icon_name,
 			                                       size);
-		break;
+			break;
+		default:
+			g_return_val_if_reached (NULL);
 	}
-	
+
 	return cat->cached_icon;
 }
 
@@ -1035,8 +1037,9 @@ line_renderer_data_func (GtkSourceGutter *gutter,
                          gboolean         current_line,
                          GtkSourceView   *view)
 {
-	gchar *text;
 	int weight;
+	gchar *text;
+	GtkStyle *style;
 
 	if (current_line && gtk_text_view_get_cursor_visible (GTK_TEXT_VIEW (view)))
 	{
@@ -1058,9 +1061,8 @@ line_renderer_data_func (GtkSourceGutter *gutter,
 	              "mode", GTK_CELL_RENDERER_MODE_ACTIVATABLE,
 	              NULL);
 
-	GtkStyle *style = gtk_widget_get_style (GTK_WIDGET (view));
-
-	if (style)
+	style = gtk_widget_get_style (GTK_WIDGET (view));
+	if (style != NULL)
 	{
 		g_object_set (G_OBJECT (renderer),
 			      "foreground-gdk", &style->fg[GTK_STATE_NORMAL],
@@ -1886,10 +1888,10 @@ static void
 menu_item_activate_cb (GtkWidget   *menu_item,
 		       GtkTextView *text_view)
 {
-	const gchar *signal;
+	const gchar *gtksignal;
 
-	signal = g_object_get_data (G_OBJECT (menu_item), "gtk-signal");
-	g_signal_emit_by_name (G_OBJECT (text_view), signal);
+	gtksignal = g_object_get_data (G_OBJECT (menu_item), "gtk-signal");
+	g_signal_emit_by_name (G_OBJECT (text_view), gtksignal);
 }
 
 /* This function is taken from gtk+/tests/testtext.c */
@@ -3392,16 +3394,16 @@ compute_indentation (GtkSourceView *view,
 	return gtk_text_iter_get_slice (&start, &end);
 }
 
-static gint
+static guint
 get_real_indent_width (GtkSourceView *view)
 {
 	return view->priv->indent_width < 0 ?
 	       view->priv->tab_width :
-	       view->priv->indent_width;
+	       (guint) view->priv->indent_width;
 }
 
 static gchar *
-get_indent_string (gint tabs, gint spaces)
+get_indent_string (guint tabs, guint spaces)
 {
 	gchar *str;
 
@@ -3421,8 +3423,8 @@ indent_lines (GtkSourceView *view, GtkTextIter *start, GtkTextIter *end)
 	GtkTextBuffer *buf;
 	gint start_line, end_line;
 	gchar *tab_buffer = NULL;
-	gint tabs = 0;
-	gint spaces = 0;
+	guint tabs = 0;
+	guint spaces = 0;
 	gint i;
 
 	buf = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
@@ -3444,7 +3446,7 @@ indent_lines (GtkSourceView *view, GtkTextIter *start, GtkTextIter *end)
 	}
 	else if (view->priv->indent_width > 0)
 	{
-		gint indent_width;
+		guint indent_width;
 
 		indent_width = get_real_indent_width (view);
 		spaces = indent_width % view->priv->tab_width;
@@ -3464,7 +3466,7 @@ indent_lines (GtkSourceView *view, GtkTextIter *start, GtkTextIter *end)
 	{
 		GtkTextIter iter;
 		GtkTextIter iter2;
-		gint replaced_spaces = 0;
+		guint replaced_spaces = 0;
 
 		gtk_text_buffer_get_iter_at_line (buf, &iter, i);
 
@@ -3494,7 +3496,7 @@ indent_lines (GtkSourceView *view, GtkTextIter *start, GtkTextIter *end)
 		if (replaced_spaces > 0)
 		{
 			gchar *indent_buf;
-			gint t, s;
+			guint t, s;
 
 			t = tabs + (spaces + replaced_spaces) / view->priv->tab_width;
 			s = (spaces + replaced_spaces) % view->priv->tab_width;
@@ -4028,7 +4030,7 @@ view_dnd_drop (GtkTextView *view,
 	       gint y,
 	       GtkSelectionData *selection_data,
 	       guint info,
-	       guint time,
+	       guint timestamp,
 	       gpointer data)
 {
 
