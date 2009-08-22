@@ -162,6 +162,8 @@ EOFEOF
 
 cat > $dir/file.py <<EOFEOF
 import sys
+
+# A comment
 class Hello(object):
     def __init__(self):
         object.__init__(self)
@@ -172,6 +174,21 @@ class Hello(object):
 
 if __name__ == "__main__":
     Hello().hello()
+EOFEOF
+
+cat > $dir/file.rb << EOFEOF
+
+# A comment
+class Hello
+  attr_reader :name
+  def initialize(name)
+    @name = name
+  end
+  def say
+    puts "Hello #@name"
+  end
+end
+
 EOFEOF
 
 cat > $dir/file.xml <<EOFEOF
