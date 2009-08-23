@@ -22,6 +22,19 @@ DISTCLEANFILES = \
 	intltool-merge \
 	intltool-update
 
+MAINTAINERCLEANFILES = 		\
+	aclocal.m4		\
+	config.guess		\
+	config.h.in		\
+	config.sub		\
+	depcomp			\
+	gtk-doc.make		\
+	install-sh		\
+	ltmain.sh		\
+	missing			\
+	mkinstalldirs		\
+	`find "$(srcdir)" -type f -name Makefile.in -print`
+
 DISTCHECK_CONFIGURE_FLAGS = --enable-gtk-doc
 
 CHANGELOG_START = GTKSOURCEVIEW_2_6_1
