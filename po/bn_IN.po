@@ -12,10 +12,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bn_IN\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gtksourceview&component=general\n"
-"POT-Creation-Date: 2009-06-10 09:48+0000\n"
-"PO-Revision-Date: 2009-06-16 17:15+0530\n"
+"POT-Creation-Date: 2009-07-18 11:41+0000\n"
+"PO-Revision-Date: 2009-08-27 16:15+0530\n"
 "Last-Translator: Runa Bhattacharjee <runab@redhat.com>\n"
-"Language-Team: Bengali INDIA <discuss@lists.ankur.org.in>\n"
+"Language-Team: Bengali INDIA <anubad@lists.ankur.org.in>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -142,6 +142,22 @@ msgstr "অজানা কনটেক্সট '%s'"
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "ভাষার প্রধান ব্যাখ্যা অনুপস্থিত (id = \"%s\".)"
+
+#: ../gtksourceview/gtksourcegutter.c:336
+msgid "View"
+msgstr "প্রদর্শন"
+
+#: ../gtksourceview/gtksourcegutter.c:337
+msgid "The gutters' GtkSourceView"
+msgstr "gutters' GtkSourceView"
+
+#: ../gtksourceview/gtksourcegutter.c:349
+msgid "Window Type"
+msgstr "উইন্ডোর ধরন"
+
+#: ../gtksourceview/gtksourcegutter.c:350
+msgid "The gutters text window type"
+msgstr "gutters টেক্সটের উইন্ডোর ধরন"
 
 #: ../gtksourceview/gtksourcelanguage.c:42
 #: ../gtksourceview/language-specs/changelog.lang.h:8
@@ -688,6 +704,7 @@ msgstr "দশমিক সংখ্যা"
 #: ../gtksourceview/language-specs/ada.lang.h:7
 #: ../gtksourceview/language-specs/c.lang.h:9
 #: ../gtksourceview/language-specs/csharp.lang.h:8
+#: ../gtksourceview/language-specs/eiffel.lang.h:9
 #: ../gtksourceview/language-specs/haskell.lang.h:5
 #: ../gtksourceview/language-specs/java.lang.h:7
 #: ../gtksourceview/language-specs/lua.lang.h:3
@@ -712,7 +729,7 @@ msgstr "এস্কেপ ক্যারেক্টার"
 #: ../gtksourceview/language-specs/d.lang.h:10
 #: ../gtksourceview/language-specs/dosbatch.lang.h:4
 #: ../gtksourceview/language-specs/dot.lang.h:5
-#: ../gtksourceview/language-specs/eiffel.lang.h:11
+#: ../gtksourceview/language-specs/eiffel.lang.h:12
 #: ../gtksourceview/language-specs/erlang.lang.h:9
 #: ../gtksourceview/language-specs/forth.lang.h:7
 #: ../gtksourceview/language-specs/fortran.lang.h:7
@@ -777,7 +794,7 @@ msgstr "বাস্তব সংখ্যা"
 #: ../gtksourceview/language-specs/cpp.lang.h:5
 #: ../gtksourceview/language-specs/csharp.lang.h:14
 #: ../gtksourceview/language-specs/d.lang.h:13
-#: ../gtksourceview/language-specs/eiffel.lang.h:13
+#: ../gtksourceview/language-specs/eiffel.lang.h:14
 #: ../gtksourceview/language-specs/erlang.lang.h:11
 #: ../gtksourceview/language-specs/forth.lang.h:10
 #: ../gtksourceview/language-specs/fortran.lang.h:8
@@ -816,7 +833,7 @@ msgstr "স্টোরেজ ক্লাস"
 #: ../gtksourceview/language-specs/def.lang.h:57
 #: ../gtksourceview/language-specs/d.lang.h:15
 #: ../gtksourceview/language-specs/dosbatch.lang.h:6
-#: ../gtksourceview/language-specs/eiffel.lang.h:14
+#: ../gtksourceview/language-specs/eiffel.lang.h:15
 #: ../gtksourceview/language-specs/erlang.lang.h:12
 #: ../gtksourceview/language-specs/forth.lang.h:11
 #: ../gtksourceview/language-specs/gtkrc.lang.h:9
@@ -1097,7 +1114,7 @@ msgstr "ফ্লোটিং পয়েন্ট সংখ্যা"
 #: ../gtksourceview/language-specs/c.lang.h:11
 #: ../gtksourceview/language-specs/csharp.lang.h:9
 #: ../gtksourceview/language-specs/d.lang.h:9
-#: ../gtksourceview/language-specs/eiffel.lang.h:10
+#: ../gtksourceview/language-specs/eiffel.lang.h:11
 #: ../gtksourceview/language-specs/nemerle.lang.h:9
 #: ../gtksourceview/language-specs/php.lang.h:11
 #: ../gtksourceview/language-specs/vala.lang.h:6
@@ -1394,6 +1411,7 @@ msgstr "Header এলিমেন্ট"
 #: ../gtksourceview/language-specs/haddock.lang.h:14
 #: ../gtksourceview/language-specs/html.lang.h:7
 #: ../gtksourceview/language-specs/latex.lang.h:6
+#: ../gtksourceview/language-specs/mallard.lang.h:4
 #: ../gtksourceview/language-specs/t2t.lang.h:6
 #: ../gtksourceview/language-specs/texinfo.lang.h:8
 #: ../gtksourceview/language-specs/xml.lang.h:9
@@ -1466,22 +1484,22 @@ msgstr "ডিবাগ"
 
 #: ../gtksourceview/language-specs/eiffel.lang.h:7
 msgid "Design by Contract"
-msgstr ""
+msgstr "কন্ট্র্যাক্ট দ্বারা নির্মিত বিন্যাস"
 
 #: ../gtksourceview/language-specs/eiffel.lang.h:8
 msgid "Eiffel"
 msgstr "Eiffel"
 
-#: ../gtksourceview/language-specs/eiffel.lang.h:9
+#: ../gtksourceview/language-specs/eiffel.lang.h:10
 msgid "Exception Handling"
 msgstr "এক্সেপশন ব্যবস্থাপনা"
 
-#: ../gtksourceview/language-specs/eiffel.lang.h:12
+#: ../gtksourceview/language-specs/eiffel.lang.h:13
 #: ../gtksourceview/language-specs/ruby.lang.h:16
 msgid "Predefined Variable"
 msgstr "পূর্বনির্ধারিত ভেরিয়েবল"
 
-#: ../gtksourceview/language-specs/eiffel.lang.h:15
+#: ../gtksourceview/language-specs/eiffel.lang.h:16
 msgid "Void Value"
 msgstr "খারিজ করা মান"
 
@@ -1862,6 +1880,30 @@ msgstr "prereq"
 #: ../gtksourceview/language-specs/makefile.lang.h:13
 msgid "targets"
 msgstr "টার্গেট"
+
+#: ../gtksourceview/language-specs/mallard.lang.h:1
+#| msgid "GUI Elements"
+msgid "Block Elements"
+msgstr "Block এলিমেন্ট"
+
+#: ../gtksourceview/language-specs/mallard.lang.h:2
+#| msgid "GUI Elements"
+msgid "Inline Elements"
+msgstr "Inline এলিমেন্ট"
+
+#: ../gtksourceview/language-specs/mallard.lang.h:3
+msgid "Mallard"
+msgstr "Mallard"
+
+#: ../gtksourceview/language-specs/mallard.lang.h:5
+#| msgid "Header Elements"
+msgid "Page Elements"
+msgstr "Page এলিমেন্ট"
+
+#: ../gtksourceview/language-specs/mallard.lang.h:6
+#| msgid "Formatting Elements"
+msgid "Section Elements"
+msgstr "Section এলিমেন্ট"
 
 #: ../gtksourceview/language-specs/msil.lang.h:1
 msgid "MSIL"
