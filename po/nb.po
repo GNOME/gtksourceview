@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview 2.5.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-06-10 11:44+0200\n"
-"PO-Revision-Date: 2009-06-10 11:47+0200\n"
+"POT-Creation-Date: 2009-09-01 13:53+0200\n"
+"PO-Revision-Date: 2009-09-01 13:57+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian Bokmål <i18n-nb@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
@@ -129,6 +129,22 @@ msgstr ""
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "Mangler hovedspråkdefinisjon (id = «%s».)"
+
+#: ../gtksourceview/gtksourcegutter.c:336
+msgid "View"
+msgstr "Vis"
+
+#: ../gtksourceview/gtksourcegutter.c:337
+msgid "The gutters' GtkSourceView"
+msgstr ""
+
+#: ../gtksourceview/gtksourcegutter.c:349
+msgid "Window Type"
+msgstr "Vindustype"
+
+#: ../gtksourceview/gtksourcegutter.c:350
+msgid "The gutters text window type"
+msgstr ""
 
 #: ../gtksourceview/gtksourcelanguage.c:42
 #: ../gtksourceview/language-specs/changelog.lang.h:8
@@ -668,6 +684,7 @@ msgstr "Desimaltall"
 #: ../gtksourceview/language-specs/ada.lang.h:7
 #: ../gtksourceview/language-specs/c.lang.h:9
 #: ../gtksourceview/language-specs/csharp.lang.h:8
+#: ../gtksourceview/language-specs/eiffel.lang.h:9
 #: ../gtksourceview/language-specs/haskell.lang.h:5
 #: ../gtksourceview/language-specs/java.lang.h:7
 #: ../gtksourceview/language-specs/lua.lang.h:3
@@ -692,7 +709,7 @@ msgstr "Escaped-tegn"
 #: ../gtksourceview/language-specs/d.lang.h:10
 #: ../gtksourceview/language-specs/dosbatch.lang.h:4
 #: ../gtksourceview/language-specs/dot.lang.h:5
-#: ../gtksourceview/language-specs/eiffel.lang.h:11
+#: ../gtksourceview/language-specs/eiffel.lang.h:12
 #: ../gtksourceview/language-specs/erlang.lang.h:9
 #: ../gtksourceview/language-specs/forth.lang.h:7
 #: ../gtksourceview/language-specs/fortran.lang.h:7
@@ -757,7 +774,7 @@ msgstr "Reelt tall"
 #: ../gtksourceview/language-specs/cpp.lang.h:5
 #: ../gtksourceview/language-specs/csharp.lang.h:14
 #: ../gtksourceview/language-specs/d.lang.h:13
-#: ../gtksourceview/language-specs/eiffel.lang.h:13
+#: ../gtksourceview/language-specs/eiffel.lang.h:14
 #: ../gtksourceview/language-specs/erlang.lang.h:11
 #: ../gtksourceview/language-specs/forth.lang.h:10
 #: ../gtksourceview/language-specs/fortran.lang.h:8
@@ -796,7 +813,7 @@ msgstr "Lagringsklasse"
 #: ../gtksourceview/language-specs/def.lang.h:57
 #: ../gtksourceview/language-specs/d.lang.h:15
 #: ../gtksourceview/language-specs/dosbatch.lang.h:6
-#: ../gtksourceview/language-specs/eiffel.lang.h:14
+#: ../gtksourceview/language-specs/eiffel.lang.h:15
 #: ../gtksourceview/language-specs/erlang.lang.h:12
 #: ../gtksourceview/language-specs/forth.lang.h:11
 #: ../gtksourceview/language-specs/gtkrc.lang.h:9
@@ -1077,7 +1094,7 @@ msgstr "Flyttall"
 #: ../gtksourceview/language-specs/c.lang.h:11
 #: ../gtksourceview/language-specs/csharp.lang.h:9
 #: ../gtksourceview/language-specs/d.lang.h:9
-#: ../gtksourceview/language-specs/eiffel.lang.h:10
+#: ../gtksourceview/language-specs/eiffel.lang.h:11
 #: ../gtksourceview/language-specs/nemerle.lang.h:9
 #: ../gtksourceview/language-specs/php.lang.h:11
 #: ../gtksourceview/language-specs/vala.lang.h:6
@@ -1133,9 +1150,8 @@ msgid "Control Keyword"
 msgstr "Kontrollnøkkelord"
 
 #: ../gtksourceview/language-specs/cobalt.xml.h:1
-#, fuzzy
 msgid "Blue based color scheme"
-msgstr "Klassisk fargeschema"
+msgstr "Fargeschema basert på blå"
 
 #: ../gtksourceview/language-specs/cobalt.xml.h:2
 msgid "Cobalt"
@@ -1375,6 +1391,7 @@ msgstr "Header-elementer"
 #: ../gtksourceview/language-specs/haddock.lang.h:14
 #: ../gtksourceview/language-specs/html.lang.h:7
 #: ../gtksourceview/language-specs/latex.lang.h:6
+#: ../gtksourceview/language-specs/mallard.lang.h:4
 #: ../gtksourceview/language-specs/t2t.lang.h:6
 #: ../gtksourceview/language-specs/texinfo.lang.h:8
 #: ../gtksourceview/language-specs/xml.lang.h:9
@@ -1453,16 +1470,16 @@ msgstr ""
 msgid "Eiffel"
 msgstr "Eiffel"
 
-#: ../gtksourceview/language-specs/eiffel.lang.h:9
+#: ../gtksourceview/language-specs/eiffel.lang.h:10
 msgid "Exception Handling"
 msgstr "Unntakshåndtering"
 
-#: ../gtksourceview/language-specs/eiffel.lang.h:12
+#: ../gtksourceview/language-specs/eiffel.lang.h:13
 #: ../gtksourceview/language-specs/ruby.lang.h:16
 msgid "Predefined Variable"
 msgstr "Forhåndsdefinert variabel"
 
-#: ../gtksourceview/language-specs/eiffel.lang.h:15
+#: ../gtksourceview/language-specs/eiffel.lang.h:16
 msgid "Void Value"
 msgstr "Void verdi"
 
@@ -1843,6 +1860,26 @@ msgstr ""
 msgid "targets"
 msgstr "mål"
 
+#: ../gtksourceview/language-specs/mallard.lang.h:1
+msgid "Block Elements"
+msgstr "Blokk-elementer"
+
+#: ../gtksourceview/language-specs/mallard.lang.h:2
+msgid "Inline Elements"
+msgstr "Innebygde elementer"
+
+#: ../gtksourceview/language-specs/mallard.lang.h:3
+msgid "Mallard"
+msgstr "Mallard"
+
+#: ../gtksourceview/language-specs/mallard.lang.h:5
+msgid "Page Elements"
+msgstr "Sideelementer"
+
+#: ../gtksourceview/language-specs/mallard.lang.h:6
+msgid "Section Elements"
+msgstr "Seksjonselementer"
+
 #: ../gtksourceview/language-specs/msil.lang.h:1
 msgid "MSIL"
 msgstr "MSIL"
@@ -1904,18 +1941,16 @@ msgid "Type, module or object keyword"
 msgstr "Nøkkelord for type, modul eller objekt"
 
 #: ../gtksourceview/language-specs/ocaml.lang.h:20
-#, fuzzy
 msgid "Variant Constructor"
-msgstr "Konstruktører"
+msgstr "Variant-konstruktører"
 
 #: ../gtksourceview/language-specs/ocl.lang.h:4
 msgid "OCL"
 msgstr "OCL"
 
 #: ../gtksourceview/language-specs/ocl.lang.h:5
-#, fuzzy
 msgid "Operation operator"
-msgstr "Matematiske operatorer"
+msgstr "Operasjonsoperator"
 
 #: ../gtksourceview/language-specs/ocl.lang.h:8
 msgid "Type Operators"
@@ -1956,11 +1991,11 @@ msgstr "Heredoc-grense"
 
 #: ../gtksourceview/language-specs/perl.lang.h:8
 msgid "Include Statement"
-msgstr ""
+msgstr "Include-uttrykk"
 
 #: ../gtksourceview/language-specs/perl.lang.h:10
 msgid "Line Directive"
-msgstr ""
+msgstr "Linjedirektiv"
 
 #: ../gtksourceview/language-specs/perl.lang.h:12
 msgid "POD"
@@ -1968,11 +2003,11 @@ msgstr "POD"
 
 #: ../gtksourceview/language-specs/perl.lang.h:13
 msgid "POD Escape"
-msgstr ""
+msgstr "POD escape"
 
 #: ../gtksourceview/language-specs/perl.lang.h:14
 msgid "POD heading"
-msgstr ""
+msgstr "POD-hode"
 
 #: ../gtksourceview/language-specs/perl.lang.h:15
 msgid "POD keyword"
@@ -2000,7 +2035,7 @@ msgstr "pkg-config"
 
 #: ../gtksourceview/language-specs/po.lang.h:2
 msgid "Fuzzy"
-msgstr ""
+msgstr "Uklar"
 
 #. FIXME make it some nice name and mark it translatable
 #: ../gtksourceview/language-specs/po.lang.h:7
@@ -2192,11 +2227,11 @@ msgstr "Del 5"
 
 #: ../gtksourceview/language-specs/t2t.lang.h:15
 msgid "Text2Tags"
-msgstr ""
+msgstr "Tekst-til-tagger"
 
 #: ../gtksourceview/language-specs/t2t.lang.h:17
 msgid "Verbatim Block"
-msgstr ""
+msgstr "Bokstavlig blokk"
 
 #: ../gtksourceview/language-specs/tango.xml.h:1
 msgid "Color scheme using Tango color palette"
@@ -2292,4 +2327,4 @@ msgstr "regel"
 
 #: ../gtksourceview/language-specs/yacc.lang.h:6
 msgid "token-type"
-msgstr ""
+msgstr "type tegn"
