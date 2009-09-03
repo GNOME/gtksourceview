@@ -12,6 +12,7 @@ LANGUAGES =			\
 	cpp.lang		\
 	csharp.lang		\
 	css.lang		\
+	cuda.lang		\
 	def.lang		\
 	desktop.lang		\
 	diff.lang		\
