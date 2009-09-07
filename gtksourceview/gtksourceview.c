@@ -2676,8 +2676,6 @@ gtk_source_view_set_show_line_numbers (GtkSourceView *view,
 		return;
 	}
 
-	gutter = gtk_source_view_get_gutter (view, GTK_TEXT_WINDOW_LEFT);
-
 	if (show)
 	{
 		gtk_cell_renderer_set_fixed_size (view->priv->line_renderer, -1, -1);
@@ -2688,6 +2686,8 @@ gtk_source_view_set_show_line_numbers (GtkSourceView *view,
 	}
 
 	view->priv->show_line_numbers = show;
+
+	gutter = gtk_source_view_get_gutter (view, GTK_TEXT_WINDOW_LEFT);
 	gtk_source_gutter_queue_draw (gutter);
 
 	g_object_notify (G_OBJECT (view), "show_line_numbers");
@@ -2729,14 +2729,12 @@ gtk_source_view_set_show_line_marks (GtkSourceView *view,
 	g_return_if_fail (GTK_IS_SOURCE_VIEW (view));
 
 	show = (show != FALSE);
-	gutter = gtk_source_view_get_gutter (view, GTK_TEXT_WINDOW_LEFT);
 
 	if (show == view->priv->show_line_marks)
 	{
 		return;
 	}
 
-	gutter = gtk_source_view_get_gutter (view, GTK_TEXT_WINDOW_LEFT);
 
 	if (show)
 	{
@@ -2748,6 +2746,8 @@ gtk_source_view_set_show_line_marks (GtkSourceView *view,
 	}
 
 	view->priv->show_line_marks = show;
+
+	gutter = gtk_source_view_get_gutter (view, GTK_TEXT_WINDOW_LEFT);
 	gtk_source_gutter_queue_draw (gutter);
 
 	g_object_notify (G_OBJECT (view), "show_line_marks");
