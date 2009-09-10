@@ -27,6 +27,7 @@ LANGUAGES =			\
 	forth.lang		\
 	fortran.lang		\
 	gap.lang		\
+	glsl.lang		\
 	gtk-doc.lang		\
 	gtkrc.lang		\
 	haddock.lang		\
