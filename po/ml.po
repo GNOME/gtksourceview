@@ -1,3 +1,4 @@
+# translation of gtksourceview.master.ml.po to
 # translation of gtksourceview.HEAD.ml.po to
 # This file is distributed under the same license as the PACKAGE package.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER.
@@ -6,10 +7,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gtksourceview.HEAD.ml\n"
+"Project-Id-Version: gtksourceview.master.ml\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gtksourceview&component=general\n"
-"POT-Creation-Date: 2009-02-14 11:52+0000\n"
-"PO-Revision-Date: 2009-03-13 21:19+0530\n"
+"POT-Creation-Date: 2009-07-18 11:41+0000\n"
+"PO-Revision-Date: 2009-09-12 23:02+0530\n"
 "Last-Translator: \n"
 "Language-Team:  <en@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -30,19 +31,19 @@ msgstr "ബഫറില്‍ സിന്റാക്സ് എടുത്ത�
 
 #: ../gtksourceview/gtksourcebuffer.c:194
 msgid "Highlight Matching Brackets"
-msgstr ""
+msgstr "ചേരുന്ന ബ്രാക്കറ്റുകള്‍ എടുത്തു് കാണിക്കുക"
 
 #: ../gtksourceview/gtksourcebuffer.c:195
 msgid "Whether to highlight matching brackets"
-msgstr ""
+msgstr "ചേരുന്ന ബ്രാക്കറ്റുകള്‍ എടുത്തു് കാണിക്കണമോ എന്നു്"
 
 #: ../gtksourceview/gtksourcebuffer.c:207
 msgid "Maximum Undo Levels"
-msgstr ""
+msgstr "ഏറ്റവും കൂടിയ അണ്‍ഡു ലവലുകള്‍"
 
 #: ../gtksourceview/gtksourcebuffer.c:208
 msgid "Number of undo levels for the buffer"
-msgstr ""
+msgstr "ബഫറിനുള്ള അണ്‍ഡു ലവലുകളുടെ എണ്ണം"
 
 #. Translators: throughout gtksourceview "language" stands
 #. * for "programming language", not "spoken language"
@@ -52,7 +53,7 @@ msgstr "ഭാഷ"
 
 #: ../gtksourceview/gtksourcebuffer.c:221
 msgid "Language object to get highlighting patterns from"
-msgstr ""
+msgstr "എടുത്തുകാണിക്കേണ്ട ശൈലികള്‍ ലഭ്യമാക്കേണ്ട ലാങ്വേജ് ഒബ്ജക്ട്"
 
 #: ../gtksourceview/gtksourcebuffer.c:229
 msgid "Can undo"
@@ -76,9 +77,8 @@ msgid "Style scheme"
 msgstr "സ്റ്റൈല്‍ സ്കീം"
 
 #: ../gtksourceview/gtksourcecontextengine.c:2608
-#, c-format
 msgid "using \\C is not supported in language definitions"
-msgstr ""
+msgstr "ലാങ്വേജ് ഡെഫനിഷനുകളില്‍ \\C ഉപയോഗം പിന്തുണയ്ക്കുന്നില്ല"
 
 #. regex_new could fail, for instance if there are different
 #. * named sub-patterns with the same name or if resulting regex is
@@ -91,17 +91,22 @@ msgid ""
 "process will be slower than usual.\n"
 "The error was: %s"
 msgstr ""
+"എല്ലാ മാറ്റങ്ങള്‍ക്കും regex ഉണ്ടാക്കുവാന്‍ സാധ്യമല്ല, സിന്റാക്സ് എടുത്തുകാണിക്കല്‍ "
+"പ്രക്രിയ സാധാരണയേക്കാള്‍ പതിയെയാകുന്നു.\n"
+"പിശക്: %s"
 
 #: ../gtksourceview/gtksourcecontextengine.c:4547
 msgid ""
 "Highlighting a single line took too much time, syntax highlighting will be "
 "disabled"
 msgstr ""
+"ഒരൊറ്റ വരി എടുത്തുകാണിക്കുവാന്‍ ഒരുപാടു് സമയമെടുത്തു, സിന്റാക്സ് എടുത്തുകാണിക്കല്‍ "
+"പ്രവര്‍ത്തന രഹിതമാക്കുന്നു"
 
 #: ../gtksourceview/gtksourcecontextengine.c:5757
 #, c-format
 msgid "context '%s' cannot contain a \\%%{...@start} command"
-msgstr ""
+msgstr "കോണ്‍ടെക്സ്റ്റ് '%s'-ല്‍ ഒരു \\%%{...@start} കമാന്‍ഡ് ഉണ്ടാകുവാന്‍ പാടില്ല"
 
 #: ../gtksourceview/gtksourcecontextengine.c:5909
 #: ../gtksourceview/gtksourcecontextengine.c:5996
@@ -116,11 +121,13 @@ msgid ""
 "style override used with wildcard context reference in language '%s' in ref "
 "'%s'"
 msgstr ""
+"ലാങ്വേജ് '%s'-ലുള്ള ('%s' റിഫറന്‍സിലുള്ള) വൈള്‍ഡ്കാര്‍ഡ് കോണ്‍ടെക്സ്റ്റിനൊപ്പം ശൈലി "
+"തിരുത്തിയെഴുത്തു് ഉപയോഗിച്ചു"
 
 #: ../gtksourceview/gtksourcecontextengine.c:6183
 #, c-format
 msgid "invalid context reference '%s'"
-msgstr ""
+msgstr "തെറ്റായ കോണ്‍ടെക്സ്റ്റ് റിഫറന്‍സ് '%s'"
 
 #: ../gtksourceview/gtksourcecontextengine.c:6202
 #: ../gtksourceview/gtksourcecontextengine.c:6212
@@ -131,7 +138,23 @@ msgstr "അപരിചിതമായ കോണ്ടെക്സ്റ്റ�
 #: ../gtksourceview/gtksourcecontextengine.c:6312
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
-msgstr ""
+msgstr "മെയിന്‍ ലാങ്വേജ് ഡെഫനിഷന്‍ ലഭ്യമല്ല (id = \"%s\".)"
+
+#: ../gtksourceview/gtksourcegutter.c:336
+msgid "View"
+msgstr "കാഴ്ച"
+
+#: ../gtksourceview/gtksourcegutter.c:337
+msgid "The gutters' GtkSourceView"
+msgstr "ഗട്ടേഴ്സിന്റെ ജിടികെസോഴ്സ് വ്യൂ"
+
+#: ../gtksourceview/gtksourcegutter.c:349
+msgid "Window Type"
+msgstr "ഏതു് തരം ജാലകം"
+
+#: ../gtksourceview/gtksourcegutter.c:350
+msgid "The gutters text window type"
+msgstr "ഗട്ടേഴ്സ് പദാവലി ജാലകതരം"
 
 #: ../gtksourceview/gtksourcelanguage.c:42
 #: ../gtksourceview/language-specs/changelog.lang.h:8
@@ -158,19 +181,16 @@ msgstr "മറ്റുള്ളവ"
 
 #: ../gtksourceview/gtksourcelanguage.c:215
 #: ../gtksourceview/gtksourcelanguage.c:216
-#| msgid "Language"
 msgid "Language id"
 msgstr "ഭാഷയുടെ id"
 
 #: ../gtksourceview/gtksourcelanguage.c:223
 #: ../gtksourceview/gtksourcelanguage.c:224
-#| msgid "Language"
 msgid "Language name"
 msgstr "ഭാഷയുടെ പേരു്"
 
 #: ../gtksourceview/gtksourcelanguage.c:231
 #: ../gtksourceview/gtksourcelanguage.c:232
-#| msgid "Language"
 msgid "Language section"
 msgstr "ഭാഷയ്ക്കുള്ള വിഭാഗം"
 
@@ -180,7 +200,7 @@ msgstr "അദൃശ്യമായവ"
 
 #: ../gtksourceview/gtksourcelanguage.c:240
 msgid "Whether the language should be hidden from the user"
-msgstr ""
+msgstr "ഉപയോക്താവില്‍ നിന്നും ലാങ്വേജ് മറയ്ക്കണമോ എന്നു്"
 
 #: ../gtksourceview/gtksourcelanguagemanager.c:134
 msgid "Language specification directories"
@@ -193,7 +213,6 @@ msgid ""
 msgstr "ഭാഷ വിവരണ ഫയലുകള്‍ (.lang) അടങ്ങിയിരിക്കുന്ന ഡയറക്ടറികള്‍"
 
 #: ../gtksourceview/gtksourcelanguagemanager.c:144
-#| msgid "Language"
 msgid "Language ids"
 msgstr "ഭാഷകളുടെ id"
 
@@ -204,20 +223,20 @@ msgstr "ലഭ്യമായ ഭാഷകളുടെ id പട്ടിക"
 #: ../gtksourceview/gtksourcelanguage-parser-2.c:879
 #, c-format
 msgid "Unknown id '%s' in regex '%s'"
-msgstr ""
+msgstr "അപരിചിതമായ id '%s'regex '%s'-ല്‍"
 
 #: ../gtksourceview/gtksourcelanguage-parser-2.c:1107
 #, c-format
 msgid "in regex '%s': backreferences are not supported"
-msgstr ""
+msgstr "regex '%s'-ല്‍: ബാക്ക് റിഫറന്‍സുകള്‍ പിന്തുണയ്ക്കുന്നില്ല"
 
-#: ../gtksourceview/gtksourcemark.c:119
+#: ../gtksourceview/gtksourcemark.c:121
 msgid "category"
 msgstr "വിഭാഗം"
 
-#: ../gtksourceview/gtksourcemark.c:120
+#: ../gtksourceview/gtksourcemark.c:122
 msgid "The mark category"
-msgstr ""
+msgstr "മാര്‍ക് വിഭാഗം"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:411
 msgid "Source Buffer"
@@ -228,14 +247,14 @@ msgid "The GtkSourceBuffer object to print"
 msgstr "പ്രിന്റ് ചെയ്യുവാനുള്ള GtkSourceBuffer ഒബ്ജക്ട്"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:429
-#: ../gtksourceview/gtksourceview.c:290
+#: ../gtksourceview/gtksourceview.c:319
 msgid "Tab Width"
-msgstr ""
+msgstr "ടാബ് വീതി"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:430
-#: ../gtksourceview/gtksourceview.c:291
+#: ../gtksourceview/gtksourceview.c:320
 msgid "Width of a tab character expressed in spaces"
-msgstr ""
+msgstr "ഒരു ടാബ് അക്ഷരത്തിന്റെ വീതി സ്പെയിസുകളില്‍"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:450
 msgid "Wrap Mode"
@@ -243,11 +262,11 @@ msgstr "നിരത്തല്‌ രീതി"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:451
 msgid "Whether to wrap lines never, at word boundaries, or at character boundaries."
-msgstr ""
+msgstr "വാക്കുകളുടെ അല്ലെങ്കില്‍ അക്ഷരങ്ങളുടെ അതിരില്‍ വരികള്‍ ഒരിക്കലും റാപ്പ് ചെയ്യണമോ എന്നു്"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:472
 msgid "Whether to print the document with highlighted syntax"
-msgstr ""
+msgstr "എടുത്തുകാണിക്കുന്ന സിന്റാക്സ് ഉപയോഗിച്ചു് വിവരണക്കുറിപ്പു് പ്രിന്റ് ചെയ്യണമോ എന്നു്"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:493
 msgid "Print Line Numbers"
@@ -255,7 +274,7 @@ msgstr "വരി എണ്ണം അച്ചടിക്കു"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:494
 msgid "Interval of printed line numbers (0 means no numbers)"
-msgstr ""
+msgstr "പ്രിന്റ് ചെയ്ത വരി നംബറുകളുടെ ഇടവേള (0 - നംബറുകളില്ല)"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:516
 msgid "Print Header"
@@ -282,7 +301,6 @@ msgid "Name of the font to use for the text body (e.g. \"Monospace 10\")"
 msgstr "വാചകത്തിനുപയോഗിക്കുന്ന അക്ഷരസഞ്ചയം (ഉദാ. \"Monospace 10\" )"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:586
-#| msgid "Print Line Numbers"
 msgid "Line Numbers Font Name"
 msgstr "വരികളുടെ നമ്പറിനുപയോഗിക്കുന്ന അക്ഷരസഞ്ചയം"
 
@@ -314,15 +332,15 @@ msgstr "താളുകളുടെ എണ്ണം"
 msgid ""
 "The number of pages in the document (-1 means the document has not been "
 "completely paginated)."
-msgstr ""
+msgstr "വിവരണത്തിലുള്ള താളുകളുടെ എണ്ണം (-1 - വിവരണത്തില്‍ പൂര്‍ണ്ണമായി നംബര്‍ ചെയ്തിട്ടില്ല)"
 
 #: ../gtksourceview/gtksourcestyle.c:70
 msgid "Line background"
-msgstr ""
+msgstr "വരിയുടെ പശ്ചാത്തലം"
 
 #: ../gtksourceview/gtksourcestyle.c:71
 msgid "Line background color"
-msgstr ""
+msgstr "വരിയുടെ പശ്ചാത്തലത്തിന്റെ നിറം"
 
 #: ../gtksourceview/gtksourcestyle.c:78
 msgid "Background"
@@ -334,11 +352,11 @@ msgstr "പശ്ചാത്തല നിറം"
 
 #: ../gtksourceview/gtksourcestyle.c:86
 msgid "Foreground"
-msgstr ""
+msgstr "മുന്‍ഭാഗം"
 
 #: ../gtksourceview/gtksourcestyle.c:87
 msgid "Foreground color"
-msgstr ""
+msgstr "മുന്‍ഭാഗത്തിനുള്ള നിറം"
 
 #: ../gtksourceview/gtksourcestyle.c:94 ../gtksourceview/gtksourcestyle.c:95
 #: ../gtksourceview/language-specs/t2t.lang.h:2
@@ -360,19 +378,19 @@ msgstr "ഇടയിലൂടെ വരയിടുക"
 
 #: ../gtksourceview/gtksourcestyle.c:126
 msgid "Line background set"
-msgstr ""
+msgstr "വരി പശ്ചാത്തലം സജ്ജം"
 
 #: ../gtksourceview/gtksourcestyle.c:127
 msgid "Whether line background color is set"
-msgstr ""
+msgstr "വരി പശ്ചാത്തലത്തിനുള്ള നിറം സജ്ജമാണോ എന്നു്"
 
 #: ../gtksourceview/gtksourcestyle.c:134
 msgid "Foreground set"
-msgstr ""
+msgstr "മുന്‍ഭാഗം സജ്ജം"
 
 #: ../gtksourceview/gtksourcestyle.c:135
 msgid "Whether foreground color is set"
-msgstr ""
+msgstr "മുന്‍ഭാഗത്തിനുള്ള നിറം സജ്ജമാണോ എന്നു്"
 
 #: ../gtksourceview/gtksourcestyle.c:142
 msgid "Background set"
@@ -408,11 +426,11 @@ msgstr "അടിവരയിടുവാനുള്ള വിശേഷത സ�
 
 #: ../gtksourceview/gtksourcestyle.c:174
 msgid "Strikethrough set"
-msgstr ""
+msgstr "ഇടയിലൂടെ വരയിടുന്നതു് സജ്ജം"
 
 #: ../gtksourceview/gtksourcestyle.c:175
 msgid "Whether strikethrough attribute is set"
-msgstr ""
+msgstr "ഇടയിലൂടെവരിയിടുന്ന വിശേഷത സജ്ജമാണോ എന്നു്"
 
 #: ../gtksourceview/gtksourcestylescheme.c:170
 #: ../gtksourceview/gtksourcestylescheme.c:171
@@ -450,95 +468,97 @@ msgstr "സ്കീം id"
 msgid "List of the ids of the available style schemes"
 msgstr "ലഭ്യമായ സ്റ്റൈല്‍ സ്കീമുകളുടെ id ലഭ്യമാക്കുക"
 
-#: ../gtksourceview/gtksourceview.c:265
+#: ../gtksourceview/gtksourceview.c:294
 msgid "Show Line Numbers"
 msgstr "വരിയ്ക്കുള്ള നമ്പറുകള്‍ കാണിക്കുക"
 
-#: ../gtksourceview/gtksourceview.c:266
+#: ../gtksourceview/gtksourceview.c:295
 msgid "Whether to display line numbers"
 msgstr "വരിയ്ക്കു് നമ്പര്‍ കാണിക്കണമോ എന്നു്"
 
-#: ../gtksourceview/gtksourceview.c:277
-msgid "Show Line Marks"
-msgstr ""
-
-#: ../gtksourceview/gtksourceview.c:278
-msgid "Whether to display line mark pixbufs"
-msgstr ""
-
-#: ../gtksourceview/gtksourceview.c:305
-msgid "Indent Width"
-msgstr ""
-
 #: ../gtksourceview/gtksourceview.c:306
-msgid "Number of spaces to use for each step of indent"
-msgstr ""
+msgid "Show Line Marks"
+msgstr "വരി അടയാളങ്ങള്‍ കാണിക്കുക"
 
-#: ../gtksourceview/gtksourceview.c:315
+#: ../gtksourceview/gtksourceview.c:307
+msgid "Whether to display line mark pixbufs"
+msgstr "വരി അടയാള pixbufs കാണിക്കണമോ എന്നു്"
+
+#: ../gtksourceview/gtksourceview.c:334
+msgid "Indent Width"
+msgstr "ഇന്‍ഡന്റ് വീതി"
+
+#: ../gtksourceview/gtksourceview.c:335
+msgid "Number of spaces to use for each step of indent"
+msgstr "ഓരോ ഇന്റഡിനും ഉപയോഗിക്കുവാനുള്ള സ്പെയിസുകളുടെ എണ്ണം"
+
+#: ../gtksourceview/gtksourceview.c:344
 msgid "Auto Indentation"
 msgstr "ഓട്ടോ ഇന്റന്റേഷന്‍"
 
-#: ../gtksourceview/gtksourceview.c:316
+#: ../gtksourceview/gtksourceview.c:345
 msgid "Whether to enable auto indentation"
 msgstr "ഓട്ടോ ഇന്റന്റേഷന്‍ സജ്ജമാക്കണമോ എന്നു്"
 
-#: ../gtksourceview/gtksourceview.c:323
+#: ../gtksourceview/gtksourceview.c:352
 msgid "Insert Spaces Instead of Tabs"
 msgstr "റ്റാബിനു് പകരം സ്പെയിസുകള്‍ ചേര്‍ക്കുക"
 
-#: ../gtksourceview/gtksourceview.c:324
+#: ../gtksourceview/gtksourceview.c:353
 msgid "Whether to insert spaces instead of tabs"
 msgstr "റ്റാബിനു് പകരം സ്പെയിസുകള്‍ ചേര്‍ക്കണമോ എന്നു്"
 
-#: ../gtksourceview/gtksourceview.c:336
+#: ../gtksourceview/gtksourceview.c:365
 msgid "Show Right Margin"
 msgstr "വലതു് മാര്‍ജിന്‍ കാണിക്കുക"
 
-#: ../gtksourceview/gtksourceview.c:337
+#: ../gtksourceview/gtksourceview.c:366
 msgid "Whether to display the right margin"
 msgstr "വലതു് മാര്‍ജിന്‍ കാണിക്കണമോ എന്നു്"
 
-#: ../gtksourceview/gtksourceview.c:349
+#: ../gtksourceview/gtksourceview.c:378
 msgid "Right Margin Position"
 msgstr "വലതു് മാര്‍ജിന്റെ സ്ഥാനം"
 
-#: ../gtksourceview/gtksourceview.c:350
+#: ../gtksourceview/gtksourceview.c:379
 msgid "Position of the right margin"
 msgstr "വലതു് മാര്‍ജിന്റെ സ്ഥാനം"
 
-#: ../gtksourceview/gtksourceview.c:366
+#: ../gtksourceview/gtksourceview.c:395
 msgid "Smart Home/End"
 msgstr "സ്മാര്‍ട്ട് Home/End"
 
-#: ../gtksourceview/gtksourceview.c:367
+#: ../gtksourceview/gtksourceview.c:396
 msgid ""
 "HOME and END keys move to first/last non whitespace characters on line "
 "before going to the start/end of the line"
 msgstr ""
+"വരിയുടെ തുടക്കം/അവസാനം പോകുന്നതിനു് മുമ്പ് വരിയില്‍ ആദ്യം/അവസാന "
+"നോണ്‍ വൈറ്റ്സ്പെയിസ് അക്ഷരങ്ങളിലേക്ക് HOME, END കീകള്‍ നീക്കുന്നു"
 
-#: ../gtksourceview/gtksourceview.c:377
+#: ../gtksourceview/gtksourceview.c:406
 msgid "Highlight current line"
 msgstr "നിലവിലുള്ള വരി എടുത്തു് കാണിക്കുക"
 
-#: ../gtksourceview/gtksourceview.c:378
+#: ../gtksourceview/gtksourceview.c:407
 msgid "Whether to highlight the current line"
 msgstr "നിലവിലുള്ള വരി എടുത്തുകാണിക്കണമോ എന്നു്"
 
-#: ../gtksourceview/gtksourceview.c:385
+#: ../gtksourceview/gtksourceview.c:414
 msgid "Indent on tab"
-msgstr ""
+msgstr "ടാബില്‍ ഇന്റന്റ് ചെയ്യുക"
 
-#: ../gtksourceview/gtksourceview.c:386
+#: ../gtksourceview/gtksourceview.c:415
 msgid "Whether to indent the selected text when the tab key is pressed"
-msgstr ""
+msgstr "ടാബ് കീ അമര്‍ത്തുമ്പോള്‍ തെരഞ്ഞെടുത്ത പദാവലി ഇന്റന്റ് ചെയ്യണമോ എന്നു്"
 
-#: ../gtksourceview/gtksourceview.c:400
+#: ../gtksourceview/gtksourceview.c:429
 msgid "Draw Spaces"
 msgstr "Draw Spaces"
 
-#: ../gtksourceview/gtksourceview.c:401
+#: ../gtksourceview/gtksourceview.c:430
 msgid "Set if and how the spaces should be visualized"
-msgstr ""
+msgstr "സ്പെയിസുകള്‍ കാണണമോ, എങ്കില്‍ എങ്ങനെ കാണണമെന്നു് സജ്ജമാക്കുക"
 
 #: ../gtksourceview/gtksourceview-i18n.c:38
 msgid "translator-credits"
@@ -608,6 +628,7 @@ msgstr "ബൂളിയന്‍ മൂല്ല്യം"
 #: ../gtksourceview/language-specs/perl.lang.h:2
 #: ../gtksourceview/language-specs/php.lang.h:2
 #: ../gtksourceview/language-specs/po.lang.h:1
+#: ../gtksourceview/language-specs/prolog.lang.h:1
 #: ../gtksourceview/language-specs/ruby.lang.h:5
 #: ../gtksourceview/language-specs/scheme.lang.h:2
 #: ../gtksourceview/language-specs/sh.lang.h:1
@@ -665,7 +686,6 @@ msgstr "ഡേറ്റാ തരം"
 #: ../gtksourceview/language-specs/python.lang.h:7
 #: ../gtksourceview/language-specs/ruby.lang.h:7
 #: ../gtksourceview/language-specs/vala.lang.h:4
-#| msgid "Decimal Number"
 msgid "Decimal number"
 msgstr "ഡെസിമല്‍ സംഖ്യ‌"
 
@@ -673,6 +693,7 @@ msgstr "ഡെസിമല്‍ സംഖ്യ‌"
 #: ../gtksourceview/language-specs/ada.lang.h:7
 #: ../gtksourceview/language-specs/c.lang.h:9
 #: ../gtksourceview/language-specs/csharp.lang.h:8
+#: ../gtksourceview/language-specs/eiffel.lang.h:9
 #: ../gtksourceview/language-specs/haskell.lang.h:5
 #: ../gtksourceview/language-specs/java.lang.h:7
 #: ../gtksourceview/language-specs/lua.lang.h:3
@@ -681,7 +702,6 @@ msgstr "ഡെസിമല്‍ സംഖ്യ‌"
 #: ../gtksourceview/language-specs/python.lang.h:8
 #: ../gtksourceview/language-specs/ruby.lang.h:8
 #: ../gtksourceview/language-specs/texinfo.lang.h:2
-#| msgid "Character"
 msgid "Escaped Character"
 msgstr "എസ്കെയിപ്ട് ക്യാരക്ടര്‍"
 
@@ -698,7 +718,7 @@ msgstr "എസ്കെയിപ്ട് ക്യാരക്ടര്‍"
 #: ../gtksourceview/language-specs/d.lang.h:10
 #: ../gtksourceview/language-specs/dosbatch.lang.h:4
 #: ../gtksourceview/language-specs/dot.lang.h:5
-#: ../gtksourceview/language-specs/eiffel.lang.h:11
+#: ../gtksourceview/language-specs/eiffel.lang.h:12
 #: ../gtksourceview/language-specs/erlang.lang.h:9
 #: ../gtksourceview/language-specs/forth.lang.h:7
 #: ../gtksourceview/language-specs/fortran.lang.h:7
@@ -719,6 +739,7 @@ msgstr "എസ്കെയിപ്ട് ക്യാരക്ടര്‍"
 #: ../gtksourceview/language-specs/perl.lang.h:9
 #: ../gtksourceview/language-specs/php.lang.h:13
 #: ../gtksourceview/language-specs/po.lang.h:3
+#: ../gtksourceview/language-specs/prolog.lang.h:3
 #: ../gtksourceview/language-specs/python.lang.h:11
 #: ../gtksourceview/language-specs/R.lang.h:6
 #: ../gtksourceview/language-specs/ruby.lang.h:12
@@ -751,7 +772,6 @@ msgstr "പ്രീപ്രൊസസ്സര്‍"
 #: ../gtksourceview/language-specs/csharp.lang.h:13
 #: ../gtksourceview/language-specs/vala.lang.h:9
 #: ../gtksourceview/language-specs/vhdl.lang.h:7
-#| msgid "Decimal Number"
 msgid "Real number"
 msgstr "റീയര്‍ നമ്പര്‍"
 
@@ -763,7 +783,7 @@ msgstr "റീയര്‍ നമ്പര്‍"
 #: ../gtksourceview/language-specs/cpp.lang.h:5
 #: ../gtksourceview/language-specs/csharp.lang.h:14
 #: ../gtksourceview/language-specs/d.lang.h:13
-#: ../gtksourceview/language-specs/eiffel.lang.h:13
+#: ../gtksourceview/language-specs/eiffel.lang.h:14
 #: ../gtksourceview/language-specs/erlang.lang.h:11
 #: ../gtksourceview/language-specs/forth.lang.h:10
 #: ../gtksourceview/language-specs/fortran.lang.h:8
@@ -776,6 +796,7 @@ msgstr "റീയര്‍ നമ്പര്‍"
 #: ../gtksourceview/language-specs/objc.lang.h:5
 #: ../gtksourceview/language-specs/ocaml.lang.h:16
 #: ../gtksourceview/language-specs/pascal.lang.h:7
+#: ../gtksourceview/language-specs/prolog.lang.h:7
 #: ../gtksourceview/language-specs/scheme.lang.h:6
 #: ../gtksourceview/language-specs/sql.lang.h:9
 #: ../gtksourceview/language-specs/vala.lang.h:10
@@ -801,7 +822,7 @@ msgstr "സ്റ്റോറേജ് ക്ലാസ്സ്"
 #: ../gtksourceview/language-specs/def.lang.h:57
 #: ../gtksourceview/language-specs/d.lang.h:15
 #: ../gtksourceview/language-specs/dosbatch.lang.h:6
-#: ../gtksourceview/language-specs/eiffel.lang.h:14
+#: ../gtksourceview/language-specs/eiffel.lang.h:15
 #: ../gtksourceview/language-specs/erlang.lang.h:12
 #: ../gtksourceview/language-specs/forth.lang.h:11
 #: ../gtksourceview/language-specs/gtkrc.lang.h:9
@@ -821,6 +842,7 @@ msgstr "സ്റ്റോറേജ് ക്ലാസ്സ്"
 #: ../gtksourceview/language-specs/perl.lang.h:19
 #: ../gtksourceview/language-specs/php.lang.h:19
 #: ../gtksourceview/language-specs/po.lang.h:8
+#: ../gtksourceview/language-specs/prolog.lang.h:8
 #: ../gtksourceview/language-specs/python.lang.h:17
 #: ../gtksourceview/language-specs/ruby.lang.h:21
 #: ../gtksourceview/language-specs/scheme.lang.h:7
@@ -864,6 +886,7 @@ msgstr "ധ‌ര്മ്മം"
 #: ../gtksourceview/language-specs/desktop.lang.h:10
 #: ../gtksourceview/language-specs/forth.lang.h:8
 #: ../gtksourceview/language-specs/java.lang.h:13
+#: ../gtksourceview/language-specs/prolog.lang.h:4
 #: ../gtksourceview/language-specs/vhdl.lang.h:6
 msgid "Number"
 msgstr "സംഖ്യകള്‌"
@@ -876,6 +899,7 @@ msgstr "സംഖ്യകള്‌"
 #: ../gtksourceview/language-specs/nsis.lang.h:3
 #: ../gtksourceview/language-specs/perl.lang.h:11
 #: ../gtksourceview/language-specs/php.lang.h:16
+#: ../gtksourceview/language-specs/prolog.lang.h:5
 msgid "Operator"
 msgstr "ഓപ്പറേറ്റര്‍"
 
@@ -894,7 +918,6 @@ msgstr "VBScript, ADO കോണ്‍സ്റ്റന്റുകള്‍"
 #: ../gtksourceview/language-specs/boo.lang.h:3
 #: ../gtksourceview/language-specs/perl.lang.h:1
 #: ../gtksourceview/language-specs/python.lang.h:4
-#| msgid "Function"
 msgid "Builtin Function"
 msgstr "ബിള്‍ട്ടിന്‍ ഫംങ്ഷന്‍"
 
@@ -925,6 +948,7 @@ msgstr "സ്ക്രിപ്റ്റുകള്‍"
 #: ../gtksourceview/language-specs/perl.lang.h:21
 #: ../gtksourceview/language-specs/php.lang.h:20
 #: ../gtksourceview/language-specs/pkgconfig.lang.h:3
+#: ../gtksourceview/language-specs/prolog.lang.h:9
 #: ../gtksourceview/language-specs/ruby.lang.h:23
 #: ../gtksourceview/language-specs/sh.lang.h:11
 #: ../gtksourceview/language-specs/tcl.lang.h:4
@@ -988,7 +1012,6 @@ msgid "Special Variable"
 msgstr "പ്രത്യേക വേരിയബിള്‍"
 
 #: ../gtksourceview/language-specs/changelog.lang.h:1
-#| msgid "Null"
 msgid "Bullet"
 msgstr "ബുള്ളറ്റ്"
 
@@ -1010,7 +1033,6 @@ msgid "File"
 msgstr "ഫയല്‍"
 
 #: ../gtksourceview/language-specs/changelog.lang.h:7
-#| msgid "Number"
 msgid "Name"
 msgstr "പേരു്"
 
@@ -1058,6 +1080,7 @@ msgstr "Common Defines"
 #: ../gtksourceview/language-specs/ocaml.lang.h:7
 #: ../gtksourceview/language-specs/perl.lang.h:4
 #: ../gtksourceview/language-specs/php.lang.h:5
+#: ../gtksourceview/language-specs/prolog.lang.h:2
 #: ../gtksourceview/language-specs/vala.lang.h:5
 #: ../gtksourceview/language-specs/verilog.lang.h:4
 #: ../gtksourceview/language-specs/xml.lang.h:8
@@ -1080,11 +1103,10 @@ msgstr "ഫ്ലോട്ടിങ് പോയിന്റ് നമ്പര�
 #: ../gtksourceview/language-specs/c.lang.h:11
 #: ../gtksourceview/language-specs/csharp.lang.h:9
 #: ../gtksourceview/language-specs/d.lang.h:9
-#: ../gtksourceview/language-specs/eiffel.lang.h:10
+#: ../gtksourceview/language-specs/eiffel.lang.h:11
 #: ../gtksourceview/language-specs/nemerle.lang.h:9
 #: ../gtksourceview/language-specs/php.lang.h:11
 #: ../gtksourceview/language-specs/vala.lang.h:6
-#| msgid "Decimal Number"
 msgid "Hexadecimal number"
 msgstr "ഹെക്സാ ഡെസിമല്‍ സംഖ്യ‌"
 
@@ -1096,7 +1118,6 @@ msgstr "ഉള്‍പ്പെടുത്തിയ ഫയല്‍"
 #: ../gtksourceview/language-specs/d.lang.h:12
 #: ../gtksourceview/language-specs/nemerle.lang.h:13
 #: ../gtksourceview/language-specs/php.lang.h:15
-#| msgid "Decimal Number"
 msgid "Octal number"
 msgstr "ഒക്ടല്‍ സംഖ്യ‌"
 
@@ -1113,7 +1134,6 @@ msgid "Classic color scheme"
 msgstr "ക്ലാസ്സിക് നിറക്കൂട്ട്"
 
 #: ../gtksourceview/language-specs/cmake.lang.h:1
-#| msgid "Command"
 msgid "Builtin Command"
 msgstr "ബിള്‍ട്ടിന്‍ കമാന്‍ഡ്"
 
@@ -1135,7 +1155,6 @@ msgid "Constant"
 msgstr "കോണ്‍സ്റ്റന്റ്"
 
 #: ../gtksourceview/language-specs/cmake.lang.h:5
-#| msgid "Keyword"
 msgid "Control Keyword"
 msgstr "കണ്ട്രോള്‍ കീവേര്‍ഡ്"
 
@@ -1156,7 +1175,6 @@ msgid "C#"
 msgstr "C#"
 
 #: ../gtksourceview/language-specs/csharp.lang.h:16
-#| msgid "String"
 msgid "String Format"
 msgstr "സ്ട്രിങ് രീതി"
 
@@ -1204,7 +1222,6 @@ msgstr "at-rules"
 #: ../gtksourceview/language-specs/def.lang.h:2
 #: ../gtksourceview/language-specs/python.lang.h:1
 #: ../gtksourceview/language-specs/ruby.lang.h:2
-#| msgid "Number"
 msgid "Base-N number"
 msgstr "Base-N സംഖ്യകള്‍"
 
@@ -1226,7 +1243,6 @@ msgid "Data type"
 msgstr "ഡേറ്റാ തരം"
 
 #: ../gtksourceview/language-specs/def.lang.h:20
-#| msgid "Default"
 msgid "Defaults"
 msgstr "സ്വതവേയുള്ളതു്"
 
@@ -1255,7 +1271,6 @@ msgstr "കുറിപ്പു് (FIXME, TODO, XXX, എന്നിവ)"
 
 #. This one is for '#include <foo.h>' and "#pragma blah", or 'use foobar', etc..
 #: ../gtksourceview/language-specs/def.lang.h:44
-#| msgid "Preprocessor Keyword"
 msgid "Preprocessor directive"
 msgstr "പ്രീപ്രൊസസ്സര്‍ ഡയറക്ടീവ്"
 
@@ -1309,7 +1324,6 @@ msgstr "കൂട്ടം"
 #. Translators: "Key" here means key value, that is the left hand
 #. side in a myoption=something line in a .desktop file
 #: ../gtksourceview/language-specs/desktop.lang.h:9
-#| msgid "Keyword"
 msgid "Key"
 msgstr "കീ"
 
@@ -1353,7 +1367,6 @@ msgstr "പ്രത്യേക കേസ്"
 
 #: ../gtksourceview/language-specs/d.lang.h:1
 #: ../gtksourceview/language-specs/nemerle.lang.h:1
-#| msgid "Binary Number"
 msgid "Binary number"
 msgstr "ബൈനറി നംബര്‍"
 
@@ -1387,6 +1400,7 @@ msgstr "ഹെഡര്‍ എലമെന്റുകള്‍"
 #: ../gtksourceview/language-specs/haddock.lang.h:14
 #: ../gtksourceview/language-specs/html.lang.h:7
 #: ../gtksourceview/language-specs/latex.lang.h:6
+#: ../gtksourceview/language-specs/mallard.lang.h:4
 #: ../gtksourceview/language-specs/t2t.lang.h:6
 #: ../gtksourceview/language-specs/texinfo.lang.h:8
 #: ../gtksourceview/language-specs/xml.lang.h:9
@@ -1409,7 +1423,6 @@ msgstr "Dos Batch"
 
 #: ../gtksourceview/language-specs/dot.lang.h:1
 #: ../gtksourceview/language-specs/xml.lang.h:1
-#| msgid "Attribute"
 msgid "Attribute name"
 msgstr "വിശേഷതയുടെ പേരു്"
 
@@ -1418,7 +1431,6 @@ msgid "Graphviz Dot"
 msgstr "Graphviz Dot"
 
 #: ../gtksourceview/language-specs/dpatch.lang.h:1
-#| msgid "Math"
 msgid "DPatch"
 msgstr "DPatch"
 
@@ -1467,16 +1479,16 @@ msgstr "കോണ്ട്രാക്ട് അനുസരിച്ച് ത�
 msgid "Eiffel"
 msgstr "Eiffel"
 
-#: ../gtksourceview/language-specs/eiffel.lang.h:9
+#: ../gtksourceview/language-specs/eiffel.lang.h:10
 msgid "Exception Handling"
 msgstr "എക്സെപ്ഷന്‍ ഹാന്‍ഡിലിങ്"
 
-#: ../gtksourceview/language-specs/eiffel.lang.h:12
+#: ../gtksourceview/language-specs/eiffel.lang.h:13
 #: ../gtksourceview/language-specs/ruby.lang.h:16
 msgid "Predefined Variable"
 msgstr "മുമ്പു് നിര്‍ണ്ണയിച്ചിട്ടുള്ള വേരിയബിള്‍"
 
-#: ../gtksourceview/language-specs/eiffel.lang.h:15
+#: ../gtksourceview/language-specs/eiffel.lang.h:16
 msgid "Void Value"
 msgstr "Void മൂല്ല്യം"
 
@@ -1516,7 +1528,6 @@ msgid "Error Text"
 msgstr "തെറ്റുള്ള വാചകം"
 
 #: ../gtksourceview/language-specs/forth.lang.h:6
-#| msgid "Font"
 msgid "Forth"
 msgstr "ഫോര്‍ത്"
 
@@ -1550,7 +1561,6 @@ msgid "Deprecated"
 msgstr "വേണ്ടെന്നുവച്ചവ"
 
 #: ../gtksourceview/language-specs/gtk-doc.lang.h:4
-#| msgid "Function"
 msgid "Function Name"
 msgstr "ഫംങ്ഷന്റെ പേരു്"
 
@@ -1559,7 +1569,6 @@ msgid "Inline Documentation Section"
 msgstr "ഇന്‍ലൈന്‍ വിവരണ വിഭാഗം"
 
 #: ../gtksourceview/language-specs/gtk-doc.lang.h:7
-#| msgid "Character"
 msgid "Parameter"
 msgstr "പരാമീറ്റര്‍"
 
@@ -1663,7 +1672,6 @@ msgid "URL"
 msgstr "URL"
 
 #: ../gtksourceview/language-specs/haskell.lang.h:6
-#| msgid "Font"
 msgid "Float"
 msgstr "ഫ്ലോട്ട്"
 
@@ -1689,12 +1697,10 @@ msgid "Literate Haskell"
 msgstr "Literate Haskell"
 
 #: ../gtksourceview/language-specs/html.lang.h:1
-#| msgid "Attribute"
 msgid "Attribute Name"
 msgstr "സവിഷേതയുടെ പേരു്"
 
 #: ../gtksourceview/language-specs/html.lang.h:2
-#| msgid "Attribute"
 msgid "Attribute Value"
 msgstr "സവിശേഷതയുടെ മൂല്ല്യം"
 
@@ -1716,7 +1722,6 @@ msgid ".ini"
 msgstr ".ini"
 
 #: ../gtksourceview/language-specs/java.lang.h:5
-#| msgid "Location"
 msgid "Declaration"
 msgstr "ഡിക്ലറേഷന്‍"
 
@@ -1775,7 +1780,6 @@ msgid "LaTeX"
 msgstr "LaTeX"
 
 #: ../gtksourceview/language-specs/latex.lang.h:7
-#| msgid "Wrap Mode"
 msgid "Math Mode"
 msgstr "മാഥ് മോഡ്"
 
@@ -1822,7 +1826,6 @@ msgid "m4 Macro"
 msgstr "m4 Macro"
 
 #: ../gtksourceview/language-specs/m4.lang.h:6
-#| msgid "Comment"
 msgid "m4-comment"
 msgstr "m4-comment"
 
@@ -1845,19 +1848,16 @@ msgid "Trailing Tab"
 msgstr "Trailing Tab"
 
 #: ../gtksourceview/language-specs/makefile.lang.h:9
-#| msgid "Command"
 msgid "command"
 msgstr "കമാന്‍ഡ്"
 
 #: ../gtksourceview/language-specs/makefile.lang.h:10
-#| msgid "Function"
 msgid "function"
 msgstr "ഫംങ്ഷന്‍"
 
 #. FIXME make it better names, and make them translatable
 #: ../gtksourceview/language-specs/makefile.lang.h:11
 #: ../gtksourceview/language-specs/yacc.lang.h:4
-#| msgid "Keyword"
 msgid "keyword"
 msgstr "കീവേര്‍ഡ്"
 
@@ -1866,9 +1866,32 @@ msgid "prereq"
 msgstr "prereq"
 
 #: ../gtksourceview/language-specs/makefile.lang.h:13
-#| msgid "Targets"
 msgid "targets"
 msgstr "ലക്ഷ്യങ്ങള്‍"
+
+#: ../gtksourceview/language-specs/mallard.lang.h:1
+#| msgid "GUI Elements"
+msgid "Block Elements"
+msgstr "ബ്ലോക്ക് എലമെന്റുകള്‍"
+
+#: ../gtksourceview/language-specs/mallard.lang.h:2
+#| msgid "GUI Elements"
+msgid "Inline Elements"
+msgstr "ഇന്‍ലൈന്‍ എലമെന്റുകള്‍"
+
+#: ../gtksourceview/language-specs/mallard.lang.h:3
+msgid "Mallard"
+msgstr "മല്ലാര്‍ഡ്"
+
+#: ../gtksourceview/language-specs/mallard.lang.h:5
+#| msgid "Header Elements"
+msgid "Page Elements"
+msgstr "താള്‍ എലമെന്റുകള്‍"
+
+#: ../gtksourceview/language-specs/mallard.lang.h:6
+#| msgid "Formatting Elements"
+msgid "Section Elements"
+msgstr "വിഭാഗ എലമെന്റുകള്‍"
 
 #: ../gtksourceview/language-specs/msil.lang.h:1
 msgid "MSIL"
@@ -2000,7 +2023,6 @@ msgid "POD heading"
 msgstr "POD തലക്കെട്ട്"
 
 #: ../gtksourceview/language-specs/perl.lang.h:15
-#| msgid "Keyword"
 msgid "POD keyword"
 msgstr "POD കീവേര്‍ഡ്"
 
@@ -2009,7 +2031,6 @@ msgid "Perl"
 msgstr "പേള്‍"
 
 #: ../gtksourceview/language-specs/perl.lang.h:20
-#| msgid "Command"
 msgid "System Command"
 msgstr "സിസ്റ്റം കമാന്‍ഡ്"
 
@@ -2037,6 +2058,11 @@ msgstr "പ്രത്യകം"
 #: ../gtksourceview/language-specs/po.lang.h:9
 msgid "gettext translation"
 msgstr "gettext പരിഭാഷ"
+
+#: ../gtksourceview/language-specs/prolog.lang.h:6
+#| msgid "Verilog"
+msgid "Prolog"
+msgstr "Prolog"
 
 #: ../gtksourceview/language-specs/python.lang.h:3
 msgid "Builtin Constant"
@@ -2087,7 +2113,6 @@ msgid "Special Constant"
 msgstr "സ്പെഷ്യല്‍ കോണ്‍സ്റ്റന്റ്"
 
 #: ../gtksourceview/language-specs/rpmspec.lang.h:1
-#| msgid "Command"
 msgid "Command Macro"
 msgstr "കമാന്‍ഡ് മാക്രോ"
 
@@ -2113,7 +2138,6 @@ msgstr "ഫ്ലോ കണ്ടീഷണല്‍"
 
 #: ../gtksourceview/language-specs/rpmspec.lang.h:8
 #: ../gtksourceview/language-specs/t2t.lang.h:4
-#| msgid "Print Header"
 msgid "Header"
 msgstr "ഹെഡര്‍"
 
@@ -2131,7 +2155,6 @@ msgstr "RPM spec"
 
 #: ../gtksourceview/language-specs/rpmspec.lang.h:13
 #: ../gtksourceview/language-specs/t2t.lang.h:9
-#| msgid "Function"
 msgid "Section"
 msgstr "വിഭാഗം"
 
@@ -2144,7 +2167,6 @@ msgid "Switch"
 msgstr "സ്വിച്ച്"
 
 #: ../gtksourceview/language-specs/ruby.lang.h:1
-#| msgid "Attribute"
 msgid "Attribute Definition"
 msgstr "സവിശേഷത "
 
@@ -2153,7 +2175,6 @@ msgid "Module handler"
 msgstr "മൊഡ്യൂല്‍ ഹാന്‍ഡിലര്‍"
 
 #: ../gtksourceview/language-specs/ruby.lang.h:15
-#| msgid "Numeric"
 msgid "Numeric literal"
 msgstr "സംഖ്യകള്‍"
 
@@ -2166,7 +2187,6 @@ msgid "Scheme"
 msgstr "സ്കീം"
 
 #: ../gtksourceview/language-specs/sh.lang.h:2
-#| msgid "Command"
 msgid "Common Commands"
 msgstr "സാധാരണയുള്ള കമാന്‍ഡുകള്‍"
 
@@ -2276,7 +2296,6 @@ msgid "VHDL"
 msgstr "VHDL"
 
 #: ../gtksourceview/language-specs/xml.lang.h:2
-#| msgid "Attribute"
 msgid "Attribute value"
 msgstr "വിശേഷത"
 
