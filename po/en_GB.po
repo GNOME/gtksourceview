@@ -2,16 +2,16 @@
 # Copyright (C) 2004 The GNOME Foundation
 # This file is distributed under the same license as the gtksourceview package.
 # Gareth Owen <gowen72@yahoo.com>, David Lodge <dave@cirt.net>, 2004.
-#
+# Philip Withnall <philip@tecnocode.co.uk>, 2009.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-23 19:03+0000\n"
+"POT-Creation-Date: 2009-09-13 00:00+0100\n"
 "PO-Revision-Date: 2009-02-23 19:05+0000\n"
-"Last-Translator: David Lodge <dave@cirt.net>\n"
-"Language-Team: English/GB <en@li.org>\n"
+"Last-Translator: Philip Withnall <philip@tecnocode.co.uk>\n"
+"Language-Team: British English <en@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -73,7 +73,6 @@ msgid "Style scheme"
 msgstr "Style scheme"
 
 #: ../gtksourceview/gtksourcecontextengine.c:2608
-#, c-format
 msgid "using \\C is not supported in language definitions"
 msgstr "using \\C is not supported in language definitions"
 
@@ -109,7 +108,7 @@ msgstr "context '%s' cannot contain a \\%%{...@start} command"
 #: ../gtksourceview/gtksourcecontextengine.c:5996
 #, c-format
 msgid "duplicated context id '%s'"
-msgstr "duplicated context id '%s'"
+msgstr "duplicated context ID '%s'"
 
 #: ../gtksourceview/gtksourcecontextengine.c:6109
 #: ../gtksourceview/gtksourcecontextengine.c:6169
@@ -137,6 +136,22 @@ msgstr "unknown context '%s'"
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "Missing main language definition (id = \"%s\".)"
 
+#: ../gtksourceview/gtksourcegutter.c:336
+msgid "View"
+msgstr "View"
+
+#: ../gtksourceview/gtksourcegutter.c:337
+msgid "The gutters' GtkSourceView"
+msgstr "The gutter's GtkSourceView"
+
+#: ../gtksourceview/gtksourcegutter.c:349
+msgid "Window Type"
+msgstr "Window Type"
+
+#: ../gtksourceview/gtksourcegutter.c:350
+msgid "The gutters text window type"
+msgstr "The gutter's text window type"
+
 #: ../gtksourceview/gtksourcelanguage.c:42
 #: ../gtksourceview/language-specs/changelog.lang.h:8
 #: ../gtksourceview/language-specs/cmake.lang.h:7
@@ -163,7 +178,7 @@ msgstr "Others"
 #: ../gtksourceview/gtksourcelanguage.c:215
 #: ../gtksourceview/gtksourcelanguage.c:216
 msgid "Language id"
-msgstr "Language id"
+msgstr "Language ID"
 
 #: ../gtksourceview/gtksourcelanguage.c:223
 #: ../gtksourceview/gtksourcelanguage.c:224
@@ -197,27 +212,27 @@ msgstr ""
 
 #: ../gtksourceview/gtksourcelanguagemanager.c:144
 msgid "Language ids"
-msgstr "Language ids"
+msgstr "Language IDs"
 
 #: ../gtksourceview/gtksourcelanguagemanager.c:145
 msgid "List of the ids of the available languages"
-msgstr "List of the ids of the available languages"
+msgstr "List of the IDs of the available languages"
 
 #: ../gtksourceview/gtksourcelanguage-parser-2.c:879
 #, c-format
 msgid "Unknown id '%s' in regex '%s'"
-msgstr "Unknown id '%s' in regex '%s'"
+msgstr "Unknown ID '%s' in regex '%s'"
 
 #: ../gtksourceview/gtksourcelanguage-parser-2.c:1107
 #, c-format
 msgid "in regex '%s': backreferences are not supported"
 msgstr "in regex '%s': backreferences are not supported"
 
-#: ../gtksourceview/gtksourcemark.c:119
+#: ../gtksourceview/gtksourcemark.c:121
 msgid "category"
 msgstr "category"
 
-#: ../gtksourceview/gtksourcemark.c:120
+#: ../gtksourceview/gtksourcemark.c:122
 msgid "The mark category"
 msgstr "The mark category"
 
@@ -230,12 +245,12 @@ msgid "The GtkSourceBuffer object to print"
 msgstr "The GtkSourceBuffer object to print"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:429
-#: ../gtksourceview/gtksourceview.c:290
+#: ../gtksourceview/gtksourceview.c:319
 msgid "Tab Width"
 msgstr "Tab Width"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:430
-#: ../gtksourceview/gtksourceview.c:291
+#: ../gtksourceview/gtksourceview.c:320
 msgid "Width of a tab character expressed in spaces"
 msgstr "Width of a tab character expressed in spaces"
 
@@ -422,7 +437,7 @@ msgstr "Whether strikethrough attribute is set"
 #: ../gtksourceview/gtksourcestylescheme.c:170
 #: ../gtksourceview/gtksourcestylescheme.c:171
 msgid "Style scheme id"
-msgstr "Style scheme id"
+msgstr "Style scheme ID"
 
 #: ../gtksourceview/gtksourcestylescheme.c:183
 #: ../gtksourceview/gtksourcestylescheme.c:184
@@ -449,73 +464,73 @@ msgstr "List of directories and files where the style schemes are located"
 
 #: ../gtksourceview/gtksourcestyleschememanager.c:154
 msgid "Scheme ids"
-msgstr "Scheme ids"
+msgstr "Scheme IDs"
 
 #: ../gtksourceview/gtksourcestyleschememanager.c:155
 msgid "List of the ids of the available style schemes"
-msgstr "List of the ids of the available style schemes"
+msgstr "List of the IDs of the available style schemes"
 
-#: ../gtksourceview/gtksourceview.c:265
+#: ../gtksourceview/gtksourceview.c:294
 msgid "Show Line Numbers"
 msgstr "Show Line Numbers"
 
-#: ../gtksourceview/gtksourceview.c:266
+#: ../gtksourceview/gtksourceview.c:295
 msgid "Whether to display line numbers"
 msgstr "Whether to display line numbers"
 
-#: ../gtksourceview/gtksourceview.c:277
+#: ../gtksourceview/gtksourceview.c:306
 msgid "Show Line Marks"
 msgstr "Show Line Marks"
 
-#: ../gtksourceview/gtksourceview.c:278
+#: ../gtksourceview/gtksourceview.c:307
 msgid "Whether to display line mark pixbufs"
 msgstr "Whether to display line mark pixbufs"
 
-#: ../gtksourceview/gtksourceview.c:305
+#: ../gtksourceview/gtksourceview.c:334
 msgid "Indent Width"
 msgstr "Indent Width"
 
-#: ../gtksourceview/gtksourceview.c:306
+#: ../gtksourceview/gtksourceview.c:335
 msgid "Number of spaces to use for each step of indent"
 msgstr "Number of spaces to use for each step of indent"
 
-#: ../gtksourceview/gtksourceview.c:315
+#: ../gtksourceview/gtksourceview.c:344
 msgid "Auto Indentation"
 msgstr "Auto Indentation"
 
-#: ../gtksourceview/gtksourceview.c:316
+#: ../gtksourceview/gtksourceview.c:345
 msgid "Whether to enable auto indentation"
 msgstr "Whether to enable auto indentation"
 
-#: ../gtksourceview/gtksourceview.c:323
+#: ../gtksourceview/gtksourceview.c:352
 msgid "Insert Spaces Instead of Tabs"
 msgstr "Insert Spaces Instead of Tabs"
 
-#: ../gtksourceview/gtksourceview.c:324
+#: ../gtksourceview/gtksourceview.c:353
 msgid "Whether to insert spaces instead of tabs"
 msgstr "Whether to insert spaces instead of tabs"
 
-#: ../gtksourceview/gtksourceview.c:336
+#: ../gtksourceview/gtksourceview.c:365
 msgid "Show Right Margin"
 msgstr "Show Right Margin"
 
-#: ../gtksourceview/gtksourceview.c:337
+#: ../gtksourceview/gtksourceview.c:366
 msgid "Whether to display the right margin"
 msgstr "Whether to display the right margin"
 
-#: ../gtksourceview/gtksourceview.c:349
+#: ../gtksourceview/gtksourceview.c:378
 msgid "Right Margin Position"
 msgstr "Right Margin Position"
 
-#: ../gtksourceview/gtksourceview.c:350
+#: ../gtksourceview/gtksourceview.c:379
 msgid "Position of the right margin"
 msgstr "Position of the right margin"
 
-#: ../gtksourceview/gtksourceview.c:366
+#: ../gtksourceview/gtksourceview.c:395
 msgid "Smart Home/End"
 msgstr "Smart Home/End"
 
-#: ../gtksourceview/gtksourceview.c:367
+#: ../gtksourceview/gtksourceview.c:396
 msgid ""
 "HOME and END keys move to first/last non whitespace characters on line "
 "before going to the start/end of the line"
@@ -523,27 +538,27 @@ msgstr ""
 "HOME and END keys move to first/last non whitespace characters on line "
 "before going to the start/end of the line"
 
-#: ../gtksourceview/gtksourceview.c:377
+#: ../gtksourceview/gtksourceview.c:406
 msgid "Highlight current line"
 msgstr "Highlight current line"
 
-#: ../gtksourceview/gtksourceview.c:378
+#: ../gtksourceview/gtksourceview.c:407
 msgid "Whether to highlight the current line"
 msgstr "Whether to highlight the current line"
 
-#: ../gtksourceview/gtksourceview.c:385
+#: ../gtksourceview/gtksourceview.c:414
 msgid "Indent on tab"
 msgstr "Indent on tab"
 
-#: ../gtksourceview/gtksourceview.c:386
+#: ../gtksourceview/gtksourceview.c:415
 msgid "Whether to indent the selected text when the tab key is pressed"
 msgstr "Whether to indent the selected text when the tab key is pressed"
 
-#: ../gtksourceview/gtksourceview.c:400
+#: ../gtksourceview/gtksourceview.c:429
 msgid "Draw Spaces"
 msgstr "Draw Spaces"
 
-#: ../gtksourceview/gtksourceview.c:401
+#: ../gtksourceview/gtksourceview.c:430
 msgid "Set if and how the spaces should be visualized"
 msgstr "Set if and how the spaces should be visualised"
 
@@ -615,6 +630,7 @@ msgstr "Boolean value"
 #: ../gtksourceview/language-specs/perl.lang.h:2
 #: ../gtksourceview/language-specs/php.lang.h:2
 #: ../gtksourceview/language-specs/po.lang.h:1
+#: ../gtksourceview/language-specs/prolog.lang.h:1
 #: ../gtksourceview/language-specs/ruby.lang.h:5
 #: ../gtksourceview/language-specs/scheme.lang.h:2
 #: ../gtksourceview/language-specs/sh.lang.h:1
@@ -679,6 +695,7 @@ msgstr "Decimal number"
 #: ../gtksourceview/language-specs/ada.lang.h:7
 #: ../gtksourceview/language-specs/c.lang.h:9
 #: ../gtksourceview/language-specs/csharp.lang.h:8
+#: ../gtksourceview/language-specs/eiffel.lang.h:9
 #: ../gtksourceview/language-specs/haskell.lang.h:5
 #: ../gtksourceview/language-specs/java.lang.h:7
 #: ../gtksourceview/language-specs/lua.lang.h:3
@@ -703,7 +720,7 @@ msgstr "Escaped Character"
 #: ../gtksourceview/language-specs/d.lang.h:10
 #: ../gtksourceview/language-specs/dosbatch.lang.h:4
 #: ../gtksourceview/language-specs/dot.lang.h:5
-#: ../gtksourceview/language-specs/eiffel.lang.h:11
+#: ../gtksourceview/language-specs/eiffel.lang.h:12
 #: ../gtksourceview/language-specs/erlang.lang.h:9
 #: ../gtksourceview/language-specs/forth.lang.h:7
 #: ../gtksourceview/language-specs/fortran.lang.h:7
@@ -724,6 +741,7 @@ msgstr "Escaped Character"
 #: ../gtksourceview/language-specs/perl.lang.h:9
 #: ../gtksourceview/language-specs/php.lang.h:13
 #: ../gtksourceview/language-specs/po.lang.h:3
+#: ../gtksourceview/language-specs/prolog.lang.h:3
 #: ../gtksourceview/language-specs/python.lang.h:11
 #: ../gtksourceview/language-specs/R.lang.h:6
 #: ../gtksourceview/language-specs/ruby.lang.h:12
@@ -767,7 +785,7 @@ msgstr "Real number"
 #: ../gtksourceview/language-specs/cpp.lang.h:5
 #: ../gtksourceview/language-specs/csharp.lang.h:14
 #: ../gtksourceview/language-specs/d.lang.h:13
-#: ../gtksourceview/language-specs/eiffel.lang.h:13
+#: ../gtksourceview/language-specs/eiffel.lang.h:14
 #: ../gtksourceview/language-specs/erlang.lang.h:11
 #: ../gtksourceview/language-specs/forth.lang.h:10
 #: ../gtksourceview/language-specs/fortran.lang.h:8
@@ -780,6 +798,7 @@ msgstr "Real number"
 #: ../gtksourceview/language-specs/objc.lang.h:5
 #: ../gtksourceview/language-specs/ocaml.lang.h:16
 #: ../gtksourceview/language-specs/pascal.lang.h:7
+#: ../gtksourceview/language-specs/prolog.lang.h:7
 #: ../gtksourceview/language-specs/scheme.lang.h:6
 #: ../gtksourceview/language-specs/sql.lang.h:9
 #: ../gtksourceview/language-specs/vala.lang.h:10
@@ -805,7 +824,7 @@ msgstr "Storage Class"
 #: ../gtksourceview/language-specs/def.lang.h:57
 #: ../gtksourceview/language-specs/d.lang.h:15
 #: ../gtksourceview/language-specs/dosbatch.lang.h:6
-#: ../gtksourceview/language-specs/eiffel.lang.h:14
+#: ../gtksourceview/language-specs/eiffel.lang.h:15
 #: ../gtksourceview/language-specs/erlang.lang.h:12
 #: ../gtksourceview/language-specs/forth.lang.h:11
 #: ../gtksourceview/language-specs/gtkrc.lang.h:9
@@ -825,6 +844,7 @@ msgstr "Storage Class"
 #: ../gtksourceview/language-specs/perl.lang.h:19
 #: ../gtksourceview/language-specs/php.lang.h:19
 #: ../gtksourceview/language-specs/po.lang.h:8
+#: ../gtksourceview/language-specs/prolog.lang.h:8
 #: ../gtksourceview/language-specs/python.lang.h:17
 #: ../gtksourceview/language-specs/ruby.lang.h:21
 #: ../gtksourceview/language-specs/scheme.lang.h:7
@@ -868,6 +888,7 @@ msgstr "Function"
 #: ../gtksourceview/language-specs/desktop.lang.h:10
 #: ../gtksourceview/language-specs/forth.lang.h:8
 #: ../gtksourceview/language-specs/java.lang.h:13
+#: ../gtksourceview/language-specs/prolog.lang.h:4
 #: ../gtksourceview/language-specs/vhdl.lang.h:6
 msgid "Number"
 msgstr "Number"
@@ -880,6 +901,7 @@ msgstr "Number"
 #: ../gtksourceview/language-specs/nsis.lang.h:3
 #: ../gtksourceview/language-specs/perl.lang.h:11
 #: ../gtksourceview/language-specs/php.lang.h:16
+#: ../gtksourceview/language-specs/prolog.lang.h:5
 msgid "Operator"
 msgstr "Operator"
 
@@ -928,6 +950,7 @@ msgstr "Scripts"
 #: ../gtksourceview/language-specs/perl.lang.h:21
 #: ../gtksourceview/language-specs/php.lang.h:20
 #: ../gtksourceview/language-specs/pkgconfig.lang.h:3
+#: ../gtksourceview/language-specs/prolog.lang.h:9
 #: ../gtksourceview/language-specs/ruby.lang.h:23
 #: ../gtksourceview/language-specs/sh.lang.h:11
 #: ../gtksourceview/language-specs/tcl.lang.h:4
@@ -1059,6 +1082,7 @@ msgstr "Common Defines"
 #: ../gtksourceview/language-specs/ocaml.lang.h:7
 #: ../gtksourceview/language-specs/perl.lang.h:4
 #: ../gtksourceview/language-specs/php.lang.h:5
+#: ../gtksourceview/language-specs/prolog.lang.h:2
 #: ../gtksourceview/language-specs/vala.lang.h:5
 #: ../gtksourceview/language-specs/verilog.lang.h:4
 #: ../gtksourceview/language-specs/xml.lang.h:8
@@ -1081,7 +1105,7 @@ msgstr "Floating point number"
 #: ../gtksourceview/language-specs/c.lang.h:11
 #: ../gtksourceview/language-specs/csharp.lang.h:9
 #: ../gtksourceview/language-specs/d.lang.h:9
-#: ../gtksourceview/language-specs/eiffel.lang.h:10
+#: ../gtksourceview/language-specs/eiffel.lang.h:11
 #: ../gtksourceview/language-specs/nemerle.lang.h:9
 #: ../gtksourceview/language-specs/php.lang.h:11
 #: ../gtksourceview/language-specs/vala.lang.h:6
@@ -1378,6 +1402,7 @@ msgstr "Header Elements"
 #: ../gtksourceview/language-specs/haddock.lang.h:14
 #: ../gtksourceview/language-specs/html.lang.h:7
 #: ../gtksourceview/language-specs/latex.lang.h:6
+#: ../gtksourceview/language-specs/mallard.lang.h:4
 #: ../gtksourceview/language-specs/t2t.lang.h:6
 #: ../gtksourceview/language-specs/texinfo.lang.h:8
 #: ../gtksourceview/language-specs/xml.lang.h:9
@@ -1456,16 +1481,16 @@ msgstr "Design by Contract"
 msgid "Eiffel"
 msgstr "Eiffel"
 
-#: ../gtksourceview/language-specs/eiffel.lang.h:9
+#: ../gtksourceview/language-specs/eiffel.lang.h:10
 msgid "Exception Handling"
 msgstr "Exception Handling"
 
-#: ../gtksourceview/language-specs/eiffel.lang.h:12
+#: ../gtksourceview/language-specs/eiffel.lang.h:13
 #: ../gtksourceview/language-specs/ruby.lang.h:16
 msgid "Predefined Variable"
 msgstr "Predefined Variable"
 
-#: ../gtksourceview/language-specs/eiffel.lang.h:15
+#: ../gtksourceview/language-specs/eiffel.lang.h:16
 msgid "Void Value"
 msgstr "Void Value"
 
@@ -1846,6 +1871,26 @@ msgstr "prereq"
 msgid "targets"
 msgstr "targets"
 
+#: ../gtksourceview/language-specs/mallard.lang.h:1
+msgid "Block Elements"
+msgstr "Block Elements"
+
+#: ../gtksourceview/language-specs/mallard.lang.h:2
+msgid "Inline Elements"
+msgstr "Inline Elements"
+
+#: ../gtksourceview/language-specs/mallard.lang.h:3
+msgid "Mallard"
+msgstr "Mallard"
+
+#: ../gtksourceview/language-specs/mallard.lang.h:5
+msgid "Page Elements"
+msgstr "Page Elements"
+
+#: ../gtksourceview/language-specs/mallard.lang.h:6
+msgid "Section Elements"
+msgstr "Section Elements"
+
 #: ../gtksourceview/language-specs/msil.lang.h:1
 msgid "MSIL"
 msgstr "MSIL"
@@ -2011,6 +2056,10 @@ msgstr "Special"
 #: ../gtksourceview/language-specs/po.lang.h:9
 msgid "gettext translation"
 msgstr "gettext translation"
+
+#: ../gtksourceview/language-specs/prolog.lang.h:6
+msgid "Prolog"
+msgstr "Prolog"
 
 #: ../gtksourceview/language-specs/python.lang.h:3
 msgid "Builtin Constant"
@@ -2422,9 +2471,6 @@ msgstr "token-type"
 
 #~ msgid "Selector Grammar"
 #~ msgstr "Selector Grammar"
-
-#~ msgid "Selector Pseudo Elements"
-#~ msgstr "Selector Pseudo Elements"
 
 #~ msgid "Unicode Character Reference"
 #~ msgstr "Unicode Character Reference"
