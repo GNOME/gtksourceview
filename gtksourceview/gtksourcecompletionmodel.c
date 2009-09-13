@@ -48,6 +48,8 @@ typedef struct
 
 	GList *first;
 	GList *last;
+	GList *ptr;
+	gboolean first_batch;
 } ProviderInfo;
 
 struct _GtkSourceCompletionModelPrivate
@@ -727,7 +729,7 @@ insert_node (GtkSourceCompletionModel     *model,
 	
 	if (proposal != NULL)
 	{
-		g_hash_table_insert (info->proposals, proposal, node);
+		g_hash_table_insert (info->proposals, proposal, item);
 	}
 
 	if (!node->filtered)
@@ -826,13 +828,13 @@ remove_node (GtkSourceCompletionModel  *model,
 		ppath = path_from_list (model, item);
 	}
 	
-	model->priv->store = g_list_delete_link (model->priv->store,
-	                                         item);	
-	
 	if (node->proposal != NULL)
 	{
 		g_hash_table_remove (info->proposals, node->proposal);
 	}
+
+	model->priv->store = g_list_delete_link (model->priv->store,
+	                                         item);	
 	
 	handle_row_deleted (model, item, path ? path : &ppath);	
 	
@@ -1069,10 +1071,22 @@ gtk_source_completion_model_append (GtkSourceCompletionModel    *model,
 		info = add_provider_info (model, provider);
 	}
 	
+	if (info->first_batch)
+	{
+		info->ptr = info->first;
+		
+		if (info->ptr && !((ProposalNode *)info->ptr->data)->proposal)
+		{
+			info->ptr = g_list_next (info->ptr);
+		}
+	}
+	
+	info->first_batch = FALSE;
+	
 	for (item = proposals; item != NULL; item = g_list_next (item))
 	{
 		GtkSourceCompletionProposal *proposal;
-		ProposalNode *node;
+		GList *nodeitem;
 		
 		if (!GTK_IS_SOURCE_COMPLETION_PROPOSAL (item->data))
 		{
@@ -1080,22 +1094,26 @@ gtk_source_completion_model_append (GtkSourceCompletionModel    *model,
 		}
 		
 		proposal = GTK_SOURCE_COMPLETION_PROPOSAL (item->data);
-		node = g_hash_table_lookup (info->proposals, proposal);
+		nodeitem = g_hash_table_lookup (info->proposals, proposal);
 
-		if (node)
+		if (nodeitem)
 		{
+			ProposalNode *node = (ProposalNode *)nodeitem->data;
 			node->mark = model->priv->marking;
 			
-			if (path != NULL && ((ProposalNode *)info->last->data) == node)
+			/* Next items will be inserted after this one */
+			info->ptr = g_list_next (nodeitem);
+			
+			if (path != NULL)
 			{
-				gtk_tree_path_next (path);
+				gtk_tree_path_free (path);
+				path = NULL;
 			}
 		}
 		else
 		{
-			GList *insert_before = g_list_next (info->last);
-			
-			/* Insert proposal into model, after last item of provider */
+			GList *insert_before = info->ptr;
+
 			if (path == NULL)
 			{
 				if (insert_before)
@@ -1131,6 +1149,12 @@ gtk_source_completion_model_end (GtkSourceCompletionModel    *model,
 	{
 		model->priv->providers = g_list_remove (model->priv->providers,
 		                                        provider);
+	}
+	else
+	{
+		ProviderInfo *info = g_hash_table_lookup (model->priv->providers_info,
+		                                          provider);
+		info->first_batch = TRUE;
 	}
 }
 
