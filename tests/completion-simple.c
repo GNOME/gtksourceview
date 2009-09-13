@@ -28,6 +28,7 @@
 #include <gtksourceview/gtksourceview.h>
 #include <gtksourceview/gtksourcecompletion.h>
 #include <gtksourceview/gtksourcecompletioninfo.h>
+#include <gtksourceview/gtksourcelanguagemanager.h>
 
 #include "gsc-provider-test.h"
 
@@ -57,15 +58,6 @@ destroy_cb (GtkObject *object,
 }
 
 static void
-activate_toggled_cb (GtkToggleButton *button,
-		     gpointer user_data)
-{
-	g_object_set (comp, "active",
-		      gtk_toggle_button_get_active (button),
-		      NULL);
-}
-
-static void
 remember_toggled_cb (GtkToggleButton *button,
 		     gpointer user_data)
 {
@@ -79,6 +71,15 @@ select_on_show_toggled_cb (GtkToggleButton *button,
 			   gpointer user_data)
 {
 	g_object_set (comp, "select-on-show",
+		      gtk_toggle_button_get_active (button),
+		      NULL);
+}
+
+static void
+show_headers_toggled_cb (GtkToggleButton *button,
+			   gpointer user_data)
+{
+	g_object_set (comp, "show-headers",
 		      gtk_toggle_button_get_active (button),
 		      NULL);
 }
@@ -103,17 +104,28 @@ key_press (GtkWidget   *widget,
 	return FALSE;
 }
 
+static void
+toggle_active_property (gpointer     source,
+                        gpointer     dest,
+                        const gchar *name)
+{
+	gboolean value;
+	
+	g_object_get (source, name, &value, NULL);
+	g_object_set (dest, "active", value, NULL);
+}
+
 static GtkWidget*
 create_window (void)
 {
 	GtkWidget *window;
 	GtkWidget *vbox;
 	GtkWidget *hbox;
-	GtkWidget *activate;
 	GtkWidget *remember;
 	GtkWidget *select_on_show;
-	GtkWidget *label;
-	
+	GtkWidget *show_headers;
+	GtkSourceCompletion *completion;
+		
 	window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
 	gtk_window_resize (GTK_WINDOW (window), 600, 400);
 	
@@ -124,16 +136,19 @@ create_window (void)
 	GtkWidget *scroll = gtk_scrolled_window_new (NULL, NULL);
 	gtk_container_add (GTK_CONTAINER (scroll), view);
 	
-	activate = gtk_check_button_new_with_label ("Active");
 	remember = gtk_check_button_new_with_label ("Remember info visibility");
 	select_on_show = gtk_check_button_new_with_label ("Select first on show");
-	label = gtk_label_new ("F9 filter by \"sp\"");
-	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (activate), TRUE);
-	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (remember), FALSE);
-	gtk_box_pack_start (GTK_BOX (hbox), label, TRUE, FALSE, 0);
-	gtk_box_pack_start (GTK_BOX (hbox), activate, FALSE, FALSE, 0);
+	show_headers = gtk_check_button_new_with_label ("Show headers");
+	
+	completion = gtk_source_view_get_completion (GTK_SOURCE_VIEW (view));
+	
+	toggle_active_property (completion, remember, "remember-info-visibility");
+	toggle_active_property (completion, select_on_show, "select-on-show");
+	toggle_active_property (completion, show_headers, "show-headers");
+	
 	gtk_box_pack_start (GTK_BOX (hbox), remember, FALSE, FALSE, 0);
 	gtk_box_pack_start (GTK_BOX (hbox), select_on_show, FALSE, FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (hbox), show_headers, FALSE, FALSE, 0);
 	
 	gtk_box_pack_start (GTK_BOX (vbox), scroll, TRUE, TRUE, 0);
 	gtk_box_pack_end (GTK_BOX (vbox), hbox, FALSE, FALSE, 0);
@@ -146,16 +161,16 @@ create_window (void)
 	g_signal_connect (window, "destroy",
 			  G_CALLBACK (destroy_cb),
 			   NULL);
-	g_signal_connect (activate, "toggled",
-			  G_CALLBACK (activate_toggled_cb),
-			  NULL);
 	g_signal_connect (remember, "toggled",
 			  G_CALLBACK (remember_toggled_cb),
 			  NULL);
 	g_signal_connect (select_on_show, "toggled",
 			  G_CALLBACK (select_on_show_toggled_cb),
 			  NULL);
-	
+	g_signal_connect (show_headers, "toggled",
+			  G_CALLBACK (show_headers_toggled_cb),
+			  NULL);
+
 	return window;
 }
 
@@ -183,16 +198,16 @@ create_completion(void)
 	
 	comp = gtk_source_view_get_completion (GTK_SOURCE_VIEW (view));
 	
-	icon = get_icon_from_theme (GTK_STOCK_NETWORK);
+/*	icon = get_icon_from_theme (GTK_STOCK_NETWORK);*/
 
-	prov_test1 = gsc_provider_test_new ("Networking", icon);
+/*	prov_test1 = gsc_provider_test_new ("Networking", icon);*/
 
-	if (icon != NULL)
-	{
-		g_object_unref (icon);
-	}
-	
-	gtk_source_completion_add_provider (comp, GTK_SOURCE_COMPLETION_PROVIDER (prov_test1), NULL);
+/*	if (icon != NULL)*/
+/*	{*/
+/*		g_object_unref (icon);*/
+/*	}*/
+/*	*/
+/*	gtk_source_completion_add_provider (comp, GTK_SOURCE_COMPLETION_PROVIDER (prov_test1), NULL);*/
 	
 	icon = get_icon_from_theme (GTK_STOCK_OPEN);
 	prov_test1 = gsc_provider_test_new ("Open Files", icon);

@@ -51,26 +51,30 @@ gtk_source_completion_provider_get_icon_default (GtkSourceCompletionProvider *pr
 	return NULL;
 }
 
-static GList *
-gtk_source_completion_provider_get_proposals_default (GtkSourceCompletionProvider *provider,
-                                                      GtkTextIter                 *iter)
+static void
+gtk_source_completion_provider_populate_default (GtkSourceCompletionProvider *provider,
+                                                 GtkSourceCompletionContext  *context)
 {
-	return NULL;
+	gtk_source_completion_context_add_proposals (context, provider, NULL, TRUE);
 }
 
 static gboolean
-gtk_source_completion_provider_filter_proposal_default (GtkSourceCompletionProvider *provider,
-                                                        GtkSourceCompletionProposal *proposal,
-                                                        GtkTextIter                 *iter,
-                                                        const gchar                 *criteria)
+gtk_source_completion_provider_get_interactive_default (GtkSourceCompletionProvider *provider)
 {
 	return TRUE;
 }
 
-static const gchar *
-gtk_source_completion_provider_get_capabilities_default (GtkSourceCompletionProvider *provider)
+static gboolean
+gtk_source_completion_provider_get_default_default (GtkSourceCompletionProvider *provider)
 {
-	return GTK_SOURCE_COMPLETION_CAPABILITY_AUTOMATIC;
+	return TRUE;
+}
+
+static gboolean
+gtk_source_completion_provider_match_default (GtkSourceCompletionProvider *provider,
+                                              GtkSourceCompletionContext  *context)
+{
+	return TRUE;
 }
 
 static GtkWidget *
@@ -103,10 +107,11 @@ gtk_source_completion_provider_base_init (GtkSourceCompletionProviderIface *ifac
 	iface->get_name = gtk_source_completion_provider_get_name_default;
 	iface->get_icon = gtk_source_completion_provider_get_icon_default;
 
-	iface->get_proposals = gtk_source_completion_provider_get_proposals_default;
-	iface->filter_proposal = gtk_source_completion_provider_filter_proposal_default;
-	
-	iface->get_capabilities = gtk_source_completion_provider_get_capabilities_default;
+	iface->populate = gtk_source_completion_provider_populate_default;
+
+	iface->match = gtk_source_completion_provider_match_default;
+	iface->get_interactive = gtk_source_completion_provider_get_interactive_default;
+	iface->get_default = gtk_source_completion_provider_get_default_default;
 	
 	iface->get_info_widget = gtk_source_completion_provider_get_info_widget_default;
 	iface->update_info = gtk_source_completion_provider_update_info_default;
@@ -144,6 +149,9 @@ gtk_source_completion_provider_get_type ()
 							"GtkSourceCompletionProvider", 
 							&g_define_type_info, 
 							0);
+
+		g_type_interface_add_prerequisite (gtk_source_completion_provider_type_id,
+		                                   G_TYPE_OBJECT);
 	}
 
 	return gtk_source_completion_provider_type_id;
@@ -182,68 +190,52 @@ gtk_source_completion_provider_get_icon (GtkSourceCompletionProvider *provider)
 }
 
 /**
- * gtk_source_completion_provider_get_proposals:
+ * gtk_source_completion_provider_populate:
  * @provider: The #GtkSourceCompletionProvider
- * @iter: A #GtkTextIter
+ * @context: The #GtkSourceCompletionContext
  *
- * Get proposals from the provider for completion.
+ * Populate @context with proposals from @provider
  *
- * Returns: a list of #GtkSourceViewProposal or NULL if there are no proposals.
- *          The returned list and the contained #GtkSourceViewProposal are 
- *          owned by the caller and will be freed when no longer needed.
  */
-GList * 
-gtk_source_completion_provider_get_proposals (GtkSourceCompletionProvider *provider,
-                                              GtkTextIter                 *iter)
+void
+gtk_source_completion_provider_populate (GtkSourceCompletionProvider *provider,
+                                         GtkSourceCompletionContext  *context)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_PROVIDER (provider), NULL);
-	return GTK_SOURCE_COMPLETION_PROVIDER_GET_INTERFACE (provider)->get_proposals (provider, iter);
+	g_return_if_fail (GTK_IS_SOURCE_COMPLETION_PROVIDER (provider));
+	GTK_SOURCE_COMPLETION_PROVIDER_GET_INTERFACE (provider)->populate (provider, context);
 }
 
-/**
- * gtk_source_completion_provider_filter_proposal:
- * @provider: The #GtkSourceCompletionProvider
- * @proposal: A #GtkSourceCompletionProposal
- * @iter: A #GtkTextIter
- * @criteria: A string representing the filter criteria
- *
- * Determines whether to filter @proposal based on @criteria. It is guaranteed
- * that @criteria is always a valid UTF-8 string (and never %NULL). 
- * Implementations are not restricted to using @criteria as a filter criteria.
- * They may also use @iter to do their own matching.
- *
- * Returns: %TRUE if @proposal conforms to @criteria and should be show,
- *          or %FALSE if @proposal should be hidden.
- */
 gboolean
-gtk_source_completion_provider_filter_proposal (GtkSourceCompletionProvider *provider,
-                                                GtkSourceCompletionProposal *proposal,
-                                                GtkTextIter                 *iter,
-                                                const gchar                 *criteria)
+gtk_source_completion_provider_get_default (GtkSourceCompletionProvider *provider)
 {
 	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_PROVIDER (provider), FALSE);
-	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_PROPOSAL (proposal), FALSE);
-	g_return_val_if_fail (criteria != NULL, FALSE);
+	return GTK_SOURCE_COMPLETION_PROVIDER_GET_INTERFACE (provider)->get_default (provider);
+}
 
-	return GTK_SOURCE_COMPLETION_PROVIDER_GET_INTERFACE (provider)->filter_proposal (provider, 
-	                                                                                 proposal, 
-	                                                                                 iter, 
-	                                                                                 criteria);
+gboolean
+gtk_source_completion_provider_get_interactive (GtkSourceCompletionProvider *provider)
+{
+	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_PROVIDER (provider), FALSE);
+	return GTK_SOURCE_COMPLETION_PROVIDER_GET_INTERFACE (provider)->get_interactive (provider);
 }
 
 /**
- * gtk_source_completion_provider_get_capabilities:
+ * gtk_source_completion_provider_match:
  * @provider: The #GtkSourceCompletionProvider
+ * @context: The #GtkSourceCompletionContext
  *
- * A list of capabilities this provider supports
+ * Get whether the provider match the context of completion detailed in
+ * @context.
  *
- * Returns: list of capabilities.
+ * Returns: %TRUE if @provider matches the completion context, %FALSE otherwise
  */
-const gchar *
-gtk_source_completion_provider_get_capabilities (GtkSourceCompletionProvider *provider)
+gboolean
+gtk_source_completion_provider_match (GtkSourceCompletionProvider *provider,
+                                      GtkSourceCompletionContext  *context)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_PROVIDER (provider), NULL);
-	return GTK_SOURCE_COMPLETION_PROVIDER_GET_INTERFACE (provider)->get_capabilities (provider);
+	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_PROVIDER (provider), TRUE);
+	return GTK_SOURCE_COMPLETION_PROVIDER_GET_INTERFACE (provider)->match (provider,
+	                                                                       context);
 }
 
 /**

@@ -26,6 +26,8 @@
 #include <gtk/gtk.h>
 #include <gtksourceview/gtksourcecompletioninfo.h>
 #include <gtksourceview/gtksourcecompletionprovider.h>
+#include <gtksourceview/gtksourcecompletionmodel.h>
+#include <gtksourceview/gtksourcelanguage.h>
 
 G_BEGIN_DECLS
 
@@ -70,35 +72,47 @@ struct _GtkSourceCompletionClass
 							 GtkSourceCompletionProposal *proposal);
 	void 		(* show)			(GtkSourceCompletion         *completion);
 	void		(* hide)			(GtkSourceCompletion         *completion);
+	void		(* populate_context)		(GtkSourceCompletion         *completion,
+							 GtkSourceCompletionContext  *context);
 };
 
 GType		 gtk_source_completion_get_type			(void) G_GNUC_CONST;
 
 GQuark		 gtk_source_completion_error_quark		(void);
 
-gboolean	 gtk_source_completion_add_provider		(GtkSourceCompletion          *completion,
-								 GtkSourceCompletionProvider  *provider,
-								 GError                      **error);
+gboolean	 gtk_source_completion_add_provider		(GtkSourceCompletion           *completion,
+								 GtkSourceCompletionProvider   *provider,
+								 GError                       **error);
 
-gboolean	 gtk_source_completion_remove_provider		(GtkSourceCompletion          *completion,
-								 GtkSourceCompletionProvider  *provider,
-								 GError                      **error);
+gboolean	 gtk_source_completion_remove_provider		(GtkSourceCompletion           *completion,
+								 GtkSourceCompletionProvider   *provider,
+								 GError                       **error);
 
-GList		*gtk_source_completion_get_providers		(GtkSourceCompletion         *completion,
-                                                                 const gchar                 *capabilities);
-gboolean	 gtk_source_completion_show			(GtkSourceCompletion         *completion,
-								 GList                       *providers,
-								 const gchar                 *criteria,
-								 GtkTextIter                 *place);
+GList		*gtk_source_completion_get_providers		(GtkSourceCompletion           *completion);
 
-void		 gtk_source_completion_hide			(GtkSourceCompletion         *completion);
+gboolean	 gtk_source_completion_show			(GtkSourceCompletion           *completion,
+								 GList                         *providers,
+								 GtkSourceCompletionContext    *context);
+
+void		 gtk_source_completion_hide			(GtkSourceCompletion           *completion);
 
 GtkSourceCompletionInfo *
-		 gtk_source_completion_get_info_window		(GtkSourceCompletion         *completion);
+		 gtk_source_completion_get_info_window		(GtkSourceCompletion           *completion);
 
 struct _GtkSourceView *
-		 gtk_source_completion_get_view			(GtkSourceCompletion	     *completion);
+		 gtk_source_completion_get_view			(GtkSourceCompletion	       *completion);
 
+GtkSourceCompletionContext *
+		 gtk_source_completion_create_context		(GtkSourceCompletion           *completion,
+		 						 GtkTextIter                   *position);
+
+void		 _gtk_source_completion_add_proposals		(GtkSourceCompletion           *completion,
+								 GtkSourceCompletionContext    *context,
+								 GtkSourceCompletionProvider   *provider,
+								 GList                         *proposals,
+		 						 gboolean                       finished);
 G_END_DECLS
 
-#endif 
+#endif
+
+/* vi:ex:ts=8 */

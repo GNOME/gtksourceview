@@ -26,8 +26,11 @@
 #include <glib.h>
 #include <glib-object.h>
 #include <gtk/gtk.h>
+
 #include <gtksourceview/gtksourcecompletionproposal.h>
 #include <gtksourceview/gtksourcecompletioninfo.h>
+#include <gtksourceview/gtksourcelanguage.h>
+#include <gtksourceview/gtksourcecompletioncontext.h>
 
 G_BEGIN_DECLS
 
@@ -48,14 +51,14 @@ struct _GtkSourceCompletionProviderIface
 	
 	const gchar	*(*get_name)       	(GtkSourceCompletionProvider *provider);
 	GdkPixbuf	*(*get_icon)       	(GtkSourceCompletionProvider *provider);
-	GList 		*(*get_proposals) 	(GtkSourceCompletionProvider *provider,
-						 GtkTextIter                 *iter);
-	gboolean 	 (*filter_proposal) 	(GtkSourceCompletionProvider *provider,
-						 GtkSourceCompletionProposal *proposal,
-						 GtkTextIter                 *iter,
-						 const gchar                 *criteria);
+	void 		 (*populate) 		(GtkSourceCompletionProvider *provider,
+						 GtkSourceCompletionContext  *context);
 
-	const gchar     *(*get_capabilities)	(GtkSourceCompletionProvider *provider);
+	gboolean 	 (*match)		(GtkSourceCompletionProvider *provider,
+	                                         GtkSourceCompletionContext  *context);
+
+	gboolean         (*get_interactive)	(GtkSourceCompletionProvider *provider);
+	gboolean         (*get_default)		(GtkSourceCompletionProvider *provider);
 
 	GtkWidget 	*(*get_info_widget)	(GtkSourceCompletionProvider *provider,
 						 GtkSourceCompletionProposal *proposal);
@@ -75,15 +78,14 @@ const gchar	*gtk_source_completion_provider_get_name	(GtkSourceCompletionProvide
 
 GdkPixbuf	*gtk_source_completion_provider_get_icon	(GtkSourceCompletionProvider *provider);
 
-GList		*gtk_source_completion_provider_get_proposals	(GtkSourceCompletionProvider *provider,
-								 GtkTextIter                 *iter);
+void		 gtk_source_completion_provider_populate	(GtkSourceCompletionProvider *provider,
+								 GtkSourceCompletionContext  *context);
 
-gboolean	 gtk_source_completion_provider_filter_proposal	(GtkSourceCompletionProvider *provider,
-								 GtkSourceCompletionProposal *proposal,
-								 GtkTextIter                 *iter,
-								 const gchar                 *criteria);
+gboolean	 gtk_source_completion_provider_get_interactive (GtkSourceCompletionProvider *provider);
+gboolean	 gtk_source_completion_provider_get_default     (GtkSourceCompletionProvider *provider);
 
-const gchar 	*gtk_source_completion_provider_get_capabilities (GtkSourceCompletionProvider *provider);
+gboolean	 gtk_source_completion_provider_match 		(GtkSourceCompletionProvider *provider,
+		                                                 GtkSourceCompletionContext  *context);
 
 GtkWidget	*gtk_source_completion_provider_get_info_widget	(GtkSourceCompletionProvider *provider,
 								 GtkSourceCompletionProposal *proposal);
@@ -99,3 +101,5 @@ gboolean	 gtk_source_completion_provider_activate_proposal (GtkSourceCompletionP
 G_END_DECLS
 
 #endif
+
+/* vi:ex:ts=8 */

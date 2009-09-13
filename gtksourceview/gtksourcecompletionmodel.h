@@ -49,17 +49,7 @@ struct _GtkSourceCompletionModel {
 
 struct _GtkSourceCompletionModelClass {
 	GObjectClass parent_class;
-	
-	void	(*items_added)		(GtkSourceCompletionModel *model);
-	void	(*filter_done)		(GtkSourceCompletionModel *model);
 };
-
-typedef enum
-{
-	GTK_SOURCE_COMPLETION_MODEL_NONE,
-	GTK_SOURCE_COMPLETION_MODEL_FILTERED = 1 << 0,
-	GTK_SOURCE_COMPLETION_MODEL_COUNT = 1 << 1
-} GtkSourceCompletionModelFilterFlag;
 
 enum
 {
@@ -71,32 +61,33 @@ enum
 	GTK_SOURCE_COMPLETION_MODEL_N_COLUMNS
 };
 
-typedef GtkSourceCompletionModelFilterFlag (* GtkSourceCompletionModelVisibleFunc) (GtkSourceCompletionModel    *model,
-                                                          GtkSourceCompletionProvider *provider,
-                                                          GtkSourceCompletionProposal *proposal,
-                                                          gpointer                     userdata);
-
 GType gtk_source_completion_model_get_type (void) G_GNUC_CONST;
 
 GtkSourceCompletionModel *
-		gtk_source_completion_model_new 	(GtkSourceCompletionModelVisibleFunc func,
-							 gpointer                            userdata);
+		gtk_source_completion_model_new 	(void);
 
-void		gtk_source_completion_model_run_add_proposals (GtkSourceCompletionModel *model);
-
+void		gtk_source_completion_model_begin	(GtkSourceCompletionModel           *model,
+                                                         GList                              *providers);
 void		gtk_source_completion_model_append 	(GtkSourceCompletionModel           *model,
 							 GtkSourceCompletionProvider        *provider,
-							 GtkSourceCompletionProposal        *proposal);
+							 GList                              *proposals);
+void		gtk_source_completion_model_end		(GtkSourceCompletionModel           *model,
+							 GtkSourceCompletionProvider        *provider);
+void		gtk_source_completion_model_cancel	(GtkSourceCompletionModel           *model);
 
 gboolean	gtk_source_completion_model_is_empty 	(GtkSourceCompletionModel           *model,
                                                          gboolean                            invisible);
 
+void            gtk_source_completion_model_set_visible_providers (GtkSourceCompletionModel *model,
+                                                                   GList                    *providers);
+GList          *gtk_source_completion_model_get_visible_providers (GtkSourceCompletionModel *model);
+
+
+GList          *gtk_source_completion_model_get_providers (GtkSourceCompletionModel         *model);
 guint		gtk_source_completion_model_n_proposals (GtkSourceCompletionModel           *model,
                                                          GtkSourceCompletionProvider        *provider);
 
 void 		gtk_source_completion_model_clear 	(GtkSourceCompletionModel           *model);
-
-void		gtk_source_completion_model_refilter	(GtkSourceCompletionModel           *model);
 
 void 		gtk_source_completion_model_set_show_headers (GtkSourceCompletionModel      *model,
 							      gboolean                       show_headers);
@@ -114,3 +105,4 @@ G_END_DECLS
 
 #endif /* __GTK_SOURCE_COMPLETION_MODEL_H__ */
 
+/* vi:ex:ts=8 */

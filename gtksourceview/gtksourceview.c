@@ -1004,27 +1004,49 @@ gtk_source_view_redo (GtkSourceView *view)
 	}
 }
 
+static GList *
+get_default_providers (GtkSourceCompletion *completion)
+{
+	GList *item;
+	GList *ret = NULL;
+	
+	item = gtk_source_completion_get_providers (completion);
+	
+	while (item)
+	{
+		GtkSourceCompletionProvider *provider;
+		
+		provider = GTK_SOURCE_COMPLETION_PROVIDER (item->data);
+		
+		if (gtk_source_completion_provider_get_default (provider))
+		{
+			ret = g_list_prepend (ret, provider);
+		}
+		
+		item = g_list_next (item);
+	}
+	
+	return g_list_reverse (ret);
+}
+
 static void
 gtk_source_view_show_completion_real (GtkSourceView *view)
 {
 	GtkSourceCompletion *completion;
+	GtkSourceCompletionContext *context;
 	GList *providers;
-	gchar *word;
-
-	completion = gtk_source_view_get_completion (view);
 	
-	providers = gtk_source_completion_get_providers (completion, 
-	                                                 GTK_SOURCE_COMPLETION_CAPABILITY_AUTOMATIC);
+	completion = gtk_source_view_get_completion (view);
+	context = gtk_source_completion_create_context (completion, NULL);
+	
+	g_object_set (context, "default", TRUE, NULL);
+	
+	providers = get_default_providers (completion);
 
-	/* Show automatic providers at the cursor with the current word as the
-	   criteria */
-	word = gtk_source_completion_utils_get_word (
-			GTK_SOURCE_BUFFER (gtk_text_view_get_buffer (GTK_TEXT_VIEW (view))));
+	gtk_source_completion_show (completion, 
+	                            providers, 
+	                            context);
 
-	gtk_source_completion_show (completion, providers, word, NULL);
-
-	g_free (word);
-	g_list_foreach (providers, (GFunc)g_object_unref, NULL);
 	g_list_free (providers);
 }
 
