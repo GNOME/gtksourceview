@@ -74,7 +74,7 @@ struct _GtkSourceGutterPrivate
 {
 	GtkSourceView *view;
 	GtkTextWindowType window_type;
-
+	gint size;
 	GList *renderers;
 	guint signals[LAST_EXTERNAL_SIGNAL];
 };
@@ -205,6 +205,8 @@ set_view (GtkSourceGutter *gutter,
           GtkSourceView   *view)
 {
 	gutter->priv->view = view;
+
+	gutter->priv->size = -1;
 
 	g_object_weak_ref (G_OBJECT (view),
 	                   (GWeakNotify)view_notify,
@@ -409,6 +411,8 @@ static void
 gtk_source_gutter_init (GtkSourceGutter *self)
 {
 	self->priv = GTK_SOURCE_GUTTER_GET_PRIVATE (self);
+
+	self->priv->size = -1;
 }
 
 static gint
@@ -682,7 +686,6 @@ gtk_source_gutter_queue_draw (GtkSourceGutter *gutter)
 	revalidate_size (gutter);
 }
 
-/* Callbacks */
 static gint
 calculate_size (GtkSourceGutter  *gutter,
                 Renderer         *renderer)
@@ -844,12 +847,32 @@ on_view_expose_event (GtkSourceView   *view,
 	text_view = GTK_TEXT_VIEW (view);
 	sizes = g_array_new (FALSE, FALSE, sizeof (gint));
 
+	/* This is fairly ugly, but we could not find a better way to
+	 * do it: renderers could have changed size and they do not have
+	 * a way to signal it. So on expose we revalidate the size and
+	 * requeue another expose.
+	 * To see if the size has changed we test the size of only the
+	 * gutter itself since the full border window size is not under
+	 * our control (see e.g bug #589382).
+	 * This also means that if the user manually forces the
+	 * border_window_size to a value smaller than the gutter, things
+	 * will not be drawn properly. */
 	size = calculate_sizes (gutter, sizes);
-
-	if (gtk_text_view_get_border_window_size (text_view, gutter->priv->window_type) != size)
+	if (gutter->priv->size != size)
 	{
+		gint border_size;
+
+		border_size = gtk_text_view_get_border_window_size (text_view, gutter->priv->window_type);
+
+		if (gutter->priv->size < 0)
+			border_size += size;
+		else
+			border_size = MAX (0, border_size - gutter->priv->size) + size;
+
+		gutter->priv->size = size;
+
 		/* Will trigger a new expose */
-		gtk_text_view_set_border_window_size (text_view, gutter->priv->window_type, size);
+		gtk_text_view_set_border_window_size (text_view, gutter->priv->window_type, border_size);
 	}
 	else
 	{
