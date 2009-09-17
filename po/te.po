@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview.master.te\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gtksourceview&component=general\n"
-"POT-Creation-Date: 2009-04-18 16:44+0000\n"
-"PO-Revision-Date: 2009-05-15 13:36+0530\n"
+"POT-Creation-Date: 2009-07-18 11:41+0000\n"
+"PO-Revision-Date: 2009-09-17 19:04+0530\n"
 "Last-Translator: Krishna Babu K <kkrothap@redhat.com>\n"
 "Language-Team: Telugu <en@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -17,6 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n\n"
+"\n"
 "\n"
 "\n"
 "\n"
@@ -78,7 +79,6 @@ msgid "Style scheme"
 msgstr "శైలి పధకం"
 
 #: ../gtksourceview/gtksourcecontextengine.c:2608
-#, c-format
 msgid "using \\C is not supported in language definitions"
 msgstr "భాషా నిర్వచనాల నందు \\C ఉపయోగించుట మద్దతునీయదు"
 
@@ -136,6 +136,22 @@ msgstr "తెలియని సందర్భం '%s'"
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "ప్రధాన భాష నిర్వచనం (id=\"%s\".) తప్పిపోయింది"
+
+#: ../gtksourceview/gtksourcegutter.c:336
+msgid "View"
+msgstr "దర్శించు"
+
+#: ../gtksourceview/gtksourcegutter.c:337
+msgid "The gutters' GtkSourceView"
+msgstr "gutters యొక్క GtkSourceView"
+
+#: ../gtksourceview/gtksourcegutter.c:349
+msgid "Window Type"
+msgstr "విండో రకము"
+
+#: ../gtksourceview/gtksourcegutter.c:350
+msgid "The gutters text window type"
+msgstr "gutters పాఠ్యపు విండో రకము"
 
 #: ../gtksourceview/gtksourcelanguage.c:42
 #: ../gtksourceview/language-specs/changelog.lang.h:8
@@ -228,12 +244,12 @@ msgid "The GtkSourceBuffer object to print"
 msgstr "ముద్రించుటకు GtkSourceBuffer ఆబ్జక్టు"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:429
-#: ../gtksourceview/gtksourceview.c:290
+#: ../gtksourceview/gtksourceview.c:319
 msgid "Tab Width"
 msgstr "టాబ్ వెడల్పు"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:430
-#: ../gtksourceview/gtksourceview.c:291
+#: ../gtksourceview/gtksourceview.c:320
 msgid "Width of a tab character expressed in spaces"
 msgstr "ఖాళీలలో తెలుపబడ్డ టాబ్ అక్షరం యొక్క వెడల్పు"
 
@@ -449,67 +465,67 @@ msgstr "పధకంidలు"
 msgid "List of the ids of the available style schemes"
 msgstr "అందుబాటు లో ఉన్న శైలి పధకములల జాబితా"
 
-#: ../gtksourceview/gtksourceview.c:265
+#: ../gtksourceview/gtksourceview.c:294
 msgid "Show Line Numbers"
 msgstr "వరుస సంఖ్యలను చూపుము"
 
-#: ../gtksourceview/gtksourceview.c:266
+#: ../gtksourceview/gtksourceview.c:295
 msgid "Whether to display line numbers"
 msgstr "వరుస సంఖ్యలను ప్రదర్శించవలెనా"
 
-#: ../gtksourceview/gtksourceview.c:277
+#: ../gtksourceview/gtksourceview.c:306
 msgid "Show Line Marks"
 msgstr "వరుస గుర్తులను చూపించుము"
 
-#: ../gtksourceview/gtksourceview.c:278
+#: ../gtksourceview/gtksourceview.c:307
 msgid "Whether to display line mark pixbufs"
 msgstr "వరుస గర్తు pixbufs ను ప్రదర్శించవలెనా"
 
-#: ../gtksourceview/gtksourceview.c:305
+#: ../gtksourceview/gtksourceview.c:334
 msgid "Indent Width"
 msgstr "వరుసక్రమం వెడల్పు"
 
-#: ../gtksourceview/gtksourceview.c:306
+#: ../gtksourceview/gtksourceview.c:335
 msgid "Number of spaces to use for each step of indent"
 msgstr "వరుసక్రమం యొక్క ప్రతి అంచెకు ఉపయోగించవలిసిన ఖాళీల సంఖ్య"
 
-#: ../gtksourceview/gtksourceview.c:315
+#: ../gtksourceview/gtksourceview.c:344
 msgid "Auto Indentation"
 msgstr "స్వయంచాలక వరుసక్రమంవిధానం"
 
-#: ../gtksourceview/gtksourceview.c:316
+#: ../gtksourceview/gtksourceview.c:345
 msgid "Whether to enable auto indentation"
 msgstr "స్వయంచాలక వరుసక్రమవిధానం ను చేతనపరచవలెనా"
 
-#: ../gtksourceview/gtksourceview.c:323
+#: ../gtksourceview/gtksourceview.c:352
 msgid "Insert Spaces Instead of Tabs"
 msgstr "టాబ్‌లకు బదులుగా ఖాళీలను చేర్చుము"
 
-#: ../gtksourceview/gtksourceview.c:324
+#: ../gtksourceview/gtksourceview.c:353
 msgid "Whether to insert spaces instead of tabs"
 msgstr "టాబ్‌లకు బదులుగా ఖాళీలను చేర్చవలెనా"
 
-#: ../gtksourceview/gtksourceview.c:336
+#: ../gtksourceview/gtksourceview.c:365
 msgid "Show Right Margin"
 msgstr "కుడి అంచును చూపుము"
 
-#: ../gtksourceview/gtksourceview.c:337
+#: ../gtksourceview/gtksourceview.c:366
 msgid "Whether to display the right margin"
 msgstr "కుడి అంచును ప్రదర్శించవలెనా"
 
-#: ../gtksourceview/gtksourceview.c:349
+#: ../gtksourceview/gtksourceview.c:378
 msgid "Right Margin Position"
 msgstr "కుడి అంచు స్థానము"
 
-#: ../gtksourceview/gtksourceview.c:350
+#: ../gtksourceview/gtksourceview.c:379
 msgid "Position of the right margin"
 msgstr "కుడి అంచు యొక్క స్థానము"
 
-#: ../gtksourceview/gtksourceview.c:366
+#: ../gtksourceview/gtksourceview.c:395
 msgid "Smart Home/End"
 msgstr "చురుకైన Home/End"
 
-#: ../gtksourceview/gtksourceview.c:367
+#: ../gtksourceview/gtksourceview.c:396
 msgid ""
 "HOME and END keys move to first/last non whitespace characters on line "
 "before going to the start/end of the line"
@@ -517,27 +533,27 @@ msgstr ""
 "వరుస యొక్క ప్రారభం/ముగింపు కు వెళ్ళబోవు ముందు వరుసపై ఉన్న అక్షరముల ప్రారంభం/ముగింపు కు "
 "HOME మరియు END కీలు కదుల్చుతాయి."
 
-#: ../gtksourceview/gtksourceview.c:377
+#: ../gtksourceview/gtksourceview.c:406
 msgid "Highlight current line"
 msgstr "ప్రస్తుత వరుసను ఉద్దీపనం చేయుము"
 
-#: ../gtksourceview/gtksourceview.c:378
+#: ../gtksourceview/gtksourceview.c:407
 msgid "Whether to highlight the current line"
 msgstr "ప్రస్తుత వరుసను ఉద్దీపనం చేయవలెనా"
 
-#: ../gtksourceview/gtksourceview.c:385
+#: ../gtksourceview/gtksourceview.c:414
 msgid "Indent on tab"
 msgstr "టాబ్ పై వరుసక్రమం"
 
-#: ../gtksourceview/gtksourceview.c:386
+#: ../gtksourceview/gtksourceview.c:415
 msgid "Whether to indent the selected text when the tab key is pressed"
 msgstr "ఎంపికచేసిన పాఠ్యమును టాబ్ కీ వత్తినప్పుడు వరుసక్రమం చేయవలెనా"
 
-#: ../gtksourceview/gtksourceview.c:400
+#: ../gtksourceview/gtksourceview.c:429
 msgid "Draw Spaces"
 msgstr "ఖాళీలను గీయుము"
 
-#: ../gtksourceview/gtksourceview.c:401
+#: ../gtksourceview/gtksourceview.c:430
 msgid "Set if and how the spaces should be visualized"
 msgstr "ఖాళీలు కనిపించాలా మరియు కనిపిస్తే యెలాకనిపించాలి అమర్చుము"
 
@@ -674,6 +690,7 @@ msgstr "దత్తాంశ సంఖ్య"
 #: ../gtksourceview/language-specs/ada.lang.h:7
 #: ../gtksourceview/language-specs/c.lang.h:9
 #: ../gtksourceview/language-specs/csharp.lang.h:8
+#: ../gtksourceview/language-specs/eiffel.lang.h:9
 #: ../gtksourceview/language-specs/haskell.lang.h:5
 #: ../gtksourceview/language-specs/java.lang.h:7
 #: ../gtksourceview/language-specs/lua.lang.h:3
@@ -698,7 +715,7 @@ msgstr "ఎస్కేప్‌డ్ అక్షరం"
 #: ../gtksourceview/language-specs/d.lang.h:10
 #: ../gtksourceview/language-specs/dosbatch.lang.h:4
 #: ../gtksourceview/language-specs/dot.lang.h:5
-#: ../gtksourceview/language-specs/eiffel.lang.h:11
+#: ../gtksourceview/language-specs/eiffel.lang.h:12
 #: ../gtksourceview/language-specs/erlang.lang.h:9
 #: ../gtksourceview/language-specs/forth.lang.h:7
 #: ../gtksourceview/language-specs/fortran.lang.h:7
@@ -763,7 +780,7 @@ msgstr "వాస్తవ సంఖ్య"
 #: ../gtksourceview/language-specs/cpp.lang.h:5
 #: ../gtksourceview/language-specs/csharp.lang.h:14
 #: ../gtksourceview/language-specs/d.lang.h:13
-#: ../gtksourceview/language-specs/eiffel.lang.h:13
+#: ../gtksourceview/language-specs/eiffel.lang.h:14
 #: ../gtksourceview/language-specs/erlang.lang.h:11
 #: ../gtksourceview/language-specs/forth.lang.h:10
 #: ../gtksourceview/language-specs/fortran.lang.h:8
@@ -776,7 +793,7 @@ msgstr "వాస్తవ సంఖ్య"
 #: ../gtksourceview/language-specs/objc.lang.h:5
 #: ../gtksourceview/language-specs/ocaml.lang.h:16
 #: ../gtksourceview/language-specs/pascal.lang.h:7
-#: ../gtksourceview/language-specs/prolog.lang.h:6
+#: ../gtksourceview/language-specs/prolog.lang.h:7
 #: ../gtksourceview/language-specs/scheme.lang.h:6
 #: ../gtksourceview/language-specs/sql.lang.h:9
 #: ../gtksourceview/language-specs/vala.lang.h:10
@@ -802,7 +819,7 @@ msgstr "నిల్వ తరగతి"
 #: ../gtksourceview/language-specs/def.lang.h:57
 #: ../gtksourceview/language-specs/d.lang.h:15
 #: ../gtksourceview/language-specs/dosbatch.lang.h:6
-#: ../gtksourceview/language-specs/eiffel.lang.h:14
+#: ../gtksourceview/language-specs/eiffel.lang.h:15
 #: ../gtksourceview/language-specs/erlang.lang.h:12
 #: ../gtksourceview/language-specs/forth.lang.h:11
 #: ../gtksourceview/language-specs/gtkrc.lang.h:9
@@ -822,7 +839,7 @@ msgstr "నిల్వ తరగతి"
 #: ../gtksourceview/language-specs/perl.lang.h:19
 #: ../gtksourceview/language-specs/php.lang.h:19
 #: ../gtksourceview/language-specs/po.lang.h:8
-#: ../gtksourceview/language-specs/prolog.lang.h:7
+#: ../gtksourceview/language-specs/prolog.lang.h:8
 #: ../gtksourceview/language-specs/python.lang.h:17
 #: ../gtksourceview/language-specs/ruby.lang.h:21
 #: ../gtksourceview/language-specs/scheme.lang.h:7
@@ -836,12 +853,10 @@ msgid "String"
 msgstr "స్ట్రింగ్"
 
 #: ../gtksourceview/language-specs/asp.lang.h:1
-#| msgid "GAP"
 msgid "ASP"
 msgstr "ASP"
 
 #: ../gtksourceview/language-specs/asp.lang.h:2
-#| msgid "Object"
 msgid "ASP Object"
 msgstr "ASP ఆబ్జక్టు"
 
@@ -893,7 +908,6 @@ msgid "Special constant"
 msgstr "ప్రత్యేక స్థిరరాశి"
 
 #: ../gtksourceview/language-specs/asp.lang.h:14
-#| msgid "Special constant"
 msgid "VBScript and ADO constants"
 msgstr "VBScript మరియు ADO స్థిరరాశులు"
 
@@ -931,7 +945,7 @@ msgstr "లిపి"
 #: ../gtksourceview/language-specs/perl.lang.h:21
 #: ../gtksourceview/language-specs/php.lang.h:20
 #: ../gtksourceview/language-specs/pkgconfig.lang.h:3
-#: ../gtksourceview/language-specs/prolog.lang.h:8
+#: ../gtksourceview/language-specs/prolog.lang.h:9
 #: ../gtksourceview/language-specs/ruby.lang.h:23
 #: ../gtksourceview/language-specs/sh.lang.h:11
 #: ../gtksourceview/language-specs/tcl.lang.h:4
@@ -995,7 +1009,6 @@ msgid "Special Variable"
 msgstr "ప్రత్యేక చరరాశి"
 
 #: ../gtksourceview/language-specs/changelog.lang.h:1
-#| msgid "Builtin"
 msgid "Bullet"
 msgstr "బుల్లెట్"
 
@@ -1017,7 +1030,6 @@ msgid "File"
 msgstr "దస్త్రం"
 
 #: ../gtksourceview/language-specs/changelog.lang.h:7
-#| msgid "Namespace"
 msgid "Name"
 msgstr "నామము"
 
@@ -1088,7 +1100,7 @@ msgstr "ఫ్లోటింగ్ సూచి సంఖ్య"
 #: ../gtksourceview/language-specs/c.lang.h:11
 #: ../gtksourceview/language-specs/csharp.lang.h:9
 #: ../gtksourceview/language-specs/d.lang.h:9
-#: ../gtksourceview/language-specs/eiffel.lang.h:10
+#: ../gtksourceview/language-specs/eiffel.lang.h:11
 #: ../gtksourceview/language-specs/nemerle.lang.h:9
 #: ../gtksourceview/language-specs/php.lang.h:11
 #: ../gtksourceview/language-specs/vala.lang.h:6
@@ -1119,17 +1131,14 @@ msgid "Classic color scheme"
 msgstr "సాంప్రదాయ వర్ణ పధకం"
 
 #: ../gtksourceview/language-specs/cmake.lang.h:1
-#| msgid "Builtin Constant"
 msgid "Builtin Command"
 msgstr "అంతరనిర్మిత ఆదేశము"
 
 #: ../gtksourceview/language-specs/cmake.lang.h:2
-#| msgid "Special Variable"
 msgid "Builtin Variable"
 msgstr "అంతరనిర్మిత చరరాశి"
 
 #: ../gtksourceview/language-specs/cmake.lang.h:3
-#| msgid "Makefile"
 msgid "CMake"
 msgstr "CMake"
 
@@ -1143,12 +1152,10 @@ msgid "Constant"
 msgstr "స్థిరరాశి"
 
 #: ../gtksourceview/language-specs/cmake.lang.h:5
-#| msgid "Keyword"
 msgid "Control Keyword"
 msgstr "నియంత్రణ కీపదము"
 
 #: ../gtksourceview/language-specs/cobalt.xml.h:1
-#| msgid "Classic color scheme"
 msgid "Blue based color scheme"
 msgstr "నిలం ప్రధానమైన వర్ణ పథకం"
 
@@ -1390,6 +1397,7 @@ msgstr "పీఠిక మూలకాలు"
 #: ../gtksourceview/language-specs/haddock.lang.h:14
 #: ../gtksourceview/language-specs/html.lang.h:7
 #: ../gtksourceview/language-specs/latex.lang.h:6
+#: ../gtksourceview/language-specs/mallard.lang.h:4
 #: ../gtksourceview/language-specs/t2t.lang.h:6
 #: ../gtksourceview/language-specs/texinfo.lang.h:8
 #: ../gtksourceview/language-specs/xml.lang.h:9
@@ -1407,7 +1415,6 @@ msgid "Command"
 msgstr "ఆదేశం"
 
 #: ../gtksourceview/language-specs/dosbatch.lang.h:3
-#| msgid "DPatch"
 msgid "Dos Batch"
 msgstr "Dos Batch"
 
@@ -1438,12 +1445,10 @@ msgid "decl"
 msgstr "decl"
 
 #: ../gtksourceview/language-specs/dtd.lang.h:4
-#| msgid "Entity"
 msgid "entity"
 msgstr "మూలకం"
 
 #: ../gtksourceview/language-specs/dtd.lang.h:5
-#| msgid "Error"
 msgid "error"
 msgstr "దోషం"
 
@@ -1471,16 +1476,16 @@ msgstr "ఒప్పందం ద్వారా నిర్మితం"
 msgid "Eiffel"
 msgstr "Eiffel"
 
-#: ../gtksourceview/language-specs/eiffel.lang.h:9
+#: ../gtksourceview/language-specs/eiffel.lang.h:10
 msgid "Exception Handling"
 msgstr "ఆక్షేపణ సభాలికీకరణ"
 
-#: ../gtksourceview/language-specs/eiffel.lang.h:12
+#: ../gtksourceview/language-specs/eiffel.lang.h:13
 #: ../gtksourceview/language-specs/ruby.lang.h:16
 msgid "Predefined Variable"
 msgstr "ముందుగానిర్వచించిన చరరాశి"
 
-#: ../gtksourceview/language-specs/eiffel.lang.h:15
+#: ../gtksourceview/language-specs/eiffel.lang.h:16
 msgid "Void Value"
 msgstr "వాయిడ్ విలువ"
 
@@ -1814,12 +1819,10 @@ msgid "m4"
 msgstr "m4"
 
 #: ../gtksourceview/language-specs/m4.lang.h:5
-#| msgid "Macros"
 msgid "m4 Macro"
 msgstr "m4 మాక్రో"
 
 #: ../gtksourceview/language-specs/m4.lang.h:6
-#| msgid "Comment"
 msgid "m4-comment"
 msgstr "m4-వ్యాఖ్య"
 
@@ -1842,19 +1845,16 @@ msgid "Trailing Tab"
 msgstr "ట్రెయిలింగ్ టాబ్"
 
 #: ../gtksourceview/language-specs/makefile.lang.h:9
-#| msgid "Command"
 msgid "command"
 msgstr "ఆదేశం"
 
 #: ../gtksourceview/language-specs/makefile.lang.h:10
-#| msgid "Function"
 msgid "function"
 msgstr "ఫంక్షన్"
 
 #. FIXME make it better names, and make them translatable
 #: ../gtksourceview/language-specs/makefile.lang.h:11
 #: ../gtksourceview/language-specs/yacc.lang.h:4
-#| msgid "Keyword"
 msgid "keyword"
 msgstr "కీపదము"
 
@@ -1865,6 +1865,30 @@ msgstr "prereq"
 #: ../gtksourceview/language-specs/makefile.lang.h:13
 msgid "targets"
 msgstr "లక్ష్యాలు"
+
+#: ../gtksourceview/language-specs/mallard.lang.h:1
+#| msgid "GUI Elements"
+msgid "Block Elements"
+msgstr "బ్లాక్ మూలకములు"
+
+#: ../gtksourceview/language-specs/mallard.lang.h:2
+#| msgid "GUI Elements"
+msgid "Inline Elements"
+msgstr "ఇన్‌లైన్ మూలకములు"
+
+#: ../gtksourceview/language-specs/mallard.lang.h:3
+msgid "Mallard"
+msgstr "మల్లార్డు"
+
+#: ../gtksourceview/language-specs/mallard.lang.h:5
+#| msgid "Header Elements"
+msgid "Page Elements"
+msgstr "పేజీ మూలకాలు"
+
+#: ../gtksourceview/language-specs/mallard.lang.h:6
+#| msgid "Formatting Elements"
+msgid "Section Elements"
+msgstr "విభాగపు మూలకములు"
 
 #: ../gtksourceview/language-specs/msil.lang.h:1
 msgid "MSIL"
@@ -2025,13 +2049,17 @@ msgstr "Fuzzy"
 
 #. FIXME make it some nice name and mark it translatable
 #: ../gtksourceview/language-specs/po.lang.h:7
-#| msgid "Special case"
 msgid "Special"
 msgstr "ప్రత్యేకమైన"
 
 #: ../gtksourceview/language-specs/po.lang.h:9
 msgid "gettext translation"
 msgstr "gettext అనువాదము"
+
+#: ../gtksourceview/language-specs/prolog.lang.h:6
+#| msgid "Verilog"
+msgid "Prolog"
+msgstr "ప్రోలాగ్"
 
 #: ../gtksourceview/language-specs/python.lang.h:3
 msgid "Builtin Constant"
@@ -2181,37 +2209,30 @@ msgid "SQL"
 msgstr "SQL"
 
 #: ../gtksourceview/language-specs/t2t.lang.h:7
-#| msgid "Section"
 msgid "Option"
 msgstr "ఐచ్చికము"
 
 #: ../gtksourceview/language-specs/t2t.lang.h:8
-#| msgid "Function Name"
 msgid "Option Name"
 msgstr "ఐచ్చికము నామము"
 
 #: ../gtksourceview/language-specs/t2t.lang.h:10
-#| msgid "Section"
 msgid "Section 1"
 msgstr "భాగము 1"
 
 #: ../gtksourceview/language-specs/t2t.lang.h:11
-#| msgid "Section"
 msgid "Section 2"
 msgstr "భాగము 2"
 
 #: ../gtksourceview/language-specs/t2t.lang.h:12
-#| msgid "Section"
 msgid "Section 3"
 msgstr "భాగము 3"
 
 #: ../gtksourceview/language-specs/t2t.lang.h:13
-#| msgid "Section"
 msgid "Section 4"
 msgstr "భాగము 4"
 
 #: ../gtksourceview/language-specs/t2t.lang.h:14
-#| msgid "Section"
 msgid "Section 5"
 msgstr "భాగము 5"
 
@@ -2220,7 +2241,6 @@ msgid "Text2Tags"
 msgstr "Text2Tags"
 
 #: ../gtksourceview/language-specs/t2t.lang.h:17
-#| msgid "Verbatim"
 msgid "Verbatim Block"
 msgstr "Verbatim బ్లాక్"
 
@@ -2301,7 +2321,6 @@ msgid "XML"
 msgstr "XML"
 
 #: ../gtksourceview/language-specs/xslt.lang.h:1
-#| msgid "GUI Elements"
 msgid "Element"
 msgstr "మూలకము"
 
@@ -2314,7 +2333,6 @@ msgid "Yacc"
 msgstr "Yacc"
 
 #: ../gtksourceview/language-specs/yacc.lang.h:5
-#| msgid "at-rules"
 msgid "rule"
 msgstr "నియమము"
 
