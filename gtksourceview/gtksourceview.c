@@ -1209,21 +1209,18 @@ renderer_activated (GtkSourceGutter *gutter,
 	}
 }
 
-static void
+static gboolean
 set_tooltip_widget_from_marks (GtkSourceView *view,
 			       GtkTooltip *tooltip,
 			       GSList *marks)
 {
-	GtkWidget *vbox;
-	const gchar *category;
-	
-	vbox = gtk_vbox_new (FALSE, 0);
-	gtk_widget_show (vbox);
+	GtkWidget *vbox = NULL;
 
 	while (marks != NULL)
 	{
-		MarkCategory *cat;
+		const gchar *category;
 		GtkSourceMark *mark;
+		MarkCategory *cat;
 
 		mark = marks->data;
 		category = gtk_source_mark_get_category (mark);
@@ -1233,28 +1230,34 @@ set_tooltip_widget_from_marks (GtkSourceView *view,
 		if (cat != NULL && cat->tooltip_func != NULL)
 		{
 			gchar *text;
-			text = cat->tooltip_func (mark, cat->tooltip_data);
 
+			text = cat->tooltip_func (mark, cat->tooltip_data);
 			if (text != NULL)
 			{
 				GtkWidget *label;
 				GtkWidget *hbox;
-				
+
+				if (vbox == NULL)
+				{
+					vbox = gtk_vbox_new (FALSE, 0);
+					gtk_widget_show (vbox);
+				}
+
 				hbox = gtk_hbox_new (FALSE, 4);
 				gtk_widget_show (hbox);
 				gtk_box_pack_start (GTK_BOX (vbox), hbox,
 				    FALSE, FALSE, 0);
-				
+
 				GdkPixbuf *pixbuf;
 				gint size;
-				
+
 				label = gtk_label_new (NULL);
-				
+
 				if (cat->tooltip_markup)
 					gtk_label_set_markup (GTK_LABEL (label), text);
 				else
 					gtk_label_set_text (GTK_LABEL (label), text);
-				
+
 				gtk_misc_set_alignment (GTK_MISC (label), 0, 0);
 				gtk_widget_show (label);
 			
@@ -1266,10 +1269,11 @@ set_tooltip_widget_from_marks (GtkSourceView *view,
 					GtkWidget *image;
 					PangoLayoutLine *line;
 					PangoRectangle rect;
-					GtkWidget *align = gtk_alignment_new (0, 0, 0, 0);
-					
+					GtkWidget *align;
+
+					align = gtk_alignment_new (0, 0, 0, 0);
 					gtk_widget_show (align);
-					
+
 					image = gtk_image_new_from_pixbuf (pixbuf);
 					gtk_misc_set_alignment (GTK_MISC (image), 0, 0);
 					gtk_widget_show (image);
@@ -1298,7 +1302,7 @@ set_tooltip_widget_from_marks (GtkSourceView *view,
 					{
 						gtk_widget_destroy (align);
 					}
-					
+
 					gtk_box_pack_start (GTK_BOX (hbox), 
 					                    image,
 					                    FALSE,
@@ -1306,8 +1310,11 @@ set_tooltip_widget_from_marks (GtkSourceView *view,
 					                    0);
 				}
 
-				gtk_box_pack_end (GTK_BOX (hbox), label,
-                                                  TRUE, TRUE, 0);
+				gtk_box_pack_end (GTK_BOX (hbox),
+				                  label,
+				                  TRUE,
+				                  TRUE,
+				                  0);
 				
 				if (g_slist_length (marks) != 1)
 				{
@@ -1326,7 +1333,12 @@ set_tooltip_widget_from_marks (GtkSourceView *view,
 		marks = g_slist_delete_link (marks, marks);
 	}
 
+	if (vbox == NULL)
+		return FALSE;
+
 	gtk_tooltip_set_custom (tooltip, vbox);
+
+	return TRUE;
 }
 
 static gboolean
@@ -1357,8 +1369,7 @@ renderer_query_tooltip (GtkSourceGutter *gutter,
 		marks = g_slist_sort_with_data (marks, sort_marks_by_priority, view);
 		marks = g_slist_reverse (marks);
 
-		set_tooltip_widget_from_marks (view, tooltip, marks);
-		return TRUE;
+		return set_tooltip_widget_from_marks (view, tooltip, marks);
 	}
 
 	return FALSE;
