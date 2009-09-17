@@ -1,4 +1,4 @@
-# translation of gtksourceview.HEAD.or.po to Oriya
+# translation of gtksourceview.master.or.po to Oriya
 # This file is distributed under the same license as the PACKAGE package.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER.
 #
@@ -7,10 +7,10 @@
 # Manoj Kumar Giri <mgiri@redhat.com>, 2009.
 msgid ""
 msgstr ""
-"Project-Id-Version: gtksourceview.HEAD.or\n"
+"Project-Id-Version: gtksourceview.master.or\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gtksourceview&component=general\n"
-"POT-Creation-Date: 2009-03-06 10:36+0000\n"
-"PO-Revision-Date: 2009-03-12 14:46+0530\n"
+"POT-Creation-Date: 2009-07-18 11:41+0000\n"
+"PO-Revision-Date: 2009-09-17 20:23+0530\n"
 "Last-Translator: Manoj Kumar Giri <mgiri@redhat.com>\n"
 "Language-Team: Oriya <oriya-it@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -18,6 +18,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
 "Plural-Forms:  nplurals=2; plural=(n!=1);\n\n"
+"\n"
+"\n"
 "\n"
 "\n"
 "\n"
@@ -80,7 +82,6 @@ msgid "Style scheme"
 msgstr "ଶୈଳୀ ଯୋଜନା"
 
 #: ../gtksourceview/gtksourcecontextengine.c:2608
-#, c-format
 msgid "using \\C is not supported in language definitions"
 msgstr "ଭାଷା ବ୍ୟାଖ୍ୟାରେ \\C ବ୍ୟବହାର କରିବା ସମର୍ଥିତ ନୁହଁ"
 
@@ -95,17 +96,15 @@ msgid ""
 "process will be slower than usual.\n"
 "The error was: %s"
 msgstr ""
-"ସମସ୍ତ ଅନୁବାଦ ପାଇଁ regex ନିର୍ମାଣ କରିପାରିବେ ନାହିଁ, ବାକ୍ୟ ବିନ୍ୟାସ ଆଲୋକିତ "
-"ପଦ୍ଧତିଟି ଅପେକ୍ଷାକୃତ ମନ୍ଥର।\n"
+"ସମସ୍ତ ଅନୁବାଦ ପାଇଁ regex ନିର୍ମାଣ କରିପାରିବେ ନାହିଁ, ବାକ୍ୟ ବିନ୍ୟାସ ଆଲୋକିତ ପଦ୍ଧତିଟି ଅପେକ୍ଷାକୃତ "
+"ମନ୍ଥର।\n"
 "ତ୍ରୁଟିଟି ହେଉଛି: %s"
 
 #: ../gtksourceview/gtksourcecontextengine.c:4547
 msgid ""
 "Highlighting a single line took too much time, syntax highlighting will be "
 "disabled"
-msgstr ""
-"ଗୋଟିଏ ଧାଡ଼ିକୁ ଆଲୋକିତ କରିବା ପାଇଁ ଅଧିକ ସମୟ ଲାଗିଥିଲା, ବାକ୍ୟବିନ୍ୟାସ ଆଲୋକିତକୁ "
-"ନିଷ୍କ୍ରିୟ କରାଯାଇଥିଲା"
+msgstr "ଗୋଟିଏ ଧାଡ଼ିକୁ ଆଲୋକିତ କରିବା ପାଇଁ ଅଧିକ ସମୟ ଲାଗିଥିଲା, ବାକ୍ୟବିନ୍ୟାସ ଆଲୋକିତକୁ ନିଷ୍କ୍ରିୟ କରାଯାଇଥିଲା"
 
 #: ../gtksourceview/gtksourcecontextengine.c:5757
 #, c-format
@@ -141,6 +140,22 @@ msgstr "ଅଜଣା ପ୍ରସଙ୍ଗ '%s'"
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "ଅନୁପସ୍ଥିତ ପ୍ରଧାନ ଭାଷା ବ୍ୟାଖ୍ୟା (id = \"%s\".)"
+
+#: ../gtksourceview/gtksourcegutter.c:336
+msgid "View"
+msgstr "ଦୃଶ୍ଯ"
+
+#: ../gtksourceview/gtksourcegutter.c:337
+msgid "The gutters' GtkSourceView"
+msgstr "ନାଳୀର GtkSourceView"
+
+#: ../gtksourceview/gtksourcegutter.c:349
+msgid "Window Type"
+msgstr "ୱିଣ୍ଡୋ ପ୍ରକାର"
+
+#: ../gtksourceview/gtksourcegutter.c:350
+msgid "The gutters text window type"
+msgstr "ନାଳୀର ପାଠ୍ୟ ୱିଣ୍ଡୋ ପ୍ରକାର"
 
 #: ../gtksourceview/gtksourcelanguage.c:42
 #: ../gtksourceview/language-specs/changelog.lang.h:8
@@ -233,12 +248,12 @@ msgid "The GtkSourceBuffer object to print"
 msgstr "ମୁଦ୍ରଣ କରିବାକୁ ଥିବା GtkSourceBuffer ବସ୍ତୁ"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:429
-#: ../gtksourceview/gtksourceview.c:290
+#: ../gtksourceview/gtksourceview.c:319
 msgid "Tab Width"
 msgstr "ଟ୍ୟାବ ଓସାର"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:430
-#: ../gtksourceview/gtksourceview.c:291
+#: ../gtksourceview/gtksourceview.c:320
 msgid "Width of a tab character expressed in spaces"
 msgstr "ଖାଲିସ୍ଥାନରେ ପ୍ରକାଶକରାଯାଇଥିବା ଟ୍ୟାବର ଓସାର"
 
@@ -454,93 +469,95 @@ msgstr "ଯୋଜନା idଗୁଡ଼ିକ"
 msgid "List of the ids of the available style schemes"
 msgstr "ଉପଲବ୍ଧ ଶୈଳୀ ଯୋଜନାଗୁଡ଼ିକର idର ତାଲିକା"
 
-#: ../gtksourceview/gtksourceview.c:265
+#: ../gtksourceview/gtksourceview.c:294
 msgid "Show Line Numbers"
 msgstr "ଧାଡ଼ି ସଂଖ୍ୟା ଦର୍ଶାନ୍ତୁ"
 
-#: ../gtksourceview/gtksourceview.c:266
+#: ../gtksourceview/gtksourceview.c:295
 msgid "Whether to display line numbers"
 msgstr "ଧାଡ଼ି ସଂଖ୍ୟା ଦର୍ଶାଇବା ଉଚିତ କି ନୁହଁ"
 
-#: ../gtksourceview/gtksourceview.c:277
+#: ../gtksourceview/gtksourceview.c:306
 msgid "Show Line Marks"
 msgstr "ଧାଡ଼ି ଚିହ୍ନଗୁଡ଼ିକୁ ଦର୍ଶାନ୍ତୁ"
 
-#: ../gtksourceview/gtksourceview.c:278
+#: ../gtksourceview/gtksourceview.c:307
 msgid "Whether to display line mark pixbufs"
 msgstr "ଧାଡ଼ି ଚିହ୍ନିତ pixbufsକୁ ଦର୍ଶାଇବା ଉଚିତ କି"
 
-#: ../gtksourceview/gtksourceview.c:305
+#: ../gtksourceview/gtksourceview.c:334
 msgid "Indent Width"
 msgstr "ଅନୁଚ୍ଛେଦ ଓସାର"
 
-#: ../gtksourceview/gtksourceview.c:306
+#: ../gtksourceview/gtksourceview.c:335
 msgid "Number of spaces to use for each step of indent"
 msgstr "ଅନୁଚ୍ଛେଦର ପ୍ରତ୍ୟେକ ପଦକ୍ଷେପ ପାଇଁ ବ୍ୟବହୃତ ସ୍ଥାନର ସଂଖ୍ୟା"
 
-#: ../gtksourceview/gtksourceview.c:315
+#: ../gtksourceview/gtksourceview.c:344
 msgid "Auto Indentation"
 msgstr "ସ୍ୱୟଂ ଅନୁଚ୍ଛେଦନ"
 
-#: ../gtksourceview/gtksourceview.c:316
+#: ../gtksourceview/gtksourceview.c:345
 msgid "Whether to enable auto indentation"
 msgstr "ସ୍ୱୟଂ ଅନୁଚ୍ଛେଦନକୁ ସକ୍ରିୟ କରିବା ଉଚିତ କି ନୁହଁ"
 
-#: ../gtksourceview/gtksourceview.c:323
+#: ../gtksourceview/gtksourceview.c:352
 msgid "Insert Spaces Instead of Tabs"
 msgstr "ଟ୍ୟାବ ବଦଳରେ ଖାଲିସ୍ଥାନ ଭର୍ତ୍ତି କରନ୍ତୁ"
 
-#: ../gtksourceview/gtksourceview.c:324
+#: ../gtksourceview/gtksourceview.c:353
 msgid "Whether to insert spaces instead of tabs"
 msgstr "ଟ୍ୟାବ ବଦଳରେ ଖାଲିସ୍ଥାନ ଭର୍ତ୍ତି କରିବା ଉଚିତ କି ନୁହଁ"
 
-#: ../gtksourceview/gtksourceview.c:336
+#: ../gtksourceview/gtksourceview.c:365
 msgid "Show Right Margin"
 msgstr "ଡାହାଣ ସୀମା ଦର୍ଶାନ୍ତୁ"
 
-#: ../gtksourceview/gtksourceview.c:337
+#: ../gtksourceview/gtksourceview.c:366
 msgid "Whether to display the right margin"
 msgstr "ଡାହାଣ ସୀମା ଦର୍ଶାଇବା ଉଚିତ କି ନୁହଁ"
 
-#: ../gtksourceview/gtksourceview.c:349
+#: ../gtksourceview/gtksourceview.c:378
 msgid "Right Margin Position"
 msgstr "ଡାହାଣ ସୀମା ସ୍ଥାନ"
 
-#: ../gtksourceview/gtksourceview.c:350
+#: ../gtksourceview/gtksourceview.c:379
 msgid "Position of the right margin"
 msgstr "ଡାହାଣ ସୀମାର ସ୍ଥାନ"
 
-#: ../gtksourceview/gtksourceview.c:366
+#: ../gtksourceview/gtksourceview.c:395
 msgid "Smart Home/End"
 msgstr "ଚତୁର Home/End"
 
-#: ../gtksourceview/gtksourceview.c:367
+#: ../gtksourceview/gtksourceview.c:396
 msgid ""
 "HOME and END keys move to first/last non whitespace characters on line "
 "before going to the start/end of the line"
-msgstr "HOME ଏବଂ END କିଗୁଡିକ ପ୍ରଥମ/ଶେଷ ରେଖାରେ  ଧଳା ଅନ୍ତର ହୋଇନଥିବା ଅକ୍ଷରଗୁଡିକ ନିକଟକୁ ଘୁଞ୍ଚେ ରେଖାର ଆରମ୍ଭ/ଶେଷକୁ ୟିବା ପୂର୍ବରୁ"
+msgstr ""
+"HOME ଏବଂ END କିଗୁଡିକ ପ୍ରଥମ/ଶେଷ ରେଖାରେ  ଧଳା ଅନ୍ତର ହୋଇନଥିବା ଅକ୍ଷରଗୁଡିକ ନିକଟକୁ ଘୁଞ୍ଚେ ରେଖାର "
+"ଆରମ୍ଭ/ଶେଷକୁ ୟିବା ପୂର୍ବରୁ"
 
-#: ../gtksourceview/gtksourceview.c:377
+#: ../gtksourceview/gtksourceview.c:406
 msgid "Highlight current line"
 msgstr "ପ୍ରଚଳିତ ଧାଡ଼ିକୁ ଆଲୋକିତ କରନ୍ତୁ"
 
-#: ../gtksourceview/gtksourceview.c:378
+#: ../gtksourceview/gtksourceview.c:407
 msgid "Whether to highlight the current line"
 msgstr "ପ୍ରଚଳିତ ଧାଡ଼ିକୁ ଆଲୋକିତ କରିବା ଉଚିତ କି ନୁହଁ"
 
-#: ../gtksourceview/gtksourceview.c:385
+#: ../gtksourceview/gtksourceview.c:414
 msgid "Indent on tab"
 msgstr "ଟ୍ୟାବରେ ଅନୁଚ୍ଛେଦ"
 
-#: ../gtksourceview/gtksourceview.c:386
+#: ../gtksourceview/gtksourceview.c:415
 msgid "Whether to indent the selected text when the tab key is pressed"
 msgstr "ଟ୍ୟାବ କି କୁ ଦବାଇବା ସମୟରେ ବଚ୍ଛିତ ପାଠ୍ୟରେ ଅନୁଚ୍ଛେଦ ଦେବା ଉଚିତ କି"
 
-#: ../gtksourceview/gtksourceview.c:400
+#: ../gtksourceview/gtksourceview.c:429
 msgid "Draw Spaces"
 msgstr "ଖାଲିସ୍ଥାନ ଆଙ୍କନ୍ତୁ"
 
-#: ../gtksourceview/gtksourceview.c:401
+#: ../gtksourceview/gtksourceview.c:430
 msgid "Set if and how the spaces should be visualized"
 msgstr "ଖାଲିସ୍ଥାନଗୁଡ଼ିକୁ କିପରି ଦେଖିହେବ ତାହା ସେଟ କରନ୍ତୁ"
 
@@ -677,6 +694,7 @@ msgstr "ଦଶମିକ ସଂଖ୍ୟା"
 #: ../gtksourceview/language-specs/ada.lang.h:7
 #: ../gtksourceview/language-specs/c.lang.h:9
 #: ../gtksourceview/language-specs/csharp.lang.h:8
+#: ../gtksourceview/language-specs/eiffel.lang.h:9
 #: ../gtksourceview/language-specs/haskell.lang.h:5
 #: ../gtksourceview/language-specs/java.lang.h:7
 #: ../gtksourceview/language-specs/lua.lang.h:3
@@ -701,7 +719,7 @@ msgstr "ଛାଡ଼ିଯାଇଥିବା ଅକ୍ଷର"
 #: ../gtksourceview/language-specs/d.lang.h:10
 #: ../gtksourceview/language-specs/dosbatch.lang.h:4
 #: ../gtksourceview/language-specs/dot.lang.h:5
-#: ../gtksourceview/language-specs/eiffel.lang.h:11
+#: ../gtksourceview/language-specs/eiffel.lang.h:12
 #: ../gtksourceview/language-specs/erlang.lang.h:9
 #: ../gtksourceview/language-specs/forth.lang.h:7
 #: ../gtksourceview/language-specs/fortran.lang.h:7
@@ -766,7 +784,7 @@ msgstr "ପ୍ରକୃତ ସଂଖ୍ୟା"
 #: ../gtksourceview/language-specs/cpp.lang.h:5
 #: ../gtksourceview/language-specs/csharp.lang.h:14
 #: ../gtksourceview/language-specs/d.lang.h:13
-#: ../gtksourceview/language-specs/eiffel.lang.h:13
+#: ../gtksourceview/language-specs/eiffel.lang.h:14
 #: ../gtksourceview/language-specs/erlang.lang.h:11
 #: ../gtksourceview/language-specs/forth.lang.h:10
 #: ../gtksourceview/language-specs/fortran.lang.h:8
@@ -779,7 +797,7 @@ msgstr "ପ୍ରକୃତ ସଂଖ୍ୟା"
 #: ../gtksourceview/language-specs/objc.lang.h:5
 #: ../gtksourceview/language-specs/ocaml.lang.h:16
 #: ../gtksourceview/language-specs/pascal.lang.h:7
-#: ../gtksourceview/language-specs/prolog.lang.h:6
+#: ../gtksourceview/language-specs/prolog.lang.h:7
 #: ../gtksourceview/language-specs/scheme.lang.h:6
 #: ../gtksourceview/language-specs/sql.lang.h:9
 #: ../gtksourceview/language-specs/vala.lang.h:10
@@ -805,7 +823,7 @@ msgstr "ସଂଗ୍ରହାଳୟ ଶ୍ରେଣୀ"
 #: ../gtksourceview/language-specs/def.lang.h:57
 #: ../gtksourceview/language-specs/d.lang.h:15
 #: ../gtksourceview/language-specs/dosbatch.lang.h:6
-#: ../gtksourceview/language-specs/eiffel.lang.h:14
+#: ../gtksourceview/language-specs/eiffel.lang.h:15
 #: ../gtksourceview/language-specs/erlang.lang.h:12
 #: ../gtksourceview/language-specs/forth.lang.h:11
 #: ../gtksourceview/language-specs/gtkrc.lang.h:9
@@ -825,7 +843,7 @@ msgstr "ସଂଗ୍ରହାଳୟ ଶ୍ରେଣୀ"
 #: ../gtksourceview/language-specs/perl.lang.h:19
 #: ../gtksourceview/language-specs/php.lang.h:19
 #: ../gtksourceview/language-specs/po.lang.h:8
-#: ../gtksourceview/language-specs/prolog.lang.h:7
+#: ../gtksourceview/language-specs/prolog.lang.h:8
 #: ../gtksourceview/language-specs/python.lang.h:17
 #: ../gtksourceview/language-specs/ruby.lang.h:21
 #: ../gtksourceview/language-specs/scheme.lang.h:7
@@ -931,7 +949,7 @@ msgstr "ସ୍କ୍ରିପ୍ଟଗୁଡ଼ିକ"
 #: ../gtksourceview/language-specs/perl.lang.h:21
 #: ../gtksourceview/language-specs/php.lang.h:20
 #: ../gtksourceview/language-specs/pkgconfig.lang.h:3
-#: ../gtksourceview/language-specs/prolog.lang.h:8
+#: ../gtksourceview/language-specs/prolog.lang.h:9
 #: ../gtksourceview/language-specs/ruby.lang.h:23
 #: ../gtksourceview/language-specs/sh.lang.h:11
 #: ../gtksourceview/language-specs/tcl.lang.h:4
@@ -1086,7 +1104,7 @@ msgstr "ଫ୍ଲୋଟିଙ୍ଗ ପଏଣ୍ଟ ସଂଖ୍ୟା"
 #: ../gtksourceview/language-specs/c.lang.h:11
 #: ../gtksourceview/language-specs/csharp.lang.h:9
 #: ../gtksourceview/language-specs/d.lang.h:9
-#: ../gtksourceview/language-specs/eiffel.lang.h:10
+#: ../gtksourceview/language-specs/eiffel.lang.h:11
 #: ../gtksourceview/language-specs/nemerle.lang.h:9
 #: ../gtksourceview/language-specs/php.lang.h:11
 #: ../gtksourceview/language-specs/vala.lang.h:6
@@ -1383,6 +1401,7 @@ msgstr "ଶୀର୍ଷକ ଉପାଦାନଗୁଡ଼ିକ"
 #: ../gtksourceview/language-specs/haddock.lang.h:14
 #: ../gtksourceview/language-specs/html.lang.h:7
 #: ../gtksourceview/language-specs/latex.lang.h:6
+#: ../gtksourceview/language-specs/mallard.lang.h:4
 #: ../gtksourceview/language-specs/t2t.lang.h:6
 #: ../gtksourceview/language-specs/texinfo.lang.h:8
 #: ../gtksourceview/language-specs/xml.lang.h:9
@@ -1461,16 +1480,16 @@ msgstr "ବୁଝାମଣା ପତ୍ର ଦ୍ୱାରା ସଂରଚନା
 msgid "Eiffel"
 msgstr "Eiffel"
 
-#: ../gtksourceview/language-specs/eiffel.lang.h:9
+#: ../gtksourceview/language-specs/eiffel.lang.h:10
 msgid "Exception Handling"
 msgstr "ବ୍ୟତିକ୍ରମ ନିୟନ୍ତ୍ରଣ"
 
-#: ../gtksourceview/language-specs/eiffel.lang.h:12
+#: ../gtksourceview/language-specs/eiffel.lang.h:13
 #: ../gtksourceview/language-specs/ruby.lang.h:16
 msgid "Predefined Variable"
 msgstr "ପୂର୍ବରୁ ବ୍ୟାଖ୍ଯାକରାଯାଇଥିବା ପ୍ରାଚଳ"
 
-#: ../gtksourceview/language-specs/eiffel.lang.h:15
+#: ../gtksourceview/language-specs/eiffel.lang.h:16
 msgid "Void Value"
 msgstr "ଶୂନ୍ୟ ମୂଲ୍ୟ"
 
@@ -1851,6 +1870,30 @@ msgstr "prereq"
 msgid "targets"
 msgstr "ଲକ୍ଷ୍ୟଗୁଡ଼ିକ"
 
+#: ../gtksourceview/language-specs/mallard.lang.h:1
+#| msgid "GUI Elements"
+msgid "Block Elements"
+msgstr "ବ୍ଲକ ଉପାଦାନ ଗୁଡ଼ିକ"
+
+#: ../gtksourceview/language-specs/mallard.lang.h:2
+#| msgid "GUI Elements"
+msgid "Inline Elements"
+msgstr "ଇନଲାଇନ ଉପାଦାନଗୁଡ଼ିକ"
+
+#: ../gtksourceview/language-specs/mallard.lang.h:3
+msgid "Mallard"
+msgstr "ମାଲାର୍ଡ"
+
+#: ../gtksourceview/language-specs/mallard.lang.h:5
+#| msgid "Header Elements"
+msgid "Page Elements"
+msgstr "ପୃଷ୍ଠା ଉପାଦାନଗୁଡ଼ିକ"
+
+#: ../gtksourceview/language-specs/mallard.lang.h:6
+#| msgid "Formatting Elements"
+msgid "Section Elements"
+msgstr "ବିଭାଗ ଉପାଦାନଗୁଡ଼ିକ"
+
 #: ../gtksourceview/language-specs/msil.lang.h:1
 msgid "MSIL"
 msgstr "MSIL"
@@ -2016,6 +2059,11 @@ msgstr "ବିଶେଷ"
 #: ../gtksourceview/language-specs/po.lang.h:9
 msgid "gettext translation"
 msgstr "gettext ଅନୁବାଦ"
+
+#: ../gtksourceview/language-specs/prolog.lang.h:6
+#| msgid "Verilog"
+msgid "Prolog"
+msgstr "Prolog"
 
 #: ../gtksourceview/language-specs/python.lang.h:3
 msgid "Builtin Constant"
