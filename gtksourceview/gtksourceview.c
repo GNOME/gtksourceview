@@ -1232,21 +1232,19 @@ set_tooltip_widget_from_marks (GtkSourceView *view,
 
 		if (cat != NULL && cat->tooltip_func != NULL)
 		{
-			GtkWidget *image;
-			GtkWidget *label;
-			GtkWidget *hbox;
-			GtkWidget *separator;
 			gchar *text;
-
-			hbox = gtk_hbox_new (FALSE, 4);
-			gtk_widget_show (hbox);
-			gtk_box_pack_start (GTK_BOX (vbox), hbox,
-					    FALSE, FALSE, 0);
-
 			text = cat->tooltip_func (mark, cat->tooltip_data);
 
 			if (text != NULL)
 			{
+				GtkWidget *label;
+				GtkWidget *hbox;
+				
+				hbox = gtk_hbox_new (FALSE, 4);
+				gtk_widget_show (hbox);
+				gtk_box_pack_start (GTK_BOX (vbox), hbox,
+				    FALSE, FALSE, 0);
+				
 				GdkPixbuf *pixbuf;
 				gint size;
 				
@@ -1265,6 +1263,7 @@ set_tooltip_widget_from_marks (GtkSourceView *view,
 
 				if (pixbuf != NULL)
 				{
+					GtkWidget *image;
 					PangoLayoutLine *line;
 					PangoRectangle rect;
 					GtkWidget *align = gtk_alignment_new (0, 0, 0, 0);
@@ -1312,6 +1311,8 @@ set_tooltip_widget_from_marks (GtkSourceView *view,
 				
 				if (g_slist_length (marks) != 1)
 				{
+					GtkWidget *separator;
+					
 					separator = gtk_hseparator_new ();
 					gtk_widget_show (separator);
 					gtk_box_pack_start (GTK_BOX (vbox), separator,
