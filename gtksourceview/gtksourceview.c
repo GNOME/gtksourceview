@@ -1230,7 +1230,7 @@ set_tooltip_widget_from_marks (GtkSourceView *view,
 		
 		cat = gtk_source_view_get_mark_category (view, mark);
 
-		if (cat != NULL)
+		if (cat != NULL && cat->tooltip_func != NULL)
 		{
 			GtkWidget *image;
 			GtkWidget *label;
