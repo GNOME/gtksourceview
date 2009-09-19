@@ -1434,6 +1434,18 @@ gtk_source_completion_hide_default (GtkSourceCompletion *completion)
 static void
 gtk_source_completion_show_default (GtkSourceCompletion *completion)
 {
+	/* Move completion window */
+	if (completion->priv->context)
+	{
+		GtkTextIter location;
+		gtk_source_completion_context_get_iter (completion->priv->context, 
+		                                        &location);
+
+		gtk_source_completion_utils_move_to_iter (GTK_WINDOW (completion->priv->window),
+		                                          GTK_SOURCE_VIEW (completion->priv->view),
+		                                          &location);
+	}
+
 	gtk_widget_show (GTK_WIDGET (completion->priv->window));
 	gtk_widget_grab_focus (GTK_WIDGET (completion->priv->view));
 
@@ -2056,11 +2068,6 @@ update_completion (GtkSourceCompletion        *completion,
 	update_typing_offsets (completion);
 	
 	gtk_source_completion_context_get_iter (context, &location);
-	
-	/* Move completion window */
-	gtk_source_completion_utils_move_to_iter (GTK_WINDOW (completion->priv->window),
-	                                          GTK_SOURCE_VIEW (completion->priv->view),
-	                                          &location);
 	
 	if (GTK_WIDGET_VISIBLE (completion->priv->info_window))
 	{
