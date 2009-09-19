@@ -125,9 +125,7 @@ struct _GtkSourceCompletionPrivate
 
 	guint show_timed_out_id;
 	guint auto_complete_delay;
-	guint update_info_id;
-	gboolean is_populating;
-	
+
 	gint typing_line;
 	gint typing_line_offset;
 
@@ -149,6 +147,7 @@ static void show_info_cb (GtkWidget           *widget,
 static gboolean
 get_selected_proposal (GtkSourceCompletion          *completion,
                        GtkTreeIter                  *iter,
+		       GtkSourceCompletionProvider **provider,
 		       GtkSourceCompletionProposal **proposal)
 {
 	GtkTreeIter piter;
@@ -166,6 +165,13 @@ get_selected_proposal (GtkSourceCompletion          *completion,
 			gtk_tree_model_get (model, &piter,
 					    GTK_SOURCE_COMPLETION_MODEL_COLUMN_PROPOSAL,
 					    proposal, -1);
+		}
+		
+		if (provider)
+		{
+			gtk_tree_model_get (model, &piter,
+					    GTK_SOURCE_COMPLETION_MODEL_COLUMN_PROVIDER,
+					    provider, -1);
 		}
 		
 		if (iter != NULL)
@@ -202,16 +208,11 @@ activate_current_proposal (GtkSourceCompletion *completion)
 	GtkTextBuffer *buffer;
 	const gchar *text;
 	
-	if (!get_selected_proposal (completion, &iter, &proposal))
+	if (!get_selected_proposal (completion, &iter, &provider, &proposal))
 	{
 		gtk_source_completion_hide (completion);
 		return TRUE;
 	}
-	
-	gtk_tree_model_get (GTK_TREE_MODEL (completion->priv->model_proposals),
-	                    &iter,
-	                    GTK_SOURCE_COMPLETION_MODEL_COLUMN_PROVIDER, &provider,
-	                    -1);
 	
 	/* Get insert iter */
 	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (completion->priv->view));
@@ -891,15 +892,12 @@ update_proposal_info (GtkSourceCompletion *completion)
 {
 	GtkSourceCompletionProposal *proposal = NULL;
 	GtkSourceCompletionProvider *provider;
-	GtkTreeModel *model;
 	GtkTreeIter iter;
 	
-	if (get_selected_proposal (completion, &iter, &proposal))
+	if (get_selected_proposal (completion, &iter, &provider, &proposal))
 	{
-		model = GTK_TREE_MODEL (completion->priv->model_proposals);
-		gtk_tree_model_get (model, &iter, GTK_SOURCE_COMPLETION_MODEL_COLUMN_PROVIDER, &provider, -1);
-	
 		update_proposal_info_real (completion, provider, proposal);
+
 		g_object_unref (provider);
 		g_object_unref (proposal);
 	}
@@ -907,15 +905,6 @@ update_proposal_info (GtkSourceCompletion *completion)
 	{
 		update_proposal_info_real (completion, NULL, NULL);
 	}
-}
-
-static gboolean
-update_proposal_info_idle (GtkSourceCompletion *completion)
-{
-	completion->priv->update_info_id = 0;
-	update_proposal_info (completion);
-	
-	return FALSE;
 }
 
 static void 
@@ -927,7 +916,7 @@ selection_changed_cb (GtkTreeSelection    *selection,
 		return;
 	}
 
-	if (get_selected_proposal (completion, NULL, NULL))
+	if (get_selected_proposal (completion, NULL, NULL, NULL))
 	{
 		completion->priv->select_first = FALSE;
 	}
@@ -936,18 +925,10 @@ selection_changed_cb (GtkTreeSelection    *selection,
 		completion->priv->select_first = TRUE;
 	}
 	
+	/* Update the proposal info here */
 	if (gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (completion->priv->info_button)))
 	{
-		/* When populating, do it in an idle to prevent many updates */
-		if (completion->priv->update_info_id == 0)
-		{
-			g_idle_add ((GSourceFunc)update_proposal_info_idle,
-			            completion);
-		}
-		else
-		{
-			update_proposal_info (completion);
-		}
+		update_proposal_info (completion);
 	}
 }
 
@@ -1355,12 +1336,6 @@ cancel_completion (GtkSourceCompletion        *completion,
 		completion->priv->show_timed_out_id = 0;
 	}
 	
-	if (completion->priv->update_info_id)
-	{
-		g_source_remove (completion->priv->update_info_id);
-		completion->priv->update_info_id = 0;
-	}
-	
 	if (completion->priv->context == NULL)
 	{
 		if (context != NULL)
@@ -1522,6 +1497,75 @@ gtk_source_completion_set_property (GObject      *object,
 }
 
 static void
+check_first_selected (GtkSourceCompletion *completion)
+{
+	GtkTreeSelection *selection;
+	GtkTreeIter piter;
+	GtkTreeIter first;
+	GtkTreeModel *model;
+
+	model = GTK_TREE_MODEL (completion->priv->model_proposals);
+	selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (completion->priv->tree_view_proposals));
+	
+	if (!completion->priv->select_first)
+	{
+		return;
+	}
+	
+	if (!gtk_tree_model_get_iter_first (model, &first))
+	{
+		return;
+	}
+	
+	piter = first;
+	
+	while (gtk_source_completion_model_iter_is_header (completion->priv->model_proposals, &piter))
+	{
+		if (!gtk_tree_model_iter_next (model, &piter))
+		{
+			return;
+		}
+	}
+	
+	gtk_tree_selection_select_iter (selection, &piter);
+	
+	gtk_tree_model_get_iter_first (model, &piter);
+	scroll_to_iter (completion, &first);
+
+	completion->priv->select_first = TRUE;
+}
+
+static void
+on_row_inserted_cb (GtkTreeModel        *tree_model,
+                    GtkTreePath         *path,
+                    GtkTreeIter         *iter,
+                    GtkSourceCompletion *completion)
+{
+	if (!GTK_WIDGET_VISIBLE (completion->priv->window))
+	{
+		if (!completion->priv->remember_info_visibility)
+		{
+			completion->priv->info_visible = FALSE;
+		}
+		
+		gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (completion->priv->info_button),
+					      completion->priv->info_visible);
+	
+		g_signal_emit (completion, signals[SHOW], 0);
+	}
+	
+	check_first_selected (completion);
+}
+
+static void
+on_row_deleted_cb (GtkTreeModel        *tree_model,
+                   GtkTreePath         *path,
+                   GtkSourceCompletion *completion)
+{
+	check_first_selected (completion);
+}
+
+static void
 gtk_source_completion_hide_default (GtkSourceCompletion *completion)
 {
 	gtk_label_set_markup (GTK_LABEL (completion->priv->default_info), "");
@@ -1529,8 +1573,9 @@ gtk_source_completion_hide_default (GtkSourceCompletion *completion)
 	gtk_widget_hide (completion->priv->info_window);
 	gtk_widget_hide (completion->priv->window);
 
-	cancel_completion (completion, NULL);
 	gtk_source_completion_model_clear (completion->priv->model_proposals);
+
+	cancel_completion (completion, NULL);
 
 	g_list_free (completion->priv->active_providers);
 	completion->priv->active_providers = NULL;
@@ -2013,75 +2058,6 @@ selection_func (GtkTreeSelection    *selection,
 }
 
 static void
-check_first_selected (GtkSourceCompletion *completion)
-{
-	GtkTreeSelection *selection;
-	GtkTreeIter piter;
-	GtkTreeIter first;
-	GtkTreeModel *model;
-
-	model = GTK_TREE_MODEL (completion->priv->model_proposals);
-	selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (completion->priv->tree_view_proposals));
-	
-	if (!completion->priv->select_first)
-	{
-		return;
-	}
-	
-	if (!gtk_tree_model_get_iter_first (model, &first))
-	{
-		return;
-	}
-	
-	piter = first;
-	
-	while (gtk_source_completion_model_iter_is_header (completion->priv->model_proposals, &piter))
-	{
-		if (!gtk_tree_model_iter_next (model, &piter))
-		{
-			return;
-		}
-	}
-	
-	gtk_tree_selection_select_iter (selection, &piter);
-	
-	gtk_tree_model_get_iter_first (model, &piter);
-	scroll_to_iter (completion, &first);
-
-	completion->priv->select_first = TRUE;
-}
-
-static void
-on_row_inserted_cb (GtkTreeModel        *tree_model,
-                    GtkTreePath         *path,
-                    GtkTreeIter         *iter,
-                    GtkSourceCompletion *completion)
-{
-	if (!GTK_WIDGET_VISIBLE (completion->priv->window))
-	{
-		if (!completion->priv->remember_info_visibility)
-		{
-			completion->priv->info_visible = FALSE;
-		}
-		
-		gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (completion->priv->info_button),
-					      completion->priv->info_visible);
-	
-		g_signal_emit (completion, signals[SHOW], 0);
-	}
-	
-	check_first_selected (completion);
-}
-
-static void
-on_row_deleted_cb (GtkTreeModel        *tree_model,
-                   GtkTreePath         *path,
-                   GtkSourceCompletion *completion)
-{
-	check_first_selected (completion);
-}
-
-static void
 on_providers_changed (GtkSourceCompletionModel *model,
                       GtkSourceCompletion      *completion)
 {
@@ -2121,6 +2097,43 @@ info_button_style_set (GtkWidget           *button,
 		gtk_widget_hide (completion->priv->image_info);
 	}
 }
+
+static void
+on_begin_delete (GtkSourceCompletionModel *model,
+                 GtkSourceCompletion      *completion)
+{	                                 
+	GtkTreeSelection *selection;
+	
+	selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (completion->priv->tree_view_proposals));
+
+	g_signal_handlers_block_by_func (completion->priv->model_proposals,
+	                                 G_CALLBACK (on_row_deleted_cb),
+	                                 completion);
+
+	g_signal_handlers_block_by_func (selection,
+	                                 G_CALLBACK (selection_changed_cb),
+	                                 completion);
+}
+
+static void
+on_end_delete (GtkSourceCompletionModel *model,
+                 GtkSourceCompletion      *completion)
+{	                                 
+	GtkTreeSelection *selection;
+	
+	selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (completion->priv->tree_view_proposals));
+
+	g_signal_handlers_unblock_by_func (completion->priv->model_proposals,
+	                                   G_CALLBACK (on_row_deleted_cb),
+	                                   completion);
+
+	g_signal_handlers_unblock_by_func (selection,
+	                                   G_CALLBACK (selection_changed_cb),
+	                                   completion);
+
+	check_first_selected (completion);
+}
+
 
 static void
 initialize_ui (GtkSourceCompletion *completion)
@@ -2214,6 +2227,16 @@ initialize_ui (GtkSourceCompletion *completion)
 	                        G_CALLBACK (on_row_deleted_cb),
 	                        completion);
 
+	g_signal_connect_after (completion->priv->model_proposals,
+	                        "begin-delete",
+	                        G_CALLBACK (on_begin_delete),
+	                        completion);
+
+	g_signal_connect_after (completion->priv->model_proposals,
+	                        "end-delete",
+	                        G_CALLBACK (on_end_delete),
+	                        completion);
+
 	g_signal_connect (completion->priv->model_proposals,
 	                  "providers-changed",
 	                  G_CALLBACK (on_providers_changed),
@@ -2304,7 +2327,7 @@ update_completion (GtkSourceCompletion        *completion,
 {
 	GtkTextIter location;
 	GList *item;
-	
+
 	update_typing_offsets (completion);
 	
 	gtk_source_completion_context_get_iter (context, &location);
@@ -2328,13 +2351,11 @@ update_completion (GtkSourceCompletion        *completion,
 	
 	completion->priv->select_first = 
 		completion->priv->select_on_show &&
-		(!get_selected_proposal (completion, NULL, NULL) || completion->priv->select_first);
+		(!get_selected_proposal (completion, NULL, NULL, NULL) || completion->priv->select_first);
 	
-	completion->priv->is_populating = TRUE;
-
 	gtk_source_completion_model_begin (completion->priv->model_proposals,
 	                                   completion->priv->active_providers);
-	
+
 	for (item = providers; item != NULL; item = g_list_next (item))
 	{
 		GtkSourceCompletionProvider *provider = 
@@ -2348,8 +2369,6 @@ static void
 populating_done (GtkSourceCompletion        *completion,
                  GtkSourceCompletionContext *context)
 {
-	completion->priv->is_populating = FALSE;
-
 	if (gtk_source_completion_model_is_empty (completion->priv->model_proposals, 
 	                                          FALSE))
 	{

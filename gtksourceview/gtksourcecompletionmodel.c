@@ -71,6 +71,8 @@ struct _GtkSourceCompletionModelPrivate
 enum
 {
 	PROVIDERS_CHANGED,
+	BEGIN_DELETE,
+	END_DELETE,
 	NUM_SIGNALS
 };
 
@@ -524,6 +526,28 @@ gtk_source_completion_model_class_init (GtkSourceCompletionModelClass *klass)
 		              G_TYPE_NONE,
 		              0);
 
+	signals[BEGIN_DELETE] =
+		g_signal_new ("begin-delete",
+		              G_TYPE_FROM_CLASS (klass),
+		              G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
+		              G_STRUCT_OFFSET (GtkSourceCompletionModelClass, begin_delete),
+		              NULL, 
+		              NULL,
+		              g_cclosure_marshal_VOID__VOID, 
+		              G_TYPE_NONE,
+		              0);
+
+	signals[END_DELETE] =
+		g_signal_new ("end-delete",
+		              G_TYPE_FROM_CLASS (klass),
+		              G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
+		              G_STRUCT_OFFSET (GtkSourceCompletionModelClass, end_delete),
+		              NULL, 
+		              NULL,
+		              g_cclosure_marshal_VOID__VOID, 
+		              G_TYPE_NONE,
+		              0);
+
 	g_type_class_add_private (object_class, sizeof(GtkSourceCompletionModelPrivate));
 }
 
@@ -967,6 +991,7 @@ remove_unmarked (GtkSourceCompletionModel    *model,
                  GtkSourceCompletionProvider *provider)
 {
 	GList *item;
+	gboolean ret = TRUE;
 	GtkTreePath *path = NULL;
 	ProviderInfo *info = g_hash_table_lookup (model->priv->providers_info, 
 	                                          provider);
@@ -975,6 +1000,8 @@ remove_unmarked (GtkSourceCompletionModel    *model,
 	{
 		return FALSE;
 	}
+	
+	g_signal_emit (model, signals[BEGIN_DELETE], 0);
 	
 	item = info->first;
 
@@ -1027,10 +1054,11 @@ remove_unmarked (GtkSourceCompletionModel    *model,
 		model->priv->visible_providers = g_list_remove (model->priv->visible_providers,
 		                                                provider);
 		
-		return FALSE;
+		ret = FALSE;
 	}
 	
-	return TRUE;
+	g_signal_emit (model, signals[END_DELETE], 0);
+	return ret;
 }
 
 static ProviderInfo *
