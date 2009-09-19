@@ -1210,12 +1210,21 @@ interactive_do_show (GtkSourceCompletion *completion)
 
 static void
 update_interactive_completion (GtkSourceCompletion *completion,
-                               GtkTextIter         *iter)
+                               GtkTextIter         *iter,
+                               gboolean             start_completion)
 {
 	if (completion->priv->context == NULL)
 	{
 		/* Schedule for interactive showing */
-		interactive_do_show (completion);
+		if (start_completion)
+		{
+			interactive_do_show (completion);
+		}
+		else if (completion->priv->show_timed_out_id)
+		{
+			g_source_remove (completion->priv->show_timed_out_id);
+			completion->priv->show_timed_out_id = 0;
+		}
 	}
 	else if (gtk_source_completion_context_get_interactive (completion->priv->context) &&
 	         gtk_text_iter_get_line (iter) != completion->priv->typing_line)
@@ -1241,7 +1250,7 @@ buffer_delete_range_cb (GtkTextBuffer       *buffer,
                         GtkTextIter         *end,
                         GtkSourceCompletion *completion)
 {
-	update_interactive_completion (completion, start);
+	update_interactive_completion (completion, start, FALSE);
 	return FALSE;
 }
 
@@ -1252,7 +1261,7 @@ buffer_insert_text_cb (GtkTextBuffer       *buffer,
                        gint                 len,
                        GtkSourceCompletion *completion)
 {
-	update_interactive_completion (completion, location);
+	update_interactive_completion (completion, location, TRUE);
 }
 
 static void
@@ -2316,6 +2325,10 @@ populating_done (GtkSourceCompletion        *completion,
 	{
 		/* No completion made, make sure to hide the window */
 		gtk_source_completion_hide (completion);
+		
+		/* If the window is not visible, the completion was not really
+		   cancelled */
+		cancel_completion (completion, NULL);
 	}
 	else
 	{
