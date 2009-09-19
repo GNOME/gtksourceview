@@ -4,6 +4,7 @@
 #include <devhelp/dh-assistant-view.h>
 #include <gtksourceview/gtksourceview.h>
 #include <gtksourceview/gtksourcecompletionitem.h>
+#include <string.h>
 
 #define GSC_PROVIDER_DEVHELP_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE((object), GSC_TYPE_PROVIDER_DEVHELP, GscProviderDevhelpPrivate))
 
@@ -27,6 +28,7 @@ struct _GscProviderDevhelpPrivate
 	DhBase *dhbase;
 	GtkWidget *view;
 	GdkPixbuf *icon;
+	gchar *word;
 
 	GList *dhptr;
 	GList *proposals;
@@ -97,6 +99,9 @@ population_finished (GscProviderDevhelp *devhelp)
 		devhelp->priv->idle_id = 0;
 	}
 	
+	g_free (devhelp->priv->word);
+	devhelp->priv->word = NULL;
+	
 	if (devhelp->priv->context != NULL)
 	{
 		if (devhelp->priv->cancel_id)
@@ -143,7 +148,7 @@ fill_proposals (GscProviderDevhelp *devhelp)
 static gboolean
 is_word_char (gunichar ch)
 {
-	return g_unichar_isprint (ch) && (g_unichar_isalnum (ch) || ch == '_' || ch == ':');
+	return g_unichar_isprint (ch) && (g_unichar_isalnum (ch) || ch == '_' || ch == ':' || ch == '.');
 }
 
 static gchar *
@@ -183,20 +188,14 @@ add_in_idle (GscProviderDevhelp *devhelp)
 {
 	guint idx = 0;
 	GList *ret = NULL;
-	GtkTextIter iter;
-	gchar *word;
 	gboolean finished;
 	
 	if (devhelp->priv->proposals == NULL)
 	{
 		fill_proposals (devhelp);
 	}
-
-	gtk_source_completion_context_get_iter (devhelp->priv->context,
-	                                        &iter);
-	word = get_word_at_iter (&iter);
 	
-	if (word == NULL)
+	if (devhelp->priv->word == NULL)
 	{
 		gtk_source_completion_context_add_proposals (devhelp->priv->context,
 	                                                 GTK_SOURCE_COMPLETION_PROVIDER (devhelp),
@@ -213,7 +212,7 @@ add_in_idle (GscProviderDevhelp *devhelp)
 		proposal = GTK_SOURCE_COMPLETION_PROPOSAL (devhelp->priv->idleptr->data);
 		
 		if (g_str_has_prefix (gtk_source_completion_proposal_get_text (proposal),
-		                      word))
+		                      devhelp->priv->word))
 		{
 			ret = g_list_prepend (ret, proposal);
 			
@@ -239,8 +238,6 @@ add_in_idle (GscProviderDevhelp *devhelp)
 	{
 		population_finished (devhelp);
 	}
-	
-	g_free (word);
 
 	return !finished;
 }
@@ -250,7 +247,8 @@ gsc_provider_devhelp_populate (GtkSourceCompletionProvider *provider,
                                GtkSourceCompletionContext  *context)
 {
 	GscProviderDevhelp *devhelp = GSC_PROVIDER_DEVHELP (provider);
-	
+	GtkTextIter iter;
+
 	devhelp->priv->cancel_id = 
 		g_signal_connect_swapped (context, 
 			                      "cancelled", 
@@ -260,8 +258,27 @@ gsc_provider_devhelp_populate (GtkSourceCompletionProvider *provider,
 	devhelp->priv->counter = 0;
 	devhelp->priv->idleptr = devhelp->priv->proposals;
 	devhelp->priv->context = g_object_ref (context);
-	devhelp->priv->idle_id = g_idle_add ((GSourceFunc)add_in_idle,
-	                                     devhelp);
+
+	gtk_source_completion_context_get_iter (context, &iter);
+	devhelp->priv->word = get_word_at_iter (&iter);
+	
+	if (devhelp->priv->word)
+	{
+		gchar *last = g_utf8_prev_char (devhelp->priv->word + strlen (devhelp->priv->word));
+		gunichar l = g_utf8_get_char (last);
+		
+		if (l == ':' || l == '.')
+		{
+			gtk_source_completion_context_move_window (context, &iter);
+		}
+	}
+	
+	/* Do first right now */
+	if (add_in_idle (devhelp))
+	{
+		devhelp->priv->idle_id = g_idle_add ((GSourceFunc)add_in_idle,
+		                                     devhelp);
+	}
 }
 
 static GtkWidget *
