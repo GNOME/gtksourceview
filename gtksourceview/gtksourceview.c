@@ -4109,6 +4109,7 @@ gtk_source_view_get_completion (GtkSourceView *view)
 	if (view->priv->completion == NULL)
 	{
 		view->priv->completion = gtk_source_completion_new (view);
+		g_object_ref_sink (view->priv->completion);
 	}
 	
 	return view->priv->completion;
