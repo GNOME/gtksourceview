@@ -36,7 +36,7 @@ G_BEGIN_DECLS
 #define GTK_IS_SOURCE_COMPLETION_CONTEXT_CLASS(klass)	(G_TYPE_CHECK_CLASS_TYPE ((klass), GTK_TYPE_SOURCE_COMPLETION_CONTEXT))
 #define GTK_SOURCE_COMPLETION_CONTEXT_GET_CLASS(obj)	(G_TYPE_INSTANCE_GET_CLASS ((obj), GTK_TYPE_SOURCE_COMPLETION_CONTEXT, GtkSourceCompletionContextClass))
 
-typedef struct _GtkSourceCompletionContext			GtkSourceCompletionContext;
+typedef struct _GtkSourceCompletionContext		GtkSourceCompletionContext;
 typedef struct _GtkSourceCompletionContextClass		GtkSourceCompletionContextClass;
 typedef struct _GtkSourceCompletionContextPrivate	GtkSourceCompletionContextPrivate;
 
