@@ -218,7 +218,7 @@ activate_current_proposal (GtkSourceCompletion *completion)
 	
 	g_signal_handler_unblock (buffer,
 	                          completion->priv->signals_ids[TEXT_BUFFER_DELETE_RANGE]);
-	g_signal_handler_unblock (completion->priv->model_proposals,
+	g_signal_handler_unblock (buffer,
 	                          completion->priv->signals_ids[TEXT_BUFFER_INSERT_TEXT]);
 
 	g_object_unref (provider);
