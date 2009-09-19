@@ -97,6 +97,7 @@ get_word_at_iter (GtkTextIter *iter)
 {
 	GtkTextIter start = *iter;
 	gint line = gtk_text_iter_get_line (iter);
+	gboolean went_back = TRUE;
 	
 	if (!gtk_text_iter_ends_word (iter))
 	{
@@ -108,10 +109,17 @@ get_word_at_iter (GtkTextIter *iter)
 		return NULL;
 	}
 	
-	while (line == gtk_text_iter_get_line (&start) && 
-	       is_word_char (gtk_text_iter_get_char (&start)) &&
-	       gtk_text_iter_backward_char (&start))
-	;
+	while (went_back &&
+	       line == gtk_text_iter_get_line (&start) && 
+	       is_word_char (gtk_text_iter_get_char (&start)))
+	{
+		went_back = gtk_text_iter_backward_char (&start);
+	}
+	
+	if (went_back)
+	{
+		gtk_text_iter_forward_char (&start);
+	}
 	
 	if (gtk_text_iter_equal (iter, &start))
 	{
