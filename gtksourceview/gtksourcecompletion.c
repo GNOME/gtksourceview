@@ -1325,7 +1325,7 @@ cancel_completion (GtkSourceCompletion        *completion,
 		g_source_remove (completion->priv->show_timed_out_id);
 		completion->priv->show_timed_out_id = 0;
 	}
-
+	
 	if (completion->priv->context == NULL)
 	{
 		if (context != NULL)
@@ -2427,7 +2427,7 @@ gtk_source_completion_show (GtkSourceCompletion        *completion,
 	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION (completion), FALSE);
 	
 	/* Make sure to clear any active completion */
-	gtk_source_completion_hide_default (completion);
+	gtk_source_completion_hide (completion);
 	
 	if (providers == NULL)
 	{
@@ -2436,7 +2436,6 @@ gtk_source_completion_show (GtkSourceCompletion        *completion,
 			g_object_unref (context);
 		}
 
-		gtk_source_completion_hide (completion);
 		return FALSE;
 	}
 	
@@ -2627,12 +2626,7 @@ void
 gtk_source_completion_hide (GtkSourceCompletion *completion)
 {
 	g_return_if_fail (GTK_IS_SOURCE_COMPLETION (completion));
-	
-	/* Hiding the completion window will trigger the actual hide */
-	if (GTK_WIDGET_VISIBLE (completion->priv->window))
-	{
-		g_signal_emit (completion, signals[HIDE], 0);
-	}
+	g_signal_emit (completion, signals[HIDE], 0);
 }
 
 /**
