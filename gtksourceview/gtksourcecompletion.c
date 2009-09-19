@@ -911,6 +911,11 @@ static void
 selection_changed_cb (GtkTreeSelection    *selection, 
 		      GtkSourceCompletion *completion)
 {
+	if (!GTK_WIDGET_VISIBLE (completion->priv->window))
+	{
+		return;
+	}
+
 	if (get_selected_proposal (completion, NULL, NULL))
 	{
 		completion->priv->select_first = FALSE;
