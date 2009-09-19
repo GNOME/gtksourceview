@@ -60,7 +60,6 @@ enum
 {
 	PROP_0,
 	PROP_VIEW,
-	PROP_MANAGE_KEYS,
 	PROP_REMEMBER_INFO_VISIBILITY,
 	PROP_SELECT_ON_SHOW,
 	PROP_SHOW_HEADERS,
@@ -1339,9 +1338,6 @@ gtk_source_completion_get_property (GObject    *object,
 		case PROP_VIEW:
 			g_value_set_object (value, completion->priv->view);
 			break;
-		case PROP_MANAGE_KEYS:
-			g_value_set_boolean (value, completion->priv->manage_keys);
-			break;
 		case PROP_REMEMBER_INFO_VISIBILITY:
 			g_value_set_boolean (value, completion->priv->remember_info_visibility);
 			break;
@@ -1378,9 +1374,6 @@ gtk_source_completion_set_property (GObject      *object,
 			/* On construction only */
 			completion->priv->view = g_value_dup_object (value);
 			connect_view (completion);
-			break;
-		case PROP_MANAGE_KEYS:
-			completion->priv->manage_keys = g_value_get_boolean (value);
 			break;
 		case PROP_REMEMBER_INFO_VISIBILITY:
 			completion->priv->remember_info_visibility = g_value_get_boolean (value);
@@ -1478,21 +1471,7 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 							      _("The GtkSourceView bound to the completion"),
 							      GTK_TYPE_SOURCE_VIEW,
 							      G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
-	
-	/**
-	 * GtkSourceCompletion:manage-completion-keys:
-	 *
-	 * Determines whether the completion object should manage key presses
-	 * for navigating and activating proposals.
-	 *
-	 */
-	g_object_class_install_property (object_class,
-					 PROP_MANAGE_KEYS,
-					 g_param_spec_boolean ("manage-completion-keys",
-							      _("Manage Completion Keys"),
-							      _("Manage keys to navigate proposal selection"),
-							      TRUE,
-							      G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+
 	/**
 	 * GtkSourceCompletion:remember-info-visibility:
 	 *
