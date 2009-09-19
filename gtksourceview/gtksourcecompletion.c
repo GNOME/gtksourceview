@@ -2520,10 +2520,8 @@ gtk_source_completion_show (GtkSourceCompletion        *completion,
 	
 	if (providers == NULL)
 	{
-		if (g_object_is_floating (context))
-		{
-			g_object_unref (context);
-		}
+		g_object_ref_sink (context);
+		g_object_unref (context);
 
 		return FALSE;
 	}
