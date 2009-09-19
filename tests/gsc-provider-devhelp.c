@@ -8,6 +8,7 @@
 
 #define GSC_PROVIDER_DEVHELP_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE((object), GSC_TYPE_PROVIDER_DEVHELP, GscProviderDevhelpPrivate))
 
+#define POPULATE_BATCH 500
 #define PROCESS_BATCH 300
 #define MAX_ITEMS 5000
 
@@ -16,6 +17,7 @@ typedef struct
 	GObject parent;
 	
 	DhLink *link;
+	gchar *word;
 } GscDevhelpItem;
 
 typedef struct
@@ -31,15 +33,19 @@ struct _GscProviderDevhelpPrivate
 	
 	GtkTextIter completion_iter;
 	gchar *word;
+	gint word_len;
 
-	GList *dhptr;
-	GList *proposals;
+	GSequenceIter *dhptr;
+	GSequence *proposals;
+	GSequenceIter *populate_iter;
 	
 	GtkSourceCompletionContext *context;
-	GList *idleptr;
 	guint idle_id;
 	guint cancel_id;
 	guint counter;
+	
+	GList *populateptr;
+	guint idle_populate_id;
 };
 
 GType gsc_devhelp_item_get_type (void);
@@ -82,8 +88,15 @@ gsc_devhelp_item_init (GscDevhelpItem *object)
 }
 
 static void
+gsc_devhelp_item_finalize (GObject *object)
+{
+	g_free (((GscDevhelpItem *)object)->word);
+}
+
+static void
 gsc_devhelp_item_class_init (GscDevhelpItemClass *klass)
 {
+	G_OBJECT_CLASS (klass)->finalize = gsc_devhelp_item_finalize;
 }
 
 static const gchar * 
@@ -101,6 +114,12 @@ population_finished (GscProviderDevhelp *devhelp)
 		devhelp->priv->idle_id = 0;
 	}
 	
+	if (devhelp->priv->idle_populate_id != 0)
+	{
+		g_source_remove (devhelp->priv->idle_populate_id);
+		devhelp->priv->idle_populate_id = 0;
+	}
+	
 	g_free (devhelp->priv->word);
 	devhelp->priv->word = NULL;
 	
@@ -115,36 +134,6 @@ population_finished (GscProviderDevhelp *devhelp)
 		g_object_unref (devhelp->priv->context);
 		devhelp->priv->context = NULL;
 	}
-}
-
-static void
-fill_proposals (GscProviderDevhelp *devhelp)
-{
-	GList *item;
-	GList *ret = NULL;
-
-	if (devhelp->priv->dhbase == NULL)
-	{
-		devhelp->priv->dhbase = dh_base_new ();
-		devhelp->priv->view = dh_assistant_view_new ();
-
-		dh_assistant_view_set_base (DH_ASSISTANT_VIEW (devhelp->priv->view), 
-		                            devhelp->priv->dhbase);
-		                            
-		gtk_widget_set_size_request (devhelp->priv->view, 400, 300);
-	}
-	
-	for (item = dh_base_get_keywords (devhelp->priv->dhbase); item; item = g_list_next (item))
-	{
-		GscDevhelpItem *proposal = g_object_new (gsc_devhelp_item_get_type (), 
-		                                         NULL);
-
-		proposal->link = (DhLink *)item->data;
-		ret = g_list_prepend (ret, proposal);			                
-	}
-	
-	devhelp->priv->proposals = g_list_reverse (ret);
-	devhelp->priv->idleptr = devhelp->priv->proposals;
 }
 
 static gboolean
@@ -187,6 +176,101 @@ get_word_at_iter (GscProviderDevhelp *devhelp,
 	return gtk_text_iter_get_text (&start, iter);
 }
 
+static gint
+compare_two_items (GscDevhelpItem *a,
+                   GscDevhelpItem *b,
+                   gpointer        data)
+{
+	return strcmp (a->word, b->word);
+}
+
+static gint
+compare_items (GscDevhelpItem     *a,
+               GscDevhelpItem     *b,
+               GscProviderDevhelp *devhelp)
+{
+	gchar const *m1 = a == NULL ? b->word : a->word;
+	
+	return strcmp (m1, devhelp->priv->word);
+}
+
+static gboolean
+iter_match_prefix (GscProviderDevhelp *devhelp,
+                   GSequenceIter      *iter)
+{
+	GscDevhelpItem *item = (GscDevhelpItem *)g_sequence_get (iter);
+	
+	return strncmp (item->word, devhelp->priv->word, devhelp->priv->word_len) == 0;
+}
+
+static GSequenceIter *
+find_first_proposal (GscProviderDevhelp *devhelp)
+{
+	GSequenceIter *iter;
+	GSequenceIter *prev;
+
+	iter = g_sequence_search (devhelp->priv->proposals,
+	                          NULL,
+	                          (GCompareDataFunc)compare_items,
+	                          devhelp);
+
+	if (iter == NULL)
+	{
+		return NULL;
+	}
+	
+	/* Test if this position might be after the last match */
+	if (!g_sequence_iter_is_begin (iter) && 
+	    (g_sequence_iter_is_end (iter) || !iter_match_prefix (devhelp, iter)))
+	{
+		iter = g_sequence_iter_prev (iter);
+	}
+	
+	/* Maybe there is actually nothing in the sequence */
+	if (g_sequence_iter_is_end (iter))
+	{
+		return NULL;
+	}
+	
+	/* Check if it still matches here */
+	if (!iter_match_prefix (devhelp, iter))
+	{
+		return NULL;
+	}
+	
+	/* Go back while it matches */
+	while (iter &&
+	       (prev = g_sequence_iter_prev (iter)) && 
+	       iter_match_prefix (devhelp, prev))
+	{
+		iter = prev;
+		
+		if (g_sequence_iter_is_end (iter))
+		{
+			iter = NULL;
+		}
+	}
+	
+	return iter;
+}
+
+static GSequenceIter *
+find_next_proposal (GscProviderDevhelp *devhelp,
+                    GSequenceIter      *iter)
+{
+	GscDevhelpItem *item;
+	iter = g_sequence_iter_next (iter);
+
+	if (!iter || g_sequence_iter_is_end (iter))
+	{
+		return NULL;
+	}
+	
+	item = (GscDevhelpItem *)g_sequence_get (iter);
+	
+	return iter_match_prefix (devhelp, iter) ? iter : NULL;
+}
+
 static gboolean
 add_in_idle (GscProviderDevhelp *devhelp)
 {
@@ -194,11 +278,7 @@ add_in_idle (GscProviderDevhelp *devhelp)
 	GList *ret = NULL;
 	gboolean finished;
 	
-	if (devhelp->priv->proposals == NULL)
-	{
-		fill_proposals (devhelp);
-	}
-	
+	/* Don't complete empty string (when word == NULL) */
 	if (devhelp->priv->word == NULL)
 	{
 		gtk_source_completion_context_add_proposals (devhelp->priv->context,
@@ -209,29 +289,25 @@ add_in_idle (GscProviderDevhelp *devhelp)
 		return FALSE;
 	}
 	
-	while (idx < PROCESS_BATCH && devhelp->priv->idleptr != NULL)
+	if (devhelp->priv->populate_iter == NULL)
+	{
+		devhelp->priv->populate_iter = find_first_proposal (devhelp);
+	}
+
+	while (idx < PROCESS_BATCH && devhelp->priv->populate_iter)
 	{
 		GtkSourceCompletionProposal *proposal;
 		
-		proposal = GTK_SOURCE_COMPLETION_PROPOSAL (devhelp->priv->idleptr->data);
+		proposal = GTK_SOURCE_COMPLETION_PROPOSAL (g_sequence_get (devhelp->priv->populate_iter));
+		ret = g_list_prepend (ret, proposal);
 		
-		if (g_str_has_prefix (gtk_source_completion_proposal_get_text (proposal),
-		                      devhelp->priv->word))
-		{
-			ret = g_list_prepend (ret, proposal);
-			
-			if (++devhelp->priv->counter >= MAX_ITEMS)
-			{
-				break;
-			}
-		}
-
+		devhelp->priv->populate_iter = find_next_proposal (devhelp,
+		                                                   devhelp->priv->populate_iter);
 		++idx;
-		devhelp->priv->idleptr = g_list_next (devhelp->priv->idleptr);
 	}
 	
-	finished = devhelp->priv->idleptr == NULL || devhelp->priv->counter >= MAX_ITEMS;
 	ret = g_list_reverse (ret);
+	finished = devhelp->priv->populate_iter == NULL;
 	
 	gtk_source_completion_context_add_proposals (devhelp->priv->context,
 	                                             GTK_SOURCE_COMPLETION_PROVIDER (devhelp),
@@ -246,12 +322,80 @@ add_in_idle (GscProviderDevhelp *devhelp)
 	return !finished;
 }
 
+static gboolean
+valid_link_type (DhLinkType type)
+{
+	switch (type)
+	{
+		case DH_LINK_TYPE_BOOK:
+		case DH_LINK_TYPE_PAGE:
+			return FALSE;
+		break;
+		default:
+			return TRUE;
+		break;
+	}
+}
+
+static gchar *
+string_for_compare (gchar const *s)
+{
+	return g_utf8_normalize (s, -1, G_NORMALIZE_ALL);
+}
+
+static gboolean
+idle_populate_proposals (GscProviderDevhelp *devhelp)
+{
+	guint idx = 0;
+
+	if (devhelp->priv->dhbase == NULL)
+	{
+		devhelp->priv->proposals = g_sequence_new ((GDestroyNotify)g_object_unref);
+		devhelp->priv->dhbase = dh_base_new ();
+		devhelp->priv->view = dh_assistant_view_new ();
+
+		dh_assistant_view_set_base (DH_ASSISTANT_VIEW (devhelp->priv->view), 
+		                            devhelp->priv->dhbase);
+		                            
+		gtk_widget_set_size_request (devhelp->priv->view, 400, 300);
+		
+		devhelp->priv->populateptr = dh_base_get_keywords (devhelp->priv->dhbase);
+	}
+	
+	while (idx < POPULATE_BATCH && devhelp->priv->populateptr)
+	{
+		DhLink *link = (DhLink *)devhelp->priv->populateptr->data;
+		gchar const *name = dh_link_get_name (link);
+		
+		if (valid_link_type (dh_link_get_link_type (link)) &&
+		    name != NULL && *name != '\0')
+		{
+			GscDevhelpItem *proposal = g_object_new (gsc_devhelp_item_get_type (), 
+				                                     NULL);
+
+			proposal->link = link;
+			proposal->word = string_for_compare (dh_link_get_name (proposal->link));
+
+			g_sequence_insert_sorted (devhelp->priv->proposals,
+				                      proposal,
+				                      (GCompareDataFunc)compare_two_items,
+				                      NULL);
+		}
+
+		++idx;
+		devhelp->priv->populateptr = g_list_next (devhelp->priv->populateptr);
+	}
+	
+	return devhelp->priv->populateptr != NULL;
+}
+
 static void
 gsc_provider_devhelp_populate (GtkSourceCompletionProvider *provider,
                                GtkSourceCompletionContext  *context)
 {
 	GscProviderDevhelp *devhelp = GSC_PROVIDER_DEVHELP (provider);
 	GtkTextIter iter;
+	gchar *word;
 
 	devhelp->priv->cancel_id = 
 		g_signal_connect_swapped (context, 
@@ -260,11 +404,37 @@ gsc_provider_devhelp_populate (GtkSourceCompletionProvider *provider,
 			                      provider);
 	
 	devhelp->priv->counter = 0;
-	devhelp->priv->idleptr = devhelp->priv->proposals;
+	devhelp->priv->populate_iter = NULL;
 	devhelp->priv->context = g_object_ref (context);
 
 	gtk_source_completion_context_get_iter (context, &iter);
-	devhelp->priv->word = get_word_at_iter (devhelp, &iter);
+	
+	g_free (devhelp->priv->word);
+
+	word = get_word_at_iter (devhelp, &iter);
+	
+	if (word != NULL)
+	{
+		devhelp->priv->word = string_for_compare (word);
+		devhelp->priv->word_len = strlen (devhelp->priv->word);
+	}
+	else
+	{
+		devhelp->priv->word = NULL;
+		devhelp->priv->word_len = 0;
+	}
+	
+	g_free (word);
+	
+	/* Make sure we are finished populating the proposals from devhelp */
+	if (devhelp->priv->idle_populate_id != 0)
+	{
+		g_source_remove (devhelp->priv->idle_populate_id);
+		devhelp->priv->idle_populate_id = 0;
+		
+		while (idle_populate_proposals (devhelp))
+		;
+	}
 	
 	/* Do first right now */
 	if (add_in_idle (devhelp))
@@ -326,10 +496,8 @@ gsc_provider_devhelp_finalize (GObject *object)
 {
 	GscProviderDevhelp *provider = GSC_PROVIDER_DEVHELP (object);
 	
-	
-	
 	g_object_unref (provider->priv->dhbase);
-	g_list_foreach (provider->priv->proposals, (GFunc)g_object_unref, NULL);
+	g_sequence_free (provider->priv->proposals);
 	
 	if (provider->priv->icon)
 	{
@@ -364,6 +532,9 @@ gsc_provider_devhelp_init (GscProviderDevhelp *self)
 	self->priv = GSC_PROVIDER_DEVHELP_GET_PRIVATE (self);
 	
 	self->priv->icon = gdk_pixbuf_new_from_file ("/usr/share/icons/hicolor/16x16/apps/devhelp.png", NULL);
+	
+	self->priv->idle_populate_id = g_idle_add ((GSourceFunc)idle_populate_proposals,
+	                                           self);
 }
 
 GscProviderDevhelp *
