@@ -58,7 +58,7 @@ struct _GtkSourceView;
 
 struct _GtkSourceCompletion
 {
-	GObject parent;
+	GtkObject parent;
 
 	GtkSourceCompletionPrivate *priv;
 };
@@ -74,6 +74,15 @@ struct _GtkSourceCompletionClass
 	void		(* hide)			(GtkSourceCompletion         *completion);
 	void		(* populate_context)		(GtkSourceCompletion         *completion,
 							 GtkSourceCompletionContext  *context);
+
+	/* Actions */
+	void		(* move_cursor)			(GtkSourceCompletion         *completion,
+							 GtkScrollStep                step,
+							 gint                         num);
+	void		(* move_page)			(GtkSourceCompletion         *completion,
+							 GtkScrollStep                step,
+							 gint                         num);
+	void		(* activate_proposal)		(GtkSourceCompletion         *completion);
 };
 
 GType		 gtk_source_completion_get_type			(void) G_GNUC_CONST;

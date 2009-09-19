@@ -53,6 +53,12 @@ enum
 	SHOW,
 	HIDE,
 	POPULATE_CONTEXT,
+	
+	/* Actions */
+	ACTIVATE_PROPOSAL,
+	MOVE_CURSOR,
+	MOVE_PAGE,
+
 	LAST_SIGNAL
 };
 
@@ -64,7 +70,10 @@ enum
 	PROP_SELECT_ON_SHOW,
 	PROP_SHOW_HEADERS,
 	
-	PROP_AUTO_COMPLETE_DELAY
+	PROP_AUTO_COMPLETE_DELAY,
+	
+	PROP_PROVIDER_PAGE_SIZE,
+	PROP_PROPOSAL_PAGE_SIZE
 };
 
 enum
@@ -100,6 +109,10 @@ struct _GtkSourceCompletionPrivate
 	gboolean select_on_show;
 	gboolean show_headers;
 	
+	/* Page size */
+	guint proposal_page_size;
+	guint provider_page_size;
+	
 	/* Completion management */
 	GtkSourceView *view;
 
@@ -122,7 +135,7 @@ struct _GtkSourceCompletionPrivate
 
 static guint signals[LAST_SIGNAL] = { 0 };
 
-G_DEFINE_TYPE(GtkSourceCompletion, gtk_source_completion, G_TYPE_OBJECT);
+G_DEFINE_TYPE(GtkSourceCompletion, gtk_source_completion, GTK_TYPE_OBJECT);
 
 static void update_completion (GtkSourceCompletion        *completion,
                                GList                      *providers,
@@ -607,7 +620,8 @@ static gboolean
 select_provider (GtkSourceCompletion *completion,
                  ListSelector         advance,
                  ListSelector         cycle_first,
-                 ListSelector         cycle_last)
+                 ListSelector         cycle_last,
+                 guint                num_advance)
 {
 	GList *first;
 	GList *last;
@@ -618,6 +632,7 @@ select_provider (GtkSourceCompletion *completion,
 	guint pos;
 	GList *providers;
 	GtkSourceCompletionProvider *visible;
+	guint i;
 	
 	providers = gtk_source_completion_model_get_providers (completion->priv->model_proposals);
 	visible = get_visible_provider (completion);
@@ -648,40 +663,44 @@ select_provider (GtkSourceCompletion *completion,
 		orig = NULL;
 	}
 	
-	first = cycle_first (providers);
-	last = cycle_last (providers);
+	first = cycle_first ? cycle_first (providers) : NULL;
+	last = cycle_last ? cycle_last (providers) : NULL;
+	
 	current = orig;
 	
-	do
+	for (i = 0; i < num; ++i)
 	{
-		if (current == NULL)
+		do
 		{
-			current = first;
-		}
-		else if (current == last)
-		{
-			current = NULL;
-		}
-		else
-		{
-			current = advance (current);
-		}
+			if (current == NULL)
+			{
+				current = first;
+			}
+			else if (current == last)
+			{
+				current = NULL;
+			}
+			else
+			{
+				current = advance (current);
+			}
 		
-		if (current != NULL)
-		{
-			provider = GTK_SOURCE_COMPLETION_PROVIDER (current->data);
+			if (current != NULL)
+			{
+				provider = GTK_SOURCE_COMPLETION_PROVIDER (current->data);
 	
-			if (gtk_source_completion_model_n_proposals (completion->priv->model_proposals,
-			                                             provider) != 0)
+				if (gtk_source_completion_model_n_proposals (completion->priv->model_proposals,
+					                                     provider) != 0)
+				{
+					break;
+				}
+			}
+			else if (!gtk_source_completion_model_is_empty (completion->priv->model_proposals, TRUE))
 			{
 				break;
 			}
-		}
-		else if (!gtk_source_completion_model_is_empty (completion->priv->model_proposals, TRUE))
-		{
-			break;
-		}
-	} while (orig != current);
+		} while (orig != current);
+	}
 	
 	if (orig == current)
 	{
@@ -720,15 +739,44 @@ wrap_g_list_previous (GList *list)
 }
 
 static gboolean
-select_next_provider (GtkSourceCompletion *completion)
+select_next_provider (GtkSourceCompletion *completion,
+                      guint                num)
 {
-	return select_provider (completion, wrap_g_list_next, g_list_first, g_list_last);
+	return select_provider (completion, 
+	                        wrap_g_list_next, 
+	                        g_list_first, 
+	                        g_list_last, 
+	                        num);
 }
 
 static gboolean
-select_previous_provider (GtkSourceCompletion *completion)
+select_previous_provider (GtkSourceCompletion *completion,
+                          guint                num)
 {
-	return select_provider (completion, wrap_g_list_previous, g_list_last, g_list_first);
+	return select_provider (completion, 
+	                        wrap_g_list_previous, 
+	                        g_list_last, 
+	                        g_list_first,
+	                        num);
+}
+
+static gboolean
+select_last_provider (GtkSourceCompletion *completion)
+{
+	return select_provider (completion, g_list_last, g_list_last, NULL, 1);
+}
+
+static GList *
+select_first_provider_wrap (GList *list)
+{
+	/* Basicly, this means selecting 'All', which is just selection NULL */
+	return NULL;
+}
+
+static gboolean
+select_first_provider (GtkSourceCompletion *completion)
+{
+	return select_provider (completion, select_first_provider_wrap, NULL, NULL, 1);
 }
 
 static void
@@ -968,14 +1016,90 @@ view_button_press_event_cb (GtkWidget      *widget,
 	return FALSE;
 }
 
+static void
+gtk_source_completion_activate_proposal (GtkSourceCompletion *completion)
+{
+	activate_current_proposal (completion);
+	gtk_source_completion_hide (completion);
+}
+
+static void
+gtk_source_completion_move_cursor (GtkSourceCompletion *completion,
+                                   GtkScrollStep        step,
+                                   gint                 num)
+{
+	if (step == GTK_SCROLL_ENDS)
+	{
+		if (num > 0)
+		{
+			select_last_proposal (completion);
+		}
+		else
+		{
+			select_first_proposal (completion);
+		}
+	}
+	else
+	{
+		if (step == GTK_SCROLL_PAGES)
+		{
+			num *= completion->priv->proposal_page_size;
+		}
+		
+		if (num > 0)
+		{
+			select_next_proposal (completion, num);
+		}
+		else
+		{
+			select_previous_proposal (completion, -1 * num);
+		}
+	}
+}
+
+static void
+gtk_source_completion_move_page (GtkSourceCompletion *completion,
+                                 GtkScrollStep        step,
+                                 gint                 num)
+{
+	if (step == GTK_SCROLL_ENDS)
+	{
+		if (num > 0)
+		{
+			select_last_provider (completion);
+		}
+		else
+		{
+			select_first_provider (completion);
+		}
+	}
+	else
+	{
+		if (step == GTK_SCROLL_PAGES)
+		{
+			num *= completion->priv->provider_page_size;
+		}
+		
+		if (num > 0)
+		{
+			select_next_provider (completion, num);
+		}
+		else
+		{
+			select_previous_provider (completion, num);
+		}
+	}
+}
+
+
 static gboolean
 view_key_press_event_cb (GtkSourceView       *view,
 			 GdkEventKey         *event, 
 			 GtkSourceCompletion *completion)
 {
-	gboolean ret = FALSE;
 	GdkModifierType mod;
 	GtkLabel *label_info;
+	GtkBindingSet *binding_set;
 	
 	mod = gtk_accelerator_get_default_mod_mask () & event->state;
 	
@@ -997,71 +1121,17 @@ view_key_press_event_cb (GtkSourceView       *view,
 		return TRUE;
 	}
 	
-	switch (event->keyval)
- 	{
-		case GDK_Escape:
-		{
-			gtk_source_completion_hide (completion);
-			ret = TRUE;
-			break;
-		}
- 		case GDK_Down:
-		{
-			ret = select_next_proposal (completion, 1);
-			break;
-		}
-		case GDK_Page_Down:
-		{
-			ret = select_next_proposal (completion, 5);
-			break;
-		}
-		case GDK_Up:
-		{
-			ret = select_previous_proposal (completion, 1);
-			if (!ret)
-				ret = select_first_proposal (completion);
-			break;
-		}
-		case GDK_Page_Up:
-		{
-			ret = select_previous_proposal (completion, 5);
-			break;
-		}
-		case GDK_Home:
-		{
-			ret = select_first_proposal (completion);
-			break;
-		}
-		case GDK_End:
-		{
-			ret = select_last_proposal (completion);
-			break;
-		}
-		case GDK_Return:
-		case GDK_Tab:
-		{
-			ret = activate_current_proposal (completion);
-			gtk_source_completion_hide (completion);
-			break;
-		}
-		case GDK_Left:
-		{
-			if (mod == GDK_CONTROL_MASK)
-			{
-				ret = select_previous_provider (completion);
-			}
-			break;
-		}
-		case GDK_Right:
-		{
-			if (mod == GDK_CONTROL_MASK)
-			{
-				ret = select_next_provider (completion);
-			}
-			break;
-		}
+	binding_set = gtk_binding_set_by_class (GTK_SOURCE_COMPLETION_GET_CLASS (completion));
+
+	if (gtk_binding_set_activate (binding_set,
+	                              event->keyval,
+	                              event->state,
+	                              GTK_OBJECT (completion)))
+	{
+		return TRUE;
 	}
-	return ret;
+
+	return FALSE;
 }
 
 static void
@@ -1350,6 +1420,12 @@ gtk_source_completion_get_property (GObject    *object,
 		case PROP_AUTO_COMPLETE_DELAY:
 			g_value_set_uint (value, completion->priv->auto_complete_delay);
 			break;
+		case PROP_PROPOSAL_PAGE_SIZE:
+			g_value_set_uint (value, completion->priv->proposal_page_size);
+			break;
+		case PROP_PROVIDER_PAGE_SIZE:
+			g_value_set_uint (value, completion->priv->provider_page_size);
+			break;
 		default:
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
 			break;
@@ -1392,6 +1468,12 @@ gtk_source_completion_set_property (GObject      *object,
 			break;
 		case PROP_AUTO_COMPLETE_DELAY:
 			completion->priv->auto_complete_delay = g_value_get_uint (value);
+			break;
+		case PROP_PROPOSAL_PAGE_SIZE:
+			completion->priv->proposal_page_size = g_value_get_uint (value);
+			break;
+		case PROP_PROVIDER_PAGE_SIZE:
+			completion->priv->provider_page_size = g_value_get_uint (value);
 			break;
 		default:
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -1447,6 +1529,7 @@ static void
 gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 {
 	GObjectClass *object_class = G_OBJECT_CLASS (klass);
+	GtkBindingSet *binding_set;
 	
 	g_type_class_add_private (klass, sizeof (GtkSourceCompletionPrivate));
 	
@@ -1457,6 +1540,10 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 
 	klass->show = gtk_source_completion_show_default;
 	klass->hide = gtk_source_completion_hide_default;
+	
+	klass->move_cursor = gtk_source_completion_move_cursor;
+	klass->move_page = gtk_source_completion_move_page;
+	klass->activate_proposal = gtk_source_completion_activate_proposal;
 
 	/**
 	 * GtkSourceCompletion:view:
@@ -1534,6 +1621,26 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 							    250,
 							    G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 
+	g_object_class_install_property (object_class,
+	                                 PROP_PROVIDER_PAGE_SIZE,
+	                                 g_param_spec_uint ("provider-page-size",
+	                                                    _("Provider Page Size"),
+	                                                    _("Provider scrolling page size"),
+	                                                    1,
+	                                                    G_MAXUINT,
+	                                                    5,
+	                                                    G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+
+	g_object_class_install_property (object_class,
+	                                 PROP_PROPOSAL_PAGE_SIZE,
+	                                 g_param_spec_uint ("proposal-page-size",
+	                                                    _("Proposal Page Size"),
+	                                                    _("Proposal scrolling page size"),
+	                                                    1,
+	                                                    G_MAXUINT,
+	                                                    5,
+	                                                    G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+
 	/**
 	 * GtkSourceCompletion::show:
 	 * @completion: The #GtkSourceCompletion who emits the signal
@@ -1584,6 +1691,145 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 		              G_TYPE_NONE,
 		              1,
 		              GTK_TYPE_SOURCE_COMPLETION_CONTEXT);
+
+	/* Actions */
+	signals [MOVE_CURSOR] =
+		g_signal_new ("move-cursor",
+			      G_TYPE_FROM_CLASS (klass),
+			      G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
+			      G_STRUCT_OFFSET (GtkSourceCompletionClass, move_cursor),
+			      NULL,
+			      NULL,
+			      _gtksourceview_marshal_VOID__ENUM_INT,
+			      G_TYPE_NONE,
+			      2,
+			      GTK_TYPE_SCROLL_STEP,
+			      G_TYPE_INT);
+
+	signals [MOVE_PAGE] =
+		g_signal_new ("move-page",
+			      G_TYPE_FROM_CLASS (klass),
+			      G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
+			      G_STRUCT_OFFSET (GtkSourceCompletionClass, move_page),
+			      NULL,
+			      NULL,
+			      _gtksourceview_marshal_VOID__ENUM_INT,
+			      G_TYPE_NONE,
+			      2,
+			      GTK_TYPE_SCROLL_STEP,
+			      G_TYPE_INT);
+
+	signals [ACTIVATE_PROPOSAL] =
+		g_signal_new ("activate-proposal",
+			      G_TYPE_FROM_CLASS (klass),
+			      G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
+			      G_STRUCT_OFFSET (GtkSourceCompletionClass, activate_proposal),
+			      NULL,
+			      NULL,
+			      g_cclosure_marshal_VOID__VOID,
+			      G_TYPE_NONE,
+			      0);
+
+	/* Key bindings */
+	binding_set = gtk_binding_set_by_class (klass);
+	
+	gtk_binding_entry_add_signal (binding_set,
+				      GDK_Down,
+				      0,
+				      "move-cursor",
+				      2,
+				      GTK_TYPE_SCROLL_STEP, GTK_SCROLL_STEPS,
+				      G_TYPE_INT, 1);
+
+	gtk_binding_entry_add_signal (binding_set,
+				      GDK_Page_Down,
+				      0,
+				      "move-cursor",
+				      2,
+				      GTK_TYPE_SCROLL_STEP, GTK_SCROLL_PAGES,
+				      G_TYPE_INT, 1);
+
+	gtk_binding_entry_add_signal (binding_set,
+				      GDK_Up,
+				      0,
+				      "move-cursor",
+				      2,
+				      GTK_TYPE_SCROLL_STEP, GTK_SCROLL_STEPS,
+				      G_TYPE_INT, -1);
+
+	gtk_binding_entry_add_signal (binding_set,
+				      GDK_Page_Up,
+				      0,
+				      "move-cursor",
+				      2,
+				      GTK_TYPE_SCROLL_STEP, GTK_SCROLL_PAGES,
+				      G_TYPE_INT, -1);
+
+	gtk_binding_entry_add_signal (binding_set,
+				      GDK_Home,
+				      0,
+				      "move-cursor",
+				      2,
+				      GTK_TYPE_SCROLL_STEP, GTK_SCROLL_ENDS,
+				      G_TYPE_INT, -1);
+
+	gtk_binding_entry_add_signal (binding_set,
+				      GDK_End,
+				      0,
+				      "move-cursor",
+				      2,
+				      GTK_TYPE_SCROLL_STEP, GTK_SCROLL_ENDS,
+				      G_TYPE_INT, 1);
+
+	gtk_binding_entry_add_signal (binding_set,
+				      GDK_Escape,
+				      0,
+				      "hide",
+				      0);
+				      
+	gtk_binding_entry_add_signal (binding_set,
+				      GDK_Return,
+				      0,
+				      "activate-proposal",
+				      0);
+
+	gtk_binding_entry_add_signal (binding_set,
+				      GDK_Tab,
+				      0,
+				      "activate-proposal",
+				      0);
+
+	gtk_binding_entry_add_signal (binding_set,
+				      GDK_Left,
+				      GDK_CONTROL_MASK,
+				      "move-page",
+				      2,
+				      GTK_TYPE_SCROLL_STEP, GTK_SCROLL_STEPS,
+				      G_TYPE_INT, -1);
+
+	gtk_binding_entry_add_signal (binding_set,
+				      GDK_Right,
+				      GDK_CONTROL_MASK,
+				      "move-page",
+				      2,
+				      GTK_TYPE_SCROLL_STEP, GTK_SCROLL_STEPS,
+				      G_TYPE_INT, 1);
+
+	gtk_binding_entry_add_signal (binding_set,
+				      GDK_Home,
+				      GDK_CONTROL_MASK,
+				      "move-page",
+				      2,
+				      GTK_TYPE_SCROLL_STEP, GTK_SCROLL_ENDS,
+				      G_TYPE_INT, -1);
+
+	gtk_binding_entry_add_signal (binding_set,
+				      GDK_End,
+				      GDK_CONTROL_MASK,
+				      "move-page",
+				      2,
+				      GTK_TYPE_SCROLL_STEP, GTK_SCROLL_ENDS,
+				      G_TYPE_INT, 1);
 }
 
 static void
