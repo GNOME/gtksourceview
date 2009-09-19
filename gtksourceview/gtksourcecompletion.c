@@ -125,6 +125,8 @@ struct _GtkSourceCompletionPrivate
 
 	guint show_timed_out_id;
 	guint auto_complete_delay;
+	guint update_info_id;
+	gboolean is_populating;
 	
 	gint typing_line;
 	gint typing_line_offset;
@@ -907,6 +909,15 @@ update_proposal_info (GtkSourceCompletion *completion)
 	}
 }
 
+static gboolean
+update_proposal_info_idle (GtkSourceCompletion *completion)
+{
+	completion->priv->update_info_id = 0;
+	update_proposal_info (completion);
+	
+	return FALSE;
+}
+
 static void 
 selection_changed_cb (GtkTreeSelection    *selection, 
 		      GtkSourceCompletion *completion)
@@ -927,7 +938,16 @@ selection_changed_cb (GtkTreeSelection    *selection,
 	
 	if (gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (completion->priv->info_button)))
 	{
-		update_proposal_info (completion);
+		/* When populating, do it in an idle to prevent many updates */
+		if (completion->priv->update_info_id == 0)
+		{
+			g_idle_add ((GSourceFunc)update_proposal_info_idle,
+			            completion);
+		}
+		else
+		{
+			update_proposal_info (completion);
+		}
 	}
 }
 
@@ -1333,6 +1353,12 @@ cancel_completion (GtkSourceCompletion        *completion,
 	{
 		g_source_remove (completion->priv->show_timed_out_id);
 		completion->priv->show_timed_out_id = 0;
+	}
+	
+	if (completion->priv->update_info_id)
+	{
+		g_source_remove (completion->priv->update_info_id);
+		completion->priv->update_info_id = 0;
 	}
 	
 	if (completion->priv->context == NULL)
@@ -2304,6 +2330,8 @@ update_completion (GtkSourceCompletion        *completion,
 		completion->priv->select_on_show &&
 		(!get_selected_proposal (completion, NULL, NULL) || completion->priv->select_first);
 	
+	completion->priv->is_populating = TRUE;
+
 	gtk_source_completion_model_begin (completion->priv->model_proposals,
 	                                   completion->priv->active_providers);
 	
@@ -2320,6 +2348,8 @@ static void
 populating_done (GtkSourceCompletion        *completion,
                  GtkSourceCompletionContext *context)
 {
+	completion->priv->is_populating = FALSE;
+
 	if (gtk_source_completion_model_is_empty (completion->priv->model_proposals, 
 	                                          FALSE))
 	{
