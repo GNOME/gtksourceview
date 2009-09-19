@@ -90,6 +90,9 @@ libgtksourceview_2_0_include_HEADERS =		\
 	$(libgtksourceview_headers)		\
 	gtksourceview-typebuiltins.h
 
+uidir = $(datadir)/gtksourceview-2.0/ui
+ui_DATA = completion.ui
+
 gtksourceview-marshal.h: gtksourceview-marshal.list $(GLIB_GENMARSHAL)
 	$(GLIB_GENMARSHAL) $< --header --prefix=_gtksourceview_marshal > $@
 
@@ -135,6 +138,7 @@ stamp-gtksourceview-typebuiltins.h: Makefile.am $(libgtksourceview_headers)
 	&& rm -f xgen-gth && echo stamp > $(@F)
 
 EXTRA_DIST = \
-	gtksourceview-marshal.list
+	gtksourceview-marshal.list \
+	$(ui_DATA)
 
 CLEANFILES = $(BUILT_SOURCES) stamp-gtksourceview-typebuiltins.h stamp-gtksourceview-typebuiltins.c

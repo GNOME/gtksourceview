@@ -88,12 +88,14 @@ struct _GtkSourceCompletionPrivate
 	GtkWidget *bottom_bar;
 	GtkWidget *default_info;
 	GtkWidget *selection_image;
+	GtkWidget *hbox_info;
+	GtkWidget *label_info;
+	GtkWidget *image_info;
 	
 	GtkWidget *tree_view_proposals;
 	GtkSourceCompletionModel *model_proposals;
 	
 	gboolean destroy_has_run;
-	gboolean manage_keys;
 	gboolean remember_info_visibility;
 	gboolean info_visible;
 	gboolean select_on_show;
@@ -925,16 +927,6 @@ info_size_allocate_cb (GtkWidget           *widget,
 	update_info_position (completion);
 }
 
-static void
-gtk_source_completion_realize (GtkWidget           *widget,
-                               GtkSourceCompletion *completion)
-{
-	gtk_container_set_border_width (GTK_CONTAINER (completion->priv->window), 1);
-	gtk_widget_set_size_request (GTK_WIDGET (completion->priv->window),
-				     WINDOW_WIDTH, WINDOW_HEIGHT);
-	gtk_window_set_resizable (GTK_WINDOW (completion->priv->window), TRUE);
-}
-
 static gboolean
 gtk_source_completion_configure_event (GtkWidget           *widget,
                                        GdkEventConfigure   *event,
@@ -984,13 +976,26 @@ view_key_press_event_cb (GtkSourceView       *view,
 {
 	gboolean ret = FALSE;
 	GdkModifierType mod;
+	GtkLabel *label_info;
 	
 	mod = gtk_accelerator_get_default_mod_mask () & event->state;
 	
-	if (!GTK_WIDGET_VISIBLE (completion->priv->window)
-	    || !completion->priv->manage_keys)
+	if (!GTK_WIDGET_VISIBLE (completion->priv->window))
 	{
 		return FALSE;
+	}
+	
+	label_info = GTK_LABEL (completion->priv->label_info);
+	
+	/* Handle info button mnemonic */
+	if (event->keyval == gtk_label_get_mnemonic_keyval (label_info) &&
+	    mod == GDK_MOD1_MASK)
+	{
+		GtkToggleButton *button = GTK_TOGGLE_BUTTON (completion->priv->info_button);
+
+		gtk_toggle_button_set_active (button,
+		                              !gtk_toggle_button_get_active (button));
+		return TRUE;
 	}
 	
 	switch (event->keyval)
@@ -1038,16 +1043,6 @@ view_key_press_event_cb (GtkSourceView       *view,
 		{
 			ret = activate_current_proposal (completion);
 			gtk_source_completion_hide (completion);
-			break;
-		}
-		case GDK_i:
-		{
-			if (mod == GDK_CONTROL_MASK)
-			{
-				gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (completion->priv->info_button),
-					!gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (completion->priv->info_button)));
-				ret = TRUE;
-			}
 			break;
 		}
 		case GDK_Left:
@@ -1828,21 +1823,121 @@ on_providers_changed (GtkSourceCompletionModel *model,
 	update_selection_label (completion);
 }
 
-static GtkWidget *
-initialize_proposals_ui (GtkSourceCompletion *completion)
+static void
+info_button_style_set (GtkWidget           *button,
+                       GtkStyle            *previous_style,
+                       GtkSourceCompletion *completion)
 {
-	GtkCellRenderer *renderer;
+	gint spacing;
+	GtkSettings *settings;
+	gboolean show_image;
+	
+	gtk_style_get (gtk_widget_get_style (button),
+	               GTK_TYPE_BUTTON,
+	               "image-spacing",
+	               &spacing,
+	               NULL);
+
+	gtk_box_set_spacing (GTK_BOX (completion->priv->hbox_info),
+	                     spacing);
+
+	settings = gtk_widget_get_settings (button);
+	g_object_get (settings, 
+	              "gtk-button-images", 
+	              &show_image,
+	              NULL);
+
+	if (show_image)
+	{
+		gtk_widget_show (completion->priv->image_info);
+	}
+	else
+	{
+		gtk_widget_hide (completion->priv->image_info);
+	}
+}
+
+static void
+initialize_ui (GtkSourceCompletion *completion)
+{
+	GtkBuilder *builder;
 	GtkTreeViewColumn *column;
 	GtkTreeSelection *selection;
-	GtkWidget *scrolled_window;
-	GtkWidget *tree_view;
+	GtkWidget *toggle_button_info;
 	
-	completion->priv->model_proposals = gtk_source_completion_model_new ();
+	builder = gtk_builder_new ();
+	
+	if (!gtk_builder_add_from_file (builder, 
+	                                DATADIR "/gtksourceview-2.0/ui/completion.ui",
+	                                NULL))
+	{
+		g_error ("Could not load UI file for completion");
+		return;
+	}
+	
+	completion->priv->window = 
+		GTK_WIDGET (gtk_builder_get_object (builder, 
+	                                            "window_completion"));
+	completion->priv->info_button = 
+		GTK_WIDGET (gtk_builder_get_object (builder, 
+	                                            "toggle_button_info"));
+	completion->priv->selection_label = 
+		GTK_WIDGET (gtk_builder_get_object (builder,
+		                                    "label_selection"));
+	completion->priv->selection_image =
+		GTK_WIDGET (gtk_builder_get_object (builder,
+		                                    "image_selection"));
+	completion->priv->tree_view_proposals =
+		GTK_WIDGET (gtk_builder_get_object (builder, 
+		                                    "tree_view_completion"));
+	completion->priv->label_info =
+		GTK_WIDGET (gtk_builder_get_object (builder, 
+		                                    "label_info"));
+	completion->priv->image_info =
+		GTK_WIDGET (gtk_builder_get_object (builder, 
+		                                    "image_info"));
+	completion->priv->hbox_info =
+		GTK_WIDGET (gtk_builder_get_object (builder, 
+		                                    "hbox_info"));
 
+	info_button_style_set (completion->priv->info_button,
+	                       NULL,
+	                       completion);
+
+	gtk_widget_set_size_request (completion->priv->window,
+	                             WINDOW_WIDTH, 
+	                             WINDOW_HEIGHT);
+	
+	/* Tree view and model */
+	completion->priv->model_proposals = gtk_source_completion_model_new ();
 	gtk_source_completion_model_set_show_headers (completion->priv->model_proposals,
 				                      completion->priv->show_headers);
-	tree_view = gtk_tree_view_new_with_model (GTK_TREE_MODEL (completion->priv->model_proposals));
-	completion->priv->tree_view_proposals = tree_view;
+
+
+	gtk_tree_view_set_model (GTK_TREE_VIEW (completion->priv->tree_view_proposals),
+	                         GTK_TREE_MODEL (completion->priv->model_proposals));
+
+	selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (completion->priv->tree_view_proposals));
+	gtk_tree_selection_set_select_function (selection,
+	                                        (GtkTreeSelectionFunc)selection_func,
+	                                        completion,
+	                                        NULL);
+
+	column = GTK_TREE_VIEW_COLUMN (gtk_builder_get_object (builder,
+	                                                       "tree_view_column_proposal"));
+	gtk_tree_view_column_set_cell_data_func (column,
+	                                         GTK_CELL_RENDERER (gtk_builder_get_object (builder,
+	                                                                                    "cell_renderer_icon")),
+	                                         (GtkTreeCellDataFunc)render_proposal_icon_func,
+	                                         completion,
+	                                         NULL);
+
+	gtk_tree_view_column_set_cell_data_func (column,
+	                                         GTK_CELL_RENDERER (gtk_builder_get_object (builder,
+	                                                                                    "cell_renderer_proposal")),
+	                                         (GtkTreeCellDataFunc)render_proposal_text_func,
+	                                         completion,
+	                                         NULL);
 
 	g_signal_connect_after (completion->priv->model_proposals,
 	                        "row-inserted",
@@ -1858,147 +1953,32 @@ initialize_proposals_ui (GtkSourceCompletion *completion)
 	                  "providers-changed",
 	                  G_CALLBACK (on_providers_changed),
 	                  completion);
-	
-	gtk_tree_view_set_show_expanders (GTK_TREE_VIEW (tree_view), FALSE);
-	
-	gtk_widget_show (tree_view);
-	g_object_set (tree_view, "can-focus", FALSE, NULL);
 
-	gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (tree_view), FALSE);
-	
-	/* Create the tree */
-	column = gtk_tree_view_column_new ();
-	renderer = gtk_cell_renderer_pixbuf_new ();
-	
-	gtk_tree_view_column_pack_start (column, renderer, FALSE);
-
-	gtk_tree_view_column_set_cell_data_func (column,
-	                                         renderer,
-	                                         (GtkTreeCellDataFunc)render_proposal_icon_func,
-	                                         completion,
-	                                         NULL);
-	
-	renderer = gtk_cell_renderer_text_new ();
-	gtk_tree_view_column_pack_start (column, renderer, TRUE);
-	
-	gtk_tree_view_column_set_cell_data_func (column,
-	                                         renderer,
-	                                         (GtkTreeCellDataFunc)render_proposal_text_func,
-	                                         completion,
-	                                         NULL);
-
-	gtk_tree_view_append_column (GTK_TREE_VIEW (tree_view), column);
-
-	g_signal_connect (tree_view,
+	g_signal_connect (completion->priv->tree_view_proposals,
 			  "row-activated",
 			  G_CALLBACK (row_activated_cb),
 			  completion);
-	
-	selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (tree_view));
-	gtk_tree_selection_set_select_function (selection,
-	                                        (GtkTreeSelectionFunc)selection_func,
-	                                        completion,
-	                                        NULL);
+
 	g_signal_connect (selection,
 			  "changed",
 			  G_CALLBACK (selection_changed_cb),
 			  completion);
-	
-	scrolled_window = gtk_scrolled_window_new (NULL, NULL);
-	gtk_widget_show (scrolled_window);
-	
-	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled_window),
-					GTK_POLICY_AUTOMATIC,
-					GTK_POLICY_AUTOMATIC);
-	
-	gtk_container_add (GTK_CONTAINER (scrolled_window),
-			   tree_view);
-	
-	return scrolled_window;
-}
 
-static void
-initialize_ui (GtkSourceCompletion *completion)
-{
-	GtkWidget *info_icon;
-	GtkWidget *info_button;
-	GtkWidget *vbox;
-	GtkWidget *container;
+	toggle_button_info = 
+		GTK_WIDGET (gtk_builder_get_object (builder, 
+		                                    "toggle_button_info"));
 
-	/* Window */
-	completion->priv->window = gtk_window_new (GTK_WINDOW_POPUP);
-
-	gtk_window_set_type_hint (GTK_WINDOW (completion->priv->window),
-				  GDK_WINDOW_TYPE_HINT_NORMAL);
-	gtk_window_set_focus_on_map (GTK_WINDOW (completion->priv->window),
-				     FALSE);
-	gtk_widget_set_size_request (GTK_WIDGET (completion->priv->window),
-				     WINDOW_WIDTH, WINDOW_HEIGHT);
-	gtk_window_set_decorated (GTK_WINDOW (completion->priv->window), FALSE);
-
-	/* Bottom bar */
-	completion->priv->bottom_bar = gtk_hbox_new (FALSE, 1);
-	gtk_widget_show (completion->priv->bottom_bar);
-
-	/* Info button */
-	info_icon = gtk_image_new_from_stock (GTK_STOCK_INFO, GTK_ICON_SIZE_MENU);
-	gtk_widget_show (info_icon);
-	gtk_widget_set_tooltip_text (info_icon, _("Show Proposal Info"));
-	
-	info_button = gtk_toggle_button_new ();
-	gtk_widget_show (info_button);
-	g_object_set (G_OBJECT (info_button), "can-focus", FALSE, NULL);
-	
-	gtk_button_set_focus_on_click (GTK_BUTTON (info_button), FALSE);
-	gtk_container_add (GTK_CONTAINER (info_button), info_icon);
-	g_signal_connect (G_OBJECT (info_button),
+	g_signal_connect (toggle_button_info,
 			  "toggled",
 			  G_CALLBACK (info_toggled_cb),
 			  completion);
 
-	completion->priv->info_button = info_button;
+	g_signal_connect (toggle_button_info,
+			  "style-set",
+			  G_CALLBACK (info_button_style_set),
+			  completion);
 
-	gtk_box_pack_start (GTK_BOX (completion->priv->bottom_bar), 
-	                    info_button,
-	                    FALSE, 
-	                    FALSE, 
-	                    0);
-
-	/* Selection label */
-	completion->priv->selection_label = gtk_label_new (NULL);
-	gtk_widget_show (completion->priv->selection_label);
-	gtk_box_pack_end (GTK_BOX (completion->priv->bottom_bar),
-			  completion->priv->selection_label,
-			  FALSE, 
-			  TRUE, 
-			  10);
-			  
-	completion->priv->selection_image = gtk_image_new ();
-	gtk_widget_show (completion->priv->selection_image);
-	gtk_box_pack_end (GTK_BOX (completion->priv->bottom_bar),
-	                  completion->priv->selection_image,
-	                  FALSE,
-	                  TRUE,
-	                  0);
-
-	container = initialize_proposals_ui (completion);
-
-	/* Main vbox */
-	vbox = gtk_vbox_new (FALSE, 1);
-	gtk_widget_show (vbox);
-	gtk_box_pack_start (GTK_BOX (vbox), 
-	                    container,
-	                    TRUE,
-	                    TRUE, 
-	                    0);
-
-	gtk_box_pack_end (GTK_BOX (vbox), 
-	                  completion->priv->bottom_bar,
-	                  FALSE, 
-	                  FALSE, 
-	                  0);
-
-	gtk_container_add (GTK_CONTAINER (completion->priv->window), vbox);
+	g_object_unref (builder);
 
 	/* Info window */
 	completion->priv->info_window = GTK_WIDGET (gtk_source_completion_info_new ());
@@ -2023,11 +2003,6 @@ initialize_ui (GtkSourceCompletion *completion)
 				"configure-event",
 				G_CALLBACK (gtk_source_completion_configure_event),
 				completion);
-	
-	g_signal_connect (completion->priv->window,
-			  "realize",
-			  G_CALLBACK (gtk_source_completion_realize),
-			  completion);
 	
 	g_signal_connect (completion->priv->window,
 			  "delete-event",
