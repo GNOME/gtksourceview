@@ -28,6 +28,8 @@ struct _GscProviderDevhelpPrivate
 	DhBase *dhbase;
 	GtkWidget *view;
 	GdkPixbuf *icon;
+	
+	GtkTextIter completion_iter;
 	gchar *word;
 
 	GList *dhptr;
@@ -152,7 +154,8 @@ is_word_char (gunichar ch)
 }
 
 static gchar *
-get_word_at_iter (GtkTextIter *iter)
+get_word_at_iter (GscProviderDevhelp *devhelp,
+                  GtkTextIter        *iter)
 {
 	GtkTextIter start = *iter;
 	gint line = gtk_text_iter_get_line (iter);
@@ -180,6 +183,7 @@ get_word_at_iter (GtkTextIter *iter)
 		return NULL;
 	}
 	
+	devhelp->priv->completion_iter = start;
 	return gtk_text_iter_get_text (&start, iter);
 }
 
@@ -221,7 +225,7 @@ add_in_idle (GscProviderDevhelp *devhelp)
 				break;
 			}
 		}
-		
+
 		++idx;
 		devhelp->priv->idleptr = g_list_next (devhelp->priv->idleptr);
 	}
@@ -260,18 +264,7 @@ gsc_provider_devhelp_populate (GtkSourceCompletionProvider *provider,
 	devhelp->priv->context = g_object_ref (context);
 
 	gtk_source_completion_context_get_iter (context, &iter);
-	devhelp->priv->word = get_word_at_iter (&iter);
-	
-	if (devhelp->priv->word)
-	{
-		gchar *last = g_utf8_prev_char (devhelp->priv->word + strlen (devhelp->priv->word));
-		gunichar l = g_utf8_get_char (last);
-		
-		if (l == ':' || l == '.')
-		{
-			gtk_source_completion_context_move_window (context, &iter);
-		}
-	}
+	devhelp->priv->word = get_word_at_iter (devhelp, &iter);
 	
 	/* Do first right now */
 	if (add_in_idle (devhelp))
@@ -305,6 +298,15 @@ gsc_provider_devhelp_get_icon (GtkSourceCompletionProvider *provider)
 	return GSC_PROVIDER_DEVHELP (provider)->priv->icon;
 }
 
+static gboolean
+gsc_provider_devhelp_get_start_iter (GtkSourceCompletionProvider *provider,
+                                     GtkSourceCompletionProposal *proposal,
+                                     GtkTextIter                 *iter)
+{
+	*iter = GSC_PROVIDER_DEVHELP (provider)->priv->completion_iter;
+	return TRUE;
+}
+
 static void
 gsc_provider_devhelp_iface_init (GtkSourceCompletionProviderIface *iface)
 {
@@ -315,6 +317,8 @@ gsc_provider_devhelp_iface_init (GtkSourceCompletionProviderIface *iface)
 	iface->update_info = gsc_provider_devhelp_update_info;
 	
 	iface->get_icon = gsc_provider_devhelp_get_icon;
+	
+	iface->get_start_iter = gsc_provider_devhelp_get_start_iter;
 }
 
 static void

@@ -907,6 +907,30 @@ update_proposal_info (GtkSourceCompletion *completion)
 	}
 }
 
+static void
+update_window_position (GtkSourceCompletion *completion)
+{
+	GtkSourceCompletionProvider *provider;
+	GtkSourceCompletionProposal *proposal;
+	
+	if (get_selected_proposal (completion, NULL, &provider, &proposal))
+	{
+		GtkTextIter iter;
+		
+		if (gtk_source_completion_provider_get_start_iter (provider, 
+		                                                   proposal, 
+		                                                   &iter))
+		{
+			gtk_source_completion_utils_move_to_iter (GTK_WINDOW (completion->priv->window),
+			                                          GTK_SOURCE_VIEW (completion->priv->view),
+			                                          &iter);
+		}
+		
+		g_object_unref (provider);
+		g_object_unref (proposal);
+	}
+}
+
 static void 
 selection_changed_cb (GtkTreeSelection    *selection, 
 		      GtkSourceCompletion *completion)
@@ -930,6 +954,9 @@ selection_changed_cb (GtkTreeSelection    *selection,
 	{
 		update_proposal_info (completion);
 	}
+	
+	/* Update window position if needed */
+	update_window_position (completion);
 }
 
 static void

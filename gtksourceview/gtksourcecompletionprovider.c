@@ -92,6 +92,14 @@ gtk_source_completion_provider_update_info_default (GtkSourceCompletionProvider 
 }
 
 static gboolean
+gtk_source_completion_provider_get_start_iter_default (GtkSourceCompletionProvider *provider,
+                                                       GtkSourceCompletionProposal *proposal,
+                                                       GtkTextIter                 *iter)
+{
+	return FALSE;
+}
+
+static gboolean
 gtk_source_completion_provider_activate_proposal_default (GtkSourceCompletionProvider *provider,
                                                           GtkSourceCompletionProposal *proposal,
                                                           GtkTextIter                 *iter)
@@ -116,6 +124,7 @@ gtk_source_completion_provider_base_init (GtkSourceCompletionProviderIface *ifac
 	iface->get_info_widget = gtk_source_completion_provider_get_info_widget_default;
 	iface->update_info = gtk_source_completion_provider_update_info_default;
 	
+	iface->get_start_iter = gtk_source_completion_provider_get_start_iter_default;
 	iface->activate_proposal = gtk_source_completion_provider_activate_proposal_default;
 
 	if (!initialized)
@@ -285,6 +294,20 @@ gtk_source_completion_provider_update_info (GtkSourceCompletionProvider *provide
 	g_return_if_fail (GTK_IS_SOURCE_COMPLETION_INFO (info));
 	
 	GTK_SOURCE_COMPLETION_PROVIDER_GET_INTERFACE (provider)->update_info (provider, proposal, info);
+}
+
+gboolean
+gtk_source_completion_provider_get_start_iter (GtkSourceCompletionProvider *provider,
+                                               GtkSourceCompletionProposal *proposal,
+                                               GtkTextIter                 *iter)
+{
+	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_PROVIDER (provider), FALSE);
+	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_PROPOSAL (proposal), FALSE);
+	g_return_val_if_fail (iter != NULL, FALSE);
+	
+	return GTK_SOURCE_COMPLETION_PROVIDER_GET_INTERFACE (provider)->get_start_iter (provider, 
+	                                                                                proposal,
+	                                                                                iter);
 }
 
 /**

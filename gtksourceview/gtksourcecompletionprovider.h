@@ -66,6 +66,9 @@ struct _GtkSourceCompletionProviderIface
 						 GtkSourceCompletionProposal *proposal,
 						 GtkSourceCompletionInfo     *info);
 
+	gboolean	 (*get_start_iter)	(GtkSourceCompletionProvider *provider,
+						 GtkSourceCompletionProposal *proposal,
+						 GtkTextIter                 *iter);
 	gboolean	 (*activate_proposal)	(GtkSourceCompletionProvider *provider,
 						 GtkSourceCompletionProposal *proposal,
 						 GtkTextIter                 *iter);
@@ -93,6 +96,10 @@ GtkWidget	*gtk_source_completion_provider_get_info_widget	(GtkSourceCompletionPr
 void 		 gtk_source_completion_provider_update_info	(GtkSourceCompletionProvider *provider,
 								 GtkSourceCompletionProposal *proposal,
 								 GtkSourceCompletionInfo     *info);
+
+gboolean	 gtk_source_completion_provider_get_start_iter	(GtkSourceCompletionProvider *provider,
+								 GtkSourceCompletionProposal *proposal,
+								 GtkTextIter                 *iter);
 
 gboolean	 gtk_source_completion_provider_activate_proposal (GtkSourceCompletionProvider *provider,
 								   GtkSourceCompletionProposal *proposal,
