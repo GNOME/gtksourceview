@@ -72,6 +72,9 @@ void		 gtk_source_completion_context_get_iter		(GtkSourceCompletionContext      
 gboolean	 gtk_source_completion_context_get_interactive	(GtkSourceCompletionContext          *context);
 gboolean	 gtk_source_completion_context_get_default	(GtkSourceCompletionContext          *context);
 
+void		 gtk_source_completion_context_move_window	(GtkSourceCompletionContext          *context,
+                                                                 GtkTextIter                         *iter);
+
 void		_gtk_source_completion_context_cancel		(GtkSourceCompletionContext          *context);
 
 G_END_DECLS

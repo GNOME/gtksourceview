@@ -247,6 +247,17 @@ gtk_source_completion_context_get_default (GtkSourceCompletionContext *context)
 	
 }
 
+void 
+gtk_source_completion_context_move_window (GtkSourceCompletionContext *context,
+                                           GtkTextIter                *iter)
+{
+	g_return_if_fail (GTK_IS_SOURCE_COMPLETION_CONTEXT (context));
+	g_return_if_fail (iter != NULL);
+	
+	gtk_source_completion_move_window (context->priv->completion,
+	                                   iter);
+}
+
 void
 _gtk_source_completion_context_cancel (GtkSourceCompletionContext *context)
 {

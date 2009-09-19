@@ -2441,3 +2441,20 @@ gtk_source_completion_create_context (GtkSourceCompletion *completion,
 	
 	return context;
 }
+
+void
+gtk_source_completion_move_window (GtkSourceCompletion *completion,
+                                   GtkTextIter         *iter)
+{
+	g_return_if_fail (GTK_IS_SOURCE_COMPLETION (completion));
+	g_return_if_fail (iter != NULL);
+	
+	if (!GTK_WIDGET_VISIBLE (completion->priv->window))
+	{
+		return;
+	}
+	
+	gtk_source_completion_utils_move_to_iter (GTK_WINDOW (completion->priv->window),
+	                                          GTK_SOURCE_VIEW (completion->priv->view),
+	                                          iter);
+}

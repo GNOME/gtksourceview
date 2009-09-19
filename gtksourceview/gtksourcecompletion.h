@@ -106,6 +106,9 @@ GtkSourceCompletionContext *
 		 gtk_source_completion_create_context		(GtkSourceCompletion           *completion,
 		 						 GtkTextIter                   *position);
 
+void		 gtk_source_completion_move_window		(GtkSourceCompletion           *completion,
+								 GtkTextIter                   *iter);
+
 void		 _gtk_source_completion_add_proposals		(GtkSourceCompletion           *completion,
 								 GtkSourceCompletionContext    *context,
 								 GtkSourceCompletionProvider   *provider,
