@@ -201,6 +201,11 @@ activate_current_proposal (GtkSourceCompletion *completion)
 	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (completion->priv->view));
 	get_iter_at_insert (completion, &titer);
 
+	g_signal_handler_block (buffer,
+	                        completion->priv->signals_ids[TEXT_BUFFER_DELETE_RANGE]);
+	g_signal_handler_block (buffer,
+	                        completion->priv->signals_ids[TEXT_BUFFER_INSERT_TEXT]);
+
 	activated = gtk_source_completion_provider_activate_proposal (provider, proposal, &titer);
 
 	if (!activated)
@@ -210,6 +215,11 @@ activate_current_proposal (GtkSourceCompletion *completion)
 				                                  text ? text : NULL,
 				                                  -1);
 	}
+	
+	g_signal_handler_unblock (buffer,
+	                          completion->priv->signals_ids[TEXT_BUFFER_DELETE_RANGE]);
+	g_signal_handler_unblock (buffer,
+	                          completion->priv->signals_ids[TEXT_BUFFER_INSERT_TEXT]);
 
 	g_object_unref (provider);
 	g_object_unref (proposal);
@@ -1241,6 +1251,12 @@ static void
 cancel_completion (GtkSourceCompletion        *completion,
                    GtkSourceCompletionContext *context)
 {
+	if (completion->priv->show_timed_out_id)
+	{
+		g_source_remove (completion->priv->show_timed_out_id);
+		completion->priv->show_timed_out_id = 0;
+	}
+
 	if (completion->priv->context == NULL)
 	{
 		if (context != NULL)
@@ -1400,6 +1416,9 @@ gtk_source_completion_hide_default (GtkSourceCompletion *completion)
 {
 	gtk_label_set_markup (GTK_LABEL (completion->priv->default_info), "");
 
+	gtk_widget_hide (completion->priv->info_window);
+	gtk_widget_hide (completion->priv->window);
+
 	cancel_completion (completion, NULL);
 	gtk_source_completion_model_clear (completion->priv->model_proposals);
 
@@ -1410,9 +1429,6 @@ gtk_source_completion_hide_default (GtkSourceCompletion *completion)
 
 	completion->priv->info_visible = 
 		gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (completion->priv->info_button));
-	
-	gtk_widget_hide (completion->priv->info_window);
-	gtk_widget_hide (completion->priv->window);
 }
 
 static void
