@@ -218,7 +218,7 @@ activate_current_proposal (GtkSourceCompletion *completion)
 	
 	g_signal_handler_unblock (buffer,
 	                          completion->priv->signals_ids[TEXT_BUFFER_DELETE_RANGE]);
-	g_signal_handler_unblock (buffer,
+	g_signal_handler_unblock (completion->priv->model_proposals,
 	                          completion->priv->signals_ids[TEXT_BUFFER_INSERT_TEXT]);
 
 	g_object_unref (provider);
@@ -1809,6 +1809,13 @@ on_row_deleted_cb (GtkTreeModel        *tree_model,
 	check_first_selected (completion);
 }
 
+static void
+on_providers_changed (GtkSourceCompletionModel *model,
+                      GtkSourceCompletion      *completion)
+{
+	update_selection_label (completion);
+}
+
 static GtkWidget *
 initialize_proposals_ui (GtkSourceCompletion *completion)
 {
@@ -1834,6 +1841,11 @@ initialize_proposals_ui (GtkSourceCompletion *completion)
 	                        "row-deleted",
 	                        G_CALLBACK (on_row_deleted_cb),
 	                        completion);
+
+	g_signal_connect (completion->priv->model_proposals,
+	                  "providers-changed",
+	                  G_CALLBACK (on_providers_changed),
+	                  completion);
 	
 	gtk_tree_view_set_show_expanders (GTK_TREE_VIEW (tree_view), FALSE);
 	

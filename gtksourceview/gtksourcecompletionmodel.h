@@ -49,6 +49,8 @@ struct _GtkSourceCompletionModel {
 
 struct _GtkSourceCompletionModelClass {
 	GObjectClass parent_class;
+	
+	void (*providers_changed) (GtkSourceCompletionModel *model);
 };
 
 enum

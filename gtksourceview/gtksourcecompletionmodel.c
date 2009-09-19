@@ -68,6 +68,14 @@ struct _GtkSourceCompletionModelPrivate
 	gboolean marking;
 };
 
+enum
+{
+	PROVIDERS_CHANGED,
+	NUM_SIGNALS
+};
+
+static guint signals[NUM_SIGNALS] = {0,};
+
 static void tree_model_iface_init (gpointer g_iface, gpointer iface_data);
 
 G_DEFINE_TYPE_WITH_CODE (GtkSourceCompletionModel, 
@@ -504,6 +512,17 @@ gtk_source_completion_model_class_init (GtkSourceCompletionModelClass *klass)
 	
 	object_class->finalize = gtk_source_completion_model_finalize;
 	object_class->dispose = gtk_source_completion_model_dispose;
+
+	signals[PROVIDERS_CHANGED] =
+		g_signal_new ("providers-changed",
+		              G_TYPE_FROM_CLASS (klass),
+		              G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
+		              G_STRUCT_OFFSET (GtkSourceCompletionModelClass, providers_changed),
+		              NULL, 
+		              NULL,
+		              g_cclosure_marshal_VOID__VOID, 
+		              G_TYPE_NONE,
+		              0);
 
 	g_type_class_add_private (object_class, sizeof(GtkSourceCompletionModelPrivate));
 }
@@ -1054,6 +1073,7 @@ gtk_source_completion_model_append (GtkSourceCompletionModel    *model,
 	GList *item;
 	ProviderInfo *info;
 	GtkTreePath *path = NULL;
+	gboolean is_new_provider = FALSE;
 	
 	g_return_if_fail (GTK_IS_SOURCE_COMPLETION_MODEL (model));
 	g_return_if_fail (GTK_IS_SOURCE_COMPLETION_PROVIDER (provider));
@@ -1069,6 +1089,7 @@ gtk_source_completion_model_append (GtkSourceCompletionModel    *model,
 	{
 		/* First batch for 'provider', add provider info */
 		info = add_provider_info (model, provider);
+		is_new_provider = TRUE;
 	}
 	
 	if (info->first_batch)
@@ -1135,6 +1156,11 @@ gtk_source_completion_model_append (GtkSourceCompletionModel    *model,
 	{
 		gtk_tree_path_free (path);
 	}
+	
+	if (is_new_provider)
+	{
+		g_signal_emit (model, signals[PROVIDERS_CHANGED], 0);
+	}
 }
 
 void
@@ -1149,6 +1175,8 @@ gtk_source_completion_model_end (GtkSourceCompletionModel    *model,
 	{
 		model->priv->providers = g_list_remove (model->priv->providers,
 		                                        provider);
+
+		g_signal_emit (model, signals[PROVIDERS_CHANGED], 0);
 	}
 	else
 	{
@@ -1205,6 +1233,8 @@ gtk_source_completion_model_clear (GtkSourceCompletionModel *model)
 
 	g_list_free (model->priv->visible_providers);
 	model->priv->visible_providers = NULL;
+	
+	g_signal_emit (model, signals[PROVIDERS_CHANGED], 0);
 }
 
 static void
