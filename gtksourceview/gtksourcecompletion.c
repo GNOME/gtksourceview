@@ -2126,15 +2126,26 @@ render_proposal_text_func (GtkTreeViewColumn   *column,
 
 	if (isheader)
 	{
+		gchar const *name;
+
 		gtk_tree_model_get (model, 
 		                    iter, 
 		                    GTK_SOURCE_COMPLETION_MODEL_COLUMN_PROVIDER, 
 		                    &provider, 
 		                    -1);
 		
-		label = g_strdup_printf ("<b>%s</b>", 
-		                        g_markup_escape_text (gtk_source_completion_provider_get_name (provider),
-		                                              -1));
+		name = gtk_source_completion_provider_get_name (provider);
+		
+		if (name != NULL)
+		{
+			gchar *escaped = g_markup_escape_text (name, -1);
+			label = g_strdup_printf ("<b>%s</b>", escaped);
+			g_free (escaped);
+		}
+		else
+		{
+			label = g_strdup_printf ("<b>%s</b>", _("Provider"));
+		}
 
 		style = gtk_widget_get_style (GTK_WIDGET (completion->priv->tree_view_proposals));
 
