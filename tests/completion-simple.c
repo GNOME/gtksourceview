@@ -30,7 +30,7 @@
 #include <gtksourceview/gtksourcecompletioninfo.h>
 #include <gtksourceview/gtksourcelanguagemanager.h>
 
-#include "gsc-provider-test.h"
+#include "gsc-provider-words.h"
 
 #ifdef HAVE_DEVHELP
 #include <devhelp/dh-base.h>
@@ -174,57 +174,26 @@ create_window (void)
 	return window;
 }
 
-static GdkPixbuf *
-get_icon_from_theme (const gchar *name)
-{
-	GtkIconTheme *theme;
-	gint width;
-	
-	theme = gtk_icon_theme_get_default ();
-
-	gtk_icon_size_lookup (GTK_ICON_SIZE_MENU, &width, NULL);
-	return gtk_icon_theme_load_icon (theme,
-	                                 name,
-	                                 width,
-	                                 GTK_ICON_LOOKUP_USE_BUILTIN,
-	                                 NULL);
-}
-
 static void
 create_completion(void)
 {
-	GscProviderTest *prov_test1;
-	GdkPixbuf *icon;
+	GscProviderWords *prov_words;
 	
 	comp = gtk_source_view_get_completion (GTK_SOURCE_VIEW (view));
+	prov_words = gsc_provider_words_new (GTK_SOURCE_VIEW (view));
 	
-/*	icon = get_icon_from_theme (GTK_STOCK_NETWORK);*/
-
-/*	prov_test1 = gsc_provider_test_new ("Networking", icon);*/
-
-/*	if (icon != NULL)*/
-/*	{*/
-/*		g_object_unref (icon);*/
-/*	}*/
-/*	*/
-/*	gtk_source_completion_add_provider (comp, GTK_SOURCE_COMPLETION_PROVIDER (prov_test1), NULL);*/
-	
-	icon = get_icon_from_theme (GTK_STOCK_OPEN);
-	prov_test1 = gsc_provider_test_new ("Open Files", icon);
-	
-	if (icon != NULL)
-	{
-		g_object_unref (icon);
-	}
-	
-	gtk_source_completion_add_provider (comp, GTK_SOURCE_COMPLETION_PROVIDER (prov_test1), NULL);
+	gtk_source_completion_add_provider (comp, 
+	                                    GTK_SOURCE_COMPLETION_PROVIDER (prov_words), 
+	                                    NULL);
 
 #ifdef HAVE_DEVHELP
 	GscProviderDevhelp *prov_devhelp;
 
 	prov_devhelp = gsc_provider_devhelp_new ();
 	
-	gtk_source_completion_add_provider (comp, GTK_SOURCE_COMPLETION_PROVIDER (prov_devhelp), NULL);
+	gtk_source_completion_add_provider (comp, 
+	                                    GTK_SOURCE_COMPLETION_PROVIDER (prov_devhelp), 
+	                                    NULL);
 #endif
 }
 

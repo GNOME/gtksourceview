@@ -231,23 +231,24 @@ find_first_proposal (GscProviderDevhelp *devhelp)
 	
 	/* Test if this position might be after the last match */
 	if (!g_sequence_iter_is_begin (iter) && 
-	    (g_sequence_iter_is_end (iter) || !iter_match_prefix (devhelp, iter)))
+	    (g_sequence_iter_is_end (iter) || 
+	     !iter_match_prefix (devhelp, iter)))
 	{
 		iter = g_sequence_iter_prev (iter);
+	
+		/* Maybe there is actually nothing in the sequence */
+		if (g_sequence_iter_is_end (iter) || 
+		    !iter_match_prefix (devhelp, iter))
+		{
+			return NULL;
+		}
 	}
 	
-	/* Maybe there is actually nothing in the sequence */
 	if (g_sequence_iter_is_end (iter))
 	{
 		return NULL;
 	}
-	
-	/* Check if it still matches here */
-	if (!iter_match_prefix (devhelp, iter))
-	{
-		return NULL;
-	}
-	
+
 	/* Go back while it matches */
 	while (iter &&
 	       (prev = g_sequence_iter_prev (iter)) && 
@@ -255,9 +256,9 @@ find_first_proposal (GscProviderDevhelp *devhelp)
 	{
 		iter = prev;
 		
-		if (g_sequence_iter_is_end (iter))
+		if (g_sequence_iter_is_begin (iter))
 		{
-			iter = NULL;
+			break;
 		}
 	}
 	
@@ -497,6 +498,13 @@ gsc_provider_devhelp_get_start_iter (GtkSourceCompletionProvider *provider,
 	return TRUE;
 }
 
+static gboolean
+gsc_provider_devhelp_match (GtkSourceCompletionProvider *provider,
+                            GtkSourceCompletionContext   *context)
+{
+	return TRUE;
+}
+
 static void
 gsc_provider_devhelp_iface_init (GtkSourceCompletionProviderIface *iface)
 {
@@ -509,6 +517,7 @@ gsc_provider_devhelp_iface_init (GtkSourceCompletionProviderIface *iface)
 	iface->get_icon = gsc_provider_devhelp_get_icon;
 	
 	iface->get_start_iter = gsc_provider_devhelp_get_start_iter;
+	iface->match = gsc_provider_devhelp_match;
 }
 
 static void

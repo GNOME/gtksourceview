@@ -23,8 +23,8 @@ test_widget_LDADD = 			\
 
 test_completion_SOURCES =		\
         completion-simple.c		\
-        gsc-provider-test.h		\
-        gsc-provider-test.c
+        gsc-provider-words.c		\
+        gsc-provider-words.h
 
 test_completion_LDADD = 			\
 	$(top_builddir)/gtksourceview/libgtksourceview-2.0.la \
