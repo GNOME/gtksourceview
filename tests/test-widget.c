@@ -106,15 +106,15 @@ static GtkActionEntry buffer_action_entries[] = {
 };
 
 static GtkActionEntry view_action_entries[] = {
-	{ "FileMenu", NULL, "_File" },
+	{ "FileMenu", NULL, "_File", NULL, NULL, NULL },
 	{ "Print", GTK_STOCK_PRINT, "_Print", "<control>P",
 	  "Print the current file", G_CALLBACK (print_file_cb) },
-	{ "ViewMenu", NULL, "_View" },
+	{ "ViewMenu", NULL, "_View", NULL, NULL, NULL },
 	{ "NewView", GTK_STOCK_NEW, "_New View", NULL,
 	  "Create a new view of the file", G_CALLBACK (new_view_cb) },
-	{ "TabWidth", NULL, "_Tab Width" },
-	{ "IndentWidth", NULL, "I_ndent Width" },
-	{ "SmartHomeEnd", NULL, "_Smart Home/End" },
+	{ "TabWidth", NULL, "_Tab Width", NULL, NULL, NULL },
+	{ "IndentWidth", NULL, "I_ndent Width", NULL, NULL, NULL },
+	{ "SmartHomeEnd", NULL, "_Smart Home/End", NULL, NULL, NULL },
 	{ "Find", GTK_STOCK_FIND, "_Find", "<control>F",
 	  "Find", G_CALLBACK (find_cb) },
 	{ "Replace", GTK_STOCK_FIND_AND_REPLACE, "Search and _Replace", "<control>R",
@@ -261,8 +261,7 @@ error_dialog (GtkWindow *parent, const gchar *msg, ...)
 					 GTK_DIALOG_DESTROY_WITH_PARENT,
 					 GTK_MESSAGE_ERROR,
 					 GTK_BUTTONS_OK,
-					 "%s",
-					 tmp);
+					 "%s", tmp);
 	g_free (tmp);
 
 	gtk_dialog_run (GTK_DIALOG (dialog));
@@ -1113,80 +1112,100 @@ window_deleted_cb (GtkWidget *widget, GdkEvent *ev, gpointer user_data)
 	return TRUE;
 }
 
-static gboolean
-button_press_cb (GtkWidget *widget, GdkEventButton *ev, gpointer user_data)
+static void
+line_mark_activated (GtkSourceGutter *gutter, 
+                     GtkTextIter     *iter,
+                     GdkEventButton  *ev,
+                     GtkSourceView   *view)
 {
-	GtkSourceView *view;
 	GtkSourceBuffer *buffer;
+	GSList *mark_list;
+	const gchar *mark_type;
 
-	g_return_val_if_fail (GTK_IS_SOURCE_VIEW (widget), FALSE);
+	if (ev->button == 1)
+		mark_type = MARK_TYPE_1;
+	else
+		mark_type = MARK_TYPE_2;
 
-	view = GTK_SOURCE_VIEW (widget);
 	buffer = GTK_SOURCE_BUFFER (gtk_text_view_get_buffer (GTK_TEXT_VIEW (view)));
 
-	if (!gtk_source_view_get_show_line_marks (view))
-		return FALSE;
+	/* get the marks already in the line */
+	mark_list = gtk_source_buffer_get_source_marks_at_line (buffer,
+								gtk_text_iter_get_line (iter),
+								mark_type);
 
-	/* check that the click was on the left gutter */
-	if (ev->window == gtk_text_view_get_window (GTK_TEXT_VIEW (view),
-						    GTK_TEXT_WINDOW_LEFT))
+	if (mark_list != NULL)
 	{
-		gint y_buf;
-		GtkTextIter line_start;
-		GSList *mark_list;
-		const gchar *mark_type;
-
-		if (ev->button == 1)
-			mark_type = MARK_TYPE_1;
-		else
-			mark_type = MARK_TYPE_2;
-
-		gtk_text_view_window_to_buffer_coords (GTK_TEXT_VIEW (view),
-						       GTK_TEXT_WINDOW_LEFT,
-						       ev->x, ev->y,
-						       NULL, &y_buf);
-
-		/* get line bounds */
-		gtk_text_view_get_line_at_y (GTK_TEXT_VIEW (view),
-					     &line_start,
-					     y_buf,
-					     NULL);
-
-		/* get the marks already in the line */
-		mark_list = gtk_source_buffer_get_source_marks_at_line (buffer,
-									gtk_text_iter_get_line (&line_start),
-									mark_type);
-
-		if (mark_list != NULL)
-		{
-			/* just take the first and delete it */
-			gtk_text_buffer_delete_mark (GTK_TEXT_BUFFER (buffer),
-						     GTK_TEXT_MARK (mark_list->data));
-		}
-		else
-		{
-			/* no mark found: create one */
-			gtk_source_buffer_create_source_mark (buffer,
-							      NULL,
-							      mark_type,
-							      &line_start);
-		}
-
-		g_slist_free (mark_list);
+		/* just take the first and delete it */
+		gtk_text_buffer_delete_mark (GTK_TEXT_BUFFER (buffer),
+					     GTK_TEXT_MARK (mark_list->data));
+	}
+	else
+	{
+		/* no mark found: create one */
+		gtk_source_buffer_create_source_mark (buffer,
+						      NULL,
+						      mark_type,
+						      iter);
 	}
 
-	return FALSE;
+	g_slist_free (mark_list);
 }
 
 
 /* Window creation functions -------------------------------------------------------- */
+
+static gchar *
+mark_tooltip_func (GtkSourceMark *mark,
+		   gpointer	  user_data)
+{
+	GtkTextBuffer *buf;
+	GtkTextIter iter;
+	gint line, column;
+	
+	buf = gtk_text_mark_get_buffer (GTK_TEXT_MARK (mark));
+	
+	gtk_text_buffer_get_iter_at_mark (buf, &iter, GTK_TEXT_MARK (mark));
+	line = gtk_text_iter_get_line (&iter) + 1;
+	column = gtk_text_iter_get_line_offset (&iter);
+
+	if (strcmp (gtk_source_mark_get_category (mark), MARK_TYPE_1) == 0)
+		return g_strdup_printf ("Line: %d, Column: %d", line, column);
+	else
+		return g_strdup_printf ("<b>Line</b>: %d\n<i>Column</i>: %d", line, column);
+}
+
+static void
+add_source_mark_pixbufs (GtkSourceView *view)
+{
+	GdkColor color;
+
+	gdk_color_parse ("lightgreen", &color);
+	gtk_source_view_set_mark_category_background (view, MARK_TYPE_1, &color);
+	gtk_source_view_set_mark_category_icon_from_stock (view, MARK_TYPE_1, GTK_STOCK_YES);
+	gtk_source_view_set_mark_category_priority (view, MARK_TYPE_1, 1);
+	gtk_source_view_set_mark_category_tooltip_func (view,
+							MARK_TYPE_1,
+							mark_tooltip_func,
+							NULL,
+							NULL);
+
+	gdk_color_parse ("pink", &color);
+	gtk_source_view_set_mark_category_background (view, MARK_TYPE_2, &color);
+	gtk_source_view_set_mark_category_icon_from_stock (view, MARK_TYPE_2, GTK_STOCK_NO);
+	gtk_source_view_set_mark_category_priority (view, MARK_TYPE_2, 2);
+	gtk_source_view_set_mark_category_tooltip_markup_func (view,
+							       MARK_TYPE_2,
+							       mark_tooltip_func,
+							       NULL,
+							       NULL);
+}
 
 static GtkWidget *
 create_view_window (GtkSourceBuffer *buffer, GtkSourceView *from)
 {
 	GtkWidget *window, *sw, *view, *vbox, *pos_label, *menu;
 	PangoFontDescription *font_desc = NULL;
-	GdkPixbuf *pixbuf;
 	GtkAccelGroup *accel_group;
 	GtkActionGroup *action_group;
 	GtkUIManager *ui_manager;
@@ -1203,13 +1222,13 @@ create_view_window (GtkSourceBuffer *buffer, GtkSourceView *from)
 
 	/* view */
 	view = gtk_source_view_new_with_buffer (buffer);
-
+	
 	if (style_scheme)
 		gtk_source_buffer_set_style_scheme (buffer, style_scheme);
 
 	g_signal_connect (buffer, "mark-set", G_CALLBACK (move_cursor_cb), view);
 	g_signal_connect (buffer, "changed", G_CALLBACK (update_cursor_position), view);
-	g_signal_connect (view, "button-press-event", G_CALLBACK (button_press_cb), NULL);
+	g_signal_connect (view, "line-mark-activated", G_CALLBACK (line_mark_activated), view);
 	g_signal_connect (window, "delete-event", (GCallback) window_deleted_cb, view);
 
 	/* action group and UI manager */
@@ -1270,7 +1289,7 @@ create_view_window (GtkSourceBuffer *buffer, GtkSourceView *from)
 		gtk_widget_modify_font (view, font_desc);
 		pango_font_description_free (font_desc);
 	}
-
+	
 	/* change view attributes to match those of from */
 	if (from)
 	{
@@ -1321,40 +1340,7 @@ create_view_window (GtkSourceBuffer *buffer, GtkSourceView *from)
 		g_free (tmp);
 	}
 
-	/* add source mark pixbufs */
-	error = NULL;
-	if ((pixbuf = gdk_pixbuf_new_from_file (TOP_SRCDIR "/tests/gnome-gmush.png", &error)))
-	{
-		GdkColor color;
-		gdk_color_parse ("lightgreen", &color);
-		gtk_source_view_set_mark_category_background (GTK_SOURCE_VIEW (view), MARK_TYPE_1, &color);
-		gtk_source_view_set_mark_category_pixbuf (GTK_SOURCE_VIEW (view), MARK_TYPE_1, pixbuf);
-		gtk_source_view_set_mark_category_priority (GTK_SOURCE_VIEW (view), MARK_TYPE_1, 1);
-		g_object_unref (pixbuf);
-	}
-	else
-	{
-		g_message ("could not load source mark 1 image. Spurious messages might get triggered: %s\n",
-		error->message);
-		g_error_free (error);
-	}
-
-	error = NULL;
-	if ((pixbuf = gdk_pixbuf_new_from_file (TOP_SRCDIR "/tests/apple-red.png", &error)))
-	{
-		GdkColor color;
-		gdk_color_parse ("pink", &color);
-		gtk_source_view_set_mark_category_background (GTK_SOURCE_VIEW (view), MARK_TYPE_2, &color);
-		gtk_source_view_set_mark_category_pixbuf (GTK_SOURCE_VIEW (view), MARK_TYPE_2, pixbuf);
-		gtk_source_view_set_mark_category_priority (GTK_SOURCE_VIEW (view), MARK_TYPE_2, 2);
-		g_object_unref (pixbuf);
-	}
-	else
-	{
-		g_message ("could not load source mark 2 image. Spurious messages might get triggered: %s\n",
-		error->message);
-		g_error_free (error);
-	}
+	add_source_mark_pixbufs (GTK_SOURCE_VIEW (view));
 
 	gtk_widget_show_all (vbox);
 

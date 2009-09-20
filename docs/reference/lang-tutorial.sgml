@@ -39,8 +39,7 @@ After the usual preamble, the main tag is the <code>&lt;language&gt;</code> elem
 </para>
 
 <programlisting>
-&lt;language id="c" _name="C" version="2.0" _section="Sources"
-          mimetypes="text/x-c;text/x-chdr;text/x-csrc"&gt;
+&lt;language id="c" _name="C" version="2.0" _section="Sources"&gt;
 </programlisting>
 
 <para>
@@ -53,22 +52,41 @@ the name presented to the user (it is translatable using gettext prepending a
 <para>
 The attribute <code>section</code>, also translatable, tells the category where
 this language should be grouped when it is presented to the user. Currently
-available categories in GtkSourceView are "Sources", "Scripts",  "Markup"
-and "Others".
+available categories in GtkSourceView are "Sources", "Scripts", "Markup",
+"Scientific" and "Others".
 </para>
 
 <para>
-The attribute <code>mimetypes</code> contains a semi-colon separated list of
-mimetypes to be associated to the language.
+The attribute <code>version</code> specifies the version of the xml syntax
+used in your language definition file, so it should always be <code>2.0</code>.
 </para>
 
 <para>
-The <code>&lt;language&gt;</code> element contains an optional
-<code>&lt;metadata&gt;</code>, which can contain arbitrary elements in
-different namespaces to specifiy author, creation time, etc., and
-<code>&lt;styles&gt;</code> element followed by a 
-<code>&lt;definitions&gt;</code> element:
+The <code>&lt;language&gt;</code> element contains three sections:
+<code>&lt;metadata&gt;</code>, <code>&lt;styles&gt;</code> and
+<code>&lt;definitions&gt;</code>
 </para>
+
+<programlisting>
+&lt;metadata&gt;
+</programlisting>
+
+<para>
+The <code>&lt;metadata&gt;</code> element is optional and provides a collection
+of properties which specify arbitrary information about the language definition
+file itself. It is particularly important to specify the conventional 
+<code>mimetypes</code> and <code>globs</code> properties that
+GtkSourceView uses to automatically detect which syntax highlighting to use
+for a given file. They respectively contain a semi-colon separated list of
+mimetypes and filename extensions.
+</para>
+
+<programlisting>
+&lt;metadata&gt;
+  &lt;property name="mimetypes"&gt;text/x-c;text/x-csrc&lt;/property&gt;
+  &lt;property name="globs"&gt;*.c&lt;/property&gt;
+&lt;/metadata&gt;
+</programlisting>
 
 <programlisting>
 &lt;styles&gt;
@@ -98,21 +116,13 @@ contexts, so they will share the same appearance.
 </para>
 
 <programlisting>
-&lt;style id="string"  _name="String"
-                       map-to="def:string"/&gt;
-&lt;style id="escape"  _name="Escape"
-                       map-to="def:escape"/&gt;
-&lt;style id="preprocessor" _name="Preprocessor"
-                       map-to="def:preprocessor"/&gt;
-&lt;style id="included-file" _name="Included File"
-                       map-to="def:package"/&gt;
-&lt;style id="char" _name="Character"
-                       map-to="def:string"/&gt;
-&lt;style id="keyword" _name="Keyword"
-                       map-to="def:keyword"/&gt;
-&lt;style id="data-type" _name="Data Type"
-                       map-to="def:data-type"/&gt;
-&lt;/styles&gt;
+&lt;style id="string" _name="String" map-to="def:string"/&gt;
+&lt;style id="escaped-character" _name="Escaped Character" map-to="def:special-char"/&gt;
+&lt;style id="preprocessor" _name="Preprocessor" map-to="def:preprocessor"/&gt;
+&lt;style id="included-file" _name="Included File" map-to="def:string"/&gt;
+&lt;style id="char" _name="Character" map-to="def:character"/&gt;
+&lt;style id="keyword" _name="Keyword" map-to="def:keyword"/&gt;
+&lt;style id="type" _name="Data Type" map-to="def:type"/&gt;
 </programlisting>
 
 <para>
@@ -255,7 +265,7 @@ To implement the escape handling we include a <code>escape</code> context:
 </para>
 
 <programlisting>
-    &lt;context id="escape" style-ref="escape"&gt;
+    &lt;context id="escape" style-ref="escaped-character"&gt;
         &lt;match&gt;\\.&lt;/match&gt;
     &lt;/context&gt;
 </programlisting>
@@ -309,7 +319,7 @@ the comment.
 </para>
 
 <programlisting>
-/* This is a comment http://www.gnome.org*/
+/* This is a comment http://www.gnome.org */
 </programlisting>
 
 <para>
@@ -354,7 +364,7 @@ reusable contexts wich every language definition can import.
 </para>
 
 <para>
-The <code>def</code> language file contains a <code>comment</code> context that can contain
+The <code>def</code> language file contains an <code>in-comment</code> context that can contain
 addresses and tags such as FIXME and TODO, so we can write a new version of
 our <code>comment-multiline</code> context that uses the definitions from <code>def.lang</code>.
 </para>
@@ -364,13 +374,8 @@ our <code>comment-multiline</code> context that uses the definitions from <code>
     &lt;start&gt;\/\*&lt;/start&gt;
     &lt;end&gt;\*\/&lt;/end&gt;
     &lt;include&gt;
-        &lt;context ref="def:comment:*"/&gt;
+        &lt;context ref="def:in-comment"/&gt;
 </programlisting>
-
-<para>
-The <code>:*</code> after the id in the ref means the <code>comment-multiline</code>
-includes every children of the specified context, instead of the context itself.
-</para>
 
 <programlisting>
     &lt;/include&gt;
@@ -406,7 +411,7 @@ possible to highlight them differently:
 </para>
 
 <programlisting>
-&lt;context id="types" style-ref="data-type"&gt;
+&lt;context id="types" style-ref="type"&gt;
     &lt;keyword&gt;char&lt;/keyword&gt;
     &lt;keyword&gt;const&lt;/keyword&gt;
     &lt;keyword&gt;double&lt;/keyword&gt;
@@ -590,22 +595,13 @@ for this tutorial:
 &lt;language id="c" _name="C" version="2.0" _section="Sources"
         mimetypes="text/x-c;text/x-chdr;text/x-csrc"&gt;
     &lt;styles&gt;
-        &lt;style id="comment" _name="Comment" 
-                               map-to="def:comment"/&gt;
-        &lt;style id="string" _name="String"
-                               map-to="def:string"/&gt;
-        &lt;style id="escape"  _name="Escape"
-                               map-to="def:escape"/&gt;
-        &lt;style id="preprocessor" _name="Preprocessor"
-                               map-to="def:preprocessor"/&gt;
-        &lt;style id="included-file" _name="Included File"
-                               map-to="def:package"/&gt;
-        &lt;style id="char" _name="Character"
-                               map-to="def:string"/&gt;
-        &lt;style id="keyword" _name="Keyword"
-                               map-to="def:keyword"/&gt;
-        &lt;style id="data-type" _name="Data Type"
-                               map-to="def:data-type"/&gt;
+      &lt;style id="string" _name="String" map-to="def:string"/&gt;
+      &lt;style id="escaped-character" _name="Escaped Character" map-to="def:special-char"/&gt;
+      &lt;style id="preprocessor" _name="Preprocessor" map-to="def:preprocessor"/&gt;
+      &lt;style id="included-file" _name="Included File" map-to="def:string"/&gt;
+      &lt;style id="char" _name="Character" map-to="def:character"/&gt;
+      &lt;style id="keyword" _name="Keyword" map-to="def:keyword"/&gt;
+      &lt;style id="type" _name="Data Type" map-to="def:type"/&gt;
     &lt;/styles&gt;
     &lt;definitions&gt;
         &lt;context id="c"&gt;
@@ -621,8 +617,7 @@ for this tutorial:
                     &lt;start&gt;"&lt;/start&gt;
                     &lt;end&gt;"&lt;/end&gt;
                     &lt;include&gt;
-                        &lt;context id="escape" 
-                                    style-ref="escape"&gt;
+                        &lt;context id="escaped-character" style-ref="escaped-character"&gt;
                             &lt;match&gt;\\.&lt;/match&gt;
                         &lt;/context&gt;
                     &lt;/include&gt;
@@ -633,16 +628,15 @@ for this tutorial:
                     &lt;start&gt;\/\*&lt;/start&gt;
                     &lt;end&gt;\*\/&lt;/end&gt;
                     &lt;include&gt;
-                        &lt;context ref="def:comment:*"/&gt;
+                        &lt;context ref="def:in-comment"/&gt;
                     &lt;/include&gt;
                 &lt;/context&gt;
 
-                &lt;context id="char" end-at-line-end="true"
-                        style-ref="char"&gt;
+                &lt;context id="char" end-at-line-end="true" style-ref="char"&gt;
                     &lt;start&gt;'&lt;/start&gt;
                     &lt;end&gt;'&lt;/end&gt;
                     &lt;include&gt;
-                        &lt;context ref="escape"/&gt;
+                        &lt;context ref="escaped-character"/&gt;
                     &lt;/include&gt;
                 &lt;/context&gt;
 
@@ -665,7 +659,7 @@ for this tutorial:
                     &lt;keyword&gt;sizeof&lt;/keyword&gt;
                 &lt;/context&gt;
 
-                &lt;context id="types" style-ref="data-type"&gt;
+                &lt;context id="types" style-ref="type"&gt;
                     &lt;keyword&gt;char&lt;/keyword&gt;
                     &lt;keyword&gt;const&lt;/keyword&gt;
                     &lt;keyword&gt;double&lt;/keyword&gt;
@@ -682,11 +676,11 @@ for this tutorial:
                     &lt;keyword&gt;unsigned&lt;/keyword&gt;
                     &lt;keyword&gt;void&lt;/keyword&gt;
                 &lt;/context&gt;
-                
+
                 &lt;context id="preprocessor"
                             style-ref="preprocessor"&gt;
                     &lt;prefix&gt;^#&lt;/prefix&gt;
-          
+
                     &lt;keyword&gt;define&lt;/keyword&gt;
                     &lt;keyword&gt;undef&lt;/keyword&gt;
                     &lt;keyword&gt;if(n?def)?&lt;/keyword&gt;
@@ -695,8 +689,7 @@ for this tutorial:
                     &lt;keyword&gt;endif&lt;/keyword&gt;
                 &lt;/context&gt;
 
-                &lt;context id="if0-comment" 
-                            style-ref="comment"&gt;
+                &lt;context id="if0-comment" style-ref="comment"&gt;
                     &lt;start&gt;^#if 0\b&lt;/start&gt;
                     &lt;end&gt;^#(endif|else|elif)\b&lt;/end&gt;
                     &lt;include&gt;
@@ -710,8 +703,7 @@ for this tutorial:
                     &lt;/include&gt;
                 &lt;/context&gt;
 
-                &lt;context id="include"
-                            style-ref="preprocessor"&gt;
+                &lt;context id="include" style-ref="preprocessor"&gt;
                     &lt;match&gt;^#include (".*"|&lt;.*&gt;)&lt;/match&gt;
                     &lt;include&gt;
                         &lt;context id="included-file" 
@@ -726,6 +718,6 @@ for this tutorial:
 &lt;/language&gt;
 </programlisting>
 
-</refsect1>    
+</refsect1>
 
 </refentry>

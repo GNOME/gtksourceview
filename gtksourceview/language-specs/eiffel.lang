@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
- Author: Hasan Karahan <hasan.karahan81@gmail.com>
+ Author: Hasan Karahan <hasan.karahan81@gmail.com>, updated by Remi Meier
  Copyright (C) 2008 Hasan Karahan <hasan.karahan81@gmail.com>
 
  This library is free software; you can redistribute it and/or
@@ -20,7 +20,6 @@
  Boston, MA 02111-1307, USA.
 
 -->
-
 <language id="eiffel" _name="Eiffel" version="2.0" _section="Sources">
 
   <metadata>
@@ -39,13 +38,14 @@
     <style id="design-by-contract" _name="Design by Contract" map-to="def:keyword"/>
     <style id="exception-handling" _name="Exception Handling" map-to="def:keyword"/>
     <style id="predefined-variable" _name="Predefined Variable" map-to="def:builtin"/>
+    <style id="escaped-character" _name="Escaped Character" map-to="def:special-char"/>
     <style id="void" _name="Void Value" map-to="def:special-constant"/>
     <style id="boolean" _name="Boolean Value" map-to="def:boolean"/>
     <style id="decimal" _name="Decimal number" map-to="def:decimal"/>
     <style id="hexadecimal" _name="Hexadecimal number" map-to="def:base-n-integer"/>
   </styles>
 
-  <default-regex-options case-sensitive="false"/>
+  <default-regex-options case-sensitive="true"/>
 
   <definitions>
 
@@ -54,10 +54,26 @@
       <end>'</end>
     </context>
 
+    
+    <context id="multi-line-string" style-ref="string">
+      <start>"\[</start>
+      <end>\]"</end>
+      
+    </context>
+    
     <context id="double-quoted-string" style-ref="string">
       <start>"</start>
       <end>"</end>
+       <include>
+         <context id="escaped-character" style-ref="escaped-character">
+           <match extended="true">
+           (\%\"|\%N|\%\%)
+           </match>
+         </context>
+       </include>
     </context>
+    
+    
 
     <context id="line-comment" style-ref="comment" end-at-line-end="true">
       <start>--</start>
@@ -67,13 +83,13 @@
     </context>
 
     <context id="debug" style-ref="debug">
-      <start>debug</start>
-      <end>end</end>
+      <start>(^|\s)debug(\s|$)</start>
+      <end>(^|\s)end(\s|$)</end>
     </context>
 
     <context id="assertion" style-ref="assertion">
-      <start>check</start>
-      <end>end</end>
+      <start>(^|\s)check(\s|$)</start>
+      <end>(^|\s)end(\s|$)</end>
     </context>
 
     <context id="keywords" style-ref="keyword">
@@ -85,6 +101,7 @@
       <keyword>class</keyword>
       <keyword>obsolete</keyword>
       <keyword>inherit</keyword>
+      <keyword>insert</keyword>
 
       <!-- parent list -->
       <keyword>rename</keyword>
@@ -106,7 +123,7 @@
 
       <!-- routine -->
       <keyword>obsolete</keyword>
-      <keyword>require+(\s+else)</keyword>
+      <keyword>require\s*(else)?</keyword>
       <keyword>local</keyword>
 
       <!-- routine body -->
@@ -115,7 +132,7 @@
       <keyword>once</keyword>
       <keyword>external</keyword>
       <keyword>alias</keyword>
-      <keyword>ensure+(\s+then)</keyword>
+      <keyword>ensure\s*(then)?</keyword>
       <keyword>rescue</keyword>
       <keyword>end</keyword>
       <keyword>unique</keyword>
@@ -123,8 +140,8 @@
       <keyword>end</keyword>
 
       <!-- binary -->
-      <keyword>and+(\s+then)</keyword>
-      <keyword>or+(\s+else)</keyword>
+      <keyword>and\s*(then)?</keyword>
+      <keyword>or\s*(else)?</keyword>
       <keyword>xor</keyword>
       <keyword>implies</keyword>
 
@@ -140,7 +157,6 @@
       <keyword>end</keyword>
       <keyword>inspect</keyword>
       <keyword>when</keyword>
-      <keyword>then</keyword>
       <keyword>end</keyword>
 
       <!-- loop -->
@@ -168,67 +184,7 @@
       <keyword>Result</keyword>
     </context>
 
-    <context id="builtin-types" style-ref="type">
-      <keyword>CHARACTER</keyword>
-      <keyword>STRING</keyword>
-      <keyword>BIT</keyword>
-      <keyword>BOOLEAN</keyword>
-      <keyword>INTEGER</keyword>
-      <keyword>REAL</keyword>
-      <keyword>NONE</keyword>
-      <keyword>ANY</keyword>
-    </context>
-
-    <context id="lib-eiffel-base" style-ref="type">
-      <keyword>ACTIVE</keyword>
-      <keyword>ARRAYED_LIST_CURSOR</keyword>
-      <keyword>ARRAYED_LIST</keyword>
-      <keyword>ARRAYED_STACK</keyword>
-      <keyword>BILINEAR</keyword>
-      <keyword>BI_LINKABLE</keyword>
-      <keyword>CELL</keyword>
-      <keyword>CONTAINER</keyword>
-      <keyword>COUNTABLE</keyword>
-      <keyword>CURSOR</keyword>
-      <keyword>DYNAMIC_LIST</keyword>
-      <keyword>HASH_TABLE_CURSOR</keyword>
-      <keyword>HASH_TABLE</keyword>
-      <keyword>INDEXABLE</keyword>
-      <keyword>LINEAR</keyword>
-      <keyword>LINKABLE</keyword>
-      <keyword>LINKED_LIST_CURSOR</keyword>
-      <keyword>LINKED_LIST</keyword>
-      <keyword>LINKED_QUEUE</keyword>
-      <keyword>LINKED_STACK</keyword>
-      <keyword>LIST</keyword>
-      <keyword>QUEUE</keyword>
-      <keyword>RESIZABLE</keyword>
-      <keyword>SEQUENCE</keyword>
-      <keyword>SET</keyword>
-      <keyword>STACK</keyword>
-      <keyword>TWO_WAY_LIST_CURSOR</keyword>
-      <keyword>TWO_WAY_LIST</keyword>
-      <keyword>UNBOUNDED</keyword>
-    </context>
-
-    <context id="lib-eiffel-time" style-ref="type">
-      <keyword>ABSOLUTE</keyword>
-      <keyword>DATE_CONSTANTS</keyword>
-      <keyword>DATE_DURATION</keyword>
-      <keyword>DATE</keyword>
-      <keyword>DATE_TIME_CONSTANTS</keyword>
-      <keyword>DATE_TIME_DURATION</keyword>
-      <keyword>DATE_TIME</keyword>
-      <keyword>DATE_TIME_VALUE</keyword>
-      <keyword>DATE_VALUE</keyword>
-      <keyword>DURATION</keyword>
-      <keyword>TIME_CONSTANTS</keyword>
-      <keyword>TIME_DURATION</keyword>
-      <keyword>TIME</keyword>
-      <keyword>TIME_VALUE</keyword>
-    </context>
-
-    <context id="void-value" style-ref="void-value">
+    <context id="void-value" style-ref="void">
       <keyword>Void</keyword>
     </context>
 
@@ -236,6 +192,13 @@
       <keyword>False</keyword>
       <keyword>True</keyword>
     </context>
+
+    <context id="class-types" style-ref="type">
+      <match extended="true">
+      [A-Z_][A-Z0-9_]+
+      </match>
+    </context>
+
 
     <context id="number" style-ref="decimal">
       <match extended="true">
@@ -256,15 +219,14 @@
     <context id="eiffel">
       <include>
         <context ref="single-quoted-string"/>
+        <context ref="multi-line-string"/>
         <context ref="double-quoted-string"/>
         <context ref="line-comment"/>
         <context ref="debug"/>
         <context ref="assertion"/>
         <context ref="keywords"/>
         <context ref="predefined-variables"/>
-        <context ref="builtin-types"/>
-        <context ref="lib-eiffel-base"/>
-        <context ref="lib-eiffel-time"/>
+        <context ref="class-types"/>
         <context ref="void-value"/>
         <context ref="boolean"/>
         <context ref="number"/>

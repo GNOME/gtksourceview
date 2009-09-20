@@ -141,8 +141,6 @@ enum {
 
 G_DEFINE_TYPE (GtkSourceUndoManager, gtk_source_undo_manager, G_TYPE_OBJECT)
 
-static void gtk_source_undo_manager_class_init 			(GtkSourceUndoManagerClass 	*klass);
-static void gtk_source_undo_manager_init 			(GtkSourceUndoManager 		*um);
 static void gtk_source_undo_manager_finalize 			(GObject 			*object);
 
 static void gtk_source_undo_manager_insert_text_handler 	(GtkTextBuffer 			*buffer,
@@ -1071,7 +1069,7 @@ gtk_source_undo_manager_modified_changed_handler (GtkTextBuffer        *buffer,
                                             	  GtkSourceUndoManager *um)
 {
 	GtkSourceUndoAction *action;
-	gint index;
+	gint idx;
 
 	g_return_if_fail (GTK_SOURCE_IS_UNDO_MANAGER (um));
 	g_return_if_fail (um->priv != NULL);
@@ -1079,8 +1077,8 @@ gtk_source_undo_manager_modified_changed_handler (GtkTextBuffer        *buffer,
 	if (um->priv->actions->len == 0)
 		return;
 
-	index = um->priv->next_redo + 1;
-	action = action_list_nth_data (um->priv->actions, index);
+	idx = um->priv->next_redo + 1;
+	action = action_list_nth_data (um->priv->actions, idx);
 
 	if (gtk_text_buffer_get_modified (buffer) == FALSE)
 	{
@@ -1119,7 +1117,7 @@ gtk_source_undo_manager_modified_changed_handler (GtkTextBuffer        *buffer,
 
 	while (action->order_in_group > 1)
 	{
-		action = action_list_nth_data (um->priv->actions, ++index);
+		action = action_list_nth_data (um->priv->actions, ++idx);
 		g_return_if_fail (action != NULL);
 	}
 

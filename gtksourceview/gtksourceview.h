@@ -29,6 +29,7 @@
 
 #include <gtksourceview/gtksourcebuffer.h>
 #include <gtksourceview/gtksourcecompletion.h>
+#include <gtksourceview/gtksourcegutter.h>
 
 G_BEGIN_DECLS
 
@@ -39,6 +40,11 @@ G_BEGIN_DECLS
 #define GTK_IS_SOURCE_VIEW_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE ((klass), GTK_TYPE_SOURCE_VIEW))
 #define GTK_SOURCE_VIEW_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj), GTK_TYPE_SOURCE_VIEW, GtkSourceViewClass))
 
+typedef enum
+{
+	GTK_SOURCE_VIEW_GUTTER_POSITION_LINES = -30,
+	GTK_SOURCE_VIEW_GUTTER_POSITION_MARKS = -20
+} GtkSourceViewGutterPosition;
 
 typedef struct _GtkSourceView GtkSourceView;
 typedef struct _GtkSourceViewClass GtkSourceViewClass;
@@ -56,14 +62,16 @@ struct _GtkSourceViewClass
 {
 	GtkTextViewClass parent_class;
 
-	void (*undo) 			(GtkSourceView *view);
-	void (*redo) 			(GtkSourceView *view);
-	void (*show_completion) 	(GtkSourceView *view);
+	void (*undo) (GtkSourceView *view);
+	void (*redo) (GtkSourceView *view);
+	void (*line_mark_activated) (GtkSourceView *view, 
+	                             GtkTextIter   *iter,
+	                             GdkEvent      *event);
+	void (*show_completion) (GtkSourceView *view);
 
 	/* Padding for future expansion */
-	void (*_gtk_source_reserved1) 	(void);
-	void (*_gtk_source_reserved2) 	(void);
-	void (*_gtk_source_reserved3) 	(void);
+	void (*_gtk_source_reserved1) (void);
+	void (*_gtk_source_reserved2) (void);
 };
 
 /**
@@ -164,13 +172,33 @@ void 		 gtk_source_view_set_show_line_marks    (GtkSourceView   *view,
 							 gboolean         show);
 gboolean	 gtk_source_view_get_show_line_marks    (GtkSourceView   *view);
 
-void             gtk_source_view_set_mark_category_pixbuf
+#ifndef GTKSOURCEVIEW_DISABLE_DEPRECATED
+void		 gtk_source_view_set_mark_category_pixbuf
+							(GtkSourceView   *view,
+							const gchar      *category,
+							GdkPixbuf        *pixbuf) G_GNUC_DEPRECATED;
+#endif
+
+void             gtk_source_view_set_mark_category_icon_from_pixbuf
 							(GtkSourceView   *view,
 							 const gchar     *category,
 							 GdkPixbuf       *pixbuf);
+
+void             gtk_source_view_set_mark_category_icon_from_stock
+							(GtkSourceView   *view,
+							 const gchar     *category,
+							 const gchar     *stock_id);
+
+void             gtk_source_view_set_mark_category_icon_from_icon_name
+							(GtkSourceView   *view,
+							 const gchar     *category,
+							 const gchar     *name);
+
+#ifndef GTKSOURCEVIEW_DISABLE_DEPRECATED
 GdkPixbuf	*gtk_source_view_get_mark_category_pixbuf
 							(GtkSourceView   *view,
-				       			 const gchar     *category);
+				       			 const gchar     *category) G_GNUC_DEPRECATED;
+#endif
 
 void             gtk_source_view_set_mark_category_background
 							(GtkSourceView   *view,
@@ -180,6 +208,21 @@ gboolean         gtk_source_view_get_mark_category_background
 							(GtkSourceView   *view,
 							 const gchar     *category,
 							 GdkColor        *dest);
+
+typedef gchar *  (*GtkSourceViewMarkTooltipFunc)	(GtkSourceMark	*mark,
+							 gpointer	 user_data);
+void             gtk_source_view_set_mark_category_tooltip_func
+							(GtkSourceView   *view,
+							 const gchar     *category,
+							 GtkSourceViewMarkTooltipFunc func,
+							 gpointer	  user_data,
+							 GDestroyNotify   user_data_notify);
+void		 gtk_source_view_set_mark_category_tooltip_markup_func
+							(GtkSourceView   *view,
+							const gchar     *category,
+							GtkSourceViewMarkTooltipFunc markup_func,
+							gpointer         user_data,
+							GDestroyNotify   user_data_notify);
 
 void             gtk_source_view_set_mark_category_priority
 							(GtkSourceView   *view,
@@ -201,6 +244,9 @@ GtkSourceDrawSpacesFlags
 
 GtkSourceCompletion *
 		gtk_source_view_get_completion		(GtkSourceView   *view);
+
+GtkSourceGutter *gtk_source_view_get_gutter		(GtkSourceView     *view,
+                                                         GtkTextWindowType  window_type);
 
 G_END_DECLS
 #endif				/* end of SOURCE_VIEW_H__ */

@@ -708,6 +708,9 @@ gtk_source_language_parse_file (GtkSourceLanguage *language)
 				case GTK_SOURCE_LANGUAGE_VERSION_2_0:
 					success = _gtk_source_language_file_parse_version2 (language, ctx_data);
 					break;
+
+				default:
+					g_assert_not_reached ();
 			}
 
 			if (!success)
@@ -862,9 +865,9 @@ get_style_info (GtkSourceLanguage *language, const char *style_id)
  * by this @language. The returned string is owned by the @language and must
  * not be modified.
  */
-const char *
+const gchar *
 gtk_source_language_get_style_name (GtkSourceLanguage *language,
-				    const char        *style_id)
+				    const gchar       *style_id)
 {
 	GtkSourceStyleInfo *info;
 

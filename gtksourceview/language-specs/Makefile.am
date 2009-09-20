@@ -12,6 +12,7 @@ LANGUAGES =			\
 	cpp.lang		\
 	csharp.lang		\
 	css.lang		\
+	cuda.lang		\
 	def.lang		\
 	desktop.lang		\
 	diff.lang		\
@@ -26,6 +27,7 @@ LANGUAGES =			\
 	forth.lang		\
 	fortran.lang		\
 	gap.lang		\
+	glsl.lang		\
 	gtk-doc.lang		\
 	gtkrc.lang		\
 	haddock.lang		\
@@ -41,6 +43,7 @@ LANGUAGES =			\
 	lua.lang		\
 	m4.lang			\
 	makefile.lang		\
+	mallard.lang	\
 	msil.lang		\
 	nemerle.lang		\
 	nsis.lang		\
@@ -88,3 +91,5 @@ stylesdir = $(datadir)/gtksourceview-2.0/styles
 styles_DATA = $(STYLES) styles.rng
 
 EXTRA_DIST = $(languages_DATA) $(styles_DATA)
+
+-include $(top_srcdir)/git.mk

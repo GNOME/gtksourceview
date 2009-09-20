@@ -1387,7 +1387,7 @@ gtk_source_buffer_get_style_scheme (GtkSourceBuffer *buffer)
 static gboolean
 source_mark_remove (GtkSourceBuffer *buffer, GtkSourceMark *mark)
 {
-	gint i;
+	guint i;
 
 	for (i = 0; i < buffer->priv->source_marks->len; ++i)
 	{
@@ -1459,27 +1459,27 @@ static void
 source_mark_insert (GtkSourceBuffer *buffer, GtkSourceMark *mark)
 {
 	GtkTextIter iter;
-	gint index, cmp;
+	gint idx, cmp;
 
 	gtk_text_buffer_get_iter_at_mark (GTK_TEXT_BUFFER (buffer),
 					  &iter,
 					  GTK_TEXT_MARK (mark));
 
-	index = source_mark_bsearch (buffer, &iter, &cmp);
-	if (index >= 0)
+	idx = source_mark_bsearch (buffer, &iter, &cmp);
+	if (idx >= 0)
 	{
 		/* if the mark we found is at same iter or before
 		 * put our mark after that */
 		if (cmp >= 0)
-			index++;
+			idx++;
 	}
 	else
 	{
-		index = 0;
+		idx = 0;
 	}
 
 	g_object_ref (mark);
-	g_array_insert_val (buffer->priv->source_marks, index, mark);
+	g_array_insert_val (buffer->priv->source_marks, idx, mark);
 }
 
 static void
@@ -1575,7 +1575,7 @@ _gtk_source_buffer_source_mark_next (GtkSourceBuffer *buffer,
 				     const gchar     *category)
 {
 	GtkTextIter iter;
-	gint index, cmp;
+	gint idx, cmp;
 
 	g_return_val_if_fail (GTK_IS_SOURCE_BUFFER (buffer), NULL);
 
@@ -1586,23 +1586,23 @@ _gtk_source_buffer_source_mark_next (GtkSourceBuffer *buffer,
 					  &iter,
 					  GTK_TEXT_MARK (mark));
 
-	index = source_mark_bsearch (buffer, &iter, &cmp);
+	idx = source_mark_bsearch (buffer, &iter, &cmp);
 
 	/* the array should already contain @mark */
-	g_return_val_if_fail (index >= 0, NULL);
+	g_return_val_if_fail (idx >= 0, NULL);
 	g_return_val_if_fail (cmp == 0, NULL);
 
 	/* move up to our mark among the ones at this position */
-	while (mark != g_array_index (buffer->priv->source_marks, GtkSourceMark *, index))
+	while (mark != g_array_index (buffer->priv->source_marks, GtkSourceMark *, idx))
 	{
-		++index;
+		++idx;
 	}
 
-	while (++index < buffer->priv->source_marks->len)
+	while ((guint) ++idx < buffer->priv->source_marks->len)
 	{
 		GtkSourceMark *ret;
 
-		ret = g_array_index (buffer->priv->source_marks, GtkSourceMark *, index);
+		ret = g_array_index (buffer->priv->source_marks, GtkSourceMark *, idx);
 		if (category == NULL ||
 		    0 == strcmp (category, gtk_source_mark_get_category (ret)))
 		{
@@ -1619,7 +1619,7 @@ _gtk_source_buffer_source_mark_prev (GtkSourceBuffer *buffer,
 				     const gchar     *category)
 {
 	GtkTextIter iter;
-	gint index, cmp;
+	gint idx, cmp;
 
 	g_return_val_if_fail (GTK_IS_SOURCE_BUFFER (buffer), NULL);
 
@@ -1630,23 +1630,23 @@ _gtk_source_buffer_source_mark_prev (GtkSourceBuffer *buffer,
 					  &iter,
 					  GTK_TEXT_MARK (mark));
 
-	index = source_mark_bsearch (buffer, &iter, &cmp);
+	idx = source_mark_bsearch (buffer, &iter, &cmp);
 
 	/* the array should already contain @mark */
-	g_return_val_if_fail (index >= 0, NULL);
+	g_return_val_if_fail (idx >= 0, NULL);
 	g_return_val_if_fail (cmp == 0, NULL);
 
 	/* move up to our mark among the ones at this position */
-	while (mark != g_array_index (buffer->priv->source_marks, GtkSourceMark *, index))
+	while (mark != g_array_index (buffer->priv->source_marks, GtkSourceMark *, idx))
 	{
-		++index;
+		++idx;
 	}
 
-	while (--index >= 0)
+	while (--idx >= 0)
 	{
 		GtkSourceMark *ret;
 
-		ret = g_array_index (buffer->priv->source_marks, GtkSourceMark *, index);
+		ret = g_array_index (buffer->priv->source_marks, GtkSourceMark *, idx);
 		if (category == NULL ||
 		    0 == strcmp (category, gtk_source_mark_get_category (ret)))
 		{
@@ -1677,25 +1677,25 @@ gtk_source_buffer_forward_iter_to_source_mark (GtkSourceBuffer *buffer,
 					       const gchar     *category)
 {
 	GtkTextIter i;
-	gint index, cmp;
+	gint idx, cmp;
 
 	g_return_val_if_fail (GTK_IS_SOURCE_BUFFER (buffer), FALSE);
 	g_return_val_if_fail (iter != NULL, FALSE);
 
 	i = *iter;
 
-	index = source_mark_bsearch (buffer, &i, &cmp);
-	if (index < 0)
+	idx = source_mark_bsearch (buffer, &i, &cmp);
+	if (idx < 0)
 		return FALSE;
 
 	if (cmp >= 0)
-		++index;
+		++idx;
 
-	while (index < buffer->priv->source_marks->len)
+	while ((guint) idx < buffer->priv->source_marks->len)
 	{
 		GtkSourceMark *mark;
 
-		mark = g_array_index (buffer->priv->source_marks, GtkSourceMark *, index);
+		mark = g_array_index (buffer->priv->source_marks, GtkSourceMark *, idx);
 		if (category == NULL ||
 		    0 == strcmp (category, gtk_source_mark_get_category (mark)))
 		{
@@ -1710,7 +1710,7 @@ gtk_source_buffer_forward_iter_to_source_mark (GtkSourceBuffer *buffer,
 			}
 		}
 
-		++index;
+		++idx;
 	}
 
 	return FALSE;
@@ -1736,25 +1736,25 @@ gtk_source_buffer_backward_iter_to_source_mark (GtkSourceBuffer *buffer,
 						const gchar     *category)
 {
 	GtkTextIter i;
-	gint index, cmp;
+	gint idx, cmp;
 
 	g_return_val_if_fail (GTK_IS_SOURCE_BUFFER (buffer), FALSE);
 	g_return_val_if_fail (iter != NULL, FALSE);
 
 	i = *iter;
 
-	index = source_mark_bsearch (buffer, &i, &cmp);
-	if (index < 0)
+	idx = source_mark_bsearch (buffer, &i, &cmp);
+	if (idx < 0)
 		return FALSE;
 
 	if (cmp <= 0)
-		--index;
+		--idx;
 
-	while (index >= 0)
+	while (idx >= 0)
 	{
 		GtkSourceMark *mark;
 
-		mark = g_array_index (buffer->priv->source_marks, GtkSourceMark *, index);
+		mark = g_array_index (buffer->priv->source_marks, GtkSourceMark *, idx);
 		if (category == NULL ||
 		    0 == strcmp (category, gtk_source_mark_get_category (mark)))
 		{
@@ -1768,7 +1768,7 @@ gtk_source_buffer_backward_iter_to_source_mark (GtkSourceBuffer *buffer,
 			}
 		}
 
-		--index;
+		--idx;
 	}
 
 	return FALSE;

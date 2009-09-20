@@ -2648,7 +2648,7 @@ gtk_source_print_compositor_paginate (GtkSourcePrintCompositor *compositor,
 				PangoRectangle logical_rect;
 				gboolean is_first_line = TRUE;
 				double part_height = 0;
-				gint index;
+				gint idx;
 
 				layout_iter = pango_layout_get_iter (compositor->priv->layout);
 
@@ -2680,9 +2680,9 @@ gtk_source_print_compositor_paginate (GtkSourcePrintCompositor *compositor,
 				 * may start in the middle of a line, so we have
 				 * to add.
 				 */
-				index = gtk_text_iter_get_line_index (&start);
-				index += pango_layout_iter_get_index (layout_iter);
-				gtk_text_iter_set_line_index (&start, index);
+				idx = gtk_text_iter_get_line_index (&start);
+				idx += pango_layout_iter_get_index (layout_iter);
+				gtk_text_iter_set_line_index (&start, idx);
 
 				pango_layout_iter_free (layout_iter);
 
@@ -3090,6 +3090,7 @@ gtk_source_print_compositor_draw_page (GtkSourcePrintCompositor *compositor,
 
 	g_return_if_fail (GTK_IS_SOURCE_PRINT_COMPOSITOR (compositor));
 	g_return_if_fail (GTK_IS_PRINT_CONTEXT (context));
+	g_return_if_fail (page_nr >= 0);
 
 	compositor->priv->current_page = page_nr;
 
@@ -3162,13 +3163,13 @@ gtk_source_print_compositor_draw_page (GtkSourcePrintCompositor *compositor,
 
 	g_return_if_fail (compositor->priv->buffer != NULL);
 	g_return_if_fail (compositor->priv->pages != NULL);
-	g_return_if_fail (page_nr < compositor->priv->pages->len);
+	g_return_if_fail ((guint) page_nr < compositor->priv->pages->len);
 
 	offset = g_array_index (compositor->priv->pages, int, page_nr);
 	gtk_text_buffer_get_iter_at_offset (GTK_TEXT_BUFFER (compositor->priv->buffer),
 					    &start, offset);
 
-	if (page_nr + 1 < compositor->priv->pages->len)
+	if ((guint) page_nr + 1 < compositor->priv->pages->len)
 	{
 		offset = g_array_index (compositor->priv->pages, int, page_nr + 1);
 		gtk_text_buffer_get_iter_at_offset (GTK_TEXT_BUFFER (compositor->priv->buffer),

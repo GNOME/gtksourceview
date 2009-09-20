@@ -2605,8 +2605,7 @@ regex_new (const gchar           *pattern,
 	{
 		g_set_error (error, GTK_SOURCE_CONTEXT_ENGINE_ERROR,
 			     GTK_SOURCE_CONTEXT_ENGINE_ERROR_INVALID_REGEX,
-			     "%s",
-			     _("using \\C is not supported in language definitions"));
+			     "%s", _("using \\C is not supported in language definitions"));
 		return NULL;
 	}
 

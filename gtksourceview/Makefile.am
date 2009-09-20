@@ -28,6 +28,7 @@ libgtksourceview_headers =			\
 	gtksourcestylescheme.h			\
 	gtksourcemark.h				\
 	gtksourceprintcompositor.h		\
+	gtksourcegutter.h			\
 	gtksourcecompletion.h			\
 	gtksourcecompletioninfo.h		\
 	gtksourcecompletionitem.h		\
@@ -37,7 +38,8 @@ libgtksourceview_headers =			\
 
 NOINST_H_FILES = \
 	gtksourcecompletionutils.h		\
-	gtksourcecompletion-private.h
+	gtksourcecompletion-private.h		\
+	gtksourcegutter-private.h
 
 libgtksourceview_2_0_la_SOURCES = 	\
 	gtksourcebuffer.c 		\
@@ -66,6 +68,7 @@ libgtksourceview_2_0_la_SOURCES = 	\
 	gtksourcecontextengine.c	\
 	gtksourcemark.c			\
 	gtksourceprintcompositor.c      \
+	gtksourcegutter.c		\
 	gtksourcecompletion.c		\
 	gtksourcecompletioninfo.c	\
 	gtksourcecompletionitem.c	\
@@ -94,17 +97,17 @@ uidir = $(datadir)/gtksourceview-2.0/ui
 ui_DATA = completion.ui
 
 gtksourceview-marshal.h: gtksourceview-marshal.list $(GLIB_GENMARSHAL)
-	$(GLIB_GENMARSHAL) $< --header --prefix=_gtksourceview_marshal > $@
+	$(AM_V_GEN) $(GLIB_GENMARSHAL) $< --header --prefix=_gtksourceview_marshal > $@
 
 gtksourceview-marshal.c: gtksourceview-marshal.list $(GLIB_GENMARSHAL)
-	echo "#include \"gtksourceview-marshal.h\"" > $@ && \
+	$(AM_V_GEN) echo "#include \"gtksourceview-marshal.h\"" > $@ && \
 	$(GLIB_GENMARSHAL) $< --body --prefix=_gtksourceview_marshal >> $@
 
 gtksourceview-typebuiltins.c: stamp-gtksourceview-typebuiltins.c
 	@true
 stamp-gtksourceview-typebuiltins.c: Makefile.am $(libgtksourceview_headers)
-	(cd $(srcdir) \
-	 && glib-mkenums \
+	$(AM_V_GEN) (cd $(srcdir) \
+	 && $(GLIB_MKENUMS) \
 			--fhead "#include <glib-object.h>\n" \
 			--fhead "#include \"gtksourceview-typebuiltins.h\"\n\n" \
 			--fprod "\n/* enumerations from \"@filename@\" */" \
@@ -123,8 +126,8 @@ stamp-gtksourceview-typebuiltins.c: Makefile.am $(libgtksourceview_headers)
 gtksourceview-typebuiltins.h: stamp-gtksourceview-typebuiltins.h
 	@true
 stamp-gtksourceview-typebuiltins.h: Makefile.am $(libgtksourceview_headers)
-	(cd $(srcdir) \
-	 && glib-mkenums \
+	$(AM_V_GEN) (cd $(srcdir) \
+	 && $(GLIB_MKENUMS) \
 			--fhead "#ifndef __GTKSOURCEVIEW_TYPEBUILTINS_H__\n" \
 			--fhead "#define __GTKSOURCEVIEW_TYPEBUILTINS_H__ 1\n\n" \
 			--ftail "#endif /* __GTKSOURCEVIEW_TYPEBUILTINS_H__ */\n" \
@@ -142,3 +145,5 @@ EXTRA_DIST = \
 	$(ui_DATA)
 
 CLEANFILES = $(BUILT_SOURCES) stamp-gtksourceview-typebuiltins.h stamp-gtksourceview-typebuiltins.c
+
+-include $(top_srcdir)/git.mk

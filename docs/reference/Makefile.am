@@ -11,7 +11,7 @@ DOC_MODULE = gtksourceview-2.0
 DOC_MAIN_SGML_FILE = gtksourceview-docs.sgml
 
 # Extra options to supply to gtkdoc-scan
-SCAN_OPTIONS =
+SCAN_OPTIONS = --deprecated-guards='GTKSOURCEVIEW_DISABLE_DEPRECATED'
 
 # The directory containing the source code. Relative to $(srcdir)
 DOC_SOURCE_DIR = ../..
@@ -35,6 +35,7 @@ IGNORE_HFILES =					\
 	gtksourceengine.h			\
 	gtksourcecontextengine.h		\
 	gtksourceprintjob.h			\
+	gtksourcegutter-private.h		\
 	gtksourcecompletionmodel.h		\
 	gtksourcecompletionutils.h		\
 	../tests/gsc-devhelp-provider.h		\
@@ -68,3 +69,5 @@ include $(top_srcdir)/gtk-doc.make
 
 # Other files to distribute
 EXTRA_DIST +=
+
+-include $(top_srcdir)/git.mk
