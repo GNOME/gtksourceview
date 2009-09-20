@@ -47,7 +47,7 @@ static guint signals[NUM_SIGNALS] = {0,};
 static const gchar *
 gtk_source_completion_proposal_get_label_default (GtkSourceCompletionProposal *proposal)
 {
-	g_return_val_if_reached (NULL);
+	return NULL;
 }
 
 static const gchar *
