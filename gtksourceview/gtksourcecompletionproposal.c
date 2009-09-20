@@ -244,6 +244,17 @@ gtk_source_completion_proposal_get_info (GtkSourceCompletionProposal *proposal)
 	return GTK_SOURCE_COMPLETION_PROPOSAL_GET_INTERFACE (proposal)->get_info (proposal);
 }
 
+/**
+ * gtk_source_completion_proposal_hash:
+ * @proposal: A #GtkSourceCompletionProposal
+ * 
+ * Get the hash value of @proposal. This is used to (together with
+ * #gtk_source_completion_proposal_equal) to match proposals in the completion
+ * model. By default, it uses a direct hash (#g_direct_hash).
+ *
+ * Returns: The hash value of @proposal
+ *
+ **/
 guint
 gtk_source_completion_proposal_hash	(GtkSourceCompletionProposal *proposal)
 {
@@ -251,6 +262,18 @@ gtk_source_completion_proposal_hash	(GtkSourceCompletionProposal *proposal)
 	return GTK_SOURCE_COMPLETION_PROPOSAL_GET_INTERFACE (proposal)->hash (proposal);
 }
 
+/**
+ * gtk_source_completion_proposal_equal:
+ * @proposal: A #GtkSourceCompletionProposal
+ * @other: A #GtkSourceCompletionProposal
+ * 
+ * Get whether two proposal objects are the same.  This is used to (together 
+ * with #gtk_source_completion_proposal_hash) to match proposals in the 
+ * completion model. By default, it uses direct equality (#g_direct_equal).
+ *
+ * Returns: %TRUE if @proposal and @object are the same proposal
+ *
+ **/
 gboolean
 gtk_source_completion_proposal_equal (GtkSourceCompletionProposal *proposal,
                                       GtkSourceCompletionProposal *other)

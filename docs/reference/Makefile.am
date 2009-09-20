@@ -34,7 +34,19 @@ IGNORE_HFILES =					\
 	gtktextregion.h				\
 	gtksourceengine.h			\
 	gtksourcecontextengine.h		\
-	gtksourceprintjob.h
+	gtksourceprintjob.h			\
+	gtksourcecompletionmodel.h		\
+	gtksourcecompletionutils.h		\
+	../tests/gsc-devhelp-provider.h		\
+	../tests/gsc-words-provider.h
+
+update-sections: $(HFILE_GLOB)
+	@echo 'gtk-doc: Scanning header files'
+	cp $(DOC_MODULE)-sections.txt $(DOC_MODULE)-sections.txt.old && \
+	(cd $(srcdir) && \
+	  gtkdoc-scan --module=$(DOC_MODULE) --source-dir=$(DOC_SOURCE_DIR) --ignore-headers="$(IGNORE_HFILES)" --rebuild-sections $(SCAN_OPTIONS) $(EXTRA_HFILES)) && \
+	cp $(DOC_MODULE)-sections.txt $(DOC_MODULE)-sections.txt.new && \
+	mv $(DOC_MODULE)-sections.txt.old $(DOC_MODULE)-sections.txt
 
 # Extra options to supply to gtkdoc-mkdb
 MKDB_OPTIONS = --sgml-mode --output-format=xml --ignore-files=trio

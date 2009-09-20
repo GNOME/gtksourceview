@@ -1733,6 +1733,12 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 							    250,
 							    G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 
+	/**
+	 * GtkSourceCompletion:provider-page-size:
+	 *
+	 * The scroll page size of the provider pages in the completion window.
+	 *
+	 */
 	g_object_class_install_property (object_class,
 	                                 PROP_PROVIDER_PAGE_SIZE,
 	                                 g_param_spec_uint ("provider-page-size",
@@ -1743,6 +1749,12 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 	                                                    5,
 	                                                    G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 
+	/**
+	 * GtkSourceCompletion:proposal-page-size:
+	 *
+	 * The scroll page size of the proposals in the completion window.
+	 *
+	 */
 	g_object_class_install_property (object_class,
 	                                 PROP_PROPOSAL_PAGE_SIZE,
 	                                 g_param_spec_uint ("proposal-page-size",
@@ -1792,6 +1804,15 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 			      G_TYPE_NONE,
 			      0);
 
+	/**
+	 * GtkSourceCompletion::populate-context:
+	 * @completion: The #GtkSourceCompletion who emits the signal
+	 * @context: The #GtkSourceCompletionContext for the current completion
+	 *
+	 * Emitted just before starting to populate the completion with providers.
+	 * You can use this signal to add additional attributes in the context.
+	 *
+	 */
 	signals[POPULATE_CONTEXT] =
 		g_signal_new ("populate-context",
 		              G_TYPE_FROM_CLASS (klass),
@@ -1805,6 +1826,21 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 		              GTK_TYPE_SOURCE_COMPLETION_CONTEXT);
 
 	/* Actions */
+	
+	/**
+	 * GtkSourceCompletion::move-cursor:
+	 * @completion: The #GtkSourceCompletion who emits the signal
+	 * @step: The #GtkScrollStep by which to move the cursor
+	 * @num: The amount of steps to move the cursor
+	 *
+	 * The ::move-cursor signal is a keybinding signal which gets emitted when 
+	 * the user initiates a cursor movement.
+	 *
+	 * Applications should not connect to it, but may emit it with
+	 * #g_signal_emit_by_name if they need to control the cursor 
+	 * programmatically.
+	 *
+	 */
 	signals [MOVE_CURSOR] =
 		g_signal_new ("move-cursor",
 			      G_TYPE_FROM_CLASS (klass),
@@ -1818,6 +1854,21 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 			      GTK_TYPE_SCROLL_STEP,
 			      G_TYPE_INT);
 
+	/**
+	 * GtkSourceCompletion::move-page:
+	 * @completion: The #GtkSourceCompletion who emits the signal
+	 * @step: The #GtkScrollStep by which to move the page
+	 * @num: The amount of steps to move the page
+	 *
+	 * The ::move-page signal is a keybinding signal which gets emitted when 
+	 * the user initiates a page movement (i.e. switches between provider
+	 * pages).
+	 *
+	 * Applications should not connect to it, but may emit it with
+	 * #g_signal_emit_by_name if they need to control the page selection
+	 * programmatically.
+	 *
+	 */
 	signals [MOVE_PAGE] =
 		g_signal_new ("move-page",
 			      G_TYPE_FROM_CLASS (klass),
@@ -1831,6 +1882,18 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 			      GTK_TYPE_SCROLL_STEP,
 			      G_TYPE_INT);
 
+	/**
+	 * GtkSourceCompletion::activate-proposal:
+	 * @completion: The #GtkSourceCompletion who emits the signal
+	 *
+	 * The ::activate-proposal signal is a keybinding signal which gets
+	 * emitted when the user initiates a proposal activation.
+	 *
+	 * Applications should not connect to it, but may emit it with 
+	 * #g_signal_emit_by_name if they need to control the proposal activation
+	 * programmatically.
+	 *
+	 */
 	signals [ACTIVATE_PROPOSAL] =
 		g_signal_new ("activate-proposal",
 			      G_TYPE_FROM_CLASS (klass),
@@ -2499,10 +2562,10 @@ select_providers (GtkSourceCompletion        *completion,
  * gtk_source_completion_show:
  * @completion: A #GtkSourceCompletion
  * @providers: A list of #GtkSourceCompletionProvider or %NULL
- * @place: The place where you want to position the popup window, or %NULL
+ * @context: The #GtkSourceCompletionContext with which to start the completion
  *
- * Shows the show completion window. If @place if %NULL the popup window will
- * be placed on the cursor position.
+ * Starts a new completion with the specified #GtkSourceCompletionContext and
+ * a list of potential candidate providers for completion.
  *
  * Returns: %TRUE if it was possible to the show completion window.
  */
@@ -2608,7 +2671,7 @@ gtk_source_completion_new (GtkSourceView *view)
  *
  * Returns: %TRUE if @provider was successfully added, otherwise if @error
  *          is provided, it will be set with the error and %FALSE is returned.
- **/
+ */
 gboolean
 gtk_source_completion_add_provider (GtkSourceCompletion          *completion,
 				    GtkSourceCompletionProvider  *provider,
@@ -2747,6 +2810,21 @@ gtk_source_completion_get_view (GtkSourceCompletion *completion)
 	return completion->priv->view;
 }
 
+/**
+ * gtk_source_completion_create_context:
+ * @completion: A #GtkSourceCompletion
+ * @position: A #GtkTextIter
+ *
+ * Create a new #GtkSourceCompletionContext for @completion. The position at
+ * which the completion using the new context will consider completion can
+ * be provider by @position. If @position is %NULL, the current cursor
+ * position will be used.
+ *
+ * Returns: a new #GtkSourceCompletionContext. The reference being returned
+ * is a 'floating' reference, so if you invoke #gtk_source_completion_show
+ * with this context you don't need to unref it.
+ *
+ */
 GtkSourceCompletionContext *
 gtk_source_completion_create_context (GtkSourceCompletion *completion,
                                       GtkTextIter         *position)
@@ -2774,6 +2852,14 @@ gtk_source_completion_create_context (GtkSourceCompletion *completion,
 	return context;
 }
 
+/**
+ * gtk_source_completion_move_window:
+ * @completion: A #GtkSourceCompletion
+ * @iter: A #GtkTextIter
+ *
+ * Move the completion window to a specific iter.
+ *
+ */
 void
 gtk_source_completion_move_window (GtkSourceCompletion *completion,
                                    GtkTextIter         *iter)

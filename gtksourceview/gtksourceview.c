@@ -449,7 +449,19 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 			      _gtksourceview_marshal_VOID__VOID,
 			      G_TYPE_NONE,
 			      0);
-			      
+			    
+	/**
+	 * GtkSourceView::show-completion:
+	 * @view: The #GtkSourceView who emits the signal
+	 *
+	 * The ::show-completion signal is a keybinding signal which gets 
+	 * emitted when the user initiates a completion in default mode.
+	 *
+	 * Applications should not connect to it, but may emit it with
+	 * #g_signal_emit_by_name if they need to control the default mode
+	 * completion activation.
+	 *
+	 */
 	signals [SHOW_COMPLETION] =
 		g_signal_new ("show-completion",
 			      G_TYPE_FROM_CLASS (klass),

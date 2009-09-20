@@ -214,6 +214,17 @@ gtk_source_completion_provider_populate (GtkSourceCompletionProvider *provider,
 	GTK_SOURCE_COMPLETION_PROVIDER_GET_INTERFACE (provider)->populate (provider, context);
 }
 
+/**
+ * gtk_source_completion_provider_get_default:
+ * @provider: A #GtkSourceCompletionProvider
+ * 
+ * Get whether the provider can be activated in default mode. Default mode
+ * is a special mode which corresponds to the keybinding on #GtkSourceView
+ * with which a completion can be invoked.
+ *
+ * Returns: %TRUE if the provider should be activated in default mode.
+ *
+ **/
 gboolean
 gtk_source_completion_provider_get_default (GtkSourceCompletionProvider *provider)
 {
@@ -221,6 +232,17 @@ gtk_source_completion_provider_get_default (GtkSourceCompletionProvider *provide
 	return GTK_SOURCE_COMPLETION_PROVIDER_GET_INTERFACE (provider)->get_default (provider);
 }
 
+/**
+ * gtk_source_completion_provider_get_interactive:
+ * @provider: A #GtkSourceCompletionProvider
+ * 
+ * Get whether the provider can be activated in interactive mode. Interactive
+ * mode is a special completion mode which is invoked automatically when
+ * typing.
+ *
+ * Returns: %TRUE if the provider should be activated in interactive mode.
+ *
+ **/
 gboolean
 gtk_source_completion_provider_get_interactive (GtkSourceCompletionProvider *provider)
 {
@@ -296,6 +318,20 @@ gtk_source_completion_provider_update_info (GtkSourceCompletionProvider *provide
 	GTK_SOURCE_COMPLETION_PROVIDER_GET_INTERFACE (provider)->update_info (provider, proposal, info);
 }
 
+/**
+ * gtk_source_completion_provider_get_start_iter:
+ * @provider: A #GtkSourceCompletionProvider
+ * @proposal: A #GtkSourceCompletionProposal
+ * @iter: A #GtkTextIter
+ * 
+ * Get the #GtkTextIter at which the completion for @proposal starts. When
+ * implemented, the completion can use this information to position the
+ * completion window accordingly when a proposal is selected in the completion
+ * window.
+ *
+ * Returns: %TRUE if @iter was set for @proposal, %FALSE otherwise
+ *
+ **/
 gboolean
 gtk_source_completion_provider_get_start_iter (GtkSourceCompletionProvider *provider,
                                                GtkSourceCompletionProposal *proposal,

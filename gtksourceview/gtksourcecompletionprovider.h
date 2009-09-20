@@ -1,8 +1,9 @@
-/*
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8; coding: utf-8 -*-
  * gtksourcecompletionprovider.h
  * This file is part of gtksourcecompletion
  *
- * Copyright (C) 2007 -2009 Jesús Barbero Rodríguez <chuchiperriman@gmail.com>
+ * Copyright (C) 2007 - 2009 Jesús Barbero Rodríguez <chuchiperriman@gmail.com>
+ * Copyright (C) 2009 Jesse van den Kieboom <jessevdk@gnome.org>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -107,6 +108,4 @@ gboolean	 gtk_source_completion_provider_activate_proposal (GtkSourceCompletionP
 
 G_END_DECLS
 
-#endif
-
-/* vi:ex:ts=8 */
+#endif /* __GTK_SOURCE_COMPLETION_PROVIDER_H__ */

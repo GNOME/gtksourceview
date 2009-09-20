@@ -1,8 +1,9 @@
-/*
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8; coding: utf-8 -*-
  * gtksourcecompletion.h
  * This file is part of gtksourcecompletion
  *
- * Copyright (C) 2007 -2009 Jesús Barbero Rodríguez <chuchiperriman@gmail.com>
+ * Copyright (C) 2007 - 2009 Jesús Barbero Rodríguez <chuchiperriman@gmail.com>
+ * Copyright (C) 2009 Jesse van den Kieboom <jessevdk@gnome.org>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,8 +21,8 @@
  * Boston, MA 02111-1307, USA.
  */
  
-#ifndef GTK_SOURCE_COMPLETION_H
-#define GTK_SOURCE_COMPLETION_H
+#ifndef __GTK_SOURCE_COMPLETION_H__
+#define __GTK_SOURCE_COMPLETION_H__
 
 #include <gtk/gtk.h>
 #include <gtksourceview/gtksourcecompletioninfo.h>
@@ -124,6 +125,4 @@ void		 _gtk_source_completion_add_proposals		(GtkSourceCompletion           *com
 		 						 gboolean                       finished);
 G_END_DECLS
 
-#endif
-
-/* vi:ex:ts=8 */
+#endif /* __GTK_SOURCE_COMPLETION_H__ */

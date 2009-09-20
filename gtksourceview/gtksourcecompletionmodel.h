@@ -1,4 +1,4 @@
-/*
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8; coding: utf-8 -*-
  * gtksourcecompletionmodel.h
  * This file is part of gtksourcecompletion
  *
@@ -108,5 +108,3 @@ gboolean 	gtk_source_completion_model_iter_last 	(GtkSourceCompletionModel      
 G_END_DECLS
 
 #endif /* __GTK_SOURCE_COMPLETION_MODEL_H__ */
-
-/* vi:ex:ts=8 */

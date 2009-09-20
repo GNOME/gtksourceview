@@ -141,6 +141,13 @@ gtk_source_completion_context_class_init (GtkSourceCompletionContextClass *klass
 	object_class->get_property = gtk_source_completion_context_get_property;
 	object_class->dispose = gtk_source_completion_context_dispose;
 
+	/**
+	 * GtkSourceCompletionContext::cancelled:
+	 *
+	 * Emitted when the current population of proposals has been cancelled.
+	 * Providers adding proposals asynchronously should connect to this signal
+	 * to know when to cancel running proposal queries.
+	 **/
 	context_signals[CANCELLED] =
 		g_signal_new ("cancelled",
 		              G_TYPE_FROM_CLASS (klass),
@@ -152,6 +159,11 @@ gtk_source_completion_context_class_init (GtkSourceCompletionContextClass *klass
 		              G_TYPE_NONE,
 		              0);
 	
+	/**
+	 * GtkSourceCompletionContext:completion:
+	 *
+	 * The #GtkSourceCompletion associated with the context.
+	 **/
 	g_object_class_install_property (object_class,
 	                                 PROP_COMPLETION,
 	                                 g_param_spec_object ("completion",
@@ -160,6 +172,11 @@ gtk_source_completion_context_class_init (GtkSourceCompletionContextClass *klass
 	                                                      GTK_TYPE_SOURCE_COMPLETION,
 	                                                      G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
 
+	/**
+	 * GtkSourceCompletionContext:view:
+	 *
+	 * The #GtkSourceView associated with the context.
+	 **/
 	g_object_class_install_property (object_class,
 	                                 PROP_VIEW,
 	                                 g_param_spec_object ("view",
@@ -168,6 +185,11 @@ gtk_source_completion_context_class_init (GtkSourceCompletionContextClass *klass
 	                                                      GTK_TYPE_SOURCE_VIEW,
 	                                                      G_PARAM_READABLE));
 
+	/**
+	 * GtkSourceCompletionContext:iter:
+	 *
+	 * The #GtkTextIter at which the completion is invoked.
+	 **/
 	g_object_class_install_property (object_class,
 	                                 PROP_ITER,
 	                                 g_param_spec_pointer ("iter",
@@ -175,6 +197,11 @@ gtk_source_completion_context_class_init (GtkSourceCompletionContextClass *klass
 	                                                       _("The GtkTextIter at which the completion was invoked"),
 	                                                       G_PARAM_READWRITE));
 
+	/**
+	 * GtkSourceCompletionContext:interactive:
+	 *
+	 * Whether the completion is in 'interactive' mode.
+	 **/
 	g_object_class_install_property (object_class,
 	                                 PROP_INTERACTIVE,
 	                                 g_param_spec_boolean ("interactive",
@@ -183,6 +210,11 @@ gtk_source_completion_context_class_init (GtkSourceCompletionContextClass *klass
 	                                                       FALSE,
 	                                                       G_PARAM_READWRITE));
 	
+	/**
+	 * GtkSourceCompletionContext:default:
+	 *
+	 * Whether the completion is in 'default' mode.
+	 **/
 	g_object_class_install_property (object_class,
 	                                 PROP_DEFAULT,
 	                                 g_param_spec_boolean ("default",
@@ -200,6 +232,19 @@ gtk_source_completion_context_init (GtkSourceCompletionContext *self)
 	self->priv = GTK_SOURCE_COMPLETION_CONTEXT_GET_PRIVATE (self);
 }
 
+/**
+ * gtk_source_completion_context_add_proposals:
+ * @context: A #GtkSourceCompletionContext
+ * @provider: A #GtkSourceCompletionProvider
+ * @proposals: The list of proposals to add
+ * @finished: Whether the provider is finished adding proposals
+ * 
+ * Providers can use this function to add proposals to the completion. They
+ * can do so asynchronously by means of the @finished argument. Providers must
+ * ensure that they always call this function with @finished set to %TRUE
+ * once each population (even if no proposals need to be added).
+ *
+ **/
 void
 gtk_source_completion_context_add_proposals (GtkSourceCompletionContext  *context,
                                              GtkSourceCompletionProvider *provider,
@@ -216,6 +261,15 @@ gtk_source_completion_context_add_proposals (GtkSourceCompletionContext  *contex
 	                                      finished);
 }
 
+/**
+ * gtk_source_completion_context_get_view:
+ * @context: A #GtkSourceCompletionContext
+ * 
+ * Get the #GtkSourceView to which the context applies
+ *
+ * Returns: A #GtkSourceView
+ *
+ **/
 GtkSourceView *
 gtk_source_completion_context_get_view (GtkSourceCompletionContext *context)
 {
@@ -223,6 +277,15 @@ gtk_source_completion_context_get_view (GtkSourceCompletionContext *context)
 	return gtk_source_completion_get_view (context->priv->completion);
 }
 
+/**
+ * gtk_source_completion_context_get_iter:
+ * @context: A #GtkSourceCompletionContext
+ * @iter: A #GtkTextIter
+ * 
+ * Get the iter at which the completion was invoked. Providers can use this
+ * to determine how and if to match proposals.
+ *
+ **/
 void
 gtk_source_completion_context_get_iter (GtkSourceCompletionContext *context,
                                         GtkTextIter                *iter)
@@ -231,6 +294,16 @@ gtk_source_completion_context_get_iter (GtkSourceCompletionContext *context,
 	*iter = context->priv->iter;
 }
 
+/**
+ * gtk_source_completion_context_get_interactive:
+ * @context: A #GtkSourceCompletionContext
+ *
+ * Get whether the context is targeting 'interactive' mode providers. The 
+ * interactive mode is used by #GtkSourceCompletion to indicate a completion
+ * that was started interactively (i.e. when typing).
+ *
+ * Returns: %TRUE if the context is in 'interactive' mode, %FALSE otherwise
+ */
 gboolean
 gtk_source_completion_context_get_interactive (GtkSourceCompletionContext *context)
 {
@@ -239,6 +312,16 @@ gtk_source_completion_context_get_interactive (GtkSourceCompletionContext *conte
 	
 }
 
+/**
+ * gtk_source_completion_context_get_default:
+ * @context: A #GtkSourceCompletionContext
+ *
+ * Get whether the context is targeting 'default' mode providers. The default
+ * mode is used by the #GtkSourceView completion binding to invoke the 
+ * completion with providers that support default mode.
+ *
+ * Returns: %TRUE if the context is in 'default' mode, %FALSE otherwise
+ */
 gboolean
 gtk_source_completion_context_get_default (GtkSourceCompletionContext *context)
 {
@@ -247,6 +330,14 @@ gtk_source_completion_context_get_default (GtkSourceCompletionContext *context)
 	
 }
 
+/**
+ * gtk_source_completion_context_move_window:
+ * @context: A #GtkSourceCompletionContext
+ * @iter: A #GtkTextIter
+ * 
+ * Move the completion window to the specified @iter
+ *
+ **/
 void 
 gtk_source_completion_context_move_window (GtkSourceCompletionContext *context,
                                            GtkTextIter                *iter)

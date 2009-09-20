@@ -1,4 +1,4 @@
-/*
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8; coding: utf-8 -*-
  * gtksourcecompletionitem.h
  * This file is part of gtksourcecompletion
  *
@@ -53,17 +53,17 @@ struct _GtkSourceCompletionItemClass {
 GType 			 gtk_source_completion_item_get_type 		(void) G_GNUC_CONST;
 
 GtkSourceCompletionItem *gtk_source_completion_item_new 		(const gchar *label,
-									 const gchar *action,
+									 const gchar *text,
 									 GdkPixbuf   *icon,
 									 const gchar *info);
 
 GtkSourceCompletionItem *gtk_source_completion_item_new_with_markup	(const gchar *markup,
-									 const gchar *action,
+									 const gchar *text,
 									 GdkPixbuf   *icon,
 									 const gchar *info);
 
 GtkSourceCompletionItem *gtk_source_completion_item_new_from_stock	(const gchar *label,
-								 	 const gchar *action,
+								 	 const gchar *text,
 								 	 const gchar *stock,
 								 	 const gchar *info);
 
