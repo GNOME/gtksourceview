@@ -1732,7 +1732,7 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 					 g_param_spec_boolean ("remember-info-visibility",
 							      _("Remeber Info Visibility"),
 							      _("Remember the last info window visibility state"),
-							      TRUE,
+							      FALSE,
 							      G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 	/**
 	 * GtkSourceCompletion:select-on-show:
