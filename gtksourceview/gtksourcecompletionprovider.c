@@ -30,13 +30,7 @@
  * 
  */
 
-#include <gtksourceview/gtksourcecompletion.h>
 #include <gtksourceview/gtksourcecompletionprovider.h>
-#include <gtksourceview/gtksourcecompletion.h>
-#include <gtksourceview/gtksourceview.h>
-
-#include "gtksourcecompletionutils.h"
-#include "gtksourceview-i18n.h"
 
 /* Default implementations */
 static const gchar *
