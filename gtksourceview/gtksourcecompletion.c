@@ -47,6 +47,15 @@
 						  GTK_TYPE_SOURCE_COMPLETION,           \
 						  GtkSourceCompletionPrivate))
 
+/*#define ENABLE_DEBUG*/
+#undef ENABLE_DEBUG
+
+#ifdef ENABLE_DEBUG
+#define DEBUG(x) (x)
+#else
+#define DEBUG(x)
+#endif
+
 /* Signals */
 enum
 {
@@ -210,9 +219,21 @@ activate_current_proposal (GtkSourceCompletion *completion)
 	
 	if (!get_selected_proposal (completion, &iter, &provider, &proposal))
 	{
+		DEBUG({
+			g_print ("Hiding because activated without proposal\n");
+		});
+		
 		gtk_source_completion_hide (completion);
 		return TRUE;
 	}
+	
+	/* First hide the completion because the activation might actually
+	   activate another one, which we don't want to hide */
+	DEBUG({
+		g_print ("Hiding just before proposal activation\n");
+	});
+	
+	gtk_source_completion_hide (completion);
 	
 	/* Get insert iter */
 	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (completion->priv->view));
@@ -240,8 +261,6 @@ activate_current_proposal (GtkSourceCompletion *completion)
 
 	g_object_unref (provider);
 	g_object_unref (proposal);
-	
-	gtk_source_completion_hide (completion);
 
 	return TRUE;
 }
@@ -819,6 +838,10 @@ row_activated_cb (GtkTreeView         *tree_view,
 		  GtkTreeViewColumn   *column,
 		  GtkSourceCompletion *completion)
 {
+	DEBUG({
+		g_print ("Activating current proposal from row-activated\n");
+	});
+		
 	activate_current_proposal (completion);
 }
 
@@ -843,20 +866,14 @@ update_proposal_info_real (GtkSourceCompletion         *completion,
 		info_widget = completion->priv->default_info;
 		gtk_label_set_markup (GTK_LABEL (info_widget), _("No extra information available"));
 		
+		gtk_source_completion_info_set_widget (info_window,
+	                                           info_widget);
+	                                       
 		gtk_widget_hide (GTK_WIDGET (info_window));
+		return;
 	}
 	else
 	{
-		g_signal_handlers_block_by_func (completion->priv->info_window,
-		                                 G_CALLBACK (show_info_cb),
-		                                 completion);
-
-		gtk_widget_show (completion->priv->info_window);
-
-		g_signal_handlers_unblock_by_func (completion->priv->info_window,
-		                                   G_CALLBACK (show_info_cb),
-		                                   completion);
-
 		info_widget = gtk_source_completion_provider_get_info_widget (provider, 
 		                                                              proposal);
 
@@ -884,6 +901,16 @@ update_proposal_info_real (GtkSourceCompletion         *completion,
 			                                    info_window);
 	}
 	
+	g_signal_handlers_block_by_func (completion->priv->info_window,
+	                                 G_CALLBACK (show_info_cb),
+	                                 completion);
+
+	gtk_widget_show (completion->priv->info_window);
+
+	g_signal_handlers_unblock_by_func (completion->priv->info_window,
+	                                   G_CALLBACK (show_info_cb),
+	                                   completion);
+
 	gtk_source_completion_info_process_resize (info_window);
 }
 
@@ -1028,6 +1055,10 @@ view_focus_out_event_cb (GtkWidget     *widget,
 	if (GTK_WIDGET_VISIBLE (completion->priv->window)
 	    && !GTK_WIDGET_HAS_FOCUS (completion->priv->window))
 	{
+		DEBUG({
+			g_print ("Lost focus\n");
+		});
+
 		gtk_source_completion_hide (completion);
 	}
 	
@@ -1043,6 +1074,10 @@ view_button_press_event_cb (GtkWidget      *widget,
 	
 	if (GTK_WIDGET_VISIBLE (completion->priv->window))
 	{
+		DEBUG({
+			g_print ("Button press in the view\n");
+		});
+
 		gtk_source_completion_hide (completion);
 	}
 
@@ -1052,8 +1087,11 @@ view_button_press_event_cb (GtkWidget      *widget,
 static void
 gtk_source_completion_activate_proposal (GtkSourceCompletion *completion)
 {
-	activate_current_proposal (completion);
-	gtk_source_completion_hide (completion);
+	DEBUG({
+		g_print ("Activating from default proposal activate handler\n");
+	});
+
+	activate_current_proposal (completion);	
 }
 
 static void
@@ -1578,7 +1616,17 @@ on_row_inserted_cb (GtkTreeModel        *tree_model,
 		gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (completion->priv->info_button),
 					      completion->priv->info_visible);
 	
+		DEBUG({
+			g_print ("Emitting show\n");
+		});
+
 		g_signal_emit (completion, signals[SHOW], 0);
+	}
+	else
+	{
+		DEBUG({
+			g_print ("Already visible\n");
+		});
 	}
 	
 	check_first_selected (completion);
@@ -2417,6 +2465,10 @@ update_completion (GtkSourceCompletion        *completion,
 {
 	GtkTextIter location;
 	GList *item;
+	
+	DEBUG({
+			g_print ("Update completion: %d\n", g_list_length (providers));
+	});
 
 	update_typing_offsets (completion);
 	
@@ -2451,6 +2503,11 @@ update_completion (GtkSourceCompletion        *completion,
 		GtkSourceCompletionProvider *provider = 
 			GTK_SOURCE_COMPLETION_PROVIDER (item->data);
 
+		DEBUG({
+			g_print ("Populating provider: %s\n", 
+			         gtk_source_completion_provider_get_name (provider));
+		});
+
 		gtk_source_completion_provider_populate (provider, context);
 	}
 }
@@ -2462,6 +2519,10 @@ populating_done (GtkSourceCompletion        *completion,
 	if (gtk_source_completion_model_is_empty (completion->priv->model_proposals, 
 	                                          FALSE))
 	{
+		DEBUG({
+			g_print ("Model is empty after populating\n");
+		});
+
 		/* No completion made, make sure to hide the window */
 		gtk_source_completion_hide (completion);
 		
@@ -2579,6 +2640,10 @@ gtk_source_completion_show (GtkSourceCompletion        *completion,
 	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION (completion), FALSE);
 	
 	/* Make sure to clear any active completion */
+	DEBUG({
+		g_print ("Hiding completion before new one\n");
+	});
+
 	gtk_source_completion_hide (completion);
 	
 	if (providers == NULL)
@@ -2602,10 +2667,14 @@ gtk_source_completion_show (GtkSourceCompletion        *completion,
 			g_object_unref (context);
 		}
 
+		DEBUG({
+			g_print ("No providers for completion\n");
+		});
+
 		gtk_source_completion_hide (completion);
 		return FALSE;
 	}
-	
+
 	update_completion (completion, selected_providers, context);
 	g_list_free (selected_providers);
 
@@ -2776,6 +2845,11 @@ void
 gtk_source_completion_hide (GtkSourceCompletion *completion)
 {
 	g_return_if_fail (GTK_IS_SOURCE_COMPLETION (completion));
+	
+	DEBUG({
+			g_print ("Emitting hide\n");
+	});
+
 	g_signal_emit (completion, signals[HIDE], 0);
 }
 
