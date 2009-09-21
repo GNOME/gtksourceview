@@ -699,3 +699,11 @@ gtk_source_completion_words_buffer_get_buffer (GtkSourceCompletionWordsBuffer *b
 	
 	return buffer->priv->buffer;
 }
+
+void
+gtk_source_completion_words_buffer_set_scan_batch_size (GtkSourceCompletionWordsBuffer *buffer,
+                                                        guint                           size)
+{
+	g_return_if_fail (GTK_IS_SOURCE_COMPLETION_WORDS_BUFFER (buffer));
+	buffer->priv->scan_batch_size = size;
+}

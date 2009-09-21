@@ -315,6 +315,19 @@ gtk_source_completion_words_dispose (GObject *object)
 }
 
 static void
+update_buffers_batch_size (GtkSourceCompletionWords *words)
+{
+	GList *item;
+	
+	for (item = words->priv->buffers; item; item = g_list_next (item))
+	{
+		BufferBinding *binding = (BufferBinding *)item->data;
+		gtk_source_completion_words_buffer_set_scan_batch_size (binding->buffer,
+		                                                        words->priv->scan_batch_size);
+	}
+}
+
+static void
 gtk_source_completion_words_set_property (GObject      *object,
                                           guint         prop_id,
                                           const GValue *value,
@@ -345,7 +358,11 @@ gtk_source_completion_words_set_property (GObject      *object,
 			self->priv->proposals_batch_size = g_value_get_uint (value);
 		break;
 		case PROP_SCAN_BATCH_SIZE:
+		{
 			self->priv->scan_batch_size = g_value_get_uint (value);
+			
+			update_buffers_batch_size (self);
+		}
 		break;
 		default:
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);

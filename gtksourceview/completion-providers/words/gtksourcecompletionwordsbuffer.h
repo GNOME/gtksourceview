@@ -61,6 +61,9 @@ GtkSourceCompletionWordsBuffer *
 
 GtkTextBuffer 	*gtk_source_completion_words_buffer_get_buffer	(GtkSourceCompletionWordsBuffer  *buffer);
 
+void		 gtk_source_completion_words_buffer_set_scan_batch_size (GtkSourceCompletionWordsBuffer *buffer,
+                                                                         guint                           size);
+
 G_END_DECLS
 
 #endif /* __GTK_SOURCE_COMPLETION_WORDS_BUFFER_H__ */
