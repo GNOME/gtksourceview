@@ -31,8 +31,11 @@
                 <property name="show_expanders">False</property>
                 <child>
                   <object class="GtkTreeViewColumn" id="tree_view_column_proposal">
-                    <property name="sizing">GTK_TREE_VIEW_COLUMN_FIXED</property>
+                    <property name="sizing">fixed</property>
                     <property name="expand">True</property>
+                    <child>
+                      <object class="GtkCellRendererText" id="cell_renderer_accelerator"/>
+                    </child>
                     <child>
                       <object class="GtkCellRendererPixbuf" id="cell_renderer_icon"/>
                     </child>

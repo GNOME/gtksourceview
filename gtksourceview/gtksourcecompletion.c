@@ -1,4 +1,4 @@
-/*
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8; coding: utf-8 -*-
  * gtksourcecompletion.c
  * This file is part of gtksourcecompletion
  *
@@ -78,6 +78,7 @@ enum
 	PROP_REMEMBER_INFO_VISIBILITY,
 	PROP_SELECT_ON_SHOW,
 	PROP_SHOW_HEADERS,
+	PROP_ENABLE_ACCELERATORS,
 	
 	PROP_AUTO_COMPLETE_DELAY,
 	
@@ -108,6 +109,7 @@ struct _GtkSourceCompletionPrivate
 	GtkWidget *hbox_info;
 	GtkWidget *label_info;
 	GtkWidget *image_info;
+	GtkCellRenderer *cell_renderer_accelerator;
 	
 	GtkWidget *tree_view_proposals;
 	GtkSourceCompletionModel *model_proposals;
@@ -117,6 +119,7 @@ struct _GtkSourceCompletionPrivate
 	gboolean info_visible;
 	gboolean select_on_show;
 	gboolean show_headers;
+	gboolean enable_accelerators;
 	
 	/* Page size */
 	guint proposal_page_size;
@@ -1162,6 +1165,43 @@ gtk_source_completion_move_page (GtkSourceCompletion *completion,
 	}
 }
 
+static gboolean
+activate_by_accelerator (GtkSourceCompletion *completion,
+                         gint                 num)
+{
+	GtkTreeIter iter;
+	GtkTreeModel *model = GTK_TREE_MODEL (completion->priv->model_proposals);
+	gint i = -1;
+
+	if (num < 0 || num > 9)
+	{
+		return FALSE;
+	}
+	
+	num = num == 0 ? 9 : num - 1;
+	
+	if (gtk_tree_model_get_iter_first (model, &iter))
+	{
+		do
+		{
+			if (!gtk_source_completion_model_iter_is_header (completion->priv->model_proposals,
+			                                                 &iter))
+			{
+				++i;
+			}
+		} while (i < num && gtk_tree_model_iter_next (model, &iter));
+		
+		if (i == num)
+		{
+			gtk_tree_selection_select_iter (
+				gtk_tree_view_get_selection (GTK_TREE_VIEW (completion->priv->tree_view_proposals)),
+				&iter);
+
+			activate_current_proposal (completion);
+		}
+	}
+	return TRUE;
+}
 
 static gboolean
 view_key_press_event_cb (GtkSourceView       *view,
@@ -1190,6 +1230,13 @@ view_key_press_event_cb (GtkSourceView       *view,
 		gtk_toggle_button_set_active (button,
 		                              !gtk_toggle_button_get_active (button));
 		return TRUE;
+	}
+	
+	if (completion->priv->enable_accelerators &&
+	    mod == GDK_MOD1_MASK && 
+	    event->keyval >= GDK_0 && event->keyval <= GDK_9)
+	{
+		return activate_by_accelerator (completion, event->keyval - GDK_0);
 	}
 	
 	binding_set = gtk_binding_set_by_class (GTK_SOURCE_COMPLETION_GET_CLASS (completion));
@@ -1497,6 +1544,9 @@ gtk_source_completion_get_property (GObject    *object,
 		case PROP_SHOW_HEADERS:
 			g_value_set_boolean (value, completion->priv->show_headers);
 			break;
+		case PROP_ENABLE_ACCELERATORS:
+			g_value_set_boolean (value, completion->priv->enable_accelerators);
+			break;
 		case PROP_AUTO_COMPLETE_DELAY:
 			g_value_set_uint (value, completion->priv->auto_complete_delay);
 			break;
@@ -1544,6 +1594,16 @@ gtk_source_completion_set_property (GObject      *object,
 			{
 				gtk_source_completion_model_set_show_headers (completion->priv->model_proposals,
 				                                              completion->priv->show_headers);
+			}
+			break;
+		case PROP_ENABLE_ACCELERATORS:
+			completion->priv->enable_accelerators = g_value_get_boolean (value);
+			
+			if (completion->priv->cell_renderer_accelerator != NULL)
+			{
+				g_object_set (completion->priv->cell_renderer_accelerator,
+				              "visible", completion->priv->enable_accelerators,
+				              NULL);
 			}
 			break;
 		case PROP_AUTO_COMPLETE_DELAY:
@@ -1764,6 +1824,21 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 							      TRUE,
 							      G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 
+	/**
+	 * GtkSourceCompletion:enable-accelerators:
+	 *
+	 * Determines whether you can activate the first ten proposals in the
+	 * completion window with <Alt>+<num>.
+	 *
+	 */
+	g_object_class_install_property (object_class,
+	                                 PROP_ENABLE_ACCELERATORS,
+	                                 g_param_spec_boolean ("enable-accelerators",
+	                                                       _("Enable Accelerators"),
+	                                                       _("Enable accelerators in the completion window"),
+	                                                       TRUE,
+	                                                       G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+	
 	/**
 	 * GtkSourceCompletion:auto-complete-delay:
 	 *
@@ -2184,6 +2259,85 @@ render_proposal_text_func (GtkTreeViewColumn   *column,
 	}
 }
 
+static gint
+iter_accelerator (GtkSourceCompletion *completion,
+                  GtkTreeIter         *iter)
+{
+	GtkTreeIter it;
+	GtkTreeModel *model = GTK_TREE_MODEL (completion->priv->model_proposals);
+	gint ret = 0;
+	
+	if (!gtk_tree_model_get_iter_first (model, &it))
+	{
+		return -1;
+	}
+	
+	do
+	{
+		if (!gtk_source_completion_model_iter_is_header (completion->priv->model_proposals, 
+		                                                 &it))
+		{
+			if (gtk_source_completion_model_iter_equal (completion->priv->model_proposals,
+			                                            iter,
+			                                            &it))
+			{
+				return ret;
+			}
+
+			++ret;
+		}
+	} while (ret < 10 && gtk_tree_model_iter_next (model, &it));
+	
+	return -1;
+}
+
+static void
+render_proposal_accelerator_func (GtkTreeViewColumn   *column,
+                                  GtkCellRenderer     *cell,
+                                  GtkTreeModel        *model,
+                                  GtkTreeIter         *iter,
+                                  GtkSourceCompletion *completion)
+{
+	g_object_set (cell, "visible", completion->priv->enable_accelerators, NULL);
+	
+	if (completion->priv->enable_accelerators)
+	{
+		GtkStyle *style;
+		gboolean isheader;
+		
+		isheader = gtk_source_completion_model_iter_is_header (completion->priv->model_proposals, 
+		                                                       iter);
+		
+		style = gtk_widget_get_style (GTK_WIDGET (completion->priv->tree_view_proposals));
+
+		if (isheader)
+		{
+			g_object_set (cell, 
+			              "background-gdk", &(style->bg[GTK_STATE_INSENSITIVE]),
+			              "text", "  ",
+			              NULL);
+		}
+		else
+		{
+			gint accel = iter_accelerator (completion, iter);
+			gchar *text = NULL;
+			
+			if (accel != -1)
+			{
+				text = g_strdup_printf ("<small>%d</small>", accel == 9 ? 0 : accel + 1);
+			}
+			
+			g_object_set (cell, 
+				      "foreground-gdk", &(style->fg[GTK_STATE_INSENSITIVE]),
+				      "background-set", FALSE,
+				      "markup", text,
+				      "weight", PANGO_WEIGHT_BOLD,
+				      NULL);
+			g_free (text);
+		}
+	}
+}
+
 static gboolean
 selection_func (GtkTreeSelection    *selection,
                 GtkTreeModel        *model,
@@ -2363,6 +2517,16 @@ initialize_ui (GtkSourceCompletion *completion)
 	                                         GTK_CELL_RENDERER (gtk_builder_get_object (builder,
 	                                                                                    "cell_renderer_proposal")),
 	                                         (GtkTreeCellDataFunc)render_proposal_text_func,
+	                                         completion,
+	                                         NULL);
+
+	completion->priv->cell_renderer_accelerator = 
+			GTK_CELL_RENDERER (gtk_builder_get_object (builder,
+			                                           "cell_renderer_accelerator"));
+
+	gtk_tree_view_column_set_cell_data_func (column,
+	                                         completion->priv->cell_renderer_accelerator,
+	                                         (GtkTreeCellDataFunc)render_proposal_accelerator_func,
 	                                         completion,
 	                                         NULL);
 

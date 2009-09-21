@@ -105,6 +105,10 @@ gboolean 	gtk_source_completion_model_iter_previous (GtkSourceCompletionModel   
 gboolean 	gtk_source_completion_model_iter_last 	(GtkSourceCompletionModel           *model,
 							 GtkTreeIter                        *iter);
 
+gboolean	gtk_source_completion_model_iter_equal	(GtkSourceCompletionModel           *model,
+							 GtkTreeIter                        *iter1,
+							 GtkTreeIter                        *iter2);
+
 G_END_DECLS
 
 #endif /* __GTK_SOURCE_COMPLETION_MODEL_H__ */

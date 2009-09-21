@@ -1425,3 +1425,12 @@ gtk_source_completion_model_get_visible_providers (GtkSourceCompletionModel *mod
 	return model->priv->visible_providers;
 }
 
+gboolean
+gtk_source_completion_model_iter_equal (GtkSourceCompletionModel *model,
+                                        GtkTreeIter              *iter1,
+                                        GtkTreeIter              *iter2)
+{
+	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_MODEL (model), FALSE);
+	
+	return iter1->user_data == iter2->user_data;
+}
