@@ -172,7 +172,8 @@ add_in_idle (GtkSourceCompletionWords *words)
 	gboolean finished;
 	
 	/* Don't complete empty string (when word == NULL) */
-	if (words->priv->word == NULL)
+	if (words->priv->word == NULL || 
+	    g_utf8_strlen (words->priv->word, -1) < words->priv->minimum_word_size)
 	{
 		gtk_source_completion_context_add_proposals (words->priv->context,
 	                                                     GTK_SOURCE_COMPLETION_PROVIDER (words),
@@ -239,8 +240,7 @@ gtk_source_completion_words_match (GtkSourceCompletionProvider *provider,
 	gtk_source_completion_context_get_iter (context, &iter);
 	word = get_word_at_iter (words, &iter);
 	
-	ret = g_utf8_strlen (word, -1) >= words->priv->minimum_word_size;
-	
+	ret = word != NULL && g_utf8_strlen (word, -1) >= words->priv->minimum_word_size;
 	g_free (word);
 	
 	return ret;
@@ -259,8 +259,10 @@ gtk_source_completion_words_populate (GtkSourceCompletionProvider *provider,
 	g_free (words->priv->word);
 	word = get_word_at_iter (words, &iter);
 	
-	if (word == NULL)
+	if (word == NULL || 
+	    g_utf8_strlen (word, -1) < words->priv->minimum_word_size)
 	{
+		g_free (word);
 		gtk_source_completion_context_add_proposals (context,
 		                                             provider,
 		                                             NULL,
