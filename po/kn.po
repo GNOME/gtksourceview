@@ -1,14 +1,14 @@
-# translation of gtksourceview.HEAD.kn.po to Kannada
+# translation of gtksourceview.master.kn.po to Kannada
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Shankar Prasad <svenkate@redhat.com>, 2008, 2009.
 msgid ""
 msgstr ""
-"Project-Id-Version: gtksourceview.HEAD.kn\n"
+"Project-Id-Version: gtksourceview.master.kn\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gtksourceview&component=general\n"
-"POT-Creation-Date: 2009-02-14 11:52+0000\n"
-"PO-Revision-Date: 2009-03-24 15:58+0530\n"
+"POT-Creation-Date: 2009-07-18 11:41+0000\n"
+"PO-Revision-Date: 2009-09-19 23:06+0530\n"
 "Last-Translator: Shankar Prasad <svenkate@redhat.com>\n"
 "Language-Team: Kannada <en@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgstr ""
 #: ../gtksourceview/gtksourcebuffer.c:180
 #: ../gtksourceview/gtksourceprintcompositor.c:471
 msgid "Highlight Syntax"
-msgstr "ಸಿಂಟಾಕ್ಸನ್ನು ಸುಪ್ರಕಾಶಗೊಳಿಸು"
+msgstr "ಸಿಂಟ್ಯಾಕ್ಸನ್ನು ಸುಪ್ರಕಾಶಗೊಳಿಸು"
 
 #: ../gtksourceview/gtksourcebuffer.c:181
 msgid "Whether to highlight syntax in the buffer"
@@ -74,7 +74,6 @@ msgid "Style scheme"
 msgstr "ಶೈಲಿ ಸ್ಕೀಮ್"
 
 #: ../gtksourceview/gtksourcecontextengine.c:2608
-#, c-format
 msgid "using \\C is not supported in language definitions"
 msgstr "\\C ಅನ್ನು ಬಳಸುವುದು ಭಾಷೆಯ ವಿವರಣೆಯಲ್ಲಿ ಬೆಂಬಲಿತವಾಗಿಲ್ಲ"
 
@@ -89,14 +88,17 @@ msgid ""
 "process will be slower than usual.\n"
 "The error was: %s"
 msgstr ""
-"ಎಲ್ಲಾ ರೂಪಾಂತರಕ್ಕೂ regex ಅನ್ನು ನಿರ್ಮಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ, ಸಿಂಟಾಕ್ಸನ್ನು ಸುಪ್ರಕಾಶಗೊಳಿಸುವ ಪ್ರಕ್ರಿಯೆಯು ಮಾಮೂಲಿಗಿಂತ ನಿಧಾಧಗೊಳ್ಳುತ್ತದೆ.\n"
+"ಎಲ್ಲಾ ರೂಪಾಂತರಕ್ಕೂ regex ಅನ್ನು ನಿರ್ಮಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ, ಸಿಂಟ್ಯಾಕ್ಸನ್ನು ಸುಪ್ರಕಾಶಗೊಳಿಸುವ "
+"ಪ್ರಕ್ರಿಯೆಯು ಮಾಮೂಲಿಗಿಂತ ನಿಧಾಧಗೊಳ್ಳುತ್ತದೆ.\n"
 "ದೋಷವು ಹೀಗಿರುತ್ತದೆ: %s"
 
 #: ../gtksourceview/gtksourcecontextengine.c:4547
 msgid ""
 "Highlighting a single line took too much time, syntax highlighting will be "
 "disabled"
-msgstr "ಒಂದು ಸಾಲನ್ನು ಸುಪ್ರಕಾಶಗೊಳಿಸಲು ಬಹಳ ಸಮಯ ಹಿಡಿದಿದೆ, ಸಿಂಟಾಕ್ಸಿನ ಸುಪ್ರಕಾಶಗೊಳಿಸುವಿಕೆಯನ್ನು ಅಶಕ್ತಗೊಳಿಸಲಾಗುವುದು"
+msgstr ""
+"ಒಂದು ಸಾಲನ್ನು ಸುಪ್ರಕಾಶಗೊಳಿಸಲು ಬಹಳ ಸಮಯ ಹಿಡಿದಿದೆ, ಸಿಂಟ್ಯಾಕ್ಸಿನ ಸುಪ್ರಕಾಶಗೊಳಿಸುವಿಕೆಯನ್ನು "
+"ಅಶಕ್ತಗೊಳಿಸಲಾಗುವುದು"
 
 #: ../gtksourceview/gtksourcecontextengine.c:5757
 #, c-format
@@ -115,7 +117,9 @@ msgstr "ಸನ್ನಿವೇಶ ಐಡಿ '%s' ಅನ್ನು ನಕಲು ಮ
 msgid ""
 "style override used with wildcard context reference in language '%s' in ref "
 "'%s'"
-msgstr "ಶೈಲಿಯ ಅತಿಕ್ರಮಗೊಳಿಸುವಿಕೆಯನ್ನು '%s' ಭಾಷೆಯ '%s' ಉಲ್ಲೇಖದಲ್ಲಿ ವೈಲ್ಡ್‌ಕಾರ್ಡಿನ ಸನ್ನಿವೇಶ ಉಲ್ಲೇಖದೊಂದಿಗೆ ಬಳಸಲಾಗಿದೆ"
+msgstr ""
+"ಶೈಲಿಯ ಅತಿಕ್ರಮಗೊಳಿಸುವಿಕೆಯನ್ನು '%s' ಭಾಷೆಯ '%s' ಉಲ್ಲೇಖದಲ್ಲಿ ವೈಲ್ಡ್‌ಕಾರ್ಡಿನ ಸನ್ನಿವೇಶ "
+"ಉಲ್ಲೇಖದೊಂದಿಗೆ ಬಳಸಲಾಗಿದೆ"
 
 #: ../gtksourceview/gtksourcecontextengine.c:6183
 #, c-format
@@ -132,6 +136,22 @@ msgstr "ಅಜ್ಞಾತ ಸನ್ನಿವೇಶ '%s'"
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "ಮುಖ್ಯ ಭಾಷೆಯ ವಿವರಣೆಯು ಕಾಣೆಯಾಗಿದೆ (id = \"%s\".)"
+
+#: ../gtksourceview/gtksourcegutter.c:336
+msgid "View"
+msgstr "ನೋಟ"
+
+#: ../gtksourceview/gtksourcegutter.c:337
+msgid "The gutters' GtkSourceView"
+msgstr "ಗಟರಿನ GtkSourceView"
+
+#: ../gtksourceview/gtksourcegutter.c:349
+msgid "Window Type"
+msgstr "ವಿಂಡೊ ಬಗೆ"
+
+#: ../gtksourceview/gtksourcegutter.c:350
+msgid "The gutters text window type"
+msgstr "ಪಠ್ಯ ವಿಂಡೊದ ಬಗೆಯ ಗಟರುಗಳು"
 
 #: ../gtksourceview/gtksourcelanguage.c:42
 #: ../gtksourceview/language-specs/changelog.lang.h:8
@@ -207,11 +227,11 @@ msgstr "ಗೊತ್ತಿರದ id '%s', regex '%s' ನಲ್ಲಿ"
 msgid "in regex '%s': backreferences are not supported"
 msgstr "regex '%s' ನಲ್ಲಿ: ಹಿಂದಕ್ಕೆ ಉಲ್ಲೇಖಿಸುವುದನ್ನು ಬೆಂಬಲಿಸುವುದಿಲ್ಲ"
 
-#: ../gtksourceview/gtksourcemark.c:119
+#: ../gtksourceview/gtksourcemark.c:121
 msgid "category"
 msgstr "ವರ್ಗ"
 
-#: ../gtksourceview/gtksourcemark.c:120
+#: ../gtksourceview/gtksourcemark.c:122
 msgid "The mark category"
 msgstr "ಗುರುತು ಪಂಗಡ"
 
@@ -224,12 +244,12 @@ msgid "The GtkSourceBuffer object to print"
 msgstr "ಮುದ್ರಿಸಲು GtkSourceBuffer ವಸ್ತು"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:429
-#: ../gtksourceview/gtksourceview.c:290
+#: ../gtksourceview/gtksourceview.c:319
 msgid "Tab Width"
 msgstr "ಟ್ಯಾಬ್ ಅಗಲ"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:430
-#: ../gtksourceview/gtksourceview.c:291
+#: ../gtksourceview/gtksourceview.c:320
 msgid "Width of a tab character expressed in spaces"
 msgstr "ಟ್ಯಾಬ್‌ ಅಕ್ಷರದ ಅಗಲ, ಖಾಲಿ ಜಾಗಗಳಲ್ಲಿ ಸೂಚಿತಗೊಂಡ"
 
@@ -243,7 +263,7 @@ msgstr "ಸಾಲುಗಳನ್ನು ಎಂದಿಗೂ ಆವರಿಸಬೇ�
 
 #: ../gtksourceview/gtksourceprintcompositor.c:472
 msgid "Whether to print the document with highlighted syntax"
-msgstr "ಹೈಲೈಟ್ ಆದಂತಹ ಸಿಂಟಾಕ್ಸಿನೊಂದಿಗೆ ದಸ್ತಾವೇಜನ್ನು ಮುದ್ರಿಸಬೇಕೆ"
+msgstr "ಹೈಲೈಟ್ ಆದಂತಹ ಸಿಂಟ್ಯಾಕ್ಸಿನೊಂದಿಗೆ ದಸ್ತಾವೇಜನ್ನು ಮುದ್ರಿಸಬೇಕೆ"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:493
 msgid "Print Line Numbers"
@@ -447,93 +467,95 @@ msgstr "ಸ್ಕೀಮಿನ ಐಡಿ"
 msgid "List of the ids of the available style schemes"
 msgstr "ಶೈಲಿ ಸ್ಕೀಮುಗಳಲ್ಲಿ ಲಭ್ಯವಿರುವ ಐಡಿಗಳ ಪಟ್ಟಿ"
 
-#: ../gtksourceview/gtksourceview.c:265
+#: ../gtksourceview/gtksourceview.c:294
 msgid "Show Line Numbers"
 msgstr "ಸಾಲಿನ ಸಂಖ್ಯೆಗಳನ್ನು ತೋರಿಸು"
 
-#: ../gtksourceview/gtksourceview.c:266
+#: ../gtksourceview/gtksourceview.c:295
 msgid "Whether to display line numbers"
 msgstr "ಸಾಲಿನ ಸಂಖ್ಯೆಗಳನ್ನು ತೋರಿಸಬೇಕೆ"
 
-#: ../gtksourceview/gtksourceview.c:277
+#: ../gtksourceview/gtksourceview.c:306
 msgid "Show Line Marks"
 msgstr "ಸಾಲಿನ ಗುರುತುಗಳನ್ನು ತೋರಿಸು"
 
-#: ../gtksourceview/gtksourceview.c:278
+#: ../gtksourceview/gtksourceview.c:307
 msgid "Whether to display line mark pixbufs"
 msgstr "ಸಾಲಿನ ಗುರುತು pixbuf ಗಳನ್ನು ತೋರಿಸಬೇಕೆ"
 
-#: ../gtksourceview/gtksourceview.c:305
+#: ../gtksourceview/gtksourceview.c:334
 msgid "Indent Width"
 msgstr "ಇಂಡೆಂಟ್ ಅಗಲ"
 
-#: ../gtksourceview/gtksourceview.c:306
+#: ../gtksourceview/gtksourceview.c:335
 msgid "Number of spaces to use for each step of indent"
 msgstr "ಪ್ರತಿಯೊಂದು ಇಂಡೆಂಟೇಶನ್ ಹಂತಕ್ಕೂ ಬಳಸಬೇಕಿರುವ ಖಾಲಿ ಜಾಗಗಳ ಸಂಖ್ಯೆ"
 
-#: ../gtksourceview/gtksourceview.c:315
+#: ../gtksourceview/gtksourceview.c:344
 msgid "Auto Indentation"
 msgstr "ಸ್ವಯಂ ಇಂಡೆಂಟೇಶನ್"
 
-#: ../gtksourceview/gtksourceview.c:316
+#: ../gtksourceview/gtksourceview.c:345
 msgid "Whether to enable auto indentation"
 msgstr "ಸ್ವಯಂ ಇಂಡೆಂಟೇಶನ್ ಅನ್ನು ಶಕ್ತಗೊಳಿಸಬೇಕೆ"
 
-#: ../gtksourceview/gtksourceview.c:323
+#: ../gtksourceview/gtksourceview.c:352
 msgid "Insert Spaces Instead of Tabs"
 msgstr "ಟ್ಯಾಬ್‌ಗಳ ಬದಲು ಖಾಲಿ ಜಾಗಗಳನ್ನು ಸೇರಿಸು"
 
-#: ../gtksourceview/gtksourceview.c:324
+#: ../gtksourceview/gtksourceview.c:353
 msgid "Whether to insert spaces instead of tabs"
 msgstr "ಟ್ಯಾಬ್‌ಗಳ ಬದಲು ಖಾಲಿ ಜಾಗಗಳನ್ನು ಸೇರಿಸಬೇಕೆ"
 
-#: ../gtksourceview/gtksourceview.c:336
+#: ../gtksourceview/gtksourceview.c:365
 msgid "Show Right Margin"
 msgstr "ಬಲಭಾಗದ ಅಂಚನ್ನು ತೋರಿಸು"
 
-#: ../gtksourceview/gtksourceview.c:337
+#: ../gtksourceview/gtksourceview.c:366
 msgid "Whether to display the right margin"
 msgstr "ಬಲ ಅಂಚನ್ನು ತೋರಿಸಬೇಕೆ"
 
-#: ../gtksourceview/gtksourceview.c:349
+#: ../gtksourceview/gtksourceview.c:378
 msgid "Right Margin Position"
 msgstr "ಬಲಭಾಗದ ಅಂಚಿನ ಸ್ಥಳ"
 
-#: ../gtksourceview/gtksourceview.c:350
+#: ../gtksourceview/gtksourceview.c:379
 msgid "Position of the right margin"
 msgstr "ಬಲ ಅಂಚಿನ ಸ್ಥಾನ"
 
-#: ../gtksourceview/gtksourceview.c:366
+#: ../gtksourceview/gtksourceview.c:395
 msgid "Smart Home/End"
 msgstr "ಚತುರ Home/End"
 
-#: ../gtksourceview/gtksourceview.c:367
+#: ../gtksourceview/gtksourceview.c:396
 msgid ""
 "HOME and END keys move to first/last non whitespace characters on line "
 "before going to the start/end of the line"
-msgstr "HOME ಹಾಗು END ಕೀಲಿಗಳು ಸಾಲಿನ ಮೊದಲು/ಕೊನೆಗೆ ಹೋಗುವ ಮೊದಲು ಖಾಲಿಯಲ್ಲದ ಜಾಗದ ಅಕ್ಷರಗಳ ಮೊದಲಿಗೆ/ಕೊನೆಗೆ ಹೋಗುತ್ತದೆ"
+msgstr ""
+"HOME ಹಾಗು END ಕೀಲಿಗಳು ಸಾಲಿನ ಮೊದಲು/ಕೊನೆಗೆ ಹೋಗುವ ಮೊದಲು ಖಾಲಿಯಲ್ಲದ ಜಾಗದ ಅಕ್ಷರಗಳ "
+"ಮೊದಲಿಗೆ/ಕೊನೆಗೆ ಹೋಗುತ್ತದೆ"
 
-#: ../gtksourceview/gtksourceview.c:377
+#: ../gtksourceview/gtksourceview.c:406
 msgid "Highlight current line"
 msgstr "ಪ್ರಸಕ್ತ ಸಾಲನ್ನು ಹೈಲೈಟ್ ಮಾಡು"
 
-#: ../gtksourceview/gtksourceview.c:378
+#: ../gtksourceview/gtksourceview.c:407
 msgid "Whether to highlight the current line"
 msgstr "ಪ್ರಸಕ್ತ ಸಾಲನ್ನು ಹೈಲೈಟ್ ಮಾಡಬೇಕೆ"
 
-#: ../gtksourceview/gtksourceview.c:385
+#: ../gtksourceview/gtksourceview.c:414
 msgid "Indent on tab"
 msgstr "ಟ್ಯಾಬ್‌ನಲ್ಲಿನ ಇಂಡೆಂಟ್"
 
-#: ../gtksourceview/gtksourceview.c:386
+#: ../gtksourceview/gtksourceview.c:415
 msgid "Whether to indent the selected text when the tab key is pressed"
 msgstr "ಟ್ಯಾಬ್‌ ಕೀಲಿಯನ್ನು ಒತ್ತಿದಾಗ ಆಯ್ಕೆ ಮಾಡಲಾದ ಪಠ್ಯಕ್ಕೆ ಇಂಡೆಂಟ್ ಅನ್ನು ನೀಡಬೇಕೆ"
 
-#: ../gtksourceview/gtksourceview.c:400
+#: ../gtksourceview/gtksourceview.c:429
 msgid "Draw Spaces"
 msgstr "ಖಾಲಿಜಾಗಗಳನ್ನು ಚಿತ್ರಿಸಿ"
 
-#: ../gtksourceview/gtksourceview.c:401
+#: ../gtksourceview/gtksourceview.c:430
 msgid "Set if and how the spaces should be visualized"
 msgstr "ಖಾಲಿ ಜಾಗಗಳನ್ನು ತೋರಿಸಬೇ ಹಾಗು ಹೇಗೆ ತೋರಿಸಬೇಕು ಎಂದು ಹೊಂದಿಸಿ"
 
@@ -605,6 +627,7 @@ msgstr "ಬೂಲಿಯನ್ ಮೌಲ್ಯ"
 #: ../gtksourceview/language-specs/perl.lang.h:2
 #: ../gtksourceview/language-specs/php.lang.h:2
 #: ../gtksourceview/language-specs/po.lang.h:1
+#: ../gtksourceview/language-specs/prolog.lang.h:1
 #: ../gtksourceview/language-specs/ruby.lang.h:5
 #: ../gtksourceview/language-specs/scheme.lang.h:2
 #: ../gtksourceview/language-specs/sh.lang.h:1
@@ -669,6 +692,7 @@ msgstr "ದಶಮಾಂಶ ಸಂಖ್ಯೆ"
 #: ../gtksourceview/language-specs/ada.lang.h:7
 #: ../gtksourceview/language-specs/c.lang.h:9
 #: ../gtksourceview/language-specs/csharp.lang.h:8
+#: ../gtksourceview/language-specs/eiffel.lang.h:9
 #: ../gtksourceview/language-specs/haskell.lang.h:5
 #: ../gtksourceview/language-specs/java.lang.h:7
 #: ../gtksourceview/language-specs/lua.lang.h:3
@@ -693,7 +717,7 @@ msgstr "ತಪ್ಪಿಸಿಕೊಂಡಂತ ಅಕ್ಷರ"
 #: ../gtksourceview/language-specs/d.lang.h:10
 #: ../gtksourceview/language-specs/dosbatch.lang.h:4
 #: ../gtksourceview/language-specs/dot.lang.h:5
-#: ../gtksourceview/language-specs/eiffel.lang.h:11
+#: ../gtksourceview/language-specs/eiffel.lang.h:12
 #: ../gtksourceview/language-specs/erlang.lang.h:9
 #: ../gtksourceview/language-specs/forth.lang.h:7
 #: ../gtksourceview/language-specs/fortran.lang.h:7
@@ -714,6 +738,7 @@ msgstr "ತಪ್ಪಿಸಿಕೊಂಡಂತ ಅಕ್ಷರ"
 #: ../gtksourceview/language-specs/perl.lang.h:9
 #: ../gtksourceview/language-specs/php.lang.h:13
 #: ../gtksourceview/language-specs/po.lang.h:3
+#: ../gtksourceview/language-specs/prolog.lang.h:3
 #: ../gtksourceview/language-specs/python.lang.h:11
 #: ../gtksourceview/language-specs/R.lang.h:6
 #: ../gtksourceview/language-specs/ruby.lang.h:12
@@ -757,7 +782,7 @@ msgstr "ತಾರ್ಕಿಕ ಸಂಖ್ಯೆ"
 #: ../gtksourceview/language-specs/cpp.lang.h:5
 #: ../gtksourceview/language-specs/csharp.lang.h:14
 #: ../gtksourceview/language-specs/d.lang.h:13
-#: ../gtksourceview/language-specs/eiffel.lang.h:13
+#: ../gtksourceview/language-specs/eiffel.lang.h:14
 #: ../gtksourceview/language-specs/erlang.lang.h:11
 #: ../gtksourceview/language-specs/forth.lang.h:10
 #: ../gtksourceview/language-specs/fortran.lang.h:8
@@ -770,6 +795,7 @@ msgstr "ತಾರ್ಕಿಕ ಸಂಖ್ಯೆ"
 #: ../gtksourceview/language-specs/objc.lang.h:5
 #: ../gtksourceview/language-specs/ocaml.lang.h:16
 #: ../gtksourceview/language-specs/pascal.lang.h:7
+#: ../gtksourceview/language-specs/prolog.lang.h:7
 #: ../gtksourceview/language-specs/scheme.lang.h:6
 #: ../gtksourceview/language-specs/sql.lang.h:9
 #: ../gtksourceview/language-specs/vala.lang.h:10
@@ -795,7 +821,7 @@ msgstr "ಶೇಖರಣಾ ವರ್ಗ"
 #: ../gtksourceview/language-specs/def.lang.h:57
 #: ../gtksourceview/language-specs/d.lang.h:15
 #: ../gtksourceview/language-specs/dosbatch.lang.h:6
-#: ../gtksourceview/language-specs/eiffel.lang.h:14
+#: ../gtksourceview/language-specs/eiffel.lang.h:15
 #: ../gtksourceview/language-specs/erlang.lang.h:12
 #: ../gtksourceview/language-specs/forth.lang.h:11
 #: ../gtksourceview/language-specs/gtkrc.lang.h:9
@@ -815,6 +841,7 @@ msgstr "ಶೇಖರಣಾ ವರ್ಗ"
 #: ../gtksourceview/language-specs/perl.lang.h:19
 #: ../gtksourceview/language-specs/php.lang.h:19
 #: ../gtksourceview/language-specs/po.lang.h:8
+#: ../gtksourceview/language-specs/prolog.lang.h:8
 #: ../gtksourceview/language-specs/python.lang.h:17
 #: ../gtksourceview/language-specs/ruby.lang.h:21
 #: ../gtksourceview/language-specs/scheme.lang.h:7
@@ -828,12 +855,10 @@ msgid "String"
 msgstr "ಅಕ್ಷರಪುಂಜ"
 
 #: ../gtksourceview/language-specs/asp.lang.h:1
-#| msgid "GAP"
 msgid "ASP"
 msgstr "ASP"
 
 #: ../gtksourceview/language-specs/asp.lang.h:2
-#| msgid "Object"
 msgid "ASP Object"
 msgstr "ASP ವಸ್ತು"
 
@@ -860,6 +885,7 @@ msgstr "ಕಾರ್ಯಭಾರ"
 #: ../gtksourceview/language-specs/desktop.lang.h:10
 #: ../gtksourceview/language-specs/forth.lang.h:8
 #: ../gtksourceview/language-specs/java.lang.h:13
+#: ../gtksourceview/language-specs/prolog.lang.h:4
 #: ../gtksourceview/language-specs/vhdl.lang.h:6
 msgid "Number"
 msgstr "ಸಂಖ್ಯೆ"
@@ -872,6 +898,7 @@ msgstr "ಸಂಖ್ಯೆ"
 #: ../gtksourceview/language-specs/nsis.lang.h:3
 #: ../gtksourceview/language-specs/perl.lang.h:11
 #: ../gtksourceview/language-specs/php.lang.h:16
+#: ../gtksourceview/language-specs/prolog.lang.h:5
 msgid "Operator"
 msgstr "ಕಾರ್ಯನಿರ್ವಾಹಕ"
 
@@ -883,7 +910,6 @@ msgid "Special constant"
 msgstr "ವಿಶೇಷ ಸ್ಥಿರಾಂಕ"
 
 #: ../gtksourceview/language-specs/asp.lang.h:14
-#| msgid "Special constant"
 msgid "VBScript and ADO constants"
 msgstr "VBScript ಹಾಗು ADO ಸ್ಥಿರಾಂಕಗಳು"
 
@@ -921,6 +947,7 @@ msgstr "ಸ್ಕ್ರಿಪ್ಟುಗಳು"
 #: ../gtksourceview/language-specs/perl.lang.h:21
 #: ../gtksourceview/language-specs/php.lang.h:20
 #: ../gtksourceview/language-specs/pkgconfig.lang.h:3
+#: ../gtksourceview/language-specs/prolog.lang.h:9
 #: ../gtksourceview/language-specs/ruby.lang.h:23
 #: ../gtksourceview/language-specs/sh.lang.h:11
 #: ../gtksourceview/language-specs/tcl.lang.h:4
@@ -984,7 +1011,6 @@ msgid "Special Variable"
 msgstr "ವಿಶೇಷ ವೇರಿಯೇಬಲ್"
 
 #: ../gtksourceview/language-specs/changelog.lang.h:1
-#| msgid "Builtin"
 msgid "Bullet"
 msgstr "ಬುಲೆಟ್"
 
@@ -1006,7 +1032,6 @@ msgid "File"
 msgstr "ಕಡತ"
 
 #: ../gtksourceview/language-specs/changelog.lang.h:7
-#| msgid "Namespace"
 msgid "Name"
 msgstr "ಹೆಸರು"
 
@@ -1054,6 +1079,7 @@ msgstr "ಸಾಮಾನ್ಯ ವ್ಯಾಖ್ಯೆಗಳು"
 #: ../gtksourceview/language-specs/ocaml.lang.h:7
 #: ../gtksourceview/language-specs/perl.lang.h:4
 #: ../gtksourceview/language-specs/php.lang.h:5
+#: ../gtksourceview/language-specs/prolog.lang.h:2
 #: ../gtksourceview/language-specs/vala.lang.h:5
 #: ../gtksourceview/language-specs/verilog.lang.h:4
 #: ../gtksourceview/language-specs/xml.lang.h:8
@@ -1076,7 +1102,7 @@ msgstr "ತೇಲುವ ಬಿಂದು ಸಂಖ್ಯೆ"
 #: ../gtksourceview/language-specs/c.lang.h:11
 #: ../gtksourceview/language-specs/csharp.lang.h:9
 #: ../gtksourceview/language-specs/d.lang.h:9
-#: ../gtksourceview/language-specs/eiffel.lang.h:10
+#: ../gtksourceview/language-specs/eiffel.lang.h:11
 #: ../gtksourceview/language-specs/nemerle.lang.h:9
 #: ../gtksourceview/language-specs/php.lang.h:11
 #: ../gtksourceview/language-specs/vala.lang.h:6
@@ -1107,17 +1133,14 @@ msgid "Classic color scheme"
 msgstr "ಸಾಂಪ್ರದಾಯಿಕ ಬಣ್ಣದ ಸ್ಕೀಮ್"
 
 #: ../gtksourceview/language-specs/cmake.lang.h:1
-#| msgid "Builtin Constant"
 msgid "Builtin Command"
 msgstr "ಒಳನಿರ್ಮಿತ ಆಜ್ಞೆ"
 
 #: ../gtksourceview/language-specs/cmake.lang.h:2
-#| msgid "Special Variable"
 msgid "Builtin Variable"
 msgstr "ಒಳನಿರ್ಮಿತ ವೇರಿಯೇಬಲ್"
 
 #: ../gtksourceview/language-specs/cmake.lang.h:3
-#| msgid "Makefile"
 msgid "CMake"
 msgstr "CMake"
 
@@ -1131,12 +1154,10 @@ msgid "Constant"
 msgstr "ಸ್ಥಿರಾಂಕ"
 
 #: ../gtksourceview/language-specs/cmake.lang.h:5
-#| msgid "Keyword"
 msgid "Control Keyword"
 msgstr "ನಿಯಂತ್ರಣ ಕೀಲಿಪದ"
 
 #: ../gtksourceview/language-specs/cobalt.xml.h:1
-#| msgid "Classic color scheme"
 msgid "Blue based color scheme"
 msgstr "ನೀಲಿ ಆಧರಿತವಾದ ಬಣ್ಣದ ಸ್ಕೀಮ್"
 
@@ -1378,6 +1399,7 @@ msgstr "ಹೆಡರ್ ಘಟಕಗಳು"
 #: ../gtksourceview/language-specs/haddock.lang.h:14
 #: ../gtksourceview/language-specs/html.lang.h:7
 #: ../gtksourceview/language-specs/latex.lang.h:6
+#: ../gtksourceview/language-specs/mallard.lang.h:4
 #: ../gtksourceview/language-specs/t2t.lang.h:6
 #: ../gtksourceview/language-specs/texinfo.lang.h:8
 #: ../gtksourceview/language-specs/xml.lang.h:9
@@ -1395,7 +1417,6 @@ msgid "Command"
 msgstr "ಆಜ್ಞೆ"
 
 #: ../gtksourceview/language-specs/dosbatch.lang.h:3
-#| msgid "DPatch"
 msgid "Dos Batch"
 msgstr "Dos ಬ್ಯಾಚ್‌"
 
@@ -1430,7 +1451,6 @@ msgid "entity"
 msgstr "ನಮೂದು"
 
 #: ../gtksourceview/language-specs/dtd.lang.h:5
-#| msgid "Error"
 msgid "error"
 msgstr "ದೋಷ"
 
@@ -1458,16 +1478,16 @@ msgstr "ಕಾಂಟ್ರಾಕ್ಟ್‍ನಿಂದ ವಿನ್ಯಸಿ�
 msgid "Eiffel"
 msgstr "ಈಫೆಲ್"
 
-#: ../gtksourceview/language-specs/eiffel.lang.h:9
+#: ../gtksourceview/language-specs/eiffel.lang.h:10
 msgid "Exception Handling"
 msgstr "ವಿನಾಯಿತಿ ನಿಭಾಯಿಸುವಿಕೆ"
 
-#: ../gtksourceview/language-specs/eiffel.lang.h:12
+#: ../gtksourceview/language-specs/eiffel.lang.h:13
 #: ../gtksourceview/language-specs/ruby.lang.h:16
 msgid "Predefined Variable"
 msgstr "ಪೂರ್ವನಿರ್ಮಿತ ವೇರಿಯೇಬಲ್"
 
-#: ../gtksourceview/language-specs/eiffel.lang.h:15
+#: ../gtksourceview/language-specs/eiffel.lang.h:16
 msgid "Void Value"
 msgstr "ಖಾಲಿ ಮೌಲ್ಯ"
 
@@ -1801,12 +1821,10 @@ msgid "m4"
 msgstr "m4"
 
 #: ../gtksourceview/language-specs/m4.lang.h:5
-#| msgid "Macros"
 msgid "m4 Macro"
 msgstr "m4 ಮ್ಯಾಕ್ರೊ"
 
 #: ../gtksourceview/language-specs/m4.lang.h:6
-#| msgid "Comment"
 msgid "m4-comment"
 msgstr "m4-ಟಿಪ್ಪಣಿ"
 
@@ -1829,19 +1847,16 @@ msgid "Trailing Tab"
 msgstr "ಅನುಸರಿಸುವ ಟ್ಯಾಬ್"
 
 #: ../gtksourceview/language-specs/makefile.lang.h:9
-#| msgid "Command"
 msgid "command"
 msgstr "ಆಜ್ಞೆ"
 
 #: ../gtksourceview/language-specs/makefile.lang.h:10
-#| msgid "Function"
 msgid "function"
 msgstr "ಕಾರ್ಯಭಾರ"
 
 #. FIXME make it better names, and make them translatable
 #: ../gtksourceview/language-specs/makefile.lang.h:11
 #: ../gtksourceview/language-specs/yacc.lang.h:4
-#| msgid "Keyword"
 msgid "keyword"
 msgstr "ಕೀಲಿಪದ"
 
@@ -1852,6 +1867,30 @@ msgstr "prereq"
 #: ../gtksourceview/language-specs/makefile.lang.h:13
 msgid "targets"
 msgstr "ಗುರಿಗಳು"
+
+#: ../gtksourceview/language-specs/mallard.lang.h:1
+#| msgid "GUI Elements"
+msgid "Block Elements"
+msgstr "ಬ್ಲಾಕ್ ಘಟಕಗಳು"
+
+#: ../gtksourceview/language-specs/mallard.lang.h:2
+#| msgid "GUI Elements"
+msgid "Inline Elements"
+msgstr "ಸಾಲಿನೊಳಗಿನ ಘಟಕಗಳು"
+
+#: ../gtksourceview/language-specs/mallard.lang.h:3
+msgid "Mallard"
+msgstr "ಮಲಾರ್ಡ್"
+
+#: ../gtksourceview/language-specs/mallard.lang.h:5
+#| msgid "Header Elements"
+msgid "Page Elements"
+msgstr "ಪುಟದ ಘಟಕಗಳು"
+
+#: ../gtksourceview/language-specs/mallard.lang.h:6
+#| msgid "Formatting Elements"
+msgid "Section Elements"
+msgstr "ವಿಭಾಗ ಘಟಕಗಳು"
 
 #: ../gtksourceview/language-specs/msil.lang.h:1
 msgid "MSIL"
@@ -2012,13 +2051,17 @@ msgstr "ಅಸ್ಪಷ್ಟ"
 
 #. FIXME make it some nice name and mark it translatable
 #: ../gtksourceview/language-specs/po.lang.h:7
-#| msgid "Special case"
 msgid "Special"
 msgstr "ವಿಶೇಷ"
 
 #: ../gtksourceview/language-specs/po.lang.h:9
 msgid "gettext translation"
 msgstr "gettext ಅನುವಾದ"
+
+#: ../gtksourceview/language-specs/prolog.lang.h:6
+#| msgid "Verilog"
+msgid "Prolog"
+msgstr "ಪ್ರೊಲಾಗ್"
 
 #: ../gtksourceview/language-specs/python.lang.h:3
 msgid "Builtin Constant"
@@ -2168,37 +2211,30 @@ msgid "SQL"
 msgstr "SQL"
 
 #: ../gtksourceview/language-specs/t2t.lang.h:7
-#| msgid "Section"
 msgid "Option"
 msgstr "ಆಯ್ಕೆ"
 
 #: ../gtksourceview/language-specs/t2t.lang.h:8
-#| msgid "Function Name"
 msgid "Option Name"
 msgstr "ಆಯ್ಕೆಯ ಹೆಸರು"
 
 #: ../gtksourceview/language-specs/t2t.lang.h:10
-#| msgid "Section"
 msgid "Section 1"
 msgstr "ವಿಭಾಗ 1"
 
 #: ../gtksourceview/language-specs/t2t.lang.h:11
-#| msgid "Section"
 msgid "Section 2"
 msgstr "ವಿಭಾಗ 2"
 
 #: ../gtksourceview/language-specs/t2t.lang.h:12
-#| msgid "Section"
 msgid "Section 3"
 msgstr "ವಿಭಾಗ 3"
 
 #: ../gtksourceview/language-specs/t2t.lang.h:13
-#| msgid "Section"
 msgid "Section 4"
 msgstr "ವಿಭಾಗ 4"
 
 #: ../gtksourceview/language-specs/t2t.lang.h:14
-#| msgid "Section"
 msgid "Section 5"
 msgstr "ವಿಭಾಗ 5"
 
@@ -2207,7 +2243,6 @@ msgid "Text2Tags"
 msgstr "Text2Tags"
 
 #: ../gtksourceview/language-specs/t2t.lang.h:17
-#| msgid "Verbatim"
 msgid "Verbatim Block"
 msgstr "Verbatim ಖಂಡ"
 
@@ -2288,7 +2323,6 @@ msgid "XML"
 msgstr "XML"
 
 #: ../gtksourceview/language-specs/xslt.lang.h:1
-#| msgid "GUI Elements"
 msgid "Element"
 msgstr "ಘಟಕ"
 
@@ -2301,7 +2335,6 @@ msgid "Yacc"
 msgstr "Yacc"
 
 #: ../gtksourceview/language-specs/yacc.lang.h:5
-#| msgid "at-rules"
 msgid "rule"
 msgstr "ನಿಯಮ"
 
