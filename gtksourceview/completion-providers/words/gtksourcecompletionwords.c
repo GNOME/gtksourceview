@@ -558,9 +558,10 @@ gtk_source_completion_words_register (GtkSourceCompletionWords *words,
 	buf = gtk_source_completion_words_buffer_new (words->priv->library,
 	                                              buffer);
 	
-	gtk_source_completion_words_buffer_set_scan_batch_size (buffer,
+	gtk_source_completion_words_buffer_set_scan_batch_size (buf,
 	                                                        words->priv->scan_batch_size);
-	gtk_source_completion_words_buffer_set_minimum_word_size (buffer,
+
+	gtk_source_completion_words_buffer_set_minimum_word_size (buf,
 	                                                          words->priv->minimum_word_size);
 	
 	binding = g_slice_new (BufferBinding);
