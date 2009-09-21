@@ -28,7 +28,7 @@
 #include <gtksourceview/gtksourceview-i18n.h>
 #include <string.h>
 
-#define GTK_SOURCE_COMPLETION_WORDS_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE((object), GSC_TYPE_PROVIDER_WORDS, GtkSourceCompletionWordsPrivate))
+#define GTK_SOURCE_COMPLETION_WORDS_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE((object), GTK_TYPE_SOURCE_COMPLETION_WORDS, GtkSourceCompletionWordsPrivate))
 
 #define BUFFER_KEY "GtkSourceCompletionWordsBufferKey"
 
@@ -67,6 +67,12 @@ typedef struct
 {
 	GObjectClass parent_class;
 } GscProposalWordsClass;
+
+typedef struct
+{
+	GtkSourceCompletionWords *words;
+	GtkSourceCompletionWordsBuffer *buffer;
+} BufferBinding;
 
 static void gtk_source_completion_words_iface_init (GtkSourceCompletionProviderIface *iface);
 
@@ -269,22 +275,25 @@ gtk_source_completion_words_populate (GtkSourceCompletionProvider *provider,
 }
 
 static void
-remove_buffer (GtkSourceCompletionWordsBuffer *buffer)
+remove_buffer (BufferBinding *binding)
 {
-	g_object_set_data (G_OBJECT (gtk_source_completion_words_buffer_get_buffer (buffer)),
+	g_object_set_data (G_OBJECT (gtk_source_completion_words_buffer_get_buffer (binding->buffer)),
 	                   BUFFER_KEY,
 	                   NULL);
-
-	g_object_unref (buffer);
 }
 
 static void
 gtk_source_completion_words_dispose (GObject *object)
 {
 	GtkSourceCompletionWords *provider = GTK_SOURCE_COMPLETION_WORDS (object);
+	GList *cp;
+	
 	population_finished (provider);
 	
-	g_list_foreach (provider->priv->buffers, (GFunc)remove_buffer, NULL);
+	cp = g_list_copy (provider->priv->buffers);
+	g_list_foreach (cp, (GFunc)remove_buffer, NULL);
+	
+	g_list_free (cp);
 	g_list_free (provider->priv->buffers);
 	
 	g_free (provider->priv->name);
@@ -456,10 +465,19 @@ GtkSourceCompletionWords *
 gtk_source_completion_words_new (gchar const *name,
                                  GdkPixbuf   *icon)
 {
-	return g_object_new (GSC_TYPE_PROVIDER_WORDS, 
+	return g_object_new (GTK_TYPE_SOURCE_COMPLETION_WORDS, 
 	                     "name", name, 
 	                     "icon", icon, 
 	                     NULL);
+}
+
+static void
+buffer_destroyed (BufferBinding *binding)
+{
+	binding->words->priv->buffers = g_list_remove (binding->words->priv->buffers, 
+	                                               binding);
+	g_object_unref (binding->buffer);
+	g_slice_free (BufferBinding, binding);
 }
 
 void
@@ -467,13 +485,14 @@ gtk_source_completion_words_register (GtkSourceCompletionWords *words,
                                       GtkTextBuffer            *buffer)
 {
 	GtkSourceCompletionWordsBuffer *buf;
+	BufferBinding *binding;
 
 	g_return_if_fail (GTK_IS_SOURCE_COMPLETION_WORDS (words));
 	g_return_if_fail (GTK_IS_TEXT_BUFFER (buffer));
 	
-	buf = g_object_get_data (G_OBJECT (buffer), BUFFER_KEY);
+	binding = g_object_get_data (G_OBJECT (buffer), BUFFER_KEY);
 	
-	if (buf != NULL)
+	if (binding != NULL)
 	{
 		return;
 	}
@@ -482,25 +501,27 @@ gtk_source_completion_words_register (GtkSourceCompletionWords *words,
 	                                              buffer,
 	                                              words->priv->scan_batch_size);
 
-	g_object_set_data (G_OBJECT (buf), BUFFER_KEY, buffer);
-	words->priv->buffers = g_list_prepend (words->priv->buffers, buf);
+	
+	binding = g_slice_new (BufferBinding);
+	binding->words = words;
+	binding->buffer = buf;
+	
+	g_object_set_data_full (G_OBJECT (buffer), 
+	                        BUFFER_KEY, 
+	                        binding,
+	                        (GDestroyNotify)buffer_destroyed);
+
+	words->priv->buffers = g_list_prepend (words->priv->buffers, 
+	                                       binding);
 }
 
 void
 gtk_source_completion_words_unregister (GtkSourceCompletionWords *words,
                                         GtkTextBuffer            *buffer)
 {
-	GtkSourceCompletionWordsBuffer *buf;
-	
 	g_return_if_fail (GTK_IS_SOURCE_COMPLETION_WORDS (words));
 	g_return_if_fail (GTK_IS_TEXT_BUFFER (buffer));
 	
-	buf = g_object_get_data (G_OBJECT (buffer), BUFFER_KEY);
-	
-	if (buf != NULL)
-	{
-		remove_buffer (buf);
-		words->priv->buffers = g_list_remove (words->priv->buffers, buf);
-	}
+	g_object_set_data (G_OBJECT (buffer), BUFFER_KEY, NULL);
 }
 

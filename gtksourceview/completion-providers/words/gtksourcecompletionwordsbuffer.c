@@ -101,17 +101,6 @@ gtk_source_completion_words_buffer_dispose (GObject *object)
 	GtkSourceCompletionWordsBuffer *buffer =
 			GTK_SOURCE_COMPLETION_WORDS_BUFFER (object);
 
-	if (buffer->priv->library)
-	{
-		g_signal_handler_disconnect (buffer->priv->library,
-		                             buffer->priv->lock_handler_id);
-		g_signal_handler_disconnect (buffer->priv->library,
-		                             buffer->priv->unlock_handler_id);
-
-		g_object_unref (buffer->priv->library);
-		buffer->priv->library = NULL;
-	}
-	
 	if (buffer->priv->buffer)
 	{
 		gint i;
@@ -141,6 +130,17 @@ gtk_source_completion_words_buffer_dispose (GObject *object)
 	g_list_free (buffer->priv->lines);
 
 	buffer->priv->lines = NULL;
+
+	if (buffer->priv->library)
+	{
+		g_signal_handler_disconnect (buffer->priv->library,
+		                             buffer->priv->lock_handler_id);
+		g_signal_handler_disconnect (buffer->priv->library,
+		                             buffer->priv->unlock_handler_id);
+
+		g_object_unref (buffer->priv->library);
+		buffer->priv->library = NULL;
+	}
 
 	G_OBJECT_CLASS (gtk_source_completion_words_buffer_parent_class)->dispose (object);
 }
