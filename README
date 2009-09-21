@@ -1,7 +1,7 @@
 General Information
 ===================
 
-This is version 2.7.5 of GtkSourceView. 
+This is version 2.8.0 of GtkSourceView. 
 
 GtkSourceView is a text widget that extends the standard gtk+ 2.x 
 text widget GtkTextView.
@@ -32,8 +32,8 @@ GtkSourceView requires glib-2.14.x, GTK+-2.12.x and libxml2 2.5.x.
 
 Simple install procedure:
 
-  % gzip -cd gtksourceview-2.7.5.tar.gz | tar xvf -    # unpack the sources
-  % cd gtksourceview-2.7.5		   # change to the toplevel directory
+  % gzip -cd gtksourceview-2.8.0.tar.gz | tar xvf -    # unpack the sources
+  % cd gtksourceview-2.8.0		   # change to the toplevel directory
   % ./configure				   # run the `configure' script
   % make				   # build gtksourceview
   [ Become root if necessary ]
