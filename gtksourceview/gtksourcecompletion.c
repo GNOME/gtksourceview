@@ -78,7 +78,7 @@ enum
 	PROP_REMEMBER_INFO_VISIBILITY,
 	PROP_SELECT_ON_SHOW,
 	PROP_SHOW_HEADERS,
-	PROP_ENABLE_ACCELERATORS,
+	PROP_ACCELERATORS,
 	
 	PROP_AUTO_COMPLETE_DELAY,
 	
@@ -120,7 +120,7 @@ struct _GtkSourceCompletionPrivate
 	gboolean info_visible;
 	gboolean select_on_show;
 	gboolean show_headers;
-	gboolean enable_accelerators;
+	guint num_accelerators;
 	
 	/* Page size */
 	guint proposal_page_size;
@@ -1257,12 +1257,12 @@ activate_by_accelerator (GtkSourceCompletion *completion,
 	GtkTreeModel *model = GTK_TREE_MODEL (completion->priv->model_proposals);
 	gint i = -1;
 
-	if (num < 0 || num > 9)
+	num = num == 0 ? 9 : num - 1;
+	
+	if (num < 0 || num > completion->priv->num_accelerators)
 	{
 		return FALSE;
 	}
-	
-	num = num == 0 ? 9 : num - 1;
 	
 	if (gtk_tree_model_get_iter_first (model, &iter))
 	{
@@ -1316,11 +1316,14 @@ view_key_press_event_cb (GtkSourceView       *view,
 		return TRUE;
 	}
 	
-	if (completion->priv->enable_accelerators &&
-	    mod == GDK_MOD1_MASK && 
-	    event->keyval >= GDK_0 && event->keyval <= GDK_9)
+	if (mod == GDK_MOD1_MASK && 
+	    event->keyval >= GDK_0 && event->keyval <= GDK_9 &&
+	    completion->priv->num_accelerators > 0)
 	{
-		return activate_by_accelerator (completion, event->keyval - GDK_0);
+		if (activate_by_accelerator (completion, event->keyval - GDK_0))
+		{
+			return TRUE;
+		}
 	}
 	
 	binding_set = gtk_binding_set_by_class (GTK_SOURCE_COMPLETION_GET_CLASS (completion));
@@ -1628,8 +1631,8 @@ gtk_source_completion_get_property (GObject    *object,
 		case PROP_SHOW_HEADERS:
 			g_value_set_boolean (value, completion->priv->show_headers);
 			break;
-		case PROP_ENABLE_ACCELERATORS:
-			g_value_set_boolean (value, completion->priv->enable_accelerators);
+		case PROP_ACCELERATORS:
+			g_value_set_uint (value, completion->priv->num_accelerators);
 			break;
 		case PROP_AUTO_COMPLETE_DELAY:
 			g_value_set_uint (value, completion->priv->auto_complete_delay);
@@ -1680,13 +1683,13 @@ gtk_source_completion_set_property (GObject      *object,
 				                                              completion->priv->show_headers);
 			}
 			break;
-		case PROP_ENABLE_ACCELERATORS:
-			completion->priv->enable_accelerators = g_value_get_boolean (value);
+		case PROP_ACCELERATORS:
+			completion->priv->num_accelerators = g_value_get_uint (value);
 			
 			if (completion->priv->tree_view_column_accelerator != NULL)
 			{
 				gtk_tree_view_column_set_visible (completion->priv->tree_view_column_accelerator, 
-				                                  completion->priv->enable_accelerators);
+				                                  completion->priv->num_accelerators > 0);
 			}
 			break;
 		case PROP_AUTO_COMPLETE_DELAY:
@@ -1908,19 +1911,20 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 							      G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 
 	/**
-	 * GtkSourceCompletion:enable-accelerators:
+	 * GtkSourceCompletion:accelerators:
 	 *
-	 * Determines whether you can activate the first ten proposals in the
-	 * completion window with <Alt>+<num>.
+	 * Number of accelerators to show for the first proposals.
 	 *
 	 */
 	g_object_class_install_property (object_class,
-	                                 PROP_ENABLE_ACCELERATORS,
-	                                 g_param_spec_boolean ("enable-accelerators",
-	                                                       _("Enable Accelerators"),
-	                                                       _("Enable accelerators in the completion window"),
-	                                                       TRUE,
-	                                                       G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+	                                 PROP_ACCELERATORS,
+	                                 g_param_spec_uint ("accelerators",
+	                                                    _("Accelerators"),
+	                                                    _("Number of proposal accelerators to show"),
+	                                                    0,
+	                                                    10,
+	                                                    5,
+	                                                    G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 	
 	/**
 	 * GtkSourceCompletion:auto-complete-delay:
@@ -2369,7 +2373,7 @@ iter_accelerator (GtkSourceCompletion *completion,
 
 			++ret;
 		}
-	} while (ret < 10 && gtk_tree_model_iter_next (model, &it));
+	} while (ret < completion->priv->num_accelerators && gtk_tree_model_iter_next (model, &it));
 	
 	return -1;
 }
@@ -2602,7 +2606,7 @@ initialize_ui (GtkSourceCompletion *completion)
 		                                           "cell_renderer_accelerator"));
 
 	gtk_tree_view_column_set_visible (completion->priv->tree_view_column_accelerator, 
-	                                  completion->priv->enable_accelerators);
+	                                  completion->priv->num_accelerators > 0);
 
 	gtk_tree_view_column_set_cell_data_func (completion->priv->tree_view_column_accelerator,
 	                                         completion->priv->cell_renderer_accelerator,
