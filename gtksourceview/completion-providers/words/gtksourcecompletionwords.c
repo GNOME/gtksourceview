@@ -39,7 +39,8 @@ enum
 	PROP_NAME,
 	PROP_ICON,
 	PROP_PROPOSALS_BATCH_SIZE,
-	PROP_SCAN_BATCH_SIZE
+	PROP_SCAN_BATCH_SIZE,
+	PROP_MINIMUM_WORD_SIZE
 };
 
 struct _GtkSourceCompletionWordsPrivate
@@ -58,6 +59,7 @@ struct _GtkSourceCompletionWordsPrivate
 	
 	guint proposals_batch_size;
 	guint scan_batch_size;
+	guint minimum_word_size;
 	
 	GtkSourceCompletionWordsLibrary *library;
 	GList *buffers;
@@ -94,13 +96,6 @@ static GdkPixbuf *
 gtk_source_completion_words_get_icon (GtkSourceCompletionProvider *self)
 {
 	return GTK_SOURCE_COMPLETION_WORDS (self)->priv->icon;
-}
-
-static gboolean
-gtk_source_completion_words_match (GtkSourceCompletionProvider *provider,
-                                   GtkSourceCompletionContext  *context)
-{
-	return TRUE;
 }
 
 static gboolean
@@ -232,6 +227,25 @@ add_in_idle (GtkSourceCompletionWords *words)
 	return !finished;
 }
 
+static gboolean
+gtk_source_completion_words_match (GtkSourceCompletionProvider *provider,
+                                   GtkSourceCompletionContext  *context)
+{
+	GtkSourceCompletionWords *words = GTK_SOURCE_COMPLETION_WORDS (provider);
+	GtkTextIter iter;
+	gchar *word;
+	gboolean ret;
+
+	gtk_source_completion_context_get_iter (context, &iter);
+	word = get_word_at_iter (words, &iter);
+	
+	ret = g_utf8_strlen (word, -1) >= words->priv->minimum_word_size;
+	
+	g_free (word);
+	
+	return ret;
+}
+
 static void
 gtk_source_completion_words_populate (GtkSourceCompletionProvider *provider,
                                       GtkSourceCompletionContext  *context)
@@ -328,6 +342,19 @@ update_buffers_batch_size (GtkSourceCompletionWords *words)
 }
 
 static void
+update_buffers_minimum_word_size (GtkSourceCompletionWords *words)
+{
+	GList *item;
+	
+	for (item = words->priv->buffers; item; item = g_list_next (item))
+	{
+		BufferBinding *binding = (BufferBinding *)item->data;
+		gtk_source_completion_words_buffer_set_minimum_word_size (binding->buffer,
+		                                                          words->priv->minimum_word_size);
+	}
+}
+
+static void
 gtk_source_completion_words_set_property (GObject      *object,
                                           guint         prop_id,
                                           const GValue *value,
@@ -358,11 +385,12 @@ gtk_source_completion_words_set_property (GObject      *object,
 			self->priv->proposals_batch_size = g_value_get_uint (value);
 		break;
 		case PROP_SCAN_BATCH_SIZE:
-		{
 			self->priv->scan_batch_size = g_value_get_uint (value);
-			
 			update_buffers_batch_size (self);
-		}
+		break;
+		case PROP_MINIMUM_WORD_SIZE:
+			self->priv->minimum_word_size = g_value_get_uint (value);
+			update_buffers_minimum_word_size (self);
 		break;
 		default:
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -391,6 +419,9 @@ gtk_source_completion_words_get_property (GObject    *object,
 		break;
 		case PROP_SCAN_BATCH_SIZE:
 			g_value_set_uint (value, self->priv->scan_batch_size);
+		break;
+		case PROP_MINIMUM_WORD_SIZE:
+			g_value_set_uint (value, self->priv->minimum_word_size);
 		break;
 		default:
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -442,6 +473,16 @@ gtk_source_completion_words_class_init (GtkSourceCompletionWordsClass *klass)
 	                                                    1,
 	                                                    G_MAXUINT,
 	                                                    20,
+	                                                    G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+	
+	g_object_class_install_property (object_class,
+	                                 PROP_MINIMUM_WORD_SIZE,
+	                                 g_param_spec_uint ("minimum-word-size",
+	                                                    _("Minimum Word Size"),
+	                                                    _("The minimum word size to complete"),
+	                                                    2,
+	                                                    G_MAXUINT,
+	                                                    3,
 	                                                    G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 	
 	g_type_class_add_private (object_class, sizeof(GtkSourceCompletionWordsPrivate));
@@ -515,9 +556,12 @@ gtk_source_completion_words_register (GtkSourceCompletionWords *words,
 	}
 	
 	buf = gtk_source_completion_words_buffer_new (words->priv->library,
-	                                              buffer,
-	                                              words->priv->scan_batch_size);
-
+	                                              buffer);
+	
+	gtk_source_completion_words_buffer_set_scan_batch_size (buffer,
+	                                                        words->priv->scan_batch_size);
+	gtk_source_completion_words_buffer_set_minimum_word_size (buffer,
+	                                                          words->priv->minimum_word_size);
 	
 	binding = g_slice_new (BufferBinding);
 	binding->words = words;

@@ -54,6 +54,7 @@ struct _GtkSourceCompletionWordsBufferPrivate
 	
 	guint ext_signal_handlers[NUM_EXT_SIGNALS];
 	guint scan_batch_size;
+	guint minimum_word_size;
 	
 	guint lock_handler_id;
 	guint unlock_handler_id;
@@ -159,6 +160,9 @@ static void
 gtk_source_completion_words_buffer_init (GtkSourceCompletionWordsBuffer *self)
 {
 	self->priv = GTK_SOURCE_COMPLETION_WORDS_BUFFER_GET_PRIVATE (self);
+	
+	self->priv->scan_batch_size = 20;
+	self->priv->minimum_word_size = 3;
 }
 
 static void
@@ -660,20 +664,17 @@ on_library_unlock (GtkSourceCompletionWordsBuffer *buffer)
 
 GtkSourceCompletionWordsBuffer *
 gtk_source_completion_words_buffer_new (GtkSourceCompletionWordsLibrary *library,
-                                        GtkTextBuffer                   *buffer,
-                                        guint                            scan_batch_size)
+                                        GtkTextBuffer                   *buffer)
 {
 	GtkSourceCompletionWordsBuffer *ret;
 	
 	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_WORDS_LIBRARY (library), NULL);
 	g_return_val_if_fail (GTK_IS_TEXT_BUFFER (buffer), NULL);
-	g_return_val_if_fail (scan_batch_size > 0, NULL);
 	
 	ret = g_object_new (GTK_TYPE_SOURCE_COMPLETION_WORDS_BUFFER, NULL);
 
 	ret->priv->library = g_object_ref (library);
 	ret->priv->buffer = g_object_ref (buffer);
-	ret->priv->scan_batch_size = scan_batch_size;
 	
 	ret->priv->lock_handler_id =
 		g_signal_connect_swapped (ret->priv->library,
@@ -705,5 +706,18 @@ gtk_source_completion_words_buffer_set_scan_batch_size (GtkSourceCompletionWords
                                                         guint                           size)
 {
 	g_return_if_fail (GTK_IS_SOURCE_COMPLETION_WORDS_BUFFER (buffer));
+	g_return_if_fail (size != 0);
+
 	buffer->priv->scan_batch_size = size;
 }
+
+void
+gtk_source_completion_words_buffer_set_minimum_word_size (GtkSourceCompletionWordsBuffer *buffer,
+                                                          guint                           size)
+{
+	g_return_if_fail (GTK_IS_SOURCE_COMPLETION_WORDS_BUFFER (buffer));
+	g_return_if_fail (size != 0);
+
+	buffer->priv->minimum_word_size = size;
+}
+

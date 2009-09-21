@@ -56,13 +56,15 @@ GType gtk_source_completion_words_buffer_get_type (void) G_GNUC_CONST;
 
 GtkSourceCompletionWordsBuffer *
 		 gtk_source_completion_words_buffer_new 	(GtkSourceCompletionWordsLibrary *library,
-								 GtkTextBuffer                   *buffer,
-								 guint                            process_batch);
+								 GtkTextBuffer                   *buffer);
 
 GtkTextBuffer 	*gtk_source_completion_words_buffer_get_buffer	(GtkSourceCompletionWordsBuffer  *buffer);
 
 void		 gtk_source_completion_words_buffer_set_scan_batch_size (GtkSourceCompletionWordsBuffer *buffer,
                                                                          guint                           size);
+
+void		 gtk_source_completion_words_buffer_set_minimum_word_size (GtkSourceCompletionWordsBuffer *buffer,
+                                                                           guint                           size);
 
 G_END_DECLS
 
