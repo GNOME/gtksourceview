@@ -1,5 +1,5 @@
 # Czech translation of gtksourceview.
-# Copyright (C) 2003, 2004, 2005, 2006, 2008 the author(s) of gtksourceview.
+# Copyright (C) 2003, 2004, 2005, 2006, 2008, 2009 the author(s) of gtksourceview.
 # Copyright (C) 2003, 2004, 2005, 2006 Miloslav Trmac <mitr@volny.cz>.
 # Copyright (C) 2006 Lukas Novotny <lukasnov@cvs.gnome.org>.
 # This file is distributed under the same license as the gtksourceview package.
@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-03-16 05:30+0100\n"
-"PO-Revision-Date: 2009-03-12 02:31+0100\n"
+"POT-Creation-Date: 2009-09-21 03:18+0200\n"
+"PO-Revision-Date: 2009-09-20 12:23+0100\n"
 "Last-Translator: Lucas Lommer <llommer@svn.gnome.org>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -78,7 +78,6 @@ msgid "Style scheme"
 msgstr "Schéma stylu"
 
 #: ../gtksourceview/gtksourcecontextengine.c:2608
-#, c-format
 msgid "using \\C is not supported in language definitions"
 msgstr "užití \\C není podporováno definicí jazyka"
 
@@ -139,6 +138,24 @@ msgstr "neznámý kontext '%s'"
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "Chybí hlavní definice jazyka (id = \"%s\")."
+
+#: ../gtksourceview/gtksourcegutter.c:338
+#, fuzzy
+msgid "View"
+msgstr "Zobrazení"
+
+#: ../gtksourceview/gtksourcegutter.c:339
+msgid "The gutters' GtkSourceView"
+msgstr ""
+
+#: ../gtksourceview/gtksourcegutter.c:351
+#, fuzzy
+msgid "Window Type"
+msgstr "Typ okna"
+
+#: ../gtksourceview/gtksourcegutter.c:352
+msgid "The gutters text window type"
+msgstr ""
 
 #: ../gtksourceview/gtksourcelanguage.c:42
 #: ../gtksourceview/language-specs/changelog.lang.h:8
@@ -231,12 +248,12 @@ msgid "The GtkSourceBuffer object to print"
 msgstr "Objekt GtkSourceBuffer k vytištění"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:429
-#: ../gtksourceview/gtksourceview.c:290
+#: ../gtksourceview/gtksourceview.c:319
 msgid "Tab Width"
 msgstr "Šířka tabelátoru"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:430
-#: ../gtksourceview/gtksourceview.c:291
+#: ../gtksourceview/gtksourceview.c:320
 msgid "Width of a tab character expressed in spaces"
 msgstr "Šířka tabulátoru v mezerách"
 
@@ -247,7 +264,7 @@ msgstr "Režim zalamování"
 #: ../gtksourceview/gtksourceprintcompositor.c:451
 msgid ""
 "Whether to wrap lines never, at word boundaries, or at character boundaries."
-msgstr "Kde zalamovat řádky (nikdy, na konci slova, mezi písmeny)"
+msgstr "Kde zalamovat řádky (nikdy, na konci slova, mezi písmeny)."
 
 #: ../gtksourceview/gtksourceprintcompositor.c:472
 msgid "Whether to print the document with highlighted syntax"
@@ -364,24 +381,27 @@ msgid "Strikethrough"
 msgstr "Přeškrtnuté"
 
 #: ../gtksourceview/gtksourcestyle.c:126
+#, fuzzy
 msgid "Line background set"
-msgstr ""
+msgstr "Nastavení pozadí řádky"
 
 #: ../gtksourceview/gtksourcestyle.c:127
 msgid "Whether line background color is set"
 msgstr "Zdali je nastavena barva pozadí řádku"
 
 #: ../gtksourceview/gtksourcestyle.c:134
+#, fuzzy
 msgid "Foreground set"
-msgstr ""
+msgstr "Nastavení popředí"
 
 #: ../gtksourceview/gtksourcestyle.c:135
 msgid "Whether foreground color is set"
 msgstr "Zdali je nastavena barva popředí"
 
 #: ../gtksourceview/gtksourcestyle.c:142
+#, fuzzy
 msgid "Background set"
-msgstr ""
+msgstr "Nastavení pozadí"
 
 #: ../gtksourceview/gtksourcestyle.c:143
 msgid "Whether background color is set"
@@ -415,8 +435,9 @@ msgid "Whether underline attribute is set"
 msgstr "Zdali je povoleno podtržení"
 
 #: ../gtksourceview/gtksourcestyle.c:174
+#, fuzzy
 msgid "Strikethrough set"
-msgstr ""
+msgstr "Volba přeškrtnutí"
 
 #: ../gtksourceview/gtksourcestyle.c:175
 msgid "Whether strikethrough attribute is set"
@@ -458,69 +479,69 @@ msgstr "Scheme ids"
 msgid "List of the ids of the available style schemes"
 msgstr "Seznam ID dostupných stylů"
 
-#: ../gtksourceview/gtksourceview.c:265
+#: ../gtksourceview/gtksourceview.c:294
 msgid "Show Line Numbers"
 msgstr "Zobrazovat čísla řádků"
 
-#: ../gtksourceview/gtksourceview.c:266
+#: ../gtksourceview/gtksourceview.c:295
 msgid "Whether to display line numbers"
 msgstr "Jestli zobrazovat čísla řádků"
 
-#: ../gtksourceview/gtksourceview.c:277
+#: ../gtksourceview/gtksourceview.c:306
 msgid "Show Line Marks"
 msgstr "Zobrazovat značky řádků"
 
-#: ../gtksourceview/gtksourceview.c:278
+#: ../gtksourceview/gtksourceview.c:307
 #, fuzzy
 msgid "Whether to display line mark pixbufs"
 msgstr "Jestli zobrazovat pixbufy značek řádků"
 
-#: ../gtksourceview/gtksourceview.c:305
+#: ../gtksourceview/gtksourceview.c:334
 msgid "Indent Width"
 msgstr "Šířka odsazení"
 
-#: ../gtksourceview/gtksourceview.c:306
+#: ../gtksourceview/gtksourceview.c:335
 msgid "Number of spaces to use for each step of indent"
 msgstr "Počet mezer na stupeň odsazení"
 
-#: ../gtksourceview/gtksourceview.c:315
+#: ../gtksourceview/gtksourceview.c:344
 msgid "Auto Indentation"
 msgstr "Automatické odsazování"
 
-#: ../gtksourceview/gtksourceview.c:316
+#: ../gtksourceview/gtksourceview.c:345
 msgid "Whether to enable auto indentation"
 msgstr "Jestli povolit automatické odsazování"
 
-#: ../gtksourceview/gtksourceview.c:323
+#: ../gtksourceview/gtksourceview.c:352
 msgid "Insert Spaces Instead of Tabs"
 msgstr "Vkládat mezery místo tabelátorů"
 
-#: ../gtksourceview/gtksourceview.c:324
+#: ../gtksourceview/gtksourceview.c:353
 msgid "Whether to insert spaces instead of tabs"
 msgstr "Jestli vkládat mezery místo tabelátorů"
 
-#: ../gtksourceview/gtksourceview.c:336
+#: ../gtksourceview/gtksourceview.c:365
 msgid "Show Right Margin"
 msgstr "Zobrazovat pravý okraj"
 
-#: ../gtksourceview/gtksourceview.c:337
+#: ../gtksourceview/gtksourceview.c:366
 msgid "Whether to display the right margin"
 msgstr "Jestli zobrazovat pravý okraj"
 
-#: ../gtksourceview/gtksourceview.c:349
+#: ../gtksourceview/gtksourceview.c:378
 msgid "Right Margin Position"
 msgstr "Pozice pravého okraje"
 
-#: ../gtksourceview/gtksourceview.c:350
+#: ../gtksourceview/gtksourceview.c:379
 msgid "Position of the right margin"
 msgstr "Pozice pravého okraje"
 
 # Upravil jsem predhozi preklad, verim, ze "chytre" je tedy na miste.
-#: ../gtksourceview/gtksourceview.c:366
+#: ../gtksourceview/gtksourceview.c:395
 msgid "Smart Home/End"
 msgstr "Chytré Home/End"
 
-#: ../gtksourceview/gtksourceview.c:367
+#: ../gtksourceview/gtksourceview.c:396
 msgid ""
 "HOME and END keys move to first/last non whitespace characters on line "
 "before going to the start/end of the line"
@@ -528,27 +549,27 @@ msgstr ""
 "Klávesy HOME a END přesunují kurzor na první/poslední neprázdný znak řádku a "
 "až potom na začátek/konec řádku"
 
-#: ../gtksourceview/gtksourceview.c:377
+#: ../gtksourceview/gtksourceview.c:406
 msgid "Highlight current line"
 msgstr "Zvýrazňovat aktuální řádek"
 
-#: ../gtksourceview/gtksourceview.c:378
+#: ../gtksourceview/gtksourceview.c:407
 msgid "Whether to highlight the current line"
 msgstr "Jestli zvýrazňovat aktuální řádek"
 
-#: ../gtksourceview/gtksourceview.c:385
+#: ../gtksourceview/gtksourceview.c:414
 msgid "Indent on tab"
 msgstr "Odsazení tabulátoru"
 
-#: ../gtksourceview/gtksourceview.c:386
+#: ../gtksourceview/gtksourceview.c:415
 msgid "Whether to indent the selected text when the tab key is pressed"
 msgstr "Zdali odsadit označený text při stisku tabulátoru"
 
-#: ../gtksourceview/gtksourceview.c:400
+#: ../gtksourceview/gtksourceview.c:429
 msgid "Draw Spaces"
 msgstr ""
 
-#: ../gtksourceview/gtksourceview.c:401
+#: ../gtksourceview/gtksourceview.c:430
 msgid "Set if and how the spaces should be visualized"
 msgstr ""
 
@@ -689,6 +710,7 @@ msgstr "Desetinné číslo"
 #: ../gtksourceview/language-specs/ada.lang.h:7
 #: ../gtksourceview/language-specs/c.lang.h:9
 #: ../gtksourceview/language-specs/csharp.lang.h:8
+#: ../gtksourceview/language-specs/eiffel.lang.h:9
 #: ../gtksourceview/language-specs/haskell.lang.h:5
 #: ../gtksourceview/language-specs/java.lang.h:7
 #: ../gtksourceview/language-specs/lua.lang.h:3
@@ -713,7 +735,7 @@ msgstr "Escape znak"
 #: ../gtksourceview/language-specs/d.lang.h:10
 #: ../gtksourceview/language-specs/dosbatch.lang.h:4
 #: ../gtksourceview/language-specs/dot.lang.h:5
-#: ../gtksourceview/language-specs/eiffel.lang.h:11
+#: ../gtksourceview/language-specs/eiffel.lang.h:12
 #: ../gtksourceview/language-specs/erlang.lang.h:9
 #: ../gtksourceview/language-specs/forth.lang.h:7
 #: ../gtksourceview/language-specs/fortran.lang.h:7
@@ -778,7 +800,7 @@ msgstr "Reálné číslo"
 #: ../gtksourceview/language-specs/cpp.lang.h:5
 #: ../gtksourceview/language-specs/csharp.lang.h:14
 #: ../gtksourceview/language-specs/d.lang.h:13
-#: ../gtksourceview/language-specs/eiffel.lang.h:13
+#: ../gtksourceview/language-specs/eiffel.lang.h:14
 #: ../gtksourceview/language-specs/erlang.lang.h:11
 #: ../gtksourceview/language-specs/forth.lang.h:10
 #: ../gtksourceview/language-specs/fortran.lang.h:8
@@ -791,7 +813,7 @@ msgstr "Reálné číslo"
 #: ../gtksourceview/language-specs/objc.lang.h:5
 #: ../gtksourceview/language-specs/ocaml.lang.h:16
 #: ../gtksourceview/language-specs/pascal.lang.h:7
-#: ../gtksourceview/language-specs/prolog.lang.h:6
+#: ../gtksourceview/language-specs/prolog.lang.h:7
 #: ../gtksourceview/language-specs/scheme.lang.h:6
 #: ../gtksourceview/language-specs/sql.lang.h:9
 #: ../gtksourceview/language-specs/vala.lang.h:10
@@ -818,7 +840,7 @@ msgstr "Pseudotřídy selektoru"
 #: ../gtksourceview/language-specs/def.lang.h:57
 #: ../gtksourceview/language-specs/d.lang.h:15
 #: ../gtksourceview/language-specs/dosbatch.lang.h:6
-#: ../gtksourceview/language-specs/eiffel.lang.h:14
+#: ../gtksourceview/language-specs/eiffel.lang.h:15
 #: ../gtksourceview/language-specs/erlang.lang.h:12
 #: ../gtksourceview/language-specs/forth.lang.h:11
 #: ../gtksourceview/language-specs/gtkrc.lang.h:9
@@ -838,7 +860,7 @@ msgstr "Pseudotřídy selektoru"
 #: ../gtksourceview/language-specs/perl.lang.h:19
 #: ../gtksourceview/language-specs/php.lang.h:19
 #: ../gtksourceview/language-specs/po.lang.h:8
-#: ../gtksourceview/language-specs/prolog.lang.h:7
+#: ../gtksourceview/language-specs/prolog.lang.h:8
 #: ../gtksourceview/language-specs/python.lang.h:17
 #: ../gtksourceview/language-specs/ruby.lang.h:21
 #: ../gtksourceview/language-specs/scheme.lang.h:7
@@ -944,7 +966,7 @@ msgstr "Skripty"
 #: ../gtksourceview/language-specs/perl.lang.h:21
 #: ../gtksourceview/language-specs/php.lang.h:20
 #: ../gtksourceview/language-specs/pkgconfig.lang.h:3
-#: ../gtksourceview/language-specs/prolog.lang.h:8
+#: ../gtksourceview/language-specs/prolog.lang.h:9
 #: ../gtksourceview/language-specs/ruby.lang.h:23
 #: ../gtksourceview/language-specs/sh.lang.h:11
 #: ../gtksourceview/language-specs/tcl.lang.h:4
@@ -1100,7 +1122,7 @@ msgstr "Číslo s plovoucí čárkou"
 #: ../gtksourceview/language-specs/c.lang.h:11
 #: ../gtksourceview/language-specs/csharp.lang.h:9
 #: ../gtksourceview/language-specs/d.lang.h:9
-#: ../gtksourceview/language-specs/eiffel.lang.h:10
+#: ../gtksourceview/language-specs/eiffel.lang.h:11
 #: ../gtksourceview/language-specs/nemerle.lang.h:9
 #: ../gtksourceview/language-specs/php.lang.h:11
 #: ../gtksourceview/language-specs/vala.lang.h:6
@@ -1123,22 +1145,21 @@ msgid "printf Conversion"
 msgstr "Konverze printf"
 
 #: ../gtksourceview/language-specs/classic.xml.h:1
+#, fuzzy
 msgid "Classic"
-msgstr ""
+msgstr "Klasický"
 
 #: ../gtksourceview/language-specs/classic.xml.h:2
 msgid "Classic color scheme"
 msgstr "Klasické barevné schéma"
 
 #: ../gtksourceview/language-specs/cmake.lang.h:1
-#, fuzzy
 msgid "Builtin Command"
 msgstr "Vestavěný příkaz"
 
 #: ../gtksourceview/language-specs/cmake.lang.h:2
-#, fuzzy
 msgid "Builtin Variable"
-msgstr "Zvláštní proměnná"
+msgstr "Vestavěná proměnná"
 
 #: ../gtksourceview/language-specs/cmake.lang.h:3
 msgid "CMake"
@@ -1159,9 +1180,8 @@ msgid "Control Keyword"
 msgstr "Klíčové slovo"
 
 #: ../gtksourceview/language-specs/cobalt.xml.h:1
-#, fuzzy
 msgid "Blue based color scheme"
-msgstr "Klasické barevné schéma"
+msgstr "Barevné schéma založené na modré"
 
 #: ../gtksourceview/language-specs/cobalt.xml.h:2
 msgid "Cobalt"
@@ -1242,7 +1262,7 @@ msgstr "Vestavěný identifikátor"
 #: ../gtksourceview/language-specs/python.lang.h:6
 #, fuzzy
 msgid "Complex number"
-msgstr "Šestnáctkové číslo"
+msgstr "Komplexní číslo"
 
 #. A primitive data type: int, long, char, etc.
 #: ../gtksourceview/language-specs/def.lang.h:17
@@ -1258,7 +1278,7 @@ msgstr "Výchozí"
 #: ../gtksourceview/language-specs/def.lang.h:23
 #, fuzzy
 msgid "Documentation comment"
-msgstr "Prostředí poznámky"
+msgstr "Poznámky z dokumentace"
 
 #. This style doesn't map to anything since it must be used as an additional
 #. style for text which is already styled as a "doc-comment"
@@ -1279,15 +1299,13 @@ msgstr "Poznámky (FIXME, TODO, XXX, atd.)"
 
 #. This one is for '#include <foo.h>' and "#pragma blah", or 'use foobar', etc..
 #: ../gtksourceview/language-specs/def.lang.h:44
-#, fuzzy
 msgid "Preprocessor directive"
-msgstr "Definice preprocesoru"
+msgstr "Direktiva preprocesoru"
 
 #. Reserved keywords: like "const" and "goto" in Java
 #: ../gtksourceview/language-specs/def.lang.h:46
-#, fuzzy
 msgid "Reserved keyword"
-msgstr "Rezervovaná slova ANSI"
+msgstr "Rezervované slovo"
 
 #. A shebang: #!/bin/sh
 #: ../gtksourceview/language-specs/def.lang.h:48
@@ -1389,7 +1407,7 @@ msgstr "D"
 #: ../gtksourceview/language-specs/d.lang.h:14
 #, fuzzy
 msgid "Special Token"
-msgstr "Speciální znaky"
+msgstr "Speciální token"
 
 #: ../gtksourceview/language-specs/docbook.lang.h:1
 msgid "Docbook"
@@ -1413,6 +1431,7 @@ msgstr "Prvky hlavičky"
 #: ../gtksourceview/language-specs/haddock.lang.h:14
 #: ../gtksourceview/language-specs/html.lang.h:7
 #: ../gtksourceview/language-specs/latex.lang.h:6
+#: ../gtksourceview/language-specs/mallard.lang.h:4
 #: ../gtksourceview/language-specs/t2t.lang.h:6
 #: ../gtksourceview/language-specs/texinfo.lang.h:8
 #: ../gtksourceview/language-specs/xml.lang.h:9
@@ -1485,22 +1504,22 @@ msgstr "Ladění"
 
 #: ../gtksourceview/language-specs/eiffel.lang.h:7
 msgid "Design by Contract"
-msgstr ""
+msgstr "Design by contract"
 
 #: ../gtksourceview/language-specs/eiffel.lang.h:8
 msgid "Eiffel"
 msgstr "Eiffel"
 
-#: ../gtksourceview/language-specs/eiffel.lang.h:9
+#: ../gtksourceview/language-specs/eiffel.lang.h:10
 msgid "Exception Handling"
 msgstr "Obsluha výjimek"
 
-#: ../gtksourceview/language-specs/eiffel.lang.h:12
+#: ../gtksourceview/language-specs/eiffel.lang.h:13
 #: ../gtksourceview/language-specs/ruby.lang.h:16
 msgid "Predefined Variable"
 msgstr "Předdefinované proměnné"
 
-#: ../gtksourceview/language-specs/eiffel.lang.h:15
+#: ../gtksourceview/language-specs/eiffel.lang.h:16
 msgid "Void Value"
 msgstr "prázdná hodnota"
 
@@ -1572,8 +1591,9 @@ msgid "Scientific"
 msgstr "Vědecký"
 
 #: ../gtksourceview/language-specs/gtk-doc.lang.h:2
+#, fuzzy
 msgid "Deprecated"
-msgstr ""
+msgstr "Zastaralé"
 
 #: ../gtksourceview/language-specs/gtk-doc.lang.h:4
 msgid "Function Name"
@@ -1592,8 +1612,9 @@ msgid "Property Name"
 msgstr "Název vlastnosti"
 
 #: ../gtksourceview/language-specs/gtk-doc.lang.h:9
+#, fuzzy
 msgid "Return"
-msgstr ""
+msgstr "Enter"
 
 #: ../gtksourceview/language-specs/gtk-doc.lang.h:10
 msgid "Signal Name"
@@ -1833,7 +1854,7 @@ msgstr "Makro Autoconf"
 
 #: ../gtksourceview/language-specs/m4.lang.h:2
 msgid "Obsolete Autoconf Macro"
-msgstr ""
+msgstr "Zastaralé makro pro Autoconf"
 
 #: ../gtksourceview/language-specs/m4.lang.h:4
 msgid "m4"
@@ -1863,8 +1884,9 @@ msgstr "Makefile"
 #. Translators: Trailing Tabs refers to tabulation characters present at
 #. the end of the line
 #: ../gtksourceview/language-specs/makefile.lang.h:7
+#, fuzzy
 msgid "Trailing Tab"
-msgstr ""
+msgstr "Tabulátory na konci"
 
 #: ../gtksourceview/language-specs/makefile.lang.h:9
 #, fuzzy
@@ -1886,8 +1908,29 @@ msgid "prereq"
 msgstr ""
 
 #: ../gtksourceview/language-specs/makefile.lang.h:13
+#, fuzzy
 msgid "targets"
-msgstr ""
+msgstr "cíle"
+
+#: ../gtksourceview/language-specs/mallard.lang.h:1
+msgid "Block Elements"
+msgstr "Blokové prvky"
+
+#: ../gtksourceview/language-specs/mallard.lang.h:2
+msgid "Inline Elements"
+msgstr "Řádkové prvky"
+
+#: ../gtksourceview/language-specs/mallard.lang.h:3
+msgid "Mallard"
+msgstr "Mallard"
+
+#: ../gtksourceview/language-specs/mallard.lang.h:5
+msgid "Page Elements"
+msgstr "Prvky stránky"
+
+#: ../gtksourceview/language-specs/mallard.lang.h:6
+msgid "Section Elements"
+msgstr "Prvky sekce"
 
 #: ../gtksourceview/language-specs/msil.lang.h:1
 msgid "MSIL"
@@ -1916,7 +1959,7 @@ msgstr ""
 #: ../gtksourceview/language-specs/ocaml.lang.h:3
 #, fuzzy
 msgid "Builtin-function keyword"
-msgstr "Vestavěné funkce"
+msgstr "Klíčové slovo vestavěné funkce"
 
 #: ../gtksourceview/language-specs/ocaml.lang.h:9
 msgid "Floating Point number"
@@ -1995,8 +2038,9 @@ msgstr "Popis souboru"
 #: ../gtksourceview/language-specs/perl.lang.h:6
 #: ../gtksourceview/language-specs/php.lang.h:9
 #: ../gtksourceview/language-specs/ruby.lang.h:10
+#, fuzzy
 msgid "Heredoc"
-msgstr ""
+msgstr "Heredoc"
 
 #: ../gtksourceview/language-specs/perl.lang.h:7
 #: ../gtksourceview/language-specs/php.lang.h:10
@@ -2051,8 +2095,9 @@ msgid "pkg-config"
 msgstr "pkg-config"
 
 #: ../gtksourceview/language-specs/po.lang.h:2
+#, fuzzy
 msgid "Fuzzy"
-msgstr ""
+msgstr "Fuzzy"
 
 #. FIXME make it some nice name and mark it translatable
 #: ../gtksourceview/language-specs/po.lang.h:7
@@ -2064,10 +2109,13 @@ msgstr "Speciální případ"
 msgid "gettext translation"
 msgstr "Překlad gettext"
 
+#: ../gtksourceview/language-specs/prolog.lang.h:6
+msgid "Prolog"
+msgstr "Prolog"
+
 #: ../gtksourceview/language-specs/python.lang.h:3
-#, fuzzy
 msgid "Builtin Constant"
-msgstr "Vestavěný příkaz"
+msgstr "Vestavěná konstanta"
 
 #: ../gtksourceview/language-specs/python.lang.h:5
 msgid "Builtin Object"
@@ -2198,8 +2246,9 @@ msgid "Common Commands"
 msgstr "Základní příkazy"
 
 #: ../gtksourceview/language-specs/sh.lang.h:10
+#, fuzzy
 msgid "Subshell"
-msgstr ""
+msgstr "Subshell"
 
 #. FIXME: need to sort out proper styles for variables
 #: ../gtksourceview/language-specs/sh.lang.h:13
@@ -2221,12 +2270,12 @@ msgstr "SQL"
 #: ../gtksourceview/language-specs/t2t.lang.h:7
 #, fuzzy
 msgid "Option"
-msgstr "Sekce"
+msgstr "Volba"
 
 #: ../gtksourceview/language-specs/t2t.lang.h:8
 #, fuzzy
 msgid "Option Name"
-msgstr "Název funkce"
+msgstr "Název volby"
 
 #: ../gtksourceview/language-specs/t2t.lang.h:10
 msgid "Section 1"
@@ -2287,7 +2336,7 @@ msgstr "Texinfo"
 
 #: ../gtksourceview/language-specs/vala.lang.h:12
 msgid "Vala"
-msgstr ""
+msgstr "Vala"
 
 #: ../gtksourceview/language-specs/vbnet.lang.h:9
 msgid "VB.NET"
@@ -2349,11 +2398,9 @@ msgstr "Yacc"
 #: ../gtksourceview/language-specs/yacc.lang.h:5
 #, fuzzy
 msgid "rule"
-msgstr "Pravidla at"
+msgstr "pravidlo"
 
 #: ../gtksourceview/language-specs/yacc.lang.h:6
 msgid "token-type"
 msgstr ""
 
-#~ msgid "Compiler opt"
-#~ msgstr "Možnosti kompilátoru"
