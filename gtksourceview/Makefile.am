@@ -1,5 +1,9 @@
 SUBDIRS = language-specs
 
+if ENABLE_PROVIDERS
+SUBDIRS += completion-providers
+endif
+
 INCLUDES = 				\
 	-DDATADIR=\""$(datadir)"\" 	\
 	-DG_LOG_DOMAIN=\"GtkSourceView\"\
@@ -85,7 +89,10 @@ libgtksourceview_2_0_la_SOURCES = 	\
 nodist_libgtksourceview_2_0_la_SOURCES =\
 	$(BUILT_SOURCES)
 
-libgtksourceview_2_0_la_LIBADD = $(DEP_LIBS)
+completion_providers = 							\
+	completion-providers/words/libgtksourcecompletionwords.la
+
+libgtksourceview_2_0_la_LIBADD = $(DEP_LIBS) $(completion_providers)
 libgtksourceview_2_0_la_LDFLAGS = -no-undefined -export-symbols-regex "^gtk_source_.*"
 libgtksourceview_2_0_includedir = $(includedir)/gtksourceview-2.0/gtksourceview
 

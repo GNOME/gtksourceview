@@ -29,8 +29,7 @@
 #include <gtksourceview/gtksourcecompletion.h>
 #include <gtksourceview/gtksourcecompletioninfo.h>
 #include <gtksourceview/gtksourcelanguagemanager.h>
-
-#include "gsc-provider-words.h"
+#include <gtksourceview/completion-providers/words/gtksourcecompletionwords.h>
 
 #ifdef HAVE_DEVHELP
 #include <devhelp/dh-base.h>
@@ -84,26 +83,6 @@ show_headers_toggled_cb (GtkToggleButton *button,
 		      NULL);
 }
 
-static gboolean
-key_press (GtkWidget   *widget,
-	   GdkEventKey *event,
-	   gpointer     user_data)
-{
-	if (event->keyval == GDK_F8)
-	{
-		GtkSourceCompletionInfo *gsc_info;
-		
-		gsc_info = gtk_source_completion_get_info_window (comp);
-		
-		if (GTK_WIDGET_VISIBLE (GTK_WIDGET (gsc_info)))
-			gtk_widget_hide (GTK_WIDGET (gsc_info));
-		else
-			gtk_widget_show (GTK_WIDGET (gsc_info));
-	}
-	
-	return FALSE;
-}
-
 static void
 toggle_active_property (gpointer     source,
                         gpointer     dest,
@@ -155,9 +134,6 @@ create_window (void)
 	
 	gtk_container_add (GTK_CONTAINER (window), vbox);
 	
-	g_signal_connect (view, "key-release-event",
-			  G_CALLBACK (key_press),
-			  NULL);
 	g_signal_connect (window, "destroy",
 			  G_CALLBACK (destroy_cb),
 			   NULL);
@@ -177,10 +153,13 @@ create_window (void)
 static void
 create_completion(void)
 {
-	GscProviderWords *prov_words;
+	GtkSourceCompletionWords *prov_words;
 	
 	comp = gtk_source_view_get_completion (GTK_SOURCE_VIEW (view));
-	prov_words = gsc_provider_words_new (GTK_SOURCE_VIEW (view));
+	prov_words = gtk_source_completion_words_new (NULL, NULL);
+	
+	gtk_source_completion_words_register (prov_words,
+	                                      gtk_text_view_get_buffer (GTK_TEXT_VIEW (view)));
 	
 	gtk_source_completion_add_provider (comp, 
 	                                    GTK_SOURCE_COMPLETION_PROVIDER (prov_words), 

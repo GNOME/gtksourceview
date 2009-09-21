@@ -88,6 +88,14 @@ fi
 
 AM_CONDITIONAL(USE_DEVHELP, test "x$have_devhelp" = "xyes")
 
+dnl Check to enable completion providers
+AC_ARG_ENABLE(providers,
+	    AC_HELP_STRING([--enable-completion-providers],
+	    		   [Enable building completion providers (words)]),,
+	    enable_providers=yes)
+
+AM_CONDITIONAL(ENABLE_PROVIDERS, test "x$enable_providers" = "xyes")
+
 # i18N stuff
 GETTEXT_PACKAGE=gtksourceview-2.0
 AC_SUBST(GETTEXT_PACKAGE)
@@ -107,6 +115,8 @@ Makefile
 gtksourceview-zip
 po/Makefile.in
 gtksourceview/Makefile
+gtksourceview/completion-providers/Makefile
+gtksourceview/completion-providers/words/Makefile
 gtksourceview/language-specs/Makefile
 docs/Makefile
 docs/reference/Makefile
