@@ -370,32 +370,34 @@ remove_scan_regions (GtkSourceCompletionWordsBuffer *buffer,
 	{
 		ScanRegion *region = REGION_FROM_LIST (item);
 		
-		if (region->start >= start && region->end <= end)
+		if (region->start >= start)
 		{
-			GList *remove = item;
-			scan_region_free (region);
+			if (region->end <= end)
+			{
+				/* Region fully within removed region */
+				GList *remove = item;
+				scan_region_free (region);
 
-			item = g_list_previous (item);
+				item = g_list_previous (item);
 			
-			/* Remove whole thing */
-			buffer->priv->scan_regions = 
-				g_list_delete_link (buffer->priv->scan_regions,
-				                    remove);
+				/* Remove whole thing */
+				buffer->priv->scan_regions = 
+					g_list_delete_link (buffer->priv->scan_regions,
+						            remove);
+			}
+			else if (region->start <= end)
+			{
+				/* Top part of region in removed region */
+				region->start = end;
+			}
 		}
-		else if (region->start >= start)
+		else if (region->end <= end && region->end > start)
 		{
-			/* Start in region */
+			/* Bottom part of region in removed region */
 			region->end = start;
 		}
-		else if (region->end <= end)
+		else if (region->end >= end)
 		{
-			/* End in region */
-			region->start = start;
-			region->end -= span;
-		}
-		else if (region->start > start)
-		{
-			region->start -= span;
 			region->end -= span;
 		}
 	}
