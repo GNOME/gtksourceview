@@ -23,6 +23,7 @@
 #include "gtksourcecompletionwords.h"
 #include "gtksourcecompletionwordslibrary.h"
 #include "gtksourcecompletionwordsbuffer.h"
+#include "gtksourcecompletionwordsutils.h"
 
 #include <gtksourceview/gtksourcecompletion.h>
 #include <gtksourceview/gtksourceview-i18n.h>
@@ -98,13 +99,6 @@ gtk_source_completion_words_get_icon (GtkSourceCompletionProvider *self)
 	return GTK_SOURCE_COMPLETION_WORDS (self)->priv->icon;
 }
 
-static gboolean
-is_word_char (gunichar ch)
-{
-	return g_unichar_isprint (ch) && 
-	       (g_unichar_isalnum (ch) || ch == g_utf8_get_char ("_"));
-}
-
 static void
 population_finished (GtkSourceCompletionWords *words)
 {
@@ -131,57 +125,12 @@ population_finished (GtkSourceCompletionWords *words)
 	}
 }
 
-static gchar *
-get_word_at_iter (GtkSourceCompletionWords *words,
-                  GtkTextIter              *iter)
-{
-	GtkTextIter start = *iter;
-	gint line = gtk_text_iter_get_line (iter);
-	gboolean went_back = TRUE;
-	
-	if (!gtk_text_iter_backward_char (&start))
-	{
-		return NULL;
-	}
-
-	while (went_back &&
-	       line == gtk_text_iter_get_line (&start) && 
-	       is_word_char (gtk_text_iter_get_char (&start)))
-	{
-		went_back = gtk_text_iter_backward_char (&start);
-	}
-	
-	if (went_back)
-	{
-		gtk_text_iter_forward_char (&start);
-	}
-	
-	if (gtk_text_iter_equal (iter, &start))
-	{
-		return NULL;
-	}
-
-	return gtk_text_iter_get_text (&start, iter);
-}
-
 static gboolean
 add_in_idle (GtkSourceCompletionWords *words)
 {
 	guint idx = 0;
 	GList *ret = NULL;
 	gboolean finished;
-	
-	/* Don't complete empty string (when word == NULL) */
-	if (words->priv->word == NULL || 
-	    g_utf8_strlen (words->priv->word, -1) < words->priv->minimum_word_size)
-	{
-		gtk_source_completion_context_add_proposals (words->priv->context,
-	                                                     GTK_SOURCE_COMPLETION_PROVIDER (words),
-	                                                     NULL,
-	                                                     TRUE);
-		population_finished (words);
-		return FALSE;
-	}
 	
 	if (words->priv->populate_iter == NULL)
 	{
@@ -229,6 +178,51 @@ add_in_idle (GtkSourceCompletionWords *words)
 }
 
 static gboolean
+valid_word_char (gunichar ch, 
+                 gpointer data)
+{
+	return g_unichar_isprint (ch) && (ch == '_' || g_unichar_isalnum (ch));
+}
+
+static gboolean
+valid_start_char (gunichar ch,
+                  gpointer data)
+{
+	return !g_unichar_isdigit (ch);
+}
+
+static gchar *
+get_word_at_iter (GtkTextIter    *iter,
+                  CharacterCheck  valid,
+                  CharacterCheck  valid_start,
+                  gpointer        data)
+{
+	GtkTextIter end = *iter;
+	
+	if (!gtk_source_completion_words_utils_forward_word_end (iter, valid, data) ||
+	    !gtk_text_iter_equal (iter, &end))
+	{
+		return NULL;
+	}
+	
+	if (!gtk_source_completion_words_utils_backward_word_start (iter,
+	                                                            valid,
+	                                                            valid_start,
+	                                                            data))
+	{
+		return NULL;
+	}
+	
+	if (gtk_text_iter_equal (iter, &end))
+	{
+		return NULL;
+	}
+	else
+	{
+		return gtk_text_iter_get_text (iter, &end);
+	}
+}
+static gboolean
 gtk_source_completion_words_match (GtkSourceCompletionProvider *provider,
                                    GtkSourceCompletionContext  *context)
 {
@@ -238,7 +232,10 @@ gtk_source_completion_words_match (GtkSourceCompletionProvider *provider,
 	gboolean ret;
 
 	gtk_source_completion_context_get_iter (context, &iter);
-	word = get_word_at_iter (words, &iter);
+	word = get_word_at_iter (&iter,
+	                         valid_word_char,
+	                         valid_start_char,
+	                         words);
 	
 	ret = word != NULL && g_utf8_strlen (word, -1) >= words->priv->minimum_word_size;
 	g_free (word);
@@ -257,7 +254,12 @@ gtk_source_completion_words_populate (GtkSourceCompletionProvider *provider,
 	gtk_source_completion_context_get_iter (context, &iter);
 
 	g_free (words->priv->word);
-	word = get_word_at_iter (words, &iter);
+	words->priv->word = NULL;
+
+	word = get_word_at_iter (&iter,
+	                         valid_word_char,
+	                         valid_start_char,
+	                         words);
 	
 	if (word == NULL || 
 	    g_utf8_strlen (word, -1) < words->priv->minimum_word_size)

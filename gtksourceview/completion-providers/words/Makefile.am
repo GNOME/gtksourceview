@@ -11,7 +11,8 @@ noinst_LTLIBRARIES = libgtksourcecompletionwords.la
 NOINST_H_FILES =				\
 	gtksourcecompletionwordslibrary.h	\
 	gtksourcecompletionwordsproposal.h	\
-	gtksourcecompletionwordsbuffer.h
+	gtksourcecompletionwordsbuffer.h	\
+	gtksourcecompletionwordsutils.h
 
 libgtksourcecompletionwords_headers = 		\
 	gtksourcecompletionwords.h
@@ -21,6 +22,7 @@ libgtksourcecompletionwords_la_SOURCES =	\
 	gtksourcecompletionwordslibrary.c	\
 	gtksourcecompletionwordsproposal.c	\
 	gtksourcecompletionwordsbuffer.c	\
+	gtksourcecompletionwordsutils.c		\
 	$(libgtksourcecompletionwords_headers)	\
 	$(NOINST_H_FILES)
 

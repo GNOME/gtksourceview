@@ -21,6 +21,7 @@
  */
 
 #include "gtksourcecompletionwordsbuffer.h"
+#include "gtksourcecompletionwordsutils.h"
 
 #define GTK_SOURCE_COMPLETION_WORDS_BUFFER_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE((object), GTK_TYPE_SOURCE_COMPLETION_WORDS_BUFFER, GtkSourceCompletionWordsBufferPrivate))
 
@@ -176,54 +177,16 @@ on_insert_text_cb (GtkTextBuffer                  *textbuffer,
 }
 
 static gboolean
-is_word_char (gunichar ch)
+valid_word_char (gunichar ch, 
+                 gpointer data)
 {
-	return g_unichar_isprint (ch) && 
-	       (g_unichar_isalnum (ch) || ch == g_utf8_get_char ("_"));
+	return g_unichar_isprint (ch) && (ch == '_' || g_unichar_isalnum (ch));
 }
 
 static gboolean
-iter_at_word_start (GtkTextIter *iter)
+valid_start_char (gunichar ch)
 {
-	GtkTextIter prev = *iter;
-	
-	if (!gtk_text_iter_starts_word (iter) ||
-	    g_unichar_isdigit (gtk_text_iter_get_char (iter)))
-	{
-		return FALSE;
-	}
-	
-	if (!gtk_text_iter_is_start (&prev) && 
-	    !gtk_text_iter_starts_line (&prev))
-	{
-		gtk_text_iter_backward_char (&prev);
-		
-		return !is_word_char (gtk_text_iter_get_char (&prev));
-	}
-	else
-	{
-		return TRUE;
-	}
-}
-
-static gboolean
-iter_at_word_end (GtkTextIter *iter)
-{
-	if (!gtk_text_iter_ends_word (iter) || 
-	    g_unichar_isdigit (gtk_text_iter_get_char (iter)))
-	{
-		return FALSE;
-	}
-	
-	if (!gtk_text_iter_is_end (iter) && 
-	    !gtk_text_iter_ends_line (iter))
-	{
-		return !is_word_char (gtk_text_iter_get_char (iter));
-	}
-	else
-	{
-		return TRUE;
-	}
+	return !g_unichar_isdigit (ch);
 }
 
 static GList *
@@ -240,49 +203,42 @@ scan_line (GtkSourceCompletionWordsBuffer *buffer,
 	{
 		gchar *word;
 		
-		/* Forward start to next word start */
-		while (!iter_at_word_start (&start) && 
-		       !gtk_text_iter_ends_line (&start))
+		while (!gtk_text_iter_ends_line (&start) &&
+		       !valid_word_char (gtk_text_iter_get_char (&start), NULL))
 		{
-			if (!gtk_text_iter_forward_char (&start))
-			{
-				break;
-			}
+			gtk_text_iter_forward_char (&start);
 		}
 		
 		if (gtk_text_iter_ends_line (&start))
 		{
 			break;
 		}
-		
+
 		end = start;
 		
-		if (!gtk_text_iter_forward_char (&end))
+		if (!gtk_source_completion_words_utils_forward_word_end (&end,
+		                                                         valid_word_char,
+		                                                         NULL))
 		{
 			break;
 		}
 		
-		/* Forward end to next word end */
-		while (!iter_at_word_end (&end))
+		if (valid_start_char (gtk_text_iter_get_char (&start)))
 		{
-			if (!gtk_text_iter_forward_char (&end))
+			if (gtk_text_iter_get_offset (&end) - 
+			    gtk_text_iter_get_offset (&start) >= buffer->priv->minimum_word_size)
 			{
-				break;
-			}
-		}
-		
-		if (gtk_text_iter_get_offset (&end) - gtk_text_iter_get_offset (&start) > 2)
-		{
-			GtkSourceCompletionWordsProposal *proposal;
+				GtkSourceCompletionWordsProposal *proposal;
 			
-			word = gtk_text_iter_get_text (&start, &end);
-			proposal = gtk_source_completion_words_library_add_word (buffer->priv->library,
-			                                                         word);
+				word = gtk_text_iter_get_text (&start, &end);
+				proposal = gtk_source_completion_words_library_add_word (buffer->priv->library,
+					                                                 word);
 			
-			if (proposal != NULL)
-			{
-				ret = g_list_prepend (ret, proposal);
-				g_free (word);
+				if (proposal != NULL)
+				{
+					ret = g_list_prepend (ret, proposal);
+					g_free (word);
+				}
 			}
 		}
 		
