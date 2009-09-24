@@ -1087,7 +1087,6 @@ set_column_width (GtkTreeView *tv,
 static void
 update_column_sizes (GtkSourceCompletion *completion)
 {
-	GtkAllocation allocation;
 	gint cwidth;
 	GtkTreeView *tv;
 	gint xpad;
@@ -1095,11 +1094,9 @@ update_column_sizes (GtkSourceCompletion *completion)
 	GtkStyle *style;
 
 	/* Resize tree view columns accordingly */
-	gtk_widget_get_allocation (completion->priv->tree_view_proposals, 
-	                           &allocation);
-
-	gtk_cell_renderer_get_padding (completion->priv->cell_renderer_accelerator,
-	                               &xpad, NULL);
+	g_object_get (completion->priv->cell_renderer_accelerator,
+	              "xpad", &xpad,
+	              NULL);
 
 	style = gtk_widget_get_style (completion->priv->tree_view_proposals);
 	gtk_style_get (style, 
@@ -1112,7 +1109,7 @@ update_column_sizes (GtkSourceCompletion *completion)
 
 	tv = GTK_TREE_VIEW (completion->priv->tree_view_proposals);
 	
-	set_column_width (tv, 0, allocation.width - cwidth);
+	set_column_width (tv, 0, completion->priv->tree_view_proposals->allocation.width - cwidth);
 	set_column_width (tv, 1, cwidth);
 }
 
