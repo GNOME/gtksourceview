@@ -9,9 +9,9 @@ msgstr ""
 "Project-Id-Version: gtksourcereview\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gtksourceview&component=general\n"
 "POT-Creation-Date: 2009-09-10 11:50+0000\n"
-"PO-Revision-Date: 2009-09-12 10:44+0100\n"
+"PO-Revision-Date: 2009-09-24 10:36+0100\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
-"Language-Team: Slovenian <SL@li.org>\n"
+"Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -23,7 +23,7 @@ msgstr ""
 #: ../gtksourceview/gtksourcebuffer.c:180
 #: ../gtksourceview/gtksourceprintcompositor.c:471
 msgid "Highlight Syntax"
-msgstr "Označevanje skladnje"
+msgstr "Poudarjanje skladnje"
 
 #: ../gtksourceview/gtksourcebuffer.c:181
 msgid "Whether to highlight syntax in the buffer"
@@ -31,11 +31,11 @@ msgstr "Ali naj se poudarja skladnja v predpomnilniku"
 
 #: ../gtksourceview/gtksourcebuffer.c:194
 msgid "Highlight Matching Brackets"
-msgstr "Označi para oklepaja"
+msgstr "Poudari para oklepaja"
 
 #: ../gtksourceview/gtksourcebuffer.c:195
 msgid "Whether to highlight matching brackets"
-msgstr "Ali naj se označujejo pari oklepaja (uklepaj - zaklepaj)"
+msgstr "Ali naj se poudarijo pari oklepaja (uklepaj - zaklepaj)"
 
 #: ../gtksourceview/gtksourcebuffer.c:207
 msgid "Maximum Undo Levels"
@@ -90,12 +90,12 @@ msgid ""
 "Cannot create a regex for all the transitions, the syntax highlighting process will be slower than usual.\n"
 "The error was: %s"
 msgstr ""
-"Ni mogoče ustvariti logičnega izraza za vse prehode; označevanje skladnje bo počasnejše kot običajno.\n"
+"Ni mogoče ustvariti logičnega izraza za vse prehode; poudarjanje skladnje bo počasnejše kot običajno.\n"
 "Javljena napaka: %s"
 
 #: ../gtksourceview/gtksourcecontextengine.c:4547
 msgid "Highlighting a single line took too much time, syntax highlighting will be disabled"
-msgstr "Označevanje ene vrstice je bilo časovno predolgo. Označevanje skladnje bo onemogočeno."
+msgstr "Poudarjanje ene vrstice je bilo časovno predolgo. Poudarjanje skladnje bo onemogočeno."
 
 #: ../gtksourceview/gtksourcecontextengine.c:5757
 #, c-format
@@ -254,7 +254,7 @@ msgstr "Ali naj bodo vrstice prelomljene na besedah ali na znakih."
 
 #: ../gtksourceview/gtksourceprintcompositor.c:472
 msgid "Whether to print the document with highlighted syntax"
-msgstr "Ali naj se dokument natisne z označevanjem skladnje"
+msgstr "Ali naj se dokument natisne z poudarjanjem skladnje"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:493
 msgid "Print Line Numbers"
@@ -1339,7 +1339,7 @@ msgstr "Prezri"
 #: ../gtksourceview/language-specs/diff.lang.h:8
 #: ../gtksourceview/language-specs/po.lang.h:4
 msgid "Location"
-msgstr "Lokacija"
+msgstr "Mesto"
 
 #. Others 2
 #: ../gtksourceview/language-specs/diff.lang.h:11
@@ -2030,7 +2030,7 @@ msgstr "pkg-config"
 
 #: ../gtksourceview/language-specs/po.lang.h:2
 msgid "Fuzzy"
-msgstr "Megleno"
+msgstr "Ohlapno"
 
 #. FIXME make it some nice name and mark it translatable
 #: ../gtksourceview/language-specs/po.lang.h:7
@@ -2059,7 +2059,7 @@ msgstr "Format"
 
 #: ../gtksourceview/language-specs/python.lang.h:12
 msgid "Module Handler"
-msgstr "Upravljavec modulov"
+msgstr "Upravljalnik modulov"
 
 #: ../gtksourceview/language-specs/python.lang.h:14
 msgid "Python"
@@ -2153,7 +2153,7 @@ msgstr "Določilo atributa"
 
 #: ../gtksourceview/language-specs/ruby.lang.h:13
 msgid "Module handler"
-msgstr "Upravljalec modulov"
+msgstr "Upravljalnik modulov"
 
 #: ../gtksourceview/language-specs/ruby.lang.h:15
 msgid "Numeric literal"
