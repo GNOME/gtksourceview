@@ -93,6 +93,7 @@ enum
 	TEXT_VIEW_BUTTON_PRESS,
 	TEXT_BUFFER_DELETE_RANGE,
 	TEXT_BUFFER_INSERT_TEXT,
+	TEXT_BUFFER_MARK_SET,
 	LAST_EXTERNAL_SIGNAL
 };
 
@@ -1462,6 +1463,40 @@ buffer_insert_text_cb (GtkTextBuffer       *buffer,
 }
 
 static void
+buffer_mark_set_cb (GtkTextBuffer       *buffer,
+                    GtkTextIter         *iter,
+                    GtkTextMark         *mark,
+                    GtkSourceCompletion *completion)
+{
+	GtkTextIter it;
+	
+	if (mark != gtk_text_buffer_get_insert (buffer) ||
+	    !completion->priv->active_providers)
+	{
+		return;
+	}
+	
+	/* Check if the cursor is still on the completion line */
+	gtk_source_completion_context_get_iter (completion->priv->context,
+	                                        &it);
+	
+	if (gtk_text_iter_get_line (iter) != gtk_text_iter_get_line (&it))
+	{
+		gtk_source_completion_hide (completion);
+		return;
+	}
+	
+	/* Repopulate completion at the new iterator */
+	g_object_set (completion->priv->context,
+	              "iter", iter,
+                      NULL);
+
+	update_completion (completion,
+		           completion->priv->active_providers,
+		           completion->priv->context);
+}
+
+static void
 disconnect_view (GtkSourceCompletion *completion)
 {
 	GtkTextBuffer *buffer;
@@ -1482,6 +1517,9 @@ disconnect_view (GtkSourceCompletion *completion)
 
 	g_signal_handler_disconnect (buffer,
 	                             completion->priv->signals_ids[TEXT_BUFFER_INSERT_TEXT]);
+
+	g_signal_handler_disconnect (buffer,
+	                             completion->priv->signals_ids[TEXT_BUFFER_MARK_SET]);
 }
 
 static void
@@ -1519,6 +1557,12 @@ connect_view (GtkSourceCompletion *completion)
 		g_signal_connect_after (buffer,
 					"insert-text",
 					G_CALLBACK (buffer_insert_text_cb),
+					completion);
+
+	completion->priv->signals_ids[TEXT_BUFFER_MARK_SET] =
+		g_signal_connect_after (buffer,
+					"mark-set",
+					G_CALLBACK (buffer_mark_set_cb),
 					completion);
 }
 
