@@ -86,19 +86,18 @@ gtk_source_completion_context_set_property (GObject      *object,
 	{
 		case PROP_COMPLETION:
 			self->priv->completion = g_value_dup_object (value);
-		break;
+			break;
 		case PROP_ITER:
 			self->priv->iter = *((GtkTextIter *)g_value_get_pointer (value));
-		break;
+			break;
 		case PROP_INTERACTIVE:
 			self->priv->interactive_mode = g_value_get_boolean (value);
-		break;
+			break;
 		case PROP_DEFAULT:
 			self->priv->default_mode = g_value_get_boolean (value);
-		break;
+			break;
 		default:
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-		break;
 	}
 }
 
@@ -114,21 +113,20 @@ gtk_source_completion_context_get_property (GObject    *object,
 	{
 		case PROP_COMPLETION:
 			g_value_set_object (value, self->priv->completion);
-		break;
+			break;
 		case PROP_VIEW:
 			g_value_set_object (value, gtk_source_completion_get_view (self->priv->completion));
-		break;
+			break;
 		case PROP_ITER:
 			g_value_set_pointer (value, &(self->priv->iter));
-		break;
+			break;
 		case PROP_INTERACTIVE:
 			g_value_set_boolean (value, self->priv->interactive_mode);
-		break;
+			break;
 		case PROP_DEFAULT:
 			g_value_set_boolean (value, self->priv->default_mode);
 		default:
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-		break;
 	}
 }
 
@@ -158,7 +156,7 @@ gtk_source_completion_context_class_init (GtkSourceCompletionContextClass *klass
 		              g_cclosure_marshal_VOID__VOID, 
 		              G_TYPE_NONE,
 		              0);
-	
+
 	/**
 	 * GtkSourceCompletionContext:completion:
 	 *
@@ -209,7 +207,7 @@ gtk_source_completion_context_class_init (GtkSourceCompletionContextClass *klass
 	                                                       _("Whether the completion was invoked in interactive mode"),
 	                                                       FALSE,
 	                                                       G_PARAM_READWRITE));
-	
+
 	/**
 	 * GtkSourceCompletionContext:default:
 	 *
@@ -222,7 +220,7 @@ gtk_source_completion_context_class_init (GtkSourceCompletionContextClass *klass
 	                                                       _("Whether completion was invoked in default mode"),
 	                                                       FALSE,
 	                                                       G_PARAM_READWRITE));
-	
+
 	g_type_class_add_private (object_class, sizeof(GtkSourceCompletionContextPrivate));
 }
 
@@ -253,7 +251,7 @@ gtk_source_completion_context_add_proposals (GtkSourceCompletionContext  *contex
 {
 	g_return_if_fail (GTK_IS_SOURCE_COMPLETION_CONTEXT (context));
 	g_return_if_fail (GTK_IS_SOURCE_COMPLETION_PROVIDER (provider));
-	
+
 	_gtk_source_completion_add_proposals (context->priv->completion,
 	                                      context,
 	                                      provider,
@@ -274,6 +272,7 @@ GtkSourceView *
 gtk_source_completion_context_get_view (GtkSourceCompletionContext *context)
 {
 	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_CONTEXT (context), NULL);
+
 	return gtk_source_completion_get_view (context->priv->completion);
 }
 
@@ -291,6 +290,7 @@ gtk_source_completion_context_get_iter (GtkSourceCompletionContext *context,
                                         GtkTextIter                *iter)
 {
 	g_return_if_fail (GTK_IS_SOURCE_COMPLETION_CONTEXT (context));
+
 	*iter = context->priv->iter;
 }
 
@@ -308,8 +308,8 @@ gboolean
 gtk_source_completion_context_get_interactive (GtkSourceCompletionContext *context)
 {
 	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_CONTEXT (context), FALSE);
+
 	return context->priv->interactive_mode;
-	
 }
 
 /**
@@ -326,14 +326,14 @@ gboolean
 gtk_source_completion_context_get_default (GtkSourceCompletionContext *context)
 {
 	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_CONTEXT (context), FALSE);
+
 	return context->priv->default_mode;
-	
 }
 
 void
 _gtk_source_completion_context_cancel (GtkSourceCompletionContext *context)
 {
 	g_return_if_fail (GTK_IS_SOURCE_COMPLETION_CONTEXT (context));
-	
+
 	g_signal_emit (context, context_signals[CANCELLED], 0);
 }

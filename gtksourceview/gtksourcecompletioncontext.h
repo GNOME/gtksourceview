@@ -28,11 +28,11 @@
 
 G_BEGIN_DECLS
 
-#define GTK_TYPE_SOURCE_COMPLETION_CONTEXT				(gtk_source_completion_context_get_type ())
-#define GTK_SOURCE_COMPLETION_CONTEXT(obj)				(G_TYPE_CHECK_INSTANCE_CAST ((obj), GTK_TYPE_SOURCE_COMPLETION_CONTEXT, GtkSourceCompletionContext))
-#define GTK_SOURCE_COMPLETION_CONTEXT_CONST(obj)		(G_TYPE_CHECK_INSTANCE_CAST ((obj), GTK_TYPE_SOURCE_COMPLETION_CONTEXT, GtkSourceCompletionContext const))
-#define GTK_SOURCE_COMPLETION_CONTEXT_CLASS(klass)		(G_TYPE_CHECK_CLASS_CAST ((klass), GTK_TYPE_SOURCE_COMPLETION_CONTEXT, GtkSourceCompletionContextClass))
-#define GTK_IS_SOURCE_COMPLETION_CONTEXT(obj)			(G_TYPE_CHECK_INSTANCE_TYPE ((obj), GTK_TYPE_SOURCE_COMPLETION_CONTEXT))
+#define GTK_TYPE_SOURCE_COMPLETION_CONTEXT		(gtk_source_completion_context_get_type ())
+#define GTK_SOURCE_COMPLETION_CONTEXT(obj)		(G_TYPE_CHECK_INSTANCE_CAST ((obj), GTK_TYPE_SOURCE_COMPLETION_CONTEXT, GtkSourceCompletionContext))
+#define GTK_SOURCE_COMPLETION_CONTEXT_CONST(obj)	(G_TYPE_CHECK_INSTANCE_CAST ((obj), GTK_TYPE_SOURCE_COMPLETION_CONTEXT, GtkSourceCompletionContext const))
+#define GTK_SOURCE_COMPLETION_CONTEXT_CLASS(klass)	(G_TYPE_CHECK_CLASS_CAST ((klass), GTK_TYPE_SOURCE_COMPLETION_CONTEXT, GtkSourceCompletionContextClass))
+#define GTK_IS_SOURCE_COMPLETION_CONTEXT(obj)		(G_TYPE_CHECK_INSTANCE_TYPE ((obj), GTK_TYPE_SOURCE_COMPLETION_CONTEXT))
 #define GTK_IS_SOURCE_COMPLETION_CONTEXT_CLASS(klass)	(G_TYPE_CHECK_CLASS_TYPE ((klass), GTK_TYPE_SOURCE_COMPLETION_CONTEXT))
 #define GTK_SOURCE_COMPLETION_CONTEXT_GET_CLASS(obj)	(G_TYPE_INSTANCE_GET_CLASS ((obj), GTK_TYPE_SOURCE_COMPLETION_CONTEXT, GtkSourceCompletionContextClass))
 
@@ -47,14 +47,19 @@ struct _GtkSourceView;
 
 struct _GtkSourceCompletionContext {
 	GInitiallyUnowned parent;
-	
+
 	GtkSourceCompletionContextPrivate *priv;
 };
 
 struct _GtkSourceCompletionContextClass {
 	GInitiallyUnownedClass parent_class;
-	
+
 	void (*cancelled) 	(GtkSourceCompletionContext          *context);
+
+	/* Padding for future expansion */
+	void (*_gtk_source_reserved1) (void);
+	void (*_gtk_source_reserved2) (void);
+	void (*_gtk_source_reserved3) (void);
 };
 
 GType gtk_source_completion_context_get_type (void) G_GNUC_CONST;
