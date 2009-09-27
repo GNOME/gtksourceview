@@ -38,6 +38,7 @@
 #include <gtksourceview/gtksourceview.h>
 #include "gtksourcecompletion-private.h"
 #include "gtksourcecompletioncontext.h"
+#include "gtksourcecompletionui.h"
 #include <stdarg.h>
 
 #define WINDOW_WIDTH 350
@@ -2588,13 +2589,10 @@ initialize_ui (GtkSourceCompletion *completion)
 	
 	builder = gtk_builder_new ();
 	
-	if (!gtk_builder_add_from_file (builder, 
-	                                DATADIR "/gtksourceview-2.0/ui/completion.ui",
-	                                NULL))
-	{
-		g_error ("Could not load UI file for completion");
-		return;
-	}
+	gtk_builder_add_from_string (builder,
+	                             gtk_source_completion_ui,
+	                             -1,
+	                             NULL);
 	
 	completion->priv->window = 
 		GTK_WIDGET (gtk_builder_get_object (builder, 

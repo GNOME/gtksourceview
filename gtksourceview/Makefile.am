@@ -44,6 +44,7 @@ NOINST_H_FILES = \
 	gtksourcecompletionmodel.h	\
 	gtksourcecompletion-private.h	\
 	gtksourcecompletionutils.h	\
+	gtksourcecompletionui.h		\
 	gtksourcecontextengine.h	\
 	gtksourcegutter-private.h	\
 	gtksourcelanguage-private.h	\
@@ -99,9 +100,6 @@ libgtksourceview_2_0_includedir = $(includedir)/gtksourceview-2.0/gtksourceview
 libgtksourceview_2_0_include_HEADERS =		\
 	$(libgtksourceview_headers)		\
 	gtksourceview-typebuiltins.h
-
-uidir = $(datadir)/gtksourceview-2.0/ui
-ui_DATA = completion.ui
 
 gtksourceview-marshal.h: gtksourceview-marshal.list $(GLIB_GENMARSHAL)
 	$(AM_V_GEN) $(GLIB_GENMARSHAL) $< --header --prefix=_gtksourceview_marshal > $@
