@@ -221,6 +221,8 @@ activate_current_proposal (GtkSourceCompletion *completion)
 	GtkSourceCompletionProvider *provider = NULL;
 	GtkTextBuffer *buffer;
 	const gchar *text;
+	gboolean has_start;
+	GtkTextIter start;
 	
 	if (!get_selected_proposal (completion, &iter, &provider, &proposal))
 	{
@@ -231,6 +233,10 @@ activate_current_proposal (GtkSourceCompletion *completion)
 		gtk_source_completion_hide (completion);
 		return TRUE;
 	}
+
+	has_start = gtk_source_completion_provider_get_start_iter (provider,
+	                                                           proposal,
+	                                                           &start);
 	
 	/* First hide the completion because the activation might actually
 	   activate another one, which we don't want to hide */
@@ -254,9 +260,21 @@ activate_current_proposal (GtkSourceCompletion *completion)
 	if (!activated)
 	{
 		text = gtk_source_completion_proposal_get_text (proposal);
-		gtk_source_completion_utils_replace_current_word (GTK_SOURCE_BUFFER (buffer),
-				                                  text ? text : NULL,
-				                                  -1);
+
+		if (has_start)
+		{
+			/* Replace from 'start' to 'titer' */
+			gtk_text_buffer_begin_user_action (buffer);
+			gtk_text_buffer_delete (buffer, &start, &titer);
+			gtk_text_buffer_insert (buffer, &start, text, -1);
+			gtk_text_buffer_end_user_action (buffer);
+		}
+		else
+		{
+			gtk_source_completion_utils_replace_current_word (GTK_SOURCE_BUFFER (buffer),
+					                                  text,
+					                                  -1);
+		}
 	}
 	
 	g_signal_handler_unblock (buffer,
