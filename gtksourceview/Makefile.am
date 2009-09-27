@@ -37,41 +37,42 @@ libgtksourceview_headers =			\
 	gtksourcecompletioninfo.h		\
 	gtksourcecompletionitem.h		\
 	gtksourcecompletionproposal.h		\
-	gtksourcecompletionprovider.h 		\
+	gtksourcecompletionprovider.h		\
 	gtksourcecompletioncontext.h
 
 NOINST_H_FILES = \
-	gtksourcecompletionutils.h		\
-	gtksourcecompletion-private.h		\
-	gtksourcegutter-private.h
+	gtksourcecompletionmodel.h	\
+	gtksourcecompletion-private.h	\
+	gtksourcecompletionutils.h	\
+	gtksourcecontextengine.h	\
+	gtksourcegutter-private.h	\
+	gtksourcelanguage-private.h	\
+	gtksourcestyle-private.h	\
+	gtksourceundomanager.h		\
+	gtksourceview-i18n.h		\
+	gtksourceview-utils.h		\
+	gtktextregion.h
 
 libgtksourceview_2_0_la_SOURCES = 	\
 	gtksourcebuffer.c 		\
 	gtksourceiter.c			\
 	gtksourceview.c 		\
-	gtksourceundomanager.h 		\
 	gtksourceundomanager.c 		\
-	gtktextregion.h 		\
 	gtktextregion.c 		\
 	gtksourcelanguage.c 		\
-	gtksourcelanguage-private.h 	\
 	gtksourcelanguagemanager.c 	\
 	gtksourcelanguage-parser-1.c	\
 	gtksourcelanguage-parser-2.c	\
-	gtksourceview-i18n.h 		\
 	gtksourceview-i18n.c		\
-	gtksourceview-utils.h 		\
 	gtksourceview-utils.c 		\
-	gtksourcestyle-private.h	\
 	gtksourcestyle.c		\
 	gtksourcestyleschememanager.c	\
 	gtksourcestylescheme.c		\
 	gtksourceengine.h		\
 	gtksourceengine.c		\
-	gtksourcecontextengine.h	\
 	gtksourcecontextengine.c	\
 	gtksourcemark.c			\
-	gtksourceprintcompositor.c      \
+	gtksourceprintcompositor.c	\
 	gtksourcegutter.c		\
 	gtksourcecompletion.c		\
 	gtksourcecompletioninfo.c	\
@@ -79,7 +80,6 @@ libgtksourceview_2_0_la_SOURCES = 	\
 	gtksourcecompletionproposal.c	\
 	gtksourcecompletionprovider.c	\
 	gtksourcecompletionmodel.c	\
-	gtksourcecompletionmodel.h	\
 	gtksourcecompletionutils.c	\
 	gtksourcecompletioncontext.c 	\
 	$(libgtksourceview_headers)	\
