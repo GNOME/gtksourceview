@@ -120,13 +120,6 @@ population_finished (GscProviderDevhelp *devhelp)
 		devhelp->priv->idle_populate_id = 0;
 	}
 	
-	if (devhelp->priv->completion_mark)
-	{
-		gtk_text_buffer_delete_mark (gtk_text_mark_get_buffer (devhelp->priv->completion_mark),
-		                             devhelp->priv->completion_mark);
-		devhelp->priv->completion_mark = NULL;
-	}
-	
 	g_free (devhelp->priv->word);
 	devhelp->priv->word = NULL;
 	
@@ -179,10 +172,20 @@ get_word_at_iter (GscProviderDevhelp *devhelp,
 		return NULL;
 	}
 	
-	devhelp->priv->completion_mark = gtk_text_buffer_create_mark (gtk_text_iter_get_buffer (iter),
-	                                                              NULL,
-	                                                              &start,
-	                                                              TRUE);
+	if (devhelp->priv->completion_mark)
+	{
+		gtk_text_buffer_move_mark (gtk_text_iter_get_buffer (iter),
+		                           devhelp->priv->completion_mark,
+		                           &start);
+	}
+	else
+	{
+		devhelp->priv->completion_mark = gtk_text_buffer_create_mark (gtk_text_iter_get_buffer (iter),
+		                                                              NULL,
+		                                                              &start,
+		                                                              TRUE);
+	}
+	
 	return gtk_text_iter_get_text (&start, iter);
 }
 
@@ -531,6 +534,12 @@ gsc_provider_devhelp_finalize (GObject *object)
 	if (provider->priv->icon)
 	{
 		g_object_unref (provider->priv->icon);
+	}
+		
+	if (provider->priv->completion_mark)
+	{
+		gtk_text_buffer_delete_mark (gtk_text_mark_get_buffer (provider->priv->completion_mark),
+		                             provider->priv->completion_mark);
 	}
 	
 	G_OBJECT_CLASS (gsc_provider_devhelp_parent_class)->finalize (object);
