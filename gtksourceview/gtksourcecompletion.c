@@ -713,7 +713,7 @@ select_provider (GtkSourceCompletion *completion,
 	
 	current = orig;
 	
-	for (i = 0; i < num; ++i)
+	for (i = 0; i < num_advance; ++i)
 	{
 		do
 		{
