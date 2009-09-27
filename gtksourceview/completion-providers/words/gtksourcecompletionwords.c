@@ -64,6 +64,8 @@ struct _GtkSourceCompletionWordsPrivate
 	
 	GtkSourceCompletionWordsLibrary *library;
 	GList *buffers;
+	
+	GtkTextMark *completion_mark;
 };
 
 typedef struct
@@ -250,8 +252,10 @@ gtk_source_completion_words_populate (GtkSourceCompletionProvider *provider,
 	GtkSourceCompletionWords *words = GTK_SOURCE_COMPLETION_WORDS (provider);
 	GtkTextIter iter;
 	gchar *word;
+	GtkTextBuffer *buffer;
 
 	gtk_source_completion_context_get_iter (context, &iter);
+	buffer = gtk_text_iter_get_buffer (&iter);
 
 	g_free (words->priv->word);
 	words->priv->word = NULL;
@@ -282,6 +286,21 @@ gtk_source_completion_words_populate (GtkSourceCompletionProvider *provider,
 
 	words->priv->word = word;
 	words->priv->word_len = strlen (word);
+	
+	if (words->priv->completion_mark == NULL)
+	{
+		words->priv->completion_mark =
+			gtk_text_buffer_create_mark (buffer,
+			                             NULL,
+			                             &iter,
+			                             TRUE);
+	}
+	else
+	{
+		gtk_text_buffer_move_mark (buffer,
+		                           words->priv->completion_mark,
+		                           &iter);
+	}
 	
 	/* Do first right now */
 	if (add_in_idle (words))
@@ -327,6 +346,13 @@ gtk_source_completion_words_dispose (GObject *object)
 	{
 		g_object_unref (provider->priv->library);
 		provider->priv->library = NULL;
+	}
+	
+	if (provider->priv->completion_mark != NULL)
+	{
+		gtk_text_buffer_delete_mark (gtk_text_mark_get_buffer (provider->priv->completion_mark),
+		                             provider->priv->completion_mark);
+		provider->priv->completion_mark = NULL;
 	}
 	
 	G_OBJECT_CLASS (gtk_source_completion_words_parent_class)->dispose (object);
@@ -497,10 +523,18 @@ gtk_source_completion_words_get_start_iter (GtkSourceCompletionProvider *provide
                                             GtkSourceCompletionProposal *proposal,
                                             GtkTextIter                 *iter)
 {
-	//GtkSourceCompletionWords *words = GTK_SOURCE_COMPLETION_WORDS (provider);
-
-	/* TODO: implement */
-	return FALSE;
+	GtkSourceCompletionWords *words = GTK_SOURCE_COMPLETION_WORDS (provider);
+	
+	if (words->priv->completion_mark == NULL ||
+	    gtk_text_mark_get_deleted (words->priv->completion_mark))
+	{
+		return FALSE;
+	}
+	
+	gtk_text_buffer_get_iter_at_mark (gtk_text_mark_get_buffer (words->priv->completion_mark),
+	                                  iter,
+	                                  words->priv->completion_mark);
+	return TRUE;
 }
 
 static void
