@@ -41,6 +41,13 @@ a text view which syntax highlighting, undo/redo and text marks. Use a
 
 @sourceview: the object which received the signal.
 
+<!-- ##### SIGNAL GtkSourceView::show-completion ##### -->
+<para>
+
+</para>
+
+@sourceview: the object which received the signal.
+
 <!-- ##### SIGNAL GtkSourceView::undo ##### -->
 <para>
 
@@ -49,6 +56,11 @@ a text view which syntax highlighting, undo/redo and text marks. Use a
 @sourceview: the object which received the signal.
 
 <!-- ##### ARG GtkSourceView:auto-indent ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GtkSourceView:completion ##### -->
 <para>
 
 </para>
@@ -117,9 +129,9 @@ a text view which syntax highlighting, undo/redo and text marks. Use a
 @undo: 
 @redo: 
 @line_mark_activated: 
+@show_completion: 
 @_gtk_source_reserved1: 
 @_gtk_source_reserved2: 
-@_gtk_source_reserved3: 
 
 <!-- ##### USER_FUNCTION GtkSourceViewMarkTooltipFunc ##### -->
 <para>
@@ -500,6 +512,15 @@ Function type for setting up a tooltip for #GtkSourceMark.
 
 
 <!-- ##### FUNCTION gtk_source_view_get_draw_spaces ##### -->
+<para>
+
+</para>
+
+@view: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gtk_source_view_get_completion ##### -->
 <para>
 
 </para>

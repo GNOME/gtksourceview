@@ -9,10 +9,10 @@ INCLUDES = 				\
 	$(TESTS_CFLAGS)
 
 # testing executables
-EXTRA_PROGRAMS = test-widget testregion
+EXTRA_PROGRAMS = test-widget testregion test-completion
 # testregion need gtk_text_region_ api which is normally private
 # modify gtksourceview/Makefile.am to export gtk_text_* symbols
-noinst_PROGRAMS = test-widget
+noinst_PROGRAMS = test-widget test-completion
 
 test_widget_SOURCES = test-widget.c
 
@@ -20,6 +20,21 @@ test_widget_LDADD = 			\
 	$(top_builddir)/gtksourceview/libgtksourceview-2.0.la \
 	$(DEP_LIBS)                     \
 	$(TESTS_LIBS)
+
+test_completion_SOURCES =		\
+        completion-simple.c
+
+test_completion_LDADD = 			\
+	$(top_builddir)/gtksourceview/libgtksourceview-2.0.la \
+	$(DEP_LIBS)                     \
+	$(TESTS_LIBS)
+
+if USE_DEVHELP
+test_completion_SOURCES += gsc-provider-devhelp.h gsc-provider-devhelp.c
+test_completion_LDADD += $(DEVHELP_LIBS)
+INCLUDES += $(DEVHELP_CFLAGS)
+endif
+
 
 testregion_SOURCES = testregion.c
 

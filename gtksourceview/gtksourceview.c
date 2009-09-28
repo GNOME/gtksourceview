@@ -39,6 +39,8 @@
 #include "gtksourceview-typebuiltins.h"
 #include "gtksourcemark.h"
 #include "gtksourceview.h"
+#include "gtksourcecompletion-private.h"
+#include "gtksourcecompletionutils.h"
 #include "gtksourcegutter-private.h"
 
 /*
@@ -79,6 +81,7 @@
 enum {
 	UNDO,
 	REDO,
+	SHOW_COMPLETION,
 	LINE_MARK_ACTIVATED,
 	LAST_SIGNAL
 };
@@ -86,6 +89,7 @@ enum {
 /* Properties */
 enum {
 	PROP_0,
+	PROP_COMPLETION,
 	PROP_SHOW_LINE_NUMBERS,
 	PROP_SHOW_LINE_MARKS,
 	PROP_TAB_WIDTH,
@@ -137,6 +141,9 @@ struct _GtkSourceViewPrivate
 	
 	GdkColor         current_line_color;
 	guint            current_line_color_set : 1;
+	
+	GtkSourceCompletion	*completion;
+	gboolean         destroy_has_run;
 };
 
 
@@ -190,6 +197,7 @@ static void 	gtk_source_view_finalize 		(GObject            *object);
 
 static void	gtk_source_view_undo 			(GtkSourceView      *view);
 static void	gtk_source_view_redo 			(GtkSourceView      *view);
+static void	gtk_source_view_show_completion_real	(GtkSourceView      *view);
 
 static void 	set_source_buffer 			(GtkSourceView      *view,
 			       				 GtkTextBuffer      *buffer);
@@ -241,6 +249,7 @@ static void	gtk_source_view_get_property		(GObject           *object,
 static void     gtk_source_view_style_set               (GtkWidget         *widget,
 							 GtkStyle          *previous_style);
 static void	gtk_source_view_realize			(GtkWidget         *widget);
+static void	gtk_source_view_destroy			(GtkObject         *object);
 static void	gtk_source_view_update_style_scheme	(GtkSourceView     *view);
 
 static MarkCategory *
@@ -262,10 +271,12 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	GtkTextViewClass *textview_class;
 	GtkBindingSet    *binding_set;
 	GtkWidgetClass   *widget_class;
+	GtkObjectClass   *gtk_object_class;
 
-	object_class 	= G_OBJECT_CLASS (klass);
-	textview_class 	= GTK_TEXT_VIEW_CLASS (klass);
-	widget_class 	= GTK_WIDGET_CLASS (klass);
+	object_class 	 = G_OBJECT_CLASS (klass);
+	textview_class 	 = GTK_TEXT_VIEW_CLASS (klass);
+	widget_class 	 = GTK_WIDGET_CLASS (klass);
+	gtk_object_class = GTK_OBJECT_CLASS (klass);
 
 	object_class->constructor = gtk_source_view_constructor;
 	object_class->finalize = gtk_source_view_finalize;
@@ -276,12 +287,27 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	widget_class->expose_event = gtk_source_view_expose;
 	widget_class->style_set = gtk_source_view_style_set;
 	widget_class->realize = gtk_source_view_realize;
+	gtk_object_class->destroy = gtk_source_view_destroy;
 
 	textview_class->populate_popup = gtk_source_view_populate_popup;
 	textview_class->move_cursor = gtk_source_view_move_cursor;
 
 	klass->undo = gtk_source_view_undo;
 	klass->redo = gtk_source_view_redo;
+	klass->show_completion = gtk_source_view_show_completion_real;
+
+	/**
+	 * GtkSourceView:show-line-numbers:
+	 *
+	 * Whether to display line numbers
+	 */
+	g_object_class_install_property (object_class,
+					 PROP_COMPLETION,
+					 g_param_spec_object ("completion",
+							      _("Completion"),
+							      _("The completion object associated with the view"),
+							      GTK_TYPE_SOURCE_COMPLETION,
+							      G_PARAM_READABLE));
 
 	/**
 	 * GtkSourceView:show-line-numbers:
@@ -452,6 +478,29 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 			      _gtksourceview_marshal_VOID__VOID,
 			      G_TYPE_NONE,
 			      0);
+			    
+	/**
+	 * GtkSourceView::show-completion:
+	 * @view: The #GtkSourceView who emits the signal
+	 *
+	 * The ::show-completion signal is a keybinding signal which gets 
+	 * emitted when the user initiates a completion in default mode.
+	 *
+	 * Applications should not connect to it, but may emit it with
+	 * #g_signal_emit_by_name if they need to control the default mode
+	 * completion activation.
+	 *
+	 */
+	signals [SHOW_COMPLETION] =
+		g_signal_new ("show-completion",
+			      G_TYPE_FROM_CLASS (klass),
+			      G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
+			      G_STRUCT_OFFSET (GtkSourceViewClass, show_completion),
+			      NULL,
+			      NULL,
+			      _gtksourceview_marshal_VOID__VOID,
+			      G_TYPE_NONE,
+			      0);
 
 	/**
 	 * GtkSourceView::line-mark-activated:
@@ -490,6 +539,10 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 				      GDK_F14,
 				      0,
 				      "undo", 0);
+	gtk_binding_entry_add_signal (binding_set,
+				      GDK_space,
+				      GDK_CONTROL_MASK,
+				      "show-completion", 0);
 
 	gtk_binding_entry_add_signal (binding_set,
 				      GDK_Up,
@@ -673,6 +726,10 @@ gtk_source_view_get_property (GObject    *object,
 
 	switch (prop_id)
 	{
+		case PROP_COMPLETION:
+			g_value_set_object (value,
+			                    gtk_source_view_get_completion (view));
+			break;
 		case PROP_SHOW_LINE_NUMBERS:
 			g_value_set_boolean (value,
 					     gtk_source_view_get_show_line_numbers (view));
@@ -1700,6 +1757,52 @@ gtk_source_view_redo (GtkSourceView *view)
 		gtk_text_view_scroll_mark_onscreen (GTK_TEXT_VIEW (view),
 						    gtk_text_buffer_get_insert (buffer));
 	}
+}
+
+static GList *
+get_default_providers (GtkSourceCompletion *completion)
+{
+	GList *item;
+	GList *ret = NULL;
+	
+	item = gtk_source_completion_get_providers (completion);
+	
+	while (item)
+	{
+		GtkSourceCompletionProvider *provider;
+		
+		provider = GTK_SOURCE_COMPLETION_PROVIDER (item->data);
+		
+		if (gtk_source_completion_provider_get_default (provider))
+		{
+			ret = g_list_prepend (ret, provider);
+		}
+		
+		item = g_list_next (item);
+	}
+	
+	return g_list_reverse (ret);
+}
+
+static void
+gtk_source_view_show_completion_real (GtkSourceView *view)
+{
+	GtkSourceCompletion *completion;
+	GtkSourceCompletionContext *context;
+	GList *providers;
+	
+	completion = gtk_source_view_get_completion (view);
+	context = gtk_source_completion_create_context (completion, NULL);
+	
+	g_object_set (context, "default", TRUE, NULL);
+	
+	providers = get_default_providers (completion);
+
+	gtk_source_completion_show (completion, 
+	                            providers, 
+	                            context);
+
+	g_list_free (providers);
 }
 
 static void
@@ -4466,6 +4569,25 @@ gtk_source_view_realize (GtkWidget *widget)
 }
 
 static void
+gtk_source_view_destroy (GtkObject *object)
+{
+	GtkSourceView *view = GTK_SOURCE_VIEW (object);
+
+	if (!view->priv->destroy_has_run)
+	{
+		view->priv->destroy_has_run = TRUE;
+
+		if (view->priv->completion != NULL)
+		{
+			g_object_unref (view->priv->completion);
+			view->priv->completion = NULL;
+		}
+	}
+
+	GTK_OBJECT_CLASS (gtk_source_view_parent_class)->destroy (object);
+}
+
+static void
 gtk_source_view_update_style_scheme (GtkSourceView *view)
 {
 	GtkSourceStyleScheme *new_scheme;
@@ -4497,6 +4619,28 @@ gtk_source_view_update_style_scheme (GtkSourceView *view)
 		else
 			view->priv->style_scheme_applied = FALSE;
 	}
+}
+							 
+/**
+ * gtk_source_view_get_completion:
+ * @view: a #GtkSourceView
+ *
+ * Gets the #GtkSourceCompletion associated with @view.
+ *
+ * Returns: the #GtkSourceCompletion associated with @view.
+ */
+GtkSourceCompletion *
+gtk_source_view_get_completion (GtkSourceView *view)
+{
+	g_return_val_if_fail (GTK_IS_SOURCE_VIEW (view), NULL);
+	
+	if (view->priv->completion == NULL)
+	{
+		view->priv->completion = gtk_source_completion_new (view);
+		g_object_ref_sink (view->priv->completion);
+	}
+	
+	return view->priv->completion;
 }
 
 /**
@@ -4543,4 +4687,3 @@ gtk_source_view_get_gutter (GtkSourceView     *view,
 		return view->priv->right_gutter;
 	}
 }
-

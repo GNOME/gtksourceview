@@ -28,6 +28,7 @@
 #include <gtk/gtktextview.h>
 
 #include <gtksourceview/gtksourcebuffer.h>
+#include <gtksourceview/gtksourcecompletion.h>
 #include <gtksourceview/gtksourcegutter.h>
 
 G_BEGIN_DECLS
@@ -66,11 +67,11 @@ struct _GtkSourceViewClass
 	void (*line_mark_activated) (GtkSourceView *view, 
 	                             GtkTextIter   *iter,
 	                             GdkEvent      *event);
+	void (*show_completion) (GtkSourceView *view);
 
 	/* Padding for future expansion */
 	void (*_gtk_source_reserved1) (void);
 	void (*_gtk_source_reserved2) (void);
-	void (*_gtk_source_reserved3) (void);
 };
 
 /**
@@ -240,6 +241,9 @@ void		 gtk_source_view_set_draw_spaces	(GtkSourceView   *view,
 							 GtkSourceDrawSpacesFlags flags);
 GtkSourceDrawSpacesFlags
 		gtk_source_view_get_draw_spaces		(GtkSourceView   *view);
+
+GtkSourceCompletion *
+		gtk_source_view_get_completion		(GtkSourceView   *view);
 
 GtkSourceGutter *gtk_source_view_get_gutter		(GtkSourceView     *view,
                                                          GtkTextWindowType  window_type);

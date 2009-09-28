@@ -1,5 +1,9 @@
 SUBDIRS = language-specs
 
+if ENABLE_PROVIDERS
+SUBDIRS += completion-providers
+endif
+
 INCLUDES = 				\
 	-DDATADIR=\""$(datadir)"\" 	\
 	-DG_LOG_DOMAIN=\"GtkSourceView\"\
@@ -28,44 +32,68 @@ libgtksourceview_headers =			\
 	gtksourcestylescheme.h			\
 	gtksourcemark.h				\
 	gtksourceprintcompositor.h		\
-	gtksourcegutter.h
+	gtksourcegutter.h			\
+	gtksourcecompletion.h			\
+	gtksourcecompletioninfo.h		\
+	gtksourcecompletionitem.h		\
+	gtksourcecompletionproposal.h		\
+	gtksourcecompletionprovider.h		\
+	gtksourcecompletioncontext.h
+
+NOINST_H_FILES = \
+	gtksourcecompletionmodel.h	\
+	gtksourcecompletion-private.h	\
+	gtksourcecompletionutils.h	\
+	gtksourcecompletionui.h		\
+	gtksourcecontextengine.h	\
+	gtksourcegutter-private.h	\
+	gtksourcelanguage-private.h	\
+	gtksourcestyle-private.h	\
+	gtksourceundomanager.h		\
+	gtksourceview-i18n.h		\
+	gtksourceview-utils.h		\
+	gtktextregion.h
 
 libgtksourceview_2_0_la_SOURCES = 	\
 	gtksourcebuffer.c 		\
 	gtksourceiter.c			\
 	gtksourceview.c 		\
-	gtksourceundomanager.h 		\
 	gtksourceundomanager.c 		\
-	gtktextregion.h 		\
 	gtktextregion.c 		\
 	gtksourcelanguage.c 		\
-	gtksourcelanguage-private.h 	\
 	gtksourcelanguagemanager.c 	\
 	gtksourcelanguage-parser-1.c	\
 	gtksourcelanguage-parser-2.c	\
-	gtksourceview-i18n.h 		\
 	gtksourceview-i18n.c		\
-	gtksourceview-utils.h 		\
 	gtksourceview-utils.c 		\
-	gtksourcestyle-private.h	\
 	gtksourcestyle.c		\
 	gtksourcestyleschememanager.c	\
 	gtksourcestylescheme.c		\
 	gtksourceengine.h		\
 	gtksourceengine.c		\
-	gtksourcecontextengine.h	\
 	gtksourcecontextengine.c	\
 	gtksourcemark.c			\
-	gtksourceprintcompositor.c      \
-	gtksourcegutter-private.h	\
+	gtksourceprintcompositor.c	\
 	gtksourcegutter.c		\
-	$(libgtksourceview_headers)
+	gtksourcecompletion.c		\
+	gtksourcecompletioninfo.c	\
+	gtksourcecompletionitem.c	\
+	gtksourcecompletionproposal.c	\
+	gtksourcecompletionprovider.c	\
+	gtksourcecompletionmodel.c	\
+	gtksourcecompletionutils.c	\
+	gtksourcecompletioncontext.c 	\
+	$(libgtksourceview_headers)	\
+	$(NOINST_H_FILES)
 
 # do not distribute generated files
 nodist_libgtksourceview_2_0_la_SOURCES =\
 	$(BUILT_SOURCES)
 
-libgtksourceview_2_0_la_LIBADD = $(DEP_LIBS)
+completion_providers = 							\
+	completion-providers/words/libgtksourcecompletionwords.la
+
+libgtksourceview_2_0_la_LIBADD = $(DEP_LIBS) $(completion_providers)
 libgtksourceview_2_0_la_LDFLAGS = -no-undefined -export-symbols-regex "^gtk_source_.*"
 libgtksourceview_2_0_includedir = $(includedir)/gtksourceview-2.0/gtksourceview
 
@@ -118,7 +146,8 @@ stamp-gtksourceview-typebuiltins.h: Makefile.am $(libgtksourceview_headers)
 	&& rm -f xgen-gth && echo stamp > $(@F)
 
 EXTRA_DIST = \
-	gtksourceview-marshal.list
+	gtksourceview-marshal.list \
+	$(ui_DATA)
 
 CLEANFILES = $(BUILT_SOURCES) stamp-gtksourceview-typebuiltins.h stamp-gtksourceview-typebuiltins.c
 

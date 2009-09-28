@@ -7,6 +7,13 @@
 #include <gtksourceview/gtksourcemark.h>
 #include <gtksourceview/gtksourcegutter.h>
 
+#include <gtksourceview/gtksourcecompletion.h>
+#include <gtksourceview/gtksourcecompletionprovider.h>
+#include <gtksourceview/gtksourcecompletionproposal.h>
+#include <gtksourceview/gtksourcecompletionitem.h>
+#include <gtksourceview/gtksourcecompletioninfo.h>
+#include <gtksourceview/gtksourcecompletioncontext.h>
+
 gtk_source_view_get_type
 gtk_source_buffer_get_type
 gtk_source_language_get_type
@@ -16,4 +23,10 @@ gtk_source_style_get_type
 gtk_source_style_scheme_get_type
 gtk_source_style_scheme_manager_get_type
 gtk_source_mark_get_type
+gtk_source_completion_get_type
+gtk_source_completion_context_get_type
+gtk_source_completion_provider_get_type
+gtk_source_completion_proposal_get_type
+gtk_source_completion_item_get_type
+gtk_source_completion_info_get_type
 gtk_source_gutter_get_type
