@@ -235,6 +235,9 @@ activate_current_proposal (GtkSourceCompletion *completion)
 		return TRUE;
 	}
 
+	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (completion->priv->view));
+	gtk_text_buffer_get_start_iter (buffer, &start);
+	
 	has_start = gtk_source_completion_provider_get_start_iter (provider,
 	                                                           proposal,
 	                                                           &start);
@@ -248,7 +251,7 @@ activate_current_proposal (GtkSourceCompletion *completion)
 	gtk_source_completion_hide (completion);
 	
 	/* Get insert iter */
-	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (completion->priv->view));
+	
 	get_iter_at_insert (completion, &titer);
 
 	g_signal_handler_block (buffer,
@@ -614,15 +617,17 @@ update_selection_label (GtkSourceCompletion *completion)
 	
 	if (num > 1)
 	{
-		tmp = g_strdup_printf ("%s (%d/%d)", name, pos + 1, num + 1);
+		tmp = g_strdup_printf ("<small>%s (%d/%d)</small>", name, pos + 1, num + 1);
 		gtk_label_set_markup (GTK_LABEL (completion->priv->selection_label),
 		                      tmp);
 		g_free (tmp);
 	}
 	else
 	{
+		tmp = g_strdup_printf ("<small>%s</small>", name);
 		gtk_label_set_markup (GTK_LABEL (completion->priv->selection_label),
-		                      name);		                    
+		                      tmp);
+		g_free (tmp);
 	}
 	
 	g_free (name);
@@ -967,6 +972,9 @@ update_window_position (GtkSourceCompletion *completion)
 	if (get_selected_proposal (completion, NULL, &provider, &proposal))
 	{
 		GtkTextIter iter;
+		GtkTextBuffer *buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (completion->priv->view));
+		
+		gtk_text_buffer_get_start_iter (buffer, &iter);
 		
 		if (gtk_source_completion_provider_get_start_iter (provider, 
 		                                                   proposal, 
@@ -1254,7 +1262,7 @@ gtk_source_completion_move_page (GtkSourceCompletion *completion,
 		{
 			num *= completion->priv->provider_page_size;
 		}
-		
+
 		if (num > 0)
 		{
 			select_next_provider (completion, num);
