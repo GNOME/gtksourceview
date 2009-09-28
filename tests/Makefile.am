@@ -29,12 +29,6 @@ test_completion_LDADD = 			\
 	$(DEP_LIBS)                     \
 	$(TESTS_LIBS)
 
-if USE_DEVHELP
-test_completion_SOURCES += gsc-provider-devhelp.h gsc-provider-devhelp.c
-test_completion_LDADD += $(DEVHELP_LIBS)
-INCLUDES += $(DEVHELP_CFLAGS)
-endif
-
 
 testregion_SOURCES = testregion.c
 

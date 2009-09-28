@@ -68,25 +68,6 @@ PKG_CHECK_MODULES(DEP, [
 	gconf-2.0
 ])
 
-have_devhelp=no
-AC_ARG_WITH(devhelp,
-	    AC_HELP_STRING([--with-devhelp],
-	    		   [Build with devhelp test case]),,
-	    with_devhelp=auto)
-if test "x$with_devhelp" != "xno"
-then
-	PKG_CHECK_MODULES(DEVHELP, [
-		libdevhelp-1.0 >= 0.22
-		webkit-1.0
-	], have_devhelp=yes, have_devhelp=no)
-	
-	if test "x$have_devhelp" = "xyes"
-	then
-		AC_DEFINE([HAVE_DEVHELP], 1, [Have devhelp])
-	fi
-fi
-
-AM_CONDITIONAL(USE_DEVHELP, test "x$have_devhelp" = "xyes")
 
 dnl Check to enable completion providers
 AC_ARG_ENABLE(providers,

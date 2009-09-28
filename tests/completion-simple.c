@@ -31,11 +31,6 @@
 #include <gtksourceview/gtksourcelanguagemanager.h>
 #include <gtksourceview/completion-providers/words/gtksourcecompletionwords.h>
 
-#ifdef HAVE_DEVHELP
-#include <devhelp/dh-base.h>
-#include "gsc-provider-devhelp.h"
-#endif
-
 static GtkWidget *view;
 static GtkSourceCompletion *comp;
 
@@ -164,16 +159,6 @@ create_completion(void)
 	gtk_source_completion_add_provider (comp, 
 	                                    GTK_SOURCE_COMPLETION_PROVIDER (prov_words), 
 	                                    NULL);
-
-#ifdef HAVE_DEVHELP
-	GscProviderDevhelp *prov_devhelp;
-
-	prov_devhelp = gsc_provider_devhelp_new ();
-	
-	gtk_source_completion_add_provider (comp, 
-	                                    GTK_SOURCE_COMPLETION_PROVIDER (prov_devhelp), 
-	                                    NULL);
-#endif
 }
 
 int
