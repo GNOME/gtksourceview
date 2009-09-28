@@ -66,6 +66,8 @@ void		 gtk_source_completion_words_buffer_set_scan_batch_size (GtkSourceCompleti
 void		 gtk_source_completion_words_buffer_set_minimum_word_size (GtkSourceCompletionWordsBuffer *buffer,
                                                                            guint                           size);
 
+GtkTextMark     *gtk_source_completion_words_buffer_get_mark	(GtkSourceCompletionWordsBuffer *buffer);
+
 G_END_DECLS
 
 #endif /* __GTK_SOURCE_COMPLETION_WORDS_BUFFER_H__ */

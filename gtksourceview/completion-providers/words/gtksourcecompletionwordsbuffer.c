@@ -59,6 +59,8 @@ struct _GtkSourceCompletionWordsBufferPrivate
 	
 	guint lock_handler_id;
 	guint unlock_handler_id;
+	
+	GtkTextMark *mark;
 };
 
 G_DEFINE_TYPE (GtkSourceCompletionWordsBuffer, gtk_source_completion_words_buffer, G_TYPE_OBJECT)
@@ -102,6 +104,13 @@ gtk_source_completion_words_buffer_dispose (GObject *object)
 {
 	GtkSourceCompletionWordsBuffer *buffer =
 			GTK_SOURCE_COMPLETION_WORDS_BUFFER (object);
+
+	if (buffer->priv->mark)
+	{
+		gtk_text_buffer_delete_mark (gtk_text_mark_get_buffer (buffer->priv->mark),
+		                             buffer->priv->mark);
+		buffer->priv->mark = NULL;
+	}
 
 	if (buffer->priv->buffer)
 	{
@@ -625,6 +634,7 @@ gtk_source_completion_words_buffer_new (GtkSourceCompletionWordsLibrary *library
                                         GtkTextBuffer                   *buffer)
 {
 	GtkSourceCompletionWordsBuffer *ret;
+	GtkTextIter iter;
 	
 	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_WORDS_LIBRARY (library), NULL);
 	g_return_val_if_fail (GTK_IS_TEXT_BUFFER (buffer), NULL);
@@ -645,6 +655,9 @@ gtk_source_completion_words_buffer_new (GtkSourceCompletionWordsLibrary *library
 			                  "unlock",
 			                  G_CALLBACK (on_library_unlock),
 			                  ret);
+	
+	gtk_text_buffer_get_start_iter (buffer, &iter);
+	ret->priv->mark = gtk_text_buffer_create_mark (buffer, NULL, &iter, TRUE);
 	
 	connect_buffer (ret);
 
@@ -679,3 +692,10 @@ gtk_source_completion_words_buffer_set_minimum_word_size (GtkSourceCompletionWor
 	buffer->priv->minimum_word_size = size;
 }
 
+GtkTextMark *
+gtk_source_completion_words_buffer_get_mark (GtkSourceCompletionWordsBuffer *buffer)
+{
+	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_WORDS_BUFFER (buffer), NULL);
+	
+	return buffer->priv->mark;
+}
