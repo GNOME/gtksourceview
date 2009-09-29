@@ -1,4 +1,9 @@
+gtksourceview/completion-providers/words/gtksourcecompletionwords.c
 gtksourceview/gtksourcebuffer.c
+gtksourceview/gtksourcecompletion.c
+gtksourceview/gtksourcecompletioncontext.c
+gtksourceview/gtksourcecompletioninfo.c
+gtksourceview/gtksourcecompletionitem.c
 gtksourceview/gtksourcecontextengine.c
 gtksourceview/gtksourcegutter.c
 gtksourceview/gtksourcelanguage.c
@@ -24,6 +29,7 @@ gtksourceview/language-specs/cobalt.xml
 gtksourceview/language-specs/cpp.lang
 gtksourceview/language-specs/csharp.lang
 gtksourceview/language-specs/css.lang
+gtksourceview/language-specs/cuda.lang
 gtksourceview/language-specs/def.lang
 gtksourceview/language-specs/desktop.lang
 gtksourceview/language-specs/diff.lang
@@ -38,6 +44,7 @@ gtksourceview/language-specs/erlang.lang
 gtksourceview/language-specs/forth.lang
 gtksourceview/language-specs/fortran.lang
 gtksourceview/language-specs/gap.lang
+gtksourceview/language-specs/glsl.lang
 gtksourceview/language-specs/gtk-doc.lang
 gtksourceview/language-specs/gtkrc.lang
 gtksourceview/language-specs/haddock.lang
