@@ -53,7 +53,7 @@ struct _GtkSourceCompletionWordsClass {
 GType gtk_source_completion_words_get_type (void) G_GNUC_CONST;
 
 GtkSourceCompletionWords *
-		gtk_source_completion_words_new 	(gchar const              *name,
+		gtk_source_completion_words_new 	(const gchar              *name,
 		                                         GdkPixbuf                *icon);
 		
 void 		gtk_source_completion_words_register 	(GtkSourceCompletionWords *words,

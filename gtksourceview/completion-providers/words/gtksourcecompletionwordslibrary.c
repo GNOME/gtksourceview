@@ -106,9 +106,9 @@ compare_two_items (GtkSourceCompletionWordsProposal *a,
 static gint
 compare_items (GtkSourceCompletionWordsProposal *a,
                GtkSourceCompletionWordsProposal *b,
-               gchar const                      *word)
+               const gchar                      *word)
 {
-	gchar const *m1 = 
+	const gchar *m1 = 
 		gtk_source_completion_words_proposal_get_word (a == NULL ? b : a);
 	
 	return strcmp (m1, word);
@@ -116,7 +116,7 @@ compare_items (GtkSourceCompletionWordsProposal *a,
 
 static gboolean
 iter_match_prefix (GSequenceIter *iter,
-                   gchar const   *word,
+                   const gchar   *word,
                    gint           len)
 {
 	GtkSourceCompletionWordsProposal *item;
@@ -141,7 +141,7 @@ gtk_source_completion_words_library_get_proposal (GSequenceIter *iter)
 
 GSequenceIter *
 gtk_source_completion_words_library_find_first (GtkSourceCompletionWordsLibrary *library,
-                                                gchar const                     *word,
+                                                const gchar                     *word,
                                                 gint                             len)
 {
 	GSequenceIter *iter;
@@ -203,7 +203,7 @@ gtk_source_completion_words_library_find_first (GtkSourceCompletionWordsLibrary 
 
 GSequenceIter *
 gtk_source_completion_words_library_find_next (GSequenceIter *iter,
-                                               gchar const   *word,
+                                               const gchar   *word,
                                                gint           len)
 {
 	g_return_val_if_fail (iter != NULL, NULL);
@@ -225,7 +225,7 @@ gtk_source_completion_words_library_find (GtkSourceCompletionWordsLibrary  *libr
 {
 	GSequenceIter *iter;
 	GtkSourceCompletionWordsProposal *other;
-	gchar const *word = gtk_source_completion_words_proposal_get_word (proposal);
+	const gchar *word = gtk_source_completion_words_proposal_get_word (proposal);
 	gint len = strlen (word);
 	
 	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_WORDS_LIBRARY (library), NULL);
@@ -270,7 +270,7 @@ on_proposal_unused (GtkSourceCompletionWordsProposal *proposal,
 
 GtkSourceCompletionWordsProposal *
 gtk_source_completion_words_library_add_word (GtkSourceCompletionWordsLibrary *library,
-                                              gchar const                     *word)
+                                              const gchar                     *word)
 {
 	GtkSourceCompletionWordsProposal *proposal;
 	GSequenceIter *iter;

@@ -59,11 +59,11 @@ GtkSourceCompletionWordsLibrary *
 GSequenceIter	*gtk_source_completion_words_library_find 		(GtkSourceCompletionWordsLibrary  *library,
 									 GtkSourceCompletionWordsProposal *proposal);
 GSequenceIter	*gtk_source_completion_words_library_find_first		(GtkSourceCompletionWordsLibrary  *library,
-									 gchar const                      *word,
+									 const gchar                      *word,
 									 gint                              len);
 
 GSequenceIter	*gtk_source_completion_words_library_find_next		(GSequenceIter                    *iter,
-									 gchar const                      *word,
+									 const gchar                      *word,
 									 gint                              len);
 
 /* Getting */
@@ -73,7 +73,7 @@ GtkSourceCompletionWordsProposal *
 /* Adding/removing */
 GtkSourceCompletionWordsProposal *
 		 gtk_source_completion_words_library_add_word 		(GtkSourceCompletionWordsLibrary  *library,
-                                              				 gchar const                      *word);
+                                              				 const gchar                      *word);
 void		 gtk_source_completion_words_library_remove_word 	(GtkSourceCompletionWordsLibrary  *library,
                                                  			 GtkSourceCompletionWordsProposal *proposal);
 

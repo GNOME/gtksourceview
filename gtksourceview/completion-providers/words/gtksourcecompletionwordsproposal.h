@@ -53,9 +53,9 @@ struct _GtkSourceCompletionWordsProposalClass {
 GType gtk_source_completion_words_proposal_get_type (void) G_GNUC_CONST;
 
 GtkSourceCompletionWordsProposal *
-		 gtk_source_completion_words_proposal_new 	(gchar const                      *word);
+		 gtk_source_completion_words_proposal_new 	(const gchar                      *word);
 
-gchar const 	*gtk_source_completion_words_proposal_get_word 	(GtkSourceCompletionWordsProposal *proposal);
+const gchar 	*gtk_source_completion_words_proposal_get_word 	(GtkSourceCompletionWordsProposal *proposal);
 
 void		 gtk_source_completion_words_proposal_use 	(GtkSourceCompletionWordsProposal *proposal);
 void		 gtk_source_completion_words_proposal_unuse 	(GtkSourceCompletionWordsProposal *proposal);

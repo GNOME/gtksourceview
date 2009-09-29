@@ -540,7 +540,7 @@ gtk_source_completion_words_init (GtkSourceCompletionWords *self)
 }
 
 GtkSourceCompletionWords *
-gtk_source_completion_words_new (gchar const *name,
+gtk_source_completion_words_new (const gchar *name,
                                  GdkPixbuf   *icon)
 {
 	return g_object_new (GTK_TYPE_SOURCE_COMPLETION_WORDS, 

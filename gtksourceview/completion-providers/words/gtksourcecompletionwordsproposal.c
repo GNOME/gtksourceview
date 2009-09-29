@@ -104,7 +104,7 @@ gtk_source_completion_words_proposal_init (GtkSourceCompletionWordsProposal *sel
 }
 
 GtkSourceCompletionWordsProposal *
-gtk_source_completion_words_proposal_new (gchar const *word)
+gtk_source_completion_words_proposal_new (const gchar *word)
 {
 	GtkSourceCompletionWordsProposal *proposal =
 		g_object_new (GTK_TYPE_SOURCE_COMPLETION_WORDS_PROPOSAL, NULL);
@@ -132,7 +132,7 @@ gtk_source_completion_words_proposal_unuse (GtkSourceCompletionWordsProposal *pr
 	}
 }
 
-gchar const *
+const gchar *
 gtk_source_completion_words_proposal_get_word (GtkSourceCompletionWordsProposal *proposal)
 {
 	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_WORDS_PROPOSAL (proposal), NULL);

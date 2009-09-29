@@ -178,7 +178,7 @@ gtk_source_completion_words_buffer_init (GtkSourceCompletionWordsBuffer *self)
 static void
 on_insert_text_cb (GtkTextBuffer                  *textbuffer,
                    GtkTextIter                    *location,
-                   gchar const                    *text,
+                   const gchar                    *text,
                    gint                            len,
                    GtkSourceCompletionWordsBuffer *buffer)
 {
@@ -540,7 +540,7 @@ handle_text_inserted (GtkSourceCompletionWordsBuffer *buffer,
 static void
 on_insert_text_after_cb (GtkTextBuffer                  *text_buffer,
                          GtkTextIter                    *location,
-                         gchar const                    *text,
+                         const gchar                    *text,
                          gint                            len,
                          GtkSourceCompletionWordsBuffer *buffer)
 {
