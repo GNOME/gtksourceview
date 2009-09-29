@@ -51,16 +51,11 @@ gtk_source_completion_provider_populate_default (GtkSourceCompletionProvider *pr
 	gtk_source_completion_context_add_proposals (context, provider, NULL, TRUE);
 }
 
-static gboolean
-gtk_source_completion_provider_get_interactive_default (GtkSourceCompletionProvider *provider)
+static GtkSourceCompletionActivation
+gtk_source_completion_provider_get_activation_default (GtkSourceCompletionProvider *provider)
 {
-	return TRUE;
-}
-
-static gboolean
-gtk_source_completion_provider_get_default_default (GtkSourceCompletionProvider *provider)
-{
-	return TRUE;
+	return GTK_SOURCE_COMPLETION_ACTIVATION_INTERACTIVE |
+	       GTK_SOURCE_COMPLETION_ACTIVATION_USER_REQUESTED;
 }
 
 static gboolean
@@ -111,8 +106,7 @@ gtk_source_completion_provider_base_init (GtkSourceCompletionProviderIface *ifac
 	iface->populate = gtk_source_completion_provider_populate_default;
 
 	iface->match = gtk_source_completion_provider_match_default;
-	iface->get_interactive = gtk_source_completion_provider_get_interactive_default;
-	iface->get_default = gtk_source_completion_provider_get_default_default;
+	iface->get_activation = gtk_source_completion_provider_get_activation_default;
 	
 	iface->get_info_widget = gtk_source_completion_provider_get_info_widget_default;
 	iface->update_info = gtk_source_completion_provider_update_info_default;
@@ -208,39 +202,19 @@ gtk_source_completion_provider_populate (GtkSourceCompletionProvider *provider,
 }
 
 /**
- * gtk_source_completion_provider_get_default:
+ * gtk_source_completion_provider_get_activation:
  * @provider: A #GtkSourceCompletionProvider
  * 
- * Get whether the provider can be activated in default mode. Default mode
- * is a special mode which corresponds to the keybinding on #GtkSourceView
- * with which a completion can be invoked.
+ * Get with what kind of activation the provider should be activated.
  *
- * Returns: %TRUE if the provider should be activated in default mode.
+ * Returns: a combination of #GtkSourceCompletionActivation.
  *
  **/
-gboolean
-gtk_source_completion_provider_get_default (GtkSourceCompletionProvider *provider)
+GtkSourceCompletionActivation
+gtk_source_completion_provider_get_activation (GtkSourceCompletionProvider *provider)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_PROVIDER (provider), FALSE);
-	return GTK_SOURCE_COMPLETION_PROVIDER_GET_INTERFACE (provider)->get_default (provider);
-}
-
-/**
- * gtk_source_completion_provider_get_interactive:
- * @provider: A #GtkSourceCompletionProvider
- * 
- * Get whether the provider can be activated in interactive mode. Interactive
- * mode is a special completion mode which is invoked automatically when
- * typing.
- *
- * Returns: %TRUE if the provider should be activated in interactive mode.
- *
- **/
-gboolean
-gtk_source_completion_provider_get_interactive (GtkSourceCompletionProvider *provider)
-{
-	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_PROVIDER (provider), FALSE);
-	return GTK_SOURCE_COMPLETION_PROVIDER_GET_INTERFACE (provider)->get_interactive (provider);
+	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_PROVIDER (provider), GTK_SOURCE_COMPLETION_ACTIVATION_NONE);
+	return GTK_SOURCE_COMPLETION_PROVIDER_GET_INTERFACE (provider)->get_activation (provider);
 }
 
 /**

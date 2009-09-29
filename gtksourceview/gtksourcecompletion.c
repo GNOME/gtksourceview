@@ -1407,7 +1407,10 @@ show_auto_completion (GtkSourceCompletion *completion)
 	}
 	
 	context = gtk_source_completion_create_context (completion, &iter);
-	g_object_set (context, "interactive", TRUE, NULL);
+	g_object_set (context,
+	              "activation",
+	              GTK_SOURCE_COMPLETION_ACTIVATION_INTERACTIVE,
+	              NULL);
 	
 	gtk_source_completion_show (completion, 
 	                            completion->priv->interactive_providers, 
@@ -1450,7 +1453,8 @@ update_interactive_completion (GtkSourceCompletion *completion,
 			completion->priv->show_timed_out_id = 0;
 		}
 	}
-	else if (gtk_source_completion_context_get_interactive (completion->priv->context) &&
+	else if ((gtk_source_completion_context_get_activation (completion->priv->context) &
+	         GTK_SOURCE_COMPLETION_ACTIVATION_INTERACTIVE) &&
 	         gtk_text_iter_get_line (iter) != completion->priv->typing_line)
 	{
 		gtk_source_completion_hide (completion);
@@ -3102,7 +3106,8 @@ gtk_source_completion_add_provider (GtkSourceCompletion          *completion,
 	completion->priv->providers = g_list_append (completion->priv->providers, 
 	                                             g_object_ref (provider));
 
-	if (gtk_source_completion_provider_get_interactive (provider))
+	if (gtk_source_completion_provider_get_activation (provider) &
+	    GTK_SOURCE_COMPLETION_ACTIVATION_INTERACTIVE)
 	{
 		completion->priv->interactive_providers = g_list_append (completion->priv->interactive_providers,
 	                                                                 provider);
@@ -3143,7 +3148,8 @@ gtk_source_completion_remove_provider (GtkSourceCompletion          *completion,
 	{
 		completion->priv->providers = g_list_remove_link (completion->priv->providers, item);
 		
-		if (gtk_source_completion_provider_get_interactive (provider))
+		if (gtk_source_completion_provider_get_activation (provider) &
+		    GTK_SOURCE_COMPLETION_ACTIVATION_INTERACTIVE)
 		{
 			completion->priv->interactive_providers = g_list_remove (completion->priv->interactive_providers,
 		                                                                 provider);

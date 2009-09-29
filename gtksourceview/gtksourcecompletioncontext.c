@@ -32,8 +32,7 @@ struct _GtkSourceCompletionContextPrivate
 	GtkSourceCompletion *completion;
 
 	GtkTextIter iter;
-	gboolean interactive_mode;
-	gboolean default_mode;
+	GtkSourceCompletionActivation activation;
 };
 
 /* Properties */
@@ -44,8 +43,7 @@ enum
 	PROP_COMPLETION,
 	PROP_VIEW,
 	PROP_ITER,
-	PROP_INTERACTIVE,
-	PROP_DEFAULT
+	PROP_ACTIVATION
 };
 
 /* Signals */
@@ -89,11 +87,8 @@ gtk_source_completion_context_set_property (GObject      *object,
 		case PROP_ITER:
 			self->priv->iter = *((GtkTextIter *)g_value_get_pointer (value));
 			break;
-		case PROP_INTERACTIVE:
-			self->priv->interactive_mode = g_value_get_boolean (value);
-			break;
-		case PROP_DEFAULT:
-			self->priv->default_mode = g_value_get_boolean (value);
+		case PROP_ACTIVATION:
+			self->priv->activation = g_value_get_flags (value);
 			break;
 		default:
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -119,11 +114,9 @@ gtk_source_completion_context_get_property (GObject    *object,
 		case PROP_ITER:
 			g_value_set_pointer (value, &(self->priv->iter));
 			break;
-		case PROP_INTERACTIVE:
-			g_value_set_boolean (value, self->priv->interactive_mode);
+		case PROP_ACTIVATION:
+			g_value_set_flags (value, self->priv->activation);
 			break;
-		case PROP_DEFAULT:
-			g_value_set_boolean (value, self->priv->default_mode);
 		default:
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
 	}
@@ -195,30 +188,18 @@ gtk_source_completion_context_class_init (GtkSourceCompletionContextClass *klass
 	                                                       G_PARAM_READWRITE));
 
 	/**
-	 * GtkSourceCompletionContext:interactive:
+	 * GtkSourceCompletionContext:activation:
 	 *
-	 * Whether the completion is in 'interactive' mode.
+	 * The completion activation
 	 **/
 	g_object_class_install_property (object_class,
-	                                 PROP_INTERACTIVE,
-	                                 g_param_spec_boolean ("interactive",
-	                                                       _("Interactive"),
-	                                                       _("Whether the completion was invoked in interactive mode"),
-	                                                       FALSE,
-	                                                       G_PARAM_READWRITE));
-
-	/**
-	 * GtkSourceCompletionContext:default:
-	 *
-	 * Whether the completion is in 'default' mode.
-	 **/
-	g_object_class_install_property (object_class,
-	                                 PROP_DEFAULT,
-	                                 g_param_spec_boolean ("default",
-	                                                       _("Default"),
-	                                                       _("Whether completion was invoked in default mode"),
-	                                                       FALSE,
-	                                                       G_PARAM_READWRITE));
+	                                 PROP_ACTIVATION,
+	                                 g_param_spec_flags ("activation",
+	                                                     _("Activation"),
+	                                                     _("The type of activation"),
+	                                                     GTK_TYPE_SOURCE_COMPLETION_ACTIVATION,
+	                                                     GTK_SOURCE_COMPLETION_ACTIVATION_NONE,
+	                                                     G_PARAM_READWRITE));
 
 	g_type_class_add_private (object_class, sizeof(GtkSourceCompletionContextPrivate));
 }
@@ -294,39 +275,19 @@ gtk_source_completion_context_get_iter (GtkSourceCompletionContext *context,
 }
 
 /**
- * gtk_source_completion_context_get_interactive:
+ * gtk_source_completion_context_get_activation:
  * @context: A #GtkSourceCompletionContext
  *
- * Get whether the context is targeting 'interactive' mode providers. The 
- * interactive mode is used by #GtkSourceCompletion to indicate a completion
- * that was started interactively (i.e. when typing).
+ * Get the context activation
  *
- * Returns: %TRUE if the context is in 'interactive' mode, %FALSE otherwise
+ * Returns: The context activation
  */
-gboolean
-gtk_source_completion_context_get_interactive (GtkSourceCompletionContext *context)
+GtkSourceCompletionActivation
+gtk_source_completion_context_get_activation (GtkSourceCompletionContext *context)
 {
 	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_CONTEXT (context), FALSE);
 
-	return context->priv->interactive_mode;
-}
-
-/**
- * gtk_source_completion_context_get_default:
- * @context: A #GtkSourceCompletionContext
- *
- * Get whether the context is targeting 'default' mode providers. The default
- * mode is used by the #GtkSourceView completion binding to invoke the 
- * completion with providers that support default mode.
- *
- * Returns: %TRUE if the context is in 'default' mode, %FALSE otherwise
- */
-gboolean
-gtk_source_completion_context_get_default (GtkSourceCompletionContext *context)
-{
-	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_CONTEXT (context), FALSE);
-
-	return context->priv->default_mode;
+	return context->priv->activation;
 }
 
 void

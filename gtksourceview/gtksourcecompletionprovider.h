@@ -58,8 +58,8 @@ struct _GtkSourceCompletionProviderIface
 	gboolean 	 (*match)		(GtkSourceCompletionProvider *provider,
 	                                         GtkSourceCompletionContext  *context);
 
-	gboolean         (*get_interactive)	(GtkSourceCompletionProvider *provider);
-	gboolean         (*get_default)		(GtkSourceCompletionProvider *provider);
+	GtkSourceCompletionActivation
+		         (*get_activation)	(GtkSourceCompletionProvider *provider);
 
 	GtkWidget 	*(*get_info_widget)	(GtkSourceCompletionProvider *provider,
 						 GtkSourceCompletionProposal *proposal);
@@ -85,8 +85,8 @@ GdkPixbuf	*gtk_source_completion_provider_get_icon	(GtkSourceCompletionProvider 
 void		 gtk_source_completion_provider_populate	(GtkSourceCompletionProvider *provider,
 								 GtkSourceCompletionContext  *context);
 
-gboolean	 gtk_source_completion_provider_get_interactive (GtkSourceCompletionProvider *provider);
-gboolean	 gtk_source_completion_provider_get_default     (GtkSourceCompletionProvider *provider);
+GtkSourceCompletionActivation
+		 gtk_source_completion_provider_get_activation (GtkSourceCompletionProvider *provider);
 
 gboolean	 gtk_source_completion_provider_match 		(GtkSourceCompletionProvider *provider,
 		                                                 GtkSourceCompletionContext  *context);

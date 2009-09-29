@@ -39,6 +39,20 @@ typedef struct _GtkSourceCompletionContext		GtkSourceCompletionContext;
 typedef struct _GtkSourceCompletionContextClass		GtkSourceCompletionContextClass;
 typedef struct _GtkSourceCompletionContextPrivate	GtkSourceCompletionContextPrivate;
 
+/**
+ * GtkSourceCompletionActivation:
+ * @GTK_SOURCE_COMPLETION_ACTIVATION_NONE: none.
+ * @GTK_SOURCE_COMPLETION_ACTIVATION_INTERACTIVE: interactive activation
+ * @GTK_SOURCE_COMPLETION_ACTIVATION_USER_REQUESTED: user requested activation
+ * (e.g. through a keyboard accelerator from the view)
+ **/
+typedef enum
+{
+	GTK_SOURCE_COMPLETION_ACTIVATION_NONE = 0,
+	GTK_SOURCE_COMPLETION_ACTIVATION_INTERACTIVE = 1 << 0,
+	GTK_SOURCE_COMPLETION_ACTIVATION_USER_REQUESTED = 1 << 1
+} GtkSourceCompletionActivation;
+
 /* Forward declaration */
 struct _GtkSourceCompletionProvider;
 struct _GtkSourceCompletion;
@@ -73,8 +87,8 @@ struct _GtkSourceView *
 void		 gtk_source_completion_context_get_iter		(GtkSourceCompletionContext          *context,
 								 GtkTextIter                         *iter);
 
-gboolean	 gtk_source_completion_context_get_interactive	(GtkSourceCompletionContext          *context);
-gboolean	 gtk_source_completion_context_get_default	(GtkSourceCompletionContext          *context);
+GtkSourceCompletionActivation
+		 gtk_source_completion_context_get_activation	(GtkSourceCompletionContext          *context);
 
 void		_gtk_source_completion_context_cancel		(GtkSourceCompletionContext          *context);
 

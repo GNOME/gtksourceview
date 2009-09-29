@@ -1760,7 +1760,7 @@ gtk_source_view_redo (GtkSourceView *view)
 }
 
 static GList *
-get_default_providers (GtkSourceCompletion *completion)
+get_user_requested_providers (GtkSourceCompletion *completion)
 {
 	GList *item;
 	GList *ret = NULL;
@@ -1773,7 +1773,8 @@ get_default_providers (GtkSourceCompletion *completion)
 		
 		provider = GTK_SOURCE_COMPLETION_PROVIDER (item->data);
 		
-		if (gtk_source_completion_provider_get_default (provider))
+		if (gtk_source_completion_provider_get_activation (provider) &
+		    GTK_SOURCE_COMPLETION_ACTIVATION_USER_REQUESTED)
 		{
 			ret = g_list_prepend (ret, provider);
 		}
@@ -1794,9 +1795,12 @@ gtk_source_view_show_completion_real (GtkSourceView *view)
 	completion = gtk_source_view_get_completion (view);
 	context = gtk_source_completion_create_context (completion, NULL);
 	
-	g_object_set (context, "default", TRUE, NULL);
+	g_object_set (context,
+	              "activation",
+	              GTK_SOURCE_COMPLETION_ACTIVATION_USER_REQUESTED,
+	              NULL);
 	
-	providers = get_default_providers (completion);
+	providers = get_user_requested_providers (completion);
 
 	gtk_source_completion_show (completion, 
 	                            providers, 
