@@ -81,8 +81,8 @@ gtk_source_completion_provider_update_info_default (GtkSourceCompletionProvider 
 
 static gboolean
 gtk_source_completion_provider_get_start_iter_default (GtkSourceCompletionProvider *provider,
-                                                       GtkSourceCompletionProposal *proposal,
                                                        GtkSourceCompletionContext  *context,
+                                                       GtkSourceCompletionProposal *proposal,
                                                        GtkTextIter                 *iter)
 {
 	return FALSE;
@@ -303,18 +303,18 @@ gtk_source_completion_provider_update_info (GtkSourceCompletionProvider *provide
  **/
 gboolean
 gtk_source_completion_provider_get_start_iter (GtkSourceCompletionProvider *provider,
-                                               GtkSourceCompletionProposal *proposal,
                                                GtkSourceCompletionContext  *context,
+                                               GtkSourceCompletionProposal *proposal,
                                                GtkTextIter                 *iter)
 {
 	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_PROVIDER (provider), FALSE);
-	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_PROPOSAL (proposal), FALSE);
 	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_CONTEXT (context), FALSE);
+	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_PROPOSAL (proposal), FALSE);
 	g_return_val_if_fail (iter != NULL, FALSE);
 	
 	return GTK_SOURCE_COMPLETION_PROVIDER_GET_INTERFACE (provider)->get_start_iter (provider, 
-	                                                                                proposal,
 	                                                                                context,
+	                                                                                proposal,
 	                                                                                iter);
 }
 

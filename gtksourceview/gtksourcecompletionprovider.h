@@ -68,8 +68,8 @@ struct _GtkSourceCompletionProviderIface
 						 GtkSourceCompletionInfo     *info);
 
 	gboolean	 (*get_start_iter)	(GtkSourceCompletionProvider *provider,
-						 GtkSourceCompletionProposal *proposal,
 						 GtkSourceCompletionContext  *context,
+						 GtkSourceCompletionProposal *proposal,
 						 GtkTextIter                 *iter);
 	gboolean	 (*activate_proposal)	(GtkSourceCompletionProvider *provider,
 						 GtkSourceCompletionProposal *proposal,
@@ -100,8 +100,8 @@ void 		 gtk_source_completion_provider_update_info	(GtkSourceCompletionProvider 
 								 GtkSourceCompletionInfo     *info);
 
 gboolean	 gtk_source_completion_provider_get_start_iter	(GtkSourceCompletionProvider *provider,
-								 GtkSourceCompletionProposal *proposal,
 								 GtkSourceCompletionContext  *context,
+								 GtkSourceCompletionProposal *proposal,
 								 GtkTextIter                 *iter);
 
 gboolean	 gtk_source_completion_provider_activate_proposal (GtkSourceCompletionProvider *provider,

@@ -238,8 +238,8 @@ activate_current_proposal (GtkSourceCompletion *completion)
 	gtk_text_buffer_get_start_iter (buffer, &start);
 	
 	has_start = gtk_source_completion_provider_get_start_iter (provider,
-	                                                           proposal,
 	                                                           completion->priv->context,
+	                                                           proposal,
 	                                                           &start);
 	
 	/* First hide the completion because the activation might actually
@@ -987,8 +987,8 @@ update_window_position (GtkSourceCompletion *completion)
 		gtk_text_buffer_get_start_iter (buffer, &iter);
 		
 		if (gtk_source_completion_provider_get_start_iter (provider, 
-		                                                   proposal,
 		                                                   completion->priv->context,
+		                                                   proposal,
 		                                                   &iter))
 		{
 			gtk_source_completion_utils_move_to_iter (GTK_WINDOW (completion->priv->window),
