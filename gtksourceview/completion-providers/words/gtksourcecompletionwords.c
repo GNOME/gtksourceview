@@ -505,12 +505,16 @@ gtk_source_completion_words_class_init (GtkSourceCompletionWordsClass *klass)
 static gboolean
 gtk_source_completion_words_get_start_iter (GtkSourceCompletionProvider *provider,
                                             GtkSourceCompletionProposal *proposal,
+                                            GtkSourceCompletionContext  *context,
                                             GtkTextIter                 *iter)
 {
 	GtkTextBuffer *buffer;
 	GtkSourceCompletionWordsBuffer *buf;
+	GtkTextIter it;
 	
-	buffer = gtk_text_iter_get_buffer (iter);
+	gtk_source_completion_context_get_iter (context, &it);
+	
+	buffer = gtk_text_iter_get_buffer (&it);
 	buf = GET_WORDS_BUFFER (buffer);
 	
 	gtk_text_buffer_get_iter_at_mark (buffer,
