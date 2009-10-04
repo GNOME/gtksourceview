@@ -908,10 +908,20 @@ update_proposal_info_real (GtkSourceCompletion         *completion,
 		/* If there is no special custom widget, use the default */
 		if (info_widget == NULL)
 		{
+			gint width;
+
 			info_widget = completion->priv->default_info;
 			text = gtk_source_completion_proposal_get_info (proposal);
+			gtk_widget_set_size_request (info_widget, -1, -1);
 			
 			gtk_label_set_markup (GTK_LABEL (info_widget), text != NULL ? text : _("No extra information available"));
+			
+			gtk_widget_get_size_request (info_widget, &width, NULL);
+			
+			if (width > WINDOW_WIDTH)
+			{
+				gtk_widget_set_size_request (info_widget, width, -1);
+			}
 		}
 		else
 		{
@@ -2746,6 +2756,8 @@ initialize_ui (GtkSourceCompletion *completion)
 	
 	gtk_misc_set_alignment (GTK_MISC (completion->priv->default_info), 0.5, 0.5);
 	gtk_label_set_selectable (GTK_LABEL (completion->priv->default_info), TRUE);
+	gtk_label_set_line_wrap (GTK_LABEL (completion->priv->default_info), TRUE);
+
 	gtk_widget_show (completion->priv->default_info);
 	
 	gtk_source_completion_info_set_widget (GTK_SOURCE_COMPLETION_INFO (completion->priv->info_window), 
