@@ -2393,6 +2393,76 @@ draw_spaces_at_iter (cairo_t       *cr,
 }
 
 static void
+get_leading_trailing (GtkTextIter *iter,
+                      GtkTextIter *leading,
+                      GtkTextIter *trailing)
+{
+	GtkTextIter start = *iter;
+	
+	/* Find end of leading */
+	start = *iter;
+	gtk_text_iter_set_line_offset (&start, 0);
+	
+	while (TRUE)
+	{
+		gunichar ch = gtk_text_iter_get_char (&start);
+
+		if (!g_unichar_isspace (ch) ||
+		     gtk_text_iter_ends_line (&start) ||
+		    !gtk_text_iter_forward_char (&start))
+		{
+			*leading = start;
+			break;
+		}
+	}
+	
+	/* Find start of trailing */
+	start = *iter;
+	gtk_text_iter_forward_to_line_end (&start);
+	
+	while (TRUE)
+	{
+		gunichar ch = gtk_text_iter_get_char (&start);
+
+		if (!g_unichar_isspace (ch) ||
+		     gtk_text_iter_starts_line (&start) ||
+		    !gtk_text_iter_backward_char (&start))
+		{
+			*trailing = start;
+			break;
+		}
+	}
+}
+
+static gboolean
+check_location (GtkSourceView *view,
+                GtkTextIter   *iter,
+                GtkTextIter   *leading,
+                GtkTextIter   *trailing)
+{
+	gint location = view->priv->draw_spaces & (GTK_SOURCE_DRAW_SPACES_LEADING |
+	                                           GTK_SOURCE_DRAW_SPACES_TEXT |
+	                                           GTK_SOURCE_DRAW_SPACES_TRAILING);
+	
+	/* Draw all by default */
+	if (!location)
+	{
+		return TRUE;
+	}
+	
+	if (gtk_text_iter_compare (iter, trailing) > 0)
+	{
+		return location & GTK_SOURCE_DRAW_SPACES_TRAILING;
+	}
+
+	if (gtk_text_iter_compare (iter, leading) < 0)
+	{
+		return location & GTK_SOURCE_DRAW_SPACES_LEADING;
+	}
+	
+	return location & GTK_SOURCE_DRAW_SPACES_TEXT;
+}
+static void
 draw_tabs_and_spaces (GtkSourceView  *view,
 		      GdkEventExpose *event)
 {
@@ -2400,6 +2470,7 @@ draw_tabs_and_spaces (GtkSourceView  *view,
 	gint x1, y1, x2, y2;
 	GtkTextIter s, e;
 	cairo_t *cr;
+	GtkTextIter leading, trailing;
 
 	text_view = GTK_TEXT_VIEW (view);
 
@@ -2437,8 +2508,12 @@ draw_tabs_and_spaces (GtkSourceView  *view,
 			       view->priv->spaces_color->blue / 65535.,
 			       1);
 	cairo_set_line_width (cr, 0.8);
+	cairo_translate (cr, -0.5, -0.5);
 
-	do {
+	get_leading_trailing (&s, &leading, &trailing);
+
+	do
+	{
 		GdkRectangle rect;
 		gint ly;
 
@@ -2448,7 +2523,9 @@ draw_tabs_and_spaces (GtkSourceView  *view,
 		if (rect.x > x2)
 		{
 			if (!gtk_text_iter_forward_line	(&s))
+			{
 				break;
+			}
 
 			/* move to the first iter in the exposed area of
 			 * the next line */
@@ -2461,20 +2538,32 @@ draw_tabs_and_spaces (GtkSourceView  *view,
 			/* move back one char otherwise tabs may not
 			 * be redrawn */
 			if (!gtk_text_iter_starts_line (&s))
+			{
 				gtk_text_iter_backward_char (&s);
-
+			}
+			
+			get_leading_trailing (&s, &leading, &trailing);
 			continue;
 		}
 
-		draw_spaces_at_iter (cr, view, &s, rect);
+		if (check_location (view, &s, &leading, &trailing))
+		{
+			draw_spaces_at_iter (cr, view, &s, rect);
+		}
 
 		if (!gtk_text_iter_forward_char (&s))
+		{
 			break;
+		}
+		
+		if (gtk_text_iter_starts_line (&s))
+		{
+			get_leading_trailing (&s, &leading, &trailing);
+		}
 
 	} while (gtk_text_iter_compare (&s, &e) <= 0);
 
 	cairo_stroke (cr);
-
 	cairo_destroy (cr);
 }
 
