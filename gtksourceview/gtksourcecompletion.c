@@ -1280,7 +1280,7 @@ gtk_source_completion_move_page (GtkSourceCompletion *completion,
 		}
 		else
 		{
-			select_previous_provider (completion, num);
+			select_previous_provider (completion, -1 * num);
 		}
 	}
 }
