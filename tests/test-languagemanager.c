@@ -5,6 +5,43 @@
 #include <gtksourceview/gtksourcelanguagemanager.h>
 
 static void
+test_get_default (void)
+{
+	GtkSourceLanguageManager *lm1, *lm2;
+
+	lm1 = gtk_source_language_manager_get_default ();
+	lm2 = gtk_source_language_manager_get_default ();
+	g_assert (lm1 == lm2);
+}
+
+static void
+test_get_language (void)
+{
+	GtkSourceLanguageManager *lm;
+	const gchar * const *ids;
+
+	lm = gtk_source_language_manager_get_default ();
+	ids = gtk_source_language_manager_get_language_ids (lm);
+	g_assert (ids != NULL);
+
+	while (*ids != NULL)
+	{
+		GtkSourceLanguage *lang1, *lang2;
+
+		lang1 = gtk_source_language_manager_get_language (lm, *ids);
+		g_assert (lang1 != NULL);
+		g_assert (GTK_IS_SOURCE_LANGUAGE (lang1));
+		g_assert_cmpstr (*ids, == , gtk_source_language_get_id (lang1));
+
+		/* langs are owned by the manager */
+		lang2 = gtk_source_language_manager_get_language (lm, *ids);
+		g_assert (lang1 == lang2);
+
+		++ids;
+	}
+}
+
+static void
 test_guess_language (void)
 {
 	GtkSourceLanguageManager *lm;
@@ -48,6 +85,8 @@ main (int argc, char** argv)
 {
 	gtk_test_init (&argc, &argv);
 
+	g_test_add_func ("/LanguageManager/get-default", test_get_default);
+	g_test_add_func ("/LanguageManager/get-language", test_get_language);
 	g_test_add_func ("/LanguageManager/guess-language", test_guess_language);
 
 	return g_test_run();
