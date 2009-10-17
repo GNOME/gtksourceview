@@ -8,30 +8,36 @@ INCLUDES = 				\
 	$(DEP_CFLAGS)			\
 	$(TESTS_CFLAGS)
 
-# testing executables
-EXTRA_PROGRAMS = test-widget testregion test-completion
-# testregion need gtk_text_region_ api which is normally private
-# modify gtksourceview/Makefile.am to export gtk_text_* symbols
-noinst_PROGRAMS = test-widget test-completion
+noinst_PROGRAMS = $(TEST_PROGS) $(UNIT_TEST_PROGS)
+TESTS = $(UNIT_TEST_PROGS)
 
+TEST_PROGS = test-widget
 test_widget_SOURCES = test-widget.c
-
 test_widget_LDADD = 			\
 	$(top_builddir)/gtksourceview/libgtksourceview-2.0.la \
-	$(DEP_LIBS)                     \
+	$(DEP_LIBS)			\
 	$(TESTS_LIBS)
 
+TEST_PROGS += test-completion
 test_completion_SOURCES =		\
-        completion-simple.c
-
-test_completion_LDADD = 			\
+	completion-simple.c
+test_completion_LDADD = 		\
 	$(top_builddir)/gtksourceview/libgtksourceview-2.0.la \
-	$(DEP_LIBS)                     \
+	$(DEP_LIBS)			\
 	$(TESTS_LIBS)
 
+UNIT_TEST_PROGS = test-languagemanager
+test_languagemanager_SOURCES =		\
+	test-languagemanager.c
+test_languagemanager_LDADD = 		\
+	$(top_builddir)/gtksourceview/libgtksourceview-2.0.la \
+	$(DEP_LIBS)			\
+	$(TESTS_LIBS)
 
+# testregion need gtk_text_region_ api which is normally private
+# modify gtksourceview/Makefile.am to export gtk_text_* symbols
+# TEST_PROGS += testregion
 testregion_SOURCES = testregion.c
-
 testregion_LDADD = 			\
 	$(top_builddir)/gtksourceview/libgtksourceview-2.0.la \
 	$(DEP_LIBS)
