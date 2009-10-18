@@ -75,9 +75,8 @@ test_guess_language (void)
 	g_assert_cmpstr (gtk_source_language_get_id (l), ==, "c");
 
 	/* when content type is a descendent of the mime matched by the glob, mime wins */
-//	FIXME: this fails with the current logic
-//	l = gtk_source_language_manager_guess_language (lm, "foo.xml", "application/xslt+xml");
-//	g_assert_cmpstr (gtk_source_language_get_id (l), ==, "xslt");
+	l = gtk_source_language_manager_guess_language (lm, "foo.xml", "application/xslt+xml");
+	g_assert_cmpstr (gtk_source_language_get_id (l), ==, "xslt");
 }
 
 int

@@ -23,7 +23,7 @@
 <language id="xslt" _name="XSLT" version="2.0" _section="Markup">
   <metadata>
     <property name="mimetypes">application/xslt+xml</property>
-    <property name="globs">*.xsl</property>
+    <property name="globs">*.xslt;*.xsl</property>
     <property name="block-comment-start">&lt;!--</property>
     <property name="block-comment-end">--&gt;</property>
   </metadata>

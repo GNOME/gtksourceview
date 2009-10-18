@@ -409,12 +409,13 @@ gtk_source_language_manager_get_language (GtkSourceLanguageManager *lm,
 	return g_hash_table_lookup (lm->priv->language_ids, id);
 }
 
-static GtkSourceLanguage *
-pick_lang_for_filename (GtkSourceLanguageManager *lm,
-			const gchar              *filename)
+static GSList *
+pick_langs_for_filename (GtkSourceLanguageManager *lm,
+			 const gchar              *filename)
 {
 	char *filename_utf8;
 	const gchar* const * p;
+	GSList *langs = NULL;
 
 	/* Use g_filename_display_name() instead of g_filename_to_utf8() because
 	 * g_filename_display_name() doesn't fail and replaces non-convertible
@@ -438,9 +439,7 @@ pick_lang_for_filename (GtkSourceLanguageManager *lm,
 			 * to include them literally in a pattern.  */
 			if (g_pattern_match_simple (*gptr, filename_utf8))
 			{
-				g_strfreev (globs);
-				g_free (filename_utf8);
-				return lang;
+				langs = g_slist_prepend (langs, lang);
 			}
 		}
 
@@ -448,7 +447,7 @@ pick_lang_for_filename (GtkSourceLanguageManager *lm,
 	}
 
 	g_free (filename_utf8);
-	return NULL;
+	return langs;
 }
 
 static GtkSourceLanguage *
@@ -491,8 +490,8 @@ pick_lang_for_mime_type_pass (GtkSourceLanguageManager *lm,
 }
 
 static GtkSourceLanguage *
-pick_lang_for_mime_type (GtkSourceLanguageManager *lm,
-			 const char               *mime_type)
+pick_lang_for_mime_type_real (GtkSourceLanguageManager *lm,
+			      const char               *mime_type)
 {
 	GtkSourceLanguage *lang;
 	lang = pick_lang_for_mime_type_pass (lm, mime_type, TRUE);
@@ -518,6 +517,39 @@ grok_win32_content_type (const gchar  *content_type,
 		*alt_filename = g_strjoin ("filename", content_type, NULL);
 }
 #endif
+
+static GtkSourceLanguage *
+pick_lang_for_mime_type (GtkSourceLanguageManager *lm,
+			 const gchar              *content_type)
+{
+	GtkSourceLanguage *lang;
+
+#ifndef G_OS_WIN32
+	/* On Unix "content type" is mime type */
+	lang = pick_lang_for_mime_type_real (lm, content_type);
+#else
+	/* On Windows "content type" is an extension, but user may pass a mime type too */
+	gchar *mime_type;
+	gchar *alt_filename;
+
+	grok_win32_content_type (content_type, &alt_filename, &mime_type);
+
+	if (alt_filename != NULL)
+	{
+		GSList *langs;
+		
+		langs = pick_lang_for_filename (lm, alt_filename);
+		lang = GTK_SOURCE_LANGUAGE (langs->data);
+	}
+	
+	if (lang == NULL && mime_type != NULL)
+		lang = pick_lang_for_mime_type_real (lm, mime_type);
+
+	g_free (mime_type);
+	g_free (alt_filename);
+#endif
+	return lang;
+}
 
 /**
  * gtk_source_language_manager_guess_language:
@@ -570,6 +602,7 @@ gtk_source_language_manager_guess_language (GtkSourceLanguageManager *lm,
 					    const gchar		     *content_type)
 {
 	GtkSourceLanguage *lang = NULL;
+	GSList *langs = NULL;
 
 	g_return_val_if_fail (GTK_IS_SOURCE_LANGUAGE_MANAGER (lm), NULL);
 	g_return_val_if_fail (filename != NULL || content_type != NULL, NULL);
@@ -578,40 +611,68 @@ gtk_source_language_manager_guess_language (GtkSourceLanguageManager *lm,
 
 	ensure_languages (lm);
 
-	/* TODO
-	> Maybe the logic should be:
-	>  - match mime
-	>  - match glob
-	>  - if just one matches use it
-	>  - if they both match and the corresponding mime inside the lang files are one
-	> the anchestor of the other pick the more strict lang
-	>  - if they both match and the corresponding mime inside the lang files are
-	> unrelated, pick the glob one
+	/* Glob take precedence over mime match. Mime match is used in the
+	   following cases:
+	  - to pick among the list of glob matches
+	  - to refine a glob match (e.g. glob is xml and mime is an xml dialect)
+	  - no glob matches
 	*/
 
 	if (filename != NULL)
-		lang = pick_lang_for_filename (lm, filename);
+		langs = pick_langs_for_filename (lm, filename);
 
-	if (lang == NULL && content_type != NULL)
+	if (langs != NULL)
 	{
-#ifndef G_OS_WIN32
-		/* On Unix "content type" is mime type */
+		/* Use mime to pick among glob matches */
+		if (content_type != NULL)
+		{
+			GSList *l;
+			
+			for (l = langs; l != NULL; l = g_slist_next (l))
+			{
+				gchar **mime_types, **gptr;
+				
+				lang = GTK_SOURCE_LANGUAGE (l->data);
+				mime_types = gtk_source_language_get_mime_types (lang);
+				
+				for (gptr = mime_types; gptr != NULL && *gptr != NULL; gptr++)
+				{
+					gchar *content;
+					
+					content = g_content_type_from_mime_type (*gptr);
+					
+					if (content != NULL && g_content_type_is_a (content_type, content))
+					{
+						if (!g_content_type_equals (content_type, content))
+						{
+							GtkSourceLanguage *mimelang;
+							
+							mimelang = pick_lang_for_mime_type (lm, content_type);
+							
+							if (mimelang != NULL)
+								lang = mimelang;
+						}
+						
+						g_strfreev (mime_types);
+						g_slist_free (langs);
+						g_free (content);
+						
+						return lang;
+					}
+					g_free (content);
+				}
+				
+				g_strfreev (mime_types);
+			}
+		}
+		lang = GTK_SOURCE_LANGUAGE (langs->data);
+		
+		g_slist_free (langs);
+	}
+	/* No glob match */
+	else if (langs == NULL && content_type != NULL)
+	{
 		lang = pick_lang_for_mime_type (lm, content_type);
-#else
-		/* On Windows "content type" is an extension, but user may pass a mime type too */
-		gchar *mime_type;
-		gchar *alt_filename;
-
-		grok_win32_content_type (content_type, &alt_filename, &mime_type);
-
-		if (alt_filename != NULL)
-			lang = pick_lang_for_filename (lm, alt_filename);
-		if (lang == NULL && mime_type != NULL)
-			lang = pick_lang_for_mime_type (lm, mime_type);
-
-		g_free (mime_type);
-		g_free (alt_filename);
-#endif
 	}
 
 	return lang;
