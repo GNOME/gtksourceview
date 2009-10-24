@@ -37,6 +37,7 @@
         <style id="error" _name="Error" map-to="def:error"/>
         <style id="string" _name="String" map-to="def:string"/>
         <style id="null-value" _name="Null Value" map-to="def:special-constant"/>
+        <style id="undefined-value" name="Undefined Value" map-to="def:special-constant"/>
         <style id="boolean" _name="Boolean value" map-to="def:boolean"/>
         <style id="keyword" _name="Keyword" map-to="def:keyword"/>
         <style id="object" _name="Object"/> <!--map-to="def:others"-->
@@ -101,6 +102,9 @@
                 <!-- Constants -->
                 <context id="null-value" style-ref="null-value">
                     <keyword>null</keyword>
+                </context>
+                <context id="undefined-value" style-ref="undefined-value">
+                    <keyword>undefined</keyword>
                 </context>
                 <context id="boolean" style-ref="boolean">
                     <keyword>false</keyword>
