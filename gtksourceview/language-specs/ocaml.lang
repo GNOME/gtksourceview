@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- vim: set sts=2 sw=2: -->
 <!--
-
  Author: Eric Cooper <ecc@cmu.edu>
  Copyright (C) 2007 Eric Cooper <ecc@cmu.edu>
  Copyright (C) 2007 Eric Norige <thelema314@gmail.com>
@@ -21,7 +20,6 @@
  License along with this library; if not, write to the
  Free Software Foundation, Inc., 59 Temple Place - Suite 330,
  Boston, MA 02111-1307, USA.
-
 -->
 <language id="objective-caml" _name="Objective Caml" version="2.0" _section="Sources">
   <metadata>
@@ -42,7 +40,6 @@
     <style id="meta-keyword" _name="Type, module or object keyword" map-to="def:keyword"/>
     <style id="fun-keyword" _name="Builtin-function keyword" map-to="def:keyword"/>
     <style id="type" _name="Data Type" map-to="def:type"/>
-    <style id="std-modules" _name="Standard modules" map-to="def:type"/>
     <style id="label" _name="Labeled argument" map-to="def:type"/>
     <style id="poly-variant" _name="Polymorphic Variant" map-to="def:type"/>
     <style id="variant" _name="Variant Constructor" map-to="def:type"/>
@@ -51,15 +48,18 @@
     <style id="escape" _name="Escaped Character" map-to="def:special-char"/>
     <style id="boolean" _name="Boolean value" map-to="def:boolean"/>
     <style id="error" _name="Error" map-to="def:error"/>
+    <style id="std-modules" _name="Standart Modules" map-to="def:type"/>
   </styles>
 
   <definitions>
     <define-regex id="cap-ident">\b[A-Z][A-Za-z0-9_']*</define-regex>
     <define-regex id="low-ident">\b[a-z][A-Za-z0-9_']*</define-regex>
     <define-regex id="char-esc">\\((\\|"|'|n|t|b|r)|[0-9]{3}|x[0-9a-fA-F]{2})</define-regex>
+
     <context id="escape-seq" style-ref="escape">
       <match>\%{char-esc}</match>
     </context>
+
     <!-- here's the main context -->
     <context id="objective-caml">
       <include>
@@ -231,11 +231,9 @@
 	  <keyword>list</keyword>
 	  <keyword>string</keyword>
 	  <keyword>unit</keyword>
-	  <!-- note: Some and None are highlighted as variants -->
 	</context>
-	
-	<context id="types" style-ref="type">
-	  <!--note: OCaml standart modules-->
+	<context id="standart-modules" style-ref="std-modules">
+	  <!--Standart modules -->
 	  <keyword>arg</keyword>
 	  <keyword>arith_status</keyword>
 	  <keyword>array</keyword>
@@ -273,7 +271,6 @@
 	  <keyword>mutex</keyword>
 	  <keyword>mativeint</keyword>
 	  <keyword>num</keyword>
-	  <keyword>obj</keyword>
 	  <keyword>oo</keyword>
 	  <keyword>parsing</keyword>
 	  <keyword>printexc</keyword>
@@ -287,7 +284,6 @@
 	  <keyword>stdLabels</keyword>
 	  <keyword>str</keyword>
 	  <keyword>stream</keyword>
-	  <keyword>string</keyword>
 	  <keyword>stringLabels</keyword>
 	  <keyword>sys</keyword>
 	  <keyword>thread</keyword>
@@ -295,7 +291,7 @@
 	  <keyword>unix</keyword>
 	  <keyword>unixLabels</keyword>
 	  <keyword>weak</keyword>
-          <!-- note: OCaml standart modules -->
+	  <!-- Standart modules -->
 	</context>
       </include>
     </context>
