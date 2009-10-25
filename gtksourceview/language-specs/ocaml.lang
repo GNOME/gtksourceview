@@ -5,6 +5,7 @@
  Author: Eric Cooper <ecc@cmu.edu>
  Copyright (C) 2007 Eric Cooper <ecc@cmu.edu>
  Copyright (C) 2007 Eric Norige <thelema314@gmail.com>
+ Copyright (C) 2009 Alexandr Kuleshov <sterh@live.ru>
 
  This library is free software; you can redistribute it and/or
  modify it under the terms of the GNU Library General Public
@@ -41,7 +42,7 @@
     <style id="meta-keyword" _name="Type, module or object keyword" map-to="def:keyword"/>
     <style id="fun-keyword" _name="Builtin-function keyword" map-to="def:keyword"/>
     <style id="type" _name="Data Type" map-to="def:type"/>
-    <style id="std-modules" _name="Standard modules" map-to="def:keyword"/>
+    <style id="std-modules" _name="Standard modules" map-to="def:type"/>
     <style id="label" _name="Labeled argument" map-to="def:type"/>
     <style id="poly-variant" _name="Polymorphic Variant" map-to="def:type"/>
     <style id="variant" _name="Variant Constructor" map-to="def:type"/>
@@ -233,70 +234,69 @@
 	  <!-- note: Some and None are highlighted as variants -->
 	</context>
 	
-	<context id="standard-modules" style-ref="std-modules">
-	  <!-- note: OCaml standard modules -->
-	  <keyword>Arg</keyword>
-	  <keyword>Arith_status</keyword>
-	  <keyword>Array</keyword>
-	  <keyword>ArrayLabels</keyword>
-	  <keyword>Big_int</keyword>
-	  <keyword>Bigarray</keyword>
-	  <keyword>Buffer</keyword>
-	  <keyword>Callback</keyword>
-	  <keyword>CamlinternalMod</keyword>
-	  <keyword>CamlinternalOO</keyword>
-	  <keyword>Char</keyword>
-	  <keyword>Complex</keyword>
-	  <keyword>Condition</keyword>
-	  <keyword>Dbm</keyword>
-	  <keyword>Digest</keyword>
-	  <keyword>DynLink</keyword>
-	  <keyword>Event</keyword>
-	  <keyword>Filename</keyword>
-	  <keyword>Format</keyword>
-	  <keyword>Gc</keyword>
-	  <keyword>Genlex</keyword>
-	  <keyword>Graphics</keyword>
-	  <keyword>GraphicsX11</keyword>
-	  <keyword>Hashtbl</keyword>
-	  <keyword>Int32</keyword>
-	  <keyword>Int64</keyword>
-	  <keyword>LargeFile</keyword>
-	  <keyword>Lazy</keyword>
-	  <keyword>Lexing</keyword>
-	  <keyword>List</keyword>
-	  <keyword>ListLabels</keyword>
-	  <keyword>Map</keyword>
-	  <keyword>Marshal</keyword>
-	  <keyword>MoreLabels</keyword>
-	  <keyword>Mutex</keyword>
-	  <keyword>Nativeint</keyword>
-	  <keyword>Num</keyword>
+	<context id="types" style-ref="type">
+	  <!--note: OCaml standart modules-->
+	  <keyword>arg</keyword>
+	  <keyword>arith_status</keyword>
+	  <keyword>array</keyword>
+	  <keyword>arrayLabels</keyword>
+	  <keyword>big_int</keyword>
+	  <keyword>bigarray</keyword>
+	  <keyword>buffer</keyword>
+	  <keyword>callback</keyword>
+	  <keyword>camlinternalMod</keyword>
+	  <keyword>camlinternalOO</keyword>
+	  <keyword>char</keyword>
+	  <keyword>complex</keyword>
+	  <keyword>condition</keyword>
+	  <keyword>dbm</keyword>
+	  <keyword>digest</keyword>
+	  <keyword>dynLink</keyword>
+	  <keyword>event</keyword>
+	  <keyword>filename</keyword>
+	  <keyword>format</keyword>
+	  <keyword>gc</keyword>
+	  <keyword>genlex</keyword>
+	  <keyword>graphics</keyword>
+	  <keyword>graphicsX11</keyword>
+	  <keyword>hashtbl</keyword>
+	  <keyword>int32</keyword>
+	  <keyword>int64</keyword>
+	  <keyword>largeFile</keyword>
+	  <keyword>lazy</keyword>
+	  <keyword>lexing</keyword>
+	  <keyword>list</keyword>
+	  <keyword>listLabels</keyword>
+	  <keyword>map</keyword>
+	  <keyword>marshal</keyword>
+	  <keyword>moreLabels</keyword>
+	  <keyword>mutex</keyword>
+	  <keyword>mativeint</keyword>
+	  <keyword>num</keyword>
 	  <keyword>obj</keyword>
-	  <keyword>Oo</keyword>
-	  <keyword>Parsing</keyword>
-	  <keyword>Printexc</keyword>
-	  <keyword>Printf</keyword>
-	  <keyword>Queue</keyword>
-	  <keyword>Random</keyword>
-	  <keyword>Scanf</keyword>
-	  <keyword>Set</keyword>
-	  <keyword>Sort</keyword>
-	  <keyword>Stack</keyword>
-	  <keyword>StdLabels</keyword>
-	  <keyword>Str</keyword>
-	  <keyword>Stream</keyword>
-	  <keyword>String</keyword>
-	  <keyword>StringLabels</keyword>
-	  <keyword>Sys</keyword>
-	  <keyword>Thread</keyword>
-	  <keyword>ThreadUnix</keyword>
-	  <keyword>Unix</keyword>
-	  <keyword>UnixLabels</keyword>
-	  <keyword>Weak</keyword>
-	  <!-- note: OCaml standard modules -->
+	  <keyword>oo</keyword>
+	  <keyword>parsing</keyword>
+	  <keyword>printexc</keyword>
+	  <keyword>printf</keyword>
+	  <keyword>queue</keyword>
+	  <keyword>random</keyword>
+	  <keyword>scanf</keyword>
+	  <keyword>set</keyword>
+	  <keyword>sort</keyword>
+	  <keyword>stack</keyword>
+	  <keyword>stdLabels</keyword>
+	  <keyword>str</keyword>
+	  <keyword>stream</keyword>
+	  <keyword>string</keyword>
+	  <keyword>stringLabels</keyword>
+	  <keyword>sys</keyword>
+	  <keyword>thread</keyword>
+	  <keyword>threadUnix</keyword>
+	  <keyword>unix</keyword>
+	  <keyword>unixLabels</keyword>
+	  <keyword>weak</keyword>
+          <!-- note: OCaml standart modules -->
 	</context>
-	
       </include>
     </context>
   </definitions>
