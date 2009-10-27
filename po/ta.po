@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview.master.ta\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-22 22:05+0530\n"
-"PO-Revision-Date: 2009-10-23 11:45+0530\n"
+"POT-Creation-Date: 2009-10-27 12:30+0530\n"
+"PO-Revision-Date: 2009-10-27 12:32+0530\n"
 "Last-Translator: Dr.T.Vasudevan <agnihot3@gmail.com>\n"
 "Language-Team: Tamil <Ubuntu-l10n-tam@lists.ubuntu.com>\n"
 "MIME-Version: 1.0\n"
@@ -780,8 +780,8 @@ msgid ""
 "HOME and END keys move to first/last non whitespace characters on line "
 "before going to the start/end of the line"
 msgstr ""
-"HOME மற்றும்  END விசைகள் வரியின் முதல் / கடைசி க்கு செல்லுமுன் "
-"வரியின் முதல் / கடைசி வெற்று எழுத்துருவுக்கு செல்லும். "
+"HOME மற்றும்  END விசைகள் வரியின் முதல் / கடைசி க்கு செல்லுமுன் வரியின் முதல் / கடைசி "
+"வெற்று எழுத்துருவுக்கு செல்லும். "
 
 #: ../gtksourceview/gtksourceview.c:432
 msgid "Highlight current line"
@@ -1089,7 +1089,7 @@ msgstr "சேமிப்பு வகுப்பு"
 #: ../gtksourceview/language-specs/nemerle.lang.h:16
 #: ../gtksourceview/language-specs/nsis.lang.h:5
 #: ../gtksourceview/language-specs/objc.lang.h:6
-#: ../gtksourceview/language-specs/ocaml.lang.h:17
+#: ../gtksourceview/language-specs/ocaml.lang.h:18
 #: ../gtksourceview/language-specs/ocl.lang.h:7
 #: ../gtksourceview/language-specs/octave.lang.h:11
 #: ../gtksourceview/language-specs/pascal.lang.h:8
@@ -2025,6 +2025,10 @@ msgstr "பொருள்"
 msgid "Properties"
 msgstr "பண்புகள்"
 
+#: ../gtksourceview/language-specs/javascript.lang.h:16
+msgid "Undefined Value"
+msgstr "குறிப்பில்லா மாறி"
+
 #: ../gtksourceview/language-specs/kate.xml.h:1
 msgid "Color scheme used in the Kate text editor"
 msgstr "கேட் உரை திருத்தியில் பயன்பட்ட வண்ணம்"
@@ -2208,15 +2212,19 @@ msgstr "Ocamldoc குறிப்புகள்"
 msgid "Polymorphic Variant"
 msgstr "பல்மாற்ற திரிபுரு"
 
-#: ../gtksourceview/language-specs/ocaml.lang.h:18
+#: ../gtksourceview/language-specs/ocaml.lang.h:17
+msgid "Standart Modules"
+msgstr "ஸ்டான்டார்ட் தொகுதிகள்"
+
+#: ../gtksourceview/language-specs/ocaml.lang.h:19
 msgid "Type Variable"
 msgstr "வகை மாறி"
 
-#: ../gtksourceview/language-specs/ocaml.lang.h:19
+#: ../gtksourceview/language-specs/ocaml.lang.h:20
 msgid "Type, module or object keyword"
 msgstr "வகை, பகுதி அல்லது பொருள் முதன்மை சொல்"
 
-#: ../gtksourceview/language-specs/ocaml.lang.h:20
+#: ../gtksourceview/language-specs/ocaml.lang.h:21
 msgid "Variant Constructor"
 msgstr "திரிபுரு உருவாக்கி"
 
@@ -2600,5 +2608,4 @@ msgstr "விதி"
 #: ../gtksourceview/language-specs/yacc.lang.h:6
 msgid "token-type"
 msgstr "டோக்கன் வகை"
-
 
