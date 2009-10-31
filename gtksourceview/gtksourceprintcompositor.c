@@ -297,7 +297,7 @@ gtk_source_print_compositor_set_property (GObject      *object,
 	switch (prop_id)
 	{
 		case PROP_BUFFER:
-			compositor->priv->buffer = GTK_SOURCE_BUFFER (g_value_get_object (value));
+			compositor->priv->buffer = GTK_SOURCE_BUFFER (g_value_dup_object (value));
 			break;
 		case PROP_TAB_WIDTH:
 			gtk_source_print_compositor_set_tab_width (compositor,
@@ -376,7 +376,7 @@ gtk_source_print_compositor_finalize (GObject *object)
 
 	if (compositor->priv->footer_font != NULL)
 		pango_font_description_free (compositor->priv->footer_font);
-		
+
 	g_free (compositor->priv->header_format_left);
 	g_free (compositor->priv->header_format_right);
 	g_free (compositor->priv->header_format_center);
@@ -385,6 +385,21 @@ gtk_source_print_compositor_finalize (GObject *object)
 	g_free (compositor->priv->footer_format_center);
 
 	G_OBJECT_CLASS (gtk_source_print_compositor_parent_class)->finalize (object);
+}
+
+static void
+gtk_source_print_compositor_dispose (GObject *object)
+{
+	GtkSourcePrintCompositor *compositor;
+
+	compositor = GTK_SOURCE_PRINT_COMPOSITOR (object);
+
+	if (compositor->priv->buffer != NULL) {
+		g_object_unref (compositor->priv->buffer);
+		compositor->priv->buffer = NULL;
+	}
+
+	G_OBJECT_CLASS (gtk_source_print_compositor_parent_class)->dispose (object);
 }
 
 static void						 
@@ -397,6 +412,7 @@ gtk_source_print_compositor_class_init (GtkSourcePrintCompositorClass *klass)
 	object_class->get_property = gtk_source_print_compositor_get_property;
 	object_class->set_property = gtk_source_print_compositor_set_property;
 	object_class->finalize = gtk_source_print_compositor_finalize;
+	object_class->dispose = gtk_source_print_compositor_dispose;
 
 	/**
 	 * GtkSourcePrintCompositor:buffer:

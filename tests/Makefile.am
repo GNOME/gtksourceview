@@ -34,6 +34,14 @@ test_languagemanager_LDADD = 		\
 	$(DEP_LIBS)			\
 	$(TESTS_LIBS)
 
+UNIT_TEST_PROGS += test-printcompositor
+test_printcompositor_SOURCES =		\
+	test-printcompositor.c
+test_printcompositor_LDADD = 		\
+	$(top_builddir)/gtksourceview/libgtksourceview-2.0.la \
+	$(DEP_LIBS)			\
+	$(TESTS_LIBS)
+
 # testregion need gtk_text_region_ api which is normally private
 # modify gtksourceview/Makefile.am to export gtk_text_* symbols
 # TEST_PROGS += testregion
