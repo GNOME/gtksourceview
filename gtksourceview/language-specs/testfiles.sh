@@ -6,7 +6,7 @@
 
 # Langs covered here:
 # asp.lang changelog.lang c.lang cpp.lang desktop.lang diff.lang dtd.lang
-# gap.lang gtkrc.lang html.lang ini.lang latex.lang m4.lang
+# fsharp.lang gap.lang glsl.lang gtkrc.lang html.lang ini.lang latex.lang m4.lang
 # makefile.lang ms.lang perl.lang po.lang prolog.lang python.lang sh.lang
 # texinfo.lang xml.lang yacc.lang libtool.lang pkgconfig.lang
 # objc.lang chdr.lang testv1.lang t2t.lang fortran.lang forth.lang
@@ -14,6 +14,17 @@
 
 dir="testdir"
 mkdir -p $dir/
+
+cat > $dir/file.fs << EOFEOF
+(* Simple F# sample *)
+let rec map func lst =
+    match lst with
+       | [] -> []
+       | head :: tail -> func head :: map func tail
+ 
+let myList = [1;3;5]
+let newList = map (fun x -> x + 1) myList
+EOFEOF
 
 cat > $dir/file.glslf << EOFEOF
 #version 140

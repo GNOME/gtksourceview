@@ -26,6 +26,7 @@ LANGUAGES =			\
 	erlang.lang		\
 	forth.lang		\
 	fortran.lang		\
+	fsharp.lang		\
 	gap.lang		\
 	glsl.lang		\
 	gtk-doc.lang		\
