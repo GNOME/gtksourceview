@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: gtksourceview.HEAD\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&component=general\n"
-"POT-Creation-Date: 2009-10-25 15:17+0000\n"
-"PO-Revision-Date: 2009-11-02 12:47+0100\n"
+"POT-Creation-Date: 2009-11-02 13:00+0000\n"
+"PO-Revision-Date: 2009-11-02 14:18+0100\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -65,7 +65,7 @@ msgid "The minimum word size to complete"
 msgstr "El tamaño mínimo de palabra para completar"
 
 #: ../gtksourceview/gtksourcebuffer.c:180
-#: ../gtksourceview/gtksourceprintcompositor.c:471
+#: ../gtksourceview/gtksourceprintcompositor.c:487
 msgid "Highlight Syntax"
 msgstr "Resaltar sintaxis"
 
@@ -136,7 +136,6 @@ msgid "View"
 msgstr "Ver"
 
 #: ../gtksourceview/gtksourcecompletion.c:1947
-#| msgid "The GtkSourceBuffer object to print"
 msgid "The GtkSourceView bound to the completion"
 msgstr "La GtkSourceView vinculada con el completado"
 
@@ -149,7 +148,6 @@ msgid "Remember the last info window visibility state"
 msgstr "Recordar el último estado de visibilidad de información de la ventana"
 
 #: ../gtksourceview/gtksourcecompletion.c:1976
-#| msgid "Section 1"
 msgid "Select on Show"
 msgstr "Seleccionar al mostrar"
 
@@ -158,7 +156,6 @@ msgid "Select first proposal when completion is shown"
 msgstr "Seleccionar la primera propuesta al mostrar el completado"
 
 #: ../gtksourceview/gtksourcecompletion.c:1991
-#| msgid "Show Line Marks"
 msgid "Show Headers"
 msgstr "Mostrar cabeceras"
 
@@ -170,7 +167,6 @@ msgstr ""
 "proveedores"
 
 #: ../gtksourceview/gtksourcecompletion.c:2005
-#| msgid "Type Operators"
 msgid "Accelerators"
 msgstr "Aceleradores"
 
@@ -204,13 +200,11 @@ msgid "Proposal scrolling page size"
 msgstr "Tamaño de página de desplazamiento de la propuesta"
 
 #: ../gtksourceview/gtksourcecompletion.c:2392
-#| msgid "Print Header"
 msgid "Provider"
 msgstr "Proveedor"
 
 #: ../gtksourceview/gtksourcecompletioncontext.c:160
 #: ../gtksourceview/gtksourceview.c:307
-#| msgid "Option"
 msgid "Completion"
 msgstr "Completado"
 
@@ -219,25 +213,24 @@ msgid "The completion object to which the context belongs"
 msgstr "El objeto de completado al que pertenece el contexto"
 
 #: ../gtksourceview/gtksourcecompletioncontext.c:174
-#| msgid "The gutters' GtkSourceView"
 msgid "The GtkSourceView"
 msgstr "La GtkSourceView"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:186
-#| msgid "Others"
-msgid "Iter"
-msgstr ""
-
+#. Translators: The GtkTextIter at which the completion was invoked
 #: ../gtksourceview/gtksourcecompletioncontext.c:187
+#| msgid "Operator"
+msgid "Iterator"
+msgstr "Iterador"
+
+#: ../gtksourceview/gtksourcecompletioncontext.c:188
 msgid "The GtkTextIter at which the completion was invoked"
 msgstr "El GtkTextIter en el que se invocó el completado"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:198
-#| msgid "Location"
+#: ../gtksourceview/gtksourcecompletioncontext.c:199
 msgid "Activation"
 msgstr "Activación"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:199
+#: ../gtksourceview/gtksourcecompletioncontext.c:200
 msgid "The type of activation"
 msgstr "El tipo de activación"
 
@@ -281,7 +274,6 @@ msgstr ""
 "Indica si la ventana se debe encoger en altura para ajustarse al contenido"
 
 #: ../gtksourceview/gtksourcecompletionitem.c:229
-#| msgid "LaTeX"
 msgid "Label"
 msgstr "Etiqueta"
 
@@ -309,7 +301,6 @@ msgid "Markup to be shown for this item"
 msgstr "Marcado que mostrar para este elemento"
 
 #: ../gtksourceview/gtksourcecompletionitem.c:255
-#| msgid "Text2Tags"
 msgid "Text"
 msgstr "Texto"
 
@@ -322,7 +313,6 @@ msgid "Icon to be shown for this item"
 msgstr "Icono que mostrar para este elemento"
 
 #: ../gtksourceview/gtksourcecompletionitem.c:281
-#| msgid "Ignore"
 msgid "Info"
 msgstr "Información"
 
@@ -490,106 +480,106 @@ msgstr "categoría"
 msgid "The mark category"
 msgstr "La marca de la categoría"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:411
+#: ../gtksourceview/gtksourceprintcompositor.c:427
 msgid "Source Buffer"
 msgstr "Búfer de origen"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:412
+#: ../gtksourceview/gtksourceprintcompositor.c:428
 msgid "The GtkSourceBuffer object to print"
 msgstr "El objeto GtkSourceBuffer que imprimir"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:429
+#: ../gtksourceview/gtksourceprintcompositor.c:445
 #: ../gtksourceview/gtksourceview.c:345
 msgid "Tab Width"
 msgstr "Ancho de la tabulación"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:430
+#: ../gtksourceview/gtksourceprintcompositor.c:446
 #: ../gtksourceview/gtksourceview.c:346
 msgid "Width of a tab character expressed in spaces"
 msgstr "Anchura de una carácter tabulación expresado en espacios"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:450
+#: ../gtksourceview/gtksourceprintcompositor.c:466
 msgid "Wrap Mode"
 msgstr "Modo de ajuste"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:451
+#: ../gtksourceview/gtksourceprintcompositor.c:467
 msgid ""
 "Whether to wrap lines never, at word boundaries, or at character boundaries."
 msgstr ""
 "Indica si nunca se debe ajustar a las líneas, en los límites de las palabras "
 "o en los límites de los caracteres."
 
-#: ../gtksourceview/gtksourceprintcompositor.c:472
+#: ../gtksourceview/gtksourceprintcompositor.c:488
 msgid "Whether to print the document with highlighted syntax"
 msgstr "Indica si se imprimirá el documento con sintaxis resaltada"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:493
+#: ../gtksourceview/gtksourceprintcompositor.c:509
 msgid "Print Line Numbers"
 msgstr "Imprimir números de línea"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:494
+#: ../gtksourceview/gtksourceprintcompositor.c:510
 msgid "Interval of printed line numbers (0 means no numbers)"
 msgstr "Intervalo de los números de línea imprimidos (0 indica sin números)"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:516
+#: ../gtksourceview/gtksourceprintcompositor.c:532
 msgid "Print Header"
 msgstr "Imprimir cabecera"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:517
+#: ../gtksourceview/gtksourceprintcompositor.c:533
 msgid "Whether to print a header in each page"
 msgstr "Indica si se imprimirá una cabecera en cada página"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:539
+#: ../gtksourceview/gtksourceprintcompositor.c:555
 msgid "Print Footer"
 msgstr "Imprimir pie"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:540
+#: ../gtksourceview/gtksourceprintcompositor.c:556
 msgid "Whether to print a footer in each page"
 msgstr "Indica si se imprimirá un pie en cada página"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:562
+#: ../gtksourceview/gtksourceprintcompositor.c:578
 msgid "Body Font Name"
 msgstr "Nombre de la tipografía del cuerpo"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:563
+#: ../gtksourceview/gtksourceprintcompositor.c:579
 msgid "Name of the font to use for the text body (e.g. \"Monospace 10\")"
 msgstr ""
 "Nombre de la tipografía que usar para el cuerpo del texto (ej. «Monospace 10»)"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:586
+#: ../gtksourceview/gtksourceprintcompositor.c:602
 msgid "Line Numbers Font Name"
 msgstr "Nombre de la tipografía de los números de línea"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:587
+#: ../gtksourceview/gtksourceprintcompositor.c:603
 msgid "Name of the font to use for the line numbers (e.g. \"Monospace 10\")"
 msgstr ""
 "Nombre de la tipografía que usar para los números de línea (ej. «Monospace "
 "10»)"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:610
+#: ../gtksourceview/gtksourceprintcompositor.c:626
 msgid "Header Font Name"
 msgstr "Nombre de la tipografía de la cabecera"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:611
+#: ../gtksourceview/gtksourceprintcompositor.c:627
 msgid "Name of the font to use for the page header (e.g. \"Monospace 10\")"
 msgstr ""
 "Nombre de la tipografía que usar para la cabecera de la página (ej. "
 "«Monospace 10»)"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:634
+#: ../gtksourceview/gtksourceprintcompositor.c:650
 msgid "Footer Font Name"
 msgstr "Nombre de la tipografía del pie"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:635
+#: ../gtksourceview/gtksourceprintcompositor.c:651
 msgid "Name of the font to use for the page footer (e.g. \"Monospace 10\")"
 msgstr ""
 "Nombre de la tipografía que usar para el pie de la página (ej. «Monospace 10»)"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:651
+#: ../gtksourceview/gtksourceprintcompositor.c:667
 msgid "Number of pages"
 msgstr "Número de páginas"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:652
+#: ../gtksourceview/gtksourceprintcompositor.c:668
 msgid ""
 "The number of pages in the document (-1 means the document has not been "
 "completely paginated)."
@@ -1498,17 +1488,14 @@ msgid "CUDA"
 msgstr "CUDA"
 
 #: ../gtksourceview/language-specs/cuda.lang.h:3
-#| msgid "Function"
 msgid "Device Functions"
 msgstr "Funciones del dispositivo"
 
 #: ../gtksourceview/language-specs/cuda.lang.h:4
-#| msgid "Function"
 msgid "Global Functions"
 msgstr "Funciones globales"
 
 #: ../gtksourceview/language-specs/cuda.lang.h:5
-#| msgid "Special Variable"
 msgid "Global Variables"
 msgstr "Variables globales"
 
@@ -1846,7 +1833,6 @@ msgid "OpenGL Shading Language"
 msgstr "Lenguaje de sombras de OpenGL"
 
 #: ../gtksourceview/language-specs/glsl.lang.h:7
-#| msgid "Reserved keyword"
 msgid "Reserved Keywords"
 msgstr "Palabras clave reservadas"
 
@@ -2053,7 +2039,6 @@ msgid "Properties"
 msgstr "Propiedades"
 
 #: ../gtksourceview/language-specs/javascript.lang.h:16
-#| msgid "Predefined Variable"
 msgid "Undefined Value"
 msgstr "Variable sin definir"
 
