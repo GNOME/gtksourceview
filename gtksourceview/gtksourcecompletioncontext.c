@@ -183,7 +183,8 @@ gtk_source_completion_context_class_init (GtkSourceCompletionContextClass *klass
 	g_object_class_install_property (object_class,
 	                                 PROP_ITER,
 	                                 g_param_spec_pointer ("iter",
-	                                                       _("Iter"),
+	/* Translators: The GtkTextIter at which the completion was invoked */
+	                                                       _("Iterator"),
 	                                                       _("The GtkTextIter at which the completion was invoked"),
 	                                                       G_PARAM_READWRITE));
 
