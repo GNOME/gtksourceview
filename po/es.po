@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: gtksourceview.HEAD\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&component=general\n"
-"POT-Creation-Date: 2009-11-02 13:00+0000\n"
-"PO-Revision-Date: 2009-11-02 14:18+0100\n"
+"POT-Creation-Date: 2009-11-02 15:36+0000\n"
+"PO-Revision-Date: 2009-11-03 20:37+0100\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -218,7 +218,6 @@ msgstr "La GtkSourceView"
 
 #. Translators: The GtkTextIter at which the completion was invoked
 #: ../gtksourceview/gtksourcecompletioncontext.c:187
-#| msgid "Operator"
 msgid "Iterator"
 msgstr "Iterador"
 
@@ -984,7 +983,7 @@ msgstr "Carácter de escape"
 #: ../gtksourceview/language-specs/eiffel.lang.h:12
 #: ../gtksourceview/language-specs/erlang.lang.h:9
 #: ../gtksourceview/language-specs/forth.lang.h:7
-#: ../gtksourceview/language-specs/fortran.lang.h:7
+#: ../gtksourceview/language-specs/fortran.lang.h:8
 #: ../gtksourceview/language-specs/gap.lang.h:6
 #: ../gtksourceview/language-specs/glsl.lang.h:4
 #: ../gtksourceview/language-specs/gtkrc.lang.h:7
@@ -1052,7 +1051,7 @@ msgstr "Número real"
 #: ../gtksourceview/language-specs/eiffel.lang.h:14
 #: ../gtksourceview/language-specs/erlang.lang.h:11
 #: ../gtksourceview/language-specs/forth.lang.h:10
-#: ../gtksourceview/language-specs/fortran.lang.h:8
+#: ../gtksourceview/language-specs/fortran.lang.h:9
 #: ../gtksourceview/language-specs/glsl.lang.h:8
 #: ../gtksourceview/language-specs/haskell.lang.h:12
 #: ../gtksourceview/language-specs/haskell-literate.lang.h:2
@@ -1812,6 +1811,11 @@ msgstr "Coma flotante"
 #: ../gtksourceview/language-specs/fortran.lang.h:6
 msgid "Fortran 95"
 msgstr "Fortran 95"
+
+#: ../gtksourceview/language-specs/fortran.lang.h:7
+#| msgid "Builtin Function"
+msgid "Intrinsic function"
+msgstr "Función intrínseca"
 
 #: ../gtksourceview/language-specs/gap.lang.h:5
 msgid "GAP"
