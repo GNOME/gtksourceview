@@ -9,19 +9,20 @@
 # Felix <ifelix@redhat.com>, 2006.
 # Dr.T.Vasudevan <agnihot3@gmail.com>, 2007, 2008, 2009.
 # I. Felix <ifelix@redhat.com>, 2009.
+# Dr,T,Vasudevan <agnihot3@gmail.com>, 2009.
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview.master.ta\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-27 12:30+0530\n"
-"PO-Revision-Date: 2009-10-27 12:32+0530\n"
-"Last-Translator: Dr.T.Vasudevan <agnihot3@gmail.com>\n"
-"Language-Team: Tamil <Ubuntu-l10n-tam@lists.ubuntu.com>\n"
+"POT-Creation-Date: 2009-11-03 13:15+0530\n"
+"PO-Revision-Date: 2009-11-03 13:17+0530\n"
+"Last-Translator: Dr,T,Vasudevan <agnihot3@gmail.com>\n"
+"Language-Team: Tamil <Ubuntu-l10n-tam@lists.ubuntu.com>>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "17:19-0500\n"
-"X-Generator: Lokalize 0.3\n"
+"X-Generator: Lokalize 1.0\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\\n"
 "\n"
 "\n"
@@ -77,7 +78,7 @@ msgid "The minimum word size to complete"
 msgstr "முடிக்க சொல்லின் குறைந்தபட்ச அளவு"
 
 #: ../gtksourceview/gtksourcebuffer.c:180
-#: ../gtksourceview/gtksourceprintcompositor.c:471
+#: ../gtksourceview/gtksourceprintcompositor.c:487
 msgid "Highlight Syntax"
 msgstr "இலக்கணத்தை முன்னிலைப்படுத்து"
 
@@ -224,19 +225,20 @@ msgstr "இந்த சூழல் சம்பந்தப்பட்ட ம
 msgid "The GtkSourceView"
 msgstr "ஜிடிகேசோர்ஸ் காட்சி"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:186
-msgid "Iter"
-msgstr "நிகழ்வு"
-
+#. Translators: The GtkTextIter at which the completion was invoked
 #: ../gtksourceview/gtksourcecompletioncontext.c:187
+msgid "Iterator"
+msgstr "குறியீடு"
+
+#: ../gtksourceview/gtksourcecompletioncontext.c:188
 msgid "The GtkTextIter at which the completion was invoked"
 msgstr "வார்த்தை முடிவு கோரப்பட்ட ஜிடிகே டெக்ஸ்ட் நிகழ்வு"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:198
+#: ../gtksourceview/gtksourcecompletioncontext.c:199
 msgid "Activation"
 msgstr "செயல்படுத்தல்"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:199
+#: ../gtksourceview/gtksourcecompletioncontext.c:200
 msgid "The type of activation"
 msgstr "செயலாக்க வகை"
 
@@ -481,97 +483,97 @@ msgstr "வகை"
 msgid "The mark category"
 msgstr "குறி வகை"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:411
+#: ../gtksourceview/gtksourceprintcompositor.c:427
 msgid "Source Buffer"
 msgstr "மூலங்களின் இடையகம்"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:412
+#: ../gtksourceview/gtksourceprintcompositor.c:428
 msgid "The GtkSourceBuffer object to print"
 msgstr "அச்சிட வேண்டிய ஜிடிகே மூல இடையக பொருள்"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:429
+#: ../gtksourceview/gtksourceprintcompositor.c:445
 #: ../gtksourceview/gtksourceview.c:345
 msgid "Tab Width"
 msgstr "தத்தல் அகலம்"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:430
+#: ../gtksourceview/gtksourceprintcompositor.c:446
 #: ../gtksourceview/gtksourceview.c:346
 msgid "Width of a tab character expressed in spaces"
 msgstr "தத்தலின் அகலம் இடங்களின் எண்ணிக்கையில்"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:450
+#: ../gtksourceview/gtksourceprintcompositor.c:466
 msgid "Wrap Mode"
 msgstr "மடங்கல் பாங்கு"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:451
+#: ../gtksourceview/gtksourceprintcompositor.c:467
 msgid "Whether to wrap lines never, at word boundaries, or at character boundaries."
 msgstr "சொற்களின் எல்லைகளிலும் அல்லது எழுத்துருக்களின் எல்லைகளிலும் வரிகளை மடிக்கவே கூடாதா"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:472
+#: ../gtksourceview/gtksourceprintcompositor.c:488
 msgid "Whether to print the document with highlighted syntax"
 msgstr "ஆவணத்தில் இலக்கண சுட்டலை முன்னிலைப்படுத்தி அச்சிட வேண்டுமா"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:493
+#: ../gtksourceview/gtksourceprintcompositor.c:509
 msgid "Print Line Numbers"
 msgstr "வரி எண்களை அச்சிடுட்டு"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:494
+#: ../gtksourceview/gtksourceprintcompositor.c:510
 msgid "Interval of printed line numbers (0 means no numbers)"
 msgstr "வரி எண்கள் அச்சிட வேண்டிய இடைவெளி (0 எனில் எண்கள் இல்லை)"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:516
+#: ../gtksourceview/gtksourceprintcompositor.c:532
 msgid "Print Header"
 msgstr "அச்சு தலைப்பு"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:517
+#: ../gtksourceview/gtksourceprintcompositor.c:533
 msgid "Whether to print a header in each page"
 msgstr "ஒவ்வொரு பக்கத்திலும் தலைப்பை அச்சிட வேண்டுமா"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:539
+#: ../gtksourceview/gtksourceprintcompositor.c:555
 msgid "Print Footer"
 msgstr "அடிக்குறிப்பை அச்சிடு"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:540
+#: ../gtksourceview/gtksourceprintcompositor.c:556
 msgid "Whether to print a footer in each page"
 msgstr "ஒவ்வொரு பக்கத்திலும் அடிக்குறிப்பை அச்சிட வேண்டுமா"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:562
+#: ../gtksourceview/gtksourceprintcompositor.c:578
 msgid "Body Font Name"
 msgstr "உடல் எழுத்துரு பெயர்"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:563
+#: ../gtksourceview/gtksourceprintcompositor.c:579
 msgid "Name of the font to use for the text body (e.g. \"Monospace 10\")"
 msgstr "உரை உடலில் பயன் படுத்த வேண்டிய எழுத்துருவின் பெயர் (எ-டு \"மோனோஸ்பேஸ் 10\")"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:586
+#: ../gtksourceview/gtksourceprintcompositor.c:602
 msgid "Line Numbers Font Name"
 msgstr "வரி எண்களுக்கு எழுத்துரு பெயர்"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:587
+#: ../gtksourceview/gtksourceprintcompositor.c:603
 msgid "Name of the font to use for the line numbers (e.g. \"Monospace 10\")"
 msgstr "வரி எண்களுக்கு பயன் படுத்த வேண்டிய எழுத்துருவின் பெயர் (எ-டு \"மோனோஸ்பேஸ் 10\")"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:610
+#: ../gtksourceview/gtksourceprintcompositor.c:626
 msgid "Header Font Name"
 msgstr "தலைப்புக்கு எழுத்துரு பெயர்"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:611
+#: ../gtksourceview/gtksourceprintcompositor.c:627
 msgid "Name of the font to use for the page header (e.g. \"Monospace 10\")"
 msgstr "பக்க தலைப்புக்கு பயன் படுத்த வேண்டிய எழுத்துருவின் பெயர் (எ-டு \"மோனோஸ்பேஸ் 10\")"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:634
+#: ../gtksourceview/gtksourceprintcompositor.c:650
 msgid "Footer Font Name"
 msgstr "அடிக்குறிப்புக்கு எழுத்துரு பெயர்"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:635
+#: ../gtksourceview/gtksourceprintcompositor.c:651
 msgid "Name of the font to use for the page footer (e.g. \"Monospace 10\")"
 msgstr "அடிக்குறிப்புக்கு பயன் படுத்த வேண்டிய எழுத்துருவின் பெயர் (எ-டு \"மோனோஸ்பேஸ் 10\")"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:651
+#: ../gtksourceview/gtksourceprintcompositor.c:667
 msgid "Number of pages"
 msgstr "பக்கங்களின் எண்ணிக்கை"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:652
+#: ../gtksourceview/gtksourceprintcompositor.c:668
 msgid ""
 "The number of pages in the document (-1 means the document has not been "
 "completely paginated)."
@@ -971,7 +973,7 @@ msgstr "விடுபடு எழுத்துக்கள்"
 #: ../gtksourceview/language-specs/eiffel.lang.h:12
 #: ../gtksourceview/language-specs/erlang.lang.h:9
 #: ../gtksourceview/language-specs/forth.lang.h:7
-#: ../gtksourceview/language-specs/fortran.lang.h:7
+#: ../gtksourceview/language-specs/fortran.lang.h:8
 #: ../gtksourceview/language-specs/gap.lang.h:6
 #: ../gtksourceview/language-specs/glsl.lang.h:4
 #: ../gtksourceview/language-specs/gtkrc.lang.h:7
@@ -1039,7 +1041,7 @@ msgstr "மெய்யெண்"
 #: ../gtksourceview/language-specs/eiffel.lang.h:14
 #: ../gtksourceview/language-specs/erlang.lang.h:11
 #: ../gtksourceview/language-specs/forth.lang.h:10
-#: ../gtksourceview/language-specs/fortran.lang.h:8
+#: ../gtksourceview/language-specs/fortran.lang.h:9
 #: ../gtksourceview/language-specs/glsl.lang.h:8
 #: ../gtksourceview/language-specs/haskell.lang.h:12
 #: ../gtksourceview/language-specs/haskell-literate.lang.h:2
@@ -1799,6 +1801,10 @@ msgstr "மிதக்கும் புள்ளி"
 #: ../gtksourceview/language-specs/fortran.lang.h:6
 msgid "Fortran 95"
 msgstr "ஃபோட்ரான் 95"
+
+#: ../gtksourceview/language-specs/fortran.lang.h:7
+msgid "Intrinsic function"
+msgstr "உள்ளமை செயல்பாடு"
 
 #: ../gtksourceview/language-specs/gap.lang.h:5
 msgid "GAP"
@@ -2609,3 +2615,5 @@ msgstr "விதி"
 msgid "token-type"
 msgstr "டோக்கன் வகை"
 
+#~ msgid "Iter"
+#~ msgstr "நிகழ்வு"
