@@ -73,13 +73,13 @@ gtk_source_completion_words_utils_forward_word_end (GtkTextIter    *iter,
 			break;
 		}
 		
-		gtk_text_iter_forward_char (iter);
-		
 		/* Check if the next character is a valid word character */
 		if (!valid (gtk_text_iter_get_char (iter), data))
 		{
 			break;
 		}
+		
+		gtk_text_iter_forward_char (iter);
 	}
 	
 	return TRUE;
