@@ -403,6 +403,8 @@ add_scan_region (GtkSourceCompletionWordsBuffer *buffer,
 {
 	GList *item;
 	GList *merge_start = NULL;
+	GList *merge_end = NULL;
+
 	gint line_count = gtk_text_buffer_get_line_count (buffer->priv->buffer);
 	
 	if (end >= line_count)
@@ -419,72 +421,56 @@ add_scan_region (GtkSourceCompletionWordsBuffer *buffer,
 	{
 		ScanRegion *region = (ScanRegion *)item->data;
 		
-		if (merge_start != NULL)
+		/* Check if this region is overlapping, or directly adjacent to,
+		   the new region */
+		if (start <= region->end + 1 &&
+		    end >= (gint)region->start - 1)
 		{
-			if (end < region->start)
+			/* Merge ends at _least_ here, we keep updating
+			   merge_end here until the region no longer qualifies
+			   for merging */
+			merge_end = item;
+			
+			if (!merge_start)
 			{
-				break;
+				/* Merge starts here */
+				merge_start = item;
 			}
 		}
-		else if (start >= region->start)
+		else if (merge_end != NULL)
 		{
-			merge_start = item;
+			/* Break early because following regions fall outside
+			   of the new region and will not be merged */
+			break;
 		}
 	}
 	
 	if (merge_start == NULL)
 	{
-		/* Simply prepend */
+		/* Simply prepend, there was no overlap */
 		buffer->priv->scan_regions = 
 			g_list_prepend (buffer->priv->scan_regions,
 			                scan_region_new (start, end));
 	}
 	else
 	{
-		GList *insert_at;
+		ScanRegion *merged = REGION_FROM_LIST (merge_start);
+		GList *item;
 
-		if (end < REGION_FROM_LIST (merge_start)->start)
-		{
-			/* In this case, merge from next(merge_start) to item */
-			merge_start = g_list_next (merge_start);
-		}
-		
-		insert_at = g_list_previous (merge_start);
-		
-		start = MIN(start, REGION_FROM_LIST (merge_start)->start);
-		
-		if (item)
-		{
-			end = MIN(end, REGION_FROM_LIST (item)->end);
-		}
-		
-		while (merge_start != item)
-		{
-			GList *tmp = merge_start;
-			
-			merge_start = g_list_next (merge_start);
-			scan_region_free (REGION_FROM_LIST (tmp));
+		/* 'merged' will be the merge of merge_start to merge_end,
+		   including the new region. The regions next(merge_start) to
+		   merge_end will be removed */
+		merged->start = MIN(start, merged->start);
+		merged->end = MAX(end, REGION_FROM_LIST (merge_end)->end);
 
-			buffer->priv->scan_regions = 
-				g_list_delete_link (buffer->priv->scan_regions,
-				                    tmp);
-		}
+		item = merge_start;
 		
-		/* Insert new region */
-		insert_at = g_list_next (insert_at);
-		
-		if (insert_at != NULL)
+		while (item != merge_end)
 		{
-			buffer->priv->scan_regions = 
-				g_list_insert_before (buffer->priv->scan_regions,
-				                      insert_at,
-				                      scan_region_new (start, end));
-		}
-		else
-		{
-			buffer->priv->scan_regions = 
-					g_list_append (buffer->priv->scan_regions,
-						       scan_region_new (start, end));
+			item = g_list_next (item);
+			scan_region_free (REGION_FROM_LIST (item));
+
+			merge_start = g_list_delete_link (merge_start, item);
 		}
 	}
 	
