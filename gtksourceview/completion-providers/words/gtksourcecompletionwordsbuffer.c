@@ -404,6 +404,7 @@ add_scan_region (GtkSourceCompletionWordsBuffer *buffer,
 	GList *item;
 	GList *merge_start = NULL;
 	GList *merge_end = NULL;
+	GList *insert_after = NULL;
 
 	gint line_count = gtk_text_buffer_get_line_count (buffer->priv->buffer);
 	
@@ -421,6 +422,11 @@ add_scan_region (GtkSourceCompletionWordsBuffer *buffer,
 	{
 		ScanRegion *region = (ScanRegion *)item->data;
 		
+		if (region->end < end)
+		{
+			insert_after = item;
+		}
+
 		/* Check if this region is overlapping, or directly adjacent to,
 		   the new region */
 		if (start <= region->end + 1 &&
@@ -449,8 +455,9 @@ add_scan_region (GtkSourceCompletionWordsBuffer *buffer,
 	{
 		/* Simply prepend, there was no overlap */
 		buffer->priv->scan_regions = 
-			g_list_prepend (buffer->priv->scan_regions,
-			                scan_region_new (start, end));
+			g_list_insert_before (buffer->priv->scan_regions,
+			                      g_list_next (insert_after),
+			                      scan_region_new (start, end));
 	}
 	else
 	{
