@@ -15,6 +15,21 @@
 dir="testdir"
 mkdir -p $dir/
 
+cat > $dir/file.fcl << EOFEOF
+FUNCTION_BLOCK explore
+
+VAR_INPUT
+    front : REAL;
+    left : REAL;
+    right : REAL;
+END_VAR
+
+VAR_OUTPUT
+    velocity : REAL;
+    angular_velocity : REAL;
+END_VAR
+EOFEOF
+
 cat > $dir/file.fs << EOFEOF
 (* Simple F# sample *)
 let rec map func lst =

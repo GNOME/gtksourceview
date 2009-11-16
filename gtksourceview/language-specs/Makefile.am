@@ -24,6 +24,7 @@ LANGUAGES =			\
 	dtd.lang		\
 	eiffel.lang		\
 	erlang.lang		\
+	fcl.lang		\
 	forth.lang		\
 	fortran.lang		\
 	fsharp.lang		\
