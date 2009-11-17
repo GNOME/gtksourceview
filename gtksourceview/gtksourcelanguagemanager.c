@@ -522,7 +522,7 @@ static GtkSourceLanguage *
 pick_lang_for_mime_type (GtkSourceLanguageManager *lm,
 			 const gchar              *content_type)
 {
-	GtkSourceLanguage *lang;
+	GtkSourceLanguage *lang = NULL;
 
 #ifndef G_OS_WIN32
 	/* On Unix "content type" is mime type */
@@ -538,7 +538,7 @@ pick_lang_for_mime_type (GtkSourceLanguageManager *lm,
 	{
 		GSList *langs;
 		
-		langs = pick_lang_for_filename (lm, alt_filename);
+		langs = pick_langs_for_filename (lm, alt_filename);
 		lang = GTK_SOURCE_LANGUAGE (langs->data);
 	}
 	
