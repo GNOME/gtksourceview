@@ -539,7 +539,9 @@ pick_lang_for_mime_type (GtkSourceLanguageManager *lm,
 		GSList *langs;
 		
 		langs = pick_langs_for_filename (lm, alt_filename);
-		lang = GTK_SOURCE_LANGUAGE (langs->data);
+		
+		if (langs != NULL)
+			lang = GTK_SOURCE_LANGUAGE (langs->data);
 	}
 	
 	if (lang == NULL && mime_type != NULL)
