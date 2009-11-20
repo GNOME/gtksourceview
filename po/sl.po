@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourcereview\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gtksourceview&component=general\n"
-"POT-Creation-Date: 2009-11-16 18:59+0000\n"
-"PO-Revision-Date: 2009-11-17 10:32+0100\n"
+"POT-Creation-Date: 2009-11-18 17:33+0000\n"
+"PO-Revision-Date: 2009-11-20 08:19+0100\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -44,19 +44,19 @@ msgstr "Ikona ponudnika"
 
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:475
 msgid "Proposals Batch Size"
-msgstr ""
+msgstr "Paketna velikost ponudb"
 
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:476
 msgid "Number of proposals added in one batch"
-msgstr ""
+msgstr "Število ponudb dodanih enemu paketu"
 
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:485
 msgid "Scan Batch Size"
-msgstr ""
+msgstr "Paketna velikost proučevanja"
 
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:486
 msgid "Number of lines scanned in one batch"
-msgstr ""
+msgstr "Število preučenih vrstic enega paketa"
 
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:495
 msgid "Minimum Word Size"
@@ -147,7 +147,7 @@ msgstr "Zapomni si podrobnosti vidnosti"
 
 #: ../gtksourceview/gtksourcecompletion.c:1963
 msgid "Remember the last info window visibility state"
-msgstr ""
+msgstr "Zapomni si podrobnosti zadnjega stanja vidnosti okna"
 
 #: ../gtksourceview/gtksourcecompletion.c:1976
 msgid "Select on Show"
@@ -159,11 +159,11 @@ msgstr "Izberi prvi predlog, ko se pokaže dopolnjevanje"
 
 #: ../gtksourceview/gtksourcecompletion.c:1991
 msgid "Show Headers"
-msgstr "Prikaži glave"
+msgstr "Pokaži glave"
 
 #: ../gtksourceview/gtksourcecompletion.c:1992
 msgid "Show provider headers when proposals from multiple providers are available"
-msgstr ""
+msgstr "Pokaži glave ponudnikov, ko so na voljo različne ponudbe "
 
 #: ../gtksourceview/gtksourcecompletion.c:2005
 msgid "Accelerators"
@@ -171,11 +171,11 @@ msgstr "Pospeševalniki"
 
 #: ../gtksourceview/gtksourcecompletion.c:2006
 msgid "Number of proposal accelerators to show"
-msgstr ""
+msgstr "Število prikazanih pospeševalnikov ponudb"
 
 #: ../gtksourceview/gtksourcecompletion.c:2022
 msgid "Auto Complete Delay"
-msgstr ""
+msgstr "Zamik samodejnega dopolnjevanja"
 
 #: ../gtksourceview/gtksourcecompletion.c:2023
 msgid "Completion popup delay for interactive completion"
@@ -187,7 +187,7 @@ msgstr "Velikost strani ponudnika"
 
 #: ../gtksourceview/gtksourcecompletion.c:2039
 msgid "Provider scrolling page size"
-msgstr ""
+msgstr "Velikost drsne strani ponudnikov"
 
 #: ../gtksourceview/gtksourcecompletion.c:2054
 msgid "Proposal Page Size"
@@ -699,7 +699,7 @@ msgstr "Predmet dopolnjevanja povezan s pogledom"
 
 #: ../gtksourceview/gtksourceview.c:320
 msgid "Show Line Numbers"
-msgstr "Prikaži številke vrstic"
+msgstr "Pokaži številke vrstic"
 
 #: ../gtksourceview/gtksourceview.c:321
 msgid "Whether to display line numbers"
@@ -707,7 +707,7 @@ msgstr "Ali naj bodo prikazane številke vrstic"
 
 #: ../gtksourceview/gtksourceview.c:332
 msgid "Show Line Marks"
-msgstr "Prikaži zaznamovalce vrstic"
+msgstr "Pokaži zaznamovalce vrstic"
 
 #: ../gtksourceview/gtksourceview.c:333
 msgid "Whether to display line mark pixbufs"
@@ -739,7 +739,7 @@ msgstr "Ali naj se namesto tabulatorjev vstavijo presledki"
 
 #: ../gtksourceview/gtksourceview.c:391
 msgid "Show Right Margin"
-msgstr "Prikaži desni rob"
+msgstr "Pokaži desni rob"
 
 #: ../gtksourceview/gtksourceview.c:392
 msgid "Whether to display the right margin"
@@ -1815,7 +1815,7 @@ msgstr "Fortran 95"
 
 #: ../gtksourceview/language-specs/fortran.lang.h:7
 msgid "Intrinsic function"
-msgstr ""
+msgstr "Notranje funkcije"
 
 #: ../gtksourceview/language-specs/fsharp.lang.h:3
 #: ../gtksourceview/language-specs/ocaml.lang.h:3
