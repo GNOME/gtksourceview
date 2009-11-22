@@ -3752,7 +3752,7 @@ move_lines (GtkTextView *view, gboolean down)
 
 	gtk_text_buffer_get_selection_bounds (buf, &s, &e);
 
-	/* get the entire lines, including the last \n */
+	/* get the entire lines, including the paragraph terminator */
 	gtk_text_iter_set_line_offset (&s, 0);
 	if (!gtk_text_iter_starts_line (&e) ||
 	     gtk_text_iter_get_line (&s) == gtk_text_iter_get_line (&e))
@@ -3760,22 +3760,64 @@ move_lines (GtkTextView *view, gboolean down)
 		gtk_text_iter_forward_line (&e);
 	}
 
-	if ((down && (gtk_text_buffer_get_line_count (buf) == gtk_text_iter_get_line (&e))) ||
-	    (!down && (0 == gtk_text_iter_get_line (&s))))
+	if ((!down && (0 == gtk_text_iter_get_line (&s))) ||
+	    (down && (gtk_text_iter_is_end (&e))) ||
+	    (down && (gtk_text_buffer_get_line_count (buf) == gtk_text_iter_get_line (&e))))
 	{
 		return;
 	}
 
 	text = gtk_text_buffer_get_slice (buf, &s, &e, TRUE);
 
+	/* First special case) We are moving up the last line
+	 * of the buffer, check if buffer ends with a paragraph
+	 * delimiter otherwise append a \n ourselves */
+	if (gtk_text_iter_is_end (&e))
+	{
+		GtkTextIter iter;
+		iter = e;
+
+		gtk_text_iter_set_line_offset (&iter, 0);
+		if (!gtk_text_iter_ends_line (&iter) &&
+		    !gtk_text_iter_forward_to_line_end (&iter))
+		{
+			gchar *tmp;
+
+			tmp = g_strdup_printf ("%s\n", text);
+
+			g_free (text);
+			text = tmp;
+		}
+	}
+
 	gtk_text_buffer_begin_user_action (buf);
 
 	gtk_text_buffer_delete (buf, &s, &e);
 
 	if (down)
+	{
 		gtk_text_iter_forward_line (&e);
+
+		/* Second special case) We are moving down the last-but-one line
+		 * of the buffer, check if buffer ends with a paragraph
+		 * delimiter otherwise prepend a \n ourselves */
+		if (gtk_text_iter_is_end (&e))
+		{
+			GtkTextIter iter;
+			iter = e;
+
+			gtk_text_iter_set_line_offset (&iter, 0);
+			if (!gtk_text_iter_ends_line (&iter) &&
+			    !gtk_text_iter_forward_to_line_end (&iter))
+			{
+				gtk_text_buffer_insert (buf, &e, "\n", -1);
+			}
+		}
+	}
 	else
+	{
 		gtk_text_iter_backward_line (&e);
+	}
 
 	/* use anon mark to be able to select after insertion */
 	mark = gtk_text_buffer_create_mark (buf, NULL, &e, TRUE);
