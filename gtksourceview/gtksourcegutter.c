@@ -276,7 +276,7 @@ revalidate_size (GtkSourceGutter *gutter)
 		gtk_text_view_set_border_window_size (GTK_TEXT_VIEW (gutter->priv->view),
 		                                      gutter->priv->window_type,
 		                                      1);
-		do_redraw (gutter);
+		gutter->priv->size = -1;
 	}
 	else if (window && !gutter->priv->renderers)
 	{
@@ -859,6 +859,7 @@ on_view_expose_event (GtkSourceView   *view,
 	size = calculate_sizes (gutter, sizes);
 	if (gutter->priv->size != size)
 	{
+
 		gint border_size;
 
 		border_size = gtk_text_view_get_border_window_size (text_view, gutter->priv->window_type);
