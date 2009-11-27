@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourcereview\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gtksourceview&component=general\n"
-"POT-Creation-Date: 2009-11-18 17:33+0000\n"
-"PO-Revision-Date: 2009-11-20 08:19+0100\n"
+"POT-Creation-Date: 2009-11-27 00:36+0000\n"
+"PO-Revision-Date: 2009-11-27 07:24+0100\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -385,7 +385,7 @@ msgstr "Gutter vrsta okna"
 #: ../gtksourceview/language-specs/changelog.lang.h:8
 #: ../gtksourceview/language-specs/cmake.lang.h:7
 #: ../gtksourceview/language-specs/css.lang.h:10
-#: ../gtksourceview/language-specs/desktop.lang.h:11
+#: ../gtksourceview/language-specs/desktop.lang.h:12
 #: ../gtksourceview/language-specs/diff.lang.h:9
 #: ../gtksourceview/language-specs/dot.lang.h:6
 #: ../gtksourceview/language-specs/dpatch.lang.h:2
@@ -1126,7 +1126,7 @@ msgstr "Funkcija"
 #: ../gtksourceview/language-specs/asp.lang.h:8
 #: ../gtksourceview/language-specs/boo.lang.h:11
 #: ../gtksourceview/language-specs/def.lang.h:40
-#: ../gtksourceview/language-specs/desktop.lang.h:10
+#: ../gtksourceview/language-specs/desktop.lang.h:11
 #: ../gtksourceview/language-specs/forth.lang.h:8
 #: ../gtksourceview/language-specs/java.lang.h:13
 #: ../gtksourceview/language-specs/prolog.lang.h:4
@@ -1208,7 +1208,7 @@ msgid "Boo"
 msgstr "Boo"
 
 #: ../gtksourceview/language-specs/boo.lang.h:2
-#: ../gtksourceview/language-specs/desktop.lang.h:2
+#: ../gtksourceview/language-specs/desktop.lang.h:3
 #: ../gtksourceview/language-specs/d.lang.h:2
 #: ../gtksourceview/language-specs/libtool.lang.h:1
 #: ../gtksourceview/language-specs/octave.lang.h:2
@@ -1564,9 +1564,9 @@ msgstr "Podčrtano"
 msgid ".desktop"
 msgstr ".desktop"
 
-#: ../gtksourceview/language-specs/desktop.lang.h:3
-msgid "Category"
-msgstr "Kategorija"
+#: ../gtksourceview/language-specs/desktop.lang.h:2
+msgid "Additional Category"
+msgstr "Dodatna kategorija"
 
 #: ../gtksourceview/language-specs/desktop.lang.h:4
 msgid "Encoding"
@@ -1586,7 +1586,15 @@ msgstr "Skupina"
 msgid "Key"
 msgstr "Ključ"
 
-#: ../gtksourceview/language-specs/desktop.lang.h:12
+#: ../gtksourceview/language-specs/desktop.lang.h:10
+msgid "Main Category"
+msgstr "Glavna kategorija"
+
+#: ../gtksourceview/language-specs/desktop.lang.h:13
+msgid "Reserved Category"
+msgstr "Rezervirana kategorija"
+
+#: ../gtksourceview/language-specs/desktop.lang.h:14
 msgid "Translation"
 msgstr "Prevod"
 
