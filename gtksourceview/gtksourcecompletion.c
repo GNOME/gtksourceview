@@ -601,6 +601,8 @@ update_selection_label (GtkSourceCompletion *completion)
 	
 	if (visible == NULL)
 	{
+		/* Translators: "All" is used as a label in thestatus bar of the
+		popup, telling that all completion pages are shown */
 		name = g_strdup_printf("<b>%s</b>", _("All"));
 		
 		gtk_image_clear (GTK_IMAGE (completion->priv->selection_image));
@@ -1959,7 +1961,7 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 	g_object_class_install_property (object_class,
 					 PROP_REMEMBER_INFO_VISIBILITY,
 					 g_param_spec_boolean ("remember-info-visibility",
-							      _("Remeber Info Visibility"),
+							      _("Remember Info Visibility"),
 							      _("Remember the last info window visibility state"),
 							      FALSE,
 							      G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
