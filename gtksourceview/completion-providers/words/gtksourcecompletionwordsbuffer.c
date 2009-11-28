@@ -355,6 +355,12 @@ remove_scan_regions (GtkSourceCompletionWordsBuffer *buffer,
 				/* Top part of region in removed region */
 				region->start = end;
 			}
+			else
+			{
+				/* Fully decrease */
+				region->start -= span;
+				region->end -= span;
+			}
 		}
 		else if (region->end <= end && region->end > start)
 		{
