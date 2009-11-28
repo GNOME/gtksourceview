@@ -575,7 +575,6 @@ gtk_source_completion_info_set_widget (GtkSourceCompletionInfo *info,
 		/* See if it needs a viewport */
 		if (use_scrolled_window (info, widget))
 		{
-			g_message ("yes");
 			create_scrolled_window (info);
 			child = widget;
 			
