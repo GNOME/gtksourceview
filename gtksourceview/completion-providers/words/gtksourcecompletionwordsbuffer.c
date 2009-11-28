@@ -331,7 +331,9 @@ remove_scan_regions (GtkSourceCompletionWordsBuffer *buffer,
 	GList *item;
 	gint span = end - start + 1;
 	
-	for (item = buffer->priv->scan_regions; item; item = g_list_next (item))
+	item = buffer->priv->scan_regions;
+
+	while (item != NULL)
 	{
 		ScanRegion *region = REGION_FROM_LIST (item);
 		
@@ -343,17 +345,19 @@ remove_scan_regions (GtkSourceCompletionWordsBuffer *buffer,
 				GList *remove = item;
 				scan_region_free (region);
 
-				item = g_list_previous (item);
+				item = g_list_next (item);
 			
 				/* Remove whole thing */
 				buffer->priv->scan_regions = 
 					g_list_delete_link (buffer->priv->scan_regions,
 						            remove);
+				continue;
 			}
 			else if (region->start <= end)
 			{
 				/* Top part of region in removed region */
-				region->start = end;
+				region->start = end + 1;
+				region->end -= span;
 			}
 			else
 			{
@@ -371,6 +375,8 @@ remove_scan_regions (GtkSourceCompletionWordsBuffer *buffer,
 		{
 			region->end -= span;
 		}
+
+		item = g_list_next (item);
 	}
 }
 
