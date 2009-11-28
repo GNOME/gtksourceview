@@ -694,8 +694,11 @@ _gtk_source_language_file_parse_version1 (GtkSourceLanguage    *language,
 	{
 		doc = xmlParseMemory (g_mapped_file_get_contents (mf),
 				      g_mapped_file_get_length (mf));
-
+#if GLIB_CHECK_VERSION(2,22,0)
+		g_mapped_file_unref (mf);
+#else
 		g_mapped_file_free (mf);
+#endif
 	}
 
 	if (doc == NULL)
