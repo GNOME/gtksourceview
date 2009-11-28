@@ -456,7 +456,7 @@ add_scan_region (GtkSourceCompletionWordsBuffer *buffer,
 		/* Simply prepend, there was no overlap */
 		buffer->priv->scan_regions = 
 			g_list_insert_before (buffer->priv->scan_regions,
-			                      g_list_next (insert_after),
+			                      insert_after ? g_list_next (insert_after) : buffer->priv->scan_regions,
 			                      scan_region_new (start, end));
 	}
 	else
