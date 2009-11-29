@@ -60,7 +60,7 @@
     </context>
 
     <context id="variable" style-ref="variable">
-      <match>(_|[A-Z][A-Za-z0-9_]*)</match>
+      <match>\b(_|[A-Z][A-Za-z0-9_]*)\b</match>
     </context>
     
     <context id="operators" style-ref="operator">
