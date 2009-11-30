@@ -15,6 +15,18 @@
 dir="testdir"
 mkdir -p $dir/
 
+cat > $dir/file.rq << EOFEOF
+# Positive test: product of type promotion within the xsd:decimal type tree.
+
+PREFIX t: <http://www.w3.org/2001/sw/DataAccess/tests/data/TypePromotion/tP-0#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+ASK
+ WHERE { t:double1 rdf:value ?l .
+         t:float1 rdf:value ?r .
+         FILTER ( datatype(?l + ?r) = xsd:double ) }
+EOFEOF
+
 cat > $dir/file.fcl << EOFEOF
 FUNCTION_BLOCK explore
 

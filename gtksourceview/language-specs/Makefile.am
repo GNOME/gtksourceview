@@ -65,6 +65,7 @@ LANGUAGES =			\
 	ruby.lang		\
 	scheme.lang		\
 	sh.lang			\
+	sparql.lang		\
 	sql.lang		\
 	styles.rng		\
 	t2t.lang		\
