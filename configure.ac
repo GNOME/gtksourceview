@@ -65,7 +65,6 @@ PKG_CHECK_MODULES(DEP, [
 	gio-2.0
 	gtk+-2.0 >= $GTK_REQUIRED_VERSION
 	libxml-2.0 >= $LIBXML_REQUIRED_VERSION
-	gconf-2.0
 ])
 
 
