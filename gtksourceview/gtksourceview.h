@@ -121,7 +121,7 @@ typedef enum
 	                                     GTK_SOURCE_DRAW_SPACES_NBSP | \
 	                                     GTK_SOURCE_DRAW_SPACES_LEADING | \
 	                                     GTK_SOURCE_DRAW_SPACES_TEXT | \
-	                                     GTK_SOURCE_DRAW_SPACES_TRAILING),
+	                                     GTK_SOURCE_DRAW_SPACES_TRAILING)
 } GtkSourceDrawSpacesFlags;
 
 

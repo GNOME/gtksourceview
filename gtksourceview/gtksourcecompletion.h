@@ -49,7 +49,7 @@ typedef struct _GtkSourceCompletionClass GtkSourceCompletionClass;
 typedef enum
 {
 	GTK_SOURCE_COMPLETION_ERROR_ALREADY_BOUND = 0,
-	GTK_SOURCE_COMPLETION_ERROR_NOT_BOUND,
+	GTK_SOURCE_COMPLETION_ERROR_NOT_BOUND
 } GtkSourceCompletionError;
 
 /* Forward declaration of GtkSourceView */
