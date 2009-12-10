@@ -27,6 +27,8 @@
 #include <gtk/gtk.h>
 #include <gtksourceview/gtksourceview.h>
 
+G_BEGIN_DECLS
+
 #define GTK_TYPE_SOURCE_PRINT_COMPOSITOR            (gtk_source_print_compositor_get_type ())
 #define GTK_SOURCE_PRINT_COMPOSITOR(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GTK_TYPE_SOURCE_PRINT_COMPOSITOR, GtkSourcePrintCompositor))
 #define GTK_SOURCE_PRINT_COMPOSITOR_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), GTK_TYPE_SOURCE_PRINT_COMPOSITOR, GtkSourcePrintCompositorClass))
