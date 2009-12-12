@@ -474,7 +474,7 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 			      G_TYPE_NONE,
 			      2,
 			      GTK_TYPE_TEXT_ITER,
-			      G_TYPE_POINTER);
+			      GDK_TYPE_EVENT | G_SIGNAL_TYPE_STATIC_SCOPE);
 
 	binding_set = gtk_binding_set_by_class (klass);
 

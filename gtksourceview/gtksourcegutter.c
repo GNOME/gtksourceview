@@ -377,7 +377,7 @@ gtk_source_gutter_class_init (GtkSourceGutterClass *klass)
 			      3,
 			      GTK_TYPE_CELL_RENDERER,
 			      GTK_TYPE_TEXT_ITER,
-			      G_TYPE_POINTER);
+			      GDK_TYPE_EVENT | G_SIGNAL_TYPE_STATIC_SCOPE);
 
 	/**
 	 * GtkSourceGutter::query-tooltip:
