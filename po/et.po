@@ -5,23 +5,56 @@
 # Copyright (C) 2007-2009 The GNOME Project.
 # This file is distributed under the same license as the gtksourceview package.
 #
-# Tõivo Leedjärv <toivo@linux.ee>, 2003.
-# Priit Laes <amd@store20.com>, 2005.
-# Ivar Smolin <okul@linux.ee>, 2005-2009.
+# Tõivo Leedjärv <toivo linux ee>, 2003.
+# Priit Laes <amd store20 com>, 2005.
+# Ivar Smolin <okul linux ee>, 2005-2009.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gtksourceview HEAD\n"
+"Project-Id-Version: gtksourceview MASTER\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&component=general\n"
-"POT-Creation-Date: 2009-07-18 11:41+0000\n"
-"PO-Revision-Date: 2009-07-29 12:00+0300\n"
+"POT-Creation-Date: 2009-11-30 23:11+0000\n"
+"PO-Revision-Date: 2009-12-15 08:01+0200\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Document Words"
+msgstr ""
+
+msgid "Name"
+msgstr "Nimi"
+
+msgid "The provider name"
+msgstr ""
+
+msgid "Icon"
+msgstr "Ikoon"
+
+msgid "The provider icon"
+msgstr ""
+
+msgid "Proposals Batch Size"
+msgstr ""
+
+msgid "Number of proposals added in one batch"
+msgstr ""
+
+msgid "Scan Batch Size"
+msgstr ""
+
+msgid "Number of lines scanned in one batch"
+msgstr ""
+
+msgid "Minimum Word Size"
+msgstr "Väikseim sõna suurus"
+
+msgid "The minimum word size to complete"
+msgstr ""
 
 msgid "Highlight Syntax"
 msgstr "Süntaksi esiletõstmine"
@@ -63,6 +96,143 @@ msgstr "Kas unustatud tegevuse taastamine on võimalik või mitte"
 
 msgid "Style scheme"
 msgstr "Laadi skeem"
+
+#. Translators: "All" is used as a label in thestatus bar of the
+#. popup, telling that all completion pages are shown
+msgid "All"
+msgstr "Kõik"
+
+msgid "No extra information available"
+msgstr ""
+
+msgid "View"
+msgstr ""
+
+msgid "The GtkSourceView bound to the completion"
+msgstr ""
+
+msgid "Remember Info Visibility"
+msgstr ""
+
+msgid "Remember the last info window visibility state"
+msgstr ""
+
+msgid "Select on Show"
+msgstr ""
+
+msgid "Select first proposal when completion is shown"
+msgstr ""
+
+msgid "Show Headers"
+msgstr "Päiste näitamine"
+
+msgid ""
+"Show provider headers when proposals from multiple providers are available"
+msgstr ""
+
+msgid "Accelerators"
+msgstr ""
+
+msgid "Number of proposal accelerators to show"
+msgstr ""
+
+msgid "Auto Complete Delay"
+msgstr ""
+
+msgid "Completion popup delay for interactive completion"
+msgstr ""
+
+msgid "Provider Page Size"
+msgstr ""
+
+msgid "Provider scrolling page size"
+msgstr ""
+
+msgid "Proposal Page Size"
+msgstr ""
+
+msgid "Proposal scrolling page size"
+msgstr ""
+
+msgid "Provider"
+msgstr ""
+
+msgid "Completion"
+msgstr ""
+
+msgid "The completion object to which the context belongs"
+msgstr ""
+
+msgid "The GtkSourceView"
+msgstr ""
+
+#. Translators: The GtkTextIter at which the completion was invoked
+msgid "Iterator"
+msgstr ""
+
+msgid "The GtkTextIter at which the completion was invoked"
+msgstr ""
+
+msgid "Activation"
+msgstr "Aktiveerimine"
+
+msgid "The type of activation"
+msgstr ""
+
+#. Tooltip style
+msgid "Completion Info"
+msgstr ""
+
+msgid "Maximum width"
+msgstr ""
+
+msgid "The maximum allowed width"
+msgstr ""
+
+msgid "Maximum height"
+msgstr ""
+
+msgid "The maximum allowed height"
+msgstr ""
+
+msgid "Shrink width"
+msgstr ""
+
+msgid "Whether the window should shrink width to fit the contents"
+msgstr ""
+
+msgid "Shrink height"
+msgstr ""
+
+msgid "Whether the window should shrink height to fit the contents"
+msgstr ""
+
+msgid "Label"
+msgstr ""
+
+msgid "Label to be shown for this item"
+msgstr ""
+
+msgid "Markup"
+msgstr ""
+
+msgid "Markup to be shown for this item"
+msgstr ""
+
+msgid "Text"
+msgstr "Tekst"
+
+msgid "Item text"
+msgstr ""
+
+msgid "Icon to be shown for this item"
+msgstr ""
+
+msgid "Info"
+msgstr ""
+
+msgid "Info to be shown for this item"
+msgstr ""
 
 msgid "using \\C is not supported in language definitions"
 msgstr "\\C kasutamine keelekirjeldustes pole toetatud"
@@ -114,17 +284,14 @@ msgstr "tundmatu kontekst '%s'"
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "Puudub peamise keele definitsioon (id = \"%s\".)"
 
-msgid "View"
-msgstr ""
-
 msgid "The gutters' GtkSourceView"
-msgstr ""
+msgstr "Gutteri GtkSourceView"
 
 msgid "Window Type"
-msgstr ""
+msgstr "Akna liik"
 
 msgid "The gutters text window type"
-msgstr ""
+msgstr "Gutteri tekstiakna liik"
 
 msgid "Others"
 msgstr "Muud"
@@ -343,14 +510,17 @@ msgstr "Skeemi ID-d"
 msgid "List of the ids of the available style schemes"
 msgstr "Saadaolevate laadiskeemide ID-de nimekiri"
 
+msgid "The completion object associated with the view"
+msgstr ""
+
 msgid "Show Line Numbers"
-msgstr "Näita reanumbreid"
+msgstr "Reanumbrite näitamine"
 
 msgid "Whether to display line numbers"
 msgstr "Kas näidata reanumbreid või mitte"
 
 msgid "Show Line Marks"
-msgstr "Reamarkerite kuvamine"
+msgstr "Reamarkerite näitamine"
 
 msgid "Whether to display line mark pixbufs"
 msgstr "Kas reanumbrimarkeri pildipuhvrit näidatakse või mitte"
@@ -415,9 +585,9 @@ msgstr ""
 
 msgid "translator-credits"
 msgstr ""
-"Tõivo Leedjärv <toivo@linux.ee>, 2003.\n"
-"Priit Laes <amd@store20.com>, 2005.\n"
-"Ivar Smolin <okul@linux.ee>, 2005-2009."
+"Tõivo Leedjärv <toivo linux ee>, 2003.\n"
+"Priit Laes <amd store20 com>, 2005.\n"
+"Ivar Smolin <okul linux ee>, 2005-2009."
 
 msgid "Ada"
 msgstr "Ada"
@@ -544,9 +714,6 @@ msgstr "E-posti aadress"
 msgid "File"
 msgstr "Fail"
 
-msgid "Name"
-msgstr "Nimi"
-
 msgid "Release"
 msgstr ""
 
@@ -644,6 +811,18 @@ msgstr "Muud 3"
 msgid "at-rules"
 msgstr "@-reeglid"
 
+msgid "CUDA"
+msgstr ""
+
+msgid "Device Functions"
+msgstr "Seadmefunktsioonid"
+
+msgid "Global Functions"
+msgstr "Globaalsed funktsioonid"
+
+msgid "Global Variables"
+msgstr "Globaalmuutujad"
+
 #. A base-N number: 0xFFFF
 msgid "Base-N number"
 msgstr ""
@@ -710,8 +889,8 @@ msgstr "Allajoonitud"
 msgid ".desktop"
 msgstr ".desktop"
 
-msgid "Category"
-msgstr "Kategooria"
+msgid "Additional Category"
+msgstr "Täiendav kategooria"
 
 msgid "Encoding"
 msgstr "Kodeering"
@@ -726,6 +905,12 @@ msgstr "Grupp"
 #. side in a myoption=something line in a .desktop file
 msgid "Key"
 msgstr "Võti"
+
+msgid "Main Category"
+msgstr "Põhikategooria"
+
+msgid "Reserved Category"
+msgstr "Reserveeritud kategooria"
 
 msgid "Translation"
 msgstr "Tõlge"
@@ -776,9 +961,6 @@ msgstr "Kasutajaliidese elemendid"
 
 msgid "Header Elements"
 msgstr "Päiseelemendid"
-
-msgid "Markup"
-msgstr ""
 
 msgid "Structural Elements"
 msgstr "Struktuurielemendid"
@@ -855,6 +1037,21 @@ msgstr "Kompilaatori direktiiv"
 msgid "Erlang"
 msgstr "Erlang"
 
+msgid "Block"
+msgstr "Blokk"
+
+msgid "FCL"
+msgstr "FCL"
+
+msgid "Floating Point"
+msgstr "Ujukomaarv"
+
+msgid "Reserved Constant"
+msgstr "Reserveeritud konstant"
+
+msgid "Scientific"
+msgstr "Teaduslik"
+
 msgid "Debug Code"
 msgstr "Silumiskood"
 
@@ -867,17 +1064,50 @@ msgstr "Forth"
 msgid "BOZ Literal"
 msgstr ""
 
-msgid "Floating Point"
-msgstr "Ujukomaarv"
-
 msgid "Fortran 95"
 msgstr "Fortran 95"
+
+msgid "Intrinsic function"
+msgstr ""
+
+msgid "Builtin-function keyword"
+msgstr "Sisseehitatud funktsiooni võtmesõna"
+
+msgid "F#"
+msgstr "F#"
+
+msgid "Floating Point number"
+msgstr "Ujukomarv"
+
+msgid "Labeled argument"
+msgstr ""
+
+msgid "Module Path"
+msgstr "Mooduli rada"
+
+msgid "Polymorphic Variant"
+msgstr ""
+
+msgid "Type Variable"
+msgstr ""
+
+msgid "Type, module or object keyword"
+msgstr "Tüübi, mooduli või objekti võtmesõnad"
+
+msgid "Variant Constructor"
+msgstr ""
 
 msgid "GAP"
 msgstr "GAP"
 
-msgid "Scientific"
-msgstr "Teaduslik"
+msgid "Builtin Constant"
+msgstr "Sisseehitatud konstant"
+
+msgid "OpenGL Shading Language"
+msgstr ""
+
+msgid "Reserved Keywords"
+msgstr "Reserveeritud võtmesõnad"
 
 msgid "Deprecated"
 msgstr ""
@@ -1026,6 +1256,9 @@ msgstr "Objekt"
 msgid "Properties"
 msgstr "Omadused"
 
+msgid "Undefined Value"
+msgstr "Kirjeldamata väärtus"
+
 msgid "Color scheme used in the Kate text editor"
 msgstr "Kate'i tekstiredaktori poolt kasutatav värviskeem"
 
@@ -1140,34 +1373,13 @@ msgstr "Tango värvipaletti kasutav tume värviskeem"
 msgid "Oblivion"
 msgstr "Unustus"
 
-msgid "Builtin-function keyword"
-msgstr "Sisseehitatud funktsiooni võtmesõna"
-
-msgid "Floating Point number"
-msgstr "Ujukomarv"
-
-msgid "Labeled argument"
-msgstr ""
-
-msgid "Module Path"
-msgstr "Mooduli rada"
-
 msgid "Objective Caml"
 msgstr "Objective Caml"
 
 msgid "Ocamldoc Comments"
 msgstr "Ocamldoc'i kommentaarid"
 
-msgid "Polymorphic Variant"
-msgstr ""
-
-msgid "Type Variable"
-msgstr ""
-
-msgid "Type, module or object keyword"
-msgstr "Tüübi, mooduli või objekti võtmesõnad"
-
-msgid "Variant Constructor"
+msgid "Standart Modules"
 msgstr ""
 
 msgid "OCL"
@@ -1181,9 +1393,6 @@ msgstr ""
 
 msgid "Octave"
 msgstr "Octave"
-
-msgid "Reserved Constant"
-msgstr "Reserveeritud konstant"
 
 msgid "Pascal"
 msgstr "Pascal"
@@ -1245,9 +1454,6 @@ msgstr "gettext tõlge"
 
 msgid "Prolog"
 msgstr "Prolog"
-
-msgid "Builtin Constant"
-msgstr "Sisseehitatud konstant"
 
 msgid "Builtin Object"
 msgstr "Sisseehitatud objekt"
@@ -1348,6 +1554,27 @@ msgstr "Muutuja definitsioon"
 
 msgid "sh"
 msgstr "sh"
+
+msgid "Class"
+msgstr "Klass"
+
+msgid "IRI"
+msgstr ""
+
+msgid "Individual"
+msgstr ""
+
+msgid "Literal"
+msgstr "Literaal"
+
+msgid "Predicate"
+msgstr "Predikaat"
+
+msgid "QName"
+msgstr ""
+
+msgid "SPARQL"
+msgstr ""
 
 msgid "No idea what it is"
 msgstr "Pole aimugi, mis see on"
