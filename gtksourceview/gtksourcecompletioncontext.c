@@ -85,7 +85,7 @@ gtk_source_completion_context_set_property (GObject      *object,
 			self->priv->completion = g_value_dup_object (value);
 			break;
 		case PROP_ITER:
-			self->priv->iter = *((GtkTextIter *)g_value_get_pointer (value));
+			self->priv->iter = *((GtkTextIter *)g_value_get_boxed (value));
 			break;
 		case PROP_ACTIVATION:
 			self->priv->activation = g_value_get_flags (value);
@@ -112,7 +112,7 @@ gtk_source_completion_context_get_property (GObject    *object,
 			g_value_set_object (value, gtk_source_completion_get_view (self->priv->completion));
 			break;
 		case PROP_ITER:
-			g_value_set_pointer (value, &(self->priv->iter));
+			g_value_set_boxed (value, &(self->priv->iter));
 			break;
 		case PROP_ACTIVATION:
 			g_value_set_flags (value, self->priv->activation);
@@ -182,11 +182,12 @@ gtk_source_completion_context_class_init (GtkSourceCompletionContextClass *klass
 	 **/
 	g_object_class_install_property (object_class,
 	                                 PROP_ITER,
-	                                 g_param_spec_pointer ("iter",
+	                                 g_param_spec_boxed ("iter",
 	/* Translators: The GtkTextIter at which the completion was invoked */
-	                                                       _("Iterator"),
-	                                                       _("The GtkTextIter at which the completion was invoked"),
-	                                                       G_PARAM_READWRITE));
+	                                                      _("Iterator"),
+	                                                      _("The GtkTextIter at which the completion was invoked"),
+	                                                      GTK_TYPE_TEXT_ITER,
+	                                                      G_PARAM_READWRITE));
 
 	/**
 	 * GtkSourceCompletionContext:activation:
