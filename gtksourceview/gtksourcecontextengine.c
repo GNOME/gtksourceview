@@ -4604,7 +4604,7 @@ analyze_line (GtkSourceContextEngine *ce,
  *
  * @buffer: #GtkTextBuffer.
  * @line_start: iterator pointing to the beginning of line.
- * @line_start: iterator pointing to the beginning of next line or to the end
+ * @line_end: iterator pointing to the beginning of next line or to the end
  * of this line if it's the last line in @buffer.
  * @line: #LineInfo structure to be filled.
  *
