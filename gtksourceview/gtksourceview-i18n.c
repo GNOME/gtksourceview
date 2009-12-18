@@ -23,15 +23,51 @@
 #include <config.h>
 #endif
 
-#include "gtksourceview-i18n.h"
+#ifdef OS_OSX
+#include <ige-mac-bundle.h>
+#endif
+
 #include <string.h>
+
+#include "gtksourceview-i18n.h"
+
+static gchar *
+get_locale_dir (void)
+{
+	gchar *locale_dir;
+
+#ifdef G_OS_WIN32
+	gchar *win32_dir;
+
+	win32_dir = g_win32_get_package_installation_directory_of_module (NULL);
+
+	locale_dir = g_build_filename (win32_dir, "share", "locale", NULL);
+
+	g_free (win32_dir);
+#elif defined (OS_OSX)
+	IgeMacBundle *bundle = ige_mac_bundle_get_default ();
+
+	if (ige_mac_bundle_get_is_app_bundle (bundle))
+	{
+		locale_dir = g_strdup (ige_mac_bundle_get_localedir (bundle));
+	}
+	else
+	{
+		locale_dir = g_build_filename (DATADIR, "locale", NULL);
+	}
+#else
+	locale_dir = g_build_filename (DATADIR, "locale", NULL);
+#endif
+
+	return locale_dir;
+}
 
 /*
  * Small hack since we don't have a proper place where
  * do gettext initialization.
  */
-char *
-_gtksourceview_gettext (const char *msgid)
+const gchar *
+_gtksourceview_gettext (const gchar *msgid)
 {
 	static gboolean initialized = FALSE;
 
@@ -40,12 +76,18 @@ _gtksourceview_gettext (const char *msgid)
 
 	if (G_UNLIKELY (!initialized))
 	{
-		bindtextdomain (GETTEXT_PACKAGE, LOCALEDIR);
+		gchar *locale_dir;
+
+		locale_dir = get_locale_dir ();
+
+		bindtextdomain (GETTEXT_PACKAGE, locale_dir);
+		g_free (locale_dir);
+
 		bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
 		initialized = TRUE;
 	}
 
-	return dgettext (GETTEXT_PACKAGE, msgid);
+	return g_dgettext (GETTEXT_PACKAGE, msgid);
 }
 
 /**

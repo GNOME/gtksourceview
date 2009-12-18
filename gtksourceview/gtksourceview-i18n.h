@@ -19,10 +19,6 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 /*
-  @NOTATION@
- */
-
-/*
  * Handles all of the internationalization configuration options.
  * Author: Tom Tromey <tromey@creche.cygnus.com>
  */
@@ -42,6 +38,7 @@ G_BEGIN_DECLS
 #    include <libintl.h>
 #    undef _
 #    define _(String) _gtksourceview_gettext (String)
+#    undef N_
 #    ifdef gettext_noop
 #        define N_(String) gettext_noop (String)
 #    else
@@ -71,9 +68,9 @@ G_BEGIN_DECLS
 #    define GD_(Domain,String) (g_strdup (String))
 #endif
 
-char *_gtksourceview_gettext (const char *msgid) G_GNUC_FORMAT(1);
+const gchar *_gtksourceview_gettext (const char *msgid) G_GNUC_FORMAT(1);
 /* NOTE: it returns duplicated string */
-char *_gtksourceview_dgettext (const char *domain, const char *msgid) G_GNUC_FORMAT(2);
+gchar *_gtksourceview_dgettext (const char *domain, const char *msgid) G_GNUC_FORMAT(2);
 
 G_END_DECLS
 

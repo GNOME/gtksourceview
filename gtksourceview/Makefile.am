@@ -10,6 +10,7 @@ INCLUDES = 				\
 	-I$(top_srcdir) -I$(srcdir) 	\
 	$(DISABLE_DEPRECATED_CFLAGS)	\
 	$(WARN_CFLAGS) 			\
+	$(IGE_MAC_CFLAGS)		\
 	$(DEP_CFLAGS)
 
 BUILT_SOURCES = 			\
@@ -93,7 +94,7 @@ nodist_libgtksourceview_2_0_la_SOURCES =\
 completion_providers = 							\
 	completion-providers/words/libgtksourcecompletionwords.la
 
-libgtksourceview_2_0_la_LIBADD = $(DEP_LIBS) $(completion_providers)
+libgtksourceview_2_0_la_LIBADD = $(DEP_LIBS) $(IGE_MAC_LIBS) $(completion_providers)
 libgtksourceview_2_0_la_LDFLAGS = -no-undefined -export-symbols-regex "^gtk_source_.*"
 libgtksourceview_2_0_includedir = $(includedir)/gtksourceview-2.0/gtksourceview
 

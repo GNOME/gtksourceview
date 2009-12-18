@@ -76,13 +76,31 @@ AC_ARG_ENABLE(providers,
 
 AM_CONDITIONAL(ENABLE_PROVIDERS, test "x$enable_providers" = "xyes")
 
+dnl check for native osx
+AC_MSG_CHECKING([for native Mac OS X])
+
+gdk_windowing=`$PKG_CONFIG --variable=target gdk-2.0`
+
+if test "$gdk_windowing" = "quartz"; then
+	os_osx=yes
+else
+	os_osx=no
+fi
+AC_MSG_RESULT([$os_osx])
+AM_CONDITIONAL(OS_OSX, test "$os_osx" = "yes")
+
+if test "$os_osx" = "yes"; then
+	AC_DEFINE([OS_OSX],[1],[Defined if os is Mac OSX])
+
+	PKG_CHECK_MODULES(IGE_MAC, ige-mac-integration)
+fi
+
 # i18N stuff
 GETTEXT_PACKAGE=gtksourceview-2.0
 AC_SUBST(GETTEXT_PACKAGE)
 AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE, "$GETTEXT_PACKAGE", [Package name for gettext])
 
 AM_GLIB_GNU_GETTEXT
-AM_GLIB_DEFINE_LOCALEDIR(LOCALEDIR)
 
 # test-widget uses this to find lang files and gtksourcebuffer.c 	 
 ABS_TOP_SRCDIR=`cd $srcdir && pwd` 	 
