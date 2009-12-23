@@ -497,8 +497,10 @@ add_scan_region (GtkSourceCompletionWordsBuffer *buffer,
 	    !gtk_source_completion_words_library_is_locked (buffer->priv->library))
 	{
 		buffer->priv->idle_scan_id = 
-			g_idle_add ((GSourceFunc)idle_scan_regions,
-			            buffer);
+			g_idle_add_full (G_PRIORITY_LOW,
+			                 (GSourceFunc)idle_scan_regions,
+			                 buffer,
+			                 NULL);
 	}
 }
 
@@ -629,8 +631,10 @@ on_library_unlock (GtkSourceCompletionWordsBuffer *buffer)
 	    buffer->priv->scan_regions != NULL)
 	{
 		buffer->priv->idle_scan_id = 
-			g_idle_add ((GSourceFunc)idle_scan_regions,
-			            buffer);
+			g_idle_add_full (G_PRIORITY_LOW,
+			                 (GSourceFunc)idle_scan_regions,
+			                 buffer,
+			                 NULL);
 	}
 }
 
