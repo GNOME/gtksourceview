@@ -15,6 +15,19 @@
 dir="testdir"
 mkdir -p $dir/
 
+cat > $dir/file.bib << EOFEOF
+%A .bib file might contain the following entry, which describes a mathematical handbook
+@Book{abramowitz+stegun,
+ author    = "Milton {Abramowitz} and Irene A. {Stegun}",
+ title     = "Handbook of Mathematical Functions with
+              Formulas, Graphs, and Mathematical Tables",
+ publisher = "Dover",
+ year      =  1964,
+ address   = "New York",
+ edition   = "ninth Dover printing, tenth GPO printing"
+}
+EOFEOF
+
 cat > $dir/file.rq << EOFEOF
 # Positive test: product of type promotion within the xsd:decimal type tree.
 
