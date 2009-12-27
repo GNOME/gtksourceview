@@ -1,5 +1,5 @@
-/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8; coding: utf-8 -*-
- *  gtksourcestyleschememanager.c
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8; coding: utf-8 -*- */
+/*  gtksourcestyleschememanager.c
  *
  *  Copyright (C) 2003-2007 - Paolo Maggi <paolo@gnome.org>
  *
@@ -24,9 +24,15 @@
 #include "gtksourceview-utils.h"
 #include <string.h>
 
+/**
+ * SECTION:styleschememanager
+ * @Short_description: Object which provides access to #GtkSourceStyleScheme<!-- -->s
+ * @Title: GtkSourceStyleSchemeManager
+ * @See_also: #GtkSourceStyleScheme
+ */
+
 #define SCHEME_FILE_SUFFIX	".xml"
 #define STYLES_DIR		"styles"
-
 
 struct _GtkSourceStyleSchemeManagerPrivate
 {

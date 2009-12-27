@@ -59,7 +59,8 @@ HTML_IMAGES =
 content_files =			\
 	version.xml		\
 	lang-tutorial.sgml	\
-	lang-reference.sgml
+	lang-reference.sgml	\
+	style-reference.sgml
 
 # Extra options to supply to gtkdoc-fixref
 FIXXREF_OPTIONS=

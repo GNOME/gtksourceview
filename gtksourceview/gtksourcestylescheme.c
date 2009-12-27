@@ -1,5 +1,5 @@
-/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8; coding: utf-8 -*-
- *  gtksourcestylescheme.c
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8; coding: utf-8 -*- */
+/*  gtksourcestylescheme.c
  *
  *  Copyright (C) 2003 - Paolo Maggi <paolo.maggi@polito.it>
  *
@@ -25,6 +25,22 @@
 #include "gtksourcestyle-private.h"
 #include <libxml/parser.h>
 #include <string.h>
+
+/**
+ * SECTION:stylescheme
+ * @Short_description: Object controlling apperance of #GtkSourceView
+ * @Title: GtkSourceStyleScheme
+ * @See_also: #GtkSourceStyle, #GtkSourceStyleSchemeManager
+ *
+ * #GtkSourceStyleScheme contains all the text styles to be used in
+ * #GtkSourceView and #GtkSourceBuffer. For instance, it contains text styles
+ * for syntax highlighting, it may contain foreground and background color for
+ * non-highlighted text, color for the line numbers, etc.
+ *
+ * Style schemes are stored in XML files. The format of a scheme file is
+ * the documented in the 
+ * <link linkend="style-reference">style scheme reference</link>.
+ */
 
 #define STYLE_TEXT			"text"
 #define STYLE_SELECTED			"selection"

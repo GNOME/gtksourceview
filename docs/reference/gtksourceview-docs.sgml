@@ -4,6 +4,7 @@
 <!ENTITY version SYSTEM "version.xml">
 <!ENTITY tutorial SYSTEM "lang-tutorial.sgml">
 <!ENTITY reference SYSTEM "lang-reference.sgml">
+<!ENTITY stylereference SYSTEM "style-reference.sgml">
 ]>
 <book id="index" xmlns:xi="http://www.w3.org/2001/XInclude">
   <bookinfo>
@@ -37,5 +38,6 @@
 
     &tutorial;
     &reference;
+    &stylereference;
   </reference>
 </book>

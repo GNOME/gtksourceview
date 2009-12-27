@@ -21,6 +21,15 @@
 #include "gtksourcestyle-private.h"
 #include "gtksourceview-i18n.h"
 
+/**
+ * SECTION:style
+ * @Short_description: Object representyng a style
+ * @Title: GtkSourceStyle
+ * @See_also: #GtkSourceStyleScheme, #GtkSourceStyleSchemeManager
+ *
+ * The #GtkSourceStyle structure is used to describe text attributes
+ * which are set when given style is used.
+ */
 
 static void	gtk_source_style_set_property	(GObject      *object,
 						 guint         prop_id,

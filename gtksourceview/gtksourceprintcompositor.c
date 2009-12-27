@@ -1,5 +1,5 @@
-/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8; coding: utf-8 -*-
- *
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8; coding: utf-8 -*- */
+/*
  * gtksourceprintcompositor.c
  * This file is part of GtkSourceView 
  *
@@ -33,6 +33,25 @@
 
 #include "gtksourceview-i18n.h" 
 #include "gtksourceprintcompositor.h"
+
+/**
+ * SECTION:printcompositor
+ * @Short_description: Compose a #GtkSourceBuffer for printing
+ * @Title: GtkSourcePrintCompositor
+ *
+ * The #GtkSourcePrintCompositor object is used to compose a #GtkSourceBuffer
+ * for printing. You can set various configuration options to customize the
+ * printed output. #GtkSourcePrintCompositor is designed to be used with the
+ * high-level printing API of gtk+, i.e. #GtkPrintOperation.
+ *
+ * The margins specified in this object are the layout margins: they define the
+ * blank space bordering the printed area of the pages. They must not be
+ * confused with the "print margins", i.e. the parts of the page that the
+ * printer cannot print on, defined in the #GtkPageSetup objects. If the
+ * specified layout margins are smaller than the "print margins", the latter
+ * ones are used as a fallback by the #GtkSourcePrintCompositor object, so that
+ * the printed area is not clipped.
+ */
 
 /*
 #define ENABLE_DEBUG

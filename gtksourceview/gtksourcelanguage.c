@@ -1,5 +1,5 @@
-/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8; coding: utf-8 -*-
- *  gtksourcelanguage.c
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8; coding: utf-8 -*- */
+/*  gtksourcelanguage.c
  *
  *  Copyright (C) 2003 - Paolo Maggi <paolo.maggi@polito.it>
  *
@@ -38,6 +38,18 @@
 #include "gtksourcelanguage-private.h"
 #include "gtksourcelanguage.h"
 #include "gtksourceview-marshal.h"
+
+/**
+ * SECTION:language
+ * @Short_description: Object representing a syntax highlighted language
+ * @Title: GtkSourceLanguage
+ * @See_also: #GtkSourceLanguageManager
+ *
+ * #GtkSourceLanguage encapsulates syntax and highlighting styles for a
+ * particular language. Use #GtkSourceLanguageManager to obtain a
+ * #GtkSourceLanguage instance, and gtk_source_buffer_set_language() to apply it
+ * to a #GtkSourceBuffer.
+ */
 
 #define DEFAULT_SECTION _("Others")
 

@@ -1,22 +1,28 @@
-<!-- ##### SECTION Title ##### -->
-GtkSourceStyleScheme
+<refentry id="style-reference" revision="27 December 2009">
+<refmeta>
+<refentrytitle>Style Scheme Definition Reference</refentrytitle>
+</refmeta>
 
-<!-- ##### SECTION Short_Description ##### -->
+<refnamediv>
+<refname>Style Scheme Definition Reference</refname>
+<refpurpose>
+Reference to the GtkSourceView style scheme definition file format
+</refpurpose>
+</refnamediv>
 
-Object controlling apperance of #GtkSourceView
-
-<!-- ##### SECTION Long_Description ##### -->
+<refsect1>
+<title>Overview</title>
 <para>
-#GtkSourceStyleScheme contains all the text styles to be used
-in #GtkSourceView and #GtkSourceBuffer. For instance, it contains
-text styles for syntax highlighting, it may contain foreground
-and background color for non-highlighted text, etc.
+This is an overview of the Style Scheme Definition XML format, describing the
+meaning and usage of every element and attribute.  The formal definition is
+stored in the RelaxNG schema file <filename>style.rng</filename> which
+should be installed on your system in the directory
+<filename>${PREFIX}/share/gtksourceview-2.0/</filename> (where
+<filename>${PREFIX}</filename> can be <filename>/usr/</filename> or
+<filename>/usr/local/</filename> if you have installed from source.
 </para>
+</refsect1>
 
-<para>
-Style schemes are stored in XML files. The format of scheme file is
-the following.
-</para>
 
 <para>
 The toplevel tag in a style scheme file is <code>&lt;style-scheme&gt;</code>.
@@ -191,94 +197,5 @@ drawn</para></listitem>
 </varlistentry>
 </variablelist>
 </para>
-
-<!-- ##### SECTION See_Also ##### -->
-<para>
-#GtkSourceStyle, #GtkSourceStyleSchemeManager
-</para>
-
-<!-- ##### SECTION Stability_Level ##### -->
-
-
-<!-- ##### STRUCT GtkSourceStyleScheme ##### -->
-<para>
-<structname>GtkSourceStyleScheme</structname> structure contains only
-private members and should not be accessed directly.
-</para>
-
-
-<!-- ##### ARG GtkSourceStyleScheme:description ##### -->
-<para>
-
-</para>
-
-<!-- ##### ARG GtkSourceStyleScheme:filename ##### -->
-<para>
-
-</para>
-
-<!-- ##### ARG GtkSourceStyleScheme:id ##### -->
-<para>
-
-</para>
-
-<!-- ##### ARG GtkSourceStyleScheme:name ##### -->
-<para>
-
-</para>
-
-<!-- ##### FUNCTION gtk_source_style_scheme_get_id ##### -->
-<para>
-
-</para>
-
-@scheme: 
-@Returns: 
-
-
-<!-- ##### FUNCTION gtk_source_style_scheme_get_name ##### -->
-<para>
-
-</para>
-
-@scheme: 
-@Returns: 
-
-
-<!-- ##### FUNCTION gtk_source_style_scheme_get_description ##### -->
-<para>
-
-</para>
-
-@scheme: 
-@Returns: 
-
-
-<!-- ##### FUNCTION gtk_source_style_scheme_get_authors ##### -->
-<para>
-
-</para>
-
-@scheme: 
-@Returns: 
-
-
-<!-- ##### FUNCTION gtk_source_style_scheme_get_filename ##### -->
-<para>
-
-</para>
-
-@scheme: 
-@Returns: 
-
-
-<!-- ##### FUNCTION gtk_source_style_scheme_get_style ##### -->
-<para>
-
-</para>
-
-@scheme: 
-@style_id: 
-@Returns: 
-
-
+ 
+</refentry>
