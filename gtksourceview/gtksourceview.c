@@ -1,5 +1,5 @@
-/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8; coding: utf-8 -*-
- *  gtksourceview.c
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8; coding: utf-8 -*- */
+/*  gtksourceview.c
  *
  *  Copyright (C) 2001 - Mikael Hermansson <tyan@linux.se> and
  *  Chris Phelps <chicane@reninet.com>
@@ -42,6 +42,17 @@
 #include "gtksourcecompletion-private.h"
 #include "gtksourcecompletionutils.h"
 #include "gtksourcegutter-private.h"
+
+/**
+ * SECTION:view
+ * @Short_description: The view object
+ * @Title: GtkSourceView
+ * @See_also: #GtkTextView,#GtkSourceBuffer
+ *
+ * GtkSourceView is the main object of the gtksourceview library. It provides
+ * a text view which syntax highlighting, undo/redo and text marks. Use a 
+ * #GtkSourceBuffer to display text with a GtkSourceView.
+ */
 
 /*
 #define ENABLE_DEBUG

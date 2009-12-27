@@ -1,5 +1,5 @@
-/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*-
- *  gtksourceiter.h
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8; coding: utf-8 -*- */
+/*  gtksourceiter.c
  *
  *  Copyright (C) 2000 - 2005 Paolo Maggi
  *  Copyright (C) 2002, 2003 Jeroen Zwartepoorte
@@ -29,6 +29,13 @@
 
 #include <string.h>
 #include "gtksourceiter.h"
+
+/**
+ * SECTION:iter
+ * @Short_description: Improved search support in a #GtkSourceBuffer
+ * @Title: GtkSourceIter
+ * @See_also: #GtkTextIter
+ */
 
 #define GTK_TEXT_UNKNOWN_CHAR 0xFFFC
 

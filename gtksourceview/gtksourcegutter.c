@@ -1,3 +1,4 @@
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8; coding: utf-8 -*- */
 /*
  * gtksourcegutter.c
  * This file is part of gtksourceview
@@ -23,6 +24,37 @@
 #include "gtksourceview.h"
 #include "gtksourceview-i18n.h"
 #include "gtksourceview-marshal.h"
+
+/**
+ * SECTION:gutter
+ * @Short_description: Gutter object for #GtkSourceView
+ * @Title: GtkSourceGutter
+ * @See_also:#GtkSourceView
+ *
+ * The #GtkSourceGutter object represents the left and right gutters of the text
+ * view. It is used by #GtkSourceView to draw the line numbers and category
+ * marks that might be present on a line. By packing additional #GtkCellRenderer
+ * objects in the gutter, you can extend the gutter with your own custom 
+ * drawings.
+ *
+ * The gutter works very much the same way as cells rendered in a #GtkTreeView.
+ * The concept is similar, with the exception that the gutter does not have an
+ * underlying #GtkTreeModel. Instead, you should use
+ * #gtk_source_gutter_set_cell_data_func to set a callback to fill in any of the
+ * cell renderers properties, given the line for which the cell is to be
+ * rendered. Renderers are inserted into the gutter at a certain position. The
+ * builtin line number renderer is at position 
+
+ * #GTK_SOURCE_VIEW_GUTTER_POSITION_LINES (-30) and the marks renderer is at
+ * #GTK_SOURCE_VIEW_GUTTER_POSITION_MARKS (-20). You can use these values to
+ * position custom renderers accordingly. The width of a cell renderer can be
+ * specified as either fixed (using
+
+ * #gtk_cell_renderer_set_fixed_size) or dynamic, in which case you
+ * <emphasis>must</emphasis> set #gtk_source_gutter_set_cell_size_func. This
+ * callback is used to set the properties of the renderer such that
+ * #gtk_cell_renderer_get_size yields the maximum width of the cell.
+ */
 
 #define GTK_SOURCE_GUTTER_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE((object), GTK_TYPE_SOURCE_GUTTER, GtkSourceGutterPrivate))
 

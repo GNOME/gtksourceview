@@ -1,5 +1,5 @@
-/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8; coding: utf-8 -*-
- *  gtksourcebuffer.c
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8; coding: utf-8 -*- */
+/*  gtksourcemark.c
  *
  *  Copyright (C) 2007 by:
  *		Johannes Schmid <jhs@gnome.org>
@@ -21,8 +21,27 @@
 
 #include "gtksourcemark.h"
 #include "gtksourcebuffer.h"
+#include "gtksourceview-i18n.h"
 
-#include <glib/gi18n.h>
+/**
+ * SECTION:mark
+ * @Short_description: mark object for #GtkSourceBuffer
+ * @Title: GtkSourceMark
+ * @See_also: #GtkSourceBuffer
+ *
+ * A #GtkSourceMark marks a position in the text where you want to display
+ * additional info. It is based on #GtkTextMark and thus is still valid after
+ * the text has changed though its position may change.
+ *
+ * #GtkSourceMarks are organised in categories which you have to set when you
+ * create the mark. Each category can have a pixbuf and a priority associated
+ * using #gtk_source_view_set_mark_category_pixbuf and
+ * #gtk_source_view_set_mark_category_priority. The pixbuf will be displayed in
+ * the margin at the line where the mark residents if the
+ * #GtkSourceView::show-line-marks property is set to TRUE. If there are
+ * multiple marks in the same line, the pixbufs will be drawn on top of each
+ * other. The mark with the highest priority will be drawn on top.
+ */
 
 enum
 {
@@ -112,8 +131,8 @@ gtk_source_mark_class_init (GtkSourceMarkClass *klass)
 	/**
 	 * GtkSourceMark:category:
 	 *
-	 * The category of the #GtkSourceMark, classified the mark and control
-	 * what pixbuf is used and with which priority it is drawn.
+	 * The category of the #GtkSourceMark, classifies the mark and controls
+	 * which pixbuf is used and with which priority it is drawn.
 	 */
 	g_object_class_install_property (object_class,
 					 PROP_CATEGORY,
@@ -122,7 +141,7 @@ gtk_source_mark_class_init (GtkSourceMarkClass *klass)
 							      _("The mark category"),
 							      NULL,
 							      G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT_ONLY));
-	
+
 	g_type_class_add_private (object_class, sizeof (GtkSourceMarkPrivate));
 }
 

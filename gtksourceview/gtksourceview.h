@@ -104,8 +104,6 @@ typedef enum
  *
  * GtkSourceDrawSpacesFlags determine what kind of spaces whould be drawn.
  */
-/* TODO: it would be nice to have flags to specify to draw
- * just leading/trailing whitespaces */
 typedef enum
 {
 	GTK_SOURCE_DRAW_SPACES_SPACE      = 1 << 0,
@@ -215,6 +213,14 @@ gboolean         gtk_source_view_get_mark_category_background
 							 const gchar     *category,
 							 GdkColor        *dest);
 
+/**
+ * GtkSourceViewMarkTooltipFunc:
+ * @mark: the #GtkSourceMark
+ * @user_data: user data pointer which was passed to gtk_source_view_set_mark_category_tooltip_func()
+ *
+ * Function type for setting up a tooltip for #GtkSourceMark.
+ * Returns: a newly-allocated string that is going to be shown as tooltip text.
+ */
 typedef gchar *  (*GtkSourceViewMarkTooltipFunc)	(GtkSourceMark	*mark,
 							 gpointer	 user_data);
 void             gtk_source_view_set_mark_category_tooltip_func
