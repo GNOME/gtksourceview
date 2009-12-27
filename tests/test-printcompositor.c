@@ -8,7 +8,6 @@ static void
 test_buffer_ref (void)
 {
 	GtkSourcePrintCompositor *compositor;
-	GtkWidget *view = NULL;
 	GtkSourceBuffer *buffer = NULL;
 	GtkSourceBuffer *buffer_original = NULL;
 
