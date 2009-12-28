@@ -578,6 +578,17 @@ get_bracket_match_tag (GtkSourceBuffer *buffer)
 	return buffer->priv->bracket_match_tag;
 }
 
+/*
+ * This is private, just used by the compositor to not print bracket
+ * matches. Note that unlike get_bracket_match_tag() it returns NULL
+ * if the tag is not set.
+ */
+GtkTextTag *
+_gtk_source_buffer_get_bracket_match_tag (GtkSourceBuffer *buffer)
+{
+	return buffer->priv->bracket_match_tag;
+}
+
 static void
 gtk_source_buffer_move_cursor (GtkTextBuffer     *buffer,
 			       const GtkTextIter *iter,

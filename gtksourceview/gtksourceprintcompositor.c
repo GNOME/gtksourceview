@@ -2242,11 +2242,19 @@ calculate_page_size_and_margins (GtkSourcePrintCompositor *compositor,
 	});						 
 }
 
+/* TODO: maybe we should have a public api to set
+ * which tags need to be printed and which should not.
+ * For now we special case bracket matches.
+ */
 static gboolean
 ignore_tag (GtkSourcePrintCompositor *compositor,
             GtkTextTag               *tag)
 {
-	/* TODO: ignore bracket match tags etc */
+	GtkTextTag *bm_tag;
+
+	bm_tag = _gtk_source_buffer_get_bracket_match_tag (compositor->priv->buffer);
+	if ((bm_tag != NULL) && (tag == bm_tag))
+		return TRUE;
 
 	return FALSE;
 }

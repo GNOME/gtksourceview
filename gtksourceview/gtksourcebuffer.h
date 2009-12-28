@@ -146,6 +146,9 @@ GtkSourceMark		*_gtk_source_buffer_source_mark_next	(GtkSourceBuffer        *buf
 GtkSourceMark		*_gtk_source_buffer_source_mark_prev	(GtkSourceBuffer        *buffer,
 								 GtkSourceMark          *mark, 
 								 const gchar            *category);
+
+GtkTextTag		*_gtk_source_buffer_get_bracket_match_tag (GtkSourceBuffer        *buffer);
+
 G_END_DECLS
 
 #endif /* __GTK_SOURCE_BUFFER_H__ */
