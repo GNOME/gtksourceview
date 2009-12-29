@@ -2368,7 +2368,7 @@ gtk_source_context_engine_set_style_scheme (GtkSourceEngine      *engine,
 	GtkSourceContextEngine *ce;
 
 	g_return_if_fail (GTK_IS_SOURCE_CONTEXT_ENGINE (engine));
-	g_return_if_fail (GTK_IS_SOURCE_STYLE_SCHEME (scheme));
+	g_return_if_fail (GTK_IS_SOURCE_STYLE_SCHEME (scheme) || scheme == NULL);
 
 	ce = GTK_SOURCE_CONTEXT_ENGINE (engine);
 
@@ -2378,7 +2378,7 @@ gtk_source_context_engine_set_style_scheme (GtkSourceEngine      *engine,
 	if (ce->priv->style_scheme != NULL)
 		g_object_unref (ce->priv->style_scheme);
 
-	ce->priv->style_scheme = g_object_ref (scheme);
+	ce->priv->style_scheme = scheme ? g_object_ref (scheme) : NULL;
 	g_hash_table_foreach (ce->priv->tags, (GHFunc) set_tag_style_hash_cb, ce);
 }
 

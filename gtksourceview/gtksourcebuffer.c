@@ -1255,6 +1255,7 @@ gtk_source_buffer_set_language (GtkSourceBuffer   *buffer,
 				GtkSourceLanguage *language)
 {
 	g_return_if_fail (GTK_IS_SOURCE_BUFFER (buffer));
+	g_return_if_fail (GTK_IS_SOURCE_LANGUAGE (language) || language == NULL);
 
 	if (buffer->priv->language == language)
 		return;
@@ -1367,14 +1368,15 @@ gtk_source_buffer_ensure_highlight (GtkSourceBuffer   *buffer,
  * @buffer: a #GtkSourceBuffer.
  * @scheme: style scheme.
  *
- * Sets style scheme used by the buffer.
+ * Sets style scheme used by the buffer. If @scheme is %NULL no
+ * style scheme is used.
  **/
 void
 gtk_source_buffer_set_style_scheme (GtkSourceBuffer      *buffer,
 				    GtkSourceStyleScheme *scheme)
 {
 	g_return_if_fail (GTK_IS_SOURCE_BUFFER (buffer));
-	g_return_if_fail (GTK_IS_SOURCE_STYLE_SCHEME (scheme));
+	g_return_if_fail (GTK_IS_SOURCE_STYLE_SCHEME (scheme) || scheme == NULL);
 
 	if (buffer->priv->style_scheme == scheme)
 		return;
@@ -1382,7 +1384,7 @@ gtk_source_buffer_set_style_scheme (GtkSourceBuffer      *buffer,
 	if (buffer->priv->style_scheme)
 		g_object_unref (buffer->priv->style_scheme);
 
-	buffer->priv->style_scheme = g_object_ref (scheme);
+	buffer->priv->style_scheme = scheme ? g_object_ref (scheme) : NULL;
 	update_bracket_match_style (buffer);
 
 	if (buffer->priv->highlight_engine != NULL)
