@@ -146,6 +146,10 @@ struct _GtkSourceCompletionPrivate
 
 	gulong signals_ids[LAST_EXTERNAL_SIGNAL];
 	gboolean select_first;
+
+	gint min_auto_complete_delay;
+	GList *auto_completion_selection;
+	GtkSourceCompletionContext *auto_completion_context;
 };
 
 static guint signals[LAST_SIGNAL] = { 0 };
@@ -1397,13 +1401,110 @@ update_typing_offsets (GtkSourceCompletion *completion)
 	completion->priv->typing_line_offset = gtk_text_iter_get_line_offset (&start);
 }
 
+static GList *
+select_providers (GtkSourceCompletion        *completion,
+                  GList                      *providers,
+                  GtkSourceCompletionContext *context)
+{
+	/* Select providers based on selection */
+	GList *selection = NULL;
+	
+	if (providers == NULL)
+	{
+		providers = completion->priv->providers;
+	}
+
+	while (providers)
+	{
+		GtkSourceCompletionProvider *provider = 
+			GTK_SOURCE_COMPLETION_PROVIDER (providers->data);
+
+		if (gtk_source_completion_provider_match (provider, context))
+		{
+			selection = g_list_prepend (selection, provider);
+		}
+		
+		providers = g_list_next (providers);
+	}
+	
+	return g_list_reverse (selection);
+}
+
 static gboolean
-show_auto_completion (GtkSourceCompletion *completion)
+auto_completion_final (GtkSourceCompletion *completion)
+{
+	/* Store and set to NULL because update_completion will cancel the last
+	   completion, which will also remove the timeout source which in turn
+	   would free these guys */
+	GtkSourceCompletionContext *context = completion->priv->auto_completion_context;
+	GList *selection = completion->priv->auto_completion_selection;
+
+	completion->priv->auto_completion_context = NULL;
+	completion->priv->auto_completion_selection = NULL;
+	
+	update_completion (completion, selection, context);
+
+	/* No need to free the context since it was a floating reference which
+	   has been taken over by update_completion */
+	g_list_free (selection);
+	return FALSE;
+}
+
+static void
+auto_completion_destroy (GtkSourceCompletion *completion)
+{
+	if (completion->priv->auto_completion_context != NULL)
+	{
+		g_object_ref_sink (completion->priv->auto_completion_context);
+		g_object_unref (completion->priv->auto_completion_context);
+	}
+
+	g_list_free (completion->priv->auto_completion_selection);
+
+	completion->priv->auto_completion_context = NULL;
+	completion->priv->auto_completion_selection = NULL;
+}
+
+static gint
+minimum_auto_complete_delay (GtkSourceCompletion *completion,
+                             GList               *providers)
+{
+	gint min_delay = completion->priv->auto_complete_delay;
+
+	while (providers)
+	{
+		GtkSourceCompletionProvider *provider = providers->data;
+		gint delay = gtk_source_completion_provider_get_interactive_delay (provider);
+
+		if (delay < 0)
+		{
+			delay = completion->priv->auto_complete_delay;
+		}
+
+		if (delay < min_delay)
+		{
+			min_delay = delay;
+		}
+
+		providers = g_list_next (providers);
+	}
+
+	return min_delay;
+}
+
+static gboolean
+auto_completion_prematch (GtkSourceCompletion *completion)
 {
 	GtkTextBuffer *buffer;
 	GtkTextIter iter;
 	GtkSourceCompletionContext *context;
-	
+	gint delay;
+	GList *selection;
+
+	/* Do a prematch on the available interactive providers and determine
+	   the minimum delay to the real selection that matches the current
+	   context */
+
 	completion->priv->show_timed_out_id = 0;
 	
 	if (GTK_WIDGET_VISIBLE (completion->priv->window))
@@ -1426,10 +1527,39 @@ show_auto_completion (GtkSourceCompletion *completion)
 	              "activation",
 	              GTK_SOURCE_COMPLETION_ACTIVATION_INTERACTIVE,
 	              NULL);
-	
-	gtk_source_completion_show (completion, 
-	                            completion->priv->interactive_providers, 
-	                            context);
+
+	g_signal_emit (completion, signals[POPULATE_CONTEXT], 0, context);
+
+	selection = select_providers (completion,
+	                              completion->priv->interactive_providers,
+	                              context);
+
+	if (selection == NULL)
+	{
+		g_object_ref_sink (context);
+		g_object_unref (context);
+
+		return FALSE;
+	}
+
+	/* Check the minimum delay on this set */
+	delay = minimum_auto_complete_delay (completion, selection);
+	completion->priv->auto_completion_context = context;
+	completion->priv->auto_completion_selection = selection;
+
+	if (delay > completion->priv->min_auto_complete_delay)
+	{
+		completion->priv->show_timed_out_id =
+			g_timeout_add_full (G_PRIORITY_DEFAULT,
+			                    delay - completion->priv->min_auto_complete_delay,
+			                    (GSourceFunc)auto_completion_final,
+			                    completion,
+			                    (GDestroyNotify)auto_completion_destroy);
+	}
+	else
+	{
+		auto_completion_final (completion);
+	}
 
 	return FALSE;
 }
@@ -1437,6 +1567,11 @@ show_auto_completion (GtkSourceCompletion *completion)
 static void
 interactive_do_show (GtkSourceCompletion *completion)
 {
+	if (completion->priv->interactive_providers == NULL)
+	{
+		return;
+	}
+
 	update_typing_offsets (completion);
 
 	if (completion->priv->show_timed_out_id != 0)
@@ -1444,10 +1579,12 @@ interactive_do_show (GtkSourceCompletion *completion)
 		g_source_remove (completion->priv->show_timed_out_id);
 	}
 
+	/* Install first handler to do the match on the minimum auto complete
+	   delay */
 	completion->priv->show_timed_out_id = 
-		g_timeout_add (completion->priv->auto_complete_delay,
-			       (GSourceFunc)show_auto_completion,
-			       completion);
+		g_timeout_add (completion->priv->min_auto_complete_delay,
+		               (GSourceFunc)auto_completion_prematch,
+		               completion);
 }
 
 static void
@@ -1533,12 +1670,11 @@ buffer_mark_set_cb (GtkTextBuffer       *buffer,
 	
 	/* Repopulate completion at the new iterator */
 	g_object_set (completion->priv->context,
-	              "iter", iter,
-                      NULL);
+	              "iter", iter, NULL);
 
 	update_completion (completion,
-		           completion->priv->active_providers,
-		           completion->priv->context);
+	                   completion->priv->active_providers,
+	                   completion->priv->context);
 }
 
 static void
@@ -1692,6 +1828,14 @@ gtk_source_completion_finalize (GObject *object)
 }
 
 static void
+update_min_auto_complete_delay (GtkSourceCompletion *completion)
+{
+	completion->priv->min_auto_complete_delay =
+		minimum_auto_complete_delay (completion,
+		                             completion->priv->interactive_providers);
+}
+
+static void
 gtk_source_completion_get_property (GObject    *object,
 				    guint       prop_id,
 				    GValue     *value,
@@ -1780,6 +1924,7 @@ gtk_source_completion_set_property (GObject      *object,
 			break;
 		case PROP_AUTO_COMPLETE_DELAY:
 			completion->priv->auto_complete_delay = g_value_get_uint (value);
+			update_min_auto_complete_delay (completion);
 			break;
 		case PROP_PROPOSAL_PAGE_SIZE:
 			completion->priv->proposal_page_size = g_value_get_uint (value);
@@ -2948,35 +3093,6 @@ _gtk_source_completion_add_proposals (GtkSourceCompletion         *completion,
 	}
 }
 
-static GList *
-select_providers (GtkSourceCompletion        *completion,
-                  GList                      *providers,
-                  GtkSourceCompletionContext *context)
-{
-	/* Select providers based on selection */
-	GList *selection = NULL;
-	
-	if (providers == NULL)
-	{
-		providers = completion->priv->providers;
-	}
-
-	while (providers)
-	{
-		GtkSourceCompletionProvider *provider = 
-			GTK_SOURCE_COMPLETION_PROVIDER (providers->data);
-
-		if (gtk_source_completion_provider_match (provider, context))
-		{
-			selection = g_list_prepend (selection, provider);
-		}
-		
-		providers = g_list_next (providers);
-	}
-	
-	return g_list_reverse (selection);
-}
-
 /**
  * gtk_source_completion_show:
  * @completion: A #GtkSourceCompletion
@@ -3126,8 +3242,21 @@ gtk_source_completion_add_provider (GtkSourceCompletion          *completion,
 	if (gtk_source_completion_provider_get_activation (provider) &
 	    GTK_SOURCE_COMPLETION_ACTIVATION_INTERACTIVE)
 	{
-		completion->priv->interactive_providers = g_list_append (completion->priv->interactive_providers,
-	                                                                 provider);
+		gint delay = gtk_source_completion_provider_get_interactive_delay (provider);
+
+		completion->priv->interactive_providers =
+				g_list_append (completion->priv->interactive_providers,
+		                               provider);
+
+		if (delay >= 0 && delay < completion->priv->min_auto_complete_delay)
+		{
+			completion->priv->min_auto_complete_delay = delay;
+		}
+		else if (delay < 0 && completion->priv->auto_complete_delay <
+		                      completion->priv->min_auto_complete_delay)
+		{
+			completion->priv->min_auto_complete_delay = completion->priv->auto_complete_delay;
+		}
 	}
 
 	if (error)
@@ -3168,8 +3297,18 @@ gtk_source_completion_remove_provider (GtkSourceCompletion          *completion,
 		if (gtk_source_completion_provider_get_activation (provider) &
 		    GTK_SOURCE_COMPLETION_ACTIVATION_INTERACTIVE)
 		{
-			completion->priv->interactive_providers = g_list_remove (completion->priv->interactive_providers,
-		                                                                 provider);
+			gint delay = gtk_source_completion_provider_get_interactive_delay (provider);
+		
+			completion->priv->interactive_providers =
+					g_list_remove (completion->priv->interactive_providers,
+			                               provider);
+
+			if (delay == completion->priv->min_auto_complete_delay ||
+			    (delay == -1 && completion->priv->min_auto_complete_delay ==
+			                    completion->priv->auto_complete_delay))
+			{
+				update_min_auto_complete_delay (completion);
+			}
 		}
 
 		g_object_unref (provider);

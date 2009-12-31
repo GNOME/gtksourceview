@@ -43,7 +43,8 @@ enum
 	PROP_ICON,
 	PROP_PROPOSALS_BATCH_SIZE,
 	PROP_SCAN_BATCH_SIZE,
-	PROP_MINIMUM_WORD_SIZE
+	PROP_MINIMUM_WORD_SIZE,
+	PROP_INTERACTIVE_DELAY
 };
 
 struct _GtkSourceCompletionWordsPrivate
@@ -66,6 +67,8 @@ struct _GtkSourceCompletionWordsPrivate
 	
 	GtkSourceCompletionWordsLibrary *library;
 	GList *buffers;
+
+	gint interactive_delay;
 };
 
 typedef struct
@@ -406,6 +409,9 @@ gtk_source_completion_words_set_property (GObject      *object,
 			self->priv->minimum_word_size = g_value_get_uint (value);
 			update_buffers_minimum_word_size (self);
 		break;
+		case PROP_INTERACTIVE_DELAY:
+			self->priv->interactive_delay = g_value_get_int (value);
+		break;
 		default:
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
 		break;
@@ -436,6 +442,9 @@ gtk_source_completion_words_get_property (GObject    *object,
 		break;
 		case PROP_MINIMUM_WORD_SIZE:
 			g_value_set_uint (value, self->priv->minimum_word_size);
+		break;
+		case PROP_INTERACTIVE_DELAY:
+			g_value_set_int (value, self->priv->interactive_delay);
 		break;
 		default:
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -496,8 +505,18 @@ gtk_source_completion_words_class_init (GtkSourceCompletionWordsClass *klass)
 	                                                    _("The minimum word size to complete"),
 	                                                    2,
 	                                                    G_MAXUINT,
-	                                                    3,
+	                                                    2,
 	                                                    G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+
+	g_object_class_install_property (object_class,
+	                                 PROP_INTERACTIVE_DELAY,
+	                                 g_param_spec_int ("interactive-delay",
+	                                                   _("Interactive Delay"),
+	                                                   _("The delay before initiating interactive completion"),
+	                                                   -1,
+	                                                   G_MAXINT,
+	                                                   50,
+	                                                   G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 	
 	g_type_class_add_private (object_class, sizeof(GtkSourceCompletionWordsPrivate));
 }
@@ -523,6 +542,12 @@ gtk_source_completion_words_get_start_iter (GtkSourceCompletionProvider *provide
 	return TRUE;
 }
 
+static gint
+gtk_source_completion_words_get_interactive_delay (GtkSourceCompletionProvider *provider)
+{
+	return GTK_SOURCE_COMPLETION_WORDS (provider)->priv->interactive_delay;
+}
+
 static void
 gtk_source_completion_words_iface_init (GtkSourceCompletionProviderIface *iface)
 {
@@ -533,6 +558,7 @@ gtk_source_completion_words_iface_init (GtkSourceCompletionProviderIface *iface)
 	iface->match = gtk_source_completion_words_match;
 
 	iface->get_start_iter = gtk_source_completion_words_get_start_iter;
+	iface->get_interactive_delay = gtk_source_completion_words_get_interactive_delay;
 }
 
 static void 
