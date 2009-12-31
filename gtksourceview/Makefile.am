@@ -47,6 +47,7 @@ NOINST_H_FILES = \
 	gtksourcecompletionutils.h	\
 	gtksourcecompletionui.h		\
 	gtksourcecontextengine.h	\
+	gtksourceengine.h		\
 	gtksourcegutter-private.h	\
 	gtksourcelanguage-private.h	\
 	gtksourcestyle-private.h	\
@@ -70,7 +71,6 @@ libgtksourceview_2_0_la_SOURCES = 	\
 	gtksourcestyle.c		\
 	gtksourcestyleschememanager.c	\
 	gtksourcestylescheme.c		\
-	gtksourceengine.h		\
 	gtksourceengine.c		\
 	gtksourcecontextengine.c	\
 	gtksourcemark.c			\
