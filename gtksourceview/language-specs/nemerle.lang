@@ -48,14 +48,14 @@
 
   <definitions>
 
-    <context id="line-comment" style-ref="comment" end-at-line-end="true">
+    <context id="line-comment" style-ref="comment" end-at-line-end="true" class="comment" class-disabled="no-spell-check">
       <start>//</start>
       <include>
         <context ref="def:in-line-comment"/>
       </include>
     </context>
 
-    <context id="block-comment" style-ref="comment">
+    <context id="block-comment" style-ref="comment" class="comment" class-disabled="no-spell-check">
       <start>/\*</start>
       <end>\*/</end>
       <include>
@@ -101,7 +101,7 @@
       <match>'(\\)?.'</match>
     </context>
 
-    <context id="string" style-ref="string" end-at-line-end="true">
+    <context id="string" style-ref="string" end-at-line-end="true" class="string" class-disabled="no-spell-check">
       <start>'</start>
       <end>'</end>
       <include>
@@ -236,7 +236,7 @@
       </match>
     </context>
 
-    <context id="nemerle">
+    <context id="nemerle" class="no-spell-check">
       <include>
         <context ref="line-comment"/>
         <context ref="block-comment"/>

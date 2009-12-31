@@ -52,7 +52,7 @@ FIXME: =pod should require an empty line before/after, as written in perlpod
   </styles>
 
   <definitions>
-    <context id="perl">
+    <context id="perl" class="no-spell-check">
       <include>
         <context ref="def:shebang"/>
         <context ref="line-directive"/>
@@ -411,7 +411,7 @@ FIXME: =pod should require an empty line before/after, as written in perlpod
       </include>
     </context>
 
-    <context id="single-quoted-string">
+    <context id="single-quoted-string" class="string" class-disabled="no-spell-check">
       <include>
         <context style-ref="string">
           <start>'</start><end>'</end>
@@ -429,7 +429,7 @@ FIXME: =pod should require an empty line before/after, as written in perlpod
       </include>
     </context>
 
-    <context id="double-quoted-string">
+    <context id="double-quoted-string" class="string" class-disabled="no-spell-check">
       <include>
         <context style-ref="string">
           <start>"</start><end>"</end>
@@ -894,7 +894,7 @@ FIXME: =pod should require an empty line before/after, as written in perlpod
     <!-- usual comments for perl are def:shell-style-comment -->
     <!-- comment that must have a whitespace before (used in s{}{}, because
          perl bugs if there is no space between '}' and '#') -->
-    <context id="asserted-comment" style-ref="comment" end-at-line-end="true">
+    <context id="asserted-comment" style-ref="comment" end-at-line-end="true" class="comment" class-disabled="no-spell-check">
       <start>(?&lt;![^\s])#</start>
       <include><context ref="def:in-comment"/></include>
     </context>

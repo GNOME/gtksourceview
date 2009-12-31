@@ -42,17 +42,20 @@
 
   <definitions>
 
-    <context id="line-comment" style-ref="comment" end-at-line-end="true">
+    <context id="line-comment" style-ref="comment" end-at-line-end="true" class="comment">
       <start>@c(omment)? </start>
+      <context subpattern="0" where="start" class="no-spell-check"/>
       <include>
         <context ref="def:in-comment"/>
       </include>
     </context>
 
-    <context id="block-comment" style-ref="comment">
+    <context id="block-comment" style-ref="comment" class="comment">
       <start>^@ignore\s*$</start>
       <end>^@end ignore\s*$</end>
       <include>
+        <context subpattern="0" where="start" class="no-spell-check"/>
+        <context subpattern="0" where="end" class="no-spell-check"/>
         <context ref="def:in-comment"/>
       </include>
     </context>
@@ -66,7 +69,7 @@
       <end>\}</end>
     </context>
 
-    <context id="macros-b" style-ref="macros">
+    <context id="macros-b" style-ref="macros" class="no-spell-check">
       <prefix>^@</prefix>
       <suffix>\b</suffix>
       <keyword>alias</keyword>
@@ -82,7 +85,7 @@
       <keyword>synindex</keyword>
     </context>
 
-    <context id="macros-dollar" style-ref="macros">
+    <context id="macros-dollar" style-ref="macros" class="no-spell-check">
       <prefix>^@</prefix>
       <suffix>\s*$</suffix>
       <keyword>bye</keyword>
@@ -110,7 +113,7 @@
       </include>
     </context>
 
-    <context id="indexing" style-ref="keyword">
+    <context id="indexing" style-ref="keyword" class="no-spell-check">
       <prefix>^@</prefix>
       <keyword>cindex</keyword>
       <keyword>findex</keyword>
@@ -120,7 +123,7 @@
       <keyword>vindex</keyword>
     </context>
 
-    <context id="file-attributes-b" style-ref="file-attributes">
+    <context id="file-attributes-b" style-ref="file-attributes" class="no-spell-check">
       <prefix>^@</prefix>
       <suffix>\b</suffix>
       <keyword>dircategory</keyword>
@@ -143,7 +146,7 @@
       <keyword>titlefont</keyword>
     </context>
 
-    <context id="file-attributes-dollar" style-ref="file-attributes">
+    <context id="file-attributes-dollar" style-ref="file-attributes" class="no-spell-check">
       <prefix>^@</prefix>
       <suffix>\s*$</suffix>
       <keyword>afivepaper</keyword>
@@ -166,7 +169,7 @@
       </include>
     </context>
 
-    <context id="generated-content" style-ref="generated-content">
+    <context id="generated-content" style-ref="generated-content" class="no-spell-check">
       <prefix></prefix>
       <suffix></suffix>
       <keyword>^@contents\s*$</keyword>
@@ -188,14 +191,14 @@
       <keyword>^@verbatiminclude\b</keyword>
     </context>
 
-    <context id="include" style-ref="include">
+    <context id="include" style-ref="include" class="no-spell-check">
       <prefix></prefix>
       <keyword>^\\input</keyword>
       <keyword>^@include</keyword>
       <keyword>@image</keyword>
     </context>
 
-    <context id="markup-inline" style-ref="keyword">
+    <context id="markup-inline" style-ref="keyword" class="no-spell-check">
       <prefix>@</prefix>
       <keyword>acronym</keyword>
       <keyword>anchor</keyword>
@@ -226,7 +229,7 @@
       <keyword>xref</keyword>
     </context>
 
-    <context id="markup-block-b" style-ref="keyword">
+    <context id="markup-block-b" style-ref="keyword" class="no-spell-check">
       <prefix>^@</prefix>
       <suffix>\b</suffix>
       <keyword>author</keyword>
@@ -258,7 +261,7 @@
       <keyword>vtable</keyword>
     </context>
 
-    <context id="markup-block-dollar" style-ref="keyword">
+    <context id="markup-block-dollar" style-ref="keyword" class="no-spell-check">
       <prefix>^@</prefix>
       <suffix>\s*$</suffix>
       <keyword>(end )?copying</keyword>
@@ -306,7 +309,7 @@
       </include>
     </context>
 
-    <context id="sectioning" style-ref="keyword">
+    <context id="sectioning" style-ref="keyword" class="no-spell-check">
       <prefix>^@</prefix>
       <suffix></suffix>
       <keyword>appendix\b</keyword>
@@ -331,7 +334,7 @@
       <keyword>unnumberedsub(sub)?sec\b</keyword>
     </context>
 
-    <context id="formatting" style-ref="keyword">
+    <context id="formatting" style-ref="keyword" class="no-spell-check">
       <prefix></prefix>
       <suffix></suffix>
       <keyword>@(( )|$)</keyword>
@@ -362,7 +365,7 @@
       <keyword>@w\b</keyword>
     </context>
 
-    <context id="characters" style-ref="keyword">
+    <context id="characters" style-ref="keyword" class="no-spell-check">
       <prefix>@</prefix>
       <suffix></suffix>
       <keyword>!</keyword>
@@ -417,7 +420,7 @@
       <keyword>v\b</keyword>
     </context>
 
-    <context id="keyword" style-ref="others">
+    <context id="keyword" style-ref="others" class="no-spell-check">
       <match>((^[\\])|([@]))(end )?[a-zA-Z]+(\{\})?</match>
     </context>
 

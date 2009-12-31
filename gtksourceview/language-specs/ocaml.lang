@@ -61,13 +61,13 @@
     </context>
 
     <!-- here's the main context -->
-    <context id="objective-caml">
+    <context id="objective-caml" class="no-spell-check">
       <include>
 	<context id="ocamldoc" style-ref="ocamldoc">
 	  <start>\(\*\*</start>
 	  <end>\*\)</end>
 	  <include>
-	    <context id="comment-in-comment" style-ref="comment">
+	    <context id="comment-in-comment" style-ref="comment" class="comment" class-disabled="no-spell-check">
 	      <start>\(\*</start>
 	      <end>\*\)</end>
 	      <include>
@@ -80,7 +80,7 @@
 	    <context ref="def:in-comment:*"/>
 	  </include>
 	</context>
-	<context id="comment" style-ref="comment">
+	<context id="comment" style-ref="comment" class="comment" class-disabled="no-spell-check">
 	  <start>\(\*</start>
 	  <end>\*\)</end>
 	  <include>

@@ -82,7 +82,7 @@
     <define-regex id="string-prefix">(u|U)?</define-regex>
     <define-regex id="raw-string-prefix">(r|ur|R|UR|Ur|uR)</define-regex>
 
-    <context id="multiline-double-quoted-string" style-ref="multiline-string">
+    <context id="multiline-double-quoted-string" style-ref="multiline-string" class="string" class-disabled="no-spell-check">
       <start>\%{string-prefix}"""</start>
       <end>"""</end>
       <include>
@@ -91,7 +91,7 @@
       </include>
     </context>
 
-    <context id="multiline-single-quoted-string" style-ref="multiline-string">
+    <context id="multiline-single-quoted-string" style-ref="multiline-string" class="string" class-disabled="no-spell-check">
       <start>\%{string-prefix}'''</start>
       <end>'''</end>
       <include>
@@ -100,7 +100,7 @@
       </include>
     </context>
 
-    <context id="double-quoted-string" style-ref="string" end-at-line-end="true">
+    <context id="double-quoted-string" style-ref="string" end-at-line-end="true" class="string" class-disabled="no-spell-check">
       <start>\%{string-prefix}"</start>
       <end>"</end>
       <include>
@@ -110,7 +110,7 @@
       </include>
     </context>
 
-    <context id="single-quoted-string" style-ref="string" end-at-line-end="true">
+    <context id="single-quoted-string" style-ref="string" end-at-line-end="true" class="string" class-disabled="no-spell-check">
       <start>\%{string-prefix}'</start>
       <end>'</end>
       <include>
@@ -120,7 +120,7 @@
       </include>
     </context>
 
-    <context id="multiline-double-quoted-raw-string" style-ref="multiline-string">
+    <context id="multiline-double-quoted-raw-string" style-ref="multiline-string" class="string" class-disabled="no-spell-check">
       <start>\%{raw-string-prefix}"""</start>
       <end>"""</end>
       <include>
@@ -128,7 +128,7 @@
       </include>
     </context>
 
-    <context id="multiline-single-quoted-raw-string" style-ref="multiline-string">
+    <context id="multiline-single-quoted-raw-string" style-ref="multiline-string" class="string" class-disabled="no-spell-check">
       <start>\%{raw-string-prefix}'''</start>
       <end>'''</end>
       <include>
@@ -136,7 +136,7 @@
       </include>
     </context>
 
-    <context id="double-quoted-raw-string" style-ref="string" end-at-line-end="true">
+    <context id="double-quoted-raw-string" style-ref="string" end-at-line-end="true" class="string" class-disabled="no-spell-check">
       <start>\%{raw-string-prefix}"</start>
       <end>"</end>
       <include>
@@ -145,7 +145,7 @@
       </include>
     </context>
 
-    <context id="single-quoted-raw-string" style-ref="string" end-at-line-end="true">
+    <context id="single-quoted-raw-string" style-ref="string" end-at-line-end="true" class="string" class-disabled="no-spell-check">
       <start>\%{raw-string-prefix}'</start>
       <end>'</end>
       <include>
@@ -154,7 +154,7 @@
       </include>
     </context>
 
-    <context id="python">
+    <context id="python" class="no-spell-check">
       <include>
         <context ref="def:shebang"/>
         <context ref="def:shell-like-comment"/>

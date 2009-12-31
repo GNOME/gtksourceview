@@ -66,7 +66,7 @@
       </include>
     </context>
 
-    <context id="m4-comment" style-ref="m4-comment" end-at-line-end="true">
+    <context id="m4-comment" style-ref="m4-comment" end-at-line-end="true" class="comment" class-disabled="no-spell-check">
       <start>dnl</start>
       <include>
         <context ref="def:in-line-comment"/>
@@ -330,7 +330,7 @@
       </include>
     </context>
 
-    <context id="shell-line-comment" style-ref="sh:comment" end-at-line-end="true">
+    <context id="shell-line-comment" style-ref="sh:comment" end-at-line-end="true" class="comment" class-disabled="no-spell-check">
       <start>(?&lt;!\S)#|(?&lt;=\[)#</start>
       <include>
         <context ref="sh:line-comment" original="true"/>
@@ -340,7 +340,7 @@
     <replace id="sh:sh" ref="m4"/>
     <replace id="sh:line-comment" ref="shell-line-comment"/>
 
-    <context id="m4">
+    <context id="m4" class="no-spell-check">
       <include>
         <context ref="m4-quoted-shell"/>
         <context ref="m4-pure"/>

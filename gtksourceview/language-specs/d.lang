@@ -53,14 +53,14 @@
 
   <definitions>
 
-    <context id="line-comment" style-ref="comment" end-at-line-end="true">
+    <context id="line-comment" style-ref="comment" end-at-line-end="true" class="comment" class-disabled="no-spell-check">
       <start>//</start>
       <include>
         <context ref="def:in-line-comment"/>
       </include>
     </context>
 
-    <context id="block-comment" style-ref="comment">
+    <context id="block-comment" style-ref="comment" class="comment" class-disabled="no-spell-check">
       <start>/\*</start>
       <end>\*/</end>
       <include>
@@ -72,7 +72,7 @@
       <match>\*/(?!\*)</match>
     </context>
 
-    <context id="nesting-comment" style-ref="comment">
+    <context id="nesting-comment" style-ref="comment" class="comment" class-disabled="no-spell-check">
       <start>/\+</start>
       <end>\+/</end>
       <include>
@@ -81,7 +81,7 @@
       </include>
     </context>
 
-    <context id="double-quoted-string" style-ref="string">
+    <context id="double-quoted-string" style-ref="string" class="string" class-disabled="no-spell-check">
       <start>"</start>
       <end>"</end>
       <include>
@@ -90,7 +90,7 @@
       </include>
     </context>
 
-    <context id="single-quoted-string" style-ref="string" end-at-line-end="true">
+    <context id="single-quoted-string" style-ref="string" end-at-line-end="true" class="string" class-disabled="no-spell-check">
       <start>'</start>
       <end>'</end>
       <include>
@@ -99,7 +99,7 @@
       </include>
     </context>
 
-    <context id="backtick-quoted-string" style-ref="string">
+    <context id="backtick-quoted-string" style-ref="string" class="string" class-disabled="no-spell-check">
       <start>`</start>
       <end>`</end>
       <include>
@@ -267,7 +267,7 @@
       </match>
     </context>
 
-    <context id="d">
+    <context id="d" class="no-spell-check">
       <include>
         <context ref="def:shebang"/>
         <context ref="line-comment"/>

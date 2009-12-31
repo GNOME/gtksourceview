@@ -36,7 +36,7 @@
   
   <definitions>
 
-    <context id="entry-type" style-ref="entry-type">
+    <context id="entry-type" style-ref="entry-type" class="no-spell-check">
       <prefix>@</prefix>
 
       <keyword>book</keyword>
@@ -56,7 +56,7 @@
       <keyword>unpublished</keyword>
     </context>
 
-    <context id="field" style-ref="field">
+    <context id="field" style-ref="field" class="no-spell-check">
       <keyword>author</keyword>
       <keyword>title</keyword>
       <keyword>journal</keyword>

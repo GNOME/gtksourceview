@@ -180,14 +180,14 @@
         </context>
 
         <!-- FIXME is it working at line end? -->
-        <define-regex id="net-address" extended="true" case-sensitive="false">
+        <define-regex id="net-address" extended="true" case-sensitive="false" class="no-spell-check">
                 \%[                                         # separator
                 (https?|ftp|nntp|news|javascript|about):    # protocol
                 [^\ \\]* [^\ \\.:;,?&gt;&lt;)]              # address
                 (?![a-z0-9_.-])                             # separator
         </define-regex>
 
-        <define-regex id="email-address" extended="true" case-sensitive="false">
+        <define-regex id="email-address" extended="true" case-sensitive="false" class="no-spell-check">
                 \%[                 # separator
                 (mailto:)?          # optional "mailto:"
                 [a-z0-9_.+-]+       # user name
@@ -196,7 +196,7 @@
                 \%]                 # separator
         </define-regex>
 
-        <context id="in-comment">
+        <context id="in-comment" class-disabled="no-spell-check">
             <include>
                 <context id="net-address" extend-parent="false" style-ref="underlined">
                     <match>\%{net-address}</match>
@@ -204,14 +204,14 @@
                 <context id="email-address" extend-parent="false" style-ref="underlined">
                     <match>\%{email-address}</match>
                 </context>
-                <context id="comment-note" extend-parent="false" style-ref="note">
+                <context id="comment-note" extend-parent="false" style-ref="note" class="no-spell-check">
                     <match>\b(FIXME|TODO|XXX)\b</match>
                 </context>
             </include>
         </context>
 
         <!-- A line comment starting with # -->
-        <context id="shell-like-comment" style-ref="comment" end-at-line-end="true">
+        <context id="shell-like-comment" style-ref="comment" end-at-line-end="true" class-disabled="no-spell-check">
           <start>#</start>
           <include>
             <context ref="in-comment"/>
@@ -225,14 +225,14 @@
 
         <!-- this is intended to be used from line comments
              that can continue on a different line after "\" -->
-        <context id="in-line-comment">
+        <context id="in-line-comment" class-disabled="no-spell-check">
           <include>
             <context ref="line-continue" ignore-style="true"/>
             <context ref="in-comment"/>
           </include>
         </context>
 
-        <context id="shebang" style-ref="shebang" first-line-only="true">
+        <context id="shebang" style-ref="shebang" first-line-only="true" class="no-spell-check">
             <start>^#!</start>
             <end>$</end>
         </context>
@@ -242,7 +242,7 @@
         </context>
 
         <!-- usual quoted string, ends at line end, \ is an escape char -->
-        <context id="string" style-ref="string" end-at-line-end="true">
+        <context id="string" style-ref="string" end-at-line-end="true" class="string" class-disabled="no-spell-check">
             <start>"</start>
             <end>"</end>
             <include>
@@ -252,7 +252,7 @@
         </context>
 
         <!-- same thing but with single quote marks -->
-        <context id="single-quoted-string" style-ref="string" end-at-line-end="true">
+        <context id="single-quoted-string" style-ref="string" end-at-line-end="true" class="string" class-disabled="no-spell-check">
             <start>'</start>
             <end>'</end>
             <include>

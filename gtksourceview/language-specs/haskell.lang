@@ -48,7 +48,7 @@
 
     <define-regex id="symbolchar">[!#$%&amp;*+./&gt;=&lt;?@:\\^|~-]</define-regex>
 
-    <context id="line-comment" style-ref="comment" end-at-line-end="true">
+    <context id="line-comment" style-ref="comment" end-at-line-end="true" class="comment" class-disabled="no-spell-check">
       <start>(?&lt;!\%{symbolchar})--+(?!\%{symbolchar})</start>
       <include>
         <context ref="def:in-comment"/>
@@ -57,7 +57,7 @@
       </include>
     </context>
 
-    <context id="block-comment" style-ref="comment">
+    <context id="block-comment" style-ref="comment" class="comment" class-disabled="no-spell-check">
       <start>\{-</start>
       <end>-\}</end>
       <include>
@@ -118,7 +118,7 @@
         )
     </define-regex>
 
-    <context id="string" style-ref="string" end-at-line-end="true">
+    <context id="string" style-ref="string" end-at-line-end="true" class="string" class-disabled="no-spell-check">
       <start>"</start>
       <end>"</end>
       <include>
@@ -212,7 +212,7 @@
       </include>
     </context>
 
-    <context id="haskell">
+    <context id="haskell" class="no-spell-check">
       <include>
         <context ref="def:shebang"/>
         <context ref="c:if0-comment"/>

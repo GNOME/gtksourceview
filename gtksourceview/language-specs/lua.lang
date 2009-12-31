@@ -45,7 +45,7 @@
       <match>\\(\d\d?\d?|.)</match>
     </context>
 
-    <context id="string" style-ref="string" end-at-line-end="true">
+    <context id="string" style-ref="string" end-at-line-end="true" class="string" class-disabled="no-spell-check">
       <start>["']</start>
       <end>\%{0@start}</end>
       <include>
@@ -54,12 +54,12 @@
       </include>
     </context>
 
-    <context id="multi-line-string" style-ref="string">
+    <context id="multi-line-string" style-ref="string" class="string" class-disabled="no-spell-check">
       <start>\[(=*)\[</start>
       <end>]\%{1@start}]</end>
     </context>
 
-    <context id="block-comment" style-ref="comment">
+    <context id="block-comment" style-ref="comment" class="comment" class-disabled="no-spell-check">
       <start>--\[(=*)\[</start>
       <end>]\%{1@start}]</end>
       <include>
@@ -67,7 +67,7 @@
       </include>
     </context>
 
-    <context id="line-comment" style-ref="comment" end-at-line-end="true">
+    <context id="line-comment" style-ref="comment" end-at-line-end="true" class="comment" class-disabled="no-spell-check">
       <start>--</start>
       <include>
 	<context ref="def:in-comment"/>
@@ -137,7 +137,7 @@
        <keyword>true</keyword>
     </context>
 
-    <context id="lua">
+    <context id="lua" class="no-spell-check">
       <include>
         <context ref="def:shebang"/>
         <context ref="multi-line-string"/>
@@ -145,8 +145,8 @@
         <context ref="block-comment"/>
         <context ref="line-comment"/>
         <context ref="keywords"/>
-	<context ref="functions"/>
-	<context ref="lua-reserved"/>
+        <context ref="functions"/>
+        <context ref="lua-reserved"/>
         <context ref="nil-value"/>
         <context ref="boolean"/>
       </include>

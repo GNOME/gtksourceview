@@ -42,7 +42,7 @@
 
     <definitions>
         <!-- Html comments are more permissive than xml comments -->
-        <context id="comment" style-ref="comment">
+        <context id="comment" style-ref="comment" class="comment">
             <start>&lt;!--</start>
             <end>--\s*&gt;</end>
             <include>
@@ -50,7 +50,7 @@
             </include>
         </context>
 
-        <context id="dtd" style-ref="dtd">
+        <context id="dtd" style-ref="dtd" class="no-spell-check">
             <start>&lt;!</start>
             <end>&gt;</end>
         </context>
@@ -68,7 +68,7 @@
             <include>
 
                 <!-- Attribute in the form: name="value" -->
-                <context id="attrib-quoted" style-ref="attrib-name">
+                <context id="attrib-quoted" style-ref="attrib-name" class="no-spell-check">
                     <start extended="true">
                         [A-Za-z0-9:_-]+ # attribute name
                         \s*=\s*         # "="
@@ -78,7 +78,7 @@
                     <include>
                         <context sub-pattern="1" where="start" style-ref="attrib-value"/>
                         <context sub-pattern="0" where="end" style-ref="attrib-value"/>
-                        <context id="string" extend-parent="false" end-at-line-end="true" style-ref="attrib-value">
+                        <context id="string" extend-parent="false" end-at-line-end="true" style-ref="attrib-value" class="string" class-disabled="no-spell-check">
                             <start>\%{def:always-match}</start>
                             <include>
                                 <context ref="xml:entity"/>
@@ -90,7 +90,7 @@
                 </context>
 
                 <!-- Attribute in the form: name=value -->
-                <context id="attrib-unquoted" style-ref="attrib-value">
+                <context id="attrib-unquoted" style-ref="attrib-value" class="no-spell-check">
                     <start extended="true">
                         [a-z0-9:_-]+ # attribute name
                         \s*=\s*      # "="
@@ -104,7 +104,7 @@
                 </context>
 
                 <!-- Attribute in the form: name -->
-                <context id="attrib-no-value" style-ref="attrib-name">
+                <context id="attrib-no-value" style-ref="attrib-name" class="no-spell-check">
                     <match extended="true">
                         [a-z0-9:_-]+  # attribute name
                     </match>
@@ -115,7 +115,7 @@
             </include>
         </context>
 
-        <context id="script">
+        <context id="script" class="no-spell-check">
             <start>&lt;\s*script\%]</start>
             <end>/&gt;|&lt;\s*/\s*script\s*&gt;</end>
 
@@ -133,7 +133,7 @@
             </include>
         </context>
 
-        <context id="tag">
+        <context id="tag" class="no-spell-check">
             <start>&lt;\s*/?\s*[a-z0-9_-]+</start>
             <end>/?\s*&gt;</end>
             <include>

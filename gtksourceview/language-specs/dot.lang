@@ -38,14 +38,14 @@
 
   <definitions>
 
-    <context id="line-comment" style-ref="comment" end-at-line-end="true">
+    <context id="line-comment" style-ref="comment" end-at-line-end="true" class="comment" class-disabled="no-spell-check">
       <start>//</start>
       <include>
         <context ref="def:in-line-comment"/>
       </include>
     </context>
 
-    <context id="block-comment" style-ref="comment">
+    <context id="block-comment" style-ref="comment" class="comment" class-disabled="no-spell-check">
       <start>/\*</start>
       <end>\*/</end>
       <include>
@@ -123,7 +123,7 @@
       <keyword>width</keyword>
     </context>
 
-    <context id="dot">
+    <context id="dot" class="no-spell-check">
       <include>
         <context ref="line-comment"/>
         <context ref="block-comment"/>

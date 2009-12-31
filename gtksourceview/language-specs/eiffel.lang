@@ -49,19 +49,19 @@
 
   <definitions>
 
-    <context id="single-quoted-string" style-ref="string">
+    <context id="single-quoted-string" style-ref="string" class="string" class-disabled="no-spell-check">
       <start>'</start>
       <end>'</end>
     </context>
 
     
-    <context id="multi-line-string" style-ref="string">
+    <context id="multi-line-string" style-ref="string" class="string" class-disabled="no-spell-check">
       <start>"\[</start>
       <end>\]"</end>
       
     </context>
     
-    <context id="double-quoted-string" style-ref="string">
+    <context id="double-quoted-string" style-ref="string" class="string" class-disabled="no-spell-check">
       <start>"</start>
       <end>"</end>
        <include>
@@ -75,7 +75,7 @@
     
     
 
-    <context id="line-comment" style-ref="comment" end-at-line-end="true">
+    <context id="line-comment" style-ref="comment" end-at-line-end="true" class="comment" class-disabled="no-spell-check">
       <start>--</start>
       <include>
         <context ref="def:in-comment"/>
@@ -216,7 +216,7 @@
       </match>
     </context>
 
-    <context id="eiffel">
+    <context id="eiffel" class="no-spell-check">
       <include>
         <context ref="single-quoted-string"/>
         <context ref="multi-line-string"/>

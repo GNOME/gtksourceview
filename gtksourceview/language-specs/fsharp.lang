@@ -60,14 +60,14 @@
       <match>\%{char-esc}</match>
     </context>
        
-    <context id="line-comment" style-ref="comment" end-at-line-end="true">
+    <context id="line-comment" style-ref="comment" end-at-line-end="true" class="comment" class-disabled="no-spell-check">
       <start>//</start>
         <include>
           <context ref="def:in-line-comment"/>
         </include>
     </context>
     
-    <context id="multiline-comment" style-ref="comment">
+    <context id="multiline-comment" style-ref="comment" class="comment" class-disabled="no-spell-check">
       <start>\(\*</start>
       <end>\*\)</end>
         <include>
@@ -76,7 +76,7 @@
         </include>
     </context>
     
-    <context id="if0-comment" style-ref="comment">
+    <context id="if0-comment" style-ref="comment" class="comment" class-disabled="no-spell-check">
       <start>\%{preproc-start}if\b\s*0\b</start>
       <end>\%{preproc-start}(endif|else|elif)\b</end>
       <include>
@@ -264,7 +264,7 @@
     </context>
 
     <!-- main context -->
-    <context id="fsharp">
+    <context id="fsharp" class="no-spell-check">
       <include>
         <context ref="keywords"/>
         <context ref="keysymbol"/>

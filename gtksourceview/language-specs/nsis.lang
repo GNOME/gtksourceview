@@ -58,7 +58,7 @@
       </include>
     </context>
 
-    <context id="string" style-ref="string">
+    <context id="string" style-ref="string" class="string" class-disabled="no-spell-check">
       <start>"</start>
       <end>"</end>
       <include>
@@ -73,7 +73,7 @@
       </include>
     </context>
 
-    <context id="nsis">
+    <context id="nsis" class="no-spell-check">
       <include>
         <context ref="operator"/>
         <context ref="variable"/>

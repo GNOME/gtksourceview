@@ -58,7 +58,7 @@
       <match>\\((0-7){3}|(x[a-fA-F0-9]{2})|(c\S)|([CM]-\S)|(M-C-\S)|.)</match>
     </context>
 
-    <context id="multiline-comment" style-ref="comment">
+    <context id="multiline-comment" style-ref="comment" class="comment" class-disabled="no-spell-check">
       <start>^=begin</start>
       <end>^=end</end>
       <include>
@@ -430,7 +430,7 @@
     <!-- ruby strings do not end at line end,
          so we cannot use def:string
          (parts lifted from perl.lang) -->
-    <context id="double-quoted-string" style-ref="string">
+    <context id="double-quoted-string" style-ref="string" class="string" class-disabled="no-spell-check">
       <start>"</start>
       <end>"</end>
       <include>
@@ -441,7 +441,7 @@
       </include>
     </context>
 
-    <context id="single-quoted-string" style-ref="string">
+    <context id="single-quoted-string" style-ref="string" class="string" class-disabled="no-spell-check">
       <start>'</start>
       <end>'</end>
       <include>
@@ -546,7 +546,7 @@
       </include>
     </context>
 
-    <context id="ruby">
+    <context id="ruby" class="no-spell-check">
       <include>
         <context ref="def:shebang"/>
         <context ref="def:shell-like-comment"/>

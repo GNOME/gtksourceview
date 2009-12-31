@@ -38,7 +38,7 @@
   </styles>
 
   <definitions>
-    <context id="line-comment" style-ref="comment" end-at-line-end="true">
+    <context id="line-comment" style-ref="comment" end-at-line-end="true" class="comment" class-disabled="no-spell-check">
       <start>;</start>
     </context>
     <context id="group" style-ref="keyword">
@@ -66,7 +66,7 @@
       <start>'</start>
       <end>'</end>
     </context>
-    <context id="double-quoted-string" style-ref="string">
+    <context id="double-quoted-string" style-ref="string" class="string" class-disabled="no-spell-check">
       <start>"</start>
       <end>"</end>
     </context>
@@ -76,7 +76,7 @@
     <context id="decimal-number" style-ref="floating-point">
       <match>(\b[0-9]+(\.[0-9]+)?|\.[0-9]+)([Ee][\+-]?[0-9]+)?\b</match>
     </context>
-    <context id="ini">
+    <context id="ini" class="no-spell-check">
       <include>
         <context ref="line-comment"/>
         <context ref="group"/>

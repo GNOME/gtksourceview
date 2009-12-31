@@ -87,7 +87,7 @@
       <keyword>SI_(StillImage|(Average|Positional)?Color|ColorHistogram|Texture|FeatureList)</keyword>
     </context>
 
-    <context id="text-literals" style-ref="string">
+    <context id="text-literals" style-ref="string" class="string" class-disabled="no-spell-check">
       <start>[NnQqUu]?(['`])</start>
       <end>\%{1@start}</end>
       <include>
@@ -116,7 +116,7 @@
       <keyword>NULL</keyword>
     </context>
 
-    <context id="block-comment" style-ref="comment">
+    <context id="block-comment" style-ref="comment" class="comment" class-disabled="no-spell-check">
       <start>/\*</start>
       <end>\*/</end>
       <include>
@@ -124,7 +124,7 @@
       </include>
     </context>
 
-    <context id="line-comment" style-ref="comment" end-at-line-end="true">
+    <context id="line-comment" style-ref="comment" end-at-line-end="true" class="comment" class-disabled="no-spell-check">
       <start>--</start>
       <include>
         <context ref="def:in-line-comment"/>
@@ -568,7 +568,7 @@
       <keyword>WHENEVER[ \t]+(OS|SQL)ERROR</keyword>
     </context>
 
-    <context id="sql">
+    <context id="sql" class="no-spell-check">
       <include>
         <context ref="oracle-built-in-datatypes"/>
         <context ref="ansi-datatypes"/>

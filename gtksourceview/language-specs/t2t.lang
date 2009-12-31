@@ -63,7 +63,7 @@
       </include>
     </context>
 
-    <context id="comment" style-ref="comment" end-at-line-end="true">
+    <context id="comment" style-ref="comment" end-at-line-end="true" class="comment" class-disabled="no-spell-check">
       <start>^%</start>
     </context>
 
@@ -133,7 +133,7 @@
       <end>^```$</end>
     </context>
 
-    <context id="t2t">
+    <context id="t2t" class="no-spell-check">
       <include>
         <context ref="header"/>
         <context ref="sections"/>

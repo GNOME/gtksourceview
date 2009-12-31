@@ -46,14 +46,14 @@
 
     <!-- we cannot use def:shell-like-comment, because
          m4.lang needs to replace this context -->
-    <context id="line-comment" style-ref="comment" end-at-line-end="true">
+    <context id="line-comment" style-ref="comment" end-at-line-end="true" class="comment" class-disabled="no-spell-check">
       <start>(?&lt;!\S)#</start>
       <include>
         <context ref="def:in-comment"/>
       </include>
     </context>
 
-    <context id="double-quoted-string" style-ref="string">
+    <context id="double-quoted-string" style-ref="string" class="string" class-disabled="no-spell-check">
       <start>"</start>
       <end>"</end>
       <include>
@@ -71,7 +71,7 @@
       </include>
     </context>
 
-    <context id="single-quoted-string" style-ref="string">
+    <context id="single-quoted-string" style-ref="string" class="string" class-disabled="no-spell-check">
       <start>'</start>
       <end>'</end>
     </context>
@@ -473,7 +473,7 @@
       </include>
     </context>
 
-    <context id="sh">
+    <context id="sh" class="no-spell-check">
       <include>
         <context ref="def:shebang" style-ref="shebang"/>
         <context ref="line-comment"/>

@@ -49,14 +49,14 @@
             )
     </define-regex>
 
-    <context id="line-comment" style-ref="comment" end-at-line-end="true">
+    <context id="line-comment" style-ref="comment" end-at-line-end="true" class="comment" class-disabled="no-spell-check">
       <start>%</start>
       <include>
         <context ref="def:in-comment"/>
       </include>
     </context>
 
-    <context id="block-comment" style-ref="comment">
+    <context id="block-comment" style-ref="comment" class="comment" class-disabled="no-spell-check">
       <start>/\*</start>
       <end>\*/</end>
       <include>
@@ -97,7 +97,7 @@
           <match>\%{escaped-character}</match>
     </context>
 
-    <context id="string" style-ref="string" end-at-line-end="true">
+    <context id="string" style-ref="string" end-at-line-end="true" class="string" class-disabled="no-spell-check">
       <start>"</start>
       <end>"</end>
       <include>
@@ -105,7 +105,7 @@
       </include>
     </context>
 
-    <context id="string2" style-ref="string" end-at-line-end="true">
+    <context id="string2" style-ref="string" end-at-line-end="true" class="string" class-disabled="no-spell-check">
       <start>'</start>
       <end>'</end>
       <include>
@@ -225,7 +225,7 @@
       <keyword>delete</keyword>
     </context>
 
-    <context id="prolog">
+    <context id="prolog" class="no-spell-check">
       <include>
         <context ref="keyword"/>
         <context ref="arith"/>

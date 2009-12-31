@@ -49,11 +49,11 @@
     </styles>
 
     <definitions>
-        <context id="js">
+        <context id="js" class="no-spell-check">
             <include>
 
                 <!-- Comments -->
-                <context id="line-comment" style-ref="comment">
+                <context id="line-comment" style-ref="comment" class="comment" class-disabled="no-spell-check">
                     <start>//</start>
                     <end>$</end>
                     <include>
@@ -62,7 +62,7 @@
                     </include>
                 </context>
 
-                <context id="block-comment" style-ref="comment">
+                <context id="block-comment" style-ref="comment" class="comment" class-disabled="no-spell-check">
                     <start>/\*</start>
                     <end>\*/</end>
                     <include>
@@ -75,7 +75,7 @@
                 </context>
 
                 <!-- Strings -->
-                <context id="string-double" end-at-line-end="true" style-ref="string">
+                <context id="string-double" end-at-line-end="true" style-ref="string" class="string" class-disabled="no-spell-check">
                     <start>"</start>
                     <end>"</end>
                     <include>
@@ -84,7 +84,7 @@
                     </include>
                 </context>
 
-                <context id="string-single" end-at-line-end="true" style-ref="string">
+                <context id="string-single" end-at-line-end="true" style-ref="string" class="string" class-disabled="no-spell-check">
                     <start>'</start>
                     <end>'</end>
                     <include>

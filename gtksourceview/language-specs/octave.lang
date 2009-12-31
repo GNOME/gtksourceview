@@ -46,7 +46,7 @@
       this is not yet supported by octave, but it's supported
       by matlab - http://www.mathworks.com/access/helpdesk/help/techdoc/matlab_prog/f0-41244.html#f0-45380
     -->
-    <context id="multiline-comment" style-ref="comment">
+    <context id="multiline-comment" style-ref="comment" class="comment" class-disabled="no-spell-check">
       <start>^\s*%{\s*$</start>
       <end>^\s*%}\s*$</end>
       <include>
@@ -54,14 +54,14 @@
       </include>
     </context>
 
-    <context id="line-comment" style-ref="comment" end-at-line-end="true">
+    <context id="line-comment" style-ref="comment" end-at-line-end="true" class="comment" class-disabled="no-spell-check">
       <start>#|%</start>
       <include>
         <context ref="def:in-comment"/>
       </include>
     </context>
 
-    <context id="double-quoted-string" style-ref="string" end-at-line-end="true">
+    <context id="double-quoted-string" style-ref="string" end-at-line-end="true" class="string" class-disabled="no-spell-check">
       <start>"</start>
       <end>"</end>
       <include>
@@ -70,7 +70,7 @@
       </include>
     </context>
 
-    <context id="single-quoted-string" style-ref="string" end-at-line-end="true">
+    <context id="single-quoted-string" style-ref="string" end-at-line-end="true" class="string" class-disabled="no-spell-check">
       <!--
        To do not misdetect the transpose operator ' as the start of a string
        we assert to not follow a variable name (letters, digits and underscores)
@@ -218,7 +218,7 @@
       <keyword>zeros</keyword>
     </context>
 
-    <context id="octave">
+    <context id="octave" class="no-spell-check">
       <include>
         <context ref="multiline-comment"/>
         <context ref="line-comment"/>

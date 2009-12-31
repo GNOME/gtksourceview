@@ -36,14 +36,14 @@
   </styles>
 
   <definitions>
-    <context id="line-comment" style-ref="comment" end-at-line-end="true">
+    <context id="line-comment" style-ref="comment" end-at-line-end="true" class="comment" class-disabled="no-spell-check">
       <start>;</start>
       <include>
         <context ref="def:in-comment"/>
       </include>
     </context>
 
-    <context id="string" style-ref="string">
+    <context id="string" style-ref="string" class="string" class-disabled="no-spell-check">
       <start>"</start>
       <end>"</end>
       <include>
@@ -287,7 +287,7 @@
       <match>#[ft]</match>
     </context>
 
-    <context id="scheme">
+    <context id="scheme" class="no-spell-check">
       <include>
         <context ref="line-comment"/>
         <context ref="string"/>

@@ -37,14 +37,14 @@
 
   <definitions>
 
-    <context id="comment" style-ref="comment" end-at-line-end="true">
+    <context id="comment" style-ref="comment" end-at-line-end="true" class="comment" class-disabled="no-spell-check">
       <start>^\s*(rem\b|:\s*:)</start>
       <include>
         <context ref="def:in-comment"/>
       </include>
     </context>
 
-    <context id="string" style-ref="string" end-at-line-end="true">
+    <context id="string" style-ref="string" end-at-line-end="true" class="string" class-disabled="no-spell-check">
       <start>"</start>
       <end>"</end>
     </context>
@@ -153,7 +153,7 @@
       <keyword>xcopy</keyword>
     </context>
 
-    <context id="dosbatch">
+    <context id="dosbatch" class="no-spell-check">
       <include>
         <context ref="comment"/>
         <context ref="string"/>

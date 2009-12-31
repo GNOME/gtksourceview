@@ -40,7 +40,7 @@
   </styles>
 
   <definitions>
-    <context id="double-quoted-string" style-ref="string" end-at-line-end="true">
+    <context id="double-quoted-string" style-ref="string" end-at-line-end="true" class="string" class-disabled="no-spell-check">
       <start>"</start>
       <end>"</end>
       <include>
@@ -48,7 +48,7 @@
         <context ref="def:line-continue"/>
       </include>
     </context>
-    <context id="single-quoted-string" style-ref="string" end-at-line-end="true">
+    <context id="single-quoted-string" style-ref="string" end-at-line-end="true" class="string" class-disabled="no-spell-check">
       <start>'</start>
       <end>'</end>
       <include>
@@ -56,7 +56,7 @@
         <context ref="def:line-continue"/>
       </include>
     </context>
-    <context id="line-comment" style-ref="comment" end-at-line-end="true">
+    <context id="line-comment" style-ref="comment" end-at-line-end="true" class="comment" class-disabled="no-spell-check">
       <start>#</start>
       <include>
         <context ref="def:escape"/>
@@ -97,7 +97,7 @@
       <keyword>TRUE</keyword>
       <keyword>FALSE</keyword>
     </context>
-    <context id="gtkrc">
+    <context id="gtkrc" class="no-spell-check">
       <include>
         <context ref="double-quoted-string"/>
         <context ref="single-quoted-string"/>

@@ -43,7 +43,7 @@
   <definitions>
 
     <!-- Note: contains an hack to avoid considering ^COMMON a comment -->
-    <context id="line-comment" style-ref="comment" end-at-line-end="true">
+    <context id="line-comment" style-ref="comment" end-at-line-end="true" class="comment" class-disabled="no-spell-check">
       <start>!|(^[Cc](\b|[^Oo]))</start>
       <include>
         <context ref="def:escape"/>
@@ -489,7 +489,7 @@
       </match>
     </context>
 
-    <context id="fortran">
+    <context id="fortran" class="no-spell-check">
       <include>
         <context ref="floating-point-number"/>
         <context ref="decimal"/>

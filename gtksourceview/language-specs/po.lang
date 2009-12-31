@@ -38,7 +38,7 @@
   </styles>
 
   <definitions>
-    <context id="string" style-ref="string">
+    <context id="string" style-ref="string" class="string" class-disabled="no-spell-check">
       <start>"</start>
       <end>"</end>
       <include>
@@ -81,7 +81,7 @@
       <keyword>msgstr</keyword>
       <keyword>msgctxt</keyword>
     </context>
-    <context id="gettext-translation">
+    <context id="gettext-translation" class="no-spell-check">
       <include>
         <context ref="string"/>
         <context ref="format"/>

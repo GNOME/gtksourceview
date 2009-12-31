@@ -55,21 +55,21 @@
 
   <definitions>
 
-    <context id="bash-line-comment" style-ref="comment" end-at-line-end="true" extend-parent="false">
+    <context id="bash-line-comment" style-ref="comment" end-at-line-end="true" extend-parent="false" class="comment" class-disabled="no-spell-check">
       <start>#</start>
       <include>
         <context ref="def:in-line-comment"/>
       </include>
     </context>
 
-    <context id="cpp-line-comment" style-ref="comment" end-at-line-end="true" extend-parent="false">
+    <context id="cpp-line-comment" style-ref="comment" end-at-line-end="true" extend-parent="false" class="comment" class-disabled="no-spell-check">
       <start>//</start>
       <include>
         <context ref="def:in-line-comment"/>
       </include>
     </context>
 
-    <context id="c-block-comment" style-ref="comment">
+    <context id="c-block-comment" style-ref="comment" class="comment" class-disabled="no-spell-check">
       <start>/\*</start>
       <end>\*/</end>
       <include>
@@ -113,7 +113,7 @@
       </include>
     </context>
 
-    <context id="double-quoted-string" style-ref="string">
+    <context id="double-quoted-string" style-ref="string" class="string" class-disabled="no-spell-check">
       <start>"</start>
       <end>"</end>
       <include>
@@ -123,7 +123,7 @@
       </include>
     </context>
 
-    <context id="single-quoted-string" style-ref="string">
+    <context id="single-quoted-string" style-ref="string" class="string" class-disabled="no-spell-check">
       <start>'</start>
       <end>'</end>
       <include>
@@ -318,7 +318,7 @@
 
     <replace id="html:embedded-lang-hook" ref="php-block"/>
 
-    <context id="php">
+    <context id="php" class="no-spell-check">
       <include>
         <context ref="php-block"/>
         <context ref="html:html"/>

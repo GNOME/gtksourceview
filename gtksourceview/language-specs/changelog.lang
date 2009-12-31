@@ -51,7 +51,7 @@
     <context id="changelog">
       <include>
 
-        <context id="date-and-stuff">
+        <context id="date-and-stuff" class="no-spell-check">
           <!-- FIXME: how to match date here? The date and name line is
             something like (DATE) (NAME) <EMAIL>, where DATE and NAME may
             be quite arbitrary. -->
@@ -67,11 +67,11 @@
           </include>
         </context>
 
-        <context id="release" style-ref="release">
+        <context id="release" style-ref="release" class="no-spell-check">
           <match>^\s*\=.*\=\s*$</match>
         </context>
 
-        <context id="file" style-ref="file">
+        <context id="file" style-ref="file" class="no-spell-check">
           <start>^\s+(\*)</start>
           <!-- end at blank lines if there's no colon -->
           <end>\:|^(?!\S)</end>
@@ -80,7 +80,7 @@
           </include>
         </context>
 
-        <context id="function" style-ref="function">
+        <context id="function" style-ref="function" class="no-spell-check">
           <match>\(\s*\%{identifier}\s*\)</match>
         </context>
 

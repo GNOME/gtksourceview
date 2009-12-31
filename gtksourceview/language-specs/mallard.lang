@@ -35,15 +35,15 @@
 
 <definitions>
 
-  <context id="page-element" once-only="true" style-ref="page">
+  <context id="page-element" once-only="true" style-ref="page" class="no-spell-check">
     <keyword>page</keyword>
   </context>
 
-  <context id="section-element" style-ref="section">
+  <context id="section-element" style-ref="section" class="no-spell-check">
     <keyword>section</keyword>
   </context>
 
-  <context id="block-elements" style-ref="block">
+  <context id="block-elements" style-ref="block" class="no-spell-check">
     <keyword>code</keyword>
     <keyword>p</keyword>
     <keyword>example</keyword>
@@ -67,7 +67,7 @@
     <keyword>item</keyword>
   </context>
 
-  <context id="inline-elements" style-ref="inline">
+  <context id="inline-elements" style-ref="inline" class="no-spell-check">
     <keyword>app</keyword>
     <keyword>cmd</keyword>
     <keyword>code</keyword>
