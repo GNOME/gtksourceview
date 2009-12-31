@@ -2,7 +2,7 @@
  * gtksourcecompletioncontext.h
  * This file is part of gtksourceview
  *
- * Copyright (C) 2009 - Jesse van den Kieboom
+ * Copyright (C) 2009 - Jesse van den Kieboom <jessevdk@gnome.org>
  *
  * gtksourceview is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
