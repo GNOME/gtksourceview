@@ -74,6 +74,9 @@ struct _GtkSourceCompletionProviderIface
 	gboolean	 (*activate_proposal)	(GtkSourceCompletionProvider *provider,
 						 GtkSourceCompletionProposal *proposal,
 						 GtkTextIter                 *iter);
+
+	gint		 (*get_interactive_delay) (GtkSourceCompletionProvider *provider);
+	gint		 (*get_priority)	(GtkSourceCompletionProvider *provider);
 };
 
 GType		 gtk_source_completion_provider_get_type	(void);
@@ -107,6 +110,9 @@ gboolean	 gtk_source_completion_provider_get_start_iter	(GtkSourceCompletionProv
 gboolean	 gtk_source_completion_provider_activate_proposal (GtkSourceCompletionProvider *provider,
 								   GtkSourceCompletionProposal *proposal,
 								   GtkTextIter                 *iter);
+
+gint		 gtk_source_completion_provider_get_interactive_delay (GtkSourceCompletionProvider *provider);
+gint		 gtk_source_completion_provider_get_priority	(GtkSourceCompletionProvider *provider);
 
 G_END_DECLS
 

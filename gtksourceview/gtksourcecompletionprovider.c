@@ -97,6 +97,19 @@ gtk_source_completion_provider_activate_proposal_default (GtkSourceCompletionPro
 	return FALSE;
 }
 
+static gint
+gtk_source_completion_provider_get_interactive_delay_default (GtkSourceCompletionProvider *provider)
+{
+	/* -1 means the default value in the completion object */
+	return -1;
+}
+
+static gint
+gtk_source_completion_provider_get_priority_default (GtkSourceCompletionProvider *provider)
+{
+	return 0;
+}
+
 static void 
 gtk_source_completion_provider_base_init (GtkSourceCompletionProviderIface *iface)
 {
@@ -115,6 +128,9 @@ gtk_source_completion_provider_base_init (GtkSourceCompletionProviderIface *ifac
 	
 	iface->get_start_iter = gtk_source_completion_provider_get_start_iter_default;
 	iface->activate_proposal = gtk_source_completion_provider_activate_proposal_default;
+
+	iface->get_interactive_delay = gtk_source_completion_provider_get_interactive_delay_default;
+	iface->get_priority = gtk_source_completion_provider_get_priority_default;
 
 	if (!initialized)
 	{
@@ -343,4 +359,20 @@ gtk_source_completion_provider_activate_proposal (GtkSourceCompletionProvider *p
 	return GTK_SOURCE_COMPLETION_PROVIDER_GET_INTERFACE (provider)->activate_proposal (provider, 
 	                                                                                   proposal,
 	                                                                                   iter);
+}
+
+gint
+gtk_source_completion_provider_get_interactive_delay (GtkSourceCompletionProvider *provider)
+{
+	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_PROVIDER (provider), -1);
+
+	return GTK_SOURCE_COMPLETION_PROVIDER_GET_INTERFACE (provider)->get_interactive_delay (provider);
+}
+
+gint
+gtk_source_completion_provider_get_priority (GtkSourceCompletionProvider *provider)
+{
+	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_PROVIDER (provider), 0);
+
+	return GTK_SOURCE_COMPLETION_PROVIDER_GET_INTERFACE (provider)->get_priority (provider);
 }
