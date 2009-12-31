@@ -134,6 +134,26 @@ void			 gtk_source_buffer_remove_source_marks	(GtkSourceBuffer        *buffer,
 								 const GtkTextIter      *start,
 								 const GtkTextIter      *end,
 								 const gchar            *category);
+
+gboolean		 gtk_source_buffer_iter_has_context_class
+								(GtkSourceBuffer	*buffer,
+								 const GtkTextIter	*iter,
+								 const gchar            *context_class);
+
+gchar			**gtk_source_buffer_get_context_classes_at_iter
+								(GtkSourceBuffer	*buffer,
+								 const GtkTextIter	*iter);
+
+gboolean		 gtk_source_buffer_iter_forward_to_context_class_toggle
+								(GtkSourceBuffer	*buffer,
+								 GtkTextIter		*iter,
+								 const gchar		*context_class);
+
+gboolean		 gtk_source_buffer_iter_backward_to_context_class_toggle
+								(GtkSourceBuffer	*buffer,
+								 GtkTextIter		*iter,
+								 const gchar		*context_class);
+
 /* private */
 void			 _gtk_source_buffer_update_highlight	(GtkSourceBuffer        *buffer,
 								 const GtkTextIter      *start,

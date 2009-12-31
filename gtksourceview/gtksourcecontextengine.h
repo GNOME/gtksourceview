@@ -36,7 +36,7 @@ G_BEGIN_DECLS
 
 typedef struct _GtkSourceContextData          GtkSourceContextData;
 typedef struct _GtkSourceContextReplace       GtkSourceContextReplace;
-
+typedef struct _GtkSourceContextClass         GtkSourceContextClass;
 typedef struct _GtkSourceContextEngine        GtkSourceContextEngine;
 typedef struct _GtkSourceContextEngineClass   GtkSourceContextEngineClass;
 typedef struct _GtkSourceContextEnginePrivate GtkSourceContextEnginePrivate;
@@ -75,6 +75,12 @@ GtkSourceContextData *_gtk_source_context_data_new	(GtkSourceLanguage	*lang);
 GtkSourceContextData *_gtk_source_context_data_ref	(GtkSourceContextData	*data);
 void		 _gtk_source_context_data_unref		(GtkSourceContextData	*data);
 
+GtkSourceContextClass *
+		gtk_source_context_class_new		(gchar const *name,
+							 gboolean     enabled);
+
+void		gtk_source_context_class_free		(GtkSourceContextClass *cclass);
+
 GtkSourceContextEngine *_gtk_source_context_engine_new  (GtkSourceContextData	*data);
 
 gboolean	 _gtk_source_context_data_define_context
@@ -85,6 +91,7 @@ gboolean	 _gtk_source_context_data_define_context
 							 const gchar		 *start_regex,
 							 const gchar		 *end_regex,
 							 const gchar		 *style,
+							 GSList			 *context_classes,
 							 GtkSourceContextFlags    flags,
 							 GError			**error);
 
@@ -95,6 +102,7 @@ gboolean	 _gtk_source_context_data_add_sub_pattern
 							 const gchar		 *name,
 							 const gchar		 *where,
 							 const gchar		 *style,
+							 GSList			 *context_classes,
 							 GError			**error);
 
 gboolean	 _gtk_source_context_data_add_ref 	(GtkSourceContextData	 *data,

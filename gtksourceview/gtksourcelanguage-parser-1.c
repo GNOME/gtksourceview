@@ -97,7 +97,7 @@ ctx_data_add_simple_pattern (GtkSourceContextData *ctx_data,
 	result = _gtk_source_context_data_define_context (ctx_data, real_id,
 							  root_id,
 							  fixed, NULL, NULL,
-							  style,
+							  style, NULL,
 							  GTK_SOURCE_CONTEXT_EXTEND_PARENT |
 								GTK_SOURCE_CONTEXT_END_AT_LINE_END,
 							  &error);
@@ -145,6 +145,7 @@ ctx_data_add_syntax_pattern (GtkSourceContextData *ctx_data,
 							  pattern_start,
 							  pattern_end,
 							  style,
+							  NULL,
 							  flags,
 							  &error);
 
@@ -658,7 +659,7 @@ define_root_context (GtkSourceContextData *ctx_data,
 	id = g_strdup_printf ("%s:%s", language->priv->id, language->priv->id);
 	result = _gtk_source_context_data_define_context (ctx_data, id,
 							  NULL, NULL, NULL, NULL,
-							  NULL,
+							  NULL, NULL,
 							  GTK_SOURCE_CONTEXT_EXTEND_PARENT,
 							  &error);
 

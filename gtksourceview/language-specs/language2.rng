@@ -236,7 +236,12 @@
                 <ref name="boolean-value"/>
             </attribute>
         </optional>
-
+        <optional>
+            <attribute name="class"/>
+        </optional>
+        <optional>
+            <attribute name="class-disabled"/>
+        </optional>
         <choice>
             <element name="match">
                 <ref name="regex-options"/>
@@ -308,6 +313,12 @@
                 <ref name="boolean-value"/>
             </attribute>
         </optional>
+        <optional>
+            <attribute name="class"/>
+        </optional>
+        <optional>
+            <attribute name="class-disabled"/>
+        </optional>
 
         <element name="start">
             <ref name="regex-options"/>
@@ -347,6 +358,12 @@
         <attribute name="id">
             <ref name="id-type"/>
         </attribute>
+        <optional>
+            <attribute name="class"/>
+        </optional>
+        <optional>
+            <attribute name="class-disabled"/>
+        </optional>
 
         <element name="include">
             <interleave>
@@ -379,6 +396,12 @@
                 <ref name="id-type"/>
             </attribute>
         </optional>
+        <optional>
+            <attribute name="class"/>
+        </optional>
+        <optional>
+            <attribute name="class-disabled"/>
+        </optional>
 
         <attribute name="sub-pattern"/>
     </element>
@@ -395,6 +418,12 @@
             <attribute name="style-ref">
                 <ref name="id-type"/>
             </attribute>
+        </optional>
+        <optional>
+            <attribute name="class"/>
+        </optional>
+        <optional>
+            <attribute name="class-disabled"/>
         </optional>
 
         <attribute name="sub-pattern"/>

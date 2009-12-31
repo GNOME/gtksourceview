@@ -153,6 +153,7 @@ static gboolean   create_definition            (ParserState *parser_state,
                                                 gchar *id,
                                                 gchar *parent_id,
                                                 gchar *style,
+                                                GSList *context_classes,
 						GError **error);
 
 static void       handle_context_element       (ParserState *parser_state);
@@ -303,11 +304,56 @@ get_context_flags (ParserState *parser_state)
 	return flags;
 }
 
+static GSList *
+add_classes (GSList      *list,
+             gchar const *classes,
+             gboolean     enabled)
+{
+	gchar **parts;
+	gchar **ptr;
+	GSList *newlist = NULL;
+
+	if (classes == NULL)
+	{
+		return list;
+	}
+
+	parts = ptr = g_strsplit (classes, " ", -1);
+
+	while (*ptr)
+	{
+		GtkSourceContextClass *ctx = gtk_source_context_class_new (*ptr, enabled);
+		newlist = g_slist_prepend (newlist, ctx);
+
+		++ptr;
+	}
+
+	g_strfreev (parts);
+	return g_slist_concat (list, g_slist_reverse (newlist));
+}
+
+static GSList *
+parse_classes (ParserState *parser_state)
+{
+	GSList *ret = NULL;
+	xmlChar *en = xmlTextReaderGetAttribute (parser_state->reader, BAD_CAST "class");
+	xmlChar *dis = xmlTextReaderGetAttribute (parser_state->reader, BAD_CAST "class-disabled");
+
+	ret = add_classes (ret, (gchar const *)en, TRUE);
+	ret = add_classes (ret, (gchar const *)dis, FALSE);
+
+	xmlFree (en);
+	xmlFree (dis);
+
+	return ret;
+}
+
 static gboolean
 create_definition (ParserState *parser_state,
 		   gchar       *id,
 		   gchar       *parent_id,
 		   gchar       *style,
+		   GSList      *context_classes,
 		   GError     **error)
 {
 	gchar *match = NULL, *start = NULL, *end = NULL;
@@ -468,6 +514,7 @@ create_definition (ParserState *parser_state,
 	}
 
 	if (tmp_error == NULL)
+	{
 		_gtk_source_context_data_define_context (parser_state->ctx_data,
 							 id,
 							 parent_id,
@@ -475,8 +522,10 @@ create_definition (ParserState *parser_state,
 							 start,
 							 end,
 							 style,
+							 context_classes,
 							 flags,
 							 &tmp_error);
+	}
 
 	g_free (match);
 	g_free (start);
@@ -608,11 +657,12 @@ add_ref (ParserState               *parser_state,
 }
 
 static gboolean
-create_sub_pattern (ParserState *parser_state,
-                    gchar *id,
-                    gchar *sub_pattern,
-                    gchar *style,
-                    GError **error)
+create_sub_pattern (ParserState  *parser_state,
+                    gchar        *id,
+                    gchar        *sub_pattern,
+                    gchar        *style,
+                    GSList       *context_classes,
+                    GError      **error)
 {
 	gchar *container_id;
 	xmlChar *where;
@@ -634,6 +684,7 @@ create_sub_pattern (ParserState *parser_state,
 						  sub_pattern,
 						  (gchar*) where,
 						  style,
+						  context_classes,
 						  &tmp_error);
 
 	xmlFree (where);
@@ -656,6 +707,7 @@ handle_context_element (ParserState *parser_state)
 	gboolean success;
 	gboolean ignore_style = FALSE;
 	GtkSourceContextRefOptions options = 0;
+	GSList *context_classes;
 
 	GError *tmp_error = NULL;
 
@@ -706,6 +758,8 @@ handle_context_element (ParserState *parser_state)
 		g_warning ("in file %s: style '%s' not defined", parser_state->filename, style_ref);
 	}
 
+	context_classes = parse_classes (parser_state);
+
 	if (ref != NULL)
 	{
 		tmp = xmlTextReaderGetAttribute (parser_state->reader, BAD_CAST "original");
@@ -716,7 +770,11 @@ handle_context_element (ParserState *parser_state)
 		if (style_ref != NULL)
 			options |= GTK_SOURCE_CONTEXT_OVERRIDE_STYLE;
 
-		add_ref (parser_state, (gchar*) ref, options, style_ref, &tmp_error);
+		add_ref (parser_state,
+		         (gchar*) ref,
+		         options,
+		         style_ref,
+		         &tmp_error);
 	}
 	else
 	{
@@ -741,9 +799,12 @@ handle_context_element (ParserState *parser_state)
 		{
 			if (sub_pattern != NULL)
 			{
-				create_sub_pattern (parser_state, id,
-						(gchar *)sub_pattern, style_ref,
-						&tmp_error);
+				create_sub_pattern (parser_state,
+				                    id,
+				                    (gchar *)sub_pattern,
+				                    style_ref,
+				                    context_classes,
+				                    &tmp_error);
 			}
 			else
 			{
@@ -761,11 +822,16 @@ handle_context_element (ParserState *parser_state)
 											   NULL,
 											   NULL,
 											   NULL,
+											   NULL,
 											   0,
 											   &tmp_error);
 				else
-					success = create_definition (parser_state, id, parent_id,
-								     style_ref, &tmp_error);
+					success = create_definition (parser_state,
+					                             id,
+					                             parent_id,
+					                             style_ref,
+					                             context_classes,
+					                             &tmp_error);
 
 				if (success && !is_empty)
 				{
@@ -780,6 +846,9 @@ handle_context_element (ParserState *parser_state)
 
 		g_free (id);
 	}
+
+	g_slist_foreach (context_classes, (GFunc)gtk_source_context_class_free, NULL);
+	g_slist_free (context_classes);
 
 	g_free (style_ref);
 	xmlFree (sub_pattern);

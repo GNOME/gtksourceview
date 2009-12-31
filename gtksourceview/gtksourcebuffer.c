@@ -80,6 +80,8 @@
 
 #define MAX_CHARS_BEFORE_FINDING_A_MATCH    10000
 
+#define TAG_CONTEXT_CLASS_NAME "GtkSourceViewTagContextClassName"
+
 /* Signals */
 enum {
 	HIGHLIGHT_UPDATED,
@@ -1959,5 +1961,161 @@ gtk_source_buffer_remove_source_marks (GtkSourceBuffer   *buffer,
 	}
 
 	g_slist_free (list);
+}
+
+
+/**
+ * gtk_source_buffer_iter_has_context_class:
+ * @buffer: a #GtkSourceBuffer.
+ * @iter: a #GtkTextIter
+ * @context_class: class to search for
+ *
+ * Check if the class @context_klass is set on @iter.
+ *
+ * Since: 2.10
+ **/
+gboolean
+gtk_source_buffer_iter_has_context_class (GtkSourceBuffer   *buffer,
+                                          const GtkTextIter *iter,
+                                          const gchar       *context_class)
+{
+	GtkTextTag *tag;
+
+	g_return_val_if_fail (GTK_IS_SOURCE_BUFFER (buffer), FALSE);
+	g_return_val_if_fail (iter != NULL, FALSE);
+	g_return_val_if_fail (context_class != NULL, FALSE);
+
+	tag = _gtk_source_engine_get_context_class_tag (buffer->priv->highlight_engine,
+							context_class);
+
+	if (tag != NULL)
+	{
+		return gtk_text_iter_has_tag (iter, tag);
+	}
+	else
+	{
+		return FALSE;
+	}
+}
+
+/**
+ * gtk_source_buffer_get_context_classes_at_iter:
+ * @buffer: a #GtkSourceBuffer.
+ * @iter: a #GtkTextIter
+ *
+ * Get all defined context classes at @iter.
+ *
+ * Returns: a new %NULL terminated array of context class names. Use
+ *          #g_strfreev to free the array if it is no longer needed.
+ *
+ * Since: 2.10
+ **/
+gchar **
+gtk_source_buffer_get_context_classes_at_iter (GtkSourceBuffer   *buffer,
+                                               const GtkTextIter *iter)
+{
+	GSList *tags;
+	GSList *item;
+	GPtrArray *ret;
+
+	g_return_val_if_fail (GTK_IS_SOURCE_BUFFER (buffer), NULL);
+	g_return_val_if_fail (iter != NULL, NULL);
+
+	tags = gtk_text_iter_get_tags (iter);
+	ret = g_ptr_array_new ();
+
+	for (item = tags; item; item = g_slist_next (item))
+	{
+		gchar const *name = g_object_get_data (G_OBJECT (item->data),
+		                                       TAG_CONTEXT_CLASS_NAME);
+
+		if (name != NULL)
+		{
+			g_ptr_array_add (ret, g_strdup (name));
+		}
+	}
+
+	g_ptr_array_add (ret, NULL);
+	return (gchar **) g_ptr_array_free (ret, FALSE);
+}
+
+/**
+ * gtk_source_buffer_iter_forward_to_context_class_toggle:
+ * @buffer: a #GtkSourceBuffer.
+ * @iter: a #GtkTextIter
+ * @context_class: the context class
+ *
+ * Moves forward to the next toggle (on or off) of the context class. If no
+ * matching context class toggles are found, returns %FALSE, otherwise %TRUE.
+ * Does not return toggles located at @iter, only toggles after @iter. Sets
+ * @iter to the location of the toggle, or to the end of the buffer if no
+ * toggle is found.
+ *
+ * Returns: whether we found a context class toggle after @iter
+ *
+ * Since: 2.10
+ **/
+gboolean
+gtk_source_buffer_iter_forward_to_context_class_toggle (GtkSourceBuffer *buffer,
+                                                        GtkTextIter     *iter,
+                                                        const gchar     *context_class)
+{
+	GtkTextTag *tag;
+
+	g_return_val_if_fail (GTK_IS_SOURCE_BUFFER (buffer), FALSE);
+	g_return_val_if_fail (iter != NULL, FALSE);
+	g_return_val_if_fail (context_class != NULL, FALSE);
+
+	tag = _gtk_source_engine_get_context_class_tag (buffer->priv->highlight_engine,
+							context_class);
+
+	if (tag == NULL)
+	{
+		return FALSE;
+	}
+	else
+	{
+		return gtk_text_iter_forward_to_tag_toggle (iter, tag);
+	}
+}
+
+/**
+ * gtk_source_buffer_iter_backward_to_context_class_toggle:
+ * @buffer: a #GtkSourceBuffer.
+ * @iter: a #GtkTextIter
+ * @context_class: the context class
+ *
+ * Moves backward to the next toggle (on or off) of the context class. If no
+ * matching context class toggles are found, returns %FALSE, otherwise %TRUE.
+ * Does not return toggles located at @iter, only toggles after @iter. Sets
+ * @iter to the location of the toggle, or to the end of the buffer if no
+ * toggle is found.
+ *
+ * Returns: whether we found a context class toggle before @iter
+ *
+ * Since: 2.10
+ **/
+gboolean
+gtk_source_buffer_iter_backward_to_context_class_toggle (GtkSourceBuffer *buffer,
+                                                         GtkTextIter     *iter,
+                                                         const gchar     *context_class)
+{
+	GtkTextTag *tag;
+
+	g_return_val_if_fail (GTK_IS_SOURCE_BUFFER (buffer), FALSE);
+	g_return_val_if_fail (iter != NULL, FALSE);
+	g_return_val_if_fail (context_class != NULL, FALSE);
+
+	tag = _gtk_source_engine_get_context_class_tag (buffer->priv->highlight_engine,
+							context_class);
+
+	if (tag == NULL)
+	{
+		return FALSE;
+	}
+	else
+	{
+		return gtk_text_iter_backward_to_tag_toggle (iter, tag);
+	}
 }
 

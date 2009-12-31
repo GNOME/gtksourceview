@@ -92,6 +92,13 @@ static void       indent_toggled_cb              (GtkAction       *action,
 						  GtkAction       *current,
 						  gpointer         user_data);
 
+static void       forward_string_cb              (GtkAction       *action,
+						  gpointer         user_data);
+
+static void       backward_string_cb             (GtkAction       *action,
+						  gpointer         user_data);
+
+
 static GtkWidget *create_view_window             (GtkSourceBuffer *buffer,
 						  GtkSourceView   *from);
 
@@ -119,6 +126,10 @@ static GtkActionEntry view_action_entries[] = {
 	  "Find", G_CALLBACK (find_cb) },
 	{ "Replace", GTK_STOCK_FIND_AND_REPLACE, "Search and _Replace", "<control>R",
 	  "Search and Replace", G_CALLBACK (replace_cb) },
+	{ "ForwardString", NULL, "_Forward to string toggle", "<control>S",
+	  "Forward to the start or end of the next string", G_CALLBACK (forward_string_cb) },
+	{ "BackwardString", NULL, "_Backward to string toggle", "<control><shift>S",
+	  "Backward to the start or end of the next string", G_CALLBACK (backward_string_cb) }
 };
 
 static GtkToggleActionEntry toggle_entries[] = {
@@ -223,6 +234,9 @@ static const gchar *view_ui_description =
 "        <menuitem action=\"SmartHomeEndAfter\"/>"
 "        <menuitem action=\"SmartHomeEndAlways\"/>"
 "      </menu>"
+"      <separator/>"
+"      <menuitem action=\"ForwardString\"/>"
+"      <menuitem action=\"BackwardString\"/>"
 "    </menu>"
 "  </menubar>"
 "</ui>";
@@ -619,6 +633,61 @@ new_view_cb (GtkAction *action, gpointer user_data)
 	gtk_widget_show (window);
 }
 
+static void
+forward_string_cb (GtkAction *action,
+		   gpointer   user_data)
+{
+	GtkSourceBuffer *buffer;
+	GtkSourceView *view;
+	GtkTextIter iter;
+	GtkTextMark *insert;
+
+	g_return_if_fail (GTK_IS_SOURCE_VIEW (user_data));
+
+	view = GTK_SOURCE_VIEW (user_data);
+	buffer = GTK_SOURCE_BUFFER (gtk_text_view_get_buffer (GTK_TEXT_VIEW (view)));
+	insert = gtk_text_buffer_get_insert (GTK_TEXT_BUFFER (buffer));
+
+	gtk_text_buffer_get_iter_at_mark (GTK_TEXT_BUFFER (buffer),
+	                                  &iter,
+	                                  insert);
+
+	if (gtk_source_buffer_iter_forward_to_context_class_toggle (buffer,
+	                                                            &iter,
+	                                                            "string"))
+	{
+		gtk_text_buffer_place_cursor (GTK_TEXT_BUFFER (buffer), &iter);
+		gtk_text_view_scroll_mark_onscreen (GTK_TEXT_VIEW (view), insert);
+	}
+}
+
+static void
+backward_string_cb (GtkAction *action,
+		    gpointer   user_data)
+{
+	GtkSourceBuffer *buffer;
+	GtkSourceView *view;
+	GtkTextIter iter;
+	GtkTextMark *insert;
+
+	g_return_if_fail (GTK_IS_SOURCE_VIEW (user_data));
+
+	view = GTK_SOURCE_VIEW (user_data);
+	buffer = GTK_SOURCE_BUFFER (gtk_text_view_get_buffer (GTK_TEXT_VIEW (view)));
+	insert = gtk_text_buffer_get_insert (GTK_TEXT_BUFFER (buffer));
+
+	gtk_text_buffer_get_iter_at_mark (GTK_TEXT_BUFFER (buffer),
+	                                  &iter,
+	                                  insert);
+
+	if (gtk_source_buffer_iter_backward_to_context_class_toggle (buffer,
+	                                                             &iter,
+	                                                             "string"))
+	{
+		gtk_text_buffer_place_cursor (GTK_TEXT_BUFFER (buffer), &iter);
+		gtk_text_view_scroll_mark_onscreen (GTK_TEXT_VIEW (view), insert);
+	}
+}
 
 /* Buffer action callbacks ------------------------------------------------------------ */
 
@@ -1030,6 +1099,9 @@ update_cursor_position (GtkTextBuffer *buffer, gpointer user_data)
 	GtkTextIter iter, start;
 	GtkSourceView *view;
 	GtkLabel *pos_label;
+	gchar **classes;
+	gchar **classes_ptr;
+	GString *str;
 
 	g_return_if_fail (GTK_IS_SOURCE_VIEW (user_data));
 
@@ -1060,9 +1132,30 @@ update_cursor_position (GtkTextBuffer *buffer, gpointer user_data)
 		gtk_text_iter_forward_char (&start);
 	}
 
-	msg = g_strdup_printf ("char: %d, line: %d, column: %d", chars, row, col);
+	classes = gtk_source_buffer_get_context_classes_at_iter (GTK_SOURCE_BUFFER (buffer),
+	                                                         &iter);
+
+	str = g_string_new ("");
+	classes_ptr = classes;
+
+	while (classes_ptr && *classes_ptr)
+	{
+		if (classes_ptr != classes)
+		{
+			g_string_append (str, ", ");
+		}
+
+		g_string_append_printf (str, "%s", *classes_ptr);
+		++classes_ptr;
+	}
+
+	g_strfreev (classes);
+
+	msg = g_strdup_printf ("char: %d, line: %d, column: %d, classes: %s", chars, row, col, str->str);
 	gtk_label_set_text (pos_label, msg);
-      	g_free (msg);
+
+	g_free (msg);
+	g_string_free (str, TRUE);
 }
 
 static void
