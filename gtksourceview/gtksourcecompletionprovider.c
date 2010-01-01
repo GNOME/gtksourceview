@@ -361,6 +361,17 @@ gtk_source_completion_provider_activate_proposal (GtkSourceCompletionProvider *p
 	                                                                                   iter);
 }
 
+/**
+ * gtk_source_completion_provider_get_interactive_delay:
+ * @provider: A # GtkSourceCompletionProvider
+ *
+ * Get the delay in milliseconds before starting interactive completion for
+ * this provider. A value of -1 indicates to use the default value as set
+ * by #GtkSourceCompletion::auto-complete-delay.
+ *
+ * Returns: the interactive delay in milliseconds.
+ *
+ **/
 gint
 gtk_source_completion_provider_get_interactive_delay (GtkSourceCompletionProvider *provider)
 {
@@ -369,6 +380,17 @@ gtk_source_completion_provider_get_interactive_delay (GtkSourceCompletionProvide
 	return GTK_SOURCE_COMPLETION_PROVIDER_GET_INTERFACE (provider)->get_interactive_delay (provider);
 }
 
+/**
+ * gtk_source_completion_provider_get_priority:
+ * @provider: A # GtkSourceCompletionProvider
+ *
+ * Get the provider priority. The priority determines the order in which
+ * proposals appear in the completion popup. Higher priorities are sorted
+ * before lower priorities. The default priority is 0.
+ *
+ * Returns: the provider priority.
+ *
+ **/
 gint
 gtk_source_completion_provider_get_priority (GtkSourceCompletionProvider *provider)
 {
