@@ -180,14 +180,14 @@
         </context>
 
         <!-- FIXME is it working at line end? -->
-        <define-regex id="net-address" extended="true" case-sensitive="false" class="no-spell-check">
+        <define-regex id="net-address" extended="true" case-sensitive="false">
                 \%[                                         # separator
                 (https?|ftp|nntp|news|javascript|about):    # protocol
                 [^\ \\]* [^\ \\.:;,?&gt;&lt;)]              # address
                 (?![a-z0-9_.-])                             # separator
         </define-regex>
 
-        <define-regex id="email-address" extended="true" case-sensitive="false" class="no-spell-check">
+        <define-regex id="email-address" extended="true" case-sensitive="false">
                 \%[                 # separator
                 (mailto:)?          # optional "mailto:"
                 [a-z0-9_.+-]+       # user name
@@ -198,10 +198,10 @@
 
         <context id="in-comment" class-disabled="no-spell-check">
             <include>
-                <context id="net-address" extend-parent="false" style-ref="underlined">
+                <context id="net-address" extend-parent="false" style-ref="underlined" class="no-spell-check">
                     <match>\%{net-address}</match>
                 </context>
-                <context id="email-address" extend-parent="false" style-ref="underlined">
+                <context id="email-address" extend-parent="false" style-ref="underlined" class="no-spell-check">
                     <match>\%{email-address}</match>
                 </context>
                 <context id="comment-note" extend-parent="false" style-ref="note" class="no-spell-check">
