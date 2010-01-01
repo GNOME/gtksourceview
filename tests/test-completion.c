@@ -28,6 +28,7 @@
 #include <gtksourceview/gtksourceview.h>
 #include <gtksourceview/gtksourcecompletion.h>
 #include <gtksourceview/gtksourcecompletioninfo.h>
+#include <gtksourceview/gtksourcecompletionitem.h>
 #include <gtksourceview/gtksourcelanguagemanager.h>
 #include <gtksourceview/completion-providers/words/gtksourcecompletionwords.h>
 
@@ -36,13 +37,92 @@ static GtkSourceCompletion *comp;
 
 static const gboolean change_keys = FALSE;
 
-typedef struct 
+typedef struct _TestProvider TestProvider;
+typedef struct _TestProviderClass TestProviderClass;
+
+struct _TestProvider
 {
-	GtkWidget *box;
-	GtkWidget *header;
-	GtkWidget *content;
-	GtkWidget *foot;
-} CustomWidget;
+	GObject parent;
+
+	GList *proposals;
+	gint priority;
+	gchar *name;
+};
+
+struct _TestProviderClass
+{
+	GObjectClass parent_class;
+};
+
+static void test_provider_iface_init (GtkSourceCompletionProviderIface *iface);
+GType test_provider_get_type (void);
+
+G_DEFINE_TYPE_WITH_CODE (TestProvider,
+			 test_provider,
+			 G_TYPE_OBJECT,
+			 G_IMPLEMENT_INTERFACE (GTK_TYPE_SOURCE_COMPLETION_PROVIDER,
+				 		test_provider_iface_init))
+
+static const gchar *
+test_provider_get_name (GtkSourceCompletionProvider *provider)
+{
+	return ((TestProvider *)provider)->name;
+}
+
+static gint
+test_provider_get_priority (GtkSourceCompletionProvider *provider)
+{
+	return ((TestProvider *)provider)->priority;
+}
+
+static gboolean
+test_provider_match (GtkSourceCompletionProvider *provider,
+                     GtkSourceCompletionContext  *context)
+{
+	return TRUE;
+}
+
+static void
+test_provider_populate (GtkSourceCompletionProvider *provider,
+                        GtkSourceCompletionContext  *context)
+{
+	gtk_source_completion_context_add_proposals (context,
+	                                             provider,
+	                                             ((TestProvider *)provider)->proposals,
+	                                             TRUE);
+}
+
+static void
+test_provider_iface_init (GtkSourceCompletionProviderIface *iface)
+{
+	iface->get_name = test_provider_get_name;
+
+	iface->populate = test_provider_populate;
+	iface->match = test_provider_match;
+	iface->get_priority = test_provider_get_priority;
+}
+
+static void
+test_provider_class_init (TestProviderClass *klass)
+{
+}
+
+static void 
+test_provider_init (TestProvider *self)
+{
+	GList *proposals = NULL;
+
+	proposals = g_list_prepend (proposals,
+	                            gtk_source_completion_item_new ("Proposal 3", "Proposal 3", NULL, NULL));
+
+	proposals = g_list_prepend (proposals,
+	                            gtk_source_completion_item_new ("Proposal 2", "Proposal 2", NULL, NULL));
+
+	proposals = g_list_prepend (proposals,
+	                            gtk_source_completion_item_new ("Proposal 1", "Proposal 1", NULL, NULL));
+
+	self->proposals = proposals;
+}
 
 static void
 destroy_cb (GtkObject *object,
@@ -158,6 +238,22 @@ create_completion(void)
 	
 	gtk_source_completion_add_provider (comp, 
 	                                    GTK_SOURCE_COMPLETION_PROVIDER (prov_words), 
+	                                    NULL);
+
+	TestProvider *tp = g_object_new (test_provider_get_type (), NULL);
+	tp->priority = 1;
+	tp->name = "Test Provider 1";
+
+	gtk_source_completion_add_provider (comp,
+	                                    GTK_SOURCE_COMPLETION_PROVIDER (tp),
+	                                    NULL);
+
+	tp = g_object_new (test_provider_get_type (), NULL);
+	tp->priority = 5;
+	tp->name = "Test Provider 5";
+
+	gtk_source_completion_add_provider (comp,
+	                                    GTK_SOURCE_COMPLETION_PROVIDER (tp),
 	                                    NULL);
 }
 

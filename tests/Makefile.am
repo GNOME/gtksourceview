@@ -19,8 +19,7 @@ test_widget_LDADD = 			\
 	$(TESTS_LIBS)
 
 TEST_PROGS += test-completion
-test_completion_SOURCES =		\
-	completion-simple.c
+test_completion_SOURCES = test-completion.c
 test_completion_LDADD = 		\
 	$(top_builddir)/gtksourceview/libgtksourceview-2.0.la \
 	$(DEP_LIBS)			\
