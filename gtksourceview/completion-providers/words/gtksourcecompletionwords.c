@@ -229,25 +229,12 @@ get_word_at_iter (GtkTextIter    *iter,
 		return gtk_text_iter_get_text (iter, &end);
 	}
 }
+
 static gboolean
 gtk_source_completion_words_match (GtkSourceCompletionProvider *provider,
                                    GtkSourceCompletionContext  *context)
 {
-	GtkSourceCompletionWords *words = GTK_SOURCE_COMPLETION_WORDS (provider);
-	GtkTextIter iter;
-	gchar *word;
-	gboolean ret;
-
-	gtk_source_completion_context_get_iter (context, &iter);
-	word = get_word_at_iter (&iter,
-	                         valid_word_char,
-	                         valid_start_char,
-	                         words);
-	
-	ret = word != NULL && g_utf8_strlen (word, -1) >= words->priv->minimum_word_size;
-	g_free (word);
-	
-	return ret;
+	return TRUE;
 }
 
 static void
