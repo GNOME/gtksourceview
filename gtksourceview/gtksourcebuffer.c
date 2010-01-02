@@ -86,6 +86,8 @@
 enum {
 	HIGHLIGHT_UPDATED,
 	SOURCE_MARK_UPDATED,
+	UNDO,
+	REDO,
 	LAST_SIGNAL
 };
 
@@ -166,6 +168,9 @@ static void 	 gtk_source_buffer_real_mark_deleted	(GtkTextBuffer		 *buffer,
 static gboolean	 gtk_source_buffer_find_bracket_match_with_limit (GtkTextIter    *orig,
 								  gint            max_chars);
 
+static void	 gtk_source_buffer_real_undo		(GtkSourceBuffer	 *buffer);
+static void	 gtk_source_buffer_real_redo		(GtkSourceBuffer	 *buffer);
+
 static void
 gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 {
@@ -189,6 +194,9 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 
 	tb_class->mark_set	= gtk_source_buffer_real_mark_set;
 	tb_class->mark_deleted	= gtk_source_buffer_real_mark_deleted;
+
+	klass->undo = gtk_source_buffer_real_undo;
+	klass->redo = gtk_source_buffer_real_redo;
 
 	/**
 	 * GtkSourceBuffer:highlight-syntax:
@@ -303,6 +311,26 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 			   g_cclosure_marshal_VOID__OBJECT,
 			   G_TYPE_NONE,
 			   1, GTK_TYPE_TEXT_MARK);
+
+	buffer_signals[UNDO] =
+	    g_signal_new ("undo",
+			  G_OBJECT_CLASS_TYPE (object_class),
+			  G_SIGNAL_RUN_LAST,
+			  G_STRUCT_OFFSET (GtkSourceBufferClass, undo),
+			  NULL, NULL,
+			  g_cclosure_marshal_VOID__VOID,
+			  G_TYPE_NONE,
+			  0);
+
+	buffer_signals[REDO] =
+	    g_signal_new ("redo",
+			  G_OBJECT_CLASS_TYPE (object_class),
+			  G_SIGNAL_RUN_LAST,
+			  G_STRUCT_OFFSET (GtkSourceBufferClass, redo),
+			  NULL, NULL,
+			  g_cclosure_marshal_VOID__VOID,
+			  G_TYPE_NONE,
+			  0);
 
 	g_type_class_add_private (object_class, sizeof(GtkSourceBufferPrivate));
 }
@@ -1026,9 +1054,8 @@ void
 gtk_source_buffer_undo (GtkSourceBuffer *buffer)
 {
 	g_return_if_fail (GTK_IS_SOURCE_BUFFER (buffer));
-	g_return_if_fail (gtk_source_undo_manager_can_undo (buffer->priv->undo_manager));
 
-	gtk_source_undo_manager_undo (buffer->priv->undo_manager);
+	g_signal_emit (buffer, buffer_signals[UNDO], 0);
 }
 
 /**
@@ -1042,9 +1069,8 @@ void
 gtk_source_buffer_redo (GtkSourceBuffer *buffer)
 {
 	g_return_if_fail (GTK_IS_SOURCE_BUFFER (buffer));
-	g_return_if_fail (gtk_source_undo_manager_can_redo (buffer->priv->undo_manager));
 
-	gtk_source_undo_manager_redo (buffer->priv->undo_manager);
+	g_signal_emit (buffer, buffer_signals[REDO], 0);
 }
 
 /**
@@ -1556,6 +1582,22 @@ gtk_source_buffer_real_mark_deleted (GtkTextBuffer *buffer,
 
 	if (GTK_TEXT_BUFFER_CLASS (gtk_source_buffer_parent_class)->mark_deleted != NULL)
 		GTK_TEXT_BUFFER_CLASS (gtk_source_buffer_parent_class)->mark_deleted (buffer, mark);
+}
+
+static void
+gtk_source_buffer_real_undo (GtkSourceBuffer *buffer)
+{
+	g_return_if_fail (gtk_source_undo_manager_can_undo (buffer->priv->undo_manager));
+
+	gtk_source_undo_manager_undo (buffer->priv->undo_manager);
+}
+
+static void
+gtk_source_buffer_real_redo (GtkSourceBuffer *buffer)
+{
+	g_return_if_fail (gtk_source_undo_manager_can_redo (buffer->priv->undo_manager));
+
+	gtk_source_undo_manager_redo (buffer->priv->undo_manager);
 }
 
 /**
