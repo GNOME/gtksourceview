@@ -2027,6 +2027,11 @@ gtk_source_buffer_iter_has_context_class (GtkSourceBuffer   *buffer,
 	g_return_val_if_fail (iter != NULL, FALSE);
 	g_return_val_if_fail (context_class != NULL, FALSE);
 
+	if (buffer->priv->highlight_engine == NULL)
+	{
+		return FALSE;
+	}
+
 	tag = _gtk_source_engine_get_context_class_tag (buffer->priv->highlight_engine,
 							context_class);
 
@@ -2108,6 +2113,11 @@ gtk_source_buffer_iter_forward_to_context_class_toggle (GtkSourceBuffer *buffer,
 	g_return_val_if_fail (iter != NULL, FALSE);
 	g_return_val_if_fail (context_class != NULL, FALSE);
 
+	if (buffer->priv->highlight_engine == NULL)
+	{
+		return FALSE;
+	}
+
 	tag = _gtk_source_engine_get_context_class_tag (buffer->priv->highlight_engine,
 							context_class);
 
@@ -2147,6 +2157,11 @@ gtk_source_buffer_iter_backward_to_context_class_toggle (GtkSourceBuffer *buffer
 	g_return_val_if_fail (GTK_IS_SOURCE_BUFFER (buffer), FALSE);
 	g_return_val_if_fail (iter != NULL, FALSE);
 	g_return_val_if_fail (context_class != NULL, FALSE);
+
+	if (buffer->priv->highlight_engine == NULL)
+	{
+		return FALSE;
+	}
 
 	tag = _gtk_source_engine_get_context_class_tag (buffer->priv->highlight_engine,
 							context_class);
