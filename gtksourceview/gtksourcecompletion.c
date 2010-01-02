@@ -1608,6 +1608,12 @@ update_interactive_completion (GtkSourceCompletion *completion,
                                GtkTextIter         *iter,
                                gboolean             start_completion)
 {
+	/* Only handle interactive completion in editable parts of the buffer */
+	if (!gtk_text_iter_editable (iter, gtk_text_view_get_editable (GTK_TEXT_VIEW (completion->priv->view))))
+	{
+		return;
+	}
+
 	if (completion->priv->context == NULL)
 	{
 		/* Schedule for interactive showing */
