@@ -92,9 +92,15 @@ enum
 	TEXT_VIEW_KEY_PRESS,
 	TEXT_VIEW_FOCUS_OUT,
 	TEXT_VIEW_BUTTON_PRESS,
+	TEXT_BUFFER_BEGIN_SIGNALS,
 	TEXT_BUFFER_DELETE_RANGE,
 	TEXT_BUFFER_INSERT_TEXT,
 	TEXT_BUFFER_MARK_SET,
+	SOURCE_BUFFER_REDO,
+	SOURCE_BUFFER_REDO_AFTER,
+	SOURCE_BUFFER_UNDO,
+	SOURCE_BUFFER_UNDO_AFTER,
+	TEXT_BUFFER_PASTE_DONE,
 	LAST_EXTERNAL_SIGNAL
 };
 
@@ -216,6 +222,22 @@ get_iter_at_insert (GtkSourceCompletion *completion,
 	                                  gtk_text_buffer_get_insert (buffer));
 }
 
+static void
+completion_begin_block (GtkSourceCompletion *completion,
+                        GtkSourceBuffer     *buffer)
+{
+	g_signal_handler_block (buffer, completion->priv->signals_ids[TEXT_BUFFER_INSERT_TEXT]);
+	g_signal_handler_block (buffer, completion->priv->signals_ids[TEXT_BUFFER_DELETE_RANGE]);
+}
+
+static void
+completion_end_block (GtkSourceCompletion *completion,
+                      GtkSourceBuffer     *buffer)
+{
+	g_signal_handler_unblock (buffer, completion->priv->signals_ids[TEXT_BUFFER_INSERT_TEXT]);
+	g_signal_handler_unblock (buffer, completion->priv->signals_ids[TEXT_BUFFER_DELETE_RANGE]);
+}
+
 static gboolean
 activate_current_proposal (GtkSourceCompletion *completion)
 {
@@ -259,10 +281,7 @@ activate_current_proposal (GtkSourceCompletion *completion)
 	
 	get_iter_at_insert (completion, &titer);
 
-	g_signal_handler_block (buffer,
-	                        completion->priv->signals_ids[TEXT_BUFFER_DELETE_RANGE]);
-	g_signal_handler_block (buffer,
-	                        completion->priv->signals_ids[TEXT_BUFFER_INSERT_TEXT]);
+	completion_begin_block (completion, GTK_SOURCE_BUFFER (buffer));
 
 	activated = gtk_source_completion_provider_activate_proposal (provider, proposal, &titer);
 
@@ -285,11 +304,8 @@ activate_current_proposal (GtkSourceCompletion *completion)
 					                                  -1);
 		}
 	}
-	
-	g_signal_handler_unblock (buffer,
-	                          completion->priv->signals_ids[TEXT_BUFFER_DELETE_RANGE]);
-	g_signal_handler_unblock (buffer,
-	                          completion->priv->signals_ids[TEXT_BUFFER_INSERT_TEXT]);
+
+	completion_end_block (completion, GTK_SOURCE_BUFFER (buffer));
 
 	g_object_unref (provider);
 	g_object_unref (proposal);
@@ -1680,27 +1696,37 @@ buffer_mark_set_cb (GtkTextBuffer       *buffer,
 static void
 disconnect_view (GtkSourceCompletion *completion)
 {
-	GtkTextBuffer *buffer;
-	
-	g_signal_handler_disconnect (completion->priv->view,
-	                             completion->priv->signals_ids[TEXT_VIEW_FOCUS_OUT]);
+	GtkTextBuffer *buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (completion->priv->view));
+	gint i;
 
-	g_signal_handler_disconnect (completion->priv->view,
-	                             completion->priv->signals_ids[TEXT_VIEW_BUTTON_PRESS]);
+	for (i = 0; i < LAST_EXTERNAL_SIGNAL; ++i)
+	{
+		GObject *obj;
 
-	g_signal_handler_disconnect (completion->priv->view,
-	                             completion->priv->signals_ids[TEXT_VIEW_KEY_PRESS]);
+		if (i == TEXT_BUFFER_BEGIN_SIGNALS)
+		{
+			continue;
+		}
 
-	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (completion->priv->view));
+		obj = i < TEXT_BUFFER_BEGIN_SIGNALS ?
+		      G_OBJECT (completion->priv->view) :
+		      G_OBJECT (buffer);
 
-	g_signal_handler_disconnect (buffer,
-	                             completion->priv->signals_ids[TEXT_BUFFER_DELETE_RANGE]);
+		g_signal_handler_disconnect (obj, completion->priv->signals_ids[i]);
+	}
+}
 
-	g_signal_handler_disconnect (buffer,
-	                             completion->priv->signals_ids[TEXT_BUFFER_INSERT_TEXT]);
-
-	g_signal_handler_disconnect (buffer,
-	                             completion->priv->signals_ids[TEXT_BUFFER_MARK_SET]);
+static void
+buffer_paste_done_cb (GtkTextBuffer       *buffer,
+                      GtkClipboard        *clipboard,
+                      GtkSourceCompletion *completion)
+{
+	/* Cancel any interactive completion in progress after a paste */
+	if (completion->priv->show_timed_out_id)
+	{
+		g_source_remove (completion->priv->show_timed_out_id);
+		completion->priv->show_timed_out_id = 0;
+	}
 }
 
 static void
@@ -1745,6 +1771,44 @@ connect_view (GtkSourceCompletion *completion)
 					"mark-set",
 					G_CALLBACK (buffer_mark_set_cb),
 					completion);
+
+	completion->priv->signals_ids[SOURCE_BUFFER_UNDO] =
+		g_signal_connect_data (buffer,
+		                       "undo",
+		                       G_CALLBACK (completion_begin_block),
+		                       completion,
+		                       NULL,
+		                       G_CONNECT_SWAPPED);
+
+	completion->priv->signals_ids[SOURCE_BUFFER_UNDO_AFTER] =
+		g_signal_connect_data (buffer,
+		                       "undo",
+		                       G_CALLBACK (completion_end_block),
+		                       completion,
+		                       NULL,
+		                       G_CONNECT_SWAPPED | G_CONNECT_AFTER);
+
+	completion->priv->signals_ids[SOURCE_BUFFER_REDO] =
+		g_signal_connect_data (buffer,
+		                       "redo",
+		                       G_CALLBACK (completion_begin_block),
+		                       completion,
+		                       NULL,
+		                       G_CONNECT_SWAPPED);
+
+	completion->priv->signals_ids[SOURCE_BUFFER_REDO_AFTER] =
+		g_signal_connect_data (buffer,
+		                       "redo",
+		                       G_CALLBACK (completion_end_block),
+		                       completion,
+		                       NULL,
+		                       G_CONNECT_SWAPPED | G_CONNECT_AFTER);
+
+	completion->priv->signals_ids[TEXT_BUFFER_PASTE_DONE] =
+		g_signal_connect (buffer,
+		                  "paste-done",
+		                  G_CALLBACK (buffer_paste_done_cb),
+		                  completion);
 }
 
 static void
