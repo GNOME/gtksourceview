@@ -121,7 +121,11 @@ void		 _gtk_source_completion_add_proposals		(GtkSourceCompletion           *com
 								 GtkSourceCompletionContext    *context,
 								 GtkSourceCompletionProvider   *provider,
 								 GList                         *proposals,
-		 						 gboolean                       finished);
+								 gboolean                       finished);
+
+void		 gtk_source_completion_block_interactive	(GtkSourceCompletion           *completion);
+void		 gtk_source_completion_unblock_interactive	(GtkSourceCompletion           *completion);
+
 G_END_DECLS
 
 #endif /* __GTK_SOURCE_COMPLETION_H__ */

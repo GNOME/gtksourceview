@@ -3519,3 +3519,45 @@ gtk_source_completion_move_window (GtkSourceCompletion *completion,
 	                                          GTK_SOURCE_VIEW (completion->priv->view),
 	                                          iter);
 }
+
+/**
+ * gtk_source_completion_block_interactive:
+ * @completion: A # GtkSourceCompletion
+ *
+ * Block interactive completion. This can be used to disable interactive
+ * completion when inserting or deleting text from the buffer associated with
+ * the completion. Use #gtk_source_completion_unblock_interactive to enable
+ * interactive completion again.
+ *
+ **/
+void
+gtk_source_completion_block_interactive (GtkSourceCompletion *completion)
+{
+	GtkSourceBuffer *buffer;
+
+	g_return_if_fail (GTK_IS_SOURCE_COMPLETION (completion));
+
+	buffer = GTK_SOURCE_BUFFER (gtk_text_view_get_buffer (GTK_TEXT_VIEW (completion->priv->view)));
+	completion_begin_block (completion, buffer);
+}
+
+/**
+ * gtk_source_completion_unblock_interactive:
+ * @completion: A # GtkSourceCompletion
+ *
+ * Unblock interactive completion. This can be used after using
+ * #gtk_source_completion_block_interactive to enable interactive completion
+ * again.
+ *
+ **/
+void
+gtk_source_completion_unblock_interactive (GtkSourceCompletion *completion)
+{
+	GtkSourceBuffer *buffer;
+
+	g_return_if_fail (GTK_IS_SOURCE_COMPLETION (completion));
+
+	buffer = GTK_SOURCE_BUFFER (gtk_text_view_get_buffer (GTK_TEXT_VIEW (completion->priv->view)));
+	completion_end_block (completion, buffer);
+}
+
