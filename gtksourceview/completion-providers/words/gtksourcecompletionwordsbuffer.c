@@ -511,33 +511,44 @@ handle_text_inserted (GtkSourceCompletionWordsBuffer *buffer,
 {
 	gint pos = start;
 	GList *ptr = NULL;
+	GList *newlines = NULL;
+	GList *last = NULL;
 	
+	while (pos < end)
+	{
+		newlines = g_list_prepend (newlines, NULL);
+
+		if (last == NULL)
+		{
+			last = newlines;
+		}
+
+		++pos;
+	}
+
 	if (start > end)
 	{
 		ptr = g_list_nth (buffer->priv->lines,
 		                  start + 1);
 	}
-	
-	while (pos < end)
+
+	if (ptr != NULL)
 	{
-		/* Insert new empty lines */
-		if (ptr == NULL)
+		if (ptr->prev)
 		{
-			buffer->priv->lines = 
-				g_list_append (buffer->priv->lines,
-				               NULL);
-		}
-		else
-		{
-			buffer->priv->lines = 
-				g_list_insert_before (buffer->priv->lines,
-					              ptr,
-					              NULL);
+			ptr->prev->next = newlines;
+			newlines->prev = ptr->prev;
 		}
 
-		++pos;
+		newlines->next = ptr;
+		ptr->prev = last;
 	}
-	
+	else
+	{
+		buffer->priv->lines = g_list_concat (buffer->priv->lines,
+		                                     newlines);
+	}
+
 	/* Invalidate new region */
 	add_scan_region (buffer, 
 	                 start,
