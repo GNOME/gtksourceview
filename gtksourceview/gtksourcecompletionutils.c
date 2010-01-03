@@ -1,5 +1,5 @@
-/*
- * gtksourcecompletionutils.c
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8; coding: utf-8 -*- */
+/* gtksourcecompletionutils.c
  * This file is part of gtksourcecompletion
  *
  * Copyright (C) 2007 -2009 Jesús Barbero Rodríguez <chuchiperriman@gmail.com>
@@ -20,26 +20,19 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-/**
- * SECTION:gsc-utils
- * @title: Gsc Utils
- * @short_description: Useful functions
- *
- */
- 
 #include <string.h> 
 #include "gtksourcecompletionutils.h"
 
 /**
- * gsc_utils_char_is_separator:
+ * gtk_source_completion_utils_is_separator:
  * @ch: The character to check
  *
  * A separator is a character like (, an space etc. An _ is not a separator
  *
- * Returns TRUE if the ch is a separator
+ * Returns: TRUE if @ch is a separator
  */
 gboolean
-gtk_source_completion_utils_is_separator(const gunichar ch)
+gtk_source_completion_utils_is_separator (const gunichar ch)
 {
 	if (g_unichar_isprint(ch) && 
 	    (g_unichar_isalnum(ch) || ch == g_utf8_get_char("_")))
@@ -58,7 +51,6 @@ gtk_source_completion_utils_is_separator(const gunichar ch)
  * @end_word: if != NULL then assing it the end position of the word
  * 
  * Returns: the current word
- *
  */
 gchar *
 gtk_source_completion_utils_get_word_iter (GtkSourceBuffer *source_buffer, 
@@ -191,12 +183,11 @@ gtk_source_completion_utils_replace_word (GtkSourceBuffer *source_buffer,
 }
 
 /**
- * gsc_utils_view_replace_current_word:
+ * gtk_source_completion_utils_replace_current_word:
  * @source_buffer: The #GtkSourceBuffer
  * @text: The text to be inserted instead of the current word
  * 
  * Replaces the current word in the #GtkSourceBuffer with the new word
- *
  */
 void
 gtk_source_completion_utils_replace_current_word (GtkSourceBuffer *source_buffer, 

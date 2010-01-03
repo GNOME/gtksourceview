@@ -1,5 +1,5 @@
-/*
- * gtksourcecompletionproposal.c
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8; coding: utf-8 -*- */
+/* gtksourcecompletionproposal.c
  * This file is part of gtksourcecompletion
  *
  * Copyright (C) 2007 - 2009 Jesús Barbero Rodríguez <chuchiperriman@gmail.com>
@@ -21,7 +21,7 @@
  */
 
 /**
- * SECTION:gtksourcecompletionproposal
+ * SECTION:completionproposal
  * @title: GtkSourceCompletionProposal
  * @short_description: Completion proposal object
  *

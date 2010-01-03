@@ -1,5 +1,5 @@
-/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8; coding: utf-8 -*-
- * gtksourcecompletion.c
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8; coding: utf-8 -*- */
+/* gtksourcecompletion.c
  * This file is part of gtksourcecompletion
  *
  * Copyright (C) 2007 -2009 Jesús Barbero Rodríguez <chuchiperriman@gmail.com>
@@ -19,13 +19,12 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
- 
+
 /**
- * SECTION:gtksourcecompletion
+ * SECTION:completion
  * @title: GtkSourceCompletion
  * @short_description: Main Completion Object
  *
- * TODO
  */
 
 #include <gdk/gdkkeysyms.h> 

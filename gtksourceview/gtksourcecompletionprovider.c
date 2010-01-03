@@ -1,5 +1,5 @@
-/*
- * gtksourcecompletionprovider.c
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8; coding: utf-8 -*- */
+/* gtksourcecompletionprovider.c
  * This file is part of gtksourcecompletion
  *
  * Copyright (C) 2007 -2009 Jesús Barbero Rodríguez <chuchiperriman@gmail.com>
@@ -22,11 +22,11 @@
 
 
 /**
- * SECTION:gtk_source_completion-provider
+ * SECTION:completionprovider
  * @title: GtkSourceCompletionProvider
  * @short_description: Completion provider interface
  *
- * You must implement this interface to provide proposals to #GscCompletion
+ * You must implement this interface to provide proposals to #GtkSourceCompletion
  * 
  */
 

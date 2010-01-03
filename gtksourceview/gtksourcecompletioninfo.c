@@ -1,5 +1,5 @@
-/*
- * gtksourcecompletioninfo.c
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8; coding: utf-8 -*- */
+/* gtksourcecompletioninfo.c
  * This file is part of gtksourcecompletion
  *
  * Copyright (C) 2007 -2009 Jesús Barbero Rodríguez <chuchiperriman@gmail.com>
@@ -21,11 +21,12 @@
  */
 
 /**
- * SECTION:gsc-info
+ * SECTION:completioninfo
  * @title: GtkSourceCompletionInfo
  * @short_description: Calltips object
  *
- * This object can be used to show a calltip or help. 
+ * This object can be used to show a calltip or help for the
+.* current completion proposal.
  */
   
 #include <gtksourceview/gtksourcecompletioninfo.h>
