@@ -158,6 +158,8 @@ struct _GtkSourceCompletionPrivate
 	gint min_auto_complete_delay;
 	GList *auto_completion_selection;
 	GtkSourceCompletionContext *auto_completion_context;
+
+	gint block_count;
 };
 
 static guint signals[LAST_SIGNAL] = { 0 };
@@ -228,16 +230,33 @@ static void
 completion_begin_block (GtkSourceCompletion *completion,
                         GtkSourceBuffer     *buffer)
 {
-	g_signal_handler_block (buffer, completion->priv->signals_ids[TEXT_BUFFER_INSERT_TEXT]);
-	g_signal_handler_block (buffer, completion->priv->signals_ids[TEXT_BUFFER_DELETE_RANGE]);
+	if (completion->priv->block_count == 0)
+	{
+		g_signal_handler_block (buffer,
+		                        completion->priv->signals_ids[TEXT_BUFFER_INSERT_TEXT]);
+		g_signal_handler_block (buffer,
+		                        completion->priv->signals_ids[TEXT_BUFFER_DELETE_RANGE]);
+	}
+
+	++completion->priv->block_count;
 }
 
 static void
 completion_end_block (GtkSourceCompletion *completion,
                       GtkSourceBuffer     *buffer)
 {
-	g_signal_handler_unblock (buffer, completion->priv->signals_ids[TEXT_BUFFER_INSERT_TEXT]);
-	g_signal_handler_unblock (buffer, completion->priv->signals_ids[TEXT_BUFFER_DELETE_RANGE]);
+	if (completion->priv->block_count == 0)
+	{
+		return;
+	}
+
+	if (--completion->priv->block_count == 0)
+	{
+		g_signal_handler_unblock (buffer,
+		                          completion->priv->signals_ids[TEXT_BUFFER_INSERT_TEXT]);
+		g_signal_handler_unblock (buffer,
+		                          completion->priv->signals_ids[TEXT_BUFFER_DELETE_RANGE]);
+	}
 }
 
 static gboolean
