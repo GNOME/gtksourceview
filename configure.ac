@@ -27,7 +27,7 @@ AC_DISABLE_STATIC
 AM_PROG_LIBTOOL
 IT_PROG_INTLTOOL([0.35.0])
 
-GTK_DOC_CHECK([1.0])
+GTK_DOC_CHECK([1.0],[--flavour=no-tmpl])
 
 # Check for headers and functions
 AC_HEADER_STDC
