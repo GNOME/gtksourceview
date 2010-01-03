@@ -119,6 +119,7 @@ struct _GtkSourceCompletionPrivate
 	GtkWidget *image_info;
 	GtkTreeViewColumn *tree_view_column_accelerator;
 	GtkCellRenderer *cell_renderer_accelerator;
+	GtkCellRenderer *cell_renderer_icon;
 	
 	GtkWidget *tree_view_proposals;
 	GtkSourceCompletionModel *model_proposals;
@@ -1154,6 +1155,8 @@ update_column_sizes (GtkSourceCompletion *completion)
 	gint xpad;
 	gint separator;
 	GtkStyle *style;
+	gint icon_width;
+	gint icon_height;
 
 	/* Resize tree view columns accordingly */
 	g_object_get (completion->priv->cell_renderer_accelerator,
@@ -1173,6 +1176,11 @@ update_column_sizes (GtkSourceCompletion *completion)
 	
 	set_column_width (tv, 0, completion->priv->tree_view_proposals->allocation.width - cwidth);
 	set_column_width (tv, 1, cwidth);
+
+	gtk_icon_size_lookup (GTK_ICON_SIZE_MENU, &icon_width, &icon_height);
+	gtk_cell_renderer_set_fixed_size (completion->priv->cell_renderer_icon,
+	                                  icon_width,
+	                                  icon_height);
 }
 
 static void
@@ -2881,9 +2889,12 @@ initialize_ui (GtkSourceCompletion *completion)
 
 	column = GTK_TREE_VIEW_COLUMN (gtk_builder_get_object (builder,
 	                                                       "tree_view_column_proposal"));
+
+	completion->priv->cell_renderer_icon = GTK_CELL_RENDERER (gtk_builder_get_object (builder,
+	                                                                                  "cell_renderer_icon"));
+
 	gtk_tree_view_column_set_cell_data_func (column,
-	                                         GTK_CELL_RENDERER (gtk_builder_get_object (builder,
-	                                                                                    "cell_renderer_icon")),
+	                                         completion->priv->cell_renderer_icon,
 	                                         (GtkTreeCellDataFunc)render_proposal_icon_func,
 	                                         completion,
 	                                         NULL);
