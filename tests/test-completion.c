@@ -47,6 +47,8 @@ struct _TestProvider
 	GList *proposals;
 	gint priority;
 	gchar *name;
+
+	GdkPixbuf *icon;
 };
 
 struct _TestProviderClass
@@ -92,6 +94,20 @@ test_provider_populate (GtkSourceCompletionProvider *provider,
 	                                             TRUE);
 }
 
+static GdkPixbuf *
+test_provider_get_icon (GtkSourceCompletionProvider *provider)
+{
+	TestProvider *tp = (TestProvider *)provider;
+
+	if (tp->icon == NULL)
+	{
+		GtkIconTheme *theme = gtk_icon_theme_get_default ();
+		tp->icon = gtk_icon_theme_load_icon (theme, GTK_STOCK_DIALOG_INFO, 16, 0, NULL);
+	}
+
+	return tp->icon;
+}
+
 static void
 test_provider_iface_init (GtkSourceCompletionProviderIface *iface)
 {
@@ -100,6 +116,8 @@ test_provider_iface_init (GtkSourceCompletionProviderIface *iface)
 	iface->populate = test_provider_populate;
 	iface->match = test_provider_match;
 	iface->get_priority = test_provider_get_priority;
+
+	//iface->get_icon = test_provider_get_icon;
 }
 
 static void
@@ -111,15 +129,16 @@ static void
 test_provider_init (TestProvider *self)
 {
 	GList *proposals = NULL;
+	GdkPixbuf *icon = test_provider_get_icon (GTK_SOURCE_COMPLETION_PROVIDER (self));
 
 	proposals = g_list_prepend (proposals,
-	                            gtk_source_completion_item_new ("Proposal 3", "Proposal 3", NULL, NULL));
+	                            gtk_source_completion_item_new ("Proposal 3", "Proposal 3", icon, NULL));
 
 	proposals = g_list_prepend (proposals,
-	                            gtk_source_completion_item_new ("Proposal 2", "Proposal 2", NULL, NULL));
+	                            gtk_source_completion_item_new ("Proposal 2", "Proposal 2", icon, NULL));
 
 	proposals = g_list_prepend (proposals,
-	                            gtk_source_completion_item_new ("Proposal 1", "Proposal 1", NULL, NULL));
+	                            gtk_source_completion_item_new ("Proposal 1", "Proposal 1", icon, NULL));
 
 	self->proposals = proposals;
 }
@@ -151,7 +170,7 @@ select_on_show_toggled_cb (GtkToggleButton *button,
 
 static void
 show_headers_toggled_cb (GtkToggleButton *button,
-			   gpointer user_data)
+			 gpointer user_data)
 {
 	g_object_set (comp, "show-headers",
 		      gtk_toggle_button_get_active (button),
@@ -169,6 +188,16 @@ toggle_active_property (gpointer     source,
 	g_object_set (dest, "active", value, NULL);
 }
 
+static void
+show_icons_toggled_cb (GtkToggleButton *button,
+		       gpointer user_data)
+{
+	g_object_set (comp, "show-icons",
+		      gtk_toggle_button_get_active (button),
+		      NULL);
+}
+
+
 static GtkWidget*
 create_window (void)
 {
@@ -178,6 +207,7 @@ create_window (void)
 	GtkWidget *remember;
 	GtkWidget *select_on_show;
 	GtkWidget *show_headers;
+	GtkWidget *show_icons;
 	GtkSourceCompletion *completion;
 		
 	window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
@@ -193,16 +223,19 @@ create_window (void)
 	remember = gtk_check_button_new_with_label ("Remember info visibility");
 	select_on_show = gtk_check_button_new_with_label ("Select first on show");
 	show_headers = gtk_check_button_new_with_label ("Show headers");
+	show_icons = gtk_check_button_new_with_label ("Show icons");
 	
 	completion = gtk_source_view_get_completion (GTK_SOURCE_VIEW (view));
 	
 	toggle_active_property (completion, remember, "remember-info-visibility");
 	toggle_active_property (completion, select_on_show, "select-on-show");
 	toggle_active_property (completion, show_headers, "show-headers");
+	toggle_active_property (completion, show_icons, "show-icons");
 	
 	gtk_box_pack_start (GTK_BOX (hbox), remember, FALSE, FALSE, 0);
 	gtk_box_pack_start (GTK_BOX (hbox), select_on_show, FALSE, FALSE, 0);
 	gtk_box_pack_start (GTK_BOX (hbox), show_headers, FALSE, FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (hbox), show_icons, FALSE, FALSE, 0);
 	
 	gtk_box_pack_start (GTK_BOX (vbox), scroll, TRUE, TRUE, 0);
 	gtk_box_pack_end (GTK_BOX (vbox), hbox, FALSE, FALSE, 0);
@@ -220,6 +253,9 @@ create_window (void)
 			  NULL);
 	g_signal_connect (show_headers, "toggled",
 			  G_CALLBACK (show_headers_toggled_cb),
+			  NULL);
+	g_signal_connect (show_icons, "toggled",
+			  G_CALLBACK (show_icons_toggled_cb),
 			  NULL);
 
 	return window;
@@ -239,6 +275,8 @@ create_completion(void)
 	gtk_source_completion_add_provider (comp, 
 	                                    GTK_SOURCE_COMPLETION_PROVIDER (prov_words), 
 	                                    NULL);
+
+	g_object_set (prov_words, "priority", 10, NULL);
 
 	TestProvider *tp = g_object_new (test_provider_get_type (), NULL);
 	tp->priority = 1;

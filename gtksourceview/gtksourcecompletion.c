@@ -79,6 +79,7 @@ enum
 	PROP_REMEMBER_INFO_VISIBILITY,
 	PROP_SELECT_ON_SHOW,
 	PROP_SHOW_HEADERS,
+	PROP_SHOW_ICONS,
 	PROP_ACCELERATORS,
 	
 	PROP_AUTO_COMPLETE_DELAY,
@@ -154,6 +155,7 @@ struct _GtkSourceCompletionPrivate
 
 	gulong signals_ids[LAST_EXTERNAL_SIGNAL];
 	gboolean select_first;
+	gboolean show_icons;
 
 	gint min_auto_complete_delay;
 	GList *auto_completion_selection;
@@ -1179,28 +1181,41 @@ update_column_sizes (GtkSourceCompletion *completion)
 	gint icon_height;
 
 	/* Resize tree view columns accordingly */
-	g_object_get (completion->priv->cell_renderer_accelerator,
-	              "xpad", &xpad,
-	              NULL);
+	if (completion->priv->num_accelerators > 0)
+	{
+		g_object_get (completion->priv->cell_renderer_accelerator,
+			      "xpad", &xpad,
+			      NULL);
 
-	style = gtk_widget_get_style (completion->priv->tree_view_proposals);
-	gtk_style_get (style, 
-	               GTK_TYPE_TREE_VIEW, 
-	               "horizontal-separator", &separator, 
-	               NULL);
+		style = gtk_widget_get_style (completion->priv->tree_view_proposals);
+		gtk_style_get (style,
+			       GTK_TYPE_TREE_VIEW,
+			       "horizontal-separator", &separator,
+			       NULL);
 
-	cwidth = measure_accelerator_width (completion->priv->tree_view_proposals);
-	cwidth += (xpad + separator) * 2;
+		cwidth = measure_accelerator_width (completion->priv->tree_view_proposals);
+		cwidth += (xpad + separator) * 2;
+	}
+	else
+	{
+		cwidth = 0;
+	}
 
 	tv = GTK_TREE_VIEW (completion->priv->tree_view_proposals);
 	
 	set_column_width (tv, 0, completion->priv->tree_view_proposals->allocation.width - cwidth);
 	set_column_width (tv, 1, cwidth);
 
+	gtk_tree_view_column_set_visible (completion->priv->tree_view_column_accelerator,
+	                                  completion->priv->num_accelerators > 0);
+
+	gtk_cell_renderer_set_visible (completion->priv->cell_renderer_icon,
+	                               completion->priv->show_icons);
+
 	gtk_icon_size_lookup (GTK_ICON_SIZE_MENU, &icon_width, &icon_height);
 	gtk_cell_renderer_set_fixed_size (completion->priv->cell_renderer_icon,
-	                                  icon_width,
-	                                  icon_height);
+		                          icon_width,
+		                          icon_height);
 }
 
 static void
@@ -1984,6 +1999,9 @@ gtk_source_completion_get_property (GObject    *object,
 		case PROP_SHOW_HEADERS:
 			g_value_set_boolean (value, completion->priv->show_headers);
 			break;
+		case PROP_SHOW_ICONS:
+			g_value_set_boolean (value, completion->priv->show_icons);
+			break;
 		case PROP_ACCELERATORS:
 			g_value_set_uint (value, completion->priv->num_accelerators);
 			break;
@@ -2036,14 +2054,15 @@ gtk_source_completion_set_property (GObject      *object,
 				                                              completion->priv->show_headers);
 			}
 			break;
+		case PROP_SHOW_ICONS:
+			completion->priv->show_icons = g_value_get_boolean (value);
+
+			update_column_sizes (completion);
+			break;
 		case PROP_ACCELERATORS:
 			completion->priv->num_accelerators = g_value_get_uint (value);
-			
-			if (completion->priv->tree_view_column_accelerator != NULL)
-			{
-				gtk_tree_view_column_set_visible (completion->priv->tree_view_column_accelerator, 
-				                                  completion->priv->num_accelerators > 0);
-			}
+
+			update_column_sizes (completion);
 			break;
 		case PROP_AUTO_COMPLETE_DELAY:
 			completion->priv->auto_complete_delay = g_value_get_uint (value);
@@ -2261,6 +2280,21 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 					 g_param_spec_boolean ("show-headers",
 							      _("Show Headers"),
 							      _("Show provider headers when proposals from multiple providers are available"),
+							      TRUE,
+							      G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+
+	/**
+	 * GtkSourceCompletion:show-icons:
+	 *
+	 * Determines whether provider and proposal icons should be shown in
+	 * the completion popup.
+	 *
+	 */
+	g_object_class_install_property (object_class,
+					 PROP_SHOW_ICONS,
+					 g_param_spec_boolean ("show-icons",
+							      _("Show Icons"),
+							      _("Show provider and proposal icons in the completion popup"),
 							      TRUE,
 							      G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 
