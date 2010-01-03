@@ -165,8 +165,9 @@ static void 	 gtk_source_buffer_real_mark_set	(GtkTextBuffer		 *buffer,
 							 GtkTextMark		 *mark);
 static void 	 gtk_source_buffer_real_mark_deleted	(GtkTextBuffer		 *buffer,
 							 GtkTextMark		 *mark);
-static gboolean	 gtk_source_buffer_find_bracket_match_with_limit (GtkTextIter    *orig,
-								  gint            max_chars);
+static gboolean	 gtk_source_buffer_find_bracket_match_with_limit (GtkSourceBuffer *buffer,
+								  GtkTextIter     *orig,
+								  gint             max_chars);
 
 static void	 gtk_source_buffer_real_undo		(GtkSourceBuffer	 *buffer);
 static void	 gtk_source_buffer_real_redo		(GtkSourceBuffer	 *buffer);
@@ -670,7 +671,9 @@ gtk_source_buffer_move_cursor (GtkTextBuffer     *buffer,
 		return;
 
 	iter1 = *iter;
-	if (gtk_source_buffer_find_bracket_match_with_limit (&iter1, MAX_CHARS_BEFORE_FINDING_A_MATCH))
+	if (gtk_source_buffer_find_bracket_match_with_limit (GTK_SOURCE_BUFFER (buffer),
+	                                                     &iter1,
+	                                                     MAX_CHARS_BEFORE_FINDING_A_MATCH))
 	{
 		if (!GTK_SOURCE_BUFFER (buffer)->priv->bracket_mark)
 			GTK_SOURCE_BUFFER (buffer)->priv->bracket_mark =
@@ -831,35 +834,36 @@ gtk_source_buffer_real_delete_range (GtkTextBuffer *buffer,
 						 offset, length);
 }
 
-/* FIXME: this can't be here, but it's now needed for bracket matching */
-static gpointer
-iter_has_syntax_tag (const GtkTextIter *iter)
+/* This describes a mask of relevant context classes for highlighting matching
+   brackets. Additional classes can be added below */
+static const gchar *cclass_mask_definitions[] = {
+	"comment",
+	"string",
+};
+
+static gint
+get_context_class_mask (GtkSourceBuffer *buffer,
+                        GtkTextIter     *iter)
 {
-	return NULL;
-// 	const GtkSourceTag *tag;
-// 	GSList *list;
-// 	GSList *l;
-//
-// 	g_return_val_if_fail (iter != NULL, NULL);
-//
-// 	list = gtk_text_iter_get_tags (iter);
-// 	tag = NULL;
-//
-// 	l = list;
-//
-// 	while ((list != NULL) && (tag == NULL)) {
-// 		if (GTK_IS_SOURCE_TAG (list->data))
-// 			tag = GTK_SOURCE_TAG (list->data);
-// 		list = g_slist_next (list);
-// 	}
-//
-// 	g_slist_free (l);
-//
-// 	return tag;
+	gint i;
+	gint ret = 0;
+
+	for (i = 0; i < sizeof (cclass_mask_definitions) / sizeof (gchar *); ++i)
+	{
+		gboolean hasclass = gtk_source_buffer_iter_has_context_class (buffer,
+		                                                              iter,
+		                                                              cclass_mask_definitions[i]);
+
+		ret |= hasclass << i;
+	}
+
+	return ret;
 }
 
 static gboolean
-gtk_source_buffer_find_bracket_match_real (GtkTextIter *orig, gint max_chars)
+gtk_source_buffer_find_bracket_match_real (GtkSourceBuffer *buffer,
+                                           GtkTextIter     *orig,
+                                           gint             max_chars)
 {
 	GtkTextIter iter;
 
@@ -872,14 +876,14 @@ gtk_source_buffer_find_bracket_match_real (GtkTextIter *orig, gint max_chars)
 
 	gboolean found;
 
-	gpointer base_tag;
+	gint cclass_mask;
 
 	iter = *orig;
 
 	cur_char = gtk_text_iter_get_char (&iter);
 
 	base_char = search_char = cur_char;
-	base_tag = iter_has_syntax_tag (&iter);
+	cclass_mask = get_context_class_mask (buffer, &iter);
 
 	switch ((int) base_char) {
 		case '{':
@@ -932,7 +936,7 @@ gtk_source_buffer_find_bracket_match_real (GtkTextIter *orig, gint max_chars)
 		++char_cont;
 
 		if ((cur_char == search_char || cur_char == base_char) &&
-		    base_tag == iter_has_syntax_tag (&iter))
+		    cclass_mask == get_context_class_mask (buffer, &iter))
 		{
 			if ((cur_char == search_char) && counter == 0) {
 				found = TRUE;
@@ -958,11 +962,13 @@ gtk_source_buffer_find_bracket_match_real (GtkTextIter *orig, gint max_chars)
  * cursor takes precedence.
  */
 static gboolean
-gtk_source_buffer_find_bracket_match_with_limit (GtkTextIter *orig, gint max_chars)
+gtk_source_buffer_find_bracket_match_with_limit (GtkSourceBuffer *buffer,
+                                                 GtkTextIter     *orig,
+                                                 gint             max_chars)
 {
 	GtkTextIter iter;
 
-	if (gtk_source_buffer_find_bracket_match_real (orig, max_chars))
+	if (gtk_source_buffer_find_bracket_match_real (buffer, orig, max_chars))
 	{
 		return TRUE;
 	}
@@ -971,7 +977,7 @@ gtk_source_buffer_find_bracket_match_with_limit (GtkTextIter *orig, gint max_cha
 	if (!gtk_text_iter_starts_line (&iter) &&
 	    gtk_text_iter_backward_char (&iter))
 	{
-		if (gtk_source_buffer_find_bracket_match_real (&iter, max_chars))
+		if (gtk_source_buffer_find_bracket_match_real (buffer, &iter, max_chars))
 		{
 			*orig = iter;
 			return TRUE;
