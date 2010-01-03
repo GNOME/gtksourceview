@@ -931,12 +931,24 @@ gtk_source_buffer_find_bracket_match_real (GtkSourceBuffer *buffer,
 	char_cont = 0;
 
 	do {
+		gint current_mask;
+
 		gtk_text_iter_forward_chars (&iter, addition);
 		cur_char = gtk_text_iter_get_char (&iter);
 		++char_cont;
 
+		current_mask = get_context_class_mask (buffer, &iter);
+
+		/* Check if we lost a class, which means we don't look any
+		   further */
+		if (current_mask < cclass_mask)
+		{
+			found = FALSE;
+			break;
+		}
+
 		if ((cur_char == search_char || cur_char == base_char) &&
-		    cclass_mask == get_context_class_mask (buffer, &iter))
+		    cclass_mask == current_mask)
 		{
 			if ((cur_char == search_char) && counter == 0) {
 				found = TRUE;
