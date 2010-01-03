@@ -92,6 +92,7 @@ enum
 	TEXT_VIEW_KEY_PRESS,
 	TEXT_VIEW_FOCUS_OUT,
 	TEXT_VIEW_BUTTON_PRESS,
+	TEXT_VIEW_EDITABLE,
 	TEXT_BUFFER_BEGIN_SIGNALS,
 	TEXT_BUFFER_DELETE_RANGE,
 	TEXT_BUFFER_INSERT_TEXT,
@@ -1617,7 +1618,7 @@ update_interactive_completion (GtkSourceCompletion *completion,
                                gboolean             start_completion)
 {
 	/* Only handle interactive completion in editable parts of the buffer */
-	if (!gtk_text_iter_editable (iter, gtk_text_view_get_editable (GTK_TEXT_VIEW (completion->priv->view))))
+	if (!gtk_text_iter_editable (iter, TRUE))
 	{
 		return;
 	}
@@ -1744,6 +1745,25 @@ buffer_paste_done_cb (GtkTextBuffer       *buffer,
 }
 
 static void
+text_view_editable_cb (GtkTextView         *view,
+                       GParamSpec          *spec,
+                       GtkSourceCompletion *completion)
+{
+	gboolean editable = gtk_text_view_get_editable (view);
+	GtkSourceBuffer *buffer = GTK_SOURCE_BUFFER (gtk_text_view_get_buffer (view));
+
+	/* Block when view is not editable, and unblock if it is */
+	if (!editable)
+	{
+		completion_begin_block (completion, buffer);
+	}
+	else
+	{
+		completion_end_block (completion, buffer);
+	}
+}
+
+static void
 connect_view (GtkSourceCompletion *completion)
 {
 	GtkTextBuffer *buffer;
@@ -1765,6 +1785,12 @@ connect_view (GtkSourceCompletion *completion)
 				  "key-press-event",
 				  G_CALLBACK (view_key_press_event_cb),
 				  completion);
+
+	completion->priv->signals_ids[TEXT_VIEW_EDITABLE] =
+		g_signal_connect (completion->priv->view,
+		                  "notify::editable",
+		                  G_CALLBACK (text_view_editable_cb),
+		                  completion);
 
 	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (completion->priv->view));
 
