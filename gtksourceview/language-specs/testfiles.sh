@@ -80,6 +80,26 @@ void main(void)
 }
 EOFEOF
 
+cat > $dir/file.cg << EOFEOF
+struct OurOutputType
+{
+	float4 position : POSITION;
+	float4 color : COLOR;
+};
+
+OurOutputType
+main(float4           position : POSITION,
+     uniform float4x4 modelViewProj)
+{
+	OurOutputType OUT;
+
+	OUT.position = mul(modelViewProj, position);
+	OUT.color = position;
+
+	return OUT;
+}
+EOFEOF
+
 cat > $dir/file.cu << EOFEOF
 #include "cuMatrix.h"
 

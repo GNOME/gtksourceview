@@ -8,6 +8,7 @@ LANGUAGES =			\
 	boo.lang		\
 	changelog.lang		\
 	c.lang			\
+	cg.lang			\
 	chdr.lang		\
 	cmake.lang		\
 	cpp.lang		\
