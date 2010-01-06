@@ -153,6 +153,7 @@
     </context>
 
     <context id="property-names" style-ref="keyword">
+      <suffix>(?=\s*:)</suffix>
       <keyword>azimuth</keyword>
       <keyword>background-attachment</keyword>
       <keyword>background-color</keyword>
