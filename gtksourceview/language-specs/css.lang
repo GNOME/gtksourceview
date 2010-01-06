@@ -104,7 +104,27 @@
     </context>
 
     <context id="hexadecimal-color" style-ref="color">
-      <match>#([a-fA-F0-9]{6}|[a-fA-F0-9]{3})</match>
+      <match>#([a-fA-F0-9]{6}|[a-fA-F0-9]{3})\b</match>
+    </context>
+
+    <context id="named-color" style-ref="color">
+      <keyword>aqua</keyword>
+      <keyword>black</keyword>
+      <keyword>blue</keyword>
+      <keyword>fuchsia</keyword>
+      <keyword>gray</keyword>
+      <keyword>green</keyword>
+      <keyword>lime</keyword>
+      <keyword>maroon</keyword>
+      <keyword>navy</keyword>
+      <keyword>olive</keyword>
+      <keyword>orange</keyword>
+      <keyword>purple</keyword>
+      <keyword>red</keyword>
+      <keyword>silver</keyword>
+      <keyword>teal</keyword>
+      <keyword>white</keyword>
+      <keyword>yellow</keyword>
     </context>
 
     <context id="function" style-ref="function">
@@ -260,7 +280,6 @@
       <keyword>above</keyword>
       <keyword>absolute</keyword>
       <keyword>always</keyword>
-      <keyword>aqua</keyword>
       <keyword>armenian</keyword>
       <keyword>auto</keyword>
       <keyword>avoid</keyword>
@@ -268,10 +287,8 @@
       <keyword>behind</keyword>
       <keyword>below</keyword>
       <keyword>bidi-override</keyword>
-      <keyword>black</keyword>
       <keyword>blink</keyword>
       <keyword>block</keyword>
-      <keyword>blue</keyword>
       <keyword>bolder</keyword>
       <keyword>bold</keyword>
       <keyword>bottom</keyword>
@@ -313,10 +330,7 @@
       <keyword>fast</keyword>
       <keyword>fixed</keyword>
       <keyword>fixed</keyword>
-      <keyword>fuchsia</keyword>
       <keyword>georgian</keyword>
-      <keyword>gray</keyword>
-      <keyword>green</keyword>
       <keyword>groove</keyword>
       <keyword>hebrew</keyword>
       <keyword>help</keyword>
@@ -344,7 +358,6 @@
       <keyword>leftwards</keyword>
       <keyword>level</keyword>
       <keyword>lighter</keyword>
-      <keyword>lime</keyword>
       <keyword>line-through</keyword>
       <keyword>list-item</keyword>
       <keyword>loud</keyword>
@@ -357,7 +370,6 @@
       <keyword>low</keyword>
       <keyword>ltr</keyword>
       <keyword>marker</keyword>
-      <keyword>maroon</keyword>
       <keyword>medium</keyword>
       <keyword>medium</keyword>
       <keyword>middle</keyword>
@@ -365,7 +377,6 @@
       <keyword>monospace</keyword>
       <keyword>move</keyword>
       <keyword>narrower</keyword>
-      <keyword>navy</keyword>
       <keyword>ne-resize</keyword>
       <keyword>no-close-quote</keyword>
       <keyword>none</keyword>
@@ -376,7 +387,6 @@
       <keyword>n-resize</keyword>
       <keyword>nw-resize</keyword>
       <keyword>oblique</keyword>
-      <keyword>olive</keyword>
       <keyword>once</keyword>
       <keyword>open-quote</keyword>
       <keyword>outset</keyword>
@@ -385,8 +395,6 @@
       <keyword>pointer</keyword>
       <keyword>portait</keyword>
       <keyword>pre</keyword>
-      <keyword>purple</keyword>
-      <keyword>red</keyword>
       <keyword>relative</keyword>
       <keyword>repeat-x</keyword>
       <keyword>repeat-y</keyword>
@@ -407,7 +415,6 @@
       <keyword>serif</keyword>
       <keyword>show</keyword>
       <keyword>silent</keyword>
-      <keyword>silver</keyword>
       <keyword>slower</keyword>
       <keyword>slow</keyword>
       <keyword>small-caps</keyword>
@@ -431,7 +438,6 @@
       <keyword>table-row-group</keyword>
       <keyword>table-row</keyword>
       <keyword>table</keyword>
-      <keyword>teal</keyword>
       <keyword>text-bottom</keyword>
       <keyword>text</keyword>
       <keyword>text-top</keyword>
@@ -449,7 +455,6 @@
       <keyword>upper-roman</keyword>
       <keyword>visible</keyword>
       <keyword>wait</keyword>
-      <keyword>white</keyword>
       <keyword>wider</keyword>
       <keyword>w-resize</keyword>
       <keyword>x-fast</keyword>
@@ -462,7 +467,6 @@
       <keyword>x-soft</keyword>
       <keyword>xx-large</keyword>
       <keyword>xx-small</keyword>
-      <keyword>yellow</keyword>
     </context>
 
     <context id="punctuators" style-ref="others-3">
@@ -492,6 +496,7 @@
         <context ref="selector-pseudo-classes"/>
         <context ref="at-rules"/>
         <context ref="hexadecimal-color"/>
+        <context ref="named-color"/>
         <context ref="function"/>
         <context ref="dimension"/>
         <context ref="number"/>
