@@ -47,7 +47,9 @@
   <definitions>
         <context id="common-commands" style-ref="common-commands">
             <prefix>\\</prefix>
-
+            <!-- We need to special case "_" since it is not considered a
+              boundary but it is allowed in latex -->
+            <suffix>(\b|(?=_))</suffix>
             <keyword>Alpha</keyword>
             <keyword>Beta</keyword>
             <keyword>Chi</keyword>
