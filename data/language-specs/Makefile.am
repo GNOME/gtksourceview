@@ -32,6 +32,7 @@ LANGUAGES =			\
 	fortran.lang		\
 	fsharp.lang		\
 	gap.lang		\
+	gdb-log.lang		\
 	glsl.lang		\
 	gtk-doc.lang		\
 	gtkrc.lang		\
