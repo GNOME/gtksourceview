@@ -1208,8 +1208,9 @@ update_column_sizes (GtkSourceCompletion *completion)
 	gtk_tree_view_column_set_visible (completion->priv->tree_view_column_accelerator,
 	                                  completion->priv->num_accelerators > 0);
 
-	gtk_cell_renderer_set_visible (completion->priv->cell_renderer_icon,
-	                               completion->priv->show_icons);
+	g_object_set (completion->priv->cell_renderer_icon,
+	              "visible", completion->priv->show_icons,
+	              NULL);
 
 	gtk_icon_size_lookup (GTK_ICON_SIZE_MENU, &icon_width, &icon_height);
 	gtk_cell_renderer_set_fixed_size (completion->priv->cell_renderer_icon,
