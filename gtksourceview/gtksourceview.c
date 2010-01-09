@@ -151,10 +151,11 @@ struct _GtkSourceViewPrivate
 	GtkCellRenderer *marks_renderer;
 	
 	GdkColor         current_line_color;
-	guint            current_line_color_set : 1;
 	
 	GtkSourceCompletion	*completion;
-	gboolean         destroy_has_run;
+	
+	guint            current_line_color_set : 1;
+	guint            destroy_has_run : 1;
 };
 
 
@@ -2408,29 +2409,29 @@ get_leading_trailing (GtkTextIter *iter,
                       GtkTextIter *leading,
                       GtkTextIter *trailing)
 {
-	GtkTextIter start = *iter;
-	
+	GtkTextIter start;
+
 	/* Find end of leading */
 	start = *iter;
 	gtk_text_iter_set_line_offset (&start, 0);
-	
+
 	while (TRUE)
 	{
 		gunichar ch = gtk_text_iter_get_char (&start);
 
 		if (!g_unichar_isspace (ch) ||
-		     gtk_text_iter_ends_line (&start) ||
+		    gtk_text_iter_ends_line (&start) ||
 		    !gtk_text_iter_forward_char (&start))
 		{
 			*leading = start;
 			break;
 		}
 	}
-	
+
 	/* Find start of trailing */
 	start = *iter;
 	gtk_text_iter_forward_to_line_end (&start);
-	
+
 	while (TRUE)
 	{
 		gunichar ch = gtk_text_iter_get_char (&start);
@@ -2454,23 +2455,26 @@ check_location (GtkSourceView *view,
 	gint location = view->priv->draw_spaces & (GTK_SOURCE_DRAW_SPACES_LEADING |
 	                                           GTK_SOURCE_DRAW_SPACES_TEXT |
 	                                           GTK_SOURCE_DRAW_SPACES_TRAILING);
-	
+
 	/* Draw all by default */
 	if (!location)
 	{
 		return TRUE;
 	}
-	
-	if (gtk_text_iter_compare (iter, trailing) > 0)
+
+	/* If leading > trailing we are in an empty line so we paint also
+	   for leading spaces */
+	if (gtk_text_iter_compare (iter, trailing) >= 0)
 	{
-		return location & GTK_SOURCE_DRAW_SPACES_TRAILING;
+		return location & (GTK_SOURCE_DRAW_SPACES_TRAILING |
+				   GTK_SOURCE_DRAW_SPACES_LEADING);
 	}
 
 	if (gtk_text_iter_compare (iter, leading) < 0)
 	{
 		return location & GTK_SOURCE_DRAW_SPACES_LEADING;
 	}
-	
+
 	return location & GTK_SOURCE_DRAW_SPACES_TEXT;
 }
 static void
