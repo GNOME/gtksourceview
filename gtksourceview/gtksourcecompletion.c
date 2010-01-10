@@ -1671,21 +1671,16 @@ update_interactive_completion (GtkSourceCompletion *completion,
 		}
 	}
 	else if ((gtk_source_completion_context_get_activation (completion->priv->context) &
-	         GTK_SOURCE_COMPLETION_ACTIVATION_INTERACTIVE) &&
-	         gtk_text_iter_get_line (iter) != completion->priv->typing_line)
+		 GTK_SOURCE_COMPLETION_ACTIVATION_INTERACTIVE) &&
+		 gtk_text_iter_get_line (iter) != completion->priv->typing_line)
 	{
 		gtk_source_completion_hide (completion);
 	}
 	else
 	{
-		/* Update iter in context */
-		g_object_set (completion->priv->context,
-		              "iter", iter,
-	                      NULL);
-
-		update_completion (completion, 
-			           completion->priv->active_providers,
-			           completion->priv->context);
+		update_completion (completion,
+				   completion->priv->active_providers,
+				   completion->priv->context);
 	}
 }
 
@@ -1732,10 +1727,6 @@ buffer_mark_set_cb (GtkTextBuffer       *buffer,
 		gtk_source_completion_hide (completion);
 		return;
 	}
-	
-	/* Repopulate completion at the new iterator */
-	g_object_set (completion->priv->context,
-	              "iter", iter, NULL);
 
 	update_completion (completion,
 	                   completion->priv->active_providers,
@@ -3126,7 +3117,6 @@ update_completion (GtkSourceCompletion        *completion,
                    GList                      *providers,
                    GtkSourceCompletionContext *context)
 {
-	GtkTextIter location;
 	GList *item;
 	
 	DEBUG({
@@ -3134,8 +3124,6 @@ update_completion (GtkSourceCompletion        *completion,
 	});
 
 	update_typing_offsets (completion);
-	
-	gtk_source_completion_context_get_iter (context, &location);
 	
 	if (GTK_WIDGET_VISIBLE (completion->priv->info_window))
 	{
@@ -3562,27 +3550,20 @@ GtkSourceCompletionContext *
 gtk_source_completion_create_context (GtkSourceCompletion *completion,
                                       GtkTextIter         *position)
 {
-	GtkSourceCompletionContext *context;
-	
+	GtkTextIter iter;
+
 	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION (completion), NULL);
-	
-	context = g_object_new (GTK_TYPE_SOURCE_COMPLETION_CONTEXT,
-	                        "completion", completion,
-	                        NULL);
 
 	if (position == NULL)
 	{
-		GtkTextIter iter;
-		
 		get_iter_at_insert (completion, &iter);
-		g_object_set (context, "iter", &iter, NULL);
 	}
 	else
 	{
-		g_object_set (context, "iter", position, NULL);
+		iter = *position;
 	}
-	
-	return context;
+
+	return _gtk_source_completion_context_new (completion, &iter);
 }
 
 /**

@@ -56,7 +56,6 @@ typedef enum
 /* Forward declaration */
 struct _GtkSourceCompletionProvider;
 struct _GtkSourceCompletion;
-struct _GtkSourceView;
 
 struct _GtkSourceCompletionContext {
 	GInitiallyUnowned parent;
@@ -82,13 +81,15 @@ void 		 gtk_source_completion_context_add_proposals 	(GtkSourceCompletionContext
 								 GList                               *proposals,
 								 gboolean                             finished);
 
-struct _GtkSourceView *
-		 gtk_source_completion_context_get_view		(GtkSourceCompletionContext          *context);
 void		 gtk_source_completion_context_get_iter		(GtkSourceCompletionContext          *context,
 								 GtkTextIter                         *iter);
 
 GtkSourceCompletionActivation
 		 gtk_source_completion_context_get_activation	(GtkSourceCompletionContext          *context);
+
+GtkSourceCompletionContext *
+		_gtk_source_completion_context_new		(struct _GtkSourceCompletion         *completion,
+								 GtkTextIter                         *position);
 
 void		_gtk_source_completion_context_cancel		(GtkSourceCompletionContext          *context);
 
