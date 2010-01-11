@@ -44,8 +44,8 @@
 
     <context id="line-comment" style-ref="comment" end-at-line-end="true" class="comment">
       <start>@c(omment)? </start>
-      <context subpattern="0" where="start" class="no-spell-check"/>
       <include>
+        <context sub-pattern="0" where="start" class="no-spell-check"/>
         <context ref="def:in-comment"/>
       </include>
     </context>
@@ -54,8 +54,8 @@
       <start>^@ignore\s*$</start>
       <end>^@end ignore\s*$</end>
       <include>
-        <context subpattern="0" where="start" class="no-spell-check"/>
-        <context subpattern="0" where="end" class="no-spell-check"/>
+        <context sub-pattern="0" where="start" class="no-spell-check"/>
+        <context sub-pattern="0" where="end" class="no-spell-check"/>
         <context ref="def:in-comment"/>
       </include>
     </context>
