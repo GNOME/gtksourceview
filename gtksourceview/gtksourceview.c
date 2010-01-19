@@ -94,6 +94,7 @@ enum {
 	REDO,
 	SHOW_COMPLETION,
 	LINE_MARK_ACTIVATED,
+	MOVE_LINES,
 	LAST_SIGNAL
 };
 
@@ -234,6 +235,9 @@ static void 	gtk_source_view_get_lines 		(GtkTextView       *text_view,
 				       			 gint              *countp);
 static gint     gtk_source_view_expose 			(GtkWidget         *widget,
 							 GdkEventExpose    *event);
+static void	gtk_source_view_move_lines		(GtkSourceView     *view,
+							 gboolean           copy,
+							 gint               step);
 static gboolean	gtk_source_view_key_press_event		(GtkWidget         *widget,
 							 GdkEventKey       *event);
 static void 	view_dnd_drop 				(GtkTextView       *view,
@@ -307,6 +311,7 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	klass->undo = gtk_source_view_undo;
 	klass->redo = gtk_source_view_redo;
 	klass->show_completion = gtk_source_view_show_completion_real;
+	klass->move_lines = gtk_source_view_move_lines;
 
 	/**
 	 * GtkSourceView:show-line-numbers:
@@ -537,6 +542,18 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 			      GTK_TYPE_TEXT_ITER,
 			      GDK_TYPE_EVENT | G_SIGNAL_TYPE_STATIC_SCOPE);
 
+	signals [MOVE_LINES] =
+		g_signal_new ("move-lines",
+			      G_TYPE_FROM_CLASS (klass),
+			      G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
+			      G_STRUCT_OFFSET (GtkSourceViewClass, move_lines),
+			      NULL,
+			      NULL,
+			      _gtksourceview_marshal_VOID__BOOLEAN_INT,
+			      G_TYPE_NONE, 2,
+			      G_TYPE_BOOLEAN,
+			      G_TYPE_INT);
+
 	binding_set = gtk_binding_set_by_class (klass);
 
 	gtk_binding_entry_add_signal (binding_set,
@@ -555,6 +572,31 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 				      GDK_space,
 				      GDK_CONTROL_MASK,
 				      "show-completion", 0);
+
+	gtk_binding_entry_add_signal (binding_set,
+				      GDK_Up,
+				      GDK_MOD1_MASK,
+				      "move_lines", 2,
+				      G_TYPE_BOOLEAN, FALSE,
+				      G_TYPE_INT, -1);
+	gtk_binding_entry_add_signal (binding_set,
+				      GDK_KP_Up,
+				      GDK_MOD1_MASK,
+				      "move_lines", 2,
+				      G_TYPE_BOOLEAN, FALSE,
+				      G_TYPE_INT, -1);
+	gtk_binding_entry_add_signal (binding_set,
+				      GDK_Down,
+				      GDK_MOD1_MASK,
+				      "move_lines", 2,
+				      G_TYPE_BOOLEAN, FALSE,
+				      G_TYPE_INT, 1);
+	gtk_binding_entry_add_signal (binding_set,
+				      GDK_KP_Down,
+				      GDK_MOD1_MASK,
+				      "move_lines", 2,
+				      G_TYPE_BOOLEAN, FALSE,
+				      G_TYPE_INT, 1);
 
 	gtk_binding_entry_add_signal (binding_set,
 				      GDK_Up,
@@ -3952,14 +3994,22 @@ insert_tab_or_spaces (GtkSourceView *view,
 }
 
 static void
-move_lines (GtkTextView *view, gboolean down)
+gtk_source_view_move_lines (GtkSourceView *view, gboolean copy, gint step)
 {
 	GtkTextBuffer *buf;
 	GtkTextIter s, e;
 	GtkTextMark *mark;
+	gboolean down;
 	gchar *text;
 
-	buf = gtk_text_view_get_buffer (view);
+	buf = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
+
+	if (step == 0 || gtk_text_view_get_editable (GTK_TEXT_VIEW (view)) == FALSE)
+		return;
+
+	/* FIXME: for now we just handle a step of one line */
+
+	down = step > 0;
 
 	gtk_text_buffer_get_selection_bounds (buf, &s, &e);
 
@@ -4003,7 +4053,8 @@ move_lines (GtkTextView *view, gboolean down)
 
 	gtk_text_buffer_begin_user_action (buf);
 
-	gtk_text_buffer_delete (buf, &s, &e);
+	if (!copy)
+		gtk_text_buffer_delete (buf, &s, &e);
 
 	if (down)
 	{
@@ -4042,7 +4093,7 @@ move_lines (GtkTextView *view, gboolean down)
 	/* select the moved text */
 	gtk_text_buffer_get_iter_at_mark (buf, &s, mark);
 	gtk_text_buffer_select_range (buf, &s, &e);
-	gtk_text_view_scroll_mark_onscreen (view,
+	gtk_text_view_scroll_mark_onscreen (GTK_TEXT_VIEW (view),
 					    gtk_text_buffer_get_insert (buf));
 
 	gtk_text_buffer_delete_mark (buf, mark);
@@ -4178,15 +4229,6 @@ gtk_source_view_key_press_event (GtkWidget   *widget,
 
 		insert_tab_or_spaces (view, &s, &e);
  		return TRUE;
-	}
-
-	/* Alt+up/down moves the lines */
-	if ((key == GDK_Up || key == GDK_Down) &&
-	    ((event->state & modifiers) == GDK_MOD1_MASK) &&
-	    editable)
-	{
-		move_lines (GTK_TEXT_VIEW (widget), key == GDK_Down);
-		return TRUE;
 	}
 
 	return GTK_WIDGET_CLASS (gtk_source_view_parent_class)->key_press_event (widget, event);

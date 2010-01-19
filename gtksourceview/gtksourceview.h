@@ -68,10 +68,12 @@ struct _GtkSourceViewClass
 	                             GtkTextIter   *iter,
 	                             GdkEvent      *event);
 	void (*show_completion) (GtkSourceView *view);
+	void (*move_lines) (GtkSourceView *view,
+	                    gboolean       copy,
+	                    gint           step);
 
 	/* Padding for future expansion */
 	void (*_gtk_source_reserved1) (void);
-	void (*_gtk_source_reserved2) (void);
 };
 
 /**
