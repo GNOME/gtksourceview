@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
- Author: Alexandr Kuleshov <sterh@live.ru>
- Copyright (C) 2009 Alexandr Kuleshov <sterh@live.ru>
+  Author: Alexander Kuleshov <kuleshovmail@gmail.com>
+  Copyright (C) 2009-2010 Alexander Kuleshov <kuleshovmail@gmail.com>
 
  This library is free software; you can redistribute it and/or
  modify it under the terms of the GNU Library General Public
@@ -113,7 +113,7 @@
       <match>[-]?0[oO][0-7][0-7_]*[lL]?</match>
     </context>
     
-    <context id="binary-number" style-ref="base-n-integer"> 
+    <context id="binary-number" style-ref="base-n-integer">
       <match>[-]?0[bB][01][01_]*[lL]?</match>
     </context>
     
@@ -261,6 +261,35 @@
       <keyword>upcast</keyword>
       <keyword>while</keyword>
       <keyword>with</keyword>
+      <keyword>async</keyword>
+      <keyword>atomic</keyword>
+      <keyword>break</keyword>
+      <keyword>checked</keyword>
+      <keyword>component</keyword>
+      <keyword>const</keyword>
+      <keyword>constructor</keyword>
+      <keyword>continue</keyword>
+      <keyword>eager</keyword>
+      <keyword>event</keyword>
+      <keyword>external</keyword>
+      <keyword>fixed</keyword>
+      <keyword>functor</keyword>
+      <keyword>include</keyword>
+      <keyword>method</keyword>
+      <keyword>mixin</keyword>
+      <keyword>process</keyword>
+      <keyword>property</keyword>
+      <keyword>protected</keyword>
+      <keyword>public</keyword>
+      <keyword>pure</keyword>
+      <keyword>readonly</keyword>
+      <keyword>return</keyword>
+      <keyword>sealed</keyword>
+      <keyword>switch</keyword>
+      <keyword>virtual</keyword>
+      <keyword>void</keyword>
+      <keyword>volatile</keyword>
+      <keyword>where</keyword>
     </context>
 
     <!-- main context -->
