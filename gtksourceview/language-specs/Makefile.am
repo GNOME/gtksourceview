@@ -47,7 +47,7 @@ LANGUAGES =			\
 	lua.lang		\
 	m4.lang			\
 	makefile.lang		\
-	mallard.lang	\
+	mallard.lang		\
 	msil.lang		\
 	nemerle.lang		\
 	nsis.lang		\
@@ -55,6 +55,7 @@ LANGUAGES =			\
 	ocaml.lang		\
 	ocl.lang		\
 	octave.lang		\
+	ooc.lang		\
 	pascal.lang		\
 	perl.lang		\
 	php.lang		\
