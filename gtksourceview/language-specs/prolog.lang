@@ -24,6 +24,9 @@
   <metadata>
     <property name="mimetypes">text/x-prolog</property>
     <property name="globs">*.prolog</property>
+    <property name="line-comment-start">%</property>
+    <property name="block-comment-start">/*</property>
+    <property name="block-comment-end">*/</property>
   </metadata>
 
   <styles>
