@@ -1,7 +1,7 @@
-# translation of gtksourceview.master.ta.po to Tamil
+# translation of gtksourceview.master.po to Tamil
 # translation of gtksourceview.HEAD.ta.po to
 # Tamil translation of Tamil Gnome SourceView 2.4.
-# Copyright (C) 2003, 2004, 2006, 2007, 2008, 2009 Free Software Foundation, Inc.
+# Copyright (C) 2003, 2004, 2006, 2007, 2008, 2009, 2010 Free Software Foundation, Inc.
 #
 #
 # Dinesh Nadarajah <n_dinesh@yahoo.com>, 2003.
@@ -10,19 +10,20 @@
 # Dr.T.Vasudevan <agnihot3@gmail.com>, 2007, 2008, 2009.
 # I. Felix <ifelix@redhat.com>, 2009.
 # Dr,T,Vasudevan <agnihot3@gmail.com>, 2009.
+# Dr.T.vasudevan <agnihot3@gmail.com>, 2010.
 msgid ""
 msgstr ""
-"Project-Id-Version: gtksourceview.master.ta\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-03 13:15+0530\n"
-"PO-Revision-Date: 2009-11-03 13:17+0530\n"
-"Last-Translator: Dr,T,Vasudevan <agnihot3@gmail.com>\n"
-"Language-Team: Tamil <Ubuntu-l10n-tam@lists.ubuntu.com>>\n"
+"Project-Id-Version: gtksourceview.master\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gtksourceview&component=general\n"
+"POT-Creation-Date: 2010-02-01 10:50+0000\n"
+"PO-Revision-Date: 2010-02-16 17:18+0530\n"
+"Last-Translator: Dr.T.vasudevan <agnihot3@gmail.com>\n"
+"Language-Team: Tamil <Ubuntu-l10n-tam@lists.ubuntu.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "17:19-0500\n"
-"X-Generator: Lokalize 1.0\n"
+"X-Generator: KBabel 1.11.4\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\\n"
 "\n"
 "\n"
@@ -31,251 +32,275 @@ msgstr ""
 "\n"
 "\n"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:387
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:379
 msgid "Document Words"
 msgstr "ஆவண சொற்கள்"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:459
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:463
 #: ../gtksourceview/language-specs/changelog.lang.h:7
 msgid "Name"
 msgstr "பெயர்"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:460
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:464
 msgid "The provider name"
 msgstr "தருபவர் பெயர்"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:467
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:471
 #: ../gtksourceview/gtksourcecompletionitem.c:268
 msgid "Icon"
 msgstr "சின்னம்"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:468
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:472
 msgid "The provider icon"
 msgstr "தருபவர் சின்னம்"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:475
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:479
 msgid "Proposals Batch Size"
 msgstr "முன் மொழிவுகளின் தொகுதி அளவு"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:476
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:480
 msgid "Number of proposals added in one batch"
 msgstr "ஒரு தொகுதியில் சேர்த்த முன்மொழிவுகளின் எண்னிக்கை"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:485
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:489
 msgid "Scan Batch Size"
 msgstr "வருடல் தொகுதி அளவு"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:486
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:490
 msgid "Number of lines scanned in one batch"
 msgstr "ஒரு தொகுதியில் வருடிய வரிகளின் எண்ணிக்கை"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:495
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:499
 msgid "Minimum Word Size"
 msgstr "குறைந்தபட்ச சொல் அளவு"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:496
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:500
 msgid "The minimum word size to complete"
 msgstr "முடிக்க சொல்லின் குறைந்தபட்ச அளவு"
 
-#: ../gtksourceview/gtksourcebuffer.c:180
-#: ../gtksourceview/gtksourceprintcompositor.c:487
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:509
+msgid "Interactive Delay"
+msgstr "ஊடாடல் தாமதம்"
+
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:510
+#| msgid "Completion popup delay for interactive completion"
+msgid "The delay before initiating interactive completion"
+msgstr "ஊடாடும் வார்த்தை முடிவு துவக்கு தாமதிக்க வேண்டிய நேரம்"
+
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:519
+msgid "Priority"
+msgstr "முன்னுரிமை"
+
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:520
+#| msgid "Provider"
+msgid "Provider priority"
+msgstr "வழங்குபவர் முன்னுரிமை"
+
+#: ../gtksourceview/gtksourcebuffer.c:210
+#: ../gtksourceview/gtksourceprintcompositor.c:506
 msgid "Highlight Syntax"
 msgstr "இலக்கணத்தை முன்னிலைப்படுத்து"
 
-#: ../gtksourceview/gtksourcebuffer.c:181
+#: ../gtksourceview/gtksourcebuffer.c:211
 msgid "Whether to highlight syntax in the buffer"
 msgstr "தொடரியலை இடையகத்தில் தனிப்படுத்த வேண்டுமா"
 
-#: ../gtksourceview/gtksourcebuffer.c:194
+#: ../gtksourceview/gtksourcebuffer.c:224
 msgid "Highlight Matching Brackets"
 msgstr " பொருந்தும் அடைப்புக்குறிகளை சிறப்புச்சுட்டு"
 
-#: ../gtksourceview/gtksourcebuffer.c:195
+#: ../gtksourceview/gtksourcebuffer.c:225
 msgid "Whether to highlight matching brackets"
 msgstr " பொருந்தும் அடைப்புக்குறிகளை சிறப்புச்சுட்ட வேண்டுமா"
 
-#: ../gtksourceview/gtksourcebuffer.c:207
+#: ../gtksourceview/gtksourcebuffer.c:237
 msgid "Maximum Undo Levels"
 msgstr "அதிகபட்ச செயல்நீக்க மட்டம்"
 
-#: ../gtksourceview/gtksourcebuffer.c:208
+#: ../gtksourceview/gtksourcebuffer.c:238
 msgid "Number of undo levels for the buffer"
 msgstr "இடையகத்திற்கான செயல்நீக்க மட்டம்"
 
 #. Translators: throughout gtksourceview "language" stands
 #. * for "programming language", not "spoken language"
-#: ../gtksourceview/gtksourcebuffer.c:220
+#: ../gtksourceview/gtksourcebuffer.c:250
 msgid "Language"
 msgstr "மொழி"
 
-#: ../gtksourceview/gtksourcebuffer.c:221
+#: ../gtksourceview/gtksourcebuffer.c:251
 msgid "Language object to get highlighting patterns from"
 msgstr "தனிப்படுத்தல் மாதிரியை பெற வேண்டிய மொழி பொருள்கள்"
 
-#: ../gtksourceview/gtksourcebuffer.c:229
+#: ../gtksourceview/gtksourcebuffer.c:259
 msgid "Can undo"
 msgstr "ரத்து செய்ய இயலும்"
 
-#: ../gtksourceview/gtksourcebuffer.c:230
+#: ../gtksourceview/gtksourcebuffer.c:260
 msgid "Whether Undo operation is possible"
 msgstr "ரத்து செய்ய இயலுமா"
 
-#: ../gtksourceview/gtksourcebuffer.c:237
+#: ../gtksourceview/gtksourcebuffer.c:267
 msgid "Can redo"
 msgstr "மீண்டும் செய்"
 
-#: ../gtksourceview/gtksourcebuffer.c:238
+#: ../gtksourceview/gtksourcebuffer.c:268
 msgid "Whether Redo operation is possible"
 msgstr "மீண்டும் செய்தல் இயலுமா"
 
-#: ../gtksourceview/gtksourcebuffer.c:252
-#: ../gtksourceview/gtksourcebuffer.c:253
+#: ../gtksourceview/gtksourcebuffer.c:282
+#: ../gtksourceview/gtksourcebuffer.c:283
 msgid "Style scheme"
 msgstr "பாணி திட்டம்"
 
-#: ../gtksourceview/gtksourcecompletion.c:604
+#. Translators: "All" is used as a label in thestatus bar of the
+#. popup, telling that all completion pages are shown
+#: ../gtksourceview/gtksourcecompletion.c:649
 msgid "All"
 msgstr "அனைத்தும்"
 
-#: ../gtksourceview/gtksourcecompletion.c:896
-#: ../gtksourceview/gtksourcecompletion.c:918
+#: ../gtksourceview/gtksourcecompletion.c:941
+#: ../gtksourceview/gtksourcecompletion.c:963
 msgid "No extra information available"
 msgstr "கூடுதல் தகவல் ஒன்றுமில்லை"
 
-#: ../gtksourceview/gtksourcecompletion.c:1946
-#: ../gtksourceview/gtksourcecompletioncontext.c:173
-#: ../gtksourceview/gtksourcegutter.c:337
+#: ../gtksourceview/gtksourcecompletion.c:2227
+#: ../gtksourceview/gtksourcegutter.c:369
 msgid "View"
 msgstr "பார்வை"
 
-#: ../gtksourceview/gtksourcecompletion.c:1947
+#: ../gtksourceview/gtksourcecompletion.c:2228
 msgid "The GtkSourceView bound to the completion"
 msgstr "முடித்தலுடன் பிணைத்த ஜிடிகே மூலப்பார்வை"
 
-#: ../gtksourceview/gtksourcecompletion.c:1962
-msgid "Remeber Info Visibility"
-msgstr "காட்சிமையை நினைவில் கொள்க"
+#: ../gtksourceview/gtksourcecompletion.c:2243
+#| msgid "Remeber Info Visibility"
+msgid "Remember Info Visibility"
+msgstr "தகவல் காட்சிமையை நினைவில் கொள்க"
 
-#: ../gtksourceview/gtksourcecompletion.c:1963
+#: ../gtksourceview/gtksourcecompletion.c:2244
 msgid "Remember the last info window visibility state"
 msgstr "கடைசி சாளரத்தின் காட்சிமை நிலையை நினைவில் கொள்க"
 
-#: ../gtksourceview/gtksourcecompletion.c:1976
+#: ../gtksourceview/gtksourcecompletion.c:2257
 msgid "Select on Show"
 msgstr "காட்டும் போது தேர்வு செய்க"
 
-#: ../gtksourceview/gtksourcecompletion.c:1977
+#: ../gtksourceview/gtksourcecompletion.c:2258
 msgid "Select first proposal when completion is shown"
 msgstr "முழுமையாக்கம் முடிந்ததும் முதல் முன்மொழிவை தேர்ந்தெடுக்கவும்."
 
-#: ../gtksourceview/gtksourcecompletion.c:1991
+#: ../gtksourceview/gtksourcecompletion.c:2272
 msgid "Show Headers"
 msgstr "தலைப்புகளை காட்டு"
 
-#: ../gtksourceview/gtksourcecompletion.c:1992
+#: ../gtksourceview/gtksourcecompletion.c:2273
 msgid "Show provider headers when proposals from multiple providers are available"
 msgstr "பல தருவோரிடமிருந்து பல முன்மொழிவுகள் இருக்கையில் தருவோர் தலைப்புகளை காட்டு"
 
-#: ../gtksourceview/gtksourcecompletion.c:2005
+#: ../gtksourceview/gtksourcecompletion.c:2287
+msgid "Show Icons"
+msgstr "சின்னங்களை காட்டு"
+
+#: ../gtksourceview/gtksourcecompletion.c:2288
+msgid "Show provider and proposal icons in the completion popup"
+msgstr "பூர்த்தி துள்ளளில் தருபவர்  மற்றும் கோரிக்கை சின்னங்களை காட்டு "
+
+#: ../gtksourceview/gtksourcecompletion.c:2301
 msgid "Accelerators"
 msgstr "விரைவு விசை"
 
-#: ../gtksourceview/gtksourcecompletion.c:2006
+#: ../gtksourceview/gtksourcecompletion.c:2302
 msgid "Number of proposal accelerators to show"
 msgstr " காட்டப்படவேண்டிய விரைவு விசைகளின் எண்ணிக்கை"
 
-#: ../gtksourceview/gtksourcecompletion.c:2022
+#: ../gtksourceview/gtksourcecompletion.c:2318
 msgid "Auto Complete Delay"
 msgstr "தானியங்கி வார்த்தை முடிவுக்கு தாமதிக்க வேண்டிய நேரம்"
 
-#: ../gtksourceview/gtksourcecompletion.c:2023
+#: ../gtksourceview/gtksourcecompletion.c:2319
 msgid "Completion popup delay for interactive completion"
 msgstr "ஊடாடும் வார்த்தை முடிவுக்கு தாமதிக்க வேண்டிய நேரம்"
 
-#: ../gtksourceview/gtksourcecompletion.c:2038
+#: ../gtksourceview/gtksourcecompletion.c:2334
 msgid "Provider Page Size"
 msgstr "தருவோர் பக்க அளவு"
 
-#: ../gtksourceview/gtksourcecompletion.c:2039
+#: ../gtksourceview/gtksourcecompletion.c:2335
 msgid "Provider scrolling page size"
 msgstr "தருவோர் உருளும் பக்க அளவு"
 
-#: ../gtksourceview/gtksourcecompletion.c:2054
+#: ../gtksourceview/gtksourcecompletion.c:2350
 msgid "Proposal Page Size"
 msgstr "முன்மொழிவு பக்க அளவு"
 
-#: ../gtksourceview/gtksourcecompletion.c:2055
+#: ../gtksourceview/gtksourcecompletion.c:2351
 msgid "Proposal scrolling page size"
 msgstr "முன்மொழிவு உருளும் பக்க அளவு"
 
-#: ../gtksourceview/gtksourcecompletion.c:2392
+#: ../gtksourceview/gtksourcecompletion.c:2688
 msgid "Provider"
 msgstr "வழங்குபவர்"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:160
-#: ../gtksourceview/gtksourceview.c:307
+#: ../gtksourceview/gtksourcecompletioncontext.c:244
+#: ../gtksourceview/gtksourceview.c:324
 msgid "Completion"
 msgstr " முடிவு"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:161
+#: ../gtksourceview/gtksourcecompletioncontext.c:245
 msgid "The completion object to which the context belongs"
 msgstr "இந்த சூழல் சம்பந்தப்பட்ட முழுமையாக்கும் பொருள்"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:174
-msgid "The GtkSourceView"
-msgstr "ஜிடிகேசோர்ஸ் காட்சி"
-
 #. Translators: The GtkTextIter at which the completion was invoked
-#: ../gtksourceview/gtksourcecompletioncontext.c:187
+#: ../gtksourceview/gtksourcecompletioncontext.c:258
 msgid "Iterator"
 msgstr "குறியீடு"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:188
+#: ../gtksourceview/gtksourcecompletioncontext.c:259
 msgid "The GtkTextIter at which the completion was invoked"
 msgstr "வார்த்தை முடிவு கோரப்பட்ட ஜிடிகே டெக்ஸ்ட் நிகழ்வு"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:199
+#: ../gtksourceview/gtksourcecompletioncontext.c:271
 msgid "Activation"
 msgstr "செயல்படுத்தல்"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:200
+#: ../gtksourceview/gtksourcecompletioncontext.c:272
 msgid "The type of activation"
 msgstr "செயலாக்க வகை"
 
 #. Tooltip style
-#: ../gtksourceview/gtksourcecompletioninfo.c:172
+#: ../gtksourceview/gtksourcecompletioninfo.c:174
 msgid "Completion Info"
 msgstr "முடித்தல் தகவல்"
 
-#: ../gtksourceview/gtksourcecompletioninfo.c:340
+#: ../gtksourceview/gtksourcecompletioninfo.c:342
 msgid "Maximum width"
 msgstr "அதிக பட்ச அகலம்"
 
-#: ../gtksourceview/gtksourcecompletioninfo.c:341
+#: ../gtksourceview/gtksourcecompletioninfo.c:343
 msgid "The maximum allowed width"
 msgstr "அனுமதிக்கப்பட்ட அதிகபட்ச அகலம்"
 
-#: ../gtksourceview/gtksourcecompletioninfo.c:350
+#: ../gtksourceview/gtksourcecompletioninfo.c:352
 msgid "Maximum height"
 msgstr "அதிக பட்ச உயரம்"
 
-#: ../gtksourceview/gtksourcecompletioninfo.c:351
+#: ../gtksourceview/gtksourcecompletioninfo.c:353
 msgid "The maximum allowed height"
 msgstr "அனுமதிக்கப்பட்ட அதிகபட்ச உயரம்"
 
-#: ../gtksourceview/gtksourcecompletioninfo.c:361
+#: ../gtksourceview/gtksourcecompletioninfo.c:363
 msgid "Shrink width"
 msgstr "அகலத்தை சுருக்கு"
 
-#: ../gtksourceview/gtksourcecompletioninfo.c:362
+#: ../gtksourceview/gtksourcecompletioninfo.c:364
 msgid "Whether the window should shrink width to fit the contents"
 msgstr "உள்ளடக்கத்துக்கு தகுந்தபடி சாளர அகலத்தை சுருக்க வேண்டுமா"
 
-#: ../gtksourceview/gtksourcecompletioninfo.c:369
+#: ../gtksourceview/gtksourcecompletioninfo.c:371
 msgid "Shrink height"
 msgstr "உயரத்தை சுருக்கு"
 
-#: ../gtksourceview/gtksourcecompletioninfo.c:370
+#: ../gtksourceview/gtksourcecompletioninfo.c:372
 msgid "Whether the window should shrink height to fit the contents"
 msgstr "உள்ளடக்கத்துக்கு தகுந்தபடி சாளர உயரத்தை சுருக்க வேண்டுமா"
 
@@ -288,6 +313,7 @@ msgid "Label to be shown for this item"
 msgstr "இந்த உருப்படிக்கு காட்ட வேண்டிய அடையாளம்"
 
 #: ../gtksourceview/gtksourcecompletionitem.c:242
+#: ../gtksourceview/language-specs/bibtex.lang.h:4
 #: ../gtksourceview/language-specs/docbook.lang.h:5
 #: ../gtksourceview/language-specs/dtd.lang.h:2
 #: ../gtksourceview/language-specs/gtk-doc.lang.h:6
@@ -326,7 +352,7 @@ msgstr "தகவல்"
 msgid "Info to be shown for this item"
 msgstr "இந்த உருப்படிக்கு காட்ட வேண்டிய தகவல்"
 
-#: ../gtksourceview/gtksourcecontextengine.c:2608
+#: ../gtksourceview/gtksourcecontextengine.c:2965
 msgid "using \\C is not supported in language definitions"
 msgstr "\\C ஐ மொழியை வரையறையில் பயன்படுத்துதல் ஆதரிக்கப்படவில்லை"
 
@@ -334,7 +360,7 @@ msgstr "\\C ஐ மொழியை வரையறையில் பயன்�
 #. * named sub-patterns with the same name or if resulting regex is
 #. * too long. In this case fixing lang file helps (e.g. renaming
 #. * subpatterns, making huge keywords use bigger prefixes, etc.)
-#: ../gtksourceview/gtksourcecontextengine.c:3232
+#: ../gtksourceview/gtksourcecontextengine.c:3589
 #, c-format
 msgid ""
 "Cannot create a regex for all the transitions, the syntax highlighting "
@@ -345,7 +371,7 @@ msgstr ""
 "வழக்கத்தை விட மெதுவாக நடக்கும். \n"
 "பிழை: %s"
 
-#: ../gtksourceview/gtksourcecontextengine.c:4548
+#: ../gtksourceview/gtksourcecontextengine.c:4924
 msgid ""
 "Highlighting a single line took too much time, syntax highlighting will be "
 "disabled"
@@ -353,59 +379,69 @@ msgstr ""
 "ஒரு தனி வரியை சிறப்பு சுட்டுதல் அதிக நேரம் எடுத்துக்கொண்டது. இலக்கண சிறப்பு சுட்டல் "
 "செயல் நீக்கம் செய்யப்படும்"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5758
+#: ../gtksourceview/gtksourcecontextengine.c:6149
 #, c-format
 msgid "context '%s' cannot contain a \\%%{...@start} command"
 msgstr "சூழல் '%s' ஒரு \\%%{...@start} கட்டளையை அடக்கி இருக்க கூடாது"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5910
-#: ../gtksourceview/gtksourcecontextengine.c:5997
+#: ../gtksourceview/gtksourcecontextengine.c:6311
+#: ../gtksourceview/gtksourcecontextengine.c:6400
 #, c-format
 msgid "duplicated context id '%s'"
 msgstr "இரட்டையான சூழல் அடையாளம் '%s"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6110
-#: ../gtksourceview/gtksourcecontextengine.c:6170
+#: ../gtksourceview/gtksourcecontextengine.c:6515
+#: ../gtksourceview/gtksourcecontextengine.c:6575
 #, c-format
 msgid ""
 "style override used with wildcard context reference in language '%s' in ref "
 "'%s'"
-msgstr ""
-"'%s மொழியில் உள்ளே '%s தொடர்பாக குறிப்பில் சூழல் உறவுடன் பாங்கு இணக்கமறுப்பு பயன்பட்டது "
+msgstr "'%s மொழியில் உள்ளே '%s தொடர்பாக குறிப்பில் சூழல் உறவுடன் பாங்கு இணக்கமறுப்பு பயன்பட்டது "
 
-#: ../gtksourceview/gtksourcecontextengine.c:6184
+#: ../gtksourceview/gtksourcecontextengine.c:6589
 #, c-format
 msgid "invalid context reference '%s'"
 msgstr "செல்லுபடியாகாத சான்றாதாரம் '%s'"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6203
-#: ../gtksourceview/gtksourcecontextengine.c:6213
+#: ../gtksourceview/gtksourcecontextengine.c:6608
+#: ../gtksourceview/gtksourcecontextengine.c:6618
 #, c-format
 msgid "unknown context '%s'"
 msgstr "தெரியாத சூழல் '%s'"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6313
+#: ../gtksourceview/gtksourcecontextengine.c:6718
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "முக்கிய மொழி வரையறை காணப்படவில்லை (அடையாளம் = \"%s\".)"
 
-#: ../gtksourceview/gtksourcegutter.c:338
+#: ../gtksourceview/gtksourcegutter.c:370
 msgid "The gutters' GtkSourceView"
 msgstr "கட்டர்ஸ்' ஜிடிகேமூலப் பார்வை"
 
-#: ../gtksourceview/gtksourcegutter.c:350
+#: ../gtksourceview/gtksourcegutter.c:382
 msgid "Window Type"
 msgstr "சாளர வகை"
 
-#: ../gtksourceview/gtksourcegutter.c:351
+#: ../gtksourceview/gtksourcegutter.c:383
 msgid "The gutters text window type"
 msgstr "கட்டர்ஸ் உரை சாளர வகை"
 
-#: ../gtksourceview/gtksourcelanguage.c:42
+#. *
+#. * SECTION:language
+#. * @Short_description: Object representing a syntax highlighted language
+#. * @Title: GtkSourceLanguage
+#. * @See_also: #GtkSourceLanguageManager
+#. *
+#. * #GtkSourceLanguage encapsulates syntax and highlighting styles for a
+#. * particular language. Use #GtkSourceLanguageManager to obtain a
+#. * #GtkSourceLanguage instance, and gtk_source_buffer_set_language() to apply it
+#. * to a #GtkSourceBuffer.
+#.
+#: ../gtksourceview/gtksourcelanguage.c:54
 #: ../gtksourceview/language-specs/changelog.lang.h:8
 #: ../gtksourceview/language-specs/cmake.lang.h:7
 #: ../gtksourceview/language-specs/css.lang.h:10
-#: ../gtksourceview/language-specs/desktop.lang.h:11
+#: ../gtksourceview/language-specs/desktop.lang.h:12
 #: ../gtksourceview/language-specs/diff.lang.h:9
 #: ../gtksourceview/language-specs/dot.lang.h:6
 #: ../gtksourceview/language-specs/dpatch.lang.h:2
@@ -424,360 +460,360 @@ msgstr "கட்டர்ஸ் உரை சாளர வகை"
 msgid "Others"
 msgstr "மற்றவை"
 
-#: ../gtksourceview/gtksourcelanguage.c:215
-#: ../gtksourceview/gtksourcelanguage.c:216
+#: ../gtksourceview/gtksourcelanguage.c:227
+#: ../gtksourceview/gtksourcelanguage.c:228
 msgid "Language id"
 msgstr "மொழி அடையாளம்"
 
-#: ../gtksourceview/gtksourcelanguage.c:223
-#: ../gtksourceview/gtksourcelanguage.c:224
+#: ../gtksourceview/gtksourcelanguage.c:235
+#: ../gtksourceview/gtksourcelanguage.c:236
 msgid "Language name"
 msgstr "மொழி பெயர்"
 
-#: ../gtksourceview/gtksourcelanguage.c:231
-#: ../gtksourceview/gtksourcelanguage.c:232
+#: ../gtksourceview/gtksourcelanguage.c:243
+#: ../gtksourceview/gtksourcelanguage.c:244
 msgid "Language section"
 msgstr "மொழி பகுதி"
 
-#: ../gtksourceview/gtksourcelanguage.c:239
+#: ../gtksourceview/gtksourcelanguage.c:251
 msgid "Hidden"
 msgstr "மறைந்துள்ள"
 
-#: ../gtksourceview/gtksourcelanguage.c:240
+#: ../gtksourceview/gtksourcelanguage.c:252
 msgid "Whether the language should be hidden from the user"
 msgstr "பயனரிடமிருந்து மொழி மறைக்கப்பட வேண்டுமா"
 
-#: ../gtksourceview/gtksourcelanguagemanager.c:134
+#: ../gtksourceview/gtksourcelanguagemanager.c:149
 msgid "Language specification directories"
 msgstr "மொழி குறிப்புள்ள அடைவுகள்"
 
-#: ../gtksourceview/gtksourcelanguagemanager.c:135
+#: ../gtksourceview/gtksourcelanguagemanager.c:150
 msgid ""
 "List of directories where the language specification files (.lang) are "
 "located"
 msgstr "மொழி பற்றிய குறிப்புகளை கொண்ட அடைவுகளின் பட்டியல் (.lang)"
 
-#: ../gtksourceview/gtksourcelanguagemanager.c:144
+#: ../gtksourceview/gtksourcelanguagemanager.c:159
 msgid "Language ids"
 msgstr "மொழி அடையாளங்கள்"
 
-#: ../gtksourceview/gtksourcelanguagemanager.c:145
+#: ../gtksourceview/gtksourcelanguagemanager.c:160
 msgid "List of the ids of the available languages"
 msgstr "கிடைக்கும் மொழிகளின் அடையாள பட்டியல்"
 
-#: ../gtksourceview/gtksourcelanguage-parser-2.c:879
+#: ../gtksourceview/gtksourcelanguage-parser-2.c:948
 #, c-format
 msgid "Unknown id '%s' in regex '%s'"
 msgstr " தெரியாத அடையாளம் '%s' வழக்கமான எண்ணுருக்கோவை '%s இல்"
 
-#: ../gtksourceview/gtksourcelanguage-parser-2.c:1107
+#: ../gtksourceview/gtksourcelanguage-parser-2.c:1176
 #, c-format
 msgid "in regex '%s': backreferences are not supported"
 msgstr "வழக்கமான எண்ணுருக்கோவை '%s': பின் தொடர்புகள் அனுமதிக்கப்படவில்லை"
 
-#: ../gtksourceview/gtksourcemark.c:121
+#: ../gtksourceview/gtksourcemark.c:140
 msgid "category"
 msgstr "வகை"
 
-#: ../gtksourceview/gtksourcemark.c:122
+#: ../gtksourceview/gtksourcemark.c:141
 msgid "The mark category"
 msgstr "குறி வகை"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:427
+#: ../gtksourceview/gtksourceprintcompositor.c:446
 msgid "Source Buffer"
 msgstr "மூலங்களின் இடையகம்"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:428
+#: ../gtksourceview/gtksourceprintcompositor.c:447
 msgid "The GtkSourceBuffer object to print"
 msgstr "அச்சிட வேண்டிய ஜிடிகே மூல இடையக பொருள்"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:445
-#: ../gtksourceview/gtksourceview.c:345
+#: ../gtksourceview/gtksourceprintcompositor.c:464
+#: ../gtksourceview/gtksourceview.c:362
 msgid "Tab Width"
 msgstr "தத்தல் அகலம்"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:446
-#: ../gtksourceview/gtksourceview.c:346
+#: ../gtksourceview/gtksourceprintcompositor.c:465
+#: ../gtksourceview/gtksourceview.c:363
 msgid "Width of a tab character expressed in spaces"
 msgstr "தத்தலின் அகலம் இடங்களின் எண்ணிக்கையில்"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:466
+#: ../gtksourceview/gtksourceprintcompositor.c:485
 msgid "Wrap Mode"
 msgstr "மடங்கல் பாங்கு"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:467
+#: ../gtksourceview/gtksourceprintcompositor.c:486
 msgid "Whether to wrap lines never, at word boundaries, or at character boundaries."
 msgstr "சொற்களின் எல்லைகளிலும் அல்லது எழுத்துருக்களின் எல்லைகளிலும் வரிகளை மடிக்கவே கூடாதா"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:488
+#: ../gtksourceview/gtksourceprintcompositor.c:507
 msgid "Whether to print the document with highlighted syntax"
 msgstr "ஆவணத்தில் இலக்கண சுட்டலை முன்னிலைப்படுத்தி அச்சிட வேண்டுமா"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:509
+#: ../gtksourceview/gtksourceprintcompositor.c:528
 msgid "Print Line Numbers"
 msgstr "வரி எண்களை அச்சிடுட்டு"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:510
+#: ../gtksourceview/gtksourceprintcompositor.c:529
 msgid "Interval of printed line numbers (0 means no numbers)"
 msgstr "வரி எண்கள் அச்சிட வேண்டிய இடைவெளி (0 எனில் எண்கள் இல்லை)"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:532
+#: ../gtksourceview/gtksourceprintcompositor.c:551
 msgid "Print Header"
 msgstr "அச்சு தலைப்பு"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:533
+#: ../gtksourceview/gtksourceprintcompositor.c:552
 msgid "Whether to print a header in each page"
 msgstr "ஒவ்வொரு பக்கத்திலும் தலைப்பை அச்சிட வேண்டுமா"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:555
+#: ../gtksourceview/gtksourceprintcompositor.c:574
 msgid "Print Footer"
 msgstr "அடிக்குறிப்பை அச்சிடு"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:556
+#: ../gtksourceview/gtksourceprintcompositor.c:575
 msgid "Whether to print a footer in each page"
 msgstr "ஒவ்வொரு பக்கத்திலும் அடிக்குறிப்பை அச்சிட வேண்டுமா"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:578
+#: ../gtksourceview/gtksourceprintcompositor.c:597
 msgid "Body Font Name"
 msgstr "உடல் எழுத்துரு பெயர்"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:579
+#: ../gtksourceview/gtksourceprintcompositor.c:598
 msgid "Name of the font to use for the text body (e.g. \"Monospace 10\")"
 msgstr "உரை உடலில் பயன் படுத்த வேண்டிய எழுத்துருவின் பெயர் (எ-டு \"மோனோஸ்பேஸ் 10\")"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:602
+#: ../gtksourceview/gtksourceprintcompositor.c:621
 msgid "Line Numbers Font Name"
 msgstr "வரி எண்களுக்கு எழுத்துரு பெயர்"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:603
+#: ../gtksourceview/gtksourceprintcompositor.c:622
 msgid "Name of the font to use for the line numbers (e.g. \"Monospace 10\")"
 msgstr "வரி எண்களுக்கு பயன் படுத்த வேண்டிய எழுத்துருவின் பெயர் (எ-டு \"மோனோஸ்பேஸ் 10\")"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:626
+#: ../gtksourceview/gtksourceprintcompositor.c:645
 msgid "Header Font Name"
 msgstr "தலைப்புக்கு எழுத்துரு பெயர்"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:627
+#: ../gtksourceview/gtksourceprintcompositor.c:646
 msgid "Name of the font to use for the page header (e.g. \"Monospace 10\")"
 msgstr "பக்க தலைப்புக்கு பயன் படுத்த வேண்டிய எழுத்துருவின் பெயர் (எ-டு \"மோனோஸ்பேஸ் 10\")"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:650
+#: ../gtksourceview/gtksourceprintcompositor.c:669
 msgid "Footer Font Name"
 msgstr "அடிக்குறிப்புக்கு எழுத்துரு பெயர்"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:651
+#: ../gtksourceview/gtksourceprintcompositor.c:670
 msgid "Name of the font to use for the page footer (e.g. \"Monospace 10\")"
 msgstr "அடிக்குறிப்புக்கு பயன் படுத்த வேண்டிய எழுத்துருவின் பெயர் (எ-டு \"மோனோஸ்பேஸ் 10\")"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:667
+#: ../gtksourceview/gtksourceprintcompositor.c:686
 msgid "Number of pages"
 msgstr "பக்கங்களின் எண்ணிக்கை"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:668
+#: ../gtksourceview/gtksourceprintcompositor.c:687
 msgid ""
 "The number of pages in the document (-1 means the document has not been "
 "completely paginated)."
 msgstr "ஆவணத்தில் பக்கங்களின் எண்ணிக்கை (-1 எனில் ஆவணம் முழுமையாக பக்கங்களாக்க ப்படவில்லை)"
 
-#: ../gtksourceview/gtksourcestyle.c:70
+#: ../gtksourceview/gtksourcestyle.c:79
 msgid "Line background"
 msgstr "வரியின் பின்னணி"
 
-#: ../gtksourceview/gtksourcestyle.c:71
+#: ../gtksourceview/gtksourcestyle.c:80
 msgid "Line background color"
 msgstr "வரியின் பின்னணி வண்ணம்"
 
-#: ../gtksourceview/gtksourcestyle.c:78
+#: ../gtksourceview/gtksourcestyle.c:87
 msgid "Background"
 msgstr "பின்னணி"
 
-#: ../gtksourceview/gtksourcestyle.c:79
+#: ../gtksourceview/gtksourcestyle.c:88
 msgid "Background color"
 msgstr "பின்னணி வண்ணம்"
 
-#: ../gtksourceview/gtksourcestyle.c:86
+#: ../gtksourceview/gtksourcestyle.c:95
 msgid "Foreground"
 msgstr "முன்னணி"
 
-#: ../gtksourceview/gtksourcestyle.c:87
+#: ../gtksourceview/gtksourcestyle.c:96
 msgid "Foreground color"
 msgstr "முன்னணி வண்ணம்"
 
-#: ../gtksourceview/gtksourcestyle.c:94 ../gtksourceview/gtksourcestyle.c:95
+#: ../gtksourceview/gtksourcestyle.c:103 ../gtksourceview/gtksourcestyle.c:104
 #: ../gtksourceview/language-specs/t2t.lang.h:2
 msgid "Bold"
 msgstr "தடித்த"
 
-#: ../gtksourceview/gtksourcestyle.c:102 ../gtksourceview/gtksourcestyle.c:103
+#: ../gtksourceview/gtksourcestyle.c:111 ../gtksourceview/gtksourcestyle.c:112
 #: ../gtksourceview/language-specs/t2t.lang.h:5
 msgid "Italic"
 msgstr "சாய்ந்த"
 
-#: ../gtksourceview/gtksourcestyle.c:110 ../gtksourceview/gtksourcestyle.c:111
+#: ../gtksourceview/gtksourcestyle.c:119 ../gtksourceview/gtksourcestyle.c:120
 msgid "Underline"
 msgstr "அடிக்கோடு"
 
-#: ../gtksourceview/gtksourcestyle.c:118 ../gtksourceview/gtksourcestyle.c:119
+#: ../gtksourceview/gtksourcestyle.c:127 ../gtksourceview/gtksourcestyle.c:128
 msgid "Strikethrough"
 msgstr "நடு-கோடு"
 
-#: ../gtksourceview/gtksourcestyle.c:126
+#: ../gtksourceview/gtksourcestyle.c:135
 msgid "Line background set"
 msgstr "வரியின் பின்னணி அமைக்கப்பட்டது"
 
-#: ../gtksourceview/gtksourcestyle.c:127
+#: ../gtksourceview/gtksourcestyle.c:136
 msgid "Whether line background color is set"
 msgstr "வரியின் பின்னணி நிறம் அமைக்கப்பட்டதா"
 
-#: ../gtksourceview/gtksourcestyle.c:134
+#: ../gtksourceview/gtksourcestyle.c:143
 msgid "Foreground set"
 msgstr "முன்னணி நிறம் அமைக்கப்பட்டதா"
 
-#: ../gtksourceview/gtksourcestyle.c:135
+#: ../gtksourceview/gtksourcestyle.c:144
 msgid "Whether foreground color is set"
 msgstr "முன்னணி நிறம் அமைக்கப்பட்டது"
 
-#: ../gtksourceview/gtksourcestyle.c:142
+#: ../gtksourceview/gtksourcestyle.c:151
 msgid "Background set"
 msgstr "பின்னணி அமைக்கப்பட்டது"
 
-#: ../gtksourceview/gtksourcestyle.c:143
+#: ../gtksourceview/gtksourcestyle.c:152
 msgid "Whether background color is set"
 msgstr "பின்னணி நிறம் அமைக்கப்பட்டதா"
 
-#: ../gtksourceview/gtksourcestyle.c:150
+#: ../gtksourceview/gtksourcestyle.c:159
 msgid "Bold set"
 msgstr "தடித்த அமைக்கப்பட்டது"
 
-#: ../gtksourceview/gtksourcestyle.c:151
+#: ../gtksourceview/gtksourcestyle.c:160
 msgid "Whether bold attribute is set"
 msgstr "தடித்த மதிப்புரு அமைக்கப்பட்டது"
 
-#: ../gtksourceview/gtksourcestyle.c:158
+#: ../gtksourceview/gtksourcestyle.c:167
 msgid "Italic set"
 msgstr "சாய்ந்த அமைக்கப்பட்டது"
 
-#: ../gtksourceview/gtksourcestyle.c:159
+#: ../gtksourceview/gtksourcestyle.c:168
 msgid "Whether italic attribute is set"
 msgstr "சாய்ந்த மதிப்புரு அமைக்கப்பட்டது"
 
-#: ../gtksourceview/gtksourcestyle.c:166
+#: ../gtksourceview/gtksourcestyle.c:175
 msgid "Underline set"
 msgstr "கீழ்கோடு அமைக்கப்பட்டது"
 
-#: ../gtksourceview/gtksourcestyle.c:167
+#: ../gtksourceview/gtksourcestyle.c:176
 msgid "Whether underline attribute is set"
 msgstr "அடிக்கோடு மதிப்புரு அமைக்கப்பட்டதா"
 
-#: ../gtksourceview/gtksourcestyle.c:174
+#: ../gtksourceview/gtksourcestyle.c:183
 msgid "Strikethrough set"
 msgstr "நடுக்கோடு அமைக்கப்பட்டது"
 
-#: ../gtksourceview/gtksourcestyle.c:175
+#: ../gtksourceview/gtksourcestyle.c:184
 msgid "Whether strikethrough attribute is set"
 msgstr "நடு-கோடு மதிப்புரு அமைக்கப்பட்டதா"
 
-#: ../gtksourceview/gtksourcestylescheme.c:170
-#: ../gtksourceview/gtksourcestylescheme.c:171
+#: ../gtksourceview/gtksourcestylescheme.c:186
+#: ../gtksourceview/gtksourcestylescheme.c:187
 msgid "Style scheme id"
 msgstr "சிறப்பியல்பு பாணி அடையாளம்"
 
-#: ../gtksourceview/gtksourcestylescheme.c:183
-#: ../gtksourceview/gtksourcestylescheme.c:184
+#: ../gtksourceview/gtksourcestylescheme.c:199
+#: ../gtksourceview/gtksourcestylescheme.c:200
 msgid "Style scheme name"
 msgstr "சிறப்பியல்பு பாணி பெயர்"
 
-#: ../gtksourceview/gtksourcestylescheme.c:196
-#: ../gtksourceview/gtksourcestylescheme.c:197
+#: ../gtksourceview/gtksourcestylescheme.c:212
+#: ../gtksourceview/gtksourcestylescheme.c:213
 msgid "Style scheme description"
 msgstr "சிறப்பியல்பு பாணி விவரணம்"
 
-#: ../gtksourceview/gtksourcestylescheme.c:209
-#: ../gtksourceview/gtksourcestylescheme.c:210
+#: ../gtksourceview/gtksourcestylescheme.c:225
+#: ../gtksourceview/gtksourcestylescheme.c:226
 msgid "Style scheme filename"
 msgstr "சிறப்பியல்பு திட்ட கோப்புப் பெயர்"
 
-#: ../gtksourceview/gtksourcestyleschememanager.c:145
+#: ../gtksourceview/gtksourcestyleschememanager.c:151
 msgid "Style scheme search path"
 msgstr "சிறப்பியல்பு பாணி தேடல் தடம்"
 
-#: ../gtksourceview/gtksourcestyleschememanager.c:146
+#: ../gtksourceview/gtksourcestyleschememanager.c:152
 msgid "List of directories and files where the style schemes are located"
 msgstr "பாணி திட்டங்கள் கொண்ட கோப்புகள் அடைவுகளின் பட்டியல்"
 
-#: ../gtksourceview/gtksourcestyleschememanager.c:154
+#: ../gtksourceview/gtksourcestyleschememanager.c:160
 msgid "Scheme ids"
 msgstr "திட்ட அடையாளம்"
 
-#: ../gtksourceview/gtksourcestyleschememanager.c:155
+#: ../gtksourceview/gtksourcestyleschememanager.c:161
 msgid "List of the ids of the available style schemes"
 msgstr "சிறப்பியல்பு திட்டங்களின் அடையாள பட்டியல்"
 
-#: ../gtksourceview/gtksourceview.c:308
+#: ../gtksourceview/gtksourceview.c:325
 msgid "The completion object associated with the view"
 msgstr "இந்த பார்வையுடன் சம்பந்தப்பட்ட முழுமையாக்கும் பொருள்"
 
-#: ../gtksourceview/gtksourceview.c:320
+#: ../gtksourceview/gtksourceview.c:337
 msgid "Show Line Numbers"
 msgstr "வரி எண்களை காட்டு"
 
-#: ../gtksourceview/gtksourceview.c:321
+#: ../gtksourceview/gtksourceview.c:338
 msgid "Whether to display line numbers"
 msgstr "வரி எண்களை காட்ட வேண்டுமா"
 
-#: ../gtksourceview/gtksourceview.c:332
+#: ../gtksourceview/gtksourceview.c:349
 msgid "Show Line Marks"
 msgstr "வரி குறிகளை காட்டு"
 
-#: ../gtksourceview/gtksourceview.c:333
+#: ../gtksourceview/gtksourceview.c:350
 msgid "Whether to display line mark pixbufs"
 msgstr "வரி பிக்ஸ்பஃப் குறிப்புகளை காட்ட வேண்டுமா"
 
-#: ../gtksourceview/gtksourceview.c:360
+#: ../gtksourceview/gtksourceview.c:377
 msgid "Indent Width"
 msgstr "உள்ளடக்க அகலம்"
 
-#: ../gtksourceview/gtksourceview.c:361
+#: ../gtksourceview/gtksourceview.c:378
 msgid "Number of spaces to use for each step of indent"
 msgstr "ஒதுக்கத்தின் ஒவ்வொரு படிக்கும் பயன்படுத்த இடத்தின் எண்"
 
-#: ../gtksourceview/gtksourceview.c:370
+#: ../gtksourceview/gtksourceview.c:387
 msgid "Auto Indentation"
 msgstr "தானாக ஒதுக்கம்"
 
-#: ../gtksourceview/gtksourceview.c:371
+#: ../gtksourceview/gtksourceview.c:388
 msgid "Whether to enable auto indentation"
 msgstr "தானாக ஒதுக்கத்தை செயல்படுத்த வேண்டுமா"
 
-#: ../gtksourceview/gtksourceview.c:378
+#: ../gtksourceview/gtksourceview.c:395
 msgid "Insert Spaces Instead of Tabs"
 msgstr "தத்தலுக்கு பதிலாக இடைவெளியை சொருகவும்"
 
-#: ../gtksourceview/gtksourceview.c:379
+#: ../gtksourceview/gtksourceview.c:396
 msgid "Whether to insert spaces instead of tabs"
 msgstr "தத்தலுக்கு பதிலாக இடைவெளியை சொருக வேண்டுமா"
 
-#: ../gtksourceview/gtksourceview.c:391
+#: ../gtksourceview/gtksourceview.c:408
 msgid "Show Right Margin"
 msgstr "வலது ஓரத்தை காட்டு"
 
-#: ../gtksourceview/gtksourceview.c:392
+#: ../gtksourceview/gtksourceview.c:409
 msgid "Whether to display the right margin"
 msgstr "வலது ஓரத்தை காட்ட வேண்டுமா"
 
-#: ../gtksourceview/gtksourceview.c:404
+#: ../gtksourceview/gtksourceview.c:421
 msgid "Right Margin Position"
 msgstr "வலது ஓர நிலை"
 
-#: ../gtksourceview/gtksourceview.c:405
+#: ../gtksourceview/gtksourceview.c:422
 msgid "Position of the right margin"
 msgstr "வலது ஓரல் நிலை"
 
-#: ../gtksourceview/gtksourceview.c:421
+#: ../gtksourceview/gtksourceview.c:438
 msgid "Smart Home/End"
 msgstr "திறன்வாய்ந்த இல்லம்/ முடிவு"
 
-#: ../gtksourceview/gtksourceview.c:422
+#: ../gtksourceview/gtksourceview.c:439
 msgid ""
 "HOME and END keys move to first/last non whitespace characters on line "
 "before going to the start/end of the line"
@@ -785,31 +821,31 @@ msgstr ""
 "HOME மற்றும்  END விசைகள் வரியின் முதல் / கடைசி க்கு செல்லுமுன் வரியின் முதல் / கடைசி "
 "வெற்று எழுத்துருவுக்கு செல்லும். "
 
-#: ../gtksourceview/gtksourceview.c:432
+#: ../gtksourceview/gtksourceview.c:449
 msgid "Highlight current line"
 msgstr "நடப்பு வரியை முன்னிலைப்படுத்து"
 
-#: ../gtksourceview/gtksourceview.c:433
+#: ../gtksourceview/gtksourceview.c:450
 msgid "Whether to highlight the current line"
 msgstr "நடப்பு வரியை முன்னிலைப்படுத்த வேண்டுமா"
 
-#: ../gtksourceview/gtksourceview.c:440
+#: ../gtksourceview/gtksourceview.c:457
 msgid "Indent on tab"
 msgstr "தத்தல் உள்ளடக்கம்"
 
-#: ../gtksourceview/gtksourceview.c:441
+#: ../gtksourceview/gtksourceview.c:458
 msgid "Whether to indent the selected text when the tab key is pressed"
 msgstr "தத்தல் விசையை அழுத்தும் போது தேர்ந்தெடுக்கப்பட்ட உரையை உள்ளடக்க வேண்டுமா"
 
-#: ../gtksourceview/gtksourceview.c:455
+#: ../gtksourceview/gtksourceview.c:472
 msgid "Draw Spaces"
 msgstr "வெற்றிடம் வரைக"
 
-#: ../gtksourceview/gtksourceview.c:456
+#: ../gtksourceview/gtksourceview.c:473
 msgid "Set if and how the spaces should be visualized"
 msgstr "வெற்றிடம் காணப்பட வேண்டுமா அப்படியானால் எவ்வாறு என அமைக்கவும்"
 
-#: ../gtksourceview/gtksourceview-i18n.c:38
+#: ../gtksourceview/gtksourceview-i18n.c:74
 msgid "translator-credits"
 msgstr "I. Felix <ifelix@redhat.com>. Dr. T. Vasudevan <agnihot3@gmail.com>"
 
@@ -825,8 +861,10 @@ msgstr "விதிக்கட்டற்ற அடிப்படை எண�
 #: ../gtksourceview/language-specs/ada.lang.h:3
 #: ../gtksourceview/language-specs/asp.lang.h:3
 #: ../gtksourceview/language-specs/c.lang.h:1
+#: ../gtksourceview/language-specs/cg.lang.h:2
 #: ../gtksourceview/language-specs/csharp.lang.h:1
 #: ../gtksourceview/language-specs/def.lang.h:4
+#: ../gtksourceview/language-specs/fsharp.lang.h:2
 #: ../gtksourceview/language-specs/gtkrc.lang.h:1
 #: ../gtksourceview/language-specs/ini.lang.h:2
 #: ../gtksourceview/language-specs/java.lang.h:1
@@ -834,6 +872,7 @@ msgstr "விதிக்கட்டற்ற அடிப்படை எண�
 #: ../gtksourceview/language-specs/lua.lang.h:1
 #: ../gtksourceview/language-specs/nemerle.lang.h:2
 #: ../gtksourceview/language-specs/ocaml.lang.h:2
+#: ../gtksourceview/language-specs/ooc.lang.h:1
 #: ../gtksourceview/language-specs/php.lang.h:1
 #: ../gtksourceview/language-specs/R.lang.h:2
 #: ../gtksourceview/language-specs/ruby.lang.h:3
@@ -848,6 +887,7 @@ msgstr "பூலியன் மதிப்பு"
 #: ../gtksourceview/language-specs/asp.lang.h:4
 #: ../gtksourceview/language-specs/boo.lang.h:4
 #: ../gtksourceview/language-specs/c.lang.h:4
+#: ../gtksourceview/language-specs/cg.lang.h:5
 #: ../gtksourceview/language-specs/csharp.lang.h:4
 #: ../gtksourceview/language-specs/css.lang.h:3
 #: ../gtksourceview/language-specs/def.lang.h:11
@@ -856,8 +896,10 @@ msgstr "பூலியன் மதிப்பு"
 #: ../gtksourceview/language-specs/dot.lang.h:2
 #: ../gtksourceview/language-specs/eiffel.lang.h:3
 #: ../gtksourceview/language-specs/erlang.lang.h:4
+#: ../gtksourceview/language-specs/fcl.lang.h:2
 #: ../gtksourceview/language-specs/forth.lang.h:1
 #: ../gtksourceview/language-specs/fortran.lang.h:2
+#: ../gtksourceview/language-specs/fsharp.lang.h:4
 #: ../gtksourceview/language-specs/gap.lang.h:2
 #: ../gtksourceview/language-specs/gtkrc.lang.h:2
 #: ../gtksourceview/language-specs/haskell.lang.h:2
@@ -873,6 +915,7 @@ msgstr "பூலியன் மதிப்பு"
 #: ../gtksourceview/language-specs/ocaml.lang.h:4
 #: ../gtksourceview/language-specs/ocl.lang.h:1
 #: ../gtksourceview/language-specs/octave.lang.h:3
+#: ../gtksourceview/language-specs/ooc.lang.h:2
 #: ../gtksourceview/language-specs/pascal.lang.h:1
 #: ../gtksourceview/language-specs/perl.lang.h:2
 #: ../gtksourceview/language-specs/php.lang.h:2
@@ -897,6 +940,7 @@ msgstr "குறிப்புரை"
 #: ../gtksourceview/language-specs/asp.lang.h:5
 #: ../gtksourceview/language-specs/boo.lang.h:5
 #: ../gtksourceview/language-specs/c.lang.h:6
+#: ../gtksourceview/language-specs/cg.lang.h:6
 #: ../gtksourceview/language-specs/cpp.lang.h:3
 #: ../gtksourceview/language-specs/csharp.lang.h:5
 #: ../gtksourceview/language-specs/cuda.lang.h:2
@@ -904,6 +948,7 @@ msgstr "குறிப்புரை"
 #: ../gtksourceview/language-specs/eiffel.lang.h:4
 #: ../gtksourceview/language-specs/forth.lang.h:3
 #: ../gtksourceview/language-specs/fortran.lang.h:3
+#: ../gtksourceview/language-specs/fsharp.lang.h:5
 #: ../gtksourceview/language-specs/glsl.lang.h:3
 #: ../gtksourceview/language-specs/gtkrc.lang.h:3
 #: ../gtksourceview/language-specs/haskell.lang.h:3
@@ -915,8 +960,10 @@ msgstr "குறிப்புரை"
 #: ../gtksourceview/language-specs/objc.lang.h:2
 #: ../gtksourceview/language-specs/ocaml.lang.h:5
 #: ../gtksourceview/language-specs/ocl.lang.h:2
+#: ../gtksourceview/language-specs/ooc.lang.h:3
 #: ../gtksourceview/language-specs/pascal.lang.h:2
 #: ../gtksourceview/language-specs/php.lang.h:3
+#: ../gtksourceview/language-specs/sparql.lang.h:3
 #: ../gtksourceview/language-specs/sql.lang.h:2
 #: ../gtksourceview/language-specs/vala.lang.h:3
 #: ../gtksourceview/language-specs/vbnet.lang.h:3
@@ -926,13 +973,16 @@ msgstr "தகவல் வகை"
 #. A decimal number: 1234
 #: ../gtksourceview/language-specs/ada.lang.h:6
 #: ../gtksourceview/language-specs/c.lang.h:7
+#: ../gtksourceview/language-specs/cg.lang.h:7
 #: ../gtksourceview/language-specs/csharp.lang.h:6
 #: ../gtksourceview/language-specs/def.lang.h:19
 #: ../gtksourceview/language-specs/d.lang.h:6
 #: ../gtksourceview/language-specs/eiffel.lang.h:6
 #: ../gtksourceview/language-specs/erlang.lang.h:6
+#: ../gtksourceview/language-specs/fsharp.lang.h:6
 #: ../gtksourceview/language-specs/nemerle.lang.h:6
 #: ../gtksourceview/language-specs/ocaml.lang.h:6
+#: ../gtksourceview/language-specs/ooc.lang.h:4
 #: ../gtksourceview/language-specs/php.lang.h:4
 #: ../gtksourceview/language-specs/python.lang.h:7
 #: ../gtksourceview/language-specs/ruby.lang.h:7
@@ -943,13 +993,17 @@ msgstr "பதின்ம எண்"
 #. map to nothing
 #: ../gtksourceview/language-specs/ada.lang.h:7
 #: ../gtksourceview/language-specs/c.lang.h:9
+#: ../gtksourceview/language-specs/cg.lang.h:9
 #: ../gtksourceview/language-specs/csharp.lang.h:8
 #: ../gtksourceview/language-specs/eiffel.lang.h:9
+#: ../gtksourceview/language-specs/fsharp.lang.h:7
 #: ../gtksourceview/language-specs/haskell.lang.h:5
 #: ../gtksourceview/language-specs/java.lang.h:7
 #: ../gtksourceview/language-specs/lua.lang.h:3
 #: ../gtksourceview/language-specs/ocaml.lang.h:8
+#: ../gtksourceview/language-specs/ooc.lang.h:7
 #: ../gtksourceview/language-specs/php.lang.h:7
+#: ../gtksourceview/language-specs/prolog.lang.h:3
 #: ../gtksourceview/language-specs/python.lang.h:8
 #: ../gtksourceview/language-specs/ruby.lang.h:8
 #: ../gtksourceview/language-specs/texinfo.lang.h:2
@@ -962,6 +1016,7 @@ msgstr "விடுபடு எழுத்துக்கள்"
 #: ../gtksourceview/language-specs/awk.lang.h:2
 #: ../gtksourceview/language-specs/boo.lang.h:7
 #: ../gtksourceview/language-specs/c.lang.h:13
+#: ../gtksourceview/language-specs/cg.lang.h:14
 #: ../gtksourceview/language-specs/cpp.lang.h:4
 #: ../gtksourceview/language-specs/csharp.lang.h:10
 #: ../gtksourceview/language-specs/css.lang.h:8
@@ -972,8 +1027,10 @@ msgstr "விடுபடு எழுத்துக்கள்"
 #: ../gtksourceview/language-specs/dot.lang.h:5
 #: ../gtksourceview/language-specs/eiffel.lang.h:12
 #: ../gtksourceview/language-specs/erlang.lang.h:9
+#: ../gtksourceview/language-specs/fcl.lang.h:6
 #: ../gtksourceview/language-specs/forth.lang.h:7
 #: ../gtksourceview/language-specs/fortran.lang.h:8
+#: ../gtksourceview/language-specs/fsharp.lang.h:10
 #: ../gtksourceview/language-specs/gap.lang.h:6
 #: ../gtksourceview/language-specs/glsl.lang.h:4
 #: ../gtksourceview/language-specs/gtkrc.lang.h:7
@@ -988,16 +1045,18 @@ msgstr "விடுபடு எழுத்துக்கள்"
 #: ../gtksourceview/language-specs/ocaml.lang.h:10
 #: ../gtksourceview/language-specs/ocl.lang.h:3
 #: ../gtksourceview/language-specs/octave.lang.h:7
+#: ../gtksourceview/language-specs/ooc.lang.h:12
 #: ../gtksourceview/language-specs/pascal.lang.h:4
 #: ../gtksourceview/language-specs/perl.lang.h:9
 #: ../gtksourceview/language-specs/php.lang.h:13
 #: ../gtksourceview/language-specs/po.lang.h:3
-#: ../gtksourceview/language-specs/prolog.lang.h:3
+#: ../gtksourceview/language-specs/prolog.lang.h:4
 #: ../gtksourceview/language-specs/python.lang.h:11
 #: ../gtksourceview/language-specs/R.lang.h:6
 #: ../gtksourceview/language-specs/ruby.lang.h:12
 #: ../gtksourceview/language-specs/scheme.lang.h:4
 #: ../gtksourceview/language-specs/sh.lang.h:5
+#: ../gtksourceview/language-specs/sparql.lang.h:7
 #: ../gtksourceview/language-specs/sql.lang.h:6
 #: ../gtksourceview/language-specs/tcl.lang.h:1
 #: ../gtksourceview/language-specs/texinfo.lang.h:6
@@ -1011,8 +1070,10 @@ msgstr "விசைவார்த்தை"
 #: ../gtksourceview/language-specs/ada.lang.h:9
 #: ../gtksourceview/language-specs/asp.lang.h:10
 #: ../gtksourceview/language-specs/c.lang.h:15
+#: ../gtksourceview/language-specs/cg.lang.h:16
 #: ../gtksourceview/language-specs/csharp.lang.h:12
 #: ../gtksourceview/language-specs/forth.lang.h:9
+#: ../gtksourceview/language-specs/fsharp.lang.h:15
 #: ../gtksourceview/language-specs/glsl.lang.h:6
 #: ../gtksourceview/language-specs/haskell.lang.h:11
 #: ../gtksourceview/language-specs/idl.lang.h:5
@@ -1034,6 +1095,7 @@ msgstr "மெய்யெண்"
 #: ../gtksourceview/language-specs/boo.lang.h:13
 #: ../gtksourceview/language-specs/chdr.lang.h:2
 #: ../gtksourceview/language-specs/c.lang.h:16
+#: ../gtksourceview/language-specs/cg.lang.h:17
 #: ../gtksourceview/language-specs/cpp.lang.h:5
 #: ../gtksourceview/language-specs/csharp.lang.h:14
 #: ../gtksourceview/language-specs/cuda.lang.h:7
@@ -1042,6 +1104,7 @@ msgstr "மெய்யெண்"
 #: ../gtksourceview/language-specs/erlang.lang.h:11
 #: ../gtksourceview/language-specs/forth.lang.h:10
 #: ../gtksourceview/language-specs/fortran.lang.h:9
+#: ../gtksourceview/language-specs/fsharp.lang.h:16
 #: ../gtksourceview/language-specs/glsl.lang.h:8
 #: ../gtksourceview/language-specs/haskell.lang.h:12
 #: ../gtksourceview/language-specs/haskell-literate.lang.h:2
@@ -1051,9 +1114,11 @@ msgstr "மெய்யெண்"
 #: ../gtksourceview/language-specs/nemerle.lang.h:15
 #: ../gtksourceview/language-specs/objc.lang.h:5
 #: ../gtksourceview/language-specs/ocaml.lang.h:16
+#: ../gtksourceview/language-specs/ooc.lang.h:17
 #: ../gtksourceview/language-specs/pascal.lang.h:7
-#: ../gtksourceview/language-specs/prolog.lang.h:7
+#: ../gtksourceview/language-specs/prolog.lang.h:8
 #: ../gtksourceview/language-specs/scheme.lang.h:6
+#: ../gtksourceview/language-specs/sparql.lang.h:14
 #: ../gtksourceview/language-specs/sql.lang.h:9
 #: ../gtksourceview/language-specs/vala.lang.h:10
 #: ../gtksourceview/language-specs/vbnet.lang.h:6
@@ -1064,7 +1129,9 @@ msgstr "மூலங்கள்"
 
 #: ../gtksourceview/language-specs/ada.lang.h:12
 #: ../gtksourceview/language-specs/c.lang.h:17
+#: ../gtksourceview/language-specs/cg.lang.h:18
 #: ../gtksourceview/language-specs/java.lang.h:16
+#: ../gtksourceview/language-specs/ooc.lang.h:18
 msgid "Storage Class"
 msgstr "சேமிப்பு வகுப்பு"
 
@@ -1081,6 +1148,7 @@ msgstr "சேமிப்பு வகுப்பு"
 #: ../gtksourceview/language-specs/eiffel.lang.h:15
 #: ../gtksourceview/language-specs/erlang.lang.h:12
 #: ../gtksourceview/language-specs/forth.lang.h:11
+#: ../gtksourceview/language-specs/fsharp.lang.h:17
 #: ../gtksourceview/language-specs/gtkrc.lang.h:9
 #: ../gtksourceview/language-specs/haskell.lang.h:13
 #: ../gtksourceview/language-specs/idl.lang.h:7
@@ -1094,11 +1162,12 @@ msgstr "சேமிப்பு வகுப்பு"
 #: ../gtksourceview/language-specs/ocaml.lang.h:18
 #: ../gtksourceview/language-specs/ocl.lang.h:7
 #: ../gtksourceview/language-specs/octave.lang.h:11
+#: ../gtksourceview/language-specs/ooc.lang.h:19
 #: ../gtksourceview/language-specs/pascal.lang.h:8
 #: ../gtksourceview/language-specs/perl.lang.h:19
 #: ../gtksourceview/language-specs/php.lang.h:19
 #: ../gtksourceview/language-specs/po.lang.h:8
-#: ../gtksourceview/language-specs/prolog.lang.h:8
+#: ../gtksourceview/language-specs/prolog.lang.h:9
 #: ../gtksourceview/language-specs/python.lang.h:17
 #: ../gtksourceview/language-specs/ruby.lang.h:21
 #: ../gtksourceview/language-specs/scheme.lang.h:7
@@ -1122,6 +1191,7 @@ msgstr "ஏஎஸ்பி(ASP) பொருள்"
 #. A function name (also: methods for classes)
 #: ../gtksourceview/language-specs/asp.lang.h:6
 #: ../gtksourceview/language-specs/changelog.lang.h:6
+#: ../gtksourceview/language-specs/cg.lang.h:11
 #: ../gtksourceview/language-specs/css.lang.h:7
 #: ../gtksourceview/language-specs/def.lang.h:32
 #: ../gtksourceview/language-specs/gap.lang.h:4
@@ -1131,6 +1201,7 @@ msgstr "ஏஎஸ்பி(ASP) பொருள்"
 #: ../gtksourceview/language-specs/octave.lang.h:6
 #: ../gtksourceview/language-specs/scheme.lang.h:3
 #: ../gtksourceview/language-specs/sh.lang.h:3
+#: ../gtksourceview/language-specs/sparql.lang.h:4
 #: ../gtksourceview/language-specs/sql.lang.h:5
 msgid "Function"
 msgstr "செயல்"
@@ -1139,10 +1210,10 @@ msgstr "செயல்"
 #: ../gtksourceview/language-specs/asp.lang.h:8
 #: ../gtksourceview/language-specs/boo.lang.h:11
 #: ../gtksourceview/language-specs/def.lang.h:40
-#: ../gtksourceview/language-specs/desktop.lang.h:10
+#: ../gtksourceview/language-specs/desktop.lang.h:11
 #: ../gtksourceview/language-specs/forth.lang.h:8
 #: ../gtksourceview/language-specs/java.lang.h:13
-#: ../gtksourceview/language-specs/prolog.lang.h:4
+#: ../gtksourceview/language-specs/prolog.lang.h:5
 #: ../gtksourceview/language-specs/vhdl.lang.h:6
 msgid "Number"
 msgstr "எண்"
@@ -1155,7 +1226,8 @@ msgstr "எண்"
 #: ../gtksourceview/language-specs/nsis.lang.h:3
 #: ../gtksourceview/language-specs/perl.lang.h:11
 #: ../gtksourceview/language-specs/php.lang.h:16
-#: ../gtksourceview/language-specs/prolog.lang.h:5
+#: ../gtksourceview/language-specs/prolog.lang.h:6
+#: ../gtksourceview/language-specs/sparql.lang.h:10
 msgid "Operator"
 msgstr "குறியீடு"
 
@@ -1205,9 +1277,10 @@ msgstr "சிறுநிரல்கள்"
 #: ../gtksourceview/language-specs/perl.lang.h:21
 #: ../gtksourceview/language-specs/php.lang.h:20
 #: ../gtksourceview/language-specs/pkgconfig.lang.h:3
-#: ../gtksourceview/language-specs/prolog.lang.h:9
+#: ../gtksourceview/language-specs/prolog.lang.h:10
 #: ../gtksourceview/language-specs/ruby.lang.h:23
 #: ../gtksourceview/language-specs/sh.lang.h:11
+#: ../gtksourceview/language-specs/sparql.lang.h:15
 #: ../gtksourceview/language-specs/tcl.lang.h:4
 msgid "Variable"
 msgstr "மாறிலிகள்"
@@ -1216,17 +1289,32 @@ msgstr "மாறிலிகள்"
 msgid "awk"
 msgstr "ஆக்(awk)"
 
+#: ../gtksourceview/language-specs/bibtex.lang.h:1
+msgid "BibTeX"
+msgstr "பிப்டெக்ஸ்"
+
+#: ../gtksourceview/language-specs/bibtex.lang.h:2
+#| msgid "Entity"
+msgid "Entries"
+msgstr "உள்ளீடுகள்"
+
+#: ../gtksourceview/language-specs/bibtex.lang.h:3
+#| msgid "File"
+msgid "Field"
+msgstr "புலம்"
+
 #: ../gtksourceview/language-specs/boo.lang.h:1
 msgid "Boo"
 msgstr "பூ"
 
 #: ../gtksourceview/language-specs/boo.lang.h:2
-#: ../gtksourceview/language-specs/desktop.lang.h:2
+#: ../gtksourceview/language-specs/desktop.lang.h:3
 #: ../gtksourceview/language-specs/d.lang.h:2
 #: ../gtksourceview/language-specs/libtool.lang.h:1
 #: ../gtksourceview/language-specs/octave.lang.h:2
 #: ../gtksourceview/language-specs/python.lang.h:2
 #: ../gtksourceview/language-specs/scheme.lang.h:1
+#: ../gtksourceview/language-specs/sparql.lang.h:1
 msgid "Boolean"
 msgstr "பூலியன்"
 
@@ -1240,6 +1328,7 @@ msgid "Multiline string"
 msgstr "பல்வரி சரம்"
 
 #: ../gtksourceview/language-specs/boo.lang.h:9
+#: ../gtksourceview/language-specs/sparql.lang.h:9
 #: ../gtksourceview/language-specs/xml.lang.h:10
 #: ../gtksourceview/language-specs/xslt.lang.h:3
 msgid "Namespace"
@@ -1248,9 +1337,11 @@ msgstr "பெயர் இடம்"
 #: ../gtksourceview/language-specs/boo.lang.h:10
 #: ../gtksourceview/language-specs/csharp.lang.h:11
 #: ../gtksourceview/language-specs/d.lang.h:11
+#: ../gtksourceview/language-specs/fsharp.lang.h:13
 #: ../gtksourceview/language-specs/java.lang.h:12
 #: ../gtksourceview/language-specs/javascript.lang.h:11
 #: ../gtksourceview/language-specs/nemerle.lang.h:12
+#: ../gtksourceview/language-specs/ooc.lang.h:13
 #: ../gtksourceview/language-specs/php.lang.h:14
 #: ../gtksourceview/language-specs/vala.lang.h:8
 msgid "Null Value"
@@ -1322,6 +1413,7 @@ msgstr "பொதுவான அறுதியிடல்கள்"
 
 #. Any erroneous construct
 #: ../gtksourceview/language-specs/c.lang.h:8
+#: ../gtksourceview/language-specs/cg.lang.h:8
 #: ../gtksourceview/language-specs/csharp.lang.h:7
 #: ../gtksourceview/language-specs/css.lang.h:6
 #: ../gtksourceview/language-specs/def.lang.h:28
@@ -1332,6 +1424,7 @@ msgstr "பொதுவான அறுதியிடல்கள்"
 #: ../gtksourceview/language-specs/javascript.lang.h:6
 #: ../gtksourceview/language-specs/nemerle.lang.h:7
 #: ../gtksourceview/language-specs/ocaml.lang.h:7
+#: ../gtksourceview/language-specs/ooc.lang.h:6
 #: ../gtksourceview/language-specs/perl.lang.h:4
 #: ../gtksourceview/language-specs/php.lang.h:5
 #: ../gtksourceview/language-specs/prolog.lang.h:2
@@ -1343,10 +1436,12 @@ msgstr "பிழை"
 
 #. A floating point constant: 2.3e10
 #: ../gtksourceview/language-specs/c.lang.h:10
+#: ../gtksourceview/language-specs/cg.lang.h:10
 #: ../gtksourceview/language-specs/def.lang.h:30
 #: ../gtksourceview/language-specs/d.lang.h:8
 #: ../gtksourceview/language-specs/erlang.lang.h:8
 #: ../gtksourceview/language-specs/nemerle.lang.h:8
+#: ../gtksourceview/language-specs/ooc.lang.h:9
 #: ../gtksourceview/language-specs/php.lang.h:8
 #: ../gtksourceview/language-specs/python.lang.h:9
 #: ../gtksourceview/language-specs/R.lang.h:4
@@ -1355,22 +1450,27 @@ msgid "Floating point number"
 msgstr "மிதவைப்புள்ளி எண்"
 
 #: ../gtksourceview/language-specs/c.lang.h:11
+#: ../gtksourceview/language-specs/cg.lang.h:12
 #: ../gtksourceview/language-specs/csharp.lang.h:9
 #: ../gtksourceview/language-specs/d.lang.h:9
 #: ../gtksourceview/language-specs/eiffel.lang.h:11
 #: ../gtksourceview/language-specs/nemerle.lang.h:9
+#: ../gtksourceview/language-specs/ooc.lang.h:11
 #: ../gtksourceview/language-specs/php.lang.h:11
 #: ../gtksourceview/language-specs/vala.lang.h:6
 msgid "Hexadecimal number"
 msgstr "பதின்அறும எண்"
 
 #: ../gtksourceview/language-specs/c.lang.h:12
+#: ../gtksourceview/language-specs/cg.lang.h:13
 msgid "Included File"
 msgstr "சேர்த்த கோப்பு"
 
 #: ../gtksourceview/language-specs/c.lang.h:14
+#: ../gtksourceview/language-specs/cg.lang.h:15
 #: ../gtksourceview/language-specs/d.lang.h:12
 #: ../gtksourceview/language-specs/nemerle.lang.h:13
+#: ../gtksourceview/language-specs/ooc.lang.h:15
 #: ../gtksourceview/language-specs/php.lang.h:15
 msgid "Octal number"
 msgstr "எண்ம எண்"
@@ -1378,6 +1478,27 @@ msgstr "எண்ம எண்"
 #: ../gtksourceview/language-specs/c.lang.h:19
 msgid "printf Conversion"
 msgstr "ப்ரின்ட் எஃப்(printf) மாற்றம்"
+
+#: ../gtksourceview/language-specs/cg.lang.h:1
+#| msgid "Encoding"
+msgid "Bindings"
+msgstr "பிணைப்புகள்"
+
+#: ../gtksourceview/language-specs/cg.lang.h:3
+#: ../gtksourceview/language-specs/erlang.lang.h:3
+#: ../gtksourceview/language-specs/ruby.lang.h:4
+msgid "Builtin"
+msgstr "உள்ளமை"
+
+#: ../gtksourceview/language-specs/cg.lang.h:4
+#| msgid "OpenGL Shading Language"
+msgid "CG Shader Language"
+msgstr "சிஜி நிழலிடும் மொழி"
+
+#: ../gtksourceview/language-specs/cg.lang.h:19
+#| msgid "Type Operators"
+msgid "Swizzle operator"
+msgstr "ஸ்விசல் வகை  செயல்படுத்திகள்"
 
 #: ../gtksourceview/language-specs/classic.xml.h:1
 msgid "Classic"
@@ -1441,6 +1562,7 @@ msgid "Color"
 msgstr "வண்ணம்"
 
 #: ../gtksourceview/language-specs/css.lang.h:4
+#: ../gtksourceview/language-specs/fcl.lang.h:3
 #: ../gtksourceview/language-specs/fortran.lang.h:4
 #: ../gtksourceview/language-specs/gap.lang.h:3
 #: ../gtksourceview/language-specs/gtkrc.lang.h:4
@@ -1575,9 +1697,10 @@ msgstr "அடிக்கோடிட்ட"
 msgid ".desktop"
 msgstr ".desktop"
 
-#: ../gtksourceview/language-specs/desktop.lang.h:3
-msgid "Category"
-msgstr "வகை"
+#: ../gtksourceview/language-specs/desktop.lang.h:2
+#| msgid "Conditional Macro"
+msgid "Additional Category"
+msgstr "கூடுதல் வகை"
 
 #: ../gtksourceview/language-specs/desktop.lang.h:4
 msgid "Encoding"
@@ -1597,7 +1720,17 @@ msgstr "தொகுப்பு"
 msgid "Key"
 msgstr "விசை"
 
-#: ../gtksourceview/language-specs/desktop.lang.h:12
+#: ../gtksourceview/language-specs/desktop.lang.h:10
+#| msgid "Category"
+msgid "Main Category"
+msgstr "முதன்மை வகை"
+
+#: ../gtksourceview/language-specs/desktop.lang.h:13
+#| msgid "Reserved keyword"
+msgid "Reserved Category"
+msgstr "ஒதுக்கீடு செய்த வகை"
+
+#: ../gtksourceview/language-specs/desktop.lang.h:14
 msgid "Translation"
 msgstr "மொழிபெயர்ப்பு"
 
@@ -1753,17 +1886,13 @@ msgid "Atom"
 msgstr "அணு"
 
 #: ../gtksourceview/language-specs/erlang.lang.h:2
+#: ../gtksourceview/language-specs/fsharp.lang.h:1
 #: ../gtksourceview/language-specs/ocaml.lang.h:1
 #: ../gtksourceview/language-specs/octave.lang.h:1
 #: ../gtksourceview/language-specs/verilog.lang.h:1
 #: ../gtksourceview/language-specs/vhdl.lang.h:1
 msgid "Base-N Integer"
 msgstr "அடிப்படை-N இயல் எண்"
-
-#: ../gtksourceview/language-specs/erlang.lang.h:3
-#: ../gtksourceview/language-specs/ruby.lang.h:4
-msgid "Builtin"
-msgstr "உள்ளமை"
 
 #: ../gtksourceview/language-specs/erlang.lang.h:5
 #: ../gtksourceview/language-specs/forth.lang.h:2
@@ -1774,6 +1903,36 @@ msgstr "தொகுப்பான் பணிப்பு"
 #: ../gtksourceview/language-specs/erlang.lang.h:7
 msgid "Erlang"
 msgstr "எர்லாங்"
+
+#: ../gtksourceview/language-specs/fcl.lang.h:1
+#| msgid "Code Block"
+msgid "Block"
+msgstr "தொகுதி"
+
+#: ../gtksourceview/language-specs/fcl.lang.h:4
+#| msgid "OCL"
+msgid "FCL"
+msgstr "எஃப்சிஎல்"
+
+#: ../gtksourceview/language-specs/fcl.lang.h:5
+#: ../gtksourceview/language-specs/fortran.lang.h:5
+#: ../gtksourceview/language-specs/ini.lang.h:6
+#: ../gtksourceview/language-specs/octave.lang.h:5
+#: ../gtksourceview/language-specs/sql.lang.h:4
+msgid "Floating Point"
+msgstr "மிதக்கும் புள்ளி"
+
+#: ../gtksourceview/language-specs/fcl.lang.h:7
+#: ../gtksourceview/language-specs/octave.lang.h:9
+msgid "Reserved Constant"
+msgstr "தலைகீழ் மாறிலி"
+
+#: ../gtksourceview/language-specs/fcl.lang.h:8
+#: ../gtksourceview/language-specs/gap.lang.h:7
+#: ../gtksourceview/language-specs/octave.lang.h:10
+#: ../gtksourceview/language-specs/R.lang.h:9
+msgid "Scientific"
+msgstr "அறிவியல்"
 
 #: ../gtksourceview/language-specs/forth.lang.h:4
 msgid "Debug Code"
@@ -1791,13 +1950,6 @@ msgstr "போர்த்"
 msgid "BOZ Literal"
 msgstr "பாஃஜ் (BOZ) சொற்படி"
 
-#: ../gtksourceview/language-specs/fortran.lang.h:5
-#: ../gtksourceview/language-specs/ini.lang.h:6
-#: ../gtksourceview/language-specs/octave.lang.h:5
-#: ../gtksourceview/language-specs/sql.lang.h:4
-msgid "Floating Point"
-msgstr "மிதக்கும் புள்ளி"
-
 #: ../gtksourceview/language-specs/fortran.lang.h:6
 msgid "Fortran 95"
 msgstr "ஃபோட்ரான் 95"
@@ -1806,15 +1958,53 @@ msgstr "ஃபோட்ரான் 95"
 msgid "Intrinsic function"
 msgstr "உள்ளமை செயல்பாடு"
 
+#: ../gtksourceview/language-specs/fsharp.lang.h:3
+#: ../gtksourceview/language-specs/ocaml.lang.h:3
+msgid "Builtin-function keyword"
+msgstr "உள்ளமை தொழிற்பாடு முதன்மைச் சொல்"
+
+#: ../gtksourceview/language-specs/fsharp.lang.h:8
+msgid "F#"
+msgstr "F#"
+
+#: ../gtksourceview/language-specs/fsharp.lang.h:9
+#: ../gtksourceview/language-specs/ocaml.lang.h:9
+msgid "Floating Point number"
+msgstr "மிதவை புள்ளி எண்"
+
+#: ../gtksourceview/language-specs/fsharp.lang.h:11
+#: ../gtksourceview/language-specs/ocaml.lang.h:11
+msgid "Labeled argument"
+msgstr "குறியிட்ட தருமதிப்பு"
+
+#: ../gtksourceview/language-specs/fsharp.lang.h:12
+#: ../gtksourceview/language-specs/ocaml.lang.h:12
+msgid "Module Path"
+msgstr "கூறு பாதை"
+
+#: ../gtksourceview/language-specs/fsharp.lang.h:14
+#: ../gtksourceview/language-specs/ocaml.lang.h:15
+msgid "Polymorphic Variant"
+msgstr "பல்மாற்ற திரிபுரு"
+
+#: ../gtksourceview/language-specs/fsharp.lang.h:18
+#: ../gtksourceview/language-specs/ocaml.lang.h:19
+msgid "Type Variable"
+msgstr "வகை மாறி"
+
+#: ../gtksourceview/language-specs/fsharp.lang.h:19
+#: ../gtksourceview/language-specs/ocaml.lang.h:20
+msgid "Type, module or object keyword"
+msgstr "வகை, பகுதி அல்லது பொருள் முதன்மை சொல்"
+
+#: ../gtksourceview/language-specs/fsharp.lang.h:20
+#: ../gtksourceview/language-specs/ocaml.lang.h:21
+msgid "Variant Constructor"
+msgstr "திரிபுரு உருவாக்கி"
+
 #: ../gtksourceview/language-specs/gap.lang.h:5
 msgid "GAP"
 msgstr "ஜிஏபி(GAP)"
-
-#: ../gtksourceview/language-specs/gap.lang.h:7
-#: ../gtksourceview/language-specs/octave.lang.h:10
-#: ../gtksourceview/language-specs/R.lang.h:9
-msgid "Scientific"
-msgstr "அறிவியல்"
 
 #: ../gtksourceview/language-specs/glsl.lang.h:1
 #: ../gtksourceview/language-specs/python.lang.h:3
@@ -1995,15 +2185,18 @@ msgid ".ini"
 msgstr ".ini"
 
 #: ../gtksourceview/language-specs/java.lang.h:5
+#: ../gtksourceview/language-specs/ooc.lang.h:5
 msgid "Declaration"
 msgstr "அறிவிப்பு"
 
 #: ../gtksourceview/language-specs/java.lang.h:8
+#: ../gtksourceview/language-specs/ooc.lang.h:8
 msgid "External"
 msgstr "வெளி"
 
 #: ../gtksourceview/language-specs/java.lang.h:9
 #: ../gtksourceview/language-specs/javascript.lang.h:8
+#: ../gtksourceview/language-specs/ooc.lang.h:10
 msgid "Future Reserved Keywords"
 msgstr "எதிர்காலத்துக்கு ஒதுக்கப்பட்ட முதன்மைச்சொற்கள்"
 
@@ -2012,6 +2205,7 @@ msgid "Java"
 msgstr "ஜாவா"
 
 #: ../gtksourceview/language-specs/java.lang.h:14
+#: ../gtksourceview/language-specs/ooc.lang.h:16
 msgid "Scope Declaration"
 msgstr "வரையெல்லை அறிவிப்பு"
 
@@ -2190,22 +2384,6 @@ msgstr "டாங்கோ வண்ணத்தட்டை பயன்பட�
 msgid "Oblivion"
 msgstr "மறதி"
 
-#: ../gtksourceview/language-specs/ocaml.lang.h:3
-msgid "Builtin-function keyword"
-msgstr "உள்ளமை தொழிற்பாடு முதன்மைச் சொல்"
-
-#: ../gtksourceview/language-specs/ocaml.lang.h:9
-msgid "Floating Point number"
-msgstr "மிதவை புள்ளி எண்"
-
-#: ../gtksourceview/language-specs/ocaml.lang.h:11
-msgid "Labeled argument"
-msgstr "குறியிட்ட தருமதிப்பு"
-
-#: ../gtksourceview/language-specs/ocaml.lang.h:12
-msgid "Module Path"
-msgstr "கூறு பாதை"
-
 #: ../gtksourceview/language-specs/ocaml.lang.h:13
 msgid "Objective Caml"
 msgstr "தன்னின் வேறான"
@@ -2214,25 +2392,9 @@ msgstr "தன்னின் வேறான"
 msgid "Ocamldoc Comments"
 msgstr "Ocamldoc குறிப்புகள்"
 
-#: ../gtksourceview/language-specs/ocaml.lang.h:15
-msgid "Polymorphic Variant"
-msgstr "பல்மாற்ற திரிபுரு"
-
 #: ../gtksourceview/language-specs/ocaml.lang.h:17
 msgid "Standart Modules"
 msgstr "ஸ்டான்டார்ட் தொகுதிகள்"
-
-#: ../gtksourceview/language-specs/ocaml.lang.h:19
-msgid "Type Variable"
-msgstr "வகை மாறி"
-
-#: ../gtksourceview/language-specs/ocaml.lang.h:20
-msgid "Type, module or object keyword"
-msgstr "வகை, பகுதி அல்லது பொருள் முதன்மை சொல்"
-
-#: ../gtksourceview/language-specs/ocaml.lang.h:21
-msgid "Variant Constructor"
-msgstr "திரிபுரு உருவாக்கி"
 
 #: ../gtksourceview/language-specs/ocl.lang.h:4
 msgid "OCL"
@@ -2250,9 +2412,10 @@ msgstr "வகை செயல்படுத்திகள்"
 msgid "Octave"
 msgstr "எட்டன் தொகுதி( Octave)"
 
-#: ../gtksourceview/language-specs/octave.lang.h:9
-msgid "Reserved Constant"
-msgstr "தலைகீழ் மாறிலி"
+#: ../gtksourceview/language-specs/ooc.lang.h:14
+#| msgid "OCL"
+msgid "OOC"
+msgstr "ஓஓசி"
 
 #: ../gtksourceview/language-specs/pascal.lang.h:5
 msgid "Pascal"
@@ -2336,7 +2499,7 @@ msgstr "சிறப்பு"
 msgid "gettext translation"
 msgstr "கெட்டெக்ஸ்ட் மொழிபெயர்பு"
 
-#: ../gtksourceview/language-specs/prolog.lang.h:6
+#: ../gtksourceview/language-specs/prolog.lang.h:7
 msgid "Prolog"
 msgstr "ப்ரோலாக்"
 
@@ -2474,6 +2637,39 @@ msgstr "மாறிகள் வரையறை"
 #: ../gtksourceview/language-specs/sh.lang.h:14
 msgid "sh"
 msgstr "sh"
+
+#: ../gtksourceview/language-specs/sparql.lang.h:2
+#| msgid "Classic"
+msgid "Class"
+msgstr "வகுப்பு"
+
+#: ../gtksourceview/language-specs/sparql.lang.h:5
+msgid "IRI"
+msgstr "IRI"
+
+#: ../gtksourceview/language-specs/sparql.lang.h:6
+msgid "Individual"
+msgstr "தனிநபர்"
+
+#: ../gtksourceview/language-specs/sparql.lang.h:8
+#| msgid "BOZ Literal"
+msgid "Literal"
+msgstr "சொற்படி"
+
+#: ../gtksourceview/language-specs/sparql.lang.h:11
+#| msgid "Deprecated"
+msgid "Predicate"
+msgstr "பயனிலை"
+
+#: ../gtksourceview/language-specs/sparql.lang.h:12
+#| msgid "Name"
+msgid "QName"
+msgstr "க்யூ பெயர்"
+
+#: ../gtksourceview/language-specs/sparql.lang.h:13
+#| msgid "SQL"
+msgid "SPARQL"
+msgstr "SPARQL"
 
 #: ../gtksourceview/language-specs/sql.lang.h:7
 msgid "No idea what it is"
@@ -2615,5 +2811,3 @@ msgstr "விதி"
 msgid "token-type"
 msgstr "டோக்கன் வகை"
 
-#~ msgid "Iter"
-#~ msgstr "நிகழ்வு"
