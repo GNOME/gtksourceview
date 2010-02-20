@@ -34,6 +34,7 @@ libgtksourceview_headers =			\
 	gtksourcemark.h				\
 	gtksourceprintcompositor.h		\
 	gtksourcegutter.h			\
+	gtksourceundomanager.h			\
 	gtksourcecompletion.h			\
 	gtksourcecompletioninfo.h		\
 	gtksourcecompletionitem.h		\
@@ -51,7 +52,7 @@ NOINST_H_FILES = \
 	gtksourcegutter-private.h	\
 	gtksourcelanguage-private.h	\
 	gtksourcestyle-private.h	\
-	gtksourceundomanager.h		\
+	gtksourceundomanagerdefault.h	\
 	gtksourceview-i18n.h		\
 	gtksourceview-utils.h		\
 	gtktextregion.h
@@ -61,6 +62,7 @@ libgtksourceview_2_0_la_SOURCES = 	\
 	gtksourceiter.c			\
 	gtksourceview.c 		\
 	gtksourceundomanager.c 		\
+	gtksourceundomanagerdefault.c	\
 	gtktextregion.c 		\
 	gtksourcelanguage.c 		\
 	gtksourcelanguagemanager.c 	\

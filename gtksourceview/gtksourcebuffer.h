@@ -30,6 +30,7 @@
 #include <gtksourceview/gtksourcelanguage.h>
 #include <gtksourceview/gtksourcemark.h>
 #include <gtksourceview/gtksourcestylescheme.h>
+#include <gtksourceview/gtksourceundomanager.h>
 
 G_BEGIN_DECLS
 
@@ -155,6 +156,10 @@ gboolean		 gtk_source_buffer_iter_backward_to_context_class_toggle
 								(GtkSourceBuffer	*buffer,
 								 GtkTextIter		*iter,
 								 const gchar		*context_class);
+
+GtkSourceUndoManager	*gtk_source_buffer_get_undo_manager	(GtkSourceBuffer	*buffer);
+void			 gtk_source_buffer_set_undo_manager	(GtkSourceBuffer	*buffer,
+								 GtkSourceUndoManager	*manager);
 
 /* private */
 void			 _gtk_source_buffer_update_highlight	(GtkSourceBuffer        *buffer,

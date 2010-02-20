@@ -25,56 +25,55 @@
 #ifndef __GTK_SOURCE_UNDO_MANAGER_H__
 #define __GTK_SOURCE_UNDO_MANAGER_H__
 
-#include <gtk/gtktextbuffer.h>
+#include <gtk/gtk.h>
 
-#define GTK_TYPE_SOURCE_UNDO_MANAGER		(gtk_source_undo_manager_get_type ())
-#define GTK_SOURCE_UNDO_MANAGER(obj)		(G_TYPE_CHECK_INSTANCE_CAST((obj), GTK_TYPE_SOURCE_UNDO_MANAGER, GtkSourceUndoManager))
-#define GTK_SOURCE_UNDO_MANAGER_CLASS(klass)	(G_TYPE_CHECK_CLASS_CAST((klass), GTK_TYPE_SOURCE_UNDO_MANAGER, GtkSourceUndoManagerClass))
-#define GTK_SOURCE_IS_UNDO_MANAGER(obj)		(G_TYPE_CHECK_INSTANCE_TYPE ((obj), GTK_TYPE_SOURCE_UNDO_MANAGER))
-#define GTK_SOURCE_IS_UNDO_MANAGER_CLASS(klass)	(G_TYPE_CHECK_CLASS_TYPE ((klass), GTK_TYPE_SOURCE_UNDO_MANAGER))
-#define GTK_SOURCE_UNDO_MANAGER_GET_CLASS(obj)	(G_TYPE_INSTANCE_GET_CLASS ((obj), GTK_TYPE_SOURCE_UNDO_MANAGER, GtkSourceUndoManagerClass))
+G_BEGIN_DECLS
 
+#define GTK_TYPE_SOURCE_UNDO_MANAGER                (gtk_source_undo_manager_get_type ())
+#define GTK_SOURCE_UNDO_MANAGER(obj)                (G_TYPE_CHECK_INSTANCE_CAST ((obj), GTK_TYPE_SOURCE_UNDO_MANAGER, GtkSourceUndoManager))
+#define GTK_IS_SOURCE_UNDO_MANAGER(obj)             (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GTK_TYPE_SOURCE_UNDO_MANAGER))
+#define GTK_SOURCE_UNDO_MANAGER_GET_INTERFACE(obj)  (G_TYPE_INSTANCE_GET_INTERFACE ((obj), GTK_TYPE_SOURCE_UNDO_MANAGER, GtkSourceUndoManagerIface))
 
 typedef struct _GtkSourceUndoManager        	GtkSourceUndoManager;
-typedef struct _GtkSourceUndoManagerClass 	GtkSourceUndoManagerClass;
-typedef struct _GtkSourceUndoManagerPrivate 	GtkSourceUndoManagerPrivate;
+typedef struct _GtkSourceUndoManagerIface      	GtkSourceUndoManagerIface;
 
-struct _GtkSourceUndoManager
+struct _GtkSourceUndoManagerIface
 {
-	GObject base;
+	GTypeInterface parent;
 
-	GtkSourceUndoManagerPrivate *priv;
-};
+	/* Interface functions */
+	void     (*set_buffer)                (GtkSourceUndoManager *manager,
+	                                       GtkTextBuffer        *buffer);
 
-struct _GtkSourceUndoManagerClass
-{
-	GObjectClass parent_class;
+	gboolean (*can_undo)                  (GtkSourceUndoManager *manager);
+	gboolean (*can_redo)                  (GtkSourceUndoManager *manager);
+
+	void     (*undo)                      (GtkSourceUndoManager *manager);
+	void     (*redo)                      (GtkSourceUndoManager *manager);
+
+	void     (*begin_not_undoable_action) (GtkSourceUndoManager *manager);
+	void     (*end_not_undoable_action)   (GtkSourceUndoManager *manager);
 
 	/* Signals */
-	void (*can_undo) (GtkSourceUndoManager *um, gboolean can_undo);
-    	void (*can_redo) (GtkSourceUndoManager *um, gboolean can_redo);
+	void     (*can_undo_changed)          (GtkSourceUndoManager *manager);
+	void     (*can_redo_changed)          (GtkSourceUndoManager *manager);
 };
 
-GType        		gtk_source_undo_manager_get_type	(void) G_GNUC_CONST;
+GType     gtk_source_undo_manager_get_type                  (void) G_GNUC_CONST;
 
-GtkSourceUndoManager* 	gtk_source_undo_manager_new 		(GtkTextBuffer 		*buffer);
+gboolean  gtk_source_undo_manager_can_undo                  (GtkSourceUndoManager *manager);
+gboolean  gtk_source_undo_manager_can_redo                  (GtkSourceUndoManager *manager);
 
-gboolean		gtk_source_undo_manager_can_undo	(const GtkSourceUndoManager *um);
-gboolean		gtk_source_undo_manager_can_redo 	(const GtkSourceUndoManager *um);
+void      gtk_source_undo_manager_undo                      (GtkSourceUndoManager *manager);
+void      gtk_source_undo_manager_redo                      (GtkSourceUndoManager *manager);
 
-void			gtk_source_undo_manager_undo 		(GtkSourceUndoManager 	*um);
-void			gtk_source_undo_manager_redo 		(GtkSourceUndoManager 	*um);
+void      gtk_source_undo_manager_begin_not_undoable_action (GtkSourceUndoManager *manager);
+void      gtk_source_undo_manager_end_not_undoable_action   (GtkSourceUndoManager *manager);
 
-void			gtk_source_undo_manager_begin_not_undoable_action
-								(GtkSourceUndoManager	*um);
-void			gtk_source_undo_manager_end_not_undoable_action
-								(GtkSourceUndoManager	*um);
+void      gtk_source_undo_manager_can_undo_changed          (GtkSourceUndoManager *manager);
+void      gtk_source_undo_manager_can_redo_changed          (GtkSourceUndoManager *manager);
 
-gint			gtk_source_undo_manager_get_max_undo_levels
-								(GtkSourceUndoManager 	*um);
-void			gtk_source_undo_manager_set_max_undo_levels
-								(GtkSourceUndoManager 	*um,
-				  	     			 gint		 	 undo_levels);
+G_END_DECLS
 
 #endif /* __GTK_SOURCE_UNDO_MANAGER_H__ */
 
