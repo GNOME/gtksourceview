@@ -65,10 +65,10 @@ G_DEFINE_TYPE_WITH_CODE (TestProvider,
 			 G_IMPLEMENT_INTERFACE (GTK_TYPE_SOURCE_COMPLETION_PROVIDER,
 				 		test_provider_iface_init))
 
-static const gchar *
+static gchar *
 test_provider_get_name (GtkSourceCompletionProvider *provider)
 {
-	return ((TestProvider *)provider)->name;
+	return g_strdup (((TestProvider *)provider)->name);
 }
 
 static gint
