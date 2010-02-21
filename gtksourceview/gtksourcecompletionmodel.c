@@ -269,10 +269,10 @@ tree_model_get_value (GtkTreeModel *tree_model,
 			g_value_set_object (value, node->proposal);
 			break;
 		case GTK_SOURCE_COMPLETION_MODEL_COLUMN_LABEL:
-			g_value_set_string (value, gtk_source_completion_proposal_get_label (node->proposal));
+			g_value_take_string (value, gtk_source_completion_proposal_get_label (node->proposal));
 			break;
 		case GTK_SOURCE_COMPLETION_MODEL_COLUMN_MARKUP:
-			g_value_set_string (value, gtk_source_completion_proposal_get_markup (node->proposal));
+			g_value_take_string (value, gtk_source_completion_proposal_get_markup (node->proposal));
 			break;
 		case GTK_SOURCE_COMPLETION_MODEL_COLUMN_ICON:
 			if (node->proposal == NULL)

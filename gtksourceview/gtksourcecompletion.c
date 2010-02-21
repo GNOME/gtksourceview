@@ -269,7 +269,6 @@ activate_current_proposal (GtkSourceCompletion *completion)
 	GtkSourceCompletionProposal *proposal = NULL;
 	GtkSourceCompletionProvider *provider = NULL;
 	GtkTextBuffer *buffer;
-	const gchar *text;
 	gboolean has_start;
 	GtkTextIter start;
 	
@@ -309,7 +308,7 @@ activate_current_proposal (GtkSourceCompletion *completion)
 
 	if (!activated)
 	{
-		text = gtk_source_completion_proposal_get_text (proposal);
+		gchar *text = gtk_source_completion_proposal_get_text (proposal);
 
 		if (has_start)
 		{
@@ -325,6 +324,7 @@ activate_current_proposal (GtkSourceCompletion *completion)
 					                                  text,
 					                                  -1);
 		}
+		g_free (text);
 	}
 
 	completion_end_block (completion, GTK_SOURCE_BUFFER (buffer));
@@ -925,7 +925,6 @@ update_proposal_info_real (GtkSourceCompletion         *completion,
                            GtkSourceCompletionProposal *proposal)
 {
 	GtkWidget *info_widget;
-	const gchar *text;
 	gboolean prov_update_info = FALSE;
 	GtkSourceCompletionInfo *info_window;
 	
@@ -955,13 +954,16 @@ update_proposal_info_real (GtkSourceCompletion         *completion,
 		if (info_widget == NULL)
 		{
 			gint width;
+			gchar *text;
 
 			info_widget = completion->priv->default_info;
 			text = gtk_source_completion_proposal_get_info (proposal);
 			gtk_widget_set_size_request (info_widget, -1, -1);
 			
 			gtk_label_set_markup (GTK_LABEL (info_widget), text != NULL ? text : _("No extra information available"));
-			
+
+			g_free (text);
+
 			gtk_widget_get_size_request (info_widget, &width, NULL);
 			
 			if (width > WINDOW_WIDTH)

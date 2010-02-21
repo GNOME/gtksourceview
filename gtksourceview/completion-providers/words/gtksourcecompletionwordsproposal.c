@@ -46,10 +46,10 @@ G_DEFINE_TYPE_WITH_CODE (GtkSourceCompletionWordsProposal,
 			 G_IMPLEMENT_INTERFACE (GTK_TYPE_SOURCE_COMPLETION_PROPOSAL,
 			 			gtk_source_completion_proposal_iface_init))
 
-static const gchar *
+static gchar *
 gtk_source_completion_words_proposal_get_text (GtkSourceCompletionProposal *proposal)
 {
-	return GTK_SOURCE_COMPLETION_WORDS_PROPOSAL(proposal)->priv->word;
+	return g_strdup (GTK_SOURCE_COMPLETION_WORDS_PROPOSAL(proposal)->priv->word);
 }
 
 static void

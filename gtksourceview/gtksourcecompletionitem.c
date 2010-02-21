@@ -54,22 +54,22 @@ G_DEFINE_TYPE_WITH_CODE (GtkSourceCompletionItem,
 			 G_IMPLEMENT_INTERFACE (GTK_TYPE_SOURCE_COMPLETION_PROPOSAL,
 			 			gtk_source_completion_proposal_iface_init))
 
-static const gchar *
+static gchar *
 gtk_source_completion_proposal_get_label_impl (GtkSourceCompletionProposal *self)
 {
-	return GTK_SOURCE_COMPLETION_ITEM (self)->priv->label;
+	return g_strdup (GTK_SOURCE_COMPLETION_ITEM (self)->priv->label);
 }
 
-static const gchar *
+static gchar *
 gtk_source_completion_proposal_get_markup_impl (GtkSourceCompletionProposal *self)
 {
-	return GTK_SOURCE_COMPLETION_ITEM (self)->priv->markup;
+	return g_strdup (GTK_SOURCE_COMPLETION_ITEM (self)->priv->markup);
 }
 
-static const gchar *
+static gchar *
 gtk_source_completion_proposal_get_text_impl (GtkSourceCompletionProposal *self)
 {
-	return GTK_SOURCE_COMPLETION_ITEM (self)->priv->text;
+	return g_strdup (GTK_SOURCE_COMPLETION_ITEM (self)->priv->text);
 }
 
 static GdkPixbuf *
@@ -78,10 +78,10 @@ gtk_source_completion_proposal_get_icon_impl (GtkSourceCompletionProposal *self)
 	return GTK_SOURCE_COMPLETION_ITEM (self)->priv->icon;
 }
 
-static const gchar *
+static gchar *
 gtk_source_completion_proposal_get_info_impl (GtkSourceCompletionProposal *self)
 {
-	return GTK_SOURCE_COMPLETION_ITEM (self)->priv->info;
+	return g_strdup (GTK_SOURCE_COMPLETION_ITEM (self)->priv->info);
 }
 
 static void

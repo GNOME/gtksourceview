@@ -43,19 +43,19 @@ enum
 
 static guint signals[NUM_SIGNALS] = {0,};
 
-static const gchar *
+static gchar *
 gtk_source_completion_proposal_get_label_default (GtkSourceCompletionProposal *proposal)
 {
 	return NULL;
 }
 
-static const gchar *
+static gchar *
 gtk_source_completion_proposal_get_markup_default (GtkSourceCompletionProposal *proposal)
 {
 	return NULL;
 }
 
-static const gchar *
+static gchar *
 gtk_source_completion_proposal_get_text_default (GtkSourceCompletionProposal *proposal)
 {
 	return NULL;
@@ -67,7 +67,7 @@ gtk_source_completion_proposal_get_icon_default (GtkSourceCompletionProposal *pr
 	return NULL;
 }
 
-static const gchar *
+static gchar *
 gtk_source_completion_proposal_get_info_default (GtkSourceCompletionProposal *proposal)
 {
 	return NULL;
@@ -164,11 +164,12 @@ gtk_source_completion_proposal_get_type ()
  *
  * Gets the label of @proposal. The label is shown in the list of proposals as
  * plain text. If you need any markup (such as bold or italic text), you have
- * to implement #gtk_source_completion_proposal_get_markup.
+ * to implement #gtk_source_completion_proposal_get_markup. The returned string
+ * must be freed with g_free().
  *
- * Returns: The label of @proposal.
+ * Returns: A new string containing the label of @proposal.
  */
-const gchar *
+gchar *
 gtk_source_completion_proposal_get_label (GtkSourceCompletionProposal *proposal)
 {
 	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_PROPOSAL (proposal), NULL);	
@@ -181,11 +182,12 @@ gtk_source_completion_proposal_get_label (GtkSourceCompletionProposal *proposal)
  *
  * Gets the label of @proposal with markup. The label is shown in the list of 
  * proposals and may contain markup. This will be used instead of
- * #gtk_source_completion_proposal_get_label if implemented.
+ * #gtk_source_completion_proposal_get_label if implemented. The returned string
+ * must be freed with g_free().
  *
- * Returns: The label of @proposal with markup.
+ * Returns: A new string containing the label of @proposal with markup.
  */
-const gchar *
+gchar *
 gtk_source_completion_proposal_get_markup (GtkSourceCompletionProposal *proposal)
 {
 	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_PROPOSAL (proposal), NULL);	
@@ -199,11 +201,11 @@ gtk_source_completion_proposal_get_markup (GtkSourceCompletionProposal *proposal
  * Gets the text of @proposal. The text that is inserted into
  * the text buffer when the proposal is activated by the default activation.
  * You are free to implement a custom activation handler in the provider and
- * not implement this function.
+ * not implement this function. The returned string must be freed with g_free().
  *
- * Returns: The text of @proposal.
+ * Returns: A new string containing the text of @proposal.
  */
-const gchar *
+gchar *
 gtk_source_completion_proposal_get_text (GtkSourceCompletionProposal *proposal)
 {
 	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_PROPOSAL (proposal), NULL);
@@ -231,12 +233,12 @@ gtk_source_completion_proposal_get_icon (GtkSourceCompletionProposal *proposal)
  *
  * Gets extra information associated to the proposal. This information will be
  * used to present the user with extra, detailed information about the
- * selected proposal.
+ * selected proposal. The returned string must be freed with g_free().
  *
- * Returns: The extra information of @proposal or %NULL if no extra information
- *          is associated to @proposal.
+ * Returns: A new string containing extra information of @proposal or %NULL if
+ *          no extra information is associated to @proposal.
  */
-const gchar *
+gchar *
 gtk_source_completion_proposal_get_info (GtkSourceCompletionProposal *proposal)
 {
 	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_PROPOSAL (proposal), NULL);
