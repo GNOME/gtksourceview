@@ -25,7 +25,6 @@ IGNORE_HFILES =					\
 	config.h				\
 	gtksourcelanguage-private.h		\
 	gtksourcetag-private.h			\
-	gtksourceundomanager.h			\
 	gtksourceview-i18n.h			\
 	gtksourceview-marshal.h			\
 	gtksourceview-typebuiltins.h		\
@@ -38,6 +37,7 @@ IGNORE_HFILES =					\
 	gtksourcegutter-private.h		\
 	gtksourcecompletionmodel.h		\
 	gtksourcecompletionutils.h		\
+	gtksourceundomanagerdefault.h		\
 	../tests/gsc-devhelp-provider.h		\
 	../tests/gsc-words-provider.h
 

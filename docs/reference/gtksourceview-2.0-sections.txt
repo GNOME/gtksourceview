@@ -127,6 +127,28 @@ gtk_source_gutter_get_type
 </SECTION>
 
 <SECTION>
+<FILE>undomanager</FILE>
+<TITLE>GtkSourceUndoManager</TITLE>
+<INCLUDE>gtksourceview/gtksourceundomanager.h</INCLUDE>
+GtkSourceUndoManager
+GtkSourceUndoManagerIface
+gtk_source_undo_manager_can_undo
+gtk_source_undo_manager_can_redo
+gtk_source_undo_manager_undo
+gtk_source_undo_manager_redo
+gtk_source_undo_manager_begin_not_undoable_action
+gtk_source_undo_manager_end_not_undoable_action
+gtk_source_undo_manager_can_undo_changed
+gtk_source_undo_manager_can_redo_changed
+<SUBSECTION Standard>
+GTK_SOURCE_UNDO_MANAGER
+GTK_IS_SOURCE_UNDO_MANAGER
+GTK_TYPE_SOURCE_UNDO_MANAGER
+GTK_SOURCE_UNDO_MANAGER_GET_INTERFACE
+gtk_source_undo_manager_get_type
+</SECTION>
+
+<SECTION>
 <FILE>language</FILE>
 <TITLE>GtkSourceLanguage</TITLE>
 <INCLUDE>gtksourceview/gtksourcelanguage.h</INCLUDE>
