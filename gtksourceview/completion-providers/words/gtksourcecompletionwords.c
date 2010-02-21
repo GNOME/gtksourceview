@@ -94,10 +94,10 @@ G_DEFINE_TYPE_WITH_CODE (GtkSourceCompletionWords,
 			 G_IMPLEMENT_INTERFACE (GTK_TYPE_SOURCE_COMPLETION_PROVIDER,
 				 		gtk_source_completion_words_iface_init))
 
-static const gchar * 
+static gchar *
 gtk_source_completion_words_get_name (GtkSourceCompletionProvider *self)
 {
-	return GTK_SOURCE_COMPLETION_WORDS (self)->priv->name;
+	return g_strdup (GTK_SOURCE_COMPLETION_WORDS (self)->priv->name);
 }
 
 static GdkPixbuf * 

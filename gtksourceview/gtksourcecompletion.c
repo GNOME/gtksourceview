@@ -652,9 +652,9 @@ update_selection_label (GtkSourceCompletion *completion)
 	}
 	else
 	{
-		name = g_markup_escape_text (
-			gtk_source_completion_provider_get_name (visible),
-			-1);
+		gchar *temp_name = gtk_source_completion_provider_get_name (visible);
+		name = g_markup_escape_text (temp_name, -1);
+		g_free (temp_name);
 
 		gtk_image_set_from_pixbuf (GTK_IMAGE (completion->priv->selection_image),
                            (GdkPixbuf *)gtk_source_completion_provider_get_icon (visible));
@@ -2667,7 +2667,7 @@ render_proposal_text_func (GtkTreeViewColumn   *column,
 
 	if (isheader)
 	{
-		gchar const *name;
+		gchar *name;
 
 		gtk_tree_model_get (model, 
 		                    iter, 
@@ -2682,6 +2682,7 @@ render_proposal_text_func (GtkTreeViewColumn   *column,
 			gchar *escaped = g_markup_escape_text (name, -1);
 			label = g_strdup_printf ("<b>%s</b>", escaped);
 			g_free (escaped);
+			g_free (name);
 		}
 		else
 		{
@@ -3155,8 +3156,9 @@ update_completion (GtkSourceCompletion        *completion,
 			GTK_SOURCE_COMPLETION_PROVIDER (item->data);
 
 		DEBUG({
-			g_print ("Populating provider: %s\n", 
-			         gtk_source_completion_provider_get_name (provider));
+			gchar *temp_name = gtk_source_completion_provider_get_name (provider);
+			g_print ("Populating provider: %s\n", temp_name);
+			g_free (temp_name);
 		});
 
 		gtk_source_completion_provider_populate (provider, context);

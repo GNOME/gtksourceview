@@ -33,7 +33,7 @@
 #include <gtksourceview/gtksourcecompletionprovider.h>
 
 /* Default implementations */
-static const gchar *
+static gchar *
 gtk_source_completion_provider_get_name_default (GtkSourceCompletionProvider *provider)
 {
 	g_return_val_if_reached (NULL);
@@ -176,11 +176,12 @@ gtk_source_completion_provider_get_type ()
  * @provider: The #GtkSourceCompletionProvider
  *
  * Get the name of the provider. This should be a translatable name for
- * display to the user. For example: _("Document word completion provider").
+ * display to the user. For example: _("Document word completion provider"). The
+ * returned string must be freed with g_free().
  *
- * Returns: The name of the provider.
+ * Returns: A new string containing the name of the provider.
  */
-const gchar *
+gchar *
 gtk_source_completion_provider_get_name (GtkSourceCompletionProvider *provider)
 {
 	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_PROVIDER (provider), NULL);
