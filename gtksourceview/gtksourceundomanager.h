@@ -42,9 +42,6 @@ struct _GtkSourceUndoManagerIface
 	GTypeInterface parent;
 
 	/* Interface functions */
-	void     (*set_buffer)                (GtkSourceUndoManager *manager,
-	                                       GtkTextBuffer        *buffer);
-
 	gboolean (*can_undo)                  (GtkSourceUndoManager *manager);
 	gboolean (*can_redo)                  (GtkSourceUndoManager *manager);
 
