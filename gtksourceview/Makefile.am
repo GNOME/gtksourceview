@@ -8,7 +8,7 @@ INCLUDES = 				\
 	-DDATADIR=\""$(datadir)"\" 	\
 	-DG_LOG_DOMAIN=\"GtkSourceView\"\
 	-I$(top_srcdir) -I$(srcdir) 	\
-	$(DISABLE_DEPRECATED_CFLAGS)	\
+	$(DISABLE_DEPRECATED)		\
 	$(WARN_CFLAGS) 			\
 	$(IGE_MAC_CFLAGS)		\
 	$(DEP_CFLAGS)

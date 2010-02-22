@@ -3,7 +3,6 @@
 
 srcdir=`dirname $0`
 test -z "$srcdir" && srcdir=.
-srcdir=`cd $srcdir && pwd`
 
 PKG_NAME="gtksourceview"
 
@@ -16,13 +15,9 @@ PKG_NAME="gtksourceview"
 }
 
 which gnome-autogen.sh || {
-    echo "You need to install gnome-common from the GNOME CVS"
+    echo "You need to install gnome-common from GNOME Git (or from"
+    echo "your OS vendor's package manager)."
     exit 1
 }
 
-REQUIRED_AUTOMAKE_VERSION=1.8
-USE_GNOME2_MACROS=1 NOCONFIGURE=1 . gnome-autogen.sh
-# conf_flags="--enable-maintainer-mode --enable-gtk-doc"
-conf_flags="--enable-maintainer-mode"
-echo $srcdir/configure $conf_flags "$@"
-$srcdir/configure $conf_flags "$@"
+USE_GNOME2_MACROS=1 . gnome-autogen.sh

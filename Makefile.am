@@ -1,3 +1,5 @@
+ACLOCAL_AMFLAGS  = -I m4 ${ACLOCAL_FLAGS}
+
 SUBDIRS = gtksourceview po docs tests
 
 pkgconfigdir = $(libdir)/pkgconfig

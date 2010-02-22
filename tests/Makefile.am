@@ -3,7 +3,7 @@ INCLUDES = 				\
 	-DG_LOG_DOMAIN=\"GtkSourceView\"\
 	-I$(top_srcdir) -I$(srcdir) 	\
 	-DTOP_SRCDIR=\""$(ABS_TOP_SRCDIR)"\"\
-	$(DISABLE_DEPRECATED_CFLAGS)	\
+	$(DISABLE_DEPRECATED)		\
 	$(WARN_CFLAGS) 			\
 	$(DEP_CFLAGS)			\
 	$(TESTS_CFLAGS)
@@ -44,10 +44,10 @@ test_printcompositor_LDADD = 		\
 # testregion need gtk_text_region_ api which is normally private
 # modify gtksourceview/Makefile.am to export gtk_text_* symbols
 # TEST_PROGS += testregion
-testregion_SOURCES = testregion.c
-testregion_LDADD = 			\
-	$(top_builddir)/gtksourceview/libgtksourceview-2.0.la \
-	$(DEP_LIBS)
+#testregion_SOURCES = testregion.c
+#testregion_LDADD = 			\
+#	$(top_builddir)/gtksourceview/libgtksourceview-2.0.la \
+#	$(DEP_LIBS)
 
 EXTRA_DIST =				\
 	apple-red.png			\

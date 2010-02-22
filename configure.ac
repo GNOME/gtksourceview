@@ -1,38 +1,33 @@
 dnl Process this file with autoconf to produce a configure script.
 
-AC_PREREQ(2.59)
+AC_PREREQ(2.64)
 
 m4_define(gtksourceview_major_version, 2)
 m4_define(gtksourceview_minor_version, 9)
 m4_define(gtksourceview_micro_version, 7)
 m4_define(gtksourceview_version, gtksourceview_major_version.gtksourceview_minor_version.gtksourceview_micro_version)
 
-AC_INIT(gtksourceview, gtksourceview_version, http://bugzilla.gnome.org/enter_bug.cgi?product=gtksourceview)
+AC_INIT([gtksourceview],[gtksourceview_version],[http://bugzilla.gnome.org/enter_bug.cgi?product=gtksourceview],[gtksourceview],[http://projects.gnome.org/gtksourceview/])
 
 AC_CONFIG_SRCDIR([gtksourceview/gtksourcebuffer.h])
-AM_CONFIG_HEADER(config.h)
+AC_CONFIG_HEADER([config.h])
+AC_CONFIG_MACRO_DIR([m4])
 
-AM_INIT_AUTOMAKE([1.8 dist-bzip2 no-dist-gzip])
+AM_INIT_AUTOMAKE([1.11.1 dist-bzip2 no-dist-gzip])
+AM_MAINTAINER_MODE([enable])
 
-dnl make sure we keep ACLOCAL_FLAGS around for maintainer builds to work
-AC_SUBST(ACLOCAL_AMFLAGS, "$ACLOCAL_FLAGS")
+AM_SILENT_RULES([yes])
 
-AM_MAINTAINER_MODE
-m4_ifdef([AM_SILENT_RULES],[AM_SILENT_RULES([yes])])
-
-AC_ISC_POSIX
+# Check for programs
 AC_PROG_CC
 AC_PROG_INSTALL
-AC_DISABLE_STATIC
-AM_PROG_LIBTOOL
-IT_PROG_INTLTOOL([0.35.0])
 
-GTK_DOC_CHECK([1.0],[--flavour=no-tmpl])
+#Initialize libtool
+LT_PREREQ([2.2.6])
+LT_INIT([disable-static])
 
-# Check for headers and functions
-AC_HEADER_STDC
+# Check for header files
 AC_CHECK_HEADERS([unistd.h])
-AC_CHECK_FUNCS([memset memmove strerror])
 
 # Dependencies
 GTK_REQUIRED_VERSION=2.12.0
@@ -45,21 +40,9 @@ AC_SUBST(LIBXML_REQUIRED_VERSION)
 AC_PATH_PROG(GLIB_GENMARSHAL, glib-genmarshal)
 AC_PATH_PROG(GLIB_MKENUMS, glib-mkenums)
 
-GNOME_COMPILE_WARNINGS(yes)
-
-AC_ARG_ENABLE(deprecations,
-              [AC_HELP_STRING([--enable-deprecations],
-                              [warn about deprecated usages [default=no]])],,
-              [enable_deprecations=no])
-
-if test "x$enable_deprecations" = "xyes"; then
-   DISABLE_DEPRECATED_CFLAGS="\
--DG_DISABLE_DEPRECATED \
--DGDK_DISABLE_DEPRECATED \
--DGTK_DISABLE_DEPRECATED \
--DGDK_PIXBUF_DISABLE_DEPRECATED"
-   AC_SUBST(DISABLE_DEPRECATED_CFLAGS)
-fi
+# Compile warnings
+GNOME_COMPILE_WARNINGS([maximum])
+#GNOME_MAINTAINER_MODE_DEFINES
 
 PKG_CHECK_MODULES(DEP, [
 	gio-2.0
@@ -70,7 +53,7 @@ PKG_CHECK_MODULES(DEP, [
 
 dnl Check to enable completion providers
 AC_ARG_ENABLE(providers,
-	    AC_HELP_STRING([--enable-completion-providers],
+	    AS_HELP_STRING([--enable-completion-providers],
 	    		   [Enable building completion providers (words)]),,
 	    enable_providers=yes)
 
@@ -96,11 +79,15 @@ if test "$os_osx" = "yes"; then
 fi
 
 # i18N stuff
-GETTEXT_PACKAGE=gtksourceview-2.0
-AC_SUBST(GETTEXT_PACKAGE)
-AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE, "$GETTEXT_PACKAGE", [Package name for gettext])
+IT_PROG_INTLTOOL([0.41.0])
 
+AC_SUBST([GETTEXT_PACKAGE], [gtksourceview-2.0])
+AM_GNU_GETTEXT_VERSION([0.17])
 AM_GLIB_GNU_GETTEXT
+AC_DEFINE([GETTEXT_PACKAGE], [PACKAGE_TARNAME], [Define to the gettext package name.])
+
+# Documentation
+GTK_DOC_CHECK([1.11],[--flavour=no-tmpl])
 
 # test-widget uses this to find lang files and gtksourcebuffer.c 	 
 ABS_TOP_SRCDIR=`cd $srcdir && pwd` 	 
