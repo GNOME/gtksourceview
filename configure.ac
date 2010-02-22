@@ -4,7 +4,7 @@ AC_PREREQ(2.59)
 
 m4_define(gtksourceview_major_version, 2)
 m4_define(gtksourceview_minor_version, 9)
-m4_define(gtksourceview_micro_version, 5)
+m4_define(gtksourceview_micro_version, 6)
 m4_define(gtksourceview_version, gtksourceview_major_version.gtksourceview_minor_version.gtksourceview_micro_version)
 
 AC_INIT(gtksourceview, gtksourceview_version, http://bugzilla.gnome.org/enter_bug.cgi?product=gtksourceview)
