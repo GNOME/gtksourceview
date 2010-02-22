@@ -9,21 +9,21 @@
 # Felix <ifelix@redhat.com>, 2006.
 # Dr.T.Vasudevan <agnihot3@gmail.com>, 2007, 2008, 2009.
 # I. Felix <ifelix@redhat.com>, 2009.
-# Dr,T,Vasudevan <agnihot3@gmail.com>, 2009.
+# Dr,T,Vasudevan <agnihot3@gmail.com>, 2009, 2010.
 # Dr.T.vasudevan <agnihot3@gmail.com>, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview.master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gtksourceview&component=general\n"
-"POT-Creation-Date: 2010-02-01 10:50+0000\n"
-"PO-Revision-Date: 2010-02-16 17:18+0530\n"
-"Last-Translator: Dr.T.vasudevan <agnihot3@gmail.com>\n"
-"Language-Team: Tamil <Ubuntu-l10n-tam@lists.ubuntu.com>\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-02-22 12:14+0530\n"
+"PO-Revision-Date: 2010-02-22 12:19+0530\n"
+"Last-Translator: Dr,T,Vasudevan <agnihot3@gmail.com>\n"
+"Language-Team: Tamil <Ubuntu-l10n-tam@lists.ubuntu.com>>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "17:19-0500\n"
-"X-Generator: KBabel 1.11.4\n"
+"X-Generator: Lokalize 0.3\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\\n"
 "\n"
 "\n"
@@ -83,7 +83,6 @@ msgid "Interactive Delay"
 msgstr "ஊடாடல் தாமதம்"
 
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:510
-#| msgid "Completion popup delay for interactive completion"
 msgid "The delay before initiating interactive completion"
 msgstr "ஊடாடும் வார்த்தை முடிவு துவக்கு தாமதிக்க வேண்டிய நேரம்"
 
@@ -92,65 +91,72 @@ msgid "Priority"
 msgstr "முன்னுரிமை"
 
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:520
-#| msgid "Provider"
 msgid "Provider priority"
 msgstr "வழங்குபவர் முன்னுரிமை"
 
-#: ../gtksourceview/gtksourcebuffer.c:210
+#: ../gtksourceview/gtksourcebuffer.c:211
 #: ../gtksourceview/gtksourceprintcompositor.c:506
 msgid "Highlight Syntax"
 msgstr "இலக்கணத்தை முன்னிலைப்படுத்து"
 
-#: ../gtksourceview/gtksourcebuffer.c:211
+#: ../gtksourceview/gtksourcebuffer.c:212
 msgid "Whether to highlight syntax in the buffer"
 msgstr "தொடரியலை இடையகத்தில் தனிப்படுத்த வேண்டுமா"
 
-#: ../gtksourceview/gtksourcebuffer.c:224
+#: ../gtksourceview/gtksourcebuffer.c:225
 msgid "Highlight Matching Brackets"
 msgstr " பொருந்தும் அடைப்புக்குறிகளை சிறப்புச்சுட்டு"
 
-#: ../gtksourceview/gtksourcebuffer.c:225
+#: ../gtksourceview/gtksourcebuffer.c:226
 msgid "Whether to highlight matching brackets"
 msgstr " பொருந்தும் அடைப்புக்குறிகளை சிறப்புச்சுட்ட வேண்டுமா"
 
-#: ../gtksourceview/gtksourcebuffer.c:237
+#: ../gtksourceview/gtksourcebuffer.c:239
 msgid "Maximum Undo Levels"
 msgstr "அதிகபட்ச செயல்நீக்க மட்டம்"
 
-#: ../gtksourceview/gtksourcebuffer.c:238
+#: ../gtksourceview/gtksourcebuffer.c:240
 msgid "Number of undo levels for the buffer"
 msgstr "இடையகத்திற்கான செயல்நீக்க மட்டம்"
 
 #. Translators: throughout gtksourceview "language" stands
 #. * for "programming language", not "spoken language"
-#: ../gtksourceview/gtksourcebuffer.c:250
+#: ../gtksourceview/gtksourcebuffer.c:252
 msgid "Language"
 msgstr "மொழி"
 
-#: ../gtksourceview/gtksourcebuffer.c:251
+#: ../gtksourceview/gtksourcebuffer.c:253
 msgid "Language object to get highlighting patterns from"
 msgstr "தனிப்படுத்தல் மாதிரியை பெற வேண்டிய மொழி பொருள்கள்"
 
-#: ../gtksourceview/gtksourcebuffer.c:259
+#: ../gtksourceview/gtksourcebuffer.c:261
 msgid "Can undo"
 msgstr "ரத்து செய்ய இயலும்"
 
-#: ../gtksourceview/gtksourcebuffer.c:260
+#: ../gtksourceview/gtksourcebuffer.c:262
 msgid "Whether Undo operation is possible"
 msgstr "ரத்து செய்ய இயலுமா"
 
-#: ../gtksourceview/gtksourcebuffer.c:267
+#: ../gtksourceview/gtksourcebuffer.c:269
 msgid "Can redo"
 msgstr "மீண்டும் செய்"
 
-#: ../gtksourceview/gtksourcebuffer.c:268
+#: ../gtksourceview/gtksourcebuffer.c:270
 msgid "Whether Redo operation is possible"
 msgstr "மீண்டும் செய்தல் இயலுமா"
 
-#: ../gtksourceview/gtksourcebuffer.c:282
-#: ../gtksourceview/gtksourcebuffer.c:283
+#: ../gtksourceview/gtksourcebuffer.c:284
+#: ../gtksourceview/gtksourcebuffer.c:285
 msgid "Style scheme"
 msgstr "பாணி திட்டம்"
+
+#: ../gtksourceview/gtksourcebuffer.c:292
+msgid "Undo manager"
+msgstr "செயல் நீக்க மேலாளர் "
+
+#: ../gtksourceview/gtksourcebuffer.c:293
+msgid "The buffer undo manager"
+msgstr "இடையக செயல் நீக்க மேலாளர்"
 
 #. Translators: "All" is used as a label in thestatus bar of the
 #. popup, telling that all completion pages are shown
@@ -158,86 +164,85 @@ msgstr "பாணி திட்டம்"
 msgid "All"
 msgstr "அனைத்தும்"
 
-#: ../gtksourceview/gtksourcecompletion.c:941
+#: ../gtksourceview/gtksourcecompletion.c:940
 #: ../gtksourceview/gtksourcecompletion.c:963
 msgid "No extra information available"
 msgstr "கூடுதல் தகவல் ஒன்றுமில்லை"
 
-#: ../gtksourceview/gtksourcecompletion.c:2227
+#: ../gtksourceview/gtksourcecompletion.c:2229
 #: ../gtksourceview/gtksourcegutter.c:369
 msgid "View"
 msgstr "பார்வை"
 
-#: ../gtksourceview/gtksourcecompletion.c:2228
+#: ../gtksourceview/gtksourcecompletion.c:2230
 msgid "The GtkSourceView bound to the completion"
 msgstr "முடித்தலுடன் பிணைத்த ஜிடிகே மூலப்பார்வை"
 
-#: ../gtksourceview/gtksourcecompletion.c:2243
-#| msgid "Remeber Info Visibility"
+#: ../gtksourceview/gtksourcecompletion.c:2245
 msgid "Remember Info Visibility"
 msgstr "தகவல் காட்சிமையை நினைவில் கொள்க"
 
-#: ../gtksourceview/gtksourcecompletion.c:2244
+#: ../gtksourceview/gtksourcecompletion.c:2246
 msgid "Remember the last info window visibility state"
 msgstr "கடைசி சாளரத்தின் காட்சிமை நிலையை நினைவில் கொள்க"
 
-#: ../gtksourceview/gtksourcecompletion.c:2257
+#: ../gtksourceview/gtksourcecompletion.c:2259
 msgid "Select on Show"
 msgstr "காட்டும் போது தேர்வு செய்க"
 
-#: ../gtksourceview/gtksourcecompletion.c:2258
+#: ../gtksourceview/gtksourcecompletion.c:2260
 msgid "Select first proposal when completion is shown"
 msgstr "முழுமையாக்கம் முடிந்ததும் முதல் முன்மொழிவை தேர்ந்தெடுக்கவும்."
 
-#: ../gtksourceview/gtksourcecompletion.c:2272
+#: ../gtksourceview/gtksourcecompletion.c:2274
 msgid "Show Headers"
 msgstr "தலைப்புகளை காட்டு"
 
-#: ../gtksourceview/gtksourcecompletion.c:2273
+#: ../gtksourceview/gtksourcecompletion.c:2275
 msgid "Show provider headers when proposals from multiple providers are available"
 msgstr "பல தருவோரிடமிருந்து பல முன்மொழிவுகள் இருக்கையில் தருவோர் தலைப்புகளை காட்டு"
 
-#: ../gtksourceview/gtksourcecompletion.c:2287
+#: ../gtksourceview/gtksourcecompletion.c:2289
 msgid "Show Icons"
 msgstr "சின்னங்களை காட்டு"
 
-#: ../gtksourceview/gtksourcecompletion.c:2288
+#: ../gtksourceview/gtksourcecompletion.c:2290
 msgid "Show provider and proposal icons in the completion popup"
 msgstr "பூர்த்தி துள்ளளில் தருபவர்  மற்றும் கோரிக்கை சின்னங்களை காட்டு "
 
-#: ../gtksourceview/gtksourcecompletion.c:2301
+#: ../gtksourceview/gtksourcecompletion.c:2303
 msgid "Accelerators"
 msgstr "விரைவு விசை"
 
-#: ../gtksourceview/gtksourcecompletion.c:2302
+#: ../gtksourceview/gtksourcecompletion.c:2304
 msgid "Number of proposal accelerators to show"
 msgstr " காட்டப்படவேண்டிய விரைவு விசைகளின் எண்ணிக்கை"
 
-#: ../gtksourceview/gtksourcecompletion.c:2318
+#: ../gtksourceview/gtksourcecompletion.c:2320
 msgid "Auto Complete Delay"
 msgstr "தானியங்கி வார்த்தை முடிவுக்கு தாமதிக்க வேண்டிய நேரம்"
 
-#: ../gtksourceview/gtksourcecompletion.c:2319
+#: ../gtksourceview/gtksourcecompletion.c:2321
 msgid "Completion popup delay for interactive completion"
 msgstr "ஊடாடும் வார்த்தை முடிவுக்கு தாமதிக்க வேண்டிய நேரம்"
 
-#: ../gtksourceview/gtksourcecompletion.c:2334
+#: ../gtksourceview/gtksourcecompletion.c:2336
 msgid "Provider Page Size"
 msgstr "தருவோர் பக்க அளவு"
 
-#: ../gtksourceview/gtksourcecompletion.c:2335
+#: ../gtksourceview/gtksourcecompletion.c:2337
 msgid "Provider scrolling page size"
 msgstr "தருவோர் உருளும் பக்க அளவு"
 
-#: ../gtksourceview/gtksourcecompletion.c:2350
+#: ../gtksourceview/gtksourcecompletion.c:2352
 msgid "Proposal Page Size"
 msgstr "முன்மொழிவு பக்க அளவு"
 
-#: ../gtksourceview/gtksourcecompletion.c:2351
+#: ../gtksourceview/gtksourcecompletion.c:2353
 msgid "Proposal scrolling page size"
 msgstr "முன்மொழிவு உருளும் பக்க அளவு"
 
-#: ../gtksourceview/gtksourcecompletion.c:2688
+#: ../gtksourceview/gtksourcecompletion.c:2691
 msgid "Provider"
 msgstr "வழங்குபவர்"
 
@@ -396,7 +401,8 @@ msgstr "இரட்டையான சூழல் அடையாளம் '%s
 msgid ""
 "style override used with wildcard context reference in language '%s' in ref "
 "'%s'"
-msgstr "'%s மொழியில் உள்ளே '%s தொடர்பாக குறிப்பில் சூழல் உறவுடன் பாங்கு இணக்கமறுப்பு பயன்பட்டது "
+msgstr ""
+"'%s மொழியில் உள்ளே '%s தொடர்பாக குறிப்பில் சூழல் உறவுடன் பாங்கு இணக்கமறுப்பு பயன்பட்டது "
 
 #: ../gtksourceview/gtksourcecontextengine.c:6589
 #, c-format
@@ -1294,12 +1300,10 @@ msgid "BibTeX"
 msgstr "பிப்டெக்ஸ்"
 
 #: ../gtksourceview/language-specs/bibtex.lang.h:2
-#| msgid "Entity"
 msgid "Entries"
 msgstr "உள்ளீடுகள்"
 
 #: ../gtksourceview/language-specs/bibtex.lang.h:3
-#| msgid "File"
 msgid "Field"
 msgstr "புலம்"
 
@@ -1480,7 +1484,6 @@ msgid "printf Conversion"
 msgstr "ப்ரின்ட் எஃப்(printf) மாற்றம்"
 
 #: ../gtksourceview/language-specs/cg.lang.h:1
-#| msgid "Encoding"
 msgid "Bindings"
 msgstr "பிணைப்புகள்"
 
@@ -1491,12 +1494,10 @@ msgid "Builtin"
 msgstr "உள்ளமை"
 
 #: ../gtksourceview/language-specs/cg.lang.h:4
-#| msgid "OpenGL Shading Language"
 msgid "CG Shader Language"
 msgstr "சிஜி நிழலிடும் மொழி"
 
 #: ../gtksourceview/language-specs/cg.lang.h:19
-#| msgid "Type Operators"
 msgid "Swizzle operator"
 msgstr "ஸ்விசல் வகை  செயல்படுத்திகள்"
 
@@ -1698,7 +1699,6 @@ msgid ".desktop"
 msgstr ".desktop"
 
 #: ../gtksourceview/language-specs/desktop.lang.h:2
-#| msgid "Conditional Macro"
 msgid "Additional Category"
 msgstr "கூடுதல் வகை"
 
@@ -1721,12 +1721,10 @@ msgid "Key"
 msgstr "விசை"
 
 #: ../gtksourceview/language-specs/desktop.lang.h:10
-#| msgid "Category"
 msgid "Main Category"
 msgstr "முதன்மை வகை"
 
 #: ../gtksourceview/language-specs/desktop.lang.h:13
-#| msgid "Reserved keyword"
 msgid "Reserved Category"
 msgstr "ஒதுக்கீடு செய்த வகை"
 
@@ -1905,12 +1903,10 @@ msgid "Erlang"
 msgstr "எர்லாங்"
 
 #: ../gtksourceview/language-specs/fcl.lang.h:1
-#| msgid "Code Block"
 msgid "Block"
 msgstr "தொகுதி"
 
 #: ../gtksourceview/language-specs/fcl.lang.h:4
-#| msgid "OCL"
 msgid "FCL"
 msgstr "எஃப்சிஎல்"
 
@@ -2413,7 +2409,6 @@ msgid "Octave"
 msgstr "எட்டன் தொகுதி( Octave)"
 
 #: ../gtksourceview/language-specs/ooc.lang.h:14
-#| msgid "OCL"
 msgid "OOC"
 msgstr "ஓஓசி"
 
@@ -2639,7 +2634,6 @@ msgid "sh"
 msgstr "sh"
 
 #: ../gtksourceview/language-specs/sparql.lang.h:2
-#| msgid "Classic"
 msgid "Class"
 msgstr "வகுப்பு"
 
@@ -2652,22 +2646,18 @@ msgid "Individual"
 msgstr "தனிநபர்"
 
 #: ../gtksourceview/language-specs/sparql.lang.h:8
-#| msgid "BOZ Literal"
 msgid "Literal"
 msgstr "சொற்படி"
 
 #: ../gtksourceview/language-specs/sparql.lang.h:11
-#| msgid "Deprecated"
 msgid "Predicate"
 msgstr "பயனிலை"
 
 #: ../gtksourceview/language-specs/sparql.lang.h:12
-#| msgid "Name"
 msgid "QName"
 msgstr "க்யூ பெயர்"
 
 #: ../gtksourceview/language-specs/sparql.lang.h:13
-#| msgid "SQL"
 msgid "SPARQL"
 msgstr "SPARQL"
 
