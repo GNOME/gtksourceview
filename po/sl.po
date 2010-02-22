@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourcereview\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gtksourceview&component=general\n"
-"POT-Creation-Date: 2010-02-11 01:21+0000\n"
-"PO-Revision-Date: 2010-02-11 08:03+0100\n"
+"POT-Creation-Date: 2010-02-22 06:49+0000\n"
+"PO-Revision-Date: 2010-02-22 08:15+0100\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -83,61 +83,69 @@ msgstr "Prednost"
 msgid "Provider priority"
 msgstr "Prednost ponudnika"
 
-#: ../gtksourceview/gtksourcebuffer.c:210
+#: ../gtksourceview/gtksourcebuffer.c:211
 #: ../gtksourceview/gtksourceprintcompositor.c:506
 msgid "Highlight Syntax"
 msgstr "Poudarjanje skladnje"
 
-#: ../gtksourceview/gtksourcebuffer.c:211
+#: ../gtksourceview/gtksourcebuffer.c:212
 msgid "Whether to highlight syntax in the buffer"
 msgstr "Ali naj se poudarja skladnja v predpomnilniku"
 
-#: ../gtksourceview/gtksourcebuffer.c:224
+#: ../gtksourceview/gtksourcebuffer.c:225
 msgid "Highlight Matching Brackets"
 msgstr "Poudari pripadajoče oklepaje"
 
-#: ../gtksourceview/gtksourcebuffer.c:225
+#: ../gtksourceview/gtksourcebuffer.c:226
 msgid "Whether to highlight matching brackets"
 msgstr "Ali naj se poudarijo pari oklepaja (uklepaj - zaklepaj)"
 
-#: ../gtksourceview/gtksourcebuffer.c:237
+#: ../gtksourceview/gtksourcebuffer.c:239
 msgid "Maximum Undo Levels"
 msgstr "Največje število razveljavitev"
 
-#: ../gtksourceview/gtksourcebuffer.c:238
+#: ../gtksourceview/gtksourcebuffer.c:240
 msgid "Number of undo levels for the buffer"
 msgstr "Število razveljavitev v predpomnilniku"
 
 #. Translators: throughout gtksourceview "language" stands
 #. * for "programming language", not "spoken language"
-#: ../gtksourceview/gtksourcebuffer.c:250
+#: ../gtksourceview/gtksourcebuffer.c:252
 msgid "Language"
 msgstr "Jezik"
 
-#: ../gtksourceview/gtksourcebuffer.c:251
+#: ../gtksourceview/gtksourcebuffer.c:253
 msgid "Language object to get highlighting patterns from"
 msgstr "Predmet za pridobivanje vzorcev jezikov za poudarjanje"
 
-#: ../gtksourceview/gtksourcebuffer.c:259
+#: ../gtksourceview/gtksourcebuffer.c:261
 msgid "Can undo"
 msgstr "Možnost razveljavitve"
 
-#: ../gtksourceview/gtksourcebuffer.c:260
+#: ../gtksourceview/gtksourcebuffer.c:262
 msgid "Whether Undo operation is possible"
 msgstr "Ali je mogoče razveljaviti dejanje"
 
-#: ../gtksourceview/gtksourcebuffer.c:267
+#: ../gtksourceview/gtksourcebuffer.c:269
 msgid "Can redo"
 msgstr "Možnost ponovne naloge"
 
-#: ../gtksourceview/gtksourcebuffer.c:268
+#: ../gtksourceview/gtksourcebuffer.c:270
 msgid "Whether Redo operation is possible"
 msgstr "Ali je mogoče dejanje ponovno uporabiti po razveljavitvi"
 
-#: ../gtksourceview/gtksourcebuffer.c:282
-#: ../gtksourceview/gtksourcebuffer.c:283
+#: ../gtksourceview/gtksourcebuffer.c:284
+#: ../gtksourceview/gtksourcebuffer.c:285
 msgid "Style scheme"
 msgstr "Oblika sheme"
+
+#: ../gtksourceview/gtksourcebuffer.c:292
+msgid "Undo manager"
+msgstr "Upravljalnik razveljavitev"
+
+#: ../gtksourceview/gtksourcebuffer.c:293
+msgid "The buffer undo manager"
+msgstr "Upravljalnik predpomnilnika razveljavitev"
 
 #. Translators: "All" is used as a label in thestatus bar of the
 #. popup, telling that all completion pages are shown
@@ -145,85 +153,85 @@ msgstr "Oblika sheme"
 msgid "All"
 msgstr "Vse"
 
-#: ../gtksourceview/gtksourcecompletion.c:941
+#: ../gtksourceview/gtksourcecompletion.c:940
 #: ../gtksourceview/gtksourcecompletion.c:963
 msgid "No extra information available"
 msgstr "Na voljo ni dodatnih podrobnosti"
 
-#: ../gtksourceview/gtksourcecompletion.c:2227
+#: ../gtksourceview/gtksourcecompletion.c:2229
 #: ../gtksourceview/gtksourcegutter.c:369
 msgid "View"
 msgstr "Pogled"
 
-#: ../gtksourceview/gtksourcecompletion.c:2228
+#: ../gtksourceview/gtksourcecompletion.c:2230
 msgid "The GtkSourceView bound to the completion"
 msgstr "GtkSourceView vez z dopolnjevanjem"
 
-#: ../gtksourceview/gtksourcecompletion.c:2243
+#: ../gtksourceview/gtksourcecompletion.c:2245
 msgid "Remember Info Visibility"
 msgstr "Zapomni si podrobnosti vidnosti"
 
-#: ../gtksourceview/gtksourcecompletion.c:2244
+#: ../gtksourceview/gtksourcecompletion.c:2246
 msgid "Remember the last info window visibility state"
 msgstr "Zapomni si podrobnosti zadnjega stanja vidnosti okna"
 
-#: ../gtksourceview/gtksourcecompletion.c:2257
+#: ../gtksourceview/gtksourcecompletion.c:2259
 msgid "Select on Show"
 msgstr "Izbor ob prikazu"
 
-#: ../gtksourceview/gtksourcecompletion.c:2258
+#: ../gtksourceview/gtksourcecompletion.c:2260
 msgid "Select first proposal when completion is shown"
 msgstr "Izberi prvi predlog, ko se pokaže dopolnjevanje"
 
-#: ../gtksourceview/gtksourcecompletion.c:2272
+#: ../gtksourceview/gtksourcecompletion.c:2274
 msgid "Show Headers"
 msgstr "Pokaži glave"
 
-#: ../gtksourceview/gtksourcecompletion.c:2273
+#: ../gtksourceview/gtksourcecompletion.c:2275
 msgid "Show provider headers when proposals from multiple providers are available"
 msgstr "Pokaži glave ponudnikov, ko so na voljo različne ponudbe "
 
-#: ../gtksourceview/gtksourcecompletion.c:2287
+#: ../gtksourceview/gtksourcecompletion.c:2289
 msgid "Show Icons"
 msgstr "Pokaži ikone"
 
-#: ../gtksourceview/gtksourcecompletion.c:2288
+#: ../gtksourceview/gtksourcecompletion.c:2290
 msgid "Show provider and proposal icons in the completion popup"
 msgstr "Pokaži ikono ponudnika in ponudbe v pojavnem oknu dopolnjevanja"
 
-#: ../gtksourceview/gtksourcecompletion.c:2301
+#: ../gtksourceview/gtksourcecompletion.c:2303
 msgid "Accelerators"
 msgstr "Pospeševalniki"
 
-#: ../gtksourceview/gtksourcecompletion.c:2302
+#: ../gtksourceview/gtksourcecompletion.c:2304
 msgid "Number of proposal accelerators to show"
 msgstr "Število prikazanih pospeševalnikov ponudb"
 
-#: ../gtksourceview/gtksourcecompletion.c:2318
+#: ../gtksourceview/gtksourcecompletion.c:2320
 msgid "Auto Complete Delay"
 msgstr "Zamik samodejnega dopolnjevanja"
 
-#: ../gtksourceview/gtksourcecompletion.c:2319
+#: ../gtksourceview/gtksourcecompletion.c:2321
 msgid "Completion popup delay for interactive completion"
 msgstr "Zamik pojavnega okna dopolnjevanja"
 
-#: ../gtksourceview/gtksourcecompletion.c:2334
+#: ../gtksourceview/gtksourcecompletion.c:2336
 msgid "Provider Page Size"
 msgstr "Velikost strani ponudnika"
 
-#: ../gtksourceview/gtksourcecompletion.c:2335
+#: ../gtksourceview/gtksourcecompletion.c:2337
 msgid "Provider scrolling page size"
 msgstr "Velikost drsne strani ponudnikov"
 
-#: ../gtksourceview/gtksourcecompletion.c:2350
+#: ../gtksourceview/gtksourcecompletion.c:2352
 msgid "Proposal Page Size"
 msgstr "Predlog velikosti strani"
 
-#: ../gtksourceview/gtksourcecompletion.c:2351
+#: ../gtksourceview/gtksourcecompletion.c:2353
 msgid "Proposal scrolling page size"
 msgstr "Predlog drsenja velikosti strani"
 
-#: ../gtksourceview/gtksourcecompletion.c:2688
+#: ../gtksourceview/gtksourcecompletion.c:2691
 msgid "Provider"
 msgstr "Ponudnik"
 
