@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourcereview\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gtksourceview&component=general\n"
-"POT-Creation-Date: 2010-02-22 06:49+0000\n"
-"PO-Revision-Date: 2010-02-22 08:15+0100\n"
+"POT-Creation-Date: 2010-02-23 05:54+0000\n"
+"PO-Revision-Date: 2010-02-23 10:06+0100\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -90,7 +90,7 @@ msgstr "Poudarjanje skladnje"
 
 #: ../gtksourceview/gtksourcebuffer.c:212
 msgid "Whether to highlight syntax in the buffer"
-msgstr "Ali naj se poudarja skladnja v predpomnilniku"
+msgstr "Ali naj se poudarja skladnja v medpomnilniku"
 
 #: ../gtksourceview/gtksourcebuffer.c:225
 msgid "Highlight Matching Brackets"
@@ -101,12 +101,14 @@ msgid "Whether to highlight matching brackets"
 msgstr "Ali naj se poudarijo pari oklepaja (uklepaj - zaklepaj)"
 
 #: ../gtksourceview/gtksourcebuffer.c:239
+#: ../gtksourceview/gtksourceundomanagerdefault.c:398
 msgid "Maximum Undo Levels"
 msgstr "Največje število razveljavitev"
 
 #: ../gtksourceview/gtksourcebuffer.c:240
+#: ../gtksourceview/gtksourceundomanagerdefault.c:399
 msgid "Number of undo levels for the buffer"
-msgstr "Število razveljavitev v predpomnilniku"
+msgstr "Število razveljavitev v medpomnilniku"
 
 #. Translators: throughout gtksourceview "language" stands
 #. * for "programming language", not "spoken language"
@@ -145,7 +147,7 @@ msgstr "Upravljalnik razveljavitev"
 
 #: ../gtksourceview/gtksourcebuffer.c:293
 msgid "The buffer undo manager"
-msgstr "Upravljalnik predpomnilnika razveljavitev"
+msgstr "Upravljalnik medpomnilnika razveljavitev"
 
 #. Translators: "All" is used as a label in thestatus bar of the
 #. popup, telling that all completion pages are shown
@@ -505,7 +507,7 @@ msgstr "Kategorija oznake"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:446
 msgid "Source Buffer"
-msgstr "Predpomnilnik vira"
+msgstr "Medpomnilnik vira"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:447
 msgid "The GtkSourceBuffer object to print"
@@ -734,6 +736,14 @@ msgstr "ID sheme"
 #: ../gtksourceview/gtksourcestyleschememanager.c:161
 msgid "List of the ids of the available style schemes"
 msgstr "Seznam ID vrednosti slogov shem, ki so na voljo"
+
+#: ../gtksourceview/gtksourceundomanagerdefault.c:390
+msgid "Buffer"
+msgstr "Medpomnilnik"
+
+#: ../gtksourceview/gtksourceundomanagerdefault.c:391
+msgid "The text buffer to add undo support on"
+msgstr "Medpomnilnik besedila za podporo razveljavitvam"
 
 #: ../gtksourceview/gtksourceview.c:325
 msgid "The completion object associated with the view"
