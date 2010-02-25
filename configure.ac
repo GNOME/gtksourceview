@@ -79,7 +79,7 @@ if test "$os_osx" = "yes"; then
 fi
 
 # i18N stuff
-IT_PROG_INTLTOOL([0.41.0])
+IT_PROG_INTLTOOL([0.40])
 
 AC_SUBST([GETTEXT_PACKAGE], [gtksourceview-2.0])
 AM_GNU_GETTEXT_VERSION([0.17])
