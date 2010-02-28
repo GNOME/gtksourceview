@@ -2001,6 +2001,12 @@ gtk_source_context_engine_text_inserted (GtkSourceEngine *engine,
 	GtkTextIter iter;
 	GtkSourceContextEngine *ce = GTK_SOURCE_CONTEXT_ENGINE (engine);
 
+	/* Happens when highlighting is disabled */
+	if (ce->priv->buffer == NULL)
+	{
+		return;
+	}
+
 	g_return_if_fail (start_offset < end_offset);
 
 	invalidate_region (ce, start_offset, end_offset - start_offset);
@@ -2766,7 +2772,15 @@ static GtkTextTag *
 gtk_source_context_engine_get_context_class_tag (GtkSourceEngine *engine,
 						 const gchar     *context_class)
 {
-	return g_hash_table_lookup (GTK_SOURCE_CONTEXT_ENGINE (engine)->priv->context_classes,
+	GHashTable *hash_table = GTK_SOURCE_CONTEXT_ENGINE (engine)->priv->context_classes;
+
+	if (hash_table == NULL)
+	{
+		/* This happens when highlighting is disabled */
+		return NULL;
+	}
+
+	return g_hash_table_lookup (hash_table,
 				    context_class);
 }
 
