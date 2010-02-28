@@ -490,7 +490,7 @@ gtk_source_completion_words_class_init (GtkSourceCompletionWordsClass *klass)
 	                                                    _("Number of lines scanned in one batch"),
 	                                                    1,
 	                                                    G_MAXUINT,
-	                                                    20,
+	                                                    50,
 	                                                    G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 	
 	g_object_class_install_property (object_class,

@@ -27,7 +27,11 @@
 
 #define GTK_SOURCE_COMPLETION_WORDS_BUFFER_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE((object), GTK_TYPE_SOURCE_COMPLETION_WORDS_BUFFER, GtkSourceCompletionWordsBufferPrivate))
 
-#define REGION_FROM_LIST(list) ((ScanRegion *)list->data)
+/* Timeout in seconds */
+#define INITIATE_SCAN_TIMEOUT 5
+
+/* Timeout in milliseconds */
+#define BATCH_SCAN_TIMEOUT 10
 
 typedef struct
 {
@@ -54,7 +58,8 @@ struct _GtkSourceCompletionWordsBufferPrivate
 	GtkTextBuffer *buffer;
 
 	GList *scan_regions;
-	guint idle_scan_id;
+	gulong batch_scan_id;
+	gulong initiate_scan_id;
 
 	guint ext_signal_handlers[NUM_EXT_SIGNALS];
 	guint scan_batch_size;
@@ -191,10 +196,16 @@ gtk_source_completion_words_buffer_dispose (GObject *object)
 		buffer->priv->buffer = NULL;
 	}
 
-	if (buffer->priv->idle_scan_id)
+	if (buffer->priv->batch_scan_id)
 	{
-		g_source_remove (buffer->priv->idle_scan_id);
-		buffer->priv->idle_scan_id = 0;
+		g_source_remove (buffer->priv->batch_scan_id);
+		buffer->priv->batch_scan_id = 0;
+	}
+
+	if (buffer->priv->initiate_scan_id)
+	{
+		g_source_remove (buffer->priv->initiate_scan_id);
+		buffer->priv->initiate_scan_id = 0;
 	}
 
 	if (buffer->priv->library)
@@ -371,7 +382,7 @@ idle_scan_regions (GtkSourceCompletionWordsBuffer *buffer)
 	/* Scan some regions */
 	while (buffer->priv->scan_regions)
 	{
-		ScanRegion *region = REGION_FROM_LIST (buffer->priv->scan_regions);
+		ScanRegion *region = buffer->priv->scan_regions->data;
 		GtkTextIter start;
 		GtkTextIter end;
 
@@ -421,10 +432,41 @@ idle_scan_regions (GtkSourceCompletionWordsBuffer *buffer)
 
 	if (finished)
 	{
-		buffer->priv->idle_scan_id = 0;
+		buffer->priv->batch_scan_id = 0;
 	}
 
 	return !finished;
+}
+
+static gboolean
+initiate_scan (GtkSourceCompletionWordsBuffer *buffer)
+{
+	buffer->priv->initiate_scan_id = 0;
+
+	/* Add the batch scanner */
+	buffer->priv->batch_scan_id =
+		g_timeout_add_full (G_PRIORITY_LOW,
+		                    BATCH_SCAN_TIMEOUT,
+		                    (GSourceFunc)idle_scan_regions,
+		                    buffer,
+		                    NULL);
+
+	return FALSE;
+}
+
+static void
+install_initiate_scan (GtkSourceCompletionWordsBuffer *buffer)
+{
+	if (buffer->priv->batch_scan_id == 0 &&
+	    buffer->priv->initiate_scan_id == 0)
+	{
+		buffer->priv->initiate_scan_id =
+			g_timeout_add_seconds_full (G_PRIORITY_LOW,
+			                            INITIATE_SCAN_TIMEOUT,
+			                            (GSourceFunc)initiate_scan,
+			                            buffer,
+			                            NULL);
+	}
 }
 
 static void
@@ -488,14 +530,8 @@ add_scan_region (GtkSourceCompletionWordsBuffer *buffer,
 		ignore = g_list_append (next, region);
 	}
 
-	if (buffer->priv->idle_scan_id == 0)
-	{
-		buffer->priv->idle_scan_id =
-			g_idle_add_full (G_PRIORITY_LOW,
-			                 (GSourceFunc)idle_scan_regions,
-			                 buffer,
-			                 NULL);
-	}
+	/* Add the initate scan timeout if it's not already running */
+	install_initiate_scan (buffer);
 }
 
 static void
@@ -668,24 +704,24 @@ connect_buffer (GtkSourceCompletionWordsBuffer *buffer)
 static void
 on_library_lock (GtkSourceCompletionWordsBuffer *buffer)
 {
-	if (buffer->priv->idle_scan_id != 0)
+	if (buffer->priv->batch_scan_id != 0)
 	{
-		g_source_remove (buffer->priv->idle_scan_id);
-		buffer->priv->idle_scan_id = 0;
+		g_source_remove (buffer->priv->batch_scan_id);
+		buffer->priv->batch_scan_id = 0;
+	}
+	else if (buffer->priv->initiate_scan_id != 0)
+	{
+		g_source_remove (buffer->priv->initiate_scan_id);
+		buffer->priv->initiate_scan_id = 0;
 	}
 }
 
 static void
 on_library_unlock (GtkSourceCompletionWordsBuffer *buffer)
 {
-	if (buffer->priv->idle_scan_id == 0 &&
-	    buffer->priv->scan_regions != NULL)
+	if (buffer->priv->scan_regions != NULL)
 	{
-		buffer->priv->idle_scan_id =
-			g_idle_add_full (G_PRIORITY_LOW,
-			                 (GSourceFunc)idle_scan_regions,
-			                 buffer,
-			                 NULL);
+		install_initiate_scan (buffer);
 	}
 }
 
