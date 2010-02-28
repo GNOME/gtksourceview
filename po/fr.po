@@ -17,8 +17,8 @@ msgstr ""
 "Project-Id-Version: gtksourceview HEAD\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&component=general\n"
-"POT-Creation-Date: 2010-02-01 10:50+0000\n"
-"PO-Revision-Date: 2010-02-06 23:21+0100\n"
+"POT-Creation-Date: 2010-02-22 20:43+0000\n"
+"PO-Revision-Date: 2010-02-28 22:29+0100\n"
 "Last-Translator: Claude Paroz <claude@2xlibre.net>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -87,61 +87,71 @@ msgstr "Priorité"
 msgid "Provider priority"
 msgstr "Priorité du fournisseur"
 
-#: ../gtksourceview/gtksourcebuffer.c:210
+#: ../gtksourceview/gtksourcebuffer.c:211
 #: ../gtksourceview/gtksourceprintcompositor.c:506
 msgid "Highlight Syntax"
 msgstr "Coloration syntaxique"
 
-#: ../gtksourceview/gtksourcebuffer.c:211
+#: ../gtksourceview/gtksourcebuffer.c:212
 msgid "Whether to highlight syntax in the buffer"
 msgstr "Indique s'il faut utiliser la coloration syntaxique dans le tampon"
 
-#: ../gtksourceview/gtksourcebuffer.c:224
+#: ../gtksourceview/gtksourcebuffer.c:225
 msgid "Highlight Matching Brackets"
 msgstr "Mise en évidence des couples de parenthèses"
 
-#: ../gtksourceview/gtksourcebuffer.c:225
+#: ../gtksourceview/gtksourcebuffer.c:226
 msgid "Whether to highlight matching brackets"
 msgstr "Indique s'il faut mettre en évidence les couples de parenthèses"
 
-#: ../gtksourceview/gtksourcebuffer.c:237
+#: ../gtksourceview/gtksourcebuffer.c:239
+#: ../gtksourceview/gtksourceundomanagerdefault.c:398
 msgid "Maximum Undo Levels"
 msgstr "Nombre d'annulations possibles"
 
-#: ../gtksourceview/gtksourcebuffer.c:238
+#: ../gtksourceview/gtksourcebuffer.c:240
+#: ../gtksourceview/gtksourceundomanagerdefault.c:399
 msgid "Number of undo levels for the buffer"
 msgstr "Nombre d'annulations possibles pour le tampon"
 
 #. Translators: throughout gtksourceview "language" stands
 #. * for "programming language", not "spoken language"
-#: ../gtksourceview/gtksourcebuffer.c:250
+#: ../gtksourceview/gtksourcebuffer.c:252
 msgid "Language"
 msgstr "Langage"
 
-#: ../gtksourceview/gtksourcebuffer.c:251
+#: ../gtksourceview/gtksourcebuffer.c:253
 msgid "Language object to get highlighting patterns from"
 msgstr "Objet de langage pour les motifs de coloration syntaxique"
 
-#: ../gtksourceview/gtksourcebuffer.c:259
+#: ../gtksourceview/gtksourcebuffer.c:261
 msgid "Can undo"
 msgstr "Annulation possible"
 
-#: ../gtksourceview/gtksourcebuffer.c:260
+#: ../gtksourceview/gtksourcebuffer.c:262
 msgid "Whether Undo operation is possible"
 msgstr "Indique si l'annulation est possible "
 
-#: ../gtksourceview/gtksourcebuffer.c:267
+#: ../gtksourceview/gtksourcebuffer.c:269
 msgid "Can redo"
 msgstr "Rétablissement possible"
 
-#: ../gtksourceview/gtksourcebuffer.c:268
+#: ../gtksourceview/gtksourcebuffer.c:270
 msgid "Whether Redo operation is possible"
 msgstr "Indique s'il est possible de rétablir les opérations annulées"
 
-#: ../gtksourceview/gtksourcebuffer.c:282
-#: ../gtksourceview/gtksourcebuffer.c:283
+#: ../gtksourceview/gtksourcebuffer.c:284
+#: ../gtksourceview/gtksourcebuffer.c:285
 msgid "Style scheme"
 msgstr "Jeu de style"
+
+#: ../gtksourceview/gtksourcebuffer.c:292
+msgid "Undo manager"
+msgstr "Gestionnaire d'annulation"
+
+#: ../gtksourceview/gtksourcebuffer.c:293
+msgid "The buffer undo manager"
+msgstr "Le gestionnaire du tampon d'annulation"
 
 #. Translators: "All" is used as a label in thestatus bar of the
 #. popup, telling that all completion pages are shown
@@ -149,90 +159,91 @@ msgstr "Jeu de style"
 msgid "All"
 msgstr "Tout"
 
-#: ../gtksourceview/gtksourcecompletion.c:941
+#: ../gtksourceview/gtksourcecompletion.c:940
 #: ../gtksourceview/gtksourcecompletion.c:963
 msgid "No extra information available"
 msgstr "Aucune information supplémentaire disponible"
 
-#: ../gtksourceview/gtksourcecompletion.c:2227
+#: ../gtksourceview/gtksourcecompletion.c:2229
 #: ../gtksourceview/gtksourcegutter.c:369
 msgid "View"
 msgstr "Affichage"
 
-#: ../gtksourceview/gtksourcecompletion.c:2228
+#: ../gtksourceview/gtksourcecompletion.c:2230
 msgid "The GtkSourceView bound to the completion"
 msgstr "L'objet GtkSourceView lié à la complétion"
 
-#: ../gtksourceview/gtksourcecompletion.c:2243
+#: ../gtksourceview/gtksourcecompletion.c:2245
 msgid "Remember Info Visibility"
 msgstr "Se souvenir de l'information de visibilité"
 
-#: ../gtksourceview/gtksourcecompletion.c:2244
+#: ../gtksourceview/gtksourcecompletion.c:2246
 msgid "Remember the last info window visibility state"
 msgstr "Enregistrer l'état de visibilité de la fenêtre d'information"
 
-#: ../gtksourceview/gtksourcecompletion.c:2257
+#: ../gtksourceview/gtksourcecompletion.c:2259
 msgid "Select on Show"
 msgstr "Sélectionner à l'affichage"
 
-#: ../gtksourceview/gtksourcecompletion.c:2258
+#: ../gtksourceview/gtksourcecompletion.c:2260
 msgid "Select first proposal when completion is shown"
 msgstr "Sélectionner la première proposition quand la complétion est affichée"
 
-#: ../gtksourceview/gtksourcecompletion.c:2272
+#: ../gtksourceview/gtksourcecompletion.c:2274
 msgid "Show Headers"
 msgstr "Afficher les en-têtes"
 
-#: ../gtksourceview/gtksourcecompletion.c:2273
+#: ../gtksourceview/gtksourcecompletion.c:2275
 msgid ""
 "Show provider headers when proposals from multiple providers are available"
 msgstr ""
 "Afficher les en-têtes des fournisseurs quand des propositions de plusieurs "
 "fournisseurs sont disponibles"
 
-#: ../gtksourceview/gtksourcecompletion.c:2287
+#: ../gtksourceview/gtksourcecompletion.c:2289
 msgid "Show Icons"
 msgstr "Afficher les icônes"
 
-#: ../gtksourceview/gtksourcecompletion.c:2288
+#: ../gtksourceview/gtksourcecompletion.c:2290
 msgid "Show provider and proposal icons in the completion popup"
 msgstr ""
-"Afficher les icônes de fournisseur et de proposition dans la fenêtre de complétion"
+"Afficher les icônes de fournisseur et de proposition dans la fenêtre de "
+"complétion"
 
-#: ../gtksourceview/gtksourcecompletion.c:2301
+#: ../gtksourceview/gtksourcecompletion.c:2303
 msgid "Accelerators"
 msgstr "Raccourcis"
 
-#: ../gtksourceview/gtksourcecompletion.c:2302
+#: ../gtksourceview/gtksourcecompletion.c:2304
 msgid "Number of proposal accelerators to show"
 msgstr "Nombre de raccourcis de propositions à afficher"
 
-#: ../gtksourceview/gtksourcecompletion.c:2318
+#: ../gtksourceview/gtksourcecompletion.c:2320
 msgid "Auto Complete Delay"
 msgstr "Délai d'auto-complétion"
 
-#: ../gtksourceview/gtksourcecompletion.c:2319
+#: ../gtksourceview/gtksourcecompletion.c:2321
 msgid "Completion popup delay for interactive completion"
 msgstr ""
 "Délai avant l'affichage de l'auto-complétion pour la complétion interactive"
 
-#: ../gtksourceview/gtksourcecompletion.c:2334
+#: ../gtksourceview/gtksourcecompletion.c:2336
 msgid "Provider Page Size"
 msgstr "Taille de la page du fournisseur"
 
-#: ../gtksourceview/gtksourcecompletion.c:2335
+#: ../gtksourceview/gtksourcecompletion.c:2337
 msgid "Provider scrolling page size"
 msgstr "Taille du défilement de page du fournisseur"
 
-#: ../gtksourceview/gtksourcecompletion.c:2350
+#: ../gtksourceview/gtksourcecompletion.c:2352
 msgid "Proposal Page Size"
 msgstr "Taille de la page des propositions"
 
-#: ../gtksourceview/gtksourcecompletion.c:2351
+#: ../gtksourceview/gtksourcecompletion.c:2353
 msgid "Proposal scrolling page size"
 msgstr "Taille du défilement de page de proposition"
 
-#: ../gtksourceview/gtksourcecompletion.c:2688
+#: ../gtksourceview/gtksourcecompletion.c:2691
 msgid "Provider"
 msgstr "Fournisseur"
 
@@ -764,6 +775,14 @@ msgstr "Id de jeux"
 #: ../gtksourceview/gtksourcestyleschememanager.c:161
 msgid "List of the ids of the available style schemes"
 msgstr "Liste d'identifiants des jeux de style disponibles"
+
+#: ../gtksourceview/gtksourceundomanagerdefault.c:390
+msgid "Buffer"
+msgstr "Tampon"
+
+#: ../gtksourceview/gtksourceundomanagerdefault.c:391
+msgid "The text buffer to add undo support on"
+msgstr "Le tampon de texte auquel ajouter la prise en charge de l'annulation"
 
 #: ../gtksourceview/gtksourceview.c:325
 msgid "The completion object associated with the view"
