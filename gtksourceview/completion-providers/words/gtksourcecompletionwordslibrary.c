@@ -308,9 +308,9 @@ gtk_source_completion_words_library_add_word (GtkSourceCompletionWordsLibrary *l
 	
 	/* Insert proposal into binary tree of words */
 	g_sequence_insert_sorted (library->priv->store,
-				  proposal,
-				  (GCompareDataFunc)compare_two_items,
-				  NULL);
+	                          proposal,
+	                          (GCompareDataFunc)compare_two_items,
+	                          NULL);
 
 	return proposal;
 }

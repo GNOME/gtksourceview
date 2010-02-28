@@ -16,12 +16,14 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with gtksourceview; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin St, Fifth Floor, 
+ * Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA  02110-1301  USA
  */
 
 #include "gtksourcecompletionwordsbuffer.h"
 #include "gtksourcecompletionwordsutils.h"
+
+#include <glib/gprintf.h>
 
 #define GTK_SOURCE_COMPLETION_WORDS_BUFFER_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE((object), GTK_TYPE_SOURCE_COMPLETION_WORDS_BUFFER, GtkSourceCompletionWordsBufferPrivate))
 
@@ -29,16 +31,20 @@
 
 typedef struct
 {
-	guint start;
-	guint end;
+	GtkSourceCompletionWordsProposal *proposal;
+	guint use_count;
+} ProposalCache;
+
+typedef struct
+{
+	GtkTextMark *start;
+	GtkTextMark *end;
 } ScanRegion;
 
 enum
 {
 	EXT_INSERT_TEXT,
-	EXT_INSERT_TEXT_AFTER,
 	EXT_DELETE_RANGE,
-	EXT_DELETE_RANGE_AFTER,
 	NUM_EXT_SIGNALS
 };
 
@@ -46,64 +52,111 @@ struct _GtkSourceCompletionWordsBufferPrivate
 {
 	GtkSourceCompletionWordsLibrary *library;
 	GtkTextBuffer *buffer;
-	
-	GList *lines;
-	gint current_insert_line;
-	
+
 	GList *scan_regions;
 	guint idle_scan_id;
-	
+
 	guint ext_signal_handlers[NUM_EXT_SIGNALS];
 	guint scan_batch_size;
 	guint minimum_word_size;
-	
+
 	guint lock_handler_id;
 	guint unlock_handler_id;
-	
+
 	GtkTextMark *mark;
+	GHashTable *words;
 };
 
 G_DEFINE_TYPE (GtkSourceCompletionWordsBuffer, gtk_source_completion_words_buffer, G_TYPE_OBJECT)
 
-static ScanRegion *
-scan_region_new (gint start,
-                 gint end)
+static ProposalCache *
+proposal_cache_new (GtkSourceCompletionWordsProposal *proposal)
 {
-	ScanRegion *region = (ScanRegion *)g_slice_new (ScanRegion);
-	
-	region->start = start;
-	region->end = end;
-	
+	ProposalCache *cache = g_slice_new (ProposalCache);
+	cache->proposal = g_object_ref (proposal);
+	cache->use_count = 1;
+
+	return cache;
+}
+
+static void
+proposal_cache_free (ProposalCache *cache)
+{
+	g_object_unref (cache->proposal);
+	g_slice_free (ProposalCache, cache);
+}
+
+static ScanRegion *
+scan_region_new (GtkTextBuffer *buffer,
+                 GtkTextIter   *start,
+                 GtkTextIter   *end)
+{
+	ScanRegion *region = g_slice_new (ScanRegion);
+
+	region->start = g_object_ref (gtk_text_buffer_create_mark (buffer,
+	                                                           NULL,
+	                                                           start,
+	                                                           TRUE));
+
+	region->end = g_object_ref (gtk_text_buffer_create_mark (buffer,
+	                                                         NULL,
+	                                                         end,
+	                                                         FALSE));
+
 	return region;
 }
 
 static void
 scan_region_free (ScanRegion *region)
 {
+	GtkTextBuffer *buffer = gtk_text_mark_get_buffer (region->start);
+
+	if (!gtk_text_mark_get_deleted (region->start))
+	{
+		gtk_text_buffer_delete_mark (buffer, region->start);
+	}
+
+	g_object_unref (region->start);
+
+	if (!gtk_text_mark_get_deleted (region->end))
+	{
+		gtk_text_buffer_delete_mark (buffer, region->end);
+	}
+
+	g_object_unref (region->end);
+
 	g_slice_free (ScanRegion, region);
 }
 
 static void
-remove_proposal (GtkSourceCompletionWordsProposal *proposal,
-                 GtkSourceCompletionWordsBuffer   *buffer)
+remove_proposal_cache (const gchar                    *key,
+                       ProposalCache                  *cache,
+                       GtkSourceCompletionWordsBuffer *buffer)
 {
-	gtk_source_completion_words_library_remove_word (buffer->priv->library,
-	                                                 proposal);
+	guint i;
+
+	for (i = 0; i < cache->use_count; ++i)
+	{
+		gtk_source_completion_words_library_remove_word (buffer->priv->library,
+		                                                 cache->proposal);
+	}
 }
 
 static void
-remove_line (GList                          *line,
-             GtkSourceCompletionWordsBuffer *buffer)
+remove_words (GtkSourceCompletionWordsBuffer *buffer)
 {
-	g_list_foreach (line, (GFunc)remove_proposal, buffer);
-	g_list_free (line);
+	g_hash_table_foreach (buffer->priv->words,
+	                      (GHFunc)remove_proposal_cache,
+	                      buffer);
+
+	g_hash_table_remove_all (buffer->priv->words);
 }
 
 static void
 gtk_source_completion_words_buffer_dispose (GObject *object)
 {
 	GtkSourceCompletionWordsBuffer *buffer =
-			GTK_SOURCE_COMPLETION_WORDS_BUFFER (object);
+		GTK_SOURCE_COMPLETION_WORDS_BUFFER (object);
 
 	if (buffer->priv->mark)
 	{
@@ -112,35 +165,37 @@ gtk_source_completion_words_buffer_dispose (GObject *object)
 		buffer->priv->mark = NULL;
 	}
 
+	if (buffer->priv->words)
+	{
+		remove_words (buffer);
+
+		g_hash_table_destroy (buffer->priv->words);
+		buffer->priv->words = NULL;
+	}
+
+	g_list_foreach (buffer->priv->scan_regions, (GFunc)scan_region_free, NULL);
+	g_list_free (buffer->priv->scan_regions);
+	buffer->priv->scan_regions = NULL;
+
 	if (buffer->priv->buffer)
 	{
 		gint i;
-		
+
 		for (i = 0; i < NUM_EXT_SIGNALS; ++i)
 		{
 			g_signal_handler_disconnect (buffer->priv->buffer,
 			                             buffer->priv->ext_signal_handlers[i]);
 		}
-		
+
 		g_object_unref (buffer->priv->buffer);
 		buffer->priv->buffer = NULL;
 	}
-	
+
 	if (buffer->priv->idle_scan_id)
 	{
 		g_source_remove (buffer->priv->idle_scan_id);
 		buffer->priv->idle_scan_id = 0;
 	}
-	
-	g_list_foreach (buffer->priv->scan_regions, (GFunc)scan_region_free, NULL);
-	g_list_free (buffer->priv->scan_regions);
-	
-	buffer->priv->scan_regions = NULL;
-	
-	g_list_foreach (buffer->priv->lines, (GFunc)remove_line, buffer);
-	g_list_free (buffer->priv->lines);
-
-	buffer->priv->lines = NULL;
 
 	if (buffer->priv->library)
 	{
@@ -170,23 +225,18 @@ static void
 gtk_source_completion_words_buffer_init (GtkSourceCompletionWordsBuffer *self)
 {
 	self->priv = GTK_SOURCE_COMPLETION_WORDS_BUFFER_GET_PRIVATE (self);
-	
+
 	self->priv->scan_batch_size = 20;
 	self->priv->minimum_word_size = 3;
-}
 
-static void
-on_insert_text_cb (GtkTextBuffer                  *textbuffer,
-                   GtkTextIter                    *location,
-                   const gchar                    *text,
-                   gint                            len,
-                   GtkSourceCompletionWordsBuffer *buffer)
-{
-	buffer->priv->current_insert_line = gtk_text_iter_get_line (location);
+	self->priv->words = g_hash_table_new_full (g_str_hash,
+	                                           g_str_equal,
+	                                           (GDestroyNotify)g_free,
+	                                           (GDestroyNotify)proposal_cache_free);
 }
 
 static gboolean
-valid_word_char (gunichar ch, 
+valid_word_char (gunichar ch,
                  gpointer data)
 {
 	return g_unichar_isprint (ch) && (ch == '_' || g_unichar_isalnum (ch));
@@ -198,305 +248,249 @@ valid_start_char (gunichar ch)
 	return !g_unichar_isdigit (ch);
 }
 
-static GList *
+static GSList *
 scan_line (GtkSourceCompletionWordsBuffer *buffer,
-           gint                            line)
+           GtkTextIter                    *start)
 {
-	GtkTextIter start;
+	GSList *ret = NULL;
 	GtkTextIter end;
-	GList *ret = NULL;
-	
-	gtk_text_buffer_get_iter_at_line (buffer->priv->buffer, &start, line);
-	
-	while (gtk_text_iter_get_line (&start) == line)
+	gint line = gtk_text_iter_get_line (start);
+
+	while (line == gtk_text_iter_get_line (start))
 	{
 		gchar *word;
-		
-		while (!gtk_text_iter_ends_line (&start) &&
-		       !valid_word_char (gtk_text_iter_get_char (&start), NULL))
+
+		while (!gtk_text_iter_ends_line (start) &&
+		       !valid_word_char (gtk_text_iter_get_char (start), NULL))
 		{
-			gtk_text_iter_forward_char (&start);
+			gtk_text_iter_forward_char (start);
 		}
-		
-		if (gtk_text_iter_ends_line (&start))
+
+		if (gtk_text_iter_ends_line (start))
 		{
 			break;
 		}
 
-		end = start;
-		
+		end = *start;
+
 		if (!gtk_source_completion_words_utils_forward_word_end (&end,
 		                                                         valid_word_char,
 		                                                         NULL))
 		{
 			break;
 		}
-		
-		if (valid_start_char (gtk_text_iter_get_char (&start)))
+
+		if (valid_start_char (gtk_text_iter_get_char (start)))
 		{
-			if (gtk_text_iter_get_offset (&end) - 
-			    gtk_text_iter_get_offset (&start) >= buffer->priv->minimum_word_size)
+			if (gtk_text_iter_get_offset (&end) -
+			    gtk_text_iter_get_offset (start) >= buffer->priv->minimum_word_size)
 			{
-				GtkSourceCompletionWordsProposal *proposal;
-			
-				word = gtk_text_iter_get_text (&start, &end);
-				proposal = gtk_source_completion_words_library_add_word (buffer->priv->library,
-					                                                 word);
-			
-				if (proposal != NULL)
-				{
-					ret = g_list_prepend (ret, proposal);
-					g_free (word);
-				}
+				word = gtk_text_iter_get_text (start, &end);
+				ret = g_slist_prepend (ret, word);
 			}
 		}
-		
-		start = end;
-		
-		if (!gtk_text_iter_forward_char (&start))
+
+		*start = end;
+
+		if (!gtk_text_iter_forward_char (start))
 		{
 			break;
 		}
 	}
-	
-	return g_list_reverse (ret);
+
+	return ret;
+}
+
+static void
+remove_word (GtkSourceCompletionWordsBuffer *buffer,
+             const gchar                    *word)
+{
+	ProposalCache *cache;
+
+	cache = g_hash_table_lookup (buffer->priv->words, word);
+
+	if (!cache)
+	{
+		g_warning ("Could not find word to remove in buffer (%s), this should not happen!",
+		           word);
+		return;
+	}
+
+	gtk_source_completion_words_library_remove_word (buffer->priv->library,
+	                                                 cache->proposal);
+
+	--cache->use_count;
+
+	if (cache->use_count == 0)
+	{
+		g_hash_table_remove (buffer->priv->words, word);
+	}
+}
+
+static void
+add_words (GtkSourceCompletionWordsBuffer *buffer,
+           GSList                         *words)
+{
+	GSList *item;
+
+	for (item = words; item; item = g_slist_next (item))
+	{
+		GtkSourceCompletionWordsProposal *proposal;
+		ProposalCache *cache;
+
+		proposal = gtk_source_completion_words_library_add_word (buffer->priv->library,
+		                                                         item->data);
+
+		cache = g_hash_table_lookup (buffer->priv->words,
+		                             item->data);
+
+		if (cache)
+		{
+			++cache->use_count;
+			g_free (item->data);
+		}
+		else
+		{
+			/* Hash table takes over ownership of the word string */
+			cache = proposal_cache_new (proposal);
+			g_hash_table_insert (buffer->priv->words,
+			                     item->data,
+			                     cache);
+		}
+	}
+
+	g_slist_free (words);
 }
 
 static gboolean
 idle_scan_regions (GtkSourceCompletionWordsBuffer *buffer)
 {
-	guint num = 0;
-	GList *ptr = buffer->priv->lines;
-	guint prev = 0;
 	gboolean finished;
-	
-	/* Scan a few lines */
+	guint num = buffer->priv->scan_batch_size;
+
+	/* Scan some regions */
 	while (buffer->priv->scan_regions)
 	{
 		ScanRegion *region = REGION_FROM_LIST (buffer->priv->scan_regions);
+		GtkTextIter start;
+		GtkTextIter end;
 
-		gint span = (region->end - region->start) + 1;
-		gint doscan = MIN(buffer->priv->scan_batch_size - num, span);
-		gint i;
-		
-		ptr = g_list_nth (ptr, region->start - prev);
-		
-		for (i = 0; i < doscan; ++i)
+		gtk_text_buffer_get_iter_at_mark (buffer->priv->buffer,
+		                                  &start,
+		                                  region->start);
+
+		gtk_text_buffer_get_iter_at_mark (buffer->priv->buffer,
+		                                  &end,
+		                                  region->end);
+
+		while (gtk_text_iter_compare (&start, &end) < 0 && num)
 		{
-			/* First remove this line */
-			remove_line ((GList *)ptr->data, buffer);
-			
-			/* Then scan it which adds words */
-			ptr->data = scan_line (buffer, region->start + i);
+			GSList *words;
 
-			ptr = g_list_next (ptr);
+			words = scan_line (buffer, &start);
+
+			/* add_words also frees the list */
+			add_words (buffer, words);
+
+			--num;
+
+			if (!gtk_text_iter_forward_line (&start))
+			{
+				num = 0;
+				break;
+			}
 		}
-		
-		prev = region->start + doscan;
-		
-		if (doscan == span)
-		{
-			/* Simply remove the region */
-			scan_region_free (region);
 
-			buffer->priv->scan_regions = 
-				g_list_delete_link (buffer->priv->scan_regions,
-				                    buffer->priv->scan_regions);
+		if (gtk_text_iter_compare (&start, &end) >= 0 || num != 0)
+		{
+			/* Done with region */
+			scan_region_free (region);
+			buffer->priv->scan_regions = g_list_delete_link (buffer->priv->scan_regions,
+			                                                 buffer->priv->scan_regions);
 		}
 		else
 		{
-			/* Update the region and break */
-			region->start = region->start + doscan;
+			gtk_text_buffer_move_mark (buffer->priv->buffer,
+			                           region->start,
+			                           &start);
 			break;
 		}
-		
-		num += doscan;
 	}
 
 	finished = buffer->priv->scan_regions == NULL;
-	
+
 	if (finished)
 	{
 		buffer->priv->idle_scan_id = 0;
 	}
-	
+
 	return !finished;
 }
 
 static void
-remove_scan_regions (GtkSourceCompletionWordsBuffer *buffer,
-                     gint                            start,
-                     gint                            end)
-{
-	GList *item;
-	gint span = end - start + 1;
-	
-	item = buffer->priv->scan_regions;
-
-	while (item != NULL)
-	{
-		ScanRegion *region = REGION_FROM_LIST (item);
-		
-		if (region->start >= start)
-		{
-			if (region->end <= end)
-			{
-				/* Region fully within removed region */
-				GList *remove = item;
-				scan_region_free (region);
-
-				item = g_list_next (item);
-			
-				/* Remove whole thing */
-				buffer->priv->scan_regions = 
-					g_list_delete_link (buffer->priv->scan_regions,
-						            remove);
-				continue;
-			}
-			else if (region->start <= end)
-			{
-				/* Top part of region in removed region */
-				region->start = end + 1;
-				region->end -= span;
-			}
-			else
-			{
-				/* Fully decrease */
-				region->start -= span;
-				region->end -= span;
-			}
-		}
-		else if (region->end <= end && region->end > start)
-		{
-			/* Bottom part of region in removed region */
-			region->end = start;
-		}
-		else if (region->end >= end)
-		{
-			region->end -= span;
-		}
-
-		item = g_list_next (item);
-	}
-}
-
-static void
-remove_range (GtkSourceCompletionWordsBuffer *buffer,
-              gint                            start,
-              gint                            end)
-{
-	if (start > end)
-	{
-		return;
-	}
-	
-	remove_scan_regions (buffer, start, end);
-
-	GList *line = g_list_nth (buffer->priv->lines, start);
-	
-	while (start <= end && line)
-	{
-		GList *cur = line;
-		
-		/* Remove proposals */
-		remove_line ((GList *)line->data, buffer);
-		line = g_list_next (cur);
-
-		buffer->priv->lines = g_list_delete_link (buffer->priv->lines,
-		                                          cur);
-		++start;
-	}
-}
-
-static void
 add_scan_region (GtkSourceCompletionWordsBuffer *buffer,
-                 gint                            start,
-                 gint                            end)
+                 GList                          *after,
+                 GtkTextIter                    *start,
+                 GtkTextIter                    *end,
+                 gboolean                        remove_first)
 {
-	GList *item;
-	GList *merge_start = NULL;
-	GList *merge_end = NULL;
-	GList *insert_after = NULL;
+	GList *next;
+	ScanRegion *region;
 
-	gint line_count = gtk_text_buffer_get_line_count (buffer->priv->buffer);
-	
-	if (end >= line_count)
+	if (remove_first)
 	{
-		end = line_count - 1;
-	}
-	
-	if (start > end)
-	{
-		return;
-	}
-	
-	for (item = buffer->priv->scan_regions; item; item = g_list_next (item))
-	{
-		ScanRegion *region = (ScanRegion *)item->data;
-		
-		if (region->end < end)
-		{
-			insert_after = item;
-		}
+		/* First remove all the words currently in the region */
+		GtkTextIter cstart = *start;
 
-		/* Check if this region is overlapping, or directly adjacent to,
-		   the new region */
-		if (start <= region->end + 1 &&
-		    end >= (gint)region->start - 1)
+		while (gtk_text_iter_compare (&cstart, end) < 0)
 		{
-			/* Merge ends at _least_ here, we keep updating
-			   merge_end here until the region no longer qualifies
-			   for merging */
-			merge_end = item;
-			
-			if (!merge_start)
+			GSList *words = scan_line (buffer, &cstart);
+			GSList *item;
+
+			for (item = words; item; item = g_slist_next (item))
 			{
-				/* Merge starts here */
-				merge_start = item;
+				remove_word (buffer, item->data);
+				g_free (item->data);
+			}
+
+			g_slist_free (words);
+
+			if (!gtk_text_iter_forward_line (&cstart))
+			{
+				break;
 			}
 		}
-		else if (merge_end != NULL)
-		{
-			/* Break early because following regions fall outside
-			   of the new region and will not be merged */
-			break;
-		}
 	}
-	
-	if (merge_start == NULL)
+
+	/* Then just add the scan region */
+	region = scan_region_new (buffer->priv->buffer,
+	                          start,
+	                          end);
+
+	if (after == NULL)
 	{
-		/* Simply prepend, there was no overlap */
-		buffer->priv->scan_regions = 
+		buffer->priv->scan_regions = g_list_prepend (buffer->priv->scan_regions,
+		                                             region);
+	}
+
+	next = g_list_next (after);
+
+	if (next != NULL)
+	{
+		buffer->priv->scan_regions =
 			g_list_insert_before (buffer->priv->scan_regions,
-			                      insert_after ? g_list_next (insert_after) : buffer->priv->scan_regions,
-			                      scan_region_new (start, end));
+			                      next,
+			                      region);
 	}
 	else
 	{
-		ScanRegion *merged = REGION_FROM_LIST (merge_start);
-		GList *item;
-
-		/* 'merged' will be the merge of merge_start to merge_end,
-		   including the new region. The regions next(merge_start) to
-		   merge_end will be removed */
-		merged->start = MIN(start, merged->start);
-		merged->end = MAX(end, REGION_FROM_LIST (merge_end)->end);
-
-		item = merge_start;
-		
-		while (item != merge_end)
-		{
-			item = g_list_next (item);
-			scan_region_free (REGION_FROM_LIST (item));
-
-			merge_start = g_list_delete_link (merge_start, item);
-		}
+		GList *ignore;
+		ignore = g_list_append (next, region);
 	}
-	
-	if (buffer->priv->idle_scan_id == 0 && 
-	    !gtk_source_completion_words_library_is_locked (buffer->priv->library))
+
+	if (buffer->priv->idle_scan_id == 0)
 	{
-		buffer->priv->idle_scan_id = 
+		buffer->priv->idle_scan_id =
 			g_idle_add_full (G_PRIORITY_LOW,
 			                 (GSourceFunc)idle_scan_regions,
 			                 buffer,
@@ -505,66 +499,110 @@ add_scan_region (GtkSourceCompletionWordsBuffer *buffer,
 }
 
 static void
-handle_text_inserted (GtkSourceCompletionWordsBuffer *buffer,
-                      gint                            start,
-                      gint                            end)
+remove_and_rescan (GtkSourceCompletionWordsBuffer *buffer,
+                   GtkTextIter                    *start,
+                   GtkTextIter                    *end)
 {
-	gint pos = start;
-	GList *ptr = NULL;
-	GList *newlines = NULL;
-	GList *last = NULL;
-	
-	while (pos < end)
+	GList *item;
+	GtkTextIter startc = *start;
+	GtkTextIter endc;
+
+	if (end)
 	{
-		newlines = g_list_prepend (newlines, NULL);
-
-		if (last == NULL)
-		{
-			last = newlines;
-		}
-
-		++pos;
-	}
-
-	if (start > end)
-	{
-		ptr = g_list_nth (buffer->priv->lines,
-		                  start + 1);
-	}
-
-	if (ptr != NULL)
-	{
-		if (ptr->prev)
-		{
-			ptr->prev->next = newlines;
-			newlines->prev = ptr->prev;
-		}
-
-		newlines->next = ptr;
-		ptr->prev = last;
+		endc = *end;
 	}
 	else
 	{
-		buffer->priv->lines = g_list_concat (buffer->priv->lines,
-		                                     newlines);
+		endc = *start;
 	}
 
-	/* Invalidate new region */
-	add_scan_region (buffer, 
-	                 start,
-	                 end);
+	if (!gtk_text_iter_starts_line (&startc))
+	{
+		gtk_text_iter_set_line_offset (&startc, 0);
+	}
+
+	if (!gtk_text_iter_ends_line (&endc))
+	{
+		gtk_text_iter_forward_to_line_end (&endc);
+	}
+
+	for (item = buffer->priv->scan_regions; item; item = g_list_next (item))
+	{
+		ScanRegion *region = item->data;
+		GtkTextIter region_start;
+		GtkTextIter region_end;
+
+		gtk_text_buffer_get_iter_at_mark (buffer->priv->buffer,
+		                                  &region_start,
+		                                  region->start);
+
+		gtk_text_buffer_get_iter_at_mark (buffer->priv->buffer,
+		                                  &region_end,
+		                                  region->end);
+
+		if (gtk_text_iter_compare (&endc, &region_start) < 0)
+		{
+			/* Region is before */
+			add_scan_region (buffer,
+			                 g_list_previous (item),
+			                 &startc,
+			                 &endc,
+			                 TRUE);
+			return;
+		}
+		else if (gtk_text_iter_compare (&startc, &region_start) < 0)
+		{
+			GtkTextIter last;
+			last = region_start;
+			gtk_text_iter_backward_line (&last);
+
+			/* Add region from before */
+			add_scan_region (buffer,
+			                 g_list_previous (item),
+			                 &startc,
+			                 &last,
+			                 TRUE);
+
+			startc = region_end;
+			gtk_text_iter_forward_line (&startc);
+		}
+		else if (gtk_text_iter_compare (&startc, &region_end) < 0)
+		{
+			startc = region_end;
+			gtk_text_iter_forward_line (&startc);
+		}
+
+		if (gtk_text_iter_compare (&startc, &endc) > 0)
+		{
+			return;
+		}
+
+		if (!item->next)
+		{
+			add_scan_region (buffer,
+			                 NULL,
+			                 &startc,
+			                 &endc,
+			                 TRUE);
+			return;
+		}
+	}
+
+	add_scan_region (buffer,
+	                 NULL,
+	                 &startc,
+	                 &endc,
+	                 TRUE);
 }
 
 static void
-on_insert_text_after_cb (GtkTextBuffer                  *text_buffer,
-                         GtkTextIter                    *location,
-                         const gchar                    *text,
-                         gint                            len,
-                         GtkSourceCompletionWordsBuffer *buffer)
+on_insert_text_cb (GtkTextBuffer                  *textbuffer,
+                   GtkTextIter                    *location,
+                   const gchar                    *text,
+                   gint                            len,
+                   GtkSourceCompletionWordsBuffer *buffer)
 {
-	handle_text_inserted (buffer,
-	                      buffer->priv->current_insert_line,
-	                      gtk_text_iter_get_line (location));
+	remove_and_rescan (buffer, location, NULL);
 }
 
 static void
@@ -573,56 +611,58 @@ on_delete_range_cb (GtkTextBuffer                  *text_buffer,
                     GtkTextIter                    *end,
                     GtkSourceCompletionWordsBuffer *buffer)
 {
-	gint start_line = gtk_text_iter_get_line (start);
-	gint end_line = gtk_text_iter_get_line (end);
-	
-	/* Simply remove everything from lines start + 1 to end */
-	remove_range (buffer, start_line + 1, end_line);
-}
+	GtkTextIter start_buf;
+	GtkTextIter end_buf;
 
-static void
-on_delete_range_after_cb (GtkTextBuffer                  *text_buffer,
-                          GtkTextIter                    *start,
-                          GtkTextIter                    *end,
-                          GtkSourceCompletionWordsBuffer *buffer)
-{
-	gint start_line = gtk_text_iter_get_line (start);
-	
-	/* Add start line to scan regions */
-	add_scan_region (buffer, start_line, start_line);
+	gtk_text_buffer_get_bounds (text_buffer,
+	                            &start_buf,
+	                            &end_buf);
+
+	/* Special case removing all the text */
+	if (gtk_text_iter_equal (start, &start_buf) &&
+	    gtk_text_iter_equal (end, &end_buf))
+	{
+		remove_words (buffer);
+		g_list_foreach (buffer->priv->scan_regions, (GFunc)scan_region_free, NULL);
+		g_list_free (buffer->priv->scan_regions);
+		buffer->priv->scan_regions = NULL;
+
+		add_scan_region (buffer, NULL, start, end, FALSE);
+	}
+	else
+	{
+		/* Remove all the words in the lines from start-to-end */
+		remove_and_rescan (buffer, start, end);
+	}
 }
 
 static void
 connect_buffer (GtkSourceCompletionWordsBuffer *buffer)
 {
+	GtkTextIter start;
+	GtkTextIter end;
+
 	buffer->priv->ext_signal_handlers[EXT_INSERT_TEXT] =
 		g_signal_connect (buffer->priv->buffer,
-			          "insert-text",
-			          G_CALLBACK (on_insert_text_cb),
-			          buffer);
-
-	buffer->priv->ext_signal_handlers[EXT_INSERT_TEXT_AFTER] =
-		g_signal_connect_after (buffer->priv->buffer,
-			                "insert-text",
-			                G_CALLBACK (on_insert_text_after_cb),
-			                buffer);
+		                  "insert-text",
+		                  G_CALLBACK (on_insert_text_cb),
+		                  buffer);
 
 	buffer->priv->ext_signal_handlers[EXT_DELETE_RANGE] =
 		g_signal_connect (buffer->priv->buffer,
-			          "delete-range",
-			          G_CALLBACK (on_delete_range_cb),
-			          buffer);
+		                  "delete-range",
+		                  G_CALLBACK (on_delete_range_cb),
+		                  buffer);
 
-	buffer->priv->ext_signal_handlers[EXT_DELETE_RANGE_AFTER] =
-		g_signal_connect_after (buffer->priv->buffer,
-			                "delete-range",
-			                G_CALLBACK (on_delete_range_after_cb),
-			                buffer);
+	gtk_text_buffer_get_bounds (buffer->priv->buffer,
+	                            &start,
+	                            &end);
 
-	/* Start initial scan */
-	handle_text_inserted (buffer,
-	                      0,
-	                      gtk_text_buffer_get_line_count (buffer->priv->buffer));
+	add_scan_region (buffer,
+	                 NULL,
+	                 &start,
+	                 &end,
+	                 FALSE);
 }
 
 static void
@@ -641,7 +681,7 @@ on_library_unlock (GtkSourceCompletionWordsBuffer *buffer)
 	if (buffer->priv->idle_scan_id == 0 &&
 	    buffer->priv->scan_regions != NULL)
 	{
-		buffer->priv->idle_scan_id = 
+		buffer->priv->idle_scan_id =
 			g_idle_add_full (G_PRIORITY_LOW,
 			                 (GSourceFunc)idle_scan_regions,
 			                 buffer,
@@ -655,30 +695,30 @@ gtk_source_completion_words_buffer_new (GtkSourceCompletionWordsLibrary *library
 {
 	GtkSourceCompletionWordsBuffer *ret;
 	GtkTextIter iter;
-	
+
 	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_WORDS_LIBRARY (library), NULL);
 	g_return_val_if_fail (GTK_IS_TEXT_BUFFER (buffer), NULL);
-	
+
 	ret = g_object_new (GTK_TYPE_SOURCE_COMPLETION_WORDS_BUFFER, NULL);
 
 	ret->priv->library = g_object_ref (library);
 	ret->priv->buffer = g_object_ref (buffer);
-	
+
 	ret->priv->lock_handler_id =
 		g_signal_connect_swapped (ret->priv->library,
-			                  "lock",
-			                  G_CALLBACK (on_library_lock),
-			                  ret);
+		                          "lock",
+		                          G_CALLBACK (on_library_lock),
+		                          ret);
 
 	ret->priv->unlock_handler_id =
 		g_signal_connect_swapped (ret->priv->library,
-			                  "unlock",
-			                  G_CALLBACK (on_library_unlock),
-			                  ret);
-	
+		                          "unlock",
+		                          G_CALLBACK (on_library_unlock),
+		                          ret);
+
 	gtk_text_buffer_get_start_iter (buffer, &iter);
 	ret->priv->mark = gtk_text_buffer_create_mark (buffer, NULL, &iter, TRUE);
-	
+
 	connect_buffer (ret);
 
 	return ret;
@@ -688,7 +728,7 @@ GtkTextBuffer *
 gtk_source_completion_words_buffer_get_buffer (GtkSourceCompletionWordsBuffer *buffer)
 {
 	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_WORDS_BUFFER (buffer), NULL);
-	
+
 	return buffer->priv->buffer;
 }
 
@@ -716,6 +756,6 @@ GtkTextMark *
 gtk_source_completion_words_buffer_get_mark (GtkSourceCompletionWordsBuffer *buffer)
 {
 	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_WORDS_BUFFER (buffer), NULL);
-	
+
 	return buffer->priv->mark;
 }

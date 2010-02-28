@@ -270,9 +270,9 @@ gtk_source_completion_words_populate (GtkSourceCompletionProvider *provider,
 	}
 
 	words->priv->cancel_id = 
-		g_signal_connect_swapped (context, 
-			                  "cancelled", 
-			                   G_CALLBACK (population_finished), 
+		g_signal_connect_swapped (context,
+			                  "cancelled",
+			                   G_CALLBACK (population_finished),
 			                   provider);
 
 	words->priv->context = g_object_ref (context);
