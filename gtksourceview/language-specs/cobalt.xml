@@ -44,7 +44,7 @@
   <color name="spring_green"                value="#3ad900"/>
   <color name="sea_green"                   value="#00BF8C"/>
   <color name="light_grey"                  value="#cccccc"/>
-  <color name="dark_maroon"                 value="#002f29"/>
+  <color name="dark_red"                    value="#990000"/>
   <color name="bluish_grey"                 value="#777777"/>
   <color name="steelblue3"                  value="#4f94cd"/>
 
@@ -59,7 +59,7 @@
   
   <!-- Bracket Matching -->
   <style name="bracket-match"               background="steelblue3"/>
-  <style name="bracket-mismatch"            background="dark_maroon" bold="true"/>
+  <style name="bracket-mismatch"            background="dark_red" bold="true"/>
   
   <!-- Search Matching -->
   <style name="search-match"                foreground="white" background="sea_green"/>
@@ -94,7 +94,7 @@
   <style name="def:type"                    foreground="teal_blue"/>
   
   <!-- Others -->
-  <style name="def:error"                   foreground="white" background="dark_maroon" bold="true"/>
+  <style name="def:error"                   foreground="white" background="dark_red" bold="true"/>
   <style name="def:note"                    foreground="neon_pink" bold="true"/>
   <style name="def:net-address-in-comment"  foreground="teal_blue" italic="false" underline="true"/>
   <style name="def:preprocessor"            foreground="light_grey"/>
