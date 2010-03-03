@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview.master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-22 12:14+0530\n"
-"PO-Revision-Date: 2010-02-22 12:19+0530\n"
+"POT-Creation-Date: 2010-03-03 21:44+0530\n"
+"PO-Revision-Date: 2010-03-03 21:46+0530\n"
 "Last-Translator: Dr,T,Vasudevan <agnihot3@gmail.com>\n"
 "Language-Team: Tamil <Ubuntu-l10n-tam@lists.ubuntu.com>>\n"
 "MIME-Version: 1.0\n"
@@ -112,10 +112,12 @@ msgid "Whether to highlight matching brackets"
 msgstr " பொருந்தும் அடைப்புக்குறிகளை சிறப்புச்சுட்ட வேண்டுமா"
 
 #: ../gtksourceview/gtksourcebuffer.c:239
+#: ../gtksourceview/gtksourceundomanagerdefault.c:398
 msgid "Maximum Undo Levels"
 msgstr "அதிகபட்ச செயல்நீக்க மட்டம்"
 
 #: ../gtksourceview/gtksourcebuffer.c:240
+#: ../gtksourceview/gtksourceundomanagerdefault.c:399
 msgid "Number of undo levels for the buffer"
 msgstr "இடையகத்திற்கான செயல்நீக்க மட்டம்"
 
@@ -357,7 +359,7 @@ msgstr "தகவல்"
 msgid "Info to be shown for this item"
 msgstr "இந்த உருப்படிக்கு காட்ட வேண்டிய தகவல்"
 
-#: ../gtksourceview/gtksourcecontextengine.c:2965
+#: ../gtksourceview/gtksourcecontextengine.c:2979
 msgid "using \\C is not supported in language definitions"
 msgstr "\\C ஐ மொழியை வரையறையில் பயன்படுத்துதல் ஆதரிக்கப்படவில்லை"
 
@@ -365,7 +367,7 @@ msgstr "\\C ஐ மொழியை வரையறையில் பயன்�
 #. * named sub-patterns with the same name or if resulting regex is
 #. * too long. In this case fixing lang file helps (e.g. renaming
 #. * subpatterns, making huge keywords use bigger prefixes, etc.)
-#: ../gtksourceview/gtksourcecontextengine.c:3589
+#: ../gtksourceview/gtksourcecontextengine.c:3603
 #, c-format
 msgid ""
 "Cannot create a regex for all the transitions, the syntax highlighting "
@@ -376,7 +378,7 @@ msgstr ""
 "வழக்கத்தை விட மெதுவாக நடக்கும். \n"
 "பிழை: %s"
 
-#: ../gtksourceview/gtksourcecontextengine.c:4924
+#: ../gtksourceview/gtksourcecontextengine.c:4938
 msgid ""
 "Highlighting a single line took too much time, syntax highlighting will be "
 "disabled"
@@ -384,19 +386,19 @@ msgstr ""
 "ஒரு தனி வரியை சிறப்பு சுட்டுதல் அதிக நேரம் எடுத்துக்கொண்டது. இலக்கண சிறப்பு சுட்டல் "
 "செயல் நீக்கம் செய்யப்படும்"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6149
+#: ../gtksourceview/gtksourcecontextengine.c:6163
 #, c-format
 msgid "context '%s' cannot contain a \\%%{...@start} command"
 msgstr "சூழல் '%s' ஒரு \\%%{...@start} கட்டளையை அடக்கி இருக்க கூடாது"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6311
-#: ../gtksourceview/gtksourcecontextengine.c:6400
+#: ../gtksourceview/gtksourcecontextengine.c:6325
+#: ../gtksourceview/gtksourcecontextengine.c:6414
 #, c-format
 msgid "duplicated context id '%s'"
 msgstr "இரட்டையான சூழல் அடையாளம் '%s"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6515
-#: ../gtksourceview/gtksourcecontextengine.c:6575
+#: ../gtksourceview/gtksourcecontextengine.c:6529
+#: ../gtksourceview/gtksourcecontextengine.c:6589
 #, c-format
 msgid ""
 "style override used with wildcard context reference in language '%s' in ref "
@@ -404,18 +406,18 @@ msgid ""
 msgstr ""
 "'%s மொழியில் உள்ளே '%s தொடர்பாக குறிப்பில் சூழல் உறவுடன் பாங்கு இணக்கமறுப்பு பயன்பட்டது "
 
-#: ../gtksourceview/gtksourcecontextengine.c:6589
+#: ../gtksourceview/gtksourcecontextengine.c:6603
 #, c-format
 msgid "invalid context reference '%s'"
 msgstr "செல்லுபடியாகாத சான்றாதாரம் '%s'"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6608
-#: ../gtksourceview/gtksourcecontextengine.c:6618
+#: ../gtksourceview/gtksourcecontextengine.c:6622
+#: ../gtksourceview/gtksourcecontextengine.c:6632
 #, c-format
 msgid "unknown context '%s'"
 msgstr "தெரியாத சூழல் '%s'"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6718
+#: ../gtksourceview/gtksourcecontextengine.c:6732
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "முக்கிய மொழி வரையறை காணப்படவில்லை (அடையாளம் = \"%s\".)"
@@ -754,6 +756,14 @@ msgstr "திட்ட அடையாளம்"
 #: ../gtksourceview/gtksourcestyleschememanager.c:161
 msgid "List of the ids of the available style schemes"
 msgstr "சிறப்பியல்பு திட்டங்களின் அடையாள பட்டியல்"
+
+#: ../gtksourceview/gtksourceundomanagerdefault.c:390
+msgid "Buffer"
+msgstr "இடையகம்"
+
+#: ../gtksourceview/gtksourceundomanagerdefault.c:391
+msgid "The text buffer to add undo support on"
+msgstr "செயல் நீக்க ஆதரவுக்கு உரை இடையகம்"
 
 #: ../gtksourceview/gtksourceview.c:325
 msgid "The completion object associated with the view"
