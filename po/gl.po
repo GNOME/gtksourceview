@@ -1,4 +1,4 @@
-# translation of gtksourceview.master.po to Galician
+# translation of gtksourceview-master-po-gl-28392.merged.po to Galician
 # This file is distributed under the same license as the PACKAGE package.
 # Copyright (C) 2006 THE PACKAGE'S COPYRIGHT HOLDER.
 #
@@ -8,19 +8,21 @@
 # Fran Dieguez <fran.dieguez@glug.es>, 2009.
 # Antón Méixome <meixome@mancomun.org>, 2009.
 # Fran Diéguez <frandieguez@ubuntu.com>, 2010.
+# Antón Méixome <meixome@certima.net>, 2010.
 msgid ""
 msgstr ""
-"Project-Id-Version: gtksourceview.master\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-15 18:00+0100\n"
-"PO-Revision-Date: 2010-02-12 22:23+0100\n"
-"Last-Translator: Fran Diéguez <frandieguez@ubuntu.com>\n"
+"Project-Id-Version: gtksourceview-master-po-gl-28392.merged\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=gtksourceview&component=general\n"
+"POT-Creation-Date: 2010-03-02 20:32+0000\n"
+"PO-Revision-Date: 2010-03-03 01:05+0100\n"
+"Last-Translator: Antón Méixome <meixome@certima.net>\n"
 "Language-Team: Galician <proxecto@trasno.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: gl\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "X-Generator: KBabel 1.11.4\n"
 
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:379
@@ -85,61 +87,71 @@ msgstr "Prioridade"
 msgid "Provider priority"
 msgstr "Prioridade do fornecedor"
 
-#: ../gtksourceview/gtksourcebuffer.c:210
+#: ../gtksourceview/gtksourcebuffer.c:211
 #: ../gtksourceview/gtksourceprintcompositor.c:506
 msgid "Highlight Syntax"
 msgstr "Realzar a sintaxe"
 
-#: ../gtksourceview/gtksourcebuffer.c:211
+#: ../gtksourceview/gtksourcebuffer.c:212
 msgid "Whether to highlight syntax in the buffer"
 msgstr "Indica se se realza a sintaxe no búfer"
 
-#: ../gtksourceview/gtksourcebuffer.c:224
+#: ../gtksourceview/gtksourcebuffer.c:225
 msgid "Highlight Matching Brackets"
 msgstr "Realzar as parénteses de peche"
 
-#: ../gtksourceview/gtksourcebuffer.c:225
+#: ../gtksourceview/gtksourcebuffer.c:226
 msgid "Whether to highlight matching brackets"
 msgstr "Indica se hai que realzar as parénteses de peche"
 
-#: ../gtksourceview/gtksourcebuffer.c:237
+#: ../gtksourceview/gtksourcebuffer.c:239
+#: ../gtksourceview/gtksourceundomanagerdefault.c:398
 msgid "Maximum Undo Levels"
 msgstr "Número máximo de accións de desfacer"
 
-#: ../gtksourceview/gtksourcebuffer.c:238
+#: ../gtksourceview/gtksourcebuffer.c:240
+#: ../gtksourceview/gtksourceundomanagerdefault.c:399
 msgid "Number of undo levels for the buffer"
 msgstr "Número de accións de desfacer para o búfer"
 
 #. Translators: throughout gtksourceview "language" stands
 #. * for "programming language", not "spoken language"
-#: ../gtksourceview/gtksourcebuffer.c:250
+#: ../gtksourceview/gtksourcebuffer.c:252
 msgid "Language"
 msgstr "Linguaxe"
 
-#: ../gtksourceview/gtksourcebuffer.c:251
+#: ../gtksourceview/gtksourcebuffer.c:253
 msgid "Language object to get highlighting patterns from"
 msgstr "Obxecto de linguaxe do que se obteñen os patróns de realce"
 
-#: ../gtksourceview/gtksourcebuffer.c:259
+#: ../gtksourceview/gtksourcebuffer.c:261
 msgid "Can undo"
 msgstr "É posíbel desfacer"
 
-#: ../gtksourceview/gtksourcebuffer.c:260
+#: ../gtksourceview/gtksourcebuffer.c:262
 msgid "Whether Undo operation is possible"
 msgstr "Indica se se pode desfacer a acción"
 
-#: ../gtksourceview/gtksourcebuffer.c:267
+#: ../gtksourceview/gtksourcebuffer.c:269
 msgid "Can redo"
 msgstr "É posíbel refacer"
 
-#: ../gtksourceview/gtksourcebuffer.c:268
+#: ../gtksourceview/gtksourcebuffer.c:270
 msgid "Whether Redo operation is possible"
 msgstr "Indica se é posíbel refacer a acción"
 
-#: ../gtksourceview/gtksourcebuffer.c:282
-#: ../gtksourceview/gtksourcebuffer.c:283
+#: ../gtksourceview/gtksourcebuffer.c:284
+#: ../gtksourceview/gtksourcebuffer.c:285
 msgid "Style scheme"
 msgstr "Esquema de estilo"
+
+#: ../gtksourceview/gtksourcebuffer.c:292
+msgid "Undo manager"
+msgstr "Xestor de acción desfacer"
+
+#: ../gtksourceview/gtksourcebuffer.c:293
+msgid "The buffer undo manager"
+msgstr "O xestor do buffer da acción desfacer"
 
 #. Translators: "All" is used as a label in thestatus bar of the
 #. popup, telling that all completion pages are shown
@@ -147,88 +159,88 @@ msgstr "Esquema de estilo"
 msgid "All"
 msgstr "Todos"
 
-#: ../gtksourceview/gtksourcecompletion.c:941
+#: ../gtksourceview/gtksourcecompletion.c:940
 #: ../gtksourceview/gtksourcecompletion.c:963
 msgid "No extra information available"
 msgstr "Non hai información adicional dispoñíbel"
 
-#: ../gtksourceview/gtksourcecompletion.c:2227
+#: ../gtksourceview/gtksourcecompletion.c:2229
 #: ../gtksourceview/gtksourcegutter.c:369
 msgid "View"
 msgstr "Ver"
 
-#: ../gtksourceview/gtksourcecompletion.c:2228
+#: ../gtksourceview/gtksourcecompletion.c:2230
 msgid "The GtkSourceView bound to the completion"
 msgstr "O obxecto GtkSourceView ligado ao completado"
 
-#: ../gtksourceview/gtksourcecompletion.c:2243
+#: ../gtksourceview/gtksourcecompletion.c:2245
 msgid "Remember Info Visibility"
 msgstr "Lembrar información de visibilidade"
 
-#: ../gtksourceview/gtksourcecompletion.c:2244
+#: ../gtksourceview/gtksourcecompletion.c:2246
 msgid "Remember the last info window visibility state"
 msgstr "Lembrar o último estado de visibilidade da xanela"
 
-#: ../gtksourceview/gtksourcecompletion.c:2257
+#: ../gtksourceview/gtksourcecompletion.c:2259
 msgid "Select on Show"
 msgstr "Seleccionar ao Mostrar"
 
-#: ../gtksourceview/gtksourcecompletion.c:2258
+#: ../gtksourceview/gtksourcecompletion.c:2260
 msgid "Select first proposal when completion is shown"
 msgstr "Seleccionar a primeira proposta cando se mostre o completado"
 
-#: ../gtksourceview/gtksourcecompletion.c:2272
+#: ../gtksourceview/gtksourcecompletion.c:2274
 msgid "Show Headers"
 msgstr "Mostrar cabeceiras"
 
-#: ../gtksourceview/gtksourcecompletion.c:2273
+#: ../gtksourceview/gtksourcecompletion.c:2275
 msgid ""
 "Show provider headers when proposals from multiple providers are available"
 msgstr ""
 "Mostrar as cabeceiras do fornecedor cando estean dispoñíbeis múltiples "
 "fornecedores"
 
-#: ../gtksourceview/gtksourcecompletion.c:2287
+#: ../gtksourceview/gtksourcecompletion.c:2289
 msgid "Show Icons"
 msgstr "Mostrar iconas"
 
-#: ../gtksourceview/gtksourcecompletion.c:2288
+#: ../gtksourceview/gtksourcecompletion.c:2290
 msgid "Show provider and proposal icons in the completion popup"
 msgstr "Mostrar o fornecedor e as iconas propostas na xanela de completado"
 
-#: ../gtksourceview/gtksourcecompletion.c:2301
+#: ../gtksourceview/gtksourcecompletion.c:2303
 msgid "Accelerators"
 msgstr "Atallos"
 
-#: ../gtksourceview/gtksourcecompletion.c:2302
+#: ../gtksourceview/gtksourcecompletion.c:2304
 msgid "Number of proposal accelerators to show"
 msgstr "Número de atallos de proposicións a mostrar"
 
-#: ../gtksourceview/gtksourcecompletion.c:2318
+#: ../gtksourceview/gtksourcecompletion.c:2320
 msgid "Auto Complete Delay"
 msgstr "Atraso no autocompletado"
 
-#: ../gtksourceview/gtksourcecompletion.c:2319
+#: ../gtksourceview/gtksourcecompletion.c:2321
 msgid "Completion popup delay for interactive completion"
 msgstr "Atraso na xanela emerxente de completado para o completado interactivo"
 
-#: ../gtksourceview/gtksourcecompletion.c:2334
+#: ../gtksourceview/gtksourcecompletion.c:2336
 msgid "Provider Page Size"
 msgstr "Tamaño da páxina do fornecedor"
 
-#: ../gtksourceview/gtksourcecompletion.c:2335
+#: ../gtksourceview/gtksourcecompletion.c:2337
 msgid "Provider scrolling page size"
 msgstr "Tamaño do fornecedor do deprazamento da páxina"
 
-#: ../gtksourceview/gtksourcecompletion.c:2350
+#: ../gtksourceview/gtksourcecompletion.c:2352
 msgid "Proposal Page Size"
 msgstr "Tamaño da páxina da proposición"
 
-#: ../gtksourceview/gtksourcecompletion.c:2351
+#: ../gtksourceview/gtksourcecompletion.c:2353
 msgid "Proposal scrolling page size"
 msgstr "Tamaño da proposición do deprazamento da páxina"
 
-#: ../gtksourceview/gtksourcecompletion.c:2688
+#: ../gtksourceview/gtksourcecompletion.c:2691
 msgid "Provider"
 msgstr "Fornecedor"
 
@@ -344,7 +356,7 @@ msgstr "Información"
 msgid "Info to be shown for this item"
 msgstr "Información a mostrar para este elemento"
 
-#: ../gtksourceview/gtksourcecontextengine.c:2965
+#: ../gtksourceview/gtksourcecontextengine.c:2979
 msgid "using \\C is not supported in language definitions"
 msgstr "non é compatíbel o uso de \\C nas definicións da linguaxe"
 
@@ -352,7 +364,7 @@ msgstr "non é compatíbel o uso de \\C nas definicións da linguaxe"
 #. * named sub-patterns with the same name or if resulting regex is
 #. * too long. In this case fixing lang file helps (e.g. renaming
 #. * subpatterns, making huge keywords use bigger prefixes, etc.)
-#: ../gtksourceview/gtksourcecontextengine.c:3589
+#: ../gtksourceview/gtksourcecontextengine.c:3603
 #, c-format
 msgid ""
 "Cannot create a regex for all the transitions, the syntax highlighting "
@@ -363,7 +375,7 @@ msgstr ""
 "proceso de realce de sintaxe será máis lento do normal.\n"
 "O erro foi: %s"
 
-#: ../gtksourceview/gtksourcecontextengine.c:4924
+#: ../gtksourceview/gtksourcecontextengine.c:4938
 msgid ""
 "Highlighting a single line took too much time, syntax highlighting will be "
 "disabled"
@@ -371,19 +383,19 @@ msgstr ""
 "Realzar unha única liña levou demasiado tempo, a opción de realce da sintaxe "
 "será desactivada"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6149
+#: ../gtksourceview/gtksourcecontextengine.c:6163
 #, c-format
 msgid "context '%s' cannot contain a \\%%{...@start} command"
 msgstr "o contexto '%s' non pode conter unha orde \\%%{...@start}"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6311
-#: ../gtksourceview/gtksourcecontextengine.c:6400
+#: ../gtksourceview/gtksourcecontextengine.c:6325
+#: ../gtksourceview/gtksourcecontextengine.c:6414
 #, c-format
 msgid "duplicated context id '%s'"
 msgstr "id de contexto '%s' duplicado"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6515
-#: ../gtksourceview/gtksourcecontextengine.c:6575
+#: ../gtksourceview/gtksourcecontextengine.c:6529
+#: ../gtksourceview/gtksourcecontextengine.c:6589
 #, c-format
 msgid ""
 "style override used with wildcard context reference in language '%s' in ref "
@@ -392,18 +404,18 @@ msgstr ""
 "o estilo sobrepúxose ao usado cunha referencia de contexto comodín na "
 "linguaxe '%s', na referencia '%s'"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6589
+#: ../gtksourceview/gtksourcecontextengine.c:6603
 #, c-format
 msgid "invalid context reference '%s'"
 msgstr "referencia de contexto '%s' non válida"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6608
-#: ../gtksourceview/gtksourcecontextengine.c:6618
+#: ../gtksourceview/gtksourcecontextengine.c:6622
+#: ../gtksourceview/gtksourcecontextengine.c:6632
 #, c-format
 msgid "unknown context '%s'"
 msgstr "contexto '%s' descoñecido"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6718
+#: ../gtksourceview/gtksourcecontextengine.c:6732
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "Falta a definición principal de linguaxe (id = \"%s\".)"
@@ -759,6 +771,14 @@ msgstr "Id de esquemas"
 msgid "List of the ids of the available style schemes"
 msgstr "Lista dos id dos esquemas de estilo dispoñíbeis"
 
+#: ../gtksourceview/gtksourceundomanagerdefault.c:390
+msgid "Buffer"
+msgstr "Búfer"
+
+#: ../gtksourceview/gtksourceundomanagerdefault.c:391
+msgid "The text buffer to add undo support on"
+msgstr "O búfer de texto que permite a acción de desfacer"
+
 #: ../gtksourceview/gtksourceview.c:325
 msgid "The completion object associated with the view"
 msgstr "O obxecto de completado asociado coa vista"
@@ -860,8 +880,7 @@ msgstr "Estabelecer se e como se deben visualizar os espazos"
 msgid "translator-credits"
 msgstr ""
 "Fran Diéguez <frandieguez@mabishu.com>, 2009, 2010;\n"
-"Suso Baleato <suso.baleato@xunta.es>, 2009;\n"
-"Antón Méixome <meixome@mancomun.org>, 2009."
+"Antón Méixome <meixome@mancomun.org>, 2009,2010;"
 
 #: ../gtksourceview/language-specs/ada.lang.h:1
 msgid "Ada"
@@ -1740,8 +1759,7 @@ msgstr "Categoría reservada"
 msgid "Translation"
 msgstr ""
 "Francisco Diéguez <frandieguez@ubuntu.com>, 2010;\n"
-"Suso Baleato <suso.baleato@xunta.es>, 2009;\n"
-"Antón Méixome <meixome@mancomun.org>, 2009."
+"Antón Méixome <meixome@certima.net>, 2009, 2010;"
 
 #: ../gtksourceview/language-specs/diff.lang.h:1
 msgid "Added line"
@@ -2812,9 +2830,3 @@ msgstr "regra"
 msgid "token-type"
 msgstr "tipo de token"
 
-#~ msgid "The GtkSourceView"
-#~ msgstr "O GtkSourceView"
-
-#~| msgid "Others"
-#~ msgid "Iter"
-#~ msgstr "Iterador"
