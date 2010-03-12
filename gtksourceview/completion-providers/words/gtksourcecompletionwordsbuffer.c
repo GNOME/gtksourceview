@@ -23,7 +23,7 @@
 #include "gtksourcecompletionwordsbuffer.h"
 #include "gtksourcecompletionwordsutils.h"
 
-#include <glib/gprintf.h>
+#include <glib.h>
 
 #define GTK_SOURCE_COMPLETION_WORDS_BUFFER_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE((object), GTK_TYPE_SOURCE_COMPLETION_WORDS_BUFFER, GtkSourceCompletionWordsBufferPrivate))
 

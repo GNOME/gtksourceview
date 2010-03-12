@@ -25,7 +25,9 @@
 #include "gtksourcelanguage-private.h"
 #include "gtksourcebuffer.h"
 #include "gtksourcestyle-private.h"
-#include <glib/gregex.h>
+
+#include <glib.h>
+
 #include <errno.h>
 #include <string.h>
 

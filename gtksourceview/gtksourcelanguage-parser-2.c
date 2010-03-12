@@ -32,6 +32,15 @@
 #define DEBUG(x)
 #endif
 
+#include "gtksourceview-i18n.h"
+#include "gtksourcebuffer.h"
+#include "gtksourcelanguage.h"
+#include "gtksourcelanguage-private.h"
+#include "gtksourcecontextengine.h"
+
+#include <glib.h>
+#include <glib/gstdio.h>
+
 #include <string.h>
 #include <fcntl.h>
 #ifdef HAVE_UNISTD_H
@@ -41,13 +50,6 @@
 #include <io.h>
 #endif
 #include <libxml/xmlreader.h>
-#include <glib/gstdio.h>
-#include "gtksourceview-i18n.h"
-#include "gtksourcebuffer.h"
-#include "gtksourcelanguage.h"
-#include "gtksourcelanguage-private.h"
-#include "gtksourcecontextengine.h"
-#include <glib/gregex.h>
 
 #define PARSER_ERROR (parser_error_quark ())
 #define ATTR_NO_STYLE ""
