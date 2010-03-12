@@ -21,7 +21,7 @@
 #ifndef __GTK_SOURCE_STYLE_SCHEME_H__
 #define __GTK_SOURCE_STYLE_SCHEME_H__
 
-#include <gtk/gtkwidget.h>
+#include <gtk/gtk.h>
 #include <gtksourceview/gtksourcestyle.h>
 
 G_BEGIN_DECLS

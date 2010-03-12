@@ -24,7 +24,7 @@
 #ifndef __GTK_TEXT_REGION_H__
 #define __GTK_TEXT_REGION_H__
 
-#include <gtk/gtktextbuffer.h>
+#include <gtk/gtk.h>
 
 G_BEGIN_DECLS
 

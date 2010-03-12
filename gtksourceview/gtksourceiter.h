@@ -22,7 +22,7 @@
 #ifndef __GTK_SOURCE_ITER_H__
 #define __GTK_SOURCE_ITER_H__
 
-#include <gtk/gtktextiter.h>
+#include <gtk/gtk.h>
 
 G_BEGIN_DECLS
 

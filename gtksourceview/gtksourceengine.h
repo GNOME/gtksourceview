@@ -22,7 +22,7 @@
 #ifndef __GTK_SOURCE_ENGINE_H__
 #define __GTK_SOURCE_ENGINE_H__
 
-#include <gtk/gtktextbuffer.h>
+#include <gtk/gtk.h>
 #include <gtksourceview/gtksourcestylescheme.h>
 
 G_BEGIN_DECLS

@@ -23,7 +23,6 @@
 #define __GTKSOURCEMARK_H__
 
 #include <gtk/gtk.h>
-#include <gtk/gtktextmark.h>
 
 G_BEGIN_DECLS
 

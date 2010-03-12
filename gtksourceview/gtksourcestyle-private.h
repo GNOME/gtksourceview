@@ -22,7 +22,7 @@
 #define __GTK_SOURCE_STYLE_PRIVATE_H__
 
 #include "gtksourcestyle.h"
-#include <gtk/gtktexttag.h>
+#include <gtk/gtk.h>
 
 G_BEGIN_DECLS
 

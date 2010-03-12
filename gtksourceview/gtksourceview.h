@@ -25,7 +25,6 @@
 #define __GTK_SOURCE_VIEW_H__
 
 #include <gtk/gtk.h>
-#include <gtk/gtktextview.h>
 
 #include <gtksourceview/gtksourcebuffer.h>
 #include <gtksourceview/gtksourcecompletion.h>
