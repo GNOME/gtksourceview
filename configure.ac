@@ -13,10 +13,10 @@ AC_CONFIG_SRCDIR([gtksourceview/gtksourcebuffer.h])
 AC_CONFIG_HEADER([config.h])
 AC_CONFIG_MACRO_DIR([m4])
 
-AM_INIT_AUTOMAKE([1.11.1 dist-bzip2 no-dist-gzip])
+AM_INIT_AUTOMAKE([1.10.3 dist-bzip2 no-dist-gzip])
 AM_MAINTAINER_MODE([enable])
 
-AM_SILENT_RULES([yes])
+m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES])
 
 # Check for programs
 AC_PROG_CC
