@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-02 13:10+0100\n"
-"PO-Revision-Date: 2010-03-02 13:13+0100\n"
+"POT-Creation-Date: 2010-03-15 21:14+0100\n"
+"PO-Revision-Date: 2010-03-15 21:23+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "MIME-Version: 1.0\n"
@@ -39,19 +39,19 @@ msgstr "Leverantörens ikon"
 
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:479
 msgid "Proposals Batch Size"
-msgstr ""
+msgstr "Storlek på förslagssats"
 
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:480
 msgid "Number of proposals added in one batch"
-msgstr ""
+msgstr "Antal förslag som läggs till i en sats"
 
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:489
 msgid "Scan Batch Size"
-msgstr ""
+msgstr "Storlek på avsökningssats"
 
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:490
 msgid "Number of lines scanned in one batch"
-msgstr ""
+msgstr "Antal rader som söks av i en sats"
 
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:499
 msgid "Minimum Word Size"
@@ -59,15 +59,15 @@ msgstr "Minimal ordstorlek"
 
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:500
 msgid "The minimum word size to complete"
-msgstr ""
+msgstr "Minsta ordstorlek att komplettera"
 
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:509
 msgid "Interactive Delay"
-msgstr ""
+msgstr "Interaktiv fördröjning"
 
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:510
 msgid "The delay before initiating interactive completion"
-msgstr ""
+msgstr "Fördröjningen innan interaktiv komplettering initieras"
 
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:519
 msgid "Priority"
@@ -75,7 +75,7 @@ msgstr "Prioritet"
 
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:520
 msgid "Provider priority"
-msgstr ""
+msgstr "Leverantörsprioritet"
 
 #: ../gtksourceview/gtksourcebuffer.c:211
 #: ../gtksourceview/gtksourceprintcompositor.c:506
@@ -137,11 +137,11 @@ msgstr "Stilschema"
 
 #: ../gtksourceview/gtksourcebuffer.c:292
 msgid "Undo manager"
-msgstr ""
+msgstr "Ångringshanterare"
 
 #: ../gtksourceview/gtksourcebuffer.c:293
 msgid "The buffer undo manager"
-msgstr ""
+msgstr "Hanterare för buffertångring"
 
 #. Translators: "All" is used as a label in thestatus bar of the
 #. popup, telling that all completion pages are shown
@@ -160,35 +160,32 @@ msgid "View"
 msgstr "Visa"
 
 #: ../gtksourceview/gtksourcecompletion.c:2230
-#, fuzzy
 msgid "The GtkSourceView bound to the completion"
-msgstr "GtkSourceBuffer-objektet att skriva ut"
+msgstr "GtkSourceView bunden till kompletteringen"
 
 #: ../gtksourceview/gtksourcecompletion.c:2245
 msgid "Remember Info Visibility"
-msgstr ""
+msgstr "Synlighet för kom ihåg-info"
 
 #: ../gtksourceview/gtksourcecompletion.c:2246
 msgid "Remember the last info window visibility state"
-msgstr ""
+msgstr "Kom ihåg sista informationsfönstrets synlighetstillstånd"
 
 #: ../gtksourceview/gtksourcecompletion.c:2259
-#, fuzzy
 msgid "Select on Show"
-msgstr "Sektion 1"
+msgstr "Välj vid Visa"
 
 #: ../gtksourceview/gtksourcecompletion.c:2260
 msgid "Select first proposal when completion is shown"
-msgstr ""
+msgstr "Välj första förslaget när kompletteringen visas"
 
 #: ../gtksourceview/gtksourcecompletion.c:2274
-#, fuzzy
 msgid "Show Headers"
-msgstr "Visa radmarkörer"
+msgstr "Visa rubriker"
 
 #: ../gtksourceview/gtksourcecompletion.c:2275
 msgid "Show provider headers when proposals from multiple providers are available"
-msgstr ""
+msgstr "Visa leverantörsrubriker när förslag från flera leverantörer finns tillgängliga"
 
 #: ../gtksourceview/gtksourcecompletion.c:2289
 msgid "Show Icons"
@@ -196,7 +193,7 @@ msgstr "Visa ikoner"
 
 #: ../gtksourceview/gtksourcecompletion.c:2290
 msgid "Show provider and proposal icons in the completion popup"
-msgstr ""
+msgstr "Visa ikoner för leverantör och förslag i kompletteringspopup "
 
 #: ../gtksourceview/gtksourcecompletion.c:2303
 msgid "Accelerators"
@@ -204,31 +201,31 @@ msgstr "Snabbtangenter"
 
 #: ../gtksourceview/gtksourcecompletion.c:2304
 msgid "Number of proposal accelerators to show"
-msgstr ""
+msgstr "Antal snabbtangenter för förslag att visa"
 
 #: ../gtksourceview/gtksourcecompletion.c:2320
 msgid "Auto Complete Delay"
-msgstr ""
+msgstr "Fördröjning för automatisk komplettering"
 
 #: ../gtksourceview/gtksourcecompletion.c:2321
 msgid "Completion popup delay for interactive completion"
-msgstr ""
+msgstr "Popupfördröjning för komplettering för interaktiv komplettering"
 
 #: ../gtksourceview/gtksourcecompletion.c:2336
 msgid "Provider Page Size"
-msgstr ""
+msgstr "Sidstorlek för leverantör"
 
 #: ../gtksourceview/gtksourcecompletion.c:2337
 msgid "Provider scrolling page size"
-msgstr ""
+msgstr "Sidstorlek för leverantörsrullning"
 
 #: ../gtksourceview/gtksourcecompletion.c:2352
 msgid "Proposal Page Size"
-msgstr ""
+msgstr "Storlek på förslagssida"
 
 #: ../gtksourceview/gtksourcecompletion.c:2353
 msgid "Proposal scrolling page size"
-msgstr ""
+msgstr "Sidstorlek för förslagsrullning"
 
 #: ../gtksourceview/gtksourcecompletion.c:2691
 msgid "Provider"
@@ -236,37 +233,34 @@ msgstr "Leverantör"
 
 #: ../gtksourceview/gtksourcecompletioncontext.c:244
 #: ../gtksourceview/gtksourceview.c:324
-#, fuzzy
 msgid "Completion"
-msgstr "Kompilatordirektiv"
+msgstr "Komplettering"
 
 #: ../gtksourceview/gtksourcecompletioncontext.c:245
 msgid "The completion object to which the context belongs"
-msgstr ""
+msgstr "Kompletteringsobjektet till vilket kontexten tillhör"
 
 #. Translators: The GtkTextIter at which the completion was invoked
 #: ../gtksourceview/gtksourcecompletioncontext.c:258
-#, fuzzy
 msgid "Iterator"
-msgstr "Operator"
+msgstr "Iterator"
 
 #: ../gtksourceview/gtksourcecompletioncontext.c:259
 msgid "The GtkTextIter at which the completion was invoked"
-msgstr ""
+msgstr "GtkTextIter i vilken kompletteringen anropades"
 
 #: ../gtksourceview/gtksourcecompletioncontext.c:271
-#, fuzzy
 msgid "Activation"
-msgstr "Plats"
+msgstr "Aktivering"
 
 #: ../gtksourceview/gtksourcecompletioncontext.c:272
 msgid "The type of activation"
-msgstr ""
+msgstr "Typ av aktivering"
 
 #. Tooltip style
 #: ../gtksourceview/gtksourcecompletioninfo.c:174
 msgid "Completion Info"
-msgstr ""
+msgstr "Kompletteringsinfo"
 
 #: ../gtksourceview/gtksourcecompletioninfo.c:342
 msgid "Maximum width"
@@ -286,19 +280,19 @@ msgstr "Maximal tillåten höjd"
 
 #: ../gtksourceview/gtksourcecompletioninfo.c:363
 msgid "Shrink width"
-msgstr ""
+msgstr "Minska bredden"
 
 #: ../gtksourceview/gtksourcecompletioninfo.c:364
 msgid "Whether the window should shrink width to fit the contents"
-msgstr ""
+msgstr "Huruvida fönstret ska minska bredden för att passa innehållet"
 
 #: ../gtksourceview/gtksourcecompletioninfo.c:371
 msgid "Shrink height"
-msgstr ""
+msgstr "Minska höjden"
 
 #: ../gtksourceview/gtksourcecompletioninfo.c:372
 msgid "Whether the window should shrink height to fit the contents"
-msgstr ""
+msgstr "Huruvida fönstret ska minska höjden för att passa innehållet"
 
 #: ../gtksourceview/gtksourcecompletionitem.c:229
 msgid "Label"
@@ -306,7 +300,7 @@ msgstr "Etikett"
 
 #: ../gtksourceview/gtksourcecompletionitem.c:230
 msgid "Label to be shown for this item"
-msgstr ""
+msgstr "Etikett att visas för detta objekt"
 
 # http://www.nada.kth.se/dataterm/fos-lista.html#f91 är inte entydig om markup.
 #: ../gtksourceview/gtksourcecompletionitem.c:242
@@ -327,7 +321,7 @@ msgstr "Märkning"
 
 #: ../gtksourceview/gtksourcecompletionitem.c:243
 msgid "Markup to be shown for this item"
-msgstr ""
+msgstr "Markup att visas för detta objekt"
 
 #: ../gtksourceview/gtksourcecompletionitem.c:255
 msgid "Text"
@@ -335,11 +329,11 @@ msgstr "Text"
 
 #: ../gtksourceview/gtksourcecompletionitem.c:256
 msgid "Item text"
-msgstr ""
+msgstr "Objekttext"
 
 #: ../gtksourceview/gtksourcecompletionitem.c:269
 msgid "Icon to be shown for this item"
-msgstr ""
+msgstr "Ikon att visas för detta objekt"
 
 #: ../gtksourceview/gtksourcecompletionitem.c:281
 msgid "Info"
@@ -347,9 +341,9 @@ msgstr "Info"
 
 #: ../gtksourceview/gtksourcecompletionitem.c:282
 msgid "Info to be shown for this item"
-msgstr ""
+msgstr "Info att visas för detta objekt"
 
-#: ../gtksourceview/gtksourcecontextengine.c:2979
+#: ../gtksourceview/gtksourcecontextengine.c:2981
 msgid "using \\C is not supported in language definitions"
 msgstr "användning av \\C stöds inte i språkdefinitioner"
 
@@ -357,7 +351,7 @@ msgstr "användning av \\C stöds inte i språkdefinitioner"
 #. * named sub-patterns with the same name or if resulting regex is
 #. * too long. In this case fixing lang file helps (e.g. renaming
 #. * subpatterns, making huge keywords use bigger prefixes, etc.)
-#: ../gtksourceview/gtksourcecontextengine.c:3603
+#: ../gtksourceview/gtksourcecontextengine.c:3605
 #, c-format
 msgid ""
 "Cannot create a regex for all the transitions, the syntax highlighting process will be slower than usual.\n"
@@ -366,39 +360,39 @@ msgstr ""
 "Kan inte skapa ett reguljärt uttryck för alla övergångarna, syntaxmärkningsprocessen kommer att vara\n"
 "långsammare än vanligt. Felet var: %s"
 
-#: ../gtksourceview/gtksourcecontextengine.c:4938
+#: ../gtksourceview/gtksourcecontextengine.c:4940
 msgid "Highlighting a single line took too much time, syntax highlighting will be disabled"
 msgstr "Färgmarkering av en enda rad tog för lång tid, syntaxmarkering kommer att inaktiveras"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6163
+#: ../gtksourceview/gtksourcecontextengine.c:6165
 #, c-format
 msgid "context '%s' cannot contain a \\%%{...@start} command"
 msgstr "kontexten \"%s\" får inte innehålla kommandot \\%%{...@start}"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6325
-#: ../gtksourceview/gtksourcecontextengine.c:6414
+#: ../gtksourceview/gtksourcecontextengine.c:6327
+#: ../gtksourceview/gtksourcecontextengine.c:6416
 #, c-format
 msgid "duplicated context id '%s'"
 msgstr "dubblett av kontext-id \"%s\""
 
-#: ../gtksourceview/gtksourcecontextengine.c:6529
-#: ../gtksourceview/gtksourcecontextengine.c:6589
+#: ../gtksourceview/gtksourcecontextengine.c:6531
+#: ../gtksourceview/gtksourcecontextengine.c:6591
 #, c-format
 msgid "style override used with wildcard context reference in language '%s' in ref '%s'"
 msgstr "åsidosättning av stil används i kontextreferens med jokertecken för språket \"%s\" i referensen \"%s\""
 
-#: ../gtksourceview/gtksourcecontextengine.c:6603
+#: ../gtksourceview/gtksourcecontextengine.c:6605
 #, c-format
 msgid "invalid context reference '%s'"
 msgstr "ogiltig kontextreferens \"%s\""
 
-#: ../gtksourceview/gtksourcecontextengine.c:6622
-#: ../gtksourceview/gtksourcecontextengine.c:6632
+#: ../gtksourceview/gtksourcecontextengine.c:6624
+#: ../gtksourceview/gtksourcecontextengine.c:6634
 #, c-format
 msgid "unknown context '%s'"
 msgstr "okänd kontext \"%s\""
 
-#: ../gtksourceview/gtksourcecontextengine.c:6732
+#: ../gtksourceview/gtksourcecontextengine.c:6734
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "Saknar huvudspråkdefinition (id = \"%s\".)"
@@ -488,12 +482,12 @@ msgstr "Språk-id:n"
 msgid "List of the ids of the available languages"
 msgstr "Lista över id:n för tillgängliga språk"
 
-#: ../gtksourceview/gtksourcelanguage-parser-2.c:948
+#: ../gtksourceview/gtksourcelanguage-parser-2.c:950
 #, c-format
 msgid "Unknown id '%s' in regex '%s'"
 msgstr "Okänt id \"%s\" i regex \"%s\""
 
-#: ../gtksourceview/gtksourcelanguage-parser-2.c:1176
+#: ../gtksourceview/gtksourcelanguage-parser-2.c:1178
 #, c-format
 msgid "in regex '%s': backreferences are not supported"
 msgstr "i regex \"%s\": bakåtreferenser stöds inte"
@@ -744,11 +738,11 @@ msgstr "Buffert"
 
 #: ../gtksourceview/gtksourceundomanagerdefault.c:391
 msgid "The text buffer to add undo support on"
-msgstr ""
+msgstr "Textbufferten att lägga till ångringsstöd på"
 
 #: ../gtksourceview/gtksourceview.c:325
 msgid "The completion object associated with the view"
-msgstr ""
+msgstr "Kompletteringsobjektet associerat med vyn"
 
 #: ../gtksourceview/gtksourceview.c:337
 msgid "Show Line Numbers"
@@ -1487,14 +1481,12 @@ msgid "Builtin"
 msgstr "Inbyggd"
 
 #: ../gtksourceview/language-specs/cg.lang.h:4
-#, fuzzy
 msgid "CG Shader Language"
-msgstr "Språk"
+msgstr "CG Shader Language"
 
 #: ../gtksourceview/language-specs/cg.lang.h:19
-#, fuzzy
 msgid "Swizzle operator"
-msgstr "Typoperatorer"
+msgstr "Swizzle-operator"
 
 #: ../gtksourceview/language-specs/classic.xml.h:1
 msgid "Classic"
@@ -1947,9 +1939,8 @@ msgid "Fortran 95"
 msgstr "Fortran 95"
 
 #: ../gtksourceview/language-specs/fortran.lang.h:7
-#, fuzzy
 msgid "Intrinsic function"
-msgstr "Inbyggd funktion"
+msgstr "Väsentlig funktion"
 
 #: ../gtksourceview/language-specs/fsharp.lang.h:3
 #: ../gtksourceview/language-specs/ocaml.lang.h:3
@@ -2006,7 +1997,7 @@ msgstr "Inbyggd konstant"
 
 #: ../gtksourceview/language-specs/glsl.lang.h:5
 msgid "OpenGL Shading Language"
-msgstr ""
+msgstr "OpenGL Shading Language"
 
 #: ../gtksourceview/language-specs/glsl.lang.h:7
 msgid "Reserved Keywords"
@@ -2387,7 +2378,7 @@ msgstr "Ocamldoc-kommentarer"
 
 #: ../gtksourceview/language-specs/ocaml.lang.h:17
 msgid "Standart Modules"
-msgstr ""
+msgstr "Standart-moduler"
 
 #: ../gtksourceview/language-specs/ocl.lang.h:4
 msgid "OCL"
@@ -2645,14 +2636,12 @@ msgid "Individual"
 msgstr "Individuell"
 
 #: ../gtksourceview/language-specs/sparql.lang.h:8
-#, fuzzy
 msgid "Literal"
-msgstr "BOZ-literal"
+msgstr "Ordagrann"
 
 #: ../gtksourceview/language-specs/sparql.lang.h:11
-#, fuzzy
 msgid "Predicate"
-msgstr "Föråldrad"
+msgstr "Predikat"
 
 #: ../gtksourceview/language-specs/sparql.lang.h:12
 msgid "QName"
