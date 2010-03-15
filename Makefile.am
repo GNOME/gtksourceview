@@ -1,6 +1,11 @@
 ACLOCAL_AMFLAGS  = -I m4 ${ACLOCAL_FLAGS}
 
-SUBDIRS = gtksourceview po docs tests
+if GLADE_CATALOG
+glade_subdir = glade
+else
+glade_subdir =
+endif
+SUBDIRS = gtksourceview po docs tests $(glade_subdir)
 
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = gtksourceview-2.0.pc
@@ -37,7 +42,7 @@ MAINTAINERCLEANFILES = 		\
 	mkinstalldirs		\
 	`find "$(srcdir)" -type f -name Makefile.in -print`
 
-DISTCHECK_CONFIGURE_FLAGS = --enable-gtk-doc
+DISTCHECK_CONFIGURE_FLAGS = --enable-gtk-doc --enable-glade-catalog
 
 CHANGELOG_START = GTKSOURCEVIEW_2_6_1
 

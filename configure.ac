@@ -32,6 +32,7 @@ AC_CHECK_HEADERS([unistd.h])
 # Dependencies
 GTK_REQUIRED_VERSION=2.12.0
 LIBXML_REQUIRED_VERSION=2.5.0
+GLADE_UI_REQUIRED=3.2
 
 AC_SUBST(GTK_REQUIRED_VERSION)
 AC_SUBST(LIBXML_REQUIRED_VERSION)
@@ -78,6 +79,22 @@ if test "$os_osx" = "yes"; then
 	PKG_CHECK_MODULES(IGE_MAC, ige-mac-integration)
 fi
 
+# Check for Glade3
+AC_ARG_ENABLE([glade-catalog],
+	[AS_HELP_STRING([--enable-glade-catalog],
+		[Install a glade catalog file [default=no]])],
+	[glade_catalog=$enableval],
+	[glade_catalog=no])
+
+AM_CONDITIONAL([GLADE_CATALOG], [test "x$glade_catalog" = xyes])
+
+AS_IF([test "x$glade_catalog" = xyes],
+	[PKG_CHECK_EXISTS(GLADE, [gladeui-1.0 >= $GLADE_UI_REQUIRED])
+	 AC_MSG_CHECKING([for Glade catalog dir])
+	 GLADE_CATALOGDIR=`$PKG_CONFIG --variable=catalogdir gladeui-1.0 2>&AS_MESSAGE_LOG_FD`
+         AC_MSG_RESULT([$GLADE_CATALOGDIR])
+	 AC_SUBST(GLADE_CATALOGDIR)])
+
 # i18N stuff
 IT_PROG_INTLTOOL([0.40])
 
@@ -106,6 +123,7 @@ gtksourceview/language-specs/Makefile
 docs/Makefile
 docs/reference/Makefile
 docs/reference/version.xml
+glade/Makefile
 tests/Makefile
 ])
 
