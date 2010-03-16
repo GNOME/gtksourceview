@@ -219,6 +219,13 @@ clear_undo (GtkSourceUndoManagerDefault *manager)
 }
 
 static void
+buffer_notify (GtkSourceUndoManagerDefault *manager,
+               gpointer                     where_the_object_was)
+{
+	manager->priv->buffer = NULL;
+}
+
+static void
 set_buffer (GtkSourceUndoManagerDefault *manager,
             GtkTextBuffer               *buffer)
 {
@@ -239,13 +246,18 @@ set_buffer (GtkSourceUndoManagerDefault *manager,
 			                             manager->priv->buffer_signals[i]);
 		}
 
-		g_object_unref (manager->priv->buffer);
+		g_object_weak_unref (G_OBJECT (manager->priv->buffer),
+		                     (GWeakNotify)buffer_notify,
+		                     manager);
 		manager->priv->buffer = NULL;
 	}
 
 	if (buffer != NULL)
 	{
-		manager->priv->buffer = g_object_ref (buffer);
+		manager->priv->buffer = buffer;
+		g_object_weak_ref (G_OBJECT (buffer),
+		                   (GWeakNotify)buffer_notify,
+		                   manager);
 
 		manager->priv->buffer_signals[INSERT_TEXT] =
 			g_signal_connect (buffer,
