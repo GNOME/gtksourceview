@@ -136,4 +136,6 @@ Configuration:
 
 	Source code location:	${srcdir}
 	Compiler:		${CC}
+	Completion Providers:	${enable_providers}
+	Glade Catalog:		${glade_catalog}
 "
