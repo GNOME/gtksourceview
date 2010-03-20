@@ -1,3 +1,4 @@
+# translation of gtksourceview.master.ru.po to Russian
 # translation of gtksourceview to Russian
 # Copyright (C) 2003 Free Software Foundation
 # This file is distributed under the same license as the gtksourceview package.
@@ -10,18 +11,20 @@
 # Yuri Kozlov <kozlov.y@gmail.com>, 2008.
 # Lebedev Roman <roman@lebedev.com>, 2008.
 # der_FeniX <kofenix@gmail.com>, 2010.
+# Yuri Kozlov <yuray@komyakino.ru>, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-05 13:48+0200\n"
-"PO-Revision-Date: 2010-03-05 13:55+0200\n"
-"Last-Translator: Leonid Kanter <leon@asplinux.ru>\n"
-"Language-Team: Russian <ru@li.org>\n"
+"POT-Creation-Date: 2010-03-20 11:52+0200\n"
+"PO-Revision-Date: 2010-03-17 20:34+0300\n"
+"Last-Translator: Yuri Kozlov <yuray@komyakino.ru>\n"
+"Language-Team: Russian <debian-l10n-russian@lists.debian.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms:  nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms:  nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: KBabel 1.11.4\n"
 
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:379
@@ -104,12 +107,12 @@ msgid "Whether to highlight matching brackets"
 msgstr "Подсвечивать ли совпадающие скобки"
 
 #: ../gtksourceview/gtksourcebuffer.c:239
-#: ../gtksourceview/gtksourceundomanagerdefault.c:398
+#: ../gtksourceview/gtksourceundomanagerdefault.c:410
 msgid "Maximum Undo Levels"
 msgstr "Максимальный уровень отката"
 
 #: ../gtksourceview/gtksourcebuffer.c:240
-#: ../gtksourceview/gtksourceundomanagerdefault.c:399
+#: ../gtksourceview/gtksourceundomanagerdefault.c:411
 msgid "Number of undo levels for the buffer"
 msgstr "Установить число уровней отката для буфера"
 
@@ -193,7 +196,8 @@ msgid "Show Headers"
 msgstr "Показывать заголовки"
 
 #: ../gtksourceview/gtksourcecompletion.c:2275
-msgid "Show provider headers when proposals from multiple providers are available"
+msgid ""
+"Show provider headers when proposals from multiple providers are available"
 msgstr ""
 "Показывать заголовки поставщика услуг, если  доступны предложения нескольких "
 "поставщиков"
@@ -206,7 +210,7 @@ msgstr "Показать значки"
 msgid "Show provider and proposal icons in the completion popup"
 msgstr ""
 "Показывать поставщиков услуг и предложенные значки в всплывающем окне "
-"подставновок"
+"подстановок"
 
 #: ../gtksourceview/gtksourcecompletion.c:2303
 msgid "Accelerators"
@@ -353,9 +357,9 @@ msgstr "Информация"
 
 #: ../gtksourceview/gtksourcecompletionitem.c:282
 msgid "Info to be shown for this item"
-msgstr "Инофрмация для отображения для этого элемента"
+msgstr "Информация для отображения для этого элемента"
 
-#: ../gtksourceview/gtksourcecontextengine.c:2979
+#: ../gtksourceview/gtksourcecontextengine.c:2981
 msgid "using \\C is not supported in language definitions"
 msgstr "Использование \\C не поддерживается в определениях языка"
 
@@ -363,7 +367,7 @@ msgstr "Использование \\C не поддерживается в оп
 #. * named sub-patterns with the same name or if resulting regex is
 #. * too long. In this case fixing lang file helps (e.g. renaming
 #. * subpatterns, making huge keywords use bigger prefixes, etc.)
-#: ../gtksourceview/gtksourcecontextengine.c:3603
+#: ../gtksourceview/gtksourcecontextengine.c:3605
 #, c-format
 msgid ""
 "Cannot create a regex for all the transitions, the syntax highlighting "
@@ -374,7 +378,7 @@ msgstr ""
 "синтаксиса будет выполняться гораздо медленнее.\n"
 "Ошибка: %s"
 
-#: ../gtksourceview/gtksourcecontextengine.c:4938
+#: ../gtksourceview/gtksourcecontextengine.c:4940
 msgid ""
 "Highlighting a single line took too much time, syntax highlighting will be "
 "disabled"
@@ -382,19 +386,19 @@ msgstr ""
 "Обработка одной строки заняла слишком много времени, подсветка синтаксиса "
 "будет отключена"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6163
+#: ../gtksourceview/gtksourcecontextengine.c:6165
 #, c-format
 msgid "context '%s' cannot contain a \\%%{...@start} command"
 msgstr "контекст «%s» не может содержать команду \\%%{...@start}"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6325
-#: ../gtksourceview/gtksourcecontextengine.c:6414
+#: ../gtksourceview/gtksourcecontextengine.c:6327
+#: ../gtksourceview/gtksourcecontextengine.c:6416
 #, c-format
 msgid "duplicated context id '%s'"
 msgstr "повторный идентификатор контекста «%s»"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6529
-#: ../gtksourceview/gtksourcecontextengine.c:6589
+#: ../gtksourceview/gtksourcecontextengine.c:6531
+#: ../gtksourceview/gtksourcecontextengine.c:6591
 #, c-format
 msgid ""
 "style override used with wildcard context reference in language '%s' in ref "
@@ -403,18 +407,18 @@ msgstr ""
 "в языке «%s» использовалось переопределение стиля с помощью шаблона в ссылке «%"
 "s»"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6603
+#: ../gtksourceview/gtksourcecontextengine.c:6605
 #, c-format
 msgid "invalid context reference '%s'"
 msgstr "некорректная ссылка на контекст «%s»"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6622
-#: ../gtksourceview/gtksourcecontextengine.c:6632
+#: ../gtksourceview/gtksourcecontextengine.c:6624
+#: ../gtksourceview/gtksourcecontextengine.c:6634
 #, c-format
 msgid "unknown context '%s'"
 msgstr "неизвестный контекст «%s»"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6732
+#: ../gtksourceview/gtksourcecontextengine.c:6734
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "Отсутствует главное определение языка (id=\"%s\".)"
@@ -506,12 +510,12 @@ msgstr "Идентификаторы языка"
 msgid "List of the ids of the available languages"
 msgstr "Список идентификаторов для доступных языков"
 
-#: ../gtksourceview/gtksourcelanguage-parser-2.c:948
+#: ../gtksourceview/gtksourcelanguage-parser-2.c:950
 #, c-format
 msgid "Unknown id '%s' in regex '%s'"
 msgstr "Неизвестный идентификатор «%s» в регулярном выражении «%s»"
 
-#: ../gtksourceview/gtksourcelanguage-parser-2.c:1176
+#: ../gtksourceview/gtksourcelanguage-parser-2.c:1178
 #, c-format
 msgid "in regex '%s': backreferences are not supported"
 msgstr "в регулярном выражении «%s»: обратные ссылки не поддерживаются"
@@ -547,7 +551,8 @@ msgid "Wrap Mode"
 msgstr "Режим переноса"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:486
-msgid "Whether to wrap lines never, at word boundaries, or at character boundaries."
+msgid ""
+"Whether to wrap lines never, at word boundaries, or at character boundaries."
 msgstr ""
 "Не включать перенос строк, переносить по границам слова или по символьным "
 "границам."
@@ -756,11 +761,11 @@ msgstr "Идентификатор схемы"
 msgid "List of the ids of the available style schemes"
 msgstr "Список идентификаторов доступных стилевых схем"
 
-#: ../gtksourceview/gtksourceundomanagerdefault.c:390
+#: ../gtksourceview/gtksourceundomanagerdefault.c:402
 msgid "Buffer"
 msgstr "Буфер"
 
-#: ../gtksourceview/gtksourceundomanagerdefault.c:391
+#: ../gtksourceview/gtksourceundomanagerdefault.c:403
 msgid "The text buffer to add undo support on"
 msgstr "Текстовый буфер для поддержки отката изменений"
 
@@ -2156,7 +2161,7 @@ msgstr "Haskell"
 
 #: ../gtksourceview/language-specs/haskell.lang.h:8
 msgid "Hex"
-msgstr "Шестнадцатиричное"
+msgstr "Шестнадцатеричное"
 
 #: ../gtksourceview/language-specs/haskell.lang.h:10
 msgid "Octal"
@@ -2816,4 +2821,3 @@ msgstr "правило"
 #: ../gtksourceview/language-specs/yacc.lang.h:6
 msgid "token-type"
 msgstr "тип лексемы"
-
