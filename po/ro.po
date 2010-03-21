@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gtksourceview&component=general\n"
-"POT-Creation-Date: 2010-02-12 09:32+0000\n"
-"PO-Revision-Date: 2010-02-13 14:31+0200\n"
+"POT-Creation-Date: 2010-02-22 20:43+0000\n"
+"PO-Revision-Date: 2010-03-22 01:15+0200\n"
 "Last-Translator: Adi Roiban <adi@roiban.ro>\n"
 "Language-Team: Romanian GNOME Team <gnomero-list@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -84,61 +84,71 @@ msgstr "Prioritate"
 msgid "Provider priority"
 msgstr "Prioritatea furnizorului"
 
-#: ../gtksourceview/gtksourcebuffer.c:210
+#: ../gtksourceview/gtksourcebuffer.c:211
 #: ../gtksourceview/gtksourceprintcompositor.c:506
 msgid "Highlight Syntax"
 msgstr "Evidențiere sintaxă"
 
-#: ../gtksourceview/gtksourcebuffer.c:211
+#: ../gtksourceview/gtksourcebuffer.c:212
 msgid "Whether to highlight syntax in the buffer"
 msgstr "Dacă se evidențiază sintaxa din editor"
 
-#: ../gtksourceview/gtksourcebuffer.c:224
+#: ../gtksourceview/gtksourcebuffer.c:225
 msgid "Highlight Matching Brackets"
 msgstr "Evidențiere paranteze pereche"
 
-#: ../gtksourceview/gtksourcebuffer.c:225
+#: ../gtksourceview/gtksourcebuffer.c:226
 msgid "Whether to highlight matching brackets"
 msgstr "Dacă să fie evidențiate parantezele pereche"
 
-#: ../gtksourceview/gtksourcebuffer.c:237
+#: ../gtksourceview/gtksourcebuffer.c:239
+#: ../gtksourceview/gtksourceundomanagerdefault.c:398
 msgid "Maximum Undo Levels"
 msgstr "Numărul maxim de nivele de anulare a modificărilor"
 
-#: ../gtksourceview/gtksourcebuffer.c:238
+#: ../gtksourceview/gtksourcebuffer.c:240
+#: ../gtksourceview/gtksourceundomanagerdefault.c:399
 msgid "Number of undo levels for the buffer"
 msgstr "Numărul de nivele de anulare pentru zona tampon"
 
 #. Translators: throughout gtksourceview "language" stands
 #. * for "programming language", not "spoken language"
-#: ../gtksourceview/gtksourcebuffer.c:250
+#: ../gtksourceview/gtksourcebuffer.c:252
 msgid "Language"
 msgstr "Limbaj"
 
-#: ../gtksourceview/gtksourcebuffer.c:251
+#: ../gtksourceview/gtksourcebuffer.c:253
 msgid "Language object to get highlighting patterns from"
 msgstr "Obiect limbaj din care se preiau modelele de evidențiere"
 
-#: ../gtksourceview/gtksourcebuffer.c:259
+#: ../gtksourceview/gtksourcebuffer.c:261
 msgid "Can undo"
 msgstr "Se poate anula"
 
-#: ../gtksourceview/gtksourcebuffer.c:260
+#: ../gtksourceview/gtksourcebuffer.c:262
 msgid "Whether Undo operation is possible"
 msgstr "Dacă operația de anulare este posibilă"
 
-#: ../gtksourceview/gtksourcebuffer.c:267
+#: ../gtksourceview/gtksourcebuffer.c:269
 msgid "Can redo"
 msgstr "Se poate reface"
 
-#: ../gtksourceview/gtksourcebuffer.c:268
+#: ../gtksourceview/gtksourcebuffer.c:270
 msgid "Whether Redo operation is possible"
 msgstr "Dacă operația de refacere este posibilă"
 
-#: ../gtksourceview/gtksourcebuffer.c:282
-#: ../gtksourceview/gtksourcebuffer.c:283
+#: ../gtksourceview/gtksourcebuffer.c:284
+#: ../gtksourceview/gtksourcebuffer.c:285
 msgid "Style scheme"
 msgstr "Schemă stil"
+
+#: ../gtksourceview/gtksourcebuffer.c:292
+msgid "Undo manager"
+msgstr "Administrator refaceri"
+
+#: ../gtksourceview/gtksourcebuffer.c:293
+msgid "The buffer undo manager"
+msgstr "Administratorul de refaceri al bufferului"
 
 #. Translators: "All" is used as a label in thestatus bar of the
 #. popup, telling that all completion pages are shown
@@ -146,85 +156,85 @@ msgstr "Schemă stil"
 msgid "All"
 msgstr "Toate"
 
-#: ../gtksourceview/gtksourcecompletion.c:941
+#: ../gtksourceview/gtksourcecompletion.c:940
 #: ../gtksourceview/gtksourcecompletion.c:963
 msgid "No extra information available"
 msgstr "Nu există informații adiționale disponibile"
 
-#: ../gtksourceview/gtksourcecompletion.c:2227
+#: ../gtksourceview/gtksourcecompletion.c:2229
 #: ../gtksourceview/gtksourcegutter.c:369
 msgid "View"
 msgstr "Vizualizare"
 
-#: ../gtksourceview/gtksourcecompletion.c:2228
+#: ../gtksourceview/gtksourcecompletion.c:2230
 msgid "The GtkSourceView bound to the completion"
 msgstr "Obiect GtkSourceBuffer legat în completare"
 
-#: ../gtksourceview/gtksourcecompletion.c:2243
+#: ../gtksourceview/gtksourcecompletion.c:2245
 msgid "Remember Info Visibility"
 msgstr "Ține minte informațiile despre vizibilitate"
 
-#: ../gtksourceview/gtksourcecompletion.c:2244
+#: ../gtksourceview/gtksourcecompletion.c:2246
 msgid "Remember the last info window visibility state"
 msgstr "Ține minte stările de vizibilitate ale ultimei ferestre"
 
-#: ../gtksourceview/gtksourcecompletion.c:2257
+#: ../gtksourceview/gtksourcecompletion.c:2259
 msgid "Select on Show"
 msgstr "Selectează la afișare"
 
-#: ../gtksourceview/gtksourcecompletion.c:2258
+#: ../gtksourceview/gtksourcecompletion.c:2260
 msgid "Select first proposal when completion is shown"
 msgstr "Selectează prima propunere când completarea este afișată"
 
-#: ../gtksourceview/gtksourcecompletion.c:2272
+#: ../gtksourceview/gtksourcecompletion.c:2274
 msgid "Show Headers"
-msgstr "Afișează antetele"
+msgstr "Afișează anteturile"
 
-#: ../gtksourceview/gtksourcecompletion.c:2273
+#: ../gtksourceview/gtksourcecompletion.c:2275
 msgid "Show provider headers when proposals from multiple providers are available"
-msgstr "Afișează antetele furnizorului când sunt disponibile propuneri de la mai mulți furnizori"
+msgstr "Afișează anteturile furnizorului când sunt disponibile propuneri de la mai mulți furnizori"
 
-#: ../gtksourceview/gtksourcecompletion.c:2287
+#: ../gtksourceview/gtksourcecompletion.c:2289
 msgid "Show Icons"
 msgstr "Afișează iconițele"
 
-#: ../gtksourceview/gtksourcecompletion.c:2288
+#: ../gtksourceview/gtksourcecompletion.c:2290
 msgid "Show provider and proposal icons in the completion popup"
 msgstr "Afișează furnizorul și iconițele propunerilor în grupul de completări"
 
-#: ../gtksourceview/gtksourcecompletion.c:2301
+#: ../gtksourceview/gtksourcecompletion.c:2303
 msgid "Accelerators"
 msgstr "Acceleratori"
 
-#: ../gtksourceview/gtksourcecompletion.c:2302
+#: ../gtksourceview/gtksourcecompletion.c:2304
 msgid "Number of proposal accelerators to show"
 msgstr "Numărul de acceleratori de propuneri de afișat"
 
-#: ../gtksourceview/gtksourcecompletion.c:2318
+#: ../gtksourceview/gtksourcecompletion.c:2320
 msgid "Auto Complete Delay"
 msgstr "Decalaj de autocompletare"
 
-#: ../gtksourceview/gtksourcecompletion.c:2319
+#: ../gtksourceview/gtksourcecompletion.c:2321
 msgid "Completion popup delay for interactive completion"
 msgstr "Decalaj până la afișarea meniului de completare într-o sesiune interactivă"
 
-#: ../gtksourceview/gtksourcecompletion.c:2334
+#: ../gtksourceview/gtksourcecompletion.c:2336
 msgid "Provider Page Size"
 msgstr "Dimensiunea paginii furnizorului"
 
-#: ../gtksourceview/gtksourcecompletion.c:2335
+#: ../gtksourceview/gtksourcecompletion.c:2337
 msgid "Provider scrolling page size"
 msgstr "Dimensiunea paginii de derulare a furnizorului"
 
-#: ../gtksourceview/gtksourcecompletion.c:2350
+#: ../gtksourceview/gtksourcecompletion.c:2352
 msgid "Proposal Page Size"
 msgstr "Dimensiunea paginii propunerii"
 
-#: ../gtksourceview/gtksourcecompletion.c:2351
+#: ../gtksourceview/gtksourcecompletion.c:2353
 msgid "Proposal scrolling page size"
 msgstr "Dimensiunea paginii de derulare a propunerii"
 
-#: ../gtksourceview/gtksourcecompletion.c:2688
+#: ../gtksourceview/gtksourcecompletion.c:2691
 msgid "Provider"
 msgstr "Furnizor"
 
@@ -728,6 +738,15 @@ msgstr "Identificatori schemă"
 msgid "List of the ids of the available style schemes"
 msgstr "Lista cu identificatorii schemelor de stil disponibile"
 
+#: ../gtksourceview/gtksourceundomanagerdefault.c:390
+#| msgid "Source Buffer"
+msgid "Buffer"
+msgstr "Buffer"
+
+#: ../gtksourceview/gtksourceundomanagerdefault.c:391
+msgid "The text buffer to add undo support on"
+msgstr "Bufferul sursă text pentru care să fie adăugat suportul de refacere"
+
 #: ../gtksourceview/gtksourceview.c:325
 msgid "The completion object associated with the view"
 msgstr "Obiectul de completare asociat cu vizualizarea"
@@ -987,9 +1006,8 @@ msgstr "Număr zecimal"
 #: ../gtksourceview/language-specs/python.lang.h:8
 #: ../gtksourceview/language-specs/ruby.lang.h:8
 #: ../gtksourceview/language-specs/texinfo.lang.h:2
-#, fuzzy
 msgid "Escaped Character"
-msgstr "Caracter de scăpare"
+msgstr "Caracter exceptat"
 
 #. keywords: "if", "for", "while", etc.
 #: ../gtksourceview/language-specs/ada.lang.h:8
@@ -1459,9 +1477,8 @@ msgid "printf Conversion"
 msgstr "conversie printf"
 
 #: ../gtksourceview/language-specs/cg.lang.h:1
-#, fuzzy
 msgid "Bindings"
-msgstr "Legături"
+msgstr "Binding-uri"
 
 #: ../gtksourceview/language-specs/cg.lang.h:3
 #: ../gtksourceview/language-specs/erlang.lang.h:3
@@ -1971,7 +1988,6 @@ msgstr "Cuvinte cheie de tipuri, clase și obiecte"
 
 #: ../gtksourceview/language-specs/fsharp.lang.h:20
 #: ../gtksourceview/language-specs/ocaml.lang.h:21
-#, fuzzy
 msgid "Variant Constructor"
 msgstr "Constructor variant"
 
@@ -2428,11 +2444,11 @@ msgstr "POD"
 
 #: ../gtksourceview/language-specs/perl.lang.h:13
 msgid "POD Escape"
-msgstr ""
+msgstr "Excepție POD"
 
 #: ../gtksourceview/language-specs/perl.lang.h:14
 msgid "POD heading"
-msgstr "antet POD"
+msgstr "Antet POD"
 
 #: ../gtksourceview/language-specs/perl.lang.h:15
 msgid "POD keyword"
