@@ -338,6 +338,8 @@ gtk_source_undo_manager_default_dispose (GObject *object)
 		/* Clear the buffer */
 		set_buffer (manager, NULL);
 	}
+
+	G_OBJECT_CLASS (gtk_source_undo_manager_default_parent_class)->dispose (object);
 }
 
 static void
