@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: eu\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-03-12 16:22+0100\n"
-"PO-Revision-Date: 2010-03-12 17:51+0100\n"
+"PO-Revision-Date: 2010-03-24 09:17+0100\n"
 "Last-Translator: Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>\n"
 "Language-Team: Basque <itzulpena@euskalgnu.org>\n"
 "MIME-Version: 1.0\n"
@@ -174,7 +174,7 @@ msgstr "Gogoratu informazioaren ikusgaitasuna"
 
 #: ../gtksourceview/gtksourcecompletion.c:2246
 msgid "Remember the last info window visibility state"
-msgstr "GOgoratu informazioaren leihoaren ikusgaitasunaren azken egoera"
+msgstr "Gogoratu informazioaren leihoaren ikusgaitasunaren azken egoera"
 
 #: ../gtksourceview/gtksourcecompletion.c:2259
 msgid "Select on Show"
@@ -337,7 +337,7 @@ msgstr "Elementuaren testua"
 
 #: ../gtksourceview/gtksourcecompletionitem.c:269
 msgid "Icon to be shown for this item"
-msgstr "Ikonoa elementu honentzan erakusteko"
+msgstr "Ikonoa elementu honetan erakusteko"
 
 #: ../gtksourceview/gtksourcecompletionitem.c:281
 msgid "Info"
@@ -392,8 +392,8 @@ msgid ""
 "style override used with wildcard context reference in language '%s' in ref "
 "'%s'"
 msgstr ""
-"estiloa gainjartzea testuinguruko erreferentziako komondinarekin erabilita '%"
-"s' hizkuntzako '%s' erreferentzian"
+"estiloa gainjartzea testuinguruko erreferentziako komodinarekin erabilita "
+"'%s' hizkuntzako '%s' erreferentzian"
 
 #: ../gtksourceview/gtksourcecontextengine.c:6603
 #, c-format
@@ -482,7 +482,7 @@ msgstr "Hizkuntza erabiltzaileari ezkutatu behar zaion ala ez"
 
 #: ../gtksourceview/gtksourcelanguagemanager.c:149
 msgid "Language specification directories"
-msgstr "Hikuntzen espezifikazioen direktorioak"
+msgstr "Hizkuntzen espezifikazioen direktorioak"
 
 #: ../gtksourceview/gtksourcelanguagemanager.c:150
 msgid ""
@@ -556,7 +556,7 @@ msgstr "Inprimatu lerro-zenbakiak"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:529
 msgid "Interval of printed line numbers (0 means no numbers)"
-msgstr "Lerro-zenbakiak inprimitzeko bitartea (0 zenbakirik ez)"
+msgstr "Lerro-zenbakiak inprimatzeko bitartea (0 zenbakirik ez)"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:551
 msgid "Print Header"
@@ -616,7 +616,7 @@ msgid ""
 "completely paginated)."
 msgstr ""
 "Dokumentuaren orrialde-kopurua (-1 balioak dokumentua ez dela erabat "
-"paginatu adierazten du)"
+"orrikatu adierazten du)"
 
 #: ../gtksourceview/gtksourcestyle.c:79
 msgid "Line background"
@@ -843,11 +843,11 @@ msgstr "Uneko lerroa nabarmenduko den ala ez"
 
 #: ../gtksourceview/gtksourceview.c:457
 msgid "Indent on tab"
-msgstr "Koskatu tabulatzailearekin"
+msgstr "Koskatu tabuladorearekin"
 
 #: ../gtksourceview/gtksourceview.c:458
 msgid "Whether to indent the selected text when the tab key is pressed"
-msgstr "Tabulatzailea sakatzean hautatutako testua koskatuko den ala ez"
+msgstr "Tabuladorea sakatzean hautatutako testua koskatuko den ala ez"
 
 #: ../gtksourceview/gtksourceview.c:472
 msgid "Draw Spaces"
@@ -1095,7 +1095,7 @@ msgstr "Gako-hitza"
 #: ../gtksourceview/language-specs/pascal.lang.h:6
 #: ../gtksourceview/language-specs/vbnet.lang.h:5
 msgid "Preprocessor"
-msgstr "Aurreprozesadore"
+msgstr "Preprozesadore"
 
 #: ../gtksourceview/language-specs/ada.lang.h:10
 #: ../gtksourceview/language-specs/csharp.lang.h:13
@@ -1673,7 +1673,7 @@ msgstr "Oharra (FINKATZEKO, EGITEKO, XXX, e.a.)"
 #. This one is for '#include <foo.h>' and "#pragma blah", or 'use foobar', etc..
 #: ../gtksourceview/language-specs/def.lang.h:44
 msgid "Preprocessor directive"
-msgstr "Aurreprozesadorearen direktiba"
+msgstr "Preprozesadorearen direktiba"
 
 #. Reserved keywords: like "const" and "goto" in Java
 #: ../gtksourceview/language-specs/def.lang.h:46
@@ -2306,11 +2306,11 @@ msgstr "m4-iruzkina"
 
 #: ../gtksourceview/language-specs/makefile.lang.h:1
 msgid "Assignment Left Hand Side"
-msgstr "Esku ezkertarrentzako esleipena"
+msgstr "Esku ezkertiarrentzako esleipena"
 
 #: ../gtksourceview/language-specs/makefile.lang.h:2
 msgid "Assignment Right Hand Side"
-msgstr "Esku eskuintarrentzako esleipena"
+msgstr "Esku eskuindarrentzako esleipena"
 
 #: ../gtksourceview/language-specs/makefile.lang.h:3
 msgid "Makefile"
