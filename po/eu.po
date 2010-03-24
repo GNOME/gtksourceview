@@ -3,14 +3,14 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER, 2003.
 #
 # Piarres Beobide <pi@beobide.net>, 2003.
-# Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>, 2003, 2004, 2005, 2006, 2007, 2008.
+# Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>, 2003, 2004, 2005, 2006, 2007, 2008, 2010.
 # Iñaki Larrañaga Murgoitio <dooteo@zundan.com>, 2007.
 msgid ""
 msgstr ""
 "Project-Id-Version: eu\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-02-08 18:31+0100\n"
-"PO-Revision-Date: 2008-02-08 18:34+0100\n"
+"PO-Revision-Date: 2010-03-24 09:26+0100\n"
 "Last-Translator: Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>\n"
 "Language-Team: Basque <itzulpena@euskalgnu.org>\n"
 "MIME-Version: 1.0\n"
@@ -113,7 +113,7 @@ msgid ""
 "style override used with wildcard context reference in language '%s' in ref "
 "'%s'"
 msgstr ""
-"estiloa gainjartzea testuinguruko erreferentziako komondinarekin erabilita '%"
+"estiloa gainjartzea testuinguruko erreferentziako komodinarekin erabilita '%"
 "s' hizkuntzako '%s' erreferentzian"
 
 #: ../gtksourceview/gtksourcecontextengine.c:6123
@@ -177,7 +177,7 @@ msgstr "Hizkuntza erabiltzaileari ezkutatu behar zaion ala ez"
 
 #: ../gtksourceview/gtksourcelanguagemanager.c:133
 msgid "Language specification directories"
-msgstr "Hikuntzen espezifikazioen direktorioak"
+msgstr "Hizkuntzen espezifikazioen direktorioak"
 
 #: ../gtksourceview/gtksourcelanguagemanager.c:134
 msgid ""
@@ -251,7 +251,7 @@ msgstr "Inprimatu lerro-zenbakiak"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:494
 msgid "Interval of printed line numbers (0 means no numbers)"
-msgstr "Lerro-zenbakiak inprimitzeko bitartea (0 zenbakirik ez)"
+msgstr "Lerro-zenbakiak inprimatzeko bitartea (0 zenbakirik ez)"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:516
 msgid "Print Header"
@@ -311,7 +311,7 @@ msgid ""
 "completely paginated)."
 msgstr ""
 "Dokumentuaren orrialde-kopurua (-1 balioak dokumentua ez dela erabat "
-"paginatu adierazten du)"
+"orrikatu adierazten du)"
 
 #: ../gtksourceview/gtksourcestyle.c:70
 msgid "Line background"
@@ -524,11 +524,11 @@ msgstr "Uneko lerroa nabarmenduko den ala ez"
 
 #: ../gtksourceview/gtksourceview.c:377
 msgid "Indent on tab"
-msgstr "Koskatu tabulatzailearekin"
+msgstr "Koskatu tabuladorearekin"
 
 #: ../gtksourceview/gtksourceview.c:378
 msgid "Whether to indent the selected text when the tab key is pressed"
-msgstr "Tabulatzailea sakatzean hautatutako testua koskatuko den ala ez"
+msgstr "Tabuladorea sakatzean hautatutako testua koskatuko den ala ez"
 
 #: ../gtksourceview/gtksourceview-i18n.c:38
 msgid "translator-credits"
@@ -718,7 +718,7 @@ msgstr "Gako-hitza"
 #: ../gtksourceview/language-specs/pascal.lang.h:6
 #: ../gtksourceview/language-specs/vbnet.lang.h:5
 msgid "Preprocessor"
-msgstr "Aurreprozesadore"
+msgstr "Preprozesadore"
 
 #: ../gtksourceview/language-specs/ada.lang.h:10
 #: ../gtksourceview/language-specs/csharp.lang.h:11
@@ -1115,7 +1115,7 @@ msgstr "Eragilea"
 #. This one is for '#include <foo.h>' and "#pragma blah", or 'use foobar', etc..
 #: ../gtksourceview/language-specs/def.lang.h:44
 msgid "Preprocessor directive"
-msgstr "Aurreprozesadorearen direktiba"
+msgstr "Preprozesadorearen direktiba"
 
 #. Reserved keywords: like "const" and "goto" in Java
 #: ../gtksourceview/language-specs/def.lang.h:46
