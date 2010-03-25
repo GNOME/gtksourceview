@@ -13,76 +13,356 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: el\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug."
-"cgi?product=gtksourceview&component=general\n"
-"POT-Creation-Date: 2009-02-14 11:52+0000\n"
-"PO-Revision-Date: 2009-03-12 11:17+0100\n"
-"Last-Translator: Jennie Petoumenou <epetoumenou@gmail.com>\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-03-25 10:34+0200\n"
+"PO-Revision-Date: 2010-03-23 21:54+0200\n"
+"Last-Translator: Bakaoukas Nikolaos <nikolaosx1@gmail.com>\n"
 "Language-Team: Greek <team@gnome.gr>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms:  nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Lokalize 0.2\n"
 
-#: ../gtksourceview/gtksourcebuffer.c:180
-#: ../gtksourceview/gtksourceprintcompositor.c:471
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:379
+msgid "Document Words"
+msgstr "Λέξεις εγγράφων"
+
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:463
+#: ../gtksourceview/language-specs/changelog.lang.h:7
+msgid "Name"
+msgstr "Όνομα"
+
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:464
+msgid "The provider name"
+msgstr "Το όνομα του παρόχου"
+
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:471
+#: ../gtksourceview/gtksourcecompletionitem.c:268
+msgid "Icon"
+msgstr "Εικονίδιο"
+
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:472
+msgid "The provider icon"
+msgstr "Το εικονίδιο του παρόχου"
+
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:479
+msgid "Proposals Batch Size"
+msgstr "Μέγεθος δέσμης εισήγησης"
+
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:480
+msgid "Number of proposals added in one batch"
+msgstr "Ο αριθμός των προτάσεων που προστέθηκαν σε μία δέσμη"
+
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:489
+msgid "Scan Batch Size"
+msgstr "Έλεγχος μεγέθους δέσμης"
+
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:490
+msgid "Number of lines scanned in one batch"
+msgstr "Ο αριθμός των γραμμών που σαρώθηκαν σε μία δέσμη"
+
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:499
+msgid "Minimum Word Size"
+msgstr "Ελάχιστο μέγεθος λέξης"
+
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:500
+msgid "The minimum word size to complete"
+msgstr "Το ελάχιστο μέγεθος λέξης για συμπλήρωση"
+
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:509
+msgid "Interactive Delay"
+msgstr "Διαδραστική καθυστέρηση"
+
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:510
+msgid "The delay before initiating interactive completion"
+msgstr "Η καθυστέρηση πριν την έναρξη της διαδραστικής συμπλήρωσης"
+
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:519
+msgid "Priority"
+msgstr "Προτεραιότητα"
+
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:520
+msgid "Provider priority"
+msgstr "Προτεραιότητα παρόχου"
+
+#: ../gtksourceview/gtksourcebuffer.c:211
+#: ../gtksourceview/gtksourceprintcompositor.c:506
 msgid "Highlight Syntax"
 msgstr "Επισήμανση σύνταξης"
 
-#: ../gtksourceview/gtksourcebuffer.c:181
+#: ../gtksourceview/gtksourcebuffer.c:212
 msgid "Whether to highlight syntax in the buffer"
 msgstr "Αν θα γίνεται επισήμανση σύνταξης στο buffer"
 
-#: ../gtksourceview/gtksourcebuffer.c:194
+#: ../gtksourceview/gtksourcebuffer.c:225
 msgid "Highlight Matching Brackets"
 msgstr "Επισήμανση αγκυλών που ταιριάζουν"
 
-#: ../gtksourceview/gtksourcebuffer.c:195
+#: ../gtksourceview/gtksourcebuffer.c:226
 msgid "Whether to highlight matching brackets"
 msgstr "Αν θα γίνεται επισήμανση αγκυλών που ταιριάζουν"
 
-#: ../gtksourceview/gtksourcebuffer.c:207
+#: ../gtksourceview/gtksourcebuffer.c:239
+#: ../gtksourceview/gtksourceundomanagerdefault.c:412
 msgid "Maximum Undo Levels"
 msgstr "Μέγιστο επίπεδο αναιρέσεων"
 
-#: ../gtksourceview/gtksourcebuffer.c:208
+#: ../gtksourceview/gtksourcebuffer.c:240
+#: ../gtksourceview/gtksourceundomanagerdefault.c:413
 msgid "Number of undo levels for the buffer"
 msgstr "Αριθμός των επιπέδων αναίρεσης για το buffer"
 
 #. Translators: throughout gtksourceview "language" stands
 #. * for "programming language", not "spoken language"
-#: ../gtksourceview/gtksourcebuffer.c:220
+#: ../gtksourceview/gtksourcebuffer.c:252
 msgid "Language"
 msgstr "Γλώσσα"
 
-#: ../gtksourceview/gtksourcebuffer.c:221
+#: ../gtksourceview/gtksourcebuffer.c:253
 msgid "Language object to get highlighting patterns from"
 msgstr "Αντικείμενο γλώσσας για τη λήψη μοτίβου επισημάνσεων"
 
-#: ../gtksourceview/gtksourcebuffer.c:229
+#: ../gtksourceview/gtksourcebuffer.c:261
 msgid "Can undo"
 msgstr "Αδυναμία αναίρεσης"
 
-#: ../gtksourceview/gtksourcebuffer.c:230
+#: ../gtksourceview/gtksourcebuffer.c:262
 msgid "Whether Undo operation is possible"
 msgstr "Αν θα είναι δυνατή η ενέργεια αναίρεσης"
 
-#: ../gtksourceview/gtksourcebuffer.c:237
+#: ../gtksourceview/gtksourcebuffer.c:269
 msgid "Can redo"
 msgstr "Δυνατότητα ακύρωσης αναίρεσης"
 
-#: ../gtksourceview/gtksourcebuffer.c:238
+#: ../gtksourceview/gtksourcebuffer.c:270
 msgid "Whether Redo operation is possible"
 msgstr "Αν θα είναι δυνατή η λειτουργία ακύρωσης αναίρεσης"
 
-#: ../gtksourceview/gtksourcebuffer.c:252
-#: ../gtksourceview/gtksourcebuffer.c:253
+#: ../gtksourceview/gtksourcebuffer.c:284
+#: ../gtksourceview/gtksourcebuffer.c:285
 msgid "Style scheme"
 msgstr "Σχήμα στυλ"
 
-#: ../gtksourceview/gtksourcecontextengine.c:2608
-#, c-format
+#: ../gtksourceview/gtksourcebuffer.c:292
+msgid "Undo manager"
+msgstr "Αναίρεση διαχειριστή"
+
+#: ../gtksourceview/gtksourcebuffer.c:293
+msgid "The buffer undo manager"
+msgstr "Ο διαχειριστής μνήμης αναίρεσης"
+
+#. Translators: "All" is used as a label in thestatus bar of the
+#. popup, telling that all completion pages are shown
+#: ../gtksourceview/gtksourcecompletion.c:649
+msgid "All"
+msgstr "Όλα"
+
+#: ../gtksourceview/gtksourcecompletion.c:940
+#: ../gtksourceview/gtksourcecompletion.c:963
+msgid "No extra information available"
+msgstr "Δεν υπάρχει διαθέσιμη καμία πρόσθετη πληροφορία"
+
+#: ../gtksourceview/gtksourcecompletion.c:2229
+#: ../gtksourceview/gtksourcegutter.c:369
+msgid "View"
+msgstr "Προβολή"
+
+#: ../gtksourceview/gtksourcecompletion.c:2230
+msgid "The GtkSourceView bound to the completion"
+msgstr "Το GtkSourceView είναι συνδεδεμένο με την ολοκλήρωση"
+
+#: ../gtksourceview/gtksourcecompletion.c:2245
+msgid "Remember Info Visibility"
+msgstr "Απομνημόνευση πληροφοριών προβολής"
+
+#: ../gtksourceview/gtksourcecompletion.c:2246
+msgid "Remember the last info window visibility state"
+msgstr ""
+"Απομνημόνευση της κατάστασης προβολής του τελευταίου παραθύρου πληροφοριών"
+
+#: ../gtksourceview/gtksourcecompletion.c:2259
+msgid "Select on Show"
+msgstr "Επιλογή κατά την προβολή"
+
+#: ../gtksourceview/gtksourcecompletion.c:2260
+msgid "Select first proposal when completion is shown"
+msgstr "Επιλογή της πρώτης πρότασης όταν εμφανίζεται η συμπλήρωση"
+
+#: ../gtksourceview/gtksourcecompletion.c:2274
+msgid "Show Headers"
+msgstr "Προβολή κεφαλίδων"
+
+#: ../gtksourceview/gtksourcecompletion.c:2275
+msgid ""
+"Show provider headers when proposals from multiple providers are available"
+msgstr ""
+"Εμφάνιση των κεφαλίδων των παρόχων όταν είναι διαθέσιμες  προτάσεις από "
+"πολλαπλούς παρόχους "
+
+#: ../gtksourceview/gtksourcecompletion.c:2289
+msgid "Show Icons"
+msgstr "Εμφάνιση εικονιδίων"
+
+#: ../gtksourceview/gtksourcecompletion.c:2290
+msgid "Show provider and proposal icons in the completion popup"
+msgstr ""
+"Εμφάνιση εικονιδίων παρόχου και προτάσεων στο μενού συντόμευσης της "
+"συμπλήρωσης"
+
+#: ../gtksourceview/gtksourcecompletion.c:2303
+msgid "Accelerators"
+msgstr "Συντομεύσεις"
+
+#: ../gtksourceview/gtksourcecompletion.c:2304
+msgid "Number of proposal accelerators to show"
+msgstr "Ο αριθμός επιταχυντών προτάσεων για εμφάνιση"
+
+#: ../gtksourceview/gtksourcecompletion.c:2320
+msgid "Auto Complete Delay"
+msgstr "Καθυστέρηση αυτόματης συμπλήρωσης"
+
+#: ../gtksourceview/gtksourcecompletion.c:2321
+msgid "Completion popup delay for interactive completion"
+msgstr ""
+"Καθυστέρηση εμφάνισης του μενού συντόμευσης για την διαδραστική συμπλήρωσης"
+
+#: ../gtksourceview/gtksourcecompletion.c:2336
+msgid "Provider Page Size"
+msgstr "Μέγεθος σελίδας παρόχου"
+
+#: ../gtksourceview/gtksourcecompletion.c:2337
+msgid "Provider scrolling page size"
+msgstr "Μέγεθος κυλιόμενης σελίδας παρόχου"
+
+#: ../gtksourceview/gtksourcecompletion.c:2352
+msgid "Proposal Page Size"
+msgstr "Μέγεθος σελίδας εισήγησης"
+
+#: ../gtksourceview/gtksourcecompletion.c:2353
+msgid "Proposal scrolling page size"
+msgstr "Μέγεθος κυλιόμενης σελίδας εισήγησης"
+
+#: ../gtksourceview/gtksourcecompletion.c:2691
+msgid "Provider"
+msgstr "Πάροχος"
+
+#: ../gtksourceview/gtksourcecompletioncontext.c:244
+#: ../gtksourceview/gtksourceview.c:324
+msgid "Completion"
+msgstr "Ολοκλήρωση"
+
+#: ../gtksourceview/gtksourcecompletioncontext.c:245
+msgid "The completion object to which the context belongs"
+msgstr "Το αντικείμενο συμπλήρωσης στο οποίο ανήκει το πλαίσιο εφαρμογής."
+
+#. Translators: The GtkTextIter at which the completion was invoked
+#: ../gtksourceview/gtksourcecompletioncontext.c:258
+msgid "Iterator"
+msgstr "Επαναλήπτης"
+
+#: ../gtksourceview/gtksourcecompletioncontext.c:259
+msgid "The GtkTextIter at which the completion was invoked"
+msgstr "Το GtkTextIter στο οποίο προκλήθηκε η συμπλήρωση"
+
+#: ../gtksourceview/gtksourcecompletioncontext.c:271
+msgid "Activation"
+msgstr "Ενεργοποίηση"
+
+#: ../gtksourceview/gtksourcecompletioncontext.c:272
+msgid "The type of activation"
+msgstr "Ο τύπος της ενεργοποίησης"
+
+#. Tooltip style
+#: ../gtksourceview/gtksourcecompletioninfo.c:174
+msgid "Completion Info"
+msgstr "Πληροφορίες ολοκλήρωσης"
+
+#: ../gtksourceview/gtksourcecompletioninfo.c:342
+msgid "Maximum width"
+msgstr "Μέγιστο πλάτος"
+
+#: ../gtksourceview/gtksourcecompletioninfo.c:343
+msgid "The maximum allowed width"
+msgstr "Το μέγιστο επιτρεπόμενο πλάτος"
+
+#: ../gtksourceview/gtksourcecompletioninfo.c:352
+msgid "Maximum height"
+msgstr "Μέγιστο ύψος"
+
+#: ../gtksourceview/gtksourcecompletioninfo.c:353
+msgid "The maximum allowed height"
+msgstr "Το μέγιστο επιτρεπόμενο ύψος"
+
+#: ../gtksourceview/gtksourcecompletioninfo.c:363
+msgid "Shrink width"
+msgstr "Πλάτος συρρίκνωσης"
+
+#: ../gtksourceview/gtksourcecompletioninfo.c:364
+msgid "Whether the window should shrink width to fit the contents"
+msgstr ""
+"Εάν το παράθυρο θα πρέπει να στενέψει το πλάτος του για να προσαρμοστεί στο "
+"μέγεθος του περιεχόμενου"
+
+#: ../gtksourceview/gtksourcecompletioninfo.c:371
+msgid "Shrink height"
+msgstr "Ύψος συρρίκνωσης "
+
+#: ../gtksourceview/gtksourcecompletioninfo.c:372
+msgid "Whether the window should shrink height to fit the contents"
+msgstr ""
+"Εάν το παράθυρο θα πρέπει να στενέψει το ύψος του για να προσαρμοστεί στο "
+"μέγεθος του περιεχόμενου"
+
+#: ../gtksourceview/gtksourcecompletionitem.c:229
+msgid "Label"
+msgstr "Ετικέτα"
+
+#: ../gtksourceview/gtksourcecompletionitem.c:230
+msgid "Label to be shown for this item"
+msgstr "Η ετικέτα που θα εμφανιστεί για αυτό το στοιχείο"
+
+#: ../gtksourceview/gtksourcecompletionitem.c:242
+#: ../gtksourceview/language-specs/bibtex.lang.h:4
+#: ../gtksourceview/language-specs/docbook.lang.h:5
+#: ../gtksourceview/language-specs/dtd.lang.h:2
+#: ../gtksourceview/language-specs/gtk-doc.lang.h:6
+#: ../gtksourceview/language-specs/haddock.lang.h:14
+#: ../gtksourceview/language-specs/html.lang.h:7
+#: ../gtksourceview/language-specs/latex.lang.h:6
+#: ../gtksourceview/language-specs/mallard.lang.h:4
+#: ../gtksourceview/language-specs/t2t.lang.h:6
+#: ../gtksourceview/language-specs/texinfo.lang.h:8
+#: ../gtksourceview/language-specs/xml.lang.h:9
+#: ../gtksourceview/language-specs/xslt.lang.h:2
+msgid "Markup"
+msgstr "Markup"
+
+#: ../gtksourceview/gtksourcecompletionitem.c:243
+msgid "Markup to be shown for this item"
+msgstr "Η σημείωση που θα εμφανιστεί για αυτό το στοιχείο"
+
+#: ../gtksourceview/gtksourcecompletionitem.c:255
+msgid "Text"
+msgstr "Κείμενο"
+
+#: ../gtksourceview/gtksourcecompletionitem.c:256
+msgid "Item text"
+msgstr "Κείμενο στοιχείου"
+
+#: ../gtksourceview/gtksourcecompletionitem.c:269
+msgid "Icon to be shown for this item"
+msgstr "Το εικονίδιο που θα εμφανιστεί για αυτό το στοιχείο"
+
+#: ../gtksourceview/gtksourcecompletionitem.c:281
+msgid "Info"
+msgstr "Πληροφορίες"
+
+#: ../gtksourceview/gtksourcecompletionitem.c:282
+msgid "Info to be shown for this item"
+msgstr "Οι πληροφορίες που θα εμφανιστούν για αυτό το στοιχείο"
+
+#: ../gtksourceview/gtksourcecontextengine.c:2981
 msgid "using \\C is not supported in language definitions"
 msgstr "η χρήση \\C δεν υποστηρίζεται στους ορισμούς γλώσσας"
 
@@ -90,7 +370,7 @@ msgstr "η χρήση \\C δεν υποστηρίζεται στους ορισ�
 #. * named sub-patterns with the same name or if resulting regex is
 #. * too long. In this case fixing lang file helps (e.g. renaming
 #. * subpatterns, making huge keywords use bigger prefixes, etc.)
-#: ../gtksourceview/gtksourcecontextengine.c:3232
+#: ../gtksourceview/gtksourcecontextengine.c:3605
 #, c-format
 msgid ""
 "Cannot create a regex for all the transitions, the syntax highlighting "
@@ -101,7 +381,7 @@ msgstr ""
 "σύνταξης θα έχει αρκετή καθυστέρηση.\n"
 "Το σφάλμα ήταν: %s"
 
-#: ../gtksourceview/gtksourcecontextengine.c:4547
+#: ../gtksourceview/gtksourcecontextengine.c:4940
 msgid ""
 "Highlighting a single line took too much time, syntax highlighting will be "
 "disabled"
@@ -109,19 +389,20 @@ msgstr ""
 "Η επισήμανση μίας γραμμής διήρκεσε υπερβολικά. Η επισήμανση της σύνταξης θα "
 "απενεργοποιηθεί"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5757
+#: ../gtksourceview/gtksourcecontextengine.c:6165
 #, c-format
 msgid "context '%s' cannot contain a \\%%{...@start} command"
-msgstr "context '%s' δεν μπορεί να περιέχει μια εντολή \\%%{...@start}"
+msgstr ""
+"Το πλαίσιο εφαρμογής '%s' δεν μπορεί να περιέχει μια εντολή \\%%{...@start}"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5909
-#: ../gtksourceview/gtksourcecontextengine.c:5996
+#: ../gtksourceview/gtksourcecontextengine.c:6327
+#: ../gtksourceview/gtksourcecontextengine.c:6416
 #, c-format
 msgid "duplicated context id '%s'"
 msgstr "διπλότυπη context id '%s'"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6109
-#: ../gtksourceview/gtksourcecontextengine.c:6169
+#: ../gtksourceview/gtksourcecontextengine.c:6531
+#: ../gtksourceview/gtksourcecontextengine.c:6591
 #, c-format
 msgid ""
 "style override used with wildcard context reference in language '%s' in ref "
@@ -130,27 +411,50 @@ msgstr ""
 "style override used with wildcard context reference in language '%s' in ref "
 "'%s'"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6183
+#: ../gtksourceview/gtksourcecontextengine.c:6605
 #, c-format
 msgid "invalid context reference '%s'"
 msgstr "μη έγκυρη αναφορά περιεχομένου  '%s'"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6202
-#: ../gtksourceview/gtksourcecontextengine.c:6212
+#: ../gtksourceview/gtksourcecontextengine.c:6624
+#: ../gtksourceview/gtksourcecontextengine.c:6634
 #, c-format
 msgid "unknown context '%s'"
-msgstr "άγνωστο περιεχόμενο '%s'"
+msgstr "άγνωστο πλαίσιο εφαρμογής '%s'"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6312
+#: ../gtksourceview/gtksourcecontextengine.c:6734
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "Λείπει ο ορισμός κύριας γλώσσας (id = \"%s\".)"
 
-#: ../gtksourceview/gtksourcelanguage.c:42
+#: ../gtksourceview/gtksourcegutter.c:370
+msgid "The gutters' GtkSourceView"
+msgstr "Το GtkSourceView του περιθώριο βιβλιοδεσίας"
+
+#: ../gtksourceview/gtksourcegutter.c:382
+msgid "Window Type"
+msgstr "Τύπος παραθύρου"
+
+#: ../gtksourceview/gtksourcegutter.c:383
+msgid "The gutters text window type"
+msgstr "Ο τύπος παραθύρου για το περιθώριο βιβλιοδεσίας του κειμένου"
+
+#. *
+#. * SECTION:language
+#. * @Short_description: Object representing a syntax highlighted language
+#. * @Title: GtkSourceLanguage
+#. * @See_also: #GtkSourceLanguageManager
+#. *
+#. * #GtkSourceLanguage encapsulates syntax and highlighting styles for a
+#. * particular language. Use #GtkSourceLanguageManager to obtain a
+#. * #GtkSourceLanguage instance, and gtk_source_buffer_set_language() to apply it
+#. * to a #GtkSourceBuffer.
+#.
+#: ../gtksourceview/gtksourcelanguage.c:54
 #: ../gtksourceview/language-specs/changelog.lang.h:8
 #: ../gtksourceview/language-specs/cmake.lang.h:7
 #: ../gtksourceview/language-specs/css.lang.h:10
-#: ../gtksourceview/language-specs/desktop.lang.h:11
+#: ../gtksourceview/language-specs/desktop.lang.h:12
 #: ../gtksourceview/language-specs/diff.lang.h:9
 #: ../gtksourceview/language-specs/dot.lang.h:6
 #: ../gtksourceview/language-specs/dpatch.lang.h:2
@@ -169,162 +473,162 @@ msgstr "Λείπει ο ορισμός κύριας γλώσσας (id = \"%s\".
 msgid "Others"
 msgstr "Άλλα"
 
-#: ../gtksourceview/gtksourcelanguage.c:215
-#: ../gtksourceview/gtksourcelanguage.c:216
+#: ../gtksourceview/gtksourcelanguage.c:227
+#: ../gtksourceview/gtksourcelanguage.c:228
 msgid "Language id"
 msgstr "id γλώσσας"
 
-#: ../gtksourceview/gtksourcelanguage.c:223
-#: ../gtksourceview/gtksourcelanguage.c:224
+#: ../gtksourceview/gtksourcelanguage.c:235
+#: ../gtksourceview/gtksourcelanguage.c:236
 msgid "Language name"
 msgstr "Όνομα γλώσσας"
 
-#: ../gtksourceview/gtksourcelanguage.c:231
-#: ../gtksourceview/gtksourcelanguage.c:232
+#: ../gtksourceview/gtksourcelanguage.c:243
+#: ../gtksourceview/gtksourcelanguage.c:244
 msgid "Language section"
 msgstr "Ενότητα γλώσσας"
 
-#: ../gtksourceview/gtksourcelanguage.c:239
+#: ../gtksourceview/gtksourcelanguage.c:251
 msgid "Hidden"
 msgstr "Κρυφή"
 
-#: ../gtksourceview/gtksourcelanguage.c:240
+#: ../gtksourceview/gtksourcelanguage.c:252
 msgid "Whether the language should be hidden from the user"
 msgstr "Αν η γλώσσα θα είναι κρυφή από τον χρήστη"
 
-#: ../gtksourceview/gtksourcelanguagemanager.c:134
+#: ../gtksourceview/gtksourcelanguagemanager.c:149
 msgid "Language specification directories"
 msgstr "Κατάλογοι ορισμάτων γλώσσας"
 
-#: ../gtksourceview/gtksourcelanguagemanager.c:135
+#: ../gtksourceview/gtksourcelanguagemanager.c:150
 msgid ""
 "List of directories where the language specification files (.lang) are "
 "located"
 msgstr ""
 "Λίστα από καταλόγους όπου βρίσκονται τα αρχεία ορισμάτων γλώσσας (.lang)"
 
-#: ../gtksourceview/gtksourcelanguagemanager.c:144
+#: ../gtksourceview/gtksourcelanguagemanager.c:159
 msgid "Language ids"
 msgstr "ids γλώσσας"
 
-#: ../gtksourceview/gtksourcelanguagemanager.c:145
+#: ../gtksourceview/gtksourcelanguagemanager.c:160
 msgid "List of the ids of the available languages"
 msgstr "Μια λίστα από αναγνωριστικά των διαθέσιμων γλωσσών"
 
-#: ../gtksourceview/gtksourcelanguage-parser-2.c:879
+#: ../gtksourceview/gtksourcelanguage-parser-2.c:950
 #, c-format
 msgid "Unknown id '%s' in regex '%s'"
 msgstr "Άγνωστο id '%s' σε regex '%s'"
 
-#: ../gtksourceview/gtksourcelanguage-parser-2.c:1107
+#: ../gtksourceview/gtksourcelanguage-parser-2.c:1178
 #, c-format
 msgid "in regex '%s': backreferences are not supported"
 msgstr "στην regex '%s': δεν υποστηρίζονται τα backreferences"
 
-#: ../gtksourceview/gtksourcemark.c:119
+#: ../gtksourceview/gtksourcemark.c:140
 msgid "category"
 msgstr "κατηγορία"
 
-#: ../gtksourceview/gtksourcemark.c:120
+#: ../gtksourceview/gtksourcemark.c:141
 msgid "The mark category"
 msgstr "Η κατηγορία της σήμανσης"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:411
+#: ../gtksourceview/gtksourceprintcompositor.c:446
 msgid "Source Buffer"
 msgstr "Πηγαίος Buffer"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:412
+#: ../gtksourceview/gtksourceprintcompositor.c:447
 msgid "The GtkSourceBuffer object to print"
 msgstr "Αντικείμενο GtkSourceBuffer για εκτύπωση"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:429
-#: ../gtksourceview/gtksourceview.c:290
+#: ../gtksourceview/gtksourceprintcompositor.c:464
+#: ../gtksourceview/gtksourceview.c:362
 msgid "Tab Width"
 msgstr "Πλάτος Tab"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:430
-#: ../gtksourceview/gtksourceview.c:291
+#: ../gtksourceview/gtksourceprintcompositor.c:465
+#: ../gtksourceview/gtksourceview.c:363
 msgid "Width of a tab character expressed in spaces"
 msgstr "Το πλάτος ενός χαρακτήρα Tab εκφρασμένο σε διαστήματα"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:450
+#: ../gtksourceview/gtksourceprintcompositor.c:485
 msgid "Wrap Mode"
 msgstr "Λειτουργία αναδίπλωσης"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:451
+#: ../gtksourceview/gtksourceprintcompositor.c:486
 msgid ""
 "Whether to wrap lines never, at word boundaries, or at character boundaries."
 msgstr ""
 "Αν θα αναδιπλώνονται οι γραμμές: Ποτέ, στα όρια λέξεων ή στα όρια γραμμών"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:472
+#: ../gtksourceview/gtksourceprintcompositor.c:507
 msgid "Whether to print the document with highlighted syntax"
 msgstr "Αν θα γίνεται εκτύπωση του εγγράφου με επισήμανση σύνταξης"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:493
+#: ../gtksourceview/gtksourceprintcompositor.c:528
 msgid "Print Line Numbers"
 msgstr "Εκτύπωση αριθμών γραμμής"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:494
+#: ../gtksourceview/gtksourceprintcompositor.c:529
 msgid "Interval of printed line numbers (0 means no numbers)"
 msgstr "Διάστημα των εκτυπωμένων αριθμών γραμμής (0 σημαίνει όχι αριθμοί)"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:516
+#: ../gtksourceview/gtksourceprintcompositor.c:551
 msgid "Print Header"
 msgstr "Εκτύπωση κεφαλίδας"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:517
+#: ../gtksourceview/gtksourceprintcompositor.c:552
 msgid "Whether to print a header in each page"
 msgstr "Αν θα γίνεται εκτύπωση κεφαλίδας σε κάθε σελίδα"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:539
+#: ../gtksourceview/gtksourceprintcompositor.c:574
 msgid "Print Footer"
 msgstr "Εκτύπωση υποσέλιδου"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:540
+#: ../gtksourceview/gtksourceprintcompositor.c:575
 msgid "Whether to print a footer in each page"
 msgstr "Αν θα γίνεται εκτύπωση υποσέλιδου σε κάθε σελίδα"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:562
+#: ../gtksourceview/gtksourceprintcompositor.c:597
 msgid "Body Font Name"
 msgstr "Όνομα γραμματοσειράς σώματος κειμένου"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:563
+#: ../gtksourceview/gtksourceprintcompositor.c:598
 msgid "Name of the font to use for the text body (e.g. \"Monospace 10\")"
 msgstr ""
 "Όνομα γραμματοσειράς για χρήση στο κείμενο εγγράφου (π.χ. \"Monospace 10\")"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:586
+#: ../gtksourceview/gtksourceprintcompositor.c:621
 msgid "Line Numbers Font Name"
 msgstr "Όνομα γραμματοσειρά αριθμού γραμμών"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:587
+#: ../gtksourceview/gtksourceprintcompositor.c:622
 msgid "Name of the font to use for the line numbers (e.g. \"Monospace 10\")"
 msgstr ""
 "Όνομα γραμματοσειράς για χρήση στους αριθμούς γραμμών (π.χ. \"Monospace 10\")"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:610
+#: ../gtksourceview/gtksourceprintcompositor.c:645
 msgid "Header Font Name"
 msgstr "Όνομα γραμματοσειράς κεφαλίδας"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:611
+#: ../gtksourceview/gtksourceprintcompositor.c:646
 msgid "Name of the font to use for the page header (e.g. \"Monospace 10\")"
 msgstr ""
 "Όνομα γραμματοσειράς για χρήση στις κεφαλίδες σελίδας (π.χ. \"Monospace 10\")"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:634
+#: ../gtksourceview/gtksourceprintcompositor.c:669
 msgid "Footer Font Name"
 msgstr "Όνομα γραμματοσειράς υποσέλιδου"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:635
+#: ../gtksourceview/gtksourceprintcompositor.c:670
 msgid "Name of the font to use for the page footer (e.g. \"Monospace 10\")"
 msgstr "Όνομα γραμματοσειράς για χρήση στα υποσέλιδα (π.χ. \"Monospace 10\")"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:651
+#: ../gtksourceview/gtksourceprintcompositor.c:686
 msgid "Number of pages"
 msgstr "Αριθμός σελίδων"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:652
+#: ../gtksourceview/gtksourceprintcompositor.c:687
 msgid ""
 "The number of pages in the document (-1 means the document has not been "
 "completely paginated)."
@@ -332,201 +636,213 @@ msgstr ""
 "Ο αριθμός των σελίδων στο έγγραφο (-1 σημαίνει ότι το έγγραφο δεν έχει "
 "σελιδοποιηθεί πλήρως)."
 
-#: ../gtksourceview/gtksourcestyle.c:70
+#: ../gtksourceview/gtksourcestyle.c:79
 msgid "Line background"
 msgstr "Παρασκήνιο γραμμής"
 
-#: ../gtksourceview/gtksourcestyle.c:71
+#: ../gtksourceview/gtksourcestyle.c:80
 msgid "Line background color"
 msgstr "Χρώμα παρασκηνίου γραμμής"
 
-#: ../gtksourceview/gtksourcestyle.c:78
+#: ../gtksourceview/gtksourcestyle.c:87
 msgid "Background"
 msgstr "Παρασκήνιο"
 
-#: ../gtksourceview/gtksourcestyle.c:79
+#: ../gtksourceview/gtksourcestyle.c:88
 msgid "Background color"
 msgstr "Χρώμα παρασκηνίου"
 
-#: ../gtksourceview/gtksourcestyle.c:86
+#: ../gtksourceview/gtksourcestyle.c:95
 msgid "Foreground"
 msgstr "Προσκήνιο"
 
-#: ../gtksourceview/gtksourcestyle.c:87
+#: ../gtksourceview/gtksourcestyle.c:96
 msgid "Foreground color"
 msgstr "Χρώμα προσκηνίου"
 
-#: ../gtksourceview/gtksourcestyle.c:94 ../gtksourceview/gtksourcestyle.c:95
+#: ../gtksourceview/gtksourcestyle.c:103 ../gtksourceview/gtksourcestyle.c:104
 #: ../gtksourceview/language-specs/t2t.lang.h:2
 msgid "Bold"
 msgstr "Έντονα"
 
-#: ../gtksourceview/gtksourcestyle.c:102 ../gtksourceview/gtksourcestyle.c:103
+#: ../gtksourceview/gtksourcestyle.c:111 ../gtksourceview/gtksourcestyle.c:112
 #: ../gtksourceview/language-specs/t2t.lang.h:5
 msgid "Italic"
 msgstr "Πλάγια"
 
-#: ../gtksourceview/gtksourcestyle.c:110 ../gtksourceview/gtksourcestyle.c:111
+#: ../gtksourceview/gtksourcestyle.c:119 ../gtksourceview/gtksourcestyle.c:120
 msgid "Underline"
 msgstr "Υπογράμμιση"
 
-#: ../gtksourceview/gtksourcestyle.c:118 ../gtksourceview/gtksourcestyle.c:119
+#: ../gtksourceview/gtksourcestyle.c:127 ../gtksourceview/gtksourcestyle.c:128
 msgid "Strikethrough"
 msgstr "Διακριτή γραφή"
 
-#: ../gtksourceview/gtksourcestyle.c:126
+#: ../gtksourceview/gtksourcestyle.c:135
 msgid "Line background set"
 msgstr "Ορισμός παρασκηνίου γραμμής"
 
-#: ../gtksourceview/gtksourcestyle.c:127
+#: ../gtksourceview/gtksourcestyle.c:136
 msgid "Whether line background color is set"
 msgstr "Αν έχει ορισθεί χρώμα παρασκηνίου γραμμής"
 
-#: ../gtksourceview/gtksourcestyle.c:134
+#: ../gtksourceview/gtksourcestyle.c:143
 msgid "Foreground set"
 msgstr "Ορισμός προσκηνίου"
 
-#: ../gtksourceview/gtksourcestyle.c:135
+#: ../gtksourceview/gtksourcestyle.c:144
 msgid "Whether foreground color is set"
 msgstr "Αν έχει ορισθεί το χρώμα προσκηνίου"
 
-#: ../gtksourceview/gtksourcestyle.c:142
+#: ../gtksourceview/gtksourcestyle.c:151
 msgid "Background set"
 msgstr "Ορισμός παρασκηνίου"
 
-#: ../gtksourceview/gtksourcestyle.c:143
+#: ../gtksourceview/gtksourcestyle.c:152
 msgid "Whether background color is set"
 msgstr "Αν έχει ορισθεί το χρώμα παρασκηνίου"
 
-#: ../gtksourceview/gtksourcestyle.c:150
+#: ../gtksourceview/gtksourcestyle.c:159
 msgid "Bold set"
 msgstr "Ορισμός εντόνων"
 
-#: ../gtksourceview/gtksourcestyle.c:151
+#: ../gtksourceview/gtksourcestyle.c:160
 msgid "Whether bold attribute is set"
 msgstr "Αν έχει ορισθεί έντονη γραμματοσειρά"
 
-#: ../gtksourceview/gtksourcestyle.c:158
+#: ../gtksourceview/gtksourcestyle.c:167
 msgid "Italic set"
 msgstr "Ορισμός πλαγίων"
 
-#: ../gtksourceview/gtksourcestyle.c:159
+#: ../gtksourceview/gtksourcestyle.c:168
 msgid "Whether italic attribute is set"
 msgstr "Αν έχει ορισθεί πλάγια γραμματοσειρά"
 
-#: ../gtksourceview/gtksourcestyle.c:166
+#: ../gtksourceview/gtksourcestyle.c:175
 msgid "Underline set"
 msgstr "Ορισμός υπογράμμισης"
 
-#: ../gtksourceview/gtksourcestyle.c:167
+#: ../gtksourceview/gtksourcestyle.c:176
 msgid "Whether underline attribute is set"
 msgstr "Αν έχει ορισθεί υπογράμμιση"
 
-#: ../gtksourceview/gtksourcestyle.c:174
+#: ../gtksourceview/gtksourcestyle.c:183
 msgid "Strikethrough set"
 msgstr "Ορισμός διακριτής γραφής"
 
-#: ../gtksourceview/gtksourcestyle.c:175
+#: ../gtksourceview/gtksourcestyle.c:184
 msgid "Whether strikethrough attribute is set"
 msgstr "Αν έχει ορισθεί διακριτή γραφή στη γραμματοσειρά"
 
-#: ../gtksourceview/gtksourcestylescheme.c:170
-#: ../gtksourceview/gtksourcestylescheme.c:171
+#: ../gtksourceview/gtksourcestylescheme.c:186
+#: ../gtksourceview/gtksourcestylescheme.c:187
 msgid "Style scheme id"
 msgstr "Αναγνωριστικό στυλ σχήματος"
 
-#: ../gtksourceview/gtksourcestylescheme.c:183
-#: ../gtksourceview/gtksourcestylescheme.c:184
+#: ../gtksourceview/gtksourcestylescheme.c:199
+#: ../gtksourceview/gtksourcestylescheme.c:200
 msgid "Style scheme name"
 msgstr "Όνομα στυλ σχήματος"
 
-#: ../gtksourceview/gtksourcestylescheme.c:196
-#: ../gtksourceview/gtksourcestylescheme.c:197
+#: ../gtksourceview/gtksourcestylescheme.c:212
+#: ../gtksourceview/gtksourcestylescheme.c:213
 msgid "Style scheme description"
 msgstr "Περιγραφή στυλ σχήματος"
 
-#: ../gtksourceview/gtksourcestylescheme.c:209
-#: ../gtksourceview/gtksourcestylescheme.c:210
+#: ../gtksourceview/gtksourcestylescheme.c:225
+#: ../gtksourceview/gtksourcestylescheme.c:226
 msgid "Style scheme filename"
 msgstr "Όνομα αρχείου στυλ σχήματος"
 
-#: ../gtksourceview/gtksourcestyleschememanager.c:145
+#: ../gtksourceview/gtksourcestyleschememanager.c:151
 msgid "Style scheme search path"
 msgstr "Διαδρομή αναζήτησης σχήματος"
 
-#: ../gtksourceview/gtksourcestyleschememanager.c:146
+#: ../gtksourceview/gtksourcestyleschememanager.c:152
 msgid "List of directories and files where the style schemes are located"
 msgstr "Λίστα από καταλόγους όπου βρίσκονται τα στυλ σχημάτων"
 
-#: ../gtksourceview/gtksourcestyleschememanager.c:154
+#: ../gtksourceview/gtksourcestyleschememanager.c:160
 msgid "Scheme ids"
 msgstr "ids σχήματος"
 
-#: ../gtksourceview/gtksourcestyleschememanager.c:155
+#: ../gtksourceview/gtksourcestyleschememanager.c:161
 msgid "List of the ids of the available style schemes"
 msgstr "Μια λίστα από αναγνωριστικά των διαθέσιμων στυλ σχήματος"
 
-#: ../gtksourceview/gtksourceview.c:265
+#: ../gtksourceview/gtksourceundomanagerdefault.c:404
+msgid "Buffer"
+msgstr "Ενδιάμεση μνήμη"
+
+#: ../gtksourceview/gtksourceundomanagerdefault.c:405
+msgid "The text buffer to add undo support on"
+msgstr "Η μνήμη κειμένου που θα προστεθεί η δυνατότητα αναίρεσης"
+
+#: ../gtksourceview/gtksourceview.c:325
+msgid "The completion object associated with the view"
+msgstr "Το αντικείμενο συμπλήρωσης που συνδέεται με την προβολή"
+
+#: ../gtksourceview/gtksourceview.c:337
 msgid "Show Line Numbers"
 msgstr "Εμφάνιση αριθμών γραμμής"
 
-#: ../gtksourceview/gtksourceview.c:266
+#: ../gtksourceview/gtksourceview.c:338
 msgid "Whether to display line numbers"
 msgstr "Αν θα εμφανίζονται αριθμοί γραμμής"
 
-#: ../gtksourceview/gtksourceview.c:277
+#: ../gtksourceview/gtksourceview.c:349
 msgid "Show Line Marks"
 msgstr "Εμφάνιση σημάνσεων γραμμής"
 
-#: ../gtksourceview/gtksourceview.c:278
+#: ../gtksourceview/gtksourceview.c:350
 msgid "Whether to display line mark pixbufs"
 msgstr "Αν θα εμφανίζονται σημάνσεις γραμμής"
 
-#: ../gtksourceview/gtksourceview.c:305
+#: ../gtksourceview/gtksourceview.c:377
 msgid "Indent Width"
 msgstr "Πλάτος εσοχής"
 
-#: ../gtksourceview/gtksourceview.c:306
+#: ../gtksourceview/gtksourceview.c:378
 msgid "Number of spaces to use for each step of indent"
 msgstr "Αριθμός διαστημάτων που θα χρησιμοποιείται για κάθε βήμα μιας εσοχής"
 
-#: ../gtksourceview/gtksourceview.c:315
+#: ../gtksourceview/gtksourceview.c:387
 msgid "Auto Indentation"
 msgstr "Αυτόματη εσοχή"
 
-#: ../gtksourceview/gtksourceview.c:316
+#: ../gtksourceview/gtksourceview.c:388
 msgid "Whether to enable auto indentation"
 msgstr "Αν θα ενεργοποιηθεί η αυτόματη εσοχή"
 
-#: ../gtksourceview/gtksourceview.c:323
+#: ../gtksourceview/gtksourceview.c:395
 msgid "Insert Spaces Instead of Tabs"
 msgstr "Εισαγωγή διαστημάτων αντί για στηλοθέτες"
 
-#: ../gtksourceview/gtksourceview.c:324
+#: ../gtksourceview/gtksourceview.c:396
 msgid "Whether to insert spaces instead of tabs"
 msgstr "Αν θα εισάγονται διαστήματα αντί για στηλοθέτες"
 
-#: ../gtksourceview/gtksourceview.c:336
+#: ../gtksourceview/gtksourceview.c:408
 msgid "Show Right Margin"
 msgstr "Εμφάνιση δεξιού περιθωρίου"
 
-#: ../gtksourceview/gtksourceview.c:337
+#: ../gtksourceview/gtksourceview.c:409
 msgid "Whether to display the right margin"
 msgstr "Αν θα εμφανίζεται το δεξί περιθώριο"
 
-#: ../gtksourceview/gtksourceview.c:349
+#: ../gtksourceview/gtksourceview.c:421
 msgid "Right Margin Position"
 msgstr "Θέση δεξιού περιθωρίου"
 
-#: ../gtksourceview/gtksourceview.c:350
+#: ../gtksourceview/gtksourceview.c:422
 msgid "Position of the right margin"
 msgstr "Θέση του δεξιού περιθωρίου"
 
-#: ../gtksourceview/gtksourceview.c:366
+#: ../gtksourceview/gtksourceview.c:438
 msgid "Smart Home/End"
 msgstr "Χρήση έξυπνου home/end"
 
-#: ../gtksourceview/gtksourceview.c:367
+#: ../gtksourceview/gtksourceview.c:439
 msgid ""
 "HOME and END keys move to first/last non whitespace characters on line "
 "before going to the start/end of the line"
@@ -534,31 +850,32 @@ msgstr ""
 "Τα πλήκτρα HOME και END μετακινούν πρώτα στον πρώτο/τελευταίο χαρακτήρα της "
 "γραμμής πριν να πάνε στην αρχή/τέλος της γραμμής"
 
-#: ../gtksourceview/gtksourceview.c:377
+#: ../gtksourceview/gtksourceview.c:449
 msgid "Highlight current line"
 msgstr "Επισήμανση τρέχουσας γραμμής"
 
-#: ../gtksourceview/gtksourceview.c:378
+#: ../gtksourceview/gtksourceview.c:450
 msgid "Whether to highlight the current line"
 msgstr "Αν θα γίνεται επισήμανση στην τρέχουσα γραμμή"
 
-#: ../gtksourceview/gtksourceview.c:385
+#: ../gtksourceview/gtksourceview.c:457
 msgid "Indent on tab"
 msgstr "Εσοχή στο πλήκτρο tab"
 
-#: ../gtksourceview/gtksourceview.c:386
+#: ../gtksourceview/gtksourceview.c:458
 msgid "Whether to indent the selected text when the tab key is pressed"
-msgstr "Αν θα γίνεται εσοχή στο επιλεγμένο κείμενο, όταν πατηθεί το πλήκτρο tab"
+msgstr ""
+"Αν θα γίνεται εσοχή στο επιλεγμένο κείμενο, όταν πατηθεί το πλήκτρο tab"
 
-#: ../gtksourceview/gtksourceview.c:400
+#: ../gtksourceview/gtksourceview.c:472
 msgid "Draw Spaces"
 msgstr "Σχεδίαση διαστημάτων"
 
-#: ../gtksourceview/gtksourceview.c:401
+#: ../gtksourceview/gtksourceview.c:473
 msgid "Set if and how the spaces should be visualized"
 msgstr "Αν και πώς θα αναπαριστώνται τα κενά διαστήματα"
 
-#: ../gtksourceview/gtksourceview-i18n.c:38
+#: ../gtksourceview/gtksourceview-i18n.c:74
 msgid "translator-credits"
 msgstr "Ελληνική ομάδα του Gnome <team@gnome.gr>"
 
@@ -574,8 +891,10 @@ msgstr "Τυχαίος αριθμός βάσης"
 #: ../gtksourceview/language-specs/ada.lang.h:3
 #: ../gtksourceview/language-specs/asp.lang.h:3
 #: ../gtksourceview/language-specs/c.lang.h:1
+#: ../gtksourceview/language-specs/cg.lang.h:2
 #: ../gtksourceview/language-specs/csharp.lang.h:1
 #: ../gtksourceview/language-specs/def.lang.h:4
+#: ../gtksourceview/language-specs/fsharp.lang.h:2
 #: ../gtksourceview/language-specs/gtkrc.lang.h:1
 #: ../gtksourceview/language-specs/ini.lang.h:2
 #: ../gtksourceview/language-specs/java.lang.h:1
@@ -583,6 +902,7 @@ msgstr "Τυχαίος αριθμός βάσης"
 #: ../gtksourceview/language-specs/lua.lang.h:1
 #: ../gtksourceview/language-specs/nemerle.lang.h:2
 #: ../gtksourceview/language-specs/ocaml.lang.h:2
+#: ../gtksourceview/language-specs/ooc.lang.h:1
 #: ../gtksourceview/language-specs/php.lang.h:1
 #: ../gtksourceview/language-specs/R.lang.h:2
 #: ../gtksourceview/language-specs/ruby.lang.h:3
@@ -597,6 +917,7 @@ msgstr "Τιμή Boolean "
 #: ../gtksourceview/language-specs/asp.lang.h:4
 #: ../gtksourceview/language-specs/boo.lang.h:4
 #: ../gtksourceview/language-specs/c.lang.h:4
+#: ../gtksourceview/language-specs/cg.lang.h:5
 #: ../gtksourceview/language-specs/csharp.lang.h:4
 #: ../gtksourceview/language-specs/css.lang.h:3
 #: ../gtksourceview/language-specs/def.lang.h:11
@@ -605,8 +926,10 @@ msgstr "Τιμή Boolean "
 #: ../gtksourceview/language-specs/dot.lang.h:2
 #: ../gtksourceview/language-specs/eiffel.lang.h:3
 #: ../gtksourceview/language-specs/erlang.lang.h:4
+#: ../gtksourceview/language-specs/fcl.lang.h:2
 #: ../gtksourceview/language-specs/forth.lang.h:1
 #: ../gtksourceview/language-specs/fortran.lang.h:2
+#: ../gtksourceview/language-specs/fsharp.lang.h:4
 #: ../gtksourceview/language-specs/gap.lang.h:2
 #: ../gtksourceview/language-specs/gtkrc.lang.h:2
 #: ../gtksourceview/language-specs/haskell.lang.h:2
@@ -622,10 +945,12 @@ msgstr "Τιμή Boolean "
 #: ../gtksourceview/language-specs/ocaml.lang.h:4
 #: ../gtksourceview/language-specs/ocl.lang.h:1
 #: ../gtksourceview/language-specs/octave.lang.h:3
+#: ../gtksourceview/language-specs/ooc.lang.h:2
 #: ../gtksourceview/language-specs/pascal.lang.h:1
 #: ../gtksourceview/language-specs/perl.lang.h:2
 #: ../gtksourceview/language-specs/php.lang.h:2
 #: ../gtksourceview/language-specs/po.lang.h:1
+#: ../gtksourceview/language-specs/prolog.lang.h:1
 #: ../gtksourceview/language-specs/ruby.lang.h:5
 #: ../gtksourceview/language-specs/scheme.lang.h:2
 #: ../gtksourceview/language-specs/sh.lang.h:1
@@ -645,12 +970,16 @@ msgstr "Σχόλιο"
 #: ../gtksourceview/language-specs/asp.lang.h:5
 #: ../gtksourceview/language-specs/boo.lang.h:5
 #: ../gtksourceview/language-specs/c.lang.h:6
+#: ../gtksourceview/language-specs/cg.lang.h:6
 #: ../gtksourceview/language-specs/cpp.lang.h:3
 #: ../gtksourceview/language-specs/csharp.lang.h:5
+#: ../gtksourceview/language-specs/cuda.lang.h:2
 #: ../gtksourceview/language-specs/d.lang.h:5
 #: ../gtksourceview/language-specs/eiffel.lang.h:4
 #: ../gtksourceview/language-specs/forth.lang.h:3
 #: ../gtksourceview/language-specs/fortran.lang.h:3
+#: ../gtksourceview/language-specs/fsharp.lang.h:5
+#: ../gtksourceview/language-specs/glsl.lang.h:3
 #: ../gtksourceview/language-specs/gtkrc.lang.h:3
 #: ../gtksourceview/language-specs/haskell.lang.h:3
 #: ../gtksourceview/language-specs/idl.lang.h:2
@@ -661,8 +990,10 @@ msgstr "Σχόλιο"
 #: ../gtksourceview/language-specs/objc.lang.h:2
 #: ../gtksourceview/language-specs/ocaml.lang.h:5
 #: ../gtksourceview/language-specs/ocl.lang.h:2
+#: ../gtksourceview/language-specs/ooc.lang.h:3
 #: ../gtksourceview/language-specs/pascal.lang.h:2
 #: ../gtksourceview/language-specs/php.lang.h:3
+#: ../gtksourceview/language-specs/sparql.lang.h:3
 #: ../gtksourceview/language-specs/sql.lang.h:2
 #: ../gtksourceview/language-specs/vala.lang.h:3
 #: ../gtksourceview/language-specs/vbnet.lang.h:3
@@ -672,13 +1003,16 @@ msgstr "Τύπος δεδομένων"
 #. A decimal number: 1234
 #: ../gtksourceview/language-specs/ada.lang.h:6
 #: ../gtksourceview/language-specs/c.lang.h:7
+#: ../gtksourceview/language-specs/cg.lang.h:7
 #: ../gtksourceview/language-specs/csharp.lang.h:6
 #: ../gtksourceview/language-specs/def.lang.h:19
 #: ../gtksourceview/language-specs/d.lang.h:6
 #: ../gtksourceview/language-specs/eiffel.lang.h:6
 #: ../gtksourceview/language-specs/erlang.lang.h:6
+#: ../gtksourceview/language-specs/fsharp.lang.h:6
 #: ../gtksourceview/language-specs/nemerle.lang.h:6
 #: ../gtksourceview/language-specs/ocaml.lang.h:6
+#: ../gtksourceview/language-specs/ooc.lang.h:4
 #: ../gtksourceview/language-specs/php.lang.h:4
 #: ../gtksourceview/language-specs/python.lang.h:7
 #: ../gtksourceview/language-specs/ruby.lang.h:7
@@ -689,12 +1023,17 @@ msgstr "Δεκαδικός αριθμός"
 #. map to nothing
 #: ../gtksourceview/language-specs/ada.lang.h:7
 #: ../gtksourceview/language-specs/c.lang.h:9
+#: ../gtksourceview/language-specs/cg.lang.h:9
 #: ../gtksourceview/language-specs/csharp.lang.h:8
+#: ../gtksourceview/language-specs/eiffel.lang.h:9
+#: ../gtksourceview/language-specs/fsharp.lang.h:7
 #: ../gtksourceview/language-specs/haskell.lang.h:5
 #: ../gtksourceview/language-specs/java.lang.h:7
 #: ../gtksourceview/language-specs/lua.lang.h:3
 #: ../gtksourceview/language-specs/ocaml.lang.h:8
+#: ../gtksourceview/language-specs/ooc.lang.h:7
 #: ../gtksourceview/language-specs/php.lang.h:7
+#: ../gtksourceview/language-specs/prolog.lang.h:3
 #: ../gtksourceview/language-specs/python.lang.h:8
 #: ../gtksourceview/language-specs/ruby.lang.h:8
 #: ../gtksourceview/language-specs/texinfo.lang.h:2
@@ -707,18 +1046,23 @@ msgstr "Χαρακτήρας Escape"
 #: ../gtksourceview/language-specs/awk.lang.h:2
 #: ../gtksourceview/language-specs/boo.lang.h:7
 #: ../gtksourceview/language-specs/c.lang.h:13
+#: ../gtksourceview/language-specs/cg.lang.h:14
 #: ../gtksourceview/language-specs/cpp.lang.h:4
 #: ../gtksourceview/language-specs/csharp.lang.h:10
 #: ../gtksourceview/language-specs/css.lang.h:8
+#: ../gtksourceview/language-specs/cuda.lang.h:6
 #: ../gtksourceview/language-specs/def.lang.h:36
 #: ../gtksourceview/language-specs/d.lang.h:10
 #: ../gtksourceview/language-specs/dosbatch.lang.h:4
 #: ../gtksourceview/language-specs/dot.lang.h:5
-#: ../gtksourceview/language-specs/eiffel.lang.h:11
+#: ../gtksourceview/language-specs/eiffel.lang.h:12
 #: ../gtksourceview/language-specs/erlang.lang.h:9
+#: ../gtksourceview/language-specs/fcl.lang.h:6
 #: ../gtksourceview/language-specs/forth.lang.h:7
-#: ../gtksourceview/language-specs/fortran.lang.h:7
+#: ../gtksourceview/language-specs/fortran.lang.h:8
+#: ../gtksourceview/language-specs/fsharp.lang.h:10
 #: ../gtksourceview/language-specs/gap.lang.h:6
+#: ../gtksourceview/language-specs/glsl.lang.h:4
 #: ../gtksourceview/language-specs/gtkrc.lang.h:7
 #: ../gtksourceview/language-specs/haskell.lang.h:9
 #: ../gtksourceview/language-specs/idl.lang.h:4
@@ -731,15 +1075,18 @@ msgstr "Χαρακτήρας Escape"
 #: ../gtksourceview/language-specs/ocaml.lang.h:10
 #: ../gtksourceview/language-specs/ocl.lang.h:3
 #: ../gtksourceview/language-specs/octave.lang.h:7
+#: ../gtksourceview/language-specs/ooc.lang.h:12
 #: ../gtksourceview/language-specs/pascal.lang.h:4
 #: ../gtksourceview/language-specs/perl.lang.h:9
 #: ../gtksourceview/language-specs/php.lang.h:13
 #: ../gtksourceview/language-specs/po.lang.h:3
+#: ../gtksourceview/language-specs/prolog.lang.h:4
 #: ../gtksourceview/language-specs/python.lang.h:11
 #: ../gtksourceview/language-specs/R.lang.h:6
 #: ../gtksourceview/language-specs/ruby.lang.h:12
 #: ../gtksourceview/language-specs/scheme.lang.h:4
 #: ../gtksourceview/language-specs/sh.lang.h:5
+#: ../gtksourceview/language-specs/sparql.lang.h:7
 #: ../gtksourceview/language-specs/sql.lang.h:6
 #: ../gtksourceview/language-specs/tcl.lang.h:1
 #: ../gtksourceview/language-specs/texinfo.lang.h:6
@@ -753,8 +1100,11 @@ msgstr "Λέξη κλειδί"
 #: ../gtksourceview/language-specs/ada.lang.h:9
 #: ../gtksourceview/language-specs/asp.lang.h:10
 #: ../gtksourceview/language-specs/c.lang.h:15
+#: ../gtksourceview/language-specs/cg.lang.h:16
 #: ../gtksourceview/language-specs/csharp.lang.h:12
 #: ../gtksourceview/language-specs/forth.lang.h:9
+#: ../gtksourceview/language-specs/fsharp.lang.h:15
+#: ../gtksourceview/language-specs/glsl.lang.h:6
 #: ../gtksourceview/language-specs/haskell.lang.h:11
 #: ../gtksourceview/language-specs/idl.lang.h:5
 #: ../gtksourceview/language-specs/nemerle.lang.h:14
@@ -775,13 +1125,17 @@ msgstr "Πραγματικός αριθμός"
 #: ../gtksourceview/language-specs/boo.lang.h:13
 #: ../gtksourceview/language-specs/chdr.lang.h:2
 #: ../gtksourceview/language-specs/c.lang.h:16
+#: ../gtksourceview/language-specs/cg.lang.h:17
 #: ../gtksourceview/language-specs/cpp.lang.h:5
 #: ../gtksourceview/language-specs/csharp.lang.h:14
+#: ../gtksourceview/language-specs/cuda.lang.h:7
 #: ../gtksourceview/language-specs/d.lang.h:13
-#: ../gtksourceview/language-specs/eiffel.lang.h:13
+#: ../gtksourceview/language-specs/eiffel.lang.h:14
 #: ../gtksourceview/language-specs/erlang.lang.h:11
 #: ../gtksourceview/language-specs/forth.lang.h:10
-#: ../gtksourceview/language-specs/fortran.lang.h:8
+#: ../gtksourceview/language-specs/fortran.lang.h:9
+#: ../gtksourceview/language-specs/fsharp.lang.h:16
+#: ../gtksourceview/language-specs/glsl.lang.h:8
 #: ../gtksourceview/language-specs/haskell.lang.h:12
 #: ../gtksourceview/language-specs/haskell-literate.lang.h:2
 #: ../gtksourceview/language-specs/idl.lang.h:6
@@ -790,8 +1144,11 @@ msgstr "Πραγματικός αριθμός"
 #: ../gtksourceview/language-specs/nemerle.lang.h:15
 #: ../gtksourceview/language-specs/objc.lang.h:5
 #: ../gtksourceview/language-specs/ocaml.lang.h:16
+#: ../gtksourceview/language-specs/ooc.lang.h:17
 #: ../gtksourceview/language-specs/pascal.lang.h:7
+#: ../gtksourceview/language-specs/prolog.lang.h:8
 #: ../gtksourceview/language-specs/scheme.lang.h:6
+#: ../gtksourceview/language-specs/sparql.lang.h:14
 #: ../gtksourceview/language-specs/sql.lang.h:9
 #: ../gtksourceview/language-specs/vala.lang.h:10
 #: ../gtksourceview/language-specs/vbnet.lang.h:6
@@ -802,7 +1159,9 @@ msgstr "Κώδικας"
 
 #: ../gtksourceview/language-specs/ada.lang.h:12
 #: ../gtksourceview/language-specs/c.lang.h:17
+#: ../gtksourceview/language-specs/cg.lang.h:18
 #: ../gtksourceview/language-specs/java.lang.h:16
+#: ../gtksourceview/language-specs/ooc.lang.h:18
 msgid "Storage Class"
 msgstr "Storage Class"
 
@@ -816,9 +1175,10 @@ msgstr "Storage Class"
 #: ../gtksourceview/language-specs/def.lang.h:57
 #: ../gtksourceview/language-specs/d.lang.h:15
 #: ../gtksourceview/language-specs/dosbatch.lang.h:6
-#: ../gtksourceview/language-specs/eiffel.lang.h:14
+#: ../gtksourceview/language-specs/eiffel.lang.h:15
 #: ../gtksourceview/language-specs/erlang.lang.h:12
 #: ../gtksourceview/language-specs/forth.lang.h:11
+#: ../gtksourceview/language-specs/fsharp.lang.h:17
 #: ../gtksourceview/language-specs/gtkrc.lang.h:9
 #: ../gtksourceview/language-specs/haskell.lang.h:13
 #: ../gtksourceview/language-specs/idl.lang.h:7
@@ -829,13 +1189,15 @@ msgstr "Storage Class"
 #: ../gtksourceview/language-specs/nemerle.lang.h:16
 #: ../gtksourceview/language-specs/nsis.lang.h:5
 #: ../gtksourceview/language-specs/objc.lang.h:6
-#: ../gtksourceview/language-specs/ocaml.lang.h:17
+#: ../gtksourceview/language-specs/ocaml.lang.h:18
 #: ../gtksourceview/language-specs/ocl.lang.h:7
 #: ../gtksourceview/language-specs/octave.lang.h:11
+#: ../gtksourceview/language-specs/ooc.lang.h:19
 #: ../gtksourceview/language-specs/pascal.lang.h:8
 #: ../gtksourceview/language-specs/perl.lang.h:19
 #: ../gtksourceview/language-specs/php.lang.h:19
 #: ../gtksourceview/language-specs/po.lang.h:8
+#: ../gtksourceview/language-specs/prolog.lang.h:9
 #: ../gtksourceview/language-specs/python.lang.h:17
 #: ../gtksourceview/language-specs/ruby.lang.h:21
 #: ../gtksourceview/language-specs/scheme.lang.h:7
@@ -849,18 +1211,17 @@ msgid "String"
 msgstr "Αλφαριθμητικό"
 
 #: ../gtksourceview/language-specs/asp.lang.h:1
-#| msgid "GAP"
 msgid "ASP"
 msgstr "ASP"
 
 #: ../gtksourceview/language-specs/asp.lang.h:2
-#| msgid "Object"
 msgid "ASP Object"
 msgstr "Αντικείμενο ASP"
 
 #. A function name (also: methods for classes)
 #: ../gtksourceview/language-specs/asp.lang.h:6
 #: ../gtksourceview/language-specs/changelog.lang.h:6
+#: ../gtksourceview/language-specs/cg.lang.h:11
 #: ../gtksourceview/language-specs/css.lang.h:7
 #: ../gtksourceview/language-specs/def.lang.h:32
 #: ../gtksourceview/language-specs/gap.lang.h:4
@@ -870,6 +1231,7 @@ msgstr "Αντικείμενο ASP"
 #: ../gtksourceview/language-specs/octave.lang.h:6
 #: ../gtksourceview/language-specs/scheme.lang.h:3
 #: ../gtksourceview/language-specs/sh.lang.h:3
+#: ../gtksourceview/language-specs/sparql.lang.h:4
 #: ../gtksourceview/language-specs/sql.lang.h:5
 msgid "Function"
 msgstr "Συνάρτηση"
@@ -878,9 +1240,10 @@ msgstr "Συνάρτηση"
 #: ../gtksourceview/language-specs/asp.lang.h:8
 #: ../gtksourceview/language-specs/boo.lang.h:11
 #: ../gtksourceview/language-specs/def.lang.h:40
-#: ../gtksourceview/language-specs/desktop.lang.h:10
+#: ../gtksourceview/language-specs/desktop.lang.h:11
 #: ../gtksourceview/language-specs/forth.lang.h:8
 #: ../gtksourceview/language-specs/java.lang.h:13
+#: ../gtksourceview/language-specs/prolog.lang.h:5
 #: ../gtksourceview/language-specs/vhdl.lang.h:6
 msgid "Number"
 msgstr "Αριθμός"
@@ -893,6 +1256,8 @@ msgstr "Αριθμός"
 #: ../gtksourceview/language-specs/nsis.lang.h:3
 #: ../gtksourceview/language-specs/perl.lang.h:11
 #: ../gtksourceview/language-specs/php.lang.h:16
+#: ../gtksourceview/language-specs/prolog.lang.h:6
+#: ../gtksourceview/language-specs/sparql.lang.h:10
 msgid "Operator"
 msgstr "Τελεστής"
 
@@ -904,12 +1269,12 @@ msgid "Special constant"
 msgstr "Ειδική σταθερά"
 
 #: ../gtksourceview/language-specs/asp.lang.h:14
-#| msgid "Special constant"
 msgid "VBScript and ADO constants"
 msgstr "Σταθερές VBScript και ADO"
 
 #: ../gtksourceview/language-specs/awk.lang.h:1
 #: ../gtksourceview/language-specs/boo.lang.h:3
+#: ../gtksourceview/language-specs/glsl.lang.h:2
 #: ../gtksourceview/language-specs/perl.lang.h:1
 #: ../gtksourceview/language-specs/python.lang.h:4
 msgid "Builtin Function"
@@ -942,8 +1307,10 @@ msgstr "Σενάρια ενεργειών"
 #: ../gtksourceview/language-specs/perl.lang.h:21
 #: ../gtksourceview/language-specs/php.lang.h:20
 #: ../gtksourceview/language-specs/pkgconfig.lang.h:3
+#: ../gtksourceview/language-specs/prolog.lang.h:10
 #: ../gtksourceview/language-specs/ruby.lang.h:23
 #: ../gtksourceview/language-specs/sh.lang.h:11
+#: ../gtksourceview/language-specs/sparql.lang.h:15
 #: ../gtksourceview/language-specs/tcl.lang.h:4
 msgid "Variable"
 msgstr "Μεταβλητή"
@@ -952,17 +1319,30 @@ msgstr "Μεταβλητή"
 msgid "awk"
 msgstr "awk"
 
+#: ../gtksourceview/language-specs/bibtex.lang.h:1
+msgid "BibTeX"
+msgstr "BibTeX"
+
+#: ../gtksourceview/language-specs/bibtex.lang.h:2
+msgid "Entries"
+msgstr "Εισαγωγές"
+
+#: ../gtksourceview/language-specs/bibtex.lang.h:3
+msgid "Field"
+msgstr "Πεδίο"
+
 #: ../gtksourceview/language-specs/boo.lang.h:1
 msgid "Boo"
 msgstr "Boo"
 
 #: ../gtksourceview/language-specs/boo.lang.h:2
-#: ../gtksourceview/language-specs/desktop.lang.h:2
+#: ../gtksourceview/language-specs/desktop.lang.h:3
 #: ../gtksourceview/language-specs/d.lang.h:2
 #: ../gtksourceview/language-specs/libtool.lang.h:1
 #: ../gtksourceview/language-specs/octave.lang.h:2
 #: ../gtksourceview/language-specs/python.lang.h:2
 #: ../gtksourceview/language-specs/scheme.lang.h:1
+#: ../gtksourceview/language-specs/sparql.lang.h:1
 msgid "Boolean"
 msgstr "Boolean"
 
@@ -976,6 +1356,7 @@ msgid "Multiline string"
 msgstr "Αλφαριθμητικό πολλαπλών γραμμών"
 
 #: ../gtksourceview/language-specs/boo.lang.h:9
+#: ../gtksourceview/language-specs/sparql.lang.h:9
 #: ../gtksourceview/language-specs/xml.lang.h:10
 #: ../gtksourceview/language-specs/xslt.lang.h:3
 msgid "Namespace"
@@ -984,9 +1365,11 @@ msgstr "Namespace"
 #: ../gtksourceview/language-specs/boo.lang.h:10
 #: ../gtksourceview/language-specs/csharp.lang.h:11
 #: ../gtksourceview/language-specs/d.lang.h:11
+#: ../gtksourceview/language-specs/fsharp.lang.h:13
 #: ../gtksourceview/language-specs/java.lang.h:12
 #: ../gtksourceview/language-specs/javascript.lang.h:11
 #: ../gtksourceview/language-specs/nemerle.lang.h:12
+#: ../gtksourceview/language-specs/ooc.lang.h:13
 #: ../gtksourceview/language-specs/php.lang.h:14
 #: ../gtksourceview/language-specs/vala.lang.h:8
 msgid "Null Value"
@@ -999,13 +1382,13 @@ msgid "Regular Expression"
 msgstr "Κανονική έκφραση"
 
 #: ../gtksourceview/language-specs/boo.lang.h:14
+#: ../gtksourceview/language-specs/glsl.lang.h:9
 #: ../gtksourceview/language-specs/python.lang.h:16
 #: ../gtksourceview/language-specs/ruby.lang.h:20
 msgid "Special Variable"
 msgstr "Ειδική μεταβλητή"
 
 #: ../gtksourceview/language-specs/changelog.lang.h:1
-#| msgid "Builtin"
 msgid "Bullet"
 msgstr "Κουκίδα"
 
@@ -1025,11 +1408,6 @@ msgstr "Διεύθυνση E-Mail "
 #: ../gtksourceview/language-specs/changelog.lang.h:5
 msgid "File"
 msgstr "Αρχείο"
-
-#: ../gtksourceview/language-specs/changelog.lang.h:7
-#| msgid "Namespace"
-msgid "Name"
-msgstr "Όνομα"
 
 #: ../gtksourceview/language-specs/changelog.lang.h:9
 msgid "Release"
@@ -1063,6 +1441,7 @@ msgstr "Common Defines"
 
 #. Any erroneous construct
 #: ../gtksourceview/language-specs/c.lang.h:8
+#: ../gtksourceview/language-specs/cg.lang.h:8
 #: ../gtksourceview/language-specs/csharp.lang.h:7
 #: ../gtksourceview/language-specs/css.lang.h:6
 #: ../gtksourceview/language-specs/def.lang.h:28
@@ -1073,8 +1452,10 @@ msgstr "Common Defines"
 #: ../gtksourceview/language-specs/javascript.lang.h:6
 #: ../gtksourceview/language-specs/nemerle.lang.h:7
 #: ../gtksourceview/language-specs/ocaml.lang.h:7
+#: ../gtksourceview/language-specs/ooc.lang.h:6
 #: ../gtksourceview/language-specs/perl.lang.h:4
 #: ../gtksourceview/language-specs/php.lang.h:5
+#: ../gtksourceview/language-specs/prolog.lang.h:2
 #: ../gtksourceview/language-specs/vala.lang.h:5
 #: ../gtksourceview/language-specs/verilog.lang.h:4
 #: ../gtksourceview/language-specs/xml.lang.h:8
@@ -1083,10 +1464,12 @@ msgstr "Σφάλμα"
 
 #. A floating point constant: 2.3e10
 #: ../gtksourceview/language-specs/c.lang.h:10
+#: ../gtksourceview/language-specs/cg.lang.h:10
 #: ../gtksourceview/language-specs/def.lang.h:30
 #: ../gtksourceview/language-specs/d.lang.h:8
 #: ../gtksourceview/language-specs/erlang.lang.h:8
 #: ../gtksourceview/language-specs/nemerle.lang.h:8
+#: ../gtksourceview/language-specs/ooc.lang.h:9
 #: ../gtksourceview/language-specs/php.lang.h:8
 #: ../gtksourceview/language-specs/python.lang.h:9
 #: ../gtksourceview/language-specs/R.lang.h:4
@@ -1095,22 +1478,27 @@ msgid "Floating point number"
 msgstr "Αριθμός κινητής υποδιαστολής"
 
 #: ../gtksourceview/language-specs/c.lang.h:11
+#: ../gtksourceview/language-specs/cg.lang.h:12
 #: ../gtksourceview/language-specs/csharp.lang.h:9
 #: ../gtksourceview/language-specs/d.lang.h:9
-#: ../gtksourceview/language-specs/eiffel.lang.h:10
+#: ../gtksourceview/language-specs/eiffel.lang.h:11
 #: ../gtksourceview/language-specs/nemerle.lang.h:9
+#: ../gtksourceview/language-specs/ooc.lang.h:11
 #: ../gtksourceview/language-specs/php.lang.h:11
 #: ../gtksourceview/language-specs/vala.lang.h:6
 msgid "Hexadecimal number"
 msgstr "Δεκαεξαδικός αριθμός"
 
 #: ../gtksourceview/language-specs/c.lang.h:12
+#: ../gtksourceview/language-specs/cg.lang.h:13
 msgid "Included File"
 msgstr "Included File"
 
 #: ../gtksourceview/language-specs/c.lang.h:14
+#: ../gtksourceview/language-specs/cg.lang.h:15
 #: ../gtksourceview/language-specs/d.lang.h:12
 #: ../gtksourceview/language-specs/nemerle.lang.h:13
+#: ../gtksourceview/language-specs/ooc.lang.h:15
 #: ../gtksourceview/language-specs/php.lang.h:15
 msgid "Octal number"
 msgstr "Οκταδικός αριθμός"
@@ -1118,6 +1506,24 @@ msgstr "Οκταδικός αριθμός"
 #: ../gtksourceview/language-specs/c.lang.h:19
 msgid "printf Conversion"
 msgstr "Μετατροπή printf"
+
+#: ../gtksourceview/language-specs/cg.lang.h:1
+msgid "Bindings"
+msgstr "Συνδέσεις"
+
+#: ../gtksourceview/language-specs/cg.lang.h:3
+#: ../gtksourceview/language-specs/erlang.lang.h:3
+#: ../gtksourceview/language-specs/ruby.lang.h:4
+msgid "Builtin"
+msgstr "Ενσωματωμένο"
+
+#: ../gtksourceview/language-specs/cg.lang.h:4
+msgid "CG Shader Language"
+msgstr "Γλώσσα CG Shader"
+
+#: ../gtksourceview/language-specs/cg.lang.h:19
+msgid "Swizzle operator"
+msgstr "Τελεστές Swizzle"
 
 #: ../gtksourceview/language-specs/classic.xml.h:1
 msgid "Classic"
@@ -1128,17 +1534,14 @@ msgid "Classic color scheme"
 msgstr "Σχήμα κλασσικού χρώματος"
 
 #: ../gtksourceview/language-specs/cmake.lang.h:1
-#| msgid "Builtin Constant"
 msgid "Builtin Command"
 msgstr "Ενσωματωμένη εντολή"
 
 #: ../gtksourceview/language-specs/cmake.lang.h:2
-#| msgid "Special Variable"
 msgid "Builtin Variable"
 msgstr "Ενσωματωμένη μεταβλητή"
 
 #: ../gtksourceview/language-specs/cmake.lang.h:3
-#| msgid "Marker"
 msgid "CMake"
 msgstr "CMake"
 
@@ -1152,12 +1555,10 @@ msgid "Constant"
 msgstr "Σταθερά"
 
 #: ../gtksourceview/language-specs/cmake.lang.h:5
-#| msgid "Core Keywords"
 msgid "Control Keyword"
 msgstr "Λέξη κλειδί Control"
 
 #: ../gtksourceview/language-specs/cobalt.xml.h:1
-#| msgid "Classic color scheme"
 msgid "Blue based color scheme"
 msgstr "Σχήμα χρωμάτων με βάση το μπλε"
 
@@ -1174,7 +1575,6 @@ msgid "C#"
 msgstr "C#"
 
 #: ../gtksourceview/language-specs/csharp.lang.h:16
-#| msgid "String 2"
 msgid "String Format"
 msgstr "Αλφαριθμητική μορφή"
 
@@ -1187,6 +1587,7 @@ msgid "Color"
 msgstr "Χρώμα"
 
 #: ../gtksourceview/language-specs/css.lang.h:4
+#: ../gtksourceview/language-specs/fcl.lang.h:3
 #: ../gtksourceview/language-specs/fortran.lang.h:4
 #: ../gtksourceview/language-specs/gap.lang.h:3
 #: ../gtksourceview/language-specs/gtkrc.lang.h:4
@@ -1217,6 +1618,22 @@ msgstr "Άλλα 3"
 #: ../gtksourceview/language-specs/css.lang.h:14
 msgid "at-rules"
 msgstr "at-rules"
+
+#: ../gtksourceview/language-specs/cuda.lang.h:1
+msgid "CUDA"
+msgstr "CUDA"
+
+#: ../gtksourceview/language-specs/cuda.lang.h:3
+msgid "Device Functions"
+msgstr "Λειτουργίες συσκευών"
+
+#: ../gtksourceview/language-specs/cuda.lang.h:4
+msgid "Global Functions"
+msgstr "Γενικές Λειτουργίες"
+
+#: ../gtksourceview/language-specs/cuda.lang.h:5
+msgid "Global Variables"
+msgstr "Γενικές Μεταβλητές"
 
 #. A base-N number: 0xFFFF
 #: ../gtksourceview/language-specs/def.lang.h:2
@@ -1305,9 +1722,9 @@ msgstr "Υπογραμισμένα"
 msgid ".desktop"
 msgstr ".desktop"
 
-#: ../gtksourceview/language-specs/desktop.lang.h:3
-msgid "Category"
-msgstr "Κατηγορία"
+#: ../gtksourceview/language-specs/desktop.lang.h:2
+msgid "Additional Category"
+msgstr "Πρόσθετη κατηγορία"
 
 #: ../gtksourceview/language-specs/desktop.lang.h:4
 msgid "Encoding"
@@ -1327,7 +1744,15 @@ msgstr "Ομάδα"
 msgid "Key"
 msgstr "Κλειδί"
 
-#: ../gtksourceview/language-specs/desktop.lang.h:12
+#: ../gtksourceview/language-specs/desktop.lang.h:10
+msgid "Main Category"
+msgstr "Κύρια  κατηγορία"
+
+#: ../gtksourceview/language-specs/desktop.lang.h:13
+msgid "Reserved Category"
+msgstr "Δεσμευμένη κατηγορία"
+
+#: ../gtksourceview/language-specs/desktop.lang.h:14
 msgid "Translation"
 msgstr "Μετάφραση"
 
@@ -1394,19 +1819,6 @@ msgstr "Στοιχεία GUI"
 msgid "Header Elements"
 msgstr "Header Elements"
 
-#: ../gtksourceview/language-specs/docbook.lang.h:5
-#: ../gtksourceview/language-specs/dtd.lang.h:2
-#: ../gtksourceview/language-specs/gtk-doc.lang.h:6
-#: ../gtksourceview/language-specs/haddock.lang.h:14
-#: ../gtksourceview/language-specs/html.lang.h:7
-#: ../gtksourceview/language-specs/latex.lang.h:6
-#: ../gtksourceview/language-specs/t2t.lang.h:6
-#: ../gtksourceview/language-specs/texinfo.lang.h:8
-#: ../gtksourceview/language-specs/xml.lang.h:9
-#: ../gtksourceview/language-specs/xslt.lang.h:2
-msgid "Markup"
-msgstr "Markup"
-
 #: ../gtksourceview/language-specs/docbook.lang.h:6
 msgid "Structural Elements"
 msgstr "Δομικά στοιχεία"
@@ -1417,9 +1829,8 @@ msgid "Command"
 msgstr "Εντολή"
 
 #: ../gtksourceview/language-specs/dosbatch.lang.h:3
-#| msgid "DPatch"
 msgid "Dos Batch"
-msgstr "Dos Batch"
+msgstr "Δέσμη εντολών Dos"
 
 #: ../gtksourceview/language-specs/dot.lang.h:1
 #: ../gtksourceview/language-specs/xml.lang.h:1
@@ -1448,12 +1859,10 @@ msgid "decl"
 msgstr "decl"
 
 #: ../gtksourceview/language-specs/dtd.lang.h:4
-#| msgid "Entity"
 msgid "entity"
 msgstr "οντότητα"
 
 #: ../gtksourceview/language-specs/dtd.lang.h:5
-#| msgid "Error"
 msgid "error"
 msgstr "σφάλμα"
 
@@ -1481,16 +1890,16 @@ msgstr "Design by Contract"
 msgid "Eiffel"
 msgstr "Eiffel"
 
-#: ../gtksourceview/language-specs/eiffel.lang.h:9
+#: ../gtksourceview/language-specs/eiffel.lang.h:10
 msgid "Exception Handling"
 msgstr "Χειρισμός εξαίρεσης"
 
-#: ../gtksourceview/language-specs/eiffel.lang.h:12
+#: ../gtksourceview/language-specs/eiffel.lang.h:13
 #: ../gtksourceview/language-specs/ruby.lang.h:16
 msgid "Predefined Variable"
 msgstr "Προκαθορισμένη μεταβλητή"
 
-#: ../gtksourceview/language-specs/eiffel.lang.h:15
+#: ../gtksourceview/language-specs/eiffel.lang.h:16
 msgid "Void Value"
 msgstr "Τιμή Void"
 
@@ -1499,17 +1908,13 @@ msgid "Atom"
 msgstr "Atom"
 
 #: ../gtksourceview/language-specs/erlang.lang.h:2
+#: ../gtksourceview/language-specs/fsharp.lang.h:1
 #: ../gtksourceview/language-specs/ocaml.lang.h:1
 #: ../gtksourceview/language-specs/octave.lang.h:1
 #: ../gtksourceview/language-specs/verilog.lang.h:1
 #: ../gtksourceview/language-specs/vhdl.lang.h:1
 msgid "Base-N Integer"
 msgstr "Base-N Integer"
-
-#: ../gtksourceview/language-specs/erlang.lang.h:3
-#: ../gtksourceview/language-specs/ruby.lang.h:4
-msgid "Builtin"
-msgstr "Ενσωματωμένο"
 
 #: ../gtksourceview/language-specs/erlang.lang.h:5
 #: ../gtksourceview/language-specs/forth.lang.h:2
@@ -1521,12 +1926,39 @@ msgstr "Compiler Directive"
 msgid "Erlang"
 msgstr "Erlang"
 
+#: ../gtksourceview/language-specs/fcl.lang.h:1
+msgid "Block"
+msgstr "Ομάδα"
+
+#: ../gtksourceview/language-specs/fcl.lang.h:4
+msgid "FCL"
+msgstr "FCL"
+
+#: ../gtksourceview/language-specs/fcl.lang.h:5
+#: ../gtksourceview/language-specs/fortran.lang.h:5
+#: ../gtksourceview/language-specs/ini.lang.h:6
+#: ../gtksourceview/language-specs/octave.lang.h:5
+#: ../gtksourceview/language-specs/sql.lang.h:4
+msgid "Floating Point"
+msgstr "Κινητό Σημείο"
+
+#: ../gtksourceview/language-specs/fcl.lang.h:7
+#: ../gtksourceview/language-specs/octave.lang.h:9
+msgid "Reserved Constant"
+msgstr "Reserved Constant"
+
+#: ../gtksourceview/language-specs/fcl.lang.h:8
+#: ../gtksourceview/language-specs/gap.lang.h:7
+#: ../gtksourceview/language-specs/octave.lang.h:10
+#: ../gtksourceview/language-specs/R.lang.h:9
+msgid "Scientific"
+msgstr "Επιστημονική"
+
 #: ../gtksourceview/language-specs/forth.lang.h:4
 msgid "Debug Code"
 msgstr "Κώδικας εκσφαλμάτωσης"
 
 #: ../gtksourceview/language-specs/forth.lang.h:5
-#| msgid "Error text"
 msgid "Error Text"
 msgstr "Κείμενο σφάλματος"
 
@@ -1538,26 +1970,74 @@ msgstr "Forth"
 msgid "BOZ Literal"
 msgstr "BOZ Literal"
 
-#: ../gtksourceview/language-specs/fortran.lang.h:5
-#: ../gtksourceview/language-specs/ini.lang.h:6
-#: ../gtksourceview/language-specs/octave.lang.h:5
-#: ../gtksourceview/language-specs/sql.lang.h:4
-msgid "Floating Point"
-msgstr "Κινητό Σημείο"
-
 #: ../gtksourceview/language-specs/fortran.lang.h:6
 msgid "Fortran 95"
 msgstr "Fortran 95"
+
+#: ../gtksourceview/language-specs/fortran.lang.h:7
+msgid "Intrinsic function"
+msgstr "Εγγενής Λειτουργίες"
+
+#: ../gtksourceview/language-specs/fsharp.lang.h:3
+#: ../gtksourceview/language-specs/ocaml.lang.h:3
+msgid "Builtin-function keyword"
+msgstr "Λέξη κλειδί ενσωματωμένης συνάρτησης"
+
+#: ../gtksourceview/language-specs/fsharp.lang.h:8
+msgid "F#"
+msgstr "F#"
+
+#: ../gtksourceview/language-specs/fsharp.lang.h:9
+#: ../gtksourceview/language-specs/ocaml.lang.h:9
+msgid "Floating Point number"
+msgstr "Αριθμός κινητής υποδιαστολής"
+
+#: ../gtksourceview/language-specs/fsharp.lang.h:11
+#: ../gtksourceview/language-specs/ocaml.lang.h:11
+msgid "Labeled argument"
+msgstr "Παράμετρος με ετικέτα"
+
+#: ../gtksourceview/language-specs/fsharp.lang.h:12
+#: ../gtksourceview/language-specs/ocaml.lang.h:12
+msgid "Module Path"
+msgstr "Διαδρομή λειτουργικής μονάδας"
+
+#: ../gtksourceview/language-specs/fsharp.lang.h:14
+#: ../gtksourceview/language-specs/ocaml.lang.h:15
+msgid "Polymorphic Variant"
+msgstr "Πολυμορφική μεταβλητή"
+
+#: ../gtksourceview/language-specs/fsharp.lang.h:18
+#: ../gtksourceview/language-specs/ocaml.lang.h:19
+msgid "Type Variable"
+msgstr "Τύπος μεταβλητής"
+
+#: ../gtksourceview/language-specs/fsharp.lang.h:19
+#: ../gtksourceview/language-specs/ocaml.lang.h:20
+msgid "Type, module or object keyword"
+msgstr "Type, module or object keyword"
+
+#: ../gtksourceview/language-specs/fsharp.lang.h:20
+#: ../gtksourceview/language-specs/ocaml.lang.h:21
+msgid "Variant Constructor"
+msgstr "Variant Constructor"
 
 #: ../gtksourceview/language-specs/gap.lang.h:5
 msgid "GAP"
 msgstr "GAP"
 
-#: ../gtksourceview/language-specs/gap.lang.h:7
-#: ../gtksourceview/language-specs/octave.lang.h:10
-#: ../gtksourceview/language-specs/R.lang.h:9
-msgid "Scientific"
-msgstr "Επιστημονική"
+#: ../gtksourceview/language-specs/glsl.lang.h:1
+#: ../gtksourceview/language-specs/python.lang.h:3
+msgid "Builtin Constant"
+msgstr "Ενσωματωμένη σταθερά"
+
+#: ../gtksourceview/language-specs/glsl.lang.h:5
+msgid "OpenGL Shading Language"
+msgstr "Γλώσσα σκίασης OpenGL"
+
+#: ../gtksourceview/language-specs/glsl.lang.h:7
+msgid "Reserved Keywords"
+msgstr "Δεσμευμένες λέξεις κλειδιά"
 
 #: ../gtksourceview/language-specs/gtk-doc.lang.h:2
 msgid "Deprecated"
@@ -1725,15 +2205,18 @@ msgid ".ini"
 msgstr ".ini"
 
 #: ../gtksourceview/language-specs/java.lang.h:5
+#: ../gtksourceview/language-specs/ooc.lang.h:5
 msgid "Declaration"
 msgstr "Declaration"
 
 #: ../gtksourceview/language-specs/java.lang.h:8
+#: ../gtksourceview/language-specs/ooc.lang.h:8
 msgid "External"
 msgstr "Εξωτερική"
 
 #: ../gtksourceview/language-specs/java.lang.h:9
 #: ../gtksourceview/language-specs/javascript.lang.h:8
+#: ../gtksourceview/language-specs/ooc.lang.h:10
 msgid "Future Reserved Keywords"
 msgstr "Μελλοντικά δεσμευμένες λέξεις "
 
@@ -1742,6 +2225,7 @@ msgid "Java"
 msgstr "Java"
 
 #: ../gtksourceview/language-specs/java.lang.h:14
+#: ../gtksourceview/language-specs/ooc.lang.h:16
 msgid "Scope Declaration"
 msgstr "Δήλωση σκοπού"
 
@@ -1760,6 +2244,10 @@ msgstr "Αντικείμενο"
 #: ../gtksourceview/language-specs/javascript.lang.h:13
 msgid "Properties"
 msgstr "Ιδιότητες"
+
+#: ../gtksourceview/language-specs/javascript.lang.h:16
+msgid "Undefined Value"
+msgstr "Απροσδιόριστη τιμή"
 
 #: ../gtksourceview/language-specs/kate.xml.h:1
 msgid "Color scheme used in the Kate text editor"
@@ -1825,12 +2313,10 @@ msgid "m4"
 msgstr "m4"
 
 #: ../gtksourceview/language-specs/m4.lang.h:5
-#| msgid "Macros"
 msgid "m4 Macro"
 msgstr "Μακροεντολή m4"
 
 #: ../gtksourceview/language-specs/m4.lang.h:6
-#| msgid "Comment"
 msgid "m4-comment"
 msgstr "Σχόλιο m4"
 
@@ -1853,12 +2339,10 @@ msgid "Trailing Tab"
 msgstr "Στηλοθέτης στο τέλος"
 
 #: ../gtksourceview/language-specs/makefile.lang.h:9
-#| msgid "Command"
 msgid "command"
 msgstr "εντολή"
 
 #: ../gtksourceview/language-specs/makefile.lang.h:10
-#| msgid "Function"
 msgid "function"
 msgstr "συνάρτηση"
 
@@ -1873,9 +2357,28 @@ msgid "prereq"
 msgstr "prereq"
 
 #: ../gtksourceview/language-specs/makefile.lang.h:13
-#| msgid "Targets"
 msgid "targets"
 msgstr "προορισμός"
+
+#: ../gtksourceview/language-specs/mallard.lang.h:1
+msgid "Block Elements"
+msgstr "Στοιχεία ομάδας"
+
+#: ../gtksourceview/language-specs/mallard.lang.h:2
+msgid "Inline Elements"
+msgstr "Εμβόλιμα στοιχεία"
+
+#: ../gtksourceview/language-specs/mallard.lang.h:3
+msgid "Mallard"
+msgstr "Mallard"
+
+#: ../gtksourceview/language-specs/mallard.lang.h:5
+msgid "Page Elements"
+msgstr "Στοιχεία σελίδας"
+
+#: ../gtksourceview/language-specs/mallard.lang.h:6
+msgid "Section Elements"
+msgstr "Στοιχεία τμήματος"
 
 #: ../gtksourceview/language-specs/msil.lang.h:1
 msgid "MSIL"
@@ -1901,22 +2404,6 @@ msgstr "Σκοτεινό σχήμα χρώματος με χρήση παλέτ�
 msgid "Oblivion"
 msgstr "Oblivion"
 
-#: ../gtksourceview/language-specs/ocaml.lang.h:3
-msgid "Builtin-function keyword"
-msgstr "Λέξη κλειδί ενσωματωμένης συνάρτησης"
-
-#: ../gtksourceview/language-specs/ocaml.lang.h:9
-msgid "Floating Point number"
-msgstr "Αριθμός κινητής υποδιαστολής"
-
-#: ../gtksourceview/language-specs/ocaml.lang.h:11
-msgid "Labeled argument"
-msgstr "Παράμετρος με ετικέτα"
-
-#: ../gtksourceview/language-specs/ocaml.lang.h:12
-msgid "Module Path"
-msgstr "Διαδρομή λειτουργικής μονάδας"
-
 #: ../gtksourceview/language-specs/ocaml.lang.h:13
 msgid "Objective Caml"
 msgstr "Objective Caml"
@@ -1925,21 +2412,9 @@ msgstr "Objective Caml"
 msgid "Ocamldoc Comments"
 msgstr "Σχόλια Ocamldoc "
 
-#: ../gtksourceview/language-specs/ocaml.lang.h:15
-msgid "Polymorphic Variant"
-msgstr "Πολυμορφική μεταβλητή"
-
-#: ../gtksourceview/language-specs/ocaml.lang.h:18
-msgid "Type Variable"
-msgstr "Τύπος μεταβλητής"
-
-#: ../gtksourceview/language-specs/ocaml.lang.h:19
-msgid "Type, module or object keyword"
-msgstr "Type, module or object keyword"
-
-#: ../gtksourceview/language-specs/ocaml.lang.h:20
-msgid "Variant Constructor"
-msgstr "Variant Constructor"
+#: ../gtksourceview/language-specs/ocaml.lang.h:17
+msgid "Standart Modules"
+msgstr "Πρότυπα αρθρώματα"
 
 #: ../gtksourceview/language-specs/ocl.lang.h:4
 msgid "OCL"
@@ -1957,9 +2432,9 @@ msgstr "Τελεστές τύπου"
 msgid "Octave"
 msgstr "Οκτάβα"
 
-#: ../gtksourceview/language-specs/octave.lang.h:9
-msgid "Reserved Constant"
-msgstr "Reserved Constant"
+#: ../gtksourceview/language-specs/ooc.lang.h:14
+msgid "OOC"
+msgstr "OOC"
 
 #: ../gtksourceview/language-specs/pascal.lang.h:5
 msgid "Pascal"
@@ -2036,7 +2511,6 @@ msgstr "Ασαφές"
 
 #. FIXME make it some nice name and mark it translatable
 #: ../gtksourceview/language-specs/po.lang.h:7
-#| msgid "Specials"
 msgid "Special"
 msgstr "Ειδικό"
 
@@ -2044,9 +2518,9 @@ msgstr "Ειδικό"
 msgid "gettext translation"
 msgstr "μετάφραση gettext"
 
-#: ../gtksourceview/language-specs/python.lang.h:3
-msgid "Builtin Constant"
-msgstr "Ενσωματωμένη σταθερά"
+#: ../gtksourceview/language-specs/prolog.lang.h:7
+msgid "Prolog"
+msgstr "Prolog"
 
 #: ../gtksourceview/language-specs/python.lang.h:5
 msgid "Builtin Object"
@@ -2183,6 +2657,34 @@ msgstr "Ορισμός μεταβλητής"
 msgid "sh"
 msgstr "sh"
 
+#: ../gtksourceview/language-specs/sparql.lang.h:2
+msgid "Class"
+msgstr "Κλάση"
+
+#: ../gtksourceview/language-specs/sparql.lang.h:5
+msgid "IRI"
+msgstr "IRI"
+
+#: ../gtksourceview/language-specs/sparql.lang.h:6
+msgid "Individual"
+msgstr "Μεμονωμένα"
+
+#: ../gtksourceview/language-specs/sparql.lang.h:8
+msgid "Literal"
+msgstr "Κυριολεκτική σταθερά"
+
+#: ../gtksourceview/language-specs/sparql.lang.h:11
+msgid "Predicate"
+msgstr "Κατηγόρημα"
+
+#: ../gtksourceview/language-specs/sparql.lang.h:12
+msgid "QName"
+msgstr "QName"
+
+#: ../gtksourceview/language-specs/sparql.lang.h:13
+msgid "SPARQL"
+msgstr "SPARQL"
+
 #: ../gtksourceview/language-specs/sql.lang.h:7
 msgid "No idea what it is"
 msgstr "Δεν έχω ιδέα τι είναι"
@@ -2192,37 +2694,30 @@ msgid "SQL"
 msgstr "SQL"
 
 #: ../gtksourceview/language-specs/t2t.lang.h:7
-#| msgid "Section"
 msgid "Option"
 msgstr "Option"
 
 #: ../gtksourceview/language-specs/t2t.lang.h:8
-#| msgid "Function Name"
 msgid "Option Name"
 msgstr "Όνομα Option"
 
 #: ../gtksourceview/language-specs/t2t.lang.h:10
-#| msgid "Section"
 msgid "Section 1"
 msgstr "Ενότητα 1"
 
 #: ../gtksourceview/language-specs/t2t.lang.h:11
-#| msgid "Section"
 msgid "Section 2"
 msgstr "Ενότητα 2"
 
 #: ../gtksourceview/language-specs/t2t.lang.h:12
-#| msgid "Section"
 msgid "Section 3"
 msgstr "Ενότητα 3"
 
 #: ../gtksourceview/language-specs/t2t.lang.h:13
-#| msgid "Section"
 msgid "Section 4"
 msgstr "Ενότητα 4"
 
 #: ../gtksourceview/language-specs/t2t.lang.h:14
-#| msgid "Section"
 msgid "Section 5"
 msgstr "Ενότητα 5"
 
@@ -2231,7 +2726,6 @@ msgid "Text2Tags"
 msgstr "Text2Tags"
 
 #: ../gtksourceview/language-specs/t2t.lang.h:17
-#| msgid "Verbatim"
 msgid "Verbatim Block"
 msgstr "Verbatim Block"
 
@@ -2312,7 +2806,6 @@ msgid "XML"
 msgstr "XML"
 
 #: ../gtksourceview/language-specs/xslt.lang.h:1
-#| msgid "GUI Elements"
 msgid "Element"
 msgstr "Στοιχείο"
 
@@ -2325,16 +2818,12 @@ msgid "Yacc"
 msgstr "Yacc"
 
 #: ../gtksourceview/language-specs/yacc.lang.h:5
-#| msgid "at-rules"
 msgid "rule"
 msgstr "κανόνας"
 
 #: ../gtksourceview/language-specs/yacc.lang.h:6
 msgid "token-type"
 msgstr "token-type"
-
-#~ msgid "Compiler opt"
-#~ msgstr "Compiler opt"
 
 #~ msgid "Inline C Code"
 #~ msgstr "Inline κώδικας C "
@@ -2394,9 +2883,6 @@ msgstr "token-type"
 
 #~ msgid "Tag style"
 #~ msgstr "Στυλ Tag"
-
-#~ msgid "The style associated with the source tag"
-#~ msgstr "Το στυλ που σχετίζεται με την source tag"
 
 #~ msgid "Margin Line Alpha"
 #~ msgstr "Γραμμή περιθωρίου Άλφα"
@@ -2480,9 +2966,6 @@ msgstr "token-type"
 #~ msgid "Unicode Character Reference"
 #~ msgstr "Αναφορά χαρακτήρα Unicode"
 
-#~ msgid "Unicode Range"
-#~ msgstr "Εύρος Unicode"
-
 #~ msgid "Grave Literal"
 #~ msgstr "Grave Literal"
 
@@ -2494,9 +2977,6 @@ msgstr "token-type"
 
 #~ msgid "Non Standard Key"
 #~ msgstr "Μη στάνταρ κλειδί"
-
-#~ msgid "Standard Key"
-#~ msgstr "Στάνταρ Κλειδί"
 
 #~ msgid "Diff file"
 #~ msgstr "Αρχείο Diff"
@@ -2548,9 +3028,6 @@ msgstr "token-type"
 
 #~ msgid "Flow Keywords"
 #~ msgstr "Flow Keywords"
-
-#~ msgid "Global Functions"
-#~ msgstr "Γενικές Λειτουργίες"
 
 #~ msgid "Global Properties"
 #~ msgstr "Γενικές Ιδιότητες"
@@ -2657,9 +3134,6 @@ msgstr "token-type"
 #~ msgid "Class Variables"
 #~ msgstr "Μεταβλητές Class"
 
-#~ msgid "Global Variables"
-#~ msgstr "Γενικές Μεταβλητές"
-
 #~ msgid "Instance Variables"
 #~ msgstr "Instance Variables"
 
@@ -2687,26 +3161,17 @@ msgstr "token-type"
 #~ msgid "Aggregate Functions"
 #~ msgstr "Λειτουργίες Aggregate "
 
-#~ msgid "Analytic Functions"
-#~ msgstr "Αναλυτικές Λειτουργίες"
-
 #~ msgid "Character Functions Returning Character Values"
 #~ msgstr "Λειτουργίες χαρακτήρα που επιστρέφουν τιμές χαρακτήρα"
 
 #~ msgid "Character Functions Returning Number Values"
 #~ msgstr "Λειτουργίες χαρακτήρα που επιστρέφουν τιμές αριθμού"
 
-#~ msgid "Collection Functions"
-#~ msgstr "Λειτουργίες συλλογής"
-
 #~ msgid "Conversion Functions"
 #~ msgstr "Λειτουργίες Μετατροπής"
 
 #~ msgid "Data Mining Functions"
 #~ msgstr "Λειτουργίες συλλογής δεδομένων"
-
-#~ msgid "Datetime Functions"
-#~ msgstr "Ημερήσιες Λειτουργίες"
 
 #~ msgid "Encoding and Decoding Functions"
 #~ msgstr "Λειτουτγίες κωδικοποίησης και αποκωδικοποίησης"
@@ -2803,4 +3268,3 @@ msgstr "token-type"
 
 #~ msgid "Hexadecimal"
 #~ msgstr "Δεκαεξαδικό"
-
