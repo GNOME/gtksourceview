@@ -185,7 +185,7 @@
     </context>
 
     <context id="variable-definition">
-      <match>(^|(?&lt;=then|else|do|export))\s*([a-zA-Z_][a-zA-Z0-9_]*)\=</match>
+      <match>(^\s*|(?&lt;=then|else|do|export)\s+)([a-zA-Z_][a-zA-Z0-9_]*)\=</match>
       <include>
         <context sub-pattern="2" style-ref="variable-definition"/>
       </include>
