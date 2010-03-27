@@ -21,8 +21,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-14 17:21+0100\n"
-"PO-Revision-Date: 2010-02-13 16:33+0100\n"
+"POT-Creation-Date: 2010-03-27 23:55+0100\n"
+"PO-Revision-Date: 2010-03-25 00:24+0100\n"
 "Last-Translator: Ask Hjorth Larsen <asklarsen@gmail.com>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "MIME-Version: 1.0\n"
@@ -97,61 +97,71 @@ msgstr "Prioritet"
 msgid "Provider priority"
 msgstr "Prioritet for fuldførelsesfunktion"
 
-#: ../gtksourceview/gtksourcebuffer.c:210
+#: ../gtksourceview/gtksourcebuffer.c:211
 #: ../gtksourceview/gtksourceprintcompositor.c:506
 msgid "Highlight Syntax"
 msgstr "Fremhæv syntaks"
 
-#: ../gtksourceview/gtksourcebuffer.c:211
+#: ../gtksourceview/gtksourcebuffer.c:212
 msgid "Whether to highlight syntax in the buffer"
 msgstr "Om syntaksen i bufferen skal fremhæves"
 
-#: ../gtksourceview/gtksourcebuffer.c:224
+#: ../gtksourceview/gtksourcebuffer.c:225
 msgid "Highlight Matching Brackets"
 msgstr "Fremhæv samhørende parenteser"
 
-#: ../gtksourceview/gtksourcebuffer.c:225
+#: ../gtksourceview/gtksourcebuffer.c:226
 msgid "Whether to highlight matching brackets"
 msgstr "Om samhørende parenteser skal fremhæves"
 
-#: ../gtksourceview/gtksourcebuffer.c:237
+#: ../gtksourceview/gtksourcebuffer.c:239
+#: ../gtksourceview/gtksourceundomanagerdefault.c:412
 msgid "Maximum Undo Levels"
 msgstr "Fortrydelsesniveauer"
 
-#: ../gtksourceview/gtksourcebuffer.c:238
+#: ../gtksourceview/gtksourcebuffer.c:240
+#: ../gtksourceview/gtksourceundomanagerdefault.c:413
 msgid "Number of undo levels for the buffer"
 msgstr "Antal fortrydelsesniveauer for bufferen"
 
 #. Translators: throughout gtksourceview "language" stands
 #. * for "programming language", not "spoken language"
-#: ../gtksourceview/gtksourcebuffer.c:250
+#: ../gtksourceview/gtksourcebuffer.c:252
 msgid "Language"
 msgstr "Sprog"
 
-#: ../gtksourceview/gtksourcebuffer.c:251
+#: ../gtksourceview/gtksourcebuffer.c:253
 msgid "Language object to get highlighting patterns from"
 msgstr "Sprogobjekt som fremhævningsmønstre skal hentes fra"
 
-#: ../gtksourceview/gtksourcebuffer.c:259
+#: ../gtksourceview/gtksourcebuffer.c:261
 msgid "Can undo"
 msgstr "Kan fortryde"
 
-#: ../gtksourceview/gtksourcebuffer.c:260
+#: ../gtksourceview/gtksourcebuffer.c:262
 msgid "Whether Undo operation is possible"
 msgstr "Om fortrydelsesoperationen er mulig"
 
-#: ../gtksourceview/gtksourcebuffer.c:267
+#: ../gtksourceview/gtksourcebuffer.c:269
 msgid "Can redo"
 msgstr "Kan omgøre"
 
-#: ../gtksourceview/gtksourcebuffer.c:268
+#: ../gtksourceview/gtksourcebuffer.c:270
 msgid "Whether Redo operation is possible"
 msgstr "Om Omgør-operationen er mulig"
 
-#: ../gtksourceview/gtksourcebuffer.c:282
-#: ../gtksourceview/gtksourcebuffer.c:283
+#: ../gtksourceview/gtksourcebuffer.c:284
+#: ../gtksourceview/gtksourcebuffer.c:285
 msgid "Style scheme"
 msgstr "Stilskema"
+
+#: ../gtksourceview/gtksourcebuffer.c:292
+msgid "Undo manager"
+msgstr "Fortrydelseshåndtering"
+
+#: ../gtksourceview/gtksourcebuffer.c:293
+msgid "The buffer undo manager"
+msgstr "Bufferens fortrydelseshåndtering"
 
 #. Translators: "All" is used as a label in thestatus bar of the
 #. popup, telling that all completion pages are shown
@@ -159,88 +169,88 @@ msgstr "Stilskema"
 msgid "All"
 msgstr "Alle"
 
-#: ../gtksourceview/gtksourcecompletion.c:941
+#: ../gtksourceview/gtksourcecompletion.c:940
 #: ../gtksourceview/gtksourcecompletion.c:963
 msgid "No extra information available"
 msgstr "Ingen ekstra information tilgængelig"
 
-#: ../gtksourceview/gtksourcecompletion.c:2227
+#: ../gtksourceview/gtksourcecompletion.c:2229
 #: ../gtksourceview/gtksourcegutter.c:369
 msgid "View"
 msgstr "Vis"
 
-#: ../gtksourceview/gtksourcecompletion.c:2228
+#: ../gtksourceview/gtksourcecompletion.c:2230
 msgid "The GtkSourceView bound to the completion"
 msgstr "GtkSourceView'et, der er bundet til fuldførelsen"
 
-#: ../gtksourceview/gtksourcecompletion.c:2243
+#: ../gtksourceview/gtksourcecompletion.c:2245
 msgid "Remember Info Visibility"
 msgstr "Husk synlighed af info"
 
-#: ../gtksourceview/gtksourcecompletion.c:2244
+#: ../gtksourceview/gtksourcecompletion.c:2246
 msgid "Remember the last info window visibility state"
 msgstr "Husk sidste synlighedstilstand for infovinduet"
 
-#: ../gtksourceview/gtksourcecompletion.c:2257
+#: ../gtksourceview/gtksourcecompletion.c:2259
 msgid "Select on Show"
 msgstr "Vælg ved visning"
 
-#: ../gtksourceview/gtksourcecompletion.c:2258
+#: ../gtksourceview/gtksourcecompletion.c:2260
 msgid "Select first proposal when completion is shown"
 msgstr "Vælg første forslag, når fuldførelse vises"
 
-#: ../gtksourceview/gtksourcecompletion.c:2272
+#: ../gtksourceview/gtksourcecompletion.c:2274
 msgid "Show Headers"
 msgstr "Vis overskrifter"
 
-#: ../gtksourceview/gtksourcecompletion.c:2273
+#: ../gtksourceview/gtksourcecompletion.c:2275
 msgid ""
 "Show provider headers when proposals from multiple providers are available"
 msgstr ""
 "Vis overskrifter for fuldførelsesfunktioner, når der er tilgængelige forslag "
 "fra flere fuldførelsesfunktioner"
 
-#: ../gtksourceview/gtksourcecompletion.c:2287
+#: ../gtksourceview/gtksourcecompletion.c:2289
 msgid "Show Icons"
 msgstr "Vis ikoner"
 
-#: ../gtksourceview/gtksourcecompletion.c:2288
+#: ../gtksourceview/gtksourcecompletion.c:2290
 msgid "Show provider and proposal icons in the completion popup"
 msgstr "Vis fuldførelsesfunktion og forslagsikoner i fuldførelses-pop op"
 
-#: ../gtksourceview/gtksourcecompletion.c:2301
+#: ../gtksourceview/gtksourcecompletion.c:2303
 msgid "Accelerators"
 msgstr "Genveje"
 
-#: ../gtksourceview/gtksourcecompletion.c:2302
+#: ../gtksourceview/gtksourcecompletion.c:2304
 msgid "Number of proposal accelerators to show"
 msgstr "Antal forslagsgenveje, der skal vises"
 
-#: ../gtksourceview/gtksourcecompletion.c:2318
+#: ../gtksourceview/gtksourcecompletion.c:2320
 msgid "Auto Complete Delay"
 msgstr "Ventetid for autofuldførelse"
 
-#: ../gtksourceview/gtksourcecompletion.c:2319
+#: ../gtksourceview/gtksourcecompletion.c:2321
 msgid "Completion popup delay for interactive completion"
 msgstr "Ventetid før interaktiv fuldførelses-pop op vises"
 
-#: ../gtksourceview/gtksourcecompletion.c:2334
+#: ../gtksourceview/gtksourcecompletion.c:2336
 msgid "Provider Page Size"
 msgstr "Sidestørrelse for fuldførelsesfunktion"
 
-#: ../gtksourceview/gtksourcecompletion.c:2335
+#: ../gtksourceview/gtksourcecompletion.c:2337
 msgid "Provider scrolling page size"
 msgstr "Rullesidestørrelse for fuldførelsesfunktion"
 
-#: ../gtksourceview/gtksourcecompletion.c:2350
+#: ../gtksourceview/gtksourcecompletion.c:2352
 msgid "Proposal Page Size"
 msgstr "Størrelse af forslagsside"
 
-#: ../gtksourceview/gtksourcecompletion.c:2351
+#: ../gtksourceview/gtksourcecompletion.c:2353
 msgid "Proposal scrolling page size"
 msgstr "Størrelse af rulleside med forslag"
 
-#: ../gtksourceview/gtksourcecompletion.c:2688
+#: ../gtksourceview/gtksourcecompletion.c:2691
 msgid "Provider"
 msgstr "Fuldførelsesfunktion"
 
@@ -356,7 +366,7 @@ msgstr "Info"
 msgid "Info to be shown for this item"
 msgstr "Information, der skal vises for dette element"
 
-#: ../gtksourceview/gtksourcecontextengine.c:2965
+#: ../gtksourceview/gtksourcecontextengine.c:2981
 msgid "using \\C is not supported in language definitions"
 msgstr "brug af \\C er ikke understøttet i sprogdefinitionerne"
 
@@ -364,7 +374,7 @@ msgstr "brug af \\C er ikke understøttet i sprogdefinitionerne"
 #. * named sub-patterns with the same name or if resulting regex is
 #. * too long. In this case fixing lang file helps (e.g. renaming
 #. * subpatterns, making huge keywords use bigger prefixes, etc.)
-#: ../gtksourceview/gtksourcecontextengine.c:3589
+#: ../gtksourceview/gtksourcecontextengine.c:3605
 #, c-format
 msgid ""
 "Cannot create a regex for all the transitions, the syntax highlighting "
@@ -375,7 +385,7 @@ msgstr ""
 "vil derfor være langsommere end sædvanligt.\n"
 "Fejlen var: %s"
 
-#: ../gtksourceview/gtksourcecontextengine.c:4924
+#: ../gtksourceview/gtksourcecontextengine.c:4940
 msgid ""
 "Highlighting a single line took too much time, syntax highlighting will be "
 "disabled"
@@ -383,19 +393,19 @@ msgstr ""
 "Syntaksfremhævning af en enkelt linje tog for lang tid, syntaksfremhævning "
 "vil blive slået fra"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6149
+#: ../gtksourceview/gtksourcecontextengine.c:6165
 #, c-format
 msgid "context '%s' cannot contain a \\%%{...@start} command"
 msgstr "konteksten \"%s\" kan ikke indeholder en \\%%{...@start}-kommando"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6311
-#: ../gtksourceview/gtksourcecontextengine.c:6400
+#: ../gtksourceview/gtksourcecontextengine.c:6327
+#: ../gtksourceview/gtksourcecontextengine.c:6416
 #, c-format
 msgid "duplicated context id '%s'"
 msgstr "duplikeret kontekst-id \"%s\""
 
-#: ../gtksourceview/gtksourcecontextengine.c:6515
-#: ../gtksourceview/gtksourcecontextengine.c:6575
+#: ../gtksourceview/gtksourcecontextengine.c:6531
+#: ../gtksourceview/gtksourcecontextengine.c:6591
 #, c-format
 msgid ""
 "style override used with wildcard context reference in language '%s' in ref "
@@ -404,18 +414,18 @@ msgstr ""
 "stiltilsidesættelse benyttet i forbindelse med wildcard-kontekstreference i "
 "sproget \"%s\" i ref \"%s\""
 
-#: ../gtksourceview/gtksourcecontextengine.c:6589
+#: ../gtksourceview/gtksourcecontextengine.c:6605
 #, c-format
 msgid "invalid context reference '%s'"
 msgstr "ugyldig kontekstreference \"%s\""
 
-#: ../gtksourceview/gtksourcecontextengine.c:6608
-#: ../gtksourceview/gtksourcecontextengine.c:6618
+#: ../gtksourceview/gtksourcecontextengine.c:6624
+#: ../gtksourceview/gtksourcecontextengine.c:6634
 #, c-format
 msgid "unknown context '%s'"
 msgstr "ukendt kontekst \"%s\""
 
-#: ../gtksourceview/gtksourcecontextengine.c:6718
+#: ../gtksourceview/gtksourcecontextengine.c:6734
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "Mangler hovedsprogsdefinition (id = \"%s\".)"
@@ -508,12 +518,12 @@ msgstr "Sprog-id'er"
 msgid "List of the ids of the available languages"
 msgstr "Liste af id'erne for de tilgængelige sprog"
 
-#: ../gtksourceview/gtksourcelanguage-parser-2.c:948
+#: ../gtksourceview/gtksourcelanguage-parser-2.c:950
 #, c-format
 msgid "Unknown id '%s' in regex '%s'"
 msgstr "Ukendt id \"%s\" i det regulære udtryk \"%s\""
 
-#: ../gtksourceview/gtksourcelanguage-parser-2.c:1176
+#: ../gtksourceview/gtksourcelanguage-parser-2.c:1178
 #, c-format
 msgid "in regex '%s': backreferences are not supported"
 msgstr "i det regulære udtryk \"%s\": bagudreferencer understøttes ikke"
@@ -759,6 +769,14 @@ msgstr "Skema-id'er"
 #: ../gtksourceview/gtksourcestyleschememanager.c:161
 msgid "List of the ids of the available style schemes"
 msgstr "Liste af id'erne for de tilgængelige stil-skemaer"
+
+#: ../gtksourceview/gtksourceundomanagerdefault.c:404
+msgid "Buffer"
+msgstr "Buffer"
+
+#: ../gtksourceview/gtksourceundomanagerdefault.c:405
+msgid "The text buffer to add undo support on"
+msgstr "Tekstbufferen, der skal have understøttelse af fortrydelse"
 
 #: ../gtksourceview/gtksourceview.c:325
 msgid "The completion object associated with the view"
@@ -2435,9 +2453,8 @@ msgid "Octave"
 msgstr "Octave"
 
 #: ../gtksourceview/language-specs/ooc.lang.h:14
-#, fuzzy
 msgid "OOC"
-msgstr "OCL"
+msgstr "OOC"
 
 #: ../gtksourceview/language-specs/pascal.lang.h:5
 msgid "Pascal"
@@ -2976,9 +2993,6 @@ msgstr "tegntype"
 
 #~ msgid "Unicode Character Reference"
 #~ msgstr "Reference til unicodetegn"
-
-#~ msgid "Unicode Range"
-#~ msgstr "Unicodeinterval"
 
 # Der menes noget med tegnet `. Men det har måske ikke noget rigtigt navn på dansk
 #~ msgid "Grave Literal"
