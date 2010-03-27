@@ -9,15 +9,16 @@
 # Runa Bhattacharjee <runab@redhat.com>, 2009.
 # Maruf Ovee <maruf@ankur.org.bd>, 2009.
 # Sadia Afroz <sadia@ankur.org.bd>, 2010.
+# Israt Jahan <israt@ankur.org.bd>, 2010.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: bn\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&component=general\n"
-"POT-Creation-Date: 2010-01-25 20:13+0000\n"
-"PO-Revision-Date: 2010-01-26 17:03+0600\n"
-"Last-Translator: Sadia Afroz <sadia@ankur.org.bd>\n"
+"POT-Creation-Date: 2010-02-22 20:43+0000\n"
+"PO-Revision-Date: 2010-03-24 17:03+0600\n"
+"Last-Translator: Israt Jahan <israt@ankur.org.bd>\n"
 "Language-Team: Bengali <ankur-bd-l10n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -100,66 +101,76 @@ msgid "Provider priority"
 msgstr "সরবরাহকারীর অগ্রাধিকার"
 
 # Translated by sadia
-#: ../gtksourceview/gtksourcebuffer.c:210
+#: ../gtksourceview/gtksourcebuffer.c:211
 #: ../gtksourceview/gtksourceprintcompositor.c:506
 msgid "Highlight Syntax"
 msgstr "সিনট্যাক্স হাইলাইট করা হবে"
 
 # Translated by sadia
-#: ../gtksourceview/gtksourcebuffer.c:211
+#: ../gtksourceview/gtksourcebuffer.c:212
 msgid "Whether to highlight syntax in the buffer"
 msgstr "বাফারে উপস্থিত সিনট্যাক্স হাইলাইট করা হবে কি না"
 
 # Translated by sadia
-#: ../gtksourceview/gtksourcebuffer.c:224
+#: ../gtksourceview/gtksourcebuffer.c:225
 msgid "Highlight Matching Brackets"
 msgstr "অনুরূপ বন্ধনীচিহ্ন হাইলাইট করা হবে"
 
 # Translated by sadia
-#: ../gtksourceview/gtksourcebuffer.c:225
+#: ../gtksourceview/gtksourcebuffer.c:226
 msgid "Whether to highlight matching brackets"
 msgstr "অনুরূপ বন্ধনীচিহ্ন হাইলাইট করা হবে কি না"
 
-#: ../gtksourceview/gtksourcebuffer.c:237
+#: ../gtksourceview/gtksourcebuffer.c:239
+#: ../gtksourceview/gtksourceundomanagerdefault.c:398
 msgid "Maximum Undo Levels"
 msgstr "পূর্বাবস্থায় প্রত্যাবর্তনের সর্বাধিক স্তর"
 
-#: ../gtksourceview/gtksourcebuffer.c:238
+#: ../gtksourceview/gtksourcebuffer.c:240
+#: ../gtksourceview/gtksourceundomanagerdefault.c:399
 msgid "Number of undo levels for the buffer"
 msgstr "বাফারের জন্য পূর্বাবস্থায় প্রত্যাবর্তনের সর্বাধিক সংখ্যা"
 
 # Translated by sadia
 #. Translators: throughout gtksourceview "language" stands
 #. * for "programming language", not "spoken language"
-#: ../gtksourceview/gtksourcebuffer.c:250
+#: ../gtksourceview/gtksourcebuffer.c:252
 msgid "Language"
 msgstr "ল্যাংগুয়েজ"
 
 # Translated by sadia
-#: ../gtksourceview/gtksourcebuffer.c:251
+#: ../gtksourceview/gtksourcebuffer.c:253
 msgid "Language object to get highlighting patterns from"
 msgstr "হতে হাইলাইটকৃত বিন্যাস পাওয়ার জন্য ল্যাংগুয়েজের অবজেক্ট"
 
-#: ../gtksourceview/gtksourcebuffer.c:259
+#: ../gtksourceview/gtksourcebuffer.c:261
 msgid "Can undo"
 msgstr "নাকচ করা যাবে"
 
-#: ../gtksourceview/gtksourcebuffer.c:260
+#: ../gtksourceview/gtksourcebuffer.c:262
 msgid "Whether Undo operation is possible"
 msgstr "নাকচ করা সম্ভব হবে কি না"
 
-#: ../gtksourceview/gtksourcebuffer.c:267
+#: ../gtksourceview/gtksourcebuffer.c:269
 msgid "Can redo"
 msgstr "পুনরাবৃত্তি সম্ভব"
 
-#: ../gtksourceview/gtksourcebuffer.c:268
+#: ../gtksourceview/gtksourcebuffer.c:270
 msgid "Whether Redo operation is possible"
 msgstr "পুনরাবৃত্তি সম্ভব কি না"
 
-#: ../gtksourceview/gtksourcebuffer.c:282
-#: ../gtksourceview/gtksourcebuffer.c:283
+#: ../gtksourceview/gtksourcebuffer.c:284
+#: ../gtksourceview/gtksourcebuffer.c:285
 msgid "Style scheme"
 msgstr "শৈলী স্কীম"
+
+#: ../gtksourceview/gtksourcebuffer.c:292
+msgid "Undo manager"
+msgstr "পূর্বাবস্থা ব্যবস্থাপক"
+
+#: ../gtksourceview/gtksourcebuffer.c:293
+msgid "The buffer undo manager"
+msgstr "বাফার পূর্বাবস্থা ব্যবস্থাপক"
 
 # Translated by sadia
 #. Translators: "All" is used as a label in thestatus bar of the
@@ -169,105 +180,105 @@ msgid "All"
 msgstr "সকল"
 
 # Translated by sadia
-#: ../gtksourceview/gtksourcecompletion.c:941
+#: ../gtksourceview/gtksourcecompletion.c:940
 #: ../gtksourceview/gtksourcecompletion.c:963
 msgid "No extra information available"
 msgstr "কোন অতিরিক্ত তথ্য বিদ্যমান নেই"
 
 # Translated by sadia
-#: ../gtksourceview/gtksourcecompletion.c:2227
+#: ../gtksourceview/gtksourcecompletion.c:2229
 #: ../gtksourceview/gtksourcegutter.c:369
 msgid "View"
 msgstr "প্রদর্শন"
 
 # Translated by sadia
-#: ../gtksourceview/gtksourcecompletion.c:2228
+#: ../gtksourceview/gtksourcecompletion.c:2230
 msgid "The GtkSourceView bound to the completion"
 msgstr "GtkSourceBuffer, সম্পূর্ণকরণের জন্য দায়ী "
 
 # Translated by sadia
-#: ../gtksourceview/gtksourcecompletion.c:2243
+#: ../gtksourceview/gtksourcecompletion.c:2245
 msgid "Remember Info Visibility"
 msgstr "তথ্যের দৃশ্যমানতা মনে রাখা হবে"
 
 # Translated by sadia
-#: ../gtksourceview/gtksourcecompletion.c:2244
+#: ../gtksourceview/gtksourcecompletion.c:2246
 msgid "Remember the last info window visibility state"
 msgstr "তথ্য উইন্ডোর দৃশ্যমানতার সর্বশেষ অবস্থা মনে রাখা হবে"
 
 # Translated by sadia
-#: ../gtksourceview/gtksourcecompletion.c:2257
+#: ../gtksourceview/gtksourcecompletion.c:2259
 msgid "Select on Show"
 msgstr "প্রদর্শনের সময় নির্বাচন করা হবে"
 
 # Translated by sadia
-#: ../gtksourceview/gtksourcecompletion.c:2258
+#: ../gtksourceview/gtksourcecompletion.c:2260
 msgid "Select first proposal when completion is shown"
 msgstr "সম্পূর্ণকরণ প্রদর্শন করার সময় প্রথম প্রস্তাবনা নির্বাচন করা হবে"
 
 # Translated by sadia
-#: ../gtksourceview/gtksourcecompletion.c:2272
+#: ../gtksourceview/gtksourcecompletion.c:2274
 msgid "Show Headers"
 msgstr "শীর্ষচরণ প্রদর্শন করা হবে"
 
 # Translated by sadia
-#: ../gtksourceview/gtksourcecompletion.c:2273
+#: ../gtksourceview/gtksourcecompletion.c:2275
 msgid ""
 "Show provider headers when proposals from multiple providers are available"
 msgstr ""
 "যখন বহুসংখ্যক সরবরাহকারীর প্রস্তাবনা বিদ্যমান থাকে তখন সরবরাহকারীর শীর্ষচরণ প্রদর্শন "
 "করা হবে"
 
-#: ../gtksourceview/gtksourcecompletion.c:2287
+#: ../gtksourceview/gtksourcecompletion.c:2289
 msgid "Show Icons"
 msgstr "আইকন প্রদর্শন"
 
-#: ../gtksourceview/gtksourcecompletion.c:2288
+#: ../gtksourceview/gtksourcecompletion.c:2290
 msgid "Show provider and proposal icons in the completion popup"
 msgstr "সম্পূর্ণকরণ পপআপে সরবরাহকারী ও প্রস্তাবনা আইকন প্রদর্শন"
 
 # Translated by sadia
-#: ../gtksourceview/gtksourcecompletion.c:2301
+#: ../gtksourceview/gtksourcecompletion.c:2303
 msgid "Accelerators"
 msgstr "এক্সিলারেটর"
 
 # Translated by sadia
-#: ../gtksourceview/gtksourcecompletion.c:2302
+#: ../gtksourceview/gtksourcecompletion.c:2304
 msgid "Number of proposal accelerators to show"
 msgstr "প্রস্তাবনার সংখ্যা যা এক্সিলারেটর-এ প্রদর্শন করা হবে"
 
 # Translated by sadia
-#: ../gtksourceview/gtksourcecompletion.c:2318
+#: ../gtksourceview/gtksourcecompletion.c:2320
 msgid "Auto Complete Delay"
 msgstr "স্বয়ংক্রিয়ভাবে সম্পন্ন হবার বিলম্ব"
 
 # Translated by sadia
-#: ../gtksourceview/gtksourcecompletion.c:2319
+#: ../gtksourceview/gtksourcecompletion.c:2321
 msgid "Completion popup delay for interactive completion"
 msgstr "পারস্পরিক সম্পূর্ণকরণের জন্য সম্পূর্ণকরণের পপআপ বিলম্ব"
 
 # Translated by sadia
-#: ../gtksourceview/gtksourcecompletion.c:2334
+#: ../gtksourceview/gtksourcecompletion.c:2336
 msgid "Provider Page Size"
 msgstr "সরবরাহকারী পৃষ্ঠার আকার"
 
 # Translated by sadia
-#: ../gtksourceview/gtksourcecompletion.c:2335
+#: ../gtksourceview/gtksourcecompletion.c:2337
 msgid "Provider scrolling page size"
 msgstr "সরবরাহকারী স্ক্রলিং পৃষ্ঠার আকার"
 
 # Translated by sadia
-#: ../gtksourceview/gtksourcecompletion.c:2350
+#: ../gtksourceview/gtksourcecompletion.c:2352
 msgid "Proposal Page Size"
 msgstr "প্রস্তাবনার পৃষ্ঠার আকার"
 
 # Translated by sadia
-#: ../gtksourceview/gtksourcecompletion.c:2351
+#: ../gtksourceview/gtksourcecompletion.c:2353
 msgid "Proposal scrolling page size"
 msgstr "প্রস্তাবনার স্ক্রলিং পৃষ্ঠার আকার"
 
 # Translated by sadia
-#: ../gtksourceview/gtksourcecompletion.c:2688
+#: ../gtksourceview/gtksourcecompletion.c:2691
 msgid "Provider"
 msgstr "সরবরাহকারী"
 
@@ -785,7 +796,7 @@ msgstr "শৈলী স্কিমের id"
 #: ../gtksourceview/gtksourcestylescheme.c:199
 #: ../gtksourceview/gtksourcestylescheme.c:200
 msgid "Style scheme name"
-msgstr "শৈলী স্কিমের nam"
+msgstr "শৈলী স্কিমের নাম"
 
 #: ../gtksourceview/gtksourcestylescheme.c:212
 #: ../gtksourceview/gtksourcestylescheme.c:213
@@ -812,6 +823,15 @@ msgstr "স্কিমের id"
 #: ../gtksourceview/gtksourcestyleschememanager.c:161
 msgid "List of the ids of the available style schemes"
 msgstr "উপলব্ধ বিন্যাসের স্কিমের id-এর তালিকা"
+
+#: ../gtksourceview/gtksourceundomanagerdefault.c:390
+#| msgid "Source Buffer"
+msgid "Buffer"
+msgstr "বাফার"
+
+#: ../gtksourceview/gtksourceundomanagerdefault.c:391
+msgid "The text buffer to add undo support on"
+msgstr "যেখানপ পূর্বাবস্থা সমর্থনে টেক্সট বাফার যোগ করা হবে"
 
 # Translated by sadia
 #: ../gtksourceview/gtksourceview.c:325
@@ -913,10 +933,13 @@ msgstr "ফাঁকা স্থান আঁকা হবে কি না ও
 #: ../gtksourceview/gtksourceview-i18n.c:74
 msgid "translator-credits"
 msgstr ""
-"সায়ামিন্দু দাশগুপ্ত <unmadindu@bengalinux.org>, ২০০৩\n"
-"মাহায় আলম খান <makl10n@yahoo.com>, ২০০৫\n"
-"সামিয়া নিয়ামাতুল্লা <mailsamia2001@yahoo.com>, ২০০৫\n"
-"রুণা ভট্টাচার্য্য <runabh@gmail.com>, ২০০৭-২০০৯"
+"সায়ামিন্দু দাশগুপ্ত <unmadindu@bengalinux.org>\n"
+"মাহে আলম খান <makl10n@yahoo.com>\n"
+"সামিয়া নিয়ামাতুল্লা <mailsamia2001@yahoo.com>\n"
+"রুণা ভট্টাচার্য্য <runabh@gmail.com>\n"
+"মারুফ অভি <maruf@ankur.org.bd>\n"
+"সাদিয়া আফরোজ <sadia@ankur.org.bd>\n"
+"ইসরাত জাহান <israt@ankur.org.bd>"
 
 #: ../gtksourceview/language-specs/ada.lang.h:1
 msgid "Ada"
@@ -941,6 +964,7 @@ msgstr "যথেচ্ছ বেস সংখ্যা"
 #: ../gtksourceview/language-specs/lua.lang.h:1
 #: ../gtksourceview/language-specs/nemerle.lang.h:2
 #: ../gtksourceview/language-specs/ocaml.lang.h:2
+#: ../gtksourceview/language-specs/ooc.lang.h:1
 #: ../gtksourceview/language-specs/php.lang.h:1
 #: ../gtksourceview/language-specs/R.lang.h:2
 #: ../gtksourceview/language-specs/ruby.lang.h:3
@@ -983,6 +1007,7 @@ msgstr "বুলিয়ান মান"
 #: ../gtksourceview/language-specs/ocaml.lang.h:4
 #: ../gtksourceview/language-specs/ocl.lang.h:1
 #: ../gtksourceview/language-specs/octave.lang.h:3
+#: ../gtksourceview/language-specs/ooc.lang.h:2
 #: ../gtksourceview/language-specs/pascal.lang.h:1
 #: ../gtksourceview/language-specs/perl.lang.h:2
 #: ../gtksourceview/language-specs/php.lang.h:2
@@ -1027,6 +1052,7 @@ msgstr "মন্তব্য"
 #: ../gtksourceview/language-specs/objc.lang.h:2
 #: ../gtksourceview/language-specs/ocaml.lang.h:5
 #: ../gtksourceview/language-specs/ocl.lang.h:2
+#: ../gtksourceview/language-specs/ooc.lang.h:3
 #: ../gtksourceview/language-specs/pascal.lang.h:2
 #: ../gtksourceview/language-specs/php.lang.h:3
 #: ../gtksourceview/language-specs/sparql.lang.h:3
@@ -1048,6 +1074,7 @@ msgstr "ডাটা টাইপ"
 #: ../gtksourceview/language-specs/fsharp.lang.h:6
 #: ../gtksourceview/language-specs/nemerle.lang.h:6
 #: ../gtksourceview/language-specs/ocaml.lang.h:6
+#: ../gtksourceview/language-specs/ooc.lang.h:4
 #: ../gtksourceview/language-specs/php.lang.h:4
 #: ../gtksourceview/language-specs/python.lang.h:7
 #: ../gtksourceview/language-specs/ruby.lang.h:7
@@ -1066,6 +1093,7 @@ msgstr "দশমিক সংখ্যা"
 #: ../gtksourceview/language-specs/java.lang.h:7
 #: ../gtksourceview/language-specs/lua.lang.h:3
 #: ../gtksourceview/language-specs/ocaml.lang.h:8
+#: ../gtksourceview/language-specs/ooc.lang.h:7
 #: ../gtksourceview/language-specs/php.lang.h:7
 #: ../gtksourceview/language-specs/prolog.lang.h:3
 #: ../gtksourceview/language-specs/python.lang.h:8
@@ -1109,6 +1137,7 @@ msgstr "এস্কেপ অক্ষর"
 #: ../gtksourceview/language-specs/ocaml.lang.h:10
 #: ../gtksourceview/language-specs/ocl.lang.h:3
 #: ../gtksourceview/language-specs/octave.lang.h:7
+#: ../gtksourceview/language-specs/ooc.lang.h:12
 #: ../gtksourceview/language-specs/pascal.lang.h:4
 #: ../gtksourceview/language-specs/perl.lang.h:9
 #: ../gtksourceview/language-specs/php.lang.h:13
@@ -1177,6 +1206,7 @@ msgstr "বাস্তব সংখ্যা"
 #: ../gtksourceview/language-specs/nemerle.lang.h:15
 #: ../gtksourceview/language-specs/objc.lang.h:5
 #: ../gtksourceview/language-specs/ocaml.lang.h:16
+#: ../gtksourceview/language-specs/ooc.lang.h:17
 #: ../gtksourceview/language-specs/pascal.lang.h:7
 #: ../gtksourceview/language-specs/prolog.lang.h:8
 #: ../gtksourceview/language-specs/scheme.lang.h:6
@@ -1193,6 +1223,7 @@ msgstr "সোর্স"
 #: ../gtksourceview/language-specs/c.lang.h:17
 #: ../gtksourceview/language-specs/cg.lang.h:18
 #: ../gtksourceview/language-specs/java.lang.h:16
+#: ../gtksourceview/language-specs/ooc.lang.h:18
 msgid "Storage Class"
 msgstr "স্টোরেজ ক্লাস"
 
@@ -1223,6 +1254,7 @@ msgstr "স্টোরেজ ক্লাস"
 #: ../gtksourceview/language-specs/ocaml.lang.h:18
 #: ../gtksourceview/language-specs/ocl.lang.h:7
 #: ../gtksourceview/language-specs/octave.lang.h:11
+#: ../gtksourceview/language-specs/ooc.lang.h:19
 #: ../gtksourceview/language-specs/pascal.lang.h:8
 #: ../gtksourceview/language-specs/perl.lang.h:19
 #: ../gtksourceview/language-specs/php.lang.h:19
@@ -1399,6 +1431,7 @@ msgstr "নেম-স্পেস"
 #: ../gtksourceview/language-specs/java.lang.h:12
 #: ../gtksourceview/language-specs/javascript.lang.h:11
 #: ../gtksourceview/language-specs/nemerle.lang.h:12
+#: ../gtksourceview/language-specs/ooc.lang.h:13
 #: ../gtksourceview/language-specs/php.lang.h:14
 #: ../gtksourceview/language-specs/vala.lang.h:8
 msgid "Null Value"
@@ -1481,6 +1514,7 @@ msgstr "সাধারন সংজ্ঞার্থ নির্ণয়"
 #: ../gtksourceview/language-specs/javascript.lang.h:6
 #: ../gtksourceview/language-specs/nemerle.lang.h:7
 #: ../gtksourceview/language-specs/ocaml.lang.h:7
+#: ../gtksourceview/language-specs/ooc.lang.h:6
 #: ../gtksourceview/language-specs/perl.lang.h:4
 #: ../gtksourceview/language-specs/php.lang.h:5
 #: ../gtksourceview/language-specs/prolog.lang.h:2
@@ -1497,6 +1531,7 @@ msgstr "ত্রুটি"
 #: ../gtksourceview/language-specs/d.lang.h:8
 #: ../gtksourceview/language-specs/erlang.lang.h:8
 #: ../gtksourceview/language-specs/nemerle.lang.h:8
+#: ../gtksourceview/language-specs/ooc.lang.h:9
 #: ../gtksourceview/language-specs/php.lang.h:8
 #: ../gtksourceview/language-specs/python.lang.h:9
 #: ../gtksourceview/language-specs/R.lang.h:4
@@ -1510,6 +1545,7 @@ msgstr "ফ্লোটিং পয়েন্ট সংখ্যা"
 #: ../gtksourceview/language-specs/d.lang.h:9
 #: ../gtksourceview/language-specs/eiffel.lang.h:11
 #: ../gtksourceview/language-specs/nemerle.lang.h:9
+#: ../gtksourceview/language-specs/ooc.lang.h:11
 #: ../gtksourceview/language-specs/php.lang.h:11
 #: ../gtksourceview/language-specs/vala.lang.h:6
 msgid "Hexadecimal number"
@@ -1524,6 +1560,7 @@ msgstr "Included ফাইল"
 #: ../gtksourceview/language-specs/cg.lang.h:15
 #: ../gtksourceview/language-specs/d.lang.h:12
 #: ../gtksourceview/language-specs/nemerle.lang.h:13
+#: ../gtksourceview/language-specs/ooc.lang.h:15
 #: ../gtksourceview/language-specs/php.lang.h:15
 msgid "Octal number"
 msgstr "অক্ট্যাল সংখ্যা"
@@ -1835,7 +1872,7 @@ msgstr "বিশেষ টোকেন"
 
 #: ../gtksourceview/language-specs/docbook.lang.h:1
 msgid "Docbook"
-msgstr "Docbook"
+msgstr "ডকবুক"
 
 #: ../gtksourceview/language-specs/docbook.lang.h:2
 msgid "Formatting Elements"
@@ -1847,7 +1884,7 @@ msgstr "GUI উপাদান"
 
 #: ../gtksourceview/language-specs/docbook.lang.h:4
 msgid "Header Elements"
-msgstr "Header উপাদান"
+msgstr "শীর্ষচরণ উপাদান"
 
 #: ../gtksourceview/language-specs/docbook.lang.h:6
 msgid "Structural Elements"
@@ -1860,7 +1897,7 @@ msgstr "কমান্ড"
 
 #: ../gtksourceview/language-specs/dosbatch.lang.h:3
 msgid "Dos Batch"
-msgstr "Dos Batch"
+msgstr "ডস ব্যাচ"
 
 #: ../gtksourceview/language-specs/dot.lang.h:1
 #: ../gtksourceview/language-specs/xml.lang.h:1
@@ -2242,15 +2279,18 @@ msgid ".ini"
 msgstr ".ini"
 
 #: ../gtksourceview/language-specs/java.lang.h:5
+#: ../gtksourceview/language-specs/ooc.lang.h:5
 msgid "Declaration"
 msgstr "ডিক্লারেশন"
 
 #: ../gtksourceview/language-specs/java.lang.h:8
+#: ../gtksourceview/language-specs/ooc.lang.h:8
 msgid "External"
 msgstr "বহিঃস্থ"
 
 #: ../gtksourceview/language-specs/java.lang.h:9
 #: ../gtksourceview/language-specs/javascript.lang.h:8
+#: ../gtksourceview/language-specs/ooc.lang.h:10
 msgid "Future Reserved Keywords"
 msgstr "ভবিষ্যতে সংরক্ষিত শব্দ"
 
@@ -2259,6 +2299,7 @@ msgid "Java"
 msgstr "জাভা"
 
 #: ../gtksourceview/language-specs/java.lang.h:14
+#: ../gtksourceview/language-specs/ooc.lang.h:16
 msgid "Scope Declaration"
 msgstr "স্কোপ ডিক্লারেশন"
 
@@ -2386,7 +2427,7 @@ msgstr "ফাংশন"
 #: ../gtksourceview/language-specs/makefile.lang.h:11
 #: ../gtksourceview/language-specs/yacc.lang.h:4
 msgid "keyword"
-msgstr "কি-ওয়ার্ড"
+msgstr "মূল শব্দ"
 
 #: ../gtksourceview/language-specs/makefile.lang.h:12
 msgid "prereq"
@@ -2468,6 +2509,11 @@ msgstr "টাইপ অপারেটর"
 #: ../gtksourceview/language-specs/octave.lang.h:8
 msgid "Octave"
 msgstr "Octave"
+
+#: ../gtksourceview/language-specs/ooc.lang.h:14
+#| msgid "OCL"
+msgid "OOC"
+msgstr "OOC"
 
 #: ../gtksourceview/language-specs/pascal.lang.h:5
 msgid "Pascal"
@@ -2573,7 +2619,7 @@ msgstr "পাইথন"
 
 #: ../gtksourceview/language-specs/python.lang.h:18
 msgid "string-conversion"
-msgstr "string-conversion"
+msgstr "স্ট্রিং-রূপান্তর"
 
 #: ../gtksourceview/language-specs/R.lang.h:1
 msgid "Assignment Operator"
@@ -2617,7 +2663,7 @@ msgstr "ডিরেক্টরি ম্যাক্রো"
 
 #: ../gtksourceview/language-specs/rpmspec.lang.h:6
 msgid "Email"
-msgstr "ই-মেইল"
+msgstr "ইমেইল"
 
 #: ../gtksourceview/language-specs/rpmspec.lang.h:7
 msgid "Flow Conditional"
@@ -2667,7 +2713,7 @@ msgstr "নিউমেরিক লিটারেল"
 
 #: ../gtksourceview/language-specs/ruby.lang.h:18
 msgid "Ruby"
-msgstr "Ruby"
+msgstr "রুবি"
 
 #: ../gtksourceview/language-specs/scheme.lang.h:5
 msgid "Scheme"
@@ -2679,7 +2725,7 @@ msgstr "সাধারণ কমান্ড"
 
 #: ../gtksourceview/language-specs/sh.lang.h:10
 msgid "Subshell"
-msgstr "Subshell"
+msgstr "সাবশেল"
 
 #. FIXME: need to sort out proper styles for variables
 #: ../gtksourceview/language-specs/sh.lang.h:13
@@ -2720,7 +2766,7 @@ msgstr "SPARQL"
 
 #: ../gtksourceview/language-specs/sql.lang.h:7
 msgid "No idea what it is"
-msgstr "No idea what it is"
+msgstr "এটি সম্পর্কে কোনো ধারণা নেই"
 
 #: ../gtksourceview/language-specs/sql.lang.h:8
 msgid "SQL"
