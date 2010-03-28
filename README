@@ -1,7 +1,7 @@
 General Information
 ===================
 
-This is version 2.9.9 of GtkSourceView.
+This is version 2.10.0 of GtkSourceView.
 
 GtkSourceView is a text widget that extends the standard gtk+ 2.x
 text widget GtkTextView.
@@ -32,8 +32,8 @@ GtkSourceView requires glib-2.14.x, GTK+-2.12.x and libxml2 2.5.x.
 
 Simple install procedure:
 
-  % gzip -cd gtksourceview-2.9.9.tar.gz | tar xvf -    # unpack the sources
-  % cd gtksourceview-2.9.9		   # change to the toplevel directory
+  % gzip -cd gtksourceview-2.10.0.tar.gz | tar xvf -    # unpack the sources
+  % cd gtksourceview-2.10.0		   # change to the toplevel directory
   % ./configure				   # run the `configure' script
   % make				   # build gtksourceview
   [ Become root if necessary ]
@@ -46,7 +46,7 @@ How to report bugs
 ==================
 
 Bugs should be reported to the GNOME bug tracking system.
-(http://bugzilla.gnome.org, product gtksourceview). 
+(http://bugzilla.gnome.org, product gtksourceview).
 You will need to create an account for yourself.
 
 You can also report bugs using the GNOME program bug-buddy.
