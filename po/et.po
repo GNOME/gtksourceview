@@ -8,15 +8,15 @@
 # Tõivo Leedjärv <toivo linux ee>, 2003.
 # Priit Laes <amd store20 com>, 2005.
 # Ivar Smolin <okul linux ee>, 2005-2009.
+# Rene Pärts <rene87 hot ee>, 2010.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview MASTER\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=gtksourceview&component=general\n"
-"POT-Creation-Date: 2009-11-30 23:11+0000\n"
-"PO-Revision-Date: 2010-02-01 12:23+0300\n"
-"Last-Translator: Mattias Põldaru <mahfiaz gmail com>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gtksourceview&component=general\n"
+"POT-Creation-Date: 2010-03-25 02:57+0000\n"
+"PO-Revision-Date: 2010-03-28 21:33+0300\n"
+"Last-Translator: Rene Pärts <rene87@hot.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -30,13 +30,13 @@ msgid "Name"
 msgstr "Nimi"
 
 msgid "The provider name"
-msgstr ""
+msgstr "Teenusepakkuja nimi"
 
 msgid "Icon"
 msgstr "Ikoon"
 
 msgid "The provider icon"
-msgstr ""
+msgstr "Teenusepakkuja ikoon"
 
 msgid "Proposals Batch Size"
 msgstr ""
@@ -55,6 +55,18 @@ msgstr "Väikseim sõna suurus"
 
 msgid "The minimum word size to complete"
 msgstr ""
+
+msgid "Interactive Delay"
+msgstr ""
+
+msgid "The delay before initiating interactive completion"
+msgstr ""
+
+msgid "Priority"
+msgstr "Tähtsus"
+
+msgid "Provider priority"
+msgstr "Teenusepakkuja tähtsus"
 
 msgid "Highlight Syntax"
 msgstr "Süntaksi esiletõstmine"
@@ -97,6 +109,12 @@ msgstr "Kas unustatud tegevuse taastamine on võimalik või mitte"
 msgid "Style scheme"
 msgstr "Laadi skeem"
 
+msgid "Undo manager"
+msgstr ""
+
+msgid "The buffer undo manager"
+msgstr ""
+
 #. Translators: "All" is used as a label in thestatus bar of the
 #. popup, telling that all completion pages are shown
 msgid "All"
@@ -106,7 +124,7 @@ msgid "No extra information available"
 msgstr ""
 
 msgid "View"
-msgstr ""
+msgstr "Vaade"
 
 msgid "The GtkSourceView bound to the completion"
 msgstr ""
@@ -126,12 +144,17 @@ msgstr ""
 msgid "Show Headers"
 msgstr "Päiste näitamine"
 
-msgid ""
-"Show provider headers when proposals from multiple providers are available"
+msgid "Show provider headers when proposals from multiple providers are available"
+msgstr ""
+
+msgid "Show Icons"
+msgstr "Ikoonide näitamine"
+
+msgid "Show provider and proposal icons in the completion popup"
 msgstr ""
 
 msgid "Accelerators"
-msgstr ""
+msgstr "Kiirklahvid"
 
 msgid "Number of proposal accelerators to show"
 msgstr ""
@@ -155,15 +178,12 @@ msgid "Proposal scrolling page size"
 msgstr ""
 
 msgid "Provider"
-msgstr ""
+msgstr "Teenusepakkuja"
 
 msgid "Completion"
 msgstr ""
 
 msgid "The completion object to which the context belongs"
-msgstr ""
-
-msgid "The GtkSourceView"
 msgstr ""
 
 #. Translators: The GtkTextIter at which the completion was invoked
@@ -177,62 +197,62 @@ msgid "Activation"
 msgstr "Aktiveerimine"
 
 msgid "The type of activation"
-msgstr ""
+msgstr "Aktiveerimise liik"
 
 #. Tooltip style
 msgid "Completion Info"
 msgstr ""
 
 msgid "Maximum width"
-msgstr ""
+msgstr "Suurim laius"
 
 msgid "The maximum allowed width"
-msgstr ""
+msgstr "Suurim lubatud laius"
 
 msgid "Maximum height"
-msgstr ""
+msgstr "Suurim kõrgus"
 
 msgid "The maximum allowed height"
-msgstr ""
+msgstr "Suurim lubatud kõrgus"
 
 msgid "Shrink width"
-msgstr ""
+msgstr "Laiuse vähendamine"
 
 msgid "Whether the window should shrink width to fit the contents"
-msgstr ""
+msgstr "Kas akna laiust vähendatakse sisuga ühtivaks või mitte"
 
 msgid "Shrink height"
-msgstr ""
+msgstr "Kõrguse vähendamine"
 
 msgid "Whether the window should shrink height to fit the contents"
-msgstr ""
+msgstr "Kas akna kõrgust vähendatakse sisuga ühtivaks või mitte"
 
 msgid "Label"
-msgstr ""
+msgstr "Silt"
 
 msgid "Label to be shown for this item"
-msgstr ""
+msgstr "Sellel kirjel näidatav silt"
 
 msgid "Markup"
-msgstr ""
+msgstr "Märgistus"
 
 msgid "Markup to be shown for this item"
-msgstr ""
+msgstr "Sellel kirjel näidatav märgistus"
 
 msgid "Text"
 msgstr "Tekst"
 
 msgid "Item text"
-msgstr ""
+msgstr "Kirje tekst"
 
 msgid "Icon to be shown for this item"
-msgstr ""
+msgstr "Sellel kirjel näidatav ikoon"
 
 msgid "Info"
-msgstr ""
+msgstr "Teave"
 
 msgid "Info to be shown for this item"
-msgstr ""
+msgstr "Selle kirje kohta näidatav teave"
 
 msgid "using \\C is not supported in language definitions"
 msgstr "\\C kasutamine keelekirjeldustes pole toetatud"
@@ -243,20 +263,14 @@ msgstr "\\C kasutamine keelekirjeldustes pole toetatud"
 #. * subpatterns, making huge keywords use bigger prefixes, etc.)
 #, c-format
 msgid ""
-"Cannot create a regex for all the transitions, the syntax highlighting "
-"process will be slower than usual.\n"
+"Cannot create a regex for all the transitions, the syntax highlighting process will be slower than usual.\n"
 "The error was: %s"
 msgstr ""
-"Kõigi üleminekute kohta pole võimalik regulaaravaldist luua, seetõttu on "
-"süntaksti esiletõstmine tavalisest aeglasem.\n"
+"Kõigi üleminekute kohta pole võimalik regulaaravaldist luua, seetõttu on süntaksti esiletõstmine tavalisest aeglasem.\n"
 "Vea kirjeldus: %s"
 
-msgid ""
-"Highlighting a single line took too much time, syntax highlighting will be "
-"disabled"
-msgstr ""
-"Ühe rea esiletõstmine võttis liiga kaua aega, seetõttu keelati süntaksi "
-"esiletõstmine"
+msgid "Highlighting a single line took too much time, syntax highlighting will be disabled"
+msgstr "Ühe rea esiletõstmine võttis liiga kaua aega, seetõttu keelati süntaksi esiletõstmine"
 
 #, c-format
 msgid "context '%s' cannot contain a \\%%{...@start} command"
@@ -267,9 +281,7 @@ msgid "duplicated context id '%s'"
 msgstr "dubleeritud konteksti id '%s'"
 
 #, c-format
-msgid ""
-"style override used with wildcard context reference in language '%s' in ref "
-"'%s'"
+msgid "style override used with wildcard context reference in language '%s' in ref '%s'"
 msgstr ""
 
 #, c-format
@@ -293,6 +305,17 @@ msgstr "Akna liik"
 msgid "The gutters text window type"
 msgstr "Gutteri tekstiakna liik"
 
+#. *
+#. * SECTION:language
+#. * @Short_description: Object representing a syntax highlighted language
+#. * @Title: GtkSourceLanguage
+#. * @See_also: #GtkSourceLanguageManager
+#. *
+#. * #GtkSourceLanguage encapsulates syntax and highlighting styles for a
+#. * particular language. Use #GtkSourceLanguageManager to obtain a
+#. * #GtkSourceLanguage instance, and gtk_source_buffer_set_language() to apply it
+#. * to a #GtkSourceBuffer.
+#.
 msgid "Others"
 msgstr "Muud"
 
@@ -314,9 +337,7 @@ msgstr "Kas keel peab kasutaja eest olema peidetud või mitte"
 msgid "Language specification directories"
 msgstr "Keelekirjelduste kataloogid"
 
-msgid ""
-"List of directories where the language specification files (.lang) are "
-"located"
+msgid "List of directories where the language specification files (.lang) are located"
 msgstr "Kataloogide loend, kus keelekirjelduste failid (.lang) asuvad"
 
 msgid "Language ids"
@@ -354,8 +375,7 @@ msgstr "Tabulaatori laius tühikutes"
 msgid "Wrap Mode"
 msgstr "Murdmisrežiim"
 
-msgid ""
-"Whether to wrap lines never, at word boundaries, or at character boundaries."
+msgid "Whether to wrap lines never, at word boundaries, or at character boundaries."
 msgstr "Kas ridu ei murta või siis murtakse sõnade või hoopis märkide vahelt."
 
 msgid "Whether to print the document with highlighted syntax"
@@ -401,18 +421,13 @@ msgid "Footer Font Name"
 msgstr "Jaluse kirjatüübi nimi"
 
 msgid "Name of the font to use for the page footer (e.g. \"Monospace 10\")"
-msgstr ""
-"Lehekülje jaluses kasutatava kirjatüübi nimi (näiteks \"Monospace 10\")"
+msgstr "Lehekülje jaluses kasutatava kirjatüübi nimi (näiteks \"Monospace 10\")"
 
 msgid "Number of pages"
 msgstr "Lehekülgede arv"
 
-msgid ""
-"The number of pages in the document (-1 means the document has not been "
-"completely paginated)."
-msgstr ""
-"Dokumendis olevate lehekülgede arv (-1 tähendab, et dokumendi jaotamine "
-"lehekülgedeks pole veel lõppenud)."
+msgid "The number of pages in the document (-1 means the document has not been completely paginated)."
+msgstr "Dokumendis olevate lehekülgede arv (-1 tähendab, et dokumendi jaotamine lehekülgedeks pole veel lõppenud)."
 
 msgid "Line background"
 msgstr "Rea taust"
@@ -510,6 +525,13 @@ msgstr "Skeemi ID-d"
 msgid "List of the ids of the available style schemes"
 msgstr "Saadaolevate laadiskeemide ID-de nimekiri"
 
+#| msgid "Source Buffer"
+msgid "Buffer"
+msgstr "Puhver"
+
+msgid "The text buffer to add undo support on"
+msgstr ""
+
 msgid "The completion object associated with the view"
 msgstr ""
 
@@ -558,12 +580,8 @@ msgstr "Paremveerise asukoht"
 msgid "Smart Home/End"
 msgstr "Targad Home/End klahvid"
 
-msgid ""
-"HOME and END keys move to first/last non whitespace characters on line "
-"before going to the start/end of the line"
-msgstr ""
-"HOME ja END klahvid liiguvad enne rea algusesse/lõppu minekut rea esimesele/"
-"viimasele tühemikule"
+msgid "HOME and END keys move to first/last non whitespace characters on line before going to the start/end of the line"
+msgstr "HOME ja END klahvid liiguvad enne rea algusesse/lõppu minekut rea esimesele/viimasele tühemikule"
 
 msgid "Highlight current line"
 msgstr "Käesoleva rea esiletõstmine"
@@ -675,6 +693,17 @@ msgstr "Muutuja"
 msgid "awk"
 msgstr "awk"
 
+msgid "BibTeX"
+msgstr "BibTeX"
+
+#| msgid "Entity"
+msgid "Entries"
+msgstr ""
+
+#| msgid "File"
+msgid "Field"
+msgstr "Väli"
+
 msgid "Boo"
 msgstr "Boo"
 
@@ -750,6 +779,20 @@ msgstr "Kaheksandarv"
 msgid "printf Conversion"
 msgstr "printf teisendus"
 
+#| msgid "Encoding"
+msgid "Bindings"
+msgstr "Seosed"
+
+msgid "Builtin"
+msgstr "Sisseehitatud"
+
+#| msgid "Language"
+msgid "CG Shader Language"
+msgstr ""
+
+msgid "Swizzle operator"
+msgstr ""
+
 msgid "Classic"
 msgstr "Klassikaline"
 
@@ -776,7 +819,7 @@ msgid "Blue based color scheme"
 msgstr "Sinisel põhinev värviskeem"
 
 msgid "Cobalt"
-msgstr ""
+msgstr "Cobalt"
 
 msgid "C++"
 msgstr "C++"
@@ -803,16 +846,16 @@ msgid "Known Property Value"
 msgstr ""
 
 msgid "Others 2"
-msgstr "Muud 2"
+msgstr "Teised 2"
 
 msgid "Others 3"
-msgstr "Muud 3"
+msgstr "Teised 3"
 
 msgid "at-rules"
 msgstr "@-reeglid"
 
 msgid "CUDA"
-msgstr ""
+msgstr "CUDA"
 
 msgid "Device Functions"
 msgstr "Seadmefunktsioonid"
@@ -927,7 +970,7 @@ msgstr "Diff"
 
 #. Keyword
 msgid "Ignore"
-msgstr ""
+msgstr "Eira"
 
 #. String
 msgid "Location"
@@ -1028,9 +1071,6 @@ msgstr ""
 msgid "Base-N Integer"
 msgstr ""
 
-msgid "Builtin"
-msgstr "Sisseehitatud"
-
 msgid "Compiler Directive"
 msgstr "Kompilaatori direktiiv"
 
@@ -1110,7 +1150,7 @@ msgid "Reserved Keywords"
 msgstr "Reserveeritud võtmesõnad"
 
 msgid "Deprecated"
-msgstr ""
+msgstr "Iganenud"
 
 msgid "Function Name"
 msgstr "Funktsiooni nimi"
@@ -1131,7 +1171,7 @@ msgid "Signal Name"
 msgstr "Signaali nimi"
 
 msgid "Since"
-msgstr ""
+msgstr "Alates"
 
 msgid "Type"
 msgstr "Tüübid"
@@ -1158,7 +1198,7 @@ msgid "Definition list"
 msgstr "Definitsoonide nimekiri"
 
 msgid "Emphasis"
-msgstr ""
+msgstr "Emfaas"
 
 msgid "Enumerated list"
 msgstr "Nummerdatud loetelu"
@@ -1206,7 +1246,7 @@ msgid "Octal"
 msgstr "Kaheksandarv"
 
 msgid "Symbol"
-msgstr ""
+msgstr "Sümbol"
 
 msgid "Literate Haskell"
 msgstr ""
@@ -1394,6 +1434,10 @@ msgstr ""
 msgid "Octave"
 msgstr "Octave"
 
+#| msgid "OCL"
+msgid "OOC"
+msgstr ""
+
 msgid "Pascal"
 msgstr "Pascal"
 
@@ -1443,11 +1487,11 @@ msgid "pkg-config"
 msgstr "pkg-config"
 
 msgid "Fuzzy"
-msgstr ""
+msgstr "Hägune"
 
 #. FIXME make it some nice name and mark it translatable
 msgid "Special"
-msgstr ""
+msgstr "Spetsiaalne"
 
 msgid "gettext translation"
 msgstr "gettext tõlge"
@@ -1583,10 +1627,10 @@ msgid "SQL"
 msgstr "SQL"
 
 msgid "Option"
-msgstr ""
+msgstr "Valik"
 
 msgid "Option Name"
-msgstr ""
+msgstr "Valiku nimi"
 
 msgid "Section 1"
 msgstr "Sektsioon 1"
@@ -1655,7 +1699,7 @@ msgid "DOCTYPE"
 msgstr "DOCTYPE"
 
 msgid "Element name"
-msgstr ""
+msgstr "Elemendi nimi"
 
 msgid "Entity"
 msgstr "Olem"
@@ -1667,7 +1711,7 @@ msgid "XML"
 msgstr "XML"
 
 msgid "Element"
-msgstr ""
+msgstr "Element"
 
 msgid "XSLT"
 msgstr "XSLT"
