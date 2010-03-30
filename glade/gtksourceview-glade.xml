@@ -21,6 +21,18 @@
           </displayable-values>
         </property>
         <property id="tab-width" common="False" default="4" />
+        <property id="draw-spaces">
+          <displayable-values>
+            <value id="GTK_SOURCE_DRAW_SPACES_SPACE" name="Space" />
+            <value id="GTK_SOURCE_DRAW_SPACES_TAB" name="Tab" />
+            <value id="GTK_SOURCE_DRAW_SPACES_NEWLINE" name="Newline" />
+            <value id="GTK_SOURCE_DRAW_SPACES_NBSP" name="Non Breaking Whitespace" />
+            <value id="GTK_SOURCE_DRAW_SPACES_LEADING" name="Leading" />
+            <value id="GTK_SOURCE_DRAW_SPACES_TEXT" name="Text" />
+            <value id="GTK_SOURCE_DRAW_SPACES_TRAILING" name="Trailing" />
+            <value id="GTK_SOURCE_DRAW_SPACES_ALL" name="All" />
+          </displayable-values>
+        </property>
       </properties>
     </glade-widget-class>
   </glade-widget-classes>
