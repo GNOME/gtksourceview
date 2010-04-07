@@ -605,7 +605,11 @@ remove_and_rescan (GtkSourceCompletionWordsBuffer *buffer,
 		else if (gtk_text_iter_compare (&startc, &region_end) < 0)
 		{
 			startc = region_end;
-			gtk_text_iter_forward_line (&startc);
+
+			if (!gtk_text_iter_forward_line (&startc))
+			{
+				return;
+			}
 		}
 
 		if (gtk_text_iter_compare (&startc, &endc) > 0)
