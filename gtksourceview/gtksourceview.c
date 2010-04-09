@@ -1219,7 +1219,9 @@ extend_selection_to_line (GtkTextBuffer *buf, GtkTextIter *line_start)
 	gtk_text_buffer_get_selection_bounds (buf, &start, &end);
 
 	line_end = *line_start;
-	gtk_text_iter_forward_to_line_end (&line_end);
+
+	if (!gtk_text_iter_ends_line (&line_end))
+		gtk_text_iter_forward_to_line_end (&line_end);
 
 	if (gtk_text_iter_compare (&start, line_start) < 0)
 	{
