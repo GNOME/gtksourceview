@@ -1190,7 +1190,18 @@ on_view_button_press_event (GtkSourceView    *view,
 		g_free (path);
 		do_redraw (gutter);
 
-		return ret;
+		/* WARNING, DANGER, DANGER:
+		 * FIXME: this is really just a hack because we lack a return
+		 * value in the CELL_ACTIVATED signal, so handlers of cell
+		 * activating have no way to consume the button event. A left
+		 * click in the gutter will by default remove the selection
+		 * in the textview, which is bad because we implement some
+		 * selection stuff in gtksourceview when clicking on the line
+		 * renderer. Anyway, for 3.0 we should change the
+		 * cell-activated signal to allow a return value and remove
+		 * this hack
+		 */
+		return ret || event->button == 1;
 	}
 
 	return FALSE;
