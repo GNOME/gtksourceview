@@ -854,10 +854,8 @@ gtk_source_view_get_property (GObject    *object,
 static void
 notify_buffer (GtkSourceView *view)
 {
-	/* we use view->buffer directly instead of get_buffer()
-	 * since the latter causes the buffer to be recreated and that
-	 * is not a good idea when finalizing */
-	set_source_buffer (view, GTK_TEXT_VIEW (view)->buffer);
+	set_source_buffer (view,
+		gtk_text_view_get_buffer (GTK_TEXT_VIEW (view)));
 }
 
 static gint
@@ -1639,6 +1637,9 @@ gtk_source_view_finalize (GObject *object)
 	if (view->priv->right_gutter)
 		g_object_unref (view->priv->right_gutter);
 
+	/* notify_buffer() would recreate the buffer if it is set to null,
+	 * and we don't want that to happen when finalizing */
+	g_signal_handlers_disconnect_by_func (view, notify_buffer, NULL);
 	set_source_buffer (view, NULL);
 
 	G_OBJECT_CLASS (gtk_source_view_parent_class)->finalize (object);
