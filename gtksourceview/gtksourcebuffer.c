@@ -125,6 +125,8 @@ struct _GtkSourceBufferPrivate
 
 	GtkSourceUndoManager  *undo_manager;
 	gint                   max_undo_levels;
+
+	gint                   allow_bracket_match:1;
 };
 
 G_DEFINE_TYPE (GtkSourceBuffer, gtk_source_buffer, GTK_TYPE_TEXT_BUFFER)
@@ -164,6 +166,12 @@ static void 	 gtk_source_buffer_real_delete_range 	(GtkTextBuffer           *buf
 static void 	 gtk_source_buffer_real_mark_set	(GtkTextBuffer		 *buffer,
 							 const GtkTextIter	 *location,
 							 GtkTextMark		 *mark);
+
+static void 	 gtk_source_buffer_real_apply_tag	(GtkTextBuffer		 *buffer,
+							 GtkTextTag		 *tag,
+							 const GtkTextIter	 *start,
+							 const GtkTextIter	 *end);
+
 static void 	 gtk_source_buffer_real_mark_deleted	(GtkTextBuffer		 *buffer,
 							 GtkTextMark		 *mark);
 static gboolean	 gtk_source_buffer_find_bracket_match_with_limit (GtkSourceBuffer *buffer,
@@ -193,6 +201,7 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 	tb_class->insert_text 	      = gtk_source_buffer_real_insert_text;
 	tb_class->insert_pixbuf       = gtk_source_buffer_real_insert_pixbuf;
 	tb_class->insert_child_anchor = gtk_source_buffer_real_insert_anchor;
+	tb_class->apply_tag           = gtk_source_buffer_real_apply_tag;
 
 	tb_class->mark_set	= gtk_source_buffer_real_mark_set;
 	tb_class->mark_deleted	= gtk_source_buffer_real_mark_deleted;
@@ -744,10 +753,17 @@ gtk_source_buffer_move_cursor (GtkTextBuffer     *buffer,
 
 		iter2 = iter1;
 		gtk_text_iter_forward_char (&iter2);
+
+		/* allow_bracket_match will allow the bracket match tag to be
+		   applied to the buffer. See apply_tag_real for more
+		   information */
+		GTK_SOURCE_BUFFER (buffer)->priv->allow_bracket_match = TRUE;
 		gtk_text_buffer_apply_tag (buffer,
 					   get_bracket_match_tag (GTK_SOURCE_BUFFER (buffer)),
 					   &iter1,
 					   &iter2);
+		GTK_SOURCE_BUFFER (buffer)->priv->allow_bracket_match = FALSE;
+
 		GTK_SOURCE_BUFFER (buffer)->priv->bracket_found = TRUE;
 	}
 	else
@@ -1621,6 +1637,27 @@ source_mark_insert (GtkSourceBuffer *buffer, GtkSourceMark *mark)
 
 	g_object_ref (mark);
 	g_array_insert_val (buffer->priv->source_marks, idx, mark);
+}
+
+static void
+gtk_source_buffer_real_apply_tag (GtkTextBuffer     *buffer,
+                                  GtkTextTag        *tag,
+                                  const GtkTextIter *start,
+                                  const GtkTextIter *end)
+{
+	GtkSourceBuffer *source;
+
+	source = GTK_SOURCE_BUFFER (buffer);
+
+	/* We only allow the bracket match tag to be applied when we are doing
+	   it ourselves (i.e. when allow_bracket_match is TRUE). The reason for
+	   doing so is that when you copy/paste from the same buffer, the tags
+	   get pasted too. This is ok for highlighting because the region will
+	   get rehighlighted, but not for bracket matching. */
+	if (source->priv->allow_bracket_match || tag != get_bracket_match_tag (source))
+	{
+		GTK_TEXT_BUFFER_CLASS (gtk_source_buffer_parent_class)->apply_tag (buffer, tag, start, end);
+	}
 }
 
 static void
