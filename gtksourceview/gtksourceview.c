@@ -4101,34 +4101,6 @@ gtk_source_view_move_lines (GtkSourceView *view, gboolean copy, gint step)
 	gtk_text_buffer_delete_mark (buf, mark);
 }
 
-static void
-remove_previous_line_if_empty (GtkSourceView *view,
-			       GtkTextIter   *iter)
-{
-	GtkTextBuffer *buf;
-	GtkTextIter start;
-	gunichar c;
-	
-	start = *iter;
-	
-	while (TRUE)
-	{
-		gtk_text_iter_backward_char (&start);
-		
-		if (gtk_text_iter_starts_line (&start))
-			break;
-	
-		c = gtk_text_iter_get_char (&start);
-		
-		if (!g_unichar_isspace (c))
-			return;
-	}
-	
-	buf = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
-	
-	gtk_text_buffer_delete (buf, &start, iter);
-}
-
 static gboolean
 gtk_source_view_key_press_event (GtkWidget   *widget,
 				 GdkEventKey *event)
@@ -4183,7 +4155,6 @@ gtk_source_view_key_press_event (GtkWidget   *widget,
 
 			/* Insert new line and auto-indent. */
 			gtk_text_buffer_begin_user_action (buf);
-			remove_previous_line_if_empty (view, &cur);
 			gtk_text_buffer_insert (buf, &cur, "\n", 1);
 			gtk_text_buffer_insert (buf, &cur, indent, strlen (indent));
 			g_free (indent);
