@@ -113,7 +113,8 @@ struct _GtkSourceBufferPrivate
 	gint                   constructed:1;
 
 	GtkTextTag            *bracket_match_tag;
-	GtkTextMark           *bracket_mark;
+	GtkTextMark           *bracket_mark_cursor;
+	GtkTextMark           *bracket_mark_match;
 	guint                  bracket_found:1;
 
 	GArray                *source_marks;
@@ -410,7 +411,8 @@ gtk_source_buffer_init (GtkSourceBuffer *buffer)
 
 	priv->highlight_syntax = TRUE;
 	priv->highlight_brackets = TRUE;
-	priv->bracket_mark = NULL;
+	priv->bracket_mark_cursor = NULL;
+	priv->bracket_mark_match = NULL;
 	priv->bracket_found = FALSE;
 
 	priv->source_marks = g_array_new (FALSE, FALSE, sizeof (GtkSourceMark *));
@@ -704,12 +706,66 @@ _gtk_source_buffer_get_bracket_match_tag (GtkSourceBuffer *buffer)
 	return buffer->priv->bracket_match_tag;
 }
 
+static gunichar
+bracket_pair (gunichar base_char, gint *direction)
+{
+	gint dir;
+	gunichar pair;
+
+	switch ((int)base_char)
+	{
+		case '{':
+			dir = 1;
+			pair = '}';
+			break;
+		case '(':
+			dir = 1;
+			pair = ')';
+			break;
+		case '[':
+			dir = 1;
+			pair = ']';
+			break;
+		case '<':
+			dir = 1;
+			pair = '>';
+			break;
+		case '}':
+			dir = -1;
+			pair = '{';
+			break;
+		case ')':
+			dir = -1;
+			pair = '(';
+			break;
+		case ']':
+			dir = -1;
+			pair = '[';
+			break;
+		case '>':
+			dir = -1;
+			pair = '<';
+			break;
+		default:
+			dir = 0;
+			pair = 0;
+			break;
+	}
+
+	/* Let direction be NULL if we don't care */
+	if (direction != NULL)
+		*direction = dir;
+
+	return pair;
+}
+
 static void
 gtk_source_buffer_move_cursor (GtkTextBuffer     *buffer,
 			       const GtkTextIter *iter,
 			       GtkTextMark       *mark)
 {
 	GtkTextIter iter1, iter2;
+	gunichar cursor_char;
 
 	g_return_if_fail (GTK_IS_SOURCE_BUFFER (buffer));
 	g_return_if_fail (iter != NULL);
@@ -723,7 +779,19 @@ gtk_source_buffer_move_cursor (GtkTextBuffer     *buffer,
 	{
 		gtk_text_buffer_get_iter_at_mark (buffer,
 						  &iter1,
-						  GTK_SOURCE_BUFFER (buffer)->priv->bracket_mark);
+						  GTK_SOURCE_BUFFER (buffer)->priv->bracket_mark_match);
+
+		iter2 = iter1;
+		gtk_text_iter_forward_char (&iter2);
+		gtk_text_buffer_remove_tag (buffer,
+					    GTK_SOURCE_BUFFER (buffer)->priv->bracket_match_tag,
+					    &iter1,
+					    &iter2);
+
+		gtk_text_buffer_get_iter_at_mark (buffer,
+						  &iter1,
+						  GTK_SOURCE_BUFFER (buffer)->priv->bracket_mark_cursor);
+
 		iter2 = iter1;
 		gtk_text_iter_forward_char (&iter2);
 		gtk_text_buffer_remove_tag (buffer,
@@ -740,30 +808,63 @@ gtk_source_buffer_move_cursor (GtkTextBuffer     *buffer,
 	                                                     &iter1,
 	                                                     MAX_CHARS_BEFORE_FINDING_A_MATCH))
 	{
-		if (!GTK_SOURCE_BUFFER (buffer)->priv->bracket_mark)
-			GTK_SOURCE_BUFFER (buffer)->priv->bracket_mark =
-				gtk_text_buffer_create_mark (buffer,
-							     NULL,
-							     &iter1,
-							     FALSE);
-		else
-			gtk_text_buffer_move_mark (buffer,
-						   GTK_SOURCE_BUFFER (buffer)->priv->bracket_mark,
-						   &iter1);
-
-		iter2 = iter1;
-		gtk_text_iter_forward_char (&iter2);
-
 		/* allow_bracket_match will allow the bracket match tag to be
 		   applied to the buffer. See apply_tag_real for more
 		   information */
 		GTK_SOURCE_BUFFER (buffer)->priv->allow_bracket_match = TRUE;
+		
+		/* Mark matching bracket */
+		if (!GTK_SOURCE_BUFFER (buffer)->priv->bracket_mark_match)
+		{
+			GTK_SOURCE_BUFFER (buffer)->priv->bracket_mark_match =
+ 				gtk_text_buffer_create_mark (buffer,
+ 							     NULL,
+ 							     &iter1,
+ 							     FALSE);
+ 		}
+ 		else
+ 		{
+ 			gtk_text_buffer_move_mark (buffer,
+						   GTK_SOURCE_BUFFER (buffer)->priv->bracket_mark_match,
+ 						   &iter1);
+ 		}
+
+		iter2 = iter1;
+		gtk_text_iter_forward_char (&iter2);
 		gtk_text_buffer_apply_tag (buffer,
 					   get_bracket_match_tag (GTK_SOURCE_BUFFER (buffer)),
 					   &iter1,
 					   &iter2);
-		GTK_SOURCE_BUFFER (buffer)->priv->allow_bracket_match = FALSE;
 
+		/* Mark the bracket near the cursor */
+		iter1 = *iter;
+		cursor_char = gtk_text_iter_get_char (&iter1);
+		if (bracket_pair (cursor_char, NULL) == 0)
+			gtk_text_iter_backward_char (&iter1);
+
+		if (!GTK_SOURCE_BUFFER (buffer)->priv->bracket_mark_cursor)
+		{
+			GTK_SOURCE_BUFFER (buffer)->priv->bracket_mark_cursor =
+				gtk_text_buffer_create_mark (buffer,
+							     NULL,
+							     &iter1,
+							     TRUE);
+		}
+		else
+		{
+			gtk_text_buffer_move_mark (buffer,
+						   GTK_SOURCE_BUFFER (buffer)->priv->bracket_mark_cursor,
+						   &iter1);
+		}
+
+		iter2 = iter1;
+		gtk_text_iter_forward_char (&iter2);
+		gtk_text_buffer_apply_tag (buffer,
+					   get_bracket_match_tag (GTK_SOURCE_BUFFER (buffer)),
+					   &iter1,
+					   &iter2);
+
+		GTK_SOURCE_BUFFER (buffer)->priv->allow_bracket_match = FALSE;
 		GTK_SOURCE_BUFFER (buffer)->priv->bracket_found = TRUE;
 	}
 	else
@@ -957,43 +1058,7 @@ gtk_source_buffer_find_bracket_match_real (GtkSourceBuffer *buffer,
 	base_char = search_char = cur_char;
 	cclass_mask = get_context_class_mask (buffer, &iter);
 
-	switch ((int) base_char) {
-		case '{':
-			addition = 1;
-			search_char = '}';
-			break;
-		case '(':
-			addition = 1;
-			search_char = ')';
-			break;
-		case '[':
-			addition = 1;
-			search_char = ']';
-			break;
-		case '<':
-			addition = 1;
-			search_char = '>';
-			break;
-		case '}':
-			addition = -1;
-			search_char = '{';
-			break;
-		case ')':
-			addition = -1;
-			search_char = '(';
-			break;
-		case ']':
-			addition = -1;
-			search_char = '[';
-			break;
-		case '>':
-			addition = -1;
-			search_char = '<';
-			break;
-		default:
-			addition = 0;
-			break;
-	}
+	search_char = bracket_pair (base_char, &addition);
 
 	if (addition == 0)
 		return FALSE;
@@ -1002,7 +1067,8 @@ gtk_source_buffer_find_bracket_match_real (GtkSourceBuffer *buffer,
 	found = FALSE;
 	char_cont = 0;
 
-	do {
+	do
+	{
 		gint current_mask;
 
 		gtk_text_iter_forward_chars (&iter, addition);
@@ -1022,7 +1088,8 @@ gtk_source_buffer_find_bracket_match_real (GtkSourceBuffer *buffer,
 		if ((cur_char == search_char || cur_char == base_char) &&
 		    cclass_mask == current_mask)
 		{
-			if ((cur_char == search_char) && counter == 0) {
+			if ((cur_char == search_char) && counter == 0)
+			{
 				found = TRUE;
 				break;
 			}
