@@ -85,10 +85,13 @@
 
                 <context id="types" style-ref="type">
                     <keyword>bool</keyword>
+                    <keyword>char16_t</keyword>
+                    <keyword>char32_t</keyword>
                     <keyword>explicit</keyword>
                     <keyword>export</keyword>
                     <keyword>inline</keyword>
                     <keyword>mutable</keyword>
+                    <keyword>nullptr_t</keyword>
                     <keyword>wchar_t</keyword>
                 </context>
 
