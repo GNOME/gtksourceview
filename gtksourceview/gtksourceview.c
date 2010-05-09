@@ -42,6 +42,7 @@
 #include "gtksourcecompletion-private.h"
 #include "gtksourcecompletionutils.h"
 #include "gtksourcegutter-private.h"
+#include "gseal-gtk-compat.h"
 
 /**
  * SECTION:view
@@ -1909,7 +1910,7 @@ move_cursor (GtkTextView       *text_view,
 	     const GtkTextIter *new_location,
 	     gboolean           extend_selection)
 {
-	GtkTextBuffer *buffer = text_view->buffer;
+	GtkTextBuffer *buffer = gtk_text_view_get_buffer (text_view);
 
 	if (extend_selection)
 		gtk_text_buffer_move_mark_by_name (buffer, "insert",
@@ -1982,7 +1983,7 @@ gtk_source_view_move_cursor (GtkTextView    *text_view,
 			     gboolean        extend_selection)
 {
 	GtkSourceView *source_view = GTK_SOURCE_VIEW (text_view);
-	GtkTextBuffer *buffer = text_view->buffer;
+	GtkTextBuffer *buffer = gtk_text_view_get_buffer (text_view);
 	GtkTextMark *mark;
 	GtkTextIter cur, iter;
 
@@ -2151,6 +2152,7 @@ gtk_source_view_paint_line_background (GtkTextView    *text_view,
 	gint win_y;
 	gint margin;
 	cairo_t *cr;
+	GtkAdjustment *hadjustment = gtk_text_view_get_hadjustment (text_view);
 
 	gtk_text_view_get_visible_rect (text_view, &visible_rect);
 
@@ -2166,9 +2168,9 @@ gtk_source_view_paint_line_background (GtkTextView    *text_view,
 	line_rect.y = win_y;
 	line_rect.height = height;
 
-	if (text_view->hadjustment)
+	if (hadjustment)
 		margin = gtk_text_view_get_left_margin (text_view) -
-			 (int) text_view->hadjustment->value;
+			 (int) gtk_adjustment_get_value (hadjustment);
 	else
 		margin = gtk_text_view_get_left_margin (text_view);
 
@@ -2778,22 +2780,30 @@ gtk_source_view_expose (GtkWidget      *widget,
 						     &iter1, &iter2, FALSE);
 	}
 
-	if (GTK_WIDGET_IS_SENSITIVE(view) && view->priv->highlight_current_line &&
+	if (gtk_widget_is_sensitive (widget) && view->priv->highlight_current_line &&
 		    (event->window == gtk_text_view_get_window (text_view, GTK_TEXT_WINDOW_TEXT)))
 	{
 		GtkTextIter cur;
 		gint y, height;
 		GdkColor *color;
+		GtkTextBuffer *buffer = gtk_text_view_get_buffer (text_view);
 
-		gtk_text_buffer_get_iter_at_mark (text_view->buffer,
+		gtk_text_buffer_get_iter_at_mark (buffer,
 						  &cur,
-						  gtk_text_buffer_get_insert (text_view->buffer));
+						  gtk_text_buffer_get_insert (buffer));
 		gtk_text_view_get_line_yrange (text_view, &cur, &y, &height);
 
 		if (view->priv->current_line_color_set)
+		{
 			color = &view->priv->current_line_color;
+		}
 		else
-			color = &widget->style->bg[GTK_WIDGET_STATE (widget)];
+		{
+			GtkStyle *style = gtk_widget_get_style (widget);
+			GtkStateType state = gtk_widget_get_state (widget);
+
+			color = &style->bg[state];
+		}
 
 		gtk_source_view_paint_line_background (text_view, event, y, height, color);
 	}
@@ -3410,11 +3420,13 @@ set_mark_category_tooltip_func (GtkSourceView   *view,
 				GDestroyNotify   user_data_notify,
 				gboolean markup)
 {
+	GtkWidget *widget;
 	MarkCategory *cat;
 
 	g_return_if_fail (GTK_IS_SOURCE_VIEW (view));
 	g_return_if_fail (category != NULL);
 
+	widget = GTK_WIDGET (view);
 	cat = gtk_source_view_ensure_category (view, category);
 
 	if (cat->tooltip_data_notify)
@@ -3427,10 +3439,10 @@ set_mark_category_tooltip_func (GtkSourceView   *view,
 
 	if (func != NULL)
 	{
-		gtk_widget_set_has_tooltip (GTK_WIDGET (view), TRUE);
-		if (GTK_WIDGET_REALIZED (view))
+		gtk_widget_set_has_tooltip (widget, TRUE);
+		if (gtk_widget_get_realized (widget))
 		{
-			gtk_widget_trigger_tooltip_query (GTK_WIDGET (view));
+			gtk_widget_trigger_tooltip_query (widget);
 		}
 	}
 }
@@ -4154,7 +4166,7 @@ gtk_source_view_key_press_event (GtkWidget   *widget,
 			/* Allow input methods to internally handle a key press event.
 			 * If this function returns TRUE, then no further processing should be done
 			 * for this keystroke. */
-			if (gtk_im_context_filter_keypress (GTK_TEXT_VIEW(view)->im_context, event))
+			if (gtk_text_view_im_context_filter_keypress (GTK_TEXT_VIEW (view), event))
 				return TRUE;
 
 			/* If an input method has inserted some text while handling the key press event,
@@ -4359,17 +4371,18 @@ view_dnd_drop (GtkTextView *view,
 		gchar string[] = "#000000";
 		gint buffer_x;
 		gint buffer_y;
+		gint length = gtk_selection_data_get_length (selection_data);
 
-		if (selection_data->length < 0)
+		if (length < 0)
 			return;
 
-		if ((selection_data->format != 16) || (selection_data->length != 8))
+		if (gtk_selection_data_get_format (selection_data) != 16 || length != 8)
 		{
 			g_warning ("Received invalid color data\n");
 			return;
 		}
 
-		vals = (guint16 *) selection_data->data;
+		vals = (guint16 *) gtk_selection_data_get_data (selection_data);
 
 		vals[0] /= 256;
 	        vals[1] /= 256;
@@ -4652,7 +4665,7 @@ update_right_margin_colors (GtkSourceView *view)
 {
 	GtkWidget *widget = GTK_WIDGET (view);
 
-	if (!GTK_WIDGET_REALIZED (view))
+	if (!gtk_widget_get_realized (widget))
 		return;
 
 	if (view->priv->right_margin_line_color != NULL)
@@ -4707,7 +4720,11 @@ update_right_margin_colors (GtkSourceView *view)
 	}
 
 	if (view->priv->right_margin_line_color == NULL)
-		view->priv->right_margin_line_color = gdk_color_copy (&widget->style->text[GTK_STATE_NORMAL]);
+	{
+		GtkStyle *style = gtk_widget_get_style (widget);
+
+		view->priv->right_margin_line_color = gdk_color_copy (&style->text[GTK_STATE_NORMAL]);
+	}
 }
 
 static void
@@ -4715,7 +4732,7 @@ update_spaces_color (GtkSourceView *view)
 {
 	GtkWidget *widget = GTK_WIDGET (view);
 
-	if (!GTK_WIDGET_REALIZED (view))
+	if (!gtk_widget_get_realized (widget))
 		return;
 
 	if (view->priv->spaces_color != NULL)
@@ -4749,7 +4766,11 @@ update_spaces_color (GtkSourceView *view)
 	}
 
 	if (view->priv->spaces_color == NULL)
-		view->priv->spaces_color = gdk_color_copy (&widget->style->text[GTK_STATE_INSENSITIVE]);
+	{
+		GtkStyle *style = gtk_widget_get_style (widget);
+
+		view->priv->spaces_color = gdk_color_copy (&style->text[GTK_STATE_INSENSITIVE]);
+	}
 }
 
 static void
@@ -4810,7 +4831,7 @@ gtk_source_view_update_style_scheme (GtkSourceView *view)
 		if (new_scheme)
 			g_object_ref (new_scheme);
 
-		if (GTK_WIDGET_REALIZED (view))
+		if (gtk_widget_get_realized (GTK_WIDGET (view)))
 		{
 			_gtk_source_style_scheme_apply (new_scheme, GTK_WIDGET (view));
 			update_current_line_color (view);

@@ -32,6 +32,7 @@
 #include <gtksourceview/gtksourcecompletioninfo.h>
 #include "gtksourcecompletionutils.h"
 #include "gtksourceview-i18n.h"
+#include "gseal-gtk-compat.h"
 
 #ifndef MIN
 #define MIN (a, b) ((a) < (b) ? (a) : (b))
@@ -93,20 +94,24 @@ get_scrolled_window_sizing (GtkSourceCompletionInfo *info,
 
 	if (info->priv->scroll != NULL)
 	{
+		GtkAllocation allocation;
+
 		*border = gtk_container_get_border_width (GTK_CONTAINER (info));
 		
 		scrollbar = gtk_scrolled_window_get_hscrollbar (GTK_SCROLLED_WINDOW (info->priv->scroll));
 
-		if (GTK_WIDGET_VISIBLE (scrollbar))
+		if (gtk_widget_get_visible (scrollbar))
 		{
-			*hscroll = scrollbar->allocation.height;
+			gtk_widget_get_allocation (scrollbar, &allocation);
+			*hscroll = allocation.height;
 		}
 
 		scrollbar = gtk_scrolled_window_get_vscrollbar (GTK_SCROLLED_WINDOW (info->priv->scroll));
 
-		if (GTK_WIDGET_VISIBLE (scrollbar))
+		if (gtk_widget_get_visible (scrollbar))
 		{
-			*vscroll = scrollbar->allocation.height;
+			gtk_widget_get_allocation (scrollbar, &allocation);
+			*vscroll = allocation.height;
 		}
 	}
 }
@@ -121,7 +126,7 @@ window_resize (GtkSourceCompletionInfo *info)
 	gint border;
 	gint hscroll;
 	gint vscroll;
-	GtkStyle *style = GTK_WIDGET (info)->style;
+	GtkStyle *style = gtk_widget_get_style (GTK_WIDGET (info));
 
 	gtk_window_get_default_size (GTK_WINDOW (info), &width, &height);
 	
@@ -286,19 +291,23 @@ static gboolean
 gtk_source_completion_info_expose (GtkWidget      *widget,
                                    GdkEventExpose *expose)
 {
+	GtkAllocation allocation;
+
 	GTK_WIDGET_CLASS (gtk_source_completion_info_parent_class)->expose_event (widget, expose);
 
-	gtk_paint_shadow (widget->style,
-			  widget->window,
+	gtk_widget_get_allocation (widget, &allocation);
+	
+	gtk_paint_shadow (gtk_widget_get_style (widget),
+			  gtk_widget_get_window (widget),
 			  GTK_STATE_NORMAL,
 			  GTK_SHADOW_OUT,
 			  NULL,
 			  widget,
 			  NULL,
-			  widget->allocation.x,
-			  widget->allocation.y,
-			  widget->allocation.width,
-			  widget->allocation.height);
+			  allocation.x,
+			  allocation.y,
+			  allocation.width,
+			  allocation.height);
 
 	return FALSE;
 }

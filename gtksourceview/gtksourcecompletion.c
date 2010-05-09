@@ -38,6 +38,7 @@
 #include "gtksourcecompletion-private.h"
 #include "gtksourcecompletioncontext.h"
 #include "gtksourcecompletionui.h"
+#include "gseal-gtk-compat.h"
 #include <stdarg.h>
 
 #define WINDOW_WIDTH 350
@@ -352,7 +353,7 @@ select_proposal (GtkSourceCompletion *completion,
 	GtkTreeModel *model;
 	gboolean hasselection;
 	
-	if (!GTK_WIDGET_VISIBLE (completion->priv->tree_view_proposals))
+	if (!gtk_widget_get_visible (completion->priv->tree_view_proposals))
 	{
 		return FALSE;
 	}
@@ -1052,7 +1053,7 @@ static void
 selection_changed_cb (GtkTreeSelection    *selection, 
 		      GtkSourceCompletion *completion)
 {
-	if (!GTK_WIDGET_VISIBLE (completion->priv->window))
+	if (!gtk_widget_get_visible (completion->priv->window))
 	{
 		return;
 	}
@@ -1094,7 +1095,7 @@ static void
 show_info_cb (GtkWidget           *widget,
 	      GtkSourceCompletion *completion)
 {
-	g_return_if_fail (GTK_WIDGET_VISIBLE (GTK_WIDGET (completion->priv->window)));
+	g_return_if_fail (gtk_widget_get_visible (GTK_WIDGET (completion->priv->window)));
 	
 	update_info_position (completion);
 	update_proposal_info (completion);
@@ -1107,7 +1108,7 @@ static void
 show_info_after_cb (GtkWidget           *widget,
 	            GtkSourceCompletion *completion)
 {
-	g_return_if_fail (GTK_WIDGET_VISIBLE (GTK_WIDGET (completion->priv->window)));
+	g_return_if_fail (gtk_widget_get_visible (GTK_WIDGET (completion->priv->window)));
 	
 	/* We do this here because GtkLabel does not properly handle
 	 * can-focus = FALSE and selects all the text when it gets focus from
@@ -1144,7 +1145,7 @@ gtk_source_completion_configure_event (GtkWidget           *widget,
                                        GdkEventConfigure   *event,
                                        GtkSourceCompletion *completion)
 {
-	if (GTK_WIDGET_VISIBLE (completion->priv->info_window))
+	if (gtk_widget_get_visible (completion->priv->info_window))
 	{
 		update_info_position (completion);
 	}
@@ -1175,6 +1176,7 @@ update_column_sizes (GtkSourceCompletion *completion)
 {
 	gint cwidth;
 	GtkTreeView *tv;
+	GtkAllocation allocation;
 	gint xpad;
 	gint separator;
 	GtkStyle *style;
@@ -1203,8 +1205,10 @@ update_column_sizes (GtkSourceCompletion *completion)
 	}
 
 	tv = GTK_TREE_VIEW (completion->priv->tree_view_proposals);
+	gtk_widget_get_allocation (GTK_WIDGET (completion->priv->tree_view_proposals),
+				   &allocation);
 	
-	set_column_width (tv, 0, completion->priv->tree_view_proposals->allocation.width - cwidth);
+	set_column_width (tv, 0, allocation.width - cwidth);
 	set_column_width (tv, 1, cwidth);
 
 	gtk_tree_view_column_set_visible (completion->priv->tree_view_column_accelerator,
@@ -1243,8 +1247,8 @@ view_focus_out_event_cb (GtkWidget     *widget,
 {
 	GtkSourceCompletion *completion = GTK_SOURCE_COMPLETION (user_data);
 	
-	if (GTK_WIDGET_VISIBLE (completion->priv->window)
-	    && !GTK_WIDGET_HAS_FOCUS (completion->priv->window))
+	if (gtk_widget_get_visible (completion->priv->window) &&
+	    !gtk_widget_has_focus (completion->priv->window))
 	{
 		DEBUG({
 			g_print ("Lost focus\n");
@@ -1263,7 +1267,7 @@ view_button_press_event_cb (GtkWidget      *widget,
 {
 	GtkSourceCompletion *completion = GTK_SOURCE_COMPLETION (user_data);
 	
-	if (GTK_WIDGET_VISIBLE (completion->priv->window))
+	if (gtk_widget_get_visible (completion->priv->window))
 	{
 		DEBUG({
 			g_print ("Button press in the view\n");
@@ -1402,7 +1406,7 @@ view_key_press_event_cb (GtkSourceView       *view,
 	
 	mod = gtk_accelerator_get_default_mod_mask () & event->state;
 	
-	if (!GTK_WIDGET_VISIBLE (completion->priv->window))
+	if (!gtk_widget_get_visible (completion->priv->window))
 	{
 		return FALSE;
 	}
@@ -1568,7 +1572,7 @@ auto_completion_prematch (GtkSourceCompletion *completion)
 
 	completion->priv->show_timed_out_id = 0;
 	
-	if (GTK_WIDGET_VISIBLE (completion->priv->window))
+	if (gtk_widget_get_visible (completion->priv->window))
 	{
 		return FALSE;
 	}
@@ -2118,7 +2122,7 @@ on_row_inserted_cb (GtkTreeModel        *tree_model,
                     GtkTreeIter         *iter,
                     GtkSourceCompletion *completion)
 {
-	if (!GTK_WIDGET_VISIBLE (completion->priv->window))
+	if (!gtk_widget_get_visible (completion->priv->window))
 	{
 		if (!completion->priv->remember_info_visibility)
 		{
@@ -3128,7 +3132,7 @@ update_completion (GtkSourceCompletion        *completion,
 
 	update_typing_offsets (completion);
 	
-	if (GTK_WIDGET_VISIBLE (completion->priv->info_window))
+	if (gtk_widget_get_visible (completion->priv->info_window))
 	{
 		/* Move info window accordingly */
 		update_info_position (completion);
@@ -3585,7 +3589,7 @@ gtk_source_completion_move_window (GtkSourceCompletion *completion,
 	g_return_if_fail (GTK_IS_SOURCE_COMPLETION (completion));
 	g_return_if_fail (iter != NULL);
 	
-	if (!GTK_WIDGET_VISIBLE (completion->priv->window))
+	if (!gtk_widget_get_visible (completion->priv->window))
 	{
 		return;
 	}

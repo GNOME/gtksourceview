@@ -53,6 +53,10 @@ static GtkSourceStyleScheme *style_scheme = NULL;
 #define MARK_TYPE_1      "one"
 #define MARK_TYPE_2      "two"
 
+#if !GTK_CHECK_VERSION (2, 18, 0)
+#define gtk_widget_get_visible(widget)                          (GTK_WIDGET_VISIBLE (widget))
+#endif /* GTK+ < 2.18.0 */
+
 
 /* Private prototypes -------------------------------------------------------- */
 
@@ -727,14 +731,14 @@ search_dialog (GtkWidget            *widget,
 			       "text", search_data.what ? search_data.what : "",
 			       "activates-default", TRUE,
 			       NULL);
-	gtk_box_pack_start (GTK_BOX (GTK_DIALOG (dialog)->vbox),
+	gtk_box_pack_start (GTK_BOX (gtk_dialog_get_content_area (GTK_DIALOG (dialog))),
 				     GTK_WIDGET (entry1), TRUE, TRUE, 0);
 	entry2 = g_object_new (GTK_TYPE_ENTRY,
 			       "visible", replace,
 			       "text", search_data.replacement ? search_data.replacement : "",
 			       "activates-default", TRUE,
 			       NULL);
-	gtk_box_pack_start (GTK_BOX (GTK_DIALOG (dialog)->vbox),
+	gtk_box_pack_start (GTK_BOX (gtk_dialog_get_content_area (GTK_DIALOG (dialog))),
 				     GTK_WIDGET (entry2), TRUE, TRUE, 0);
 
 	case_sensitive = g_object_new (GTK_TYPE_CHECK_BUTTON,
@@ -742,7 +746,7 @@ search_dialog (GtkWidget            *widget,
 				       "label", "Case sensitive",
 				       "active", !(search_data.flags & GTK_SOURCE_SEARCH_CASE_INSENSITIVE),
 				       NULL);
-	gtk_box_pack_start (GTK_BOX (GTK_DIALOG (dialog)->vbox),
+	gtk_box_pack_start (GTK_BOX (gtk_dialog_get_content_area (GTK_DIALOG (dialog))),
 			    GTK_WIDGET (case_sensitive), FALSE, FALSE, 0);
 
 	while (TRUE)

@@ -55,7 +55,8 @@ NOINST_H_FILES = \
 	gtksourceundomanagerdefault.h	\
 	gtksourceview-i18n.h		\
 	gtksourceview-utils.h		\
-	gtktextregion.h
+	gtktextregion.h			\
+	gseal-gtk-compat.h
 
 libgtksourceview_2_0_la_SOURCES = 	\
 	gtksourcebuffer.c 		\

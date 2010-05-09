@@ -908,6 +908,7 @@ on_view_expose_event (GtkSourceView   *view,
 	}
 	else
 	{
+		GtkTextBuffer *buffer = gtk_text_view_get_buffer (text_view);
 		gint x, y;
 		gint y1, y2;
 		GArray *numbers;
@@ -946,9 +947,9 @@ on_view_expose_event (GtkSourceView   *view,
 		/* get the line numbers and y coordinates. */
 		get_lines (text_view, y1, y2, pixels, heights, numbers, &count);
 
-		gtk_text_buffer_get_iter_at_mark (text_view->buffer,
+		gtk_text_buffer_get_iter_at_mark (buffer,
 						  &cur,
-						  gtk_text_buffer_get_insert (text_view->buffer));
+						  gtk_text_buffer_get_insert (buffer));
 
 		cur_line = gtk_text_iter_get_line (&cur);
 
