@@ -2480,7 +2480,9 @@ get_leading_trailing (GtkTextIter *iter,
 	{
 		gunichar ch = gtk_text_iter_get_char (&start);
 
-		if (!g_unichar_isspace (ch) ||
+		/* NOTE: ch can be 0 when iter is at the end
+		   of the buffer */
+		if (!(g_unichar_isspace (ch) || ch == 0) ||
 		     gtk_text_iter_starts_line (&start) ||
 		    !gtk_text_iter_backward_char (&start))
 		{
@@ -2496,6 +2498,7 @@ check_location (GtkSourceView *view,
                 GtkTextIter   *leading,
                 GtkTextIter   *trailing)
 {
+	gint flags = 0;
 	gint location = view->priv->draw_spaces & (GTK_SOURCE_DRAW_SPACES_LEADING |
 	                                           GTK_SOURCE_DRAW_SPACES_TEXT |
 	                                           GTK_SOURCE_DRAW_SPACES_TRAILING);
@@ -2506,20 +2509,25 @@ check_location (GtkSourceView *view,
 		return TRUE;
 	}
 
-	/* If leading > trailing we are in an empty line so we paint also
-	   for leading spaces */
 	if (gtk_text_iter_compare (iter, trailing) >= 0)
 	{
-		return location & (GTK_SOURCE_DRAW_SPACES_TRAILING |
-				   GTK_SOURCE_DRAW_SPACES_LEADING);
+		flags |= GTK_SOURCE_DRAW_SPACES_TRAILING;
 	}
 
 	if (gtk_text_iter_compare (iter, leading) < 0)
 	{
-		return location & GTK_SOURCE_DRAW_SPACES_LEADING;
+		flags |= GTK_SOURCE_DRAW_SPACES_LEADING;
 	}
 
-	return location & GTK_SOURCE_DRAW_SPACES_TEXT;
+	if (flags == 0)
+	{
+		/* Neither leading nor trailing, must be in text */
+		return location & GTK_SOURCE_DRAW_SPACES_TEXT;
+	}
+	else
+	{
+		return location & flags;
+	}
 }
 static void
 draw_tabs_and_spaces (GtkSourceView  *view,
