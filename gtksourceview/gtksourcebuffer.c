@@ -781,19 +781,13 @@ gtk_source_buffer_move_cursor (GtkTextBuffer     *buffer,
 						  &iter1,
 						  GTK_SOURCE_BUFFER (buffer)->priv->bracket_mark_match);
 
-		iter2 = iter1;
-		gtk_text_iter_forward_char (&iter2);
-		gtk_text_buffer_remove_tag (buffer,
-					    GTK_SOURCE_BUFFER (buffer)->priv->bracket_match_tag,
-					    &iter1,
-					    &iter2);
-
 		gtk_text_buffer_get_iter_at_mark (buffer,
-						  &iter1,
+						  &iter2,
 						  GTK_SOURCE_BUFFER (buffer)->priv->bracket_mark_cursor);
 
-		iter2 = iter1;
+		gtk_text_iter_order (&iter1, &iter2);
 		gtk_text_iter_forward_char (&iter2);
+
 		gtk_text_buffer_remove_tag (buffer,
 					    GTK_SOURCE_BUFFER (buffer)->priv->bracket_match_tag,
 					    &iter1,
