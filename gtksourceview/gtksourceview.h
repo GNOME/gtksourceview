@@ -78,8 +78,10 @@ struct _GtkSourceViewClass
 	                    gboolean       copy,
 	                    gint           step);
 
+	void (*move_words) (GtkSourceView *view,
+	                    gint           step);
+
 	/* Padding for future expansion */
-	void (*_gtk_source_reserved1) (void);
 };
 
 /**

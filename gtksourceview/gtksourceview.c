@@ -96,6 +96,7 @@ enum {
 	SHOW_COMPLETION,
 	LINE_MARK_ACTIVATED,
 	MOVE_LINES,
+	MOVE_WORDS,
 	LAST_SIGNAL
 };
 
@@ -239,6 +240,8 @@ static gint     gtk_source_view_expose 			(GtkWidget         *widget,
 static void	gtk_source_view_move_lines		(GtkSourceView     *view,
 							 gboolean           copy,
 							 gint               step);
+static void	gtk_source_view_move_words		(GtkSourceView     *view,
+							 gint               step);
 static gboolean	gtk_source_view_key_press_event		(GtkWidget         *widget,
 							 GdkEventKey       *event);
 static void 	view_dnd_drop 				(GtkTextView       *view,
@@ -313,6 +316,7 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	klass->redo = gtk_source_view_redo;
 	klass->show_completion = gtk_source_view_show_completion_real;
 	klass->move_lines = gtk_source_view_move_lines;
+	klass->move_words = gtk_source_view_move_words;
 
 	/**
 	 * GtkSourceView:show-line-numbers:
@@ -555,6 +559,17 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 			      G_TYPE_BOOLEAN,
 			      G_TYPE_INT);
 
+	signals [MOVE_WORDS] =
+		g_signal_new ("move-words",
+			      G_TYPE_FROM_CLASS (klass),
+			      G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
+			      G_STRUCT_OFFSET (GtkSourceViewClass, move_words),
+			      NULL,
+			      NULL,
+			      _gtksourceview_marshal_VOID__INT,
+			      G_TYPE_NONE, 1,
+			      G_TYPE_INT);
+
 	binding_set = gtk_binding_set_by_class (klass);
 
 	gtk_binding_entry_add_signal (binding_set,
@@ -597,6 +612,27 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 				      GDK_MOD1_MASK,
 				      "move_lines", 2,
 				      G_TYPE_BOOLEAN, FALSE,
+				      G_TYPE_INT, 1);
+
+	gtk_binding_entry_add_signal (binding_set,
+				      GDK_Left,
+				      GDK_MOD1_MASK,
+				      "move_words", 1,
+				      G_TYPE_INT, -1);
+	gtk_binding_entry_add_signal (binding_set,
+				      GDK_KP_Left,
+				      GDK_MOD1_MASK,
+				      "move_words", 1,
+				      G_TYPE_INT, -1);
+	gtk_binding_entry_add_signal (binding_set,
+				      GDK_Right,
+				      GDK_MOD1_MASK,
+				      "move_words", 1,
+				      G_TYPE_INT, 1);
+	gtk_binding_entry_add_signal (binding_set,
+				      GDK_KP_Right,
+				      GDK_MOD1_MASK,
+				      "move_words", 1,
 				      G_TYPE_INT, 1);
 
 	gtk_binding_entry_add_signal (binding_set,
@@ -4014,6 +4050,134 @@ insert_tab_or_spaces (GtkSourceView *view,
 	gtk_text_buffer_end_user_action (buf);
 
 	g_free (tab_buf);
+}
+
+static void
+gtk_source_view_move_words (GtkSourceView *view, gint step)
+{
+	GtkTextBuffer *buf;
+	GtkTextIter s, e, ns, ne;
+	GtkTextMark *nsmark, *nemark;
+	gchar *old_text, *new_text;
+
+	buf = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
+
+	if (step == 0 || gtk_text_view_get_editable (GTK_TEXT_VIEW (view)) == FALSE)
+	{
+		return;
+	}
+
+	gtk_text_buffer_get_selection_bounds (buf, &s, &e);
+
+	if (gtk_text_iter_compare (&s, &e) == 0)
+	{
+		if (!gtk_text_iter_starts_word (&s))
+		{
+			if (!gtk_text_iter_inside_word (&s) && !gtk_text_iter_ends_word (&s))
+			{
+				return;
+			}
+			else
+			{
+				gtk_text_iter_backward_word_start (&s);
+			}
+		}
+
+		if (!gtk_text_iter_starts_word (&s))
+		{
+			return;
+		}
+
+		e = s;
+
+		if (!gtk_text_iter_ends_word (&e))
+		{
+			if (!gtk_text_iter_forward_word_end (&e))
+			{
+				gtk_text_iter_forward_to_end (&e);
+			}
+
+			if (!gtk_text_iter_ends_word (&e))
+			{
+				return;
+			}
+		}
+	}
+
+	/* Swap the selection with the next or previous word, based on step */
+	if (step > 0)
+	{
+		ne = e;
+
+		if (!gtk_text_iter_forward_word_ends (&ne, step))
+		{
+			gtk_text_iter_forward_to_end (&ne);
+		}
+
+		if (!gtk_text_iter_ends_word (&ne) || gtk_text_iter_equal (&ne, &e))
+		{
+			return;
+		}
+
+		ns = ne;
+
+		if (!gtk_text_iter_backward_word_start (&ns))
+		{
+			return;
+		}
+	}
+	else
+	{
+		ns = s;
+
+		if (!gtk_text_iter_backward_word_starts (&ns, -step))
+		{
+			return;
+		}
+
+		ne = ns;
+
+		if (!gtk_text_iter_forward_word_end (&ne))
+		{
+			return;
+		}
+	}
+
+	if (gtk_text_iter_in_range (&ns, &s, &e) ||
+	    gtk_text_iter_in_range (&ne, &s, &e))
+	{
+		return;
+	}
+
+	old_text = gtk_text_buffer_get_text (buf, &s, &e, TRUE);
+	new_text = gtk_text_buffer_get_text (buf, &ns, &ne, TRUE);
+
+	gtk_text_buffer_begin_user_action (buf);
+
+	nsmark = gtk_text_buffer_create_mark (buf, NULL, &ns, TRUE);
+	nemark = gtk_text_buffer_create_mark (buf, NULL, &ne, FALSE);
+
+	gtk_text_buffer_delete (buf, &s, &e);
+	gtk_text_buffer_insert (buf, &s, new_text, -1);
+
+	gtk_text_buffer_get_iter_at_mark (buf, &ns, nsmark);
+	gtk_text_buffer_get_iter_at_mark (buf, &ne, nemark);
+
+	gtk_text_buffer_delete (buf, &ns, &ne);
+	gtk_text_buffer_insert (buf, &ns, old_text, -1);
+
+	ne = ns;
+	gtk_text_buffer_get_iter_at_mark (buf, &ns, nsmark);
+
+	gtk_text_buffer_select_range (buf, &ns, &ne);
+
+	gtk_text_buffer_delete_mark (buf, nsmark);
+	gtk_text_buffer_delete_mark (buf, nemark);
+
+	gtk_text_buffer_end_user_action (buf);
+
+	g_free (old_text);
+	g_free (new_text);
 }
 
 static void
