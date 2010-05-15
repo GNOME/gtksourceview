@@ -45,6 +45,22 @@ typedef struct _GtkSourceBuffer			GtkSourceBuffer;
 typedef struct _GtkSourceBufferClass		GtkSourceBufferClass;
 typedef struct _GtkSourceBufferPrivate		GtkSourceBufferPrivate;
 
+/**
+ * GtkSourceBracketMatchType:
+ * @GTK_SOURCE_BRACKET_MATCH_NONE: there is no bracket to match.
+ * @GTK_SOURCE_BRACKET_MATCH_OUT_OF_RANGE: matching a bracket
+ *  failed because the maximum range was reached.
+ * @GTK_SOURCE_BRACKET_MATCH_NOT_FOUND: a matching bracket was not found.
+ * @GTK_SOURCE_BRACKET_MATCH_FOUND: a matching bracket was found.
+ */
+typedef enum
+{
+	GTK_SOURCE_BRACKET_MATCH_NONE,
+	GTK_SOURCE_BRACKET_MATCH_OUT_OF_RANGE,
+	GTK_SOURCE_BRACKET_MATCH_NOT_FOUND,
+	GTK_SOURCE_BRACKET_MATCH_FOUND
+} GtkSourceBracketMatchType;
+
 struct _GtkSourceBuffer
 {
 	GtkTextBuffer parent_instance;
@@ -60,11 +76,14 @@ struct _GtkSourceBufferClass
 	void (*undo) (GtkSourceBuffer *buffer);
 	void (*redo) (GtkSourceBuffer *buffer);
 
+	void (*bracket_matched) (GtkSourceBuffer           *buffer,
+				 GtkTextIter               *iter,
+				 GtkSourceBracketMatchType *state);
+
 	/* Padding for future expansion */
 	void (*_gtk_source_reserved1) (void);
 	void (*_gtk_source_reserved2) (void);
 	void (*_gtk_source_reserved3) (void);
-	void (*_gtk_source_reserved4) (void);
 };
 
 GType           	 gtk_source_buffer_get_type 		(void) G_GNUC_CONST;
