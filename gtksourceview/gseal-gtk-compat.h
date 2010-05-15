@@ -24,9 +24,8 @@
 G_BEGIN_DECLS
 
 #if !GTK_CHECK_VERSION (2, 22, 0)
-#define gtk_widget_is_sensitive(widget)				(GTK_WIDGET_IS_SENSITIVE (widget))
-#define gtk_text_view_im_context_filter_keypress(view, event)	(gtk_im_context_filter_keypress (GTK_TEXT_VIEW (view)->im_context, event))
-#define gtk_text_view_get_hadjustment(view)			(GTK_TEXT_VIEW (view)->hadjustment)
+#define gtk_text_view_im_context_filter_keypress(view, event)   (gtk_im_context_filter_keypress (GTK_TEXT_VIEW (view)->im_context, event))
+#define gtk_text_view_get_hadjustment(view)                     (GTK_TEXT_VIEW (view)->hadjustment)
 #endif /* GTK < 2.22.0 */
 
 #if !GTK_CHECK_VERSION (2, 20, 0)
@@ -35,6 +34,7 @@ G_BEGIN_DECLS
 #endif /* GTK < 2.20.0 */
 
 #if !GTK_CHECK_VERSION (2, 18, 0)
+#define gtk_widget_is_sensitive(widget)                         (GTK_WIDGET_IS_SENSITIVE (widget))
 #define gtk_cell_renderer_get_alignment(cell, xalign, yalign)   g_object_get (cell, "xalign", xalign, "yalign", yalign, NULL);
 #define gtk_cell_renderer_get_padding(cell, xpad, ypad)         g_object_get (cell, "xpad", xpad, "ypad", ypad, NULL);
 #define gtk_cell_renderer_set_padding(cell, xpad, ypad)         g_object_set (cell, "xpad", xpad, "ypad", ypad, NULL);
