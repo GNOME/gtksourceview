@@ -2074,7 +2074,8 @@ static void
 do_cursor_move_home_end (GtkTextView *text_view,
                          GtkTextIter *cur,
                          GtkTextIter *iter,
-                         gboolean     extend_selection)
+                         gboolean     extend_selection,
+                         gint         count)
 {
 	/* if we are clearing selection, we need to move_cursor even
 	 * if we are at proper iter because selection_bound may need
@@ -2082,6 +2083,7 @@ do_cursor_move_home_end (GtkTextView *text_view,
 	if (!gtk_text_iter_equal (cur, iter) || !extend_selection)
 	{
 		move_cursor (text_view, iter, extend_selection);
+		g_signal_emit (text_view, signals[SMART_HOME_END], 0, iter, count);
 	}
 }
 
@@ -2130,7 +2132,8 @@ gtk_source_view_move_cursor (GtkTextView    *text_view,
 					do_cursor_move_home_end (text_view,
 					                         &cur,
 					                         &iter,
-					                         extend_selection);
+					                         extend_selection,
+					                         count);
 					return;
 				}
 				break;
@@ -2141,7 +2144,8 @@ gtk_source_view_move_cursor (GtkTextView    *text_view,
 					do_cursor_move_home_end (text_view,
 					                         &cur,
 					                         &iter,
-					                         extend_selection);
+					                         extend_selection,
+					                         count);
 					return;
 				}
 				break;
@@ -2150,7 +2154,8 @@ gtk_source_view_move_cursor (GtkTextView    *text_view,
 				do_cursor_move_home_end (text_view,
 				                         &cur,
 				                         &iter,
-				                         extend_selection);
+				                         extend_selection,
+				                         count);
 				return;
 
 			default:
@@ -2184,7 +2189,8 @@ gtk_source_view_move_cursor (GtkTextView    *text_view,
 					do_cursor_move_home_end (text_view,
 					                         &cur,
 					                         &iter,
-					                         extend_selection);
+					                         extend_selection,
+					                         count);
 					return;
 				}
 				break;
@@ -2195,7 +2201,8 @@ gtk_source_view_move_cursor (GtkTextView    *text_view,
 					do_cursor_move_home_end (text_view,
 					                         &cur,
 					                         &iter,
-					                         extend_selection);
+					                         extend_selection,
+					                         count);
 					return;
 				}
 				break;
@@ -2204,7 +2211,8 @@ gtk_source_view_move_cursor (GtkTextView    *text_view,
 				do_cursor_move_home_end (text_view,
 				                         &cur,
 				                         &iter,
-				                         extend_selection);
+				                         extend_selection,
+				                         count);
 				return;
 
 			default:
