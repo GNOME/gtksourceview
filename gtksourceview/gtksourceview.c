@@ -2018,9 +2018,16 @@ move_to_first_char (GtkTextView *text_view,
 		c = gtk_text_iter_get_char (iter);
 
 		if (g_unichar_isspace (c))
-			gtk_text_iter_forward_visible_cursor_position (iter);
+		{
+			if (!gtk_text_iter_forward_visible_cursor_position (iter))
+			{
+				break;
+			}
+		}
 		else
+		{
 			break;
+		}
 	}
 }
 
@@ -2052,7 +2059,11 @@ move_to_last_char (GtkTextView *text_view,
 	{
 		gunichar c;
 
-		gtk_text_iter_backward_visible_cursor_position (iter);
+		if (!gtk_text_iter_backward_visible_cursor_position (iter))
+		{
+			break;
+		}
+
 		c = gtk_text_iter_get_char (iter);
 
 		if (!g_unichar_isspace (c))
