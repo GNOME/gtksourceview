@@ -4176,6 +4176,9 @@ gtk_source_view_move_words (GtkSourceView *view, gint step)
 
 	gtk_text_buffer_end_user_action (buf);
 
+	gtk_text_view_scroll_mark_onscreen (GTK_TEXT_VIEW (view),
+	                                    gtk_text_buffer_get_insert (buf));
+
 	g_free (old_text);
 	g_free (new_text);
 }
