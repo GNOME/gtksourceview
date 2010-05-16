@@ -160,61 +160,64 @@ gtk_source_completion_proposal_get_type ()
 
 /**
  * gtk_source_completion_proposal_get_label:
- * @proposal: A #GtkSourceCompletionProposal
+ * @proposal: a #GtkSourceCompletionProposal.
  *
  * Gets the label of @proposal. The label is shown in the list of proposals as
  * plain text. If you need any markup (such as bold or italic text), you have
  * to implement #gtk_source_completion_proposal_get_markup. The returned string
  * must be freed with g_free().
  *
- * Returns: A new string containing the label of @proposal.
+ * Returns: a new string containing the label of @proposal.
  */
 gchar *
 gtk_source_completion_proposal_get_label (GtkSourceCompletionProposal *proposal)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_PROPOSAL (proposal), NULL);	
+	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_PROPOSAL (proposal), NULL);
+
 	return GTK_SOURCE_COMPLETION_PROPOSAL_GET_INTERFACE (proposal)->get_label (proposal);
 }
 
 /**
  * gtk_source_completion_proposal_get_markup:
- * @proposal: A #GtkSourceCompletionProposal
+ * @proposal: a #GtkSourceCompletionProposal.
  *
  * Gets the label of @proposal with markup. The label is shown in the list of 
  * proposals and may contain markup. This will be used instead of
  * #gtk_source_completion_proposal_get_label if implemented. The returned string
  * must be freed with g_free().
  *
- * Returns: A new string containing the label of @proposal with markup.
+ * Returns: a new string containing the label of @proposal with markup.
  */
 gchar *
 gtk_source_completion_proposal_get_markup (GtkSourceCompletionProposal *proposal)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_PROPOSAL (proposal), NULL);	
+	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_PROPOSAL (proposal), NULL);
+
 	return GTK_SOURCE_COMPLETION_PROPOSAL_GET_INTERFACE (proposal)->get_markup (proposal);
 }
 
 /**
  * gtk_source_completion_proposal_get_text:
- * @proposal: A #GtkSourceCompletionProposal
+ * @proposal: a #GtkSourceCompletionProposal.
  *
  * Gets the text of @proposal. The text that is inserted into
  * the text buffer when the proposal is activated by the default activation.
  * You are free to implement a custom activation handler in the provider and
  * not implement this function. The returned string must be freed with g_free().
  *
- * Returns: A new string containing the text of @proposal.
+ * Returns: a new string containing the text of @proposal.
  */
 gchar *
 gtk_source_completion_proposal_get_text (GtkSourceCompletionProposal *proposal)
 {
 	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_PROPOSAL (proposal), NULL);
+
 	return GTK_SOURCE_COMPLETION_PROPOSAL_GET_INTERFACE (proposal)->get_text (proposal);
 }
 
 /**
  * gtk_source_completion_proposal_get_icon:
- * @proposal: A #GtkSourceCompletionProposal
+ * @proposal: a #GtkSourceCompletionProposal.
  *
  * Gets the icon of @proposal.
  *
@@ -224,56 +227,57 @@ GdkPixbuf *
 gtk_source_completion_proposal_get_icon (GtkSourceCompletionProposal *proposal)
 {
 	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_PROPOSAL (proposal), NULL);
+
 	return GTK_SOURCE_COMPLETION_PROPOSAL_GET_INTERFACE (proposal)->get_icon (proposal);
 }
 
 /**
  * gtk_source_completion_proposal_get_info:
- * @proposal: A #GtkSourceCompletionProposal
+ * @proposal: a #GtkSourceCompletionProposal.
  *
  * Gets extra information associated to the proposal. This information will be
  * used to present the user with extra, detailed information about the
  * selected proposal. The returned string must be freed with g_free().
  *
- * Returns: A new string containing extra information of @proposal or %NULL if
+ * Returns: a new string containing extra information of @proposal or %NULL if
  *          no extra information is associated to @proposal.
  */
 gchar *
 gtk_source_completion_proposal_get_info (GtkSourceCompletionProposal *proposal)
 {
 	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_PROPOSAL (proposal), NULL);
+
 	return GTK_SOURCE_COMPLETION_PROPOSAL_GET_INTERFACE (proposal)->get_info (proposal);
 }
 
 /**
  * gtk_source_completion_proposal_hash:
- * @proposal: A #GtkSourceCompletionProposal
+ * @proposal: a #GtkSourceCompletionProposal.
  * 
  * Get the hash value of @proposal. This is used to (together with
  * #gtk_source_completion_proposal_equal) to match proposals in the completion
  * model. By default, it uses a direct hash (#g_direct_hash).
  *
- * Returns: The hash value of @proposal
- *
+ * Returns: The hash value of @proposal.
  **/
 guint
-gtk_source_completion_proposal_hash	(GtkSourceCompletionProposal *proposal)
+gtk_source_completion_proposal_hash (GtkSourceCompletionProposal *proposal)
 {
 	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_PROPOSAL (proposal), 0);
+
 	return GTK_SOURCE_COMPLETION_PROPOSAL_GET_INTERFACE (proposal)->hash (proposal);
 }
 
 /**
  * gtk_source_completion_proposal_equal:
- * @proposal: A #GtkSourceCompletionProposal
- * @other: A #GtkSourceCompletionProposal
+ * @proposal: a #GtkSourceCompletionProposal.
+ * @other: a #GtkSourceCompletionProposal.
  * 
  * Get whether two proposal objects are the same.  This is used to (together 
  * with #gtk_source_completion_proposal_hash) to match proposals in the 
  * completion model. By default, it uses direct equality (#g_direct_equal).
  *
  * Returns: %TRUE if @proposal and @object are the same proposal
- *
  **/
 gboolean
 gtk_source_completion_proposal_equal (GtkSourceCompletionProposal *proposal,
@@ -287,7 +291,7 @@ gtk_source_completion_proposal_equal (GtkSourceCompletionProposal *proposal,
 
 /**
  * gtk_source_completion_proposal_changed:
- * @proposal: A #GtkSourceCompletionProposal
+ * @proposal: a #GtkSourceCompletionProposal.
  *
  * Emits the "changed" signal on @proposal. This should be called by
  * implementations whenever the name, icon or info of the proposal has

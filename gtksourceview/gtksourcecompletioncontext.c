@@ -285,16 +285,15 @@ gtk_source_completion_context_init (GtkSourceCompletionContext *context)
 
 /**
  * gtk_source_completion_context_add_proposals:
- * @context: A #GtkSourceCompletionContext
- * @provider: A #GtkSourceCompletionProvider
- * @proposals: The list of proposals to add
- * @finished: Whether the provider is finished adding proposals
+ * @context: a #GtkSourceCompletionContext.
+ * @provider: a #GtkSourceCompletionProvider.
+ * @proposals: The list of proposals to add.
+ * @finished: Whether the provider is finished adding proposals.
  * 
  * Providers can use this function to add proposals to the completion. They
  * can do so asynchronously by means of the @finished argument. Providers must
  * ensure that they always call this function with @finished set to %TRUE
  * once each population (even if no proposals need to be added).
- *
  **/
 void
 gtk_source_completion_context_add_proposals (GtkSourceCompletionContext  *context,
@@ -314,12 +313,11 @@ gtk_source_completion_context_add_proposals (GtkSourceCompletionContext  *contex
 
 /**
  * gtk_source_completion_context_get_iter:
- * @context: A #GtkSourceCompletionContext
- * @iter: A #GtkTextIter
+ * @context: a #GtkSourceCompletionContext.
+ * @iter: a #GtkTextIter.
  * 
  * Get the iter at which the completion was invoked. Providers can use this
  * to determine how and if to match proposals.
- *
  **/
 void
 gtk_source_completion_context_get_iter (GtkSourceCompletionContext *context,
@@ -345,11 +343,11 @@ gtk_source_completion_context_get_iter (GtkSourceCompletionContext *context,
 
 /**
  * gtk_source_completion_context_get_activation:
- * @context: A #GtkSourceCompletionContext
+ * @context: a #GtkSourceCompletionContext.
  *
- * Get the context activation
+ * Get the context activation.
  *
- * Returns: The context activation
+ * Returns: The context activation.
  */
 GtkSourceCompletionActivation
 gtk_source_completion_context_get_activation (GtkSourceCompletionContext *context)

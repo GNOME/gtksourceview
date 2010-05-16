@@ -25,11 +25,11 @@
 
 /**
  * gtk_source_completion_utils_is_separator:
- * @ch: The character to check
+ * @ch: the character to check.
  *
  * A separator is a character like (, an space etc. An _ is not a separator
  *
- * Returns: TRUE if @ch is a separator
+ * Returns: %TRUE if @ch is a separator.
  */
 gboolean
 gtk_source_completion_utils_is_separator (const gunichar ch)
@@ -46,11 +46,11 @@ gtk_source_completion_utils_is_separator (const gunichar ch)
 /**
  * gtk_source_completion_utils_get_word_iter:
  *
- * @source_buffer: The #GtkSourceBuffer
- * @start_word: if != NULL then assign it the start position of the word
- * @end_word: if != NULL then assing it the end position of the word
+ * @source_buffer: a #GtkSourceBuffer.
+ * @start_word: (allow-none): if != NULL then assign it the start position of the word
+ * @end_word: (allow-none): if != NULL then assing it the end position of the word
  * 
- * Returns: the current word
+ * Returns: the current word.
  */
 gchar *
 gtk_source_completion_utils_get_word_iter (GtkSourceBuffer *source_buffer, 
@@ -101,9 +101,9 @@ gtk_source_completion_utils_get_word_iter (GtkSourceBuffer *source_buffer,
 
 /**
  * gtk_source_completion_utils_get_word:
- * @source_buffer: The #GtkSourceBuffer
+ * @source_buffer: a #GtkSourceBuffer.
  *
- * Returns: the current word
+ * Returns: the current word.
  */
 gchar *
 gtk_source_completion_utils_get_word (GtkSourceBuffer *source_buffer)
@@ -184,10 +184,10 @@ gtk_source_completion_utils_replace_word (GtkSourceBuffer *source_buffer,
 
 /**
  * gtk_source_completion_utils_replace_current_word:
- * @source_buffer: The #GtkSourceBuffer
- * @text: The text to be inserted instead of the current word
+ * @source_buffer: a #GtkSourceBuffer.
+ * @text: (allow-none): The text to be inserted instead of the current word.
  * 
- * Replaces the current word in the #GtkSourceBuffer with the new word
+ * Replaces the current word in the #GtkSourceBuffer with the new word.
  */
 void
 gtk_source_completion_utils_replace_current_word (GtkSourceBuffer *source_buffer, 
@@ -285,9 +285,9 @@ move_overlap (gint     *x,
 
 /**
  * gtk_source_completion_utils_move_to_iter:
- * @window: the #GtkWindow to move
- * @view: the view 
- * @iter: the iter to move @window to
+ * @window: (allow-none): the #GtkWindow to move.
+ * @view: the #GtkSourceView.
+ * @iter: the iter to move @window to.
  *
  */
 void
@@ -360,8 +360,8 @@ gtk_source_completion_utils_move_to_iter (GtkWindow     *window,
 
 /**
  * gtk_source_completion_utils_get_pos_at_cursor:
- * @window: the #GtkWindow to move
- * @view: the view 
+ * @window: the #GtkWindow to move.
+ * @view: the #GtkSoureView.
  *
  */
 void 

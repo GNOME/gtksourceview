@@ -283,7 +283,7 @@ gtk_source_completion_item_class_init (GtkSourceCompletionItemClass *klass)
 							      NULL,
 							      G_PARAM_READWRITE));
 
-	g_type_class_add_private (object_class, sizeof(GtkSourceCompletionItemPrivate));
+	g_type_class_add_private (object_class, sizeof (GtkSourceCompletionItemPrivate));
 }
 
 static void
@@ -294,17 +294,16 @@ gtk_source_completion_item_init (GtkSourceCompletionItem *self)
 
 /** 
  * gtk_source_completion_item_new:
- * @label: The item label
- * @text: The item text
- * @icon: The item icon
- * @info: The item extra information
+ * @label: The item label.
+ * @text: The item text.
+ * @icon: (allow-none): The item icon.
+ * @info: (allow-none): The item extra information.
  *
  * Create a new #GtkSourceCompletionItem with label @label, icon @icon and 
  * extra information @info. Both @icon and @info can be %NULL in which case 
  * there will be no icon shown and no extra information available.
  *
- * Returns: The new #GtkSourceCompletionItem.
- *
+ * Returns: a new #GtkSourceCompletionItem.
  */
 GtkSourceCompletionItem *
 gtk_source_completion_item_new (const gchar *label,
@@ -322,17 +321,16 @@ gtk_source_completion_item_new (const gchar *label,
 
 /** 
  * gtk_source_completion_item_new_with_markup:
- * @markup: The item markup label
- * @text: The item text
- * @icon: The item icon
- * @info: The item extra information
+ * @markup: The item markup label.
+ * @text: The item text.
+ * @icon: (allow-none): The item icon.
+ * @info: (allow-none): The item extra information.
  *
  * Create a new #GtkSourceCompletionItem with markup label @markup, icon 
  * @icon and extra information @info. Both @icon and @info can be %NULL in 
  * which case there will be no icon shown and no extra information available.
  *
- * Returns: The new #GtkSourceCompletionItem.
- *
+ * Returns: a new #GtkSourceCompletionItem.
  */
 GtkSourceCompletionItem *
 gtk_source_completion_item_new_with_markup (const gchar *markup,
@@ -350,16 +348,15 @@ gtk_source_completion_item_new_with_markup (const gchar *markup,
 
 /** 
  * gtk_source_completion_item_new_from_stock:
- * @label: The item label
- * @text: The item text
- * @stock: The stock icon
- * @info: The item extra information
+ * @label: (allow-none): The item label.
+ * @text: The item text.
+ * @stock: The stock icon.
+ * @info: (allow-none): The item extra information.
  *
  * Creates a new #GtkSourceCompletionItem from a stock item. If @label is %NULL, 
  * the stock label will be used.
  *
- * Returns: the newly constructed #GtkSourceCompletionItem.
- *
+ * Returns: a new #GtkSourceCompletionItem.
  */
 GtkSourceCompletionItem *
 gtk_source_completion_item_new_from_stock (const gchar *label,

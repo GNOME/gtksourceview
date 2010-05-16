@@ -634,7 +634,7 @@ gtk_source_buffer_get_property (GObject    *object,
 
 /**
  * gtk_source_buffer_new:
- * @table: a #GtkTextTagTable, or %NULL to create a new one.
+ * @table: (allow-none): a #GtkTextTagTable, or %NULL to create a new one.
  *
  * Creates a new source buffer.
  *
@@ -1456,9 +1456,9 @@ gtk_source_buffer_set_highlight_syntax (GtkSourceBuffer *buffer,
 /**
  * gtk_source_buffer_set_language:
  * @buffer: a #GtkSourceBuffer.
- * @language: a #GtkSourceLanguage to set, or %NULL.
+ * @language: (allow-none): a #GtkSourceLanguage to set, or %NULL.
  *
- * Associate a #GtkSourceLanguage with the source buffer. If @language is
+ * Associate a #GtkSourceLanguage with the buffer. If @language is
  * not-%NULL and syntax highlighting is enabled (see gtk_source_buffer_set_highlight_syntax()),
  * the syntax patterns defined in @language will be used to highlight the text
  * contained in the buffer. If @language is %NULL, the text contained in the
@@ -1518,7 +1518,7 @@ gtk_source_buffer_set_language (GtkSourceBuffer   *buffer,
  * see gtk_source_buffer_set_language().  The returned object should not be
  * unreferenced by the user.
  *
- * Return value: #GtkSourceLanguage associated with the buffer, or %NULL.
+ * Return value: (transfer none): the #GtkSourceLanguage associated with the buffer, or %NULL.
  **/
 GtkSourceLanguage *
 gtk_source_buffer_get_language (GtkSourceBuffer *buffer)
@@ -1582,7 +1582,7 @@ gtk_source_buffer_ensure_highlight (GtkSourceBuffer   *buffer,
 /**
  * gtk_source_buffer_set_style_scheme:
  * @buffer: a #GtkSourceBuffer.
- * @scheme: style scheme.
+ * @scheme: (allow-none): a #GtkSourceStyleScheme or %NULL.
  *
  * Sets style scheme used by the buffer. If @scheme is %NULL no
  * style scheme is used.
@@ -1614,15 +1614,18 @@ gtk_source_buffer_set_style_scheme (GtkSourceBuffer      *buffer,
  * gtk_source_buffer_get_style_scheme:
  * @buffer: a #GtkSourceBuffer.
  *
- * Returns the #GtkSourceStyleScheme currently used in @buffer.
+ * Returns the #GtkSourceStyleScheme associated with the buffer,
+ * see gtk_source_buffer_set_style_scheme().
+ * The returned object should not be unreferenced by the user.
  *
- * Returns: the #GtkSourceStyleScheme set by
- * gtk_source_buffer_set_style_scheme(), or %NULL.
+ * Return value: (transfer none): the #GtkSourceStyleScheme associated
+ * with the buffer, or %NULL.
  **/
 GtkSourceStyleScheme *
 gtk_source_buffer_get_style_scheme (GtkSourceBuffer *buffer)
 {
 	g_return_val_if_fail (GTK_IS_SOURCE_BUFFER (buffer), NULL);
+
 	return buffer->priv->style_scheme;
 }
 
@@ -1812,7 +1815,7 @@ gtk_source_buffer_real_redo (GtkSourceBuffer *buffer)
 /**
  * gtk_source_buffer_create_source_mark:
  * @buffer: a #GtkSourceBuffer.
- * @name: the name of the mark, or %NULL.
+ * @name: (allow-none): the name of the mark, or %NULL.
  * @category: a string defining the mark category.
  * @where: location to place the mark.
  *
@@ -1830,7 +1833,7 @@ gtk_source_buffer_real_redo (GtkSourceBuffer *buffer)
  * Typical uses for a source mark are bookmarks, breakpoints, current
  * executing instruction indication in a source file, etc..
  *
- * Return value: a new #GtkSourceMark, owned by the buffer.
+ * Return value: (transfer none): a new #GtkSourceMark, owned by the buffer.
  *
  * Since: 2.2
  **/
@@ -1946,13 +1949,13 @@ _gtk_source_buffer_source_mark_prev (GtkSourceBuffer *buffer,
  * gtk_source_buffer_forward_iter_to_source_mark:
  * @buffer: a #GtkSourceBuffer.
  * @iter: an iterator.
- * @category: category to search for or %NULL
+ * @category: (allow-none): category to search for, or %NULL
  *
  * Moves @iter to the position of the next #GtkSourceMark of the given
- * @category. Returns #TRUE if @iter was moved. If @category is NULL, the
+ * @category. Returns %TRUE if @iter was moved. If @category is NULL, the
  * next source mark can be of any category.
  *
- * Returns: whether iter moved.
+ * Returns: whether @iter was moved.
  *
  * Since: 2.2
  **/
@@ -2005,13 +2008,13 @@ gtk_source_buffer_forward_iter_to_source_mark (GtkSourceBuffer *buffer,
  * gtk_source_buffer_backward_iter_to_source_mark:
  * @buffer: a #GtkSourceBuffer.
  * @iter: an iterator.
- * @category: category to search for or %NULL
+ * @category: (allow-none): category to search for, or %NULL
  *
  * Moves @iter to the position of the previous #GtkSourceMark of the given
- * category. Returns #TRUE if @iter was moved. If @category is NULL, the
+ * category. Returns %TRUE if @iter was moved. If @category is NULL, the
  * previous source mark can be of any category.
  *
- * Returns: whether iter moved.
+ * Returns: whether @iter was moved.
  *
  * Since: 2.2
  **/
@@ -2063,12 +2066,12 @@ gtk_source_buffer_backward_iter_to_source_mark (GtkSourceBuffer *buffer,
  * gtk_source_buffer_get_source_marks_at_iter:
  * @buffer: a #GtkSourceBuffer.
  * @iter: an iterator.
- * @category: category to search for or %NULL
+ * @category: (allow-none): category to search for, or %NULL
  *
  * Returns the list of marks of the given category at @iter. If @category
  * is %NULL it returns all marks at @iter.
  *
- * Returns: a newly allocated #GSList.
+ * Returns: (element-type GtkSource.Mark): a newly allocated #GSList.
  *
  * Since: 2.2
  **/
@@ -2078,6 +2081,8 @@ gtk_source_buffer_get_source_marks_at_iter (GtkSourceBuffer *buffer,
 					    const gchar     *category)
 {
 	GSList *marks, *l, *res;
+	
+	g_return_val_if_fail (iter != NULL, NULL);
 
 	res = NULL;
 	marks = gtk_text_iter_get_marks (iter);
@@ -2106,12 +2111,12 @@ gtk_source_buffer_get_source_marks_at_iter (GtkSourceBuffer *buffer,
  * gtk_source_buffer_get_source_marks_at_line:
  * @buffer: a #GtkSourceBuffer.
  * @line: a line number.
- * @category: category to search for or %NULL
+ * @category: (allow-none): category to search for, or %NULL
  *
  * Returns the list of marks of the given category at @line.
  * If @category is NULL, all marks at @line are returned.
  *
- * Returns: a newly allocated #GSList.
+ * Returns: (element-type GtkSource.Mark): a newly allocated #GSList.
  *
  * Since: 2.2
  **/
@@ -2158,9 +2163,9 @@ gtk_source_buffer_get_source_marks_at_line (GtkSourceBuffer *buffer,
 /**
  * gtk_source_buffer_remove_source_marks:
  * @buffer: a #GtkSourceBuffer.
- * @start: a #GtkTextIter
- * @end: a #GtkTextIter
- * @category: category to search for or NULL
+ * @start: a #GtkTextIter.
+ * @end: a #GtkTextIter.
+ * @category: (allow-none): category to search for, or %NULL.
  *
  * Remove all marks of @category between @start and @end from the buffer.
  * If @category is NULL, all marks in the range will be removed.
@@ -2218,8 +2223,8 @@ gtk_source_buffer_remove_source_marks (GtkSourceBuffer   *buffer,
 /**
  * gtk_source_buffer_iter_has_context_class:
  * @buffer: a #GtkSourceBuffer.
- * @iter: a #GtkTextIter
- * @context_class: class to search for
+ * @iter: a #GtkTextIter.
+ * @context_class: class to search for.
  *
  * Check if the class @context_klass is set on @iter.
  *
@@ -2257,12 +2262,12 @@ gtk_source_buffer_iter_has_context_class (GtkSourceBuffer   *buffer,
 /**
  * gtk_source_buffer_get_context_classes_at_iter:
  * @buffer: a #GtkSourceBuffer.
- * @iter: a #GtkTextIter
+ * @iter: a #GtkTextIter.
  *
  * Get all defined context classes at @iter.
  *
- * Returns: a new %NULL terminated array of context class names. Use
- *          #g_strfreev to free the array if it is no longer needed.
+ * Returns: (array zero-terminated=1): a new %NULL terminated array of context
+ * class names. Use #g_strfreev to free the array if it is no longer needed.
  *
  * Since: 2.10
  **/
@@ -2298,8 +2303,8 @@ gtk_source_buffer_get_context_classes_at_iter (GtkSourceBuffer   *buffer,
 /**
  * gtk_source_buffer_iter_forward_to_context_class_toggle:
  * @buffer: a #GtkSourceBuffer.
- * @iter: a #GtkTextIter
- * @context_class: the context class
+ * @iter: a #GtkTextIter.
+ * @context_class: the context class.
  *
  * Moves forward to the next toggle (on or off) of the context class. If no
  * matching context class toggles are found, returns %FALSE, otherwise %TRUE.
@@ -2343,8 +2348,8 @@ gtk_source_buffer_iter_forward_to_context_class_toggle (GtkSourceBuffer *buffer,
 /**
  * gtk_source_buffer_iter_backward_to_context_class_toggle:
  * @buffer: a #GtkSourceBuffer.
- * @iter: a #GtkTextIter
- * @context_class: the context class
+ * @iter: a #GtkTextIter.
+ * @context_class: the context class.
  *
  * Moves backward to the next toggle (on or off) of the context class. If no
  * matching context class toggles are found, returns %FALSE, otherwise %TRUE.
@@ -2387,12 +2392,11 @@ gtk_source_buffer_iter_backward_to_context_class_toggle (GtkSourceBuffer *buffer
 
 /**
  * gtk_source_buffer_set_undo_manager:
- * @buffer: A #GtkSourceBuffer
- * @manager: A #GtkSourceUndoManager
+ * @buffer: a #GtkSourceBuffer.
+ * @manager: (allow-none): A #GtkSourceUndoManager or %NULL.
  *
  * Set the buffer undo manager. If @manager is %NULL the default undo manager
  * will be set.
- *
  **/
 void
 gtk_source_buffer_set_undo_manager (GtkSourceBuffer      *buffer,
@@ -2421,12 +2425,13 @@ gtk_source_buffer_set_undo_manager (GtkSourceBuffer      *buffer,
 
 /**
  * gtk_source_buffer_get_undo_manager:
- * @buffer: A #GtkSourceBuffer
+ * @buffer: a #GtkSourceBuffer.
  *
- * Get the undo manager associated with the buffer.
+ * Returns the #GtkSourceUndoManager associated with the buffer,
+ * see gtk_source_buffer_set_undo_manager().  The returned object should not be
+ * unreferenced by the user.
  *
- * Returns: A #GtkSourceUndoManager
- *
+ * Returns: (transfer none): the #GtkSourceUndoManager associated with the buffer, or %NULL.
  **/
 GtkSourceUndoManager *
 gtk_source_buffer_get_undo_manager (GtkSourceBuffer *buffer)

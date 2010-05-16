@@ -184,7 +184,7 @@ gtk_source_style_scheme_manager_init (GtkSourceStyleSchemeManager *mgr)
  * Creates a new style manager. If you do not need more than one style
  * manager then use gtk_source_style_scheme_manager_get_default() instead.
  *
- * Returns: a #GtkSourceStyleSchemeManager.
+ * Returns: a new #GtkSourceStyleSchemeManager.
  */
 GtkSourceStyleSchemeManager *
 gtk_source_style_scheme_manager_new (void)
@@ -197,8 +197,8 @@ gtk_source_style_scheme_manager_new (void)
  *
  * Returns the default #GtkSourceStyleSchemeManager instance.
  *
- * Returns: a #GtkSourceStyleSchemeManager. Return value is owned
- * by GtkSourceView library and must not be unref'ed.
+ * Returns: (transfer-none): a #GtkSourceStyleSchemeManager. Return value
+ * is owned by GtkSourceView library and must not be unref'ed.
  */
 GtkSourceStyleSchemeManager *
 gtk_source_style_scheme_manager_get_default (void)
@@ -406,11 +406,12 @@ notify_search_path (GtkSourceStyleSchemeManager *mgr)
 /**
  * gtk_source_style_scheme_manager_set_search_path:
  * @manager: a #GtkSourceStyleSchemeManager.
- * @path: a %NULL-terminated array of strings or %NULL.
+ * @path: (array zero-terminated=1) (allow-none):
+ * a %NULL-terminated array of strings or %NULL.
  *
  * Sets the list of directories where the @manager looks for
  * style scheme files.
- * If @dirs is %NULL, the search path is reset to default.
+ * If @path is %NULL, the search path is reset to default.
  */
 void
 gtk_source_style_scheme_manager_set_search_path (GtkSourceStyleSchemeManager  *manager,
@@ -510,7 +511,8 @@ gtk_source_style_scheme_manager_prepend_search_path (GtkSourceStyleSchemeManager
  * Returns the current search path for the @manager.
  * See gtk_source_style_scheme_manager_set_search_path() for details.
  *
- * Returns: a NULL-terminated array of string containing the search path.
+ * Returns: (array zero-terminated) (tranfer none): a %NULL-terminated array
+ * of string containing the search path.
  * The array is owned by the @manager and must not be modified.
  */
 G_CONST_RETURN gchar* G_CONST_RETURN *
@@ -526,7 +528,7 @@ gtk_source_style_scheme_manager_get_search_path (GtkSourceStyleSchemeManager *ma
 
 /**
  * gtk_source_style_scheme_manager_force_rescan:
- * @manager: a #GtkSourceStyleSchemeManager
+ * @manager: a #GtkSourceStyleSchemeManager.
  *
  * Mark any currently cached information about the available style scehems
  * as invalid. All the available style schemes will be reloaded next time
@@ -535,6 +537,8 @@ gtk_source_style_scheme_manager_get_search_path (GtkSourceStyleSchemeManager *ma
 void
 gtk_source_style_scheme_manager_force_rescan (GtkSourceStyleSchemeManager *manager)
 {
+	g_return_if_fail (GTK_IS_SOURCE_STYLE_SCHEME_MANAGER (manager));
+
 	manager->priv->need_reload = TRUE;
 
 	g_object_notify (G_OBJECT (manager), "scheme-ids");
@@ -542,13 +546,13 @@ gtk_source_style_scheme_manager_force_rescan (GtkSourceStyleSchemeManager *manag
 
 /**
  * gtk_source_style_scheme_manager_get_scheme_ids:
- * @manager: a #GtkSourceStyleSchemeManager
+ * @manager: a #GtkSourceStyleSchemeManager.
  *
  * Returns the ids of the available style schemes.
  *
- * Returns: a %NULL-terminated array of string containing the ids of the
- * available style schemes or %NULL if no style scheme is available. The array
- * is owned by the @manager and must not be modified.
+ * Returns: (array zero-terminated=1) (transfer none): a %NULL-terminated array
+ * of string containing the ids of the available style schemes or %NULL if no
+ * style scheme is available. The array is owned by the @manager and must not be modified.
  */
 G_CONST_RETURN gchar* G_CONST_RETURN *
 gtk_source_style_scheme_manager_get_scheme_ids (GtkSourceStyleSchemeManager *manager)
@@ -562,12 +566,12 @@ gtk_source_style_scheme_manager_get_scheme_ids (GtkSourceStyleSchemeManager *man
 
 /**
  * gtk_source_style_scheme_manager_get_scheme:
- * @manager: a #GtkSourceStyleSchemeManager
- * @scheme_id: style scheme id to find
+ * @manager: a #GtkSourceStyleSchemeManager.
+ * @scheme_id: style scheme id to find.
  *
  * Looks up style scheme by id.
  *
- * Returns: a #GtkSourceStyleScheme object. Returned value is owned by
+ * Returns: (transfer none): a #GtkSourceStyleScheme object. Returned value is owned by
  * @manager and must not be unref'ed.
  */
 GtkSourceStyleScheme *

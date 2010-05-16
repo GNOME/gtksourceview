@@ -3251,9 +3251,9 @@ _gtk_source_completion_add_proposals (GtkSourceCompletion         *completion,
 
 /**
  * gtk_source_completion_show:
- * @completion: A #GtkSourceCompletion
- * @providers: A list of #GtkSourceCompletionProvider or %NULL
- * @context: The #GtkSourceCompletionContext with which to start the completion
+ * @completion: z #GtkSourceCompletion.
+ * @providers: (allow-none): z list of #GtkSourceCompletionProvider, or %NULL.
+ * @context: The #GtkSourceCompletionContext with which to start the completion.
  *
  * Starts a new completion with the specified #GtkSourceCompletionContext and
  * a list of potential candidate providers for completion.
@@ -3313,12 +3313,12 @@ gtk_source_completion_show (GtkSourceCompletion        *completion,
 
 /**
  * gtk_source_completion_get_providers:
- * @completion: The #GtkSourceCompletion
+ * @completion: a #GtkSourceCompletion.
  *
  * Get list of providers registered on @completion. The returned list is owned
  * by the completion and should not be freed.
  *
- * Returns: list of #GtkSourceCompletionProvider
+ * Returns: (transfer none): list of #GtkSourceCompletionProvider.
  */
 GList *
 gtk_source_completion_get_providers (GtkSourceCompletion *completion)
@@ -3342,11 +3342,11 @@ gtk_source_completion_error_quark (void)
 
 /**
  * gtk_source_completion_new:
- * @view: A #GtkSourceView
+ * @view: a #GtkSourceView.
  *
- * Create a new #GtkSourceCompletion associated with @view.
+ * Creates a new #GtkSourceCompletion associated with @view.
  *
- * Returns: The new #GtkSourceCompletion.
+ * Returns: a new #GtkSourceCompletion.
  */
 GtkSourceCompletion *
 gtk_source_completion_new (GtkSourceView *view)
@@ -3360,9 +3360,9 @@ gtk_source_completion_new (GtkSourceView *view)
 
 /**
  * gtk_source_completion_add_provider:
- * @completion: A #GtkSourceCompletion
- * @provider: A #GtkSourceCompletionProvider
- * @error: A #GError
+ * @completion: a #GtkSourceCompletion.
+ * @provider: a #GtkSourceCompletionProvider.
+ * @error: (allow-none): a #GError.
  *
  * Add a new #GtkSourceCompletionProvider to the completion object. This will
  * add a reference @provider, so make sure to unref your own copy when you
@@ -3425,9 +3425,9 @@ gtk_source_completion_add_provider (GtkSourceCompletion          *completion,
 
 /**
  * gtk_source_completion_remove_provider:
- * @completion: A #GtkSourceCompletion
- * @provider: A #GtkSourceCompletionProvider
- * @error: A #GError
+ * @completion: a #GtkSourceCompletion.
+ * @provider: a #GtkSourceCompletionProvider.
+ * @error: (allow-none): a #GError.
  *
  * Remove @provider from the completion.
  * 
@@ -3492,7 +3492,7 @@ gtk_source_completion_remove_provider (GtkSourceCompletion          *completion,
 
 /**
  * gtk_source_completion_hide:
- * @completion: A #GtkSourceCompletion
+ * @completion: a #GtkSourceCompletion.
  * 
  * Hides the completion if it is active (visible).
  */
@@ -3510,12 +3510,13 @@ gtk_source_completion_hide (GtkSourceCompletion *completion)
 
 /**
  * gtk_source_completion_get_info_window:
- * @completion: A #GtkSourceCompletion
+ * @completion: a #GtkSourceCompletion.
  *
  * The info widget is the window where the completion displays optional extra
  * information of the proposal.
  *
- * Returns: The #GtkSourceCompletionInfo window.
+ * Returns: (transfer none): The #GtkSourceCompletionInfo window
+ *                           associated with @completion.
  */
 GtkSourceCompletionInfo *
 gtk_source_completion_get_info_window (GtkSourceCompletion *completion)
@@ -3525,11 +3526,11 @@ gtk_source_completion_get_info_window (GtkSourceCompletion *completion)
 
 /**
  * gtk_source_completion_get_view:
- * @completion: A #GtkSourceCompletion
+ * @completion: a #GtkSourceCompletion.
  *
  * The #GtkSourceView associated with @completion.
  *
- * Returns: The #GtkSourceView associated with @completion.
+ * Returns: (transfer none): The #GtkSourceView associated with @completion.
  */
 GtkSourceView *
 gtk_source_completion_get_view (GtkSourceCompletion *completion)
@@ -3541,8 +3542,8 @@ gtk_source_completion_get_view (GtkSourceCompletion *completion)
 
 /**
  * gtk_source_completion_create_context:
- * @completion: A #GtkSourceCompletion
- * @position: A #GtkTextIter
+ * @completion: a #GtkSourceCompletion.
+ * @position: (allow-none): a #GtkTextIter, or %NULL.
  *
  * Create a new #GtkSourceCompletionContext for @completion. The position at
  * which the completion using the new context will consider completion can
@@ -3552,7 +3553,6 @@ gtk_source_completion_get_view (GtkSourceCompletion *completion)
  * Returns: a new #GtkSourceCompletionContext. The reference being returned
  * is a 'floating' reference, so if you invoke #gtk_source_completion_show
  * with this context you don't need to unref it.
- *
  */
 GtkSourceCompletionContext *
 gtk_source_completion_create_context (GtkSourceCompletion *completion,
@@ -3576,11 +3576,10 @@ gtk_source_completion_create_context (GtkSourceCompletion *completion,
 
 /**
  * gtk_source_completion_move_window:
- * @completion: A #GtkSourceCompletion
- * @iter: A #GtkTextIter
+ * @completion: a #GtkSourceCompletion.
+ * @iter: a #GtkTextIter.
  *
  * Move the completion window to a specific iter.
- *
  */
 void
 gtk_source_completion_move_window (GtkSourceCompletion *completion,
@@ -3601,13 +3600,12 @@ gtk_source_completion_move_window (GtkSourceCompletion *completion,
 
 /**
  * gtk_source_completion_block_interactive:
- * @completion: A # GtkSourceCompletion
+ * @completion: a #GtkSourceCompletion.
  *
  * Block interactive completion. This can be used to disable interactive
  * completion when inserting or deleting text from the buffer associated with
  * the completion. Use #gtk_source_completion_unblock_interactive to enable
  * interactive completion again.
- *
  **/
 void
 gtk_source_completion_block_interactive (GtkSourceCompletion *completion)
@@ -3622,12 +3620,11 @@ gtk_source_completion_block_interactive (GtkSourceCompletion *completion)
 
 /**
  * gtk_source_completion_unblock_interactive:
- * @completion: A # GtkSourceCompletion
+ * @completion: a #GtkSourceCompletion.
  *
  * Unblock interactive completion. This can be used after using
  * #gtk_source_completion_block_interactive to enable interactive completion
  * again.
- *
  **/
 void
 gtk_source_completion_unblock_interactive (GtkSourceCompletion *completion)

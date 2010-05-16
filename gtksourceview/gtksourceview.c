@@ -3050,7 +3050,7 @@ calculate_real_tab_width (GtkSourceView *view, guint tab_size, gchar c)
  * created for you. If you want to specify your own buffer, consider
  * gtk_source_view_new_with_buffer().
  *
- * Return value: a new #GtkSourceView
+ * Return value: a new #GtkSourceView.
  **/
 GtkWidget *
 gtk_source_view_new (void)
@@ -3071,7 +3071,7 @@ gtk_source_view_new (void)
  * Creates a new #GtkSourceView widget displaying the buffer
  * @buffer. One buffer can be shared among many widgets.
  *
- * Return value: a new #GtkTextView.
+ * Return value: a new #GtkSourceView.
  **/
 GtkWidget *
 gtk_source_view_new_with_buffer (GtkSourceBuffer *buffer)
@@ -3109,7 +3109,6 @@ gtk_source_view_get_show_line_numbers (GtkSourceView *view)
  * @show: whether line numbers should be displayed.
  *
  * If %TRUE line numbers will be displayed beside the text.
- *
  **/
 void
 gtk_source_view_set_show_line_numbers (GtkSourceView *view,
@@ -3402,10 +3401,10 @@ gtk_source_view_ensure_category (GtkSourceView *view,
  * gtk_source_view_set_mark_category_icon_from_pixbuf:
  * @view: a #GtkSourceView.
  * @category: a mark category.
- * @pixbuf: a #GdkPixbuf or #NULL.
+ * @pixbuf: (allow-none): a #GdkPixbuf, or %NULL.
  *
  * Sets the icon to be used for @category to @pixbuf.
- * If @pixbuf is #NULL, the icon is unset.
+ * If @pixbuf is %NULL, the icon is unset.
  *
  * Since: 2.8
  */
@@ -3445,10 +3444,10 @@ gtk_source_view_set_mark_category_icon_from_pixbuf (GtkSourceView  *view,
  * gtk_source_view_set_mark_category_icon_from_icon_name:
  * @view: a #GtkSourceView.
  * @category: a mark category.
- * @name: the themed icon name or #NULL.
+ * @name: (allow-none): the themed icon name, or %NULL.
  *
  * Sets the icon to be used for @category to the named theme item @name.
- * If @name is #NULL, the icon is unset.
+ * If @name is %NULL, the icon is unset.
  *
  * Since: 2.8
  */
@@ -3487,10 +3486,10 @@ gtk_source_view_set_mark_category_icon_from_icon_name (GtkSourceView  *view,
  * gtk_source_view_set_mark_category_icon_from_stock:
  * @view: a #GtkSourceView.
  * @category: a mark category.
- * @stock_id: the stock id or #NULL.
+ * @stock_id: (allow-none): the stock id, or %NULL.
  *
  * Sets the icon to be used for @category to the stock item @stock_id.
- * If @stock_id is #NULL, the icon is unset.
+ * If @stock_id is %NULL, the icon is unset.
  *
  * Since: 2.8
  */
@@ -3529,12 +3528,12 @@ gtk_source_view_set_mark_category_icon_from_stock (GtkSourceView  *view,
  * gtk_source_view_set_mark_category_pixbuf:
  * @view: a #GtkSourceView.
  * @category: a mark category.
- * @pixbuf: a #GdkPixbuf or #NULL.
+ * @pixbuf: (allow-none): a #GdkPixbuf, or %NULL.
  *
  * Associates a given @pixbuf with a given mark @category.
- * If @pixbuf is #NULL, the pixbuf is unset.
+ * If @pixbuf is %NULL, the pixbuf is unset.
  *
- * Deprecated: Use #gtk_source_view_set_mark_category_icon_from_pixbuf instead
+ * Deprecated: Use #gtk_source_view_set_mark_category_icon_from_pixbuf instead.
  *
  * Since: 2.2
  */
@@ -3617,10 +3616,10 @@ set_mark_category_tooltip_func (GtkSourceView   *view,
  * gtk_source_view_set_mark_category_tooltip_func:
  * @view: a #GtkSourceView.
  * @category: a mark category.
- * @func: a #GtkSourceViewMarkTooltipFunc or %NULL.
- * @user_data: user data which will be passed to @func.
- * @user_data_notify:a function to free the memory allocated for @user_data 
- * or %NULL if you do not want to supply such a function.
+ * @func: (allow-none): a #GtkSourceViewMarkTooltipFunc or %NULL.
+ * @user_data: (allow-none): user data which will be passed to @func.
+ * @user_data_notify: (allow-none):a function to free the memory allocated
+ * for @user_data or %NULL if you do not want to supply such a function.
  *
  * Set a #GtkSourceViewMarkTooltipFunc used to set tooltip on marks from the
  * given mark @category.
@@ -3666,10 +3665,10 @@ gtk_source_view_set_mark_category_tooltip_func (GtkSourceView   *view,
  * gtk_source_view_set_mark_category_tooltip_markup_func:
  * @view: a #GtkSourceView.
  * @category: a mark category.
- * @markup_func: a #GtkSourceViewMarkTooltipFunc or %NULL.
- * @user_data: user data which will be passed to @func.
- * @user_data_notify:a function to free the memory allocated for @user_data 
- * or %NULL if you do not want to supply such a function.
+ * @markup_func: (allow-none): a #GtkSourceViewMarkTooltipFunc or %NULL.
+ * @user_data: (allow-none): user data which will be passed to @func.
+ * @user_data_notify: (allow-none):a function to free the memory allocated
+ * for @user_data or %NULL if you do not want to supply such a function.
  *
  * See gtk_source_view_set_mark_category_tooltip_func() for more information.
  *
@@ -3690,10 +3689,10 @@ gtk_source_view_set_mark_category_tooltip_markup_func (GtkSourceView   *view,
  * gtk_source_view_set_mark_category_background:
  * @view: a #GtkSourceView.
  * @category: a mark category.
- * @color: background color or %NULL to unset it.
+ * @color: (allow-none): background color or %NULL to unset it.
  *
  * Sets given background @color for mark @category.
- * If @color is #NULL, the background color is unset.
+ * If @color is %NULL, the background color is unset.
  *
  * Since: 2.4
  */
@@ -4546,7 +4545,6 @@ gtk_source_view_get_auto_indent (GtkSourceView *view)
  * @enable: whether to enable auto indentation.
  *
  * If %TRUE auto indentation of text is enabled.
- *
  **/
 void
 gtk_source_view_set_auto_indent (GtkSourceView *view, gboolean enable)
@@ -4587,7 +4585,6 @@ gtk_source_view_get_insert_spaces_instead_of_tabs (GtkSourceView *view)
  *
  * If %TRUE any tabulator character inserted is replaced by a group
  * of space characters.
- *
  **/
 void
 gtk_source_view_set_insert_spaces_instead_of_tabs (GtkSourceView *view, gboolean enable)
@@ -4717,9 +4714,9 @@ view_dnd_drop (GtkTextView *view,
 
 /**
  * gtk_source_view_get_highlight_current_line:
- * @view: a #GtkSourceView
+ * @view: a #GtkSourceView.
  *
- * Returns whether the current line is highlighted
+ * Returns whether the current line is highlighted.
  *
  * Return value: %TRUE if the current line is highlighted.
  **/
@@ -4733,8 +4730,8 @@ gtk_source_view_get_highlight_current_line (GtkSourceView *view)
 
 /**
  * gtk_source_view_set_highlight_current_line:
- * @view: a #GtkSourceView
- * @show: whether to highlight the current line
+ * @view: a #GtkSourceView.
+ * @show: whether to highlight the current line.
  *
  * If @show is %TRUE the current line is highlighted.
  **/
@@ -4776,7 +4773,7 @@ gtk_source_view_get_show_right_margin (GtkSourceView *view)
  * @view: a #GtkSourceView.
  * @show: whether to show a right margin.
  *
- * If %TRUE a right margin is displayed
+ * If %TRUE a right margin is displayed.
  **/
 void
 gtk_source_view_set_show_right_margin (GtkSourceView *view, gboolean show)
@@ -5143,7 +5140,7 @@ gtk_source_view_update_style_scheme (GtkSourceView *view)
 							 
 /**
  * gtk_source_view_get_completion:
- * @view: a #GtkSourceView
+ * @view: a #GtkSourceView.
  *
  * Gets the #GtkSourceCompletion associated with @view.
  *
@@ -5165,8 +5162,8 @@ gtk_source_view_get_completion (GtkSourceView *view)
 
 /**
  * gtk_source_view_get_gutter:
- * @view: a #GtkSourceView
- * @window_type: the gutter window type
+ * @view: a #GtkSourceView.
+ * @window_type: the gutter window type.
  *
  * Returns the #GtkSourceGutter object associated with @window_type for @view.
  * Only GTK_TEXT_WINDOW_LEFT and GTK_TEXT_WINDOW_RIGHT are supported, 
@@ -5176,7 +5173,7 @@ gtk_source_view_get_completion (GtkSourceView *view)
  *
  * Since: 2.8
  *
- * Returns: the #GtkSourceGutter.
+ * Returns: (transfer none): the #GtkSourceGutter.
  **/
 GtkSourceGutter *
 gtk_source_view_get_gutter (GtkSourceView     *view,

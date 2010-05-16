@@ -289,7 +289,7 @@ gtk_source_style_scheme_get_name (GtkSourceStyleScheme *scheme)
  * gtk_source_style_scheme_get_description:
  * @scheme: a #GtkSourceStyleScheme.
  *
- * Returns: @scheme description (if defined) or NULL.
+ * Returns: @scheme description (if defined), or %NULL.
  *
  * Since: 2.0
  */
@@ -305,9 +305,8 @@ gtk_source_style_scheme_get_description (GtkSourceStyleScheme *scheme)
  * gtk_source_style_scheme_get_authors:
  * @scheme: a #GtkSourceStyleScheme.
  *
- * Returns: a %NULL-terminated array containing the @scheme authors or
- * %NULL if no author is specified by the style
- * scheme.
+ * Returns: (array zero-terminated): a %NULL-terminated array containing
+ * the @scheme authors or %NULL if no author is specified by the style scheme.
  *
  * Since: 2.0
  */
@@ -327,7 +326,7 @@ gtk_source_style_scheme_get_authors (GtkSourceStyleScheme *scheme)
  * @scheme: a #GtkSourceStyleScheme.
  *
  * Returns: @scheme file name if the scheme was created parsing a
- * style scheme file or NULL in the other cases.
+ * style scheme file or %NULL in the other cases.
  *
  * Since: 2.0
  */
@@ -735,7 +734,7 @@ update_cursor_colors (GtkWidget      *widget,
 
 /**
  * _gtk_source_style_scheme_apply:
- * @scheme: a #GtkSourceStyleScheme or NULL.
+ * @scheme: (allow-none): a #GtkSourceStyleScheme or %NULL.
  * @widget: a #GtkWidget to apply styles to.
  *
  * Sets text colors from @scheme in the @widget.
@@ -746,7 +745,7 @@ void
 _gtk_source_style_scheme_apply (GtkSourceStyleScheme *scheme,
 				GtkWidget            *widget)
 {
-	g_return_if_fail (!scheme || GTK_IS_SOURCE_STYLE_SCHEME (scheme));
+	g_return_if_fail (scheme == NULL || GTK_IS_SOURCE_STYLE_SCHEME (scheme));
 	g_return_if_fail (GTK_IS_WIDGET (widget));
 
 	if (scheme != NULL)
@@ -1171,6 +1170,7 @@ const gchar *
 _gtk_source_style_scheme_get_parent_id (GtkSourceStyleScheme *scheme)
 {
 	g_return_val_if_fail (GTK_IS_SOURCE_STYLE_SCHEME (scheme), NULL);
+
 	return scheme->priv->parent_id;
 }
 
@@ -1190,7 +1190,7 @@ _gtk_source_style_scheme_set_parent (GtkSourceStyleScheme *scheme,
 				     GtkSourceStyleScheme *parent_scheme)
 {
 	g_return_if_fail (GTK_IS_SOURCE_STYLE_SCHEME (scheme));
-	g_return_if_fail (!parent_scheme || GTK_IS_SOURCE_STYLE_SCHEME (parent_scheme));
+	g_return_if_fail (parent_scheme == NULL || GTK_IS_SOURCE_STYLE_SCHEME (parent_scheme));
 
 	if (scheme->priv->parent != NULL)
 		g_object_unref (scheme->priv->parent);

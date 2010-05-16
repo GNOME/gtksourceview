@@ -173,18 +173,19 @@ gtk_source_completion_provider_get_type ()
 
 /**
  * gtk_source_completion_provider_get_name:
- * @provider: The #GtkSourceCompletionProvider
+ * @provider: a #GtkSourceCompletionProvider.
  *
  * Get the name of the provider. This should be a translatable name for
  * display to the user. For example: _("Document word completion provider"). The
  * returned string must be freed with g_free().
  *
- * Returns: A new string containing the name of the provider.
+ * Returns: a new string containing the name of the provider.
  */
 gchar *
 gtk_source_completion_provider_get_name (GtkSourceCompletionProvider *provider)
 {
 	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_PROVIDER (provider), NULL);
+
 	return GTK_SOURCE_COMPLETION_PROVIDER_GET_INTERFACE (provider)->get_name (provider);
 }
 
@@ -201,64 +202,66 @@ GdkPixbuf *
 gtk_source_completion_provider_get_icon (GtkSourceCompletionProvider *provider)
 {
 	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_PROVIDER (provider), NULL);
+
 	return GTK_SOURCE_COMPLETION_PROVIDER_GET_INTERFACE (provider)->get_icon (provider);
 }
 
 /**
  * gtk_source_completion_provider_populate:
- * @provider: The #GtkSourceCompletionProvider
- * @context: The #GtkSourceCompletionContext
+ * @provider: a #GtkSourceCompletionProvider.
+ * @context: a #GtkSourceCompletionContext.
  *
- * Populate @context with proposals from @provider
- *
+ * Populate @context with proposals from @provider.
  */
 void
 gtk_source_completion_provider_populate (GtkSourceCompletionProvider *provider,
                                          GtkSourceCompletionContext  *context)
 {
 	g_return_if_fail (GTK_IS_SOURCE_COMPLETION_PROVIDER (provider));
+
 	GTK_SOURCE_COMPLETION_PROVIDER_GET_INTERFACE (provider)->populate (provider, context);
 }
 
 /**
  * gtk_source_completion_provider_get_activation:
- * @provider: A #GtkSourceCompletionProvider
+ * @provider: a #GtkSourceCompletionProvider.
  * 
  * Get with what kind of activation the provider should be activated.
  *
  * Returns: a combination of #GtkSourceCompletionActivation.
- *
  **/
 GtkSourceCompletionActivation
 gtk_source_completion_provider_get_activation (GtkSourceCompletionProvider *provider)
 {
 	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_PROVIDER (provider), GTK_SOURCE_COMPLETION_ACTIVATION_NONE);
+
 	return GTK_SOURCE_COMPLETION_PROVIDER_GET_INTERFACE (provider)->get_activation (provider);
 }
 
 /**
  * gtk_source_completion_provider_match:
- * @provider: The #GtkSourceCompletionProvider
- * @context: The #GtkSourceCompletionContext
+ * @provider: a #GtkSourceCompletionProvider.
+ * @context: a #GtkSourceCompletionContext.
  *
  * Get whether the provider match the context of completion detailed in
  * @context.
  *
- * Returns: %TRUE if @provider matches the completion context, %FALSE otherwise
+ * Returns: %TRUE if @provider matches the completion context, %FALSE otherwise.
  */
 gboolean
 gtk_source_completion_provider_match (GtkSourceCompletionProvider *provider,
                                       GtkSourceCompletionContext  *context)
 {
 	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_PROVIDER (provider), TRUE);
+
 	return GTK_SOURCE_COMPLETION_PROVIDER_GET_INTERFACE (provider)->match (provider,
 	                                                                       context);
 }
 
 /**
  * gtk_source_completion_provider_get_info_widget:
- * @provider: The #GtkSourceCompletionProvider
- * @proposal: The currently selected #GtkSourceCompletionProposal
+ * @provider: a #GtkSourceCompletionProvider.
+ * @proposal: a currently selected #GtkSourceCompletionProposal.
  *
  * Get a customized info widget to show extra information of a proposal.
  * This allows for customized widgets on a proposal basis, although in general
@@ -277,15 +280,15 @@ gtk_source_completion_provider_get_info_widget (GtkSourceCompletionProvider *pro
 {
 	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_PROVIDER (provider), NULL);
 	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_PROPOSAL (proposal), NULL);
-	
+
 	return GTK_SOURCE_COMPLETION_PROVIDER_GET_INTERFACE (provider)->get_info_widget (provider, proposal);
 }
 
 /**
  * gtk_source_completion_provider_update_info:
- * @provider: A #GtkSourceCompletionProvider
- * @proposal: A #GtkSourceCompletionProposal
- * @info: A #GtkSourceCompletionInfo
+ * @provider: a #GtkSourceCompletionProvider.
+ * @proposal: a #GtkSourceCompletionProposal.
+ * @info: a #GtkSourceCompletionInfo.
  *
  * Update extra information shown in @info for @proposal. This should be
  * implemented if your provider sets a custom info widget for @proposal.
@@ -300,24 +303,23 @@ gtk_source_completion_provider_update_info (GtkSourceCompletionProvider *provide
 	g_return_if_fail (GTK_IS_SOURCE_COMPLETION_PROVIDER (provider));
 	g_return_if_fail (GTK_IS_SOURCE_COMPLETION_PROPOSAL (proposal));
 	g_return_if_fail (GTK_IS_SOURCE_COMPLETION_INFO (info));
-	
+
 	GTK_SOURCE_COMPLETION_PROVIDER_GET_INTERFACE (provider)->update_info (provider, proposal, info);
 }
 
 /**
  * gtk_source_completion_provider_get_start_iter:
- * @provider: A #GtkSourceCompletionProvider
- * @proposal: A #GtkSourceCompletionProposal
- * @context: A #GtkSourceCompletionContext
- * @iter: A #GtkTextIter
+ * @provider: a #GtkSourceCompletionProvider.
+ * @proposal: a #GtkSourceCompletionProposal.
+ * @context: a #GtkSourceCompletionContext.
+ * @iter: a #GtkTextIter.
  * 
  * Get the #GtkTextIter at which the completion for @proposal starts. When
  * implemented, the completion can use this information to position the
  * completion window accordingly when a proposal is selected in the completion
  * window.
  *
- * Returns: %TRUE if @iter was set for @proposal, %FALSE otherwise
- *
+ * Returns: %TRUE if @iter was set for @proposal, %FALSE otherwise.
  **/
 gboolean
 gtk_source_completion_provider_get_start_iter (GtkSourceCompletionProvider *provider,
@@ -329,7 +331,7 @@ gtk_source_completion_provider_get_start_iter (GtkSourceCompletionProvider *prov
 	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_CONTEXT (context), FALSE);
 	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_PROPOSAL (proposal), FALSE);
 	g_return_val_if_fail (iter != NULL, FALSE);
-	
+
 	return GTK_SOURCE_COMPLETION_PROVIDER_GET_INTERFACE (provider)->get_start_iter (provider, 
 	                                                                                context,
 	                                                                                proposal,
@@ -338,9 +340,9 @@ gtk_source_completion_provider_get_start_iter (GtkSourceCompletionProvider *prov
 
 /**
  * gtk_source_completion_provider_activate_proposal:
- * @provider: A #GtkSourceCompletionProvider
- * @proposal: A #GtkSourceCompletionProposal
- * @iter: A #GtkTextIter
+ * @provider: a #GtkSourceCompletionProvider.
+ * @proposal: a #GtkSourceCompletionProposal.
+ * @iter: a #GtkTextIter.
  *
  * Activate @proposal at @iter. When this functions returns %FALSE, the default
  * activation of @proposal will take place which replaces the word at @iter
@@ -356,7 +358,7 @@ gtk_source_completion_provider_activate_proposal (GtkSourceCompletionProvider *p
 {
 	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_PROVIDER (provider), FALSE);
 	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_PROPOSAL (proposal), FALSE);
-	
+
 	return GTK_SOURCE_COMPLETION_PROVIDER_GET_INTERFACE (provider)->activate_proposal (provider, 
 	                                                                                   proposal,
 	                                                                                   iter);
@@ -364,14 +366,13 @@ gtk_source_completion_provider_activate_proposal (GtkSourceCompletionProvider *p
 
 /**
  * gtk_source_completion_provider_get_interactive_delay:
- * @provider: A # GtkSourceCompletionProvider
+ * @provider: a #GtkSourceCompletionProvider.
  *
  * Get the delay in milliseconds before starting interactive completion for
  * this provider. A value of -1 indicates to use the default value as set
  * by #GtkSourceCompletion::auto-complete-delay.
  *
  * Returns: the interactive delay in milliseconds.
- *
  **/
 gint
 gtk_source_completion_provider_get_interactive_delay (GtkSourceCompletionProvider *provider)
@@ -383,14 +384,13 @@ gtk_source_completion_provider_get_interactive_delay (GtkSourceCompletionProvide
 
 /**
  * gtk_source_completion_provider_get_priority:
- * @provider: A # GtkSourceCompletionProvider
+ * @provider: a #GtkSourceCompletionProvider.
  *
  * Get the provider priority. The priority determines the order in which
  * proposals appear in the completion popup. Higher priorities are sorted
  * before lower priorities. The default priority is 0.
  *
  * Returns: the provider priority.
- *
  **/
 gint
 gtk_source_completion_provider_get_priority (GtkSourceCompletionProvider *provider)

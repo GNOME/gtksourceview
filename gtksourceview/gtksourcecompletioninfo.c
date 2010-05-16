@@ -388,8 +388,7 @@ gtk_source_completion_info_class_init (GtkSourceCompletionInfoClass *klass)
 /**
  * gtk_source_completion_info_new:
  *
- * Returns: The new GtkSourceCompletionInfo.
- *
+ * Returns: a new GtkSourceCompletionInfo.
  */
 GtkSourceCompletionInfo *
 gtk_source_completion_info_new (void)
@@ -401,15 +400,14 @@ gtk_source_completion_info_new (void)
 
 /**
  * gtk_source_completion_info_move_to_iter:
- * @info: A #GtkSourceCompletionInfo
- * @view: A #GtkTextView on which the info window should be positioned
- * @iter: A #GtkTextIter
+ * @info: a #GtkSourceCompletionInfo.
+ * @view: a #GtkTextView on which the info window should be positioned.
+ * @iter: (allow-none): a #GtkTextIter.
  *
  * Moves the #GtkSourceCompletionInfo to @iter. If @iter is %NULL @info is 
  * moved to the cursor position. Moving will respect the #GdkGravity setting
  * of the info window and will ensure the line at @iter is not occluded by
  * the window.
- *
  */
 void
 gtk_source_completion_info_move_to_iter (GtkSourceCompletionInfo *info,
@@ -441,19 +439,18 @@ gtk_source_completion_info_move_to_iter (GtkSourceCompletionInfo *info,
 
 /**
  * gtk_source_completion_info_set_sizing:
- * @info: A #GtkSourceCompletionInfo
- * @width: The maximum/requested width of the window (-1 to default)
- * @height: The maximum/requested height of the window (-1 to default)
- * @shrink_width: Whether to shrink the width of the window to fit its contents
+ * @info: a #GtkSourceCompletionInfo.
+ * @width: The maximum/requested width of the window (-1 to default).
+ * @height: The maximum/requested height of the window (-1 to default).
+ * @shrink_width: Whether to shrink the width of the window to fit its contents.
  * @shrink_height: Whether to shrink the height of the window to fit its
- *                 contents
+ *                 contents.
  *
  * Set sizing information for the info window. If @shrink_width or
  * @shrink_height is %TRUE, the info window will try to resize to fit the
  * window contents, with a maximum size given by @width and @height. Setting
  * @width or @height to -1 removes the maximum size of respectively the width
  * and height of the window.
- *
  */
 void
 gtk_source_completion_info_set_sizing (GtkSourceCompletionInfo *info,
@@ -532,13 +529,12 @@ create_scrolled_window (GtkSourceCompletionInfo *info)
 
 /**
  * gtk_source_completion_info_set_widget:
- * @info: A #GtkSourceCompletionInfo
- * @widget: A #GtkWidget
+ * @info: a #GtkSourceCompletionInfo.
+ * @widget: (allow-none): a #GtkWidget.
  *
  * Sets the content widget of the info window. If @widget does not fit within
  * the size requirements of the window, a #GtkScrolledWindow will automatically
  * be created and added to the window.
- *
  */
 void
 gtk_source_completion_info_set_widget (GtkSourceCompletionInfo *info,
@@ -613,12 +609,11 @@ gtk_source_completion_info_set_widget (GtkSourceCompletionInfo *info,
 
 /**
  * gtk_source_completion_info_get_widget:
- * @info: A #GtkSourceCompletionInfo
+ * @info: a #GtkSourceCompletionInfo.
  *
  * Get the current content widget.
  *
- * Returns: The current content widget.
- *
+ * Returns: (transfer none): The current content widget.
  */
 GtkWidget *
 gtk_source_completion_info_get_widget (GtkSourceCompletionInfo* info)

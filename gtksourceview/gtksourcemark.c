@@ -166,7 +166,7 @@ gtk_source_mark_init (GtkSourceMark *mark)
  * Normally marks are created using the utility function 
  * gtk_source_buffer_create_mark().
  *
- * Returns: a new #GtkSourceMark that can be added using gtk_text_buffer_add_mark()
+ * Returns: a new #GtkSourceMark that can be added using gtk_text_buffer_add_mark().
  *
  * Since: 2.2
  */
@@ -185,11 +185,11 @@ gtk_source_mark_new (const gchar *name,
 
 /**
  * gtk_source_mark_get_category:
- * @mark: a #GtkSourceMark
+ * @mark: a #GtkSourceMark.
  *
- * Returns the mark category
+ * Returns the mark category.
  *
- * Returns: the category of the #GtkSourceMark
+ * Returns: the category of the #GtkSourceMark.
  *
  * Since: 2.2
  */
@@ -203,15 +203,15 @@ gtk_source_mark_get_category (GtkSourceMark *mark)
 
 /**
  * gtk_source_mark_next:
- * @mark: a #GtkSourceMark
- * @category: a string specifying the mark category or %NULL
+ * @mark: a #GtkSourceMark.
+ * @category: (allow-none): a string specifying the mark category, or %NULL.
  *
  * Returns the next #GtkSourceMark in the buffer or %NULL if the mark
  * was not added to a buffer. If there is no next mark, %NULL will be returned.
  *
- * If @category is %NULL, looks for marks of any category
+ * If @category is %NULL, looks for marks of any category.
  *
- * Returns: the next #GtkSourceMark or %NULL
+ * Returns: the next #GtkSourceMark, or %NULL.
  *
  * Since: 2.2
  */
@@ -233,15 +233,15 @@ gtk_source_mark_next (GtkSourceMark *mark,
 
 /**
  * gtk_source_mark_prev:
- * @mark: a #GtkSourceMark
- * @category: a string specifying the mark category or %NULL
+ * @mark: a #GtkSourceMark.
+ * @category: a string specifying the mark category, or %NULL.
  *
  * Returns the previous #GtkSourceMark in the buffer or %NULL if the mark
  * was not added to a buffer. If there is no previous mark, %NULL is returned.
  * 
  * If @category is %NULL, looks for marks of any category
  *
- * Returns: the previous #GtkSourceMark or %NULL
+ * Returns: the previous #GtkSourceMark, or %NULL.
  *
  * Since: 2.2
  */

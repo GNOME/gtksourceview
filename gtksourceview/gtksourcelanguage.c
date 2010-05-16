@@ -475,10 +475,10 @@ _gtk_source_language_translate_string (GtkSourceLanguage *language,
  * @language: a #GtkSourceLanguage.
  *
  * Returns the ID of the language. The ID is not locale-dependent.
- *
- * Returns: the ID of @language.
  * The returned string is owned by @language and should not be freed
  * or modified.
+ *
+ * Returns: the ID of @language.
  **/
 const gchar *
 gtk_source_language_get_id (GtkSourceLanguage *language)
@@ -494,10 +494,10 @@ gtk_source_language_get_id (GtkSourceLanguage *language)
  * @language: a #GtkSourceLanguage.
  *
  * Returns the localized name of the language.
- *
- * Returns: the name of @language.
  * The returned string is owned by @language and should not be freed
  * or modified.
+ *
+ * Returns: the name of @language.
  **/
 const gchar *
 gtk_source_language_get_name (GtkSourceLanguage *language)
@@ -515,10 +515,10 @@ gtk_source_language_get_name (GtkSourceLanguage *language)
  * Returns the localized section of the language.
  * Each language belong to a section (ex. HTML belogs to the
  * Markup section).
- *
- * Returns: the section of @language.
  * The returned string is owned by @language and should not be freed
  * or modified.
+ *
+ * Returns: the section of @language.
  **/
 const gchar *
 gtk_source_language_get_section	(GtkSourceLanguage *language)
@@ -535,7 +535,7 @@ gtk_source_language_get_section	(GtkSourceLanguage *language)
  *
  * Returns whether the language should be hidden from the user.
  *
- * Returns: TRUE if the language should be hidden, FALSE otherwise.
+ * Returns: %TRUE if the language should be hidden, %FALSE otherwise.
  */
 gboolean
 gtk_source_language_get_hidden (GtkSourceLanguage *language)
@@ -574,8 +574,9 @@ gtk_source_language_get_metadata (GtkSourceLanguage *language,
  * retrieve the "mimetypes" metadata property and split it into an
  * array.
  *
- * Returns: a newly-allocated %NULL terminated array containing
- * the mime types or %NULL if no mime types are found.
+ * Returns: (array zero-terminated=1): a newly-allocated %NULL
+ * terminated array containing the mime types or %NULL if no 
+ * mime types are found.
  * The returned array must be freed with g_strfreev().
  **/
 gchar **
@@ -600,7 +601,7 @@ gtk_source_language_get_mime_types (GtkSourceLanguage *language)
  * an utility wrapper around gtk_source_language_get_metadata() to
  * retrieve the "globs" metadata property and split it into an array.
  *
- * Returns: a newly-allocated %NULL terminated array containing
+ * Returns: (array zero-terminated=1): a newly-allocated %NULL terminated array containing
  * the globs or %NULL if no globs are found.
  * The returned array must be freed with g_strfreev().
  **/
@@ -622,7 +623,7 @@ gtk_source_language_get_globs (GtkSourceLanguage *language)
  * _gtk_source_language_get_language_manager:
  * @language: a #GtkSourceLanguage.
  *
- * Returns: #GtkSourceLanguageManager for @language.
+ * Returns: (transfer none): the #GtkSourceLanguageManager for @language.
  **/
 GtkSourceLanguageManager *
 _gtk_source_language_get_language_manager (GtkSourceLanguage *language)
@@ -830,11 +831,11 @@ force_styles (GtkSourceLanguage *language)
 
 /**
  * gtk_source_language_get_style_ids:
- * @language: a #GtkSourceLanguage
+ * @language: a #GtkSourceLanguage.
  *
  * Returns the ids of the styles defined by this @language.
  *
- * Returns: a  %NULL terminated array containing
+ * Returns: (array zero-terminated=1): a  %NULL terminated array containing
  * ids of the styles defined by this @language or %NULL if no style is
  * defined.  The returned array must be freed with g_strfreev().
 */
@@ -867,8 +868,8 @@ get_style_info (GtkSourceLanguage *language, const char *style_id)
 
 /**
  * gtk_source_language_get_style_name:
- * @language: a #GtkSourceLanguage
- * @style_id: a style ID
+ * @language: a #GtkSourceLanguage.
+ * @style_id: a style ID.
  *
  * Returns the name of the style with ID @style_id defined by this @language.
  *

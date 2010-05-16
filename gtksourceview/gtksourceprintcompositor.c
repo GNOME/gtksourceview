@@ -759,7 +759,7 @@ gtk_source_print_compositor_init (GtkSourcePrintCompositor *compositor)
 
 /**
  * gtk_source_print_compositor_new:
- * @buffer: the #GtkSourceBuffer to print
+ * @buffer: the #GtkSourceBuffer to print.
  * 
  * Creates a new print compositor that can be used to print @buffer.
  * 
@@ -834,7 +834,7 @@ gtk_source_print_compositor_new_from_view (GtkSourceView *view)
  * object reference is owned by the compositor object and
  * should not be unreferenced.
  * 
- * Return value: the #GtkSourceBuffer associated with the compositor.
+ * Return value: (transfer none): the #GtkSourceBuffer associated with the compositor.
  *
  * Since: 2.2
  **/
@@ -1135,9 +1135,9 @@ gtk_source_print_compositor_get_print_footer (GtkSourcePrintCompositor *composit
  * gtk_source_print_compositor_set_header_format:
  * @compositor: a #GtkSourcePrintCompositor.
  * @separator: %TRUE if you want a separator line to be printed.
- * @left: a format string to print on the left of the header.
- * @center: a format string to print on the center of the header.
- * @right: a format string to print on the right of the header.
+ * @left: (allow-none): a format string to print on the left of the header.
+ * @center: (allow-none): a format string to print on the center of the header.
+ * @right: (allow-none): a format string to print on the right of the header.
  * 
  * Sets strftime like header format strings, to be printed on the
  * left, center and right of the top of each page.  The strings may
@@ -1186,9 +1186,9 @@ gtk_source_print_compositor_set_header_format (GtkSourcePrintCompositor *composi
  * gtk_source_print_compositor_set_footer_format:
  * @compositor: a #GtkSourcePrintCompositor.
  * @separator: %TRUE if you want a separator line to be printed.
- * @left: a format string to print on the left of the footer.
- * @center: a format string to print on the center of the footer.
- * @right: a format string to print on the right of the footer.
+ * @left: (allow-none): a format string to print on the left of the footer.
+ * @center: (allow-none): a format string to print on the center of the footer.
+ * @right: (allow-none): a format string to print on the right of the footer.
  * 
  * Sets strftime like header format strings, to be printed on the
  * left, center and right of the bottom of each page. The strings may
@@ -1249,7 +1249,7 @@ guint
 gtk_source_print_compositor_get_print_line_numbers (GtkSourcePrintCompositor *compositor)
 {
 	g_return_val_if_fail (GTK_IS_SOURCE_PRINT_COMPOSITOR (compositor), 0);
-	
+
 	return compositor->priv->print_line_numbers;
 }
 
@@ -1340,7 +1340,7 @@ gtk_source_print_compositor_get_body_font_name (GtkSourcePrintCompositor *compos
 /**
  * gtk_source_print_compositor_set_line_numbers_font_name:
  * @compositor: a #GtkSourcePrintCompositor.
- * @font_name: the name of the font for line numbers, or %NULL.
+ * @font_name: (allow-none): the name of the font for line numbers, or %NULL.
  *
  * Sets the font for printing line numbers on the left margin.  If
  * %NULL is supplied, the default font (i.e. the one being used for the
@@ -1363,7 +1363,7 @@ gtk_source_print_compositor_set_line_numbers_font_name (GtkSourcePrintCompositor
 	g_return_if_fail (GTK_IS_SOURCE_PRINT_COMPOSITOR (compositor));
 	g_return_if_fail (font_name != NULL);
 	g_return_if_fail (compositor->priv->state == INIT);	
-	
+
 	if (set_font_description_from_name (compositor,
 					    &compositor->priv->line_numbers_font,	
 					    font_name))
@@ -1377,7 +1377,7 @@ gtk_source_print_compositor_set_line_numbers_font_name (GtkSourcePrintCompositor
  * @compositor: a #GtkSourcePrintCompositor.
  *
  * Returns the name of the font used to print line numbers on the left margin. 
- * The returned string must be freed with g_free())
+ * The returned string must be freed with g_free().
  *
  * Return value: a new string containing the name of the font used to print 
  * line numbers on the left margin.
@@ -1401,7 +1401,7 @@ gtk_source_print_compositor_get_line_numbers_font_name (GtkSourcePrintCompositor
 /**
  * gtk_source_print_compositor_set_header_font_name:
  * @compositor: a #GtkSourcePrintCompositor.
- * @font_name: the name of the font for header text, or %NULL.
+ * @font_name: (allow-none): the name of the font for header text, or %NULL.
  *
  * Sets the font for printing the page header. If
  * %NULL is supplied, the default font (i.e. the one being used for the
@@ -1424,7 +1424,7 @@ gtk_source_print_compositor_set_header_font_name (GtkSourcePrintCompositor *comp
 	g_return_if_fail (GTK_IS_SOURCE_PRINT_COMPOSITOR (compositor));
 	g_return_if_fail (font_name != NULL);
 	g_return_if_fail (compositor->priv->state == INIT);	
-	
+
 	if (set_font_description_from_name (compositor,
 					    &compositor->priv->header_font,	
 					    font_name))
@@ -1439,7 +1439,7 @@ gtk_source_print_compositor_set_header_font_name (GtkSourcePrintCompositor *comp
  * @compositor: a #GtkSourcePrintCompositor.
  *
  * Returns the name of the font used to print the page header. 
- * The returned string must be freed with g_free())
+ * The returned string must be freed with g_free().
  *
  * Return value: a new string containing the name of the font used to print 
  * the page header.
@@ -1456,14 +1456,14 @@ gtk_source_print_compositor_get_header_font_name (GtkSourcePrintCompositor *comp
 		g_return_val_if_fail (compositor->priv->body_font != NULL, NULL);
 		compositor->priv->header_font = pango_font_description_copy (compositor->priv->body_font);
 	}
-	
+
 	return pango_font_description_to_string (compositor->priv->header_font);
 }
 
 /**
  * gtk_source_print_compositor_set_footer_font_name:
  * @compositor: a #GtkSourcePrintCompositor.
- * @font_name: the name of the font for the footer text, or %NULL.
+ * @font_name: (allow-none): the name of the font for the footer text, or %NULL.
  *
  * Sets the font for printing the page footer. If
  * %NULL is supplied, the default font (i.e. the one being used for the
@@ -1501,7 +1501,7 @@ gtk_source_print_compositor_set_footer_font_name (GtkSourcePrintCompositor *comp
  * @compositor: a #GtkSourcePrintCompositor.
  *
  * Returns the name of the font used to print the page footer. 
- * The returned string must be freed with g_free())
+ * The returned string must be freed with g_free().
  *
  * Return value: a new string containing the name of the font used to print 
  * the page footer.
@@ -1518,7 +1518,7 @@ gtk_source_print_compositor_get_footer_font_name (GtkSourcePrintCompositor *comp
 		g_return_val_if_fail (compositor->priv->body_font != NULL, NULL);
 		compositor->priv->footer_font = pango_font_description_copy (compositor->priv->body_font);
 	}
-	
+
 	return pango_font_description_to_string (compositor->priv->footer_font);
 }
 
@@ -1538,7 +1538,7 @@ gtk_source_print_compositor_set_top_margin (GtkSourcePrintCompositor *compositor
 					    GtkUnit                   unit)
 {
 	g_return_if_fail (GTK_IS_SOURCE_PRINT_COMPOSITOR (compositor));
-	
+
 	compositor->priv->margin_top = convert_to_mm (margin, unit);
 }
 
@@ -1565,8 +1565,8 @@ gtk_source_print_compositor_get_top_margin (GtkSourcePrintCompositor *compositor
 /**
  * gtk_source_print_compositor_set_bottom_margin:
  * @compositor: a #GtkSourcePrintCompositor.
- * @margin: the new bottom margin in units of @unit
- * @unit: the units for @margin
+ * @margin: the new bottom margin in units of @unit.
+ * @unit: the units for @margin.
  * 
  * Sets the bottom margin used by @compositor.
  *
@@ -1578,7 +1578,7 @@ gtk_source_print_compositor_set_bottom_margin (GtkSourcePrintCompositor *composi
 					       GtkUnit                   unit)
 {
 	g_return_if_fail (GTK_IS_SOURCE_PRINT_COMPOSITOR (compositor));
-	
+
 	compositor->priv->margin_bottom = convert_to_mm (margin, unit);
 }
 
@@ -1605,8 +1605,8 @@ gtk_source_print_compositor_get_bottom_margin (GtkSourcePrintCompositor *composi
 /**
  * gtk_source_print_compositor_set_left_margin:
  * @compositor: a #GtkSourcePrintCompositor.
- * @margin: the new left margin in units of @unit
- * @unit: the units for @margin
+ * @margin: the new left margin in units of @unit.
+ * @unit: the units for @margin.
  * 
  * Sets the left margin used by @compositor.
  *
@@ -1618,7 +1618,7 @@ gtk_source_print_compositor_set_left_margin (GtkSourcePrintCompositor *composito
 					     GtkUnit                   unit)
 {
 	g_return_if_fail (GTK_IS_SOURCE_PRINT_COMPOSITOR (compositor));
-	
+
 	compositor->priv->margin_left = convert_to_mm (margin, unit);
 }
 
@@ -1645,8 +1645,8 @@ gtk_source_print_compositor_get_left_margin (GtkSourcePrintCompositor *composito
 /**
  * gtk_source_print_compositor_set_right_margin:
  * @compositor: a #GtkSourcePrintCompositor.
- * @margin: the new right margin in units of @unit
- * @unit: the units for @margin
+ * @margin: the new right margin in units of @unit.
+ * @unit: the units for @margin.
  * 
  * Sets the right margin used by @compositor.
  *
@@ -1658,7 +1658,7 @@ gtk_source_print_compositor_set_right_margin (GtkSourcePrintCompositor *composit
 					      GtkUnit                   unit)
 {
 	g_return_if_fail (GTK_IS_SOURCE_PRINT_COMPOSITOR (compositor));
-	
+
 	compositor->priv->margin_right = convert_to_mm (margin, unit);
 }
 
@@ -1669,7 +1669,7 @@ gtk_source_print_compositor_set_right_margin (GtkSourcePrintCompositor *composit
  * 
  * Gets the right margin in units of @unit.
  * 
- * Return value: the right margin
+ * Return value: the right margin.
  *
  * Since: 2.2
  */
@@ -1698,10 +1698,10 @@ gint
 gtk_source_print_compositor_get_n_pages	(GtkSourcePrintCompositor *compositor)
 {
 	g_return_val_if_fail (GTK_IS_SOURCE_PRINT_COMPOSITOR (compositor), -1);
-	
+
 	if (compositor->priv->state != DONE)
 		return -1;
-		
+
 	return compositor->priv->n_pages;
 }
 
@@ -2821,7 +2821,7 @@ gtk_source_print_compositor_paginate (GtkSourcePrintCompositor *compositor,
  *
  * Returns the current fraction of the document pagination that has been completed.
  *
- * Return value: a fraction from 0.0 to 1.0 inclusive
+ * Return value: a fraction from 0.0 to 1.0 inclusive.
  *
  * Since: 2.2
  */
@@ -2830,25 +2830,25 @@ gtk_source_print_compositor_get_pagination_progress (GtkSourcePrintCompositor *c
 {
 	GtkTextIter current;
 	gint char_count;
-	
+
 	g_return_val_if_fail (GTK_IS_SOURCE_PRINT_COMPOSITOR (compositor), 0.0);
 
 	if (compositor->priv->state == INIT)
 		return 0.0;
-		
+
 	if (compositor->priv->state == DONE)
 		return 1.0;
-		
+
 	char_count = gtk_text_buffer_get_char_count (GTK_TEXT_BUFFER (compositor->priv->buffer));
 	if (char_count == 0)
 		return 1.0;
-		
+
 	g_return_val_if_fail (compositor->priv->pagination_mark != NULL, 0.0);
 	
 	gtk_text_buffer_get_iter_at_mark (GTK_TEXT_BUFFER (compositor->priv->buffer),
 					  &current,
 					  compositor->priv->pagination_mark);
-	
+
 	return (gdouble) gtk_text_iter_get_offset (&current) / (gdouble) char_count;
 }
 
@@ -3147,12 +3147,12 @@ gtk_source_print_compositor_draw_page (GtkSourcePrintCompositor *compositor,
 	{
 		print_header (compositor, cr);
 	}
-	
+
 	if (is_footer_to_print (compositor))
 	{
 		print_footer (compositor, cr);
 	}
-	
+
 	x = get_text_x (compositor);
 	y = get_text_y (compositor);
 	ln_x = get_line_numbers_x (compositor);

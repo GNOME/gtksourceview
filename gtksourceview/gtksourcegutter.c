@@ -491,7 +491,7 @@ gtk_source_gutter_new (GtkSourceView     *view,
 
 /**
  * gtk_source_gutter_get_window:
- * @gutter: a #GtkSourceGutter
+ * @gutter: a #GtkSourceGutter.
  *
  * Get the #GdkWindow of the gutter. The window will only be available when the
  * gutter has at least one, non-zero width, cell renderer packed.
@@ -512,9 +512,9 @@ gtk_source_gutter_get_window (GtkSourceGutter *gutter)
 
 /**
  * gtk_source_gutter_insert:
- * @gutter: a #GtkSourceGutter
- * @renderer: a #GtkCellRenderer
- * @position: the renderers position
+ * @gutter: a #GtkSourceGutter.
+ * @renderer: a #GtkCellRenderer.
+ * @position: the renderers position.
  *
  * Inserts @renderer into @gutter at @position.
  *
@@ -560,9 +560,9 @@ renderer_find (GtkSourceGutter  *gutter,
 
 /**
  * gtk_source_gutter_reorder:
- * @gutter: a #GtkSourceGutter
- * @renderer: a #GtkCellRenderer
- * @position: the new renderer position
+ * @gutter: a #GtkSourceGutter.
+ * @renderer: a #GtkCellRenderer.
+ * @position: the new renderer position.
  *
  * Reorders @renderer in @gutter to new @position.
  *
@@ -589,8 +589,8 @@ gtk_source_gutter_reorder (GtkSourceGutter *gutter,
 
 /**
  * gtk_source_gutter_remove:
- * @gutter: a #GtkSourceGutter
- * @renderer: a #GtkCellRenderer
+ * @gutter: a #GtkSourceGutter.
+ * @renderer: a #GtkCellRenderer.
  *
  * Removes @renderer from @gutter.
  *
@@ -617,11 +617,11 @@ gtk_source_gutter_remove (GtkSourceGutter *gutter,
 
 /**
  * gtk_source_gutter_set_cell_data_func:
- * @gutter: a #GtkSourceGutter
- * @renderer: a #GtkCellRenderer
- * @func: the #GtkSourceGutterDataFunc to use
- * @func_data: the user data for @func
- * @destroy: the destroy notification for @func_data
+ * @gutter: a #GtkSourceGutter.
+ * @renderer: a #GtkCellRenderer.
+ * @func: (allow-none): the #GtkSourceGutterDataFunc to use.
+ * @func_data: (allow-none): the user data for @func.
+ * @destroy: (allow-none): the destroy notification for @func_data.
  *
  * Sets the #GtkSourceGutterDataFunc to use for @renderer. This function is
  * used to setup the cell renderer properties for rendering the current cell.
@@ -659,11 +659,11 @@ gtk_source_gutter_set_cell_data_func (GtkSourceGutter         *gutter,
 
 /**
  * gtk_source_gutter_set_cell_size_func:
- * @gutter: a #GtkSourceGutter
- * @renderer: a #GtkCellRenderer
- * @func: the #GtkSourceGutterSizeFunc to use
- * @func_data: the user data for @func
- * @destroy: the destroy notification for @func_data
+ * @gutter: a #GtkSourceGutter.
+ * @renderer: a #GtkCellRenderer.
+ * @func: (allow-none): the #GtkSourceGutterSizeFunc to use.
+ * @func_data: (allow-none): the user data for @func.
+ * @destroy: (allow-none): the destroy notification for @func_data.
  *
  * Sets the #GtkSourceGutterSizeFunc to use for @renderer. This function is
  * used to setup the cell renderer properties for measuring the maximum size
@@ -702,7 +702,7 @@ gtk_source_gutter_set_cell_size_func (GtkSourceGutter         *gutter,
 
 /**
  * gtk_source_gutter_queue_draw:
- * @gutter: a #GtkSourceGutter
+ * @gutter: a #GtkSourceGutter.
  *
  * Invalidates the drawable area of the gutter. You can use this to force a
  * redraw of the gutter if something has changed and needs to be redrawn.

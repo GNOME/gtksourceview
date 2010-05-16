@@ -401,7 +401,7 @@ gtk_source_style_copy (const GtkSourceStyle *style)
 
 /**
  * _gtk_source_style_apply:
- * @style: a #GtkSourceStyle to apply.
+ * @style: (allow-none): a #GtkSourceStyle to apply.
  * @tag: a #GtkTextTag to apply styles to.
  *
  * Applies text styles set in @style if it's not %NULL, or
