@@ -177,7 +177,7 @@ buffer_mark_set_cb (GtkTextBuffer              *buffer,
 {
 	if (mark == context->priv->mark)
 	{
-		g_object_notify (G_OBJECT (buffer), "iter");
+		g_object_notify (G_OBJECT (context), "iter");
 	}
 }
 
