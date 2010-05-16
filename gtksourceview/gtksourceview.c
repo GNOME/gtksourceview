@@ -97,6 +97,7 @@ enum {
 	LINE_MARK_ACTIVATED,
 	MOVE_LINES,
 	MOVE_WORDS,
+	SMART_HOME_END,
 	LAST_SIGNAL
 };
 
@@ -490,6 +491,7 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 			      _gtksourceview_marshal_VOID__VOID,
 			      G_TYPE_NONE,
 			      0);
+
 	signals [REDO] =
 		g_signal_new ("redo",
 			      G_TYPE_FROM_CLASS (klass),
@@ -500,7 +502,7 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 			      _gtksourceview_marshal_VOID__VOID,
 			      G_TYPE_NONE,
 			      0);
-			    
+
 	/**
 	 * GtkSourceView::show-completion:
 	 * @view: The #GtkSourceView who emits the signal
@@ -569,6 +571,31 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 			      _gtksourceview_marshal_VOID__INT,
 			      G_TYPE_NONE, 1,
 			      G_TYPE_INT);
+
+	/**
+	 * GtkSourceView::smart-home-end:
+	 * @view: the #GtkSourceView
+	 * @iter: a #GtkTextIter
+	 * @step: the step size
+	 *
+	 * Emitted when a the cursor was moved according to the smart home
+	 * end setting. The signal is emitted after the cursor is moved, but
+	 * during the GtkTextView::move-cursor action. This can be used to find
+	 * out whether the cursor was moved by a normal home/end or by a smart
+	 * home/end.
+	 */
+	signals[SMART_HOME_END] =
+		g_signal_new ("smart-home-end",
+		              G_TYPE_FROM_CLASS (klass),
+		              G_SIGNAL_RUN_LAST,
+		              0,
+		              NULL,
+		              NULL,
+		              _gtksourceview_marshal_VOID__BOXED_INT,
+		              G_TYPE_NONE,
+		              2,
+		              GTK_TYPE_TEXT_ITER,
+		              G_TYPE_INT);
 
 	binding_set = gtk_binding_set_by_class (klass);
 
