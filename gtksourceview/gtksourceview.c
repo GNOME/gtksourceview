@@ -1960,48 +1960,88 @@ move_cursor (GtkTextView       *text_view,
 }
 
 static void
-move_to_first_char (GtkTextIter *iter)
+move_to_first_char (GtkTextView *text_view,
+                    GtkTextIter *iter,
+                    gboolean     display_line)
 {
-	gtk_text_iter_set_line_offset (iter, 0);
+	GtkTextIter last;
 
-	while (!gtk_text_iter_ends_line (iter))
+	last = *iter;
+
+	if (display_line)
+	{
+		gtk_text_view_backward_display_line_start (text_view, iter);
+		gtk_text_view_forward_display_line_end (text_view, &last);
+	}
+	else
+	{
+		gtk_text_iter_set_line_offset (iter, 0);
+
+		if (!gtk_text_iter_ends_line (&last))
+		{
+			gtk_text_iter_forward_to_line_end (&last);
+		}
+	}
+
+
+	while (gtk_text_iter_compare (iter, &last) < 0)
 	{
 		gunichar c;
 
 		c = gtk_text_iter_get_char (iter);
+
 		if (g_unichar_isspace (c))
-			gtk_text_iter_forward_char (iter);
+			gtk_text_iter_forward_visible_cursor_position (iter);
 		else
 			break;
 	}
 }
 
 static void
-move_to_last_char (GtkTextIter *iter)
+move_to_last_char (GtkTextView *text_view,
+                   GtkTextIter *iter,
+                   gboolean     display_line)
 {
-	if (!gtk_text_iter_ends_line (iter))
-		gtk_text_iter_forward_to_line_end (iter);
+	GtkTextIter first;
 
-	while (!gtk_text_iter_starts_line (iter))
+	first = *iter;
+
+	if (display_line)
+	{
+		gtk_text_view_forward_display_line_end (text_view, iter);
+		gtk_text_view_backward_display_line_start (text_view, &first);
+	}
+	else
+	{
+		if (!gtk_text_iter_ends_line (iter))
+		{
+			gtk_text_iter_forward_to_line_end (iter);
+		}
+
+		gtk_text_iter_set_line_offset (&first, 0);
+	}
+
+	while (gtk_text_iter_compare (iter, &first) > 0)
 	{
 		gunichar c;
 
-		gtk_text_iter_backward_char (iter);
+		gtk_text_iter_backward_visible_cursor_position (iter);
 		c = gtk_text_iter_get_char (iter);
+
 		if (!g_unichar_isspace (c))
 		{
-			/* We've gone one character too far. */
-			gtk_text_iter_forward_char (iter);
+			/* We've gone one cursor position too far. */
+			gtk_text_iter_forward_visible_cursor_position (iter);
 			break;
 		}
 	}
 }
 
 static void
-do_cursor_move (GtkTextView *text_view,
-	        GtkTextIter *cur,
-	        GtkTextIter *iter,
-	        gboolean     extend_selection)
+do_cursor_move_home_end (GtkTextView *text_view,
+                         GtkTextIter *cur,
+                         GtkTextIter *iter,
+                         gboolean     extend_selection)
 {
 	/* if we are clearing selection, we need to move_cursor even
 	 * if we are at proper iter because selection_bound may need
@@ -2009,7 +2049,6 @@ do_cursor_move (GtkTextView *text_view,
 	if (!gtk_text_iter_equal (cur, iter) || !extend_selection)
 	{
 		move_cursor (text_view, iter, extend_selection);
-		return;
 	}
 }
 
@@ -2023,71 +2062,120 @@ gtk_source_view_move_cursor (GtkTextView    *text_view,
 	GtkTextBuffer *buffer = gtk_text_view_get_buffer (text_view);
 	GtkTextMark *mark;
 	GtkTextIter cur, iter;
+	gboolean move_display_line;
+	gboolean move_paragraph;
+	gboolean is_home_end;
 
 	mark = gtk_text_buffer_get_insert (buffer);
 	gtk_text_buffer_get_iter_at_mark (buffer, &cur, mark);
 	iter = cur;
 
-	if (step == GTK_MOVEMENT_DISPLAY_LINE_ENDS && count == -1)
+	move_display_line = step == GTK_MOVEMENT_DISPLAY_LINE_ENDS;
+	move_paragraph = step == GTK_MOVEMENT_PARAGRAPH_ENDS;
+	is_home_end = move_display_line || move_paragraph;
+
+	if (is_home_end && count == -1)
 	{
-		move_to_first_char (&iter);
+		gboolean athome;
 
-		switch (source_view->priv->smart_home_end) {
+		move_to_first_char (text_view, &iter, move_display_line);
 
-		case GTK_SOURCE_SMART_HOME_END_BEFORE:
-			if (!gtk_text_iter_equal (&cur, &iter) ||
-			    gtk_text_iter_starts_line (&cur))
-			{
-				do_cursor_move (text_view, &cur, &iter, extend_selection);
+		if (move_display_line)
+		{
+			athome = gtk_text_view_starts_display_line (text_view, &cur);
+		}
+		else
+		{
+			athome = gtk_text_iter_starts_line (&cur);
+		}
+
+		switch (source_view->priv->smart_home_end)
+		{
+			case GTK_SOURCE_SMART_HOME_END_BEFORE:
+				if (!gtk_text_iter_equal (&cur, &iter) || athome)
+				{
+					do_cursor_move_home_end (text_view,
+					                         &cur,
+					                         &iter,
+					                         extend_selection);
+					return;
+				}
+				break;
+
+			case GTK_SOURCE_SMART_HOME_END_AFTER:
+				if (athome)
+				{
+					do_cursor_move_home_end (text_view,
+					                         &cur,
+					                         &iter,
+					                         extend_selection);
+					return;
+				}
+				break;
+
+			case GTK_SOURCE_SMART_HOME_END_ALWAYS:
+				do_cursor_move_home_end (text_view,
+				                         &cur,
+				                         &iter,
+				                         extend_selection);
 				return;
-			}
-			break;
 
-		case GTK_SOURCE_SMART_HOME_END_AFTER:
-			if (gtk_text_iter_starts_line (&cur))
-			{
-				do_cursor_move (text_view, &cur, &iter, extend_selection);
-				return;
-			}
-			break;
-
-		case GTK_SOURCE_SMART_HOME_END_ALWAYS:
-			do_cursor_move (text_view, &cur, &iter, extend_selection);
-			return;
-
-		default:
-			break;
+			default:
+				break;
 		}
 	}
-	else if (step == GTK_MOVEMENT_DISPLAY_LINE_ENDS && count == 1)
+	else if (is_home_end && count == 1)
 	{
-		move_to_last_char (&iter);
+		gboolean atend;
 
-		switch (source_view->priv->smart_home_end) {
+		move_to_last_char (text_view, &iter, move_display_line);
 
-		case GTK_SOURCE_SMART_HOME_END_BEFORE:
-			if (!gtk_text_iter_equal (&cur, &iter) ||
-			    gtk_text_iter_ends_line (&cur))
-			{
-				do_cursor_move (text_view, &cur, &iter, extend_selection);
+		if (move_display_line)
+		{
+			GtkTextIter display_end;
+			display_end = cur;
+
+			gtk_text_view_forward_display_line_end (text_view, &display_end);
+			atend = gtk_text_iter_equal (&cur, &display_end);
+		}
+		else
+		{
+			atend = gtk_text_iter_ends_line (&cur);
+		}
+
+		switch (source_view->priv->smart_home_end)
+		{
+			case GTK_SOURCE_SMART_HOME_END_BEFORE:
+				if (!gtk_text_iter_equal (&cur, &iter) || atend)
+				{
+					do_cursor_move_home_end (text_view,
+					                         &cur,
+					                         &iter,
+					                         extend_selection);
+					return;
+				}
+				break;
+
+			case GTK_SOURCE_SMART_HOME_END_AFTER:
+				if (atend)
+				{
+					do_cursor_move_home_end (text_view,
+					                         &cur,
+					                         &iter,
+					                         extend_selection);
+					return;
+				}
+				break;
+
+			case GTK_SOURCE_SMART_HOME_END_ALWAYS:
+				do_cursor_move_home_end (text_view,
+				                         &cur,
+				                         &iter,
+				                         extend_selection);
 				return;
-			}
-			break;
 
-		case GTK_SOURCE_SMART_HOME_END_AFTER:
-			if (gtk_text_iter_ends_line (&cur))
-			{
-				do_cursor_move (text_view, &cur, &iter, extend_selection);
-				return;
-			}
-			break;
-
-		case GTK_SOURCE_SMART_HOME_END_ALWAYS:
-			do_cursor_move (text_view, &cur, &iter, extend_selection);
-			return;
-
-		default:
-			break;
+			default:
+				break;
 		}
 	}
 
