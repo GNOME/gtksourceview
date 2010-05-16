@@ -790,7 +790,7 @@ gtk_source_buffer_move_cursor (GtkTextBuffer     *buffer,
 			       GtkTextMark       *mark)
 {
 	GtkSourceBuffer *source_buffer;
-	GtkTextIter iter1, iter2;
+	GtkTextIter start, end;
 	gunichar cursor_char;
 
 	g_return_if_fail (GTK_IS_SOURCE_BUFFER (buffer));
@@ -806,28 +806,27 @@ gtk_source_buffer_move_cursor (GtkTextBuffer     *buffer,
 	if (source_buffer->priv->bracket_match == GTK_SOURCE_BRACKET_MATCH_FOUND)
 	{
 		gtk_text_buffer_get_iter_at_mark (buffer,
-						  &iter1,
+						  &start,
 						  source_buffer->priv->bracket_mark_match);
 
 		gtk_text_buffer_get_iter_at_mark (buffer,
-						  &iter2,
+						  &end,
 						  source_buffer->priv->bracket_mark_cursor);
 
-		gtk_text_iter_order (&iter1, &iter2);
-		gtk_text_iter_forward_char (&iter2);
-
+		gtk_text_iter_order (&start, &end);
+		gtk_text_iter_forward_char (&end);
 		gtk_text_buffer_remove_tag (buffer,
 					    source_buffer->priv->bracket_match_tag,
-					    &iter1,
-					    &iter2);
+					    &start,
+					    &end);
 	}
 
 	if (!source_buffer->priv->highlight_brackets)
 		return;
 
-	iter1 = *iter;
+	start = *iter;
 	if (!gtk_source_buffer_find_bracket_match_with_limit (source_buffer,
-	                                                      &iter1,
+	                                                      &start,
 	                                                      &source_buffer->priv->bracket_match,
 	                                                      MAX_CHARS_BEFORE_FINDING_A_MATCH))
 	{
@@ -842,7 +841,7 @@ gtk_source_buffer_move_cursor (GtkTextBuffer     *buffer,
 		g_signal_emit (source_buffer,
 			       buffer_signals[BRACKET_MATCHED],
 			       0,
-			       &iter1,
+			       &start,
 			       &source_buffer->priv->bracket_match);
 
 		/* allow_bracket_match will allow the bracket match tag to be
@@ -855,51 +854,51 @@ gtk_source_buffer_move_cursor (GtkTextBuffer     *buffer,
 		{
 			source_buffer->priv->bracket_mark_match =
  				gtk_text_buffer_create_mark (buffer,
- 							     NULL,
- 							     &iter1,
- 							     FALSE);
+							     NULL,
+							     &start,
+							     TRUE);
  		}
  		else
  		{
  			gtk_text_buffer_move_mark (buffer,
 						   source_buffer->priv->bracket_mark_match,
- 						   &iter1);
+						   &start);
  		}
 
-		iter2 = iter1;
-		gtk_text_iter_forward_char (&iter2);
+		end = start;
+		gtk_text_iter_forward_char (&end);
 		gtk_text_buffer_apply_tag (buffer,
 					   get_bracket_match_tag (source_buffer),
-					   &iter1,
-					   &iter2);
+					   &start,
+					   &end);
 
 		/* Mark the bracket near the cursor */
-		iter1 = *iter;
-		cursor_char = gtk_text_iter_get_char (&iter1);
+		start = *iter;
+		cursor_char = gtk_text_iter_get_char (&start);
 		if (bracket_pair (cursor_char, NULL) == 0)
-			gtk_text_iter_backward_char (&iter1);
+			gtk_text_iter_backward_char (&start);
 
 		if (!source_buffer->priv->bracket_mark_cursor)
 		{
 			source_buffer->priv->bracket_mark_cursor =
 				gtk_text_buffer_create_mark (buffer,
 							     NULL,
-							     &iter1,
-							     TRUE);
+							     &start,
+							     FALSE);
 		}
 		else
 		{
 			gtk_text_buffer_move_mark (buffer,
 						   source_buffer->priv->bracket_mark_cursor,
-						   &iter1);
+						   &start);
 		}
 
-		iter2 = iter1;
-		gtk_text_iter_forward_char (&iter2);
+		end = start;
+		gtk_text_iter_forward_char (&end);
 		gtk_text_buffer_apply_tag (buffer,
 					   get_bracket_match_tag (source_buffer),
-					   &iter1,
-					   &iter2);
+					   &start,
+					   &end);
 
 		source_buffer->priv->allow_bracket_match = FALSE;
 	}
