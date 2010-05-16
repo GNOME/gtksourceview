@@ -1728,7 +1728,7 @@ buffer_mark_set_cb (GtkTextBuffer       *buffer,
 	gtk_source_completion_context_get_iter (completion->priv->context,
 	                                        &it);
 	
-	if (gtk_text_iter_get_line (iter) != gtk_text_iter_get_line (&it))
+	if (!gtk_text_iter_equal (iter, &it))
 	{
 		gtk_source_completion_hide (completion);
 		return;
