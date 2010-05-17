@@ -662,15 +662,12 @@ gtk_source_buffer_new (GtkTextTagTable *table)
 GtkSourceBuffer *
 gtk_source_buffer_new_with_language (GtkSourceLanguage *language)
 {
-	GtkSourceBuffer *buffer;
-
 	g_return_val_if_fail (GTK_IS_SOURCE_LANGUAGE (language), NULL);
 
-	buffer = gtk_source_buffer_new (NULL);
-
-	gtk_source_buffer_set_language (buffer, language);
-
-	return buffer;
+	return g_object_new (GTK_TYPE_SOURCE_BUFFER,
+			     "tag-table", NULL,
+			     "language", language,
+			     NULL);
 }
 
 static void
