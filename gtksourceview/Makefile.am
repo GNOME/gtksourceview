@@ -1,7 +1,5 @@
-SUBDIRS = language-specs
-
 if ENABLE_PROVIDERS
-SUBDIRS += completion-providers
+SUBDIRS = completion-providers
 endif
 
 INCLUDES = 				\

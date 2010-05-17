@@ -1,4 +1,4 @@
-TESTS = check.sh
+TESTS = check-language.sh
 
 LANGUAGES =			\
 	ada.lang		\
@@ -70,7 +70,6 @@ LANGUAGES =			\
 	sh.lang			\
 	sparql.lang		\
 	sql.lang		\
-	styles.rng		\
 	t2t.lang		\
 	tcl.lang		\
 	texinfo.lang		\
@@ -82,20 +81,10 @@ LANGUAGES =			\
 	xslt.lang		\
 	yacc.lang
 
-STYLES =			\
-	classic.xml		\
-	cobalt.xml		\
-	kate.xml		\
-	oblivion.xml		\
-	tango.xml
-
 languagesdir = $(datadir)/gtksourceview-2.0/language-specs
 languages_DATA = $(LANGUAGES) language.rng language2.rng language.dtd \
-		 check.sh convert.py
+		 check-language.sh convert.py
 
-stylesdir = $(datadir)/gtksourceview-2.0/styles
-styles_DATA = $(STYLES) styles.rng
-
-EXTRA_DIST = $(languages_DATA) $(styles_DATA)
+EXTRA_DIST = $(languages_DATA)
 
 -include $(top_srcdir)/git.mk

@@ -68,7 +68,7 @@ AC_ARG_ENABLE(providers,
 	    		   [Enable building completion providers (words)]),,
 	    enable_providers=yes)
 
-AM_CONDITIONAL(ENABLE_PROVIDERS, test "x$enable_providers" = "xyes")
+AM_CONDITIONAL([ENABLE_PROVIDERS], [ test "$enable_providers" = "yes" ])
 
 dnl check for native osx
 AC_MSG_CHECKING([for native Mac OS X])
@@ -81,10 +81,10 @@ else
 	os_osx=no
 fi
 AC_MSG_RESULT([$os_osx])
-AM_CONDITIONAL(OS_OSX, test "$os_osx" = "yes")
+AM_CONDITIONAL([OS_OSX], [ test "$os_osx" = "yes" ])
 
 if test "$os_osx" = "yes"; then
-	AC_DEFINE([OS_OSX],[1],[Defined if os is Mac OSX])
+	AC_DEFINE([OS_OSX], [1], [Defined if os is Mac OSX])
 
 	PKG_CHECK_MODULES(IGE_MAC, ige-mac-integration)
 fi
@@ -96,9 +96,9 @@ AC_ARG_ENABLE([glade-catalog],
 	[glade_catalog=$enableval],
 	[glade_catalog=no])
 
-AM_CONDITIONAL([GLADE_CATALOG], [test "x$glade_catalog" = xyes])
+AM_CONDITIONAL([GLADE_CATALOG], [ test "$glade_catalog" = "yes" ])
 
-AS_IF([test "x$glade_catalog" = xyes],
+AS_IF([ test "$glade_catalog" = "yes" ],
 	[PKG_CHECK_EXISTS(GLADE, [gladeui-1.0 >= $GLADE_UI_REQUIRED])
 	 AC_MSG_CHECKING([for Glade catalog dir])
 	 GLADE_CATALOGDIR=`$PKG_CONFIG --variable=catalogdir gladeui-1.0 2>&AS_MESSAGE_LOG_FD`
@@ -114,26 +114,28 @@ AM_GLIB_GNU_GETTEXT
 AC_DEFINE([GETTEXT_PACKAGE], [PACKAGE_TARNAME], [Define to the gettext package name.])
 
 # Documentation
-GTK_DOC_CHECK([1.11],[--flavour=no-tmpl])
+GTK_DOC_CHECK([1.11], [--flavour=no-tmpl])
 
-# test-widget uses this to find lang files and gtksourcebuffer.c 	 
-ABS_TOP_SRCDIR=`cd $srcdir && pwd` 	 
+# test-widget uses this to find lang files and gtksourcebuffer.c
+ABS_TOP_SRCDIR=`cd $srcdir && pwd`
 AC_SUBST(ABS_TOP_SRCDIR)
 
 # Output files
 AC_CONFIG_FILES([
 gtksourceview-2.0.pc
-Makefile
 gtksourceview-zip
-po/Makefile.in
-gtksourceview/Makefile
-gtksourceview/completion-providers/Makefile
-gtksourceview/completion-providers/words/Makefile
-gtksourceview/language-specs/Makefile
+Makefile
+data/Makefile
+data/glade/Makefile
+data/language-specs/Makefile
+data/styles/Makefile
 docs/Makefile
 docs/reference/Makefile
 docs/reference/version.xml
-glade/Makefile
+gtksourceview/Makefile
+gtksourceview/completion-providers/Makefile
+gtksourceview/completion-providers/words/Makefile
+po/Makefile.in
 tests/Makefile
 ])
 

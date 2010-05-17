@@ -1,11 +1,6 @@
 ACLOCAL_AMFLAGS  = -I m4 ${ACLOCAL_FLAGS}
 
-if GLADE_CATALOG
-glade_subdir = glade
-else
-glade_subdir =
-endif
-SUBDIRS = gtksourceview po docs tests $(glade_subdir)
+SUBDIRS = gtksourceview po data docs tests
 
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = gtksourceview-2.0.pc
