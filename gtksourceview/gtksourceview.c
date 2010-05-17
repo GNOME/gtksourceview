@@ -561,6 +561,18 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 			      G_TYPE_BOOLEAN,
 			      G_TYPE_INT);
 
+	/**
+	 * GtkSourceView::move-words:
+	 * @view: the #GtkSourceView which received the signal
+	 * @count: the number of words to move over
+	 *
+	 * The ::move-words signal is a keybinding which gets emitted
+	 * when the user initiates moving a word. The default binding key
+	 * is Alt+Left/Right Arrow and moves the current selection, or the current
+	 * word by one word.
+	 *
+	 * Since: 3.0
+	 */
 	signals [MOVE_WORDS] =
 		g_signal_new ("move-words",
 			      G_TYPE_FROM_CLASS (klass),
@@ -576,13 +588,15 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	 * GtkSourceView::smart-home-end:
 	 * @view: the #GtkSourceView
 	 * @iter: a #GtkTextIter
-	 * @step: the step size
+	 * @count: the count
 	 *
 	 * Emitted when a the cursor was moved according to the smart home
 	 * end setting. The signal is emitted after the cursor is moved, but
 	 * during the GtkTextView::move-cursor action. This can be used to find
 	 * out whether the cursor was moved by a normal home/end or by a smart
 	 * home/end.
+	 *
+	 * Since: 3.0
 	 */
 	signals[SMART_HOME_END] =
 		g_signal_new ("smart-home-end",
