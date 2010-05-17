@@ -542,6 +542,22 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 			      GTK_TYPE_TEXT_ITER,
 			      GDK_TYPE_EVENT | G_SIGNAL_TYPE_STATIC_SCOPE);
 
+	/**
+	 * GtkSourceView::move-lines:
+	 * @view: the #GtkSourceView which received the signal
+	 * @copy: %TRUE if the line should be copied,
+	 *        %FALSE if it should be moved
+	 * @count: the number of lines to move over.
+	 *
+	 * The ::move-lines signal is a keybinding which gets emitted
+	 * when the user initiates moving a line. The default binding key
+	 * is Alt+Up/Down arrow. And moves the currently selected lines,
+	 * or the current line by @count. For the moment, only
+	 * @count of -1 or 1 is valid.
+	 *
+	 * Since: 2.10
+	 *
+	 */
 	signals [MOVE_LINES] =
 		g_signal_new ("move-lines",
 			      G_TYPE_FROM_CLASS (klass),
