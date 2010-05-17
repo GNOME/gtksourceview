@@ -33,19 +33,19 @@
     </metadata>
 
     <styles>
-        <style id="comment" _name="Comment" map-to="def:comment"/>
-        <style id="error" _name="Error" map-to="def:error"/>
-        <style id="string" _name="String" map-to="def:string"/>
-        <style id="null-value" _name="Null Value" map-to="def:special-constant"/>
-        <style id="undefined-value" _name="Undefined Value" map-to="def:special-constant"/>
-        <style id="boolean" _name="Boolean value" map-to="def:boolean"/>
-        <style id="keyword" _name="Keyword" map-to="def:keyword"/>
-        <style id="object" _name="Object"/> <!--map-to="def:others"-->
-        <style id="type" _name="Data Type" map-to="def:type"/>
-        <style id="function" _name="Function" map-to="def:function"/>
-        <style id="properties" _name="Properties" map-to="def:statement"/>
-        <style id="constructors" _name="Constructors" map-to="def:type"/>
-        <style id="future-words" _name="Future Reserved Keywords" map-to="def:error"/>
+        <style id="comment"         _name="Comment"                  map-to="def:comment"/>
+        <style id="error"           _name="Error"                    map-to="def:error"/>
+        <style id="string"          _name="String"                   map-to="def:string"/>
+        <style id="null-value"      _name="Null Value"               map-to="def:special-constant"/>
+        <style id="undefined-value" _name="Undefined Value"          map-to="def:special-constant"/>
+        <style id="boolean"         _name="Boolean value"            map-to="def:boolean"/>
+        <style id="keyword"         _name="Keyword"                  map-to="def:keyword"/>
+        <style id="object"          _name="Object"/> <!--map-to="def:others"-->
+        <style id="type"            _name="Data Type"                map-to="def:type"/>
+        <style id="function"        _name="Function"                 map-to="def:function"/>
+        <style id="properties"      _name="Properties"               map-to="def:statement"/>
+        <style id="constructors"    _name="Constructors"             map-to="def:type"/>
+        <style id="future-words"    _name="Future Reserved Keywords" map-to="def:error"/>
     </styles>
 
     <definitions>
@@ -113,31 +113,34 @@
 
                 <!-- Keywords -->
                 <context id="keywords" style-ref="keyword">
-                    <keyword>const</keyword>
-                    <keyword>function</keyword>
-                    <keyword>this</keyword>
-                    <keyword>var</keyword>
                     <keyword>break</keyword>
                     <keyword>case</keyword>
+                    <keyword>catch</keyword>
+                    <keyword>const</keyword>
                     <keyword>continue</keyword>
                     <keyword>default</keyword>
+                    <keyword>delete</keyword>
                     <keyword>do</keyword>
                     <keyword>else</keyword>
+                    <keyword>export</keyword>
+                    <keyword>finally</keyword>
                     <keyword>for</keyword>
+                    <keyword>function</keyword>
                     <keyword>if</keyword>
+                    <keyword>import</keyword>
+                    <keyword>instanceof</keyword>
                     <keyword>in</keyword>
+                    <keyword>let</keyword>
+                    <keyword>new</keyword>
                     <keyword>return</keyword>
                     <keyword>switch</keyword>
+                    <keyword>this</keyword>
+                    <keyword>throw</keyword>
+                    <keyword>try</keyword>
+                    <keyword>typeof</keyword>
                     <keyword>while</keyword>
                     <keyword>with</keyword>
-                    <keyword>try</keyword>
-                    <keyword>catch</keyword>
-                    <keyword>finally</keyword>
-                    <keyword>delete</keyword>
-                    <keyword>instanceof</keyword>
-                    <keyword>new</keyword>
-                    <keyword>throw</keyword>
-                    <keyword>typeof</keyword>
+                    <keyword>var</keyword>
                     <keyword>void</keyword>
                 </context>
 
@@ -148,148 +151,147 @@
 
                 <context id="types" style-ref="type">
                     <keyword>Infinity</keyword>
-                    <keyword>NaN</keyword>
                     <keyword>Math</keyword>
+                    <keyword>NaN</keyword>
                     <keyword>NEGATIVE_INFINITY</keyword>
                     <keyword>POSITIVE_INFINITY</keyword>
                 </context>
 
                 <context id="functions" style-ref="function">
-                    <keyword>eval</keyword>
-                    <keyword>parseInt</keyword>
-                    <keyword>parseFloat</keyword>
-                    <keyword>isNaN</keyword>
-                    <keyword>isFinite</keyword>
-                    <keyword>encodeURI</keyword>
-                    <keyword>decodeURI</keyword>
-                    <keyword>encodeURIComponent</keyword>
-                    <keyword>decodeURIComponent</keyword>
-                    <keyword>toString</keyword>
-                    <keyword>toLocaleString</keyword>
-                    <keyword>valueOf</keyword>
-                    <keyword>hasOwnProperty</keyword>
-                    <keyword>isPrototypeOf</keyword>
-                    <keyword>propertyIsEnumerable</keyword>
-                    <keyword>apply</keyword>
-                    <keyword>call</keyword>
-                    <keyword>concat</keyword>
-                    <keyword>join</keyword>
-                    <keyword>pop</keyword>
-                    <keyword>push</keyword>
-                    <keyword>reverse</keyword>
-                    <keyword>shift</keyword>
-                    <keyword>slice</keyword>
-                    <keyword>sort</keyword>
-                    <keyword>unshift</keyword>
-                    <keyword>fromCharCode</keyword>
-                    <keyword>charAt</keyword>
-                    <keyword>charCodeAt</keyword>
-                    <keyword>indexOf</keyword>
-                    <keyword>lastIndexOf</keyword>
-                    <keyword>localeCompare</keyword>
-                    <keyword>match</keyword>
-                    <keyword>exec</keyword>
-                    <keyword>replace</keyword>
-                    <keyword>search</keyword>
-                    <keyword>split</keyword>
-                    <keyword>substr</keyword>
-                    <keyword>substring</keyword>
-                    <keyword>toLowerCase</keyword>
-                    <keyword>toLocaleLowerCase</keyword>
-                    <keyword>toUpperCase</keyword>
-                    <keyword>toLocaleUpperCase</keyword>
-                    <keyword>toFixed</keyword>
-                    <keyword>toExponential</keyword>
-                    <keyword>toPrecision</keyword>
                     <keyword>abs</keyword>
                     <keyword>acos</keyword>
+                    <keyword>apply</keyword>
                     <keyword>asin</keyword>
-                    <keyword>atan</keyword>
                     <keyword>atan2</keyword>
+                    <keyword>atan</keyword>
+                    <keyword>call</keyword>
                     <keyword>ceil</keyword>
+                    <keyword>charAt</keyword>
+                    <keyword>charCodeAt</keyword>
+                    <keyword>concat</keyword>
                     <keyword>cos</keyword>
+                    <keyword>decodeURIComponent</keyword>
+                    <keyword>decodeURI</keyword>
+                    <keyword>encodeURIComponent</keyword>
+                    <keyword>encodeURI</keyword>
+                    <keyword>escape</keyword>
+                    <keyword>eval</keyword>
+                    <keyword>exec</keyword>
                     <keyword>exp</keyword>
                     <keyword>floor</keyword>
+                    <keyword>fromCharCode</keyword>
+                    <keyword>getDate</keyword>
+                    <keyword>getDay</keyword>
+                    <keyword>getFullYear</keyword>
+                    <keyword>getHours</keyword>
+                    <keyword>getMilliseconds</keyword>
+                    <keyword>getMinutes</keyword>
+                    <keyword>getMonth</keyword>
+                    <keyword>getSeconds</keyword>
+                    <keyword>getTime</keyword>
+                    <keyword>getTimezoneOffset</keyword>
+                    <keyword>getUTCDate</keyword>
+                    <keyword>getUTCDay</keyword>
+                    <keyword>getUTCFullYear</keyword>
+                    <keyword>getUTCHours</keyword>
+                    <keyword>getUTCMilliseconds</keyword>
+                    <keyword>getUTCMinutes</keyword>
+                    <keyword>getUTCMonth</keyword>
+                    <keyword>getUTCSeconds</keyword>
+                    <keyword>getYear</keyword>
+                    <keyword>hasOwnProperty</keyword>
+                    <keyword>indexOf</keyword>
+                    <keyword>isFinite</keyword>
+                    <keyword>isNaN</keyword>
+                    <keyword>isPrototypeOf</keyword>
+                    <keyword>join</keyword>
+                    <keyword>lastIndexOf</keyword>
+                    <keyword>localeCompare</keyword>
                     <keyword>log</keyword>
+                    <keyword>match</keyword>
                     <keyword>max</keyword>
                     <keyword>min</keyword>
-                    <keyword>pow</keyword>
-                    <keyword>random</keyword>
-                    <keyword>round</keyword>
-                    <keyword>sin</keyword>
-                    <keyword>sqrt</keyword>
-                    <keyword>tan</keyword>
+                    <keyword>parseFloat</keyword>
+                    <keyword>parseInt</keyword>
                     <keyword>parse</keyword>
-                    <keyword>UTC</keyword>
-                    <keyword>toDateString</keyword>
-                    <keyword>toTimeString</keyword>
-                    <keyword>toLocaleString</keyword>
-                    <keyword>toLocaleDateString</keyword>
-                    <keyword>toLocaleTimeString</keyword>
-                    <keyword>getTime</keyword>
-                    <keyword>getFullYear</keyword>
-                    <keyword>getUTCFullYear</keyword>
-                    <keyword>getMonth</keyword>
-                    <keyword>getUTCMonth</keyword>
-                    <keyword>getDate</keyword>
-                    <keyword>getUTCDate</keyword>
-                    <keyword>getDay</keyword>
-                    <keyword>getUTCDay</keyword>
-                    <keyword>getHours</keyword>
-                    <keyword>getUTCHours</keyword>
-                    <keyword>getMinutes</keyword>
-                    <keyword>getUTCMinutes</keyword>
-                    <keyword>getSeconds</keyword>
-                    <keyword>getUTCSeconds</keyword>
-                    <keyword>getMilliseconds</keyword>
-                    <keyword>getUTCMilliseconds</keyword>
-                    <keyword>getTimezoneOffset</keyword>
-                    <keyword>setTime</keyword>
-                    <keyword>setMilliseconds</keyword>
-                    <keyword>setUTCMilliseconds</keyword>
-                    <keyword>setSeconds</keyword>
-                    <keyword>setUTCSeconds</keyword>
-                    <keyword>setMinutes</keyword>
-                    <keyword>setUTCMinutes</keyword>
-                    <keyword>setHours</keyword>
-                    <keyword>setUTCHours</keyword>
+                    <keyword>pop</keyword>
+                    <keyword>pow</keyword>
+                    <keyword>propertyIsEnumerable</keyword>
+                    <keyword>push</keyword>
+                    <keyword>random</keyword>
+                    <keyword>replace</keyword>
+                    <keyword>reverse</keyword>
+                    <keyword>round</keyword>
+                    <keyword>search</keyword>
                     <keyword>setDate</keyword>
-                    <keyword>setUTCDate</keyword>
-                    <keyword>setMonth</keyword>
-                    <keyword>setUTCMonth</keyword>
                     <keyword>setFullYear</keyword>
+                    <keyword>setHours</keyword>
+                    <keyword>setMilliseconds</keyword>
+                    <keyword>setMinutes</keyword>
+                    <keyword>setMonth</keyword>
+                    <keyword>setSeconds</keyword>
+                    <keyword>setTime</keyword>
+                    <keyword>setUTCDate</keyword>
                     <keyword>setUTCFullYear</keyword>
-                    <keyword>toUTCString</keyword>
-                    <keyword>escape</keyword>
-                    <keyword>unescape</keyword>
-                    <keyword>getYear</keyword>
+                    <keyword>setUTCHours</keyword>
+                    <keyword>setUTCMilliseconds</keyword>
+                    <keyword>setUTCMinutes</keyword>
+                    <keyword>setUTCMonth</keyword>
+                    <keyword>setUTCSeconds</keyword>
                     <keyword>setYear</keyword>
+                    <keyword>shift</keyword>
+                    <keyword>sin</keyword>
+                    <keyword>slice</keyword>
+                    <keyword>sort</keyword>
+                    <keyword>split</keyword>
+                    <keyword>sqrt</keyword>
+                    <keyword>substring</keyword>
+                    <keyword>substr</keyword>
+                    <keyword>tan</keyword>
+                    <keyword>toDateString</keyword>
+                    <keyword>toExponential</keyword>
+                    <keyword>toFixed</keyword>
                     <keyword>toGMTString</keyword>
+                    <keyword>toLocaleDateString</keyword>
+                    <keyword>toLocaleLowerCase</keyword>
+                    <keyword>toLocaleString</keyword>
+                    <keyword>toLocaleTimeString</keyword>
+                    <keyword>toLocaleUpperCase</keyword>
+                    <keyword>toLowerCase</keyword>
+                    <keyword>toPrecision</keyword>
+                    <keyword>toString</keyword>
+                    <keyword>toTimeString</keyword>
+                    <keyword>toUpperCase</keyword>
+                    <keyword>toUTCString</keyword>
+                    <keyword>unescape</keyword>
+                    <keyword>unshift</keyword>
+                    <keyword>UTC</keyword>
+                    <keyword>valueOf</keyword>
                 </context>
 
                 <context id="properties" style-ref="properties">
-                    <keyword>length</keyword>
-                    <keyword>lastIndex</keyword>
                     <keyword>global</keyword>
                     <keyword>ignoreCase</keyword>
-                    <keyword>multiline</keyword>
-                    <keyword>source</keyword>
-                    <keyword>name</keyword>
+                    <keyword>lastIndex</keyword>
+                    <keyword>length</keyword>
                     <keyword>message</keyword>
+                    <keyword>multiline</keyword>
+                    <keyword>name</keyword>
+                    <keyword>source</keyword>
                 </context>
 
                 <context id="constructors" style-ref="constructors">
-                    <keyword>Object</keyword>
-                    <keyword>Function</keyword>
                     <keyword>Array</keyword>
-                    <keyword>String</keyword>
                     <keyword>Boolean</keyword>
-                    <keyword>Number</keyword>
                     <keyword>Date</keyword>
-                    <keyword>RegExp</keyword>
                     <keyword>Error</keyword>
                     <keyword>EvalError</keyword>
+                    <keyword>Function</keyword>
+                    <keyword>Number</keyword>
+                    <keyword>Object</keyword>
                     <keyword>RangeError</keyword>
+                    <keyword>RegExp</keyword>
+                    <keyword>String</keyword>
                     <keyword>SyntaxError</keyword>
                     <keyword>TypeError</keyword>
                     <keyword>URIError</keyword>
@@ -304,15 +306,13 @@
                     <keyword>debugger</keyword>
                     <keyword>double</keyword>
                     <keyword>enum</keyword>
-                    <keyword>export</keyword>
                     <keyword>extends</keyword>
                     <keyword>final</keyword>
                     <keyword>float</keyword>
                     <keyword>goto</keyword>
                     <keyword>implements</keyword>
-                    <keyword>import</keyword>
-                    <keyword>int</keyword>
                     <keyword>interface</keyword>
+                    <keyword>int</keyword>
                     <keyword>long</keyword>
                     <keyword>native</keyword>
                     <keyword>package</keyword>
