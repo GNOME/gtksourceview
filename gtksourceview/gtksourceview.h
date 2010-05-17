@@ -108,9 +108,15 @@ typedef enum
  * @GTK_SOURCE_DRAW_SPACES_TAB: whether the tab character should be drawn.
  * @GTK_SOURCE_DRAW_SPACES_NEWLINE: whether the line breaks should be drawn.
  * @GTK_SOURCE_DRAW_SPACES_NBSP: whether the non-breaking whitespaces should be drawn.
+ * @GTK_SOURCE_DRAW_SPACES_LEADING: whether leading whitespaces should be drawn.
+ * @GTK_SOURCE_DRAW_SPACES_TEXT: whether whitespaces inside text should be drawn.
+ * @GTK_SOURCE_DRAW_SPACES_TRAILING: whether trailing whitespaces should be drawn.
  * @GTK_SOURCE_DRAW_SPACES_ALL: wheter all kind of spaces should be drawn.
  *
- * GtkSourceDrawSpacesFlags determine what kind of spaces whould be drawn.
+ * GtkSourceDrawSpacesFlags determine what kind of spaces whould be drawn. If none
+ * of GTK_SOURCE_DRAW_SPACES_LEADING, GTK_SOURCE_DRAW_SPACES_TEXT or
+ * GTK_SOURCE_DRAW_SPACES_TRAILING is specified, whitespaces at any position in
+ * the line will be drawn (i.e. it has the same effect as specifying all of them).
  */
 typedef enum
 {
