@@ -101,9 +101,9 @@ AM_CONDITIONAL([GLADE_CATALOG], [ test "$glade_catalog" = "yes" ])
 AS_IF([ test "$glade_catalog" = "yes" ],
 	[PKG_CHECK_EXISTS(GLADE, [gladeui-1.0 >= $GLADE_UI_REQUIRED])
 	 AC_MSG_CHECKING([for Glade catalog dir])
-	 GLADE_CATALOGDIR=`$PKG_CONFIG --variable=catalogdir gladeui-1.0 2>&AS_MESSAGE_LOG_FD`
-         AC_MSG_RESULT([$GLADE_CATALOGDIR])
-	 AC_SUBST(GLADE_CATALOGDIR)])
+	 GLADE_CATALOG_DIR=`$PKG_CONFIG --variable=catalogdir gladeui-1.0 2>&AS_MESSAGE_LOG_FD`
+         AC_MSG_RESULT([$GLADE_CATALOG_DIR])
+	 AC_SUBST(GLADE_CATALOG_DIR)])
 
 # i18N stuff
 IT_PROG_INTLTOOL([0.40])
