@@ -1594,9 +1594,9 @@ main (int argc, char *argv[])
 	GtkSourceStyleSchemeManager *sm;
 	GtkSourceBuffer *buffer;
 
-	gchar *builtin_lang_dirs[] = {TOP_SRCDIR "/gtksourceview/language-specs", NULL};
-	gchar *builtin_sm_dirs[] = {TOP_SRCDIR "/gtksourceview/language-specs", NULL};
-	gchar **lang_dirs;
+	gchar *builtin_lang_dirs[] = {TOP_SRCDIR "/data/language-specs", NULL};
+	gchar *builtin_sm_dirs[] = {TOP_SRCDIR "/data/styles", NULL};
+	gchar **dirs;
 	const gchar * const * schemes;
 	gboolean use_default_paths = FALSE;
 
@@ -1621,14 +1621,14 @@ main (int argc, char *argv[])
 // 	gdk_window_set_debug_updates (TRUE);
 
 	/* we do not use defaults so we don't need to install the library */
-	lang_dirs = use_default_paths ? NULL : builtin_lang_dirs;
+	dirs = use_default_paths ? NULL : builtin_lang_dirs;
 	lm = gtk_source_language_manager_get_default ();
-	gtk_source_language_manager_set_search_path (lm, lang_dirs);
+	gtk_source_language_manager_set_search_path (lm, dirs);
 
-	lang_dirs = use_default_paths ? NULL : builtin_sm_dirs;
+	dirs = use_default_paths ? NULL : builtin_sm_dirs;
 
 	sm = gtk_source_style_scheme_manager_get_default ();
-	gtk_source_style_scheme_manager_set_search_path (sm, lang_dirs);
+	gtk_source_style_scheme_manager_set_search_path (sm, dirs);
 
 	if (!use_default_paths)
 		gtk_source_style_scheme_manager_append_search_path (sm, TOP_SRCDIR "/tests/test-scheme.xml");
