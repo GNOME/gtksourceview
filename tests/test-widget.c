@@ -1097,8 +1097,9 @@ static void
 update_cursor_position (GtkTextBuffer *buffer, gpointer user_data)
 {
 	gchar *msg;
-	gint row, col, chars, tabwidth;
-	GtkTextIter iter, start;
+	gint row, chars;
+	guint col;
+	GtkTextIter iter;
 	GtkSourceView *view;
 	GtkLabel *pos_label;
 	gchar **classes;
@@ -1108,7 +1109,6 @@ update_cursor_position (GtkTextBuffer *buffer, gpointer user_data)
 	g_return_if_fail (GTK_IS_SOURCE_VIEW (user_data));
 
 	view = GTK_SOURCE_VIEW (user_data);
-	tabwidth = gtk_source_view_get_tab_width (view);
 	pos_label = GTK_LABEL (g_object_get_data (G_OBJECT (view), "pos_label"));
 
 	gtk_text_buffer_get_iter_at_mark (buffer,
@@ -1117,22 +1117,7 @@ update_cursor_position (GtkTextBuffer *buffer, gpointer user_data)
 
 	chars = gtk_text_iter_get_offset (&iter);
 	row = gtk_text_iter_get_line (&iter) + 1;
-
-	start = iter;
-	gtk_text_iter_set_line_offset (&start, 0);
-	col = 0;
-
-	while (!gtk_text_iter_equal (&start, &iter))
-	{
-		if (gtk_text_iter_get_char (&start) == '\t')
-		{
-			col += (tabwidth - (col % tabwidth));
-		}
-		else
-			++col;
-
-		gtk_text_iter_forward_char (&start);
-	}
+	col = gtk_source_view_get_visual_column (view, &iter) + 1;
 
 	classes = gtk_source_buffer_get_context_classes_at_iter (GTK_SOURCE_BUFFER (buffer),
 	                                                         &iter);

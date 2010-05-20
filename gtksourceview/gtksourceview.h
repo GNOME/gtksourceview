@@ -268,10 +268,11 @@ GtkSourceSmartHomeEndType
 void		 gtk_source_view_set_draw_spaces	(GtkSourceView   *view,
 							 GtkSourceDrawSpacesFlags flags);
 GtkSourceDrawSpacesFlags
-		gtk_source_view_get_draw_spaces		(GtkSourceView   *view);
-
+		 gtk_source_view_get_draw_spaces	(GtkSourceView   *view);
+guint		 gtk_source_view_get_visual_column	(GtkSourceView     *view,
+							 const GtkTextIter *iter);
 GtkSourceCompletion *
-		gtk_source_view_get_completion		(GtkSourceView   *view);
+		 gtk_source_view_get_completion		(GtkSourceView   *view);
 
 GtkSourceGutter *gtk_source_view_get_gutter		(GtkSourceView     *view,
                                                          GtkTextWindowType  window_type);

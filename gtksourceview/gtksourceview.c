@@ -4956,6 +4956,55 @@ gtk_source_view_get_draw_spaces (GtkSourceView *view)
 	return view->priv->draw_spaces;
 }
 
+/**
+ * gtk_source_view_get_visual_column:
+ * @view: a #GtkSourceView.
+ * @iter: a position in @view.
+ *
+ * Determines the visual column at @iter taking into
+ * consideration the indent width of @view.
+ *
+ * Return value: the visual column at @iter.
+ */
+guint
+gtk_source_view_get_visual_column (GtkSourceView     *view,
+				   const GtkTextIter *iter)
+{
+	gunichar tab_char;
+	GtkTextBuffer *buffer;
+	GtkTextIter position;
+	guint column, indent_width;
+
+	g_return_val_if_fail (GTK_IS_SOURCE_VIEW (view), 0);
+	g_return_val_if_fail (iter != NULL, 0);
+
+	tab_char = g_utf8_get_char ("\t");
+	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
+
+	column = 0;
+	indent_width = get_real_indent_width (view);
+
+	position = *iter;
+	gtk_text_iter_set_visible_line_offset (&position, 0);
+
+	while (!gtk_text_iter_equal (&position, iter))
+	{
+		if (gtk_text_iter_get_char (&position) == tab_char)
+		{
+			column += (indent_width - (column % indent_width));
+		}
+		else
+		{
+			++column;
+		}
+
+		if (!gtk_text_iter_forward_visible_cursor_position (&position))
+			break;
+	}
+
+	return column;
+}
+
 static void
 gtk_source_view_style_set (GtkWidget *widget, GtkStyle *previous_style)
 {
