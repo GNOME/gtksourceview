@@ -1,16 +1,7 @@
 #!/bin/sh
-# "./check.sh files..." will validate files given on command line.
-# "./check.sh" without arguments will validate all language files
+# "./check-language.sh files..." will validate files given on command line.
+# "./check-language.sh" without arguments will validate all language files
 # in the source directory
-
-check_file() {
-  case $1 in
-  testv1.lang) ;; # skip test file for old format
-  *)
-    xmllint --relaxng language2.rng --noout $1 || exit 1
-    ;;
-  esac
-}
 
 files=""
 
@@ -32,5 +23,10 @@ else
 fi
 
 for file in $files; do
-  check_file $file
+  case $file in
+  testv1.lang) ;; # skip test file for old format
+  *)
+    xmllint --relaxng language2.rng --noout $file || exit 1
+    ;;
+  esac
 done
