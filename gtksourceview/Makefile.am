@@ -147,10 +147,29 @@ stamp-gtksourceview-typebuiltins.h: Makefile.am $(libgtksourceview_headers)
 	&& (cmp -s xgen-gth gtksourceview-typebuiltins.h || cp xgen-gth gtksourceview-typebuiltins.h) \
 	&& rm -f xgen-gth && echo stamp > $(@F)
 
+CLEANFILES =
+
+if HAVE_INTROSPECTION
+include $(INTROSPECTION_MAKEFILE)
+INTROSPECTION_GIRS = GtkSource-2.0.gir
+INTROSPECTION_SCANNER_ARGS = -I$(top_srcdir)
+GtkSource_2_0_gir_NAMESPACE = GtkSource
+GtkSource_2_0_gir_VERSION = 2.0
+GtkSource_2_0_gir_LIBS = libgtksourceview-2.0.la
+GtkSource_2_0_gir_FILES = $(libgtksourceview_2_0_la_SOURCES)
+GtkSource_2_0_gir_INCLUDES = GObject-2.0 Gtk-2.0
+GtkSource_2_0_gir_PACKAGES = gtksourceview-2.0
+girdir = $(INTROSPECTION_GIRDIR)
+dist_gir_DATA = GtkSource-2.0.gir
+typelibdir = $(INTROSPECTION_TYPELIBDIR)
+typelib_DATA = GtkSource-2.0.typelib
+CLEANFILES += $(dist_gir_DATA) $(typelib_DATA)
+endif
+
 EXTRA_DIST = \
 	gtksourceview-marshal.list \
 	$(ui_DATA)
 
-CLEANFILES = $(BUILT_SOURCES) stamp-gtksourceview-typebuiltins.h stamp-gtksourceview-typebuiltins.c
+CLEANFILES += $(BUILT_SOURCES) stamp-gtksourceview-typebuiltins.h stamp-gtksourceview-typebuiltins.c
 
 -include $(top_srcdir)/git.mk

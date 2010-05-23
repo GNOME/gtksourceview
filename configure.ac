@@ -13,7 +13,7 @@ AC_CONFIG_SRCDIR([gtksourceview/gtksourcebuffer.h])
 AC_CONFIG_HEADER([config.h])
 AC_CONFIG_MACRO_DIR([m4])
 
-AM_INIT_AUTOMAKE([1.10.3 dist-bzip2 no-dist-gzip])
+AM_INIT_AUTOMAKE([1.10.3 dist-bzip2 no-dist-gzip -Wno-portability])
 AM_MAINTAINER_MODE([enable])
 
 m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
@@ -116,6 +116,8 @@ AC_DEFINE([GETTEXT_PACKAGE], [PACKAGE_TARNAME], [Define to the gettext package n
 # Documentation
 GTK_DOC_CHECK([1.11], [--flavour=no-tmpl])
 
+GOBJECT_INTROSPECTION_CHECK([0.6.7])
+
 # test-widget uses this to find lang files and gtksourcebuffer.c
 ABS_TOP_SRCDIR=`cd $srcdir && pwd`
 AC_SUBST(ABS_TOP_SRCDIR)
@@ -150,4 +152,5 @@ Configuration:
 	Compiler:		${CC}
 	Completion Providers:	${enable_providers}
 	Glade Catalog:		${glade_catalog}
+	GObject introspection:	${found_introspection}
 "
