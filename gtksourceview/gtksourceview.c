@@ -1873,6 +1873,36 @@ set_source_buffer (GtkSourceView *view,
 }
 
 static void
+scroll_to_insert (GtkSourceView *view,
+		  GtkTextBuffer *buffer)
+{
+	GtkTextMark *insert;
+	GtkTextIter iter;
+	GdkRectangle visible, location;
+	
+	insert = gtk_text_buffer_get_insert (buffer);
+	gtk_text_buffer_get_iter_at_mark (buffer, &iter, insert);
+
+	gtk_text_view_get_visible_rect (GTK_TEXT_VIEW (view), &visible);
+	gtk_text_view_get_iter_location (GTK_TEXT_VIEW (view), &iter, &location);
+
+	if (location.x >= visible.x && location.x < visible.x + visible.width &&
+	    location.y >= visible.y && location.x < visible.y + visible.height)
+	{
+		gtk_text_view_scroll_to_mark (GTK_TEXT_VIEW (view),
+					      insert,
+					      0.0,
+					      TRUE,
+					      0.0, 0.5);
+	}
+	else
+	{
+		gtk_text_view_scroll_mark_onscreen (GTK_TEXT_VIEW (view),
+						    insert);
+	}
+}
+
+static void
 gtk_source_view_undo (GtkSourceView *view)
 {
 	GtkTextBuffer *buffer;
@@ -1886,8 +1916,7 @@ gtk_source_view_undo (GtkSourceView *view)
 	    gtk_source_buffer_can_undo (GTK_SOURCE_BUFFER (buffer)))
 	{
 		gtk_source_buffer_undo (GTK_SOURCE_BUFFER (buffer));
-		gtk_text_view_scroll_mark_onscreen (GTK_TEXT_VIEW (view),
-						    gtk_text_buffer_get_insert (buffer));
+		scroll_to_insert (view, buffer);
 	}
 }
 
@@ -1905,8 +1934,7 @@ gtk_source_view_redo (GtkSourceView *view)
 	    gtk_source_buffer_can_redo (GTK_SOURCE_BUFFER (buffer)))
 	{
 		gtk_source_buffer_redo (GTK_SOURCE_BUFFER (buffer));
-		gtk_text_view_scroll_mark_onscreen (GTK_TEXT_VIEW (view),
-						    gtk_text_buffer_get_insert (buffer));
+		scroll_to_insert (view, buffer);
 	}
 }
 
