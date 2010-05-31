@@ -1879,26 +1879,43 @@ scroll_to_insert (GtkSourceView *view,
 	GtkTextMark *insert;
 	GtkTextIter iter;
 	GdkRectangle visible, location;
-	
+
 	insert = gtk_text_buffer_get_insert (buffer);
 	gtk_text_buffer_get_iter_at_mark (buffer, &iter, insert);
 
 	gtk_text_view_get_visible_rect (GTK_TEXT_VIEW (view), &visible);
 	gtk_text_view_get_iter_location (GTK_TEXT_VIEW (view), &iter, &location);
 
-	if (location.x >= visible.x && location.x < visible.x + visible.width &&
-	    location.y >= visible.y && location.x < visible.y + visible.height)
+	if (location.y < visible.y || location.y > visible.y + visible.height)
 	{
 		gtk_text_view_scroll_to_mark (GTK_TEXT_VIEW (view),
 					      insert,
 					      0.0,
 					      TRUE,
-					      0.0, 0.5);
+					      0.5, 0.5);
 	}
-	else
+	else if (location.x < visible.x || location.x > visible.x + visible.width)
 	{
-		gtk_text_view_scroll_mark_onscreen (GTK_TEXT_VIEW (view),
-						    insert);
+		gdouble position;
+		GtkAdjustment *adjustment;
+
+		/* We revert the vertical position of the view because
+		 * _scroll_to_iter will cause it to move and the
+		 * insert mark is already visible vertically. */
+
+		adjustment = gtk_text_view_get_vadjustment (GTK_TEXT_VIEW (view));
+		position = gtk_adjustment_get_value (adjustment);
+
+		/* Must use _to_iter as _to_mark scrolls in an
+		 * idle handler and would prevent use from
+		 * reverting the vertical position of the view. */
+		gtk_text_view_scroll_to_iter (GTK_TEXT_VIEW (view),
+					      &iter,
+					      0.0,
+					      TRUE,
+					      0.5, 0.0);
+
+		gtk_adjustment_set_value (adjustment, position);
 	}
 }
 
