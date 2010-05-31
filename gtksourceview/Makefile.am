@@ -22,29 +22,30 @@ lib_LTLIBRARIES = libgtksourceview-2.0.la
 
 libgtksourceview_headers =			\
 	gtksourcebuffer.h			\
-	gtksourceiter.h				\
-	gtksourceview.h				\
-	gtksourcelanguage.h			\
-	gtksourcelanguagemanager.h		\
-	gtksourcestyle.h			\
-	gtksourcestyleschememanager.h		\
-	gtksourcestylescheme.h			\
-	gtksourcemark.h				\
-	gtksourceprintcompositor.h		\
-	gtksourcegutter.h			\
-	gtksourceundomanager.h			\
+	gtksourcecompletioncontext.h		\
 	gtksourcecompletion.h			\
 	gtksourcecompletioninfo.h		\
 	gtksourcecompletionitem.h		\
 	gtksourcecompletionproposal.h		\
 	gtksourcecompletionprovider.h		\
-	gtksourcecompletioncontext.h
+	gtksourcegutter.h			\
+	gtksourceiter.h				\
+	gtksourcelanguage.h			\
+	gtksourcelanguagemanager.h		\
+	gtksourcemark.h				\
+	gtksourceprintcompositor.h		\
+	gtksourcestyle.h			\
+	gtksourcestylescheme.h			\
+	gtksourcestyleschememanager.h		\
+	gtksourceundomanager.h			\
+	gtksourceview.h
 
 NOINST_H_FILES = \
+	gseal-gtk-compat.h		\
 	gtksourcecompletionmodel.h	\
 	gtksourcecompletion-private.h	\
-	gtksourcecompletionutils.h	\
 	gtksourcecompletionui.h		\
+	gtksourcecompletionutils.h	\
 	gtksourcecontextengine.h	\
 	gtksourceengine.h		\
 	gtksourcegutter-private.h	\
@@ -53,38 +54,37 @@ NOINST_H_FILES = \
 	gtksourceundomanagerdefault.h	\
 	gtksourceview-i18n.h		\
 	gtksourceview-utils.h		\
-	gtktextregion.h			\
-	gseal-gtk-compat.h
+	gtktextregion.h
 
 libgtksourceview_c_files = \
 	gtksourcebuffer.c 		\
+	gtksourcecompletion.c		\
+	gtksourcecompletioncontext.c	\
+	gtksourcecompletioninfo.c	\
+	gtksourcecompletionitem.c	\
+	gtksourcecompletionmodel.c	\
+	gtksourcecompletionproposal.c	\
+	gtksourcecompletionprovider.c	\
+	gtksourcecompletionutils.c	\
+	gtksourcecontextengine.c	\
+	gtksourceengine.c		\
+	gtksourcegutter.c		\
 	gtksourceiter.c			\
-	gtksourceview.c 		\
-	gtksourceundomanager.c 		\
-	gtksourceundomanagerdefault.c	\
-	gtktextregion.c 		\
 	gtksourcelanguage.c 		\
 	gtksourcelanguagemanager.c 	\
 	gtksourcelanguage-parser-1.c	\
 	gtksourcelanguage-parser-2.c	\
-	gtksourceview-i18n.c		\
-	gtksourceview-utils.c 		\
-	gtksourcestyle.c		\
-	gtksourcestyleschememanager.c	\
-	gtksourcestylescheme.c		\
-	gtksourceengine.c		\
-	gtksourcecontextengine.c	\
 	gtksourcemark.c			\
 	gtksourceprintcompositor.c	\
-	gtksourcegutter.c		\
-	gtksourcecompletion.c		\
-	gtksourcecompletioninfo.c	\
-	gtksourcecompletionitem.c	\
-	gtksourcecompletionproposal.c	\
-	gtksourcecompletionprovider.c	\
-	gtksourcecompletionmodel.c	\
-	gtksourcecompletionutils.c	\
-	gtksourcecompletioncontext.c
+	gtksourcestyle.c		\
+	gtksourcestylescheme.c		\
+	gtksourcestyleschememanager.c	\
+	gtksourceundomanager.c 		\
+	gtksourceundomanagerdefault.c	\
+	gtksourceview.c 		\
+	gtksourceview-i18n.c		\
+	gtksourceview-utils.c 		\
+	gtktextregion.c
 
 libgtksourceview_2_0_la_SOURCES = 	\
 	$(libgtksourceview_c_files)	\
@@ -150,11 +150,19 @@ stamp-gtksourceview-typebuiltins.h: Makefile.am $(libgtksourceview_headers)
 	&& (cmp -s xgen-gth gtksourceview-typebuiltins.h || cp xgen-gth gtksourceview-typebuiltins.h) \
 	&& rm -f xgen-gth && echo stamp > $(@F)
 
-CLEANFILES =
+EXTRA_DIST = 					\
+	gtksourceview-marshal.list
+
+CLEANFILES = 					\
+	$(BUILT_SOURCES)			\
+	stamp-gtksourceview-typebuiltins.h	\
+	stamp-gtksourceview-typebuiltins.c
 
 if HAVE_INTROSPECTION
-include $(INTROSPECTION_MAKEFILE)
+-include $(INTROSPECTION_MAKEFILE)
 INTROSPECTION_GIRS = GtkSource-2.0.gir
+
+GtkSource-2.0.gir: libgtksourceview-2.0.la
 INTROSPECTION_SCANNER_ARGS = -I$(top_srcdir)
 GtkSource_2_0_gir_NAMESPACE = GtkSource
 GtkSource_2_0_gir_VERSION = 2.0
@@ -162,17 +170,16 @@ GtkSource_2_0_gir_LIBS = libgtksourceview-2.0.la
 GtkSource_2_0_gir_FILES = $(libgtksourceview_headers) $(libgtksourceview_c_files)
 GtkSource_2_0_gir_INCLUDES = $(GTK_TYPELIB)
 GtkSource_2_0_gir_PACKAGES = gtksourceview-2.0
+
 girdir = $(INTROSPECTION_GIRDIR)
-dist_gir_DATA = GtkSource-2.0.gir
+dist_gir_DATA = $(INTROSPECTION_GIRS)
+
 typelibdir = $(INTROSPECTION_TYPELIBDIR)
-typelib_DATA = GtkSource-2.0.typelib
-CLEANFILES += $(dist_gir_DATA) $(typelib_DATA)
+typelib_DATA = $(INTROSPECTION_GIRS:.gir=.typelib)
+
+CLEANFILES +=			\
+	$(dist_gir_DATA)	\
+	$(typelib_DATA)
 endif
-
-EXTRA_DIST = \
-	gtksourceview-marshal.list \
-	$(ui_DATA)
-
-CLEANFILES += $(BUILT_SOURCES) stamp-gtksourceview-typebuiltins.h stamp-gtksourceview-typebuiltins.c
 
 -include $(top_srcdir)/git.mk

@@ -9,19 +9,19 @@ INCLUDES = 				\
 noinst_LTLIBRARIES = libgtksourcecompletionwords.la
 
 NOINST_H_FILES =				\
+	gtksourcecompletionwordsbuffer.h	\
 	gtksourcecompletionwordslibrary.h	\
 	gtksourcecompletionwordsproposal.h	\
-	gtksourcecompletionwordsbuffer.h	\
 	gtksourcecompletionwordsutils.h
 
 libgtksourcecompletionwords_headers = 		\
 	gtksourcecompletionwords.h
 
 libgtksourcecompletionwords_la_SOURCES =	\
+	gtksourcecompletionwordsbuffer.c	\
 	gtksourcecompletionwords.c		\
 	gtksourcecompletionwordslibrary.c	\
 	gtksourcecompletionwordsproposal.c	\
-	gtksourcecompletionwordsbuffer.c	\
 	gtksourcecompletionwordsutils.c		\
 	$(libgtksourcecompletionwords_headers)	\
 	$(NOINST_H_FILES)
