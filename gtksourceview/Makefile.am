@@ -56,7 +56,7 @@ NOINST_H_FILES = \
 	gtktextregion.h			\
 	gseal-gtk-compat.h
 
-libgtksourceview_2_0_la_SOURCES = 	\
+libgtksourceview_c_files = \
 	gtksourcebuffer.c 		\
 	gtksourceiter.c			\
 	gtksourceview.c 		\
@@ -84,7 +84,10 @@ libgtksourceview_2_0_la_SOURCES = 	\
 	gtksourcecompletionprovider.c	\
 	gtksourcecompletionmodel.c	\
 	gtksourcecompletionutils.c	\
-	gtksourcecompletioncontext.c 	\
+	gtksourcecompletioncontext.c
+
+libgtksourceview_2_0_la_SOURCES = 	\
+	$(libgtksourceview_c_files)	\
 	$(libgtksourceview_headers)	\
 	$(NOINST_H_FILES)
 
@@ -156,7 +159,7 @@ INTROSPECTION_SCANNER_ARGS = -I$(top_srcdir)
 GtkSource_2_0_gir_NAMESPACE = GtkSource
 GtkSource_2_0_gir_VERSION = 2.0
 GtkSource_2_0_gir_LIBS = libgtksourceview-2.0.la
-GtkSource_2_0_gir_FILES = $(libgtksourceview_2_0_la_SOURCES)
+GtkSource_2_0_gir_FILES = $(libgtksourceview_headers) $(libgtksourceview_c_files)
 GtkSource_2_0_gir_INCLUDES = $(GTK_TYPELIB)
 GtkSource_2_0_gir_PACKAGES = gtksourceview-2.0
 girdir = $(INTROSPECTION_GIRDIR)
