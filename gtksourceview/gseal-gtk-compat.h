@@ -23,7 +23,7 @@
 
 G_BEGIN_DECLS
 
-#if !GTK_CHECK_VERSION (2, 22, 0)
+#if !GTK_CHECK_VERSION (2, 21, 0)
 #define gtk_text_view_im_context_filter_keypress(view, event)   (gtk_im_context_filter_keypress (GTK_TEXT_VIEW (view)->im_context, event))
 #define gtk_text_view_get_hadjustment(view)                     (GTK_TEXT_VIEW (view)->hadjustment)
 #endif /* GTK < 2.22.0 */
