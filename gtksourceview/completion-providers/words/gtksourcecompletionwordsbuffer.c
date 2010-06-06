@@ -1,6 +1,6 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8; coding: utf-8 -*-
  * gtksourcecompletionwordsbuffer.c
- * This file is part of gtksourceview
+ * This file is part of GtkSourceView
  *
  * Copyright (C) 2009 - Jesse van den Kieboom
  *

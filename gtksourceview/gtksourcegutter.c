@@ -1,16 +1,15 @@
-/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8; coding: utf-8 -*- */
-/*
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8; coding: utf-8 -*- /
  * gtksourcegutter.c
- * This file is part of gtksourceview
+ * This file is part of GtkSourceView
  *
  * Copyright (C) 2009 - Jesse van den Kieboom
  *
- * gtksourceview is free software; you can redistribute it and/or
+ * GtkSourceView is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
  * version 2.1 of the License, or (at your option) any later version.
  *
- * gtksourceview is distributed in the hope that it will be useful,
+ * GtkSourceView is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * Lesser General Public License for more details.
@@ -1197,7 +1196,7 @@ on_view_button_press_event (GtkSourceView    *view,
 		 * activating have no way to consume the button event. A left
 		 * click in the gutter will by default remove the selection
 		 * in the textview, which is bad because we implement some
-		 * selection stuff in gtksourceview when clicking on the line
+		 * selection stuff in GtkSourceView when clicking on the line
 		 * renderer. Anyway, for 3.0 we should change the
 		 * cell-activated signal to allow a return value and remove
 		 * this hack

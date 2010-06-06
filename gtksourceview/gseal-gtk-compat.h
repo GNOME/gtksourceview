@@ -1,7 +1,7 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 8 -*- */
 /*
- *  Copyright © 2009 Thomas H.P. Andersen <phomes@gmail.com>,
- *              2009 Javier Jardón <jjardon@gnome.org>
+ *  Copyright (C) 2009 Thomas H.P. Andersen <phomes@gmail.com>,
+ *                2009 Javier Jardón <jjardon@gnome.org>
  *
  *  This runtime is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU Lesser General Public License as published by

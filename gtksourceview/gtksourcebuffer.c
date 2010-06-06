@@ -1,5 +1,6 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8; coding: utf-8 -*- */
 /* gtksourcebuffer.c
+ * This file is part of GtkSourceView
  *
  * Copyright (C) 1999-2002 - Mikael Hermansson <tyan@linux.se>,
  *                           Chris Phelps <chicane@reninet.com> and
@@ -7,12 +8,12 @@
  * Copyright (C) 2003 - Paolo Maggi <paolo.maggi@polito.it> and
  *                      Gustavo Giráldez <gustavo.giraldez@gmx.net>
  *
- * gtksourceview is free software; you can redistribute it and/or
+ * GtkSourceView is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
  * version 2.1 of the License, or (at your option) any later version.
  *
- * gtksourceview is distributed in the hope that it will be useful,
+ * GtkSourceView is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * Lesser General Public License for more details.
@@ -258,7 +259,7 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 	g_object_class_install_property (object_class,
 					 PROP_LANGUAGE,
 					 g_param_spec_object ("language",
-							      /* Translators: throughout gtksourceview "language" stands
+							      /* Translators: throughout GtkSourceView "language" stands
 							       * for "programming language", not "spoken language" */
 							      _("Language"),
 							      _("Language object to get "
