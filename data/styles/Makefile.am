@@ -7,7 +7,7 @@ STYLES =		\
 	oblivion.xml	\
 	tango.xml
 
-stylesdir = $(datadir)/gtksourceview-2.0/styles
+stylesdir = $(datadir)/gtksourceview-3.0/styles
 styles_DATA = $(STYLES) styles.rng check-style.sh
 
 EXTRA_DIST = $(styles_DATA)

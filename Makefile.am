@@ -3,7 +3,7 @@ ACLOCAL_AMFLAGS  = -I m4 ${ACLOCAL_FLAGS}
 SUBDIRS = gtksourceview po data docs tests
 
 pkgconfigdir = $(libdir)/pkgconfig
-pkgconfig_DATA = gtksourceview-2.0.pc
+pkgconfig_DATA = gtksourceview-3.0.pc
 
 EXTRA_DIST = \
 	intltool-extract.in \

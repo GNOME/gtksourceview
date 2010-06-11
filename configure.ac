@@ -30,8 +30,7 @@ LT_INIT([disable-static])
 AC_CHECK_HEADERS([unistd.h])
 
 # Dependencies
-GTK_REQUIRED=
-GTK_REQUIRED_VERSION=
+GTK_REQUIRED_VERSION=2.90.0
 LIBXML_REQUIRED_VERSION=2.5.0
 GLADE_UI_REQUIRED=3.2
 
@@ -63,30 +62,15 @@ if test "$enable_deprecations" = "yes"; then
 -DGDK_DISABLE_DEPRECATED \
 -DGTK_DISABLE_DEPRECATED \
 -DGDK_PIXBUF_DISABLE_DEPRECATED \
--DGNOME_DISABLE_DEPRECATED"
-
-	if $PKG_CONFIG --atleast-version 2.90 $GTK_REQUIRED; then
-		DISABLE_DEPRECATED_CFLAGS="$DISABLE_DEPRECATED_CFLAGS -DGSEAL_ENABLE"
-	fi
+-DGNOME_DISABLE_DEPRECATED \
+-DGSEAL_ENABLE"
 
 	AC_SUBST(DISABLE_DEPRECATED_CFLAGS)
 fi
 
-PKG_CHECK_EXISTS([gtk+-3.0 >= 2.90],
-		 [
-		 	GTK_REQUIRED=gtk+-3.0
-		 	GTK_REQUIRED_VERSION=2.90.0
-			GTK_TYPELIB=Gtk-3.0
-		 ],[
-		 	GTK_REQUIRED=gtk+-2.0
-		 	GTK_REQUIRED_VERSION=2.16.0
-			GTK_TYPELIB=Gtk-2.0
-		 ])
-
-AC_SUBST(GTK_TYPELIB)
 PKG_CHECK_MODULES(DEP, [
 	gio-2.0
-	$GTK_REQUIRED >= $GTK_REQUIRED_VERSION
+	gtk+-3.0 >= $GTK_REQUIRED_VERSION
 	libxml-2.0 >= $LIBXML_REQUIRED_VERSION
 ])
 
@@ -101,7 +85,7 @@ AM_CONDITIONAL([ENABLE_PROVIDERS], [ test "$enable_providers" = "yes" ])
 dnl check for native osx
 AC_MSG_CHECKING([for native Mac OS X])
 
-gdk_windowing=`$PKG_CONFIG --variable=target gdk-2.0`
+gdk_windowing=`$PKG_CONFIG --variable=target gdk-3.0`
 
 if test "$gdk_windowing" = "quartz"; then
 	os_osx=yes
@@ -136,7 +120,7 @@ AS_IF([ test "$glade_catalog" = "yes" ],
 # i18N stuff
 IT_PROG_INTLTOOL([0.40])
 
-AC_SUBST([GETTEXT_PACKAGE], [gtksourceview-2.0])
+AC_SUBST([GETTEXT_PACKAGE], [gtksourceview-3.0])
 AM_GNU_GETTEXT_VERSION([0.17])
 AM_GLIB_GNU_GETTEXT
 AC_DEFINE([GETTEXT_PACKAGE], [PACKAGE_TARNAME], [Define to the gettext package name.])
@@ -152,7 +136,7 @@ AC_SUBST(ABS_TOP_SRCDIR)
 
 # Output files
 AC_CONFIG_FILES([
-gtksourceview-2.0.pc
+gtksourceview-3.0.pc
 gtksourceview-zip
 Makefile
 data/Makefile

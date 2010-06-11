@@ -1,11 +1,11 @@
 GTKDOC_CFLAGS = -I$(top_srcdir) $(DEP_CFLAGS)
-GTKDOC_LIBS = $(top_builddir)/gtksourceview/libgtksourceview-2.0.la
+GTKDOC_LIBS = $(top_builddir)/gtksourceview/libgtksourceview-3.0.la
 
 ## Process this file with automake to produce Makefile.in
 AUTOMAKE_OPTIONS = 1.7
 
 # The name of the module.
-DOC_MODULE = gtksourceview-2.0
+DOC_MODULE = gtksourceview-3.0
 
 # The top-level SGML file.
 DOC_MAIN_SGML_FILE = gtksourceview-docs.sgml

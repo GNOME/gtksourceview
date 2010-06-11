@@ -81,7 +81,7 @@ LANGUAGES =			\
 	xslt.lang		\
 	yacc.lang
 
-languagesdir = $(datadir)/gtksourceview-2.0/language-specs
+languagesdir = $(datadir)/gtksourceview-3.0/language-specs
 languages_DATA = $(LANGUAGES) language.rng language2.rng language.dtd \
 		 check-language.sh convert.py
 

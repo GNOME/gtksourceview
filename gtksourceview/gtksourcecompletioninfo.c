@@ -32,7 +32,6 @@
 #include <gtksourceview/gtksourcecompletioninfo.h>
 #include "gtksourcecompletionutils.h"
 #include "gtksourceview-i18n.h"
-#include "gseal-gtk-compat.h"
 
 #ifndef MIN
 #define MIN (a, b) ((a) < (b) ? (a) : (b))

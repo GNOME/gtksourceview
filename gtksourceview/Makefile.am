@@ -18,7 +18,7 @@ BUILT_SOURCES = 			\
 	gtksourceview-typebuiltins.h
 
 # libs
-lib_LTLIBRARIES = libgtksourceview-2.0.la
+lib_LTLIBRARIES = libgtksourceview-3.0.la
 
 libgtksourceview_headers =			\
 	gtksourcebuffer.h			\
@@ -41,7 +41,6 @@ libgtksourceview_headers =			\
 	gtksourceview.h
 
 NOINST_H_FILES = \
-	gseal-gtk-compat.h		\
 	gtksourcecompletionmodel.h	\
 	gtksourcecompletion-private.h	\
 	gtksourcecompletionui.h		\
@@ -86,23 +85,23 @@ libgtksourceview_c_files = \
 	gtksourceview-utils.c 		\
 	gtktextregion.c
 
-libgtksourceview_2_0_la_SOURCES = 	\
+libgtksourceview_3_0_la_SOURCES = 	\
 	$(libgtksourceview_c_files)	\
 	$(libgtksourceview_headers)	\
 	$(NOINST_H_FILES)
 
 # do not distribute generated files
-nodist_libgtksourceview_2_0_la_SOURCES =\
+nodist_libgtksourceview_3_0_la_SOURCES =\
 	$(BUILT_SOURCES)
 
 completion_providers = 							\
 	completion-providers/words/libgtksourcecompletionwords.la
 
-libgtksourceview_2_0_la_LIBADD = $(DEP_LIBS) $(IGE_MAC_LIBS) $(completion_providers)
-libgtksourceview_2_0_la_LDFLAGS = -no-undefined -export-symbols-regex "^gtk_source_.*"
-libgtksourceview_2_0_includedir = $(includedir)/gtksourceview-2.0/gtksourceview
+libgtksourceview_3_0_la_LIBADD = $(DEP_LIBS) $(IGE_MAC_LIBS) $(completion_providers)
+libgtksourceview_3_0_la_LDFLAGS = -no-undefined -export-symbols-regex "^gtk_source_.*"
+libgtksourceview_3_0_includedir = $(includedir)/gtksourceview-3.0/gtksourceview
 
-libgtksourceview_2_0_include_HEADERS =		\
+libgtksourceview_3_0_include_HEADERS =		\
 	$(libgtksourceview_headers)		\
 	gtksourceview-typebuiltins.h
 
@@ -160,16 +159,16 @@ CLEANFILES = 					\
 
 if HAVE_INTROSPECTION
 -include $(INTROSPECTION_MAKEFILE)
-INTROSPECTION_GIRS = GtkSource-2.0.gir
+INTROSPECTION_GIRS = GtkSource-3.0.gir
 
-GtkSource-2.0.gir: libgtksourceview-2.0.la
+GtkSource-3.0.gir: libgtksourceview-3.0.la
 INTROSPECTION_SCANNER_ARGS = -I$(top_srcdir)
-GtkSource_2_0_gir_NAMESPACE = GtkSource
-GtkSource_2_0_gir_VERSION = 2.0
-GtkSource_2_0_gir_LIBS = libgtksourceview-2.0.la
-GtkSource_2_0_gir_FILES = $(libgtksourceview_headers) $(libgtksourceview_c_files)
-GtkSource_2_0_gir_INCLUDES = $(GTK_TYPELIB)
-GtkSource_2_0_gir_PACKAGES = gtksourceview-2.0
+GtkSource_3_0_gir_NAMESPACE = GtkSource
+GtkSource_3_0_gir_VERSION = 3.0
+GtkSource_3_0_gir_LIBS = libgtksourceview-3.0.la
+GtkSource_3_0_gir_FILES = $(libgtksourceview_headers) $(libgtksourceview_c_files)
+GtkSource_3_0_gir_INCLUDES = Gtk-3.0
+GtkSource_3_0_gir_PACKAGES = gtksourceview-3.0
 
 girdir = $(INTROSPECTION_GIRDIR)
 dist_gir_DATA = $(INTROSPECTION_GIRS)

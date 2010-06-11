@@ -24,7 +24,6 @@
 #include "gtksourceview.h"
 #include "gtksourcelanguage-private.h"
 #include "gtksourcestyle-private.h"
-#include "gseal-gtk-compat.h"
 #include <libxml/parser.h>
 #include <string.h>
 

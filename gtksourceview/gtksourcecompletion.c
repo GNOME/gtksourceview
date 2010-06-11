@@ -38,7 +38,6 @@
 #include "gtksourcecompletion-private.h"
 #include "gtksourcecompletioncontext.h"
 #include "gtksourcecompletionui.h"
-#include "gseal-gtk-compat.h"
 #include <stdarg.h>
 
 #define WINDOW_WIDTH 350

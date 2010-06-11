@@ -41,7 +41,6 @@
 #include "gtksourcecompletion-private.h"
 #include "gtksourcecompletionutils.h"
 #include "gtksourcegutter-private.h"
-#include "gseal-gtk-compat.h"
 
 /**
  * SECTION:view

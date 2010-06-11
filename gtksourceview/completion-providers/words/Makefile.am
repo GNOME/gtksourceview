@@ -27,7 +27,7 @@ libgtksourcecompletionwords_la_SOURCES =	\
 	$(NOINST_H_FILES)
 
 libgtksourcecompletionwords_includedir = \
-	$(includedir)/gtksourceview-2.0/gtksourceview/completion-providers/words
+	$(includedir)/gtksourceview-3.0/gtksourceview/completion-providers/words
 
 libgtksourcecompletionwords_include_HEADERS =		\
 	$(libgtksourcecompletionwords_headers)

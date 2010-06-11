@@ -14,14 +14,14 @@ TESTS = $(UNIT_TEST_PROGS)
 TEST_PROGS = test-widget
 test_widget_SOURCES = test-widget.c
 test_widget_LDADD = 			\
-	$(top_builddir)/gtksourceview/libgtksourceview-2.0.la \
+	$(top_builddir)/gtksourceview/libgtksourceview-3.0.la \
 	$(DEP_LIBS)			\
 	$(TESTS_LIBS)
 
 TEST_PROGS += test-completion
 test_completion_SOURCES = test-completion.c
 test_completion_LDADD = 		\
-	$(top_builddir)/gtksourceview/libgtksourceview-2.0.la \
+	$(top_builddir)/gtksourceview/libgtksourceview-3.0.la \
 	$(DEP_LIBS)			\
 	$(TESTS_LIBS)
 
@@ -29,7 +29,7 @@ UNIT_TEST_PROGS = test-languagemanager
 test_languagemanager_SOURCES =		\
 	test-languagemanager.c
 test_languagemanager_LDADD = 		\
-	$(top_builddir)/gtksourceview/libgtksourceview-2.0.la \
+	$(top_builddir)/gtksourceview/libgtksourceview-3.0.la \
 	$(DEP_LIBS)			\
 	$(TESTS_LIBS)
 
@@ -37,7 +37,7 @@ UNIT_TEST_PROGS += test-printcompositor
 test_printcompositor_SOURCES =		\
 	test-printcompositor.c
 test_printcompositor_LDADD = 		\
-	$(top_builddir)/gtksourceview/libgtksourceview-2.0.la \
+	$(top_builddir)/gtksourceview/libgtksourceview-3.0.la \
 	$(DEP_LIBS)			\
 	$(TESTS_LIBS)
 
@@ -46,7 +46,7 @@ test_printcompositor_LDADD = 		\
 # TEST_PROGS += testregion
 #testregion_SOURCES = testregion.c
 #testregion_LDADD = 			\
-#	$(top_builddir)/gtksourceview/libgtksourceview-2.0.la \
+#	$(top_builddir)/gtksourceview/libgtksourceview-3.0.la \
 #	$(DEP_LIBS)
 
 EXTRA_DIST =				\
