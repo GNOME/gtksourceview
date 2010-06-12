@@ -3608,59 +3608,6 @@ gtk_source_view_set_mark_category_icon_from_stock (GtkSourceView  *view,
 	gtk_widget_queue_draw (GTK_WIDGET (view));
 }
 
-/**
- * gtk_source_view_set_mark_category_pixbuf:
- * @view: a #GtkSourceView.
- * @category: a mark category.
- * @pixbuf: (allow-none): a #GdkPixbuf, or %NULL.
- *
- * Associates a given @pixbuf with a given mark @category.
- * If @pixbuf is %NULL, the pixbuf is unset.
- *
- * Deprecated: Use #gtk_source_view_set_mark_category_icon_from_pixbuf instead.
- *
- * Since: 2.2
- */
-#ifndef GTKSOURCEVIEW_DISABLE_DEPRECATED
-void
-gtk_source_view_set_mark_category_pixbuf (GtkSourceView *view,
-					  const gchar   *category,
-					  GdkPixbuf     *pixbuf)
-{
-	gtk_source_view_set_mark_category_icon_from_pixbuf (view, category, pixbuf);
-}
-#endif
-
-/**
- * gtk_source_view_get_mark_category_pixbuf:
- * @view: a #GtkSourceView.
- * @category: a mark category.
- *
- * Gets the pixbuf which is associated with the given mark @category.
- *
- * Return value: the associated #GdkPixbuf, or %NULL if not found.
- *
- * Since: 2.2
- */
-#ifndef GTKSOURCEVIEW_DISABLE_DEPRECATED
-GdkPixbuf *
-gtk_source_view_get_mark_category_pixbuf (GtkSourceView *view,
-					  const gchar   *category)
-{
-	MarkCategory *cat;
-
-	g_return_val_if_fail (GTK_IS_SOURCE_VIEW (view), NULL);
-	g_return_val_if_fail (category != NULL, NULL);
-
-	cat = g_hash_table_lookup (view->priv->mark_categories, category);
-
-	if (cat != NULL && cat->icon_pixbuf != NULL)
-		return g_object_ref (cat->icon_pixbuf);
-	else
-		return NULL;
-}
-#endif
-
 static void
 set_mark_category_tooltip_func (GtkSourceView   *view,
 				const gchar     *category,
