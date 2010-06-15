@@ -580,6 +580,13 @@ gtk_source_completion_words_init (GtkSourceCompletionWords *self)
 	self->priv->library = gtk_source_completion_words_library_new ();
 }
 
+/**
+ * gtk_source_completion_words_new:
+ * @name: (allow-none): The name for the provider
+ * @icon: (allow-none): A specific icon for the provider
+ *
+ * Returns: a new #GtkSourceCompletionWords provider
+ */
 GtkSourceCompletionWords *
 gtk_source_completion_words_new (const gchar *name,
                                  GdkPixbuf   *icon)
@@ -599,6 +606,13 @@ buffer_destroyed (BufferBinding *binding)
 	g_slice_free (BufferBinding, binding);
 }
 
+/**
+ * gtk_source_completion_words_register:
+ * @words: a #GtkSourceCompletionWords
+ * @buffer: a #GtkTextBuffer
+ *
+ * Registers @buffer in the @words provider.
+ */
 void
 gtk_source_completion_words_register (GtkSourceCompletionWords *words,
                                       GtkTextBuffer            *buffer)
@@ -638,6 +652,13 @@ gtk_source_completion_words_register (GtkSourceCompletionWords *words,
 	                                       binding);
 }
 
+/**
+ * gtk_source_completion_words_unregister:
+ * @words: a #GtkSourceCompletionWords
+ * @buffer: a #GtkTextBuffer
+ *
+ * Unregisters @buffer from teh @words provider.
+ */
 void
 gtk_source_completion_words_unregister (GtkSourceCompletionWords *words,
                                         GtkTextBuffer            *buffer)

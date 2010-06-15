@@ -157,6 +157,10 @@ CLEANFILES = 					\
 	stamp-gtksourceview-typebuiltins.h	\
 	stamp-gtksourceview-typebuiltins.c
 
+libgtksourcecompletionwords_files =	\
+	./completion-providers/words/gtksourcecompletionwords.h	\
+	./completion-providers/words/gtksourcecompletionwords.c
+
 if HAVE_INTROSPECTION
 -include $(INTROSPECTION_MAKEFILE)
 INTROSPECTION_GIRS = GtkSource-3.0.gir
@@ -166,7 +170,11 @@ INTROSPECTION_SCANNER_ARGS = -I$(top_srcdir)
 GtkSource_3_0_gir_NAMESPACE = GtkSource
 GtkSource_3_0_gir_VERSION = 3.0
 GtkSource_3_0_gir_LIBS = libgtksourceview-3.0.la
-GtkSource_3_0_gir_FILES = $(libgtksourceview_headers) $(libgtksourceview_c_files)
+GtkSource_3_0_gir_FILES =			\
+	$(libgtksourcecompletionwords_files)	\
+	$(libgtksourceview_headers)		\
+	$(libgtksourceview_c_files)
+
 GtkSource_3_0_gir_INCLUDES = Gtk-3.0
 GtkSource_3_0_gir_PACKAGES = gtksourceview-3.0
 
