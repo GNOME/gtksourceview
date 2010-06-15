@@ -41,6 +41,9 @@ test_printcompositor_LDADD = 		\
 	$(DEP_LIBS)			\
 	$(TESTS_LIBS)
 
+python_tests =			\
+	test-completion.py
+
 # testregion need gtk_text_region_ api which is normally private
 # modify gtksourceview/Makefile.am to export gtk_text_* symbols
 # TEST_PROGS += testregion
@@ -50,6 +53,7 @@ test_printcompositor_LDADD = 		\
 #	$(DEP_LIBS)
 
 EXTRA_DIST =				\
+	$(python_tests)			\
 	apple-red.png			\
 	gnome-gmush.png
 
