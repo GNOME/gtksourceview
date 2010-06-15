@@ -10,7 +10,7 @@ EXTRA_DIST = \
 	intltool-merge.in \
 	intltool-update.in \
 	gtksourceview.doap \
-	gtksourceview-2.0.pc.in	\
+	gtksourceview-3.0.pc.in	\
 	gtksourceview-zip.in \
 	COPYING.lib \
 	HACKING \
