@@ -459,8 +459,6 @@ struct _GtkSourceContextEnginePrivate
 	guint			 first_update;
 	guint			 incremental_update;
 
-	/* Views highlight requests. */
-	GtkTextRegion		*highlight_requests;
 
 #ifdef ENABLE_MEMORY_DEBUG
 	guint			 mem_usage_timeout;
@@ -2316,16 +2314,11 @@ gtk_source_context_engine_update_highlight (GtkSourceEngine   *engine,
 	}
 	else
 	{
-		if (gtk_text_iter_get_line (start) >= invalid_line)
-		{
-			gtk_text_region_add (ce->priv->highlight_requests, start, end);
-		}
-		else
+		if (gtk_text_iter_get_line (start) < invalid_line)
 		{
 			GtkTextIter valid_end = *start;
 			gtk_text_iter_set_line (&valid_end, invalid_line);
 			ensure_highlighted (ce, start, &valid_end);
-			gtk_text_region_add (ce->priv->highlight_requests, &valid_end, end);
 		}
 
 		install_first_update (ce);
@@ -2618,10 +2611,7 @@ gtk_source_context_engine_attach_buffer (GtkSourceEngine *engine,
 
 		if (ce->priv->refresh_region != NULL)
 			gtk_text_region_destroy (ce->priv->refresh_region, FALSE);
-		if (ce->priv->highlight_requests != NULL)
-			gtk_text_region_destroy (ce->priv->highlight_requests, FALSE);
 		ce->priv->refresh_region = NULL;
-		ce->priv->highlight_requests = NULL;
 	}
 
 	ce->priv->buffer = buffer;
@@ -2666,7 +2656,6 @@ gtk_source_context_engine_attach_buffer (GtkSourceEngine *engine,
 
 		g_object_get (ce->priv->buffer, "highlight-syntax", &ce->priv->highlight, NULL);
 		ce->priv->refresh_region = gtk_text_region_new (buffer);
-		ce->priv->highlight_requests = gtk_text_region_new (buffer);
 
 		g_signal_connect_swapped (buffer,
 					  "notify::highlight-syntax",
