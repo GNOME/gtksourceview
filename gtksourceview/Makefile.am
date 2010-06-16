@@ -179,13 +179,13 @@ GtkSource_3_0_gir_INCLUDES = Gtk-3.0
 GtkSource_3_0_gir_PACKAGES = gtksourceview-3.0
 
 girdir = $(INTROSPECTION_GIRDIR)
-dist_gir_DATA = $(INTROSPECTION_GIRS)
+gir_DATA = $(INTROSPECTION_GIRS)
 
 typelibdir = $(INTROSPECTION_TYPELIBDIR)
 typelib_DATA = $(INTROSPECTION_GIRS:.gir=.typelib)
 
 CLEANFILES +=			\
-	$(dist_gir_DATA)	\
+	$(gir_DATA)	\
 	$(typelib_DATA)
 endif
 
