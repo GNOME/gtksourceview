@@ -52,10 +52,6 @@ static GtkSourceStyleScheme *style_scheme = NULL;
 #define MARK_TYPE_1      "one"
 #define MARK_TYPE_2      "two"
 
-#if !GTK_CHECK_VERSION (2, 18, 0)
-#define gtk_widget_get_visible(widget)                          (GTK_WIDGET_VISIBLE (widget))
-#endif /* GTK+ < 2.18.0 */
-
 
 /* Private prototypes -------------------------------------------------------- */
 
