@@ -5784,15 +5784,19 @@ update_syntax (GtkSourceContextEngine *ce,
 	       const GtkTextIter      *end,
 	       gint                    time)
 {
-	Segment *invalid;
+	GtkTextBuffer *buffer;
 	GtkTextIter start_iter, end_iter;
 	GtkTextIter line_start, line_end;
+	Segment *state;
+	Segment *invalid;
 	gint start_offset, end_offset;
 	gint line_start_offset, line_end_offset;
-        gint analyzed_end;
-	GtkTextBuffer *buffer = ce->priv->buffer;
-	Segment *state = ce->priv->root_segment;
+	gint analyzed_end;
+	gboolean first_line = FALSE;
 	GTimer *timer;
+
+	buffer = ce->priv->buffer;
+	state = ce->priv->root_segment;
 
 	context_freeze (ce->priv->root_context);
 	update_tree (ce);
@@ -5837,6 +5841,20 @@ update_syntax (GtkSourceContextEngine *ce,
 		end_offset = gtk_text_iter_get_offset (&end_iter);
 	}
 
+	if (0 == start_offset)
+	{
+		first_line = TRUE;
+
+		/* If it is the first line and it starts with BOM, skip it
+		 * since regexes in lang files do not take it into account */
+		gunichar c = gtk_text_iter_get_char (&start_iter);
+		if (c == '\xfeff') /* BOM */
+		{
+			gtk_text_iter_forward_char (&start_iter);
+			start_offset = gtk_text_iter_get_offset (&start_iter);
+		}
+	}
+
 	/* This happens after deleting all text on last line. */
 	if (start_offset == end_offset)
 	{
@@ -5874,7 +5892,7 @@ update_syntax (GtkSourceContextEngine *ce,
 
 		/* Analyze the line */
 		erase_segments (ce, line_start_offset, line_end_offset, ce->priv->hint);
-                get_line_info (buffer, &line_start, &line_end, &line);
+		get_line_info (buffer, &line_start, &line_end, &line);
 
 #ifdef ENABLE_CHECK_TREE
 		{
@@ -5883,7 +5901,7 @@ update_syntax (GtkSourceContextEngine *ce,
 		}
 #endif
 
-		if (line_start_offset == 0)
+		if (first_line)
 			state = ce->priv->root_segment;
 		else
 			state = get_segment_at_offset (ce,
