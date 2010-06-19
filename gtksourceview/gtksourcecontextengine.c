@@ -5904,11 +5904,16 @@ update_syntax (GtkSourceContextEngine *ce,
 #endif
 
 		if (first_line)
+		{
 			state = ce->priv->root_segment;
+		}
 		else
+		{
 			state = get_segment_at_offset (ce,
 						       ce->priv->hint ? ce->priv->hint : state,
 						       line_start_offset - 1);
+		}
+
 		g_assert (state->context != NULL);
 
 		ce->priv->hint2 = ce->priv->hint;
@@ -6002,6 +6007,8 @@ update_syntax (GtkSourceContextEngine *ce,
 			gtk_text_iter_forward_line (&line_end);
 			line_end_offset = gtk_text_iter_get_offset (&line_end);
 		}
+
+		first_line = (0 == line_start_offset);
 	}
 
 	if (analyzed_end == gtk_text_buffer_get_char_count (buffer))
