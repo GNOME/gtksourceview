@@ -5224,7 +5224,7 @@ gtk_source_view_update_style_scheme (GtkSourceView *view)
  *
  * Gets the #GtkSourceCompletion associated with @view.
  *
- * Returns: the #GtkSourceCompletion associated with @view.
+ * Returns: (type Completion) (transfer none): the #GtkSourceCompletion associated with @view.
  */
 GtkSourceCompletion *
 gtk_source_view_get_completion (GtkSourceView *view)

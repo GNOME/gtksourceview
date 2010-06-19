@@ -3250,8 +3250,9 @@ _gtk_source_completion_add_proposals (GtkSourceCompletion         *completion,
 
 /**
  * gtk_source_completion_show:
- * @completion: z #GtkSourceCompletion.
- * @providers: (allow-none): z list of #GtkSourceCompletionProvider, or %NULL.
+ * @completion: a #GtkSourceCompletion.
+ * @providers: (element-type CompletionProvider) (allow-none):
+ * a list of #GtkSourceCompletionProvider, or %NULL.
  * @context: The #GtkSourceCompletionContext with which to start the completion.
  *
  * Starts a new completion with the specified #GtkSourceCompletionContext and
@@ -3317,7 +3318,8 @@ gtk_source_completion_show (GtkSourceCompletion        *completion,
  * Get list of providers registered on @completion. The returned list is owned
  * by the completion and should not be freed.
  *
- * Returns: (transfer none): list of #GtkSourceCompletionProvider.
+ * Returns: (element-type CompletionProvider) (transfer none):
+ * list of #GtkSourceCompletionProvider.
  */
 GList *
 gtk_source_completion_get_providers (GtkSourceCompletion *completion)
