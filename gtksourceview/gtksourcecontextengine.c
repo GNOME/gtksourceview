@@ -5762,6 +5762,8 @@ erase_segments (GtkSourceContextEngine *ce,
 	CHECK_TREE (ce);
 }
 
+#define IS_BOM(c) (c == 0xFEFF)
+
 /**
  * update_syntax:
  *
@@ -5848,7 +5850,7 @@ update_syntax (GtkSourceContextEngine *ce,
 		/* If it is the first line and it starts with BOM, skip it
 		 * since regexes in lang files do not take it into account */
 		gunichar c = gtk_text_iter_get_char (&start_iter);
-		if (c == '\xfeff') /* BOM */
+		if (IS_BOM (c))
 		{
 			gtk_text_iter_forward_char (&start_iter);
 			start_offset = gtk_text_iter_get_offset (&start_iter);
