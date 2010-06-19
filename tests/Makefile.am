@@ -42,7 +42,8 @@ test_printcompositor_LDADD = 		\
 	$(TESTS_LIBS)
 
 python_tests =			\
-	test-completion.py
+	test-completion.py	\
+	test-widget.py
 
 # testregion need gtk_text_region_ api which is normally private
 # modify gtksourceview/Makefile.am to export gtk_text_* symbols

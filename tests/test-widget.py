@@ -1,0 +1,335 @@
+#!/usr/bin/env python
+
+import os, os.path
+import sys
+
+import gi
+from gi.repository import Gio, GObject, Pango, Gtk, GdkPixbuf, Gdk, GtkSource
+
+ui_description = """
+<ui>
+  <menubar name=\"MainMenu\">
+    <menu action=\"FileMenu\">
+      <menuitem action=\"Open\"/>
+      <menuitem action=\"Print\"/>
+      <menuitem action=\"Find\"/>
+      <menuitem action=\"Replace\"/>
+      <separator/>
+      <menuitem action=\"Quit\"/>
+    </menu>
+    <menu action=\"ViewMenu\">
+      <menuitem action=\"NewView\"/>
+      <separator/>
+      <menuitem action=\"HlBracket\"/>
+      <menuitem action=\"ShowNumbers\"/>
+      <menuitem action=\"ShowMarks\"/>
+      <menuitem action=\"ShowMargin\"/>
+      <menuitem action=\"HlLine\"/>
+      <menuitem action=\"DrawSpaces\"/>
+      <menuitem action=\"WrapLines\"/>
+      <separator/>
+      <menuitem action=\"AutoIndent\"/>
+      <menuitem action=\"InsertSpaces\"/>
+      <separator/>
+      <menu action=\"TabWidth\">
+        <menuitem action=\"TabWidth4\"/>
+        <menuitem action=\"TabWidth6\"/>
+        <menuitem action=\"TabWidth8\"/>
+        <menuitem action=\"TabWidth10\"/>
+        <menuitem action=\"TabWidth12\"/>
+      </menu>
+      <menu action=\"IndentWidth\">
+        <menuitem action=\"IndentWidthUnset\"/>
+        <menuitem action=\"IndentWidth4\"/>
+        <menuitem action=\"IndentWidth6\"/>
+        <menuitem action=\"IndentWidth8\"/>
+        <menuitem action=\"IndentWidth10\"/>
+        <menuitem action=\"IndentWidth12\"/>
+      </menu>
+      <separator/>
+      <menu action=\"SmartHomeEnd\">
+        <menuitem action=\"SmartHomeEndDisabled\"/>
+        <menuitem action=\"SmartHomeEndBefore\"/>
+        <menuitem action=\"SmartHomeEndAfter\"/>
+        <menuitem action=\"SmartHomeEndAlways\"/>
+      </menu>
+      <separator/>
+      <menuitem action=\"ForwardString\"/>
+      <menuitem action=\"BackwardString\"/>
+    </menu>
+  </menubar>
+</ui>
+"""
+
+class Window(Gtk.Window):
+    __gtype_name__ = 'TestWindow'
+
+    def __init__(self):
+        Gtk.Window.__init__(self)
+
+        self.set_title('GtkSourceView Demo')
+        self.set_icon_name('text-editor')
+        self.set_default_size(500, 500)
+        self.connect_after('destroy', _quit)
+
+        self._vbox = Gtk.VBox()
+        self.add(self._vbox)
+
+        sw = Gtk.ScrolledWindow(hadjustment=None,
+                                vadjustment=None)
+        sw.set_shadow_type(Gtk.ShadowType.IN)
+
+        self._buf = GtkSource.Buffer()
+        self._view = GtkSource.View.new_with_buffer(self._buf)
+        self.insert_menu()
+
+        mgr = GtkSource.StyleSchemeManager.get_default()
+        style_scheme = mgr.get_scheme('classic')
+        if style_scheme:
+            self._buf.set_style_scheme(style_scheme)
+
+        self._vbox.pack_start(sw, True, True, 0)
+        sw.add(self._view)
+
+    def insert_menu(self):
+        action_group = Gtk.ActionGroup()
+        action_group.add_actions([("FileMenu", None, "_File", None, None, None),
+                                  ("Open", Gtk.STOCK_OPEN, "_Open", "<control>O",
+                                   "Open a file", self.open_file_cb),
+                                  ("Print", Gtk.STOCK_PRINT, "_Print", "<control>P",
+                                   "Print the current file", self.print_file_cb),
+                                  ("Find", Gtk.STOCK_FIND, "_Find", "<control>F",
+                                   "Find", self.find_cb),
+                                  ("Replace", Gtk.STOCK_FIND_AND_REPLACE, "Search and _Replace", "<control>R",
+                                   "Search and replace", self.replace_cb),
+                                  ("Quit", Gtk.STOCK_QUIT, "_Quit", "<control>Q",
+                                   "Exit the application", self.quit_cb),
+                                  ("ViewMenu", None, "_View", None, None, None),
+                                  ("NewView", Gtk.STOCK_NEW, "_New View", None,
+                                   "Create a new view of the file", self.new_view_cb),
+                                  ("TabWidth", None, "_Tab Width", None, None, None),
+                                  ("IndentWidth", None, "I_ndent Width", None, None, None),
+                                  ("SmartHomeEnd", None, "_Smart Home/End", None, None, None),
+                                  ("ForwardString", None, "_Forward to string toggle", "<control>S",
+                                   "Forward to the start or end of the next string", self.forward_string_cb),
+                                  ("BackwardString", None, "_Backward to string toggle", "<control><shift>S",
+                                   "Backward to the start or end of the next string", self.backward_string_cb)])
+
+        action_group.add_toggle_actions([("HlBracket", None, "Highlight Matching _Bracket", None,
+                                          "Toggle highlighting of matching bracket", self.hl_bracket_toggled_cb),
+                                         ("ShowNumbers", None, "Show _Line Numbers", None,
+                                          "Toggle visibility of line numbers in the left margin", self.numbers_toggled_cb),
+                                         ("ShowMarks", None, "Show Line _Marks", None,
+                                          "Toggle visibility of marks in the left margin", self.marks_toggled_cb),
+                                         ("ShowMargin", None, "Show Right M_argin", None,
+                                          "Toggle visibility of right margin indicator", self.margin_toggled_cb),
+                                         ("HlLine", None, "_Highlight Current Line", None,
+                                          "Toggle highlighting of current line", self.hl_line_toggled_cb),
+                                         ("DrawSpaces", None, "_Draw Spaces", None,
+                                          "Draw Spaces", self.draw_spaces_toggled_cb),
+                                         ("WrapLines", None, "_Wrap Lines", None,
+                                          "Toggle line wrapping", self.wrap_lines_toggled_cb),
+                                         ("AutoIndent", None, "Enable _Auto Indent", None,
+                                          "Toggle automatic auto indentation of text", self.auto_indent_toggled_cb),
+                                         ("InsertSpaces", None, "Insert _Spaces Instead of Tabs", None,
+                                          "Whether to insert space characters when inserting tabulations",
+                                          self.insert_spaces_toggled_cb)])
+
+        action_group.add_radio_actions([("TabWidth4", None, "4", None,
+                                         "Set tabulation width to 4 spaces", 4),
+                                        ("TabWidth6", None, "6", None,
+                                         "Set tabulation width to 6 spaces", 6),
+                                        ("TabWidth8", None, "8", None,
+                                         "Set tabulation width to 8 spaces", 8),
+                                        ("TabWidth10", None, "10", None,
+                                         "Set tabulation width to 10 spaces", 10),
+                                        ("TabWidth12", None, "12", None,
+                                         "Set tabulation width to 12 spaces", 12)],
+                                        -1, self.tabs_toggled_cb)
+
+        action_group.add_radio_actions([("IndentWidthUnset", None, "Use Tab Width", None,
+                                         "Set indent width same as tab width", -1),
+                                        ("IndentWidth4", None, "4", None,
+                                         "Set indent width to 4 spaces", 4),
+                                        ("IndentWidth6", None, "6", None,
+                                         "Set indent width to 6 spaces", 6),
+                                        ("IndentWidth8", None, "8", None,
+                                         "Set indent width to 8 spaces", 8),
+                                        ("IndentWidth10", None, "10", None,
+                                         "Set indent width to 10 spaces", 10),
+                                        ("IndentWidth12", None, "12", None,
+                                         "Set indent width to 12 spaces", 12)],
+                                        -1, self.indent_toggled_cb)
+
+        action_group.add_radio_actions([("SmartHomeEndDisabled", None, "Disabled", None,
+                                         "Smart Home/End disabled", GtkSource.SmartHomeEndType.DISABLED),
+                                        ("SmartHomeEndBefore", None, "Before", None,
+                                         "Smart Home/End before", GtkSource.SmartHomeEndType.BEFORE),
+                                        ("SmartHomeEndAfter", None, "After", None,
+                                         "Smart Home/End after", GtkSource.SmartHomeEndType.AFTER),
+                                        ("SmartHomeEndAlways", None, "Always", None,
+                                         "Smart Home/End always", GtkSource.SmartHomeEndType.ALWAYS)],
+                                        -1, self.smart_home_end_toggled_cb)
+
+        self._ui_manager = Gtk.UIManager()
+        self._ui_manager.insert_action_group(action_group, 0)
+
+        try:
+            self._ui_manager.add_ui_from_string(ui_description)
+        except:
+            return
+
+        menu = self._ui_manager.get_widget("/MainMenu")
+        self._vbox.pack_start(menu, False, False, 0)
+
+        accel_group = self._ui_manager.get_accel_group()
+        self.add_accel_group (accel_group)
+
+    def get_buffer(self):
+        return self._buf
+
+    def open_file_cb(self, action):
+        chooser = Gtk.FileChooserDialog("Open File...", None,
+                                        Gtk.FileChooserAction.OPEN,
+                                        Gtk.STOCK_CANCEL)
+
+    def print_file_cb(self, action):
+        return
+
+    def find_cb(self, action):
+        return
+
+    def replace_cb(self, action):
+        return
+
+    def quit_cb(self, action):
+        _quit()
+
+    def new_view_cb(self, action):
+        window = Window()
+        window.show_all()
+
+    def hl_bracket_toggled_cb(self, action):
+        self._buf.set_highlight_matching_brackets(action.get_active())
+
+    def numbers_toggled_cb(self, action):
+        self._view.set_show_line_numbers(action.get_active())
+
+    def marks_toggled_cb(self, action):
+        self._view.set_show_line_marks(action.get_active())
+
+    def margin_toggled_cb(self, action):
+        self._view.set_show_right_margin(action.get_active())
+
+    def hl_line_toggled_cb(self, action):
+        self._view.set_highlight_current_line(action.get_active())
+
+    def draw_spaces_toggled_cb(self, action):
+
+        if (action.get_active()):
+            draw_spaces = GtkSource.DrawSpacesFlags.ALL
+        else:
+            draw_spaces = 0
+        self._view.set_draw_spaces(draw_spaces)
+
+    def wrap_lines_toggled_cb(self, action):
+
+        if (action.get_active()):
+            wrap_mode = Gtk.WrapMode.WORD
+        else:
+            wrap_mode = Gtk.WrapMode.NONE
+        self._view.set_wrap_mode(wrap_mode)
+
+    def auto_indent_toggled_cb(self, action):
+        self._view.set_auto_indent(action.get_active())
+
+    def insert_spaces_toggled_cb(self, action):
+        self._view.set_insert_spaces_instead_of_tabs(action.get_active())
+
+    def forward_string_cb(self, action):
+        insert = self._buf.get_insert()
+
+        it = self._buf.get_iter_at_mark(insert)
+
+        if (self._buf.iter_forward_to_context_class_toggle(it, "string")):
+            self._buf.place_cursor(it)
+            self._view.scroll_mark_onscreen(insert)
+
+    def backward_string_cb(self, action):
+        insert = self._buf.get_insert()
+
+        it = self._buf.get_iter_at_mark(insert)
+
+        if (self._buf.iter_backward_to_context_class_toggle(it, "string")):
+            self._buf.place_cursor(it)
+            self._view.scroll_mark_onscreen(insert)
+
+    def tabs_toggled_cb(self, action, current):
+        self._view.set_tab_width(current.get_current_value())
+
+    def indent_toggled_cb(self, action, current):
+        self._view.set_indent_width(current.get_current_value())
+
+    def smart_home_end_toggled_cb(self, action, current):
+        self._view.set_smart_home_end(current.get_current_value())
+
+def open_file(buf, filename):
+    if os.path.isabs(filename):
+        path = filename
+    else:
+        path = os.path.abspath(filename)
+
+    f = Gio.file_new_for_path(path)
+
+    info = f.query_info("*", 0, None)
+    content_type = info.get_content_type()
+
+    mgr = GtkSource.LanguageManager.get_default()
+    language = mgr.guess_language(filename, content_type)
+
+    print language
+
+    buf.set_language(language)
+    buf.set_highlight_syntax(True)
+
+    buf.begin_not_undoable_action()
+
+   # stream = f.read(None)
+   # chunk, r = stream.read(4096, None)
+
+    #FIXME: Use Gio
+    try:
+        txt = open(path, 'r').read()
+    except:
+        return False
+
+    buf.set_text(txt, -1)
+
+    buf.end_not_undoable_action()
+
+    buf.set_modified(False)
+
+    i = buf.get_start_iter()
+    buf.place_cursor(i)
+    return True
+
+def _quit(*args):
+    Gtk.main_quit()
+
+def main(args = []):
+    global window
+
+    window = Window()
+    buf = window.get_buffer()
+
+    if len(args) > 2:
+        open_file(buf, args[1])
+    else:
+        open_file(buf, args[0])
+
+    window.show_all()
+    Gtk.main()
+
+if __name__ == '__main__':
+    main(sys.argv)
+
