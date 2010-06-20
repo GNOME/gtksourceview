@@ -212,6 +212,9 @@ class Window(Gtk.Window):
 
         self._view.set_mark_category_icon_from_stock(self.MARK_TYPE_1, Gtk.STOCK_YES)
         self._view.set_mark_category_priority(self.MARK_TYPE_1, 1)
+        self._view.set_mark_category_tooltip_markup_func(self.MARK_TYPE_1,
+                                                         self.mark_tooltip_func,
+                                                         None)
 
         parsed, color = Gdk.color_parse("pink")
         if parsed:
@@ -219,6 +222,19 @@ class Window(Gtk.Window):
 
         self._view.set_mark_category_icon_from_stock(self.MARK_TYPE_2, Gtk.STOCK_NO)
         self._view.set_mark_category_priority(self.MARK_TYPE_2, 2)
+        self._view.set_mark_category_tooltip_markup_func(self.MARK_TYPE_2,
+                                                         self.mark_tooltip_func,
+                                                         None)
+
+    def mark_tooltip_func(self, mark, user_data):
+        i = self._buf.get_iter_at_mark(mark)
+        line = i.get_line() + 1
+        column = i.get_line_offset()
+
+        if mark.get_category() == self.MARK_TYPE_1:
+            return "Line: %d, Column: %d" % (line, column)
+        else:
+            return "<b>Line</b>: %d\n<i>Column</i>: %d" % (line, column)
 
     def update_cursor_position(self):
         i = self._buf.get_iter_at_mark(self._buf.get_insert())
