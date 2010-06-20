@@ -1,4 +1,6 @@
 #!/usr/bin/env python
+# -*- Mode: Python; py-indent-offset: 4 -*-
+# vim: tabstop=4 shiftwidth=4 expandtab
 
 import os, os.path
 import sys
@@ -57,9 +59,23 @@ ui_description = """
       <menuitem action=\"ForwardString\"/>
       <menuitem action=\"BackwardString\"/>
     </menu>
+    <menu action=\"HelpMenu\">
+      <menuitem action=\"About\"/>
+    </menu>
   </menubar>
 </ui>
 """
+
+class AboutDialog(Gtk.AboutDialog):
+
+    def __init__(self, parent):
+        Gtk.AboutDialog.__init__(self)
+        self.set_name('GtkSourceView Test')
+        self.set_copyright('Copyright (c) 2010 Ignacio Casal Quintero')
+        self.set_website_label('http://projects.gnome.org/gtksourceview/')
+        self.set_authors(['Ignacio Casal Quintero', 'Paolo Borelli'])
+        self.set_transient_for(parent)
+        self.connect ("response", lambda d, r: d.destroy())
 
 class Window(Gtk.Window):
     __gtype_name__ = 'TestWindow'
@@ -124,7 +140,10 @@ class Window(Gtk.Window):
                                   ("ForwardString", None, "_Forward to string toggle", "<control>S",
                                    "Forward to the start or end of the next string", self.forward_string_cb),
                                   ("BackwardString", None, "_Backward to string toggle", "<control><shift>S",
-                                   "Backward to the start or end of the next string", self.backward_string_cb)])
+                                   "Backward to the start or end of the next string", self.backward_string_cb),
+                                  ("HelpMenu", None, "_Help", None, None, None),
+                                  ("About", Gtk.STOCK_ABOUT, "_About...", None,
+                                   "About GtkSourceView Test Widget", self.about_cb)])
 
         action_group.add_toggle_actions([("HlBracket", None, "Highlight Matching _Bracket", None,
                                           "Toggle highlighting of matching bracket", self.hl_bracket_toggled_cb),
@@ -341,6 +360,10 @@ class Window(Gtk.Window):
 
     def smart_home_end_toggled_cb(self, action, current):
         self._view.set_smart_home_end(current.get_current_value())
+
+    def about_cb(self, action):
+        about = AboutDialog(self)
+        about.show()
 
     def move_cursor_cb(self, buf, cursor_iter, mark, user_data):
         if mark != buf.get_insert():
