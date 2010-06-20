@@ -244,6 +244,10 @@ class Window(Gtk.Window):
                                                          self.mark_tooltip_func,
                                                          None)
 
+    def remove_all_marks(self):
+        start, end = self._buf.get_bounds()
+        self._buf.remove_source_marks(start, end, None)
+
     def mark_tooltip_func(self, mark, user_data):
         i = self._buf.get_iter_at_mark(mark)
         line = i.get_line() + 1
@@ -411,6 +415,7 @@ class Window(Gtk.Window):
 
         print language
 
+        self.remove_all_marks()
         self._buf.set_language(language)
         self._buf.set_highlight_syntax(True)
 
