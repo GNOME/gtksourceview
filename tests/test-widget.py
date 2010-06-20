@@ -67,6 +67,9 @@ class Window(Gtk.Window):
     def __init__(self):
         Gtk.Window.__init__(self)
 
+        self.MARK_TYPE_1 = "one"
+        self.MARK_TYPE_2 = "two"
+
         self.set_title('GtkSourceView Demo')
         self.set_icon_name('text-editor')
         self.set_default_size(500, 500)
@@ -90,6 +93,14 @@ class Window(Gtk.Window):
 
         self._vbox.pack_start(sw, True, True, 0)
         sw.add(self._view)
+
+        self._pos_label = Gtk.Label()
+        self._vbox.pack_end(self._pos_label, False, False, 0)
+
+        self.add_source_mark_pixbufs()
+
+        self._buf.connect("mark-set", self.move_cursor_cb, None)
+        self._view.connect("line-mark-activated", self.line_mark_activated, None)
 
     def insert_menu(self):
         action_group = Gtk.ActionGroup()
@@ -185,9 +196,51 @@ class Window(Gtk.Window):
         accel_group = self._ui_manager.get_accel_group()
         self.add_accel_group (accel_group)
 
-    def get_buffer(self):
-        return self._buf
+        # Add default values
+        action_group.get_action("HlBracket").set_active(True)
+        action_group.get_action("ShowNumbers").set_active(True)
+        action_group.get_action("ShowMarks").set_active(True)
+        action_group.get_action("ShowMargin").set_active(True)
+        action_group.get_action("AutoIndent").set_active(True)
+        action_group.get_action("TabWidth8").set_active(True)
+        action_group.get_action("IndentWidthUnset").set_active(True)
 
+    def add_source_mark_pixbufs(self):
+        parsed, color = Gdk.color_parse("lightgreen")
+        if parsed:
+            self._view.set_mark_category_background(self.MARK_TYPE_1, color)
+
+        self._view.set_mark_category_icon_from_stock(self.MARK_TYPE_1, Gtk.STOCK_YES)
+        self._view.set_mark_category_priority(self.MARK_TYPE_1, 1)
+
+        parsed, color = Gdk.color_parse("pink")
+        if parsed:
+            self._view.set_mark_category_background(self.MARK_TYPE_2, color)
+
+        self._view.set_mark_category_icon_from_stock(self.MARK_TYPE_2, Gtk.STOCK_NO)
+        self._view.set_mark_category_priority(self.MARK_TYPE_2, 2)
+
+    def update_cursor_position(self):
+        i = self._buf.get_iter_at_mark(self._buf.get_insert())
+        chars = i.get_offset()
+        row = i.get_line() + 1
+        col = self._view.get_visual_column(i) + 1
+
+        classes = self._buf.get_context_classes_at_iter(i)
+
+        classes_str = ""
+
+        i = 0
+        for c in classes:
+            if len(classes) != i + 1:
+                classes_str += c + ", "
+            else:
+                classes_str += c
+
+        msg = "char: %d, line: %d, column: %d, classes: %s" % (chars, row, col, classes_str)
+        self._pos_label.set_text(msg)
+
+    # Callbacks
     def open_file_cb(self, action):
         chooser = Gtk.FileChooserDialog("Open File...", None,
                                         Gtk.FileChooserAction.OPEN,
@@ -273,45 +326,65 @@ class Window(Gtk.Window):
     def smart_home_end_toggled_cb(self, action, current):
         self._view.set_smart_home_end(current.get_current_value())
 
-def open_file(buf, filename):
-    if os.path.isabs(filename):
-        path = filename
-    else:
-        path = os.path.abspath(filename)
+    def move_cursor_cb(self, buf, cursor_iter, mark, user_data):
+        if mark != buf.get_insert():
+            return
 
-    f = Gio.file_new_for_path(path)
+        self.update_cursor_position()
 
-    info = f.query_info("*", 0, None)
-    content_type = info.get_content_type()
+    def line_mark_activated(self, gutter, place, ev, user_data):
+        #FIXME: this check doesn't work for some reason.
+        if ev.button == 1:
+            mark_type = self.MARK_TYPE_1
+        else:
+            mark_type = self.MARK_TYPE_2
 
-    mgr = GtkSource.LanguageManager.get_default()
-    language = mgr.guess_language(filename, content_type)
+        mark_list = self._buf.get_source_marks_at_line(place.get_line(), mark_type)
 
-    print language
+        if mark_list:
+            self._buf.delete_mark(mark_list[0])
+        else:
+            self._buf.create_source_mark(None, mark_type, place)
 
-    buf.set_language(language)
-    buf.set_highlight_syntax(True)
+    def open_file(self, filename):
+        if os.path.isabs(filename):
+            path = filename
+        else:
+            path = os.path.abspath(filename)
 
-    buf.begin_not_undoable_action()
+        f = Gio.file_new_for_path(path)
 
-   # stream = f.read(None)
-   # chunk, r = stream.read(4096, None)
+        info = f.query_info("*", 0, None)
+        content_type = info.get_content_type()
 
-    #FIXME: Use Gio
-    try:
-        txt = open(path, 'r').read()
-    except:
-        return False
+        mgr = GtkSource.LanguageManager.get_default()
+        language = mgr.guess_language(filename, content_type)
 
-    buf.set_text(txt, -1)
+        print language
 
-    buf.end_not_undoable_action()
+        self._buf.set_language(language)
+        self._buf.set_highlight_syntax(True)
 
-    buf.set_modified(False)
+        self._buf.begin_not_undoable_action()
 
-    i = buf.get_start_iter()
-    buf.place_cursor(i)
-    return True
+       # stream = f.read(None)
+       # chunk, r = stream.read(4096, None)
+
+        #FIXME: Use Gio
+        try:
+            txt = open(path, 'r').read()
+        except:
+            return False
+
+        self._buf.set_text(txt, -1)
+
+        self._buf.end_not_undoable_action()
+
+        self._buf.set_modified(False)
+
+        i = self._buf.get_start_iter()
+        self._buf.place_cursor(i)
+        return True
 
 def _quit(*args):
     Gtk.main_quit()
@@ -320,12 +393,11 @@ def main(args = []):
     global window
 
     window = Window()
-    buf = window.get_buffer()
 
     if len(args) > 2:
-        open_file(buf, args[1])
+        window.open_file(args[1])
     else:
-        open_file(buf, args[0])
+        window.open_file(args[0])
 
     window.show_all()
     Gtk.main()
