@@ -61,6 +61,10 @@ enum
 
 static guint signals[NUM_SIGNALS] = {0,};
 
+typedef GtkSourceUndoManagerIface GtkSourceUndoManagerInterface;
+
+G_DEFINE_INTERFACE (GtkSourceUndoManager, gtk_source_undo_manager, G_TYPE_OBJECT)
+
 static gboolean
 gtk_source_undo_manager_can_undo_default (GtkSourceUndoManager *manager)
 {
@@ -94,7 +98,7 @@ gtk_source_undo_manager_end_not_undoable_action_default (GtkSourceUndoManager *m
 }
 
 static void
-gtk_source_undo_manager_init (GtkSourceUndoManagerIface *iface)
+gtk_source_undo_manager_default_init (GtkSourceUndoManagerIface *iface)
 {
 	static gboolean initialized = FALSE;
 
@@ -151,39 +155,6 @@ gtk_source_undo_manager_init (GtkSourceUndoManagerIface *iface)
 
 		initialized = TRUE;
 	}
-}
-
-GType
-gtk_source_undo_manager_get_type ()
-{
-	static GType gtk_source_undo_manager_type_id = 0;
-	
-	if (!gtk_source_undo_manager_type_id)
-	{
-		static const GTypeInfo g_define_type_info =
-		{
-			sizeof (GtkSourceUndoManagerIface),
-			(GBaseInitFunc) gtk_source_undo_manager_init,
-			NULL,
-			NULL,
-			NULL,
-			NULL,
-			0,
-			0,
-			NULL
-		};
-		
-		gtk_source_undo_manager_type_id =
-			g_type_register_static (G_TYPE_INTERFACE,
-						"GtkSourceUndoManager",
-						&g_define_type_info,
-						0);
-
-		g_type_interface_add_prerequisite (gtk_source_undo_manager_type_id,
-		                                   G_TYPE_OBJECT);
-	}
-	
-	return gtk_source_undo_manager_type_id;
 }
 
 /**

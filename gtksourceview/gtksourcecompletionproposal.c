@@ -43,6 +43,10 @@ enum
 
 static guint signals[NUM_SIGNALS] = {0,};
 
+typedef GtkSourceCompletionProposalIface GtkSourceCompletionProposalInterface;
+
+G_DEFINE_INTERFACE (GtkSourceCompletionProposal, gtk_source_completion_proposal, G_TYPE_OBJECT)
+
 static gchar *
 gtk_source_completion_proposal_get_label_default (GtkSourceCompletionProposal *proposal)
 {
@@ -87,7 +91,7 @@ gtk_source_completion_proposal_equal_default (GtkSourceCompletionProposal *propo
 }
 
 static void 
-gtk_source_completion_proposal_init (GtkSourceCompletionProposalIface *iface)
+gtk_source_completion_proposal_default_init (GtkSourceCompletionProposalIface *iface)
 {
 	static gboolean initialized = FALSE;
 	
@@ -123,39 +127,6 @@ gtk_source_completion_proposal_init (GtkSourceCompletionProposalIface *iface)
 
 		initialized = TRUE;
 	}
-}
-
-GType 
-gtk_source_completion_proposal_get_type ()
-{
-	static GType gtk_source_completion_proposal_type_id = 0;
-	
-	if (!gtk_source_completion_proposal_type_id)
-	{
-		static const GTypeInfo g_define_type_info =
-		{
-			sizeof (GtkSourceCompletionProposalIface),
-			(GBaseInitFunc) gtk_source_completion_proposal_init, 
-			NULL,
-			NULL,
-			NULL,
-			NULL,
-			0,
-			0,
-			NULL
-		};
-		
-		gtk_source_completion_proposal_type_id = 
-			g_type_register_static (G_TYPE_INTERFACE,
-						"GtkSourceCompletionProposal",
-						&g_define_type_info,
-						0);
-
-		g_type_interface_add_prerequisite (gtk_source_completion_proposal_type_id,
-		                                   G_TYPE_OBJECT);
-	}
-	
-	return gtk_source_completion_proposal_type_id;
 }
 
 /**

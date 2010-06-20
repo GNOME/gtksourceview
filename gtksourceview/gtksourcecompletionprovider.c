@@ -32,6 +32,10 @@
 
 #include <gtksourceview/gtksourcecompletionprovider.h>
 
+typedef GtkSourceCompletionProviderIface GtkSourceCompletionProviderInterface;
+
+G_DEFINE_INTERFACE(GtkSourceCompletionProvider, gtk_source_completion_provider, G_TYPE_OBJECT)
+
 /* Default implementations */
 static gchar *
 gtk_source_completion_provider_get_name_default (GtkSourceCompletionProvider *provider)
@@ -111,7 +115,7 @@ gtk_source_completion_provider_get_priority_default (GtkSourceCompletionProvider
 }
 
 static void 
-gtk_source_completion_provider_base_init (GtkSourceCompletionProviderIface *iface)
+gtk_source_completion_provider_default_init (GtkSourceCompletionProviderIface *iface)
 {
 	static gboolean initialized = FALSE;
 	
@@ -136,39 +140,6 @@ gtk_source_completion_provider_base_init (GtkSourceCompletionProviderIface *ifac
 	{
 		initialized = TRUE;
 	}
-}
-
-GType 
-gtk_source_completion_provider_get_type ()
-{
-	static GType gtk_source_completion_provider_type_id = 0;
-
-	if (!gtk_source_completion_provider_type_id)
-	{
-		static const GTypeInfo g_define_type_info = 
-		{ 
-			sizeof (GtkSourceCompletionProviderIface), 
-			(GBaseInitFunc) gtk_source_completion_provider_base_init, 
-			(GBaseFinalizeFunc) NULL, 
-			(GClassInitFunc) NULL, 
-			(GClassFinalizeFunc) NULL, 
-			NULL, 
-			0, 
-			0, 
-			(GInstanceInitFunc) NULL 
-		};
-						
-		gtk_source_completion_provider_type_id = 
-				g_type_register_static (G_TYPE_INTERFACE, 
-							"GtkSourceCompletionProvider", 
-							&g_define_type_info, 
-							0);
-
-		g_type_interface_add_prerequisite (gtk_source_completion_provider_type_id,
-		                                   G_TYPE_OBJECT);
-	}
-
-	return gtk_source_completion_provider_type_id;
 }
 
 /**
