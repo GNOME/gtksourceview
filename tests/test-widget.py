@@ -282,7 +282,16 @@ class Window(Gtk.Window):
                                         Gtk.STOCK_CANCEL)
 
     def print_file_cb(self, action):
-        return
+        compositor = GtkSource.PrintCompositor.new_from_view (self._view)
+        operation = Gtk.PrintOperation ()
+        operation.set_job_name (os.path.basename(self._filepath))
+        operation.set_show_progress (True)
+
+        # we do blocking pagination
+        operation.connect('paginate', self.paginate_cb, compositor)
+        operation.connect('draw-page', self.draw_page_cb, compositor)
+
+        operation.run (Gtk.PrintOperationAction.PRINT_DIALOG, None)
 
     def find_cb(self, action):
         return
@@ -391,6 +400,8 @@ class Window(Gtk.Window):
         else:
             path = os.path.abspath(filename)
 
+        self._filepath = path
+
         f = Gio.file_new_for_path(path)
 
         info = f.query_info("*", 0, None)
@@ -424,6 +435,17 @@ class Window(Gtk.Window):
         i = self._buf.get_start_iter()
         self._buf.place_cursor(i)
         return True
+
+    def paginate_cb(self, operation, context, compositor):
+        print "Pagination progress: %.2f %%\n" % (compositor.get_pagination_progress () * 100.0)
+        if compositor.paginate (context):
+            print "Pagination progress: %.2f %%\n" % (compositor.get_pagination_progress () * 100.0)
+            operation.set_n_pages (compositor.get_n_pages ())
+            return True
+        return False
+
+    def draw_page_cb(self, operation, context, page_nr, compositor):
+        compositor.draw_page (context, page_nr)
 
 def _quit(*args):
     Gtk.main_quit()
