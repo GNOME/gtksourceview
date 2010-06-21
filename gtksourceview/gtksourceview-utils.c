@@ -25,7 +25,7 @@
 
 #include "gtksourceview-utils.h"
 
-#define SOURCEVIEW_DIR "gtksourceview-2.0"
+#define SOURCEVIEW_DIR "gtksourceview-3.0"
 
 
 gchar **
