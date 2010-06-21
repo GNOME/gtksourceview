@@ -4,6 +4,7 @@ LANGUAGES =			\
 	ada.lang		\
 	asp.lang		\
 	awk.lang		\
+	bennugd.lang		\
 	bibtex.lang		\
 	boo.lang		\
 	changelog.lang		\
