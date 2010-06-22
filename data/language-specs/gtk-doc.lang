@@ -70,7 +70,7 @@
         </include>
       </context>
 
-      <context id="inline-docs-section" style-ref="inline-docs-section" class-disabled="no-spell-check">
+      <context id="inline-docs-section" style-ref="inline-docs-section" class="comment" class-disabled="no-spell-check">
         <start>/\*\*(?!\S)</start>
         <end>\*/</end>
         <include>
