@@ -282,7 +282,18 @@ class Window(Gtk.Window):
     def open_file_cb(self, action):
         chooser = Gtk.FileChooserDialog("Open File...", None,
                                         Gtk.FileChooserAction.OPEN,
-                                        Gtk.STOCK_CANCEL)
+                                        (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
+                                         Gtk.STOCK_OPEN, Gtk.ResponseType.OK))
+
+        response = chooser.run()
+
+        if response == Gtk.ResponseType.OK:
+            filename = chooser.get_filename()
+
+            if filename:
+                self.open_file(filename)
+
+        chooser.destroy()
 
     def print_file_cb(self, action):
         compositor = GtkSource.PrintCompositor.new_from_view (self._view)
