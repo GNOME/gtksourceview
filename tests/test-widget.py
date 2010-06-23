@@ -77,6 +77,59 @@ class AboutDialog(Gtk.AboutDialog):
         self.set_transient_for(parent)
         self.connect("response", lambda d, r: d.destroy())
 
+class SearchDialog(Gtk.Dialog):
+
+    def __init__(self, parent, replace, what, replacement):
+        if replace:
+            title = "Replace"
+        else:
+            title = "Find"
+
+        Gtk.Dialog.__init__(self, title, parent, Gtk.DialogFlags.MODAL,
+                            (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
+                             Gtk.STOCK_OK, Gtk.ResponseType.OK))
+
+        self._search_widget = Gtk.Entry()
+        if what:
+            self._search_widget.set_text(what)
+        self._search_widget.set_activates_default(True)
+        self._search_widget.show()
+        print self.get_content_area()
+        self.get_content_area().pack_start(self._search_widget, True, True, 0)
+
+        if replace:
+            self._replace_widget = Gtk.Entry()
+            if replacement:
+                self._replace_widget.set_text(replacement)
+            self._replace_widget.set_activates_default(True)
+            self._replace_widget.show()
+            self.get_content_area().pack_start(self._replace_widget, True, True, 0)
+
+        self._case_sensitive = Gtk.CheckButton.new_with_label("Case sensitive")
+        self._case_sensitive.show()
+        self.get_content_area().pack_start(self._case_sensitive, False, False, 0)
+
+    def run_search(self):
+        while True:
+            if self.run() != Gtk.ResponseType.OK:
+                self.hide()
+                return False
+
+            if self._search_widget.get_text() != "":
+                break
+
+        self.hide()
+        return True
+
+    def is_case_sensitive(self):
+        return self._case_sensitive.get_active()
+
+    def get_search_text(self):
+        return self._search_widget.get_text()
+
+    def get_replace_text(self):
+        return self._replace_widget.get_text()
+
 class Window(Gtk.Window):
 
     def __init__(self):
@@ -307,11 +360,51 @@ class Window(Gtk.Window):
 
         operation.run (Gtk.PrintOperationAction.PRINT_DIALOG, None)
 
-    def find_cb(self, action):
-        return
+    def find_cb(self, action, user_data):
+        dialog = SearchDialog(self, False, None, None)
 
-    def replace_cb(self, action):
-        return
+        if dialog.is_case_sensitive:
+            search_flags = GtkSource.SearchFlags.CASE_INSENSITIVE
+        else:
+            search_flags = 0
+
+        if dialog.run_search():
+            i = self._buf.get_iter_at_mark(self._buf.get_insert())
+
+            searched, start, end = i.forward_search(dialog.get_search_text(),
+                                                    search_flags, None)
+            if searched:
+                self._buf.select_range(start, end)
+            else:
+                end = i
+                i = self._buf.get_start_iter()
+
+                searched, start, end = i.forward_search(dialog.get_search_text(),
+                                                        search_flags, end)
+                if searched:
+                    self._buf.select_range(start, end)
+
+    def replace_cb(self, action, user_data):
+        dialog = SearchDialog(self, False, None, None)
+
+        if dialog.is_case_sensitive:
+            search_flags = GtkSource.SearchFlags.CASE_INSENSITIVE
+        else:
+            search_flags = 0
+
+        i = self._buf.get_start_iter()
+
+        while True:
+            searched, start, end = i.forward_search(dialog.get_search_text(),
+                                                    search_flags, None)
+
+            if not searched:
+                break
+
+            self._buf.delete(start, end)
+            # FIXME
+            #self._buf.insert(start, dialog.get_replace_text(), -1)
+            i = start
 
     def quit_cb(self, action):
         _quit()
