@@ -371,16 +371,16 @@ class Window(Gtk.Window):
         if dialog.run_search():
             i = self._buf.get_iter_at_mark(self._buf.get_insert())
 
-            searched, start, end = i.forward_search(dialog.get_search_text(),
-                                                    search_flags, None)
+            searched, start, end = GtkSource.iter_forward_search(i, dialog.get_search_text(),
+                                                                 search_flags, None)
             if searched:
                 self._buf.select_range(start, end)
             else:
                 end = i
                 i = self._buf.get_start_iter()
 
-                searched, start, end = i.forward_search(dialog.get_search_text(),
-                                                        search_flags, end)
+                searched, start, end = GtkSource.iter_forward_search(i, dialog.get_search_text(),
+                                                                     search_flags, end)
                 if searched:
                     self._buf.select_range(start, end)
 
@@ -395,15 +395,14 @@ class Window(Gtk.Window):
         i = self._buf.get_start_iter()
 
         while True:
-            searched, start, end = i.forward_search(dialog.get_search_text(),
-                                                    search_flags, None)
+            searched, start, end = GtkSource.iter_forward_search(i, dialog.get_search_text(),
+                                                                 search_flags, None)
 
             if not searched:
                 break
 
             self._buf.delete(start, end)
-            # FIXME
-            #self._buf.insert(start, dialog.get_replace_text(), -1)
+            self._buf.insert(start, dialog.get_replace_text())
             i = start
 
     def quit_cb(self, action):
