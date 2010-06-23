@@ -572,8 +572,8 @@ breakup_string (const char *string,
  * @iter: start of search.
  * @str: a search string.
  * @flags: flags affecting how the search is done.
- * @match_start: (allow-none): return location for start of match, or %NULL.
- * @match_end: (allow-none): return location for end of match, or %NULL.
+ * @match_start: (out) (allow-none): return location for start of match, or %NULL.
+ * @match_end: (out) (allow-none): return location for end of match, or %NULL.
  * @limit: (allow-none): bound for the search, or %NULL for the end of the buffer.
  *
  * Searches forward for @str. Any match is returned by setting
@@ -692,8 +692,8 @@ gtk_source_iter_forward_search (const GtkTextIter   *iter,
  * @iter: a #GtkTextIter where the search begins.
  * @str: search string.
  * @flags: bitmask of flags affecting the search.
- * @match_start:: (allow-none) return location for start of match, or %NULL.
- * @match_end: (allow-none): return location for end of match, or %NULL.
+ * @match_start: (out) (allow-none) return location for start of match, or %NULL.
+ * @match_end: (out) (allow-none): return location for end of match, or %NULL.
  * @limit: (allow-none): location of last possible @match_start, or %NULL for start of buffer.
  *
  * Same as gtk_text_iter_backward_search(), but supports case insensitive
