@@ -1039,7 +1039,6 @@ gtk_source_buffer_real_delete_range (GtkTextBuffer *buffer,
 static const gchar *cclass_mask_definitions[] = {
 	"comment",
 	"string",
-	"char"
 };
 
 static gint
