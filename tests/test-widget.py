@@ -487,8 +487,7 @@ class Window(Gtk.Window):
         self.update_cursor_position()
 
     def line_mark_activated(self, gutter, place, ev, user_data):
-        #FIXME: this check doesn't work for some reason.
-        if ev.button == 1:
+        if ev.button.button == 1:
             mark_type = self.MARK_TYPE_1
         else:
             mark_type = self.MARK_TYPE_2
