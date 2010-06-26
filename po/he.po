@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview.HEAD.he\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-06-24 02:07+0300\n"
-"PO-Revision-Date: 2010-06-24 02:08+0200\n"
+"POT-Creation-Date: 2010-06-26 18:25+0300\n"
+"PO-Revision-Date: 2010-06-26 18:27+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <he@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -283,6 +283,7 @@ msgstr "Storage Class"
 #: ../data/language-specs/erlang.lang.h:12
 #: ../data/language-specs/forth.lang.h:11
 #: ../data/language-specs/fsharp.lang.h:17
+#: ../data/language-specs/gdb-log.lang.h:10
 #: ../data/language-specs/gtkrc.lang.h:9
 #: ../data/language-specs/haskell.lang.h:13
 #: ../data/language-specs/idl.lang.h:7 ../data/language-specs/ini.lang.h:9
@@ -319,6 +320,7 @@ msgstr "עצם ASP"
 #: ../data/language-specs/changelog.lang.h:6
 #: ../data/language-specs/cg.lang.h:11 ../data/language-specs/css.lang.h:7
 #: ../data/language-specs/def.lang.h:32 ../data/language-specs/gap.lang.h:4
+#: ../data/language-specs/gdb-log.lang.h:4
 #: ../data/language-specs/gtk-doc.lang.h:3
 #: ../data/language-specs/javascript.lang.h:7
 #: ../data/language-specs/lua.lang.h:4 ../data/language-specs/octave.lang.h:6
@@ -563,6 +565,7 @@ msgstr "שם"
 #: ../data/language-specs/desktop.lang.h:12
 #: ../data/language-specs/diff.lang.h:9 ../data/language-specs/dot.lang.h:6
 #: ../data/language-specs/dpatch.lang.h:2
+#: ../data/language-specs/gdb-log.lang.h:8
 #: ../data/language-specs/gtkrc.lang.h:8 ../data/language-specs/ini.lang.h:8
 #: ../data/language-specs/libtool.lang.h:3
 #: ../data/language-specs/msil.lang.h:2 ../data/language-specs/nsis.lang.h:4
@@ -1084,6 +1087,42 @@ msgstr "Variant Constructor"
 #: ../data/language-specs/gap.lang.h:5
 msgid "GAP"
 msgstr "GAP"
+
+#: ../data/language-specs/gdb-log.lang.h:1
+msgid "Address"
+msgstr "כתובת"
+
+#: ../data/language-specs/gdb-log.lang.h:2
+msgid "Filename"
+msgstr "שם הקובץ"
+
+#: ../data/language-specs/gdb-log.lang.h:3
+msgid "Frame Number"
+msgstr "מספר השקופית"
+
+#: ../data/language-specs/gdb-log.lang.h:5
+msgid "GDB Log"
+msgstr "יומן GDB"
+
+#: ../data/language-specs/gdb-log.lang.h:6
+msgid "Incomplete Sequence"
+msgstr "רצף קטוע"
+
+#: ../data/language-specs/gdb-log.lang.h:7
+msgid "Optimized Out"
+msgstr "לאחר מיטוב"
+
+#: ../data/language-specs/gdb-log.lang.h:9
+msgid "Prompt"
+msgstr "הצגה"
+
+#: ../data/language-specs/gdb-log.lang.h:11
+msgid "Thread Action"
+msgstr "פעולת הפתיל"
+
+#: ../data/language-specs/gdb-log.lang.h:12
+msgid "Thread Header"
+msgstr "כותרת הפתיל"
 
 #: ../data/language-specs/glsl.lang.h:1 ../data/language-specs/python.lang.h:3
 msgid "Builtin Constant"
