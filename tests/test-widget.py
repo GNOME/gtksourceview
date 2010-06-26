@@ -332,7 +332,7 @@ class Window(Gtk.Window):
         self._pos_label.set_text(msg)
 
     # Callbacks
-    def open_file_cb(self, action, user_data):
+    def open_file_cb(self, action):
         chooser = Gtk.FileChooserDialog("Open File...", None,
                                         Gtk.FileChooserAction.OPEN,
                                         (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
@@ -348,7 +348,7 @@ class Window(Gtk.Window):
 
         chooser.destroy()
 
-    def print_file_cb(self, action, user_data):
+    def print_file_cb(self, action):
         compositor = GtkSource.PrintCompositor.new_from_view (self._view)
         operation = Gtk.PrintOperation ()
         operation.set_job_name (os.path.basename(self._filepath))
@@ -360,7 +360,7 @@ class Window(Gtk.Window):
 
         operation.run (Gtk.PrintOperationAction.PRINT_DIALOG, None)
 
-    def find_cb(self, action, user_data):
+    def find_cb(self, action):
         dialog = SearchDialog(self, False, None, None)
 
         if dialog.is_case_sensitive:
@@ -384,7 +384,7 @@ class Window(Gtk.Window):
                 if searched:
                     self._buf.select_range(start, end)
 
-    def replace_cb(self, action, user_data):
+    def replace_cb(self, action):
         dialog = SearchDialog(self, False, None, None)
 
         if dialog.is_case_sensitive:
@@ -405,29 +405,29 @@ class Window(Gtk.Window):
             self._buf.insert(start, dialog.get_replace_text())
             i = start
 
-    def quit_cb(self, action, user_data):
+    def quit_cb(self, action):
         _quit()
 
-    def new_view_cb(self, action, user_data):
+    def new_view_cb(self, action):
         window = Window()
         window.show_all()
 
-    def hl_bracket_toggled_cb(self, action, user_data):
+    def hl_bracket_toggled_cb(self, action):
         self._buf.set_highlight_matching_brackets(action.get_active())
 
-    def numbers_toggled_cb(self, action, user_data):
+    def numbers_toggled_cb(self, action):
         self._view.set_show_line_numbers(action.get_active())
 
-    def marks_toggled_cb(self, action, user_data):
+    def marks_toggled_cb(self, action):
         self._view.set_show_line_marks(action.get_active())
 
-    def margin_toggled_cb(self, action, user_data):
+    def margin_toggled_cb(self, action):
         self._view.set_show_right_margin(action.get_active())
 
-    def hl_line_toggled_cb(self, action, user_data):
+    def hl_line_toggled_cb(self, action):
         self._view.set_highlight_current_line(action.get_active())
 
-    def draw_spaces_toggled_cb(self, action, user_data):
+    def draw_spaces_toggled_cb(self, action):
 
         if (action.get_active()):
             draw_spaces = GtkSource.DrawSpacesFlags.ALL
@@ -435,7 +435,7 @@ class Window(Gtk.Window):
             draw_spaces = 0
         self._view.set_draw_spaces(draw_spaces)
 
-    def wrap_lines_toggled_cb(self, action, user_data):
+    def wrap_lines_toggled_cb(self, action):
 
         if (action.get_active()):
             wrap_mode = Gtk.WrapMode.WORD
@@ -443,13 +443,13 @@ class Window(Gtk.Window):
             wrap_mode = Gtk.WrapMode.NONE
         self._view.set_wrap_mode(wrap_mode)
 
-    def auto_indent_toggled_cb(self, action, user_data):
+    def auto_indent_toggled_cb(self, action):
         self._view.set_auto_indent(action.get_active())
 
-    def insert_spaces_toggled_cb(self, action, user_data):
+    def insert_spaces_toggled_cb(self, action):
         self._view.set_insert_spaces_instead_of_tabs(action.get_active())
 
-    def forward_string_cb(self, action, user_data):
+    def forward_string_cb(self, action):
         insert = self._buf.get_insert()
 
         it = self._buf.get_iter_at_mark(insert)
@@ -458,7 +458,7 @@ class Window(Gtk.Window):
             self._buf.place_cursor(it)
             self._view.scroll_mark_onscreen(insert)
 
-    def backward_string_cb(self, action, user_data):
+    def backward_string_cb(self, action):
         insert = self._buf.get_insert()
 
         it = self._buf.get_iter_at_mark(insert)
@@ -467,16 +467,16 @@ class Window(Gtk.Window):
             self._buf.place_cursor(it)
             self._view.scroll_mark_onscreen(insert)
 
-    def tabs_toggled_cb(self, action, current, user_data):
+    def tabs_toggled_cb(self, action, current):
         self._view.set_tab_width(current.get_current_value())
 
-    def indent_toggled_cb(self, action, current, user_data):
+    def indent_toggled_cb(self, action, current):
         self._view.set_indent_width(current.get_current_value())
 
-    def smart_home_end_toggled_cb(self, action, current, user_data):
+    def smart_home_end_toggled_cb(self, action, current):
         self._view.set_smart_home_end(current.get_current_value())
 
-    def about_cb(self, action, user_data):
+    def about_cb(self, action):
         about = AboutDialog(self)
         about.show()
 
