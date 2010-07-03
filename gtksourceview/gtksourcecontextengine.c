@@ -2274,7 +2274,7 @@ update_tree (GtkSourceContextEngine *ce)
  *
  * GtkSourceEngine::update_highlight method.
  *
- * Makes sure the area is analyzed and highlighted. If @asynchronous
+ * Makes sure the area is analyzed and highlighted. If @synchronous
  * is %FALSE, then it queues idle worker.
  */
 static void
@@ -2344,7 +2344,7 @@ enable_highlight (GtkSourceContextEngine *ce,
 
 	if (enable)
 	{
-		gtk_text_region_add (ce->priv->refresh_region, start, end);
+		gtk_text_region_add (ce->priv->refresh_region, &start, &end);
 
 		refresh_range (ce, &start, &end);
 	}
