@@ -1238,7 +1238,7 @@ refresh_context_classes (GtkSourceContextEngine *ce,
 #endif
 }
 
-/**
+/*
  * refresh_range:
  *
  * @ce: a #GtkSourceContextEngine.
@@ -1247,25 +1247,17 @@ refresh_context_classes (GtkSourceContextEngine *ce,
  * @modify_refresh_region: whether updated area should be added to
  * refresh_region.
  *
- * Marks the area as updated - notifies view about it, and adds it to
- * refresh_region if @modify_refresh_region is %TRUE (update_syntax may
- * process huge area though actually updated is couple of lines, so in
- * that case update_syntax() takes care of refresh_region, and this
- * function only notifies the view).
+ * Marks the area as updated and notifies view about it.
  */
 static void
 refresh_range (GtkSourceContextEngine *ce,
 	       const GtkTextIter      *start,
-	       const GtkTextIter      *end,
-	       gboolean                modify_refresh_region)
+	       const GtkTextIter      *end)
 {
 	GtkTextIter real_end;
 
 	if (gtk_text_iter_equal (start, end))
 		return;
-
-	if (modify_refresh_region)
-		gtk_text_region_add (ce->priv->refresh_region, start, end);
 
 	/* Refresh the contex classes here */
 	refresh_context_classes (ce, start, end);
@@ -1273,9 +1265,11 @@ refresh_range (GtkSourceContextEngine *ce,
 	/* Here we need to make sure we do not make it redraw next line */
 	real_end = *end;
 	if (gtk_text_iter_starts_line (&real_end))
+	{
 		/* I don't quite like this here, but at least it won't jump into
 		 * the middle of \r\n  */
 		gtk_text_iter_backward_cursor_position (&real_end);
+	}
 
 	g_signal_emit_by_name (ce->priv->buffer,
 			       "highlight_updated",
@@ -2349,9 +2343,15 @@ enable_highlight (GtkSourceContextEngine *ce,
 				    &start, &end);
 
 	if (enable)
-		refresh_range (ce, &start, &end, TRUE);
+	{
+		gtk_text_region_add (ce->priv->refresh_region, start, end);
+
+		refresh_range (ce, &start, &end);
+	}
 	else
+	{
 		unhighlight_region (ce, &start, &end);
+	}
 }
 
 static void
@@ -6027,7 +6027,8 @@ update_syntax (GtkSourceContextEngine *ce,
 		install_idle_worker (ce);
 
 	gtk_text_iter_set_offset (&end_iter, analyzed_end);
-	refresh_range (ce, &start_iter, &end_iter, FALSE);
+
+	refresh_range (ce, &start_iter, &end_iter);
 
 	PROFILE (g_print ("analyzed %d chars from %d to %d in %fms\n",
 			  analyzed_end - start_offset, start_offset, analyzed_end,
