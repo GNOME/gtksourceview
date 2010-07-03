@@ -72,6 +72,8 @@ static void       marks_toggled_cb               (GtkAction       *action,
 						  gpointer         user_data);
 static void       margin_toggled_cb              (GtkAction       *action,
 						  gpointer         user_data);
+static void       hl_syntax_toggled_cb           (GtkAction       *action,
+						  gpointer         user_data);
 static void       hl_bracket_toggled_cb          (GtkAction       *action,
 						  gpointer         user_data);
 static void       hl_line_toggled_cb             (GtkAction       *action,
@@ -132,6 +134,9 @@ static GtkActionEntry view_action_entries[] = {
 };
 
 static GtkToggleActionEntry toggle_entries[] = {
+	{ "HlSyntax", NULL, "Highlight _Syntax", NULL,
+	  "Toggle syntax highlighting",
+	  G_CALLBACK (hl_syntax_toggled_cb), FALSE },
 	{ "HlBracket", NULL, "Highlight Matching _Bracket", NULL,
 	  "Toggle highlighting of matching bracket",
 	  G_CALLBACK (hl_bracket_toggled_cb), FALSE },
@@ -200,6 +205,7 @@ static const gchar *view_ui_description =
 "    <menu action=\"ViewMenu\">"
 "      <menuitem action=\"NewView\"/>"
 "      <separator/>"
+"      <menuitem action=\"HlSyntax\"/>"
 "      <menuitem action=\"HlBracket\"/>"
 "      <menuitem action=\"ShowNumbers\"/>"
 "      <menuitem action=\"ShowMarks\"/>"
@@ -514,6 +520,17 @@ margin_toggled_cb (GtkAction *action, gpointer user_data)
 	g_return_if_fail (GTK_IS_TOGGLE_ACTION (action) && GTK_IS_SOURCE_VIEW (user_data));
 	gtk_source_view_set_show_right_margin (
 		GTK_SOURCE_VIEW (user_data),
+		gtk_toggle_action_get_active (GTK_TOGGLE_ACTION (action)));
+}
+
+static void
+hl_syntax_toggled_cb (GtkAction *action, gpointer user_data)
+{
+	GtkTextBuffer *buffer;
+	g_return_if_fail (GTK_IS_TOGGLE_ACTION (action) && GTK_IS_SOURCE_VIEW (user_data));
+	buffer = gtk_text_view_get_buffer (user_data);
+	gtk_source_buffer_set_highlight_syntax (
+		GTK_SOURCE_BUFFER (buffer),
 		gtk_toggle_action_get_active (GTK_TOGGLE_ACTION (action)));
 }
 
@@ -1458,6 +1475,10 @@ create_main_window (GtkSourceBuffer *buffer)
 	/* retrieve the view action group at position 0 in the list */
 	action_group = g_list_nth_data (groups, 0);
 
+	action = gtk_action_group_get_action (action_group, "HlSyntax");
+	gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action),
+				      gtk_source_buffer_get_highlight_syntax (buffer));
+
 	action = gtk_action_group_get_action (action_group, "HlBracket");
 	gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), TRUE);
 
@@ -1574,6 +1595,7 @@ main (int argc, char *argv[])
 	GtkSourceStyleSchemeManager *sm;
 	GtkSourceBuffer *buffer;
 
+	gboolean no_syntax = FALSE;
 	gchar *builtin_lang_dirs[] = {TOP_SRCDIR "/data/language-specs", NULL};
 	gchar *builtin_sm_dirs[] = {TOP_SRCDIR "/data/styles", NULL};
 	gchar **dirs;
@@ -1584,6 +1606,7 @@ main (int argc, char *argv[])
 	GOptionContext *context;
 
 	GOptionEntry entries[] = {
+	  { "no-syntax", 'n', 0, G_OPTION_ARG_NONE, &no_syntax, "Disable syntax highlighting", NULL},
 	  { "style-scheme", 's', 0, G_OPTION_ARG_STRING, &style_scheme_id, "Style scheme name to use", "SCHEME"},
 	  { "default-paths", 'd', 0, G_OPTION_ARG_NONE, &use_default_paths, "Use default search paths", NULL},
 	  { NULL }
@@ -1648,6 +1671,8 @@ main (int argc, char *argv[])
 
 	/* create buffer */
 	buffer = gtk_source_buffer_new (NULL);
+
+	gtk_source_buffer_set_highlight_syntax (buffer, !no_syntax);
 
 	if (argc > 1)
 		open_file (buffer, argv [1]);

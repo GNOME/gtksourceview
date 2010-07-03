@@ -22,6 +22,7 @@ ui_description = """
     <menu action=\"ViewMenu\">
       <menuitem action=\"NewView\"/>
       <separator/>
+      <menuitem action=\"HlSyntax\"/>
       <menuitem action=\"HlBracket\"/>
       <menuitem action=\"ShowNumbers\"/>
       <menuitem action=\"ShowMarks\"/>
@@ -197,7 +198,9 @@ class Window(Gtk.Window):
                                   ("About", Gtk.STOCK_ABOUT, "_About...", None,
                                    "About GtkSourceView Test Widget", self.about_cb)])
 
-        action_group.add_toggle_actions([("HlBracket", None, "Highlight Matching _Bracket", None,
+        action_group.add_toggle_actions([("HlSyntax", None, "Highlight _Syntax", None,
+                                          "Toggle syntax highlighting", self.hl_syntax_toggled_cb),
+                                         ("HlBracket", None, "Highlight Matching _Bracket", None,
                                           "Toggle highlighting of matching bracket", self.hl_bracket_toggled_cb),
                                          ("ShowNumbers", None, "Show _Line Numbers", None,
                                           "Toggle visibility of line numbers in the left margin", self.numbers_toggled_cb),
@@ -268,6 +271,7 @@ class Window(Gtk.Window):
         self.add_accel_group (accel_group)
 
         # Add default values
+        action_group.get_action("HlSyntax").set_active(True)
         action_group.get_action("HlBracket").set_active(True)
         action_group.get_action("ShowNumbers").set_active(True)
         action_group.get_action("ShowMarks").set_active(True)
@@ -411,6 +415,9 @@ class Window(Gtk.Window):
     def new_view_cb(self, action):
         window = Window()
         window.show_all()
+
+    def hl_syntax_toggled_cb(self, action):
+        self._buf.set_highlight_syntax(action.get_active())
 
     def hl_bracket_toggled_cb(self, action):
         self._buf.set_highlight_matching_brackets(action.get_active())
