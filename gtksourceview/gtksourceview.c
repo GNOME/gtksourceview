@@ -55,10 +55,10 @@
  * #GtkSourceBuffer to display text with a GtkSourceView.
  */
 
-/*
+
 #define ENABLE_DEBUG
-*/
-#undef ENABLE_DEBUG
+
+//#undef ENABLE_DEBUG
 
 /*
 #define ENABLE_PROFILE

@@ -82,7 +82,8 @@ GtkSourceContextClass *
 
 void		gtk_source_context_class_free		(GtkSourceContextClass *cclass);
 
-GtkSourceContextEngine *_gtk_source_context_engine_new  (GtkSourceContextData	*data);
+GtkSourceContextEngine *
+		_gtk_source_context_engine_new  (GtkSourceContextData	*data);
 
 gboolean	 _gtk_source_context_data_define_context
 							(GtkSourceContextData	 *data,
