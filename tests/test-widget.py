@@ -480,7 +480,7 @@ class Window(Gtk.Window):
     def indent_toggled_cb(self, action, current):
         self._view.set_indent_width(current.get_current_value())
 
-    def smart_home_end_toggled_cb(self, action, current):
+    def smart_home_end_toggled_cb(self, action, current, user_data=None):
         self._view.set_smart_home_end(current.get_current_value())
 
     def about_cb(self, action, user_data=None):
