@@ -688,17 +688,12 @@ create_tag (GtkSourceContextEngine *ce,
 
 	g_assert (style_id != NULL);
 
-	tags = g_hash_table_lookup (ce->priv->tags, style_id);
-
 	new_tag = gtk_text_buffer_create_tag (ce->priv->buffer, NULL, NULL);
 	/* It must have priority lower than user tags but still
 	 * higher than highlighting tags created before */
 	gtk_text_tag_set_priority (new_tag, ce->priv->n_tags);
 	set_tag_style (ce, new_tag, style_id);
 	ce->priv->n_tags += 1;
-
-	tags = g_slist_prepend (tags, g_object_ref (new_tag));
-	g_hash_table_insert (ce->priv->tags, g_strdup (style_id), tags);
 
 	return new_tag;
 }
@@ -759,6 +754,9 @@ get_tag_for_parent (GtkSourceContextEngine *ce,
 	else
 	{
 		tag = create_tag (ce, style);
+
+		tags = g_slist_prepend (tags, g_object_ref (tag));
+		g_hash_table_insert (ce->priv->tags, g_strdup (style), tags);
 
 #ifdef ENABLE_DEBUG
 		{
