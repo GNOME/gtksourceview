@@ -3705,7 +3705,7 @@ context_remove_child (Context *parent,
 
 	g_assert (context->parent == parent);
 
-	for (ptr = context->parent->children; ptr; ptr = ptr->next)
+	for (ptr = parent->children; ptr; ptr = ptr->next)
 	{
 		if (ptr->definition == context->definition)
 			break;
@@ -3729,7 +3729,7 @@ context_remove_child (Context *parent,
 		if (prev != NULL)
 			prev->next = ptr->next;
 		else
-			context->parent->children = ptr->next;
+			parent->children = ptr->next;
 
 		if (!ptr->fixed)
 			g_hash_table_destroy (ptr->u.hash);
