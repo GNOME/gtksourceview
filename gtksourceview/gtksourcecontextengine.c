@@ -683,7 +683,6 @@ static GtkTextTag *
 create_tag (GtkSourceContextEngine *ce,
 	    const gchar            *style_id)
 {
-	GSList *tags;
 	GtkTextTag *new_tag;
 
 	g_assert (style_id != NULL);
