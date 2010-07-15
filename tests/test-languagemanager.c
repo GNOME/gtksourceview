@@ -55,16 +55,46 @@ test_guess_language (void)
 	}
 	g_test_trap_assert_failed ();
 
+	if (g_test_trap_fork (0, G_TEST_TRAP_SILENCE_STDERR))
+	{
+		l = gtk_source_language_manager_guess_language (lm, "", NULL);
+	}
+	g_test_trap_assert_failed ();
+
+	if (g_test_trap_fork (0, G_TEST_TRAP_SILENCE_STDERR))
+	{
+		l = gtk_source_language_manager_guess_language (lm, NULL, "");
+	}
+	g_test_trap_assert_failed ();
+
+	if (g_test_trap_fork (0, G_TEST_TRAP_SILENCE_STDERR))
+	{
+		l = gtk_source_language_manager_guess_language (lm, "", "");
+	}
+	g_test_trap_assert_failed ();
+
 	l = gtk_source_language_manager_guess_language (lm, "foo.abcdef", NULL);
+	g_assert (l == NULL);
+
+	l = gtk_source_language_manager_guess_language (lm, "foo.abcdef", "");
 	g_assert (l == NULL);
 
 	l = gtk_source_language_manager_guess_language (lm, NULL, "image/png");
 	g_assert (l == NULL);
 
+	l = gtk_source_language_manager_guess_language (lm, "", "image/png");
+	g_assert (l == NULL);
+
 	l = gtk_source_language_manager_guess_language (lm, "foo.c", NULL);
 	g_assert_cmpstr (gtk_source_language_get_id (l), ==, "c");
 
+	l = gtk_source_language_manager_guess_language (lm, "foo.c", "");
+	g_assert_cmpstr (gtk_source_language_get_id (l), ==, "c");
+
 	l = gtk_source_language_manager_guess_language (lm, NULL, "text/x-csrc");
+	g_assert_cmpstr (gtk_source_language_get_id (l), ==, "c");
+
+	l = gtk_source_language_manager_guess_language (lm, "", "text/x-csrc");
 	g_assert_cmpstr (gtk_source_language_get_id (l), ==, "c");
 
 	l = gtk_source_language_manager_guess_language (lm, "foo.c", "text/x-csrc");

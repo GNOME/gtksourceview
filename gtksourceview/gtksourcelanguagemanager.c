@@ -625,9 +625,8 @@ gtk_source_language_manager_guess_language (GtkSourceLanguageManager *lm,
 	GSList *langs = NULL;
 
 	g_return_val_if_fail (GTK_IS_SOURCE_LANGUAGE_MANAGER (lm), NULL);
-	g_return_val_if_fail (filename != NULL || content_type != NULL, NULL);
-	g_return_val_if_fail ((filename == NULL || *filename != 0) &&
-			      (content_type == NULL || *content_type != 0), NULL);
+	g_return_val_if_fail ((filename != NULL && *filename != '\0') ||
+	                      (content_type != NULL && *content_type != '\0'), NULL);
 
 	ensure_languages (lm);
 
@@ -638,7 +637,7 @@ gtk_source_language_manager_guess_language (GtkSourceLanguageManager *lm,
 	  - no glob matches
 	*/
 
-	if (filename != NULL)
+	if (filename != NULL && *filename != '\0')
 		langs = pick_langs_for_filename (lm, filename);
 
 	if (langs != NULL)
