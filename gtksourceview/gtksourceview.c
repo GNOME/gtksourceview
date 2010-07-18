@@ -4975,7 +4975,7 @@ gtk_source_view_get_visual_column (GtkSourceView     *view,
 	indent_width = get_real_indent_width (view);
 
 	position = *iter;
-	gtk_text_iter_set_visible_line_offset (&position, 0);
+	gtk_text_iter_set_line_offset (&position, 0);
 
 	while (!gtk_text_iter_equal (&position, iter))
 	{
@@ -4987,8 +4987,10 @@ gtk_source_view_get_visual_column (GtkSourceView     *view,
 		{
 			++column;
 		}
-
-		if (!gtk_text_iter_forward_visible_cursor_position (&position))
+		
+		/* FIXME: this does not handle invisible text correctly, but 
+                 * gtk_text_iter_forward_visible_cursor_position is too slow */
+		if (!gtk_text_iter_forward_char (&position))
 			break;
 	}
 
