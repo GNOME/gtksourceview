@@ -1,6 +1,6 @@
 # translation of gtksourceview-master-po-gl-28392.merged.po to Galician
 # This file is distributed under the same license as the PACKAGE package.
-# Copyright (C) 2006 THE PACKAGE'S COPYRIGHT HOLDER.
+# Copyright (C) 2010 Fran Diéguez.
 #
 # Ignacio Casal Quinteiro <nacho.resa@gmail.com>, 2005, 2006.
 # Mancomún - Centro de Referencia e Servizos de Software Libre <g11n@mancomun.org>, 2009.
@@ -14,10 +14,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview-master-po-gl-28392.merged\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-06-29 23:59+0200\n"
-"PO-Revision-Date: 2010-06-30 00:00+0200\n"
+"POT-Creation-Date: 2010-07-20 13:52+0200\n"
+"PO-Revision-Date: 2010-07-20 13:53+0200\n"
 "Last-Translator: Fran Diéguez <frandieguez@ubuntu.com>\n"
-"Language-Team: Galician <gnome@g11n.net>\n"
+"Language-Team: Galician <gnome-gl-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -2247,7 +2247,7 @@ msgstr "Información"
 msgid "Info to be shown for this item"
 msgstr "Información a mostrar para este elemento"
 
-#: ../gtksourceview/gtksourcecontextengine.c:2971
+#: ../gtksourceview/gtksourcecontextengine.c:2968
 msgid "using \\C is not supported in language definitions"
 msgstr "non é compatíbel o uso de \\C nas definicións da linguaxe"
 
@@ -2255,7 +2255,7 @@ msgstr "non é compatíbel o uso de \\C nas definicións da linguaxe"
 #. * named sub-patterns with the same name or if resulting regex is
 #. * too long. In this case fixing lang file helps (e.g. renaming
 #. * subpatterns, making huge keywords use bigger prefixes, etc.)
-#: ../gtksourceview/gtksourcecontextengine.c:3595
+#: ../gtksourceview/gtksourcecontextengine.c:3592
 #, c-format
 msgid ""
 "Cannot create a regex for all the transitions, the syntax highlighting "
@@ -2266,7 +2266,7 @@ msgstr ""
 "proceso de realce de sintaxe será máis lento do normal.\n"
 "O erro foi: %s"
 
-#: ../gtksourceview/gtksourcecontextengine.c:4930
+#: ../gtksourceview/gtksourcecontextengine.c:4927
 msgid ""
 "Highlighting a single line took too much time, syntax highlighting will be "
 "disabled"
@@ -2274,42 +2274,42 @@ msgstr ""
 "Realzar unha única liña levou demasiado tempo, a opción de realce da sintaxe "
 "será desactivada"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6182
+#: ../gtksourceview/gtksourcecontextengine.c:6180
 #, c-format
 msgid "context '%s' cannot contain a \\%%{...@start} command"
-msgstr "o contexto '%s' non pode conter unha orde \\%%{...@start}"
+msgstr "o contexto «%s» non pode conter unha orde \\%%{...@start}"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6344
-#: ../gtksourceview/gtksourcecontextengine.c:6433
+#: ../gtksourceview/gtksourcecontextengine.c:6342
+#: ../gtksourceview/gtksourcecontextengine.c:6431
 #, c-format
 msgid "duplicated context id '%s'"
-msgstr "id de contexto '%s' duplicado"
+msgstr "id de contexto «%s» duplicado"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6548
-#: ../gtksourceview/gtksourcecontextengine.c:6608
+#: ../gtksourceview/gtksourcecontextengine.c:6546
+#: ../gtksourceview/gtksourcecontextengine.c:6606
 #, c-format
 msgid ""
 "style override used with wildcard context reference in language '%s' in ref "
 "'%s'"
 msgstr ""
 "o estilo sobrepúxose ao usado cunha referencia de contexto comodín na "
-"linguaxe '%s', na referencia '%s'"
+"linguaxe «%s», na referencia «%s»"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6622
+#: ../gtksourceview/gtksourcecontextengine.c:6620
 #, c-format
 msgid "invalid context reference '%s'"
-msgstr "referencia de contexto '%s' non válida"
+msgstr "referencia de contexto «%s» non válida"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6641
-#: ../gtksourceview/gtksourcecontextengine.c:6651
+#: ../gtksourceview/gtksourcecontextengine.c:6639
+#: ../gtksourceview/gtksourcecontextengine.c:6649
 #, c-format
 msgid "unknown context '%s'"
-msgstr "contexto '%s' descoñecido"
+msgstr "contexto «%s» descoñecido"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6751
+#: ../gtksourceview/gtksourcecontextengine.c:6749
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
-msgstr "Falta a definición principal de linguaxe (id = \"%s\".)"
+msgstr "Falta a definición principal de linguaxe (id = «%s».)"
 
 #: ../gtksourceview/gtksourcegutter.c:369
 msgid "The gutters' GtkSourceView"
@@ -2369,12 +2369,12 @@ msgstr "Lista de id para as linguaxes dispoñíbeis"
 #: ../gtksourceview/gtksourcelanguage-parser-2.c:951
 #, c-format
 msgid "Unknown id '%s' in regex '%s'"
-msgstr "Id descoñecido '%s' na expresión regular '%s'"
+msgstr "Id descoñecido «%s» na expresión regular «%s»"
 
 #: ../gtksourceview/gtksourcelanguage-parser-2.c:1179
 #, c-format
 msgid "in regex '%s': backreferences are not supported"
-msgstr "na expresión regular '%s': non se admiten as referencias previas"
+msgstr "na expresión regular «%s»: non se admiten as referencias previas"
 
 #: ../gtksourceview/gtksourcemark.c:140
 msgid "category"
@@ -2726,5 +2726,9 @@ msgstr "Estabelecer se e como se deben visualizar os espazos"
 #: ../gtksourceview/gtksourceview-i18n.c:74
 msgid "translator-credits"
 msgstr ""
-"Fran Diéguez <frandieguez@mabishu.com>, 2009, 2010;\n"
-"Antón Méixome <meixome@mancomun.org>, 2009,2010;"
+"Fran Diéguez <frandieguez@ubuntu.com>, 2009, 2010.\n"
+"Antón Méixome <meixome@certima.net>, 2009, 2010.\n"
+"Mancomún - Centro de Referencia e Servizos de Software Libre <g11n@mancomun."
+"org>, 2009.\n"
+"Suso Baleato <suso.baleato@xunta.es>, 2009.\n"
+"Ignacio Casal Quinteiro <nacho.resa@gmail.com>, 2005, 2006."
