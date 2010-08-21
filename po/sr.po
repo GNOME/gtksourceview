@@ -14,8 +14,8 @@ msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&component=general\n"
-"POT-Creation-Date: 2010-08-06 09:48+0000\n"
-"PO-Revision-Date: 2010-08-18 12:29+0200\n"
+"POT-Creation-Date: 2010-08-18 10:39+0000\n"
+"PO-Revision-Date: 2010-08-21 17:13+0200\n"
 "Last-Translator: Милош Поповић <gpopac@gmail.com>\n"
 "Language-Team: Serbian <gnom@prevod.org>\n"
 "MIME-Version: 1.0\n"
@@ -52,7 +52,7 @@ msgstr "Предлози пакетне величине"
 
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:480
 msgid "Number of proposals added in one batch"
-msgstr "Број предлога додатих у један пакет"
+msgstr "Број предлога додатих у једном пакету"
 
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:489
 msgid "Scan Batch Size"
@@ -295,7 +295,7 @@ msgstr "Сузи ширину"
 
 #: ../gtksourceview/gtksourcecompletioninfo.c:364
 msgid "Whether the window should shrink width to fit the contents"
-msgstr "Да ли да прозори сузе ширину како би са уклопио садржај"
+msgstr "Да ли да сузим ширину прозора како би се уклопио садржај"
 
 #: ../gtksourceview/gtksourcecompletioninfo.c:371
 msgid "Shrink height"
@@ -303,15 +303,15 @@ msgstr "Сузи висину"
 
 #: ../gtksourceview/gtksourcecompletioninfo.c:372
 msgid "Whether the window should shrink height to fit the contents"
-msgstr "Да ли да прозори сузе висину како би са уклопио садржај"
+msgstr "Да ли да сузим висину прозора како би се уклопио садржај"
 
 #: ../gtksourceview/gtksourcecompletionitem.c:229
 msgid "Label"
-msgstr "Натпис"
+msgstr "Ознака"
 
 #: ../gtksourceview/gtksourcecompletionitem.c:230
 msgid "Label to be shown for this item"
-msgstr "Натпис који се приказује за ову ставку"
+msgstr "Ознака која се приказује за ову ставку"
 
 #: ../gtksourceview/gtksourcecompletionitem.c:242
 #: ../gtksourceview/language-specs/bibtex.lang.h:4
@@ -1500,7 +1500,7 @@ msgstr "printf конверзија"
 
 #: ../gtksourceview/language-specs/cg.lang.h:1
 msgid "Bindings"
-msgstr "Повезивање"
+msgstr "Повезивања"
 
 #: ../gtksourceview/language-specs/cg.lang.h:3
 #: ../gtksourceview/language-specs/erlang.lang.h:3
@@ -1920,7 +1920,7 @@ msgstr "Ерланг"
 
 #: ../gtksourceview/language-specs/fcl.lang.h:1
 msgid "Block"
-msgstr "Блокчић"
+msgstr "Блок"
 
 #: ../gtksourceview/language-specs/fcl.lang.h:4
 msgid "FCL"
@@ -1932,7 +1932,7 @@ msgstr "ФЦЛ"
 #: ../gtksourceview/language-specs/octave.lang.h:5
 #: ../gtksourceview/language-specs/sql.lang.h:4
 msgid "Floating Point"
-msgstr "Број у покретном зарезу"
+msgstr "Покретни зарез"
 
 #: ../gtksourceview/language-specs/fcl.lang.h:7
 #: ../gtksourceview/language-specs/octave.lang.h:9
@@ -1967,10 +1967,9 @@ msgid "Fortran 95"
 msgstr "Фортран 95"
 
 #: ../gtksourceview/language-specs/fortran.lang.h:7
-#, fuzzy
 #| msgid "Analytic Functions"
 msgid "Intrinsic function"
-msgstr "Аналитичке функције"
+msgstr "Интерне функције"
 
 #: ../gtksourceview/language-specs/fsharp.lang.h:3
 #: ../gtksourceview/language-specs/ocaml.lang.h:3
@@ -2150,7 +2149,7 @@ msgstr "Адреса"
 
 #: ../gtksourceview/language-specs/haskell.lang.h:6
 msgid "Float"
-msgstr "Са покретним зарезом"
+msgstr "Покретни"
 
 #: ../gtksourceview/language-specs/haskell.lang.h:7
 msgid "Haskell"
