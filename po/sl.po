@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: gtksourcereview\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gtksourceview&component=general\n"
 "POT-Creation-Date: 2010-02-23 05:54+0000\n"
-"PO-Revision-Date: 2010-08-24 15:19+0100\n"
-"Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
+"PO-Revision-Date: 2010-08-24 18:47+0100\n"
+"Last-Translator: Valentin Hegediš <valentin.hegedis@gmail.com>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -227,11 +227,11 @@ msgstr "Velikost drsne strani ponudnikov"
 
 #: ../gtksourceview/gtksourcecompletion.c:2352
 msgid "Proposal Page Size"
-msgstr "Predlog velikosti strani"
+msgstr "Velikost strani predloga"
 
 #: ../gtksourceview/gtksourcecompletion.c:2353
 msgid "Proposal scrolling page size"
-msgstr "Predlog drsenja velikosti strani"
+msgstr "Velikost drsne strani predloga"
 
 #: ../gtksourceview/gtksourcecompletion.c:2691
 msgid "Provider"
@@ -253,7 +253,7 @@ msgstr "Ponavljalnik"
 
 #: ../gtksourceview/gtksourcecompletioncontext.c:259
 msgid "The GtkTextIter at which the completion was invoked"
-msgstr "GtkTextIter pri katerem se je prikazala možnost dopolnjevanja"
+msgstr "GtkTextIter pri katerem se je prikazala možnost dopolnjevanja."
 
 #: ../gtksourceview/gtksourcecompletioncontext.c:271
 msgid "Activation"
@@ -400,11 +400,11 @@ msgstr "neznana vsebina '%s'"
 #: ../gtksourceview/gtksourcecontextengine.c:6718
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
-msgstr "Manjka določilo glavnega jezika (id = \"%s\".)"
+msgstr "Manjka določitev glavnega jezika (id = \"%s\".)"
 
 #: ../gtksourceview/gtksourcegutter.c:370
 msgid "The gutters' GtkSourceView"
-msgstr "Gutter GtkSourceView"
+msgstr "GtkSourceView žlebov"
 
 #: ../gtksourceview/gtksourcegutter.c:382
 msgid "Window Type"
@@ -412,7 +412,7 @@ msgstr "Vrsta okna"
 
 #: ../gtksourceview/gtksourcegutter.c:383
 msgid "The gutters text window type"
-msgstr "Gutter vrsta okna"
+msgstr "Vrsta besedilnega okna žleba"
 
 #. *
 #. * SECTION:language
@@ -523,6 +523,8 @@ msgstr "Širina tabulatorja"
 msgid "Width of a tab character expressed in spaces"
 msgstr "Širina tabulatorja določena v presledkih"
 
+# Primer page brake= prelom strani
+# Wrap line pa pomeni natanko to: prelom vrstice  
 #: ../gtksourceview/gtksourceprintcompositor.c:485
 msgid "Wrap Mode"
 msgstr "Način preloma"
@@ -533,7 +535,7 @@ msgstr "Ali naj bodo vrstice prelomljene na besedah ali na znakih."
 
 #: ../gtksourceview/gtksourceprintcompositor.c:507
 msgid "Whether to print the document with highlighted syntax"
-msgstr "Ali naj se dokument natisne s poudarjanjem skladnje"
+msgstr "Ali naj se dokument natisne s poudarjeno skladnjo"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:528
 msgid "Print Line Numbers"
@@ -565,7 +567,7 @@ msgstr "Ime pisave besedila strani"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:598
 msgid "Name of the font to use for the text body (e.g. \"Monospace 10\")"
-msgstr "Ime pisave, ki bo uporabljen za telo besedila (e.g. \"Monospace 10\")"
+msgstr "Ime pisave, ki bo uporabljena za telo besedila (e.g. \"Monospace 10\")"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:621
 msgid "Line Numbers Font Name"
@@ -573,7 +575,7 @@ msgstr "Ime pisave številk vrstic"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:622
 msgid "Name of the font to use for the line numbers (e.g. \"Monospace 10\")"
-msgstr "Ime pisave, ki bo uporabljen za številke vrstic (e.g. \"Monospace 10\")"
+msgstr "Ime pisave, ki bo uporabljena za številke vrstic (e.g. \"Monospace 10\")"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:645
 msgid "Header Font Name"
@@ -581,7 +583,7 @@ msgstr "Ime pisave glave strani"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:646
 msgid "Name of the font to use for the page header (e.g. \"Monospace 10\")"
-msgstr "Ime pisave, ki bo uporabljen za glavo strani (e.g. \"Monospace 10\")"
+msgstr "Ime pisave, ki bo uporabljena za glavo strani (e.g. \"Monospace 10\")"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:669
 msgid "Footer Font Name"
@@ -589,7 +591,7 @@ msgstr "Ime pisave noge strani"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:670
 msgid "Name of the font to use for the page footer (e.g. \"Monospace 10\")"
-msgstr "Ime pisave, ki bo uporabljen za nogo strani (e.g. \"Monospace 10\")"
+msgstr "Ime pisave, ki bo uporabljena za nogo strani (e.g. \"Monospace 10\")"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:686
 msgid "Number of pages"
@@ -597,7 +599,7 @@ msgstr "Število strani"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:687
 msgid "The number of pages in the document (-1 means the document has not been completely paginated)."
-msgstr "Število strani v dokumentu (-1 pomeni, da dokument nima popolno določenih strani)."
+msgstr "Število strani v dokumentu (-1 pomeni, da dokument nima oštevilčenih vseh strani)."
 
 #: ../gtksourceview/gtksourcestyle.c:79
 msgid "Line background"
@@ -619,6 +621,9 @@ msgstr "Barva ozadja"
 msgid "Foreground"
 msgstr "Ospredje"
 
+# Res bi lahko uporabili barvo ospredja, vendar pa:
+# This property describes the foreground color of an element's TEXT content. 
+# Verjamem, da bi bilo bolje, če bi vsa "ospredja" spremenili v pisavo
 #: ../gtksourceview/gtksourcestyle.c:96
 msgid "Foreground color"
 msgstr "Barva pisave"
@@ -763,7 +768,7 @@ msgstr "Pokaži zaznamovalce vrstic"
 
 #: ../gtksourceview/gtksourceview.c:350
 msgid "Whether to display line mark pixbufs"
-msgstr "Ali naj bodo prikazane pike ob vrsticah"
+msgstr "Ali naj bodo prikazane sličice oznak vrsticah"
 
 #: ../gtksourceview/gtksourceview.c:377
 msgid "Indent Width"
@@ -819,7 +824,7 @@ msgstr "Poudari trenutno vrstico"
 
 #: ../gtksourceview/gtksourceview.c:450
 msgid "Whether to highlight the current line"
-msgstr "Ali naj bo trenutna vrstica poudarjena ali ne"
+msgstr "Ali naj bo trenutna vrstica poudarjena"
 
 #: ../gtksourceview/gtksourceview.c:457
 msgid "Indent on tab"
@@ -1212,6 +1217,8 @@ msgstr "Funkcija"
 msgid "Number"
 msgstr "Številka"
 
+# operator -> operand
+# ni isto!!! operator je +-/*, operand pa številčna vrednost v izrazu
 #. Operators: "+", "*", etc.
 #: ../gtksourceview/language-specs/asp.lang.h:9
 #: ../gtksourceview/language-specs/cmake.lang.h:6
@@ -1310,6 +1317,7 @@ msgstr "Boo"
 msgid "Boolean"
 msgstr "Boolova vrednost"
 
+# Ta pride kasneje. Definicija je namreč ustrezen pojem, ki nima slovenskega prevoda ...
 #: ../gtksourceview/language-specs/boo.lang.h:6
 msgid "Definition"
 msgstr "Definicija"
@@ -1456,7 +1464,7 @@ msgstr "Šestnajstiško število"
 #: ../gtksourceview/language-specs/c.lang.h:12
 #: ../gtksourceview/language-specs/cg.lang.h:13
 msgid "Included File"
-msgstr "Vključena datoteka"
+msgstr "Dodana datoteka"
 
 #: ../gtksourceview/language-specs/c.lang.h:14
 #: ../gtksourceview/language-specs/cg.lang.h:15
@@ -1487,7 +1495,7 @@ msgstr "Jezik CG Shader"
 
 #: ../gtksourceview/language-specs/cg.lang.h:19
 msgid "Swizzle operator"
-msgstr "Operater Swizzle"
+msgstr "Operator Swizzle"
 
 #: ../gtksourceview/language-specs/classic.xml.h:1
 msgid "Classic"
@@ -1569,7 +1577,7 @@ msgstr "Mere"
 
 #: ../gtksourceview/language-specs/css.lang.h:9
 msgid "Known Property Value"
-msgstr "Znane vrednosti lastnosti"
+msgstr "Znana vrednost lastnosti"
 
 #: ../gtksourceview/language-specs/css.lang.h:11
 msgid "Others 2"
@@ -1682,6 +1690,7 @@ msgstr "Izjava"
 msgid "Underlined"
 msgstr "Podčrtano"
 
+# TO je ime datoteke.
 #: ../gtksourceview/language-specs/desktop.lang.h:1
 msgid ".desktop"
 msgstr ".desktop"
@@ -1916,7 +1925,7 @@ msgstr "Zadržana konstanta"
 #: ../gtksourceview/language-specs/octave.lang.h:10
 #: ../gtksourceview/language-specs/R.lang.h:9
 msgid "Scientific"
-msgstr "Znanstven"
+msgstr "Znanstveno"
 
 #: ../gtksourceview/language-specs/forth.lang.h:4
 msgid "Debug Code"
@@ -1997,7 +2006,7 @@ msgstr "Vgrajena konstanta"
 
 #: ../gtksourceview/language-specs/glsl.lang.h:5
 msgid "OpenGL Shading Language"
-msgstr "Jezik OpenGL Shading"
+msgstr "OpenGL senčilni jezik"
 
 #: ../gtksourceview/language-specs/glsl.lang.h:7
 msgid "Reserved Keywords"
@@ -2427,7 +2436,7 @@ msgstr "Vez Heredoc"
 
 #: ../gtksourceview/language-specs/perl.lang.h:8
 msgid "Include Statement"
-msgstr "Vključi stavek"
+msgstr "Dodaj stavek"
 
 #: ../gtksourceview/language-specs/perl.lang.h:10
 msgid "Line Directive"
@@ -2482,6 +2491,7 @@ msgstr "Posebno"
 msgid "gettext translation"
 msgstr "prevod gettext"
 
+# Programski jezik
 #: ../gtksourceview/language-specs/prolog.lang.h:7
 msgid "Prolog"
 msgstr "Prolog"
@@ -2787,5 +2797,4 @@ msgstr "pravilo"
 
 #: ../gtksourceview/language-specs/yacc.lang.h:6
 msgid "token-type"
-msgstr "vrsta-vsebine"
-
+msgstr "vrsta-žetona"
