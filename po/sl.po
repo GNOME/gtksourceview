@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: gtksourcereview\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gtksourceview&component=general\n"
 "POT-Creation-Date: 2010-02-23 05:54+0000\n"
-"PO-Revision-Date: 2010-02-23 10:06+0100\n"
+"PO-Revision-Date: 2010-08-24 15:19+0100\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -53,7 +53,7 @@ msgstr "Število ponudb dodanih enemu paketu"
 
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:489
 msgid "Scan Batch Size"
-msgstr "Paketna velikost proučevanja"
+msgstr "Proučena velikost paketa"
 
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:490
 msgid "Number of lines scanned in one batch"
@@ -73,7 +73,7 @@ msgstr "Časovni zamik dopolnjevanja"
 
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:510
 msgid "The delay before initiating interactive completion"
-msgstr "Časovni zamik  pred prikazom možnosti dopolnjevanja"
+msgstr "Časovni zamik pred prikazom možnosti dopolnjevanja"
 
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:519
 msgid "Priority"
@@ -118,7 +118,7 @@ msgstr "Jezik"
 
 #: ../gtksourceview/gtksourcebuffer.c:253
 msgid "Language object to get highlighting patterns from"
-msgstr "Predmet za pridobivanje vzorcev jezikov za poudarjanje"
+msgstr "Predmet jezika za pridobivanje vzorcev poudarjanja"
 
 #: ../gtksourceview/gtksourcebuffer.c:261
 msgid "Can undo"
@@ -130,11 +130,11 @@ msgstr "Ali je mogoče razveljaviti dejanje"
 
 #: ../gtksourceview/gtksourcebuffer.c:269
 msgid "Can redo"
-msgstr "Možnost ponovne naloge"
+msgstr "Možnost ponovne uveljavitve"
 
 #: ../gtksourceview/gtksourcebuffer.c:270
 msgid "Whether Redo operation is possible"
-msgstr "Ali je mogoče dejanje ponovno uporabiti po razveljavitvi"
+msgstr "Ali je mogoče dejanje ponovno uveljaviti po razveljavitvi"
 
 #: ../gtksourceview/gtksourcebuffer.c:284
 #: ../gtksourceview/gtksourcebuffer.c:285
@@ -167,7 +167,7 @@ msgstr "Pogled"
 
 #: ../gtksourceview/gtksourcecompletion.c:2230
 msgid "The GtkSourceView bound to the completion"
-msgstr "GtkSourceView vez z dopolnjevanjem"
+msgstr "Vez GtkSourceView z dopolnjevanjem"
 
 #: ../gtksourceview/gtksourcecompletion.c:2245
 msgid "Remember Info Visibility"
@@ -244,7 +244,7 @@ msgstr "Dopolnjevanje"
 
 #: ../gtksourceview/gtksourcecompletioncontext.c:245
 msgid "The completion object to which the context belongs"
-msgstr "Predmet dopolnjevanja, ki mu pripada vsebina"
+msgstr "Predmet dopolnjevanja, kateremu pripada vsebina"
 
 #. Translators: The GtkTextIter at which the completion was invoked
 #: ../gtksourceview/gtksourcecompletioncontext.c:258
@@ -346,7 +346,7 @@ msgstr "Podrobnosti"
 
 #: ../gtksourceview/gtksourcecompletionitem.c:282
 msgid "Info to be shown for this item"
-msgstr "Podrobnosti tega predmeta"
+msgstr "Prikaz podrobnosti tega predmeta"
 
 #: ../gtksourceview/gtksourcecontextengine.c:2965
 msgid "using \\C is not supported in language definitions"
@@ -367,7 +367,7 @@ msgstr ""
 
 #: ../gtksourceview/gtksourcecontextengine.c:4924
 msgid "Highlighting a single line took too much time, syntax highlighting will be disabled"
-msgstr "Poudarjanje ene vrstice je bilo časovno predolgo. Poudarjanje skladnje bo onemogočeno."
+msgstr "Poudarjanje ene same vrstice je trajalo predolgo. Poudarjanje skladnje bo onemogočeno."
 
 #: ../gtksourceview/gtksourcecontextengine.c:6149
 #, c-format
@@ -384,7 +384,7 @@ msgstr "podvojen ID vsebine '%s'"
 #: ../gtksourceview/gtksourcecontextengine.c:6575
 #, c-format
 msgid "style override used with wildcard context reference in language '%s' in ref '%s'"
-msgstr "prepis sloga uporabljen s posebnimi določilnimi znaki (wildcards) v jeziku '%s' v referenci '%s'"
+msgstr "prepis sloga uporabljen s posebnimi nadomestnimi znaki (wildcards) v jeziku '%s' sklica '%s'"
 
 #: ../gtksourceview/gtksourcecontextengine.c:6589
 #, c-format
@@ -461,7 +461,7 @@ msgstr "Ime jezika"
 #: ../gtksourceview/gtksourcelanguage.c:243
 #: ../gtksourceview/gtksourcelanguage.c:244
 msgid "Language section"
-msgstr "Oddelek jezika"
+msgstr "Odsek jezika"
 
 #: ../gtksourceview/gtksourcelanguage.c:251
 msgid "Hidden"
@@ -541,7 +541,7 @@ msgstr "Natisni številke vrstic"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:529
 msgid "Interval of printed line numbers (0 means no numbers)"
-msgstr "Razmik natisnjenih številk vrstic (0 pomeni brez številk)"
+msgstr "Razmik izpisanih številk vrstic (0 pomeni brez številk)"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:551
 msgid "Print Header"
@@ -651,7 +651,7 @@ msgstr "Nastavitev ozadja črte"
 
 #: ../gtksourceview/gtksourcestyle.c:136
 msgid "Whether line background color is set"
-msgstr "Določa ali je določena barva ozadja črte"
+msgstr "Ali naj bo določena barva ozadja črte"
 
 #: ../gtksourceview/gtksourcestyle.c:143
 msgid "Foreground set"
@@ -659,7 +659,7 @@ msgstr "Nastavi ospredje"
 
 #: ../gtksourceview/gtksourcestyle.c:144
 msgid "Whether foreground color is set"
-msgstr "Določa ali je določena barva pisave"
+msgstr "Ali naj bo določena barva pisave"
 
 #: ../gtksourceview/gtksourcestyle.c:151
 msgid "Background set"
@@ -667,7 +667,7 @@ msgstr "Nastavi ozadje"
 
 #: ../gtksourceview/gtksourcestyle.c:152
 msgid "Whether background color is set"
-msgstr "Določa ali je določena barva ozadja"
+msgstr "Ali naj bo določena barva ozadja"
 
 #: ../gtksourceview/gtksourcestyle.c:159
 msgid "Bold set"
@@ -675,7 +675,7 @@ msgstr "Niz krepko"
 
 #: ../gtksourceview/gtksourcestyle.c:160
 msgid "Whether bold attribute is set"
-msgstr "Določa ali je določena odebeljena pisava"
+msgstr "Ali naj bo določena odebeljena pisava"
 
 #: ../gtksourceview/gtksourcestyle.c:167
 msgid "Italic set"
@@ -683,7 +683,7 @@ msgstr "Niz ležeče"
 
 #: ../gtksourceview/gtksourcestyle.c:168
 msgid "Whether italic attribute is set"
-msgstr "Določa ali je določena ležečaa pisava"
+msgstr "Ali naj bo določena ležeča pisava"
 
 #: ../gtksourceview/gtksourcestyle.c:175
 msgid "Underline set"
@@ -691,7 +691,7 @@ msgstr "Nastavi podčrtavo"
 
 #: ../gtksourceview/gtksourcestyle.c:176
 msgid "Whether underline attribute is set"
-msgstr "Določa ali je določena podčrtana pisava"
+msgstr "Ali naj bo določena podčrtana pisava"
 
 #: ../gtksourceview/gtksourcestyle.c:183
 msgid "Strikethrough set"
@@ -699,7 +699,7 @@ msgstr "Nastavi prečrtanost"
 
 #: ../gtksourceview/gtksourcestyle.c:184
 msgid "Whether strikethrough attribute is set"
-msgstr "Določa ali je določena prečrtana pisava"
+msgstr "Ali naj bo določena prečrtana pisava"
 
 #: ../gtksourceview/gtksourcestylescheme.c:186
 #: ../gtksourceview/gtksourcestylescheme.c:187
@@ -807,11 +807,11 @@ msgstr "Položaj desnega roba"
 
 #: ../gtksourceview/gtksourceview.c:438
 msgid "Smart Home/End"
-msgstr "Pametni tipki HOME in END"
+msgstr "Pametni tipki Začetek in Konec"
 
 #: ../gtksourceview/gtksourceview.c:439
 msgid "HOME and END keys move to first/last non whitespace characters on line before going to the start/end of the line"
-msgstr "Tipki HOME in END pomakneta kazalec na prvi/zadnji znak v vrstici, ki ni presledni znak, preden gresta na začetek/konec vrstice"
+msgstr "Tipki Začetek in Konec pomakneta kazalec na prvi/zadnji znak v vrstici, ki ni presledni znak, preden gresta na začetek/konec vrstice"
 
 #: ../gtksourceview/gtksourceview.c:449
 msgid "Highlight current line"
@@ -839,7 +839,9 @@ msgstr "Določitev načina prikaza presledkov"
 
 #: ../gtksourceview/gtksourceview-i18n.c:74
 msgid "translator-credits"
-msgstr "Matej Urbančič <mateju@svn.gnome.org>"
+msgstr ""
+"Matej Urbančič <mateju@svn.gnome.org>\n"
+"Valentin Hegediš <valentin.hegedis@gmail.com>"
 
 #: ../gtksourceview/language-specs/ada.lang.h:1
 msgid "Ada"
@@ -1352,7 +1354,7 @@ msgstr "Posebna spremenljivka"
 
 #: ../gtksourceview/language-specs/changelog.lang.h:1
 msgid "Bullet"
-msgstr "vrstična oznaka"
+msgstr "Vrstična oznaka"
 
 #: ../gtksourceview/language-specs/changelog.lang.h:2
 msgid "ChangeLog"
@@ -1526,7 +1528,7 @@ msgstr "Običajna modra barvna shema"
 
 #: ../gtksourceview/language-specs/cobalt.xml.h:2
 msgid "Cobalt"
-msgstr "Kobalt"
+msgstr "Cobalt"
 
 #: ../gtksourceview/language-specs/cpp.lang.h:1
 msgid "C++"
@@ -1635,13 +1637,13 @@ msgstr "Opomba dokumentacije"
 #. style for text which is already styled as a "doc-comment"
 #: ../gtksourceview/language-specs/def.lang.h:26
 msgid "Documentation comment element"
-msgstr "Element opombe dokumentacije"
+msgstr "Predmet opombe dokumentacije"
 
 #. Any variable name
 #: ../gtksourceview/language-specs/def.lang.h:34
 #: ../gtksourceview/language-specs/php.lang.h:12
 msgid "Identifier"
-msgstr "Določilo"
+msgstr "Določilnik"
 
 #. Anything that needs extra attention; mostly the keywords TODO, FIXME and XXX
 #: ../gtksourceview/language-specs/def.lang.h:38
@@ -1656,7 +1658,7 @@ msgstr "Določilo predprocesorja"
 #. Reserved keywords: like "const" and "goto" in Java
 #: ../gtksourceview/language-specs/def.lang.h:46
 msgid "Reserved keyword"
-msgstr "Rezervirana beseda"
+msgstr "Zadržana beseda"
 
 #. A shebang: #!/bin/sh
 #: ../gtksourceview/language-specs/def.lang.h:48
@@ -1755,7 +1757,7 @@ msgstr "Posebna velikost"
 #: ../gtksourceview/language-specs/d.lang.h:1
 #: ../gtksourceview/language-specs/nemerle.lang.h:1
 msgid "Binary number"
-msgstr "Dvojiško številoBinarno število"
+msgstr "Dvojiško število"
 
 #: ../gtksourceview/language-specs/d.lang.h:4
 msgid "D"
@@ -1771,19 +1773,19 @@ msgstr "Docbook"
 
 #: ../gtksourceview/language-specs/docbook.lang.h:2
 msgid "Formatting Elements"
-msgstr "Oblikovni elemeni"
+msgstr "Oblikovni predmeti"
 
 #: ../gtksourceview/language-specs/docbook.lang.h:3
 msgid "GUI Elements"
-msgstr "GUI elementi"
+msgstr "Predmeti grafičnega vmesnika"
 
 #: ../gtksourceview/language-specs/docbook.lang.h:4
 msgid "Header Elements"
-msgstr "Elementi glave"
+msgstr "Predmeti glave"
 
 #: ../gtksourceview/language-specs/docbook.lang.h:6
 msgid "Structural Elements"
-msgstr "Strukturni elementi"
+msgstr "Strukturni predmeti"
 
 #: ../gtksourceview/language-specs/dosbatch.lang.h:1
 #: ../gtksourceview/language-specs/latex.lang.h:1
@@ -1822,7 +1824,7 @@ msgstr "decl"
 
 #: ../gtksourceview/language-specs/dtd.lang.h:4
 msgid "entity"
-msgstr "Entiteta"
+msgstr "entiteta"
 
 #: ../gtksourceview/language-specs/dtd.lang.h:5
 msgid "error"
@@ -1830,7 +1832,7 @@ msgstr "napaka"
 
 #: ../gtksourceview/language-specs/dtd.lang.h:6
 msgid "quoted-value"
-msgstr "citirana-vrednost"
+msgstr "navedena-vrednost"
 
 #: ../gtksourceview/language-specs/eiffel.lang.h:1
 msgid "Assertion"
@@ -1859,7 +1861,7 @@ msgstr "Upravljanje z izjemami"
 #: ../gtksourceview/language-specs/eiffel.lang.h:13
 #: ../gtksourceview/language-specs/ruby.lang.h:16
 msgid "Predefined Variable"
-msgstr "Predhodno določene spremenljivke"
+msgstr "Predhodno določena spremenljivka"
 
 #: ../gtksourceview/language-specs/eiffel.lang.h:16
 msgid "Void Value"
@@ -1882,7 +1884,7 @@ msgstr "Številka Base-N"
 #: ../gtksourceview/language-specs/forth.lang.h:2
 #: ../gtksourceview/language-specs/verilog.lang.h:3
 msgid "Compiler Directive"
-msgstr "Direktiva prevajalca kode"
+msgstr "Direktiva prevajalnika"
 
 #: ../gtksourceview/language-specs/erlang.lang.h:7
 msgid "Erlang"
@@ -1907,7 +1909,7 @@ msgstr "Plavajoča vejica"
 #: ../gtksourceview/language-specs/fcl.lang.h:7
 #: ../gtksourceview/language-specs/octave.lang.h:9
 msgid "Reserved Constant"
-msgstr "Rezervirana konstanta"
+msgstr "Zadržana konstanta"
 
 #: ../gtksourceview/language-specs/fcl.lang.h:8
 #: ../gtksourceview/language-specs/gap.lang.h:7
@@ -1918,7 +1920,7 @@ msgstr "Znanstven"
 
 #: ../gtksourceview/language-specs/forth.lang.h:4
 msgid "Debug Code"
-msgstr "Koda razhrščevanja"
+msgstr "Koda razhroščevanja"
 
 #: ../gtksourceview/language-specs/forth.lang.h:5
 msgid "Error Text"
@@ -1977,12 +1979,12 @@ msgstr "Vrsta spremenljivke"
 #: ../gtksourceview/language-specs/fsharp.lang.h:19
 #: ../gtksourceview/language-specs/ocaml.lang.h:20
 msgid "Type, module or object keyword"
-msgstr "Ključna beseda vrste, enote ali predmeta"
+msgstr "Ključna beseda vrste, modula ali predmeta"
 
 #: ../gtksourceview/language-specs/fsharp.lang.h:20
 #: ../gtksourceview/language-specs/ocaml.lang.h:21
 msgid "Variant Constructor"
-msgstr "izgradnja različic"
+msgstr "Izgradnja različic"
 
 #: ../gtksourceview/language-specs/gap.lang.h:5
 msgid "GAP"
@@ -1999,11 +2001,11 @@ msgstr "Jezik OpenGL Shading"
 
 #: ../gtksourceview/language-specs/glsl.lang.h:7
 msgid "Reserved Keywords"
-msgstr "Izbirne ključne besede"
+msgstr "Zadržane ključne besede"
 
 #: ../gtksourceview/language-specs/gtk-doc.lang.h:2
 msgid "Deprecated"
-msgstr "Zastarelo"
+msgstr "Opuščeno"
 
 #: ../gtksourceview/language-specs/gtk-doc.lang.h:4
 msgid "Function Name"
@@ -2011,7 +2013,7 @@ msgstr "Ime funkcije"
 
 #: ../gtksourceview/language-specs/gtk-doc.lang.h:5
 msgid "Inline Documentation Section"
-msgstr "Medvrstično območje dokumentacije"
+msgstr "Medvrstični odsek dokumentacije"
 
 #: ../gtksourceview/language-specs/gtk-doc.lang.h:7
 msgid "Parameter"
@@ -2031,7 +2033,7 @@ msgstr "Ime signala"
 
 #: ../gtksourceview/language-specs/gtk-doc.lang.h:11
 msgid "Since"
-msgstr "Odkar"
+msgstr "Od"
 
 #: ../gtksourceview/language-specs/gtk-doc.lang.h:12
 #: ../gtksourceview/language-specs/verilog.lang.h:8
@@ -2094,15 +2096,15 @@ msgstr "Lastnost glave"
 
 #: ../gtksourceview/language-specs/haddock.lang.h:10
 msgid "Hyperlinked Identifier"
-msgstr "Določilo hiper-povezave"
+msgstr "Določilnik hiperpovezave"
 
 #: ../gtksourceview/language-specs/haddock.lang.h:11
 msgid "Hyperlinked Module Name"
-msgstr "Ime hiper-povezane enote"
+msgstr "Ime hiperpovezanega modula"
 
 #: ../gtksourceview/language-specs/haddock.lang.h:12
 msgid "Inline Haddock Section"
-msgstr "medvrstični Haddock predel"
+msgstr "Medvrstični odsek Haddock"
 
 #: ../gtksourceview/language-specs/haddock.lang.h:13
 msgid "Itemized list"
@@ -2114,7 +2116,7 @@ msgstr "Monospace"
 
 #: ../gtksourceview/language-specs/haddock.lang.h:16
 msgid "URL"
-msgstr "URL"
+msgstr "Naslov URL"
 
 #: ../gtksourceview/language-specs/haskell.lang.h:6
 msgid "Float"
@@ -2126,7 +2128,7 @@ msgstr "Haskell"
 
 #: ../gtksourceview/language-specs/haskell.lang.h:8
 msgid "Hex"
-msgstr "Hex"
+msgstr "Šestnajstiško"
 
 #: ../gtksourceview/language-specs/haskell.lang.h:10
 msgid "Octal"
@@ -2180,7 +2182,7 @@ msgstr "Zunanje"
 #: ../gtksourceview/language-specs/javascript.lang.h:8
 #: ../gtksourceview/language-specs/ooc.lang.h:10
 msgid "Future Reserved Keywords"
-msgstr "Prihodnje rezervirane besede"
+msgstr "Prihodnje zadržane besede"
 
 #: ../gtksourceview/language-specs/java.lang.h:10
 msgid "Java"
@@ -2226,7 +2228,7 @@ msgstr "Vključi"
 
 #: ../gtksourceview/language-specs/latex.lang.h:4
 msgid "Inline Math Mode"
-msgstr "medvrstični matematični način"
+msgstr "Medvrstični matematični način"
 
 #: ../gtksourceview/language-specs/latex.lang.h:5
 msgid "LaTeX"
@@ -2260,7 +2262,7 @@ msgstr "Nična konstanta"
 
 #: ../gtksourceview/language-specs/lua.lang.h:8
 msgid "Reserved Identifier"
-msgstr "Rezervirano določilo"
+msgstr "Zadržan določilnik"
 
 #: ../gtksourceview/language-specs/m4.lang.h:1
 msgid "Autoconf Macro"
@@ -2268,7 +2270,7 @@ msgstr "Autoconf makro"
 
 #: ../gtksourceview/language-specs/m4.lang.h:2
 msgid "Obsolete Autoconf Macro"
-msgstr "Odvečni autoconf makro"
+msgstr "Zastarel autoconf makro"
 
 #: ../gtksourceview/language-specs/m4.lang.h:4
 msgid "m4"
@@ -2298,7 +2300,7 @@ msgstr "Makefile"
 #. the end of the line
 #: ../gtksourceview/language-specs/makefile.lang.h:7
 msgid "Trailing Tab"
-msgstr "Sledni zavihek"
+msgstr "Sledilni zavihek"
 
 #: ../gtksourceview/language-specs/makefile.lang.h:9
 msgid "command"
@@ -2316,7 +2318,7 @@ msgstr "ključna beseda"
 
 #: ../gtksourceview/language-specs/makefile.lang.h:12
 msgid "prereq"
-msgstr "prereq"
+msgstr "zahteva"
 
 #: ../gtksourceview/language-specs/makefile.lang.h:13
 msgid "targets"
@@ -2324,11 +2326,11 @@ msgstr "cilji"
 
 #: ../gtksourceview/language-specs/mallard.lang.h:1
 msgid "Block Elements"
-msgstr "Elementi bloka"
+msgstr "Bločni predmeti"
 
 #: ../gtksourceview/language-specs/mallard.lang.h:2
 msgid "Inline Elements"
-msgstr "Elementi besedila"
+msgstr "Medvrstični predmeti"
 
 #: ../gtksourceview/language-specs/mallard.lang.h:3
 msgid "Mallard"
@@ -2336,11 +2338,11 @@ msgstr "Mallard"
 
 #: ../gtksourceview/language-specs/mallard.lang.h:5
 msgid "Page Elements"
-msgstr "Elementi strani"
+msgstr "Predmeti strani"
 
 #: ../gtksourceview/language-specs/mallard.lang.h:6
 msgid "Section Elements"
-msgstr "Elemeni oddelka"
+msgstr "Predmeti odseka"
 
 #: ../gtksourceview/language-specs/msil.lang.h:1
 msgid "MSIL"
@@ -2360,7 +2362,7 @@ msgstr "Predmetni-C"
 
 #: ../gtksourceview/language-specs/oblivion.xml.h:1
 msgid "Dark color scheme using the Tango color palette"
-msgstr "Temna barvna shema s tango barvno paleto"
+msgstr "Temna barvna shema z barvno paleto tango"
 
 #: ../gtksourceview/language-specs/oblivion.xml.h:2
 msgid "Oblivion"
@@ -2384,11 +2386,11 @@ msgstr "OCL"
 
 #: ../gtksourceview/language-specs/ocl.lang.h:5
 msgid "Operation operator"
-msgstr "Operator opravil"
+msgstr "Operator opravila"
 
 #: ../gtksourceview/language-specs/ocl.lang.h:8
 msgid "Type Operators"
-msgstr "Operatorji vrste"
+msgstr "Vrstni operatorji"
 
 #: ../gtksourceview/language-specs/octave.lang.h:8
 msgid "Octave"
@@ -2408,7 +2410,7 @@ msgstr "Nadzor"
 
 #: ../gtksourceview/language-specs/perl.lang.h:5
 msgid "File Descriptor"
-msgstr "Opisovalnik datotek"
+msgstr "Opisnik datoteke"
 
 #: ../gtksourceview/language-specs/perl.lang.h:6
 #: ../gtksourceview/language-specs/php.lang.h:9
@@ -2421,7 +2423,7 @@ msgstr "Heredoc"
 #: ../gtksourceview/language-specs/ruby.lang.h:11
 #: ../gtksourceview/language-specs/sh.lang.h:4
 msgid "Heredoc Bound"
-msgstr "Heredoc"
+msgstr "Vez Heredoc"
 
 #: ../gtksourceview/language-specs/perl.lang.h:8
 msgid "Include Statement"
@@ -2437,7 +2439,7 @@ msgstr "POD"
 
 #: ../gtksourceview/language-specs/perl.lang.h:13
 msgid "POD Escape"
-msgstr "POD Escape"
+msgstr "POD Izhod"
 
 #: ../gtksourceview/language-specs/perl.lang.h:14
 msgid "POD heading"
@@ -2494,7 +2496,7 @@ msgstr "Format"
 
 #: ../gtksourceview/language-specs/python.lang.h:12
 msgid "Module Handler"
-msgstr "Upravljalnik modulov"
+msgstr "Ročnik modulov"
 
 #: ../gtksourceview/language-specs/python.lang.h:14
 msgid "Python"
@@ -2502,15 +2504,15 @@ msgstr "Python"
 
 #: ../gtksourceview/language-specs/python.lang.h:18
 msgid "string-conversion"
-msgstr "pretvorba-niti"
+msgstr "pretvorba-nizov"
 
 #: ../gtksourceview/language-specs/R.lang.h:1
 msgid "Assignment Operator"
-msgstr "Dodeljen operator"
+msgstr "Operator naloge"
 
 #: ../gtksourceview/language-specs/R.lang.h:3
 msgid "Delimiter"
-msgstr "Ločevalo"
+msgstr "Ločilnik"
 
 #: ../gtksourceview/language-specs/R.lang.h:5
 msgid "Integer Number"
@@ -2522,7 +2524,7 @@ msgstr "R"
 
 #: ../gtksourceview/language-specs/R.lang.h:8
 msgid "Reserved Class"
-msgstr "Rezerviran razred"
+msgstr "Zadržan razred"
 
 #: ../gtksourceview/language-specs/R.lang.h:10
 msgid "Special Constant"
@@ -2546,7 +2548,7 @@ msgstr "Makro imenika"
 
 #: ../gtksourceview/language-specs/rpmspec.lang.h:6
 msgid "Email"
-msgstr "e-Pošta"
+msgstr "Elektronska pošta"
 
 #: ../gtksourceview/language-specs/rpmspec.lang.h:7
 msgid "Flow Conditional"
@@ -2580,7 +2582,7 @@ msgstr "Makro določila"
 
 #: ../gtksourceview/language-specs/rpmspec.lang.h:15
 msgid "Switch"
-msgstr "Preklopi"
+msgstr "Stikalo"
 
 #: ../gtksourceview/language-specs/ruby.lang.h:1
 msgid "Attribute Definition"
@@ -2588,7 +2590,7 @@ msgstr "Določilo atributa"
 
 #: ../gtksourceview/language-specs/ruby.lang.h:13
 msgid "Module handler"
-msgstr "Upravljalnik modulov"
+msgstr "Ročnik modulov"
 
 #: ../gtksourceview/language-specs/ruby.lang.h:15
 msgid "Numeric literal"
@@ -2665,7 +2667,7 @@ msgstr "Ime možnosti"
 
 #: ../gtksourceview/language-specs/t2t.lang.h:10
 msgid "Section 1"
-msgstr "Oddelek 1"
+msgstr "Odsek 1"
 
 #: ../gtksourceview/language-specs/t2t.lang.h:11
 msgid "Section 2"
@@ -2673,7 +2675,7 @@ msgstr "Odsek 2"
 
 #: ../gtksourceview/language-specs/t2t.lang.h:12
 msgid "Section 3"
-msgstr "Oddelek 3"
+msgstr "Odsek 3"
 
 #: ../gtksourceview/language-specs/t2t.lang.h:13
 msgid "Section 4"
@@ -2689,11 +2691,11 @@ msgstr "Text2Tags"
 
 #: ../gtksourceview/language-specs/t2t.lang.h:17
 msgid "Verbatim Block"
-msgstr "Verbatim blok"
+msgstr "Blok Verbatim"
 
 #: ../gtksourceview/language-specs/tango.xml.h:1
 msgid "Color scheme using Tango color palette"
-msgstr "Barvna shema s tango barvno paleto"
+msgstr "Barvna shema z barvno paleto tango"
 
 #: ../gtksourceview/language-specs/tango.xml.h:2
 msgid "Tango"
@@ -2729,7 +2731,7 @@ msgstr "VB.NET"
 
 #: ../gtksourceview/language-specs/verilog.lang.h:5
 msgid "Gate"
-msgstr "Vrata"
+msgstr "Gate"
 
 #: ../gtksourceview/language-specs/verilog.lang.h:9
 msgid "Verilog"
@@ -2753,7 +2755,7 @@ msgstr "DOCTYPE"
 
 #: ../gtksourceview/language-specs/xml.lang.h:6
 msgid "Element name"
-msgstr "Ime elementa"
+msgstr "Ime predmeta"
 
 #: ../gtksourceview/language-specs/xml.lang.h:7
 msgid "Entity"
@@ -2769,7 +2771,7 @@ msgstr "XML"
 
 #: ../gtksourceview/language-specs/xslt.lang.h:1
 msgid "Element"
-msgstr "Element"
+msgstr "Predmet"
 
 #: ../gtksourceview/language-specs/xslt.lang.h:4
 msgid "XSLT"
@@ -2786,15 +2788,4 @@ msgstr "pravilo"
 #: ../gtksourceview/language-specs/yacc.lang.h:6
 msgid "token-type"
 msgstr "vrsta-vsebine"
-
-#~ msgid "The GtkSourceView"
-#~ msgstr "GtkSourceView"
-#~ msgid "assignment-lhs"
-#~ msgstr "naloga-lhs"
-#~ msgid "assignment-rhs"
-#~ msgstr "naloga-rhs"
-#~ msgid "Inline C Code"
-#~ msgstr "medvrstična koda C"
-#~ msgid "grammar"
-#~ msgstr "slovnica"
 
