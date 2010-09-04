@@ -72,6 +72,7 @@ LANGUAGES =			\
 	sh.lang			\
 	sparql.lang		\
 	sql.lang		\
+	systemverilog.lang	\
 	t2t.lang		\
 	tcl.lang		\
 	texinfo.lang		\
