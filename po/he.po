@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview.HEAD.he\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-06-26 18:25+0300\n"
-"PO-Revision-Date: 2010-06-26 18:27+0200\n"
+"POT-Creation-Date: 2010-09-05 19:00+0300\n"
+"PO-Revision-Date: 2010-09-05 19:02+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <he@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -26,7 +26,7 @@ msgstr "לאחר"
 #: ../data/glade/gtksourceview.xml.in.h:2
 #: ../gtksourceview/gtksourcecompletion.c:649
 msgid "All"
-msgstr "הכל"
+msgstr "הכול"
 
 #: ../data/glade/gtksourceview.xml.in.h:3
 msgid "Always"
@@ -179,6 +179,7 @@ msgstr "מספר עשרוני"
 #: ../data/language-specs/php.lang.h:7 ../data/language-specs/prolog.lang.h:3
 #: ../data/language-specs/python.lang.h:8 ../data/language-specs/ruby.lang.h:8
 #: ../data/language-specs/texinfo.lang.h:2
+#: ../data/language-specs/verilog.lang.h:5
 msgid "Escaped Character"
 msgstr "Escaped Character"
 
@@ -211,9 +212,10 @@ msgstr "Escaped Character"
 #: ../data/language-specs/ruby.lang.h:12
 #: ../data/language-specs/scheme.lang.h:4 ../data/language-specs/sh.lang.h:5
 #: ../data/language-specs/sparql.lang.h:7 ../data/language-specs/sql.lang.h:6
+#: ../data/language-specs/systemverilog.lang.h:2
 #: ../data/language-specs/tcl.lang.h:1 ../data/language-specs/texinfo.lang.h:6
 #: ../data/language-specs/vala.lang.h:7 ../data/language-specs/vbnet.lang.h:4
-#: ../data/language-specs/verilog.lang.h:6
+#: ../data/language-specs/verilog.lang.h:9
 #: ../data/language-specs/vhdl.lang.h:5
 msgid "Keyword"
 msgstr "מילת מפתח"
@@ -234,7 +236,9 @@ msgstr "Preprocessor"
 
 #: ../data/language-specs/ada.lang.h:10
 #: ../data/language-specs/csharp.lang.h:13
-#: ../data/language-specs/vala.lang.h:9 ../data/language-specs/vhdl.lang.h:7
+#: ../data/language-specs/vala.lang.h:9
+#: ../data/language-specs/verilog.lang.h:11
+#: ../data/language-specs/vhdl.lang.h:7
 msgid "Real number"
 msgstr "מספר ממשי"
 
@@ -260,8 +264,9 @@ msgstr "מספר ממשי"
 #: ../data/language-specs/prolog.lang.h:8
 #: ../data/language-specs/scheme.lang.h:6
 #: ../data/language-specs/sparql.lang.h:14 ../data/language-specs/sql.lang.h:9
+#: ../data/language-specs/systemverilog.lang.h:3
 #: ../data/language-specs/vala.lang.h:10 ../data/language-specs/vbnet.lang.h:6
-#: ../data/language-specs/verilog.lang.h:7
+#: ../data/language-specs/verilog.lang.h:12
 #: ../data/language-specs/vhdl.lang.h:8
 msgid "Sources"
 msgstr "מקורות"
@@ -303,6 +308,7 @@ msgstr "Storage Class"
 #: ../data/language-specs/sql.lang.h:10
 #: ../data/language-specs/texinfo.lang.h:10
 #: ../data/language-specs/vala.lang.h:11 ../data/language-specs/vbnet.lang.h:8
+#: ../data/language-specs/verilog.lang.h:13
 #: ../data/language-specs/vhdl.lang.h:9
 msgid "String"
 msgstr "מחרוזת"
@@ -985,6 +991,7 @@ msgstr "מספר שלם בבסיס N"
 
 #: ../data/language-specs/erlang.lang.h:5
 #: ../data/language-specs/forth.lang.h:2
+#: ../data/language-specs/systemverilog.lang.h:1
 #: ../data/language-specs/verilog.lang.h:3
 msgid "Compiler Directive"
 msgstr "Compiler Directive"
@@ -1169,7 +1176,8 @@ msgid "Since"
 msgstr "Since"
 
 #: ../data/language-specs/gtk-doc.lang.h:12
-#: ../data/language-specs/verilog.lang.h:8
+#: ../data/language-specs/systemverilog.lang.h:6
+#: ../data/language-specs/verilog.lang.h:14
 #: ../data/language-specs/vhdl.lang.h:10
 msgid "Type"
 msgstr "Type"
@@ -1621,7 +1629,7 @@ msgstr "Assignment Operator"
 msgid "Delimiter"
 msgstr "Delimiter"
 
-#: ../data/language-specs/R.lang.h:5
+#: ../data/language-specs/R.lang.h:5 ../data/language-specs/verilog.lang.h:8
 msgid "Integer Number"
 msgstr "Integer Number"
 
@@ -1763,6 +1771,14 @@ msgstr "No idea what it is"
 msgid "SQL"
 msgstr "SQL"
 
+#: ../data/language-specs/systemverilog.lang.h:4
+msgid "System Task"
+msgstr "משימת מערכת"
+
+#: ../data/language-specs/systemverilog.lang.h:5
+msgid "SystemVerilog"
+msgstr "SystemVerilog"
+
 #: ../data/language-specs/t2t.lang.h:2 ../gtksourceview/gtksourcestyle.c:104
 #: ../gtksourceview/gtksourcestyle.c:105
 msgid "Bold"
@@ -1837,11 +1853,19 @@ msgstr "Vala"
 msgid "VB.NET"
 msgstr "VB.NET"
 
-#: ../data/language-specs/verilog.lang.h:5
+#: ../data/language-specs/verilog.lang.h:6
 msgid "Gate"
 msgstr "Gate"
 
-#: ../data/language-specs/verilog.lang.h:9
+#: ../data/language-specs/verilog.lang.h:7
+msgid "IEEE System Task"
+msgstr "משימת מערכת IEEE"
+
+#: ../data/language-specs/verilog.lang.h:10
+msgid "LRM Additional System Task"
+msgstr "משימת מערכת LRM נוספת"
+
+#: ../data/language-specs/verilog.lang.h:15
 msgid "Verilog"
 msgstr "Verilog"
 
@@ -2234,7 +2258,7 @@ msgstr "מידע"
 msgid "Info to be shown for this item"
 msgstr "מידע להצגה עבור פריט זה"
 
-#: ../gtksourceview/gtksourcecontextengine.c:2971
+#: ../gtksourceview/gtksourcecontextengine.c:2968
 msgid "using \\C is not supported in language definitions"
 msgstr "using \\C is not supported in language definitions"
 
@@ -2242,7 +2266,7 @@ msgstr "using \\C is not supported in language definitions"
 #. * named sub-patterns with the same name or if resulting regex is
 #. * too long. In this case fixing lang file helps (e.g. renaming
 #. * subpatterns, making huge keywords use bigger prefixes, etc.)
-#: ../gtksourceview/gtksourcecontextengine.c:3595
+#: ../gtksourceview/gtksourcecontextengine.c:3592
 #, c-format
 msgid ""
 "Cannot create a regex for all the transitions, the syntax highlighting "
@@ -2253,25 +2277,25 @@ msgstr ""
 "process will be slower than usual.\n"
 "The error was: %s"
 
-#: ../gtksourceview/gtksourcecontextengine.c:4930
+#: ../gtksourceview/gtksourcecontextengine.c:4927
 msgid ""
 "Highlighting a single line took too much time, syntax highlighting will be "
 "disabled"
 msgstr "הדגשת שורה אחת לקחה זמן כל כך רב, הדגשת תחביר תבוטל"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6182
+#: ../gtksourceview/gtksourcecontextengine.c:6180
 #, c-format
 msgid "context '%s' cannot contain a \\%%{...@start} command"
 msgstr "context '%s' cannot contain a \\%%{...@start} command"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6344
-#: ../gtksourceview/gtksourcecontextengine.c:6433
+#: ../gtksourceview/gtksourcecontextengine.c:6342
+#: ../gtksourceview/gtksourcecontextengine.c:6431
 #, c-format
 msgid "duplicated context id '%s'"
 msgstr "duplicated context id '%s'"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6548
-#: ../gtksourceview/gtksourcecontextengine.c:6608
+#: ../gtksourceview/gtksourcecontextengine.c:6546
+#: ../gtksourceview/gtksourcecontextengine.c:6606
 #, c-format
 msgid ""
 "style override used with wildcard context reference in language '%s' in ref "
@@ -2280,18 +2304,18 @@ msgstr ""
 "style override used with wildcard context reference in language '%s' in ref "
 "'%s'"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6622
+#: ../gtksourceview/gtksourcecontextengine.c:6620
 #, c-format
 msgid "invalid context reference '%s'"
 msgstr "invalid context reference '%s'"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6641
-#: ../gtksourceview/gtksourcecontextengine.c:6651
+#: ../gtksourceview/gtksourcecontextengine.c:6639
+#: ../gtksourceview/gtksourcecontextengine.c:6649
 #, c-format
 msgid "unknown context '%s'"
 msgstr "unknown context '%s'"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6751
+#: ../gtksourceview/gtksourcecontextengine.c:6749
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "Missing main language definition (id = \"%s\".)"
