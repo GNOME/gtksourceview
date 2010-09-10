@@ -49,7 +49,7 @@
  * @See_also: #GtkTextView,#GtkSourceBuffer
  *
  * GtkSourceView is the main object of the GtkSourceView library. It provides
- * a text view which syntax highlighting, undo/redo and text marks. Use a 
+ * a text view which syntax highlighting, undo/redo and text marks. Use a
  * #GtkSourceBuffer to display text with a GtkSourceView.
  */
 
@@ -151,11 +151,11 @@ struct _GtkSourceViewPrivate
 
 	GtkCellRenderer *line_renderer;
 	GtkCellRenderer *marks_renderer;
-	
+
 	GdkColor         current_line_color;
-	
+
 	GtkSourceCompletion	*completion;
-	
+
 	guint            current_line_color_set : 1;
 	guint            destroy_has_run : 1;
 };
@@ -186,14 +186,14 @@ typedef enum
 typedef struct
 {
 	gint priority;
-	
+
 	IconType icon_type;
 	GdkPixbuf *icon_pixbuf;
 	gchar *icon_stock;
 	gchar *icon_name;
-	
+
 	GdkPixbuf *cached_icon;
-	
+
 	GtkSourceViewMarkTooltipFunc tooltip_func;
 	gpointer tooltip_data;
 	GDestroyNotify tooltip_data_notify;
@@ -505,7 +505,7 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	 * GtkSourceView::show-completion:
 	 * @view: The #GtkSourceView who emits the signal
 	 *
-	 * The ::show-completion signal is a keybinding signal which gets 
+	 * The ::show-completion signal is a keybinding signal which gets
 	 * emitted when the user initiates a completion in default mode.
 	 *
 	 * Applications should not connect to it, but may emit it with
@@ -530,7 +530,7 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	 * @iter: a #GtkTextIter
 	 * @event: the #GdkEvent that activated the event
 	 *
-	 * Emitted when a line mark has been activated (for instance when there 
+	 * Emitted when a line mark has been activated (for instance when there
 	 * was a button press in the line marks gutter). You can use @iter to
 	 * determine on which line the activation took place.
 	 */
@@ -628,147 +628,147 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	binding_set = gtk_binding_set_by_class (klass);
 
 	gtk_binding_entry_add_signal (binding_set,
-				      GDK_z,
+				      GDK_KEY_z,
 				      GDK_CONTROL_MASK,
 				      "undo", 0);
 	gtk_binding_entry_add_signal (binding_set,
-				      GDK_z,
+				      GDK_KEY_z,
 				      GDK_CONTROL_MASK | GDK_SHIFT_MASK,
 				      "redo", 0);
 	gtk_binding_entry_add_signal (binding_set,
-				      GDK_F14,
+				      GDK_KEY_F14,
 				      0,
 				      "undo", 0);
 	gtk_binding_entry_add_signal (binding_set,
-				      GDK_space,
+				      GDK_KEY_space,
 				      GDK_CONTROL_MASK,
 				      "show-completion", 0);
 
 	gtk_binding_entry_add_signal (binding_set,
-				      GDK_Up,
+				      GDK_KEY_Up,
 				      GDK_MOD1_MASK,
 				      "move_lines", 2,
 				      G_TYPE_BOOLEAN, FALSE,
 				      G_TYPE_INT, -1);
 	gtk_binding_entry_add_signal (binding_set,
-				      GDK_KP_Up,
+				      GDK_KEY_KP_Up,
 				      GDK_MOD1_MASK,
 				      "move_lines", 2,
 				      G_TYPE_BOOLEAN, FALSE,
 				      G_TYPE_INT, -1);
 	gtk_binding_entry_add_signal (binding_set,
-				      GDK_Down,
-				      GDK_MOD1_MASK,
-				      "move_lines", 2,
-				      G_TYPE_BOOLEAN, FALSE,
-				      G_TYPE_INT, 1);
-	gtk_binding_entry_add_signal (binding_set,
-				      GDK_KP_Down,
+				      GDK_KEY_Down,
 				      GDK_MOD1_MASK,
 				      "move_lines", 2,
 				      G_TYPE_BOOLEAN, FALSE,
 				      G_TYPE_INT, 1);
-
 	gtk_binding_entry_add_signal (binding_set,
-				      GDK_Left,
+				      GDK_KEY_KP_Down,
 				      GDK_MOD1_MASK,
-				      "move_words", 1,
-				      G_TYPE_INT, -1);
-	gtk_binding_entry_add_signal (binding_set,
-				      GDK_KP_Left,
-				      GDK_MOD1_MASK,
-				      "move_words", 1,
-				      G_TYPE_INT, -1);
-	gtk_binding_entry_add_signal (binding_set,
-				      GDK_Right,
-				      GDK_MOD1_MASK,
-				      "move_words", 1,
-				      G_TYPE_INT, 1);
-	gtk_binding_entry_add_signal (binding_set,
-				      GDK_KP_Right,
-				      GDK_MOD1_MASK,
-				      "move_words", 1,
+				      "move_lines", 2,
+				      G_TYPE_BOOLEAN, FALSE,
 				      G_TYPE_INT, 1);
 
 	gtk_binding_entry_add_signal (binding_set,
-				      GDK_Up,
+				      GDK_KEY_Left,
+				      GDK_MOD1_MASK,
+				      "move_words", 1,
+				      G_TYPE_INT, -1);
+	gtk_binding_entry_add_signal (binding_set,
+				      GDK_KEY_KP_Left,
+				      GDK_MOD1_MASK,
+				      "move_words", 1,
+				      G_TYPE_INT, -1);
+	gtk_binding_entry_add_signal (binding_set,
+				      GDK_KEY_Right,
+				      GDK_MOD1_MASK,
+				      "move_words", 1,
+				      G_TYPE_INT, 1);
+	gtk_binding_entry_add_signal (binding_set,
+				      GDK_KEY_KP_Right,
+				      GDK_MOD1_MASK,
+				      "move_words", 1,
+				      G_TYPE_INT, 1);
+
+	gtk_binding_entry_add_signal (binding_set,
+				      GDK_KEY_Up,
 				      GDK_MOD1_MASK | GDK_SHIFT_MASK,
 				      "move_viewport", 2,
 				      GTK_TYPE_SCROLL_STEP, GTK_SCROLL_STEPS,
 				      G_TYPE_INT, -1);
 
 	gtk_binding_entry_add_signal (binding_set,
-				      GDK_KP_Up,
+				      GDK_KEY_KP_Up,
 				      GDK_MOD1_MASK | GDK_SHIFT_MASK,
 				      "move_viewport", 2,
 				      GTK_TYPE_SCROLL_STEP, GTK_SCROLL_STEPS,
 				      G_TYPE_INT, -1);
 
 	gtk_binding_entry_add_signal (binding_set,
-				      GDK_Down,
+				      GDK_KEY_Down,
 				      GDK_MOD1_MASK | GDK_SHIFT_MASK,
 				      "move_viewport", 2,
 				      GTK_TYPE_SCROLL_STEP, GTK_SCROLL_STEPS,
 				      G_TYPE_INT, 1);
 
 	gtk_binding_entry_add_signal (binding_set,
-				      GDK_KP_Down,
+				      GDK_KEY_KP_Down,
 				      GDK_MOD1_MASK | GDK_SHIFT_MASK,
 				      "move_viewport", 2,
 				      GTK_TYPE_SCROLL_STEP, GTK_SCROLL_STEPS,
 				      G_TYPE_INT, 1);
 
 	gtk_binding_entry_add_signal (binding_set,
-				      GDK_Page_Up,
+				      GDK_KEY_Page_Up,
 				      GDK_MOD1_MASK | GDK_SHIFT_MASK,
 				      "move_viewport", 2,
 				      GTK_TYPE_SCROLL_STEP, GTK_SCROLL_PAGES,
 				      G_TYPE_INT, -1);
 
 	gtk_binding_entry_add_signal (binding_set,
-				      GDK_KP_Page_Up,
+				      GDK_KEY_KP_Page_Up,
 				      GDK_MOD1_MASK | GDK_SHIFT_MASK,
 				      "move_viewport", 2,
 				      GTK_TYPE_SCROLL_STEP, GTK_SCROLL_PAGES,
 				      G_TYPE_INT, -1);
 
 	gtk_binding_entry_add_signal (binding_set,
-				      GDK_Page_Down,
+				      GDK_KEY_Page_Down,
 				      GDK_MOD1_MASK | GDK_SHIFT_MASK,
 				      "move_viewport", 2,
 				      GTK_TYPE_SCROLL_STEP, GTK_SCROLL_PAGES,
 				      G_TYPE_INT, 1);
 
 	gtk_binding_entry_add_signal (binding_set,
-				      GDK_KP_Page_Down,
+				      GDK_KEY_KP_Page_Down,
 				      GDK_MOD1_MASK | GDK_SHIFT_MASK,
 				      "move_viewport", 2,
 				      GTK_TYPE_SCROLL_STEP, GTK_SCROLL_PAGES,
 				      G_TYPE_INT, 1);
 
 	gtk_binding_entry_add_signal (binding_set,
-				      GDK_Home,
+				      GDK_KEY_Home,
 				      GDK_MOD1_MASK | GDK_SHIFT_MASK,
 				      "move_viewport", 2,
 				      GTK_TYPE_SCROLL_STEP, GTK_SCROLL_ENDS,
 				      G_TYPE_INT, -1);
 
 	gtk_binding_entry_add_signal (binding_set,
-				      GDK_KP_Home,
+				      GDK_KEY_KP_Home,
 				      GDK_MOD1_MASK | GDK_SHIFT_MASK,
 				      "move_viewport", 2,
 				      GTK_TYPE_SCROLL_STEP, GTK_SCROLL_ENDS,
 				      G_TYPE_INT, -1);
 
 	gtk_binding_entry_add_signal (binding_set,
-				      GDK_End,
+				      GDK_KEY_End,
 				      GDK_MOD1_MASK | GDK_SHIFT_MASK,
 				      "move_viewport", 2,
 				      GTK_TYPE_SCROLL_STEP, GTK_SCROLL_ENDS,
 				      G_TYPE_INT, 1);
 
 	gtk_binding_entry_add_signal (binding_set,
-				      GDK_KP_End,
+				      GDK_KEY_KP_End,
 				      GDK_MOD1_MASK | GDK_SHIFT_MASK,
 				      "move_viewport", 2,
 				      GTK_TYPE_SCROLL_STEP, GTK_SCROLL_ENDS,
@@ -993,26 +993,26 @@ get_icon_from_stock (GtkSourceView *view,
 {
 	gchar *sizename;
 	GtkIconSize iconsize;
-	
+
 	/* Check special icon size */
 	sizename = g_strdup_printf ("GtkSourceMarkCategoryIcon%d", size);
 	iconsize = gtk_icon_size_from_name (sizename);
-	
+
 	if (iconsize == GTK_ICON_SIZE_INVALID)
 	{
 		iconsize = gtk_icon_size_register (sizename, size, size);
 	}
-	
+
 	g_free (sizename);
-	
+
 	if (iconsize == GTK_ICON_SIZE_INVALID)
 	{
 		return NULL;
 	}
-	
-	return gtk_widget_render_icon (GTK_WIDGET (view), 
-	                               stock_id, 
-	                               iconsize, 
+
+	return gtk_widget_render_icon (GTK_WIDGET (view),
+	                               stock_id,
+	                               iconsize,
 	                               NULL);
 }
 
@@ -1022,13 +1022,13 @@ get_icon_from_name (GtkSourceView *view,
                     gint           size)
 {
 	GtkIconTheme *theme;
-	
+
 	theme = gtk_icon_theme_get_for_screen (gtk_widget_get_screen (GTK_WIDGET (view)));
-	
+
 	return gtk_icon_theme_load_icon (theme,
-	                                 name, 
+	                                 name,
 	                                 size,
-	                                 GTK_ICON_LOOKUP_USE_BUILTIN | 
+	                                 GTK_ICON_LOOKUP_USE_BUILTIN |
 	                                 GTK_ICON_LOOKUP_FORCE_SIZE,
 	                                 NULL);
 }
@@ -1049,24 +1049,24 @@ get_mark_category_pixbuf (GtkSourceView *view,
                           gint           size)
 {
 	MarkCategory *cat;
-	
+
 	cat = g_hash_table_lookup (view->priv->mark_categories, category);
-	
+
 	if (cat == NULL)
 	{
 		return NULL;
 	}
-	
-	if (cat->cached_icon && 
+
+	if (cat->cached_icon &&
 	    (gdk_pixbuf_get_height (cat->cached_icon) == size ||
 	     gdk_pixbuf_get_width (cat->cached_icon) == size))
 	{
 		return cat->cached_icon;
 	}
-	
+
 	/* Regenerate icon */
 	remove_cached_category_icon (cat);
-	
+
 	switch (cat->icon_type)
 	{
 		case ICON_TYPE_NONE:
@@ -1076,7 +1076,7 @@ get_mark_category_pixbuf (GtkSourceView *view,
 			{
 				return NULL;
 			}
-			
+
 			if (gdk_pixbuf_get_width (cat->icon_pixbuf) <= size &&
 			    gdk_pixbuf_get_height (cat->icon_pixbuf) <= size)
 			{
@@ -1173,15 +1173,15 @@ measure_line_height (GtkSourceView *view)
 {
 	PangoLayout *layout;
 	gint height = 12;
-	
+
 	layout = gtk_widget_create_pango_layout (GTK_WIDGET (view), "QWERTY");
-	
+
 	if (layout)
 	{
 		pango_layout_get_pixel_size (layout, NULL, &height);
 		g_object_unref (layout);
 	}
-	
+
 	return height - 2;
 }
 
@@ -1350,9 +1350,9 @@ marks_renderer_size_func (GtkSourceGutter *gutter,
 {
 	gint size;
 	GdkPixbuf *pixbuf;
-	
+
 	size = measure_line_height (view);
-	
+
 	pixbuf = gdk_pixbuf_new (GDK_COLORSPACE_RGB,
 	                         TRUE,
 	                         8,
@@ -1364,7 +1364,7 @@ marks_renderer_size_func (GtkSourceGutter *gutter,
 	              "xpad", 2,
 	              "ypad", 1,
 	              NULL);
-	
+
 	g_object_unref (pixbuf);
 }
 
@@ -1427,7 +1427,7 @@ set_tooltip_widget_from_marks (GtkSourceView *view,
 
 		mark = marks->data;
 		category = gtk_source_mark_get_category (mark);
-		
+
 		cat = gtk_source_view_get_mark_category (view, mark);
 
 		if (cat != NULL && cat->tooltip_func != NULL)
@@ -1463,7 +1463,7 @@ set_tooltip_widget_from_marks (GtkSourceView *view,
 
 				gtk_misc_set_alignment (GTK_MISC (label), 0, 0);
 				gtk_widget_show (label);
-			
+
 				gtk_icon_size_lookup (GTK_ICON_SIZE_MENU, NULL, &size);
 				pixbuf = get_mark_category_pixbuf (view, category, size);
 
@@ -1506,7 +1506,7 @@ set_tooltip_widget_from_marks (GtkSourceView *view,
 						gtk_widget_destroy (align);
 					}
 
-					gtk_box_pack_start (GTK_BOX (hbox), 
+					gtk_box_pack_start (GTK_BOX (hbox),
 					                    image,
 					                    FALSE,
 					                    FALSE,
@@ -1518,11 +1518,11 @@ set_tooltip_widget_from_marks (GtkSourceView *view,
 				                  TRUE,
 				                  TRUE,
 				                  0);
-				
+
 				if (g_slist_length (marks) != 1)
 				{
 					GtkWidget *separator;
-					
+
 					separator = gtk_hseparator_new ();
 					gtk_widget_show (separator);
 					gtk_box_pack_start (GTK_BOX (vbox), separator,
@@ -1588,11 +1588,11 @@ init_left_gutter (GtkSourceView *view)
 
 	gutter = gtk_source_view_get_gutter (view, GTK_TEXT_WINDOW_LEFT);
 
-	gtk_source_gutter_insert (gutter, 
-	                          view->priv->line_renderer, 
+	gtk_source_gutter_insert (gutter,
+	                          view->priv->line_renderer,
 	                          GTK_SOURCE_VIEW_GUTTER_POSITION_LINES);
 
-	gtk_source_gutter_insert (gutter, 
+	gtk_source_gutter_insert (gutter,
 	                          view->priv->marks_renderer,
 	                          GTK_SOURCE_VIEW_GUTTER_POSITION_MARKS);
 
@@ -1616,13 +1616,13 @@ init_left_gutter (GtkSourceView *view)
 	                                      (GtkSourceGutterDataFunc)marks_renderer_data_func,
 	                                      view,
 	                                      NULL);
-	                                      
+
 	gtk_source_gutter_set_cell_size_func (gutter,
 	                                      view->priv->marks_renderer,
 	                                      (GtkSourceGutterSizeFunc)marks_renderer_size_func,
 	                                      view,
 	                                      NULL);
-	                                      
+
 	g_signal_connect (gutter,
 	                  "cell-activated",
 	                  G_CALLBACK (renderer_activated),
@@ -1958,24 +1958,24 @@ get_user_requested_providers (GtkSourceCompletion *completion)
 {
 	GList *item;
 	GList *ret = NULL;
-	
+
 	item = gtk_source_completion_get_providers (completion);
-	
+
 	while (item)
 	{
 		GtkSourceCompletionProvider *provider;
-		
+
 		provider = GTK_SOURCE_COMPLETION_PROVIDER (item->data);
-		
+
 		if (gtk_source_completion_provider_get_activation (provider) &
 		    GTK_SOURCE_COMPLETION_ACTIVATION_USER_REQUESTED)
 		{
 			ret = g_list_prepend (ret, provider);
 		}
-		
+
 		item = g_list_next (item);
 	}
-	
+
 	return g_list_reverse (ret);
 }
 
@@ -1985,19 +1985,19 @@ gtk_source_view_show_completion_real (GtkSourceView *view)
 	GtkSourceCompletion *completion;
 	GtkSourceCompletionContext *context;
 	GList *providers;
-	
+
 	completion = gtk_source_view_get_completion (view);
 	context = gtk_source_completion_create_context (completion, NULL);
-	
+
 	g_object_set (context,
 	              "activation",
 	              GTK_SOURCE_COMPLETION_ACTIVATION_USER_REQUESTED,
 	              NULL);
-	
+
 	providers = get_user_requested_providers (completion);
 
-	gtk_source_completion_show (completion, 
-	                            providers, 
+	gtk_source_completion_show (completion,
+	                            providers,
 	                            context);
 
 	g_list_free (providers);
@@ -2860,7 +2860,7 @@ draw_tabs_and_spaces (GtkSourceView  *view,
 			{
 				gtk_text_iter_backward_char (&s);
 			}
-			
+
 			get_leading_trailing (&s, &leading, &trailing);
 			continue;
 		}
@@ -2874,7 +2874,7 @@ draw_tabs_and_spaces (GtkSourceView  *view,
 		{
 			break;
 		}
-		
+
 		if (gtk_text_iter_starts_line (&s))
 		{
 			get_leading_trailing (&s, &leading, &trailing);
@@ -3432,20 +3432,20 @@ mark_category_free (MarkCategory *cat)
 	{
 		cat->tooltip_data_notify (cat->tooltip_data);
 	}
-	
+
 	if (cat->icon_pixbuf)
 	{
 		g_object_unref (cat->icon_pixbuf);
 	}
-	
+
 	if (cat->cached_icon)
 	{
 		g_object_unref (cat->cached_icon);
 	}
-	
+
 	g_free (cat->icon_stock);
 	g_free (cat->icon_name);
-	
+
 	g_slice_free (MarkCategory, cat);
 }
 
@@ -3510,14 +3510,14 @@ gtk_source_view_set_mark_category_icon_from_pixbuf (GtkSourceView  *view,
 		g_object_unref (cat->icon_pixbuf);
 		cat->icon_pixbuf = NULL;
 	}
-	
+
 	remove_cached_category_icon (cat);
 
 	if (pixbuf != NULL)
 	{
 		cat->icon_pixbuf = g_object_ref (pixbuf);
 	}
-	
+
 	cat->icon_type = ICON_TYPE_PIXBUF;
 
 	/* We may need to redraw the margin now */
@@ -3552,14 +3552,14 @@ gtk_source_view_set_mark_category_icon_from_icon_name (GtkSourceView  *view,
 		g_free (cat->icon_name);
 		cat->icon_name = NULL;
 	}
-	
+
 	remove_cached_category_icon (cat);
 
 	if (name != NULL)
 	{
 		cat->icon_name = g_strdup (name);
 	}
-	
+
 	cat->icon_type = ICON_TYPE_NAME;
 
 	/* We may need to redraw the margin now */
@@ -3594,14 +3594,14 @@ gtk_source_view_set_mark_category_icon_from_stock (GtkSourceView  *view,
 		g_free (cat->icon_stock);
 		cat->icon_stock = NULL;
 	}
-	
+
 	remove_cached_category_icon (cat);
 
 	if (stock_id != NULL)
 	{
 		cat->icon_stock = g_strdup (stock_id);
 	}
-	
+
 	cat->icon_type = ICON_TYPE_STOCK;
 
 	/* We may need to redraw the margin now */
@@ -3655,7 +3655,7 @@ set_mark_category_tooltip_func (GtkSourceView   *view,
  * Set a #GtkSourceViewMarkTooltipFunc used to set tooltip on marks from the
  * given mark @category.
  * If you also specified a function with
- * gtk_source_view_set_mark_category_tooltip_markup_func()  the markup 
+ * gtk_source_view_set_mark_category_tooltip_markup_func()  the markup
  * variant takes precedence.
  *
  * <informalexample><programlisting><![CDATA[
@@ -4474,7 +4474,7 @@ gtk_source_view_key_press_event (GtkWidget   *widget,
 	mark = gtk_text_buffer_get_insert (buf);
 	gtk_text_buffer_get_iter_at_mark (buf, &cur, mark);
 
-	if ((key == GDK_Return || key == GDK_KP_Enter) &&
+	if ((key == GDK_KEY_Return || key == GDK_KEY_KP_Enter) &&
 	    !(event->state & GDK_SHIFT_MASK) &&
 	    view->priv->auto_indent)
 	{
@@ -4515,7 +4515,7 @@ gtk_source_view_key_press_event (GtkWidget   *widget,
 	/* if tab or shift+tab:
 	 * with shift+tab key is GDK_ISO_Left_Tab (yay! on win32 and mac too!)
 	 */
-	if ((key == GDK_Tab || key == GDK_KP_Tab || key == GDK_ISO_Left_Tab) &&
+	if ((key == GDK_KEY_Tab || key == GDK_KEY_KP_Tab || key == GDK_KEY_ISO_Left_Tab) &&
 	    ((event->state & modifiers) == 0 ||
 	     (event->state & modifiers) == GDK_SHIFT_MASK) &&
 	    editable)
@@ -4987,8 +4987,8 @@ gtk_source_view_get_visual_column (GtkSourceView     *view,
 		{
 			++column;
 		}
-		
-		/* FIXME: this does not handle invisible text correctly, but 
+
+		/* FIXME: this does not handle invisible text correctly, but
                  * gtk_text_iter_forward_visible_cursor_position is too slow */
 		if (!gtk_text_iter_forward_char (&position))
 			break;
@@ -5219,7 +5219,7 @@ gtk_source_view_update_style_scheme (GtkSourceView *view)
 			view->priv->style_scheme_applied = FALSE;
 	}
 }
-							 
+
 /**
  * gtk_source_view_get_completion:
  * @view: a #GtkSourceView.
@@ -5232,13 +5232,13 @@ GtkSourceCompletion *
 gtk_source_view_get_completion (GtkSourceView *view)
 {
 	g_return_val_if_fail (GTK_IS_SOURCE_VIEW (view), NULL);
-	
+
 	if (view->priv->completion == NULL)
 	{
 		view->priv->completion = gtk_source_completion_new (view);
 		g_object_ref_sink (view->priv->completion);
 	}
-	
+
 	return view->priv->completion;
 }
 
@@ -5248,7 +5248,7 @@ gtk_source_view_get_completion (GtkSourceView *view)
  * @window_type: the gutter window type.
  *
  * Returns the #GtkSourceGutter object associated with @window_type for @view.
- * Only GTK_TEXT_WINDOW_LEFT and GTK_TEXT_WINDOW_RIGHT are supported, 
+ * Only GTK_TEXT_WINDOW_LEFT and GTK_TEXT_WINDOW_RIGHT are supported,
  * respectively corresponding to the left and right gutter. The line numbers
  * and mark category icons are rendered in the gutter corresponding to
  * GTK_TEXT_WINDOW_LEFT.
