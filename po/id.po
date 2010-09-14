@@ -10,7 +10,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&component=general\n"
 "POT-Creation-Date: 2010-09-05 16:01+0000\n"
-"PO-Revision-Date: 2010-09-13 10:42+0700\n"
+"PO-Revision-Date: 2010-09-14 19:27+0700\n"
 "Last-Translator: Andika Triwidada <andika@gmail.com>\n"
 "Language-Team: GNOME Indonesian Translation Team <gnome@i15n.org>\n"
 "MIME-Version: 1.0\n"
@@ -165,9 +165,8 @@ msgid "View"
 msgstr "Lihat"
 
 #: ../gtksourceview/gtksourcecompletion.c:2230
-#, fuzzy
 msgid "The GtkSourceView bound to the completion"
-msgstr "Obyek GtkSourceBuffer untuk di cetak"
+msgstr ""
 
 #: ../gtksourceview/gtksourcecompletion.c:2245
 msgid "Remember Info Visibility"
@@ -175,26 +174,26 @@ msgstr "Ingat Kenampakan Info"
 
 #: ../gtksourceview/gtksourcecompletion.c:2246
 msgid "Remember the last info window visibility state"
-msgstr ""
+msgstr "Ingat info terakhir keadaan kenampakan jendela"
 
 #: ../gtksourceview/gtksourcecompletion.c:2259
-#, fuzzy
 msgid "Select on Show"
-msgstr "Seksional"
+msgstr "Pilih saat Ditampilkan"
 
 #: ../gtksourceview/gtksourcecompletion.c:2260
 msgid "Select first proposal when completion is shown"
-msgstr ""
+msgstr "Pilih usulan pertama ketika pelengkapan ditampilkan"
 
 #: ../gtksourceview/gtksourcecompletion.c:2274
 #, fuzzy
 msgid "Show Headers"
-msgstr "Tampilkan Tanda Baris"
+msgstr "Tampilkan Header"
 
 #: ../gtksourceview/gtksourcecompletion.c:2275
 msgid ""
 "Show provider headers when proposals from multiple providers are available"
 msgstr ""
+"Tampilkan header penyedia ketika usulan dari berbagai penyedia tersedia"
 
 #: ../gtksourceview/gtksourcecompletion.c:2289
 msgid "Show Icons"
@@ -202,7 +201,7 @@ msgstr "Tampilkan Ikon"
 
 #: ../gtksourceview/gtksourcecompletion.c:2290
 msgid "Show provider and proposal icons in the completion popup"
-msgstr ""
+msgstr "Tampilkan ikon usulan dan penyedia pada popup pelengkapan"
 
 #: ../gtksourceview/gtksourcecompletion.c:2303
 msgid "Accelerators"
@@ -210,31 +209,31 @@ msgstr "Akselerator"
 
 #: ../gtksourceview/gtksourcecompletion.c:2304
 msgid "Number of proposal accelerators to show"
-msgstr ""
+msgstr "Cacah akselerator usulan yang ditampilkan"
 
 #: ../gtksourceview/gtksourcecompletion.c:2320
 msgid "Auto Complete Delay"
-msgstr ""
+msgstr "Tundaan Pelengkapan Otomatis"
 
 #: ../gtksourceview/gtksourcecompletion.c:2321
 msgid "Completion popup delay for interactive completion"
-msgstr ""
+msgstr "Tundaan popup pelengkapan bagi pelengkapan interaktif"
 
 #: ../gtksourceview/gtksourcecompletion.c:2336
 msgid "Provider Page Size"
-msgstr ""
+msgstr "Ukuran Halaman Penyedia"
 
 #: ../gtksourceview/gtksourcecompletion.c:2337
 msgid "Provider scrolling page size"
-msgstr ""
+msgstr "Ukuran halaman gulir penyedia"
 
 #: ../gtksourceview/gtksourcecompletion.c:2352
 msgid "Proposal Page Size"
-msgstr ""
+msgstr "Ukuran Halaman Usulan"
 
 #: ../gtksourceview/gtksourcecompletion.c:2353
 msgid "Proposal scrolling page size"
-msgstr ""
+msgstr "Ukuran halaman gulir usulan"
 
 #: ../gtksourceview/gtksourcecompletion.c:2691
 msgid "Provider"
@@ -243,7 +242,7 @@ msgstr "Penyedia"
 #: ../gtksourceview/gtksourcecompletioncontext.c:244
 #: ../gtksourceview/gtksourceview.c:324
 msgid "Completion"
-msgstr ""
+msgstr "Pelengkapan"
 
 #: ../gtksourceview/gtksourcecompletioncontext.c:245
 msgid "The completion object to which the context belongs"
@@ -256,7 +255,7 @@ msgstr "Iterator"
 
 #: ../gtksourceview/gtksourcecompletioncontext.c:259
 msgid "The GtkTextIter at which the completion was invoked"
-msgstr ""
+msgstr "GtkTextIter dimana pelengkapan dipanggil"
 
 #: ../gtksourceview/gtksourcecompletioncontext.c:271
 msgid "Activation"
@@ -264,12 +263,12 @@ msgstr "Aktivasi"
 
 #: ../gtksourceview/gtksourcecompletioncontext.c:272
 msgid "The type of activation"
-msgstr ""
+msgstr "Jenis aktivasi"
 
 #. Tooltip style
 #: ../gtksourceview/gtksourcecompletioninfo.c:174
 msgid "Completion Info"
-msgstr ""
+msgstr "Info Pelengkapan"
 
 #: ../gtksourceview/gtksourcecompletioninfo.c:342
 msgid "Maximum width"
@@ -289,19 +288,19 @@ msgstr "Tinggi maksimum yang diijinkan"
 
 #: ../gtksourceview/gtksourcecompletioninfo.c:363
 msgid "Shrink width"
-msgstr ""
+msgstr "Lebar pengerutan"
 
 #: ../gtksourceview/gtksourcecompletioninfo.c:364
 msgid "Whether the window should shrink width to fit the contents"
-msgstr ""
+msgstr "Apakah lebar jendela mesti dikerutkan agar pas dengan isi"
 
 #: ../gtksourceview/gtksourcecompletioninfo.c:371
 msgid "Shrink height"
-msgstr ""
+msgstr "Tinggi pengerutan"
 
 #: ../gtksourceview/gtksourcecompletioninfo.c:372
 msgid "Whether the window should shrink height to fit the contents"
-msgstr ""
+msgstr "Apakah tinggi jendela mesti dikerutkan agar pas dengan isi"
 
 #: ../gtksourceview/gtksourcecompletionitem.c:229
 msgid "Label"
@@ -309,7 +308,7 @@ msgstr "Label"
 
 #: ../gtksourceview/gtksourcecompletionitem.c:230
 msgid "Label to be shown for this item"
-msgstr ""
+msgstr "Label yang ditampilkan bagi butir ini"
 
 #: ../gtksourceview/gtksourcecompletionitem.c:242
 #: ../gtksourceview/language-specs/bibtex.lang.h:4
@@ -329,7 +328,7 @@ msgstr "Markup"
 
 #: ../gtksourceview/gtksourcecompletionitem.c:243
 msgid "Markup to be shown for this item"
-msgstr ""
+msgstr "Markup yang ditampilkan bagi butir ini"
 
 #: ../gtksourceview/gtksourcecompletionitem.c:255
 msgid "Text"
@@ -337,11 +336,11 @@ msgstr "Teks"
 
 #: ../gtksourceview/gtksourcecompletionitem.c:256
 msgid "Item text"
-msgstr ""
+msgstr "Teks butir"
 
 #: ../gtksourceview/gtksourcecompletionitem.c:269
 msgid "Icon to be shown for this item"
-msgstr ""
+msgstr "Ikon yang ditampilkan bagi butir ini"
 
 #: ../gtksourceview/gtksourcecompletionitem.c:281
 msgid "Info"
@@ -349,11 +348,11 @@ msgstr "Info"
 
 #: ../gtksourceview/gtksourcecompletionitem.c:282
 msgid "Info to be shown for this item"
-msgstr ""
+msgstr "Info yang ditampilkan bagi butir ini"
 
 #: ../gtksourceview/gtksourcecontextengine.c:2981
 msgid "using \\C is not supported in language definitions"
-msgstr ""
+msgstr "memakai \\C tak didukung pada definisi bahasa"
 
 #. regex_new could fail, for instance if there are different
 #. * named sub-patterns with the same name or if resulting regex is
@@ -376,13 +375,13 @@ msgstr ""
 #: ../gtksourceview/gtksourcecontextengine.c:6165
 #, c-format
 msgid "context '%s' cannot contain a \\%%{...@start} command"
-msgstr ""
+msgstr "konteks '%s' tak boleh memuat suatu perintah \\%%{...@start}"
 
 #: ../gtksourceview/gtksourcecontextengine.c:6327
 #: ../gtksourceview/gtksourcecontextengine.c:6416
 #, c-format
 msgid "duplicated context id '%s'"
-msgstr ""
+msgstr "id konteks '%s' duplikat"
 
 #: ../gtksourceview/gtksourcecontextengine.c:6531
 #: ../gtksourceview/gtksourcecontextengine.c:6591
@@ -395,22 +394,23 @@ msgstr ""
 #: ../gtksourceview/gtksourcecontextengine.c:6605
 #, c-format
 msgid "invalid context reference '%s'"
-msgstr ""
+msgstr "acuan konteks '%s' tak valid"
 
 #: ../gtksourceview/gtksourcecontextengine.c:6624
 #: ../gtksourceview/gtksourcecontextengine.c:6634
 #, c-format
 msgid "unknown context '%s'"
-msgstr ""
+msgstr "konteks '%s' tak dikenal"
 
 #: ../gtksourceview/gtksourcecontextengine.c:6734
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
-msgstr ""
+msgstr "Kehilangan definisi bahasa utama (id = \"%s\")."
 
 #: ../gtksourceview/gtksourcegutter.c:370
+#, fuzzy
 msgid "The gutters' GtkSourceView"
-msgstr ""
+msgstr "GtkSourceView gutter"
 
 #: ../gtksourceview/gtksourcegutter.c:382
 msgid "Window Type"
@@ -475,7 +475,7 @@ msgstr "Tersembunyi"
 
 #: ../gtksourceview/gtksourcelanguage.c:252
 msgid "Whether the language should be hidden from the user"
-msgstr ""
+msgstr "Apakah bahasa mesti disembunyikan dari pengguna"
 
 #: ../gtksourceview/gtksourcelanguagemanager.c:149
 msgid "Language specification directories"
@@ -493,17 +493,17 @@ msgstr "Id bahasa"
 
 #: ../gtksourceview/gtksourcelanguagemanager.c:160
 msgid "List of the ids of the available languages"
-msgstr ""
+msgstr "Daftar id dari bahasa yang tersedia"
 
 #: ../gtksourceview/gtksourcelanguage-parser-2.c:950
 #, c-format
 msgid "Unknown id '%s' in regex '%s'"
-msgstr ""
+msgstr "Id '%s' tak dikenal di regex '%s'"
 
 #: ../gtksourceview/gtksourcelanguage-parser-2.c:1178
 #, c-format
 msgid "in regex '%s': backreferences are not supported"
-msgstr ""
+msgstr "di regex '%s': acuan balik tak didukung"
 
 #: ../gtksourceview/gtksourcemark.c:140
 msgid "category"
@@ -518,9 +518,8 @@ msgid "Source Buffer"
 msgstr "Buffer Sumber"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:447
-#, fuzzy
 msgid "The GtkSourceBuffer object to print"
-msgstr "Obyek GtkSourceBuffer untuk di cetak"
+msgstr "Objek GtkSourceBuffer untuk dicetak"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:464
 #: ../gtksourceview/gtksourceview.c:362
@@ -530,19 +529,19 @@ msgstr "Lebar Tab"
 #: ../gtksourceview/gtksourceprintcompositor.c:465
 #: ../gtksourceview/gtksourceview.c:363
 msgid "Width of a tab character expressed in spaces"
-msgstr ""
+msgstr "Lebar karakter tab dinyatakan dalam spasi"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:485
+#, fuzzy
 msgid "Wrap Mode"
-msgstr ""
+msgstr "Mode Lipatan"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:486
-#, fuzzy
 msgid ""
 "Whether to wrap lines never, at word boundaries, or at character boundaries."
 msgstr ""
-"Menentukan apakah baris tidak pernah dipotong, atau dipotong pada batas "
-"kata, atau dipotong pada batas karakter"
+"Apakah baris tidak pernah dipotong, atau dipotong pada batas kata, atau "
+"dipotong pada batas karakter."
 
 #: ../gtksourceview/gtksourceprintcompositor.c:507
 msgid "Whether to print the document with highlighted syntax"
@@ -578,9 +577,8 @@ msgid "Body Font Name"
 msgstr "Nama Fonta Body"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:598
-#, fuzzy
 msgid "Name of the font to use for the text body (e.g. \"Monospace 10\")"
-msgstr "Huruf yang digunakan untuk teks dokumen (misalnya, \"Monospace 10\")"
+msgstr "Fonta yang digunakan untuk teks dokumen (misalnya, \"Monospace 10\")"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:621
 msgid "Line Numbers Font Name"
@@ -621,6 +619,8 @@ msgid ""
 "The number of pages in the document (-1 means the document has not been "
 "completely paginated)."
 msgstr ""
+"Cacah halaman di dokumen (-1 berarti dokumen belum ditata lengkap "
+"halamannya)."
 
 #: ../gtksourceview/gtksourcestyle.c:79
 msgid "Line background"
@@ -666,11 +666,11 @@ msgstr "Coret"
 
 #: ../gtksourceview/gtksourcestyle.c:135
 msgid "Line background set"
-msgstr ""
+msgstr "Latar belakang garis ditata"
 
 #: ../gtksourceview/gtksourcestyle.c:136
 msgid "Whether line background color is set"
-msgstr ""
+msgstr "Apakah warna latar belakang garis ditata"
 
 #: ../gtksourceview/gtksourcestyle.c:143
 msgid "Foreground set"
@@ -678,7 +678,7 @@ msgstr "Latar depan ditata"
 
 #: ../gtksourceview/gtksourcestyle.c:144
 msgid "Whether foreground color is set"
-msgstr ""
+msgstr "Apakah warna latar depan ditata"
 
 #: ../gtksourceview/gtksourcestyle.c:151
 msgid "Background set"
@@ -686,7 +686,7 @@ msgstr "Latar belakang ditata"
 
 #: ../gtksourceview/gtksourcestyle.c:152
 msgid "Whether background color is set"
-msgstr ""
+msgstr "Apakah warna latar belakang ditata"
 
 #: ../gtksourceview/gtksourcestyle.c:159
 msgid "Bold set"
@@ -694,7 +694,7 @@ msgstr "Huruf tebal ditata"
 
 #: ../gtksourceview/gtksourcestyle.c:160
 msgid "Whether bold attribute is set"
-msgstr ""
+msgstr "Apakah atribut huruf tebal ditata"
 
 #: ../gtksourceview/gtksourcestyle.c:167
 msgid "Italic set"
@@ -702,7 +702,7 @@ msgstr "Huruf miring ditata"
 
 #: ../gtksourceview/gtksourcestyle.c:168
 msgid "Whether italic attribute is set"
-msgstr ""
+msgstr "Apakah atribut huruf miring ditata"
 
 #: ../gtksourceview/gtksourcestyle.c:175
 msgid "Underline set"
@@ -710,7 +710,7 @@ msgstr "Garis bawah ditata"
 
 #: ../gtksourceview/gtksourcestyle.c:176
 msgid "Whether underline attribute is set"
-msgstr ""
+msgstr "Apakah atribut garis bawah ditata"
 
 #: ../gtksourceview/gtksourcestyle.c:183
 msgid "Strikethrough set"
@@ -718,7 +718,7 @@ msgstr "Huruf coret ditata"
 
 #: ../gtksourceview/gtksourcestyle.c:184
 msgid "Whether strikethrough attribute is set"
-msgstr ""
+msgstr "Apakah atribut pencoretan huruf ditata"
 
 #: ../gtksourceview/gtksourcestylescheme.c:186
 #: ../gtksourceview/gtksourcestylescheme.c:187
@@ -745,9 +745,8 @@ msgid "Style scheme search path"
 msgstr "Path pencarian skema gaya"
 
 #: ../gtksourceview/gtksourcestyleschememanager.c:152
-#, fuzzy
 msgid "List of directories and files where the style schemes are located"
-msgstr "Daftar direktori tempat lokasi file spesifikasi bahasa (.lang)"
+msgstr "Daftar direktori dan berkas tempat lokasi skema gaya"
 
 #: ../gtksourceview/gtksourcestyleschememanager.c:160
 msgid "Scheme ids"
@@ -755,7 +754,7 @@ msgstr "Id skema"
 
 #: ../gtksourceview/gtksourcestyleschememanager.c:161
 msgid "List of the ids of the available style schemes"
-msgstr ""
+msgstr "Daftar id dari skema gaya yang tersedia"
 
 #: ../gtksourceview/gtksourceundomanagerdefault.c:404
 msgid "Buffer"
@@ -763,11 +762,11 @@ msgstr "Penyangga"
 
 #: ../gtksourceview/gtksourceundomanagerdefault.c:405
 msgid "The text buffer to add undo support on"
-msgstr ""
+msgstr "Penyangga teks tempat menambah dukungan undo"
 
 #: ../gtksourceview/gtksourceview.c:325
 msgid "The completion object associated with the view"
-msgstr ""
+msgstr "Objek pelengkapan yang terkait dengan tilikan"
 
 #: ../gtksourceview/gtksourceview.c:337
 msgid "Show Line Numbers"
@@ -793,7 +792,7 @@ msgstr "Lebar Indentasi"
 
 #: ../gtksourceview/gtksourceview.c:378
 msgid "Number of spaces to use for each step of indent"
-msgstr ""
+msgstr "Cacah spasi yang dipakai bagi setiap langkah indentasi"
 
 #: ../gtksourceview/gtksourceview.c:387
 msgid "Auto Indentation"
@@ -820,7 +819,6 @@ msgid "Whether to display the right margin"
 msgstr "Apakah menampilkan batas kanan"
 
 #: ../gtksourceview/gtksourceview.c:421
-#, fuzzy
 msgid "Right Margin Position"
 msgstr "Posis Batas Kanan"
 
@@ -851,20 +849,19 @@ msgstr "Apakah menandai baris yang ada"
 
 #: ../gtksourceview/gtksourceview.c:457
 msgid "Indent on tab"
-msgstr ""
+msgstr "Indentasi pada tab"
 
 #: ../gtksourceview/gtksourceview.c:458
 msgid "Whether to indent the selected text when the tab key is pressed"
-msgstr ""
+msgstr "Apakah mengindentasi teks yang dipilih saat kunci tab ditekan"
 
 #: ../gtksourceview/gtksourceview.c:472
-#, fuzzy
 msgid "Draw Spaces"
 msgstr "Gambar Spasi"
 
 #: ../gtksourceview/gtksourceview.c:473
 msgid "Set if and how the spaces should be visualized"
-msgstr ""
+msgstr "Menata bila dan bagaimana spasi mesti divisualisasikan"
 
 #: ../gtksourceview/gtksourceview-i18n.c:74
 msgid "translator-credits"
@@ -1158,7 +1155,7 @@ msgstr "Sumber"
 #: ../gtksourceview/language-specs/ooc.lang.h:18
 #, fuzzy
 msgid "Storage Class"
-msgstr "Kelas Semu Selektor"
+msgstr "Kelas Penyimpanan"
 
 #. A string constant: "this is a string"
 #: ../gtksourceview/language-specs/ada.lang.h:13
@@ -1260,13 +1257,12 @@ msgstr "Operator"
 #: ../gtksourceview/language-specs/asp.lang.h:12
 #: ../gtksourceview/language-specs/def.lang.h:53
 #: ../gtksourceview/language-specs/vbnet.lang.h:7
-#, fuzzy
 msgid "Special constant"
-msgstr "Kasus khusus"
+msgstr "Konstanta khusus"
 
 #: ../gtksourceview/language-specs/asp.lang.h:14
 msgid "VBScript and ADO constants"
-msgstr ""
+msgstr "Konstanta VBScript dan ADO"
 
 #: ../gtksourceview/language-specs/awk.lang.h:1
 #: ../gtksourceview/language-specs/boo.lang.h:3
@@ -1320,9 +1316,8 @@ msgid "BibTeX"
 msgstr "BibTeX"
 
 #: ../gtksourceview/language-specs/bibtex.lang.h:2
-#, fuzzy
 msgid "Entries"
-msgstr "Entiti"
+msgstr "Entri"
 
 #: ../gtksourceview/language-specs/bibtex.lang.h:3
 msgid "Field"
@@ -1349,9 +1344,8 @@ msgstr "Definisi"
 
 #: ../gtksourceview/language-specs/boo.lang.h:8
 #: ../gtksourceview/language-specs/python.lang.h:13
-#, fuzzy
 msgid "Multiline string"
-msgstr "String Multi-baris"
+msgstr "String multi-baris"
 
 #: ../gtksourceview/language-specs/boo.lang.h:9
 #: ../gtksourceview/language-specs/sparql.lang.h:9
@@ -1370,9 +1364,8 @@ msgstr "Namespace"
 #: ../gtksourceview/language-specs/ooc.lang.h:13
 #: ../gtksourceview/language-specs/php.lang.h:14
 #: ../gtksourceview/language-specs/vala.lang.h:8
-#, fuzzy
 msgid "Null Value"
-msgstr "Nilai Bawaan"
+msgstr "Nilai Null"
 
 #: ../gtksourceview/language-specs/boo.lang.h:12
 #: ../gtksourceview/language-specs/perl.lang.h:17
@@ -1413,7 +1406,7 @@ msgstr "Rilis"
 
 #: ../gtksourceview/language-specs/chdr.lang.h:1
 msgid "C/C++/ObjC Header"
-msgstr ""
+msgstr "Header C/C++/ObjC"
 
 #: ../gtksourceview/language-specs/c.lang.h:2
 msgid "C"
@@ -1435,7 +1428,7 @@ msgstr "Karakter"
 #: ../gtksourceview/language-specs/cpp.lang.h:2
 #: ../gtksourceview/language-specs/objc.lang.h:1
 msgid "Common Defines"
-msgstr ""
+msgstr "Define Biasa"
 
 #. Any erroneous construct
 #: ../gtksourceview/language-specs/c.lang.h:8
@@ -1457,7 +1450,6 @@ msgstr ""
 #: ../gtksourceview/language-specs/vala.lang.h:5
 #: ../gtksourceview/language-specs/verilog.lang.h:4
 #: ../gtksourceview/language-specs/xml.lang.h:8
-#, fuzzy
 msgid "Error"
 msgstr "Galat"
 
@@ -1473,9 +1465,8 @@ msgstr "Galat"
 #: ../gtksourceview/language-specs/python.lang.h:9
 #: ../gtksourceview/language-specs/R.lang.h:4
 #: ../gtksourceview/language-specs/ruby.lang.h:9
-#, fuzzy
 msgid "Floating point number"
-msgstr "Angka Titik Ambang"
+msgstr "Bilangan floating point"
 
 #: ../gtksourceview/language-specs/c.lang.h:11
 #: ../gtksourceview/language-specs/cg.lang.h:12
@@ -1487,7 +1478,7 @@ msgstr "Angka Titik Ambang"
 #: ../gtksourceview/language-specs/php.lang.h:11
 #: ../gtksourceview/language-specs/vala.lang.h:6
 msgid "Hexadecimal number"
-msgstr "Angka heksadesimal"
+msgstr "Bilangan heksadesimal"
 
 #: ../gtksourceview/language-specs/c.lang.h:12
 #: ../gtksourceview/language-specs/cg.lang.h:13
@@ -1501,33 +1492,29 @@ msgstr "Berkas Sertaan"
 #: ../gtksourceview/language-specs/ooc.lang.h:15
 #: ../gtksourceview/language-specs/php.lang.h:15
 msgid "Octal number"
-msgstr "Angka Oktal"
+msgstr "Bilangan Oktal"
 
 #: ../gtksourceview/language-specs/c.lang.h:19
 msgid "printf Conversion"
-msgstr ""
+msgstr "Konversi printf"
 
 #: ../gtksourceview/language-specs/cg.lang.h:1
-#, fuzzy
 msgid "Bindings"
-msgstr "Pengkodean"
+msgstr ""
 
 #: ../gtksourceview/language-specs/cg.lang.h:3
 #: ../gtksourceview/language-specs/erlang.lang.h:3
 #: ../gtksourceview/language-specs/ruby.lang.h:4
-#, fuzzy
 msgid "Builtin"
 msgstr "Bawaan"
 
 #: ../gtksourceview/language-specs/cg.lang.h:4
-#, fuzzy
 msgid "CG Shader Language"
-msgstr "Bahasa"
+msgstr "Bahasa CG Shader"
 
 #: ../gtksourceview/language-specs/cg.lang.h:19
-#, fuzzy
 msgid "Swizzle operator"
-msgstr "Operator"
+msgstr "Operator swizzle"
 
 #: ../gtksourceview/language-specs/classic.xml.h:1
 msgid "Classic"
@@ -1538,15 +1525,13 @@ msgid "Classic color scheme"
 msgstr "Skema warna klasik"
 
 #: ../gtksourceview/language-specs/cmake.lang.h:1
-#, fuzzy
 msgid "Builtin Command"
 msgstr "Perintah Bawaan"
 
 #: ../gtksourceview/language-specs/cmake.lang.h:2
 #: ../gtksourceview/language-specs/glsl.lang.h:3
-#, fuzzy
 msgid "Builtin Variable"
-msgstr "Nilai Bawaan"
+msgstr "Variabel Bawaan"
 
 #: ../gtksourceview/language-specs/cmake.lang.h:3
 msgid "CMake"
@@ -1562,13 +1547,12 @@ msgid "Constant"
 msgstr "Konstanta"
 
 #: ../gtksourceview/language-specs/cmake.lang.h:5
-#, fuzzy
 msgid "Control Keyword"
-msgstr "Kata-kunci Inti"
+msgstr "Kata Kunci Kendali"
 
 #: ../gtksourceview/language-specs/cobalt.xml.h:1
 msgid "Blue based color scheme"
-msgstr ""
+msgstr "Skema warna berbasis biru"
 
 #: ../gtksourceview/language-specs/cobalt.xml.h:2
 msgid "Cobalt"
@@ -1583,9 +1567,8 @@ msgid "C#"
 msgstr "C#"
 
 #: ../gtksourceview/language-specs/csharp.lang.h:16
-#, fuzzy
 msgid "String Format"
-msgstr "String 2"
+msgstr "Format String"
 
 #: ../gtksourceview/language-specs/css.lang.h:1
 msgid "CSS"
@@ -1613,7 +1596,6 @@ msgid "Dimension"
 msgstr "Dimensi"
 
 #: ../gtksourceview/language-specs/css.lang.h:9
-#, fuzzy
 msgid "Known Property Value"
 msgstr "Nilai Properti Yang Dikenal"
 
@@ -1626,50 +1608,43 @@ msgid "Others 3"
 msgstr "Lainnya 3"
 
 #: ../gtksourceview/language-specs/css.lang.h:14
-#, fuzzy
 msgid "at-rules"
-msgstr "Pada Aturan"
+msgstr "at-rules"
 
 #: ../gtksourceview/language-specs/cuda.lang.h:1
 msgid "CUDA"
-msgstr ""
+msgstr "CUDA"
 
 #: ../gtksourceview/language-specs/cuda.lang.h:3
-#, fuzzy
 msgid "Device Functions"
-msgstr "Fungsi"
+msgstr "Fungsi Perangkat"
 
 #: ../gtksourceview/language-specs/cuda.lang.h:4
-#, fuzzy
 msgid "Global Functions"
-msgstr "Fungsi"
+msgstr "Fungsi Global"
 
 #: ../gtksourceview/language-specs/cuda.lang.h:5
-#, fuzzy
 msgid "Global Variables"
-msgstr "Kasus khusus"
+msgstr "Variabel Global"
 
 #. A base-N number: 0xFFFF
 #: ../gtksourceview/language-specs/def.lang.h:2
 #: ../gtksourceview/language-specs/python.lang.h:1
 #: ../gtksourceview/language-specs/ruby.lang.h:2
-#, fuzzy
 msgid "Base-N number"
-msgstr "Integer berbasis-N"
+msgstr "Bilangan berbasis-N"
 
 #. A builtin name: like __import__, abs in Python
 #. (see http://docs.python.org/lib/built-in-funcs.html)
 #: ../gtksourceview/language-specs/def.lang.h:7
-#, fuzzy
 msgid "Built-in identifier"
-msgstr "Fungsi Bawaan"
+msgstr "Identifier bawaan"
 
 #. A complex number
 #: ../gtksourceview/language-specs/def.lang.h:13
 #: ../gtksourceview/language-specs/python.lang.h:6
-#, fuzzy
 msgid "Complex number"
-msgstr "Nomor Hexa"
+msgstr "Bilangan kompleks"
 
 #. A primitive data type: int, long, char, etc.
 #: ../gtksourceview/language-specs/def.lang.h:17
@@ -1677,46 +1652,41 @@ msgid "Data type"
 msgstr "Jenis data"
 
 #: ../gtksourceview/language-specs/def.lang.h:20
-#, fuzzy
 msgid "Defaults"
-msgstr "Standar"
+msgstr "Bawaan"
 
 #. A special comment containing documentation like in javadoc or
 #. gtk-doc
 #: ../gtksourceview/language-specs/def.lang.h:23
-#, fuzzy
 msgid "Documentation comment"
-msgstr "Lingkungan Komentar"
+msgstr "Komentar dokumentasi"
 
 #. This style doesn't map to anything since it must be used as an additional
 #. style for text which is already styled as a "doc-comment"
 #: ../gtksourceview/language-specs/def.lang.h:26
 msgid "Documentation comment element"
-msgstr ""
+msgstr "Elemen komentar dokumentasi"
 
 #. Any variable name
 #: ../gtksourceview/language-specs/def.lang.h:34
 #: ../gtksourceview/language-specs/php.lang.h:12
-#, fuzzy
 msgid "Identifier"
-msgstr "Identifair"
+msgstr "Identifier"
 
 #. Anything that needs extra attention; mostly the keywords TODO, FIXME and XXX
 #: ../gtksourceview/language-specs/def.lang.h:38
 msgid "Note (FIXME, TODO, XXX, etc.)"
-msgstr ""
+msgstr "Catatan (FIXME, TODO, XXX, dsb.)"
 
 #. This one is for '#include <foo.h>' and "#pragma blah", or 'use foobar', etc..
 #: ../gtksourceview/language-specs/def.lang.h:44
-#, fuzzy
 msgid "Preprocessor directive"
-msgstr "Definisi Preprosesor"
+msgstr "Direktif preprosesor"
 
 #. Reserved keywords: like "const" and "goto" in Java
 #: ../gtksourceview/language-specs/def.lang.h:46
-#, fuzzy
 msgid "Reserved keyword"
-msgstr "Kata ANSI yg telah dipesan"
+msgstr "Kata kunci yang dicadangkan"
 
 #. A shebang: #!/bin/sh
 #: ../gtksourceview/language-specs/def.lang.h:48
@@ -1728,35 +1698,31 @@ msgstr "Shebang"
 #. style for text which is already styled as a "string"
 #: ../gtksourceview/language-specs/def.lang.h:51
 msgid "Special character (inside a string)"
-msgstr ""
+msgstr "Karakter khusus (di tengah string)"
 
 #. Any statement
 #: ../gtksourceview/language-specs/def.lang.h:55
-#, fuzzy
 msgid "Statement"
-msgstr "Statement:"
+msgstr "Statement"
 
 #. Text that stands out, HTML links, e-mail addresses, etc.
 #: ../gtksourceview/language-specs/def.lang.h:59
-#, fuzzy
 msgid "Underlined"
-msgstr "Tidak terbatas"
+msgstr "Digarisbawahi"
 
 #: ../gtksourceview/language-specs/desktop.lang.h:1
 msgid ".desktop"
 msgstr ".desktop"
 
 #: ../gtksourceview/language-specs/desktop.lang.h:2
-#, fuzzy
 msgid "Additional Category"
-msgstr "Macro Umum"
+msgstr "Kategori Tambahan"
 
 #: ../gtksourceview/language-specs/desktop.lang.h:4
 msgid "Encoding"
 msgstr "Pengkodean"
 
 #: ../gtksourceview/language-specs/desktop.lang.h:5
-#, fuzzy
 msgid "Exec parameter"
 msgstr "Parameter Exec"
 
@@ -1797,7 +1763,6 @@ msgstr "Diff"
 
 #. Keyword
 #: ../gtksourceview/language-specs/diff.lang.h:6
-#, fuzzy
 msgid "Ignore"
 msgstr "Abaikan"
 
@@ -1819,41 +1784,36 @@ msgstr "Kasus khusus"
 
 #: ../gtksourceview/language-specs/d.lang.h:1
 #: ../gtksourceview/language-specs/nemerle.lang.h:1
-#, fuzzy
 msgid "Binary number"
-msgstr "Angka Biner"
+msgstr "Bilangan biner"
 
 #: ../gtksourceview/language-specs/d.lang.h:4
 msgid "D"
 msgstr "D"
 
 #: ../gtksourceview/language-specs/d.lang.h:14
-#, fuzzy
 msgid "Special Token"
-msgstr "Kasus khusus"
+msgstr "Token khusus"
 
 #: ../gtksourceview/language-specs/docbook.lang.h:1
 msgid "Docbook"
 msgstr "Docbook"
 
 #: ../gtksourceview/language-specs/docbook.lang.h:2
-#, fuzzy
 msgid "Formatting Elements"
-msgstr "Memformat"
+msgstr "Elemen Pemformatan"
 
 #: ../gtksourceview/language-specs/docbook.lang.h:3
 msgid "GUI Elements"
 msgstr "Elemen GUI"
 
 #: ../gtksourceview/language-specs/docbook.lang.h:4
-#, fuzzy
 msgid "Header Elements"
-msgstr "Elemen Semu Selektor"
+msgstr "Elemen Header"
 
 #: ../gtksourceview/language-specs/docbook.lang.h:6
-#, fuzzy
 msgid "Structural Elements"
-msgstr "Elemen Semu Selektor"
+msgstr "Elemen Struktural"
 
 #: ../gtksourceview/language-specs/dosbatch.lang.h:1
 #: ../gtksourceview/language-specs/latex.lang.h:1
@@ -1862,7 +1822,7 @@ msgstr "Perintah"
 
 #: ../gtksourceview/language-specs/dosbatch.lang.h:3
 msgid "Dos Batch"
-msgstr ""
+msgstr "Batch Dos"
 
 #: ../gtksourceview/language-specs/dot.lang.h:1
 #: ../gtksourceview/language-specs/xml.lang.h:1
@@ -1871,7 +1831,7 @@ msgstr "Nama atribut"
 
 #: ../gtksourceview/language-specs/dot.lang.h:4
 msgid "Graphviz Dot"
-msgstr ""
+msgstr "Graphviz Dot"
 
 #: ../gtksourceview/language-specs/dpatch.lang.h:1
 msgid "DPatch"
@@ -1891,32 +1851,28 @@ msgid "decl"
 msgstr "decl"
 
 #: ../gtksourceview/language-specs/dtd.lang.h:4
-#, fuzzy
 msgid "entity"
-msgstr "Entiti"
+msgstr "entitas"
 
 #: ../gtksourceview/language-specs/dtd.lang.h:5
-#, fuzzy
 msgid "error"
-msgstr "Galat"
+msgstr "galat"
 
 #: ../gtksourceview/language-specs/dtd.lang.h:6
 msgid "quoted-value"
 msgstr ""
 
 #: ../gtksourceview/language-specs/eiffel.lang.h:1
-#, fuzzy
 msgid "Assertion"
-msgstr "Pengalihan-arah"
+msgstr "Asersi"
 
 #: ../gtksourceview/language-specs/eiffel.lang.h:2
 msgid "Boolean Value"
 msgstr "Nilai Boolean"
 
 #: ../gtksourceview/language-specs/eiffel.lang.h:5
-#, fuzzy
 msgid "Debug"
-msgstr "Runut"
+msgstr "Awakutu"
 
 #: ../gtksourceview/language-specs/eiffel.lang.h:7
 msgid "Design by Contract"
@@ -1938,9 +1894,8 @@ msgid "Predefined Variable"
 msgstr "Variabel Semu"
 
 #: ../gtksourceview/language-specs/eiffel.lang.h:16
-#, fuzzy
 msgid "Void Value"
-msgstr "Nilai Boolean"
+msgstr "Nilai Void"
 
 #: ../gtksourceview/language-specs/erlang.lang.h:1
 msgid "Atom"
@@ -1958,23 +1913,20 @@ msgstr "Integer berbasis-N"
 #: ../gtksourceview/language-specs/erlang.lang.h:5
 #: ../gtksourceview/language-specs/forth.lang.h:2
 #: ../gtksourceview/language-specs/verilog.lang.h:3
-#, fuzzy
 msgid "Compiler Directive"
-msgstr "Masukkan Direktif"
+msgstr "Direktif Kompailer"
 
 #: ../gtksourceview/language-specs/erlang.lang.h:7
 msgid "Erlang"
 msgstr "Erlang"
 
 #: ../gtksourceview/language-specs/fcl.lang.h:1
-#, fuzzy
 msgid "Block"
-msgstr "Balok"
+msgstr "Blok"
 
 #: ../gtksourceview/language-specs/fcl.lang.h:4
-#, fuzzy
 msgid "FCL"
-msgstr "OCL"
+msgstr "FCL"
 
 #: ../gtksourceview/language-specs/fcl.lang.h:5
 #: ../gtksourceview/language-specs/fortran.lang.h:5
@@ -1994,24 +1946,23 @@ msgstr "Konstanta Yang Telah Dicadangkan"
 #: ../gtksourceview/language-specs/octave.lang.h:10
 #: ../gtksourceview/language-specs/R.lang.h:9
 msgid "Scientific"
-msgstr ""
+msgstr "Ilmiah"
 
 #: ../gtksourceview/language-specs/forth.lang.h:4
 msgid "Debug Code"
-msgstr ""
+msgstr "Kode Awakutu"
 
 #: ../gtksourceview/language-specs/forth.lang.h:5
 msgid "Error Text"
-msgstr ""
+msgstr "Teks Galat"
 
 #: ../gtksourceview/language-specs/forth.lang.h:6
 msgid "Forth"
 msgstr "Forth"
 
 #: ../gtksourceview/language-specs/fortran.lang.h:1
-#, fuzzy
 msgid "BOZ Literal"
-msgstr "Literal"
+msgstr "Literal BOZ"
 
 #: ../gtksourceview/language-specs/fortran.lang.h:6
 msgid "Fortran 95"
@@ -2020,57 +1971,52 @@ msgstr "Fortran 95"
 #: ../gtksourceview/language-specs/fortran.lang.h:7
 #, fuzzy
 msgid "Intrinsic function"
-msgstr "Fungsi Bawaan"
+msgstr "Fungsi bawaan"
 
 #: ../gtksourceview/language-specs/fsharp.lang.h:3
 #: ../gtksourceview/language-specs/ocaml.lang.h:3
 #, fuzzy
 msgid "Builtin-function keyword"
-msgstr "Fungsi Bawaan"
+msgstr "Kata kunci fungsi bawaan"
 
 #: ../gtksourceview/language-specs/fsharp.lang.h:8
 msgid "F#"
-msgstr ""
+msgstr "F#"
 
 #: ../gtksourceview/language-specs/fsharp.lang.h:9
 #: ../gtksourceview/language-specs/ocaml.lang.h:9
-#, fuzzy
 msgid "Floating Point number"
-msgstr "Angka Titik Ambang"
+msgstr "Bilangan Floating Point"
 
 #: ../gtksourceview/language-specs/fsharp.lang.h:11
 #: ../gtksourceview/language-specs/ocaml.lang.h:11
 msgid "Labeled argument"
-msgstr ""
+msgstr "Argumen berlabel"
 
 #: ../gtksourceview/language-specs/fsharp.lang.h:12
 #: ../gtksourceview/language-specs/ocaml.lang.h:12
-#, fuzzy
 msgid "Module Path"
 msgstr "Path Modul"
 
 #: ../gtksourceview/language-specs/fsharp.lang.h:14
 #: ../gtksourceview/language-specs/ocaml.lang.h:15
 msgid "Polymorphic Variant"
-msgstr ""
+msgstr "Varian Polimorfik"
 
 #: ../gtksourceview/language-specs/fsharp.lang.h:18
 #: ../gtksourceview/language-specs/ocaml.lang.h:19
-#, fuzzy
 msgid "Type Variable"
-msgstr "Variabel"
+msgstr "Variabel Tipe"
 
 #: ../gtksourceview/language-specs/fsharp.lang.h:19
 #: ../gtksourceview/language-specs/ocaml.lang.h:20
-#, fuzzy
 msgid "Type, module or object keyword"
-msgstr "Kata-kunci Obyek, Kelas, dan Tipe"
+msgstr "Kata-kunci objek, modul, atau tipe"
 
 #: ../gtksourceview/language-specs/fsharp.lang.h:20
 #: ../gtksourceview/language-specs/ocaml.lang.h:21
-#, fuzzy
 msgid "Variant Constructor"
-msgstr "Konstruktor"
+msgstr "Konstruktor Varian"
 
 #: ../gtksourceview/language-specs/gap.lang.h:5
 msgid "GAP"
@@ -2078,28 +2024,24 @@ msgstr "GAP"
 
 #: ../gtksourceview/language-specs/glsl.lang.h:1
 #: ../gtksourceview/language-specs/python.lang.h:3
-#, fuzzy
 msgid "Builtin Constant"
-msgstr "Perintah Bawaan"
+msgstr "Konstanta Bawaan"
 
 #: ../gtksourceview/language-specs/glsl.lang.h:6
 msgid "OpenGL Shading Language"
-msgstr ""
+msgstr "Bahasa Shading OpenGL"
 
 #: ../gtksourceview/language-specs/glsl.lang.h:8
-#, fuzzy
 msgid "Reserved Keywords"
-msgstr "Kata ANSI yg telah dipesan"
+msgstr "Kata Kunci Yang Dicadangkan"
 
 #: ../gtksourceview/language-specs/gtk-doc.lang.h:2
-#, fuzzy
 msgid "Deprecated"
-msgstr "Tidak disarankan untuk dipakai"
+msgstr "Tidak dipakai lagi"
 
 #: ../gtksourceview/language-specs/gtk-doc.lang.h:4
-#, fuzzy
 msgid "Function Name"
-msgstr "Fungsi Call"
+msgstr "Nama Fungsi"
 
 #: ../gtksourceview/language-specs/gtk-doc.lang.h:5
 msgid "Inline Documentation Section"
@@ -2119,13 +2061,13 @@ msgid "Return"
 msgstr "Return"
 
 #: ../gtksourceview/language-specs/gtk-doc.lang.h:10
-#, fuzzy
 msgid "Signal Name"
-msgstr "Kasus khusus"
+msgstr "Nama Sinyal"
 
 #: ../gtksourceview/language-specs/gtk-doc.lang.h:11
+#, fuzzy
 msgid "Since"
-msgstr ""
+msgstr "Sejak"
 
 #: ../gtksourceview/language-specs/gtk-doc.lang.h:12
 #: ../gtksourceview/language-specs/verilog.lang.h:8
@@ -2142,13 +2084,12 @@ msgid "GtkRC"
 msgstr "GtkRC"
 
 #: ../gtksourceview/language-specs/gtkrc.lang.h:6
-#, fuzzy
 msgid "Include directive"
-msgstr "Masukkan Direktif"
+msgstr "Direktif include"
 
 #: ../gtksourceview/language-specs/gtkrc.lang.h:10
 msgid "Widget State"
-msgstr ""
+msgstr "Keadaan Widget"
 
 #: ../gtksourceview/language-specs/haddock.lang.h:1
 #: ../gtksourceview/language-specs/t2t.lang.h:1
@@ -2161,18 +2102,17 @@ msgid "Code Block"
 msgstr "Blok Kode"
 
 #: ../gtksourceview/language-specs/haddock.lang.h:3
-#, fuzzy
 msgid "Definition list"
 msgstr "Daftar definisi"
 
 #: ../gtksourceview/language-specs/haddock.lang.h:4
 #, fuzzy
 msgid "Emphasis"
-msgstr "Tekanan"
+msgstr "Penekanan"
 
 #: ../gtksourceview/language-specs/haddock.lang.h:5
 msgid "Enumerated list"
-msgstr ""
+msgstr "Datar terenumerasi"
 
 #: ../gtksourceview/language-specs/haddock.lang.h:6
 msgid "Escape"
@@ -2183,29 +2123,29 @@ msgid "Haddock"
 msgstr "Haddock"
 
 #: ../gtksourceview/language-specs/haddock.lang.h:8
-#, fuzzy
 msgid "Haddock Directive"
-msgstr "Direktif"
+msgstr "Direktif Haddock"
 
 #: ../gtksourceview/language-specs/haddock.lang.h:9
 msgid "Header Property"
-msgstr ""
+msgstr "Properti Header"
 
 #: ../gtksourceview/language-specs/haddock.lang.h:10
 msgid "Hyperlinked Identifier"
-msgstr ""
+msgstr "Identifier Terhiperlink"
 
 #: ../gtksourceview/language-specs/haddock.lang.h:11
 msgid "Hyperlinked Module Name"
-msgstr ""
+msgstr "Nama Modul Terhiperlink"
 
 #: ../gtksourceview/language-specs/haddock.lang.h:12
 msgid "Inline Haddock Section"
-msgstr ""
+msgstr "Seksi Haddock Inline"
 
 #: ../gtksourceview/language-specs/haddock.lang.h:13
+#, fuzzy
 msgid "Itemized list"
-msgstr ""
+msgstr "Daftar teritemisasi"
 
 #: ../gtksourceview/language-specs/haddock.lang.h:15
 msgid "Monospace"
@@ -2278,9 +2218,8 @@ msgstr "Eksternal"
 #: ../gtksourceview/language-specs/java.lang.h:9
 #: ../gtksourceview/language-specs/javascript.lang.h:8
 #: ../gtksourceview/language-specs/ooc.lang.h:10
-#, fuzzy
 msgid "Future Reserved Keywords"
-msgstr "Kata-kata Yang Telah Dicadangkan"
+msgstr "Kata Kunci Yang Dicadangkan Untuk Masa Mendatang"
 
 #: ../gtksourceview/language-specs/java.lang.h:10
 msgid "Java"
@@ -2288,9 +2227,8 @@ msgstr "Java"
 
 #: ../gtksourceview/language-specs/java.lang.h:14
 #: ../gtksourceview/language-specs/ooc.lang.h:16
-#, fuzzy
 msgid "Scope Declaration"
-msgstr "Deklarasi"
+msgstr "Deklarasi Scope"
 
 #: ../gtksourceview/language-specs/javascript.lang.h:3
 msgid "Constructors"
@@ -2309,13 +2247,12 @@ msgid "Properties"
 msgstr "Properti"
 
 #: ../gtksourceview/language-specs/javascript.lang.h:16
-#, fuzzy
 msgid "Undefined Value"
-msgstr "Variabel Semu"
+msgstr "Nilai Tak Terdefinisi"
 
 #: ../gtksourceview/language-specs/kate.xml.h:1
 msgid "Color scheme used in the Kate text editor"
-msgstr ""
+msgstr "Skema warna yang dipakai di penyunting teks Kate"
 
 #: ../gtksourceview/language-specs/kate.xml.h:2
 msgid "Kate"
@@ -2328,16 +2265,15 @@ msgstr "Termasuk"
 
 #: ../gtksourceview/language-specs/latex.lang.h:4
 msgid "Inline Math Mode"
-msgstr ""
+msgstr "Mode Matematika Inline"
 
 #: ../gtksourceview/language-specs/latex.lang.h:5
 msgid "LaTeX"
 msgstr "LaTeX"
 
 #: ../gtksourceview/language-specs/latex.lang.h:7
-#, fuzzy
 msgid "Math Mode"
-msgstr "Mode Gulung"
+msgstr "Mode Matematika"
 
 #: ../gtksourceview/language-specs/latex.lang.h:8
 #: ../gtksourceview/language-specs/t2t.lang.h:16
@@ -2358,23 +2294,20 @@ msgstr "Lua"
 
 #: ../gtksourceview/language-specs/lua.lang.h:7
 #: ../gtksourceview/language-specs/ruby.lang.h:14
-#, fuzzy
 msgid "Nil Constant"
-msgstr "Konstanta"
+msgstr "Konstanta Nil"
 
 #: ../gtksourceview/language-specs/lua.lang.h:8
-#, fuzzy
 msgid "Reserved Identifier"
-msgstr "Konstanta Yang Telah Dicadangkan"
+msgstr "Identifier Yang Dicadangkan"
 
 #: ../gtksourceview/language-specs/m4.lang.h:1
-#, fuzzy
 msgid "Autoconf Macro"
-msgstr "Macro Umum"
+msgstr "Makro AutoconfZ"
 
 #: ../gtksourceview/language-specs/m4.lang.h:2
 msgid "Obsolete Autoconf Macro"
-msgstr ""
+msgstr "Makro Autoconf Kadaluarsa"
 
 #: ../gtksourceview/language-specs/m4.lang.h:4
 msgid "m4"
@@ -2407,39 +2340,34 @@ msgid "Trailing Tab"
 msgstr ""
 
 #: ../gtksourceview/language-specs/makefile.lang.h:9
-#, fuzzy
 msgid "command"
-msgstr "COMMAND"
+msgstr "perintah"
 
 #: ../gtksourceview/language-specs/makefile.lang.h:10
-#, fuzzy
 msgid "function"
-msgstr "Fungsi e^"
+msgstr "fungsi"
 
 #. FIXME make it better names, and make them translatable
 #: ../gtksourceview/language-specs/makefile.lang.h:11
 #: ../gtksourceview/language-specs/yacc.lang.h:4
-#, fuzzy
 msgid "keyword"
-msgstr "_Kata Kunci:"
+msgstr "kata kunci"
 
 #: ../gtksourceview/language-specs/makefile.lang.h:12
 msgid "prereq"
 msgstr "prereq"
 
 #: ../gtksourceview/language-specs/makefile.lang.h:13
-#, fuzzy
 msgid "targets"
-msgstr "Target"
+msgstr "target"
 
 #: ../gtksourceview/language-specs/mallard.lang.h:1
-#, fuzzy
 msgid "Block Elements"
-msgstr "Bagian blok"
+msgstr "Elemen blok"
 
 #: ../gtksourceview/language-specs/mallard.lang.h:2
 msgid "Inline Elements"
-msgstr ""
+msgstr "Elemen Inline"
 
 #: ../gtksourceview/language-specs/mallard.lang.h:3
 msgid "Mallard"
@@ -2447,12 +2375,11 @@ msgstr "Mallard"
 
 #: ../gtksourceview/language-specs/mallard.lang.h:5
 msgid "Page Elements"
-msgstr ""
+msgstr "Elemen Halaman"
 
 #: ../gtksourceview/language-specs/mallard.lang.h:6
-#, fuzzy
 msgid "Section Elements"
-msgstr "Elemen Semu Selektor"
+msgstr "Elemen Seksi"
 
 #: ../gtksourceview/language-specs/msil.lang.h:1
 msgid "MSIL"
@@ -2472,38 +2399,36 @@ msgstr "Objective-C"
 
 #: ../gtksourceview/language-specs/oblivion.xml.h:1
 msgid "Dark color scheme using the Tango color palette"
-msgstr ""
+msgstr "Skema warna gelap memakai palet warna Tango"
 
 #: ../gtksourceview/language-specs/oblivion.xml.h:2
+#, fuzzy
 msgid "Oblivion"
 msgstr "Oblivion"
 
 #: ../gtksourceview/language-specs/ocaml.lang.h:13
 msgid "Objective Caml"
-msgstr ""
+msgstr "Objective Caml"
 
 #: ../gtksourceview/language-specs/ocaml.lang.h:14
-#, fuzzy
 msgid "Ocamldoc Comments"
-msgstr "Komentar Blok"
+msgstr "Komentar Ocamldoc"
 
 #: ../gtksourceview/language-specs/ocaml.lang.h:17
 msgid "Standart Modules"
-msgstr ""
+msgstr "Modul Standar"
 
 #: ../gtksourceview/language-specs/ocl.lang.h:4
 msgid "OCL"
 msgstr "OCL"
 
 #: ../gtksourceview/language-specs/ocl.lang.h:5
-#, fuzzy
 msgid "Operation operator"
-msgstr "Operator Matematis"
+msgstr "Operator operasi"
 
 #: ../gtksourceview/language-specs/ocl.lang.h:8
-#, fuzzy
 msgid "Type Operators"
-msgstr "Operator"
+msgstr "Operator Tipe"
 
 #: ../gtksourceview/language-specs/octave.lang.h:8
 msgid "Octave"
@@ -2518,14 +2443,12 @@ msgid "Pascal"
 msgstr "Pascal"
 
 #: ../gtksourceview/language-specs/perl.lang.h:3
-#, fuzzy
 msgid "Control"
 msgstr "Kontrol"
 
 #: ../gtksourceview/language-specs/perl.lang.h:5
-#, fuzzy
 msgid "File Descriptor"
-msgstr "Keterangan Font"
+msgstr "Deskriptor Berkas"
 
 #: ../gtksourceview/language-specs/perl.lang.h:6
 #: ../gtksourceview/language-specs/php.lang.h:9
@@ -2541,14 +2464,12 @@ msgid "Heredoc Bound"
 msgstr ""
 
 #: ../gtksourceview/language-specs/perl.lang.h:8
-#, fuzzy
 msgid "Include Statement"
-msgstr "Pernyataan SQL"
+msgstr "Statement Include"
 
 #: ../gtksourceview/language-specs/perl.lang.h:10
-#, fuzzy
 msgid "Line Directive"
-msgstr "Masukkan Direktif"
+msgstr "Direktif Baris"
 
 #: ../gtksourceview/language-specs/perl.lang.h:12
 msgid "POD"
@@ -2556,25 +2477,23 @@ msgstr "POD"
 
 #: ../gtksourceview/language-specs/perl.lang.h:13
 msgid "POD Escape"
-msgstr ""
+msgstr "Escape POD"
 
 #: ../gtksourceview/language-specs/perl.lang.h:14
 msgid "POD heading"
-msgstr ""
+msgstr "Heading POD"
 
 #: ../gtksourceview/language-specs/perl.lang.h:15
-#, fuzzy
 msgid "POD keyword"
-msgstr "Kata-kunci"
+msgstr "Kata kunci POD"
 
 #: ../gtksourceview/language-specs/perl.lang.h:16
 msgid "Perl"
 msgstr "Perl"
 
 #: ../gtksourceview/language-specs/perl.lang.h:20
-#, fuzzy
 msgid "System Command"
-msgstr "Perintah yg Paling Sering Digunakan"
+msgstr "Perintah Sistem"
 
 #: ../gtksourceview/language-specs/php.lang.h:17
 msgid "PHP"
@@ -2582,20 +2501,18 @@ msgstr "PHP"
 
 #: ../gtksourceview/language-specs/pkgconfig.lang.h:2
 msgid "Package Info"
-msgstr ""
+msgstr "Info Paket"
 
 #: ../gtksourceview/language-specs/pkgconfig.lang.h:4
 msgid "pkg-config"
 msgstr "pkg-config"
 
 #: ../gtksourceview/language-specs/po.lang.h:2
-#, fuzzy
 msgid "Fuzzy"
-msgstr "Ragu"
+msgstr "Fuzzy"
 
 #. FIXME make it some nice name and mark it translatable
 #: ../gtksourceview/language-specs/po.lang.h:7
-#, fuzzy
 msgid "Special"
 msgstr "khusus"
 
@@ -2608,9 +2525,8 @@ msgid "Prolog"
 msgstr "Prolog"
 
 #: ../gtksourceview/language-specs/python.lang.h:5
-#, fuzzy
 msgid "Builtin Object"
-msgstr "Tipe Bawaan"
+msgstr "Objek Bawaan"
 
 #: ../gtksourceview/language-specs/python.lang.h:10
 msgid "Format"
@@ -2626,7 +2542,7 @@ msgstr "Python"
 
 #: ../gtksourceview/language-specs/python.lang.h:18
 msgid "string-conversion"
-msgstr ""
+msgstr "string-conversion"
 
 #: ../gtksourceview/language-specs/R.lang.h:1
 msgid "Assignment Operator"
@@ -2653,22 +2569,20 @@ msgid "Special Constant"
 msgstr "Konstanta Khusus"
 
 #: ../gtksourceview/language-specs/rpmspec.lang.h:1
-#, fuzzy
 msgid "Command Macro"
-msgstr "Macro Umum"
+msgstr "Makro Perintah"
 
 #: ../gtksourceview/language-specs/rpmspec.lang.h:2
-#, fuzzy
 msgid "Conditional Macro"
-msgstr "Macro Umum"
+msgstr "Makro Bersyarat"
 
 #: ../gtksourceview/language-specs/rpmspec.lang.h:4
 msgid "Define"
-msgstr ""
+msgstr "Define"
 
 #: ../gtksourceview/language-specs/rpmspec.lang.h:5
 msgid "Directory Macro"
-msgstr ""
+msgstr "Makro Direktori"
 
 #: ../gtksourceview/language-specs/rpmspec.lang.h:6
 msgid "Email"
@@ -2677,7 +2591,7 @@ msgstr "Email"
 #: ../gtksourceview/language-specs/rpmspec.lang.h:7
 #, fuzzy
 msgid "Flow Conditional"
-msgstr "Kondisi"
+msgstr "Alur Bersyarat"
 
 #: ../gtksourceview/language-specs/rpmspec.lang.h:8
 #: ../gtksourceview/language-specs/t2t.lang.h:4
@@ -2729,6 +2643,7 @@ msgid "Ruby"
 msgstr "Ruby"
 
 #: ../gtksourceview/language-specs/scheme.lang.h:5
+#, fuzzy
 msgid "Scheme"
 msgstr "Scheme"
 
@@ -2739,7 +2654,7 @@ msgstr "Perintah Umum"
 
 #: ../gtksourceview/language-specs/sh.lang.h:10
 msgid "Subshell"
-msgstr ""
+msgstr "Subshell"
 
 #. FIXME: need to sort out proper styles for variables
 #: ../gtksourceview/language-specs/sh.lang.h:13
@@ -2756,12 +2671,11 @@ msgstr "Kelas"
 
 #: ../gtksourceview/language-specs/sparql.lang.h:5
 msgid "IRI"
-msgstr ""
+msgstr "IRI"
 
 #: ../gtksourceview/language-specs/sparql.lang.h:6
-#, fuzzy
 msgid "Individual"
-msgstr "Pribadi"
+msgstr "Individual"
 
 #: ../gtksourceview/language-specs/sparql.lang.h:8
 msgid "Literal"
@@ -2781,7 +2695,7 @@ msgstr "SPARQL"
 
 #: ../gtksourceview/language-specs/sql.lang.h:7
 msgid "No idea what it is"
-msgstr ""
+msgstr "Tak tahu ini apa"
 
 #: ../gtksourceview/language-specs/sql.lang.h:8
 msgid "SQL"
@@ -2825,7 +2739,7 @@ msgstr ""
 
 #: ../gtksourceview/language-specs/tango.xml.h:1
 msgid "Color scheme using Tango color palette"
-msgstr ""
+msgstr "Skema warna yang memakai palet warna Tango"
 
 #: ../gtksourceview/language-specs/tango.xml.h:2
 msgid "Tango"
