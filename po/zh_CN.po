@@ -1,17 +1,18 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) 2003 THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
+# Chinese (China) translation of gtksourcevie.
+# Copyright (C) 2003, 2010 Free software Foundation, Inc
+# This file is distributed under the same license as the gtksourceview package.
 # Funda Wang <fundawang@linux.net.cn>, 2003.
+# Dean Lee <xslidian@gmail.com>, 2010.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gtksourceview\n"
+"Project-Id-Version: gtksourceview master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&component=general\n"
-"POT-Creation-Date: 2010-02-01 19:55+0000\n"
-"PO-Revision-Date: 2010-02-03 15:28+0800\n"
-"Last-Translator: Eleanor Chen <chenyueg@gmail.com>\n"
-"Language-Team: Chinese i18n <i18n-zh@googlegroups.com>\n"
+"POT-Creation-Date: 2010-09-05 16:01+0000\n"
+"PO-Revision-Date: 2010-09-15 15:00+0800\n"
+"Last-Translator: Dean Lee <xslidian@lidian.info>\n"
+"Language-Team: Chinese (simplified) <i18n-zh@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -40,19 +41,19 @@ msgstr "提供者图标"
 
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:479
 msgid "Proposals Batch Size"
-msgstr ""
+msgstr "建议分批量"
 
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:480
 msgid "Number of proposals added in one batch"
-msgstr ""
+msgstr "每批要加入的建议数量"
 
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:489
 msgid "Scan Batch Size"
-msgstr ""
+msgstr "扫描分批量"
 
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:490
 msgid "Number of lines scanned in one batch"
-msgstr ""
+msgstr "每批要扫描的行数"
 
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:499
 msgid "Minimum Word Size"
@@ -78,61 +79,71 @@ msgstr "优先级"
 msgid "Provider priority"
 msgstr "提供者优先级"
 
-#: ../gtksourceview/gtksourcebuffer.c:210
+#: ../gtksourceview/gtksourcebuffer.c:220
 #: ../gtksourceview/gtksourceprintcompositor.c:506
 msgid "Highlight Syntax"
 msgstr "语法高亮"
 
-#: ../gtksourceview/gtksourcebuffer.c:211
+#: ../gtksourceview/gtksourcebuffer.c:221
 msgid "Whether to highlight syntax in the buffer"
 msgstr "是否在缓冲区突出显示语法"
 
-#: ../gtksourceview/gtksourcebuffer.c:224
+#: ../gtksourceview/gtksourcebuffer.c:234
 msgid "Highlight Matching Brackets"
 msgstr "加亮匹配的括号"
 
-#: ../gtksourceview/gtksourcebuffer.c:225
+#: ../gtksourceview/gtksourcebuffer.c:235
 msgid "Whether to highlight matching brackets"
 msgstr "是否加亮突出显示相匹配的括号"
 
-#: ../gtksourceview/gtksourcebuffer.c:237
+#: ../gtksourceview/gtksourcebuffer.c:248
+#: ../gtksourceview/gtksourceundomanagerdefault.c:412
 msgid "Maximum Undo Levels"
 msgstr "最多撤消级别"
 
-#: ../gtksourceview/gtksourcebuffer.c:238
+#: ../gtksourceview/gtksourcebuffer.c:249
+#: ../gtksourceview/gtksourceundomanagerdefault.c:413
 msgid "Number of undo levels for the buffer"
 msgstr "缓冲区中的撤消级别"
 
 #. Translators: throughout gtksourceview "language" stands
 #. * for "programming language", not "spoken language"
-#: ../gtksourceview/gtksourcebuffer.c:250
+#: ../gtksourceview/gtksourcebuffer.c:261
 msgid "Language"
 msgstr "语言"
 
-#: ../gtksourceview/gtksourcebuffer.c:251
+#: ../gtksourceview/gtksourcebuffer.c:262
 msgid "Language object to get highlighting patterns from"
 msgstr "用于获得加亮显示模式语言对象"
 
-#: ../gtksourceview/gtksourcebuffer.c:259
+#: ../gtksourceview/gtksourcebuffer.c:270
 msgid "Can undo"
 msgstr "可以撤消"
 
-#: ../gtksourceview/gtksourcebuffer.c:260
+#: ../gtksourceview/gtksourcebuffer.c:271
 msgid "Whether Undo operation is possible"
 msgstr "撤消操作是否可能"
 
-#: ../gtksourceview/gtksourcebuffer.c:267
+#: ../gtksourceview/gtksourcebuffer.c:278
 msgid "Can redo"
 msgstr "可以重做"
 
-#: ../gtksourceview/gtksourcebuffer.c:268
+#: ../gtksourceview/gtksourcebuffer.c:279
 msgid "Whether Redo operation is possible"
 msgstr "重做操作是否可能"
 
-#: ../gtksourceview/gtksourcebuffer.c:282
-#: ../gtksourceview/gtksourcebuffer.c:283
+#: ../gtksourceview/gtksourcebuffer.c:293
+#: ../gtksourceview/gtksourcebuffer.c:294
 msgid "Style scheme"
 msgstr "样式大纲"
+
+#: ../gtksourceview/gtksourcebuffer.c:301
+msgid "Undo manager"
+msgstr "撤销管理器"
+
+#: ../gtksourceview/gtksourcebuffer.c:302
+msgid "The buffer undo manager"
+msgstr "缓冲区撤销管理器"
 
 #. Translators: "All" is used as a label in thestatus bar of the
 #. popup, telling that all completion pages are shown
@@ -140,86 +151,86 @@ msgstr "样式大纲"
 msgid "All"
 msgstr "全部"
 
-#: ../gtksourceview/gtksourcecompletion.c:941
+#: ../gtksourceview/gtksourcecompletion.c:940
 #: ../gtksourceview/gtksourcecompletion.c:963
 msgid "No extra information available"
 msgstr "没有可用的额外信息"
 
-#: ../gtksourceview/gtksourcecompletion.c:2227
+#: ../gtksourceview/gtksourcecompletion.c:2229
 #: ../gtksourceview/gtksourcegutter.c:369
 msgid "View"
 msgstr "查看器"
 
-#: ../gtksourceview/gtksourcecompletion.c:2228
+#: ../gtksourceview/gtksourcecompletion.c:2230
 msgid "The GtkSourceView bound to the completion"
 msgstr "GtkSourceView 补全的界限"
 
-#: ../gtksourceview/gtksourcecompletion.c:2243
+#: ../gtksourceview/gtksourcecompletion.c:2245
 msgid "Remember Info Visibility"
 msgstr "记住信息可见程度"
 
-#: ../gtksourceview/gtksourcecompletion.c:2244
+#: ../gtksourceview/gtksourcecompletion.c:2246
 msgid "Remember the last info window visibility state"
 msgstr "记住最后信息窗口的可见程度"
 
-#: ../gtksourceview/gtksourcecompletion.c:2257
+#: ../gtksourceview/gtksourcecompletion.c:2259
 msgid "Select on Show"
-msgstr ""
+msgstr "显示时选择"
 
-#: ../gtksourceview/gtksourcecompletion.c:2258
+#: ../gtksourceview/gtksourcecompletion.c:2260
 msgid "Select first proposal when completion is shown"
-msgstr ""
+msgstr "当显示完成时选择第一条建议"
 
-#: ../gtksourceview/gtksourcecompletion.c:2272
+#: ../gtksourceview/gtksourcecompletion.c:2274
 msgid "Show Headers"
 msgstr "显示开头信息"
 
-#: ../gtksourceview/gtksourcecompletion.c:2273
+#: ../gtksourceview/gtksourcecompletion.c:2275
 msgid ""
 "Show provider headers when proposals from multiple providers are available"
 msgstr "在有多个提供者的建议可用时显示提供者的开头信息"
 
-#: ../gtksourceview/gtksourcecompletion.c:2287
+#: ../gtksourceview/gtksourcecompletion.c:2289
 msgid "Show Icons"
 msgstr "显示图标"
 
-#: ../gtksourceview/gtksourcecompletion.c:2288
+#: ../gtksourceview/gtksourcecompletion.c:2290
 msgid "Show provider and proposal icons in the completion popup"
 msgstr "在补全菜单中显示提供者及建议的图标"
 
-#: ../gtksourceview/gtksourcecompletion.c:2301
+#: ../gtksourceview/gtksourcecompletion.c:2303
 msgid "Accelerators"
 msgstr "加速器"
 
-#: ../gtksourceview/gtksourcecompletion.c:2302
+#: ../gtksourceview/gtksourcecompletion.c:2304
 msgid "Number of proposal accelerators to show"
 msgstr "显示的建议加速器的数目"
 
-#: ../gtksourceview/gtksourcecompletion.c:2318
+#: ../gtksourceview/gtksourcecompletion.c:2320
 msgid "Auto Complete Delay"
 msgstr "自动补全延时"
 
-#: ../gtksourceview/gtksourcecompletion.c:2319
+#: ../gtksourceview/gtksourcecompletion.c:2321
 msgid "Completion popup delay for interactive completion"
 msgstr "交互式补全的补全菜单延时"
 
-#: ../gtksourceview/gtksourcecompletion.c:2334
+#: ../gtksourceview/gtksourcecompletion.c:2336
 msgid "Provider Page Size"
 msgstr "提供者的页面大小"
 
-#: ../gtksourceview/gtksourcecompletion.c:2335
+#: ../gtksourceview/gtksourcecompletion.c:2337
 msgid "Provider scrolling page size"
-msgstr ""
+msgstr "提供者滚动页面尺寸"
 
-#: ../gtksourceview/gtksourcecompletion.c:2350
+#: ../gtksourceview/gtksourcecompletion.c:2352
 msgid "Proposal Page Size"
 msgstr "建议的页面大小"
 
-#: ../gtksourceview/gtksourcecompletion.c:2351
+#: ../gtksourceview/gtksourcecompletion.c:2353
 msgid "Proposal scrolling page size"
-msgstr ""
+msgstr "建议滚动页面尺寸"
 
-#: ../gtksourceview/gtksourcecompletion.c:2688
+#: ../gtksourceview/gtksourcecompletion.c:2691
 msgid "Provider"
 msgstr "提供者"
 
@@ -334,7 +345,7 @@ msgstr "信息"
 msgid "Info to be shown for this item"
 msgstr "为此条目显示的信息"
 
-#: ../gtksourceview/gtksourcecontextengine.c:2965
+#: ../gtksourceview/gtksourcecontextengine.c:2981
 msgid "using \\C is not supported in language definitions"
 msgstr "语言定义中不支持使用 \\C"
 
@@ -342,7 +353,7 @@ msgstr "语言定义中不支持使用 \\C"
 #. * named sub-patterns with the same name or if resulting regex is
 #. * too long. In this case fixing lang file helps (e.g. renaming
 #. * subpatterns, making huge keywords use bigger prefixes, etc.)
-#: ../gtksourceview/gtksourcecontextengine.c:3589
+#: ../gtksourceview/gtksourcecontextengine.c:3605
 #, c-format
 msgid ""
 "Cannot create a regex for all the transitions, the syntax highlighting "
@@ -352,43 +363,43 @@ msgstr ""
 "无法为所有的转换创建正则表达式，语法加亮进程将会比正常情况慢。\n"
 "错误是：%s"
 
-#: ../gtksourceview/gtksourcecontextengine.c:4924
+#: ../gtksourceview/gtksourcecontextengine.c:4940
 msgid ""
 "Highlighting a single line took too much time, syntax highlighting will be "
 "disabled"
 msgstr "加亮一整行花费的时间太多，语法加亮将被禁用"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6149
+#: ../gtksourceview/gtksourcecontextengine.c:6165
 #, c-format
 msgid "context '%s' cannot contain a \\%%{...@start} command"
 msgstr "上下文‘%s’不能包含一个 \\%%{...@start} 命令"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6311
-#: ../gtksourceview/gtksourcecontextengine.c:6400
+#: ../gtksourceview/gtksourcecontextengine.c:6327
+#: ../gtksourceview/gtksourcecontextengine.c:6416
 #, c-format
 msgid "duplicated context id '%s'"
 msgstr "重复的上下文 id ‘%s’"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6515
-#: ../gtksourceview/gtksourcecontextengine.c:6575
+#: ../gtksourceview/gtksourcecontextengine.c:6531
+#: ../gtksourceview/gtksourcecontextengine.c:6591
 #, c-format
 msgid ""
 "style override used with wildcard context reference in language '%s' in ref "
 "'%s'"
 msgstr "语言‘%s’在参考‘%s’中与通配符上下文引用一同使用的样式覆盖"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6589
+#: ../gtksourceview/gtksourcecontextengine.c:6605
 #, c-format
 msgid "invalid context reference '%s'"
 msgstr "无效的上下文引用‘%s’"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6608
-#: ../gtksourceview/gtksourcecontextengine.c:6618
+#: ../gtksourceview/gtksourcecontextengine.c:6624
+#: ../gtksourceview/gtksourcecontextengine.c:6634
 #, c-format
 msgid "unknown context '%s'"
 msgstr "未知的上下文‘%s’"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6718
+#: ../gtksourceview/gtksourcecontextengine.c:6734
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "缺少主要语言定义(id = “%s”)。"
@@ -480,12 +491,12 @@ msgstr "语言 id"
 msgid "List of the ids of the available languages"
 msgstr "可用语言的 id 列表"
 
-#: ../gtksourceview/gtksourcelanguage-parser-2.c:948
+#: ../gtksourceview/gtksourcelanguage-parser-2.c:950
 #, c-format
 msgid "Unknown id '%s' in regex '%s'"
 msgstr "正则表达式‘%2$s’中的未知 id ‘%1$s’"
 
-#: ../gtksourceview/gtksourcelanguage-parser-2.c:1176
+#: ../gtksourceview/gtksourcelanguage-parser-2.c:1178
 #, c-format
 msgid "in regex '%s': backreferences are not supported"
 msgstr "于正则表达式‘%s’中：后向引用不被支持"
@@ -729,6 +740,14 @@ msgstr "大纲 id"
 msgid "List of the ids of the available style schemes"
 msgstr "可用的样式大纲的 id 的列表"
 
+#: ../gtksourceview/gtksourceundomanagerdefault.c:404
+msgid "Buffer"
+msgstr "缓冲区"
+
+#: ../gtksourceview/gtksourceundomanagerdefault.c:405
+msgid "The text buffer to add undo support on"
+msgstr "要增加撤销支持的文本缓冲区"
+
 #: ../gtksourceview/gtksourceview.c:325
 msgid "The completion object associated with the view"
 msgstr "与此查看器有关的补全对象"
@@ -929,7 +948,7 @@ msgstr "注释"
 #: ../gtksourceview/language-specs/forth.lang.h:3
 #: ../gtksourceview/language-specs/fortran.lang.h:3
 #: ../gtksourceview/language-specs/fsharp.lang.h:5
-#: ../gtksourceview/language-specs/glsl.lang.h:3
+#: ../gtksourceview/language-specs/glsl.lang.h:4
 #: ../gtksourceview/language-specs/gtkrc.lang.h:3
 #: ../gtksourceview/language-specs/haskell.lang.h:3
 #: ../gtksourceview/language-specs/idl.lang.h:2
@@ -1012,7 +1031,7 @@ msgstr "转码字符"
 #: ../gtksourceview/language-specs/fortran.lang.h:8
 #: ../gtksourceview/language-specs/fsharp.lang.h:10
 #: ../gtksourceview/language-specs/gap.lang.h:6
-#: ../gtksourceview/language-specs/glsl.lang.h:4
+#: ../gtksourceview/language-specs/glsl.lang.h:5
 #: ../gtksourceview/language-specs/gtkrc.lang.h:7
 #: ../gtksourceview/language-specs/haskell.lang.h:9
 #: ../gtksourceview/language-specs/idl.lang.h:4
@@ -1054,7 +1073,7 @@ msgstr "关键字"
 #: ../gtksourceview/language-specs/csharp.lang.h:12
 #: ../gtksourceview/language-specs/forth.lang.h:9
 #: ../gtksourceview/language-specs/fsharp.lang.h:15
-#: ../gtksourceview/language-specs/glsl.lang.h:6
+#: ../gtksourceview/language-specs/glsl.lang.h:7
 #: ../gtksourceview/language-specs/haskell.lang.h:11
 #: ../gtksourceview/language-specs/idl.lang.h:5
 #: ../gtksourceview/language-specs/nemerle.lang.h:14
@@ -1085,7 +1104,7 @@ msgstr "实数"
 #: ../gtksourceview/language-specs/forth.lang.h:10
 #: ../gtksourceview/language-specs/fortran.lang.h:9
 #: ../gtksourceview/language-specs/fsharp.lang.h:16
-#: ../gtksourceview/language-specs/glsl.lang.h:8
+#: ../gtksourceview/language-specs/glsl.lang.h:9
 #: ../gtksourceview/language-specs/haskell.lang.h:12
 #: ../gtksourceview/language-specs/haskell-literate.lang.h:2
 #: ../gtksourceview/language-specs/idl.lang.h:6
@@ -1332,7 +1351,6 @@ msgid "Regular Expression"
 msgstr "正则表达式"
 
 #: ../gtksourceview/language-specs/boo.lang.h:14
-#: ../gtksourceview/language-specs/glsl.lang.h:9
 #: ../gtksourceview/language-specs/python.lang.h:16
 #: ../gtksourceview/language-specs/ruby.lang.h:20
 msgid "Special Variable"
@@ -1341,7 +1359,7 @@ msgstr "特殊变量"
 #: ../gtksourceview/language-specs/changelog.lang.h:1
 #, fuzzy
 msgid "Bullet"
-msgstr "内置"
+msgstr "项目符号"
 
 #: ../gtksourceview/language-specs/changelog.lang.h:2
 msgid "ChangeLog"
@@ -1362,7 +1380,7 @@ msgstr "文件"
 
 #: ../gtksourceview/language-specs/changelog.lang.h:9
 msgid "Release"
-msgstr ""
+msgstr "发布"
 
 #: ../gtksourceview/language-specs/chdr.lang.h:1
 msgid "C/C++/ObjC Header"
@@ -1459,10 +1477,8 @@ msgid "printf Conversion"
 msgstr "printf 转换"
 
 #: ../gtksourceview/language-specs/cg.lang.h:1
-#, fuzzy
-#| msgid "Encoding"
 msgid "Bindings"
-msgstr "编码"
+msgstr "绑定"
 
 #: ../gtksourceview/language-specs/cg.lang.h:3
 #: ../gtksourceview/language-specs/erlang.lang.h:3
@@ -1471,16 +1487,12 @@ msgid "Builtin"
 msgstr "内置"
 
 #: ../gtksourceview/language-specs/cg.lang.h:4
-#, fuzzy
-#| msgid "OpenGL Shading Language"
 msgid "CG Shader Language"
-msgstr "OpenGL着色语言"
+msgstr "CG 遮罩语言"
 
 #: ../gtksourceview/language-specs/cg.lang.h:19
-#, fuzzy
-#| msgid "Type Operators"
 msgid "Swizzle operator"
-msgstr "类型操作符"
+msgstr "混合操作符"
 
 #: ../gtksourceview/language-specs/classic.xml.h:1
 msgid "Classic"
@@ -1495,6 +1507,7 @@ msgid "Builtin Command"
 msgstr "内建命令"
 
 #: ../gtksourceview/language-specs/cmake.lang.h:2
+#: ../gtksourceview/language-specs/glsl.lang.h:3
 msgid "Builtin Variable"
 msgstr "内建变量"
 
@@ -1988,11 +2001,11 @@ msgstr "GAP"
 msgid "Builtin Constant"
 msgstr "内置常量"
 
-#: ../gtksourceview/language-specs/glsl.lang.h:5
+#: ../gtksourceview/language-specs/glsl.lang.h:6
 msgid "OpenGL Shading Language"
 msgstr "OpenGL着色语言"
 
-#: ../gtksourceview/language-specs/glsl.lang.h:7
+#: ../gtksourceview/language-specs/glsl.lang.h:8
 msgid "Reserved Keywords"
 msgstr "保留的关键字"
 
@@ -2293,7 +2306,7 @@ msgstr "Makefile"
 #. the end of the line
 #: ../gtksourceview/language-specs/makefile.lang.h:7
 msgid "Trailing Tab"
-msgstr ""
+msgstr "末尾的缩进符"
 
 #: ../gtksourceview/language-specs/makefile.lang.h:9
 msgid "command"
@@ -2309,6 +2322,7 @@ msgstr "函数"
 msgid "keyword"
 msgstr "关键字"
 
+# prerequisite“先决条件”的缩写 但怀疑这项不用翻译——xslidian@gmail.com
 #: ../gtksourceview/language-specs/makefile.lang.h:12
 msgid "prereq"
 msgstr ""
@@ -2327,16 +2341,15 @@ msgstr "内联元素"
 
 #: ../gtksourceview/language-specs/mallard.lang.h:3
 msgid "Mallard"
-msgstr ""
+msgstr "Mallard"
 
 #: ../gtksourceview/language-specs/mallard.lang.h:5
 msgid "Page Elements"
 msgstr "页面元素"
 
 #: ../gtksourceview/language-specs/mallard.lang.h:6
-#, fuzzy
 msgid "Section Elements"
-msgstr "格式化元素"
+msgstr "段落元素"
 
 #: ../gtksourceview/language-specs/msil.lang.h:1
 msgid "MSIL"
@@ -2372,7 +2385,7 @@ msgstr "Ocamldoc 块注释"
 
 #: ../gtksourceview/language-specs/ocaml.lang.h:17
 msgid "Standart Modules"
-msgstr ""
+msgstr "标准模块"
 
 #: ../gtksourceview/language-specs/ocl.lang.h:4
 msgid "OCL"
@@ -2391,10 +2404,8 @@ msgid "Octave"
 msgstr "Octave"
 
 #: ../gtksourceview/language-specs/ooc.lang.h:14
-#, fuzzy
-#| msgid "OCL"
 msgid "OOC"
-msgstr "OCL"
+msgstr "OOC"
 
 #: ../gtksourceview/language-specs/pascal.lang.h:5
 msgid "Pascal"
@@ -2467,7 +2478,7 @@ msgstr "pkg-config"
 
 #: ../gtksourceview/language-specs/po.lang.h:2
 msgid "Fuzzy"
-msgstr ""
+msgstr "模糊"
 
 #. FIXME make it some nice name and mark it translatable
 #: ../gtksourceview/language-specs/po.lang.h:7
@@ -2663,23 +2674,23 @@ msgstr "选项名称"
 
 #: ../gtksourceview/language-specs/t2t.lang.h:10
 msgid "Section 1"
-msgstr ""
+msgstr "第一章"
 
 #: ../gtksourceview/language-specs/t2t.lang.h:11
 msgid "Section 2"
-msgstr ""
+msgstr "第二章"
 
 #: ../gtksourceview/language-specs/t2t.lang.h:12
 msgid "Section 3"
-msgstr ""
+msgstr "第三章"
 
 #: ../gtksourceview/language-specs/t2t.lang.h:13
 msgid "Section 4"
-msgstr ""
+msgstr "第四章"
 
 #: ../gtksourceview/language-specs/t2t.lang.h:14
 msgid "Section 5"
-msgstr ""
+msgstr "第五章"
 
 #: ../gtksourceview/language-specs/t2t.lang.h:15
 msgid "Text2Tags"
