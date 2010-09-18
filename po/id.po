@@ -10,7 +10,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&component=general\n"
 "POT-Creation-Date: 2010-09-05 16:01+0000\n"
-"PO-Revision-Date: 2010-09-14 19:27+0700\n"
+"PO-Revision-Date: 2010-09-18 17:26+0700\n"
 "Last-Translator: Andika Triwidada <andika@gmail.com>\n"
 "Language-Team: GNOME Indonesian Translation Team <gnome@i15n.org>\n"
 "MIME-Version: 1.0\n"
@@ -165,8 +165,9 @@ msgid "View"
 msgstr "Lihat"
 
 #: ../gtksourceview/gtksourcecompletion.c:2230
+#, fuzzy
 msgid "The GtkSourceView bound to the completion"
-msgstr ""
+msgstr "Pengikatan GtkSourceView ke pelengkapan "
 
 #: ../gtksourceview/gtksourcecompletion.c:2245
 msgid "Remember Info Visibility"
@@ -246,7 +247,7 @@ msgstr "Pelengkapan"
 
 #: ../gtksourceview/gtksourcecompletioncontext.c:245
 msgid "The completion object to which the context belongs"
-msgstr ""
+msgstr "Objek pelengkapan yang dimiliki konteks"
 
 #. Translators: The GtkTextIter at which the completion was invoked
 #: ../gtksourceview/gtksourcecompletioncontext.c:258
@@ -365,12 +366,17 @@ msgid ""
 "process will be slower than usual.\n"
 "The error was: %s"
 msgstr ""
+"Tak bisa membuat regex bagi semua transisi, proses penandaan sintaks akan "
+"lebih lambat dari biasanya.\n"
+"Galatnya: %s"
 
 #: ../gtksourceview/gtksourcecontextengine.c:4940
 msgid ""
 "Highlighting a single line took too much time, syntax highlighting will be "
 "disabled"
 msgstr ""
+"Penandaan suatu baris makan waktu terlalu lama, penandaan sintaks akan "
+"dimatikan"
 
 #: ../gtksourceview/gtksourcecontextengine.c:6165
 #, c-format
@@ -390,6 +396,8 @@ msgid ""
 "style override used with wildcard context reference in language '%s' in ref "
 "'%s'"
 msgstr ""
+"penimpaan gaya dipakai dengan acuan konteks wildcard pada bahasa '%s' di "
+"acuan '%s'"
 
 #: ../gtksourceview/gtksourcecontextengine.c:6605
 #, c-format
@@ -418,7 +426,7 @@ msgstr "Jenis Jendela"
 
 #: ../gtksourceview/gtksourcegutter.c:383
 msgid "The gutters text window type"
-msgstr ""
+msgstr "Jenis jendela teks gutter"
 
 #. *
 #. * SECTION:language
@@ -511,7 +519,7 @@ msgstr "kategori"
 
 #: ../gtksourceview/gtksourcemark.c:141
 msgid "The mark category"
-msgstr ""
+msgstr "Kategori tanda"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:446
 msgid "Source Buffer"
@@ -605,10 +613,9 @@ msgid "Footer Font Name"
 msgstr "Nama Fonta Footer"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:670
-#, fuzzy
 msgid "Name of the font to use for the page footer (e.g. \"Monospace 10\")"
 msgstr ""
-"Huruf yang digunakan untuk header dan footer (misalnya, \"Monospace 10\")"
+"Nama fonta yang digunakan untuk footer halaman (misalnya, \"Monospace 10\")"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:686
 msgid "Number of pages"
@@ -782,9 +789,8 @@ msgid "Show Line Marks"
 msgstr "Tampilkan Tanda Baris"
 
 #: ../gtksourceview/gtksourceview.c:350
-#, fuzzy
 msgid "Whether to display line mark pixbufs"
-msgstr "Apakah menampilkan tanda baris pixbufs"
+msgstr "Apakah menampilkan pixbuf tanda baris"
 
 #: ../gtksourceview/gtksourceview.c:377
 msgid "Indent Width"
@@ -1499,8 +1505,9 @@ msgid "printf Conversion"
 msgstr "Konversi printf"
 
 #: ../gtksourceview/language-specs/cg.lang.h:1
+#, fuzzy
 msgid "Bindings"
-msgstr ""
+msgstr "Pengikatan"
 
 #: ../gtksourceview/language-specs/cg.lang.h:3
 #: ../gtksourceview/language-specs/erlang.lang.h:3
@@ -1860,7 +1867,7 @@ msgstr "galat"
 
 #: ../gtksourceview/language-specs/dtd.lang.h:6
 msgid "quoted-value"
-msgstr ""
+msgstr "quoted-value"
 
 #: ../gtksourceview/language-specs/eiffel.lang.h:1
 msgid "Assertion"
@@ -1876,7 +1883,7 @@ msgstr "Awakutu"
 
 #: ../gtksourceview/language-specs/eiffel.lang.h:7
 msgid "Design by Contract"
-msgstr ""
+msgstr "Disain berdasar Kontrak"
 
 #: ../gtksourceview/language-specs/eiffel.lang.h:8
 msgid "Eiffel"
@@ -1885,13 +1892,13 @@ msgstr "Eiffel"
 #: ../gtksourceview/language-specs/eiffel.lang.h:10
 #, fuzzy
 msgid "Exception Handling"
-msgstr "Penanganan Kesalahan"
+msgstr "Penanganan Kondisi Luar Biasa"
 
 #: ../gtksourceview/language-specs/eiffel.lang.h:13
 #: ../gtksourceview/language-specs/ruby.lang.h:16
 #, fuzzy
 msgid "Predefined Variable"
-msgstr "Variabel Semu"
+msgstr "Variabel Terpradefinisi"
 
 #: ../gtksourceview/language-specs/eiffel.lang.h:16
 msgid "Void Value"
@@ -2044,8 +2051,9 @@ msgid "Function Name"
 msgstr "Nama Fungsi"
 
 #: ../gtksourceview/language-specs/gtk-doc.lang.h:5
+#, fuzzy
 msgid "Inline Documentation Section"
-msgstr ""
+msgstr "Seksi Dokumentasi Inline"
 
 #: ../gtksourceview/language-specs/gtk-doc.lang.h:7
 msgid "Parameter"
@@ -2277,8 +2285,9 @@ msgstr "Mode Matematika"
 
 #: ../gtksourceview/language-specs/latex.lang.h:8
 #: ../gtksourceview/language-specs/t2t.lang.h:16
+#, fuzzy
 msgid "Verbatim"
-msgstr ""
+msgstr "Verbatim"
 
 #: ../gtksourceview/language-specs/latex.lang.h:9
 msgid "math-bound"
@@ -2323,11 +2332,11 @@ msgstr "Komentar m4"
 
 #: ../gtksourceview/language-specs/makefile.lang.h:1
 msgid "Assignment Left Hand Side"
-msgstr ""
+msgstr "Pengisian Nilai Sisi Kiri"
 
 #: ../gtksourceview/language-specs/makefile.lang.h:2
 msgid "Assignment Right Hand Side"
-msgstr ""
+msgstr "Pengisian Nilai Sisi Kanan"
 
 #: ../gtksourceview/language-specs/makefile.lang.h:3
 msgid "Makefile"
@@ -2336,8 +2345,9 @@ msgstr "Makefile"
 #. Translators: Trailing Tabs refers to tabulation characters present at
 #. the end of the line
 #: ../gtksourceview/language-specs/makefile.lang.h:7
+#, fuzzy
 msgid "Trailing Tab"
-msgstr ""
+msgstr "Tab Di Ekor"
 
 #: ../gtksourceview/language-specs/makefile.lang.h:9
 msgid "command"
@@ -2460,8 +2470,9 @@ msgstr "Heredoc"
 #: ../gtksourceview/language-specs/php.lang.h:10
 #: ../gtksourceview/language-specs/ruby.lang.h:11
 #: ../gtksourceview/language-specs/sh.lang.h:4
+#, fuzzy
 msgid "Heredoc Bound"
-msgstr ""
+msgstr "Heredoc Bound"
 
 #: ../gtksourceview/language-specs/perl.lang.h:8
 msgid "Include Statement"
@@ -2618,7 +2629,7 @@ msgstr "Seksi"
 #: ../gtksourceview/language-specs/rpmspec.lang.h:14
 #, fuzzy
 msgid "Spec Macro"
-msgstr "Makro"
+msgstr "Makro Spek"
 
 #: ../gtksourceview/language-specs/rpmspec.lang.h:15
 msgid "Switch"
@@ -2631,12 +2642,12 @@ msgstr "Definisi Atribut"
 #: ../gtksourceview/language-specs/ruby.lang.h:13
 #, fuzzy
 msgid "Module handler"
-msgstr "Handler Modul"
+msgstr "Penangan modul"
 
 #: ../gtksourceview/language-specs/ruby.lang.h:15
 #, fuzzy
 msgid "Numeric literal"
-msgstr "Literal Angka"
+msgstr "Literal bilangan"
 
 #: ../gtksourceview/language-specs/ruby.lang.h:18
 msgid "Ruby"
@@ -2735,7 +2746,7 @@ msgstr "Text2Tags"
 
 #: ../gtksourceview/language-specs/t2t.lang.h:17
 msgid "Verbatim Block"
-msgstr ""
+msgstr "Blok Verbatim"
 
 #: ../gtksourceview/language-specs/tango.xml.h:1
 msgid "Color scheme using Tango color palette"
