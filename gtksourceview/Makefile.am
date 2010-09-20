@@ -176,7 +176,8 @@ GtkSource_3_0_gir_FILES =			\
 	$(libgtksourceview_c_files)
 
 GtkSource_3_0_gir_INCLUDES = Gtk-3.0
-GtkSource_3_0_gir_PACKAGES = gtksourceview-3.0
+GtkSource_3_0_gir_PACKAGES = gtk+-3.0
+GtkSource_3_0_gir_EXPORT_PACKAGES = gtksourceview-3.0
 
 girdir = $(INTROSPECTION_GIRDIR)
 gir_DATA = $(INTROSPECTION_GIRS)
