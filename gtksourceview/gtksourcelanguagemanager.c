@@ -197,8 +197,8 @@ gtk_source_language_manager_new (void)
  *
  * Returns the default #GtkSourceLanguageManager instance.
  *
- * Returns: (transfer-none): a #GtkSourceLanguageManager. Return value is owned
- * by GtkSourceView library and must not be unref'ed.
+ * Returns: (transfer none): a #GtkSourceLanguageManager.
+ * Return value is owned by GtkSourceView library and must not be unref'ed.
  */
 GtkSourceLanguageManager *
 gtk_source_language_manager_get_default (void)
@@ -389,9 +389,10 @@ ensure_languages (GtkSourceLanguageManager *lm)
  *
  * Returns the ids of the available languages.
  *
- * Returns: a %NULL-terminated array of string containing the ids of the
- * available languages or %NULL if no language is available. The array
- * is owned by @lm and must not be modified.
+ * Returns: (transfer none): a %NULL-terminated array of string
+ * containing the ids of the available languages or %NULL if
+ * no language is available.
+ * The array is owned by @lm and must not be modified.
  */
 G_CONST_RETURN gchar* G_CONST_RETURN *
 gtk_source_language_manager_get_language_ids (GtkSourceLanguageManager *lm)

@@ -575,8 +575,8 @@ gtk_source_language_get_metadata (GtkSourceLanguage *language,
  * retrieve the "mimetypes" metadata property and split it into an
  * array.
  *
- * Returns: (array zero-terminated=1): a newly-allocated %NULL
- * terminated array containing the mime types or %NULL if no 
+ * Returns: (array zero-terminated=1) (transfer full): a newly-allocated
+ * %NULL terminated array containing the mime types or %NULL if no 
  * mime types are found.
  * The returned array must be freed with g_strfreev().
  **/
@@ -602,8 +602,8 @@ gtk_source_language_get_mime_types (GtkSourceLanguage *language)
  * an utility wrapper around gtk_source_language_get_metadata() to
  * retrieve the "globs" metadata property and split it into an array.
  *
- * Returns: (array zero-terminated=1): a newly-allocated %NULL terminated array containing
- * the globs or %NULL if no globs are found.
+ * Returns: (array zero-terminated=1) (transfer full): a newly-allocated
+ * %NULL terminated array containing the globs or %NULL if no globs are found.
  * The returned array must be freed with g_strfreev().
  **/
 gchar **
@@ -836,9 +836,10 @@ force_styles (GtkSourceLanguage *language)
  *
  * Returns the ids of the styles defined by this @language.
  *
- * Returns: (array zero-terminated=1): a  %NULL terminated array containing
- * ids of the styles defined by this @language or %NULL if no style is
- * defined.  The returned array must be freed with g_strfreev().
+ * Returns: (array zero-terminated=1) (transfer full): a  %NULL terminated
+ * array containing ids of the styles defined by this @language or
+ * %NULL if no style is defined.
+ * The returned array must be freed with g_strfreev().
 */
 gchar **
 gtk_source_language_get_style_ids (GtkSourceLanguage *language)

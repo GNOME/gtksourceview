@@ -495,7 +495,8 @@ gtk_source_gutter_new (GtkSourceView     *view,
  * Get the #GdkWindow of the gutter. The window will only be available when the
  * gutter has at least one, non-zero width, cell renderer packed.
  *
- * Returns: the #GdkWindow of the gutter, or %NULL if the gutter has no window.
+ * Returns: (transfer none): the #GdkWindow of the gutter, or %NULL
+ * if the gutter has no window.
  *
  * Since: 2.8
  */

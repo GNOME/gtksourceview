@@ -3251,9 +3251,10 @@ _gtk_source_completion_add_proposals (GtkSourceCompletion         *completion,
 /**
  * gtk_source_completion_show:
  * @completion: a #GtkSourceCompletion.
- * @providers: (element-type CompletionProvider) (allow-none):
+ * @providers: (element-type GtkSource.CompletionProvider) (allow-none):
  * a list of #GtkSourceCompletionProvider, or %NULL.
- * @context: The #GtkSourceCompletionContext with which to start the completion.
+ * @context: (transfer full): The #GtkSourceCompletionContext
+ * with which to start the completion.
  *
  * Starts a new completion with the specified #GtkSourceCompletionContext and
  * a list of potential candidate providers for completion.
@@ -3318,7 +3319,7 @@ gtk_source_completion_show (GtkSourceCompletion        *completion,
  * Get list of providers registered on @completion. The returned list is owned
  * by the completion and should not be freed.
  *
- * Returns: (element-type CompletionProvider) (transfer none):
+ * Returns: (element-type GtkSource.CompletionProvider) (transfer none):
  * list of #GtkSourceCompletionProvider.
  */
 GList *
@@ -3531,7 +3532,8 @@ gtk_source_completion_get_info_window (GtkSourceCompletion *completion)
  *
  * The #GtkSourceView associated with @completion.
  *
- * Returns: (type View) (transfer none): The #GtkSourceView associated with @completion.
+ * Returns: (type GtkSource.View) (transfer none):
+ * The #GtkSourceView associated with @completion.
  */
 GtkSourceView *
 gtk_source_completion_get_view (GtkSourceCompletion *completion)
@@ -3551,9 +3553,10 @@ gtk_source_completion_get_view (GtkSourceCompletion *completion)
  * be provider by @position. If @position is %NULL, the current cursor
  * position will be used.
  *
- * Returns: a new #GtkSourceCompletionContext. The reference being returned
- * is a 'floating' reference, so if you invoke #gtk_source_completion_show
- * with this context you don't need to unref it.
+ * Returns: (transfer full): a new #GtkSourceCompletionContext.
+ * The reference being returned is a 'floating' reference,
+ * so if you invoke #gtk_source_completion_show with this context
+ * you don't need to unref it.
  */
 GtkSourceCompletionContext *
 gtk_source_completion_create_context (GtkSourceCompletion *completion,

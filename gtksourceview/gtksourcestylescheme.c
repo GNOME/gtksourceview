@@ -305,8 +305,9 @@ gtk_source_style_scheme_get_description (GtkSourceStyleScheme *scheme)
  * gtk_source_style_scheme_get_authors:
  * @scheme: a #GtkSourceStyleScheme.
  *
- * Returns: (array zero-terminated): a %NULL-terminated array containing
- * the @scheme authors or %NULL if no author is specified by the style scheme.
+ * Returns: (array zero-terminated) (transfer none): a %NULL-terminated
+ * array containing the @scheme authors or %NULL if no author
+ * is specified by the style scheme.
  *
  * Since: 2.0
  */
@@ -448,9 +449,9 @@ fix_style_colors (GtkSourceStyleScheme *scheme,
  * @scheme: a #GtkSourceStyleScheme.
  * @style_id: id of the style to retrieve.
  *
- * Returns: style which corresponds to @style_id in the @scheme,
- * or %NULL when no style with this name found. It is owned by @scheme
- * and may not be unref'ed.
+ * Returns: (transfer none): style which corresponds to @style_id
+ * in the @scheme, or %NULL when no style with this name found.
+ * It is owned by @scheme and may not be unref'ed.
  *
  * Since: 2.0
  */

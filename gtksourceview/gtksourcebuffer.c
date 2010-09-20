@@ -2067,7 +2067,8 @@ gtk_source_buffer_backward_iter_to_source_mark (GtkSourceBuffer *buffer,
  * Returns the list of marks of the given category at @iter. If @category
  * is %NULL it returns all marks at @iter.
  *
- * Returns: (element-type GtkSource.Mark): a newly allocated #GSList.
+ * Returns: (element-type GtkSource.Mark) (transfer container):
+ * a newly allocated #GSList.
  *
  * Since: 2.2
  **/
@@ -2112,7 +2113,8 @@ gtk_source_buffer_get_source_marks_at_iter (GtkSourceBuffer *buffer,
  * Returns the list of marks of the given category at @line.
  * If @category is NULL, all marks at @line are returned.
  *
- * Returns: (element-type GtkSource.Mark): a newly allocated #GSList.
+ * Returns: (element-type GtkSource.Mark) (transfer container):
+ * a newly allocated #GSList.
  *
  * Since: 2.2
  **/
@@ -2262,8 +2264,9 @@ gtk_source_buffer_iter_has_context_class (GtkSourceBuffer   *buffer,
  *
  * Get all defined context classes at @iter.
  *
- * Returns: (array zero-terminated=1): a new %NULL terminated array of context
- * class names. Use #g_strfreev to free the array if it is no longer needed.
+ * Returns: (array zero-terminated=1) (transfer full): a new %NULL
+ * terminated array of context class names.
+ * Use g_strfreev() to free the array if it is no longer needed.
  *
  * Since: 2.10
  **/

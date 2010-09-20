@@ -375,7 +375,8 @@ gtk_source_style_get_property (GObject      *object,
  * Creates a copy of @style, that is a new #GtkSourceStyle instance which
  * has the same attributes set.
  *
- * Returns: copy of @style, call g_object_unref() when you are done with it.
+ * Returns: (transfer full): copy of @style, call g_object_unref()
+ * when you are done with it.
  *
  * Since: 2.0
  */

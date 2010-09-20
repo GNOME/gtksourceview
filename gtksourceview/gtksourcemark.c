@@ -211,7 +211,7 @@ gtk_source_mark_get_category (GtkSourceMark *mark)
  *
  * If @category is %NULL, looks for marks of any category.
  *
- * Returns: the next #GtkSourceMark, or %NULL.
+ * Returns: (transfer none): the next #GtkSourceMark, or %NULL.
  *
  * Since: 2.2
  */
@@ -241,7 +241,7 @@ gtk_source_mark_next (GtkSourceMark *mark,
  * 
  * If @category is %NULL, looks for marks of any category
  *
- * Returns: the previous #GtkSourceMark, or %NULL.
+ * Returns: (transfer none): the previous #GtkSourceMark, or %NULL.
  *
  * Since: 2.2
  */

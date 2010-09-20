@@ -192,7 +192,7 @@ gtk_source_completion_proposal_get_text (GtkSourceCompletionProposal *proposal)
  *
  * Gets the icon of @proposal.
  *
- * Returns: The icon of @proposal.
+ * Returns: (transfer none): The icon of @proposal.
  */
 GdkPixbuf *
 gtk_source_completion_proposal_get_icon (GtkSourceCompletionProposal *proposal)

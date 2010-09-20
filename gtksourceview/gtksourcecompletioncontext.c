@@ -286,8 +286,8 @@ gtk_source_completion_context_init (GtkSourceCompletionContext *context)
 /**
  * gtk_source_completion_context_add_proposals:
  * @context: a #GtkSourceCompletionContext.
- * @provider: (type CompletionProvider): a #GtkSourceCompletionProvider.
- * @proposals: (element-type CompletionItem): The list of proposals to add.
+ * @provider: (type GtkSource.CompletionProvider): a #GtkSourceCompletionProvider.
+ * @proposals: (element-type GtkSource.CompletionItem): The list of proposals to add.
  * @finished: Whether the provider is finished adding proposals.
  * 
  * Providers can use this function to add proposals to the completion. They

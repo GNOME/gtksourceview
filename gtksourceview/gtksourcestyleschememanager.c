@@ -198,7 +198,7 @@ gtk_source_style_scheme_manager_new (void)
  *
  * Returns the default #GtkSourceStyleSchemeManager instance.
  *
- * Returns: (transfer-none): a #GtkSourceStyleSchemeManager. Return value
+ * Returns: (transfer none): a #GtkSourceStyleSchemeManager. Return value
  * is owned by GtkSourceView library and must not be unref'ed.
  */
 GtkSourceStyleSchemeManager *
@@ -512,7 +512,7 @@ gtk_source_style_scheme_manager_prepend_search_path (GtkSourceStyleSchemeManager
  * Returns the current search path for the @manager.
  * See gtk_source_style_scheme_manager_set_search_path() for details.
  *
- * Returns: (array zero-terminated) (tranfer none): a %NULL-terminated array
+ * Returns: (array zero-terminated=1) (transfer none): a %NULL-terminated array
  * of string containing the search path.
  * The array is owned by the @manager and must not be modified.
  */
