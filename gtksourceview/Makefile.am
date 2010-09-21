@@ -173,7 +173,8 @@ GtkSource_3_0_gir_LIBS = libgtksourceview-3.0.la
 GtkSource_3_0_gir_FILES =			\
 	$(libgtksourcecompletionwords_files)	\
 	$(libgtksourceview_headers)		\
-	$(libgtksourceview_c_files)
+	$(libgtksourceview_c_files)		\
+	$(BUILT_SOURCES)
 
 GtkSource_3_0_gir_INCLUDES = Gtk-3.0
 GtkSource_3_0_gir_PACKAGES = gtk+-3.0
