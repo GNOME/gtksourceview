@@ -120,9 +120,10 @@ AS_IF([ test "$glade_catalog" = "yes" ],
 # i18N stuff
 IT_PROG_INTLTOOL([0.40])
 
-AC_SUBST([GETTEXT_PACKAGE], [gtksourceview-3.0])
 AM_GNU_GETTEXT_VERSION([0.17])
-AM_GLIB_GNU_GETTEXT
+AM_GNU_GETTEXT([external])
+
+AC_SUBST([GETTEXT_PACKAGE], [gtksourceview-3.0])
 AC_DEFINE([GETTEXT_PACKAGE], [PACKAGE_TARNAME], [Define to the gettext package name.])
 
 # Documentation
