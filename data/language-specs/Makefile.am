@@ -70,6 +70,7 @@ LANGUAGES =			\
 	rpmspec.lang		\
 	ruby.lang		\
 	scheme.lang		\
+	scilab.lang		\
 	sh.lang			\
 	sparql.lang		\
 	sql.lang		\
