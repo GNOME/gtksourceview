@@ -305,7 +305,7 @@ gtk_source_style_scheme_get_description (GtkSourceStyleScheme *scheme)
  * gtk_source_style_scheme_get_authors:
  * @scheme: a #GtkSourceStyleScheme.
  *
- * Returns: (array zero-terminated) (transfer none): a %NULL-terminated
+ * Returns: (array zero-terminated=1) (transfer none): a %NULL-terminated
  * array containing the @scheme authors or %NULL if no author
  * is specified by the style scheme.
  *
