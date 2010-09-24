@@ -52,7 +52,7 @@
  * #gtk_cell_renderer_set_fixed_size) or dynamic, in which case you
  * <emphasis>must</emphasis> set #gtk_source_gutter_set_cell_size_func. This
  * callback is used to set the properties of the renderer such that
- * #gtk_cell_renderer_get_size yields the maximum width of the cell.
+ * #gtk_cell_size_request_get_size yields the maximum width of the cell.
  */
 
 #define GTK_SOURCE_GUTTER_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE((object), GTK_TYPE_SOURCE_GUTTER, GtkSourceGutterPrivate))
@@ -727,13 +727,14 @@ calculate_size (GtkSourceGutter  *gutter,
 
 	if (width == -1 && renderer->size_func)
 	{
-		gint height;
+		GtkRequisition min_size;
+
 		renderer->size_func (gutter, renderer->renderer, renderer->size_func_data);
 
-		gtk_cell_renderer_get_size (renderer->renderer,
-		                            GTK_WIDGET (gutter->priv->view),
-		                            NULL, NULL, NULL,
-		                            &width, &height);
+		gtk_cell_size_request_get_size (GTK_CELL_SIZE_REQUEST (renderer->renderer),
+		                                GTK_WIDGET (gutter->priv->view),
+		                                &min_size, NULL);
+		width = min_size.width;
 	}
 
 	return width == -1 ? 1 : width;
