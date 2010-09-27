@@ -132,9 +132,9 @@ window_resize (GtkSourceCompletionInfo *info)
 	if (info->priv->widget != NULL)
 	{
 		/* Try to resize to fit widget, if necessary */
-		gtk_size_request_get_size (GTK_SIZE_REQUEST (info->priv->widget),
-		                           &req, NULL);
-		
+		gtk_widget_get_preferred_size (info->priv->widget,
+		                               &req, NULL);
+
 		get_scrolled_window_sizing (info, &border, &hscroll, &vscroll);
 		off = (gtk_container_get_border_width (GTK_CONTAINER (info)) + border) * 2;
 
@@ -505,8 +505,8 @@ use_scrolled_window (GtkSourceCompletionInfo *info,
 	
 	mw = info->priv->max_width;
 	mh = info->priv->max_height;
-	gtk_size_request_get_size (GTK_SIZE_REQUEST (widget), &req, NULL);
-	
+	gtk_widget_get_preferred_size (widget, &req, NULL);
+
 	return (mw != -1 && mw < req.width) || (mh != -1 && mh < req.height);
 }
 
