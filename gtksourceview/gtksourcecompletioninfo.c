@@ -288,26 +288,20 @@ gtk_source_completion_info_show (GtkWidget *widget)
 }
 
 static gboolean
-gtk_source_completion_info_expose (GtkWidget      *widget,
-                                   GdkEventExpose *expose)
+gtk_source_completion_info_draw (GtkWidget *widget,
+                                 cairo_t   *cr)
 {
-	GtkAllocation allocation;
+	GTK_WIDGET_CLASS (gtk_source_completion_info_parent_class)->draw (widget, cr);
 
-	GTK_WIDGET_CLASS (gtk_source_completion_info_parent_class)->expose_event (widget, expose);
-
-	gtk_widget_get_allocation (widget, &allocation);
-	
 	gtk_paint_shadow (gtk_widget_get_style (widget),
-			  gtk_widget_get_window (widget),
+			  cr,
 			  GTK_STATE_NORMAL,
 			  GTK_SHADOW_OUT,
-			  NULL,
 			  widget,
 			  NULL,
-			  allocation.x,
-			  allocation.y,
-			  allocation.width,
-			  allocation.height);
+			  0, 0,
+			  gtk_widget_get_allocated_width (widget),
+			  gtk_widget_get_allocated_height (widget));
 
 	return FALSE;
 }
@@ -323,7 +317,7 @@ gtk_source_completion_info_class_init (GtkSourceCompletionInfoClass *klass)
 	object_class->finalize = gtk_source_completion_info_finalize;
 	
 	widget_class->show = gtk_source_completion_info_show;
-	widget_class->expose_event = gtk_source_completion_info_expose;
+	widget_class->draw = gtk_source_completion_info_draw;
 	
 	/**
 	 * GtkSourceCompletionInfo::show-info:

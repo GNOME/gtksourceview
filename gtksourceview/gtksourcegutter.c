@@ -91,7 +91,7 @@ typedef struct
 
 enum
 {
-	EXPOSE_EVENT,
+	DRAW,
 	MOTION_NOTIFY_EVENT,
 	BUTTON_PRESS_EVENT,
 	ENTER_NOTIFY_EVENT,
@@ -111,9 +111,9 @@ struct _GtkSourceGutterPrivate
 
 G_DEFINE_TYPE (GtkSourceGutter, gtk_source_gutter, G_TYPE_OBJECT)
 
-static gboolean on_view_expose_event (GtkSourceView   *view,
-                                      GdkEventExpose  *event,
-                                      GtkSourceGutter *gutter);
+static gboolean on_view_draw (GtkSourceView   *view,
+                              cairo_t         *cr,
+                              GtkSourceGutter *gutter);
 
 static gboolean on_view_motion_notify_event (GtkSourceView   *view,
                                              GdkEventMotion  *event,
@@ -242,10 +242,10 @@ set_view (GtkSourceGutter *gutter,
 	                   (GWeakNotify)view_notify,
 	                   gutter);
 
-	gutter->priv->signals[EXPOSE_EVENT] =
+	gutter->priv->signals[DRAW] =
 		g_signal_connect (view,
-	                  "expose-event",
-	                  G_CALLBACK (on_view_expose_event),
+	                  "draw",
+	                  G_CALLBACK (on_view_draw),
 	                  gutter);
 
 	gutter->priv->signals[MOTION_NOTIFY_EVENT] =
@@ -303,7 +303,7 @@ revalidate_size (GtkSourceGutter *gutter)
 	if (!window && gutter->priv->renderers)
 	{
 		/* Make window visible by setting its size to minimum size,
-		   actual size will be calculated in expose */
+		   actual size will be calculated in draw */
 		gtk_text_view_set_border_window_size (GTK_TEXT_VIEW (gutter->priv->view),
 		                                      gutter->priv->window_type,
 		                                      1);
@@ -318,7 +318,7 @@ revalidate_size (GtkSourceGutter *gutter)
 	}
 	else if (window)
 	{
-		/* Redraw the window. Actual size will be calculated in expose */
+		/* Redraw the window. Actual size will be calculated in draw */
 		do_redraw (gutter);
 	}
 }
@@ -727,14 +727,13 @@ calculate_size (GtkSourceGutter  *gutter,
 
 	if (width == -1 && renderer->size_func)
 	{
-		GtkRequisition min_size;
-
+                GtkRequisition req;
 		renderer->size_func (gutter, renderer->renderer, renderer->size_func_data);
 
-		gtk_cell_size_request_get_size (GTK_CELL_SIZE_REQUEST (renderer->renderer),
-		                                GTK_WIDGET (gutter->priv->view),
-		                                &min_size, NULL);
-		width = min_size.width;
+		gtk_cell_renderer_get_preferred_size (renderer->renderer,
+                                                      GTK_WIDGET (gutter->priv->view),
+                                                      &req, NULL);
+                width = req.width;
 	}
 
 	return width == -1 ? 1 : width;
@@ -860,29 +859,32 @@ get_lines (GtkTextView  *text_view,
 }
 
 static gboolean
-on_view_expose_event (GtkSourceView   *view,
-                      GdkEventExpose  *event,
-                      GtkSourceGutter *gutter)
+on_view_draw (GtkSourceView   *view,
+              cairo_t         *cr,
+              GtkSourceGutter *gutter)
 {
 	GdkWindow *window;
 	GtkTextView *text_view;
 	GArray *sizes;
+        GdkRectangle clip;
 	gint size;
 
 	window = gtk_source_gutter_get_window (gutter);
 
-	if (window == NULL || event->window != window)
+	if (window == NULL || !gtk_cairo_should_draw_window (cr, window))
 	{
 		return FALSE;
 	}
+
+        gtk_cairo_transform_to_window (cr, GTK_WIDGET (view), window);
 
 	text_view = GTK_TEXT_VIEW (view);
 	sizes = g_array_new (FALSE, FALSE, sizeof (gint));
 
 	/* This is fairly ugly, but we could not find a better way to
 	 * do it: renderers could have changed size and they do not have
-	 * a way to signal it. So on expose we revalidate the size and
-	 * requeue another expose.
+	 * a way to signal it. So on draw we revalidate the size and
+	 * requeue another draw.
 	 * To see if the size has changed we test the size of only the
 	 * gutter itself since the full border window size is not under
 	 * our control (see e.g bug #589382).
@@ -892,7 +894,6 @@ on_view_expose_event (GtkSourceView   *view,
 	size = calculate_sizes (gutter, sizes);
 	if (gutter->priv->size != size)
 	{
-
 		gint border_size;
 
 		border_size = gtk_text_view_get_border_window_size (text_view, gutter->priv->window_type);
@@ -904,10 +905,10 @@ on_view_expose_event (GtkSourceView   *view,
 
 		gutter->priv->size = size;
 
-		/* Will trigger a new expose */
+		/* Will trigger a new draw */
 		gtk_text_view_set_border_window_size (text_view, gutter->priv->window_type, border_size);
 	}
-	else
+	else if (gdk_cairo_get_clip_rectangle (cr, &clip))
 	{
 		GtkTextBuffer *buffer = gtk_text_view_get_buffer (text_view);
 		gint x, y;
@@ -923,8 +924,8 @@ on_view_expose_event (GtkSourceView   *view,
 
 		gdk_window_get_pointer (window, &x, &y, NULL);
 
-		y1 = event->area.y;
-		y2 = y1 + event->area.height;
+		y1 = clip.y;
+		y2 = y1 + clip.height;
 
 		/* get the extents of the line printing */
 		gtk_text_view_window_to_buffer_coords (text_view,
@@ -1007,9 +1008,8 @@ on_view_expose_event (GtkSourceView   *view,
 
 				/* Call render with correct area */
 				gtk_cell_renderer_render (renderer->renderer,
-					                  window,
+					                  cr,
 					                  GTK_WIDGET (view),
-					                  &cell_area,
 					                  &cell_area,
 					                  &cell_area,
 					                  state);
