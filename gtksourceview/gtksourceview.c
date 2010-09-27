@@ -157,7 +157,6 @@ struct _GtkSourceViewPrivate
 	GtkSourceCompletion	*completion;
 
 	guint            current_line_color_set : 1;
-	guint            destroy_has_run : 1;
 };
 
 
@@ -207,7 +206,8 @@ typedef struct
 static GObject *gtk_source_view_constructor		(GType               type,
 							 guint               n_construct_properties,
 							 GObjectConstructParam *construct_param);
-static void 	gtk_source_view_finalize 		(GObject            *object);
+static void 	gtk_source_view_dispose			(GObject            *object);
+static void 	gtk_source_view_finalize		(GObject            *object);
 
 static void	gtk_source_view_undo 			(GtkSourceView      *view);
 static void	gtk_source_view_redo 			(GtkSourceView      *view);
@@ -268,7 +268,6 @@ static void	gtk_source_view_get_property		(GObject           *object,
 static void     gtk_source_view_style_set               (GtkWidget         *widget,
 							 GtkStyle          *previous_style);
 static void	gtk_source_view_realize			(GtkWidget         *widget);
-static void	gtk_source_view_destroy			(GtkObject         *object);
 static void	gtk_source_view_update_style_scheme	(GtkSourceView     *view);
 
 static MarkCategory *
@@ -290,14 +289,13 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	GtkTextViewClass *textview_class;
 	GtkBindingSet    *binding_set;
 	GtkWidgetClass   *widget_class;
-	GtkObjectClass   *gtk_object_class;
 
 	object_class 	 = G_OBJECT_CLASS (klass);
 	textview_class 	 = GTK_TEXT_VIEW_CLASS (klass);
 	widget_class 	 = GTK_WIDGET_CLASS (klass);
-	gtk_object_class = GTK_OBJECT_CLASS (klass);
 
 	object_class->constructor = gtk_source_view_constructor;
+	object_class->dispose = gtk_source_view_dispose;
 	object_class->finalize = gtk_source_view_finalize;
 	object_class->get_property = gtk_source_view_get_property;
 	object_class->set_property = gtk_source_view_set_property;
@@ -306,7 +304,6 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	widget_class->draw = gtk_source_view_draw;
 	widget_class->style_set = gtk_source_view_style_set;
 	widget_class->realize = gtk_source_view_realize;
-	gtk_object_class->destroy = gtk_source_view_destroy;
 
 	textview_class->populate_popup = gtk_source_view_populate_popup;
 	textview_class->move_cursor = gtk_source_view_move_cursor;
@@ -1695,6 +1692,20 @@ gtk_source_view_constructor (GType                  type,
 	set_source_buffer (view, gtk_text_view_get_buffer (GTK_TEXT_VIEW (view)));
 
 	return object;
+}
+
+static void
+gtk_source_view_dispose (GObject *object)
+{
+	GtkSourceView *view = GTK_SOURCE_VIEW (object);
+
+	if (view->priv->completion != NULL)
+	{
+		g_object_unref (view->priv->completion);
+		view->priv->completion = NULL;
+	}
+
+	G_OBJECT_CLASS (gtk_source_view_parent_class)->dispose (object);
 }
 
 static void
@@ -5179,25 +5190,6 @@ gtk_source_view_realize (GtkWidget *widget)
 }
 
 static void
-gtk_source_view_destroy (GtkObject *object)
-{
-	GtkSourceView *view = GTK_SOURCE_VIEW (object);
-
-	if (!view->priv->destroy_has_run)
-	{
-		view->priv->destroy_has_run = TRUE;
-
-		if (view->priv->completion != NULL)
-		{
-			g_object_unref (view->priv->completion);
-			view->priv->completion = NULL;
-		}
-	}
-
-	GTK_OBJECT_CLASS (gtk_source_view_parent_class)->destroy (object);
-}
-
-static void
 gtk_source_view_update_style_scheme (GtkSourceView *view)
 {
 	GtkSourceStyleScheme *new_scheme;
@@ -5248,7 +5240,6 @@ gtk_source_view_get_completion (GtkSourceView *view)
 	if (view->priv->completion == NULL)
 	{
 		view->priv->completion = gtk_source_completion_new (view);
-		g_object_ref_sink (view->priv->completion);
 	}
 
 	return view->priv->completion;

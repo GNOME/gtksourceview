@@ -57,7 +57,7 @@ struct _GtkSourceView;
 
 struct _GtkSourceCompletion
 {
-	GtkObject parent;
+	GObject parent_instance;
 
 	GtkSourceCompletionPrivate *priv;
 };

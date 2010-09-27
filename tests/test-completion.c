@@ -142,7 +142,7 @@ test_provider_init (TestProvider *self)
 }
 
 static void
-destroy_cb (GtkObject *object,
+destroy_cb (GtkWidget *object,
 	    gpointer   user_data)
 {
 	gtk_main_quit ();

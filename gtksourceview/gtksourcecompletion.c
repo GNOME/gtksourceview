@@ -165,7 +165,7 @@ struct _GtkSourceCompletionPrivate
 
 static guint signals[LAST_SIGNAL] = { 0 };
 
-G_DEFINE_TYPE(GtkSourceCompletion, gtk_source_completion, GTK_TYPE_OBJECT);
+G_DEFINE_TYPE(GtkSourceCompletion, gtk_source_completion, G_TYPE_OBJECT)
 
 static void update_completion (GtkSourceCompletion        *completion,
                                GList                      *providers,
@@ -1438,7 +1438,7 @@ view_key_press_event_cb (GtkSourceView       *view,
 	if (gtk_binding_set_activate (binding_set,
 	                              event->keyval,
 	                              event->state,
-	                              GTK_OBJECT (completion)))
+	                              G_OBJECT (completion)))
 	{
 		return TRUE;
 	}
