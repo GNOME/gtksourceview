@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: gtksourceview.HEAD\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&component=general\n"
-"POT-Creation-Date: 2010-06-24 21:48+0000\n"
-"PO-Revision-Date: 2010-06-26 10:08+0200\n"
+"POT-Creation-Date: 2010-09-28 12:07+0000\n"
+"PO-Revision-Date: 2010-10-07 14:28+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -180,6 +180,7 @@ msgstr "Número decimal"
 #: ../data/language-specs/php.lang.h:7 ../data/language-specs/prolog.lang.h:3
 #: ../data/language-specs/python.lang.h:8 ../data/language-specs/ruby.lang.h:8
 #: ../data/language-specs/texinfo.lang.h:2
+#: ../data/language-specs/verilog.lang.h:5
 msgid "Escaped Character"
 msgstr "Carácter de escape"
 
@@ -212,9 +213,10 @@ msgstr "Carácter de escape"
 #: ../data/language-specs/ruby.lang.h:12
 #: ../data/language-specs/scheme.lang.h:4 ../data/language-specs/sh.lang.h:5
 #: ../data/language-specs/sparql.lang.h:7 ../data/language-specs/sql.lang.h:6
+#: ../data/language-specs/systemverilog.lang.h:2
 #: ../data/language-specs/tcl.lang.h:1 ../data/language-specs/texinfo.lang.h:6
 #: ../data/language-specs/vala.lang.h:7 ../data/language-specs/vbnet.lang.h:4
-#: ../data/language-specs/verilog.lang.h:6
+#: ../data/language-specs/verilog.lang.h:9
 #: ../data/language-specs/vhdl.lang.h:5
 msgid "Keyword"
 msgstr "Palabra reservada"
@@ -235,7 +237,9 @@ msgstr "Preprocesador"
 
 #: ../data/language-specs/ada.lang.h:10
 #: ../data/language-specs/csharp.lang.h:13
-#: ../data/language-specs/vala.lang.h:9 ../data/language-specs/vhdl.lang.h:7
+#: ../data/language-specs/vala.lang.h:9
+#: ../data/language-specs/verilog.lang.h:11
+#: ../data/language-specs/vhdl.lang.h:7
 msgid "Real number"
 msgstr "Número real"
 
@@ -261,8 +265,9 @@ msgstr "Número real"
 #: ../data/language-specs/prolog.lang.h:8
 #: ../data/language-specs/scheme.lang.h:6
 #: ../data/language-specs/sparql.lang.h:14 ../data/language-specs/sql.lang.h:9
+#: ../data/language-specs/systemverilog.lang.h:3
 #: ../data/language-specs/vala.lang.h:10 ../data/language-specs/vbnet.lang.h:6
-#: ../data/language-specs/verilog.lang.h:7
+#: ../data/language-specs/verilog.lang.h:12
 #: ../data/language-specs/vhdl.lang.h:8
 msgid "Sources"
 msgstr "Fuentes"
@@ -304,6 +309,7 @@ msgstr "Clase de almacenamiento"
 #: ../data/language-specs/sql.lang.h:10
 #: ../data/language-specs/texinfo.lang.h:10
 #: ../data/language-specs/vala.lang.h:11 ../data/language-specs/vbnet.lang.h:8
+#: ../data/language-specs/verilog.lang.h:13
 #: ../data/language-specs/vhdl.lang.h:9
 msgid "String"
 msgstr "Cadena"
@@ -986,6 +992,7 @@ msgstr "Entero en base-N"
 
 #: ../data/language-specs/erlang.lang.h:5
 #: ../data/language-specs/forth.lang.h:2
+#: ../data/language-specs/systemverilog.lang.h:1
 #: ../data/language-specs/verilog.lang.h:3
 msgid "Compiler Directive"
 msgstr "Directiva del compilador"
@@ -1094,12 +1101,10 @@ msgid "Address"
 msgstr "Dirección"
 
 #: ../data/language-specs/gdb-log.lang.h:2
-#| msgid "File"
 msgid "Filename"
 msgstr "Nombre de archivo"
 
 #: ../data/language-specs/gdb-log.lang.h:3
-#| msgid "Number"
 msgid "Frame Number"
 msgstr "Número de marcos"
 
@@ -1112,22 +1117,18 @@ msgid "Incomplete Sequence"
 msgstr "Secuencia incompleta"
 
 #: ../data/language-specs/gdb-log.lang.h:7
-#| msgid "Itemized list"
 msgid "Optimized Out"
 msgstr "Salida optimizada"
 
 #: ../data/language-specs/gdb-log.lang.h:9
-#| msgid "Properties"
 msgid "Prompt"
 msgstr "Mensaje en pantalla"
 
 #: ../data/language-specs/gdb-log.lang.h:11
-#| msgid "Section"
 msgid "Thread Action"
 msgstr "Acción del hilo"
 
 #: ../data/language-specs/gdb-log.lang.h:12
-#| msgid "Show Headers"
 msgid "Thread Header"
 msgstr "Cabecera del hilo"
 
@@ -1176,7 +1177,8 @@ msgid "Since"
 msgstr "Desde"
 
 #: ../data/language-specs/gtk-doc.lang.h:12
-#: ../data/language-specs/verilog.lang.h:8
+#: ../data/language-specs/systemverilog.lang.h:6
+#: ../data/language-specs/verilog.lang.h:14
 #: ../data/language-specs/vhdl.lang.h:10
 msgid "Type"
 msgstr "Tipo"
@@ -1628,7 +1630,7 @@ msgstr "Operador de asignación"
 msgid "Delimiter"
 msgstr "Delimitador"
 
-#: ../data/language-specs/R.lang.h:5
+#: ../data/language-specs/R.lang.h:5 ../data/language-specs/verilog.lang.h:8
 msgid "Integer Number"
 msgstr "Número entero"
 
@@ -1770,6 +1772,16 @@ msgstr "Ni idea de lo que es"
 msgid "SQL"
 msgstr "SQL"
 
+#: ../data/language-specs/systemverilog.lang.h:4
+#| msgid "System Command"
+msgid "System Task"
+msgstr "Tarea del sistema"
+
+#: ../data/language-specs/systemverilog.lang.h:5
+#| msgid "Verilog"
+msgid "SystemVerilog"
+msgstr "SystemVerilog"
+
 #: ../data/language-specs/t2t.lang.h:2 ../gtksourceview/gtksourcestyle.c:104
 #: ../gtksourceview/gtksourcestyle.c:105
 msgid "Bold"
@@ -1844,11 +1856,19 @@ msgstr "Vala"
 msgid "VB.NET"
 msgstr "VB.NET"
 
-#: ../data/language-specs/verilog.lang.h:5
+#: ../data/language-specs/verilog.lang.h:6
 msgid "Gate"
 msgstr "Puerta"
 
-#: ../data/language-specs/verilog.lang.h:9
+#: ../data/language-specs/verilog.lang.h:7
+msgid "IEEE System Task"
+msgstr "Tarea del sistema IEEE"
+
+#: ../data/language-specs/verilog.lang.h:10
+msgid "LRM Additional System Task"
+msgstr "Tarea del sistema adicional LRM"
+
+#: ../data/language-specs/verilog.lang.h:15
 msgid "Verilog"
 msgstr "Verilog"
 
@@ -2156,7 +2176,7 @@ msgid "Provider"
 msgstr "Proveedor"
 
 #: ../gtksourceview/gtksourcecompletioncontext.c:244
-#: ../gtksourceview/gtksourceview.c:328
+#: ../gtksourceview/gtksourceview.c:325
 msgid "Completion"
 msgstr "Completado"
 
@@ -2182,40 +2202,40 @@ msgid "The type of activation"
 msgstr "El tipo de activación"
 
 #. Tooltip style
-#: ../gtksourceview/gtksourcecompletioninfo.c:178
+#: ../gtksourceview/gtksourcecompletioninfo.c:179
 msgid "Completion Info"
 msgstr "Información de completado"
 
-#: ../gtksourceview/gtksourcecompletioninfo.c:350
+#: ../gtksourceview/gtksourcecompletioninfo.c:345
 msgid "Maximum width"
 msgstr "Anchura máxima"
 
-#: ../gtksourceview/gtksourcecompletioninfo.c:351
+#: ../gtksourceview/gtksourcecompletioninfo.c:346
 msgid "The maximum allowed width"
 msgstr "La anchura máxima permitida"
 
-#: ../gtksourceview/gtksourcecompletioninfo.c:360
+#: ../gtksourceview/gtksourcecompletioninfo.c:355
 msgid "Maximum height"
 msgstr "Altura máxima"
 
-#: ../gtksourceview/gtksourcecompletioninfo.c:361
+#: ../gtksourceview/gtksourcecompletioninfo.c:356
 msgid "The maximum allowed height"
 msgstr "La altura máxima permitida"
 
-#: ../gtksourceview/gtksourcecompletioninfo.c:371
+#: ../gtksourceview/gtksourcecompletioninfo.c:366
 msgid "Shrink width"
 msgstr "Encoger anchura"
 
-#: ../gtksourceview/gtksourcecompletioninfo.c:372
+#: ../gtksourceview/gtksourcecompletioninfo.c:367
 msgid "Whether the window should shrink width to fit the contents"
 msgstr ""
 "Indica si la ventana se debe encoger en anchura para ajustarse al contenido"
 
-#: ../gtksourceview/gtksourcecompletioninfo.c:379
+#: ../gtksourceview/gtksourcecompletioninfo.c:374
 msgid "Shrink height"
 msgstr "Encoger altura"
 
-#: ../gtksourceview/gtksourcecompletioninfo.c:380
+#: ../gtksourceview/gtksourcecompletioninfo.c:375
 msgid "Whether the window should shrink height to fit the contents"
 msgstr ""
 "Indica si la ventana se debe encoger en altura para ajustarse al contenido"
@@ -2248,7 +2268,7 @@ msgstr "Información"
 msgid "Info to be shown for this item"
 msgstr "Información que mostrar para este elemento"
 
-#: ../gtksourceview/gtksourcecontextengine.c:2971
+#: ../gtksourceview/gtksourcecontextengine.c:2968
 msgid "using \\C is not supported in language definitions"
 msgstr "el uso de \\C no está soportado en las definiciones del lenguaje"
 
@@ -2256,7 +2276,7 @@ msgstr "el uso de \\C no está soportado en las definiciones del lenguaje"
 #. * named sub-patterns with the same name or if resulting regex is
 #. * too long. In this case fixing lang file helps (e.g. renaming
 #. * subpatterns, making huge keywords use bigger prefixes, etc.)
-#: ../gtksourceview/gtksourcecontextengine.c:3595
+#: ../gtksourceview/gtksourcecontextengine.c:3592
 #, c-format
 msgid ""
 "Cannot create a regex for all the transitions, the syntax highlighting "
@@ -2267,7 +2287,7 @@ msgstr ""
 "proceso de resaltado de sintaxis será más lento de lo habitual.\n"
 "El error fue: %s"
 
-#: ../gtksourceview/gtksourcecontextengine.c:4930
+#: ../gtksourceview/gtksourcecontextengine.c:4927
 msgid ""
 "Highlighting a single line took too much time, syntax highlighting will be "
 "disabled"
@@ -2275,19 +2295,19 @@ msgstr ""
 "El resaltado de una linea llevó mucho tiempo, se desactivará el resaltado de "
 "sintaxis"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6182
+#: ../gtksourceview/gtksourcecontextengine.c:6180
 #, c-format
 msgid "context '%s' cannot contain a \\%%{...@start} command"
 msgstr "el contexto «%s» no puede contener un comando \\%%{...@start} command"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6344
-#: ../gtksourceview/gtksourcecontextengine.c:6433
+#: ../gtksourceview/gtksourcecontextengine.c:6342
+#: ../gtksourceview/gtksourcecontextengine.c:6431
 #, c-format
 msgid "duplicated context id '%s'"
 msgstr "id de contexto duplicado «%s»"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6548
-#: ../gtksourceview/gtksourcecontextengine.c:6608
+#: ../gtksourceview/gtksourcecontextengine.c:6546
+#: ../gtksourceview/gtksourcecontextengine.c:6606
 #, c-format
 msgid ""
 "style override used with wildcard context reference in language '%s' in ref "
@@ -2296,18 +2316,18 @@ msgstr ""
 "el salto de estilo se usó con comodín de contexto de referencia en el "
 "lenguaje «%s» referencia «%s»"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6622
+#: ../gtksourceview/gtksourcecontextengine.c:6620
 #, c-format
 msgid "invalid context reference '%s'"
 msgstr "referencia de contexto inválida «%s»"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6641
-#: ../gtksourceview/gtksourcecontextengine.c:6651
+#: ../gtksourceview/gtksourcecontextengine.c:6639
+#: ../gtksourceview/gtksourcecontextengine.c:6649
 #, c-format
 msgid "unknown context '%s'"
 msgstr "contexto desconocido «%s»"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6751
+#: ../gtksourceview/gtksourcecontextengine.c:6749
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "Falta la definición de lenguaje principal (id = «%s».)"
@@ -2394,12 +2414,12 @@ msgid "The GtkSourceBuffer object to print"
 msgstr "El objeto GtkSourceBuffer que imprimir"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:463
-#: ../gtksourceview/gtksourceview.c:366
+#: ../gtksourceview/gtksourceview.c:363
 msgid "Tab Width"
 msgstr "Ancho de la tabulación"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:464
-#: ../gtksourceview/gtksourceview.c:367
+#: ../gtksourceview/gtksourceview.c:364
 msgid "Width of a tab character expressed in spaces"
 msgstr "Anchura de una carácter tabulación expresado en espacios"
 
@@ -2625,71 +2645,71 @@ msgstr "Búfer"
 msgid "The text buffer to add undo support on"
 msgstr "El búfer de texto para añadir soporte para deshacer"
 
-#: ../gtksourceview/gtksourceview.c:329
+#: ../gtksourceview/gtksourceview.c:326
 msgid "The completion object associated with the view"
 msgstr "El objeto de completado asociado con la vista"
 
-#: ../gtksourceview/gtksourceview.c:341
+#: ../gtksourceview/gtksourceview.c:338
 msgid "Show Line Numbers"
 msgstr "Mostrar número de línea"
 
-#: ../gtksourceview/gtksourceview.c:342
+#: ../gtksourceview/gtksourceview.c:339
 msgid "Whether to display line numbers"
 msgstr "Indica si se mostrarán los números de las líneas"
 
-#: ../gtksourceview/gtksourceview.c:353
+#: ../gtksourceview/gtksourceview.c:350
 msgid "Show Line Marks"
 msgstr "Mostrar marcadores de líneas"
 
-#: ../gtksourceview/gtksourceview.c:354
+#: ../gtksourceview/gtksourceview.c:351
 msgid "Whether to display line mark pixbufs"
 msgstr "Indica si se mostrarán los búfer de píxeles de marcadores de líneas"
 
-#: ../gtksourceview/gtksourceview.c:381
+#: ../gtksourceview/gtksourceview.c:378
 msgid "Indent Width"
 msgstr "Anchura del sangrado"
 
-#: ../gtksourceview/gtksourceview.c:382
+#: ../gtksourceview/gtksourceview.c:379
 msgid "Number of spaces to use for each step of indent"
 msgstr "Número de espacios a usar para cada paso de sangrado"
 
-#: ../gtksourceview/gtksourceview.c:391
+#: ../gtksourceview/gtksourceview.c:388
 msgid "Auto Indentation"
 msgstr "Sangría automática"
 
-#: ../gtksourceview/gtksourceview.c:392
+#: ../gtksourceview/gtksourceview.c:389
 msgid "Whether to enable auto indentation"
 msgstr "Indica si se habilita el sangrado automático"
 
-#: ../gtksourceview/gtksourceview.c:399
+#: ../gtksourceview/gtksourceview.c:396
 msgid "Insert Spaces Instead of Tabs"
 msgstr "Insertar espacios en vez de tabuladores"
 
-#: ../gtksourceview/gtksourceview.c:400
+#: ../gtksourceview/gtksourceview.c:397
 msgid "Whether to insert spaces instead of tabs"
 msgstr "Indica si se insertarán espacios en vez de tabuladores"
 
-#: ../gtksourceview/gtksourceview.c:412
+#: ../gtksourceview/gtksourceview.c:409
 msgid "Show Right Margin"
 msgstr "Mostrar margen derecho"
 
-#: ../gtksourceview/gtksourceview.c:413
+#: ../gtksourceview/gtksourceview.c:410
 msgid "Whether to display the right margin"
 msgstr "Indica si se mostrará el margen derecho"
 
-#: ../gtksourceview/gtksourceview.c:425
+#: ../gtksourceview/gtksourceview.c:422
 msgid "Right Margin Position"
 msgstr "Posición del margen derecho"
 
-#: ../gtksourceview/gtksourceview.c:426
+#: ../gtksourceview/gtksourceview.c:423
 msgid "Position of the right margin"
 msgstr "Posición del margen derecho"
 
-#: ../gtksourceview/gtksourceview.c:442
+#: ../gtksourceview/gtksourceview.c:439
 msgid "Smart Home/End"
 msgstr "Inicio/fin inteligente"
 
-#: ../gtksourceview/gtksourceview.c:443
+#: ../gtksourceview/gtksourceview.c:440
 msgid ""
 "HOME and END keys move to first/last non whitespace characters on line "
 "before going to the start/end of the line"
@@ -2697,29 +2717,29 @@ msgstr ""
 "Las teclas «Inicio» y «Fin» situarán el cursor en el primer/último carácter no "
 "blanco de la línea antes de ir al inicio/fin de la línea"
 
-#: ../gtksourceview/gtksourceview.c:453
+#: ../gtksourceview/gtksourceview.c:450
 msgid "Highlight current line"
 msgstr "Resaltar la línea actual"
 
-#: ../gtksourceview/gtksourceview.c:454
+#: ../gtksourceview/gtksourceview.c:451
 msgid "Whether to highlight the current line"
 msgstr "Indica si se resalta la línea actual"
 
-#: ../gtksourceview/gtksourceview.c:461
+#: ../gtksourceview/gtksourceview.c:458
 msgid "Indent on tab"
 msgstr "Sangrar al pulsar tabulador"
 
-#: ../gtksourceview/gtksourceview.c:462
+#: ../gtksourceview/gtksourceview.c:459
 msgid "Whether to indent the selected text when the tab key is pressed"
 msgstr ""
 "Indica si se debe sangrar el texto seleccionado cuando se pulse la tecla "
 "tabulador"
 
-#: ../gtksourceview/gtksourceview.c:476
+#: ../gtksourceview/gtksourceview.c:473
 msgid "Draw Spaces"
 msgstr "Dibujar espacios"
 
-#: ../gtksourceview/gtksourceview.c:477
+#: ../gtksourceview/gtksourceview.c:474
 msgid "Set if and how the spaces should be visualized"
 msgstr "Establecer si se deben visualizar los espacios y cómo"
 
