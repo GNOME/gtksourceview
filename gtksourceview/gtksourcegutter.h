@@ -26,6 +26,7 @@
 #include <glib-object.h>
 #include <gtk/gtk.h>
 #include <gdk/gdk.h>
+#include <gtksourceview/gtksourcegutterrenderer.h>
 
 G_BEGIN_DECLS
 
@@ -40,64 +41,57 @@ typedef struct _GtkSourceGutter			GtkSourceGutter;
 typedef struct _GtkSourceGutterClass	GtkSourceGutterClass;
 typedef struct _GtkSourceGutterPrivate	GtkSourceGutterPrivate;
 
-struct _GtkSourceGutter {
+struct _GtkSourceGutter
+{
 	GObject parent;
 
 	GtkSourceGutterPrivate *priv;
 };
 
-struct _GtkSourceGutterClass {
+struct _GtkSourceGutterClass
+{
 	GObjectClass parent_class;
-
-	void (*cell_activated) 			(GtkSourceGutter *gutter,
-						 GtkCellRenderer *renderer,
-						 GtkTextIter     *iter,
-						 GdkEvent        *event);
-
-	gboolean (*query_tooltip) 		(GtkSourceGutter *gutter,
-						 GtkCellRenderer *renderer,
-						 GtkTextIter     *iter,
-						 GtkTooltip      *tooltip);
 };
-
-typedef void (*GtkSourceGutterDataFunc)		(GtkSourceGutter         *gutter,
-						 GtkCellRenderer         *cell,
-						 gint                     line_number,
-						 gboolean                 current_line,
-						 gpointer                 data);
-
-typedef void (*GtkSourceGutterSizeFunc)		(GtkSourceGutter         *gutter,
-						 GtkCellRenderer         *cell,
-						 gpointer                 data);
 
 GType gtk_source_gutter_get_type 		(void) G_GNUC_CONST;
 
 GdkWindow *gtk_source_gutter_get_window 	(GtkSourceGutter         *gutter);
 
-void gtk_source_gutter_insert			(GtkSourceGutter         *gutter,
-						 GtkCellRenderer         *renderer,
-						 gint                     position);
+GtkSourceGutterRenderer *
+	gtk_source_gutter_insert		(GtkSourceGutter         *gutter,
+                                                 GType                    gtype,
+                                                 gint                     position,
+                                                 ...) G_GNUC_NULL_TERMINATED;
+
+GtkSourceGutterRenderer *
+	gtk_source_gutter_insert_valist         (GtkSourceGutter         *gutter,
+                                                 GType                    gtype,
+                                                 gint                     position,
+                                                 va_list                  ap);
+
+GtkSourceGutterRenderer *
+	gtk_source_gutter_insertv               (GtkSourceGutter         *gutter,
+                                                 GType                    gtype,
+                                                 gint                     position,
+                                                 guint                    num_parameters,
+                                                 GParameter              *parameters);
 
 void gtk_source_gutter_reorder			(GtkSourceGutter	 *gutter,
-                                                 GtkCellRenderer         *renderer,
+                                                 GtkSourceGutterRenderer *renderer,
                                                  gint                     position);
 
 void gtk_source_gutter_remove			(GtkSourceGutter         *gutter,
-						 GtkCellRenderer         *renderer);
-
-void gtk_source_gutter_set_cell_data_func	(GtkSourceGutter         *gutter,
-						 GtkCellRenderer         *renderer,
-						 GtkSourceGutterDataFunc  func,
-						 gpointer                 func_data,
-						 GDestroyNotify           destroy);
-
-void gtk_source_gutter_set_cell_size_func	(GtkSourceGutter         *gutter,
-                                                 GtkCellRenderer         *renderer,
-                                                 GtkSourceGutterSizeFunc  func,
-                                                 gpointer                 func_data,
-                                                 GDestroyNotify           destroy);
+                                                 GtkSourceGutterRenderer *renderer);
 
 void gtk_source_gutter_queue_draw		(GtkSourceGutter         *gutter);
+
+void gtk_source_gutter_set_padding              (GtkSourceGutter         *gutter,
+                                                 gint                     xpad,
+                                                 gint                     ypad);
+
+void gtk_source_gutter_get_padding              (GtkSourceGutter         *gutter,
+                                                 gint                    *xpad,
+                                                 gint                    *ypad);
 
 G_END_DECLS
 

@@ -1217,9 +1217,13 @@ line_mark_activated (GtkSourceGutter *gutter,
 	const gchar *mark_type;
 
 	if (ev->button == 1)
+	{
 		mark_type = MARK_TYPE_1;
+	}
 	else
+	{
 		mark_type = MARK_TYPE_2;
+	}
 
 	buffer = GTK_SOURCE_BUFFER (gtk_text_view_get_buffer (GTK_TEXT_VIEW (view)));
 
@@ -1276,49 +1280,61 @@ bracket_matched (GtkSourceBuffer           *buffer G_GNUC_UNUSED,
 /* Window creation functions -------------------------------------------------------- */
 
 static gchar *
-mark_tooltip_func (GtkSourceMark *mark,
-		   gpointer	  user_data)
+mark_tooltip_func (GtkSourceMarkCategory *category,
+                   GtkSourceMark         *mark,
+                   GtkSourceView         *view)
 {
 	GtkTextBuffer *buf;
 	GtkTextIter iter;
 	gint line, column;
-	
+
 	buf = gtk_text_mark_get_buffer (GTK_TEXT_MARK (mark));
-	
+
 	gtk_text_buffer_get_iter_at_mark (buf, &iter, GTK_TEXT_MARK (mark));
 	line = gtk_text_iter_get_line (&iter) + 1;
 	column = gtk_text_iter_get_line_offset (&iter);
 
-	if (strcmp (gtk_source_mark_get_category (mark), MARK_TYPE_1) == 0)
+	if (g_strcmp0 (gtk_source_mark_category_get_id (category), MARK_TYPE_1) == 0)
+	{
 		return g_strdup_printf ("Line: %d, Column: %d", line, column);
+	}
 	else
+	{
 		return g_strdup_printf ("<b>Line</b>: %d\n<i>Column</i>: %d", line, column);
+	}
 }
 
 static void
 add_source_mark_pixbufs (GtkSourceView *view)
 {
 	GdkColor color;
+	GtkSourceMarkCategory *cat;
 
 	gdk_color_parse ("lightgreen", &color);
-	gtk_source_view_set_mark_category_background (view, MARK_TYPE_1, &color);
-	gtk_source_view_set_mark_category_icon_from_stock (view, MARK_TYPE_1, GTK_STOCK_YES);
-	gtk_source_view_set_mark_category_priority (view, MARK_TYPE_1, 1);
-	gtk_source_view_set_mark_category_tooltip_func (view,
-							MARK_TYPE_1,
-							mark_tooltip_func,
-							NULL,
-							NULL);
+
+	cat = gtk_source_view_get_mark_category (view, MARK_TYPE_1);
+
+	gtk_source_mark_category_set_background (cat, &color);
+	gtk_source_mark_category_set_stock_id (cat, GTK_STOCK_YES);
+	gtk_source_mark_category_set_priority (cat, 1);
+
+	g_signal_connect (cat,
+	                  "query-tooltip-markup",
+	                  G_CALLBACK (mark_tooltip_func),
+	                  view);
 
 	gdk_color_parse ("pink", &color);
-	gtk_source_view_set_mark_category_background (view, MARK_TYPE_2, &color);
-	gtk_source_view_set_mark_category_icon_from_stock (view, MARK_TYPE_2, GTK_STOCK_NO);
-	gtk_source_view_set_mark_category_priority (view, MARK_TYPE_2, 2);
-	gtk_source_view_set_mark_category_tooltip_markup_func (view,
-							       MARK_TYPE_2,
-							       mark_tooltip_func,
-							       NULL,
-							       NULL);
+
+	cat = gtk_source_view_get_mark_category (view, MARK_TYPE_2);
+
+	gtk_source_mark_category_set_background (cat, &color);
+	gtk_source_mark_category_set_stock_id (cat, GTK_STOCK_NO);
+	gtk_source_mark_category_set_priority (cat, 2);
+
+	g_signal_connect (cat,
+	                  "query-tooltip-markup",
+	                  G_CALLBACK (mark_tooltip_func),
+	                  view);
 }
 
 static GtkWidget *

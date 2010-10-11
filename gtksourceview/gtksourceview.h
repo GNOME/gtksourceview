@@ -29,6 +29,7 @@
 #include <gtksourceview/gtksourcebuffer.h>
 #include <gtksourceview/gtksourcecompletion.h>
 #include <gtksourceview/gtksourcegutter.h>
+#include <gtksourceview/gtksourcemarkcategory.h>
 
 G_BEGIN_DECLS
 
@@ -192,60 +193,9 @@ void 		 gtk_source_view_set_show_line_marks    (GtkSourceView   *view,
 							 gboolean         show);
 gboolean	 gtk_source_view_get_show_line_marks    (GtkSourceView   *view);
 
-void             gtk_source_view_set_mark_category_icon_from_pixbuf
-							(GtkSourceView   *view,
-							 const gchar     *category,
-							 GdkPixbuf       *pixbuf);
-
-void             gtk_source_view_set_mark_category_icon_from_stock
-							(GtkSourceView   *view,
-							 const gchar     *category,
-							 const gchar     *stock_id);
-
-void             gtk_source_view_set_mark_category_icon_from_icon_name
-							(GtkSourceView   *view,
-							 const gchar     *category,
-							 const gchar     *name);
-
-void             gtk_source_view_set_mark_category_background
-							(GtkSourceView   *view,
-							 const gchar     *category,
-							 const GdkColor  *color);
-gboolean         gtk_source_view_get_mark_category_background
-							(GtkSourceView   *view,
-							 const gchar     *category,
-							 GdkColor        *dest);
-
-/**
- * GtkSourceViewMarkTooltipFunc:
- * @mark: the #GtkSourceMark
- * @user_data: user data pointer which was passed to gtk_source_view_set_mark_category_tooltip_func()
- *
- * Function type for setting up a tooltip for #GtkSourceMark.
- * Returns: a newly-allocated string that is going to be shown as tooltip text.
- */
-typedef gchar *  (*GtkSourceViewMarkTooltipFunc)	(GtkSourceMark	*mark,
-							 gpointer	 user_data);
-void             gtk_source_view_set_mark_category_tooltip_func
-							(GtkSourceView   *view,
-							 const gchar     *category,
-							 GtkSourceViewMarkTooltipFunc func,
-							 gpointer	  user_data,
-							 GDestroyNotify   user_data_notify);
-void		 gtk_source_view_set_mark_category_tooltip_markup_func
-							(GtkSourceView   *view,
-							const gchar     *category,
-							GtkSourceViewMarkTooltipFunc markup_func,
-							gpointer         user_data,
-							GDestroyNotify   user_data_notify);
-
-void             gtk_source_view_set_mark_category_priority
-							(GtkSourceView   *view,
-							 const gchar     *category,
-							 gint priority);
-gint		 gtk_source_view_get_mark_category_priority
-							(GtkSourceView   *view,
-				       			 const gchar     *category);
+GtkSourceMarkCategory *
+                 gtk_source_view_get_mark_category      (GtkSourceView   *view,
+                                                         const gchar     *category);
 
 void		 gtk_source_view_set_smart_home_end	(GtkSourceView             *view,
 							 GtkSourceSmartHomeEndType  smart_he);
