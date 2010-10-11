@@ -138,7 +138,7 @@ stamp-gtksourceview-typebuiltins.h: Makefile.am $(libgtksourceview_headers)
 	$(AM_V_GEN) (cd $(srcdir) \
 	 && $(GLIB_MKENUMS) \
 			--fhead "#ifndef __GTKSOURCEVIEW_TYPEBUILTINS_H__\n" \
-			--fhead "#define __GTKSOURCEVIEW_TYPEBUILTINS_H__ 1\n\n" \
+			--fhead "#define __GTKSOURCEVIEW_TYPEBUILTINS_H__\n\n" \
 			--ftail "#endif /* __GTKSOURCEVIEW_TYPEBUILTINS_H__ */\n" \
 			--fprod "#include <gtksourceview/@filename@>\n" \
 			--eprod "G_BEGIN_DECLS\n" \
@@ -176,8 +176,8 @@ GtkSource_3_0_gir_FILES =			\
 	$(libgtksourceview_c_files)		\
 	$(BUILT_SOURCES)
 
-GtkSource_3_0_gir_INCLUDES = Gtk-3.0
-GtkSource_3_0_gir_PACKAGES = gtk+-3.0
+GtkSource_3_0_gir_INCLUDES = Gtk-3.0 Gdk-3.0
+GtkSource_3_0_gir_PACKAGES = gtk+-3.0 gdk-3.0
 GtkSource_3_0_gir_EXPORT_PACKAGES = gtksourceview-3.0
 
 girdir = $(INTROSPECTION_GIRDIR)
