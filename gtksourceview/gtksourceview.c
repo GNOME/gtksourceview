@@ -1912,7 +1912,7 @@ scroll_to_insert (GtkSourceView *view,
 		 * _scroll_to_iter will cause it to move and the
 		 * insert mark is already visible vertically. */
 
-		adjustment = gtk_text_view_get_vadjustment (GTK_TEXT_VIEW (view));
+		adjustment = gtk_scrollable_get_vadjustment (GTK_SCROLLABLE (view));
 		position = gtk_adjustment_get_value (adjustment);
 
 		/* Must use _to_iter as _to_mark scrolls in an
@@ -2412,7 +2412,7 @@ gtk_source_view_paint_line_background (GtkTextView    *text_view,
 	GdkRectangle line_rect;
 	gint win_y;
 	gint margin;
-	GtkAdjustment *hadjustment = gtk_text_view_get_hadjustment (text_view);
+	GtkAdjustment *hadjustment;
 
 	gtk_text_view_get_visible_rect (text_view, &visible_rect);
 
@@ -2428,11 +2428,17 @@ gtk_source_view_paint_line_background (GtkTextView    *text_view,
 	line_rect.y = win_y;
 	line_rect.height = height;
 
+	hadjustment = gtk_scrollable_get_hadjustment (GTK_SCROLLABLE (text_view));
+
 	if (hadjustment)
+	{
 		margin = gtk_text_view_get_left_margin (text_view) -
 			 (int) gtk_adjustment_get_value (hadjustment);
+	}
 	else
+	{
 		margin = gtk_text_view_get_left_margin (text_view);
+	}
 
 	line_rect.x += MAX (0, margin - 1);
 
