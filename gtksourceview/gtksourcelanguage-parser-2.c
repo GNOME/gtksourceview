@@ -388,7 +388,7 @@ create_definition (ParserState *parser_state,
 
 	for (child = context_node->children; child != NULL; child = child->next)
 	{
-		if (child->type != XML_READER_TYPE_ELEMENT)
+		if (child->type != XML_ELEMENT_NODE)
 			continue;
 
 		/* FIXME: add PCRE_EXTRA support in EggRegex
