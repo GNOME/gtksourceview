@@ -9,10 +9,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-21 23:11+0200\n"
+"POT-Creation-Date: 2010-10-29 01:42+0100\n"
 "PO-Revision-Date: 2010-03-16 21:20+0100\n"
 "Last-Translator: Gil Forcada <gilforcada@guifi.net>\n"
 "Language-Team: Catalan <tradgnome@softcatala.org>\n"
+"Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -79,69 +80,69 @@ msgstr "Prioritat"
 msgid "Provider priority"
 msgstr "Prioritat del proveïdor"
 
-#: ../gtksourceview/gtksourcebuffer.c:211
+#: ../gtksourceview/gtksourcebuffer.c:220
 #: ../gtksourceview/gtksourceprintcompositor.c:506
 msgid "Highlight Syntax"
 msgstr "Ressalta la sintaxi"
 
-#: ../gtksourceview/gtksourcebuffer.c:212
+#: ../gtksourceview/gtksourcebuffer.c:221
 msgid "Whether to highlight syntax in the buffer"
 msgstr "Si s'ha de ressaltar la sintaxi de la memòria intermèdia"
 
-#: ../gtksourceview/gtksourcebuffer.c:225
+#: ../gtksourceview/gtksourcebuffer.c:234
 msgid "Highlight Matching Brackets"
 msgstr "Ressalta els claudàtors coincidents"
 
-#: ../gtksourceview/gtksourcebuffer.c:226
+#: ../gtksourceview/gtksourcebuffer.c:235
 msgid "Whether to highlight matching brackets"
 msgstr "Si s'han de ressaltar els claudàtors coincidents"
 
-#: ../gtksourceview/gtksourcebuffer.c:239
+#: ../gtksourceview/gtksourcebuffer.c:248
 #: ../gtksourceview/gtksourceundomanagerdefault.c:412
 msgid "Maximum Undo Levels"
 msgstr "Nombre màxim de nivells a desfer"
 
-#: ../gtksourceview/gtksourcebuffer.c:240
+#: ../gtksourceview/gtksourcebuffer.c:249
 #: ../gtksourceview/gtksourceundomanagerdefault.c:413
 msgid "Number of undo levels for the buffer"
 msgstr "Nombre de nivells a desfer per a la memòria intermèdia"
 
 #. Translators: throughout gtksourceview "language" stands
 #. * for "programming language", not "spoken language"
-#: ../gtksourceview/gtksourcebuffer.c:252
+#: ../gtksourceview/gtksourcebuffer.c:261
 msgid "Language"
 msgstr "Llenguatge"
 
-#: ../gtksourceview/gtksourcebuffer.c:253
+#: ../gtksourceview/gtksourcebuffer.c:262
 msgid "Language object to get highlighting patterns from"
 msgstr "Objecte de llenguatge d'on obtindre els patrons de ressaltat"
 
-#: ../gtksourceview/gtksourcebuffer.c:261
+#: ../gtksourceview/gtksourcebuffer.c:270
 msgid "Can undo"
 msgstr "Es pot desfer"
 
-#: ../gtksourceview/gtksourcebuffer.c:262
+#: ../gtksourceview/gtksourcebuffer.c:271
 msgid "Whether Undo operation is possible"
 msgstr "Si l'operació de desfer és possible"
 
-#: ../gtksourceview/gtksourcebuffer.c:269
+#: ../gtksourceview/gtksourcebuffer.c:278
 msgid "Can redo"
 msgstr "Es pot tornar a fer"
 
-#: ../gtksourceview/gtksourcebuffer.c:270
+#: ../gtksourceview/gtksourcebuffer.c:279
 msgid "Whether Redo operation is possible"
 msgstr "Si l'operació de tornar a fer és possible"
 
-#: ../gtksourceview/gtksourcebuffer.c:284
-#: ../gtksourceview/gtksourcebuffer.c:285
+#: ../gtksourceview/gtksourcebuffer.c:293
+#: ../gtksourceview/gtksourcebuffer.c:294
 msgid "Style scheme"
 msgstr "Esquema d'estil"
 
-#: ../gtksourceview/gtksourcebuffer.c:292
+#: ../gtksourceview/gtksourcebuffer.c:301
 msgid "Undo manager"
 msgstr "Gestor de desfer"
 
-#: ../gtksourceview/gtksourcebuffer.c:293
+#: ../gtksourceview/gtksourcebuffer.c:302
 msgid "The buffer undo manager"
 msgstr "La memòria intermèdia del gestor de desfer"
 
@@ -607,7 +608,8 @@ msgstr "Nom del tipus de lletra per a la capçalera"
 #: ../gtksourceview/gtksourceprintcompositor.c:646
 msgid "Name of the font to use for the page header (e.g. \"Monospace 10\")"
 msgstr ""
-"Nom del tipus de lletra que s'utilitzarà a la capçalera (p.ex. «Monospace 10»)"
+"Nom del tipus de lletra que s'utilitzarà a la capçalera (p.ex. «Monospace "
+"10»)"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:669
 msgid "Footer Font Name"
