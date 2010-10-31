@@ -362,7 +362,8 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 	 * @state: state of bracket matching
 	 *
 	 * Sets @iter to a valid iterator pointing to the matching bracket
-	 * if @state is #GTK_SOURCE_BRACKET_MATCH_FOUND.
+	 * if @state is #GTK_SOURCE_BRACKET_MATCH_FOUND. Otherwise @iter is
+	 * meaningless.
 	 *
 	 * Since: 2.12
 	 */
@@ -788,6 +789,7 @@ gtk_source_buffer_move_cursor (GtkTextBuffer     *buffer,
 	GtkSourceBuffer *source_buffer;
 	GtkTextIter start, end;
 	gunichar cursor_char;
+	GtkSourceBracketMatchType previous_state;
 
 	g_return_if_fail (GTK_IS_SOURCE_BUFFER (buffer));
 	g_return_if_fail (iter != NULL);
@@ -821,16 +823,23 @@ gtk_source_buffer_move_cursor (GtkTextBuffer     *buffer,
 		return;
 
 	start = *iter;
+	previous_state = source_buffer->priv->bracket_match;
 	if (!gtk_source_buffer_find_bracket_match_with_limit (source_buffer,
 	                                                      &start,
 	                                                      &source_buffer->priv->bracket_match,
 	                                                      MAX_CHARS_BEFORE_FINDING_A_MATCH))
 	{
-		g_signal_emit (source_buffer,
-			       buffer_signals[BRACKET_MATCHED],
-			       0,
-			       NULL,
-			       &source_buffer->priv->bracket_match);
+		/* don't emit the signal at all if chars at previous and current
+		   positions are nonbrackets. */
+		if (previous_state != GTK_SOURCE_BRACKET_MATCH_NONE ||
+		    source_buffer->priv->bracket_match != GTK_SOURCE_BRACKET_MATCH_NONE)
+		{
+			g_signal_emit (source_buffer,
+				       buffer_signals[BRACKET_MATCHED],
+				       0,
+				       &end,
+				       source_buffer->priv->bracket_match);
+		}
 	}
 	else
 	{
@@ -838,7 +847,7 @@ gtk_source_buffer_move_cursor (GtkTextBuffer     *buffer,
 			       buffer_signals[BRACKET_MATCHED],
 			       0,
 			       &start,
-			       &source_buffer->priv->bracket_match);
+			       source_buffer->priv->bracket_match);
 
 		/* allow_bracket_match will allow the bracket match tag to be
 		   applied to the buffer. See apply_tag_real for more

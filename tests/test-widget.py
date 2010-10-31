@@ -170,6 +170,7 @@ class Window(Gtk.Window):
 
         self._buf.connect("mark-set", self.move_cursor_cb, None)
         self._view.connect("line-mark-activated", self.line_mark_activated, None)
+        self._buffer.connect("bracket-matched", self.bracket_matched, None);
 
     def insert_menu(self):
         action_group = Gtk.ActionGroup()
@@ -505,6 +506,15 @@ class Window(Gtk.Window):
             self._buf.delete_mark(mark_list[0])
         else:
             self._buf.create_source_mark(None, mark_type, place)
+
+    def bracket_matched(self, place, state, user_data):
+        # FIXME: figure out how to obtain the nick from the enum value
+        # print "Bracket match state: '%s'\n" % nick
+        if state == GtkSource.BracketMatchType.FOUND:
+            bracket = place.get_char()
+            row = place.get_line() + 1
+            col = place.get_line_offset() + 1
+            print "Matched bracket: '%c' at row: %i, col: %i\n" % bracket % row % col
 
     def open_file(self, filename):
         if os.path.isabs(filename):

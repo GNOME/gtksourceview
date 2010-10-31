@@ -77,7 +77,7 @@ struct _GtkSourceBufferClass
 
 	void (*bracket_matched) (GtkSourceBuffer           *buffer,
 				 GtkTextIter               *iter,
-				 GtkSourceBracketMatchType *state);
+				 GtkSourceBracketMatchType  state);
 
 	/* Padding for future expansion */
 	void (*_gtk_source_reserved1) (void);

@@ -36,6 +36,7 @@
 #include <gtksourceview/gtksourcestyleschememanager.h>
 #include <gtksourceview/gtksourceprintcompositor.h>
 #include <gtksourceview/gtksourceiter.h>
+#include <gtksourceview/gtksourceview-typebuiltins.h>
 #ifdef TEST_XML_MEM
 #include <libxml/xmlreader.h>
 #endif
@@ -1246,6 +1247,30 @@ line_mark_activated (GtkSourceGutter *gutter,
 	g_slist_free (mark_list);
 }
 
+static void
+bracket_matched (GtkSourceBuffer           *buffer G_GNUC_UNUSED,
+                 GtkTextIter               *iter,
+                 GtkSourceBracketMatchType  state,
+                 gpointer                  *data G_GNUC_UNUSED)
+{
+	GEnumClass *eclass;
+	GEnumValue *evalue;
+
+	g_return_if_fail (iter != NULL);
+
+	eclass = G_ENUM_CLASS (g_type_class_ref (GTK_TYPE_SOURCE_BRACKET_MATCH_TYPE));
+	evalue = g_enum_get_value (eclass, state);
+
+	g_print ("Bracket match state: '%s'\n", evalue->value_nick);
+
+	if (state == GTK_SOURCE_BRACKET_MATCH_FOUND)
+	{
+		g_print ("Matched bracket: '%c' at row: %"G_GINT32_FORMAT", col: %"G_GINT32_FORMAT"\n",
+		         gtk_text_iter_get_char (iter),
+		         gtk_text_iter_get_line (iter) + 1,
+		         gtk_text_iter_get_line_offset (iter) + 1);
+	}
+}
 
 /* Window creation functions -------------------------------------------------------- */
 
@@ -1324,6 +1349,7 @@ create_view_window (GtkSourceBuffer *buffer, GtkSourceView *from)
 	g_signal_connect (buffer, "changed", G_CALLBACK (update_cursor_position), view);
 	g_signal_connect (view, "line-mark-activated", G_CALLBACK (line_mark_activated), view);
 	g_signal_connect (window, "delete-event", (GCallback) window_deleted_cb, view);
+	g_signal_connect (buffer, "bracket-matched", G_CALLBACK (bracket_matched), 0);
 
 	/* action group and UI manager */
 	action_group = gtk_action_group_new ("ViewActions");
