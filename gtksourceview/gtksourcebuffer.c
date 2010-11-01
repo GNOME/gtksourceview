@@ -35,7 +35,6 @@
 #include "gtksourcebuffer.h"
 #include "gtksourceundomanager.h"
 #include "gtksourceview-marshal.h"
-#include "gtksourceiter.h"
 #include "gtksourcestyleschememanager.h"
 #include "gtksourcestyle-private.h"
 #include "gtksourceundomanagerdefault.h"

@@ -35,7 +35,6 @@
 #include <gtksourceview/gtksourcelanguagemanager.h>
 #include <gtksourceview/gtksourcestyleschememanager.h>
 #include <gtksourceview/gtksourceprintcompositor.h>
-#include <gtksourceview/gtksourceiter.h>
 #include <gtksourceview/gtksourceview-typebuiltins.h>
 #ifdef TEST_XML_MEM
 #include <libxml/xmlreader.h>
@@ -711,11 +710,11 @@ backward_string_cb (GtkAction *action,
 static struct {
 	char *what;
 	char *replacement;
-	GtkSourceSearchFlags flags;
+	GtkTextSearchFlags flags;
 } search_data = {
 	NULL,
 	NULL,
-	GTK_SOURCE_SEARCH_CASE_INSENSITIVE
+	GTK_TEXT_SEARCH_CASE_INSENSITIVE
 };
 
 static gboolean
@@ -723,7 +722,7 @@ search_dialog (GtkWidget            *widget,
 	       gboolean              replace,
 	       char                **what_p,
 	       char                **replacement_p,
-	       GtkSourceSearchFlags *flags_p)
+	       GtkTextSearchFlags   *flags_p)
 {
 	GtkWidget *dialog;
 	GtkEntry *entry1, *entry2;
@@ -757,7 +756,7 @@ search_dialog (GtkWidget            *widget,
 	case_sensitive = g_object_new (GTK_TYPE_CHECK_BUTTON,
 				       "visible", TRUE,
 				       "label", "Case sensitive",
-				       "active", !(search_data.flags & GTK_SOURCE_SEARCH_CASE_INSENSITIVE),
+				       "active", !(search_data.flags & GTK_TEXT_SEARCH_CASE_INSENSITIVE),
 				       NULL);
 	gtk_box_pack_start (GTK_BOX (gtk_dialog_get_content_area (GTK_DIALOG (dialog))),
 			    GTK_WIDGET (case_sensitive), FALSE, FALSE, 0);
@@ -779,7 +778,7 @@ search_dialog (GtkWidget            *widget,
 	g_free (search_data.replacement);
 	*replacement_p = search_data.replacement = g_strdup (gtk_entry_get_text (entry2));
 	*flags_p = search_data.flags = gtk_toggle_button_get_active (case_sensitive) ?
-					0 : GTK_SOURCE_SEARCH_CASE_INSENSITIVE;
+					0 : GTK_TEXT_SEARCH_CASE_INSENSITIVE;
 
 	gtk_widget_destroy (dialog);
 	return TRUE;
@@ -792,7 +791,7 @@ do_search_replace (GtkTextView *view,
 	GtkTextBuffer *buffer = gtk_text_view_get_buffer (view);
 	GtkTextIter iter;
 	char *what, *replacement;
-	GtkSourceSearchFlags flags;
+	GtkTextSearchFlags flags;
 
 	if (!search_dialog (GTK_WIDGET (view), replace, &what, &replacement, &flags))
 		return;
@@ -805,10 +804,10 @@ do_search_replace (GtkTextView *view,
 		{
 			GtkTextIter match_start, match_end;
 
-			if (!gtk_source_iter_forward_search (&iter, what, flags,
-							     &match_start,
-							     &match_end,
-							     NULL))
+			if (!gtk_text_iter_forward_search (&iter, what, flags,
+							   &match_start,
+							   &match_end,
+							   NULL))
 			{
 				break;
 			}
@@ -824,7 +823,7 @@ do_search_replace (GtkTextView *view,
 
 		gtk_text_buffer_get_iter_at_mark (buffer, &iter, gtk_text_buffer_get_insert (buffer));
 
-		if (gtk_source_iter_forward_search (&iter, what, flags, &match_start, &match_end, NULL))
+		if (gtk_text_iter_forward_search (&iter, what, flags, &match_start, &match_end, NULL))
 		{
 			gtk_text_buffer_select_range (buffer, &match_start, &match_end);
 		}
@@ -832,7 +831,7 @@ do_search_replace (GtkTextView *view,
 		{
 			GtkTextIter insert = iter;
 			gtk_text_buffer_get_start_iter (buffer, &iter);
-			if (gtk_source_iter_forward_search (&iter, what, flags, &match_start, &match_end, &insert))
+			if (gtk_text_iter_forward_search (&iter, what, flags, &match_start, &match_end, &insert))
 				gtk_text_buffer_select_range (buffer, &match_start, &match_end);
 		}
 	}

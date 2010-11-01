@@ -285,16 +285,6 @@ gtk_source_style_scheme_get_type
 </SECTION>
 
 <SECTION>
-<FILE>iter</FILE>
-<TITLE>Searching in a GtkSourceBuffer</TITLE>
-<INCLUDE>gtksourceview/gtksourceiter.h</INCLUDE>
-GtkSourceSearchFlags
-gtk_source_iter_backward_search
-gtk_source_iter_forward_search
-<SUBSECTION Standard>
-</SECTION>
-
-<SECTION>
 <FILE>printcompositor</FILE>
 <TITLE>GtkSourcePrintCompositor</TITLE>
 <INCLUDE>gtksourceview/gtksourceprintcompositor.h</INCLUDE>

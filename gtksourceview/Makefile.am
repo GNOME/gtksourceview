@@ -29,7 +29,6 @@ libgtksourceview_headers =			\
 	gtksourcecompletionproposal.h		\
 	gtksourcecompletionprovider.h		\
 	gtksourcegutter.h			\
-	gtksourceiter.h				\
 	gtksourcelanguage.h			\
 	gtksourcelanguagemanager.h		\
 	gtksourcemark.h				\
@@ -68,7 +67,6 @@ libgtksourceview_c_files = \
 	gtksourcecontextengine.c	\
 	gtksourceengine.c		\
 	gtksourcegutter.c		\
-	gtksourceiter.c			\
 	gtksourcelanguage.c 		\
 	gtksourcelanguagemanager.c 	\
 	gtksourcelanguage-parser-1.c	\
