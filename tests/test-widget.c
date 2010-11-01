@@ -1270,6 +1270,8 @@ bracket_matched (GtkSourceBuffer           *buffer G_GNUC_UNUSED,
 		         gtk_text_iter_get_line (iter) + 1,
 		         gtk_text_iter_get_line_offset (iter) + 1);
 	}
+
+	g_type_class_unref (eclass);
 }
 
 /* Window creation functions -------------------------------------------------------- */
