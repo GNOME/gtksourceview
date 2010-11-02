@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview-master-po-gl-28392.merged\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-10-07 13:03+0200\n"
-"PO-Revision-Date: 2010-10-07 13:03+0200\n"
+"POT-Creation-Date: 2010-11-03 00:11+0100\n"
+"PO-Revision-Date: 2010-11-03 00:12+0100\n"
 "Last-Translator: Fran Diéguez <frandieguez@ubuntu.com>\n"
 "Language-Team: Galician <gnome-gl-list@gnome.org>\n"
 "Language: gl\n"
@@ -785,7 +785,7 @@ msgstr "Palabra chave reservada"
 #. A shebang: #!/bin/sh
 #: ../data/language-specs/def.lang.h:48 ../data/language-specs/sh.lang.h:8
 msgid "Shebang"
-msgstr "Shebang (#!)"
+msgstr "Shebang"
 
 #. This style doesn't map to anything since it must be used as an additional
 #. style for text which is already styled as a "string"
@@ -840,8 +840,8 @@ msgstr "Categoría reservada"
 #: ../data/language-specs/desktop.lang.h:14
 msgid "Translation"
 msgstr ""
-"Francisco Diéguez <frandieguez@ubuntu.com>, 2010;\n"
-"Antón Méixome <meixome@certima.net>, 2009, 2010;"
+"Francisco Diéguez <frandieguez@ubuntu.com>, 2010.\n"
+"Antón Méixome <meixome@certima.net>, 2009, 2010."
 
 #: ../data/language-specs/diff.lang.h:1
 msgid "Added line"
@@ -1869,11 +1869,11 @@ msgstr "Gate"
 
 #: ../data/language-specs/verilog.lang.h:7
 msgid "IEEE System Task"
-msgstr ""
+msgstr "Tarefa do sistema IEEE"
 
 #: ../data/language-specs/verilog.lang.h:10
 msgid "LRM Additional System Task"
-msgstr ""
+msgstr "Tarefa do sistema adicional LRM"
 
 #: ../data/language-specs/verilog.lang.h:15
 msgid "Verilog"
@@ -2028,69 +2028,69 @@ msgstr "Prioridade"
 msgid "Provider priority"
 msgstr "Prioridade do fornecedor"
 
-#: ../gtksourceview/gtksourcebuffer.c:223
+#: ../gtksourceview/gtksourcebuffer.c:222
 #: ../gtksourceview/gtksourceprintcompositor.c:505
 msgid "Highlight Syntax"
 msgstr "Realzar a sintaxe"
 
-#: ../gtksourceview/gtksourcebuffer.c:224
+#: ../gtksourceview/gtksourcebuffer.c:223
 msgid "Whether to highlight syntax in the buffer"
 msgstr "Indica se se realza a sintaxe no búfer"
 
-#: ../gtksourceview/gtksourcebuffer.c:237
+#: ../gtksourceview/gtksourcebuffer.c:236
 msgid "Highlight Matching Brackets"
 msgstr "Realzar as parénteses de peche"
 
-#: ../gtksourceview/gtksourcebuffer.c:238
+#: ../gtksourceview/gtksourcebuffer.c:237
 msgid "Whether to highlight matching brackets"
 msgstr "Indica se hai que realzar as parénteses de peche"
 
-#: ../gtksourceview/gtksourcebuffer.c:251
-#: ../gtksourceview/gtksourceundomanagerdefault.c:412
+#: ../gtksourceview/gtksourcebuffer.c:250
+#: ../gtksourceview/gtksourceundomanagerdefault.c:418
 msgid "Maximum Undo Levels"
 msgstr "Número máximo de accións de desfacer"
 
-#: ../gtksourceview/gtksourcebuffer.c:252
-#: ../gtksourceview/gtksourceundomanagerdefault.c:413
+#: ../gtksourceview/gtksourcebuffer.c:251
+#: ../gtksourceview/gtksourceundomanagerdefault.c:419
 msgid "Number of undo levels for the buffer"
 msgstr "Número de accións de desfacer para o búfer"
 
 #. Translators: throughout GtkSourceView "language" stands
 #. * for "programming language", not "spoken language"
-#: ../gtksourceview/gtksourcebuffer.c:264
+#: ../gtksourceview/gtksourcebuffer.c:263
 msgid "Language"
 msgstr "Linguaxe"
 
-#: ../gtksourceview/gtksourcebuffer.c:265
+#: ../gtksourceview/gtksourcebuffer.c:264
 msgid "Language object to get highlighting patterns from"
 msgstr "Obxecto de linguaxe do que se obteñen os patróns de realce"
 
-#: ../gtksourceview/gtksourcebuffer.c:273
+#: ../gtksourceview/gtksourcebuffer.c:272
 msgid "Can undo"
 msgstr "É posíbel desfacer"
 
-#: ../gtksourceview/gtksourcebuffer.c:274
+#: ../gtksourceview/gtksourcebuffer.c:273
 msgid "Whether Undo operation is possible"
 msgstr "Indica se se pode desfacer a acción"
 
-#: ../gtksourceview/gtksourcebuffer.c:281
+#: ../gtksourceview/gtksourcebuffer.c:280
 msgid "Can redo"
 msgstr "É posíbel refacer"
 
-#: ../gtksourceview/gtksourcebuffer.c:282
+#: ../gtksourceview/gtksourcebuffer.c:281
 msgid "Whether Redo operation is possible"
 msgstr "Indica se é posíbel refacer a acción"
 
+#: ../gtksourceview/gtksourcebuffer.c:295
 #: ../gtksourceview/gtksourcebuffer.c:296
-#: ../gtksourceview/gtksourcebuffer.c:297
 msgid "Style scheme"
 msgstr "Esquema de estilo"
 
-#: ../gtksourceview/gtksourcebuffer.c:304
+#: ../gtksourceview/gtksourcebuffer.c:303
 msgid "Undo manager"
 msgstr "Xestor de acción desfacer"
 
-#: ../gtksourceview/gtksourcebuffer.c:305
+#: ../gtksourceview/gtksourcebuffer.c:304
 msgid "The buffer undo manager"
 msgstr "O xestor do buffer da acción desfacer"
 
@@ -2642,11 +2642,11 @@ msgstr "Id de esquemas"
 msgid "List of the ids of the available style schemes"
 msgstr "Lista dos id dos esquemas de estilo dispoñíbeis"
 
-#: ../gtksourceview/gtksourceundomanagerdefault.c:404
+#: ../gtksourceview/gtksourceundomanagerdefault.c:410
 msgid "Buffer"
 msgstr "Búfer"
 
-#: ../gtksourceview/gtksourceundomanagerdefault.c:405
+#: ../gtksourceview/gtksourceundomanagerdefault.c:411
 msgid "The text buffer to add undo support on"
 msgstr "O búfer de texto que permite a acción de desfacer"
 
