@@ -1659,8 +1659,8 @@ file_parse (gchar                     *filename,
 						(xmlStructuredErrorFunc) text_reader_structured_error_func,
 						parser_state);
 
-	while (parser_state->error == NULL &&
-	       (ret = xmlTextReaderRead (parser_state->reader)) == 1)
+	while ((parser_state->error == NULL) &&
+	        (1 == xmlTextReaderRead (parser_state->reader)))
 	{
 		int type;
 
