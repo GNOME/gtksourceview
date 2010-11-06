@@ -2343,8 +2343,7 @@ gtk_source_view_get_lines (GtkTextView  *text_view,
 {
 	GtkTextIter iter;
 	gint count;
-	gint size;
-      	gint last_line_num = -1;
+	gint last_line_num = -1;
 
 	g_array_set_size (buffer_coords, 0);
 	g_array_set_size (numbers, 0);
@@ -2357,17 +2356,19 @@ gtk_source_view_get_lines (GtkTextView  *text_view,
 	/* For each iter, get its location and add it to the arrays.
 	 * Stop when we pass last_y */
 	count = 0;
-  	size = 0;
 
-  	while (!gtk_text_iter_is_end (&iter))
-    	{
+	while (!gtk_text_iter_is_end (&iter))
+	{
 		gint y, height;
 
 		gtk_text_view_get_line_yrange (text_view, &iter, &y, &height);
 
 		g_array_append_val (buffer_coords, y);
 		if (line_heights)
+		{
 			g_array_append_val (line_heights, height);
+		}
+
 		last_line_num = gtk_text_iter_get_line (&iter);
 		g_array_append_val (numbers, last_line_num);
 
@@ -2380,7 +2381,7 @@ gtk_source_view_get_lines (GtkTextView  *text_view,
 	}
 
 	if (gtk_text_iter_is_end (&iter))
-    	{
+	{
 		gint y, height;
 		gint line_num;
 
@@ -4989,7 +4990,6 @@ gtk_source_view_get_visual_column (GtkSourceView     *view,
 				   const GtkTextIter *iter)
 {
 	gunichar tab_char;
-	GtkTextBuffer *buffer;
 	GtkTextIter position;
 	guint column, indent_width;
 
@@ -4997,7 +4997,6 @@ gtk_source_view_get_visual_column (GtkSourceView     *view,
 	g_return_val_if_fail (iter != NULL, 0);
 
 	tab_char = g_utf8_get_char ("\t");
-	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
 
 	column = 0;
 	indent_width = get_real_indent_width (view);
@@ -5017,7 +5016,7 @@ gtk_source_view_get_visual_column (GtkSourceView     *view,
 		}
 
 		/* FIXME: this does not handle invisible text correctly, but
-                 * gtk_text_iter_forward_visible_cursor_position is too slow */
+		 * gtk_text_iter_forward_visible_cursor_position is too slow */
 		if (!gtk_text_iter_forward_char (&position))
 			break;
 	}
@@ -5046,7 +5045,9 @@ gtk_source_view_style_set (GtkWidget *widget, GtkStyle *previous_style)
 		/* re-set tab stops, but only if we already modified them, i.e.
 		 * do nothing with good old 8-space tabs */
 		if (view->priv->tabs_set)
+		{
 			set_tab_stops_internal (view);
+		}
 
 		/* make sure the margin position is recalculated on next expose */
 		view->priv->cached_right_margin_pos = -1;

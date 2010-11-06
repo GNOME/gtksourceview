@@ -295,20 +295,15 @@ gtk_source_completion_utils_move_to_iter (GtkWindow     *window,
 					  GtkSourceView *view,
 					  GtkTextIter   *iter)
 {
-	gint x;
-	gint y;
-	gint w;
-	gint h;
-	gint cx;
-	gint cy;
+	GdkScreen *screen;
+	gint x, y;
+	gint w, h;
+	gint sw, sh;
+	gint cx, cy;
 	gint oy;
 	gint height;
-	GdkScreen *screen;
 	gboolean overlapup;
 
-	gint sw = gdk_screen_width();
-	gint sh = gdk_screen_height();
-	
 	if (window != NULL)
 	{
 		screen = gtk_window_get_screen (window);
@@ -323,7 +318,7 @@ gtk_source_completion_utils_move_to_iter (GtkWindow     *window,
 
 	get_iter_pos (view, iter, &x, &y, &height);
 	gtk_window_get_size (window, &w, &h);
-	
+
 	oy = y;
 	compensate_for_gravity (window, &cx, &cy, w, h);
 

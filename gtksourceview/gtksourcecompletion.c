@@ -878,11 +878,11 @@ select_first_provider (GtkSourceCompletion *completion)
 static void
 update_info_position (GtkSourceCompletion *completion)
 {
+	GdkScreen *screen;
 	gint x, y;
 	gint width, height;
-	gint sw, sh;
+	gint sw;
 	gint info_width;
-	GdkScreen *screen;
 
 	gtk_window_get_position (GTK_WINDOW (completion->priv->window), &x, &y);
 	gtk_window_get_size (GTK_WINDOW (completion->priv->window),
@@ -891,7 +891,6 @@ update_info_position (GtkSourceCompletion *completion)
 
 	screen = gtk_window_get_screen (GTK_WINDOW (completion->priv->window));
 	sw = gdk_screen_get_width (screen);
-	sh = gdk_screen_get_height (screen);
 
 	/* Determine on which side to place it */
 	if (x + width + info_width >= sw)
@@ -1559,7 +1558,6 @@ minimum_auto_complete_delay (GtkSourceCompletion *completion,
 static gboolean
 auto_completion_prematch (GtkSourceCompletion *completion)
 {
-	GtkTextBuffer *buffer;
 	GtkTextIter iter;
 	GtkSourceCompletionContext *context;
 	gint delay;
@@ -1575,8 +1573,6 @@ auto_completion_prematch (GtkSourceCompletion *completion)
 	{
 		return FALSE;
 	}
-
-	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (completion->priv->view));
 
 	/* Check if the user has changed the cursor position. If yes, we don't complete */
 	get_iter_at_insert (completion, &iter);

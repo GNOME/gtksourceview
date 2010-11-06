@@ -1091,7 +1091,7 @@ gtk_source_buffer_find_bracket_match_real (GtkSourceBuffer           *buffer,
 
 	cur_char = gtk_text_iter_get_char (&iter);
 
-	base_char = search_char = cur_char;
+	base_char = cur_char;
 	cclass_mask = get_context_class_mask (buffer, &iter);
 
 	search_char = bracket_pair (base_char, &addition);
