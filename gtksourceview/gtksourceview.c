@@ -156,6 +156,8 @@ struct _GtkSourceViewPrivate
 
 	GtkSourceCompletion	*completion;
 
+	gulong           notify_buffer_id;
+
 	guint            current_line_color_set : 1;
 };
 
@@ -1670,10 +1672,10 @@ gtk_source_view_init (GtkSourceView *view)
 			  G_CALLBACK (view_dnd_drop),
 			  NULL);
 
-	g_signal_connect (view,
-			  "notify::buffer",
-			  G_CALLBACK (notify_buffer),
-			  NULL);
+	view->priv->notify_buffer_id = g_signal_connect (view,
+							 "notify::buffer",
+							 G_CALLBACK (notify_buffer),
+							 NULL);
 }
 
 static GObject *
@@ -1698,6 +1700,15 @@ static void
 gtk_source_view_dispose (GObject *object)
 {
 	GtkSourceView *view = GTK_SOURCE_VIEW (object);
+
+	/* notify_buffer() would recreate the buffer if it is set to null,
+	 * and we don't want that to happen when destroying/finalizing */
+	if (view->priv->notify_buffer_id)
+	{
+		g_signal_handler_disconnect (view, view->priv->notify_buffer_id);
+		view->priv->notify_buffer_id = 0;
+	}
+	set_source_buffer (view, NULL);
 
 	if (view->priv->completion != NULL)
 	{
@@ -1738,11 +1749,6 @@ gtk_source_view_finalize (GObject *object)
 
 	if (view->priv->right_gutter)
 		g_object_unref (view->priv->right_gutter);
-
-	/* notify_buffer() would recreate the buffer if it is set to null,
-	 * and we don't want that to happen when finalizing */
-	g_signal_handlers_disconnect_by_func (view, notify_buffer, NULL);
-	set_source_buffer (view, NULL);
 
 	G_OBJECT_CLASS (gtk_source_view_parent_class)->finalize (object);
 }
