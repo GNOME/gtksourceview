@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gtksourceview&component=general\n"
-"POT-Creation-Date: 2010-11-06 17:49+0000\n"
+"POT-Creation-Date: 2010-11-13 23:06+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Gheyret Kenji<gheyret@yahoo.com>\n"
 "Language-Team: Uyghur Computer Science Association <UKIJ@yahoogroups.com>\n"
@@ -315,11 +315,11 @@ msgstr "ھەرپ-بەلگە تىزىقى"
 
 #: ../data/language-specs/asp.lang.h:1
 msgid "ASP"
-msgstr ""
+msgstr "ASP"
 
 #: ../data/language-specs/asp.lang.h:2
 msgid "ASP Object"
-msgstr ""
+msgstr "ASP نەڭى"
 
 #. A function name (also: methods for classes)
 #: ../data/language-specs/asp.lang.h:6
@@ -459,7 +459,7 @@ msgstr "بەلگە"
 
 #: ../data/language-specs/bibtex.lang.h:1
 msgid "BibTeX"
-msgstr ""
+msgstr "BibTeX"
 
 #: ../data/language-specs/bibtex.lang.h:2
 msgid "Entries"
@@ -642,7 +642,7 @@ msgstr ""
 
 #: ../data/language-specs/cmake.lang.h:3
 msgid "CMake"
-msgstr ""
+msgstr "CMake"
 
 #. Any constant
 #: ../data/language-specs/cmake.lang.h:4 ../data/language-specs/def.lang.h:15
@@ -658,11 +658,11 @@ msgstr ""
 
 #: ../data/language-specs/cpp.lang.h:1
 msgid "C++"
-msgstr ""
+msgstr "C++"
 
 #: ../data/language-specs/csharp.lang.h:2
 msgid "C#"
-msgstr ""
+msgstr "C#"
 
 #: ../data/language-specs/csharp.lang.h:16
 msgid "String Format"
@@ -707,7 +707,7 @@ msgstr ""
 
 #: ../data/language-specs/cuda.lang.h:1
 msgid "CUDA"
-msgstr ""
+msgstr "CUDA"
 
 #: ../data/language-specs/cuda.lang.h:3
 msgid "Device Functions"
@@ -797,11 +797,11 @@ msgstr "ئاستى سىزىق"
 
 #: ../data/language-specs/desktop.lang.h:1
 msgid ".desktop"
-msgstr ""
+msgstr ".desktop"
 
 #: ../data/language-specs/desktop.lang.h:2
 msgid "Additional Category"
-msgstr ""
+msgstr "قوشۇمچە كاتېگورىيە"
 
 #: ../data/language-specs/desktop.lang.h:4
 msgid "Encoding"
@@ -835,7 +835,7 @@ msgstr "ئالماشتۇرۇش"
 
 #: ../data/language-specs/diff.lang.h:1
 msgid "Added line"
-msgstr ""
+msgstr "قوشۇلغان قۇر"
 
 #. Others 3
 #: ../data/language-specs/diff.lang.h:3
@@ -909,7 +909,7 @@ msgstr ""
 
 #: ../data/language-specs/dot.lang.h:1 ../data/language-specs/xml.lang.h:1
 msgid "Attribute name"
-msgstr ""
+msgstr "خاسلىق ئاتى"
 
 #: ../data/language-specs/dot.lang.h:4
 msgid "Graphviz Dot"
@@ -1289,7 +1289,7 @@ msgstr "خاسلىق ئاتى"
 
 #: ../data/language-specs/html.lang.h:2
 msgid "Attribute Value"
-msgstr ""
+msgstr "خاسلىق قىممىتى"
 
 #: ../data/language-specs/html.lang.h:6
 msgid "HTML"
@@ -1305,7 +1305,7 @@ msgstr ""
 
 #: ../data/language-specs/ini.lang.h:1
 msgid ".ini"
-msgstr ""
+msgstr ".ini"
 
 #: ../data/language-specs/java.lang.h:5 ../data/language-specs/ooc.lang.h:5
 msgid "Declaration"
@@ -1700,7 +1700,7 @@ msgstr "ئالماشتۇرغۇچ"
 
 #: ../data/language-specs/ruby.lang.h:1
 msgid "Attribute Definition"
-msgstr ""
+msgstr "خاسلىق ئېنىقلىمىسى"
 
 #: ../data/language-specs/ruby.lang.h:13
 msgid "Module handler"
@@ -1875,7 +1875,7 @@ msgstr ""
 
 #: ../data/language-specs/xml.lang.h:2
 msgid "Attribute value"
-msgstr ""
+msgstr "خاسلىق قىممىتى"
 
 #: ../data/language-specs/xml.lang.h:3
 msgid "CDATA delimiter"
@@ -2168,7 +2168,7 @@ msgid "Provider"
 msgstr "تەمىنلىگۈچى"
 
 #: ../gtksourceview/gtksourcecompletioncontext.c:244
-#: ../gtksourceview/gtksourceview.c:325
+#: ../gtksourceview/gtksourceview.c:327
 msgid "Completion"
 msgstr ""
 
@@ -2395,12 +2395,12 @@ msgid "The GtkSourceBuffer object to print"
 msgstr ""
 
 #: ../gtksourceview/gtksourceprintcompositor.c:463
-#: ../gtksourceview/gtksourceview.c:363
+#: ../gtksourceview/gtksourceview.c:365
 msgid "Tab Width"
 msgstr "خەتكۈش كەڭلىكى"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:464
-#: ../gtksourceview/gtksourceview.c:364
+#: ../gtksourceview/gtksourceview.c:366
 msgid "Width of a tab character expressed in spaces"
 msgstr ""
 
@@ -2615,97 +2615,97 @@ msgstr "بۇففېر"
 msgid "The text buffer to add undo support on"
 msgstr ""
 
-#: ../gtksourceview/gtksourceview.c:326
+#: ../gtksourceview/gtksourceview.c:328
 msgid "The completion object associated with the view"
 msgstr ""
 
-#: ../gtksourceview/gtksourceview.c:338
+#: ../gtksourceview/gtksourceview.c:340
 msgid "Show Line Numbers"
 msgstr "قۇر نومۇرىنى كۆرسىتىش"
 
-#: ../gtksourceview/gtksourceview.c:339
+#: ../gtksourceview/gtksourceview.c:341
 msgid "Whether to display line numbers"
 msgstr ""
 
-#: ../gtksourceview/gtksourceview.c:350
+#: ../gtksourceview/gtksourceview.c:352
 msgid "Show Line Marks"
 msgstr ""
 
-#: ../gtksourceview/gtksourceview.c:351
+#: ../gtksourceview/gtksourceview.c:353
 msgid "Whether to display line mark pixbufs"
 msgstr ""
 
-#: ../gtksourceview/gtksourceview.c:378
+#: ../gtksourceview/gtksourceview.c:380
 msgid "Indent Width"
 msgstr ""
 
-#: ../gtksourceview/gtksourceview.c:379
+#: ../gtksourceview/gtksourceview.c:381
 msgid "Number of spaces to use for each step of indent"
 msgstr ""
 
-#: ../gtksourceview/gtksourceview.c:388
+#: ../gtksourceview/gtksourceview.c:390
 msgid "Auto Indentation"
 msgstr ""
 
-#: ../gtksourceview/gtksourceview.c:389
+#: ../gtksourceview/gtksourceview.c:391
 msgid "Whether to enable auto indentation"
 msgstr ""
 
-#: ../gtksourceview/gtksourceview.c:396
+#: ../gtksourceview/gtksourceview.c:398
 msgid "Insert Spaces Instead of Tabs"
 msgstr ""
 
-#: ../gtksourceview/gtksourceview.c:397
+#: ../gtksourceview/gtksourceview.c:399
 msgid "Whether to insert spaces instead of tabs"
 msgstr ""
 
-#: ../gtksourceview/gtksourceview.c:409
+#: ../gtksourceview/gtksourceview.c:411
 msgid "Show Right Margin"
 msgstr ""
 
-#: ../gtksourceview/gtksourceview.c:410
+#: ../gtksourceview/gtksourceview.c:412
 msgid "Whether to display the right margin"
 msgstr ""
 
-#: ../gtksourceview/gtksourceview.c:422
+#: ../gtksourceview/gtksourceview.c:424
 msgid "Right Margin Position"
 msgstr "ئوڭ بوشلۇق ئورنى"
 
-#: ../gtksourceview/gtksourceview.c:423
+#: ../gtksourceview/gtksourceview.c:425
 msgid "Position of the right margin"
 msgstr ""
 
-#: ../gtksourceview/gtksourceview.c:439
+#: ../gtksourceview/gtksourceview.c:441
 msgid "Smart Home/End"
 msgstr ""
 
-#: ../gtksourceview/gtksourceview.c:440
+#: ../gtksourceview/gtksourceview.c:442
 msgid ""
 "HOME and END keys move to first/last non whitespace characters on line "
 "before going to the start/end of the line"
 msgstr ""
 
-#: ../gtksourceview/gtksourceview.c:450
+#: ../gtksourceview/gtksourceview.c:452
 msgid "Highlight current line"
 msgstr "ھازىرقى قۇرنى يورۇت"
 
-#: ../gtksourceview/gtksourceview.c:451
+#: ../gtksourceview/gtksourceview.c:453
 msgid "Whether to highlight the current line"
 msgstr ""
 
-#: ../gtksourceview/gtksourceview.c:458
+#: ../gtksourceview/gtksourceview.c:460
 msgid "Indent on tab"
 msgstr ""
 
-#: ../gtksourceview/gtksourceview.c:459
+#: ../gtksourceview/gtksourceview.c:461
 msgid "Whether to indent the selected text when the tab key is pressed"
 msgstr ""
 
-#: ../gtksourceview/gtksourceview.c:473
+#: ../gtksourceview/gtksourceview.c:475
 msgid "Draw Spaces"
 msgstr ""
 
-#: ../gtksourceview/gtksourceview.c:474
+#: ../gtksourceview/gtksourceview.c:476
 msgid "Set if and how the spaces should be visualized"
 msgstr ""
 
