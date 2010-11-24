@@ -12,6 +12,7 @@ LANGUAGES =			\
 	cg.lang			\
 	chdr.lang		\
 	cmake.lang		\
+	cobol.lang		\
 	cpp.lang		\
 	csharp.lang		\
 	css.lang		\
