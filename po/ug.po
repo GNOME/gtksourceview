@@ -4,14 +4,15 @@
 # Gheyret Kenji<gheyret@yahoo.com>,2010.
 # Sahran <sahran.ug@gmail.com>, 2010.
 # Zeper <zeper@msn.com>, 2010.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gtksourceview&component=general\n"
-"POT-Creation-Date: 2010-11-13 23:06+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Gheyret Kenji<gheyret@yahoo.com>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=gtksourceview&component=general\n"
+"POT-Creation-Date: 2010-11-24 17:14+0000\n"
+"PO-Revision-Date: 2010-11-25 14:29+0600\n"
+"Last-Translator: Sahran <sahran@live.com>\n"
 "Language-Team: Uyghur Computer Science Association <UKIJ@yahoogroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -42,7 +43,7 @@ msgstr "چەكلەنگەن"
 
 #: ../data/glade/gtksourceview.xml.in.h:6
 msgid "GtkSourceView"
-msgstr ""
+msgstr "GtkSourceView"
 
 #: ../data/glade/gtksourceview.xml.in.h:7
 msgid "Leading"
@@ -54,11 +55,11 @@ msgstr "يېڭى قۇر"
 
 #: ../data/glade/gtksourceview.xml.in.h:9
 msgid "Non Breaking Whitespace"
-msgstr ""
+msgstr "پارچىلانمايدىغان بوشلۇق"
 
 #: ../data/glade/gtksourceview.xml.in.h:10
 msgid "Space"
-msgstr "Space"
+msgstr "بوشلۇق"
 
 #: ../data/glade/gtksourceview.xml.in.h:11
 msgid "Tab"
@@ -71,7 +72,7 @@ msgstr "تېكىست"
 
 #: ../data/glade/gtksourceview.xml.in.h:13
 msgid "Trailing"
-msgstr ""
+msgstr "ئەگەشمە"
 
 #: ../data/language-specs/ada.lang.h:1
 msgid "Ada"
@@ -79,7 +80,7 @@ msgstr "Ada"
 
 #: ../data/language-specs/ada.lang.h:2
 msgid "Arbitrary base number"
-msgstr ""
+msgstr "خالىغان ئاساسىي سان"
 
 #. A boolean constant: TRUE, false
 #: ../data/language-specs/ada.lang.h:3 ../data/language-specs/asp.lang.h:3
@@ -95,12 +96,13 @@ msgstr ""
 #: ../data/language-specs/ruby.lang.h:3 ../data/language-specs/vala.lang.h:1
 #: ../data/language-specs/vbnet.lang.h:1 ../data/language-specs/vhdl.lang.h:2
 msgid "Boolean value"
-msgstr ""
+msgstr "بۇلىن لوگىكىلىق قىممەت"
 
 #. Any comment
 #: ../data/language-specs/ada.lang.h:4 ../data/language-specs/asp.lang.h:4
 #: ../data/language-specs/bennugd.lang.h:4 ../data/language-specs/boo.lang.h:4
 #: ../data/language-specs/c.lang.h:4 ../data/language-specs/cg.lang.h:5
+#: ../data/language-specs/cobol.lang.h:2
 #: ../data/language-specs/csharp.lang.h:4 ../data/language-specs/css.lang.h:3
 #: ../data/language-specs/def.lang.h:11 ../data/language-specs/d.lang.h:3
 #: ../data/language-specs/dosbatch.lang.h:2
@@ -151,7 +153,7 @@ msgstr "ئىزاھات"
 #: ../data/language-specs/sparql.lang.h:3 ../data/language-specs/sql.lang.h:2
 #: ../data/language-specs/vala.lang.h:3 ../data/language-specs/vbnet.lang.h:3
 msgid "Data Type"
-msgstr ""
+msgstr "سانلىق-مەلۇمات تىپى"
 
 #. A decimal number: 1234
 #: ../data/language-specs/ada.lang.h:6 ../data/language-specs/bennugd.lang.h:6
@@ -165,7 +167,7 @@ msgstr ""
 #: ../data/language-specs/php.lang.h:4 ../data/language-specs/python.lang.h:7
 #: ../data/language-specs/ruby.lang.h:7 ../data/language-specs/vala.lang.h:4
 msgid "Decimal number"
-msgstr ""
+msgstr "ئونلۇق سىستېمىدىكى سان"
 
 #. map to nothing
 #: ../data/language-specs/ada.lang.h:7 ../data/language-specs/bennugd.lang.h:8
@@ -181,17 +183,18 @@ msgstr ""
 #: ../data/language-specs/texinfo.lang.h:2
 #: ../data/language-specs/verilog.lang.h:5
 msgid "Escaped Character"
-msgstr ""
+msgstr "كود ئالماشتۇرۇش ھەرپى"
 
 #. keywords: "if", "for", "while", etc.
 #: ../data/language-specs/ada.lang.h:8 ../data/language-specs/asp.lang.h:7
 #: ../data/language-specs/awk.lang.h:2
 #: ../data/language-specs/bennugd.lang.h:12
 #: ../data/language-specs/boo.lang.h:7 ../data/language-specs/c.lang.h:13
-#: ../data/language-specs/cg.lang.h:14 ../data/language-specs/cpp.lang.h:4
-#: ../data/language-specs/csharp.lang.h:10 ../data/language-specs/css.lang.h:8
-#: ../data/language-specs/cuda.lang.h:6 ../data/language-specs/def.lang.h:36
-#: ../data/language-specs/d.lang.h:10 ../data/language-specs/dosbatch.lang.h:4
+#: ../data/language-specs/cg.lang.h:14 ../data/language-specs/cobol.lang.h:5
+#: ../data/language-specs/cpp.lang.h:4 ../data/language-specs/csharp.lang.h:10
+#: ../data/language-specs/css.lang.h:8 ../data/language-specs/cuda.lang.h:6
+#: ../data/language-specs/def.lang.h:36 ../data/language-specs/d.lang.h:10
+#: ../data/language-specs/dosbatch.lang.h:4
 #: ../data/language-specs/dot.lang.h:5 ../data/language-specs/eiffel.lang.h:12
 #: ../data/language-specs/erlang.lang.h:9 ../data/language-specs/fcl.lang.h:6
 #: ../data/language-specs/forth.lang.h:7
@@ -232,7 +235,7 @@ msgstr "ھالقىلىق سۆز"
 #: ../data/language-specs/pascal.lang.h:6
 #: ../data/language-specs/vbnet.lang.h:5
 msgid "Preprocessor"
-msgstr ""
+msgstr "ئالدىن بىر تەرەپ قىلغۇچ"
 
 #: ../data/language-specs/ada.lang.h:10
 #: ../data/language-specs/csharp.lang.h:13
@@ -240,13 +243,14 @@ msgstr ""
 #: ../data/language-specs/verilog.lang.h:11
 #: ../data/language-specs/vhdl.lang.h:7
 msgid "Real number"
-msgstr ""
+msgstr "ھەقىقىي سان"
 
 #: ../data/language-specs/ada.lang.h:11 ../data/language-specs/asp.lang.h:11
 #: ../data/language-specs/bennugd.lang.h:15
 #: ../data/language-specs/boo.lang.h:13 ../data/language-specs/chdr.lang.h:2
 #: ../data/language-specs/c.lang.h:16 ../data/language-specs/cg.lang.h:17
-#: ../data/language-specs/cpp.lang.h:5 ../data/language-specs/csharp.lang.h:14
+#: ../data/language-specs/cobol.lang.h:8 ../data/language-specs/cpp.lang.h:5
+#: ../data/language-specs/csharp.lang.h:14
 #: ../data/language-specs/cuda.lang.h:7 ../data/language-specs/d.lang.h:13
 #: ../data/language-specs/eiffel.lang.h:14
 #: ../data/language-specs/erlang.lang.h:11
@@ -275,12 +279,13 @@ msgstr "مەنبە"
 #: ../data/language-specs/cg.lang.h:18 ../data/language-specs/java.lang.h:16
 #: ../data/language-specs/ooc.lang.h:18
 msgid "Storage Class"
-msgstr ""
+msgstr "ساقلاش خىلى"
 
 #. A string constant: "this is a string"
 #: ../data/language-specs/ada.lang.h:13 ../data/language-specs/asp.lang.h:13
 #: ../data/language-specs/bennugd.lang.h:16
 #: ../data/language-specs/boo.lang.h:15 ../data/language-specs/c.lang.h:18
+#: ../data/language-specs/cobol.lang.h:10
 #: ../data/language-specs/csharp.lang.h:15
 #: ../data/language-specs/css.lang.h:13 ../data/language-specs/def.lang.h:57
 #: ../data/language-specs/d.lang.h:15 ../data/language-specs/dosbatch.lang.h:6
@@ -311,7 +316,7 @@ msgstr ""
 #: ../data/language-specs/verilog.lang.h:13
 #: ../data/language-specs/vhdl.lang.h:9
 msgid "String"
-msgstr "ھەرپ-بەلگە تىزىقى"
+msgstr "تېكىست"
 
 #: ../data/language-specs/asp.lang.h:1
 msgid "ASP"
@@ -319,7 +324,7 @@ msgstr "ASP"
 
 #: ../data/language-specs/asp.lang.h:2
 msgid "ASP Object"
-msgstr "ASP نەڭى"
+msgstr "ASP نەڭ"
 
 #. A function name (also: methods for classes)
 #: ../data/language-specs/asp.lang.h:6
@@ -333,11 +338,11 @@ msgstr "ASP نەڭى"
 #: ../data/language-specs/scheme.lang.h:3 ../data/language-specs/sh.lang.h:3
 #: ../data/language-specs/sparql.lang.h:4 ../data/language-specs/sql.lang.h:5
 msgid "Function"
-msgstr "Function"
+msgstr "فۇنكسىيە"
 
 #. A generic number constant
 #: ../data/language-specs/asp.lang.h:8 ../data/language-specs/boo.lang.h:11
-#: ../data/language-specs/def.lang.h:40
+#: ../data/language-specs/cobol.lang.h:6 ../data/language-specs/def.lang.h:40
 #: ../data/language-specs/desktop.lang.h:11
 #: ../data/language-specs/forth.lang.h:8 ../data/language-specs/java.lang.h:13
 #: ../data/language-specs/prolog.lang.h:5 ../data/language-specs/vhdl.lang.h:6
@@ -347,29 +352,30 @@ msgstr "تەرتىپ نومۇر"
 #. Operators: "+", "*", etc.
 #: ../data/language-specs/asp.lang.h:9
 #: ../data/language-specs/bennugd.lang.h:13
-#: ../data/language-specs/cmake.lang.h:6 ../data/language-specs/def.lang.h:42
+#: ../data/language-specs/cmake.lang.h:6 ../data/language-specs/cobol.lang.h:7
+#: ../data/language-specs/def.lang.h:42
 #: ../data/language-specs/erlang.lang.h:10
 #: ../data/language-specs/nsis.lang.h:3 ../data/language-specs/perl.lang.h:11
 #: ../data/language-specs/php.lang.h:16 ../data/language-specs/prolog.lang.h:6
 #: ../data/language-specs/sparql.lang.h:10
 msgid "Operator"
-msgstr "ئۇلىغۇچى"
+msgstr "ئەمەل بەلگىسى"
 
 #. A special constant like NULL in C or null in Java
 #: ../data/language-specs/asp.lang.h:12 ../data/language-specs/def.lang.h:53
 #: ../data/language-specs/vbnet.lang.h:7
 msgid "Special constant"
-msgstr ""
+msgstr "ئالاھىدە تۇراقلىق سان"
 
 #: ../data/language-specs/asp.lang.h:14
 msgid "VBScript and ADO constants"
-msgstr ""
+msgstr "VBScript ۋە ADO تۇراقلىق سان"
 
 #: ../data/language-specs/awk.lang.h:1 ../data/language-specs/boo.lang.h:3
 #: ../data/language-specs/glsl.lang.h:2 ../data/language-specs/perl.lang.h:1
 #: ../data/language-specs/python.lang.h:4
 msgid "Builtin Function"
-msgstr ""
+msgstr "ئىچكى فۇنكسىيە"
 
 #: ../data/language-specs/awk.lang.h:3
 msgid "Pattern"
@@ -387,6 +393,7 @@ msgid "Scripts"
 msgstr "Scripts"
 
 #: ../data/language-specs/awk.lang.h:5 ../data/language-specs/cmake.lang.h:8
+#: ../data/language-specs/cobol.lang.h:11
 #: ../data/language-specs/haskell.lang.h:15
 #: ../data/language-specs/ini.lang.h:10
 #: ../data/language-specs/makefile.lang.h:8
@@ -401,11 +408,11 @@ msgstr "ئۆزگىرىشچان"
 
 #: ../data/language-specs/awk.lang.h:6
 msgid "awk"
-msgstr ""
+msgstr "awk"
 
 #: ../data/language-specs/bennugd.lang.h:1
 msgid "BennuGD"
-msgstr ""
+msgstr "BennuGD"
 
 #. A character constant: 'c'
 #: ../data/language-specs/bennugd.lang.h:3 ../data/language-specs/c.lang.h:3
@@ -419,10 +426,11 @@ msgstr "ھەرپ"
 
 #. Any erroneous construct
 #: ../data/language-specs/bennugd.lang.h:7 ../data/language-specs/c.lang.h:8
-#: ../data/language-specs/cg.lang.h:8 ../data/language-specs/csharp.lang.h:7
-#: ../data/language-specs/css.lang.h:6 ../data/language-specs/def.lang.h:28
-#: ../data/language-specs/d.lang.h:7 ../data/language-specs/dot.lang.h:3
-#: ../data/language-specs/html.lang.h:5 ../data/language-specs/java.lang.h:6
+#: ../data/language-specs/cg.lang.h:8 ../data/language-specs/cobol.lang.h:4
+#: ../data/language-specs/csharp.lang.h:7 ../data/language-specs/css.lang.h:6
+#: ../data/language-specs/def.lang.h:28 ../data/language-specs/d.lang.h:7
+#: ../data/language-specs/dot.lang.h:3 ../data/language-specs/html.lang.h:5
+#: ../data/language-specs/java.lang.h:6
 #: ../data/language-specs/javascript.lang.h:6
 #: ../data/language-specs/nemerle.lang.h:7
 #: ../data/language-specs/ocaml.lang.h:7 ../data/language-specs/ooc.lang.h:6
@@ -440,7 +448,7 @@ msgstr "خاتالىق"
 #: ../data/language-specs/php.lang.h:8 ../data/language-specs/python.lang.h:9
 #: ../data/language-specs/R.lang.h:4 ../data/language-specs/ruby.lang.h:9
 msgid "Floating point number"
-msgstr ""
+msgstr "لەيلىمە نۇقتا سان"
 
 #: ../data/language-specs/bennugd.lang.h:10 ../data/language-specs/c.lang.h:11
 #: ../data/language-specs/cg.lang.h:12 ../data/language-specs/csharp.lang.h:9
@@ -449,7 +457,7 @@ msgstr ""
 #: ../data/language-specs/ooc.lang.h:11 ../data/language-specs/php.lang.h:11
 #: ../data/language-specs/vala.lang.h:6
 msgid "Hexadecimal number"
-msgstr ""
+msgstr "ئون ئالتىلىك سىستېمىدىكى سان"
 
 #. Any variable name
 #: ../data/language-specs/bennugd.lang.h:11
@@ -479,11 +487,11 @@ msgstr "سۆز بۆلىكى"
 #: ../data/language-specs/xslt.lang.h:2
 #: ../gtksourceview/gtksourcecompletionitem.c:242
 msgid "Markup"
-msgstr ""
+msgstr "بەلگە"
 
 #: ../data/language-specs/boo.lang.h:1
 msgid "Boo"
-msgstr ""
+msgstr "Boo"
 
 #: ../data/language-specs/boo.lang.h:2 ../data/language-specs/desktop.lang.h:3
 #: ../data/language-specs/d.lang.h:2 ../data/language-specs/libtool.lang.h:1
@@ -492,7 +500,7 @@ msgstr ""
 #: ../data/language-specs/scheme.lang.h:1
 #: ../data/language-specs/sparql.lang.h:1
 msgid "Boolean"
-msgstr "بولىئان رەقىمى"
+msgstr "بۇلىن"
 
 #: ../data/language-specs/boo.lang.h:6
 msgid "Definition"
@@ -500,7 +508,7 @@ msgstr "ئېنىقلىما"
 
 #: ../data/language-specs/boo.lang.h:8 ../data/language-specs/python.lang.h:13
 msgid "Multiline string"
-msgstr ""
+msgstr "كۆپ قۇرلۇق تېكىست"
 
 #: ../data/language-specs/boo.lang.h:9 ../data/language-specs/sparql.lang.h:9
 #: ../data/language-specs/xml.lang.h:10 ../data/language-specs/xslt.lang.h:3
@@ -516,7 +524,7 @@ msgstr "ئات بوشلۇقى"
 #: ../data/language-specs/ooc.lang.h:13 ../data/language-specs/php.lang.h:14
 #: ../data/language-specs/vala.lang.h:8
 msgid "Null Value"
-msgstr ""
+msgstr "Null قىممەت"
 
 #: ../data/language-specs/boo.lang.h:12 ../data/language-specs/perl.lang.h:17
 #: ../data/language-specs/ruby.lang.h:17
@@ -527,7 +535,7 @@ msgstr "مۇنتىزىم ئىپادە"
 #: ../data/language-specs/python.lang.h:16
 #: ../data/language-specs/ruby.lang.h:20
 msgid "Special Variable"
-msgstr ""
+msgstr "ئالاھىدە ئۆزگەرگۈچى"
 
 #: ../data/language-specs/changelog.lang.h:1
 msgid "Bullet"
@@ -535,7 +543,7 @@ msgstr "تۈر بەلگىسى"
 
 #: ../data/language-specs/changelog.lang.h:2
 msgid "ChangeLog"
-msgstr ""
+msgstr "ئۆزگىرىش خاتىرىسى"
 
 #: ../data/language-specs/changelog.lang.h:3
 #: ../data/language-specs/rpmspec.lang.h:3
@@ -544,7 +552,7 @@ msgstr "چېسلا"
 
 #: ../data/language-specs/changelog.lang.h:4
 msgid "E-mail address"
-msgstr ""
+msgstr "ئېلخەت مەنزىلى"
 
 #: ../data/language-specs/changelog.lang.h:5
 msgid "File"
@@ -586,11 +594,11 @@ msgstr "باشقىلار"
 
 #: ../data/language-specs/changelog.lang.h:9
 msgid "Release"
-msgstr ""
+msgstr "تارقاتقۇچى "
 
 #: ../data/language-specs/chdr.lang.h:1
 msgid "C/C++/ObjC Header"
-msgstr ""
+msgstr "C/C++/ObjC ھۆججەت بېشى"
 
 #: ../data/language-specs/c.lang.h:2
 msgid "C"
@@ -599,62 +607,74 @@ msgstr "C"
 #: ../data/language-specs/c.lang.h:5 ../data/language-specs/cpp.lang.h:2
 #: ../data/language-specs/objc.lang.h:1
 msgid "Common Defines"
-msgstr ""
+msgstr "ئادەتتىكى ئېنىقلىمىلار"
 
 #: ../data/language-specs/c.lang.h:12 ../data/language-specs/cg.lang.h:13
 msgid "Included File"
-msgstr ""
+msgstr "ئىچىدىكى ھۆججەت"
 
 #: ../data/language-specs/c.lang.h:14 ../data/language-specs/cg.lang.h:15
 #: ../data/language-specs/d.lang.h:12 ../data/language-specs/nemerle.lang.h:13
 #: ../data/language-specs/ooc.lang.h:15 ../data/language-specs/php.lang.h:15
 msgid "Octal number"
-msgstr ""
+msgstr "سەككىزلىك سىستېمىدىكى سان"
 
 #: ../data/language-specs/c.lang.h:19
 msgid "printf Conversion"
-msgstr ""
+msgstr "printf ئايلاندۇرۇش"
 
 #: ../data/language-specs/cg.lang.h:1
 msgid "Bindings"
-msgstr "باغلا"
+msgstr "باغلانمىلار"
 
 #: ../data/language-specs/cg.lang.h:3 ../data/language-specs/erlang.lang.h:3
 #: ../data/language-specs/ruby.lang.h:4
 msgid "Builtin"
-msgstr ""
+msgstr "ئىچكى"
 
 #: ../data/language-specs/cg.lang.h:4
 msgid "CG Shader Language"
-msgstr ""
+msgstr "CG Shader تىلى"
 
 #: ../data/language-specs/cg.lang.h:19
 msgid "Swizzle operator"
-msgstr ""
+msgstr "Swizzle ئەمەل بەلگىسى"
 
 #: ../data/language-specs/cmake.lang.h:1
 msgid "Builtin Command"
-msgstr ""
+msgstr "ئىچكى بۇيرۇق"
 
 #: ../data/language-specs/cmake.lang.h:2 ../data/language-specs/glsl.lang.h:3
 msgid "Builtin Variable"
-msgstr ""
+msgstr "ئىچكى ئۆزگەرگۈچى"
 
 #: ../data/language-specs/cmake.lang.h:3
 msgid "CMake"
 msgstr "CMake"
 
 #. Any constant
-#: ../data/language-specs/cmake.lang.h:4 ../data/language-specs/def.lang.h:15
+#: ../data/language-specs/cmake.lang.h:4 ../data/language-specs/cobol.lang.h:3
+#: ../data/language-specs/def.lang.h:15
 #: ../data/language-specs/gtk-doc.lang.h:1
 #: ../data/language-specs/libtool.lang.h:2
 #: ../data/language-specs/ruby.lang.h:6
 msgid "Constant"
-msgstr ""
+msgstr "تۇراقلىق سان"
 
 #: ../data/language-specs/cmake.lang.h:5
 msgid "Control Keyword"
-msgstr ""
+msgstr "تىزگىن ھالقىلىق سۆز"
+
+#: ../data/language-specs/cobol.lang.h:1
+#, fuzzy
+#| msgid "Cobalt"
+msgid "Cobol"
+msgstr "كوبالت"
+
+#. Any statement
+#: ../data/language-specs/cobol.lang.h:9 ../data/language-specs/def.lang.h:55
+msgid "Statement"
+msgstr "جۈملە"
 
 #: ../data/language-specs/cpp.lang.h:1
 msgid "C++"
@@ -666,7 +686,7 @@ msgstr "C#"
 
 #: ../data/language-specs/csharp.lang.h:16
 msgid "String Format"
-msgstr ""
+msgstr "تېكىست فورماتى"
 
 #: ../data/language-specs/css.lang.h:1
 msgid "CSS"
@@ -687,23 +707,23 @@ msgstr "ئونلۇق كەسىر"
 
 #: ../data/language-specs/css.lang.h:5
 msgid "Dimension"
-msgstr ""
+msgstr "ئۆلچەم"
 
 #: ../data/language-specs/css.lang.h:9
 msgid "Known Property Value"
-msgstr ""
+msgstr "مەلۇملۇق خاسلىق قىممىتى"
 
 #: ../data/language-specs/css.lang.h:11
 msgid "Others 2"
-msgstr ""
+msgstr "باشقا 2"
 
 #: ../data/language-specs/css.lang.h:12
 msgid "Others 3"
-msgstr ""
+msgstr "باشقا 3"
 
 #: ../data/language-specs/css.lang.h:14
 msgid "at-rules"
-msgstr ""
+msgstr "at قائىدىسى"
 
 #: ../data/language-specs/cuda.lang.h:1
 msgid "CUDA"
@@ -711,37 +731,37 @@ msgstr "CUDA"
 
 #: ../data/language-specs/cuda.lang.h:3
 msgid "Device Functions"
-msgstr ""
+msgstr "ئۈسكۈنە فۇنكسىيىسى"
 
 #: ../data/language-specs/cuda.lang.h:4
 msgid "Global Functions"
-msgstr ""
+msgstr "ئومۇمىيەت فۇنكسىيە"
 
 #: ../data/language-specs/cuda.lang.h:5
 msgid "Global Variables"
-msgstr ""
+msgstr "ئومۇمىيەت ئۆزگەرگۈچى"
 
 #. A base-N number: 0xFFFF
 #: ../data/language-specs/def.lang.h:2 ../data/language-specs/python.lang.h:1
 #: ../data/language-specs/ruby.lang.h:2
 msgid "Base-N number"
-msgstr ""
+msgstr "N ئاساسىدىكى سان"
 
 #. A builtin name: like __import__, abs in Python
 #. (see http://docs.python.org/lib/built-in-funcs.html)
 #: ../data/language-specs/def.lang.h:7
 msgid "Built-in identifier"
-msgstr ""
+msgstr "ئىچكى بەلگە"
 
 #. A complex number
 #: ../data/language-specs/def.lang.h:13 ../data/language-specs/python.lang.h:6
 msgid "Complex number"
-msgstr "Complex number"
+msgstr "مۇرەككەپ سان"
 
 #. A primitive data type: int, long, char, etc.
 #: ../data/language-specs/def.lang.h:17
 msgid "Data type"
-msgstr "سانلىق مەلۇمات تىپى"
+msgstr "سانلىق-مەلۇمات تىپى"
 
 #: ../data/language-specs/def.lang.h:20
 msgid "Defaults"
@@ -751,44 +771,39 @@ msgstr "كۆڭۈلدىكى قىممەتلەر"
 #. gtk-doc
 #: ../data/language-specs/def.lang.h:23
 msgid "Documentation comment"
-msgstr ""
+msgstr "پۈتۈك ئىزاھاتى"
 
 #. This style doesn't map to anything since it must be used as an additional
 #. style for text which is already styled as a "doc-comment"
 #: ../data/language-specs/def.lang.h:26
 msgid "Documentation comment element"
-msgstr ""
+msgstr "پۈتۈك ئىزاھات ئېلېمېنتى"
 
 #. Anything that needs extra attention; mostly the keywords TODO, FIXME and XXX
 #: ../data/language-specs/def.lang.h:38
 msgid "Note (FIXME, TODO, XXX, etc.)"
-msgstr ""
+msgstr "ئىزاھات (FIXME، TODO، XXX قاتارلىق)"
 
 #. This one is for '#include <foo.h>' and "#pragma blah", or 'use foobar', etc..
 #: ../data/language-specs/def.lang.h:44
 msgid "Preprocessor directive"
-msgstr ""
+msgstr "ئالدىن بىر تەرەپ قىلىش بۇيرۇقى"
 
 #. Reserved keywords: like "const" and "goto" in Java
 #: ../data/language-specs/def.lang.h:46
 msgid "Reserved keyword"
-msgstr ""
+msgstr "قالدۇرۇلغان ئاچقۇچلۇق سۆز"
 
 #. A shebang: #!/bin/sh
 #: ../data/language-specs/def.lang.h:48 ../data/language-specs/sh.lang.h:8
 msgid "Shebang"
-msgstr ""
+msgstr "Shebang"
 
 #. This style doesn't map to anything since it must be used as an additional
 #. style for text which is already styled as a "string"
 #: ../data/language-specs/def.lang.h:51
 msgid "Special character (inside a string)"
-msgstr ""
-
-#. Any statement
-#: ../data/language-specs/def.lang.h:55
-msgid "Statement"
-msgstr ""
+msgstr "ئالاھىدە ھەرپلەر (تېكىست ئىچىدە)"
 
 #. Text that stands out, HTML links, e-mail addresses, etc.
 #: ../data/language-specs/def.lang.h:59
@@ -809,7 +824,7 @@ msgstr "كودلاش"
 
 #: ../data/language-specs/desktop.lang.h:5
 msgid "Exec parameter"
-msgstr ""
+msgstr "ئىجرا پارامېتىرى"
 
 #: ../data/language-specs/desktop.lang.h:6
 msgid "Group"
@@ -819,19 +834,19 @@ msgstr "گۇرۇپپا"
 #. side in a myoption=something line in a .desktop file
 #: ../data/language-specs/desktop.lang.h:9
 msgid "Key"
-msgstr "كۇنۇپكا"
+msgstr "ئاچقۇچ"
 
 #: ../data/language-specs/desktop.lang.h:10
 msgid "Main Category"
-msgstr ""
+msgstr "ئاساسىي كاتېگورىيە"
 
 #: ../data/language-specs/desktop.lang.h:13
 msgid "Reserved Category"
-msgstr ""
+msgstr "قالدۇرۇلغان كاتېگورىيە"
 
 #: ../data/language-specs/desktop.lang.h:14
 msgid "Translation"
-msgstr "ئالماشتۇرۇش"
+msgstr "تەرجىمىسى"
 
 #: ../data/language-specs/diff.lang.h:1
 msgid "Added line"
@@ -840,11 +855,11 @@ msgstr "قوشۇلغان قۇر"
 #. Others 3
 #: ../data/language-specs/diff.lang.h:3
 msgid "Changed line"
-msgstr ""
+msgstr "ئۆزگەرگەن قۇر"
 
 #: ../data/language-specs/diff.lang.h:4
 msgid "Diff"
-msgstr "ھۆججەت سېلىشتۇر"
+msgstr "پەرق"
 
 #. Keyword
 #: ../data/language-specs/diff.lang.h:6
@@ -859,44 +874,44 @@ msgstr "ئورنى"
 #. Others 2
 #: ../data/language-specs/diff.lang.h:11
 msgid "Removed line"
-msgstr ""
+msgstr "چىقىرىۋېتىلگەن قۇر"
 
 #. Preprocessor
 #: ../data/language-specs/diff.lang.h:13
 msgid "Special case"
-msgstr ""
+msgstr "ئالاھىدە ئەھۋال"
 
 #: ../data/language-specs/d.lang.h:1 ../data/language-specs/nemerle.lang.h:1
 msgid "Binary number"
-msgstr ""
+msgstr "ئىككىلىك سان"
 
 #: ../data/language-specs/d.lang.h:4
 msgid "D"
-msgstr "د"
+msgstr "D"
 
 #: ../data/language-specs/d.lang.h:14
 msgid "Special Token"
-msgstr ""
+msgstr "ئالاھىدە بەلگە"
 
 #: ../data/language-specs/docbook.lang.h:1
 msgid "Docbook"
-msgstr ""
+msgstr "Docbook"
 
 #: ../data/language-specs/docbook.lang.h:2
 msgid "Formatting Elements"
-msgstr ""
+msgstr "فورماتلاش ئېلېمېنتى"
 
 #: ../data/language-specs/docbook.lang.h:3
 msgid "GUI Elements"
-msgstr ""
+msgstr "GUI ئېلېمېنتلىرى"
 
 #: ../data/language-specs/docbook.lang.h:4
 msgid "Header Elements"
-msgstr ""
+msgstr "ماۋزۇ ئېلېمېنتلىرى"
 
 #: ../data/language-specs/docbook.lang.h:6
 msgid "Structural Elements"
-msgstr ""
+msgstr "قۇرۇلمىلىق ئېلېمېنت"
 
 #: ../data/language-specs/dosbatch.lang.h:1
 #: ../data/language-specs/latex.lang.h:1
@@ -905,7 +920,7 @@ msgstr "بۇيرۇق"
 
 #: ../data/language-specs/dosbatch.lang.h:3
 msgid "Dos Batch"
-msgstr ""
+msgstr "Dos توپ بىر تەرەپ قىلىش"
 
 #: ../data/language-specs/dot.lang.h:1 ../data/language-specs/xml.lang.h:1
 msgid "Attribute name"
@@ -913,15 +928,15 @@ msgstr "خاسلىق ئاتى"
 
 #: ../data/language-specs/dot.lang.h:4
 msgid "Graphviz Dot"
-msgstr ""
+msgstr "Graphviz نۇقتا"
 
 #: ../data/language-specs/dpatch.lang.h:1
 msgid "DPatch"
-msgstr ""
+msgstr "DPatch"
 
 #: ../data/language-specs/dpatch.lang.h:3
 msgid "patch-start"
-msgstr ""
+msgstr "patch-start"
 
 #: ../data/language-specs/dtd.lang.h:1 ../data/language-specs/html.lang.h:4
 msgid "DTD"
@@ -929,23 +944,23 @@ msgstr "DTD"
 
 #: ../data/language-specs/dtd.lang.h:3
 msgid "decl"
-msgstr ""
+msgstr "decl"
 
 #: ../data/language-specs/dtd.lang.h:4
 msgid "entity"
-msgstr ""
+msgstr "ئەمەلىي گەۋدە"
 
 #: ../data/language-specs/dtd.lang.h:5
 msgid "error"
-msgstr ""
+msgstr "خاتالىق"
 
 #: ../data/language-specs/dtd.lang.h:6
 msgid "quoted-value"
-msgstr ""
+msgstr "نەقىل قىممەت"
 
 #: ../data/language-specs/eiffel.lang.h:1
 msgid "Assertion"
-msgstr ""
+msgstr "ھۆكۈم"
 
 #: ../data/language-specs/eiffel.lang.h:2
 msgid "Boolean Value"
@@ -957,24 +972,24 @@ msgstr "سازلا"
 
 #: ../data/language-specs/eiffel.lang.h:7
 msgid "Design by Contract"
-msgstr ""
+msgstr "توختام لايىھە"
 
 #: ../data/language-specs/eiffel.lang.h:8
 msgid "Eiffel"
-msgstr ""
+msgstr "Eiffel"
 
 #: ../data/language-specs/eiffel.lang.h:10
 msgid "Exception Handling"
-msgstr ""
+msgstr "مۇستەسنا بىر تەرەپ قىلىش"
 
 #: ../data/language-specs/eiffel.lang.h:13
 #: ../data/language-specs/ruby.lang.h:16
 msgid "Predefined Variable"
-msgstr ""
+msgstr "ئالدىن ئېنىقلانغان ئۆزگەرگۈچى"
 
 #: ../data/language-specs/eiffel.lang.h:16
 msgid "Void Value"
-msgstr ""
+msgstr "Void قىممەت"
 
 #: ../data/language-specs/erlang.lang.h:1
 msgid "Atom"
@@ -987,36 +1002,36 @@ msgstr "ئاتوم"
 #: ../data/language-specs/verilog.lang.h:1
 #: ../data/language-specs/vhdl.lang.h:1
 msgid "Base-N Integer"
-msgstr ""
+msgstr "N ئاساسىدىكى پۈتۈن سان"
 
 #: ../data/language-specs/erlang.lang.h:5
 #: ../data/language-specs/forth.lang.h:2
 #: ../data/language-specs/systemverilog.lang.h:1
 #: ../data/language-specs/verilog.lang.h:3
 msgid "Compiler Directive"
-msgstr ""
+msgstr "تەرجىمە-تەھرىرلىگۈچ بۇيرۇقى"
 
 #: ../data/language-specs/erlang.lang.h:7
 msgid "Erlang"
-msgstr ""
+msgstr "Erlang"
 
 #: ../data/language-specs/fcl.lang.h:1
 msgid "Block"
-msgstr "چەكلە"
+msgstr "بۆلەك"
 
 #: ../data/language-specs/fcl.lang.h:4
 msgid "FCL"
-msgstr ""
+msgstr "FCL"
 
 #: ../data/language-specs/fcl.lang.h:5 ../data/language-specs/fortran.lang.h:5
 #: ../data/language-specs/ini.lang.h:6 ../data/language-specs/octave.lang.h:5
 #: ../data/language-specs/sql.lang.h:4
 msgid "Floating Point"
-msgstr ""
+msgstr "لەيلىمە نۇقتا"
 
 #: ../data/language-specs/fcl.lang.h:7 ../data/language-specs/octave.lang.h:9
 msgid "Reserved Constant"
-msgstr ""
+msgstr "قالدۇرۇلغان تۇراقلىق سان"
 
 #: ../data/language-specs/fcl.lang.h:8 ../data/language-specs/gap.lang.h:7
 #: ../data/language-specs/octave.lang.h:10 ../data/language-specs/R.lang.h:9
@@ -1025,75 +1040,75 @@ msgstr "پەن-تېخنىكا"
 
 #: ../data/language-specs/forth.lang.h:4
 msgid "Debug Code"
-msgstr ""
+msgstr "سازلاش كودى"
 
 #: ../data/language-specs/forth.lang.h:5
 msgid "Error Text"
-msgstr ""
+msgstr "خاتالىق تېكىستى"
 
 #: ../data/language-specs/forth.lang.h:6
 msgid "Forth"
-msgstr ""
+msgstr "Forth"
 
 #: ../data/language-specs/fortran.lang.h:1
 msgid "BOZ Literal"
-msgstr ""
+msgstr "BOZ Literal"
 
 #: ../data/language-specs/fortran.lang.h:6
 msgid "Fortran 95"
-msgstr ""
+msgstr "Fortran 95"
 
 #: ../data/language-specs/fortran.lang.h:7
 msgid "Intrinsic function"
-msgstr ""
+msgstr "ئىچكى فۇنكسىيە"
 
 #: ../data/language-specs/fsharp.lang.h:3
 #: ../data/language-specs/ocaml.lang.h:3
 msgid "Builtin-function keyword"
-msgstr ""
+msgstr "ئىچكى فۇنكسىيە ھالقىلىق سۆز"
 
 #: ../data/language-specs/fsharp.lang.h:8
 msgid "F#"
-msgstr ""
+msgstr "F#"
 
 #: ../data/language-specs/fsharp.lang.h:9
 #: ../data/language-specs/ocaml.lang.h:9
 msgid "Floating Point number"
-msgstr ""
+msgstr "لەيلىمە نۇقتا سان"
 
 #: ../data/language-specs/fsharp.lang.h:11
 #: ../data/language-specs/ocaml.lang.h:11
 msgid "Labeled argument"
-msgstr ""
+msgstr "بەلگە سېلىنغان ئەركىن ئۆزگەرگۈچى"
 
 #: ../data/language-specs/fsharp.lang.h:12
 #: ../data/language-specs/ocaml.lang.h:12
 msgid "Module Path"
-msgstr "Module يولى"
+msgstr "بۆلەك يولى"
 
 #: ../data/language-specs/fsharp.lang.h:14
 #: ../data/language-specs/ocaml.lang.h:15
 msgid "Polymorphic Variant"
-msgstr ""
+msgstr "كۆپ شەكىللىك شالغۇت"
 
 #: ../data/language-specs/fsharp.lang.h:18
 #: ../data/language-specs/ocaml.lang.h:19
 msgid "Type Variable"
-msgstr ""
+msgstr "تىپ ئۆزگەرگۈچى"
 
 #: ../data/language-specs/fsharp.lang.h:19
 #: ../data/language-specs/ocaml.lang.h:20
 msgid "Type, module or object keyword"
-msgstr ""
+msgstr "تىپ، بۆلەك ياكى نەڭ ھالقىلىق سۆز"
 
 #: ../data/language-specs/fsharp.lang.h:20
 #: ../data/language-specs/ocaml.lang.h:21
 msgid "Variant Constructor"
-msgstr ""
+msgstr "شالغۇت ياسىغۇچ"
 
 #: ../data/language-specs/gap.lang.h:5
 msgid "GAP"
-msgstr ""
+msgstr "GAP"
 
 #: ../data/language-specs/gdb-log.lang.h:1
 msgid "Address"
@@ -1105,19 +1120,19 @@ msgstr "ھۆججەت ئاتى"
 
 #: ../data/language-specs/gdb-log.lang.h:3
 msgid "Frame Number"
-msgstr ""
+msgstr "كاندۇك نومۇرى"
 
 #: ../data/language-specs/gdb-log.lang.h:5
 msgid "GDB Log"
-msgstr ""
+msgstr "GDB خاتىرىسى"
 
 #: ../data/language-specs/gdb-log.lang.h:6
 msgid "Incomplete Sequence"
-msgstr ""
+msgstr "چالا تەرتىپ"
 
 #: ../data/language-specs/gdb-log.lang.h:7
 msgid "Optimized Out"
-msgstr ""
+msgstr "ئەلالاشتۇرۇپ چىقار"
 
 #: ../data/language-specs/gdb-log.lang.h:9
 msgid "Prompt"
@@ -1125,23 +1140,23 @@ msgstr "ئەسكەرت"
 
 #: ../data/language-specs/gdb-log.lang.h:11
 msgid "Thread Action"
-msgstr ""
+msgstr "جەريان مەشغۇلاتى"
 
 #: ../data/language-specs/gdb-log.lang.h:12
 msgid "Thread Header"
-msgstr ""
+msgstr "جەريان بېشى"
 
 #: ../data/language-specs/glsl.lang.h:1 ../data/language-specs/python.lang.h:3
 msgid "Builtin Constant"
-msgstr ""
+msgstr "ئىچكى تۇراقلىق سان"
 
 #: ../data/language-specs/glsl.lang.h:6
 msgid "OpenGL Shading Language"
-msgstr ""
+msgstr "OpenGL رەڭلەش تىلى"
 
 #: ../data/language-specs/glsl.lang.h:8
 msgid "Reserved Keywords"
-msgstr ""
+msgstr "قالدۇرۇلغان ئاچقۇچلۇق سۆز"
 
 #: ../data/language-specs/gtk-doc.lang.h:2
 msgid "Deprecated"
@@ -1149,11 +1164,11 @@ msgstr "ۋاقتى ئۆتكەن"
 
 #: ../data/language-specs/gtk-doc.lang.h:4
 msgid "Function Name"
-msgstr ""
+msgstr "فۇنكسىيە ئاتى"
 
 #: ../data/language-specs/gtk-doc.lang.h:5
 msgid "Inline Documentation Section"
-msgstr ""
+msgstr "ئىچكى پۈتۈك بۆلىكى"
 
 #: ../data/language-specs/gtk-doc.lang.h:7
 msgid "Parameter"
@@ -1169,11 +1184,11 @@ msgstr "Return"
 
 #: ../data/language-specs/gtk-doc.lang.h:10
 msgid "Signal Name"
-msgstr ""
+msgstr "سىگنال ئىسمى"
 
 #: ../data/language-specs/gtk-doc.lang.h:11
 msgid "Since"
-msgstr ""
+msgstr "دىن"
 
 #: ../data/language-specs/gtk-doc.lang.h:12
 #: ../data/language-specs/systemverilog.lang.h:6
@@ -1184,19 +1199,19 @@ msgstr "تىپى"
 
 #: ../data/language-specs/gtk-doc.lang.h:13
 msgid "gtk-doc"
-msgstr ""
+msgstr "gtk-doc"
 
 #: ../data/language-specs/gtkrc.lang.h:5
 msgid "GtkRC"
-msgstr ""
+msgstr "GtkRC"
 
 #: ../data/language-specs/gtkrc.lang.h:6
 msgid "Include directive"
-msgstr ""
+msgstr "بۇيرۇق ئىچىدە"
 
 #: ../data/language-specs/gtkrc.lang.h:10
 msgid "Widget State"
-msgstr ""
+msgstr "Widget ھالىتى"
 
 #: ../data/language-specs/haddock.lang.h:1 ../data/language-specs/t2t.lang.h:1
 msgid "Anchor"
@@ -1204,11 +1219,11 @@ msgstr "قۇلۇپلا"
 
 #: ../data/language-specs/haddock.lang.h:2
 msgid "Code Block"
-msgstr ""
+msgstr "كود بۆلىكى"
 
 #: ../data/language-specs/haddock.lang.h:3
 msgid "Definition list"
-msgstr "بېكىتىلگەن تىزىملىك"
+msgstr "ئېنىقلىما تىزىملىكى"
 
 #: ../data/language-specs/haddock.lang.h:4
 msgid "Emphasis"
@@ -1216,7 +1231,7 @@ msgstr "تەكىتلەش"
 
 #: ../data/language-specs/haddock.lang.h:5
 msgid "Enumerated list"
-msgstr ""
+msgstr "ساناق تىزىملىكى"
 
 #: ../data/language-specs/haddock.lang.h:6
 msgid "Escape"
@@ -1224,35 +1239,35 @@ msgstr "Escape"
 
 #: ../data/language-specs/haddock.lang.h:7
 msgid "Haddock"
-msgstr ""
+msgstr "Haddock"
 
 #: ../data/language-specs/haddock.lang.h:8
 msgid "Haddock Directive"
-msgstr ""
+msgstr "Haddock بۇيرۇقى"
 
 #: ../data/language-specs/haddock.lang.h:9
 msgid "Header Property"
-msgstr ""
+msgstr "قاش خاسلىقى"
 
 #: ../data/language-specs/haddock.lang.h:10
 msgid "Hyperlinked Identifier"
-msgstr ""
+msgstr "ئۇلانمىلىق بەلگە"
 
 #: ../data/language-specs/haddock.lang.h:11
 msgid "Hyperlinked Module Name"
-msgstr ""
+msgstr "ئۇلانمىلىق بۆلەك ئىسمى"
 
 #: ../data/language-specs/haddock.lang.h:12
 msgid "Inline Haddock Section"
-msgstr ""
+msgstr "ئىچكى Haddock بۆلىكى"
 
 #: ../data/language-specs/haddock.lang.h:13
 msgid "Itemized list"
-msgstr ""
+msgstr "تۈر تىزىملىكى"
 
 #: ../data/language-specs/haddock.lang.h:15
 msgid "Monospace"
-msgstr "Monospace"
+msgstr "تەڭ كەڭلىك"
 
 #: ../data/language-specs/haddock.lang.h:16
 msgid "URL"
@@ -1268,7 +1283,7 @@ msgstr "Haskell"
 
 #: ../data/language-specs/haskell.lang.h:8
 msgid "Hex"
-msgstr ""
+msgstr "ئون ئالتىلىك سىستېما"
 
 #: ../data/language-specs/haskell.lang.h:10
 msgid "Octal"
@@ -1277,11 +1292,11 @@ msgstr "Octal تىپ"
 #: ../data/language-specs/haskell.lang.h:14
 #: ../data/language-specs/ruby.lang.h:22
 msgid "Symbol"
-msgstr "بەلگە"
+msgstr "نومۇرى"
 
 #: ../data/language-specs/haskell-literate.lang.h:1
 msgid "Literate Haskell"
-msgstr ""
+msgstr "ساۋاتلىق Haskell"
 
 #: ../data/language-specs/html.lang.h:1
 msgid "Attribute Name"
@@ -1297,11 +1312,11 @@ msgstr "HTML"
 
 #: ../data/language-specs/html.lang.h:8 ../data/language-specs/xml.lang.h:12
 msgid "Tag"
-msgstr "خەتكۈش"
+msgstr "قېلىپ"
 
 #: ../data/language-specs/idl.lang.h:3
 msgid "IDL"
-msgstr ""
+msgstr "IDL"
 
 #: ../data/language-specs/ini.lang.h:1
 msgid ".ini"
@@ -1309,7 +1324,7 @@ msgstr ".ini"
 
 #: ../data/language-specs/java.lang.h:5 ../data/language-specs/ooc.lang.h:5
 msgid "Declaration"
-msgstr ""
+msgstr "بايانات"
 
 #: ../data/language-specs/java.lang.h:8 ../data/language-specs/ooc.lang.h:8
 msgid "External"
@@ -1319,7 +1334,7 @@ msgstr "سىرتقى"
 #: ../data/language-specs/javascript.lang.h:8
 #: ../data/language-specs/ooc.lang.h:10
 msgid "Future Reserved Keywords"
-msgstr ""
+msgstr "كەلگۈسىگە قالدۇرۇلغان ئاچقۇچلۇق سۆز"
 
 #: ../data/language-specs/java.lang.h:10
 msgid "Java"
@@ -1327,11 +1342,11 @@ msgstr "Java"
 
 #: ../data/language-specs/java.lang.h:14 ../data/language-specs/ooc.lang.h:16
 msgid "Scope Declaration"
-msgstr ""
+msgstr "تەسىر دائىرە ئېنىقلىمىسى"
 
 #: ../data/language-specs/javascript.lang.h:3
 msgid "Constructors"
-msgstr ""
+msgstr "قۇرغۇچ"
 
 #: ../data/language-specs/javascript.lang.h:9
 msgid "JavaScript"
@@ -1343,11 +1358,11 @@ msgstr "Object"
 
 #: ../data/language-specs/javascript.lang.h:13
 msgid "Properties"
-msgstr "ئالاھىدىلىكى"
+msgstr "خاسلىق"
 
 #: ../data/language-specs/javascript.lang.h:16
 msgid "Undefined Value"
-msgstr ""
+msgstr "ئېنىقلانمىغان قىممەت"
 
 #: ../data/language-specs/latex.lang.h:3
 #: ../data/language-specs/texinfo.lang.h:5
@@ -1356,77 +1371,77 @@ msgstr "ئىچىدە"
 
 #: ../data/language-specs/latex.lang.h:4
 msgid "Inline Math Mode"
-msgstr ""
+msgstr "ئىچكى ماتېماتىكا مودېلى"
 
 #: ../data/language-specs/latex.lang.h:5
 msgid "LaTeX"
-msgstr ""
+msgstr "LaTeX"
 
 #: ../data/language-specs/latex.lang.h:7
 msgid "Math Mode"
-msgstr ""
+msgstr "ماتېماتىكا مودېلى"
 
 #: ../data/language-specs/latex.lang.h:8 ../data/language-specs/t2t.lang.h:16
 msgid "Verbatim"
-msgstr ""
+msgstr "Verbatim"
 
 #: ../data/language-specs/latex.lang.h:9
 msgid "math-bound"
-msgstr ""
+msgstr "ماتېماتىكىلىق باغلىنىش"
 
 #: ../data/language-specs/libtool.lang.h:4
 msgid "libtool"
-msgstr ""
+msgstr "libtool"
 
 #: ../data/language-specs/lua.lang.h:6
 msgid "Lua"
-msgstr ""
+msgstr "Lua"
 
 #: ../data/language-specs/lua.lang.h:7 ../data/language-specs/ruby.lang.h:14
 msgid "Nil Constant"
-msgstr ""
+msgstr "Nil تۇراقلىق سان"
 
 #: ../data/language-specs/lua.lang.h:8
 msgid "Reserved Identifier"
-msgstr ""
+msgstr "قالدۇرۇلغان بەلگە"
 
 #: ../data/language-specs/m4.lang.h:1
 msgid "Autoconf Macro"
-msgstr ""
+msgstr "Autoconf ماكرو"
 
 #: ../data/language-specs/m4.lang.h:2
 msgid "Obsolete Autoconf Macro"
-msgstr ""
+msgstr "ۋاقتى ئۆتكەن Autoconf ماكرو"
 
 #: ../data/language-specs/m4.lang.h:4
 msgid "m4"
-msgstr ""
+msgstr "m4"
 
 #: ../data/language-specs/m4.lang.h:5
 msgid "m4 Macro"
-msgstr ""
+msgstr "m4 ماكرو"
 
 #: ../data/language-specs/m4.lang.h:6
 msgid "m4-comment"
-msgstr ""
+msgstr "m4 ئىزاھات"
 
 #: ../data/language-specs/makefile.lang.h:1
 msgid "Assignment Left Hand Side"
-msgstr ""
+msgstr "تەڭلىك بەلگىسىنىڭ سول تەرىپى"
 
 #: ../data/language-specs/makefile.lang.h:2
 msgid "Assignment Right Hand Side"
-msgstr ""
+msgstr "تەڭلىك بەلگىسىنىڭ ئوڭ تەرىپى"
 
 #: ../data/language-specs/makefile.lang.h:3
 msgid "Makefile"
-msgstr ""
+msgstr "Makefile"
 
 #. Translators: Trailing Tabs refers to tabulation characters present at
 #. the end of the line
 #: ../data/language-specs/makefile.lang.h:7
 msgid "Trailing Tab"
-msgstr ""
+msgstr "ئەگەشمە Tab"
 
 #: ../data/language-specs/makefile.lang.h:9
 msgid "command"
@@ -1434,41 +1449,41 @@ msgstr "بۇيرۇق"
 
 #: ../data/language-specs/makefile.lang.h:10
 msgid "function"
-msgstr ""
+msgstr "فۇنكسىيە"
 
 #. FIXME make it better names, and make them translatable
 #: ../data/language-specs/makefile.lang.h:11
 #: ../data/language-specs/yacc.lang.h:4
 msgid "keyword"
-msgstr ""
+msgstr "ئاچقۇچلۇق سۆز"
 
 #: ../data/language-specs/makefile.lang.h:12
 msgid "prereq"
-msgstr ""
+msgstr "شەرت"
 
 #: ../data/language-specs/makefile.lang.h:13
 msgid "targets"
-msgstr ""
+msgstr "نىشان"
 
 #: ../data/language-specs/mallard.lang.h:1
 msgid "Block Elements"
-msgstr "بوش ئېلېمېنت"
+msgstr "بۆلەك ئېلېمېنتى"
 
 #: ../data/language-specs/mallard.lang.h:2
 msgid "Inline Elements"
-msgstr ""
+msgstr "ئىچكى ئېلېمېنت"
 
 #: ../data/language-specs/mallard.lang.h:3
 msgid "Mallard"
-msgstr ""
+msgstr "Mallard"
 
 #: ../data/language-specs/mallard.lang.h:5
 msgid "Page Elements"
-msgstr ""
+msgstr "بەت ئېلېمېنتى"
 
 #: ../data/language-specs/mallard.lang.h:6
 msgid "Section Elements"
-msgstr ""
+msgstr "بۆلەك ئېلېمېنتى"
 
 #: ../data/language-specs/msil.lang.h:1
 msgid "MSIL"
@@ -1476,93 +1491,93 @@ msgstr "MSIL"
 
 #: ../data/language-specs/nemerle.lang.h:11
 msgid "Nemerle"
-msgstr ""
+msgstr "Nemerle"
 
 #: ../data/language-specs/nsis.lang.h:2
 msgid "NSIS"
-msgstr ""
+msgstr "NSIS"
 
 #: ../data/language-specs/objc.lang.h:4
 msgid "Objective-C"
-msgstr ""
+msgstr "Objective-C"
 
 #: ../data/language-specs/ocaml.lang.h:13
 msgid "Objective Caml"
-msgstr ""
+msgstr "Objective Caml"
 
 #: ../data/language-specs/ocaml.lang.h:14
 msgid "Ocamldoc Comments"
-msgstr ""
+msgstr "Ocamldoc ئىزاھات"
 
 #: ../data/language-specs/ocaml.lang.h:17
 msgid "Standart Modules"
-msgstr ""
+msgstr "Standart مودېلى"
 
 #: ../data/language-specs/ocl.lang.h:4
 msgid "OCL"
-msgstr ""
+msgstr "OCL"
 
 #: ../data/language-specs/ocl.lang.h:5
 msgid "Operation operator"
-msgstr ""
+msgstr "مەشغۇلات ئەمەل بەلگىسى"
 
 #: ../data/language-specs/ocl.lang.h:8
 msgid "Type Operators"
-msgstr ""
+msgstr "تىپ ئەمەل بەلگىسى"
 
 #: ../data/language-specs/octave.lang.h:8
 msgid "Octave"
-msgstr ""
+msgstr "Octave"
 
 #: ../data/language-specs/ooc.lang.h:14
 msgid "OOC"
-msgstr ""
+msgstr "OOC"
 
 #: ../data/language-specs/pascal.lang.h:5
 msgid "Pascal"
-msgstr ""
+msgstr "Pascal"
 
 #: ../data/language-specs/perl.lang.h:3
 msgid "Control"
-msgstr "كونترول"
+msgstr "تىزگىن"
 
 #: ../data/language-specs/perl.lang.h:5
 msgid "File Descriptor"
-msgstr ""
+msgstr "ھۆججەت چۈشەندۈرگۈچ"
 
 #: ../data/language-specs/perl.lang.h:6 ../data/language-specs/php.lang.h:9
 #: ../data/language-specs/ruby.lang.h:10
 msgid "Heredoc"
-msgstr ""
+msgstr "Heredoc"
 
 #: ../data/language-specs/perl.lang.h:7 ../data/language-specs/php.lang.h:10
 #: ../data/language-specs/ruby.lang.h:11 ../data/language-specs/sh.lang.h:4
 msgid "Heredoc Bound"
-msgstr ""
+msgstr "Heredoc باغلامى"
 
 #: ../data/language-specs/perl.lang.h:8
 msgid "Include Statement"
-msgstr ""
+msgstr "ئىچىدىكى جۈملە"
 
 #: ../data/language-specs/perl.lang.h:10
 msgid "Line Directive"
-msgstr ""
+msgstr "قۇر بۇيرۇقى"
 
 #: ../data/language-specs/perl.lang.h:12
 msgid "POD"
-msgstr ""
+msgstr "POD"
 
 #: ../data/language-specs/perl.lang.h:13
 msgid "POD Escape"
-msgstr ""
+msgstr "POD ئايلاندۇرۇش"
 
 #: ../data/language-specs/perl.lang.h:14
 msgid "POD heading"
-msgstr ""
+msgstr "POD ماۋزۇ"
 
 #: ../data/language-specs/perl.lang.h:15
 msgid "POD keyword"
-msgstr ""
+msgstr "POD ئاچقۇچلۇق سۆز"
 
 #: ../data/language-specs/perl.lang.h:16
 msgid "Perl"
@@ -1570,19 +1585,19 @@ msgstr "Perl"
 
 #: ../data/language-specs/perl.lang.h:20
 msgid "System Command"
-msgstr ""
+msgstr "سىستېما بۇيرۇقى"
 
 #: ../data/language-specs/php.lang.h:17
 msgid "PHP"
-msgstr ""
+msgstr "PHP"
 
 #: ../data/language-specs/pkgconfig.lang.h:2
 msgid "Package Info"
-msgstr ""
+msgstr "بوغچا ئۇچۇرى"
 
 #: ../data/language-specs/pkgconfig.lang.h:4
 msgid "pkg-config"
-msgstr ""
+msgstr "pkg-config"
 
 #: ../data/language-specs/po.lang.h:2
 msgid "Fuzzy"
@@ -1595,15 +1610,15 @@ msgstr "ئالاھىدە"
 
 #: ../data/language-specs/po.lang.h:9
 msgid "gettext translation"
-msgstr ""
+msgstr "gettext تەرجىمە"
 
 #: ../data/language-specs/prolog.lang.h:7
 msgid "Prolog"
-msgstr ""
+msgstr "Prolog"
 
 #: ../data/language-specs/python.lang.h:5
 msgid "Builtin Object"
-msgstr ""
+msgstr "ئىچكى نەڭ"
 
 #: ../data/language-specs/python.lang.h:10
 msgid "Format"
@@ -1611,7 +1626,7 @@ msgstr "فورمات"
 
 #: ../data/language-specs/python.lang.h:12
 msgid "Module Handler"
-msgstr ""
+msgstr "بۆلەك بىر تەرەپ قىلغۇچ"
 
 #: ../data/language-specs/python.lang.h:14
 msgid "Python"
@@ -1619,19 +1634,19 @@ msgstr "Python"
 
 #: ../data/language-specs/python.lang.h:18
 msgid "string-conversion"
-msgstr ""
+msgstr "تېكىست ئايلاندۇرۇش"
 
 #: ../data/language-specs/R.lang.h:1
 msgid "Assignment Operator"
-msgstr ""
+msgstr "قىممەت بېرىش ئەمەل بەلگىسى"
 
 #: ../data/language-specs/R.lang.h:3
 msgid "Delimiter"
-msgstr ""
+msgstr "ئايرىش بەلگىسى"
 
 #: ../data/language-specs/R.lang.h:5 ../data/language-specs/verilog.lang.h:8
 msgid "Integer Number"
-msgstr ""
+msgstr "پۈتۈن سان"
 
 #: ../data/language-specs/R.lang.h:7
 msgid "R"
@@ -1639,19 +1654,19 @@ msgstr "R"
 
 #: ../data/language-specs/R.lang.h:8
 msgid "Reserved Class"
-msgstr ""
+msgstr "قالدۇرۇلغان خىل"
 
 #: ../data/language-specs/R.lang.h:10
 msgid "Special Constant"
-msgstr ""
+msgstr "ئالاھىدە تۇراقلىق سان"
 
 #: ../data/language-specs/rpmspec.lang.h:1
 msgid "Command Macro"
-msgstr ""
+msgstr "بۇيرۇق ماكرو"
 
 #: ../data/language-specs/rpmspec.lang.h:2
 msgid "Conditional Macro"
-msgstr ""
+msgstr "شەرت ماكرو"
 
 #: ../data/language-specs/rpmspec.lang.h:4
 msgid "Define"
@@ -1659,7 +1674,7 @@ msgstr "بەلگىلە"
 
 #: ../data/language-specs/rpmspec.lang.h:5
 msgid "Directory Macro"
-msgstr ""
+msgstr "مۇندەرىجە ماكرو"
 
 #: ../data/language-specs/rpmspec.lang.h:6
 msgid "Email"
@@ -1667,32 +1682,32 @@ msgstr "ئېلخەت"
 
 #: ../data/language-specs/rpmspec.lang.h:7
 msgid "Flow Conditional"
-msgstr ""
+msgstr "جەريان شەرتى"
 
 #: ../data/language-specs/rpmspec.lang.h:8 ../data/language-specs/t2t.lang.h:4
 msgid "Header"
-msgstr "بەت قېشى"
+msgstr "ماۋزۇ"
 
 #: ../data/language-specs/rpmspec.lang.h:9
 msgid "Other Macro"
-msgstr ""
+msgstr "باشقا ماكرو"
 
 #: ../data/language-specs/rpmspec.lang.h:11
 msgid "RPM Variable"
-msgstr ""
+msgstr "RPM ئۆزگەرگۈچى"
 
 #: ../data/language-specs/rpmspec.lang.h:12
 msgid "RPM spec"
-msgstr ""
+msgstr "RPM spec"
 
 #: ../data/language-specs/rpmspec.lang.h:13
 #: ../data/language-specs/t2t.lang.h:9
 msgid "Section"
-msgstr "دائىرە"
+msgstr "گۇرۇپپىسى"
 
 #: ../data/language-specs/rpmspec.lang.h:14
 msgid "Spec Macro"
-msgstr ""
+msgstr "Spec ماكرو"
 
 #: ../data/language-specs/rpmspec.lang.h:15
 msgid "Switch"
@@ -1704,15 +1719,15 @@ msgstr "خاسلىق ئېنىقلىمىسى"
 
 #: ../data/language-specs/ruby.lang.h:13
 msgid "Module handler"
-msgstr ""
+msgstr "بۆلەك بىر تەرەپ قىلغۇچ"
 
 #: ../data/language-specs/ruby.lang.h:15
 msgid "Numeric literal"
-msgstr ""
+msgstr "ھەرپلىك سان"
 
 #: ../data/language-specs/ruby.lang.h:18
 msgid "Ruby"
-msgstr "توق قىزىل"
+msgstr "Ruby"
 
 #: ../data/language-specs/scheme.lang.h:5
 msgid "Scheme"
@@ -1720,52 +1735,52 @@ msgstr "نۇسخا"
 
 #: ../data/language-specs/sh.lang.h:2
 msgid "Common Commands"
-msgstr ""
+msgstr "ئادەتتىكى بۇيرۇقلار"
 
 #: ../data/language-specs/sh.lang.h:10
 msgid "Subshell"
-msgstr ""
+msgstr "تارماق shell"
 
 #. FIXME: need to sort out proper styles for variables
 #: ../data/language-specs/sh.lang.h:13
 msgid "Variable Definition"
-msgstr ""
+msgstr "ئۆزگەرگۈچى ئېنىقلىمىسى"
 
 #: ../data/language-specs/sh.lang.h:14
 msgid "sh"
-msgstr ""
+msgstr "sh"
 
 #: ../data/language-specs/sparql.lang.h:2
 msgid "Class"
-msgstr "تۈر"
+msgstr "خىل"
 
 #: ../data/language-specs/sparql.lang.h:5
 msgid "IRI"
-msgstr ""
+msgstr "IRI"
 
 #: ../data/language-specs/sparql.lang.h:6
 msgid "Individual"
-msgstr ""
+msgstr "ئۆزگىچە"
 
 #: ../data/language-specs/sparql.lang.h:8
 msgid "Literal"
-msgstr ""
+msgstr "يېزىق"
 
 #: ../data/language-specs/sparql.lang.h:11
 msgid "Predicate"
-msgstr ""
+msgstr "مۆلچەرلەش"
 
 #: ../data/language-specs/sparql.lang.h:12
 msgid "QName"
-msgstr ""
+msgstr "QName"
 
 #: ../data/language-specs/sparql.lang.h:13
 msgid "SPARQL"
-msgstr ""
+msgstr "SPARQL"
 
 #: ../data/language-specs/sql.lang.h:7
 msgid "No idea what it is"
-msgstr ""
+msgstr "ئۇ نېمىدۇ"
 
 #: ../data/language-specs/sql.lang.h:8
 msgid "SQL"
@@ -1773,11 +1788,11 @@ msgstr "SQL"
 
 #: ../data/language-specs/systemverilog.lang.h:4
 msgid "System Task"
-msgstr ""
+msgstr "سىستېما ۋەزىپە"
 
 #: ../data/language-specs/systemverilog.lang.h:5
 msgid "SystemVerilog"
-msgstr ""
+msgstr "SystemVerilog"
 
 #: ../data/language-specs/t2t.lang.h:2 ../gtksourceview/gtksourcestyle.c:104
 #: ../gtksourceview/gtksourcestyle.c:105
@@ -1795,39 +1810,39 @@ msgstr "تاللانما"
 
 #: ../data/language-specs/t2t.lang.h:8
 msgid "Option Name"
-msgstr ""
+msgstr "تاللانما ئىسمى"
 
 #: ../data/language-specs/t2t.lang.h:10
 msgid "Section 1"
-msgstr ""
+msgstr "1-بۆلەك"
 
 #: ../data/language-specs/t2t.lang.h:11
 msgid "Section 2"
-msgstr "2 بۆلەك"
+msgstr "2-بۆلەك"
 
 #: ../data/language-specs/t2t.lang.h:12
 msgid "Section 3"
-msgstr ""
+msgstr "3-بۆلەك"
 
 #: ../data/language-specs/t2t.lang.h:13
 msgid "Section 4"
-msgstr "4 بۆلەك"
+msgstr "4-بۆلەك"
 
 #: ../data/language-specs/t2t.lang.h:14
 msgid "Section 5"
-msgstr "5 بۆلەك"
+msgstr "5-بۆلەك"
 
 #: ../data/language-specs/t2t.lang.h:15
 msgid "Text2Tags"
-msgstr ""
+msgstr "Text2Tags"
 
 #: ../data/language-specs/t2t.lang.h:17
 msgid "Verbatim Block"
-msgstr ""
+msgstr "Verbatim بۆلەك"
 
 #: ../data/language-specs/tcl.lang.h:3
 msgid "Tcl"
-msgstr ""
+msgstr "Tcl"
 
 #: ../data/language-specs/texinfo.lang.h:3
 msgid "File Attributes"
@@ -1835,7 +1850,7 @@ msgstr "ھۆججەت خاسلىقى"
 
 #: ../data/language-specs/texinfo.lang.h:4
 msgid "Generated Content"
-msgstr ""
+msgstr "ھاسىل قىلىنغان مەزمۇن"
 
 #: ../data/language-specs/texinfo.lang.h:7
 msgid "Macros"
@@ -1843,35 +1858,35 @@ msgstr "ماكرولار"
 
 #: ../data/language-specs/texinfo.lang.h:11
 msgid "Texinfo"
-msgstr ""
+msgstr "Texinfo"
 
 #: ../data/language-specs/vala.lang.h:12
 msgid "Vala"
-msgstr ""
+msgstr "Vala"
 
 #: ../data/language-specs/vbnet.lang.h:9
 msgid "VB.NET"
-msgstr ""
+msgstr "VB.NET"
 
 #: ../data/language-specs/verilog.lang.h:6
 msgid "Gate"
-msgstr ""
+msgstr "ئىشىك"
 
 #: ../data/language-specs/verilog.lang.h:7
 msgid "IEEE System Task"
-msgstr ""
+msgstr "IEEE سىستېما ۋەزىپىسى"
 
 #: ../data/language-specs/verilog.lang.h:10
 msgid "LRM Additional System Task"
-msgstr ""
+msgstr "LRM قوشۇمچە سىستېما ۋەزىپىسى"
 
 #: ../data/language-specs/verilog.lang.h:15
 msgid "Verilog"
-msgstr ""
+msgstr "Verilog"
 
 #: ../data/language-specs/vhdl.lang.h:11
 msgid "VHDL"
-msgstr ""
+msgstr "VHDL"
 
 #: ../data/language-specs/xml.lang.h:2
 msgid "Attribute value"
@@ -1879,23 +1894,23 @@ msgstr "خاسلىق قىممىتى"
 
 #: ../data/language-specs/xml.lang.h:3
 msgid "CDATA delimiter"
-msgstr ""
+msgstr "CDATA ئايرىش بەلگىسى"
 
 #: ../data/language-specs/xml.lang.h:5
 msgid "DOCTYPE"
-msgstr ""
+msgstr "DOCTYPE"
 
 #: ../data/language-specs/xml.lang.h:6
 msgid "Element name"
-msgstr ""
+msgstr "ئېلېمېنت ئاتى"
 
 #: ../data/language-specs/xml.lang.h:7
 msgid "Entity"
-msgstr ""
+msgstr "ئەمەلىي گەۋدە"
 
 #: ../data/language-specs/xml.lang.h:11
 msgid "Processing instruction"
-msgstr ""
+msgstr "بىر تەرەپ قىلىش بۇيرۇقى"
 
 #: ../data/language-specs/xml.lang.h:13
 msgid "XML"
@@ -1907,19 +1922,19 @@ msgstr "ئېلېمېنت"
 
 #: ../data/language-specs/xslt.lang.h:4
 msgid "XSLT"
-msgstr ""
+msgstr "XSLT"
 
 #: ../data/language-specs/yacc.lang.h:2
 msgid "Yacc"
-msgstr ""
+msgstr "Yacc"
 
 #: ../data/language-specs/yacc.lang.h:5
 msgid "rule"
-msgstr ""
+msgstr "قائىدە"
 
 #: ../data/language-specs/yacc.lang.h:6
 msgid "token-type"
-msgstr ""
+msgstr "بەلگە تىپى"
 
 #: ../data/styles/classic.xml.h:1
 msgid "Classic"
@@ -1927,35 +1942,35 @@ msgstr "كلاسسىك"
 
 #: ../data/styles/classic.xml.h:2
 msgid "Classic color scheme"
-msgstr ""
+msgstr "كلاسسىك رەڭ لايىھىسى"
 
 #: ../data/styles/cobalt.xml.h:1
 msgid "Blue based color scheme"
-msgstr ""
+msgstr "كۆك رەڭ ئاساسىدىكى رەڭ لايىھىسى"
 
 #: ../data/styles/cobalt.xml.h:2
 msgid "Cobalt"
-msgstr ""
+msgstr "كوبالت"
 
 #: ../data/styles/kate.xml.h:1
 msgid "Color scheme used in the Kate text editor"
-msgstr ""
+msgstr "Kate تېكىست تەھرىرلىگۈچتە ئىشلەتكەن رەڭ لايىھىسىنى ئىشلىتىدۇ "
 
 #: ../data/styles/kate.xml.h:2
 msgid "Kate"
-msgstr ""
+msgstr "Kate"
 
 #: ../data/styles/oblivion.xml.h:1
 msgid "Dark color scheme using the Tango color palette"
-msgstr ""
+msgstr "Tango رەڭ تاختىسىدىكى تۇتۇق رەڭ لايىھىسىنى ئىشلىتىدۇ"
 
 #: ../data/styles/oblivion.xml.h:2
 msgid "Oblivion"
-msgstr ""
+msgstr "Oblivion"
 
 #: ../data/styles/tango.xml.h:1
 msgid "Color scheme using Tango color palette"
-msgstr ""
+msgstr "Tango رەڭ تاختىسىدىكى رەڭ لايىھىسىنى ئىشلىتىدۇ"
 
 #: ../data/styles/tango.xml.h:2
 msgid "Tango"
@@ -1963,11 +1978,11 @@ msgstr "Tango"
 
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:378
 msgid "Document Words"
-msgstr ""
+msgstr "پۈتۈكتىكى سۆزلەر"
 
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:463
 msgid "The provider name"
-msgstr ""
+msgstr "تەمىنلىگۈچى ئاتى"
 
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:470
 #: ../gtksourceview/gtksourcecompletionitem.c:268
@@ -1976,39 +1991,39 @@ msgstr "سىنبەلگە"
 
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:471
 msgid "The provider icon"
-msgstr ""
+msgstr "تەمىنلىگۈچى سىنبەلگىسى"
 
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:478
 msgid "Proposals Batch Size"
-msgstr ""
+msgstr "تەكلىپ تۈركۈم چوڭلۇقى"
 
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:479
 msgid "Number of proposals added in one batch"
-msgstr ""
+msgstr "بىر تۈركۈمدە قوشىدىغان تەكلىپ سانى"
 
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:488
 msgid "Scan Batch Size"
-msgstr ""
+msgstr "تەكشۈرىدىغان تۈركۈم چوڭلۇقى"
 
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:489
 msgid "Number of lines scanned in one batch"
-msgstr ""
+msgstr "بىر تۈركۈمدە تەكشۈرىدىغان قۇر سانى"
 
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:498
 msgid "Minimum Word Size"
-msgstr ""
+msgstr "ئەڭ قىسقا سۆز چېكى"
 
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:499
 msgid "The minimum word size to complete"
-msgstr ""
+msgstr "تاماملاشنىڭ ئەڭ قىسقا سۆز چېكى"
 
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:508
 msgid "Interactive Delay"
-msgstr ""
+msgstr "تەسىرلىشىشتىكى كېچىكتۈرۈش"
 
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:509
 msgid "The delay before initiating interactive completion"
-msgstr ""
+msgstr "تاماملاشتا تەسىرلىشىشتىن ئىلگىرىكى كېچىكتۈرۈش"
 
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:518
 msgid "Priority"
@@ -2016,16 +2031,16 @@ msgstr "ئالدىنلىق"
 
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:519
 msgid "Provider priority"
-msgstr ""
+msgstr "تەمىنلىگۈچى ئالدىنلىقى"
 
 #: ../gtksourceview/gtksourcebuffer.c:222
 #: ../gtksourceview/gtksourceprintcompositor.c:505
 msgid "Highlight Syntax"
-msgstr ""
+msgstr "گرامماتىكا يورۇت"
 
 #: ../gtksourceview/gtksourcebuffer.c:223
 msgid "Whether to highlight syntax in the buffer"
-msgstr ""
+msgstr "يىغلەكتە گرامماتىكىنى يورۇتۇپ كۆرسىتەمدۇ يوق"
 
 #: ../gtksourceview/gtksourcebuffer.c:236
 msgid "Highlight Matching Brackets"
@@ -2033,17 +2048,17 @@ msgstr "ماس تىرناقلارنى يورۇت"
 
 #: ../gtksourceview/gtksourcebuffer.c:237
 msgid "Whether to highlight matching brackets"
-msgstr ""
+msgstr "ماس كەلگەن تىرناقنى يورۇتۇپ كۆرسىتەمدۇ يوق"
 
 #: ../gtksourceview/gtksourcebuffer.c:250
 #: ../gtksourceview/gtksourceundomanagerdefault.c:418
 msgid "Maximum Undo Levels"
-msgstr ""
+msgstr "ئەڭ يۇقىرى يېنىۋېلىش دەرىجىسى"
 
 #: ../gtksourceview/gtksourcebuffer.c:251
 #: ../gtksourceview/gtksourceundomanagerdefault.c:419
 msgid "Number of undo levels for the buffer"
-msgstr ""
+msgstr "يىغلەكتىكى يېنىۋېلىش دەرىجىسى"
 
 #. Translators: throughout GtkSourceView "language" stands
 #. * for "programming language", not "spoken language"
@@ -2053,41 +2068,41 @@ msgstr "تىل"
 
 #: ../gtksourceview/gtksourcebuffer.c:264
 msgid "Language object to get highlighting patterns from"
-msgstr ""
+msgstr "يورۇتۇپ كۆرسىتىش ھالىتىگە ئېرىشىشتە ئىشلىتىدىغان تىل نەڭى"
 
 #: ../gtksourceview/gtksourcebuffer.c:272
 msgid "Can undo"
-msgstr ""
+msgstr "يېنىۋالغىلى بولىدۇ"
 
 #: ../gtksourceview/gtksourcebuffer.c:273
 msgid "Whether Undo operation is possible"
-msgstr ""
+msgstr "يېنىۋالغىلى بولامدۇ يوق"
 
 #: ../gtksourceview/gtksourcebuffer.c:280
 msgid "Can redo"
-msgstr ""
+msgstr "قايتىلىغىلى بولىدۇ"
 
 #: ../gtksourceview/gtksourcebuffer.c:281
 msgid "Whether Redo operation is possible"
-msgstr ""
+msgstr "قايتىلىغىلى بولامدۇ يوق"
 
 #: ../gtksourceview/gtksourcebuffer.c:295
 #: ../gtksourceview/gtksourcebuffer.c:296
 msgid "Style scheme"
-msgstr ""
+msgstr "ئۇسلۇب لايىھىسى"
 
 #: ../gtksourceview/gtksourcebuffer.c:303
 msgid "Undo manager"
-msgstr ""
+msgstr "يېنىۋېلىش باشقۇرغۇچ"
 
 #: ../gtksourceview/gtksourcebuffer.c:304
 msgid "The buffer undo manager"
-msgstr ""
+msgstr "يىغلەك يېنىۋېلىشنى باشقۇرغۇچ"
 
 #: ../gtksourceview/gtksourcecompletion.c:939
 #: ../gtksourceview/gtksourcecompletion.c:962
 msgid "No extra information available"
-msgstr ""
+msgstr "ئىشلەتكىلى بولىدىغان ئارتۇق ئۇچۇر يوق"
 
 #: ../gtksourceview/gtksourcecompletion.c:2228
 #: ../gtksourceview/gtksourcegutter.c:368
@@ -2096,40 +2111,40 @@ msgstr "كۆرۈنۈش"
 
 #: ../gtksourceview/gtksourcecompletion.c:2229
 msgid "The GtkSourceView bound to the completion"
-msgstr ""
+msgstr "GtkSourceView تاماملاش چېكى"
 
 #: ../gtksourceview/gtksourcecompletion.c:2244
 msgid "Remember Info Visibility"
-msgstr ""
+msgstr "ئۇچۇرنىڭ كۆرۈنۈشچانلىقىنى ئەستە تۇت"
 
 #: ../gtksourceview/gtksourcecompletion.c:2245
 msgid "Remember the last info window visibility state"
-msgstr ""
+msgstr "ئاخىرقى ئۇچۇر كۆزنىكىنىڭ كۆرۈنۈشچانلىقىنى ئەستە تۇت"
 
 #: ../gtksourceview/gtksourcecompletion.c:2258
 msgid "Select on Show"
-msgstr ""
+msgstr "تاللاپ كۆرسەت"
 
 #: ../gtksourceview/gtksourcecompletion.c:2259
 msgid "Select first proposal when completion is shown"
-msgstr ""
+msgstr "كۆرسىتىش تاماملانغاندا بىرىنچى لايىھىنى تاللا"
 
 #: ../gtksourceview/gtksourcecompletion.c:2273
 msgid "Show Headers"
-msgstr ""
+msgstr "قاش ئۇچۇرىنى كۆرسەت"
 
 #: ../gtksourceview/gtksourcecompletion.c:2274
 msgid ""
 "Show provider headers when proposals from multiple providers are available"
-msgstr ""
+msgstr "كۆپ تەمىنلىگۈچىنىڭ تەكلىپى بولسا تەمىنلىگۈچىنىڭ باش ئۇچۇرىنى كۆرسەت"
 
 #: ../gtksourceview/gtksourcecompletion.c:2288
 msgid "Show Icons"
-msgstr "سىنبەلگە كۆرسىتىش"
+msgstr "سىنبەلگە كۆرسەت"
 
 #: ../gtksourceview/gtksourcecompletion.c:2289
 msgid "Show provider and proposal icons in the completion popup"
-msgstr ""
+msgstr "تاماملاش تىزىملىكىدە تەمىنلىگۈچى ۋە تەكلىپ سىنبەلگىسىنى كۆرسەت"
 
 #: ../gtksourceview/gtksourcecompletion.c:2302
 msgid "Accelerators"
@@ -2137,31 +2152,31 @@ msgstr "تېزلەتكۈچ"
 
 #: ../gtksourceview/gtksourcecompletion.c:2303
 msgid "Number of proposal accelerators to show"
-msgstr ""
+msgstr "كۆرسىتىدىغان تەكلىپ تېزلەتكۈچنىڭ سانى"
 
 #: ../gtksourceview/gtksourcecompletion.c:2319
 msgid "Auto Complete Delay"
-msgstr ""
+msgstr "ئۆزلۈكىدىن تاماملاشنى كېچىكتۈرۈش"
 
 #: ../gtksourceview/gtksourcecompletion.c:2320
 msgid "Completion popup delay for interactive completion"
-msgstr ""
+msgstr "تەسىرلىشىشچان تاماملاشتىكى تولۇقلاش تىزىملىك كېچىكتۈرۈش"
 
 #: ../gtksourceview/gtksourcecompletion.c:2335
 msgid "Provider Page Size"
-msgstr ""
+msgstr "تەمىنلىگۈچىنىڭ بەت چوڭلۇقى"
 
 #: ../gtksourceview/gtksourcecompletion.c:2336
 msgid "Provider scrolling page size"
-msgstr ""
+msgstr "تەمىنلىگۈچىنىڭ دومىلىما بەت چوڭلۇقى"
 
 #: ../gtksourceview/gtksourcecompletion.c:2351
 msgid "Proposal Page Size"
-msgstr ""
+msgstr "تەكلىپ بەت چوڭلۇقى"
 
 #: ../gtksourceview/gtksourcecompletion.c:2352
 msgid "Proposal scrolling page size"
-msgstr ""
+msgstr "تەكلىپ دومىلىما بەت چوڭلۇقى"
 
 #: ../gtksourceview/gtksourcecompletion.c:2690
 msgid "Provider"
@@ -2170,20 +2185,20 @@ msgstr "تەمىنلىگۈچى"
 #: ../gtksourceview/gtksourcecompletioncontext.c:244
 #: ../gtksourceview/gtksourceview.c:327
 msgid "Completion"
-msgstr ""
+msgstr "تاماملاش"
 
 #: ../gtksourceview/gtksourcecompletioncontext.c:245
 msgid "The completion object to which the context belongs"
-msgstr ""
+msgstr "تىل ئورامى تەۋە بولغان تاماملاش نەڭ"
 
 #. Translators: The GtkTextIter at which the completion was invoked
 #: ../gtksourceview/gtksourcecompletioncontext.c:258
 msgid "Iterator"
-msgstr ""
+msgstr "تەكرارلىغۇچ"
 
 #: ../gtksourceview/gtksourcecompletioncontext.c:259
 msgid "The GtkTextIter at which the completion was invoked"
-msgstr ""
+msgstr "GtkTextIter دا تاماملاشنى يۆتكەپ ئىشلىتىدۇ"
 
 #: ../gtksourceview/gtksourcecompletioncontext.c:271
 msgid "Activation"
@@ -2191,76 +2206,76 @@ msgstr "ئاكتىپلاش"
 
 #: ../gtksourceview/gtksourcecompletioncontext.c:272
 msgid "The type of activation"
-msgstr ""
+msgstr "ئاكتىپلاش تىپى"
 
 #. Tooltip style
 #: ../gtksourceview/gtksourcecompletioninfo.c:179
 msgid "Completion Info"
-msgstr ""
+msgstr "تاماملاش ئۇچۇرى"
 
 #: ../gtksourceview/gtksourcecompletioninfo.c:345
 msgid "Maximum width"
-msgstr ""
+msgstr "ئەڭ چوڭ كەڭلىك"
 
 #: ../gtksourceview/gtksourcecompletioninfo.c:346
 msgid "The maximum allowed width"
-msgstr ""
+msgstr "يول قويۇلىدىغان ئەڭ چوڭ كەڭلىك"
 
 #: ../gtksourceview/gtksourcecompletioninfo.c:355
 msgid "Maximum height"
-msgstr ""
+msgstr "ئەڭ چوڭ ئېگىزلىكى"
 
 #: ../gtksourceview/gtksourcecompletioninfo.c:356
 msgid "The maximum allowed height"
-msgstr ""
+msgstr "يول قويۇلىدىغان ئەڭ چوڭ ئېگىزلىك"
 
 #: ../gtksourceview/gtksourcecompletioninfo.c:366
 msgid "Shrink width"
-msgstr ""
+msgstr "تارايتىش كەڭلىكى"
 
 #: ../gtksourceview/gtksourcecompletioninfo.c:367
 msgid "Whether the window should shrink width to fit the contents"
-msgstr ""
+msgstr "كۆزنەك كەڭلىكى تارىيىپ مەزمۇنغا ماسلىشامدۇ يوق"
 
 #: ../gtksourceview/gtksourcecompletioninfo.c:374
 msgid "Shrink height"
-msgstr ""
+msgstr "تارايتىش ئېگىزلىكى"
 
 #: ../gtksourceview/gtksourcecompletioninfo.c:375
 msgid "Whether the window should shrink height to fit the contents"
-msgstr ""
+msgstr "كۆزنەك ئېگىزلىكى تارىيىپ مەزمۇنغا ماسلىشامدۇ يوق"
 
 #: ../gtksourceview/gtksourcecompletionitem.c:229
 msgid "Label"
-msgstr "بەلگە"
+msgstr "ئەن"
 
 #: ../gtksourceview/gtksourcecompletionitem.c:230
 msgid "Label to be shown for this item"
-msgstr ""
+msgstr "بۇ تۈرگە كۆرسىتىدىغان ئەن"
 
 #: ../gtksourceview/gtksourcecompletionitem.c:243
 msgid "Markup to be shown for this item"
-msgstr ""
+msgstr "بۇ تۈرگە كۆرسىتىدىغان بەلگە"
 
 #: ../gtksourceview/gtksourcecompletionitem.c:256
 msgid "Item text"
-msgstr ""
+msgstr "تۈر تېكىستى"
 
 #: ../gtksourceview/gtksourcecompletionitem.c:269
 msgid "Icon to be shown for this item"
-msgstr ""
+msgstr "بۇ تۈرگە كۆرسىتىدىغان سىنبەلگە"
 
 #: ../gtksourceview/gtksourcecompletionitem.c:281
 msgid "Info"
-msgstr "ئۇچۇر"
+msgstr "ئۇچۇرى"
 
 #: ../gtksourceview/gtksourcecompletionitem.c:282
 msgid "Info to be shown for this item"
-msgstr ""
+msgstr "بۇ تۈرگە كۆرسىتىدىغان ئۇچۇر"
 
 #: ../gtksourceview/gtksourcecontextengine.c:2968
 msgid "using \\C is not supported in language definitions"
-msgstr ""
+msgstr "تىل ئېنىقلىمىسىدا \\C ئىشلىتىشنى قوللىمايدۇ"
 
 #. regex_new could fail, for instance if there are different
 #. * named sub-patterns with the same name or if resulting regex is
@@ -2273,23 +2288,27 @@ msgid ""
 "process will be slower than usual.\n"
 "The error was: %s"
 msgstr ""
+"ھەممە ئايلاندۇرۇشقا مۇنتىزىم ئىپادە قۇرالمىدى، گرامماتىكا يورۇتۇش جەريانى "
+"ئادەتتىكى ئەھۋالدىن ئەھۋالدىن ئاستا.\n"
+"خاتالىق: %s"
 
 #: ../gtksourceview/gtksourcecontextengine.c:4927
 msgid ""
 "Highlighting a single line took too much time, syntax highlighting will be "
 "disabled"
 msgstr ""
+"پۈتۈن بىر قۇرنى يورۇتۇشقا كەتكەن ۋاقىت بەك كۆپ، گرامماتىكا يورۇتۇش چەكلىنىدۇ"
 
 #: ../gtksourceview/gtksourcecontextengine.c:6180
 #, c-format
 msgid "context '%s' cannot contain a \\%%{...@start} command"
-msgstr ""
+msgstr "'%s' تىل ئورامى \\%%{...@start} بۇيرۇقىنى ئۆز ئىچىگە ئالمايدۇ"
 
 #: ../gtksourceview/gtksourcecontextengine.c:6342
 #: ../gtksourceview/gtksourcecontextengine.c:6431
 #, c-format
 msgid "duplicated context id '%s'"
-msgstr ""
+msgstr "تەكرارلانغان تىل ئورام id '%s'"
 
 #: ../gtksourceview/gtksourcecontextengine.c:6546
 #: ../gtksourceview/gtksourcecontextengine.c:6606
@@ -2298,26 +2317,28 @@ msgid ""
 "style override used with wildcard context reference in language '%s' in ref "
 "'%s'"
 msgstr ""
+"'%s' تىلى '%s' دىن پايدىلانغاندا ئورتاق بەلگە تىل ئورامى بىلەن بىللە "
+"ئىشلىتىدىغان ئۇسلۇب قاپلىنىدۇ"
 
 #: ../gtksourceview/gtksourcecontextengine.c:6620
 #, c-format
 msgid "invalid context reference '%s'"
-msgstr ""
+msgstr "ئىناۋەتسىز تىل ئورامى نەقىلى '%s'"
 
 #: ../gtksourceview/gtksourcecontextengine.c:6639
 #: ../gtksourceview/gtksourcecontextengine.c:6649
 #, c-format
 msgid "unknown context '%s'"
-msgstr ""
+msgstr "نامەلۇم تىل ئورامى '%s'"
 
 #: ../gtksourceview/gtksourcecontextengine.c:6749
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
-msgstr ""
+msgstr "ئاساسىي تىل ئېنىقلىمىسى كەم (id = \"%s\".)"
 
 #: ../gtksourceview/gtksourcegutter.c:369
 msgid "The gutters' GtkSourceView"
-msgstr ""
+msgstr "gutters نىڭ GtkSourceView"
 
 #: ../gtksourceview/gtksourcegutter.c:381
 msgid "Window Type"
@@ -2325,22 +2346,22 @@ msgstr "كۆزنەك تىپى"
 
 #: ../gtksourceview/gtksourcegutter.c:382
 msgid "The gutters text window type"
-msgstr ""
+msgstr "gutters تېكىست كۆزنەك تىپى"
 
 #: ../gtksourceview/gtksourcelanguage.c:228
 #: ../gtksourceview/gtksourcelanguage.c:229
 msgid "Language id"
-msgstr ""
+msgstr "تىل كىملىكى"
 
 #: ../gtksourceview/gtksourcelanguage.c:236
 #: ../gtksourceview/gtksourcelanguage.c:237
 msgid "Language name"
-msgstr ""
+msgstr "تىل ئىسمى"
 
 #: ../gtksourceview/gtksourcelanguage.c:244
 #: ../gtksourceview/gtksourcelanguage.c:245
 msgid "Language section"
-msgstr ""
+msgstr "تىل بۆلىكى"
 
 #: ../gtksourceview/gtksourcelanguage.c:252
 msgid "Hidden"
@@ -2348,35 +2369,35 @@ msgstr "يوشۇرۇن"
 
 #: ../gtksourceview/gtksourcelanguage.c:253
 msgid "Whether the language should be hidden from the user"
-msgstr ""
+msgstr "ئىشلەتكۈچىگە نىسبەتەن تىلنى يوشۇرامدۇ يوق"
 
 #: ../gtksourceview/gtksourcelanguagemanager.c:150
 msgid "Language specification directories"
-msgstr ""
+msgstr "تىل ئۆلچىمى مۇندەرىجىسى"
 
 #: ../gtksourceview/gtksourcelanguagemanager.c:151
 msgid ""
 "List of directories where the language specification files (.lang) are "
 "located"
-msgstr ""
+msgstr "تىل ئۆلچىمى ھۆججىتى(.lang) تۇرۇشلۇق مۇندەرىجە"
 
 #: ../gtksourceview/gtksourcelanguagemanager.c:160
 msgid "Language ids"
-msgstr ""
+msgstr "تىل كىملىكلەرى"
 
 #: ../gtksourceview/gtksourcelanguagemanager.c:161
 msgid "List of the ids of the available languages"
-msgstr ""
+msgstr "ئىشلەتكىلى بولىدىغان تىل كىملىك تىزىملىكى"
 
 #: ../gtksourceview/gtksourcelanguage-parser-2.c:951
 #, c-format
 msgid "Unknown id '%s' in regex '%s'"
-msgstr ""
+msgstr "‘%2$sئ مۇنتىزىم ئىپادىدىكى نامەلۇم كىملىك ‘%1$sئ"
 
 #: ../gtksourceview/gtksourcelanguage-parser-2.c:1179
 #, c-format
 msgid "in regex '%s': backreferences are not supported"
-msgstr ""
+msgstr "مۇنتىزىم ئىپادە '%s' دىكى: ئارقا نەقىلنى قوللىمايدۇ"
 
 #: ../gtksourceview/gtksourcemark.c:140
 msgid "category"
@@ -2384,94 +2405,94 @@ msgstr "كاتېگورىيە"
 
 #: ../gtksourceview/gtksourcemark.c:141
 msgid "The mark category"
-msgstr ""
+msgstr "بەلگە كاتېگورىيە"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:445
 msgid "Source Buffer"
-msgstr ""
+msgstr "ئەسلى يىغلەك"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:446
 msgid "The GtkSourceBuffer object to print"
-msgstr ""
+msgstr "باسىدىغان GtkSourceBuffer نەڭ"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:463
 #: ../gtksourceview/gtksourceview.c:365
 msgid "Tab Width"
-msgstr "خەتكۈش كەڭلىكى"
+msgstr "بەتكۈچ كەڭلىكى"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:464
 #: ../gtksourceview/gtksourceview.c:366
 msgid "Width of a tab character expressed in spaces"
-msgstr ""
+msgstr "بوشلۇق بىلەن خاتىرىلىنىدىغان tab ھەرپىنىڭ كەڭلىكى"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:484
 msgid "Wrap Mode"
-msgstr "قۇر قاتلايدۇ"
+msgstr "قۇر قاتلاش ھالىتى"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:485
 msgid ""
 "Whether to wrap lines never, at word boundaries, or at character boundaries."
-msgstr ""
+msgstr "قۇر قاتلامدۇ يوق، ھەرگىز، سۆز چېگراسى ياكى ھەرپ چېگراسىدا"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:506
 msgid "Whether to print the document with highlighted syntax"
-msgstr ""
+msgstr "گرامماتىكا يورۇتقان ھالەتتە پۈتۈكنى باسامدۇ يوق"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:527
 msgid "Print Line Numbers"
-msgstr "قۇر نومۇرىنى بېسىش"
+msgstr "قۇر نومۇرىنى باس"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:528
 msgid "Interval of printed line numbers (0 means no numbers)"
-msgstr ""
+msgstr "قۇر نومۇرىنى باسىدىغان دائىرە (0 قۇر نومۇرى يوقلۇقىنى بىلدۈرىدۇ)"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:550
 msgid "Print Header"
-msgstr "بەت قېشىنى بېسىش"
+msgstr "بەت قېشىنى باس"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:551
 msgid "Whether to print a header in each page"
-msgstr ""
+msgstr "ھەر بىر بەتنىڭ بەت قېشىنى باسامدۇ يوق"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:573
 msgid "Print Footer"
-msgstr ""
+msgstr "بەت ئاستىنى باس"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:574
 msgid "Whether to print a footer in each page"
-msgstr ""
+msgstr "ھەر بىر بەتنىڭ بەت ئاستىنى باسامدۇ يوق"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:596
 msgid "Body Font Name"
-msgstr ""
+msgstr "گەۋدە خەت نۇسخا ئاتى"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:597
 msgid "Name of the font to use for the text body (e.g. \"Monospace 10\")"
-msgstr ""
+msgstr "تېكىست گەۋدىسى ئىشلىتىدىغان خەت نۇسخا ئاتى (مەسىلەن، \"Monospace 10\")"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:620
 msgid "Line Numbers Font Name"
-msgstr ""
+msgstr "قۇر نومۇرى خەت نۇسخا ئاتى"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:621
 msgid "Name of the font to use for the line numbers (e.g. \"Monospace 10\")"
-msgstr ""
+msgstr "قۇر نومۇرى ئىشلىتىدىغان خەت نۇسخا ئاتى (مەسىلەن، \"Monospace 10\")"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:644
 msgid "Header Font Name"
-msgstr ""
+msgstr "بەت قاشنىڭ خەت نۇسخا ئاتى"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:645
 msgid "Name of the font to use for the page header (e.g. \"Monospace 10\")"
-msgstr ""
+msgstr "بەت قاشقا ئىشلىتىدىغان خەت نۇسخا ئاتى (مەسىلەن، \"Monospace 10\")"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:668
 msgid "Footer Font Name"
-msgstr ""
+msgstr "بەت ئاستى خەت نۇسخا ئاتى"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:669
 msgid "Name of the font to use for the page footer (e.g. \"Monospace 10\")"
-msgstr ""
+msgstr "بەت ئاستىغا ئىشلىتىدىغان خەت نۇسخا ئاتى (مەسىلەن، \"Monospace 10\")"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:685
 msgid "Number of pages"
@@ -2482,14 +2503,15 @@ msgid ""
 "The number of pages in the document (-1 means the document has not been "
 "completely paginated)."
 msgstr ""
+"پۈتۈكتىكى بەت سانى (-1 پۈتۈكنىڭ تولۇق بەتكە ئايرىلمىغانلىقىنى بىلدۈرىدۇ)"
 
 #: ../gtksourceview/gtksourcestyle.c:80
 msgid "Line background"
-msgstr ""
+msgstr "قۇر تەگلىكى"
 
 #: ../gtksourceview/gtksourcestyle.c:81
 msgid "Line background color"
-msgstr ""
+msgstr "قۇر تەگلىك رەڭگى"
 
 #: ../gtksourceview/gtksourcestyle.c:88
 msgid "Background"
@@ -2501,11 +2523,11 @@ msgstr "تەگلىك رەڭگى"
 
 #: ../gtksourceview/gtksourcestyle.c:96
 msgid "Foreground"
-msgstr "ئالدى سۇپا"
+msgstr "ئالدى كۆرۈنۈش"
 
 #: ../gtksourceview/gtksourcestyle.c:97
 msgid "Foreground color"
-msgstr "ئالدى رەڭگى"
+msgstr "ئالدى كۆرۈنۈش رەڭگى"
 
 #: ../gtksourceview/gtksourcestyle.c:120 ../gtksourceview/gtksourcestyle.c:121
 msgid "Underline"
@@ -2517,155 +2539,155 @@ msgstr "ئۆچۈرۈش سىزىقى"
 
 #: ../gtksourceview/gtksourcestyle.c:136
 msgid "Line background set"
-msgstr ""
+msgstr "قۇر تەگلىك تەڭشىكى"
 
 #: ../gtksourceview/gtksourcestyle.c:137
 msgid "Whether line background color is set"
-msgstr ""
+msgstr "قۇر تەگلىك رەڭگى تەڭشىلەمدۇ يوق"
 
 #: ../gtksourceview/gtksourcestyle.c:144
 msgid "Foreground set"
-msgstr "ئالدى رەڭگىنى بەلگىلەش"
+msgstr "ئالدى كۆرۈنۈش تەڭشىكى"
 
 #: ../gtksourceview/gtksourcestyle.c:145
 msgid "Whether foreground color is set"
-msgstr ""
+msgstr "ئالدى كۆرۈنۈش رەڭگى تەڭشىلەمدۇ يوق"
 
 #: ../gtksourceview/gtksourcestyle.c:152
 msgid "Background set"
-msgstr "تەگلىك بەلگىلەش"
+msgstr "تەگلىك تەڭشىكى"
 
 #: ../gtksourceview/gtksourcestyle.c:153
 msgid "Whether background color is set"
-msgstr ""
+msgstr "تەگلىك رەڭگى تەڭشىلەمدۇ يوق"
 
 #: ../gtksourceview/gtksourcestyle.c:160
 msgid "Bold set"
-msgstr ""
+msgstr "توم تەڭشىكى"
 
 #: ../gtksourceview/gtksourcestyle.c:161
 msgid "Whether bold attribute is set"
-msgstr ""
+msgstr "توم خاسلىق تەڭشىلەمدۇ يوق"
 
 #: ../gtksourceview/gtksourcestyle.c:168
 msgid "Italic set"
-msgstr ""
+msgstr "يانتۇ تەڭشىكى"
 
 #: ../gtksourceview/gtksourcestyle.c:169
 msgid "Whether italic attribute is set"
-msgstr ""
+msgstr "يانتۇ خاسلىق تەڭشىلەمدۇ يوق"
 
 #: ../gtksourceview/gtksourcestyle.c:176
 msgid "Underline set"
-msgstr ""
+msgstr "ئاستى سىزىق تەڭشىكى"
 
 #: ../gtksourceview/gtksourcestyle.c:177
 msgid "Whether underline attribute is set"
-msgstr ""
+msgstr "ئاستى سىزىق خاسلىقى تەڭشىلەمدۇ يوق"
 
 #: ../gtksourceview/gtksourcestyle.c:184
 msgid "Strikethrough set"
-msgstr ""
+msgstr "ئۆچۈرۈش سىزىقىنى تەڭشىكى "
 
 #: ../gtksourceview/gtksourcestyle.c:185
 msgid "Whether strikethrough attribute is set"
-msgstr ""
+msgstr "ئۆچۈرۈش سىزىق خاسلىقى تەڭشىلەمدۇ يوق"
 
 #: ../gtksourceview/gtksourcestylescheme.c:187
 #: ../gtksourceview/gtksourcestylescheme.c:188
 msgid "Style scheme id"
-msgstr ""
+msgstr "ئۇسلۇب لايىھە كىملىكى"
 
 #: ../gtksourceview/gtksourcestylescheme.c:200
 #: ../gtksourceview/gtksourcestylescheme.c:201
 msgid "Style scheme name"
-msgstr ""
+msgstr "ئۇسلۇب لايىھە ئاتى"
 
 #: ../gtksourceview/gtksourcestylescheme.c:213
 #: ../gtksourceview/gtksourcestylescheme.c:214
 msgid "Style scheme description"
-msgstr ""
+msgstr "ئۇسلۇب لايىھە چۈشەندۈرۈشى"
 
 #: ../gtksourceview/gtksourcestylescheme.c:226
 #: ../gtksourceview/gtksourcestylescheme.c:227
 msgid "Style scheme filename"
-msgstr ""
+msgstr "ئۇسلۇب لايىھە ھۆججەت ئاتى"
 
 #: ../gtksourceview/gtksourcestyleschememanager.c:152
 msgid "Style scheme search path"
-msgstr ""
+msgstr "ئۇسلۇب لايىھە ئىزدەش يولى"
 
 #: ../gtksourceview/gtksourcestyleschememanager.c:153
 msgid "List of directories and files where the style schemes are located"
-msgstr ""
+msgstr "ئۇسلۇب لايىھە تۇرۇشلۇق مۇندەرىجە ۋە ھۆججەتلەرنىڭ تىزىملىكى"
 
 #: ../gtksourceview/gtksourcestyleschememanager.c:161
 msgid "Scheme ids"
-msgstr ""
+msgstr "لايىھە كىملىكلىرى"
 
 #: ../gtksourceview/gtksourcestyleschememanager.c:162
 msgid "List of the ids of the available style schemes"
-msgstr ""
+msgstr "مەۋجۇت ئۇسلۇب لايىھە كىملىكىنىڭ تىزىملىكى"
 
 #: ../gtksourceview/gtksourceundomanagerdefault.c:410
 msgid "Buffer"
-msgstr "بۇففېر"
+msgstr "يىغلەك"
 
 #: ../gtksourceview/gtksourceundomanagerdefault.c:411
 msgid "The text buffer to add undo support on"
-msgstr ""
+msgstr "يېنىۋېلىش مەشغۇلاتىنى قوللاشقا ئىشلىتىدىغان تېكىست غەملەك"
 
 #: ../gtksourceview/gtksourceview.c:328
 msgid "The completion object associated with the view"
-msgstr ""
+msgstr "بۇ كۆرگۈچكە مۇناسىۋەتلىك تاماملاش نەڭ"
 
 #: ../gtksourceview/gtksourceview.c:340
 msgid "Show Line Numbers"
-msgstr "قۇر نومۇرىنى كۆرسىتىش"
+msgstr "قۇر نومۇرىنى كۆرسەت"
 
 #: ../gtksourceview/gtksourceview.c:341
 msgid "Whether to display line numbers"
-msgstr ""
+msgstr "قۇر نومۇرىنى كۆرسىتەمدۇ يوق"
 
 #: ../gtksourceview/gtksourceview.c:352
 msgid "Show Line Marks"
-msgstr ""
+msgstr "قۇر بەلگىسىنى كۆرسەت"
 
 #: ../gtksourceview/gtksourceview.c:353
 msgid "Whether to display line mark pixbufs"
-msgstr ""
+msgstr "قۇر بەلگىسى pixbufs نى كۆرسىتەمدۇ يوق"
 
 #: ../gtksourceview/gtksourceview.c:380
 msgid "Indent Width"
-msgstr ""
+msgstr "تارايتىش كەڭلىكى"
 
 #: ../gtksourceview/gtksourceview.c:381
 msgid "Number of spaces to use for each step of indent"
-msgstr ""
+msgstr "ھەر قېتىم تارايتىدىغان بوشلۇق سانى"
 
 #: ../gtksourceview/gtksourceview.c:390
 msgid "Auto Indentation"
-msgstr ""
+msgstr "ئۆزلۈكىدىن تارايتىش"
 
 #: ../gtksourceview/gtksourceview.c:391
 msgid "Whether to enable auto indentation"
-msgstr ""
+msgstr "ئۆزلۈكىدىن تارايتىشقا يول قويامدۇ يوق"
 
 #: ../gtksourceview/gtksourceview.c:398
 msgid "Insert Spaces Instead of Tabs"
-msgstr ""
+msgstr "Tab ئورنىغا بوشلۇق قىستۇر"
 
 #: ../gtksourceview/gtksourceview.c:399
 msgid "Whether to insert spaces instead of tabs"
-msgstr ""
+msgstr "Tab ئورنىغا بوشلۇق قىستۇرامدۇ يوق"
 
 #: ../gtksourceview/gtksourceview.c:411
 msgid "Show Right Margin"
-msgstr ""
+msgstr "ئوڭ گىرۋەكنى كۆرسەت"
 
 #: ../gtksourceview/gtksourceview.c:412
 msgid "Whether to display the right margin"
-msgstr ""
+msgstr "ئوڭ گىرۋەكنى كۆرسىتەمدۇ يوق"
 
 #: ../gtksourceview/gtksourceview.c:424
 msgid "Right Margin Position"
@@ -2673,17 +2695,19 @@ msgstr "ئوڭ بوشلۇق ئورنى"
 
 #: ../gtksourceview/gtksourceview.c:425
 msgid "Position of the right margin"
-msgstr ""
+msgstr "ئوڭ گىرۋەكنىڭ ئورنى"
 
 #: ../gtksourceview/gtksourceview.c:441
 msgid "Smart Home/End"
-msgstr ""
+msgstr "ئىدراكلىق Home/End"
 
 #: ../gtksourceview/gtksourceview.c:442
 msgid ""
 "HOME and END keys move to first/last non whitespace characters on line "
 "before going to the start/end of the line"
 msgstr ""
+"HOME ۋە END كۇنۇپكىسى قۇرنىڭ باش/ئاخىرىغا يۆتكىلىشتىن ئىلگىرى قۇر ئىچىدىكى "
+"بىرىنچى/ئاخىرقى ھەرپكە يۆتكىلىدۇ"
 
 #: ../gtksourceview/gtksourceview.c:452
 msgid "Highlight current line"
@@ -2691,27 +2715,26 @@ msgstr "ھازىرقى قۇرنى يورۇت"
 
 #: ../gtksourceview/gtksourceview.c:453
 msgid "Whether to highlight the current line"
-msgstr ""
+msgstr "نۆۋەتتىكى قۇرنى يورۇتامدۇ يوق"
 
 #: ../gtksourceview/gtksourceview.c:460
 msgid "Indent on tab"
-msgstr ""
+msgstr "tab دە تارايت"
 
 #: ../gtksourceview/gtksourceview.c:461
 msgid "Whether to indent the selected text when the tab key is pressed"
-msgstr ""
+msgstr "tab كۇنۇپكىسىنى باسقاندا تاللانغان تېكىستنى تارايت"
 
 #: ../gtksourceview/gtksourceview.c:475
 msgid "Draw Spaces"
-msgstr ""
+msgstr "بوشلۇق سىز"
 
 #: ../gtksourceview/gtksourceview.c:476
 msgid "Set if and how the spaces should be visualized"
-msgstr ""
+msgstr "بوشلۇقنى كۆرۈنىدىغان قىلىپ تەڭشەمدۇ يوق"
 
 #: ../gtksourceview/gtksourceview-i18n.c:74
 msgid "translator-credits"
-msgstr "Sahran <sahran@live.com>\n"
-"Gheyret T.Kenji <gheyret@yahoo.com>\n"
-"Zeper <zeper@msn.com>\n"
-"Abduxukur Abdurixit <abduxukur.abdurixit@t-systems.ch>"
+msgstr ""
+"Gheyret Kenji <gheyret@gmail.com>\n"
+"Sahran<sahran@live.com>"
