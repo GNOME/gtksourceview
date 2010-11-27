@@ -59,8 +59,7 @@ NOINST_H_FILES = \
 	gtktextregion.h			\
 	gtksourcepixbufhelper.h		\
 	gtksourcegutterrendererlines.h	\
-	gtksourcegutterrenderermarks.h	\
-	gtksourcemarkcategory.h
+	gtksourcegutterrenderermarks.h
 
 libgtksourceview_c_files = \
 	gtksourcebuffer.c 		\
