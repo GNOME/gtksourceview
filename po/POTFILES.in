@@ -49,8 +49,6 @@ data/language-specs/lua.lang
 data/language-specs/m4.lang
 data/language-specs/makefile.lang
 data/language-specs/mallard.lang
-data/language-specs/msil.lang
-data/language-specs/msil.lang
 data/language-specs/nemerle.lang
 data/language-specs/nsis.lang
 data/language-specs/objc.lang
@@ -96,10 +94,14 @@ gtksourceview/gtksourcecompletioninfo.c
 gtksourceview/gtksourcecompletionitem.c
 gtksourceview/gtksourcecontextengine.c
 gtksourceview/gtksourcegutter.c
+gtksourceview/gtksourcegutterrenderer.c
+gtksourceview/gtksourcegutterrendererpixbuf.c
+gtksourceview/gtksourcegutterrenderertext.c
 gtksourceview/gtksourcelanguage.c
 gtksourceview/gtksourcelanguagemanager.c
 gtksourceview/gtksourcelanguage-parser-2.c
 gtksourceview/gtksourcemark.c
+gtksourceview/gtksourcemarkcategory.c
 gtksourceview/gtksourceprintcompositor.c
 gtksourceview/gtksourcestyle.c
 gtksourceview/gtksourcestylescheme.c
