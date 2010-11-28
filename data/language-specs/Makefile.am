@@ -51,7 +51,6 @@ LANGUAGES =			\
 	m4.lang			\
 	makefile.lang		\
 	mallard.lang		\
-	msil.lang		\
 	nemerle.lang		\
 	nsis.lang		\
 	objc.lang		\
@@ -87,7 +86,7 @@ LANGUAGES =			\
 
 languagesdir = $(datadir)/gtksourceview-3.0/language-specs
 languages_DATA = $(LANGUAGES) language.rng language2.rng language.dtd \
-		 check-language.sh convert.py
+		 check-language.sh
 
 EXTRA_DIST = $(languages_DATA)
 
