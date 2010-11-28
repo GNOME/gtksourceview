@@ -62,7 +62,6 @@ python_tests =			\
 
 EXTRA_DIST =				\
 	$(python_tests)			\
-	apple-red.png			\
 	gnome-gmush.png
 
 -include $(top_srcdir)/git.mk

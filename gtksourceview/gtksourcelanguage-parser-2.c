@@ -1602,7 +1602,6 @@ file_parse (gchar                     *filename,
 {
 	ParserState *parser_state;
 	xmlTextReader *reader = NULL;
-	int ret;
 	int fd = -1;
 	GError *tmp_error = NULL;
 	GtkSourceLanguageManager *lm;

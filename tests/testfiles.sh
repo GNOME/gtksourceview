@@ -1,40 +1,390 @@
 #!/bin/sh
 
-# Langs covered here:
-# changelog.lang c.lang cpp.lang desktop.lang diff.lang dtd.lang
-# gap.lang gtkrc.lang html.lang ini.lang latex.lang m4.lang
-# makefile.lang ms.lang perl.lang po.lang python.lang sh.lang
-# texinfo.lang xml.lang yacc.lang libtool.lang pkgconfig.lang
+# Running this file will create "testdir" directory with bunch
+# of files inside. Open them all to see if something broke.
+# Kind of smoke test.
 
-# Langs not covered:
-# ada.lang boo.lang csharp.lang css.lang def.lang d.lang gtk-doc.lang
-# fortran.lang haskell.lang idl.lang java.lang javascript.lang lua.lang
-# msil.lang nemerle.lang octave.lang pascal.lang php.lang python-console.lang
-# R.lang ruby.lang scheme.lang sql.lang tcl.lang vbnet.lang verilog.lang
-# vhdl.lang dpatch.lang
+# Langs covered here:
+# asp.lang changelog.lang c.lang cpp.lang desktop.lang diff.lang dtd.lang
+# fsharp.lang gap.lang glsl.lang gtkrc.lang html.lang ini.lang latex.lang m4.lang
+# makefile.lang ms.lang perl.lang po.lang prolog.lang python.lang sh.lang
+# texinfo.lang xml.lang yacc.lang libtool.lang pkgconfig.lang
+# objc.lang chdr.lang testv1.lang t2t.lang fortran.lang forth.lang
+# octave.lang
 
 dir="testdir"
 mkdir -p $dir/
 
+cat > $dir/file.cob << EOFEOF
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. Age.
+       AUTHOR. Fernando Brito.
+
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+       01  Age               PIC 99   VALUE ZEROS.
+       01  Had_Birthday      PIC X    VALUE SPACES.
+       01  Current_Year      PIC 9999 VALUE 2010.
+       01  Result            PIC 9999 VALUE ZEROS.
+
+       PROCEDURE DIVISION.
+          DISPLAY "==> How old are you?".
+          ACCEPT Age
+          DISPLAY "==> Had you already had birthday this year (y or n)?".
+          ACCEPT Had_Birthday
+
+          SUBTRACT Current_Year FROM Age GIVING Result
+
+          IF Had_Birthday = "n" THEN
+            SUBTRACT 1 FROM Result GIVING Result
+          END-IF
+
+          DISPLAY "Let me guess... "" You were born in ", Result
+          STOP RUN.
+EOFEOF
+
+cat > $dir/file.svh << EOFEOF
+class my_class extends some_class;
+
+  // This is a comment.
+  /* This is also a comment, but it containts keywords: bit string, etc */
+
+  // Some types.
+  string         my_string = "This is a string";
+  bit [3:0]        my_bits = 4'b0z1x;
+  integer       my_integer = 32'h0z2ab43x;
+  real             my_real = 1.2124155e-123;
+  shortreal   my_shortreal = -0.1111e1;
+  int               my_int = 53152462;
+ 
+  extern function bit
+    my_function(
+      int unsigned       something);
+
+endclass : my_class
+
+function bit
+  my_class::my_function(
+    int unsigned    something);
+
+  /* Display a string.
+   *
+   *   This is a slightly awkward string as it has
+   *   special characters and line continuations.
+   */
+  $display("Display a string that continues over \
+            multiple lines and contains special \
+            characters: \n \t \" \'");
+
+  // Use a system task.
+  my_int = $bits(my_bits);
+
+  // $asserton();     // Commenting a system task.
+  // my_function();   // Commenting a function.
+
+endfunction my_function
+
+program test();
+
+  my_class c;
+
+  c = new();
+  c.my_function(3);
+
+endprogram : test
+EOFEOF
+
+cat > $dir/file.prg << EOFEOF
+import "mod_say"
+import "mod_rand"
+import "mod_screen"
+import "mod_video"
+import "mod_map"
+import "mod_key"
+
+// Bouncing box example
+process main()
+private
+  int vx=5, vy=5;
+
+begin
+  set_mode(640, 480, 16, MODE_WINDOW);
+  graph = map_new(20, 20, 16);
+  map_clear(0, graph, rgb(255, 0, 0));
+  x = 320; y = 240;
+  while(! key(_esc))
+    if(x > 630 || x < 10)
+      vx = -vx;
+    end;
+    if(y > 470 || y < 10)
+      vy = -vy;
+    end;
+    x += vx; y += vy; // Move the box
+    frame;
+  end;
+end;
+EOFEOF
+
+cat > $dir/file.ooc << EOFEOF
+import structs/[ArrayList, LinkedList], io/FileReader
+include stdarg, memory, string
+use sdl, gtk
+pi := const 3.14
+Int: cover from int {
+    toString: func -> String { "%d" format() }
+}
+Dog: class extends Animal {
+    barf: func { ("woof! " * 2) println() }
+}
+EOFEOF
+
+cat > $dir/file.bib << EOFEOF
+%A .bib file might contain the following entry, which describes a mathematical handbook
+@Book{abramowitz+stegun,
+ author    = "Milton {Abramowitz} and Irene A. {Stegun}",
+ title     = "Handbook of Mathematical Functions with
+              Formulas, Graphs, and Mathematical Tables",
+ publisher = "Dover",
+ year      =  1964,
+ address   = "New York",
+ edition   = "ninth Dover printing, tenth GPO printing"
+}
+EOFEOF
+
+cat > $dir/file.rq << EOFEOF
+# Positive test: product of type promotion within the xsd:decimal type tree.
+
+PREFIX t: <http://www.w3.org/2001/sw/DataAccess/tests/data/TypePromotion/tP-0#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+ASK
+ WHERE { t:double1 rdf:value ?l .
+         t:float1 rdf:value ?r .
+         FILTER ( datatype(?l + ?r) = xsd:double ) }
+EOFEOF
+
+cat > $dir/file.fcl << EOFEOF
+FUNCTION_BLOCK explore
+
+VAR_INPUT
+    front : REAL;
+    left : REAL;
+    right : REAL;
+END_VAR
+
+VAR_OUTPUT
+    velocity : REAL;
+    angular_velocity : REAL;
+END_VAR
+EOFEOF
+
+cat > $dir/file.fs << EOFEOF
+(* Simple F# sample *)
+let rec map func lst =
+    match lst with
+       | [] -> []
+       | head :: tail -> func head :: map func tail
+ 
+let myList = [1;3;5]
+let newList = map (fun x -> x + 1) myList
+EOFEOF
+
+cat > $dir/file.glslf << EOFEOF
+#version 140
+varying vec4 color_out;
+/*
+  A color shader
+*/
+void main(void)
+{
+  // edit the color of the fragment
+  vec4 new_color = color_out + vec4(0.4, 0.4, 0.1, 1.0);
+  gl_FragColor = clamp(new_color, 0.0, 1.0);
+}
+EOFEOF
+
+cat > $dir/file.cg << EOFEOF
+struct OurOutputType
+{
+	float4 position : POSITION;
+	float4 color : COLOR;
+};
+
+OurOutputType
+main(float4           position : POSITION,
+     uniform float4x4 modelViewProj)
+{
+	OurOutputType OUT;
+
+	OUT.position = mul(modelViewProj, position);
+	OUT.color = position;
+
+	return OUT;
+}
+EOFEOF
+
+cat > $dir/file.cu << EOFEOF
+#include "cuMatrix.h"
+
+__global__ void make_BlackWhite(int *image, int N){
+	unsigned int x = blockIdx.x * blockDim.x + threadIdx.x;
+	unsigned int y = blockIdx.y * blockDim.y + threadIdx.y;
+
+	image[y*N + x] = image[y*N + x] > 128 ? 255 : 0;
+}
+
+void convertToArray(int **matrix, int *array, int N){
+	for(unsigned int i=0; i< N; i++)
+		for(unsigned int j=0; j< N; j++)
+			array[i*N+ j] = matrix[i][j];
+}
+EOFEOF
+
+cat > $dir/file.prolog <<EOFEOF
+conc([],X,X).
+conc([Car|Cdr], X, [Car|ConcatCdr]):-
+  conc(Cdr, X, ConcatCdr).
+EOFEOF
+
+cat > $dir/file.asp <<EOFEOF
+<html>
+<body>
+
+<%
+dim d
+set d=Server.CreateObject("Scripting.Dictionary")
+d.Add "o", "Orange"
+d.Add "a", "Apple"
+if d.Exists("o")= true then
+    Response.Write("Key exists.")
+else
+    Response.Write("Key does not exist.")
+end if
+set d=nothing
+%>
+
+</body>
+</html>
+EOFEOF
+
+cat > $dir/file.octave <<EOFEOF
+% gtk-source-lang: octave
+% -*- octave -*-
+No idea what syntax is
+EOFEOF
+
+cat > $dir/file.t2t <<\EOFEOF
+! gtk-source-lang: t2t
+
+%!include ``something``
+% Comment
+``verbatim`` //italic//
+```
+verbatim block
+```
+EOFEOF
+
+cat > $dir/file.f <<EOFEOF
+! gtk-source-lang: fortran
+c comment
+if .TRUE.
+.FALSE.
+endif
+Numbers: 1234 o'10176' b'10101' z'23FF'
+12. .12 12.12 1.23e+09 1.23D+09
+EOFEOF
+
+cat > $dir/file.frt <<EOFEOF
+\ gtk-source-lang: forth
+-- comment
+(* comment!
+  here still comment
+*)
+NEEDS something
+IF 0 THEN ENDIF
+Numbers: 1234 $233 #345325 %01000
+EOFEOF
+
+cat > $dir/file.testv1 <<EOFEOF
+// gtk-source-lang: testv1
+// comment
+/* comment! */
+"A string"
+'And a string too'
+bambom - keyword, Others
+bumbam - keyword, Others2
+kwkw - keyword, Keyword
+Numbers: 0.1 1234 0233
+EOFEOF
+
 cat > $dir/file.cc <<EOFEOF
 #include <iostream>
-int main ()
-{
-    std::cout << "Hi there!" << std::endl;
-    return 0;
-}
+
+class A : B {
+public:
+    A();
+private:
+    foobar() const;
+};
 EOFEOF
 
 cat > $dir/file.c <<EOFEOF
+// Comment
+
 #include <stdio.h>
+
 int main (void)
 {
-    printf ("Hi there!\n");
+    int a = 0x89;
+    int b = 089;
+    int c = 89.;
+    int d = 'a';
+    printf ("Hello %s!\n", "world");
     return 0;
 }
 EOFEOF
 
+cat > $dir/file.m <<EOFEOF
+#import <stdio.h>
+#import <Object.h>
+@interface Lalala : Object
+- (BOOL) sayHello;
+@end
+
+@implementation Lalala : Object
+- (BOOL) sayHello
+{
+  printf ("Hello there!\n");
+  return YES;
+}
+@end
+
+int main (void)
+{
+  Lalala *obj = [[Lalala alloc] init];
+  [obj sayHello];
+  [obj free];
+  return 0;
+}
+EOFEOF
+
+cat > $dir/file.h <<EOFEOF
+/* A C header damn it */
+#include <foo.h>
+#import <Object.h>
+
+@interface Lalala : Object
+- (void) sayHello;
+@end
+
+class Boo {
+  void hello ();
+};
+EOFEOF
+
 cat > $dir/ChangeLog <<EOFEOF
+= Release =
+
 2006-12-10  Kristian Rietveld  <kris@gtk.org>
 
 	* gtk/gtkcellrenderertext.c (gtk_cell_renderer_text_focus_out_event):
@@ -54,21 +404,19 @@ EOFEOF
 
 cat > $dir/file.html <<EOFEOF
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<!-- Comment -->
 <html>
   <head>
     <title>Hi there!</title>
     <meta http-equiv="Content-Type" content="text/html; charset=us-ascii">
-    <style type="text/css"><!--
+    <style type="text/css">
       a.summary-letter {text-decoration: none}
       pre.display {font-family: serif}
       pre.format {font-family: serif}
-      pre.menu-comment {font-family: serif}
-      pre.menu-preformatted {font-family: serif}
-      pre.smalldisplay {font-family: serif; font-size: smaller}
-      ul.toc {list-style: none}
-    --></style>
+    </style>
   </head>
-  <body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+  <body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF"
+        vlink="#800080" alink="#FF0000">
     Hi there!
   </body>
 </html>
@@ -84,6 +432,7 @@ EOFEOF
 cat > $dir/file.m4 <<EOFEOF
 dnl an m4 file
 AC_DEFINE([foo],[echo "Hi there!"])
+AC_CHECK_FUNC([foo],[yes=yes],[yes=no])
 foo()
 EOFEOF
 
@@ -99,96 +448,16 @@ bar:
 	echo "Hello world!"
 EOFEOF
 
-cat > $dir/file.ms <<EOFEOF
-a = 1;
-for i in [1, 2, 3] do
-  a *= i;
-  a += 18;
-od;
-EOFEOF
-
-cat > $dir/file.php <<\EOFEOF
-<?php
-$great = 'fantastic';
-// Won't work, outputs: This is { fantastic}
-echo "This is { $great}";
-// Works, outputs: This is fantastic
-echo "This is {$great}";
-echo "This is ${great}";
-echo "This square is {$square->width}00 centimeters broad.";
-echo "This works: {$arr[4][3]}";
-// Works.  When using multi-dimensional arrays, always use
-echo "This works: {$arr['foo'][3]}";
-// Works.
-echo "This works: " . $arr['foo'][3];
-echo "You can even write {$obj->values[3]->name}";
-echo "This is the value of the var named $name: {${$name}}";
-?> 
-<?php
-$Fname = $_POST["Fname"];
-$Lname = $_POST["Lname"];
-$gender = $_POST["gender"];
-?>
-<?php
-echo "a string containing ?>"
-?>
-<html> <head> <title>Personal INFO</title> </head> <body>
-<form method="post" action="<?php echo $PHP_SELF;?>">
-First Name:<input type="text" size="12" maxlength="12" name="Fname"><br />
-Last Name:<input type="text" size="12" maxlength="36" name="Lname"><br />
-Gender:<br />
-Male:<input <?php echo "type=\"radio\""?> value="Male" name="gender"><br />
-<!-- important: look for php highlighting in html in 2 places -->
-<input type="submit" value="submit" name="submit">
-</form>
-
-<?
-$var = "var has value $var now";      // $var in quotes should be highlighted
-$var = ('the literal $var');    // $var in singles should not be highlighted
-$var = '\123 is \l\i\t\e\r\a\l, only \' is escape';
-$var = "\123 is escape, \" \n \r \t \$ are also";
-?>
-
-<? // this is comment ?>
-echo "not php";
-
-<?
-echo("yahoo");
-echo <<< HTML
-<?xml version="1.0" encoding="UTF-8"?>
-HTML;
-?>
-EOFEOF
-
 cat > $dir/file.py <<EOFEOF
 import sys
-
-# A comment
+from sys import *
 class Hello(object):
     def __init__(self):
         object.__init__(self)
     def hello(self):
         print >> sys.stderr, "Hi there!"
-    def add3(self, i):
-        return i + 3
-
-if __name__ == "__main__":
-    Hello().hello()
-EOFEOF
-
-cat > $dir/file.rb << EOFEOF
-
-# A comment
-class Hello
-  attr_reader :name
-  def initialize(name)
-    @name = name
-  end
-  def say
-    puts "Hello #@name"
-  end
-end
-
+    None, True, False
+Hello().hello()
 EOFEOF
 
 cat > $dir/file.xml <<EOFEOF
@@ -196,18 +465,6 @@ cat > $dir/file.xml <<EOFEOF
 <foolala version='8.987'>
   <bar>momomomo</bar><baz a="b"/>
 </foolala>
-EOFEOF
-
-cat > $dir/file.xsl <<EOFEOF
-<?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version='1.0'>
-  <xsl:param name="foo" select="'@bar'"/>
-  <xsl:template match="baz">
-    <p>
-      <b><xsl:value-of select="@lala"/></b>
-    </p>
-  </xsl:template>
-</xsl:stylesheet>
 EOFEOF
 
 cat > $dir/file.y <<EOFEOF
@@ -277,6 +534,7 @@ Encoding=UTF-8
 _Name=medit
 _Comment=Text editor
 Exec=medit %F
+# blah blah blah
 Terminal=false
 Type=Application
 StartupNotify=true
@@ -322,15 +580,8 @@ id=APlugin
 _name=A Plugin
 _description=A plugin
 author=Some Guy
-# this is a plugin version, can be anything
+; this is a plugin version, can be anything
 version=3.1415926
-EOFEOF
-
-cat > $dir/file.sql <<EOFEOF
--- SQL Join
-SELECT *  
-FROM   employee, department 
-WHERE  employee.DepartmentID = department.DepartmentID
 EOFEOF
 
 cat > $dir/file.pl <<EOFEOF
@@ -585,34 +836,126 @@ relink_command="(cd /home/muntyan/projects/gtk/build/moo/moo; /bin/sh ../libtool
 EOFEOF
 
 cat > $dir/file.pc <<EOFEOF
-prefix=/usr/local/gtk
+# A comment
+prefix=/usr
 exec_prefix=${prefix}
-includedir=${prefix}/include
-datarootdir=${prefix}/share
-datadir=${datarootdir}
 libdir=${exec_prefix}/lib
+includedir=${prefix}/include
 
-langfilesdir=${datarootdir}/moo/language-specs
-pluginsdir=${exec_prefix}/lib/moo/plugins
-moolibdir=${exec_prefix}/lib/moo
-moodatadir=${datarootdir}/moo
+Name: cairo
+Description: Multi-platform 2D graphics library
+Version: 1.4.10
 
-Name: moo
-Description: A text editor and terminal emulator library
-Requires: gtk+-2.0 libxml-2.0
-Version:
-Cflags: -I${prefix}/include/moo
-Libs: -L${libdir} -lmoo -L/usr/lib/python2.4 -lpython2.4  -lpthread -ldl  -lutil
+Requires.private: freetype2 >= 8.0.2 fontconfig libpng12 xrender >= 0.6 x11
+Libs: -L${libdir} -lcairo
+Libs.private: -lz -lm
+Cflags: -I${includedir}/cairo
 EOFEOF
 
-cat > $dir/file.bat <<EOFEOF
-:: This is a comment
-rem This is a comment too
+cat > $dir/file.spec <<EOFEOF
+#
+# gtksourceview.spec
+#
 
-cls
-echo Your path is %PATH%
-pause
-goto DONE
+%define api_version	1.0
+%define lib_major 0
+%define lib_name	%mklibname %{name}- %{api_version} %{lib_major}
 
-:DONE
+Summary:	Source code viewing library
+Name:		gtksourceview
+Version: 	1.7.2
+Release:	%mkrel 1
+License:	GPL
+Group:		Editors
+URL:		http://people.ecsc.co.uk/~matt/downloads/rpms/gtksourceview/
+Source0:	ftp://ftp.gnome.org/pub/GNOME/sources/%{name}/%{name}-%{version}.tar.bz2
+BuildRoot:	%{_tmppath}/%{name}-%{version}
+BuildRequires:	libgtk+2-devel >= 2.3.0
+BuildRequires:  libgnome-vfs2-devel >= 2.2.0
+BuildRequires:  libgnomeprintui-devel >= 2.7.0
+BuildRequires:  perl-XML-Parser
+Conflicts:	gtksourceview-sharp <= 0.5-3mdk
+
+%description
+GtkSourceview is a library that adds syntax highlighting,
+line numbers, and other programming-editor features.
+GtkSourceView specializes these features for a code editor.
+
+%package -n %{lib_name}
+Summary:	Source code viewing library
+Group:		Editors
+Requires:	%{name} >= %{version}-%{release}
+Provides:	lib%{name} = %{version}-%{release}
+Provides:	libgtksourceview0 = %{version}-%{release}
+Obsoletes:	libgtksourceview0
+Provides:   libgtksourceview1.0 = %{version}-%{release}
+Obsoletes:  libgtksourceview1.0
+
+%description -n %{lib_name}
+GtkSourceview is a library that adds syntax highlighting,
+line numbers, and other programming-editor features.
+GtkSourceView specializes these features for a code editor.
+
+%package -n %{lib_name}-devel
+Summary:        Libraries and include files for GtkSourceView
+Group:          Development/GNOME and GTK+
+Requires:       %{lib_name} = %{version}
+Provides:	%{name}-devel = %{version}-%{release}
+Provides:	lib%{name}-devel = %{version}-%{release}
+Provides:	lib%{name}-%{api_version}-devel = %{version}-%{release}
+Provides:	libgtksourceview0-devel = %{version}-%{release}
+Obsoletes:	libgtksourceview0-devel
+Provides:   libgtksourceview1.0-devel = %{version}-%{release}
+Obsoletes:   libgtksourceview1.0-devel
+
+%description -n %{lib_name}-devel
+GtkSourceView development files
+
+
+%prep
+%setup -q
+
+%build
+
+%configure2_5x
+
+%make
+
+%install
+rm -rf %{buildroot}
+
+%makeinstall_std
+
+%{find_lang} %{name}-%{api_version}
+
+%post -n %{lib_name} -p /sbin/ldconfig
+
+%postun -n %{lib_name} -p /sbin/ldconfig
+
+%clean
+rm -rf %{buildroot}
+
+%files -f %{name}-%{api_version}.lang
+%defattr(-,root,root)
+%doc AUTHORS ChangeLog NEWS README TODO
+%{_datadir}/gtksourceview-%{api_version}
+
+%files -n %{lib_name}
+%defattr(-,root,root)
+%{_libdir}/*.so.*
+
+%files -n %{lib_name}-devel
+%defattr(-,root,root)
+%doc %{_datadir}/gtk-doc/html/gtksourceview
+%{_libdir}/*.so
+%attr(644,root,root) %{_libdir}/*.la
+%{_includedir}/*
+%{_libdir}/pkgconfig/*
+
+%changelog
+* Tue Aug 08 2006 GÃ¶tz Waschk <waschk@mandriva.org> 1.7.2-1mdv2007.0
+- New release 1.7.2
+
+* Tue Jul 25 2006 GÃ¶tz Waschk <waschk@mandriva.org> 1.7.1-1mdk
+- New release 1.7.1
 EOFEOF
