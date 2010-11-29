@@ -6,11 +6,11 @@
 
 # Langs covered here:
 # asp.lang changelog.lang c.lang cpp.lang desktop.lang diff.lang dtd.lang
-# fsharp.lang gap.lang glsl.lang gtkrc.lang html.lang ini.lang latex.lang m4.lang
-# makefile.lang ms.lang perl.lang po.lang prolog.lang python.lang sh.lang
-# texinfo.lang xml.lang yacc.lang libtool.lang pkgconfig.lang
-# objc.lang chdr.lang testv1.lang t2t.lang fortran.lang forth.lang
-# octave.lang
+# fsharp.lang gap.lang glsl.lang go.lang gtkrc.lang html.lang ini.lang
+# latex.lang m4.lang makefile.lang ms.lang perl.lang po.lang prolog.lang
+# python.lang sh.lang texinfo.lang xml.lang yacc.lang libtool.lang
+# pkgconfig.lang objc.lang chdr.lang testv1.lang t2t.lang fortran.lang
+# forth.lang octave.lang
 
 dir="testdir"
 mkdir -p $dir/
@@ -201,6 +201,17 @@ void main(void)
   vec4 new_color = color_out + vec4(0.4, 0.4, 0.1, 1.0);
   gl_FragColor = clamp(new_color, 0.0, 1.0);
 }
+EOFEOF
+
+cat > $dir/file.go << EOFEOF
+// gtk-source-lang: Go
+/* comment! */
+var s string := "A string\n"
+import ("fmt")
+func main() { fmt.Printf(s); }
+type my_struct struct { I int; o string }
+package foo
+bar( a int32, b string )(c float32 ){ c = 1.3 + float32(a - int32(len(b)) }
 EOFEOF
 
 cat > $dir/file.cg << EOFEOF

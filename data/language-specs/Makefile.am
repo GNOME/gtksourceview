@@ -35,6 +35,7 @@ LANGUAGES =			\
 	gap.lang		\
 	gdb-log.lang		\
 	glsl.lang		\
+	go.lang			\
 	gtk-doc.lang		\
 	gtkrc.lang		\
 	haddock.lang		\
