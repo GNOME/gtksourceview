@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview-master-po-gl-28392.merged\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-11-27 01:38+0100\n"
-"PO-Revision-Date: 2010-11-27 01:39+0100\n"
+"POT-Creation-Date: 2010-11-29 17:07+0100\n"
+"PO-Revision-Date: 2010-11-29 17:27+0100\n"
 "Last-Translator: Fran Diéguez <frandieguez@ubuntu.com>\n"
 "Language-Team: Galician <gnome-gl-list@gnome.org>\n"
 "Language: gl\n"
@@ -74,6 +74,7 @@ msgstr "Tabulador"
 
 #: ../data/glade/gtksourceview.xml.in.h:12
 #: ../gtksourceview/gtksourcecompletionitem.c:255
+#: ../gtksourceview/gtksourcegutterrenderertext.c:386
 msgid "Text"
 msgstr "Texto"
 
@@ -94,8 +95,8 @@ msgstr "Número base arbitrario"
 #: ../data/language-specs/bennugd.lang.h:2 ../data/language-specs/c.lang.h:1
 #: ../data/language-specs/cg.lang.h:2 ../data/language-specs/csharp.lang.h:1
 #: ../data/language-specs/def.lang.h:4 ../data/language-specs/fsharp.lang.h:2
-#: ../data/language-specs/gtkrc.lang.h:1 ../data/language-specs/ini.lang.h:2
-#: ../data/language-specs/java.lang.h:1
+#: ../data/language-specs/go.lang.h:1 ../data/language-specs/gtkrc.lang.h:1
+#: ../data/language-specs/ini.lang.h:2 ../data/language-specs/java.lang.h:1
 #: ../data/language-specs/javascript.lang.h:1
 #: ../data/language-specs/lua.lang.h:1 ../data/language-specs/nemerle.lang.h:2
 #: ../data/language-specs/ocaml.lang.h:2 ../data/language-specs/ooc.lang.h:1
@@ -118,7 +119,7 @@ msgstr "Valor booleano"
 #: ../data/language-specs/forth.lang.h:1
 #: ../data/language-specs/fortran.lang.h:2
 #: ../data/language-specs/fsharp.lang.h:4 ../data/language-specs/gap.lang.h:2
-#: ../data/language-specs/gtkrc.lang.h:2
+#: ../data/language-specs/go.lang.h:3 ../data/language-specs/gtkrc.lang.h:2
 #: ../data/language-specs/haskell.lang.h:2
 #: ../data/language-specs/html.lang.h:3 ../data/language-specs/idl.lang.h:1
 #: ../data/language-specs/ini.lang.h:3 ../data/language-specs/java.lang.h:3
@@ -149,7 +150,7 @@ msgstr "Comentario"
 #: ../data/language-specs/forth.lang.h:3
 #: ../data/language-specs/fortran.lang.h:3
 #: ../data/language-specs/fsharp.lang.h:5 ../data/language-specs/glsl.lang.h:4
-#: ../data/language-specs/gtkrc.lang.h:3
+#: ../data/language-specs/go.lang.h:4 ../data/language-specs/gtkrc.lang.h:3
 #: ../data/language-specs/haskell.lang.h:3 ../data/language-specs/idl.lang.h:2
 #: ../data/language-specs/ini.lang.h:4 ../data/language-specs/java.lang.h:4
 #: ../data/language-specs/javascript.lang.h:5
@@ -168,7 +169,7 @@ msgstr "Tipo de datos"
 #: ../data/language-specs/csharp.lang.h:6 ../data/language-specs/def.lang.h:19
 #: ../data/language-specs/d.lang.h:6 ../data/language-specs/eiffel.lang.h:6
 #: ../data/language-specs/erlang.lang.h:6
-#: ../data/language-specs/fsharp.lang.h:6
+#: ../data/language-specs/fsharp.lang.h:6 ../data/language-specs/go.lang.h:5
 #: ../data/language-specs/nemerle.lang.h:6
 #: ../data/language-specs/ocaml.lang.h:6 ../data/language-specs/ooc.lang.h:4
 #: ../data/language-specs/php.lang.h:4 ../data/language-specs/python.lang.h:7
@@ -181,7 +182,7 @@ msgstr "Número decimal"
 #: ../data/language-specs/c.lang.h:9 ../data/language-specs/cg.lang.h:9
 #: ../data/language-specs/csharp.lang.h:8
 #: ../data/language-specs/eiffel.lang.h:9
-#: ../data/language-specs/fsharp.lang.h:7
+#: ../data/language-specs/fsharp.lang.h:7 ../data/language-specs/go.lang.h:7
 #: ../data/language-specs/haskell.lang.h:5
 #: ../data/language-specs/java.lang.h:7 ../data/language-specs/lua.lang.h:3
 #: ../data/language-specs/ocaml.lang.h:8 ../data/language-specs/ooc.lang.h:7
@@ -207,7 +208,8 @@ msgstr "Carácter de escape"
 #: ../data/language-specs/forth.lang.h:7
 #: ../data/language-specs/fortran.lang.h:8
 #: ../data/language-specs/fsharp.lang.h:10 ../data/language-specs/gap.lang.h:6
-#: ../data/language-specs/glsl.lang.h:5 ../data/language-specs/gtkrc.lang.h:7
+#: ../data/language-specs/glsl.lang.h:5 ../data/language-specs/go.lang.h:12
+#: ../data/language-specs/gtkrc.lang.h:7
 #: ../data/language-specs/haskell.lang.h:9 ../data/language-specs/idl.lang.h:4
 #: ../data/language-specs/ini.lang.h:7 ../data/language-specs/java.lang.h:11
 #: ../data/language-specs/javascript.lang.h:10
@@ -264,7 +266,7 @@ msgstr "Número real"
 #: ../data/language-specs/forth.lang.h:10
 #: ../data/language-specs/fortran.lang.h:9
 #: ../data/language-specs/fsharp.lang.h:16
-#: ../data/language-specs/glsl.lang.h:9
+#: ../data/language-specs/glsl.lang.h:9 ../data/language-specs/go.lang.h:14
 #: ../data/language-specs/haskell.lang.h:12
 #: ../data/language-specs/haskell-literate.lang.h:2
 #: ../data/language-specs/idl.lang.h:6 ../data/language-specs/java.lang.h:15
@@ -283,8 +285,8 @@ msgid "Sources"
 msgstr "Fontes"
 
 #: ../data/language-specs/ada.lang.h:12 ../data/language-specs/c.lang.h:17
-#: ../data/language-specs/cg.lang.h:18 ../data/language-specs/java.lang.h:16
-#: ../data/language-specs/ooc.lang.h:18
+#: ../data/language-specs/cg.lang.h:18 ../data/language-specs/go.lang.h:15
+#: ../data/language-specs/java.lang.h:16 ../data/language-specs/ooc.lang.h:18
 msgid "Storage Class"
 msgstr "Clase de almacenamento"
 
@@ -301,7 +303,7 @@ msgstr "Clase de almacenamento"
 #: ../data/language-specs/forth.lang.h:11
 #: ../data/language-specs/fsharp.lang.h:17
 #: ../data/language-specs/gdb-log.lang.h:10
-#: ../data/language-specs/gtkrc.lang.h:9
+#: ../data/language-specs/go.lang.h:16 ../data/language-specs/gtkrc.lang.h:9
 #: ../data/language-specs/haskell.lang.h:13
 #: ../data/language-specs/idl.lang.h:7 ../data/language-specs/ini.lang.h:9
 #: ../data/language-specs/java.lang.h:17
@@ -424,7 +426,8 @@ msgstr "BennuGD"
 #. A character constant: 'c'
 #: ../data/language-specs/bennugd.lang.h:3 ../data/language-specs/c.lang.h:3
 #: ../data/language-specs/csharp.lang.h:3 ../data/language-specs/def.lang.h:9
-#: ../data/language-specs/gap.lang.h:1 ../data/language-specs/haskell.lang.h:1
+#: ../data/language-specs/gap.lang.h:1 ../data/language-specs/go.lang.h:2
+#: ../data/language-specs/haskell.lang.h:1
 #: ../data/language-specs/java.lang.h:2
 #: ../data/language-specs/nemerle.lang.h:3
 #: ../data/language-specs/vhdl.lang.h:3
@@ -436,8 +439,8 @@ msgstr "Carácter"
 #: ../data/language-specs/cg.lang.h:8 ../data/language-specs/cobol.lang.h:4
 #: ../data/language-specs/csharp.lang.h:7 ../data/language-specs/css.lang.h:6
 #: ../data/language-specs/def.lang.h:28 ../data/language-specs/d.lang.h:7
-#: ../data/language-specs/dot.lang.h:3 ../data/language-specs/html.lang.h:5
-#: ../data/language-specs/java.lang.h:6
+#: ../data/language-specs/dot.lang.h:3 ../data/language-specs/go.lang.h:6
+#: ../data/language-specs/html.lang.h:5 ../data/language-specs/java.lang.h:6
 #: ../data/language-specs/javascript.lang.h:6
 #: ../data/language-specs/nemerle.lang.h:7
 #: ../data/language-specs/ocaml.lang.h:7 ../data/language-specs/ooc.lang.h:6
@@ -451,16 +454,17 @@ msgstr "Erro"
 #: ../data/language-specs/bennugd.lang.h:9 ../data/language-specs/c.lang.h:10
 #: ../data/language-specs/cg.lang.h:10 ../data/language-specs/def.lang.h:30
 #: ../data/language-specs/d.lang.h:8 ../data/language-specs/erlang.lang.h:8
-#: ../data/language-specs/nemerle.lang.h:8 ../data/language-specs/ooc.lang.h:9
-#: ../data/language-specs/php.lang.h:8 ../data/language-specs/python.lang.h:9
-#: ../data/language-specs/R.lang.h:4 ../data/language-specs/ruby.lang.h:9
+#: ../data/language-specs/go.lang.h:8 ../data/language-specs/nemerle.lang.h:8
+#: ../data/language-specs/ooc.lang.h:9 ../data/language-specs/php.lang.h:8
+#: ../data/language-specs/python.lang.h:9 ../data/language-specs/R.lang.h:4
+#: ../data/language-specs/ruby.lang.h:9
 msgid "Floating point number"
 msgstr "Número de coma flotante"
 
 #: ../data/language-specs/bennugd.lang.h:10 ../data/language-specs/c.lang.h:11
 #: ../data/language-specs/cg.lang.h:12 ../data/language-specs/csharp.lang.h:9
 #: ../data/language-specs/d.lang.h:9 ../data/language-specs/eiffel.lang.h:11
-#: ../data/language-specs/nemerle.lang.h:9
+#: ../data/language-specs/go.lang.h:10 ../data/language-specs/nemerle.lang.h:9
 #: ../data/language-specs/ooc.lang.h:11 ../data/language-specs/php.lang.h:11
 #: ../data/language-specs/vala.lang.h:6
 msgid "Hexadecimal number"
@@ -493,6 +497,7 @@ msgstr "Campo"
 #: ../data/language-specs/texinfo.lang.h:8 ../data/language-specs/xml.lang.h:9
 #: ../data/language-specs/xslt.lang.h:2
 #: ../gtksourceview/gtksourcecompletionitem.c:242
+#: ../gtksourceview/gtksourcegutterrenderertext.c:378
 msgid "Markup"
 msgstr "Marcación"
 
@@ -589,8 +594,7 @@ msgstr "Nome"
 #: ../data/language-specs/gdb-log.lang.h:8
 #: ../data/language-specs/gtkrc.lang.h:8 ../data/language-specs/ini.lang.h:8
 #: ../data/language-specs/libtool.lang.h:3
-#: ../data/language-specs/msil.lang.h:2 ../data/language-specs/nsis.lang.h:4
-#: ../data/language-specs/ocl.lang.h:6
+#: ../data/language-specs/nsis.lang.h:4 ../data/language-specs/ocl.lang.h:6
 #: ../data/language-specs/pkgconfig.lang.h:1
 #: ../data/language-specs/po.lang.h:5 ../data/language-specs/rpmspec.lang.h:10
 #: ../data/language-specs/sh.lang.h:6 ../data/language-specs/texinfo.lang.h:9
@@ -617,11 +621,13 @@ msgid "Common Defines"
 msgstr "Definicións comúns"
 
 #: ../data/language-specs/c.lang.h:12 ../data/language-specs/cg.lang.h:13
+#: ../data/language-specs/go.lang.h:11
 msgid "Included File"
 msgstr "Ficheiro incluído"
 
 #: ../data/language-specs/c.lang.h:14 ../data/language-specs/cg.lang.h:15
-#: ../data/language-specs/d.lang.h:12 ../data/language-specs/nemerle.lang.h:13
+#: ../data/language-specs/d.lang.h:12 ../data/language-specs/go.lang.h:13
+#: ../data/language-specs/nemerle.lang.h:13
 #: ../data/language-specs/ooc.lang.h:15 ../data/language-specs/php.lang.h:15
 msgid "Octal number"
 msgstr "Número octal"
@@ -1165,6 +1171,10 @@ msgstr "Linguaxe Shading de OpenGL"
 msgid "Reserved Keywords"
 msgstr "Palabras chave reservadas"
 
+#: ../data/language-specs/go.lang.h:9
+msgid "Go"
+msgstr "Ir"
+
 #: ../data/language-specs/gtk-doc.lang.h:2
 msgid "Deprecated"
 msgstr "Obsoleto"
@@ -1491,10 +1501,6 @@ msgstr "Elementos da páxina"
 #: ../data/language-specs/mallard.lang.h:6
 msgid "Section Elements"
 msgstr "Elementos de sección"
-
-#: ../data/language-specs/msil.lang.h:1
-msgid "MSIL"
-msgstr "MSIL"
 
 #: ../data/language-specs/nemerle.lang.h:11
 msgid "Nemerle"
@@ -2033,6 +2039,7 @@ msgid "The delay before initiating interactive completion"
 msgstr "O atraso antes de iniciar o completado interactivo"
 
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:518
+#: ../gtksourceview/gtksourcemarkcategory.c:302
 msgid "Priority"
 msgstr "Prioridade"
 
@@ -2218,40 +2225,40 @@ msgid "The type of activation"
 msgstr "O tipo de activación"
 
 #. Tooltip style
-#: ../gtksourceview/gtksourcecompletioninfo.c:179
+#: ../gtksourceview/gtksourcecompletioninfo.c:171
 msgid "Completion Info"
 msgstr "Información de completado"
 
-#: ../gtksourceview/gtksourcecompletioninfo.c:345
+#: ../gtksourceview/gtksourcecompletioninfo.c:337
 msgid "Maximum width"
 msgstr "Anchura máxima"
 
-#: ../gtksourceview/gtksourcecompletioninfo.c:346
+#: ../gtksourceview/gtksourcecompletioninfo.c:338
 msgid "The maximum allowed width"
 msgstr "A anchura máxima permitida"
 
-#: ../gtksourceview/gtksourcecompletioninfo.c:355
+#: ../gtksourceview/gtksourcecompletioninfo.c:347
 msgid "Maximum height"
 msgstr "Altura máxima"
 
-#: ../gtksourceview/gtksourcecompletioninfo.c:356
+#: ../gtksourceview/gtksourcecompletioninfo.c:348
 msgid "The maximum allowed height"
 msgstr "A altura máxima permitida"
 
-#: ../gtksourceview/gtksourcecompletioninfo.c:366
+#: ../gtksourceview/gtksourcecompletioninfo.c:357
 msgid "Shrink width"
 msgstr "Reducir ancho"
 
-#: ../gtksourceview/gtksourcecompletioninfo.c:367
+#: ../gtksourceview/gtksourcecompletioninfo.c:358
 msgid "Whether the window should shrink width to fit the contents"
 msgstr ""
 "Indica se a xanela se debería reducir o ancho para axustarse aos contidos"
 
-#: ../gtksourceview/gtksourcecompletioninfo.c:374
+#: ../gtksourceview/gtksourcecompletioninfo.c:365
 msgid "Shrink height"
 msgstr "Reducir algo"
 
-#: ../gtksourceview/gtksourcecompletioninfo.c:375
+#: ../gtksourceview/gtksourcecompletioninfo.c:366
 msgid "Whether the window should shrink height to fit the contents"
 msgstr "Indica se a xanela debería reducir o alto para axustarse aos contidos"
 
@@ -2352,6 +2359,7 @@ msgid "The gutters' GtkSourceView"
 msgstr "As canles de GtkSourceView"
 
 #: ../gtksourceview/gtksourcegutter.c:531
+#: ../gtksourceview/gtksourcegutterrenderer.c:633
 msgid "Window Type"
 msgstr "Tipo de xanela"
 
@@ -2360,20 +2368,130 @@ msgid "The gutters text window type"
 msgstr "O tipo de canles de texto de xanela "
 
 #: ../gtksourceview/gtksourcegutter.c:543
+#: ../gtksourceview/gtksourcegutterrenderer.c:409
 msgid "X Padding"
 msgstr "Separación en X"
 
 #: ../gtksourceview/gtksourcegutter.c:544
+#: ../gtksourceview/gtksourcegutterrenderer.c:410
 msgid "The x-padding"
 msgstr "O x-padding"
 
 #: ../gtksourceview/gtksourcegutter.c:554
+#: ../gtksourceview/gtksourcegutterrenderer.c:425
 msgid "Y Padding"
 msgstr "Separación en Y"
 
 #: ../gtksourceview/gtksourcegutter.c:555
+#: ../gtksourceview/gtksourcegutterrenderer.c:426
 msgid "The y-padding"
 msgstr "O y-padding"
+
+#: ../gtksourceview/gtksourcegutterrenderer.c:395
+#: ../gtksourceview/gtksourcegutterrenderer.c:396
+msgid "Visible"
+msgstr "Visíbel"
+
+#: ../gtksourceview/gtksourcegutterrenderer.c:441
+msgid "X Alignment"
+msgstr "Aliñamento X"
+
+#: ../gtksourceview/gtksourcegutterrenderer.c:442
+msgid "The x-alignment"
+msgstr "O aliñamento x"
+
+#: ../gtksourceview/gtksourcegutterrenderer.c:457
+msgid "Y Alignment"
+msgstr "Aliñamento Y"
+
+#: ../gtksourceview/gtksourcegutterrenderer.c:458
+msgid "The y-alignment"
+msgstr "O aliñamento y"
+
+#: ../gtksourceview/gtksourcegutterrenderer.c:600
+msgid "The View"
+msgstr "A vista"
+
+#: ../gtksourceview/gtksourcegutterrenderer.c:601
+msgid "The view"
+msgstr "A vista"
+
+#: ../gtksourceview/gtksourcegutterrenderer.c:617
+msgid "Alignment Mode"
+msgstr "Modo de aliñamento"
+
+#: ../gtksourceview/gtksourcegutterrenderer.c:618
+msgid "The alignment mode"
+msgstr "O modo de aliñamento"
+
+#: ../gtksourceview/gtksourcegutterrenderer.c:634
+msgid "The window type"
+msgstr "O tipo de xanela"
+
+#: ../gtksourceview/gtksourcegutterrenderer.c:642
+msgid "Size"
+msgstr "Tamaño"
+
+#: ../gtksourceview/gtksourcegutterrenderer.c:643
+msgid "The size"
+msgstr "O tamaño"
+
+#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:313
+#: ../gtksourceview/gtksourcemarkcategory.c:320
+msgid "Pixbuf"
+msgstr "Pixbuf"
+
+#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:314
+#: ../gtksourceview/gtksourcemarkcategory.c:321
+msgid "The pixbuf"
+msgstr "O pixbuf"
+
+#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:321
+#: ../gtksourceview/gtksourcemarkcategory.c:312
+msgid "Stock Id"
+msgstr "O Id de inventario"
+
+#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:322
+#: ../gtksourceview/gtksourcemarkcategory.c:313
+msgid "The stock id"
+msgstr "O Id de inventario"
+
+#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:329
+#: ../gtksourceview/gtksourcemarkcategory.c:344
+msgid "Stock Detail"
+msgstr "Detalle de inventario"
+
+#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:330
+#: ../gtksourceview/gtksourcemarkcategory.c:345
+msgid "The stock detail"
+msgstr "O detalle de inventario"
+
+#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:337
+#: ../gtksourceview/gtksourcemarkcategory.c:328
+msgid "Icon Name"
+msgstr "Nome da icona"
+
+#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:338
+#: ../gtksourceview/gtksourcemarkcategory.c:329
+msgid "The icon name"
+msgstr "O nome da icona"
+
+#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:345
+#: ../gtksourceview/gtksourcemarkcategory.c:336
+msgid "GIcon"
+msgstr "GIcon"
+
+#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:346
+msgid "The gicon"
+msgstr "A gicon"
+
+#: ../gtksourceview/gtksourcegutterrenderertext.c:379
+msgid "The markup"
+msgstr "O marcado"
+
+#: ../gtksourceview/gtksourcegutterrenderertext.c:387
+msgid "The text"
+msgstr "O texto"
 
 #: ../gtksourceview/gtksourcelanguage.c:228
 #: ../gtksourceview/gtksourcelanguage.c:229
@@ -2435,6 +2553,31 @@ msgstr "categoría"
 #: ../gtksourceview/gtksourcemark.c:141
 msgid "The mark category"
 msgstr "A categoría da marca"
+
+#: ../gtksourceview/gtksourcemarkcategory.c:286
+msgid "Id"
+msgstr "Id"
+
+#: ../gtksourceview/gtksourcemarkcategory.c:287
+msgid "The id"
+msgstr "O Id"
+
+#: ../gtksourceview/gtksourcemarkcategory.c:294
+#: ../gtksourceview/gtksourcestyle.c:88
+msgid "Background"
+msgstr "Fondo"
+
+#: ../gtksourceview/gtksourcemarkcategory.c:295
+msgid "The background"
+msgstr "O fondo"
+
+#: ../gtksourceview/gtksourcemarkcategory.c:303
+msgid "The priority"
+msgstr "A prioridade"
+
+#: ../gtksourceview/gtksourcemarkcategory.c:337
+msgid "The GIcon"
+msgstr "A GIcon"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:445
 msgid "Source Buffer"
@@ -2552,10 +2695,6 @@ msgstr "Fondo da liña"
 #: ../gtksourceview/gtksourcestyle.c:81
 msgid "Line background color"
 msgstr "Cor de fondo da liña"
-
-#: ../gtksourceview/gtksourcestyle.c:88
-msgid "Background"
-msgstr "Fondo"
 
 #: ../gtksourceview/gtksourcestyle.c:89
 msgid "Background color"
@@ -2784,3 +2923,6 @@ msgstr ""
 "org>, 2009.\n"
 "Suso Baleato <suso.baleato@xunta.es>, 2009.\n"
 "Ignacio Casal Quinteiro <nacho.resa@gmail.com>, 2005, 2006."
+
+#~ msgid "MSIL"
+#~ msgstr "MSIL"
