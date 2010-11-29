@@ -61,7 +61,6 @@ python_tests =			\
 #	$(DEP_LIBS)
 
 EXTRA_DIST =				\
-	$(python_tests)			\
-	gnome-gmush.png
+	$(python_tests)
 
 -include $(top_srcdir)/git.mk
