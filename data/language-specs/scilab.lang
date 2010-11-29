@@ -32,9 +32,7 @@
     <style id="floating-point"    _name="Floating Point"    map-to="def:floating-point"/>
     <style id="string"            _name="String"            map-to="def:string"/>
     <style id="keyword"           _name="Keyword"           map-to="def:keyword"/>
-    <style id="base-n-integer"    _name="Base-N Integer"    map-to="def:base-n-integer"/>
     <style id="function"          _name="Function"          map-to="def:function"/>
-    <style id="decimal"           _name="Decimal"           map-to="def:decimal"/>
     <style id="boolean"           _name="Boolean"           map-to="def:boolean"/>
     <style id="reserved-constant" _name="Reserved Constant" map-to="def:special-constant"/>
   </styles>
@@ -95,6 +93,7 @@
       <keyword>abort</keyword>
       <keyword>break</keyword>
       <keyword>case</keyword>
+      <keyword>clear</keyword>
       <keyword>catch</keyword>
       <keyword>continue</keyword>
       <keyword>do</keyword>
@@ -104,33 +103,20 @@
       <keyword>end</keyword>
       <keyword>for</keyword>
       <keyword>function</keyword>
-      <keyword>#function</keyword>
       <keyword>global</keyword>
-      <keyword>hidden</keyword>
       <keyword>if</keyword>
-      <keyword>otherwise</keyword>
+      <keyword>pause</keyword>
       <keyword>return</keyword>
+      <keyword>resume</keyword>
       <keyword>select</keyword>
-      <keyword>switch</keyword>
       <keyword>try</keyword>
+      <keyword>then</keyword>
       <keyword>while</keyword>
     </context>
 
-    <context id="decimal" style-ref="decimal">
-      <match>\b([1-9][0-9]*|0)([Uu]([Ll]|LL|ll)?|([Ll]|LL|ll)[Uu]?)?\b</match>
-    </context>
-
     <context id="floating-point-number" style-ref="floating-point">
-      <match>\b([0-9]+[Ee][-]?[0-9]+|([0-9]*\.[0-9]+|[0-9]+\.)([Ee][-]?[0-9]+)?)[fFlL]?</match>
-    </context>
-
-    <context id="octal-number" style-ref="base-n-integer">
-      <match>\b0[0-7]+([Uu]([Ll]|LL|ll)?|([Ll]|LL|ll)[Uu]?)?\b</match>
-    </context>
-
-    <context id="hex-number" style-ref="base-n-integer">
-      <match>\b0[xX][0-9a-fA-F]+([Uu]([Ll]|LL|ll)?|([Ll]|LL|ll)[Uu]?)?\b</match>
-    </context>
+       <match>\b([0-9]+[DdEe][+-]?[0-9]+|([0-9]*\.[0-9]+|[0-9]+\.)([DdEe][+-]?[0-9]+)?)</match>
+     </context>
 
     <context id="function" style-ref="function">
       <keyword>abs</keyword>
@@ -139,12 +125,20 @@
       <keyword>asin</keyword>
       <keyword>atan</keyword>
       <keyword>ceil</keyword>
+      <keyword>cd</keyword>
+      <keyword>chdir</keyword>
       <keyword>clearglobal</keyword>
       <keyword>cosh</keyword>
       <keyword>cos</keyword>
       <keyword>cumprod</keyword>
+      <keyword>deff</keyword>
+      <keyword>disp</keyword>
       <keyword>error</keyword>
       <keyword>exec</keyword>
+      <keyword>execstr</keyword>
+      <keyword>exists</keyword>
+      <keyword>exp</keyword>
+      <keyword>eye</keyword>
       <keyword>gettext</keyword>
       <keyword>floor</keyword>
       <keyword>fprintf</keyword>
@@ -156,10 +150,12 @@
       <keyword>isinf</keyword>
       <keyword>isnan</keyword>
       <keyword>isvector</keyword>
+      <keyword>lasterror</keyword>
       <keyword>length</keyword>
       <keyword>load</keyword>
       <keyword>linspace</keyword>
       <keyword>list</keyword>
+      <keyword>listfiles</keyword>
       <keyword>log10</keyword>
       <keyword>log2</keyword>
       <keyword>log</keyword>
@@ -170,8 +166,12 @@
       <keyword>mopen</keyword>
       <keyword>ones</keyword>
       <keyword>or</keyword>
+      <keyword>pathconvert</keyword>
+      <keyword>poly</keyword>
       <keyword>printf</keyword>
       <keyword>prod</keyword>
+      <keyword>pwd</keyword>
+      <keyword>rand</keyword>
       <keyword>real</keyword>
       <keyword>round</keyword>
       <keyword>sinh</keyword>
@@ -182,10 +182,13 @@
       <keyword>sqrt</keyword>
       <keyword>strcat</keyword>
       <keyword>strcmp</keyword>
+      <keyword>string</keyword>
       <keyword>sum</keyword>
       <keyword>system</keyword>
       <keyword>tanh</keyword>
       <keyword>tan</keyword>
+      <keyword>type</keyword>
+      <keyword>typename</keyword>
       <keyword>warning</keyword>
       <keyword>zeros</keyword>
     </context>
@@ -198,10 +201,7 @@
         <context ref="boolean"/>
         <context ref="reserved-constant"/>
         <context ref="keyword"/>
-        <context ref="decimal"/>
         <context ref="floating-point-number"/>
-        <context ref="octal-number"/>
-        <context ref="hex-number"/>
         <context ref="function"/>
       </include>
     </context>
