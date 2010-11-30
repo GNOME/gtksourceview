@@ -1209,7 +1209,7 @@ gtk_source_gutter_renderer_get_background (GtkSourceGutterRenderer *renderer,
 }
 
 /**
- * gtk_source_gutter_renderer_get_background:
+ * gtk_source_gutter_renderer_set_background:
  * @renderer: a #GtkSourceGutterRenderer
  * @color: (allow-none): a #GdkColor or %NULL
  *
