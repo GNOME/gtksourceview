@@ -179,10 +179,10 @@ GtkSourceGutterRendererAlignmentMode
 	gtk_source_gutter_renderer_get_alignment_mode (GtkSourceGutterRenderer    *renderer);
 
 gboolean gtk_source_gutter_renderer_get_background  (GtkSourceGutterRenderer      *renderer,
-                                                     GdkColor                     *color);
+                                                     GdkRGBA                      *color);
 
 void     gtk_source_gutter_renderer_set_background  (GtkSourceGutterRenderer      *renderer,
-                                                     const GdkColor               *color);
+                                                     const GdkRGBA                *color);
 
 /* Emits the 'activate' signal */
 void     gtk_source_gutter_renderer_activate        (GtkSourceGutterRenderer      *renderer,

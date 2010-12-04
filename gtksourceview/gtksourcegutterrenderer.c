@@ -50,7 +50,7 @@ struct _GtkSourceGutterRendererPrivate
 
 	gint size;
 
-	GdkColor background_gdk;
+	GdkRGBA background_color;
 	gboolean background_set;
 
 	GtkSourceGutterRendererAlignmentMode alignment_mode;
@@ -76,7 +76,7 @@ enum
 	PROP_ALIGNMENT_MODE,
 	PROP_WINDOW_TYPE,
 	PROP_SIZE,
-	PROP_BACKGROUND_GDK,
+	PROP_BACKGROUND_RGBA,
 	PROP_BACKGROUND_SET
 };
 
@@ -217,29 +217,27 @@ set_size (GtkSourceGutterRenderer *renderer,
 }
 
 static void
-set_background_gdk_set (GtkSourceGutterRenderer *renderer,
-                        gboolean                 isset)
+set_background_color_set (GtkSourceGutterRenderer *renderer,
+                         gboolean                 isset)
 {
-	if (isset == renderer->priv->background_set)
+	if (isset != renderer->priv->background_set)
 	{
-		return;
+		renderer->priv->background_set = isset;
+		gtk_source_gutter_renderer_queue_draw (renderer);
 	}
-
-	renderer->priv->background_set = isset;
-	gtk_source_gutter_renderer_queue_draw (renderer);
 }
 
 static void
-set_background_gdk (GtkSourceGutterRenderer *renderer,
-                    const GdkColor          *color)
+set_background_color (GtkSourceGutterRenderer *renderer,
+                      const GdkRGBA          *color)
 {
 	if (!color)
 	{
-		set_background_gdk_set (renderer, FALSE);
+		set_background_color_set (renderer, FALSE);
 	}
 	else
 	{
-		renderer->priv->background_gdk = *color;
+		renderer->priv->background_color = *color;
 		renderer->priv->background_set = TRUE;
 
 		gtk_source_gutter_renderer_queue_draw (renderer);
@@ -283,13 +281,13 @@ gtk_source_gutter_renderer_set_property (GObject      *object,
 		case PROP_SIZE:
 			set_size (self, g_value_get_int (value));
 			break;
-		case PROP_BACKGROUND_GDK:
-			set_background_gdk (self,
-			                    g_value_get_boxed (value));
+		case PROP_BACKGROUND_RGBA:
+			set_background_color (self,
+			                      g_value_get_boxed (value));
 			break;
 		case PROP_BACKGROUND_SET:
-			set_background_gdk_set (self,
-			                        g_value_get_boolean (value));
+			set_background_color_set (self,
+			                          g_value_get_boolean (value));
 			break;
 		default:
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -334,8 +332,8 @@ gtk_source_gutter_renderer_get_property (GObject    *object,
 		case PROP_SIZE:
 			g_value_set_int (value, self->priv->size);
 			break;
-		case PROP_BACKGROUND_GDK:
-			g_value_set_boxed (value, &self->priv->background_gdk);
+		case PROP_BACKGROUND_RGBA:
+			g_value_set_boxed (value, &self->priv->background_color);
 			break;
 		case PROP_BACKGROUND_SET:
 			g_value_set_boolean (value, self->priv->background_set);
@@ -355,18 +353,16 @@ renderer_draw_impl (GtkSourceGutterRenderer      *renderer,
                     GtkTextIter                  *end,
                     GtkSourceGutterRendererState  state)
 {
-	if (!renderer->priv->background_set)
+	if (renderer->priv->background_set)
 	{
-		return;
+		cairo_save (cr);
+
+		gdk_cairo_rectangle (cr, background_area);
+		gdk_cairo_set_source_rgba (cr, &renderer->priv->background_color);
+
+		cairo_fill (cr);
+		cairo_restore (cr);
 	}
-
-	cairo_save (cr);
-
-	gdk_cairo_rectangle (cr, background_area);
-	gdk_cairo_set_source_color (cr, &renderer->priv->background_gdk);
-
-	cairo_fill (cr);
-	cairo_restore (cr);
 }
 
 static void
@@ -647,13 +643,12 @@ gtk_source_gutter_renderer_class_init (GtkSourceGutterRendererClass *klass)
 	                                                   G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 
 	g_object_class_install_property (object_class,
-	                                 PROP_BACKGROUND_GDK,
-	                                 g_param_spec_boxed ("background-gdk",
-	                                                     "Background GDK",
+	                                 PROP_BACKGROUND_RGBA,
+	                                 g_param_spec_boxed ("background-rgba",
+	                                                     "Background Color",
 	                                                     "The background color",
-	                                                     GDK_TYPE_COLOR,
+	                                                     GDK_TYPE_RGBA,
 	                                                     G_PARAM_READWRITE));
-
 
 	g_object_class_install_property (object_class,
 	                                 PROP_BACKGROUND_SET,
@@ -1187,7 +1182,7 @@ gtk_source_gutter_renderer_set_size (GtkSourceGutterRenderer *renderer,
 /**
  * gtk_source_gutter_renderer_get_background:
  * @renderer: a #GtkSourceGutterRenderer
- * @color: (out caller-allocates) (allow-none): return value for a #GdkColor
+ * @color: (out caller-allocates) (allow-none): return value for a #GdkRGBA
  *
  * Get the background color of the renderer.
  *
@@ -1196,13 +1191,13 @@ gtk_source_gutter_renderer_set_size (GtkSourceGutterRenderer *renderer,
  **/
 gboolean
 gtk_source_gutter_renderer_get_background (GtkSourceGutterRenderer *renderer,
-                                           GdkColor                *color)
+                                           GdkRGBA                 *color)
 {
 	g_return_val_if_fail (GTK_IS_SOURCE_GUTTER_RENDERER (renderer), FALSE);
 
 	if (color)
 	{
-		*color = renderer->priv->background_gdk;
+		*color = renderer->priv->background_color;
 	}
 
 	return renderer->priv->background_set;
@@ -1211,7 +1206,7 @@ gtk_source_gutter_renderer_get_background (GtkSourceGutterRenderer *renderer,
 /**
  * gtk_source_gutter_renderer_set_background:
  * @renderer: a #GtkSourceGutterRenderer
- * @color: (allow-none): a #GdkColor or %NULL
+ * @color: (allow-none): a #GdkRGBA or %NULL
  *
  * Set the background color of the renderer. If @color is set to %NULL, the
  * renderer will not have a background color.
@@ -1219,9 +1214,10 @@ gtk_source_gutter_renderer_get_background (GtkSourceGutterRenderer *renderer,
  */
 void
 gtk_source_gutter_renderer_set_background (GtkSourceGutterRenderer *renderer,
-                                           const GdkColor          *color)
+                                           const GdkRGBA          *color)
 {
 	g_return_if_fail (GTK_IS_SOURCE_GUTTER_RENDERER (renderer));
 
-	set_background_gdk (renderer, color);
+	set_background_color (renderer, color);
 }
+
