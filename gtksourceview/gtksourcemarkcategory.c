@@ -29,7 +29,7 @@
 struct _GtkSourceMarkCategoryPrivate
 {
 	gchar *id;
-	GdkColor background;
+	GdkRGBA background;
 	gint priority;
 
 	GtkSourcePixbufHelper *helper;
@@ -73,7 +73,7 @@ gtk_source_mark_category_finalize (GObject *object)
 
 static void
 set_background (GtkSourceMarkCategory *category,
-                const GdkColor        *color)
+                const GdkRGBA         *color)
 {
 	if (color)
 	{
@@ -293,7 +293,7 @@ gtk_source_mark_category_class_init (GtkSourceMarkCategoryClass *klass)
 	                                 g_param_spec_boxed ("background",
 	                                                     _("Background"),
 	                                                     _("The background"),
-	                                                     GDK_TYPE_COLOR,
+	                                                     GDK_TYPE_RGBA,
 	                                                     G_PARAM_READWRITE));
 
 	g_object_class_install_property (object_class,
@@ -397,7 +397,7 @@ gtk_source_mark_category_get_id (GtkSourceMarkCategory *category)
 
 void
 gtk_source_mark_category_set_background (GtkSourceMarkCategory *category,
-                                         const GdkColor        *background)
+                                         const GdkRGBA         *background)
 {
 	g_return_if_fail (GTK_IS_SOURCE_MARK_CATEGORY (category));
 
@@ -406,7 +406,7 @@ gtk_source_mark_category_set_background (GtkSourceMarkCategory *category,
 
 gboolean
 gtk_source_mark_category_get_background (GtkSourceMarkCategory *category,
-                                         GdkColor              *background)
+                                         GdkRGBA               *background)
 {
 	g_return_val_if_fail (GTK_IS_SOURCE_MARK_CATEGORY (category), FALSE);
 

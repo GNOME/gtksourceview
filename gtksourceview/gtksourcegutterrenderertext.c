@@ -29,14 +29,14 @@ create_layout (GtkSourceGutterRendererText *renderer,
 {
 	PangoLayout *layout;
 	PangoAttribute *attr;
-	GdkColor color;
-	GtkStyle *style;
+	GtkStyleContext *context;
+	GdkRGBA color;
 	PangoAttrList *attr_list;
 
 	layout = gtk_widget_create_pango_layout (widget, NULL);
 
-	style = gtk_widget_get_style (widget);
-	color = style->fg[GTK_STATE_NORMAL];
+	context = gtk_widget_get_style_context (widget);
+	gtk_style_context_get_color (context, 0, &color);
 
 	attr = pango_attr_foreground_new (color.red, color.green, color.blue);
 
@@ -107,6 +107,7 @@ gutter_renderer_text_draw (GtkSourceGutterRenderer      *renderer,
 	GtkTextView *view;
 	gint x = 0;
 	gint y = 0;
+	GtkStyleContext *context;
 
 	/* Chain up to draw background */
 	GTK_SOURCE_GUTTER_RENDERER_CLASS (
@@ -188,15 +189,8 @@ gutter_renderer_text_draw (GtkSourceGutterRenderer      *renderer,
 		break;
 	}
 
-	gtk_paint_layout (gtk_widget_get_style (GTK_WIDGET (view)),
-	                  cr,
-	                  gtk_widget_get_state (GTK_WIDGET (view)),
-	                  TRUE,
-	                  GTK_WIDGET (view),
-	                  "gtksourcegutterrenderertext",
-	                  x,
-	                  y,
-	                  text->priv->cached_layout);
+	context = gtk_widget_get_style_context (GTK_WIDGET (view));
+	gtk_render_layout (context, cr, x, y, text->priv->cached_layout);
 }
 
 static void

@@ -110,19 +110,24 @@ get_scrolled_window_sizing (GtkSourceCompletionInfo *info,
 static void
 window_resize (GtkSourceCompletionInfo *info)
 {
-	GtkRequisition req;
 	gint width;
 	gint height;
-	gint off;
-	gint border;
-	gint hscroll;
-	gint vscroll;
-	GtkStyle *style = gtk_widget_get_style (GTK_WIDGET (info));
 
 	gtk_window_get_default_size (GTK_WINDOW (info), &width, &height);
 
 	if (info->priv->widget != NULL)
 	{
+		GtkStyleContext *context;
+		GtkBorder *pad;
+		GtkRequisition req;
+		gint off;
+		gint border;
+		gint hscroll;
+		gint vscroll;
+
+		context = gtk_widget_get_style_context (GTK_WIDGET (info));
+		gtk_style_context_get (context, 0, "padding", &pad, NULL);
+
 		/* Try to resize to fit widget, if necessary */
 		gtk_widget_get_preferred_size (info->priv->widget,
 		                               &req, NULL);
@@ -134,11 +139,11 @@ window_resize (GtkSourceCompletionInfo *info)
 		{
 			if (info->priv->max_height == -1)
 			{
-				height = req.height + style->ythickness * 2;
+				height = req.height + pad->top + pad->bottom;
 			}
 			else
 			{
-				height = MIN (req.height + style->ythickness * 2, info->priv->max_height);
+				height = MIN (req.height + pad->top + pad->bottom, info->priv->max_height);
 			}
 
 			height += off + hscroll;
@@ -148,11 +153,11 @@ window_resize (GtkSourceCompletionInfo *info)
 		{
 			if (info->priv->max_width == -1)
 			{
-				width = req.width + style->xthickness * 2;
+				width = req.width + pad->left + pad->right;
 			}
 			else
 			{
-				width = MIN (req.width + style->xthickness * 2, info->priv->max_width);
+				width = MIN (req.width + pad->left + pad->right, info->priv->max_width);
 			}
 
 			width += off + vscroll;
@@ -170,7 +175,6 @@ gtk_source_completion_info_init (GtkSourceCompletionInfo *info)
 	/* Tooltip style */
 	gtk_window_set_title (GTK_WINDOW (info), _("Completion Info"));
 	gtk_widget_set_name (GTK_WIDGET (info), "gtk-tooltip");
-	gtk_widget_ensure_style (GTK_WIDGET (info));
 
 	gtk_window_set_type_hint (GTK_WINDOW (info),
 	                          GDK_WINDOW_TYPE_HINT_NORMAL);
@@ -285,12 +289,8 @@ gtk_source_completion_info_draw (GtkWidget *widget,
 {
 	GTK_WIDGET_CLASS (gtk_source_completion_info_parent_class)->draw (widget, cr);
 
-	gtk_paint_shadow (gtk_widget_get_style (widget),
+	gtk_render_frame (gtk_widget_get_style_context (widget),
 	                  cr,
-	                  GTK_STATE_NORMAL,
-	                  GTK_SHADOW_OUT,
-	                  widget,
-	                  NULL,
 	                  0, 0,
 	                  gtk_widget_get_allocated_width (widget),
 	                  gtk_widget_get_allocated_height (widget));

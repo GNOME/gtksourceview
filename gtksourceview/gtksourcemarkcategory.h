@@ -64,10 +64,10 @@ GtkSourceMarkCategory *gtk_source_mark_category_new (const gchar *id);
 const gchar     *gtk_source_mark_category_get_id              (GtkSourceMarkCategory *category);
 
 void             gtk_source_mark_category_set_background      (GtkSourceMarkCategory *category,
-                                                               const GdkColor        *background);
+                                                               const GdkRGBA         *background);
 
 gboolean         gtk_source_mark_category_get_background      (GtkSourceMarkCategory *category,
-                                                               GdkColor              *background);
+                                                               GdkRGBA               *background);
 
 void             gtk_source_mark_category_set_priority        (GtkSourceMarkCategory *category,
                                                                gint                   priority);

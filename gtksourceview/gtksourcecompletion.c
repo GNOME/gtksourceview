@@ -1175,24 +1175,24 @@ update_column_sizes (GtkSourceCompletion *completion)
 	gint cwidth;
 	GtkTreeView *tv;
 	GtkAllocation allocation;
-	gint xpad;
-	gint separator;
-	GtkStyle *style;
 	gint icon_width;
 	gint icon_height;
 
 	/* Resize tree view columns accordingly */
 	if (completion->priv->num_accelerators > 0)
 	{
+		GtkStyleContext *context;
+		gint xpad;
+		gint separator;
+
 		g_object_get (completion->priv->cell_renderer_accelerator,
 			      "xpad", &xpad,
 			      NULL);
 
-		style = gtk_widget_get_style (completion->priv->tree_view_proposals);
-		gtk_style_get (style,
-			       GTK_TYPE_TREE_VIEW,
-			       "horizontal-separator", &separator,
-			       NULL);
+		context = gtk_widget_get_style_context (completion->priv->tree_view_proposals);
+		gtk_style_context_get_style (context,
+					     "horizontal-separator", &separator,
+					     NULL);
 
 		cwidth = measure_accelerator_width (completion->priv->tree_view_proposals);
 		cwidth += (xpad + separator) * 2;
@@ -2616,17 +2616,22 @@ render_proposal_icon_func (GtkTreeViewColumn   *column,
 {
 	gboolean isheader;
 	GdkPixbuf *icon;
-	GtkStyle *style;
 
 	isheader = gtk_source_completion_model_iter_is_header (completion->priv->model_proposals,
 	                                                       iter);
 
-	style = gtk_widget_get_style (GTK_WIDGET (completion->priv->tree_view_proposals));
-
 	if (isheader)
 	{
+		GtkStyleContext *context;
+		GdkRGBA color;
+
+		context = gtk_widget_get_style_context (completion->priv->tree_view_proposals);
+		gtk_style_context_get_background_color (context,
+		                                        GTK_STATE_FLAG_INSENSITIVE,
+		                                        &color);
+
 		g_object_set (cell,
-		              "cell-background-gdk", &(style->bg[GTK_STATE_INSENSITIVE]),
+		              "cell-background-rgba", &color,
 		              NULL);
 	}
 	else
@@ -2661,7 +2666,6 @@ render_proposal_text_func (GtkTreeViewColumn   *column,
 	gchar *markup;
 	GtkSourceCompletionProvider *provider;
 	gboolean isheader;
-	GtkStyle *style;
 
 	isheader = gtk_source_completion_model_iter_is_header (completion->priv->model_proposals,
 		                                               iter);
@@ -2669,6 +2673,9 @@ render_proposal_text_func (GtkTreeViewColumn   *column,
 	if (isheader)
 	{
 		gchar *name;
+		GtkStyleContext *context;
+		GdkRGBA color;
+		GdkRGBA bgcolor;
 
 		gtk_tree_model_get (model,
 		                    iter,
@@ -2690,15 +2697,20 @@ render_proposal_text_func (GtkTreeViewColumn   *column,
 			label = g_strdup_printf ("<b>%s</b>", _("Provider"));
 		}
 
-		style = gtk_widget_get_style (GTK_WIDGET (completion->priv->tree_view_proposals));
-
+		context = gtk_widget_get_style_context (completion->priv->tree_view_proposals);
+		gtk_style_context_get_color (context,
+		                             GTK_STATE_FLAG_INSENSITIVE,
+		                             &color);
+		gtk_style_context_get_background_color (context,
+		                                        GTK_STATE_FLAG_INSENSITIVE,
+		                                        &bgcolor);
 		g_object_set (cell,
 		              "markup", label,
-		              "cell-background-gdk", &(style->bg[GTK_STATE_INSENSITIVE]),
-		              "foreground-gdk", &(style->fg[GTK_STATE_INSENSITIVE]),
+		              "foreground-rgba", &color,
+		              "cell-background-rgba", &bgcolor,
 		              NULL);
-		g_free (label);
 
+		g_free (label);
 		g_object_unref (provider);
 	}
 	else
@@ -2766,33 +2778,43 @@ render_proposal_accelerator_func (GtkTreeViewColumn   *column,
                                   GtkTreeIter         *iter,
                                   GtkSourceCompletion *completion)
 {
-	GtkStyle *style;
 	gboolean isheader;
+	GtkStyleContext *context;
+	GdkRGBA color;
 
 	isheader = gtk_source_completion_model_iter_is_header (completion->priv->model_proposals,
 	                                                       iter);
 
-	style = gtk_widget_get_style (GTK_WIDGET (completion->priv->tree_view_proposals));
+	context = gtk_widget_get_style_context (completion->priv->tree_view_proposals);
 
 	if (isheader)
 	{
+		gtk_style_context_get_background_color (context,
+		                                        GTK_STATE_FLAG_INSENSITIVE,
+		                                        &color);
+
 		g_object_set (cell,
-		              "cell-background-gdk", &(style->bg[GTK_STATE_INSENSITIVE]),
+		              "cell-background-rgba", &color,
 		              "text", NULL,
 		              NULL);
 	}
 	else
 	{
+		gtk_style_context_get_color (context,
+		                             GTK_STATE_FLAG_INSENSITIVE,
+		                             &color);
+
 		gint accel = iter_accelerator (completion, iter);
 		gchar *text = NULL;
 
 		if (accel != -1)
 		{
-			text = g_strdup_printf ("<small><b>%d</b></small>", accel == 9 ? 0 : accel + 1);
+			text = g_strdup_printf ("<small><b>%d</b></small>",
+						accel == 9 ? 0 : accel + 1);
 		}
 
 		g_object_set (cell,
-			      "foreground-gdk", &(style->fg[GTK_STATE_INSENSITIVE]),
+			      "foreground-rgba", &color,
 			      "cell-background-set", FALSE,
 			      "markup", text,
 			      NULL);
@@ -2830,37 +2852,28 @@ on_providers_changed (GtkSourceCompletionModel *model,
 }
 
 static void
-info_button_style_set (GtkWidget           *button,
-                       GtkStyle            *previous_style,
-                       GtkSourceCompletion *completion)
+info_button_style_updated (GtkWidget           *button,
+                           GtkSourceCompletion *completion)
 {
+	GtkStyleContext *context;
 	gint spacing;
 	GtkSettings *settings;
 	gboolean show_image;
 
-	gtk_style_get (gtk_widget_get_style (button),
-	               GTK_TYPE_BUTTON,
-	               "image-spacing",
-	               &spacing,
-	               NULL);
+	context = gtk_widget_get_style_context (button);
 
-	gtk_box_set_spacing (GTK_BOX (completion->priv->hbox_info),
-	                     spacing);
+	gtk_style_context_get_style (context,
+	                             "image-spacing", &spacing,
+	                             NULL);
+
+	gtk_box_set_spacing (GTK_BOX (completion->priv->hbox_info), spacing);
 
 	settings = gtk_widget_get_settings (button);
 	g_object_get (settings,
-	              "gtk-button-images",
-	              &show_image,
+	              "gtk-button-images", &show_image,
 	              NULL);
 
-	if (show_image)
-	{
-		gtk_widget_show (completion->priv->image_info);
-	}
-	else
-	{
-		gtk_widget_hide (completion->priv->image_info);
-	}
+	gtk_widget_set_visible (completion->priv->image_info, show_image);
 }
 
 static void
@@ -2940,9 +2953,7 @@ initialize_ui (GtkSourceCompletion *completion)
 		GTK_WIDGET (gtk_builder_get_object (builder,
 		                                    "hbox_info"));
 
-	info_button_style_set (completion->priv->info_button,
-	                       NULL,
-	                       completion);
+	info_button_style_updated (completion->priv->info_button, completion);
 
 	/* Tree view and model */
 	completion->priv->model_proposals = gtk_source_completion_model_new ();
@@ -3040,8 +3051,8 @@ initialize_ui (GtkSourceCompletion *completion)
 			  completion);
 
 	g_signal_connect (toggle_button_info,
-			  "style-set",
-			  G_CALLBACK (info_button_style_set),
+			  "style-updated",
+			  G_CALLBACK (info_button_style_updated),
 			  completion);
 
 	g_object_unref (builder);

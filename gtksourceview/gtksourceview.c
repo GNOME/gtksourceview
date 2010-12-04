@@ -137,11 +137,11 @@ struct _GtkSourceViewPrivate
 
 	gboolean	 style_scheme_applied;
 	GtkSourceStyleScheme *style_scheme;
-	GdkColor        *right_margin_line_color;
-	GdkColor        *right_margin_overlay_color;
+	GdkRGBA         *right_margin_line_color;
+	GdkRGBA         *right_margin_overlay_color;
 
 	GtkSourceDrawSpacesFlags draw_spaces;
-	GdkColor        *spaces_color;
+	GdkRGBA         *spaces_color;
 
 	GHashTable 	*mark_categories;
 
@@ -153,7 +153,7 @@ struct _GtkSourceViewPrivate
 	GtkSourceGutterRenderer *line_renderer;
 	GtkSourceGutterRenderer *marks_renderer;
 
-	GdkColor         current_line_color;
+	GdkRGBA          current_line_color;
 
 	GtkSourceCompletion	*completion;
 
@@ -1083,17 +1083,17 @@ gtk_source_view_finalize (GObject *object)
 
 	if (view->priv->right_margin_line_color != NULL)
 	{
-		gdk_color_free (view->priv->right_margin_line_color);
+		gdk_rgba_free (view->priv->right_margin_line_color);
 	}
 
 	if (view->priv->right_margin_overlay_color != NULL)
 	{
-		gdk_color_free (view->priv->right_margin_overlay_color);
+		gdk_rgba_free (view->priv->right_margin_overlay_color);
 	}
 
 	if (view->priv->spaces_color != NULL)
 	{
-		gdk_color_free (view->priv->spaces_color);
+		gdk_rgba_free (view->priv->spaces_color);
 	}
 
 	if (view->priv->mark_categories)
@@ -1767,7 +1767,7 @@ gtk_source_view_paint_line_background (GtkTextView    *text_view,
 				       cairo_t        *cr,
 				       int             y, /* in buffer coordinates */
 				       int             height,
-				       const GdkColor *color)
+				       const GdkRGBA  *color)
 {
 	GdkRectangle visible_rect;
 	GdkRectangle line_rect;
@@ -1803,7 +1803,7 @@ gtk_source_view_paint_line_background (GtkTextView    *text_view,
 
 	line_rect.x += MAX (0, margin - 1);
 
-	gdk_cairo_set_source_color (cr, (GdkColor *)color);
+	gdk_cairo_set_source_rgba (cr, (GdkRGBA *)color);
 	cairo_set_line_width (cr, 1);
 	cairo_rectangle (cr, line_rect.x + .5, line_rect.y + .5,
 			 line_rect.width - 1, line_rect.height - 1);
@@ -1889,7 +1889,7 @@ gtk_source_view_paint_marks_background (GtkSourceView *view,
 	{
 		gint line_to_paint;
 		GSList *marks;
-		GdkColor background;
+		GdkRGBA background;
 		int priority;
 
 		line_to_paint = g_array_index (numbers, gint, i);
@@ -1904,7 +1904,7 @@ gtk_source_view_paint_marks_background (GtkSourceView *view,
 		{
 			GtkSourceMarkCategory *cat;
 			gint prio;
-			GdkColor bg;
+			GdkRGBA bg;
 
 			cat = gtk_source_view_get_mark_category (view,
 			                                         gtk_source_mark_get_category (marks->data));
@@ -2419,7 +2419,6 @@ gtk_source_view_draw (GtkWidget *widget,
 	{
 		GtkTextIter cur;
 		gint y, height;
-		GdkColor *color;
 		GtkTextBuffer *buffer = gtk_text_view_get_buffer (text_view);
 
 		gtk_text_buffer_get_iter_at_mark (buffer,
@@ -2429,17 +2428,26 @@ gtk_source_view_draw (GtkWidget *widget,
 
 		if (view->priv->current_line_color_set)
 		{
-			color = &view->priv->current_line_color;
+			gtk_source_view_paint_line_background (text_view,
+							       cr,
+							       y, height,
+							       &view->priv->current_line_color);
 		}
 		else
 		{
-			GtkStyle *style = gtk_widget_get_style (widget);
-			GtkStateType state = gtk_widget_get_state (widget);
+			GtkStyleContext *context;
+			GtkStateFlags state;
+			GdkRGBA color;
 
-			color = &style->bg[state];
+			context = gtk_widget_get_style_context (widget);
+			state = gtk_widget_get_state_flags (widget);
+			gtk_style_context_get_color (context, state, &color);
+
+			gtk_source_view_paint_line_background (text_view,
+							       cr,
+							       y, height,
+							       &color);
 		}
-
-		gtk_source_view_paint_line_background (text_view, cr, y, height, color);
 	}
 
 	if (gtk_cairo_should_draw_window (cr, window))
@@ -2707,8 +2715,6 @@ gtk_source_view_set_tab_width (GtkSourceView *view,
 
 	if (view->priv->tab_width == width)
 		return;
-
-	gtk_widget_ensure_style (GTK_WIDGET (view));
 
 	save_width = view->priv->tab_width;
 	view->priv->tab_width = width;
@@ -3985,13 +3991,13 @@ update_right_margin_colors (GtkSourceView *view)
 
 	if (view->priv->right_margin_line_color != NULL)
 	{
-		gdk_color_free (view->priv->right_margin_line_color);
+		gdk_rgba_free (view->priv->right_margin_line_color);
 		view->priv->right_margin_line_color = NULL;
 	}
 
 	if (view->priv->right_margin_overlay_color != NULL)
 	{
-		gdk_color_free (view->priv->right_margin_overlay_color);
+		gdk_rgba_free (view->priv->right_margin_overlay_color);
 		view->priv->right_margin_overlay_color = NULL;
 	}
 
@@ -4005,16 +4011,16 @@ update_right_margin_colors (GtkSourceView *view)
 		{
 			gchar *color_str = NULL;
 			gboolean color_set;
-			GdkColor color;
+			GdkRGBA color;
 
 			g_object_get (style,
 				      "foreground-set", &color_set,
 				      "foreground", &color_str,
 				      NULL);
 
-			if (color_set && (color_str != NULL) && gdk_color_parse (color_str, &color))
+			if (color_set && (color_str != NULL) && gdk_rgba_parse (&color, color_str))
 			{
-				view->priv->right_margin_line_color = gdk_color_copy (&color);
+				view->priv->right_margin_line_color = gdk_rgba_copy (&color);
 			}
 
 			g_free (color_str);
@@ -4025,9 +4031,9 @@ update_right_margin_colors (GtkSourceView *view)
 				      "background", &color_str,
 				      NULL);
 
-			if (color_set && (color_str != NULL) && gdk_color_parse (color_str, &color))
+			if (color_set && (color_str != NULL) && gdk_rgba_parse (&color, color_str))
 			{
-				view->priv->right_margin_overlay_color = gdk_color_copy (&color);
+				view->priv->right_margin_overlay_color = gdk_rgba_copy (&color);
 			}
 
 			g_free (color_str);
@@ -4036,9 +4042,13 @@ update_right_margin_colors (GtkSourceView *view)
 
 	if (view->priv->right_margin_line_color == NULL)
 	{
-		GtkStyle *style = gtk_widget_get_style (widget);
+		GtkStyleContext *context;
+		GdkRGBA color;
 
-		view->priv->right_margin_line_color = gdk_color_copy (&style->text[GTK_STATE_NORMAL]);
+		context = gtk_widget_get_style_context (widget);
+		gtk_style_context_get_color (context, 0, &color);
+
+		view->priv->right_margin_line_color = gdk_rgba_copy (&color);
 	}
 }
 
@@ -4052,7 +4062,7 @@ update_spaces_color (GtkSourceView *view)
 
 	if (view->priv->spaces_color != NULL)
 	{
-		gdk_color_free (view->priv->spaces_color);
+		gdk_rgba_free (view->priv->spaces_color);
 		view->priv->spaces_color = NULL;
 	}
 
@@ -4065,15 +4075,15 @@ update_spaces_color (GtkSourceView *view)
 		if (style != NULL)
 		{
 			gchar *color_str = NULL;
-			GdkColor color;
+			GdkRGBA color;
 
 			g_object_get (style,
 				      "foreground", &color_str,
 				      NULL);
 
-			if (color_str != NULL && gdk_color_parse (color_str, &color))
+			if (color_str != NULL && gdk_rgba_parse (&color, color_str))
 			{
-				view->priv->spaces_color = gdk_color_copy (&color);
+				view->priv->spaces_color = gdk_rgba_copy (&color);
 			}
 
 			g_free (color_str);
@@ -4082,9 +4092,12 @@ update_spaces_color (GtkSourceView *view)
 
 	if (view->priv->spaces_color == NULL)
 	{
-		GtkStyle *style = gtk_widget_get_style (widget);
+		GtkStyleContext *context;
 
-		view->priv->spaces_color = gdk_color_copy (&style->text[GTK_STATE_INSENSITIVE]);
+		context = gtk_widget_get_style_context (widget);
+		gtk_style_context_get_color (context,
+					     GTK_STATE_FLAG_INSENSITIVE,
+					     view->priv->right_margin_line_color);
 	}
 }
 
@@ -4136,7 +4149,9 @@ gtk_source_view_update_style_scheme (GtkSourceView *view)
 			view->priv->style_scheme_applied = TRUE;
 		}
 		else
+		{
 			view->priv->style_scheme_applied = FALSE;
+		}
 	}
 }
 

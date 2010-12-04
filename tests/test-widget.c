@@ -1307,10 +1307,10 @@ mark_tooltip_func (GtkSourceMarkCategory *category,
 static void
 add_source_mark_pixbufs (GtkSourceView *view)
 {
-	GdkColor color;
+	GdkRGBA color;
 	GtkSourceMarkCategory *cat;
 
-	gdk_color_parse ("lightgreen", &color);
+	gdk_rgba_parse (&color, "lightgreen");
 
 	cat = gtk_source_view_get_mark_category (view, MARK_TYPE_1);
 
@@ -1323,7 +1323,7 @@ add_source_mark_pixbufs (GtkSourceView *view)
 	                  G_CALLBACK (mark_tooltip_func),
 	                  view);
 
-	gdk_color_parse ("pink", &color);
+	gdk_rgba_parse (&color, "pink");
 
 	cat = gtk_source_view_get_mark_category (view, MARK_TYPE_2);
 
@@ -1423,10 +1423,10 @@ create_view_window (GtkSourceBuffer *buffer, GtkSourceView *from)
 	font_desc = pango_font_description_from_string ("monospace");
 	if (font_desc != NULL)
 	{
-		gtk_widget_modify_font (view, font_desc);
+		gtk_widget_override_font (view, font_desc);
 		pango_font_description_free (font_desc);
 	}
-	
+
 	/* change view attributes to match those of from */
 	if (from)
 	{
