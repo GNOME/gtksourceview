@@ -624,16 +624,12 @@ set_text_style (GtkWidget      *widget,
 	else
 		color_ptr = NULL;
 
-	g_print ("BG color: %s\n", gdk_rgba_to_string (color_ptr));
-
 	gtk_widget_override_background_color (widget, state, color_ptr);
 
 	if (get_color (style, TRUE, &color))
 		color_ptr = &color;
 	else
 		color_ptr = NULL;
-
-	g_print ("FG color: %s\n", gdk_rgba_to_string (color_ptr));
 
 	gtk_widget_override_color (widget, state, color_ptr);
 }
