@@ -42,7 +42,7 @@ typedef struct _GtkSourceCompletionInfo GtkSourceCompletionInfo;
 struct _GtkSourceCompletionInfo
 {
 	GtkWindow parent;
-	
+
 	GtkSourceCompletionInfoPrivate *priv;
 };
 
@@ -51,8 +51,8 @@ typedef struct _GtkSourceCompletionInfoClass GtkSourceCompletionInfoClass;
 struct _GtkSourceCompletionInfoClass
 {
 	GtkWindowClass parent_class;
-	
-	void	(*before_show)	(GtkSourceCompletionInfo *info);
+
+	void	(*before_show)		(GtkSourceCompletionInfo *info);
 };
 
 GType		 gtk_source_completion_info_get_type		(void) G_GNUC_CONST;
@@ -64,18 +64,10 @@ void		 gtk_source_completion_info_move_to_iter	(GtkSourceCompletionInfo *info,
 								 GtkTextView             *view,
 								 GtkTextIter             *iter);
 
-void		 gtk_source_completion_info_set_sizing		(GtkSourceCompletionInfo *info,
-								 gint                     width,
-								 gint                     height,
-								 gboolean                 shrink_width,
-								 gboolean                 shrink_height);
-
-void		 gtk_source_completion_info_set_widget		(GtkSourceCompletionInfo *info,
+void		 gtk_source_completion_info_set_widget	(GtkSourceCompletionInfo *info,
 								 GtkWidget               *widget);
 
 GtkWidget	*gtk_source_completion_info_get_widget		(GtkSourceCompletionInfo *info);
-
-void		 gtk_source_completion_info_process_resize	(GtkSourceCompletionInfo *info);
 
 G_END_DECLS
 

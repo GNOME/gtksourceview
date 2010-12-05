@@ -929,9 +929,6 @@ update_proposal_info_real (GtkSourceCompletion         *completion,
 
 	info_window = GTK_SOURCE_COMPLETION_INFO (completion->priv->info_window);
 
-	gtk_source_completion_info_set_sizing (info_window,
-	                                       -1, -1, TRUE, TRUE);
-
 	if (proposal == NULL)
 	{
 		/* Set to default widget */
@@ -995,8 +992,6 @@ update_proposal_info_real (GtkSourceCompletion         *completion,
 	g_signal_handlers_unblock_by_func (completion->priv->info_window,
 	                                   G_CALLBACK (show_info_cb),
 	                                   completion);
-
-	gtk_source_completion_info_process_resize (info_window);
 }
 
 static void
