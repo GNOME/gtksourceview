@@ -168,6 +168,8 @@
           <end>^(?!\t)</end>
           <include>
             <context sub-pattern="1" where="start" style-ref="targets"/>
+            <context ref="def:shell-like-comment"/>
+            <context ref="directives"/>
             <context id="prereq" end-at-line-end="true" style-ref="prereq">
               <start>(?&lt;=:)(?=.)</start>
               <end>;</end>
