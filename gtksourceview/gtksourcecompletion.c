@@ -1231,9 +1231,8 @@ gtk_source_completion_size_allocate (GtkWidget           *widget,
 }
 
 static void
-gtk_source_completion_style_set (GtkWidget           *widget,
-                                 GtkStyle            *prev,
-                                 GtkSourceCompletion *completion)
+gtk_source_completion_style_updated (GtkWidget           *widget,
+                                     GtkSourceCompletion *completion)
 {
 	update_column_sizes (completion);
 }
@@ -3089,8 +3088,8 @@ initialize_ui (GtkSourceCompletion *completion)
 				completion);
 
 	g_signal_connect_after (completion->priv->tree_view_proposals,
-				"style-set",
-				G_CALLBACK (gtk_source_completion_style_set),
+				"style-updated",
+				G_CALLBACK (gtk_source_completion_style_updated),
 				completion);
 
 	g_signal_connect (completion->priv->window,
