@@ -187,72 +187,63 @@ typedef enum
 } IconType;
 
 /* Prototypes. */
-static GObject *gtk_source_view_constructor		(GType               type,
-							 guint               n_construct_properties,
-							 GObjectConstructParam *construct_param);
+static GObject *gtk_source_view_constructor			(GType               type,
+								 guint               n_construct_properties,
+								 GObjectConstructParam *construct_param);
 static void 	gtk_source_view_dispose			(GObject            *object);
-static void 	gtk_source_view_finalize		(GObject            *object);
-
+static void 	gtk_source_view_finalize			(GObject            *object);
 static void	gtk_source_view_undo 			(GtkSourceView      *view);
 static void	gtk_source_view_redo 			(GtkSourceView      *view);
 static void	gtk_source_view_show_completion_real	(GtkSourceView      *view);
-
 static void 	set_source_buffer 			(GtkSourceView      *view,
-			       				 GtkTextBuffer      *buffer);
-
+								 GtkTextBuffer      *buffer);
 static void	gtk_source_view_populate_popup 		(GtkTextView        *view,
-					    		 GtkMenu            *menu);
-
+								 GtkMenu            *menu);
 static void	gtk_source_view_move_cursor		(GtkTextView        *text_view,
-							 GtkMovementStep     step,
-							 gint                count,
-							 gboolean            extend_selection);
-
+								 GtkMovementStep     step,
+								 gint                count,
+								 gboolean            extend_selection);
 static void 	menu_item_activate_cb 			(GtkWidget          *menu_item,
-				  			 GtkTextView        *text_view);
-
-static void 	gtk_source_view_get_lines 		(GtkTextView       *text_view,
-				       			 gint               first_y,
-				       			 gint               last_y,
-				       			 GArray            *buffer_coords,
-				       			 GArray            *line_heights,
-				       			 GArray            *numbers,
-				       			 gint              *countp);
+								 GtkTextView        *text_view);
+static void 	gtk_source_view_get_lines			(GtkTextView       *text_view,
+								 gint               first_y,
+								 gint               last_y,
+								 GArray            *buffer_coords,
+								 GArray            *line_heights,
+								 GArray            *numbers,
+								 gint              *countp);
 static gboolean gtk_source_view_draw 			(GtkWidget         *widget,
-							 cairo_t           *cr);
-static void	gtk_source_view_move_lines		(GtkSourceView     *view,
-							 gboolean           copy,
-							 gint               step);
-static void	gtk_source_view_move_words		(GtkSourceView     *view,
-							 gint               step);
+								 cairo_t           *cr);
+static void	gtk_source_view_move_lines			(GtkSourceView     *view,
+								 gboolean           copy,
+								 gint               step);
+static void	gtk_source_view_move_words			(GtkSourceView     *view,
+								 gint               step);
 static gboolean	gtk_source_view_key_press_event		(GtkWidget         *widget,
-							 GdkEventKey       *event);
-static void 	view_dnd_drop 				(GtkTextView       *view,
-							 GdkDragContext    *context,
-							 gint               x,
-							 gint               y,
-							 GtkSelectionData  *selection_data,
-							 guint              info,
-							 guint              timestamp,
-							 gpointer           data);
-
-static gint	calculate_real_tab_width 		(GtkSourceView     *view,
-							 guint              tab_size,
-							 gchar              c);
-
-static void	gtk_source_view_set_property 		(GObject           *object,
-							 guint              prop_id,
-							 const GValue      *value,
-							 GParamSpec        *pspec);
+								 GdkEventKey       *event);
+static void	view_dnd_drop 				(GtkTextView       *view,
+								 GdkDragContext    *context,
+								 gint               x,
+								 gint               y,
+								 GtkSelectionData  *selection_data,
+								 guint              info,
+								 guint              timestamp,
+								 gpointer           data);
+static gint	calculate_real_tab_width 			(GtkSourceView     *view,
+								 guint              tab_size,
+								 gchar              c);
+static void	gtk_source_view_set_property		(GObject           *object,
+								 guint              prop_id,
+								 const GValue      *value,
+								 GParamSpec        *pspec);
 static void	gtk_source_view_get_property		(GObject           *object,
-							 guint              prop_id,
-							 GValue            *value,
-							 GParamSpec        *pspec);
-
-static void     gtk_source_view_style_set               (GtkWidget         *widget,
-							 GtkStyle          *previous_style);
+								 guint              prop_id,
+								 GValue            *value,
+								 GParamSpec        *pspec);
+static void	gtk_source_view_style_set			(GtkWidget         *widget,
+								 GtkStyle          *previous_style);
 static void	gtk_source_view_realize			(GtkWidget         *widget);
-static void	gtk_source_view_update_style_scheme	(GtkSourceView     *view);
+static void	gtk_source_view_update_style_scheme		(GtkSourceView     *view);
 
 /* Private functions. */
 static void
