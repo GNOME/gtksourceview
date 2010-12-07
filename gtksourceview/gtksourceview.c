@@ -931,24 +931,28 @@ init_left_gutter (GtkSourceView *view)
 
 	gutter = gtk_source_view_get_gutter (view, GTK_TEXT_WINDOW_LEFT);
 
-	view->priv->line_renderer =
-		gtk_source_gutter_insert (gutter,
-		                          GTK_TYPE_SOURCE_GUTTER_RENDERER_LINES,
-		                          GTK_SOURCE_VIEW_GUTTER_POSITION_LINES,
-		                          "alignment-mode", GTK_SOURCE_GUTTER_RENDERER_ALIGNMENT_MODE_FIRST,
-		                          "yalign", 0.5,
-		                          "xalign", 1.0,
-		                          "xpad", 3,
-		                          NULL);
+	view->priv->line_renderer = gtk_source_gutter_renderer_lines_new ();
+	g_object_set (view->priv->line_renderer,
+	              "alignment-mode", GTK_SOURCE_GUTTER_RENDERER_ALIGNMENT_MODE_FIRST,
+	              "yalign", 0.5,
+	              "xalign", 1.0,
+	              "xpad", 3,
+	              NULL);
 
-	view->priv->marks_renderer =
-		gtk_source_gutter_insert (gutter,
-		                          GTK_TYPE_SOURCE_GUTTER_RENDERER_MARKS,
-		                          GTK_SOURCE_VIEW_GUTTER_POSITION_MARKS,
-		                          "alignment-mode", GTK_SOURCE_GUTTER_RENDERER_ALIGNMENT_MODE_FIRST,
-		                          "yalign", 0.5,
-		                          "xalign", 0.5,
-		                          NULL);
+	gtk_source_gutter_insert (gutter,
+	                          view->priv->line_renderer,
+	                          GTK_SOURCE_VIEW_GUTTER_POSITION_LINES);
+
+	view->priv->marks_renderer = gtk_source_gutter_renderer_marks_new ();
+	g_object_set (view->priv->marks_renderer,
+	              "alignment-mode", GTK_SOURCE_GUTTER_RENDERER_ALIGNMENT_MODE_FIRST,
+	              "yalign", 0.5,
+	              "xalign", 0.5,
+	              NULL);
+
+	gtk_source_gutter_insert (gutter,
+	                          view->priv->marks_renderer,
+	                          GTK_SOURCE_VIEW_GUTTER_POSITION_MARKS);
 
 	g_signal_connect (view->priv->marks_renderer,
 	                  "activate",

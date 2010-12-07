@@ -20,6 +20,7 @@
  */
 
 #include "gtksourcegutterrenderer.h"
+#include "gtksourcegutterrenderer-private.h"
 #include "gtksourceview-marshal.h"
 #include "gtksourceview-typebuiltins.h"
 #include "gtksourceview-i18n.h"
@@ -596,7 +597,7 @@ gtk_source_gutter_renderer_class_init (GtkSourceGutterRendererClass *klass)
 	                                                      _("The View"),
 	                                                      _("The view"),
 	                                                      GTK_TYPE_TEXT_VIEW,
-	                                                      G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
+	                                                      G_PARAM_READABLE));
 
 	/**
 	 * GtkSourceGutterRenderer:alignment-mode:
@@ -630,7 +631,7 @@ gtk_source_gutter_renderer_class_init (GtkSourceGutterRendererClass *klass)
 	                                                    _("The window type"),
 	                                                    GTK_TYPE_TEXT_WINDOW_TYPE,
 	                                                    GTK_TEXT_WINDOW_PRIVATE,
-	                                                    G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
+	                                                    G_PARAM_READABLE));
 
 	g_object_class_install_property (object_class,
 	                                 PROP_SIZE,
@@ -1214,10 +1215,31 @@ gtk_source_gutter_renderer_get_background (GtkSourceGutterRenderer *renderer,
  */
 void
 gtk_source_gutter_renderer_set_background (GtkSourceGutterRenderer *renderer,
-                                           const GdkRGBA          *color)
+                                           const GdkRGBA           *color)
 {
 	g_return_if_fail (GTK_IS_SOURCE_GUTTER_RENDERER (renderer));
 
 	set_background_color (renderer, color);
+}
+
+void
+_gtk_source_gutter_renderer_set_view (GtkSourceGutterRenderer *renderer,
+                                      GtkTextView             *view,
+                                      GtkTextWindowType        window_type)
+{
+	g_return_if_fail (renderer->priv->view == NULL);
+
+	renderer->priv->view = g_object_ref (view);
+	renderer->priv->window_type = window_type;
+}
+
+void
+_gtk_source_gutter_renderer_unset_view (GtkSourceGutterRenderer *renderer)
+{
+	g_return_if_fail (renderer->priv->view != NULL);
+
+	g_object_unref (renderer->priv->view);
+	renderer->priv->view = NULL;
+	renderer->priv->window_type = GTK_TEXT_WINDOW_PRIVATE;
 }
 

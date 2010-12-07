@@ -44,22 +44,23 @@ libgtksourceview_headers =			\
 	gtksourceview.h
 
 NOINST_H_FILES = \
-	gtksourcecompletionmodel.h	\
-	gtksourcecompletion-private.h	\
-	gtksourcecompletionui.h		\
-	gtksourcecompletionutils.h	\
-	gtksourcecontextengine.h	\
-	gtksourceengine.h		\
-	gtksourcegutter-private.h	\
-	gtksourcelanguage-private.h	\
-	gtksourcestyle-private.h	\
-	gtksourceundomanagerdefault.h	\
-	gtksourceview-i18n.h		\
-	gtksourceview-utils.h		\
-	gtktextregion.h			\
-	gtksourcepixbufhelper.h		\
-	gtksourcegutterrendererlines.h	\
-	gtksourcegutterrenderermarks.h
+	gtksourcecompletionmodel.h		\
+	gtksourcecompletion-private.h		\
+	gtksourcecompletionui.h			\
+	gtksourcecompletionutils.h		\
+	gtksourcecontextengine.h		\
+	gtksourceengine.h			\
+	gtksourcegutter-private.h		\
+	gtksourcelanguage-private.h		\
+	gtksourcestyle-private.h		\
+	gtksourceundomanagerdefault.h		\
+	gtksourceview-i18n.h			\
+	gtksourceview-utils.h			\
+	gtktextregion.h				\
+	gtksourcepixbufhelper.h			\
+	gtksourcegutterrendererlines.h		\
+	gtksourcegutterrenderermarks.h		\
+	gtksourcegutterrenderer-private.h
 
 libgtksourceview_c_files = \
 	gtksourcebuffer.c 		\

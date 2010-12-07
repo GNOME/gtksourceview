@@ -57,24 +57,9 @@ GType gtk_source_gutter_get_type 		(void) G_GNUC_CONST;
 
 GdkWindow *gtk_source_gutter_get_window 	(GtkSourceGutter         *gutter);
 
-GtkSourceGutterRenderer *
-	gtk_source_gutter_insert		(GtkSourceGutter         *gutter,
-                                                 GType                    gtype,
-                                                 gint                     position,
-                                                 ...) G_GNUC_NULL_TERMINATED;
-
-GtkSourceGutterRenderer *
-	gtk_source_gutter_insert_valist         (GtkSourceGutter         *gutter,
-                                                 GType                    gtype,
-                                                 gint                     position,
-                                                 va_list                  ap);
-
-GtkSourceGutterRenderer *
-	gtk_source_gutter_insertv               (GtkSourceGutter         *gutter,
-                                                 GType                    gtype,
-                                                 gint                     position,
-                                                 guint                    num_parameters,
-                                                 GParameter              *parameters);
+gboolean gtk_source_gutter_insert               (GtkSourceGutter         *gutter,
+                                                 GtkSourceGutterRenderer *renderer,
+                                                 gint                     position);
 
 void gtk_source_gutter_reorder			(GtkSourceGutter	 *gutter,
                                                  GtkSourceGutterRenderer *renderer,
