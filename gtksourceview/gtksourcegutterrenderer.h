@@ -82,15 +82,15 @@ struct _GtkSourceGutterRendererClass
 	/*< public >*/
 	void (*begin)               (GtkSourceGutterRenderer     *renderer,
 	                             cairo_t                     *cr,
-	                             const GdkRectangle          *background_area,
-	                             const GdkRectangle          *cell_area,
+	                             GdkRectangle                *background_area,
+	                             GdkRectangle                *cell_area,
 	                             GtkTextIter                 *start,
 	                             GtkTextIter                 *end);
 
 	void (*draw)                (GtkSourceGutterRenderer      *renderer,
 	                             cairo_t                      *cr,
-	                             const GdkRectangle           *background_area,
-	                             const GdkRectangle           *cell_area,
+	                             GdkRectangle                 *background_area,
+	                             GdkRectangle                 *cell_area,
 	                             GtkTextIter                  *start,
 	                             GtkTextIter                  *end,
 	                             GtkSourceGutterRendererState  state);
@@ -100,19 +100,19 @@ struct _GtkSourceGutterRendererClass
 	/* Signal handlers */
 	gboolean (*query_activatable) (GtkSourceGutterRenderer      *renderer,
 	                               GtkTextIter                  *iter,
-	                               const GdkRectangle           *area,
+	                               GdkRectangle                 *area,
 	                               GdkEvent                     *event);
 
 	void (*activate)            (GtkSourceGutterRenderer      *renderer,
 	                             GtkTextIter                  *iter,
-	                             const GdkRectangle           *area,
+	                             GdkRectangle                 *area,
 	                             GdkEvent                     *event);
 
 	void (*queue_draw)          (GtkSourceGutterRenderer      *renderer);
 
 	gboolean (*query_tooltip)   (GtkSourceGutterRenderer      *renderer,
 	                             GtkTextIter                  *iter,
-	                             const GdkRectangle           *area,
+	                             GdkRectangle                 *area,
 	                             gint                          x,
 	                             gint                          y,
 	                             GtkTooltip                   *tooltip);
@@ -127,15 +127,15 @@ GType gtk_source_gutter_renderer_get_type (void) G_GNUC_CONST;
 
 void     gtk_source_gutter_renderer_begin           (GtkSourceGutterRenderer      *renderer,
                                                      cairo_t                      *cr,
-                                                     const GdkRectangle           *background_area,
-                                                     const GdkRectangle           *cell_area,
+                                                     GdkRectangle                 *background_area,
+                                                     GdkRectangle                 *cell_area,
                                                      GtkTextIter                  *start,
                                                      GtkTextIter                  *end);
 
 void     gtk_source_gutter_renderer_draw            (GtkSourceGutterRenderer      *renderer,
                                                      cairo_t                      *cr,
-                                                     const GdkRectangle           *background_area,
-                                                     const GdkRectangle           *cell_area,
+                                                     GdkRectangle                 *background_area,
+                                                     GdkRectangle                 *cell_area,
                                                      GtkTextIter                  *start,
                                                      GtkTextIter                  *end,
                                                      GtkSourceGutterRendererState  state);
@@ -187,13 +187,13 @@ void     gtk_source_gutter_renderer_set_background  (GtkSourceGutterRenderer    
 /* Emits the 'activate' signal */
 void     gtk_source_gutter_renderer_activate        (GtkSourceGutterRenderer      *renderer,
                                                      GtkTextIter                  *iter,
-                                                     const GdkRectangle           *area,
+                                                     GdkRectangle                 *area,
                                                      GdkEvent                     *event);
 
 /* Emits the 'query-activatable' signal */
 gboolean gtk_source_gutter_renderer_query_activatable (GtkSourceGutterRenderer      *renderer,
                                                        GtkTextIter                  *iter,
-                                                       const GdkRectangle           *area,
+                                                       GdkRectangle                 *area,
                                                        GdkEvent                     *event);
 
 /* Emits the 'queue-draw' signal */
@@ -202,7 +202,7 @@ void     gtk_source_gutter_renderer_queue_draw      (GtkSourceGutterRenderer    
 /* Emits the 'query-tooltip' signal */
 gboolean gtk_source_gutter_renderer_query_tooltip   (GtkSourceGutterRenderer      *renderer,
                                                      GtkTextIter                  *iter,
-                                                     const GdkRectangle           *area,
+                                                     GdkRectangle                 *area,
                                                      gint                          x,
                                                      gint                          y,
                                                      GtkTooltip                   *tooltip);

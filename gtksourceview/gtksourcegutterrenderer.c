@@ -347,8 +347,8 @@ gtk_source_gutter_renderer_get_property (GObject    *object,
 static void
 renderer_draw_impl (GtkSourceGutterRenderer      *renderer,
                     cairo_t                      *cr,
-                    const GdkRectangle           *background_area,
-                    const GdkRectangle           *cell_area,
+                    GdkRectangle                 *background_area,
+                    GdkRectangle                 *cell_area,
                     GtkTextIter                  *start,
                     GtkTextIter                  *end,
                     GtkSourceGutterRendererState  state)
@@ -682,8 +682,8 @@ gtk_source_gutter_renderer_init (GtkSourceGutterRenderer *self)
 void
 gtk_source_gutter_renderer_begin (GtkSourceGutterRenderer *renderer,
                                   cairo_t                 *cr,
-                                  const GdkRectangle      *background_area,
-                                  const GdkRectangle      *cell_area,
+                                  GdkRectangle            *background_area,
+                                  GdkRectangle            *cell_area,
                                   GtkTextIter             *start,
                                   GtkTextIter             *end)
 {
@@ -729,8 +729,8 @@ gtk_source_gutter_renderer_begin (GtkSourceGutterRenderer *renderer,
 void
 gtk_source_gutter_renderer_draw (GtkSourceGutterRenderer      *renderer,
                                  cairo_t                      *cr,
-                                 const GdkRectangle           *background_area,
-                                 const GdkRectangle           *cell_area,
+                                 GdkRectangle                 *background_area,
+                                 GdkRectangle                 *cell_area,
                                  GtkTextIter                  *start,
                                  GtkTextIter                  *end,
                                  GtkSourceGutterRendererState  state)
@@ -790,7 +790,7 @@ gtk_source_gutter_renderer_end (GtkSourceGutterRenderer *renderer)
 gboolean
 gtk_source_gutter_renderer_query_activatable (GtkSourceGutterRenderer *renderer,
                                               GtkTextIter             *iter,
-                                              const GdkRectangle      *area,
+                                              GdkRectangle            *area,
                                               GdkEvent                *event)
 {
 	gboolean ret;
@@ -827,7 +827,7 @@ gtk_source_gutter_renderer_query_activatable (GtkSourceGutterRenderer *renderer,
 void
 gtk_source_gutter_renderer_activate (GtkSourceGutterRenderer *renderer,
                                      GtkTextIter             *iter,
-                                     const GdkRectangle      *area,
+                                     GdkRectangle            *area,
                                      GdkEvent                *event)
 {
 	g_return_if_fail (GTK_IS_SOURCE_GUTTER_RENDERER (renderer));
@@ -874,7 +874,7 @@ gtk_source_gutter_renderer_queue_draw (GtkSourceGutterRenderer *renderer)
 gboolean
 gtk_source_gutter_renderer_query_tooltip (GtkSourceGutterRenderer *renderer,
                                           GtkTextIter             *iter,
-                                          const GdkRectangle      *area,
+                                          GdkRectangle            *area,
                                           gint                     x,
                                           gint                     y,
                                           GtkTooltip              *tooltip)

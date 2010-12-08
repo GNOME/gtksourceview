@@ -45,7 +45,7 @@ enum
 
 static void
 center_on (GtkSourceGutterRenderer *renderer,
-           const GdkRectangle      *cell_area,
+           GdkRectangle            *cell_area,
            GtkTextIter             *iter,
            gint                     width,
            gint                     height,
@@ -68,8 +68,8 @@ center_on (GtkSourceGutterRenderer *renderer,
 static void
 gutter_renderer_pixbuf_draw (GtkSourceGutterRenderer      *renderer,
                              cairo_t                      *cr,
-                             const GdkRectangle           *background_area,
-                             const GdkRectangle           *cell_area,
+                             GdkRectangle                 *background_area,
+                             GdkRectangle                 *cell_area,
                              GtkTextIter                  *start,
                              GtkTextIter                  *end,
                              GtkSourceGutterRendererState  state)

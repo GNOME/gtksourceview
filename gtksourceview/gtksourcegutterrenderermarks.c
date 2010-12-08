@@ -370,7 +370,7 @@ set_tooltip_widget_from_marks (GtkSourceView *view,
 static gboolean
 gutter_renderer_query_tooltip (GtkSourceGutterRenderer *renderer,
                                GtkTextIter             *iter,
-                               const GdkRectangle      *area,
+                               GdkRectangle            *area,
                                gint                     x,
                                gint                     y,
                                GtkTooltip              *tooltip)
@@ -403,7 +403,7 @@ gutter_renderer_query_tooltip (GtkSourceGutterRenderer *renderer,
 static gboolean
 gutter_renderer_query_activatable (GtkSourceGutterRenderer *renderer,
                                    GtkTextIter             *iter,
-                                   const GdkRectangle      *area,
+                                   GdkRectangle            *area,
                                    GdkEvent                *event)
 {
 	return TRUE;

@@ -253,7 +253,7 @@ select_line (GtkSourceGutterRendererLines *renderer,
 static void
 gutter_renderer_activate (GtkSourceGutterRenderer *renderer,
                           GtkTextIter             *iter,
-                          const GdkRectangle      *rect,
+                          GdkRectangle            *rect,
                           GdkEvent                *event)
 {
 	GtkSourceGutterRendererLines *lines;
@@ -287,7 +287,7 @@ gutter_renderer_activate (GtkSourceGutterRenderer *renderer,
 static gboolean
 gutter_renderer_query_activatable (GtkSourceGutterRenderer *renderer,
                                    GtkTextIter             *iter,
-                                   const GdkRectangle      *area,
+                                   GdkRectangle            *area,
                                    GdkEvent                *event)
 {
 	return GTK_SOURCE_GUTTER_RENDERER_LINES (renderer)->priv->buffer != NULL;
