@@ -259,10 +259,9 @@ from_stock (GtkSourcePixbufHelper *helper,
 
 	g_free (name);
 
-	set_cache (helper, gtk_widget_render_icon (widget,
-	                                           helper->stock_id,
-	                                           icon_size,
-	                                           helper->stock_detail));
+	set_cache (helper, gtk_widget_render_icon_pixbuf (widget,
+	                                                  helper->stock_id,
+	                                                  icon_size));
 }
 static void
 from_gicon (GtkSourcePixbufHelper *helper,
