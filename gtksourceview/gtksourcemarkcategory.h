@@ -78,10 +78,6 @@ void             gtk_source_mark_category_set_stock_id        (GtkSourceMarkCate
                                                                const gchar           *stock_id);
 const gchar     *gtk_source_mark_category_get_stock_id        (GtkSourceMarkCategory *category);
 
-void             gtk_source_mark_category_set_stock_detail    (GtkSourceMarkCategory *category,
-                                                               const gchar           *stock_detail);
-const gchar     *gtk_source_mark_category_get_stock_detail    (GtkSourceMarkCategory *category);
-
 void             gtk_source_mark_category_set_icon_name       (GtkSourceMarkCategory *category,
                                                                const gchar           *icon_name);
 const gchar     *gtk_source_mark_category_get_stock_icon_name (GtkSourceMarkCategory *category);

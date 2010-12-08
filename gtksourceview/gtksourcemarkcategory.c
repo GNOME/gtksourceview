@@ -46,7 +46,6 @@ enum
 	PROP_BACKGROUND,
 	PROP_PRIORITY,
 	PROP_STOCK_ID,
-	PROP_STOCK_DETAIL,
 	PROP_PIXBUF,
 	PROP_ICON_NAME,
 	PROP_GICON
@@ -112,22 +111,6 @@ set_stock_id (GtkSourceMarkCategory *category,
 	                                       stock_id);
 
 	g_object_notify (G_OBJECT (category), "stock-id");
-}
-
-static void
-set_stock_detail (GtkSourceMarkCategory *category,
-                  const gchar           *stock_detail)
-{
-	if (g_strcmp0 (gtk_source_pixbuf_helper_get_stock_detail (category->priv->helper),
-	                                                          stock_detail) == 0)
-	{
-		return;
-	}
-
-	gtk_source_pixbuf_helper_set_stock_detail (category->priv->helper,
-	                                           stock_detail);
-
-	g_object_notify (G_OBJECT (category), "stock-detail");
 }
 
 static void
@@ -198,9 +181,6 @@ gtk_source_mark_category_set_property (GObject      *object,
 		case PROP_STOCK_ID:
 			set_stock_id (self, g_value_get_string (value));
 			break;
-		case PROP_STOCK_DETAIL:
-			set_stock_detail (self, g_value_get_string (value));
-			break;
 		case PROP_PIXBUF:
 			set_pixbuf (self, g_value_get_object (value));
 			break;
@@ -257,10 +237,6 @@ gtk_source_mark_category_get_property (GObject    *object,
 		case PROP_GICON:
 			g_value_set_object (value,
 			                    gtk_source_pixbuf_helper_get_gicon (self->priv->helper));
-			break;
-		case PROP_STOCK_DETAIL:
-			g_value_set_string (value,
-			                    gtk_source_pixbuf_helper_get_stock_detail (self->priv->helper));
 			break;
 		default:
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -336,14 +312,6 @@ gtk_source_mark_category_class_init (GtkSourceMarkCategoryClass *klass)
 	                                                      _("GIcon"),
 	                                                      _("The GIcon"),
 	                                                      G_TYPE_ICON,
-	                                                      G_PARAM_READWRITE));
-
-	g_object_class_install_property (object_class,
-	                                 PROP_STOCK_DETAIL,
-	                                 g_param_spec_string ("stock-detail",
-	                                                      _("Stock Detail"),
-	                                                      _("The stock detail"),
-	                                                      NULL,
 	                                                      G_PARAM_READWRITE));
 
 	signals[QUERY_TOOLTIP_TEXT] =
@@ -446,23 +414,6 @@ gtk_source_mark_category_get_stock_id (GtkSourceMarkCategory *category)
 	g_return_val_if_fail (GTK_IS_SOURCE_MARK_CATEGORY (category), NULL);
 
 	return gtk_source_pixbuf_helper_get_stock_id (category->priv->helper);
-}
-
-void
-gtk_source_mark_category_set_stock_detail (GtkSourceMarkCategory *category,
-                                           const gchar           *stock_detail)
-{
-	g_return_if_fail (GTK_IS_SOURCE_MARK_CATEGORY (category));
-
-	set_stock_detail (category, stock_detail);
-}
-
-const gchar *
-gtk_source_mark_category_get_stock_detail (GtkSourceMarkCategory *category)
-{
-	g_return_val_if_fail (GTK_IS_SOURCE_MARK_CATEGORY (category), NULL);
-
-	return gtk_source_pixbuf_helper_get_stock_detail (category->priv->helper);
 }
 
 void

@@ -39,11 +39,6 @@ void gtk_source_pixbuf_helper_set_stock_id (GtkSourcePixbufHelper *helper,
 
 const gchar *gtk_source_pixbuf_helper_get_stock_id (GtkSourcePixbufHelper *helper);
 
-void gtk_source_pixbuf_helper_set_stock_detail (GtkSourcePixbufHelper *helper,
-                                                const gchar           *stock_id);
-
-const gchar *gtk_source_pixbuf_helper_get_stock_detail (GtkSourcePixbufHelper *helper);
-
 void gtk_source_pixbuf_helper_set_icon_name (GtkSourcePixbufHelper *helper,
                                              const gchar           *icon_name);
 

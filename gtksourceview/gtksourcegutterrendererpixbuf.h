@@ -75,11 +75,6 @@ void         gtk_source_gutter_renderer_pixbuf_set_icon_size    (GtkSourceGutter
 
 GtkIconSize  gtk_source_gutter_renderer_pixbuf_get_icon_size    (GtkSourceGutterRendererPixbuf *renderer);
 
-void         gtk_source_gutter_renderer_pixbuf_set_stock_detail (GtkSourceGutterRendererPixbuf *renderer,
-                                                                 const gchar                   *stock_detail);
-
-const gchar *gtk_source_gutter_renderer_pixbuf_get_stock_detail (GtkSourceGutterRendererPixbuf *renderer);
-
 void         gtk_source_gutter_renderer_pixbuf_set_gicon        (GtkSourceGutterRendererPixbuf *renderer,
                                                                  GIcon                         *icon);
 

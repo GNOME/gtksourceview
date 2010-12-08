@@ -40,7 +40,6 @@ enum
 	PROP_STOCK_ID,
 	PROP_ICON_NAME,
 	PROP_GICON,
-	PROP_STOCK_DETAIL
 };
 
 static void
@@ -185,18 +184,6 @@ set_stock_id (GtkSourceGutterRendererPixbuf *renderer,
 }
 
 static void
-set_stock_detail (GtkSourceGutterRendererPixbuf *renderer,
-                  const gchar                   *stock_detail)
-{
-	gtk_source_pixbuf_helper_set_stock_detail (renderer->priv->helper,
-	                                           stock_detail);
-
-	g_object_notify (G_OBJECT (renderer), "stock-detail");
-
-	gtk_source_gutter_renderer_queue_draw (GTK_SOURCE_GUTTER_RENDERER (renderer));
-}
-
-static void
 set_gicon (GtkSourceGutterRendererPixbuf *renderer,
            GIcon                         *icon)
 {
@@ -239,9 +226,6 @@ gtk_source_gutter_renderer_pixbuf_set_property (GObject      *object,
 		case PROP_STOCK_ID:
 			set_stock_id (renderer, g_value_get_string (value));
 			break;
-		case PROP_STOCK_DETAIL:
-			set_stock_detail (renderer, g_value_get_string (value));
-			break;
 		case PROP_ICON_NAME:
 			set_icon_name (renderer, g_value_get_string (value));
 			break;
@@ -273,10 +257,6 @@ gtk_source_gutter_renderer_pixbuf_get_property (GObject    *object,
 		case PROP_STOCK_ID:
 			g_value_set_string (value,
 			                    gtk_source_pixbuf_helper_get_stock_id (renderer->priv->helper));
-			break;
-		case PROP_STOCK_DETAIL:
-			g_value_set_string (value,
-			                    gtk_source_pixbuf_helper_get_stock_detail (renderer->priv->helper));
 			break;
 		case PROP_ICON_NAME:
 			g_value_set_string (value,
@@ -320,14 +300,6 @@ gtk_source_gutter_renderer_pixbuf_class_init (GtkSourceGutterRendererPixbufClass
 	                                 g_param_spec_string ("stock-id",
 	                                                      _("Stock Id"),
 	                                                      _("The stock id"),
-	                                                      NULL,
-	                                                      G_PARAM_READWRITE));
-
-	g_object_class_install_property (object_class,
-	                                 PROP_STOCK_DETAIL,
-	                                 g_param_spec_string ("stock-detail",
-	                                                      _("Stock Detail"),
-	                                                      _("The stock detail"),
 	                                                      NULL,
 	                                                      G_PARAM_READWRITE));
 
@@ -413,23 +385,6 @@ gtk_source_gutter_renderer_pixbuf_get_stock_id (GtkSourceGutterRendererPixbuf *r
 	g_return_val_if_fail (GTK_IS_SOURCE_GUTTER_RENDERER_PIXBUF (renderer), NULL);
 
 	return gtk_source_pixbuf_helper_get_stock_id (renderer->priv->helper);
-}
-
-void
-gtk_source_gutter_renderer_pixbuf_set_stock_detail (GtkSourceGutterRendererPixbuf *renderer,
-                                                    const gchar                   *stock_detail)
-{
-	g_return_if_fail (GTK_IS_SOURCE_GUTTER_RENDERER_PIXBUF (renderer));
-
-	set_stock_detail (renderer, stock_detail);
-}
-
-const gchar *
-gtk_source_gutter_renderer_pixbuf_get_stock_detail (GtkSourceGutterRendererPixbuf *renderer)
-{
-	g_return_val_if_fail (GTK_IS_SOURCE_GUTTER_RENDERER_PIXBUF (renderer), NULL);
-
-	return gtk_source_pixbuf_helper_get_stock_detail (renderer->priv->helper);
 }
 
 void

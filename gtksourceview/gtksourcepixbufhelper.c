@@ -38,7 +38,6 @@ struct _GtkSourcePixbufHelper
 	GdkPixbuf *pixbuf;
 	gchar *icon_name;
 	gchar *stock_id;
-	gchar *stock_detail;
 	GIcon *gicon;
 };
 
@@ -67,7 +66,6 @@ gtk_source_pixbuf_helper_free (GtkSourcePixbufHelper *helper)
 	}
 
 	g_free (helper->stock_id);
-	g_free (helper->stock_detail);
 	g_free (helper->icon_name);
 
 	g_slice_free (GtkSourcePixbufHelper, helper);
@@ -141,28 +139,6 @@ const gchar *
 gtk_source_pixbuf_helper_get_stock_id (GtkSourcePixbufHelper *helper)
 {
 	return helper->stock_id;
-}
-
-void
-gtk_source_pixbuf_helper_set_stock_detail (GtkSourcePixbufHelper *helper,
-                                           const gchar           *detail)
-{
-	helper->type = ICON_TYPE_STOCK;
-
-	if (helper->stock_detail)
-	{
-		g_free (helper->stock_detail);
-	}
-
-	helper->stock_detail = g_strdup (detail);
-
-	clear_cache (helper);
-}
-
-const gchar *
-gtk_source_pixbuf_helper_get_stock_detail (GtkSourcePixbufHelper *helper)
-{
-	return helper->stock_detail;
 }
 
 void
