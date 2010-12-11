@@ -240,8 +240,7 @@ static void	gtk_source_view_get_property		(GObject           *object,
 								 guint              prop_id,
 								 GValue            *value,
 								 GParamSpec        *pspec);
-static void	gtk_source_view_style_set			(GtkWidget         *widget,
-								 GtkStyle          *previous_style);
+static void	gtk_source_view_style_updated			(GtkWidget         *widget);
 static void	gtk_source_view_realize			(GtkWidget         *widget);
 static void	gtk_source_view_update_style_scheme		(GtkSourceView     *view);
 
@@ -266,7 +265,7 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 
 	widget_class->key_press_event = gtk_source_view_key_press_event;
 	widget_class->draw = gtk_source_view_draw;
-	widget_class->style_set = gtk_source_view_style_set;
+	widget_class->style_updated = gtk_source_view_style_updated;
 	widget_class->realize = gtk_source_view_realize;
 
 	textview_class->populate_popup = gtk_source_view_populate_popup;
@@ -2660,7 +2659,6 @@ gtk_source_view_set_show_line_marks (GtkSourceView *view,
 		return;
 	}
 
-
 	gtk_source_gutter_renderer_set_visible (view->priv->marks_renderer,
 	                                        show);
 
@@ -3936,33 +3934,26 @@ gtk_source_view_get_visual_column (GtkSourceView     *view,
 }
 
 static void
-gtk_source_view_style_set (GtkWidget *widget, GtkStyle *previous_style)
+gtk_source_view_style_updated (GtkWidget *widget)
 {
 	GtkSourceView *view;
 
 	g_return_if_fail (GTK_IS_SOURCE_VIEW (widget));
 
 	/* call default handler first */
-	if (GTK_WIDGET_CLASS (gtk_source_view_parent_class)->style_set)
-		GTK_WIDGET_CLASS (gtk_source_view_parent_class)->style_set (widget, previous_style);
+	GTK_WIDGET_CLASS (gtk_source_view_parent_class)->style_updated (widget);
 
 	view = GTK_SOURCE_VIEW (widget);
-	if (previous_style)
+
+	/* re-set tab stops, but only if we already modified them, i.e.
+	 * do nothing with good old 8-space tabs */
+	if (view->priv->tabs_set)
 	{
-		/* If previous_style is NULL this is the initial
-		 * emission and we can't set the tab array since the
-		 * text view doesn't have a default style yet */
-
-		/* re-set tab stops, but only if we already modified them, i.e.
-		 * do nothing with good old 8-space tabs */
-		if (view->priv->tabs_set)
-		{
-			set_tab_stops_internal (view);
-		}
-
-		/* make sure the margin position is recalculated on next expose */
-		view->priv->cached_right_margin_pos = -1;
+		set_tab_stops_internal (view);
 	}
+
+	/* make sure the margin position is recalculated on next expose */
+	view->priv->cached_right_margin_pos = -1;
 }
 
 static void
