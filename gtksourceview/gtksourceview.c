@@ -3938,8 +3938,6 @@ gtk_source_view_style_updated (GtkWidget *widget)
 {
 	GtkSourceView *view;
 
-	g_return_if_fail (GTK_IS_SOURCE_VIEW (widget));
-
 	/* call default handler first */
 	GTK_WIDGET_CLASS (gtk_source_view_parent_class)->style_updated (widget);
 
