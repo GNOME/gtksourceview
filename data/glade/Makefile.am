@@ -1,14 +1,14 @@
-cataloguedir = $(GLADE_CATALOGUE_DIR)
-catalogue_in_files = gtksourceview.xml.in
-catalogue_DATA = $(catalogue_in_files:.xml.in=.xml)
+catalogdir = $(GLADE_CATALOG_DIR)
+catalog_in_files = gtksourceview.xml.in
+catalog_DATA = $(catalog_in_files:.xml.in=.xml)
 
 EXTRA_DIST = \
-	$(catalogue_in_files)
+	$(catalog_in_files)
 
-validate: $(catalogue_DATA)
-	xmllint --dtdvalid $(GLADE_CATALOGUE_DIR)/glade-catalog.dtd --noout $<
+validate: $(catalog_DATA)
+	xmllint --dtdvalid $(GLADE_CATALOG_DIR)/glade-catalog.dtd --noout $<
 
-CLEANFILES = $(catalogue_DATA)
+CLEANFILES = $(catalog_DATA)
 
 @INTLTOOL_XML_NOMERGE_RULE@
 
