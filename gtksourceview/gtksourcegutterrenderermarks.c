@@ -410,19 +410,18 @@ gutter_renderer_query_activatable (GtkSourceGutterRenderer *renderer,
 }
 
 static void
-gtk_source_gutter_renderer_marks_constructed (GObject *object)
+gutter_renderer_change_view (GtkSourceGutterRenderer *renderer,
+                             GtkTextView             *old_view)
 {
-	GtkSourceGutterRendererMarks *renderer;
 	GtkSourceView *view;
-	GtkSourceGutterRenderer *r;
 
-	renderer = GTK_SOURCE_GUTTER_RENDERER_MARKS (object);
-	r = GTK_SOURCE_GUTTER_RENDERER (renderer);
+	view = GTK_SOURCE_VIEW (gtk_source_gutter_renderer_get_view (renderer));
 
-	view = GTK_SOURCE_VIEW (gtk_source_gutter_renderer_get_view (r));
-
-	gtk_source_gutter_renderer_set_size (r,
-	                                     measure_line_height (view));
+	if (view != NULL)
+	{
+		gtk_source_gutter_renderer_set_size (renderer,
+		                                     measure_line_height (view));
+	}
 }
 
 static void
@@ -432,11 +431,11 @@ gtk_source_gutter_renderer_marks_class_init (GtkSourceGutterRendererMarksClass *
 	GtkSourceGutterRendererClass *renderer_class = GTK_SOURCE_GUTTER_RENDERER_CLASS (klass);
 
 	object_class->finalize = gtk_source_gutter_renderer_marks_finalize;
-	object_class->constructed = gtk_source_gutter_renderer_marks_constructed;
 
 	renderer_class->query_data = gutter_renderer_query_data;
 	renderer_class->query_tooltip = gutter_renderer_query_tooltip;
 	renderer_class->query_activatable = gutter_renderer_query_activatable;
+	renderer_class->change_view = gutter_renderer_change_view;
 
 	/*g_type_class_add_private (object_class, sizeof (GtkSourceGutterRendererMarksPrivate));*/
 }

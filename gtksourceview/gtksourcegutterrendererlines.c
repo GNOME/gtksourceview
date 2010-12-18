@@ -26,8 +26,6 @@
 
 struct _GtkSourceGutterRendererLinesPrivate
 {
-	GtkTextBuffer *buffer;
-
 	gint num_line_digits;
 
 	guint changed_handler_id;
@@ -42,14 +40,27 @@ gtk_source_gutter_renderer_lines_finalize (GObject *object)
 	G_OBJECT_CLASS (gtk_source_gutter_renderer_lines_parent_class)->finalize (object);
 }
 
+static GtkTextBuffer *
+get_buffer (GtkSourceGutterRendererLines *renderer)
+{
+	GtkTextView *view;
+
+	view = gtk_source_gutter_renderer_get_view (GTK_SOURCE_GUTTER_RENDERER (renderer));
+
+	return gtk_text_view_get_buffer (view);
+}
+
 static void
 recalculate_size (GtkSourceGutterRendererLines *renderer)
 {
 	gint num_lines;
 	gint num_digits = 0;
 	gint num;
+	GtkTextBuffer *buffer;
 
-	num_lines = gtk_text_buffer_get_line_count (renderer->priv->buffer);
+	buffer = get_buffer (renderer);
+
+	num_lines = gtk_text_buffer_get_line_count (buffer);
 
 	num = num_lines;
 
@@ -90,43 +101,38 @@ on_buffer_changed (GtkSourceBuffer              *buffer,
 }
 
 static void
-buffer_notify (GtkSourceGutterRendererLines *renderer,
-               gpointer                      where_the_object_was)
+gutter_renderer_change_buffer (GtkSourceGutterRenderer *renderer,
+                               GtkTextBuffer           *old_buffer)
 {
-	renderer->priv->buffer = NULL;
-}
+	GtkTextView *view;
+	GtkSourceGutterRendererLines *lines;
 
-static void
-set_buffer (GtkSourceGutterRendererLines *renderer,
-            GtkTextBuffer                *buffer)
-{
-	if (renderer->priv->buffer)
+	lines = GTK_SOURCE_GUTTER_RENDERER_LINES (renderer);
+
+	if (old_buffer)
 	{
-		g_signal_handler_disconnect (renderer->priv->buffer,
-		                             renderer->priv->changed_handler_id);
-
-		g_object_weak_unref (G_OBJECT (renderer->priv->buffer),
-		                     (GWeakNotify)buffer_notify,
-		                     renderer);
-
-		renderer->priv->buffer = NULL;
+		g_signal_handler_disconnect (old_buffer,
+		                             lines->priv->changed_handler_id);
 	}
 
-	if (buffer)
+	view = gtk_source_gutter_renderer_get_view (renderer);
+
+	if (view)
 	{
-		renderer->priv->buffer = buffer;
+		GtkTextBuffer *buffer;
 
-		renderer->priv->changed_handler_id =
-			g_signal_connect (renderer->priv->buffer,
-			                  "changed",
-			                  G_CALLBACK (on_buffer_changed),
-			                  renderer);
+		buffer = gtk_text_view_get_buffer (view);
 
-		g_object_weak_ref (G_OBJECT (renderer->priv->buffer),
-		                   (GWeakNotify)buffer_notify,
-		                   renderer);
+		if (buffer)
+		{
+			lines->priv->changed_handler_id =
+				g_signal_connect (buffer,
+				                  "changed",
+				                  G_CALLBACK (on_buffer_changed),
+				                  lines);
 
-		recalculate_size (renderer);
+			recalculate_size (lines);
+		}
 	}
 }
 
@@ -162,47 +168,19 @@ gutter_renderer_query_data (GtkSourceGutterRenderer      *renderer,
 }
 
 static void
-on_buffer_notify (GtkTextView                  *view,
-                  GParamSpec                   *spec,
-                  GtkSourceGutterRendererLines *renderer)
-{
-	set_buffer (renderer, gtk_text_view_get_buffer (view));
-}
-
-static void
-gtk_source_gutter_renderer_lines_dispose (GObject *object)
-{
-	GtkSourceGutterRenderer *renderer;
-	GtkSourceGutterRendererLines *lines;
-	GtkTextView *view;
-
-	renderer = GTK_SOURCE_GUTTER_RENDERER (object);
-	lines = GTK_SOURCE_GUTTER_RENDERER_LINES (object);
-
-	view = gtk_source_gutter_renderer_get_view (renderer);
-
-	if (view != NULL && lines->priv->buffer_notify_handler_id != 0)
-	{
-		g_signal_handler_disconnect (view,
-		                             lines->priv->buffer_notify_handler_id);
-
-		lines->priv->buffer_notify_handler_id = 0;
-	}
-
-	set_buffer (lines, NULL);
-
-	G_OBJECT_CLASS (gtk_source_gutter_renderer_lines_parent_class)->dispose (object);
-}
-
-static void
 extend_selection_to_line (GtkSourceGutterRendererLines *renderer,
                           GtkTextIter                  *line_start)
 {
 	GtkTextIter start;
 	GtkTextIter end;
 	GtkTextIter line_end;
+	GtkTextBuffer *buffer;
 
-	gtk_text_buffer_get_selection_bounds (renderer->priv->buffer, &start, &end);
+	buffer = get_buffer (renderer);
+
+	gtk_text_buffer_get_selection_bounds (buffer,
+	                                      &start,
+	                                      &end);
 
 	line_end = *line_start;
 
@@ -213,7 +191,7 @@ extend_selection_to_line (GtkSourceGutterRendererLines *renderer,
 
 	if (gtk_text_iter_compare (&start, line_start) < 0)
 	{
-		gtk_text_buffer_select_range (renderer->priv->buffer,
+		gtk_text_buffer_select_range (buffer,
 		                              &start,
 		                              &line_end);
 	}
@@ -221,13 +199,13 @@ extend_selection_to_line (GtkSourceGutterRendererLines *renderer,
 	{
 		/* if the selection is in this line, extend
 		 * the selection to the whole line */
-		gtk_text_buffer_select_range (renderer->priv->buffer,
+		gtk_text_buffer_select_range (buffer,
 		                              &line_end,
 		                              line_start);
 	}
 	else
 	{
-		gtk_text_buffer_select_range (renderer->priv->buffer,
+		gtk_text_buffer_select_range (buffer,
 		                              &end,
 		                              line_start);
 	}
@@ -238,6 +216,9 @@ select_line (GtkSourceGutterRendererLines *renderer,
              GtkTextIter                  *line_start)
 {
 	GtkTextIter iter;
+	GtkTextBuffer *buffer;
+
+	buffer = get_buffer (renderer);
 
 	iter = *line_start;
 
@@ -247,7 +228,7 @@ select_line (GtkSourceGutterRendererLines *renderer,
 	}
 
 	/* Select the line, put the cursor at the end of the line */
-	gtk_text_buffer_select_range (renderer->priv->buffer, &iter, line_start);
+	gtk_text_buffer_select_range (buffer, &iter, line_start);
 }
 
 static void
@@ -262,6 +243,10 @@ gutter_renderer_activate (GtkSourceGutterRenderer *renderer,
 
 	if (event->type == GDK_BUTTON_PRESS && (event->button.button == 1))
 	{
+		GtkTextBuffer *buffer;
+
+		buffer = get_buffer (lines);
+
 		if ((event->button.state & GDK_CONTROL_MASK) != 0)
 		{
 			/* Single click + Ctrl -> select the line */
@@ -275,7 +260,7 @@ gutter_renderer_activate (GtkSourceGutterRenderer *renderer,
 		}
 		else
 		{
-			gtk_text_buffer_place_cursor (lines->priv->buffer, iter);
+			gtk_text_buffer_place_cursor (buffer, iter);
 		}
 	}
 	else if (event->type == GDK_2BUTTON_PRESS && (event->button.button == 1))
@@ -290,28 +275,7 @@ gutter_renderer_query_activatable (GtkSourceGutterRenderer *renderer,
                                    GdkRectangle            *area,
                                    GdkEvent                *event)
 {
-	return GTK_SOURCE_GUTTER_RENDERER_LINES (renderer)->priv->buffer != NULL;
-}
-
-static void
-gtk_source_gutter_renderer_lines_constructed (GObject *gobject)
-{
-	GtkSourceGutterRendererLines *lines;
-	GtkSourceGutterRenderer *renderer;
-	GtkTextView *view;
-
-	renderer = GTK_SOURCE_GUTTER_RENDERER (gobject);
-	lines = GTK_SOURCE_GUTTER_RENDERER_LINES (gobject);
-
-	view = gtk_source_gutter_renderer_get_view (renderer);
-
-	lines->priv->buffer_notify_handler_id =
-		g_signal_connect (view,
-		                  "notify::buffer",
-		                  G_CALLBACK (on_buffer_notify),
-		                  lines);
-
-	set_buffer (lines, gtk_text_view_get_buffer (view));
+	return get_buffer (GTK_SOURCE_GUTTER_RENDERER_LINES (renderer)) != NULL;
 }
 
 static void
@@ -321,12 +285,11 @@ gtk_source_gutter_renderer_lines_class_init (GtkSourceGutterRendererLinesClass *
 	GtkSourceGutterRendererClass *renderer_class = GTK_SOURCE_GUTTER_RENDERER_CLASS (klass);
 
 	object_class->finalize = gtk_source_gutter_renderer_lines_finalize;
-	object_class->dispose = gtk_source_gutter_renderer_lines_dispose;
-	object_class->constructed = gtk_source_gutter_renderer_lines_constructed;
 
 	renderer_class->query_data = gutter_renderer_query_data;
 	renderer_class->query_activatable = gutter_renderer_query_activatable;
 	renderer_class->activate = gutter_renderer_activate;
+	renderer_class->change_buffer = gutter_renderer_change_buffer;
 
 	g_type_class_add_private (object_class, sizeof(GtkSourceGutterRendererLinesPrivate));
 }

@@ -97,6 +97,12 @@ struct _GtkSourceGutterRendererClass
 
 	void (*end)                 (GtkSourceGutterRenderer      *renderer);
 
+	void (*change_view)         (GtkSourceGutterRenderer      *renderer,
+	                             GtkTextView                  *old_view);
+
+	void (*change_buffer)       (GtkSourceGutterRenderer      *renderer,
+	                             GtkTextBuffer                *old_buffer);
+
 	/* Signal handlers */
 	gboolean (*query_activatable) (GtkSourceGutterRenderer      *renderer,
 	                               GtkTextIter                  *iter,

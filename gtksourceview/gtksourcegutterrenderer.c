@@ -41,6 +41,7 @@ enum
 struct _GtkSourceGutterRendererPrivate
 {
 	GtkTextView *view;
+	GtkTextBuffer *buffer;
 	GtkTextWindowType window_type;
 
 	gint xpad;
@@ -85,6 +86,57 @@ static void
 gtk_source_gutter_renderer_finalize (GObject *object)
 {
 	G_OBJECT_CLASS (gtk_source_gutter_renderer_parent_class)->finalize (object);
+}
+
+static void
+on_buffer_changed (GtkTextView             *view,
+                   GParamSpec              *spec,
+                   GtkSourceGutterRenderer *renderer)
+{
+	if (GTK_SOURCE_GUTTER_RENDERER_GET_CLASS (renderer)->change_buffer)
+	{
+		GTK_SOURCE_GUTTER_RENDERER_GET_CLASS (renderer)->change_buffer (renderer,
+		                                                                renderer->priv->buffer);
+	}
+
+	renderer->priv->buffer = gtk_text_view_get_buffer (view);
+}
+
+static void
+renderer_change_view_impl (GtkSourceGutterRenderer *renderer,
+                           GtkTextView             *old_view)
+{
+	if (old_view)
+	{
+		g_signal_handlers_disconnect_by_func (old_view,
+		                                      G_CALLBACK (on_buffer_changed),
+		                                      renderer);
+	}
+
+	if (renderer->priv->view)
+	{
+		g_signal_connect (renderer->priv->view,
+		                  "notify::buffer",
+		                  G_CALLBACK (on_buffer_changed),
+		                  renderer);
+	}
+}
+
+static void
+gtk_source_gutter_renderer_dispose (GObject *object)
+{
+	GtkSourceGutterRenderer *renderer;
+
+	renderer = GTK_SOURCE_GUTTER_RENDERER (object);
+
+	if (renderer->priv->view)
+	{
+		_gtk_source_gutter_renderer_set_view (renderer,
+		                                      NULL,
+		                                      GTK_TEXT_WINDOW_PRIVATE);
+	}
+
+	G_OBJECT_CLASS (gtk_source_gutter_renderer_parent_class)->dispose (object);
 }
 
 static gboolean
@@ -372,11 +424,13 @@ gtk_source_gutter_renderer_class_init (GtkSourceGutterRendererClass *klass)
 	GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
 	object_class->finalize = gtk_source_gutter_renderer_finalize;
+	object_class->dispose = gtk_source_gutter_renderer_dispose;
 
 	object_class->get_property = gtk_source_gutter_renderer_get_property;
 	object_class->set_property = gtk_source_gutter_renderer_set_property;
 
 	klass->draw = renderer_draw_impl;
+	klass->change_view = renderer_change_view_impl;
 
 	g_type_class_add_private (object_class, sizeof (GtkSourceGutterRendererPrivate));
 
@@ -1227,19 +1281,35 @@ _gtk_source_gutter_renderer_set_view (GtkSourceGutterRenderer *renderer,
                                       GtkTextView             *view,
                                       GtkTextWindowType        window_type)
 {
-	g_return_if_fail (renderer->priv->view == NULL);
+	GtkTextView *old_view;
 
-	renderer->priv->view = g_object_ref (view);
+	g_return_if_fail (GTK_IS_SOURCE_GUTTER_RENDERER (renderer));
+	g_return_if_fail (view == NULL || GTK_IS_TEXT_VIEW (view));
+
+	old_view = renderer->priv->view;
+
 	renderer->priv->window_type = window_type;
+
+	if (view)
+	{
+		renderer->priv->view = g_object_ref (view);
+	}
+	else
+	{
+		renderer->priv->view = NULL;
+	}
+
+	if (GTK_SOURCE_GUTTER_RENDERER_GET_CLASS (renderer)->change_view)
+	{
+		GTK_SOURCE_GUTTER_RENDERER_GET_CLASS (renderer)->change_view (renderer,
+		                                                              old_view);
+	}
+
+	if (old_view)
+	{
+		g_object_unref (old_view);
+	}
+
+	g_object_notify (G_OBJECT (renderer), "view");
+	g_object_notify (G_OBJECT (renderer), "window_type");
 }
-
-void
-_gtk_source_gutter_renderer_unset_view (GtkSourceGutterRenderer *renderer)
-{
-	g_return_if_fail (renderer->priv->view != NULL);
-
-	g_object_unref (renderer->priv->view);
-	renderer->priv->view = NULL;
-	renderer->priv->window_type = GTK_TEXT_WINDOW_PRIVATE;
-}
-
