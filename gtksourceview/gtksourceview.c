@@ -161,6 +161,7 @@ struct _GtkSourceViewPrivate
 	gint             num_line_digits;
 
 	guint            current_line_color_set : 1;
+	guint            dispose_has_run : 1;
 };
 
 
@@ -1056,6 +1057,8 @@ gtk_source_view_dispose (GObject *object)
 		g_object_unref (view->priv->right_gutter);
 		view->priv->right_gutter = NULL;
 	}
+
+	view->priv->dispose_has_run = 1;
 
 	G_OBJECT_CLASS (gtk_source_view_parent_class)->dispose (object);
 }
@@ -4153,7 +4156,7 @@ gtk_source_view_get_completion (GtkSourceView *view)
 {
 	g_return_val_if_fail (GTK_IS_SOURCE_VIEW (view), NULL);
 
-	if (view->priv->completion == NULL)
+	if (view->priv->completion == NULL && !view->priv->dispose_has_run)
 	{
 		view->priv->completion = gtk_source_completion_new (view);
 	}
