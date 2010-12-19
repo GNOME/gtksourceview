@@ -314,7 +314,7 @@ gtk_source_completion_context_add_proposals (GtkSourceCompletionContext  *contex
 /**
  * gtk_source_completion_context_get_iter:
  * @context: a #GtkSourceCompletionContext.
- * @iter: a #GtkTextIter.
+ * @iter: (out): a #GtkTextIter.
  * 
  * Get the iter at which the completion was invoked. Providers can use this
  * to determine how and if to match proposals.
