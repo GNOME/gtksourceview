@@ -93,13 +93,18 @@ on_buffer_changed (GtkTextView             *view,
                    GParamSpec              *spec,
                    GtkSourceGutterRenderer *renderer)
 {
+	GtkTextBuffer* buffer;
+
 	if (GTK_SOURCE_GUTTER_RENDERER_GET_CLASS (renderer)->change_buffer)
 	{
 		GTK_SOURCE_GUTTER_RENDERER_GET_CLASS (renderer)->change_buffer (renderer,
 		                                                                renderer->priv->buffer);
 	}
 
-	renderer->priv->buffer = gtk_text_view_get_buffer (view);
+	buffer = gtk_text_view_get_buffer (view);
+
+	renderer->priv->buffer = buffer;
+	g_object_add_weak_pointer (G_OBJECT (buffer), (gpointer)&renderer->priv->buffer);
 }
 
 static void
