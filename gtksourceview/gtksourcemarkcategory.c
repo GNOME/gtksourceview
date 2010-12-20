@@ -378,7 +378,10 @@ gtk_source_mark_category_get_background (GtkSourceMarkCategory *category,
 {
 	g_return_val_if_fail (GTK_IS_SOURCE_MARK_CATEGORY (category), FALSE);
 
-	*background = category->priv->background;
+	if (background)
+	{
+		*background = category->priv->background;
+	}
 	return category->priv->background_set;
 }
 
