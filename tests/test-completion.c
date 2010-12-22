@@ -296,14 +296,13 @@ create_completion(void)
 int
 main (int argc, char *argv[])
 {
- 	GtkWidget *window;
-	
-	gtk_set_locale ();
+	GtkWidget *window;
+
 	gtk_init (&argc, &argv);
 
 	window = create_window ();
 	create_completion ();
-	
+
 	gtk_widget_show_all (window);
 
 	gtk_main ();
