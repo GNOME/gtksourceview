@@ -59,6 +59,7 @@ LANGUAGES =			\
 	ocl.lang		\
 	octave.lang		\
 	ooc.lang		\
+	opal.lang		\
 	pascal.lang		\
 	perl.lang		\
 	php.lang		\

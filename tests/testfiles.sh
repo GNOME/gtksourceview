@@ -15,6 +15,20 @@
 dir="testdir"
 mkdir -p $dir/
 
+cat > $dir/file.impl << EOFEOF
+-- Opal test
+IMPLEMENTATION LeapYear
+
+IMPORT Nat COMPLETELY
+
+DEF leapYear(year) ==
+  IF (year % ("400"!) = 0) THEN true
+  IF (year % ("400"!) |= 0) and (year % 100 = 0) THEN false
+  IF (year % 100 |= 0) and (year % 4 = 0) THEN true
+  IF (year % 4 |= 0) THEN false
+  FI
+EOFEOF
+
 cat > $dir/file.sci << EOFEOF
 // A comment with whites and tabulations 		
 // Scilab editor: http://www.scilab.org/
