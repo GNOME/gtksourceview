@@ -1993,26 +1993,23 @@ gtk_source_context_engine_text_inserted (GtkSourceEngine *engine,
 	GtkTextIter iter;
 	GtkSourceContextEngine *ce = GTK_SOURCE_CONTEXT_ENGINE (engine);
 
-	/* Happens when highlighting is disabled */
-	if (ce->priv->buffer == NULL)
+	if (!ce->priv->disabled)
 	{
-		return;
-	}
+		g_return_if_fail (start_offset < end_offset);
 
-	g_return_if_fail (start_offset < end_offset);
+		invalidate_region (ce, start_offset, end_offset - start_offset);
 
-	invalidate_region (ce, start_offset, end_offset - start_offset);
-
-	/* If end_offset is at the start of a line (enter key pressed) then
-	 * we need to invalidate the whole new line, otherwise it may not be
-	 * highlighted because the engine analyzes the previous line, end
-	 * context there is none, start context at this line is none too,
-	 * and the engine stops. */
-	gtk_text_buffer_get_iter_at_offset (ce->priv->buffer, &iter, end_offset);
-	if (gtk_text_iter_starts_line (&iter) && !gtk_text_iter_ends_line (&iter))
-	{
-		gtk_text_iter_forward_to_line_end (&iter);
-		invalidate_region (ce, gtk_text_iter_get_offset (&iter), 0);
+		/* If end_offset is at the start of a line (enter key pressed) then
+		 * we need to invalidate the whole new line, otherwise it may not be
+		 * highlighted because the engine analyzes the previous line, end
+		 * context there is none, start context at this line is none too,
+		 * and the engine stops. */
+		gtk_text_buffer_get_iter_at_offset (ce->priv->buffer, &iter, end_offset);
+		if (gtk_text_iter_starts_line (&iter) && !gtk_text_iter_ends_line (&iter))
+		{
+			gtk_text_iter_forward_to_line_end (&iter);
+			invalidate_region (ce, gtk_text_iter_get_offset (&iter), 0);
+		}
 	}
 }
 
@@ -2137,10 +2134,14 @@ gtk_source_context_engine_text_deleted (GtkSourceEngine *engine,
 					gint             offset,
 					gint             length)
 {
+	GtkSourceContextEngine *ce = GTK_SOURCE_CONTEXT_ENGINE (engine);
+
 	g_return_if_fail (length > 0);
-	invalidate_region (GTK_SOURCE_CONTEXT_ENGINE (engine),
-			   offset,
-			   - length);
+	
+	if (!ce->priv->disabled)
+	{
+		invalidate_region (ce, offset, - length);
+	}
 }
 
 /**
