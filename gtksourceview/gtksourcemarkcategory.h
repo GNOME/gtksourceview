@@ -80,25 +80,25 @@ const gchar     *gtk_source_mark_category_get_stock_id        (GtkSourceMarkCate
 
 void             gtk_source_mark_category_set_icon_name       (GtkSourceMarkCategory *category,
                                                                const gchar           *icon_name);
-const gchar     *gtk_source_mark_category_get_stock_icon_name (GtkSourceMarkCategory *category);
+const gchar     *gtk_source_mark_category_get_icon_name       (GtkSourceMarkCategory *category);
 
-void             gtk_source_mark_category_set_gicon            (GtkSourceMarkCategory *category,
-                                                                GIcon                 *gicon);
-GIcon           *gtk_source_mark_category_get_gicon            (GtkSourceMarkCategory *category);
+void             gtk_source_mark_category_set_gicon           (GtkSourceMarkCategory *category,
+                                                               GIcon                 *gicon);
+GIcon           *gtk_source_mark_category_get_gicon           (GtkSourceMarkCategory *category);
 
-void             gtk_source_mark_category_set_pixbuf           (GtkSourceMarkCategory *category,
-                                                                const GdkPixbuf       *pixbuf);
-const GdkPixbuf *gtk_source_mark_category_get_pixbuf           (GtkSourceMarkCategory *category);
+void             gtk_source_mark_category_set_pixbuf          (GtkSourceMarkCategory *category,
+                                                               const GdkPixbuf       *pixbuf);
+const GdkPixbuf *gtk_source_mark_category_get_pixbuf          (GtkSourceMarkCategory *category);
 
-const GdkPixbuf *gtk_source_mark_category_render_icon          (GtkSourceMarkCategory *category,
-                                                                GtkWidget             *widget,
-                                                                gint                   size);
+const GdkPixbuf *gtk_source_mark_category_render_icon         (GtkSourceMarkCategory *category,
+                                                               GtkWidget             *widget,
+                                                               gint                   size);
 
-gchar           *gtk_source_mark_category_get_tooltip_text     (GtkSourceMarkCategory *category,
-                                                                GtkSourceMark         *mark);
+gchar           *gtk_source_mark_category_get_tooltip_text    (GtkSourceMarkCategory *category,
+                                                               GtkSourceMark         *mark);
 
-gchar           *gtk_source_mark_category_get_tooltip_markup   (GtkSourceMarkCategory *category,
-                                                                GtkSourceMark         *mark);
+gchar           *gtk_source_mark_category_get_tooltip_markup  (GtkSourceMarkCategory *category,
+                                                               GtkSourceMark         *mark);
 
 G_END_DECLS
 

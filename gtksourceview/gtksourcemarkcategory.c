@@ -24,6 +24,68 @@
 #include "gtksourcepixbufhelper.h"
 #include "gtksourceview-marshal.h"
 
+/**
+ * SECTION:markcategory
+ * @short_description: The mark category object
+ * @title: GtkSourceMarkCategory
+ * @see_also: #GtkSourceMark
+ *
+ * GtkSourceMarkCategory is an object specifying a category used by
+ * GtkSourceMarks. It allows to define a background color, an icon and
+ * a priority.
+ *
+ * To get a name of a category, use gtk_source_mark_category_get_id().
+ *
+ * Background color is used as a background of a line where a mark is placed and
+ * it can be set with gtk_source_mark_category_set_background(). To check if the
+ * category has any custom background color and what color it is, use
+ * gtk_source_mark_category_get_background().
+ *
+ * An icon is a graphic element which is shown in the gutter of a view. An
+ * example use is showing a red filled circle in a debugger to show that a
+ * breakpoint was set in certain line. To get an icon that will be placed in
+ * a gutter first a base for it must be specified and then
+ * gtk_source_mark_category_render_icon() must be called.
+ * There are several ways to specify a base for an icon:
+ * <itemizedlist>
+ *  <listitem>
+ *   <para>
+ *    gtk_source_mark_category_set_icon_name()
+ *   </para>
+ *  </listitem>
+ *  <listitem>
+ *   <para>
+ *    gtk_source_mark_category_set_stock_id()
+ *   </para>
+ *  </listitem>
+ *  <listitem>
+ *   <para>
+ *    gtk_source_mark_category_set_gicon()
+ *   </para>
+ *  </listitem>
+ *  <listitem>
+ *   <para>
+ *    gtk_source_mark_category_set_pixbuf()
+ *   </para>
+ *  </listitem>
+ * </itemizedlist>
+ * Using any of the above functions overrides the one used earlier. But note
+ * that a getter counterpart of ealier used function can still return some
+ * value, but it is just not used when rendering the proper icon.
+ *
+ * A priority says about importance of a category - the higher the value, the
+ * more important the category is. It is used to determine whose category
+ * background should be used to fill the line when there are more than one mark
+ * in a line. Also icons in the gutter are stacked by priority ascending, i.e.
+ * an icon with highest priority is stacked at the top. To set or get a priority
+ * gtk_source_mark_category_set_priority() or
+ * gtk_source_mark_category_get_priority() should be used.
+ *
+ * To provide meaningful tooltips for a given mark of a category, you should
+ * connect to ::query-tooltip-text or ::query-tooltip-markup where the latter
+ * takes precedence.
+ */
+
 #define GTK_SOURCE_MARK_CATEGORY_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE((object), GTK_TYPE_SOURCE_MARK_CATEGORY, GtkSourceMarkCategoryPrivate))
 
 struct _GtkSourceMarkCategoryPrivate
@@ -256,6 +318,11 @@ gtk_source_mark_category_class_init (GtkSourceMarkCategoryClass *klass)
 
 	g_type_class_add_private (object_class, sizeof(GtkSourceMarkCategoryPrivate));
 
+	/**
+	 * GtkSourceMarkCategory:id:
+	 *
+	 * A name of the category.
+	 */
 	g_object_class_install_property (object_class,
 	                                 PROP_ID,
 	                                 g_param_spec_string ("id",
@@ -264,6 +331,11 @@ gtk_source_mark_category_class_init (GtkSourceMarkCategoryClass *klass)
 	                                                      NULL,
 	                                                      G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
 
+	/**
+	 * GtkSourceMarkCategory:background:
+	 *
+	 * A color used for background of a line.
+	 */
 	g_object_class_install_property (object_class,
 	                                 PROP_BACKGROUND,
 	                                 g_param_spec_boxed ("background",
@@ -272,6 +344,11 @@ gtk_source_mark_category_class_init (GtkSourceMarkCategoryClass *klass)
 	                                                     GDK_TYPE_RGBA,
 	                                                     G_PARAM_READWRITE));
 
+	/**
+	 * GtkSourceMarkCategory:priority:
+	 *
+	 * A priority of the category.
+	 */
 	g_object_class_install_property (object_class,
 	                                 PROP_PRIORITY,
 	                                 g_param_spec_int ("priority",
@@ -282,6 +359,11 @@ gtk_source_mark_category_class_init (GtkSourceMarkCategoryClass *klass)
 	                                                   0,
 	                                                   G_PARAM_READWRITE));
 
+	/**
+	 * GtkSourceMarkCategory:stock-id:
+	 *
+	 * A stock id that may be a base of a rendered icon.
+	 */
 	g_object_class_install_property (object_class,
 	                                 PROP_STOCK_ID,
 	                                 g_param_spec_string ("stock-id",
@@ -290,6 +372,11 @@ gtk_source_mark_category_class_init (GtkSourceMarkCategoryClass *klass)
 	                                                      NULL,
 	                                                      G_PARAM_READWRITE));
 
+	/**
+	 * GtkSourceMarkCategory:pixbuf:
+	 *
+	 * A #GdkPixbuf that may be a base of a rendered icon.
+	 */
 	g_object_class_install_property (object_class,
 	                                 PROP_PIXBUF,
 	                                 g_param_spec_object ("pixbuf",
@@ -298,6 +385,11 @@ gtk_source_mark_category_class_init (GtkSourceMarkCategoryClass *klass)
 	                                                      GDK_TYPE_PIXBUF,
 	                                                      G_PARAM_READWRITE));
 
+	/**
+	 * GtkSourceMarkCategory:icon-name:
+	 *
+	 * An icon name that may be a base of a rendered icon.
+	 */
 	g_object_class_install_property (object_class,
 	                                 PROP_ICON_NAME,
 	                                 g_param_spec_string ("icon-name",
@@ -306,6 +398,11 @@ gtk_source_mark_category_class_init (GtkSourceMarkCategoryClass *klass)
 	                                                      NULL,
 	                                                      G_PARAM_READWRITE));
 
+	/**
+	 * GtkSourceMarkCategory:gicon:
+	 *
+	 * A #GIcon that may be a base of a rendered icon.
+	 */
 	g_object_class_install_property (object_class,
 	                                 PROP_GICON,
 	                                 g_param_spec_object ("gicon",
@@ -314,6 +411,17 @@ gtk_source_mark_category_class_init (GtkSourceMarkCategoryClass *klass)
 	                                                      G_TYPE_ICON,
 	                                                      G_PARAM_READWRITE));
 
+	/**
+	 * GtkSourceMarkCategory::query-tooltip-text:
+	 * @category: The #GtkSourceMarkCategory which emits the signal.
+	 * @mark: The #GtkSourceMark.
+	 *
+	 * The code should connect to this signal to provide a tooltip for given
+	 * @mark. The tooltip should be just a plain text.
+	 *
+	 * Returns: (transfer full): A tooltip. The string should be freed with
+	 * g_free() when done with it.
+	 */
 	signals[QUERY_TOOLTIP_TEXT] =
 		g_signal_new ("query-tooltip-text",
 		              G_TYPE_FROM_CLASS (klass),
@@ -326,6 +434,17 @@ gtk_source_mark_category_class_init (GtkSourceMarkCategoryClass *klass)
 		              1,
 		              GTK_TYPE_SOURCE_MARK);
 
+	/**
+	 * GtkSourceMarkCategory::query-tooltip-markup:
+	 * @category: The #GtkSourceMarkCategory which emits the signal.
+	 * @mark: The #GtkSourceMark.
+	 *
+	 * The code should connect to this signal to provide a tooltip for given
+	 * @mark. The tooltip can contain a markup.
+	 *
+	 * Returns: (transfer full): A tooltip. The string should be freed with
+	 * g_free() when done with it.
+	 */
 	signals[QUERY_TOOLTIP_MARKUP] =
 		g_signal_new ("query-tooltip-markup",
 		              G_TYPE_FROM_CLASS (klass),
@@ -347,14 +466,33 @@ gtk_source_mark_category_init (GtkSourceMarkCategory *self)
 	self->priv->helper = gtk_source_pixbuf_helper_new ();
 }
 
+/**
+ * gtk_source_mark_category_new:
+ * @id: A category name.
+ *
+ * Creates a new source mark category. @id cannot be NULL.
+ *
+ * Returns: (transfer full): a new source mark category.
+ */
 GtkSourceMarkCategory *
 gtk_source_mark_category_new (const gchar *id)
 {
+	g_return_val_if_fail (id != NULL, NULL);
+
 	return g_object_new (GTK_TYPE_SOURCE_MARK_CATEGORY,
 	                     "id", id,
 	                     NULL);
 }
 
+/**
+ * gtk_source_mark_category_get_id:
+ * @category: a #GtkSourceMarkCategory.
+ *
+ * Gets a name of @category.
+ *
+ * Returns: (transfer none): Name of a category. The returned value is owned
+ * by @category and shouldn't be freed.
+ */
 const gchar *
 gtk_source_mark_category_get_id (GtkSourceMarkCategory *category)
 {
@@ -363,6 +501,13 @@ gtk_source_mark_category_get_id (GtkSourceMarkCategory *category)
 	return category->priv->id;
 }
 
+/**
+ * gtk_source_mark_category_set_background:
+ * @category: a #GtkSourceMarkCategory.
+ * @background: a #GdkRGBA.
+ *
+ * Sets background color to the one given in @background.
+ */
 void
 gtk_source_mark_category_set_background (GtkSourceMarkCategory *category,
                                          const GdkRGBA         *background)
@@ -372,6 +517,15 @@ gtk_source_mark_category_set_background (GtkSourceMarkCategory *category,
 	set_background (category, background);
 }
 
+/**
+ * gtk_source_mark_category_get_background:
+ * @category: a #GtkSourceMarkCategory.
+ * @background: (out caller-allocates): a #GdkRGBA.
+ *
+ * Stores background color in @background.
+ *
+ * Returns: whether background color for @category was set.
+ */
 gboolean
 gtk_source_mark_category_get_background (GtkSourceMarkCategory *category,
                                          GdkRGBA               *background)
@@ -385,6 +539,13 @@ gtk_source_mark_category_get_background (GtkSourceMarkCategory *category,
 	return category->priv->background_set;
 }
 
+/**
+ * gtk_source_mark_category_set_priority:
+ * @category: a #GtkSourceMarkCategory.
+ * @priority: a priority.
+ *
+ * Sets priority of @category to @priority.
+ */
 void
 gtk_source_mark_category_set_priority (GtkSourceMarkCategory *category,
                                        gint                   priority)
@@ -394,6 +555,14 @@ gtk_source_mark_category_set_priority (GtkSourceMarkCategory *category,
 	set_priority (category, priority);
 }
 
+/**
+ * gtk_source_mark_category_get_priority:
+ * @category: a #GtkSourceMarkCategory
+ *
+ * Gets priority of @category.
+ *
+ * Returns: priority of @category.
+ */
 gint
 gtk_source_mark_category_get_priority (GtkSourceMarkCategory *category)
 {
@@ -402,6 +571,13 @@ gtk_source_mark_category_get_priority (GtkSourceMarkCategory *category)
 	return category->priv->priority;
 }
 
+/**
+ * gtk_source_mark_category_set_stock_id:
+ * @category: a #GtkSourceMarkCategory.
+ * @stock_id: a stock id.
+ *
+ * Sets stock id to be used as a base for rendered icon.
+ */
 void
 gtk_source_mark_category_set_stock_id (GtkSourceMarkCategory *category,
                                        const gchar           *stock_id)
@@ -411,6 +587,16 @@ gtk_source_mark_category_set_stock_id (GtkSourceMarkCategory *category,
 	set_stock_id (category, stock_id);
 }
 
+/**
+ * gtk_source_mark_category_get_stock_id:
+ * @category: a #GtkSourceMarkCategory.
+ *
+ * Gets a stock id of an icon used by this category. Note that the stock id can
+ * be %NULL if it wasn't set earlier.
+ *
+ * Returns: (transfer none): Stock id. Returned string is owned by @category and
+ * shouldn't be freed.
+ */
 const gchar *
 gtk_source_mark_category_get_stock_id (GtkSourceMarkCategory *category)
 {
@@ -419,6 +605,13 @@ gtk_source_mark_category_get_stock_id (GtkSourceMarkCategory *category)
 	return gtk_source_pixbuf_helper_get_stock_id (category->priv->helper);
 }
 
+/**
+ * gtk_source_mark_category_set_icon_name:
+ * @category: a #GtkSourceMarkCategory.
+ * @icon_name: name of an icon to be used.
+ *
+ * Sets a name of an icon to be used as a base for rendered icon.
+ */
 void
 gtk_source_mark_category_set_icon_name (GtkSourceMarkCategory *category,
                                         const gchar           *icon_name)
@@ -428,14 +621,31 @@ gtk_source_mark_category_set_icon_name (GtkSourceMarkCategory *category,
 	set_icon_name (category, icon_name);
 }
 
+/**
+ * gtk_source_mark_category_get_icon_name:
+ * @category: a #GtkSourceMarkCategory.
+ *
+ * Gets a name of an icon to be used as a base for rendered icon. Note that the
+ * icon name can be %NULL if it wasn't set earlier.
+ *
+ * Returns: (transfer none): An icon name. The string belongs to @category and
+ * should not be freed.
+ */
 const gchar *
-gtk_source_mark_category_get_stock_icon_name (GtkSourceMarkCategory *category)
+gtk_source_mark_category_get_icon_name (GtkSourceMarkCategory *category)
 {
 	g_return_val_if_fail (GTK_IS_SOURCE_MARK_CATEGORY (category), NULL);
 
 	return gtk_source_pixbuf_helper_get_icon_name (category->priv->helper);
 }
 
+/**
+ * gtk_source_mark_category_set_gicon:
+ * @category: a #GtkSourceMarkCategory.
+ * @gicon: a #GIcon to be used.
+ *
+ * Sets an icon to be used as a base for rendered icon.
+ */
 void
 gtk_source_mark_category_set_gicon (GtkSourceMarkCategory *category,
                                     GIcon                 *gicon)
@@ -447,13 +657,14 @@ gtk_source_mark_category_set_gicon (GtkSourceMarkCategory *category,
 
 /**
  * gtk_source_mark_category_get_gicon:
- * @category: a #GtkSourceMarkCategory
+ * @category: a #GtkSourceMarkCategory.
  *
- * Get the #GIcon associated with the mark category.
+ * Gets a #GIcon to be used as a base for rendered icon. Note that the icon can
+ * be %NULL if it wasn't set earlier.
  *
- * Returns: (transfer none): A #GIcon
- *
- **/
+ * Returns: (transfer none): An icon. The icon belongs to @category and should
+ * not be unreffed.
+ */
 GIcon *
 gtk_source_mark_category_get_gicon (GtkSourceMarkCategory *category)
 {
@@ -462,6 +673,13 @@ gtk_source_mark_category_get_gicon (GtkSourceMarkCategory *category)
 	return gtk_source_pixbuf_helper_get_gicon (category->priv->helper);
 }
 
+/**
+ * gtk_source_mark_category_set_pixbuf:
+ * @category: a #GtkSourceMarkCategory.
+ * @pixbuf: a #GdkPixbuf to be used.
+ *
+ * Sets a pixbuf to be used as a base for rendered icon.
+ */
 void
 gtk_source_mark_category_set_pixbuf (GtkSourceMarkCategory *category,
                                      const GdkPixbuf       *pixbuf)
@@ -471,6 +689,16 @@ gtk_source_mark_category_set_pixbuf (GtkSourceMarkCategory *category,
 	set_pixbuf (category, pixbuf);
 }
 
+/**
+ * gtk_source_mark_category_get_pixbuf:
+ * @category: a #GtkSourceMarkCategory.
+ *
+ * Gets a #GdkPixbuf to be used as a base for rendered icon. Note that the
+ * pixbuf can be %NULL if it wasn't set earlier.
+ *
+ * Returns: (transfer none): A pixbuf. The pixbuf belongs to @category and
+ * should not be unreffed.
+ */
 const GdkPixbuf *
 gtk_source_mark_category_get_pixbuf (GtkSourceMarkCategory *category)
 {
@@ -479,6 +707,21 @@ gtk_source_mark_category_get_pixbuf (GtkSourceMarkCategory *category)
 	return gtk_source_pixbuf_helper_get_pixbuf (category->priv->helper);
 }
 
+/**
+ * gtk_source_mark_category_render_icon:
+ * @category: a #GtkSourceMarkCategory.
+ * @widget: widget of which style settings may be used.
+ * @size: size of the rendered icon.
+ *
+ * Renders an icon of given size. The base of the icon is set by the last call
+ * to one of: gtk_source_mark_category_set_pixbuf(),
+ * gtk_source_mark_category_set_gicon(),
+ * gtk_source_mark_category_set_icon_name() or
+ * gtk_source_mark_category_set_stock_id(). @size cannot be lower than 1.
+ *
+ * Returns: (transfer none): A rendered pixbuf. The pixbuf belongs to @category
+ * and should not be unreffed.
+ */
 const GdkPixbuf *
 gtk_source_mark_category_render_icon (GtkSourceMarkCategory *category,
                                       GtkWidget             *widget,
@@ -493,6 +736,18 @@ gtk_source_mark_category_render_icon (GtkSourceMarkCategory *category,
 	                                        size);
 }
 
+/**
+ * gtk_source_mark_category_get_tooltip_text:
+ * @category: a #GtkSourceMarkCategory.
+ * @mark: a #GtkSourceMark.
+ *
+ * Queries for a tooltip by emitting
+ * a GtkSourceMarkCategory::query-tooltip-text signal. The tooltip is a plain
+ * text.
+ *
+ * Returns: (transfer full): A tooltip. The returned string should be freed by
+ * using g_free() when done with it.
+ */
 gchar *
 gtk_source_mark_category_get_tooltip_text (GtkSourceMarkCategory *category,
                                            GtkSourceMark         *mark)
@@ -508,6 +763,18 @@ gtk_source_mark_category_get_tooltip_text (GtkSourceMarkCategory *category,
 	return ret;
 }
 
+/**
+ * gtk_source_mark_category_get_tooltip_markup:
+ * @category: a #GtkSourceMarkCategory.
+ * @mark: a #GtkSourceMark.
+ *
+ * Queries for a tooltip by emitting
+ * a GtkSourceMarkCategory::query-tooltip-markup signal. The tooltip may contain
+ * a markup.
+ *
+ * Returns: (transfer full): A tooltip. The returned string should be freed by
+ * using g_free() when done with it.
+ */
 gchar *
 gtk_source_mark_category_get_tooltip_markup (GtkSourceMarkCategory *category,
                                              GtkSourceMark         *mark)
