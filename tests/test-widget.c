@@ -1280,9 +1280,9 @@ bracket_matched (GtkSourceBuffer           *buffer G_GNUC_UNUSED,
 /* Window creation functions -------------------------------------------------------- */
 
 static gchar *
-mark_tooltip_func (GtkSourceMarkCategory *category,
-                   GtkSourceMark         *mark,
-                   GtkSourceView         *view)
+mark_tooltip_func (GtkSourceMarkAttributes *attrs,
+                   GtkSourceMark           *mark,
+                   GtkSourceView           *view)
 {
 	GtkTextBuffer *buf;
 	GtkTextIter iter;
@@ -1294,7 +1294,7 @@ mark_tooltip_func (GtkSourceMarkCategory *category,
 	line = gtk_text_iter_get_line (&iter) + 1;
 	column = gtk_text_iter_get_line_offset (&iter);
 
-	if (g_strcmp0 (gtk_source_mark_category_get_id (category), MARK_TYPE_1) == 0)
+	if (g_strcmp0 (gtk_source_mark_get_category (mark), MARK_TYPE_1) == 0)
 	{
 		return g_strdup_printf ("Line: %d, Column: %d", line, column);
 	}
@@ -1308,33 +1308,33 @@ static void
 add_source_mark_pixbufs (GtkSourceView *view)
 {
 	GdkRGBA color;
-	GtkSourceMarkCategory *cat;
+	GtkSourceMarkAttributes *attrs;
 
 	gdk_rgba_parse (&color, "lightgreen");
 
-	cat = gtk_source_view_get_mark_category (view, MARK_TYPE_1);
+	attrs = gtk_source_mark_attributes_new ();
+	gtk_source_mark_attributes_set_background (attrs, &color);
+	gtk_source_mark_attributes_set_stock_id (attrs, GTK_STOCK_YES);
 
-	gtk_source_mark_category_set_background (cat, &color);
-	gtk_source_mark_category_set_stock_id (cat, GTK_STOCK_YES);
-	gtk_source_mark_category_set_priority (cat, 1);
-
-	g_signal_connect (cat,
+	g_signal_connect (attrs,
 	                  "query-tooltip-markup",
 	                  G_CALLBACK (mark_tooltip_func),
 	                  view);
+	gtk_source_view_set_mark_attributes (view, MARK_TYPE_1, attrs, 1);
 
 	gdk_rgba_parse (&color, "pink");
 
-	cat = gtk_source_view_get_mark_category (view, MARK_TYPE_2);
+	attrs = gtk_source_mark_attributes_new ();
 
-	gtk_source_mark_category_set_background (cat, &color);
-	gtk_source_mark_category_set_stock_id (cat, GTK_STOCK_NO);
-	gtk_source_mark_category_set_priority (cat, 2);
+	gtk_source_mark_attributes_set_background (attrs, &color);
+	gtk_source_mark_attributes_set_stock_id (attrs, GTK_STOCK_NO);
 
-	g_signal_connect (cat,
+	g_signal_connect (attrs,
 	                  "query-tooltip-markup",
 	                  G_CALLBACK (mark_tooltip_func),
 	                  view);
+
+	gtk_source_view_set_mark_attributes (view, MARK_TYPE_2, attrs, 2);
 }
 
 static GtkWidget *

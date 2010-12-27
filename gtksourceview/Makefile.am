@@ -35,7 +35,7 @@ libgtksourceview_headers =			\
 	gtksourcelanguage.h			\
 	gtksourcelanguagemanager.h		\
 	gtksourcemark.h				\
-	gtksourcemarkcategory.h			\
+	gtksourcemarkattributes.h		\
 	gtksourceprintcompositor.h		\
 	gtksourcestyle.h			\
 	gtksourcestylescheme.h			\
@@ -80,13 +80,13 @@ libgtksourceview_c_files = \
 	gtksourcegutterrendererpixbuf.c	\
 	gtksourcegutterrendererlines.c	\
 	gtksourcegutterrenderermarks.c	\
-	gtksourcemarkcategory.c		\
 	gtksourcepixbufhelper.c		\
 	gtksourcelanguage.c 		\
 	gtksourcelanguagemanager.c 	\
 	gtksourcelanguage-parser-1.c	\
 	gtksourcelanguage-parser-2.c	\
 	gtksourcemark.c			\
+	gtksourcemarkattributes.c	\
 	gtksourceprintcompositor.c	\
 	gtksourcestyle.c		\
 	gtksourcestylescheme.c		\

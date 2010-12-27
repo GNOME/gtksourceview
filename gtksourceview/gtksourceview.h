@@ -29,7 +29,7 @@
 #include <gtksourceview/gtksourcebuffer.h>
 #include <gtksourceview/gtksourcecompletion.h>
 #include <gtksourceview/gtksourcegutter.h>
-#include <gtksourceview/gtksourcemarkcategory.h>
+#include <gtksourceview/gtksourcemarkattributes.h>
 
 G_BEGIN_DECLS
 
@@ -193,9 +193,15 @@ void 		 gtk_source_view_set_show_line_marks    (GtkSourceView   *view,
 							 gboolean         show);
 gboolean	 gtk_source_view_get_show_line_marks    (GtkSourceView   *view);
 
-GtkSourceMarkCategory *
-                 gtk_source_view_get_mark_category      (GtkSourceView   *view,
-                                                         const gchar     *category);
+void             gtk_source_view_set_mark_attributes    (GtkSourceView           *view,
+                                                         const gchar             *category,
+                                                         GtkSourceMarkAttributes *attributes,
+                                                         gint                     priority);
+
+GtkSourceMarkAttributes *
+                 gtk_source_view_get_mark_attributes    (GtkSourceView           *view,
+                                                         const gchar             *category,
+                                                         gint                    *priority);
 
 void		 gtk_source_view_set_smart_home_end	(GtkSourceView             *view,
 							 GtkSourceSmartHomeEndType  smart_he);

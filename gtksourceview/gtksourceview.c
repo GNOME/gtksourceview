@@ -164,6 +164,13 @@ struct _GtkSourceViewPrivate
 	guint            dispose_has_run : 1;
 };
 
+typedef struct _MarkCategory MarkCategory;
+
+struct _MarkCategory
+{
+	GtkSourceMarkAttributes *attributes;
+	gint                     priority;
+};
 
 G_DEFINE_TYPE (GtkSourceView, gtk_source_view, GTK_TYPE_TEXT_VIEW)
 
@@ -244,6 +251,11 @@ static void	gtk_source_view_get_property		(GObject           *object,
 static void	gtk_source_view_style_updated			(GtkWidget         *widget);
 static void	gtk_source_view_realize			(GtkWidget         *widget);
 static void	gtk_source_view_update_style_scheme		(GtkSourceView     *view);
+
+static MarkCategory *mark_category_new                  (GtkSourceMarkAttributes *attributes,
+                                                         gint priority);
+static void          mark_category_free                 (MarkCategory *category);
+
 
 /* Private functions. */
 static void
@@ -988,7 +1000,7 @@ gtk_source_view_init (GtkSourceView *view)
 	view->priv->mark_categories = g_hash_table_new_full (g_str_hash,
 	                                                     g_str_equal,
 	                                                     (GDestroyNotify) g_free,
-	                                                     (GDestroyNotify) g_object_unref);
+	                                                     (GDestroyNotify) mark_category_free);
 
 	init_left_gutter (view);
 
@@ -1901,17 +1913,21 @@ gtk_source_view_paint_marks_background (GtkSourceView *view,
 
 		while (marks != NULL)
 		{
-			GtkSourceMarkCategory *cat;
+			GtkSourceMarkAttributes *attrs;
 			gint prio;
 			GdkRGBA bg;
 
-			cat = gtk_source_view_get_mark_category (view,
-			                                         gtk_source_mark_get_category (marks->data));
+			attrs = gtk_source_view_get_mark_attributes (view,
+			                                             gtk_source_mark_get_category (marks->data),
+			                                             &prio);
 
-			prio = gtk_source_mark_category_get_priority (cat);
+			if (attrs == NULL)
+			{
+				continue;
+			}
 
 			if (prio > priority &&
-			    gtk_source_mark_category_get_background (cat, &bg))
+			    gtk_source_mark_attributes_get_background (attrs, &bg))
 			{
 				priority = prio;
 				background = bg;
@@ -4146,6 +4162,28 @@ gtk_source_view_update_style_scheme (GtkSourceView *view)
 	}
 }
 
+static MarkCategory *
+mark_category_new (GtkSourceMarkAttributes *attributes,
+                   gint                     priority)
+{
+	MarkCategory* category = g_slice_new (MarkCategory);
+
+	category->attributes = g_object_ref (attributes);
+	category->priority = priority;
+
+	return category;
+}
+
+static void
+mark_category_free (MarkCategory *category)
+{
+	if (category)
+	{
+		g_object_unref (category->attributes);
+		g_slice_free (MarkCategory, category);
+	}
+}
+
 /**
  * gtk_source_view_get_completion:
  * @view: a #GtkSourceView.
@@ -4214,36 +4252,64 @@ gtk_source_view_get_gutter (GtkSourceView     *view,
 }
 
 /**
- * gtk_source_view_get_mark_category:
- * @view: a #GtkSourceView
- * @category: the category
+ * gtk_source_view_set_mark_attributes:
+ * @view: a #GtkSourceView.
+ * @category: the category.
+ * @attributes: mark attributes.
+ * @priority: priority of the category.
  *
- * Get the source mark category object for @category. A
- * #GtkSourceMarkCategory is automatically created for the given category
- * if it does not exist yet.
- *
- * Returns: (transfer none): the #GtkSourceMarkCategory object
- *
+ * Sets attributes and priority for the @category.
  */
-GtkSourceMarkCategory *
-gtk_source_view_get_mark_category (GtkSourceView *view,
-                                   const gchar   *category)
+void
+gtk_source_view_set_mark_attributes (GtkSourceView           *view,
+                                     const gchar             *category,
+                                     GtkSourceMarkAttributes *attributes,
+                                     gint                     priority)
 {
-	GtkSourceMarkCategory *ret;
+	MarkCategory *mark_category;
+
+	g_return_if_fail (GTK_IS_SOURCE_VIEW (view));
+	g_return_if_fail (category != NULL);
+	g_return_if_fail (GTK_IS_SOURCE_MARK_ATTRIBUTES (attributes));
+	g_return_if_fail (priority >= 0);
+
+	mark_category = mark_category_new (attributes, priority);
+	g_hash_table_replace (view->priv->mark_categories,
+	                      g_strdup (category),
+	                      mark_category);
+}
+
+/**
+ * gtk_source_view_get_mark_attributes:
+ * @view: a #GtkSourceView.
+ * @category: the category.
+ * @priority: place where priority of the category will be stored.
+ *
+ * Gets attributes and priority for the @category.
+ *
+ * Returns: #GtkSourceMarkAttributes for the @category. The object belongs to
+ * @view, so it shouldn't be unreffed.
+ */
+GtkSourceMarkAttributes *
+gtk_source_view_get_mark_attributes (GtkSourceView           *view,
+                                     const gchar             *category,
+                                     gint                    *priority)
+{
+	MarkCategory *mark_category;
 
 	g_return_val_if_fail (GTK_IS_SOURCE_VIEW (view), NULL);
 	g_return_val_if_fail (category != NULL, NULL);
 
-	ret = g_hash_table_lookup (view->priv->mark_categories, category);
+	mark_category = g_hash_table_lookup (view->priv->mark_categories,
+	                                     category);
 
-	if (!ret)
+	if (mark_category)
 	{
-		ret = gtk_source_mark_category_new (category);
-
-		g_hash_table_insert (view->priv->mark_categories,
-		                     g_strdup (category),
-		                     ret);
+		if (priority)
+		{
+			*priority = mark_category->priority;
+		}
+		return mark_category->attributes;
 	}
-
-	return ret;
+	return NULL;
 }

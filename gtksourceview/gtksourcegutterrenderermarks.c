@@ -21,7 +21,7 @@
 
 #include "gtksourcegutterrenderermarks.h"
 #include "gtksourceview.h"
-#include "gtksourcemarkcategory.h"
+#include "gtksourcemarkattributes.h"
 
 #define COMPOSITE_ALPHA                 225
 
@@ -64,20 +64,16 @@ sort_marks_by_priority (gconstpointer m1,
 
 	if (line1 == line2)
 	{
-		guint priority1;
-		guint priority2;
+		gint priority1 = -1;
+		gint priority2 = -1;
 
-		GtkSourceMarkCategory *c1;
-		GtkSourceMarkCategory *c2;
+		gtk_source_view_get_mark_attributes (view,
+		                                     gtk_source_mark_get_category (mark1),
+		                                     &priority1);
 
-		c1 = gtk_source_view_get_mark_category (view,
-		                                        gtk_source_mark_get_category (mark1));
-
-		c2 = gtk_source_view_get_mark_category (view,
-		                                        gtk_source_mark_get_category (mark2));
-
-		priority1 = gtk_source_mark_category_get_priority (c1);
-		priority2 = gtk_source_mark_category_get_priority (c2);
+		gtk_source_view_get_mark_attributes (view,
+		                                     gtk_source_mark_get_category (mark2),
+		                                     &priority2);
 
 		return priority1 - priority2;
 	}
@@ -124,17 +120,22 @@ composite_marks (GtkSourceView *view,
 	do
 	{
 		GtkSourceMark *mark;
-		GtkSourceMarkCategory *category;
-
+		GtkSourceMarkAttributes *attrs;
 		const GdkPixbuf *pixbuf;
 
 		mark = marks->data;
-		category = gtk_source_view_get_mark_category (view,
-		                                              gtk_source_mark_get_category (mark));
+		attrs = gtk_source_view_get_mark_attributes (view,
+		                                             gtk_source_mark_get_category (mark),
+		                                             NULL);
 
-		pixbuf = gtk_source_mark_category_render_icon (category,
-		                                               GTK_WIDGET (view),
-		                                               size);
+		if (attrs == NULL)
+		{
+			continue;
+		}
+
+		pixbuf = gtk_source_mark_attributes_render_icon (attrs,
+		                                                 GTK_WIDGET (view),
+		                                                 size);
 
 		if (pixbuf != NULL)
 		{
@@ -218,7 +219,7 @@ set_tooltip_widget_from_marks (GtkSourceView *view,
 	{
 		const gchar *category;
 		GtkSourceMark *mark;
-		GtkSourceMarkCategory *cat;
+		GtkSourceMarkAttributes *attrs;
 		gchar *text;
 		gboolean ismarkup = FALSE;
 		GtkWidget *label;
@@ -229,20 +230,22 @@ set_tooltip_widget_from_marks (GtkSourceView *view,
 		mark = marks->data;
 		category = gtk_source_mark_get_category (mark);
 
-		cat = gtk_source_view_get_mark_category (view, category);
+		attrs = gtk_source_view_get_mark_attributes (view,
+		                                             category,
+		                                             NULL);
 
-		if (cat == NULL)
+		if (attrs == NULL)
 		{
 			continue;
 		}
 
-		text = gtk_source_mark_category_get_tooltip_markup (cat,
-		                                                    mark);
+		text = gtk_source_mark_attributes_get_tooltip_markup (attrs,
+		                                                      mark);
 
 		if (text == NULL)
 		{
-			text = gtk_source_mark_category_get_tooltip_text (cat,
-			                                                  mark);
+			text = gtk_source_mark_attributes_get_tooltip_text (attrs,
+			                                                    mark);
 		}
 		else
 		{
@@ -279,9 +282,9 @@ set_tooltip_widget_from_marks (GtkSourceView *view,
 		gtk_widget_show (label);
 
 		gtk_icon_size_lookup (GTK_ICON_SIZE_MENU, NULL, &size);
-		pixbuf = gtk_source_mark_category_render_icon (cat,
-		                                               GTK_WIDGET (view),
-		                                               size);
+		pixbuf = gtk_source_mark_attributes_render_icon (attrs,
+		                                                 GTK_WIDGET (view),
+		                                                 size);
 
 		if (pixbuf != NULL)
 		{
