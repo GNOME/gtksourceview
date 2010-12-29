@@ -170,10 +170,10 @@ class Window(Gtk.Window):
 
         self._buf.connect("mark-set", self.move_cursor_cb, None)
         self._view.connect("line-mark-activated", self.line_mark_activated, None)
-        self._buffer.connect("bracket-matched", self.bracket_matched, None);
+        self._buf.connect("bracket-matched", self.bracket_matched, None);
 
     def insert_menu(self):
-        action_group = Gtk.ActionGroup()
+        action_group = Gtk.ActionGroup("GtkSourceViewActions")
         action_group.add_actions([("FileMenu", None, "_File", None, None, None),
                                   ("Open", Gtk.STOCK_OPEN, "_Open", "<control>O",
                                    "Open a file", self.open_file_cb),
@@ -282,25 +282,29 @@ class Window(Gtk.Window):
         action_group.get_action("IndentWidthUnset").set_active(True)
 
     def add_source_mark_pixbufs(self):
-        parsed, color = Gdk.color_parse("lightgreen")
+        cat = self._view.get_mark_category(self.MARK_TYPE_1)
+
+        """ FIXME: no idea how to annotate GdkRGBA
+        parsed, color = Gdk.RGBA.parse("lightgreen")
         if parsed:
-            self._view.set_mark_category_background(self.MARK_TYPE_1, color)
+            cat.set_background(color)
+        """
 
-        self._view.set_mark_category_icon_from_stock(self.MARK_TYPE_1, Gtk.STOCK_YES)
-        self._view.set_mark_category_priority(self.MARK_TYPE_1, 1)
-        self._view.set_mark_category_tooltip_markup_func(self.MARK_TYPE_1,
-                                                         self.mark_tooltip_func,
-                                                         None)
+        cat.set_stock_id(Gtk.STOCK_YES)
+        cat.set_priority(1)
+        cat.connect("query-tooltip-markup", self.mark_tooltip_func)
 
-        parsed, color = Gdk.color_parse("pink")
+        cat = self._view.get_mark_category(self.MARK_TYPE_2)
+
+        """ FIXME
+        parsed, color = Gdk.RGBA.parse("pink")
         if parsed:
-            self._view.set_mark_category_background(self.MARK_TYPE_2, color)
+            cat.set_mark_category_background(color)
+        """
 
-        self._view.set_mark_category_icon_from_stock(self.MARK_TYPE_2, Gtk.STOCK_NO)
-        self._view.set_mark_category_priority(self.MARK_TYPE_2, 2)
-        self._view.set_mark_category_tooltip_markup_func(self.MARK_TYPE_2,
-                                                         self.mark_tooltip_func,
-                                                         None)
+        cat.set_stock_id(Gtk.STOCK_NO)
+        cat.set_priority(2)
+        cat.connect("query-tooltip-markup", self.mark_tooltip_func)
 
     def remove_all_marks(self):
         start, end = self._buf.get_bounds()
@@ -507,7 +511,7 @@ class Window(Gtk.Window):
         else:
             self._buf.create_source_mark(None, mark_type, place)
 
-    def bracket_matched(self, place, state, user_data):
+    def bracket_matched(self, buf, place, state, user_data):
         # FIXME: figure out how to obtain the nick from the enum value
         # print "Bracket match state: '%s'\n" % nick
         if state == GtkSource.BracketMatchType.FOUND:
