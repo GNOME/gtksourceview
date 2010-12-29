@@ -4080,11 +4080,13 @@ update_spaces_color (GtkSourceView *view)
 	if (view->priv->spaces_color == NULL)
 	{
 		GtkStyleContext *context;
+		GdkRGBA color;
 
 		context = gtk_widget_get_style_context (widget);
 		gtk_style_context_get_color (context,
 					     GTK_STATE_FLAG_INSENSITIVE,
-					     view->priv->right_margin_line_color);
+					     &color);
+		view->priv->spaces_color = gdk_rgba_copy (&color);
 	}
 }
 
