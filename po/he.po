@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview.HEAD.he\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-26 18:52+0200\n"
-"PO-Revision-Date: 2010-12-26 18:52+0200\n"
+"POT-Creation-Date: 2010-12-30 18:21+0200\n"
+"PO-Revision-Date: 2010-12-30 18:21+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <he@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -256,7 +256,7 @@ msgstr "מספר ממשי"
 #: ../data/language-specs/ada.lang.h:11 ../data/language-specs/asp.lang.h:11
 #: ../data/language-specs/bennugd.lang.h:15
 #: ../data/language-specs/boo.lang.h:13 ../data/language-specs/chdr.lang.h:2
-#: ../data/language-specs/c.lang.h:16 ../data/language-specs/cg.lang.h:17
+#: ../data/language-specs/c.lang.h:17 ../data/language-specs/cg.lang.h:17
 #: ../data/language-specs/cobol.lang.h:8 ../data/language-specs/cpp.lang.h:5
 #: ../data/language-specs/csharp.lang.h:14
 #: ../data/language-specs/cuda.lang.h:7 ../data/language-specs/d.lang.h:13
@@ -284,7 +284,7 @@ msgstr "מספר ממשי"
 msgid "Sources"
 msgstr "מקורות"
 
-#: ../data/language-specs/ada.lang.h:12 ../data/language-specs/c.lang.h:17
+#: ../data/language-specs/ada.lang.h:12 ../data/language-specs/c.lang.h:19
 #: ../data/language-specs/cg.lang.h:18 ../data/language-specs/go.lang.h:15
 #: ../data/language-specs/java.lang.h:16 ../data/language-specs/ooc.lang.h:18
 msgid "Storage Class"
@@ -293,7 +293,7 @@ msgstr "Storage Class"
 #. A string constant: "this is a string"
 #: ../data/language-specs/ada.lang.h:13 ../data/language-specs/asp.lang.h:13
 #: ../data/language-specs/bennugd.lang.h:16
-#: ../data/language-specs/boo.lang.h:15 ../data/language-specs/c.lang.h:18
+#: ../data/language-specs/boo.lang.h:15 ../data/language-specs/c.lang.h:20
 #: ../data/language-specs/cobol.lang.h:10
 #: ../data/language-specs/csharp.lang.h:15
 #: ../data/language-specs/css.lang.h:13 ../data/language-specs/def.lang.h:57
@@ -637,7 +637,15 @@ msgstr "קובץ ב־Include"
 msgid "Octal number"
 msgstr "מספר אוקטלי"
 
-#: ../data/language-specs/c.lang.h:19
+#: ../data/language-specs/c.lang.h:16
+msgid "Signal name"
+msgstr "שם האות"
+
+#: ../data/language-specs/c.lang.h:18
+msgid "Standard stream"
+msgstr "תזרים תקני"
+
+#: ../data/language-specs/c.lang.h:21
 msgid "printf Conversion"
 msgstr "המרת printf"
 
@@ -2057,7 +2065,7 @@ msgid "The delay before initiating interactive completion"
 msgstr "ההשהיה שלפני הפעלת ההשלמה האינטראקטיבית"
 
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:518
-#: ../gtksourceview/gtksourcemarkcategory.c:278
+#: ../gtksourceview/gtksourcemarkcategory.c:355
 msgid "Priority"
 msgstr "עדיפות"
 
@@ -2418,37 +2426,37 @@ msgid "The size"
 msgstr "הגודל"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:293
-#: ../gtksourceview/gtksourcemarkcategory.c:296
+#: ../gtksourceview/gtksourcemarkcategory.c:383
 msgid "Pixbuf"
 msgstr "Pixbuf"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:294
-#: ../gtksourceview/gtksourcemarkcategory.c:297
+#: ../gtksourceview/gtksourcemarkcategory.c:384
 msgid "The pixbuf"
 msgstr "ה־Pixbuff"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:301
-#: ../gtksourceview/gtksourcemarkcategory.c:288
+#: ../gtksourceview/gtksourcemarkcategory.c:370
 msgid "Stock Id"
 msgstr "מזהה הערימה"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:302
-#: ../gtksourceview/gtksourcemarkcategory.c:289
+#: ../gtksourceview/gtksourcemarkcategory.c:371
 msgid "The stock id"
 msgstr "המזהה של הערימה"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:309
-#: ../gtksourceview/gtksourcemarkcategory.c:304
+#: ../gtksourceview/gtksourcemarkcategory.c:396
 msgid "Icon Name"
 msgstr "שם הסמל"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:310
-#: ../gtksourceview/gtksourcemarkcategory.c:305
+#: ../gtksourceview/gtksourcemarkcategory.c:397
 msgid "The icon name"
 msgstr "השם של הסמל"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:317
-#: ../gtksourceview/gtksourcemarkcategory.c:312
+#: ../gtksourceview/gtksourcemarkcategory.c:409
 msgid "GIcon"
 msgstr "GIcon"
 
@@ -2525,28 +2533,28 @@ msgstr "category"
 msgid "The mark category"
 msgstr "The mark category"
 
-#: ../gtksourceview/gtksourcemarkcategory.c:262
+#: ../gtksourceview/gtksourcemarkcategory.c:329
 msgid "Id"
 msgstr "מזהה"
 
-#: ../gtksourceview/gtksourcemarkcategory.c:263
+#: ../gtksourceview/gtksourcemarkcategory.c:330
 msgid "The id"
 msgstr "המזהה"
 
-#: ../gtksourceview/gtksourcemarkcategory.c:270
+#: ../gtksourceview/gtksourcemarkcategory.c:342
 #: ../gtksourceview/gtksourcestyle.c:88
 msgid "Background"
 msgstr "Background"
 
-#: ../gtksourceview/gtksourcemarkcategory.c:271
+#: ../gtksourceview/gtksourcemarkcategory.c:343
 msgid "The background"
 msgstr "הרקע"
 
-#: ../gtksourceview/gtksourcemarkcategory.c:279
+#: ../gtksourceview/gtksourcemarkcategory.c:356
 msgid "The priority"
 msgstr "העדיפות"
 
-#: ../gtksourceview/gtksourcemarkcategory.c:313
+#: ../gtksourceview/gtksourcemarkcategory.c:410
 msgid "The GIcon"
 msgstr "ה־GIcon"
 
