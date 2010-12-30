@@ -49,6 +49,8 @@
         <style id="octal"             _name="Octal number"        map-to="def:base-n-integer"/>
         <style id="hexadecimal"       _name="Hexadecimal number"  map-to="def:base-n-integer"/>
         <style id="boolean"           _name="Boolean value"       map-to="def:boolean"/>
+        <style id="standard-stream"   _name="Standard stream"     map-to="def:constant"/>
+        <style id="signal-name"       _name="Signal name"         map-to="def:constant"/>
     </styles>
 
     <definitions>
@@ -247,6 +249,12 @@
                     <keyword>volatile</keyword>
                 </context>
 
+                <!-- C99 booleans -->
+                <context id="boolean" style-ref="boolean" class="boolean">
+                    <keyword>true</keyword>
+                    <keyword>false</keyword>
+                </context>
+
                 <context id="common-defines" style-ref="common-defines" class="common-defines">
                     <keyword>NULL</keyword>
                     <keyword>MAX</keyword>
@@ -261,10 +269,33 @@
                     <keyword>__STDC__</keyword>
                 </context>
 
-                <!-- C99 booleans -->
-                <context id="boolean" style-ref="boolean" class="boolean">
-                    <keyword>true</keyword>
-                    <keyword>false</keyword>
+                <context id="standard-streams" style-ref="standard-stream" class="standard-streams">
+                    <keyword>stdin</keyword>
+                    <keyword>stdout</keyword>
+                    <keyword>stderr</keyword>
+                </context>
+
+                <context id="signals" style-ref="signal-name" class="signals">
+                    <keyword>SIGABRT</keyword>
+                    <keyword>SIGALRM</keyword>
+                    <keyword>SIGCHLD</keyword>
+                    <keyword>SIGCONT</keyword>
+                    <keyword>SIGFPE</keyword>
+                    <keyword>SIGHUP</keyword>
+                    <keyword>SIGILL</keyword>
+                    <keyword>SIGINT</keyword>
+                    <keyword>SIGKILL</keyword>
+                    <keyword>SIGPIPE</keyword>
+                    <keyword>SIGQUIT</keyword>
+                    <keyword>SIGSEGV</keyword>
+                    <keyword>SIGSTOP</keyword>
+                    <keyword>SIGTERM</keyword>
+                    <keyword>SIGTRAP</keyword>
+                    <keyword>SIGTSTP</keyword>
+                    <keyword>SIGTTIN</keyword>
+                    <keyword>SIGTTOU</keyword>
+                    <keyword>SIGUSR1</keyword>
+                    <keyword>SIGUSR2</keyword>
                 </context>
 
             </include>
