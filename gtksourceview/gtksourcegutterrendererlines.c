@@ -29,7 +29,6 @@ struct _GtkSourceGutterRendererLinesPrivate
 	gint num_line_digits;
 
 	guint changed_handler_id;
-	guint buffer_notify_handler_id;
 };
 
 G_DEFINE_TYPE (GtkSourceGutterRendererLines, gtk_source_gutter_renderer_lines, GTK_TYPE_SOURCE_GUTTER_RENDERER_TEXT)

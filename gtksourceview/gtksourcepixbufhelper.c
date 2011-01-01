@@ -246,13 +246,11 @@ from_gicon (GtkSourcePixbufHelper *helper,
 {
 	GdkScreen *screen;
 	GtkIconTheme *icon_theme;
-	GtkSettings *settings;
 	GtkIconInfo *info;
 	GtkIconLookupFlags flags;
 
 	screen = gtk_widget_get_screen (widget);
 	icon_theme = gtk_icon_theme_get_for_screen (screen);
-	settings = gtk_settings_get_for_screen (screen);
 
 	flags = GTK_ICON_LOOKUP_USE_BUILTIN;
 
@@ -274,13 +272,11 @@ from_name (GtkSourcePixbufHelper *helper,
 {
 	GdkScreen *screen;
 	GtkIconTheme *icon_theme;
-	GtkSettings *settings;
 	GtkIconInfo *info;
 	GtkIconLookupFlags flags;
 
 	screen = gtk_widget_get_screen (widget);
 	icon_theme = gtk_icon_theme_get_for_screen (screen);
-	settings = gtk_settings_get_for_screen (screen);
 
 	flags = GTK_ICON_LOOKUP_USE_BUILTIN;
 

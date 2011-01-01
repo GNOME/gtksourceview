@@ -112,7 +112,6 @@ struct _GtkSourceCompletionPrivate
 	GtkWidget *info_window;
 	GtkWidget *info_button;
 	GtkWidget *selection_label;
-	GtkWidget *bottom_bar;
 	GtkWidget *default_info;
 	GtkWidget *selection_image;
 	GtkWidget *hbox_info;
@@ -125,7 +124,6 @@ struct _GtkSourceCompletionPrivate
 	GtkWidget *tree_view_proposals;
 	GtkSourceCompletionModel *model_proposals;
 
-	gboolean destroy_has_run;
 	gboolean remember_info_visibility;
 	gboolean info_visible;
 	gboolean select_on_show;

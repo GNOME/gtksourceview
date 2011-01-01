@@ -92,7 +92,6 @@ struct _GtkSourceGutterPrivate
 	GtkTextWindowType window_type;
 	GtkOrientation orientation;
 
-	gint size;
 	GList *renderers;
 
 	gint xpad;
@@ -1235,11 +1234,9 @@ get_renderer_rect (GtkSourceGutter *gutter,
                    GdkRectangle    *rectangle,
                    gint             start)
 {
-	GList *item;
 	gint y;
 	gint ypad;
 
-	item = gutter->priv->renderers;
 	rectangle->x = start;
 
 	gtk_text_view_get_line_yrange (GTK_TEXT_VIEW (gutter->priv->view),
