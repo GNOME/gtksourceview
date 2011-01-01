@@ -1,15 +1,15 @@
 # translation of gtksourceview.master.po to Español
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# Jorge González <jorgegonz@svn.gnome.org>, 2007, 2008, 2009, 2010.
+# Jorge González <jorgegonz@svn.gnome.org>, 2007, 2008, 2009, 2010, 2011.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&component=general\n"
-"POT-Creation-Date: 2010-12-25 13:02+0000\n"
-"PO-Revision-Date: 2010-12-29 22:47+0100\n"
+"POT-Creation-Date: 2010-12-30 15:07+0000\n"
+"PO-Revision-Date: 2011-01-01 12:46+0100\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -257,7 +257,7 @@ msgstr "Número real"
 #: ../data/language-specs/ada.lang.h:11 ../data/language-specs/asp.lang.h:11
 #: ../data/language-specs/bennugd.lang.h:15
 #: ../data/language-specs/boo.lang.h:13 ../data/language-specs/chdr.lang.h:2
-#: ../data/language-specs/c.lang.h:16 ../data/language-specs/cg.lang.h:17
+#: ../data/language-specs/c.lang.h:17 ../data/language-specs/cg.lang.h:17
 #: ../data/language-specs/cobol.lang.h:8 ../data/language-specs/cpp.lang.h:5
 #: ../data/language-specs/csharp.lang.h:14
 #: ../data/language-specs/cuda.lang.h:7 ../data/language-specs/d.lang.h:13
@@ -285,7 +285,7 @@ msgstr "Número real"
 msgid "Sources"
 msgstr "Fuentes"
 
-#: ../data/language-specs/ada.lang.h:12 ../data/language-specs/c.lang.h:17
+#: ../data/language-specs/ada.lang.h:12 ../data/language-specs/c.lang.h:19
 #: ../data/language-specs/cg.lang.h:18 ../data/language-specs/go.lang.h:15
 #: ../data/language-specs/java.lang.h:16 ../data/language-specs/ooc.lang.h:18
 msgid "Storage Class"
@@ -294,7 +294,7 @@ msgstr "Clase de almacenamiento"
 #. A string constant: "this is a string"
 #: ../data/language-specs/ada.lang.h:13 ../data/language-specs/asp.lang.h:13
 #: ../data/language-specs/bennugd.lang.h:16
-#: ../data/language-specs/boo.lang.h:15 ../data/language-specs/c.lang.h:18
+#: ../data/language-specs/boo.lang.h:15 ../data/language-specs/c.lang.h:20
 #: ../data/language-specs/cobol.lang.h:10
 #: ../data/language-specs/csharp.lang.h:15
 #: ../data/language-specs/css.lang.h:13 ../data/language-specs/def.lang.h:57
@@ -638,7 +638,16 @@ msgstr "Archivo incluido"
 msgid "Octal number"
 msgstr "Número octal"
 
-#: ../data/language-specs/c.lang.h:19
+#: ../data/language-specs/c.lang.h:16
+#| msgid "Signal Name"
+msgid "Signal name"
+msgstr "Nombre de la señal"
+
+#: ../data/language-specs/c.lang.h:18
+msgid "Standard stream"
+msgstr "Flujo estándar"
+
+#: ../data/language-specs/c.lang.h:21
 msgid "printf Conversion"
 msgstr "Conversión printf"
 
@@ -1553,7 +1562,6 @@ msgid "OOC"
 msgstr "OOC"
 
 #: ../data/language-specs/opal.lang.h:7
-#| msgid "Symbol"
 msgid "Keysymbol"
 msgstr "Símbolo de tecla"
 
@@ -1563,7 +1571,6 @@ msgid "Module Handler"
 msgstr "Manejador de módulo"
 
 #: ../data/language-specs/opal.lang.h:10
-#| msgid "Octal"
 msgid "Opal"
 msgstr "Ópalo"
 
@@ -2060,7 +2067,7 @@ msgid "The delay before initiating interactive completion"
 msgstr "El retardo antes de iniciar el completado interactivo"
 
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:518
-#: ../gtksourceview/gtksourcemarkcategory.c:278
+#: ../gtksourceview/gtksourcemarkcategory.c:355
 msgid "Priority"
 msgstr "Prioridad"
 
@@ -2281,7 +2288,7 @@ msgstr "Información"
 msgid "Info to be shown for this item"
 msgstr "Información que mostrar para este elemento"
 
-#: ../gtksourceview/gtksourcecontextengine.c:2968
+#: ../gtksourceview/gtksourcecontextengine.c:2969
 msgid "using \\C is not supported in language definitions"
 msgstr "el uso de \\C no está soportado en las definiciones del lenguaje"
 
@@ -2289,7 +2296,7 @@ msgstr "el uso de \\C no está soportado en las definiciones del lenguaje"
 #. * named sub-patterns with the same name or if resulting regex is
 #. * too long. In this case fixing lang file helps (e.g. renaming
 #. * subpatterns, making huge keywords use bigger prefixes, etc.)
-#: ../gtksourceview/gtksourcecontextengine.c:3592
+#: ../gtksourceview/gtksourcecontextengine.c:3593
 #, c-format
 msgid ""
 "Cannot create a regex for all the transitions, the syntax highlighting "
@@ -2300,7 +2307,7 @@ msgstr ""
 "proceso de resaltado de sintaxis será más lento de lo habitual.\n"
 "El error fue: %s"
 
-#: ../gtksourceview/gtksourcecontextengine.c:4927
+#: ../gtksourceview/gtksourcecontextengine.c:4928
 msgid ""
 "Highlighting a single line took too much time, syntax highlighting will be "
 "disabled"
@@ -2308,19 +2315,19 @@ msgstr ""
 "El resaltado de una linea llevó mucho tiempo, se desactivará el resaltado de "
 "sintaxis"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6180
+#: ../gtksourceview/gtksourcecontextengine.c:6181
 #, c-format
 msgid "context '%s' cannot contain a \\%%{...@start} command"
 msgstr "el contexto «%s» no puede contener un comando \\%%{...@start} command"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6342
-#: ../gtksourceview/gtksourcecontextengine.c:6431
+#: ../gtksourceview/gtksourcecontextengine.c:6343
+#: ../gtksourceview/gtksourcecontextengine.c:6432
 #, c-format
 msgid "duplicated context id '%s'"
 msgstr "id de contexto duplicado «%s»"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6546
-#: ../gtksourceview/gtksourcecontextengine.c:6606
+#: ../gtksourceview/gtksourcecontextengine.c:6547
+#: ../gtksourceview/gtksourcecontextengine.c:6607
 #, c-format
 msgid ""
 "style override used with wildcard context reference in language '%s' in ref "
@@ -2329,18 +2336,18 @@ msgstr ""
 "el salto de estilo se usó con comodín de contexto de referencia en el "
 "lenguaje «%s» referencia «%s»"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6620
+#: ../gtksourceview/gtksourcecontextengine.c:6621
 #, c-format
 msgid "invalid context reference '%s'"
 msgstr "referencia de contexto inválida «%s»"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6639
-#: ../gtksourceview/gtksourcecontextengine.c:6649
+#: ../gtksourceview/gtksourcecontextengine.c:6640
+#: ../gtksourceview/gtksourcecontextengine.c:6650
 #, c-format
 msgid "unknown context '%s'"
 msgstr "contexto desconocido «%s»"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6749
+#: ../gtksourceview/gtksourcecontextengine.c:6750
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "Falta la definición de lenguaje principal (id = «%s».)"
@@ -2428,37 +2435,37 @@ msgid "The size"
 msgstr "El tamaño"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:293
-#: ../gtksourceview/gtksourcemarkcategory.c:296
+#: ../gtksourceview/gtksourcemarkcategory.c:383
 msgid "Pixbuf"
 msgstr "Pixbuf"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:294
-#: ../gtksourceview/gtksourcemarkcategory.c:297
+#: ../gtksourceview/gtksourcemarkcategory.c:384
 msgid "The pixbuf"
 msgstr "El pixbuf"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:301
-#: ../gtksourceview/gtksourcemarkcategory.c:288
+#: ../gtksourceview/gtksourcemarkcategory.c:370
 msgid "Stock Id"
 msgstr "ID del inventario"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:302
-#: ../gtksourceview/gtksourcemarkcategory.c:289
+#: ../gtksourceview/gtksourcemarkcategory.c:371
 msgid "The stock id"
 msgstr "El ID del inventario"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:309
-#: ../gtksourceview/gtksourcemarkcategory.c:304
+#: ../gtksourceview/gtksourcemarkcategory.c:396
 msgid "Icon Name"
 msgstr "Nombre del icono"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:310
-#: ../gtksourceview/gtksourcemarkcategory.c:305
+#: ../gtksourceview/gtksourcemarkcategory.c:397
 msgid "The icon name"
 msgstr "El nombre del icono"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:317
-#: ../gtksourceview/gtksourcemarkcategory.c:312
+#: ../gtksourceview/gtksourcemarkcategory.c:409
 msgid "GIcon"
 msgstr "GIcon"
 
@@ -2535,28 +2542,28 @@ msgstr "categoría"
 msgid "The mark category"
 msgstr "La marca de la categoría"
 
-#: ../gtksourceview/gtksourcemarkcategory.c:262
+#: ../gtksourceview/gtksourcemarkcategory.c:329
 msgid "Id"
 msgstr "ID"
 
-#: ../gtksourceview/gtksourcemarkcategory.c:263
+#: ../gtksourceview/gtksourcemarkcategory.c:330
 msgid "The id"
 msgstr "El ID"
 
-#: ../gtksourceview/gtksourcemarkcategory.c:270
+#: ../gtksourceview/gtksourcemarkcategory.c:342
 #: ../gtksourceview/gtksourcestyle.c:88
 msgid "Background"
 msgstr "Fondo"
 
-#: ../gtksourceview/gtksourcemarkcategory.c:271
+#: ../gtksourceview/gtksourcemarkcategory.c:343
 msgid "The background"
 msgstr "El fondo"
 
-#: ../gtksourceview/gtksourcemarkcategory.c:279
+#: ../gtksourceview/gtksourcemarkcategory.c:356
 msgid "The priority"
 msgstr "La prioridad"
 
-#: ../gtksourceview/gtksourcemarkcategory.c:313
+#: ../gtksourceview/gtksourcemarkcategory.c:410
 msgid "The GIcon"
 msgstr "El GIcon"
 
