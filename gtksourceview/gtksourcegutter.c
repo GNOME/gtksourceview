@@ -1197,6 +1197,11 @@ renderer_at_x (GtkSourceGutter *gutter,
 		Renderer *renderer = item->data;
 		gint xpad;
 
+		if (!gtk_source_gutter_renderer_get_visible (renderer->renderer))
+		{
+			continue;
+		}
+
 		w = gtk_source_gutter_renderer_get_size (renderer->renderer);
 
 		gtk_source_gutter_renderer_get_padding (renderer->renderer,
