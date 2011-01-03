@@ -9,14 +9,16 @@
 # Petr Kovar <pknbe@volny.cz>, 2008, 2010.
 # Lukáš Ručka <lukassoftwares@gmail.com>, 2008.
 # Marek Černocký <marek@manet.cz>, 2010.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-23 19:36+0200\n"
-"PO-Revision-Date: 2010-05-22 20:22+0200\n"
+"POT-Creation-Date: 2011-01-03 21:48+0100\n"
+"PO-Revision-Date: 2010-12-28 17:55+0100\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
+"Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -32,7 +34,7 @@ msgstr "Po"
 #. Translators: "All" is used as a label in thestatus bar of the
 #. popup, telling that all completion pages are shown
 #: ../data/glade/gtksourceview.xml.in.h:2
-#: ../gtksourceview/gtksourcecompletion.c:650
+#: ../gtksourceview/gtksourcecompletion.c:647
 msgid "All"
 msgstr "Vše"
 
@@ -74,6 +76,7 @@ msgstr "Tabulátor"
 
 #: ../data/glade/gtksourceview.xml.in.h:12
 #: ../gtksourceview/gtksourcecompletionitem.c:255
+#: ../gtksourceview/gtksourcegutterrenderertext.c:401
 msgid "Text"
 msgstr "Text"
 
@@ -91,32 +94,35 @@ msgstr "Číslo v libovolné číselné soustavě"
 
 #. A boolean constant: TRUE, false
 #: ../data/language-specs/ada.lang.h:3 ../data/language-specs/asp.lang.h:3
-#: ../data/language-specs/c.lang.h:1 ../data/language-specs/cg.lang.h:2
-#: ../data/language-specs/csharp.lang.h:1 ../data/language-specs/def.lang.h:4
-#: ../data/language-specs/fsharp.lang.h:2
-#: ../data/language-specs/gtkrc.lang.h:1 ../data/language-specs/ini.lang.h:2
-#: ../data/language-specs/java.lang.h:1
+#: ../data/language-specs/bennugd.lang.h:2 ../data/language-specs/c.lang.h:1
+#: ../data/language-specs/cg.lang.h:2 ../data/language-specs/csharp.lang.h:1
+#: ../data/language-specs/def.lang.h:4 ../data/language-specs/fsharp.lang.h:2
+#: ../data/language-specs/go.lang.h:1 ../data/language-specs/gtkrc.lang.h:1
+#: ../data/language-specs/ini.lang.h:2 ../data/language-specs/java.lang.h:1
 #: ../data/language-specs/javascript.lang.h:1
 #: ../data/language-specs/lua.lang.h:1 ../data/language-specs/nemerle.lang.h:2
 #: ../data/language-specs/ocaml.lang.h:2 ../data/language-specs/ooc.lang.h:1
-#: ../data/language-specs/php.lang.h:1 ../data/language-specs/R.lang.h:2
-#: ../data/language-specs/ruby.lang.h:3 ../data/language-specs/vala.lang.h:1
-#: ../data/language-specs/vbnet.lang.h:1 ../data/language-specs/vhdl.lang.h:2
+#: ../data/language-specs/opal.lang.h:1 ../data/language-specs/php.lang.h:1
+#: ../data/language-specs/R.lang.h:2 ../data/language-specs/ruby.lang.h:3
+#: ../data/language-specs/vala.lang.h:1 ../data/language-specs/vbnet.lang.h:1
+#: ../data/language-specs/vhdl.lang.h:2
 msgid "Boolean value"
 msgstr "Pravdivostní hodnota"
 
 #. Any comment
 #: ../data/language-specs/ada.lang.h:4 ../data/language-specs/asp.lang.h:4
-#: ../data/language-specs/boo.lang.h:4 ../data/language-specs/c.lang.h:4
-#: ../data/language-specs/cg.lang.h:5 ../data/language-specs/csharp.lang.h:4
-#: ../data/language-specs/css.lang.h:3 ../data/language-specs/def.lang.h:11
-#: ../data/language-specs/d.lang.h:3 ../data/language-specs/dosbatch.lang.h:2
+#: ../data/language-specs/bennugd.lang.h:4 ../data/language-specs/boo.lang.h:4
+#: ../data/language-specs/c.lang.h:4 ../data/language-specs/cg.lang.h:5
+#: ../data/language-specs/cobol.lang.h:2
+#: ../data/language-specs/csharp.lang.h:4 ../data/language-specs/css.lang.h:3
+#: ../data/language-specs/def.lang.h:11 ../data/language-specs/d.lang.h:3
+#: ../data/language-specs/dosbatch.lang.h:2
 #: ../data/language-specs/dot.lang.h:2 ../data/language-specs/eiffel.lang.h:3
 #: ../data/language-specs/erlang.lang.h:4 ../data/language-specs/fcl.lang.h:2
 #: ../data/language-specs/forth.lang.h:1
 #: ../data/language-specs/fortran.lang.h:2
 #: ../data/language-specs/fsharp.lang.h:4 ../data/language-specs/gap.lang.h:2
-#: ../data/language-specs/gtkrc.lang.h:2
+#: ../data/language-specs/go.lang.h:3 ../data/language-specs/gtkrc.lang.h:2
 #: ../data/language-specs/haskell.lang.h:2
 #: ../data/language-specs/html.lang.h:3 ../data/language-specs/idl.lang.h:1
 #: ../data/language-specs/ini.lang.h:3 ../data/language-specs/java.lang.h:3
@@ -125,12 +131,14 @@ msgstr "Pravdivostní hodnota"
 #: ../data/language-specs/nemerle.lang.h:4
 #: ../data/language-specs/nsis.lang.h:1 ../data/language-specs/ocaml.lang.h:4
 #: ../data/language-specs/ocl.lang.h:1 ../data/language-specs/octave.lang.h:3
-#: ../data/language-specs/ooc.lang.h:2 ../data/language-specs/pascal.lang.h:1
-#: ../data/language-specs/perl.lang.h:2 ../data/language-specs/php.lang.h:2
-#: ../data/language-specs/po.lang.h:1 ../data/language-specs/prolog.lang.h:1
-#: ../data/language-specs/ruby.lang.h:5 ../data/language-specs/scheme.lang.h:2
-#: ../data/language-specs/sh.lang.h:1 ../data/language-specs/sql.lang.h:1
-#: ../data/language-specs/t2t.lang.h:3 ../data/language-specs/texinfo.lang.h:1
+#: ../data/language-specs/ooc.lang.h:2 ../data/language-specs/opal.lang.h:2
+#: ../data/language-specs/pascal.lang.h:1 ../data/language-specs/perl.lang.h:2
+#: ../data/language-specs/php.lang.h:2 ../data/language-specs/po.lang.h:1
+#: ../data/language-specs/prolog.lang.h:1 ../data/language-specs/ruby.lang.h:5
+#: ../data/language-specs/scheme.lang.h:2
+#: ../data/language-specs/scilab.lang.h:2 ../data/language-specs/sh.lang.h:1
+#: ../data/language-specs/sql.lang.h:1 ../data/language-specs/t2t.lang.h:3
+#: ../data/language-specs/texinfo.lang.h:1
 #: ../data/language-specs/vala.lang.h:2 ../data/language-specs/vbnet.lang.h:2
 #: ../data/language-specs/verilog.lang.h:2
 #: ../data/language-specs/vhdl.lang.h:4 ../data/language-specs/xml.lang.h:4
@@ -139,58 +147,65 @@ msgstr "Komentář"
 
 #. map-to="def:others"
 #: ../data/language-specs/ada.lang.h:5 ../data/language-specs/asp.lang.h:5
-#: ../data/language-specs/boo.lang.h:5 ../data/language-specs/c.lang.h:6
-#: ../data/language-specs/cg.lang.h:6 ../data/language-specs/cpp.lang.h:3
-#: ../data/language-specs/csharp.lang.h:5 ../data/language-specs/cuda.lang.h:2
-#: ../data/language-specs/d.lang.h:5 ../data/language-specs/eiffel.lang.h:4
+#: ../data/language-specs/bennugd.lang.h:5 ../data/language-specs/boo.lang.h:5
+#: ../data/language-specs/c.lang.h:6 ../data/language-specs/cg.lang.h:6
+#: ../data/language-specs/cpp.lang.h:3 ../data/language-specs/csharp.lang.h:5
+#: ../data/language-specs/cuda.lang.h:2 ../data/language-specs/d.lang.h:5
+#: ../data/language-specs/eiffel.lang.h:4
 #: ../data/language-specs/forth.lang.h:3
 #: ../data/language-specs/fortran.lang.h:3
 #: ../data/language-specs/fsharp.lang.h:5 ../data/language-specs/glsl.lang.h:4
-#: ../data/language-specs/gtkrc.lang.h:3
+#: ../data/language-specs/go.lang.h:4 ../data/language-specs/gtkrc.lang.h:3
 #: ../data/language-specs/haskell.lang.h:3 ../data/language-specs/idl.lang.h:2
 #: ../data/language-specs/ini.lang.h:4 ../data/language-specs/java.lang.h:4
 #: ../data/language-specs/javascript.lang.h:5
 #: ../data/language-specs/nemerle.lang.h:5
 #: ../data/language-specs/objc.lang.h:2 ../data/language-specs/ocaml.lang.h:5
 #: ../data/language-specs/ocl.lang.h:2 ../data/language-specs/ooc.lang.h:3
-#: ../data/language-specs/pascal.lang.h:2 ../data/language-specs/php.lang.h:3
-#: ../data/language-specs/sparql.lang.h:3 ../data/language-specs/sql.lang.h:2
-#: ../data/language-specs/vala.lang.h:3 ../data/language-specs/vbnet.lang.h:3
+#: ../data/language-specs/opal.lang.h:4 ../data/language-specs/pascal.lang.h:2
+#: ../data/language-specs/php.lang.h:3 ../data/language-specs/sparql.lang.h:3
+#: ../data/language-specs/sql.lang.h:2 ../data/language-specs/vala.lang.h:3
+#: ../data/language-specs/vbnet.lang.h:3
 msgid "Data Type"
 msgstr "Datový typ"
 
 #. A decimal number: 1234
-#: ../data/language-specs/ada.lang.h:6 ../data/language-specs/c.lang.h:7
-#: ../data/language-specs/cg.lang.h:7 ../data/language-specs/csharp.lang.h:6
-#: ../data/language-specs/def.lang.h:19 ../data/language-specs/d.lang.h:6
-#: ../data/language-specs/eiffel.lang.h:6
+#: ../data/language-specs/ada.lang.h:6 ../data/language-specs/bennugd.lang.h:6
+#: ../data/language-specs/c.lang.h:7 ../data/language-specs/cg.lang.h:7
+#: ../data/language-specs/csharp.lang.h:6 ../data/language-specs/def.lang.h:19
+#: ../data/language-specs/d.lang.h:6 ../data/language-specs/eiffel.lang.h:6
 #: ../data/language-specs/erlang.lang.h:6
-#: ../data/language-specs/fsharp.lang.h:6
+#: ../data/language-specs/fsharp.lang.h:6 ../data/language-specs/go.lang.h:5
 #: ../data/language-specs/nemerle.lang.h:6
 #: ../data/language-specs/ocaml.lang.h:6 ../data/language-specs/ooc.lang.h:4
-#: ../data/language-specs/php.lang.h:4 ../data/language-specs/python.lang.h:7
-#: ../data/language-specs/ruby.lang.h:7 ../data/language-specs/vala.lang.h:4
+#: ../data/language-specs/opal.lang.h:5 ../data/language-specs/php.lang.h:4
+#: ../data/language-specs/python.lang.h:7 ../data/language-specs/ruby.lang.h:7
+#: ../data/language-specs/vala.lang.h:4
 msgid "Decimal number"
 msgstr "Číslo v desítkové soustavě"
 
 #. map to nothing
-#: ../data/language-specs/ada.lang.h:7 ../data/language-specs/c.lang.h:9
-#: ../data/language-specs/cg.lang.h:9 ../data/language-specs/csharp.lang.h:8
+#: ../data/language-specs/ada.lang.h:7 ../data/language-specs/bennugd.lang.h:8
+#: ../data/language-specs/c.lang.h:9 ../data/language-specs/cg.lang.h:9
+#: ../data/language-specs/csharp.lang.h:8
 #: ../data/language-specs/eiffel.lang.h:9
-#: ../data/language-specs/fsharp.lang.h:7
+#: ../data/language-specs/fsharp.lang.h:7 ../data/language-specs/go.lang.h:7
 #: ../data/language-specs/haskell.lang.h:5
 #: ../data/language-specs/java.lang.h:7 ../data/language-specs/lua.lang.h:3
 #: ../data/language-specs/ocaml.lang.h:8 ../data/language-specs/ooc.lang.h:7
 #: ../data/language-specs/php.lang.h:7 ../data/language-specs/prolog.lang.h:3
 #: ../data/language-specs/python.lang.h:8 ../data/language-specs/ruby.lang.h:8
 #: ../data/language-specs/texinfo.lang.h:2
+#: ../data/language-specs/verilog.lang.h:5
 msgid "Escaped Character"
 msgstr "Znak v podobě escape sekvence"
 
 #. keywords: "if", "for", "while", etc.
 #: ../data/language-specs/ada.lang.h:8 ../data/language-specs/asp.lang.h:7
-#: ../data/language-specs/awk.lang.h:2 ../data/language-specs/boo.lang.h:7
-#: ../data/language-specs/c.lang.h:13 ../data/language-specs/cg.lang.h:14
+#: ../data/language-specs/awk.lang.h:2
+#: ../data/language-specs/bennugd.lang.h:12
+#: ../data/language-specs/boo.lang.h:7 ../data/language-specs/c.lang.h:13
+#: ../data/language-specs/cg.lang.h:14 ../data/language-specs/cobol.lang.h:5
 #: ../data/language-specs/cpp.lang.h:4 ../data/language-specs/csharp.lang.h:10
 #: ../data/language-specs/css.lang.h:8 ../data/language-specs/cuda.lang.h:6
 #: ../data/language-specs/def.lang.h:36 ../data/language-specs/d.lang.h:10
@@ -200,7 +215,8 @@ msgstr "Znak v podobě escape sekvence"
 #: ../data/language-specs/forth.lang.h:7
 #: ../data/language-specs/fortran.lang.h:8
 #: ../data/language-specs/fsharp.lang.h:10 ../data/language-specs/gap.lang.h:6
-#: ../data/language-specs/glsl.lang.h:5 ../data/language-specs/gtkrc.lang.h:7
+#: ../data/language-specs/glsl.lang.h:5 ../data/language-specs/go.lang.h:12
+#: ../data/language-specs/gtkrc.lang.h:7
 #: ../data/language-specs/haskell.lang.h:9 ../data/language-specs/idl.lang.h:4
 #: ../data/language-specs/ini.lang.h:7 ../data/language-specs/java.lang.h:11
 #: ../data/language-specs/javascript.lang.h:10
@@ -208,23 +224,26 @@ msgstr "Znak v podobě escape sekvence"
 #: ../data/language-specs/nemerle.lang.h:10
 #: ../data/language-specs/objc.lang.h:3 ../data/language-specs/ocaml.lang.h:10
 #: ../data/language-specs/ocl.lang.h:3 ../data/language-specs/octave.lang.h:7
-#: ../data/language-specs/ooc.lang.h:12 ../data/language-specs/pascal.lang.h:4
-#: ../data/language-specs/perl.lang.h:9 ../data/language-specs/php.lang.h:13
-#: ../data/language-specs/po.lang.h:3 ../data/language-specs/prolog.lang.h:4
+#: ../data/language-specs/ooc.lang.h:12 ../data/language-specs/opal.lang.h:8
+#: ../data/language-specs/pascal.lang.h:4 ../data/language-specs/perl.lang.h:9
+#: ../data/language-specs/php.lang.h:13 ../data/language-specs/po.lang.h:3
+#: ../data/language-specs/prolog.lang.h:4
 #: ../data/language-specs/python.lang.h:11 ../data/language-specs/R.lang.h:6
 #: ../data/language-specs/ruby.lang.h:12
-#: ../data/language-specs/scheme.lang.h:4 ../data/language-specs/sh.lang.h:5
+#: ../data/language-specs/scheme.lang.h:4
+#: ../data/language-specs/scilab.lang.h:5 ../data/language-specs/sh.lang.h:5
 #: ../data/language-specs/sparql.lang.h:7 ../data/language-specs/sql.lang.h:6
+#: ../data/language-specs/systemverilog.lang.h:2
 #: ../data/language-specs/tcl.lang.h:1 ../data/language-specs/texinfo.lang.h:6
 #: ../data/language-specs/vala.lang.h:7 ../data/language-specs/vbnet.lang.h:4
-#: ../data/language-specs/verilog.lang.h:6
+#: ../data/language-specs/verilog.lang.h:9
 #: ../data/language-specs/vhdl.lang.h:5
 msgid "Keyword"
 msgstr "Klíčové slovo"
 
 #: ../data/language-specs/ada.lang.h:9 ../data/language-specs/asp.lang.h:10
-#: ../data/language-specs/c.lang.h:15 ../data/language-specs/cg.lang.h:16
-#: ../data/language-specs/csharp.lang.h:12
+#: ../data/language-specs/bennugd.lang.h:14 ../data/language-specs/c.lang.h:15
+#: ../data/language-specs/cg.lang.h:16 ../data/language-specs/csharp.lang.h:12
 #: ../data/language-specs/forth.lang.h:9
 #: ../data/language-specs/fsharp.lang.h:15
 #: ../data/language-specs/glsl.lang.h:7
@@ -238,46 +257,54 @@ msgstr "Preprocesor"
 
 #: ../data/language-specs/ada.lang.h:10
 #: ../data/language-specs/csharp.lang.h:13
-#: ../data/language-specs/vala.lang.h:9 ../data/language-specs/vhdl.lang.h:7
+#: ../data/language-specs/vala.lang.h:9
+#: ../data/language-specs/verilog.lang.h:11
+#: ../data/language-specs/vhdl.lang.h:7
 msgid "Real number"
 msgstr "Reálné číslo"
 
 #: ../data/language-specs/ada.lang.h:11 ../data/language-specs/asp.lang.h:11
+#: ../data/language-specs/bennugd.lang.h:15
 #: ../data/language-specs/boo.lang.h:13 ../data/language-specs/chdr.lang.h:2
-#: ../data/language-specs/c.lang.h:16 ../data/language-specs/cg.lang.h:17
-#: ../data/language-specs/cpp.lang.h:5 ../data/language-specs/csharp.lang.h:14
+#: ../data/language-specs/c.lang.h:17 ../data/language-specs/cg.lang.h:17
+#: ../data/language-specs/cobol.lang.h:8 ../data/language-specs/cpp.lang.h:5
+#: ../data/language-specs/csharp.lang.h:14
 #: ../data/language-specs/cuda.lang.h:7 ../data/language-specs/d.lang.h:13
 #: ../data/language-specs/eiffel.lang.h:14
 #: ../data/language-specs/erlang.lang.h:11
 #: ../data/language-specs/forth.lang.h:10
 #: ../data/language-specs/fortran.lang.h:9
 #: ../data/language-specs/fsharp.lang.h:16
-#: ../data/language-specs/glsl.lang.h:9
+#: ../data/language-specs/glsl.lang.h:9 ../data/language-specs/go.lang.h:14
 #: ../data/language-specs/haskell.lang.h:12
 #: ../data/language-specs/haskell-literate.lang.h:2
 #: ../data/language-specs/idl.lang.h:6 ../data/language-specs/java.lang.h:15
 #: ../data/language-specs/makefile.lang.h:4
 #: ../data/language-specs/nemerle.lang.h:15
 #: ../data/language-specs/objc.lang.h:5 ../data/language-specs/ocaml.lang.h:16
-#: ../data/language-specs/ooc.lang.h:17 ../data/language-specs/pascal.lang.h:7
+#: ../data/language-specs/ooc.lang.h:17 ../data/language-specs/opal.lang.h:11
+#: ../data/language-specs/pascal.lang.h:7
 #: ../data/language-specs/prolog.lang.h:8
 #: ../data/language-specs/scheme.lang.h:6
 #: ../data/language-specs/sparql.lang.h:14 ../data/language-specs/sql.lang.h:9
+#: ../data/language-specs/systemverilog.lang.h:3
 #: ../data/language-specs/vala.lang.h:10 ../data/language-specs/vbnet.lang.h:6
-#: ../data/language-specs/verilog.lang.h:7
+#: ../data/language-specs/verilog.lang.h:12
 #: ../data/language-specs/vhdl.lang.h:8
 msgid "Sources"
 msgstr "Zdrojové kódy"
 
-#: ../data/language-specs/ada.lang.h:12 ../data/language-specs/c.lang.h:17
-#: ../data/language-specs/cg.lang.h:18 ../data/language-specs/java.lang.h:16
-#: ../data/language-specs/ooc.lang.h:18
+#: ../data/language-specs/ada.lang.h:12 ../data/language-specs/c.lang.h:19
+#: ../data/language-specs/cg.lang.h:18 ../data/language-specs/go.lang.h:15
+#: ../data/language-specs/java.lang.h:16 ../data/language-specs/ooc.lang.h:18
 msgid "Storage Class"
 msgstr "Třída úložiště"
 
 #. A string constant: "this is a string"
 #: ../data/language-specs/ada.lang.h:13 ../data/language-specs/asp.lang.h:13
-#: ../data/language-specs/boo.lang.h:15 ../data/language-specs/c.lang.h:18
+#: ../data/language-specs/bennugd.lang.h:16
+#: ../data/language-specs/boo.lang.h:15 ../data/language-specs/c.lang.h:20
+#: ../data/language-specs/cobol.lang.h:10
 #: ../data/language-specs/csharp.lang.h:15
 #: ../data/language-specs/css.lang.h:13 ../data/language-specs/def.lang.h:57
 #: ../data/language-specs/d.lang.h:15 ../data/language-specs/dosbatch.lang.h:6
@@ -285,7 +312,8 @@ msgstr "Třída úložiště"
 #: ../data/language-specs/erlang.lang.h:12
 #: ../data/language-specs/forth.lang.h:11
 #: ../data/language-specs/fsharp.lang.h:17
-#: ../data/language-specs/gtkrc.lang.h:9
+#: ../data/language-specs/gdb-log.lang.h:10
+#: ../data/language-specs/go.lang.h:16 ../data/language-specs/gtkrc.lang.h:9
 #: ../data/language-specs/haskell.lang.h:13
 #: ../data/language-specs/idl.lang.h:7 ../data/language-specs/ini.lang.h:9
 #: ../data/language-specs/java.lang.h:17
@@ -295,15 +323,18 @@ msgstr "Třída úložiště"
 #: ../data/language-specs/nsis.lang.h:5 ../data/language-specs/objc.lang.h:6
 #: ../data/language-specs/ocaml.lang.h:18 ../data/language-specs/ocl.lang.h:7
 #: ../data/language-specs/octave.lang.h:11
-#: ../data/language-specs/ooc.lang.h:19 ../data/language-specs/pascal.lang.h:8
+#: ../data/language-specs/ooc.lang.h:19 ../data/language-specs/opal.lang.h:12
+#: ../data/language-specs/pascal.lang.h:8
 #: ../data/language-specs/perl.lang.h:19 ../data/language-specs/php.lang.h:19
 #: ../data/language-specs/po.lang.h:8 ../data/language-specs/prolog.lang.h:9
 #: ../data/language-specs/python.lang.h:17
 #: ../data/language-specs/ruby.lang.h:21
-#: ../data/language-specs/scheme.lang.h:7 ../data/language-specs/sh.lang.h:9
+#: ../data/language-specs/scheme.lang.h:7
+#: ../data/language-specs/scilab.lang.h:9 ../data/language-specs/sh.lang.h:9
 #: ../data/language-specs/sql.lang.h:10
 #: ../data/language-specs/texinfo.lang.h:10
 #: ../data/language-specs/vala.lang.h:11 ../data/language-specs/vbnet.lang.h:8
+#: ../data/language-specs/verilog.lang.h:13
 #: ../data/language-specs/vhdl.lang.h:9
 msgid "String"
 msgstr "Řetězec"
@@ -321,17 +352,19 @@ msgstr "Objekt ASP"
 #: ../data/language-specs/changelog.lang.h:6
 #: ../data/language-specs/cg.lang.h:11 ../data/language-specs/css.lang.h:7
 #: ../data/language-specs/def.lang.h:32 ../data/language-specs/gap.lang.h:4
+#: ../data/language-specs/gdb-log.lang.h:4
 #: ../data/language-specs/gtk-doc.lang.h:3
 #: ../data/language-specs/javascript.lang.h:7
 #: ../data/language-specs/lua.lang.h:4 ../data/language-specs/octave.lang.h:6
-#: ../data/language-specs/scheme.lang.h:3 ../data/language-specs/sh.lang.h:3
+#: ../data/language-specs/scheme.lang.h:3
+#: ../data/language-specs/scilab.lang.h:4 ../data/language-specs/sh.lang.h:3
 #: ../data/language-specs/sparql.lang.h:4 ../data/language-specs/sql.lang.h:5
 msgid "Function"
 msgstr "Funkce"
 
 #. A generic number constant
 #: ../data/language-specs/asp.lang.h:8 ../data/language-specs/boo.lang.h:11
-#: ../data/language-specs/def.lang.h:40
+#: ../data/language-specs/cobol.lang.h:6 ../data/language-specs/def.lang.h:40
 #: ../data/language-specs/desktop.lang.h:11
 #: ../data/language-specs/forth.lang.h:8 ../data/language-specs/java.lang.h:13
 #: ../data/language-specs/prolog.lang.h:5 ../data/language-specs/vhdl.lang.h:6
@@ -339,7 +372,9 @@ msgid "Number"
 msgstr "Číslo"
 
 #. Operators: "+", "*", etc.
-#: ../data/language-specs/asp.lang.h:9 ../data/language-specs/cmake.lang.h:6
+#: ../data/language-specs/asp.lang.h:9
+#: ../data/language-specs/bennugd.lang.h:13
+#: ../data/language-specs/cmake.lang.h:6 ../data/language-specs/cobol.lang.h:7
 #: ../data/language-specs/def.lang.h:42
 #: ../data/language-specs/erlang.lang.h:10
 #: ../data/language-specs/nsis.lang.h:3 ../data/language-specs/perl.lang.h:11
@@ -380,6 +415,7 @@ msgid "Scripts"
 msgstr "Skripty"
 
 #: ../data/language-specs/awk.lang.h:5 ../data/language-specs/cmake.lang.h:8
+#: ../data/language-specs/cobol.lang.h:11
 #: ../data/language-specs/haskell.lang.h:15
 #: ../data/language-specs/ini.lang.h:10
 #: ../data/language-specs/makefile.lang.h:8
@@ -395,6 +431,64 @@ msgstr "Proměnná"
 #: ../data/language-specs/awk.lang.h:6
 msgid "awk"
 msgstr "awk"
+
+#: ../data/language-specs/bennugd.lang.h:1
+msgid "BennuGD"
+msgstr "BennuGD"
+
+#. A character constant: 'c'
+#: ../data/language-specs/bennugd.lang.h:3 ../data/language-specs/c.lang.h:3
+#: ../data/language-specs/csharp.lang.h:3 ../data/language-specs/def.lang.h:9
+#: ../data/language-specs/gap.lang.h:1 ../data/language-specs/go.lang.h:2
+#: ../data/language-specs/haskell.lang.h:1
+#: ../data/language-specs/java.lang.h:2
+#: ../data/language-specs/nemerle.lang.h:3
+#: ../data/language-specs/vhdl.lang.h:3
+msgid "Character"
+msgstr "Znak"
+
+#. Any erroneous construct
+#: ../data/language-specs/bennugd.lang.h:7 ../data/language-specs/c.lang.h:8
+#: ../data/language-specs/cg.lang.h:8 ../data/language-specs/cobol.lang.h:4
+#: ../data/language-specs/csharp.lang.h:7 ../data/language-specs/css.lang.h:6
+#: ../data/language-specs/def.lang.h:28 ../data/language-specs/d.lang.h:7
+#: ../data/language-specs/dot.lang.h:3 ../data/language-specs/go.lang.h:6
+#: ../data/language-specs/html.lang.h:5 ../data/language-specs/java.lang.h:6
+#: ../data/language-specs/javascript.lang.h:6
+#: ../data/language-specs/nemerle.lang.h:7
+#: ../data/language-specs/ocaml.lang.h:7 ../data/language-specs/ooc.lang.h:6
+#: ../data/language-specs/opal.lang.h:6 ../data/language-specs/perl.lang.h:4
+#: ../data/language-specs/php.lang.h:5 ../data/language-specs/prolog.lang.h:2
+#: ../data/language-specs/vala.lang.h:5
+#: ../data/language-specs/verilog.lang.h:4 ../data/language-specs/xml.lang.h:8
+msgid "Error"
+msgstr "Chyba"
+
+#. A floating point constant: 2.3e10
+#: ../data/language-specs/bennugd.lang.h:9 ../data/language-specs/c.lang.h:10
+#: ../data/language-specs/cg.lang.h:10 ../data/language-specs/def.lang.h:30
+#: ../data/language-specs/d.lang.h:8 ../data/language-specs/erlang.lang.h:8
+#: ../data/language-specs/go.lang.h:8 ../data/language-specs/nemerle.lang.h:8
+#: ../data/language-specs/ooc.lang.h:9 ../data/language-specs/php.lang.h:8
+#: ../data/language-specs/python.lang.h:9 ../data/language-specs/R.lang.h:4
+#: ../data/language-specs/ruby.lang.h:9
+msgid "Floating point number"
+msgstr "Číslo s plovoucí čárkou"
+
+#: ../data/language-specs/bennugd.lang.h:10 ../data/language-specs/c.lang.h:11
+#: ../data/language-specs/cg.lang.h:12 ../data/language-specs/csharp.lang.h:9
+#: ../data/language-specs/d.lang.h:9 ../data/language-specs/eiffel.lang.h:11
+#: ../data/language-specs/go.lang.h:10 ../data/language-specs/nemerle.lang.h:9
+#: ../data/language-specs/ooc.lang.h:11 ../data/language-specs/php.lang.h:11
+#: ../data/language-specs/vala.lang.h:6
+msgid "Hexadecimal number"
+msgstr "Číslo v šestnáctkové soustavě"
+
+#. Any variable name
+#: ../data/language-specs/bennugd.lang.h:11
+#: ../data/language-specs/def.lang.h:34 ../data/language-specs/php.lang.h:12
+msgid "Identifier"
+msgstr "Identifikátor"
 
 #: ../data/language-specs/bibtex.lang.h:1
 msgid "BibTeX"
@@ -417,6 +511,7 @@ msgstr "Pole"
 #: ../data/language-specs/texinfo.lang.h:8 ../data/language-specs/xml.lang.h:9
 #: ../data/language-specs/xslt.lang.h:2
 #: ../gtksourceview/gtksourcecompletionitem.c:242
+#: ../gtksourceview/gtksourcegutterrenderertext.c:393
 msgid "Markup"
 msgstr "Značka"
 
@@ -429,6 +524,7 @@ msgstr "Boo"
 #: ../data/language-specs/octave.lang.h:2
 #: ../data/language-specs/python.lang.h:2
 #: ../data/language-specs/scheme.lang.h:1
+#: ../data/language-specs/scilab.lang.h:1
 #: ../data/language-specs/sparql.lang.h:1
 msgid "Boolean"
 msgstr "Boolean"
@@ -510,15 +606,15 @@ msgstr "Název"
 #: ../data/language-specs/desktop.lang.h:12
 #: ../data/language-specs/diff.lang.h:9 ../data/language-specs/dot.lang.h:6
 #: ../data/language-specs/dpatch.lang.h:2
+#: ../data/language-specs/gdb-log.lang.h:8
 #: ../data/language-specs/gtkrc.lang.h:8 ../data/language-specs/ini.lang.h:8
 #: ../data/language-specs/libtool.lang.h:3
-#: ../data/language-specs/msil.lang.h:2 ../data/language-specs/nsis.lang.h:4
-#: ../data/language-specs/ocl.lang.h:6
+#: ../data/language-specs/nsis.lang.h:4 ../data/language-specs/ocl.lang.h:6
 #: ../data/language-specs/pkgconfig.lang.h:1
 #: ../data/language-specs/po.lang.h:5 ../data/language-specs/rpmspec.lang.h:10
 #: ../data/language-specs/sh.lang.h:6 ../data/language-specs/texinfo.lang.h:9
 #: ../data/language-specs/yacc.lang.h:1
-#: ../gtksourceview/gtksourcelanguage.c:54
+#: ../gtksourceview/gtksourcelanguage.c:55
 msgid "Others"
 msgstr "Jiné"
 
@@ -534,66 +630,33 @@ msgstr "Hlavička C/C++/ObjC"
 msgid "C"
 msgstr "C"
 
-#. A character constant: 'c'
-#: ../data/language-specs/c.lang.h:3 ../data/language-specs/csharp.lang.h:3
-#: ../data/language-specs/def.lang.h:9 ../data/language-specs/gap.lang.h:1
-#: ../data/language-specs/haskell.lang.h:1
-#: ../data/language-specs/java.lang.h:2
-#: ../data/language-specs/nemerle.lang.h:3
-#: ../data/language-specs/vhdl.lang.h:3
-msgid "Character"
-msgstr "Znak"
-
 #: ../data/language-specs/c.lang.h:5 ../data/language-specs/cpp.lang.h:2
-#: ../data/language-specs/objc.lang.h:1
+#: ../data/language-specs/objc.lang.h:1 ../data/language-specs/opal.lang.h:3
 msgid "Common Defines"
 msgstr "Obecné definice"
 
-#. Any erroneous construct
-#: ../data/language-specs/c.lang.h:8 ../data/language-specs/cg.lang.h:8
-#: ../data/language-specs/csharp.lang.h:7 ../data/language-specs/css.lang.h:6
-#: ../data/language-specs/def.lang.h:28 ../data/language-specs/d.lang.h:7
-#: ../data/language-specs/dot.lang.h:3 ../data/language-specs/html.lang.h:5
-#: ../data/language-specs/java.lang.h:6
-#: ../data/language-specs/javascript.lang.h:6
-#: ../data/language-specs/nemerle.lang.h:7
-#: ../data/language-specs/ocaml.lang.h:7 ../data/language-specs/ooc.lang.h:6
-#: ../data/language-specs/perl.lang.h:4 ../data/language-specs/php.lang.h:5
-#: ../data/language-specs/prolog.lang.h:2 ../data/language-specs/vala.lang.h:5
-#: ../data/language-specs/verilog.lang.h:4 ../data/language-specs/xml.lang.h:8
-msgid "Error"
-msgstr "Chyba"
-
-#. A floating point constant: 2.3e10
-#: ../data/language-specs/c.lang.h:10 ../data/language-specs/cg.lang.h:10
-#: ../data/language-specs/def.lang.h:30 ../data/language-specs/d.lang.h:8
-#: ../data/language-specs/erlang.lang.h:8
-#: ../data/language-specs/nemerle.lang.h:8 ../data/language-specs/ooc.lang.h:9
-#: ../data/language-specs/php.lang.h:8 ../data/language-specs/python.lang.h:9
-#: ../data/language-specs/R.lang.h:4 ../data/language-specs/ruby.lang.h:9
-msgid "Floating point number"
-msgstr "Číslo s plovoucí čárkou"
-
-#: ../data/language-specs/c.lang.h:11 ../data/language-specs/cg.lang.h:12
-#: ../data/language-specs/csharp.lang.h:9 ../data/language-specs/d.lang.h:9
-#: ../data/language-specs/eiffel.lang.h:11
-#: ../data/language-specs/nemerle.lang.h:9
-#: ../data/language-specs/ooc.lang.h:11 ../data/language-specs/php.lang.h:11
-#: ../data/language-specs/vala.lang.h:6
-msgid "Hexadecimal number"
-msgstr "Číslo v šestnáctkové soustavě"
-
 #: ../data/language-specs/c.lang.h:12 ../data/language-specs/cg.lang.h:13
+#: ../data/language-specs/go.lang.h:11
 msgid "Included File"
 msgstr "Zahrnutý soubor"
 
 #: ../data/language-specs/c.lang.h:14 ../data/language-specs/cg.lang.h:15
-#: ../data/language-specs/d.lang.h:12 ../data/language-specs/nemerle.lang.h:13
+#: ../data/language-specs/d.lang.h:12 ../data/language-specs/go.lang.h:13
+#: ../data/language-specs/nemerle.lang.h:13
 #: ../data/language-specs/ooc.lang.h:15 ../data/language-specs/php.lang.h:15
 msgid "Octal number"
 msgstr "Číslo v osmičkové soustavě"
 
-#: ../data/language-specs/c.lang.h:19
+#: ../data/language-specs/c.lang.h:16
+#, fuzzy
+msgid "Signal name"
+msgstr "Název signálu"
+
+#: ../data/language-specs/c.lang.h:18
+msgid "Standard stream"
+msgstr ""
+
+#: ../data/language-specs/c.lang.h:21
 msgid "printf Conversion"
 msgstr "Konverze printf"
 
@@ -627,7 +690,8 @@ msgid "CMake"
 msgstr "CMake"
 
 #. Any constant
-#: ../data/language-specs/cmake.lang.h:4 ../data/language-specs/def.lang.h:15
+#: ../data/language-specs/cmake.lang.h:4 ../data/language-specs/cobol.lang.h:3
+#: ../data/language-specs/def.lang.h:15
 #: ../data/language-specs/gtk-doc.lang.h:1
 #: ../data/language-specs/libtool.lang.h:2
 #: ../data/language-specs/ruby.lang.h:6
@@ -637,6 +701,15 @@ msgstr "Konstanta"
 #: ../data/language-specs/cmake.lang.h:5
 msgid "Control Keyword"
 msgstr "Řídící klíčové slovo"
+
+#: ../data/language-specs/cobol.lang.h:1
+msgid "Cobol"
+msgstr "Cobol"
+
+#. Any statement
+#: ../data/language-specs/cobol.lang.h:9 ../data/language-specs/def.lang.h:55
+msgid "Statement"
+msgstr "Složený příkaz"
 
 #: ../data/language-specs/cpp.lang.h:1
 msgid "C++"
@@ -741,11 +814,6 @@ msgstr "Dokumentační komentář"
 msgid "Documentation comment element"
 msgstr "Prvek dokumentačního komentáře"
 
-#. Any variable name
-#: ../data/language-specs/def.lang.h:34 ../data/language-specs/php.lang.h:12
-msgid "Identifier"
-msgstr "Identifikátor"
-
 #. Anything that needs extra attention; mostly the keywords TODO, FIXME and XXX
 #: ../data/language-specs/def.lang.h:38
 msgid "Note (FIXME, TODO, XXX, etc.)"
@@ -771,11 +839,6 @@ msgstr "Mřížka + vykřičník"
 #: ../data/language-specs/def.lang.h:51
 msgid "Special character (inside a string)"
 msgstr "Speciální znak (uvnitř řetězce)"
-
-#. Any statement
-#: ../data/language-specs/def.lang.h:55
-msgid "Statement"
-msgstr "Složený příkaz"
 
 #. Text that stands out, HTML links, e-mail addresses, etc.
 #: ../data/language-specs/def.lang.h:59
@@ -978,6 +1041,7 @@ msgstr "Celé číslo o základu N"
 
 #: ../data/language-specs/erlang.lang.h:5
 #: ../data/language-specs/forth.lang.h:2
+#: ../data/language-specs/systemverilog.lang.h:1
 #: ../data/language-specs/verilog.lang.h:3
 msgid "Compiler Directive"
 msgstr "Direktiva překladače"
@@ -996,16 +1060,18 @@ msgstr "FCL"
 
 #: ../data/language-specs/fcl.lang.h:5 ../data/language-specs/fortran.lang.h:5
 #: ../data/language-specs/ini.lang.h:6 ../data/language-specs/octave.lang.h:5
-#: ../data/language-specs/sql.lang.h:4
+#: ../data/language-specs/scilab.lang.h:3 ../data/language-specs/sql.lang.h:4
 msgid "Floating Point"
 msgstr "S plovoucí desetinnou čárkou"
 
 #: ../data/language-specs/fcl.lang.h:7 ../data/language-specs/octave.lang.h:9
+#: ../data/language-specs/scilab.lang.h:6
 msgid "Reserved Constant"
 msgstr "Rezervovaná konstanta"
 
 #: ../data/language-specs/fcl.lang.h:8 ../data/language-specs/gap.lang.h:7
 #: ../data/language-specs/octave.lang.h:10 ../data/language-specs/R.lang.h:9
+#: ../data/language-specs/scilab.lang.h:7
 msgid "Scientific"
 msgstr "Vědecký"
 
@@ -1081,6 +1147,42 @@ msgstr "Konstruktor typu Variant"
 msgid "GAP"
 msgstr "GAP"
 
+#: ../data/language-specs/gdb-log.lang.h:1
+msgid "Address"
+msgstr "Adresa"
+
+#: ../data/language-specs/gdb-log.lang.h:2
+msgid "Filename"
+msgstr "Název souboru"
+
+#: ../data/language-specs/gdb-log.lang.h:3
+msgid "Frame Number"
+msgstr "Číslo rámce"
+
+#: ../data/language-specs/gdb-log.lang.h:5
+msgid "GDB Log"
+msgstr "GDB Log"
+
+#: ../data/language-specs/gdb-log.lang.h:6
+msgid "Incomplete Sequence"
+msgstr "Neúplná sekvence"
+
+#: ../data/language-specs/gdb-log.lang.h:7
+msgid "Optimized Out"
+msgstr "Optimalizovaný výstup"
+
+#: ../data/language-specs/gdb-log.lang.h:9
+msgid "Prompt"
+msgstr "Výzva"
+
+#: ../data/language-specs/gdb-log.lang.h:11
+msgid "Thread Action"
+msgstr "Činnost vlákna"
+
+#: ../data/language-specs/gdb-log.lang.h:12
+msgid "Thread Header"
+msgstr "Hlavička vlákna"
+
 #: ../data/language-specs/glsl.lang.h:1 ../data/language-specs/python.lang.h:3
 msgid "Builtin Constant"
 msgstr "Vestavěná konstanta"
@@ -1092,6 +1194,10 @@ msgstr "Jazyk na stínování 3D OpenGL"
 #: ../data/language-specs/glsl.lang.h:8
 msgid "Reserved Keywords"
 msgstr "Rezervované klíčové slovo"
+
+#: ../data/language-specs/go.lang.h:9
+msgid "Go"
+msgstr "Go"
 
 #: ../data/language-specs/gtk-doc.lang.h:2
 msgid "Deprecated"
@@ -1126,7 +1232,8 @@ msgid "Since"
 msgstr "Od verze"
 
 #: ../data/language-specs/gtk-doc.lang.h:12
-#: ../data/language-specs/verilog.lang.h:8
+#: ../data/language-specs/systemverilog.lang.h:6
+#: ../data/language-specs/verilog.lang.h:14
 #: ../data/language-specs/vhdl.lang.h:10
 msgid "Type"
 msgstr "Typ"
@@ -1283,7 +1390,7 @@ msgid "Constructors"
 msgstr "Konstruktory"
 
 #: ../data/language-specs/javascript.lang.h:9
-msgid "Javascript"
+msgid "JavaScript"
 msgstr "JavaScript"
 
 #: ../data/language-specs/javascript.lang.h:12
@@ -1419,10 +1526,6 @@ msgstr "Prvky stránky"
 msgid "Section Elements"
 msgstr "Prvky oddílu"
 
-#: ../data/language-specs/msil.lang.h:1
-msgid "MSIL"
-msgstr "MSIL"
-
 #: ../data/language-specs/nemerle.lang.h:11
 msgid "Nemerle"
 msgstr "Nemerle"
@@ -1466,6 +1569,19 @@ msgstr "Octave"
 #: ../data/language-specs/ooc.lang.h:14
 msgid "OOC"
 msgstr "OOC"
+
+#: ../data/language-specs/opal.lang.h:7
+msgid "Keysymbol"
+msgstr "Klíčový symbol"
+
+#: ../data/language-specs/opal.lang.h:9
+#: ../data/language-specs/python.lang.h:12
+msgid "Module Handler"
+msgstr "Obsluha modulu"
+
+#: ../data/language-specs/opal.lang.h:10
+msgid "Opal"
+msgstr "Opal"
 
 #: ../data/language-specs/pascal.lang.h:5
 msgid "Pascal"
@@ -1558,10 +1674,6 @@ msgstr "Vestavěný objekt"
 msgid "Format"
 msgstr "Formát"
 
-#: ../data/language-specs/python.lang.h:12
-msgid "Module Handler"
-msgstr "Obsluha modulu"
-
 #: ../data/language-specs/python.lang.h:14
 msgid "Python"
 msgstr "Python"
@@ -1578,7 +1690,7 @@ msgstr "Operátor přiřazení"
 msgid "Delimiter"
 msgstr "Oddělovač"
 
-#: ../data/language-specs/R.lang.h:5
+#: ../data/language-specs/R.lang.h:5 ../data/language-specs/verilog.lang.h:8
 msgid "Integer Number"
 msgstr "Celé číslo"
 
@@ -1667,6 +1779,10 @@ msgstr "Ruby"
 msgid "Scheme"
 msgstr "Scheme"
 
+#: ../data/language-specs/scilab.lang.h:8
+msgid "Scilab"
+msgstr "Scilab"
+
 #: ../data/language-specs/sh.lang.h:2
 msgid "Common Commands"
 msgstr "Základní příkazy"
@@ -1720,13 +1836,21 @@ msgstr "Nelze rozpoznat, o co jde"
 msgid "SQL"
 msgstr "SQL"
 
-#: ../data/language-specs/t2t.lang.h:2 ../gtksourceview/gtksourcestyle.c:103
-#: ../gtksourceview/gtksourcestyle.c:104
+#: ../data/language-specs/systemverilog.lang.h:4
+msgid "System Task"
+msgstr "Systémová úloha"
+
+#: ../data/language-specs/systemverilog.lang.h:5
+msgid "SystemVerilog"
+msgstr "SystemVerilog"
+
+#: ../data/language-specs/t2t.lang.h:2 ../gtksourceview/gtksourcestyle.c:104
+#: ../gtksourceview/gtksourcestyle.c:105
 msgid "Bold"
 msgstr "Tučné"
 
-#: ../data/language-specs/t2t.lang.h:5 ../gtksourceview/gtksourcestyle.c:111
-#: ../gtksourceview/gtksourcestyle.c:112
+#: ../data/language-specs/t2t.lang.h:5 ../gtksourceview/gtksourcestyle.c:112
+#: ../gtksourceview/gtksourcestyle.c:113
 msgid "Italic"
 msgstr "Kurzíva"
 
@@ -1794,11 +1918,19 @@ msgstr "Vala"
 msgid "VB.NET"
 msgstr "VB.NET"
 
-#: ../data/language-specs/verilog.lang.h:5
+#: ../data/language-specs/verilog.lang.h:6
 msgid "Gate"
 msgstr "Brána"
 
-#: ../data/language-specs/verilog.lang.h:9
+#: ../data/language-specs/verilog.lang.h:7
+msgid "IEEE System Task"
+msgstr "Systémová úloha IEEE"
+
+#: ../data/language-specs/verilog.lang.h:10
+msgid "LRM Additional System Task"
+msgstr "Doplňující systémová úloha LRM"
+
+#: ../data/language-specs/verilog.lang.h:15
 msgid "Verilog"
 msgstr "Verilog"
 
@@ -1944,6 +2076,7 @@ msgid "The delay before initiating interactive completion"
 msgstr "Prodleva než započne interaktivní dokončování"
 
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:518
+#: ../gtksourceview/gtksourcemarkcategory.c:355
 msgid "Priority"
 msgstr "Priorita"
 
@@ -1951,160 +2084,160 @@ msgstr "Priorita"
 msgid "Provider priority"
 msgstr "Priorita poskytovatelů"
 
-#: ../gtksourceview/gtksourcebuffer.c:224
-#: ../gtksourceview/gtksourceprintcompositor.c:506
+#: ../gtksourceview/gtksourcebuffer.c:222
+#: ../gtksourceview/gtksourceprintcompositor.c:505
 msgid "Highlight Syntax"
 msgstr "Zvýrazňovat syntaxi"
 
-#: ../gtksourceview/gtksourcebuffer.c:225
+#: ../gtksourceview/gtksourcebuffer.c:223
 msgid "Whether to highlight syntax in the buffer"
 msgstr "Zda zvýrazňovat syntax ve vyrovnávací paměti"
 
-#: ../gtksourceview/gtksourcebuffer.c:238
+#: ../gtksourceview/gtksourcebuffer.c:236
 msgid "Highlight Matching Brackets"
 msgstr "Zvýrazňovat odpovídající závorky"
 
-#: ../gtksourceview/gtksourcebuffer.c:239
+#: ../gtksourceview/gtksourcebuffer.c:237
 msgid "Whether to highlight matching brackets"
 msgstr "Zda zvýrazňovat závorky, které si odpovídají"
 
-#: ../gtksourceview/gtksourcebuffer.c:252
-#: ../gtksourceview/gtksourceundomanagerdefault.c:412
+#: ../gtksourceview/gtksourcebuffer.c:250
+#: ../gtksourceview/gtksourceundomanagerdefault.c:418
 msgid "Maximum Undo Levels"
 msgstr "Maximum úrovní vracení zpět"
 
-#: ../gtksourceview/gtksourcebuffer.c:253
-#: ../gtksourceview/gtksourceundomanagerdefault.c:413
+#: ../gtksourceview/gtksourcebuffer.c:251
+#: ../gtksourceview/gtksourceundomanagerdefault.c:419
 msgid "Number of undo levels for the buffer"
 msgstr "Počet kroků, o které se lze ve vyrovnávací paměti vrátit zpět"
 
-#. Translators: throughout gtksourceview "language" stands
+#. Translators: throughout GtkSourceView "language" stands
 #. * for "programming language", not "spoken language"
-#: ../gtksourceview/gtksourcebuffer.c:265
+#: ../gtksourceview/gtksourcebuffer.c:263
 msgid "Language"
 msgstr "Jazyk"
 
-#: ../gtksourceview/gtksourcebuffer.c:266
+#: ../gtksourceview/gtksourcebuffer.c:264
 msgid "Language object to get highlighting patterns from"
 msgstr "Objekt jazyka, ze kterého se mají brát vzory pro zvýrazňovací"
 
-#: ../gtksourceview/gtksourcebuffer.c:274
+#: ../gtksourceview/gtksourcebuffer.c:272
 msgid "Can undo"
 msgstr "Lze vrátit"
 
-#: ../gtksourceview/gtksourcebuffer.c:275
+#: ../gtksourceview/gtksourcebuffer.c:273
 msgid "Whether Undo operation is possible"
 msgstr "Zdali je možné provádět vracení zpět"
 
-#: ../gtksourceview/gtksourcebuffer.c:282
+#: ../gtksourceview/gtksourcebuffer.c:280
 msgid "Can redo"
 msgstr "Lze zopakovat"
 
-#: ../gtksourceview/gtksourcebuffer.c:283
+#: ../gtksourceview/gtksourcebuffer.c:281
 msgid "Whether Redo operation is possible"
 msgstr "Zdali je možné provádět opakování vrácených úkonů"
 
-#: ../gtksourceview/gtksourcebuffer.c:297
-#: ../gtksourceview/gtksourcebuffer.c:298
+#: ../gtksourceview/gtksourcebuffer.c:295
+#: ../gtksourceview/gtksourcebuffer.c:296
 msgid "Style scheme"
 msgstr "Schéma stylu"
 
-#: ../gtksourceview/gtksourcebuffer.c:305
+#: ../gtksourceview/gtksourcebuffer.c:303
 msgid "Undo manager"
 msgstr "Správce vracení akcí"
 
-#: ../gtksourceview/gtksourcebuffer.c:306
+#: ../gtksourceview/gtksourcebuffer.c:304
 msgid "The buffer undo manager"
 msgstr "Správce vyrovnávací paměti pro vracení akcí"
 
-#: ../gtksourceview/gtksourcecompletion.c:941
-#: ../gtksourceview/gtksourcecompletion.c:964
+#: ../gtksourceview/gtksourcecompletion.c:934
+#: ../gtksourceview/gtksourcecompletion.c:957
 msgid "No extra information available"
 msgstr "Nejsou dostupné žádné doplňující informace"
 
-#: ../gtksourceview/gtksourcecompletion.c:2233
-#: ../gtksourceview/gtksourcegutter.c:369
+#: ../gtksourceview/gtksourcecompletion.c:2220
+#: ../gtksourceview/gtksourcegutter.c:518
 msgid "View"
 msgstr "Zobrazení"
 
-#: ../gtksourceview/gtksourcecompletion.c:2234
+#: ../gtksourceview/gtksourcecompletion.c:2221
 msgid "The GtkSourceView bound to the completion"
 msgstr "Objekt GtkSourceView vázající se k dokončování"
 
-#: ../gtksourceview/gtksourcecompletion.c:2249
+#: ../gtksourceview/gtksourcecompletion.c:2236
 msgid "Remember Info Visibility"
 msgstr "Zapamatovat viditelnost informací"
 
-#: ../gtksourceview/gtksourcecompletion.c:2250
+#: ../gtksourceview/gtksourcecompletion.c:2237
 msgid "Remember the last info window visibility state"
 msgstr "Zapamatovat poslední stav viditelnosti okna s informacemi"
 
-#: ../gtksourceview/gtksourcecompletion.c:2263
+#: ../gtksourceview/gtksourcecompletion.c:2250
 msgid "Select on Show"
 msgstr "Vybrat po zobrazení"
 
-#: ../gtksourceview/gtksourcecompletion.c:2264
+#: ../gtksourceview/gtksourcecompletion.c:2251
 msgid "Select first proposal when completion is shown"
 msgstr "Po zobrazení dokončování označit první návrh jako vybraný"
 
-#: ../gtksourceview/gtksourcecompletion.c:2278
+#: ../gtksourceview/gtksourcecompletion.c:2265
 msgid "Show Headers"
 msgstr "Zobrazovat hlavičky"
 
-#: ../gtksourceview/gtksourcecompletion.c:2279
+#: ../gtksourceview/gtksourcecompletion.c:2266
 msgid ""
 "Show provider headers when proposals from multiple providers are available"
 msgstr ""
 "Zobrazovat hlavičky poskytovatele, když jsou dostupné návrhy od více "
 "poskytovatelů"
 
-#: ../gtksourceview/gtksourcecompletion.c:2293
+#: ../gtksourceview/gtksourcecompletion.c:2280
 msgid "Show Icons"
 msgstr "Zobrazovat ikony"
 
-#: ../gtksourceview/gtksourcecompletion.c:2294
+#: ../gtksourceview/gtksourcecompletion.c:2281
 msgid "Show provider and proposal icons in the completion popup"
 msgstr ""
 "Zobrazovat ikony návrhu a poskytovatele ve vyskakovací nabídce dokončování"
 
-#: ../gtksourceview/gtksourcecompletion.c:2307
+#: ../gtksourceview/gtksourcecompletion.c:2294
 msgid "Accelerators"
 msgstr "Klávesové zkratky"
 
-#: ../gtksourceview/gtksourcecompletion.c:2308
+#: ../gtksourceview/gtksourcecompletion.c:2295
 msgid "Number of proposal accelerators to show"
 msgstr "Počet klávesových zkratek návrhů, které se mají zobrazit"
 
-#: ../gtksourceview/gtksourcecompletion.c:2324
+#: ../gtksourceview/gtksourcecompletion.c:2311
 msgid "Auto Complete Delay"
 msgstr "Zpoždění automatického dokončování"
 
-#: ../gtksourceview/gtksourcecompletion.c:2325
+#: ../gtksourceview/gtksourcecompletion.c:2312
 msgid "Completion popup delay for interactive completion"
 msgstr "Prodleva než vyskočí nabídka interaktivního dokončování slov"
 
-#: ../gtksourceview/gtksourcecompletion.c:2340
+#: ../gtksourceview/gtksourcecompletion.c:2327
 msgid "Provider Page Size"
 msgstr "Délka stránky poskytovatelů"
 
-#: ../gtksourceview/gtksourcecompletion.c:2341
+#: ../gtksourceview/gtksourcecompletion.c:2328
 msgid "Provider scrolling page size"
 msgstr "Délka posuvné stránky s poskytovateli"
 
-#: ../gtksourceview/gtksourcecompletion.c:2356
+#: ../gtksourceview/gtksourcecompletion.c:2343
 msgid "Proposal Page Size"
 msgstr "Délka stránky návrhů"
 
-#: ../gtksourceview/gtksourcecompletion.c:2357
+#: ../gtksourceview/gtksourcecompletion.c:2344
 msgid "Proposal scrolling page size"
 msgstr "Délka posuvné stránky s návrhy"
 
-#: ../gtksourceview/gtksourcecompletion.c:2695
+#: ../gtksourceview/gtksourcecompletion.c:2689
 msgid "Provider"
 msgstr "Poskytovatel"
 
 #: ../gtksourceview/gtksourcecompletioncontext.c:244
-#: ../gtksourceview/gtksourceview.c:330
+#: ../gtksourceview/gtksourceview.c:289
 msgid "Completion"
 msgstr "Dokončování"
 
@@ -2130,41 +2263,9 @@ msgid "The type of activation"
 msgstr "Typ aktivace"
 
 #. Tooltip style
-#: ../gtksourceview/gtksourcecompletioninfo.c:179
+#: ../gtksourceview/gtksourcecompletioninfo.c:61
 msgid "Completion Info"
 msgstr "Informace o dokončování"
-
-#: ../gtksourceview/gtksourcecompletioninfo.c:351
-msgid "Maximum width"
-msgstr "Maximální šířka"
-
-#: ../gtksourceview/gtksourcecompletioninfo.c:352
-msgid "The maximum allowed width"
-msgstr "Maximální povolená šířka"
-
-#: ../gtksourceview/gtksourcecompletioninfo.c:361
-msgid "Maximum height"
-msgstr "Maximální výška"
-
-#: ../gtksourceview/gtksourcecompletioninfo.c:362
-msgid "The maximum allowed height"
-msgstr "Maximální povolená výška"
-
-#: ../gtksourceview/gtksourcecompletioninfo.c:372
-msgid "Shrink width"
-msgstr "Srazit šířku"
-
-#: ../gtksourceview/gtksourcecompletioninfo.c:373
-msgid "Whether the window should shrink width to fit the contents"
-msgstr "Zda by okno mělo zmenšit šířku tak, aby se přizpůsobila obsahu"
-
-#: ../gtksourceview/gtksourcecompletioninfo.c:380
-msgid "Shrink height"
-msgstr "Srazit výšku"
-
-#: ../gtksourceview/gtksourcecompletioninfo.c:381
-msgid "Whether the window should shrink height to fit the contents"
-msgstr "Zda by okno mělo zmenšit výšku tak, aby se přizpůsobila obsahu"
 
 #: ../gtksourceview/gtksourcecompletionitem.c:229
 msgid "Label"
@@ -2194,7 +2295,7 @@ msgstr "Informace"
 msgid "Info to be shown for this item"
 msgstr "Informace, která má být zobrazená pro tuto položku"
 
-#: ../gtksourceview/gtksourcecontextengine.c:2981
+#: ../gtksourceview/gtksourcecontextengine.c:2969
 msgid "using \\C is not supported in language definitions"
 msgstr "užití \\C není podporováno v definici jazyka"
 
@@ -2202,7 +2303,7 @@ msgstr "užití \\C není podporováno v definici jazyka"
 #. * named sub-patterns with the same name or if resulting regex is
 #. * too long. In this case fixing lang file helps (e.g. renaming
 #. * subpatterns, making huge keywords use bigger prefixes, etc.)
-#: ../gtksourceview/gtksourcecontextengine.c:3605
+#: ../gtksourceview/gtksourcecontextengine.c:3593
 #, c-format
 msgid ""
 "Cannot create a regex for all the transitions, the syntax highlighting "
@@ -2213,7 +2314,7 @@ msgstr ""
 "pomalejší než obvykle.\n"
 "Chyba je: %s"
 
-#: ../gtksourceview/gtksourcecontextengine.c:4940
+#: ../gtksourceview/gtksourcecontextengine.c:4928
 msgid ""
 "Highlighting a single line took too much time, syntax highlighting will be "
 "disabled"
@@ -2221,19 +2322,19 @@ msgstr ""
 "Zvýrazňování každé řádky je příliš časově náročné, zvýrazňování syntaxe bude "
 "zakázáno"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6165
+#: ../gtksourceview/gtksourcecontextengine.c:6181
 #, c-format
 msgid "context '%s' cannot contain a \\%%{...@start} command"
 msgstr "kontext „%s“ nemůže obsahovat příkaz \\%%{...@start}"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6327
-#: ../gtksourceview/gtksourcecontextengine.c:6416
+#: ../gtksourceview/gtksourcecontextengine.c:6343
+#: ../gtksourceview/gtksourcecontextengine.c:6432
 #, c-format
 msgid "duplicated context id '%s'"
 msgstr "duplicitní id kontextu „%s“"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6531
-#: ../gtksourceview/gtksourcecontextengine.c:6591
+#: ../gtksourceview/gtksourcecontextengine.c:6547
+#: ../gtksourceview/gtksourcecontextengine.c:6607
 #, c-format
 msgid ""
 "style override used with wildcard context reference in language '%s' in ref "
@@ -2242,81 +2343,198 @@ msgstr ""
 "přepisování stylu použité s odkazy na kontext pomocí divokých znaků v jazyce "
 "„%s“ v odkazu „%s“"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6605
+#: ../gtksourceview/gtksourcecontextengine.c:6621
 #, c-format
 msgid "invalid context reference '%s'"
 msgstr "chybný kontextový odkaz „%s“"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6624
-#: ../gtksourceview/gtksourcecontextengine.c:6634
+#: ../gtksourceview/gtksourcecontextengine.c:6640
+#: ../gtksourceview/gtksourcecontextengine.c:6650
 #, c-format
 msgid "unknown context '%s'"
 msgstr "neznámý kontext „%s“"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6734
+#: ../gtksourceview/gtksourcecontextengine.c:6750
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "Chybí hlavní definice jazyka (id = „%s“)."
 
-#: ../gtksourceview/gtksourcegutter.c:370
+#: ../gtksourceview/gtksourcegutter.c:519
 msgid "The gutters' GtkSourceView"
 msgstr "Objekt GtkSourceView sloupců okolo textu"
 
-#: ../gtksourceview/gtksourcegutter.c:382
+#: ../gtksourceview/gtksourcegutter.c:531
+#: ../gtksourceview/gtksourcegutterrenderer.c:689
 msgid "Window Type"
 msgstr "Typ okna"
 
-#: ../gtksourceview/gtksourcegutter.c:383
+#: ../gtksourceview/gtksourcegutter.c:532
 msgid "The gutters text window type"
 msgstr "Typ textového okna se sloupci okolo"
 
-#: ../gtksourceview/gtksourcelanguage.c:227
+#: ../gtksourceview/gtksourcegutter.c:543
+#: ../gtksourceview/gtksourcegutterrenderer.c:465
+msgid "X Padding"
+msgstr "Odsazení X"
+
+#: ../gtksourceview/gtksourcegutter.c:544
+#: ../gtksourceview/gtksourcegutterrenderer.c:466
+msgid "The x-padding"
+msgstr "Odsazení ve směru osy X"
+
+#: ../gtksourceview/gtksourcegutter.c:554
+#: ../gtksourceview/gtksourcegutterrenderer.c:481
+msgid "Y Padding"
+msgstr "Odsazení Y"
+
+#: ../gtksourceview/gtksourcegutter.c:555
+#: ../gtksourceview/gtksourcegutterrenderer.c:482
+msgid "The y-padding"
+msgstr "Odsazení ve směru osy Y"
+
+#: ../gtksourceview/gtksourcegutterrenderer.c:451
+#: ../gtksourceview/gtksourcegutterrenderer.c:452
+msgid "Visible"
+msgstr "Viditelný"
+
+#: ../gtksourceview/gtksourcegutterrenderer.c:497
+msgid "X Alignment"
+msgstr "Zarovnání X"
+
+#: ../gtksourceview/gtksourcegutterrenderer.c:498
+msgid "The x-alignment"
+msgstr "Zarovnání ve směru osy X"
+
+#: ../gtksourceview/gtksourcegutterrenderer.c:513
+msgid "Y Alignment"
+msgstr "Zarovnání Y"
+
+#: ../gtksourceview/gtksourcegutterrenderer.c:514
+msgid "The y-alignment"
+msgstr "Zarovnání ve směru osy Y"
+
+#: ../gtksourceview/gtksourcegutterrenderer.c:656
+msgid "The View"
+msgstr "Zobrazení"
+
+#: ../gtksourceview/gtksourcegutterrenderer.c:657
+msgid "The view"
+msgstr "Zobrazení"
+
+#: ../gtksourceview/gtksourcegutterrenderer.c:673
+msgid "Alignment Mode"
+msgstr "Režim zarovnání"
+
+#: ../gtksourceview/gtksourcegutterrenderer.c:674
+msgid "The alignment mode"
+msgstr "Režim zarovnání"
+
+#: ../gtksourceview/gtksourcegutterrenderer.c:690
+msgid "The window type"
+msgstr "Typ okna"
+
+#: ../gtksourceview/gtksourcegutterrenderer.c:698
+msgid "Size"
+msgstr "Velikost"
+
+#: ../gtksourceview/gtksourcegutterrenderer.c:699
+msgid "The size"
+msgstr "Velikost"
+
+#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:293
+#: ../gtksourceview/gtksourcemarkcategory.c:383
+msgid "Pixbuf"
+msgstr "Pixbuf"
+
+#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:294
+#: ../gtksourceview/gtksourcemarkcategory.c:384
+msgid "The pixbuf"
+msgstr "Pixbuf"
+
+#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:301
+#: ../gtksourceview/gtksourcemarkcategory.c:370
+msgid "Stock Id"
+msgstr "Skladové ID"
+
+#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:302
+#: ../gtksourceview/gtksourcemarkcategory.c:371
+msgid "The stock id"
+msgstr "ID ve skladu"
+
+#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:309
+#: ../gtksourceview/gtksourcemarkcategory.c:396
+msgid "Icon Name"
+msgstr "Název ikony"
+
+#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:310
+#: ../gtksourceview/gtksourcemarkcategory.c:397
+msgid "The icon name"
+msgstr "Název ikony"
+
+#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:317
+#: ../gtksourceview/gtksourcemarkcategory.c:409
+msgid "GIcon"
+msgstr "GIcon"
+
+#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:318
+msgid "The gicon"
+msgstr "Ikona GIcon"
+
+#: ../gtksourceview/gtksourcegutterrenderertext.c:394
+msgid "The markup"
+msgstr "Značka"
+
+#: ../gtksourceview/gtksourcegutterrenderertext.c:402
+msgid "The text"
+msgstr "Text"
+
 #: ../gtksourceview/gtksourcelanguage.c:228
+#: ../gtksourceview/gtksourcelanguage.c:229
 msgid "Language id"
 msgstr "ID jazyka"
 
-#: ../gtksourceview/gtksourcelanguage.c:235
 #: ../gtksourceview/gtksourcelanguage.c:236
+#: ../gtksourceview/gtksourcelanguage.c:237
 msgid "Language name"
 msgstr "Název jazyka"
 
-#: ../gtksourceview/gtksourcelanguage.c:243
 #: ../gtksourceview/gtksourcelanguage.c:244
+#: ../gtksourceview/gtksourcelanguage.c:245
 msgid "Language section"
 msgstr "Oddíl jazyka"
 
-#: ../gtksourceview/gtksourcelanguage.c:251
+#: ../gtksourceview/gtksourcelanguage.c:252
 msgid "Hidden"
 msgstr "Skrytý"
 
-#: ../gtksourceview/gtksourcelanguage.c:252
+#: ../gtksourceview/gtksourcelanguage.c:253
 msgid "Whether the language should be hidden from the user"
 msgstr "Zda má být jazyk skrytý před uživatelem"
 
-#: ../gtksourceview/gtksourcelanguagemanager.c:149
+#: ../gtksourceview/gtksourcelanguagemanager.c:150
 msgid "Language specification directories"
 msgstr "Adresáře specifikací jazyků"
 
-#: ../gtksourceview/gtksourcelanguagemanager.c:150
+#: ../gtksourceview/gtksourcelanguagemanager.c:151
 msgid ""
 "List of directories where the language specification files (.lang) are "
 "located"
 msgstr "Seznam adresářů, kde jsou umístěny soubory specifikací jazyka (.lang)"
 
-#: ../gtksourceview/gtksourcelanguagemanager.c:159
+#: ../gtksourceview/gtksourcelanguagemanager.c:160
 msgid "Language ids"
 msgstr "ID jazyků"
 
-#: ../gtksourceview/gtksourcelanguagemanager.c:160
+#: ../gtksourceview/gtksourcelanguagemanager.c:161
 msgid "List of the ids of the available languages"
 msgstr "Seznam ID dostupných jazyků"
 
-#: ../gtksourceview/gtksourcelanguage-parser-2.c:950
+#: ../gtksourceview/gtksourcelanguage-parser-2.c:951
 #, c-format
 msgid "Unknown id '%s' in regex '%s'"
 msgstr "Neznámé ID „%s“ v regulárním výrazu „%s“"
 
-#: ../gtksourceview/gtksourcelanguage-parser-2.c:1178
+#: ../gtksourceview/gtksourcelanguage-parser-2.c:1179
 #, c-format
 msgid "in regex '%s': backreferences are not supported"
 msgstr "pro regulární výraz „%s“: zpětné odkazy nejsou podporovány"
@@ -2329,98 +2547,123 @@ msgstr "kategorie"
 msgid "The mark category"
 msgstr "Kategorie značky"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:446
+#: ../gtksourceview/gtksourcemarkcategory.c:329
+msgid "Id"
+msgstr "ID"
+
+#: ../gtksourceview/gtksourcemarkcategory.c:330
+msgid "The id"
+msgstr "ID"
+
+#: ../gtksourceview/gtksourcemarkcategory.c:342
+#: ../gtksourceview/gtksourcestyle.c:88
+msgid "Background"
+msgstr "Pozadí"
+
+#: ../gtksourceview/gtksourcemarkcategory.c:343
+msgid "The background"
+msgstr "Pozadí"
+
+#: ../gtksourceview/gtksourcemarkcategory.c:356
+msgid "The priority"
+msgstr "Priorita"
+
+#: ../gtksourceview/gtksourcemarkcategory.c:410
+msgid "The GIcon"
+msgstr "Ikona GIcon"
+
+#: ../gtksourceview/gtksourceprintcompositor.c:445
 msgid "Source Buffer"
 msgstr "Zdrojová vyrovnávací paměť"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:447
+#: ../gtksourceview/gtksourceprintcompositor.c:446
 msgid "The GtkSourceBuffer object to print"
 msgstr "Objekt GtkSourceBuffer k vytištění"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:464
-#: ../gtksourceview/gtksourceview.c:368
+#: ../gtksourceview/gtksourceprintcompositor.c:463
+#: ../gtksourceview/gtksourceview.c:327
 msgid "Tab Width"
 msgstr "Šířka tabulátoru"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:465
-#: ../gtksourceview/gtksourceview.c:369
+#: ../gtksourceview/gtksourceprintcompositor.c:464
+#: ../gtksourceview/gtksourceview.c:328
 msgid "Width of a tab character expressed in spaces"
 msgstr "Šířka tabulátoru v mezerách"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:485
+#: ../gtksourceview/gtksourceprintcompositor.c:484
 msgid "Wrap Mode"
 msgstr "Režim zalamování"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:486
+#: ../gtksourceview/gtksourceprintcompositor.c:485
 msgid ""
 "Whether to wrap lines never, at word boundaries, or at character boundaries."
 msgstr "Kde zalamovat řádky (nikdy, na konci slova, mezi písmeny)."
 
-#: ../gtksourceview/gtksourceprintcompositor.c:507
+#: ../gtksourceview/gtksourceprintcompositor.c:506
 msgid "Whether to print the document with highlighted syntax"
 msgstr "Jestli tisknout dokument se zvýrazněnou syntaxí"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:528
+#: ../gtksourceview/gtksourceprintcompositor.c:527
 msgid "Print Line Numbers"
 msgstr "Tisknout čísla řádků"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:529
+#: ../gtksourceview/gtksourceprintcompositor.c:528
 msgid "Interval of printed line numbers (0 means no numbers)"
 msgstr "Interval tisknutých čísel řádků (0 znamená žádná čísla)"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:551
+#: ../gtksourceview/gtksourceprintcompositor.c:550
 msgid "Print Header"
 msgstr "Tisknout hlavičku"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:552
+#: ../gtksourceview/gtksourceprintcompositor.c:551
 msgid "Whether to print a header in each page"
 msgstr "Zda tisknout hlavičku na každé stránce"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:574
+#: ../gtksourceview/gtksourceprintcompositor.c:573
 msgid "Print Footer"
 msgstr "Tisknout patičku"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:575
+#: ../gtksourceview/gtksourceprintcompositor.c:574
 msgid "Whether to print a footer in each page"
 msgstr "Zda tisknout patičku na každé stránce"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:597
+#: ../gtksourceview/gtksourceprintcompositor.c:596
 msgid "Body Font Name"
 msgstr "Písmo těla"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:598
+#: ../gtksourceview/gtksourceprintcompositor.c:597
 msgid "Name of the font to use for the text body (e.g. \"Monospace 10\")"
 msgstr "Písmo, které se má použít pro tělo textu (např. „Monospace 10“)"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:621
+#: ../gtksourceview/gtksourceprintcompositor.c:620
 msgid "Line Numbers Font Name"
 msgstr "Písmo číslování řadků"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:622
+#: ../gtksourceview/gtksourceprintcompositor.c:621
 msgid "Name of the font to use for the line numbers (e.g. \"Monospace 10\")"
 msgstr "Písmo, které se má použít pro čísla řádek (např. „Monospace 10“)"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:645
+#: ../gtksourceview/gtksourceprintcompositor.c:644
 msgid "Header Font Name"
 msgstr "Písmo hlavičky"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:646
+#: ../gtksourceview/gtksourceprintcompositor.c:645
 msgid "Name of the font to use for the page header (e.g. \"Monospace 10\")"
 msgstr "Písmo, které se má použít pro hlavičky stránky (např. „Monospace 10“)"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:669
+#: ../gtksourceview/gtksourceprintcompositor.c:668
 msgid "Footer Font Name"
 msgstr "Písmo patičky"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:670
+#: ../gtksourceview/gtksourceprintcompositor.c:669
 msgid "Name of the font to use for the page footer (e.g. \"Monospace 10\")"
 msgstr "Písmo, které se má použít pro patičky stránky (např. „Monospace 10“)"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:686
+#: ../gtksourceview/gtksourceprintcompositor.c:685
 msgid "Number of pages"
 msgstr "Počet stránek"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:687
+#: ../gtksourceview/gtksourceprintcompositor.c:686
 msgid ""
 "The number of pages in the document (-1 means the document has not been "
 "completely paginated)."
@@ -2428,91 +2671,87 @@ msgstr ""
 "Počet stránek dokumentu (-1 znamená, že dokument ještě nebyl celý rozdělen "
 "na stránky)."
 
-#: ../gtksourceview/gtksourcestyle.c:79
+#: ../gtksourceview/gtksourcestyle.c:80
 msgid "Line background"
 msgstr "Pozadí řádky"
 
-#: ../gtksourceview/gtksourcestyle.c:80
+#: ../gtksourceview/gtksourcestyle.c:81
 msgid "Line background color"
 msgstr "Barva pozadí řádky"
 
-#: ../gtksourceview/gtksourcestyle.c:87
-msgid "Background"
-msgstr "Pozadí"
-
-#: ../gtksourceview/gtksourcestyle.c:88
+#: ../gtksourceview/gtksourcestyle.c:89
 msgid "Background color"
 msgstr "Barva pozadí"
 
-#: ../gtksourceview/gtksourcestyle.c:95
+#: ../gtksourceview/gtksourcestyle.c:96
 msgid "Foreground"
 msgstr "Popředí"
 
-#: ../gtksourceview/gtksourcestyle.c:96
+#: ../gtksourceview/gtksourcestyle.c:97
 msgid "Foreground color"
 msgstr "Barva popředí"
 
-#: ../gtksourceview/gtksourcestyle.c:119 ../gtksourceview/gtksourcestyle.c:120
+#: ../gtksourceview/gtksourcestyle.c:120 ../gtksourceview/gtksourcestyle.c:121
 msgid "Underline"
 msgstr "Podtržené"
 
-#: ../gtksourceview/gtksourcestyle.c:127 ../gtksourceview/gtksourcestyle.c:128
+#: ../gtksourceview/gtksourcestyle.c:128 ../gtksourceview/gtksourcestyle.c:129
 msgid "Strikethrough"
 msgstr "Přeškrtnuté"
 
-#: ../gtksourceview/gtksourcestyle.c:135
+#: ../gtksourceview/gtksourcestyle.c:136
 msgid "Line background set"
 msgstr "Pozadí řádky nastaveno"
 
-#: ../gtksourceview/gtksourcestyle.c:136
+#: ../gtksourceview/gtksourcestyle.c:137
 msgid "Whether line background color is set"
 msgstr "Zdali je nastavená barva pozadí řádku"
 
-#: ../gtksourceview/gtksourcestyle.c:143
+#: ../gtksourceview/gtksourcestyle.c:144
 msgid "Foreground set"
 msgstr "Popředí nastaveno"
 
-#: ../gtksourceview/gtksourcestyle.c:144
+#: ../gtksourceview/gtksourcestyle.c:145
 msgid "Whether foreground color is set"
 msgstr "Zdali je nastavená barva popředí"
 
-#: ../gtksourceview/gtksourcestyle.c:151
+#: ../gtksourceview/gtksourcestyle.c:152
 msgid "Background set"
 msgstr "Pozadí nastaveno"
 
-#: ../gtksourceview/gtksourcestyle.c:152
+#: ../gtksourceview/gtksourcestyle.c:153
 msgid "Whether background color is set"
 msgstr "Zdali je nastavená barva pozadí"
 
-#: ../gtksourceview/gtksourcestyle.c:159
+#: ../gtksourceview/gtksourcestyle.c:160
 msgid "Bold set"
 msgstr "Tučné nastaveno"
 
-#: ../gtksourceview/gtksourcestyle.c:160
+#: ../gtksourceview/gtksourcestyle.c:161
 msgid "Whether bold attribute is set"
 msgstr "Zdali je nastavené tučné písmo"
 
-#: ../gtksourceview/gtksourcestyle.c:167
+#: ../gtksourceview/gtksourcestyle.c:168
 msgid "Italic set"
 msgstr "Kurzíva nastavena"
 
-#: ../gtksourceview/gtksourcestyle.c:168
+#: ../gtksourceview/gtksourcestyle.c:169
 msgid "Whether italic attribute is set"
 msgstr "Zdali je nastavená kurzíva"
 
-#: ../gtksourceview/gtksourcestyle.c:175
+#: ../gtksourceview/gtksourcestyle.c:176
 msgid "Underline set"
 msgstr "Podtržení nastaveno"
 
-#: ../gtksourceview/gtksourcestyle.c:176
+#: ../gtksourceview/gtksourcestyle.c:177
 msgid "Whether underline attribute is set"
 msgstr "Zdali je nastavený atribut podtržení"
 
-#: ../gtksourceview/gtksourcestyle.c:183
+#: ../gtksourceview/gtksourcestyle.c:184
 msgid "Strikethrough set"
 msgstr "Přeškrtnutí nastaveno"
 
-#: ../gtksourceview/gtksourcestyle.c:184
+#: ../gtksourceview/gtksourcestyle.c:185
 msgid "Whether strikethrough attribute is set"
 msgstr "Zdali je nastavený atribut přeškrtnutí"
 
@@ -2536,96 +2775,96 @@ msgstr "Popis schématu stylu"
 msgid "Style scheme filename"
 msgstr "Název souboru se schématy stylu"
 
-#: ../gtksourceview/gtksourcestyleschememanager.c:151
+#: ../gtksourceview/gtksourcestyleschememanager.c:152
 msgid "Style scheme search path"
 msgstr "Cesta ke schématům stylu"
 
-#: ../gtksourceview/gtksourcestyleschememanager.c:152
+#: ../gtksourceview/gtksourcestyleschememanager.c:153
 msgid "List of directories and files where the style schemes are located"
 msgstr "Seznam adresářů, kde jsou umístěny soubory schémat stylů"
 
-#: ../gtksourceview/gtksourcestyleschememanager.c:160
+#: ../gtksourceview/gtksourcestyleschememanager.c:161
 msgid "Scheme ids"
 msgstr "ID schémat"
 
-#: ../gtksourceview/gtksourcestyleschememanager.c:161
+#: ../gtksourceview/gtksourcestyleschememanager.c:162
 msgid "List of the ids of the available style schemes"
 msgstr "Seznam ID dostupných schémat stylů"
 
-#: ../gtksourceview/gtksourceundomanagerdefault.c:404
+#: ../gtksourceview/gtksourceundomanagerdefault.c:410
 msgid "Buffer"
 msgstr "Vyrovnávací paměť"
 
-#: ../gtksourceview/gtksourceundomanagerdefault.c:405
+#: ../gtksourceview/gtksourceundomanagerdefault.c:411
 msgid "The text buffer to add undo support on"
 msgstr "Textová vyrovnávací paměť přidávající podporu vracení akcí"
 
-#: ../gtksourceview/gtksourceview.c:331
+#: ../gtksourceview/gtksourceview.c:290
 msgid "The completion object associated with the view"
 msgstr "Objekt dokončování přidružený k zobrazení"
 
-#: ../gtksourceview/gtksourceview.c:343
+#: ../gtksourceview/gtksourceview.c:302
 msgid "Show Line Numbers"
 msgstr "Zobrazovat čísla řádků"
 
-#: ../gtksourceview/gtksourceview.c:344
+#: ../gtksourceview/gtksourceview.c:303
 msgid "Whether to display line numbers"
 msgstr "Zda zobrazovat čísla řádků"
 
-#: ../gtksourceview/gtksourceview.c:355
+#: ../gtksourceview/gtksourceview.c:314
 msgid "Show Line Marks"
 msgstr "Zobrazovat značky řádků"
 
-#: ../gtksourceview/gtksourceview.c:356
+#: ../gtksourceview/gtksourceview.c:315
 msgid "Whether to display line mark pixbufs"
 msgstr "Zda zobrazovat obrázkové značky řádků"
 
-#: ../gtksourceview/gtksourceview.c:383
+#: ../gtksourceview/gtksourceview.c:342
 msgid "Indent Width"
 msgstr "Šířka odsazení"
 
-#: ../gtksourceview/gtksourceview.c:384
+#: ../gtksourceview/gtksourceview.c:343
 msgid "Number of spaces to use for each step of indent"
 msgstr "Počet mezer, který se má použít na jeden stupeň odsazení"
 
-#: ../gtksourceview/gtksourceview.c:393
+#: ../gtksourceview/gtksourceview.c:352
 msgid "Auto Indentation"
 msgstr "Automatické odsazování"
 
-#: ../gtksourceview/gtksourceview.c:394
+#: ../gtksourceview/gtksourceview.c:353
 msgid "Whether to enable auto indentation"
 msgstr "Zda povolit automatické odsazování"
 
-#: ../gtksourceview/gtksourceview.c:401
+#: ../gtksourceview/gtksourceview.c:360
 msgid "Insert Spaces Instead of Tabs"
 msgstr "Vkládat mezery místo tabulátorů"
 
-#: ../gtksourceview/gtksourceview.c:402
+#: ../gtksourceview/gtksourceview.c:361
 msgid "Whether to insert spaces instead of tabs"
 msgstr "Zda vkládat mezery místo tabulátorů"
 
-#: ../gtksourceview/gtksourceview.c:414
+#: ../gtksourceview/gtksourceview.c:373
 msgid "Show Right Margin"
 msgstr "Zobrazovat pravý okraj"
 
-#: ../gtksourceview/gtksourceview.c:415
+#: ../gtksourceview/gtksourceview.c:374
 msgid "Whether to display the right margin"
 msgstr "Zda zobrazovat pravý okraj"
 
-#: ../gtksourceview/gtksourceview.c:427
+#: ../gtksourceview/gtksourceview.c:386
 msgid "Right Margin Position"
 msgstr "Poloha pravého okraje"
 
-#: ../gtksourceview/gtksourceview.c:428
+#: ../gtksourceview/gtksourceview.c:387
 msgid "Position of the right margin"
 msgstr "Poloha pravého okraje"
 
 # Upravil jsem predhozi preklad, verim, ze "chytre" je tedy na miste.
-#: ../gtksourceview/gtksourceview.c:444
+#: ../gtksourceview/gtksourceview.c:403
 msgid "Smart Home/End"
 msgstr "Chytré Home/End"
 
-#: ../gtksourceview/gtksourceview.c:445
+#: ../gtksourceview/gtksourceview.c:404
 msgid ""
 "HOME and END keys move to first/last non whitespace characters on line "
 "before going to the start/end of the line"
@@ -2633,27 +2872,27 @@ msgstr ""
 "Klávesy HOME a END přesunují kurzor na první/poslední neprázdný znak řádku a "
 "až potom na začátek/konec řádku"
 
-#: ../gtksourceview/gtksourceview.c:455
+#: ../gtksourceview/gtksourceview.c:414
 msgid "Highlight current line"
 msgstr "Zvýrazňovat aktuální řádek"
 
-#: ../gtksourceview/gtksourceview.c:456
+#: ../gtksourceview/gtksourceview.c:415
 msgid "Whether to highlight the current line"
 msgstr "Zda zvýrazňovat aktuální řádek"
 
-#: ../gtksourceview/gtksourceview.c:463
+#: ../gtksourceview/gtksourceview.c:422
 msgid "Indent on tab"
 msgstr "Odsazení tabulátorem"
 
-#: ../gtksourceview/gtksourceview.c:464
+#: ../gtksourceview/gtksourceview.c:423
 msgid "Whether to indent the selected text when the tab key is pressed"
 msgstr "Zda odsadit označený text při stisku tabulátoru"
 
-#: ../gtksourceview/gtksourceview.c:478
+#: ../gtksourceview/gtksourceview.c:437
 msgid "Draw Spaces"
 msgstr "Vykreslovat mezery"
 
-#: ../gtksourceview/gtksourceview.c:479
+#: ../gtksourceview/gtksourceview.c:438
 msgid "Set if and how the spaces should be visualized"
 msgstr "Nastavuje zda a jak by se měly zviditelnit mezery"
 
@@ -2665,3 +2904,30 @@ msgstr ""
 "Lucas Lommer <llommer@svn.gnome.org>\n"
 "Lukáš Ručka <lukassoftwares@gmail.com>\n"
 "Marek Černocký <marek@manet.cz>"
+
+#~ msgid "MSIL"
+#~ msgstr "MSIL"
+
+#~ msgid "Maximum width"
+#~ msgstr "Maximální šířka"
+
+#~ msgid "The maximum allowed width"
+#~ msgstr "Maximální povolená šířka"
+
+#~ msgid "Maximum height"
+#~ msgstr "Maximální výška"
+
+#~ msgid "The maximum allowed height"
+#~ msgstr "Maximální povolená výška"
+
+#~ msgid "Shrink width"
+#~ msgstr "Srazit šířku"
+
+#~ msgid "Whether the window should shrink width to fit the contents"
+#~ msgstr "Zda by okno mělo zmenšit šířku tak, aby se přizpůsobila obsahu"
+
+#~ msgid "Shrink height"
+#~ msgstr "Srazit výšku"
+
+#~ msgid "Whether the window should shrink height to fit the contents"
+#~ msgstr "Zda by okno mělo zmenšit výšku tak, aby se přizpůsobila obsahu"
