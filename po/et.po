@@ -2,12 +2,12 @@
 # Estonian translation of gtksourceview.
 #
 # Copyright (C) 2003, 2005, 2006 Free Software Foundation, Inc.
-# Copyright (C) 2007–2010 The GNOME Project.
+# Copyright (C) 2007–2011 The GNOME Project.
 # This file is distributed under the same license as the gtksourceview package.
 #
 # Tõivo Leedjärv <toivo linux ee>, 2003.
 # Priit Laes <amd store20 com>, 2005.
-# Ivar Smolin <okul linux ee>, 2005–2010.
+# Ivar Smolin <okul linux ee>, 2005–2011.
 # Rene Pärts <rene87 hot ee>, 2010.
 #
 msgid ""
@@ -15,14 +15,14 @@ msgstr ""
 "Project-Id-Version: gtksourceview MASTER\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&component=general\n"
-"POT-Creation-Date: 2010-12-18 18:38+0000\n"
-"PO-Revision-Date: 2010-04-30 07:25+0300\n"
+"POT-Creation-Date: 2011-01-02 23:03+0000\n"
+"PO-Revision-Date: 2011-01-08 11:00+0200\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
-"Language: et\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: et\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "After"
@@ -34,35 +34,31 @@ msgid "All"
 msgstr "Kõik"
 
 msgid "Always"
-msgstr ""
+msgstr "Alati"
 
 msgid "Before"
-msgstr ""
+msgstr "Enne"
 
-#, fuzzy
 msgid "Disabled"
-msgstr "Muutuja"
+msgstr "Keelatud"
 
-#, fuzzy
 msgid "GtkSourceView"
-msgstr "Gutteri GtkSourceView"
+msgstr "GtkSourceView"
 
 msgid "Leading"
 msgstr ""
 
-#, fuzzy
 msgid "Newline"
-msgstr "Allajoonitud"
+msgstr ""
 
 msgid "Non Breaking Whitespace"
-msgstr ""
+msgstr "Murdumatu tühik"
 
 msgid "Space"
-msgstr ""
+msgstr "Tühik"
 
-#, fuzzy
 msgid "Tab"
-msgstr "Silt"
+msgstr "Tabulaator"
 
 msgid "Text"
 msgstr "Tekst"
@@ -263,6 +259,12 @@ msgstr "Kaasatud fail"
 
 msgid "Octal number"
 msgstr "Kaheksandarv"
+
+msgid "Signal name"
+msgstr "Signaali nimi"
+
+msgid "Standard stream"
+msgstr ""
 
 msgid "printf Conversion"
 msgstr "printf teisendus"
@@ -616,34 +618,29 @@ msgstr "GAP"
 msgid "Address"
 msgstr ""
 
-#, fuzzy
 msgid "Filename"
-msgstr "Fail"
+msgstr "Failinimi"
 
-#, fuzzy
 msgid "Frame Number"
-msgstr "Arv"
+msgstr ""
 
 msgid "GDB Log"
-msgstr ""
+msgstr "GDB logi"
 
 msgid "Incomplete Sequence"
 msgstr ""
 
-#, fuzzy
 msgid "Optimized Out"
-msgstr "Nummerdamata loetelu"
+msgstr ""
 
 msgid "Prompt"
 msgstr ""
 
-#, fuzzy
 msgid "Thread Action"
-msgstr "Sektsioon"
+msgstr ""
 
-#, fuzzy
 msgid "Thread Header"
-msgstr "Päiste näitamine"
+msgstr ""
 
 msgid "Builtin Constant"
 msgstr "Sisseehitatud konstant"
@@ -795,9 +792,8 @@ msgstr ""
 msgid "Constructors"
 msgstr "Konstruktorid"
 
-#, fuzzy
 msgid "JavaScript"
-msgstr "Javaskript"
+msgstr "JavaScript"
 
 msgid "Object"
 msgstr "Objekt"
@@ -931,6 +927,15 @@ msgstr "Octave"
 msgid "OOC"
 msgstr "OOC"
 
+msgid "Keysymbol"
+msgstr ""
+
+msgid "Module Handler"
+msgstr "Moodulikäsitleja"
+
+msgid "Opal"
+msgstr "Opal"
+
 msgid "Pascal"
 msgstr "Pascal"
 
@@ -997,9 +1002,6 @@ msgstr "Sisseehitatud objekt"
 
 msgid "Format"
 msgstr "Vorming"
-
-msgid "Module Handler"
-msgstr "Moodulikäsitleja"
 
 msgid "Python"
 msgstr "Python"
@@ -1122,13 +1124,11 @@ msgstr "Pole aimugi, mis see on"
 msgid "SQL"
 msgstr "SQL"
 
-#, fuzzy
 msgid "System Task"
-msgstr "Süsteemne käsk"
+msgstr "Süsteemne tegum"
 
-#, fuzzy
 msgid "SystemVerilog"
-msgstr "Verilog"
+msgstr "SystemVerilog"
 
 msgid "Bold"
 msgstr "Rasvane"
@@ -1519,55 +1519,52 @@ msgid "The gutters text window type"
 msgstr "Gutteri tekstiakna liik"
 
 msgid "X Padding"
-msgstr ""
+msgstr "X-polsterdus"
 
 msgid "The x-padding"
-msgstr ""
+msgstr "X-polsterdus"
 
 msgid "Y Padding"
-msgstr ""
+msgstr "Y-polsterdus"
 
 msgid "The y-padding"
-msgstr ""
+msgstr "Y-polsterdus"
 
 msgid "Visible"
-msgstr ""
+msgstr "Nähtav"
 
 msgid "X Alignment"
-msgstr ""
+msgstr "X-joondus"
 
 msgid "The x-alignment"
-msgstr ""
+msgstr "X-joondus"
 
 msgid "Y Alignment"
-msgstr ""
+msgstr "Y-joondus"
 
 msgid "The y-alignment"
-msgstr ""
+msgstr "Y-joondus"
 
-#, fuzzy
 msgid "The View"
 msgstr "Vaade"
 
 msgid "The view"
-msgstr ""
+msgstr "Vaade"
 
-#, fuzzy
 msgid "Alignment Mode"
-msgstr "Omistamisoperaator"
+msgstr "Joondusrežiim"
 
 msgid "The alignment mode"
-msgstr ""
+msgstr "Joondusrežiim"
 
-#, fuzzy
 msgid "The window type"
-msgstr "Gutteri tekstiakna liik"
+msgstr "Akna liik"
 
 msgid "Size"
-msgstr ""
+msgstr "Suurus"
 
 msgid "The size"
-msgstr ""
+msgstr "Suurus"
 
 msgid "Pixbuf"
 msgstr ""
@@ -1581,29 +1578,23 @@ msgstr ""
 msgid "The stock id"
 msgstr ""
 
-#, fuzzy
 msgid "Icon Name"
-msgstr "Funktsiooni nimi"
+msgstr "Ikooni nimi"
 
-#, fuzzy
 msgid "The icon name"
-msgstr "Teenusepakkuja nimi"
+msgstr "Ikooni nimi"
 
-#, fuzzy
 msgid "GIcon"
-msgstr "Ikoon"
+msgstr "GIcon"
 
-#, fuzzy
 msgid "The gicon"
-msgstr "Teenusepakkuja ikoon"
+msgstr "GIcon"
 
-#, fuzzy
 msgid "The markup"
 msgstr "Märgistus"
 
-#, fuzzy
 msgid "The text"
-msgstr "Kirje tekst"
+msgstr "Tekst"
 
 msgid "Language id"
 msgstr "Keele ID"
@@ -1649,26 +1640,22 @@ msgid "The mark category"
 msgstr ""
 
 msgid "Id"
-msgstr ""
+msgstr "Id"
 
-#, fuzzy
 msgid "The id"
-msgstr "Skeemi ID-d"
+msgstr "Id"
 
 msgid "Background"
 msgstr "Taust"
 
-#, fuzzy
 msgid "The background"
-msgstr "Rea taust"
+msgstr "Taust"
 
-#, fuzzy
 msgid "The priority"
 msgstr "Tähtsus"
 
-#, fuzzy
 msgid "The GIcon"
-msgstr "Ikoonide näitamine"
+msgstr "GIcon"
 
 msgid "Source Buffer"
 msgstr "Lähtepuhver"
@@ -1915,7 +1902,7 @@ msgid "translator-credits"
 msgstr ""
 "Tõivo Leedjärv <toivo linux ee>, 2003.\n"
 "Priit Laes <amd store20 com>, 2005.\n"
-"Ivar Smolin <okul linux ee>, 2005–2010.\n"
+"Ivar Smolin <okul linux ee>, 2005–2011.\n"
 "Rene Pärts <rene87 hot ee>, 2010."
 
 #~ msgid "Maximum width"
@@ -1941,6 +1928,3 @@ msgstr ""
 
 #~ msgid "Whether the window should shrink height to fit the contents"
 #~ msgstr "Kas akna kõrgust vähendatakse sisuga ühtivaks või mitte"
-
-#~ msgid "MSIL"
-#~ msgstr "MSIL"
