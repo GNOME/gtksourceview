@@ -715,12 +715,12 @@ generate_css_style (GtkSourceStyleScheme *scheme,
 	append_css_style (final_style, style, "");
 
 	style = gtk_source_style_scheme_get_style (scheme, STYLE_SELECTED);
-	append_css_style (final_style, style, ":selected");
+	append_css_style (final_style, style, ":selected:focused");
 
 	style2 = gtk_source_style_scheme_get_style (scheme, STYLE_SELECTED_UNFOCUSED);
 	if (style2 == NULL)
 		style2 = style;
-	append_css_style (final_style, style2, ":active");
+	append_css_style (final_style, style2, ":selected");
 
 	/* if there is a previously applied css remove it first */
 	remove_generated_css (scheme, widget);
