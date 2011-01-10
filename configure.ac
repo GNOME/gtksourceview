@@ -4,7 +4,7 @@ AC_PREREQ(2.64)
 
 m4_define(gtksourceview_major_version, 2)
 m4_define(gtksourceview_minor_version, 91)
-m4_define(gtksourceview_micro_version, 3)
+m4_define(gtksourceview_micro_version, 4)
 m4_define(gtksourceview_version, gtksourceview_major_version.gtksourceview_minor_version.gtksourceview_micro_version)
 
 AC_INIT([gtksourceview],[gtksourceview_version],[http://bugzilla.gnome.org/enter_bug.cgi?product=gtksourceview],[gtksourceview],[http://projects.gnome.org/gtksourceview/])
@@ -30,7 +30,7 @@ LT_INIT([disable-static])
 AC_CHECK_HEADERS([unistd.h])
 
 # Dependencies
-GTK_REQUIRED_VERSION=2.91.4
+GTK_REQUIRED_VERSION=2.99.0
 LIBXML_REQUIRED_VERSION=2.6.0
 GLADE_UI_REQUIRED=3.2
 
