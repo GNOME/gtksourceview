@@ -4142,7 +4142,11 @@ gtk_source_view_update_style_scheme (GtkSourceView *view)
 	if (view->priv->style_scheme != new_scheme)
 	{
 		if (view->priv->style_scheme)
+		{
+			_gtk_source_style_scheme_unapply (view->priv->style_scheme, GTK_WIDGET (view));
 			g_object_unref (view->priv->style_scheme);
+		}
+
 		view->priv->style_scheme = new_scheme;
 		if (new_scheme)
 			g_object_ref (new_scheme);

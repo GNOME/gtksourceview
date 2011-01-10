@@ -80,6 +80,8 @@ struct _GtkSourceStyleSchemePrivate
 	GHashTable *defined_styles;
 	GHashTable *style_cache;
 	GHashTable *named_colors;
+
+	GtkCssProvider *css;
 };
 
 G_DEFINE_TYPE (GtkSourceStyleScheme, gtk_source_style_scheme, G_TYPE_OBJECT)
@@ -107,6 +109,11 @@ gtk_source_style_scheme_finalize (GObject *object)
 
 	if (scheme->priv->parent != NULL)
 		g_object_unref (scheme->priv->parent);
+
+	if (scheme->priv->css != NULL)
+	{
+		g_object_unref (scheme->priv->css);
+	}
 
 	G_OBJECT_CLASS (gtk_source_style_scheme_parent_class)->finalize (object);
 }
@@ -612,26 +619,135 @@ _gtk_source_style_scheme_get_current_line_color (GtkSourceStyleScheme *scheme,
 }
 
 static void
-set_text_style (GtkWidget      *widget,
-		GtkSourceStyle *style,
-		GtkStateFlags   state)
+get_css_color_style (GtkSourceStyle *style,
+                     gchar         **bg,
+                     gchar         **text)
 {
 	GdkRGBA color;
-	GdkRGBA *color_ptr;
+	gchar *bg_color, *text_color;
 
 	if (get_color (style, FALSE, &color))
-		color_ptr = &color;
+	{
+		bg_color = gdk_rgba_to_string (&color);
+	}
 	else
-		color_ptr = NULL;
-
-	gtk_widget_override_background_color (widget, state, color_ptr);
+	{
+		bg_color = NULL;
+	}
 
 	if (get_color (style, TRUE, &color))
-		color_ptr = &color;
+	{
+		text_color = gdk_rgba_to_string (&color);
+	}
 	else
-		color_ptr = NULL;
+	{
+		text_color = NULL;
+	}
 
-	gtk_widget_override_color (widget, state, color_ptr);
+	if (bg_color)
+	{
+		*bg = g_strdup_printf ("%s: %s;\n", "background-color", bg_color);
+	}
+	else
+	{
+		*bg = NULL;
+	}
+
+	if (text_color)
+	{
+		*text = g_strdup_printf ("%s: %s;\n", "color", text_color);
+	}
+	else
+	{
+		*text = NULL;
+	}
+}
+
+static void
+append_css_style (GString        *string,
+                  GtkSourceStyle *style,
+                  const gchar    *state)
+{
+	gchar *bg, *text;
+	const gchar css_style[] =
+		".view%s {\n"
+		"	%s"
+		"	%s"
+		"}\n";
+
+	get_css_color_style (style, &bg, &text);
+
+	if (bg || text)
+	{
+		g_string_append_printf (string, css_style, state,
+		                        bg != NULL ? bg : "",
+		                        text != NULL ? text : "");
+	}
+}
+
+static void
+remove_generated_css (GtkSourceStyleScheme *scheme,
+                      GtkWidget            *widget)
+{
+	if (scheme->priv->css != NULL)
+	{
+		GtkStyleContext *context;
+
+		context = gtk_widget_get_style_context (GTK_WIDGET (widget));
+		gtk_style_context_remove_provider (context,
+		                                   GTK_STYLE_PROVIDER (scheme->priv->css));
+
+		g_object_unref (scheme->priv->css);
+		scheme->priv->css = NULL;
+	}
+}
+
+static void
+generate_css_style (GtkSourceStyleScheme *scheme,
+                    GtkWidget            *widget)
+{
+	GString *final_style;
+	GtkSourceStyle *style, *style2;
+
+	final_style = g_string_new ("");
+
+	style = gtk_source_style_scheme_get_style (scheme, STYLE_TEXT);
+	append_css_style (final_style, style, "");
+
+	style = gtk_source_style_scheme_get_style (scheme, STYLE_SELECTED);
+	append_css_style (final_style, style, ":selected");
+
+	style2 = gtk_source_style_scheme_get_style (scheme, STYLE_SELECTED_UNFOCUSED);
+	if (style2 == NULL)
+		style2 = style;
+	append_css_style (final_style, style2, ":active");
+
+	/* if there is a previously applied css remove it first */
+	remove_generated_css (scheme, widget);
+
+	if (*final_style->str != '\0')
+	{
+		GError *error = NULL;
+
+		scheme->priv->css = gtk_css_provider_new ();
+		if (gtk_css_provider_load_from_data (scheme->priv->css, final_style->str,
+		                                     final_style->len, &error))
+		{
+			GtkStyleContext *context;
+
+			context = gtk_widget_get_style_context (GTK_WIDGET (widget));
+			gtk_style_context_add_provider (context,
+			                                GTK_STYLE_PROVIDER (scheme->priv->css),
+			                                GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+		}
+		else
+		{
+			g_warning ("%s", error->message);
+			g_error_free (error);
+		}
+	}
+
+	g_string_free (final_style, TRUE);
 }
 
 static void
@@ -651,7 +767,7 @@ set_line_numbers_style (GtkWidget      *widget,
 		bg_ptr = &bg;
 
 	/* Override the color no matter what the state is */
-	flags = ~0;
+	flags = 0;
 
 	gtk_widget_override_color (widget, flags, fg_ptr);
 	gtk_widget_override_background_color (widget, flags, bg_ptr);
@@ -701,41 +817,41 @@ void
 _gtk_source_style_scheme_apply (GtkSourceStyleScheme *scheme,
 				GtkWidget            *widget)
 {
-	g_return_if_fail (scheme == NULL || GTK_IS_SOURCE_STYLE_SCHEME (scheme));
+	GtkSourceStyle *style, *style2;
+
+	g_return_if_fail (GTK_IS_SOURCE_STYLE_SCHEME (scheme));
 	g_return_if_fail (GTK_IS_WIDGET (widget));
 
-	if (scheme != NULL)
-	{
-		GtkSourceStyle *style, *style2;
+	/* we need to translate some of the style scheme properties in a CSS override */
+	generate_css_style (scheme, widget);
 
-		style = gtk_source_style_scheme_get_style (scheme, STYLE_TEXT);
-		set_text_style (widget, style, 0);
-		set_text_style (widget,
-				style,
-				GTK_STATE_FLAG_PRELIGHT | GTK_STATE_FLAG_INSENSITIVE);
+	style = gtk_source_style_scheme_get_style (scheme, STYLE_LINE_NUMBERS);
+	set_line_numbers_style (widget, style);
 
-		style = gtk_source_style_scheme_get_style (scheme, STYLE_SELECTED);
-		set_text_style (widget, style, GTK_STATE_FLAG_SELECTED);
+	style = gtk_source_style_scheme_get_style (scheme, STYLE_CURSOR);
+	style2 = gtk_source_style_scheme_get_style (scheme, STYLE_SECONDARY_CURSOR);
+	update_cursor_colors (widget, style, style2);
+}
 
-		style2 = gtk_source_style_scheme_get_style (scheme, STYLE_SELECTED_UNFOCUSED);
-		if (style2 == NULL)
-			style2 = style;
-		set_text_style (widget, style2, GTK_STATE_FLAG_ACTIVE);
+/**
+ * _gtk_source_style_scheme_unapply:
+ * @scheme: (allow-none): a #GtkSourceStyleScheme or %NULL.
+ * @widget: a #GtkWidget to unapply styles to.
+ *
+ * Removes the style from @scheme in the @widget.
+ *
+ * Since: 3.0
+ */
+void
+_gtk_source_style_scheme_unapply (GtkSourceStyleScheme *scheme,
+                                  GtkWidget            *widget)
+{
+	g_return_if_fail (GTK_IS_SOURCE_STYLE_SCHEME (scheme));
+	g_return_if_fail (GTK_IS_WIDGET (widget));
 
-		style = gtk_source_style_scheme_get_style (scheme, STYLE_LINE_NUMBERS);
-		set_line_numbers_style (widget, style);
-
-		style = gtk_source_style_scheme_get_style (scheme, STYLE_CURSOR);
-		style2 = gtk_source_style_scheme_get_style (scheme, STYLE_SECONDARY_CURSOR);
-		update_cursor_colors (widget, style, style2);
-	}
-	else
-	{
-		/* reset */
-		set_text_style (widget, NULL, ~0);
-		set_line_numbers_style (widget, NULL);
-		gtk_widget_override_cursor (widget, NULL, NULL);
-	}
+	remove_generated_css (scheme, widget);
+	set_line_numbers_style (widget, NULL);
+	update_cursor_colors (widget, NULL, NULL);
 }
 
 /* --- PARSER ---------------------------------------------------------------- */

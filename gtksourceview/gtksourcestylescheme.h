@@ -78,6 +78,8 @@ void			 _gtk_source_style_scheme_set_parent	(GtkSourceStyleScheme *scheme,
 /* private */
 void			 _gtk_source_style_scheme_apply		(GtkSourceStyleScheme *scheme,
 								 GtkWidget            *widget);
+void			 _gtk_source_style_scheme_unapply	(GtkSourceStyleScheme *scheme,
+                                                                 GtkWidget            *widget);
 GtkSourceStyle		*_gtk_source_style_scheme_get_matching_brackets_style
 								(GtkSourceStyleScheme *scheme);
 GtkSourceStyle		*_gtk_source_style_scheme_get_right_margin_style
