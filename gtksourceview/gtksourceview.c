@@ -259,10 +259,7 @@ gtk_source_view_constructed (GObject *object)
 
 	set_source_buffer (view, gtk_text_view_get_buffer (GTK_TEXT_VIEW (view)));
 
-	if (G_OBJECT_CLASS (gtk_source_view_parent_class)->constructed)
-	{
-		G_OBJECT_CLASS (gtk_source_view_parent_class)->constructed (object);
-	}
+	G_OBJECT_CLASS (gtk_source_view_parent_class)->constructed (object);
 }
 
 /* Private functions. */

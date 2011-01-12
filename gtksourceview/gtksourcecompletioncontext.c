@@ -195,10 +195,7 @@ gtk_source_completion_context_constructed (GObject *object)
 	                                               G_CALLBACK (buffer_mark_set_cb),
 	                                               context);
 
-	if (G_OBJECT_CLASS (gtk_source_completion_context_parent_class)->constructed)
-	{
-		G_OBJECT_CLASS (gtk_source_completion_context_parent_class)->constructed (object);
-	}
+	G_OBJECT_CLASS (gtk_source_completion_context_parent_class)->constructed (object);
 }
 
 static void

@@ -192,10 +192,7 @@ gtk_source_buffer_constructed (GObject *object)
 		gtk_source_buffer_set_undo_manager (buffer, NULL);
 	}
 
-	if (G_OBJECT_CLASS (gtk_source_buffer_parent_class)->constructed)
-	{
-		G_OBJECT_CLASS (gtk_source_buffer_parent_class)->constructed (object);
-	}
+	G_OBJECT_CLASS (gtk_source_buffer_parent_class)->constructed (object);
 }
 
 static void
