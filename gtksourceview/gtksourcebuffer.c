@@ -107,11 +107,6 @@ enum {
 
 struct _GtkSourceBufferPrivate
 {
-	gint                   highlight_syntax:1;
-	gint                   highlight_brackets:1;
-
-	gint                   constructed:1;
-
 	GtkTextTag            *bracket_match_tag;
 	GtkTextMark           *bracket_mark_cursor;
 	GtkTextMark           *bracket_mark_match;
@@ -127,7 +122,10 @@ struct _GtkSourceBufferPrivate
 	GtkSourceUndoManager  *undo_manager;
 	gint                   max_undo_levels;
 
-	gint                   allow_bracket_match:1;
+	guint                  highlight_syntax : 1;
+	guint                  highlight_brackets : 1;
+	guint                  constructed : 1;
+	guint                  allow_bracket_match : 1;
 };
 
 G_DEFINE_TYPE (GtkSourceBuffer, gtk_source_buffer, GTK_TYPE_TEXT_BUFFER)

@@ -52,11 +52,11 @@ struct _GtkSourceGutterRendererPrivate
 
 	gint size;
 
-	GdkRGBA background_color;
-	gboolean background_set;
-
 	GtkSourceGutterRendererAlignmentMode alignment_mode;
 
+	GdkRGBA background_color;
+
+	guint background_set : 1;
 	guint visible : 1;
 };
 
@@ -276,8 +276,10 @@ set_size (GtkSourceGutterRenderer *renderer,
 
 static void
 set_background_color_set (GtkSourceGutterRenderer *renderer,
-                         gboolean                 isset)
+                          gboolean                 isset)
 {
+	isset = (isset != FALSE);
+
 	if (isset != renderer->priv->background_set)
 	{
 		renderer->priv->background_set = isset;

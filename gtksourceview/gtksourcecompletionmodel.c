@@ -33,9 +33,9 @@ typedef struct
 	GtkSourceCompletionProposal *proposal;
 
 	gulong changed_id;
-	gboolean mark;
-	
-	gboolean filtered;
+
+	guint mark : 1;
+	guint filtered : 1;
 } ProposalNode;
 
 typedef struct
@@ -43,12 +43,12 @@ typedef struct
 	GtkSourceCompletionProvider *provider;
 	GHashTable *proposals;
 	guint num_proposals;
-	gboolean filtered;
 
 	GList *first;
 	GList *last;
 	GList *ptr;
-	gboolean first_batch;
+	guint first_batch : 1;
+	guint filtered : 1;
 } ProviderInfo;
 
 struct _GtkSourceCompletionModelPrivate
@@ -62,9 +62,9 @@ struct _GtkSourceCompletionModelPrivate
 	GList *visible_providers;
 	
 	guint num;
-	gboolean show_headers;
-	
-	gboolean marking;
+
+	guint show_headers : 1;
+	guint marking : 1;
 };
 
 enum
@@ -1355,7 +1355,9 @@ gtk_source_completion_model_set_show_headers (GtkSourceCompletionModel *model,
                                               gboolean                  show_headers)
 {
 	g_return_if_fail (GTK_IS_SOURCE_COMPLETION_MODEL (model));
-	
+
+	show_headers = (show_headers != FALSE);
+
 	if (model->priv->show_headers != show_headers)
 	{
 		model->priv->show_headers = show_headers;

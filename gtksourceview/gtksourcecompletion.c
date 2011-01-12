@@ -124,10 +124,6 @@ struct _GtkSourceCompletionPrivate
 	GtkWidget *tree_view_proposals;
 	GtkSourceCompletionModel *model_proposals;
 
-	gboolean remember_info_visibility;
-	gboolean info_visible;
-	gboolean select_on_show;
-	gboolean show_headers;
 	guint num_accelerators;
 
 	/* Page size */
@@ -151,14 +147,19 @@ struct _GtkSourceCompletionPrivate
 	gint typing_line_offset;
 
 	gulong signals_ids[LAST_EXTERNAL_SIGNAL];
-	gboolean select_first;
-	gboolean show_icons;
 
 	gint min_auto_complete_delay;
 	GList *auto_completion_selection;
 	GtkSourceCompletionContext *auto_completion_context;
 
 	gint block_count;
+
+	guint remember_info_visibility : 1;
+	guint info_visible : 1;
+	guint select_on_show : 1;
+	guint show_headers : 1;
+	guint select_first : 1;
+	guint show_icons : 1;
 };
 
 static guint signals[LAST_SIGNAL] = { 0 };
