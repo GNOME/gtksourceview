@@ -45,6 +45,7 @@
     <style id="here-doc" _name="Heredoc" map-to="def:string"/>
     <style id="here-doc-bound" _name="Heredoc Bound" map-to="def:keyword"/>
     <style id="keyword" _name="Keyword" map-to="def:keyword"/>
+    <style id="common-function" _name="Common Function" map-to="def:keyword"/>
     <style id="operator" _name="Operator" map-to="def:operator"/>
     <style id="type" _name="Data Type" map-to="def:type"/>
     <style id="null-value" _name="Null Value" map-to="def:special-constant"/>
@@ -176,7 +177,6 @@
       <keyword>default</keyword>
       <keyword>die</keyword>
       <keyword>do</keyword>
-      <keyword>doubleval</keyword>
       <keyword>echo</keyword>
       <keyword>else</keyword>
       <keyword>elseif</keyword>
@@ -191,11 +191,9 @@
       <keyword>exit</keyword>
       <keyword>extends</keyword>
       <keyword>final</keyword>
-      <keyword>floatval</keyword>
       <keyword>for</keyword>
       <keyword>foreach</keyword>
       <keyword>function</keyword>
-      <keyword>gettype</keyword>
       <keyword>global</keyword>
       <keyword>goto</keyword>
       <keyword>if</keyword>
@@ -204,36 +202,42 @@
       <keyword>include_once</keyword>
       <keyword>instanceof</keyword>
       <keyword>interface</keyword>
-      <keyword>intval</keyword>
       <keyword>isset</keyword>
       <keyword>list</keyword>
       <keyword>namespace</keyword>
       <keyword>new</keyword>
       <keyword>or</keyword>
       <keyword>print</keyword>
-      <keyword>print_r</keyword>
       <keyword>private</keyword>
       <keyword>protected</keyword>
       <keyword>public</keyword>
       <keyword>require</keyword>
       <keyword>require_once</keyword>
       <keyword>return</keyword>
-      <keyword>serialize</keyword>
-      <keyword>settype</keyword>
       <keyword>static</keyword>
-      <keyword>strval</keyword>
       <keyword>switch</keyword>
       <keyword>throw</keyword>
       <keyword>trait</keyword>
       <keyword>try</keyword>
-      <keyword>unserialize</keyword>
       <keyword>unset</keyword>
       <keyword>use</keyword>
       <keyword>var</keyword>
-      <keyword>var_dump</keyword>
-      <keyword>var_export</keyword>
       <keyword>while</keyword>
       <keyword>xor</keyword>
+    </context>
+
+    <context id="common-function" style-ref="keyword">
+      <keyword>doubleval</keyword>
+      <keyword>floatval</keyword>
+      <keyword>gettype</keyword>
+      <keyword>intval</keyword>
+      <keyword>print_r</keyword>
+      <keyword>serialize</keyword>
+      <keyword>settype</keyword>
+      <keyword>strval</keyword>
+      <keyword>unserialize</keyword>
+      <keyword>var_dump</keyword>
+      <keyword>var_export</keyword>
     </context>
 
     <context id="operators" style-ref="operator" extend-parent="false">
