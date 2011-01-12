@@ -69,7 +69,7 @@ if test "$enable_deprecations" = "yes"; then
 fi
 
 PKG_CHECK_MODULES(DEP, [
-	gio-2.0
+	gio-2.0 >= 2.27.92
 	gtk+-3.0 >= $GTK_REQUIRED_VERSION
 	libxml-2.0 >= $LIBXML_REQUIRED_VERSION
 ])
