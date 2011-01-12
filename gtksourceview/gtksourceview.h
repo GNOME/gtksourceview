@@ -175,7 +175,7 @@ gboolean	 gtk_source_view_get_indent_on_tab 	(GtkSourceView   *view);
 
 void		 gtk_source_view_set_highlight_current_line
 							(GtkSourceView   *view,
-							 gboolean         show);
+							 gboolean         hl);
 gboolean 	 gtk_source_view_get_highlight_current_line
 							(GtkSourceView   *view);
 

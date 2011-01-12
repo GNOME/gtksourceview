@@ -120,22 +120,6 @@ enum {
 
 struct _GtkSourceViewPrivate
 {
-	guint		 tab_width;
-	gboolean	 tabs_set;
-	gint		 indent_width;
-	gboolean 	 show_line_numbers;
-	gboolean	 show_line_marks;
-	gboolean	 auto_indent;
-	gboolean	 insert_spaces;
-	gboolean	 highlight_current_line;
-	gboolean	 indent_on_tab;
-	GtkSourceSmartHomeEndType smart_home_end;
-
-	gboolean	 show_right_margin;
-	guint		 right_margin_pos;
-	gint             cached_right_margin_pos;
-
-	gboolean	 style_scheme_applied;
 	GtkSourceStyleScheme *style_scheme;
 	GdkRGBA         *right_margin_line_color;
 	GdkRGBA         *right_margin_overlay_color;
@@ -160,6 +144,21 @@ struct _GtkSourceViewPrivate
 	gulong           notify_buffer_id;
 	gint             num_line_digits;
 
+	guint		 right_margin_pos;
+	gint             cached_right_margin_pos;
+	guint		 tab_width;
+	gint		 indent_width;
+	GtkSourceSmartHomeEndType smart_home_end;
+
+	guint            tabs_set : 1;
+	guint            show_line_numbers : 1;
+	guint            show_line_marks : 1;
+	guint            auto_indent : 1;
+	guint            insert_spaces : 1;
+	guint            highlight_current_line : 1;
+	guint            indent_on_tab : 1;
+	guint            show_right_margin  : 1;
+	guint            style_scheme_applied : 1;
 	guint            current_line_color_set : 1;
 	guint            dispose_has_run : 1;
 };
@@ -3721,9 +3720,9 @@ gtk_source_view_get_highlight_current_line (GtkSourceView *view)
 /**
  * gtk_source_view_set_highlight_current_line:
  * @view: a #GtkSourceView.
- * @show: whether to highlight the current line.
+ * @hl: whether to highlight the current line.
  *
- * If @show is %TRUE the current line is highlighted.
+ * If @hl is %TRUE the current line is highlighted.
  **/
 void
 gtk_source_view_set_highlight_current_line (GtkSourceView *view, gboolean hl)
