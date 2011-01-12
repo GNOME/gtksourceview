@@ -493,6 +493,11 @@ gtk_source_gutter_constructed (GObject *object)
 	{
 		gutter->priv->orientation = GTK_ORIENTATION_VERTICAL;
 	}
+
+	if (G_OBJECT_CLASS (gtk_source_gutter_parent_class)->constructed)
+	{
+		G_OBJECT_CLASS (gtk_source_gutter_parent_class)->constructed (object);
+	}
 }
 
 static void

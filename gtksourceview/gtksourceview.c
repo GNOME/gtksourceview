@@ -194,9 +194,6 @@ typedef enum
 } IconType;
 
 /* Prototypes. */
-static GObject *gtk_source_view_constructor			(GType               type,
-								 guint               n_construct_properties,
-								 GObjectConstructParam *construct_param);
 static void 	gtk_source_view_dispose			(GObject            *object);
 static void 	gtk_source_view_finalize			(GObject            *object);
 static void	gtk_source_view_undo 			(GtkSourceView      *view);
@@ -255,6 +252,18 @@ static MarkCategory *mark_category_new                  (GtkSourceMarkAttributes
                                                          gint priority);
 static void          mark_category_free                 (MarkCategory *category);
 
+static void
+gtk_source_view_constructed (GObject *object)
+{
+	GtkSourceView *view = GTK_SOURCE_VIEW (object);
+
+	set_source_buffer (view, gtk_text_view_get_buffer (GTK_TEXT_VIEW (view)));
+
+	if (G_OBJECT_CLASS (gtk_source_view_parent_class)->constructed)
+	{
+		G_OBJECT_CLASS (gtk_source_view_parent_class)->constructed (object);
+	}
+}
 
 /* Private functions. */
 static void
@@ -269,7 +278,7 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	textview_class 	 = GTK_TEXT_VIEW_CLASS (klass);
 	widget_class 	 = GTK_WIDGET_CLASS (klass);
 
-	object_class->constructor = gtk_source_view_constructor;
+	object_class->constructed = gtk_source_view_constructed;
 	object_class->dispose = gtk_source_view_dispose;
 	object_class->finalize = gtk_source_view_finalize;
 	object_class->get_property = gtk_source_view_get_property;
@@ -1019,24 +1028,6 @@ gtk_source_view_init (GtkSourceView *view)
 							 "notify::buffer",
 							 G_CALLBACK (notify_buffer),
 							 NULL);
-}
-
-static GObject *
-gtk_source_view_constructor (GType                  type,
-			     guint                  n_construct_properties,
-			     GObjectConstructParam *construct_param)
-{
-	GObject *object;
-	GtkSourceView *view;
-
-	object = G_OBJECT_CLASS(gtk_source_view_parent_class)->constructor (type,
-									    n_construct_properties,
-									    construct_param);
-	view = GTK_SOURCE_VIEW (object);
-
-	set_source_buffer (view, gtk_text_view_get_buffer (GTK_TEXT_VIEW (view)));
-
-	return object;
 }
 
 static void

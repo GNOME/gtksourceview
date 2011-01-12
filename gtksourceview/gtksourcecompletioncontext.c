@@ -181,38 +181,34 @@ buffer_mark_set_cb (GtkTextBuffer              *buffer,
 	}
 }
 
-static GObject *
-gtk_source_completion_context_constructor (GType                  type,
-                                           guint                  n_construct_properties,
-                                           GObjectConstructParam *construct_param)
+static void
+gtk_source_completion_context_constructed (GObject *object)
 {
-	GObject *object;
-	GtkTextBuffer *buffer;
 	GtkSourceCompletionContext *context;
-
-	object = G_OBJECT_CLASS (gtk_source_completion_context_parent_class)->constructor (type,
-											   n_construct_properties,
-									 		   construct_param);
+	GtkTextBuffer *buffer;
 
 	/* we need to connect after the completion property is set */
 	context = GTK_SOURCE_COMPLETION_CONTEXT (object);
 	buffer = get_buffer (context);
 	context->priv->mark_set_id = g_signal_connect (buffer,
-						       "mark-set",
-						       G_CALLBACK (buffer_mark_set_cb),
-						       context);
+	                                               "mark-set",
+	                                               G_CALLBACK (buffer_mark_set_cb),
+	                                               context);
 
-	return object;
+	if (G_OBJECT_CLASS (gtk_source_completion_context_parent_class)->constructed)
+	{
+		G_OBJECT_CLASS (gtk_source_completion_context_parent_class)->constructed (object);
+	}
 }
 
 static void
 gtk_source_completion_context_class_init (GtkSourceCompletionContextClass *klass)
 {
 	GObjectClass *object_class = G_OBJECT_CLASS (klass);
-	
+
+	object_class->constructed = gtk_source_completion_context_constructed;
 	object_class->set_property = gtk_source_completion_context_set_property;
 	object_class->get_property = gtk_source_completion_context_get_property;
-	object_class->constructor = gtk_source_completion_context_constructor;
 	object_class->dispose = gtk_source_completion_context_dispose;
 
 	/**

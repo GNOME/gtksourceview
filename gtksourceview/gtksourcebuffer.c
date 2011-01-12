@@ -132,9 +132,6 @@ G_DEFINE_TYPE (GtkSourceBuffer, gtk_source_buffer, GTK_TYPE_TEXT_BUFFER)
 
 static guint 	 buffer_signals[LAST_SIGNAL];
 
-static GObject	*gtk_source_buffer_constructor		(GType                    type,
-							 guint                    n_construct_properties,
-							 GObjectConstructParam   *construct_param);
 static void 	 gtk_source_buffer_finalize		(GObject                 *object);
 static void 	 gtk_source_buffer_dispose		(GObject                 *object);
 static void      gtk_source_buffer_set_property         (GObject                 *object,
@@ -182,6 +179,26 @@ static void	 gtk_source_buffer_real_undo		(GtkSourceBuffer	 *buffer);
 static void	 gtk_source_buffer_real_redo		(GtkSourceBuffer	 *buffer);
 
 static void
+gtk_source_buffer_constructed (GObject *object)
+{
+	GtkSourceBuffer *buffer = GTK_SOURCE_BUFFER (object);
+
+	/* we need to know that the tag-table was set */
+	buffer->priv->constructed = TRUE;
+
+	if (buffer->priv->undo_manager == NULL)
+	{
+		/* This will install the default undo manager */
+		gtk_source_buffer_set_undo_manager (buffer, NULL);
+	}
+
+	if (G_OBJECT_CLASS (gtk_source_buffer_parent_class)->constructed)
+	{
+		G_OBJECT_CLASS (gtk_source_buffer_parent_class)->constructed (object);
+	}
+}
+
+static void
 gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 {
 	GObjectClass        *object_class;
@@ -191,7 +208,7 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 	object_class 	= G_OBJECT_CLASS (klass);
 	tb_class	= GTK_TEXT_BUFFER_CLASS (klass);
 
-	object_class->constructor  = gtk_source_buffer_constructor;
+	object_class->constructed  = gtk_source_buffer_constructed;
 	object_class->finalize	   = gtk_source_buffer_finalize;
 	object_class->dispose	   = gtk_source_buffer_dispose;
 	object_class->get_property = gtk_source_buffer_get_property;
@@ -442,31 +459,6 @@ gtk_source_buffer_init (GtkSourceBuffer *buffer)
 
 	if (priv->style_scheme != NULL)
 		g_object_ref (priv->style_scheme);
-}
-
-static GObject *
-gtk_source_buffer_constructor (GType                  type,
-			       guint                  n_construct_properties,
-			       GObjectConstructParam *construct_param)
-{
-	GObject *object;
-	GtkSourceBuffer *buffer;
-
-	object = G_OBJECT_CLASS(gtk_source_buffer_parent_class)->constructor (type,
-									      n_construct_properties,
-									      construct_param);
-
-	/* we need to know that the tag-table was set */
-	buffer = GTK_SOURCE_BUFFER (object);
-	buffer->priv->constructed = TRUE;
-
-	if (buffer->priv->undo_manager == NULL)
-	{
-		/* This will install the default undo manager */
-		gtk_source_buffer_set_undo_manager (buffer, NULL);
-	}
-
-	return object;
 }
 
 static void
