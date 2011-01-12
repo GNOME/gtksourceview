@@ -4278,8 +4278,8 @@ gtk_source_view_set_mark_attributes (GtkSourceView           *view,
  *
  * Gets attributes and priority for the @category.
  *
- * Returns: #GtkSourceMarkAttributes for the @category. The object belongs to
- * @view, so it shouldn't be unreffed.
+ * Returns: (transfer none): #GtkSourceMarkAttributes for the @category.
+ * The object belongs to @view, so it must not be unreffed.
  */
 GtkSourceMarkAttributes *
 gtk_source_view_get_mark_attributes (GtkSourceView           *view,
