@@ -72,6 +72,7 @@ typedef struct
 	guint size_changed_handler;
 	guint notify_xpad_handler;
 	guint notify_ypad_handler;
+	guint notify_visible_handler;
 } Renderer;
 
 enum
@@ -162,6 +163,14 @@ on_renderer_notify_padding (GtkSourceGutterRenderer *renderer,
 	update_gutter_size (gutter);
 }
 
+static void
+on_renderer_notify_visible (GtkSourceGutterRenderer *renderer,
+                            GParamSpec              *spec,
+                            GtkSourceGutter         *gutter)
+{
+	update_gutter_size (gutter);
+}
+
 static Renderer *
 renderer_new (GtkSourceGutter         *gutter,
               GtkSourceGutterRenderer *renderer,
@@ -201,6 +210,12 @@ renderer_new (GtkSourceGutter         *gutter,
 		                  G_CALLBACK (on_renderer_notify_padding),
 		                  gutter);
 
+	ret->notify_visible_handler =
+		g_signal_connect (ret->renderer,
+		                  "notify::visible",
+		                  G_CALLBACK (on_renderer_notify_visible),
+		                  gutter);
+
 	return ret;
 }
 
@@ -218,6 +233,9 @@ renderer_free (Renderer *renderer)
 
 	g_signal_handler_disconnect (renderer->renderer,
 	                             renderer->notify_ypad_handler);
+
+	g_signal_handler_disconnect (renderer->renderer,
+	                             renderer->notify_visible_handler);
 
 	_gtk_source_gutter_renderer_set_view (renderer->renderer,
 	                                      NULL,
