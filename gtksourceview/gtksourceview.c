@@ -85,8 +85,8 @@
 #define DEFAULT_RIGHT_MARGIN_POSITION	80
 #define MAX_RIGHT_MARGIN_POSITION	1000
 
-#define RIGHT_MARING_LINE_ALPHA		40
-#define RIGHT_MARING_OVERLAY_ALPHA	15
+#define RIGHT_MARGIN_LINE_ALPHA		40
+#define RIGHT_MARGIN_OVERLAY_ALPHA	15
 
 /* Signals */
 enum {
@@ -2212,11 +2212,8 @@ draw_tabs_and_spaces (GtkSourceView *view,
                                              &e,
                                              x2, y2);
 
-	cairo_set_source_rgba (cr,
-			       view->priv->spaces_color->red / 65535.,
-			       view->priv->spaces_color->green / 65535.,
-			       view->priv->spaces_color->blue / 65535.,
-			       1);
+	gdk_cairo_set_source_rgba (cr, view->priv->spaces_color);
+
 	cairo_set_line_width (cr, 0.8);
 	cairo_translate (cr, -0.5, -0.5);
 
@@ -2330,11 +2327,7 @@ gtk_source_view_paint_right_margin (GtkSourceView *view,
 	cairo_move_to (cr, x, redraw_rect.y);
 	cairo_line_to (cr, x, redraw_rect.y + redraw_rect.height);
 
-	cairo_set_source_rgba (cr,
-			       view->priv->right_margin_line_color->red / 65535.,
-			       view->priv->right_margin_line_color->green / 65535.,
-			       view->priv->right_margin_line_color->blue / 65535.,
-			       RIGHT_MARING_LINE_ALPHA / 255.);
+	gdk_cairo_set_source_rgba (cr, view->priv->right_margin_line_color);
 
 	cairo_stroke (cr);
 
@@ -2348,11 +2341,7 @@ gtk_source_view_paint_right_margin (GtkSourceView *view,
 				 redraw_rect.width - x - .5,
 				 redraw_rect.y + redraw_rect.height);
 
-		cairo_set_source_rgba (cr,
-				       view->priv->right_margin_overlay_color->red / 65535.,
-				       view->priv->right_margin_overlay_color->green / 65535.,
-				       view->priv->right_margin_overlay_color->blue / 65535.,
-				       RIGHT_MARING_OVERLAY_ALPHA / 255.);
+		gdk_cairo_set_source_rgba (cr, view->priv->right_margin_overlay_color);
 
 		cairo_fill (cr);
 	}
@@ -4013,6 +4002,8 @@ update_right_margin_colors (GtkSourceView *view)
 			if (color_set && (color_str != NULL) && gdk_rgba_parse (&color, color_str))
 			{
 				view->priv->right_margin_line_color = gdk_rgba_copy (&color);
+				view->priv->right_margin_line_color->alpha =
+					RIGHT_MARGIN_LINE_ALPHA / 255.;
 			}
 
 			g_free (color_str);
@@ -4026,6 +4017,8 @@ update_right_margin_colors (GtkSourceView *view)
 			if (color_set && (color_str != NULL) && gdk_rgba_parse (&color, color_str))
 			{
 				view->priv->right_margin_overlay_color = gdk_rgba_copy (&color);
+				view->priv->right_margin_overlay_color->alpha =
+					RIGHT_MARGIN_OVERLAY_ALPHA / 255.;
 			}
 
 			g_free (color_str);
@@ -4041,6 +4034,8 @@ update_right_margin_colors (GtkSourceView *view)
 		gtk_style_context_get_color (context, 0, &color);
 
 		view->priv->right_margin_line_color = gdk_rgba_copy (&color);
+		view->priv->right_margin_line_color->alpha =
+			RIGHT_MARGIN_LINE_ALPHA / 255.;
 	}
 }
 
