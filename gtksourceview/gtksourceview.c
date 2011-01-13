@@ -2443,7 +2443,7 @@ gtk_source_view_draw (GtkWidget *widget,
 
 			context = gtk_widget_get_style_context (widget);
 			state = gtk_widget_get_state_flags (widget);
-			gtk_style_context_get_color (context, state, &color);
+			gtk_style_context_get_background_color (context, state, &color);
 
 			gtk_source_view_paint_line_background (text_view,
 							       cr,
