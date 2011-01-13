@@ -83,6 +83,7 @@ enum
 	LEAVE_NOTIFY_EVENT,
 	QUERY_TOOLTIP_EVENT,
 	REALIZE,
+	STYLE_UPDATED,
 	LAST_EXTERNAL_SIGNAL
 };
 
@@ -131,6 +132,9 @@ static gboolean on_view_query_tooltip (GtkSourceView   *view,
                                        gboolean         keyboard_mode,
                                        GtkTooltip      *tooltip,
                                        GtkSourceGutter *gutter);
+
+static void on_view_style_updated (GtkSourceView    *view,
+                                   GtkSourceGutter  *gutter);
 
 static void do_redraw (GtkSourceGutter *gutter);
 static void update_gutter_size (GtkSourceGutter *gutter);
@@ -333,6 +337,12 @@ set_view (GtkSourceGutter *gutter,
 		g_signal_connect (view,
 		                  "realize",
 		                  G_CALLBACK (on_view_realize),
+		                  gutter);
+
+	gutter->priv->signals[STYLE_UPDATED] =
+		g_signal_connect (view,
+		                  "style-updated",
+		                  G_CALLBACK (on_view_style_updated),
 		                  gutter);
 }
 
@@ -1534,6 +1544,13 @@ on_view_query_tooltip (GtkSourceView   *view,
 	                                                 x,
 	                                                 y,
 	                                                 tooltip);
+}
+
+static void
+on_view_style_updated (GtkSourceView   *view,
+                       GtkSourceGutter *gutter)
+{
+	gtk_source_gutter_queue_draw (gutter);
 }
 
 void
