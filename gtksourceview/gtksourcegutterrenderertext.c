@@ -59,7 +59,9 @@ create_layout (GtkSourceGutterRendererText *renderer,
 	context = gtk_widget_get_style_context (widget);
 	gtk_style_context_get_color (context, 0, &color);
 
-	attr = pango_attr_foreground_new (color.red, color.green, color.blue);
+	attr = pango_attr_foreground_new (color.red * 65535,
+	                                  color.green * 65535,
+	                                  color.blue * 65535);
 
 	attr->start_index = 0;
 	attr->end_index = G_MAXINT;
