@@ -925,6 +925,8 @@ on_view_draw (GtkSourceView   *view,
 	GtkTextIter selection_end;
 	gboolean has_selection;
 	gint idx;
+	GtkStyleContext *style_context;
+	GdkRGBA fg_color;
 
 	window = gtk_source_gutter_get_window (gutter);
 
@@ -1001,6 +1003,14 @@ on_view_draw (GtkSourceView   *view,
 
 	item = gutter->priv->renderers;
 	idx = 0;
+
+	style_context = gtk_widget_get_style_context (GTK_WIDGET (view));
+
+	gtk_style_context_get_color (style_context,
+	                             gtk_widget_get_state (GTK_WIDGET (view)),
+	                             &fg_color);
+
+	gdk_cairo_set_source_rgba (cr, &fg_color);
 
 	while (item)
 	{
