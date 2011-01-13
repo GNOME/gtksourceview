@@ -795,6 +795,12 @@ update_cursor_colors (GtkWidget      *widget,
 
 		context = gtk_widget_get_style_context (widget);
 		gtk_style_context_get_background_color (context, 0, &secondary_color);
+
+		/* shade the secondary cursor */
+		secondary_color.red *= 0.5;
+		secondary_color.green *= 0.5;
+		secondary_color.blue *= 0.5;
+
 		secondary = &secondary_color;
 	}
 
