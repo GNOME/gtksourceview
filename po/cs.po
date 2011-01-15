@@ -3,28 +3,28 @@
 # Copyright (C) 2003, 2004, 2005, 2006 Miloslav Trmac <mitr@volny.cz>.
 # Copyright (C) 2006 Lukas Novotny <lukasnov@cvs.gnome.org>.
 # This file is distributed under the same license as the gtksourceview package.
+#
 # Miloslav Trmac <mitr@volny.cz>, 2003, 2004, 2005, 2006.
 # Lukas Novotny <lukasnov@cvs.gnome.org>, 2006.
 # Lucas Lommer <llommer@svn.gnome.org>, 2008. 2009.
 # Petr Kovar <pknbe@volny.cz>, 2008, 2010.
 # Lukáš Ručka <lukassoftwares@gmail.com>, 2008.
-# Marek Černocký <marek@manet.cz>, 2010.
+# Marek Černocký <marek@manet.cz>, 2010, 2011.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-03 21:48+0100\n"
-"PO-Revision-Date: 2010-12-28 17:55+0100\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=gtksourceview&component=general\n"
+"POT-Creation-Date: 2011-01-14 21:41+0000\n"
+"PO-Revision-Date: 2011-01-15 16:21+0100\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
-"Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: cs\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Poedit-Language: Czech\n"
-"X-Poedit-SourceCharset: utf-8\n"
 "X-Generator: Lokalize 1.0\n"
 
 #: ../data/glade/gtksourceview.xml.in.h:1
@@ -34,7 +34,7 @@ msgstr "Po"
 #. Translators: "All" is used as a label in thestatus bar of the
 #. popup, telling that all completion pages are shown
 #: ../data/glade/gtksourceview.xml.in.h:2
-#: ../gtksourceview/gtksourcecompletion.c:647
+#: ../gtksourceview/gtksourcecompletion.c:648
 msgid "All"
 msgstr "Vše"
 
@@ -76,7 +76,7 @@ msgstr "Tabulátor"
 
 #: ../data/glade/gtksourceview.xml.in.h:12
 #: ../gtksourceview/gtksourcecompletionitem.c:255
-#: ../gtksourceview/gtksourcegutterrenderertext.c:401
+#: ../gtksourceview/gtksourcegutterrenderertext.c:403
 msgid "Text"
 msgstr "Text"
 
@@ -163,7 +163,7 @@ msgstr "Komentář"
 #: ../data/language-specs/objc.lang.h:2 ../data/language-specs/ocaml.lang.h:5
 #: ../data/language-specs/ocl.lang.h:2 ../data/language-specs/ooc.lang.h:3
 #: ../data/language-specs/opal.lang.h:4 ../data/language-specs/pascal.lang.h:2
-#: ../data/language-specs/php.lang.h:3 ../data/language-specs/sparql.lang.h:3
+#: ../data/language-specs/php.lang.h:4 ../data/language-specs/sparql.lang.h:3
 #: ../data/language-specs/sql.lang.h:2 ../data/language-specs/vala.lang.h:3
 #: ../data/language-specs/vbnet.lang.h:3
 msgid "Data Type"
@@ -178,7 +178,7 @@ msgstr "Datový typ"
 #: ../data/language-specs/fsharp.lang.h:6 ../data/language-specs/go.lang.h:5
 #: ../data/language-specs/nemerle.lang.h:6
 #: ../data/language-specs/ocaml.lang.h:6 ../data/language-specs/ooc.lang.h:4
-#: ../data/language-specs/opal.lang.h:5 ../data/language-specs/php.lang.h:4
+#: ../data/language-specs/opal.lang.h:5 ../data/language-specs/php.lang.h:5
 #: ../data/language-specs/python.lang.h:7 ../data/language-specs/ruby.lang.h:7
 #: ../data/language-specs/vala.lang.h:4
 msgid "Decimal number"
@@ -193,7 +193,7 @@ msgstr "Číslo v desítkové soustavě"
 #: ../data/language-specs/haskell.lang.h:5
 #: ../data/language-specs/java.lang.h:7 ../data/language-specs/lua.lang.h:3
 #: ../data/language-specs/ocaml.lang.h:8 ../data/language-specs/ooc.lang.h:7
-#: ../data/language-specs/php.lang.h:7 ../data/language-specs/prolog.lang.h:3
+#: ../data/language-specs/php.lang.h:8 ../data/language-specs/prolog.lang.h:3
 #: ../data/language-specs/python.lang.h:8 ../data/language-specs/ruby.lang.h:8
 #: ../data/language-specs/texinfo.lang.h:2
 #: ../data/language-specs/verilog.lang.h:5
@@ -226,7 +226,7 @@ msgstr "Znak v podobě escape sekvence"
 #: ../data/language-specs/ocl.lang.h:3 ../data/language-specs/octave.lang.h:7
 #: ../data/language-specs/ooc.lang.h:12 ../data/language-specs/opal.lang.h:8
 #: ../data/language-specs/pascal.lang.h:4 ../data/language-specs/perl.lang.h:9
-#: ../data/language-specs/php.lang.h:13 ../data/language-specs/po.lang.h:3
+#: ../data/language-specs/php.lang.h:14 ../data/language-specs/po.lang.h:3
 #: ../data/language-specs/prolog.lang.h:4
 #: ../data/language-specs/python.lang.h:11 ../data/language-specs/R.lang.h:6
 #: ../data/language-specs/ruby.lang.h:12
@@ -325,7 +325,7 @@ msgstr "Třída úložiště"
 #: ../data/language-specs/octave.lang.h:11
 #: ../data/language-specs/ooc.lang.h:19 ../data/language-specs/opal.lang.h:12
 #: ../data/language-specs/pascal.lang.h:8
-#: ../data/language-specs/perl.lang.h:19 ../data/language-specs/php.lang.h:19
+#: ../data/language-specs/perl.lang.h:19 ../data/language-specs/php.lang.h:20
 #: ../data/language-specs/po.lang.h:8 ../data/language-specs/prolog.lang.h:9
 #: ../data/language-specs/python.lang.h:17
 #: ../data/language-specs/ruby.lang.h:21
@@ -378,7 +378,7 @@ msgstr "Číslo"
 #: ../data/language-specs/def.lang.h:42
 #: ../data/language-specs/erlang.lang.h:10
 #: ../data/language-specs/nsis.lang.h:3 ../data/language-specs/perl.lang.h:11
-#: ../data/language-specs/php.lang.h:16 ../data/language-specs/prolog.lang.h:6
+#: ../data/language-specs/php.lang.h:17 ../data/language-specs/prolog.lang.h:6
 #: ../data/language-specs/sparql.lang.h:10
 msgid "Operator"
 msgstr "Operátor"
@@ -407,7 +407,7 @@ msgstr "Vzor"
 #: ../data/language-specs/dosbatch.lang.h:5
 #: ../data/language-specs/javascript.lang.h:14
 #: ../data/language-specs/lua.lang.h:9 ../data/language-specs/m4.lang.h:3
-#: ../data/language-specs/perl.lang.h:18 ../data/language-specs/php.lang.h:18
+#: ../data/language-specs/perl.lang.h:18 ../data/language-specs/php.lang.h:19
 #: ../data/language-specs/python.lang.h:15
 #: ../data/language-specs/ruby.lang.h:19 ../data/language-specs/sh.lang.h:7
 #: ../data/language-specs/tcl.lang.h:2
@@ -420,7 +420,7 @@ msgstr "Skripty"
 #: ../data/language-specs/ini.lang.h:10
 #: ../data/language-specs/makefile.lang.h:8
 #: ../data/language-specs/nsis.lang.h:6 ../data/language-specs/perl.lang.h:21
-#: ../data/language-specs/php.lang.h:20
+#: ../data/language-specs/php.lang.h:21
 #: ../data/language-specs/pkgconfig.lang.h:3
 #: ../data/language-specs/prolog.lang.h:10
 #: ../data/language-specs/ruby.lang.h:23 ../data/language-specs/sh.lang.h:11
@@ -458,7 +458,7 @@ msgstr "Znak"
 #: ../data/language-specs/nemerle.lang.h:7
 #: ../data/language-specs/ocaml.lang.h:7 ../data/language-specs/ooc.lang.h:6
 #: ../data/language-specs/opal.lang.h:6 ../data/language-specs/perl.lang.h:4
-#: ../data/language-specs/php.lang.h:5 ../data/language-specs/prolog.lang.h:2
+#: ../data/language-specs/php.lang.h:6 ../data/language-specs/prolog.lang.h:2
 #: ../data/language-specs/vala.lang.h:5
 #: ../data/language-specs/verilog.lang.h:4 ../data/language-specs/xml.lang.h:8
 msgid "Error"
@@ -469,7 +469,7 @@ msgstr "Chyba"
 #: ../data/language-specs/cg.lang.h:10 ../data/language-specs/def.lang.h:30
 #: ../data/language-specs/d.lang.h:8 ../data/language-specs/erlang.lang.h:8
 #: ../data/language-specs/go.lang.h:8 ../data/language-specs/nemerle.lang.h:8
-#: ../data/language-specs/ooc.lang.h:9 ../data/language-specs/php.lang.h:8
+#: ../data/language-specs/ooc.lang.h:9 ../data/language-specs/php.lang.h:9
 #: ../data/language-specs/python.lang.h:9 ../data/language-specs/R.lang.h:4
 #: ../data/language-specs/ruby.lang.h:9
 msgid "Floating point number"
@@ -479,14 +479,14 @@ msgstr "Číslo s plovoucí čárkou"
 #: ../data/language-specs/cg.lang.h:12 ../data/language-specs/csharp.lang.h:9
 #: ../data/language-specs/d.lang.h:9 ../data/language-specs/eiffel.lang.h:11
 #: ../data/language-specs/go.lang.h:10 ../data/language-specs/nemerle.lang.h:9
-#: ../data/language-specs/ooc.lang.h:11 ../data/language-specs/php.lang.h:11
+#: ../data/language-specs/ooc.lang.h:11 ../data/language-specs/php.lang.h:12
 #: ../data/language-specs/vala.lang.h:6
 msgid "Hexadecimal number"
 msgstr "Číslo v šestnáctkové soustavě"
 
 #. Any variable name
 #: ../data/language-specs/bennugd.lang.h:11
-#: ../data/language-specs/def.lang.h:34 ../data/language-specs/php.lang.h:12
+#: ../data/language-specs/def.lang.h:34 ../data/language-specs/php.lang.h:13
 msgid "Identifier"
 msgstr "Identifikátor"
 
@@ -511,7 +511,7 @@ msgstr "Pole"
 #: ../data/language-specs/texinfo.lang.h:8 ../data/language-specs/xml.lang.h:9
 #: ../data/language-specs/xslt.lang.h:2
 #: ../gtksourceview/gtksourcecompletionitem.c:242
-#: ../gtksourceview/gtksourcegutterrenderertext.c:393
+#: ../gtksourceview/gtksourcegutterrenderertext.c:395
 msgid "Markup"
 msgstr "Značka"
 
@@ -548,7 +548,7 @@ msgstr "Jmenný prostor"
 #: ../data/language-specs/java.lang.h:12
 #: ../data/language-specs/javascript.lang.h:11
 #: ../data/language-specs/nemerle.lang.h:12
-#: ../data/language-specs/ooc.lang.h:13 ../data/language-specs/php.lang.h:14
+#: ../data/language-specs/ooc.lang.h:13 ../data/language-specs/php.lang.h:15
 #: ../data/language-specs/vala.lang.h:8
 msgid "Null Value"
 msgstr "Nenastavená hodnota"
@@ -643,18 +643,17 @@ msgstr "Zahrnutý soubor"
 #: ../data/language-specs/c.lang.h:14 ../data/language-specs/cg.lang.h:15
 #: ../data/language-specs/d.lang.h:12 ../data/language-specs/go.lang.h:13
 #: ../data/language-specs/nemerle.lang.h:13
-#: ../data/language-specs/ooc.lang.h:15 ../data/language-specs/php.lang.h:15
+#: ../data/language-specs/ooc.lang.h:15 ../data/language-specs/php.lang.h:16
 msgid "Octal number"
 msgstr "Číslo v osmičkové soustavě"
 
 #: ../data/language-specs/c.lang.h:16
-#, fuzzy
 msgid "Signal name"
 msgstr "Název signálu"
 
 #: ../data/language-specs/c.lang.h:18
 msgid "Standard stream"
-msgstr ""
+msgstr "Standardní proud"
 
 #: ../data/language-specs/c.lang.h:21
 msgid "printf Conversion"
@@ -1595,12 +1594,12 @@ msgstr "Řízení běhu"
 msgid "File Descriptor"
 msgstr "Popisovač souboru"
 
-#: ../data/language-specs/perl.lang.h:6 ../data/language-specs/php.lang.h:9
+#: ../data/language-specs/perl.lang.h:6 ../data/language-specs/php.lang.h:10
 #: ../data/language-specs/ruby.lang.h:10
 msgid "Heredoc"
 msgstr "Dokumentace přímo v kódu"
 
-#: ../data/language-specs/perl.lang.h:7 ../data/language-specs/php.lang.h:10
+#: ../data/language-specs/perl.lang.h:7 ../data/language-specs/php.lang.h:11
 #: ../data/language-specs/ruby.lang.h:11 ../data/language-specs/sh.lang.h:4
 msgid "Heredoc Bound"
 msgstr "Napojení dokumentace přímo v kódu"
@@ -1637,7 +1636,11 @@ msgstr "Perl"
 msgid "System Command"
 msgstr "Systémový příkaz"
 
-#: ../data/language-specs/php.lang.h:17
+#: ../data/language-specs/php.lang.h:3
+msgid "Common Function"
+msgstr "Běžná funkce"
+
+#: ../data/language-specs/php.lang.h:18
 msgid "PHP"
 msgstr "PHP"
 
@@ -2076,7 +2079,6 @@ msgid "The delay before initiating interactive completion"
 msgstr "Prodleva než započne interaktivní dokončování"
 
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:518
-#: ../gtksourceview/gtksourcemarkcategory.c:355
 msgid "Priority"
 msgstr "Priorita"
 
@@ -2084,181 +2086,181 @@ msgstr "Priorita"
 msgid "Provider priority"
 msgstr "Priorita poskytovatelů"
 
-#: ../gtksourceview/gtksourcebuffer.c:222
+#: ../gtksourceview/gtksourcebuffer.c:234
 #: ../gtksourceview/gtksourceprintcompositor.c:505
 msgid "Highlight Syntax"
 msgstr "Zvýrazňovat syntaxi"
 
-#: ../gtksourceview/gtksourcebuffer.c:223
+#: ../gtksourceview/gtksourcebuffer.c:235
 msgid "Whether to highlight syntax in the buffer"
 msgstr "Zda zvýrazňovat syntax ve vyrovnávací paměti"
 
-#: ../gtksourceview/gtksourcebuffer.c:236
+#: ../gtksourceview/gtksourcebuffer.c:248
 msgid "Highlight Matching Brackets"
 msgstr "Zvýrazňovat odpovídající závorky"
 
-#: ../gtksourceview/gtksourcebuffer.c:237
+#: ../gtksourceview/gtksourcebuffer.c:249
 msgid "Whether to highlight matching brackets"
 msgstr "Zda zvýrazňovat závorky, které si odpovídají"
 
-#: ../gtksourceview/gtksourcebuffer.c:250
+#: ../gtksourceview/gtksourcebuffer.c:262
 #: ../gtksourceview/gtksourceundomanagerdefault.c:418
 msgid "Maximum Undo Levels"
 msgstr "Maximum úrovní vracení zpět"
 
-#: ../gtksourceview/gtksourcebuffer.c:251
+#: ../gtksourceview/gtksourcebuffer.c:263
 #: ../gtksourceview/gtksourceundomanagerdefault.c:419
 msgid "Number of undo levels for the buffer"
 msgstr "Počet kroků, o které se lze ve vyrovnávací paměti vrátit zpět"
 
 #. Translators: throughout GtkSourceView "language" stands
 #. * for "programming language", not "spoken language"
-#: ../gtksourceview/gtksourcebuffer.c:263
+#: ../gtksourceview/gtksourcebuffer.c:275
 msgid "Language"
 msgstr "Jazyk"
 
-#: ../gtksourceview/gtksourcebuffer.c:264
+#: ../gtksourceview/gtksourcebuffer.c:276
 msgid "Language object to get highlighting patterns from"
 msgstr "Objekt jazyka, ze kterého se mají brát vzory pro zvýrazňovací"
 
-#: ../gtksourceview/gtksourcebuffer.c:272
+#: ../gtksourceview/gtksourcebuffer.c:284
 msgid "Can undo"
 msgstr "Lze vrátit"
 
-#: ../gtksourceview/gtksourcebuffer.c:273
+#: ../gtksourceview/gtksourcebuffer.c:285
 msgid "Whether Undo operation is possible"
 msgstr "Zdali je možné provádět vracení zpět"
 
-#: ../gtksourceview/gtksourcebuffer.c:280
+#: ../gtksourceview/gtksourcebuffer.c:292
 msgid "Can redo"
 msgstr "Lze zopakovat"
 
-#: ../gtksourceview/gtksourcebuffer.c:281
+#: ../gtksourceview/gtksourcebuffer.c:293
 msgid "Whether Redo operation is possible"
 msgstr "Zdali je možné provádět opakování vrácených úkonů"
 
-#: ../gtksourceview/gtksourcebuffer.c:295
-#: ../gtksourceview/gtksourcebuffer.c:296
+#: ../gtksourceview/gtksourcebuffer.c:307
+#: ../gtksourceview/gtksourcebuffer.c:308
 msgid "Style scheme"
 msgstr "Schéma stylu"
 
-#: ../gtksourceview/gtksourcebuffer.c:303
+#: ../gtksourceview/gtksourcebuffer.c:315
 msgid "Undo manager"
 msgstr "Správce vracení akcí"
 
-#: ../gtksourceview/gtksourcebuffer.c:304
+#: ../gtksourceview/gtksourcebuffer.c:316
 msgid "The buffer undo manager"
 msgstr "Správce vyrovnávací paměti pro vracení akcí"
 
-#: ../gtksourceview/gtksourcecompletion.c:934
-#: ../gtksourceview/gtksourcecompletion.c:957
+#: ../gtksourceview/gtksourcecompletion.c:935
+#: ../gtksourceview/gtksourcecompletion.c:958
 msgid "No extra information available"
 msgstr "Nejsou dostupné žádné doplňující informace"
 
-#: ../gtksourceview/gtksourcecompletion.c:2220
-#: ../gtksourceview/gtksourcegutter.c:518
+#: ../gtksourceview/gtksourcecompletion.c:2221
+#: ../gtksourceview/gtksourcegutter.c:548
 msgid "View"
 msgstr "Zobrazení"
 
-#: ../gtksourceview/gtksourcecompletion.c:2221
+#: ../gtksourceview/gtksourcecompletion.c:2222
 msgid "The GtkSourceView bound to the completion"
 msgstr "Objekt GtkSourceView vázající se k dokončování"
 
-#: ../gtksourceview/gtksourcecompletion.c:2236
+#: ../gtksourceview/gtksourcecompletion.c:2237
 msgid "Remember Info Visibility"
 msgstr "Zapamatovat viditelnost informací"
 
-#: ../gtksourceview/gtksourcecompletion.c:2237
+#: ../gtksourceview/gtksourcecompletion.c:2238
 msgid "Remember the last info window visibility state"
 msgstr "Zapamatovat poslední stav viditelnosti okna s informacemi"
 
-#: ../gtksourceview/gtksourcecompletion.c:2250
+#: ../gtksourceview/gtksourcecompletion.c:2251
 msgid "Select on Show"
 msgstr "Vybrat po zobrazení"
 
-#: ../gtksourceview/gtksourcecompletion.c:2251
+#: ../gtksourceview/gtksourcecompletion.c:2252
 msgid "Select first proposal when completion is shown"
 msgstr "Po zobrazení dokončování označit první návrh jako vybraný"
 
-#: ../gtksourceview/gtksourcecompletion.c:2265
+#: ../gtksourceview/gtksourcecompletion.c:2266
 msgid "Show Headers"
 msgstr "Zobrazovat hlavičky"
 
-#: ../gtksourceview/gtksourcecompletion.c:2266
+#: ../gtksourceview/gtksourcecompletion.c:2267
 msgid ""
 "Show provider headers when proposals from multiple providers are available"
 msgstr ""
 "Zobrazovat hlavičky poskytovatele, když jsou dostupné návrhy od více "
 "poskytovatelů"
 
-#: ../gtksourceview/gtksourcecompletion.c:2280
+#: ../gtksourceview/gtksourcecompletion.c:2281
 msgid "Show Icons"
 msgstr "Zobrazovat ikony"
 
-#: ../gtksourceview/gtksourcecompletion.c:2281
+#: ../gtksourceview/gtksourcecompletion.c:2282
 msgid "Show provider and proposal icons in the completion popup"
 msgstr ""
 "Zobrazovat ikony návrhu a poskytovatele ve vyskakovací nabídce dokončování"
 
-#: ../gtksourceview/gtksourcecompletion.c:2294
+#: ../gtksourceview/gtksourcecompletion.c:2295
 msgid "Accelerators"
 msgstr "Klávesové zkratky"
 
-#: ../gtksourceview/gtksourcecompletion.c:2295
+#: ../gtksourceview/gtksourcecompletion.c:2296
 msgid "Number of proposal accelerators to show"
 msgstr "Počet klávesových zkratek návrhů, které se mají zobrazit"
 
-#: ../gtksourceview/gtksourcecompletion.c:2311
+#: ../gtksourceview/gtksourcecompletion.c:2312
 msgid "Auto Complete Delay"
 msgstr "Zpoždění automatického dokončování"
 
-#: ../gtksourceview/gtksourcecompletion.c:2312
+#: ../gtksourceview/gtksourcecompletion.c:2313
 msgid "Completion popup delay for interactive completion"
 msgstr "Prodleva než vyskočí nabídka interaktivního dokončování slov"
 
-#: ../gtksourceview/gtksourcecompletion.c:2327
+#: ../gtksourceview/gtksourcecompletion.c:2328
 msgid "Provider Page Size"
 msgstr "Délka stránky poskytovatelů"
 
-#: ../gtksourceview/gtksourcecompletion.c:2328
+#: ../gtksourceview/gtksourcecompletion.c:2329
 msgid "Provider scrolling page size"
 msgstr "Délka posuvné stránky s poskytovateli"
 
-#: ../gtksourceview/gtksourcecompletion.c:2343
+#: ../gtksourceview/gtksourcecompletion.c:2344
 msgid "Proposal Page Size"
 msgstr "Délka stránky návrhů"
 
-#: ../gtksourceview/gtksourcecompletion.c:2344
+#: ../gtksourceview/gtksourcecompletion.c:2345
 msgid "Proposal scrolling page size"
 msgstr "Délka posuvné stránky s návrhy"
 
-#: ../gtksourceview/gtksourcecompletion.c:2689
+#: ../gtksourceview/gtksourcecompletion.c:2690
 msgid "Provider"
 msgstr "Poskytovatel"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:244
-#: ../gtksourceview/gtksourceview.c:289
+#: ../gtksourceview/gtksourcecompletioncontext.c:237
+#: ../gtksourceview/gtksourceview.c:306
 msgid "Completion"
 msgstr "Dokončování"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:245
+#: ../gtksourceview/gtksourcecompletioncontext.c:238
 msgid "The completion object to which the context belongs"
 msgstr "Objekt dokončování, ke kterému náleží kontext"
 
 #. Translators: The GtkTextIter at which the completion was invoked
-#: ../gtksourceview/gtksourcecompletioncontext.c:258
+#: ../gtksourceview/gtksourcecompletioncontext.c:251
 msgid "Iterator"
 msgstr "Iterátor"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:259
+#: ../gtksourceview/gtksourcecompletioncontext.c:252
 msgid "The GtkTextIter at which the completion was invoked"
 msgstr "Objekt GtkTextIter, ve kterém se odvolává na dokončování"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:271
+#: ../gtksourceview/gtksourcecompletioncontext.c:264
 msgid "Activation"
 msgstr "Aktivace"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:272
+#: ../gtksourceview/gtksourcecompletioncontext.c:265
 msgid "The type of activation"
 msgstr "Typ aktivace"
 
@@ -2359,120 +2361,120 @@ msgstr "neznámý kontext „%s“"
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "Chybí hlavní definice jazyka (id = „%s“)."
 
-#: ../gtksourceview/gtksourcegutter.c:519
+#: ../gtksourceview/gtksourcegutter.c:549
 msgid "The gutters' GtkSourceView"
 msgstr "Objekt GtkSourceView sloupců okolo textu"
 
-#: ../gtksourceview/gtksourcegutter.c:531
-#: ../gtksourceview/gtksourcegutterrenderer.c:689
+#: ../gtksourceview/gtksourcegutter.c:561
+#: ../gtksourceview/gtksourcegutterrenderer.c:691
 msgid "Window Type"
 msgstr "Typ okna"
 
-#: ../gtksourceview/gtksourcegutter.c:532
+#: ../gtksourceview/gtksourcegutter.c:562
 msgid "The gutters text window type"
 msgstr "Typ textového okna se sloupci okolo"
 
-#: ../gtksourceview/gtksourcegutter.c:543
-#: ../gtksourceview/gtksourcegutterrenderer.c:465
+#: ../gtksourceview/gtksourcegutter.c:573
+#: ../gtksourceview/gtksourcegutterrenderer.c:467
 msgid "X Padding"
 msgstr "Odsazení X"
 
-#: ../gtksourceview/gtksourcegutter.c:544
-#: ../gtksourceview/gtksourcegutterrenderer.c:466
+#: ../gtksourceview/gtksourcegutter.c:574
+#: ../gtksourceview/gtksourcegutterrenderer.c:468
 msgid "The x-padding"
 msgstr "Odsazení ve směru osy X"
 
-#: ../gtksourceview/gtksourcegutter.c:554
-#: ../gtksourceview/gtksourcegutterrenderer.c:481
+#: ../gtksourceview/gtksourcegutter.c:584
+#: ../gtksourceview/gtksourcegutterrenderer.c:483
 msgid "Y Padding"
 msgstr "Odsazení Y"
 
-#: ../gtksourceview/gtksourcegutter.c:555
-#: ../gtksourceview/gtksourcegutterrenderer.c:482
+#: ../gtksourceview/gtksourcegutter.c:585
+#: ../gtksourceview/gtksourcegutterrenderer.c:484
 msgid "The y-padding"
 msgstr "Odsazení ve směru osy Y"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:451
-#: ../gtksourceview/gtksourcegutterrenderer.c:452
+#: ../gtksourceview/gtksourcegutterrenderer.c:453
+#: ../gtksourceview/gtksourcegutterrenderer.c:454
 msgid "Visible"
 msgstr "Viditelný"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:497
+#: ../gtksourceview/gtksourcegutterrenderer.c:499
 msgid "X Alignment"
 msgstr "Zarovnání X"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:498
+#: ../gtksourceview/gtksourcegutterrenderer.c:500
 msgid "The x-alignment"
 msgstr "Zarovnání ve směru osy X"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:513
+#: ../gtksourceview/gtksourcegutterrenderer.c:515
 msgid "Y Alignment"
 msgstr "Zarovnání Y"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:514
+#: ../gtksourceview/gtksourcegutterrenderer.c:516
 msgid "The y-alignment"
 msgstr "Zarovnání ve směru osy Y"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:656
+#: ../gtksourceview/gtksourcegutterrenderer.c:658
 msgid "The View"
 msgstr "Zobrazení"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:657
+#: ../gtksourceview/gtksourcegutterrenderer.c:659
 msgid "The view"
 msgstr "Zobrazení"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:673
+#: ../gtksourceview/gtksourcegutterrenderer.c:675
 msgid "Alignment Mode"
 msgstr "Režim zarovnání"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:674
+#: ../gtksourceview/gtksourcegutterrenderer.c:676
 msgid "The alignment mode"
 msgstr "Režim zarovnání"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:690
+#: ../gtksourceview/gtksourcegutterrenderer.c:692
 msgid "The window type"
 msgstr "Typ okna"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:698
+#: ../gtksourceview/gtksourcegutterrenderer.c:700
 msgid "Size"
 msgstr "Velikost"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:699
+#: ../gtksourceview/gtksourcegutterrenderer.c:701
 msgid "The size"
 msgstr "Velikost"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:293
-#: ../gtksourceview/gtksourcemarkcategory.c:383
+#: ../gtksourceview/gtksourcemarkattributes.c:316
 msgid "Pixbuf"
 msgstr "Pixbuf"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:294
-#: ../gtksourceview/gtksourcemarkcategory.c:384
+#: ../gtksourceview/gtksourcemarkattributes.c:317
 msgid "The pixbuf"
 msgstr "Pixbuf"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:301
-#: ../gtksourceview/gtksourcemarkcategory.c:370
+#: ../gtksourceview/gtksourcemarkattributes.c:303
 msgid "Stock Id"
 msgstr "Skladové ID"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:302
-#: ../gtksourceview/gtksourcemarkcategory.c:371
+#: ../gtksourceview/gtksourcemarkattributes.c:304
 msgid "The stock id"
 msgstr "ID ve skladu"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:309
-#: ../gtksourceview/gtksourcemarkcategory.c:396
+#: ../gtksourceview/gtksourcemarkattributes.c:329
 msgid "Icon Name"
 msgstr "Název ikony"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:310
-#: ../gtksourceview/gtksourcemarkcategory.c:397
+#: ../gtksourceview/gtksourcemarkattributes.c:330
 msgid "The icon name"
 msgstr "Název ikony"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:317
-#: ../gtksourceview/gtksourcemarkcategory.c:409
+#: ../gtksourceview/gtksourcemarkattributes.c:342
 msgid "GIcon"
 msgstr "GIcon"
 
@@ -2480,11 +2482,11 @@ msgstr "GIcon"
 msgid "The gicon"
 msgstr "Ikona GIcon"
 
-#: ../gtksourceview/gtksourcegutterrenderertext.c:394
+#: ../gtksourceview/gtksourcegutterrenderertext.c:396
 msgid "The markup"
 msgstr "Značka"
 
-#: ../gtksourceview/gtksourcegutterrenderertext.c:402
+#: ../gtksourceview/gtksourcegutterrenderertext.c:404
 msgid "The text"
 msgstr "Text"
 
@@ -2547,28 +2549,16 @@ msgstr "kategorie"
 msgid "The mark category"
 msgstr "Kategorie značky"
 
-#: ../gtksourceview/gtksourcemarkcategory.c:329
-msgid "Id"
-msgstr "ID"
-
-#: ../gtksourceview/gtksourcemarkcategory.c:330
-msgid "The id"
-msgstr "ID"
-
-#: ../gtksourceview/gtksourcemarkcategory.c:342
+#: ../gtksourceview/gtksourcemarkattributes.c:290
 #: ../gtksourceview/gtksourcestyle.c:88
 msgid "Background"
 msgstr "Pozadí"
 
-#: ../gtksourceview/gtksourcemarkcategory.c:343
+#: ../gtksourceview/gtksourcemarkattributes.c:291
 msgid "The background"
 msgstr "Pozadí"
 
-#: ../gtksourceview/gtksourcemarkcategory.c:356
-msgid "The priority"
-msgstr "Priorita"
-
-#: ../gtksourceview/gtksourcemarkcategory.c:410
+#: ../gtksourceview/gtksourcemarkattributes.c:343
 msgid "The GIcon"
 msgstr "Ikona GIcon"
 
@@ -2581,12 +2571,12 @@ msgid "The GtkSourceBuffer object to print"
 msgstr "Objekt GtkSourceBuffer k vytištění"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:463
-#: ../gtksourceview/gtksourceview.c:327
+#: ../gtksourceview/gtksourceview.c:344
 msgid "Tab Width"
 msgstr "Šířka tabulátoru"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:464
-#: ../gtksourceview/gtksourceview.c:328
+#: ../gtksourceview/gtksourceview.c:345
 msgid "Width of a tab character expressed in spaces"
 msgstr "Šířka tabulátoru v mezerách"
 
@@ -2755,23 +2745,23 @@ msgstr "Přeškrtnutí nastaveno"
 msgid "Whether strikethrough attribute is set"
 msgstr "Zdali je nastavený atribut přeškrtnutí"
 
-#: ../gtksourceview/gtksourcestylescheme.c:187
-#: ../gtksourceview/gtksourcestylescheme.c:188
+#: ../gtksourceview/gtksourcestylescheme.c:194
+#: ../gtksourceview/gtksourcestylescheme.c:195
 msgid "Style scheme id"
 msgstr "ID schématu stylu"
 
-#: ../gtksourceview/gtksourcestylescheme.c:200
-#: ../gtksourceview/gtksourcestylescheme.c:201
+#: ../gtksourceview/gtksourcestylescheme.c:207
+#: ../gtksourceview/gtksourcestylescheme.c:208
 msgid "Style scheme name"
 msgstr "Název schématu stylu"
 
-#: ../gtksourceview/gtksourcestylescheme.c:213
-#: ../gtksourceview/gtksourcestylescheme.c:214
+#: ../gtksourceview/gtksourcestylescheme.c:220
+#: ../gtksourceview/gtksourcestylescheme.c:221
 msgid "Style scheme description"
 msgstr "Popis schématu stylu"
 
-#: ../gtksourceview/gtksourcestylescheme.c:226
-#: ../gtksourceview/gtksourcestylescheme.c:227
+#: ../gtksourceview/gtksourcestylescheme.c:233
+#: ../gtksourceview/gtksourcestylescheme.c:234
 msgid "Style scheme filename"
 msgstr "Název souboru se schématy stylu"
 
@@ -2799,72 +2789,72 @@ msgstr "Vyrovnávací paměť"
 msgid "The text buffer to add undo support on"
 msgstr "Textová vyrovnávací paměť přidávající podporu vracení akcí"
 
-#: ../gtksourceview/gtksourceview.c:290
+#: ../gtksourceview/gtksourceview.c:307
 msgid "The completion object associated with the view"
 msgstr "Objekt dokončování přidružený k zobrazení"
 
-#: ../gtksourceview/gtksourceview.c:302
+#: ../gtksourceview/gtksourceview.c:319
 msgid "Show Line Numbers"
 msgstr "Zobrazovat čísla řádků"
 
-#: ../gtksourceview/gtksourceview.c:303
+#: ../gtksourceview/gtksourceview.c:320
 msgid "Whether to display line numbers"
 msgstr "Zda zobrazovat čísla řádků"
 
-#: ../gtksourceview/gtksourceview.c:314
+#: ../gtksourceview/gtksourceview.c:331
 msgid "Show Line Marks"
 msgstr "Zobrazovat značky řádků"
 
-#: ../gtksourceview/gtksourceview.c:315
+#: ../gtksourceview/gtksourceview.c:332
 msgid "Whether to display line mark pixbufs"
 msgstr "Zda zobrazovat obrázkové značky řádků"
 
-#: ../gtksourceview/gtksourceview.c:342
+#: ../gtksourceview/gtksourceview.c:359
 msgid "Indent Width"
 msgstr "Šířka odsazení"
 
-#: ../gtksourceview/gtksourceview.c:343
+#: ../gtksourceview/gtksourceview.c:360
 msgid "Number of spaces to use for each step of indent"
 msgstr "Počet mezer, který se má použít na jeden stupeň odsazení"
 
-#: ../gtksourceview/gtksourceview.c:352
+#: ../gtksourceview/gtksourceview.c:369
 msgid "Auto Indentation"
 msgstr "Automatické odsazování"
 
-#: ../gtksourceview/gtksourceview.c:353
+#: ../gtksourceview/gtksourceview.c:370
 msgid "Whether to enable auto indentation"
 msgstr "Zda povolit automatické odsazování"
 
-#: ../gtksourceview/gtksourceview.c:360
+#: ../gtksourceview/gtksourceview.c:377
 msgid "Insert Spaces Instead of Tabs"
 msgstr "Vkládat mezery místo tabulátorů"
 
-#: ../gtksourceview/gtksourceview.c:361
+#: ../gtksourceview/gtksourceview.c:378
 msgid "Whether to insert spaces instead of tabs"
 msgstr "Zda vkládat mezery místo tabulátorů"
 
-#: ../gtksourceview/gtksourceview.c:373
+#: ../gtksourceview/gtksourceview.c:390
 msgid "Show Right Margin"
 msgstr "Zobrazovat pravý okraj"
 
-#: ../gtksourceview/gtksourceview.c:374
+#: ../gtksourceview/gtksourceview.c:391
 msgid "Whether to display the right margin"
 msgstr "Zda zobrazovat pravý okraj"
 
-#: ../gtksourceview/gtksourceview.c:386
+#: ../gtksourceview/gtksourceview.c:403
 msgid "Right Margin Position"
 msgstr "Poloha pravého okraje"
 
-#: ../gtksourceview/gtksourceview.c:387
+#: ../gtksourceview/gtksourceview.c:404
 msgid "Position of the right margin"
 msgstr "Poloha pravého okraje"
 
 # Upravil jsem predhozi preklad, verim, ze "chytre" je tedy na miste.
-#: ../gtksourceview/gtksourceview.c:403
+#: ../gtksourceview/gtksourceview.c:420
 msgid "Smart Home/End"
 msgstr "Chytré Home/End"
 
-#: ../gtksourceview/gtksourceview.c:404
+#: ../gtksourceview/gtksourceview.c:421
 msgid ""
 "HOME and END keys move to first/last non whitespace characters on line "
 "before going to the start/end of the line"
@@ -2872,27 +2862,27 @@ msgstr ""
 "Klávesy HOME a END přesunují kurzor na první/poslední neprázdný znak řádku a "
 "až potom na začátek/konec řádku"
 
-#: ../gtksourceview/gtksourceview.c:414
+#: ../gtksourceview/gtksourceview.c:431
 msgid "Highlight current line"
 msgstr "Zvýrazňovat aktuální řádek"
 
-#: ../gtksourceview/gtksourceview.c:415
+#: ../gtksourceview/gtksourceview.c:432
 msgid "Whether to highlight the current line"
 msgstr "Zda zvýrazňovat aktuální řádek"
 
-#: ../gtksourceview/gtksourceview.c:422
+#: ../gtksourceview/gtksourceview.c:439
 msgid "Indent on tab"
 msgstr "Odsazení tabulátorem"
 
-#: ../gtksourceview/gtksourceview.c:423
+#: ../gtksourceview/gtksourceview.c:440
 msgid "Whether to indent the selected text when the tab key is pressed"
 msgstr "Zda odsadit označený text při stisku tabulátoru"
 
-#: ../gtksourceview/gtksourceview.c:437
+#: ../gtksourceview/gtksourceview.c:454
 msgid "Draw Spaces"
 msgstr "Vykreslovat mezery"
 
-#: ../gtksourceview/gtksourceview.c:438
+#: ../gtksourceview/gtksourceview.c:455
 msgid "Set if and how the spaces should be visualized"
 msgstr "Nastavuje zda a jak by se měly zviditelnit mezery"
 
@@ -2904,6 +2894,15 @@ msgstr ""
 "Lucas Lommer <llommer@svn.gnome.org>\n"
 "Lukáš Ručka <lukassoftwares@gmail.com>\n"
 "Marek Černocký <marek@manet.cz>"
+
+#~ msgid "Id"
+#~ msgstr "ID"
+
+#~ msgid "The id"
+#~ msgstr "ID"
+
+#~ msgid "The priority"
+#~ msgstr "Priorita"
 
 #~ msgid "MSIL"
 #~ msgstr "MSIL"
