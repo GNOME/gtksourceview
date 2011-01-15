@@ -130,10 +130,10 @@ test_provider_init (TestProvider *self)
 	GdkPixbuf *icon = test_provider_get_icon (GTK_SOURCE_COMPLETION_PROVIDER (self));
 
 	proposals = g_list_prepend (proposals,
-	                            gtk_source_completion_item_new ("Proposal 3", "Proposal 3", icon, NULL));
+	                            gtk_source_completion_item_new ("Proposal 3", "Proposal 3", icon, "This is the third proposal... \nit is so cool it takes two lines to describe"));
 
 	proposals = g_list_prepend (proposals,
-	                            gtk_source_completion_item_new ("Proposal 2", "Proposal 2", icon, NULL));
+	                            gtk_source_completion_item_new ("Proposal 2", "Proposal 2", icon, "This is the second proposal... it is very appealing..."));
 
 	proposals = g_list_prepend (proposals,
 	                            gtk_source_completion_item_new ("Proposal 1", "Proposal 1", icon, NULL));
