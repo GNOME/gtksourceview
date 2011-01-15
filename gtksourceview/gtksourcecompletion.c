@@ -935,7 +935,7 @@ update_proposal_info_real (GtkSourceCompletion         *completion,
 		gtk_label_set_markup (GTK_LABEL (info_widget), _("No extra information available"));
 
 		gtk_source_completion_info_set_widget (info_window,
-	                                           info_widget);
+		                                       info_widget);
 
 		gtk_widget_hide (GTK_WIDGET (info_window));
 		return;
@@ -972,8 +972,7 @@ update_proposal_info_real (GtkSourceCompletion         *completion,
 		}
 	}
 
-	gtk_source_completion_info_set_widget (info_window,
-	                                       info_widget);
+	gtk_source_completion_info_set_widget (info_window, info_widget);
 
 	if (prov_update_info)
 	{
@@ -982,13 +981,13 @@ update_proposal_info_real (GtkSourceCompletion         *completion,
 			                                    info_window);
 	}
 
-	g_signal_handlers_block_by_func (completion->priv->info_window,
+	g_signal_handlers_block_by_func (info_window,
 	                                 G_CALLBACK (show_info_cb),
 	                                 completion);
 
-	gtk_widget_show (completion->priv->info_window);
+	gtk_widget_show (GTK_WIDGET (info_window));
 
-	g_signal_handlers_unblock_by_func (completion->priv->info_window,
+	g_signal_handlers_unblock_by_func (info_window,
 	                                   G_CALLBACK (show_info_cb),
 	                                   completion);
 }
