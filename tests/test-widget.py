@@ -282,35 +282,29 @@ class Window(Gtk.Window):
         action_group.get_action("IndentWidthUnset").set_active(True)
 
     def add_source_mark_pixbufs(self):
-        cat = self._view.get_mark_category(self.MARK_TYPE_1)
-
-        """ FIXME: no idea how to annotate GdkRGBA
-        parsed, color = Gdk.RGBA.parse("lightgreen")
+        attrs = GtkSource.MarkAttributes ();
+        color = Gdk.RGBA();
+        parsed = color.parse("lightgreen")
         if parsed:
-            cat.set_background(color)
-        """
+            attrs.set_background(color)
+        attrs.set_stock_id(Gtk.STOCK_YES)
+        attrs.connect("query-tooltip-markup", self.mark_tooltip_func)
+        self._view.set_mark_attributes (self.MARK_TYPE_1, attrs, 1)
 
-        cat.set_stock_id(Gtk.STOCK_YES)
-        cat.set_priority(1)
-        cat.connect("query-tooltip-markup", self.mark_tooltip_func)
-
-        cat = self._view.get_mark_category(self.MARK_TYPE_2)
-
-        """ FIXME
-        parsed, color = Gdk.RGBA.parse("pink")
+        attrs = GtkSource.MarkAttributes ();
+        color = Gdk.RGBA();
+        parsed = color.parse("pink")
         if parsed:
-            cat.set_mark_category_background(color)
-        """
-
-        cat.set_stock_id(Gtk.STOCK_NO)
-        cat.set_priority(2)
-        cat.connect("query-tooltip-markup", self.mark_tooltip_func)
+            attrs.set_background(color)
+        attrs.set_stock_id(Gtk.STOCK_NO)
+        attrs.connect("query-tooltip-markup", self.mark_tooltip_func)
+        self._view.set_mark_attributes (self.MARK_TYPE_2, attrs, 2)
 
     def remove_all_marks(self):
         start, end = self._buf.get_bounds()
         self._buf.remove_source_marks(start, end, None)
 
-    def mark_tooltip_func(self, mark, user_data):
+    def mark_tooltip_func(self, attrs, mark):
         i = self._buf.get_iter_at_mark(mark)
         line = i.get_line() + 1
         column = i.get_line_offset()
