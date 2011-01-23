@@ -173,7 +173,9 @@ add_in_idle (GtkSourceCompletionWords *words)
 	                                             GTK_SOURCE_COMPLETION_PROVIDER (words),
 	                                             ret,
 	                                             finished);
-	
+
+	g_list_free (ret);
+
 	if (finished)
 	{
 		gtk_source_completion_words_library_unlock (words->priv->library);
