@@ -1645,7 +1645,7 @@ update_interactive_completion (GtkSourceCompletion *completion,
                                gboolean             start_completion)
 {
 	/* Only handle interactive completion in editable parts of the buffer */
-	if (!gtk_text_iter_editable (iter, TRUE))
+	if (!gtk_text_iter_can_insert (iter, TRUE))
 	{
 		return;
 	}
