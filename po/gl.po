@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview-master-po-gl-28392.merged\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-14 16:35+0100\n"
-"PO-Revision-Date: 2011-01-14 16:36+0100\n"
+"POT-Creation-Date: 2011-01-27 03:24+0100\n"
+"PO-Revision-Date: 2011-01-24 19:56+0100\n"
 "Last-Translator: Fran Diéguez <frandieguez@ubuntu.com>\n"
 "Language-Team: Galician <gnome-gl-list@gnome.org>\n"
 "Language: gl\n"
@@ -797,7 +797,7 @@ msgstr "Tipo de datos"
 
 #: ../data/language-specs/def.lang.h:20
 msgid "Defaults"
-msgstr "Opcións predefinidas"
+msgstr "Opcións predeterminadas"
 
 #. A special comment containing documentation like in javadoc or
 #. gtk-doc
@@ -1019,7 +1019,7 @@ msgstr "Manipulación de excepcións"
 #: ../data/language-specs/eiffel.lang.h:13
 #: ../data/language-specs/ruby.lang.h:16
 msgid "Predefined Variable"
-msgstr "Variábel predefinida"
+msgstr "Variábel predeterminada"
 
 #: ../data/language-specs/eiffel.lang.h:16
 msgid "Void Value"
@@ -1120,7 +1120,7 @@ msgstr "Argumento etiquetado"
 #: ../data/language-specs/fsharp.lang.h:12
 #: ../data/language-specs/ocaml.lang.h:12
 msgid "Module Path"
-msgstr "Camiño de módulo"
+msgstr "Ruta do módulo"
 
 #: ../data/language-specs/fsharp.lang.h:14
 #: ../data/language-specs/ocaml.lang.h:15
@@ -2157,83 +2157,83 @@ msgstr "O xestor do buffer da acción desfacer"
 msgid "No extra information available"
 msgstr "Non hai información adicional dispoñíbel"
 
-#: ../gtksourceview/gtksourcecompletion.c:2221
+#: ../gtksourceview/gtksourcecompletion.c:2220
 #: ../gtksourceview/gtksourcegutter.c:548
 msgid "View"
 msgstr "Ver"
 
-#: ../gtksourceview/gtksourcecompletion.c:2222
+#: ../gtksourceview/gtksourcecompletion.c:2221
 msgid "The GtkSourceView bound to the completion"
 msgstr "O obxecto GtkSourceView ligado ao completado"
 
-#: ../gtksourceview/gtksourcecompletion.c:2237
+#: ../gtksourceview/gtksourcecompletion.c:2236
 msgid "Remember Info Visibility"
 msgstr "Lembrar información de visibilidade"
 
-#: ../gtksourceview/gtksourcecompletion.c:2238
+#: ../gtksourceview/gtksourcecompletion.c:2237
 msgid "Remember the last info window visibility state"
 msgstr "Lembrar o último estado de visibilidade da xanela"
 
-#: ../gtksourceview/gtksourcecompletion.c:2251
+#: ../gtksourceview/gtksourcecompletion.c:2250
 msgid "Select on Show"
 msgstr "Seleccionar ao Mostrar"
 
-#: ../gtksourceview/gtksourcecompletion.c:2252
+#: ../gtksourceview/gtksourcecompletion.c:2251
 msgid "Select first proposal when completion is shown"
 msgstr "Seleccionar a primeira proposta cando se mostre o completado"
 
-#: ../gtksourceview/gtksourcecompletion.c:2266
+#: ../gtksourceview/gtksourcecompletion.c:2265
 msgid "Show Headers"
 msgstr "Mostrar cabeceiras"
 
-#: ../gtksourceview/gtksourcecompletion.c:2267
+#: ../gtksourceview/gtksourcecompletion.c:2266
 msgid ""
 "Show provider headers when proposals from multiple providers are available"
 msgstr ""
 "Mostrar as cabeceiras do fornecedor cando estean dispoñíbeis múltiples "
 "fornecedores"
 
-#: ../gtksourceview/gtksourcecompletion.c:2281
+#: ../gtksourceview/gtksourcecompletion.c:2280
 msgid "Show Icons"
 msgstr "Mostrar iconas"
 
-#: ../gtksourceview/gtksourcecompletion.c:2282
+#: ../gtksourceview/gtksourcecompletion.c:2281
 msgid "Show provider and proposal icons in the completion popup"
 msgstr "Mostrar o fornecedor e as iconas propostas na xanela de completado"
 
-#: ../gtksourceview/gtksourcecompletion.c:2295
+#: ../gtksourceview/gtksourcecompletion.c:2294
 msgid "Accelerators"
 msgstr "Atallos"
 
-#: ../gtksourceview/gtksourcecompletion.c:2296
+#: ../gtksourceview/gtksourcecompletion.c:2295
 msgid "Number of proposal accelerators to show"
 msgstr "Número de atallos de proposicións a mostrar"
 
-#: ../gtksourceview/gtksourcecompletion.c:2312
+#: ../gtksourceview/gtksourcecompletion.c:2311
 msgid "Auto Complete Delay"
 msgstr "Atraso no autocompletado"
 
-#: ../gtksourceview/gtksourcecompletion.c:2313
+#: ../gtksourceview/gtksourcecompletion.c:2312
 msgid "Completion popup delay for interactive completion"
 msgstr "Atraso na xanela emerxente de completado para o completado interactivo"
 
-#: ../gtksourceview/gtksourcecompletion.c:2328
+#: ../gtksourceview/gtksourcecompletion.c:2327
 msgid "Provider Page Size"
 msgstr "Tamaño da páxina do fornecedor"
 
-#: ../gtksourceview/gtksourcecompletion.c:2329
+#: ../gtksourceview/gtksourcecompletion.c:2328
 msgid "Provider scrolling page size"
 msgstr "Tamaño do fornecedor do deprazamento da páxina"
 
-#: ../gtksourceview/gtksourcecompletion.c:2344
+#: ../gtksourceview/gtksourcecompletion.c:2343
 msgid "Proposal Page Size"
 msgstr "Tamaño da páxina da proposición"
 
-#: ../gtksourceview/gtksourcecompletion.c:2345
+#: ../gtksourceview/gtksourcecompletion.c:2344
 msgid "Proposal scrolling page size"
 msgstr "Tamaño da proposición do deprazamento da páxina"
 
-#: ../gtksourceview/gtksourcecompletion.c:2690
+#: ../gtksourceview/gtksourcecompletion.c:2689
 msgid "Provider"
 msgstr "Fornecedor"
 
@@ -2521,7 +2521,7 @@ msgid ""
 "List of directories where the language specification files (.lang) are "
 "located"
 msgstr ""
-"Lista de cartafoles nos que se localizan os ficheiros de especificación de "
+"Lista de cartafoles nos que se atopan os ficheiros de especificación de "
 "linguaxe (.lang)"
 
 #: ../gtksourceview/gtksourcelanguagemanager.c:160
@@ -2778,7 +2778,7 @@ msgstr "Nome do ficheiro de esquema de estilo"
 
 #: ../gtksourceview/gtksourcestyleschememanager.c:152
 msgid "Style scheme search path"
-msgstr "Camiño de busca do esquema do estilo"
+msgstr "Ruta de busca do esquema do estilo"
 
 #: ../gtksourceview/gtksourcestyleschememanager.c:153
 msgid "List of directories and files where the style schemes are located"
