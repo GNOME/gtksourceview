@@ -669,6 +669,9 @@ append_css_style (GString        *string,
 		g_string_append_printf (string, css_style, state,
 		                        bg != NULL ? bg : "",
 		                        text != NULL ? text : "");
+
+		g_free (bg);
+		g_free (text);
 	}
 }
 
