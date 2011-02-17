@@ -30,7 +30,7 @@ LT_INIT([disable-static])
 AC_CHECK_HEADERS([unistd.h])
 
 # Dependencies
-GTK_REQUIRED_VERSION=2.99.0
+GTK_REQUIRED_VERSION=3.0.0
 LIBXML_REQUIRED_VERSION=2.6.0
 GLADE_UI_REQUIRED=3.2
 
@@ -69,7 +69,7 @@ if test "$enable_deprecations" = "yes"; then
 fi
 
 PKG_CHECK_MODULES(DEP, [
-	gio-2.0 >= 2.27.92
+	gio-2.0 >= 2.28.0
 	gtk+-3.0 >= $GTK_REQUIRED_VERSION
 	libxml-2.0 >= $LIBXML_REQUIRED_VERSION
 ])
