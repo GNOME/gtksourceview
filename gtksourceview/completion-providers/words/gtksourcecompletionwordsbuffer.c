@@ -523,11 +523,6 @@ add_scan_region (GtkSourceCompletionWordsBuffer *buffer,
 			                      next,
 			                      region);
 	}
-	else
-	{
-		GList *ignore;
-		ignore = g_list_append (next, region);
-	}
 
 	/* Add the initate scan timeout if it's not already running */
 	install_initiate_scan (buffer);

@@ -923,7 +923,6 @@ on_view_draw (GtkSourceView   *view,
 	GtkTextView *text_view;
 	GArray *sizes;
 	GdkRectangle clip;
-	gint size;
 	gint x, y;
 	gint y1, y2;
 	GArray *numbers;
@@ -991,7 +990,7 @@ on_view_draw (GtkSourceView   *view,
 	heights = g_array_new (FALSE, FALSE, sizeof (gint));
 	sizes = g_array_new (FALSE, FALSE, sizeof (gint));
 
-	size = calculate_gutter_size (gutter, sizes);
+	calculate_gutter_size (gutter, sizes);
 
 	i = 0;
 	x = 0;
