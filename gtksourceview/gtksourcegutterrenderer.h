@@ -68,15 +68,14 @@ typedef enum
 
 struct _GtkSourceGutterRenderer
 {
-	/*< private >*/
 	GInitiallyUnowned parent;
 
+	/*< private >*/
 	GtkSourceGutterRendererPrivate *priv;
 };
 
 struct _GtkSourceGutterRendererClass
 {
-	/*< private >*/
 	GInitiallyUnownedClass parent_class;
 
 	/*< public >*/

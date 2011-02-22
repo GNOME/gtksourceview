@@ -41,7 +41,7 @@ enum
 {
 	PROP_0,
 	PROP_MARKUP,
-	PROP_TEXT,
+	PROP_TEXT
 };
 
 static void
