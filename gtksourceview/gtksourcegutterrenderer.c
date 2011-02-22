@@ -89,22 +89,32 @@ gtk_source_gutter_renderer_finalize (GObject *object)
 }
 
 static void
+emit_buffer_changed (GtkTextView             *view,
+                     GtkSourceGutterRenderer *renderer)
+{
+	GtkTextBuffer* buffer;
+
+	buffer = gtk_text_view_get_buffer (view);
+
+	if (buffer != renderer->priv->buffer)
+	{
+		if (GTK_SOURCE_GUTTER_RENDERER_GET_CLASS (renderer)->change_buffer)
+		{
+			GTK_SOURCE_GUTTER_RENDERER_GET_CLASS (renderer)->change_buffer (renderer,
+			                                                                renderer->priv->buffer);
+		}
+
+		renderer->priv->buffer = buffer;
+		g_object_add_weak_pointer (G_OBJECT (buffer), (gpointer)&renderer->priv->buffer);
+	}
+}
+
+static void
 on_buffer_changed (GtkTextView             *view,
                    GParamSpec              *spec,
                    GtkSourceGutterRenderer *renderer)
 {
-	GtkTextBuffer* buffer;
-
-	if (GTK_SOURCE_GUTTER_RENDERER_GET_CLASS (renderer)->change_buffer)
-	{
-		GTK_SOURCE_GUTTER_RENDERER_GET_CLASS (renderer)->change_buffer (renderer,
-		                                                                renderer->priv->buffer);
-	}
-
-	buffer = gtk_text_view_get_buffer (view);
-
-	renderer->priv->buffer = buffer;
-	g_object_add_weak_pointer (G_OBJECT (buffer), (gpointer)&renderer->priv->buffer);
+	emit_buffer_changed (view, renderer);
 }
 
 static void
@@ -120,6 +130,8 @@ renderer_change_view_impl (GtkSourceGutterRenderer *renderer,
 
 	if (renderer->priv->view)
 	{
+		emit_buffer_changed (renderer->priv->view, renderer);
+
 		g_signal_connect (renderer->priv->view,
 		                  "notify::buffer",
 		                  G_CALLBACK (on_buffer_changed),
