@@ -757,7 +757,7 @@ set_line_numbers_style (GtkWidget      *widget,
 		bg_ptr = &bg;
 
 	/* Override the color no matter what the state is */
-	flags = 0;
+	flags = GTK_STATE_FLAG_NORMAL;
 
 	gtk_widget_override_color (widget, flags, fg_ptr);
 	gtk_widget_override_background_color (widget, flags, bg_ptr);
@@ -784,7 +784,8 @@ update_cursor_colors (GtkWidget      *widget,
 		GtkStyleContext *context;
 
 		context = gtk_widget_get_style_context (widget);
-		gtk_style_context_get_background_color (context, 0, &secondary_color);
+		gtk_style_context_get_background_color (context, GTK_STATE_FLAG_NORMAL,
+		                                        &secondary_color);
 
 		/* shade the secondary cursor */
 		secondary_color.red *= 0.5;

@@ -4044,7 +4044,7 @@ update_right_margin_colors (GtkSourceView *view)
 		GdkRGBA color;
 
 		context = gtk_widget_get_style_context (widget);
-		gtk_style_context_get_color (context, 0, &color);
+		gtk_style_context_get_color (context, GTK_STATE_FLAG_NORMAL, &color);
 
 		view->priv->right_margin_line_color = gdk_rgba_copy (&color);
 		view->priv->right_margin_line_color->alpha =

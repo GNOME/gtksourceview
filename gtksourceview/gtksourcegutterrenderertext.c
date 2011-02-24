@@ -57,7 +57,7 @@ create_layout (GtkSourceGutterRendererText *renderer,
 	layout = gtk_widget_create_pango_layout (widget, NULL);
 
 	context = gtk_widget_get_style_context (widget);
-	gtk_style_context_get_color (context, 0, &color);
+	gtk_style_context_get_color (context, GTK_STATE_FLAG_NORMAL, &color);
 
 	attr = pango_attr_foreground_new (color.red * 65535,
 	                                  color.green * 65535,
