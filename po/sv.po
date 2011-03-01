@@ -1,14 +1,14 @@
 # Swedish messages for gtksourceview.
-# Copyright (C) 2003-2010 Free Software Foundation, Inc.
+# Copyright (C) 2003-2011 Free Software Foundation, Inc.
 # Christian Rose <menthos@menthos.com>, 2003, 2004, 2005.
-# Daniel Nylander <po@danielnylander.se>, 2006, 2007, 2008, 2009, 2010.
+# Daniel Nylander <po@danielnylander.se>, 2006, 2007, 2008, 2009, 2010, 2011.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-31 03:13+0100\n"
-"PO-Revision-Date: 2010-12-31 03:22+0100\n"
+"POT-Creation-Date: 2011-03-01 01:00+0100\n"
+"PO-Revision-Date: 2011-03-01 08:39+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
@@ -23,7 +23,7 @@ msgstr "Efter"
 #. Translators: "All" is used as a label in thestatus bar of the
 #. popup, telling that all completion pages are shown
 #: ../data/glade/gtksourceview.xml.in.h:2
-#: ../gtksourceview/gtksourcecompletion.c:649
+#: ../gtksourceview/gtksourcecompletion.c:648
 msgid "All"
 msgstr "Alla"
 
@@ -65,7 +65,7 @@ msgstr "Tabulator"
 
 #: ../data/glade/gtksourceview.xml.in.h:12
 #: ../gtksourceview/gtksourcecompletionitem.c:255
-#: ../gtksourceview/gtksourcegutterrenderertext.c:401
+#: ../gtksourceview/gtksourcegutterrenderertext.c:403
 msgid "Text"
 msgstr "Text"
 
@@ -197,7 +197,7 @@ msgstr "Kommentar"
 #: ../data/language-specs/ooc.lang.h:3
 #: ../data/language-specs/opal.lang.h:4
 #: ../data/language-specs/pascal.lang.h:2
-#: ../data/language-specs/php.lang.h:3
+#: ../data/language-specs/php.lang.h:4
 #: ../data/language-specs/sparql.lang.h:3
 #: ../data/language-specs/sql.lang.h:2
 #: ../data/language-specs/vala.lang.h:3
@@ -221,7 +221,7 @@ msgstr "Datatyp"
 #: ../data/language-specs/ocaml.lang.h:6
 #: ../data/language-specs/ooc.lang.h:4
 #: ../data/language-specs/opal.lang.h:5
-#: ../data/language-specs/php.lang.h:4
+#: ../data/language-specs/php.lang.h:5
 #: ../data/language-specs/python.lang.h:7
 #: ../data/language-specs/ruby.lang.h:7
 #: ../data/language-specs/vala.lang.h:4
@@ -242,7 +242,7 @@ msgstr "Decimaltal"
 #: ../data/language-specs/lua.lang.h:3
 #: ../data/language-specs/ocaml.lang.h:8
 #: ../data/language-specs/ooc.lang.h:7
-#: ../data/language-specs/php.lang.h:7
+#: ../data/language-specs/php.lang.h:8
 #: ../data/language-specs/prolog.lang.h:3
 #: ../data/language-specs/python.lang.h:8
 #: ../data/language-specs/ruby.lang.h:8
@@ -293,7 +293,7 @@ msgstr "Tecken efter Escape-tecken"
 #: ../data/language-specs/opal.lang.h:8
 #: ../data/language-specs/pascal.lang.h:4
 #: ../data/language-specs/perl.lang.h:9
-#: ../data/language-specs/php.lang.h:13
+#: ../data/language-specs/php.lang.h:14
 #: ../data/language-specs/po.lang.h:3
 #: ../data/language-specs/prolog.lang.h:4
 #: ../data/language-specs/python.lang.h:11
@@ -425,7 +425,7 @@ msgstr "Lagringsklass"
 #: ../data/language-specs/opal.lang.h:12
 #: ../data/language-specs/pascal.lang.h:8
 #: ../data/language-specs/perl.lang.h:19
-#: ../data/language-specs/php.lang.h:19
+#: ../data/language-specs/php.lang.h:20
 #: ../data/language-specs/po.lang.h:8
 #: ../data/language-specs/prolog.lang.h:9
 #: ../data/language-specs/python.lang.h:17
@@ -492,7 +492,7 @@ msgstr "Tal"
 #: ../data/language-specs/erlang.lang.h:10
 #: ../data/language-specs/nsis.lang.h:3
 #: ../data/language-specs/perl.lang.h:11
-#: ../data/language-specs/php.lang.h:16
+#: ../data/language-specs/php.lang.h:17
 #: ../data/language-specs/prolog.lang.h:6
 #: ../data/language-specs/sparql.lang.h:10
 msgid "Operator"
@@ -528,7 +528,7 @@ msgstr "Mönster"
 #: ../data/language-specs/lua.lang.h:9
 #: ../data/language-specs/m4.lang.h:3
 #: ../data/language-specs/perl.lang.h:18
-#: ../data/language-specs/php.lang.h:18
+#: ../data/language-specs/php.lang.h:19
 #: ../data/language-specs/python.lang.h:15
 #: ../data/language-specs/ruby.lang.h:19
 #: ../data/language-specs/sh.lang.h:7
@@ -544,7 +544,7 @@ msgstr "Skript"
 #: ../data/language-specs/makefile.lang.h:8
 #: ../data/language-specs/nsis.lang.h:6
 #: ../data/language-specs/perl.lang.h:21
-#: ../data/language-specs/php.lang.h:20
+#: ../data/language-specs/php.lang.h:21
 #: ../data/language-specs/pkgconfig.lang.h:3
 #: ../data/language-specs/prolog.lang.h:10
 #: ../data/language-specs/ruby.lang.h:23
@@ -595,7 +595,7 @@ msgstr "Tecken"
 #: ../data/language-specs/ooc.lang.h:6
 #: ../data/language-specs/opal.lang.h:6
 #: ../data/language-specs/perl.lang.h:4
-#: ../data/language-specs/php.lang.h:5
+#: ../data/language-specs/php.lang.h:6
 #: ../data/language-specs/prolog.lang.h:2
 #: ../data/language-specs/vala.lang.h:5
 #: ../data/language-specs/verilog.lang.h:4
@@ -613,7 +613,7 @@ msgstr "Fel"
 #: ../data/language-specs/go.lang.h:8
 #: ../data/language-specs/nemerle.lang.h:8
 #: ../data/language-specs/ooc.lang.h:9
-#: ../data/language-specs/php.lang.h:8
+#: ../data/language-specs/php.lang.h:9
 #: ../data/language-specs/python.lang.h:9
 #: ../data/language-specs/R.lang.h:4
 #: ../data/language-specs/ruby.lang.h:9
@@ -629,7 +629,7 @@ msgstr "Flyttal"
 #: ../data/language-specs/go.lang.h:10
 #: ../data/language-specs/nemerle.lang.h:9
 #: ../data/language-specs/ooc.lang.h:11
-#: ../data/language-specs/php.lang.h:11
+#: ../data/language-specs/php.lang.h:12
 #: ../data/language-specs/vala.lang.h:6
 msgid "Hexadecimal number"
 msgstr "Hexadecimaltal"
@@ -637,7 +637,7 @@ msgstr "Hexadecimaltal"
 #. Any variable name
 #: ../data/language-specs/bennugd.lang.h:11
 #: ../data/language-specs/def.lang.h:34
-#: ../data/language-specs/php.lang.h:12
+#: ../data/language-specs/php.lang.h:13
 msgid "Identifier"
 msgstr "Identifierare"
 
@@ -667,7 +667,7 @@ msgstr "Fält"
 #: ../data/language-specs/xml.lang.h:9
 #: ../data/language-specs/xslt.lang.h:2
 #: ../gtksourceview/gtksourcecompletionitem.c:242
-#: ../gtksourceview/gtksourcegutterrenderertext.c:393
+#: ../gtksourceview/gtksourcegutterrenderertext.c:395
 msgid "Markup"
 msgstr "Märkning"
 
@@ -711,7 +711,7 @@ msgstr "Namnrymd"
 #: ../data/language-specs/javascript.lang.h:11
 #: ../data/language-specs/nemerle.lang.h:12
 #: ../data/language-specs/ooc.lang.h:13
-#: ../data/language-specs/php.lang.h:14
+#: ../data/language-specs/php.lang.h:15
 #: ../data/language-specs/vala.lang.h:8
 msgid "Null Value"
 msgstr "Nollvärde"
@@ -750,7 +750,7 @@ msgid "File"
 msgstr "Fil"
 
 #: ../data/language-specs/changelog.lang.h:7
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:462
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:464
 msgid "Name"
 msgstr "Namn"
 
@@ -819,7 +819,7 @@ msgstr "Inkluderad fil"
 #: ../data/language-specs/go.lang.h:13
 #: ../data/language-specs/nemerle.lang.h:13
 #: ../data/language-specs/ooc.lang.h:15
-#: ../data/language-specs/php.lang.h:15
+#: ../data/language-specs/php.lang.h:16
 msgid "Octal number"
 msgstr "Oktalt tal"
 
@@ -1801,13 +1801,13 @@ msgid "File Descriptor"
 msgstr "Filhandtag"
 
 #: ../data/language-specs/perl.lang.h:6
-#: ../data/language-specs/php.lang.h:9
+#: ../data/language-specs/php.lang.h:10
 #: ../data/language-specs/ruby.lang.h:10
 msgid "Heredoc"
 msgstr "Heredoc"
 
 #: ../data/language-specs/perl.lang.h:7
-#: ../data/language-specs/php.lang.h:10
+#: ../data/language-specs/php.lang.h:11
 #: ../data/language-specs/ruby.lang.h:11
 #: ../data/language-specs/sh.lang.h:4
 msgid "Heredoc Bound"
@@ -1845,7 +1845,11 @@ msgstr "Perl"
 msgid "System Command"
 msgstr "Systemkommando"
 
-#: ../data/language-specs/php.lang.h:17
+#: ../data/language-specs/php.lang.h:3
+msgid "Common Function"
+msgstr "Allmän funktion"
+
+#: ../data/language-specs/php.lang.h:18
 msgid "PHP"
 msgstr "PHP"
 
@@ -2240,235 +2244,234 @@ msgstr "Färgschema som använder Tango-färgpalett"
 msgid "Tango"
 msgstr "Tango"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:378
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:380
 msgid "Document Words"
 msgstr "Dokumentord"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:463
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:465
 msgid "The provider name"
 msgstr "Leverantörens namn"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:470
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:472
 #: ../gtksourceview/gtksourcecompletionitem.c:268
 msgid "Icon"
 msgstr "Ikon"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:471
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:473
 msgid "The provider icon"
 msgstr "Leverantörens ikon"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:478
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:480
 msgid "Proposals Batch Size"
 msgstr "Storlek på förslagssats"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:479
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:481
 msgid "Number of proposals added in one batch"
 msgstr "Antal förslag som läggs till i en sats"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:488
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:490
 msgid "Scan Batch Size"
 msgstr "Storlek på avsökningssats"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:489
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:491
 msgid "Number of lines scanned in one batch"
 msgstr "Antal rader som söks av i en sats"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:498
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:500
 msgid "Minimum Word Size"
 msgstr "Minimal ordstorlek"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:499
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:501
 msgid "The minimum word size to complete"
 msgstr "Minsta ordstorlek att komplettera"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:508
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:510
 msgid "Interactive Delay"
 msgstr "Interaktiv fördröjning"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:509
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:511
 msgid "The delay before initiating interactive completion"
 msgstr "Fördröjningen innan interaktiv komplettering initieras"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:518
-#: ../gtksourceview/gtksourcemarkcategory.c:355
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:520
 msgid "Priority"
 msgstr "Prioritet"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:519
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:521
 msgid "Provider priority"
 msgstr "Leverantörsprioritet"
 
-#: ../gtksourceview/gtksourcebuffer.c:222
+#: ../gtksourceview/gtksourcebuffer.c:234
 #: ../gtksourceview/gtksourceprintcompositor.c:505
 msgid "Highlight Syntax"
 msgstr "Färgmarkeringssyntax"
 
-#: ../gtksourceview/gtksourcebuffer.c:223
+#: ../gtksourceview/gtksourcebuffer.c:235
 msgid "Whether to highlight syntax in the buffer"
 msgstr "Huruvida syntaxen ska färgmarkeras i bufferten"
 
-#: ../gtksourceview/gtksourcebuffer.c:236
+#: ../gtksourceview/gtksourcebuffer.c:248
 msgid "Highlight Matching Brackets"
 msgstr "Färgmarkera matchande parenteser"
 
-#: ../gtksourceview/gtksourcebuffer.c:237
+#: ../gtksourceview/gtksourcebuffer.c:249
 msgid "Whether to highlight matching brackets"
 msgstr "Huruvida matchande parenteser ska färgmarkeras"
 
-#: ../gtksourceview/gtksourcebuffer.c:250
+#: ../gtksourceview/gtksourcebuffer.c:262
 #: ../gtksourceview/gtksourceundomanagerdefault.c:418
 msgid "Maximum Undo Levels"
 msgstr "Maximalt antal ångrandenivåer"
 
-#: ../gtksourceview/gtksourcebuffer.c:251
+#: ../gtksourceview/gtksourcebuffer.c:263
 #: ../gtksourceview/gtksourceundomanagerdefault.c:419
 msgid "Number of undo levels for the buffer"
 msgstr "Antal ångrandenivåer för bufferten"
 
 #. Translators: throughout GtkSourceView "language" stands
 #. * for "programming language", not "spoken language"
-#: ../gtksourceview/gtksourcebuffer.c:263
+#: ../gtksourceview/gtksourcebuffer.c:275
 msgid "Language"
 msgstr "Språk"
 
-#: ../gtksourceview/gtksourcebuffer.c:264
+#: ../gtksourceview/gtksourcebuffer.c:276
 msgid "Language object to get highlighting patterns from"
 msgstr "Språkobjekt att hämta färgmarkeringsmönster från"
 
-#: ../gtksourceview/gtksourcebuffer.c:272
+#: ../gtksourceview/gtksourcebuffer.c:284
 msgid "Can undo"
 msgstr "Kan ångra"
 
-#: ../gtksourceview/gtksourcebuffer.c:273
+#: ../gtksourceview/gtksourcebuffer.c:285
 msgid "Whether Undo operation is possible"
 msgstr "Huruvida en Ångra-åtgärd är möjlig"
 
-#: ../gtksourceview/gtksourcebuffer.c:280
+#: ../gtksourceview/gtksourcebuffer.c:292
 msgid "Can redo"
 msgstr "Kan göra om"
 
-#: ../gtksourceview/gtksourcebuffer.c:281
+#: ../gtksourceview/gtksourcebuffer.c:293
 msgid "Whether Redo operation is possible"
 msgstr "Huruvida en Gör om-åtgärd är möjlig"
 
-#: ../gtksourceview/gtksourcebuffer.c:295
-#: ../gtksourceview/gtksourcebuffer.c:296
+#: ../gtksourceview/gtksourcebuffer.c:307
+#: ../gtksourceview/gtksourcebuffer.c:308
 msgid "Style scheme"
 msgstr "Stilschema"
 
-#: ../gtksourceview/gtksourcebuffer.c:303
+#: ../gtksourceview/gtksourcebuffer.c:315
 msgid "Undo manager"
 msgstr "Ångringshanterare"
 
-#: ../gtksourceview/gtksourcebuffer.c:304
+#: ../gtksourceview/gtksourcebuffer.c:316
 msgid "The buffer undo manager"
 msgstr "Hanterare för buffertångring"
 
-#: ../gtksourceview/gtksourcecompletion.c:936
-#: ../gtksourceview/gtksourcecompletion.c:959
+#: ../gtksourceview/gtksourcecompletion.c:935
+#: ../gtksourceview/gtksourcecompletion.c:958
 msgid "No extra information available"
 msgstr "Ingen extra information finns tillgänglig"
 
-#: ../gtksourceview/gtksourcecompletion.c:2222
-#: ../gtksourceview/gtksourcegutter.c:519
+#: ../gtksourceview/gtksourcecompletion.c:2220
+#: ../gtksourceview/gtksourcegutter.c:548
 msgid "View"
 msgstr "Visa"
 
-#: ../gtksourceview/gtksourcecompletion.c:2223
+#: ../gtksourceview/gtksourcecompletion.c:2221
 msgid "The GtkSourceView bound to the completion"
 msgstr "GtkSourceView bunden till kompletteringen"
 
-#: ../gtksourceview/gtksourcecompletion.c:2238
+#: ../gtksourceview/gtksourcecompletion.c:2236
 msgid "Remember Info Visibility"
 msgstr "Synlighet för kom ihåg-info"
 
-#: ../gtksourceview/gtksourcecompletion.c:2239
+#: ../gtksourceview/gtksourcecompletion.c:2237
 msgid "Remember the last info window visibility state"
 msgstr "Kom ihåg sista informationsfönstrets synlighetstillstånd"
 
-#: ../gtksourceview/gtksourcecompletion.c:2252
+#: ../gtksourceview/gtksourcecompletion.c:2250
 msgid "Select on Show"
 msgstr "Välj vid Visa"
 
-#: ../gtksourceview/gtksourcecompletion.c:2253
+#: ../gtksourceview/gtksourcecompletion.c:2251
 msgid "Select first proposal when completion is shown"
 msgstr "Välj första förslaget när kompletteringen visas"
 
-#: ../gtksourceview/gtksourcecompletion.c:2267
+#: ../gtksourceview/gtksourcecompletion.c:2265
 msgid "Show Headers"
 msgstr "Visa rubriker"
 
-#: ../gtksourceview/gtksourcecompletion.c:2268
+#: ../gtksourceview/gtksourcecompletion.c:2266
 msgid "Show provider headers when proposals from multiple providers are available"
 msgstr "Visa leverantörsrubriker när förslag från flera leverantörer finns tillgängliga"
 
-#: ../gtksourceview/gtksourcecompletion.c:2282
+#: ../gtksourceview/gtksourcecompletion.c:2280
 msgid "Show Icons"
 msgstr "Visa ikoner"
 
-#: ../gtksourceview/gtksourcecompletion.c:2283
+#: ../gtksourceview/gtksourcecompletion.c:2281
 msgid "Show provider and proposal icons in the completion popup"
 msgstr "Visa ikoner för leverantör och förslag i kompletteringspopup "
 
-#: ../gtksourceview/gtksourcecompletion.c:2296
+#: ../gtksourceview/gtksourcecompletion.c:2294
 msgid "Accelerators"
 msgstr "Snabbtangenter"
 
-#: ../gtksourceview/gtksourcecompletion.c:2297
+#: ../gtksourceview/gtksourcecompletion.c:2295
 msgid "Number of proposal accelerators to show"
 msgstr "Antal snabbtangenter för förslag att visa"
 
-#: ../gtksourceview/gtksourcecompletion.c:2313
+#: ../gtksourceview/gtksourcecompletion.c:2311
 msgid "Auto Complete Delay"
 msgstr "Fördröjning för automatisk komplettering"
 
-#: ../gtksourceview/gtksourcecompletion.c:2314
+#: ../gtksourceview/gtksourcecompletion.c:2312
 msgid "Completion popup delay for interactive completion"
 msgstr "Popupfördröjning för komplettering för interaktiv komplettering"
 
-#: ../gtksourceview/gtksourcecompletion.c:2329
+#: ../gtksourceview/gtksourcecompletion.c:2327
 msgid "Provider Page Size"
 msgstr "Sidstorlek för leverantör"
 
-#: ../gtksourceview/gtksourcecompletion.c:2330
+#: ../gtksourceview/gtksourcecompletion.c:2328
 msgid "Provider scrolling page size"
 msgstr "Sidstorlek för leverantörsrullning"
 
-#: ../gtksourceview/gtksourcecompletion.c:2345
+#: ../gtksourceview/gtksourcecompletion.c:2343
 msgid "Proposal Page Size"
 msgstr "Storlek på förslagssida"
 
-#: ../gtksourceview/gtksourcecompletion.c:2346
+#: ../gtksourceview/gtksourcecompletion.c:2344
 msgid "Proposal scrolling page size"
 msgstr "Sidstorlek för förslagsrullning"
 
-#: ../gtksourceview/gtksourcecompletion.c:2691
+#: ../gtksourceview/gtksourcecompletion.c:2689
 msgid "Provider"
 msgstr "Leverantör"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:244
-#: ../gtksourceview/gtksourceview.c:289
+#: ../gtksourceview/gtksourcecompletioncontext.c:237
+#: ../gtksourceview/gtksourceview.c:306
 msgid "Completion"
 msgstr "Komplettering"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:245
+#: ../gtksourceview/gtksourcecompletioncontext.c:238
 msgid "The completion object to which the context belongs"
 msgstr "Kompletteringsobjektet till vilket kontexten tillhör"
 
 #. Translators: The GtkTextIter at which the completion was invoked
-#: ../gtksourceview/gtksourcecompletioncontext.c:258
+#: ../gtksourceview/gtksourcecompletioncontext.c:251
 msgid "Iterator"
 msgstr "Iterator"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:259
+#: ../gtksourceview/gtksourcecompletioncontext.c:252
 msgid "The GtkTextIter at which the completion was invoked"
 msgstr "GtkTextIter i vilken kompletteringen anropades"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:271
+#: ../gtksourceview/gtksourcecompletioncontext.c:264
 msgid "Activation"
 msgstr "Aktivering"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:272
+#: ../gtksourceview/gtksourcecompletioncontext.c:265
 msgid "The type of activation"
 msgstr "Typ av aktivering"
 
@@ -2559,120 +2562,120 @@ msgstr "okänd kontext \"%s\""
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "Saknar huvudspråkdefinition (id = \"%s\".)"
 
-#: ../gtksourceview/gtksourcegutter.c:520
+#: ../gtksourceview/gtksourcegutter.c:549
 msgid "The gutters' GtkSourceView"
 msgstr "Gutterns GtkSourceView"
 
-#: ../gtksourceview/gtksourcegutter.c:532
-#: ../gtksourceview/gtksourcegutterrenderer.c:689
+#: ../gtksourceview/gtksourcegutter.c:561
+#: ../gtksourceview/gtksourcegutterrenderer.c:703
 msgid "Window Type"
 msgstr "Fönstertyp"
 
-#: ../gtksourceview/gtksourcegutter.c:533
+#: ../gtksourceview/gtksourcegutter.c:562
 msgid "The gutters text window type"
 msgstr "Gutterns textfönstertyp"
 
-#: ../gtksourceview/gtksourcegutter.c:544
-#: ../gtksourceview/gtksourcegutterrenderer.c:465
+#: ../gtksourceview/gtksourcegutter.c:573
+#: ../gtksourceview/gtksourcegutterrenderer.c:479
 msgid "X Padding"
 msgstr "X-fyllning"
 
-#: ../gtksourceview/gtksourcegutter.c:545
-#: ../gtksourceview/gtksourcegutterrenderer.c:466
+#: ../gtksourceview/gtksourcegutter.c:574
+#: ../gtksourceview/gtksourcegutterrenderer.c:480
 msgid "The x-padding"
 msgstr "X-fyllningen"
 
-#: ../gtksourceview/gtksourcegutter.c:555
-#: ../gtksourceview/gtksourcegutterrenderer.c:481
+#: ../gtksourceview/gtksourcegutter.c:584
+#: ../gtksourceview/gtksourcegutterrenderer.c:495
 msgid "Y Padding"
 msgstr "Y-fyllning"
 
-#: ../gtksourceview/gtksourcegutter.c:556
-#: ../gtksourceview/gtksourcegutterrenderer.c:482
+#: ../gtksourceview/gtksourcegutter.c:585
+#: ../gtksourceview/gtksourcegutterrenderer.c:496
 msgid "The y-padding"
 msgstr "Y-fyllningen"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:451
-#: ../gtksourceview/gtksourcegutterrenderer.c:452
+#: ../gtksourceview/gtksourcegutterrenderer.c:465
+#: ../gtksourceview/gtksourcegutterrenderer.c:466
 msgid "Visible"
 msgstr "Synlig"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:497
+#: ../gtksourceview/gtksourcegutterrenderer.c:511
 msgid "X Alignment"
 msgstr "X-justering"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:498
+#: ../gtksourceview/gtksourcegutterrenderer.c:512
 msgid "The x-alignment"
 msgstr "X-justeringen"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:513
+#: ../gtksourceview/gtksourcegutterrenderer.c:527
 msgid "Y Alignment"
 msgstr "Y-justering"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:514
+#: ../gtksourceview/gtksourcegutterrenderer.c:528
 msgid "The y-alignment"
 msgstr "Y-justeringen"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:656
+#: ../gtksourceview/gtksourcegutterrenderer.c:670
 msgid "The View"
 msgstr "Vyn"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:657
+#: ../gtksourceview/gtksourcegutterrenderer.c:671
 msgid "The view"
 msgstr "Vyn"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:673
+#: ../gtksourceview/gtksourcegutterrenderer.c:687
 msgid "Alignment Mode"
 msgstr "Justeringsläge"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:674
+#: ../gtksourceview/gtksourcegutterrenderer.c:688
 msgid "The alignment mode"
 msgstr "Justeringsläget"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:690
+#: ../gtksourceview/gtksourcegutterrenderer.c:704
 msgid "The window type"
 msgstr "Fönstertypen"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:698
+#: ../gtksourceview/gtksourcegutterrenderer.c:712
 msgid "Size"
 msgstr "Storlek"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:699
+#: ../gtksourceview/gtksourcegutterrenderer.c:713
 msgid "The size"
 msgstr "Storleken"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:293
-#: ../gtksourceview/gtksourcemarkcategory.c:383
+#: ../gtksourceview/gtksourcemarkattributes.c:316
 msgid "Pixbuf"
 msgstr "Pixbuf"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:294
-#: ../gtksourceview/gtksourcemarkcategory.c:384
+#: ../gtksourceview/gtksourcemarkattributes.c:317
 msgid "The pixbuf"
 msgstr "Pixbufen"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:301
-#: ../gtksourceview/gtksourcemarkcategory.c:370
+#: ../gtksourceview/gtksourcemarkattributes.c:303
 msgid "Stock Id"
 msgstr "Standard-id"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:302
-#: ../gtksourceview/gtksourcemarkcategory.c:371
+#: ../gtksourceview/gtksourcemarkattributes.c:304
 msgid "The stock id"
 msgstr "Standard-id:t"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:309
-#: ../gtksourceview/gtksourcemarkcategory.c:396
+#: ../gtksourceview/gtksourcemarkattributes.c:329
 msgid "Icon Name"
 msgstr "Ikonnamn"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:310
-#: ../gtksourceview/gtksourcemarkcategory.c:397
+#: ../gtksourceview/gtksourcemarkattributes.c:330
 msgid "The icon name"
 msgstr "Ikonnamnet"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:317
-#: ../gtksourceview/gtksourcemarkcategory.c:409
+#: ../gtksourceview/gtksourcemarkattributes.c:342
 msgid "GIcon"
 msgstr "GIcon"
 
@@ -2681,11 +2684,11 @@ msgid "The gicon"
 msgstr "Gicon"
 
 # http://www.nada.kth.se/dataterm/fos-lista.html#f91 är inte entydig om markup.
-#: ../gtksourceview/gtksourcegutterrenderertext.c:394
+#: ../gtksourceview/gtksourcegutterrenderertext.c:396
 msgid "The markup"
 msgstr "Märkningen"
 
-#: ../gtksourceview/gtksourcegutterrenderertext.c:402
+#: ../gtksourceview/gtksourcegutterrenderertext.c:404
 msgid "The text"
 msgstr "Texten"
 
@@ -2746,28 +2749,16 @@ msgstr "kategori"
 msgid "The mark category"
 msgstr "Markörkategorin"
 
-#: ../gtksourceview/gtksourcemarkcategory.c:329
-msgid "Id"
-msgstr "Id"
-
-#: ../gtksourceview/gtksourcemarkcategory.c:330
-msgid "The id"
-msgstr "Id:t"
-
-#: ../gtksourceview/gtksourcemarkcategory.c:342
+#: ../gtksourceview/gtksourcemarkattributes.c:290
 #: ../gtksourceview/gtksourcestyle.c:88
 msgid "Background"
 msgstr "Bakgrund"
 
-#: ../gtksourceview/gtksourcemarkcategory.c:343
+#: ../gtksourceview/gtksourcemarkattributes.c:291
 msgid "The background"
 msgstr "Bakgrunden"
 
-#: ../gtksourceview/gtksourcemarkcategory.c:356
-msgid "The priority"
-msgstr "Prioriteten"
-
-#: ../gtksourceview/gtksourcemarkcategory.c:410
+#: ../gtksourceview/gtksourcemarkattributes.c:343
 msgid "The GIcon"
 msgstr "GIcon"
 
@@ -2780,12 +2771,12 @@ msgid "The GtkSourceBuffer object to print"
 msgstr "GtkSourceBuffer-objektet att skriva ut"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:463
-#: ../gtksourceview/gtksourceview.c:327
+#: ../gtksourceview/gtksourceview.c:344
 msgid "Tab Width"
 msgstr "Tabulatorbredd"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:464
-#: ../gtksourceview/gtksourceview.c:328
+#: ../gtksourceview/gtksourceview.c:345
 msgid "Width of a tab character expressed in spaces"
 msgstr "Bredd på ett tabulatortecken uttryckt i blanksteg"
 
@@ -2951,23 +2942,23 @@ msgstr "Genomstruken inställd"
 msgid "Whether strikethrough attribute is set"
 msgstr "Huruvida genomstruket attribut är inställt"
 
-#: ../gtksourceview/gtksourcestylescheme.c:187
-#: ../gtksourceview/gtksourcestylescheme.c:188
+#: ../gtksourceview/gtksourcestylescheme.c:194
+#: ../gtksourceview/gtksourcestylescheme.c:195
 msgid "Style scheme id"
 msgstr "Stilschema-id"
 
-#: ../gtksourceview/gtksourcestylescheme.c:200
-#: ../gtksourceview/gtksourcestylescheme.c:201
+#: ../gtksourceview/gtksourcestylescheme.c:207
+#: ../gtksourceview/gtksourcestylescheme.c:208
 msgid "Style scheme name"
 msgstr "Stilschemanamn"
 
-#: ../gtksourceview/gtksourcestylescheme.c:213
-#: ../gtksourceview/gtksourcestylescheme.c:214
+#: ../gtksourceview/gtksourcestylescheme.c:220
+#: ../gtksourceview/gtksourcestylescheme.c:221
 msgid "Style scheme description"
 msgstr "Stilschemabeskrivning"
 
-#: ../gtksourceview/gtksourcestylescheme.c:226
-#: ../gtksourceview/gtksourcestylescheme.c:227
+#: ../gtksourceview/gtksourcestylescheme.c:233
+#: ../gtksourceview/gtksourcestylescheme.c:234
 msgid "Style scheme filename"
 msgstr "Stilschemafilnamn"
 
@@ -2995,95 +2986,95 @@ msgstr "Buffert"
 msgid "The text buffer to add undo support on"
 msgstr "Textbufferten att lägga till ångringsstöd på"
 
-#: ../gtksourceview/gtksourceview.c:290
+#: ../gtksourceview/gtksourceview.c:307
 msgid "The completion object associated with the view"
 msgstr "Kompletteringsobjektet associerat med vyn"
 
-#: ../gtksourceview/gtksourceview.c:302
+#: ../gtksourceview/gtksourceview.c:319
 msgid "Show Line Numbers"
 msgstr "Visa radnummer"
 
-#: ../gtksourceview/gtksourceview.c:303
+#: ../gtksourceview/gtksourceview.c:320
 msgid "Whether to display line numbers"
 msgstr "Huruvida radnummer ska visas"
 
-#: ../gtksourceview/gtksourceview.c:314
+#: ../gtksourceview/gtksourceview.c:331
 msgid "Show Line Marks"
 msgstr "Visa radmarkörer"
 
-#: ../gtksourceview/gtksourceview.c:315
+#: ../gtksourceview/gtksourceview.c:332
 msgid "Whether to display line mark pixbufs"
 msgstr "Huruvida radmarkörer ska visas"
 
-#: ../gtksourceview/gtksourceview.c:342
+#: ../gtksourceview/gtksourceview.c:359
 msgid "Indent Width"
 msgstr "Indenteringsbredd"
 
-#: ../gtksourceview/gtksourceview.c:343
+#: ../gtksourceview/gtksourceview.c:360
 msgid "Number of spaces to use for each step of indent"
 msgstr "Antal blanksteg att använda för att indenteringssteg"
 
-#: ../gtksourceview/gtksourceview.c:352
+#: ../gtksourceview/gtksourceview.c:369
 msgid "Auto Indentation"
 msgstr "Automatiskt indrag"
 
-#: ../gtksourceview/gtksourceview.c:353
+#: ../gtksourceview/gtksourceview.c:370
 msgid "Whether to enable auto indentation"
 msgstr "Huruvida automatiskt indrag ska aktiveras"
 
-#: ../gtksourceview/gtksourceview.c:360
+#: ../gtksourceview/gtksourceview.c:377
 msgid "Insert Spaces Instead of Tabs"
 msgstr "Infoga blanksteg istället för tabulatortecken"
 
-#: ../gtksourceview/gtksourceview.c:361
+#: ../gtksourceview/gtksourceview.c:378
 msgid "Whether to insert spaces instead of tabs"
 msgstr "Huruvida blanksteg ska infogas istället för tabulatortecken"
 
-#: ../gtksourceview/gtksourceview.c:373
+#: ../gtksourceview/gtksourceview.c:390
 msgid "Show Right Margin"
 msgstr "Visa högermarginal"
 
-#: ../gtksourceview/gtksourceview.c:374
+#: ../gtksourceview/gtksourceview.c:391
 msgid "Whether to display the right margin"
 msgstr "Huruvida högermarginalen ska visas"
 
-#: ../gtksourceview/gtksourceview.c:386
+#: ../gtksourceview/gtksourceview.c:403
 msgid "Right Margin Position"
 msgstr "Höger marginalposition"
 
-#: ../gtksourceview/gtksourceview.c:387
+#: ../gtksourceview/gtksourceview.c:404
 msgid "Position of the right margin"
 msgstr "Position för högermarginalen"
 
-#: ../gtksourceview/gtksourceview.c:403
+#: ../gtksourceview/gtksourceview.c:420
 msgid "Smart Home/End"
 msgstr "Intelligent home/end"
 
-#: ../gtksourceview/gtksourceview.c:404
+#: ../gtksourceview/gtksourceview.c:421
 msgid "HOME and END keys move to first/last non whitespace characters on line before going to the start/end of the line"
 msgstr "HOME- och END-tangenterna flyttar till första/sista tecknen på raden innan de går till början/slutet på raden"
 
-#: ../gtksourceview/gtksourceview.c:414
+#: ../gtksourceview/gtksourceview.c:431
 msgid "Highlight current line"
 msgstr "Färgmarkera aktuell rad"
 
-#: ../gtksourceview/gtksourceview.c:415
+#: ../gtksourceview/gtksourceview.c:432
 msgid "Whether to highlight the current line"
 msgstr "Huruvida den aktuella raden ska färgmarkeras"
 
-#: ../gtksourceview/gtksourceview.c:422
+#: ../gtksourceview/gtksourceview.c:439
 msgid "Indent on tab"
 msgstr "Dra in med tabulator"
 
-#: ../gtksourceview/gtksourceview.c:423
+#: ../gtksourceview/gtksourceview.c:440
 msgid "Whether to indent the selected text when the tab key is pressed"
 msgstr "Huruvida indragning av markerad text ska göras när tabulatorn trycks"
 
-#: ../gtksourceview/gtksourceview.c:437
+#: ../gtksourceview/gtksourceview.c:454
 msgid "Draw Spaces"
 msgstr "Rita ut blanksteg"
 
-#: ../gtksourceview/gtksourceview.c:438
+#: ../gtksourceview/gtksourceview.c:455
 msgid "Set if and how the spaces should be visualized"
 msgstr "Ställ in om och hur blanksteg ska visualiseras"
 
@@ -3096,6 +3087,12 @@ msgstr ""
 "Skicka synpunkter på översättningen till\n"
 "<tp-sv@listor.tp-sv.se>."
 
+#~ msgid "Id"
+#~ msgstr "Id"
+#~ msgid "The id"
+#~ msgstr "Id:t"
+#~ msgid "The priority"
+#~ msgstr "Prioriteten"
 #~ msgid "MSIL"
 #~ msgstr "MSIL"
 #~ msgid "Maximum width"
