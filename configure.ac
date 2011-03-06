@@ -32,7 +32,7 @@ AC_CHECK_HEADERS([unistd.h])
 # Dependencies
 GTK_REQUIRED_VERSION=3.0.0
 LIBXML_REQUIRED_VERSION=2.6.0
-GLADE_UI_REQUIRED=3.2
+GLADE_UI_REQUIRED=3.9
 
 AC_SUBST(GTK_REQUIRED)
 AC_SUBST(GTK_REQUIRED_VERSION)
@@ -111,9 +111,9 @@ AC_ARG_ENABLE([glade-catalog],
 AM_CONDITIONAL([GLADE_CATALOG], [ test "$glade_catalog" = "yes" ])
 
 AS_IF([ test "$glade_catalog" = "yes" ],
-	[PKG_CHECK_EXISTS(GLADE, [gladeui-1.0 >= $GLADE_UI_REQUIRED])
+	[PKG_CHECK_EXISTS(GLADE, [gladeui-2.0 >= $GLADE_UI_REQUIRED])
 	 AC_MSG_CHECKING([for Glade catalog dir])
-	 GLADE_CATALOG_DIR=`$PKG_CONFIG --variable=catalogdir gladeui-1.0 2>&AS_MESSAGE_LOG_FD`
+	 GLADE_CATALOG_DIR=`$PKG_CONFIG --variable=catalogdir gladeui-2.0 2>&AS_MESSAGE_LOG_FD`
 	 AC_MSG_RESULT([$GLADE_CATALOG_DIR])
 	 AC_SUBST(GLADE_CATALOG_DIR)])
 
