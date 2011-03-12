@@ -6,27 +6,28 @@
 # Dan Damian <dand@gnome.ro>, 2005-2006.
 # Adi Roiban https://launchpad.net/~adiroiban, 2009
 # Lucian Adrian Grijincu <lucian.grijincu@gmail.com>, 2009, 2010.
+# Simion Ruxandra <ruxy.simion@gmail.com>, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&component=general\n"
-"POT-Creation-Date: 2011-01-13 13:12+0000\n"
-"PO-Revision-Date: 2010-03-22 01:15+0200\n"
-"Last-Translator: Adi Roiban <adi@roiban.ro>\n"
-"Language-Team: Romanian GNOME Team <gnomero-list@lists.sourceforge.net>\n"
+"POT-Creation-Date: 2011-02-24 10:24+0000\n"
+"PO-Revision-Date: 2010-12-30 06:33+0300\n"
+"Last-Translator: Simion Ruxandra <ruxy.simion@gmail.com>\n"
+"Language-Team: Romanian\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ro\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2);;\n"
-"X-Generator: Virtaal 0.5.2\n"
+"X-Generator: Virtaal 0.6.1\n"
 "X-Launchpad-Export-Date: 2009-08-21 13:52+0000\n"
 
 #: ../data/glade/gtksourceview.xml.in.h:1
 msgid "After"
-msgstr ""
+msgstr "După"
 
 #. Translators: "All" is used as a label in thestatus bar of the
 #. popup, telling that all completion pages are shown
@@ -37,63 +38,49 @@ msgstr "Toate"
 
 #: ../data/glade/gtksourceview.xml.in.h:3
 msgid "Always"
-msgstr ""
+msgstr "Întotdeauna"
 
 #: ../data/glade/gtksourceview.xml.in.h:4
 msgid "Before"
-msgstr ""
+msgstr "Înainte"
 
 #: ../data/glade/gtksourceview.xml.in.h:5
-#, fuzzy
-#| msgid "Variable"
 msgid "Disabled"
-msgstr "Variabilă"
+msgstr "Dezactivat"
 
 #: ../data/glade/gtksourceview.xml.in.h:6
-#, fuzzy
-#| msgid "The GtkSourceView"
 msgid "GtkSourceView"
-msgstr "GtkSourceView-ul"
+msgstr "GtkSourceView"
 
 #: ../data/glade/gtksourceview.xml.in.h:7
-#, fuzzy
-#| msgid "POD heading"
 msgid "Leading"
-msgstr "Antet POD"
+msgstr "La început"
 
 #: ../data/glade/gtksourceview.xml.in.h:8
-#, fuzzy
-#| msgid "Underline"
 msgid "Newline"
-msgstr "Subliniere"
+msgstr "Linie nouă"
 
 #: ../data/glade/gtksourceview.xml.in.h:9
 msgid "Non Breaking Whitespace"
-msgstr ""
+msgstr "Spațiu care nu întrerupe"
 
 #: ../data/glade/gtksourceview.xml.in.h:10
-#, fuzzy
-#| msgid "Draw Spaces"
 msgid "Space"
-msgstr "Desenează spațiile"
+msgstr "Spațiu"
 
 #: ../data/glade/gtksourceview.xml.in.h:11
-#, fuzzy
-#| msgid "Tag"
 msgid "Tab"
-msgstr "Etichetă"
+msgstr "Tab"
 
 #: ../data/glade/gtksourceview.xml.in.h:12
 #: ../gtksourceview/gtksourcecompletionitem.c:255
-#: ../gtksourceview/gtksourcegutterrenderertext.c:401
+#: ../gtksourceview/gtksourcegutterrenderertext.c:403
 msgid "Text"
 msgstr "Text"
 
 #: ../data/glade/gtksourceview.xml.in.h:13
-#, fuzzy
-#| msgid "Trailing Tab"
 msgid "Trailing"
-msgstr "Tab la sfârșitul de linie"
+msgstr "La final"
 
 #: ../data/language-specs/ada.lang.h:1
 msgid "Ada"
@@ -445,7 +432,7 @@ msgstr "awk"
 
 #: ../data/language-specs/bennugd.lang.h:1
 msgid "BennuGD"
-msgstr ""
+msgstr "BennuGD"
 
 #. A character constant: 'c'
 #: ../data/language-specs/bennugd.lang.h:3 ../data/language-specs/c.lang.h:3
@@ -522,7 +509,7 @@ msgstr "Câmp"
 #: ../data/language-specs/texinfo.lang.h:8 ../data/language-specs/xml.lang.h:9
 #: ../data/language-specs/xslt.lang.h:2
 #: ../gtksourceview/gtksourcecompletionitem.c:242
-#: ../gtksourceview/gtksourcegutterrenderertext.c:393
+#: ../gtksourceview/gtksourcegutterrenderertext.c:395
 msgid "Markup"
 msgstr "Marcaj"
 
@@ -597,7 +584,7 @@ msgid "File"
 msgstr "Fișier"
 
 #: ../data/language-specs/changelog.lang.h:7
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:462
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:464
 msgid "Name"
 msgstr "Nume"
 
@@ -715,10 +702,8 @@ msgid "Control Keyword"
 msgstr "Cuvânt cheie de control"
 
 #: ../data/language-specs/cobol.lang.h:1
-#, fuzzy
-#| msgid "Cobalt"
 msgid "Cobol"
-msgstr "Cobalt"
+msgstr "Cobol"
 
 #. Any statement
 #: ../data/language-specs/cobol.lang.h:9 ../data/language-specs/def.lang.h:55
@@ -1163,51 +1148,39 @@ msgstr "GAP"
 
 #: ../data/language-specs/gdb-log.lang.h:1
 msgid "Address"
-msgstr ""
+msgstr "Adresă"
 
 #: ../data/language-specs/gdb-log.lang.h:2
-#, fuzzy
-#| msgid "File"
 msgid "Filename"
-msgstr "Fișier"
+msgstr "Nume fișier"
 
 #: ../data/language-specs/gdb-log.lang.h:3
-#, fuzzy
-#| msgid "Number"
 msgid "Frame Number"
-msgstr "Număr"
+msgstr "Număr cadru"
 
 #: ../data/language-specs/gdb-log.lang.h:5
 msgid "GDB Log"
-msgstr ""
+msgstr "Jurnal GDB"
 
 #: ../data/language-specs/gdb-log.lang.h:6
 msgid "Incomplete Sequence"
-msgstr ""
+msgstr "Secvență incompletă"
 
 #: ../data/language-specs/gdb-log.lang.h:7
-#, fuzzy
-#| msgid "Itemized list"
 msgid "Optimized Out"
-msgstr "Liste itemizate"
+msgstr "Ieșire optimizată"
 
 #: ../data/language-specs/gdb-log.lang.h:9
-#, fuzzy
-#| msgid "Properties"
 msgid "Prompt"
-msgstr "Proprietăți"
+msgstr "Prompt"
 
 #: ../data/language-specs/gdb-log.lang.h:11
-#, fuzzy
-#| msgid "Section"
 msgid "Thread Action"
-msgstr "Secțiune"
+msgstr "Acțiunea firului de execuție"
 
 #: ../data/language-specs/gdb-log.lang.h:12
-#, fuzzy
-#| msgid "Show Headers"
 msgid "Thread Header"
-msgstr "Afișează anteturile"
+msgstr "Antetul firului de execuție"
 
 #: ../data/language-specs/glsl.lang.h:1 ../data/language-specs/python.lang.h:3
 msgid "Builtin Constant"
@@ -1221,9 +1194,10 @@ msgstr "Limbajul de umbrire OpenGL"
 msgid "Reserved Keywords"
 msgstr "Cuvinte cheie rezervate"
 
+# Lucian: aici e vorba de limbajul de programare Go
 #: ../data/language-specs/go.lang.h:9
 msgid "Go"
-msgstr ""
+msgstr "Go"
 
 #: ../data/language-specs/gtk-doc.lang.h:2
 msgid "Deprecated"
@@ -1416,10 +1390,8 @@ msgid "Constructors"
 msgstr "Constructori"
 
 #: ../data/language-specs/javascript.lang.h:9
-#, fuzzy
-#| msgid "Javascript"
 msgid "JavaScript"
-msgstr "Javascript"
+msgstr "JavaScript"
 
 #: ../data/language-specs/javascript.lang.h:12
 msgid "Object"
@@ -1599,10 +1571,8 @@ msgid "OOC"
 msgstr "OOC"
 
 #: ../data/language-specs/opal.lang.h:7
-#, fuzzy
-#| msgid "Symbol"
 msgid "Keysymbol"
-msgstr "Simbol"
+msgstr "Keysymbol"
 
 #: ../data/language-specs/opal.lang.h:9
 #: ../data/language-specs/python.lang.h:12
@@ -1610,10 +1580,8 @@ msgid "Module Handler"
 msgstr "Gestionar modul"
 
 #: ../data/language-specs/opal.lang.h:10
-#, fuzzy
-#| msgid "Octal"
 msgid "Opal"
-msgstr "Octal"
+msgstr "Opal"
 
 #: ../data/language-specs/pascal.lang.h:5
 msgid "Pascal"
@@ -1818,10 +1786,8 @@ msgid "Scheme"
 msgstr "Scheme"
 
 #: ../data/language-specs/scilab.lang.h:8
-#, fuzzy
-#| msgid "Special"
 msgid "Scilab"
-msgstr "Special"
+msgstr "Scilab"
 
 #: ../data/language-specs/sh.lang.h:2
 msgid "Common Commands"
@@ -1877,16 +1843,12 @@ msgid "SQL"
 msgstr "SQL"
 
 #: ../data/language-specs/systemverilog.lang.h:4
-#, fuzzy
-#| msgid "System Command"
 msgid "System Task"
-msgstr "Comandă sistem"
+msgstr "System Task sistem"
 
 #: ../data/language-specs/systemverilog.lang.h:5
-#, fuzzy
-#| msgid "Verilog"
 msgid "SystemVerilog"
-msgstr "Verilog"
+msgstr "SystemVerilog"
 
 #: ../data/language-specs/t2t.lang.h:2 ../gtksourceview/gtksourcestyle.c:104
 #: ../gtksourceview/gtksourcestyle.c:105
@@ -1968,11 +1930,11 @@ msgstr "Poartă"
 
 #: ../data/language-specs/verilog.lang.h:7
 msgid "IEEE System Task"
-msgstr ""
+msgstr "Sarcină de sistem IEEE"
 
 #: ../data/language-specs/verilog.lang.h:10
 msgid "LRM Additional System Task"
-msgstr ""
+msgstr "LRM Additional System Task"
 
 #: ../data/language-specs/verilog.lang.h:15
 msgid "Verilog"
@@ -2070,60 +2032,60 @@ msgstr "Schema de culori folosește paleta de culori Tango"
 msgid "Tango"
 msgstr "Tango"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:378
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:380
 msgid "Document Words"
 msgstr "Cuvinte document"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:463
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:465
 msgid "The provider name"
 msgstr "Numele furnizorului"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:470
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:472
 #: ../gtksourceview/gtksourcecompletionitem.c:268
 msgid "Icon"
 msgstr "Iconiță"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:471
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:473
 msgid "The provider icon"
 msgstr "Iconiță furnizor"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:478
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:480
 msgid "Proposals Batch Size"
 msgstr "Dimensiunea lotului de propuneri"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:479
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:481
 msgid "Number of proposals added in one batch"
 msgstr "Numărul de propuneri adăugate într-un lot"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:488
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:490
 msgid "Scan Batch Size"
 msgstr "Dimensiunea de scanare lotului"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:489
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:491
 msgid "Number of lines scanned in one batch"
 msgstr "Numărul de linii scanate într-un lot"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:498
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:500
 msgid "Minimum Word Size"
 msgstr "Dimensiunea minimă a cuvântului"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:499
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:501
 msgid "The minimum word size to complete"
 msgstr "Dimensiunea minimă a cuvântului de completat"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:508
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:510
 msgid "Interactive Delay"
 msgstr "Întârziere interactivă"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:509
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:511
 msgid "The delay before initiating interactive completion"
 msgstr "Întârzierea până la inițierea completării interactive"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:518
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:520
 msgid "Priority"
 msgstr "Prioritate"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:519
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:521
 msgid "Provider priority"
 msgstr "Prioritatea furnizorului"
 
@@ -2198,84 +2160,84 @@ msgstr "Administratorul de refaceri al bufferului"
 msgid "No extra information available"
 msgstr "Nu există informații adiționale disponibile"
 
-#: ../gtksourceview/gtksourcecompletion.c:2221
-#: ../gtksourceview/gtksourcegutter.c:520
+#: ../gtksourceview/gtksourcecompletion.c:2220
+#: ../gtksourceview/gtksourcegutter.c:548
 msgid "View"
 msgstr "Vizualizare"
 
-#: ../gtksourceview/gtksourcecompletion.c:2222
+#: ../gtksourceview/gtksourcecompletion.c:2221
 msgid "The GtkSourceView bound to the completion"
 msgstr "Obiect GtkSourceBuffer legat în completare"
 
-#: ../gtksourceview/gtksourcecompletion.c:2237
+#: ../gtksourceview/gtksourcecompletion.c:2236
 msgid "Remember Info Visibility"
 msgstr "Ține minte informațiile despre vizibilitate"
 
-#: ../gtksourceview/gtksourcecompletion.c:2238
+#: ../gtksourceview/gtksourcecompletion.c:2237
 msgid "Remember the last info window visibility state"
 msgstr "Ține minte stările de vizibilitate ale ultimei ferestre"
 
-#: ../gtksourceview/gtksourcecompletion.c:2251
+#: ../gtksourceview/gtksourcecompletion.c:2250
 msgid "Select on Show"
 msgstr "Selectează la afișare"
 
-#: ../gtksourceview/gtksourcecompletion.c:2252
+#: ../gtksourceview/gtksourcecompletion.c:2251
 msgid "Select first proposal when completion is shown"
 msgstr "Selectează prima propunere când completarea este afișată"
 
-#: ../gtksourceview/gtksourcecompletion.c:2266
+#: ../gtksourceview/gtksourcecompletion.c:2265
 msgid "Show Headers"
 msgstr "Afișează anteturile"
 
-#: ../gtksourceview/gtksourcecompletion.c:2267
+#: ../gtksourceview/gtksourcecompletion.c:2266
 msgid ""
 "Show provider headers when proposals from multiple providers are available"
 msgstr ""
 "Afișează anteturile furnizorului când sunt disponibile propuneri de la mai "
 "mulți furnizori"
 
-#: ../gtksourceview/gtksourcecompletion.c:2281
+#: ../gtksourceview/gtksourcecompletion.c:2280
 msgid "Show Icons"
 msgstr "Afișează iconițele"
 
-#: ../gtksourceview/gtksourcecompletion.c:2282
+#: ../gtksourceview/gtksourcecompletion.c:2281
 msgid "Show provider and proposal icons in the completion popup"
 msgstr "Afișează furnizorul și iconițele propunerilor în grupul de completări"
 
-#: ../gtksourceview/gtksourcecompletion.c:2295
+#: ../gtksourceview/gtksourcecompletion.c:2294
 msgid "Accelerators"
 msgstr "Acceleratori"
 
-#: ../gtksourceview/gtksourcecompletion.c:2296
+#: ../gtksourceview/gtksourcecompletion.c:2295
 msgid "Number of proposal accelerators to show"
 msgstr "Numărul de acceleratori de propuneri de afișat"
 
-#: ../gtksourceview/gtksourcecompletion.c:2312
+#: ../gtksourceview/gtksourcecompletion.c:2311
 msgid "Auto Complete Delay"
 msgstr "Decalaj de autocompletare"
 
-#: ../gtksourceview/gtksourcecompletion.c:2313
+#: ../gtksourceview/gtksourcecompletion.c:2312
 msgid "Completion popup delay for interactive completion"
 msgstr ""
 "Decalaj până la afișarea meniului de completare într-o sesiune interactivă"
 
-#: ../gtksourceview/gtksourcecompletion.c:2328
+#: ../gtksourceview/gtksourcecompletion.c:2327
 msgid "Provider Page Size"
 msgstr "Dimensiunea paginii furnizorului"
 
-#: ../gtksourceview/gtksourcecompletion.c:2329
+#: ../gtksourceview/gtksourcecompletion.c:2328
 msgid "Provider scrolling page size"
 msgstr "Dimensiunea paginii de derulare a furnizorului"
 
-#: ../gtksourceview/gtksourcecompletion.c:2344
+#: ../gtksourceview/gtksourcecompletion.c:2343
 msgid "Proposal Page Size"
 msgstr "Dimensiunea paginii propunerii"
 
-#: ../gtksourceview/gtksourcecompletion.c:2345
+#: ../gtksourceview/gtksourcecompletion.c:2344
 msgid "Proposal scrolling page size"
 msgstr "Dimensiunea paginii de derulare a propunerii"
 
-#: ../gtksourceview/gtksourcecompletion.c:2690
+#: ../gtksourceview/gtksourcecompletion.c:2689
 msgid "Provider"
 msgstr "Furnizor"
 
@@ -2402,160 +2364,134 @@ msgstr "context necunoscut „%s”"
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "Definiția principală de limbaj lipsește (id = „%s”.)"
 
-#: ../gtksourceview/gtksourcegutter.c:521
+#: ../gtksourceview/gtksourcegutter.c:549
 msgid "The gutters' GtkSourceView"
 msgstr "GtkSourceView-ul rigolei"
 
-#: ../gtksourceview/gtksourcegutter.c:533
-#: ../gtksourceview/gtksourcegutterrenderer.c:691
+#: ../gtksourceview/gtksourcegutter.c:561
+#: ../gtksourceview/gtksourcegutterrenderer.c:703
 msgid "Window Type"
 msgstr "Tip fereastră"
 
-#: ../gtksourceview/gtksourcegutter.c:534
+#: ../gtksourceview/gtksourcegutter.c:562
 msgid "The gutters text window type"
 msgstr "Tipul ferestrei textului rigolei"
 
-#: ../gtksourceview/gtksourcegutter.c:545
-#: ../gtksourceview/gtksourcegutterrenderer.c:467
-#, fuzzy
-#| msgid "POD heading"
+#: ../gtksourceview/gtksourcegutter.c:573
+#: ../gtksourceview/gtksourcegutterrenderer.c:479
 msgid "X Padding"
-msgstr "Antet POD"
+msgstr "Spațiere pe axa X"
 
-#: ../gtksourceview/gtksourcegutter.c:546
-#: ../gtksourceview/gtksourcegutterrenderer.c:468
+#: ../gtksourceview/gtksourcegutter.c:574
+#: ../gtksourceview/gtksourcegutterrenderer.c:480
 msgid "The x-padding"
-msgstr ""
+msgstr "Spațierea pe axa x"
 
-#: ../gtksourceview/gtksourcegutter.c:556
-#: ../gtksourceview/gtksourcegutterrenderer.c:483
-#, fuzzy
-#| msgid "POD heading"
+#: ../gtksourceview/gtksourcegutter.c:584
+#: ../gtksourceview/gtksourcegutterrenderer.c:495
 msgid "Y Padding"
-msgstr "Antet POD"
+msgstr "Spațiere pe axa Y"
 
-#: ../gtksourceview/gtksourcegutter.c:557
-#: ../gtksourceview/gtksourcegutterrenderer.c:484
+#: ../gtksourceview/gtksourcegutter.c:585
+#: ../gtksourceview/gtksourcegutterrenderer.c:496
 msgid "The y-padding"
-msgstr ""
+msgstr "Spațierea pe axa y"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:453
-#: ../gtksourceview/gtksourcegutterrenderer.c:454
-#, fuzzy
-#| msgid "Variable"
+#: ../gtksourceview/gtksourcegutterrenderer.c:465
+#: ../gtksourceview/gtksourcegutterrenderer.c:466
 msgid "Visible"
-msgstr "Variabilă"
+msgstr "Vizibil"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:499
+#: ../gtksourceview/gtksourcegutterrenderer.c:511
 msgid "X Alignment"
-msgstr ""
+msgstr "Aliniere pe axa X"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:500
+#: ../gtksourceview/gtksourcegutterrenderer.c:512
 msgid "The x-alignment"
-msgstr ""
+msgstr "Alinierea pe axa x"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:515
+#: ../gtksourceview/gtksourcegutterrenderer.c:527
 msgid "Y Alignment"
-msgstr ""
+msgstr "Aliniere pe axa Y"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:516
+#: ../gtksourceview/gtksourcegutterrenderer.c:528
 msgid "The y-alignment"
-msgstr ""
+msgstr "Alinierea pe axa y"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:658
-#, fuzzy
-#| msgid "View"
+#: ../gtksourceview/gtksourcegutterrenderer.c:670
 msgid "The View"
-msgstr "Vizualizare"
+msgstr "Vizualizarea"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:659
+#: ../gtksourceview/gtksourcegutterrenderer.c:671
 msgid "The view"
-msgstr ""
+msgstr "Vizualizarea"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:675
-#, fuzzy
-#| msgid "Inline Math Mode"
+#: ../gtksourceview/gtksourcegutterrenderer.c:687
 msgid "Alignment Mode"
-msgstr "Mod matematic intercalat"
+msgstr "Mod de aliniere"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:676
+#: ../gtksourceview/gtksourcegutterrenderer.c:688
 msgid "The alignment mode"
-msgstr ""
+msgstr "Modul de aliniere"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:692
-#, fuzzy
-#| msgid "The gutters text window type"
+#: ../gtksourceview/gtksourcegutterrenderer.c:704
 msgid "The window type"
-msgstr "Tipul ferestrei textului rigolei"
+msgstr "Tipul ferestrei"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:700
-#, fuzzy
-#| msgid "Since"
+#: ../gtksourceview/gtksourcegutterrenderer.c:712
 msgid "Size"
-msgstr "Începând cu"
+msgstr "Dimensiune"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:701
+#: ../gtksourceview/gtksourcegutterrenderer.c:713
 msgid "The size"
-msgstr ""
+msgstr "Dimensiunea"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:293
 #: ../gtksourceview/gtksourcemarkattributes.c:316
 msgid "Pixbuf"
-msgstr ""
+msgstr "Pixbuf"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:294
 #: ../gtksourceview/gtksourcemarkattributes.c:317
 msgid "The pixbuf"
-msgstr ""
+msgstr "Pixbuf-ul"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:301
 #: ../gtksourceview/gtksourcemarkattributes.c:303
 msgid "Stock Id"
-msgstr ""
+msgstr "Id stoc"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:302
 #: ../gtksourceview/gtksourcemarkattributes.c:304
 msgid "The stock id"
-msgstr ""
+msgstr "Id-ul în stoc"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:309
 #: ../gtksourceview/gtksourcemarkattributes.c:329
-#, fuzzy
-#| msgid "Function Name"
 msgid "Icon Name"
-msgstr "Nume funcție"
+msgstr "Nume iconiță"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:310
 #: ../gtksourceview/gtksourcemarkattributes.c:330
-#, fuzzy
-#| msgid "The provider name"
 msgid "The icon name"
-msgstr "Numele furnizorului"
+msgstr "Numele iconiței"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:317
 #: ../gtksourceview/gtksourcemarkattributes.c:342
-#, fuzzy
-#| msgid "Icon"
 msgid "GIcon"
-msgstr "Iconiță"
+msgstr "GIcon"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:318
-#, fuzzy
-#| msgid "The provider icon"
 msgid "The gicon"
-msgstr "Iconiță furnizor"
+msgstr "Gicon-ul"
 
-#: ../gtksourceview/gtksourcegutterrenderertext.c:394
-#, fuzzy
-#| msgid "Markup"
+#: ../gtksourceview/gtksourcegutterrenderertext.c:396
 msgid "The markup"
-msgstr "Marcaj"
+msgstr "Marcajul"
 
-#: ../gtksourceview/gtksourcegutterrenderertext.c:402
-#, fuzzy
-#| msgid "Item text"
+#: ../gtksourceview/gtksourcegutterrenderertext.c:404
 msgid "The text"
-msgstr "Textul elementului"
+msgstr "Textul"
 
 #: ../gtksourceview/gtksourcelanguage.c:228
 #: ../gtksourceview/gtksourcelanguage.c:229
@@ -2623,16 +2559,12 @@ msgid "Background"
 msgstr "Fundal"
 
 #: ../gtksourceview/gtksourcemarkattributes.c:291
-#, fuzzy
-#| msgid "Line background"
 msgid "The background"
-msgstr "Fundal linie"
+msgstr "Fundalul"
 
 #: ../gtksourceview/gtksourcemarkattributes.c:343
-#, fuzzy
-#| msgid "Show Icons"
 msgid "The GIcon"
-msgstr "Afișează iconițele"
+msgstr "GIcon-ul"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:445
 msgid "Source Buffer"
@@ -2698,7 +2630,7 @@ msgstr "Nume font corp text"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:597
 msgid "Name of the font to use for the text body (e.g. \"Monospace 10\")"
-msgstr "Nume font folosit pentru textul corpului (ex: \"Monospace 10\")"
+msgstr "Nume font folosit pentru corpul textului (de ex: „Monospace 10”)"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:620
 msgid "Line Numbers Font Name"
@@ -2706,7 +2638,7 @@ msgstr "Nume font numerotare linii"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:621
 msgid "Name of the font to use for the line numbers (e.g. \"Monospace 10\")"
-msgstr "Nume font folosit pentru numerotarea liniilor (ex: „Monospace 10”)"
+msgstr "Nume font folosit pentru numerotarea liniilor (de ex: „Monospace 10”)"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:644
 msgid "Header Font Name"
@@ -2714,7 +2646,7 @@ msgstr "Nume font antet"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:645
 msgid "Name of the font to use for the page header (e.g. \"Monospace 10\")"
-msgstr "Nume font folosit pentru antet pagină (ex: „Monospace 10”)"
+msgstr "Nume font folosit pentru antet pagină (de ex: „Monospace 10”)"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:668
 msgid "Footer Font Name"
@@ -2722,7 +2654,7 @@ msgstr "Nume font subsol"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:669
 msgid "Name of the font to use for the page footer (e.g. \"Monospace 10\")"
-msgstr "Nume font folosit pentru subsol pagină (ex: „Monospace 10”)"
+msgstr "Nume font folosit pentru subsol pagină (de ex: „Monospace 10”)"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:685
 msgid "Number of pages"
@@ -2968,6 +2900,17 @@ msgstr ""
 "Adi Roiban\n"
 "Lucian Adrian Grijincu\n"
 "Ionuț Jula"
+
+#~ msgid "Id"
+#~ msgstr "Id"
+
+#~| msgid "Scheme ids"
+#~ msgid "The id"
+#~ msgstr "Id-ul"
+
+#~| msgid "Priority"
+#~ msgid "The priority"
+#~ msgstr "Prioritatea"
 
 #~ msgid "Maximum width"
 #~ msgstr "Lățime maximă"
