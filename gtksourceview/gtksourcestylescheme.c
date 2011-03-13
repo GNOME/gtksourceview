@@ -318,7 +318,7 @@ gtk_source_style_scheme_get_description (GtkSourceStyleScheme *scheme)
  *
  * Since: 2.0
  */
-G_CONST_RETURN gchar* G_CONST_RETURN *
+const gchar * const *
 gtk_source_style_scheme_get_authors (GtkSourceStyleScheme *scheme)
 {
 	g_return_val_if_fail (GTK_IS_SOURCE_STYLE_SCHEME (scheme), NULL);
@@ -326,7 +326,7 @@ gtk_source_style_scheme_get_authors (GtkSourceStyleScheme *scheme)
 	if (scheme->priv->authors == NULL)
 		return NULL;
 
-	return (G_CONST_RETURN gchar* G_CONST_RETURN *)scheme->priv->authors->pdata;
+	return (const gchar * const *)scheme->priv->authors->pdata;
 }
 
 /**

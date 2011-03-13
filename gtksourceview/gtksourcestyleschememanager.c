@@ -516,7 +516,7 @@ gtk_source_style_scheme_manager_prepend_search_path (GtkSourceStyleSchemeManager
  * of string containing the search path.
  * The array is owned by the @manager and must not be modified.
  */
-G_CONST_RETURN gchar* G_CONST_RETURN *
+const gchar * const *
 gtk_source_style_scheme_manager_get_search_path (GtkSourceStyleSchemeManager *manager)
 {
 	g_return_val_if_fail (GTK_IS_SOURCE_STYLE_SCHEME_MANAGER (manager), NULL);
@@ -555,7 +555,7 @@ gtk_source_style_scheme_manager_force_rescan (GtkSourceStyleSchemeManager *manag
  * of string containing the ids of the available style schemes or %NULL if no
  * style scheme is available. The array is owned by the @manager and must not be modified.
  */
-G_CONST_RETURN gchar* G_CONST_RETURN *
+const gchar * const *
 gtk_source_style_scheme_manager_get_scheme_ids (GtkSourceStyleSchemeManager *manager)
 {
 	g_return_val_if_fail (GTK_IS_SOURCE_STYLE_SCHEME_MANAGER (manager), NULL);

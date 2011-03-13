@@ -275,7 +275,7 @@ gtk_source_language_manager_set_search_path (GtkSourceLanguageManager *lm,
  * containg a list of language files directories.
  * The array is owned by @lm and must not be modified.
  */
-G_CONST_RETURN gchar* G_CONST_RETURN *
+const gchar * const *
 gtk_source_language_manager_get_search_path (GtkSourceLanguageManager *lm)
 {
 	g_return_val_if_fail (GTK_IS_SOURCE_LANGUAGE_MANAGER (lm), NULL);
@@ -394,7 +394,7 @@ ensure_languages (GtkSourceLanguageManager *lm)
  * no language is available.
  * The array is owned by @lm and must not be modified.
  */
-G_CONST_RETURN gchar* G_CONST_RETURN *
+const gchar * const *
 gtk_source_language_manager_get_language_ids (GtkSourceLanguageManager *lm)
 {
 	g_return_val_if_fail (GTK_IS_SOURCE_LANGUAGE_MANAGER (lm), NULL);

@@ -62,8 +62,7 @@ const gchar             *gtk_source_style_scheme_get_id         (GtkSourceStyleS
 const gchar             *gtk_source_style_scheme_get_name       (GtkSourceStyleScheme *scheme);
 const gchar             *gtk_source_style_scheme_get_description(GtkSourceStyleScheme *scheme);
 
-G_CONST_RETURN gchar* G_CONST_RETURN *
-			 gtk_source_style_scheme_get_authors	(GtkSourceStyleScheme *scheme);
+const gchar * const *	 gtk_source_style_scheme_get_authors	(GtkSourceStyleScheme *scheme);
 
 const gchar             *gtk_source_style_scheme_get_filename	(GtkSourceStyleScheme *scheme);
 
