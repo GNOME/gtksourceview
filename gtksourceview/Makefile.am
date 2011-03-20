@@ -147,6 +147,9 @@ stamp-gtksourceview-typebuiltins.c: Makefile.am $(libgtksourceview_headers)
 
 gtksourceview-typebuiltins.h: stamp-gtksourceview-typebuiltins.h
 	@true
+
+# FIXME: we have to sed the file because glib-mkenums does
+#        not recognize GTK_SOURCE as the prefix but instead GTK
 stamp-gtksourceview-typebuiltins.h: Makefile.am $(libgtksourceview_headers)
 	$(AM_V_GEN) (cd $(srcdir) \
 	 && $(GLIB_MKENUMS) \
@@ -159,6 +162,7 @@ stamp-gtksourceview-typebuiltins.h: Makefile.am $(libgtksourceview_headers)
 			--eprod "GType @enum_name@_get_type (void);\n" \
 			--eprod "G_END_DECLS\n\n" \
 		$(libgtksourceview_headers) ) > xgen-gth \
+	&& $(SED) -i 's/GTK_TYPE_SOURCE_/GTK_SOURCE_TYPE_/' xgen-gth \
 	&& (cmp -s xgen-gth gtksourceview-typebuiltins.h || cp xgen-gth gtksourceview-typebuiltins.h) \
 	&& rm -f xgen-gth && echo stamp > $(@F)
 

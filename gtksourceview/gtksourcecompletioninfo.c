@@ -50,7 +50,7 @@ static guint signals[LAST_SIGNAL] = { 0 };
 
 G_DEFINE_TYPE(GtkSourceCompletionInfo, gtk_source_completion_info, GTK_TYPE_WINDOW);
 
-#define GTK_SOURCE_COMPLETION_INFO_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), GTK_TYPE_SOURCE_COMPLETION_INFO, GtkSourceCompletionInfoPrivate))
+#define GTK_SOURCE_COMPLETION_INFO_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), GTK_SOURCE_TYPE_COMPLETION_INFO, GtkSourceCompletionInfoPrivate))
 
 static void
 gtk_source_completion_info_init (GtkSourceCompletionInfo *info)
@@ -142,7 +142,7 @@ gtk_source_completion_info_class_init (GtkSourceCompletionInfoClass *klass)
 GtkSourceCompletionInfo *
 gtk_source_completion_info_new (void)
 {
-	return g_object_new (GTK_TYPE_SOURCE_COMPLETION_INFO,
+	return g_object_new (GTK_SOURCE_TYPE_COMPLETION_INFO,
 	                     "type", GTK_WINDOW_POPUP,
 	                     NULL);
 }
@@ -167,8 +167,8 @@ gtk_source_completion_info_move_to_iter (GtkSourceCompletionInfo *info,
 	GtkTextMark *insert_mark;
 	GtkTextIter start;
 
-	g_return_if_fail (GTK_IS_SOURCE_COMPLETION_INFO (info));
-	g_return_if_fail (GTK_IS_SOURCE_VIEW (view));
+	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_INFO (info));
+	g_return_if_fail (GTK_SOURCE_IS_VIEW (view));
 
 	if (iter == NULL)
 	{
@@ -199,7 +199,7 @@ void
 gtk_source_completion_info_set_widget (GtkSourceCompletionInfo *info,
                                        GtkWidget               *widget)
 {
-	g_return_if_fail (GTK_IS_SOURCE_COMPLETION_INFO (info));
+	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_INFO (info));
 	g_return_if_fail (widget == NULL || GTK_IS_WIDGET (widget));
 
 	if (info->priv->widget == widget)
@@ -246,7 +246,7 @@ gtk_source_completion_info_set_widget (GtkSourceCompletionInfo *info,
 GtkWidget *
 gtk_source_completion_info_get_widget (GtkSourceCompletionInfo* info)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_INFO (info), NULL);
+	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_INFO (info), NULL);
 
 	return info->priv->widget;
 }

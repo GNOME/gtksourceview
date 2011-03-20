@@ -28,12 +28,12 @@
 
 G_BEGIN_DECLS
 
-#define GTK_TYPE_SOURCE_PRINT_COMPOSITOR            (gtk_source_print_compositor_get_type ())
-#define GTK_SOURCE_PRINT_COMPOSITOR(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GTK_TYPE_SOURCE_PRINT_COMPOSITOR, GtkSourcePrintCompositor))
-#define GTK_SOURCE_PRINT_COMPOSITOR_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), GTK_TYPE_SOURCE_PRINT_COMPOSITOR, GtkSourcePrintCompositorClass))
-#define GTK_IS_SOURCE_PRINT_COMPOSITOR(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GTK_TYPE_SOURCE_PRINT_COMPOSITOR))
-#define GTK_IS_SOURCE_PRINT_COMPOSITOR_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GTK_TYPE_SOURCE_PRINT_COMPOSITOR))
-#define GTK_SOURCE_PRINT_COMPOSITOR_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), GTK_TYPE_SOURCE_PRINT_COMPOSITOR, GtkSourcePrintCompositorClass))
+#define GTK_SOURCE_TYPE_PRINT_COMPOSITOR            (gtk_source_print_compositor_get_type ())
+#define GTK_SOURCE_PRINT_COMPOSITOR(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GTK_SOURCE_TYPE_PRINT_COMPOSITOR, GtkSourcePrintCompositor))
+#define GTK_SOURCE_PRINT_COMPOSITOR_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), GTK_SOURCE_TYPE_PRINT_COMPOSITOR, GtkSourcePrintCompositorClass))
+#define GTK_SOURCE_IS_PRINT_COMPOSITOR(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GTK_SOURCE_TYPE_PRINT_COMPOSITOR))
+#define GTK_SOURCE_IS_PRINT_COMPOSITOR_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GTK_SOURCE_TYPE_PRINT_COMPOSITOR))
+#define GTK_SOURCE_PRINT_COMPOSITOR_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), GTK_SOURCE_TYPE_PRINT_COMPOSITOR, GtkSourcePrintCompositorClass))
 
 typedef struct _GtkSourcePrintCompositor         GtkSourcePrintCompositor;
 typedef struct _GtkSourcePrintCompositorClass    GtkSourcePrintCompositorClass;

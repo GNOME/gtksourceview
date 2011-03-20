@@ -21,7 +21,7 @@
 
 #include "gtksourcecompletionwordsproposal.h"
 
-#define GTK_SOURCE_COMPLETION_WORDS_PROPOSAL_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE((object), GTK_TYPE_SOURCE_COMPLETION_WORDS_PROPOSAL, GtkSourceCompletionWordsProposalPrivate))
+#define GTK_SOURCE_COMPLETION_WORDS_PROPOSAL_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE((object), GTK_SOURCE_TYPE_COMPLETION_WORDS_PROPOSAL, GtkSourceCompletionWordsProposalPrivate))
 
 struct _GtkSourceCompletionWordsProposalPrivate
 {
@@ -42,7 +42,7 @@ static void gtk_source_completion_proposal_iface_init (gpointer g_iface, gpointe
 G_DEFINE_TYPE_WITH_CODE (GtkSourceCompletionWordsProposal, 
 			 gtk_source_completion_words_proposal, 
 			 G_TYPE_OBJECT,
-			 G_IMPLEMENT_INTERFACE (GTK_TYPE_SOURCE_COMPLETION_PROPOSAL,
+			 G_IMPLEMENT_INTERFACE (GTK_SOURCE_TYPE_COMPLETION_PROPOSAL,
 			 			gtk_source_completion_proposal_iface_init))
 
 static gchar *
@@ -106,7 +106,7 @@ GtkSourceCompletionWordsProposal *
 gtk_source_completion_words_proposal_new (const gchar *word)
 {
 	GtkSourceCompletionWordsProposal *proposal =
-		g_object_new (GTK_TYPE_SOURCE_COMPLETION_WORDS_PROPOSAL, NULL);
+		g_object_new (GTK_SOURCE_TYPE_COMPLETION_WORDS_PROPOSAL, NULL);
 	
 	proposal->priv->word = g_strdup (word);
 	return proposal;
@@ -115,7 +115,7 @@ gtk_source_completion_words_proposal_new (const gchar *word)
 void
 gtk_source_completion_words_proposal_use (GtkSourceCompletionWordsProposal *proposal)
 {
-	g_return_if_fail (GTK_IS_SOURCE_COMPLETION_WORDS_PROPOSAL (proposal));
+	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_WORDS_PROPOSAL (proposal));
 	
 	g_atomic_int_inc (&proposal->priv->use_count);
 }
@@ -123,7 +123,7 @@ gtk_source_completion_words_proposal_use (GtkSourceCompletionWordsProposal *prop
 void
 gtk_source_completion_words_proposal_unuse (GtkSourceCompletionWordsProposal *proposal)
 {
-	g_return_if_fail (GTK_IS_SOURCE_COMPLETION_WORDS_PROPOSAL (proposal));
+	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_WORDS_PROPOSAL (proposal));
 	
 	if (g_atomic_int_dec_and_test (&proposal->priv->use_count))
 	{
@@ -134,7 +134,7 @@ gtk_source_completion_words_proposal_unuse (GtkSourceCompletionWordsProposal *pr
 const gchar *
 gtk_source_completion_words_proposal_get_word (GtkSourceCompletionWordsProposal *proposal)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_WORDS_PROPOSAL (proposal), NULL);
+	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_WORDS_PROPOSAL (proposal), NULL);
 	return proposal->priv->word;
 }
 

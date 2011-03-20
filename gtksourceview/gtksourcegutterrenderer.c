@@ -25,7 +25,7 @@
 #include "gtksourceview-typebuiltins.h"
 #include "gtksourceview-i18n.h"
 
-#define GTK_SOURCE_GUTTER_RENDERER_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE((object), GTK_TYPE_SOURCE_GUTTER_RENDERER, GtkSourceGutterRendererPrivate))
+#define GTK_SOURCE_GUTTER_RENDERER_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE((object), GTK_SOURCE_TYPE_GUTTER_RENDERER, GtkSourceGutterRendererPrivate))
 
 enum
 {
@@ -631,7 +631,7 @@ gtk_source_gutter_renderer_class_init (GtkSourceGutterRendererClass *klass)
 		              3,
 		              GTK_TYPE_TEXT_ITER,
 		              GTK_TYPE_TEXT_ITER,
-		              GTK_TYPE_SOURCE_GUTTER_RENDERER_STATE);
+		              GTK_SOURCE_TYPE_GUTTER_RENDERER_STATE);
 
 	/**
 	 * GtkSourceGutterRenderer::query-activatable:
@@ -686,7 +686,7 @@ gtk_source_gutter_renderer_class_init (GtkSourceGutterRendererClass *klass)
 	                                 g_param_spec_enum ("alignment-mode",
 	                                                    _("Alignment Mode"),
 	                                                    _("The alignment mode"),
-	                                                    GTK_TYPE_SOURCE_GUTTER_RENDERER_ALIGNMENT_MODE,
+	                                                    GTK_SOURCE_TYPE_GUTTER_RENDERER_ALIGNMENT_MODE,
 	                                                    GTK_SOURCE_GUTTER_RENDERER_ALIGNMENT_MODE_CELL,
 	                                                    G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 
@@ -761,7 +761,7 @@ gtk_source_gutter_renderer_begin (GtkSourceGutterRenderer *renderer,
                                   GtkTextIter             *start,
                                   GtkTextIter             *end)
 {
-	g_return_if_fail (GTK_IS_SOURCE_GUTTER_RENDERER (renderer));
+	g_return_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER (renderer));
 	g_return_if_fail (cr != NULL);
 	g_return_if_fail (background_area != NULL);
 	g_return_if_fail (cell_area != NULL);
@@ -809,7 +809,7 @@ gtk_source_gutter_renderer_draw (GtkSourceGutterRenderer      *renderer,
                                  GtkTextIter                  *end,
                                  GtkSourceGutterRendererState  state)
 {
-	g_return_if_fail (GTK_IS_SOURCE_GUTTER_RENDERER (renderer));
+	g_return_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER (renderer));
 	g_return_if_fail (cr != NULL);
 	g_return_if_fail (background_area != NULL);
 	g_return_if_fail (cell_area != NULL);
@@ -839,7 +839,7 @@ gtk_source_gutter_renderer_draw (GtkSourceGutterRenderer      *renderer,
 void
 gtk_source_gutter_renderer_end (GtkSourceGutterRenderer *renderer)
 {
-	g_return_if_fail (GTK_IS_SOURCE_GUTTER_RENDERER (renderer));
+	g_return_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER (renderer));
 
 	if (GTK_SOURCE_GUTTER_RENDERER_CLASS (G_OBJECT_GET_CLASS (renderer))->end)
 	{
@@ -869,7 +869,7 @@ gtk_source_gutter_renderer_query_activatable (GtkSourceGutterRenderer *renderer,
 {
 	gboolean ret;
 
-	g_return_val_if_fail (GTK_IS_SOURCE_GUTTER_RENDERER (renderer), FALSE);
+	g_return_val_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER (renderer), FALSE);
 	g_return_val_if_fail (iter != NULL, FALSE);
 	g_return_val_if_fail (area != NULL, FALSE);
 	g_return_val_if_fail (event != NULL, FALSE);
@@ -904,7 +904,7 @@ gtk_source_gutter_renderer_activate (GtkSourceGutterRenderer *renderer,
                                      GdkRectangle            *area,
                                      GdkEvent                *event)
 {
-	g_return_if_fail (GTK_IS_SOURCE_GUTTER_RENDERER (renderer));
+	g_return_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER (renderer));
 	g_return_if_fail (iter != NULL);
 	g_return_if_fail (area != NULL);
 	g_return_if_fail (event != NULL);
@@ -924,7 +924,7 @@ gtk_source_gutter_renderer_activate (GtkSourceGutterRenderer *renderer,
 void
 gtk_source_gutter_renderer_queue_draw (GtkSourceGutterRenderer *renderer)
 {
-	g_return_if_fail (GTK_IS_SOURCE_GUTTER_RENDERER (renderer));
+	g_return_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER (renderer));
 
 	g_signal_emit (renderer, signals[QUEUE_DRAW], 0);
 }
@@ -955,7 +955,7 @@ gtk_source_gutter_renderer_query_tooltip (GtkSourceGutterRenderer *renderer,
 {
 	gboolean ret;
 
-	g_return_val_if_fail (GTK_IS_SOURCE_GUTTER_RENDERER (renderer), FALSE);
+	g_return_val_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER (renderer), FALSE);
 	g_return_val_if_fail (iter != NULL, FALSE);
 	g_return_val_if_fail (area != NULL, FALSE);
 	g_return_val_if_fail (GTK_IS_TOOLTIP (tooltip), FALSE);
@@ -994,7 +994,7 @@ gtk_source_gutter_renderer_query_data (GtkSourceGutterRenderer      *renderer,
                                        GtkTextIter                  *end,
                                        GtkSourceGutterRendererState  state)
 {
-	g_return_if_fail (GTK_IS_SOURCE_GUTTER_RENDERER (renderer));
+	g_return_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER (renderer));
 	g_return_if_fail (start != NULL);
 	g_return_if_fail (end != NULL);
 
@@ -1013,7 +1013,7 @@ void
 gtk_source_gutter_renderer_set_visible (GtkSourceGutterRenderer *renderer,
                                         gboolean                 visible)
 {
-	g_return_if_fail (GTK_IS_SOURCE_GUTTER_RENDERER (renderer));
+	g_return_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER (renderer));
 
 	if (visible != renderer->priv->visible)
 	{
@@ -1037,7 +1037,7 @@ gtk_source_gutter_renderer_set_visible (GtkSourceGutterRenderer *renderer,
 gboolean
 gtk_source_gutter_renderer_get_visible (GtkSourceGutterRenderer *renderer)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_GUTTER_RENDERER (renderer), FALSE);
+	g_return_val_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER (renderer), FALSE);
 
 	return renderer->priv->visible;
 }
@@ -1058,7 +1058,7 @@ gtk_source_gutter_renderer_set_padding (GtkSourceGutterRenderer *renderer,
                                         gint                     xpad,
                                         gint                     ypad)
 {
-	g_return_if_fail (GTK_IS_SOURCE_GUTTER_RENDERER (renderer));
+	g_return_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER (renderer));
 
 	set_xpad (renderer, xpad);
 	set_ypad (renderer, ypad);
@@ -1078,7 +1078,7 @@ gtk_source_gutter_renderer_get_padding (GtkSourceGutterRenderer *renderer,
                                         gint                    *xpad,
                                         gint                    *ypad)
 {
-	g_return_if_fail (GTK_IS_SOURCE_GUTTER_RENDERER (renderer));
+	g_return_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER (renderer));
 
 	if (xpad)
 	{
@@ -1110,7 +1110,7 @@ gtk_source_gutter_renderer_set_alignment (GtkSourceGutterRenderer *renderer,
 	gboolean changed_x;
 	gboolean changed_y;
 
-	g_return_if_fail (GTK_IS_SOURCE_GUTTER_RENDERER (renderer));
+	g_return_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER (renderer));
 
 	changed_x = set_xalign (renderer, xalign, FALSE);
 	changed_y = set_yalign (renderer, yalign, FALSE);
@@ -1135,7 +1135,7 @@ gtk_source_gutter_renderer_get_alignment (GtkSourceGutterRenderer *renderer,
                                           gfloat                  *xalign,
                                           gfloat                  *yalign)
 {
-	g_return_if_fail (GTK_IS_SOURCE_GUTTER_RENDERER (renderer));
+	g_return_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER (renderer));
 
 	if (xalign)
 	{
@@ -1161,7 +1161,7 @@ void
 gtk_source_gutter_renderer_set_alignment_mode (GtkSourceGutterRenderer              *renderer,
                                                GtkSourceGutterRendererAlignmentMode  mode)
 {
-	g_return_if_fail (GTK_IS_SOURCE_GUTTER_RENDERER (renderer));
+	g_return_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER (renderer));
 
 	set_alignment_mode (renderer, mode);
 }
@@ -1179,7 +1179,7 @@ gtk_source_gutter_renderer_set_alignment_mode (GtkSourceGutterRenderer          
 GtkSourceGutterRendererAlignmentMode
 gtk_source_gutter_renderer_get_alignment_mode (GtkSourceGutterRenderer *renderer)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_GUTTER_RENDERER (renderer), 0);
+	g_return_val_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER (renderer), 0);
 
 	return renderer->priv->alignment_mode;
 }
@@ -1196,7 +1196,7 @@ gtk_source_gutter_renderer_get_alignment_mode (GtkSourceGutterRenderer *renderer
 GtkTextWindowType
 gtk_source_gutter_renderer_get_window_type (GtkSourceGutterRenderer *renderer)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_GUTTER_RENDERER (renderer), GTK_TEXT_WINDOW_PRIVATE);
+	g_return_val_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER (renderer), GTK_TEXT_WINDOW_PRIVATE);
 
 	return renderer->priv->window_type;
 }
@@ -1213,7 +1213,7 @@ gtk_source_gutter_renderer_get_window_type (GtkSourceGutterRenderer *renderer)
 GtkTextView *
 gtk_source_gutter_renderer_get_view (GtkSourceGutterRenderer *renderer)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_GUTTER_RENDERER (renderer), NULL);
+	g_return_val_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER (renderer), NULL);
 
 	return renderer->priv->view;
 }
@@ -1230,7 +1230,7 @@ gtk_source_gutter_renderer_get_view (GtkSourceGutterRenderer *renderer)
 gint
 gtk_source_gutter_renderer_get_size (GtkSourceGutterRenderer *renderer)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_GUTTER_RENDERER (renderer), 0);
+	g_return_val_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER (renderer), 0);
 
 	return renderer->priv->size;
 }
@@ -1248,7 +1248,7 @@ void
 gtk_source_gutter_renderer_set_size (GtkSourceGutterRenderer *renderer,
                                      gint                     size)
 {
-	g_return_if_fail (GTK_IS_SOURCE_GUTTER_RENDERER (renderer));
+	g_return_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER (renderer));
 
 	set_size (renderer, size);
 }
@@ -1267,7 +1267,7 @@ gboolean
 gtk_source_gutter_renderer_get_background (GtkSourceGutterRenderer *renderer,
                                            GdkRGBA                 *color)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_GUTTER_RENDERER (renderer), FALSE);
+	g_return_val_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER (renderer), FALSE);
 
 	if (color)
 	{
@@ -1290,7 +1290,7 @@ void
 gtk_source_gutter_renderer_set_background (GtkSourceGutterRenderer *renderer,
                                            const GdkRGBA           *color)
 {
-	g_return_if_fail (GTK_IS_SOURCE_GUTTER_RENDERER (renderer));
+	g_return_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER (renderer));
 
 	set_background_color (renderer, color);
 }
@@ -1302,7 +1302,7 @@ _gtk_source_gutter_renderer_set_view (GtkSourceGutterRenderer *renderer,
 {
 	GtkTextView *old_view;
 
-	g_return_if_fail (GTK_IS_SOURCE_GUTTER_RENDERER (renderer));
+	g_return_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER (renderer));
 	g_return_if_fail (view == NULL || GTK_IS_TEXT_VIEW (view));
 
 	old_view = renderer->priv->view;

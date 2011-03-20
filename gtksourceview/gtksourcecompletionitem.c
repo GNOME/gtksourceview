@@ -24,7 +24,7 @@
 #include "gtksourcecompletionutils.h"
 #include "gtksourceview-i18n.h"
 
-#define GTK_SOURCE_COMPLETION_ITEM_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE((object), GTK_TYPE_SOURCE_COMPLETION_ITEM, GtkSourceCompletionItemPrivate))
+#define GTK_SOURCE_COMPLETION_ITEM_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE((object), GTK_SOURCE_TYPE_COMPLETION_ITEM, GtkSourceCompletionItemPrivate))
 
 struct _GtkSourceCompletionItemPrivate
 {
@@ -51,7 +51,7 @@ static void gtk_source_completion_proposal_iface_init (gpointer g_iface, gpointe
 G_DEFINE_TYPE_WITH_CODE (GtkSourceCompletionItem, 
 			 gtk_source_completion_item, 
 			 G_TYPE_OBJECT,
-			 G_IMPLEMENT_INTERFACE (GTK_TYPE_SOURCE_COMPLETION_PROPOSAL,
+			 G_IMPLEMENT_INTERFACE (GTK_SOURCE_TYPE_COMPLETION_PROPOSAL,
 			 			gtk_source_completion_proposal_iface_init))
 
 static gchar *
@@ -125,7 +125,7 @@ gtk_source_completion_item_get_property (GObject    *object,
 {
 	GtkSourceCompletionItem *self;
 
-	g_return_if_fail (GTK_IS_SOURCE_COMPLETION_ITEM (object));
+	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_ITEM (object));
 
 	self = GTK_SOURCE_COMPLETION_ITEM (object);
 
@@ -166,7 +166,7 @@ gtk_source_completion_item_set_property (GObject      *object,
 {
 	GtkSourceCompletionItem *self;
 
-	g_return_if_fail (GTK_IS_SOURCE_COMPLETION_ITEM (object));
+	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_ITEM (object));
 
 	self = GTK_SOURCE_COMPLETION_ITEM (object);
 
@@ -311,7 +311,7 @@ gtk_source_completion_item_new (const gchar *label,
 				GdkPixbuf   *icon,
 				const gchar *info)
 {
-	return g_object_new (GTK_TYPE_SOURCE_COMPLETION_ITEM, 
+	return g_object_new (GTK_SOURCE_TYPE_COMPLETION_ITEM, 
 			     "label", label,
 			     "text", text,
 			     "icon", icon,
@@ -338,7 +338,7 @@ gtk_source_completion_item_new_with_markup (const gchar *markup,
                                             GdkPixbuf   *icon,
                                             const gchar *info)
 {
-	return g_object_new (GTK_TYPE_SOURCE_COMPLETION_ITEM, 
+	return g_object_new (GTK_SOURCE_TYPE_COMPLETION_ITEM, 
 			     "markup", markup,
 			     "text", text,
 			     "icon", icon,

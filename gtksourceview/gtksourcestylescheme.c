@@ -248,7 +248,7 @@ unref_if_not_null (gpointer object)
 static void
 gtk_source_style_scheme_init (GtkSourceStyleScheme *scheme)
 {
-	scheme->priv = G_TYPE_INSTANCE_GET_PRIVATE (scheme, GTK_TYPE_SOURCE_STYLE_SCHEME,
+	scheme->priv = G_TYPE_INSTANCE_GET_PRIVATE (scheme, GTK_SOURCE_TYPE_STYLE_SCHEME,
 						    GtkSourceStyleSchemePrivate);
 	scheme->priv->defined_styles = g_hash_table_new_full (g_str_hash, g_str_equal,
 							      g_free, g_object_unref);
@@ -269,7 +269,7 @@ gtk_source_style_scheme_init (GtkSourceStyleScheme *scheme)
 const gchar *
 gtk_source_style_scheme_get_id (GtkSourceStyleScheme *scheme)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_STYLE_SCHEME (scheme), NULL);
+	g_return_val_if_fail (GTK_SOURCE_IS_STYLE_SCHEME (scheme), NULL);
 	g_return_val_if_fail (scheme->priv->id != NULL, "");
 
 	return scheme->priv->id;
@@ -286,7 +286,7 @@ gtk_source_style_scheme_get_id (GtkSourceStyleScheme *scheme)
 const gchar *
 gtk_source_style_scheme_get_name (GtkSourceStyleScheme *scheme)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_STYLE_SCHEME (scheme), NULL);
+	g_return_val_if_fail (GTK_SOURCE_IS_STYLE_SCHEME (scheme), NULL);
 	g_return_val_if_fail (scheme->priv->name != NULL, "");
 
 	return scheme->priv->name;
@@ -303,7 +303,7 @@ gtk_source_style_scheme_get_name (GtkSourceStyleScheme *scheme)
 const gchar *
 gtk_source_style_scheme_get_description (GtkSourceStyleScheme *scheme)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_STYLE_SCHEME (scheme), NULL);
+	g_return_val_if_fail (GTK_SOURCE_IS_STYLE_SCHEME (scheme), NULL);
 
 	return scheme->priv->description;
 }
@@ -321,7 +321,7 @@ gtk_source_style_scheme_get_description (GtkSourceStyleScheme *scheme)
 const gchar * const *
 gtk_source_style_scheme_get_authors (GtkSourceStyleScheme *scheme)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_STYLE_SCHEME (scheme), NULL);
+	g_return_val_if_fail (GTK_SOURCE_IS_STYLE_SCHEME (scheme), NULL);
 
 	if (scheme->priv->authors == NULL)
 		return NULL;
@@ -341,7 +341,7 @@ gtk_source_style_scheme_get_authors (GtkSourceStyleScheme *scheme)
 const gchar *
 gtk_source_style_scheme_get_filename (GtkSourceStyleScheme *scheme)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_STYLE_SCHEME (scheme), NULL);
+	g_return_val_if_fail (GTK_SOURCE_IS_STYLE_SCHEME (scheme), NULL);
 
 	return scheme->priv->filename;
 }
@@ -364,7 +364,7 @@ _gtk_source_style_scheme_new (const gchar *id,
 	g_return_val_if_fail (id != NULL, NULL);
 	g_return_val_if_fail (name != NULL, NULL);
 
-	scheme = g_object_new (GTK_TYPE_SOURCE_STYLE_SCHEME,
+	scheme = g_object_new (GTK_SOURCE_TYPE_STYLE_SCHEME,
 			       "id", id, "name", name, NULL);
 
 	return scheme;
@@ -486,7 +486,7 @@ gtk_source_style_scheme_get_style (GtkSourceStyleScheme *scheme,
 	GtkSourceStyle *style = NULL;
 	GtkSourceStyle *real_style;
 
-	g_return_val_if_fail (GTK_IS_SOURCE_STYLE_SCHEME (scheme), NULL);
+	g_return_val_if_fail (GTK_SOURCE_IS_STYLE_SCHEME (scheme), NULL);
 	g_return_val_if_fail (style_id != NULL, NULL);
 
 	if (g_hash_table_lookup_extended (scheme->priv->style_cache, style_id,
@@ -529,7 +529,7 @@ gtk_source_style_scheme_set_style (GtkSourceStyleScheme *scheme,
 				   const gchar          *name,
 				   const GtkSourceStyle *style)
 {
-	g_return_if_fail (GTK_IS_SOURCE_STYLE_SCHEME (scheme));
+	g_return_if_fail (GTK_SOURCE_IS_STYLE_SCHEME (scheme));
 	g_return_if_fail (name != NULL);
 
 	if (style != NULL)
@@ -543,7 +543,7 @@ gtk_source_style_scheme_set_style (GtkSourceStyleScheme *scheme,
 GtkSourceStyle *
 _gtk_source_style_scheme_get_matching_brackets_style (GtkSourceStyleScheme *scheme)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_STYLE_SCHEME (scheme), NULL);
+	g_return_val_if_fail (GTK_SOURCE_IS_STYLE_SCHEME (scheme), NULL);
 
 	return gtk_source_style_scheme_get_style (scheme, STYLE_BRACKET_MATCH);
 }
@@ -551,7 +551,7 @@ _gtk_source_style_scheme_get_matching_brackets_style (GtkSourceStyleScheme *sche
 GtkSourceStyle *
 _gtk_source_style_scheme_get_right_margin_style (GtkSourceStyleScheme *scheme)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_STYLE_SCHEME (scheme), NULL);
+	g_return_val_if_fail (GTK_SOURCE_IS_STYLE_SCHEME (scheme), NULL);
 
 	return gtk_source_style_scheme_get_style (scheme, STYLE_RIGHT_MARGIN);
 }
@@ -559,7 +559,7 @@ _gtk_source_style_scheme_get_right_margin_style (GtkSourceStyleScheme *scheme)
 GtkSourceStyle *
 _gtk_source_style_scheme_get_draw_spaces_style (GtkSourceStyleScheme *scheme)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_STYLE_SCHEME (scheme), NULL);
+	g_return_val_if_fail (GTK_SOURCE_IS_STYLE_SCHEME (scheme), NULL);
 
 	return gtk_source_style_scheme_get_style (scheme, STYLE_DRAW_SPACES);
 }
@@ -610,7 +610,7 @@ _gtk_source_style_scheme_get_current_line_color (GtkSourceStyleScheme *scheme,
 {
 	GtkSourceStyle *style;
 
-	g_return_val_if_fail (GTK_IS_SOURCE_STYLE_SCHEME (scheme), FALSE);
+	g_return_val_if_fail (GTK_SOURCE_IS_STYLE_SCHEME (scheme), FALSE);
 	g_return_val_if_fail (color != NULL, FALSE);
 
 	style = gtk_source_style_scheme_get_style (scheme, STYLE_CURRENT_LINE);
@@ -816,7 +816,7 @@ _gtk_source_style_scheme_apply (GtkSourceStyleScheme *scheme,
 {
 	GtkSourceStyle *style, *style2;
 
-	g_return_if_fail (GTK_IS_SOURCE_STYLE_SCHEME (scheme));
+	g_return_if_fail (GTK_SOURCE_IS_STYLE_SCHEME (scheme));
 	g_return_if_fail (GTK_IS_WIDGET (widget));
 
 	/* we need to translate some of the style scheme properties in a CSS override */
@@ -843,7 +843,7 @@ void
 _gtk_source_style_scheme_unapply (GtkSourceStyleScheme *scheme,
                                   GtkWidget            *widget)
 {
-	g_return_if_fail (GTK_IS_SOURCE_STYLE_SCHEME (scheme));
+	g_return_if_fail (GTK_SOURCE_IS_STYLE_SCHEME (scheme));
 	g_return_if_fail (GTK_IS_WIDGET (widget));
 
 	remove_generated_css (scheme, widget);
@@ -960,7 +960,7 @@ parse_style (GtkSourceStyleScheme *scheme,
 	}
 	else
 	{
-		result = g_object_new (GTK_TYPE_SOURCE_STYLE, NULL);
+		result = g_object_new (GTK_SOURCE_TYPE_STYLE, NULL);
 
 		result->mask = mask;
 		result->bold = bold;
@@ -1201,7 +1201,7 @@ _gtk_source_style_scheme_new_from_file (const gchar *filename)
 		return NULL;
 	}
 
-	scheme = g_object_new (GTK_TYPE_SOURCE_STYLE_SCHEME, NULL);
+	scheme = g_object_new (GTK_SOURCE_TYPE_STYLE_SCHEME, NULL);
 	scheme->priv->filename = g_strdup (filename);
 
 	parse_style_scheme_element (scheme, node, &error);
@@ -1234,7 +1234,7 @@ _gtk_source_style_scheme_new_from_file (const gchar *filename)
 const gchar *
 _gtk_source_style_scheme_get_parent_id (GtkSourceStyleScheme *scheme)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_STYLE_SCHEME (scheme), NULL);
+	g_return_val_if_fail (GTK_SOURCE_IS_STYLE_SCHEME (scheme), NULL);
 
 	return scheme->priv->parent_id;
 }
@@ -1254,8 +1254,8 @@ void
 _gtk_source_style_scheme_set_parent (GtkSourceStyleScheme *scheme,
 				     GtkSourceStyleScheme *parent_scheme)
 {
-	g_return_if_fail (GTK_IS_SOURCE_STYLE_SCHEME (scheme));
-	g_return_if_fail (parent_scheme == NULL || GTK_IS_SOURCE_STYLE_SCHEME (parent_scheme));
+	g_return_if_fail (GTK_SOURCE_IS_STYLE_SCHEME (scheme));
+	g_return_if_fail (parent_scheme == NULL || GTK_SOURCE_IS_STYLE_SCHEME (parent_scheme));
 
 	if (scheme->priv->parent != NULL)
 		g_object_unref (scheme->priv->parent);

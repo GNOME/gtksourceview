@@ -305,7 +305,7 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 					 g_param_spec_object ("completion",
 							      _("Completion"),
 							      _("The completion object associated with the view"),
-							      GTK_TYPE_SOURCE_COMPLETION,
+							      GTK_SOURCE_TYPE_COMPLETION,
 							      G_PARAM_READABLE));
 
 	/**
@@ -421,7 +421,7 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 							    _("HOME and END keys move to first/last "
 							      "non whitespace characters on line before going "
 							      "to the start/end of the line"),
-							    GTK_TYPE_SOURCE_SMART_HOME_END_TYPE,
+							    GTK_SOURCE_TYPE_SMART_HOME_END_TYPE,
 							    GTK_SOURCE_SMART_HOME_END_DISABLED,
 							    G_PARAM_READWRITE));
 
@@ -453,7 +453,7 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 					 g_param_spec_flags ("draw-spaces",
 							    _("Draw Spaces"),
 							    _("Set if and how the spaces should be visualized"),
-							    GTK_TYPE_SOURCE_DRAW_SPACES_FLAGS,
+							    GTK_SOURCE_TYPE_DRAW_SPACES_FLAGS,
 							    0,
 							    G_PARAM_READWRITE));
 
@@ -763,7 +763,7 @@ gtk_source_view_set_property (GObject      *object,
 {
 	GtkSourceView *view;
 
-	g_return_if_fail (GTK_IS_SOURCE_VIEW (object));
+	g_return_if_fail (GTK_SOURCE_IS_VIEW (object));
 
 	view = GTK_SOURCE_VIEW (object);
 
@@ -844,7 +844,7 @@ gtk_source_view_get_property (GObject    *object,
 {
 	GtkSourceView *view;
 
-	g_return_if_fail (GTK_IS_SOURCE_VIEW (object));
+	g_return_if_fail (GTK_SOURCE_IS_VIEW (object));
 
 	view = GTK_SOURCE_VIEW (object);
 
@@ -984,7 +984,7 @@ gtk_source_view_init (GtkSourceView *view)
 {
 	GtkTargetList *tl;
 
-	view->priv = G_TYPE_INSTANCE_GET_PRIVATE (view, GTK_TYPE_SOURCE_VIEW,
+	view->priv = G_TYPE_INSTANCE_GET_PRIVATE (view, GTK_SOURCE_TYPE_VIEW,
 						  GtkSourceViewPrivate);
 
 	view->priv->tab_width = DEFAULT_TAB_WIDTH;
@@ -1070,7 +1070,7 @@ gtk_source_view_finalize (GObject *object)
 	GtkSourceView *view;
 
 	g_return_if_fail (object != NULL);
-	g_return_if_fail (GTK_IS_SOURCE_VIEW (object));
+	g_return_if_fail (GTK_SOURCE_IS_VIEW (object));
 
 	view = GTK_SOURCE_VIEW (object);
 
@@ -1208,7 +1208,7 @@ set_source_buffer (GtkSourceView *view,
 		g_object_unref (view->priv->source_buffer);
 	}
 
-	if (buffer && GTK_IS_SOURCE_BUFFER (buffer))
+	if (buffer && GTK_SOURCE_IS_BUFFER (buffer))
 	{
 		view->priv->source_buffer = g_object_ref (buffer);
 
@@ -1291,12 +1291,12 @@ gtk_source_view_undo (GtkSourceView *view)
 {
 	GtkTextBuffer *buffer;
 
-	g_return_if_fail (GTK_IS_SOURCE_VIEW (view));
+	g_return_if_fail (GTK_SOURCE_IS_VIEW (view));
 
 	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
 
 	if (gtk_text_view_get_editable (GTK_TEXT_VIEW (view)) &&
-	    GTK_IS_SOURCE_BUFFER (buffer) &&
+	    GTK_SOURCE_IS_BUFFER (buffer) &&
 	    gtk_source_buffer_can_undo (GTK_SOURCE_BUFFER (buffer)))
 	{
 		gtk_source_buffer_undo (GTK_SOURCE_BUFFER (buffer));
@@ -1309,12 +1309,12 @@ gtk_source_view_redo (GtkSourceView *view)
 {
 	GtkTextBuffer *buffer;
 
-	g_return_if_fail (GTK_IS_SOURCE_VIEW (view));
+	g_return_if_fail (GTK_SOURCE_IS_VIEW (view));
 
 	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
 
 	if (gtk_text_view_get_editable (GTK_TEXT_VIEW (view)) &&
-	    GTK_IS_SOURCE_BUFFER (buffer) &&
+	    GTK_SOURCE_IS_BUFFER (buffer) &&
 	    gtk_source_buffer_can_redo (GTK_SOURCE_BUFFER (buffer)))
 	{
 		gtk_source_buffer_redo (GTK_SOURCE_BUFFER (buffer));
@@ -1380,7 +1380,7 @@ gtk_source_view_populate_popup (GtkTextView *text_view,
 	GtkWidget *menu_item;
 
 	buffer = gtk_text_view_get_buffer (text_view);
-	if (!GTK_IS_SOURCE_BUFFER (buffer))
+	if (!GTK_SOURCE_IS_BUFFER (buffer))
 		return;
 
 	/* separator */
@@ -2575,9 +2575,9 @@ gtk_source_view_new_with_buffer (GtkSourceBuffer *buffer)
 {
 	GtkWidget *view;
 
-	g_return_val_if_fail (buffer != NULL && GTK_IS_SOURCE_BUFFER (buffer), NULL);
+	g_return_val_if_fail (buffer != NULL && GTK_SOURCE_IS_BUFFER (buffer), NULL);
 
-	view = g_object_new (GTK_TYPE_SOURCE_VIEW, NULL);
+	view = g_object_new (GTK_SOURCE_TYPE_VIEW, NULL);
 	gtk_text_view_set_buffer (GTK_TEXT_VIEW (view), GTK_TEXT_BUFFER (buffer));
 
 	return view;
@@ -2595,7 +2595,7 @@ gboolean
 gtk_source_view_get_show_line_numbers (GtkSourceView *view)
 {
 	g_return_val_if_fail (view != NULL, FALSE);
-	g_return_val_if_fail (GTK_IS_SOURCE_VIEW (view), FALSE);
+	g_return_val_if_fail (GTK_SOURCE_IS_VIEW (view), FALSE);
 
 	return (view->priv->show_line_numbers != FALSE);
 }
@@ -2612,7 +2612,7 @@ gtk_source_view_set_show_line_numbers (GtkSourceView *view,
                                        gboolean       show)
 {
 	g_return_if_fail (view != NULL);
-	g_return_if_fail (GTK_IS_SOURCE_VIEW (view));
+	g_return_if_fail (GTK_SOURCE_IS_VIEW (view));
 
 	show = (show != FALSE);
 
@@ -2642,7 +2642,7 @@ gtk_source_view_set_show_line_numbers (GtkSourceView *view,
 gboolean
 gtk_source_view_get_show_line_marks (GtkSourceView *view)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_VIEW (view), FALSE);
+	g_return_val_if_fail (GTK_SOURCE_IS_VIEW (view), FALSE);
 
 	return (view->priv->show_line_marks != FALSE);
 }
@@ -2660,7 +2660,7 @@ void
 gtk_source_view_set_show_line_marks (GtkSourceView *view,
 				     gboolean       show)
 {
-	g_return_if_fail (GTK_IS_SOURCE_VIEW (view));
+	g_return_if_fail (GTK_SOURCE_IS_VIEW (view));
 
 	show = (show != FALSE);
 
@@ -2743,7 +2743,7 @@ gtk_source_view_set_tab_width (GtkSourceView *view,
 guint
 gtk_source_view_get_tab_width (GtkSourceView *view)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_VIEW (view), DEFAULT_TAB_WIDTH);
+	g_return_val_if_fail (GTK_SOURCE_IS_VIEW (view), DEFAULT_TAB_WIDTH);
 
 	return view->priv->tab_width;
 }
@@ -2783,7 +2783,7 @@ gtk_source_view_set_indent_width (GtkSourceView *view,
 gint
 gtk_source_view_get_indent_width (GtkSourceView *view)
 {
-	g_return_val_if_fail (view != NULL && GTK_IS_SOURCE_VIEW (view), 0);
+	g_return_val_if_fail (view != NULL && GTK_SOURCE_IS_VIEW (view), 0);
 
 	return view->priv->indent_width;
 }
@@ -3513,7 +3513,7 @@ gtk_source_view_key_press_event (GtkWidget   *widget,
 gboolean
 gtk_source_view_get_auto_indent (GtkSourceView *view)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_VIEW (view), FALSE);
+	g_return_val_if_fail (GTK_SOURCE_IS_VIEW (view), FALSE);
 
 	return (view->priv->auto_indent != FALSE);
 }
@@ -3528,7 +3528,7 @@ gtk_source_view_get_auto_indent (GtkSourceView *view)
 void
 gtk_source_view_set_auto_indent (GtkSourceView *view, gboolean enable)
 {
-	g_return_if_fail (GTK_IS_SOURCE_VIEW (view));
+	g_return_if_fail (GTK_SOURCE_IS_VIEW (view));
 
 	enable = (enable != FALSE);
 
@@ -3552,7 +3552,7 @@ gtk_source_view_set_auto_indent (GtkSourceView *view, gboolean enable)
 gboolean
 gtk_source_view_get_insert_spaces_instead_of_tabs (GtkSourceView *view)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_VIEW (view), FALSE);
+	g_return_val_if_fail (GTK_SOURCE_IS_VIEW (view), FALSE);
 
 	return (view->priv->insert_spaces != FALSE);
 }
@@ -3568,7 +3568,7 @@ gtk_source_view_get_insert_spaces_instead_of_tabs (GtkSourceView *view)
 void
 gtk_source_view_set_insert_spaces_instead_of_tabs (GtkSourceView *view, gboolean enable)
 {
-	g_return_if_fail (GTK_IS_SOURCE_VIEW (view));
+	g_return_if_fail (GTK_SOURCE_IS_VIEW (view));
 
 	enable = (enable != FALSE);
 
@@ -3594,7 +3594,7 @@ gtk_source_view_set_insert_spaces_instead_of_tabs (GtkSourceView *view, gboolean
 gboolean
 gtk_source_view_get_indent_on_tab (GtkSourceView *view)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_VIEW (view), FALSE);
+	g_return_val_if_fail (GTK_SOURCE_IS_VIEW (view), FALSE);
 
 	return (view->priv->indent_on_tab != FALSE);
 }
@@ -3613,7 +3613,7 @@ gtk_source_view_get_indent_on_tab (GtkSourceView *view)
 void
 gtk_source_view_set_indent_on_tab (GtkSourceView *view, gboolean enable)
 {
-	g_return_if_fail (GTK_IS_SOURCE_VIEW (view));
+	g_return_if_fail (GTK_SOURCE_IS_VIEW (view));
 
 	enable = (enable != FALSE);
 
@@ -3702,7 +3702,7 @@ view_dnd_drop (GtkTextView *view,
 gboolean
 gtk_source_view_get_highlight_current_line (GtkSourceView *view)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_VIEW (view), FALSE);
+	g_return_val_if_fail (GTK_SOURCE_IS_VIEW (view), FALSE);
 
 	return (view->priv->highlight_current_line != FALSE);
 }
@@ -3717,7 +3717,7 @@ gtk_source_view_get_highlight_current_line (GtkSourceView *view)
 void
 gtk_source_view_set_highlight_current_line (GtkSourceView *view, gboolean hl)
 {
-	g_return_if_fail (GTK_IS_SOURCE_VIEW (view));
+	g_return_if_fail (GTK_SOURCE_IS_VIEW (view));
 
 	hl = (hl != FALSE);
 
@@ -3742,7 +3742,7 @@ gtk_source_view_set_highlight_current_line (GtkSourceView *view, gboolean hl)
 gboolean
 gtk_source_view_get_show_right_margin (GtkSourceView *view)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_VIEW (view), FALSE);
+	g_return_val_if_fail (GTK_SOURCE_IS_VIEW (view), FALSE);
 
 	return (view->priv->show_right_margin != FALSE);
 }
@@ -3757,7 +3757,7 @@ gtk_source_view_get_show_right_margin (GtkSourceView *view)
 void
 gtk_source_view_set_show_right_margin (GtkSourceView *view, gboolean show)
 {
-	g_return_if_fail (GTK_IS_SOURCE_VIEW (view));
+	g_return_if_fail (GTK_SOURCE_IS_VIEW (view));
 
 	show = (show != FALSE);
 
@@ -3782,7 +3782,7 @@ gtk_source_view_set_show_right_margin (GtkSourceView *view, gboolean show)
 guint
 gtk_source_view_get_right_margin_position  (GtkSourceView *view)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_VIEW (view),
+	g_return_val_if_fail (GTK_SOURCE_IS_VIEW (view),
 			      DEFAULT_RIGHT_MARGIN_POSITION);
 
 	return view->priv->right_margin_pos;
@@ -3798,7 +3798,7 @@ gtk_source_view_get_right_margin_position  (GtkSourceView *view)
 void
 gtk_source_view_set_right_margin_position (GtkSourceView *view, guint pos)
 {
-	g_return_if_fail (GTK_IS_SOURCE_VIEW (view));
+	g_return_if_fail (GTK_SOURCE_IS_VIEW (view));
 	g_return_if_fail (pos >= 1);
 	g_return_if_fail (pos <= MAX_RIGHT_MARGIN_POSITION);
 
@@ -3825,7 +3825,7 @@ void
 gtk_source_view_set_smart_home_end (GtkSourceView             *view,
 				    GtkSourceSmartHomeEndType  smart_he)
 {
-	g_return_if_fail (GTK_IS_SOURCE_VIEW (view));
+	g_return_if_fail (GTK_SOURCE_IS_VIEW (view));
 
 	if (view->priv->smart_home_end == smart_he)
 		return;
@@ -3847,7 +3847,7 @@ gtk_source_view_set_smart_home_end (GtkSourceView             *view,
 GtkSourceSmartHomeEndType
 gtk_source_view_get_smart_home_end (GtkSourceView *view)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_VIEW (view), FALSE);
+	g_return_val_if_fail (GTK_SOURCE_IS_VIEW (view), FALSE);
 
 	return view->priv->smart_home_end;
 }
@@ -3865,7 +3865,7 @@ void
 gtk_source_view_set_draw_spaces (GtkSourceView            *view,
 				 GtkSourceDrawSpacesFlags  flags)
 {
-	g_return_if_fail (GTK_IS_SOURCE_VIEW (view));
+	g_return_if_fail (GTK_SOURCE_IS_VIEW (view));
 
 	if (view->priv->draw_spaces == flags)
 		return;
@@ -3889,7 +3889,7 @@ gtk_source_view_set_draw_spaces (GtkSourceView            *view,
 GtkSourceDrawSpacesFlags
 gtk_source_view_get_draw_spaces (GtkSourceView *view)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_VIEW (view), 0);
+	g_return_val_if_fail (GTK_SOURCE_IS_VIEW (view), 0);
 
 	return view->priv->draw_spaces;
 }
@@ -3912,7 +3912,7 @@ gtk_source_view_get_visual_column (GtkSourceView     *view,
 	GtkTextIter position;
 	guint column, indent_width;
 
-	g_return_val_if_fail (GTK_IS_SOURCE_VIEW (view), 0);
+	g_return_val_if_fail (GTK_SOURCE_IS_VIEW (view), 0);
 	g_return_val_if_fail (iter != NULL, 0);
 
 	tab_char = g_utf8_get_char ("\t");
@@ -4129,7 +4129,7 @@ gtk_source_view_update_style_scheme (GtkSourceView *view)
 
 	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
 
-	if (GTK_IS_SOURCE_BUFFER (buffer))
+	if (GTK_SOURCE_IS_BUFFER (buffer))
 		new_scheme = gtk_source_buffer_get_style_scheme (GTK_SOURCE_BUFFER (buffer));
 	else
 		new_scheme = NULL;
@@ -4195,7 +4195,7 @@ mark_category_free (MarkCategory *category)
 GtkSourceCompletion *
 gtk_source_view_get_completion (GtkSourceView *view)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_VIEW (view), NULL);
+	g_return_val_if_fail (GTK_SOURCE_IS_VIEW (view), NULL);
 
 	if (view->priv->completion == NULL && !view->priv->dispose_has_run)
 	{
@@ -4224,7 +4224,7 @@ GtkSourceGutter *
 gtk_source_view_get_gutter (GtkSourceView     *view,
                             GtkTextWindowType  window_type)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_VIEW (view), NULL);
+	g_return_val_if_fail (GTK_SOURCE_IS_VIEW (view), NULL);
 	g_return_val_if_fail (window_type == GTK_TEXT_WINDOW_LEFT ||
 	                      window_type == GTK_TEXT_WINDOW_RIGHT, NULL);
 
@@ -4267,9 +4267,9 @@ gtk_source_view_set_mark_attributes (GtkSourceView           *view,
 {
 	MarkCategory *mark_category;
 
-	g_return_if_fail (GTK_IS_SOURCE_VIEW (view));
+	g_return_if_fail (GTK_SOURCE_IS_VIEW (view));
 	g_return_if_fail (category != NULL);
-	g_return_if_fail (GTK_IS_SOURCE_MARK_ATTRIBUTES (attributes));
+	g_return_if_fail (GTK_SOURCE_IS_MARK_ATTRIBUTES (attributes));
 	g_return_if_fail (priority >= 0);
 
 	mark_category = mark_category_new (attributes, priority);
@@ -4296,7 +4296,7 @@ gtk_source_view_get_mark_attributes (GtkSourceView           *view,
 {
 	MarkCategory *mark_category;
 
-	g_return_val_if_fail (GTK_IS_SOURCE_VIEW (view), NULL);
+	g_return_val_if_fail (GTK_SOURCE_IS_VIEW (view), NULL);
 	g_return_val_if_fail (category != NULL, NULL);
 
 	mark_category = g_hash_table_lookup (view->priv->mark_categories,

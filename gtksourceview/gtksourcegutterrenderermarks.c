@@ -25,13 +25,13 @@
 
 #define COMPOSITE_ALPHA                 225
 
-#define GTK_SOURCE_GUTTER_RENDERER_MARKS_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE((object), GTK_TYPE_SOURCE_GUTTER_RENDERER_MARKS, GtkSourceGutterRendererMarksPrivate))
+#define GTK_SOURCE_GUTTER_RENDERER_MARKS_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE((object), GTK_SOURCE_TYPE_GUTTER_RENDERER_MARKS, GtkSourceGutterRendererMarksPrivate))
 
 struct _GtkSourceGutterRendererMarksPrivate
 {
 };
 
-G_DEFINE_TYPE (GtkSourceGutterRendererMarks, gtk_source_gutter_renderer_marks, GTK_TYPE_SOURCE_GUTTER_RENDERER_PIXBUF)
+G_DEFINE_TYPE (GtkSourceGutterRendererMarks, gtk_source_gutter_renderer_marks, GTK_SOURCE_TYPE_GUTTER_RENDERER_PIXBUF)
 
 static void
 gtk_source_gutter_renderer_marks_finalize (GObject *object)
@@ -452,5 +452,5 @@ gtk_source_gutter_renderer_marks_init (GtkSourceGutterRendererMarks *self)
 GtkSourceGutterRenderer *
 gtk_source_gutter_renderer_marks_new ()
 {
-	return g_object_new (GTK_TYPE_SOURCE_GUTTER_RENDERER_MARKS, NULL);
+	return g_object_new (GTK_SOURCE_TYPE_GUTTER_RENDERER_MARKS, NULL);
 }

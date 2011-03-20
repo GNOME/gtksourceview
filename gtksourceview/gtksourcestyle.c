@@ -387,7 +387,7 @@ gtk_source_style_copy (const GtkSourceStyle *style)
 
 	g_return_val_if_fail (style != NULL, NULL);
 
-	copy = g_object_new (GTK_TYPE_SOURCE_STYLE, NULL);
+	copy = g_object_new (GTK_SOURCE_TYPE_STYLE, NULL);
 
 	copy->foreground = style->foreground;
 	copy->background = style->background;

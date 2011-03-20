@@ -44,7 +44,7 @@
 #define WINDOW_HEIGHT 200
 
 #define GTK_SOURCE_COMPLETION_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object),\
-						  GTK_TYPE_SOURCE_COMPLETION,           \
+						  GTK_SOURCE_TYPE_COMPLETION,           \
 						  GtkSourceCompletionPrivate))
 
 /*#define ENABLE_DEBUG*/
@@ -1965,7 +1965,7 @@ gtk_source_completion_get_property (GObject    *object,
 {
 	GtkSourceCompletion *completion;
 
-	g_return_if_fail (GTK_IS_SOURCE_COMPLETION (object));
+	g_return_if_fail (GTK_SOURCE_IS_COMPLETION (object));
 
 	completion = GTK_SOURCE_COMPLETION (object);
 
@@ -2012,7 +2012,7 @@ gtk_source_completion_set_property (GObject      *object,
 {
 	GtkSourceCompletion *completion;
 
-	g_return_if_fail (GTK_IS_SOURCE_COMPLETION (object));
+	g_return_if_fail (GTK_SOURCE_IS_COMPLETION (object));
 
 	completion = GTK_SOURCE_COMPLETION (object);
 
@@ -2219,7 +2219,7 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 					 g_param_spec_object ("view",
 							      _("View"),
 							      _("The GtkSourceView bound to the completion"),
-							      GTK_TYPE_SOURCE_VIEW,
+							      GTK_SOURCE_TYPE_VIEW,
 							      G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
 
 	/**
@@ -2405,7 +2405,7 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 		              g_cclosure_marshal_VOID__OBJECT,
 		              G_TYPE_NONE,
 		              1,
-		              GTK_TYPE_SOURCE_COMPLETION_CONTEXT);
+		              GTK_SOURCE_TYPE_COMPLETION_CONTEXT);
 
 	/* Actions */
 
@@ -3217,9 +3217,9 @@ _gtk_source_completion_add_proposals (GtkSourceCompletion         *completion,
 {
 	GList *item;
 
-	g_return_if_fail (GTK_IS_SOURCE_COMPLETION (completion));
-	g_return_if_fail (GTK_IS_SOURCE_COMPLETION_CONTEXT (context));
-	g_return_if_fail (GTK_IS_SOURCE_COMPLETION_PROVIDER (provider));
+	g_return_if_fail (GTK_SOURCE_IS_COMPLETION (completion));
+	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_CONTEXT (context));
+	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_PROVIDER (provider));
 	g_return_if_fail (completion->priv->context == context);
 
 	item = g_list_find (completion->priv->running_providers, provider);
@@ -3267,7 +3267,7 @@ gtk_source_completion_show (GtkSourceCompletion        *completion,
 {
 	GList *selected_providers;
 
-	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION (completion), FALSE);
+	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION (completion), FALSE);
 
 	/* Make sure to clear any active completion */
 	DEBUG({
@@ -3324,7 +3324,7 @@ gtk_source_completion_show (GtkSourceCompletion        *completion,
 GList *
 gtk_source_completion_get_providers (GtkSourceCompletion *completion)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION (completion), NULL);
+	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION (completion), NULL);
 	return completion->priv->providers;
 }
 
@@ -3352,9 +3352,9 @@ gtk_source_completion_error_quark (void)
 GtkSourceCompletion *
 gtk_source_completion_new (GtkSourceView *view)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_VIEW (view), NULL);
+	g_return_val_if_fail (GTK_SOURCE_IS_VIEW (view), NULL);
 
-	return g_object_new (GTK_TYPE_SOURCE_COMPLETION,
+	return g_object_new (GTK_SOURCE_TYPE_COMPLETION,
 	                     "view", view,
 	                     NULL);
 }
@@ -3377,8 +3377,8 @@ gtk_source_completion_add_provider (GtkSourceCompletion          *completion,
 				    GtkSourceCompletionProvider  *provider,
 				    GError                      **error)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION (completion), FALSE);
-	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_PROVIDER (provider), FALSE);
+	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION (completion), FALSE);
+	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_PROVIDER (provider), FALSE);
 
 	if (g_list_find (completion->priv->providers, provider) != NULL)
 	{
@@ -3442,8 +3442,8 @@ gtk_source_completion_remove_provider (GtkSourceCompletion          *completion,
 {
 	GList *item;
 
-	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION (completion), FALSE);
-	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_PROVIDER (provider), FALSE);
+	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION (completion), FALSE);
+	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_PROVIDER (provider), FALSE);
 
 	item = g_list_find (completion->priv->providers, provider);
 
@@ -3500,7 +3500,7 @@ gtk_source_completion_remove_provider (GtkSourceCompletion          *completion,
 void
 gtk_source_completion_hide (GtkSourceCompletion *completion)
 {
-	g_return_if_fail (GTK_IS_SOURCE_COMPLETION (completion));
+	g_return_if_fail (GTK_SOURCE_IS_COMPLETION (completion));
 
 	DEBUG({
 			g_print ("Emitting hide\n");
@@ -3537,7 +3537,7 @@ gtk_source_completion_get_info_window (GtkSourceCompletion *completion)
 GtkSourceView *
 gtk_source_completion_get_view (GtkSourceCompletion *completion)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION (completion), NULL);
+	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION (completion), NULL);
 
 	return completion->priv->view;
 }
@@ -3563,7 +3563,7 @@ gtk_source_completion_create_context (GtkSourceCompletion *completion,
 {
 	GtkTextIter iter;
 
-	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION (completion), NULL);
+	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION (completion), NULL);
 
 	if (position == NULL)
 	{
@@ -3588,7 +3588,7 @@ void
 gtk_source_completion_move_window (GtkSourceCompletion *completion,
                                    GtkTextIter         *iter)
 {
-	g_return_if_fail (GTK_IS_SOURCE_COMPLETION (completion));
+	g_return_if_fail (GTK_SOURCE_IS_COMPLETION (completion));
 	g_return_if_fail (iter != NULL);
 
 	if (!gtk_widget_get_visible (completion->priv->window))
@@ -3615,7 +3615,7 @@ gtk_source_completion_block_interactive (GtkSourceCompletion *completion)
 {
 	GtkSourceBuffer *buffer;
 
-	g_return_if_fail (GTK_IS_SOURCE_COMPLETION (completion));
+	g_return_if_fail (GTK_SOURCE_IS_COMPLETION (completion));
 
 	buffer = GTK_SOURCE_BUFFER (gtk_text_view_get_buffer (GTK_TEXT_VIEW (completion->priv->view)));
 	completion_begin_block (completion, buffer);
@@ -3634,7 +3634,7 @@ gtk_source_completion_unblock_interactive (GtkSourceCompletion *completion)
 {
 	GtkSourceBuffer *buffer;
 
-	g_return_if_fail (GTK_IS_SOURCE_COMPLETION (completion));
+	g_return_if_fail (GTK_SOURCE_IS_COMPLETION (completion));
 
 	buffer = GTK_SOURCE_BUFFER (gtk_text_view_get_buffer (GTK_TEXT_VIEW (completion->priv->view)));
 	completion_end_block (completion, buffer);

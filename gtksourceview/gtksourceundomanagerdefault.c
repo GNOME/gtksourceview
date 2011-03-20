@@ -188,7 +188,7 @@ static gboolean merge_action          (GtkSourceUndoManagerDefault      *um,
 static void gtk_source_undo_manager_iface_init (GtkSourceUndoManagerIface *iface);
 
 G_DEFINE_TYPE_WITH_CODE (GtkSourceUndoManagerDefault, gtk_source_undo_manager_default, G_TYPE_OBJECT,
-                         G_IMPLEMENT_INTERFACE (GTK_TYPE_SOURCE_UNDO_MANAGER,
+                         G_IMPLEMENT_INTERFACE (GTK_SOURCE_TYPE_UNDO_MANAGER,
                                                 gtk_source_undo_manager_iface_init))
 
 static void
@@ -429,7 +429,7 @@ gtk_source_undo_manager_default_class_init (GtkSourceUndoManagerDefaultClass *kl
 static void
 gtk_source_undo_manager_default_init (GtkSourceUndoManagerDefault *um)
 {
-	um->priv = G_TYPE_INSTANCE_GET_PRIVATE (um, GTK_TYPE_SOURCE_UNDO_MANAGER_DEFAULT,
+	um->priv = G_TYPE_INSTANCE_GET_PRIVATE (um, GTK_SOURCE_TYPE_UNDO_MANAGER_DEFAULT,
 	                                        GtkSourceUndoManagerDefaultPrivate);
 
 	um->priv->actions = g_ptr_array_new ();
@@ -1060,7 +1060,7 @@ merge_action (GtkSourceUndoManagerDefault *um,
 {
 	GtkSourceUndoAction *last_action;
 
-	g_return_val_if_fail (GTK_IS_SOURCE_UNDO_MANAGER_DEFAULT (um), FALSE);
+	g_return_val_if_fail (GTK_SOURCE_IS_UNDO_MANAGER_DEFAULT (um), FALSE);
 	g_return_val_if_fail (um->priv != NULL, FALSE);
 
 	if (um->priv->actions->len == 0)
@@ -1241,7 +1241,7 @@ void
 gtk_source_undo_manager_default_set_max_undo_levels (GtkSourceUndoManagerDefault *manager,
                                                      gint                         max_undo_levels)
 {
-	g_return_if_fail (GTK_IS_SOURCE_UNDO_MANAGER_DEFAULT (manager));
+	g_return_if_fail (GTK_SOURCE_IS_UNDO_MANAGER_DEFAULT (manager));
 
 	set_max_undo_levels (manager, max_undo_levels);
 	g_object_notify (G_OBJECT (manager), "max-undo-levels");

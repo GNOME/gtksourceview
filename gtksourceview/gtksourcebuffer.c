@@ -275,7 +275,7 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 							      _("Language"),
 							      _("Language object to get "
 								"highlighting patterns from"),
-							      GTK_TYPE_SOURCE_LANGUAGE,
+							      GTK_SOURCE_TYPE_LANGUAGE,
 							      G_PARAM_READWRITE));
 
 	g_object_class_install_property (object_class,
@@ -306,7 +306,7 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 					 g_param_spec_object ("style_scheme",
 							      _("Style scheme"),
 							      _("Style scheme"),
-							      GTK_TYPE_SOURCE_STYLE_SCHEME,
+							      GTK_SOURCE_TYPE_STYLE_SCHEME,
 							      G_PARAM_READWRITE));
 
 	g_object_class_install_property (object_class,
@@ -314,7 +314,7 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 	                                 g_param_spec_object ("undo-manager",
 	                                                      _("Undo manager"),
 	                                                      _("The buffer undo manager"),
-	                                                      GTK_TYPE_SOURCE_UNDO_MANAGER,
+	                                                      GTK_SOURCE_TYPE_UNDO_MANAGER,
 	                                                      G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 
 	param_types[0] = GTK_TYPE_TEXT_ITER | G_SIGNAL_TYPE_STATIC_SCOPE;
@@ -387,7 +387,7 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 			  _gtksourceview_marshal_VOID__BOXED_ENUM,
 			  G_TYPE_NONE, 2,
 			  GTK_TYPE_TEXT_ITER,
-			  GTK_TYPE_SOURCE_BRACKET_MATCH_TYPE);
+			  GTK_SOURCE_TYPE_BRACKET_MATCH_TYPE);
 
 	g_type_class_add_private (object_class, sizeof (GtkSourceBufferPrivate));
 }
@@ -440,7 +440,7 @@ gtk_source_buffer_init (GtkSourceBuffer *buffer)
 {
 	GtkSourceBufferPrivate *priv;
 
-	priv = G_TYPE_INSTANCE_GET_PRIVATE (buffer, GTK_TYPE_SOURCE_BUFFER,
+	priv = G_TYPE_INSTANCE_GET_PRIVATE (buffer, GTK_SOURCE_TYPE_BUFFER,
 					    GtkSourceBufferPrivate);
 
 	buffer->priv = priv;
@@ -464,7 +464,7 @@ gtk_source_buffer_finalize (GObject *object)
 	GtkSourceBuffer *buffer;
 
 	g_return_if_fail (object != NULL);
-	g_return_if_fail (GTK_IS_SOURCE_BUFFER (object));
+	g_return_if_fail (GTK_SOURCE_IS_BUFFER (object));
 
 	buffer = GTK_SOURCE_BUFFER (object);
 	g_return_if_fail (buffer->priv != NULL);
@@ -481,7 +481,7 @@ gtk_source_buffer_dispose (GObject *object)
 	GtkSourceBuffer *buffer;
 
 	g_return_if_fail (object != NULL);
-	g_return_if_fail (GTK_IS_SOURCE_BUFFER (object));
+	g_return_if_fail (GTK_SOURCE_IS_BUFFER (object));
 
 	buffer = GTK_SOURCE_BUFFER (object);
 	g_return_if_fail (buffer->priv != NULL);
@@ -521,7 +521,7 @@ gtk_source_buffer_set_property (GObject      *object,
 {
 	GtkSourceBuffer *source_buffer;
 
-	g_return_if_fail (GTK_IS_SOURCE_BUFFER (object));
+	g_return_if_fail (GTK_SOURCE_IS_BUFFER (object));
 
 	source_buffer = GTK_SOURCE_BUFFER (object);
 
@@ -571,7 +571,7 @@ gtk_source_buffer_get_property (GObject    *object,
 {
 	GtkSourceBuffer *source_buffer;
 
-	g_return_if_fail (GTK_IS_SOURCE_BUFFER (object));
+	g_return_if_fail (GTK_SOURCE_IS_BUFFER (object));
 
 	source_buffer = GTK_SOURCE_BUFFER (object);
 
@@ -629,7 +629,7 @@ gtk_source_buffer_get_property (GObject    *object,
 GtkSourceBuffer *
 gtk_source_buffer_new (GtkTextTagTable *table)
 {
-	return g_object_new (GTK_TYPE_SOURCE_BUFFER,
+	return g_object_new (GTK_SOURCE_TYPE_BUFFER,
 			     "tag-table", table,
 			     NULL);
 }
@@ -648,9 +648,9 @@ gtk_source_buffer_new (GtkTextTagTable *table)
 GtkSourceBuffer *
 gtk_source_buffer_new_with_language (GtkSourceLanguage *language)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_LANGUAGE (language), NULL);
+	g_return_val_if_fail (GTK_SOURCE_IS_LANGUAGE (language), NULL);
 
-	return g_object_new (GTK_TYPE_SOURCE_BUFFER,
+	return g_object_new (GTK_SOURCE_TYPE_BUFFER,
 			     "tag-table", NULL,
 			     "language", language,
 			     NULL);
@@ -660,7 +660,7 @@ static void
 gtk_source_buffer_can_undo_handler (GtkSourceUndoManager *manager,
                                     GtkSourceBuffer      *buffer)
 {
-	g_return_if_fail (GTK_IS_SOURCE_BUFFER (buffer));
+	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
 
 	g_object_notify (G_OBJECT (buffer), "can-undo");
 }
@@ -669,7 +669,7 @@ static void
 gtk_source_buffer_can_redo_handler (GtkSourceUndoManager *manager,
                                     GtkSourceBuffer      *buffer)
 {
-	g_return_if_fail (GTK_IS_SOURCE_BUFFER (buffer));
+	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
 
 	g_object_notify (G_OBJECT (buffer), "can-redo");
 }
@@ -777,7 +777,7 @@ gtk_source_buffer_move_cursor (GtkTextBuffer     *buffer,
 	gunichar cursor_char;
 	GtkSourceBracketMatchType previous_state;
 
-	g_return_if_fail (GTK_IS_SOURCE_BUFFER (buffer));
+	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
 	g_return_if_fail (iter != NULL);
 	g_return_if_fail (mark != NULL);
 	g_return_if_fail (gtk_text_iter_get_buffer (iter) == buffer);
@@ -922,7 +922,7 @@ gtk_source_buffer_real_insert_text (GtkTextBuffer *buffer,
 {
 	gint start_offset;
 
-	g_return_if_fail (GTK_IS_SOURCE_BUFFER (buffer));
+	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
 	g_return_if_fail (iter != NULL);
 	g_return_if_fail (text != NULL);
 	g_return_if_fail (gtk_text_iter_get_buffer (iter) == buffer);
@@ -952,7 +952,7 @@ gtk_source_buffer_real_insert_pixbuf (GtkTextBuffer *buffer,
 {
 	gint start_offset;
 
-	g_return_if_fail (GTK_IS_SOURCE_BUFFER (buffer));
+	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
 	g_return_if_fail (iter != NULL);
 	g_return_if_fail (gtk_text_iter_get_buffer (iter) == buffer);
 
@@ -978,7 +978,7 @@ gtk_source_buffer_real_insert_anchor (GtkTextBuffer      *buffer,
 {
 	gint start_offset;
 
-	g_return_if_fail (GTK_IS_SOURCE_BUFFER (buffer));
+	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
 	g_return_if_fail (iter != NULL);
 	g_return_if_fail (gtk_text_iter_get_buffer (iter) == buffer);
 
@@ -1007,7 +1007,7 @@ gtk_source_buffer_real_delete_range (GtkTextBuffer *buffer,
 	GtkTextIter iter;
 	GtkSourceBuffer *source_buffer = GTK_SOURCE_BUFFER (buffer);
 
-	g_return_if_fail (GTK_IS_SOURCE_BUFFER (buffer));
+	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
 	g_return_if_fail (start != NULL);
 	g_return_if_fail (end != NULL);
 	g_return_if_fail (gtk_text_iter_get_buffer (start) == buffer);
@@ -1187,7 +1187,7 @@ gtk_source_buffer_find_bracket_match_with_limit (GtkSourceBuffer           *buff
 gboolean
 gtk_source_buffer_can_undo (GtkSourceBuffer *buffer)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_BUFFER (buffer), FALSE);
+	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), FALSE);
 
 	return gtk_source_undo_manager_can_undo (buffer->priv->undo_manager);
 }
@@ -1204,7 +1204,7 @@ gtk_source_buffer_can_undo (GtkSourceBuffer *buffer)
 gboolean
 gtk_source_buffer_can_redo (GtkSourceBuffer *buffer)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_BUFFER (buffer), FALSE);
+	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), FALSE);
 
 	return gtk_source_undo_manager_can_redo (buffer->priv->undo_manager);
 }
@@ -1225,7 +1225,7 @@ gtk_source_buffer_can_redo (GtkSourceBuffer *buffer)
 void
 gtk_source_buffer_undo (GtkSourceBuffer *buffer)
 {
-	g_return_if_fail (GTK_IS_SOURCE_BUFFER (buffer));
+	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
 
 	g_signal_emit (buffer, buffer_signals[UNDO], 0);
 }
@@ -1240,7 +1240,7 @@ gtk_source_buffer_undo (GtkSourceBuffer *buffer)
 void
 gtk_source_buffer_redo (GtkSourceBuffer *buffer)
 {
-	g_return_if_fail (GTK_IS_SOURCE_BUFFER (buffer));
+	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
 
 	g_signal_emit (buffer, buffer_signals[REDO], 0);
 }
@@ -1258,7 +1258,7 @@ gtk_source_buffer_redo (GtkSourceBuffer *buffer)
 gint
 gtk_source_buffer_get_max_undo_levels (GtkSourceBuffer *buffer)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_BUFFER (buffer), 0);
+	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), 0);
 
 	return buffer->priv->max_undo_levels;
 }
@@ -1285,7 +1285,7 @@ void
 gtk_source_buffer_set_max_undo_levels (GtkSourceBuffer *buffer,
 				       gint             max_undo_levels)
 {
-	g_return_if_fail (GTK_IS_SOURCE_BUFFER (buffer));
+	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
 
 	if (buffer->priv->max_undo_levels == max_undo_levels)
 	{
@@ -1294,7 +1294,7 @@ gtk_source_buffer_set_max_undo_levels (GtkSourceBuffer *buffer,
 
 	buffer->priv->max_undo_levels = max_undo_levels;
 
-	if (GTK_IS_SOURCE_UNDO_MANAGER_DEFAULT (buffer->priv->undo_manager))
+	if (GTK_SOURCE_IS_UNDO_MANAGER_DEFAULT (buffer->priv->undo_manager))
 	{
 		gtk_source_undo_manager_default_set_max_undo_levels (GTK_SOURCE_UNDO_MANAGER_DEFAULT (buffer->priv->undo_manager),
 		                                                     max_undo_levels);
@@ -1318,7 +1318,7 @@ gtk_source_buffer_set_max_undo_levels (GtkSourceBuffer *buffer,
 void
 gtk_source_buffer_begin_not_undoable_action (GtkSourceBuffer *buffer)
 {
-	g_return_if_fail (GTK_IS_SOURCE_BUFFER (buffer));
+	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
 
 	gtk_source_undo_manager_begin_not_undoable_action (buffer->priv->undo_manager);
 }
@@ -1335,7 +1335,7 @@ gtk_source_buffer_begin_not_undoable_action (GtkSourceBuffer *buffer)
 void
 gtk_source_buffer_end_not_undoable_action (GtkSourceBuffer *buffer)
 {
-	g_return_if_fail (GTK_IS_SOURCE_BUFFER (buffer));
+	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
 
 	gtk_source_undo_manager_end_not_undoable_action (buffer->priv->undo_manager);
 }
@@ -1353,7 +1353,7 @@ gtk_source_buffer_end_not_undoable_action (GtkSourceBuffer *buffer)
 gboolean
 gtk_source_buffer_get_highlight_matching_brackets (GtkSourceBuffer *buffer)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_BUFFER (buffer), FALSE);
+	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), FALSE);
 
 	return (buffer->priv->highlight_brackets != FALSE);
 }
@@ -1374,7 +1374,7 @@ void
 gtk_source_buffer_set_highlight_matching_brackets (GtkSourceBuffer *buffer,
 						   gboolean         highlight)
 {
-	g_return_if_fail (GTK_IS_SOURCE_BUFFER (buffer));
+	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
 
 	highlight = (highlight != FALSE);
 
@@ -1412,7 +1412,7 @@ gtk_source_buffer_set_highlight_matching_brackets (GtkSourceBuffer *buffer,
 gboolean
 gtk_source_buffer_get_highlight_syntax (GtkSourceBuffer *buffer)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_BUFFER (buffer), FALSE);
+	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), FALSE);
 
 	return (buffer->priv->highlight_syntax != FALSE);
 }
@@ -1433,7 +1433,7 @@ void
 gtk_source_buffer_set_highlight_syntax (GtkSourceBuffer *buffer,
 					gboolean         highlight)
 {
-	g_return_if_fail (GTK_IS_SOURCE_BUFFER (buffer));
+	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
 
 	highlight = (highlight != FALSE);
 
@@ -1461,8 +1461,8 @@ void
 gtk_source_buffer_set_language (GtkSourceBuffer   *buffer,
 				GtkSourceLanguage *language)
 {
-	g_return_if_fail (GTK_IS_SOURCE_BUFFER (buffer));
-	g_return_if_fail (GTK_IS_SOURCE_LANGUAGE (language) || language == NULL);
+	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
+	g_return_if_fail (GTK_SOURCE_IS_LANGUAGE (language) || language == NULL);
 
 	if (buffer->priv->language == language)
 		return;
@@ -1514,7 +1514,7 @@ gtk_source_buffer_set_language (GtkSourceBuffer   *buffer,
 GtkSourceLanguage *
 gtk_source_buffer_get_language (GtkSourceBuffer *buffer)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_BUFFER (buffer), NULL);
+	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), NULL);
 
 	return buffer->priv->language;
 }
@@ -1534,7 +1534,7 @@ _gtk_source_buffer_update_highlight (GtkSourceBuffer   *buffer,
 				     const GtkTextIter *end,
 				     gboolean           synchronous)
 {
-	g_return_if_fail (GTK_IS_SOURCE_BUFFER (buffer));
+	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
 
 	if (buffer->priv->highlight_engine != NULL)
 		_gtk_source_engine_update_highlight (buffer->priv->highlight_engine,
@@ -1582,8 +1582,8 @@ void
 gtk_source_buffer_set_style_scheme (GtkSourceBuffer      *buffer,
 				    GtkSourceStyleScheme *scheme)
 {
-	g_return_if_fail (GTK_IS_SOURCE_BUFFER (buffer));
-	g_return_if_fail (GTK_IS_SOURCE_STYLE_SCHEME (scheme) || scheme == NULL);
+	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
+	g_return_if_fail (GTK_SOURCE_IS_STYLE_SCHEME (scheme) || scheme == NULL);
 
 	if (buffer->priv->style_scheme == scheme)
 		return;
@@ -1615,7 +1615,7 @@ gtk_source_buffer_set_style_scheme (GtkSourceBuffer      *buffer,
 GtkSourceStyleScheme *
 gtk_source_buffer_get_style_scheme (GtkSourceBuffer *buffer)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_BUFFER (buffer), NULL);
+	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), NULL);
 
 	return buffer->priv->style_scheme;
 }
@@ -1750,7 +1750,7 @@ gtk_source_buffer_real_mark_set	(GtkTextBuffer     *buffer,
 				 const GtkTextIter *location,
 				 GtkTextMark       *mark)
 {
-	if (GTK_IS_SOURCE_MARK (mark))
+	if (GTK_SOURCE_IS_MARK (mark))
 	{
 		/* for now we simply remove and reinsert at
 		 * the right place every time */
@@ -1775,7 +1775,7 @@ static void
 gtk_source_buffer_real_mark_deleted (GtkTextBuffer *buffer,
 				     GtkTextMark *mark)
 {
-	if (GTK_IS_SOURCE_MARK (mark))
+	if (GTK_SOURCE_IS_MARK (mark))
 	{
 		source_mark_remove (GTK_SOURCE_BUFFER (buffer),
 				    GTK_SOURCE_MARK (mark));
@@ -1836,7 +1836,7 @@ gtk_source_buffer_create_source_mark (GtkSourceBuffer   *buffer,
 {
 	GtkSourceMark *mark;
 
-	g_return_val_if_fail (GTK_IS_SOURCE_BUFFER (buffer), NULL);
+	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), NULL);
 	g_return_val_if_fail (category != NULL, NULL);
 	g_return_val_if_fail (where != NULL, NULL);
 
@@ -1856,7 +1856,7 @@ _gtk_source_buffer_source_mark_next (GtkSourceBuffer *buffer,
 	GtkTextIter iter;
 	gint idx, cmp;
 
-	g_return_val_if_fail (GTK_IS_SOURCE_BUFFER (buffer), NULL);
+	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), NULL);
 
 	/* TODO: we could speed this up by caching the current
 	 * position in the mark and invalidating the cache when
@@ -1900,7 +1900,7 @@ _gtk_source_buffer_source_mark_prev (GtkSourceBuffer *buffer,
 	GtkTextIter iter;
 	gint idx, cmp;
 
-	g_return_val_if_fail (GTK_IS_SOURCE_BUFFER (buffer), NULL);
+	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), NULL);
 
 	/* TODO: we could speed this up by caching the current
 	 * position in the mark and invalidating the cache when
@@ -1958,7 +1958,7 @@ gtk_source_buffer_forward_iter_to_source_mark (GtkSourceBuffer *buffer,
 	GtkTextIter i;
 	gint idx, cmp;
 
-	g_return_val_if_fail (GTK_IS_SOURCE_BUFFER (buffer), FALSE);
+	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), FALSE);
 	g_return_val_if_fail (iter != NULL, FALSE);
 
 	i = *iter;
@@ -2017,7 +2017,7 @@ gtk_source_buffer_backward_iter_to_source_mark (GtkSourceBuffer *buffer,
 	GtkTextIter i;
 	gint idx, cmp;
 
-	g_return_val_if_fail (GTK_IS_SOURCE_BUFFER (buffer), FALSE);
+	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), FALSE);
 	g_return_val_if_fail (iter != NULL, FALSE);
 
 	i = *iter;
@@ -2083,7 +2083,7 @@ gtk_source_buffer_get_source_marks_at_iter (GtkSourceBuffer *buffer,
 	{
 		GtkSourceMark *mark;
 
-		if (!GTK_IS_SOURCE_MARK (l->data))
+		if (!GTK_SOURCE_IS_MARK (l->data))
 			continue;
 
 		mark = GTK_SOURCE_MARK (l->data);
@@ -2121,7 +2121,7 @@ gtk_source_buffer_get_source_marks_at_line (GtkSourceBuffer *buffer,
 	GtkTextIter iter;
 	GSList *res;
 
- 	g_return_val_if_fail (GTK_IS_SOURCE_BUFFER (buffer), NULL);
+ 	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), NULL);
 
 	gtk_text_buffer_get_iter_at_line (GTK_TEXT_BUFFER (buffer),
 					  &iter, line);
@@ -2175,7 +2175,7 @@ gtk_source_buffer_remove_source_marks (GtkSourceBuffer   *buffer,
 	GSList *list;
 	GSList *l;
 
- 	g_return_if_fail (GTK_IS_SOURCE_BUFFER (buffer));
+ 	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
  	g_return_if_fail (start != NULL);
  	g_return_if_fail (end != NULL);
 
@@ -2230,7 +2230,7 @@ gtk_source_buffer_iter_has_context_class (GtkSourceBuffer   *buffer,
 {
 	GtkTextTag *tag;
 
-	g_return_val_if_fail (GTK_IS_SOURCE_BUFFER (buffer), FALSE);
+	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), FALSE);
 	g_return_val_if_fail (iter != NULL, FALSE);
 	g_return_val_if_fail (context_class != NULL, FALSE);
 
@@ -2273,7 +2273,7 @@ gtk_source_buffer_get_context_classes_at_iter (GtkSourceBuffer   *buffer,
 	GSList *item;
 	GPtrArray *ret;
 
-	g_return_val_if_fail (GTK_IS_SOURCE_BUFFER (buffer), NULL);
+	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), NULL);
 	g_return_val_if_fail (iter != NULL, NULL);
 
 	tags = gtk_text_iter_get_tags (iter);
@@ -2317,7 +2317,7 @@ gtk_source_buffer_iter_forward_to_context_class_toggle (GtkSourceBuffer *buffer,
 {
 	GtkTextTag *tag;
 
-	g_return_val_if_fail (GTK_IS_SOURCE_BUFFER (buffer), FALSE);
+	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), FALSE);
 	g_return_val_if_fail (iter != NULL, FALSE);
 	g_return_val_if_fail (context_class != NULL, FALSE);
 
@@ -2362,7 +2362,7 @@ gtk_source_buffer_iter_backward_to_context_class_toggle (GtkSourceBuffer *buffer
 {
 	GtkTextTag *tag;
 
-	g_return_val_if_fail (GTK_IS_SOURCE_BUFFER (buffer), FALSE);
+	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), FALSE);
 	g_return_val_if_fail (iter != NULL, FALSE);
 	g_return_val_if_fail (context_class != NULL, FALSE);
 
@@ -2396,12 +2396,12 @@ void
 gtk_source_buffer_set_undo_manager (GtkSourceBuffer      *buffer,
                                     GtkSourceUndoManager *manager)
 {
-	g_return_if_fail (GTK_IS_SOURCE_BUFFER (buffer));
-	g_return_if_fail (manager == NULL || GTK_IS_SOURCE_UNDO_MANAGER (manager));
+	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
+	g_return_if_fail (manager == NULL || GTK_SOURCE_IS_UNDO_MANAGER (manager));
 
 	if (manager == NULL)
 	{
-		manager = g_object_new (GTK_TYPE_SOURCE_UNDO_MANAGER_DEFAULT,
+		manager = g_object_new (GTK_SOURCE_TYPE_UNDO_MANAGER_DEFAULT,
 		                        "buffer", buffer,
 		                        "max-undo-levels", buffer->priv->max_undo_levels,
 		                        NULL);
@@ -2430,7 +2430,7 @@ gtk_source_buffer_set_undo_manager (GtkSourceBuffer      *buffer,
 GtkSourceUndoManager *
 gtk_source_buffer_get_undo_manager (GtkSourceBuffer *buffer)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_BUFFER (buffer), NULL);
+	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), NULL);
 
 	return buffer->priv->undo_manager;
 }

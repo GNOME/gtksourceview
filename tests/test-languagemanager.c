@@ -30,7 +30,7 @@ test_get_language (void)
 
 		lang1 = gtk_source_language_manager_get_language (lm, *ids);
 		g_assert (lang1 != NULL);
-		g_assert (GTK_IS_SOURCE_LANGUAGE (lang1));
+		g_assert (GTK_SOURCE_IS_LANGUAGE (lang1));
 		g_assert_cmpstr (*ids, == , gtk_source_language_get_id (lang1));
 
 		/* langs are owned by the manager */

@@ -22,7 +22,7 @@
 #include "gtksourcegutterrendererlines.h"
 #include "gtksourceview.h"
 
-#define GTK_SOURCE_GUTTER_RENDERER_LINES_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE((object), GTK_TYPE_SOURCE_GUTTER_RENDERER_LINES, GtkSourceGutterRendererLinesPrivate))
+#define GTK_SOURCE_GUTTER_RENDERER_LINES_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE((object), GTK_SOURCE_TYPE_GUTTER_RENDERER_LINES, GtkSourceGutterRendererLinesPrivate))
 
 struct _GtkSourceGutterRendererLinesPrivate
 {
@@ -31,7 +31,7 @@ struct _GtkSourceGutterRendererLinesPrivate
 	guint changed_handler_id;
 };
 
-G_DEFINE_TYPE (GtkSourceGutterRendererLines, gtk_source_gutter_renderer_lines, GTK_TYPE_SOURCE_GUTTER_RENDERER_TEXT)
+G_DEFINE_TYPE (GtkSourceGutterRendererLines, gtk_source_gutter_renderer_lines, GTK_SOURCE_TYPE_GUTTER_RENDERER_TEXT)
 
 static void
 gtk_source_gutter_renderer_lines_finalize (GObject *object)
@@ -302,5 +302,5 @@ gtk_source_gutter_renderer_lines_init (GtkSourceGutterRendererLines *self)
 GtkSourceGutterRenderer *
 gtk_source_gutter_renderer_lines_new ()
 {
-	return g_object_new (GTK_TYPE_SOURCE_GUTTER_RENDERER_LINES, NULL);
+	return g_object_new (GTK_SOURCE_TYPE_GUTTER_RENDERER_LINES, NULL);
 }

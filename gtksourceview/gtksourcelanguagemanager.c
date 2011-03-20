@@ -169,7 +169,7 @@ gtk_source_language_manager_class_init (GtkSourceLanguageManagerClass *klass)
 static void
 gtk_source_language_manager_init (GtkSourceLanguageManager *lm)
 {
-	lm->priv = G_TYPE_INSTANCE_GET_PRIVATE (lm, GTK_TYPE_SOURCE_LANGUAGE_MANAGER,
+	lm->priv = G_TYPE_INSTANCE_GET_PRIVATE (lm, GTK_SOURCE_TYPE_LANGUAGE_MANAGER,
 						GtkSourceLanguageManagerPrivate);
 	lm->priv->language_ids = NULL;
 	lm->priv->ids = NULL;
@@ -189,7 +189,7 @@ gtk_source_language_manager_init (GtkSourceLanguageManager *lm)
 GtkSourceLanguageManager *
 gtk_source_language_manager_new (void)
 {
-	return g_object_new (GTK_TYPE_SOURCE_LANGUAGE_MANAGER, NULL);
+	return g_object_new (GTK_SOURCE_TYPE_LANGUAGE_MANAGER, NULL);
 }
 
 /**
@@ -247,7 +247,7 @@ gtk_source_language_manager_set_search_path (GtkSourceLanguageManager *lm,
 {
 	gchar **tmp;
 
-	g_return_if_fail (GTK_IS_SOURCE_LANGUAGE_MANAGER (lm));
+	g_return_if_fail (GTK_SOURCE_IS_LANGUAGE_MANAGER (lm));
 
 	/* Search path cannot be changed in the list of available languages
 	 * as been already computed */
@@ -278,7 +278,7 @@ gtk_source_language_manager_set_search_path (GtkSourceLanguageManager *lm,
 const gchar * const *
 gtk_source_language_manager_get_search_path (GtkSourceLanguageManager *lm)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_LANGUAGE_MANAGER (lm), NULL);
+	g_return_val_if_fail (GTK_SOURCE_IS_LANGUAGE_MANAGER (lm), NULL);
 
 	if (lm->priv->lang_dirs == NULL)
 		lm->priv->lang_dirs = _gtk_source_view_get_default_dirs (LANGUAGE_DIR, TRUE);
@@ -297,7 +297,7 @@ gtk_source_language_manager_get_search_path (GtkSourceLanguageManager *lm)
 const char *
 _gtk_source_language_manager_get_rng_file (GtkSourceLanguageManager *lm)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_LANGUAGE_MANAGER (lm), NULL);
+	g_return_val_if_fail (GTK_SOURCE_IS_LANGUAGE_MANAGER (lm), NULL);
 
 	if (lm->priv->rng_file == NULL)
 	{
@@ -397,7 +397,7 @@ ensure_languages (GtkSourceLanguageManager *lm)
 const gchar * const *
 gtk_source_language_manager_get_language_ids (GtkSourceLanguageManager *lm)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_LANGUAGE_MANAGER (lm), NULL);
+	g_return_val_if_fail (GTK_SOURCE_IS_LANGUAGE_MANAGER (lm), NULL);
 
 	ensure_languages (lm);
 
@@ -420,7 +420,7 @@ GtkSourceLanguage *
 gtk_source_language_manager_get_language (GtkSourceLanguageManager *lm,
 					  const gchar              *id)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_LANGUAGE_MANAGER (lm), NULL);
+	g_return_val_if_fail (GTK_SOURCE_IS_LANGUAGE_MANAGER (lm), NULL);
 	g_return_val_if_fail (id != NULL, NULL);
 
 	ensure_languages (lm);
@@ -625,7 +625,7 @@ gtk_source_language_manager_guess_language (GtkSourceLanguageManager *lm,
 	GtkSourceLanguage *lang = NULL;
 	GSList *langs = NULL;
 
-	g_return_val_if_fail (GTK_IS_SOURCE_LANGUAGE_MANAGER (lm), NULL);
+	g_return_val_if_fail (GTK_SOURCE_IS_LANGUAGE_MANAGER (lm), NULL);
 	g_return_val_if_fail ((filename != NULL && *filename != '\0') ||
 	                      (content_type != NULL && *content_type != '\0'), NULL);
 

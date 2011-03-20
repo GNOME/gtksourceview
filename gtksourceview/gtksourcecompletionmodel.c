@@ -23,7 +23,7 @@
 #include "gtksourceview-i18n.h"
 #include "gtksourcecompletionprovider.h"
 
-#define GTK_SOURCE_COMPLETION_MODEL_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE((object), GTK_TYPE_SOURCE_COMPLETION_MODEL, GtkSourceCompletionModelPrivate))
+#define GTK_SOURCE_COMPLETION_MODEL_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE((object), GTK_SOURCE_TYPE_COMPLETION_MODEL, GtkSourceCompletionModelPrivate))
 
 typedef struct
 {
@@ -146,7 +146,7 @@ path_from_list (GtkSourceCompletionModel *model,
 static GtkTreeModelFlags
 tree_model_get_flags (GtkTreeModel *tree_model)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_MODEL (tree_model), 0);
+	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_MODEL (tree_model), 0);
 
 	return 0;
 }
@@ -154,7 +154,7 @@ tree_model_get_flags (GtkTreeModel *tree_model)
 static gint
 tree_model_get_n_columns (GtkTreeModel *tree_model)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_MODEL (tree_model), 0);
+	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_MODEL (tree_model), 0);
 
 	return GTK_SOURCE_COMPLETION_MODEL_N_COLUMNS;
 }
@@ -163,7 +163,7 @@ static GType
 tree_model_get_column_type (GtkTreeModel *tree_model,
 			    gint          index)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_MODEL (tree_model), G_TYPE_INVALID);
+	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_MODEL (tree_model), G_TYPE_INVALID);
 	g_return_val_if_fail (index >= 0 && index < GTK_SOURCE_COMPLETION_MODEL_N_COLUMNS, G_TYPE_INVALID);
 
 	return GTK_SOURCE_COMPLETION_MODEL (tree_model)->priv->column_types[index];
@@ -218,7 +218,7 @@ tree_model_get_iter (GtkTreeModel *tree_model,
 	GtkSourceCompletionModel *model;
 	gint *indices;
 	
-	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_MODEL (tree_model), FALSE);
+	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_MODEL (tree_model), FALSE);
 	g_return_val_if_fail (iter != NULL, FALSE);
 	g_return_val_if_fail (path != NULL, FALSE);
 	
@@ -234,7 +234,7 @@ tree_model_get_path (GtkTreeModel *tree_model,
 {
 	GtkSourceCompletionModel *model;
 	
-	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_MODEL (tree_model), NULL);
+	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_MODEL (tree_model), NULL);
 	g_return_val_if_fail (iter != NULL, NULL);
 	g_return_val_if_fail (iter->user_data != NULL, NULL);
 
@@ -251,7 +251,7 @@ tree_model_get_value (GtkTreeModel *tree_model,
 {
 	ProposalNode *node;
 
-	g_return_if_fail (GTK_IS_SOURCE_COMPLETION_MODEL (tree_model));
+	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_MODEL (tree_model));
 	g_return_if_fail (iter != NULL);
 	g_return_if_fail (iter->user_data != NULL);
 	g_return_if_fail (column >= 0 && column < GTK_SOURCE_COMPLETION_MODEL_N_COLUMNS);
@@ -327,7 +327,7 @@ tree_model_iter_next (GtkTreeModel *tree_model,
 {
 	GList *item;
 	
-	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_MODEL (tree_model), FALSE);
+	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_MODEL (tree_model), FALSE);
 	g_return_val_if_fail (iter != NULL, FALSE);
 	
 	item = g_list_next ((GList *)iter->user_data);
@@ -342,7 +342,7 @@ tree_model_iter_children (GtkTreeModel *tree_model,
 			  GtkTreeIter  *iter,
 			  GtkTreeIter  *parent)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_MODEL (tree_model), FALSE);
+	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_MODEL (tree_model), FALSE);
 	g_return_val_if_fail (iter != NULL, FALSE);
 	g_return_val_if_fail (parent == NULL || parent->user_data != NULL, FALSE);
 	
@@ -362,7 +362,7 @@ static gboolean
 tree_model_iter_has_child (GtkTreeModel *tree_model,
 			   GtkTreeIter  *iter)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_MODEL (tree_model), FALSE);
+	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_MODEL (tree_model), FALSE);
 	g_return_val_if_fail (iter != NULL, FALSE);
 	
 	return FALSE;
@@ -372,7 +372,7 @@ static gint
 tree_model_iter_n_children (GtkTreeModel *tree_model,
 			    GtkTreeIter  *iter)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_MODEL (tree_model), 0);
+	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_MODEL (tree_model), 0);
 	g_return_val_if_fail (iter == NULL || iter->user_data != NULL, 0);
 	
 	if (iter == NULL)
@@ -391,7 +391,7 @@ tree_model_iter_nth_child (GtkTreeModel *tree_model,
 			   GtkTreeIter  *parent, 
 			   gint          n)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_MODEL (tree_model), FALSE);
+	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_MODEL (tree_model), FALSE);
 	g_return_val_if_fail (iter != NULL, FALSE);
 	g_return_val_if_fail (parent == NULL || parent->user_data != NULL, FALSE);
 
@@ -412,7 +412,7 @@ tree_model_iter_parent (GtkTreeModel *tree_model,
 			GtkTreeIter  *iter,
 			GtkTreeIter  *child)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_MODEL (tree_model), FALSE);
+	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_MODEL (tree_model), FALSE);
 	g_return_val_if_fail (iter != NULL, FALSE);
 	g_return_val_if_fail (child != NULL, FALSE);
 	
@@ -612,7 +612,7 @@ num_dec (GtkSourceCompletionModel *model,
 GtkSourceCompletionModel*
 gtk_source_completion_model_new (void)
 {
-	return g_object_new (GTK_TYPE_SOURCE_COMPLETION_MODEL, NULL);
+	return g_object_new (GTK_SOURCE_TYPE_COMPLETION_MODEL, NULL);
 }
 
 static void
@@ -639,7 +639,7 @@ void
 gtk_source_completion_model_begin (GtkSourceCompletionModel *model,
                                    GList                    *providers)
 {
-	g_return_if_fail (GTK_IS_SOURCE_COMPLETION_MODEL (model));
+	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_MODEL (model));
 
 	if (providers != NULL)
 	{
@@ -1134,10 +1134,10 @@ gtk_source_completion_model_append (GtkSourceCompletionModel    *model,
 	GtkTreePath *path = NULL;
 	gboolean is_new_provider = FALSE;
 	
-	g_return_if_fail (GTK_IS_SOURCE_COMPLETION_MODEL (model));
-	g_return_if_fail (GTK_IS_SOURCE_COMPLETION_PROVIDER (provider));
+	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_MODEL (model));
+	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_PROVIDER (provider));
 
-	if (proposals == NULL || !GTK_IS_SOURCE_COMPLETION_PROPOSAL (proposals->data))
+	if (proposals == NULL || !GTK_SOURCE_IS_COMPLETION_PROPOSAL (proposals->data))
 	{
 		return;
 	}
@@ -1168,7 +1168,7 @@ gtk_source_completion_model_append (GtkSourceCompletionModel    *model,
 		GtkSourceCompletionProposal *proposal;
 		GList *nodeitem;
 		
-		if (!GTK_IS_SOURCE_COMPLETION_PROPOSAL (item->data))
+		if (!GTK_SOURCE_IS_COMPLETION_PROPOSAL (item->data))
 		{
 			continue;
 		}
@@ -1251,7 +1251,7 @@ gtk_source_completion_model_clear (GtkSourceCompletionModel *model)
 	GtkTreePath *path;
 	ProviderInfo *info = NULL;
 	
-	g_return_if_fail (GTK_IS_SOURCE_COMPLETION_MODEL (model));
+	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_MODEL (model));
 	
 	path = gtk_tree_path_new_first ();
 	
@@ -1313,7 +1313,7 @@ gtk_source_completion_model_is_empty (GtkSourceCompletionModel *model,
 {
 	gboolean isempty = TRUE;
 	
-	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_MODEL (model), FALSE);
+	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_MODEL (model), FALSE);
 
 	if (!invisible)
 	{
@@ -1335,8 +1335,8 @@ gtk_source_completion_model_n_proposals (GtkSourceCompletionModel    *model,
 {
 	ProviderInfo *info;
 	
-	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_MODEL (model), 0);
-	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_PROVIDER (provider), 0);
+	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_MODEL (model), 0);
+	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_PROVIDER (provider), 0);
 	
 	info = g_hash_table_lookup (model->priv->providers_info, provider);
 	
@@ -1354,7 +1354,7 @@ void
 gtk_source_completion_model_set_show_headers (GtkSourceCompletionModel *model,
                                               gboolean                  show_headers)
 {
-	g_return_if_fail (GTK_IS_SOURCE_COMPLETION_MODEL (model));
+	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_MODEL (model));
 
 	show_headers = (show_headers != FALSE);
 
@@ -1369,7 +1369,7 @@ gboolean
 gtk_source_completion_model_iter_is_header (GtkSourceCompletionModel *model,
                                             GtkTreeIter              *iter)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_MODEL (model), FALSE);
+	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_MODEL (model), FALSE);
 	g_return_val_if_fail (iter != NULL, FALSE);
 	g_return_val_if_fail (iter->user_data != NULL, FALSE);
 
@@ -1382,7 +1382,7 @@ gtk_source_completion_model_iter_previous (GtkSourceCompletionModel *model,
 {
 	GList *item;
 	
-	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_MODEL (model), FALSE);
+	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_MODEL (model), FALSE);
 	g_return_val_if_fail (iter != NULL, FALSE);
 	g_return_val_if_fail (iter->user_data != NULL, FALSE);
 	
@@ -1410,7 +1410,7 @@ gtk_source_completion_model_iter_last (GtkSourceCompletionModel *model,
 {
 	GList *item;
 	
-	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_MODEL (model), FALSE);
+	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_MODEL (model), FALSE);
 	g_return_val_if_fail (iter != NULL, FALSE);
 	
 	item = model->priv->last;
@@ -1433,7 +1433,7 @@ gtk_source_completion_model_iter_last (GtkSourceCompletionModel *model,
 GList *
 gtk_source_completion_model_get_providers (GtkSourceCompletionModel *model)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_MODEL (model), NULL);
+	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_MODEL (model), NULL);
 	
 	return model->priv->providers;
 }
@@ -1442,7 +1442,7 @@ void
 gtk_source_completion_model_set_visible_providers (GtkSourceCompletionModel *model,
                                                    GList                    *providers)
 {
-	g_return_if_fail (GTK_IS_SOURCE_COMPLETION_MODEL (model));
+	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_MODEL (model));
 	
 	g_list_free (model->priv->visible_providers);
 	model->priv->visible_providers = g_list_copy (providers);
@@ -1453,7 +1453,7 @@ gtk_source_completion_model_set_visible_providers (GtkSourceCompletionModel *mod
 GList *
 gtk_source_completion_model_get_visible_providers (GtkSourceCompletionModel *model)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_MODEL (model), NULL);
+	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_MODEL (model), NULL);
 	
 	return model->priv->visible_providers;
 }
@@ -1463,7 +1463,7 @@ gtk_source_completion_model_iter_equal (GtkSourceCompletionModel *model,
                                         GtkTreeIter              *iter1,
                                         GtkTreeIter              *iter2)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_MODEL (model), FALSE);
+	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_MODEL (model), FALSE);
 	
 	return iter1->user_data == iter2->user_data;
 }

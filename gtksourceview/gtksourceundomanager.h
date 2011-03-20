@@ -29,10 +29,10 @@
 
 G_BEGIN_DECLS
 
-#define GTK_TYPE_SOURCE_UNDO_MANAGER                (gtk_source_undo_manager_get_type ())
-#define GTK_SOURCE_UNDO_MANAGER(obj)                (G_TYPE_CHECK_INSTANCE_CAST ((obj), GTK_TYPE_SOURCE_UNDO_MANAGER, GtkSourceUndoManager))
-#define GTK_IS_SOURCE_UNDO_MANAGER(obj)             (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GTK_TYPE_SOURCE_UNDO_MANAGER))
-#define GTK_SOURCE_UNDO_MANAGER_GET_INTERFACE(obj)  (G_TYPE_INSTANCE_GET_INTERFACE ((obj), GTK_TYPE_SOURCE_UNDO_MANAGER, GtkSourceUndoManagerIface))
+#define GTK_SOURCE_TYPE_UNDO_MANAGER                (gtk_source_undo_manager_get_type ())
+#define GTK_SOURCE_UNDO_MANAGER(obj)                (G_TYPE_CHECK_INSTANCE_CAST ((obj), GTK_SOURCE_TYPE_UNDO_MANAGER, GtkSourceUndoManager))
+#define GTK_SOURCE_IS_UNDO_MANAGER(obj)             (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GTK_SOURCE_TYPE_UNDO_MANAGER))
+#define GTK_SOURCE_UNDO_MANAGER_GET_INTERFACE(obj)  (G_TYPE_INSTANCE_GET_INTERFACE ((obj), GTK_SOURCE_TYPE_UNDO_MANAGER, GtkSourceUndoManagerIface))
 
 typedef struct _GtkSourceUndoManager        	GtkSourceUndoManager;
 typedef struct _GtkSourceUndoManagerIface      	GtkSourceUndoManagerIface;

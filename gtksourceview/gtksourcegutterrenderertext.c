@@ -22,7 +22,7 @@
 #include "gtksourcegutterrenderertext.h"
 #include "gtksourceview-i18n.h"
 
-#define GTK_SOURCE_GUTTER_RENDERER_TEXT_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE((object), GTK_TYPE_SOURCE_GUTTER_RENDERER_TEXT, GtkSourceGutterRendererTextPrivate))
+#define GTK_SOURCE_GUTTER_RENDERER_TEXT_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE((object), GTK_SOURCE_TYPE_GUTTER_RENDERER_TEXT, GtkSourceGutterRendererTextPrivate))
 
 struct _GtkSourceGutterRendererTextPrivate
 {
@@ -35,7 +35,7 @@ struct _GtkSourceGutterRendererTextPrivate
 	guint is_markup : 1;
 };
 
-G_DEFINE_TYPE (GtkSourceGutterRendererText, gtk_source_gutter_renderer_text, GTK_TYPE_SOURCE_GUTTER_RENDERER)
+G_DEFINE_TYPE (GtkSourceGutterRendererText, gtk_source_gutter_renderer_text, GTK_SOURCE_TYPE_GUTTER_RENDERER)
 
 enum
 {
@@ -284,7 +284,7 @@ gtk_source_gutter_renderer_text_measure (GtkSourceGutterRendererText *renderer,
                                          gint                        *width,
                                          gint                        *height)
 {
-	g_return_if_fail (GTK_IS_SOURCE_GUTTER_RENDERER_TEXT (renderer));
+	g_return_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER_TEXT (renderer));
 	g_return_if_fail (text != NULL);
 
 	measure_text (renderer, NULL, text, width, height);
@@ -296,7 +296,7 @@ gtk_source_gutter_renderer_text_measure_markup (GtkSourceGutterRendererText *ren
                                                 gint                        *width,
                                                 gint                        *height)
 {
-	g_return_if_fail (GTK_IS_SOURCE_GUTTER_RENDERER_TEXT (renderer));
+	g_return_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER_TEXT (renderer));
 	g_return_if_fail (markup != NULL);
 
 	measure_text (renderer, markup, NULL, width, height);
@@ -425,7 +425,7 @@ gtk_source_gutter_renderer_text_init (GtkSourceGutterRendererText *self)
 GtkSourceGutterRenderer *
 gtk_source_gutter_renderer_text_new ()
 {
-	return g_object_new (GTK_TYPE_SOURCE_GUTTER_RENDERER_TEXT, NULL);
+	return g_object_new (GTK_SOURCE_TYPE_GUTTER_RENDERER_TEXT, NULL);
 }
 
 void
@@ -433,7 +433,7 @@ gtk_source_gutter_renderer_text_set_markup (GtkSourceGutterRendererText *rendere
                                             const gchar                 *markup,
                                             gint                         length)
 {
-	g_return_if_fail (GTK_IS_SOURCE_GUTTER_RENDERER_TEXT (renderer));
+	g_return_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER_TEXT (renderer));
 
 	set_text (renderer, markup, length, TRUE);
 }
@@ -443,7 +443,7 @@ gtk_source_gutter_renderer_text_set_text (GtkSourceGutterRendererText *renderer,
                                           const gchar                 *text,
                                           gint                         length)
 {
-	g_return_if_fail (GTK_IS_SOURCE_GUTTER_RENDERER_TEXT (renderer));
+	g_return_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER_TEXT (renderer));
 
 	set_text (renderer, text, length, FALSE);
 }

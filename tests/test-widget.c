@@ -296,7 +296,7 @@ gtk_source_buffer_load_file (GtkSourceBuffer *source_buffer,
 	gchar *buffer;
 	GError *error_here = NULL;
 
-	g_return_val_if_fail (GTK_IS_SOURCE_BUFFER (source_buffer), FALSE);
+	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (source_buffer), FALSE);
 	g_return_val_if_fail (filename != NULL, FALSE);
 
 	if (!g_file_get_contents (filename, &buffer, NULL, &error_here))
@@ -499,7 +499,7 @@ out:
 static void
 numbers_toggled_cb (GtkAction *action, gpointer user_data)
 {
-	g_return_if_fail (GTK_IS_TOGGLE_ACTION (action) && GTK_IS_SOURCE_VIEW (user_data));
+	g_return_if_fail (GTK_IS_TOGGLE_ACTION (action) && GTK_SOURCE_IS_VIEW (user_data));
 	gtk_source_view_set_show_line_numbers (
 		GTK_SOURCE_VIEW (user_data),
 		gtk_toggle_action_get_active (GTK_TOGGLE_ACTION (action)));
@@ -508,7 +508,7 @@ numbers_toggled_cb (GtkAction *action, gpointer user_data)
 static void
 marks_toggled_cb (GtkAction *action, gpointer user_data)
 {
-	g_return_if_fail (GTK_IS_TOGGLE_ACTION (action) && GTK_IS_SOURCE_VIEW (user_data));
+	g_return_if_fail (GTK_IS_TOGGLE_ACTION (action) && GTK_SOURCE_IS_VIEW (user_data));
 	gtk_source_view_set_show_line_marks (
 		GTK_SOURCE_VIEW (user_data),
 		gtk_toggle_action_get_active (GTK_TOGGLE_ACTION (action)));
@@ -517,7 +517,7 @@ marks_toggled_cb (GtkAction *action, gpointer user_data)
 static void
 margin_toggled_cb (GtkAction *action, gpointer user_data)
 {
-	g_return_if_fail (GTK_IS_TOGGLE_ACTION (action) && GTK_IS_SOURCE_VIEW (user_data));
+	g_return_if_fail (GTK_IS_TOGGLE_ACTION (action) && GTK_SOURCE_IS_VIEW (user_data));
 	gtk_source_view_set_show_right_margin (
 		GTK_SOURCE_VIEW (user_data),
 		gtk_toggle_action_get_active (GTK_TOGGLE_ACTION (action)));
@@ -527,7 +527,7 @@ static void
 hl_syntax_toggled_cb (GtkAction *action, gpointer user_data)
 {
 	GtkTextBuffer *buffer;
-	g_return_if_fail (GTK_IS_TOGGLE_ACTION (action) && GTK_IS_SOURCE_VIEW (user_data));
+	g_return_if_fail (GTK_IS_TOGGLE_ACTION (action) && GTK_SOURCE_IS_VIEW (user_data));
 	buffer = gtk_text_view_get_buffer (user_data);
 	gtk_source_buffer_set_highlight_syntax (
 		GTK_SOURCE_BUFFER (buffer),
@@ -538,7 +538,7 @@ static void
 hl_bracket_toggled_cb (GtkAction *action, gpointer user_data)
 {
 	GtkTextBuffer *buffer;
-	g_return_if_fail (GTK_IS_TOGGLE_ACTION (action) && GTK_IS_SOURCE_VIEW (user_data));
+	g_return_if_fail (GTK_IS_TOGGLE_ACTION (action) && GTK_SOURCE_IS_VIEW (user_data));
 	buffer = gtk_text_view_get_buffer (user_data);
 	gtk_source_buffer_set_highlight_matching_brackets (
 		GTK_SOURCE_BUFFER (buffer),
@@ -548,7 +548,7 @@ hl_bracket_toggled_cb (GtkAction *action, gpointer user_data)
 static void
 hl_line_toggled_cb (GtkAction *action, gpointer user_data)
 {
-	g_return_if_fail (GTK_IS_TOGGLE_ACTION (action) && GTK_IS_SOURCE_VIEW (user_data));
+	g_return_if_fail (GTK_IS_TOGGLE_ACTION (action) && GTK_SOURCE_IS_VIEW (user_data));
 	gtk_source_view_set_highlight_current_line (
 		GTK_SOURCE_VIEW (user_data),
 		gtk_toggle_action_get_active (GTK_TOGGLE_ACTION (action)));
@@ -559,7 +559,7 @@ draw_spaces_toggled_cb (GtkAction *action, gpointer user_data)
 {
 	gboolean draw_spaces;
 
-	g_return_if_fail (GTK_IS_TOGGLE_ACTION (action) && GTK_IS_SOURCE_VIEW (user_data));
+	g_return_if_fail (GTK_IS_TOGGLE_ACTION (action) && GTK_SOURCE_IS_VIEW (user_data));
 	draw_spaces = gtk_toggle_action_get_active (GTK_TOGGLE_ACTION (action));
 
 	if (draw_spaces)
@@ -573,7 +573,7 @@ draw_spaces_toggled_cb (GtkAction *action, gpointer user_data)
 static void
 wrap_lines_toggled_cb (GtkAction *action, gpointer user_data)
 {
-	g_return_if_fail (GTK_IS_TOGGLE_ACTION (action) && GTK_IS_SOURCE_VIEW (user_data));
+	g_return_if_fail (GTK_IS_TOGGLE_ACTION (action) && GTK_SOURCE_IS_VIEW (user_data));
 	gtk_text_view_set_wrap_mode (user_data,
 				     gtk_toggle_action_get_active (GTK_TOGGLE_ACTION (action)) ?
 					GTK_WRAP_WORD : GTK_WRAP_NONE);
@@ -583,7 +583,7 @@ static void
 auto_indent_toggled_cb (GtkAction *action,
 			gpointer   user_data)
 {
-	g_return_if_fail (GTK_IS_TOGGLE_ACTION (action) && GTK_IS_SOURCE_VIEW (user_data));
+	g_return_if_fail (GTK_IS_TOGGLE_ACTION (action) && GTK_SOURCE_IS_VIEW (user_data));
 	gtk_source_view_set_auto_indent (
 		GTK_SOURCE_VIEW (user_data),
 		gtk_toggle_action_get_active (GTK_TOGGLE_ACTION (action)));
@@ -593,7 +593,7 @@ static void
 insert_spaces_toggled_cb (GtkAction *action,
 			  gpointer   user_data)
 {
-	g_return_if_fail (GTK_IS_TOGGLE_ACTION (action) && GTK_IS_SOURCE_VIEW (user_data));
+	g_return_if_fail (GTK_IS_TOGGLE_ACTION (action) && GTK_SOURCE_IS_VIEW (user_data));
 	gtk_source_view_set_insert_spaces_instead_of_tabs (
 		GTK_SOURCE_VIEW (user_data),
 		gtk_toggle_action_get_active (GTK_TOGGLE_ACTION (action)));
@@ -604,7 +604,7 @@ tabs_toggled_cb (GtkAction *action,
 		 GtkAction *current,
 		 gpointer user_data)
 {
-	g_return_if_fail (GTK_IS_RADIO_ACTION (action) && GTK_IS_SOURCE_VIEW (user_data));
+	g_return_if_fail (GTK_IS_RADIO_ACTION (action) && GTK_SOURCE_IS_VIEW (user_data));
 	gtk_source_view_set_tab_width (
 		GTK_SOURCE_VIEW (user_data),
 		gtk_radio_action_get_current_value (GTK_RADIO_ACTION (action)));
@@ -615,7 +615,7 @@ indent_toggled_cb (GtkAction *action,
 		   GtkAction *current,
 		   gpointer user_data)
 {
-	g_return_if_fail (GTK_IS_RADIO_ACTION (action) && GTK_IS_SOURCE_VIEW (user_data));
+	g_return_if_fail (GTK_IS_RADIO_ACTION (action) && GTK_SOURCE_IS_VIEW (user_data));
 	gtk_source_view_set_indent_width (
 		GTK_SOURCE_VIEW (user_data),
 		gtk_radio_action_get_current_value (GTK_RADIO_ACTION (action)));
@@ -626,7 +626,7 @@ smart_home_end_toggled_cb (GtkAction *action,
 			   GtkAction *current,
 			   gpointer user_data)
 {
-	g_return_if_fail (GTK_IS_RADIO_ACTION (action) && GTK_IS_SOURCE_VIEW (user_data));
+	g_return_if_fail (GTK_IS_RADIO_ACTION (action) && GTK_SOURCE_IS_VIEW (user_data));
 	gtk_source_view_set_smart_home_end (
 		GTK_SOURCE_VIEW (user_data),
 		gtk_radio_action_get_current_value (GTK_RADIO_ACTION (action)));
@@ -639,7 +639,7 @@ new_view_cb (GtkAction *action, gpointer user_data)
 	GtkSourceView *view;
 	GtkWidget *window;
 
-	g_return_if_fail (GTK_IS_SOURCE_VIEW (user_data));
+	g_return_if_fail (GTK_SOURCE_IS_VIEW (user_data));
 
 	view = GTK_SOURCE_VIEW (user_data);
 	buffer = GTK_SOURCE_BUFFER (gtk_text_view_get_buffer (GTK_TEXT_VIEW (view)));
@@ -658,7 +658,7 @@ forward_string_cb (GtkAction *action,
 	GtkTextIter iter;
 	GtkTextMark *insert;
 
-	g_return_if_fail (GTK_IS_SOURCE_VIEW (user_data));
+	g_return_if_fail (GTK_SOURCE_IS_VIEW (user_data));
 
 	view = GTK_SOURCE_VIEW (user_data);
 	buffer = GTK_SOURCE_BUFFER (gtk_text_view_get_buffer (GTK_TEXT_VIEW (view)));
@@ -686,7 +686,7 @@ backward_string_cb (GtkAction *action,
 	GtkTextIter iter;
 	GtkTextMark *insert;
 
-	g_return_if_fail (GTK_IS_SOURCE_VIEW (user_data));
+	g_return_if_fail (GTK_SOURCE_IS_VIEW (user_data));
 
 	view = GTK_SOURCE_VIEW (user_data);
 	buffer = GTK_SOURCE_BUFFER (gtk_text_view_get_buffer (GTK_TEXT_VIEW (view)));
@@ -858,7 +858,7 @@ open_file_cb (GtkAction *action, gpointer user_data)
 	gint response;
 	static gchar *last_dir;
 
-	g_return_if_fail (GTK_IS_SOURCE_BUFFER (user_data));
+	g_return_if_fail (GTK_SOURCE_IS_BUFFER (user_data));
 
 	chooser = gtk_file_chooser_dialog_new ("Open file...",
 					       NULL,
@@ -1028,7 +1028,7 @@ print_file_cb (GtkAction *action, gpointer user_data)
 	const gchar *filename;
 	gchar *basename;
 
-	g_return_if_fail (GTK_IS_SOURCE_VIEW (user_data));
+	g_return_if_fail (GTK_SOURCE_IS_VIEW (user_data));
 
 	view = GTK_SOURCE_VIEW (user_data);
 
@@ -1120,7 +1120,7 @@ update_cursor_position (GtkTextBuffer *buffer, gpointer user_data)
 	gchar **classes_ptr;
 	GString *str;
 
-	g_return_if_fail (GTK_IS_SOURCE_VIEW (user_data));
+	g_return_if_fail (GTK_SOURCE_IS_VIEW (user_data));
 
 	view = GTK_SOURCE_VIEW (user_data);
 	pos_label = GTK_LABEL (g_object_get_data (G_OBJECT (view), "pos_label"));
@@ -1174,7 +1174,7 @@ move_cursor_cb (GtkTextBuffer *buffer,
 static gboolean
 window_deleted_cb (GtkWidget *widget, GdkEvent *ev, gpointer user_data)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_VIEW (user_data), TRUE);
+	g_return_val_if_fail (GTK_SOURCE_IS_VIEW (user_data), TRUE);
 
 	if (g_list_nth_data (windows, 0) == widget)
 	{
@@ -1261,7 +1261,7 @@ bracket_matched (GtkSourceBuffer           *buffer G_GNUC_UNUSED,
 
 	g_return_if_fail (iter != NULL);
 
-	eclass = G_ENUM_CLASS (g_type_class_ref (GTK_TYPE_SOURCE_BRACKET_MATCH_TYPE));
+	eclass = G_ENUM_CLASS (g_type_class_ref (GTK_SOURCE_TYPE_BRACKET_MATCH_TYPE));
 	evalue = g_enum_get_value (eclass, state);
 
 	g_print ("Bracket match state: '%s'\n", evalue->value_nick);
@@ -1347,8 +1347,8 @@ create_view_window (GtkSourceBuffer *buffer, GtkSourceView *from)
 	GtkUIManager *ui_manager;
 	GError *error;
 
-	g_return_val_if_fail (GTK_IS_SOURCE_BUFFER (buffer), NULL);
-	g_return_val_if_fail (from == NULL || GTK_IS_SOURCE_VIEW (from), NULL);
+	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), NULL);
+	g_return_val_if_fail (from == NULL || GTK_SOURCE_IS_VIEW (from), NULL);
 
 	/* window */
 	window = gtk_window_new (GTK_WINDOW_TOPLEVEL);

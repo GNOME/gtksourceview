@@ -30,12 +30,12 @@
 
 G_BEGIN_DECLS
 
-#define GTK_TYPE_SOURCE_GUTTER			(gtk_source_gutter_get_type ())
-#define GTK_SOURCE_GUTTER(obj)			(G_TYPE_CHECK_INSTANCE_CAST ((obj), GTK_TYPE_SOURCE_GUTTER, GtkSourceGutter))
-#define GTK_SOURCE_GUTTER_CLASS(klass)		(G_TYPE_CHECK_CLASS_CAST ((klass), GTK_TYPE_SOURCE_GUTTER, GtkSourceGutterClass))
-#define GTK_IS_SOURCE_GUTTER(obj)		(G_TYPE_CHECK_INSTANCE_TYPE ((obj), GTK_TYPE_SOURCE_GUTTER))
-#define GTK_IS_SOURCE_GUTTER_CLASS(klass)	(G_TYPE_CHECK_CLASS_TYPE ((klass), GTK_TYPE_SOURCE_GUTTER))
-#define GTK_SOURCE_GUTTER_GET_CLASS(obj)	(G_TYPE_INSTANCE_GET_CLASS ((obj), GTK_TYPE_SOURCE_GUTTER, GtkSourceGutterClass))
+#define GTK_SOURCE_TYPE_GUTTER			(gtk_source_gutter_get_type ())
+#define GTK_SOURCE_GUTTER(obj)			(G_TYPE_CHECK_INSTANCE_CAST ((obj), GTK_SOURCE_TYPE_GUTTER, GtkSourceGutter))
+#define GTK_SOURCE_GUTTER_CLASS(klass)		(G_TYPE_CHECK_CLASS_CAST ((klass), GTK_SOURCE_TYPE_GUTTER, GtkSourceGutterClass))
+#define GTK_SOURCE_IS_GUTTER(obj)		(G_TYPE_CHECK_INSTANCE_TYPE ((obj), GTK_SOURCE_TYPE_GUTTER))
+#define GTK_SOURCE_IS_GUTTER_CLASS(klass)	(G_TYPE_CHECK_CLASS_TYPE ((klass), GTK_SOURCE_TYPE_GUTTER))
+#define GTK_SOURCE_GUTTER_GET_CLASS(obj)	(G_TYPE_INSTANCE_GET_CLASS ((obj), GTK_SOURCE_TYPE_GUTTER, GtkSourceGutterClass))
 
 typedef struct _GtkSourceGutter			GtkSourceGutter;
 typedef struct _GtkSourceGutterClass	GtkSourceGutterClass;

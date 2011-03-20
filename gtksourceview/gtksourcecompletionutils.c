@@ -160,7 +160,7 @@ gtk_source_completion_utils_replace_word (GtkSourceBuffer *source_buffer,
 	GtkTextIter word_end;
 	GtkTextMark *mark;
 
-	g_return_if_fail (GTK_IS_SOURCE_BUFFER (source_buffer));
+	g_return_if_fail (GTK_SOURCE_IS_BUFFER (source_buffer));
 	
 	buffer = GTK_TEXT_BUFFER (source_buffer);
 	gtk_text_buffer_begin_user_action (buffer);
@@ -197,7 +197,7 @@ gtk_source_completion_utils_replace_current_word (GtkSourceBuffer *source_buffer
 	GtkTextIter iter;
 	GtkTextMark *mark;
 	
-	g_return_if_fail (GTK_IS_SOURCE_BUFFER (source_buffer));
+	g_return_if_fail (GTK_SOURCE_IS_BUFFER (source_buffer));
 
 	mark = gtk_text_buffer_get_insert (GTK_TEXT_BUFFER (source_buffer));
 	gtk_text_buffer_get_iter_at_mark (GTK_TEXT_BUFFER (source_buffer),

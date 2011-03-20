@@ -24,7 +24,7 @@
 
 #include <glib.h>
 
-#define GTK_SOURCE_COMPLETION_WORDS_BUFFER_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE((object), GTK_TYPE_SOURCE_COMPLETION_WORDS_BUFFER, GtkSourceCompletionWordsBufferPrivate))
+#define GTK_SOURCE_COMPLETION_WORDS_BUFFER_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE((object), GTK_SOURCE_TYPE_COMPLETION_WORDS_BUFFER, GtkSourceCompletionWordsBufferPrivate))
 
 /* Timeout in seconds */
 #define INITIATE_SCAN_TIMEOUT 5
@@ -730,10 +730,10 @@ gtk_source_completion_words_buffer_new (GtkSourceCompletionWordsLibrary *library
 	GtkSourceCompletionWordsBuffer *ret;
 	GtkTextIter iter;
 
-	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_WORDS_LIBRARY (library), NULL);
+	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_WORDS_LIBRARY (library), NULL);
 	g_return_val_if_fail (GTK_IS_TEXT_BUFFER (buffer), NULL);
 
-	ret = g_object_new (GTK_TYPE_SOURCE_COMPLETION_WORDS_BUFFER, NULL);
+	ret = g_object_new (GTK_SOURCE_TYPE_COMPLETION_WORDS_BUFFER, NULL);
 
 	ret->priv->library = g_object_ref (library);
 	ret->priv->buffer = g_object_ref (buffer);
@@ -761,7 +761,7 @@ gtk_source_completion_words_buffer_new (GtkSourceCompletionWordsLibrary *library
 GtkTextBuffer *
 gtk_source_completion_words_buffer_get_buffer (GtkSourceCompletionWordsBuffer *buffer)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_WORDS_BUFFER (buffer), NULL);
+	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_WORDS_BUFFER (buffer), NULL);
 
 	return buffer->priv->buffer;
 }
@@ -770,7 +770,7 @@ void
 gtk_source_completion_words_buffer_set_scan_batch_size (GtkSourceCompletionWordsBuffer *buffer,
                                                         guint                           size)
 {
-	g_return_if_fail (GTK_IS_SOURCE_COMPLETION_WORDS_BUFFER (buffer));
+	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_WORDS_BUFFER (buffer));
 	g_return_if_fail (size != 0);
 
 	buffer->priv->scan_batch_size = size;
@@ -780,7 +780,7 @@ void
 gtk_source_completion_words_buffer_set_minimum_word_size (GtkSourceCompletionWordsBuffer *buffer,
                                                           guint                           size)
 {
-	g_return_if_fail (GTK_IS_SOURCE_COMPLETION_WORDS_BUFFER (buffer));
+	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_WORDS_BUFFER (buffer));
 	g_return_if_fail (size != 0);
 
 	buffer->priv->minimum_word_size = size;
@@ -789,7 +789,7 @@ gtk_source_completion_words_buffer_set_minimum_word_size (GtkSourceCompletionWor
 GtkTextMark *
 gtk_source_completion_words_buffer_get_mark (GtkSourceCompletionWordsBuffer *buffer)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_WORDS_BUFFER (buffer), NULL);
+	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_WORDS_BUFFER (buffer), NULL);
 
 	return buffer->priv->mark;
 }

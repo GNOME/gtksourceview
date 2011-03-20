@@ -27,12 +27,12 @@
 
 G_BEGIN_DECLS
 
-#define GTK_TYPE_SOURCE_ENGINE            (_gtk_source_engine_get_type ())
-#define GTK_SOURCE_ENGINE(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GTK_TYPE_SOURCE_ENGINE, GtkSourceEngine))
-#define GTK_SOURCE_ENGINE_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), GTK_TYPE_SOURCE_ENGINE, GtkSourceEngineClass))
-#define GTK_IS_SOURCE_ENGINE(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GTK_TYPE_SOURCE_ENGINE))
-#define GTK_IS_SOURCE_ENGINE_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GTK_TYPE_SOURCE_ENGINE))
-#define GTK_SOURCE_ENGINE_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), GTK_TYPE_SOURCE_ENGINE, GtkSourceEngineClass))
+#define GTK_SOURCE_TYPE_ENGINE            (_gtk_source_engine_get_type ())
+#define GTK_SOURCE_ENGINE(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GTK_SOURCE_TYPE_ENGINE, GtkSourceEngine))
+#define GTK_SOURCE_ENGINE_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), GTK_SOURCE_TYPE_ENGINE, GtkSourceEngineClass))
+#define GTK_SOURCE_IS_ENGINE(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GTK_SOURCE_TYPE_ENGINE))
+#define GTK_SOURCE_IS_ENGINE_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GTK_SOURCE_TYPE_ENGINE))
+#define GTK_SOURCE_ENGINE_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), GTK_SOURCE_TYPE_ENGINE, GtkSourceEngineClass))
 
 typedef struct _GtkSourceEngine		GtkSourceEngine;
 typedef struct _GtkSourceEngineClass	GtkSourceEngineClass;

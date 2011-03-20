@@ -28,12 +28,12 @@
 
 G_BEGIN_DECLS
 
-#define GTK_TYPE_SOURCE_CONTEXT_ENGINE            (_gtk_source_context_engine_get_type ())
-#define GTK_SOURCE_CONTEXT_ENGINE(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GTK_TYPE_SOURCE_CONTEXT_ENGINE, GtkSourceContextEngine))
-#define GTK_SOURCE_CONTEXT_ENGINE_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), GTK_TYPE_SOURCE_CONTEXT_ENGINE, GtkSourceContextEngineClass))
-#define GTK_IS_SOURCE_CONTEXT_ENGINE(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GTK_TYPE_SOURCE_CONTEXT_ENGINE))
-#define GTK_IS_SOURCE_CONTEXT_ENGINE_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GTK_TYPE_SOURCE_CONTEXT_ENGINE))
-#define GTK_SOURCE_CONTEXT_ENGINE_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), GTK_TYPE_SOURCE_CONTEXT_ENGINE, GtkSourceContextEngineClass))
+#define GTK_SOURCE_TYPE_CONTEXT_ENGINE            (_gtk_source_context_engine_get_type ())
+#define GTK_SOURCE_CONTEXT_ENGINE(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GTK_SOURCE_TYPE_CONTEXT_ENGINE, GtkSourceContextEngine))
+#define GTK_SOURCE_CONTEXT_ENGINE_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), GTK_SOURCE_TYPE_CONTEXT_ENGINE, GtkSourceContextEngineClass))
+#define GTK_SOURCE_IS_CONTEXT_ENGINE(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GTK_SOURCE_TYPE_CONTEXT_ENGINE))
+#define GTK_SOURCE_IS_CONTEXT_ENGINE_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GTK_SOURCE_TYPE_CONTEXT_ENGINE))
+#define GTK_SOURCE_CONTEXT_ENGINE_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), GTK_SOURCE_TYPE_CONTEXT_ENGINE, GtkSourceContextEngineClass))
 
 typedef struct _GtkSourceContextData          GtkSourceContextData;
 typedef struct _GtkSourceContextReplace       GtkSourceContextReplace;

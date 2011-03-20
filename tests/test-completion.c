@@ -60,7 +60,7 @@ GType test_provider_get_type (void);
 G_DEFINE_TYPE_WITH_CODE (TestProvider,
 			 test_provider,
 			 G_TYPE_OBJECT,
-			 G_IMPLEMENT_INTERFACE (GTK_TYPE_SOURCE_COMPLETION_PROVIDER,
+			 G_IMPLEMENT_INTERFACE (GTK_SOURCE_TYPE_COMPLETION_PROVIDER,
 				 		test_provider_iface_init))
 
 static gchar *

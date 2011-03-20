@@ -28,10 +28,10 @@
 
 G_BEGIN_DECLS
 
-#define GTK_TYPE_SOURCE_COMPLETION_PROPOSAL			(gtk_source_completion_proposal_get_type ())
-#define GTK_SOURCE_COMPLETION_PROPOSAL(obj)			(G_TYPE_CHECK_INSTANCE_CAST ((obj), GTK_TYPE_SOURCE_COMPLETION_PROPOSAL, GtkSourceCompletionProposal))
-#define GTK_IS_SOURCE_COMPLETION_PROPOSAL(obj)			(G_TYPE_CHECK_INSTANCE_TYPE ((obj), GTK_TYPE_SOURCE_COMPLETION_PROPOSAL))
-#define GTK_SOURCE_COMPLETION_PROPOSAL_GET_INTERFACE(obj)	(G_TYPE_INSTANCE_GET_INTERFACE ((obj), GTK_TYPE_SOURCE_COMPLETION_PROPOSAL, GtkSourceCompletionProposalIface))
+#define GTK_SOURCE_TYPE_COMPLETION_PROPOSAL			(gtk_source_completion_proposal_get_type ())
+#define GTK_SOURCE_COMPLETION_PROPOSAL(obj)			(G_TYPE_CHECK_INSTANCE_CAST ((obj), GTK_SOURCE_TYPE_COMPLETION_PROPOSAL, GtkSourceCompletionProposal))
+#define GTK_SOURCE_IS_COMPLETION_PROPOSAL(obj)			(G_TYPE_CHECK_INSTANCE_TYPE ((obj), GTK_SOURCE_TYPE_COMPLETION_PROPOSAL))
+#define GTK_SOURCE_COMPLETION_PROPOSAL_GET_INTERFACE(obj)	(G_TYPE_INSTANCE_GET_INTERFACE ((obj), GTK_SOURCE_TYPE_COMPLETION_PROPOSAL, GtkSourceCompletionProposalIface))
 
 typedef struct _GtkSourceCompletionProposal		GtkSourceCompletionProposal;
 typedef struct _GtkSourceCompletionProposalIface	GtkSourceCompletionProposalIface;

@@ -28,7 +28,7 @@
 #include <gtksourceview/gtksourceview-i18n.h>
 #include <string.h>
 
-#define GTK_SOURCE_COMPLETION_WORDS_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE((object), GTK_TYPE_SOURCE_COMPLETION_WORDS, GtkSourceCompletionWordsPrivate))
+#define GTK_SOURCE_COMPLETION_WORDS_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE((object), GTK_SOURCE_TYPE_COMPLETION_WORDS, GtkSourceCompletionWordsPrivate))
 
 #define BUFFER_KEY "GtkSourceCompletionWordsBufferKey"
 
@@ -90,7 +90,7 @@ GType gsc_proposal_words_get_type (void);
 G_DEFINE_TYPE_WITH_CODE (GtkSourceCompletionWords,
 			 gtk_source_completion_words,
 			 G_TYPE_OBJECT,
-			 G_IMPLEMENT_INTERFACE (GTK_TYPE_SOURCE_COMPLETION_PROVIDER,
+			 G_IMPLEMENT_INTERFACE (GTK_SOURCE_TYPE_COMPLETION_PROVIDER,
 				 		gtk_source_completion_words_iface_init))
 
 static gchar *
@@ -593,7 +593,7 @@ GtkSourceCompletionWords *
 gtk_source_completion_words_new (const gchar *name,
                                  GdkPixbuf   *icon)
 {
-	return g_object_new (GTK_TYPE_SOURCE_COMPLETION_WORDS, 
+	return g_object_new (GTK_SOURCE_TYPE_COMPLETION_WORDS, 
 	                     "name", name, 
 	                     "icon", icon, 
 	                     NULL);
@@ -622,7 +622,7 @@ gtk_source_completion_words_register (GtkSourceCompletionWords *words,
 	GtkSourceCompletionWordsBuffer *buf;
 	BufferBinding *binding;
 
-	g_return_if_fail (GTK_IS_SOURCE_COMPLETION_WORDS (words));
+	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_WORDS (words));
 	g_return_if_fail (GTK_IS_TEXT_BUFFER (buffer));
 	
 	binding = g_object_get_data (G_OBJECT (buffer), BUFFER_KEY);
@@ -665,7 +665,7 @@ void
 gtk_source_completion_words_unregister (GtkSourceCompletionWords *words,
                                         GtkTextBuffer            *buffer)
 {
-	g_return_if_fail (GTK_IS_SOURCE_COMPLETION_WORDS (words));
+	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_WORDS (words));
 	g_return_if_fail (GTK_IS_TEXT_BUFFER (buffer));
 	
 	g_object_set_data (G_OBJECT (buffer), BUFFER_KEY, NULL);

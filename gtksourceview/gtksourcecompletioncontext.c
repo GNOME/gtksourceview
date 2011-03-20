@@ -25,7 +25,7 @@
 #include "gtksourceview-i18n.h"
 #include "gtksourcecompletion.h"
 
-#define GTK_SOURCE_COMPLETION_CONTEXT_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE((object), GTK_TYPE_SOURCE_COMPLETION_CONTEXT, GtkSourceCompletionContextPrivate))
+#define GTK_SOURCE_COMPLETION_CONTEXT_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE((object), GTK_SOURCE_TYPE_COMPLETION_CONTEXT, GtkSourceCompletionContextPrivate))
 
 struct _GtkSourceCompletionContextPrivate
 {
@@ -236,7 +236,7 @@ gtk_source_completion_context_class_init (GtkSourceCompletionContextClass *klass
 	                                 g_param_spec_object ("completion",
 	                                                      _("Completion"),
 	                                                      _("The completion object to which the context belongs"),
-	                                                      GTK_TYPE_SOURCE_COMPLETION,
+	                                                      GTK_SOURCE_TYPE_COMPLETION,
 	                                                      G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
 
 	/**
@@ -263,7 +263,7 @@ gtk_source_completion_context_class_init (GtkSourceCompletionContextClass *klass
 	                                 g_param_spec_flags ("activation",
 	                                                     _("Activation"),
 	                                                     _("The type of activation"),
-	                                                     GTK_TYPE_SOURCE_COMPLETION_ACTIVATION,
+	                                                     GTK_SOURCE_TYPE_COMPLETION_ACTIVATION,
 	                                                     GTK_SOURCE_COMPLETION_ACTIVATION_NONE,
 	                                                     G_PARAM_READWRITE));
 
@@ -294,8 +294,8 @@ gtk_source_completion_context_add_proposals (GtkSourceCompletionContext  *contex
                                              GList                       *proposals,
                                              gboolean                     finished)
 {
-	g_return_if_fail (GTK_IS_SOURCE_COMPLETION_CONTEXT (context));
-	g_return_if_fail (GTK_IS_SOURCE_COMPLETION_PROVIDER (provider));
+	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_CONTEXT (context));
+	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_PROVIDER (provider));
 
 	_gtk_source_completion_add_proposals (context->priv->completion,
 	                                      context,
@@ -318,7 +318,7 @@ gtk_source_completion_context_get_iter (GtkSourceCompletionContext *context,
 {
 	GtkTextBuffer *buffer;
 
-	g_return_if_fail (GTK_IS_SOURCE_COMPLETION_CONTEXT (context));
+	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_CONTEXT (context));
 
 	buffer = get_buffer (context);
 
@@ -345,7 +345,7 @@ gtk_source_completion_context_get_iter (GtkSourceCompletionContext *context,
 GtkSourceCompletionActivation
 gtk_source_completion_context_get_activation (GtkSourceCompletionContext *context)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION_CONTEXT (context), FALSE);
+	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_CONTEXT (context), FALSE);
 
 	return context->priv->activation;
 }
@@ -353,7 +353,7 @@ gtk_source_completion_context_get_activation (GtkSourceCompletionContext *contex
 void
 _gtk_source_completion_context_cancel (GtkSourceCompletionContext *context)
 {
-	g_return_if_fail (GTK_IS_SOURCE_COMPLETION_CONTEXT (context));
+	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_CONTEXT (context));
 
 	g_signal_emit (context, context_signals[CANCELLED], 0);
 }
@@ -361,10 +361,10 @@ _gtk_source_completion_context_cancel (GtkSourceCompletionContext *context)
 GtkSourceCompletionContext *
 _gtk_source_completion_context_new (GtkSourceCompletion *completion, GtkTextIter *position)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_COMPLETION (completion), NULL);
+	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION (completion), NULL);
 	g_return_val_if_fail (position != NULL, NULL);
 
-	return g_object_new (GTK_TYPE_SOURCE_COMPLETION_CONTEXT,
+	return g_object_new (GTK_SOURCE_TYPE_COMPLETION_CONTEXT,
 	                     "completion", completion,
 	                     "iter", position,
 	                      NULL);

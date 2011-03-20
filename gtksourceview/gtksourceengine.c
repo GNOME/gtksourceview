@@ -46,7 +46,7 @@ void
 _gtk_source_engine_attach_buffer (GtkSourceEngine *engine,
 				 GtkTextBuffer   *buffer)
 {
-	g_return_if_fail (GTK_IS_SOURCE_ENGINE (engine));
+	g_return_if_fail (GTK_SOURCE_IS_ENGINE (engine));
 	g_return_if_fail (GTK_SOURCE_ENGINE_GET_CLASS (engine)->attach_buffer != NULL);
 
 	GTK_SOURCE_ENGINE_GET_CLASS (engine)->attach_buffer (engine, buffer);
@@ -57,7 +57,7 @@ _gtk_source_engine_text_inserted (GtkSourceEngine *engine,
 				  gint             start_offset,
 				  gint             end_offset)
 {
-	g_return_if_fail (GTK_IS_SOURCE_ENGINE (engine));
+	g_return_if_fail (GTK_SOURCE_IS_ENGINE (engine));
 	g_return_if_fail (GTK_SOURCE_ENGINE_GET_CLASS (engine)->text_inserted != NULL);
 
 	GTK_SOURCE_ENGINE_GET_CLASS (engine)->text_inserted (engine,
@@ -70,7 +70,7 @@ _gtk_source_engine_text_deleted (GtkSourceEngine *engine,
 				 gint             offset,
 				 gint             length)
 {
-	g_return_if_fail (GTK_IS_SOURCE_ENGINE (engine));
+	g_return_if_fail (GTK_SOURCE_IS_ENGINE (engine));
 	g_return_if_fail (GTK_SOURCE_ENGINE_GET_CLASS (engine)->text_deleted != NULL);
 
 	GTK_SOURCE_ENGINE_GET_CLASS (engine)->text_deleted (engine,
@@ -84,7 +84,7 @@ _gtk_source_engine_update_highlight (GtkSourceEngine   *engine,
 				     const GtkTextIter *end,
 				     gboolean           synchronous)
 {
-	g_return_if_fail (GTK_IS_SOURCE_ENGINE (engine));
+	g_return_if_fail (GTK_SOURCE_IS_ENGINE (engine));
 	g_return_if_fail (start != NULL && end != NULL);
 	g_return_if_fail (GTK_SOURCE_ENGINE_GET_CLASS (engine)->update_highlight != NULL);
 
@@ -98,8 +98,8 @@ void
 _gtk_source_engine_set_style_scheme (GtkSourceEngine      *engine,
 				     GtkSourceStyleScheme *scheme)
 {
-	g_return_if_fail (GTK_IS_SOURCE_ENGINE (engine));
-	g_return_if_fail (GTK_IS_SOURCE_STYLE_SCHEME (scheme) || scheme == NULL);
+	g_return_if_fail (GTK_SOURCE_IS_ENGINE (engine));
+	g_return_if_fail (GTK_SOURCE_IS_STYLE_SCHEME (scheme) || scheme == NULL);
 	g_return_if_fail (GTK_SOURCE_ENGINE_GET_CLASS (engine)->set_style_scheme != NULL);
 
 	GTK_SOURCE_ENGINE_GET_CLASS (engine)->set_style_scheme (engine, scheme);
@@ -109,7 +109,7 @@ GtkTextTag *
 _gtk_source_engine_get_context_class_tag (GtkSourceEngine *engine,
 					  const gchar     *context_class)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_ENGINE (engine), NULL);
+	g_return_val_if_fail (GTK_SOURCE_IS_ENGINE (engine), NULL);
 	g_return_val_if_fail (context_class != NULL, NULL);
 
 	return GTK_SOURCE_ENGINE_GET_CLASS (engine)->get_context_class_tag (engine,

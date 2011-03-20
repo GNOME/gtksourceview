@@ -17,7 +17,7 @@ test_get_buffer (void)
 	buffer = GTK_SOURCE_BUFFER (gtk_text_view_get_buffer (GTK_TEXT_VIEW (view)));
 
 	g_assert (buffer != NULL);
-	g_assert (GTK_IS_SOURCE_BUFFER (buffer));
+	g_assert (GTK_SOURCE_IS_BUFFER (buffer));
 
 	if (g_object_is_floating (view))
 	{

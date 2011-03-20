@@ -2482,7 +2482,7 @@ install_first_update (GtkSourceContextEngine *ce)
 
 /* GtkSourceContextEngine class ------------------------------------------- */
 
-G_DEFINE_TYPE (GtkSourceContextEngine, _gtk_source_context_engine, GTK_TYPE_SOURCE_ENGINE)
+G_DEFINE_TYPE (GtkSourceContextEngine, _gtk_source_context_engine, GTK_SOURCE_TYPE_ENGINE)
 
 static GQuark
 gtk_source_context_engine_error_quark (void)
@@ -2711,8 +2711,8 @@ gtk_source_context_engine_set_style_scheme (GtkSourceEngine      *engine,
 {
 	GtkSourceContextEngine *ce;
 
-	g_return_if_fail (GTK_IS_SOURCE_CONTEXT_ENGINE (engine));
-	g_return_if_fail (GTK_IS_SOURCE_STYLE_SCHEME (scheme) || scheme == NULL);
+	g_return_if_fail (GTK_SOURCE_IS_CONTEXT_ENGINE (engine));
+	g_return_if_fail (GTK_SOURCE_IS_STYLE_SCHEME (scheme) || scheme == NULL);
 
 	ce = GTK_SOURCE_CONTEXT_ENGINE (engine);
 
@@ -2795,7 +2795,7 @@ _gtk_source_context_engine_class_init (GtkSourceContextEngineClass *klass)
 static void
 _gtk_source_context_engine_init (GtkSourceContextEngine *ce)
 {
-	ce->priv = G_TYPE_INSTANCE_GET_PRIVATE (ce, GTK_TYPE_SOURCE_CONTEXT_ENGINE,
+	ce->priv = G_TYPE_INSTANCE_GET_PRIVATE (ce, GTK_SOURCE_TYPE_CONTEXT_ENGINE,
 						GtkSourceContextEnginePrivate);
 }
 
@@ -2807,7 +2807,7 @@ _gtk_source_context_engine_new (GtkSourceContextData *ctx_data)
 	g_return_val_if_fail (ctx_data != NULL, NULL);
 	g_return_val_if_fail (ctx_data->lang != NULL, NULL);
 
-	ce = g_object_new (GTK_TYPE_SOURCE_CONTEXT_ENGINE, NULL);
+	ce = g_object_new (GTK_SOURCE_TYPE_CONTEXT_ENGINE, NULL);
 	ce->priv->ctx_data = _gtk_source_context_data_ref (ctx_data);
 
 #ifdef ENABLE_MEMORY_DEBUG
@@ -2831,7 +2831,7 @@ _gtk_source_context_data_new (GtkSourceLanguage *lang)
 {
 	GtkSourceContextData *ctx_data;
 
-	g_return_val_if_fail (GTK_IS_SOURCE_LANGUAGE (lang), NULL);
+	g_return_val_if_fail (GTK_SOURCE_IS_LANGUAGE (lang), NULL);
 
 	ctx_data = g_slice_new0 (GtkSourceContextData);
 	ctx_data->ref_count = 1;

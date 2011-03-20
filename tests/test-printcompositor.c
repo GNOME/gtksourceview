@@ -15,11 +15,11 @@ test_buffer_ref (void)
 
 	compositor = gtk_source_print_compositor_new (buffer_original);
 	buffer = gtk_source_print_compositor_get_buffer (compositor);
-	g_assert (GTK_IS_SOURCE_BUFFER (buffer));
+	g_assert (GTK_SOURCE_IS_BUFFER (buffer));
 
 	g_object_unref (G_OBJECT (buffer_original));
 	buffer = gtk_source_print_compositor_get_buffer (compositor);
-	g_assert (GTK_IS_SOURCE_BUFFER (buffer));
+	g_assert (GTK_SOURCE_IS_BUFFER (buffer));
 }
 
 static void
@@ -32,11 +32,11 @@ test_buffer_view_ref (void)
 	view = gtk_source_view_new ();
 	compositor = gtk_source_print_compositor_new_from_view (GTK_SOURCE_VIEW (view));
 	buffer = gtk_source_print_compositor_get_buffer (compositor);
-	g_assert (GTK_IS_SOURCE_BUFFER (buffer));
+	g_assert (GTK_SOURCE_IS_BUFFER (buffer));
 
 	gtk_widget_destroy (view);
 	buffer = gtk_source_print_compositor_get_buffer (compositor);
-	g_assert (GTK_IS_SOURCE_BUFFER (buffer));
+	g_assert (GTK_SOURCE_IS_BUFFER (buffer));
 
 	g_object_unref (G_OBJECT (compositor));
 }

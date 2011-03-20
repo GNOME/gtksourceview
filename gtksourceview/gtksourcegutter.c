@@ -49,7 +49,7 @@
  *
  */
 
-#define GTK_SOURCE_GUTTER_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE((object), GTK_TYPE_SOURCE_GUTTER, GtkSourceGutterPrivate))
+#define GTK_SOURCE_GUTTER_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE((object), GTK_SOURCE_TYPE_GUTTER, GtkSourceGutterPrivate))
 
 /* Properties */
 enum
@@ -547,7 +547,7 @@ gtk_source_gutter_class_init (GtkSourceGutterClass *klass)
 	                                 g_param_spec_object ("view",
 	                                                      _("View"),
 	                                                      _("The gutters' GtkSourceView"),
-	                                                      GTK_TYPE_SOURCE_VIEW,
+	                                                      GTK_SOURCE_TYPE_VIEW,
 	                                                      G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
 
 	/**
@@ -631,7 +631,7 @@ GtkSourceGutter *
 gtk_source_gutter_new (GtkSourceView     *view,
                        GtkTextWindowType  type)
 {
-	return g_object_new (GTK_TYPE_SOURCE_GUTTER,
+	return g_object_new (GTK_SOURCE_TYPE_GUTTER,
 	                     "view", view,
 	                     "window_type", type,
 	                     NULL);
@@ -654,7 +654,7 @@ gtk_source_gutter_new (GtkSourceView     *view,
 GdkWindow *
 gtk_source_gutter_get_window (GtkSourceGutter *gutter)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_GUTTER (gutter), NULL);
+	g_return_val_if_fail (GTK_SOURCE_IS_GUTTER (gutter), NULL);
 	g_return_val_if_fail (gutter->priv->view != NULL, NULL);
 
 	return gtk_text_view_get_window (GTK_TEXT_VIEW (gutter->priv->view),
@@ -684,8 +684,8 @@ gtk_source_gutter_insert (GtkSourceGutter         *gutter,
 {
 	Renderer* internal_renderer;
 
-	g_return_val_if_fail (GTK_IS_SOURCE_GUTTER (gutter), FALSE);
-	g_return_val_if_fail (GTK_IS_SOURCE_GUTTER_RENDERER (renderer), FALSE);
+	g_return_val_if_fail (GTK_SOURCE_IS_GUTTER (gutter), FALSE);
+	g_return_val_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER (renderer), FALSE);
 	g_return_val_if_fail (gtk_source_gutter_renderer_get_view (renderer) == NULL, FALSE);
 	g_return_val_if_fail (gtk_source_gutter_renderer_get_window_type (renderer) == GTK_TEXT_WINDOW_PRIVATE, FALSE);
 
@@ -739,8 +739,8 @@ gtk_source_gutter_reorder (GtkSourceGutter         *gutter,
 	Renderer *ret;
 	GList *retlist;
 
-	g_return_if_fail (GTK_IS_SOURCE_GUTTER (gutter));
-	g_return_if_fail (GTK_IS_SOURCE_GUTTER_RENDERER (renderer));
+	g_return_if_fail (GTK_SOURCE_IS_GUTTER (gutter));
+	g_return_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER (renderer));
 
 	if (renderer_find (gutter, renderer, &ret, &retlist))
 	{
@@ -769,8 +769,8 @@ gtk_source_gutter_remove (GtkSourceGutter         *gutter,
 	Renderer *ret;
 	GList *retlist;
 
-	g_return_if_fail (GTK_IS_SOURCE_GUTTER (gutter));
-	g_return_if_fail (GTK_IS_SOURCE_GUTTER_RENDERER (renderer));
+	g_return_if_fail (GTK_SOURCE_IS_GUTTER (gutter));
+	g_return_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER (renderer));
 
 	if (renderer_find (gutter, renderer, &ret, &retlist))
 	{
@@ -795,7 +795,7 @@ gtk_source_gutter_remove (GtkSourceGutter         *gutter,
 void
 gtk_source_gutter_queue_draw (GtkSourceGutter *gutter)
 {
-	g_return_if_fail (GTK_IS_SOURCE_GUTTER (gutter));
+	g_return_if_fail (GTK_SOURCE_IS_GUTTER (gutter));
 
 	do_redraw (gutter);
 }
@@ -1585,7 +1585,7 @@ gtk_source_gutter_set_padding (GtkSourceGutter *gutter,
                                gint             xpad,
                                gint             ypad)
 {
-	g_return_if_fail (GTK_IS_SOURCE_GUTTER (gutter));
+	g_return_if_fail (GTK_SOURCE_IS_GUTTER (gutter));
 
 	if (set_xpad (gutter, xpad, FALSE) || set_ypad (gutter, ypad, FALSE))
 	{
@@ -1598,7 +1598,7 @@ gtk_source_gutter_get_padding (GtkSourceGutter *gutter,
                                gint            *xpad,
                                gint            *ypad)
 {
-	g_return_if_fail (GTK_IS_SOURCE_GUTTER (gutter));
+	g_return_if_fail (GTK_SOURCE_IS_GUTTER (gutter));
 
 	if (xpad)
 	{

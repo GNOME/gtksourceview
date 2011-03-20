@@ -24,14 +24,14 @@
 #include "gtksourceview-i18n.h"
 #include "gtksourcepixbufhelper.h"
 
-#define GTK_SOURCE_GUTTER_RENDERER_PIXBUF_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE((object), GTK_TYPE_SOURCE_GUTTER_RENDERER_PIXBUF, GtkSourceGutterRendererPixbufPrivate))
+#define GTK_SOURCE_GUTTER_RENDERER_PIXBUF_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE((object), GTK_SOURCE_TYPE_GUTTER_RENDERER_PIXBUF, GtkSourceGutterRendererPixbufPrivate))
 
 struct _GtkSourceGutterRendererPixbufPrivate
 {
 	GtkSourcePixbufHelper *helper;
 };
 
-G_DEFINE_TYPE (GtkSourceGutterRendererPixbuf, gtk_source_gutter_renderer_pixbuf, GTK_TYPE_SOURCE_GUTTER_RENDERER)
+G_DEFINE_TYPE (GtkSourceGutterRendererPixbuf, gtk_source_gutter_renderer_pixbuf, GTK_SOURCE_TYPE_GUTTER_RENDERER)
 
 enum
 {
@@ -339,14 +339,14 @@ gtk_source_gutter_renderer_pixbuf_init (GtkSourceGutterRendererPixbuf *self)
 GtkSourceGutterRenderer *
 gtk_source_gutter_renderer_pixbuf_new ()
 {
-	return g_object_new (GTK_TYPE_SOURCE_GUTTER_RENDERER_PIXBUF, NULL);
+	return g_object_new (GTK_SOURCE_TYPE_GUTTER_RENDERER_PIXBUF, NULL);
 }
 
 void
 gtk_source_gutter_renderer_pixbuf_set_pixbuf (GtkSourceGutterRendererPixbuf *renderer,
                                               GdkPixbuf                     *pixbuf)
 {
-	g_return_if_fail (GTK_IS_SOURCE_GUTTER_RENDERER_PIXBUF (renderer));
+	g_return_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER_PIXBUF (renderer));
 	g_return_if_fail (renderer == NULL || GDK_IS_PIXBUF (pixbuf));
 
 	set_pixbuf (renderer, pixbuf);
@@ -365,7 +365,7 @@ gtk_source_gutter_renderer_pixbuf_set_pixbuf (GtkSourceGutterRendererPixbuf *ren
 GdkPixbuf *
 gtk_source_gutter_renderer_pixbuf_get_pixbuf (GtkSourceGutterRendererPixbuf *renderer)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_GUTTER_RENDERER_PIXBUF (renderer), NULL);
+	g_return_val_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER_PIXBUF (renderer), NULL);
 
 	return gtk_source_pixbuf_helper_get_pixbuf (renderer->priv->helper);
 }
@@ -374,7 +374,7 @@ void
 gtk_source_gutter_renderer_pixbuf_set_stock_id (GtkSourceGutterRendererPixbuf *renderer,
                                                 const gchar                   *stock_id)
 {
-	g_return_if_fail (GTK_IS_SOURCE_GUTTER_RENDERER_PIXBUF_CLASS (renderer));
+	g_return_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER_PIXBUF_CLASS (renderer));
 
 	set_stock_id (renderer, stock_id);
 }
@@ -382,7 +382,7 @@ gtk_source_gutter_renderer_pixbuf_set_stock_id (GtkSourceGutterRendererPixbuf *r
 const gchar *
 gtk_source_gutter_renderer_pixbuf_get_stock_id (GtkSourceGutterRendererPixbuf *renderer)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_GUTTER_RENDERER_PIXBUF (renderer), NULL);
+	g_return_val_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER_PIXBUF (renderer), NULL);
 
 	return gtk_source_pixbuf_helper_get_stock_id (renderer->priv->helper);
 }
@@ -391,7 +391,7 @@ void
 gtk_source_gutter_renderer_pixbuf_set_gicon (GtkSourceGutterRendererPixbuf *renderer,
                                              GIcon                         *icon)
 {
-	g_return_if_fail (GTK_IS_SOURCE_GUTTER_RENDERER_PIXBUF (renderer));
+	g_return_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER_PIXBUF (renderer));
 	g_return_if_fail (icon == NULL || G_IS_ICON (icon));
 
 	set_gicon (renderer, icon);
@@ -409,7 +409,7 @@ gtk_source_gutter_renderer_pixbuf_set_gicon (GtkSourceGutterRendererPixbuf *rend
 GIcon *
 gtk_source_gutter_renderer_pixbuf_get_gicon (GtkSourceGutterRendererPixbuf *renderer)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_GUTTER_RENDERER_PIXBUF (renderer), NULL);
+	g_return_val_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER_PIXBUF (renderer), NULL);
 
 	return gtk_source_pixbuf_helper_get_gicon (renderer->priv->helper);
 }
@@ -418,7 +418,7 @@ void
 gtk_source_gutter_renderer_pixbuf_set_icon_name (GtkSourceGutterRendererPixbuf *renderer,
                                                  const gchar                   *icon_name)
 {
-	g_return_if_fail (GTK_IS_SOURCE_GUTTER_RENDERER_PIXBUF (renderer));
+	g_return_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER_PIXBUF (renderer));
 
 	set_icon_name (renderer, icon_name);
 }
@@ -426,7 +426,7 @@ gtk_source_gutter_renderer_pixbuf_set_icon_name (GtkSourceGutterRendererPixbuf *
 const gchar *
 gtk_source_gutter_renderer_pixbuf_get_icon_name (GtkSourceGutterRendererPixbuf *renderer)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_GUTTER_RENDERER_PIXBUF (renderer), NULL);
+	g_return_val_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER_PIXBUF (renderer), NULL);
 
 	return gtk_source_pixbuf_helper_get_icon_name (renderer->priv->helper);
 }

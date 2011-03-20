@@ -64,7 +64,7 @@ gtk_source_mark_set_property (GObject      *object,
 {
 	GtkSourceMarkPrivate *priv;
 
-	g_return_if_fail (GTK_IS_SOURCE_MARK (object));
+	g_return_if_fail (GTK_SOURCE_IS_MARK (object));
 
 	priv = GTK_SOURCE_MARK (object)->priv;
 
@@ -90,7 +90,7 @@ gtk_source_mark_get_property (GObject    *object,
 {
 	GtkSourceMark *mark;
 
-	g_return_if_fail (GTK_IS_SOURCE_MARK (object));
+	g_return_if_fail (GTK_SOURCE_IS_MARK (object));
 
 	mark = GTK_SOURCE_MARK (object);
 
@@ -148,7 +148,7 @@ gtk_source_mark_class_init (GtkSourceMarkClass *klass)
 static void
 gtk_source_mark_init (GtkSourceMark *mark)
 {
-	mark->priv = G_TYPE_INSTANCE_GET_PRIVATE (mark, GTK_TYPE_SOURCE_MARK,
+	mark->priv = G_TYPE_INSTANCE_GET_PRIVATE (mark, GTK_SOURCE_TYPE_MARK,
 						  GtkSourceMarkPrivate);
 }
 
@@ -176,7 +176,7 @@ gtk_source_mark_new (const gchar *name,
 {
 	g_return_val_if_fail (category != NULL, NULL);
 
-	return GTK_SOURCE_MARK (g_object_new (GTK_TYPE_SOURCE_MARK, 
+	return GTK_SOURCE_MARK (g_object_new (GTK_SOURCE_TYPE_MARK, 
 					      "category", category, 
 					      "name", name,
 					      "left-gravity", TRUE,
@@ -196,7 +196,7 @@ gtk_source_mark_new (const gchar *name,
 const gchar *
 gtk_source_mark_get_category (GtkSourceMark *mark)
 {
-	g_return_val_if_fail (GTK_IS_SOURCE_MARK (mark), NULL);
+	g_return_val_if_fail (GTK_SOURCE_IS_MARK (mark), NULL);
 
 	return mark->priv->category;
 }
@@ -221,7 +221,7 @@ gtk_source_mark_next (GtkSourceMark *mark,
 {
 	GtkTextBuffer *buffer;
 
-	g_return_val_if_fail (GTK_IS_SOURCE_MARK (mark), NULL);
+	g_return_val_if_fail (GTK_SOURCE_IS_MARK (mark), NULL);
 
 	buffer = gtk_text_mark_get_buffer (GTK_TEXT_MARK (mark));
 	if (buffer != NULL)
@@ -251,7 +251,7 @@ gtk_source_mark_prev (GtkSourceMark *mark,
 {
 	GtkTextBuffer *buffer;
 
-	g_return_val_if_fail (GTK_IS_SOURCE_MARK (mark), NULL);
+	g_return_val_if_fail (GTK_SOURCE_IS_MARK (mark), NULL);
 
 	buffer = gtk_text_mark_get_buffer (GTK_TEXT_MARK (mark));
 	if (buffer != NULL)
