@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview 2.91.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-02-02 20:20+0100\n"
-"PO-Revision-Date: 2011-02-02 20:28+0100\n"
+"POT-Creation-Date: 2011-03-26 12:44+0100\n"
+"PO-Revision-Date: 2011-03-26 13:13+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian Bokmål <i18n-nb@lister.ping.uio.no>\n"
 "Language: \n"
@@ -657,14 +657,12 @@ msgid "Builtin"
 msgstr "Innebygget"
 
 #: ../data/language-specs/cg.lang.h:4
-#, fuzzy
 msgid "CG Shader Language"
-msgstr "Språk"
+msgstr "Språk for CG-skyggelegging"
 
 #: ../data/language-specs/cg.lang.h:19
-#, fuzzy
 msgid "Swizzle operator"
-msgstr "Type-operatorer"
+msgstr "Swizzle-operator"
 
 #: ../data/language-specs/cmake.lang.h:1
 msgid "Builtin Command"
@@ -1085,7 +1083,6 @@ msgid "Fortran 95"
 msgstr "Fortran 95"
 
 #: ../data/language-specs/fortran.lang.h:7
-#, fuzzy
 msgid "Intrinsic function"
 msgstr "Innebygget funksjon"
 
@@ -1561,9 +1558,8 @@ msgid "OOC"
 msgstr "OOC"
 
 #: ../data/language-specs/opal.lang.h:7
-#, fuzzy
 msgid "Keysymbol"
-msgstr "Symbol"
+msgstr "Nøkkelsymbol"
 
 #: ../data/language-specs/opal.lang.h:9
 #: ../data/language-specs/python.lang.h:12
@@ -2024,7 +2020,7 @@ msgstr "Tango"
 
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:380
 msgid "Document Words"
-msgstr ""
+msgstr "Ord i dokument"
 
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:465
 msgid "The provider name"
@@ -2057,15 +2053,15 @@ msgstr ""
 
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:500
 msgid "Minimum Word Size"
-msgstr ""
+msgstr "Minste ordstørrelse"
 
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:501
 msgid "The minimum word size to complete"
-msgstr ""
+msgstr "Minimumstørrelse på ord som skal fullføres"
 
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:510
 msgid "Interactive Delay"
-msgstr ""
+msgstr "Interaktiv pause"
 
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:511
 msgid "The delay before initiating interactive completion"
@@ -2077,7 +2073,7 @@ msgstr "Prioritet"
 
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:521
 msgid "Provider priority"
-msgstr ""
+msgstr "Prioritet for tilbyder"
 
 #: ../gtksourceview/gtksourcebuffer.c:234
 #: ../gtksourceview/gtksourceprintcompositor.c:505
@@ -2139,7 +2135,7 @@ msgstr "Stilschema"
 
 #: ../gtksourceview/gtksourcebuffer.c:315
 msgid "Undo manager"
-msgstr ""
+msgstr "Håndtering av angring"
 
 #: ../gtksourceview/gtksourcebuffer.c:316
 msgid "The buffer undo manager"
@@ -2156,13 +2152,12 @@ msgid "View"
 msgstr "Vis"
 
 #: ../gtksourceview/gtksourcecompletion.c:2221
-#, fuzzy
 msgid "The GtkSourceView bound to the completion"
-msgstr "GtkSourceBuffer-objekt som skal skrives ut"
+msgstr "GtkSourceView-objekt som er bundet til fullføring"
 
 #: ../gtksourceview/gtksourcecompletion.c:2236
 msgid "Remember Info Visibility"
-msgstr ""
+msgstr "Husk synlighet for informasjon"
 
 #: ../gtksourceview/gtksourcecompletion.c:2237
 msgid "Remember the last info window visibility state"
@@ -2174,7 +2169,7 @@ msgstr "Velg ved visning"
 
 #: ../gtksourceview/gtksourcecompletion.c:2251
 msgid "Select first proposal when completion is shown"
-msgstr ""
+msgstr "Velg første forslag når fullføring vises"
 
 #: ../gtksourceview/gtksourcecompletion.c:2265
 msgid "Show Headers"
@@ -2203,7 +2198,7 @@ msgstr ""
 
 #: ../gtksourceview/gtksourcecompletion.c:2311
 msgid "Auto Complete Delay"
-msgstr ""
+msgstr "Pause før automatisk fullføring"
 
 #: ../gtksourceview/gtksourcecompletion.c:2312
 msgid "Completion popup delay for interactive completion"
@@ -2311,31 +2306,31 @@ msgstr ""
 msgid ""
 "Highlighting a single line took too much time, syntax highlighting will be "
 "disabled"
-msgstr ""
+msgstr "Utheving av en enkelt linje tok for lang tid. Syntaksutheving vil bli slått av"
 
 #: ../gtksourceview/gtksourcecontextengine.c:6181
 #, c-format
 msgid "context '%s' cannot contain a \\%%{...@start} command"
-msgstr ""
+msgstr "kontekst «%s» kan ikke inneholde en \\%%{...@start}-kommando"
 
 #: ../gtksourceview/gtksourcecontextengine.c:6343
 #: ../gtksourceview/gtksourcecontextengine.c:6432
 #, c-format
 msgid "duplicated context id '%s'"
-msgstr ""
+msgstr "duplisert kontekst-ID «%s»"
 
 #: ../gtksourceview/gtksourcecontextengine.c:6547
 #: ../gtksourceview/gtksourcecontextengine.c:6607
-#, c-format
+#, c-format, fuzzy
 msgid ""
 "style override used with wildcard context reference in language '%s' in ref "
 "'%s'"
-msgstr ""
+msgstr "overstyring av stil brukt med "
 
 #: ../gtksourceview/gtksourcecontextengine.c:6621
 #, c-format
 msgid "invalid context reference '%s'"
-msgstr ""
+msgstr "ugyldig kontekstreferanse «%s»"
 
 #: ../gtksourceview/gtksourcecontextengine.c:6640
 #: ../gtksourceview/gtksourcecontextengine.c:6650
@@ -2350,105 +2345,105 @@ msgstr "Mangler hovedspråkdefinisjon (id = «%s».)"
 
 #: ../gtksourceview/gtksourcegutter.c:549
 msgid "The gutters' GtkSourceView"
-msgstr ""
+msgstr "GtkSourceView for «gutter»"
 
 #: ../gtksourceview/gtksourcegutter.c:561
-#: ../gtksourceview/gtksourcegutterrenderer.c:691
+#: ../gtksourceview/gtksourcegutterrenderer.c:703
 msgid "Window Type"
 msgstr "Vindustype"
 
 #: ../gtksourceview/gtksourcegutter.c:562
 msgid "The gutters text window type"
-msgstr ""
+msgstr "Tekstvindutype for «gutter»"
 
 #: ../gtksourceview/gtksourcegutter.c:573
-#: ../gtksourceview/gtksourcegutterrenderer.c:467
+#: ../gtksourceview/gtksourcegutterrenderer.c:479
 msgid "X Padding"
 msgstr "X-fyll"
 
 #: ../gtksourceview/gtksourcegutter.c:574
-#: ../gtksourceview/gtksourcegutterrenderer.c:468
+#: ../gtksourceview/gtksourcegutterrenderer.c:480
 msgid "The x-padding"
 msgstr "X-fyll"
 
 #: ../gtksourceview/gtksourcegutter.c:584
-#: ../gtksourceview/gtksourcegutterrenderer.c:483
+#: ../gtksourceview/gtksourcegutterrenderer.c:495
 msgid "Y Padding"
 msgstr "Y-fyll"
 
 #: ../gtksourceview/gtksourcegutter.c:585
-#: ../gtksourceview/gtksourcegutterrenderer.c:484
+#: ../gtksourceview/gtksourcegutterrenderer.c:496
 msgid "The y-padding"
 msgstr "Y-fyll"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:453
-#: ../gtksourceview/gtksourcegutterrenderer.c:454
+#: ../gtksourceview/gtksourcegutterrenderer.c:465
+#: ../gtksourceview/gtksourcegutterrenderer.c:466
 msgid "Visible"
 msgstr "Synlig"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:499
+#: ../gtksourceview/gtksourcegutterrenderer.c:511
 msgid "X Alignment"
 msgstr "X-justering"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:500
+#: ../gtksourceview/gtksourcegutterrenderer.c:512
 msgid "The x-alignment"
 msgstr "X-justering"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:515
+#: ../gtksourceview/gtksourcegutterrenderer.c:527
 msgid "Y Alignment"
 msgstr "Y-justering"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:516
+#: ../gtksourceview/gtksourcegutterrenderer.c:528
 msgid "The y-alignment"
 msgstr "Y-justering"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:658
+#: ../gtksourceview/gtksourcegutterrenderer.c:670
 msgid "The View"
 msgstr "Visningen"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:659
+#: ../gtksourceview/gtksourcegutterrenderer.c:671
 msgid "The view"
 msgstr "Visningen"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:675
+#: ../gtksourceview/gtksourcegutterrenderer.c:687
 msgid "Alignment Mode"
 msgstr "Justeringsmodus"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:676
+#: ../gtksourceview/gtksourcegutterrenderer.c:688
 msgid "The alignment mode"
 msgstr "Justeringsmodus"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:692
+#: ../gtksourceview/gtksourcegutterrenderer.c:704
 msgid "The window type"
 msgstr "Type vindu"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:700
+#: ../gtksourceview/gtksourcegutterrenderer.c:712
 msgid "Size"
 msgstr "Størrelse"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:701
+#: ../gtksourceview/gtksourcegutterrenderer.c:713
 msgid "The size"
 msgstr "Størrelsen"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:293
 #: ../gtksourceview/gtksourcemarkattributes.c:316
 msgid "Pixbuf"
-msgstr ""
+msgstr "Pixbuf"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:294
 #: ../gtksourceview/gtksourcemarkattributes.c:317
 msgid "The pixbuf"
-msgstr ""
+msgstr "Pixbuf"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:301
 #: ../gtksourceview/gtksourcemarkattributes.c:303
 msgid "Stock Id"
-msgstr ""
+msgstr "Standard-ID"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:302
 #: ../gtksourceview/gtksourcemarkattributes.c:304
 msgid "The stock id"
-msgstr ""
+msgstr "Standard-ID"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:309
 #: ../gtksourceview/gtksourcemarkattributes.c:329
@@ -2470,7 +2465,6 @@ msgid "The gicon"
 msgstr "GIcon"
 
 #: ../gtksourceview/gtksourcegutterrenderertext.c:396
-#, fuzzy
 msgid "The markup"
 msgstr "Merking"
 
@@ -2587,7 +2581,7 @@ msgstr "Skriv ut linjenummer"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:528
 msgid "Interval of printed line numbers (0 means no numbers)"
-msgstr ""
+msgstr "Intervall for visning av linjenummer (0 betyr ingen nummerering)"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:550
 msgid "Print Header"
@@ -2611,7 +2605,7 @@ msgstr "Navn på skrift for kropp"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:597
 msgid "Name of the font to use for the text body (e.g. \"Monospace 10\")"
-msgstr ""
+msgstr "Navn på skrift som skal brukes for tekst (f.eks «Monospace 10»)"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:620
 msgid "Line Numbers Font Name"
@@ -2619,7 +2613,7 @@ msgstr "Vis skriftnavn for linjenummer"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:621
 msgid "Name of the font to use for the line numbers (e.g. \"Monospace 10\")"
-msgstr ""
+msgstr "Navn på skrift som skal brukes for linjenummer (f.eks «Monospace 10»)"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:644
 msgid "Header Font Name"
@@ -2627,7 +2621,7 @@ msgstr "Navn på skrift for topptekst"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:645
 msgid "Name of the font to use for the page header (e.g. \"Monospace 10\")"
-msgstr ""
+msgstr "Navn på skrift som skal brukes for topptekst (f.eks «Monospace 10»)"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:668
 msgid "Footer Font Name"
@@ -2635,7 +2629,7 @@ msgstr "Navn på skrift for bunntekst"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:669
 msgid "Name of the font to use for the page footer (e.g. \"Monospace 10\")"
-msgstr ""
+msgstr "Navn på skrift som skal brukes for bunntekst (f.eks «Monospace 10»)"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:685
 msgid "Number of pages"
@@ -2645,7 +2639,7 @@ msgstr "Antall sider"
 msgid ""
 "The number of pages in the document (-1 means the document has not been "
 "completely paginated)."
-msgstr ""
+msgstr "Antall sider i dokumentet (-1 betyr at dokumentet ikke er ferdig paginert)."
 
 #: ../gtksourceview/gtksourcestyle.c:80
 msgid "Line background"
@@ -2734,12 +2728,12 @@ msgstr "Om attributten gjennomstreket er satt"
 #: ../gtksourceview/gtksourcestylescheme.c:194
 #: ../gtksourceview/gtksourcestylescheme.c:195
 msgid "Style scheme id"
-msgstr ""
+msgstr "Schema-ID for stil"
 
 #: ../gtksourceview/gtksourcestylescheme.c:207
 #: ../gtksourceview/gtksourcestylescheme.c:208
 msgid "Style scheme name"
-msgstr ""
+msgstr "Schemanavn for stil"
 
 #: ../gtksourceview/gtksourcestylescheme.c:220
 #: ../gtksourceview/gtksourcestylescheme.c:221
@@ -2749,7 +2743,7 @@ msgstr "Beskrivelse av stilschema"
 #: ../gtksourceview/gtksourcestylescheme.c:233
 #: ../gtksourceview/gtksourcestylescheme.c:234
 msgid "Style scheme filename"
-msgstr ""
+msgstr "Filnavn for schema for stil"
 
 #: ../gtksourceview/gtksourcestyleschememanager.c:152
 msgid "Style scheme search path"
@@ -2765,7 +2759,7 @@ msgstr "Schema-ID"
 
 #: ../gtksourceview/gtksourcestyleschememanager.c:162
 msgid "List of the ids of the available style schemes"
-msgstr ""
+msgstr "Liste med IDer for tilgjengelige stil-schema"
 
 #: ../gtksourceview/gtksourceundomanagerdefault.c:410
 msgid "Buffer"
