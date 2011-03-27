@@ -8,9 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=gtksourceview&component=general\n"
-"POT-Creation-Date: 2011-01-13 22:17+0000\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gtksourceview&component=general\n"
+"POT-Creation-Date: 2011-01-14 21:41+0000\n"
 "PO-Revision-Date: 2010-12-29 15:22+0600\n"
 "Last-Translator: Sahran <sahran.ug@gmail.com>\n"
 "Language-Team: Uyghur Computer Science Association <UKIJ@yahoogroups.com>\n"
@@ -20,7 +19,7 @@ msgstr ""
 
 #: ../data/glade/gtksourceview.xml.in.h:1
 msgid "After"
-msgstr "داۋامى"
+msgstr "كېيىن"
 
 #. Translators: "All" is used as a label in thestatus bar of the
 #. popup, telling that all completion pages are shown
@@ -134,7 +133,7 @@ msgstr "بۇلىن لوگىكىلىق قىممەت"
 #: ../data/language-specs/verilog.lang.h:2
 #: ../data/language-specs/vhdl.lang.h:4 ../data/language-specs/xml.lang.h:4
 msgid "Comment"
-msgstr "ئىزاھات"
+msgstr "پىكىر"
 
 #. map-to="def:others"
 #: ../data/language-specs/ada.lang.h:5 ../data/language-specs/asp.lang.h:5
@@ -403,7 +402,7 @@ msgstr "قېلىپ"
 #: ../data/language-specs/ruby.lang.h:19 ../data/language-specs/sh.lang.h:7
 #: ../data/language-specs/tcl.lang.h:2
 msgid "Scripts"
-msgstr "Scripts"
+msgstr "قوليازما"
 
 #: ../data/language-specs/awk.lang.h:5 ../data/language-specs/cmake.lang.h:8
 #: ../data/language-specs/cobol.lang.h:11
@@ -504,7 +503,7 @@ msgstr "سۆز بۆلىكى"
 #: ../gtksourceview/gtksourcecompletionitem.c:242
 #: ../gtksourceview/gtksourcegutterrenderertext.c:395
 msgid "Markup"
-msgstr "بەلگە"
+msgstr ""
 
 #: ../data/language-specs/boo.lang.h:1
 msgid "Boo"
@@ -884,7 +883,7 @@ msgstr "ئۆزگەرگەن قۇر"
 
 #: ../data/language-specs/diff.lang.h:4
 msgid "Diff"
-msgstr "پەرق"
+msgstr "سېلىشتۇرۇش(Diff)"
 
 #. Keyword
 #: ../data/language-specs/diff.lang.h:6
@@ -1139,7 +1138,7 @@ msgstr "GAP"
 
 #: ../data/language-specs/gdb-log.lang.h:1
 msgid "Address"
-msgstr "مەنزىل"
+msgstr "ئادرېس"
 
 #: ../data/language-specs/gdb-log.lang.h:2
 msgid "Filename"
@@ -1323,7 +1322,7 @@ msgstr "Octal تىپ"
 #: ../data/language-specs/haskell.lang.h:14
 #: ../data/language-specs/ruby.lang.h:22
 msgid "Symbol"
-msgstr "نومۇرى"
+msgstr "بەلگە"
 
 #: ../data/language-specs/haskell-literate.lang.h:1
 msgid "Literate Haskell"
@@ -1343,7 +1342,7 @@ msgstr "HTML"
 
 #: ../data/language-specs/html.lang.h:8 ../data/language-specs/xml.lang.h:12
 msgid "Tag"
-msgstr "قېلىپ"
+msgstr "خەتكۈش"
 
 #: ../data/language-specs/idl.lang.h:3
 msgid "IDL"
@@ -1385,7 +1384,7 @@ msgstr "JavaScript"
 
 #: ../data/language-specs/javascript.lang.h:12
 msgid "Object"
-msgstr "Object"
+msgstr "نەڭ"
 
 #: ../data/language-specs/javascript.lang.h:13
 msgid "Properties"
@@ -1414,7 +1413,7 @@ msgstr "ماتېماتىكا مودېلى"
 
 #: ../data/language-specs/latex.lang.h:8 ../data/language-specs/t2t.lang.h:16
 msgid "Verbatim"
-msgstr "Verbatim"
+msgstr "خەتمۇ-خەت"
 
 #: ../data/language-specs/latex.lang.h:9
 msgid "math-bound"
@@ -1726,7 +1725,7 @@ msgstr "جەريان شەرتى"
 
 #: ../data/language-specs/rpmspec.lang.h:8 ../data/language-specs/t2t.lang.h:4
 msgid "Header"
-msgstr "ماۋزۇ"
+msgstr "بەت قېشى"
 
 #: ../data/language-specs/rpmspec.lang.h:9
 msgid "Other Macro"
@@ -1796,7 +1795,7 @@ msgstr "sh"
 
 #: ../data/language-specs/sparql.lang.h:2
 msgid "Class"
-msgstr "خىل"
+msgstr "تىپ"
 
 #: ../data/language-specs/sparql.lang.h:5
 msgid "IRI"
@@ -2192,7 +2191,7 @@ msgstr "تاماملاش تىزىملىكىدە تەمىنلىگۈچى ۋە تە
 
 #: ../gtksourceview/gtksourcecompletion.c:2295
 msgid "Accelerators"
-msgstr "تېزلەتكۈچ"
+msgstr "تېزلەتكۈچلەر"
 
 #: ../gtksourceview/gtksourcecompletion.c:2296
 msgid "Number of proposal accelerators to show"
@@ -2299,17 +2298,14 @@ msgid ""
 "Cannot create a regex for all the transitions, the syntax highlighting "
 "process will be slower than usual.\n"
 "The error was: %s"
-msgstr ""
-"ھەممە ئايلاندۇرۇشقا مۇنتىزىم ئىپادە قۇرالمىدى، گرامماتىكا يورۇتۇش جەريانى "
-"ئادەتتىكى ئەھۋالدىن ئەھۋالدىن ئاستا.\n"
+msgstr "ھەممە ئايلاندۇرۇشقا مۇنتىزىم ئىپادە قۇرالمىدى، گرامماتىكا يورۇتۇش جەريانى ئادەتتىكى ئەھۋالدىن ئەھۋالدىن ئاستا.\n"
 "خاتالىق: %s"
 
 #: ../gtksourceview/gtksourcecontextengine.c:4928
 msgid ""
 "Highlighting a single line took too much time, syntax highlighting will be "
 "disabled"
-msgstr ""
-"پۈتۈن بىر قۇرنى يورۇتۇشقا كەتكەن ۋاقىت بەك كۆپ، گرامماتىكا يورۇتۇش چەكلىنىدۇ"
+msgstr "پۈتۈن بىر قۇرنى يورۇتۇشقا كەتكەن ۋاقىت بەك كۆپ، گرامماتىكا يورۇتۇش چەكلىنىدۇ"
 
 #: ../gtksourceview/gtksourcecontextengine.c:6181
 #, c-format
@@ -2328,9 +2324,7 @@ msgstr "تەكرارلانغان تىل ئورام id '%s'"
 msgid ""
 "style override used with wildcard context reference in language '%s' in ref "
 "'%s'"
-msgstr ""
-"'%s' تىلى '%s' دىن پايدىلانغاندا ئورتاق بەلگە تىل ئورامى بىلەن بىللە "
-"ئىشلىتىدىغان ئۇسلۇب قاپلىنىدۇ"
+msgstr "'%s' تىلى '%s' دىن پايدىلانغاندا ئورتاق بەلگە تىل ئورامى بىلەن بىللە ئىشلىتىدىغان ئۇسلۇب قاپلىنىدۇ"
 
 #: ../gtksourceview/gtksourcecontextengine.c:6621
 #, c-format
@@ -2443,7 +2437,7 @@ msgstr "بۇ pixbuf"
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:301
 #: ../gtksourceview/gtksourcemarkattributes.c:303
 msgid "Stock Id"
-msgstr "قالدۇرۇلغان Id"
+msgstr "stock Id"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:302
 #: ../gtksourceview/gtksourcemarkattributes.c:304
@@ -2458,7 +2452,7 @@ msgstr "سىنبەلگە ئاتى"
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:310
 #: ../gtksourceview/gtksourcemarkattributes.c:330
 msgid "The icon name"
-msgstr "سىنبەلگە ئىسمى"
+msgstr "سىنبەلگىنىڭ ئاتى"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:317
 #: ../gtksourceview/gtksourcemarkattributes.c:342
@@ -2475,7 +2469,7 @@ msgstr "بۇ بەلگە"
 
 #: ../gtksourceview/gtksourcegutterrenderertext.c:404
 msgid "The text"
-msgstr "بۇ تېكست"
+msgstr "بۇ تېكىست"
 
 #: ../gtksourceview/gtksourcelanguage.c:228
 #: ../gtksourceview/gtksourcelanguage.c:229
@@ -2569,7 +2563,7 @@ msgstr "بوشلۇق بىلەن خاتىرىلىنىدىغان tab ھەرپىن�
 
 #: ../gtksourceview/gtksourceprintcompositor.c:484
 msgid "Wrap Mode"
-msgstr "قۇر قاتلاش ھالىتى"
+msgstr "قاتلاش ھالىتى"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:485
 msgid ""
@@ -2644,8 +2638,7 @@ msgstr "بەت سانى"
 msgid ""
 "The number of pages in the document (-1 means the document has not been "
 "completely paginated)."
-msgstr ""
-"پۈتۈكتىكى بەت سانى (-1 پۈتۈكنىڭ تولۇق بەتكە ئايرىلمىغانلىقىنى بىلدۈرىدۇ)"
+msgstr "پۈتۈكتىكى بەت سانى (-1 پۈتۈكنىڭ تولۇق بەتكە ئايرىلمىغانلىقىنى بىلدۈرىدۇ)"
 
 #: ../gtksourceview/gtksourcestyle.c:80
 msgid "Line background"
@@ -2717,7 +2710,7 @@ msgstr "يانتۇ خاسلىق تەڭشىلەمدۇ يوق"
 
 #: ../gtksourceview/gtksourcestyle.c:176
 msgid "Underline set"
-msgstr "ئاستى سىزىق تەڭشىكى"
+msgstr "ئاستى سىزىقىنى بەلگىلەش"
 
 #: ../gtksourceview/gtksourcestyle.c:177
 msgid "Whether underline attribute is set"
@@ -2725,7 +2718,7 @@ msgstr "ئاستى سىزىق خاسلىقى تەڭشىلەمدۇ يوق"
 
 #: ../gtksourceview/gtksourcestyle.c:184
 msgid "Strikethrough set"
-msgstr "ئۆچۈرۈش سىزىقىنى تەڭشىكى"
+msgstr "ئۆچۈرۈش سىزىقىنى بەلگىلەش"
 
 #: ../gtksourceview/gtksourcestyle.c:185
 msgid "Whether strikethrough attribute is set"
@@ -2843,9 +2836,7 @@ msgstr "ئىدراكلىق Home/End"
 msgid ""
 "HOME and END keys move to first/last non whitespace characters on line "
 "before going to the start/end of the line"
-msgstr ""
-"HOME ۋە END كۇنۇپكىسى قۇرنىڭ باش/ئاخىرىغا يۆتكىلىشتىن ئىلگىرى قۇر ئىچىدىكى "
-"بىرىنچى/ئاخىرقى ھەرپكە يۆتكىلىدۇ"
+msgstr "HOME ۋە END كۇنۇپكىسى قۇرنىڭ باش/ئاخىرىغا يۆتكىلىشتىن ئىلگىرى قۇر ئىچىدىكى بىرىنچى/ئاخىرقى ھەرپكە يۆتكىلىدۇ"
 
 #: ../gtksourceview/gtksourceview.c:431
 msgid "Highlight current line"
@@ -2873,9 +2864,9 @@ msgstr "بوشلۇقنى كۆرۈنىدىغان قىلىپ تەڭشەمدۇ يو
 
 #: ../gtksourceview/gtksourceview-i18n.c:74
 msgid "translator-credits"
-msgstr ""
-"Gheyret Kenji <gheyret@gmail.com>\n"
-"Sahran<sahran@live.com>"
+msgstr "Gheyret Kenji <gheyret@gmail.com>\n"
+"Sahran<sahran@live.com>\n"
+"Muhemmed Erdem <misran_erdem@hotmail.com>"
 
 #~ msgid "Id"
 #~ msgstr "Id"
