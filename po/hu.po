@@ -1,18 +1,16 @@
-# translation of gtksourceview.HEAD.hu.po to Hungarian
 # Hungarian translation of gtksourceview.
 # Copyright (C) 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011 Free Software Foundation, Inc.
 # This file is distributed under the same license as the gtksourceview package.
 #
-# Andras Timar <timar@gnome.hu>, 2003.
-# Laszlo Dvornik <dvornik@gnome.hu>, 2004.
-# Gabor Kelemen <kelemeng@gnome.hu>, 2005, 2006, 2007, 2008, 2009.
-# Gabor Kelemen <kelemeng at gnome dot hu>, 2009, 2010, 2011.
+# Andras Timar <timar at gnome dot hu>, 2003.
+# Laszlo Dvornik <dvornik at gnome dot hu>, 2004.
+# Gabor Kelemen <kelemeng at gnome dot hu>, 2005, 2006, 2007, 2008, 2009, 2010, 2011.
 msgid ""
 msgstr ""
-"Project-Id-Version: gtksourceview.HEAD.hu\n"
+"Project-Id-Version: gtksourceview master\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-03-15 03:25+0100\n"
-"PO-Revision-Date: 2011-03-15 03:25+0100\n"
+"PO-Revision-Date: 2011-04-01 23:04+0200\n"
 "Last-Translator: Gabor Kelemen <kelemeng at gnome dot hu>\n"
 "Language-Team: Hungarian <gnome at fsf dot hu>\n"
 "Language: \n"
@@ -2120,7 +2118,7 @@ msgstr "Nyelvobjektum, ahonnan a kiemelési minták beszerezhetőek"
 
 #: ../gtksourceview/gtksourcebuffer.c:284
 msgid "Can undo"
-msgstr "Visszavonhat"
+msgstr "A visszavonás lehetséges"
 
 #: ../gtksourceview/gtksourcebuffer.c:285
 msgid "Whether Undo operation is possible"
@@ -2128,11 +2126,11 @@ msgstr "A Visszavonás művelet lehetséges-e"
 
 #: ../gtksourceview/gtksourcebuffer.c:292
 msgid "Can redo"
-msgstr "Újra"
+msgstr "A mégis lehetséges"
 
 #: ../gtksourceview/gtksourcebuffer.c:293
 msgid "Whether Redo operation is possible"
-msgstr "Az Újra művelet lehetséges-e"
+msgstr "A mégis művelet lehetséges-e"
 
 #: ../gtksourceview/gtksourcebuffer.c:307
 #: ../gtksourceview/gtksourcebuffer.c:308
@@ -2182,8 +2180,7 @@ msgid "Show Headers"
 msgstr "Fejlécek megjelenítése"
 
 #: ../gtksourceview/gtksourcecompletion.c:2266
-msgid ""
-"Show provider headers when proposals from multiple providers are available"
+msgid "Show provider headers when proposals from multiple providers are available"
 msgstr ""
 "Szolgáltatófejlécek megjelenítése, ha több szolgáltató javaslatai is "
 "elérhetők"
@@ -2579,8 +2576,7 @@ msgid "Wrap Mode"
 msgstr "Sortörés módja"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:485
-msgid ""
-"Whether to wrap lines never, at word boundaries, or at character boundaries."
+msgid "Whether to wrap lines never, at word boundaries, or at character boundaries."
 msgstr "A sortörés módja: soha, szóhatáron vagy karakterhatáron."
 
 #: ../gtksourceview/gtksourceprintcompositor.c:506
@@ -2633,8 +2629,7 @@ msgstr "Fejléc betűkészlete"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:645
 msgid "Name of the font to use for the page header (e.g. \"Monospace 10\")"
-msgstr ""
-"Az oldalfejléchez használandó betűkészlet neve (például „Monospace 10”)"
+msgstr "Az oldalfejléchez használandó betűkészlet neve (például „Monospace 10”)"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:668
 msgid "Footer Font Name"
@@ -2883,6 +2878,7 @@ msgstr "A szóközök megjelenítésének és annak módjának beállítása"
 #: ../gtksourceview/gtksourceview-i18n.c:74
 msgid "translator-credits"
 msgstr ""
-"Dvornik László <dvornik@gnome.hu>\n"
-"Kelemen Gábor <kelemeng@gnome.hu>\n"
-"Tímár András <timar@gnome.hu>"
+"Dvornik László <dvornik at gnome dot hu>\n"
+"Kelemen Gábor <kelemeng at gnome dot hu>\n"
+"Tímár András <timar at gnome dot hu>"
+
