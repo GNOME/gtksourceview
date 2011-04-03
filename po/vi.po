@@ -1,6 +1,6 @@
 # Vietnamese translation for GTK Source View.
 # Copyright © 2009 GNOME i18n Project for Vietnamese.
-# Nguyễn Thái Ngọc Duy <pclouds@gmail.com>, 2002, 2007.
+# Nguyễn Thái Ngọc Duy <pclouds@gmail.com>, 2002,2007,2011.
 # Clytie Siddall <clytie@riverland.net.au>, 2005-2009.
 #
 msgid ""
@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&component=general\n"
 "POT-Creation-Date: 2011-01-13 13:12+0000\n"
-"PO-Revision-Date: 2009-02-07 17:22+0930\n"
+"PO-Revision-Date: 2011-04-03 14:17+0700\n"
 "Last-Translator: Clytie Siddall <clytie@riverland.net.au>\n"
 "Language-Team: Vietnamese <vi-VN@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -20,76 +20,68 @@ msgstr ""
 
 #: ../data/glade/gtksourceview.xml.in.h:1
 msgid "After"
-msgstr ""
+msgstr "Sau"
 
 #. Translators: "All" is used as a label in thestatus bar of the
 #. popup, telling that all completion pages are shown
 #: ../data/glade/gtksourceview.xml.in.h:2
 #: ../gtksourceview/gtksourcecompletion.c:648
 msgid "All"
-msgstr ""
+msgstr "Tất cả"
 
 #: ../data/glade/gtksourceview.xml.in.h:3
 msgid "Always"
-msgstr ""
+msgstr "Luôn luôn"
 
 #: ../data/glade/gtksourceview.xml.in.h:4
 msgid "Before"
-msgstr ""
+msgstr "Trước"
 
 #: ../data/glade/gtksourceview.xml.in.h:5
-#, fuzzy
 #| msgid "Variable"
 msgid "Disabled"
-msgstr "Biến"
+msgstr "Tắt"
 
 #: ../data/glade/gtksourceview.xml.in.h:6
-#, fuzzy
 #| msgid "Sources"
 msgid "GtkSourceView"
-msgstr "Nguồn"
+msgstr "GtkSourceView"
 
 #: ../data/glade/gtksourceview.xml.in.h:7
-#, fuzzy
 #| msgid "POD heading"
 msgid "Leading"
-msgstr "Tiêu đề POD"
+msgstr "Đầu"
 
 #: ../data/glade/gtksourceview.xml.in.h:8
-#, fuzzy
 #| msgid "Underline"
 msgid "Newline"
-msgstr "Gạch dưới"
+msgstr "Dòng mới"
 
 #: ../data/glade/gtksourceview.xml.in.h:9
 msgid "Non Breaking Whitespace"
-msgstr ""
+msgstr "Khoảng trắng không ngắt"
 
 #: ../data/glade/gtksourceview.xml.in.h:10
-#, fuzzy
 #| msgid "Draw Spaces"
 msgid "Space"
-msgstr "Vẽ khoảng trắng"
+msgstr "Khoảng trắng"
 
 #: ../data/glade/gtksourceview.xml.in.h:11
-#, fuzzy
 #| msgid "Tag"
 msgid "Tab"
-msgstr "Thẻ"
+msgstr "Tab"
 
 #: ../data/glade/gtksourceview.xml.in.h:12
 #: ../gtksourceview/gtksourcecompletionitem.c:255
 #: ../gtksourceview/gtksourcegutterrenderertext.c:401
-#, fuzzy
 #| msgid "Text2Tags"
 msgid "Text"
-msgstr "Văn-bản-sang-Thẻ"
+msgstr "Văn bản"
 
 #: ../data/glade/gtksourceview.xml.in.h:13
-#, fuzzy
 #| msgid "Trailing Tab"
 msgid "Trailing"
-msgstr "Khoảng tab theo sau"
+msgstr "Đuôi"
 
 #: ../data/language-specs/ada.lang.h:1
 msgid "Ada"
@@ -441,7 +433,7 @@ msgstr "awk"
 
 #: ../data/language-specs/bennugd.lang.h:1
 msgid "BennuGD"
-msgstr ""
+msgstr "BennuGD"
 
 #. A character constant: 'c'
 #: ../data/language-specs/bennugd.lang.h:3 ../data/language-specs/c.lang.h:3
@@ -499,19 +491,17 @@ msgstr "Bộ nhận diện"
 
 #: ../data/language-specs/bibtex.lang.h:1
 msgid "BibTeX"
-msgstr ""
+msgstr "BibTeX"
 
 #: ../data/language-specs/bibtex.lang.h:2
-#, fuzzy
 #| msgid "Entity"
 msgid "Entries"
-msgstr "Thực thể"
+msgstr "Mục"
 
 #: ../data/language-specs/bibtex.lang.h:3
-#, fuzzy
 #| msgid "File"
 msgid "Field"
-msgstr "Tập tin"
+msgstr "Trường"
 
 #: ../data/language-specs/bibtex.lang.h:4
 #: ../data/language-specs/docbook.lang.h:5 ../data/language-specs/dtd.lang.h:2
@@ -659,24 +649,22 @@ msgid "Octal number"
 msgstr "Số bát phân"
 
 #: ../data/language-specs/c.lang.h:16
-#, fuzzy
 #| msgid "Signal Name"
 msgid "Signal name"
 msgstr "Tên tín hiệu"
 
 #: ../data/language-specs/c.lang.h:18
 msgid "Standard stream"
-msgstr ""
+msgstr "Luồng chuẩn"
 
 #: ../data/language-specs/c.lang.h:21
 msgid "printf Conversion"
 msgstr "Chuyển đổi printf"
 
 #: ../data/language-specs/cg.lang.h:1
-#, fuzzy
 #| msgid "Encoding"
 msgid "Bindings"
-msgstr "Bảng mã"
+msgstr ""
 
 #: ../data/language-specs/cg.lang.h:3 ../data/language-specs/erlang.lang.h:3
 #: ../data/language-specs/ruby.lang.h:4
@@ -684,25 +672,21 @@ msgid "Builtin"
 msgstr "Dựng sẵn"
 
 #: ../data/language-specs/cg.lang.h:4
-#, fuzzy
 #| msgid "Language"
 msgid "CG Shader Language"
-msgstr "Ngôn ngữ"
+msgstr ""
 
 #: ../data/language-specs/cg.lang.h:19
-#, fuzzy
 #| msgid "Type Operators"
 msgid "Swizzle operator"
-msgstr "Toán tử kiểu"
+msgstr "Toán tử Swizzle"
 
 #: ../data/language-specs/cmake.lang.h:1
-#, fuzzy
 #| msgid "Bulit-in Command"
 msgid "Builtin Command"
 msgstr "Lệnh dựng sẵn"
 
 #: ../data/language-specs/cmake.lang.h:2 ../data/language-specs/glsl.lang.h:3
-#, fuzzy
 #| msgid "Bulit-in Variable"
 msgid "Builtin Variable"
 msgstr "Biến dựng sẵn"
@@ -726,10 +710,9 @@ msgid "Control Keyword"
 msgstr "Từ khóa Điều khiển"
 
 #: ../data/language-specs/cobol.lang.h:1
-#, fuzzy
 #| msgid "Cobalt"
 msgid "Cobol"
-msgstr "Cobalt"
+msgstr "Cobol"
 
 #. Any statement
 #: ../data/language-specs/cobol.lang.h:9 ../data/language-specs/def.lang.h:55
@@ -787,25 +770,22 @@ msgstr "Quy tắc at"
 
 #: ../data/language-specs/cuda.lang.h:1
 msgid "CUDA"
-msgstr ""
+msgstr "CUDA"
 
 #: ../data/language-specs/cuda.lang.h:3
-#, fuzzy
 #| msgid "Function"
 msgid "Device Functions"
-msgstr "Hàm"
+msgstr "Hàm thiết bị"
 
 #: ../data/language-specs/cuda.lang.h:4
-#, fuzzy
 #| msgid "Function"
 msgid "Global Functions"
-msgstr "Hàm"
+msgstr "Hàm toàn cục"
 
 #: ../data/language-specs/cuda.lang.h:5
-#, fuzzy
 #| msgid "Special Variable"
 msgid "Global Variables"
-msgstr "Biến đặc biệt"
+msgstr "Biến toàn cục"
 
 #. A base-N number: 0xFFFF
 #: ../data/language-specs/def.lang.h:2 ../data/language-specs/python.lang.h:1
@@ -881,10 +861,9 @@ msgid ".desktop"
 msgstr ".desktop"
 
 #: ../data/language-specs/desktop.lang.h:2
-#, fuzzy
 #| msgid "Conditional Macro"
 msgid "Additional Category"
-msgstr "Vĩ lệnh có điều kiện"
+msgstr "Phân loại bổ sung"
 
 #: ../data/language-specs/desktop.lang.h:4
 msgid "Encoding"
@@ -905,16 +884,14 @@ msgid "Key"
 msgstr "Khoá"
 
 #: ../data/language-specs/desktop.lang.h:10
-#, fuzzy
 #| msgid "Category"
 msgid "Main Category"
-msgstr "Loại"
+msgstr "Phân loại chính"
 
 #: ../data/language-specs/desktop.lang.h:13
-#, fuzzy
 #| msgid "Reserved keyword"
 msgid "Reserved Category"
-msgstr "Từ khoá dành riêng"
+msgstr "Phân loại dành riêng"
 
 #: ../data/language-specs/desktop.lang.h:14
 msgid "Translation"
@@ -1088,16 +1065,14 @@ msgid "Erlang"
 msgstr "Erlang"
 
 #: ../data/language-specs/fcl.lang.h:1
-#, fuzzy
 #| msgid "Code Block"
 msgid "Block"
-msgstr "Khối mã"
+msgstr "Khối"
 
 #: ../data/language-specs/fcl.lang.h:4
-#, fuzzy
 #| msgid "OCL"
 msgid "FCL"
-msgstr "OCL"
+msgstr "FCL"
 
 #: ../data/language-specs/fcl.lang.h:5 ../data/language-specs/fortran.lang.h:5
 #: ../data/language-specs/ini.lang.h:6 ../data/language-specs/octave.lang.h:5
@@ -1138,10 +1113,9 @@ msgid "Fortran 95"
 msgstr "Fortran 95"
 
 #: ../data/language-specs/fortran.lang.h:7
-#, fuzzy
 #| msgid "Builtin Function"
 msgid "Intrinsic function"
-msgstr "Hàm dựng sẵn"
+msgstr ""
 
 #: ../data/language-specs/fsharp.lang.h:3
 #: ../data/language-specs/ocaml.lang.h:3
@@ -1150,7 +1124,7 @@ msgstr "Từ khoá hàm dựng sẵn"
 
 #: ../data/language-specs/fsharp.lang.h:8
 msgid "F#"
-msgstr ""
+msgstr "F#"
 
 #: ../data/language-specs/fsharp.lang.h:9
 #: ../data/language-specs/ocaml.lang.h:9
@@ -1193,51 +1167,45 @@ msgstr "GAP"
 
 #: ../data/language-specs/gdb-log.lang.h:1
 msgid "Address"
-msgstr ""
+msgstr "Địa chỉ"
 
 #: ../data/language-specs/gdb-log.lang.h:2
-#, fuzzy
 #| msgid "File"
 msgid "Filename"
-msgstr "Tập tin"
+msgstr "Tên tập tin"
 
 #: ../data/language-specs/gdb-log.lang.h:3
-#, fuzzy
 #| msgid "Number"
 msgid "Frame Number"
-msgstr "Số"
+msgstr "Số khung"
 
 #: ../data/language-specs/gdb-log.lang.h:5
 msgid "GDB Log"
-msgstr ""
+msgstr "Log GDB"
 
 #: ../data/language-specs/gdb-log.lang.h:6
 msgid "Incomplete Sequence"
-msgstr ""
+msgstr "Chuỗi không đầy đủ"
 
 #: ../data/language-specs/gdb-log.lang.h:7
-#, fuzzy
 #| msgid "Itemized list"
 msgid "Optimized Out"
-msgstr "Danh sách từng mục"
+msgstr ""
 
 #: ../data/language-specs/gdb-log.lang.h:9
-#, fuzzy
 #| msgid "Properties"
 msgid "Prompt"
-msgstr "Thuộc tính"
+msgstr "Dấu nhắc"
 
 #: ../data/language-specs/gdb-log.lang.h:11
-#, fuzzy
 #| msgid "Section"
 msgid "Thread Action"
-msgstr "Phần"
+msgstr ""
 
 #: ../data/language-specs/gdb-log.lang.h:12
-#, fuzzy
 #| msgid "Print Header"
 msgid "Thread Header"
-msgstr "In đầu trang"
+msgstr ""
 
 #: ../data/language-specs/glsl.lang.h:1 ../data/language-specs/python.lang.h:3
 msgid "Builtin Constant"
@@ -1248,14 +1216,13 @@ msgid "OpenGL Shading Language"
 msgstr ""
 
 #: ../data/language-specs/glsl.lang.h:8
-#, fuzzy
 #| msgid "Reserved keyword"
 msgid "Reserved Keywords"
 msgstr "Từ khoá dành riêng"
 
 #: ../data/language-specs/go.lang.h:9
 msgid "Go"
-msgstr ""
+msgstr "Go"
 
 #: ../data/language-specs/gtk-doc.lang.h:2
 msgid "Deprecated"
@@ -1452,7 +1419,6 @@ msgstr "Bộ xây dựng"
 
 # Name: don't translate / Tên: đừng dịch
 #: ../data/language-specs/javascript.lang.h:9
-#, fuzzy
 #| msgid "Javascript"
 msgid "JavaScript"
 msgstr "JavaScript"
@@ -1466,10 +1432,9 @@ msgid "Properties"
 msgstr "Thuộc tính"
 
 #: ../data/language-specs/javascript.lang.h:16
-#, fuzzy
 #| msgid "Predefined Variable"
 msgid "Undefined Value"
-msgstr "Biến định sẵn"
+msgstr "Giá trị không xác định"
 
 # Literal: don't translate / Nghĩa chữ: đừng dịch
 #: ../data/language-specs/latex.lang.h:3
@@ -1577,32 +1542,28 @@ msgid "targets"
 msgstr "đích"
 
 #: ../data/language-specs/mallard.lang.h:1
-#, fuzzy
 #| msgid "GUI Elements"
 msgid "Block Elements"
-msgstr "Phần tử Giao diện"
+msgstr "Phần tử khối"
 
 #: ../data/language-specs/mallard.lang.h:2
-#, fuzzy
 #| msgid "GUI Elements"
 msgid "Inline Elements"
-msgstr "Phần tử Giao diện"
+msgstr ""
 
 #: ../data/language-specs/mallard.lang.h:3
 msgid "Mallard"
-msgstr ""
+msgstr "Mallard"
 
 #: ../data/language-specs/mallard.lang.h:5
-#, fuzzy
 #| msgid "Header Elements"
 msgid "Page Elements"
-msgstr "Phần tử Đầu trang"
+msgstr "Phần tử trang"
 
 #: ../data/language-specs/mallard.lang.h:6
-#, fuzzy
 #| msgid "Formatting Elements"
 msgid "Section Elements"
-msgstr "Phần tử Định dạng"
+msgstr "Phần tử phần"
 
 # Name: don't translate / Tên: đừng dịch
 #: ../data/language-specs/nemerle.lang.h:11
@@ -1646,16 +1607,14 @@ msgid "Octave"
 msgstr "Tám câu"
 
 #: ../data/language-specs/ooc.lang.h:14
-#, fuzzy
 #| msgid "OCL"
 msgid "OOC"
-msgstr "OCL"
+msgstr "OOC"
 
 #: ../data/language-specs/opal.lang.h:7
-#, fuzzy
 #| msgid "Symbol"
 msgid "Keysymbol"
-msgstr "Ký hiệu"
+msgstr ""
 
 #: ../data/language-specs/opal.lang.h:9
 #: ../data/language-specs/python.lang.h:12
@@ -1663,10 +1622,9 @@ msgid "Module Handler"
 msgstr "Bộ xử lý mô-đun"
 
 #: ../data/language-specs/opal.lang.h:10
-#, fuzzy
 #| msgid "Octal"
 msgid "Opal"
-msgstr "Bát phân"
+msgstr ""
 
 # Name: don't translate / Tên: đừng dịch
 #: ../data/language-specs/pascal.lang.h:5
@@ -1725,10 +1683,9 @@ msgid "System Command"
 msgstr "Lệnh hệ thống"
 
 #: ../data/language-specs/php.lang.h:3
-#, fuzzy
 #| msgid "Function"
 msgid "Common Function"
-msgstr "Hàm"
+msgstr "Hàm chung"
 
 #: ../data/language-specs/php.lang.h:18
 msgid "PHP"
@@ -1757,10 +1714,9 @@ msgstr "Bản dịch gettext"
 
 # Name: don't translate / Tên: đừng dịch
 #: ../data/language-specs/prolog.lang.h:7
-#, fuzzy
 #| msgid "Verilog"
 msgid "Prolog"
-msgstr "Verilog"
+msgstr "Prolog"
 
 #: ../data/language-specs/python.lang.h:5
 msgid "Builtin Object"
@@ -1878,10 +1834,9 @@ msgid "Scheme"
 msgstr "Lược đồ"
 
 #: ../data/language-specs/scilab.lang.h:8
-#, fuzzy
 #| msgid "Special"
 msgid "Scilab"
-msgstr "Đặc biệt"
+msgstr "Scilab"
 
 #: ../data/language-specs/sh.lang.h:2
 msgid "Common Commands"
@@ -1901,43 +1856,38 @@ msgid "sh"
 msgstr "sh"
 
 #: ../data/language-specs/sparql.lang.h:2
-#, fuzzy
 #| msgid "Classic"
 msgid "Class"
-msgstr "Cổ điển"
+msgstr "Lớp"
 
 #: ../data/language-specs/sparql.lang.h:5
 msgid "IRI"
-msgstr ""
+msgstr "IRI"
 
 #: ../data/language-specs/sparql.lang.h:6
 msgid "Individual"
 msgstr ""
 
 #: ../data/language-specs/sparql.lang.h:8
-#, fuzzy
 #| msgid "BOZ Literal"
 msgid "Literal"
-msgstr "Nghĩa chữ BOZ"
+msgstr "Nghĩa đen"
 
 #: ../data/language-specs/sparql.lang.h:11
-#, fuzzy
 #| msgid "Deprecated"
 msgid "Predicate"
-msgstr "Bị phản đối"
+msgstr ""
 
 #: ../data/language-specs/sparql.lang.h:12
-#, fuzzy
 #| msgid "Name"
 msgid "QName"
-msgstr "Tên"
+msgstr "QName"
 
 # Name: don't translate / Tên: đừng dịch
 #: ../data/language-specs/sparql.lang.h:13
-#, fuzzy
 #| msgid "SQL"
 msgid "SPARQL"
-msgstr "SQL"
+msgstr "SPARQL"
 
 #: ../data/language-specs/sql.lang.h:7
 msgid "No idea what it is"
@@ -1949,17 +1899,15 @@ msgid "SQL"
 msgstr "SQL"
 
 #: ../data/language-specs/systemverilog.lang.h:4
-#, fuzzy
 #| msgid "System Command"
 msgid "System Task"
-msgstr "Lệnh hệ thống"
+msgstr ""
 
 # Name: don't translate / Tên: đừng dịch
 #: ../data/language-specs/systemverilog.lang.h:5
-#, fuzzy
 #| msgid "Verilog"
 msgid "SystemVerilog"
-msgstr "Verilog"
+msgstr "SystemVerilog"
 
 #: ../data/language-specs/t2t.lang.h:2 ../gtksourceview/gtksourcestyle.c:104
 #: ../gtksourceview/gtksourcestyle.c:105
@@ -2161,7 +2109,7 @@ msgstr ""
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:470
 #: ../gtksourceview/gtksourcecompletionitem.c:268
 msgid "Icon"
-msgstr ""
+msgstr "Biểu tượng"
 
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:471
 msgid "The provider icon"
@@ -2201,7 +2149,7 @@ msgstr ""
 
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:518
 msgid "Priority"
-msgstr ""
+msgstr "Độ ưu tiên"
 
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:519
 msgid "Provider priority"
@@ -2267,7 +2215,7 @@ msgstr "Lược đồ kiểu dáng"
 
 #: ../gtksourceview/gtksourcebuffer.c:315
 msgid "Undo manager"
-msgstr ""
+msgstr "Trình quản lý hoàn lại"
 
 #: ../gtksourceview/gtksourcebuffer.c:316
 msgid "The buffer undo manager"
@@ -2284,10 +2232,9 @@ msgid "View"
 msgstr ""
 
 #: ../gtksourceview/gtksourcecompletion.c:2222
-#, fuzzy
 #| msgid "The GtkSourceBuffer object to print"
 msgid "The GtkSourceView bound to the completion"
-msgstr "Đối tượng GtkSourceBuffer (vùng đậm nguồn Gtk) cần in"
+msgstr ""
 
 #: ../gtksourceview/gtksourcecompletion.c:2237
 msgid "Remember Info Visibility"
@@ -2298,20 +2245,18 @@ msgid "Remember the last info window visibility state"
 msgstr ""
 
 #: ../gtksourceview/gtksourcecompletion.c:2251
-#, fuzzy
 #| msgid "Section 1"
 msgid "Select on Show"
-msgstr "Phần 1"
+msgstr ""
 
 #: ../gtksourceview/gtksourcecompletion.c:2252
 msgid "Select first proposal when completion is shown"
 msgstr ""
 
 #: ../gtksourceview/gtksourcecompletion.c:2266
-#, fuzzy
 #| msgid "Show Line Marks"
 msgid "Show Headers"
-msgstr "Hiện dấu dòng"
+msgstr ""
 
 #: ../gtksourceview/gtksourcecompletion.c:2267
 msgid ""
@@ -2327,10 +2272,9 @@ msgid "Show provider and proposal icons in the completion popup"
 msgstr ""
 
 #: ../gtksourceview/gtksourcecompletion.c:2295
-#, fuzzy
 #| msgid "Type Operators"
 msgid "Accelerators"
-msgstr "Toán tử kiểu"
+msgstr ""
 
 #: ../gtksourceview/gtksourcecompletion.c:2296
 msgid "Number of proposal accelerators to show"
@@ -2361,17 +2305,15 @@ msgid "Proposal scrolling page size"
 msgstr ""
 
 #: ../gtksourceview/gtksourcecompletion.c:2690
-#, fuzzy
 #| msgid "Print Header"
 msgid "Provider"
-msgstr "In đầu trang"
+msgstr "Bộ cung cấp"
 
 #: ../gtksourceview/gtksourcecompletioncontext.c:237
 #: ../gtksourceview/gtksourceview.c:306
-#, fuzzy
 #| msgid "Option"
 msgid "Completion"
-msgstr "Tuỳ chọn"
+msgstr "Hoàn chỉnh"
 
 #: ../gtksourceview/gtksourcecompletioncontext.c:238
 msgid "The completion object to which the context belongs"
@@ -2379,20 +2321,18 @@ msgstr ""
 
 #. Translators: The GtkTextIter at which the completion was invoked
 #: ../gtksourceview/gtksourcecompletioncontext.c:251
-#, fuzzy
 #| msgid "Operator"
 msgid "Iterator"
-msgstr "Toán tử"
+msgstr ""
 
 #: ../gtksourceview/gtksourcecompletioncontext.c:252
 msgid "The GtkTextIter at which the completion was invoked"
 msgstr ""
 
 #: ../gtksourceview/gtksourcecompletioncontext.c:264
-#, fuzzy
 #| msgid "Location"
 msgid "Activation"
-msgstr "Vị trí"
+msgstr "Kích hoạt"
 
 #: ../gtksourceview/gtksourcecompletioncontext.c:265
 msgid "The type of activation"
@@ -2405,10 +2345,9 @@ msgstr ""
 
 # Name: don't translate / Tên: đừng dịch
 #: ../gtksourceview/gtksourcecompletionitem.c:229
-#, fuzzy
 #| msgid "LaTeX"
 msgid "Label"
-msgstr "LaTeX"
+msgstr "Nhãn"
 
 #: ../gtksourceview/gtksourcecompletionitem.c:230
 msgid "Label to be shown for this item"
@@ -2427,10 +2366,9 @@ msgid "Icon to be shown for this item"
 msgstr ""
 
 #: ../gtksourceview/gtksourcecompletionitem.c:281
-#, fuzzy
 #| msgid "Ignore"
 msgid "Info"
-msgstr "Bỏ qua"
+msgstr "Thông tin"
 
 #: ../gtksourceview/gtksourcecompletionitem.c:282
 msgid "Info to be shown for this item"
@@ -2515,34 +2453,31 @@ msgstr ""
 
 #: ../gtksourceview/gtksourcegutter.c:545
 #: ../gtksourceview/gtksourcegutterrenderer.c:467
-#, fuzzy
 #| msgid "POD heading"
 msgid "X Padding"
-msgstr "Tiêu đề POD"
+msgstr "Đệm X"
 
 #: ../gtksourceview/gtksourcegutter.c:546
 #: ../gtksourceview/gtksourcegutterrenderer.c:468
 msgid "The x-padding"
-msgstr ""
+msgstr "Đệm X"
 
 #: ../gtksourceview/gtksourcegutter.c:556
 #: ../gtksourceview/gtksourcegutterrenderer.c:483
-#, fuzzy
 #| msgid "POD heading"
 msgid "Y Padding"
-msgstr "Tiêu đề POD"
+msgstr "Đệm Y"
 
 #: ../gtksourceview/gtksourcegutter.c:557
 #: ../gtksourceview/gtksourcegutterrenderer.c:484
 msgid "The y-padding"
-msgstr ""
+msgstr "Đệm Y"
 
 #: ../gtksourceview/gtksourcegutterrenderer.c:453
 #: ../gtksourceview/gtksourcegutterrenderer.c:454
-#, fuzzy
 #| msgid "Variable"
 msgid "Visible"
-msgstr "Biến"
+msgstr "Thấy"
 
 #: ../gtksourceview/gtksourcegutterrenderer.c:499
 msgid "X Alignment"
@@ -2569,10 +2504,9 @@ msgid "The view"
 msgstr ""
 
 #: ../gtksourceview/gtksourcegutterrenderer.c:675
-#, fuzzy
 #| msgid "Inline Math Mode"
 msgid "Alignment Mode"
-msgstr "Chế độ toán học trực tiếp"
+msgstr ""
 
 #: ../gtksourceview/gtksourcegutterrenderer.c:676
 msgid "The alignment mode"
@@ -2583,14 +2517,13 @@ msgid "The window type"
 msgstr ""
 
 #: ../gtksourceview/gtksourcegutterrenderer.c:700
-#, fuzzy
 #| msgid "Since"
 msgid "Size"
-msgstr "Kể từ"
+msgstr "Kích thước"
 
 #: ../gtksourceview/gtksourcegutterrenderer.c:701
 msgid "The size"
-msgstr ""
+msgstr "Kích thước"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:293
 #: ../gtksourceview/gtksourcemarkattributes.c:316
@@ -2614,10 +2547,9 @@ msgstr ""
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:309
 #: ../gtksourceview/gtksourcemarkattributes.c:329
-#, fuzzy
 #| msgid "Function Name"
 msgid "Icon Name"
-msgstr "Tên hàm"
+msgstr "Tên biểu tượng"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:310
 #: ../gtksourceview/gtksourcemarkattributes.c:330
@@ -2627,17 +2559,16 @@ msgstr ""
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:317
 #: ../gtksourceview/gtksourcemarkattributes.c:342
 msgid "GIcon"
-msgstr ""
+msgstr "GIcon"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:318
 msgid "The gicon"
-msgstr ""
+msgstr "GIcon"
 
 #: ../gtksourceview/gtksourcegutterrenderertext.c:394
-#, fuzzy
 #| msgid "Markup"
 msgid "The markup"
-msgstr "Mã định dạng"
+msgstr ""
 
 #: ../gtksourceview/gtksourcegutterrenderertext.c:402
 msgid "The text"
@@ -2708,14 +2639,13 @@ msgid "Background"
 msgstr "Nền"
 
 #: ../gtksourceview/gtksourcemarkattributes.c:291
-#, fuzzy
 #| msgid "Line background"
 msgid "The background"
-msgstr "Nền dòng"
+msgstr "Nền"
 
 #: ../gtksourceview/gtksourcemarkattributes.c:343
 msgid "The GIcon"
-msgstr ""
+msgstr "GIcon"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:445
 msgid "Source Buffer"
@@ -2947,10 +2877,9 @@ msgid "List of the ids of the available style schemes"
 msgstr "Danh sách các mã số lược đồ kiểu dáng sẵn sàng"
 
 #: ../gtksourceview/gtksourceundomanagerdefault.c:410
-#, fuzzy
 #| msgid "Source Buffer"
 msgid "Buffer"
-msgstr "Vùng đệm nguồn"
+msgstr "Vùng đệm"
 
 #: ../gtksourceview/gtksourceundomanagerdefault.c:411
 msgid "The text buffer to add undo support on"
