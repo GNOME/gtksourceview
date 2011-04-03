@@ -1,5 +1,5 @@
 # Italian translations for gtksourceview package.
-# Copyright (C) 2003-2008, 2009, 2010 The Free Software Foundation, Inc.
+# Copyright (C) 2003-2008, 2009, 2010, 2011 The Free Software Foundation, Inc.
 # This file is distributed under the same license as the gtksourceview package.
 # Stefano Canepa <sc@linux.it>, 2003, 2004, 2005, 2006.
 # Francesco Marletta <francesco.marletta@tiscali.it>, 2006, 2007.
@@ -8,15 +8,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=gtksourceview&component=general\n"
-"POT-Creation-Date: 2011-01-13 13:12+0000\n"
-"PO-Revision-Date: 2011-04-03 13:06+0200\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-04-03 19:28+0200\n"
+"PO-Revision-Date: 2011-04-03 19:27+0200\n"
 "Last-Translator: Milo Casagrande <milo@ubuntu.com>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: 8-bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../data/glade/gtksourceview.xml.in.h:1
 msgid "After"
@@ -38,50 +39,43 @@ msgid "Before"
 msgstr "Prima"
 
 #: ../data/glade/gtksourceview.xml.in.h:5
-#| msgid "Variable"
 msgid "Disabled"
 msgstr "Disabilitato"
 
 # (ndt) pare che il gutter sia qualche cosa di Eclipse: dove vengono visualizzati i risultati di una ricerca per un facile accesso... è tipo una 'colonna' da una parte della finestra. sul wiki di gnome c'è un'immagine. in tipografia è definito come il profilo interno.
 #: ../data/glade/gtksourceview.xml.in.h:6
-#| msgid "The gutters' GtkSourceView"
 msgid "GtkSourceView"
 msgstr "GtkSourceView"
 
 #: ../data/glade/gtksourceview.xml.in.h:7
-#| msgid "POD heading"
 msgid "Leading"
-msgstr ""
+msgstr "Iniziale"
 
 #: ../data/glade/gtksourceview.xml.in.h:8
-#| msgid "Underline"
 msgid "Newline"
 msgstr "Newline"
 
 #: ../data/glade/gtksourceview.xml.in.h:9
 msgid "Non Breaking Whitespace"
-msgstr ""
+msgstr "Spazio non terminante"
 
 #: ../data/glade/gtksourceview.xml.in.h:10
-#| msgid "Draw Spaces"
 msgid "Space"
 msgstr "Spazio"
 
 #: ../data/glade/gtksourceview.xml.in.h:11
-#| msgid "Tag"
 msgid "Tab"
 msgstr "Tab"
 
 #: ../data/glade/gtksourceview.xml.in.h:12
 #: ../gtksourceview/gtksourcecompletionitem.c:255
-#: ../gtksourceview/gtksourcegutterrenderertext.c:401
+#: ../gtksourceview/gtksourcegutterrenderertext.c:403
 msgid "Text"
 msgstr "Testo"
 
 #: ../data/glade/gtksourceview.xml.in.h:13
-#| msgid "Trailing Tab"
 msgid "Trailing"
-msgstr ""
+msgstr "Finale"
 
 #: ../data/language-specs/ada.lang.h:1
 msgid "Ada"
@@ -510,7 +504,7 @@ msgstr "Campo"
 #: ../data/language-specs/texinfo.lang.h:8 ../data/language-specs/xml.lang.h:9
 #: ../data/language-specs/xslt.lang.h:2
 #: ../gtksourceview/gtksourcecompletionitem.c:242
-#: ../gtksourceview/gtksourcegutterrenderertext.c:393
+#: ../gtksourceview/gtksourcegutterrenderertext.c:395
 msgid "Markup"
 msgstr "Markup"
 
@@ -585,7 +579,7 @@ msgid "File"
 msgstr "File"
 
 #: ../data/language-specs/changelog.lang.h:7
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:462
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:464
 msgid "Name"
 msgstr "Nome"
 
@@ -648,7 +642,6 @@ msgid "Octal number"
 msgstr "Numero ottale"
 
 #: ../data/language-specs/c.lang.h:16
-#| msgid "Signal Name"
 msgid "Signal name"
 msgstr "Nome segnale"
 
@@ -703,7 +696,6 @@ msgid "Control Keyword"
 msgstr "Parola chiave di controllo"
 
 #: ../data/language-specs/cobol.lang.h:1
-#| msgid "Cobalt"
 msgid "Cobol"
 msgstr "Cobol"
 
@@ -1160,12 +1152,10 @@ msgid "Address"
 msgstr "Indirizzo"
 
 #: ../data/language-specs/gdb-log.lang.h:2
-#| msgid "File"
 msgid "Filename"
 msgstr "Nome file"
 
 #: ../data/language-specs/gdb-log.lang.h:3
-#| msgid "Number"
 msgid "Frame Number"
 msgstr "Numero frame"
 
@@ -1178,22 +1168,18 @@ msgid "Incomplete Sequence"
 msgstr "Sequenza incompleta"
 
 #: ../data/language-specs/gdb-log.lang.h:7
-#| msgid "Itemized list"
 msgid "Optimized Out"
 msgstr "Out ottimizzato"
 
 #: ../data/language-specs/gdb-log.lang.h:9
-#| msgid "Properties"
 msgid "Prompt"
 msgstr "Prompt"
 
 #: ../data/language-specs/gdb-log.lang.h:11
-#| msgid "Section"
 msgid "Thread Action"
 msgstr "Azione thread"
 
 #: ../data/language-specs/gdb-log.lang.h:12
-#| msgid "Show Headers"
 msgid "Thread Header"
 msgstr "Intestazione thread"
 
@@ -1409,7 +1395,6 @@ msgid "Constructors"
 msgstr "Costruttori"
 
 #: ../data/language-specs/javascript.lang.h:9
-#| msgid "Javascript"
 msgid "JavaScript"
 msgstr "JavaScript"
 
@@ -1595,7 +1580,6 @@ msgid "OOC"
 msgstr "OOC"
 
 #: ../data/language-specs/opal.lang.h:7
-#| msgid "Symbol"
 msgid "Keysymbol"
 msgstr "Keysymbol"
 
@@ -1605,7 +1589,6 @@ msgid "Module Handler"
 msgstr "Gestore modulo"
 
 #: ../data/language-specs/opal.lang.h:10
-#| msgid "Octal"
 msgid "Opal"
 msgstr "Opal"
 
@@ -1664,7 +1647,6 @@ msgid "System Command"
 msgstr "Comando di sistema"
 
 #: ../data/language-specs/php.lang.h:3
-#| msgid "Function"
 msgid "Common Function"
 msgstr "Funzione comune"
 
@@ -1812,7 +1794,6 @@ msgid "Scheme"
 msgstr "Scheme"
 
 #: ../data/language-specs/scilab.lang.h:8
-#| msgid "Special"
 msgid "Scilab"
 msgstr "Scilab"
 
@@ -1870,12 +1851,10 @@ msgid "SQL"
 msgstr "SQL"
 
 #: ../data/language-specs/systemverilog.lang.h:4
-#| msgid "System Command"
 msgid "System Task"
-msgstr ""
+msgstr "System Task"
 
 #: ../data/language-specs/systemverilog.lang.h:5
-#| msgid "Verilog"
 msgid "SystemVerilog"
 msgstr "SystemVerilog"
 
@@ -1959,11 +1938,11 @@ msgstr "Porta"
 
 #: ../data/language-specs/verilog.lang.h:7
 msgid "IEEE System Task"
-msgstr ""
+msgstr "IEEE System Task"
 
 #: ../data/language-specs/verilog.lang.h:10
 msgid "LRM Additional System Task"
-msgstr ""
+msgstr "System Task LRM aggiuntivi"
 
 # [NdT] Verilog è un linguaggio di descrizione di circuiti digitali
 #: ../data/language-specs/verilog.lang.h:15
@@ -2063,60 +2042,60 @@ msgstr "Schema colore che utilizza la tavolozza di Tango"
 msgid "Tango"
 msgstr "Tango"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:378
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:380
 msgid "Document Words"
 msgstr "Parole del documento"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:463
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:465
 msgid "The provider name"
 msgstr "Il nome del provider"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:470
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:472
 #: ../gtksourceview/gtksourcecompletionitem.c:268
 msgid "Icon"
 msgstr "Icona"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:471
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:473
 msgid "The provider icon"
 msgstr "L'icona del provider"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:478
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:480
 msgid "Proposals Batch Size"
 msgstr "Dimensione batch delle proposte"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:479
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:481
 msgid "Number of proposals added in one batch"
 msgstr "Numero di proposte aggiunte in un batch"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:488
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:490
 msgid "Scan Batch Size"
 msgstr "Dimensione analisi batch"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:489
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:491
 msgid "Number of lines scanned in one batch"
 msgstr "Numero di righe analizzate in un batch"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:498
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:500
 msgid "Minimum Word Size"
 msgstr "Dimensione minima parola"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:499
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:501
 msgid "The minimum word size to complete"
 msgstr "La dimensione minima della parola da completare"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:508
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:510
 msgid "Interactive Delay"
 msgstr "Ritardo interattivo"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:509
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:511
 msgid "The delay before initiating interactive completion"
 msgstr "Il ritardo prima di avviare il completamento interattivo"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:518
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:520
 msgid "Priority"
 msgstr "Priorità"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:519
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:521
 msgid "Provider priority"
 msgstr "La priorità del provider"
 
@@ -2191,84 +2170,84 @@ msgstr "Il gestore del buffer dell'azione di annullamento"
 msgid "No extra information available"
 msgstr "Nessuna informazione aggiuntiva disponibile"
 
-#: ../gtksourceview/gtksourcecompletion.c:2221
-#: ../gtksourceview/gtksourcegutter.c:520
+#: ../gtksourceview/gtksourcecompletion.c:2220
+#: ../gtksourceview/gtksourcegutter.c:548
 msgid "View"
 msgstr "Vista"
 
-#: ../gtksourceview/gtksourcecompletion.c:2222
+#: ../gtksourceview/gtksourcecompletion.c:2221
 msgid "The GtkSourceView bound to the completion"
 msgstr "L'oggetto GtkSourceView legato al completamento"
 
-#: ../gtksourceview/gtksourcecompletion.c:2237
+#: ../gtksourceview/gtksourcecompletion.c:2236
 msgid "Remember Info Visibility"
 msgstr "Ricorda visibilità informazioni"
 
-#: ../gtksourceview/gtksourcecompletion.c:2238
+#: ../gtksourceview/gtksourcecompletion.c:2237
 msgid "Remember the last info window visibility state"
 msgstr "Ricorda l'ultimo stato di visibilità della finestra delle informazioni"
 
-#: ../gtksourceview/gtksourcecompletion.c:2251
+#: ../gtksourceview/gtksourcecompletion.c:2250
 msgid "Select on Show"
 msgstr "Seleziona quando mostrato"
 
-#: ../gtksourceview/gtksourcecompletion.c:2252
+#: ../gtksourceview/gtksourcecompletion.c:2251
 msgid "Select first proposal when completion is shown"
 msgstr "Seleziona la prima proposta quando viene mostrato il completamento"
 
-#: ../gtksourceview/gtksourcecompletion.c:2266
+#: ../gtksourceview/gtksourcecompletion.c:2265
 msgid "Show Headers"
 msgstr "Mostra le intestazioni"
 
-#: ../gtksourceview/gtksourcecompletion.c:2267
+#: ../gtksourceview/gtksourcecompletion.c:2266
 msgid ""
 "Show provider headers when proposals from multiple providers are available"
 msgstr ""
 "Mostra le intestazioni dei provider quando sono disponibili proposte da "
 "molteplici provider."
 
-#: ../gtksourceview/gtksourcecompletion.c:2281
+#: ../gtksourceview/gtksourcecompletion.c:2280
 msgid "Show Icons"
 msgstr "Mostra le icone"
 
-#: ../gtksourceview/gtksourcecompletion.c:2282
+#: ../gtksourceview/gtksourcecompletion.c:2281
 msgid "Show provider and proposal icons in the completion popup"
 msgstr ""
 "Mostra le icone del provider e della proposta nel popup del completamento"
 
-#: ../gtksourceview/gtksourcecompletion.c:2295
+#: ../gtksourceview/gtksourcecompletion.c:2294
 msgid "Accelerators"
 msgstr "Acceleratori"
 
-#: ../gtksourceview/gtksourcecompletion.c:2296
+#: ../gtksourceview/gtksourcecompletion.c:2295
 msgid "Number of proposal accelerators to show"
 msgstr "Numero di acceleratori delle proposte da mostrare"
 
-#: ../gtksourceview/gtksourcecompletion.c:2312
+#: ../gtksourceview/gtksourcecompletion.c:2311
 msgid "Auto Complete Delay"
 msgstr "Ritardo dell'autocompletamento"
 
-#: ../gtksourceview/gtksourcecompletion.c:2313
+#: ../gtksourceview/gtksourcecompletion.c:2312
 msgid "Completion popup delay for interactive completion"
 msgstr "Ritardo del popup di completamento per il completamento interattivo"
 
-#: ../gtksourceview/gtksourcecompletion.c:2328
+#: ../gtksourceview/gtksourcecompletion.c:2327
 msgid "Provider Page Size"
 msgstr "Dimensione pagina del provider"
 
-#: ../gtksourceview/gtksourcecompletion.c:2329
+#: ../gtksourceview/gtksourcecompletion.c:2328
 msgid "Provider scrolling page size"
 msgstr "Dimensione scorrimento pagina del provider"
 
-#: ../gtksourceview/gtksourcecompletion.c:2344
+#: ../gtksourceview/gtksourcecompletion.c:2343
 msgid "Proposal Page Size"
 msgstr "Dimensione pagina delle proposte"
 
-#: ../gtksourceview/gtksourcecompletion.c:2345
+#: ../gtksourceview/gtksourcecompletion.c:2344
 msgid "Proposal scrolling page size"
 msgstr "Dimensione scorrimento della pagina delle proposte"
 
-#: ../gtksourceview/gtksourcecompletion.c:2690
+#: ../gtksourceview/gtksourcecompletion.c:2689
 msgid "Provider"
 msgstr "Provider"
 
@@ -2397,92 +2376,85 @@ msgid "Missing main language definition (id = \"%s\".)"
 msgstr "Definizione linguaggio principale mancante (ID = «%s»)."
 
 # (ndt) pare che il gutter sia qualche cosa di Eclipse: dove vengono visualizzati i risultati di una ricerca per un facile accesso... è tipo una 'colonna' da una parte della finestra. sul wiki di gnome c'è un'immagine. in tipografia è definito come il profilo interno.
-#: ../gtksourceview/gtksourcegutter.c:521
+#: ../gtksourceview/gtksourcegutter.c:549
 msgid "The gutters' GtkSourceView"
 msgstr "Il profilo interno GtkSourceView"
 
-#: ../gtksourceview/gtksourcegutter.c:533
-#: ../gtksourceview/gtksourcegutterrenderer.c:691
+#: ../gtksourceview/gtksourcegutter.c:561
+#: ../gtksourceview/gtksourcegutterrenderer.c:703
 msgid "Window Type"
 msgstr "Tipo di finestra"
 
-#: ../gtksourceview/gtksourcegutter.c:534
+#: ../gtksourceview/gtksourcegutter.c:562
 msgid "The gutters text window type"
 msgstr "Il testo del tipo di finestra dei profili interni"
 
-#: ../gtksourceview/gtksourcegutter.c:545
-#: ../gtksourceview/gtksourcegutterrenderer.c:467
-#| msgid "POD heading"
+#: ../gtksourceview/gtksourcegutter.c:573
+#: ../gtksourceview/gtksourcegutterrenderer.c:479
 msgid "X Padding"
 msgstr "Riempimento X"
 
-#: ../gtksourceview/gtksourcegutter.c:546
-#: ../gtksourceview/gtksourcegutterrenderer.c:468
+#: ../gtksourceview/gtksourcegutter.c:574
+#: ../gtksourceview/gtksourcegutterrenderer.c:480
 msgid "The x-padding"
 msgstr "Il riempimento orizzontale"
 
-#: ../gtksourceview/gtksourcegutter.c:556
-#: ../gtksourceview/gtksourcegutterrenderer.c:483
-#| msgid "POD heading"
+#: ../gtksourceview/gtksourcegutter.c:584
+#: ../gtksourceview/gtksourcegutterrenderer.c:495
 msgid "Y Padding"
 msgstr "Riempimento Y"
 
-#: ../gtksourceview/gtksourcegutter.c:557
-#: ../gtksourceview/gtksourcegutterrenderer.c:484
+#: ../gtksourceview/gtksourcegutter.c:585
+#: ../gtksourceview/gtksourcegutterrenderer.c:496
 msgid "The y-padding"
 msgstr "Il riempimento verticale"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:453
-#: ../gtksourceview/gtksourcegutterrenderer.c:454
-#| msgid "Variable"
+#: ../gtksourceview/gtksourcegutterrenderer.c:465
+#: ../gtksourceview/gtksourcegutterrenderer.c:466
 msgid "Visible"
 msgstr "Visibile"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:499
+#: ../gtksourceview/gtksourcegutterrenderer.c:511
 msgid "X Alignment"
 msgstr "Allineamento X"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:500
+#: ../gtksourceview/gtksourcegutterrenderer.c:512
 msgid "The x-alignment"
 msgstr "L'allineamento orizzontale"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:515
+#: ../gtksourceview/gtksourcegutterrenderer.c:527
 msgid "Y Alignment"
 msgstr "Allineamento Y"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:516
+#: ../gtksourceview/gtksourcegutterrenderer.c:528
 msgid "The y-alignment"
 msgstr "L'allineamento"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:658
-#| msgid "View"
+#: ../gtksourceview/gtksourcegutterrenderer.c:670
 msgid "The View"
 msgstr "La vista"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:659
+#: ../gtksourceview/gtksourcegutterrenderer.c:671
 msgid "The view"
 msgstr "La vista"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:675
-#| msgid "Inline Math Mode"
+#: ../gtksourceview/gtksourcegutterrenderer.c:687
 msgid "Alignment Mode"
 msgstr "Modalità allineamento"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:676
+#: ../gtksourceview/gtksourcegutterrenderer.c:688
 msgid "The alignment mode"
 msgstr "La modalità di allineamento"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:692
-#| msgid "The gutters text window type"
+#: ../gtksourceview/gtksourcegutterrenderer.c:704
 msgid "The window type"
 msgstr "Il tipo di finestra"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:700
-#| msgid "Since"
+#: ../gtksourceview/gtksourcegutterrenderer.c:712
 msgid "Size"
 msgstr "Dimensione"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:701
+#: ../gtksourceview/gtksourcegutterrenderer.c:713
 msgid "The size"
 msgstr "La dimensione"
 
@@ -2508,34 +2480,28 @@ msgstr "L'ID dello stock"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:309
 #: ../gtksourceview/gtksourcemarkattributes.c:329
-#| msgid "Function Name"
 msgid "Icon Name"
 msgstr "Nome icona"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:310
 #: ../gtksourceview/gtksourcemarkattributes.c:330
-#| msgid "The provider name"
 msgid "The icon name"
 msgstr "Il nome dell'icona"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:317
 #: ../gtksourceview/gtksourcemarkattributes.c:342
-#| msgid "Icon"
 msgid "GIcon"
 msgstr "Icona"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:318
-#| msgid "The provider icon"
 msgid "The gicon"
 msgstr "Il GIcon"
 
-#: ../gtksourceview/gtksourcegutterrenderertext.c:394
-#| msgid "Markup"
+#: ../gtksourceview/gtksourcegutterrenderertext.c:396
 msgid "The markup"
 msgstr "Il markup"
 
-#: ../gtksourceview/gtksourcegutterrenderertext.c:402
-#| msgid "Item text"
+#: ../gtksourceview/gtksourcegutterrenderertext.c:404
 msgid "The text"
 msgstr "Il testo"
 
@@ -2610,12 +2576,10 @@ msgstr "Sfondo"
 
 # (ndt) non so cosa sia...
 #: ../gtksourceview/gtksourcemarkattributes.c:291
-#| msgid "Line background"
 msgid "The background"
 msgstr "Lo sfondo"
 
 #: ../gtksourceview/gtksourcemarkattributes.c:343
-#| msgid "Show Icons"
 msgid "The GIcon"
 msgstr "Il GIcon"
 
@@ -2952,34 +2916,3 @@ msgstr "Imposta se e come gli spazi debbano essere visualizzati"
 #: ../gtksourceview/gtksourceview-i18n.c:74
 msgid "translator-credits"
 msgstr "Milo Casagrande <milo@ubuntu.com>"
-
-#~ msgid "Maximum width"
-#~ msgstr "Larghezza massima"
-
-#~ msgid "The maximum allowed width"
-#~ msgstr "La larghezza massima consentita"
-
-#~ msgid "Maximum height"
-#~ msgstr "Altezza massima"
-
-#~ msgid "The maximum allowed height"
-#~ msgstr "L'altezza massima consentita"
-
-#~ msgid "Shrink width"
-#~ msgstr "Riduce la larghezza"
-
-#~ msgid "Whether the window should shrink width to fit the contents"
-#~ msgstr ""
-#~ "Indica se la finestra debba essere rimpicciolita in larghezza per "
-#~ "adattarsi al contenuto"
-
-#~ msgid "Shrink height"
-#~ msgstr "Riduce l'altezza"
-
-#~ msgid "Whether the window should shrink height to fit the contents"
-#~ msgstr ""
-#~ "Indica se la finestra debba essere rimpicciolita in altezza per adattarsi "
-#~ "al contenuto"
-
-#~ msgid "MSIL"
-#~ msgstr "MSIL"
