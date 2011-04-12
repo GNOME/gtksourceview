@@ -48,7 +48,7 @@
         <context ref="def:email-address"/>
         <context ref="def:net-address"/>
         <context id="mnemonic" style-ref="special">
-          <match>[&amp;_][a-zA-Z]</match>
+          <match>[&amp;_][\p{L}\p{Nd}]</match>
         </context>
         <context id="tag" style-ref="special">
 	  <match>&lt;[a-zA-Z\=\"\/ ]+&gt;</match>
