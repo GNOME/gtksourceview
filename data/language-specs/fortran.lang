@@ -45,7 +45,7 @@
 
     <!-- Note: contains an hack to avoid considering ^COMMON a comment -->
     <context id="line-comment" style-ref="comment" end-at-line-end="true" class="comment" class-disabled="no-spell-check">
-      <start>!|(^[Cc](\b|[^Oo]))</start>
+      <start>!|(^[Cc](\b|[^OoAaYy]))</start>
       <include>
         <context ref="def:escape"/>
         <context ref="def:in-line-comment"/>
