@@ -34,8 +34,7 @@
     <style id="string" _name="String" map-to="def:string"/>
     <style id="fuzzy" _name="Fuzzy" map-to="def:note"/>
     <style id="keyword" _name="Keyword" map-to="def:keyword"/>
-    <!-- FIXME make it some nice name and mark it translatable -->
-    <style id="special" _name="Special" map-to="def:special-char"/>
+    <style id="format" _name="String Format" map-to="def:special-char"/>
   </styles>
 
   <definitions>
@@ -47,14 +46,14 @@
         <context ref="def:line-continue"/>
         <context ref="def:email-address"/>
         <context ref="def:net-address"/>
-        <context id="mnemonic" style-ref="special">
+        <context id="mnemonic" style-ref="format">
           <match>[&amp;_][\p{L}\p{Nd}]</match>
         </context>
-        <context id="tag" style-ref="special">
-	  <match>&lt;[a-zA-Z\=\"\/ ]+&gt;</match>
-	</context>
-        <context ref="python:format" style-ref="special"/>
-        <context ref="c:printf" style-ref="special"/>
+        <context id="tag" style-ref="format">
+          <match>&lt;[a-zA-Z\=\"\/ ]+&gt;</match>
+        </context>
+        <context ref="python:format" style-ref="format"/>
+        <context ref="c:printf" style-ref="format"/>
       </include>
     </context>
     <context id="format" style-ref="comment" end-at-line-end="true">
