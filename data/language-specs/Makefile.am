@@ -56,6 +56,7 @@ LANGUAGES =			\
 	nemerle.lang		\
 	nsis.lang		\
 	objc.lang		\
+	objj.lang		\
 	ocaml.lang		\
 	ocl.lang		\
 	octave.lang		\
