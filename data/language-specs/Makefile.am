@@ -52,6 +52,7 @@ LANGUAGES =			\
 	m4.lang			\
 	makefile.lang		\
 	mallard.lang		\
+	matlab.lang		\
 	nemerle.lang		\
 	nsis.lang		\
 	objc.lang		\
