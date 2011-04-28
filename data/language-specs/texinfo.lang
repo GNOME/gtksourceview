@@ -30,15 +30,15 @@
   </metadata>
 
   <styles>
-    <style id="comment" _name="Comment" map-to="def:comment"/>
+    <style id="comment"           _name="Comment"           map-to="def:comment"/>
     <style id="escaped-character" _name="Escaped Character" map-to="def:special-char"/>
-    <style id="others" _name="Others"/>
-    <style id="string" _name="String" map-to="def:string"/>
-    <style id="keyword" _name="Keyword" map-to="def:keyword"/>
-    <style id="macros" _name="Macros" map-to="def:keyword"/>
-    <style id="file-attributes" _name="File Attributes" map-to="def:keyword"/>
+    <style id="others"            _name="Others"/>
+    <style id="string"            _name="String"            map-to="def:string"/>
+    <style id="keyword"           _name="Keyword"           map-to="def:keyword"/>
+    <style id="macros"            _name="Macros"            map-to="def:keyword"/>
+    <style id="file-attributes"   _name="File Attributes"   map-to="def:keyword"/>
     <style id="generated-content" _name="Generated Content" map-to="def:keyword"/>
-    <style id="include" _name="Include" map-to="def:preprocessor"/>
+    <style id="include"           _name="Include"           map-to="def:preprocessor"/>
   </styles>
 
   <definitions>
@@ -65,7 +65,7 @@
       <match>@(@|{|})</match>
     </context>
 
-    <context id="macro-parameters" style-ref="string">
+    <context id="macro-parameters" style-ref="string" class="no-spell-check">
       <start>\{[^}]</start>
       <end>\}</end>
     </context>
