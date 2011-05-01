@@ -199,7 +199,7 @@
                 </context>
 
                 <!-- Keywords -->
-                <context id="keywords" style-ref="keyword" class="keyword">
+                <context id="keywords" style-ref="keyword">
                     <keyword>asm</keyword>
                     <keyword>break</keyword>
                     <keyword>case</keyword>
@@ -221,7 +221,7 @@
                     <keyword>while</keyword>
                 </context>
 
-                <context id="types" style-ref="type" class="type">
+                <context id="types" style-ref="type">
                     <keyword>_Bool</keyword>
                     <keyword>_Complex</keyword>
                     <keyword>_Imaginary</keyword>
@@ -238,7 +238,7 @@
                     <keyword>void</keyword>
                 </context>
 
-                <context id="storage-class" style-ref="storage-class" class="storage-class">
+                <context id="storage-class" style-ref="storage-class">
                     <keyword>auto</keyword>
                     <keyword>const</keyword>
                     <keyword>extern</keyword>
@@ -250,12 +250,12 @@
                 </context>
 
                 <!-- C99 booleans -->
-                <context id="boolean" style-ref="boolean" class="boolean">
+                <context id="boolean" style-ref="boolean">
                     <keyword>true</keyword>
                     <keyword>false</keyword>
                 </context>
 
-                <context id="common-defines" style-ref="common-defines" class="common-defines">
+                <context id="common-defines" style-ref="common-defines">
                     <keyword>NULL</keyword>
                     <keyword>MAX</keyword>
                     <keyword>MIN</keyword>
@@ -269,13 +269,13 @@
                     <keyword>__STDC__</keyword>
                 </context>
 
-                <context id="standard-streams" style-ref="standard-stream" class="standard-streams">
+                <context id="standard-streams" style-ref="standard-stream">
                     <keyword>stdin</keyword>
                     <keyword>stdout</keyword>
                     <keyword>stderr</keyword>
                 </context>
 
-                <context id="signals" style-ref="signal-name" class="signals">
+                <context id="signals" style-ref="signal-name">
                     <keyword>SIGABRT</keyword>
                     <keyword>SIGALRM</keyword>
                     <keyword>SIGCHLD</keyword>

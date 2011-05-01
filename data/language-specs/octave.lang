@@ -40,20 +40,20 @@
   -->
 
   <styles>
-    <style id="comment" _name="Comment" map-to="def:comment"/>
-    <style id="string" _name="String" map-to="def:string"/>
-    <style id="operator" _name="Operator" map-to="def:operator"/>
-    <style id="data-type" _name="Data type" map-to="def:type"/>
-    <style id="storage-type" _name="Storage Type" map-to="def:type"/>
-    <style id="boolean" _name="Boolean" map-to="def:boolean"/>
-    <style id="decimal" _name="Decimal" map-to="def:decimal"/>
-    <style id="floating-point" _name="Floating Point" map-to="def:floating-point"/>
-    <style id="base-n-integer" _name="Base-N Integer" map-to="def:base-n-integer"/>
-    <style id="package-manager" _name="Package Manager" map-to="def:preprocessor"/>
-    <style id="keyword" _name="Keyword" map-to="def:keyword"/>
-    <style id="variable" _name="Variable" map-to="def:identifier"/>
+    <style id="comment"           _name="Comment"           map-to="def:comment"/>
+    <style id="string"            _name="String"            map-to="def:string"/>
+    <style id="operator"          _name="Operator"          map-to="def:operator"/>
+    <style id="data-type"         _name="Data type"         map-to="def:type"/>
+    <style id="storage-type"      _name="Storage Type"      map-to="def:type"/>
+    <style id="boolean"           _name="Boolean"           map-to="def:boolean"/>
+    <style id="decimal"           _name="Decimal"           map-to="def:decimal"/>
+    <style id="floating-point"    _name="Floating Point"    map-to="def:floating-point"/>
+    <style id="base-n-integer"    _name="Base-N Integer"    map-to="def:base-n-integer"/>
+    <style id="package-manager"   _name="Package Manager"   map-to="def:preprocessor"/>
+    <style id="keyword"           _name="Keyword"           map-to="def:keyword"/>
+    <style id="variable"          _name="Variable"          map-to="def:identifier"/>
     <style id="reserved-constant" _name="Reserved Constant" map-to="def:special-constant"/>
-    <style id="builtin" _name="Builtin" map-to="def:builtin"/>
+    <style id="builtin"           _name="Builtin"           map-to="def:builtin"/>
   </styles>
 
   <definitions>
@@ -130,7 +130,7 @@
       </match>
     </context>
 
-    <context id="data-type" style-ref="data-type" class="type">
+    <context id="data-type" style-ref="data-type">
       <keyword>cell(str)?</keyword>
       <keyword>char</keyword>
       <keyword>double</keyword>
@@ -140,17 +140,17 @@
       <keyword>struct</keyword>
     </context>
 
-    <context id="function-handle" style-ref="data-type" class="type">
+    <context id="function-handle" style-ref="data-type">
       <match>@([A-Za-z_][A-Za-z1-9_]*)?</match>
     </context>
 
-    <context id="storage-type" style-ref="storage-type" class="storage-class">
+    <context id="storage-type" style-ref="storage-type">
       <keyword>global</keyword>
       <keyword>persistent</keyword>
       <keyword>static</keyword>
     </context>
 
-    <context id="boolean" style-ref="boolean" class="boolean">
+    <context id="boolean" style-ref="boolean">
       <!-- falase and true can be used as functions too. Do not highlight as
       boolean if followed by parentheses -->
       <suffix>\b(?!(\s)*\()</suffix>
@@ -203,7 +203,7 @@
     </context>
 
     <!--To see the list of keywords, use the function __keywords__-->
-    <context id="keyword" style-ref="keyword" class="keyword">
+    <context id="keyword" style-ref="keyword">
       <keyword>break</keyword>
       <keyword>case</keyword>
       <keyword>catch</keyword>
