@@ -29,12 +29,12 @@
   </metadata>
 
   <styles>
-    <style id="comment" _name="Comment" map-to="def:comment"/>
-    <style id="location" _name="Location" map-to="def:comment"/>
-    <style id="string" _name="String" map-to="def:string"/>
-    <style id="fuzzy" _name="Fuzzy" map-to="def:note"/>
-    <style id="keyword" _name="Keyword" map-to="def:keyword"/>
-    <style id="format" _name="String Format" map-to="def:special-char"/>
+    <style id="comment"   _name="Comment"       map-to="def:comment"/>
+    <style id="location"  _name="Location"      map-to="def:comment"/>
+    <style id="string"    _name="String"        map-to="def:string"/>
+    <style id="fuzzy"     _name="Fuzzy"         map-to="def:note"/>
+    <style id="keyword"   _name="Keyword"       map-to="def:keyword"/>
+    <style id="format"    _name="String Format" map-to="def:special-char"/>
   </styles>
 
   <definitions>
@@ -86,7 +86,7 @@
         <context ref="string"/>
         <context ref="format"/>
         <context ref="location"/>
-        <context ref="def:shell-like-comment" style-ref="comment"/>
+        <context ref="def:shell-like-comment"/>
         <context ref="keyword"/>
       </include>
     </context>

@@ -31,19 +31,19 @@
   </metadata>
 
   <styles>
-    <style id="comment" _name="Comment" map-to="def:comment"/>
-    <style id="multiline-string" _name="Multiline string" map-to="def:string"/>
-    <style id="string" _name="String" map-to="def:string"/>
-    <style id="regex" _name="Regular Expression" map-to="def:string"/>
-    <style id="namespace" _name="Namespace" map-to="def:preprocessor"/>
-    <style id="type" _name="Data Type" map-to="def:type"/>
-    <style id="definition" _name="Definition" map-to="def:keyword"/>
-    <style id="keyword" _name="Keyword" map-to="def:keyword"/>
-    <style id="special-variable"     _name="Special Variable"      map-to="def:identifier"/>
-    <style id="null-value" _name="Null Value" map-to="def:special-constant"/>
-    <style id="boolean" _name="Boolean" map-to="def:boolean"/>
-    <style id="number" _name="Number" map-to="def:number"/>
-    <style id="builtin" _name="Builtin Function" map-to="def:builtin"/>
+    <style id="comment"           _name="Comment"             map-to="def:comment"/>
+    <style id="multiline-string"  _name="Multiline string"    map-to="def:string"/>
+    <style id="string"            _name="String"              map-to="def:string"/>
+    <style id="regex"             _name="Regular Expression"  map-to="def:string"/>
+    <style id="namespace"         _name="Namespace"           map-to="def:preprocessor"/>
+    <style id="type"              _name="Data Type"           map-to="def:type"/>
+    <style id="definition"        _name="Definition"          map-to="def:keyword"/>
+    <style id="keyword"           _name="Keyword"             map-to="def:keyword"/>
+    <style id="special-variable"  _name="Special Variable"    map-to="def:identifier"/>
+    <style id="null-value"        _name="Null Value"          map-to="def:special-constant"/>
+    <style id="boolean"           _name="Boolean"             map-to="def:boolean"/>
+    <style id="number"            _name="Number"              map-to="def:number"/>
+    <style id="builtin"           _name="Builtin Function"    map-to="def:builtin"/>
   </styles>
 
   <definitions>
@@ -234,7 +234,7 @@
 
     <context id="boo" class="no-spell-check">
       <include>
-        <context ref="def:shell-like-comment" style-ref="comment"/>
+        <context ref="def:shell-like-comment"/>
         <context ref="c-style-line-comment"/>
         <context ref="block-comment"/>
         <context ref="multiline-string"/>

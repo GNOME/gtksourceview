@@ -43,7 +43,7 @@
             <context ref="def:single-quoted-string"/>
             <context ref="def:string"/>
             <context ref="def:shell-like-comment"/>
-            <context ref="def:decimal" style-ref="constant"/>
+            <context ref="def:decimal"/>
             <context style-ref="boolean">
               <keyword>yes</keyword>
               <keyword>no</keyword>

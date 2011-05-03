@@ -31,7 +31,6 @@
 
   <styles>
     <style id="comment"             _name="Comment"             map-to="def:comment"/>
-    <style id="shebang"             _name="Shebang"             map-to="def:shebang"/>
     <style id="function"            _name="Function"            map-to="def:function"/>
     <style id="string"              _name="String"              map-to="def:string"/>
     <style id="keyword"             _name="Keyword"             map-to="def:keyword"/>
@@ -67,8 +66,8 @@
             <match>\\</match>
         </context>
         <context ref="def:line-continue"/>
-	<context ref="variable"/>
-	<context ref="backtick-subshell"/>
+        <context ref="variable"/>
+        <context ref="backtick-subshell"/>
       </include>
     </context>
 
@@ -476,7 +475,7 @@
 
     <context id="sh" class="no-spell-check">
       <include>
-        <context ref="def:shebang" style-ref="shebang"/>
+        <context ref="def:shebang"/>
         <context ref="line-comment"/>
         <context ref="def:escape"/>
         <context ref="single-quoted-string"/>
