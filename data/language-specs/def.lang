@@ -212,7 +212,7 @@
         </context>
 
         <!-- A line comment starting with # -->
-        <context id="shell-like-comment" style-ref="comment" end-at-line-end="true" class-disabled="no-spell-check">
+        <context id="shell-like-comment" style-ref="comment" end-at-line-end="true" class-disabled="no-spell-check" class="comment">
           <start>#</start>
           <include>
             <context ref="in-comment"/>
@@ -226,7 +226,7 @@
 
         <!-- this is intended to be used from line comments
              that can continue on a different line after "\" -->
-        <context id="in-line-comment" class-disabled="no-spell-check">
+        <context id="in-line-comment" class-disabled="no-spell-check" class="comment">
           <include>
             <context ref="line-continue" ignore-style="true"/>
             <context ref="in-comment"/>
