@@ -77,6 +77,7 @@ LANGUAGES =			\
 	scheme.lang		\
 	scilab.lang		\
 	sh.lang			\
+	sml.lang		\
 	sparql.lang		\
 	sql.lang		\
 	systemverilog.lang	\
