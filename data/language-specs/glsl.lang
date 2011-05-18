@@ -458,9 +458,9 @@ http://www.opengl.org/registry/doc/GLSLangSpec.4.00.7.pdf
 
     <context id="glsl">
       <include>
-        <context ref="c:comment"/>
-        <context ref="c:comment-multiline"/>
-        <context ref="c:close-comment-outside-comment"/>
+        <context ref="def:c-like-comment"/>
+        <context ref="def:c-like-comment-multiline"/>
+        <context ref="def:c-like-close-comment-outside-comment"/>
         <context ref="c:if0-comment"/>
         <context ref="preprocessor"/>
         <context ref="common-macros"/>

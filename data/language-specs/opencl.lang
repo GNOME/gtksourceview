@@ -571,8 +571,8 @@
     <context id="opencl">
       <include>
         <context ref="c:char"/>
-        <context ref="c:comment"/>
-        <context ref="c:comment-multiline"/>
+        <context ref="def:c-like-comment"/>
+        <context ref="def:c-like-comment-multiline"/>
         <context ref="c:escaped-character"/>
         <context ref="c:hexadecimal"/>
         <context ref="c:if0-comment"/>

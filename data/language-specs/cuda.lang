@@ -40,7 +40,7 @@
     <definitions>
       <context id="cuda">
       <include>  
-        <context ref="c:comment"/> 
+        <context ref="def:c-like-comment"/>
 
         <context ref="c:string"/>
 
@@ -48,7 +48,7 @@
 
         <context ref="c:storage-class"/> 
 
-        <context ref="c:comment-multiline"/>
+        <context ref="def:c-like-comment-multiline"/>
 
         <context ref="c:char"/>
 
