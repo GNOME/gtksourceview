@@ -34,8 +34,6 @@
     </metadata>
 
     <styles>
-        <style id="comment"         _name="Comment"                  map-to="def:comment"/>
-        <style id="error"           _name="Error"                    map-to="def:error"/>
         <style id="string"          _name="String"                   map-to="def:string"/>
         <style id="null-value"      _name="Null Value"               map-to="def:special-constant"/>
         <style id="undefined-value" _name="Undefined Value"          map-to="def:special-constant"/>
@@ -52,28 +50,10 @@
     <definitions>
         <context id="js" class="no-spell-check">
             <include>
-
                 <!-- Comments -->
-                <context id="line-comment" style-ref="comment" class="comment" class-disabled="no-spell-check">
-                    <start>//</start>
-                    <end>$</end>
-                    <include>
-                        <context ref="def:line-continue"/>
-                        <context ref="def:in-comment"/>
-                    </include>
-                </context>
-
-                <context id="block-comment" style-ref="comment" class="comment" class-disabled="no-spell-check">
-                    <start>/\*</start>
-                    <end>\*/</end>
-                    <include>
-                        <context ref="def:in-comment"/>
-                    </include>
-                </context>
-
-                <context id="close-comment-outside-comment" style-ref="error">
-                    <match>\*/(?!\*)</match>
-                </context>
+                <context ref="def:c-like-comment"/>
+                <context ref="def:c-like-comment-multiline"/>
+                <context ref="def:c-like-close-comment-outside-comment"/>
 
                 <!-- Strings -->
                 <context id="string-double" end-at-line-end="true" style-ref="string" class="string" class-disabled="no-spell-check">
