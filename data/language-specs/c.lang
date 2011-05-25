@@ -117,8 +117,8 @@
       <include>
         <context ref="def:line-continue" ignore-style="true"/>
         <context ref="string" ignore-style="true"/>
-        <context ref="comment"/>
-        <context ref="comment-multiline"/>
+        <context ref="def:c-like-comment"/>
+        <context ref="def:c-like-comment-multiline"/>
       </include>
     </context>
 
