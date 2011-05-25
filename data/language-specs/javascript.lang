@@ -34,6 +34,7 @@
   </metadata>
 
   <styles>
+    <style id="escape"          _name="Escaped Character"        map-to="def:special-char"/>
     <style id="null-value"      _name="Null Value"               map-to="def:special-constant"/>
     <style id="undefined-value" _name="Undefined Value"          map-to="def:special-constant"/>
     <style id="boolean"         _name="Boolean value"            map-to="def:boolean"/>
@@ -43,9 +44,43 @@
     <style id="properties"      _name="Properties"               map-to="def:statement"/>
     <style id="constructors"    _name="Constructors"             map-to="def:type"/>
     <style id="future-words"    _name="Future Reserved Keywords" map-to="def:error"/>
+    <style id="regex"           _name="Regular Expression"       map-to="def:string"/>
   </styles>
 
   <definitions>
+
+    <!--regex-->
+    <define-regex id="regex-opts">[iomx]*[neus]?[iomx]*</define-regex>
+
+    <!--contexts NOT used in the main context-->
+    <context id="escape" style-ref="escape">
+      <match>\\((0-7){3}|(x[a-fA-F0-9]{2})|(c\S)|([CM]-\S)|(M-C-\S)|.)</match>
+    </context>
+
+    <context id="regex-bracketed" style-ref="escape" style-inside="true">
+      <start>(?&lt;!\\)[[]</start>
+      <end>(?&lt;!\\)]</end>
+    </context>
+
+    <!--contexts used in the main context-->
+    <context id="regex-simple" style-ref="regex">
+      <start extended="true">
+        ((?&lt;=([(]|\s))|^)
+        \/
+        (?=
+          ([^/\\]*(\\.))*
+          [^/]*
+          \/
+          \%{regex-opts}
+          ([),;.]|\s|$)
+        )</start>
+      <end>\/\%{regex-opts}</end>
+      <include>
+        <context ref="escape"/>
+        <context ref="def:line-continue"/>
+        <context ref="regex-bracketed"/>
+      </include>
+    </context>
 
     <!--
         There was a long discussion on ##javascript on freenode between
@@ -298,6 +333,7 @@
         <context ref="properties"/>
         <context ref="constructors"/>
         <context ref="future-words"/>
+        <context ref="regex-simple"/>
       </include>
     </context>
     <!--main context-->
