@@ -34,7 +34,6 @@
   </metadata>
 
   <styles>
-    <style id="string"          _name="String"                   map-to="def:string"/>
     <style id="null-value"      _name="Null Value"               map-to="def:special-constant"/>
     <style id="undefined-value" _name="Undefined Value"          map-to="def:special-constant"/>
     <style id="boolean"         _name="Boolean value"            map-to="def:boolean"/>
@@ -48,6 +47,7 @@
   </styles>
 
   <definitions>
+
     <context id="js" class="no-spell-check">
       <include>
         <!-- Comments -->
@@ -56,23 +56,8 @@
         <context ref="def:c-like-close-comment-outside-comment"/>
 
         <!-- Strings -->
-        <context id="string-double" end-at-line-end="true" style-ref="string" class="string" class-disabled="no-spell-check">
-          <start>"</start>
-          <end>"</end>
-          <include>
-            <context ref="def:line-continue"/>
-            <context ref="def:escape"/>
-          </include>
-        </context>
-
-        <context id="string-single" end-at-line-end="true" style-ref="string" class="string" class-disabled="no-spell-check">
-          <start>'</start>
-          <end>'</end>
-          <include>
-            <context ref="def:line-continue"/>
-            <context ref="def:escape"/>
-          </include>
-        </context>
+        <context ref="def:string"/>
+        <context ref="def:single-quoted-string"/>
 
         <!-- Numbers -->
         <context ref="def:float"/>
