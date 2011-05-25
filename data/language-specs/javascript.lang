@@ -38,9 +38,8 @@
     <style id="undefined-value" _name="Undefined Value"          map-to="def:special-constant"/>
     <style id="boolean"         _name="Boolean value"            map-to="def:boolean"/>
     <style id="keyword"         _name="Keyword"                  map-to="def:keyword"/>
-    <style id="object"          _name="Object"/> <!--map-to="def:others"-->
     <style id="type"            _name="Data Type"                map-to="def:type"/>
-    <style id="function"        _name="Function"                 map-to="def:function"/>
+    <style id="function"        _name="Function"                 map-to="def:builtin"/>
     <style id="properties"      _name="Properties"               map-to="def:statement"/>
     <style id="constructors"    _name="Constructors"             map-to="def:type"/>
     <style id="future-words"    _name="Future Reserved Keywords" map-to="def:error"/>
@@ -48,9 +47,14 @@
 
   <definitions>
 
-    <context id="null-value" style-ref="null-value">
-      <keyword>null</keyword>
-    </context>
+    <!--
+        There was a long discussion on ##javascript on freenode between
+        'katspaugh', 'joo' and 'prog_' on whether 'undefined' should be
+        highlighted on not, specialy as a constant. The conclusion was "It can't
+        be highlighted as a constant literal value, because it can be an
+        identifier (of a variable value) but leave it be as it is. Let tradition
+        and convention obscure the details."
+    -->
     <context id="undefined-value" style-ref="undefined-value">
       <keyword>undefined</keyword>
     </context>
@@ -91,17 +95,10 @@
       <keyword>void</keyword>
     </context>
 
-    <context id="objects" style-ref="object">
-      <keyword>constructor</keyword>
-      <keyword>prototype</keyword>
-    </context>
-
     <context id="types" style-ref="type">
       <keyword>Infinity</keyword>
-      <keyword>Math</keyword>
       <keyword>NaN</keyword>
-      <keyword>NEGATIVE_INFINITY</keyword>
-      <keyword>POSITIVE_INFINITY</keyword>
+      <keyword>null</keyword>
     </context>
 
     <context id="functions" style-ref="function">
@@ -217,6 +214,8 @@
     </context>
 
     <context id="properties" style-ref="properties">
+      <prefix>\.</prefix>
+      <keyword>constructor</keyword>
       <keyword>global</keyword>
       <keyword>ignoreCase</keyword>
       <keyword>lastIndex</keyword>
@@ -224,6 +223,9 @@
       <keyword>message</keyword>
       <keyword>multiline</keyword>
       <keyword>name</keyword>
+      <keyword>NEGATIVE_INFINITY</keyword>
+      <keyword>POSITIVE_INFINITY</keyword>
+      <keyword>prototype</keyword>
       <keyword>source</keyword>
     </context>
 
@@ -234,6 +236,7 @@
       <keyword>Error</keyword>
       <keyword>EvalError</keyword>
       <keyword>Function</keyword>
+      <keyword>Math</keyword>
       <keyword>Number</keyword>
       <keyword>Object</keyword>
       <keyword>RangeError</keyword>
@@ -287,11 +290,9 @@
         <context ref="def:decimal"/>
         <context ref="def:octal"/>
         <context ref="def:hexadecimal"/>
-        <context ref="null-value"/>
         <context ref="undefined-value"/>
         <context ref="boolean"/>
         <context ref="keywords"/>
-        <context ref="objects"/>
         <context ref="types"/>
         <context ref="functions"/>
         <context ref="properties"/>
