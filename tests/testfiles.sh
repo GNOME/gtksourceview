@@ -1001,3 +1001,17 @@ rm -rf %{buildroot}
 * Tue Jul 25 2006 GÃ¶tz Waschk <waschk@mandriva.org> 1.7.1-1mdk
 - New release 1.7.1
 EOFEOF
+
+cat > $dir/file.ijm <<EOFEOF
+// line comment
+var variable = "string\n with \t escaped\"characters";
+macro "new macro" {
+  NotGlobalVar = 5 +6;
+  result = getPixel(0, 0);
+  run("8-bit");
+}
+function NewFunction() {
+  /*
+  multiline comment*/
+}
+EOFEOF
