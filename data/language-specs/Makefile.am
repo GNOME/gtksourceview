@@ -43,6 +43,7 @@ LANGUAGES =			\
 	haskell-literate.lang	\
 	html.lang		\
 	idl.lang		\
+	imagej.lang		\
 	ini.lang		\
 	java.lang		\
 	javascript.lang		\
