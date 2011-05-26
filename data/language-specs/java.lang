@@ -32,23 +32,21 @@
   </metadata>
 
   <styles>
-    <style id="comment" _name="Comment" map-to="def:comment"/>
-    <style id="error" _name="Error" map-to="def:error"/>
-    <style id="escaped-character" _name="Escaped Character" map-to="def:special-char"/>
-    <style id="string" _name="String" map-to="def:string"/>
-    <style id="char" _name="Character" map-to="def:character"/>
+    <style id="escaped-character" _name="Escaped Character"         map-to="def:special-char"/>
+    <style id="string"            _name="String"                    map-to="def:string"/>
+    <style id="char"              _name="Character"                 map-to="def:character"/>
     <!-- Translators: refered to some specific keywords of the language that
          allow to get external functionalities -->
-    <style id="external" _name="External" map-to="def:preprocessor"/>
-    <style id="declaration" _name="Declaration" map-to="def:type"/>
-    <style id="storage-class" _name="Storage Class" map-to="def:type"/>
-    <style id="scope-declaration" _name="Scope Declaration" map-to="def:type"/>
-    <style id="keyword" _name="Keyword" map-to="def:keyword"/>
-    <style id="null-value" _name="Null Value" map-to="def:special-constant"/>
-    <style id="boolean" _name="Boolean value" map-to="def:boolean"/>
-    <style id="number" _name="Number" map-to="def:decimal"/>
-    <style id="reserved" _name="Future Reserved Keywords" map-to="def:reserved"/>
-    <style id="type" _name="Data Type" map-to="def:type"/>
+    <style id="external"          _name="External"                  map-to="def:preprocessor"/>
+    <style id="declaration"       _name="Declaration"               map-to="def:type"/>
+    <style id="storage-class"     _name="Storage Class"             map-to="def:type"/>
+    <style id="scope-declaration" _name="Scope Declaration"         map-to="def:type"/>
+    <style id="keyword"           _name="Keyword"                   map-to="def:keyword"/>
+    <style id="null-value"        _name="Null Value"                map-to="def:special-constant"/>
+    <style id="boolean"           _name="Boolean value"             map-to="def:boolean"/>
+    <style id="number"            _name="Number"                    map-to="def:decimal"/>
+    <style id="reserved"          _name="Future Reserved Keywords"  map-to="def:reserved"/>
+    <style id="type"              _name="Data Type"                 map-to="def:type"/>
   </styles>
 
   <definitions>
@@ -74,25 +72,6 @@
    <context id="char" style-ref="char">
      <match>'(\%{escaped-character}|.)'</match>
    </context>
-
-    <context id="line-comment" style-ref="comment" end-at-line-end="true" class="comment" class-disabled="no-spell-check">
-      <start>//</start>
-      <include>
-        <context ref="def:in-line-comment"/>
-      </include>
-    </context>
-
-    <context id="block-comment" style-ref="comment" class="comment" class-disabled="no-spell-check">
-      <start>/\*</start>
-      <end>\*/</end>
-      <include>
-        <context ref="def:in-comment"/>
-      </include>
-    </context>
-
-    <context id="close-comment-outside-comment" style-ref="error">
-      <match>\*/(?!\*)</match>
-    </context>
 
     <context id="externals" style-ref="external">
       <keyword>import</keyword>
@@ -190,9 +169,9 @@
       <include>
         <context ref="string"/>
         <context ref="char"/>
-        <context ref="line-comment"/>
-        <context ref="block-comment"/>
-        <context ref="close-comment-outside-comment"/>
+        <context ref="def:c-like-comment"/>
+        <context ref="def:c-like-comment-multiline"/>
+        <context ref="def:c-like-close-comment-outside-comment"/>
         <context ref="externals"/>
         <context ref="declarations"/>
         <context ref="primitive-types"/>
