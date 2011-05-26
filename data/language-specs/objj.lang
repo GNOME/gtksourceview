@@ -23,7 +23,7 @@
  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 -->
-<language id="objj" name="Objective-J" version="2.0" _section="Sources">
+<language id="objj" _name="Objective-J" version="2.0" _section="Sources">
   <metadata>
     <property name="mimetypes">text/x-objective-j</property>
     <property name="globs">*.j</property>
@@ -33,13 +33,13 @@
   </metadata>
 
   <styles>
-    <style id="boolean" _name="Boolean" map-to="js:boolean"/>
-    <style id="keyword" _name="Keyword" map-to="js:keyword"/>
-    <style id="type" _name="Data Type" map-to="js:type"/>
-    <style id="preprocessor" _name="Preprocessor" map-to="def:preprocessor"/>
+    <style id="boolean"       _name="Boolean"       map-to="js:boolean"/>
+    <style id="keyword"       _name="Keyword"       map-to="js:keyword"/>
+    <style id="type"          _name="Data Type"     map-to="js:type"/>
+    <style id="preprocessor"  _name="Preprocessor"  map-to="def:preprocessor"/>
     <style id="included-file" _name="Included File" map-to="js:string"/>
-    <style id="string" _name="String" map-to="js:string"/>
-    <style id="null-value" _name="Null Value" map-to="js:null-value"/>
+    <style id="string"        _name="String"        map-to="js:string"/>
+    <style id="null-value"    _name="Null Value"    map-to="js:null-value"/>
   </styles>
 
   <definitions>
