@@ -211,8 +211,8 @@ create_window (void)
 	window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
 	gtk_window_resize (GTK_WINDOW (window), 600, 400);
 	
-	vbox = gtk_vbox_new (FALSE, 1);
-	hbox = gtk_hbox_new (FALSE, 1);
+	vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 1);
+	hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 1);
 	
 	view = gtk_source_view_new ();
 	GtkWidget *scroll = gtk_scrolled_window_new (NULL, NULL);

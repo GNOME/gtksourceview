@@ -1404,7 +1404,7 @@ create_view_window (GtkSourceBuffer *buffer, GtkSourceView *from)
 	}
 
 	/* misc widgets */
-	vbox = gtk_vbox_new (0, FALSE);
+	vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
 	sw = gtk_scrolled_window_new (NULL, NULL);
 	gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (sw),
                                              GTK_SHADOW_IN);
