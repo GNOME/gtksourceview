@@ -109,5 +109,9 @@
   <style name="diff:location"               foreground="chameleon1"/> 
   <style name="diff:special-case"           foreground="#white" bold="true"/>
 
+  <style name="latex:display-math"          foreground="plum3"/>
+  <style name="latex:command"               foreground="chameleon1" bold="true"/>
+  <style name="latex:include"               use-style="def:preprocessor"/>
+
 </style-scheme>
 
