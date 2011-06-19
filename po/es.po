@@ -1,23 +1,23 @@
 # translation of gtksourceview.master.po to Español
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# Jorge González <jorgegonz@svn.gnome.org>, 2007, 2008, 2009, 2010, 2011.
 # Daniel Mustieles <daniel.mustieles@gmail.com>, 2011.
+# Jorge González <jorgegonz@svn.gnome.org>, 2007, 2008, 2009, 2010, 2011.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-06-18 14:09+0000\n"
-"PO-Revision-Date: 2011-06-19 11:58+0200\n"
-"Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
-"Language-Team: Español <gnome-es-list@gnome.org>\n"
+"POT-Creation-Date: 2011-06-19 10:15+0000\n"
+"PO-Revision-Date: 2011-06-19 17:11+0200\n"
+"Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
+"Language-Team: Español; Castellano <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: 8bits\n"
 "X-Generator: KBabel 1.11.4\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
 #: ../data/glade/gtksourceview.xml.in.h:1
 msgid "After"
@@ -928,7 +928,6 @@ msgid "Special Token"
 msgstr "Token especiales"
 
 #: ../data/language-specs/docbook.lang.h:1
-#| msgid "Docbook"
 msgid "DocBook"
 msgstr "DocBook"
 
@@ -954,7 +953,6 @@ msgid "Command"
 msgstr "Comando"
 
 #: ../data/language-specs/dosbatch.lang.h:3
-#| msgid "Dos Batch"
 msgid "DOS Batch"
 msgstr "Batch de DOS"
 
@@ -1546,7 +1544,6 @@ msgid "Section Elements"
 msgstr "Elementos de la sección"
 
 #: ../data/language-specs/matlab.lang.h:3
-#| msgid "Mallard"
 msgid "Matlab"
 msgstr "Matlab"
 
@@ -1595,7 +1592,6 @@ msgid "Octave"
 msgstr "Octave"
 
 #: ../data/language-specs/octave.lang.h:11
-#| msgid "Package Info"
 msgid "Package Manager"
 msgstr "Gestor de paquetes"
 
@@ -1618,30 +1614,25 @@ msgstr "Ópalo"
 
 #: ../data/language-specs/opencl.lang.h:2
 msgid "Device Cast"
-msgstr ""
+msgstr "Tipo de dispositivo"
 
 #: ../data/language-specs/opencl.lang.h:3
-#| msgid "Device Functions"
 msgid "Device Function"
 msgstr "Función del dispositivo"
 
 #: ../data/language-specs/opencl.lang.h:4
-#| msgid "Global Functions"
 msgid "Global Function"
 msgstr "Función globales"
 
 #: ../data/language-specs/opencl.lang.h:5
-#| msgid "Global Variables"
 msgid "Global Variable"
 msgstr "Variable globale"
 
 #: ../data/language-specs/opencl.lang.h:7
-#| msgid "OCL"
 msgid "OpenCL"
 msgstr "OpenCL"
 
 #: ../data/language-specs/opencl.lang.h:8
-#| msgid "Special Constant"
 msgid "OpenCL Constant"
 msgstr "Constante OpenCL"
 
@@ -1863,10 +1854,9 @@ msgstr "sh"
 
 #: ../data/language-specs/sml.lang.h:10
 msgid "Module name, Variant, etc"
-msgstr ""
+msgstr "Nombre del módulo, variante, etc."
 
 #: ../data/language-specs/sml.lang.h:12
-#| msgid "Standard stream"
 msgid "Standard ML"
 msgstr "ML estándar"
 
