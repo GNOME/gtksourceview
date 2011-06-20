@@ -102,8 +102,8 @@
       <keyword>break</keyword>
       <keyword>case</keyword>
       <keyword>catch</keyword>
-      <keyword>const</keyword>
       <keyword>continue</keyword>
+      <keyword>debugger</keyword>
       <keyword>default</keyword>
       <keyword>delete</keyword>
       <keyword>do</keyword>
@@ -116,7 +116,6 @@
       <keyword>import</keyword>
       <keyword>instanceof</keyword>
       <keyword>in</keyword>
-      <keyword>let</keyword>
       <keyword>new</keyword>
       <keyword>return</keyword>
       <keyword>switch</keyword>
@@ -124,10 +123,16 @@
       <keyword>throw</keyword>
       <keyword>try</keyword>
       <keyword>typeof</keyword>
-      <keyword>while</keyword>
-      <keyword>with</keyword>
       <keyword>var</keyword>
       <keyword>void</keyword>
+      <keyword>while</keyword>
+      <keyword>with</keyword>
+    </context>
+
+    <context id="unofficial-keywords" style-ref="keyword">
+      <keyword>const</keyword>
+      <keyword>let</keyword>
+      <keyword>yield</keyword>
     </context>
 
     <context id="types" style-ref="type">
@@ -283,34 +288,19 @@
     </context>
 
     <context id="future-words" style-ref="future-words">
-      <keyword>abstract</keyword>
-      <keyword>boolean</keyword>
-      <keyword>byte</keyword>
-      <keyword>char</keyword>
       <keyword>class</keyword>
-      <keyword>debugger</keyword>
-      <keyword>double</keyword>
       <keyword>enum</keyword>
       <keyword>extends</keyword>
-      <keyword>final</keyword>
-      <keyword>float</keyword>
-      <keyword>goto</keyword>
+      <keyword>super</keyword>
+
+      <!-- in strict mode -->
       <keyword>implements</keyword>
       <keyword>interface</keyword>
-      <keyword>int</keyword>
-      <keyword>long</keyword>
-      <keyword>native</keyword>
       <keyword>package</keyword>
       <keyword>private</keyword>
       <keyword>protected</keyword>
       <keyword>public</keyword>
-      <keyword>short</keyword>
       <keyword>static</keyword>
-      <keyword>super</keyword>
-      <keyword>synchronized</keyword>
-      <keyword>throws</keyword>
-      <keyword>transient</keyword>
-      <keyword>volatile</keyword>
     </context>
 
     <!--main context-->
@@ -328,6 +318,7 @@
         <context ref="undefined-value"/>
         <context ref="boolean"/>
         <context ref="keywords"/>
+        <context ref="unofficial-keywords"/>
         <context ref="types"/>
         <context ref="functions"/>
         <context ref="properties"/>
