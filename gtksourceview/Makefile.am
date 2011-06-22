@@ -184,7 +184,10 @@ if HAVE_INTROSPECTION
 INTROSPECTION_GIRS = GtkSource-3.0.gir
 
 GtkSource-3.0.gir: libgtksourceview-3.0.la
-INTROSPECTION_SCANNER_ARGS = -I$(top_srcdir) --warn-all
+INTROSPECTION_SCANNER_ARGS =			\
+	-I$(top_srcdir)				\
+	--c-include=gtksourceview/gtksource.h	\
+	--warn-all
 GtkSource_3_0_gir_NAMESPACE = GtkSource
 GtkSource_3_0_gir_VERSION = 3.0
 GtkSource_3_0_gir_LIBS = libgtksourceview-3.0.la
