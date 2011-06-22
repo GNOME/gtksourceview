@@ -21,6 +21,7 @@ BUILT_SOURCES = 			\
 lib_LTLIBRARIES = libgtksourceview-3.0.la
 
 libgtksourceview_headers =			\
+	gtksource.h				\
 	gtksourcebuffer.h			\
 	gtksourcecompletioncontext.h		\
 	gtksourcecompletion.h			\
