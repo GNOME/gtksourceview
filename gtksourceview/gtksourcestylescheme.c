@@ -87,14 +87,47 @@ struct _GtkSourceStyleSchemePrivate
 G_DEFINE_TYPE (GtkSourceStyleScheme, gtk_source_style_scheme, G_TYPE_OBJECT)
 
 static void
-gtk_source_style_scheme_finalize (GObject *object)
+gtk_source_style_scheme_dispose (GObject *object)
 {
 	GtkSourceStyleScheme *scheme = GTK_SOURCE_STYLE_SCHEME (object);
 
-	g_hash_table_destroy (scheme->priv->named_colors);
-	g_hash_table_destroy (scheme->priv->style_cache);
-	g_hash_table_destroy (scheme->priv->defined_styles);
-	g_free (scheme->priv->filename);
+	if (scheme->priv->named_colors != NULL)
+	{
+		g_hash_table_unref (scheme->priv->named_colors);
+		scheme->priv->named_colors = NULL;
+	}
+
+	if (scheme->priv->style_cache != NULL)
+	{
+		g_hash_table_unref (scheme->priv->style_cache);
+		scheme->priv->style_cache = NULL;
+	}
+
+	if (scheme->priv->defined_styles != NULL)
+	{
+		g_hash_table_unref (scheme->priv->defined_styles);
+		scheme->priv->defined_styles = NULL;
+	}
+
+	if (scheme->priv->parent != NULL)
+	{
+		g_object_unref (scheme->priv->parent);
+		scheme->priv->parent = NULL;
+	}
+
+	if (scheme->priv->css != NULL)
+	{
+		g_object_unref (scheme->priv->css);
+		scheme->priv->css = NULL;
+	}
+
+	G_OBJECT_CLASS (gtk_source_style_scheme_parent_class)->dispose (object);
+}
+
+static void
+gtk_source_style_scheme_finalize (GObject *object)
+{
+	GtkSourceStyleScheme *scheme = GTK_SOURCE_STYLE_SCHEME (object);
 
 	if (scheme->priv->authors != NULL)
 	{
@@ -102,18 +135,11 @@ gtk_source_style_scheme_finalize (GObject *object)
 		g_ptr_array_free (scheme->priv->authors, TRUE);
 	}
 
+	g_free (scheme->priv->filename);
 	g_free (scheme->priv->description);
 	g_free (scheme->priv->id);
 	g_free (scheme->priv->name);
 	g_free (scheme->priv->parent_id);
-
-	if (scheme->priv->parent != NULL)
-		g_object_unref (scheme->priv->parent);
-
-	if (scheme->priv->css != NULL)
-	{
-		g_object_unref (scheme->priv->css);
-	}
 
 	G_OBJECT_CLASS (gtk_source_style_scheme_parent_class)->finalize (object);
 }
@@ -178,6 +204,7 @@ gtk_source_style_scheme_class_init (GtkSourceStyleSchemeClass *klass)
 {
 	GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
+	object_class->dispose = gtk_source_style_scheme_dispose;
 	object_class->finalize = gtk_source_style_scheme_finalize;
 	object_class->set_property = gtk_source_style_scheme_set_property;
 	object_class->get_property = gtk_source_style_scheme_get_property;
