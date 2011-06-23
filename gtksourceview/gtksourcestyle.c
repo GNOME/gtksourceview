@@ -425,21 +425,38 @@ _gtk_source_style_apply (const GtkSourceStyle *style,
 
 		if (style->mask & GTK_SOURCE_STYLE_USE_BACKGROUND)
 			g_object_set (tag, "background", style->background, NULL);
+		else
+			g_object_set (tag, "background-set", FALSE, NULL);
 
 		if (style->mask & GTK_SOURCE_STYLE_USE_FOREGROUND)
 			g_object_set (tag, "foreground", style->foreground, NULL);
+		else
+			g_object_set (tag, "foreground-set", FALSE, NULL);
 
 		if (style->mask & GTK_SOURCE_STYLE_USE_LINE_BACKGROUND)
 			g_object_set (tag, "paragraph-background", style->line_background, NULL);
+		else
+			g_object_set (tag, "paragraph-background-set", FALSE, NULL);
 
 		if (style->mask & GTK_SOURCE_STYLE_USE_ITALIC)
 			g_object_set (tag, "style", style->italic ? PANGO_STYLE_ITALIC : PANGO_STYLE_NORMAL, NULL);
+		else
+			g_object_set (tag, "style-set", FALSE, NULL);
+
 		if (style->mask & GTK_SOURCE_STYLE_USE_BOLD)
 			g_object_set (tag, "weight", style->bold ? PANGO_WEIGHT_BOLD : PANGO_WEIGHT_NORMAL, NULL);
+		else
+			g_object_set (tag, "weight-set", FALSE, NULL);
+
 		if (style->mask & GTK_SOURCE_STYLE_USE_UNDERLINE)
 			g_object_set (tag, "underline", style->underline ? PANGO_UNDERLINE_SINGLE : PANGO_UNDERLINE_NONE, NULL);
+		else
+			g_object_set (tag, "underline-set", FALSE, NULL);
+
 		if (style->mask & GTK_SOURCE_STYLE_USE_STRIKETHROUGH)
 			g_object_set (tag, "strikethrough", style->strikethrough != 0, NULL);
+		else
+			g_object_set (tag, "strikethrough-set", FALSE, NULL);
 
 		g_object_thaw_notify (G_OBJECT (tag));
 	}
