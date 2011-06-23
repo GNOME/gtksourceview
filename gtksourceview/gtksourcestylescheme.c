@@ -277,12 +277,15 @@ gtk_source_style_scheme_init (GtkSourceStyleScheme *scheme)
 {
 	scheme->priv = G_TYPE_INSTANCE_GET_PRIVATE (scheme, GTK_SOURCE_TYPE_STYLE_SCHEME,
 						    GtkSourceStyleSchemePrivate);
+
 	scheme->priv->defined_styles = g_hash_table_new_full (g_str_hash, g_str_equal,
 							      g_free, g_object_unref);
 	scheme->priv->style_cache = g_hash_table_new_full (g_str_hash, g_str_equal,
 							   g_free, unref_if_not_null);
 	scheme->priv->named_colors = g_hash_table_new_full (g_str_hash, g_str_equal,
 							    g_free, g_free);
+
+	scheme->priv->css = gtk_css_provider_new ();
 }
 
 /**
@@ -646,128 +649,6 @@ _gtk_source_style_scheme_get_current_line_color (GtkSourceStyleScheme *scheme,
 }
 
 static void
-get_css_color_style (GtkSourceStyle *style,
-                     gchar         **bg,
-                     gchar         **text)
-{
-	GdkRGBA color;
-
-	if (get_color (style, FALSE, &color))
-	{
-		gchar *bg_color;
-		bg_color = gdk_rgba_to_string (&color);
-		*bg = g_strdup_printf ("%s: %s;\n", "background-color", bg_color);
-		g_free (bg_color);
-	}
-	else
-	{
-		*bg = NULL;
-	}
-
-	if (get_color (style, TRUE, &color))
-	{
-		gchar *text_color;
-		text_color = gdk_rgba_to_string (&color);
-		*text = g_strdup_printf ("%s: %s;\n", "color", text_color);
-		g_free (text_color);
-	}
-	else
-	{
-		*text = NULL;
-	}
-}
-
-static void
-append_css_style (GString        *string,
-                  GtkSourceStyle *style,
-                  const gchar    *state)
-{
-	gchar *bg, *text;
-	const gchar css_style[] =
-		".view%s {\n"
-		"	%s"
-		"	%s"
-		"}\n";
-
-	get_css_color_style (style, &bg, &text);
-
-	if (bg || text)
-	{
-		g_string_append_printf (string, css_style, state,
-		                        bg != NULL ? bg : "",
-		                        text != NULL ? text : "");
-
-		g_free (bg);
-		g_free (text);
-	}
-}
-
-static void
-remove_generated_css (GtkSourceStyleScheme *scheme,
-                      GtkWidget            *widget)
-{
-	if (scheme->priv->css != NULL)
-	{
-		GtkStyleContext *context;
-
-		context = gtk_widget_get_style_context (GTK_WIDGET (widget));
-		gtk_style_context_remove_provider (context,
-		                                   GTK_STYLE_PROVIDER (scheme->priv->css));
-
-		g_object_unref (scheme->priv->css);
-		scheme->priv->css = NULL;
-	}
-}
-
-static void
-generate_css_style (GtkSourceStyleScheme *scheme,
-                    GtkWidget            *widget)
-{
-	GString *final_style;
-	GtkSourceStyle *style, *style2;
-
-	final_style = g_string_new ("");
-
-	style = gtk_source_style_scheme_get_style (scheme, STYLE_TEXT);
-	append_css_style (final_style, style, "");
-
-	style = gtk_source_style_scheme_get_style (scheme, STYLE_SELECTED);
-	append_css_style (final_style, style, ":selected:focused");
-
-	style2 = gtk_source_style_scheme_get_style (scheme, STYLE_SELECTED_UNFOCUSED);
-	if (style2 == NULL)
-		style2 = style;
-	append_css_style (final_style, style2, ":selected");
-
-	/* if there is a previously applied css remove it first */
-	remove_generated_css (scheme, widget);
-
-	if (*final_style->str != '\0')
-	{
-		GError *error = NULL;
-
-		scheme->priv->css = gtk_css_provider_new ();
-		if (gtk_css_provider_load_from_data (scheme->priv->css, final_style->str,
-		                                     final_style->len, &error))
-		{
-			GtkStyleContext *context;
-
-			context = gtk_widget_get_style_context (GTK_WIDGET (widget));
-			gtk_style_context_add_provider (context,
-			                                GTK_STYLE_PROVIDER (scheme->priv->css),
-			                                GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
-		}
-		else
-		{
-			g_warning ("%s", error->message);
-			g_error_free (error);
-		}
-	}
-
-	g_string_free (final_style, TRUE);
-}
-
-static void
 set_line_numbers_style (GtkWidget      *widget,
 			GtkSourceStyle *style)
 {
@@ -830,7 +711,7 @@ update_cursor_colors (GtkWidget      *widget,
 
 /**
  * _gtk_source_style_scheme_apply:
- * @scheme: (allow-none): a #GtkSourceStyleScheme or %NULL.
+ * @scheme:: a #GtkSourceStyleScheme.
  * @widget: a #GtkWidget to apply styles to.
  *
  * Sets text colors from @scheme in the @widget.
@@ -842,12 +723,16 @@ _gtk_source_style_scheme_apply (GtkSourceStyleScheme *scheme,
 				GtkWidget            *widget)
 {
 	GtkSourceStyle *style, *style2;
+	GtkStyleContext *context;
 
 	g_return_if_fail (GTK_SOURCE_IS_STYLE_SCHEME (scheme));
 	g_return_if_fail (GTK_IS_WIDGET (widget));
 
 	/* we need to translate some of the style scheme properties in a CSS override */
-	generate_css_style (scheme, widget);
+	context = gtk_widget_get_style_context (GTK_WIDGET (widget));
+	gtk_style_context_add_provider (context,
+	                                GTK_STYLE_PROVIDER (scheme->priv->css),
+	                                GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
 
 	style = gtk_source_style_scheme_get_style (scheme, STYLE_LINE_NUMBERS);
 	set_line_numbers_style (widget, style);
@@ -870,10 +755,14 @@ void
 _gtk_source_style_scheme_unapply (GtkSourceStyleScheme *scheme,
                                   GtkWidget            *widget)
 {
+	GtkStyleContext *context;
+
 	g_return_if_fail (GTK_SOURCE_IS_STYLE_SCHEME (scheme));
 	g_return_if_fail (GTK_IS_WIDGET (widget));
 
-	remove_generated_css (scheme, widget);
+	context = gtk_widget_get_style_context (GTK_WIDGET (widget));
+	gtk_style_context_remove_provider (context,
+	                                   GTK_STYLE_PROVIDER (scheme->priv->css));
 	set_line_numbers_style (widget, NULL);
 	update_cursor_colors (widget, NULL, NULL);
 }
@@ -881,6 +770,97 @@ _gtk_source_style_scheme_unapply (GtkSourceStyleScheme *scheme,
 /* --- PARSER ---------------------------------------------------------------- */
 
 #define ERROR_QUARK (g_quark_from_static_string ("gtk-source-style-scheme-parser-error"))
+
+static void
+get_css_color_style (GtkSourceStyle *style,
+                     gchar         **bg,
+                     gchar         **text)
+{
+	GdkRGBA color;
+
+	if (get_color (style, FALSE, &color))
+	{
+		gchar *bg_color;
+		bg_color = gdk_rgba_to_string (&color);
+		*bg = g_strdup_printf ("%s: %s;\n", "background-color", bg_color);
+		g_free (bg_color);
+	}
+	else
+	{
+		*bg = NULL;
+	}
+
+	if (get_color (style, TRUE, &color))
+	{
+		gchar *text_color;
+		text_color = gdk_rgba_to_string (&color);
+		*text = g_strdup_printf ("%s: %s;\n", "color", text_color);
+		g_free (text_color);
+	}
+	else
+	{
+		*text = NULL;
+	}
+}
+
+static void
+append_css_style (GString        *string,
+                  GtkSourceStyle *style,
+                  const gchar    *state)
+{
+	gchar *bg, *text;
+	const gchar css_style[] =
+		".view%s {\n"
+		"	%s"
+		"	%s"
+		"}\n";
+
+	get_css_color_style (style, &bg, &text);
+
+	if (bg || text)
+	{
+		g_string_append_printf (string, css_style, state,
+		                        bg != NULL ? bg : "",
+		                        text != NULL ? text : "");
+
+		g_free (bg);
+		g_free (text);
+	}
+}
+
+static void
+generate_css_style (GtkSourceStyleScheme *scheme)
+{
+	GString *final_style;
+	GtkSourceStyle *style, *style2;
+
+	final_style = g_string_new ("");
+
+	style = gtk_source_style_scheme_get_style (scheme, STYLE_TEXT);
+	append_css_style (final_style, style, "");
+
+	style = gtk_source_style_scheme_get_style (scheme, STYLE_SELECTED);
+	append_css_style (final_style, style, ":selected:focused");
+
+	style2 = gtk_source_style_scheme_get_style (scheme, STYLE_SELECTED_UNFOCUSED);
+	if (style2 == NULL)
+		style2 = style;
+	append_css_style (final_style, style2, ":selected");
+
+	if (*final_style->str != '\0')
+	{
+		GError *error = NULL;
+
+		if (!gtk_css_provider_load_from_data (scheme->priv->css, final_style->str,
+		                                      final_style->len, &error))
+		{
+			g_warning ("%s", error->message);
+			g_error_free (error);
+		}
+	}
+
+	g_string_free (final_style, TRUE);
+}
 
 static void
 get_bool (xmlNode    *node,
@@ -1186,12 +1166,12 @@ parse_style_scheme_element (GtkSourceStyleScheme *scheme,
 GtkSourceStyleScheme *
 _gtk_source_style_scheme_new_from_file (const gchar *filename)
 {
-	char *text;
+	GtkSourceStyleScheme *scheme;
+	gchar *text;
 	gsize text_len;
 	xmlDoc *doc;
 	xmlNode *node;
 	GError *error = NULL;
-	GtkSourceStyleScheme *scheme;
 
 	g_return_val_if_fail (filename != NULL, NULL);
 
@@ -1242,6 +1222,11 @@ _gtk_source_style_scheme_new_from_file (const gchar *filename)
 		g_error_free (error);
 		g_object_unref (scheme);
 		scheme = NULL;
+	}
+	else
+	{
+		/* css style part */
+		generate_css_style (scheme);
 	}
 
 	xmlFreeDoc (doc);
