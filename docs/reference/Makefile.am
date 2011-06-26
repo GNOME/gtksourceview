@@ -1,5 +1,5 @@
 GTKDOC_CFLAGS = -I$(top_srcdir) $(DEP_CFLAGS)
-GTKDOC_LIBS = $(top_builddir)/gtksourceview/libgtksourceview-3.0.la
+GTKDOC_LIBS = $(top_builddir)/gtksourceview/libgtksourceview-3.0.la $(DEP_LIBS)
 
 ## Process this file with automake to produce Makefile.in
 AUTOMAKE_OPTIONS = 1.7
