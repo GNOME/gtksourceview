@@ -53,6 +53,7 @@ LANGUAGES =			\
 	m4.lang			\
 	makefile.lang		\
 	mallard.lang		\
+	markdown.lang		\
 	matlab.lang		\
 	nemerle.lang		\
 	nsis.lang		\
