@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview-master-po-gl-28392.merged\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-21 14:32+0200\n"
-"PO-Revision-Date: 2011-06-21 14:34+0200\n"
+"POT-Creation-Date: 2011-07-04 21:20+0200\n"
+"PO-Revision-Date: 2011-07-04 21:19+0200\n"
 "Last-Translator: Fran Diéguez <frandieguez@gnome.org>\n"
 "Language-Team: Galician <gnome-l10n-gl@gnome.org>\n"
 "Language: gl\n"
@@ -480,9 +480,10 @@ msgstr "Campo"
 #: ../data/language-specs/gtk-doc.lang.h:6
 #: ../data/language-specs/haddock.lang.h:14
 #: ../data/language-specs/html.lang.h:7 ../data/language-specs/latex.lang.h:6
-#: ../data/language-specs/mallard.lang.h:4 ../data/language-specs/t2t.lang.h:6
-#: ../data/language-specs/texinfo.lang.h:8 ../data/language-specs/xml.lang.h:9
-#: ../data/language-specs/xslt.lang.h:2
+#: ../data/language-specs/mallard.lang.h:4
+#: ../data/language-specs/markdown.lang.h:14
+#: ../data/language-specs/t2t.lang.h:6 ../data/language-specs/texinfo.lang.h:8
+#: ../data/language-specs/xml.lang.h:9 ../data/language-specs/xslt.lang.h:2
 #: ../gtksourceview/gtksourcecompletionitem.c:242
 #: ../gtksourceview/gtksourcegutterrenderertext.c:395
 msgid "Markup"
@@ -1277,6 +1278,7 @@ msgid "Definition list"
 msgstr "Lista de definición"
 
 #: ../data/language-specs/haddock.lang.h:4
+#: ../data/language-specs/markdown.lang.h:5
 msgid "Emphasis"
 msgstr "Énfase"
 
@@ -1321,6 +1323,7 @@ msgid "Monospace"
 msgstr "Monoespazo"
 
 #: ../data/language-specs/haddock.lang.h:16
+#: ../data/language-specs/markdown.lang.h:16
 msgid "URL"
 msgstr "URL"
 
@@ -1354,6 +1357,7 @@ msgid "Attribute Name"
 msgstr "Nome do atributo"
 
 #: ../data/language-specs/html.lang.h:2
+#: ../data/language-specs/markdown.lang.h:1
 msgid "Attribute Value"
 msgstr "Valor do atributo"
 
@@ -1550,6 +1554,56 @@ msgstr "Elementos da páxina"
 #: ../data/language-specs/mallard.lang.h:6
 msgid "Section Elements"
 msgstr "Elementos de sección"
+
+#: ../data/language-specs/markdown.lang.h:2
+msgid "Backslash Escape"
+msgstr "Escape de barra invertida"
+
+#: ../data/language-specs/markdown.lang.h:3
+msgid "Blockquote Marker"
+msgstr "Marcador de bloque de cita"
+
+#: ../data/language-specs/markdown.lang.h:4
+msgid "Code"
+msgstr "Código"
+
+#: ../data/language-specs/markdown.lang.h:6
+#: ../data/language-specs/rpmspec.lang.h:8 ../data/language-specs/t2t.lang.h:4
+msgid "Header"
+msgstr "Cabeceira"
+
+#: ../data/language-specs/markdown.lang.h:7
+msgid "Horizontal Rule"
+msgstr "Regra horizontal"
+
+#: ../data/language-specs/markdown.lang.h:8
+msgid "Image Marker"
+msgstr "Marcador de imaxe"
+
+#: ../data/language-specs/markdown.lang.h:9
+#: ../gtksourceview/gtksourcecompletionitem.c:229
+msgid "Label"
+msgstr "Etiqueta"
+
+#: ../data/language-specs/markdown.lang.h:10
+msgid "Line Break"
+msgstr "Salto de liña"
+
+#: ../data/language-specs/markdown.lang.h:11
+msgid "Link Text"
+msgstr "Texto de ligazón"
+
+#: ../data/language-specs/markdown.lang.h:12
+msgid "List Marker"
+msgstr "Marcador de lista"
+
+#: ../data/language-specs/markdown.lang.h:13
+msgid "Markdown"
+msgstr "Markdown"
+
+#: ../data/language-specs/markdown.lang.h:15
+msgid "Strong Emphasis"
+msgstr "Énfase forte"
 
 #: ../data/language-specs/matlab.lang.h:3
 msgid "Matlab"
@@ -1789,10 +1843,6 @@ msgstr "Correo electrónico"
 #: ../data/language-specs/rpmspec.lang.h:7
 msgid "Flow Conditional"
 msgstr "Condicional de fluxo"
-
-#: ../data/language-specs/rpmspec.lang.h:8 ../data/language-specs/t2t.lang.h:4
-msgid "Header"
-msgstr "Cabeceira"
 
 #: ../data/language-specs/rpmspec.lang.h:9
 msgid "Other Macro"
@@ -2333,10 +2383,6 @@ msgstr "O tipo de activación"
 msgid "Completion Info"
 msgstr "Información de completado"
 
-#: ../gtksourceview/gtksourcecompletionitem.c:229
-msgid "Label"
-msgstr "Etiqueta"
-
 #: ../gtksourceview/gtksourcecompletionitem.c:230
 msgid "Label to be shown for this item"
 msgstr "Etiqueta a mostrar para este elemento"
@@ -2821,23 +2867,23 @@ msgstr "Definir riscar"
 msgid "Whether strikethrough attribute is set"
 msgstr "Indica se o atributo \"riscar\" está definido"
 
-#: ../gtksourceview/gtksourcestylescheme.c:194
-#: ../gtksourceview/gtksourcestylescheme.c:195
+#: ../gtksourceview/gtksourcestylescheme.c:221
+#: ../gtksourceview/gtksourcestylescheme.c:222
 msgid "Style scheme id"
 msgstr "Id do esquema de estilo"
 
-#: ../gtksourceview/gtksourcestylescheme.c:207
-#: ../gtksourceview/gtksourcestylescheme.c:208
+#: ../gtksourceview/gtksourcestylescheme.c:234
+#: ../gtksourceview/gtksourcestylescheme.c:235
 msgid "Style scheme name"
 msgstr "Nome do esquema de estilo"
 
-#: ../gtksourceview/gtksourcestylescheme.c:220
-#: ../gtksourceview/gtksourcestylescheme.c:221
+#: ../gtksourceview/gtksourcestylescheme.c:247
+#: ../gtksourceview/gtksourcestylescheme.c:248
 msgid "Style scheme description"
 msgstr "Descrición do esquema de estilo"
 
-#: ../gtksourceview/gtksourcestylescheme.c:233
-#: ../gtksourceview/gtksourcestylescheme.c:234
+#: ../gtksourceview/gtksourcestylescheme.c:260
+#: ../gtksourceview/gtksourcestylescheme.c:261
 msgid "Style scheme filename"
 msgstr "Nome do ficheiro de esquema de estilo"
 
