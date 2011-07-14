@@ -163,7 +163,7 @@ stamp-gtksourceview-typebuiltins.h: Makefile.am $(libgtksourceview_headers)
 			--eprod "GType @enum_name@_get_type (void);\n" \
 			--eprod "G_END_DECLS\n\n" \
 		$(libgtksourceview_headers) ) > xgen-gth \
-	&& $(SED) -i 's/GTK_TYPE_SOURCE_/GTK_SOURCE_TYPE_/' xgen-gth \
+	&& $(SED) -i -e 's/GTK_TYPE_SOURCE_/GTK_SOURCE_TYPE_/' xgen-gth \
 	&& (cmp -s xgen-gth gtksourceview-typebuiltins.h || cp xgen-gth gtksourceview-typebuiltins.h) \
 	&& rm -f xgen-gth && echo stamp > $(@F)
 
