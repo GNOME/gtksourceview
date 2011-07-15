@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview.HEAD.he\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-02 10:41+0300\n"
-"PO-Revision-Date: 2011-07-02 10:42+0200\n"
+"POT-Creation-Date: 2011-07-15 10:40+0300\n"
+"PO-Revision-Date: 2011-07-15 10:42+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <he@li.org>\n"
 "Language: he\n"
@@ -473,9 +473,10 @@ msgstr "שדה"
 #: ../data/language-specs/gtk-doc.lang.h:6
 #: ../data/language-specs/haddock.lang.h:14
 #: ../data/language-specs/html.lang.h:7 ../data/language-specs/latex.lang.h:6
-#: ../data/language-specs/mallard.lang.h:4 ../data/language-specs/t2t.lang.h:6
-#: ../data/language-specs/texinfo.lang.h:8 ../data/language-specs/xml.lang.h:9
-#: ../data/language-specs/xslt.lang.h:2
+#: ../data/language-specs/mallard.lang.h:4
+#: ../data/language-specs/markdown.lang.h:14
+#: ../data/language-specs/t2t.lang.h:6 ../data/language-specs/texinfo.lang.h:8
+#: ../data/language-specs/xml.lang.h:9 ../data/language-specs/xslt.lang.h:2
 #: ../gtksourceview/gtksourcecompletionitem.c:242
 #: ../gtksourceview/gtksourcegutterrenderertext.c:395
 msgid "Markup"
@@ -1268,6 +1269,7 @@ msgid "Definition list"
 msgstr "Definition list"
 
 #: ../data/language-specs/haddock.lang.h:4
+#: ../data/language-specs/markdown.lang.h:5
 msgid "Emphasis"
 msgstr "Emphasis"
 
@@ -1312,6 +1314,7 @@ msgid "Monospace"
 msgstr "Monospace"
 
 #: ../data/language-specs/haddock.lang.h:16
+#: ../data/language-specs/markdown.lang.h:16
 msgid "URL"
 msgstr "URL"
 
@@ -1345,6 +1348,7 @@ msgid "Attribute Name"
 msgstr "Attribute Name"
 
 #: ../data/language-specs/html.lang.h:2
+#: ../data/language-specs/markdown.lang.h:1
 msgid "Attribute Value"
 msgstr "Attribute Value"
 
@@ -1541,6 +1545,56 @@ msgstr "רכיבי העמוד"
 #: ../data/language-specs/mallard.lang.h:6
 msgid "Section Elements"
 msgstr "רכיבי הפסקה"
+
+#: ../data/language-specs/markdown.lang.h:2
+msgid "Backslash Escape"
+msgstr "סליקת לוכסן"
+
+#: ../data/language-specs/markdown.lang.h:3
+msgid "Blockquote Marker"
+msgstr "סמן מירכאות"
+
+#: ../data/language-specs/markdown.lang.h:4
+msgid "Code"
+msgstr "קוד"
+
+#: ../data/language-specs/markdown.lang.h:6
+#: ../data/language-specs/rpmspec.lang.h:8 ../data/language-specs/t2t.lang.h:4
+msgid "Header"
+msgstr "Header"
+
+#: ../data/language-specs/markdown.lang.h:7
+msgid "Horizontal Rule"
+msgstr "קו אופקי"
+
+#: ../data/language-specs/markdown.lang.h:8
+msgid "Image Marker"
+msgstr "מסמן תמונות"
+
+#: ../data/language-specs/markdown.lang.h:9
+#: ../gtksourceview/gtksourcecompletionitem.c:229
+msgid "Label"
+msgstr "תווית"
+
+#: ../data/language-specs/markdown.lang.h:10
+msgid "Line Break"
+msgstr "מעבר שורה"
+
+#: ../data/language-specs/markdown.lang.h:11
+msgid "Link Text"
+msgstr "טקסט קישור"
+
+#: ../data/language-specs/markdown.lang.h:12
+msgid "List Marker"
+msgstr "מסמן רשימות"
+
+#: ../data/language-specs/markdown.lang.h:13
+msgid "Markdown"
+msgstr "סימון"
+
+#: ../data/language-specs/markdown.lang.h:15
+msgid "Strong Emphasis"
+msgstr "הדגשה חזקה"
 
 #: ../data/language-specs/matlab.lang.h:3
 msgid "Matlab"
@@ -1780,10 +1834,6 @@ msgstr "Email"
 #: ../data/language-specs/rpmspec.lang.h:7
 msgid "Flow Conditional"
 msgstr "Flow Conditional"
-
-#: ../data/language-specs/rpmspec.lang.h:8 ../data/language-specs/t2t.lang.h:4
-msgid "Header"
-msgstr "Header"
 
 #: ../data/language-specs/rpmspec.lang.h:9
 msgid "Other Macro"
@@ -2321,10 +2371,6 @@ msgstr "סוג ההפעלה"
 #: ../gtksourceview/gtksourcecompletioninfo.c:61
 msgid "Completion Info"
 msgstr "מידע ההשלמה"
-
-#: ../gtksourceview/gtksourcecompletionitem.c:229
-msgid "Label"
-msgstr "תווית"
 
 #: ../gtksourceview/gtksourcecompletionitem.c:230
 msgid "Label to be shown for this item"
