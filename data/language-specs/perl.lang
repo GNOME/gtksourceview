@@ -631,6 +631,7 @@ FIXME: =pod should require an empty line before/after, as written in perlpod
             <context sub-pattern="0" where="start" style-ref="include-statement"/>
             <context once-only="true" style-ref="include-statement">
               <keyword>attributes</keyword>
+              <keyword>autodie</keyword>
               <keyword>autouse</keyword>
               <keyword>base</keyword>
               <keyword>bigint</keyword>
@@ -642,6 +643,7 @@ FIXME: =pod should require an empty line before/after, as written in perlpod
               <keyword>constant</keyword>
               <keyword>diagnostics</keyword>
               <keyword>encoding</keyword>
+              <keyword>feature</keyword>
               <keyword>fields</keyword>
               <keyword>fileset</keyword>
               <keyword>if</keyword>
@@ -649,9 +651,12 @@ FIXME: =pod should require an empty line before/after, as written in perlpod
               <keyword>less</keyword>
               <keyword>lib</keyword>
               <keyword>locale</keyword>
+              <keyword>mro</keyword>
               <keyword>open</keyword>
               <keyword>ops</keyword>
               <keyword>overload</keyword>
+              <keyword>overloading</keyword>
+              <keyword>parent</keyword>
               <keyword>re</keyword>
               <keyword>sigtrap</keyword>
               <keyword>sort</keyword>
@@ -675,11 +680,13 @@ FIXME: =pod should require an empty line before/after, as written in perlpod
       <keyword>break</keyword>
       <keyword>continue</keyword>
       <keyword>do</keyword>
+      <keyword>default</keyword>
       <keyword>each</keyword>
       <keyword>else</keyword>
       <keyword>elsif</keyword>
       <keyword>foreach</keyword>
       <keyword>for</keyword>
+      <keyword>given</keyword>
       <keyword>if</keyword>
       <keyword>last</keyword>
       <keyword>local</keyword>
@@ -689,8 +696,10 @@ FIXME: =pod should require an empty line before/after, as written in perlpod
       <keyword>package</keyword>
       <keyword>return</keyword>
       <keyword>sub</keyword>
+      <keyword>state</keyword>
       <keyword>unless</keyword>
       <keyword>until</keyword>
+      <keyword>when</keyword>
       <keyword>while</keyword>
       <keyword>__FILE__</keyword>
       <keyword>__LINE__</keyword>
@@ -823,6 +832,7 @@ FIXME: =pod should require an empty line before/after, as written in perlpod
       <keyword>rewinddir</keyword>
       <keyword>rindex</keyword>
       <keyword>rmdir</keyword>
+      <keyword>say</keyword>
       <keyword>scalar</keyword>
       <keyword>seekdir</keyword>
       <keyword>seek</keyword>
