@@ -205,12 +205,18 @@
       <keyword>double</keyword>
       <keyword>float</keyword>
       <keyword>int</keyword>
+      <keyword>(u)?int(8|16|32|64)_t</keyword>
       <keyword>long</keyword>
+      <keyword>ptrdiff_t</keyword>
+      <keyword>off(64)?_t</keyword>
       <keyword>short</keyword>
       <keyword>signed</keyword>
       <keyword>size_t</keyword>
+      <keyword>ssize_t</keyword>
       <keyword>unsigned</keyword>
       <keyword>void</keyword>
+      <keyword>wchar_t</keyword>
+      <keyword>wint_t</keyword>
     </context>
 
     <context id="storage-class" style-ref="storage-class">
