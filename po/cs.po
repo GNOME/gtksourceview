@@ -15,9 +15,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=gtksourceview&component=general\n"
-"POT-Creation-Date: 2011-01-14 21:41+0000\n"
-"PO-Revision-Date: 2011-01-15 16:21+0100\n"
+"product=gtksourceview&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2011-07-03 19:28+0000\n"
+"PO-Revision-Date: 2011-07-19 11:41+0200\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -46,41 +46,42 @@ msgstr "Vždy"
 msgid "Before"
 msgstr "Před"
 
-#: ../data/glade/gtksourceview.xml.in.h:5
+#. Translators: It is related to an option of a set of values
+#: ../data/glade/gtksourceview.xml.in.h:6
 msgid "Disabled"
 msgstr "Vypnuto"
 
-#: ../data/glade/gtksourceview.xml.in.h:6
+#: ../data/glade/gtksourceview.xml.in.h:7
 msgid "GtkSourceView"
 msgstr "GtkSourceView"
 
-#: ../data/glade/gtksourceview.xml.in.h:7
+#: ../data/glade/gtksourceview.xml.in.h:8
 msgid "Leading"
 msgstr "Úvodní"
 
-#: ../data/glade/gtksourceview.xml.in.h:8
+#: ../data/glade/gtksourceview.xml.in.h:9
 msgid "Newline"
 msgstr "Nový řádek"
 
-#: ../data/glade/gtksourceview.xml.in.h:9
+#: ../data/glade/gtksourceview.xml.in.h:10
 msgid "Non Breaking Whitespace"
 msgstr "Nezalomitelný bílý znak"
 
-#: ../data/glade/gtksourceview.xml.in.h:10
+#: ../data/glade/gtksourceview.xml.in.h:11
 msgid "Space"
 msgstr "Mezera"
 
-#: ../data/glade/gtksourceview.xml.in.h:11
+#: ../data/glade/gtksourceview.xml.in.h:12
 msgid "Tab"
 msgstr "Tabulátor"
 
-#: ../data/glade/gtksourceview.xml.in.h:12
+#: ../data/glade/gtksourceview.xml.in.h:13
 #: ../gtksourceview/gtksourcecompletionitem.c:255
 #: ../gtksourceview/gtksourcegutterrenderertext.c:403
 msgid "Text"
 msgstr "Text"
 
-#: ../data/glade/gtksourceview.xml.in.h:13
+#: ../data/glade/gtksourceview.xml.in.h:14
 msgid "Trailing"
 msgstr "Koncové"
 
@@ -104,14 +105,14 @@ msgstr "Číslo v libovolné číselné soustavě"
 #: ../data/language-specs/ocaml.lang.h:2 ../data/language-specs/ooc.lang.h:1
 #: ../data/language-specs/opal.lang.h:1 ../data/language-specs/php.lang.h:1
 #: ../data/language-specs/R.lang.h:2 ../data/language-specs/ruby.lang.h:3
-#: ../data/language-specs/vala.lang.h:1 ../data/language-specs/vbnet.lang.h:1
-#: ../data/language-specs/vhdl.lang.h:2
+#: ../data/language-specs/sml.lang.h:2 ../data/language-specs/vala.lang.h:1
+#: ../data/language-specs/vbnet.lang.h:1 ../data/language-specs/vhdl.lang.h:2
 msgid "Boolean value"
 msgstr "Pravdivostní hodnota"
 
 #. Any comment
 #: ../data/language-specs/ada.lang.h:4 ../data/language-specs/asp.lang.h:4
-#: ../data/language-specs/bennugd.lang.h:4 ../data/language-specs/boo.lang.h:4
+#: ../data/language-specs/bennugd.lang.h:3 ../data/language-specs/boo.lang.h:4
 #: ../data/language-specs/c.lang.h:4 ../data/language-specs/cg.lang.h:5
 #: ../data/language-specs/cobol.lang.h:2
 #: ../data/language-specs/csharp.lang.h:4 ../data/language-specs/css.lang.h:3
@@ -125,29 +126,27 @@ msgstr "Pravdivostní hodnota"
 #: ../data/language-specs/go.lang.h:3 ../data/language-specs/gtkrc.lang.h:2
 #: ../data/language-specs/haskell.lang.h:2
 #: ../data/language-specs/html.lang.h:3 ../data/language-specs/idl.lang.h:1
-#: ../data/language-specs/ini.lang.h:3 ../data/language-specs/java.lang.h:3
-#: ../data/language-specs/javascript.lang.h:2
-#: ../data/language-specs/latex.lang.h:2 ../data/language-specs/lua.lang.h:2
+#: ../data/language-specs/ini.lang.h:3 ../data/language-specs/latex.lang.h:2
+#: ../data/language-specs/lua.lang.h:2 ../data/language-specs/matlab.lang.h:2
 #: ../data/language-specs/nemerle.lang.h:4
 #: ../data/language-specs/nsis.lang.h:1 ../data/language-specs/ocaml.lang.h:4
-#: ../data/language-specs/ocl.lang.h:1 ../data/language-specs/octave.lang.h:3
+#: ../data/language-specs/ocl.lang.h:1 ../data/language-specs/octave.lang.h:4
 #: ../data/language-specs/ooc.lang.h:2 ../data/language-specs/opal.lang.h:2
 #: ../data/language-specs/pascal.lang.h:1 ../data/language-specs/perl.lang.h:2
 #: ../data/language-specs/php.lang.h:2 ../data/language-specs/po.lang.h:1
-#: ../data/language-specs/prolog.lang.h:1 ../data/language-specs/ruby.lang.h:5
+#: ../data/language-specs/prolog.lang.h:1 ../data/language-specs/ruby.lang.h:6
 #: ../data/language-specs/scheme.lang.h:2
 #: ../data/language-specs/scilab.lang.h:2 ../data/language-specs/sh.lang.h:1
-#: ../data/language-specs/sql.lang.h:1 ../data/language-specs/t2t.lang.h:3
-#: ../data/language-specs/texinfo.lang.h:1
+#: ../data/language-specs/sml.lang.h:4 ../data/language-specs/sql.lang.h:1
+#: ../data/language-specs/t2t.lang.h:3 ../data/language-specs/texinfo.lang.h:1
 #: ../data/language-specs/vala.lang.h:2 ../data/language-specs/vbnet.lang.h:2
 #: ../data/language-specs/verilog.lang.h:2
 #: ../data/language-specs/vhdl.lang.h:4 ../data/language-specs/xml.lang.h:4
 msgid "Comment"
 msgstr "Komentář"
 
-#. map-to="def:others"
 #: ../data/language-specs/ada.lang.h:5 ../data/language-specs/asp.lang.h:5
-#: ../data/language-specs/bennugd.lang.h:5 ../data/language-specs/boo.lang.h:5
+#: ../data/language-specs/bennugd.lang.h:4 ../data/language-specs/boo.lang.h:5
 #: ../data/language-specs/c.lang.h:6 ../data/language-specs/cg.lang.h:6
 #: ../data/language-specs/cpp.lang.h:3 ../data/language-specs/csharp.lang.h:5
 #: ../data/language-specs/cuda.lang.h:2 ../data/language-specs/d.lang.h:5
@@ -157,20 +156,22 @@ msgstr "Komentář"
 #: ../data/language-specs/fsharp.lang.h:5 ../data/language-specs/glsl.lang.h:4
 #: ../data/language-specs/go.lang.h:4 ../data/language-specs/gtkrc.lang.h:3
 #: ../data/language-specs/haskell.lang.h:3 ../data/language-specs/idl.lang.h:2
-#: ../data/language-specs/ini.lang.h:4 ../data/language-specs/java.lang.h:4
-#: ../data/language-specs/javascript.lang.h:5
+#: ../data/language-specs/ini.lang.h:4 ../data/language-specs/java.lang.h:3
+#: ../data/language-specs/javascript.lang.h:3
 #: ../data/language-specs/nemerle.lang.h:5
-#: ../data/language-specs/objc.lang.h:2 ../data/language-specs/ocaml.lang.h:5
-#: ../data/language-specs/ocl.lang.h:2 ../data/language-specs/ooc.lang.h:3
-#: ../data/language-specs/opal.lang.h:4 ../data/language-specs/pascal.lang.h:2
-#: ../data/language-specs/php.lang.h:4 ../data/language-specs/sparql.lang.h:3
+#: ../data/language-specs/objc.lang.h:2 ../data/language-specs/objj.lang.h:2
+#: ../data/language-specs/ocaml.lang.h:5 ../data/language-specs/ocl.lang.h:2
+#: ../data/language-specs/ooc.lang.h:3 ../data/language-specs/opal.lang.h:4
+#: ../data/language-specs/opencl.lang.h:1
+#: ../data/language-specs/pascal.lang.h:2 ../data/language-specs/php.lang.h:4
+#: ../data/language-specs/sml.lang.h:5 ../data/language-specs/sparql.lang.h:3
 #: ../data/language-specs/sql.lang.h:2 ../data/language-specs/vala.lang.h:3
 #: ../data/language-specs/vbnet.lang.h:3
 msgid "Data Type"
 msgstr "Datový typ"
 
 #. A decimal number: 1234
-#: ../data/language-specs/ada.lang.h:6 ../data/language-specs/bennugd.lang.h:6
+#: ../data/language-specs/ada.lang.h:6 ../data/language-specs/bennugd.lang.h:5
 #: ../data/language-specs/c.lang.h:7 ../data/language-specs/cg.lang.h:7
 #: ../data/language-specs/csharp.lang.h:6 ../data/language-specs/def.lang.h:19
 #: ../data/language-specs/d.lang.h:6 ../data/language-specs/eiffel.lang.h:6
@@ -179,35 +180,34 @@ msgstr "Datový typ"
 #: ../data/language-specs/nemerle.lang.h:6
 #: ../data/language-specs/ocaml.lang.h:6 ../data/language-specs/ooc.lang.h:4
 #: ../data/language-specs/opal.lang.h:5 ../data/language-specs/php.lang.h:5
-#: ../data/language-specs/python.lang.h:7 ../data/language-specs/ruby.lang.h:7
-#: ../data/language-specs/vala.lang.h:4
+#: ../data/language-specs/python.lang.h:7 ../data/language-specs/ruby.lang.h:8
 msgid "Decimal number"
 msgstr "Číslo v desítkové soustavě"
 
 #. map to nothing
-#: ../data/language-specs/ada.lang.h:7 ../data/language-specs/bennugd.lang.h:8
-#: ../data/language-specs/c.lang.h:9 ../data/language-specs/cg.lang.h:9
-#: ../data/language-specs/csharp.lang.h:8
+#: ../data/language-specs/ada.lang.h:7 ../data/language-specs/c.lang.h:8
+#: ../data/language-specs/cg.lang.h:9 ../data/language-specs/csharp.lang.h:8
 #: ../data/language-specs/eiffel.lang.h:9
 #: ../data/language-specs/fsharp.lang.h:7 ../data/language-specs/go.lang.h:7
 #: ../data/language-specs/haskell.lang.h:5
-#: ../data/language-specs/java.lang.h:7 ../data/language-specs/lua.lang.h:3
-#: ../data/language-specs/ocaml.lang.h:8 ../data/language-specs/ooc.lang.h:7
-#: ../data/language-specs/php.lang.h:8 ../data/language-specs/prolog.lang.h:3
-#: ../data/language-specs/python.lang.h:8 ../data/language-specs/ruby.lang.h:8
-#: ../data/language-specs/texinfo.lang.h:2
+#: ../data/language-specs/java.lang.h:5
+#: ../data/language-specs/javascript.lang.h:4
+#: ../data/language-specs/lua.lang.h:3 ../data/language-specs/ocaml.lang.h:8
+#: ../data/language-specs/ooc.lang.h:7 ../data/language-specs/php.lang.h:8
+#: ../data/language-specs/prolog.lang.h:3
+#: ../data/language-specs/python.lang.h:8 ../data/language-specs/ruby.lang.h:9
+#: ../data/language-specs/sml.lang.h:7 ../data/language-specs/texinfo.lang.h:2
 #: ../data/language-specs/verilog.lang.h:5
 msgid "Escaped Character"
 msgstr "Znak v podobě escape sekvence"
 
 #. keywords: "if", "for", "while", etc.
 #: ../data/language-specs/ada.lang.h:8 ../data/language-specs/asp.lang.h:7
-#: ../data/language-specs/awk.lang.h:2
-#: ../data/language-specs/bennugd.lang.h:12
-#: ../data/language-specs/boo.lang.h:7 ../data/language-specs/c.lang.h:13
+#: ../data/language-specs/awk.lang.h:2 ../data/language-specs/bennugd.lang.h:9
+#: ../data/language-specs/boo.lang.h:7 ../data/language-specs/c.lang.h:12
 #: ../data/language-specs/cg.lang.h:14 ../data/language-specs/cobol.lang.h:5
 #: ../data/language-specs/cpp.lang.h:4 ../data/language-specs/csharp.lang.h:10
-#: ../data/language-specs/css.lang.h:8 ../data/language-specs/cuda.lang.h:6
+#: ../data/language-specs/css.lang.h:9 ../data/language-specs/cuda.lang.h:6
 #: ../data/language-specs/def.lang.h:36 ../data/language-specs/d.lang.h:10
 #: ../data/language-specs/dosbatch.lang.h:4
 #: ../data/language-specs/dot.lang.h:5 ../data/language-specs/eiffel.lang.h:12
@@ -218,31 +218,34 @@ msgstr "Znak v podobě escape sekvence"
 #: ../data/language-specs/glsl.lang.h:5 ../data/language-specs/go.lang.h:12
 #: ../data/language-specs/gtkrc.lang.h:7
 #: ../data/language-specs/haskell.lang.h:9 ../data/language-specs/idl.lang.h:4
-#: ../data/language-specs/ini.lang.h:7 ../data/language-specs/java.lang.h:11
-#: ../data/language-specs/javascript.lang.h:10
+#: ../data/language-specs/imagej.lang.h:6 ../data/language-specs/ini.lang.h:7
+#: ../data/language-specs/java.lang.h:11
+#: ../data/language-specs/javascript.lang.h:8
 #: ../data/language-specs/lua.lang.h:5
 #: ../data/language-specs/nemerle.lang.h:10
-#: ../data/language-specs/objc.lang.h:3 ../data/language-specs/ocaml.lang.h:10
-#: ../data/language-specs/ocl.lang.h:3 ../data/language-specs/octave.lang.h:7
-#: ../data/language-specs/ooc.lang.h:12 ../data/language-specs/opal.lang.h:8
+#: ../data/language-specs/objc.lang.h:3 ../data/language-specs/objj.lang.h:4
+#: ../data/language-specs/ocaml.lang.h:10 ../data/language-specs/ocl.lang.h:3
+#: ../data/language-specs/octave.lang.h:8 ../data/language-specs/ooc.lang.h:12
+#: ../data/language-specs/opal.lang.h:8 ../data/language-specs/opencl.lang.h:6
 #: ../data/language-specs/pascal.lang.h:4 ../data/language-specs/perl.lang.h:9
 #: ../data/language-specs/php.lang.h:14 ../data/language-specs/po.lang.h:3
 #: ../data/language-specs/prolog.lang.h:4
 #: ../data/language-specs/python.lang.h:11 ../data/language-specs/R.lang.h:6
-#: ../data/language-specs/ruby.lang.h:12
+#: ../data/language-specs/ruby.lang.h:13
 #: ../data/language-specs/scheme.lang.h:4
 #: ../data/language-specs/scilab.lang.h:5 ../data/language-specs/sh.lang.h:5
-#: ../data/language-specs/sparql.lang.h:7 ../data/language-specs/sql.lang.h:6
+#: ../data/language-specs/sml.lang.h:9 ../data/language-specs/sparql.lang.h:7
+#: ../data/language-specs/sql.lang.h:6
 #: ../data/language-specs/systemverilog.lang.h:2
 #: ../data/language-specs/tcl.lang.h:1 ../data/language-specs/texinfo.lang.h:6
-#: ../data/language-specs/vala.lang.h:7 ../data/language-specs/vbnet.lang.h:4
+#: ../data/language-specs/vala.lang.h:5 ../data/language-specs/vbnet.lang.h:4
 #: ../data/language-specs/verilog.lang.h:9
 #: ../data/language-specs/vhdl.lang.h:5
 msgid "Keyword"
 msgstr "Klíčové slovo"
 
 #: ../data/language-specs/ada.lang.h:9 ../data/language-specs/asp.lang.h:10
-#: ../data/language-specs/bennugd.lang.h:14 ../data/language-specs/c.lang.h:15
+#: ../data/language-specs/bennugd.lang.h:11 ../data/language-specs/c.lang.h:14
 #: ../data/language-specs/cg.lang.h:16 ../data/language-specs/csharp.lang.h:12
 #: ../data/language-specs/forth.lang.h:9
 #: ../data/language-specs/fsharp.lang.h:15
@@ -250,23 +253,22 @@ msgstr "Klíčové slovo"
 #: ../data/language-specs/haskell.lang.h:11
 #: ../data/language-specs/idl.lang.h:5
 #: ../data/language-specs/nemerle.lang.h:14
-#: ../data/language-specs/pascal.lang.h:6
+#: ../data/language-specs/objj.lang.h:7 ../data/language-specs/pascal.lang.h:6
 #: ../data/language-specs/vbnet.lang.h:5
 msgid "Preprocessor"
 msgstr "Preprocesor"
 
 #: ../data/language-specs/ada.lang.h:10
 #: ../data/language-specs/csharp.lang.h:13
-#: ../data/language-specs/vala.lang.h:9
 #: ../data/language-specs/verilog.lang.h:11
 #: ../data/language-specs/vhdl.lang.h:7
 msgid "Real number"
 msgstr "Reálné číslo"
 
 #: ../data/language-specs/ada.lang.h:11 ../data/language-specs/asp.lang.h:11
-#: ../data/language-specs/bennugd.lang.h:15
+#: ../data/language-specs/bennugd.lang.h:12
 #: ../data/language-specs/boo.lang.h:13 ../data/language-specs/chdr.lang.h:2
-#: ../data/language-specs/c.lang.h:17 ../data/language-specs/cg.lang.h:17
+#: ../data/language-specs/c.lang.h:16 ../data/language-specs/cg.lang.h:17
 #: ../data/language-specs/cobol.lang.h:8 ../data/language-specs/cpp.lang.h:5
 #: ../data/language-specs/csharp.lang.h:14
 #: ../data/language-specs/cuda.lang.h:7 ../data/language-specs/d.lang.h:13
@@ -281,20 +283,22 @@ msgstr "Reálné číslo"
 #: ../data/language-specs/idl.lang.h:6 ../data/language-specs/java.lang.h:15
 #: ../data/language-specs/makefile.lang.h:4
 #: ../data/language-specs/nemerle.lang.h:15
-#: ../data/language-specs/objc.lang.h:5 ../data/language-specs/ocaml.lang.h:16
-#: ../data/language-specs/ooc.lang.h:17 ../data/language-specs/opal.lang.h:11
+#: ../data/language-specs/objc.lang.h:5 ../data/language-specs/objj.lang.h:8
+#: ../data/language-specs/ocaml.lang.h:16 ../data/language-specs/ooc.lang.h:17
+#: ../data/language-specs/opal.lang.h:11
+#: ../data/language-specs/opencl.lang.h:9
 #: ../data/language-specs/pascal.lang.h:7
 #: ../data/language-specs/prolog.lang.h:8
-#: ../data/language-specs/scheme.lang.h:6
+#: ../data/language-specs/scheme.lang.h:6 ../data/language-specs/sml.lang.h:11
 #: ../data/language-specs/sparql.lang.h:14 ../data/language-specs/sql.lang.h:9
 #: ../data/language-specs/systemverilog.lang.h:3
-#: ../data/language-specs/vala.lang.h:10 ../data/language-specs/vbnet.lang.h:6
+#: ../data/language-specs/vala.lang.h:7 ../data/language-specs/vbnet.lang.h:6
 #: ../data/language-specs/verilog.lang.h:12
 #: ../data/language-specs/vhdl.lang.h:8
 msgid "Sources"
 msgstr "Zdrojové kódy"
 
-#: ../data/language-specs/ada.lang.h:12 ../data/language-specs/c.lang.h:19
+#: ../data/language-specs/ada.lang.h:12 ../data/language-specs/c.lang.h:18
 #: ../data/language-specs/cg.lang.h:18 ../data/language-specs/go.lang.h:15
 #: ../data/language-specs/java.lang.h:16 ../data/language-specs/ooc.lang.h:18
 msgid "Storage Class"
@@ -302,11 +306,10 @@ msgstr "Třída úložiště"
 
 #. A string constant: "this is a string"
 #: ../data/language-specs/ada.lang.h:13 ../data/language-specs/asp.lang.h:13
-#: ../data/language-specs/bennugd.lang.h:16
-#: ../data/language-specs/boo.lang.h:15 ../data/language-specs/c.lang.h:20
+#: ../data/language-specs/boo.lang.h:15 ../data/language-specs/c.lang.h:19
 #: ../data/language-specs/cobol.lang.h:10
 #: ../data/language-specs/csharp.lang.h:15
-#: ../data/language-specs/css.lang.h:13 ../data/language-specs/def.lang.h:57
+#: ../data/language-specs/css.lang.h:14 ../data/language-specs/def.lang.h:57
 #: ../data/language-specs/d.lang.h:15 ../data/language-specs/dosbatch.lang.h:6
 #: ../data/language-specs/eiffel.lang.h:15
 #: ../data/language-specs/erlang.lang.h:12
@@ -315,25 +318,24 @@ msgstr "Třída úložiště"
 #: ../data/language-specs/gdb-log.lang.h:10
 #: ../data/language-specs/go.lang.h:16 ../data/language-specs/gtkrc.lang.h:9
 #: ../data/language-specs/haskell.lang.h:13
-#: ../data/language-specs/idl.lang.h:7 ../data/language-specs/ini.lang.h:9
-#: ../data/language-specs/java.lang.h:17
-#: ../data/language-specs/javascript.lang.h:15
-#: ../data/language-specs/lua.lang.h:10
+#: ../data/language-specs/idl.lang.h:7 ../data/language-specs/imagej.lang.h:10
+#: ../data/language-specs/ini.lang.h:9 ../data/language-specs/java.lang.h:17
+#: ../data/language-specs/lua.lang.h:10 ../data/language-specs/matlab.lang.h:5
 #: ../data/language-specs/nemerle.lang.h:16
 #: ../data/language-specs/nsis.lang.h:5 ../data/language-specs/objc.lang.h:6
-#: ../data/language-specs/ocaml.lang.h:18 ../data/language-specs/ocl.lang.h:7
-#: ../data/language-specs/octave.lang.h:11
+#: ../data/language-specs/objj.lang.h:9 ../data/language-specs/ocaml.lang.h:18
+#: ../data/language-specs/ocl.lang.h:7 ../data/language-specs/octave.lang.h:15
 #: ../data/language-specs/ooc.lang.h:19 ../data/language-specs/opal.lang.h:12
 #: ../data/language-specs/pascal.lang.h:8
 #: ../data/language-specs/perl.lang.h:19 ../data/language-specs/php.lang.h:20
-#: ../data/language-specs/po.lang.h:8 ../data/language-specs/prolog.lang.h:9
+#: ../data/language-specs/po.lang.h:6 ../data/language-specs/prolog.lang.h:9
 #: ../data/language-specs/python.lang.h:17
-#: ../data/language-specs/ruby.lang.h:21
+#: ../data/language-specs/ruby.lang.h:22
 #: ../data/language-specs/scheme.lang.h:7
-#: ../data/language-specs/scilab.lang.h:9 ../data/language-specs/sh.lang.h:9
-#: ../data/language-specs/sql.lang.h:10
+#: ../data/language-specs/scilab.lang.h:9 ../data/language-specs/sh.lang.h:8
+#: ../data/language-specs/sml.lang.h:13 ../data/language-specs/sql.lang.h:10
 #: ../data/language-specs/texinfo.lang.h:10
-#: ../data/language-specs/vala.lang.h:11 ../data/language-specs/vbnet.lang.h:8
+#: ../data/language-specs/vala.lang.h:8 ../data/language-specs/vbnet.lang.h:8
 #: ../data/language-specs/verilog.lang.h:13
 #: ../data/language-specs/vhdl.lang.h:9
 msgid "String"
@@ -350,13 +352,12 @@ msgstr "Objekt ASP"
 #. A function name (also: methods for classes)
 #: ../data/language-specs/asp.lang.h:6
 #: ../data/language-specs/changelog.lang.h:6
-#: ../data/language-specs/cg.lang.h:11 ../data/language-specs/css.lang.h:7
+#: ../data/language-specs/cg.lang.h:11 ../data/language-specs/css.lang.h:8
 #: ../data/language-specs/def.lang.h:32 ../data/language-specs/gap.lang.h:4
 #: ../data/language-specs/gdb-log.lang.h:4
 #: ../data/language-specs/gtk-doc.lang.h:3
-#: ../data/language-specs/javascript.lang.h:7
-#: ../data/language-specs/lua.lang.h:4 ../data/language-specs/octave.lang.h:6
-#: ../data/language-specs/scheme.lang.h:3
+#: ../data/language-specs/javascript.lang.h:5
+#: ../data/language-specs/lua.lang.h:4 ../data/language-specs/scheme.lang.h:3
 #: ../data/language-specs/scilab.lang.h:4 ../data/language-specs/sh.lang.h:3
 #: ../data/language-specs/sparql.lang.h:4 ../data/language-specs/sql.lang.h:5
 msgid "Function"
@@ -373,12 +374,14 @@ msgstr "Číslo"
 
 #. Operators: "+", "*", etc.
 #: ../data/language-specs/asp.lang.h:9
-#: ../data/language-specs/bennugd.lang.h:13
+#: ../data/language-specs/bennugd.lang.h:10
 #: ../data/language-specs/cmake.lang.h:6 ../data/language-specs/cobol.lang.h:7
 #: ../data/language-specs/def.lang.h:42
 #: ../data/language-specs/erlang.lang.h:10
-#: ../data/language-specs/nsis.lang.h:3 ../data/language-specs/perl.lang.h:11
-#: ../data/language-specs/php.lang.h:17 ../data/language-specs/prolog.lang.h:6
+#: ../data/language-specs/imagej.lang.h:7 ../data/language-specs/nsis.lang.h:3
+#: ../data/language-specs/octave.lang.h:10
+#: ../data/language-specs/perl.lang.h:11 ../data/language-specs/php.lang.h:17
+#: ../data/language-specs/prolog.lang.h:6
 #: ../data/language-specs/sparql.lang.h:10
 msgid "Operator"
 msgstr "Operátor"
@@ -405,11 +408,11 @@ msgstr "Vzor"
 
 #: ../data/language-specs/awk.lang.h:4
 #: ../data/language-specs/dosbatch.lang.h:5
-#: ../data/language-specs/javascript.lang.h:14
+#: ../data/language-specs/javascript.lang.h:12
 #: ../data/language-specs/lua.lang.h:9 ../data/language-specs/m4.lang.h:3
 #: ../data/language-specs/perl.lang.h:18 ../data/language-specs/php.lang.h:19
 #: ../data/language-specs/python.lang.h:15
-#: ../data/language-specs/ruby.lang.h:19 ../data/language-specs/sh.lang.h:7
+#: ../data/language-specs/ruby.lang.h:20 ../data/language-specs/sh.lang.h:7
 #: ../data/language-specs/tcl.lang.h:2
 msgid "Scripts"
 msgstr "Skripty"
@@ -419,11 +422,12 @@ msgstr "Skripty"
 #: ../data/language-specs/haskell.lang.h:15
 #: ../data/language-specs/ini.lang.h:10
 #: ../data/language-specs/makefile.lang.h:8
-#: ../data/language-specs/nsis.lang.h:6 ../data/language-specs/perl.lang.h:21
-#: ../data/language-specs/php.lang.h:21
+#: ../data/language-specs/nsis.lang.h:6
+#: ../data/language-specs/octave.lang.h:16
+#: ../data/language-specs/perl.lang.h:21 ../data/language-specs/php.lang.h:21
 #: ../data/language-specs/pkgconfig.lang.h:3
 #: ../data/language-specs/prolog.lang.h:10
-#: ../data/language-specs/ruby.lang.h:23 ../data/language-specs/sh.lang.h:11
+#: ../data/language-specs/ruby.lang.h:24 ../data/language-specs/sh.lang.h:10
 #: ../data/language-specs/sparql.lang.h:15 ../data/language-specs/tcl.lang.h:4
 msgid "Variable"
 msgstr "Proměnná"
@@ -436,56 +440,27 @@ msgstr "awk"
 msgid "BennuGD"
 msgstr "BennuGD"
 
-#. A character constant: 'c'
-#: ../data/language-specs/bennugd.lang.h:3 ../data/language-specs/c.lang.h:3
-#: ../data/language-specs/csharp.lang.h:3 ../data/language-specs/def.lang.h:9
-#: ../data/language-specs/gap.lang.h:1 ../data/language-specs/go.lang.h:2
-#: ../data/language-specs/haskell.lang.h:1
-#: ../data/language-specs/java.lang.h:2
-#: ../data/language-specs/nemerle.lang.h:3
-#: ../data/language-specs/vhdl.lang.h:3
-msgid "Character"
-msgstr "Znak"
-
-#. Any erroneous construct
-#: ../data/language-specs/bennugd.lang.h:7 ../data/language-specs/c.lang.h:8
-#: ../data/language-specs/cg.lang.h:8 ../data/language-specs/cobol.lang.h:4
-#: ../data/language-specs/csharp.lang.h:7 ../data/language-specs/css.lang.h:6
-#: ../data/language-specs/def.lang.h:28 ../data/language-specs/d.lang.h:7
-#: ../data/language-specs/dot.lang.h:3 ../data/language-specs/go.lang.h:6
-#: ../data/language-specs/html.lang.h:5 ../data/language-specs/java.lang.h:6
-#: ../data/language-specs/javascript.lang.h:6
-#: ../data/language-specs/nemerle.lang.h:7
-#: ../data/language-specs/ocaml.lang.h:7 ../data/language-specs/ooc.lang.h:6
-#: ../data/language-specs/opal.lang.h:6 ../data/language-specs/perl.lang.h:4
-#: ../data/language-specs/php.lang.h:6 ../data/language-specs/prolog.lang.h:2
-#: ../data/language-specs/vala.lang.h:5
-#: ../data/language-specs/verilog.lang.h:4 ../data/language-specs/xml.lang.h:8
-msgid "Error"
-msgstr "Chyba"
-
 #. A floating point constant: 2.3e10
-#: ../data/language-specs/bennugd.lang.h:9 ../data/language-specs/c.lang.h:10
+#: ../data/language-specs/bennugd.lang.h:6 ../data/language-specs/c.lang.h:9
 #: ../data/language-specs/cg.lang.h:10 ../data/language-specs/def.lang.h:30
 #: ../data/language-specs/d.lang.h:8 ../data/language-specs/erlang.lang.h:8
 #: ../data/language-specs/go.lang.h:8 ../data/language-specs/nemerle.lang.h:8
 #: ../data/language-specs/ooc.lang.h:9 ../data/language-specs/php.lang.h:9
 #: ../data/language-specs/python.lang.h:9 ../data/language-specs/R.lang.h:4
-#: ../data/language-specs/ruby.lang.h:9
+#: ../data/language-specs/ruby.lang.h:10
 msgid "Floating point number"
 msgstr "Číslo s plovoucí čárkou"
 
-#: ../data/language-specs/bennugd.lang.h:10 ../data/language-specs/c.lang.h:11
+#: ../data/language-specs/bennugd.lang.h:7 ../data/language-specs/c.lang.h:10
 #: ../data/language-specs/cg.lang.h:12 ../data/language-specs/csharp.lang.h:9
 #: ../data/language-specs/d.lang.h:9 ../data/language-specs/eiffel.lang.h:11
 #: ../data/language-specs/go.lang.h:10 ../data/language-specs/nemerle.lang.h:9
 #: ../data/language-specs/ooc.lang.h:11 ../data/language-specs/php.lang.h:12
-#: ../data/language-specs/vala.lang.h:6
 msgid "Hexadecimal number"
 msgstr "Číslo v šestnáctkové soustavě"
 
 #. Any variable name
-#: ../data/language-specs/bennugd.lang.h:11
+#: ../data/language-specs/bennugd.lang.h:8
 #: ../data/language-specs/def.lang.h:34 ../data/language-specs/php.lang.h:13
 msgid "Identifier"
 msgstr "Identifikátor"
@@ -507,9 +482,10 @@ msgstr "Pole"
 #: ../data/language-specs/gtk-doc.lang.h:6
 #: ../data/language-specs/haddock.lang.h:14
 #: ../data/language-specs/html.lang.h:7 ../data/language-specs/latex.lang.h:6
-#: ../data/language-specs/mallard.lang.h:4 ../data/language-specs/t2t.lang.h:6
-#: ../data/language-specs/texinfo.lang.h:8 ../data/language-specs/xml.lang.h:9
-#: ../data/language-specs/xslt.lang.h:2
+#: ../data/language-specs/mallard.lang.h:4
+#: ../data/language-specs/markdown.lang.h:14
+#: ../data/language-specs/t2t.lang.h:6 ../data/language-specs/texinfo.lang.h:8
+#: ../data/language-specs/xml.lang.h:9 ../data/language-specs/xslt.lang.h:2
 #: ../gtksourceview/gtksourcecompletionitem.c:242
 #: ../gtksourceview/gtksourcegutterrenderertext.c:395
 msgid "Markup"
@@ -520,8 +496,9 @@ msgid "Boo"
 msgstr "Boo"
 
 #: ../data/language-specs/boo.lang.h:2 ../data/language-specs/desktop.lang.h:3
-#: ../data/language-specs/d.lang.h:2 ../data/language-specs/libtool.lang.h:1
-#: ../data/language-specs/octave.lang.h:2
+#: ../data/language-specs/d.lang.h:2 ../data/language-specs/imagej.lang.h:1
+#: ../data/language-specs/libtool.lang.h:1
+#: ../data/language-specs/objj.lang.h:1 ../data/language-specs/octave.lang.h:2
 #: ../data/language-specs/python.lang.h:2
 #: ../data/language-specs/scheme.lang.h:1
 #: ../data/language-specs/scilab.lang.h:1
@@ -546,21 +523,22 @@ msgstr "Jmenný prostor"
 #: ../data/language-specs/csharp.lang.h:11 ../data/language-specs/d.lang.h:11
 #: ../data/language-specs/fsharp.lang.h:13
 #: ../data/language-specs/java.lang.h:12
-#: ../data/language-specs/javascript.lang.h:11
+#: ../data/language-specs/javascript.lang.h:9
 #: ../data/language-specs/nemerle.lang.h:12
-#: ../data/language-specs/ooc.lang.h:13 ../data/language-specs/php.lang.h:15
-#: ../data/language-specs/vala.lang.h:8
+#: ../data/language-specs/objj.lang.h:5 ../data/language-specs/ooc.lang.h:13
+#: ../data/language-specs/php.lang.h:15 ../data/language-specs/vala.lang.h:6
 msgid "Null Value"
 msgstr "Nenastavená hodnota"
 
-#: ../data/language-specs/boo.lang.h:12 ../data/language-specs/perl.lang.h:17
-#: ../data/language-specs/ruby.lang.h:17
+#: ../data/language-specs/boo.lang.h:12
+#: ../data/language-specs/javascript.lang.h:11
+#: ../data/language-specs/perl.lang.h:17 ../data/language-specs/ruby.lang.h:18
 msgid "Regular Expression"
 msgstr "Regulární výraz"
 
 #: ../data/language-specs/boo.lang.h:14
 #: ../data/language-specs/python.lang.h:16
-#: ../data/language-specs/ruby.lang.h:20
+#: ../data/language-specs/ruby.lang.h:21
 msgid "Special Variable"
 msgstr "Speciální proměnná"
 
@@ -586,7 +564,7 @@ msgid "File"
 msgstr "Soubor"
 
 #: ../data/language-specs/changelog.lang.h:7
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:462
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:464
 msgid "Name"
 msgstr "Název"
 
@@ -602,7 +580,7 @@ msgstr "Název"
 #. * to a #GtkSourceBuffer.
 #.
 #: ../data/language-specs/changelog.lang.h:8
-#: ../data/language-specs/cmake.lang.h:7 ../data/language-specs/css.lang.h:10
+#: ../data/language-specs/cmake.lang.h:7 ../data/language-specs/css.lang.h:11
 #: ../data/language-specs/desktop.lang.h:12
 #: ../data/language-specs/diff.lang.h:9 ../data/language-specs/dot.lang.h:6
 #: ../data/language-specs/dpatch.lang.h:2
@@ -630,32 +608,42 @@ msgstr "Hlavička C/C++/ObjC"
 msgid "C"
 msgstr "C"
 
+#. A character constant: 'c'
+#: ../data/language-specs/c.lang.h:3 ../data/language-specs/csharp.lang.h:3
+#: ../data/language-specs/def.lang.h:9 ../data/language-specs/gap.lang.h:1
+#: ../data/language-specs/go.lang.h:2 ../data/language-specs/haskell.lang.h:1
+#: ../data/language-specs/java.lang.h:2
+#: ../data/language-specs/nemerle.lang.h:3 ../data/language-specs/sml.lang.h:3
+#: ../data/language-specs/vhdl.lang.h:3
+msgid "Character"
+msgstr "Znak"
+
 #: ../data/language-specs/c.lang.h:5 ../data/language-specs/cpp.lang.h:2
 #: ../data/language-specs/objc.lang.h:1 ../data/language-specs/opal.lang.h:3
 msgid "Common Defines"
 msgstr "Obecné definice"
 
-#: ../data/language-specs/c.lang.h:12 ../data/language-specs/cg.lang.h:13
-#: ../data/language-specs/go.lang.h:11
+#: ../data/language-specs/c.lang.h:11 ../data/language-specs/cg.lang.h:13
+#: ../data/language-specs/go.lang.h:11 ../data/language-specs/objj.lang.h:3
 msgid "Included File"
 msgstr "Zahrnutý soubor"
 
-#: ../data/language-specs/c.lang.h:14 ../data/language-specs/cg.lang.h:15
+#: ../data/language-specs/c.lang.h:13 ../data/language-specs/cg.lang.h:15
 #: ../data/language-specs/d.lang.h:12 ../data/language-specs/go.lang.h:13
 #: ../data/language-specs/nemerle.lang.h:13
 #: ../data/language-specs/ooc.lang.h:15 ../data/language-specs/php.lang.h:16
 msgid "Octal number"
 msgstr "Číslo v osmičkové soustavě"
 
-#: ../data/language-specs/c.lang.h:16
+#: ../data/language-specs/c.lang.h:15
 msgid "Signal name"
 msgstr "Název signálu"
 
-#: ../data/language-specs/c.lang.h:18
+#: ../data/language-specs/c.lang.h:17
 msgid "Standard stream"
 msgstr "Standardní proud"
 
-#: ../data/language-specs/c.lang.h:21
+#: ../data/language-specs/c.lang.h:20
 msgid "printf Conversion"
 msgstr "Konverze printf"
 
@@ -663,14 +651,32 @@ msgstr "Konverze printf"
 msgid "Bindings"
 msgstr "Navázání dat"
 
+#. Translators: functions that are provided in the language
 #: ../data/language-specs/cg.lang.h:3 ../data/language-specs/erlang.lang.h:3
-#: ../data/language-specs/ruby.lang.h:4
+#: ../data/language-specs/imagej.lang.h:2
+#: ../data/language-specs/matlab.lang.h:1
+#: ../data/language-specs/octave.lang.h:3 ../data/language-specs/ruby.lang.h:5
 msgid "Builtin"
 msgstr "Vestavěné"
 
 #: ../data/language-specs/cg.lang.h:4
 msgid "CG Shader Language"
 msgstr "Jazyk na stínování 3D CG"
+
+#. Any erroneous construct
+#: ../data/language-specs/cg.lang.h:8 ../data/language-specs/cobol.lang.h:4
+#: ../data/language-specs/csharp.lang.h:7 ../data/language-specs/css.lang.h:7
+#: ../data/language-specs/def.lang.h:28 ../data/language-specs/d.lang.h:7
+#: ../data/language-specs/dot.lang.h:3 ../data/language-specs/go.lang.h:6
+#: ../data/language-specs/html.lang.h:5
+#: ../data/language-specs/nemerle.lang.h:7
+#: ../data/language-specs/ocaml.lang.h:7 ../data/language-specs/ooc.lang.h:6
+#: ../data/language-specs/opal.lang.h:6 ../data/language-specs/perl.lang.h:4
+#: ../data/language-specs/php.lang.h:6 ../data/language-specs/prolog.lang.h:2
+#: ../data/language-specs/vala.lang.h:4
+#: ../data/language-specs/verilog.lang.h:4 ../data/language-specs/xml.lang.h:8
+msgid "Error"
+msgstr "Chyba"
 
 #: ../data/language-specs/cg.lang.h:19
 msgid "Swizzle operator"
@@ -693,7 +699,7 @@ msgstr "CMake"
 #: ../data/language-specs/def.lang.h:15
 #: ../data/language-specs/gtk-doc.lang.h:1
 #: ../data/language-specs/libtool.lang.h:2
-#: ../data/language-specs/ruby.lang.h:6
+#: ../data/language-specs/ruby.lang.h:7
 msgid "Constant"
 msgstr "Konstanta"
 
@@ -718,7 +724,8 @@ msgstr "C++"
 msgid "C#"
 msgstr "C#"
 
-#: ../data/language-specs/csharp.lang.h:16
+#. Translators: this is a format that appears in the strings
+#: ../data/language-specs/csharp.lang.h:17 ../data/language-specs/po.lang.h:7
 msgid "String Format"
 msgstr "Formát řetězce"
 
@@ -730,32 +737,34 @@ msgstr "CSS"
 msgid "Color"
 msgstr "Barva"
 
-#: ../data/language-specs/css.lang.h:4 ../data/language-specs/fcl.lang.h:3
+#. Translator: it is a type of number
+#: ../data/language-specs/css.lang.h:5 ../data/language-specs/fcl.lang.h:3
 #: ../data/language-specs/fortran.lang.h:4 ../data/language-specs/gap.lang.h:3
 #: ../data/language-specs/gtkrc.lang.h:4
 #: ../data/language-specs/haskell.lang.h:4 ../data/language-specs/ini.lang.h:5
-#: ../data/language-specs/octave.lang.h:4
-#: ../data/language-specs/pascal.lang.h:3 ../data/language-specs/sql.lang.h:3
+#: ../data/language-specs/octave.lang.h:6
+#: ../data/language-specs/pascal.lang.h:3 ../data/language-specs/sml.lang.h:6
+#: ../data/language-specs/sql.lang.h:3
 msgid "Decimal"
 msgstr "Desítkové číslo"
 
-#: ../data/language-specs/css.lang.h:5
+#: ../data/language-specs/css.lang.h:6
 msgid "Dimension"
 msgstr "Rozměr"
 
-#: ../data/language-specs/css.lang.h:9
+#: ../data/language-specs/css.lang.h:10
 msgid "Known Property Value"
 msgstr "Známá hodnota vlastnosti"
 
-#: ../data/language-specs/css.lang.h:11
+#: ../data/language-specs/css.lang.h:12
 msgid "Others 2"
 msgstr "Jiné 2"
 
-#: ../data/language-specs/css.lang.h:12
+#: ../data/language-specs/css.lang.h:13
 msgid "Others 3"
 msgstr "Jiné 3"
 
-#: ../data/language-specs/css.lang.h:14
+#: ../data/language-specs/css.lang.h:15
 msgid "at-rules"
 msgstr "Pravidla @"
 
@@ -793,7 +802,7 @@ msgid "Complex number"
 msgstr "Komplexní číslo"
 
 #. A primitive data type: int, long, char, etc.
-#: ../data/language-specs/def.lang.h:17
+#: ../data/language-specs/def.lang.h:17 ../data/language-specs/octave.lang.h:5
 msgid "Data type"
 msgstr "Datový typ"
 
@@ -829,7 +838,7 @@ msgid "Reserved keyword"
 msgstr "Rezervované klíčové slovo"
 
 #. A shebang: #!/bin/sh
-#: ../data/language-specs/def.lang.h:48 ../data/language-specs/sh.lang.h:8
+#: ../data/language-specs/def.lang.h:48
 msgid "Shebang"
 msgstr "Mřížka + vykřičník"
 
@@ -928,8 +937,9 @@ msgid "Special Token"
 msgstr "Speciální symbol"
 
 #: ../data/language-specs/docbook.lang.h:1
-msgid "Docbook"
-msgstr "Docbook"
+#| msgid "Docbook"
+msgid "DocBook"
+msgstr "DocBook"
 
 #: ../data/language-specs/docbook.lang.h:2
 msgid "Formatting Elements"
@@ -953,7 +963,8 @@ msgid "Command"
 msgstr "Příkaz"
 
 #: ../data/language-specs/dosbatch.lang.h:3
-msgid "Dos Batch"
+#| msgid "Dos Batch"
+msgid "DOS Batch"
 msgstr "Dávka systému DOS"
 
 #: ../data/language-specs/dot.lang.h:1 ../data/language-specs/xml.lang.h:1
@@ -1017,7 +1028,7 @@ msgid "Exception Handling"
 msgstr "Obsluha výjimek"
 
 #: ../data/language-specs/eiffel.lang.h:13
-#: ../data/language-specs/ruby.lang.h:16
+#: ../data/language-specs/ruby.lang.h:17
 msgid "Predefined Variable"
 msgstr "Předdefinovaná proměnná"
 
@@ -1032,7 +1043,7 @@ msgstr "Atom"
 #: ../data/language-specs/erlang.lang.h:2
 #: ../data/language-specs/fsharp.lang.h:1
 #: ../data/language-specs/ocaml.lang.h:1
-#: ../data/language-specs/octave.lang.h:1
+#: ../data/language-specs/octave.lang.h:1 ../data/language-specs/sml.lang.h:1
 #: ../data/language-specs/verilog.lang.h:1
 #: ../data/language-specs/vhdl.lang.h:1
 msgid "Base-N Integer"
@@ -1058,18 +1069,20 @@ msgid "FCL"
 msgstr "FCL"
 
 #: ../data/language-specs/fcl.lang.h:5 ../data/language-specs/fortran.lang.h:5
-#: ../data/language-specs/ini.lang.h:6 ../data/language-specs/octave.lang.h:5
+#: ../data/language-specs/ini.lang.h:6 ../data/language-specs/octave.lang.h:7
 #: ../data/language-specs/scilab.lang.h:3 ../data/language-specs/sql.lang.h:4
 msgid "Floating Point"
 msgstr "S plovoucí desetinnou čárkou"
 
-#: ../data/language-specs/fcl.lang.h:7 ../data/language-specs/octave.lang.h:9
+#: ../data/language-specs/fcl.lang.h:7 ../data/language-specs/octave.lang.h:12
 #: ../data/language-specs/scilab.lang.h:6
 msgid "Reserved Constant"
 msgstr "Rezervovaná konstanta"
 
 #: ../data/language-specs/fcl.lang.h:8 ../data/language-specs/gap.lang.h:7
-#: ../data/language-specs/octave.lang.h:10 ../data/language-specs/R.lang.h:9
+#: ../data/language-specs/imagej.lang.h:8
+#: ../data/language-specs/matlab.lang.h:4
+#: ../data/language-specs/octave.lang.h:13 ../data/language-specs/R.lang.h:9
 #: ../data/language-specs/scilab.lang.h:7
 msgid "Scientific"
 msgstr "Vědecký"
@@ -1108,7 +1121,7 @@ msgid "F#"
 msgstr "F#"
 
 #: ../data/language-specs/fsharp.lang.h:9
-#: ../data/language-specs/ocaml.lang.h:9
+#: ../data/language-specs/ocaml.lang.h:9 ../data/language-specs/sml.lang.h:8
 msgid "Floating Point number"
 msgstr "Číslo s plovoucí desetinnou čárkou"
 
@@ -1127,17 +1140,18 @@ msgstr "Cesta k modulu"
 msgid "Polymorphic Variant"
 msgstr "Polymorfní typ Variant"
 
-#: ../data/language-specs/fsharp.lang.h:18
+#. Translators: this is a specific variable called Type
+#: ../data/language-specs/fsharp.lang.h:19
 #: ../data/language-specs/ocaml.lang.h:19
 msgid "Type Variable"
 msgstr "Typová proměnná"
 
-#: ../data/language-specs/fsharp.lang.h:19
+#: ../data/language-specs/fsharp.lang.h:20
 #: ../data/language-specs/ocaml.lang.h:20
 msgid "Type, module or object keyword"
 msgstr "Klíčové slovo pro typ, třídu nebo objekt"
 
-#: ../data/language-specs/fsharp.lang.h:20
+#: ../data/language-specs/fsharp.lang.h:21
 #: ../data/language-specs/ocaml.lang.h:21
 msgid "Variant Constructor"
 msgstr "Konstruktor typu Variant"
@@ -1266,8 +1280,9 @@ msgid "Definition list"
 msgstr "Seznam definic"
 
 #: ../data/language-specs/haddock.lang.h:4
+#: ../data/language-specs/markdown.lang.h:5
 msgid "Emphasis"
-msgstr "Zvýraznění textu"
+msgstr "Zvýraznění"
 
 #: ../data/language-specs/haddock.lang.h:5
 msgid "Enumerated list"
@@ -1310,6 +1325,7 @@ msgid "Monospace"
 msgstr "Text s pevnou šířkou znaků"
 
 #: ../data/language-specs/haddock.lang.h:16
+#: ../data/language-specs/markdown.lang.h:16
 msgid "URL"
 msgstr "URL"
 
@@ -1330,7 +1346,7 @@ msgid "Octal"
 msgstr "Osmičkové číslo"
 
 #: ../data/language-specs/haskell.lang.h:14
-#: ../data/language-specs/ruby.lang.h:22
+#: ../data/language-specs/ruby.lang.h:23
 msgid "Symbol"
 msgstr "Symbol"
 
@@ -1343,6 +1359,7 @@ msgid "Attribute Name"
 msgstr "Název atributu"
 
 #: ../data/language-specs/html.lang.h:2
+#: ../data/language-specs/markdown.lang.h:1
 msgid "Attribute Value"
 msgstr "Hodnota atributu"
 
@@ -1358,20 +1375,42 @@ msgstr "Značka"
 msgid "IDL"
 msgstr "IDL"
 
+#: ../data/language-specs/imagej.lang.h:3
+#| msgid "Command"
+msgid "Commands"
+msgstr "Příkazy"
+
+#: ../data/language-specs/imagej.lang.h:4
+#| msgid "Escaped Character"
+msgid "Escaped Characters"
+msgstr "Znaky v podobě escape sekvence"
+
+#: ../data/language-specs/imagej.lang.h:5
+msgid "ImageJ"
+msgstr "ImageJ"
+
+#: ../data/language-specs/imagej.lang.h:9
+#: ../data/language-specs/octave.lang.h:14
+#| msgid "Data Type"
+msgid "Storage Type"
+msgstr "Datový typ"
+
 #: ../data/language-specs/ini.lang.h:1
 msgid ".ini"
 msgstr ".ini"
 
-#: ../data/language-specs/java.lang.h:5 ../data/language-specs/ooc.lang.h:5
+#: ../data/language-specs/java.lang.h:4 ../data/language-specs/ooc.lang.h:5
 msgid "Declaration"
 msgstr "Deklarace"
 
+#. Translators: refered to some specific keywords of the language that
+#. allow to get external functionalities
 #: ../data/language-specs/java.lang.h:8 ../data/language-specs/ooc.lang.h:8
 msgid "External"
 msgstr "Externí"
 
 #: ../data/language-specs/java.lang.h:9
-#: ../data/language-specs/javascript.lang.h:8
+#: ../data/language-specs/javascript.lang.h:6
 #: ../data/language-specs/ooc.lang.h:10
 msgid "Future Reserved Keywords"
 msgstr "Budoucí rezervovaná slova"
@@ -1384,23 +1423,19 @@ msgstr "Java"
 msgid "Scope Declaration"
 msgstr "Deklarace oboru platnosti"
 
-#: ../data/language-specs/javascript.lang.h:3
+#: ../data/language-specs/javascript.lang.h:2
 msgid "Constructors"
 msgstr "Konstruktory"
 
-#: ../data/language-specs/javascript.lang.h:9
+#: ../data/language-specs/javascript.lang.h:7
 msgid "JavaScript"
 msgstr "JavaScript"
 
-#: ../data/language-specs/javascript.lang.h:12
-msgid "Object"
-msgstr "Objekt"
-
-#: ../data/language-specs/javascript.lang.h:13
+#: ../data/language-specs/javascript.lang.h:10
 msgid "Properties"
 msgstr "Vlastnosti"
 
-#: ../data/language-specs/javascript.lang.h:16
+#: ../data/language-specs/javascript.lang.h:13
 msgid "Undefined Value"
 msgstr "Nedefinovaná hodnota"
 
@@ -1437,7 +1472,7 @@ msgstr "libtool"
 msgid "Lua"
 msgstr "Lua"
 
-#: ../data/language-specs/lua.lang.h:7 ../data/language-specs/ruby.lang.h:14
+#: ../data/language-specs/lua.lang.h:7 ../data/language-specs/ruby.lang.h:15
 msgid "Nil Constant"
 msgstr "Konstanta NIL"
 
@@ -1525,6 +1560,63 @@ msgstr "Prvky stránky"
 msgid "Section Elements"
 msgstr "Prvky oddílu"
 
+#: ../data/language-specs/markdown.lang.h:2
+msgid "Backslash Escape"
+msgstr "Escape sekvence se zpětným lomítkem"
+
+#: ../data/language-specs/markdown.lang.h:3
+msgid "Blockquote Marker"
+msgstr "Značka citace"
+
+#: ../data/language-specs/markdown.lang.h:4
+msgid "Code"
+msgstr "Kód"
+
+#: ../data/language-specs/markdown.lang.h:6
+#: ../data/language-specs/rpmspec.lang.h:8 ../data/language-specs/t2t.lang.h:4
+msgid "Header"
+msgstr "Hlavička"
+
+#: ../data/language-specs/markdown.lang.h:7
+msgid "Horizontal Rule"
+msgstr "Vodorovná oddělovací čára"
+
+#: ../data/language-specs/markdown.lang.h:8
+msgid "Image Marker"
+msgstr "Značka obrázku"
+
+#: ../data/language-specs/markdown.lang.h:9
+#: ../gtksourceview/gtksourcecompletionitem.c:229
+msgid "Label"
+msgstr "Popisek"
+
+#: ../data/language-specs/markdown.lang.h:10
+msgid "Line Break"
+msgstr "Zalomení řádku"
+
+#: ../data/language-specs/markdown.lang.h:11
+#| msgid "Text"
+msgid "Link Text"
+msgstr "Text odkazu"
+
+#: ../data/language-specs/markdown.lang.h:12
+msgid "List Marker"
+msgstr "Značka seznamu"
+
+#: ../data/language-specs/markdown.lang.h:13
+msgid "Markdown"
+msgstr "Markdown"
+
+#: ../data/language-specs/markdown.lang.h:15
+#| msgid "Emphasis"
+msgid "Strong Emphasis"
+msgstr "Tučné zvýraznění"
+
+#: ../data/language-specs/matlab.lang.h:3
+#| msgid "Mallard"
+msgid "Matlab"
+msgstr "Matlab"
+
 #: ../data/language-specs/nemerle.lang.h:11
 msgid "Nemerle"
 msgstr "Nemerle"
@@ -1536,6 +1628,11 @@ msgstr "NSIS"
 #: ../data/language-specs/objc.lang.h:4
 msgid "Objective-C"
 msgstr "Objective-C"
+
+#: ../data/language-specs/objj.lang.h:6
+#| msgid "Objective-C"
+msgid "Objective-J"
+msgstr "Objective-J"
 
 #: ../data/language-specs/ocaml.lang.h:13
 msgid "Objective Caml"
@@ -1561,9 +1658,14 @@ msgstr "Operační operátor"
 msgid "Type Operators"
 msgstr "Typové operátory"
 
-#: ../data/language-specs/octave.lang.h:8
+#: ../data/language-specs/octave.lang.h:9
 msgid "Octave"
 msgstr "Octave"
+
+#: ../data/language-specs/octave.lang.h:11
+#| msgid "Package Info"
+msgid "Package Manager"
+msgstr "Správce balíčku"
 
 #: ../data/language-specs/ooc.lang.h:14
 msgid "OOC"
@@ -1582,6 +1684,35 @@ msgstr "Obsluha modulu"
 msgid "Opal"
 msgstr "Opal"
 
+#: ../data/language-specs/opencl.lang.h:2
+msgid "Device Cast"
+msgstr "Přetypování v zařízení"
+
+#: ../data/language-specs/opencl.lang.h:3
+#| msgid "Device Functions"
+msgid "Device Function"
+msgstr "Funkce v zařízení"
+
+#: ../data/language-specs/opencl.lang.h:4
+#| msgid "Global Functions"
+msgid "Global Function"
+msgstr "Globální funkce"
+
+#: ../data/language-specs/opencl.lang.h:5
+#| msgid "Global Variables"
+msgid "Global Variable"
+msgstr "Globální proměnná"
+
+#: ../data/language-specs/opencl.lang.h:7
+#| msgid "OCL"
+msgid "OpenCL"
+msgstr "OpenCL"
+
+#: ../data/language-specs/opencl.lang.h:8
+#| msgid "Special Constant"
+msgid "OpenCL Constant"
+msgstr "Konstanta OpenCL"
+
 #: ../data/language-specs/pascal.lang.h:5
 msgid "Pascal"
 msgstr "Pascal"
@@ -1595,12 +1726,12 @@ msgid "File Descriptor"
 msgstr "Popisovač souboru"
 
 #: ../data/language-specs/perl.lang.h:6 ../data/language-specs/php.lang.h:10
-#: ../data/language-specs/ruby.lang.h:10
+#: ../data/language-specs/ruby.lang.h:11
 msgid "Heredoc"
 msgstr "Dokumentace přímo v kódu"
 
 #: ../data/language-specs/perl.lang.h:7 ../data/language-specs/php.lang.h:11
-#: ../data/language-specs/ruby.lang.h:11 ../data/language-specs/sh.lang.h:4
+#: ../data/language-specs/ruby.lang.h:12 ../data/language-specs/sh.lang.h:4
 msgid "Heredoc Bound"
 msgstr "Napojení dokumentace přímo v kódu"
 
@@ -1656,12 +1787,7 @@ msgstr "pkg-config"
 msgid "Fuzzy"
 msgstr "Nepřesný překlad"
 
-#. FIXME make it some nice name and mark it translatable
-#: ../data/language-specs/po.lang.h:7
-msgid "Special"
-msgstr "Speciální znak"
-
-#: ../data/language-specs/po.lang.h:9
+#: ../data/language-specs/po.lang.h:8
 msgid "gettext translation"
 msgstr "Překlad gettext"
 
@@ -1733,10 +1859,6 @@ msgstr "E-mail"
 msgid "Flow Conditional"
 msgstr "Podmíněný tok"
 
-#: ../data/language-specs/rpmspec.lang.h:8 ../data/language-specs/t2t.lang.h:4
-msgid "Header"
-msgstr "Hlavička"
-
 #: ../data/language-specs/rpmspec.lang.h:9
 msgid "Other Macro"
 msgstr "Jiné makro"
@@ -1766,15 +1888,15 @@ msgstr "Větvení"
 msgid "Attribute Definition"
 msgstr "Definice atributů"
 
-#: ../data/language-specs/ruby.lang.h:13
+#: ../data/language-specs/ruby.lang.h:14
 msgid "Module handler"
 msgstr "Obsluha modulu"
 
-#: ../data/language-specs/ruby.lang.h:15
+#: ../data/language-specs/ruby.lang.h:16
 msgid "Numeric literal"
 msgstr "Číselný literál"
 
-#: ../data/language-specs/ruby.lang.h:18
+#: ../data/language-specs/ruby.lang.h:19
 msgid "Ruby"
 msgstr "Ruby"
 
@@ -1790,18 +1912,27 @@ msgstr "Scilab"
 msgid "Common Commands"
 msgstr "Základní příkazy"
 
-#: ../data/language-specs/sh.lang.h:10
+#: ../data/language-specs/sh.lang.h:9
 msgid "Subshell"
 msgstr "Podřízený shell"
 
 #. FIXME: need to sort out proper styles for variables
-#: ../data/language-specs/sh.lang.h:13
+#: ../data/language-specs/sh.lang.h:12
 msgid "Variable Definition"
 msgstr "Definice proměnné"
 
-#: ../data/language-specs/sh.lang.h:14
+#: ../data/language-specs/sh.lang.h:13
 msgid "sh"
 msgstr "sh"
+
+#: ../data/language-specs/sml.lang.h:10
+msgid "Module name, Variant, etc"
+msgstr "Název modulu, proměnná Variant, atd."
+
+#: ../data/language-specs/sml.lang.h:12
+#| msgid "Standard stream"
+msgid "Standard ML"
+msgstr "Standard ML"
 
 #: ../data/language-specs/sparql.lang.h:2
 msgid "Class"
@@ -1913,7 +2044,7 @@ msgstr "Makra"
 msgid "Texinfo"
 msgstr "Texinfo"
 
-#: ../data/language-specs/vala.lang.h:12
+#: ../data/language-specs/vala.lang.h:9
 msgid "Vala"
 msgstr "Vala"
 
@@ -2029,60 +2160,60 @@ msgstr "Barevné schéma využívající barevnou paletu Tango"
 msgid "Tango"
 msgstr "Tango"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:378
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:380
 msgid "Document Words"
 msgstr "Slova dokumentu"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:463
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:465
 msgid "The provider name"
 msgstr "Název poskytovatele"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:470
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:472
 #: ../gtksourceview/gtksourcecompletionitem.c:268
 msgid "Icon"
 msgstr "Ikona"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:471
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:473
 msgid "The provider icon"
 msgstr "Ikona poskytovatele"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:478
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:480
 msgid "Proposals Batch Size"
 msgstr "Velikost dávky návrhů"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:479
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:481
 msgid "Number of proposals added in one batch"
 msgstr "Počet návrhů přidaných v jedné dávce"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:488
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:490
 msgid "Scan Batch Size"
 msgstr "Velikost dávky kontrol"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:489
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:491
 msgid "Number of lines scanned in one batch"
 msgstr "Počet řádků, které se projdou v jedné dávce"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:498
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:500
 msgid "Minimum Word Size"
 msgstr "Minimální délka slova"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:499
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:501
 msgid "The minimum word size to complete"
 msgstr "Minimální délka slova, aby se použila funkce dokončování"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:508
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:510
 msgid "Interactive Delay"
 msgstr "Zpoždění interakce"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:509
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:511
 msgid "The delay before initiating interactive completion"
 msgstr "Prodleva než započne interaktivní dokončování"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:518
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:520
 msgid "Priority"
 msgstr "Priorita"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:519
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:521
 msgid "Provider priority"
 msgstr "Priorita poskytovatelů"
 
@@ -2157,84 +2288,84 @@ msgstr "Správce vyrovnávací paměti pro vracení akcí"
 msgid "No extra information available"
 msgstr "Nejsou dostupné žádné doplňující informace"
 
-#: ../gtksourceview/gtksourcecompletion.c:2221
+#: ../gtksourceview/gtksourcecompletion.c:2220
 #: ../gtksourceview/gtksourcegutter.c:548
 msgid "View"
 msgstr "Zobrazení"
 
-#: ../gtksourceview/gtksourcecompletion.c:2222
+#: ../gtksourceview/gtksourcecompletion.c:2221
 msgid "The GtkSourceView bound to the completion"
 msgstr "Objekt GtkSourceView vázající se k dokončování"
 
-#: ../gtksourceview/gtksourcecompletion.c:2237
+#: ../gtksourceview/gtksourcecompletion.c:2236
 msgid "Remember Info Visibility"
 msgstr "Zapamatovat viditelnost informací"
 
-#: ../gtksourceview/gtksourcecompletion.c:2238
+#: ../gtksourceview/gtksourcecompletion.c:2237
 msgid "Remember the last info window visibility state"
 msgstr "Zapamatovat poslední stav viditelnosti okna s informacemi"
 
-#: ../gtksourceview/gtksourcecompletion.c:2251
+#: ../gtksourceview/gtksourcecompletion.c:2250
 msgid "Select on Show"
 msgstr "Vybrat po zobrazení"
 
-#: ../gtksourceview/gtksourcecompletion.c:2252
+#: ../gtksourceview/gtksourcecompletion.c:2251
 msgid "Select first proposal when completion is shown"
 msgstr "Po zobrazení dokončování označit první návrh jako vybraný"
 
-#: ../gtksourceview/gtksourcecompletion.c:2266
+#: ../gtksourceview/gtksourcecompletion.c:2265
 msgid "Show Headers"
 msgstr "Zobrazovat hlavičky"
 
-#: ../gtksourceview/gtksourcecompletion.c:2267
+#: ../gtksourceview/gtksourcecompletion.c:2266
 msgid ""
 "Show provider headers when proposals from multiple providers are available"
 msgstr ""
 "Zobrazovat hlavičky poskytovatele, když jsou dostupné návrhy od více "
 "poskytovatelů"
 
-#: ../gtksourceview/gtksourcecompletion.c:2281
+#: ../gtksourceview/gtksourcecompletion.c:2280
 msgid "Show Icons"
 msgstr "Zobrazovat ikony"
 
-#: ../gtksourceview/gtksourcecompletion.c:2282
+#: ../gtksourceview/gtksourcecompletion.c:2281
 msgid "Show provider and proposal icons in the completion popup"
 msgstr ""
 "Zobrazovat ikony návrhu a poskytovatele ve vyskakovací nabídce dokončování"
 
-#: ../gtksourceview/gtksourcecompletion.c:2295
+#: ../gtksourceview/gtksourcecompletion.c:2294
 msgid "Accelerators"
 msgstr "Klávesové zkratky"
 
-#: ../gtksourceview/gtksourcecompletion.c:2296
+#: ../gtksourceview/gtksourcecompletion.c:2295
 msgid "Number of proposal accelerators to show"
 msgstr "Počet klávesových zkratek návrhů, které se mají zobrazit"
 
-#: ../gtksourceview/gtksourcecompletion.c:2312
+#: ../gtksourceview/gtksourcecompletion.c:2311
 msgid "Auto Complete Delay"
 msgstr "Zpoždění automatického dokončování"
 
-#: ../gtksourceview/gtksourcecompletion.c:2313
+#: ../gtksourceview/gtksourcecompletion.c:2312
 msgid "Completion popup delay for interactive completion"
 msgstr "Prodleva než vyskočí nabídka interaktivního dokončování slov"
 
-#: ../gtksourceview/gtksourcecompletion.c:2328
+#: ../gtksourceview/gtksourcecompletion.c:2327
 msgid "Provider Page Size"
 msgstr "Délka stránky poskytovatelů"
 
-#: ../gtksourceview/gtksourcecompletion.c:2329
+#: ../gtksourceview/gtksourcecompletion.c:2328
 msgid "Provider scrolling page size"
 msgstr "Délka posuvné stránky s poskytovateli"
 
-#: ../gtksourceview/gtksourcecompletion.c:2344
+#: ../gtksourceview/gtksourcecompletion.c:2343
 msgid "Proposal Page Size"
 msgstr "Délka stránky návrhů"
 
-#: ../gtksourceview/gtksourcecompletion.c:2345
+#: ../gtksourceview/gtksourcecompletion.c:2344
 msgid "Proposal scrolling page size"
 msgstr "Délka posuvné stránky s návrhy"
 
-#: ../gtksourceview/gtksourcecompletion.c:2690
+#: ../gtksourceview/gtksourcecompletion.c:2689
 msgid "Provider"
 msgstr "Poskytovatel"
 
@@ -2268,10 +2399,6 @@ msgstr "Typ aktivace"
 #: ../gtksourceview/gtksourcecompletioninfo.c:61
 msgid "Completion Info"
 msgstr "Informace o dokončování"
-
-#: ../gtksourceview/gtksourcecompletionitem.c:229
-msgid "Label"
-msgstr "Popisek"
 
 #: ../gtksourceview/gtksourcecompletionitem.c:230
 msgid "Label to be shown for this item"
@@ -2366,7 +2493,7 @@ msgid "The gutters' GtkSourceView"
 msgstr "Objekt GtkSourceView sloupců okolo textu"
 
 #: ../gtksourceview/gtksourcegutter.c:561
-#: ../gtksourceview/gtksourcegutterrenderer.c:691
+#: ../gtksourceview/gtksourcegutterrenderer.c:703
 msgid "Window Type"
 msgstr "Typ okna"
 
@@ -2375,71 +2502,71 @@ msgid "The gutters text window type"
 msgstr "Typ textového okna se sloupci okolo"
 
 #: ../gtksourceview/gtksourcegutter.c:573
-#: ../gtksourceview/gtksourcegutterrenderer.c:467
+#: ../gtksourceview/gtksourcegutterrenderer.c:479
 msgid "X Padding"
 msgstr "Odsazení X"
 
 #: ../gtksourceview/gtksourcegutter.c:574
-#: ../gtksourceview/gtksourcegutterrenderer.c:468
+#: ../gtksourceview/gtksourcegutterrenderer.c:480
 msgid "The x-padding"
 msgstr "Odsazení ve směru osy X"
 
 #: ../gtksourceview/gtksourcegutter.c:584
-#: ../gtksourceview/gtksourcegutterrenderer.c:483
+#: ../gtksourceview/gtksourcegutterrenderer.c:495
 msgid "Y Padding"
 msgstr "Odsazení Y"
 
 #: ../gtksourceview/gtksourcegutter.c:585
-#: ../gtksourceview/gtksourcegutterrenderer.c:484
+#: ../gtksourceview/gtksourcegutterrenderer.c:496
 msgid "The y-padding"
 msgstr "Odsazení ve směru osy Y"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:453
-#: ../gtksourceview/gtksourcegutterrenderer.c:454
+#: ../gtksourceview/gtksourcegutterrenderer.c:465
+#: ../gtksourceview/gtksourcegutterrenderer.c:466
 msgid "Visible"
 msgstr "Viditelný"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:499
+#: ../gtksourceview/gtksourcegutterrenderer.c:511
 msgid "X Alignment"
 msgstr "Zarovnání X"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:500
+#: ../gtksourceview/gtksourcegutterrenderer.c:512
 msgid "The x-alignment"
 msgstr "Zarovnání ve směru osy X"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:515
+#: ../gtksourceview/gtksourcegutterrenderer.c:527
 msgid "Y Alignment"
 msgstr "Zarovnání Y"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:516
+#: ../gtksourceview/gtksourcegutterrenderer.c:528
 msgid "The y-alignment"
 msgstr "Zarovnání ve směru osy Y"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:658
+#: ../gtksourceview/gtksourcegutterrenderer.c:670
 msgid "The View"
 msgstr "Zobrazení"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:659
+#: ../gtksourceview/gtksourcegutterrenderer.c:671
 msgid "The view"
 msgstr "Zobrazení"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:675
+#: ../gtksourceview/gtksourcegutterrenderer.c:687
 msgid "Alignment Mode"
 msgstr "Režim zarovnání"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:676
+#: ../gtksourceview/gtksourcegutterrenderer.c:688
 msgid "The alignment mode"
 msgstr "Režim zarovnání"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:692
+#: ../gtksourceview/gtksourcegutterrenderer.c:704
 msgid "The window type"
 msgstr "Typ okna"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:700
+#: ../gtksourceview/gtksourcegutterrenderer.c:712
 msgid "Size"
 msgstr "Velikost"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:701
+#: ../gtksourceview/gtksourcegutterrenderer.c:713
 msgid "The size"
 msgstr "Velikost"
 
@@ -2745,23 +2872,23 @@ msgstr "Přeškrtnutí nastaveno"
 msgid "Whether strikethrough attribute is set"
 msgstr "Zdali je nastavený atribut přeškrtnutí"
 
-#: ../gtksourceview/gtksourcestylescheme.c:194
-#: ../gtksourceview/gtksourcestylescheme.c:195
+#: ../gtksourceview/gtksourcestylescheme.c:221
+#: ../gtksourceview/gtksourcestylescheme.c:222
 msgid "Style scheme id"
 msgstr "ID schématu stylu"
 
-#: ../gtksourceview/gtksourcestylescheme.c:207
-#: ../gtksourceview/gtksourcestylescheme.c:208
+#: ../gtksourceview/gtksourcestylescheme.c:234
+#: ../gtksourceview/gtksourcestylescheme.c:235
 msgid "Style scheme name"
 msgstr "Název schématu stylu"
 
-#: ../gtksourceview/gtksourcestylescheme.c:220
-#: ../gtksourceview/gtksourcestylescheme.c:221
+#: ../gtksourceview/gtksourcestylescheme.c:247
+#: ../gtksourceview/gtksourcestylescheme.c:248
 msgid "Style scheme description"
 msgstr "Popis schématu stylu"
 
-#: ../gtksourceview/gtksourcestylescheme.c:233
-#: ../gtksourceview/gtksourcestylescheme.c:234
+#: ../gtksourceview/gtksourcestylescheme.c:260
+#: ../gtksourceview/gtksourcestylescheme.c:261
 msgid "Style scheme filename"
 msgstr "Název souboru se schématy stylu"
 
@@ -2895,38 +3022,3 @@ msgstr ""
 "Lukáš Ručka <lukassoftwares@gmail.com>\n"
 "Marek Černocký <marek@manet.cz>"
 
-#~ msgid "Id"
-#~ msgstr "ID"
-
-#~ msgid "The id"
-#~ msgstr "ID"
-
-#~ msgid "The priority"
-#~ msgstr "Priorita"
-
-#~ msgid "MSIL"
-#~ msgstr "MSIL"
-
-#~ msgid "Maximum width"
-#~ msgstr "Maximální šířka"
-
-#~ msgid "The maximum allowed width"
-#~ msgstr "Maximální povolená šířka"
-
-#~ msgid "Maximum height"
-#~ msgstr "Maximální výška"
-
-#~ msgid "The maximum allowed height"
-#~ msgstr "Maximální povolená výška"
-
-#~ msgid "Shrink width"
-#~ msgstr "Srazit šířku"
-
-#~ msgid "Whether the window should shrink width to fit the contents"
-#~ msgstr "Zda by okno mělo zmenšit šířku tak, aby se přizpůsobila obsahu"
-
-#~ msgid "Shrink height"
-#~ msgstr "Srazit výšku"
-
-#~ msgid "Whether the window should shrink height to fit the contents"
-#~ msgstr "Zda by okno mělo zmenšit výšku tak, aby se přizpůsobila obsahu"
