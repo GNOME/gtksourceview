@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourcereview\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gtksourceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-06-19 15:18+0000\n"
-"PO-Revision-Date: 2011-06-19 21:00+0100\n"
+"POT-Creation-Date: 2011-07-19 19:31+0000\n"
+"PO-Revision-Date: 2011-07-19 21:39+0100\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: \n"
@@ -641,6 +641,7 @@ msgstr "Polje"
 #: ../data/language-specs/html.lang.h:7
 #: ../data/language-specs/latex.lang.h:6
 #: ../data/language-specs/mallard.lang.h:4
+#: ../data/language-specs/markdown.lang.h:14
 #: ../data/language-specs/t2t.lang.h:6
 #: ../data/language-specs/texinfo.lang.h:8
 #: ../data/language-specs/xml.lang.h:9
@@ -1501,6 +1502,7 @@ msgid "Definition list"
 msgstr "Seznam definicij"
 
 #: ../data/language-specs/haddock.lang.h:4
+#: ../data/language-specs/markdown.lang.h:5
 msgid "Emphasis"
 msgstr "Poudarek"
 
@@ -1545,6 +1547,7 @@ msgid "Monospace"
 msgstr "Monospace"
 
 #: ../data/language-specs/haddock.lang.h:16
+#: ../data/language-specs/markdown.lang.h:16
 msgid "URL"
 msgstr "Naslov URL"
 
@@ -1578,6 +1581,7 @@ msgid "Attribute Name"
 msgstr "Ime atributa"
 
 #: ../data/language-specs/html.lang.h:2
+#: ../data/language-specs/markdown.lang.h:1
 msgid "Attribute Value"
 msgstr "Vrednost atributa"
 
@@ -1780,6 +1784,57 @@ msgstr "Predmeti strani"
 #: ../data/language-specs/mallard.lang.h:6
 msgid "Section Elements"
 msgstr "Predmeti odseka"
+
+#: ../data/language-specs/markdown.lang.h:2
+msgid "Backslash Escape"
+msgstr "Ubežni znak leve poševnice"
+
+#: ../data/language-specs/markdown.lang.h:3
+msgid "Blockquote Marker"
+msgstr "Oznaka bločnega navedka"
+
+#: ../data/language-specs/markdown.lang.h:4
+msgid "Code"
+msgstr "Koda"
+
+#: ../data/language-specs/markdown.lang.h:6
+#: ../data/language-specs/rpmspec.lang.h:8
+#: ../data/language-specs/t2t.lang.h:4
+msgid "Header"
+msgstr "Glava"
+
+#: ../data/language-specs/markdown.lang.h:7
+msgid "Horizontal Rule"
+msgstr "Vodoravna črta"
+
+#: ../data/language-specs/markdown.lang.h:8
+msgid "Image Marker"
+msgstr "Oznaka slike"
+
+#: ../data/language-specs/markdown.lang.h:9
+#: ../gtksourceview/gtksourcecompletionitem.c:229
+msgid "Label"
+msgstr "Oznaka"
+
+#: ../data/language-specs/markdown.lang.h:10
+msgid "Line Break"
+msgstr "Prelom vrstice"
+
+#: ../data/language-specs/markdown.lang.h:11
+msgid "Link Text"
+msgstr "Besedilo povezave"
+
+#: ../data/language-specs/markdown.lang.h:12
+msgid "List Marker"
+msgstr "Oznaka seznama"
+
+#: ../data/language-specs/markdown.lang.h:13
+msgid "Markdown"
+msgstr "Markdown"
+
+#: ../data/language-specs/markdown.lang.h:15
+msgid "Strong Emphasis"
+msgstr "Močan poudarek"
 
 #: ../data/language-specs/matlab.lang.h:3
 msgid "Matlab"
@@ -2024,11 +2079,6 @@ msgstr "Elektronska pošta"
 #: ../data/language-specs/rpmspec.lang.h:7
 msgid "Flow Conditional"
 msgstr "Pogojnik pretoka"
-
-#: ../data/language-specs/rpmspec.lang.h:8
-#: ../data/language-specs/t2t.lang.h:4
-msgid "Header"
-msgstr "Glava"
 
 #: ../data/language-specs/rpmspec.lang.h:9
 msgid "Other Macro"
@@ -2568,10 +2618,6 @@ msgstr "Vrsta zagona"
 msgid "Completion Info"
 msgstr "Podrobnosti dopolnjevanja"
 
-#: ../gtksourceview/gtksourcecompletionitem.c:229
-msgid "Label"
-msgstr "Oznaka"
-
 #: ../gtksourceview/gtksourcecompletionitem.c:230
 msgid "Label to be shown for this item"
 msgstr "Oznaka tega predmeta"
@@ -3034,23 +3080,23 @@ msgstr "Nastavi prečrtanost"
 msgid "Whether strikethrough attribute is set"
 msgstr "Ali naj bo določena prečrtana pisava"
 
-#: ../gtksourceview/gtksourcestylescheme.c:194
-#: ../gtksourceview/gtksourcestylescheme.c:195
+#: ../gtksourceview/gtksourcestylescheme.c:221
+#: ../gtksourceview/gtksourcestylescheme.c:222
 msgid "Style scheme id"
 msgstr "ID sloga sheme"
 
-#: ../gtksourceview/gtksourcestylescheme.c:207
-#: ../gtksourceview/gtksourcestylescheme.c:208
+#: ../gtksourceview/gtksourcestylescheme.c:234
+#: ../gtksourceview/gtksourcestylescheme.c:235
 msgid "Style scheme name"
 msgstr "Ime sloga sheme"
 
-#: ../gtksourceview/gtksourcestylescheme.c:220
-#: ../gtksourceview/gtksourcestylescheme.c:221
+#: ../gtksourceview/gtksourcestylescheme.c:247
+#: ../gtksourceview/gtksourcestylescheme.c:248
 msgid "Style scheme description"
 msgstr "Opis sloga sheme"
 
-#: ../gtksourceview/gtksourcestylescheme.c:233
-#: ../gtksourceview/gtksourcestylescheme.c:234
+#: ../gtksourceview/gtksourcestylescheme.c:260
+#: ../gtksourceview/gtksourcestylescheme.c:261
 msgid "Style scheme filename"
 msgstr "Ime datoteke sloga sheme"
 
