@@ -1610,3 +1610,32 @@ gtk_source_gutter_get_padding (GtkSourceGutter *gutter,
 		*ypad = gutter->priv->ypad;
 	}
 }
+
+/**
+ * gtk_source_gutter_get_renderer_at_pos:
+ * @gutter: A #GtkSourceGutter.
+ * @x: The x position to get identified.
+ * @y: The y position to get identified.
+ *
+ * Finds the #GtkSourceGutterRenderer at (x, y).
+ *
+ * Returns: (transfer full): the renderer at (x, y) or %NULL.
+ */
+GtkSourceGutterRenderer *
+gtk_source_gutter_get_renderer_at_pos (GtkSourceGutter *gutter,
+                                       gint             x,
+                                       gint             y)
+{
+	Renderer *renderer;
+
+	g_return_val_if_fail (GTK_SOURCE_IS_GUTTER (gutter), NULL);
+
+	renderer = renderer_at_x (gutter, x, NULL, NULL);
+
+	if (renderer == NULL)
+	{
+		return NULL;
+	}
+
+	return renderer->renderer;
+}

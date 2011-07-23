@@ -78,6 +78,11 @@ void gtk_source_gutter_get_padding              (GtkSourceGutter         *gutter
                                                  gint                    *xpad,
                                                  gint                    *ypad);
 
+GtkSourceGutterRenderer *
+     gtk_source_gutter_get_renderer_at_pos      (GtkSourceGutter         *gutter,
+                                                 gint                     x,
+                                                 gint                     y);
+
 G_END_DECLS
 
 #endif /* __GTK_SOURCE_GUTTER_H__ */
