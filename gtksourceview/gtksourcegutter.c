@@ -1619,7 +1619,7 @@ gtk_source_gutter_get_padding (GtkSourceGutter *gutter,
  *
  * Finds the #GtkSourceGutterRenderer at (x, y).
  *
- * Returns: (transfer full): the renderer at (x, y) or %NULL.
+ * Returns: (transfer none): the renderer at (x, y) or %NULL.
  */
 GtkSourceGutterRenderer *
 gtk_source_gutter_get_renderer_at_pos (GtkSourceGutter *gutter,
