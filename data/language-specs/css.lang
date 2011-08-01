@@ -44,7 +44,6 @@
   </metadata>
 
   <styles>
-    <style id="comment"               _name="Comment"               map-to="def:comment"/>
     <style id="error"                 _name="Error"                 map-to="def:error"/>
     <style id="others-2"              _name="Others 2"/>
     <style id="string"                _name="String"                map-to="def:string"/>
@@ -63,18 +62,6 @@
   </styles>
 
   <definitions>
-
-    <context id="comment" style-ref="comment" class="comment" class-disabled="no-spell-check">
-      <start>/\*</start>
-      <end>\*/</end>
-      <include>
-        <context ref="def:in-comment"/>
-      </include>
-    </context>
-
-    <context id="close-comment-outside-comment" style-ref="error">
-      <match>\*/(?!\*)</match>
-    </context>
 
     <context id="unicode-character-reference" style-ref="others-2">
       <match>\\([a-fA-F0-9]{1,5}[ \t]|[a-fA-F0-9]{6})</match>
@@ -493,7 +480,7 @@
       <start>\{</start>
       <end>\}</end>
       <include>
-        <context ref="comment"/>
+        <context ref="def:c-like-comment-multiline"/>
         <context ref="at-rules"/>
         <context ref="style-block"/>
         <context ref="hexadecimal-color"/>
@@ -528,8 +515,8 @@
       <include>
         <context ref="def:string"/>
         <context ref="def:single-quoted-string"/>
-        <context ref="comment"/>
-        <context ref="close-comment-outside-comment"/>
+        <context ref="def:c-like-comment-multiline"/>
+        <context ref="def:c-like-close-comment-outside-comment"/>
         <context ref="unicode-character-reference"/>
         <context ref="selector-pseudo-elements"/>
         <context ref="selector-pseudo-classes"/>
