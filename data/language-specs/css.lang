@@ -68,9 +68,6 @@
       <start>/\*</start>
       <end>\*/</end>
       <include>
-        <context style-ref="error" extend-parent="false">
-          <match>/\*</match>
-        </context>
         <context ref="def:in-comment"/>
       </include>
     </context>
