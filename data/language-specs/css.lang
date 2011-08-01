@@ -481,6 +481,7 @@
       <end>\}</end>
       <include>
         <context ref="def:c-like-comment-multiline"/>
+        <context ref="def:c-like-close-comment-outside-comment"/>
         <context ref="at-rules"/>
         <context ref="style-block"/>
         <context ref="hexadecimal-color"/>
