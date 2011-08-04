@@ -1,23 +1,23 @@
 # translation of gtksourceview.master.po to Español
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# Daniel Mustieles <daniel.mustieles@gmail.com>, 2011.
 # Jorge González <jorgegonz@svn.gnome.org>, 2007, 2008, 2009, 2010, 2011.
+# Daniel Mustieles <daniel.mustieles@gmail.com>, 2011.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-07-04 19:20+0000\n"
-"PO-Revision-Date: 2011-07-06 12:41+0200\n"
-"Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
-"Language-Team: Español; Castellano <gnome-es-list@gnome.org>\n"
+"POT-Creation-Date: 2011-08-01 16:05+0000\n"
+"PO-Revision-Date: 2011-08-04 09:36+0200\n"
+"Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
+"Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bits\n"
+"Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
-"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../data/glade/gtksourceview.xml.in.h:1
 msgid "After"
@@ -107,7 +107,7 @@ msgstr "Valor booleano"
 #: ../data/language-specs/bennugd.lang.h:3 ../data/language-specs/boo.lang.h:4
 #: ../data/language-specs/c.lang.h:4 ../data/language-specs/cg.lang.h:5
 #: ../data/language-specs/cobol.lang.h:2
-#: ../data/language-specs/csharp.lang.h:4 ../data/language-specs/css.lang.h:3
+#: ../data/language-specs/csharp.lang.h:4 ../data/language-specs/css.lang.h:4
 #: ../data/language-specs/def.lang.h:11 ../data/language-specs/d.lang.h:3
 #: ../data/language-specs/dosbatch.lang.h:2
 #: ../data/language-specs/dot.lang.h:2 ../data/language-specs/eiffel.lang.h:3
@@ -199,7 +199,7 @@ msgstr "Carácter de escape"
 #: ../data/language-specs/boo.lang.h:7 ../data/language-specs/c.lang.h:12
 #: ../data/language-specs/cg.lang.h:14 ../data/language-specs/cobol.lang.h:5
 #: ../data/language-specs/cpp.lang.h:4 ../data/language-specs/csharp.lang.h:10
-#: ../data/language-specs/css.lang.h:9 ../data/language-specs/cuda.lang.h:6
+#: ../data/language-specs/css.lang.h:11 ../data/language-specs/cuda.lang.h:6
 #: ../data/language-specs/def.lang.h:36 ../data/language-specs/d.lang.h:10
 #: ../data/language-specs/dosbatch.lang.h:4
 #: ../data/language-specs/dot.lang.h:5 ../data/language-specs/eiffel.lang.h:12
@@ -301,7 +301,7 @@ msgstr "Clase de almacenamiento"
 #: ../data/language-specs/boo.lang.h:15 ../data/language-specs/c.lang.h:19
 #: ../data/language-specs/cobol.lang.h:10
 #: ../data/language-specs/csharp.lang.h:15
-#: ../data/language-specs/css.lang.h:14 ../data/language-specs/def.lang.h:57
+#: ../data/language-specs/css.lang.h:16 ../data/language-specs/def.lang.h:57
 #: ../data/language-specs/d.lang.h:15 ../data/language-specs/dosbatch.lang.h:6
 #: ../data/language-specs/eiffel.lang.h:15
 #: ../data/language-specs/erlang.lang.h:12
@@ -344,7 +344,7 @@ msgstr "Objeto ASP"
 #. A function name (also: methods for classes)
 #: ../data/language-specs/asp.lang.h:6
 #: ../data/language-specs/changelog.lang.h:6
-#: ../data/language-specs/cg.lang.h:11 ../data/language-specs/css.lang.h:8
+#: ../data/language-specs/cg.lang.h:11 ../data/language-specs/css.lang.h:9
 #: ../data/language-specs/def.lang.h:32 ../data/language-specs/gap.lang.h:4
 #: ../data/language-specs/gdb-log.lang.h:4
 #: ../data/language-specs/gtk-doc.lang.h:3
@@ -572,7 +572,7 @@ msgstr "Nombre"
 #. * to a #GtkSourceBuffer.
 #.
 #: ../data/language-specs/changelog.lang.h:8
-#: ../data/language-specs/cmake.lang.h:7 ../data/language-specs/css.lang.h:11
+#: ../data/language-specs/cmake.lang.h:7 ../data/language-specs/css.lang.h:13
 #: ../data/language-specs/desktop.lang.h:12
 #: ../data/language-specs/diff.lang.h:9 ../data/language-specs/dot.lang.h:6
 #: ../data/language-specs/dpatch.lang.h:2
@@ -657,7 +657,7 @@ msgstr "Lenguaje de sombras CG"
 
 #. Any erroneous construct
 #: ../data/language-specs/cg.lang.h:8 ../data/language-specs/cobol.lang.h:4
-#: ../data/language-specs/csharp.lang.h:7 ../data/language-specs/css.lang.h:7
+#: ../data/language-specs/csharp.lang.h:7 ../data/language-specs/css.lang.h:8
 #: ../data/language-specs/def.lang.h:28 ../data/language-specs/d.lang.h:7
 #: ../data/language-specs/dot.lang.h:3 ../data/language-specs/go.lang.h:6
 #: ../data/language-specs/html.lang.h:5
@@ -726,11 +726,15 @@ msgid "CSS"
 msgstr "CSS"
 
 #: ../data/language-specs/css.lang.h:2
+msgid "Class Selector"
+msgstr "Selector de clase"
+
+#: ../data/language-specs/css.lang.h:3
 msgid "Color"
 msgstr "Color"
 
 #. Translator: it is a type of number
-#: ../data/language-specs/css.lang.h:5 ../data/language-specs/fcl.lang.h:3
+#: ../data/language-specs/css.lang.h:6 ../data/language-specs/fcl.lang.h:3
 #: ../data/language-specs/fortran.lang.h:4 ../data/language-specs/gap.lang.h:3
 #: ../data/language-specs/gtkrc.lang.h:4
 #: ../data/language-specs/haskell.lang.h:4 ../data/language-specs/ini.lang.h:5
@@ -740,23 +744,31 @@ msgstr "Color"
 msgid "Decimal"
 msgstr "Decimal"
 
-#: ../data/language-specs/css.lang.h:6
+#: ../data/language-specs/css.lang.h:7
 msgid "Dimension"
 msgstr "Dimensión"
 
 #: ../data/language-specs/css.lang.h:10
+msgid "ID Selector"
+msgstr "Selector de ID"
+
+#: ../data/language-specs/css.lang.h:12
 msgid "Known Property Value"
 msgstr "Valor de propiedad conocido"
 
-#: ../data/language-specs/css.lang.h:12
+#: ../data/language-specs/css.lang.h:14
 msgid "Others 2"
 msgstr "Otros 2"
 
-#: ../data/language-specs/css.lang.h:13
+#: ../data/language-specs/css.lang.h:15
 msgid "Others 3"
 msgstr "Otros 3"
 
-#: ../data/language-specs/css.lang.h:15
+#: ../data/language-specs/css.lang.h:17
+msgid "Tag Name Selector"
+msgstr "Selector de nombre de etiqueta"
+
+#: ../data/language-specs/css.lang.h:18
 msgid "at-rules"
 msgstr "Reglas at"
 
@@ -1443,7 +1455,7 @@ msgstr "LaTeX"
 msgid "Math Mode"
 msgstr "Modo matemático"
 
-#: ../data/language-specs/latex.lang.h:8 ../data/language-specs/t2t.lang.h:16
+#: ../data/language-specs/latex.lang.h:8 ../data/language-specs/t2t.lang.h:15
 msgid "Verbatim"
 msgstr "Verbatim"
 
@@ -1582,7 +1594,6 @@ msgid "Line Break"
 msgstr "Salto de línea"
 
 #: ../data/language-specs/markdown.lang.h:11
-#| msgid "Text"
 msgid "Link Text"
 msgstr "Enlazar texto"
 
@@ -1595,7 +1606,6 @@ msgid "Markdown"
 msgstr "Marcar"
 
 #: ../data/language-specs/markdown.lang.h:15
-#| msgid "Emphasis"
 msgid "Strong Emphasis"
 msgstr "Énfasis fuerte"
 
@@ -1994,13 +2004,14 @@ msgstr "Sección 4"
 msgid "Section 5"
 msgstr "Sección 5"
 
-#: ../data/language-specs/t2t.lang.h:15
-msgid "Text2Tags"
-msgstr "txt2tags"
-
-#: ../data/language-specs/t2t.lang.h:17
+#: ../data/language-specs/t2t.lang.h:16
 msgid "Verbatim Block"
 msgstr "Bloque verbatim"
+
+#: ../data/language-specs/t2t.lang.h:17
+#| msgid "Text2Tags"
+msgid "txt2tags"
+msgstr "txt2tags"
 
 #: ../data/language-specs/tcl.lang.h:3
 msgid "Tcl"
