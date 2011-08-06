@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview.HEAD.he\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-15 10:40+0300\n"
-"PO-Revision-Date: 2011-07-15 10:42+0200\n"
+"POT-Creation-Date: 2011-08-06 14:52+0300\n"
+"PO-Revision-Date: 2011-08-06 14:53+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <he@li.org>\n"
 "Language: he\n"
@@ -106,9 +106,8 @@ msgstr "ערך בוליאני"
 #: ../data/language-specs/bennugd.lang.h:3 ../data/language-specs/boo.lang.h:4
 #: ../data/language-specs/c.lang.h:4 ../data/language-specs/cg.lang.h:5
 #: ../data/language-specs/cobol.lang.h:2
-#: ../data/language-specs/csharp.lang.h:4 ../data/language-specs/css.lang.h:3
-#: ../data/language-specs/def.lang.h:11 ../data/language-specs/d.lang.h:3
-#: ../data/language-specs/dosbatch.lang.h:2
+#: ../data/language-specs/csharp.lang.h:4 ../data/language-specs/def.lang.h:11
+#: ../data/language-specs/d.lang.h:3 ../data/language-specs/dosbatch.lang.h:2
 #: ../data/language-specs/dot.lang.h:2 ../data/language-specs/eiffel.lang.h:3
 #: ../data/language-specs/erlang.lang.h:4 ../data/language-specs/fcl.lang.h:2
 #: ../data/language-specs/forth.lang.h:1
@@ -198,7 +197,7 @@ msgstr "Escaped Character"
 #: ../data/language-specs/boo.lang.h:7 ../data/language-specs/c.lang.h:12
 #: ../data/language-specs/cg.lang.h:14 ../data/language-specs/cobol.lang.h:5
 #: ../data/language-specs/cpp.lang.h:4 ../data/language-specs/csharp.lang.h:10
-#: ../data/language-specs/css.lang.h:9 ../data/language-specs/cuda.lang.h:6
+#: ../data/language-specs/css.lang.h:10 ../data/language-specs/cuda.lang.h:6
 #: ../data/language-specs/def.lang.h:36 ../data/language-specs/d.lang.h:10
 #: ../data/language-specs/dosbatch.lang.h:4
 #: ../data/language-specs/dot.lang.h:5 ../data/language-specs/eiffel.lang.h:12
@@ -300,7 +299,7 @@ msgstr "Storage Class"
 #: ../data/language-specs/boo.lang.h:15 ../data/language-specs/c.lang.h:19
 #: ../data/language-specs/cobol.lang.h:10
 #: ../data/language-specs/csharp.lang.h:15
-#: ../data/language-specs/css.lang.h:14 ../data/language-specs/def.lang.h:57
+#: ../data/language-specs/css.lang.h:15 ../data/language-specs/def.lang.h:57
 #: ../data/language-specs/d.lang.h:15 ../data/language-specs/dosbatch.lang.h:6
 #: ../data/language-specs/eiffel.lang.h:15
 #: ../data/language-specs/erlang.lang.h:12
@@ -571,7 +570,7 @@ msgstr "שם"
 #. * to a #GtkSourceBuffer.
 #.
 #: ../data/language-specs/changelog.lang.h:8
-#: ../data/language-specs/cmake.lang.h:7 ../data/language-specs/css.lang.h:11
+#: ../data/language-specs/cmake.lang.h:7 ../data/language-specs/css.lang.h:12
 #: ../data/language-specs/desktop.lang.h:12
 #: ../data/language-specs/diff.lang.h:9 ../data/language-specs/dot.lang.h:6
 #: ../data/language-specs/dpatch.lang.h:2
@@ -725,6 +724,10 @@ msgid "CSS"
 msgstr "CSS"
 
 #: ../data/language-specs/css.lang.h:2
+msgid "Class Selector"
+msgstr "בוחר מחלקות"
+
+#: ../data/language-specs/css.lang.h:3
 msgid "Color"
 msgstr "Color"
 
@@ -743,19 +746,27 @@ msgstr "Decimal"
 msgid "Dimension"
 msgstr "Dimension"
 
-#: ../data/language-specs/css.lang.h:10
+#: ../data/language-specs/css.lang.h:9
+msgid "ID Selector"
+msgstr "בוחר מזהים"
+
+#: ../data/language-specs/css.lang.h:11
 msgid "Known Property Value"
 msgstr "Known Property Value"
 
-#: ../data/language-specs/css.lang.h:12
+#: ../data/language-specs/css.lang.h:13
 msgid "Others 2"
 msgstr "Others 2"
 
-#: ../data/language-specs/css.lang.h:13
+#: ../data/language-specs/css.lang.h:14
 msgid "Others 3"
 msgstr "Others 3"
 
-#: ../data/language-specs/css.lang.h:15
+#: ../data/language-specs/css.lang.h:16
+msgid "Tag Name Selector"
+msgstr "בוחר שמות תגיות"
+
+#: ../data/language-specs/css.lang.h:17
 msgid "at-rules"
 msgstr "at-rules"
 
@@ -1442,7 +1453,7 @@ msgstr "LaTeX"
 msgid "Math Mode"
 msgstr "Math Mode"
 
-#: ../data/language-specs/latex.lang.h:8 ../data/language-specs/t2t.lang.h:16
+#: ../data/language-specs/latex.lang.h:8 ../data/language-specs/t2t.lang.h:15
 msgid "Verbatim"
 msgstr "Verbatim"
 
@@ -1991,13 +2002,13 @@ msgstr "סעיף 4"
 msgid "Section 5"
 msgstr "סעיף 5"
 
-#: ../data/language-specs/t2t.lang.h:15
-msgid "Text2Tags"
-msgstr "טקסט לתגיות"
-
-#: ../data/language-specs/t2t.lang.h:17
+#: ../data/language-specs/t2t.lang.h:16
 msgid "Verbatim Block"
 msgstr "Verbatim Block"
+
+#: ../data/language-specs/t2t.lang.h:17
+msgid "txt2tags"
+msgstr "txt2tags"
 
 #: ../data/language-specs/tcl.lang.h:3
 msgid "Tcl"
@@ -2988,6 +2999,9 @@ msgstr "הגדרת איך וכיצד יש להציג את הרווחים חזו�
 #: ../gtksourceview/gtksourceview-i18n.c:74
 msgid "translator-credits"
 msgstr "ירון שהרבני <sh.yaron@gmail.com>"
+
+#~ msgid "Text2Tags"
+#~ msgstr "טקסט לתגיות"
 
 #~ msgid "Docbook"
 #~ msgstr "Docbook"
