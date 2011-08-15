@@ -1945,17 +1945,22 @@ draw_space_at_iter (cairo_t      *cr,
 		    GdkRectangle  rect)
 {
 	gint x, y;
+	double w;
 
 	gtk_text_view_buffer_to_window_coords (view,
 					       GTK_TEXT_WINDOW_TEXT,
-					       rect.x + rect.width / 2,
+					       rect.x,
 					       rect.y + rect.height * 2 / 3,
 					       &x,
 					       &y);
 
+	/* if the space is at a line-wrap position we get 0 width
+	 * so we fallback to the height */
+	w = rect.width ? rect.width : rect.height;
+
 	cairo_save (cr);
-	cairo_move_to (cr, x, y);
-	cairo_arc (cr, x, y, 0.8, 0, 2 * G_PI);
+	cairo_move_to (cr, x + w * 0.5, y);
+	cairo_arc (cr, x + w * 0.5, y, 0.8, 0, 2 * G_PI);
 	cairo_restore (cr);
 }
 
@@ -1975,7 +1980,9 @@ draw_tab_at_iter (cairo_t      *cr,
 					       &x,
 					       &y);
 
-	w = rect.width;
+	/* if the space is at a line-wrap position we get 0 width
+	 * so we fallback to the height */
+	w = rect.width ? rect.width : rect.height;
 	h = rect.height;
 
 	cairo_save (cr);
@@ -2047,7 +2054,9 @@ draw_nbsp_at_iter (cairo_t      *cr,
 	                                       &x,
 	                                       &y);
 
-	w = rect.width;
+	/* if the space is at a line-wrap position we get 0 width
+	 * so we fallback to the height */
+	w = rect.width ? rect.width : rect.height;
 	h = rect.height;
 
 	cairo_save (cr);
@@ -2189,7 +2198,7 @@ draw_tabs_and_spaces (GtkSourceView *view,
 		      cairo_t       *cr)
 {
 	GtkTextView *text_view;
-        GdkRectangle clip;
+	GdkRectangle clip;
 	gint x1, y1, x2, y2;
 	GtkTextIter s, e;
 	GtkTextIter leading, trailing;
@@ -2219,11 +2228,11 @@ draw_tabs_and_spaces (GtkSourceView *view,
 					       &y2);
 
 	gtk_text_view_get_iter_at_location  (text_view,
-                                             &s,
-                                             x1, y1);
+	                                     &s,
+	                                     x1, y1);
 	gtk_text_view_get_iter_at_location  (text_view,
-                                             &e,
-                                             x2, y2);
+	                                     &e,
+	                                     x2, y2);
 
 	gdk_cairo_set_source_rgba (cr, view->priv->spaces_color);
 
