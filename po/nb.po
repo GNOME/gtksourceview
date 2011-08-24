@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview 3.1.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-18 13:51+0200\n"
-"PO-Revision-Date: 2011-07-18 13:59+0200\n"
+"POT-Creation-Date: 2011-08-24 22:34+0200\n"
+"PO-Revision-Date: 2011-08-24 22:36+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian Bokmål <i18n-nb@lister.ping.uio.no>\n"
 "Language: \n"
@@ -103,9 +103,8 @@ msgstr "Bolsk verdi"
 #: ../data/language-specs/bennugd.lang.h:3 ../data/language-specs/boo.lang.h:4
 #: ../data/language-specs/c.lang.h:4 ../data/language-specs/cg.lang.h:5
 #: ../data/language-specs/cobol.lang.h:2
-#: ../data/language-specs/csharp.lang.h:4 ../data/language-specs/css.lang.h:3
-#: ../data/language-specs/def.lang.h:11 ../data/language-specs/d.lang.h:3
-#: ../data/language-specs/dosbatch.lang.h:2
+#: ../data/language-specs/csharp.lang.h:4 ../data/language-specs/def.lang.h:11
+#: ../data/language-specs/d.lang.h:3 ../data/language-specs/dosbatch.lang.h:2
 #: ../data/language-specs/dot.lang.h:2 ../data/language-specs/eiffel.lang.h:3
 #: ../data/language-specs/erlang.lang.h:4 ../data/language-specs/fcl.lang.h:2
 #: ../data/language-specs/forth.lang.h:1
@@ -195,7 +194,7 @@ msgstr "Escaped-tegn"
 #: ../data/language-specs/boo.lang.h:7 ../data/language-specs/c.lang.h:12
 #: ../data/language-specs/cg.lang.h:14 ../data/language-specs/cobol.lang.h:5
 #: ../data/language-specs/cpp.lang.h:4 ../data/language-specs/csharp.lang.h:10
-#: ../data/language-specs/css.lang.h:9 ../data/language-specs/cuda.lang.h:6
+#: ../data/language-specs/css.lang.h:10 ../data/language-specs/cuda.lang.h:6
 #: ../data/language-specs/def.lang.h:36 ../data/language-specs/d.lang.h:10
 #: ../data/language-specs/dosbatch.lang.h:4
 #: ../data/language-specs/dot.lang.h:5 ../data/language-specs/eiffel.lang.h:12
@@ -297,7 +296,7 @@ msgstr "Lagringsklasse"
 #: ../data/language-specs/boo.lang.h:15 ../data/language-specs/c.lang.h:19
 #: ../data/language-specs/cobol.lang.h:10
 #: ../data/language-specs/csharp.lang.h:15
-#: ../data/language-specs/css.lang.h:14 ../data/language-specs/def.lang.h:57
+#: ../data/language-specs/css.lang.h:15 ../data/language-specs/def.lang.h:57
 #: ../data/language-specs/d.lang.h:15 ../data/language-specs/dosbatch.lang.h:6
 #: ../data/language-specs/eiffel.lang.h:15
 #: ../data/language-specs/erlang.lang.h:12
@@ -568,7 +567,7 @@ msgstr "Navn"
 #. * to a #GtkSourceBuffer.
 #.
 #: ../data/language-specs/changelog.lang.h:8
-#: ../data/language-specs/cmake.lang.h:7 ../data/language-specs/css.lang.h:11
+#: ../data/language-specs/cmake.lang.h:7 ../data/language-specs/css.lang.h:12
 #: ../data/language-specs/desktop.lang.h:12
 #: ../data/language-specs/diff.lang.h:9 ../data/language-specs/dot.lang.h:6
 #: ../data/language-specs/dpatch.lang.h:2
@@ -722,6 +721,10 @@ msgid "CSS"
 msgstr "CSS"
 
 #: ../data/language-specs/css.lang.h:2
+msgid "Class Selector"
+msgstr "Klassevelger"
+
+#: ../data/language-specs/css.lang.h:3
 msgid "Color"
 msgstr "Farge"
 
@@ -740,19 +743,27 @@ msgstr "Desimal"
 msgid "Dimension"
 msgstr "Dimensjon"
 
-#: ../data/language-specs/css.lang.h:10
+#: ../data/language-specs/css.lang.h:9
+msgid "ID Selector"
+msgstr "ID-velger"
+
+#: ../data/language-specs/css.lang.h:11
 msgid "Known Property Value"
 msgstr "Kjent verdi for egenskap"
 
-#: ../data/language-specs/css.lang.h:12
+#: ../data/language-specs/css.lang.h:13
 msgid "Others 2"
 msgstr "Andre 2"
 
-#: ../data/language-specs/css.lang.h:13
+#: ../data/language-specs/css.lang.h:14
 msgid "Others 3"
 msgstr "Andre 3"
 
-#: ../data/language-specs/css.lang.h:15
+#: ../data/language-specs/css.lang.h:16
+msgid "Tag Name Selector"
+msgstr ""
+
+#: ../data/language-specs/css.lang.h:17
 msgid "at-rules"
 msgstr "«at»-regler"
 
@@ -1439,7 +1450,7 @@ msgstr "LaTex"
 msgid "Math Mode"
 msgstr "Mattemodus"
 
-#: ../data/language-specs/latex.lang.h:8 ../data/language-specs/t2t.lang.h:16
+#: ../data/language-specs/latex.lang.h:8 ../data/language-specs/t2t.lang.h:15
 msgid "Verbatim"
 msgstr ""
 
@@ -1988,13 +1999,13 @@ msgstr "Del 4"
 msgid "Section 5"
 msgstr "Del 5"
 
-#: ../data/language-specs/t2t.lang.h:15
-msgid "Text2Tags"
-msgstr "Tekst-til-tagger"
-
-#: ../data/language-specs/t2t.lang.h:17
+#: ../data/language-specs/t2t.lang.h:16
 msgid "Verbatim Block"
 msgstr "Bokstavlig blokk"
+
+#: ../data/language-specs/t2t.lang.h:17
+msgid "txt2tags"
+msgstr ""
 
 #: ../data/language-specs/tcl.lang.h:3
 msgid "Tcl"
@@ -2030,7 +2041,7 @@ msgstr "Port"
 
 #: ../data/language-specs/verilog.lang.h:7
 msgid "IEEE System Task"
-msgstr ""
+msgstr "IEEE systemoppgave"
 
 #: ../data/language-specs/verilog.lang.h:10
 msgid "LRM Additional System Task"
@@ -2437,7 +2448,9 @@ msgstr "duplisert kontekst-ID «%s»"
 msgid ""
 "style override used with wildcard context reference in language '%s' in ref "
 "'%s'"
-msgstr "overstyring av stil brukt med «wildcard» kontekstreferanse i språk «%s» i ref «%s»"
+msgstr ""
+"overstyring av stil brukt med «wildcard» kontekstreferanse i språk «%s» i "
+"ref «%s»"
 
 #: ../gtksourceview/gtksourcecontextengine.c:6621
 #, c-format
