@@ -8,10 +8,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gtksourceview 2.91.4\n"
+"Project-Id-Version: gtksourceview 3.1.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-20 21:52+0800\n"
-"PO-Revision-Date: 2011-01-20 21:54+0800\n"
+"POT-Creation-Date: 2011-08-27 10:37+0800\n"
+"PO-Revision-Date: 2011-08-27 10:38+0800\n"
 "Last-Translator: Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>\n"
 "Language-Team: Chinese (Hong Kong) <community@linuxhall.org>\n"
 "Language: zh_TW\n"
@@ -40,43 +40,44 @@ msgstr "永遠"
 msgid "Before"
 msgstr "早於"
 
-#: ../data/glade/gtksourceview.xml.in.h:5
+#. Translators: It is related to an option of a set of values
+#: ../data/glade/gtksourceview.xml.in.h:6
 msgid "Disabled"
 msgstr "已停用"
 
-#: ../data/glade/gtksourceview.xml.in.h:6
+#: ../data/glade/gtksourceview.xml.in.h:7
 msgid "GtkSourceView"
 msgstr "GtkSourceView"
 
-#: ../data/glade/gtksourceview.xml.in.h:7
+#: ../data/glade/gtksourceview.xml.in.h:8
 #, fuzzy
 #| msgid "POD heading"
 msgid "Leading"
 msgstr "POD 標題"
 
-#: ../data/glade/gtksourceview.xml.in.h:8
+#: ../data/glade/gtksourceview.xml.in.h:9
 msgid "Newline"
 msgstr "換列"
 
-#: ../data/glade/gtksourceview.xml.in.h:9
+#: ../data/glade/gtksourceview.xml.in.h:10
 msgid "Non Breaking Whitespace"
 msgstr "不斷行空白"
 
-#: ../data/glade/gtksourceview.xml.in.h:10
+#: ../data/glade/gtksourceview.xml.in.h:11
 msgid "Space"
 msgstr "Space"
 
-#: ../data/glade/gtksourceview.xml.in.h:11
+#: ../data/glade/gtksourceview.xml.in.h:12
 msgid "Tab"
 msgstr "Tab"
 
-#: ../data/glade/gtksourceview.xml.in.h:12
+#: ../data/glade/gtksourceview.xml.in.h:13
 #: ../gtksourceview/gtksourcecompletionitem.c:255
 #: ../gtksourceview/gtksourcegutterrenderertext.c:403
 msgid "Text"
 msgstr "文字"
 
-#: ../data/glade/gtksourceview.xml.in.h:13
+#: ../data/glade/gtksourceview.xml.in.h:14
 #, fuzzy
 #| msgid "Trailing Tab"
 msgid "Trailing"
@@ -102,19 +103,18 @@ msgstr "任意基數"
 #: ../data/language-specs/ocaml.lang.h:2 ../data/language-specs/ooc.lang.h:1
 #: ../data/language-specs/opal.lang.h:1 ../data/language-specs/php.lang.h:1
 #: ../data/language-specs/R.lang.h:2 ../data/language-specs/ruby.lang.h:3
-#: ../data/language-specs/vala.lang.h:1 ../data/language-specs/vbnet.lang.h:1
-#: ../data/language-specs/vhdl.lang.h:2
+#: ../data/language-specs/sml.lang.h:2 ../data/language-specs/vala.lang.h:1
+#: ../data/language-specs/vbnet.lang.h:1 ../data/language-specs/vhdl.lang.h:2
 msgid "Boolean value"
 msgstr "邏輯值(Boolean Value)"
 
 #. Any comment
 #: ../data/language-specs/ada.lang.h:4 ../data/language-specs/asp.lang.h:4
-#: ../data/language-specs/bennugd.lang.h:4 ../data/language-specs/boo.lang.h:4
+#: ../data/language-specs/bennugd.lang.h:3 ../data/language-specs/boo.lang.h:4
 #: ../data/language-specs/c.lang.h:4 ../data/language-specs/cg.lang.h:5
 #: ../data/language-specs/cobol.lang.h:2
-#: ../data/language-specs/csharp.lang.h:4 ../data/language-specs/css.lang.h:3
-#: ../data/language-specs/def.lang.h:11 ../data/language-specs/d.lang.h:3
-#: ../data/language-specs/dosbatch.lang.h:2
+#: ../data/language-specs/csharp.lang.h:4 ../data/language-specs/def.lang.h:11
+#: ../data/language-specs/d.lang.h:3 ../data/language-specs/dosbatch.lang.h:2
 #: ../data/language-specs/dot.lang.h:2 ../data/language-specs/eiffel.lang.h:3
 #: ../data/language-specs/erlang.lang.h:4 ../data/language-specs/fcl.lang.h:2
 #: ../data/language-specs/forth.lang.h:1
@@ -123,29 +123,27 @@ msgstr "邏輯值(Boolean Value)"
 #: ../data/language-specs/go.lang.h:3 ../data/language-specs/gtkrc.lang.h:2
 #: ../data/language-specs/haskell.lang.h:2
 #: ../data/language-specs/html.lang.h:3 ../data/language-specs/idl.lang.h:1
-#: ../data/language-specs/ini.lang.h:3 ../data/language-specs/java.lang.h:3
-#: ../data/language-specs/javascript.lang.h:2
-#: ../data/language-specs/latex.lang.h:2 ../data/language-specs/lua.lang.h:2
+#: ../data/language-specs/ini.lang.h:3 ../data/language-specs/latex.lang.h:2
+#: ../data/language-specs/lua.lang.h:2 ../data/language-specs/matlab.lang.h:2
 #: ../data/language-specs/nemerle.lang.h:4
 #: ../data/language-specs/nsis.lang.h:1 ../data/language-specs/ocaml.lang.h:4
-#: ../data/language-specs/ocl.lang.h:1 ../data/language-specs/octave.lang.h:3
+#: ../data/language-specs/ocl.lang.h:1 ../data/language-specs/octave.lang.h:4
 #: ../data/language-specs/ooc.lang.h:2 ../data/language-specs/opal.lang.h:2
 #: ../data/language-specs/pascal.lang.h:1 ../data/language-specs/perl.lang.h:2
 #: ../data/language-specs/php.lang.h:2 ../data/language-specs/po.lang.h:1
-#: ../data/language-specs/prolog.lang.h:1 ../data/language-specs/ruby.lang.h:5
+#: ../data/language-specs/prolog.lang.h:1 ../data/language-specs/ruby.lang.h:6
 #: ../data/language-specs/scheme.lang.h:2
 #: ../data/language-specs/scilab.lang.h:2 ../data/language-specs/sh.lang.h:1
-#: ../data/language-specs/sql.lang.h:1 ../data/language-specs/t2t.lang.h:3
-#: ../data/language-specs/texinfo.lang.h:1
+#: ../data/language-specs/sml.lang.h:4 ../data/language-specs/sql.lang.h:1
+#: ../data/language-specs/t2t.lang.h:3 ../data/language-specs/texinfo.lang.h:1
 #: ../data/language-specs/vala.lang.h:2 ../data/language-specs/vbnet.lang.h:2
 #: ../data/language-specs/verilog.lang.h:2
 #: ../data/language-specs/vhdl.lang.h:4 ../data/language-specs/xml.lang.h:4
 msgid "Comment"
 msgstr "備註"
 
-#. map-to="def:others"
 #: ../data/language-specs/ada.lang.h:5 ../data/language-specs/asp.lang.h:5
-#: ../data/language-specs/bennugd.lang.h:5 ../data/language-specs/boo.lang.h:5
+#: ../data/language-specs/bennugd.lang.h:4 ../data/language-specs/boo.lang.h:5
 #: ../data/language-specs/c.lang.h:6 ../data/language-specs/cg.lang.h:6
 #: ../data/language-specs/cpp.lang.h:3 ../data/language-specs/csharp.lang.h:5
 #: ../data/language-specs/cuda.lang.h:2 ../data/language-specs/d.lang.h:5
@@ -155,20 +153,22 @@ msgstr "備註"
 #: ../data/language-specs/fsharp.lang.h:5 ../data/language-specs/glsl.lang.h:4
 #: ../data/language-specs/go.lang.h:4 ../data/language-specs/gtkrc.lang.h:3
 #: ../data/language-specs/haskell.lang.h:3 ../data/language-specs/idl.lang.h:2
-#: ../data/language-specs/ini.lang.h:4 ../data/language-specs/java.lang.h:4
-#: ../data/language-specs/javascript.lang.h:5
+#: ../data/language-specs/ini.lang.h:4 ../data/language-specs/java.lang.h:3
+#: ../data/language-specs/javascript.lang.h:3
 #: ../data/language-specs/nemerle.lang.h:5
-#: ../data/language-specs/objc.lang.h:2 ../data/language-specs/ocaml.lang.h:5
-#: ../data/language-specs/ocl.lang.h:2 ../data/language-specs/ooc.lang.h:3
-#: ../data/language-specs/opal.lang.h:4 ../data/language-specs/pascal.lang.h:2
-#: ../data/language-specs/php.lang.h:4 ../data/language-specs/sparql.lang.h:3
+#: ../data/language-specs/objc.lang.h:2 ../data/language-specs/objj.lang.h:2
+#: ../data/language-specs/ocaml.lang.h:5 ../data/language-specs/ocl.lang.h:2
+#: ../data/language-specs/ooc.lang.h:3 ../data/language-specs/opal.lang.h:4
+#: ../data/language-specs/opencl.lang.h:1
+#: ../data/language-specs/pascal.lang.h:2 ../data/language-specs/php.lang.h:4
+#: ../data/language-specs/sml.lang.h:5 ../data/language-specs/sparql.lang.h:3
 #: ../data/language-specs/sql.lang.h:2 ../data/language-specs/vala.lang.h:3
 #: ../data/language-specs/vbnet.lang.h:3
 msgid "Data Type"
 msgstr "資料類型"
 
 #. A decimal number: 1234
-#: ../data/language-specs/ada.lang.h:6 ../data/language-specs/bennugd.lang.h:6
+#: ../data/language-specs/ada.lang.h:6 ../data/language-specs/bennugd.lang.h:5
 #: ../data/language-specs/c.lang.h:7 ../data/language-specs/cg.lang.h:7
 #: ../data/language-specs/csharp.lang.h:6 ../data/language-specs/def.lang.h:19
 #: ../data/language-specs/d.lang.h:6 ../data/language-specs/eiffel.lang.h:6
@@ -177,35 +177,34 @@ msgstr "資料類型"
 #: ../data/language-specs/nemerle.lang.h:6
 #: ../data/language-specs/ocaml.lang.h:6 ../data/language-specs/ooc.lang.h:4
 #: ../data/language-specs/opal.lang.h:5 ../data/language-specs/php.lang.h:5
-#: ../data/language-specs/python.lang.h:7 ../data/language-specs/ruby.lang.h:7
-#: ../data/language-specs/vala.lang.h:4
+#: ../data/language-specs/python.lang.h:7 ../data/language-specs/ruby.lang.h:8
 msgid "Decimal number"
 msgstr "十進位數數值"
 
 #. map to nothing
-#: ../data/language-specs/ada.lang.h:7 ../data/language-specs/bennugd.lang.h:8
-#: ../data/language-specs/c.lang.h:9 ../data/language-specs/cg.lang.h:9
-#: ../data/language-specs/csharp.lang.h:8
+#: ../data/language-specs/ada.lang.h:7 ../data/language-specs/c.lang.h:8
+#: ../data/language-specs/cg.lang.h:9 ../data/language-specs/csharp.lang.h:8
 #: ../data/language-specs/eiffel.lang.h:9
 #: ../data/language-specs/fsharp.lang.h:7 ../data/language-specs/go.lang.h:7
 #: ../data/language-specs/haskell.lang.h:5
-#: ../data/language-specs/java.lang.h:7 ../data/language-specs/lua.lang.h:3
-#: ../data/language-specs/ocaml.lang.h:8 ../data/language-specs/ooc.lang.h:7
-#: ../data/language-specs/php.lang.h:8 ../data/language-specs/prolog.lang.h:3
-#: ../data/language-specs/python.lang.h:8 ../data/language-specs/ruby.lang.h:8
-#: ../data/language-specs/texinfo.lang.h:2
+#: ../data/language-specs/java.lang.h:5
+#: ../data/language-specs/javascript.lang.h:4
+#: ../data/language-specs/lua.lang.h:3 ../data/language-specs/ocaml.lang.h:8
+#: ../data/language-specs/ooc.lang.h:7 ../data/language-specs/php.lang.h:8
+#: ../data/language-specs/prolog.lang.h:3
+#: ../data/language-specs/python.lang.h:8 ../data/language-specs/ruby.lang.h:9
+#: ../data/language-specs/sml.lang.h:7 ../data/language-specs/texinfo.lang.h:2
 #: ../data/language-specs/verilog.lang.h:5
 msgid "Escaped Character"
 msgstr "跳出字符"
 
 #. keywords: "if", "for", "while", etc.
 #: ../data/language-specs/ada.lang.h:8 ../data/language-specs/asp.lang.h:7
-#: ../data/language-specs/awk.lang.h:2
-#: ../data/language-specs/bennugd.lang.h:12
-#: ../data/language-specs/boo.lang.h:7 ../data/language-specs/c.lang.h:13
+#: ../data/language-specs/awk.lang.h:2 ../data/language-specs/bennugd.lang.h:9
+#: ../data/language-specs/boo.lang.h:7 ../data/language-specs/c.lang.h:12
 #: ../data/language-specs/cg.lang.h:14 ../data/language-specs/cobol.lang.h:5
 #: ../data/language-specs/cpp.lang.h:4 ../data/language-specs/csharp.lang.h:10
-#: ../data/language-specs/css.lang.h:8 ../data/language-specs/cuda.lang.h:6
+#: ../data/language-specs/css.lang.h:10 ../data/language-specs/cuda.lang.h:6
 #: ../data/language-specs/def.lang.h:36 ../data/language-specs/d.lang.h:10
 #: ../data/language-specs/dosbatch.lang.h:4
 #: ../data/language-specs/dot.lang.h:5 ../data/language-specs/eiffel.lang.h:12
@@ -216,31 +215,34 @@ msgstr "跳出字符"
 #: ../data/language-specs/glsl.lang.h:5 ../data/language-specs/go.lang.h:12
 #: ../data/language-specs/gtkrc.lang.h:7
 #: ../data/language-specs/haskell.lang.h:9 ../data/language-specs/idl.lang.h:4
-#: ../data/language-specs/ini.lang.h:7 ../data/language-specs/java.lang.h:11
-#: ../data/language-specs/javascript.lang.h:10
+#: ../data/language-specs/imagej.lang.h:6 ../data/language-specs/ini.lang.h:7
+#: ../data/language-specs/java.lang.h:11
+#: ../data/language-specs/javascript.lang.h:8
 #: ../data/language-specs/lua.lang.h:5
 #: ../data/language-specs/nemerle.lang.h:10
-#: ../data/language-specs/objc.lang.h:3 ../data/language-specs/ocaml.lang.h:10
-#: ../data/language-specs/ocl.lang.h:3 ../data/language-specs/octave.lang.h:7
-#: ../data/language-specs/ooc.lang.h:12 ../data/language-specs/opal.lang.h:8
+#: ../data/language-specs/objc.lang.h:3 ../data/language-specs/objj.lang.h:4
+#: ../data/language-specs/ocaml.lang.h:10 ../data/language-specs/ocl.lang.h:3
+#: ../data/language-specs/octave.lang.h:8 ../data/language-specs/ooc.lang.h:12
+#: ../data/language-specs/opal.lang.h:8 ../data/language-specs/opencl.lang.h:6
 #: ../data/language-specs/pascal.lang.h:4 ../data/language-specs/perl.lang.h:9
 #: ../data/language-specs/php.lang.h:14 ../data/language-specs/po.lang.h:3
 #: ../data/language-specs/prolog.lang.h:4
 #: ../data/language-specs/python.lang.h:11 ../data/language-specs/R.lang.h:6
-#: ../data/language-specs/ruby.lang.h:12
+#: ../data/language-specs/ruby.lang.h:13
 #: ../data/language-specs/scheme.lang.h:4
 #: ../data/language-specs/scilab.lang.h:5 ../data/language-specs/sh.lang.h:5
-#: ../data/language-specs/sparql.lang.h:7 ../data/language-specs/sql.lang.h:6
+#: ../data/language-specs/sml.lang.h:9 ../data/language-specs/sparql.lang.h:7
+#: ../data/language-specs/sql.lang.h:6
 #: ../data/language-specs/systemverilog.lang.h:2
 #: ../data/language-specs/tcl.lang.h:1 ../data/language-specs/texinfo.lang.h:6
-#: ../data/language-specs/vala.lang.h:7 ../data/language-specs/vbnet.lang.h:4
+#: ../data/language-specs/vala.lang.h:5 ../data/language-specs/vbnet.lang.h:4
 #: ../data/language-specs/verilog.lang.h:9
 #: ../data/language-specs/vhdl.lang.h:5
 msgid "Keyword"
 msgstr "關鍵字"
 
 #: ../data/language-specs/ada.lang.h:9 ../data/language-specs/asp.lang.h:10
-#: ../data/language-specs/bennugd.lang.h:14 ../data/language-specs/c.lang.h:15
+#: ../data/language-specs/bennugd.lang.h:11 ../data/language-specs/c.lang.h:14
 #: ../data/language-specs/cg.lang.h:16 ../data/language-specs/csharp.lang.h:12
 #: ../data/language-specs/forth.lang.h:9
 #: ../data/language-specs/fsharp.lang.h:15
@@ -248,23 +250,22 @@ msgstr "關鍵字"
 #: ../data/language-specs/haskell.lang.h:11
 #: ../data/language-specs/idl.lang.h:5
 #: ../data/language-specs/nemerle.lang.h:14
-#: ../data/language-specs/pascal.lang.h:6
+#: ../data/language-specs/objj.lang.h:7 ../data/language-specs/pascal.lang.h:6
 #: ../data/language-specs/vbnet.lang.h:5
 msgid "Preprocessor"
 msgstr "前置處理器"
 
 #: ../data/language-specs/ada.lang.h:10
 #: ../data/language-specs/csharp.lang.h:13
-#: ../data/language-specs/vala.lang.h:9
 #: ../data/language-specs/verilog.lang.h:11
 #: ../data/language-specs/vhdl.lang.h:7
 msgid "Real number"
 msgstr "實數"
 
 #: ../data/language-specs/ada.lang.h:11 ../data/language-specs/asp.lang.h:11
-#: ../data/language-specs/bennugd.lang.h:15
+#: ../data/language-specs/bennugd.lang.h:12
 #: ../data/language-specs/boo.lang.h:13 ../data/language-specs/chdr.lang.h:2
-#: ../data/language-specs/c.lang.h:17 ../data/language-specs/cg.lang.h:17
+#: ../data/language-specs/c.lang.h:16 ../data/language-specs/cg.lang.h:17
 #: ../data/language-specs/cobol.lang.h:8 ../data/language-specs/cpp.lang.h:5
 #: ../data/language-specs/csharp.lang.h:14
 #: ../data/language-specs/cuda.lang.h:7 ../data/language-specs/d.lang.h:13
@@ -279,20 +280,22 @@ msgstr "實數"
 #: ../data/language-specs/idl.lang.h:6 ../data/language-specs/java.lang.h:15
 #: ../data/language-specs/makefile.lang.h:4
 #: ../data/language-specs/nemerle.lang.h:15
-#: ../data/language-specs/objc.lang.h:5 ../data/language-specs/ocaml.lang.h:16
-#: ../data/language-specs/ooc.lang.h:17 ../data/language-specs/opal.lang.h:11
+#: ../data/language-specs/objc.lang.h:5 ../data/language-specs/objj.lang.h:8
+#: ../data/language-specs/ocaml.lang.h:16 ../data/language-specs/ooc.lang.h:17
+#: ../data/language-specs/opal.lang.h:11
+#: ../data/language-specs/opencl.lang.h:9
 #: ../data/language-specs/pascal.lang.h:7
 #: ../data/language-specs/prolog.lang.h:8
-#: ../data/language-specs/scheme.lang.h:6
+#: ../data/language-specs/scheme.lang.h:6 ../data/language-specs/sml.lang.h:11
 #: ../data/language-specs/sparql.lang.h:14 ../data/language-specs/sql.lang.h:9
 #: ../data/language-specs/systemverilog.lang.h:3
-#: ../data/language-specs/vala.lang.h:10 ../data/language-specs/vbnet.lang.h:6
+#: ../data/language-specs/vala.lang.h:7 ../data/language-specs/vbnet.lang.h:6
 #: ../data/language-specs/verilog.lang.h:12
 #: ../data/language-specs/vhdl.lang.h:8
 msgid "Sources"
 msgstr "原始碼"
 
-#: ../data/language-specs/ada.lang.h:12 ../data/language-specs/c.lang.h:19
+#: ../data/language-specs/ada.lang.h:12 ../data/language-specs/c.lang.h:18
 #: ../data/language-specs/cg.lang.h:18 ../data/language-specs/go.lang.h:15
 #: ../data/language-specs/java.lang.h:16 ../data/language-specs/ooc.lang.h:18
 msgid "Storage Class"
@@ -300,11 +303,10 @@ msgstr "儲存區類別"
 
 #. A string constant: "this is a string"
 #: ../data/language-specs/ada.lang.h:13 ../data/language-specs/asp.lang.h:13
-#: ../data/language-specs/bennugd.lang.h:16
-#: ../data/language-specs/boo.lang.h:15 ../data/language-specs/c.lang.h:20
+#: ../data/language-specs/boo.lang.h:15 ../data/language-specs/c.lang.h:19
 #: ../data/language-specs/cobol.lang.h:10
 #: ../data/language-specs/csharp.lang.h:15
-#: ../data/language-specs/css.lang.h:13 ../data/language-specs/def.lang.h:57
+#: ../data/language-specs/css.lang.h:15 ../data/language-specs/def.lang.h:57
 #: ../data/language-specs/d.lang.h:15 ../data/language-specs/dosbatch.lang.h:6
 #: ../data/language-specs/eiffel.lang.h:15
 #: ../data/language-specs/erlang.lang.h:12
@@ -313,25 +315,24 @@ msgstr "儲存區類別"
 #: ../data/language-specs/gdb-log.lang.h:10
 #: ../data/language-specs/go.lang.h:16 ../data/language-specs/gtkrc.lang.h:9
 #: ../data/language-specs/haskell.lang.h:13
-#: ../data/language-specs/idl.lang.h:7 ../data/language-specs/ini.lang.h:9
-#: ../data/language-specs/java.lang.h:17
-#: ../data/language-specs/javascript.lang.h:15
-#: ../data/language-specs/lua.lang.h:10
+#: ../data/language-specs/idl.lang.h:7 ../data/language-specs/imagej.lang.h:10
+#: ../data/language-specs/ini.lang.h:9 ../data/language-specs/java.lang.h:17
+#: ../data/language-specs/lua.lang.h:10 ../data/language-specs/matlab.lang.h:5
 #: ../data/language-specs/nemerle.lang.h:16
 #: ../data/language-specs/nsis.lang.h:5 ../data/language-specs/objc.lang.h:6
-#: ../data/language-specs/ocaml.lang.h:18 ../data/language-specs/ocl.lang.h:7
-#: ../data/language-specs/octave.lang.h:11
+#: ../data/language-specs/objj.lang.h:9 ../data/language-specs/ocaml.lang.h:18
+#: ../data/language-specs/ocl.lang.h:7 ../data/language-specs/octave.lang.h:15
 #: ../data/language-specs/ooc.lang.h:19 ../data/language-specs/opal.lang.h:12
 #: ../data/language-specs/pascal.lang.h:8
 #: ../data/language-specs/perl.lang.h:19 ../data/language-specs/php.lang.h:20
-#: ../data/language-specs/po.lang.h:8 ../data/language-specs/prolog.lang.h:9
+#: ../data/language-specs/po.lang.h:6 ../data/language-specs/prolog.lang.h:9
 #: ../data/language-specs/python.lang.h:17
-#: ../data/language-specs/ruby.lang.h:21
+#: ../data/language-specs/ruby.lang.h:22
 #: ../data/language-specs/scheme.lang.h:7
-#: ../data/language-specs/scilab.lang.h:9 ../data/language-specs/sh.lang.h:9
-#: ../data/language-specs/sql.lang.h:10
+#: ../data/language-specs/scilab.lang.h:9 ../data/language-specs/sh.lang.h:8
+#: ../data/language-specs/sml.lang.h:13 ../data/language-specs/sql.lang.h:10
 #: ../data/language-specs/texinfo.lang.h:10
-#: ../data/language-specs/vala.lang.h:11 ../data/language-specs/vbnet.lang.h:8
+#: ../data/language-specs/vala.lang.h:8 ../data/language-specs/vbnet.lang.h:8
 #: ../data/language-specs/verilog.lang.h:13
 #: ../data/language-specs/vhdl.lang.h:9
 msgid "String"
@@ -348,13 +349,12 @@ msgstr "ASP 物件"
 #. A function name (also: methods for classes)
 #: ../data/language-specs/asp.lang.h:6
 #: ../data/language-specs/changelog.lang.h:6
-#: ../data/language-specs/cg.lang.h:11 ../data/language-specs/css.lang.h:7
+#: ../data/language-specs/cg.lang.h:11 ../data/language-specs/css.lang.h:8
 #: ../data/language-specs/def.lang.h:32 ../data/language-specs/gap.lang.h:4
 #: ../data/language-specs/gdb-log.lang.h:4
 #: ../data/language-specs/gtk-doc.lang.h:3
-#: ../data/language-specs/javascript.lang.h:7
-#: ../data/language-specs/lua.lang.h:4 ../data/language-specs/octave.lang.h:6
-#: ../data/language-specs/scheme.lang.h:3
+#: ../data/language-specs/javascript.lang.h:5
+#: ../data/language-specs/lua.lang.h:4 ../data/language-specs/scheme.lang.h:3
 #: ../data/language-specs/scilab.lang.h:4 ../data/language-specs/sh.lang.h:3
 #: ../data/language-specs/sparql.lang.h:4 ../data/language-specs/sql.lang.h:5
 msgid "Function"
@@ -371,12 +371,14 @@ msgstr "數字"
 
 #. Operators: "+", "*", etc.
 #: ../data/language-specs/asp.lang.h:9
-#: ../data/language-specs/bennugd.lang.h:13
+#: ../data/language-specs/bennugd.lang.h:10
 #: ../data/language-specs/cmake.lang.h:6 ../data/language-specs/cobol.lang.h:7
 #: ../data/language-specs/def.lang.h:42
 #: ../data/language-specs/erlang.lang.h:10
-#: ../data/language-specs/nsis.lang.h:3 ../data/language-specs/perl.lang.h:11
-#: ../data/language-specs/php.lang.h:17 ../data/language-specs/prolog.lang.h:6
+#: ../data/language-specs/imagej.lang.h:7 ../data/language-specs/nsis.lang.h:3
+#: ../data/language-specs/octave.lang.h:10
+#: ../data/language-specs/perl.lang.h:11 ../data/language-specs/php.lang.h:17
+#: ../data/language-specs/prolog.lang.h:6
 #: ../data/language-specs/sparql.lang.h:10
 msgid "Operator"
 msgstr "運算符號"
@@ -403,11 +405,11 @@ msgstr "Pattern"
 
 #: ../data/language-specs/awk.lang.h:4
 #: ../data/language-specs/dosbatch.lang.h:5
-#: ../data/language-specs/javascript.lang.h:14
+#: ../data/language-specs/javascript.lang.h:12
 #: ../data/language-specs/lua.lang.h:9 ../data/language-specs/m4.lang.h:3
 #: ../data/language-specs/perl.lang.h:18 ../data/language-specs/php.lang.h:19
 #: ../data/language-specs/python.lang.h:15
-#: ../data/language-specs/ruby.lang.h:19 ../data/language-specs/sh.lang.h:7
+#: ../data/language-specs/ruby.lang.h:20 ../data/language-specs/sh.lang.h:7
 #: ../data/language-specs/tcl.lang.h:2
 msgid "Scripts"
 msgstr "Scripts"
@@ -417,11 +419,12 @@ msgstr "Scripts"
 #: ../data/language-specs/haskell.lang.h:15
 #: ../data/language-specs/ini.lang.h:10
 #: ../data/language-specs/makefile.lang.h:8
-#: ../data/language-specs/nsis.lang.h:6 ../data/language-specs/perl.lang.h:21
-#: ../data/language-specs/php.lang.h:21
+#: ../data/language-specs/nsis.lang.h:6
+#: ../data/language-specs/octave.lang.h:16
+#: ../data/language-specs/perl.lang.h:21 ../data/language-specs/php.lang.h:21
 #: ../data/language-specs/pkgconfig.lang.h:3
 #: ../data/language-specs/prolog.lang.h:10
-#: ../data/language-specs/ruby.lang.h:23 ../data/language-specs/sh.lang.h:11
+#: ../data/language-specs/ruby.lang.h:24 ../data/language-specs/sh.lang.h:10
 #: ../data/language-specs/sparql.lang.h:15 ../data/language-specs/tcl.lang.h:4
 msgid "Variable"
 msgstr "變數"
@@ -434,56 +437,27 @@ msgstr "awk"
 msgid "BennuGD"
 msgstr "BennuGD"
 
-#. A character constant: 'c'
-#: ../data/language-specs/bennugd.lang.h:3 ../data/language-specs/c.lang.h:3
-#: ../data/language-specs/csharp.lang.h:3 ../data/language-specs/def.lang.h:9
-#: ../data/language-specs/gap.lang.h:1 ../data/language-specs/go.lang.h:2
-#: ../data/language-specs/haskell.lang.h:1
-#: ../data/language-specs/java.lang.h:2
-#: ../data/language-specs/nemerle.lang.h:3
-#: ../data/language-specs/vhdl.lang.h:3
-msgid "Character"
-msgstr "字符"
-
-#. Any erroneous construct
-#: ../data/language-specs/bennugd.lang.h:7 ../data/language-specs/c.lang.h:8
-#: ../data/language-specs/cg.lang.h:8 ../data/language-specs/cobol.lang.h:4
-#: ../data/language-specs/csharp.lang.h:7 ../data/language-specs/css.lang.h:6
-#: ../data/language-specs/def.lang.h:28 ../data/language-specs/d.lang.h:7
-#: ../data/language-specs/dot.lang.h:3 ../data/language-specs/go.lang.h:6
-#: ../data/language-specs/html.lang.h:5 ../data/language-specs/java.lang.h:6
-#: ../data/language-specs/javascript.lang.h:6
-#: ../data/language-specs/nemerle.lang.h:7
-#: ../data/language-specs/ocaml.lang.h:7 ../data/language-specs/ooc.lang.h:6
-#: ../data/language-specs/opal.lang.h:6 ../data/language-specs/perl.lang.h:4
-#: ../data/language-specs/php.lang.h:6 ../data/language-specs/prolog.lang.h:2
-#: ../data/language-specs/vala.lang.h:5
-#: ../data/language-specs/verilog.lang.h:4 ../data/language-specs/xml.lang.h:8
-msgid "Error"
-msgstr "錯誤"
-
 #. A floating point constant: 2.3e10
-#: ../data/language-specs/bennugd.lang.h:9 ../data/language-specs/c.lang.h:10
+#: ../data/language-specs/bennugd.lang.h:6 ../data/language-specs/c.lang.h:9
 #: ../data/language-specs/cg.lang.h:10 ../data/language-specs/def.lang.h:30
 #: ../data/language-specs/d.lang.h:8 ../data/language-specs/erlang.lang.h:8
 #: ../data/language-specs/go.lang.h:8 ../data/language-specs/nemerle.lang.h:8
 #: ../data/language-specs/ooc.lang.h:9 ../data/language-specs/php.lang.h:9
 #: ../data/language-specs/python.lang.h:9 ../data/language-specs/R.lang.h:4
-#: ../data/language-specs/ruby.lang.h:9
+#: ../data/language-specs/ruby.lang.h:10
 msgid "Floating point number"
 msgstr "浮點數"
 
-#: ../data/language-specs/bennugd.lang.h:10 ../data/language-specs/c.lang.h:11
+#: ../data/language-specs/bennugd.lang.h:7 ../data/language-specs/c.lang.h:10
 #: ../data/language-specs/cg.lang.h:12 ../data/language-specs/csharp.lang.h:9
 #: ../data/language-specs/d.lang.h:9 ../data/language-specs/eiffel.lang.h:11
 #: ../data/language-specs/go.lang.h:10 ../data/language-specs/nemerle.lang.h:9
 #: ../data/language-specs/ooc.lang.h:11 ../data/language-specs/php.lang.h:12
-#: ../data/language-specs/vala.lang.h:6
 msgid "Hexadecimal number"
 msgstr "16 進位數數值"
 
 #. Any variable name
-#: ../data/language-specs/bennugd.lang.h:11
+#: ../data/language-specs/bennugd.lang.h:8
 #: ../data/language-specs/def.lang.h:34 ../data/language-specs/php.lang.h:13
 msgid "Identifier"
 msgstr "識別子"
@@ -505,9 +479,10 @@ msgstr "欄位"
 #: ../data/language-specs/gtk-doc.lang.h:6
 #: ../data/language-specs/haddock.lang.h:14
 #: ../data/language-specs/html.lang.h:7 ../data/language-specs/latex.lang.h:6
-#: ../data/language-specs/mallard.lang.h:4 ../data/language-specs/t2t.lang.h:6
-#: ../data/language-specs/texinfo.lang.h:8 ../data/language-specs/xml.lang.h:9
-#: ../data/language-specs/xslt.lang.h:2
+#: ../data/language-specs/mallard.lang.h:4
+#: ../data/language-specs/markdown.lang.h:14
+#: ../data/language-specs/t2t.lang.h:6 ../data/language-specs/texinfo.lang.h:8
+#: ../data/language-specs/xml.lang.h:9 ../data/language-specs/xslt.lang.h:2
 #: ../gtksourceview/gtksourcecompletionitem.c:242
 #: ../gtksourceview/gtksourcegutterrenderertext.c:395
 msgid "Markup"
@@ -518,8 +493,9 @@ msgid "Boo"
 msgstr "Boo"
 
 #: ../data/language-specs/boo.lang.h:2 ../data/language-specs/desktop.lang.h:3
-#: ../data/language-specs/d.lang.h:2 ../data/language-specs/libtool.lang.h:1
-#: ../data/language-specs/octave.lang.h:2
+#: ../data/language-specs/d.lang.h:2 ../data/language-specs/imagej.lang.h:1
+#: ../data/language-specs/libtool.lang.h:1
+#: ../data/language-specs/objj.lang.h:1 ../data/language-specs/octave.lang.h:2
 #: ../data/language-specs/python.lang.h:2
 #: ../data/language-specs/scheme.lang.h:1
 #: ../data/language-specs/scilab.lang.h:1
@@ -544,21 +520,22 @@ msgstr "命名空間"
 #: ../data/language-specs/csharp.lang.h:11 ../data/language-specs/d.lang.h:11
 #: ../data/language-specs/fsharp.lang.h:13
 #: ../data/language-specs/java.lang.h:12
-#: ../data/language-specs/javascript.lang.h:11
+#: ../data/language-specs/javascript.lang.h:9
 #: ../data/language-specs/nemerle.lang.h:12
-#: ../data/language-specs/ooc.lang.h:13 ../data/language-specs/php.lang.h:15
-#: ../data/language-specs/vala.lang.h:8
+#: ../data/language-specs/objj.lang.h:5 ../data/language-specs/ooc.lang.h:13
+#: ../data/language-specs/php.lang.h:15 ../data/language-specs/vala.lang.h:6
 msgid "Null Value"
 msgstr "NULL"
 
-#: ../data/language-specs/boo.lang.h:12 ../data/language-specs/perl.lang.h:17
-#: ../data/language-specs/ruby.lang.h:17
+#: ../data/language-specs/boo.lang.h:12
+#: ../data/language-specs/javascript.lang.h:11
+#: ../data/language-specs/perl.lang.h:17 ../data/language-specs/ruby.lang.h:18
 msgid "Regular Expression"
 msgstr "正規表示式"
 
 #: ../data/language-specs/boo.lang.h:14
 #: ../data/language-specs/python.lang.h:16
-#: ../data/language-specs/ruby.lang.h:20
+#: ../data/language-specs/ruby.lang.h:21
 msgid "Special Variable"
 msgstr "特別變數"
 
@@ -584,7 +561,7 @@ msgid "File"
 msgstr "檔案"
 
 #: ../data/language-specs/changelog.lang.h:7
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:462
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:464
 msgid "Name"
 msgstr "名稱"
 
@@ -600,7 +577,7 @@ msgstr "名稱"
 #. * to a #GtkSourceBuffer.
 #.
 #: ../data/language-specs/changelog.lang.h:8
-#: ../data/language-specs/cmake.lang.h:7 ../data/language-specs/css.lang.h:10
+#: ../data/language-specs/cmake.lang.h:7 ../data/language-specs/css.lang.h:12
 #: ../data/language-specs/desktop.lang.h:12
 #: ../data/language-specs/diff.lang.h:9 ../data/language-specs/dot.lang.h:6
 #: ../data/language-specs/dpatch.lang.h:2
@@ -628,32 +605,42 @@ msgstr "C/C++/ObjC 檔頭"
 msgid "C"
 msgstr "C"
 
+#. A character constant: 'c'
+#: ../data/language-specs/c.lang.h:3 ../data/language-specs/csharp.lang.h:3
+#: ../data/language-specs/def.lang.h:9 ../data/language-specs/gap.lang.h:1
+#: ../data/language-specs/go.lang.h:2 ../data/language-specs/haskell.lang.h:1
+#: ../data/language-specs/java.lang.h:2
+#: ../data/language-specs/nemerle.lang.h:3 ../data/language-specs/sml.lang.h:3
+#: ../data/language-specs/vhdl.lang.h:3
+msgid "Character"
+msgstr "字符"
+
 #: ../data/language-specs/c.lang.h:5 ../data/language-specs/cpp.lang.h:2
 #: ../data/language-specs/objc.lang.h:1 ../data/language-specs/opal.lang.h:3
 msgid "Common Defines"
 msgstr "一般定義"
 
-#: ../data/language-specs/c.lang.h:12 ../data/language-specs/cg.lang.h:13
-#: ../data/language-specs/go.lang.h:11
+#: ../data/language-specs/c.lang.h:11 ../data/language-specs/cg.lang.h:13
+#: ../data/language-specs/go.lang.h:11 ../data/language-specs/objj.lang.h:3
 msgid "Included File"
 msgstr "包括檔案(Include)"
 
-#: ../data/language-specs/c.lang.h:14 ../data/language-specs/cg.lang.h:15
+#: ../data/language-specs/c.lang.h:13 ../data/language-specs/cg.lang.h:15
 #: ../data/language-specs/d.lang.h:12 ../data/language-specs/go.lang.h:13
 #: ../data/language-specs/nemerle.lang.h:13
 #: ../data/language-specs/ooc.lang.h:15 ../data/language-specs/php.lang.h:16
 msgid "Octal number"
 msgstr "8 進位數"
 
-#: ../data/language-specs/c.lang.h:16
+#: ../data/language-specs/c.lang.h:15
 msgid "Signal name"
 msgstr "單名"
 
-#: ../data/language-specs/c.lang.h:18
+#: ../data/language-specs/c.lang.h:17
 msgid "Standard stream"
 msgstr "標準串流"
 
-#: ../data/language-specs/c.lang.h:21
+#: ../data/language-specs/c.lang.h:20
 msgid "printf Conversion"
 msgstr "printf 交談"
 
@@ -661,14 +648,32 @@ msgstr "printf 交談"
 msgid "Bindings"
 msgstr "綁定"
 
+#. Translators: functions that are provided in the language
 #: ../data/language-specs/cg.lang.h:3 ../data/language-specs/erlang.lang.h:3
-#: ../data/language-specs/ruby.lang.h:4
+#: ../data/language-specs/imagej.lang.h:2
+#: ../data/language-specs/matlab.lang.h:1
+#: ../data/language-specs/octave.lang.h:3 ../data/language-specs/ruby.lang.h:5
 msgid "Builtin"
 msgstr "內置"
 
 #: ../data/language-specs/cg.lang.h:4
 msgid "CG Shader Language"
 msgstr "CG 着色語言"
+
+#. Any erroneous construct
+#: ../data/language-specs/cg.lang.h:8 ../data/language-specs/cobol.lang.h:4
+#: ../data/language-specs/csharp.lang.h:7 ../data/language-specs/css.lang.h:7
+#: ../data/language-specs/def.lang.h:28 ../data/language-specs/d.lang.h:7
+#: ../data/language-specs/dot.lang.h:3 ../data/language-specs/go.lang.h:6
+#: ../data/language-specs/html.lang.h:5
+#: ../data/language-specs/nemerle.lang.h:7
+#: ../data/language-specs/ocaml.lang.h:7 ../data/language-specs/ooc.lang.h:6
+#: ../data/language-specs/opal.lang.h:6 ../data/language-specs/perl.lang.h:4
+#: ../data/language-specs/php.lang.h:6 ../data/language-specs/prolog.lang.h:2
+#: ../data/language-specs/vala.lang.h:4
+#: ../data/language-specs/verilog.lang.h:4 ../data/language-specs/xml.lang.h:8
+msgid "Error"
+msgstr "錯誤"
 
 #: ../data/language-specs/cg.lang.h:19
 msgid "Swizzle operator"
@@ -691,7 +696,7 @@ msgstr "CMake"
 #: ../data/language-specs/def.lang.h:15
 #: ../data/language-specs/gtk-doc.lang.h:1
 #: ../data/language-specs/libtool.lang.h:2
-#: ../data/language-specs/ruby.lang.h:6
+#: ../data/language-specs/ruby.lang.h:7
 msgid "Constant"
 msgstr "常數"
 
@@ -716,7 +721,8 @@ msgstr "C++"
 msgid "C#"
 msgstr "C#"
 
-#: ../data/language-specs/csharp.lang.h:16
+#. Translators: this is a format that appears in the strings
+#: ../data/language-specs/csharp.lang.h:17 ../data/language-specs/po.lang.h:7
 msgid "String Format"
 msgstr "字串格式"
 
@@ -725,35 +731,49 @@ msgid "CSS"
 msgstr "CSS"
 
 #: ../data/language-specs/css.lang.h:2
+msgid "Class Selector"
+msgstr "類別選擇器"
+
+#: ../data/language-specs/css.lang.h:3
 msgid "Color"
 msgstr "顏色"
 
-#: ../data/language-specs/css.lang.h:4 ../data/language-specs/fcl.lang.h:3
+#. Translator: it is a type of number
+#: ../data/language-specs/css.lang.h:5 ../data/language-specs/fcl.lang.h:3
 #: ../data/language-specs/fortran.lang.h:4 ../data/language-specs/gap.lang.h:3
 #: ../data/language-specs/gtkrc.lang.h:4
 #: ../data/language-specs/haskell.lang.h:4 ../data/language-specs/ini.lang.h:5
-#: ../data/language-specs/octave.lang.h:4
-#: ../data/language-specs/pascal.lang.h:3 ../data/language-specs/sql.lang.h:3
+#: ../data/language-specs/octave.lang.h:6
+#: ../data/language-specs/pascal.lang.h:3 ../data/language-specs/sml.lang.h:6
+#: ../data/language-specs/sql.lang.h:3
 msgid "Decimal"
 msgstr "十進位"
 
-#: ../data/language-specs/css.lang.h:5
+#: ../data/language-specs/css.lang.h:6
 msgid "Dimension"
 msgstr "Dimension"
 
 #: ../data/language-specs/css.lang.h:9
+msgid "ID Selector"
+msgstr "ID 選擇器"
+
+#: ../data/language-specs/css.lang.h:11
 msgid "Known Property Value"
 msgstr "Known Property Values"
 
-#: ../data/language-specs/css.lang.h:11
+#: ../data/language-specs/css.lang.h:13
 msgid "Others 2"
 msgstr "其它 2"
 
-#: ../data/language-specs/css.lang.h:12
+#: ../data/language-specs/css.lang.h:14
 msgid "Others 3"
 msgstr "其它 3"
 
-#: ../data/language-specs/css.lang.h:14
+#: ../data/language-specs/css.lang.h:16
+msgid "Tag Name Selector"
+msgstr "標籤名稱選擇器"
+
+#: ../data/language-specs/css.lang.h:17
 msgid "at-rules"
 msgstr "At Rules"
 
@@ -791,7 +811,7 @@ msgid "Complex number"
 msgstr "複數"
 
 #. A primitive data type: int, long, char, etc.
-#: ../data/language-specs/def.lang.h:17
+#: ../data/language-specs/def.lang.h:17 ../data/language-specs/octave.lang.h:5
 msgid "Data type"
 msgstr "資料類型"
 
@@ -827,7 +847,7 @@ msgid "Reserved keyword"
 msgstr "保留字"
 
 #. A shebang: #!/bin/sh
-#: ../data/language-specs/def.lang.h:48 ../data/language-specs/sh.lang.h:8
+#: ../data/language-specs/def.lang.h:48
 msgid "Shebang"
 msgstr "Shebang(#!)"
 
@@ -926,8 +946,8 @@ msgid "Special Token"
 msgstr "特別記號"
 
 #: ../data/language-specs/docbook.lang.h:1
-msgid "Docbook"
-msgstr "Docbook"
+msgid "DocBook"
+msgstr "DocBook"
 
 #: ../data/language-specs/docbook.lang.h:2
 msgid "Formatting Elements"
@@ -951,8 +971,8 @@ msgid "Command"
 msgstr "指令"
 
 #: ../data/language-specs/dosbatch.lang.h:3
-msgid "Dos Batch"
-msgstr "Dos 批次檔"
+msgid "DOS Batch"
+msgstr "DOS 批次檔"
 
 #: ../data/language-specs/dot.lang.h:1 ../data/language-specs/xml.lang.h:1
 msgid "Attribute name"
@@ -1015,7 +1035,7 @@ msgid "Exception Handling"
 msgstr "例外處理程序"
 
 #: ../data/language-specs/eiffel.lang.h:13
-#: ../data/language-specs/ruby.lang.h:16
+#: ../data/language-specs/ruby.lang.h:17
 msgid "Predefined Variable"
 msgstr "預先定義變數"
 
@@ -1030,7 +1050,7 @@ msgstr "Atom"
 #: ../data/language-specs/erlang.lang.h:2
 #: ../data/language-specs/fsharp.lang.h:1
 #: ../data/language-specs/ocaml.lang.h:1
-#: ../data/language-specs/octave.lang.h:1
+#: ../data/language-specs/octave.lang.h:1 ../data/language-specs/sml.lang.h:1
 #: ../data/language-specs/verilog.lang.h:1
 #: ../data/language-specs/vhdl.lang.h:1
 msgid "Base-N Integer"
@@ -1056,18 +1076,20 @@ msgid "FCL"
 msgstr "FCL"
 
 #: ../data/language-specs/fcl.lang.h:5 ../data/language-specs/fortran.lang.h:5
-#: ../data/language-specs/ini.lang.h:6 ../data/language-specs/octave.lang.h:5
+#: ../data/language-specs/ini.lang.h:6 ../data/language-specs/octave.lang.h:7
 #: ../data/language-specs/scilab.lang.h:3 ../data/language-specs/sql.lang.h:4
 msgid "Floating Point"
 msgstr "浮點小數"
 
-#: ../data/language-specs/fcl.lang.h:7 ../data/language-specs/octave.lang.h:9
+#: ../data/language-specs/fcl.lang.h:7 ../data/language-specs/octave.lang.h:12
 #: ../data/language-specs/scilab.lang.h:6
 msgid "Reserved Constant"
 msgstr "常數保留字"
 
 #: ../data/language-specs/fcl.lang.h:8 ../data/language-specs/gap.lang.h:7
-#: ../data/language-specs/octave.lang.h:10 ../data/language-specs/R.lang.h:9
+#: ../data/language-specs/imagej.lang.h:8
+#: ../data/language-specs/matlab.lang.h:4
+#: ../data/language-specs/octave.lang.h:13 ../data/language-specs/R.lang.h:9
 #: ../data/language-specs/scilab.lang.h:7
 msgid "Scientific"
 msgstr "科學"
@@ -1106,7 +1128,7 @@ msgid "F#"
 msgstr "F#"
 
 #: ../data/language-specs/fsharp.lang.h:9
-#: ../data/language-specs/ocaml.lang.h:9
+#: ../data/language-specs/ocaml.lang.h:9 ../data/language-specs/sml.lang.h:8
 msgid "Floating Point number"
 msgstr "浮點數"
 
@@ -1125,17 +1147,18 @@ msgstr "模組路徑"
 msgid "Polymorphic Variant"
 msgstr "多型變數"
 
-#: ../data/language-specs/fsharp.lang.h:18
+#. Translators: this is a specific variable called Type
+#: ../data/language-specs/fsharp.lang.h:19
 #: ../data/language-specs/ocaml.lang.h:19
 msgid "Type Variable"
 msgstr "類型變數"
 
-#: ../data/language-specs/fsharp.lang.h:19
+#: ../data/language-specs/fsharp.lang.h:20
 #: ../data/language-specs/ocaml.lang.h:20
 msgid "Type, module or object keyword"
 msgstr "型別、模組及物件關鍵字"
 
-#: ../data/language-specs/fsharp.lang.h:20
+#: ../data/language-specs/fsharp.lang.h:21
 #: ../data/language-specs/ocaml.lang.h:21
 msgid "Variant Constructor"
 msgstr "變數建立式"
@@ -1264,6 +1287,7 @@ msgid "Definition list"
 msgstr "定義清單"
 
 #: ../data/language-specs/haddock.lang.h:4
+#: ../data/language-specs/markdown.lang.h:5
 msgid "Emphasis"
 msgstr "強調"
 
@@ -1308,6 +1332,7 @@ msgid "Monospace"
 msgstr "Monospace"
 
 #: ../data/language-specs/haddock.lang.h:16
+#: ../data/language-specs/markdown.lang.h:16
 msgid "URL"
 msgstr "網址"
 
@@ -1328,7 +1353,7 @@ msgid "Octal"
 msgstr "8 進位"
 
 #: ../data/language-specs/haskell.lang.h:14
-#: ../data/language-specs/ruby.lang.h:22
+#: ../data/language-specs/ruby.lang.h:23
 msgid "Symbol"
 msgstr "符號"
 
@@ -1341,6 +1366,7 @@ msgid "Attribute Name"
 msgstr "屬性名稱"
 
 #: ../data/language-specs/html.lang.h:2
+#: ../data/language-specs/markdown.lang.h:1
 msgid "Attribute Value"
 msgstr "屬性數值"
 
@@ -1356,21 +1382,40 @@ msgstr "標籤"
 msgid "IDL"
 msgstr "IDL"
 
+#: ../data/language-specs/imagej.lang.h:3
+msgid "Commands"
+msgstr "命令"
+
+#: ../data/language-specs/imagej.lang.h:4
+msgid "Escaped Characters"
+msgstr "跳出字符"
+
+#: ../data/language-specs/imagej.lang.h:5
+msgid "ImageJ"
+msgstr "ImageJ"
+
+#: ../data/language-specs/imagej.lang.h:9
+#: ../data/language-specs/octave.lang.h:14
+msgid "Storage Type"
+msgstr "儲存類別"
+
 #: ../data/language-specs/ini.lang.h:1
 msgid ".ini"
 msgstr ".ini"
 
-#: ../data/language-specs/java.lang.h:5 ../data/language-specs/ooc.lang.h:5
+#: ../data/language-specs/java.lang.h:4 ../data/language-specs/ooc.lang.h:5
 msgid "Declaration"
 msgstr "宣告"
 
+#. Translators: refered to some specific keywords of the language that
+#. allow to get external functionalities
 #: ../data/language-specs/java.lang.h:8 ../data/language-specs/ooc.lang.h:8
 msgid "External"
 msgstr "外部"
 
 # (Abel) 根本就是 reserved words?
 #: ../data/language-specs/java.lang.h:9
-#: ../data/language-specs/javascript.lang.h:8
+#: ../data/language-specs/javascript.lang.h:6
 #: ../data/language-specs/ooc.lang.h:10
 msgid "Future Reserved Keywords"
 msgstr "保留字"
@@ -1383,23 +1428,19 @@ msgstr "Java"
 msgid "Scope Declaration"
 msgstr "範圍宣告"
 
-#: ../data/language-specs/javascript.lang.h:3
+#: ../data/language-specs/javascript.lang.h:2
 msgid "Constructors"
 msgstr "建立式"
 
-#: ../data/language-specs/javascript.lang.h:9
+#: ../data/language-specs/javascript.lang.h:7
 msgid "JavaScript"
 msgstr "JavaScript"
 
-#: ../data/language-specs/javascript.lang.h:12
-msgid "Object"
-msgstr "物件"
-
-#: ../data/language-specs/javascript.lang.h:13
+#: ../data/language-specs/javascript.lang.h:10
 msgid "Properties"
 msgstr "屬性"
 
-#: ../data/language-specs/javascript.lang.h:16
+#: ../data/language-specs/javascript.lang.h:13
 msgid "Undefined Value"
 msgstr "未定義的數值"
 
@@ -1420,7 +1461,7 @@ msgstr "LaTeX"
 msgid "Math Mode"
 msgstr "數學模式"
 
-#: ../data/language-specs/latex.lang.h:8 ../data/language-specs/t2t.lang.h:16
+#: ../data/language-specs/latex.lang.h:8 ../data/language-specs/t2t.lang.h:15
 msgid "Verbatim"
 msgstr "Verbatim"
 
@@ -1436,7 +1477,7 @@ msgstr "libtool"
 msgid "Lua"
 msgstr "Lua"
 
-#: ../data/language-specs/lua.lang.h:7 ../data/language-specs/ruby.lang.h:14
+#: ../data/language-specs/lua.lang.h:7 ../data/language-specs/ruby.lang.h:15
 msgid "Nil Constant"
 msgstr "Nil 常數"
 
@@ -1524,6 +1565,69 @@ msgstr "頁面元件"
 msgid "Section Elements"
 msgstr "節區元件"
 
+#: ../data/language-specs/markdown.lang.h:2
+#, fuzzy
+msgid "Backslash Escape"
+msgstr "跳脫序列"
+
+#: ../data/language-specs/markdown.lang.h:3
+#, fuzzy
+msgid "Blockquote Marker"
+msgstr "標號區(_M)"
+
+#: ../data/language-specs/markdown.lang.h:4
+msgid "Code"
+msgstr "代碼"
+
+#: ../data/language-specs/markdown.lang.h:6
+#: ../data/language-specs/rpmspec.lang.h:8 ../data/language-specs/t2t.lang.h:4
+msgid "Header"
+msgstr "標頭"
+
+#: ../data/language-specs/markdown.lang.h:7
+msgid "Horizontal Rule"
+msgstr "水平線"
+
+#: ../data/language-specs/markdown.lang.h:8
+#, fuzzy
+msgid "Image Marker"
+msgstr "標號區(_M)"
+
+#: ../data/language-specs/markdown.lang.h:9
+#: ../gtksourceview/gtksourcecompletionitem.c:229
+msgid "Label"
+msgstr "標籤"
+
+#: ../data/language-specs/markdown.lang.h:10
+#, fuzzy
+msgid "Line Break"
+msgstr "列號(_L)…"
+
+#: ../data/language-specs/markdown.lang.h:11
+#, fuzzy
+#| msgid "Text"
+msgid "Link Text"
+msgstr "文字闊度"
+
+#: ../data/language-specs/markdown.lang.h:12
+#, fuzzy
+msgid "List Marker"
+msgstr "標號區(_M)"
+
+#: ../data/language-specs/markdown.lang.h:13
+msgid "Markdown"
+msgstr "Markdown"
+
+#: ../data/language-specs/markdown.lang.h:15
+#, fuzzy
+#| msgid "Emphasis"
+msgid "Strong Emphasis"
+msgstr "已加密，嚴密"
+
+#: ../data/language-specs/matlab.lang.h:3
+msgid "Matlab"
+msgstr "Matlab"
+
 #: ../data/language-specs/nemerle.lang.h:11
 msgid "Nemerle"
 msgstr "Nemerle"
@@ -1535,6 +1639,10 @@ msgstr "NSIS"
 #: ../data/language-specs/objc.lang.h:4
 msgid "Objective-C"
 msgstr "Objective-C"
+
+#: ../data/language-specs/objj.lang.h:6
+msgid "Objective-J"
+msgstr "Objective-J"
 
 #: ../data/language-specs/ocaml.lang.h:13
 msgid "Objective Caml"
@@ -1560,9 +1668,13 @@ msgstr "數學運算符號"
 msgid "Type Operators"
 msgstr "類型運算符號"
 
-#: ../data/language-specs/octave.lang.h:8
+#: ../data/language-specs/octave.lang.h:9
 msgid "Octave"
 msgstr "Octave"
+
+#: ../data/language-specs/octave.lang.h:11
+msgid "Package Manager"
+msgstr "套件管理程式"
 
 #: ../data/language-specs/ooc.lang.h:14
 msgid "OOC"
@@ -1583,6 +1695,37 @@ msgstr "模組處理"
 msgid "Opal"
 msgstr "Opal"
 
+#: ../data/language-specs/opencl.lang.h:2
+#, fuzzy
+msgid "Device Cast"
+msgstr "裝置路徑"
+
+#: ../data/language-specs/opencl.lang.h:3
+#, fuzzy
+#| msgid "Device Functions"
+msgid "Device Function"
+msgstr "函數結束\n"
+
+#: ../data/language-specs/opencl.lang.h:4
+#, fuzzy
+#| msgid "Global Functions"
+msgid "Global Function"
+msgstr "函數結束\n"
+
+#: ../data/language-specs/opencl.lang.h:5
+#, fuzzy
+#| msgid "Global Variables"
+msgid "Global Variable"
+msgstr "搜尋變數"
+
+#: ../data/language-specs/opencl.lang.h:7
+msgid "OpenCL"
+msgstr "OpenCL"
+
+#: ../data/language-specs/opencl.lang.h:8
+msgid "OpenCL Constant"
+msgstr "OpenCL 常數"
+
 #: ../data/language-specs/pascal.lang.h:5
 msgid "Pascal"
 msgstr "Pascal"
@@ -1596,12 +1739,12 @@ msgid "File Descriptor"
 msgstr "檔案描述器"
 
 #: ../data/language-specs/perl.lang.h:6 ../data/language-specs/php.lang.h:10
-#: ../data/language-specs/ruby.lang.h:10
+#: ../data/language-specs/ruby.lang.h:11
 msgid "Heredoc"
 msgstr "Heredoc"
 
 #: ../data/language-specs/perl.lang.h:7 ../data/language-specs/php.lang.h:11
-#: ../data/language-specs/ruby.lang.h:11 ../data/language-specs/sh.lang.h:4
+#: ../data/language-specs/ruby.lang.h:12 ../data/language-specs/sh.lang.h:4
 msgid "Heredoc Bound"
 msgstr "Heredoc 綁定"
 
@@ -1641,7 +1784,7 @@ msgstr "系統指令"
 #, fuzzy
 #| msgid "Function"
 msgid "Common Function"
-msgstr "函數"
+msgstr "函數結束\n"
 
 #: ../data/language-specs/php.lang.h:18
 msgid "PHP"
@@ -1659,12 +1802,7 @@ msgstr "pkg-config"
 msgid "Fuzzy"
 msgstr "模糊"
 
-#. FIXME make it some nice name and mark it translatable
-#: ../data/language-specs/po.lang.h:7
-msgid "Special"
-msgstr "特殊"
-
-#: ../data/language-specs/po.lang.h:9
+#: ../data/language-specs/po.lang.h:8
 msgid "gettext translation"
 msgstr "gettext 翻譯檔"
 
@@ -1738,10 +1876,6 @@ msgstr "電子郵件"
 msgid "Flow Conditional"
 msgstr "Flow Conditional"
 
-#: ../data/language-specs/rpmspec.lang.h:8 ../data/language-specs/t2t.lang.h:4
-msgid "Header"
-msgstr "標頭"
-
 #: ../data/language-specs/rpmspec.lang.h:9
 msgid "Other Macro"
 msgstr "其它巨集"
@@ -1771,15 +1905,15 @@ msgstr "Switch"
 msgid "Attribute Definition"
 msgstr "屬性定義"
 
-#: ../data/language-specs/ruby.lang.h:13
+#: ../data/language-specs/ruby.lang.h:14
 msgid "Module handler"
 msgstr "模組處理"
 
-#: ../data/language-specs/ruby.lang.h:15
+#: ../data/language-specs/ruby.lang.h:16
 msgid "Numeric literal"
 msgstr "數字字面"
 
-#: ../data/language-specs/ruby.lang.h:18
+#: ../data/language-specs/ruby.lang.h:19
 msgid "Ruby"
 msgstr "Ruby"
 
@@ -1795,18 +1929,26 @@ msgstr "Scilab"
 msgid "Common Commands"
 msgstr "常用指令"
 
-#: ../data/language-specs/sh.lang.h:10
+#: ../data/language-specs/sh.lang.h:9
 msgid "Subshell"
 msgstr "Subshell"
 
 #. FIXME: need to sort out proper styles for variables
-#: ../data/language-specs/sh.lang.h:13
+#: ../data/language-specs/sh.lang.h:12
 msgid "Variable Definition"
 msgstr "變數定義"
 
-#: ../data/language-specs/sh.lang.h:14
+#: ../data/language-specs/sh.lang.h:13
 msgid "sh"
 msgstr "sh"
+
+#: ../data/language-specs/sml.lang.h:10
+msgid "Module name, Variant, etc"
+msgstr "模組名稱、別稱等等"
+
+#: ../data/language-specs/sml.lang.h:12
+msgid "Standard ML"
+msgstr "標準 ML"
 
 #: ../data/language-specs/sparql.lang.h:2
 msgid "Class"
@@ -1890,13 +2032,13 @@ msgstr "第 4 節"
 msgid "Section 5"
 msgstr "第 5 節"
 
-#: ../data/language-specs/t2t.lang.h:15
-msgid "Text2Tags"
-msgstr "Text2Tags"
-
-#: ../data/language-specs/t2t.lang.h:17
+#: ../data/language-specs/t2t.lang.h:16
 msgid "Verbatim Block"
 msgstr "Verbatim 區塊"
+
+#: ../data/language-specs/t2t.lang.h:17
+msgid "txt2tags"
+msgstr "txt2tags"
 
 #: ../data/language-specs/tcl.lang.h:3
 msgid "Tcl"
@@ -1918,7 +2060,7 @@ msgstr "巨集"
 msgid "Texinfo"
 msgstr "Texinfo"
 
-#: ../data/language-specs/vala.lang.h:12
+#: ../data/language-specs/vala.lang.h:9
 msgid "Vala"
 msgstr "Vala"
 
@@ -2035,60 +2177,60 @@ msgstr "使用 Tango 調色盤的色彩架構"
 msgid "Tango"
 msgstr "Tango"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:378
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:380
 msgid "Document Words"
 msgstr "文件字詞"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:463
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:465
 msgid "The provider name"
 msgstr "提供者名稱"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:470
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:472
 #: ../gtksourceview/gtksourcecompletionitem.c:268
 msgid "Icon"
 msgstr "圖示"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:471
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:473
 msgid "The provider icon"
 msgstr "提供者圖示"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:478
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:480
 msgid "Proposals Batch Size"
 msgstr "建議批次檔大小"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:479
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:481
 msgid "Number of proposals added in one batch"
 msgstr "在一個批次檔中加入的建議數"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:488
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:490
 msgid "Scan Batch Size"
 msgstr "掃描批次檔大小"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:489
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:491
 msgid "Number of lines scanned in one batch"
 msgstr "在一個批次檔中掃描的列數"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:498
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:500
 msgid "Minimum Word Size"
 msgstr "字詞最小的長度"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:499
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:501
 msgid "The minimum word size to complete"
 msgstr "使用自動補齊的字詞最小長度"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:508
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:510
 msgid "Interactive Delay"
 msgstr "互動項目延遲"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:509
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:511
 msgid "The delay before initiating interactive completion"
 msgstr "在初始化互動補齊前延遲的時間"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:518
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:520
 msgid "Priority"
 msgstr "優先等級"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:519
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:521
 msgid "Provider priority"
 msgstr "提供者優先權"
 
@@ -2272,10 +2414,6 @@ msgstr "啟用的類型"
 msgid "Completion Info"
 msgstr "自動補齊資訊"
 
-#: ../gtksourceview/gtksourcecompletionitem.c:229
-msgid "Label"
-msgstr "標籤"
-
 #: ../gtksourceview/gtksourcecompletionitem.c:230
 msgid "Label to be shown for this item"
 msgstr "這個項目所顯示的標籤"
@@ -2364,7 +2502,7 @@ msgid "The gutters' GtkSourceView"
 msgstr "The gutters GtkSourceView"
 
 #: ../gtksourceview/gtksourcegutter.c:561
-#: ../gtksourceview/gtksourcegutterrenderer.c:691
+#: ../gtksourceview/gtksourcegutterrenderer.c:703
 msgid "Window Type"
 msgstr "視窗類型"
 
@@ -2373,71 +2511,71 @@ msgid "The gutters text window type"
 msgstr "The gutters 文字類型視窗"
 
 #: ../gtksourceview/gtksourcegutter.c:573
-#: ../gtksourceview/gtksourcegutterrenderer.c:467
+#: ../gtksourceview/gtksourcegutterrenderer.c:479
 msgid "X Padding"
 msgstr "X 填充"
 
 #: ../gtksourceview/gtksourcegutter.c:574
-#: ../gtksourceview/gtksourcegutterrenderer.c:468
+#: ../gtksourceview/gtksourcegutterrenderer.c:480
 msgid "The x-padding"
 msgstr "X 填充"
 
 #: ../gtksourceview/gtksourcegutter.c:584
-#: ../gtksourceview/gtksourcegutterrenderer.c:483
+#: ../gtksourceview/gtksourcegutterrenderer.c:495
 msgid "Y Padding"
 msgstr "Y 填充"
 
 #: ../gtksourceview/gtksourcegutter.c:585
-#: ../gtksourceview/gtksourcegutterrenderer.c:484
+#: ../gtksourceview/gtksourcegutterrenderer.c:496
 msgid "The y-padding"
 msgstr "Y 填充"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:453
-#: ../gtksourceview/gtksourcegutterrenderer.c:454
+#: ../gtksourceview/gtksourcegutterrenderer.c:465
+#: ../gtksourceview/gtksourcegutterrenderer.c:466
 msgid "Visible"
 msgstr "顯示"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:499
+#: ../gtksourceview/gtksourcegutterrenderer.c:511
 msgid "X Alignment"
 msgstr "X 對齊"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:500
+#: ../gtksourceview/gtksourcegutterrenderer.c:512
 msgid "The x-alignment"
 msgstr "X 對齊"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:515
+#: ../gtksourceview/gtksourcegutterrenderer.c:527
 msgid "Y Alignment"
 msgstr "Y 對齊"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:516
+#: ../gtksourceview/gtksourcegutterrenderer.c:528
 msgid "The y-alignment"
 msgstr "Y 對齊"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:658
+#: ../gtksourceview/gtksourcegutterrenderer.c:670
 msgid "The View"
 msgstr "檢視"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:659
+#: ../gtksourceview/gtksourcegutterrenderer.c:671
 msgid "The view"
 msgstr "檢視"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:675
+#: ../gtksourceview/gtksourcegutterrenderer.c:687
 msgid "Alignment Mode"
 msgstr "對齊模式"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:676
+#: ../gtksourceview/gtksourcegutterrenderer.c:688
 msgid "The alignment mode"
 msgstr "對齊模式"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:692
+#: ../gtksourceview/gtksourcegutterrenderer.c:704
 msgid "The window type"
 msgstr "視窗類型"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:700
+#: ../gtksourceview/gtksourcegutterrenderer.c:712
 msgid "Size"
 msgstr "大小"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:701
+#: ../gtksourceview/gtksourcegutterrenderer.c:713
 msgid "The size"
 msgstr "大小"
 
@@ -2741,23 +2879,23 @@ msgstr "刪除線設定"
 msgid "Whether strikethrough attribute is set"
 msgstr "是否設定刪除線屬性"
 
-#: ../gtksourceview/gtksourcestylescheme.c:194
-#: ../gtksourceview/gtksourcestylescheme.c:195
+#: ../gtksourceview/gtksourcestylescheme.c:221
+#: ../gtksourceview/gtksourcestylescheme.c:222
 msgid "Style scheme id"
 msgstr "樣式架構 id"
 
-#: ../gtksourceview/gtksourcestylescheme.c:207
-#: ../gtksourceview/gtksourcestylescheme.c:208
+#: ../gtksourceview/gtksourcestylescheme.c:234
+#: ../gtksourceview/gtksourcestylescheme.c:235
 msgid "Style scheme name"
 msgstr "樣式架構名稱"
 
-#: ../gtksourceview/gtksourcestylescheme.c:220
-#: ../gtksourceview/gtksourcestylescheme.c:221
+#: ../gtksourceview/gtksourcestylescheme.c:247
+#: ../gtksourceview/gtksourcestylescheme.c:248
 msgid "Style scheme description"
 msgstr "樣式架構描述"
 
-#: ../gtksourceview/gtksourcestylescheme.c:233
-#: ../gtksourceview/gtksourcestylescheme.c:234
+#: ../gtksourceview/gtksourcestylescheme.c:260
+#: ../gtksourceview/gtksourcestylescheme.c:261
 msgid "Style scheme filename"
 msgstr "樣式架構檔案名稱"
 
@@ -2890,196 +3028,11 @@ msgstr ""
 "Anthony Tang <tkyanthony@yahoo.com.hk>, 2004.\n"
 "Abel Cheung <abel@oaka.org>, 2003, 05."
 
+#~ msgid "Object"
+#~ msgstr "物件"
+
+#~ msgid "Special"
+#~ msgstr "特殊"
+
 #~ msgid "Id"
 #~ msgstr "Id"
-
-#~| msgid "Scheme ids"
-#~ msgid "The id"
-#~ msgstr "id"
-
-#~| msgid "Priority"
-#~ msgid "The priority"
-#~ msgstr "優先等級"
-
-#~ msgid "MSIL"
-#~ msgstr "MSIL"
-
-#~ msgid "Maximum width"
-#~ msgstr "最大寬度"
-
-#~ msgid "The maximum allowed width"
-#~ msgstr "可接受的最大寬度"
-
-#~ msgid "Maximum height"
-#~ msgstr "最大高度"
-
-#~ msgid "The maximum allowed height"
-#~ msgstr "可接受的最大高度"
-
-#~ msgid "Shrink width"
-#~ msgstr "減少寬度"
-
-#~ msgid "Whether the window should shrink width to fit the contents"
-#~ msgstr "是否應減少視窗寬度以符合內容"
-
-#~ msgid "Shrink height"
-#~ msgstr "減少高度"
-
-#~ msgid "Whether the window should shrink height to fit the contents"
-#~ msgstr "是否應減少視窗高度以符合內容"
-
-#~ msgid "Inline C Code"
-#~ msgstr "行內 C 程式碼"
-
-#~ msgid "grammar"
-#~ msgstr "文法"
-
-#~ msgid "Escaping character for syntax patterns"
-#~ msgstr "作為加強顯示語法所用的「跳出字元」"
-
-#~ msgid "Check Brackets"
-#~ msgstr "檢查括號"
-
-#~ msgid "Configuration"
-#~ msgstr "組態"
-
-#~ msgid "Configuration options for the print job"
-#~ msgstr "列印工作的組態選項"
-
-#~ msgid "Width in equivalent space characters of tabs"
-#~ msgstr "Tab 字元等於多少個空格"
-
-#~ msgid "Word wrapping mode"
-#~ msgstr "換列模式"
-
-#~ msgid "Font"
-#~ msgstr "字型"
-
-#~ msgid "GnomeFont name to use for the document text (deprecated)"
-#~ msgstr "用於此文件的 GnomeFont 名稱 (已廢棄)"
-
-#~ msgid "GnomeFont name to use for the line numbers (deprecated)"
-#~ msgstr "用於列號的 GnomeFont 名稱 (已廢棄)"
-
-#~ msgid "Font description to use for the line numbers"
-#~ msgstr "用於列號的字型描述"
-
-#~ msgid "Header and Footer Font"
-#~ msgstr "頁首及頁尾字型"
-
-#~ msgid "GnomeFont name to use for the header and footer (deprecated)"
-#~ msgstr "用於頁首及頁尾的 GnomeFont 名稱 (已廢棄)"
-
-#~ msgid "Header and Footer Font Description"
-#~ msgstr "頁首及頁尾字型描述"
-
-#~ msgid "Tag ID"
-#~ msgstr "標籤 ID"
-
-#~ msgid "ID used to refer to the source tag"
-#~ msgstr "用來表示該原始碼標籤的 ID"
-
-#~ msgid "Tag style"
-#~ msgstr "標籤風格"
-
-#~ msgid "Margin Line Alpha"
-#~ msgstr "邊界線的透明度"
-
-#~ msgid "Transparency of the margin line"
-#~ msgstr "邊界線的透明度"
-
-#~ msgid "Margin Line Color"
-#~ msgstr "邊界線顏色"
-
-#~ msgid "Color to use for the right margin line"
-#~ msgstr "右邊邊界線使用的顏色"
-
-#~ msgid "Margin Overlay Toggle"
-#~ msgstr "邊界重疊切換"
-
-#~ msgid "Whether to draw the right margin overlay"
-#~ msgstr "是否繪畫右邊邊界重疊"
-
-#~ msgid "Margin Overlay Alpha"
-#~ msgstr "邊界重疊的透明度"
-
-#~ msgid "Transparency of the margin overlay"
-#~ msgstr "邊界重疊的透明度"
-
-#~ msgid "Margin Overlay Color"
-#~ msgstr "邊界重疊顏色"
-
-#~ msgid "Color to use for drawing the margin overlay"
-#~ msgstr "繪畫邊界重疊時使用的顏色"
-
-#~ msgid "Character Constant"
-#~ msgstr "字元常數"
-
-#~ msgid "Line Comment"
-#~ msgstr "單行注釋"
-
-#~ msgid "Preprocessor Keyword"
-#~ msgstr "前置處理器關鍵字"
-
-#~ msgid "True And False"
-#~ msgstr "True 及 False"
-
-#~ msgid "Keywords"
-#~ msgstr "關鍵字"
-
-#~ msgid "Primitive"
-#~ msgstr "Primitive"
-
-#~ msgid "'#if 0' Comment"
-#~ msgstr "'#if 0' 注釋"
-
-#~ msgid "Include/Pragma"
-#~ msgstr "Include/Pragma"
-
-#~ msgid "Types"
-#~ msgstr "類型"
-
-#~ msgid "Primitives"
-#~ msgstr "原始資料類型(Primitives)"
-
-#~ msgid "Attribute Value Delimiters"
-#~ msgstr "Attribute Value Delimiters"
-
-#~ msgid "Hexadecimal Color"
-#~ msgstr "16 進位色彩"
-
-#~ msgid "Importance Modifier"
-#~ msgstr "Importance Modifier"
-
-#~ msgid "Punctuators"
-#~ msgstr "標點符號"
-
-#~ msgid "Selector Grammar"
-#~ msgstr "選擇器語法"
-
-#~ msgid "Unicode Character Reference"
-#~ msgstr "Unicode Character Reference"
-
-#~ msgid "Grave Literal"
-#~ msgstr "Grave Literal"
-
-#~ msgid "Nested Comment"
-#~ msgstr "巢狀註解"
-
-#~ msgid "String Literal"
-#~ msgstr "String Literal"
-
-#~ msgid "Diff file"
-#~ msgstr "差異檔"
-
-#~ msgid "Closing Bracket"
-#~ msgstr "閉括號"
-
-#~ msgid "Hexadecimal"
-#~ msgstr "16 進位數"
-
-#~ msgid "Structural Elements 2"
-#~ msgstr "Structural Elements 2"
-
-#~ msgid "Input/Output"
-#~ msgstr "輸入/輸出"
