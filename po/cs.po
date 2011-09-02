@@ -16,8 +16,8 @@ msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-07-03 19:28+0000\n"
-"PO-Revision-Date: 2011-07-19 11:41+0200\n"
+"POT-Creation-Date: 2011-09-02 12:18+0000\n"
+"PO-Revision-Date: 2011-09-02 20:06+0200\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -115,9 +115,8 @@ msgstr "Pravdivostní hodnota"
 #: ../data/language-specs/bennugd.lang.h:3 ../data/language-specs/boo.lang.h:4
 #: ../data/language-specs/c.lang.h:4 ../data/language-specs/cg.lang.h:5
 #: ../data/language-specs/cobol.lang.h:2
-#: ../data/language-specs/csharp.lang.h:4 ../data/language-specs/css.lang.h:3
-#: ../data/language-specs/def.lang.h:11 ../data/language-specs/d.lang.h:3
-#: ../data/language-specs/dosbatch.lang.h:2
+#: ../data/language-specs/csharp.lang.h:4 ../data/language-specs/def.lang.h:11
+#: ../data/language-specs/d.lang.h:3 ../data/language-specs/dosbatch.lang.h:2
 #: ../data/language-specs/dot.lang.h:2 ../data/language-specs/eiffel.lang.h:3
 #: ../data/language-specs/erlang.lang.h:4 ../data/language-specs/fcl.lang.h:2
 #: ../data/language-specs/forth.lang.h:1
@@ -207,7 +206,7 @@ msgstr "Znak v podobě escape sekvence"
 #: ../data/language-specs/boo.lang.h:7 ../data/language-specs/c.lang.h:12
 #: ../data/language-specs/cg.lang.h:14 ../data/language-specs/cobol.lang.h:5
 #: ../data/language-specs/cpp.lang.h:4 ../data/language-specs/csharp.lang.h:10
-#: ../data/language-specs/css.lang.h:9 ../data/language-specs/cuda.lang.h:6
+#: ../data/language-specs/css.lang.h:10 ../data/language-specs/cuda.lang.h:6
 #: ../data/language-specs/def.lang.h:36 ../data/language-specs/d.lang.h:10
 #: ../data/language-specs/dosbatch.lang.h:4
 #: ../data/language-specs/dot.lang.h:5 ../data/language-specs/eiffel.lang.h:12
@@ -309,7 +308,7 @@ msgstr "Třída úložiště"
 #: ../data/language-specs/boo.lang.h:15 ../data/language-specs/c.lang.h:19
 #: ../data/language-specs/cobol.lang.h:10
 #: ../data/language-specs/csharp.lang.h:15
-#: ../data/language-specs/css.lang.h:14 ../data/language-specs/def.lang.h:57
+#: ../data/language-specs/css.lang.h:15 ../data/language-specs/def.lang.h:57
 #: ../data/language-specs/d.lang.h:15 ../data/language-specs/dosbatch.lang.h:6
 #: ../data/language-specs/eiffel.lang.h:15
 #: ../data/language-specs/erlang.lang.h:12
@@ -580,7 +579,7 @@ msgstr "Název"
 #. * to a #GtkSourceBuffer.
 #.
 #: ../data/language-specs/changelog.lang.h:8
-#: ../data/language-specs/cmake.lang.h:7 ../data/language-specs/css.lang.h:11
+#: ../data/language-specs/cmake.lang.h:7 ../data/language-specs/css.lang.h:12
 #: ../data/language-specs/desktop.lang.h:12
 #: ../data/language-specs/diff.lang.h:9 ../data/language-specs/dot.lang.h:6
 #: ../data/language-specs/dpatch.lang.h:2
@@ -734,6 +733,10 @@ msgid "CSS"
 msgstr "CSS"
 
 #: ../data/language-specs/css.lang.h:2
+msgid "Class Selector"
+msgstr "Selektor třídy"
+
+#: ../data/language-specs/css.lang.h:3
 msgid "Color"
 msgstr "Barva"
 
@@ -752,19 +755,27 @@ msgstr "Desítkové číslo"
 msgid "Dimension"
 msgstr "Rozměr"
 
-#: ../data/language-specs/css.lang.h:10
+#: ../data/language-specs/css.lang.h:9
+msgid "ID Selector"
+msgstr "Selektor ID"
+
+#: ../data/language-specs/css.lang.h:11
 msgid "Known Property Value"
 msgstr "Známá hodnota vlastnosti"
 
-#: ../data/language-specs/css.lang.h:12
+#: ../data/language-specs/css.lang.h:13
 msgid "Others 2"
 msgstr "Jiné 2"
 
-#: ../data/language-specs/css.lang.h:13
+#: ../data/language-specs/css.lang.h:14
 msgid "Others 3"
 msgstr "Jiné 3"
 
-#: ../data/language-specs/css.lang.h:15
+#: ../data/language-specs/css.lang.h:16
+msgid "Tag Name Selector"
+msgstr "Selektor názvu značky"
+
+#: ../data/language-specs/css.lang.h:17
 msgid "at-rules"
 msgstr "Pravidla @"
 
@@ -937,7 +948,6 @@ msgid "Special Token"
 msgstr "Speciální symbol"
 
 #: ../data/language-specs/docbook.lang.h:1
-#| msgid "Docbook"
 msgid "DocBook"
 msgstr "DocBook"
 
@@ -963,7 +973,6 @@ msgid "Command"
 msgstr "Příkaz"
 
 #: ../data/language-specs/dosbatch.lang.h:3
-#| msgid "Dos Batch"
 msgid "DOS Batch"
 msgstr "Dávka systému DOS"
 
@@ -1376,12 +1385,10 @@ msgid "IDL"
 msgstr "IDL"
 
 #: ../data/language-specs/imagej.lang.h:3
-#| msgid "Command"
 msgid "Commands"
 msgstr "Příkazy"
 
 #: ../data/language-specs/imagej.lang.h:4
-#| msgid "Escaped Character"
 msgid "Escaped Characters"
 msgstr "Znaky v podobě escape sekvence"
 
@@ -1391,7 +1398,6 @@ msgstr "ImageJ"
 
 #: ../data/language-specs/imagej.lang.h:9
 #: ../data/language-specs/octave.lang.h:14
-#| msgid "Data Type"
 msgid "Storage Type"
 msgstr "Datový typ"
 
@@ -1456,7 +1462,7 @@ msgstr "LaTeX"
 msgid "Math Mode"
 msgstr "Matematický režim"
 
-#: ../data/language-specs/latex.lang.h:8 ../data/language-specs/t2t.lang.h:16
+#: ../data/language-specs/latex.lang.h:8 ../data/language-specs/t2t.lang.h:15
 msgid "Verbatim"
 msgstr "Doslovně"
 
@@ -1595,7 +1601,6 @@ msgid "Line Break"
 msgstr "Zalomení řádku"
 
 #: ../data/language-specs/markdown.lang.h:11
-#| msgid "Text"
 msgid "Link Text"
 msgstr "Text odkazu"
 
@@ -1608,12 +1613,10 @@ msgid "Markdown"
 msgstr "Markdown"
 
 #: ../data/language-specs/markdown.lang.h:15
-#| msgid "Emphasis"
 msgid "Strong Emphasis"
 msgstr "Tučné zvýraznění"
 
 #: ../data/language-specs/matlab.lang.h:3
-#| msgid "Mallard"
 msgid "Matlab"
 msgstr "Matlab"
 
@@ -1630,7 +1633,6 @@ msgid "Objective-C"
 msgstr "Objective-C"
 
 #: ../data/language-specs/objj.lang.h:6
-#| msgid "Objective-C"
 msgid "Objective-J"
 msgstr "Objective-J"
 
@@ -1663,7 +1665,6 @@ msgid "Octave"
 msgstr "Octave"
 
 #: ../data/language-specs/octave.lang.h:11
-#| msgid "Package Info"
 msgid "Package Manager"
 msgstr "Správce balíčku"
 
@@ -1689,27 +1690,22 @@ msgid "Device Cast"
 msgstr "Přetypování v zařízení"
 
 #: ../data/language-specs/opencl.lang.h:3
-#| msgid "Device Functions"
 msgid "Device Function"
 msgstr "Funkce v zařízení"
 
 #: ../data/language-specs/opencl.lang.h:4
-#| msgid "Global Functions"
 msgid "Global Function"
 msgstr "Globální funkce"
 
 #: ../data/language-specs/opencl.lang.h:5
-#| msgid "Global Variables"
 msgid "Global Variable"
 msgstr "Globální proměnná"
 
 #: ../data/language-specs/opencl.lang.h:7
-#| msgid "OCL"
 msgid "OpenCL"
 msgstr "OpenCL"
 
 #: ../data/language-specs/opencl.lang.h:8
-#| msgid "Special Constant"
 msgid "OpenCL Constant"
 msgstr "Konstanta OpenCL"
 
@@ -1930,7 +1926,6 @@ msgid "Module name, Variant, etc"
 msgstr "Název modulu, proměnná Variant, atd."
 
 #: ../data/language-specs/sml.lang.h:12
-#| msgid "Standard stream"
 msgid "Standard ML"
 msgstr "Standard ML"
 
@@ -2016,13 +2011,14 @@ msgstr "Oddíl 4"
 msgid "Section 5"
 msgstr "Oddíl 5"
 
-#: ../data/language-specs/t2t.lang.h:15
-msgid "Text2Tags"
-msgstr "Text2Tags"
-
-#: ../data/language-specs/t2t.lang.h:17
+#: ../data/language-specs/t2t.lang.h:16
 msgid "Verbatim Block"
 msgstr "Doslovný blok"
+
+#: ../data/language-specs/t2t.lang.h:17
+#| msgid "Text2Tags"
+msgid "txt2tags"
+msgstr "txt2tags"
 
 #: ../data/language-specs/tcl.lang.h:3
 msgid "Tcl"
@@ -3021,4 +3017,3 @@ msgstr ""
 "Lucas Lommer <llommer@svn.gnome.org>\n"
 "Lukáš Ručka <lukassoftwares@gmail.com>\n"
 "Marek Černocký <marek@manet.cz>"
-
