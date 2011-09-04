@@ -963,9 +963,6 @@ init_left_gutter (GtkSourceView *view)
 
 	view->priv->marks_renderer = gtk_source_gutter_renderer_marks_new ();
 	g_object_set (view->priv->marks_renderer,
-	              "alignment-mode", GTK_SOURCE_GUTTER_RENDERER_ALIGNMENT_MODE_FIRST,
-	              "yalign", 0.5,
-	              "xalign", 0.5,
 	              "visible", FALSE,
 	              NULL);
 

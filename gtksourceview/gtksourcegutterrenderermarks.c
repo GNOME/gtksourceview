@@ -203,8 +203,9 @@ gutter_renderer_query_data (GtkSourceGutterRenderer *renderer,
 	              "pixbuf", pixbuf,
 	              "xpad", 2,
 	              "ypad", 1,
-	              "yalign", 0.0,
+	              "yalign", 0.5,
 	              "xalign", 0.5,
+	              "alignment-mode", GTK_SOURCE_GUTTER_RENDERER_ALIGNMENT_MODE_FIRST,
 	              NULL);
 }
 
