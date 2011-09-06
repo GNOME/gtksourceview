@@ -54,6 +54,7 @@ static gchar gtk_source_completion_ui[] =
 "                <property name=\"enable_search\">False</property>"
 "                <property name=\"fixed_height_mode\">True</property>"
 "                <property name=\"show_expanders\">False</property>"
+"                <property name=\"vexpand\">True</property>"
 "                <child>"
 "                  <object class=\"GtkTreeViewColumn\" id=\"tree_view_column_proposal\">"
 "                    <property name=\"sizing\">fixed</property>"
