@@ -7,7 +7,7 @@
 # Dinesh Nadarajah <n_dinesh@yahoo.com>, 2003.
 # Jayaradha N <jaya@pune.redhat.com>, 2004.
 # Felix <ifelix@redhat.com>, 2006.
-# Dr.T.Vasudevan <agnihot3@gmail.com>, 2007, 2008, 2009, 2010.
+# Dr.T.Vasudevan <agnihot3@gmail.com>, 2007, 2008, 2009, 2010, 2011.
 # I. Felix <ifelix@redhat.com>, 2009.
 # Dr,T,Vasudevan <agnihot3@gmail.com>, 2009, 2010.
 # Dr.T.vasudevan <agnihot3@gmail.com>, 2010, 2011.
@@ -15,16 +15,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview.master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-04-03 09:12+0530\n"
-"PO-Revision-Date: 2011-04-03 09:15+0530\n"
-"Last-Translator: \n"
+"POT-Creation-Date: 2011-09-05 17:50+0530\n"
+"PO-Revision-Date: 2011-09-06 21:33+0530\n"
+"Last-Translator: Dr.T.Vasudevan <agnihot3@gmail.com>\n"
 "Language-Team: American English <kde-i18n-doc@kde.org>\n"
+"Language: ta\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: ta\n"
 "17:19-0500\n"
-"X-Generator: Lokalize 1.0\n"
+"X-Generator: Lokalize 1.1\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\\n"
 "\n"
 "\n"
@@ -52,41 +52,42 @@ msgstr "எப்போதும்"
 msgid "Before"
 msgstr "முன்"
 
-#: ../data/glade/gtksourceview.xml.in.h:5
+#. Translators: It is related to an option of a set of values
+#: ../data/glade/gtksourceview.xml.in.h:6
 msgid "Disabled"
 msgstr "செயல்நீக்கப்பட்டது"
 
-#: ../data/glade/gtksourceview.xml.in.h:6
+#: ../data/glade/gtksourceview.xml.in.h:7
 msgid "GtkSourceView"
 msgstr "ஜிடிகேமூலப் பார்வை"
 
-#: ../data/glade/gtksourceview.xml.in.h:7
+#: ../data/glade/gtksourceview.xml.in.h:8
 msgid "Leading"
 msgstr "முன்செல்லுதல்"
 
-#: ../data/glade/gtksourceview.xml.in.h:8
+#: ../data/glade/gtksourceview.xml.in.h:9
 msgid "Newline"
 msgstr "புதிய வரி"
 
-#: ../data/glade/gtksourceview.xml.in.h:9
+#: ../data/glade/gtksourceview.xml.in.h:10
 msgid "Non Breaking Whitespace"
 msgstr "முறிக்காத வெற்றிடம்"
 
-#: ../data/glade/gtksourceview.xml.in.h:10
+#: ../data/glade/gtksourceview.xml.in.h:11
 msgid "Space"
 msgstr "இடைவெளி"
 
-#: ../data/glade/gtksourceview.xml.in.h:11
+#: ../data/glade/gtksourceview.xml.in.h:12
 msgid "Tab"
 msgstr "தத்தல்"
 
-#: ../data/glade/gtksourceview.xml.in.h:12
+#: ../data/glade/gtksourceview.xml.in.h:13
 #: ../gtksourceview/gtksourcecompletionitem.c:255
 #: ../gtksourceview/gtksourcegutterrenderertext.c:403
 msgid "Text"
 msgstr "உரை"
 
-#: ../data/glade/gtksourceview.xml.in.h:13
+#: ../data/glade/gtksourceview.xml.in.h:14
 msgid "Trailing"
 msgstr "பின் வருதல்"
 
@@ -110,19 +111,18 @@ msgstr "விதிக்கட்டற்ற அடிப்படை எண�
 #: ../data/language-specs/ocaml.lang.h:2 ../data/language-specs/ooc.lang.h:1
 #: ../data/language-specs/opal.lang.h:1 ../data/language-specs/php.lang.h:1
 #: ../data/language-specs/R.lang.h:2 ../data/language-specs/ruby.lang.h:3
-#: ../data/language-specs/vala.lang.h:1 ../data/language-specs/vbnet.lang.h:1
-#: ../data/language-specs/vhdl.lang.h:2
+#: ../data/language-specs/sml.lang.h:2 ../data/language-specs/vala.lang.h:1
+#: ../data/language-specs/vbnet.lang.h:1 ../data/language-specs/vhdl.lang.h:2
 msgid "Boolean value"
 msgstr "பூலியன் மதிப்பு"
 
 #. Any comment
 #: ../data/language-specs/ada.lang.h:4 ../data/language-specs/asp.lang.h:4
-#: ../data/language-specs/bennugd.lang.h:4 ../data/language-specs/boo.lang.h:4
+#: ../data/language-specs/bennugd.lang.h:3 ../data/language-specs/boo.lang.h:4
 #: ../data/language-specs/c.lang.h:4 ../data/language-specs/cg.lang.h:5
 #: ../data/language-specs/cobol.lang.h:2
-#: ../data/language-specs/csharp.lang.h:4 ../data/language-specs/css.lang.h:3
-#: ../data/language-specs/def.lang.h:11 ../data/language-specs/d.lang.h:3
-#: ../data/language-specs/dosbatch.lang.h:2
+#: ../data/language-specs/csharp.lang.h:4 ../data/language-specs/def.lang.h:11
+#: ../data/language-specs/d.lang.h:3 ../data/language-specs/dosbatch.lang.h:2
 #: ../data/language-specs/dot.lang.h:2 ../data/language-specs/eiffel.lang.h:3
 #: ../data/language-specs/erlang.lang.h:4 ../data/language-specs/fcl.lang.h:2
 #: ../data/language-specs/forth.lang.h:1
@@ -131,29 +131,27 @@ msgstr "பூலியன் மதிப்பு"
 #: ../data/language-specs/go.lang.h:3 ../data/language-specs/gtkrc.lang.h:2
 #: ../data/language-specs/haskell.lang.h:2
 #: ../data/language-specs/html.lang.h:3 ../data/language-specs/idl.lang.h:1
-#: ../data/language-specs/ini.lang.h:3 ../data/language-specs/java.lang.h:3
-#: ../data/language-specs/javascript.lang.h:2
-#: ../data/language-specs/latex.lang.h:2 ../data/language-specs/lua.lang.h:2
+#: ../data/language-specs/ini.lang.h:3 ../data/language-specs/latex.lang.h:2
+#: ../data/language-specs/lua.lang.h:2 ../data/language-specs/matlab.lang.h:2
 #: ../data/language-specs/nemerle.lang.h:4
 #: ../data/language-specs/nsis.lang.h:1 ../data/language-specs/ocaml.lang.h:4
-#: ../data/language-specs/ocl.lang.h:1 ../data/language-specs/octave.lang.h:3
+#: ../data/language-specs/ocl.lang.h:1 ../data/language-specs/octave.lang.h:4
 #: ../data/language-specs/ooc.lang.h:2 ../data/language-specs/opal.lang.h:2
 #: ../data/language-specs/pascal.lang.h:1 ../data/language-specs/perl.lang.h:2
 #: ../data/language-specs/php.lang.h:2 ../data/language-specs/po.lang.h:1
-#: ../data/language-specs/prolog.lang.h:1 ../data/language-specs/ruby.lang.h:5
+#: ../data/language-specs/prolog.lang.h:1 ../data/language-specs/ruby.lang.h:6
 #: ../data/language-specs/scheme.lang.h:2
 #: ../data/language-specs/scilab.lang.h:2 ../data/language-specs/sh.lang.h:1
-#: ../data/language-specs/sql.lang.h:1 ../data/language-specs/t2t.lang.h:3
-#: ../data/language-specs/texinfo.lang.h:1
+#: ../data/language-specs/sml.lang.h:4 ../data/language-specs/sql.lang.h:1
+#: ../data/language-specs/t2t.lang.h:3 ../data/language-specs/texinfo.lang.h:1
 #: ../data/language-specs/vala.lang.h:2 ../data/language-specs/vbnet.lang.h:2
 #: ../data/language-specs/verilog.lang.h:2
 #: ../data/language-specs/vhdl.lang.h:4 ../data/language-specs/xml.lang.h:4
 msgid "Comment"
 msgstr "குறிப்புரை"
 
-#. map-to="def:others"
 #: ../data/language-specs/ada.lang.h:5 ../data/language-specs/asp.lang.h:5
-#: ../data/language-specs/bennugd.lang.h:5 ../data/language-specs/boo.lang.h:5
+#: ../data/language-specs/bennugd.lang.h:4 ../data/language-specs/boo.lang.h:5
 #: ../data/language-specs/c.lang.h:6 ../data/language-specs/cg.lang.h:6
 #: ../data/language-specs/cpp.lang.h:3 ../data/language-specs/csharp.lang.h:5
 #: ../data/language-specs/cuda.lang.h:2 ../data/language-specs/d.lang.h:5
@@ -163,20 +161,22 @@ msgstr "குறிப்புரை"
 #: ../data/language-specs/fsharp.lang.h:5 ../data/language-specs/glsl.lang.h:4
 #: ../data/language-specs/go.lang.h:4 ../data/language-specs/gtkrc.lang.h:3
 #: ../data/language-specs/haskell.lang.h:3 ../data/language-specs/idl.lang.h:2
-#: ../data/language-specs/ini.lang.h:4 ../data/language-specs/java.lang.h:4
-#: ../data/language-specs/javascript.lang.h:5
+#: ../data/language-specs/ini.lang.h:4 ../data/language-specs/java.lang.h:3
+#: ../data/language-specs/javascript.lang.h:3
 #: ../data/language-specs/nemerle.lang.h:5
-#: ../data/language-specs/objc.lang.h:2 ../data/language-specs/ocaml.lang.h:5
-#: ../data/language-specs/ocl.lang.h:2 ../data/language-specs/ooc.lang.h:3
-#: ../data/language-specs/opal.lang.h:4 ../data/language-specs/pascal.lang.h:2
-#: ../data/language-specs/php.lang.h:4 ../data/language-specs/sparql.lang.h:3
+#: ../data/language-specs/objc.lang.h:2 ../data/language-specs/objj.lang.h:2
+#: ../data/language-specs/ocaml.lang.h:5 ../data/language-specs/ocl.lang.h:2
+#: ../data/language-specs/ooc.lang.h:3 ../data/language-specs/opal.lang.h:4
+#: ../data/language-specs/opencl.lang.h:1
+#: ../data/language-specs/pascal.lang.h:2 ../data/language-specs/php.lang.h:4
+#: ../data/language-specs/sml.lang.h:5 ../data/language-specs/sparql.lang.h:3
 #: ../data/language-specs/sql.lang.h:2 ../data/language-specs/vala.lang.h:3
 #: ../data/language-specs/vbnet.lang.h:3
 msgid "Data Type"
 msgstr "தகவல் வகை"
 
 #. A decimal number: 1234
-#: ../data/language-specs/ada.lang.h:6 ../data/language-specs/bennugd.lang.h:6
+#: ../data/language-specs/ada.lang.h:6 ../data/language-specs/bennugd.lang.h:5
 #: ../data/language-specs/c.lang.h:7 ../data/language-specs/cg.lang.h:7
 #: ../data/language-specs/csharp.lang.h:6 ../data/language-specs/def.lang.h:19
 #: ../data/language-specs/d.lang.h:6 ../data/language-specs/eiffel.lang.h:6
@@ -185,35 +185,34 @@ msgstr "தகவல் வகை"
 #: ../data/language-specs/nemerle.lang.h:6
 #: ../data/language-specs/ocaml.lang.h:6 ../data/language-specs/ooc.lang.h:4
 #: ../data/language-specs/opal.lang.h:5 ../data/language-specs/php.lang.h:5
-#: ../data/language-specs/python.lang.h:7 ../data/language-specs/ruby.lang.h:7
-#: ../data/language-specs/vala.lang.h:4
+#: ../data/language-specs/python.lang.h:7 ../data/language-specs/ruby.lang.h:8
 msgid "Decimal number"
 msgstr "பதின்ம எண்"
 
 #. map to nothing
-#: ../data/language-specs/ada.lang.h:7 ../data/language-specs/bennugd.lang.h:8
-#: ../data/language-specs/c.lang.h:9 ../data/language-specs/cg.lang.h:9
-#: ../data/language-specs/csharp.lang.h:8
+#: ../data/language-specs/ada.lang.h:7 ../data/language-specs/c.lang.h:8
+#: ../data/language-specs/cg.lang.h:9 ../data/language-specs/csharp.lang.h:8
 #: ../data/language-specs/eiffel.lang.h:9
 #: ../data/language-specs/fsharp.lang.h:7 ../data/language-specs/go.lang.h:7
 #: ../data/language-specs/haskell.lang.h:5
-#: ../data/language-specs/java.lang.h:7 ../data/language-specs/lua.lang.h:3
-#: ../data/language-specs/ocaml.lang.h:8 ../data/language-specs/ooc.lang.h:7
-#: ../data/language-specs/php.lang.h:8 ../data/language-specs/prolog.lang.h:3
-#: ../data/language-specs/python.lang.h:8 ../data/language-specs/ruby.lang.h:8
-#: ../data/language-specs/texinfo.lang.h:2
+#: ../data/language-specs/java.lang.h:5
+#: ../data/language-specs/javascript.lang.h:4
+#: ../data/language-specs/lua.lang.h:3 ../data/language-specs/ocaml.lang.h:8
+#: ../data/language-specs/ooc.lang.h:7 ../data/language-specs/php.lang.h:8
+#: ../data/language-specs/prolog.lang.h:3
+#: ../data/language-specs/python.lang.h:8 ../data/language-specs/ruby.lang.h:9
+#: ../data/language-specs/sml.lang.h:7 ../data/language-specs/texinfo.lang.h:2
 #: ../data/language-specs/verilog.lang.h:5
 msgid "Escaped Character"
 msgstr "விடுபடு எழுத்துக்கள்"
 
 #. keywords: "if", "for", "while", etc.
 #: ../data/language-specs/ada.lang.h:8 ../data/language-specs/asp.lang.h:7
-#: ../data/language-specs/awk.lang.h:2
-#: ../data/language-specs/bennugd.lang.h:12
-#: ../data/language-specs/boo.lang.h:7 ../data/language-specs/c.lang.h:13
+#: ../data/language-specs/awk.lang.h:2 ../data/language-specs/bennugd.lang.h:9
+#: ../data/language-specs/boo.lang.h:7 ../data/language-specs/c.lang.h:12
 #: ../data/language-specs/cg.lang.h:14 ../data/language-specs/cobol.lang.h:5
 #: ../data/language-specs/cpp.lang.h:4 ../data/language-specs/csharp.lang.h:10
-#: ../data/language-specs/css.lang.h:8 ../data/language-specs/cuda.lang.h:6
+#: ../data/language-specs/css.lang.h:10 ../data/language-specs/cuda.lang.h:6
 #: ../data/language-specs/def.lang.h:36 ../data/language-specs/d.lang.h:10
 #: ../data/language-specs/dosbatch.lang.h:4
 #: ../data/language-specs/dot.lang.h:5 ../data/language-specs/eiffel.lang.h:12
@@ -224,31 +223,34 @@ msgstr "விடுபடு எழுத்துக்கள்"
 #: ../data/language-specs/glsl.lang.h:5 ../data/language-specs/go.lang.h:12
 #: ../data/language-specs/gtkrc.lang.h:7
 #: ../data/language-specs/haskell.lang.h:9 ../data/language-specs/idl.lang.h:4
-#: ../data/language-specs/ini.lang.h:7 ../data/language-specs/java.lang.h:11
-#: ../data/language-specs/javascript.lang.h:10
+#: ../data/language-specs/imagej.lang.h:6 ../data/language-specs/ini.lang.h:7
+#: ../data/language-specs/java.lang.h:11
+#: ../data/language-specs/javascript.lang.h:8
 #: ../data/language-specs/lua.lang.h:5
 #: ../data/language-specs/nemerle.lang.h:10
-#: ../data/language-specs/objc.lang.h:3 ../data/language-specs/ocaml.lang.h:10
-#: ../data/language-specs/ocl.lang.h:3 ../data/language-specs/octave.lang.h:7
-#: ../data/language-specs/ooc.lang.h:12 ../data/language-specs/opal.lang.h:8
+#: ../data/language-specs/objc.lang.h:3 ../data/language-specs/objj.lang.h:4
+#: ../data/language-specs/ocaml.lang.h:10 ../data/language-specs/ocl.lang.h:3
+#: ../data/language-specs/octave.lang.h:8 ../data/language-specs/ooc.lang.h:12
+#: ../data/language-specs/opal.lang.h:8 ../data/language-specs/opencl.lang.h:6
 #: ../data/language-specs/pascal.lang.h:4 ../data/language-specs/perl.lang.h:9
 #: ../data/language-specs/php.lang.h:14 ../data/language-specs/po.lang.h:3
 #: ../data/language-specs/prolog.lang.h:4
 #: ../data/language-specs/python.lang.h:11 ../data/language-specs/R.lang.h:6
-#: ../data/language-specs/ruby.lang.h:12
+#: ../data/language-specs/ruby.lang.h:13
 #: ../data/language-specs/scheme.lang.h:4
 #: ../data/language-specs/scilab.lang.h:5 ../data/language-specs/sh.lang.h:5
-#: ../data/language-specs/sparql.lang.h:7 ../data/language-specs/sql.lang.h:6
+#: ../data/language-specs/sml.lang.h:9 ../data/language-specs/sparql.lang.h:7
+#: ../data/language-specs/sql.lang.h:6
 #: ../data/language-specs/systemverilog.lang.h:2
 #: ../data/language-specs/tcl.lang.h:1 ../data/language-specs/texinfo.lang.h:6
-#: ../data/language-specs/vala.lang.h:7 ../data/language-specs/vbnet.lang.h:4
+#: ../data/language-specs/vala.lang.h:5 ../data/language-specs/vbnet.lang.h:4
 #: ../data/language-specs/verilog.lang.h:9
 #: ../data/language-specs/vhdl.lang.h:5
 msgid "Keyword"
 msgstr "விசைவார்த்தை"
 
 #: ../data/language-specs/ada.lang.h:9 ../data/language-specs/asp.lang.h:10
-#: ../data/language-specs/bennugd.lang.h:14 ../data/language-specs/c.lang.h:15
+#: ../data/language-specs/bennugd.lang.h:11 ../data/language-specs/c.lang.h:14
 #: ../data/language-specs/cg.lang.h:16 ../data/language-specs/csharp.lang.h:12
 #: ../data/language-specs/forth.lang.h:9
 #: ../data/language-specs/fsharp.lang.h:15
@@ -256,23 +258,22 @@ msgstr "விசைவார்த்தை"
 #: ../data/language-specs/haskell.lang.h:11
 #: ../data/language-specs/idl.lang.h:5
 #: ../data/language-specs/nemerle.lang.h:14
-#: ../data/language-specs/pascal.lang.h:6
+#: ../data/language-specs/objj.lang.h:7 ../data/language-specs/pascal.lang.h:6
 #: ../data/language-specs/vbnet.lang.h:5
 msgid "Preprocessor"
 msgstr "முன்செயல்"
 
 #: ../data/language-specs/ada.lang.h:10
 #: ../data/language-specs/csharp.lang.h:13
-#: ../data/language-specs/vala.lang.h:9
 #: ../data/language-specs/verilog.lang.h:11
 #: ../data/language-specs/vhdl.lang.h:7
 msgid "Real number"
 msgstr "மெய்யெண்"
 
 #: ../data/language-specs/ada.lang.h:11 ../data/language-specs/asp.lang.h:11
-#: ../data/language-specs/bennugd.lang.h:15
+#: ../data/language-specs/bennugd.lang.h:12
 #: ../data/language-specs/boo.lang.h:13 ../data/language-specs/chdr.lang.h:2
-#: ../data/language-specs/c.lang.h:17 ../data/language-specs/cg.lang.h:17
+#: ../data/language-specs/c.lang.h:16 ../data/language-specs/cg.lang.h:17
 #: ../data/language-specs/cobol.lang.h:8 ../data/language-specs/cpp.lang.h:5
 #: ../data/language-specs/csharp.lang.h:14
 #: ../data/language-specs/cuda.lang.h:7 ../data/language-specs/d.lang.h:13
@@ -287,20 +288,22 @@ msgstr "மெய்யெண்"
 #: ../data/language-specs/idl.lang.h:6 ../data/language-specs/java.lang.h:15
 #: ../data/language-specs/makefile.lang.h:4
 #: ../data/language-specs/nemerle.lang.h:15
-#: ../data/language-specs/objc.lang.h:5 ../data/language-specs/ocaml.lang.h:16
-#: ../data/language-specs/ooc.lang.h:17 ../data/language-specs/opal.lang.h:11
+#: ../data/language-specs/objc.lang.h:5 ../data/language-specs/objj.lang.h:8
+#: ../data/language-specs/ocaml.lang.h:16 ../data/language-specs/ooc.lang.h:17
+#: ../data/language-specs/opal.lang.h:11
+#: ../data/language-specs/opencl.lang.h:9
 #: ../data/language-specs/pascal.lang.h:7
 #: ../data/language-specs/prolog.lang.h:8
-#: ../data/language-specs/scheme.lang.h:6
+#: ../data/language-specs/scheme.lang.h:6 ../data/language-specs/sml.lang.h:11
 #: ../data/language-specs/sparql.lang.h:14 ../data/language-specs/sql.lang.h:9
 #: ../data/language-specs/systemverilog.lang.h:3
-#: ../data/language-specs/vala.lang.h:10 ../data/language-specs/vbnet.lang.h:6
+#: ../data/language-specs/vala.lang.h:7 ../data/language-specs/vbnet.lang.h:6
 #: ../data/language-specs/verilog.lang.h:12
 #: ../data/language-specs/vhdl.lang.h:8
 msgid "Sources"
 msgstr "மூலங்கள்"
 
-#: ../data/language-specs/ada.lang.h:12 ../data/language-specs/c.lang.h:19
+#: ../data/language-specs/ada.lang.h:12 ../data/language-specs/c.lang.h:18
 #: ../data/language-specs/cg.lang.h:18 ../data/language-specs/go.lang.h:15
 #: ../data/language-specs/java.lang.h:16 ../data/language-specs/ooc.lang.h:18
 msgid "Storage Class"
@@ -308,11 +311,10 @@ msgstr "சேமிப்பு வகுப்பு"
 
 #. A string constant: "this is a string"
 #: ../data/language-specs/ada.lang.h:13 ../data/language-specs/asp.lang.h:13
-#: ../data/language-specs/bennugd.lang.h:16
-#: ../data/language-specs/boo.lang.h:15 ../data/language-specs/c.lang.h:20
+#: ../data/language-specs/boo.lang.h:15 ../data/language-specs/c.lang.h:19
 #: ../data/language-specs/cobol.lang.h:10
 #: ../data/language-specs/csharp.lang.h:15
-#: ../data/language-specs/css.lang.h:13 ../data/language-specs/def.lang.h:57
+#: ../data/language-specs/css.lang.h:15 ../data/language-specs/def.lang.h:57
 #: ../data/language-specs/d.lang.h:15 ../data/language-specs/dosbatch.lang.h:6
 #: ../data/language-specs/eiffel.lang.h:15
 #: ../data/language-specs/erlang.lang.h:12
@@ -321,25 +323,24 @@ msgstr "சேமிப்பு வகுப்பு"
 #: ../data/language-specs/gdb-log.lang.h:10
 #: ../data/language-specs/go.lang.h:16 ../data/language-specs/gtkrc.lang.h:9
 #: ../data/language-specs/haskell.lang.h:13
-#: ../data/language-specs/idl.lang.h:7 ../data/language-specs/ini.lang.h:9
-#: ../data/language-specs/java.lang.h:17
-#: ../data/language-specs/javascript.lang.h:15
-#: ../data/language-specs/lua.lang.h:10
+#: ../data/language-specs/idl.lang.h:7 ../data/language-specs/imagej.lang.h:10
+#: ../data/language-specs/ini.lang.h:9 ../data/language-specs/java.lang.h:17
+#: ../data/language-specs/lua.lang.h:10 ../data/language-specs/matlab.lang.h:5
 #: ../data/language-specs/nemerle.lang.h:16
 #: ../data/language-specs/nsis.lang.h:5 ../data/language-specs/objc.lang.h:6
-#: ../data/language-specs/ocaml.lang.h:18 ../data/language-specs/ocl.lang.h:7
-#: ../data/language-specs/octave.lang.h:11
+#: ../data/language-specs/objj.lang.h:9 ../data/language-specs/ocaml.lang.h:18
+#: ../data/language-specs/ocl.lang.h:7 ../data/language-specs/octave.lang.h:15
 #: ../data/language-specs/ooc.lang.h:19 ../data/language-specs/opal.lang.h:12
 #: ../data/language-specs/pascal.lang.h:8
 #: ../data/language-specs/perl.lang.h:19 ../data/language-specs/php.lang.h:20
-#: ../data/language-specs/po.lang.h:8 ../data/language-specs/prolog.lang.h:9
+#: ../data/language-specs/po.lang.h:6 ../data/language-specs/prolog.lang.h:9
 #: ../data/language-specs/python.lang.h:17
-#: ../data/language-specs/ruby.lang.h:21
+#: ../data/language-specs/ruby.lang.h:22
 #: ../data/language-specs/scheme.lang.h:7
-#: ../data/language-specs/scilab.lang.h:9 ../data/language-specs/sh.lang.h:9
-#: ../data/language-specs/sql.lang.h:10
+#: ../data/language-specs/scilab.lang.h:9 ../data/language-specs/sh.lang.h:8
+#: ../data/language-specs/sml.lang.h:13 ../data/language-specs/sql.lang.h:10
 #: ../data/language-specs/texinfo.lang.h:10
-#: ../data/language-specs/vala.lang.h:11 ../data/language-specs/vbnet.lang.h:8
+#: ../data/language-specs/vala.lang.h:8 ../data/language-specs/vbnet.lang.h:8
 #: ../data/language-specs/verilog.lang.h:13
 #: ../data/language-specs/vhdl.lang.h:9
 msgid "String"
@@ -356,13 +357,12 @@ msgstr "ஏஎஸ்பி(ASP) பொருள்"
 #. A function name (also: methods for classes)
 #: ../data/language-specs/asp.lang.h:6
 #: ../data/language-specs/changelog.lang.h:6
-#: ../data/language-specs/cg.lang.h:11 ../data/language-specs/css.lang.h:7
+#: ../data/language-specs/cg.lang.h:11 ../data/language-specs/css.lang.h:8
 #: ../data/language-specs/def.lang.h:32 ../data/language-specs/gap.lang.h:4
 #: ../data/language-specs/gdb-log.lang.h:4
 #: ../data/language-specs/gtk-doc.lang.h:3
-#: ../data/language-specs/javascript.lang.h:7
-#: ../data/language-specs/lua.lang.h:4 ../data/language-specs/octave.lang.h:6
-#: ../data/language-specs/scheme.lang.h:3
+#: ../data/language-specs/javascript.lang.h:5
+#: ../data/language-specs/lua.lang.h:4 ../data/language-specs/scheme.lang.h:3
 #: ../data/language-specs/scilab.lang.h:4 ../data/language-specs/sh.lang.h:3
 #: ../data/language-specs/sparql.lang.h:4 ../data/language-specs/sql.lang.h:5
 msgid "Function"
@@ -379,12 +379,14 @@ msgstr "எண்"
 
 #. Operators: "+", "*", etc.
 #: ../data/language-specs/asp.lang.h:9
-#: ../data/language-specs/bennugd.lang.h:13
+#: ../data/language-specs/bennugd.lang.h:10
 #: ../data/language-specs/cmake.lang.h:6 ../data/language-specs/cobol.lang.h:7
 #: ../data/language-specs/def.lang.h:42
 #: ../data/language-specs/erlang.lang.h:10
-#: ../data/language-specs/nsis.lang.h:3 ../data/language-specs/perl.lang.h:11
-#: ../data/language-specs/php.lang.h:17 ../data/language-specs/prolog.lang.h:6
+#: ../data/language-specs/imagej.lang.h:7 ../data/language-specs/nsis.lang.h:3
+#: ../data/language-specs/octave.lang.h:10
+#: ../data/language-specs/perl.lang.h:11 ../data/language-specs/php.lang.h:17
+#: ../data/language-specs/prolog.lang.h:6
 #: ../data/language-specs/sparql.lang.h:10
 msgid "Operator"
 msgstr "குறியீடு"
@@ -411,11 +413,11 @@ msgstr "தோரணி"
 
 #: ../data/language-specs/awk.lang.h:4
 #: ../data/language-specs/dosbatch.lang.h:5
-#: ../data/language-specs/javascript.lang.h:14
+#: ../data/language-specs/javascript.lang.h:12
 #: ../data/language-specs/lua.lang.h:9 ../data/language-specs/m4.lang.h:3
 #: ../data/language-specs/perl.lang.h:18 ../data/language-specs/php.lang.h:19
 #: ../data/language-specs/python.lang.h:15
-#: ../data/language-specs/ruby.lang.h:19 ../data/language-specs/sh.lang.h:7
+#: ../data/language-specs/ruby.lang.h:20 ../data/language-specs/sh.lang.h:7
 #: ../data/language-specs/tcl.lang.h:2
 msgid "Scripts"
 msgstr "சிறுநிரல்கள்"
@@ -425,11 +427,12 @@ msgstr "சிறுநிரல்கள்"
 #: ../data/language-specs/haskell.lang.h:15
 #: ../data/language-specs/ini.lang.h:10
 #: ../data/language-specs/makefile.lang.h:8
-#: ../data/language-specs/nsis.lang.h:6 ../data/language-specs/perl.lang.h:21
-#: ../data/language-specs/php.lang.h:21
+#: ../data/language-specs/nsis.lang.h:6
+#: ../data/language-specs/octave.lang.h:16
+#: ../data/language-specs/perl.lang.h:21 ../data/language-specs/php.lang.h:21
 #: ../data/language-specs/pkgconfig.lang.h:3
 #: ../data/language-specs/prolog.lang.h:10
-#: ../data/language-specs/ruby.lang.h:23 ../data/language-specs/sh.lang.h:11
+#: ../data/language-specs/ruby.lang.h:24 ../data/language-specs/sh.lang.h:10
 #: ../data/language-specs/sparql.lang.h:15 ../data/language-specs/tcl.lang.h:4
 msgid "Variable"
 msgstr "மாறிலிகள்"
@@ -442,56 +445,27 @@ msgstr "ஆக்(awk)"
 msgid "BennuGD"
 msgstr "பென்னுஜிடி"
 
-#. A character constant: 'c'
-#: ../data/language-specs/bennugd.lang.h:3 ../data/language-specs/c.lang.h:3
-#: ../data/language-specs/csharp.lang.h:3 ../data/language-specs/def.lang.h:9
-#: ../data/language-specs/gap.lang.h:1 ../data/language-specs/go.lang.h:2
-#: ../data/language-specs/haskell.lang.h:1
-#: ../data/language-specs/java.lang.h:2
-#: ../data/language-specs/nemerle.lang.h:3
-#: ../data/language-specs/vhdl.lang.h:3
-msgid "Character"
-msgstr "எழுத்து"
-
-#. Any erroneous construct
-#: ../data/language-specs/bennugd.lang.h:7 ../data/language-specs/c.lang.h:8
-#: ../data/language-specs/cg.lang.h:8 ../data/language-specs/cobol.lang.h:4
-#: ../data/language-specs/csharp.lang.h:7 ../data/language-specs/css.lang.h:6
-#: ../data/language-specs/def.lang.h:28 ../data/language-specs/d.lang.h:7
-#: ../data/language-specs/dot.lang.h:3 ../data/language-specs/go.lang.h:6
-#: ../data/language-specs/html.lang.h:5 ../data/language-specs/java.lang.h:6
-#: ../data/language-specs/javascript.lang.h:6
-#: ../data/language-specs/nemerle.lang.h:7
-#: ../data/language-specs/ocaml.lang.h:7 ../data/language-specs/ooc.lang.h:6
-#: ../data/language-specs/opal.lang.h:6 ../data/language-specs/perl.lang.h:4
-#: ../data/language-specs/php.lang.h:6 ../data/language-specs/prolog.lang.h:2
-#: ../data/language-specs/vala.lang.h:5
-#: ../data/language-specs/verilog.lang.h:4 ../data/language-specs/xml.lang.h:8
-msgid "Error"
-msgstr "பிழை"
-
 #. A floating point constant: 2.3e10
-#: ../data/language-specs/bennugd.lang.h:9 ../data/language-specs/c.lang.h:10
+#: ../data/language-specs/bennugd.lang.h:6 ../data/language-specs/c.lang.h:9
 #: ../data/language-specs/cg.lang.h:10 ../data/language-specs/def.lang.h:30
 #: ../data/language-specs/d.lang.h:8 ../data/language-specs/erlang.lang.h:8
 #: ../data/language-specs/go.lang.h:8 ../data/language-specs/nemerle.lang.h:8
 #: ../data/language-specs/ooc.lang.h:9 ../data/language-specs/php.lang.h:9
 #: ../data/language-specs/python.lang.h:9 ../data/language-specs/R.lang.h:4
-#: ../data/language-specs/ruby.lang.h:9
+#: ../data/language-specs/ruby.lang.h:10
 msgid "Floating point number"
 msgstr "மிதவைப்புள்ளி எண்"
 
-#: ../data/language-specs/bennugd.lang.h:10 ../data/language-specs/c.lang.h:11
+#: ../data/language-specs/bennugd.lang.h:7 ../data/language-specs/c.lang.h:10
 #: ../data/language-specs/cg.lang.h:12 ../data/language-specs/csharp.lang.h:9
 #: ../data/language-specs/d.lang.h:9 ../data/language-specs/eiffel.lang.h:11
 #: ../data/language-specs/go.lang.h:10 ../data/language-specs/nemerle.lang.h:9
 #: ../data/language-specs/ooc.lang.h:11 ../data/language-specs/php.lang.h:12
-#: ../data/language-specs/vala.lang.h:6
 msgid "Hexadecimal number"
 msgstr "பதின்அறும எண்"
 
 #. Any variable name
-#: ../data/language-specs/bennugd.lang.h:11
+#: ../data/language-specs/bennugd.lang.h:8
 #: ../data/language-specs/def.lang.h:34 ../data/language-specs/php.lang.h:13
 msgid "Identifier"
 msgstr "இனங்காட்டி"
@@ -513,9 +487,10 @@ msgstr "புலம்"
 #: ../data/language-specs/gtk-doc.lang.h:6
 #: ../data/language-specs/haddock.lang.h:14
 #: ../data/language-specs/html.lang.h:7 ../data/language-specs/latex.lang.h:6
-#: ../data/language-specs/mallard.lang.h:4 ../data/language-specs/t2t.lang.h:6
-#: ../data/language-specs/texinfo.lang.h:8 ../data/language-specs/xml.lang.h:9
-#: ../data/language-specs/xslt.lang.h:2
+#: ../data/language-specs/mallard.lang.h:4
+#: ../data/language-specs/markdown.lang.h:14
+#: ../data/language-specs/t2t.lang.h:6 ../data/language-specs/texinfo.lang.h:8
+#: ../data/language-specs/xml.lang.h:9 ../data/language-specs/xslt.lang.h:2
 #: ../gtksourceview/gtksourcecompletionitem.c:242
 #: ../gtksourceview/gtksourcegutterrenderertext.c:395
 msgid "Markup"
@@ -526,8 +501,9 @@ msgid "Boo"
 msgstr "பூ"
 
 #: ../data/language-specs/boo.lang.h:2 ../data/language-specs/desktop.lang.h:3
-#: ../data/language-specs/d.lang.h:2 ../data/language-specs/libtool.lang.h:1
-#: ../data/language-specs/octave.lang.h:2
+#: ../data/language-specs/d.lang.h:2 ../data/language-specs/imagej.lang.h:1
+#: ../data/language-specs/libtool.lang.h:1
+#: ../data/language-specs/objj.lang.h:1 ../data/language-specs/octave.lang.h:2
 #: ../data/language-specs/python.lang.h:2
 #: ../data/language-specs/scheme.lang.h:1
 #: ../data/language-specs/scilab.lang.h:1
@@ -552,21 +528,22 @@ msgstr "பெயர் இடம்"
 #: ../data/language-specs/csharp.lang.h:11 ../data/language-specs/d.lang.h:11
 #: ../data/language-specs/fsharp.lang.h:13
 #: ../data/language-specs/java.lang.h:12
-#: ../data/language-specs/javascript.lang.h:11
+#: ../data/language-specs/javascript.lang.h:9
 #: ../data/language-specs/nemerle.lang.h:12
-#: ../data/language-specs/ooc.lang.h:13 ../data/language-specs/php.lang.h:15
-#: ../data/language-specs/vala.lang.h:8
+#: ../data/language-specs/objj.lang.h:5 ../data/language-specs/ooc.lang.h:13
+#: ../data/language-specs/php.lang.h:15 ../data/language-specs/vala.lang.h:6
 msgid "Null Value"
 msgstr "வெற்று மதிப்பு"
 
-#: ../data/language-specs/boo.lang.h:12 ../data/language-specs/perl.lang.h:17
-#: ../data/language-specs/ruby.lang.h:17
+#: ../data/language-specs/boo.lang.h:12
+#: ../data/language-specs/javascript.lang.h:11
+#: ../data/language-specs/perl.lang.h:17 ../data/language-specs/ruby.lang.h:18
 msgid "Regular Expression"
 msgstr "வழக்கமான எண்ணுருக்கோவை"
 
 #: ../data/language-specs/boo.lang.h:14
 #: ../data/language-specs/python.lang.h:16
-#: ../data/language-specs/ruby.lang.h:20
+#: ../data/language-specs/ruby.lang.h:21
 msgid "Special Variable"
 msgstr "சிறப்பு மாறி"
 
@@ -608,7 +585,7 @@ msgstr "பெயர்"
 #. * to a #GtkSourceBuffer.
 #.
 #: ../data/language-specs/changelog.lang.h:8
-#: ../data/language-specs/cmake.lang.h:7 ../data/language-specs/css.lang.h:10
+#: ../data/language-specs/cmake.lang.h:7 ../data/language-specs/css.lang.h:12
 #: ../data/language-specs/desktop.lang.h:12
 #: ../data/language-specs/diff.lang.h:9 ../data/language-specs/dot.lang.h:6
 #: ../data/language-specs/dpatch.lang.h:2
@@ -636,32 +613,42 @@ msgstr "C/C++/ObjC தலைப்பு"
 msgid "C"
 msgstr "சி(C)"
 
+#. A character constant: 'c'
+#: ../data/language-specs/c.lang.h:3 ../data/language-specs/csharp.lang.h:3
+#: ../data/language-specs/def.lang.h:9 ../data/language-specs/gap.lang.h:1
+#: ../data/language-specs/go.lang.h:2 ../data/language-specs/haskell.lang.h:1
+#: ../data/language-specs/java.lang.h:2
+#: ../data/language-specs/nemerle.lang.h:3 ../data/language-specs/sml.lang.h:3
+#: ../data/language-specs/vhdl.lang.h:3
+msgid "Character"
+msgstr "எழுத்து"
+
 #: ../data/language-specs/c.lang.h:5 ../data/language-specs/cpp.lang.h:2
 #: ../data/language-specs/objc.lang.h:1 ../data/language-specs/opal.lang.h:3
 msgid "Common Defines"
 msgstr "பொதுவான அறுதியிடல்கள்"
 
-#: ../data/language-specs/c.lang.h:12 ../data/language-specs/cg.lang.h:13
-#: ../data/language-specs/go.lang.h:11
+#: ../data/language-specs/c.lang.h:11 ../data/language-specs/cg.lang.h:13
+#: ../data/language-specs/go.lang.h:11 ../data/language-specs/objj.lang.h:3
 msgid "Included File"
 msgstr "சேர்த்த கோப்பு"
 
-#: ../data/language-specs/c.lang.h:14 ../data/language-specs/cg.lang.h:15
+#: ../data/language-specs/c.lang.h:13 ../data/language-specs/cg.lang.h:15
 #: ../data/language-specs/d.lang.h:12 ../data/language-specs/go.lang.h:13
 #: ../data/language-specs/nemerle.lang.h:13
 #: ../data/language-specs/ooc.lang.h:15 ../data/language-specs/php.lang.h:16
 msgid "Octal number"
 msgstr "எண்ம எண்"
 
-#: ../data/language-specs/c.lang.h:16
+#: ../data/language-specs/c.lang.h:15
 msgid "Signal name"
 msgstr "சமிக்ஞை பெயர்"
 
-#: ../data/language-specs/c.lang.h:18
+#: ../data/language-specs/c.lang.h:17
 msgid "Standard stream"
 msgstr "செந்தர ஓடை"
 
-#: ../data/language-specs/c.lang.h:21
+#: ../data/language-specs/c.lang.h:20
 msgid "printf Conversion"
 msgstr "ப்ரின்ட் எஃப்(printf) மாற்றம்"
 
@@ -669,14 +656,32 @@ msgstr "ப்ரின்ட் எஃப்(printf) மாற்றம்"
 msgid "Bindings"
 msgstr "பிணைப்புகள்"
 
+#. Translators: functions that are provided in the language
 #: ../data/language-specs/cg.lang.h:3 ../data/language-specs/erlang.lang.h:3
-#: ../data/language-specs/ruby.lang.h:4
+#: ../data/language-specs/imagej.lang.h:2
+#: ../data/language-specs/matlab.lang.h:1
+#: ../data/language-specs/octave.lang.h:3 ../data/language-specs/ruby.lang.h:5
 msgid "Builtin"
 msgstr "உள்ளமை"
 
 #: ../data/language-specs/cg.lang.h:4
 msgid "CG Shader Language"
 msgstr "சிஜி நிழலிடும் மொழி"
+
+#. Any erroneous construct
+#: ../data/language-specs/cg.lang.h:8 ../data/language-specs/cobol.lang.h:4
+#: ../data/language-specs/csharp.lang.h:7 ../data/language-specs/css.lang.h:7
+#: ../data/language-specs/def.lang.h:28 ../data/language-specs/d.lang.h:7
+#: ../data/language-specs/dot.lang.h:3 ../data/language-specs/go.lang.h:6
+#: ../data/language-specs/html.lang.h:5
+#: ../data/language-specs/nemerle.lang.h:7
+#: ../data/language-specs/ocaml.lang.h:7 ../data/language-specs/ooc.lang.h:6
+#: ../data/language-specs/opal.lang.h:6 ../data/language-specs/perl.lang.h:4
+#: ../data/language-specs/php.lang.h:6 ../data/language-specs/prolog.lang.h:2
+#: ../data/language-specs/vala.lang.h:4
+#: ../data/language-specs/verilog.lang.h:4 ../data/language-specs/xml.lang.h:8
+msgid "Error"
+msgstr "பிழை"
 
 #: ../data/language-specs/cg.lang.h:19
 msgid "Swizzle operator"
@@ -699,7 +704,7 @@ msgstr "சிமேக்(CMake)"
 #: ../data/language-specs/def.lang.h:15
 #: ../data/language-specs/gtk-doc.lang.h:1
 #: ../data/language-specs/libtool.lang.h:2
-#: ../data/language-specs/ruby.lang.h:6
+#: ../data/language-specs/ruby.lang.h:7
 msgid "Constant"
 msgstr "மாறிலி"
 
@@ -724,7 +729,8 @@ msgstr "சி(C)++"
 msgid "C#"
 msgstr "C#"
 
-#: ../data/language-specs/csharp.lang.h:16
+#. Translators: this is a format that appears in the strings
+#: ../data/language-specs/csharp.lang.h:17 ../data/language-specs/po.lang.h:7
 msgid "String Format"
 msgstr "சர ஒழுங்கு"
 
@@ -733,35 +739,49 @@ msgid "CSS"
 msgstr "சிஎஸ்எஸ்(CSS)"
 
 #: ../data/language-specs/css.lang.h:2
+msgid "Class Selector"
+msgstr "வகை தேர்வி"
+
+#: ../data/language-specs/css.lang.h:3
 msgid "Color"
 msgstr "வண்ணம்"
 
-#: ../data/language-specs/css.lang.h:4 ../data/language-specs/fcl.lang.h:3
+#. Translator: it is a type of number
+#: ../data/language-specs/css.lang.h:5 ../data/language-specs/fcl.lang.h:3
 #: ../data/language-specs/fortran.lang.h:4 ../data/language-specs/gap.lang.h:3
 #: ../data/language-specs/gtkrc.lang.h:4
 #: ../data/language-specs/haskell.lang.h:4 ../data/language-specs/ini.lang.h:5
-#: ../data/language-specs/octave.lang.h:4
-#: ../data/language-specs/pascal.lang.h:3 ../data/language-specs/sql.lang.h:3
+#: ../data/language-specs/octave.lang.h:6
+#: ../data/language-specs/pascal.lang.h:3 ../data/language-specs/sml.lang.h:6
+#: ../data/language-specs/sql.lang.h:3
 msgid "Decimal"
 msgstr "தசமம்"
 
-#: ../data/language-specs/css.lang.h:5
+#: ../data/language-specs/css.lang.h:6
 msgid "Dimension"
 msgstr "அளவு"
 
 #: ../data/language-specs/css.lang.h:9
+msgid "ID Selector"
+msgstr "ஐடி தேர்வி"
+
+#: ../data/language-specs/css.lang.h:11
 msgid "Known Property Value"
 msgstr "தெரிந்த பண்பு மதிப்புகள்"
 
-#: ../data/language-specs/css.lang.h:11
+#: ../data/language-specs/css.lang.h:13
 msgid "Others 2"
 msgstr "மற்றவை 2"
 
-#: ../data/language-specs/css.lang.h:12
+#: ../data/language-specs/css.lang.h:14
 msgid "Others 3"
 msgstr "மற்றவை 3"
 
-#: ../data/language-specs/css.lang.h:14
+#: ../data/language-specs/css.lang.h:16
+msgid "Tag Name Selector"
+msgstr "டேக் பெயர் தேர்வி"
+
+#: ../data/language-specs/css.lang.h:17
 msgid "at-rules"
 msgstr "ஏடி விதிகள்"
 
@@ -799,7 +819,7 @@ msgid "Complex number"
 msgstr "சிக்கல் எண்"
 
 #. A primitive data type: int, long, char, etc.
-#: ../data/language-specs/def.lang.h:17
+#: ../data/language-specs/def.lang.h:17 ../data/language-specs/octave.lang.h:5
 msgid "Data type"
 msgstr "தரவு வகை"
 
@@ -835,7 +855,7 @@ msgid "Reserved keyword"
 msgstr "ஒதுக்கீடு செய்த முக்கிய வார்த்தை"
 
 #. A shebang: #!/bin/sh
-#: ../data/language-specs/def.lang.h:48 ../data/language-specs/sh.lang.h:8
+#: ../data/language-specs/def.lang.h:48
 msgid "Shebang"
 msgstr "ஷெபாங்"
 
@@ -934,8 +954,8 @@ msgid "Special Token"
 msgstr "சிறப்பு டோக்கன்கள்"
 
 #: ../data/language-specs/docbook.lang.h:1
-msgid "Docbook"
-msgstr "ஆவண புத்தகம்"
+msgid "DocBook"
+msgstr "டாக்புக்"
 
 #: ../data/language-specs/docbook.lang.h:2
 msgid "Formatting Elements"
@@ -959,8 +979,8 @@ msgid "Command"
 msgstr "கட்டளை"
 
 #: ../data/language-specs/dosbatch.lang.h:3
-msgid "Dos Batch"
-msgstr "Dos Batch"
+msgid "DOS Batch"
+msgstr "டாஸ் பேட்ச்"
 
 #: ../data/language-specs/dot.lang.h:1 ../data/language-specs/xml.lang.h:1
 msgid "Attribute name"
@@ -1023,7 +1043,7 @@ msgid "Exception Handling"
 msgstr "விதி விலக்கு கையாளல்"
 
 #: ../data/language-specs/eiffel.lang.h:13
-#: ../data/language-specs/ruby.lang.h:16
+#: ../data/language-specs/ruby.lang.h:17
 msgid "Predefined Variable"
 msgstr "முன்வரை மாறி"
 
@@ -1038,7 +1058,7 @@ msgstr "அணு"
 #: ../data/language-specs/erlang.lang.h:2
 #: ../data/language-specs/fsharp.lang.h:1
 #: ../data/language-specs/ocaml.lang.h:1
-#: ../data/language-specs/octave.lang.h:1
+#: ../data/language-specs/octave.lang.h:1 ../data/language-specs/sml.lang.h:1
 #: ../data/language-specs/verilog.lang.h:1
 #: ../data/language-specs/vhdl.lang.h:1
 msgid "Base-N Integer"
@@ -1064,18 +1084,20 @@ msgid "FCL"
 msgstr "எஃப்சிஎல்"
 
 #: ../data/language-specs/fcl.lang.h:5 ../data/language-specs/fortran.lang.h:5
-#: ../data/language-specs/ini.lang.h:6 ../data/language-specs/octave.lang.h:5
+#: ../data/language-specs/ini.lang.h:6 ../data/language-specs/octave.lang.h:7
 #: ../data/language-specs/scilab.lang.h:3 ../data/language-specs/sql.lang.h:4
 msgid "Floating Point"
 msgstr "மிதக்கும் புள்ளி"
 
-#: ../data/language-specs/fcl.lang.h:7 ../data/language-specs/octave.lang.h:9
+#: ../data/language-specs/fcl.lang.h:7 ../data/language-specs/octave.lang.h:12
 #: ../data/language-specs/scilab.lang.h:6
 msgid "Reserved Constant"
 msgstr "தலைகீழ் மாறிலி"
 
 #: ../data/language-specs/fcl.lang.h:8 ../data/language-specs/gap.lang.h:7
-#: ../data/language-specs/octave.lang.h:10 ../data/language-specs/R.lang.h:9
+#: ../data/language-specs/imagej.lang.h:8
+#: ../data/language-specs/matlab.lang.h:4
+#: ../data/language-specs/octave.lang.h:13 ../data/language-specs/R.lang.h:9
 #: ../data/language-specs/scilab.lang.h:7
 msgid "Scientific"
 msgstr "அறிவியல்"
@@ -1114,7 +1136,7 @@ msgid "F#"
 msgstr "F#"
 
 #: ../data/language-specs/fsharp.lang.h:9
-#: ../data/language-specs/ocaml.lang.h:9
+#: ../data/language-specs/ocaml.lang.h:9 ../data/language-specs/sml.lang.h:8
 msgid "Floating Point number"
 msgstr "மிதவை புள்ளி எண்"
 
@@ -1133,17 +1155,18 @@ msgstr "கூறு பாதை"
 msgid "Polymorphic Variant"
 msgstr "பல்மாற்ற திரிபுரு"
 
-#: ../data/language-specs/fsharp.lang.h:18
+#. Translators: this is a specific variable called Type
+#: ../data/language-specs/fsharp.lang.h:19
 #: ../data/language-specs/ocaml.lang.h:19
 msgid "Type Variable"
 msgstr "வகை மாறி"
 
-#: ../data/language-specs/fsharp.lang.h:19
+#: ../data/language-specs/fsharp.lang.h:20
 #: ../data/language-specs/ocaml.lang.h:20
 msgid "Type, module or object keyword"
 msgstr "வகை, பகுதி அல்லது பொருள் முதன்மை சொல்"
 
-#: ../data/language-specs/fsharp.lang.h:20
+#: ../data/language-specs/fsharp.lang.h:21
 #: ../data/language-specs/ocaml.lang.h:21
 msgid "Variant Constructor"
 msgstr "திரிபுரு உருவாக்கி"
@@ -1272,6 +1295,7 @@ msgid "Definition list"
 msgstr "வரையறை பட்டியல்"
 
 #: ../data/language-specs/haddock.lang.h:4
+#: ../data/language-specs/markdown.lang.h:5
 msgid "Emphasis"
 msgstr "அழுத்தம்"
 
@@ -1316,6 +1340,7 @@ msgid "Monospace"
 msgstr "மோனோஸ்பேஸ்"
 
 #: ../data/language-specs/haddock.lang.h:16
+#: ../data/language-specs/markdown.lang.h:16
 msgid "URL"
 msgstr "யூஆர்எல்(URL)"
 
@@ -1336,7 +1361,7 @@ msgid "Octal"
 msgstr "எண்மக் குறிமுறை"
 
 #: ../data/language-specs/haskell.lang.h:14
-#: ../data/language-specs/ruby.lang.h:22
+#: ../data/language-specs/ruby.lang.h:23
 msgid "Symbol"
 msgstr "குறியீடு"
 
@@ -1349,6 +1374,7 @@ msgid "Attribute Name"
 msgstr "பண்புக்கூறு பெயர்"
 
 #: ../data/language-specs/html.lang.h:2
+#: ../data/language-specs/markdown.lang.h:1
 msgid "Attribute Value"
 msgstr "பண்புகூறு மதிப்பு"
 
@@ -1364,20 +1390,39 @@ msgstr "குறி"
 msgid "IDL"
 msgstr "ஐடிஎல்(IDL)"
 
+#: ../data/language-specs/imagej.lang.h:3
+msgid "Commands"
+msgstr "கட்டளைகள் "
+
+#: ../data/language-specs/imagej.lang.h:4
+msgid "Escaped Characters"
+msgstr "விடுபடு எழுத்துக்கள்"
+
+#: ../data/language-specs/imagej.lang.h:5
+msgid "ImageJ"
+msgstr "பிம்பம் ஜே"
+
+#: ../data/language-specs/imagej.lang.h:9
+#: ../data/language-specs/octave.lang.h:14
+msgid "Storage Type"
+msgstr "சேமிப்பு வகை"
+
 #: ../data/language-specs/ini.lang.h:1
 msgid ".ini"
 msgstr ".ini"
 
-#: ../data/language-specs/java.lang.h:5 ../data/language-specs/ooc.lang.h:5
+#: ../data/language-specs/java.lang.h:4 ../data/language-specs/ooc.lang.h:5
 msgid "Declaration"
 msgstr "அறிவிப்பு"
 
+#. Translators: refered to some specific keywords of the language that
+#. allow to get external functionalities
 #: ../data/language-specs/java.lang.h:8 ../data/language-specs/ooc.lang.h:8
 msgid "External"
 msgstr "வெளி"
 
 #: ../data/language-specs/java.lang.h:9
-#: ../data/language-specs/javascript.lang.h:8
+#: ../data/language-specs/javascript.lang.h:6
 #: ../data/language-specs/ooc.lang.h:10
 msgid "Future Reserved Keywords"
 msgstr "எதிர்காலத்துக்கு ஒதுக்கப்பட்ட முதன்மைச்சொற்கள்"
@@ -1390,23 +1435,19 @@ msgstr "ஜாவா"
 msgid "Scope Declaration"
 msgstr "வரையெல்லை அறிவிப்பு"
 
-#: ../data/language-specs/javascript.lang.h:3
+#: ../data/language-specs/javascript.lang.h:2
 msgid "Constructors"
 msgstr "கன்ஸ்ட்ரக்டர்"
 
-#: ../data/language-specs/javascript.lang.h:9
+#: ../data/language-specs/javascript.lang.h:7
 msgid "JavaScript"
 msgstr "ஜாவா ஸ்கிரிப்ட்"
 
-#: ../data/language-specs/javascript.lang.h:12
-msgid "Object"
-msgstr "பொருள்"
-
-#: ../data/language-specs/javascript.lang.h:13
+#: ../data/language-specs/javascript.lang.h:10
 msgid "Properties"
 msgstr "பண்புகள்"
 
-#: ../data/language-specs/javascript.lang.h:16
+#: ../data/language-specs/javascript.lang.h:13
 msgid "Undefined Value"
 msgstr "குறிப்பில்லா மாறி"
 
@@ -1427,7 +1468,7 @@ msgstr "LaTeX"
 msgid "Math Mode"
 msgstr "கணித பாங்கு"
 
-#: ../data/language-specs/latex.lang.h:8 ../data/language-specs/t2t.lang.h:16
+#: ../data/language-specs/latex.lang.h:8 ../data/language-specs/t2t.lang.h:15
 msgid "Verbatim"
 msgstr "சொல்லுக்குச் சொல்"
 
@@ -1443,7 +1484,7 @@ msgstr "லிப்டூல்(libtool)"
 msgid "Lua"
 msgstr "லுவா(Lua)"
 
-#: ../data/language-specs/lua.lang.h:7 ../data/language-specs/ruby.lang.h:14
+#: ../data/language-specs/lua.lang.h:7 ../data/language-specs/ruby.lang.h:15
 msgid "Nil Constant"
 msgstr "மாறிலி இல்லை"
 
@@ -1531,6 +1572,60 @@ msgstr "பக்க உருப்படிகள்"
 msgid "Section Elements"
 msgstr "பகுதி உருப்படிகள்"
 
+#: ../data/language-specs/markdown.lang.h:2
+msgid "Backslash Escape"
+msgstr "இடசாய் விடுப்பு"
+
+#: ../data/language-specs/markdown.lang.h:3
+msgid "Blockquote Marker"
+msgstr "தொகுதி மேற்கோள் குறிப்பி"
+
+#: ../data/language-specs/markdown.lang.h:4
+msgid "Code"
+msgstr "நிரற்றொடர்"
+
+#: ../data/language-specs/markdown.lang.h:6
+#: ../data/language-specs/rpmspec.lang.h:8 ../data/language-specs/t2t.lang.h:4
+msgid "Header"
+msgstr "தலைப்பு"
+
+#: ../data/language-specs/markdown.lang.h:7
+msgid "Horizontal Rule"
+msgstr "கிடைமட்ட அளவுகோல்"
+
+#: ../data/language-specs/markdown.lang.h:8
+msgid "Image Marker"
+msgstr "பிம்ப குறிப்பி"
+
+#: ../data/language-specs/markdown.lang.h:9
+#: ../gtksourceview/gtksourcecompletionitem.c:229
+msgid "Label"
+msgstr "விளக்கச்சீட்டு"
+
+#: ../data/language-specs/markdown.lang.h:10
+msgid "Line Break"
+msgstr "வரி முரிவு"
+
+#: ../data/language-specs/markdown.lang.h:11
+msgid "Link Text"
+msgstr "இணைப்பு உரை"
+
+#: ../data/language-specs/markdown.lang.h:12
+msgid "List Marker"
+msgstr "பட்டியல் குறிப்பி"
+
+#: ../data/language-specs/markdown.lang.h:13
+msgid "Markdown"
+msgstr "குறித்துவிடு"
+
+#: ../data/language-specs/markdown.lang.h:15
+msgid "Strong Emphasis"
+msgstr "பலமான அழுத்தம்"
+
+#: ../data/language-specs/matlab.lang.h:3
+msgid "Matlab"
+msgstr "மேட்லேப்"
+
 #: ../data/language-specs/nemerle.lang.h:11
 msgid "Nemerle"
 msgstr "Nemerle"
@@ -1542,6 +1637,10 @@ msgstr "NSIS"
 #: ../data/language-specs/objc.lang.h:4
 msgid "Objective-C"
 msgstr "இலக்கு-C"
+
+#: ../data/language-specs/objj.lang.h:6
+msgid "Objective-J"
+msgstr "இலக்கு-ஜே"
 
 #: ../data/language-specs/ocaml.lang.h:13
 msgid "Objective Caml"
@@ -1567,9 +1666,13 @@ msgstr "செயல்பாடு செயல்குறி"
 msgid "Type Operators"
 msgstr "வகை செயல்படுத்திகள்"
 
-#: ../data/language-specs/octave.lang.h:8
+#: ../data/language-specs/octave.lang.h:9
 msgid "Octave"
 msgstr "எட்டன் தொகுதி( Octave)"
+
+#: ../data/language-specs/octave.lang.h:11
+msgid "Package Manager"
+msgstr "பொதி மேலாளர்"
 
 #: ../data/language-specs/ooc.lang.h:14
 msgid "OOC"
@@ -1588,6 +1691,30 @@ msgstr "பகுதி கையாளள்"
 msgid "Opal"
 msgstr "ஓபல்"
 
+#: ../data/language-specs/opencl.lang.h:2
+msgid "Device Cast"
+msgstr "சாதன வார்பு"
+
+#: ../data/language-specs/opencl.lang.h:3
+msgid "Device Function"
+msgstr "சாதன செயல்பாடு"
+
+#: ../data/language-specs/opencl.lang.h:4
+msgid "Global Function"
+msgstr "பொது செயல்பாடு"
+
+#: ../data/language-specs/opencl.lang.h:5
+msgid "Global Variable"
+msgstr "பொது மாறி"
+
+#: ../data/language-specs/opencl.lang.h:7
+msgid "OpenCL"
+msgstr "ஓபன்சிஎல்"
+
+#: ../data/language-specs/opencl.lang.h:8
+msgid "OpenCL Constant"
+msgstr "ஓபன்சிஎல் மாறிலி"
+
 #: ../data/language-specs/pascal.lang.h:5
 msgid "Pascal"
 msgstr "பாஸ்கல்"
@@ -1601,12 +1728,12 @@ msgid "File Descriptor"
 msgstr "கோப்பு விவரிப்பி"
 
 #: ../data/language-specs/perl.lang.h:6 ../data/language-specs/php.lang.h:10
-#: ../data/language-specs/ruby.lang.h:10
+#: ../data/language-specs/ruby.lang.h:11
 msgid "Heredoc"
 msgstr "ஹெரடாக்"
 
 #: ../data/language-specs/perl.lang.h:7 ../data/language-specs/php.lang.h:11
-#: ../data/language-specs/ruby.lang.h:11 ../data/language-specs/sh.lang.h:4
+#: ../data/language-specs/ruby.lang.h:12 ../data/language-specs/sh.lang.h:4
 msgid "Heredoc Bound"
 msgstr "ஹெரடாக் கட்டுண்ட"
 
@@ -1662,12 +1789,7 @@ msgstr "பிகேஜி கான்பிக்(pkg-config)"
 msgid "Fuzzy"
 msgstr "ஃபஸ்ஸி"
 
-#. FIXME make it some nice name and mark it translatable
-#: ../data/language-specs/po.lang.h:7
-msgid "Special"
-msgstr "சிறப்பு"
-
-#: ../data/language-specs/po.lang.h:9
+#: ../data/language-specs/po.lang.h:8
 msgid "gettext translation"
 msgstr "கெட்டெக்ஸ்ட் மொழிபெயர்பு"
 
@@ -1739,10 +1861,6 @@ msgstr "மின்னஞ்சல்"
 msgid "Flow Conditional"
 msgstr "நிபந்தனை ஓட்டம்"
 
-#: ../data/language-specs/rpmspec.lang.h:8 ../data/language-specs/t2t.lang.h:4
-msgid "Header"
-msgstr "தலைப்பு"
-
 #: ../data/language-specs/rpmspec.lang.h:9
 msgid "Other Macro"
 msgstr "மற்ற மாக்ரோ"
@@ -1772,15 +1890,15 @@ msgstr "மாற்றி"
 msgid "Attribute Definition"
 msgstr "பண்புகள் வரையறை"
 
-#: ../data/language-specs/ruby.lang.h:13
+#: ../data/language-specs/ruby.lang.h:14
 msgid "Module handler"
 msgstr "கூறு கையாளி"
 
-#: ../data/language-specs/ruby.lang.h:15
+#: ../data/language-specs/ruby.lang.h:16
 msgid "Numeric literal"
 msgstr "எண் எழுத்தில்"
 
-#: ../data/language-specs/ruby.lang.h:18
+#: ../data/language-specs/ruby.lang.h:19
 msgid "Ruby"
 msgstr "ரூபி"
 
@@ -1796,18 +1914,26 @@ msgstr "சைலாப்"
 msgid "Common Commands"
 msgstr "புழங்கும் கட்டளைகள்"
 
-#: ../data/language-specs/sh.lang.h:10
+#: ../data/language-specs/sh.lang.h:9
 msgid "Subshell"
 msgstr "துணை ஷெல்"
 
 #. FIXME: need to sort out proper styles for variables
-#: ../data/language-specs/sh.lang.h:13
+#: ../data/language-specs/sh.lang.h:12
 msgid "Variable Definition"
 msgstr "மாறிகள் வரையறை"
 
-#: ../data/language-specs/sh.lang.h:14
+#: ../data/language-specs/sh.lang.h:13
 msgid "sh"
 msgstr "sh"
+
+#: ../data/language-specs/sml.lang.h:10
+msgid "Module name, Variant, etc"
+msgstr "கூற்றின் பெயர், மாற்று முதலானவை"
+
+#: ../data/language-specs/sml.lang.h:12
+msgid "Standard ML"
+msgstr "செந்தர எம்எல்"
 
 #: ../data/language-specs/sparql.lang.h:2
 msgid "Class"
@@ -1891,13 +2017,13 @@ msgstr "பிரிவு 4"
 msgid "Section 5"
 msgstr "பிரிவு 5"
 
-#: ../data/language-specs/t2t.lang.h:15
-msgid "Text2Tags"
-msgstr "Text2Tags"
-
-#: ../data/language-specs/t2t.lang.h:17
+#: ../data/language-specs/t2t.lang.h:16
 msgid "Verbatim Block"
 msgstr "Verbatim தொகுதி"
+
+#: ../data/language-specs/t2t.lang.h:17
+msgid "txt2tags"
+msgstr "டிஎக்ஸ்டி2டேக்ஸ்"
 
 #: ../data/language-specs/tcl.lang.h:3
 msgid "Tcl"
@@ -1919,7 +2045,7 @@ msgstr "மாக்ரோ"
 msgid "Texinfo"
 msgstr "உரைதகவல்"
 
-#: ../data/language-specs/vala.lang.h:12
+#: ../data/language-specs/vala.lang.h:9
 msgid "Vala"
 msgstr "Vala"
 
@@ -2270,10 +2396,6 @@ msgstr "செயலாக்க வகை"
 #: ../gtksourceview/gtksourcecompletioninfo.c:61
 msgid "Completion Info"
 msgstr "முடித்தல் தகவல்"
-
-#: ../gtksourceview/gtksourcecompletionitem.c:229
-msgid "Label"
-msgstr "விளக்கச்சீட்டு"
 
 #: ../gtksourceview/gtksourcecompletionitem.c:230
 msgid "Label to be shown for this item"
@@ -2743,23 +2865,23 @@ msgstr "நடுக்கோடு அமைக்கப்பட்டது"
 msgid "Whether strikethrough attribute is set"
 msgstr "நடு-கோடு மதிப்புரு அமைக்கப்பட்டதா"
 
-#: ../gtksourceview/gtksourcestylescheme.c:194
-#: ../gtksourceview/gtksourcestylescheme.c:195
+#: ../gtksourceview/gtksourcestylescheme.c:221
+#: ../gtksourceview/gtksourcestylescheme.c:222
 msgid "Style scheme id"
 msgstr "சிறப்பியல்பு பாணி அடையாளம்"
 
-#: ../gtksourceview/gtksourcestylescheme.c:207
-#: ../gtksourceview/gtksourcestylescheme.c:208
+#: ../gtksourceview/gtksourcestylescheme.c:234
+#: ../gtksourceview/gtksourcestylescheme.c:235
 msgid "Style scheme name"
 msgstr "சிறப்பியல்பு பாணி பெயர்"
 
-#: ../gtksourceview/gtksourcestylescheme.c:220
-#: ../gtksourceview/gtksourcestylescheme.c:221
+#: ../gtksourceview/gtksourcestylescheme.c:247
+#: ../gtksourceview/gtksourcestylescheme.c:248
 msgid "Style scheme description"
 msgstr "சிறப்பியல்பு பாணி விவரணம்"
 
-#: ../gtksourceview/gtksourcestylescheme.c:233
-#: ../gtksourceview/gtksourcestylescheme.c:234
+#: ../gtksourceview/gtksourcestylescheme.c:260
+#: ../gtksourceview/gtksourcestylescheme.c:261
 msgid "Style scheme filename"
 msgstr "சிறப்பியல்பு திட்ட கோப்புப் பெயர்"
 
@@ -2886,6 +3008,18 @@ msgstr "வெற்றிடம் காணப்பட வேண்டும�
 #: ../gtksourceview/gtksourceview-i18n.c:74
 msgid "translator-credits"
 msgstr "I. Felix <ifelix@redhat.com>. Dr. T. Vasudevan <agnihot3@gmail.com>"
+
+#~ msgid "Docbook"
+#~ msgstr "ஆவண புத்தகம்"
+
+#~ msgid "Object"
+#~ msgstr "பொருள்"
+
+#~ msgid "Special"
+#~ msgstr "சிறப்பு"
+
+#~ msgid "Text2Tags"
+#~ msgstr "Text2Tags"
 
 #~ msgid "Maximum width"
 #~ msgstr "அதிக பட்ச அகலம்"
