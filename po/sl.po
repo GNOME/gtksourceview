@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourcereview\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gtksourceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-07-19 19:31+0000\n"
-"PO-Revision-Date: 2011-07-19 21:39+0100\n"
+"POT-Creation-Date: 2011-09-07 15:38+0000\n"
+"PO-Revision-Date: 2011-09-07 20:26+0100\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: \n"
@@ -126,7 +126,6 @@ msgstr "Boolova vrednost"
 #: ../data/language-specs/cg.lang.h:5
 #: ../data/language-specs/cobol.lang.h:2
 #: ../data/language-specs/csharp.lang.h:4
-#: ../data/language-specs/css.lang.h:3
 #: ../data/language-specs/def.lang.h:11
 #: ../data/language-specs/d.lang.h:3
 #: ../data/language-specs/dosbatch.lang.h:2
@@ -272,7 +271,7 @@ msgstr "Ubežni znak"
 #: ../data/language-specs/cobol.lang.h:5
 #: ../data/language-specs/cpp.lang.h:4
 #: ../data/language-specs/csharp.lang.h:10
-#: ../data/language-specs/css.lang.h:9
+#: ../data/language-specs/css.lang.h:10
 #: ../data/language-specs/cuda.lang.h:6
 #: ../data/language-specs/def.lang.h:36
 #: ../data/language-specs/d.lang.h:10
@@ -414,7 +413,7 @@ msgstr "Razred shranjevanja"
 #: ../data/language-specs/c.lang.h:19
 #: ../data/language-specs/cobol.lang.h:10
 #: ../data/language-specs/csharp.lang.h:15
-#: ../data/language-specs/css.lang.h:14
+#: ../data/language-specs/css.lang.h:15
 #: ../data/language-specs/def.lang.h:57
 #: ../data/language-specs/d.lang.h:15
 #: ../data/language-specs/dosbatch.lang.h:6
@@ -752,7 +751,7 @@ msgstr "Ime"
 #.
 #: ../data/language-specs/changelog.lang.h:8
 #: ../data/language-specs/cmake.lang.h:7
-#: ../data/language-specs/css.lang.h:11
+#: ../data/language-specs/css.lang.h:12
 #: ../data/language-specs/desktop.lang.h:12
 #: ../data/language-specs/diff.lang.h:9
 #: ../data/language-specs/dot.lang.h:6
@@ -936,6 +935,10 @@ msgid "CSS"
 msgstr "CSS"
 
 #: ../data/language-specs/css.lang.h:2
+msgid "Class Selector"
+msgstr "Izbirnik razredov"
+
+#: ../data/language-specs/css.lang.h:3
 msgid "Color"
 msgstr "Barva"
 
@@ -958,19 +961,27 @@ msgstr "Desetiško"
 msgid "Dimension"
 msgstr "Mere"
 
-#: ../data/language-specs/css.lang.h:10
+#: ../data/language-specs/css.lang.h:9
+msgid "ID Selector"
+msgstr "Izbirnik ID"
+
+#: ../data/language-specs/css.lang.h:11
 msgid "Known Property Value"
 msgstr "Znana vrednost lastnosti"
 
-#: ../data/language-specs/css.lang.h:12
+#: ../data/language-specs/css.lang.h:13
 msgid "Others 2"
 msgstr "Drugo 2"
 
-#: ../data/language-specs/css.lang.h:13
+#: ../data/language-specs/css.lang.h:14
 msgid "Others 3"
 msgstr "Drugo 3"
 
-#: ../data/language-specs/css.lang.h:15
+#: ../data/language-specs/css.lang.h:16
+msgid "Tag Name Selector"
+msgstr "Izbirnik imena oznake"
+
+#: ../data/language-specs/css.lang.h:17
 msgid "at-rules"
 msgstr "at-pravila"
 
@@ -1680,7 +1691,7 @@ msgid "Math Mode"
 msgstr "Matematični način"
 
 #: ../data/language-specs/latex.lang.h:8
-#: ../data/language-specs/t2t.lang.h:16
+#: ../data/language-specs/t2t.lang.h:15
 msgid "Verbatim"
 msgstr "Verbatim"
 
@@ -2238,13 +2249,13 @@ msgstr "Odsek 4"
 msgid "Section 5"
 msgstr "Odsek 5"
 
-#: ../data/language-specs/t2t.lang.h:15
-msgid "Text2Tags"
-msgstr "Text2Tags"
-
-#: ../data/language-specs/t2t.lang.h:17
+#: ../data/language-specs/t2t.lang.h:16
 msgid "Verbatim Block"
 msgstr "Blok Verbatim"
+
+#: ../data/language-specs/t2t.lang.h:17
+msgid "txt2tags"
+msgstr "txt2tags"
 
 #: ../data/language-specs/tcl.lang.h:3
 msgid "Tcl"
@@ -3221,6 +3232,9 @@ msgid "translator-credits"
 msgstr ""
 "Matej Urbančič <mateju@svn.gnome.org>\n"
 "Valentin Hegediš <valentin.hegedis@gmail.com>"
+
+#~ msgid "Text2Tags"
+#~ msgstr "Text2Tags"
 
 #~ msgid "Docbook"
 #~ msgstr "Docbook"
