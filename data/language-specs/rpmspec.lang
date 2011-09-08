@@ -139,7 +139,7 @@
     </context>
 
     <context id="other-macro" style-ref="other-macro">
-        <match>%\{[a-zA-Z][a-zA-Z0-9_]+\}</match>
+        <match>%\{?[a-zA-Z][a-zA-Z0-9_]+\}?</match>
     </context>
 
     <context id="flow" style-ref="flow-conditional">
