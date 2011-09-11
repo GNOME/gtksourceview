@@ -72,6 +72,7 @@ LANGUAGES =			\
 	po.lang			\
 	python.lang		\
 	prolog.lang		\
+	protobuf.lang		\
 	R.lang			\
 	rpmspec.lang		\
 	ruby.lang		\
