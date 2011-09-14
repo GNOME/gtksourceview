@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: gtksourceview.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-08-01 16:05+0000\n"
-"PO-Revision-Date: 2011-08-04 09:36+0200\n"
+"POT-Creation-Date: 2011-09-02 12:18+0000\n"
+"PO-Revision-Date: 2011-09-14 17:45+0200\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -107,9 +107,8 @@ msgstr "Valor booleano"
 #: ../data/language-specs/bennugd.lang.h:3 ../data/language-specs/boo.lang.h:4
 #: ../data/language-specs/c.lang.h:4 ../data/language-specs/cg.lang.h:5
 #: ../data/language-specs/cobol.lang.h:2
-#: ../data/language-specs/csharp.lang.h:4 ../data/language-specs/css.lang.h:4
-#: ../data/language-specs/def.lang.h:11 ../data/language-specs/d.lang.h:3
-#: ../data/language-specs/dosbatch.lang.h:2
+#: ../data/language-specs/csharp.lang.h:4 ../data/language-specs/def.lang.h:11
+#: ../data/language-specs/d.lang.h:3 ../data/language-specs/dosbatch.lang.h:2
 #: ../data/language-specs/dot.lang.h:2 ../data/language-specs/eiffel.lang.h:3
 #: ../data/language-specs/erlang.lang.h:4 ../data/language-specs/fcl.lang.h:2
 #: ../data/language-specs/forth.lang.h:1
@@ -199,7 +198,7 @@ msgstr "Carácter de escape"
 #: ../data/language-specs/boo.lang.h:7 ../data/language-specs/c.lang.h:12
 #: ../data/language-specs/cg.lang.h:14 ../data/language-specs/cobol.lang.h:5
 #: ../data/language-specs/cpp.lang.h:4 ../data/language-specs/csharp.lang.h:10
-#: ../data/language-specs/css.lang.h:11 ../data/language-specs/cuda.lang.h:6
+#: ../data/language-specs/css.lang.h:10 ../data/language-specs/cuda.lang.h:6
 #: ../data/language-specs/def.lang.h:36 ../data/language-specs/d.lang.h:10
 #: ../data/language-specs/dosbatch.lang.h:4
 #: ../data/language-specs/dot.lang.h:5 ../data/language-specs/eiffel.lang.h:12
@@ -301,7 +300,7 @@ msgstr "Clase de almacenamiento"
 #: ../data/language-specs/boo.lang.h:15 ../data/language-specs/c.lang.h:19
 #: ../data/language-specs/cobol.lang.h:10
 #: ../data/language-specs/csharp.lang.h:15
-#: ../data/language-specs/css.lang.h:16 ../data/language-specs/def.lang.h:57
+#: ../data/language-specs/css.lang.h:15 ../data/language-specs/def.lang.h:57
 #: ../data/language-specs/d.lang.h:15 ../data/language-specs/dosbatch.lang.h:6
 #: ../data/language-specs/eiffel.lang.h:15
 #: ../data/language-specs/erlang.lang.h:12
@@ -344,7 +343,7 @@ msgstr "Objeto ASP"
 #. A function name (also: methods for classes)
 #: ../data/language-specs/asp.lang.h:6
 #: ../data/language-specs/changelog.lang.h:6
-#: ../data/language-specs/cg.lang.h:11 ../data/language-specs/css.lang.h:9
+#: ../data/language-specs/cg.lang.h:11 ../data/language-specs/css.lang.h:8
 #: ../data/language-specs/def.lang.h:32 ../data/language-specs/gap.lang.h:4
 #: ../data/language-specs/gdb-log.lang.h:4
 #: ../data/language-specs/gtk-doc.lang.h:3
@@ -572,7 +571,7 @@ msgstr "Nombre"
 #. * to a #GtkSourceBuffer.
 #.
 #: ../data/language-specs/changelog.lang.h:8
-#: ../data/language-specs/cmake.lang.h:7 ../data/language-specs/css.lang.h:13
+#: ../data/language-specs/cmake.lang.h:7 ../data/language-specs/css.lang.h:12
 #: ../data/language-specs/desktop.lang.h:12
 #: ../data/language-specs/diff.lang.h:9 ../data/language-specs/dot.lang.h:6
 #: ../data/language-specs/dpatch.lang.h:2
@@ -657,7 +656,7 @@ msgstr "Lenguaje de sombras CG"
 
 #. Any erroneous construct
 #: ../data/language-specs/cg.lang.h:8 ../data/language-specs/cobol.lang.h:4
-#: ../data/language-specs/csharp.lang.h:7 ../data/language-specs/css.lang.h:8
+#: ../data/language-specs/csharp.lang.h:7 ../data/language-specs/css.lang.h:7
 #: ../data/language-specs/def.lang.h:28 ../data/language-specs/d.lang.h:7
 #: ../data/language-specs/dot.lang.h:3 ../data/language-specs/go.lang.h:6
 #: ../data/language-specs/html.lang.h:5
@@ -734,7 +733,7 @@ msgid "Color"
 msgstr "Color"
 
 #. Translator: it is a type of number
-#: ../data/language-specs/css.lang.h:6 ../data/language-specs/fcl.lang.h:3
+#: ../data/language-specs/css.lang.h:5 ../data/language-specs/fcl.lang.h:3
 #: ../data/language-specs/fortran.lang.h:4 ../data/language-specs/gap.lang.h:3
 #: ../data/language-specs/gtkrc.lang.h:4
 #: ../data/language-specs/haskell.lang.h:4 ../data/language-specs/ini.lang.h:5
@@ -744,31 +743,31 @@ msgstr "Color"
 msgid "Decimal"
 msgstr "Decimal"
 
-#: ../data/language-specs/css.lang.h:7
+#: ../data/language-specs/css.lang.h:6
 msgid "Dimension"
 msgstr "Dimensión"
 
-#: ../data/language-specs/css.lang.h:10
+#: ../data/language-specs/css.lang.h:9
 msgid "ID Selector"
 msgstr "Selector de ID"
 
-#: ../data/language-specs/css.lang.h:12
+#: ../data/language-specs/css.lang.h:11
 msgid "Known Property Value"
 msgstr "Valor de propiedad conocido"
 
-#: ../data/language-specs/css.lang.h:14
+#: ../data/language-specs/css.lang.h:13
 msgid "Others 2"
 msgstr "Otros 2"
 
-#: ../data/language-specs/css.lang.h:15
+#: ../data/language-specs/css.lang.h:14
 msgid "Others 3"
 msgstr "Otros 3"
 
-#: ../data/language-specs/css.lang.h:17
+#: ../data/language-specs/css.lang.h:16
 msgid "Tag Name Selector"
 msgstr "Selector de nombre de etiqueta"
 
-#: ../data/language-specs/css.lang.h:18
+#: ../data/language-specs/css.lang.h:17
 msgid "at-rules"
 msgstr "Reglas at"
 
@@ -1838,7 +1837,7 @@ msgstr "Definición"
 
 #: ../data/language-specs/rpmspec.lang.h:5
 msgid "Directory Macro"
-msgstr "Macro de directorio"
+msgstr "Macro de carpeta"
 
 #: ../data/language-specs/rpmspec.lang.h:6
 msgid "Email"
@@ -2009,7 +2008,6 @@ msgid "Verbatim Block"
 msgstr "Bloque verbatim"
 
 #: ../data/language-specs/t2t.lang.h:17
-#| msgid "Text2Tags"
 msgid "txt2tags"
 msgstr "txt2tags"
 
@@ -2633,14 +2631,14 @@ msgstr "Indica si se debería ocultar el lenguaje al usuario"
 
 #: ../gtksourceview/gtksourcelanguagemanager.c:150
 msgid "Language specification directories"
-msgstr "Directorios de especificaciones de lenguajes"
+msgstr "Carpetas de especificaciones de lenguajes"
 
 #: ../gtksourceview/gtksourcelanguagemanager.c:151
 msgid ""
 "List of directories where the language specification files (.lang) are "
 "located"
 msgstr ""
-"Lista de directorios en los que se hallan los archivo de especificación de "
+"Lista de carpetas en las que se encuentran los archivo de especificación de "
 "lenguajes (.lang)"
 
 #: ../gtksourceview/gtksourcelanguagemanager.c:160
@@ -2746,8 +2744,7 @@ msgstr "Nombre de la tipografía del cuerpo"
 #: ../gtksourceview/gtksourceprintcompositor.c:597
 msgid "Name of the font to use for the text body (e.g. \"Monospace 10\")"
 msgstr ""
-"Nombre de la tipografía que usar para el cuerpo del texto (ej. «Monospace "
-"10»)"
+"Nombre de la tipografía que usar para el cuerpo del texto (ej. «Monospace 10»)"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:620
 msgid "Line Numbers Font Name"
@@ -2776,8 +2773,7 @@ msgstr "Nombre de la tipografía del pie"
 #: ../gtksourceview/gtksourceprintcompositor.c:669
 msgid "Name of the font to use for the page footer (e.g. \"Monospace 10\")"
 msgstr ""
-"Nombre de la tipografía que usar para el pie de la página (ej. «Monospace "
-"10»)"
+"Nombre de la tipografía que usar para el pie de la página (ej. «Monospace 10»)"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:685
 msgid "Number of pages"
@@ -2902,7 +2898,7 @@ msgstr "Ruta de búsqueda del estilo"
 #: ../gtksourceview/gtksourcestyleschememanager.c:153
 msgid "List of directories and files where the style schemes are located"
 msgstr ""
-"Lista de directorios y archivos en los que se hallan los archivos de estilos"
+"Lista de carpetas y archivos en los que se encuentran los archivos de estilos"
 
 #: ../gtksourceview/gtksourcestyleschememanager.c:161
 msgid "Scheme ids"
@@ -2989,8 +2985,8 @@ msgid ""
 "HOME and END keys move to first/last non whitespace characters on line "
 "before going to the start/end of the line"
 msgstr ""
-"Las teclas «Inicio» y «Fin» situarán el cursor en el primer/último carácter "
-"no blanco de la línea antes de ir al inicio/fin de la línea"
+"Las teclas «Inicio» y «Fin» situarán el cursor en el primer/último carácter no "
+"blanco de la línea antes de ir al inicio/fin de la línea"
 
 #: ../gtksourceview/gtksourceview.c:431
 msgid "Highlight current line"
