@@ -4,20 +4,21 @@
 #
 # G Karunakar <karunakar@freedomink.org>, 2003.
 # Ravishankar Shrivastava <raviratlami@yahoo.com>, 2004.
-# Rajesh Ranjan <rranjan@redhat.com>, 2005, 2006, 2008.
+# Rajesh Ranjan <rranjan@redhat.com>, 2005, 2006, 2008, 2011.
 # Rajesh Ranjan <rajesh672@gmail.com>, 2009.
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview.master.hi\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gtksourceview&component=general\n"
-"POT-Creation-Date: 2011-01-13 13:12+0000\n"
-"PO-Revision-Date: 2011-03-28 13:46+0530\n"
-"Last-Translator: Rajesh Ranjan\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=gtksourceview&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2011-08-01 16:05+0000\n"
+"PO-Revision-Date: 2011-09-15 12:07+0530\n"
+"Last-Translator: Rajesh <rranjan>\n"
 "Language-Team: Hindi <Indlinux>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
+"X-Generator: Lokalize 1.2\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 "\n"
 "\n"
@@ -27,6 +28,7 @@ msgstr ""
 "\n"
 "\n"
 "\n"
+"Language: hi\n"
 
 #: ../data/glade/gtksourceview.xml.in.h:1
 msgid "After"
@@ -47,59 +49,52 @@ msgstr "हमेशा"
 msgid "Before"
 msgstr "पहले"
 
-#: ../data/glade/gtksourceview.xml.in.h:5
-#, fuzzy
+#. Translators: It is related to an option of a set of values
+#: ../data/glade/gtksourceview.xml.in.h:6
 #| msgid "Variable"
 msgid "Disabled"
 msgstr "अक्षम"
 
-#: ../data/glade/gtksourceview.xml.in.h:6
-#, fuzzy
+#: ../data/glade/gtksourceview.xml.in.h:7
 #| msgid "The gutters' GtkSourceView"
 msgid "GtkSourceView"
-msgstr "gutters' GtkSourceView"
-
-#: ../data/glade/gtksourceview.xml.in.h:7
-#, fuzzy
-#| msgid "POD heading"
-msgid "Leading"
-msgstr "सबसे आगे का"
+msgstr "GtkSourceView"
 
 #: ../data/glade/gtksourceview.xml.in.h:8
-#, fuzzy
+#| msgid "POD heading"
+msgid "Leading"
+msgstr "अग्रणी"
+
+#: ../data/glade/gtksourceview.xml.in.h:9
 #| msgid "Underline"
 msgid "Newline"
 msgstr "नई-पंक्ति"
 
-#: ../data/glade/gtksourceview.xml.in.h:9
+#: ../data/glade/gtksourceview.xml.in.h:10
 msgid "Non Breaking Whitespace"
 msgstr ""
 
-#: ../data/glade/gtksourceview.xml.in.h:10
-#, fuzzy
+#: ../data/glade/gtksourceview.xml.in.h:11
 #| msgid "Draw Spaces"
 msgid "Space"
-msgstr "खाली जगह"
+msgstr "स्पेस "
 
-#: ../data/glade/gtksourceview.xml.in.h:11
-#, fuzzy
+#: ../data/glade/gtksourceview.xml.in.h:12
 #| msgid "Tag"
 msgid "Tab"
 msgstr "टैब"
 
-#: ../data/glade/gtksourceview.xml.in.h:12
+#: ../data/glade/gtksourceview.xml.in.h:13
 #: ../gtksourceview/gtksourcecompletionitem.c:255
-#: ../gtksourceview/gtksourcegutterrenderertext.c:401
-#, fuzzy
+#: ../gtksourceview/gtksourcegutterrenderertext.c:403
 #| msgid "Text2Tags"
 msgid "Text"
 msgstr "पाठ"
 
-#: ../data/glade/gtksourceview.xml.in.h:13
-#, fuzzy
+#: ../data/glade/gtksourceview.xml.in.h:14
 #| msgid "Trailing Tab"
 msgid "Trailing"
-msgstr "पीछा करता टैब"
+msgstr "पीछा करता"
 
 #: ../data/language-specs/ada.lang.h:1
 msgid "Ada"
@@ -121,8 +116,8 @@ msgstr "यादृच्छिक बेस संख्या"
 #: ../data/language-specs/ocaml.lang.h:2 ../data/language-specs/ooc.lang.h:1
 #: ../data/language-specs/opal.lang.h:1 ../data/language-specs/php.lang.h:1
 #: ../data/language-specs/R.lang.h:2 ../data/language-specs/ruby.lang.h:3
-#: ../data/language-specs/vala.lang.h:1 ../data/language-specs/vbnet.lang.h:1
-#: ../data/language-specs/vhdl.lang.h:2
+#: ../data/language-specs/sml.lang.h:2 ../data/language-specs/vala.lang.h:1
+#: ../data/language-specs/vbnet.lang.h:1 ../data/language-specs/vhdl.lang.h:2
 msgid "Boolean value"
 msgstr "बूलिए मान"
 
@@ -130,10 +125,10 @@ msgstr "बूलिए मान"
 # libgnome-desktop/gnome-ditem-edit.c:736
 #. Any comment
 #: ../data/language-specs/ada.lang.h:4 ../data/language-specs/asp.lang.h:4
-#: ../data/language-specs/bennugd.lang.h:4 ../data/language-specs/boo.lang.h:4
+#: ../data/language-specs/bennugd.lang.h:3 ../data/language-specs/boo.lang.h:4
 #: ../data/language-specs/c.lang.h:4 ../data/language-specs/cg.lang.h:5
 #: ../data/language-specs/cobol.lang.h:2
-#: ../data/language-specs/csharp.lang.h:4 ../data/language-specs/css.lang.h:3
+#: ../data/language-specs/csharp.lang.h:4 ../data/language-specs/css.lang.h:4
 #: ../data/language-specs/def.lang.h:11 ../data/language-specs/d.lang.h:3
 #: ../data/language-specs/dosbatch.lang.h:2
 #: ../data/language-specs/dot.lang.h:2 ../data/language-specs/eiffel.lang.h:3
@@ -144,29 +139,27 @@ msgstr "बूलिए मान"
 #: ../data/language-specs/go.lang.h:3 ../data/language-specs/gtkrc.lang.h:2
 #: ../data/language-specs/haskell.lang.h:2
 #: ../data/language-specs/html.lang.h:3 ../data/language-specs/idl.lang.h:1
-#: ../data/language-specs/ini.lang.h:3 ../data/language-specs/java.lang.h:3
-#: ../data/language-specs/javascript.lang.h:2
-#: ../data/language-specs/latex.lang.h:2 ../data/language-specs/lua.lang.h:2
+#: ../data/language-specs/ini.lang.h:3 ../data/language-specs/latex.lang.h:2
+#: ../data/language-specs/lua.lang.h:2 ../data/language-specs/matlab.lang.h:2
 #: ../data/language-specs/nemerle.lang.h:4
 #: ../data/language-specs/nsis.lang.h:1 ../data/language-specs/ocaml.lang.h:4
-#: ../data/language-specs/ocl.lang.h:1 ../data/language-specs/octave.lang.h:3
+#: ../data/language-specs/ocl.lang.h:1 ../data/language-specs/octave.lang.h:4
 #: ../data/language-specs/ooc.lang.h:2 ../data/language-specs/opal.lang.h:2
 #: ../data/language-specs/pascal.lang.h:1 ../data/language-specs/perl.lang.h:2
 #: ../data/language-specs/php.lang.h:2 ../data/language-specs/po.lang.h:1
-#: ../data/language-specs/prolog.lang.h:1 ../data/language-specs/ruby.lang.h:5
+#: ../data/language-specs/prolog.lang.h:1 ../data/language-specs/ruby.lang.h:6
 #: ../data/language-specs/scheme.lang.h:2
 #: ../data/language-specs/scilab.lang.h:2 ../data/language-specs/sh.lang.h:1
-#: ../data/language-specs/sql.lang.h:1 ../data/language-specs/t2t.lang.h:3
-#: ../data/language-specs/texinfo.lang.h:1
+#: ../data/language-specs/sml.lang.h:4 ../data/language-specs/sql.lang.h:1
+#: ../data/language-specs/t2t.lang.h:3 ../data/language-specs/texinfo.lang.h:1
 #: ../data/language-specs/vala.lang.h:2 ../data/language-specs/vbnet.lang.h:2
 #: ../data/language-specs/verilog.lang.h:2
 #: ../data/language-specs/vhdl.lang.h:4 ../data/language-specs/xml.lang.h:4
 msgid "Comment"
 msgstr "टिप्पणी"
 
-#. map-to="def:others"
 #: ../data/language-specs/ada.lang.h:5 ../data/language-specs/asp.lang.h:5
-#: ../data/language-specs/bennugd.lang.h:5 ../data/language-specs/boo.lang.h:5
+#: ../data/language-specs/bennugd.lang.h:4 ../data/language-specs/boo.lang.h:5
 #: ../data/language-specs/c.lang.h:6 ../data/language-specs/cg.lang.h:6
 #: ../data/language-specs/cpp.lang.h:3 ../data/language-specs/csharp.lang.h:5
 #: ../data/language-specs/cuda.lang.h:2 ../data/language-specs/d.lang.h:5
@@ -176,20 +169,22 @@ msgstr "टिप्पणी"
 #: ../data/language-specs/fsharp.lang.h:5 ../data/language-specs/glsl.lang.h:4
 #: ../data/language-specs/go.lang.h:4 ../data/language-specs/gtkrc.lang.h:3
 #: ../data/language-specs/haskell.lang.h:3 ../data/language-specs/idl.lang.h:2
-#: ../data/language-specs/ini.lang.h:4 ../data/language-specs/java.lang.h:4
-#: ../data/language-specs/javascript.lang.h:5
+#: ../data/language-specs/ini.lang.h:4 ../data/language-specs/java.lang.h:3
+#: ../data/language-specs/javascript.lang.h:3
 #: ../data/language-specs/nemerle.lang.h:5
-#: ../data/language-specs/objc.lang.h:2 ../data/language-specs/ocaml.lang.h:5
-#: ../data/language-specs/ocl.lang.h:2 ../data/language-specs/ooc.lang.h:3
-#: ../data/language-specs/opal.lang.h:4 ../data/language-specs/pascal.lang.h:2
-#: ../data/language-specs/php.lang.h:4 ../data/language-specs/sparql.lang.h:3
+#: ../data/language-specs/objc.lang.h:2 ../data/language-specs/objj.lang.h:2
+#: ../data/language-specs/ocaml.lang.h:5 ../data/language-specs/ocl.lang.h:2
+#: ../data/language-specs/ooc.lang.h:3 ../data/language-specs/opal.lang.h:4
+#: ../data/language-specs/opencl.lang.h:1
+#: ../data/language-specs/pascal.lang.h:2 ../data/language-specs/php.lang.h:4
+#: ../data/language-specs/sml.lang.h:5 ../data/language-specs/sparql.lang.h:3
 #: ../data/language-specs/sql.lang.h:2 ../data/language-specs/vala.lang.h:3
 #: ../data/language-specs/vbnet.lang.h:3
 msgid "Data Type"
 msgstr "डेटा प्रकार"
 
 #. A decimal number: 1234
-#: ../data/language-specs/ada.lang.h:6 ../data/language-specs/bennugd.lang.h:6
+#: ../data/language-specs/ada.lang.h:6 ../data/language-specs/bennugd.lang.h:5
 #: ../data/language-specs/c.lang.h:7 ../data/language-specs/cg.lang.h:7
 #: ../data/language-specs/csharp.lang.h:6 ../data/language-specs/def.lang.h:19
 #: ../data/language-specs/d.lang.h:6 ../data/language-specs/eiffel.lang.h:6
@@ -198,35 +193,34 @@ msgstr "डेटा प्रकार"
 #: ../data/language-specs/nemerle.lang.h:6
 #: ../data/language-specs/ocaml.lang.h:6 ../data/language-specs/ooc.lang.h:4
 #: ../data/language-specs/opal.lang.h:5 ../data/language-specs/php.lang.h:5
-#: ../data/language-specs/python.lang.h:7 ../data/language-specs/ruby.lang.h:7
-#: ../data/language-specs/vala.lang.h:4
+#: ../data/language-specs/python.lang.h:7 ../data/language-specs/ruby.lang.h:8
 msgid "Decimal number"
 msgstr "दशमलव संख्या"
 
 #. map to nothing
-#: ../data/language-specs/ada.lang.h:7 ../data/language-specs/bennugd.lang.h:8
-#: ../data/language-specs/c.lang.h:9 ../data/language-specs/cg.lang.h:9
-#: ../data/language-specs/csharp.lang.h:8
+#: ../data/language-specs/ada.lang.h:7 ../data/language-specs/c.lang.h:8
+#: ../data/language-specs/cg.lang.h:9 ../data/language-specs/csharp.lang.h:8
 #: ../data/language-specs/eiffel.lang.h:9
 #: ../data/language-specs/fsharp.lang.h:7 ../data/language-specs/go.lang.h:7
 #: ../data/language-specs/haskell.lang.h:5
-#: ../data/language-specs/java.lang.h:7 ../data/language-specs/lua.lang.h:3
-#: ../data/language-specs/ocaml.lang.h:8 ../data/language-specs/ooc.lang.h:7
-#: ../data/language-specs/php.lang.h:8 ../data/language-specs/prolog.lang.h:3
-#: ../data/language-specs/python.lang.h:8 ../data/language-specs/ruby.lang.h:8
-#: ../data/language-specs/texinfo.lang.h:2
+#: ../data/language-specs/java.lang.h:5
+#: ../data/language-specs/javascript.lang.h:4
+#: ../data/language-specs/lua.lang.h:3 ../data/language-specs/ocaml.lang.h:8
+#: ../data/language-specs/ooc.lang.h:7 ../data/language-specs/php.lang.h:8
+#: ../data/language-specs/prolog.lang.h:3
+#: ../data/language-specs/python.lang.h:8 ../data/language-specs/ruby.lang.h:9
+#: ../data/language-specs/sml.lang.h:7 ../data/language-specs/texinfo.lang.h:2
 #: ../data/language-specs/verilog.lang.h:5
 msgid "Escaped Character"
 msgstr "एस्केप वर्ण"
 
 #. keywords: "if", "for", "while", etc.
 #: ../data/language-specs/ada.lang.h:8 ../data/language-specs/asp.lang.h:7
-#: ../data/language-specs/awk.lang.h:2
-#: ../data/language-specs/bennugd.lang.h:12
-#: ../data/language-specs/boo.lang.h:7 ../data/language-specs/c.lang.h:13
+#: ../data/language-specs/awk.lang.h:2 ../data/language-specs/bennugd.lang.h:9
+#: ../data/language-specs/boo.lang.h:7 ../data/language-specs/c.lang.h:12
 #: ../data/language-specs/cg.lang.h:14 ../data/language-specs/cobol.lang.h:5
 #: ../data/language-specs/cpp.lang.h:4 ../data/language-specs/csharp.lang.h:10
-#: ../data/language-specs/css.lang.h:8 ../data/language-specs/cuda.lang.h:6
+#: ../data/language-specs/css.lang.h:11 ../data/language-specs/cuda.lang.h:6
 #: ../data/language-specs/def.lang.h:36 ../data/language-specs/d.lang.h:10
 #: ../data/language-specs/dosbatch.lang.h:4
 #: ../data/language-specs/dot.lang.h:5 ../data/language-specs/eiffel.lang.h:12
@@ -237,31 +231,34 @@ msgstr "एस्केप वर्ण"
 #: ../data/language-specs/glsl.lang.h:5 ../data/language-specs/go.lang.h:12
 #: ../data/language-specs/gtkrc.lang.h:7
 #: ../data/language-specs/haskell.lang.h:9 ../data/language-specs/idl.lang.h:4
-#: ../data/language-specs/ini.lang.h:7 ../data/language-specs/java.lang.h:11
-#: ../data/language-specs/javascript.lang.h:10
+#: ../data/language-specs/imagej.lang.h:6 ../data/language-specs/ini.lang.h:7
+#: ../data/language-specs/java.lang.h:11
+#: ../data/language-specs/javascript.lang.h:8
 #: ../data/language-specs/lua.lang.h:5
 #: ../data/language-specs/nemerle.lang.h:10
-#: ../data/language-specs/objc.lang.h:3 ../data/language-specs/ocaml.lang.h:10
-#: ../data/language-specs/ocl.lang.h:3 ../data/language-specs/octave.lang.h:7
-#: ../data/language-specs/ooc.lang.h:12 ../data/language-specs/opal.lang.h:8
+#: ../data/language-specs/objc.lang.h:3 ../data/language-specs/objj.lang.h:4
+#: ../data/language-specs/ocaml.lang.h:10 ../data/language-specs/ocl.lang.h:3
+#: ../data/language-specs/octave.lang.h:8 ../data/language-specs/ooc.lang.h:12
+#: ../data/language-specs/opal.lang.h:8 ../data/language-specs/opencl.lang.h:6
 #: ../data/language-specs/pascal.lang.h:4 ../data/language-specs/perl.lang.h:9
 #: ../data/language-specs/php.lang.h:14 ../data/language-specs/po.lang.h:3
 #: ../data/language-specs/prolog.lang.h:4
 #: ../data/language-specs/python.lang.h:11 ../data/language-specs/R.lang.h:6
-#: ../data/language-specs/ruby.lang.h:12
+#: ../data/language-specs/ruby.lang.h:13
 #: ../data/language-specs/scheme.lang.h:4
 #: ../data/language-specs/scilab.lang.h:5 ../data/language-specs/sh.lang.h:5
-#: ../data/language-specs/sparql.lang.h:7 ../data/language-specs/sql.lang.h:6
+#: ../data/language-specs/sml.lang.h:9 ../data/language-specs/sparql.lang.h:7
+#: ../data/language-specs/sql.lang.h:6
 #: ../data/language-specs/systemverilog.lang.h:2
 #: ../data/language-specs/tcl.lang.h:1 ../data/language-specs/texinfo.lang.h:6
-#: ../data/language-specs/vala.lang.h:7 ../data/language-specs/vbnet.lang.h:4
+#: ../data/language-specs/vala.lang.h:5 ../data/language-specs/vbnet.lang.h:4
 #: ../data/language-specs/verilog.lang.h:9
 #: ../data/language-specs/vhdl.lang.h:5
 msgid "Keyword"
 msgstr "कीवर्ड"
 
 #: ../data/language-specs/ada.lang.h:9 ../data/language-specs/asp.lang.h:10
-#: ../data/language-specs/bennugd.lang.h:14 ../data/language-specs/c.lang.h:15
+#: ../data/language-specs/bennugd.lang.h:11 ../data/language-specs/c.lang.h:14
 #: ../data/language-specs/cg.lang.h:16 ../data/language-specs/csharp.lang.h:12
 #: ../data/language-specs/forth.lang.h:9
 #: ../data/language-specs/fsharp.lang.h:15
@@ -269,23 +266,22 @@ msgstr "कीवर्ड"
 #: ../data/language-specs/haskell.lang.h:11
 #: ../data/language-specs/idl.lang.h:5
 #: ../data/language-specs/nemerle.lang.h:14
-#: ../data/language-specs/pascal.lang.h:6
+#: ../data/language-specs/objj.lang.h:7 ../data/language-specs/pascal.lang.h:6
 #: ../data/language-specs/vbnet.lang.h:5
 msgid "Preprocessor"
 msgstr "प्री-प्रोसेसर"
 
 #: ../data/language-specs/ada.lang.h:10
 #: ../data/language-specs/csharp.lang.h:13
-#: ../data/language-specs/vala.lang.h:9
 #: ../data/language-specs/verilog.lang.h:11
 #: ../data/language-specs/vhdl.lang.h:7
 msgid "Real number"
 msgstr "वास्तविक संख्या"
 
 #: ../data/language-specs/ada.lang.h:11 ../data/language-specs/asp.lang.h:11
-#: ../data/language-specs/bennugd.lang.h:15
+#: ../data/language-specs/bennugd.lang.h:12
 #: ../data/language-specs/boo.lang.h:13 ../data/language-specs/chdr.lang.h:2
-#: ../data/language-specs/c.lang.h:17 ../data/language-specs/cg.lang.h:17
+#: ../data/language-specs/c.lang.h:16 ../data/language-specs/cg.lang.h:17
 #: ../data/language-specs/cobol.lang.h:8 ../data/language-specs/cpp.lang.h:5
 #: ../data/language-specs/csharp.lang.h:14
 #: ../data/language-specs/cuda.lang.h:7 ../data/language-specs/d.lang.h:13
@@ -300,20 +296,22 @@ msgstr "वास्तविक संख्या"
 #: ../data/language-specs/idl.lang.h:6 ../data/language-specs/java.lang.h:15
 #: ../data/language-specs/makefile.lang.h:4
 #: ../data/language-specs/nemerle.lang.h:15
-#: ../data/language-specs/objc.lang.h:5 ../data/language-specs/ocaml.lang.h:16
-#: ../data/language-specs/ooc.lang.h:17 ../data/language-specs/opal.lang.h:11
+#: ../data/language-specs/objc.lang.h:5 ../data/language-specs/objj.lang.h:8
+#: ../data/language-specs/ocaml.lang.h:16 ../data/language-specs/ooc.lang.h:17
+#: ../data/language-specs/opal.lang.h:11
+#: ../data/language-specs/opencl.lang.h:9
 #: ../data/language-specs/pascal.lang.h:7
 #: ../data/language-specs/prolog.lang.h:8
-#: ../data/language-specs/scheme.lang.h:6
+#: ../data/language-specs/scheme.lang.h:6 ../data/language-specs/sml.lang.h:11
 #: ../data/language-specs/sparql.lang.h:14 ../data/language-specs/sql.lang.h:9
 #: ../data/language-specs/systemverilog.lang.h:3
-#: ../data/language-specs/vala.lang.h:10 ../data/language-specs/vbnet.lang.h:6
+#: ../data/language-specs/vala.lang.h:7 ../data/language-specs/vbnet.lang.h:6
 #: ../data/language-specs/verilog.lang.h:12
 #: ../data/language-specs/vhdl.lang.h:8
 msgid "Sources"
 msgstr "सोर्सेज़"
 
-#: ../data/language-specs/ada.lang.h:12 ../data/language-specs/c.lang.h:19
+#: ../data/language-specs/ada.lang.h:12 ../data/language-specs/c.lang.h:18
 #: ../data/language-specs/cg.lang.h:18 ../data/language-specs/go.lang.h:15
 #: ../data/language-specs/java.lang.h:16 ../data/language-specs/ooc.lang.h:18
 msgid "Storage Class"
@@ -322,11 +320,10 @@ msgstr "भंडार वर्ग"
 # src/gconf-key-editor.c:94
 #. A string constant: "this is a string"
 #: ../data/language-specs/ada.lang.h:13 ../data/language-specs/asp.lang.h:13
-#: ../data/language-specs/bennugd.lang.h:16
-#: ../data/language-specs/boo.lang.h:15 ../data/language-specs/c.lang.h:20
+#: ../data/language-specs/boo.lang.h:15 ../data/language-specs/c.lang.h:19
 #: ../data/language-specs/cobol.lang.h:10
 #: ../data/language-specs/csharp.lang.h:15
-#: ../data/language-specs/css.lang.h:13 ../data/language-specs/def.lang.h:57
+#: ../data/language-specs/css.lang.h:16 ../data/language-specs/def.lang.h:57
 #: ../data/language-specs/d.lang.h:15 ../data/language-specs/dosbatch.lang.h:6
 #: ../data/language-specs/eiffel.lang.h:15
 #: ../data/language-specs/erlang.lang.h:12
@@ -335,25 +332,24 @@ msgstr "भंडार वर्ग"
 #: ../data/language-specs/gdb-log.lang.h:10
 #: ../data/language-specs/go.lang.h:16 ../data/language-specs/gtkrc.lang.h:9
 #: ../data/language-specs/haskell.lang.h:13
-#: ../data/language-specs/idl.lang.h:7 ../data/language-specs/ini.lang.h:9
-#: ../data/language-specs/java.lang.h:17
-#: ../data/language-specs/javascript.lang.h:15
-#: ../data/language-specs/lua.lang.h:10
+#: ../data/language-specs/idl.lang.h:7 ../data/language-specs/imagej.lang.h:10
+#: ../data/language-specs/ini.lang.h:9 ../data/language-specs/java.lang.h:17
+#: ../data/language-specs/lua.lang.h:10 ../data/language-specs/matlab.lang.h:5
 #: ../data/language-specs/nemerle.lang.h:16
 #: ../data/language-specs/nsis.lang.h:5 ../data/language-specs/objc.lang.h:6
-#: ../data/language-specs/ocaml.lang.h:18 ../data/language-specs/ocl.lang.h:7
-#: ../data/language-specs/octave.lang.h:11
+#: ../data/language-specs/objj.lang.h:9 ../data/language-specs/ocaml.lang.h:18
+#: ../data/language-specs/ocl.lang.h:7 ../data/language-specs/octave.lang.h:15
 #: ../data/language-specs/ooc.lang.h:19 ../data/language-specs/opal.lang.h:12
 #: ../data/language-specs/pascal.lang.h:8
 #: ../data/language-specs/perl.lang.h:19 ../data/language-specs/php.lang.h:20
-#: ../data/language-specs/po.lang.h:8 ../data/language-specs/prolog.lang.h:9
+#: ../data/language-specs/po.lang.h:6 ../data/language-specs/prolog.lang.h:9
 #: ../data/language-specs/python.lang.h:17
-#: ../data/language-specs/ruby.lang.h:21
+#: ../data/language-specs/ruby.lang.h:22
 #: ../data/language-specs/scheme.lang.h:7
-#: ../data/language-specs/scilab.lang.h:9 ../data/language-specs/sh.lang.h:9
-#: ../data/language-specs/sql.lang.h:10
+#: ../data/language-specs/scilab.lang.h:9 ../data/language-specs/sh.lang.h:8
+#: ../data/language-specs/sml.lang.h:13 ../data/language-specs/sql.lang.h:10
 #: ../data/language-specs/texinfo.lang.h:10
-#: ../data/language-specs/vala.lang.h:11 ../data/language-specs/vbnet.lang.h:8
+#: ../data/language-specs/vala.lang.h:8 ../data/language-specs/vbnet.lang.h:8
 #: ../data/language-specs/verilog.lang.h:13
 #: ../data/language-specs/vhdl.lang.h:9
 msgid "String"
@@ -370,13 +366,12 @@ msgstr "ASP वस्तु"
 #. A function name (also: methods for classes)
 #: ../data/language-specs/asp.lang.h:6
 #: ../data/language-specs/changelog.lang.h:6
-#: ../data/language-specs/cg.lang.h:11 ../data/language-specs/css.lang.h:7
+#: ../data/language-specs/cg.lang.h:11 ../data/language-specs/css.lang.h:9
 #: ../data/language-specs/def.lang.h:32 ../data/language-specs/gap.lang.h:4
 #: ../data/language-specs/gdb-log.lang.h:4
 #: ../data/language-specs/gtk-doc.lang.h:3
-#: ../data/language-specs/javascript.lang.h:7
-#: ../data/language-specs/lua.lang.h:4 ../data/language-specs/octave.lang.h:6
-#: ../data/language-specs/scheme.lang.h:3
+#: ../data/language-specs/javascript.lang.h:5
+#: ../data/language-specs/lua.lang.h:4 ../data/language-specs/scheme.lang.h:3
 #: ../data/language-specs/scilab.lang.h:4 ../data/language-specs/sh.lang.h:3
 #: ../data/language-specs/sparql.lang.h:4 ../data/language-specs/sql.lang.h:5
 msgid "Function"
@@ -393,12 +388,14 @@ msgstr "संख्या"
 
 #. Operators: "+", "*", etc.
 #: ../data/language-specs/asp.lang.h:9
-#: ../data/language-specs/bennugd.lang.h:13
+#: ../data/language-specs/bennugd.lang.h:10
 #: ../data/language-specs/cmake.lang.h:6 ../data/language-specs/cobol.lang.h:7
 #: ../data/language-specs/def.lang.h:42
 #: ../data/language-specs/erlang.lang.h:10
-#: ../data/language-specs/nsis.lang.h:3 ../data/language-specs/perl.lang.h:11
-#: ../data/language-specs/php.lang.h:17 ../data/language-specs/prolog.lang.h:6
+#: ../data/language-specs/imagej.lang.h:7 ../data/language-specs/nsis.lang.h:3
+#: ../data/language-specs/octave.lang.h:10
+#: ../data/language-specs/perl.lang.h:11 ../data/language-specs/php.lang.h:17
+#: ../data/language-specs/prolog.lang.h:6
 #: ../data/language-specs/sparql.lang.h:10
 msgid "Operator"
 msgstr "ऑपरेटर"
@@ -425,11 +422,11 @@ msgstr "पैटर्न"
 
 #: ../data/language-specs/awk.lang.h:4
 #: ../data/language-specs/dosbatch.lang.h:5
-#: ../data/language-specs/javascript.lang.h:14
+#: ../data/language-specs/javascript.lang.h:12
 #: ../data/language-specs/lua.lang.h:9 ../data/language-specs/m4.lang.h:3
 #: ../data/language-specs/perl.lang.h:18 ../data/language-specs/php.lang.h:19
 #: ../data/language-specs/python.lang.h:15
-#: ../data/language-specs/ruby.lang.h:19 ../data/language-specs/sh.lang.h:7
+#: ../data/language-specs/ruby.lang.h:20 ../data/language-specs/sh.lang.h:7
 #: ../data/language-specs/tcl.lang.h:2
 msgid "Scripts"
 msgstr "स्क्रिप्ट्स"
@@ -439,11 +436,12 @@ msgstr "स्क्रिप्ट्स"
 #: ../data/language-specs/haskell.lang.h:15
 #: ../data/language-specs/ini.lang.h:10
 #: ../data/language-specs/makefile.lang.h:8
-#: ../data/language-specs/nsis.lang.h:6 ../data/language-specs/perl.lang.h:21
-#: ../data/language-specs/php.lang.h:21
+#: ../data/language-specs/nsis.lang.h:6
+#: ../data/language-specs/octave.lang.h:16
+#: ../data/language-specs/perl.lang.h:21 ../data/language-specs/php.lang.h:21
 #: ../data/language-specs/pkgconfig.lang.h:3
 #: ../data/language-specs/prolog.lang.h:10
-#: ../data/language-specs/ruby.lang.h:23 ../data/language-specs/sh.lang.h:11
+#: ../data/language-specs/ruby.lang.h:24 ../data/language-specs/sh.lang.h:10
 #: ../data/language-specs/sparql.lang.h:15 ../data/language-specs/tcl.lang.h:4
 msgid "Variable"
 msgstr "चर"
@@ -454,74 +452,43 @@ msgstr "awk"
 
 #: ../data/language-specs/bennugd.lang.h:1
 msgid "BennuGD"
-msgstr ""
-
-#. A character constant: 'c'
-#: ../data/language-specs/bennugd.lang.h:3 ../data/language-specs/c.lang.h:3
-#: ../data/language-specs/csharp.lang.h:3 ../data/language-specs/def.lang.h:9
-#: ../data/language-specs/gap.lang.h:1 ../data/language-specs/go.lang.h:2
-#: ../data/language-specs/haskell.lang.h:1
-#: ../data/language-specs/java.lang.h:2
-#: ../data/language-specs/nemerle.lang.h:3
-#: ../data/language-specs/vhdl.lang.h:3
-msgid "Character"
-msgstr "अक्षर"
-
-#. Any erroneous construct
-#: ../data/language-specs/bennugd.lang.h:7 ../data/language-specs/c.lang.h:8
-#: ../data/language-specs/cg.lang.h:8 ../data/language-specs/cobol.lang.h:4
-#: ../data/language-specs/csharp.lang.h:7 ../data/language-specs/css.lang.h:6
-#: ../data/language-specs/def.lang.h:28 ../data/language-specs/d.lang.h:7
-#: ../data/language-specs/dot.lang.h:3 ../data/language-specs/go.lang.h:6
-#: ../data/language-specs/html.lang.h:5 ../data/language-specs/java.lang.h:6
-#: ../data/language-specs/javascript.lang.h:6
-#: ../data/language-specs/nemerle.lang.h:7
-#: ../data/language-specs/ocaml.lang.h:7 ../data/language-specs/ooc.lang.h:6
-#: ../data/language-specs/opal.lang.h:6 ../data/language-specs/perl.lang.h:4
-#: ../data/language-specs/php.lang.h:6 ../data/language-specs/prolog.lang.h:2
-#: ../data/language-specs/vala.lang.h:5
-#: ../data/language-specs/verilog.lang.h:4 ../data/language-specs/xml.lang.h:8
-msgid "Error"
-msgstr "त्रुटि"
+msgstr "BennuGD"
 
 #. A floating point constant: 2.3e10
-#: ../data/language-specs/bennugd.lang.h:9 ../data/language-specs/c.lang.h:10
+#: ../data/language-specs/bennugd.lang.h:6 ../data/language-specs/c.lang.h:9
 #: ../data/language-specs/cg.lang.h:10 ../data/language-specs/def.lang.h:30
 #: ../data/language-specs/d.lang.h:8 ../data/language-specs/erlang.lang.h:8
 #: ../data/language-specs/go.lang.h:8 ../data/language-specs/nemerle.lang.h:8
 #: ../data/language-specs/ooc.lang.h:9 ../data/language-specs/php.lang.h:9
 #: ../data/language-specs/python.lang.h:9 ../data/language-specs/R.lang.h:4
-#: ../data/language-specs/ruby.lang.h:9
+#: ../data/language-specs/ruby.lang.h:10
 msgid "Floating point number"
 msgstr "फ्लोटिंग पाइंट संख्या"
 
-#: ../data/language-specs/bennugd.lang.h:10 ../data/language-specs/c.lang.h:11
+#: ../data/language-specs/bennugd.lang.h:7 ../data/language-specs/c.lang.h:10
 #: ../data/language-specs/cg.lang.h:12 ../data/language-specs/csharp.lang.h:9
 #: ../data/language-specs/d.lang.h:9 ../data/language-specs/eiffel.lang.h:11
 #: ../data/language-specs/go.lang.h:10 ../data/language-specs/nemerle.lang.h:9
 #: ../data/language-specs/ooc.lang.h:11 ../data/language-specs/php.lang.h:12
-#: ../data/language-specs/vala.lang.h:6
 msgid "Hexadecimal number"
 msgstr "हेक्साडेसीमल संख्या"
 
 #. Any variable name
-#: ../data/language-specs/bennugd.lang.h:11
+#: ../data/language-specs/bennugd.lang.h:8
 #: ../data/language-specs/def.lang.h:34 ../data/language-specs/php.lang.h:13
 msgid "Identifier"
 msgstr "पहचानकर्ता"
 
 #: ../data/language-specs/bibtex.lang.h:1
 msgid "BibTeX"
-msgstr ""
+msgstr "BibTeX"
 
 #: ../data/language-specs/bibtex.lang.h:2
-#, fuzzy
 #| msgid "Entity"
 msgid "Entries"
 msgstr "प्रविष्टियाँ"
 
 #: ../data/language-specs/bibtex.lang.h:3
-#, fuzzy
 #| msgid "File"
 msgid "Field"
 msgstr "क्षेत्र"
@@ -533,11 +500,12 @@ msgstr "क्षेत्र"
 #: ../data/language-specs/gtk-doc.lang.h:6
 #: ../data/language-specs/haddock.lang.h:14
 #: ../data/language-specs/html.lang.h:7 ../data/language-specs/latex.lang.h:6
-#: ../data/language-specs/mallard.lang.h:4 ../data/language-specs/t2t.lang.h:6
-#: ../data/language-specs/texinfo.lang.h:8 ../data/language-specs/xml.lang.h:9
-#: ../data/language-specs/xslt.lang.h:2
+#: ../data/language-specs/mallard.lang.h:4
+#: ../data/language-specs/markdown.lang.h:14
+#: ../data/language-specs/t2t.lang.h:6 ../data/language-specs/texinfo.lang.h:8
+#: ../data/language-specs/xml.lang.h:9 ../data/language-specs/xslt.lang.h:2
 #: ../gtksourceview/gtksourcecompletionitem.c:242
-#: ../gtksourceview/gtksourcegutterrenderertext.c:393
+#: ../gtksourceview/gtksourcegutterrenderertext.c:395
 msgid "Markup"
 msgstr "मार्कअप"
 
@@ -546,8 +514,9 @@ msgid "Boo"
 msgstr "बू"
 
 #: ../data/language-specs/boo.lang.h:2 ../data/language-specs/desktop.lang.h:3
-#: ../data/language-specs/d.lang.h:2 ../data/language-specs/libtool.lang.h:1
-#: ../data/language-specs/octave.lang.h:2
+#: ../data/language-specs/d.lang.h:2 ../data/language-specs/imagej.lang.h:1
+#: ../data/language-specs/libtool.lang.h:1
+#: ../data/language-specs/objj.lang.h:1 ../data/language-specs/octave.lang.h:2
 #: ../data/language-specs/python.lang.h:2
 #: ../data/language-specs/scheme.lang.h:1
 #: ../data/language-specs/scilab.lang.h:1
@@ -572,21 +541,22 @@ msgstr "नेमस्पेस"
 #: ../data/language-specs/csharp.lang.h:11 ../data/language-specs/d.lang.h:11
 #: ../data/language-specs/fsharp.lang.h:13
 #: ../data/language-specs/java.lang.h:12
-#: ../data/language-specs/javascript.lang.h:11
+#: ../data/language-specs/javascript.lang.h:9
 #: ../data/language-specs/nemerle.lang.h:12
-#: ../data/language-specs/ooc.lang.h:13 ../data/language-specs/php.lang.h:15
-#: ../data/language-specs/vala.lang.h:8
+#: ../data/language-specs/objj.lang.h:5 ../data/language-specs/ooc.lang.h:13
+#: ../data/language-specs/php.lang.h:15 ../data/language-specs/vala.lang.h:6
 msgid "Null Value"
 msgstr "रिक्त मान"
 
-#: ../data/language-specs/boo.lang.h:12 ../data/language-specs/perl.lang.h:17
-#: ../data/language-specs/ruby.lang.h:17
+#: ../data/language-specs/boo.lang.h:12
+#: ../data/language-specs/javascript.lang.h:11
+#: ../data/language-specs/perl.lang.h:17 ../data/language-specs/ruby.lang.h:18
 msgid "Regular Expression"
 msgstr "नियमित (रेगुलर) एक्सप्रेशन."
 
 #: ../data/language-specs/boo.lang.h:14
 #: ../data/language-specs/python.lang.h:16
-#: ../data/language-specs/ruby.lang.h:20
+#: ../data/language-specs/ruby.lang.h:21
 msgid "Special Variable"
 msgstr "विशेष चर"
 
@@ -612,7 +582,7 @@ msgid "File"
 msgstr "फ़ाइल"
 
 #: ../data/language-specs/changelog.lang.h:7
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:462
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:464
 msgid "Name"
 msgstr "नाम"
 
@@ -628,7 +598,7 @@ msgstr "नाम"
 #. * to a #GtkSourceBuffer.
 #.
 #: ../data/language-specs/changelog.lang.h:8
-#: ../data/language-specs/cmake.lang.h:7 ../data/language-specs/css.lang.h:10
+#: ../data/language-specs/cmake.lang.h:7 ../data/language-specs/css.lang.h:13
 #: ../data/language-specs/desktop.lang.h:12
 #: ../data/language-specs/diff.lang.h:9 ../data/language-specs/dot.lang.h:6
 #: ../data/language-specs/dpatch.lang.h:2
@@ -656,62 +626,85 @@ msgstr "C/C++/ObjC शीर्षिका"
 msgid "C"
 msgstr "सी"
 
+#. A character constant: 'c'
+#: ../data/language-specs/c.lang.h:3 ../data/language-specs/csharp.lang.h:3
+#: ../data/language-specs/def.lang.h:9 ../data/language-specs/gap.lang.h:1
+#: ../data/language-specs/go.lang.h:2 ../data/language-specs/haskell.lang.h:1
+#: ../data/language-specs/java.lang.h:2
+#: ../data/language-specs/nemerle.lang.h:3 ../data/language-specs/sml.lang.h:3
+#: ../data/language-specs/vhdl.lang.h:3
+msgid "Character"
+msgstr "अक्षर"
+
 #: ../data/language-specs/c.lang.h:5 ../data/language-specs/cpp.lang.h:2
 #: ../data/language-specs/objc.lang.h:1 ../data/language-specs/opal.lang.h:3
 msgid "Common Defines"
 msgstr "सामान्य परिभाषा देता है"
 
-#: ../data/language-specs/c.lang.h:12 ../data/language-specs/cg.lang.h:13
-#: ../data/language-specs/go.lang.h:11
+#: ../data/language-specs/c.lang.h:11 ../data/language-specs/cg.lang.h:13
+#: ../data/language-specs/go.lang.h:11 ../data/language-specs/objj.lang.h:3
 msgid "Included File"
 msgstr "इनक्लूड फाइल"
 
-#: ../data/language-specs/c.lang.h:14 ../data/language-specs/cg.lang.h:15
+#: ../data/language-specs/c.lang.h:13 ../data/language-specs/cg.lang.h:15
 #: ../data/language-specs/d.lang.h:12 ../data/language-specs/go.lang.h:13
 #: ../data/language-specs/nemerle.lang.h:13
 #: ../data/language-specs/ooc.lang.h:15 ../data/language-specs/php.lang.h:16
 msgid "Octal number"
 msgstr "ऑक्टल संख्या"
 
-#: ../data/language-specs/c.lang.h:16
-#, fuzzy
+#: ../data/language-specs/c.lang.h:15
 #| msgid "Signal Name"
 msgid "Signal name"
 msgstr "संकेत नाम"
 
-#: ../data/language-specs/c.lang.h:18
+#: ../data/language-specs/c.lang.h:17
 msgid "Standard stream"
-msgstr ""
+msgstr "मानक धारा"
 
-#: ../data/language-specs/c.lang.h:21
+#: ../data/language-specs/c.lang.h:20
 msgid "printf Conversion"
 msgstr "printf वार्तालाप"
 
 #: ../data/language-specs/cg.lang.h:1
-#, fuzzy
 #| msgid "Encoding"
 msgid "Bindings"
 msgstr "बाइंडिंग"
 
+#. Translators: functions that are provided in the language
 #: ../data/language-specs/cg.lang.h:3 ../data/language-specs/erlang.lang.h:3
-#: ../data/language-specs/ruby.lang.h:4
+#: ../data/language-specs/imagej.lang.h:2
+#: ../data/language-specs/matlab.lang.h:1
+#: ../data/language-specs/octave.lang.h:3 ../data/language-specs/ruby.lang.h:5
 msgid "Builtin"
 msgstr "अंतर्निर्मित"
 
-# #-#-#-#-#  gnome-desktop.HEAD.hi.po (gnome-desktop-2.0.hi)  #-#-#-#-#
-# libgnome-desktop/gnome-ditem-edit.c:611
+# #-#-#-#-#  gnome-desktop.HEAD.hi.po (gnome-desktop-2.0.hi)  #-#-#-#-# libgnome-desktop/gnome-ditem-edit.c:611
 # libgnome-desktop/gnome-ditem-edit.c:710
 #: ../data/language-specs/cg.lang.h:4
-#, fuzzy
 #| msgid "Language"
 msgid "CG Shader Language"
-msgstr "भाषा"
+msgstr "CG शेडर भाषा"
+
+#. Any erroneous construct
+#: ../data/language-specs/cg.lang.h:8 ../data/language-specs/cobol.lang.h:4
+#: ../data/language-specs/csharp.lang.h:7 ../data/language-specs/css.lang.h:8
+#: ../data/language-specs/def.lang.h:28 ../data/language-specs/d.lang.h:7
+#: ../data/language-specs/dot.lang.h:3 ../data/language-specs/go.lang.h:6
+#: ../data/language-specs/html.lang.h:5
+#: ../data/language-specs/nemerle.lang.h:7
+#: ../data/language-specs/ocaml.lang.h:7 ../data/language-specs/ooc.lang.h:6
+#: ../data/language-specs/opal.lang.h:6 ../data/language-specs/perl.lang.h:4
+#: ../data/language-specs/php.lang.h:6 ../data/language-specs/prolog.lang.h:2
+#: ../data/language-specs/vala.lang.h:4
+#: ../data/language-specs/verilog.lang.h:4 ../data/language-specs/xml.lang.h:8
+msgid "Error"
+msgstr "त्रुटि"
 
 #: ../data/language-specs/cg.lang.h:19
-#, fuzzy
 #| msgid "Type Operators"
 msgid "Swizzle operator"
-msgstr "प्रकार ऑपरेटर"
+msgstr "स्विजल ऑपरेटर"
 
 #: ../data/language-specs/cmake.lang.h:1
 msgid "Builtin Command"
@@ -730,7 +723,7 @@ msgstr "सी-मेक"
 #: ../data/language-specs/def.lang.h:15
 #: ../data/language-specs/gtk-doc.lang.h:1
 #: ../data/language-specs/libtool.lang.h:2
-#: ../data/language-specs/ruby.lang.h:6
+#: ../data/language-specs/ruby.lang.h:7
 msgid "Constant"
 msgstr "स्थिर"
 
@@ -739,10 +732,9 @@ msgid "Control Keyword"
 msgstr "कंट्रोल कीवर्ड"
 
 #: ../data/language-specs/cobol.lang.h:1
-#, fuzzy
 #| msgid "Cobalt"
 msgid "Cobol"
-msgstr "कोबॉल्ट"
+msgstr "कोबोल"
 
 #. Any statement
 #: ../data/language-specs/cobol.lang.h:9 ../data/language-specs/def.lang.h:55
@@ -757,7 +749,8 @@ msgstr "सी++"
 msgid "C#"
 msgstr "सी#"
 
-#: ../data/language-specs/csharp.lang.h:16
+#. Translators: this is a format that appears in the strings
+#: ../data/language-specs/csharp.lang.h:17 ../data/language-specs/po.lang.h:7
 msgid "String Format"
 msgstr "स्ट्रिंग प्रारूप"
 
@@ -766,56 +759,67 @@ msgid "CSS"
 msgstr "CSS"
 
 #: ../data/language-specs/css.lang.h:2
+msgid "Class Selector"
+msgstr "वर्ग चयनकर्ता"
+
+#: ../data/language-specs/css.lang.h:3
 msgid "Color"
 msgstr "रंग"
 
-#: ../data/language-specs/css.lang.h:4 ../data/language-specs/fcl.lang.h:3
+#. Translator: it is a type of number
+#: ../data/language-specs/css.lang.h:6 ../data/language-specs/fcl.lang.h:3
 #: ../data/language-specs/fortran.lang.h:4 ../data/language-specs/gap.lang.h:3
 #: ../data/language-specs/gtkrc.lang.h:4
 #: ../data/language-specs/haskell.lang.h:4 ../data/language-specs/ini.lang.h:5
-#: ../data/language-specs/octave.lang.h:4
-#: ../data/language-specs/pascal.lang.h:3 ../data/language-specs/sql.lang.h:3
+#: ../data/language-specs/octave.lang.h:6
+#: ../data/language-specs/pascal.lang.h:3 ../data/language-specs/sml.lang.h:6
+#: ../data/language-specs/sql.lang.h:3
 msgid "Decimal"
 msgstr "दशमलव"
 
-#: ../data/language-specs/css.lang.h:5
+#: ../data/language-specs/css.lang.h:7
 msgid "Dimension"
 msgstr "आयाम"
 
-#: ../data/language-specs/css.lang.h:9
+#: ../data/language-specs/css.lang.h:10
+msgid "ID Selector"
+msgstr "आईडी चयनकर्ता "
+
+#: ../data/language-specs/css.lang.h:12
 msgid "Known Property Value"
 msgstr "ज्ञात गुण मान"
 
-#: ../data/language-specs/css.lang.h:11
+#: ../data/language-specs/css.lang.h:14
 msgid "Others 2"
 msgstr "अन्य 2"
 
-#: ../data/language-specs/css.lang.h:12
+#: ../data/language-specs/css.lang.h:15
 msgid "Others 3"
 msgstr "अन्य 3"
 
-#: ../data/language-specs/css.lang.h:14
+#: ../data/language-specs/css.lang.h:17
+msgid "Tag Name Selector"
+msgstr "टैग नाम चयनकर्ता "
+
+#: ../data/language-specs/css.lang.h:18
 msgid "at-rules"
 msgstr "नियम पर"
 
 #: ../data/language-specs/cuda.lang.h:1
 msgid "CUDA"
-msgstr ""
+msgstr "CUDA"
 
 #: ../data/language-specs/cuda.lang.h:3
-#, fuzzy
 #| msgid "Function"
 msgid "Device Functions"
-msgstr "फंक्शन"
+msgstr "युक्ति फंक्शन"
 
 #: ../data/language-specs/cuda.lang.h:4
-#, fuzzy
 #| msgid "Function"
 msgid "Global Functions"
 msgstr "वैश्विक फंक्शन्स"
 
 #: ../data/language-specs/cuda.lang.h:5
-#, fuzzy
 #| msgid "Special Variable"
 msgid "Global Variables"
 msgstr "वैश्विक चर"
@@ -838,7 +842,7 @@ msgid "Complex number"
 msgstr "कॉम्प्लैक्स संख्या"
 
 #. A primitive data type: int, long, char, etc.
-#: ../data/language-specs/def.lang.h:17
+#: ../data/language-specs/def.lang.h:17 ../data/language-specs/octave.lang.h:5
 msgid "Data type"
 msgstr "डाटा प्रकार"
 
@@ -874,7 +878,7 @@ msgid "Reserved keyword"
 msgstr "रिज़र्व्ड कीशब्द"
 
 #. A shebang: #!/bin/sh
-#: ../data/language-specs/def.lang.h:48 ../data/language-specs/sh.lang.h:8
+#: ../data/language-specs/def.lang.h:48
 msgid "Shebang"
 msgstr "Shebang"
 
@@ -894,10 +898,9 @@ msgid ".desktop"
 msgstr ".डेस्कटॉप"
 
 #: ../data/language-specs/desktop.lang.h:2
-#, fuzzy
 #| msgid "Conditional Macro"
 msgid "Additional Category"
-msgstr "सशर्त मेक्रो"
+msgstr "अतिरिक्त श्रेणी"
 
 #: ../data/language-specs/desktop.lang.h:4
 msgid "Encoding"
@@ -918,16 +921,14 @@ msgid "Key"
 msgstr "कुंजी"
 
 #: ../data/language-specs/desktop.lang.h:10
-#, fuzzy
 #| msgid "Category"
 msgid "Main Category"
-msgstr "श्रेणी"
+msgstr "मुख्य श्रेणी"
 
 #: ../data/language-specs/desktop.lang.h:13
-#, fuzzy
 #| msgid "Reserved keyword"
 msgid "Reserved Category"
-msgstr "रिज़र्व्ड कीशब्द"
+msgstr "आरक्षित श्रेणी"
 
 #: ../data/language-specs/desktop.lang.h:14
 msgid "Translation"
@@ -979,7 +980,8 @@ msgid "Special Token"
 msgstr "विशेष टोकेन"
 
 #: ../data/language-specs/docbook.lang.h:1
-msgid "Docbook"
+#| msgid "Docbook"
+msgid "DocBook"
 msgstr "डॉकबुक"
 
 #: ../data/language-specs/docbook.lang.h:2
@@ -1006,8 +1008,9 @@ msgid "Command"
 msgstr "कमांड"
 
 #: ../data/language-specs/dosbatch.lang.h:3
-msgid "Dos Batch"
-msgstr "Dos Batch"
+#| msgid "Dos Batch"
+msgid "DOS Batch"
+msgstr "DOS Batch"
 
 #: ../data/language-specs/dot.lang.h:1 ../data/language-specs/xml.lang.h:1
 msgid "Attribute name"
@@ -1070,7 +1073,7 @@ msgid "Exception Handling"
 msgstr "गलती नियंत्रक"
 
 #: ../data/language-specs/eiffel.lang.h:13
-#: ../data/language-specs/ruby.lang.h:16
+#: ../data/language-specs/ruby.lang.h:17
 msgid "Predefined Variable"
 msgstr "पूर्वपरिभाषित चर"
 
@@ -1085,7 +1088,7 @@ msgstr "अणु"
 #: ../data/language-specs/erlang.lang.h:2
 #: ../data/language-specs/fsharp.lang.h:1
 #: ../data/language-specs/ocaml.lang.h:1
-#: ../data/language-specs/octave.lang.h:1
+#: ../data/language-specs/octave.lang.h:1 ../data/language-specs/sml.lang.h:1
 #: ../data/language-specs/verilog.lang.h:1
 #: ../data/language-specs/vhdl.lang.h:1
 msgid "Base-N Integer"
@@ -1103,30 +1106,30 @@ msgid "Erlang"
 msgstr "Erlang"
 
 #: ../data/language-specs/fcl.lang.h:1
-#, fuzzy
 #| msgid "Code Block"
 msgid "Block"
 msgstr "रोकें"
 
 #: ../data/language-specs/fcl.lang.h:4
-#, fuzzy
 #| msgid "OCL"
 msgid "FCL"
-msgstr "OCL"
+msgstr "FCL"
 
 #: ../data/language-specs/fcl.lang.h:5 ../data/language-specs/fortran.lang.h:5
-#: ../data/language-specs/ini.lang.h:6 ../data/language-specs/octave.lang.h:5
+#: ../data/language-specs/ini.lang.h:6 ../data/language-specs/octave.lang.h:7
 #: ../data/language-specs/scilab.lang.h:3 ../data/language-specs/sql.lang.h:4
 msgid "Floating Point"
 msgstr "फ्लोटिंग पाइंट"
 
-#: ../data/language-specs/fcl.lang.h:7 ../data/language-specs/octave.lang.h:9
+#: ../data/language-specs/fcl.lang.h:7 ../data/language-specs/octave.lang.h:12
 #: ../data/language-specs/scilab.lang.h:6
 msgid "Reserved Constant"
 msgstr "आरक्षित स्थिरांक"
 
 #: ../data/language-specs/fcl.lang.h:8 ../data/language-specs/gap.lang.h:7
-#: ../data/language-specs/octave.lang.h:10 ../data/language-specs/R.lang.h:9
+#: ../data/language-specs/imagej.lang.h:8
+#: ../data/language-specs/matlab.lang.h:4
+#: ../data/language-specs/octave.lang.h:13 ../data/language-specs/R.lang.h:9
 #: ../data/language-specs/scilab.lang.h:7
 msgid "Scientific"
 msgstr "वैज्ञानिक"
@@ -1152,10 +1155,9 @@ msgid "Fortran 95"
 msgstr "Fortran 95"
 
 #: ../data/language-specs/fortran.lang.h:7
-#, fuzzy
 #| msgid "Builtin Function"
 msgid "Intrinsic function"
-msgstr "विल्टइन फंक्शन्स"
+msgstr "आंतरिक फंक्शन्स"
 
 #: ../data/language-specs/fsharp.lang.h:3
 #: ../data/language-specs/ocaml.lang.h:3
@@ -1164,10 +1166,10 @@ msgstr "विल्टइन फंक्शन्स कीवर्ड"
 
 #: ../data/language-specs/fsharp.lang.h:8
 msgid "F#"
-msgstr ""
+msgstr "F#"
 
 #: ../data/language-specs/fsharp.lang.h:9
-#: ../data/language-specs/ocaml.lang.h:9
+#: ../data/language-specs/ocaml.lang.h:9 ../data/language-specs/sml.lang.h:8
 msgid "Floating Point number"
 msgstr "फ्लोटिंग पाइंट संख्या"
 
@@ -1186,17 +1188,18 @@ msgstr "मॉड्यूल पथ"
 msgid "Polymorphic Variant"
 msgstr "पोलीमॉर्फिक चर"
 
-#: ../data/language-specs/fsharp.lang.h:18
+#. Translators: this is a specific variable called Type
+#: ../data/language-specs/fsharp.lang.h:19
 #: ../data/language-specs/ocaml.lang.h:19
 msgid "Type Variable"
 msgstr "चर टाइप करें"
 
-#: ../data/language-specs/fsharp.lang.h:19
+#: ../data/language-specs/fsharp.lang.h:20
 #: ../data/language-specs/ocaml.lang.h:20
 msgid "Type, module or object keyword"
 msgstr "प्रकार, वर्ग, और वस्तु कुंजीशब्द"
 
-#: ../data/language-specs/fsharp.lang.h:20
+#: ../data/language-specs/fsharp.lang.h:21
 #: ../data/language-specs/ocaml.lang.h:21
 msgid "Variant Constructor"
 msgstr "चर निर्माता"
@@ -1210,48 +1213,42 @@ msgid "Address"
 msgstr "पता"
 
 #: ../data/language-specs/gdb-log.lang.h:2
-#, fuzzy
 #| msgid "File"
 msgid "Filename"
 msgstr "फ़ाइलनाम"
 
 #: ../data/language-specs/gdb-log.lang.h:3
-#, fuzzy
 #| msgid "Number"
 msgid "Frame Number"
-msgstr "संख्या"
+msgstr "फ्रेम संख्या"
 
 #: ../data/language-specs/gdb-log.lang.h:5
 msgid "GDB Log"
-msgstr ""
+msgstr "GDB लॉग"
 
 #: ../data/language-specs/gdb-log.lang.h:6
 msgid "Incomplete Sequence"
-msgstr ""
+msgstr "अपूर्ण वाक्य"
 
 #: ../data/language-specs/gdb-log.lang.h:7
-#, fuzzy
 #| msgid "Itemized list"
 msgid "Optimized Out"
-msgstr "मदीकृत सूची"
+msgstr "अनुकूलित करें"
 
 #: ../data/language-specs/gdb-log.lang.h:9
-#, fuzzy
 #| msgid "Properties"
 msgid "Prompt"
 msgstr "संकेत"
 
 #: ../data/language-specs/gdb-log.lang.h:11
-#, fuzzy
 #| msgid "Section"
 msgid "Thread Action"
-msgstr "विभाग"
+msgstr "लड़ी क्रिया"
 
 #: ../data/language-specs/gdb-log.lang.h:12
-#, fuzzy
 #| msgid "Print Header"
 msgid "Thread Header"
-msgstr "हैडर मुद्रित करें"
+msgstr "लड़ी शीर्षिका"
 
 #: ../data/language-specs/glsl.lang.h:1 ../data/language-specs/python.lang.h:3
 msgid "Builtin Constant"
@@ -1259,13 +1256,12 @@ msgstr "अंतर्निहित स्थिरांक"
 
 #: ../data/language-specs/glsl.lang.h:6
 msgid "OpenGL Shading Language"
-msgstr ""
+msgstr "OpenGL शेडिंग भाषा"
 
 #: ../data/language-specs/glsl.lang.h:8
-#, fuzzy
 #| msgid "Reserved keyword"
 msgid "Reserved Keywords"
-msgstr "रिज़र्व्ड कीशब्द"
+msgstr "आरक्षित बीजशब्द"
 
 #: ../data/language-specs/go.lang.h:9
 msgid "Go"
@@ -1339,6 +1335,7 @@ msgid "Definition list"
 msgstr "परिभाषा सूची"
 
 #: ../data/language-specs/haddock.lang.h:4
+#: ../data/language-specs/markdown.lang.h:5
 msgid "Emphasis"
 msgstr "एम्फेसिस"
 
@@ -1383,6 +1380,7 @@ msgid "Monospace"
 msgstr "मोनोस्पेस"
 
 #: ../data/language-specs/haddock.lang.h:16
+#: ../data/language-specs/markdown.lang.h:16
 msgid "URL"
 msgstr "URL"
 
@@ -1403,7 +1401,7 @@ msgid "Octal"
 msgstr "ओक्टल"
 
 #: ../data/language-specs/haskell.lang.h:14
-#: ../data/language-specs/ruby.lang.h:22
+#: ../data/language-specs/ruby.lang.h:23
 msgid "Symbol"
 msgstr "प्रतीक"
 
@@ -1416,6 +1414,7 @@ msgid "Attribute Name"
 msgstr "गुणधर्म नाम"
 
 #: ../data/language-specs/html.lang.h:2
+#: ../data/language-specs/markdown.lang.h:1
 msgid "Attribute Value"
 msgstr "गुणधर्म मान"
 
@@ -1431,20 +1430,44 @@ msgstr "टैग"
 msgid "IDL"
 msgstr "आईडीएल"
 
+# libgnome-desktop/gnome-ditem-edit.c:626
+# libgnome-desktop/gnome-ditem-edit.c:736
+#: ../data/language-specs/imagej.lang.h:3
+#| msgid "Command"
+msgid "Commands"
+msgstr "कमांड"
+
+#: ../data/language-specs/imagej.lang.h:4
+#| msgid "Escaped Character"
+msgid "Escaped Characters"
+msgstr "एस्केप वर्ण"
+
+#: ../data/language-specs/imagej.lang.h:5
+msgid "ImageJ"
+msgstr "ImageJ"
+
+#: ../data/language-specs/imagej.lang.h:9
+#: ../data/language-specs/octave.lang.h:14
+#| msgid "Data Type"
+msgid "Storage Type"
+msgstr "भंडार प्रकार"
+
 #: ../data/language-specs/ini.lang.h:1
 msgid ".ini"
 msgstr ".ini"
 
-#: ../data/language-specs/java.lang.h:5 ../data/language-specs/ooc.lang.h:5
+#: ../data/language-specs/java.lang.h:4 ../data/language-specs/ooc.lang.h:5
 msgid "Declaration"
 msgstr "घोषणा"
 
+#. Translators: refered to some specific keywords of the language that
+#. allow to get external functionalities
 #: ../data/language-specs/java.lang.h:8 ../data/language-specs/ooc.lang.h:8
 msgid "External"
 msgstr "बाहरी"
 
 #: ../data/language-specs/java.lang.h:9
-#: ../data/language-specs/javascript.lang.h:8
+#: ../data/language-specs/javascript.lang.h:6
 #: ../data/language-specs/ooc.lang.h:10
 msgid "Future Reserved Keywords"
 msgstr "भविष्य रिजर्व्ड शब्द"
@@ -1457,29 +1480,23 @@ msgstr "जावा"
 msgid "Scope Declaration"
 msgstr "स्कोप डिक्लेरेशन्स"
 
-#: ../data/language-specs/javascript.lang.h:3
+#: ../data/language-specs/javascript.lang.h:2
 msgid "Constructors"
 msgstr "निर्माता"
 
-#: ../data/language-specs/javascript.lang.h:9
-#, fuzzy
+#: ../data/language-specs/javascript.lang.h:7
 #| msgid "Javascript"
 msgid "JavaScript"
 msgstr "जावास्क्रिप्ट "
 
-#: ../data/language-specs/javascript.lang.h:12
-msgid "Object"
-msgstr "वस्तु"
-
-#: ../data/language-specs/javascript.lang.h:13
+#: ../data/language-specs/javascript.lang.h:10
 msgid "Properties"
 msgstr "गुण"
 
-#: ../data/language-specs/javascript.lang.h:16
-#, fuzzy
+#: ../data/language-specs/javascript.lang.h:13
 #| msgid "Predefined Variable"
 msgid "Undefined Value"
-msgstr "पूर्वपरिभाषित चर"
+msgstr "अपरिभाषित मान"
 
 #: ../data/language-specs/latex.lang.h:3
 #: ../data/language-specs/texinfo.lang.h:5
@@ -1498,7 +1515,7 @@ msgstr "लेटेक्स"
 msgid "Math Mode"
 msgstr "मैथ मोड"
 
-#: ../data/language-specs/latex.lang.h:8 ../data/language-specs/t2t.lang.h:16
+#: ../data/language-specs/latex.lang.h:8 ../data/language-specs/t2t.lang.h:15
 msgid "Verbatim"
 msgstr "Verbatim"
 
@@ -1514,7 +1531,7 @@ msgstr "libtool"
 msgid "Lua"
 msgstr "Lua"
 
-#: ../data/language-specs/lua.lang.h:7 ../data/language-specs/ruby.lang.h:14
+#: ../data/language-specs/lua.lang.h:7 ../data/language-specs/ruby.lang.h:15
 msgid "Nil Constant"
 msgstr "निल स्थिरांक"
 
@@ -1606,6 +1623,64 @@ msgstr "पृष्ठ तत्व"
 msgid "Section Elements"
 msgstr "खंड तत्व"
 
+#: ../data/language-specs/markdown.lang.h:2
+msgid "Backslash Escape"
+msgstr "बैकस्लैश एस्केप"
+
+#: ../data/language-specs/markdown.lang.h:3
+msgid "Blockquote Marker"
+msgstr "Blockquote मार्कर"
+
+#: ../data/language-specs/markdown.lang.h:4
+msgid "Code"
+msgstr "कोड"
+
+#: ../data/language-specs/markdown.lang.h:6
+#: ../data/language-specs/rpmspec.lang.h:8 ../data/language-specs/t2t.lang.h:4
+msgid "Header"
+msgstr "शीर्षिका"
+
+#: ../data/language-specs/markdown.lang.h:7
+msgid "Horizontal Rule"
+msgstr "क्षैतिज नियम"
+
+#: ../data/language-specs/markdown.lang.h:8
+msgid "Image Marker"
+msgstr "छवि मार्कर"
+
+#: ../data/language-specs/markdown.lang.h:9
+#: ../gtksourceview/gtksourcecompletionitem.c:229
+#| msgid "LaTeX"
+msgid "Label"
+msgstr "लेबल"
+
+#: ../data/language-specs/markdown.lang.h:10
+msgid "Line Break"
+msgstr "पंक्ति अंतराल"
+
+#: ../data/language-specs/markdown.lang.h:11
+#| msgid "Text2Tags"
+msgid "Link Text"
+msgstr "कड़ी पाठ"
+
+#: ../data/language-specs/markdown.lang.h:12
+msgid "List Marker"
+msgstr "सूची मार्कर"
+
+#: ../data/language-specs/markdown.lang.h:13
+msgid "Markdown"
+msgstr "मार्कडाउन"
+
+#: ../data/language-specs/markdown.lang.h:15
+#| msgid "Emphasis"
+msgid "Strong Emphasis"
+msgstr "मजबूत बलाघात"
+
+#: ../data/language-specs/matlab.lang.h:3
+#| msgid "Mallard"
+msgid "Matlab"
+msgstr "मैटलैब"
+
 #: ../data/language-specs/nemerle.lang.h:11
 msgid "Nemerle"
 msgstr "Nemerle"
@@ -1618,6 +1693,11 @@ msgstr "NSIS"
 msgid "Objective-C"
 msgstr "Objective-C"
 
+#: ../data/language-specs/objj.lang.h:6
+#| msgid "Objective-C"
+msgid "Objective-J"
+msgstr "Objective-J"
+
 #: ../data/language-specs/ocaml.lang.h:13
 msgid "Objective Caml"
 msgstr "वस्तु Caml"
@@ -1628,7 +1708,7 @@ msgstr "Ocamldoc टिप्पणी"
 
 #: ../data/language-specs/ocaml.lang.h:17
 msgid "Standart Modules"
-msgstr ""
+msgstr "मानक मॉड्यूल"
 
 #: ../data/language-specs/ocl.lang.h:4
 msgid "OCL"
@@ -1642,21 +1722,24 @@ msgstr "ऑपरेशन ऑपरेटर्स"
 msgid "Type Operators"
 msgstr "प्रकार ऑपरेटर"
 
-#: ../data/language-specs/octave.lang.h:8
+#: ../data/language-specs/octave.lang.h:9
 msgid "Octave"
 msgstr "ओक्टेव"
 
+#: ../data/language-specs/octave.lang.h:11
+#| msgid "Package Info"
+msgid "Package Manager"
+msgstr "संकुल प्रबंधक"
+
 #: ../data/language-specs/ooc.lang.h:14
-#, fuzzy
 #| msgid "OCL"
 msgid "OOC"
-msgstr "OCL"
+msgstr "OOC"
 
 #: ../data/language-specs/opal.lang.h:7
-#, fuzzy
 #| msgid "Symbol"
 msgid "Keysymbol"
-msgstr "कीसंकेत"
+msgstr "बीजसंकेत"
 
 #: ../data/language-specs/opal.lang.h:9
 #: ../data/language-specs/python.lang.h:12
@@ -1664,10 +1747,38 @@ msgid "Module Handler"
 msgstr "मॉड्यूल हैंडलर"
 
 #: ../data/language-specs/opal.lang.h:10
-#, fuzzy
 #| msgid "Octal"
 msgid "Opal"
-msgstr "ओक्टल"
+msgstr "ओपल"
+
+#: ../data/language-specs/opencl.lang.h:2
+msgid "Device Cast"
+msgstr "युक्ति कास्ट"
+
+#: ../data/language-specs/opencl.lang.h:3
+#| msgid "Function"
+msgid "Device Function"
+msgstr "युक्ति फंक्शन"
+
+#: ../data/language-specs/opencl.lang.h:4
+#| msgid "Function"
+msgid "Global Function"
+msgstr "वैश्विक फंक्शन"
+
+#: ../data/language-specs/opencl.lang.h:5
+#| msgid "Special Variable"
+msgid "Global Variable"
+msgstr "वैश्विक चर"
+
+#: ../data/language-specs/opencl.lang.h:7
+#| msgid "OCL"
+msgid "OpenCL"
+msgstr "OpenCL"
+
+#: ../data/language-specs/opencl.lang.h:8
+#| msgid "Special Constant"
+msgid "OpenCL Constant"
+msgstr "OpenCL स्थिरांक"
 
 #: ../data/language-specs/pascal.lang.h:5
 msgid "Pascal"
@@ -1682,12 +1793,12 @@ msgid "File Descriptor"
 msgstr "फ़ाइल विवरक"
 
 #: ../data/language-specs/perl.lang.h:6 ../data/language-specs/php.lang.h:10
-#: ../data/language-specs/ruby.lang.h:10
+#: ../data/language-specs/ruby.lang.h:11
 msgid "Heredoc"
 msgstr "Heredoc"
 
 #: ../data/language-specs/perl.lang.h:7 ../data/language-specs/php.lang.h:11
-#: ../data/language-specs/ruby.lang.h:11 ../data/language-specs/sh.lang.h:4
+#: ../data/language-specs/ruby.lang.h:12 ../data/language-specs/sh.lang.h:4
 msgid "Heredoc Bound"
 msgstr "Heredoc बाउंड"
 
@@ -1726,10 +1837,9 @@ msgid "System Command"
 msgstr "तंत्र कमांड"
 
 #: ../data/language-specs/php.lang.h:3
-#, fuzzy
 #| msgid "Function"
 msgid "Common Function"
-msgstr "फंक्शन"
+msgstr "सामान्य फंक्शन"
 
 #: ../data/language-specs/php.lang.h:18
 msgid "PHP"
@@ -1747,12 +1857,7 @@ msgstr "pkg-config"
 msgid "Fuzzy"
 msgstr "फजी"
 
-#. FIXME make it some nice name and mark it translatable
-#: ../data/language-specs/po.lang.h:7
-msgid "Special"
-msgstr "विशेष"
-
-#: ../data/language-specs/po.lang.h:9
+#: ../data/language-specs/po.lang.h:8
 msgid "gettext translation"
 msgstr "गेटटेक्स्ट अनुवाद"
 
@@ -1824,10 +1929,6 @@ msgstr "ईमेल"
 msgid "Flow Conditional"
 msgstr "सशर्त प्रवाह"
 
-#: ../data/language-specs/rpmspec.lang.h:8 ../data/language-specs/t2t.lang.h:4
-msgid "Header"
-msgstr "शीर्षिका"
-
 #: ../data/language-specs/rpmspec.lang.h:9
 msgid "Other Macro"
 msgstr "अन्य मैक्रो"
@@ -1857,15 +1958,15 @@ msgstr "बदलें"
 msgid "Attribute Definition"
 msgstr "गुणधर्म परिभाषा"
 
-#: ../data/language-specs/ruby.lang.h:13
+#: ../data/language-specs/ruby.lang.h:14
 msgid "Module handler"
 msgstr "मॉड्यूल हैंडलर"
 
-#: ../data/language-specs/ruby.lang.h:15
+#: ../data/language-specs/ruby.lang.h:16
 msgid "Numeric literal"
 msgstr "संख्या शाब्दिक"
 
-#: ../data/language-specs/ruby.lang.h:18
+#: ../data/language-specs/ruby.lang.h:19
 msgid "Ruby"
 msgstr "रूबी"
 
@@ -1874,65 +1975,67 @@ msgid "Scheme"
 msgstr "योजना"
 
 #: ../data/language-specs/scilab.lang.h:8
-#, fuzzy
 #| msgid "Special"
 msgid "Scilab"
-msgstr "विशेष"
+msgstr "Scilab"
 
 #: ../data/language-specs/sh.lang.h:2
 msgid "Common Commands"
 msgstr "सामान्य कमांड"
 
-#: ../data/language-specs/sh.lang.h:10
+#: ../data/language-specs/sh.lang.h:9
 msgid "Subshell"
 msgstr "उपशेल"
 
 #. FIXME: need to sort out proper styles for variables
-#: ../data/language-specs/sh.lang.h:13
+#: ../data/language-specs/sh.lang.h:12
 msgid "Variable Definition"
 msgstr "चर परिभाषा"
 
-#: ../data/language-specs/sh.lang.h:14
+#: ../data/language-specs/sh.lang.h:13
 msgid "sh"
 msgstr "sh"
 
+#: ../data/language-specs/sml.lang.h:10
+msgid "Module name, Variant, etc"
+msgstr "मॉडयूल नाम, चर आदि"
+
+#: ../data/language-specs/sml.lang.h:12
+msgid "Standard ML"
+msgstr "मानक ML"
+
 #: ../data/language-specs/sparql.lang.h:2
-#, fuzzy
 #| msgid "Classic"
 msgid "Class"
 msgstr "वर्ग"
 
 #: ../data/language-specs/sparql.lang.h:5
 msgid "IRI"
-msgstr ""
+msgstr "IRI"
 
 #: ../data/language-specs/sparql.lang.h:6
 msgid "Individual"
 msgstr "व्यक्ति"
 
 #: ../data/language-specs/sparql.lang.h:8
-#, fuzzy
 #| msgid "BOZ Literal"
 msgid "Literal"
-msgstr "बोज लिटरल्स"
+msgstr "लिटरल"
 
 #: ../data/language-specs/sparql.lang.h:11
-#, fuzzy
 #| msgid "Deprecated"
 msgid "Predicate"
-msgstr "पदावनत"
+msgstr "Predicate"
 
 #: ../data/language-specs/sparql.lang.h:12
-#, fuzzy
 #| msgid "Name"
 msgid "QName"
-msgstr "नाम"
+msgstr "QName"
 
 #: ../data/language-specs/sparql.lang.h:13
-#, fuzzy
 #| msgid "SQL"
 msgid "SPARQL"
-msgstr "SQL"
+msgstr "SPARQL"
 
 #: ../data/language-specs/sql.lang.h:7
 msgid "No idea what it is"
@@ -1945,16 +2048,14 @@ msgstr "SQL"
 # libgnome-desktop/gnome-ditem-edit.c:626
 # libgnome-desktop/gnome-ditem-edit.c:736
 #: ../data/language-specs/systemverilog.lang.h:4
-#, fuzzy
 #| msgid "System Command"
 msgid "System Task"
-msgstr "तंत्र कमांड"
+msgstr "तंत्र कार्य"
 
 #: ../data/language-specs/systemverilog.lang.h:5
-#, fuzzy
 #| msgid "Verilog"
 msgid "SystemVerilog"
-msgstr "वेरिलॉग"
+msgstr "SystemVerilog"
 
 #: ../data/language-specs/t2t.lang.h:2 ../gtksourceview/gtksourcestyle.c:104
 #: ../gtksourceview/gtksourcestyle.c:105
@@ -1994,13 +2095,14 @@ msgstr "खंड 4"
 msgid "Section 5"
 msgstr "खंड 5"
 
-#: ../data/language-specs/t2t.lang.h:15
-msgid "Text2Tags"
-msgstr "Text2Tags"
-
-#: ../data/language-specs/t2t.lang.h:17
+#: ../data/language-specs/t2t.lang.h:16
 msgid "Verbatim Block"
 msgstr "Verbatim खंड"
+
+#: ../data/language-specs/t2t.lang.h:17
+#| msgid "Text2Tags"
+msgid "txt2tags"
+msgstr "txt2tags"
 
 #: ../data/language-specs/tcl.lang.h:3
 msgid "Tcl"
@@ -2022,7 +2124,7 @@ msgstr "मेक्रोज़"
 msgid "Texinfo"
 msgstr "Texinfo"
 
-#: ../data/language-specs/vala.lang.h:12
+#: ../data/language-specs/vala.lang.h:9
 msgid "Vala"
 msgstr "वाला"
 
@@ -2036,11 +2138,11 @@ msgstr "गेट"
 
 #: ../data/language-specs/verilog.lang.h:7
 msgid "IEEE System Task"
-msgstr ""
+msgstr "IEEE तंत्र कार्य"
 
 #: ../data/language-specs/verilog.lang.h:10
 msgid "LRM Additional System Task"
-msgstr ""
+msgstr "LRM अतिरिक्त तंत्र कार्य"
 
 #: ../data/language-specs/verilog.lang.h:15
 msgid "Verilog"
@@ -2138,62 +2240,62 @@ msgstr "टैंगो रंग पैलेट के प्रयोग स�
 msgid "Tango"
 msgstr "टेंगो"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:378
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:380
 msgid "Document Words"
-msgstr ""
+msgstr "दस्तावेज शब्द"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:463
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:465
 msgid "The provider name"
-msgstr ""
+msgstr "प्रदाता का नाम"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:470
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:472
 #: ../gtksourceview/gtksourcecompletionitem.c:268
 msgid "Icon"
 msgstr "प्रतीक"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:471
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:473
 msgid "The provider icon"
-msgstr ""
+msgstr "प्रदाता चिह्न"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:478
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:480
 msgid "Proposals Batch Size"
-msgstr ""
+msgstr "प्रस्ताव बैच आकार"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:479
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:481
 msgid "Number of proposals added in one batch"
 msgstr ""
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:488
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:490
 msgid "Scan Batch Size"
-msgstr ""
+msgstr "बैच आकार स्कैन करें"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:489
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:491
 msgid "Number of lines scanned in one batch"
 msgstr ""
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:498
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:500
 msgid "Minimum Word Size"
-msgstr ""
+msgstr "न्यूनतम शब्द आकार"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:499
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:501
 msgid "The minimum word size to complete"
-msgstr ""
+msgstr "पूरा करने के लिए न्यूनतम शब्द आकार"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:508
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:510
 msgid "Interactive Delay"
-msgstr ""
+msgstr "अंतःक्रियात्मक विलंब"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:509
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:511
 msgid "The delay before initiating interactive completion"
 msgstr ""
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:518
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:520
 msgid "Priority"
 msgstr "प्राथमिकता"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:519
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:521
 msgid "Provider priority"
-msgstr ""
+msgstr "प्रदाता प्राथमिकता"
 
 #: ../gtksourceview/gtksourcebuffer.c:234
 #: ../gtksourceview/gtksourceprintcompositor.c:505
@@ -2258,107 +2360,102 @@ msgstr "शैली योजना"
 
 #: ../gtksourceview/gtksourcebuffer.c:315
 msgid "Undo manager"
-msgstr ""
+msgstr "पहले जैसा करने वाला प्रबंधक"
 
 #: ../gtksourceview/gtksourcebuffer.c:316
 msgid "The buffer undo manager"
-msgstr ""
+msgstr "बफर पहले जैसा करने वाला प्रबंधक"
 
 #: ../gtksourceview/gtksourcecompletion.c:935
 #: ../gtksourceview/gtksourcecompletion.c:958
 msgid "No extra information available"
-msgstr ""
+msgstr "कोई अतिरिक्त सूचना उपलब्ध नहीं"
 
-#: ../gtksourceview/gtksourcecompletion.c:2221
-#: ../gtksourceview/gtksourcegutter.c:520
+#: ../gtksourceview/gtksourcecompletion.c:2220
+#: ../gtksourceview/gtksourcegutter.c:548
 msgid "View"
 msgstr "दृश्य"
 
-#: ../gtksourceview/gtksourcecompletion.c:2222
-#, fuzzy
+#: ../gtksourceview/gtksourcecompletion.c:2221
 #| msgid "The GtkSourceBuffer object to print"
 msgid "The GtkSourceView bound to the completion"
-msgstr "छपाई के लिए जीटीके-सोर्स-बफ़र ऑब्जेक्ट"
+msgstr "पूरा करने के लिए GtkSourceView बाउंड"
+
+#: ../gtksourceview/gtksourcecompletion.c:2236
+msgid "Remember Info Visibility"
+msgstr "सूचना दृश्यता याद रखें"
 
 #: ../gtksourceview/gtksourcecompletion.c:2237
-msgid "Remember Info Visibility"
-msgstr ""
-
-#: ../gtksourceview/gtksourcecompletion.c:2238
 msgid "Remember the last info window visibility state"
 msgstr ""
 
-#: ../gtksourceview/gtksourcecompletion.c:2251
-#, fuzzy
+#: ../gtksourceview/gtksourcecompletion.c:2250
 #| msgid "Section 1"
 msgid "Select on Show"
-msgstr "खंड 1"
+msgstr "शो पर चुनें"
 
-#: ../gtksourceview/gtksourcecompletion.c:2252
+#: ../gtksourceview/gtksourcecompletion.c:2251
 msgid "Select first proposal when completion is shown"
 msgstr ""
 
-#: ../gtksourceview/gtksourcecompletion.c:2266
-#, fuzzy
+#: ../gtksourceview/gtksourcecompletion.c:2265
 #| msgid "Show Line Marks"
 msgid "Show Headers"
-msgstr "पंक्ति मार्कर्स दिखाएँ"
+msgstr "शीर्षिका दिखाएँ"
 
-#: ../gtksourceview/gtksourcecompletion.c:2267
-msgid "Show provider headers when proposals from multiple providers are available"
+#: ../gtksourceview/gtksourcecompletion.c:2266
+msgid ""
+"Show provider headers when proposals from multiple providers are available"
 msgstr ""
 
-#: ../gtksourceview/gtksourcecompletion.c:2281
+#: ../gtksourceview/gtksourcecompletion.c:2280
 msgid "Show Icons"
 msgstr "प्रतीक दिखायें"
 
-#: ../gtksourceview/gtksourcecompletion.c:2282
+#: ../gtksourceview/gtksourcecompletion.c:2281
 msgid "Show provider and proposal icons in the completion popup"
 msgstr ""
 
-#: ../gtksourceview/gtksourcecompletion.c:2295
-#, fuzzy
+#: ../gtksourceview/gtksourcecompletion.c:2294
 #| msgid "Type Operators"
 msgid "Accelerators"
-msgstr "प्रकार ऑपरेटर"
+msgstr "त्वरक"
 
-#: ../gtksourceview/gtksourcecompletion.c:2296
+#: ../gtksourceview/gtksourcecompletion.c:2295
 msgid "Number of proposal accelerators to show"
 msgstr ""
 
-#: ../gtksourceview/gtksourcecompletion.c:2312
+#: ../gtksourceview/gtksourcecompletion.c:2311
 msgid "Auto Complete Delay"
-msgstr ""
+msgstr "स्वतः पूर्ण विलंब"
 
-#: ../gtksourceview/gtksourcecompletion.c:2313
+#: ../gtksourceview/gtksourcecompletion.c:2312
 msgid "Completion popup delay for interactive completion"
 msgstr ""
 
-#: ../gtksourceview/gtksourcecompletion.c:2328
+#: ../gtksourceview/gtksourcecompletion.c:2327
 msgid "Provider Page Size"
-msgstr ""
+msgstr "प्रदाता पृष्ठ का आकार"
 
-#: ../gtksourceview/gtksourcecompletion.c:2329
+#: ../gtksourceview/gtksourcecompletion.c:2328
 msgid "Provider scrolling page size"
-msgstr ""
+msgstr "प्रदाता स्क्रॉलिंग पृष्ठ आकार"
+
+#: ../gtksourceview/gtksourcecompletion.c:2343
+msgid "Proposal Page Size"
+msgstr "प्रस्ताव पृष्ठ आकार"
 
 #: ../gtksourceview/gtksourcecompletion.c:2344
-msgid "Proposal Page Size"
-msgstr ""
-
-#: ../gtksourceview/gtksourcecompletion.c:2345
 msgid "Proposal scrolling page size"
-msgstr ""
+msgstr "प्रस्ताव स्क्रॉलिंग पृष्ठ आकार"
 
-#: ../gtksourceview/gtksourcecompletion.c:2690
-#, fuzzy
+#: ../gtksourceview/gtksourcecompletion.c:2689
 #| msgid "Print Header"
 msgid "Provider"
-msgstr "हैडर मुद्रित करें"
+msgstr "प्रदाता"
 
 #: ../gtksourceview/gtksourcecompletioncontext.c:237
 #: ../gtksourceview/gtksourceview.c:306
-#, fuzzy
 #| msgid "Option"
 msgid "Completion"
 msgstr "पूर्णता"
@@ -2369,35 +2466,27 @@ msgstr ""
 
 #. Translators: The GtkTextIter at which the completion was invoked
 #: ../gtksourceview/gtksourcecompletioncontext.c:251
-#, fuzzy
 #| msgid "Operator"
 msgid "Iterator"
-msgstr "ऑपरेटर"
+msgstr "Iterator"
 
 #: ../gtksourceview/gtksourcecompletioncontext.c:252
 msgid "The GtkTextIter at which the completion was invoked"
 msgstr ""
 
 #: ../gtksourceview/gtksourcecompletioncontext.c:264
-#, fuzzy
 #| msgid "Location"
 msgid "Activation"
 msgstr "सक्रियकरण"
 
 #: ../gtksourceview/gtksourcecompletioncontext.c:265
 msgid "The type of activation"
-msgstr ""
+msgstr "सक्रियकरण प्रकार"
 
 #. Tooltip style
 #: ../gtksourceview/gtksourcecompletioninfo.c:61
 msgid "Completion Info"
-msgstr ""
-
-#: ../gtksourceview/gtksourcecompletionitem.c:229
-#, fuzzy
-#| msgid "LaTeX"
-msgid "Label"
-msgstr "लेबल"
+msgstr "पूर्णता सूचना"
 
 #: ../gtksourceview/gtksourcecompletionitem.c:230
 msgid "Label to be shown for this item"
@@ -2409,14 +2498,13 @@ msgstr ""
 
 #: ../gtksourceview/gtksourcecompletionitem.c:256
 msgid "Item text"
-msgstr ""
+msgstr "मद पाठ"
 
 #: ../gtksourceview/gtksourcecompletionitem.c:269
 msgid "Icon to be shown for this item"
 msgstr ""
 
 #: ../gtksourceview/gtksourcecompletionitem.c:281
-#, fuzzy
 #| msgid "Ignore"
 msgid "Info"
 msgstr "सूचना"
@@ -2440,14 +2528,16 @@ msgid ""
 "process will be slower than usual.\n"
 "The error was: %s"
 msgstr ""
-"regex सभी अनुवाद के लिए नहीं बना सकता है, वाक्यरचना आलोकन प्रक्रिया धीमा हो जाएगा.\n"
+"regex सभी अनुवाद के लिए नहीं बना सकता है, वाक्यरचना आलोकन प्रक्रिया धीमा हो "
+"जाएगा.\n"
 "त्रुटि था: %s"
 
 #: ../gtksourceview/gtksourcecontextengine.c:4928
 msgid ""
 "Highlighting a single line took too much time, syntax highlighting will be "
 "disabled"
-msgstr "एक पंक्ति का आलोकन अधिक समय लेता है, वाक्यरचना आलोकन निष्क्रिय किया जाएगा"
+msgstr ""
+"एक पंक्ति का आलोकन अधिक समय लेता है, वाक्यरचना आलोकन निष्क्रिय किया जाएगा"
 
 #: ../gtksourceview/gtksourcecontextengine.c:6181
 #, c-format
@@ -2484,101 +2574,94 @@ msgstr "अज्ञात संदर्भ '%s'"
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "अनुपस्थित मुख्य भाषा परिभाषा (id = \"%s\".)"
 
-#: ../gtksourceview/gtksourcegutter.c:521
+#: ../gtksourceview/gtksourcegutter.c:549
 msgid "The gutters' GtkSourceView"
 msgstr "gutters' GtkSourceView"
 
-#: ../gtksourceview/gtksourcegutter.c:533
-#: ../gtksourceview/gtksourcegutterrenderer.c:691
+#: ../gtksourceview/gtksourcegutter.c:561
+#: ../gtksourceview/gtksourcegutterrenderer.c:703
 msgid "Window Type"
 msgstr "विंडो प्रकार"
 
-#: ../gtksourceview/gtksourcegutter.c:534
+#: ../gtksourceview/gtksourcegutter.c:562
 msgid "The gutters text window type"
 msgstr "gutters पाठ विंडो प्रकार"
 
-#: ../gtksourceview/gtksourcegutter.c:545
-#: ../gtksourceview/gtksourcegutterrenderer.c:467
-#, fuzzy
+#: ../gtksourceview/gtksourcegutter.c:573
+#: ../gtksourceview/gtksourcegutterrenderer.c:479
 #| msgid "POD heading"
 msgid "X Padding"
 msgstr "X  पैडिंग"
 
-#: ../gtksourceview/gtksourcegutter.c:546
-#: ../gtksourceview/gtksourcegutterrenderer.c:468
+#: ../gtksourceview/gtksourcegutter.c:574
+#: ../gtksourceview/gtksourcegutterrenderer.c:480
 msgid "The x-padding"
-msgstr ""
+msgstr "X  पैडिंग"
 
-#: ../gtksourceview/gtksourcegutter.c:556
-#: ../gtksourceview/gtksourcegutterrenderer.c:483
-#, fuzzy
+#: ../gtksourceview/gtksourcegutter.c:584
+#: ../gtksourceview/gtksourcegutterrenderer.c:495
 #| msgid "POD heading"
 msgid "Y Padding"
-msgstr "POD शीर्षक"
+msgstr "Y पैडिंग"
 
-#: ../gtksourceview/gtksourcegutter.c:557
-#: ../gtksourceview/gtksourcegutterrenderer.c:484
+#: ../gtksourceview/gtksourcegutter.c:585
+#: ../gtksourceview/gtksourcegutterrenderer.c:496
 msgid "The y-padding"
-msgstr ""
+msgstr "Y पैडिंग"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:453
-#: ../gtksourceview/gtksourcegutterrenderer.c:454
-#, fuzzy
+#: ../gtksourceview/gtksourcegutterrenderer.c:465
+#: ../gtksourceview/gtksourcegutterrenderer.c:466
 #| msgid "Variable"
 msgid "Visible"
 msgstr "दृष्टिगोचर"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:499
+#: ../gtksourceview/gtksourcegutterrenderer.c:511
 msgid "X Alignment"
-msgstr ""
+msgstr "X संरेखन "
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:500
+#: ../gtksourceview/gtksourcegutterrenderer.c:512
 msgid "The x-alignment"
-msgstr ""
+msgstr "X संरेखन "
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:515
+#: ../gtksourceview/gtksourcegutterrenderer.c:527
 msgid "Y Alignment"
-msgstr ""
+msgstr "Y संरेखन "
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:516
+#: ../gtksourceview/gtksourcegutterrenderer.c:528
 msgid "The y-alignment"
-msgstr ""
+msgstr "Y संरेखन "
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:658
-#, fuzzy
+#: ../gtksourceview/gtksourcegutterrenderer.c:670
 #| msgid "View"
 msgid "The View"
 msgstr "दृश्य"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:659
+#: ../gtksourceview/gtksourcegutterrenderer.c:671
 msgid "The view"
-msgstr ""
+msgstr "दृश्य"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:675
-#, fuzzy
+#: ../gtksourceview/gtksourcegutterrenderer.c:687
 #| msgid "Inline Math Mode"
 msgid "Alignment Mode"
-msgstr "अंतर्रेखीय मैथ मोड"
+msgstr "संरेखण मोड"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:676
+#: ../gtksourceview/gtksourcegutterrenderer.c:688
 msgid "The alignment mode"
-msgstr ""
+msgstr "संरेखण मोड"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:692
-#, fuzzy
+#: ../gtksourceview/gtksourcegutterrenderer.c:704
 #| msgid "The gutters text window type"
 msgid "The window type"
-msgstr "gutters पाठ विंडो प्रकार"
+msgstr "विंडो प्रकार"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:700
-#, fuzzy
+#: ../gtksourceview/gtksourcegutterrenderer.c:712
 #| msgid "Since"
 msgid "Size"
 msgstr "आकार"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:701
+#: ../gtksourceview/gtksourcegutterrenderer.c:713
 msgid "The size"
-msgstr ""
+msgstr "आकार"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:293
 #: ../gtksourceview/gtksourcemarkattributes.c:316
@@ -2588,7 +2671,7 @@ msgstr "Pixbuf"
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:294
 #: ../gtksourceview/gtksourcemarkattributes.c:317
 msgid "The pixbuf"
-msgstr ""
+msgstr "pixbuf"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:301
 #: ../gtksourceview/gtksourcemarkattributes.c:303
@@ -2598,11 +2681,10 @@ msgstr "stock ID"
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:302
 #: ../gtksourceview/gtksourcemarkattributes.c:304
 msgid "The stock id"
-msgstr ""
+msgstr "स्टॉक आईडी"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:309
 #: ../gtksourceview/gtksourcemarkattributes.c:329
-#, fuzzy
 #| msgid "Function Name"
 msgid "Icon Name"
 msgstr "प्रतीक नाम"
@@ -2610,7 +2692,7 @@ msgstr "प्रतीक नाम"
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:310
 #: ../gtksourceview/gtksourcemarkattributes.c:330
 msgid "The icon name"
-msgstr ""
+msgstr "प्रतीक नाम"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:317
 #: ../gtksourceview/gtksourcemarkattributes.c:342
@@ -2619,17 +2701,15 @@ msgstr "जीप्रतीक"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:318
 msgid "The gicon"
-msgstr ""
+msgstr "gicon"
 
-# #-#-#-#-#  libgnomecanvas.HEAD.hi.po (libgnomecanvas)  #-#-#-#-#
-# libgnomecanvas/gnome-canvas-text.c:212
-#: ../gtksourceview/gtksourcegutterrenderertext.c:394
-#, fuzzy
+# #-#-#-#-#  libgnomecanvas.HEAD.hi.po (libgnomecanvas)  #-#-#-#-# libgnomecanvas/gnome-canvas-text.c:212
+#: ../gtksourceview/gtksourcegutterrenderertext.c:396
 #| msgid "Markup"
 msgid "The markup"
 msgstr "मार्कअप"
 
-#: ../gtksourceview/gtksourcegutterrenderertext.c:402
+#: ../gtksourceview/gtksourcegutterrenderertext.c:404
 msgid "The text"
 msgstr "पाठ"
 
@@ -2673,7 +2753,8 @@ msgstr "भाषा विशेषताएँ डिरेक्ट्री�
 msgid ""
 "List of directories where the language specification files (.lang) are "
 "located"
-msgstr "डिरेक्ट्रीज़ की सूची जहाँ भाषा विशेषताओं की फ़ाइलें (.lang) निर्धारित हैं"
+msgstr ""
+"डिरेक्ट्रीज़ की सूची जहाँ भाषा विशेषताओं की फ़ाइलें (.lang) निर्धारित हैं"
 
 # #-#-#-#-#  gnome-desktop.HEAD.hi.po (gnome-desktop-2.0.hi)  #-#-#-#-#
 # libgnome-desktop/gnome-ditem-edit.c:611
@@ -2710,14 +2791,13 @@ msgid "Background"
 msgstr "पृष्ठभूमि"
 
 #: ../gtksourceview/gtksourcemarkattributes.c:291
-#, fuzzy
 #| msgid "Line background"
 msgid "The background"
-msgstr "पंक्ति पृष्ठभूमि"
+msgstr "पृष्ठभूमि"
 
 #: ../gtksourceview/gtksourcemarkattributes.c:343
 msgid "The GIcon"
-msgstr ""
+msgstr "GIcon"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:445
 msgid "Source Buffer"
@@ -2742,7 +2822,8 @@ msgid "Wrap Mode"
 msgstr "व्रेप मोड"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:485
-msgid "Whether to wrap lines never, at word boundaries, or at character boundaries."
+msgid ""
+"Whether to wrap lines never, at word boundaries, or at character boundaries."
 msgstr "क्या पंक्ति को लपेटना है, शब्द सीमा पर, या वर्ण सीमा पर."
 
 #: ../gtksourceview/gtksourceprintcompositor.c:506
@@ -2901,23 +2982,23 @@ msgstr "आरपार काटें सेट"
 msgid "Whether strikethrough attribute is set"
 msgstr "क्या आर-पार काटने की विशेषता सेट है"
 
-#: ../gtksourceview/gtksourcestylescheme.c:194
-#: ../gtksourceview/gtksourcestylescheme.c:195
+#: ../gtksourceview/gtksourcestylescheme.c:221
+#: ../gtksourceview/gtksourcestylescheme.c:222
 msgid "Style scheme id"
 msgstr "शैली योजना id"
 
-#: ../gtksourceview/gtksourcestylescheme.c:207
-#: ../gtksourceview/gtksourcestylescheme.c:208
+#: ../gtksourceview/gtksourcestylescheme.c:234
+#: ../gtksourceview/gtksourcestylescheme.c:235
 msgid "Style scheme name"
 msgstr "शैली योजना नाम"
 
-#: ../gtksourceview/gtksourcestylescheme.c:220
-#: ../gtksourceview/gtksourcestylescheme.c:221
+#: ../gtksourceview/gtksourcestylescheme.c:247
+#: ../gtksourceview/gtksourcestylescheme.c:248
 msgid "Style scheme description"
 msgstr "शैली योजना विवरण"
 
-#: ../gtksourceview/gtksourcestylescheme.c:233
-#: ../gtksourceview/gtksourcestylescheme.c:234
+#: ../gtksourceview/gtksourcestylescheme.c:260
+#: ../gtksourceview/gtksourcestylescheme.c:261
 msgid "Style scheme filename"
 msgstr "शैली योजना फाइलनाम"
 
@@ -2938,7 +3019,6 @@ msgid "List of the ids of the available style schemes"
 msgstr "उपलब्ध शैली योजना के आईडी की सूची"
 
 #: ../gtksourceview/gtksourceundomanagerdefault.c:410
-#, fuzzy
 #| msgid "Source Buffer"
 msgid "Buffer"
 msgstr "बफ़र"
@@ -3016,7 +3096,8 @@ msgid ""
 "HOME and END keys move to first/last non whitespace characters on line "
 "before going to the start/end of the line"
 msgstr ""
-"घर तथा अंत कुंजियाँ पंक्ति के प्रारंभ/अंत में जाने से पहले पंक्ति के प्रथम/अंतिम संप्रतीकों पर जाती "
+"घर तथा अंत कुंजियाँ पंक्ति के प्रारंभ/अंत में जाने से पहले पंक्ति के "
+"प्रथम/अंतिम संप्रतीकों पर जाती "
 "हैं "
 
 #: ../gtksourceview/gtksourceview.c:431
@@ -3033,7 +3114,8 @@ msgstr "टैब पर हाशिया"
 
 #: ../gtksourceview/gtksourceview.c:440
 msgid "Whether to indent the selected text when the tab key is pressed"
-msgstr "जब टैब कुंजी को दबाया जाता है तो क्या चयनित पाठ में हाशिया दिया जाना है"
+msgstr ""
+"जब टैब कुंजी को दबाया जाता है तो क्या चयनित पाठ में हाशिया दिया जाना है"
 
 #: ../gtksourceview/gtksourceview.c:454
 msgid "Draw Spaces"
@@ -3047,3 +3129,8 @@ msgstr "देखें कि क्या स्थान दिखना च�
 msgid "translator-credits"
 msgstr "संगीता कुमारी (sangeeta09@gmail.com)"
 
+#~ msgid "Object"
+#~ msgstr "वस्तु"
+
+#~ msgid "Special"
+#~ msgstr "विशेष"
