@@ -10,7 +10,7 @@
 # latex.lang m4.lang makefile.lang ms.lang perl.lang po.lang prolog.lang
 # python.lang sh.lang texinfo.lang xml.lang yacc.lang libtool.lang
 # pkgconfig.lang objc.lang chdr.lang testv1.lang t2t.lang fortran.lang
-# forth.lang octave.lang
+# forth.lang octave.lang automake.lang
 
 dir="testdir"
 mkdir -p $dir/
@@ -1014,4 +1014,30 @@ function NewFunction() {
   /*
   multiline comment*/
 }
+EOFEOF
+
+cat > $dir/Makefile.am <<EOFEOF
+ACLOCAL_AMFLAGS = -I m4
+
+EXTRA_DIST += README.W32
+
+if HAVE_DOXYGEN
+  DOXYDIR = docs
+endif
+
+doc_DATA = AUTHORS ChangeLog COPYING INSTALL NEWS README
+
+bin_PROGRAMS = jupiter
+jupiter_SOURCES = main.c
+jupiter_CPPFLAGS = -I\$(top_srcdir)/common
+jupiter_LDADD = ../common/libjupcommon.a
+
+check_SCRIPTS = greptest.sh
+TESTS = \$(check_SCRIPTS)
+
+greptest.sh:
+	echo './jupiter | grep "Hello from .*jupiter!"' > greptest.sh
+	chmod +x greptest.sh
+
+CLEANFILES = greptest.sh
 EOFEOF

@@ -23,7 +23,7 @@
 <language id="makefile" _name="Makefile" version="2.0" _section="Sources">
   <metadata>
     <property name="mimetypes">text/x-makefile</property>
-    <property name="globs">[Mm]akefile;GNUmakefile;[Mm]akefile.*;*.make;*.mak;*.mk</property>
+    <property name="globs">[Mm]akefile;GNUmakefile;*.make;*.mak;*.mk</property>
     <property name="line-comment-start">#</property>
   </metadata>
 
@@ -42,6 +42,9 @@
   </styles>
 
   <definitions>
+    <replace id="sh:sh" ref="command"/>
+    <replace id="sh:variable" ref="sh-variable"/>
+
     <define-regex id="variable">[a-zA-Z_][a-zA-Z0-9_]*</define-regex>
 
     <context id="variable-1">
@@ -65,12 +68,10 @@
       </include>
     </context>
 
-    <context id="backtick-string" style-ref="function" end-at-line-end="true">
-      <start>`</start>
-      <end>`</end>
+    <context id="sh-variable">
       <include>
-        <context ref="def:escape"/>
-        <context ref="def:line-continue"/>
+        <context ref="variable"/>
+        <context ref="sh:variable" original="true"/>
       </include>
     </context>
 
@@ -92,7 +93,7 @@
         <context ref="variable"/>
         <context ref="string"/>
         <context ref="def:single-quoted-string"/>
-        <context ref="backtick-string"/>
+        <context ref="sh:backtick-subshell"/>
       </include>
     </context>
 
@@ -100,11 +101,7 @@
       <start></start>
       <include>
         <context ref="def:line-continue"/>
-        <context ref="def:shell-like-comment"/>
-        <context ref="variable"/>
-        <context ref="string"/>
-        <context ref="def:single-quoted-string"/>
-        <context ref="backtick-string"/>
+        <context ref="sh:sh" original="true"/>
       </include>
     </context>
 
@@ -156,7 +153,7 @@
         <context ref="def:shell-like-comment"/>
 
         <context id="assignment" end-at-line-end="true">
-          <start>^(\%{variable})\s*[\+]?=</start>
+          <start>^(\%{variable})\s*[\+\?:]?=</start>
             <include>
               <context sub-pattern="1" where="start" style-ref="assignment-lhs"/>
               <context ref="assignment-rhs"/>

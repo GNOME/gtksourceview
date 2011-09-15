@@ -3,6 +3,7 @@ TESTS = check-language.sh
 LANGUAGES =			\
 	ada.lang		\
 	asp.lang		\
+	automake.lang		\
 	awk.lang		\
 	bennugd.lang		\
 	bibtex.lang		\
