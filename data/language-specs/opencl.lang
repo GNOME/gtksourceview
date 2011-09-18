@@ -4,9 +4,7 @@
  This file is part of GtkSourceView
 
  Author: Vincent Hindriksen <vincent@streamcomputing.eu>
- With help from these two projects:
-  Gedit cuda.lang by Hüseyin Temucin <htemucin@gmail.com>
-  VIM OpenCL-highlighter by Terence Ou <rivan_@msn.com>
+ Copyright (C) 2011 Vincent Hindriksen
 
  GtkSourceView is free software; you can redistribute it and/or
  modify it under the terms of the GNU Lesser General Public
@@ -417,14 +415,14 @@
       <keyword>vstorea_half8_rtn</keyword>
       <keyword>vstorea_half16_rtn</keyword>
 
-      <keyword>read_image_f</keyword>
-      <keyword>read_image_i</keyword>
-      <keyword>read_image_ui</keyword>
-      <keyword>read_image_h</keyword>
-      <keyword>write_image_f</keyword>
-      <keyword>write_image_i</keyword>
-      <keyword>write_image_ui</keyword>
-      <keyword>write_image_h</keyword>
+      <keyword>read_imagef</keyword>
+      <keyword>read_imagei</keyword>
+      <keyword>read_imageui</keyword>
+      <keyword>read_imageh</keyword>
+      <keyword>write_imagef</keyword>
+      <keyword>write_imagei</keyword>
+      <keyword>write_imageui</keyword>
+      <keyword>write_imageh</keyword>
       <keyword>get_image_width</keyword>
       <keyword>get_image_height</keyword>
       <keyword>get_image_depth</keyword>
@@ -449,7 +447,7 @@
       <keyword>and</keyword>
       <keyword>prefetch</keyword>
       <keyword>async_work_group_copy</keyword>
-      <keyword>async_work_group__strided_copy</keyword>
+      <keyword>async_work_group_strided_copy</keyword>
       <keyword>wait_group_events</keyword>
       <keyword>prefetch</keyword>
 
@@ -467,6 +465,7 @@
 
       <keyword>vec_type_hint</keyword>
       <keyword>work_group_size_hint</keyword>
+      <keyword>reqd_work_group_size</keyword>
       <keyword>aligned</keyword>
       <keyword>packed</keyword>
       <keyword>endian</keyword>
