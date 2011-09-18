@@ -1381,7 +1381,7 @@ gtk_source_view_populate_popup (GtkTextView *text_view,
 		return;
 
 	/* separator */
-	menu_item = gtk_menu_item_new ();
+	menu_item = gtk_separator_menu_item_new ();
 	gtk_menu_shell_prepend (GTK_MENU_SHELL (menu), menu_item);
 	gtk_widget_show (menu_item);
 
