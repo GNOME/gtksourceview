@@ -5,6 +5,7 @@
 
  Copyright (C) 2005-2007 Marco Barisione <barisione@gmail.com>
  Copyright (C) 2005-2007 Emanuele Aina
+ Copyright (C) 2011 Sapphire Becker <guess@logicplace.com>
 
  gtksourceview is free software; you can redistribute it and/or
  modify it under the terms of the GNU Lesser General Public
@@ -32,7 +33,7 @@
 
         <attribute name="id">
             <data type="string">
-                <param name="pattern">([a-zA-Z0-9_]|-)+</param>
+                <param name="pattern">[a-zA-Z0-9_\-]+</param>
             </data>
         </attribute>
 
@@ -91,23 +92,13 @@
 
 <define name="id-type">
     <data type="string">
-        <!-- FIXME: Why it doesn't work?
-             It seems that [a-z-] is unsupported -->
-        <!--
-        <param name="pattern">([a-zA-Z0-9_-]+:)?[a-zA-Z0-9_-]+</param>
-        -->
-        <param name="pattern">(([a-zA-Z0-9_]|-)+:)?([a-zA-Z0-9_]|-)+</param>
+        <param name="pattern">([a-zA-Z0-9_\-]+:)?[a-zA-Z0-9_\-]+</param>
     </data>
 </define>
 
 <define name="ref-type">
     <data type="string">
-        <!-- FIXME: Why it doesn't work?
-             It seems that [a-z-] is unsupported -->
-        <!--
-        <param name="pattern">([a-zA-Z0-9_-]+:)?[a-zA-Z0-9_-]+(:\*)?</param>
-        -->
-        <param name="pattern">(([a-zA-Z0-9_]|-)+:)?([a-zA-Z0-9_]|-)+(:\*)?</param>
+        <param name="pattern">([a-zA-Z0-9_\-]+:)?[a-zA-Z0-9_\-]+(:\*)?</param>
     </data>
 </define>
 
@@ -141,7 +132,7 @@
     <element name="property">
         <attribute name="name">
 <!--          <data type="string">-->
-<!--              <param name="pattern">([a-zA-Z0-9_]|-)+</param>-->
+<!--              <param name="pattern">[a-zA-Z0-9_\-]+</param>-->
 <!--          </data>-->
         </attribute>
         <text/>
@@ -165,7 +156,7 @@
             <element name="style">
                 <attribute name="id">
                     <data type="string">
-                        <param name="pattern">([a-zA-Z0-9_]|-)+</param>
+                        <param name="pattern">[a-zA-Z0-9_\-]+</param>
                     </data>
                 </attribute>
                 <choice>
