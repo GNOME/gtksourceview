@@ -192,11 +192,11 @@
         <context ref="directory-macro"/>
         <context ref="command-macro"/>
         <context ref="conditional-macro"/>
-        <context ref="other-macro"/>
         <context ref="flow"/>
         <context ref="rpm-var"/>
         <context ref="command-switch"/>
         <context ref="changelog-section"/>
+        <context ref="other-macro"/>
       </include>
     </context>
 
