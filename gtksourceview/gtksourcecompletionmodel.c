@@ -483,10 +483,8 @@ gtk_source_completion_model_dispose (GObject *object)
 		g_hash_table_destroy (model->priv->providers_info);
 		model->priv->providers_info = NULL;
 	}
-	
-	g_list_foreach (model->priv->store, (GFunc)proposal_node_free, NULL);
 
-	g_list_free (model->priv->store);
+	g_list_free_full (model->priv->store, (GDestroyNotify)proposal_node_free);
 	model->priv->store = NULL;
 	model->priv->last = NULL;
 	

@@ -850,8 +850,7 @@ handle_context_element (ParserState *parser_state)
 		g_free (id);
 	}
 
-	g_slist_foreach (context_classes, (GFunc)gtk_source_context_class_free, NULL);
-	g_slist_free (context_classes);
+	g_slist_free_full (context_classes, (GDestroyNotify)gtk_source_context_class_free);
 
 	g_free (style_ref);
 	xmlFree (sub_pattern);

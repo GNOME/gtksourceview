@@ -378,8 +378,7 @@ ensure_languages (GtkSourceLanguageManager *lm)
 		lm->priv->ids = (gchar **)g_ptr_array_free (ids_array, FALSE);
 	}
 
-	g_slist_foreach (filenames, (GFunc) g_free, NULL);
-	g_slist_free (filenames);
+	g_slist_free_full (filenames, g_free);
 }
 
 

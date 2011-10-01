@@ -382,8 +382,7 @@ reload_if_needed (GtkSourceStyleSchemeManager *mgr)
 
 	ids = check_parents (ids, schemes_hash);
 
-	g_slist_foreach (files, (GFunc) g_free, NULL);
-	g_slist_free (files);
+	g_slist_free_full (files, g_free);
 
 	free_schemes (mgr);
 

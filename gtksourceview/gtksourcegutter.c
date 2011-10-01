@@ -257,8 +257,7 @@ gtk_source_gutter_dispose (GObject *object)
 	GtkSourceGutter *gutter = GTK_SOURCE_GUTTER (object);
 	gint i;
 
-	g_list_foreach (gutter->priv->renderers, (GFunc)renderer_free, NULL);
-	g_list_free (gutter->priv->renderers);
+	g_list_free_full (gutter->priv->renderers, (GDestroyNotify)renderer_free);
 
 	if (gutter->priv->view)
 	{

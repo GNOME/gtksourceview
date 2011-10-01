@@ -3800,16 +3800,12 @@ context_unref (Context *context)
 	{
 		for (i = 0; i < context->definition->n_sub_patterns; ++i)
 		{
-			g_slist_foreach (context->subpattern_context_classes[i], 
-			                 (GFunc)context_class_tag_free,
-			                 NULL);
-
-			g_slist_free (context->subpattern_context_classes[i]);
+			g_slist_free_full (context->subpattern_context_classes[i],
+			                   (GDestroyNotify)context_class_tag_free);
 		}
 	}
 
-	g_slist_foreach (context->context_classes, (GFunc)context_class_tag_free, NULL);
-	g_slist_free (context->context_classes);
+	g_slist_free_full (context->context_classes, (GDestroyNotify)context_class_tag_free);
 
 	g_free (context->subpattern_context_classes);
 	g_free (context->subpattern_tags);
@@ -3902,9 +3898,11 @@ context_thaw (Context *ctx)
 		else
 		{
 			GSList *children = NULL;
+
 			g_hash_table_foreach (ptr->u.hash,
 					      (GHFunc) get_child_contexts_hash_cb,
 					      &children);
+
 			g_slist_foreach (children, (GFunc) context_thaw, NULL);
 			g_slist_free (children);
 		}
@@ -6241,8 +6239,8 @@ context_definition_unref (ContextDefinition *definition)
 		if (sp_def->is_named)
 			g_free (sp_def->u.name);
 
-		g_slist_foreach (sp_def->context_classes, (GFunc) gtk_source_context_class_free, NULL);
-		g_slist_free (sp_def->context_classes);
+		g_slist_free_full (sp_def->context_classes,
+		                   (GDestroyNotify)gtk_source_context_class_free);
 
 		g_slice_free (SubPatternDefinition, sp_def);
 		sub_pattern_list = sub_pattern_list->next;
@@ -6253,11 +6251,10 @@ context_definition_unref (ContextDefinition *definition)
 	g_free (definition->default_style);
 	regex_unref (definition->reg_all);
 
-	g_slist_foreach (definition->context_classes, (GFunc) gtk_source_context_class_free, NULL);
-	g_slist_free (definition->context_classes);
+	g_slist_free_full (definition->context_classes,
+	                   (GDestroyNotify)gtk_source_context_class_free);
 
-	g_slist_foreach (definition->children, (GFunc) definition_child_free, NULL);
-	g_slist_free (definition->children);
+	g_slist_free_full (definition->children, (GDestroyNotify)definition_child_free);
 	g_slice_free (ContextDefinition, definition);
 }
 
