@@ -1510,13 +1510,11 @@ auto_completion_destroy (GtkSourceCompletion *completion)
 {
 	if (completion->priv->auto_completion_context != NULL)
 	{
-		g_object_ref_sink (completion->priv->auto_completion_context);
 		g_object_unref (completion->priv->auto_completion_context);
+		completion->priv->auto_completion_context = NULL;
 	}
 
 	g_list_free (completion->priv->auto_completion_selection);
-
-	completion->priv->auto_completion_context = NULL;
 	completion->priv->auto_completion_selection = NULL;
 }
 
@@ -1575,6 +1573,8 @@ auto_completion_prematch (GtkSourceCompletion *completion)
 	}
 
 	context = gtk_source_completion_create_context (completion, &iter);
+	g_object_ref_sink (context);
+
 	g_object_set (context,
 	              "activation",
 	              GTK_SOURCE_COMPLETION_ACTIVATION_INTERACTIVE,
@@ -1588,7 +1588,6 @@ auto_completion_prematch (GtkSourceCompletion *completion)
 
 	if (selection == NULL)
 	{
-		g_object_ref_sink (context);
 		g_object_unref (context);
 
 		return FALSE;
@@ -1883,7 +1882,7 @@ cancel_completion (GtkSourceCompletion        *completion,
 	{
 		if (context != NULL)
 		{
-			completion->priv->context = g_object_ref_sink (context);
+			completion->priv->context = context;
 		}
 	}
 	else
@@ -1901,7 +1900,7 @@ cancel_completion (GtkSourceCompletion        *completion,
 		}
 		else if (context != NULL)
 		{
-			completion->priv->context = g_object_ref_sink (context);
+			completion->priv->context = context;
 		}
 
 		g_list_free (completion->priv->running_providers);
@@ -3268,6 +3267,7 @@ gtk_source_completion_show (GtkSourceCompletion        *completion,
 	GList *selected_providers;
 
 	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION (completion), FALSE);
+	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_CONTEXT (context), FALSE);
 
 	/* Make sure to clear any active completion */
 	DEBUG({
@@ -3276,9 +3276,12 @@ gtk_source_completion_show (GtkSourceCompletion        *completion,
 
 	gtk_source_completion_hide (completion);
 
+	/* We need to take owenership of the context right before doing
+	   anything so we don't leak it or get a crash emitting the signal */
+	g_object_ref_sink (context);
+
 	if (providers == NULL)
 	{
-		g_object_ref_sink (context);
 		g_object_unref (context);
 
 		return FALSE;
@@ -3292,10 +3295,7 @@ gtk_source_completion_show (GtkSourceCompletion        *completion,
 
 	if (selected_providers == NULL)
 	{
-		if (g_object_is_floating (context))
-		{
-			g_object_unref (context);
-		}
+		g_object_unref (context);
 
 		DEBUG({
 			g_print ("No providers for completion\n");
