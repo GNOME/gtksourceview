@@ -124,7 +124,7 @@ AM_GNU_GETTEXT_VERSION([0.17])
 AM_GNU_GETTEXT([external])
 
 AC_SUBST([GETTEXT_PACKAGE], [gtksourceview-3.0])
-AC_DEFINE([GETTEXT_PACKAGE], [PACKAGE_TARNAME], [Define to the gettext package name.])
+AC_DEFINE_UNQUOTED([GETTEXT_PACKAGE], ["$GETTEXT_PACKAGE"], [Define to the gettext package name.])
 
 # Documentation
 GTK_DOC_CHECK([1.11], [--flavour=no-tmpl])
