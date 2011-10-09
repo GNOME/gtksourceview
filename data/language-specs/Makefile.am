@@ -48,6 +48,7 @@ LANGUAGES =			\
 	ini.lang		\
 	java.lang		\
 	javascript.lang		\
+	json.lang		\
 	latex.lang		\
 	libtool.lang		\
 	lua.lang		\

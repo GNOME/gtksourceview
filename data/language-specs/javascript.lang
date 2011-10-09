@@ -27,7 +27,7 @@
 <language id="js" _name="JavaScript" version="2.0" _section="Scripts">
   <metadata>
     <property name="mimetypes">application/javascript;application/x-javascript;text/x-javascript;text/javascript;text/x-js</property>
-    <property name="globs">*.js;*.json</property>
+    <property name="globs">*.js;*.node</property>
     <property name="line-comment-start">//</property>
     <property name="block-comment-start">/*</property>
     <property name="block-comment-end">*/</property>
@@ -37,13 +37,14 @@
     <style id="escape"          _name="Escaped Character"        map-to="def:special-char"/>
     <style id="null-value"      _name="Null Value"               map-to="def:special-constant"/>
     <style id="undefined-value" _name="Undefined Value"          map-to="def:special-constant"/>
-    <style id="boolean"         _name="Boolean value"            map-to="def:boolean"/>
+    <style id="boolean"         _name="Boolean Value"            map-to="def:boolean"/>
     <style id="keyword"         _name="Keyword"                  map-to="def:keyword"/>
     <style id="type"            _name="Data Type"                map-to="def:type"/>
     <style id="function"        _name="Function"                 map-to="def:builtin"/>
     <style id="properties"      _name="Properties"               map-to="def:statement"/>
     <style id="constructors"    _name="Constructors"             map-to="def:type"/>
     <style id="future-words"    _name="Future Reserved Keywords" map-to="def:error"/>
+    <style id="string"          _name="String"                   map-to="def:string"/>
     <style id="regex"           _name="Regular Expression"       map-to="def:string"/>
   </styles>
 
@@ -93,6 +94,11 @@
     <context id="undefined-value" style-ref="undefined-value">
       <keyword>undefined</keyword>
     </context>
+
+    <context id="null-value" style-ref="null-value">
+      <keyword>null</keyword>
+    </context>
+
     <context id="boolean" style-ref="boolean">
       <keyword>false</keyword>
       <keyword>true</keyword>
@@ -138,7 +144,6 @@
     <context id="types" style-ref="type">
       <keyword>Infinity</keyword>
       <keyword>NaN</keyword>
-      <keyword>null</keyword>
     </context>
 
     <context id="functions" style-ref="function">
@@ -309,8 +314,8 @@
         <context ref="def:c-like-comment"/>
         <context ref="def:c-like-comment-multiline"/>
         <context ref="def:c-like-close-comment-outside-comment"/>
-        <context ref="def:string"/>
-        <context ref="def:single-quoted-string"/>
+        <context ref="def:string" style-ref="string"/>
+        <context ref="def:single-quoted-string" style-ref="string"/>
         <context ref="def:float"/>
         <context ref="def:decimal"/>
         <context ref="def:octal"/>

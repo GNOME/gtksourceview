@@ -1041,3 +1041,18 @@ greptest.sh:
 
 CLEANFILES = greptest.sh
 EOFEOF
+
+cat > $dir/file.json <<EOFEOF
+{
+	"hi": -1.1e1, "b": 2,
+	"abc": "hi",
+	"dce": [
+		1.2, 2e10, -3,
+		1, 2,
+		"string"
+	],
+	"fgh": {
+		"a": 1
+	}
+}
+EOFEOF
