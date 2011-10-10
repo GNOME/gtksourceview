@@ -968,6 +968,12 @@ update_proposal_info_real (GtkSourceCompletion         *completion,
 		}
 		else
 		{
+			/* we need to ref the default info widget before removing it */
+			if (gtk_source_completion_info_get_widget (info_window) == completion->priv->default_info)
+			{
+				g_object_ref (completion->priv->default_info);
+			}
+
 			prov_update_info = TRUE;
 		}
 	}
