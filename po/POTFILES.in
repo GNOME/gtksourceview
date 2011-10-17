@@ -1,14 +1,15 @@
 data/glade/gtksourceview.xml.in
 data/language-specs/ada.lang
 data/language-specs/asp.lang
+data/language-specs/automake.lang
 data/language-specs/awk.lang
 data/language-specs/bennugd.lang
 data/language-specs/bibtex.lang
 data/language-specs/boo.lang
+data/language-specs/cg.lang
 data/language-specs/changelog.lang
 data/language-specs/chdr.lang
 data/language-specs/c.lang
-data/language-specs/cg.lang
 data/language-specs/cmake.lang
 data/language-specs/cobol.lang
 data/language-specs/cpp.lang
@@ -111,8 +112,8 @@ gtksourceview/gtksourcegutterrenderertext.c
 gtksourceview/gtksourcelanguage.c
 gtksourceview/gtksourcelanguagemanager.c
 gtksourceview/gtksourcelanguage-parser-2.c
-gtksourceview/gtksourcemark.c
 gtksourceview/gtksourcemarkattributes.c
+gtksourceview/gtksourcemark.c
 gtksourceview/gtksourceprintcompositor.c
 gtksourceview/gtksourcestyle.c
 gtksourceview/gtksourcestylescheme.c
