@@ -284,7 +284,7 @@ gtk_source_completion_provider_update_info (GtkSourceCompletionProvider *provide
  * @provider: a #GtkSourceCompletionProvider.
  * @proposal: a #GtkSourceCompletionProposal.
  * @context: a #GtkSourceCompletionContext.
- * @iter: (out): a #GtkTextIter.
+ * @iter: a #GtkTextIter.
  * 
  * Get the #GtkTextIter at which the completion for @proposal starts. When
  * implemented, the completion can use this information to position the
