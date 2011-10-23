@@ -1,23 +1,23 @@
 # translation of gtksourceview.master.po to Español
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# Jorge González <jorgegonz@svn.gnome.org>, 2007, 2008, 2009, 2010, 2011.
 # Daniel Mustieles <daniel.mustieles@gmail.com>, 2011.
+# Jorge González <jorgegonz@svn.gnome.org>, 2007, 2008, 2009, 2010, 2011.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-10-17 16:28+0000\n"
-"PO-Revision-Date: 2011-10-18 16:11+0200\n"
-"Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
-"Language-Team: Español <gnome-es-list@gnome.org>\n"
+"POT-Creation-Date: 2011-10-22 10:36+0000\n"
+"PO-Revision-Date: 2011-10-23 13:39+0200\n"
+"Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
+"Language-Team: Español; Castellano <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
 #: ../data/glade/gtksourceview.xml.in.h:1
 msgid "After"
@@ -393,27 +393,22 @@ msgid "VBScript and ADO constants"
 msgstr "Constantes en VBScript y ADO"
 
 #: ../data/language-specs/automake.lang.h:1
-#| msgid "Atom"
 msgid "Automake"
 msgstr "Automake"
 
 #: ../data/language-specs/automake.lang.h:2
-#| msgid "Global Variable"
 msgid "Automake Variable"
 msgstr "Variable de automake"
 
 #: ../data/language-specs/automake.lang.h:3
-#| msgid "Builtin Variable"
 msgid "Built-in Target"
 msgstr "Objetivo integrado"
 
 #: ../data/language-specs/automake.lang.h:4
-#| msgid "Option Name"
 msgid "Optional Target"
 msgstr "Objetivo opcional"
 
 #: ../data/language-specs/automake.lang.h:5
-#| msgid "Control Keyword"
 msgid "Other Keyword"
 msgstr "Otra palabra clave"
 
@@ -422,16 +417,14 @@ msgid "Prefix"
 msgstr "Prefijo"
 
 #: ../data/language-specs/automake.lang.h:7
-#, fuzzy
 #| msgid "Priority"
 msgid "Primary"
-msgstr "Prioridad"
+msgstr "Primario"
 
 #: ../data/language-specs/automake.lang.h:8
-#, fuzzy
 #| msgid "Section"
 msgid "Secondary"
-msgstr "Sección"
+msgstr "Secundario"
 
 #: ../data/language-specs/automake.lang.h:9
 msgid "Substitution"
@@ -1694,7 +1687,8 @@ msgid "Ocamldoc Comments"
 msgstr "Comentario Ocamldoc"
 
 #: ../data/language-specs/ocaml.lang.h:17
-msgid "Standart Modules"
+#| msgid "Standart Modules"
+msgid "Standard Modules"
 msgstr "Módulos estándar"
 
 #: ../data/language-specs/ocl.lang.h:4
@@ -1748,7 +1742,7 @@ msgstr "Función globales"
 
 #: ../data/language-specs/opencl.lang.h:5
 msgid "Global Variable"
-msgstr "Variable globale"
+msgstr "Variable global"
 
 #: ../data/language-specs/opencl.lang.h:7
 msgid "OpenCL"
@@ -2801,7 +2795,8 @@ msgstr "Nombre de la tipografía del cuerpo"
 #: ../gtksourceview/gtksourceprintcompositor.c:597
 msgid "Name of the font to use for the text body (e.g. \"Monospace 10\")"
 msgstr ""
-"Nombre de la tipografía que usar para el cuerpo del texto (ej. «Monospace 10»)"
+"Nombre de la tipografía que usar para el cuerpo del texto (ej. «Monospace "
+"10»)"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:620
 msgid "Line Numbers Font Name"
@@ -2830,7 +2825,8 @@ msgstr "Nombre de la tipografía del pie"
 #: ../gtksourceview/gtksourceprintcompositor.c:669
 msgid "Name of the font to use for the page footer (e.g. \"Monospace 10\")"
 msgstr ""
-"Nombre de la tipografía que usar para el pie de la página (ej. «Monospace 10»)"
+"Nombre de la tipografía que usar para el pie de la página (ej. «Monospace "
+"10»)"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:685
 msgid "Number of pages"
@@ -3042,8 +3038,8 @@ msgid ""
 "HOME and END keys move to first/last non whitespace characters on line "
 "before going to the start/end of the line"
 msgstr ""
-"Las teclas «Inicio» y «Fin» situarán el cursor en el primer/último carácter no "
-"blanco de la línea antes de ir al inicio/fin de la línea"
+"Las teclas «Inicio» y «Fin» situarán el cursor en el primer/último carácter "
+"no blanco de la línea antes de ir al inicio/fin de la línea"
 
 #: ../gtksourceview/gtksourceview.c:431
 msgid "Highlight current line"
