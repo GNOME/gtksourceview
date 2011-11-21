@@ -24,7 +24,7 @@
 #endif
 
 #ifdef OS_OSX
-#include <ige-mac-bundle.h>
+#include <gtkosxapplication.h>
 #endif
 
 #include <string.h>
@@ -45,11 +45,9 @@ get_locale_dir (void)
 
 	g_free (win32_dir);
 #elif defined (OS_OSX)
-	IgeMacBundle *bundle = ige_mac_bundle_get_default ();
-
-	if (ige_mac_bundle_get_is_app_bundle (bundle))
+	if (quartz_application_get_bundle_id () != NULL)
 	{
-		locale_dir = g_strdup (ige_mac_bundle_get_localedir (bundle));
+		locale_dir = g_build_filename (quartz_application_get_resource_path (), "share", "locale", NULL);
 	}
 	else
 	{
