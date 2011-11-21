@@ -76,7 +76,7 @@ AM_CONDITIONAL(OS_OSX, test "$os_osx" = "yes")
 if test "$os_osx" = "yes"; then
 	AC_DEFINE([OS_OSX],[1],[Defined if os is Mac OSX])
 
-	PKG_CHECK_MODULES(IGE_MAC, ige-mac-integration)
+	PKG_CHECK_MODULES(GTK_MAC, gtk-mac-integration)
 fi
 
 # Check for Glade3
