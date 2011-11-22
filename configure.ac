@@ -84,14 +84,7 @@ AM_CONDITIONAL([ENABLE_PROVIDERS], [ test "$enable_providers" = "yes" ])
 
 dnl check for native osx
 AC_MSG_CHECKING([for native Mac OS X])
-
-gdk_windowing=`$PKG_CONFIG --variable=target gdk-3.0`
-
-if test "$gdk_windowing" = "quartz"; then
-	os_osx=yes
-else
-	os_osx=no
-fi
+GTK_CHECK_BACKEND([quartz], [3.0.0], [os_osx=yes], [os_osx=no])
 AC_MSG_RESULT([$os_osx])
 AM_CONDITIONAL([OS_OSX], [ test "$os_osx" = "yes" ])
 
