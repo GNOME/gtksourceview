@@ -323,6 +323,21 @@ _gtk_source_language_manager_get_rng_file (GtkSourceLanguageManager *lm)
 	return lm->priv->rng_file;
 }
 
+static gint
+language_compare (const gchar **id1, const gchar **id2, GHashTable *language_ids)
+{
+	GtkSourceLanguage *lang1, *lang2;
+	const gchar *name1, *name2;
+
+	lang1 = g_hash_table_lookup (language_ids, *id1);
+	lang2 = g_hash_table_lookup (language_ids, *id2);
+
+	name1 = gtk_source_language_get_name (lang1);
+	name2 = gtk_source_language_get_name (lang2);
+
+	return g_utf8_collate (name1, name2);
+}
+
 static void
 ensure_languages (GtkSourceLanguageManager *lm)
 {
@@ -373,14 +388,20 @@ ensure_languages (GtkSourceLanguageManager *lm)
 
 	if (ids_array != NULL)
 	{
+		/* Sort the array alphabetically so that it
+		 * is ready to use in a list of a GUI */
+		g_ptr_array_sort_with_data (ids_array,
+		                            (GCompareDataFunc)language_compare,
+		                            lm->priv->language_ids);
+
 		/* Ensure the array is NULL terminated */
 		g_ptr_array_add (ids_array, NULL);
+
 		lm->priv->ids = (gchar **)g_ptr_array_free (ids_array, FALSE);
 	}
 
 	g_slist_free_full (filenames, g_free);
 }
-
 
 /**
  * gtk_source_language_manager_get_language_ids:
@@ -391,6 +412,8 @@ ensure_languages (GtkSourceLanguageManager *lm)
  * Returns: (transfer none): a %NULL-terminated array of string
  * containing the ids of the available languages or %NULL if
  * no language is available.
+ * The array is sorted alphabetically according to the language
+ * name.
  * The array is owned by @lm and must not be modified.
  */
 const gchar * const *
