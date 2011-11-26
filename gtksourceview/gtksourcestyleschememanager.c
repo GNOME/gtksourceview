@@ -216,21 +216,6 @@ gtk_source_style_scheme_manager_get_default (void)
 	return instance;
 }
 
-static GSList *
-ids_list_remove (GSList *ids, const gchar *id, gboolean free_data)
-{
-	GSList *o = g_slist_find_custom (ids, id, (GCompareFunc) strcmp);
-
-	if (o != NULL)
-	{
-		if (free_data)
-			g_free (o->data);
-		ids = g_slist_delete_link (ids, o);
-	}
-
-	return ids;
-}
-
 static gboolean
 build_reference_chain (GtkSourceStyleScheme *scheme,
 		       GHashTable           *hash,
@@ -280,36 +265,32 @@ build_reference_chain (GtkSourceStyleScheme *scheme,
 }
 
 static GSList *
-check_parents (GSList     *ids,
-	       GHashTable *hash)
+check_parents (GSList *schemes, GHashTable *hash)
 {
 	GSList *to_check;
 
-	to_check = g_slist_copy (ids);
+	to_check = g_slist_copy (schemes);
 
 	while (to_check != NULL)
 	{
+		GtkSourceStyleScheme *scheme_to_check;
 		GSList *chain;
 		gboolean valid;
-		GtkSourceStyleScheme *scheme_to_check;
 
-		scheme_to_check = g_hash_table_lookup (hash, to_check->data);
-		g_return_val_if_fail (scheme_to_check != NULL, NULL);
+		scheme_to_check = to_check->data;
 
 		valid = build_reference_chain (scheme_to_check, hash, &chain);
 
 		while (chain != NULL)
 		{
-			const gchar *id;
 			GtkSourceStyleScheme *scheme = chain->data;
 
-			id = gtk_source_style_scheme_get_id (scheme);
-
-			to_check = ids_list_remove (to_check, id, FALSE);
+			to_check = g_slist_remove (to_check, scheme);
 
 			if (!valid)
 			{
-				ids = ids_list_remove (ids, id, TRUE);
+				const gchar *id = gtk_source_style_scheme_get_id (scheme);
+				schemes = g_slist_remove (schemes, scheme);
 				g_hash_table_remove (hash, id);
 			}
 
@@ -317,11 +298,23 @@ check_parents (GSList     *ids,
 		}
 	}
 
-	return ids;
+	return schemes;
+}
+
+static gint
+schemes_compare (GtkSourceStyleScheme *scheme1, GtkSourceStyleScheme *scheme2)
+{
+	const gchar *name1;
+	const gchar *name2;
+
+	name1 = gtk_source_style_scheme_get_name (scheme1);
+	name2 = gtk_source_style_scheme_get_name (scheme2);
+
+	return g_utf8_collate (name1, name2);
 }
 
 static gchar **
-slist_to_strv (GSList *list)
+schemes_list_to_ids (GSList *list)
 {
 	gchar **res;
 	guint i = 0;
@@ -330,7 +323,8 @@ slist_to_strv (GSList *list)
 
 	for ( ; list != NULL; list = list->next)
 	{
-		res[i] = list->data;
+		const gchar *id = gtk_source_style_scheme_get_id (list->data);
+		res[i] = g_strdup (id);
 		++i;
 	}
 
@@ -342,7 +336,7 @@ slist_to_strv (GSList *list)
 static void
 reload_if_needed (GtkSourceStyleSchemeManager *mgr)
 {
-	GSList *ids = NULL;
+	GSList *schemes = NULL;
 	GSList *files;
 	GSList *l;
 	GHashTable *schemes_hash;
@@ -371,27 +365,30 @@ reload_if_needed (GtkSourceStyleSchemeManager *mgr)
 			GtkSourceStyleScheme *old;
 
 			old = g_hash_table_lookup (schemes_hash, id);
-
 			if (old != NULL)
-				ids = ids_list_remove (ids, id, TRUE);
+			{
+				schemes = g_slist_remove (schemes, old);
+			}
 
-			ids = g_slist_prepend (ids, g_strdup (id));
+			schemes = g_slist_prepend (schemes, scheme);
 			g_hash_table_insert (schemes_hash, g_strdup (id), scheme);
 		}
 	}
 
-	ids = check_parents (ids, schemes_hash);
-
 	g_slist_free_full (files, g_free);
+
+	schemes = check_parents (schemes, schemes_hash);
+
+	/* Sort by name */
+	schemes = g_slist_sort (schemes, (GCompareFunc)schemes_compare);
 
 	free_schemes (mgr);
 
 	mgr->priv->need_reload = FALSE;
 	mgr->priv->schemes_hash = schemes_hash;
 
-	mgr->priv->ids = slist_to_strv (ids);
-	g_slist_free (ids); /* slist_to_strv trasfer the onwnership of the strings
-	                       to the string array */
+	mgr->priv->ids = schemes_list_to_ids (schemes);
+	g_slist_free (schemes);
 }
 
 static void
@@ -552,7 +549,9 @@ gtk_source_style_scheme_manager_force_rescan (GtkSourceStyleSchemeManager *manag
  *
  * Returns: (array zero-terminated=1) (transfer none): a %NULL-terminated array
  * of string containing the ids of the available style schemes or %NULL if no
- * style scheme is available. The array is owned by the @manager and must not be modified.
+ * style scheme is available.
+ * The array is sorted alphabetically according to the scheme name.
+ * The array is owned by the @manager and must not be modified.
  */
 const gchar * const *
 gtk_source_style_scheme_manager_get_scheme_ids (GtkSourceStyleSchemeManager *manager)
