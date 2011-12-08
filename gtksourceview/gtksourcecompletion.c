@@ -1925,9 +1925,8 @@ gtk_source_completion_dispose (GObject *object)
 	if (completion->priv->view != NULL)
 	{
 		disconnect_view (completion);
-		g_object_unref (completion->priv->view);
 
-		completion->priv->view = NULL;
+		g_clear_object (&completion->priv->view);
 
 		g_list_foreach (completion->priv->providers, (GFunc)g_object_unref, NULL);
 	}

@@ -412,10 +412,7 @@ gtk_source_print_compositor_dispose (GObject *object)
 
 	compositor = GTK_SOURCE_PRINT_COMPOSITOR (object);
 
-	if (compositor->priv->buffer != NULL) {
-		g_object_unref (compositor->priv->buffer);
-		compositor->priv->buffer = NULL;
-	}
+	g_clear_object (&compositor->priv->buffer);
 
 	G_OBJECT_CLASS (gtk_source_print_compositor_parent_class)->dispose (object);
 }

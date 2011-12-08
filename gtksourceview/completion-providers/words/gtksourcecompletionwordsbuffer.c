@@ -214,8 +214,7 @@ gtk_source_completion_words_buffer_dispose (GObject *object)
 		g_signal_handler_disconnect (buffer->priv->library,
 		                             buffer->priv->unlock_handler_id);
 
-		g_object_unref (buffer->priv->library);
-		buffer->priv->library = NULL;
+		g_clear_object (&buffer->priv->library);
 	}
 
 	G_OBJECT_CLASS (gtk_source_completion_words_buffer_parent_class)->dispose (object);

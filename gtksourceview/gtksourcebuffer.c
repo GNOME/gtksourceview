@@ -484,7 +484,6 @@ gtk_source_buffer_dispose (GObject *object)
 	g_return_if_fail (GTK_SOURCE_IS_BUFFER (object));
 
 	buffer = GTK_SOURCE_BUFFER (object);
-	g_return_if_fail (buffer->priv != NULL);
 
 	if (buffer->priv->undo_manager != NULL)
 	{
@@ -494,21 +493,11 @@ gtk_source_buffer_dispose (GObject *object)
 	if (buffer->priv->highlight_engine != NULL)
 	{
 		_gtk_source_engine_attach_buffer (buffer->priv->highlight_engine, NULL);
-		g_object_unref (buffer->priv->highlight_engine);
-		buffer->priv->highlight_engine = NULL;
 	}
 
-	if (buffer->priv->language != NULL)
-	{
-		g_object_unref (buffer->priv->language);
-		buffer->priv->language = NULL;
-	}
-
-	if (buffer->priv->style_scheme != NULL)
-	{
-		g_object_unref (buffer->priv->style_scheme);
-		buffer->priv->style_scheme = NULL;
-	}
+	g_clear_object (&buffer->priv->highlight_engine);
+	g_clear_object (&buffer->priv->language);
+	g_clear_object (&buffer->priv->style_scheme);
 
 	G_OBJECT_CLASS (gtk_source_buffer_parent_class)->dispose (object);
 }

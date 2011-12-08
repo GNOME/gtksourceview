@@ -109,17 +109,8 @@ gtk_source_style_scheme_dispose (GObject *object)
 		scheme->priv->defined_styles = NULL;
 	}
 
-	if (scheme->priv->parent != NULL)
-	{
-		g_object_unref (scheme->priv->parent);
-		scheme->priv->parent = NULL;
-	}
-
-	if (scheme->priv->css != NULL)
-	{
-		g_object_unref (scheme->priv->css);
-		scheme->priv->css = NULL;
-	}
+	g_clear_object (&scheme->priv->parent);
+	g_clear_object (&scheme->priv->css);
 
 	G_OBJECT_CLASS (gtk_source_style_scheme_parent_class)->dispose (object);
 }

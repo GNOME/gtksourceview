@@ -86,11 +86,7 @@ gtk_source_completion_context_dispose (GObject *object)
 		context->priv->mark_set_id = 0;
 	}
 
-	if (context->priv->completion)
-	{
-		g_object_unref (context->priv->completion);
-		context->priv->completion = NULL;
-	}
+	g_clear_object (&context->priv->completion);
 
 	if (context->priv->mark)
 	{

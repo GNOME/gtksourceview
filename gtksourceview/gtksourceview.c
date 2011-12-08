@@ -1038,23 +1038,9 @@ gtk_source_view_dispose (GObject *object)
 	}
 	set_source_buffer (view, NULL);
 
-	if (view->priv->completion != NULL)
-	{
-		g_object_unref (view->priv->completion);
-		view->priv->completion = NULL;
-	}
-
-	if (view->priv->left_gutter)
-	{
-		g_object_unref (view->priv->left_gutter);
-		view->priv->left_gutter = NULL;
-	}
-
-	if (view->priv->right_gutter)
-	{
-		g_object_unref (view->priv->right_gutter);
-		view->priv->right_gutter = NULL;
-	}
+	g_clear_object (&view->priv->completion);
+	g_clear_object (&view->priv->left_gutter);
+	g_clear_object (&view->priv->right_gutter);
 
 	view->priv->dispose_has_run = 1;
 

@@ -308,30 +308,21 @@ gtk_source_completion_words_dispose (GObject *object)
 {
 	GtkSourceCompletionWords *provider = GTK_SOURCE_COMPLETION_WORDS (object);
 	GList *cp;
-	
+
 	population_finished (provider);
-	
+
 	cp = g_list_copy (provider->priv->buffers);
 	g_list_foreach (cp, (GFunc)remove_buffer, NULL);
-	
+
 	g_list_free (cp);
 	g_list_free (provider->priv->buffers);
-	
+
 	g_free (provider->priv->name);
 	provider->priv->name = NULL;
-	
-	if (provider->priv->icon)
-	{
-		g_object_unref (provider->priv->icon);
-		provider->priv->icon = NULL;
-	}
-	
-	if (provider->priv->library)
-	{
-		g_object_unref (provider->priv->library);
-		provider->priv->library = NULL;
-	}
-	
+
+	g_clear_object (&provider->priv->icon);
+	g_clear_object (&provider->priv->library);
+
 	G_OBJECT_CLASS (gtk_source_completion_words_parent_class)->dispose (object);
 }
 
