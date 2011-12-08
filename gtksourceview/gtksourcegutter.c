@@ -943,6 +943,8 @@ on_view_draw (GtkSourceView   *view,
 	gint idx;
 	GtkStyleContext *style_context;
 	GdkRGBA fg_color;
+	GdkDeviceManager *device_manager;
+	GdkDevice *pointer;
 
 	window = gtk_source_gutter_get_window (gutter);
 
@@ -964,7 +966,9 @@ on_view_draw (GtkSourceView   *view,
 
 	buffer = gtk_text_view_get_buffer (text_view);
 
-	gdk_window_get_pointer (window, &x, &y, NULL);
+	device_manager = gdk_display_get_device_manager (gdk_window_get_display (window));
+	pointer = gdk_device_manager_get_client_pointer (device_manager);
+	gdk_window_get_device_position (window, pointer, &x, &y, NULL);
 
 	y1 = clip.y;
 	y2 = y1 + clip.height;
