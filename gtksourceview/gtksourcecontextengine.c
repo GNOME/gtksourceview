@@ -64,6 +64,7 @@
  * small enough, since in worst case we block ui for this time after each keypress.
  */
 #define FIRST_UPDATE_TIME_SLICE		10
+
 /* Priority of long running idle which is used to analyze whole buffer, if
  * the engine wasn't quick enough to analyze it in one shot. */
 /* FIXME this priority is low, since we don't want to block other gui stuff.
@@ -71,6 +72,7 @@
  * to analyze quickly. Perhaps we want to reinstall first_update in case
  * of expose events or something. */
 #define INCREMENTAL_UPDATE_PRIORITY	G_PRIORITY_LOW
+
 /* Maximal amount of time allowed to spent in one cycle of background idle. */
 #define INCREMENTAL_UPDATE_TIME_SLICE	30
 
@@ -79,10 +81,6 @@
 #define MAX_TIME_FOR_ONE_LINE		2000
 
 #define GTK_SOURCE_CONTEXT_ENGINE_ERROR (gtk_source_context_engine_error_quark ())
-
-/* Returns the definition corrsponding to the specified id. */
-#define LOOKUP_DEFINITION(ctx_data, id) \
-	(g_hash_table_lookup ((ctx_data)->definitions, (id)))
 
 #define HAS_OPTION(def,opt) (((def)->flags & GTK_SOURCE_CONTEXT_##opt) != 0)
 
@@ -450,8 +448,9 @@ struct _GtkSourceContextEnginePrivate
 	/* Tree of contexts. */
 	Context			*root_context;
 	Segment			*root_segment;
-        Segment                 *hint;
-        Segment                 *hint2;
+	Segment			*hint;
+	Segment			*hint2;
+
 	/* list of Segment* */
 	GSList			*invalid;
 	InvalidRegion		 invalid_region;
@@ -459,12 +458,10 @@ struct _GtkSourceContextEnginePrivate
 	guint			 first_update;
 	guint			 incremental_update;
 
-
 #ifdef ENABLE_MEMORY_DEBUG
 	guint			 mem_usage_timeout;
 #endif
 };
-
 
 #ifdef ENABLE_CHECK_TREE
 static void check_tree (GtkSourceContextEngine *ce);
@@ -478,7 +475,6 @@ static void check_segment_children (Segment *segment);
 #define CHECK_SEGMENT_LIST(s)
 #define CHECK_SEGMENT_CHILDREN(s)
 #endif
-
 
 static GQuark		gtk_source_context_engine_error_quark (void) G_GNUC_CONST;
 
@@ -541,6 +537,11 @@ static void		install_first_update	(GtkSourceContextEngine	*ce);
 static gboolean		mem_usage_timeout	(GtkSourceContextEngine *ce);
 #endif
 
+static ContextDefinition *
+gtk_source_context_data_lookup (GtkSourceContextData *ctx_data, const char *id)
+{
+	return g_hash_table_lookup (ctx_data->definitions, id);
+}
 
 /* TAGS AND STUFF -------------------------------------------------------------- */
 
@@ -2622,7 +2623,7 @@ gtk_source_context_engine_attach_buffer (GtkSourceEngine *engine,
 
 		/* Create the root context. */
 		root_id = g_strdup_printf ("%s:%s", ENGINE_ID (ce), ENGINE_ID (ce));
-		main_definition = LOOKUP_DEFINITION (ce->priv->ctx_data, root_id);
+		main_definition = gtk_source_context_data_lookup (ce->priv->ctx_data, root_id);
 		g_free (root_id);
 
 		/* If we don't abort here, we will crash later (#485661). But it should
@@ -6332,7 +6333,7 @@ _gtk_source_context_data_define_context (GtkSourceContextData *ctx_data,
 	/* If the id is already present in the hashtable it is a duplicate,
 	 * so we report the error (probably there is a duplicate id in the
 	 * XML lang file) */
-	if (LOOKUP_DEFINITION (ctx_data, id) != NULL)
+	if (gtk_source_context_data_lookup (ctx_data, id) != NULL)
 	{
 		g_set_error (error,
 			     GTK_SOURCE_CONTEXT_ENGINE_ERROR,
@@ -6376,7 +6377,7 @@ _gtk_source_context_data_define_context (GtkSourceContextData *ctx_data,
 	}
 	else
 	{
-		parent = LOOKUP_DEFINITION (ctx_data, parent_id);
+		parent = gtk_source_context_data_lookup (ctx_data, parent_id);
 		g_return_val_if_fail (parent != NULL, FALSE);
 	}
 
@@ -6421,7 +6422,7 @@ _gtk_source_context_data_add_sub_pattern (GtkSourceContextData *ctx_data,
 	/* If the id is already present in the hashtable it is a duplicate,
 	 * so we report the error (probably there is a duplicate id in the
 	 * XML lang file) */
-	if (LOOKUP_DEFINITION (ctx_data, id) != NULL)
+	if (gtk_source_context_data_lookup (ctx_data, id) != NULL)
 	{
 		g_set_error (error,
 			     GTK_SOURCE_CONTEXT_ENGINE_ERROR,
@@ -6430,7 +6431,7 @@ _gtk_source_context_data_add_sub_pattern (GtkSourceContextData *ctx_data,
 		return FALSE;
 	}
 
-	parent = LOOKUP_DEFINITION (ctx_data, parent_id);
+	parent = gtk_source_context_data_lookup (ctx_data, parent_id);
 	g_return_val_if_fail (parent != NULL, FALSE);
 
 	if (!where || !where[0] || !strcmp (where, "default"))
@@ -6519,8 +6520,8 @@ _gtk_source_context_data_add_ref (GtkSourceContextData *ctx_data,
 	g_return_val_if_fail (ref_id != NULL, FALSE);
 	g_return_val_if_fail (ctx_data != NULL, FALSE);
 
-	ref = LOOKUP_DEFINITION (ctx_data, ref_id);
-	parent = LOOKUP_DEFINITION (ctx_data, parent_id);
+	ref = gtk_source_context_data_lookup (ctx_data, ref_id);
+	parent = gtk_source_context_data_lookup (ctx_data, parent_id);
 	g_return_val_if_fail (parent != NULL, FALSE);
 
 	if (parent->type != CONTEXT_TYPE_CONTAINER)
@@ -6587,7 +6588,7 @@ resolve_reference (G_GNUC_UNUSED const gchar *id,
 		if (child_def->resolved)
 			continue;
 
-		ref = LOOKUP_DEFINITION (data->ctx_data, child_def->u.id);
+		ref = gtk_source_context_data_lookup (data->ctx_data, child_def->u.id);
 
 		if (ref != NULL)
 		{
@@ -6628,7 +6629,7 @@ process_replace (GtkSourceContextData *ctx_data,
 {
 	ContextDefinition *to_replace, *new;
 
-	to_replace = LOOKUP_DEFINITION (ctx_data, id);
+	to_replace = gtk_source_context_data_lookup (ctx_data, id);
 
 	if (to_replace == NULL)
 	{
@@ -6638,7 +6639,7 @@ process_replace (GtkSourceContextData *ctx_data,
 		return FALSE;
 	}
 
-	new = LOOKUP_DEFINITION (ctx_data, replace_with);
+	new = gtk_source_context_data_lookup (ctx_data, replace_with);
 
 	if (new == NULL)
 	{
@@ -6737,7 +6738,7 @@ _gtk_source_context_data_finish_parse (GtkSourceContextData *ctx_data,
 
 	/* Sanity check: user may have screwed up the files by now (#485661) */
 	root_id = g_strdup_printf ("%s:%s", ctx_data->lang->priv->id, ctx_data->lang->priv->id);
-	main_definition = LOOKUP_DEFINITION (ctx_data, root_id);
+	main_definition = gtk_source_context_data_lookup (ctx_data, root_id);
 	g_free (root_id);
 
 	if (main_definition == NULL)
