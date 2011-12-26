@@ -112,7 +112,6 @@
 #define SEGMENT_IS_SIMPLE(s) CONTEXT_IS_SIMPLE ((s)->context)
 #define SEGMENT_IS_CONTAINER(s) CONTEXT_IS_CONTAINER ((s)->context)
 
-#define ENGINE_ID(ce) ((ce)->priv->ctx_data->lang->priv->id)
 #define ENGINE_STYLES_MAP(ce) ((ce)->priv->ctx_data->lang->priv->styles)
 
 #define TAG_CONTEXT_CLASS_NAME "GtkSourceViewTagContextClassName"
@@ -2607,12 +2606,14 @@ gtk_source_context_engine_attach_buffer (GtkSourceEngine *engine,
 
 	if (buffer != NULL)
 	{
+		const gchar *lang_id;
 		gchar *root_id;
 		ContextDefinition *main_definition;
 		GtkTextIter start, end;
 
 		/* Create the root context. */
-		root_id = g_strdup_printf ("%s:%s", ENGINE_ID (ce), ENGINE_ID (ce));
+		lang_id = gtk_source_language_get_id (ce->priv->ctx_data->lang);
+		root_id = g_strdup_printf ("%s:%s", lang_id, lang_id);
 		main_definition = gtk_source_context_data_lookup (ce->priv->ctx_data, root_id);
 		g_free (root_id);
 
