@@ -532,6 +532,21 @@ gtk_source_context_data_lookup (GtkSourceContextData *ctx_data, const char *id)
 	return g_hash_table_lookup (ctx_data->definitions, id);
 }
 
+static ContextDefinition *
+gtk_source_context_data_lookup_root (GtkSourceContextData *ctx_data)
+{
+	const gchar *lang_id;
+	gchar *root_id;
+	ContextDefinition *root_definition;
+
+	lang_id = gtk_source_language_get_id (ctx_data->lang);
+	root_id = g_strdup_printf ("%s:%s", lang_id, lang_id);
+	root_definition = gtk_source_context_data_lookup (ctx_data, root_id);
+	g_free (root_id);
+
+	return root_definition;
+}
+
 /* TAGS AND STUFF -------------------------------------------------------------- */
 
 GtkSourceContextClass *
@@ -2606,16 +2621,10 @@ gtk_source_context_engine_attach_buffer (GtkSourceEngine *engine,
 
 	if (buffer != NULL)
 	{
-		const gchar *lang_id;
-		gchar *root_id;
 		ContextDefinition *main_definition;
 		GtkTextIter start, end;
 
-		/* Create the root context. */
-		lang_id = gtk_source_language_get_id (ce->priv->ctx_data->lang);
-		root_id = g_strdup_printf ("%s:%s", lang_id, lang_id);
-		main_definition = gtk_source_context_data_lookup (ce->priv->ctx_data, root_id);
-		g_free (root_id);
+		main_definition = gtk_source_context_data_lookup_root (ce->priv->ctx_data);
 
 		/* If we don't abort here, we will crash later (#485661). But it should
 		 * never happen, _gtk_source_context_data_finish_parse checks main context. */
