@@ -112,8 +112,6 @@
 #define SEGMENT_IS_SIMPLE(s) CONTEXT_IS_SIMPLE ((s)->context)
 #define SEGMENT_IS_CONTAINER(s) CONTEXT_IS_CONTAINER ((s)->context)
 
-#define ENGINE_STYLES_MAP(ce) ((ce)->priv->ctx_data->lang->priv->styles)
-
 #define TAG_CONTEXT_CLASS_NAME "GtkSourceViewTagContextClassName"
 
 typedef struct _RegexInfo RegexInfo;
@@ -639,9 +637,7 @@ set_tag_style (GtkSourceContextEngine *ce,
 	       const gchar            *style_id)
 {
 	GtkSourceStyle *style;
-
-	const char *map_to = style_id;
-
+	const char *map_to;
 	int guard = 0;
 
 	g_return_if_fail (GTK_IS_TEXT_TAG (tag));
@@ -652,6 +648,7 @@ set_tag_style (GtkSourceContextEngine *ce,
 	if (ce->priv->style_scheme == NULL)
 		return;
 
+	map_to = style_id;
 	style = gtk_source_style_scheme_get_style (ce->priv->style_scheme, style_id);
 
 	while (style == NULL)
@@ -668,10 +665,9 @@ set_tag_style (GtkSourceContextEngine *ce,
 
 		/* FIXME Style references really must be fixed, both parser for
 		 * sane use in lang files, and engine for safe use. */
-		info = g_hash_table_lookup (ENGINE_STYLES_MAP(ce), map_to);
+		info = _gtk_source_language_get_style_info (ce->priv->ctx_data->lang, map_to);
 
 		map_to = (info != NULL) ? info->map_to : NULL;
-
 		if (!map_to)
 			break;
 

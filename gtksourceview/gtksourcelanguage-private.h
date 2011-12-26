@@ -83,6 +83,9 @@ gboolean 		  _gtk_source_language_file_parse_version2	(GtkSourceLanguage        
 
 GtkSourceEngine 	 *_gtk_source_language_create_engine		(GtkSourceLanguage	  *language);
 
+GtkSourceStyleInfo 	 *_gtk_source_language_get_style_info		(GtkSourceLanguage	  *language,
+									 const gchar              *style_id);
+
 /* Utility functions for GtkSourceStyleInfo */
 GtkSourceStyleInfo 	 *_gtk_source_style_info_new 			(const gchar		  *name,
 									 const gchar              *map_to);

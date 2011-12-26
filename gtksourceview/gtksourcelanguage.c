@@ -853,8 +853,8 @@ gtk_source_language_get_style_ids (GtkSourceLanguage *language)
 	return get_style_ids (language);
 }
 
-static GtkSourceStyleInfo *
-get_style_info (GtkSourceLanguage *language, const char *style_id)
+GtkSourceStyleInfo *
+_gtk_source_language_get_style_info (GtkSourceLanguage *language, const char *style_id)
 {
 	GtkSourceStyleInfo *info;
 
@@ -890,11 +890,9 @@ gtk_source_language_get_style_name (GtkSourceLanguage *language,
 	g_return_val_if_fail (language->priv->id != NULL, NULL);
 	g_return_val_if_fail (style_id != NULL, NULL);
 
-	info = get_style_info (language, style_id);
-	if (info == NULL)
-		return NULL;
+	info = _gtk_source_language_get_style_info (language, style_id);
 
-	return info->name;
+	return info ? info->name : NULL;
 }
 
 /* Utility functions for GtkSourceStyleInfo */
