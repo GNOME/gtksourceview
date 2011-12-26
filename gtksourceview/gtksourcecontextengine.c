@@ -2951,9 +2951,9 @@ regex_new (const gchar           *pattern,
 
 	if (find_single_byte_escape (pattern))
 	{
-		g_set_error (error, GTK_SOURCE_CONTEXT_ENGINE_ERROR,
-			     GTK_SOURCE_CONTEXT_ENGINE_ERROR_INVALID_REGEX,
-			     "%s", _("using \\C is not supported in language definitions"));
+		g_set_error_literal (error, GTK_SOURCE_CONTEXT_ENGINE_ERROR,
+		                     GTK_SOURCE_CONTEXT_ENGINE_ERROR_INVALID_REGEX,
+		                     _("using \\C is not supported in language definitions"));
 		return NULL;
 	}
 
