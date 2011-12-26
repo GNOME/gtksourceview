@@ -35,8 +35,6 @@
 #undef ENABLE_DEBUG
 #undef ENABLE_PROFILE
 #undef ENABLE_CHECK_TREE
-#undef ENABLE_MEMORY_DEBUG /* define it to make it print memory usage information */
-			   /* it won't work with GRegex */
 
 #ifdef ENABLE_DEBUG
 #define DEBUG(x) (x)
@@ -457,10 +455,6 @@ struct _GtkSourceContextEnginePrivate
 
 	guint			 first_update;
 	guint			 incremental_update;
-
-#ifdef ENABLE_MEMORY_DEBUG
-	guint			 mem_usage_timeout;
-#endif
 };
 
 #ifdef ENABLE_CHECK_TREE
@@ -532,10 +526,6 @@ static void		update_syntax		(GtkSourceContextEngine	*ce,
 						 gint			 time);
 static void		install_idle_worker	(GtkSourceContextEngine	*ce);
 static void		install_first_update	(GtkSourceContextEngine	*ce);
-
-#ifdef ENABLE_MEMORY_DEBUG
-static gboolean		mem_usage_timeout	(GtkSourceContextEngine *ce);
-#endif
 
 static ContextDefinition *
 gtk_source_context_data_lookup (GtkSourceContextData *ctx_data, const char *id)
@@ -2740,11 +2730,6 @@ gtk_source_context_engine_finalize (GObject *object)
 		gtk_source_context_engine_attach_buffer (GTK_SOURCE_ENGINE (ce), NULL);
 	}
 
-#ifdef ENABLE_MEMORY_DEBUG
-	if (ce->priv->mem_usage_timeout)
-		g_source_remove (ce->priv->mem_usage_timeout);
-#endif
-
 	g_assert (!ce->priv->tags);
 	g_assert (!ce->priv->root_context);
 	g_assert (!ce->priv->root_segment);
@@ -2810,11 +2795,6 @@ _gtk_source_context_engine_new (GtkSourceContextData *ctx_data)
 
 	ce = g_object_new (GTK_SOURCE_TYPE_CONTEXT_ENGINE, NULL);
 	ce->priv->ctx_data = _gtk_source_context_data_ref (ctx_data);
-
-#ifdef ENABLE_MEMORY_DEBUG
-	ce->priv->mem_usage_timeout =
-		g_timeout_add (5000, (GSourceFunc) mem_usage_timeout, ce);
-#endif
 
 	return ce;
 }
@@ -6999,224 +6979,5 @@ check_segment_list (Segment *segment)
 		g_assert (ch->next || ch == segment->last_child);
 	}
 }
+
 #endif /* ENABLE_CHECK_TREE */
-
-
-#ifdef ENABLE_MEMORY_DEBUG
-typedef struct {
-	GSList *def_regexes;
-	GSList *ctx_regexes;
-	gsize def_mem;
-	gsize ctx_mem;
-	guint n_ctx;
-} MemInfo;
-
-typedef struct
-{
-  gpointer   key;
-  gpointer   value;
-  gpointer   next;
-} HashNodeStruct;
-
-typedef struct
-{
-  gint             size;
-  gint             nnodes;
-  HashNodeStruct **nodes;
-  GHashFunc        hash_func;
-  GEqualFunc       key_equal_func;
-  volatile guint   ref_count;
-  GDestroyNotify   key_destroy_func;
-  GDestroyNotify   value_destroy_func;
-} HashTableStruct;
-
-static gsize
-get_hash_table_mem (GHashTable *ht)
-{
-	return sizeof (HashTableStruct) +
-		sizeof (HashNodeStruct) * g_hash_table_size (ht);
-}
-
-static void
-add_regex_mem (MemInfo *info,
-	       Regex   *regex,
-	       gboolean def)
-{
-	if (!regex)
-		return;
-
-	if (def)
-	{
-		if (!g_slist_find (info->def_regexes, regex))
-			info->def_regexes = g_slist_prepend (info->def_regexes, regex);
-	}
-	else
-	{
-		if (!g_slist_find (info->def_regexes, regex) &&
-		    !g_slist_find (info->ctx_regexes, regex))
-			info->ctx_regexes = g_slist_prepend (info->ctx_regexes, regex);
-	}
-}
-
-static gsize
-get_str_mem (const gchar *string)
-{
-	return string ? strlen (string) + 1 : 0;
-}
-
-static void
-get_def_mem (ContextDefinition *def,
-	     MemInfo           *info)
-{
-	GSList *l;
-
-	info->def_mem += sizeof (ContextDefinition);
-	info->def_mem += get_str_mem (def->id);
-	info->def_mem += get_str_mem (def->default_style);
-
-	if (def->type == CONTEXT_TYPE_CONTAINER)
-	{
-		add_regex_mem (info, def->u.start_end.start, TRUE);
-		add_regex_mem (info, def->u.start_end.end, TRUE);
-	}
-	else
-	{
-		add_regex_mem (info, def->u.match, TRUE);
-	}
-
-	for (l = def->children; l != NULL; l = l->next)
-	{
-		DefinitionChild *child_def = l->data;
-
-		info->def_mem += sizeof (DefinitionChild);
-		info->def_mem += get_str_mem (child_def->style);
-
-		if (child_def->resolved)
-			info->def_mem += get_str_mem (child_def->u.id);
-	}
-
-	for (l = def->sub_patterns; l != NULL; l = l->next)
-	{
-		SubPatternDefinition *sp_def = l->data;
-
-		info->def_mem += sizeof (SubPatternDefinition);
-		info->def_mem += get_str_mem (sp_def->style);
-#ifdef NEED_DEBUG_ID
-		info->def_mem += get_str_mem (sp_def->id);
-#endif
-
-		if (sp_def->is_named)
-			info->def_mem += get_str_mem (sp_def->u.name);
-	}
-
-	add_regex_mem (info, def->reg_all, TRUE);
-}
-
-static void get_context_mem (Context *ctx, MemInfo *info);
-
-static void
-get_context_mem_cb (const char *id,
-		    Context    *ctx,
-		    MemInfo    *info)
-{
-	info->ctx_mem += get_str_mem (id);
-	get_context_mem (ctx, info);
-}
-
-static void
-get_context_ptr_mem (ContextPtr *ptr,
-		     MemInfo    *info)
-{
-	if (ptr)
-	{
-		info->ctx_mem += sizeof (ContextPtr);
-
-		if (ptr->fixed)
-			get_context_mem (ptr->u.context, info);
-		else
-		{
-			info->ctx_mem += get_hash_table_mem (ptr->u.hash);
-			g_hash_table_foreach (ptr->u.hash, (GHFunc) get_context_mem_cb, info);
-		}
-
-		get_context_ptr_mem (ptr->next, info);
-	}
-}
-
-static void
-get_context_mem (Context *ctx,
-		 MemInfo *info)
-{
-	if (ctx)
-	{
-		info->ctx_mem += sizeof (Context);
-		add_regex_mem (info, ctx->end, FALSE);
-		add_regex_mem (info, ctx->reg_all, FALSE);
-		get_context_ptr_mem (ctx->children, info);
-		info->ctx_mem += ctx->definition->n_sub_patterns * sizeof (GtkTextTag*);
-		info->n_ctx += 1;
-	}
-}
-
-static void
-get_def_mem_cb (const char        *id,
-		ContextDefinition *def,
-		MemInfo           *info)
-{
-	info->def_mem += get_str_mem (id);
-	get_def_mem (def, info);
-}
-
-static void
-get_definitions_mem (GtkSourceContextEngine *ce,
-		     MemInfo                *info)
-{
-	info->def_mem += sizeof (GtkSourceContextData);
-	info->def_mem += get_hash_table_mem (ce->priv->ctx_data->definitions);
-	g_hash_table_foreach (ce->priv->ctx_data->definitions,
-			      (GHFunc) get_def_mem_cb,
-			      info);
-}
-
-static gsize
-get_regex_mem (Regex *regex)
-{
-	gsize mem = 0;
-
-	if (!regex)
-		return 0;
-
-	mem += sizeof (Regex);
-
-	if (regex->resolved)
-		mem += _egg_regex_get_memory (regex->u.regex.regex);
-	else
-		mem += get_str_mem (regex->u.info.pattern);
-
-	return mem;
-}
-
-static gboolean
-mem_usage_timeout (GtkSourceContextEngine *ce)
-{
-	GSList *l;
-	MemInfo info = {NULL, NULL, 0, 0, 0};
-
-	get_definitions_mem (ce, &info);
-	get_context_mem (ce->priv->root_context, &info);
-
-	for (l = info.def_regexes; l != NULL; l = l->next)
-		info.def_mem += get_regex_mem (l->data);
-
-	for (l = info.ctx_regexes; l != NULL; l = l->next)
-		info.ctx_mem += get_regex_mem (l->data);
-
-	g_print ("%s: definitions: %d bytes, contexts: %d bytes in %d contexts\n",
-		 ENGINE_ID (ce), info.def_mem, info.ctx_mem, info.n_ctx);
-
-	g_slist_free (info.def_regexes);
-	g_slist_free (info.ctx_regexes);
-
-	return TRUE;
-}
-#endif /* ENABLE_MEMORY_DEBUG */
