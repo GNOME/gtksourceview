@@ -454,7 +454,7 @@
       <keyword>wordasword</keyword>
     </context>
 
-    <context id="dockbook-tags">
+    <context id="docbook-tags">
       <include>
         <context ref="header-elements"/>
         <context ref="formatting-elements"/>
@@ -464,7 +464,7 @@
       </include>
     </context>
 
-    <replace id="xml:element-name" ref="dockbook-tags"/>
+    <replace id="xml:element-name" ref="docbook-tags"/>
 
     <context id="docbook">
       <include>
