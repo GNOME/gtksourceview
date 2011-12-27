@@ -1347,7 +1347,9 @@ static void
 remove_invalid (GtkSourceContextEngine *ce,
 		Segment                *segment)
 {
+#ifdef ENABLE_CHECK_TREE
 	g_assert (g_slist_find (ce->priv->invalid, segment) != NULL);
+#endif
 	ce->priv->invalid = g_slist_remove (ce->priv->invalid, segment);
 }
 
