@@ -50,7 +50,9 @@ libgtksourceview_private_headers = \
 	gtksourcecompletion-private.h		\
 	gtksourcecompletionutils.h		\
 	gtksourcecontextengine.h		\
+	gtksourcecontextengine-private.h	\
 	gtksourceengine.h			\
+	gtksourcehighlighter.h			\
 	gtksourcegutter-private.h		\
 	gtksourcegutterrendererlines.h		\
 	gtksourcegutterrenderermarks.h		\
@@ -70,6 +72,7 @@ libgtksourceview_private_c_files = \
 	gtksourcecompletionutils.c	\
 	gtksourcecontextengine.c	\
 	gtksourceengine.c		\
+	gtksourcehighlighter.c		\
 	gtksourcepixbufhelper.c		\
 	gtksourcelanguage-parser-1.c	\
 	gtksourcelanguage-parser-2.c	\

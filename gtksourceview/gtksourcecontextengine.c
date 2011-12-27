@@ -24,6 +24,7 @@
 #include <glib.h>
 #include "gtksourceview-i18n.h"
 #include "gtksourcecontextengine.h"
+#include "gtksourcecontextengine-private.h"
 #include "gtktextregion.h"
 #include "gtksourcelanguage.h"
 #include "gtksourcelanguage-private.h"
@@ -32,6 +33,7 @@
 #include "gtksourcestyle-private.h"
 #include "gtksourceview-utils.h"
 #include "gtksourcestylescheme.h"
+#include "gtksourcehighlighter.h"
 
 #undef ENABLE_DEBUG
 #undef ENABLE_PROFILE
@@ -106,16 +108,11 @@
 
 #define CONTEXT_IS_SIMPLE(c) ((c)->definition->type == CONTEXT_TYPE_SIMPLE)
 #define CONTEXT_IS_CONTAINER(c) ((c)->definition->type == CONTEXT_TYPE_CONTAINER)
-#define SEGMENT_IS_INVALID(s) ((s)->context == NULL)
 #define SEGMENT_IS_SIMPLE(s) CONTEXT_IS_SIMPLE ((s)->context)
 #define SEGMENT_IS_CONTAINER(s) CONTEXT_IS_CONTAINER ((s)->context)
 
 #define TAG_CONTEXT_CLASS_NAME "GtkSourceViewTagContextClassName"
 
-typedef struct _SubPatternDefinition SubPatternDefinition;
-typedef struct _SubPattern SubPattern;
-typedef struct _Segment Segment;
-typedef struct _Context Context;
 typedef struct _ContextPtr ContextPtr;
 typedef struct _ContextDefinition ContextDefinition;
 typedef struct _DefinitionChild DefinitionChild;
@@ -141,11 +138,6 @@ typedef enum {
 	CONTEXT_TYPE_CONTAINER
 } ContextType;
 
-typedef enum {
-	SUB_PATTERN_WHERE_DEFAULT = 0,
-	SUB_PATTERN_WHERE_START,
-	SUB_PATTERN_WHERE_END
-} SubPatternWhere;
 
 struct _ContextDefinition
 {
@@ -286,42 +278,7 @@ struct _GtkSourceContextReplace
 	gchar			*replace_with;
 };
 
-struct _Segment
-{
-	Segment			*parent;
-	Segment			*next;
-	Segment			*prev;
-	Segment			*children;
-	Segment			*last_child;
 
-	/* This is NULL if and only if it's a dummy segment which denotes
-	 * inserted or deleted text. */
-	Context			*context;
-
-	/* Subpatterns found in this segment. */
-	SubPattern		*sub_patterns;
-
-	/* The context is used in the interval [start_at; end_at). */
-	gint			 start_at;
-	gint			 end_at;
-
-	/* In case of container contexts, start_len/end_len is length in chars
-	 * of start/end match. */
-	gint			 start_len;
-	gint			 end_len;
-
-	/* Whether this segment is a whole good segment, or it's an
-	 * an end of bigger one left after erase_segments() call. */
-	guint			 is_start : 1;
-};
-
-struct _SubPattern
-{
-	SubPatternDefinition	*definition;
-	gint			 start_at;
-	gint			 end_at;
-	SubPattern		*next;
-};
 
 /* Line terminator characters (\n, \r, \r\n, or unicode paragraph separator)
  * are removed from the line text. The problem is that pcre does not understand
@@ -389,16 +346,11 @@ struct _GtkSourceContextData
 
 struct _GtkSourceContextEnginePrivate
 {
+	GtkSourceHighlighter	*highlighter;
+
 	GtkSourceContextData	*ctx_data;
 
 	GtkTextBuffer		*buffer;
-	GtkSourceStyleScheme	*style_scheme;
-
-	/* All tags indexed by style name: values are GSList's of tags, ref()'ed. */
-	GHashTable		*tags;
-	/* Number of all syntax tags created by the engine, needed to set correct
-	 * tag priorities */
-	guint			 n_tags;
 
 	GHashTable		*context_classes;
 
@@ -407,9 +359,6 @@ struct _GtkSourceContextEnginePrivate
 
 	/* Whether syntax analysis was disabled because of errors. */
 	gboolean		 disabled;
-
-	/* Region covering the unhighlighted text. */
-	GtkTextRegion		*refresh_region;
 
 	/* Tree of contexts. */
 	Context			*root_context;
@@ -561,110 +510,6 @@ context_class_tag_free (ContextClassTag *attrtag)
 	g_slice_free (ContextClassTag, attrtag);
 }
 
-struct BufAndIters {
-	GtkTextBuffer *buffer;
-	const GtkTextIter *start, *end;
-};
-
-static void
-unhighlight_region_cb (G_GNUC_UNUSED gpointer style,
-		       GSList   *tags,
-		       gpointer  user_data)
-{
-	struct BufAndIters *data = user_data;
-
-	while (tags != NULL)
-	{
-		gtk_text_buffer_remove_tag (data->buffer,
-					    tags->data,
-					    data->start,
-					    data->end);
-		tags = tags->next;
-	}
-}
-
-static void
-unhighlight_region (GtkSourceContextEngine *ce,
-		    const GtkTextIter      *start,
-		    const GtkTextIter      *end)
-{
-	struct BufAndIters data;
-
-	data.buffer = ce->priv->buffer;
-	data.start = start;
-	data.end = end;
-
-	if (gtk_text_iter_equal (start, end))
-		return;
-
-	g_hash_table_foreach (ce->priv->tags, (GHFunc) unhighlight_region_cb, &data);
-}
-
-#define MAX_STYLE_DEPENDENCY_DEPTH	50
-
-static void
-set_tag_style (GtkSourceContextEngine *ce,
-	       GtkTextTag             *tag,
-	       const gchar            *style_id)
-{
-	GtkSourceStyle *style;
-	const char *map_to;
-	int guard = 0;
-
-	g_return_if_fail (GTK_IS_TEXT_TAG (tag));
-	g_return_if_fail (style_id != NULL);
-
-	_gtk_source_style_apply (NULL, tag);
-
-	if (ce->priv->style_scheme == NULL)
-		return;
-
-	map_to = style_id;
-	style = gtk_source_style_scheme_get_style (ce->priv->style_scheme, style_id);
-
-	while (style == NULL)
-	{
-		if (guard > MAX_STYLE_DEPENDENCY_DEPTH)
-		{
-			g_warning ("Potential circular dependency between styles detected for style '%s'", style_id);
-			break;
-		}
-
-		++guard;
-
-		/* FIXME Style references really must be fixed, both parser for
-		 * sane use in lang files, and engine for safe use. */
-		map_to = gtk_source_language_get_style_fallback (ce->priv->ctx_data->lang, map_to);
-		if (map_to == NULL)
-			break;
-
-		style = gtk_source_style_scheme_get_style (ce->priv->style_scheme, map_to);
-	}
-
-	/* not having style is fine, since parser checks validity of every style reference,
-	 * so we don't need to spit a warning here */
-	if (style != NULL)
-		_gtk_source_style_apply (style, tag);
-}
-
-static GtkTextTag *
-create_tag (GtkSourceContextEngine *ce,
-	    const gchar            *style_id)
-{
-	GtkTextTag *new_tag;
-
-	g_assert (style_id != NULL);
-
-	new_tag = gtk_text_buffer_create_tag (ce->priv->buffer, NULL, NULL);
-	/* It must have priority lower than user tags but still
-	 * higher than highlighting tags created before */
-	gtk_text_tag_set_priority (new_tag, ce->priv->n_tags);
-	set_tag_style (ce, new_tag, style_id);
-	ce->priv->n_tags += 1;
-
-	return new_tag;
-}
-
 /* Find tag which has to be overridden. */
 static GtkTextTag *
 get_parent_tag (Context    *context,
@@ -688,75 +533,23 @@ get_parent_tag (Context    *context,
 }
 
 static GtkTextTag *
-get_tag_for_parent (GtkSourceContextEngine *ce,
+get_tag_for_parent (GtkSourceHighlighter   *highlighter,
 		    const char             *style,
 		    Context                *parent)
 {
-	GSList *tags;
 	GtkTextTag *parent_tag = NULL;
-	GtkTextTag *tag;
 
 	g_return_val_if_fail (style != NULL, NULL);
 
 	parent_tag = get_parent_tag (parent, style);
-	tags = g_hash_table_lookup (ce->priv->tags, style);
 
-	if (tags && (!parent_tag ||
-		gtk_text_tag_get_priority (tags->data) > gtk_text_tag_get_priority (parent_tag)))
-	{
-		GSList *link;
-
-		tag = tags->data;
-
-		/* Now get the tag with lowest priority, so that tag lists do not grow
-		 * indefinitely. */
-		for (link = tags->next; link != NULL; link = link->next)
-		{
-			if (parent_tag &&
-			    gtk_text_tag_get_priority (link->data) < gtk_text_tag_get_priority (parent_tag))
-				break;
-			tag = link->data;
-		}
-	}
-	else
-	{
-		tag = create_tag (ce, style);
-
-		tags = g_slist_prepend (tags, g_object_ref (tag));
-		g_hash_table_insert (ce->priv->tags, g_strdup (style), tags);
-
-#ifdef ENABLE_DEBUG
-		{
-			GString *style_path = g_string_new (style);
-			gint n;
-
-			while (parent != NULL)
-			{
-				if (parent->style != NULL)
-				{
-					g_string_prepend (style_path, "/");
-					g_string_prepend (style_path,
-							  parent->style);
-				}
-
-				parent = parent->parent;
-			}
-
-			tags = g_hash_table_lookup (ce->priv->tags, style);
-			n = g_slist_length (tags);
-			g_print ("created %d tag for style %s: %s\n", n, style, style_path->str);
-			g_string_free (style_path, TRUE);
-		}
-#endif
-	}
-
-	return tag;
+	return _gtk_source_highlighter_get_tag_for_style (highlighter, style, parent_tag);
 }
 
-static GtkTextTag *
-get_subpattern_tag (GtkSourceContextEngine *ce,
-		    Context                *context,
-		    SubPatternDefinition   *sp_def)
+GtkTextTag *
+_gtk_source_context_engine_get_subpattern_tag (GtkSourceContextEngine *ce,
+					       Context                *context,
+					       SubPatternDefinition   *sp_def)
 {
 	if (sp_def->style == NULL)
 		return NULL;
@@ -767,178 +560,29 @@ get_subpattern_tag (GtkSourceContextEngine *ce,
 		context->subpattern_tags = g_new0 (GtkTextTag*, context->definition->n_sub_patterns);
 
 	if (context->subpattern_tags[sp_def->index] == NULL)
-		context->subpattern_tags[sp_def->index] = get_tag_for_parent (ce, sp_def->style, context);
+		context->subpattern_tags[sp_def->index] = get_tag_for_parent (ce->priv->highlighter,
+									      sp_def->style,
+									      context);
 
 	g_return_val_if_fail (context->subpattern_tags[sp_def->index] != NULL, NULL);
 	return context->subpattern_tags[sp_def->index];
 }
 
-static GtkTextTag *
-get_context_tag (GtkSourceContextEngine *ce,
-		 Context                *context)
+GtkTextTag *
+_gtk_source_context_engine_get_context_tag (GtkSourceContextEngine *ce,
+					    Context                *context)
 {
 	if (context->style != NULL && context->tag == NULL)
-		context->tag = get_tag_for_parent (ce,
+		context->tag = get_tag_for_parent (ce->priv->highlighter,
 						   context->style,
 						   context->parent);
 	return context->tag;
 }
 
-static void
-apply_tags (GtkSourceContextEngine *ce,
-	    Segment                *segment,
-	    gint                    start_offset,
-	    gint                    end_offset)
+gboolean
+_gtk_source_context_get_style_inside (Context *context)
 {
-	GtkTextTag *tag;
-	GtkTextIter start_iter, end_iter;
-	GtkTextBuffer *buffer = ce->priv->buffer;
-	SubPattern *sp;
-	Segment *child;
-
-	g_assert (segment != NULL);
-
-	if (SEGMENT_IS_INVALID (segment))
-		return;
-
-	if (segment->start_at >= end_offset || segment->end_at <= start_offset)
-		return;
-
-	start_offset = MAX (start_offset, segment->start_at);
-	end_offset = MIN (end_offset, segment->end_at);
-
-	tag = get_context_tag (ce, segment->context);
-
-	if (tag != NULL)
-	{
-		gint style_start_at, style_end_at;
-
-		style_start_at = start_offset;
-		style_end_at = end_offset;
-
-		if (HAS_OPTION (segment->context->definition, STYLE_INSIDE))
-		{
-			style_start_at = MAX (segment->start_at + segment->start_len, start_offset);
-			style_end_at = MIN (segment->end_at - segment->end_len, end_offset);
-		}
-
-		if (style_start_at > style_end_at)
-		{
-			g_critical ("%s: oops", G_STRLOC);
-		}
-		else
-		{
-			gtk_text_buffer_get_iter_at_offset (buffer, &start_iter, style_start_at);
-			end_iter = start_iter;
-			gtk_text_iter_forward_chars (&end_iter, style_end_at - style_start_at);
-			gtk_text_buffer_apply_tag (ce->priv->buffer, tag, &start_iter, &end_iter);
-		}
-	}
-
-	for (sp = segment->sub_patterns; sp != NULL; sp = sp->next)
-	{
-		if (sp->start_at >= start_offset && sp->end_at <= end_offset)
-		{
-			gint start = MAX (start_offset, sp->start_at);
-			gint end = MIN (end_offset, sp->end_at);
-
-			tag = get_subpattern_tag (ce, segment->context, sp->definition);
-
-			if (tag != NULL)
-			{
-				gtk_text_buffer_get_iter_at_offset (buffer, &start_iter, start);
-				end_iter = start_iter;
-				gtk_text_iter_forward_chars (&end_iter, end - start);
-				gtk_text_buffer_apply_tag (ce->priv->buffer, tag, &start_iter, &end_iter);
-			}
-		}
-	}
-
-	for (child = segment->children;
-	     child != NULL && child->start_at < end_offset;
-	     child = child->next)
-	{
-		if (child->end_at > start_offset)
-			apply_tags (ce, child, start_offset, end_offset);
-	}
-}
-
-static void
-highlight_region (GtkSourceContextEngine *ce,
-		  GtkTextIter            *start,
-		  GtkTextIter            *end)
-{
-#ifdef ENABLE_PROFILE
-	GTimer *timer;
-#endif
-
-	if (gtk_text_iter_starts_line (end))
-		gtk_text_iter_backward_char (end);
-	if (gtk_text_iter_compare (start, end) >= 0)
-		return;
-
-#ifdef ENABLE_PROFILE
-	timer = g_timer_new ();
-#endif
-
-	/* First we need to delete tags in the regions. */
-	unhighlight_region (ce, start, end);
-
-	apply_tags (ce, ce->priv->root_segment,
-		    gtk_text_iter_get_offset (start),
-		    gtk_text_iter_get_offset (end));
-
-#ifdef ENABLE_PROFILE
-	g_print ("highlight (from %d to %d), %g ms elapsed\n",
-		 gtk_text_iter_get_offset (start),
-		 gtk_text_iter_get_offset (end),
-		 g_timer_elapsed (timer, NULL) * 1000);
-	g_timer_destroy (timer);
-#endif
-}
-
-/**
- * ensure_highlighted:
- * @ce: a #GtkSourceContextEngine.
- * @start: the beginning of the region to highlight.
- * @end: the end of the region to highlight.
- *
- * Updates text tags in reanalyzed parts of given area.
- * It applies tags according to whatever is in the syntax
- * tree currently, so highlighting may not be correct
- * (gtk_source_context_engine_update_highlight is the method
- * that actually ensures correct highlighting).
- */
-static void
-ensure_highlighted (GtkSourceContextEngine *ce,
-		    const GtkTextIter      *start,
-		    const GtkTextIter      *end)
-{
-	GtkTextRegion *region;
-	GtkTextRegionIterator reg_iter;
-
-	/* Get the subregions not yet highlighted. */
-	region = gtk_text_region_intersect (ce->priv->refresh_region, start, end);
-
-	if (region == NULL)
-		return;
-
-	gtk_text_region_get_iterator (region, &reg_iter, 0);
-
-	/* Highlight all subregions from the intersection.
-	 * hopefully this will only be one subregion. */
-	while (!gtk_text_region_iterator_is_end (&reg_iter))
-	{
-		GtkTextIter s, e;
-		gtk_text_region_iterator_get_subregion (&reg_iter, &s, &e);
-		highlight_region (ce, &s, &e);
-		gtk_text_region_iterator_next (&reg_iter);
-	}
-
-	gtk_text_region_destroy (region, TRUE);
-
-	/* Remove the just highlighted region. */
-	gtk_text_region_subtract (ce->priv->refresh_region, start, end);
+	return HAS_OPTION (context->definition, STYLE_INSIDE);
 }
 
 static GtkTextTag *
@@ -1119,6 +763,11 @@ add_region_context_classes (GtkSourceContextEngine *ce,
 		}
 	}
 }
+
+struct BufAndIters {
+	GtkTextBuffer *buffer;
+	const GtkTextIter *start, *end;
+};
 
 static void
 remove_region_context_class_cb (G_GNUC_UNUSED gpointer class,
@@ -2230,13 +1879,15 @@ gtk_source_context_engine_update_highlight (GtkSourceEngine   *engine,
 
 	if (invalid_line < 0 || invalid_line > end_line)
 	{
-		ensure_highlighted (ce, start, end);
+		_gtk_source_highlighter_ensure_highlight (ce->priv->highlighter, start, end);
+
 	}
 	else if (synchronous)
 	{
 		/* analyze whole region */
 		update_syntax (ce, end, 0);
-		ensure_highlighted (ce, start, end);
+		_gtk_source_highlighter_ensure_highlight (ce->priv->highlighter, start, end);
+
 	}
 	else
 	{
@@ -2245,56 +1896,20 @@ gtk_source_context_engine_update_highlight (GtkSourceEngine   *engine,
 			GtkTextIter valid_end = *start;
 
 			gtk_text_iter_set_line (&valid_end, invalid_line);
-			ensure_highlighted (ce, start, &valid_end);
+			_gtk_source_highlighter_ensure_highlight (ce->priv->highlighter,
+								  start,
+								  &valid_end);
 		}
 
 		install_first_update (ce);
 	}
 }
 
-/**
- * enable_highlight:
- * @ce: a #GtkSourceContextEngine.
- * @enable: whether to enable highlighting.
- *
- * Whether to highlight (i.e. apply tags) analyzed area.
- * Note that this does not turn on/off the analyzis stuff,
- * it affects only text tags.
- */
-static void
-enable_highlight (GtkSourceContextEngine *ce,
-		  gboolean                enable)
-{
-	GtkTextIter start, end;
-
-	if (!enable == !ce->priv->highlight)
-		return;
-
-	ce->priv->highlight = enable != 0;
-	gtk_text_buffer_get_bounds (GTK_TEXT_BUFFER (ce->priv->buffer),
-				    &start, &end);
-
-	if (enable)
-	{
-		gtk_text_region_add (ce->priv->refresh_region, &start, &end);
-
-		refresh_range (ce, &start, &end);
-	}
-	else
-	{
-		unhighlight_region (ce, &start, &end);
-	}
-}
-
 static void
 buffer_notify_highlight_syntax_cb (GtkSourceContextEngine *ce)
 {
-	gboolean highlight;
-
-	g_object_get (ce->priv->buffer, "highlight-syntax", &highlight, NULL);
-	enable_highlight (ce, highlight);
+	g_object_get (ce->priv->buffer, "highlight-syntax", &ce->priv->highlight, NULL);
 }
-
 
 /* IDLE WORKER CODE ------------------------------------------------------- */
 
@@ -2416,43 +2031,11 @@ gtk_source_context_engine_error_quark (void)
 }
 
 static void
-remove_tags_hash_cb (G_GNUC_UNUSED gpointer style,
-		     GSList          *tags,
-		     GtkTextTagTable *table)
-{
-	GSList *l = tags;
-
-	while (l != NULL)
-	{
-		gtk_text_tag_table_remove (table, l->data);
-		g_object_unref (l->data);
-		l = l->next;
-	}
-
-	g_slist_free (tags);
-}
-
-static void
 remove_context_classes_hash_cb (G_GNUC_UNUSED gpointer class,
                                 GtkTextTag             *tag,
                                 GtkTextTagTable        *table)
 {
 	gtk_text_tag_table_remove (table, tag);
-}
-
-/**
- * destroy_tags_hash:
- * @ce: #GtkSourceContextEngine.
- *
- * Destroys syntax tags cache.
- */
-static void
-destroy_tags_hash (GtkSourceContextEngine *ce)
-{
-	g_hash_table_foreach (ce->priv->tags, (GHFunc) remove_tags_hash_cb,
-                              gtk_text_buffer_get_tag_table (ce->priv->buffer));
-	g_hash_table_destroy (ce->priv->tags);
-	ce->priv->tags = NULL;
 }
 
 static void
@@ -2487,8 +2070,8 @@ gtk_source_context_engine_attach_buffer (GtkSourceEngine *engine,
 	if (ce->priv->buffer != NULL)
 	{
 		g_signal_handlers_disconnect_by_func (ce->priv->buffer,
-						      (gpointer) buffer_notify_highlight_syntax_cb,
-						      ce);
+		                                      (gpointer) buffer_notify_highlight_syntax_cb,
+		                                      ce);
 
 		if (ce->priv->first_update != 0)
 			g_source_remove (ce->priv->first_update);
@@ -2516,20 +2099,7 @@ gtk_source_context_engine_attach_buffer (GtkSourceEngine *engine,
 		ce->priv->invalid_region.start = NULL;
 		ce->priv->invalid_region.end = NULL;
 
-		/* this deletes tags from the tag table, therefore there is no need
-		 * in removing tags from the text (it may be very slow).
-		 * FIXME: don't we want to just destroy and forget everything when
-		 * the buffer is destroyed? Removing tags is still slower than doing
-		 * nothing. Caveat: if tag table is shared with other buffer, we do
-		 * need to remove tags. */
-		destroy_tags_hash (ce);
-		ce->priv->n_tags = 0;
-
 		destroy_context_classes_hash (ce);
-
-		if (ce->priv->refresh_region != NULL)
-			gtk_text_region_destroy (ce->priv->refresh_region, FALSE);
-		ce->priv->refresh_region = NULL;
 	}
 
 	ce->priv->buffer = buffer;
@@ -2548,7 +2118,6 @@ gtk_source_context_engine_attach_buffer (GtkSourceEngine *engine,
 		ce->priv->root_context = context_new (NULL, main_definition, NULL, NULL, FALSE);
 		ce->priv->root_segment = create_segment (ce, NULL, ce->priv->root_context, 0, 0, TRUE, NULL);
 
-		ce->priv->tags = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, NULL);
 		ce->priv->context_classes = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, NULL);
 
 		gtk_text_buffer_get_bounds (buffer, &start, &end);
@@ -2569,7 +2138,6 @@ gtk_source_context_engine_attach_buffer (GtkSourceEngine *engine,
 		}
 
 		g_object_get (buffer, "highlight-syntax", &ce->priv->highlight, NULL);
-		ce->priv->refresh_region = gtk_text_region_new (buffer);
 
 		g_signal_connect_swapped (buffer,
 					  "notify::highlight-syntax",
@@ -2578,6 +2146,10 @@ gtk_source_context_engine_attach_buffer (GtkSourceEngine *engine,
 
 		install_first_update (ce);
 	}
+
+	_gtk_source_highlighter_attach_buffer (ce->priv->highlighter,
+					       ce->priv->buffer,
+					       ce->priv->root_segment);
 }
 
 /**
@@ -2596,18 +2168,6 @@ disable_syntax_analysis (GtkSourceContextEngine *ce)
 		ce->priv->disabled = TRUE;
 		gtk_source_context_engine_attach_buffer (GTK_SOURCE_ENGINE (ce), NULL);
 		/* FIXME maybe emit some signal here? */
-	}
-}
-
-static void
-set_tag_style_hash_cb (const char             *style,
-		       GSList                 *tags,
-		       GtkSourceContextEngine *ce)
-{
-	while (tags != NULL)
-	{
-		set_tag_style (ce, tags->data, style);
-		tags = tags->next;
 	}
 }
 
@@ -2630,14 +2190,7 @@ gtk_source_context_engine_set_style_scheme (GtkSourceEngine      *engine,
 
 	ce = GTK_SOURCE_CONTEXT_ENGINE (engine);
 
-	if (scheme == ce->priv->style_scheme)
-		return;
-
-	if (ce->priv->style_scheme != NULL)
-		g_object_unref (ce->priv->style_scheme);
-
-	ce->priv->style_scheme = scheme ? g_object_ref (scheme) : NULL;
-	g_hash_table_foreach (ce->priv->tags, (GHFunc) set_tag_style_hash_cb, ce);
+	_gtk_source_highlighter_set_style_scheme (ce->priv->highlighter, scheme);
 }
 
 static void
@@ -2653,16 +2206,14 @@ gtk_source_context_engine_finalize (GObject *object)
 		gtk_source_context_engine_attach_buffer (GTK_SOURCE_ENGINE (ce), NULL);
 	}
 
-	g_assert (!ce->priv->tags);
+	g_object_unref (ce->priv->highlighter);
+
 	g_assert (!ce->priv->root_context);
 	g_assert (!ce->priv->root_segment);
 	g_assert (!ce->priv->first_update);
 	g_assert (!ce->priv->incremental_update);
 
 	_gtk_source_context_data_unref (ce->priv->ctx_data);
-
-	if (ce->priv->style_scheme != NULL)
-		g_object_unref (ce->priv->style_scheme);
 
 	G_OBJECT_CLASS (_gtk_source_context_engine_parent_class)->finalize (object);
 }
@@ -2718,6 +2269,7 @@ _gtk_source_context_engine_new (GtkSourceContextData *ctx_data)
 
 	ce = g_object_new (GTK_SOURCE_TYPE_CONTEXT_ENGINE, NULL);
 	ce->priv->ctx_data = _gtk_source_context_data_ref (ctx_data);
+	ce->priv->highlighter = _gtk_source_highlighter_new (ce, ctx_data->lang);
 
 	return ce;
 }
@@ -5450,7 +5002,8 @@ update_syntax (GtkSourceContextEngine *ce,
 
 		line_info_destroy (&line);
 
-		gtk_text_region_add (ce->priv->refresh_region, &line_start, &line_end);
+		_gtk_source_highlighter_invalidate_region (ce->priv->highlighter, 
+							   &line_start, &line_end);
 		analyzed_end = line_end_offset;
 		invalid = get_invalid_segment (ce);
 
