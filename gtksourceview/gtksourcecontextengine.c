@@ -113,8 +113,6 @@
 
 #define TAG_CONTEXT_CLASS_NAME "GtkSourceViewTagContextClassName"
 
-typedef struct _ContextPtr ContextPtr;
-typedef struct _ContextDefinition ContextDefinition;
 typedef struct _DefinitionChild DefinitionChild;
 typedef struct _DefinitionsIter DefinitionsIter;
 typedef struct _LineInfo LineInfo;
@@ -132,70 +130,6 @@ typedef enum {
 	GTK_SOURCE_CONTEXT_ENGINE_ERROR_INVALID_STYLE,
 	GTK_SOURCE_CONTEXT_ENGINE_ERROR_BAD_FILE
 } GtkSourceContextEngineError;
-
-typedef enum {
-	CONTEXT_TYPE_SIMPLE = 0,
-	CONTEXT_TYPE_CONTAINER
-} ContextType;
-
-
-struct _ContextDefinition
-{
-	gchar			*id;
-
-	ContextType		 type;
-	union
-	{
-		GtkSourceRegex *match;
-		struct {
-			GtkSourceRegex *start;
-			GtkSourceRegex *end;
-		} start_end;
-	} u;
-
-	/* Name of the style used for contexts of this type. */
-	gchar			*default_style;
-
-	/* This is a list of DefinitionChild pointers. */
-	GSList			*children;
-
-	/* Sub patterns (list of SubPatternDefinition pointers.) */
-	GSList			*sub_patterns;
-	guint			 n_sub_patterns;
-
-	/* List of class definitions */
-	GSList			*context_classes;
-
-	/* Union of every regular expression we can find from this
-	 * context. */
-	GtkSourceRegex		*reg_all;
-
-	guint			flags : 8;
-	guint			ref_count : 24;
-};
-
-struct _SubPatternDefinition
-{
-#ifdef NEED_DEBUG_ID
-	/* We need the id only for debugging. */
-	gchar			*id;
-#endif
-	gchar			*style;
-	SubPatternWhere		 where;
-
-	/* List of class definitions */
-	GSList                  *context_classes;
-
-	/* index in the ContextDefinition's list */
-	guint			 index;
-
-	union
-	{
-		gint	 	 num;
-		gchar		*name;
-	} u;
-	guint			 is_named : 1;
-};
 
 struct _DefinitionChild
 {
@@ -224,41 +158,6 @@ struct _DefinitionsIter
 	GSList			*children_stack;
 };
 
-struct _Context
-{
-	/* Definition for the context. */
-	ContextDefinition	*definition;
-
-	Context			*parent;
-	ContextPtr		*children;
-
-	/* This is the regex returned by regex_resolve() called on
-	 * definition->start_end.end. */
-	GtkSourceRegex		*end;
-	/* The regular expression containing every regular expression that
-	 * could be matched in this context. */
-	GtkSourceRegex		*reg_all;
-
-	/* Either definition->default_style or child_def->style, not copied. */
-	const gchar		*style;
-	GtkTextTag		*tag;
-	GtkTextTag	       **subpattern_tags;
-
-	/* Cache for generated list of class tags */
-	GSList                  *context_classes;
-
-	/* Cache for generated list of subpattern class tags */
-	GSList                 **subpattern_context_classes;
-
-	guint			 ref_count;
-	/* see context_freeze() */
-	guint                    frozen : 1;
-	/* Do all the ancestors extend their parent? */
-	guint			 all_ancestors_extend : 1;
-	/* Do not apply styles to children contexts */
-	guint			 ignore_children_style : 1;
-};
-
 struct _ContextPtr
 {
 	ContextDefinition	*definition;
@@ -277,8 +176,6 @@ struct _GtkSourceContextReplace
 	gchar			*id;
 	gchar			*replace_with;
 };
-
-
 
 /* Line terminator characters (\n, \r, \r\n, or unicode paragraph separator)
  * are removed from the line text. The problem is that pcre does not understand
@@ -508,75 +405,6 @@ static void
 context_class_tag_free (ContextClassTag *attrtag)
 {
 	g_slice_free (ContextClassTag, attrtag);
-}
-
-/* Find tag which has to be overridden. */
-static GtkTextTag *
-get_parent_tag (Context    *context,
-		const char *style)
-{
-	while (context != NULL)
-	{
-		/* Lang files may repeat same style for nested contexts,
-		 * ignore them. */
-		if (context->style &&
-		    strcmp (context->style, style) != 0)
-		{
-			g_assert (context->tag != NULL);
-			return context->tag;
-		}
-
-		context = context->parent;
-	}
-
-	return NULL;
-}
-
-static GtkTextTag *
-get_tag_for_parent (GtkSourceHighlighter   *highlighter,
-		    const char             *style,
-		    Context                *parent)
-{
-	GtkTextTag *parent_tag = NULL;
-
-	g_return_val_if_fail (style != NULL, NULL);
-
-	parent_tag = get_parent_tag (parent, style);
-
-	return _gtk_source_highlighter_get_tag_for_style (highlighter, style, parent_tag);
-}
-
-GtkTextTag *
-_gtk_source_context_engine_get_subpattern_tag (GtkSourceContextEngine *ce,
-					       Context                *context,
-					       SubPatternDefinition   *sp_def)
-{
-	if (sp_def->style == NULL)
-		return NULL;
-
-	g_assert (sp_def->index < context->definition->n_sub_patterns);
-
-	if (context->subpattern_tags == NULL)
-		context->subpattern_tags = g_new0 (GtkTextTag*, context->definition->n_sub_patterns);
-
-	if (context->subpattern_tags[sp_def->index] == NULL)
-		context->subpattern_tags[sp_def->index] = get_tag_for_parent (ce->priv->highlighter,
-									      sp_def->style,
-									      context);
-
-	g_return_val_if_fail (context->subpattern_tags[sp_def->index] != NULL, NULL);
-	return context->subpattern_tags[sp_def->index];
-}
-
-GtkTextTag *
-_gtk_source_context_engine_get_context_tag (GtkSourceContextEngine *ce,
-					    Context                *context)
-{
-	if (context->style != NULL && context->tag == NULL)
-		context->tag = get_tag_for_parent (ce->priv->highlighter,
-						   context->style,
-						   context->parent);
-	return context->tag;
 }
 
 gboolean
@@ -2269,7 +2097,7 @@ _gtk_source_context_engine_new (GtkSourceContextData *ctx_data)
 
 	ce = g_object_new (GTK_SOURCE_TYPE_CONTEXT_ENGINE, NULL);
 	ce->priv->ctx_data = _gtk_source_context_data_ref (ctx_data);
-	ce->priv->highlighter = _gtk_source_highlighter_new (ce, ctx_data->lang);
+	ce->priv->highlighter = _gtk_source_highlighter_new (ctx_data->lang);
 
 	return ce;
 }

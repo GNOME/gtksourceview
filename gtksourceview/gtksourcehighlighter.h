@@ -55,8 +55,7 @@ struct _GtkSourceHighlighterClass
 
 GType		 	_gtk_source_highlighter_get_type	 (void) G_GNUC_CONST;
 
-GtkSourceHighlighter * 	_gtk_source_highlighter_new 		 (GtkSourceContextEngine *engine,
-								  GtkSourceLanguage      *language);
+GtkSourceHighlighter * 	_gtk_source_highlighter_new 		 (GtkSourceLanguage      *language);
 void 			_gtk_source_highlighter_set_style_scheme (GtkSourceHighlighter   *highlighter,
 				       				  GtkSourceStyleScheme   *scheme);
 void 			_gtk_source_highlighter_set_styles_map	 (GtkSourceHighlighter   *highlighter,

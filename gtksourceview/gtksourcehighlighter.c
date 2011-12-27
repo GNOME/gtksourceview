@@ -41,7 +41,6 @@ G_DEFINE_TYPE (GtkSourceHighlighter, _gtk_source_highlighter, G_TYPE_OBJECT)
 
 struct _GtkSourceHighlighterPrivate
 {
-	GtkSourceContextEngine	*engine;
 	GtkSourceLanguage	*language;
 	GtkTextBuffer		*buffer;
 	GtkSourceStyleScheme	*style_scheme;
@@ -149,6 +148,73 @@ set_tag_style (GtkSourceHighlighter *highlighter,
 		_gtk_source_style_apply (style, tag);
 }
 
+/* Find tag which has to be overridden. */
+static GtkTextTag *
+get_parent_tag (Context    *context,
+		const char *style)
+{
+	while (context != NULL)
+	{
+		/* Lang files may repeat same style for nested contexts,
+		 * ignore them. */
+		if (context->style &&
+		    strcmp (context->style, style) != 0)
+		{
+			g_assert (context->tag != NULL);
+			return context->tag;
+		}
+
+		context = context->parent;
+	}
+
+	return NULL;
+}
+
+static GtkTextTag *
+get_tag_for_parent (GtkSourceHighlighter *highlighter,
+		    const char           *style,
+		    Context              *parent)
+{
+	GtkTextTag *tag;
+
+	g_return_val_if_fail (style != NULL, NULL);
+
+	tag = get_parent_tag (parent, style);
+
+	return _gtk_source_highlighter_get_tag_for_style (highlighter, style, tag);
+}
+
+static GtkTextTag *
+get_subpattern_tag (GtkSourceHighlighter *highlighter,
+		    Context              *context,
+		    SubPatternDefinition *sp_def)
+{
+	if (sp_def->style == NULL)
+		return NULL;
+
+	g_assert (sp_def->index < context->definition->n_sub_patterns);
+
+	if (context->subpattern_tags == NULL)
+		context->subpattern_tags = g_new0 (GtkTextTag*, context->definition->n_sub_patterns);
+
+	if (context->subpattern_tags[sp_def->index] == NULL)
+		context->subpattern_tags[sp_def->index] = get_tag_for_parent (highlighter, sp_def->style, context);
+
+	return context->subpattern_tags[sp_def->index];
+}
+
+static GtkTextTag *
+get_context_tag (GtkSourceHighlighter *highlighter,
+		 Context              *context)
+{
+	if (context->style != NULL && context->tag == NULL)
+	{
+		context->tag = get_tag_for_parent (highlighter, context->style, context->parent);
+	}
+
+	return context->tag;
+}
+
 static void
 apply_tags (GtkSourceHighlighter *highlighter,
 	    Segment              *segment,
@@ -173,9 +239,7 @@ apply_tags (GtkSourceHighlighter *highlighter,
 	start_offset = MAX (start_offset, segment->start_at);
 	end_offset = MIN (end_offset, segment->end_at);
 
-	tag = _gtk_source_context_engine_get_context_tag (highlighter->priv->engine,
-							  segment->context); 
-
+	tag = get_context_tag (highlighter, segment->context);
 	if (tag != NULL)
 	{
 		gint style_start_at, style_end_at;
@@ -209,11 +273,8 @@ apply_tags (GtkSourceHighlighter *highlighter,
 		{
 			gint start = MAX (start_offset, sp->start_at);
 			gint end = MIN (end_offset, sp->end_at);
-			
-			tag = _gtk_source_context_engine_get_subpattern_tag (highlighter->priv->engine,
-									     segment->context, 
-									     sp->definition);
 
+			tag = get_subpattern_tag (highlighter, segment->context, sp->definition);
 			if (tag != NULL)
 			{
 				gtk_text_buffer_get_iter_at_offset (buffer, &start_iter, start);
@@ -650,14 +711,12 @@ _gtk_source_highlighter_init (GtkSourceHighlighter *highlighter)
 }
 
 GtkSourceHighlighter *
-_gtk_source_highlighter_new (GtkSourceContextEngine *ce,
-			     GtkSourceLanguage      *language)
+_gtk_source_highlighter_new (GtkSourceLanguage *language)
 {
 	GtkSourceHighlighter *highlighter;
 
 	highlighter = g_object_new (GTK_TYPE_SOURCE_HIGHLIGHTER, NULL);
-	highlighter->priv->engine  = ce;
-	highlighter->priv->language  = language;
+	highlighter->priv->language = language;
 
 	return highlighter;
 }
