@@ -434,7 +434,7 @@ struct _GtkSourceContextEnginePrivate
 	/* Whether or not to actually highlight the buffer. */
 	gboolean		 highlight;
 
-	/* Whether highlighting was disabled because of errors. */
+	/* Whether syntax analysis was disabled because of errors. */
 	gboolean		 disabled;
 
 	/* Region covering the unhighlighted text. */
@@ -986,7 +986,7 @@ ensure_highlighted (GtkSourceContextEngine *ce,
 
 static GtkTextTag *
 get_context_class_tag (GtkSourceContextEngine *ce,
-                       gchar const            *name)
+		       gchar const            *name)
 {
 	GtkTextTag *ret;
 
@@ -1121,8 +1121,7 @@ add_region_context_classes (GtkSourceContextEngine *ce,
 	start_offset = MAX (start_offset, segment->start_at);
 	end_offset = MIN (end_offset, segment->end_at);
 
-	context_classes = get_context_classes (ce,
-	                                       segment->context);
+	context_classes = get_context_classes (ce, segment->context);
 
 	if (context_classes != NULL)
 	{
@@ -2312,6 +2311,7 @@ gtk_source_context_engine_update_highlight (GtkSourceEngine   *engine,
 		if (gtk_text_iter_get_line (start) < invalid_line)
 		{
 			GtkTextIter valid_end = *start;
+
 			gtk_text_iter_set_line (&valid_end, invalid_line);
 			ensure_highlighted (ce, start, &valid_end);
 		}
@@ -2359,6 +2359,7 @@ static void
 buffer_notify_highlight_syntax_cb (GtkSourceContextEngine *ce)
 {
 	gboolean highlight;
+
 	g_object_get (ce->priv->buffer, "highlight-syntax", &highlight, NULL);
 	enable_highlight (ce, highlight);
 }
@@ -2651,7 +2652,7 @@ gtk_source_context_engine_attach_buffer (GtkSourceEngine *engine,
 			ce->priv->invalid_region.delta = 0;
 		}
 
-		g_object_get (ce->priv->buffer, "highlight-syntax", &ce->priv->highlight, NULL);
+		g_object_get (buffer, "highlight-syntax", &ce->priv->highlight, NULL);
 		ce->priv->refresh_region = gtk_text_region_new (buffer);
 
 		g_signal_connect_swapped (buffer,
@@ -2664,7 +2665,7 @@ gtk_source_context_engine_attach_buffer (GtkSourceEngine *engine,
 }
 
 /**
- * disable_highlighting:
+ * disable_syntax_analysis:
  *
  * @ce: #GtkSourceContextEngine.
  *
@@ -2673,7 +2674,7 @@ gtk_source_context_engine_attach_buffer (GtkSourceEngine *engine,
  * text editor).
  */
 static void
-disable_highlighting (GtkSourceContextEngine *ce)
+disable_syntax_analysis (GtkSourceContextEngine *ce)
 {
 	if (!ce->priv->disabled)
 	{
@@ -4914,7 +4915,7 @@ analyze_line (GtkSourceContextEngine *ce,
 			g_critical ("%s",
 			            _("Highlighting a single line took too much time, "
 				      "syntax highlighting will be disabled"));
-			disable_highlighting (ce);
+			disable_syntax_analysis (ce);
 			break;
 		}
 
