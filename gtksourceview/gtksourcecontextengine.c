@@ -20,17 +20,16 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
+#include <string.h>
+#include <glib.h>
 #include "gtksourceview-i18n.h"
 #include "gtksourcecontextengine.h"
 #include "gtktextregion.h"
 #include "gtksourcelanguage-private.h"
 #include "gtksourcebuffer.h"
+#include "gtksourceregex.h"
 #include "gtksourcestyle-private.h"
-
-#include <glib.h>
-
-#include <errno.h>
-#include <string.h>
+#include "gtksourceview-utils.h"
 
 #undef ENABLE_DEBUG
 #undef ENABLE_PROFILE
@@ -52,9 +51,6 @@
     defined (ENABLE_CHECK_TREE)
 #define NEED_DEBUG_ID
 #endif
-
-/* Regex used to match "\%{...@start}". */
-#define START_REF_REGEX "(?<!\\\\)(\\\\\\\\)*\\\\%\\{(.*?)@start\\}"
 
 /* Priority of one-time idle which is installed after buffer is modified. */
 #define FIRST_UPDATE_PRIORITY		G_PRIORITY_HIGH_IDLE
@@ -114,9 +110,6 @@
 
 #define TAG_CONTEXT_CLASS_NAME "GtkSourceViewTagContextClassName"
 
-typedef struct _RegexInfo RegexInfo;
-typedef struct _RegexAndMatch RegexAndMatch;
-typedef struct _Regex Regex;
 typedef struct _SubPatternDefinition SubPatternDefinition;
 typedef struct _SubPattern SubPattern;
 typedef struct _Segment Segment;
@@ -152,30 +145,6 @@ typedef enum {
 	SUB_PATTERN_WHERE_END
 } SubPatternWhere;
 
-struct _RegexInfo
-{
-	gchar			*pattern;
-	GRegexCompileFlags	 flags;
-};
-
-/* glib has now so fscking nice API! */
-struct _RegexAndMatch
-{
-	GRegex			*regex;
-	GMatchInfo		*match;
-};
-
-/* We do not use directly GRegex to allow the use of "\%{...@start}". */
-struct _Regex
-{
-	union {
-		RegexAndMatch	 regex;
-		RegexInfo	 info;
-	} u;
-	guint			 ref_count;
-	guint			 resolved : 1;
-};
-
 struct _ContextDefinition
 {
 	gchar			*id;
@@ -183,11 +152,11 @@ struct _ContextDefinition
 	ContextType		 type;
 	union
 	{
-		Regex		*match;
+		GtkSourceRegex *match;
 		struct {
-			Regex	*start;
-			Regex	*end;
-		}		 start_end;
+			GtkSourceRegex *start;
+			GtkSourceRegex *end;
+		} start_end;
 	} u;
 
 	/* Name of the style used for contexts of this type. */
@@ -205,10 +174,10 @@ struct _ContextDefinition
 
 	/* Union of every regular expression we can find from this
 	 * context. */
-	Regex			*reg_all;
+	GtkSourceRegex		*reg_all;
 
-	guint                    flags : 8;
-	guint                    ref_count : 24;
+	guint			flags : 8;
+	guint			ref_count : 24;
 };
 
 struct _SubPatternDefinition
@@ -271,10 +240,10 @@ struct _Context
 
 	/* This is the regex returned by regex_resolve() called on
 	 * definition->start_end.end. */
-	Regex			*end;
+	GtkSourceRegex		*end;
 	/* The regular expression containing every regular expression that
 	 * could be matched in this context. */
-	Regex			*reg_all;
+	GtkSourceRegex		*reg_all;
 
 	/* Either definition->default_style or child_def->style, not copied. */
 	const gchar		*style;
@@ -2864,380 +2833,6 @@ _gtk_source_context_data_unref (GtkSourceContextData *ctx_data)
 	}
 }
 
-/* REGEX HANDLING --------------------------------------------------------- */
-
-static Regex *
-regex_ref (Regex *regex)
-{
-	if (regex != NULL)
-		regex->ref_count++;
-	return regex;
-}
-
-static void
-regex_unref (Regex *regex)
-{
-	if (regex != NULL && --regex->ref_count == 0)
-	{
-		if (regex->resolved)
-		{
-			g_regex_unref (regex->u.regex.regex);
-			if (regex->u.regex.match)
-				g_match_info_free (regex->u.regex.match);
-		}
-		else
-			g_free (regex->u.info.pattern);
-		g_slice_free (Regex, regex);
-	}
-}
-
-/**
- * find_single_byte_escape:
- *
- * @string: the pattern.
- *
- * Checks whether pattern contains \C escape sequence,
- * which means "single byte" in pcre and naturally leads
- * to crash if used for highlighting.
- */
-static gboolean
-find_single_byte_escape (const gchar *string)
-{
-	const char *p = string;
-
-	while ((p = strstr (p, "\\C")))
-	{
-		const char *slash;
-		gboolean found;
-
-		if (p == string)
-			return TRUE;
-
-		found = TRUE;
-		slash = p - 1;
-
-		while (slash >= string && *slash == '\\')
-		{
-			found = !found;
-			slash--;
-		}
-
-		if (found)
-			return TRUE;
-
-		p += 2;
-	}
-
-	return FALSE;
-}
-
-/**
- * regex_new:
- *
- * @pattern: the regular expression.
- * @flags: compile options for @pattern.
- * @error: location to store the error occuring, or %NULL to ignore errors.
- *
- * Creates a new regex.
- *
- * Returns: a newly-allocated #Regex.
- */
-static Regex *
-regex_new (const gchar           *pattern,
-	   GRegexCompileFlags     flags,
-	   GError               **error)
-{
-	Regex *regex;
-	static GRegex *start_ref_re = NULL;
-
-	g_return_val_if_fail (error == NULL || *error == NULL, NULL);
-
-	if (find_single_byte_escape (pattern))
-	{
-		g_set_error_literal (error, GTK_SOURCE_CONTEXT_ENGINE_ERROR,
-		                     GTK_SOURCE_CONTEXT_ENGINE_ERROR_INVALID_REGEX,
-		                     _("using \\C is not supported in language definitions"));
-		return NULL;
-	}
-
-	regex = g_slice_new0 (Regex);
-	regex->ref_count = 1;
-
-	if (start_ref_re == NULL)
-		start_ref_re = g_regex_new (START_REF_REGEX,
-					    /* http://bugzilla.gnome.org/show_bug.cgi?id=455640
-					     * we don't care about line ends anyway */
-					    G_REGEX_OPTIMIZE | G_REGEX_NEWLINE_LF,
-					    0,
-					    NULL);
-
-	if (g_regex_match (start_ref_re, pattern, 0, NULL))
-	{
-		regex->resolved = FALSE;
-		regex->u.info.pattern = g_strdup (pattern);
-		regex->u.info.flags = flags;
-	}
-	else
-	{
-		regex->resolved = TRUE;
-		regex->u.regex.regex = g_regex_new (pattern,
-						    flags | G_REGEX_OPTIMIZE | G_REGEX_NEWLINE_LF, 0,
-						    error);
-
-		if (regex->u.regex.regex == NULL)
-		{
-			g_slice_free (Regex, regex);
-			regex = NULL;
-		}
-	}
-
-	return regex;
-}
-
-/**
- * sub_pattern_to_int:
- *
- * @name: the string from lang file.
- *
- * Tries to convert @name to a number and assumes
- * it's a name if that fails. Used for references in
- * subpattern contexts (e.g. \%{1@start} or \%{blah@start}).
- */
-static gint
-sub_pattern_to_int (const gchar *name)
-{
-	guint64 number;
-	gchar *end_name;
-
-	if (*name == 0)
-		return -1;
-
-	errno = 0;
-	number = g_ascii_strtoull (name, &end_name, 10);
-
-	if (errno !=0 || number > G_MAXINT || *end_name != 0)
-		return -1;
-
-	return number;
-}
-
-struct RegexResolveData {
-	Regex       *start_regex;
-	const gchar *matched_text;
-};
-
-static gboolean
-replace_start_regex (const GMatchInfo *match_info,
-		     GString          *expanded_regex,
-		     gpointer          user_data)
-{
-	gchar *num_string, *subst, *subst_escaped, *escapes;
-	gint num;
-	struct RegexResolveData *data = user_data;
-
-	escapes = g_match_info_fetch (match_info, 1);
-	num_string = g_match_info_fetch (match_info, 2);
-	num = sub_pattern_to_int (num_string);
-
-	if (num < 0)
-		subst = g_match_info_fetch_named (data->start_regex->u.regex.match,
-						  num_string);
-	else
-		subst = g_match_info_fetch (data->start_regex->u.regex.match,
-					    num);
-
-	if (subst != NULL)
-	{
-		subst_escaped = g_regex_escape_string (subst, -1);
-	}
-	else
-	{
-		g_warning ("Invalid group: %s", num_string);
-		subst_escaped = g_strdup ("");
-	}
-
-	g_string_append (expanded_regex, escapes);
-	g_string_append (expanded_regex, subst_escaped);
-
-	g_free (escapes);
-	g_free (num_string);
-	g_free (subst);
-	g_free (subst_escaped);
-
-	return FALSE;
-}
-
-/**
- * regex_resolve:
- *
- * @regex: a #Regex.
- * @start_regex: a #Regex.
- * @matched_text: the text matched against @start_regex.
- *
- * If the regular expression does not contain references to the start
- * regular expression, the functions increases the reference count
- * of @regex and returns it.
- *
- * If the regular expression contains references to the start regular
- * expression in the form "\%{start_sub_pattern@start}", it replaces
- * them (they are extracted from @start_regex and @matched_text) and
- * returns the new regular expression.
- *
- * Returns: a #Regex.
- */
-static Regex *
-regex_resolve (Regex       *regex,
-	       Regex       *start_regex,
-	       const gchar *matched_text)
-{
-	GRegex *start_ref;
-	gchar *expanded_regex;
-	Regex *new_regex;
-	struct RegexResolveData data;
-
-	if (regex == NULL || regex->resolved)
-		return regex_ref (regex);
-
-	start_ref = g_regex_new (START_REF_REGEX, G_REGEX_NEWLINE_LF, 0, NULL);
-	data.start_regex = start_regex;
-	data.matched_text = matched_text;
-	expanded_regex = g_regex_replace_eval (start_ref,
-					       regex->u.info.pattern,
-					       -1, 0, 0,
-					       replace_start_regex,
-					       &data, NULL);
-	new_regex = regex_new (expanded_regex, regex->u.info.flags, NULL);
-
-	if (new_regex == NULL || !new_regex->resolved)
-	{
-		regex_unref (new_regex);
-		g_warning ("Regular expression %s cannot be expanded.",
-			   regex->u.info.pattern);
-		/* Returns a regex that nevers matches. */
-		new_regex = regex_new ("$never-match^", 0, NULL);
-	}
-
-	g_free (expanded_regex);
-	g_regex_unref (start_ref);
-	return new_regex;
-}
-
-static gboolean
-regex_match (Regex       *regex,
-	     const gchar *line,
-	     gint         byte_length,
-	     gint         byte_pos)
-{
-	gboolean result;
-
-	g_assert (regex->resolved);
-
-	if (regex->u.regex.match)
-	{
-		g_match_info_free (regex->u.regex.match);
-		regex->u.regex.match = NULL;
-	}
-
-	result = g_regex_match_full (regex->u.regex.regex, line,
-				     byte_length, byte_pos,
-				     0, &regex->u.regex.match,
-				     NULL);
-
-	return result;
-}
-
-static gchar *
-regex_fetch (Regex       *regex,
-	     gint         num)
-{
-	g_assert (regex->resolved);
-	return g_match_info_fetch (regex->u.regex.match, num);
-}
-
-static void
-regex_fetch_pos (Regex       *regex,
-		 const gchar *text,
-		 gint         num,
-		 gint        *start_pos, /* character offsets */
-		 gint        *end_pos)   /* character offsets */
-{
-	gint byte_start_pos, byte_end_pos;
-
-	g_assert (regex->resolved);
-
-	if (!g_match_info_fetch_pos (regex->u.regex.match, num, &byte_start_pos, &byte_end_pos))
-	{
-		if (start_pos != NULL)
-			*start_pos = -1;
-		if (end_pos != NULL)
-			*end_pos = -1;
-	}
-	else
-	{
-		if (start_pos != NULL)
-			*start_pos = g_utf8_pointer_to_offset (text, text + byte_start_pos);
-		if (end_pos != NULL)
-			*end_pos = g_utf8_pointer_to_offset (text, text + byte_end_pos);
-	}
-}
-
-static void
-regex_fetch_pos_bytes (Regex *regex,
-		       gint   num,
-		       gint  *start_pos_p, /* byte offsets */
-		       gint  *end_pos_p)   /* byte offsets */
-{
-	gint start_pos;
-	gint end_pos;
-
-	g_assert (regex->resolved);
-
-	if (!g_match_info_fetch_pos (regex->u.regex.match, num, &start_pos, &end_pos))
-	{
-		start_pos = -1;
-		end_pos = -1;
-	}
-
-	if (start_pos_p != NULL)
-		*start_pos_p = start_pos;
-	if (end_pos_p != NULL)
-		*end_pos_p = end_pos;
-}
-
-static void
-regex_fetch_named_pos (Regex       *regex,
-		       const gchar *text,
-		       const gchar *name,
-		       gint        *start_pos, /* character offsets */
-		       gint        *end_pos)   /* character offsets */
-{
-	gint byte_start_pos, byte_end_pos;
-
-	g_assert (regex->resolved);
-
-	if (!g_match_info_fetch_named_pos (regex->u.regex.match, name, &byte_start_pos, &byte_end_pos))
-	{
-		if (start_pos != NULL)
-			*start_pos = -1;
-		if (end_pos != NULL)
-			*end_pos = -1;
-	}
-	else
-	{
-		if (start_pos != NULL)
-			*start_pos = g_utf8_pointer_to_offset (text, text + byte_start_pos);
-		if (end_pos != NULL)
-			*end_pos = g_utf8_pointer_to_offset (text, text + byte_end_pos);
-	}
-}
-
-static const gchar *
-regex_get_pattern (Regex *regex)
-{
-	g_return_val_if_fail (regex && regex->resolved, "");
-	return g_regex_get_pattern (regex->u.regex.regex);
-}
-
 /* SYNTAX TREE ------------------------------------------------------------ */
 
 /**
@@ -3256,7 +2851,7 @@ regex_get_pattern (Regex *regex)
 static void
 apply_sub_patterns (Segment         *state,
 		    LineInfo        *line,
-		    Regex           *regex,
+		    GtkSourceRegex  *regex,
 		    SubPatternWhere  where)
 {
 	GSList *sub_pattern_list = state->context->definition->sub_patterns;
@@ -3266,7 +2861,7 @@ apply_sub_patterns (Segment         *state,
 		gint start_pos;
 		gint end_pos;
 
-		regex_fetch_pos (regex, line->text, 0, &start_pos, &end_pos);
+		_gtk_source_regex_fetch_pos (regex, line->text, 0, &start_pos, &end_pos);
 
 		if (where == SUB_PATTERN_WHERE_START)
 		{
@@ -3298,17 +2893,21 @@ apply_sub_patterns (Segment         *state,
 			gint end_pos;
 
 			if (sp_def->is_named)
-				regex_fetch_named_pos (regex,
-						       line->text,
-						       sp_def->u.name,
-						       &start_pos,
-						       &end_pos);
+			{
+				_gtk_source_regex_fetch_named_pos (regex,
+								   line->text,
+								   sp_def->u.name,
+								   &start_pos,
+								   &end_pos);
+			}
 			else
-				regex_fetch_pos (regex,
-						 line->text,
-						 sp_def->u.num,
-						 &start_pos,
-						 &end_pos);
+			{
+				_gtk_source_regex_fetch_pos (regex,
+							     line->text,
+							     sp_def->u.num,
+							     &start_pos,
+							     &end_pos);
+			}
 
 			if (start_pos >= 0 && start_pos != end_pos)
 			{
@@ -3338,19 +2937,20 @@ apply_sub_patterns (Segment         *state,
  * Returns: %TRUE if the match can be applied.
  */
 static gboolean
-can_apply_match (Context  *state,
-		 LineInfo *line,
-		 gint      match_start,
-		 gint     *match_end,
-		 Regex    *regex)
+can_apply_match (Context        *state,
+		 LineInfo       *line,
+		 gint            match_start,
+		 gint           *match_end,
+		 GtkSourceRegex *regex)
 {
 	gint end_match_pos;
 	gboolean ancestor_ends;
 	gint pos;
 
 	ancestor_ends = FALSE;
+
 	/* end_match_pos is the position of the end of the matched regex. */
-	regex_fetch_pos_bytes (regex, 0, NULL, &end_match_pos);
+	_gtk_source_regex_fetch_pos_bytes (regex, 0, NULL, &end_match_pos);
 
 	g_assert (end_match_pos <= line->byte_length);
 
@@ -3384,7 +2984,7 @@ can_apply_match (Context  *state,
 		 * the end of the ancestor.
 		 * For instance in C a net-address context matches even if
 		 * it contains the end of a multi-line comment. */
-		if (!regex_match (regex, line->text, pos, match_start))
+		if (!_gtk_source_regex_match (regex, line->text, pos, match_start))
 		{
 			/* This match is not valid, so we can try to match
 			 * the next definition, so the position should not
@@ -3429,7 +3029,7 @@ static gboolean
 apply_match (Segment         *state,
 	     LineInfo        *line,
 	     gint            *line_pos,
-	     Regex           *regex,
+	     GtkSourceRegex  *regex,
 	     SubPatternWhere  where)
 {
 	gint match_end;
@@ -3464,14 +3064,14 @@ apply_match (Segment         *state,
  *
  * Returns: resulting regex or %NULL when pcre failed to compile the regex.
  */
-static Regex *
+static GtkSourceRegex *
 create_reg_all (Context           *context,
 		ContextDefinition *definition)
 {
 	DefinitionsIter iter;
 	DefinitionChild *child_def;
 	GString *all;
-	Regex *regex;
+	GtkSourceRegex *regex;
 	GError *error = NULL;
 
 	g_return_val_if_fail ((context == NULL && definition != NULL) ||
@@ -3486,9 +3086,9 @@ create_reg_all (Context           *context,
 	if (definition->type == CONTEXT_TYPE_CONTAINER &&
 	    definition->u.start_end.end != NULL)
 	{
-		Regex *end;
+		GtkSourceRegex *end;
 
-		if (definition->u.start_end.end->resolved)
+		if (_gtk_source_regex_is_resolved (definition->u.start_end.end))
 		{
 			end = definition->u.start_end.end;
 		}
@@ -3498,7 +3098,7 @@ create_reg_all (Context           *context,
 			end = context->end;
 		}
 
-		g_string_append (all, regex_get_pattern (end));
+		g_string_append (all, _gtk_source_regex_get_pattern (end));
 		g_string_append (all, "|");
 	}
 
@@ -3517,7 +3117,7 @@ create_reg_all (Context           *context,
 				 * Remove FIXME's below if everything is fine. */
 
 				if (tmp->parent->end != NULL)
-					g_string_append (all, regex_get_pattern (tmp->parent->end));
+					g_string_append (all, _gtk_source_regex_get_pattern (tmp->parent->end));
 				/* FIXME ?
 				 * The old code insisted on having tmp->parent->end != NULL here,
 				 * though e.g. in case line-comment -> email-address it's not the case.
@@ -3544,7 +3144,7 @@ create_reg_all (Context           *context,
 	definition_iter_init (&iter, definition);
 	while ((child_def = definition_iter_next (&iter)) != NULL)
 	{
-		Regex *child_regex = NULL;
+		GtkSourceRegex *child_regex = NULL;
 
 		g_return_val_if_fail (child_def->resolved, NULL);
 
@@ -3562,7 +3162,7 @@ create_reg_all (Context           *context,
 
 		if (child_regex != NULL)
 		{
-			g_string_append (all, regex_get_pattern (child_regex));
+			g_string_append (all, _gtk_source_regex_get_pattern (child_regex));
 			g_string_append (all, "|");
 		}
 	}
@@ -3572,7 +3172,7 @@ create_reg_all (Context           *context,
 		g_string_truncate (all, all->len - 1);
 	g_string_append (all, ")");
 
-	regex = regex_new (all->str, 0, &error);
+	regex = _gtk_source_regex_new (all->str, 0, &error);
 
 	if (regex == NULL)
 	{
@@ -3631,9 +3231,9 @@ context_new (Context           *parent,
 	    definition->type == CONTEXT_TYPE_CONTAINER &&
 	    definition->u.start_end.end)
 	{
-		context->end = regex_resolve (definition->u.start_end.end,
-					      definition->u.start_end.start,
-					      line_text);
+		context->end = _gtk_source_regex_resolve (definition->u.start_end.end,
+							  definition->u.start_end.start,
+							  line_text);
 	}
 
 	/* Create reg_all. If it is possibile we share the same reg_all
@@ -3641,7 +3241,7 @@ context_new (Context           *parent,
 	if (ANCESTOR_CAN_END_CONTEXT (context) ||
 	    (definition->type == CONTEXT_TYPE_CONTAINER &&
 	     definition->u.start_end.end != NULL &&
-	     !definition->u.start_end.end->resolved))
+	     !_gtk_source_regex_is_resolved (definition->u.start_end.end)))
 	{
 		context->reg_all = create_reg_all (context, NULL);
 	}
@@ -3649,7 +3249,7 @@ context_new (Context           *parent,
 	{
 		if (!definition->reg_all)
 			definition->reg_all = create_reg_all (NULL, definition);
-		context->reg_all = regex_ref (definition->reg_all);
+		context->reg_all = _gtk_source_regex_ref (definition->reg_all);
 	}
 
 #ifdef ENABLE_DEBUG
@@ -3783,8 +3383,8 @@ context_unref (Context *context)
 	if (context->parent != NULL)
 		context_remove_child (context->parent, context);
 
-	regex_unref (context->end);
-	regex_unref (context->reg_all);
+	_gtk_source_regex_unref (context->end);
+	_gtk_source_regex_unref (context->reg_all);
 
 	if (context->subpattern_context_classes != NULL)
 	{
@@ -3929,7 +3529,7 @@ create_child_context (Context           *parent,
 
 		if (definition->type != CONTEXT_TYPE_CONTAINER ||
 		    !definition->u.start_end.end ||
-		    definition->u.start_end.end->resolved)
+		    _gtk_source_regex_is_resolved (definition->u.start_end.end))
 		{
 			ptr->fixed = TRUE;
 		}
@@ -3944,7 +3544,7 @@ create_child_context (Context           *parent,
 	}
 	else
 	{
-		match = regex_fetch (definition->u.start_end.start, 0);
+		match = _gtk_source_regex_fetch (definition->u.start_end.start, 0);
 		g_return_val_if_fail (match != NULL, NULL);
 		context = g_hash_table_lookup (ptr->u.hash, match);
 	}
@@ -4318,8 +3918,8 @@ container_context_starts_here (GtkSourceContextEngine  *ce,
 	if (definition->u.start_end.start == NULL)
 		return FALSE;
 
-	if (!regex_match (definition->u.start_end.start,
-			  line->text, line->byte_length, *line_pos))
+	if (!_gtk_source_regex_match (definition->u.start_end.start,
+				      line->text, line->byte_length, *line_pos))
 	{
 		return FALSE;
 	}
@@ -4390,8 +3990,13 @@ simple_context_starts_here (GtkSourceContextEngine *ce,
 
 	g_assert (*line_pos <= line->byte_length);
 
-	if (!regex_match (definition->u.match, line->text, line->byte_length, *line_pos))
+	if (!_gtk_source_regex_match (definition->u.match,
+				      line->text,
+				      line->byte_length,
+				      *line_pos))
+	{
 		return FALSE;
+	}
 
 	new_context = create_child_context (state->context, child_def, line->text);
 	g_return_val_if_fail (new_context != NULL, FALSE);
@@ -4515,10 +4120,10 @@ segment_ends_here (Segment  *state,
 	g_assert (SEGMENT_IS_CONTAINER (state));
 
 	return state->context->definition->u.start_end.end &&
-		regex_match (state->context->end,
-			     line->text,
-			     line->byte_length,
-			     pos);
+		_gtk_source_regex_match (state->context->end,
+					 line->text,
+					 line->byte_length,
+					 pos);
 }
 
 /**
@@ -4566,11 +4171,11 @@ ancestor_context_ends_here (Context                *state,
 		current_context = current_context_list->data;
 
 		if (current_context->end &&
-		    current_context->end->u.regex.regex &&
-		    regex_match (current_context->end,
-				 line->text,
-				 line->byte_length,
-				 line_pos))
+		    _gtk_source_regex_is_resolved (current_context->end) &&
+		    _gtk_source_regex_match (current_context->end,
+					     line->text,
+					     line->byte_length,
+					     line_pos))
 		{
 			terminating_context = current_context;
 			break;
@@ -4660,16 +4265,16 @@ next_segment (GtkSourceContextEngine  *ce,
 
 		if (state->context->reg_all)
 		{
-			if (!regex_match (state->context->reg_all,
-					  line->text,
-					  line->byte_length,
-					  pos))
+			if (!_gtk_source_regex_match (state->context->reg_all,
+						      line->text,
+						      line->byte_length,
+						      pos))
 			{
 				return FALSE;
 			}
 
-			regex_fetch_pos_bytes (state->context->reg_all,
-					       0, &pos, NULL);
+			_gtk_source_regex_fetch_pos_bytes (state->context->reg_all,
+							   0, &pos, NULL);
 		}
 
 		/* Does an ancestor end here? */
@@ -6121,41 +5726,41 @@ context_definition_new (const gchar        *id,
 
 	if (match != NULL)
 	{
-		definition->u.match = regex_new (match, G_REGEX_ANCHORED, error);
+		definition->u.match = _gtk_source_regex_new (match, G_REGEX_ANCHORED, error);
 
 		if (definition->u.match == NULL)
 		{
 			regex_error = TRUE;
 		}
-		else if (!definition->u.match->resolved)
+		else if (!_gtk_source_regex_is_resolved (definition->u.match))
 		{
 			regex_error = TRUE;
 			unresolved_error = TRUE;
-			regex_unref (definition->u.match);
+			_gtk_source_regex_unref (definition->u.match);
 			definition->u.match = NULL;
 		}
 	}
 
 	if (start != NULL)
 	{
-		definition->u.start_end.start = regex_new (start, G_REGEX_ANCHORED, error);
+		definition->u.start_end.start = _gtk_source_regex_new (start, G_REGEX_ANCHORED, error);
 
 		if (definition->u.start_end.start == NULL)
 		{
 			regex_error = TRUE;
 		}
-		else if (!definition->u.start_end.start->resolved)
+		else if (!_gtk_source_regex_is_resolved (definition->u.start_end.start))
 		{
 			regex_error = TRUE;
 			unresolved_error = TRUE;
-			regex_unref (definition->u.start_end.start);
+			_gtk_source_regex_unref (definition->u.start_end.start);
 			definition->u.start_end.start = NULL;
 		}
 	}
 
 	if (end != NULL && !regex_error)
 	{
-		definition->u.start_end.end = regex_new (end, G_REGEX_ANCHORED, error);
+		definition->u.start_end.end = _gtk_source_regex_new (end, G_REGEX_ANCHORED, error);
 
 		if (definition->u.start_end.end == NULL)
 			regex_error = TRUE;
@@ -6210,11 +5815,11 @@ context_definition_unref (ContextDefinition *definition)
 	switch (definition->type)
 	{
 		case CONTEXT_TYPE_SIMPLE:
-			regex_unref (definition->u.match);
+			_gtk_source_regex_unref (definition->u.match);
 			break;
 		case CONTEXT_TYPE_CONTAINER:
-			regex_unref (definition->u.start_end.start);
-			regex_unref (definition->u.start_end.end);
+			_gtk_source_regex_unref (definition->u.start_end.start);
+			_gtk_source_regex_unref (definition->u.start_end.end);
 			break;
 	}
 
@@ -6239,7 +5844,7 @@ context_definition_unref (ContextDefinition *definition)
 
 	g_free (definition->id);
 	g_free (definition->default_style);
-	regex_unref (definition->reg_all);
+	_gtk_source_regex_unref (definition->reg_all);
 
 	g_slist_free_full (definition->context_classes,
 	                   (GDestroyNotify)gtk_source_context_class_free);
@@ -6455,7 +6060,7 @@ _gtk_source_context_data_add_sub_pattern (GtkSourceContextData *ctx_data,
 #endif
 	sp_def->style = g_strdup (style);
 	sp_def->where = where_num;
-	number = sub_pattern_to_int (name);
+	number = _gtk_source_string_to_int (name);
 
 	if (number < 0)
 	{
@@ -6910,24 +6515,6 @@ check_context (Context *context)
 					      (GHFunc) check_context_hash_cb,
 					      &data);
 		}
-	}
-}
-
-static void
-check_regex (void)
-{
-	static gboolean done;
-
-	if (!done)
-	{
-		g_assert (!find_single_byte_escape ("gfregerg"));
-		g_assert (!find_single_byte_escape ("\\\\C"));
-		g_assert (find_single_byte_escape ("\\C"));
-		g_assert (find_single_byte_escape ("ewfwefwefwef\\Cwefwefwefwe"));
-		g_assert (find_single_byte_escape ("ewfwefwefwef\\\\Cwefw\\Cefwefwe"));
-		g_assert (!find_single_byte_escape ("ewfwefwefwef\\\\Cwefw\\\\Cefwefwe"));
-
-		done = TRUE;
 	}
 }
 

@@ -53,6 +53,7 @@ NOINST_H_FILES = \
 	gtksourceengine.h			\
 	gtksourcegutter-private.h		\
 	gtksourcelanguage-private.h		\
+	gtksourceregex.h			\
 	gtksourcestyle-private.h		\
 	gtksourceundomanagerdefault.h		\
 	gtksourceview-i18n.h			\
@@ -89,6 +90,7 @@ libgtksourceview_c_files = \
 	gtksourcemark.c			\
 	gtksourcemarkattributes.c	\
 	gtksourceprintcompositor.c	\
+	gtksourceregex.c		\
 	gtksourcestyle.c		\
 	gtksourcestylescheme.c		\
 	gtksourcestyleschememanager.c	\

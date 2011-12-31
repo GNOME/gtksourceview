@@ -23,6 +23,7 @@
 #include <config.h>
 #endif
 
+#include <errno.h>
 #include "gtksourceview-utils.h"
 
 #define SOURCEVIEW_DIR "gtksourceview-3.0"
@@ -124,3 +125,27 @@ _gtk_source_view_get_file_list (gchar       **path,
 
 	return g_slist_reverse (files);
 }
+
+/* Wrapper around strtoull for easier use: tries
+ * to convert @str to a number and return -1 if it is not.
+ * Used to check if references in subpattern contexts
+ * (e.g. \%{1@start} or \%{blah@start}) are named or numbers.
+ */
+gint
+_gtk_source_string_to_int (const gchar *str)
+{
+	guint64 number;
+	gchar *end_str;
+
+	if (str == NULL || *str == '\0')
+		return -1;
+
+	errno = 0;
+	number = g_ascii_strtoull (str, &end_str, 10);
+
+	if (errno != 0 || number > G_MAXINT || *end_str != '\0')
+		return -1;
+
+	return number;
+}
+

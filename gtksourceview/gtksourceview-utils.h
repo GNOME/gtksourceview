@@ -33,6 +33,8 @@ GSList 	 *_gtk_source_view_get_file_list    (gchar       **path,
 					     const gchar  *suffix,
 					     gboolean      only_dirs);
 
+gint	 _gtk_source_string_to_int	    (const gchar *str);
+
 G_END_DECLS
 
 #endif /* __GTK_SOURCE_VIEW_UTILS_H__ */
