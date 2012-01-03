@@ -117,12 +117,7 @@ _gtk_source_regex_new (const gchar           *pattern,
 
 	if (start_ref_re == NULL)
 	{
-		start_ref_re = g_regex_new (START_REF_REGEX,
-					    /* http://bugzilla.gnome.org/show_bug.cgi?id=455640
-					     * we don't care about line ends anyway */
-					    G_REGEX_OPTIMIZE | G_REGEX_NEWLINE_LF,
-					    0,
-					    NULL);
+		start_ref_re = g_regex_new (START_REF_REGEX, G_REGEX_OPTIMIZE, 0, NULL);
 	}
 
 	regex = g_slice_new0 (GtkSourceRegex);
@@ -258,7 +253,7 @@ _gtk_source_regex_resolve (GtkSourceRegex *regex,
 	if (regex == NULL || regex->resolved)
 		return _gtk_source_regex_ref (regex);
 
-	start_ref = g_regex_new (START_REF_REGEX, G_REGEX_NEWLINE_LF, 0, NULL);
+	start_ref = g_regex_new (START_REF_REGEX, 0, 0, NULL);
 	data.start_regex = start_regex;
 	data.matched_text = matched_text;
 	expanded_regex = g_regex_replace_eval (start_ref,
