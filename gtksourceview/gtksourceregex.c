@@ -32,7 +32,19 @@
  */
 
 /* Regex used to match "\%{...@start}". */
-#define START_REF_REGEX "(?<!\\\\)(\\\\\\\\)*\\\\%\\{(.*?)@start\\}"
+static GRegex *
+get_start_ref_regex (void)
+{
+	static GRegex *start_ref_regex = NULL;
+
+	if (start_ref_regex == NULL)
+	{
+		start_ref_regex = g_regex_new ("(?<!\\\\)(\\\\\\\\)*\\\\%\\{(.*?)@start\\}",
+					       G_REGEX_OPTIMIZE, 0, NULL);
+	}
+
+	return start_ref_regex;
+}
 
 struct _GtkSourceRegex
 {
@@ -102,7 +114,6 @@ _gtk_source_regex_new (const gchar           *pattern,
 		       GError               **error)
 {
 	GtkSourceRegex *regex;
-	static GRegex *start_ref_re = NULL;
 
 	g_return_val_if_fail (pattern != NULL, NULL);
 	g_return_val_if_fail (error == NULL || *error == NULL, NULL);
@@ -115,15 +126,10 @@ _gtk_source_regex_new (const gchar           *pattern,
 		return NULL;
 	}
 
-	if (start_ref_re == NULL)
-	{
-		start_ref_re = g_regex_new (START_REF_REGEX, G_REGEX_OPTIMIZE, 0, NULL);
-	}
-
 	regex = g_slice_new0 (GtkSourceRegex);
 	regex->ref_count = 1;
 
-	if (g_regex_match (start_ref_re, pattern, 0, NULL))
+	if (g_regex_match (get_start_ref_regex (), pattern, 0, NULL))
 	{
 		regex->resolved = FALSE;
 		regex->u.info.pattern = g_strdup (pattern);
@@ -245,7 +251,6 @@ _gtk_source_regex_resolve (GtkSourceRegex *regex,
 			   GtkSourceRegex *start_regex,
 			   const gchar    *matched_text)
 {
-	GRegex *start_ref;
 	gchar *expanded_regex;
 	GtkSourceRegex *new_regex;
 	struct RegexResolveData data;
@@ -253,10 +258,9 @@ _gtk_source_regex_resolve (GtkSourceRegex *regex,
 	if (regex == NULL || regex->resolved)
 		return _gtk_source_regex_ref (regex);
 
-	start_ref = g_regex_new (START_REF_REGEX, 0, 0, NULL);
 	data.start_regex = start_regex;
 	data.matched_text = matched_text;
-	expanded_regex = g_regex_replace_eval (start_ref,
+	expanded_regex = g_regex_replace_eval (get_start_ref_regex (),
 					       regex->u.info.pattern,
 					       -1, 0, 0,
 					       replace_start_regex,
@@ -272,7 +276,6 @@ _gtk_source_regex_resolve (GtkSourceRegex *regex,
 	}
 
 	g_free (expanded_regex);
-	g_regex_unref (start_ref);
 
 	return new_regex;
 }
