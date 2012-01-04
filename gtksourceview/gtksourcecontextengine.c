@@ -4517,8 +4517,7 @@ analyze_line (GtkSourceContextEngine *ce,
 
 		if (g_timer_elapsed (timer, NULL) * 1000 > MAX_TIME_FOR_ONE_LINE)
 		{
-			g_critical ("%s",
-			            _("Highlighting a single line took too much time, "
+			g_critical (_("Highlighting a single line took too much time, "
 				      "syntax highlighting will be disabled"));
 			disable_syntax_analysis (ce);
 			break;
@@ -6371,7 +6370,7 @@ add_escape_ref (ContextDefinition    *definition,
 out:
 	if (error)
 	{
-		g_warning ("%s", error->message);
+		g_warning (error->message);
 		g_error_free (error);
 	}
 }
@@ -6433,7 +6432,7 @@ _gtk_source_context_data_set_escape_char (GtkSourceContextData *ctx_data,
 out:
 	if (error)
 	{
-		g_warning ("%s", error->message);
+		g_warning (error->message);
 		g_error_free (error);
 	}
 
