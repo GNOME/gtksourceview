@@ -1632,7 +1632,7 @@ sub_pattern_new (Segment              *segment,
 {
 	SubPattern *sp;
 
-	sp = g_slice_new0 (SubPattern);
+	sp = g_slice_new (SubPattern);
 	sp->start_at = start_at;
 	sp->end_at = end_at;
 	sp->definition = sp_def;
@@ -2792,7 +2792,7 @@ _gtk_source_context_data_new (GtkSourceLanguage *lang)
 
 	g_return_val_if_fail (GTK_SOURCE_IS_LANGUAGE (lang), NULL);
 
-	ctx_data = g_slice_new0 (GtkSourceContextData);
+	ctx_data = g_slice_new (GtkSourceContextData);
 	ctx_data->ref_count = 1;
 	ctx_data->lang = lang;
 	ctx_data->definitions = g_hash_table_new_full (g_str_hash, g_str_equal, g_free,
@@ -5647,7 +5647,7 @@ definition_child_new (ContextDefinition *definition,
 
 	g_return_val_if_fail (child_id != NULL, NULL);
 
-	ch = g_slice_new0 (DefinitionChild);
+	ch = g_slice_new (DefinitionChild);
 
 	if (original_ref)
 		ch->u.id = g_strdup_printf ("@%s", child_id);
@@ -6054,7 +6054,7 @@ _gtk_source_context_data_add_sub_pattern (GtkSourceContextData *ctx_data,
 		return FALSE;
 	}
 
-	sp_def = g_slice_new0 (SubPatternDefinition);
+	sp_def = g_slice_new (SubPatternDefinition);
 #ifdef NEED_DEBUG_ID
 	sp_def->id = g_strdup (id);
 #endif
