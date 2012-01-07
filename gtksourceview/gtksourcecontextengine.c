@@ -622,8 +622,6 @@ set_tag_style (GtkSourceContextEngine *ce,
 
 	while (style == NULL)
 	{
-		GtkSourceStyleInfo *info;
-
 		if (guard > MAX_STYLE_DEPENDENCY_DEPTH)
 		{
 			g_warning ("Potential circular dependency between styles detected for style '%s'", style_id);
@@ -634,10 +632,8 @@ set_tag_style (GtkSourceContextEngine *ce,
 
 		/* FIXME Style references really must be fixed, both parser for
 		 * sane use in lang files, and engine for safe use. */
-		info = _gtk_source_language_get_style_info (ce->priv->ctx_data->lang, map_to);
-
-		map_to = (info != NULL) ? info->map_to : NULL;
-		if (!map_to)
+		map_to = gtk_source_language_get_style_fallback (ce->priv->ctx_data->lang, map_to);
+		if (map_to == NULL)
 			break;
 
 		style = gtk_source_style_scheme_get_style (ce->priv->style_scheme, map_to);

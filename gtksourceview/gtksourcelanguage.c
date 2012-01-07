@@ -853,8 +853,8 @@ gtk_source_language_get_style_ids (GtkSourceLanguage *language)
 	return get_style_ids (language);
 }
 
-GtkSourceStyleInfo *
-_gtk_source_language_get_style_info (GtkSourceLanguage *language, const char *style_id)
+static GtkSourceStyleInfo *
+get_style_info (GtkSourceLanguage *language, const char *style_id)
 {
 	GtkSourceStyleInfo *info;
 
@@ -890,9 +890,39 @@ gtk_source_language_get_style_name (GtkSourceLanguage *language,
 	g_return_val_if_fail (language->priv->id != NULL, NULL);
 	g_return_val_if_fail (style_id != NULL, NULL);
 
-	info = _gtk_source_language_get_style_info (language, style_id);
+	info = get_style_info (language, style_id);
 
 	return info ? info->name : NULL;
+}
+
+/**
+ * gtk_source_language_get_style_fallback:
+ * @language: a #GtkSourceLanguage.
+ * @style_id: a style ID.
+ *
+ * Returns the ID of the style to use if the specified @style_id
+ * is not present in the current style scheme.
+ *
+ * Returns: the ID of the style to use if the specified @style_id
+ * is not present in the current style scheme or %NULL if the style has
+ * no fallback defined.
+ * The returned string is owned by the @language and must not be modified.
+ *
+ * Since: 3.4
+ */
+const gchar *
+gtk_source_language_get_style_fallback (GtkSourceLanguage *language,
+					const gchar       *style_id)
+{
+	GtkSourceStyleInfo *info;
+
+	g_return_val_if_fail (GTK_SOURCE_IS_LANGUAGE (language), NULL);
+	g_return_val_if_fail (language->priv->id != NULL, NULL);
+	g_return_val_if_fail (style_id != NULL, NULL);
+
+	info = get_style_info (language, style_id);
+
+	return info ? info->map_to : NULL;
 }
 
 /* Utility functions for GtkSourceStyleInfo */

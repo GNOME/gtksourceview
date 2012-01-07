@@ -49,18 +49,18 @@ struct _GtkSourceLanguage
 
 struct _GtkSourceLanguageClass
 {
-	GObjectClass              parent_class;
+	GObjectClass parent_class;
 
 	/* Padding for future expansion */
 	void (*_gtk_source_reserved1) (void);
 	void (*_gtk_source_reserved2) (void);
 };
 
-GType             gtk_source_language_get_type 		(void) G_GNUC_CONST;
+GType		  gtk_source_language_get_type 		(void) G_GNUC_CONST;
 
-const gchar 	 *gtk_source_language_get_id		(GtkSourceLanguage *language);
+const gchar	 *gtk_source_language_get_id		(GtkSourceLanguage *language);
 
-const gchar 	 *gtk_source_language_get_name		(GtkSourceLanguage *language);
+const gchar	 *gtk_source_language_get_name		(GtkSourceLanguage *language);
 
 const gchar	 *gtk_source_language_get_section	(GtkSourceLanguage *language);
 
@@ -76,6 +76,9 @@ gchar		**gtk_source_language_get_globs		(GtkSourceLanguage *language);
 gchar		**gtk_source_language_get_style_ids 	(GtkSourceLanguage *language);
 
 const gchar	*gtk_source_language_get_style_name	(GtkSourceLanguage *language,
+							 const gchar       *style_id);
+
+const gchar	*gtk_source_language_get_style_fallback	(GtkSourceLanguage *language,
 							 const gchar       *style_id);
 
 G_END_DECLS
