@@ -290,9 +290,9 @@ gtk_source_completion_words_populate (GtkSourceCompletionProvider *provider,
 	if (add_in_idle (words))
 	{
 		gtk_source_completion_words_library_lock (words->priv->library);
-		words->priv->idle_id = g_idle_add ((GSourceFunc)add_in_idle,
-		                                   words);
-	}	
+		words->priv->idle_id = gdk_threads_add_idle ((GSourceFunc)add_in_idle,
+		                                             words);
+	}
 }
 
 static void

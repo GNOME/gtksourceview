@@ -2360,8 +2360,6 @@ idle_worker (GtkSourceContextEngine *ce)
 
 	g_return_val_if_fail (ce->priv->buffer != NULL, FALSE);
 
-	gdk_threads_enter ();
-
 	/* analyze batch of text */
 	update_syntax (ce, NULL, INCREMENTAL_UPDATE_TIME_SLICE);
 	CHECK_TREE (ce);
@@ -2371,8 +2369,6 @@ idle_worker (GtkSourceContextEngine *ce)
 		ce->priv->incremental_update = 0;
 		retval = FALSE;
 	}
-
-	gdk_threads_leave ();
 
 	return retval;
 }
@@ -2390,8 +2386,6 @@ first_update_callback (GtkSourceContextEngine *ce)
 {
 	g_return_val_if_fail (ce->priv->buffer != NULL, FALSE);
 
-	gdk_threads_enter ();
-
 	/* analyze batch of text */
 	update_syntax (ce, NULL, FIRST_UPDATE_TIME_SLICE);
 	CHECK_TREE (ce);
@@ -2400,8 +2394,6 @@ first_update_callback (GtkSourceContextEngine *ce)
 
 	if (!all_analyzed (ce))
 		install_idle_worker (ce);
-
-	gdk_threads_leave ();
 
 	return FALSE;
 }
@@ -2419,8 +2411,8 @@ install_idle_worker (GtkSourceContextEngine *ce)
 {
 	if (ce->priv->first_update == 0 && ce->priv->incremental_update == 0)
 		ce->priv->incremental_update =
-			g_idle_add_full (INCREMENTAL_UPDATE_PRIORITY,
-					 (GSourceFunc) idle_worker, ce, NULL);
+			gdk_threads_add_idle_full (INCREMENTAL_UPDATE_PRIORITY,
+			                           (GSourceFunc) idle_worker, ce, NULL);
 }
 
 /**
@@ -2443,9 +2435,9 @@ install_first_update (GtkSourceContextEngine *ce)
 		}
 
 		ce->priv->first_update =
-			g_idle_add_full (FIRST_UPDATE_PRIORITY,
-					 (GSourceFunc) first_update_callback,
-					 ce, NULL);
+			gdk_threads_add_idle_full (FIRST_UPDATE_PRIORITY,
+			                           (GSourceFunc) first_update_callback,
+			                           ce, NULL);
 	}
 }
 
