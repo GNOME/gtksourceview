@@ -246,6 +246,7 @@ gtk_source_language_get_mime_types
 gtk_source_language_get_globs
 gtk_source_language_get_style_name
 gtk_source_language_get_style_ids
+gtk_source_language_get_style_fallback
 <SUBSECTION Standard>
 GtkSourceLanguageClass
 GTK_SOURCE_IS_LANGUAGE
