@@ -1753,8 +1753,6 @@ gtk_source_view_paint_line_background (GtkTextView    *text_view,
 	GdkRectangle visible_rect;
 	GdkRectangle line_rect;
 	gint win_y;
-	gint margin;
-	GtkAdjustment *hadjustment;
 
 	gtk_text_view_get_visible_rect (text_view, &visible_rect);
 
@@ -1770,24 +1768,10 @@ gtk_source_view_paint_line_background (GtkTextView    *text_view,
 	line_rect.y = win_y;
 	line_rect.height = height;
 
-	hadjustment = gtk_scrollable_get_hadjustment (GTK_SCROLLABLE (text_view));
-
-	if (hadjustment)
-	{
-		margin = gtk_text_view_get_left_margin (text_view) -
-			 (int) gtk_adjustment_get_value (hadjustment);
-	}
-	else
-	{
-		margin = gtk_text_view_get_left_margin (text_view);
-	}
-
-	line_rect.x += MAX (0, margin - 1);
-
 	gdk_cairo_set_source_rgba (cr, (GdkRGBA *)color);
 	cairo_set_line_width (cr, 1);
-	cairo_rectangle (cr, line_rect.x + .5, line_rect.y + .5,
-			 line_rect.width - 1, line_rect.height - 1);
+	cairo_rectangle (cr, line_rect.x, line_rect.y + .5,
+			 line_rect.width, line_rect.height - 1);
 	cairo_stroke_preserve (cr);
 	cairo_fill (cr);
 }
