@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-01-06 21:20+0100\n"
-"PO-Revision-Date: 2012-01-06 21:24+0100\n"
+"POT-Creation-Date: 2012-01-28 16:41+0100\n"
+"PO-Revision-Date: 2012-01-28 16:42+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian bokmål <i18n-nb@lister.ping.uio.no>\n"
 "Language: \n"
@@ -814,7 +814,7 @@ msgstr "Klassevelger"
 
 #: ../data/language-specs/css.lang.h:17
 msgid "Tag Name Selector"
-msgstr ""
+msgstr "Valg av navn på tagg"
 
 #: ../data/language-specs/cuda.lang.h:2
 msgid "CUDA"
@@ -1325,7 +1325,7 @@ msgstr "Haddock"
 
 #: ../data/language-specs/haddock.lang.h:3
 msgid "Inline Haddock Section"
-msgstr ""
+msgstr "Innebygget Haddock-seksjon"
 
 #: ../data/language-specs/haddock.lang.h:4
 msgid "Haddock Directive"
@@ -2462,7 +2462,7 @@ msgstr "Informasjon som skal vises for denne oppføringen"
 #. * named sub-patterns with the same name or if resulting regex is
 #. * too long. In this case fixing lang file helps (e.g. renaming
 #. * subpatterns, making huge keywords use bigger prefixes, etc.)
-#: ../gtksourceview/gtksourcecontextengine.c:3183
+#: ../gtksourceview/gtksourcecontextengine.c:3171
 #, c-format
 msgid ""
 "Cannot create a regex for all the transitions, the syntax highlighting "
@@ -2473,7 +2473,7 @@ msgstr ""
 "syntaks vil være tregere enn vanlig.\n"
 "Feilen var: %s"
 
-#: ../gtksourceview/gtksourcecontextengine.c:4521
+#: ../gtksourceview/gtksourcecontextengine.c:4509
 msgid ""
 "Highlighting a single line took too much time, syntax highlighting will be "
 "disabled"
@@ -2481,19 +2481,19 @@ msgstr ""
 "Utheving av en enkelt linje tok for lang tid. Syntaksutheving vil bli slått "
 "av"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5774
+#: ../gtksourceview/gtksourcecontextengine.c:5762
 #, c-format
 msgid "context '%s' cannot contain a \\%%{...@start} command"
 msgstr "kontekst «%s» kan ikke inneholde en \\%%{...@start}-kommando"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5935
-#: ../gtksourceview/gtksourcecontextengine.c:6024
+#: ../gtksourceview/gtksourcecontextengine.c:5923
+#: ../gtksourceview/gtksourcecontextengine.c:6012
 #, c-format
 msgid "duplicated context id '%s'"
 msgstr "duplisert kontekst-ID «%s»"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6139
-#: ../gtksourceview/gtksourcecontextengine.c:6199
+#: ../gtksourceview/gtksourcecontextengine.c:6127
+#: ../gtksourceview/gtksourcecontextengine.c:6187
 #, c-format
 msgid ""
 "style override used with wildcard context reference in language '%s' in ref "
@@ -2502,18 +2502,18 @@ msgstr ""
 "overstyring av stil brukt med «wildcard» kontekstreferanse i språk «%s» i "
 "ref «%s»"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6213
+#: ../gtksourceview/gtksourcecontextengine.c:6201
 #, c-format
 msgid "invalid context reference '%s'"
 msgstr "ugyldig kontekstreferanse «%s»"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6232
-#: ../gtksourceview/gtksourcecontextengine.c:6242
+#: ../gtksourceview/gtksourcecontextengine.c:6220
+#: ../gtksourceview/gtksourcecontextengine.c:6230
 #, c-format
 msgid "unknown context '%s'"
 msgstr "ukjent kontekst «%s»"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6342
+#: ../gtksourceview/gtksourcecontextengine.c:6330
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "Mangler hovedspråkdefinisjon (id = «%s».)"
