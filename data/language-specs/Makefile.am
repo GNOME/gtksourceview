@@ -73,6 +73,7 @@ LANGUAGES =			\
 	pkgconfig.lang		\
 	po.lang			\
 	python.lang		\
+	python3.lang		\
 	prolog.lang		\
 	protobuf.lang		\
 	R.lang			\
