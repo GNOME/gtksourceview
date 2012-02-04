@@ -7,6 +7,7 @@
  Copyright (C) 2003 Gustavo Giráldez <gustavo.giraldez@gmx.net>
  Copyright (C) 2004 Benoît Dejean <TaZForEver@free.fr>
  Copyright (C) 2006 Steve Frécinaux <nud@apinc.org>
+ Copyright (C) 2012 Stefano Palazzo <stefano-palazzo@ubuntu.com>
 
  GtkSourceView is free software; you can redistribute it and/or
  modify it under the terms of the GNU Lesser General Public
@@ -222,7 +223,7 @@
           <keyword>as</keyword>
         </context>
 
-        <context id="keyword" style-ref="keyword">
+        <context id="keywords" style-ref="keyword">
           <keyword>and</keyword>
           <keyword>assert</keyword>
           <keyword>break</keyword>
@@ -233,7 +234,6 @@
           <keyword>elif</keyword>
           <keyword>else</keyword>
           <keyword>except</keyword>
-          <keyword>exec</keyword>
           <keyword>finally</keyword>
           <keyword>for</keyword>
           <keyword>global</keyword>
@@ -244,13 +244,17 @@
           <keyword>not</keyword>
           <keyword>or</keyword>
           <keyword>pass</keyword>
-          <keyword>print</keyword>
           <keyword>raise</keyword>
           <keyword>return</keyword>
           <keyword>try</keyword>
           <keyword>while</keyword>
           <keyword>with</keyword>
           <keyword>yield</keyword>
+        </context>
+
+        <context id="2x-only-keywords" style-ref="keyword">
+          <keyword>exec</keyword>
+          <keyword>print</keyword>
         </context>
 
         <context id="builtin-constants" style-ref="builtin-constant">
@@ -298,7 +302,6 @@
           <keyword>ValueError</keyword>
           <keyword>WindowsError</keyword>
           <keyword>ZeroDivisionError</keyword>
-
           <keyword>Warning</keyword>
           <keyword>UserWarning</keyword>
           <keyword>DeprecationWarning</keyword>
@@ -309,21 +312,17 @@
           <keyword>FutureWarning</keyword>
         </context>
 
-        <context id="builtin-function" style-ref="builtin-function">
+        <context id="builtin-functions" style-ref="builtin-function">
           <prefix>(?&lt;![\w\.])</prefix>
           <keyword>__import__</keyword>
           <keyword>abs</keyword>
           <keyword>all</keyword>
           <keyword>any</keyword>
-          <keyword>apply</keyword>
-          <keyword>basestring</keyword>
+          <keyword>bin</keyword>
           <keyword>bool</keyword>
-          <keyword>buffer</keyword>
           <keyword>callable</keyword>
           <keyword>chr</keyword>
           <keyword>classmethod</keyword>
-          <keyword>cmp</keyword>
-          <keyword>coerce</keyword>
           <keyword>compile</keyword>
           <keyword>complex</keyword>
           <keyword>delattr</keyword>
@@ -332,10 +331,9 @@
           <keyword>divmod</keyword>
           <keyword>enumerate</keyword>
           <keyword>eval</keyword>
-          <keyword>execfile</keyword>
-          <keyword>file</keyword>
           <keyword>filter</keyword>
           <keyword>float</keyword>
+          <keyword>format</keyword>
           <keyword>frozenset</keyword>
           <keyword>getattr</keyword>
           <keyword>globals</keyword>
@@ -345,14 +343,12 @@
           <keyword>id</keyword>
           <keyword>input</keyword>
           <keyword>int</keyword>
-          <keyword>intern</keyword>
           <keyword>isinstance</keyword>
           <keyword>issubclass</keyword>
           <keyword>iter</keyword>
           <keyword>len</keyword>
           <keyword>list</keyword>
           <keyword>locals</keyword>
-          <keyword>long</keyword>
           <keyword>map</keyword>
           <keyword>max</keyword>
           <keyword>min</keyword>
@@ -363,9 +359,6 @@
           <keyword>pow</keyword>
           <keyword>property</keyword>
           <keyword>range</keyword>
-          <keyword>raw_input</keyword>
-          <keyword>reduce</keyword>
-          <keyword>reload</keyword>
           <keyword>repr</keyword>
           <keyword>reversed</keyword>
           <keyword>round</keyword>
@@ -379,11 +372,27 @@
           <keyword>super</keyword>
           <keyword>tuple</keyword>
           <keyword>type</keyword>
+          <keyword>vars</keyword>
+          <keyword>zip</keyword>
+        </context>
+
+        <context id="2x-only-builtin-functions" style-ref="builtin-function">
+          <prefix>(?&lt;![\w\.])</prefix>
+          <keyword>apply</keyword>
+          <keyword>basestring</keyword>
+          <keyword>buffer</keyword>
+          <keyword>cmp</keyword>
+          <keyword>coerce</keyword>
+          <keyword>execfile</keyword>
+          <keyword>file</keyword>
+          <keyword>intern</keyword>
+          <keyword>long</keyword>
+          <keyword>raw_input</keyword>
+          <keyword>reduce</keyword>
+          <keyword>reload</keyword>
           <keyword>unichr</keyword>
           <keyword>unicode</keyword>
-          <keyword>vars</keyword>
           <keyword>xrange</keyword>
-          <keyword>zip</keyword>
         </context>
       </include>
     </context>
