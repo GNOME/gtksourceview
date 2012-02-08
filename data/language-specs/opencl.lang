@@ -473,7 +473,7 @@
     </context>
 
     <context id="device-casts" style-ref="device-cast">
-      <match>(as_)(uchar|char|ushort|short|uitn|int|ulong|long|float|double)((2|3|4|8|16)((_sat)(_rte|_rtz|_rtp|_rtn)?)?)?</match>
+      <match>(as_|convert_)(uchar|char|ushort|short|uitn|int|ulong|long|float|double)((2|3|4|8|16)((_sat)(_rte|_rtz|_rtp|_rtn)?)?)?</match>
     </context>
 
     <context id="opencl-constants" style-ref="opencl-const">
