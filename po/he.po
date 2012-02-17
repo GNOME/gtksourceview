@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview.HEAD.he\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-10-22 12:34+0200\n"
-"PO-Revision-Date: 2011-10-22 12:36+0200\n"
+"POT-Creation-Date: 2012-02-17 13:32+0200\n"
+"PO-Revision-Date: 2012-02-17 14:53+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <he@li.org>\n"
 "Language: he\n"
@@ -229,6 +229,7 @@ msgstr "סוג הנתון"
 #: ../data/language-specs/opal.lang.h:5
 #: ../data/language-specs/php.lang.h:5
 #: ../data/language-specs/python.lang.h:7
+#: ../data/language-specs/python3.lang.h:7
 #: ../data/language-specs/ruby.lang.h:8
 msgid "Decimal number"
 msgstr "מספר עשרוני"
@@ -251,6 +252,7 @@ msgstr "מספר עשרוני"
 #: ../data/language-specs/php.lang.h:8
 #: ../data/language-specs/prolog.lang.h:3
 #: ../data/language-specs/python.lang.h:8
+#: ../data/language-specs/python3.lang.h:8
 #: ../data/language-specs/ruby.lang.h:9
 #: ../data/language-specs/sml.lang.h:7
 #: ../data/language-specs/texinfo.lang.h:2
@@ -308,6 +310,7 @@ msgstr "Escaped Character"
 #: ../data/language-specs/prolog.lang.h:4
 #: ../data/language-specs/protobuf.lang.h:3
 #: ../data/language-specs/python.lang.h:11
+#: ../data/language-specs/python3.lang.h:11
 #: ../data/language-specs/R.lang.h:6
 #: ../data/language-specs/ruby.lang.h:13
 #: ../data/language-specs/scheme.lang.h:4
@@ -448,6 +451,7 @@ msgstr "Storage Class"
 #: ../data/language-specs/prolog.lang.h:9
 #: ../data/language-specs/protobuf.lang.h:5
 #: ../data/language-specs/python.lang.h:17
+#: ../data/language-specs/python3.lang.h:17
 #: ../data/language-specs/ruby.lang.h:22
 #: ../data/language-specs/scheme.lang.h:7
 #: ../data/language-specs/scilab.lang.h:9
@@ -571,6 +575,7 @@ msgstr "החלפה"
 #: ../data/language-specs/glsl.lang.h:2
 #: ../data/language-specs/perl.lang.h:1
 #: ../data/language-specs/python.lang.h:4
+#: ../data/language-specs/python3.lang.h:4
 msgid "Builtin Function"
 msgstr "פונקציה מובנית"
 
@@ -586,6 +591,7 @@ msgstr "תבנית"
 #: ../data/language-specs/perl.lang.h:18
 #: ../data/language-specs/php.lang.h:19
 #: ../data/language-specs/python.lang.h:15
+#: ../data/language-specs/python3.lang.h:15
 #: ../data/language-specs/ruby.lang.h:20
 #: ../data/language-specs/sh.lang.h:7
 #: ../data/language-specs/tcl.lang.h:2
@@ -633,6 +639,7 @@ msgstr "BennuGD"
 #: ../data/language-specs/ooc.lang.h:9
 #: ../data/language-specs/php.lang.h:9
 #: ../data/language-specs/python.lang.h:9
+#: ../data/language-specs/python3.lang.h:9
 #: ../data/language-specs/R.lang.h:4
 #: ../data/language-specs/ruby.lang.h:10
 msgid "Floating point number"
@@ -700,6 +707,7 @@ msgstr "Boo"
 #: ../data/language-specs/objj.lang.h:1
 #: ../data/language-specs/octave.lang.h:2
 #: ../data/language-specs/python.lang.h:2
+#: ../data/language-specs/python3.lang.h:2
 #: ../data/language-specs/scheme.lang.h:1
 #: ../data/language-specs/scilab.lang.h:1
 #: ../data/language-specs/sparql.lang.h:1
@@ -712,6 +720,7 @@ msgstr "הגדרה"
 
 #: ../data/language-specs/boo.lang.h:8
 #: ../data/language-specs/python.lang.h:13
+#: ../data/language-specs/python3.lang.h:13
 msgid "Multiline string"
 msgstr "מחרוזת מרובת שורות"
 
@@ -746,6 +755,7 @@ msgstr "ביטוי רגולרי"
 
 #: ../data/language-specs/boo.lang.h:14
 #: ../data/language-specs/python.lang.h:16
+#: ../data/language-specs/python3.lang.h:16
 #: ../data/language-specs/ruby.lang.h:21
 msgid "Special Variable"
 msgstr "משתנה מיוחד"
@@ -835,7 +845,7 @@ msgid "File"
 msgstr "קובץ"
 
 #: ../data/language-specs/changelog.lang.h:7
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:464
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:455
 msgid "Name"
 msgstr "שם"
 
@@ -1046,6 +1056,7 @@ msgstr "משתנים גולבליים"
 #. A base-N number: 0xFFFF
 #: ../data/language-specs/def.lang.h:2
 #: ../data/language-specs/python.lang.h:1
+#: ../data/language-specs/python3.lang.h:1
 #: ../data/language-specs/ruby.lang.h:2
 msgid "Base-N number"
 msgstr "Base-N number"
@@ -1059,6 +1070,7 @@ msgstr "Built-in identifier"
 #. A complex number
 #: ../data/language-specs/def.lang.h:13
 #: ../data/language-specs/python.lang.h:6
+#: ../data/language-specs/python3.lang.h:6
 msgid "Complex number"
 msgstr "Complex number"
 
@@ -1473,6 +1485,7 @@ msgstr "כותרת הפתיל"
 
 #: ../data/language-specs/glsl.lang.h:1
 #: ../data/language-specs/python.lang.h:3
+#: ../data/language-specs/python3.lang.h:3
 msgid "Builtin Constant"
 msgstr "Builtin Constant"
 
@@ -1953,6 +1966,7 @@ msgstr "Keysymbol"
 
 #: ../data/language-specs/opal.lang.h:9
 #: ../data/language-specs/python.lang.h:12
+#: ../data/language-specs/python3.lang.h:12
 msgid "Module Handler"
 msgstr "Module Handler"
 
@@ -2070,10 +2084,12 @@ msgid "Prolog"
 msgstr "Prolog"
 
 #: ../data/language-specs/python.lang.h:5
+#: ../data/language-specs/python3.lang.h:5
 msgid "Builtin Object"
 msgstr "Builtin Object"
 
 #: ../data/language-specs/python.lang.h:10
+#: ../data/language-specs/python3.lang.h:10
 msgid "Format"
 msgstr "Format"
 
@@ -2084,6 +2100,10 @@ msgstr "Python"
 #: ../data/language-specs/python.lang.h:18
 msgid "string-conversion"
 msgstr "string-conversion"
+
+#: ../data/language-specs/python3.lang.h:14
+msgid "Python 3"
+msgstr "Python 3"
 
 #: ../data/language-specs/R.lang.h:1
 msgid "Assignment Operator"
@@ -2436,65 +2456,65 @@ msgstr "סכימת צבעים בעזרת לוח הצבעים 'טנגו'"
 msgid "Tango"
 msgstr "טנגו"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:380
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:371
 msgid "Document Words"
 msgstr "מילים במסמך"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:465
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:456
 msgid "The provider name"
 msgstr "שם הספק"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:472
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:463
 #: ../gtksourceview/gtksourcecompletionitem.c:268
 msgid "Icon"
 msgstr "סמל"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:473
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:464
 msgid "The provider icon"
 msgstr "סמל הספק"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:480
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:471
 msgid "Proposals Batch Size"
 msgstr "גודל ההצעות באצווה"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:481
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:472
 msgid "Number of proposals added in one batch"
 msgstr "מספר ההצעות שנוספו באצווה אחת"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:490
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:481
 msgid "Scan Batch Size"
 msgstr "גודל הסריקות באצווה"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:491
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:482
 msgid "Number of lines scanned in one batch"
 msgstr "מספר השורות שנסרקו באצווה אחת"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:500
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:491
 msgid "Minimum Word Size"
 msgstr "גודל המילה המזערי"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:501
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:492
 msgid "The minimum word size to complete"
 msgstr "גודל המילה המזערי להשלמה"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:510
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:501
 msgid "Interactive Delay"
 msgstr "השהיה אינטראקטיבית"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:511
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:502
 msgid "The delay before initiating interactive completion"
 msgstr "ההשהיה שלפני הפעלת ההשלמה האינטראקטיבית"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:520
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:511
 msgid "Priority"
 msgstr "עדיפות"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:521
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:512
 msgid "Provider priority"
 msgstr "עדיפות הספק"
 
 #: ../gtksourceview/gtksourcebuffer.c:234
-#: ../gtksourceview/gtksourceprintcompositor.c:505
+#: ../gtksourceview/gtksourceprintcompositor.c:502
 msgid "Highlight Syntax"
 msgstr "Highlight Syntax"
 
@@ -2564,106 +2584,106 @@ msgstr "מנהל חוצץ הביטולים"
 msgid "No extra information available"
 msgstr "אין מידע נוסף זמין"
 
-#: ../gtksourceview/gtksourcecompletion.c:2225
+#: ../gtksourceview/gtksourcecompletion.c:2224
 #: ../gtksourceview/gtksourcegutter.c:547
 msgid "View"
 msgstr "תצוגה"
 
-#: ../gtksourceview/gtksourcecompletion.c:2226
+#: ../gtksourceview/gtksourcecompletion.c:2225
 msgid "The GtkSourceView bound to the completion"
 msgstr "ה־GtkSourceView מחויב להשלמה"
 
-#: ../gtksourceview/gtksourcecompletion.c:2241
+#: ../gtksourceview/gtksourcecompletion.c:2240
 msgid "Remember Info Visibility"
 msgstr "שמירת חזות המידע"
 
-#: ../gtksourceview/gtksourcecompletion.c:2242
+#: ../gtksourceview/gtksourcecompletion.c:2241
 msgid "Remember the last info window visibility state"
 msgstr "שמירת מצב החזות האחרון של חלון המידע"
 
-#: ../gtksourceview/gtksourcecompletion.c:2255
+#: ../gtksourceview/gtksourcecompletion.c:2254
 msgid "Select on Show"
 msgstr "בחירה בעת ההצגה"
 
-#: ../gtksourceview/gtksourcecompletion.c:2256
+#: ../gtksourceview/gtksourcecompletion.c:2255
 msgid "Select first proposal when completion is shown"
 msgstr "בחירת ההצעה הראשונה כשההשלמה מופיעה"
 
-#: ../gtksourceview/gtksourcecompletion.c:2270
+#: ../gtksourceview/gtksourcecompletion.c:2269
 msgid "Show Headers"
 msgstr "הצגת Headers"
 
-#: ../gtksourceview/gtksourcecompletion.c:2271
+#: ../gtksourceview/gtksourcecompletion.c:2270
 msgid "Show provider headers when proposals from multiple providers are available"
 msgstr "הצגת כותרות הספק כאשר ישנן הצעות זמינות ממספר ספקים"
 
-#: ../gtksourceview/gtksourcecompletion.c:2285
+#: ../gtksourceview/gtksourcecompletion.c:2284
 msgid "Show Icons"
 msgstr "הצגת סמלים"
 
-#: ../gtksourceview/gtksourcecompletion.c:2286
+#: ../gtksourceview/gtksourcecompletion.c:2285
 msgid "Show provider and proposal icons in the completion popup"
 msgstr "הצגת סמלי ספק והצעה בחלונית ההשלמה"
 
-#: ../gtksourceview/gtksourcecompletion.c:2299
+#: ../gtksourceview/gtksourcecompletion.c:2298
 msgid "Accelerators"
 msgstr "מאיצים"
 
-#: ../gtksourceview/gtksourcecompletion.c:2300
+#: ../gtksourceview/gtksourcecompletion.c:2299
 msgid "Number of proposal accelerators to show"
 msgstr "מספק מאיצי ההצעות להצגה"
 
-#: ../gtksourceview/gtksourcecompletion.c:2316
+#: ../gtksourceview/gtksourcecompletion.c:2315
 msgid "Auto Complete Delay"
 msgstr "השהיית ההשלמה האוטומטית"
 
-#: ../gtksourceview/gtksourcecompletion.c:2317
+#: ../gtksourceview/gtksourcecompletion.c:2316
 msgid "Completion popup delay for interactive completion"
 msgstr "השהיית חלונית ההשלמה עבור השלמה אינטראקטביית"
 
-#: ../gtksourceview/gtksourcecompletion.c:2332
+#: ../gtksourceview/gtksourcecompletion.c:2331
 msgid "Provider Page Size"
 msgstr "גודל עמוד הספק"
 
-#: ../gtksourceview/gtksourcecompletion.c:2333
+#: ../gtksourceview/gtksourcecompletion.c:2332
 msgid "Provider scrolling page size"
 msgstr "גודל העמוד הנגלל של הספק"
 
-#: ../gtksourceview/gtksourcecompletion.c:2348
+#: ../gtksourceview/gtksourcecompletion.c:2347
 msgid "Proposal Page Size"
 msgstr "גודל עמוד ההצעה"
 
-#: ../gtksourceview/gtksourcecompletion.c:2349
+#: ../gtksourceview/gtksourcecompletion.c:2348
 msgid "Proposal scrolling page size"
 msgstr "גודל עמוד הנגלל של ההצעה"
 
-#: ../gtksourceview/gtksourcecompletion.c:2694
+#: ../gtksourceview/gtksourcecompletion.c:2693
 msgid "Provider"
 msgstr "ספק"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:237
+#: ../gtksourceview/gtksourcecompletioncontext.c:233
 #: ../gtksourceview/gtksourceview.c:306
 msgid "Completion"
 msgstr "השלמה"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:238
+#: ../gtksourceview/gtksourcecompletioncontext.c:234
 msgid "The completion object to which the context belongs"
 msgstr "עצם ההשלמה אליו שייך ההקשר"
 
 #. Translators: The GtkTextIter at which the completion was invoked
-#: ../gtksourceview/gtksourcecompletioncontext.c:251
+#: ../gtksourceview/gtksourcecompletioncontext.c:247
 msgid "Iterator"
 msgstr "מונה"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:252
+#: ../gtksourceview/gtksourcecompletioncontext.c:248
 msgid "The GtkTextIter at which the completion was invoked"
 msgstr "ה־GtkTextIter שבו ההשלמה נקרא"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:264
+#: ../gtksourceview/gtksourcecompletioncontext.c:260
 msgid "Activation"
 msgstr "הפעלה"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:265
+#: ../gtksourceview/gtksourcecompletioncontext.c:261
 msgid "The type of activation"
 msgstr "סוג ההפעלה"
 
@@ -2696,15 +2716,11 @@ msgstr "מידע"
 msgid "Info to be shown for this item"
 msgstr "מידע להצגה עבור פריט זה"
 
-#: ../gtksourceview/gtksourcecontextengine.c:2969
-msgid "using \\C is not supported in language definitions"
-msgstr "using \\C is not supported in language definitions"
-
 #. regex_new could fail, for instance if there are different
 #. * named sub-patterns with the same name or if resulting regex is
 #. * too long. In this case fixing lang file helps (e.g. renaming
 #. * subpatterns, making huge keywords use bigger prefixes, etc.)
-#: ../gtksourceview/gtksourcecontextengine.c:3593
+#: ../gtksourceview/gtksourcecontextengine.c:3171
 #, c-format
 msgid ""
 "Cannot create a regex for all the transitions, the syntax highlighting process will be slower than usual.\n"
@@ -2713,39 +2729,39 @@ msgstr ""
 "Cannot create a regex for all the transitions, the syntax highlighting process will be slower than usual.\n"
 "The error was: %s"
 
-#: ../gtksourceview/gtksourcecontextengine.c:4926
+#: ../gtksourceview/gtksourcecontextengine.c:4509
 msgid "Highlighting a single line took too much time, syntax highlighting will be disabled"
 msgstr "הדגשת שורה אחת לקחה זמן כל כך רב, הדגשת תחביר תבוטל"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6179
+#: ../gtksourceview/gtksourcecontextengine.c:5762
 #, c-format
 msgid "context '%s' cannot contain a \\%%{...@start} command"
 msgstr "context '%s' cannot contain a \\%%{...@start} command"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6340
-#: ../gtksourceview/gtksourcecontextengine.c:6429
+#: ../gtksourceview/gtksourcecontextengine.c:5923
+#: ../gtksourceview/gtksourcecontextengine.c:6012
 #, c-format
 msgid "duplicated context id '%s'"
 msgstr "duplicated context id '%s'"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6544
-#: ../gtksourceview/gtksourcecontextengine.c:6604
+#: ../gtksourceview/gtksourcecontextengine.c:6127
+#: ../gtksourceview/gtksourcecontextengine.c:6187
 #, c-format
 msgid "style override used with wildcard context reference in language '%s' in ref '%s'"
 msgstr "style override used with wildcard context reference in language '%s' in ref '%s'"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6618
+#: ../gtksourceview/gtksourcecontextengine.c:6201
 #, c-format
 msgid "invalid context reference '%s'"
 msgstr "invalid context reference '%s'"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6637
-#: ../gtksourceview/gtksourcecontextengine.c:6647
+#: ../gtksourceview/gtksourcecontextengine.c:6220
+#: ../gtksourceview/gtksourcecontextengine.c:6230
 #, c-format
 msgid "unknown context '%s'"
 msgstr "unknown context '%s'"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6747
+#: ../gtksourceview/gtksourcecontextengine.c:6330
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "Missing main language definition (id = \"%s\".)"
@@ -2949,99 +2965,103 @@ msgstr "category"
 msgid "The mark category"
 msgstr "The mark category"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:445
+#: ../gtksourceview/gtksourceprintcompositor.c:442
 msgid "Source Buffer"
 msgstr "Source Buffer"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:446
+#: ../gtksourceview/gtksourceprintcompositor.c:443
 msgid "The GtkSourceBuffer object to print"
 msgstr "The GtkSourceBuffer object to print"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:463
+#: ../gtksourceview/gtksourceprintcompositor.c:460
 #: ../gtksourceview/gtksourceview.c:344
 msgid "Tab Width"
 msgstr "Tab Width"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:464
+#: ../gtksourceview/gtksourceprintcompositor.c:461
 #: ../gtksourceview/gtksourceview.c:345
 msgid "Width of a tab character expressed in spaces"
 msgstr "Width of a tab character expressed in spaces"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:484
+#: ../gtksourceview/gtksourceprintcompositor.c:481
 msgid "Wrap Mode"
 msgstr "Wrap Mode"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:485
+#: ../gtksourceview/gtksourceprintcompositor.c:482
 msgid "Whether to wrap lines never, at word boundaries, or at character boundaries."
 msgstr "Whether to wrap lines never, at word boundaries, or at character boundaries."
 
-#: ../gtksourceview/gtksourceprintcompositor.c:506
+#: ../gtksourceview/gtksourceprintcompositor.c:503
 msgid "Whether to print the document with highlighted syntax"
 msgstr "Whether to print the document with highlighted syntax"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:527
+#: ../gtksourceview/gtksourceprintcompositor.c:524
 msgid "Print Line Numbers"
 msgstr "Print Line Numbers"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:528
+#: ../gtksourceview/gtksourceprintcompositor.c:525
 msgid "Interval of printed line numbers (0 means no numbers)"
 msgstr "Interval of printed line numbers (0 means no numbers)"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:550
+#: ../gtksourceview/gtksourceprintcompositor.c:547
 msgid "Print Header"
 msgstr "Print Header"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:551
+#: ../gtksourceview/gtksourceprintcompositor.c:548
 msgid "Whether to print a header in each page"
 msgstr "Whether to print a header in each page"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:573
+#: ../gtksourceview/gtksourceprintcompositor.c:570
 msgid "Print Footer"
 msgstr "Print Footer"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:574
+#: ../gtksourceview/gtksourceprintcompositor.c:571
 msgid "Whether to print a footer in each page"
 msgstr "Whether to print a footer in each page"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:596
+#: ../gtksourceview/gtksourceprintcompositor.c:593
 msgid "Body Font Name"
 msgstr "Body Font Name"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:597
+#: ../gtksourceview/gtksourceprintcompositor.c:594
 msgid "Name of the font to use for the text body (e.g. \"Monospace 10\")"
 msgstr "Name of the font to use for the text body (e.g. \"Monospace 10\")"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:620
+#: ../gtksourceview/gtksourceprintcompositor.c:617
 msgid "Line Numbers Font Name"
 msgstr "Line Numbers Font Name"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:621
+#: ../gtksourceview/gtksourceprintcompositor.c:618
 msgid "Name of the font to use for the line numbers (e.g. \"Monospace 10\")"
 msgstr "Name of the font to use for the line numbers (e.g. \"Monospace 10\")"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:644
+#: ../gtksourceview/gtksourceprintcompositor.c:641
 msgid "Header Font Name"
 msgstr "Header Font Name"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:645
+#: ../gtksourceview/gtksourceprintcompositor.c:642
 msgid "Name of the font to use for the page header (e.g. \"Monospace 10\")"
 msgstr "Name of the font to use for the page header (e.g. \"Monospace 10\")"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:668
+#: ../gtksourceview/gtksourceprintcompositor.c:665
 msgid "Footer Font Name"
 msgstr "Footer Font Name"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:669
+#: ../gtksourceview/gtksourceprintcompositor.c:666
 msgid "Name of the font to use for the page footer (e.g. \"Monospace 10\")"
 msgstr "Name of the font to use for the page footer (e.g. \"Monospace 10\")"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:685
+#: ../gtksourceview/gtksourceprintcompositor.c:682
 msgid "Number of pages"
 msgstr "Number of pages"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:686
+#: ../gtksourceview/gtksourceprintcompositor.c:683
 msgid "The number of pages in the document (-1 means the document has not been completely paginated)."
 msgstr "The number of pages in the document (-1 means the document has not been completely paginated)."
+
+#: ../gtksourceview/gtksourceregex.c:125
+msgid "using \\C is not supported in language definitions"
+msgstr "using \\C is not supported in language definitions"
 
 #: ../gtksourceview/gtksourcestyle.c:80
 msgid "Line background"
@@ -3129,23 +3149,23 @@ msgstr "Strikethrough set"
 msgid "Whether strikethrough attribute is set"
 msgstr "Whether strikethrough attribute is set"
 
-#: ../gtksourceview/gtksourcestylescheme.c:221
-#: ../gtksourceview/gtksourcestylescheme.c:222
+#: ../gtksourceview/gtksourcestylescheme.c:212
+#: ../gtksourceview/gtksourcestylescheme.c:213
 msgid "Style scheme id"
 msgstr "Style scheme id"
 
-#: ../gtksourceview/gtksourcestylescheme.c:234
-#: ../gtksourceview/gtksourcestylescheme.c:235
+#: ../gtksourceview/gtksourcestylescheme.c:225
+#: ../gtksourceview/gtksourcestylescheme.c:226
 msgid "Style scheme name"
 msgstr "Style scheme name"
 
-#: ../gtksourceview/gtksourcestylescheme.c:247
-#: ../gtksourceview/gtksourcestylescheme.c:248
+#: ../gtksourceview/gtksourcestylescheme.c:238
+#: ../gtksourceview/gtksourcestylescheme.c:239
 msgid "Style scheme description"
 msgstr "Style scheme description"
 
-#: ../gtksourceview/gtksourcestylescheme.c:260
-#: ../gtksourceview/gtksourcestylescheme.c:261
+#: ../gtksourceview/gtksourcestylescheme.c:251
+#: ../gtksourceview/gtksourcestylescheme.c:252
 msgid "Style scheme filename"
 msgstr "Style scheme filename"
 
@@ -3265,7 +3285,7 @@ msgstr "ציור מרווחים"
 msgid "Set if and how the spaces should be visualized"
 msgstr "הגדרת איך וכיצד יש להציג את הרווחים חזותית"
 
-#: ../gtksourceview/gtksourceview-i18n.c:74
+#: ../gtksourceview/gtksourceview-i18n.c:72
 msgid "translator-credits"
 msgstr "ירון שהרבני <sh.yaron@gmail.com>"
 
