@@ -512,7 +512,7 @@ class Window(Gtk.Window):
             bracket = place.get_char()
             row = place.get_line() + 1
             col = place.get_line_offset() + 1
-            print "Matched bracket: '%c' at row: %i, col: %i\n" % bracket % row % col
+            print "Matched bracket: '%c' at row: %i, col: %i" % (bracket, row, col)
 
     def open_file(self, filename):
         if os.path.isabs(filename):
