@@ -8,10 +8,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gtksourceview 3.3.2\n"
+"Project-Id-Version: gtksourceview 3.3.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-01-29 23:33+0800\n"
-"PO-Revision-Date: 2011-08-27 08:12+0800\n"
+"POT-Creation-Date: 2012-03-08 16:15+0800\n"
+"PO-Revision-Date: 2012-03-07 20:35+0800\n"
 "Last-Translator: Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>\n"
 "Language-Team: Chinese (traditional)\n"
 "Language: \n"
@@ -49,9 +49,8 @@ msgid "GtkSourceView"
 msgstr "GtkSourceView"
 
 #: ../data/glade/gtksourceview.xml.in.h:8
-#, fuzzy
 msgid "Leading"
-msgstr "POD 標題"
+msgstr "開頭"
 
 #: ../data/glade/gtksourceview.xml.in.h:9
 msgid "Newline"
@@ -76,9 +75,8 @@ msgid "Text"
 msgstr "文字"
 
 #: ../data/glade/gtksourceview.xml.in.h:14
-#, fuzzy
 msgid "Trailing"
-msgstr "行末定位點"
+msgstr "結尾"
 
 #: ../data/language-specs/ada.lang.h:1
 msgid "Ada"
@@ -175,7 +173,9 @@ msgstr "資料類型"
 #: ../data/language-specs/nemerle.lang.h:6
 #: ../data/language-specs/ocaml.lang.h:6 ../data/language-specs/ooc.lang.h:4
 #: ../data/language-specs/opal.lang.h:5 ../data/language-specs/php.lang.h:5
-#: ../data/language-specs/python.lang.h:7 ../data/language-specs/ruby.lang.h:8
+#: ../data/language-specs/python.lang.h:7
+#: ../data/language-specs/python3.lang.h:7
+#: ../data/language-specs/ruby.lang.h:8
 msgid "Decimal number"
 msgstr "十進位數數值"
 
@@ -190,8 +190,10 @@ msgstr "十進位數數值"
 #: ../data/language-specs/json.lang.h:4 ../data/language-specs/lua.lang.h:3
 #: ../data/language-specs/ocaml.lang.h:8 ../data/language-specs/ooc.lang.h:7
 #: ../data/language-specs/php.lang.h:8 ../data/language-specs/prolog.lang.h:3
-#: ../data/language-specs/python.lang.h:8 ../data/language-specs/ruby.lang.h:9
-#: ../data/language-specs/sml.lang.h:7 ../data/language-specs/texinfo.lang.h:2
+#: ../data/language-specs/python.lang.h:8
+#: ../data/language-specs/python3.lang.h:8
+#: ../data/language-specs/ruby.lang.h:9 ../data/language-specs/sml.lang.h:7
+#: ../data/language-specs/texinfo.lang.h:2
 #: ../data/language-specs/verilog.lang.h:5
 msgid "Escaped Character"
 msgstr "跳出字元"
@@ -226,7 +228,8 @@ msgstr "跳出字元"
 #: ../data/language-specs/php.lang.h:14 ../data/language-specs/po.lang.h:3
 #: ../data/language-specs/prolog.lang.h:4
 #: ../data/language-specs/protobuf.lang.h:3
-#: ../data/language-specs/python.lang.h:11 ../data/language-specs/R.lang.h:6
+#: ../data/language-specs/python.lang.h:11
+#: ../data/language-specs/python3.lang.h:11 ../data/language-specs/R.lang.h:6
 #: ../data/language-specs/ruby.lang.h:13
 #: ../data/language-specs/scheme.lang.h:4
 #: ../data/language-specs/scilab.lang.h:5 ../data/language-specs/sh.lang.h:5
@@ -330,6 +333,7 @@ msgstr "儲存區類別"
 #: ../data/language-specs/po.lang.h:6 ../data/language-specs/prolog.lang.h:9
 #: ../data/language-specs/protobuf.lang.h:5
 #: ../data/language-specs/python.lang.h:17
+#: ../data/language-specs/python3.lang.h:17
 #: ../data/language-specs/ruby.lang.h:22
 #: ../data/language-specs/scheme.lang.h:7
 #: ../data/language-specs/scilab.lang.h:9 ../data/language-specs/sh.lang.h:8
@@ -434,6 +438,7 @@ msgstr "替代"
 #: ../data/language-specs/awk.lang.h:1 ../data/language-specs/boo.lang.h:3
 #: ../data/language-specs/glsl.lang.h:2 ../data/language-specs/perl.lang.h:1
 #: ../data/language-specs/python.lang.h:4
+#: ../data/language-specs/python3.lang.h:4
 msgid "Builtin Function"
 msgstr "內建函式"
 
@@ -447,6 +452,7 @@ msgstr "Pattern"
 #: ../data/language-specs/lua.lang.h:9 ../data/language-specs/m4.lang.h:3
 #: ../data/language-specs/perl.lang.h:18 ../data/language-specs/php.lang.h:19
 #: ../data/language-specs/python.lang.h:15
+#: ../data/language-specs/python3.lang.h:15
 #: ../data/language-specs/ruby.lang.h:20 ../data/language-specs/sh.lang.h:7
 #: ../data/language-specs/tcl.lang.h:2
 msgid "Scripts"
@@ -483,7 +489,8 @@ msgstr "BennuGD"
 #: ../data/language-specs/go.lang.h:8 ../data/language-specs/json.lang.h:5
 #: ../data/language-specs/nemerle.lang.h:8 ../data/language-specs/ooc.lang.h:9
 #: ../data/language-specs/php.lang.h:9 ../data/language-specs/python.lang.h:9
-#: ../data/language-specs/R.lang.h:4 ../data/language-specs/ruby.lang.h:10
+#: ../data/language-specs/python3.lang.h:9 ../data/language-specs/R.lang.h:4
+#: ../data/language-specs/ruby.lang.h:10
 msgid "Floating point number"
 msgstr "浮點數"
 
@@ -536,6 +543,7 @@ msgstr "Boo"
 #: ../data/language-specs/libtool.lang.h:1
 #: ../data/language-specs/objj.lang.h:1 ../data/language-specs/octave.lang.h:2
 #: ../data/language-specs/python.lang.h:2
+#: ../data/language-specs/python3.lang.h:2
 #: ../data/language-specs/scheme.lang.h:1
 #: ../data/language-specs/scilab.lang.h:1
 #: ../data/language-specs/sparql.lang.h:1
@@ -547,6 +555,7 @@ msgid "Definition"
 msgstr "定義"
 
 #: ../data/language-specs/boo.lang.h:8 ../data/language-specs/python.lang.h:13
+#: ../data/language-specs/python3.lang.h:13
 msgid "Multiline string"
 msgstr "多行字串"
 
@@ -575,6 +584,7 @@ msgstr "正規表示式"
 
 #: ../data/language-specs/boo.lang.h:14
 #: ../data/language-specs/python.lang.h:16
+#: ../data/language-specs/python3.lang.h:16
 #: ../data/language-specs/ruby.lang.h:21
 msgid "Special Variable"
 msgstr "特別變數"
@@ -837,6 +847,7 @@ msgstr "全域變數"
 
 #. A base-N number: 0xFFFF
 #: ../data/language-specs/def.lang.h:2 ../data/language-specs/python.lang.h:1
+#: ../data/language-specs/python3.lang.h:1
 #: ../data/language-specs/ruby.lang.h:2
 msgid "Base-N number"
 msgstr "N 進制整數"
@@ -849,6 +860,7 @@ msgstr "內建識別子"
 
 #. A complex number
 #: ../data/language-specs/def.lang.h:13 ../data/language-specs/python.lang.h:6
+#: ../data/language-specs/python3.lang.h:6
 msgid "Complex number"
 msgstr "複數"
 
@@ -1249,6 +1261,7 @@ msgid "Thread Header"
 msgstr "執行緒標頭"
 
 #: ../data/language-specs/glsl.lang.h:1 ../data/language-specs/python.lang.h:3
+#: ../data/language-specs/python3.lang.h:3
 msgid "Builtin Constant"
 msgstr "內建常數"
 
@@ -1722,6 +1735,7 @@ msgstr "鍵符號"
 
 #: ../data/language-specs/opal.lang.h:9
 #: ../data/language-specs/python.lang.h:12
+#: ../data/language-specs/python3.lang.h:12
 msgid "Module Handler"
 msgstr "模組處理"
 
@@ -1730,9 +1744,8 @@ msgid "Opal"
 msgstr "Opal"
 
 #: ../data/language-specs/opencl.lang.h:2
-#, fuzzy
 msgid "Device Cast"
-msgstr "裝置路徑"
+msgstr "裝置廣播"
 
 #: ../data/language-specs/opencl.lang.h:3
 msgid "Device Function"
@@ -1837,10 +1850,12 @@ msgid "Prolog"
 msgstr "序言"
 
 #: ../data/language-specs/python.lang.h:5
+#: ../data/language-specs/python3.lang.h:5
 msgid "Builtin Object"
 msgstr "內建物件"
 
 #: ../data/language-specs/python.lang.h:10
+#: ../data/language-specs/python3.lang.h:10
 msgid "Format"
 msgstr "格式"
 
@@ -1851,6 +1866,10 @@ msgstr "Python"
 #: ../data/language-specs/python.lang.h:18
 msgid "string-conversion"
 msgstr "string-conversion"
+
+#: ../data/language-specs/python3.lang.h:14
+msgid "Python 3"
+msgstr "Python 3"
 
 #: ../data/language-specs/R.lang.h:1
 msgid "Assignment Operator"
