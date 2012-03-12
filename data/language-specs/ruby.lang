@@ -466,7 +466,7 @@
     </context>
 
     <context id="here-doc-string" style-ref="here-doc" style-inside="true">
-      <start>&lt;&lt;(\w+)</start>
+      <start>&lt;&lt;([a-zA-Z_]\w*)</start>
       <end>^\%{1@start}</end>
       <include>
         <context ref="escape"/>
@@ -477,7 +477,7 @@
     </context>
 
     <context id="here-doc-indented-string" style-ref="here-doc" style-inside="true">
-      <start>&lt;&lt;-(\w+)</start>
+      <start>&lt;&lt;-([a-zA-Z_]\w*)</start>
       <end>^\s*\%{1@start}</end>
       <include>
         <context ref="escape"/>
