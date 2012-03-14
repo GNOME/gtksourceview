@@ -8,12 +8,12 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: lv\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug."
-"cgi?product=gtksourceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-09-02 12:18+0000\n"
-"PO-Revision-Date: 2011-09-07 11:34+0300\n"
-"Last-Translator: Rūdofls Mazurs <rudolfs.mazurs@gmail.com>\n"
-"Language-Team: Latvian <lata-l10n@googlegroups.com>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gtksou"
+"rceview&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2012-02-04 13:59+0000\n"
+"PO-Revision-Date: 2012-03-11 00:02+0200\n"
+"Last-Translator: Anita Reitere <nitalynx@gmail.com>\n"
+"Language-Team: Latviešu <lata-l10n@goglegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -90,25 +90,25 @@ msgstr "Patvaļīgs bāzes skaitlis"
 
 #. A boolean constant: TRUE, false
 #: ../data/language-specs/ada.lang.h:3 ../data/language-specs/asp.lang.h:3
-#: ../data/language-specs/bennugd.lang.h:2 ../data/language-specs/c.lang.h:1
-#: ../data/language-specs/cg.lang.h:2 ../data/language-specs/csharp.lang.h:1
+#: ../data/language-specs/bennugd.lang.h:2 ../data/language-specs/cg.lang.h:2
+#: ../data/language-specs/c.lang.h:1 ../data/language-specs/csharp.lang.h:1
 #: ../data/language-specs/def.lang.h:4 ../data/language-specs/fsharp.lang.h:2
 #: ../data/language-specs/go.lang.h:1 ../data/language-specs/gtkrc.lang.h:1
 #: ../data/language-specs/ini.lang.h:2 ../data/language-specs/java.lang.h:1
-#: ../data/language-specs/javascript.lang.h:1
 #: ../data/language-specs/lua.lang.h:1 ../data/language-specs/nemerle.lang.h:2
 #: ../data/language-specs/ocaml.lang.h:2 ../data/language-specs/ooc.lang.h:1
 #: ../data/language-specs/opal.lang.h:1 ../data/language-specs/php.lang.h:1
-#: ../data/language-specs/R.lang.h:2 ../data/language-specs/ruby.lang.h:3
-#: ../data/language-specs/sml.lang.h:2 ../data/language-specs/vala.lang.h:1
-#: ../data/language-specs/vbnet.lang.h:1 ../data/language-specs/vhdl.lang.h:2
+#: ../data/language-specs/protobuf.lang.h:1 ../data/language-specs/R.lang.h:2
+#: ../data/language-specs/ruby.lang.h:3 ../data/language-specs/sml.lang.h:2
+#: ../data/language-specs/vala.lang.h:1 ../data/language-specs/vbnet.lang.h:1
+#: ../data/language-specs/vhdl.lang.h:2
 msgid "Boolean value"
 msgstr "Loģiskā vērtība"
 
 #. Any comment
 #: ../data/language-specs/ada.lang.h:4 ../data/language-specs/asp.lang.h:4
 #: ../data/language-specs/bennugd.lang.h:3 ../data/language-specs/boo.lang.h:4
-#: ../data/language-specs/c.lang.h:4 ../data/language-specs/cg.lang.h:5
+#: ../data/language-specs/cg.lang.h:5 ../data/language-specs/c.lang.h:4
 #: ../data/language-specs/cobol.lang.h:2
 #: ../data/language-specs/csharp.lang.h:4 ../data/language-specs/def.lang.h:11
 #: ../data/language-specs/d.lang.h:3 ../data/language-specs/dosbatch.lang.h:2
@@ -141,7 +141,7 @@ msgstr "Komentārs"
 
 #: ../data/language-specs/ada.lang.h:5 ../data/language-specs/asp.lang.h:5
 #: ../data/language-specs/bennugd.lang.h:4 ../data/language-specs/boo.lang.h:5
-#: ../data/language-specs/c.lang.h:6 ../data/language-specs/cg.lang.h:6
+#: ../data/language-specs/cg.lang.h:6 ../data/language-specs/c.lang.h:6
 #: ../data/language-specs/cpp.lang.h:3 ../data/language-specs/csharp.lang.h:5
 #: ../data/language-specs/cuda.lang.h:2 ../data/language-specs/d.lang.h:5
 #: ../data/language-specs/eiffel.lang.h:4
@@ -158,6 +158,7 @@ msgstr "Komentārs"
 #: ../data/language-specs/ooc.lang.h:3 ../data/language-specs/opal.lang.h:4
 #: ../data/language-specs/opencl.lang.h:1
 #: ../data/language-specs/pascal.lang.h:2 ../data/language-specs/php.lang.h:4
+#: ../data/language-specs/protobuf.lang.h:2
 #: ../data/language-specs/sml.lang.h:5 ../data/language-specs/sparql.lang.h:3
 #: ../data/language-specs/sql.lang.h:2 ../data/language-specs/vala.lang.h:3
 #: ../data/language-specs/vbnet.lang.h:3
@@ -166,7 +167,7 @@ msgstr "Datu tips"
 
 #. A decimal number: 1234
 #: ../data/language-specs/ada.lang.h:6 ../data/language-specs/bennugd.lang.h:5
-#: ../data/language-specs/c.lang.h:7 ../data/language-specs/cg.lang.h:7
+#: ../data/language-specs/cg.lang.h:7 ../data/language-specs/c.lang.h:7
 #: ../data/language-specs/csharp.lang.h:6 ../data/language-specs/def.lang.h:19
 #: ../data/language-specs/d.lang.h:6 ../data/language-specs/eiffel.lang.h:6
 #: ../data/language-specs/erlang.lang.h:6
@@ -174,23 +175,27 @@ msgstr "Datu tips"
 #: ../data/language-specs/nemerle.lang.h:6
 #: ../data/language-specs/ocaml.lang.h:6 ../data/language-specs/ooc.lang.h:4
 #: ../data/language-specs/opal.lang.h:5 ../data/language-specs/php.lang.h:5
-#: ../data/language-specs/python.lang.h:7 ../data/language-specs/ruby.lang.h:8
+#: ../data/language-specs/python.lang.h:7
+#: ../data/language-specs/python3.lang.h:7
+#: ../data/language-specs/ruby.lang.h:8
 msgid "Decimal number"
 msgstr "Decimālskaitlis"
 
 #. map to nothing
-#: ../data/language-specs/ada.lang.h:7 ../data/language-specs/c.lang.h:8
-#: ../data/language-specs/cg.lang.h:9 ../data/language-specs/csharp.lang.h:8
+#: ../data/language-specs/ada.lang.h:7 ../data/language-specs/cg.lang.h:9
+#: ../data/language-specs/c.lang.h:8 ../data/language-specs/csharp.lang.h:8
 #: ../data/language-specs/eiffel.lang.h:9
 #: ../data/language-specs/fsharp.lang.h:7 ../data/language-specs/go.lang.h:7
 #: ../data/language-specs/haskell.lang.h:5
 #: ../data/language-specs/java.lang.h:5
 #: ../data/language-specs/javascript.lang.h:4
-#: ../data/language-specs/lua.lang.h:3 ../data/language-specs/ocaml.lang.h:8
-#: ../data/language-specs/ooc.lang.h:7 ../data/language-specs/php.lang.h:8
-#: ../data/language-specs/prolog.lang.h:3
-#: ../data/language-specs/python.lang.h:8 ../data/language-specs/ruby.lang.h:9
-#: ../data/language-specs/sml.lang.h:7 ../data/language-specs/texinfo.lang.h:2
+#: ../data/language-specs/json.lang.h:4 ../data/language-specs/lua.lang.h:3
+#: ../data/language-specs/ocaml.lang.h:8 ../data/language-specs/ooc.lang.h:7
+#: ../data/language-specs/php.lang.h:8 ../data/language-specs/prolog.lang.h:3
+#: ../data/language-specs/python.lang.h:8
+#: ../data/language-specs/python3.lang.h:8
+#: ../data/language-specs/ruby.lang.h:9 ../data/language-specs/sml.lang.h:7
+#: ../data/language-specs/texinfo.lang.h:2
 #: ../data/language-specs/verilog.lang.h:5
 msgid "Escaped Character"
 msgstr "Atsoļa rakstzīme"
@@ -198,8 +203,8 @@ msgstr "Atsoļa rakstzīme"
 #. keywords: "if", "for", "while", etc.
 #: ../data/language-specs/ada.lang.h:8 ../data/language-specs/asp.lang.h:7
 #: ../data/language-specs/awk.lang.h:2 ../data/language-specs/bennugd.lang.h:9
-#: ../data/language-specs/boo.lang.h:7 ../data/language-specs/c.lang.h:12
-#: ../data/language-specs/cg.lang.h:14 ../data/language-specs/cobol.lang.h:5
+#: ../data/language-specs/boo.lang.h:7 ../data/language-specs/cg.lang.h:14
+#: ../data/language-specs/c.lang.h:12 ../data/language-specs/cobol.lang.h:5
 #: ../data/language-specs/cpp.lang.h:4 ../data/language-specs/csharp.lang.h:10
 #: ../data/language-specs/css.lang.h:10 ../data/language-specs/cuda.lang.h:6
 #: ../data/language-specs/def.lang.h:36 ../data/language-specs/d.lang.h:10
@@ -224,7 +229,9 @@ msgstr "Atsoļa rakstzīme"
 #: ../data/language-specs/pascal.lang.h:4 ../data/language-specs/perl.lang.h:9
 #: ../data/language-specs/php.lang.h:14 ../data/language-specs/po.lang.h:3
 #: ../data/language-specs/prolog.lang.h:4
-#: ../data/language-specs/python.lang.h:11 ../data/language-specs/R.lang.h:6
+#: ../data/language-specs/protobuf.lang.h:3
+#: ../data/language-specs/python.lang.h:11
+#: ../data/language-specs/python3.lang.h:11 ../data/language-specs/R.lang.h:6
 #: ../data/language-specs/ruby.lang.h:13
 #: ../data/language-specs/scheme.lang.h:4
 #: ../data/language-specs/scilab.lang.h:5 ../data/language-specs/sh.lang.h:5
@@ -239,8 +246,9 @@ msgid "Keyword"
 msgstr "Atslēgvārds"
 
 #: ../data/language-specs/ada.lang.h:9 ../data/language-specs/asp.lang.h:10
-#: ../data/language-specs/bennugd.lang.h:11 ../data/language-specs/c.lang.h:14
-#: ../data/language-specs/cg.lang.h:16 ../data/language-specs/csharp.lang.h:12
+#: ../data/language-specs/bennugd.lang.h:11
+#: ../data/language-specs/cg.lang.h:16 ../data/language-specs/c.lang.h:14
+#: ../data/language-specs/csharp.lang.h:12
 #: ../data/language-specs/forth.lang.h:9
 #: ../data/language-specs/fsharp.lang.h:15
 #: ../data/language-specs/glsl.lang.h:7
@@ -261,8 +269,8 @@ msgstr "Reāls skaitlis"
 
 #: ../data/language-specs/ada.lang.h:11 ../data/language-specs/asp.lang.h:11
 #: ../data/language-specs/bennugd.lang.h:12
-#: ../data/language-specs/boo.lang.h:13 ../data/language-specs/chdr.lang.h:2
-#: ../data/language-specs/c.lang.h:16 ../data/language-specs/cg.lang.h:17
+#: ../data/language-specs/boo.lang.h:13 ../data/language-specs/cg.lang.h:17
+#: ../data/language-specs/chdr.lang.h:2 ../data/language-specs/c.lang.h:16
 #: ../data/language-specs/cobol.lang.h:8 ../data/language-specs/cpp.lang.h:5
 #: ../data/language-specs/csharp.lang.h:14
 #: ../data/language-specs/cuda.lang.h:7 ../data/language-specs/d.lang.h:13
@@ -292,8 +300,8 @@ msgstr "Reāls skaitlis"
 msgid "Sources"
 msgstr "Avoti"
 
-#: ../data/language-specs/ada.lang.h:12 ../data/language-specs/c.lang.h:18
-#: ../data/language-specs/cg.lang.h:18 ../data/language-specs/go.lang.h:15
+#: ../data/language-specs/ada.lang.h:12 ../data/language-specs/cg.lang.h:18
+#: ../data/language-specs/c.lang.h:18 ../data/language-specs/go.lang.h:15
 #: ../data/language-specs/java.lang.h:16 ../data/language-specs/ooc.lang.h:18
 msgid "Storage Class"
 msgstr "Glabātuves klase"
@@ -314,7 +322,9 @@ msgstr "Glabātuves klase"
 #: ../data/language-specs/haskell.lang.h:13
 #: ../data/language-specs/idl.lang.h:7 ../data/language-specs/imagej.lang.h:10
 #: ../data/language-specs/ini.lang.h:9 ../data/language-specs/java.lang.h:17
-#: ../data/language-specs/lua.lang.h:10 ../data/language-specs/matlab.lang.h:5
+#: ../data/language-specs/javascript.lang.h:13
+#: ../data/language-specs/json.lang.h:9 ../data/language-specs/lua.lang.h:10
+#: ../data/language-specs/matlab.lang.h:5
 #: ../data/language-specs/nemerle.lang.h:16
 #: ../data/language-specs/nsis.lang.h:5 ../data/language-specs/objc.lang.h:6
 #: ../data/language-specs/objj.lang.h:9 ../data/language-specs/ocaml.lang.h:18
@@ -323,7 +333,9 @@ msgstr "Glabātuves klase"
 #: ../data/language-specs/pascal.lang.h:8
 #: ../data/language-specs/perl.lang.h:19 ../data/language-specs/php.lang.h:20
 #: ../data/language-specs/po.lang.h:6 ../data/language-specs/prolog.lang.h:9
+#: ../data/language-specs/protobuf.lang.h:5
 #: ../data/language-specs/python.lang.h:17
+#: ../data/language-specs/python3.lang.h:17
 #: ../data/language-specs/ruby.lang.h:22
 #: ../data/language-specs/scheme.lang.h:7
 #: ../data/language-specs/scilab.lang.h:9 ../data/language-specs/sh.lang.h:8
@@ -344,11 +356,10 @@ msgid "ASP Object"
 msgstr "ASP Objekts"
 
 #. A function name (also: methods for classes)
-#: ../data/language-specs/asp.lang.h:6
+#: ../data/language-specs/asp.lang.h:6 ../data/language-specs/cg.lang.h:11
 #: ../data/language-specs/changelog.lang.h:6
-#: ../data/language-specs/cg.lang.h:11 ../data/language-specs/css.lang.h:8
-#: ../data/language-specs/def.lang.h:32 ../data/language-specs/gap.lang.h:4
-#: ../data/language-specs/gdb-log.lang.h:4
+#: ../data/language-specs/css.lang.h:8 ../data/language-specs/def.lang.h:32
+#: ../data/language-specs/gap.lang.h:4 ../data/language-specs/gdb-log.lang.h:4
 #: ../data/language-specs/gtk-doc.lang.h:3
 #: ../data/language-specs/javascript.lang.h:5
 #: ../data/language-specs/lua.lang.h:4 ../data/language-specs/scheme.lang.h:3
@@ -390,9 +401,53 @@ msgstr "Speciālā konstante"
 msgid "VBScript and ADO constants"
 msgstr "VBScript un ADO konstantes"
 
+#: ../data/language-specs/automake.lang.h:1
+#| msgid "Atom"
+msgid "Automake"
+msgstr "Automake"
+
+#: ../data/language-specs/automake.lang.h:2
+#| msgid "Global Variable"
+msgid "Automake Variable"
+msgstr "Automake mainīgais"
+
+#: ../data/language-specs/automake.lang.h:3
+#| msgid "Builtin Variable"
+msgid "Built-in Target"
+msgstr "Iebūvētais mērķis"
+
+#: ../data/language-specs/automake.lang.h:4
+#| msgid "Special Targets"
+msgid "Optional Target"
+msgstr "Neobligāts mērķis"
+
+#: ../data/language-specs/automake.lang.h:5
+#| msgid "Control Keyword"
+msgid "Other Keyword"
+msgstr "Cits atslēgvārds"
+
+#: ../data/language-specs/automake.lang.h:6
+msgid "Prefix"
+msgstr "Prefikss"
+
+#: ../data/language-specs/automake.lang.h:7
+#| msgid "Priority"
+msgid "Primary"
+msgstr "Primārais"
+
+#: ../data/language-specs/automake.lang.h:8
+#| msgid "Sectional"
+msgid "Secondary"
+msgstr "Sekundārais"
+
+#: ../data/language-specs/automake.lang.h:9
+msgid "Substitution"
+msgstr "Substitūcija"
+
 #: ../data/language-specs/awk.lang.h:1 ../data/language-specs/boo.lang.h:3
 #: ../data/language-specs/glsl.lang.h:2 ../data/language-specs/perl.lang.h:1
 #: ../data/language-specs/python.lang.h:4
+#: ../data/language-specs/python3.lang.h:4
 msgid "Builtin Function"
 msgstr "Iebūvētās funkcijas"
 
@@ -406,6 +461,7 @@ msgstr "Struktūra"
 #: ../data/language-specs/lua.lang.h:9 ../data/language-specs/m4.lang.h:3
 #: ../data/language-specs/perl.lang.h:18 ../data/language-specs/php.lang.h:19
 #: ../data/language-specs/python.lang.h:15
+#: ../data/language-specs/python3.lang.h:15
 #: ../data/language-specs/ruby.lang.h:20 ../data/language-specs/sh.lang.h:7
 #: ../data/language-specs/tcl.lang.h:2
 msgid "Scripts"
@@ -421,6 +477,7 @@ msgstr "Skripti"
 #: ../data/language-specs/perl.lang.h:21 ../data/language-specs/php.lang.h:21
 #: ../data/language-specs/pkgconfig.lang.h:3
 #: ../data/language-specs/prolog.lang.h:10
+#: ../data/language-specs/protobuf.lang.h:6
 #: ../data/language-specs/ruby.lang.h:24 ../data/language-specs/sh.lang.h:10
 #: ../data/language-specs/sparql.lang.h:15 ../data/language-specs/tcl.lang.h:4
 msgid "Variable"
@@ -435,18 +492,19 @@ msgid "BennuGD"
 msgstr "BennuGD"
 
 #. A floating point constant: 2.3e10
-#: ../data/language-specs/bennugd.lang.h:6 ../data/language-specs/c.lang.h:9
-#: ../data/language-specs/cg.lang.h:10 ../data/language-specs/def.lang.h:30
+#: ../data/language-specs/bennugd.lang.h:6 ../data/language-specs/cg.lang.h:10
+#: ../data/language-specs/c.lang.h:9 ../data/language-specs/def.lang.h:30
 #: ../data/language-specs/d.lang.h:8 ../data/language-specs/erlang.lang.h:8
-#: ../data/language-specs/go.lang.h:8 ../data/language-specs/nemerle.lang.h:8
-#: ../data/language-specs/ooc.lang.h:9 ../data/language-specs/php.lang.h:9
-#: ../data/language-specs/python.lang.h:9 ../data/language-specs/R.lang.h:4
+#: ../data/language-specs/go.lang.h:8 ../data/language-specs/json.lang.h:5
+#: ../data/language-specs/nemerle.lang.h:8 ../data/language-specs/ooc.lang.h:9
+#: ../data/language-specs/php.lang.h:9 ../data/language-specs/python.lang.h:9
+#: ../data/language-specs/python3.lang.h:9 ../data/language-specs/R.lang.h:4
 #: ../data/language-specs/ruby.lang.h:10
 msgid "Floating point number"
 msgstr "Peldošā komata skaitlis"
 
-#: ../data/language-specs/bennugd.lang.h:7 ../data/language-specs/c.lang.h:10
-#: ../data/language-specs/cg.lang.h:12 ../data/language-specs/csharp.lang.h:9
+#: ../data/language-specs/bennugd.lang.h:7 ../data/language-specs/cg.lang.h:12
+#: ../data/language-specs/c.lang.h:10 ../data/language-specs/csharp.lang.h:9
 #: ../data/language-specs/d.lang.h:9 ../data/language-specs/eiffel.lang.h:11
 #: ../data/language-specs/go.lang.h:10 ../data/language-specs/nemerle.lang.h:9
 #: ../data/language-specs/ooc.lang.h:11 ../data/language-specs/php.lang.h:12
@@ -494,6 +552,7 @@ msgstr "Boo"
 #: ../data/language-specs/libtool.lang.h:1
 #: ../data/language-specs/objj.lang.h:1 ../data/language-specs/octave.lang.h:2
 #: ../data/language-specs/python.lang.h:2
+#: ../data/language-specs/python3.lang.h:2
 #: ../data/language-specs/scheme.lang.h:1
 #: ../data/language-specs/scilab.lang.h:1
 #: ../data/language-specs/sparql.lang.h:1
@@ -505,6 +564,7 @@ msgid "Definition"
 msgstr "Definīcija"
 
 #: ../data/language-specs/boo.lang.h:8 ../data/language-specs/python.lang.h:13
+#: ../data/language-specs/python3.lang.h:13
 msgid "Multiline string"
 msgstr "Vairāku rindu virkne"
 
@@ -518,6 +578,7 @@ msgstr "Vārdtelpa"
 #: ../data/language-specs/fsharp.lang.h:13
 #: ../data/language-specs/java.lang.h:12
 #: ../data/language-specs/javascript.lang.h:9
+#: ../data/language-specs/json.lang.h:7
 #: ../data/language-specs/nemerle.lang.h:12
 #: ../data/language-specs/objj.lang.h:5 ../data/language-specs/ooc.lang.h:13
 #: ../data/language-specs/php.lang.h:15 ../data/language-specs/vala.lang.h:6
@@ -532,9 +593,57 @@ msgstr "Regulāra izteiksme"
 
 #: ../data/language-specs/boo.lang.h:14
 #: ../data/language-specs/python.lang.h:16
+#: ../data/language-specs/python3.lang.h:16
 #: ../data/language-specs/ruby.lang.h:21
 msgid "Special Variable"
 msgstr "Speciālais mainīgais"
+
+#: ../data/language-specs/cg.lang.h:1
+msgid "Bindings"
+msgstr "Saistījumi"
+
+#. Translators: functions that are provided in the language
+#: ../data/language-specs/cg.lang.h:3 ../data/language-specs/erlang.lang.h:3
+#: ../data/language-specs/imagej.lang.h:2
+#: ../data/language-specs/matlab.lang.h:1
+#: ../data/language-specs/octave.lang.h:3 ../data/language-specs/ruby.lang.h:5
+msgid "Builtin"
+msgstr "Iebūvēts"
+
+#: ../data/language-specs/cg.lang.h:4
+msgid "CG Shader Language"
+msgstr "CG Shader valoda"
+
+#. Any erroneous construct
+#: ../data/language-specs/cg.lang.h:8 ../data/language-specs/cobol.lang.h:4
+#: ../data/language-specs/csharp.lang.h:7 ../data/language-specs/css.lang.h:7
+#: ../data/language-specs/def.lang.h:28 ../data/language-specs/d.lang.h:7
+#: ../data/language-specs/dot.lang.h:3 ../data/language-specs/go.lang.h:6
+#: ../data/language-specs/html.lang.h:5 ../data/language-specs/json.lang.h:3
+#: ../data/language-specs/nemerle.lang.h:7
+#: ../data/language-specs/ocaml.lang.h:7 ../data/language-specs/ooc.lang.h:6
+#: ../data/language-specs/opal.lang.h:6 ../data/language-specs/perl.lang.h:4
+#: ../data/language-specs/php.lang.h:6 ../data/language-specs/prolog.lang.h:2
+#: ../data/language-specs/vala.lang.h:4
+#: ../data/language-specs/verilog.lang.h:4 ../data/language-specs/xml.lang.h:8
+msgid "Error"
+msgstr "Kļūda"
+
+#: ../data/language-specs/cg.lang.h:13 ../data/language-specs/c.lang.h:11
+#: ../data/language-specs/go.lang.h:11 ../data/language-specs/objj.lang.h:3
+msgid "Included File"
+msgstr "Iekļautais fails"
+
+#: ../data/language-specs/cg.lang.h:15 ../data/language-specs/c.lang.h:13
+#: ../data/language-specs/d.lang.h:12 ../data/language-specs/go.lang.h:13
+#: ../data/language-specs/nemerle.lang.h:13
+#: ../data/language-specs/ooc.lang.h:15 ../data/language-specs/php.lang.h:16
+msgid "Octal number"
+msgstr "Oktāls skaitlis"
+
+#: ../data/language-specs/cg.lang.h:19
+msgid "Swizzle operator"
+msgstr "Swizzle operators"
 
 #: ../data/language-specs/changelog.lang.h:1
 msgid "Bullet"
@@ -558,7 +667,7 @@ msgid "File"
 msgstr "Fails"
 
 #: ../data/language-specs/changelog.lang.h:7
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:464
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:455
 msgid "Name"
 msgstr "Nosaukums"
 
@@ -580,11 +689,13 @@ msgstr "Nosaukums"
 #: ../data/language-specs/dpatch.lang.h:2
 #: ../data/language-specs/gdb-log.lang.h:8
 #: ../data/language-specs/gtkrc.lang.h:8 ../data/language-specs/ini.lang.h:8
+#: ../data/language-specs/json.lang.h:8
 #: ../data/language-specs/libtool.lang.h:3
 #: ../data/language-specs/nsis.lang.h:4 ../data/language-specs/ocl.lang.h:6
 #: ../data/language-specs/pkgconfig.lang.h:1
-#: ../data/language-specs/po.lang.h:5 ../data/language-specs/rpmspec.lang.h:10
-#: ../data/language-specs/sh.lang.h:6 ../data/language-specs/texinfo.lang.h:9
+#: ../data/language-specs/po.lang.h:5 ../data/language-specs/protobuf.lang.h:4
+#: ../data/language-specs/rpmspec.lang.h:10 ../data/language-specs/sh.lang.h:6
+#: ../data/language-specs/texinfo.lang.h:9
 #: ../data/language-specs/yacc.lang.h:1
 #: ../gtksourceview/gtksourcelanguage.c:55
 msgid "Others"
@@ -617,18 +728,6 @@ msgstr "Rakstzīme"
 msgid "Common Defines"
 msgstr "Kopīgie definētie"
 
-#: ../data/language-specs/c.lang.h:11 ../data/language-specs/cg.lang.h:13
-#: ../data/language-specs/go.lang.h:11 ../data/language-specs/objj.lang.h:3
-msgid "Included File"
-msgstr "Iekļautais fails"
-
-#: ../data/language-specs/c.lang.h:13 ../data/language-specs/cg.lang.h:15
-#: ../data/language-specs/d.lang.h:12 ../data/language-specs/go.lang.h:13
-#: ../data/language-specs/nemerle.lang.h:13
-#: ../data/language-specs/ooc.lang.h:15 ../data/language-specs/php.lang.h:16
-msgid "Octal number"
-msgstr "Oktāls skaitlis"
-
 #: ../data/language-specs/c.lang.h:15
 msgid "Signal name"
 msgstr "Signāla nosaukums"
@@ -640,41 +739,6 @@ msgstr "Nestandarta plūsma"
 #: ../data/language-specs/c.lang.h:20
 msgid "printf Conversion"
 msgstr "printf pārveidojums"
-
-#: ../data/language-specs/cg.lang.h:1
-msgid "Bindings"
-msgstr "Saistījumi"
-
-#. Translators: functions that are provided in the language
-#: ../data/language-specs/cg.lang.h:3 ../data/language-specs/erlang.lang.h:3
-#: ../data/language-specs/imagej.lang.h:2
-#: ../data/language-specs/matlab.lang.h:1
-#: ../data/language-specs/octave.lang.h:3 ../data/language-specs/ruby.lang.h:5
-msgid "Builtin"
-msgstr "Iebūvēts"
-
-#: ../data/language-specs/cg.lang.h:4
-msgid "CG Shader Language"
-msgstr "CG Shader valoda"
-
-#. Any erroneous construct
-#: ../data/language-specs/cg.lang.h:8 ../data/language-specs/cobol.lang.h:4
-#: ../data/language-specs/csharp.lang.h:7 ../data/language-specs/css.lang.h:7
-#: ../data/language-specs/def.lang.h:28 ../data/language-specs/d.lang.h:7
-#: ../data/language-specs/dot.lang.h:3 ../data/language-specs/go.lang.h:6
-#: ../data/language-specs/html.lang.h:5
-#: ../data/language-specs/nemerle.lang.h:7
-#: ../data/language-specs/ocaml.lang.h:7 ../data/language-specs/ooc.lang.h:6
-#: ../data/language-specs/opal.lang.h:6 ../data/language-specs/perl.lang.h:4
-#: ../data/language-specs/php.lang.h:6 ../data/language-specs/prolog.lang.h:2
-#: ../data/language-specs/vala.lang.h:4
-#: ../data/language-specs/verilog.lang.h:4 ../data/language-specs/xml.lang.h:8
-msgid "Error"
-msgstr "Kļūda"
-
-#: ../data/language-specs/cg.lang.h:19
-msgid "Swizzle operator"
-msgstr "Swizzle operators"
 
 #: ../data/language-specs/cmake.lang.h:1
 msgid "Builtin Command"
@@ -740,7 +804,7 @@ msgstr "Krāsa"
 #: ../data/language-specs/fortran.lang.h:4 ../data/language-specs/gap.lang.h:3
 #: ../data/language-specs/gtkrc.lang.h:4
 #: ../data/language-specs/haskell.lang.h:4 ../data/language-specs/ini.lang.h:5
-#: ../data/language-specs/octave.lang.h:6
+#: ../data/language-specs/json.lang.h:2 ../data/language-specs/octave.lang.h:6
 #: ../data/language-specs/pascal.lang.h:3 ../data/language-specs/sml.lang.h:6
 #: ../data/language-specs/sql.lang.h:3
 msgid "Decimal"
@@ -792,6 +856,7 @@ msgstr "Globālie mainīgie"
 
 #. A base-N number: 0xFFFF
 #: ../data/language-specs/def.lang.h:2 ../data/language-specs/python.lang.h:1
+#: ../data/language-specs/python3.lang.h:1
 #: ../data/language-specs/ruby.lang.h:2
 msgid "Base-N number"
 msgstr "Bāzes-N vesels skaitlis"
@@ -804,6 +869,7 @@ msgstr "Iebūvēts identifikators"
 
 #. A complex number
 #: ../data/language-specs/def.lang.h:13 ../data/language-specs/python.lang.h:6
+#: ../data/language-specs/python3.lang.h:6
 msgid "Complex number"
 msgstr "Komplekss skaitlis"
 
@@ -882,6 +948,7 @@ msgstr "Grupa"
 #. Translators: "Key" here means key value, that is the left hand
 #. side in a myoption=something line in a .desktop file
 #: ../data/language-specs/desktop.lang.h:9
+#: ../data/language-specs/json.lang.h:6
 msgid "Key"
 msgstr "Atslēga"
 
@@ -1012,6 +1079,8 @@ msgid "Assertion"
 msgstr "Pieņēmums"
 
 #: ../data/language-specs/eiffel.lang.h:2
+#: ../data/language-specs/javascript.lang.h:1
+#: ../data/language-specs/json.lang.h:1
 msgid "Boolean Value"
 msgstr "Loģiskā vērtība"
 
@@ -1201,6 +1270,7 @@ msgid "Thread Header"
 msgstr "Pavediena galvene"
 
 #: ../data/language-specs/glsl.lang.h:1 ../data/language-specs/python.lang.h:3
+#: ../data/language-specs/python3.lang.h:3
 msgid "Builtin Constant"
 msgstr "Iebūvēta konstante"
 
@@ -1436,7 +1506,7 @@ msgstr "JavaScript"
 msgid "Properties"
 msgstr "Īpašības"
 
-#: ../data/language-specs/javascript.lang.h:13
+#: ../data/language-specs/javascript.lang.h:14
 msgid "Undefined Value"
 msgstr "Nedefinēta vērtība"
 
@@ -1640,7 +1710,8 @@ msgid "Ocamldoc Comments"
 msgstr "Ocamldoc komentārs"
 
 #: ../data/language-specs/ocaml.lang.h:17
-msgid "Standart Modules"
+#| msgid "Standart Modules"
+msgid "Standard Modules"
 msgstr "Standarta moduļi"
 
 #: ../data/language-specs/ocl.lang.h:4
@@ -1673,6 +1744,7 @@ msgstr "Atslēgas simbols"
 
 #: ../data/language-specs/opal.lang.h:9
 #: ../data/language-specs/python.lang.h:12
+#: ../data/language-specs/python3.lang.h:12
 msgid "Module Handler"
 msgstr "Moduļa vadītājs"
 
@@ -1787,10 +1859,12 @@ msgid "Prolog"
 msgstr "Prolog"
 
 #: ../data/language-specs/python.lang.h:5
+#: ../data/language-specs/python3.lang.h:5
 msgid "Builtin Object"
 msgstr "Iebūvēts objekts"
 
 #: ../data/language-specs/python.lang.h:10
+#: ../data/language-specs/python3.lang.h:10
 msgid "Format"
 msgstr "Formāts"
 
@@ -1801,6 +1875,11 @@ msgstr "Python"
 #: ../data/language-specs/python.lang.h:18
 msgid "string-conversion"
 msgstr "string-conversion"
+
+#: ../data/language-specs/python3.lang.h:14
+#| msgid "Python"
+msgid "Python 3"
+msgstr "Python 3"
 
 #: ../data/language-specs/R.lang.h:1
 msgid "Assignment Operator"
@@ -2011,7 +2090,6 @@ msgid "Verbatim Block"
 msgstr "Burtiskie bloki"
 
 #: ../data/language-specs/t2t.lang.h:17
-#| msgid "Text2Tags"
 msgid "txt2tags"
 msgstr "txt2tags"
 
@@ -2151,65 +2229,65 @@ msgstr "Krāsu shēma, izmantojot Tango krāsu paleti"
 msgid "Tango"
 msgstr "Tango"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:380
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:371
 msgid "Document Words"
 msgstr "Dokumenta vārdi"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:465
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:456
 msgid "The provider name"
 msgstr "Piegādātāja nosaukums"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:472
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:463
 #: ../gtksourceview/gtksourcecompletionitem.c:268
 msgid "Icon"
 msgstr "Ikona"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:473
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:464
 msgid "The provider icon"
 msgstr "Piegādātāja ikona"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:480
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:471
 msgid "Proposals Batch Size"
 msgstr "Piedāvājuma paketes izmērs"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:481
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:472
 msgid "Number of proposals added in one batch"
 msgstr "Piedāvājumu skaits paketē"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:490
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:481
 msgid "Scan Batch Size"
 msgstr "Skanēšanas paketes izmērs"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:491
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:482
 msgid "Number of lines scanned in one batch"
 msgstr "Ieskanētās rindas paketē"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:500
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:491
 msgid "Minimum Word Size"
 msgstr "Minimālais vārda izmērs"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:501
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:492
 msgid "The minimum word size to complete"
 msgstr "Minimālais vārda izmērs, lai pabeigtu"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:510
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:501
 msgid "Interactive Delay"
 msgstr "Interaktivitātes aizkave"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:511
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:502
 msgid "The delay before initiating interactive completion"
 msgstr "Aizkave, pirms sākt interaktīvo pabeigšanu"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:520
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:511
 msgid "Priority"
 msgstr "Prioritāte"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:521
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:512
 msgid "Provider priority"
 msgstr "Piegādātāja prioritāte"
 
 #: ../gtksourceview/gtksourcebuffer.c:234
-#: ../gtksourceview/gtksourceprintcompositor.c:505
+#: ../gtksourceview/gtksourceprintcompositor.c:502
 msgid "Highlight Syntax"
 msgstr "Sintakses izcelšana"
 
@@ -2279,109 +2357,109 @@ msgstr "Bufera atsaukšanas pārvaldnieks"
 msgid "No extra information available"
 msgstr "Nav pieejama papildus informācija"
 
-#: ../gtksourceview/gtksourcecompletion.c:2220
-#: ../gtksourceview/gtksourcegutter.c:548
+#: ../gtksourceview/gtksourcecompletion.c:2224
+#: ../gtksourceview/gtksourcegutter.c:547
 msgid "View"
 msgstr "Skats"
 
-#: ../gtksourceview/gtksourcecompletion.c:2221
+#: ../gtksourceview/gtksourcecompletion.c:2225
 msgid "The GtkSourceView bound to the completion"
 msgstr "GtkSourceView robeža pabeigšanai"
 
-#: ../gtksourceview/gtksourcecompletion.c:2236
+#: ../gtksourceview/gtksourcecompletion.c:2240
 msgid "Remember Info Visibility"
 msgstr "Atcerēties informācijas redzamību"
 
-#: ../gtksourceview/gtksourcecompletion.c:2237
+#: ../gtksourceview/gtksourcecompletion.c:2241
 msgid "Remember the last info window visibility state"
 msgstr "Atcerēties pēdējo informācijas loga redzamības stāvokli"
 
-#: ../gtksourceview/gtksourcecompletion.c:2250
+#: ../gtksourceview/gtksourcecompletion.c:2254
 msgid "Select on Show"
 msgstr "Izvēlēties rādot"
 
-#: ../gtksourceview/gtksourcecompletion.c:2251
+#: ../gtksourceview/gtksourcecompletion.c:2255
 msgid "Select first proposal when completion is shown"
 msgstr "Izvēlēties pirmo piedāvājumu, kad parāda iespējamo pabeigšanu"
 
-#: ../gtksourceview/gtksourcecompletion.c:2265
+#: ../gtksourceview/gtksourcecompletion.c:2269
 msgid "Show Headers"
 msgstr "Rādīt galvas"
 
-#: ../gtksourceview/gtksourcecompletion.c:2266
+#: ../gtksourceview/gtksourcecompletion.c:2270
 msgid ""
 "Show provider headers when proposals from multiple providers are available"
 msgstr ""
 "Rādīt piegādātāja galvas, kad ir pieejami vairāki piedāvājumi no vairākiem "
 "piegādātājiem"
 
-#: ../gtksourceview/gtksourcecompletion.c:2280
+#: ../gtksourceview/gtksourcecompletion.c:2284
 msgid "Show Icons"
 msgstr "Rādīt ikonas"
 
-#: ../gtksourceview/gtksourcecompletion.c:2281
+#: ../gtksourceview/gtksourcecompletion.c:2285
 msgid "Show provider and proposal icons in the completion popup"
 msgstr "Rādīt piegādātāja un piedāvājuma ikonas pabeigšanas lodziņā"
 
-#: ../gtksourceview/gtksourcecompletion.c:2294
+#: ../gtksourceview/gtksourcecompletion.c:2298
 msgid "Accelerators"
 msgstr "Paātrinātāji"
 
-#: ../gtksourceview/gtksourcecompletion.c:2295
+#: ../gtksourceview/gtksourcecompletion.c:2299
 msgid "Number of proposal accelerators to show"
 msgstr "Rādāmo piedāvājumu paātrinātāju skaits"
 
-#: ../gtksourceview/gtksourcecompletion.c:2311
+#: ../gtksourceview/gtksourcecompletion.c:2315
 msgid "Auto Complete Delay"
 msgstr "Automātiskās pabeigšanas aizkave"
 
-#: ../gtksourceview/gtksourcecompletion.c:2312
+#: ../gtksourceview/gtksourcecompletion.c:2316
 msgid "Completion popup delay for interactive completion"
 msgstr "Pabeigšanas lodziņa aizkave interaktīvajai pabeigšanai"
 
-#: ../gtksourceview/gtksourcecompletion.c:2327
+#: ../gtksourceview/gtksourcecompletion.c:2331
 msgid "Provider Page Size"
 msgstr "Piegādātāja lapas izmērs"
 
-#: ../gtksourceview/gtksourcecompletion.c:2328
+#: ../gtksourceview/gtksourcecompletion.c:2332
 msgid "Provider scrolling page size"
 msgstr "Piegādātāja ritināšanas lapas izmērs"
 
-#: ../gtksourceview/gtksourcecompletion.c:2343
+#: ../gtksourceview/gtksourcecompletion.c:2347
 msgid "Proposal Page Size"
 msgstr "Piedāvājuma lapas izmērs"
 
-#: ../gtksourceview/gtksourcecompletion.c:2344
+#: ../gtksourceview/gtksourcecompletion.c:2348
 msgid "Proposal scrolling page size"
 msgstr "Piedāvājuma ritināšanas lapas izmērs"
 
-#: ../gtksourceview/gtksourcecompletion.c:2689
+#: ../gtksourceview/gtksourcecompletion.c:2693
 msgid "Provider"
 msgstr "Piegādātājs"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:237
+#: ../gtksourceview/gtksourcecompletioncontext.c:233
 #: ../gtksourceview/gtksourceview.c:306
 msgid "Completion"
 msgstr "Pabeigšana"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:238
+#: ../gtksourceview/gtksourcecompletioncontext.c:234
 msgid "The completion object to which the context belongs"
 msgstr "Pabeigšanas objekts, pie kura pieder konteksts"
 
 #. Translators: The GtkTextIter at which the completion was invoked
-#: ../gtksourceview/gtksourcecompletioncontext.c:251
+#: ../gtksourceview/gtksourcecompletioncontext.c:247
 msgid "Iterator"
 msgstr "Iterators"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:252
+#: ../gtksourceview/gtksourcecompletioncontext.c:248
 msgid "The GtkTextIter at which the completion was invoked"
 msgstr "GtkTextIter, pie kura tika izsaukta pabeigšana"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:264
+#: ../gtksourceview/gtksourcecompletioncontext.c:260
 msgid "Activation"
 msgstr "Aktivizācija"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:265
+#: ../gtksourceview/gtksourcecompletioncontext.c:261
 msgid "The type of activation"
 msgstr "Aktivizācijas veids"
 
@@ -2414,15 +2492,11 @@ msgstr "Informācija"
 msgid "Info to be shown for this item"
 msgstr "Informācija, ko rādīt šai vienībai"
 
-#: ../gtksourceview/gtksourcecontextengine.c:2969
-msgid "using \\C is not supported in language definitions"
-msgstr "\\C lietošana nav atbalstīta valodas definīcijās"
-
 #. regex_new could fail, for instance if there are different
 #. * named sub-patterns with the same name or if resulting regex is
 #. * too long. In this case fixing lang file helps (e.g. renaming
 #. * subpatterns, making huge keywords use bigger prefixes, etc.)
-#: ../gtksourceview/gtksourcecontextengine.c:3593
+#: ../gtksourceview/gtksourcecontextengine.c:3171
 #, c-format
 msgid ""
 "Cannot create a regex for all the transitions, the syntax highlighting "
@@ -2433,7 +2507,7 @@ msgstr ""
 "izcelšanas process var būt lēnāks kā parasti.\n"
 "Kļūda: %s"
 
-#: ../gtksourceview/gtksourcecontextengine.c:4928
+#: ../gtksourceview/gtksourcecontextengine.c:4509
 msgid ""
 "Highlighting a single line took too much time, syntax highlighting will be "
 "disabled"
@@ -2441,19 +2515,19 @@ msgstr ""
 "Vienas rindas izcelšana aizņēma pārāk daudz laika, sintakses izcelšana tiks "
 "atslēgta"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6181
+#: ../gtksourceview/gtksourcecontextengine.c:5762
 #, c-format
 msgid "context '%s' cannot contain a \\%%{...@start} command"
 msgstr "konteksts '%s' nevar saturēt \\%%{...@start} komandu"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6343
-#: ../gtksourceview/gtksourcecontextengine.c:6432
+#: ../gtksourceview/gtksourcecontextengine.c:5923
+#: ../gtksourceview/gtksourcecontextengine.c:6012
 #, c-format
 msgid "duplicated context id '%s'"
 msgstr "konteksta id '%s' dublikāts"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6547
-#: ../gtksourceview/gtksourcecontextengine.c:6607
+#: ../gtksourceview/gtksourcecontextengine.c:6127
+#: ../gtksourceview/gtksourcecontextengine.c:6187
 #, c-format
 msgid ""
 "style override used with wildcard context reference in language '%s' in ref "
@@ -2462,51 +2536,51 @@ msgstr ""
 "stila aizstāšana izmantojot aizstājējzīmes konteksta norādi valodā '%s' "
 "norādē '%s'"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6621
+#: ../gtksourceview/gtksourcecontextengine.c:6201
 #, c-format
 msgid "invalid context reference '%s'"
 msgstr "nederīga konteksta norāde '%s'"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6640
-#: ../gtksourceview/gtksourcecontextengine.c:6650
+#: ../gtksourceview/gtksourcecontextengine.c:6220
+#: ../gtksourceview/gtksourcecontextengine.c:6230
 #, c-format
 msgid "unknown context '%s'"
 msgstr "nezināms konteksts '%s'"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6750
+#: ../gtksourceview/gtksourcecontextengine.c:6330
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "Trūkst galvenās valodas definīcija (id = \"%s\".)"
 
-#: ../gtksourceview/gtksourcegutter.c:549
+#: ../gtksourceview/gtksourcegutter.c:548
 msgid "The gutters' GtkSourceView"
 msgstr "gutters GtkSourceView"
 
-#: ../gtksourceview/gtksourcegutter.c:561
+#: ../gtksourceview/gtksourcegutter.c:560
 #: ../gtksourceview/gtksourcegutterrenderer.c:703
 msgid "Window Type"
 msgstr "Loga veids"
 
-#: ../gtksourceview/gtksourcegutter.c:562
+#: ../gtksourceview/gtksourcegutter.c:561
 msgid "The gutters text window type"
 msgstr "GUtters teksta loga tips"
 
-#: ../gtksourceview/gtksourcegutter.c:573
+#: ../gtksourceview/gtksourcegutter.c:572
 #: ../gtksourceview/gtksourcegutterrenderer.c:479
 msgid "X Padding"
 msgstr "X iekšmale"
 
-#: ../gtksourceview/gtksourcegutter.c:574
+#: ../gtksourceview/gtksourcegutter.c:573
 #: ../gtksourceview/gtksourcegutterrenderer.c:480
 msgid "The x-padding"
 msgstr "X iekšmale"
 
-#: ../gtksourceview/gtksourcegutter.c:584
+#: ../gtksourceview/gtksourcegutter.c:583
 #: ../gtksourceview/gtksourcegutterrenderer.c:495
 msgid "Y Padding"
 msgstr "Y iekšmale"
 
-#: ../gtksourceview/gtksourcegutter.c:585
+#: ../gtksourceview/gtksourcegutter.c:584
 #: ../gtksourceview/gtksourcegutterrenderer.c:496
 msgid "The y-padding"
 msgstr "Y iekšmale"
@@ -2648,23 +2722,15 @@ msgstr "Valodu id"
 msgid "List of the ids of the available languages"
 msgstr "Pieejamo valodu id saraksts"
 
-#: ../gtksourceview/gtksourcelanguage-parser-2.c:951
+#: ../gtksourceview/gtksourcelanguage-parser-2.c:950
 #, c-format
 msgid "Unknown id '%s' in regex '%s'"
 msgstr "Nezināms id '%s' regulārajā izteiksmē '%s'"
 
-#: ../gtksourceview/gtksourcelanguage-parser-2.c:1179
+#: ../gtksourceview/gtksourcelanguage-parser-2.c:1178
 #, c-format
 msgid "in regex '%s': backreferences are not supported"
 msgstr "regulārajā izteiksmē '%s': atpakaļatsauces nav atbalstītas"
-
-#: ../gtksourceview/gtksourcemark.c:140
-msgid "category"
-msgstr "kategorija"
-
-#: ../gtksourceview/gtksourcemark.c:141
-msgid "The mark category"
-msgstr "Marķiera kategorija"
 
 #: ../gtksourceview/gtksourcemarkattributes.c:290
 #: ../gtksourceview/gtksourcestyle.c:88
@@ -2679,102 +2745,114 @@ msgstr "Fons"
 msgid "The GIcon"
 msgstr "GIkona"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:445
+#: ../gtksourceview/gtksourcemark.c:140
+msgid "category"
+msgstr "kategorija"
+
+#: ../gtksourceview/gtksourcemark.c:141
+msgid "The mark category"
+msgstr "Marķiera kategorija"
+
+#: ../gtksourceview/gtksourceprintcompositor.c:442
 msgid "Source Buffer"
 msgstr "Avota buferis"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:446
+#: ../gtksourceview/gtksourceprintcompositor.c:443
 msgid "The GtkSourceBuffer object to print"
 msgstr "GtkSourceBuffer objekts, ko drukāt"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:463
+#: ../gtksourceview/gtksourceprintcompositor.c:460
 #: ../gtksourceview/gtksourceview.c:344
 msgid "Tab Width"
 msgstr "Tabulācijas platums"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:464
+#: ../gtksourceview/gtksourceprintcompositor.c:461
 #: ../gtksourceview/gtksourceview.c:345
 msgid "Width of a tab character expressed in spaces"
 msgstr "Tabulācijas rakstzīmes platums, izteikts atstarpēs"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:484
+#: ../gtksourceview/gtksourceprintcompositor.c:481
 msgid "Wrap Mode"
 msgstr "Aplaušanas režīms"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:485
+#: ../gtksourceview/gtksourceprintcompositor.c:482
 msgid ""
 "Whether to wrap lines never, at word boundaries, or at character boundaries."
 msgstr "Vai aplauzt rindiņas nekad, vārdu robežās vai rakstzīmju robežās."
 
-#: ../gtksourceview/gtksourceprintcompositor.c:506
+#: ../gtksourceview/gtksourceprintcompositor.c:503
 msgid "Whether to print the document with highlighted syntax"
 msgstr "Vai drukāt dokumentu ar izceltu sintaksi"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:527
+#: ../gtksourceview/gtksourceprintcompositor.c:524
 msgid "Print Line Numbers"
 msgstr "Drukāt rindu numurus"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:528
+#: ../gtksourceview/gtksourceprintcompositor.c:525
 msgid "Interval of printed line numbers (0 means no numbers)"
 msgstr "Drukāto rindas numuru intervāls (0 nozīmē -  nav numuru)"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:550
+#: ../gtksourceview/gtksourceprintcompositor.c:547
 msgid "Print Header"
 msgstr "Drukāt galvu"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:551
+#: ../gtksourceview/gtksourceprintcompositor.c:548
 msgid "Whether to print a header in each page"
 msgstr "Vai drukāt galvu katrā lapā"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:573
+#: ../gtksourceview/gtksourceprintcompositor.c:570
 msgid "Print Footer"
 msgstr "Drukāt pēdu"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:574
+#: ../gtksourceview/gtksourceprintcompositor.c:571
 msgid "Whether to print a footer in each page"
 msgstr "Vai drukāt pēdu katrā lapā"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:596
+#: ../gtksourceview/gtksourceprintcompositor.c:593
 msgid "Body Font Name"
 msgstr "Teksta fonta nosaukums"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:597
+#: ../gtksourceview/gtksourceprintcompositor.c:594
 msgid "Name of the font to use for the text body (e.g. \"Monospace 10\")"
 msgstr "Fonts, ko izmantot dokumenta tekstam (piem., \"Monospace 10\")"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:620
+#: ../gtksourceview/gtksourceprintcompositor.c:617
 msgid "Line Numbers Font Name"
 msgstr "Rindu numuru fontu nosaukums"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:621
+#: ../gtksourceview/gtksourceprintcompositor.c:618
 msgid "Name of the font to use for the line numbers (e.g. \"Monospace 10\")"
 msgstr "Fonts, ko izmantot rindu numuriem (piem., \"Monospace 10\")"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:644
+#: ../gtksourceview/gtksourceprintcompositor.c:641
 msgid "Header Font Name"
 msgstr "Galvas fonta nosaukums"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:645
+#: ../gtksourceview/gtksourceprintcompositor.c:642
 msgid "Name of the font to use for the page header (e.g. \"Monospace 10\")"
 msgstr "Fonts, ko izmantot lapas galvai (piem., \"Monospace 10\")"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:668
+#: ../gtksourceview/gtksourceprintcompositor.c:665
 msgid "Footer Font Name"
 msgstr "Pēdas fonta nosaukums"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:669
+#: ../gtksourceview/gtksourceprintcompositor.c:666
 msgid "Name of the font to use for the page footer (e.g. \"Monospace 10\")"
 msgstr "Fonts, ko izmantot lapas pēdai (piem., \"Monospace 10\")"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:685
+#: ../gtksourceview/gtksourceprintcompositor.c:682
 msgid "Number of pages"
 msgstr "Lapu skaits"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:686
+#: ../gtksourceview/gtksourceprintcompositor.c:683
 msgid ""
 "The number of pages in the document (-1 means the document has not been "
 "completely paginated)."
 msgstr "Lapu skaits dokumentā (-1 nozīmē, ka lapas vēl nav saskaitītas)"
+
+#: ../gtksourceview/gtksourceregex.c:125
+msgid "using \\C is not supported in language definitions"
+msgstr "\\C lietošana nav atbalstīta valodas definīcijās"
 
 #: ../gtksourceview/gtksourcestyle.c:80
 msgid "Line background"
@@ -2860,23 +2938,23 @@ msgstr "Pārsvītrošanas iestatījums"
 msgid "Whether strikethrough attribute is set"
 msgstr "Vai pārsvītrošanas atribūts ir iestatīts"
 
-#: ../gtksourceview/gtksourcestylescheme.c:221
-#: ../gtksourceview/gtksourcestylescheme.c:222
+#: ../gtksourceview/gtksourcestylescheme.c:212
+#: ../gtksourceview/gtksourcestylescheme.c:213
 msgid "Style scheme id"
 msgstr "Sistēmas shēmas id"
 
-#: ../gtksourceview/gtksourcestylescheme.c:234
-#: ../gtksourceview/gtksourcestylescheme.c:235
+#: ../gtksourceview/gtksourcestylescheme.c:225
+#: ../gtksourceview/gtksourcestylescheme.c:226
 msgid "Style scheme name"
 msgstr "Sistēmas shēmas nosaukums"
 
-#: ../gtksourceview/gtksourcestylescheme.c:247
-#: ../gtksourceview/gtksourcestylescheme.c:248
+#: ../gtksourceview/gtksourcestylescheme.c:238
+#: ../gtksourceview/gtksourcestylescheme.c:239
 msgid "Style scheme description"
 msgstr "Sistēmas shēmas apraksts"
 
-#: ../gtksourceview/gtksourcestylescheme.c:260
-#: ../gtksourceview/gtksourcestylescheme.c:261
+#: ../gtksourceview/gtksourcestylescheme.c:251
+#: ../gtksourceview/gtksourcestylescheme.c:252
 msgid "Style scheme filename"
 msgstr "Stila shēmas faila nosaukums"
 
@@ -3001,7 +3079,7 @@ msgstr "Zīmēt atstarpes"
 msgid "Set if and how the spaces should be visualized"
 msgstr "Ja iestatīts, kādā veidā būtu jāattēlo atstarpes"
 
-#: ../gtksourceview/gtksourceview-i18n.c:74
+#: ../gtksourceview/gtksourceview-i18n.c:72
 msgid "translator-credits"
 msgstr "Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>"
 
@@ -3060,8 +3138,7 @@ msgstr "Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>"
 #~ msgstr "Fonts"
 
 #~ msgid "GnomeFont name to use for the document text (deprecated)"
-#~ msgstr ""
-#~ "Gnome fonta nosaukums, ko  izmantot dokumenta tekstam (pazeminātais)"
+#~ msgstr "Gnome fonta nosaukums, ko  izmantot dokumenta tekstam (pazeminātais)"
 
 #~ msgid "GnomeFont name to use for the line numbers (deprecated)"
 #~ msgstr "Gnome fonta nosaukums, ko izmantot rindu numuriem (pazeminātais)"
@@ -3213,9 +3290,6 @@ msgstr "Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>"
 #~ msgid "Type or Constructor"
 #~ msgstr "Tips vai konstruktors"
 
-#~ msgid "Sectional"
-#~ msgstr "Daļējis"
-
 #~ msgid "Integer"
 #~ msgstr "Vesels skaitlis"
 
@@ -3266,9 +3340,6 @@ msgstr "Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>"
 
 #~ msgid "Backtick String"
 #~ msgstr "Atpakaļatzīmes virkne"
-
-#~ msgid "Special Targets"
-#~ msgstr "Speciālie mērķi"
 
 #~ msgid "Variable1"
 #~ msgstr "Mainīgais1"
