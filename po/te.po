@@ -1,23 +1,24 @@
 # translation of gtksourceview.master.te.po to Telugu
 # Telugu translation of gtksourceview
-# Copyright (C) 2011 Swecha Telugu Localisation Team <localization@swecha.net>.
+# Copyright (C) 2011,2012 Swecha Telugu Localisation Team <localization@swecha.net>.
 # This file is distributed under the same license as the gtksourceview package.
 #
 # A Mohan Vamsee <mohan.arza@ymail.com>, 2011.
-# Krishnababu Krothapalli <kkrothap@redhat.com>, 2011.
+# Krishnababu Krothapalli <kkrothap@redhat.com>, 2011, 2012.
+# Sasi Bhushan Boddepalli <sasi@swecha.net>, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview.master.te\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-10-17 22:10+0000\n"
-"PO-Revision-Date: 2011-10-18 13:08+0530\n"
+"POT-Creation-Date: 2012-02-04 13:59+0000\n"
+"PO-Revision-Date: 2012-03-15 12:55+0530\n"
 "Last-Translator: Krishnababu Krothapalli <kkrothap@redhat.com>\n"
-"Language-Team: Telugu <en@li.org>\n"
-"Language: te\n"
+"Language-Team: Telugu <indlinux-telugu@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: te\n"
 "X-Generator: Lokalize 1.2\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 "\n"
@@ -179,7 +180,9 @@ msgstr "డాటా రకం"
 #: ../data/language-specs/nemerle.lang.h:6
 #: ../data/language-specs/ocaml.lang.h:6 ../data/language-specs/ooc.lang.h:4
 #: ../data/language-specs/opal.lang.h:5 ../data/language-specs/php.lang.h:5
-#: ../data/language-specs/python.lang.h:7 ../data/language-specs/ruby.lang.h:8
+#: ../data/language-specs/python.lang.h:7
+#: ../data/language-specs/python3.lang.h:7
+#: ../data/language-specs/ruby.lang.h:8
 msgid "Decimal number"
 msgstr "దత్తాంశ సంఖ్య"
 
@@ -194,8 +197,10 @@ msgstr "దత్తాంశ సంఖ్య"
 #: ../data/language-specs/json.lang.h:4 ../data/language-specs/lua.lang.h:3
 #: ../data/language-specs/ocaml.lang.h:8 ../data/language-specs/ooc.lang.h:7
 #: ../data/language-specs/php.lang.h:8 ../data/language-specs/prolog.lang.h:3
-#: ../data/language-specs/python.lang.h:8 ../data/language-specs/ruby.lang.h:9
-#: ../data/language-specs/sml.lang.h:7 ../data/language-specs/texinfo.lang.h:2
+#: ../data/language-specs/python.lang.h:8
+#: ../data/language-specs/python3.lang.h:8
+#: ../data/language-specs/ruby.lang.h:9 ../data/language-specs/sml.lang.h:7
+#: ../data/language-specs/texinfo.lang.h:2
 #: ../data/language-specs/verilog.lang.h:5
 msgid "Escaped Character"
 msgstr "ఎస్కేప్‌డ్ అక్షరం"
@@ -230,7 +235,8 @@ msgstr "ఎస్కేప్‌డ్ అక్షరం"
 #: ../data/language-specs/php.lang.h:14 ../data/language-specs/po.lang.h:3
 #: ../data/language-specs/prolog.lang.h:4
 #: ../data/language-specs/protobuf.lang.h:3
-#: ../data/language-specs/python.lang.h:11 ../data/language-specs/R.lang.h:6
+#: ../data/language-specs/python.lang.h:11
+#: ../data/language-specs/python3.lang.h:11 ../data/language-specs/R.lang.h:6
 #: ../data/language-specs/ruby.lang.h:13
 #: ../data/language-specs/scheme.lang.h:4
 #: ../data/language-specs/scilab.lang.h:5 ../data/language-specs/sh.lang.h:5
@@ -334,6 +340,7 @@ msgstr "నిల్వ తరగతి"
 #: ../data/language-specs/po.lang.h:6 ../data/language-specs/prolog.lang.h:9
 #: ../data/language-specs/protobuf.lang.h:5
 #: ../data/language-specs/python.lang.h:17
+#: ../data/language-specs/python3.lang.h:17
 #: ../data/language-specs/ruby.lang.h:22
 #: ../data/language-specs/scheme.lang.h:7
 #: ../data/language-specs/scilab.lang.h:9 ../data/language-specs/sh.lang.h:8
@@ -438,6 +445,7 @@ msgstr "ప్రతిక్షేపన"
 #: ../data/language-specs/awk.lang.h:1 ../data/language-specs/boo.lang.h:3
 #: ../data/language-specs/glsl.lang.h:2 ../data/language-specs/perl.lang.h:1
 #: ../data/language-specs/python.lang.h:4
+#: ../data/language-specs/python3.lang.h:4
 msgid "Builtin Function"
 msgstr "నిర్మితమైన కార్యక్రమం"
 
@@ -451,6 +459,7 @@ msgstr "మాదిరి"
 #: ../data/language-specs/lua.lang.h:9 ../data/language-specs/m4.lang.h:3
 #: ../data/language-specs/perl.lang.h:18 ../data/language-specs/php.lang.h:19
 #: ../data/language-specs/python.lang.h:15
+#: ../data/language-specs/python3.lang.h:15
 #: ../data/language-specs/ruby.lang.h:20 ../data/language-specs/sh.lang.h:7
 #: ../data/language-specs/tcl.lang.h:2
 msgid "Scripts"
@@ -487,7 +496,8 @@ msgstr "భెన్ను జిడి"
 #: ../data/language-specs/go.lang.h:8 ../data/language-specs/json.lang.h:5
 #: ../data/language-specs/nemerle.lang.h:8 ../data/language-specs/ooc.lang.h:9
 #: ../data/language-specs/php.lang.h:9 ../data/language-specs/python.lang.h:9
-#: ../data/language-specs/R.lang.h:4 ../data/language-specs/ruby.lang.h:10
+#: ../data/language-specs/python3.lang.h:9 ../data/language-specs/R.lang.h:4
+#: ../data/language-specs/ruby.lang.h:10
 msgid "Floating point number"
 msgstr "ఫ్లోటింగ్ సూచి సంఖ్య"
 
@@ -540,6 +550,7 @@ msgstr "Boo"
 #: ../data/language-specs/libtool.lang.h:1
 #: ../data/language-specs/objj.lang.h:1 ../data/language-specs/octave.lang.h:2
 #: ../data/language-specs/python.lang.h:2
+#: ../data/language-specs/python3.lang.h:2
 #: ../data/language-specs/scheme.lang.h:1
 #: ../data/language-specs/scilab.lang.h:1
 #: ../data/language-specs/sparql.lang.h:1
@@ -551,6 +562,7 @@ msgid "Definition"
 msgstr "నిర్వచనం"
 
 #: ../data/language-specs/boo.lang.h:8 ../data/language-specs/python.lang.h:13
+#: ../data/language-specs/python3.lang.h:13
 msgid "Multiline string"
 msgstr "బహుళవరుస స్ట్రింగ్"
 
@@ -579,6 +591,7 @@ msgstr "సాదారణ సమీకరణం"
 
 #: ../data/language-specs/boo.lang.h:14
 #: ../data/language-specs/python.lang.h:16
+#: ../data/language-specs/python3.lang.h:16
 #: ../data/language-specs/ruby.lang.h:21
 msgid "Special Variable"
 msgstr "ప్రత్యేక చరరాశి"
@@ -652,7 +665,7 @@ msgid "File"
 msgstr "దస్త్రం"
 
 #: ../data/language-specs/changelog.lang.h:7
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:464
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:455
 msgid "Name"
 msgstr "నామము"
 
@@ -841,6 +854,7 @@ msgstr "సకల చరరాశులు"
 
 #. A base-N number: 0xFFFF
 #: ../data/language-specs/def.lang.h:2 ../data/language-specs/python.lang.h:1
+#: ../data/language-specs/python3.lang.h:1
 #: ../data/language-specs/ruby.lang.h:2
 msgid "Base-N number"
 msgstr "ఆధార-N సంఖ్య"
@@ -853,6 +867,7 @@ msgstr "నిర్మిత-మైన గుర్తింపుదారి"
 
 #. A complex number
 #: ../data/language-specs/def.lang.h:13 ../data/language-specs/python.lang.h:6
+#: ../data/language-specs/python3.lang.h:6
 msgid "Complex number"
 msgstr "సంక్లిష్ట సంఖ్య"
 
@@ -1253,6 +1268,7 @@ msgid "Thread Header"
 msgstr "త్రెడ్ పీఠిక"
 
 #: ../data/language-specs/glsl.lang.h:1 ../data/language-specs/python.lang.h:3
+#: ../data/language-specs/python3.lang.h:3
 msgid "Builtin Constant"
 msgstr "నిర్మితమైన స్థిరరాశి"
 
@@ -1692,8 +1708,9 @@ msgid "Ocamldoc Comments"
 msgstr "Ocamldoc వ్యాఖ్యలు"
 
 #: ../data/language-specs/ocaml.lang.h:17
-msgid "Standart Modules"
-msgstr "ప్రమాణపు గుణకములు"
+#| msgid "Standart Modules"
+msgid "Standard Modules"
+msgstr "ప్రమాణ మాడ్యూల్స్"
 
 #: ../data/language-specs/ocl.lang.h:4
 msgid "OCL"
@@ -1725,6 +1742,7 @@ msgstr "కీచిహ్నము"
 
 #: ../data/language-specs/opal.lang.h:9
 #: ../data/language-specs/python.lang.h:12
+#: ../data/language-specs/python3.lang.h:12
 msgid "Module Handler"
 msgstr "గుణకం సంభాలిక"
 
@@ -1839,10 +1857,12 @@ msgid "Prolog"
 msgstr "ప్రోలాగ్"
 
 #: ../data/language-specs/python.lang.h:5
+#: ../data/language-specs/python3.lang.h:5
 msgid "Builtin Object"
 msgstr "నిర్మితమైన ఆబ్జక్టు"
 
 #: ../data/language-specs/python.lang.h:10
+#: ../data/language-specs/python3.lang.h:10
 msgid "Format"
 msgstr "రూపం"
 
@@ -1853,6 +1873,11 @@ msgstr "Python"
 #: ../data/language-specs/python.lang.h:18
 msgid "string-conversion"
 msgstr "స్ట్రింగ్-మార్పు"
+
+#: ../data/language-specs/python3.lang.h:14
+#| msgid "Python"
+msgid "Python 3"
+msgstr "పైధాన్ 3"
 
 #: ../data/language-specs/R.lang.h:1
 msgid "Assignment Operator"
@@ -2202,65 +2227,65 @@ msgstr "Tango వర్ణపు పాలెట్ ను ఉపయోగిస
 msgid "Tango"
 msgstr "Tango"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:380
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:371
 msgid "Document Words"
 msgstr "పత్రం యొక్క పదములు"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:465
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:456
 msgid "The provider name"
 msgstr "అందజేయువారి నామము"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:472
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:463
 #: ../gtksourceview/gtksourcecompletionitem.c:268
 msgid "Icon"
 msgstr "ప్రతిమ"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:473
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:464
 msgid "The provider icon"
 msgstr "అందజేయువారి ప్రతిమ"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:480
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:471
 msgid "Proposals Batch Size"
 msgstr "యోచనముల జత పరిమానం"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:481
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:472
 msgid "Number of proposals added in one batch"
 msgstr "ఎన్నో యోచనములు ఒక జట్టు లో జతచేర్చబడినవి"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:490
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:481
 msgid "Scan Batch Size"
 msgstr "సంశోథన జట్టు పరిమానం"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:491
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:482
 msgid "Number of lines scanned in one batch"
 msgstr "ఎన్నో వరుసలు ఒక జట్టు లో సంశోథించబడినవి"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:500
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:491
 msgid "Minimum Word Size"
 msgstr "అత్యల్ప పదము పరిమానం"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:501
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:492
 msgid "The minimum word size to complete"
 msgstr "అత్యల్ప పదము పరిమానం ముగియనున్నది"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:510
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:501
 msgid "Interactive Delay"
 msgstr "ఆదానప్రదానపు ఆలస్యం"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:511
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:502
 msgid "The delay before initiating interactive completion"
 msgstr "ఆదానప్రదానం పూర్తగావటం  ఆరంభానికి ముందే ఆలస్యం"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:520
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:511
 msgid "Priority"
 msgstr "ప్రాధామ్యం"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:521
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:512
 msgid "Provider priority"
 msgstr "అందజేయువారి  ప్రాధామ్యం"
 
 #: ../gtksourceview/gtksourcebuffer.c:234
-#: ../gtksourceview/gtksourceprintcompositor.c:505
+#: ../gtksourceview/gtksourceprintcompositor.c:502
 msgid "Highlight Syntax"
 msgstr "సిన్టాక్స్ ను ఉద్దీపనంచేయుము"
 
@@ -2330,111 +2355,111 @@ msgstr "బఫర్ చేసింది రద్దుగా నిర్వ
 msgid "No extra information available"
 msgstr "దీనికి మించిన సమాచారము లభించలేదు"
 
-#: ../gtksourceview/gtksourcecompletion.c:2225
+#: ../gtksourceview/gtksourcecompletion.c:2224
 #: ../gtksourceview/gtksourcegutter.c:547
 msgid "View"
 msgstr "దర్శించు"
 
-#: ../gtksourceview/gtksourcecompletion.c:2226
+#: ../gtksourceview/gtksourcecompletion.c:2225
 msgid "The GtkSourceView bound to the completion"
 msgstr "GtkSourceView పూర్తిగావుట కొరకు బంథించి ఉన్నది"
 
-#: ../gtksourceview/gtksourcecompletion.c:2241
+#: ../gtksourceview/gtksourcecompletion.c:2240
 msgid "Remember Info Visibility"
 msgstr "సమాచార ద్రుశ్యమానము గుర్తుంచుకొనుము"
 
-#: ../gtksourceview/gtksourcecompletion.c:2242
+#: ../gtksourceview/gtksourcecompletion.c:2241
 msgid "Remember the last info window visibility state"
 msgstr "ఆఖరి సమాచార విండో ద్రుశ్యమానము స్థితిని గుర్తుంచుకొనుము"
 
-#: ../gtksourceview/gtksourcecompletion.c:2255
+#: ../gtksourceview/gtksourcecompletion.c:2254
 msgid "Select on Show"
 msgstr "చుపించుమని ఎంచుకొనుము"
 
-#: ../gtksourceview/gtksourcecompletion.c:2256
+#: ../gtksourceview/gtksourcecompletion.c:2255
 msgid "Select first proposal when completion is shown"
 msgstr "పూర్తి అయింది అని చూపించినప్పుడు మొదటి యోచనని ఎంచుకొనుము"
 
-#: ../gtksourceview/gtksourcecompletion.c:2270
+#: ../gtksourceview/gtksourcecompletion.c:2269
 msgid "Show Headers"
 msgstr "పీఠకలను చూపించుము"
 
-#: ../gtksourceview/gtksourcecompletion.c:2271
+#: ../gtksourceview/gtksourcecompletion.c:2270
 msgid ""
 "Show provider headers when proposals from multiple providers are available"
 msgstr ""
 "అనేకమంది అందజేయువారిచే యోచనములు లభించునో అందజేయువారి పీఠికలను చూపించుము"
 
-#: ../gtksourceview/gtksourcecompletion.c:2285
+#: ../gtksourceview/gtksourcecompletion.c:2284
 msgid "Show Icons"
 msgstr "ప్రతిమలను చూపించుము"
 
-#: ../gtksourceview/gtksourcecompletion.c:2286
+#: ../gtksourceview/gtksourcecompletion.c:2285
 msgid "Show provider and proposal icons in the completion popup"
 msgstr ""
 "అందజేయునది మరియు యోచనము యొక్క ప్రతిమలు పూర్తయినది అని ప్రత్యక్షమయే దానిలో "
 "చూపించుము"
 
-#: ../gtksourceview/gtksourcecompletion.c:2299
+#: ../gtksourceview/gtksourcecompletion.c:2298
 msgid "Accelerators"
 msgstr "త్వరణ సాధనములు"
 
-#: ../gtksourceview/gtksourcecompletion.c:2300
+#: ../gtksourceview/gtksourcecompletion.c:2299
 msgid "Number of proposal accelerators to show"
 msgstr "ఎన్నో యోచన త్వరణ సాధనములు చూపింహుటకు"
 
-#: ../gtksourceview/gtksourcecompletion.c:2316
+#: ../gtksourceview/gtksourcecompletion.c:2315
 msgid "Auto Complete Delay"
 msgstr "స్వయంగా పూర్తిగావటం ఆలస్యమైనది"
 
-#: ../gtksourceview/gtksourcecompletion.c:2317
+#: ../gtksourceview/gtksourcecompletion.c:2316
 msgid "Completion popup delay for interactive completion"
 msgstr ""
 "ఆదానప్రదానం పూర్తిగావటం కొరకు పూర్తిగావటం అని ప్రత్యక్షమయేది ఆలశ్యమైనది"
 
-#: ../gtksourceview/gtksourcecompletion.c:2332
+#: ../gtksourceview/gtksourcecompletion.c:2331
 msgid "Provider Page Size"
 msgstr "అందజేయు వారి యొక్క పుట పరిమానం"
 
-#: ../gtksourceview/gtksourcecompletion.c:2333
+#: ../gtksourceview/gtksourcecompletion.c:2332
 msgid "Provider scrolling page size"
 msgstr "అందజేయువారి యొక్క కదిలేటిపుట పరిమానం"
 
-#: ../gtksourceview/gtksourcecompletion.c:2348
+#: ../gtksourceview/gtksourcecompletion.c:2347
 msgid "Proposal Page Size"
 msgstr "యోచనము యొక్క పుట పరిమానం"
 
-#: ../gtksourceview/gtksourcecompletion.c:2349
+#: ../gtksourceview/gtksourcecompletion.c:2348
 msgid "Proposal scrolling page size"
 msgstr "యోచనము యొక్క కదిలేటిపుట పరిమానం"
 
-#: ../gtksourceview/gtksourcecompletion.c:2694
+#: ../gtksourceview/gtksourcecompletion.c:2693
 msgid "Provider"
 msgstr "అందజేయునది"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:237
+#: ../gtksourceview/gtksourcecompletioncontext.c:233
 #: ../gtksourceview/gtksourceview.c:306
 msgid "Completion"
 msgstr "పూర్తిగావించుచున్నది"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:238
+#: ../gtksourceview/gtksourcecompletioncontext.c:234
 msgid "The completion object to which the context belongs"
 msgstr "పూర్తిగావించిని పని ఏ సందర్భమునకి చెందిని"
 
 #. Translators: The GtkTextIter at which the completion was invoked
-#: ../gtksourceview/gtksourcecompletioncontext.c:251
+#: ../gtksourceview/gtksourcecompletioncontext.c:247
 msgid "Iterator"
 msgstr "పునరుద్ఘాటించునది"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:252
+#: ../gtksourceview/gtksourcecompletioncontext.c:248
 msgid "The GtkTextIter at which the completion was invoked"
 msgstr "ఏ చోట అయితే పూర్తిగావటం ఆపబడినదో అది GtkTextIter"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:264
+#: ../gtksourceview/gtksourcecompletioncontext.c:260
 msgid "Activation"
 msgstr "చుఱుకుగాచేయు"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:265
+#: ../gtksourceview/gtksourcecompletioncontext.c:261
 msgid "The type of activation"
 msgstr "చుఱుకుగాచేయు రకము"
 
@@ -2467,15 +2492,11 @@ msgstr "సమాచారము"
 msgid "Info to be shown for this item"
 msgstr "ఈ అం శమునకు సమాచారము చూపవలెను"
 
-#: ../gtksourceview/gtksourcecontextengine.c:2969
-msgid "using \\C is not supported in language definitions"
-msgstr "భాషా నిర్వచనాల నందు \\C ఉపయోగించుట మద్దతునీయదు"
-
 #. regex_new could fail, for instance if there are different
 #. * named sub-patterns with the same name or if resulting regex is
 #. * too long. In this case fixing lang file helps (e.g. renaming
 #. * subpatterns, making huge keywords use bigger prefixes, etc.)
-#: ../gtksourceview/gtksourcecontextengine.c:3593
+#: ../gtksourceview/gtksourcecontextengine.c:3171
 #, c-format
 msgid ""
 "Cannot create a regex for all the transitions, the syntax highlighting "
@@ -2486,7 +2507,7 @@ msgstr ""
 "విధానం నెమ్మదిగా ఉంటుంది.\n"
 "ఇదీ దోషం: %s"
 
-#: ../gtksourceview/gtksourcecontextengine.c:4926
+#: ../gtksourceview/gtksourcecontextengine.c:4509
 msgid ""
 "Highlighting a single line took too much time, syntax highlighting will be "
 "disabled"
@@ -2494,19 +2515,19 @@ msgstr ""
 "ఒంటరి వరుసను ఉద్దీపనంచేయుటకు యెక్కువ సమయంపడుతుంది, సిన్టాక్స్‍ ఉద్దీపనం "
 "అచేతనం చేయబడుతుంది"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6179
+#: ../gtksourceview/gtksourcecontextengine.c:5762
 #, c-format
 msgid "context '%s' cannot contain a \\%%{...@start} command"
 msgstr "సందర్భం '%s' \\%%{...@start} ఆదేశాన్ని కలిగిఉండలేదు"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6340
-#: ../gtksourceview/gtksourcecontextengine.c:6429
+#: ../gtksourceview/gtksourcecontextengine.c:5923
+#: ../gtksourceview/gtksourcecontextengine.c:6012
 #, c-format
 msgid "duplicated context id '%s'"
 msgstr "సందర్భ id '%s' నకిలీది"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6544
-#: ../gtksourceview/gtksourcecontextengine.c:6604
+#: ../gtksourceview/gtksourcecontextengine.c:6127
+#: ../gtksourceview/gtksourcecontextengine.c:6187
 #, c-format
 msgid ""
 "style override used with wildcard context reference in language '%s' in ref "
@@ -2515,18 +2536,18 @@ msgstr ""
 "భాష '%s' సంప్రదింపు '%s' లో శైలి వైల్డుకార్డు సందర్భ సంప్రదింపు ఉపయోగంతో "
 "ఓవర్‌రైడ్ చేయబడింది"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6618
+#: ../gtksourceview/gtksourcecontextengine.c:6201
 #, c-format
 msgid "invalid context reference '%s'"
 msgstr "చెల్లని సందర్భ సంప్రదింపు '%s'"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6637
-#: ../gtksourceview/gtksourcecontextengine.c:6647
+#: ../gtksourceview/gtksourcecontextengine.c:6220
+#: ../gtksourceview/gtksourcecontextengine.c:6230
 #, c-format
 msgid "unknown context '%s'"
 msgstr "తెలియని సందర్భం '%s'"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6747
+#: ../gtksourceview/gtksourcecontextengine.c:6330
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "ప్రధాన భాష నిర్వచనం (id=\"%s\".) తప్పిపోయింది"
@@ -2732,102 +2753,106 @@ msgstr "వర్గము"
 msgid "The mark category"
 msgstr "గుర్తు వర్గము"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:445
+#: ../gtksourceview/gtksourceprintcompositor.c:442
 msgid "Source Buffer"
 msgstr "మూల బఫర్"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:446
+#: ../gtksourceview/gtksourceprintcompositor.c:443
 msgid "The GtkSourceBuffer object to print"
 msgstr "ముద్రించుటకు GtkSourceBuffer ఆబ్జక్టు"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:463
+#: ../gtksourceview/gtksourceprintcompositor.c:460
 #: ../gtksourceview/gtksourceview.c:344
 msgid "Tab Width"
 msgstr "టాబ్ వెడల్పు"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:464
+#: ../gtksourceview/gtksourceprintcompositor.c:461
 #: ../gtksourceview/gtksourceview.c:345
 msgid "Width of a tab character expressed in spaces"
 msgstr "ఖాళీలలో తెలుపబడ్డ టాబ్ అక్షరం యొక్క వెడల్పు"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:484
+#: ../gtksourceview/gtksourceprintcompositor.c:481
 msgid "Wrap Mode"
 msgstr "మలుపు రీతి"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:485
+#: ../gtksourceview/gtksourceprintcompositor.c:482
 msgid ""
 "Whether to wrap lines never, at word boundaries, or at character boundaries."
 msgstr "పద హద్దులవద్ద, లేదా అక్షర హద్దులవద్ద, ఎప్పటికి వరుసలను మలచవద్దా."
 
-#: ../gtksourceview/gtksourceprintcompositor.c:506
+#: ../gtksourceview/gtksourceprintcompositor.c:503
 msgid "Whether to print the document with highlighted syntax"
 msgstr "ఉద్దీపించబడిన సిన్టాక్సుతో పత్రమును ముద్రించవలెనా"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:527
+#: ../gtksourceview/gtksourceprintcompositor.c:524
 msgid "Print Line Numbers"
 msgstr "వరుససంఖ్యలను ముద్రించవలెనా"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:528
+#: ../gtksourceview/gtksourceprintcompositor.c:525
 msgid "Interval of printed line numbers (0 means no numbers)"
 msgstr "ముద్రించిన వరుస సంఖ్యల విరామం ( 0 ఏ సంఖ్యలు కావనిఅర్దం)"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:550
+#: ../gtksourceview/gtksourceprintcompositor.c:547
 msgid "Print Header"
 msgstr "ముద్రణ పీఠిక"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:551
+#: ../gtksourceview/gtksourceprintcompositor.c:548
 msgid "Whether to print a header in each page"
 msgstr "ప్రతి పుటనందు పీఠికను ముద్రించవలెనా"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:573
+#: ../gtksourceview/gtksourceprintcompositor.c:570
 msgid "Print Footer"
 msgstr "ముద్రణ భూమిక"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:574
+#: ../gtksourceview/gtksourceprintcompositor.c:571
 msgid "Whether to print a footer in each page"
 msgstr "ప్రతి పుటనందు భూమికను ముద్రించవలెనా"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:596
+#: ../gtksourceview/gtksourceprintcompositor.c:593
 msgid "Body Font Name"
 msgstr "బాడీ ఫాంటు నామము"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:597
+#: ../gtksourceview/gtksourceprintcompositor.c:594
 msgid "Name of the font to use for the text body (e.g. \"Monospace 10\")"
 msgstr "పాఠ్యము బాడి కి ఉపయోగించుటకు ఫాంటు నామము (ఉ.దా. \"Monospace 10\")"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:620
+#: ../gtksourceview/gtksourceprintcompositor.c:617
 msgid "Line Numbers Font Name"
 msgstr "వరుససంఖ్యల ఫాంటు నామము"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:621
+#: ../gtksourceview/gtksourceprintcompositor.c:618
 msgid "Name of the font to use for the line numbers (e.g. \"Monospace 10\")"
 msgstr "వరుససంఖ్యలకు ఉపయోగించుటకు ఫాంటు నామము (ఉ.దా. \"Monospace 10\")"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:644
+#: ../gtksourceview/gtksourceprintcompositor.c:641
 msgid "Header Font Name"
 msgstr "పీఠిక ఫాంటు నామము"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:645
+#: ../gtksourceview/gtksourceprintcompositor.c:642
 msgid "Name of the font to use for the page header (e.g. \"Monospace 10\")"
 msgstr "పుట పీఠకకు ఉపయోగించుటకు ఫాంటు నామము (ఉ.దా. \"Monospace 10\")"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:668
+#: ../gtksourceview/gtksourceprintcompositor.c:665
 msgid "Footer Font Name"
 msgstr "భూమిక ఫాంటు నామము"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:669
+#: ../gtksourceview/gtksourceprintcompositor.c:666
 msgid "Name of the font to use for the page footer (e.g. \"Monospace 10\")"
 msgstr "పుట భూమికకు ఉపయోగించుటకు ఫాంటు యొక్క నామము (ఉ.దా. \"Monospace 10\")"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:685
+#: ../gtksourceview/gtksourceprintcompositor.c:682
 msgid "Number of pages"
 msgstr "పుటల సంఖ్య"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:686
+#: ../gtksourceview/gtksourceprintcompositor.c:683
 msgid ""
 "The number of pages in the document (-1 means the document has not been "
 "completely paginated)."
 msgstr "పత్రములోని పుట ల సంఖ్య (-1 అంటే పత్రము ఇంకా సంపుటం చేయలేదని అర్ధం)."
+
+#: ../gtksourceview/gtksourceregex.c:125
+msgid "using \\C is not supported in language definitions"
+msgstr "భాషా నిర్వచనాల నందు \\C ఉపయోగించుట మద్దతునీయదు"
 
 #: ../gtksourceview/gtksourcestyle.c:80
 msgid "Line background"
@@ -2913,23 +2938,23 @@ msgstr "కొట్టివేత సమితి"
 msgid "Whether strikethrough attribute is set"
 msgstr "కొట్టివేత యాట్రిబ్యూట్ ను అమర్చవలెనా"
 
-#: ../gtksourceview/gtksourcestylescheme.c:221
-#: ../gtksourceview/gtksourcestylescheme.c:222
+#: ../gtksourceview/gtksourcestylescheme.c:212
+#: ../gtksourceview/gtksourcestylescheme.c:213
 msgid "Style scheme id"
 msgstr "శైలి పధకంid"
 
-#: ../gtksourceview/gtksourcestylescheme.c:234
-#: ../gtksourceview/gtksourcestylescheme.c:235
+#: ../gtksourceview/gtksourcestylescheme.c:225
+#: ../gtksourceview/gtksourcestylescheme.c:226
 msgid "Style scheme name"
 msgstr "శైలి పధకం నామము"
 
-#: ../gtksourceview/gtksourcestylescheme.c:247
-#: ../gtksourceview/gtksourcestylescheme.c:248
+#: ../gtksourceview/gtksourcestylescheme.c:238
+#: ../gtksourceview/gtksourcestylescheme.c:239
 msgid "Style scheme description"
 msgstr "శైలి పధకం వివరణ"
 
-#: ../gtksourceview/gtksourcestylescheme.c:260
-#: ../gtksourceview/gtksourcestylescheme.c:261
+#: ../gtksourceview/gtksourcestylescheme.c:251
+#: ../gtksourceview/gtksourcestylescheme.c:252
 msgid "Style scheme filename"
 msgstr "శైలి పధకం దస్త్రనామము"
 
@@ -3054,7 +3079,7 @@ msgstr "ఖాళీలను గీయుము"
 msgid "Set if and how the spaces should be visualized"
 msgstr "ఖాళీలు కనిపించాలా మరియు కనిపిస్తే యెలాకనిపించాలి అమర్చుము"
 
-#: ../gtksourceview/gtksourceview-i18n.c:74
+#: ../gtksourceview/gtksourceview-i18n.c:72
 msgid "translator-credits"
 msgstr "Krishna Babu K <kkrothap@redhat.com> 2008."
 
