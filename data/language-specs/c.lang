@@ -39,6 +39,7 @@
     <style id="included-file"     _name="Included File"         map-to="def:string"/>
     <style id="char"              _name="Character"             map-to="def:character"/>
     <style id="keyword"           _name="Keyword"               map-to="def:keyword"/>
+    <style id="operator"          _name="Operator"              map-to="def:operator"/>
     <style id="type"              _name="Data Type"             map-to="def:type"/>
     <style id="storage-class"     _name="Storage Class"         map-to="def:type"/>
     <style id="printf"            _name="printf Conversion"     map-to="def:special-char"/>
@@ -173,7 +174,6 @@
       </match>
     </context>
 
-    <!-- Keywords -->
     <context id="keywords" style-ref="keyword">
       <keyword>asm</keyword>
       <keyword>break</keyword>
@@ -188,12 +188,15 @@
       <keyword>goto</keyword>
       <keyword>if</keyword>
       <keyword>return</keyword>
-      <keyword>sizeof</keyword>
       <keyword>struct</keyword>
       <keyword>switch</keyword>
       <keyword>typedef</keyword>
       <keyword>union</keyword>
       <keyword>while</keyword>
+    </context>
+
+    <context id="operators" style-ref="operator">
+      <keyword>sizeof</keyword>
     </context>
 
     <context id="types" style-ref="type">
@@ -296,6 +299,7 @@
         <context ref="octal"/>
         <context ref="decimal"/>
         <context ref="keywords"/>
+        <context ref="operators"/>
         <context ref="types"/>
         <context ref="storage-class"/>
         <context ref="boolean"/>
