@@ -58,6 +58,7 @@ LANGUAGES =			\
 	latex.lang		\
 	lex.lang		\
 	libtool.lang		\
+	llvm.lang		\
 	lua.lang		\
 	m4.lang			\
 	makefile.lang		\
