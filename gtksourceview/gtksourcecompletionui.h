@@ -30,6 +30,7 @@ static gchar gtk_source_completion_ui[] =
 "  <object class=\"GtkWindow\" id=\"window_completion\">"
 "    <property name=\"border_width\">1</property>"
 "    <property name=\"type\">popup</property>"
+"    <property name=\"type_hint\">combo</property>"
 "    <property name=\"resizable\">False</property>"
 "    <property name=\"skip_taskbar_hint\">True</property>"
 "    <property name=\"skip_pager_hint\">True</property>"
