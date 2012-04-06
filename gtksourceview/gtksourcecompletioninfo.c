@@ -70,10 +70,6 @@ gtk_source_completion_info_init (GtkSourceCompletionInfo *info)
 	/* Create scrolled window  */
 	info->priv->scroll = gtk_scrolled_window_new (NULL, NULL);
 
-	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (info->priv->scroll),
-	                                GTK_POLICY_AUTOMATIC,
-	                                GTK_POLICY_AUTOMATIC);
-
 	gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (info->priv->scroll),
 	                                     GTK_SHADOW_NONE);
 	gtk_container_add (GTK_CONTAINER (info), info->priv->scroll);
@@ -163,27 +159,20 @@ gtk_source_completion_info_move_to_iter (GtkSourceCompletionInfo *info,
                                          GtkTextView             *view,
                                          GtkTextIter             *iter)
 {
-	GtkTextBuffer *buffer;
-	GtkTextMark *insert_mark;
-	GtkTextIter start;
-
 	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_INFO (info));
 	g_return_if_fail (GTK_SOURCE_IS_VIEW (view));
 
 	if (iter == NULL)
 	{
-		buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
-		insert_mark = gtk_text_buffer_get_insert (buffer);
-		gtk_text_buffer_get_iter_at_mark (buffer, &start, insert_mark);
+		gtk_source_completion_utils_move_to_cursor (GTK_WINDOW (info),
+							    GTK_SOURCE_VIEW (view));
 	}
 	else
 	{
-		start = *iter;
+		gtk_source_completion_utils_move_to_iter (GTK_WINDOW (info),
+							  GTK_SOURCE_VIEW (view),
+							  iter);
 	}
-
-	gtk_source_completion_utils_move_to_iter (GTK_WINDOW (info),
-	                                          GTK_SOURCE_VIEW (view),
-	                                          &start);
 }
 
 /**
