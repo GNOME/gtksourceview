@@ -2949,6 +2949,9 @@ initialize_ui (GtkSourceCompletion *completion)
 		GTK_WIDGET (gtk_builder_get_object (builder,
 		                                    "hbox_info"));
 
+	gtk_window_set_attached_to (GTK_WINDOW (completion->priv->window),
+				    GTK_WIDGET (completion->priv->view));
+
 	info_button_style_updated (completion->priv->info_button, completion);
 
 	/* Tree view and model */
@@ -3060,6 +3063,9 @@ initialize_ui (GtkSourceCompletion *completion)
 	                  "notify::transient-for",
 	                  G_CALLBACK (update_transient_for_info),
 	                  completion);
+
+	gtk_window_set_attached_to (GTK_WINDOW (completion->priv->info_window),
+				    GTK_WIDGET (completion->priv->window));
 
 	/* Default info widget */
 	completion->priv->default_info = gtk_label_new (NULL);
