@@ -851,23 +851,31 @@ update_header_visibility_each (GtkSourceCompletionProvider *provider,
                                ProviderInfo                *info,
                                GtkSourceCompletionModel    *model)
 {
-	ProposalNode *header_node = info->first->data;
+	ProposalNode *header_node;
 
-	/* Check if the header is already in the correct visibility state */
-	if (info->filtered || model->priv->show_headers != header_node->filtered)
+	g_assert (info->first != NULL);
+
+	header_node = info->first->data;
+
+	/* The header is already in the correct visibility state */
+	if (header_node->filtered != model->priv->show_headers)
 	{
 		return;
 	}
 
-	if (model->priv->show_headers)
+	/* Update the visibility state */
+	header_node->filtered = !model->priv->show_headers;
+
+	if (!info->filtered)
 	{
-		header_node->filtered = FALSE;
-		handle_row_inserted (model, info->first, NULL);
-	}
-	else
-	{
-		header_node->filtered = TRUE;
-		handle_row_deleted (model, info->first, NULL);
+		if (model->priv->show_headers)
+		{
+			handle_row_inserted (model, info->first, NULL);
+		}
+		else
+		{
+			handle_row_deleted (model, info->first, NULL);
+		}
 	}
 }
 
