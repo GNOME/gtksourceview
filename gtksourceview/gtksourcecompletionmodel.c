@@ -421,19 +421,6 @@ tree_model_iter_parent (GtkTreeModel *tree_model,
 }
 
 static void
-tree_model_row_inserted (GtkTreeModel *tree_model,
-			 GtkTreePath  *path,
-			 GtkTreeIter  *iter)
-{
-}
-
-static void
-tree_model_row_deleted (GtkTreeModel *tree_model,
-			 GtkTreePath  *path)
-{
-}
-
-static void
 tree_model_iface_init (gpointer g_iface,
                        gpointer iface_data)
 {
@@ -451,9 +438,6 @@ tree_model_iface_init (gpointer g_iface,
 	iface->iter_n_children = tree_model_iter_n_children;
 	iface->iter_nth_child = tree_model_iter_nth_child;
 	iface->iter_parent = tree_model_iter_parent;
-
-	iface->row_inserted = tree_model_row_inserted;
-	iface->row_deleted = tree_model_row_deleted;
 }
 
 static void
