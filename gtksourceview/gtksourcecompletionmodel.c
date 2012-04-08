@@ -607,7 +607,7 @@ on_proposal_changed (GtkSourceCompletionProposal *proposal,
 
 	if (!node->filtered)
 	{
-		iter.user_data = node;
+		iter.user_data = item;
 		path = path_from_list (node->model, item);
 
 		gtk_tree_model_row_changed (GTK_TREE_MODEL (node->model),
