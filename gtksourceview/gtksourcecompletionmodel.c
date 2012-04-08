@@ -773,7 +773,7 @@ insert_node (GtkSourceCompletionModel     *model,
 static void
 handle_row_deleted (GtkSourceCompletionModel  *model,
                     GList                     *item,
-                    GtkTreePath              **path)
+                    GtkTreePath               *path)
 {
 	GtkTreePath *ppath = NULL;
 
@@ -784,18 +784,22 @@ handle_row_deleted (GtkSourceCompletionModel  *model,
 	else
 	{
 		/* Create a copy here because row_deleted might modify it */
-		ppath = gtk_tree_path_copy (*path);
+		ppath = gtk_tree_path_copy (path);
 	}
 
 	gtk_tree_model_row_deleted (GTK_TREE_MODEL (model), ppath);
 	gtk_tree_path_free (ppath);
 }
 
+/* Remove a node from a provider.
+ * If the node is filtered, the 'path' is ignored and no signals are emitted.
+ * For an unfiltered node, if the 'path' is NULL, it is computed.
+ */
 static void
 remove_node (GtkSourceCompletionModel  *model,
              ProviderInfo              *info,
              GList                     *item,
-             GtkTreePath              **path)
+             GtkTreePath               *path)
 {
 	ProposalNode *node = (ProposalNode *)item->data;
 	GtkTreePath *ppath = NULL;
@@ -823,7 +827,7 @@ remove_node (GtkSourceCompletionModel  *model,
 
 	num_dec (model, info, node);
 
-	if (path == NULL)
+	if (!node->filtered && path == NULL)
 	{
 		ppath = path_from_list (model, item);
 	}
@@ -836,7 +840,10 @@ remove_node (GtkSourceCompletionModel  *model,
 	model->priv->store = g_list_delete_link (model->priv->store,
 	                                         item);
 
-	handle_row_deleted (model, item, path ? path : &ppath);
+	if (!node->filtered)
+	{
+		handle_row_deleted (model, NULL, path != NULL ? path : ppath);
+	}
 
 	if (ppath != NULL)
 	{
@@ -972,7 +979,7 @@ update_provider_visibility_hide (GtkSourceCompletionModel *model,
 			}
 
 			--model->priv->num;
-			handle_row_deleted (model, item, &path);
+			handle_row_deleted (model, item, path);
 		}
 
 		if (item == info->last)
@@ -1053,8 +1060,7 @@ remove_unmarked (GtkSourceCompletionModel    *model,
 		{
 			GList *next = g_list_next (item);
 
-			// Remove the node here
-			remove_node (model, info, item, &path);
+			remove_node (model, info, item, path);
 			item = next;
 		}
 		else
