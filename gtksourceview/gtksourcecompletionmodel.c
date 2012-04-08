@@ -1051,7 +1051,7 @@ remove_unmarked (GtkSourceCompletionModel    *model,
 			break;
 		}
 
-		if (path == NULL)
+		if (!node->filtered && path == NULL)
 		{
 			path = path_from_list (model, item);
 		}
@@ -1062,12 +1062,15 @@ remove_unmarked (GtkSourceCompletionModel    *model,
 
 			remove_node (model, info, item, path);
 			item = next;
+			continue;
 		}
-		else
+
+		if (!node->filtered)
 		{
 			gtk_tree_path_next (path);
-			item = g_list_next (item);
 		}
+
+		item = g_list_next (item);
 	}
 
 	if (path != NULL)
@@ -1075,13 +1078,13 @@ remove_unmarked (GtkSourceCompletionModel    *model,
 		gtk_tree_path_free (path);
 	}
 
-	if (info->num_proposals == 0 && info->first != NULL && model->priv->show_headers)
-	{
-		remove_node (model, info, info->first, NULL);
-	}
-
 	if (info->num_proposals == 0)
 	{
+		if (info->first != NULL)
+		{
+			remove_node (model, info, info->first, NULL);
+		}
+
 		g_hash_table_remove (model->priv->providers_info, provider);
 
 		model->priv->providers = g_list_remove (model->priv->providers,
