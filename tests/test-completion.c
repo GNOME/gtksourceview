@@ -21,6 +21,8 @@
 
 #include <config.h>
 
+#include <glib.h>
+#include <glib/gprintf.h>
 #include <gtk/gtk.h>
 #include <gdk/gdkkeysyms.h>
 #include <gtksourceview/gtksourceview.h>
@@ -47,6 +49,10 @@ struct _TestProvider
 	gchar *name;
 
 	GdkPixbuf *icon;
+
+	/* If it's a random provider, a subset of 'proposals' are choosen on
+	 * each populate. Otherwise, all the proposals are shown. */
+	guint is_random : 1;
 };
 
 struct _TestProviderClass
@@ -82,14 +88,43 @@ test_provider_match (GtkSourceCompletionProvider *provider,
 	return TRUE;
 }
 
+static GList *
+select_random_proposals (GList *all_proposals)
+{
+	GList *selection = NULL;
+	GList *prop;
+
+	for (prop = all_proposals; prop != NULL; prop = g_list_next (prop))
+	{
+		if (g_random_boolean ())
+		{
+			selection = g_list_prepend (selection, prop->data);
+		}
+	}
+
+	return selection;
+}
+
 static void
-test_provider_populate (GtkSourceCompletionProvider *provider,
+test_provider_populate (GtkSourceCompletionProvider *completion_provider,
                         GtkSourceCompletionContext  *context)
 {
+	TestProvider *provider = (TestProvider *)completion_provider;
+	GList *proposals;
+
+	if (provider->is_random)
+	{
+		proposals = select_random_proposals (provider->proposals);
+	}
+	else
+	{
+		proposals = provider->proposals;
+	}
+
 	gtk_source_completion_context_add_proposals (context,
-	                                             provider,
-	                                             ((TestProvider *)provider)->proposals,
-	                                             TRUE);
+						     completion_provider,
+						     proposals,
+						     TRUE);
 }
 
 static GdkPixbuf *
@@ -126,19 +161,61 @@ test_provider_class_init (TestProviderClass *klass)
 static void
 test_provider_init (TestProvider *self)
 {
+}
+
+static void
+test_provider_set_fixed (TestProvider *provider)
+{
 	GList *proposals = NULL;
-	GdkPixbuf *icon = test_provider_get_icon (GTK_SOURCE_COMPLETION_PROVIDER (self));
+
+	GdkPixbuf *icon = test_provider_get_icon (GTK_SOURCE_COMPLETION_PROVIDER (provider));
 
 	proposals = g_list_prepend (proposals,
-	                            gtk_source_completion_item_new ("Proposal 3", "Proposal 3", icon, "This is the third proposal... \nit is so cool it takes two lines to describe"));
+	                            gtk_source_completion_item_new ("Proposal 3",
+								    "Proposal 3",
+								    icon,
+								    "This is the third proposal... \n"
+								    "it is so cool it takes two lines to describe"));
 
 	proposals = g_list_prepend (proposals,
-	                            gtk_source_completion_item_new ("Proposal 2", "Proposal 2", icon, "This is the second proposal... it is very appealing..."));
+	                            gtk_source_completion_item_new ("Proposal 2",
+								    "Proposal 2",
+								    icon,
+								    "This is the second proposal..."));
 
 	proposals = g_list_prepend (proposals,
-	                            gtk_source_completion_item_new ("Proposal 1", "Proposal 1", icon, NULL));
+	                            gtk_source_completion_item_new ("Proposal 1",
+								    "Proposal 1",
+								    icon,
+								    NULL));
 
-	self->proposals = proposals;
+	provider->proposals = proposals;
+	provider->is_random = 0;
+}
+
+static void
+test_provider_set_random (TestProvider *provider)
+{
+	GdkPixbuf *icon = test_provider_get_icon (GTK_SOURCE_COMPLETION_PROVIDER (provider));
+
+	GList *proposals = NULL;
+	gint i;
+
+	for (i = 0; i < 10; i++)
+	{
+		gchar *name = g_strdup_printf ("Proposal %d", i);
+
+		proposals = g_list_prepend (proposals,
+					    gtk_source_completion_item_new (name,
+									    name,
+									    icon,
+									    NULL));
+
+		g_free (name);
+	}
+
+	provider->proposals = proposals;
+	provider->is_random = 1;
 }
 
 static void
@@ -265,6 +342,8 @@ create_completion(void)
 	GtkSourceCompletionWords *prov_words;
 
 	comp = gtk_source_view_get_completion (GTK_SOURCE_VIEW (view));
+
+	/* Words completion provider */
 	prov_words = gtk_source_completion_words_new (NULL, NULL);
 
 	gtk_source_completion_words_register (prov_words,
@@ -276,17 +355,21 @@ create_completion(void)
 
 	g_object_set (prov_words, "priority", 10, NULL);
 
+	/* Fixed provider: the proposals don't change */
 	TestProvider *tp = g_object_new (test_provider_get_type (), NULL);
-	tp->priority = 1;
-	tp->name = "Test Provider 1";
+	test_provider_set_fixed (tp);
+	tp->priority = 5;
+	tp->name = "Fixed Provider";
 
 	gtk_source_completion_add_provider (comp,
 	                                    GTK_SOURCE_COMPLETION_PROVIDER (tp),
 	                                    NULL);
 
+	/* Random provider: the proposals vary on each populate */
 	tp = g_object_new (test_provider_get_type (), NULL);
-	tp->priority = 5;
-	tp->name = "Test Provider 5";
+	test_provider_set_random (tp);
+	tp->priority = 1;
+	tp->name = "Random Provider";
 
 	gtk_source_completion_add_provider (comp,
 	                                    GTK_SOURCE_COMPLETION_PROVIDER (tp),
