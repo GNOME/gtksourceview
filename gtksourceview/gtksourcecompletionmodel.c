@@ -148,7 +148,7 @@ tree_model_get_flags (GtkTreeModel *tree_model)
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_MODEL (tree_model), 0);
 
-	return 0;
+	return GTK_TREE_MODEL_LIST_ONLY | GTK_TREE_MODEL_ITERS_PERSIST;
 }
 
 static gint
