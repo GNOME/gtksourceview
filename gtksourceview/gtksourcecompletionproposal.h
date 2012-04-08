@@ -39,19 +39,19 @@ typedef struct _GtkSourceCompletionProposalIface	GtkSourceCompletionProposalIfac
 struct _GtkSourceCompletionProposalIface
 {
 	GTypeInterface parent;
-	
+
 	/* Interface functions */
 	gchar		*(*get_label)	(GtkSourceCompletionProposal *proposal);
 	gchar		*(*get_markup)	(GtkSourceCompletionProposal *proposal);
 	gchar		*(*get_text)	(GtkSourceCompletionProposal *proposal);
-	
+
 	GdkPixbuf	*(*get_icon)	(GtkSourceCompletionProposal *proposal);
 	gchar		*(*get_info)	(GtkSourceCompletionProposal *proposal);
-	
+
 	guint		 (*hash)	(GtkSourceCompletionProposal *proposal);
 	gboolean	 (*equal)	(GtkSourceCompletionProposal *proposal,
 					 GtkSourceCompletionProposal *other);
-	
+
 	/* Signals */
 	void		 (*changed)	(GtkSourceCompletionProposal *proposal);
 };

@@ -1207,7 +1207,7 @@ window_deleted_cb (GtkWidget *widget, GdkEvent *ev, gpointer user_data)
 }
 
 static void
-line_mark_activated (GtkSourceGutter *gutter, 
+line_mark_activated (GtkSourceGutter *gutter,
                      GtkTextIter     *iter,
                      GdkEventButton  *ev,
                      GtkSourceView   *view)
@@ -1358,7 +1358,7 @@ create_view_window (GtkSourceBuffer *buffer, GtkSourceView *from)
 
 	/* view */
 	view = gtk_source_view_new_with_buffer (buffer);
-	
+
 	if (style_scheme)
 		gtk_source_buffer_set_style_scheme (buffer, style_scheme);
 

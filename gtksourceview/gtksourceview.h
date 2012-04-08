@@ -71,7 +71,7 @@ struct _GtkSourceViewClass
 
 	void (*undo) (GtkSourceView *view);
 	void (*redo) (GtkSourceView *view);
-	void (*line_mark_activated) (GtkSourceView *view, 
+	void (*line_mark_activated) (GtkSourceView *view,
 	                             GtkTextIter   *iter,
 	                             GdkEvent      *event);
 	void (*show_completion) (GtkSourceView *view);

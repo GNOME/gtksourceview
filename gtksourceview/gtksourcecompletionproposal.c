@@ -90,20 +90,20 @@ gtk_source_completion_proposal_equal_default (GtkSourceCompletionProposal *propo
 	return g_direct_equal (proposal, other);
 }
 
-static void 
+static void
 gtk_source_completion_proposal_default_init (GtkSourceCompletionProposalIface *iface)
 {
 	static gboolean initialized = FALSE;
-	
+
 	iface->get_label = gtk_source_completion_proposal_get_label_default;
 	iface->get_markup = gtk_source_completion_proposal_get_markup_default;
 	iface->get_text = gtk_source_completion_proposal_get_text_default;
-	
+
 	iface->get_icon = gtk_source_completion_proposal_get_icon_default;
 	iface->get_info = gtk_source_completion_proposal_get_info_default;
 	iface->hash = gtk_source_completion_proposal_hash_default;
 	iface->equal = gtk_source_completion_proposal_equal_default;
-	
+
 	if (!initialized)
 	{
 		/**
@@ -114,14 +114,14 @@ gtk_source_completion_proposal_default_init (GtkSourceCompletionProposalIface *i
 		 * will react to this by updating the shown information.
 		 *
 		 */
-		signals[CHANGED] = 
+		signals[CHANGED] =
 			g_signal_new ("changed",
 			      G_TYPE_FROM_INTERFACE (iface),
 			      G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 			      G_STRUCT_OFFSET (GtkSourceCompletionProposalIface, changed),
-			      NULL, 
 			      NULL,
-			      g_cclosure_marshal_VOID__VOID, 
+			      NULL,
+			      g_cclosure_marshal_VOID__VOID,
 			      G_TYPE_NONE,
 			      0);
 
@@ -152,7 +152,7 @@ gtk_source_completion_proposal_get_label (GtkSourceCompletionProposal *proposal)
  * gtk_source_completion_proposal_get_markup:
  * @proposal: a #GtkSourceCompletionProposal.
  *
- * Gets the label of @proposal with markup. The label is shown in the list of 
+ * Gets the label of @proposal with markup. The label is shown in the list of
  * proposals and may contain markup. This will be used instead of
  * #gtk_source_completion_proposal_get_label if implemented. The returned string
  * must be freed with g_free().
@@ -224,7 +224,7 @@ gtk_source_completion_proposal_get_info (GtkSourceCompletionProposal *proposal)
 /**
  * gtk_source_completion_proposal_hash:
  * @proposal: a #GtkSourceCompletionProposal.
- * 
+ *
  * Get the hash value of @proposal. This is used to (together with
  * #gtk_source_completion_proposal_equal) to match proposals in the completion
  * model. By default, it uses a direct hash (#g_direct_hash).
@@ -243,9 +243,9 @@ gtk_source_completion_proposal_hash (GtkSourceCompletionProposal *proposal)
  * gtk_source_completion_proposal_equal:
  * @proposal: a #GtkSourceCompletionProposal.
  * @other: a #GtkSourceCompletionProposal.
- * 
- * Get whether two proposal objects are the same.  This is used to (together 
- * with #gtk_source_completion_proposal_hash) to match proposals in the 
+ *
+ * Get whether two proposal objects are the same.  This is used to (together
+ * with #gtk_source_completion_proposal_hash) to match proposals in the
  * completion model. By default, it uses direct equality (#g_direct_equal).
  *
  * Returns: %TRUE if @proposal and @object are the same proposal
@@ -256,7 +256,7 @@ gtk_source_completion_proposal_equal (GtkSourceCompletionProposal *proposal,
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_PROPOSAL (proposal), FALSE);
 	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_PROPOSAL (other), FALSE);
-	
+
 	return GTK_SOURCE_COMPLETION_PROPOSAL_GET_INTERFACE (proposal)->equal (proposal, other);
 }
 

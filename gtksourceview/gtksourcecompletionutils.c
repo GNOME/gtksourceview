@@ -20,7 +20,7 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include <string.h> 
+#include <string.h>
 #include "gtksourcecompletionutils.h"
 
 /**
@@ -34,12 +34,12 @@
 gboolean
 gtk_source_completion_utils_is_separator (const gunichar ch)
 {
-	if (g_unichar_isprint(ch) && 
+	if (g_unichar_isprint(ch) &&
 	    (g_unichar_isalnum(ch) || ch == g_utf8_get_char("_")))
 	{
 		return FALSE;
 	}
-	
+
 	return TRUE;
 }
 
@@ -49,21 +49,21 @@ gtk_source_completion_utils_is_separator (const gunichar ch)
  * @source_buffer: a #GtkSourceBuffer.
  * @start_word: (allow-none): if != NULL then assign it the start position of the word
  * @end_word: (allow-none): if != NULL then assing it the end position of the word
- * 
+ *
  * Returns: the current word.
  */
 gchar *
-gtk_source_completion_utils_get_word_iter (GtkSourceBuffer *source_buffer, 
+gtk_source_completion_utils_get_word_iter (GtkSourceBuffer *source_buffer,
                                            GtkTextIter     *current,
-					   GtkTextIter     *start_word, 
+					   GtkTextIter     *start_word,
 					   GtkTextIter     *end_word)
 {
 	GtkTextBuffer *text_buffer;
 	gunichar ch;
 	gboolean no_doc_start;
-	
+
 	text_buffer = GTK_TEXT_BUFFER (source_buffer);
-	
+
 	if (current == NULL)
 	{
 		gtk_text_buffer_get_iter_at_mark (text_buffer,
@@ -74,7 +74,7 @@ gtk_source_completion_utils_get_word_iter (GtkSourceBuffer *source_buffer,
 	{
 		*start_word = *current;
 	}
-	
+
 	*end_word = *start_word;
 
 	while ((no_doc_start = gtk_text_iter_backward_char (start_word)) == TRUE)
@@ -86,7 +86,7 @@ gtk_source_completion_utils_get_word_iter (GtkSourceBuffer *source_buffer,
 			break;
 		}
 	}
-	
+
 	if (!no_doc_start)
 	{
 		gtk_text_buffer_get_start_iter (text_buffer, start_word);
@@ -110,12 +110,12 @@ gtk_source_completion_utils_get_word (GtkSourceBuffer *source_buffer)
 {
 	GtkTextIter start;
 	GtkTextIter end;
-	
+
 	return gtk_source_completion_utils_get_word_iter (source_buffer, NULL, &start, &end);
 }
 
 static void
-get_iter_pos (GtkSourceView *source_view, 
+get_iter_pos (GtkSourceView *source_view,
               GtkTextIter   *iter,
               gint          *x,
               gint          *y,
@@ -130,19 +130,19 @@ get_iter_pos (GtkSourceView *source_view,
 	gint yy;
 
 	text_view = GTK_TEXT_VIEW (source_view);
-	
+
 	gtk_text_view_get_iter_location (text_view, iter, &location);
 
 	gtk_text_view_buffer_to_window_coords (text_view,
 					       GTK_TEXT_WINDOW_WIDGET,
-					       location.x, 
+					       location.x,
 					       location.y,
-					       &win_x, 
+					       &win_x,
 					       &win_y);
 
 	win = gtk_text_view_get_window (text_view, GTK_TEXT_WINDOW_WIDGET);
 	gdk_window_get_origin (win, &xx, &yy);
-	
+
 	*x = win_x + xx;
 	*y = win_y + yy + location.height;
 	*height = location.height;
@@ -161,16 +161,16 @@ gtk_source_completion_utils_replace_word (GtkSourceBuffer *source_buffer,
 	GtkTextMark *mark;
 
 	g_return_if_fail (GTK_SOURCE_IS_BUFFER (source_buffer));
-	
+
 	buffer = GTK_TEXT_BUFFER (source_buffer);
 	gtk_text_buffer_begin_user_action (buffer);
-	
+
 	mark = gtk_text_buffer_create_mark (buffer, NULL, iter, TRUE);
 	word = gtk_source_completion_utils_get_word_iter (source_buffer, iter, &word_start, &word_end);
 	g_free (word);
 
 	gtk_text_buffer_delete (buffer, &word_start, &word_end);
-	
+
 	if (text != NULL)
 	{
 		gtk_text_buffer_insert (buffer, &word_start, text, len);
@@ -186,17 +186,17 @@ gtk_source_completion_utils_replace_word (GtkSourceBuffer *source_buffer,
  * gtk_source_completion_utils_replace_current_word:
  * @source_buffer: a #GtkSourceBuffer.
  * @text: (allow-none): The text to be inserted instead of the current word.
- * 
+ *
  * Replaces the current word in the #GtkSourceBuffer with the new word.
  */
 void
-gtk_source_completion_utils_replace_current_word (GtkSourceBuffer *source_buffer, 
+gtk_source_completion_utils_replace_current_word (GtkSourceBuffer *source_buffer,
 						  const gchar     *text,
 						  gint             len)
 {
 	GtkTextIter iter;
 	GtkTextMark *mark;
-	
+
 	g_return_if_fail (GTK_SOURCE_IS_BUFFER (source_buffer));
 
 	mark = gtk_text_buffer_get_insert (GTK_TEXT_BUFFER (source_buffer));
@@ -218,9 +218,9 @@ compensate_for_gravity (GtkWindow *window,
                         gint      h)
 {
 	GdkGravity gravity;
-	
+
 	gravity = gtk_window_get_gravity (window);
-	
+
 	/* Horizontal */
 	switch (gravity)
 	{
@@ -238,7 +238,7 @@ compensate_for_gravity (GtkWindow *window,
 			*x = 0;
 			break;
 	}
-	
+
 	/* Vertical */
 	switch (gravity)
 	{
@@ -312,7 +312,7 @@ gtk_source_completion_utils_move_to_iter (GtkWindow     *window,
 	{
 		screen = gdk_screen_get_default ();
 	}
-	
+
 	sw = gdk_screen_get_width (screen);
 	sh = gdk_screen_get_height (screen);
 
@@ -346,10 +346,10 @@ gtk_source_completion_utils_move_to_iter (GtkWindow     *window,
 	{
 		overlapup = TRUE;
 	}
-	
+
 	/* Make sure that text is still readable */
 	move_overlap (&x, &y, w, h, oy, cx, cy, height, overlapup);
-	
+
 	gtk_window_move (window, x, y);
 }
 
@@ -359,16 +359,16 @@ gtk_source_completion_utils_move_to_iter (GtkWindow     *window,
  * @view: the #GtkSoureView.
  *
  */
-void 
+void
 gtk_source_completion_utils_move_to_cursor (GtkWindow     *window,
 					    GtkSourceView *view)
 {
 	GtkTextBuffer *buffer;
 	GtkTextIter insert;
-	
+
 	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
 	gtk_text_buffer_get_iter_at_mark (buffer, &insert, gtk_text_buffer_get_insert (buffer));
-	
+
 	gtk_source_completion_utils_move_to_iter (window,
 	                                          view,
 	                                          &insert);

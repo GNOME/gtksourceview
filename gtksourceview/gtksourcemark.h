@@ -56,7 +56,7 @@ struct _GtkSourceMarkClass
 
 GType		 gtk_source_mark_get_type (void) G_GNUC_CONST;
 
-GtkSourceMark   *gtk_source_mark_new		(const gchar	*name, 
+GtkSourceMark   *gtk_source_mark_new		(const gchar	*name,
 						 const gchar	*category);
 
 const gchar	*gtk_source_mark_get_category	(GtkSourceMark	*mark);

@@ -123,7 +123,7 @@ test_provider_class_init (TestProviderClass *klass)
 {
 }
 
-static void 
+static void
 test_provider_init (TestProvider *self)
 {
 	GList *proposals = NULL;
@@ -181,7 +181,7 @@ toggle_active_property (gpointer     source,
                         const gchar *name)
 {
 	gboolean value;
-	
+
 	g_object_get (source, name, &value, NULL);
 	g_object_set (dest, "active", value, NULL);
 }
@@ -207,39 +207,39 @@ create_window (void)
 	GtkWidget *show_headers;
 	GtkWidget *show_icons;
 	GtkSourceCompletion *completion;
-		
+
 	window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
 	gtk_window_resize (GTK_WINDOW (window), 600, 400);
-	
+
 	vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 1);
 	hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 1);
-	
+
 	view = gtk_source_view_new ();
 	GtkWidget *scroll = gtk_scrolled_window_new (NULL, NULL);
 	gtk_container_add (GTK_CONTAINER (scroll), view);
-	
+
 	remember = gtk_check_button_new_with_label ("Remember info visibility");
 	select_on_show = gtk_check_button_new_with_label ("Select first on show");
 	show_headers = gtk_check_button_new_with_label ("Show headers");
 	show_icons = gtk_check_button_new_with_label ("Show icons");
-	
+
 	completion = gtk_source_view_get_completion (GTK_SOURCE_VIEW (view));
-	
+
 	toggle_active_property (completion, remember, "remember-info-visibility");
 	toggle_active_property (completion, select_on_show, "select-on-show");
 	toggle_active_property (completion, show_headers, "show-headers");
 	toggle_active_property (completion, show_icons, "show-icons");
-	
+
 	gtk_box_pack_start (GTK_BOX (hbox), remember, FALSE, FALSE, 0);
 	gtk_box_pack_start (GTK_BOX (hbox), select_on_show, FALSE, FALSE, 0);
 	gtk_box_pack_start (GTK_BOX (hbox), show_headers, FALSE, FALSE, 0);
 	gtk_box_pack_start (GTK_BOX (hbox), show_icons, FALSE, FALSE, 0);
-	
+
 	gtk_box_pack_start (GTK_BOX (vbox), scroll, TRUE, TRUE, 0);
 	gtk_box_pack_end (GTK_BOX (vbox), hbox, FALSE, FALSE, 0);
-	
+
 	gtk_container_add (GTK_CONTAINER (window), vbox);
-	
+
 	g_signal_connect (window, "destroy",
 			  G_CALLBACK (destroy_cb),
 			   NULL);
@@ -263,15 +263,15 @@ static void
 create_completion(void)
 {
 	GtkSourceCompletionWords *prov_words;
-	
+
 	comp = gtk_source_view_get_completion (GTK_SOURCE_VIEW (view));
 	prov_words = gtk_source_completion_words_new (NULL, NULL);
-	
+
 	gtk_source_completion_words_register (prov_words,
 	                                      gtk_text_view_get_buffer (GTK_TEXT_VIEW (view)));
-	
-	gtk_source_completion_add_provider (comp, 
-	                                    GTK_SOURCE_COMPLETION_PROVIDER (prov_words), 
+
+	gtk_source_completion_add_provider (comp,
+	                                    GTK_SOURCE_COMPLETION_PROVIDER (prov_words),
 	                                    NULL);
 
 	g_object_set (prov_words, "priority", 10, NULL);

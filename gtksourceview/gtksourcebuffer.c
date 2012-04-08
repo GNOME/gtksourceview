@@ -828,7 +828,7 @@ gtk_source_buffer_move_cursor (GtkTextBuffer     *buffer,
 		   applied to the buffer. See apply_tag_real for more
 		   information */
 		source_buffer->priv->allow_bracket_match = TRUE;
-		
+
 		/* Mark matching bracket */
 		if (!source_buffer->priv->bracket_mark_match)
 		{
@@ -2062,7 +2062,7 @@ gtk_source_buffer_get_source_marks_at_iter (GtkSourceBuffer *buffer,
 					    const gchar     *category)
 {
 	GSList *marks, *l, *res;
-	
+
 	g_return_val_if_fail (iter != NULL, NULL);
 
 	res = NULL;

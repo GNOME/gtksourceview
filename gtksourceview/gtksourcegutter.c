@@ -37,7 +37,7 @@
  * The #GtkSourceGutter object represents the left and right gutters of the text
  * view. It is used by #GtkSourceView to draw the line numbers and category
  * marks that might be present on a line. By packing additional #GtkSourceGutterRenderer
- * objects in the gutter, you can extend the gutter with your own custom 
+ * objects in the gutter, you can extend the gutter with your own custom
  * drawings.
  *
  * The gutter works very much the same way as cells rendered in a #GtkTreeView.

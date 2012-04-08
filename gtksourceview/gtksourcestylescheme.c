@@ -39,7 +39,7 @@
  * non-highlighted text, color for the line numbers, etc.
  *
  * Style schemes are stored in XML files. The format of a scheme file is
- * the documented in the 
+ * the documented in the
  * <link linkend="style-reference">style scheme reference</link>.
  */
 

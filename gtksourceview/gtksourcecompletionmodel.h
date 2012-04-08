@@ -42,13 +42,13 @@ typedef struct _GtkSourceCompletionModelPrivate	GtkSourceCompletionModelPrivate;
 
 struct _GtkSourceCompletionModel {
 	GObject parent;
-	
+
 	GtkSourceCompletionModelPrivate *priv;
 };
 
 struct _GtkSourceCompletionModelClass {
 	GObjectClass parent_class;
-	
+
 	void (*providers_changed) 	(GtkSourceCompletionModel *model);
 	void (*begin_delete)		(GtkSourceCompletionModel *model);
 	void (*end_delete)		(GtkSourceCompletionModel *model);
@@ -100,7 +100,7 @@ gboolean	gtk_source_completion_model_iter_is_header (GtkSourceCompletionModel   
 
 gboolean 	gtk_source_completion_model_iter_previous (GtkSourceCompletionModel         *model,
 							   GtkTreeIter                      *iter);
-							 
+
 gboolean 	gtk_source_completion_model_iter_last 	(GtkSourceCompletionModel           *model,
 							 GtkTreeIter                        *iter);
 

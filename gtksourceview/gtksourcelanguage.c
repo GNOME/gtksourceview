@@ -576,7 +576,7 @@ gtk_source_language_get_metadata (GtkSourceLanguage *language,
  * array.
  *
  * Returns: (array zero-terminated=1) (transfer full): a newly-allocated
- * %NULL terminated array containing the mime types or %NULL if no 
+ * %NULL terminated array containing the mime types or %NULL if no
  * mime types are found.
  * The returned array must be freed with g_strfreev().
  **/

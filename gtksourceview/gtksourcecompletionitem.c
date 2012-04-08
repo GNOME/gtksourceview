@@ -48,8 +48,8 @@ enum
 
 static void gtk_source_completion_proposal_iface_init (gpointer g_iface, gpointer iface_data);
 
-G_DEFINE_TYPE_WITH_CODE (GtkSourceCompletionItem, 
-			 gtk_source_completion_item, 
+G_DEFINE_TYPE_WITH_CODE (GtkSourceCompletionItem,
+			 gtk_source_completion_item,
 			 G_TYPE_OBJECT,
 			 G_IMPLEMENT_INTERFACE (GTK_SOURCE_TYPE_COMPLETION_PROPOSAL,
 			 			gtk_source_completion_proposal_iface_init))
@@ -85,11 +85,11 @@ gtk_source_completion_proposal_get_info_impl (GtkSourceCompletionProposal *self)
 }
 
 static void
-gtk_source_completion_proposal_iface_init (gpointer g_iface, 
+gtk_source_completion_proposal_iface_init (gpointer g_iface,
 					   gpointer iface_data)
 {
 	GtkSourceCompletionProposalIface *iface = (GtkSourceCompletionProposalIface *)g_iface;
-	
+
 	/* Interface data getter implementations */
 	iface->get_label = gtk_source_completion_proposal_get_label_impl;
 	iface->get_markup = gtk_source_completion_proposal_get_markup_impl;
@@ -102,13 +102,13 @@ static void
 gtk_source_completion_item_finalize (GObject *object)
 {
 	GtkSourceCompletionItem *self = GTK_SOURCE_COMPLETION_ITEM(object);
-	
+
 	g_free (self->priv->label);
 	g_free (self->priv->markup);
 	g_free (self->priv->text);
 
 	g_free (self->priv->info);
-	
+
 	if (self->priv->icon != NULL)
 	{
 		g_object_unref (self->priv->icon);
@@ -175,13 +175,13 @@ gtk_source_completion_item_set_property (GObject      *object,
 		case PROP_LABEL:
 			g_free (self->priv->label);
 			self->priv->label = g_value_dup_string (value);
-			
+
 			emit_changed (self);
 			break;
 		case PROP_MARKUP:
 			g_free (self->priv->markup);
 			self->priv->markup = g_value_dup_string (value);
-			
+
 			emit_changed (self);
 			break;
 		case PROP_TEXT:
@@ -191,7 +191,7 @@ gtk_source_completion_item_set_property (GObject      *object,
 		case PROP_INFO:
 			g_free (self->priv->info);
 			self->priv->info = g_value_dup_string (value);
-			
+
 			emit_changed (self);
 			break;
 		case PROP_ICON:
@@ -199,7 +199,7 @@ gtk_source_completion_item_set_property (GObject      *object,
 			{
 				g_object_unref (self->priv->icon);
 			}
-			
+
 			self->priv->icon = GDK_PIXBUF (g_value_dup_object (value));
 			emit_changed (self);
 			break;
@@ -292,15 +292,15 @@ gtk_source_completion_item_init (GtkSourceCompletionItem *self)
 	self->priv = GTK_SOURCE_COMPLETION_ITEM_GET_PRIVATE (self);
 }
 
-/** 
+/**
  * gtk_source_completion_item_new:
  * @label: The item label.
  * @text: The item text.
  * @icon: (allow-none): The item icon.
  * @info: (allow-none): The item extra information.
  *
- * Create a new #GtkSourceCompletionItem with label @label, icon @icon and 
- * extra information @info. Both @icon and @info can be %NULL in which case 
+ * Create a new #GtkSourceCompletionItem with label @label, icon @icon and
+ * extra information @info. Both @icon and @info can be %NULL in which case
  * there will be no icon shown and no extra information available.
  *
  * Returns: a new #GtkSourceCompletionItem.
@@ -311,7 +311,7 @@ gtk_source_completion_item_new (const gchar *label,
 				GdkPixbuf   *icon,
 				const gchar *info)
 {
-	return g_object_new (GTK_SOURCE_TYPE_COMPLETION_ITEM, 
+	return g_object_new (GTK_SOURCE_TYPE_COMPLETION_ITEM,
 			     "label", label,
 			     "text", text,
 			     "icon", icon,
@@ -319,15 +319,15 @@ gtk_source_completion_item_new (const gchar *label,
 			     NULL);
 }
 
-/** 
+/**
  * gtk_source_completion_item_new_with_markup:
  * @markup: The item markup label.
  * @text: The item text.
  * @icon: (allow-none): The item icon.
  * @info: (allow-none): The item extra information.
  *
- * Create a new #GtkSourceCompletionItem with markup label @markup, icon 
- * @icon and extra information @info. Both @icon and @info can be %NULL in 
+ * Create a new #GtkSourceCompletionItem with markup label @markup, icon
+ * @icon and extra information @info. Both @icon and @info can be %NULL in
  * which case there will be no icon shown and no extra information available.
  *
  * Returns: a new #GtkSourceCompletionItem.
@@ -338,7 +338,7 @@ gtk_source_completion_item_new_with_markup (const gchar *markup,
                                             GdkPixbuf   *icon,
                                             const gchar *info)
 {
-	return g_object_new (GTK_SOURCE_TYPE_COMPLETION_ITEM, 
+	return g_object_new (GTK_SOURCE_TYPE_COMPLETION_ITEM,
 			     "markup", markup,
 			     "text", text,
 			     "icon", icon,
@@ -346,14 +346,14 @@ gtk_source_completion_item_new_with_markup (const gchar *markup,
 			     NULL);
 }
 
-/** 
+/**
  * gtk_source_completion_item_new_from_stock:
  * @label: (allow-none): The item label.
  * @text: The item text.
  * @stock: The stock icon.
  * @info: (allow-none): The item extra information.
  *
- * Creates a new #GtkSourceCompletionItem from a stock item. If @label is %NULL, 
+ * Creates a new #GtkSourceCompletionItem from a stock item. If @label is %NULL,
  * the stock label will be used.
  *
  * Returns: a new #GtkSourceCompletionItem.
@@ -370,17 +370,17 @@ gtk_source_completion_item_new_from_stock (const gchar *label,
 	gint width;
 	gint height;
 	GtkStockItem stock_item;
-	
+
 	if (stock != NULL)
 	{
 		theme = gtk_icon_theme_get_default ();
-	
+
 		gtk_icon_size_lookup (GTK_ICON_SIZE_MENU, &width, &height);
 
-		icon = gtk_icon_theme_load_icon (theme, 
-						 stock, 
-						 width, 
-						 GTK_ICON_LOOKUP_USE_BUILTIN, 
+		icon = gtk_icon_theme_load_icon (theme,
+						 stock,
+						 width,
+						 GTK_ICON_LOOKUP_USE_BUILTIN,
 						 NULL);
 
 		if (label == NULL && gtk_stock_lookup (stock, &stock_item))
@@ -392,13 +392,13 @@ gtk_source_completion_item_new_from_stock (const gchar *label,
 	{
 		icon = NULL;
 	}
-	
+
 	item = gtk_source_completion_item_new (label, text, icon, info);
-	
+
 	if (icon != NULL)
 	{
 		g_object_unref (icon);
 	}
-	
+
 	return item;
 }

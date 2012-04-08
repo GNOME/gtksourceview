@@ -1,6 +1,6 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8; coding: utf-8 -*-
  * gtksourcegutterrenderertext.h
- * This file is part of GtkSourceView 
+ * This file is part of GtkSourceView
  *
  * Copyright (C) 2010 - Jesse van den Kieboom
  *

@@ -48,7 +48,7 @@ typedef struct _GtkSourceCompletionProviderIface GtkSourceCompletionProviderIfac
 struct _GtkSourceCompletionProviderIface
 {
 	GTypeInterface g_iface;
-	
+
 	gchar		*(*get_name)       	(GtkSourceCompletionProvider *provider);
 	GdkPixbuf	*(*get_icon)       	(GtkSourceCompletionProvider *provider);
 	void 		 (*populate) 		(GtkSourceCompletionProvider *provider,

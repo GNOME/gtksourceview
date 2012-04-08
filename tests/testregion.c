@@ -10,7 +10,7 @@ main (int argc, char **argv)
 	GtkTextRegionIterator reg_iter;
 	GtkTextIter iter1, iter2;
 	gint i;
-	
+
 #define NUM_OPS 23
 
 	gint ops [NUM_OPS][3] = {
@@ -57,7 +57,7 @@ main (int argc, char **argv)
 		/* add the subregion we just removed */
 		{  1, 10, 15 },
 	};
-	
+
 #define NUM_INTERSECTS 5
 
 	gint inter [NUM_INTERSECTS][2] = {
@@ -67,9 +67,9 @@ main (int argc, char **argv)
 		{  1, 24 },
 		{  3,  7 }
 	};
-		
+
 	gtk_init (&argc, &argv);
-	
+
 	buffer = gtk_text_buffer_new (NULL);
 	region = gtk_text_region_new (buffer);
 
@@ -84,7 +84,7 @@ main (int argc, char **argv)
 
 	for (i = 0; i < NUM_OPS; i++) {
 		gchar *op_name;
-		
+
 		gtk_text_buffer_get_iter_at_offset (buffer, &iter1, ops [i][1]);
 		gtk_text_buffer_get_iter_at_offset (buffer, &iter2, ops [i][2]);
 
@@ -99,7 +99,7 @@ main (int argc, char **argv)
 
 		gtk_text_region_debug_print (region);
 	}
-	
+
 	for (i = 0; i < NUM_INTERSECTS; i++) {
 		gtk_text_buffer_get_iter_at_offset (buffer, &iter1, inter [i][0]);
 		gtk_text_buffer_get_iter_at_offset (buffer, &iter2, inter [i][1]);

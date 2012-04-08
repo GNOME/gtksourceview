@@ -266,7 +266,7 @@ gtk_source_undo_manager_end_not_undoable_action (GtkSourceUndoManager *manager)
 /**
  * gtk_source_undo_manager_can_undo_changed:
  * @manager: a #GtkSourceUndoManager.
- * 
+ *
  * Emits the #GtkSourceUndoManager::can-undo-changed signal.
  *
  * Since: 2.10
@@ -282,7 +282,7 @@ gtk_source_undo_manager_can_undo_changed (GtkSourceUndoManager *manager)
 /**
  * gtk_source_undo_manager_can_redo_changed:
  * @manager: a #GtkSourceUndoManager.
- * 
+ *
  * Emits the #GtkSourceUndoManager::can-redo-changed signal.
  *
  * Since: 2.10

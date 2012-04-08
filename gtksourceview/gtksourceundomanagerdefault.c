@@ -355,7 +355,7 @@ gtk_source_undo_manager_default_set_property (GObject      *object,
                                               GParamSpec   *pspec)
 {
 	GtkSourceUndoManagerDefault *self = GTK_SOURCE_UNDO_MANAGER_DEFAULT (object);
-	
+
 	switch (prop_id)
 	{
 		case PROP_BUFFER:
@@ -378,7 +378,7 @@ gtk_source_undo_manager_default_get_property (GObject    *object,
                                               GParamSpec *pspec)
 {
 	GtkSourceUndoManagerDefault *self = GTK_SOURCE_UNDO_MANAGER_DEFAULT (object);
-	
+
 	switch (prop_id)
 	{
 		case PROP_BUFFER:

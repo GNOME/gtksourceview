@@ -156,14 +156,14 @@ gtk_source_mark_init (GtkSourceMark *mark)
  * gtk_source_mark_new:
  * @name: Name of the #GtkSourceMark, can be NULL when not using a name
  * @category: is used to classify marks according to common characteristics
- * (e.g. all the marks representing a bookmark could belong to the "bookmark" 
- * category, or all the marks representing a compilation error could belong to 
+ * (e.g. all the marks representing a bookmark could belong to the "bookmark"
+ * category, or all the marks representing a compilation error could belong to
  * "error" category).
  *
- * Creates a text mark. Add it to a buffer using gtk_text_buffer_add_mark(). 
+ * Creates a text mark. Add it to a buffer using gtk_text_buffer_add_mark().
  * If name is NULL, the mark is anonymous; otherwise, the mark can be retrieved
  * by name using gtk_text_buffer_get_mark().
- * Normally marks are created using the utility function 
+ * Normally marks are created using the utility function
  * gtk_source_buffer_create_mark().
  *
  * Returns: a new #GtkSourceMark that can be added using gtk_text_buffer_add_mark().
@@ -176,8 +176,8 @@ gtk_source_mark_new (const gchar *name,
 {
 	g_return_val_if_fail (category != NULL, NULL);
 
-	return GTK_SOURCE_MARK (g_object_new (GTK_SOURCE_TYPE_MARK, 
-					      "category", category, 
+	return GTK_SOURCE_MARK (g_object_new (GTK_SOURCE_TYPE_MARK,
+					      "category", category,
 					      "name", name,
 					      "left-gravity", TRUE,
 					       NULL));
@@ -238,7 +238,7 @@ gtk_source_mark_next (GtkSourceMark *mark,
  *
  * Returns the previous #GtkSourceMark in the buffer or %NULL if the mark
  * was not added to a buffer. If there is no previous mark, %NULL is returned.
- * 
+ *
  * If @category is %NULL, looks for marks of any category
  *
  * Returns: (transfer none): the previous #GtkSourceMark, or %NULL.

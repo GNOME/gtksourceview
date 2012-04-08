@@ -578,13 +578,13 @@ pick_lang_for_mime_type (GtkSourceLanguageManager *lm,
 	if (alt_filename != NULL)
 	{
 		GSList *langs;
-		
+
 		langs = pick_langs_for_filename (lm, alt_filename);
-		
+
 		if (langs != NULL)
 			lang = GTK_SOURCE_LANGUAGE (langs->data);
 	}
-	
+
 	if (lang == NULL && mime_type != NULL)
 		lang = pick_lang_for_mime_type_real (lm, mime_type);
 
@@ -669,46 +669,46 @@ gtk_source_language_manager_guess_language (GtkSourceLanguageManager *lm,
 		if (content_type != NULL)
 		{
 			GSList *l;
-			
+
 			for (l = langs; l != NULL; l = g_slist_next (l))
 			{
 				gchar **mime_types, **gptr;
-				
+
 				lang = GTK_SOURCE_LANGUAGE (l->data);
 				mime_types = gtk_source_language_get_mime_types (lang);
-				
+
 				for (gptr = mime_types; gptr != NULL && *gptr != NULL; gptr++)
 				{
 					gchar *content;
-					
+
 					content = g_content_type_from_mime_type (*gptr);
-					
+
 					if (content != NULL && g_content_type_is_a (content_type, content))
 					{
 						if (!g_content_type_equals (content_type, content))
 						{
 							GtkSourceLanguage *mimelang;
-							
+
 							mimelang = pick_lang_for_mime_type (lm, content_type);
-							
+
 							if (mimelang != NULL)
 								lang = mimelang;
 						}
-						
+
 						g_strfreev (mime_types);
 						g_slist_free (langs);
 						g_free (content);
-						
+
 						return lang;
 					}
 					g_free (content);
 				}
-				
+
 				g_strfreev (mime_types);
 			}
 		}
 		lang = GTK_SOURCE_LANGUAGE (langs->data);
-		
+
 		g_slist_free (langs);
 	}
 	/* No glob match */

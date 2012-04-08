@@ -19,7 +19,7 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
- 
+
 #ifndef __GTK_SOURCE_COMPLETION_UTILS_H__
 #define __GTK_SOURCE_COMPLETION_UTILS_H__
 
@@ -29,9 +29,9 @@ G_BEGIN_DECLS
 
 gboolean	 gtk_source_completion_utils_is_separator		(gunichar         ch);
 
-gchar		*gtk_source_completion_utils_get_word_iter		(GtkSourceBuffer *source_buffer, 
+gchar		*gtk_source_completion_utils_get_word_iter		(GtkSourceBuffer *source_buffer,
 									 GtkTextIter     *current,
-									 GtkTextIter     *start_word, 
+									 GtkTextIter     *start_word,
 									 GtkTextIter     *end_word);
 
 gchar		*gtk_source_completion_utils_get_word			(GtkSourceBuffer *text_view);
@@ -41,7 +41,7 @@ void		 gtk_source_completion_utils_replace_word		(GtkSourceBuffer *source_buffer
 									 const gchar     *text,
 									 gint             len);
 
-void		 gtk_source_completion_utils_replace_current_word	(GtkSourceBuffer *source_buffer, 
+void		 gtk_source_completion_utils_replace_current_word	(GtkSourceBuffer *source_buffer,
 									 const gchar     *text,
 									 gint             len);
 

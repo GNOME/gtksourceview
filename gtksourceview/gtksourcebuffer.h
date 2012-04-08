@@ -186,10 +186,10 @@ void			 _gtk_source_buffer_update_highlight	(GtkSourceBuffer        *buffer,
 								 gboolean                synchronous);
 
 GtkSourceMark		*_gtk_source_buffer_source_mark_next	(GtkSourceBuffer        *buffer,
-								 GtkSourceMark          *mark, 
+								 GtkSourceMark          *mark,
 								 const gchar            *category);
 GtkSourceMark		*_gtk_source_buffer_source_mark_prev	(GtkSourceBuffer        *buffer,
-								 GtkSourceMark          *mark, 
+								 GtkSourceMark          *mark,
 								 const gchar            *category);
 
 GtkTextTag		*_gtk_source_buffer_get_bracket_match_tag (GtkSourceBuffer        *buffer);

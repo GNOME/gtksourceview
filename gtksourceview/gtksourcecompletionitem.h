@@ -41,7 +41,7 @@ typedef struct _GtkSourceCompletionItemPrivate	GtkSourceCompletionItemPrivate;
 
 struct _GtkSourceCompletionItem {
 	GObject parent;
-	
+
 	GtkSourceCompletionItemPrivate *priv;
 };
 
