@@ -880,36 +880,89 @@ update_header_visibility (GtkSourceCompletionModel *model)
 }
 
 static void
-update_provider_visibility_show_hide (GtkSourceCompletionModel *model,
-                                      ProviderInfo             *info,
-                                      gboolean                  show)
+update_provider_visibility_show (GtkSourceCompletionModel *model,
+				 ProviderInfo		  *info)
 {
 	GList *item;
 	GtkTreePath *path = NULL;
 
-	item = info->first;
-	info->filtered = !show;
+	g_return_if_fail (info != NULL);
+	g_return_if_fail (info->first != NULL);
 
-	while (item)
+	if (info->filtered == FALSE)
+	{
+		return;
+	}
+
+	info->filtered = FALSE;
+
+	for (item = info->first; item != NULL; item = g_list_next (item))
 	{
 		ProposalNode *node = (ProposalNode *)item->data;
 
-		node->filtered = !show;
-
-		if (path == NULL)
+		/* Check whether the header should be displayed */
+		if (item == info->first && !model->priv->show_headers)
 		{
-			path = path_from_list (model, item);
-		}
-
-		if (show)
-		{
-			++model->priv->num;
-
-			handle_row_inserted (model, item, &path);
-			gtk_tree_path_next (path);
+			node->filtered = TRUE;
 		}
 		else
 		{
+			node->filtered = FALSE;
+
+			if (path == NULL)
+			{
+				path = path_from_list (model, item);
+			}
+
+			++model->priv->num;
+			handle_row_inserted (model, item, &path);
+			gtk_tree_path_next (path);
+		}
+
+		if (item == info->last)
+		{
+			break;
+		}
+	}
+
+	if (path != NULL)
+	{
+		gtk_tree_path_free (path);
+	}
+}
+
+static void
+update_provider_visibility_hide (GtkSourceCompletionModel *model,
+				 ProviderInfo		  *info)
+{
+	GList *item;
+	GtkTreePath *path = NULL;
+
+	g_return_if_fail (info != NULL);
+	g_return_if_fail (info->first != NULL);
+
+	if (info->filtered == TRUE)
+	{
+		return;
+	}
+
+	info->filtered = TRUE;
+
+	for (item = info->first; item != NULL; item = g_list_next (item))
+	{
+		ProposalNode *node = (ProposalNode *)item->data;
+
+		/* Hide only the nodes that are not already filtered.
+		 * For example, the header can be hidden. */
+		if (!node->filtered)
+		{
+			node->filtered = TRUE;
+
+			if (path == NULL)
+			{
+				path = path_from_list (model, item);
+			}
+
 			--model->priv->num;
 			handle_row_deleted (model, item, &path);
 		}
@@ -918,8 +971,6 @@ update_provider_visibility_show_hide (GtkSourceCompletionModel *model,
 		{
 			break;
 		}
-
-		item = g_list_next (item);
 	}
 
 	if (path != NULL)
@@ -939,7 +990,14 @@ update_provider_visibility_each (GtkSourceCompletionProvider *provider,
 		return;
 	}
 
-	update_provider_visibility_show_hide (model, info, info->filtered);
+	if (info->filtered)
+	{
+		update_provider_visibility_show (model, info);
+	}
+	else
+	{
+		update_provider_visibility_hide (model, info);
+	}
 }
 
 static void
