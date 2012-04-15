@@ -34,6 +34,7 @@
     <style id="operator" _name="Operator" map-to="def:operator"/>
     <style id="atom" _name="Atom" map-to="def:type"/>
     <style id="string" _name="String" map-to="def:string"/>
+    <style id="character" _name="Character" map-to="def:character"/>
     <style id="floating-point" _name="Floating point number" map-to="def:floating-point"/>
     <style id="decimal" _name="Decimal number" map-to="def:decimal"/>
     <style id="base-n-integer" _name="Base-N Integer" map-to="def:base-n-integer"/>
@@ -94,6 +95,13 @@
       <end>"</end>
       <include>
         <context ref="def:escape"/>
+      </include>
+    </context>
+
+    <context id="character" style-ref="character" class="character" class-disabled="no-spell-check">
+      <match>\$(?:(\\.)|.)</match>
+      <include>
+        <context sub-pattern="1" style-ref="def:special-char"/>
       </include>
     </context>
 
@@ -236,6 +244,7 @@
         <context ref="operators"/>
         <context ref="atom"/>
         <context ref="string"/>
+        <context ref="character"/>
         <context ref="float"/>
         <context ref="base-n-number"/>
         <context ref="decimal-number"/>
