@@ -296,9 +296,9 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	klass->move_words = gtk_source_view_move_words;
 
 	/**
-	 * GtkSourceView:show-line-numbers:
+	 * GtkSourceView:completion:
 	 *
-	 * Whether to display line numbers
+	 * The completion object associated with the view
 	 */
 	g_object_class_install_property (object_class,
 					 PROP_COMPLETION,

@@ -228,9 +228,9 @@ gtk_source_style_scheme_class_init (GtkSourceStyleSchemeClass *klass)
 							      G_PARAM_READABLE));
 
 	/**
-	 * GtkSourceStyleScheme:name:
+	 * GtkSourceStyleScheme:description:
 	 *
-	 * Style scheme name, a translatable string to present to user.
+	 * Style scheme description, a translatable string to present to user.
 	 */
 	g_object_class_install_property (object_class,
 					 PROP_DESCRIPTION,
@@ -243,7 +243,7 @@ gtk_source_style_scheme_class_init (GtkSourceStyleSchemeClass *klass)
 	/**
 	 * GtkSourceStyleScheme:filename:
 	 *
-	 * Style scheme filename or NULL.
+	 * Style scheme filename or %NULL.
 	 */
 	g_object_class_install_property (object_class,
 					 PROP_FILENAME,

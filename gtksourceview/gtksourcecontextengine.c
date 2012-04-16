@@ -861,15 +861,6 @@ apply_tags (GtkSourceContextEngine *ce,
 	}
 }
 
-/**
- * highlight_region:
- *
- * @ce: a #GtkSourceContextEngine.
- * @start: the beginning of the region to highlight.
- * @end: the end of the region to highlight.
- *
- * Highlights the specified region.
- */
 static void
 highlight_region (GtkSourceContextEngine *ce,
 		  GtkTextIter            *start,

@@ -329,8 +329,9 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 			   _gtksourceview_marshal_VOID__BOXED_BOXED,
 			   G_TYPE_NONE,
 			   2, param_types);
+
 	/**
-	 * GtkSourceBuffer::source-mark-updated
+	 * GtkSourceBuffer::source-mark-updated:
 	 * @buffer: the buffer that received the signal
 	 *
 	 * The ::source_mark_updated signal is emitted each time
@@ -367,7 +368,7 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 			  0);
 
 	/**
-	 * GtkSourceBuffer::bracket-matched
+	 * GtkSourceBuffer::bracket-matched:
 	 * @buffer: a #GtkSourceBuffer.
 	 * @iter: iterator to initialize.
 	 * @state: state of bracket matching
