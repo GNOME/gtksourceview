@@ -255,8 +255,7 @@ gtk_source_completion_provider_get_info_widget (GtkSourceCompletionProvider *pro
  * @proposal: a #GtkSourceCompletionProposal.
  * @info: a #GtkSourceCompletionInfo.
  *
- * Update extra information shown in @info for @proposal. This should be
- * implemented if your provider sets a custom info widget for @proposal.
+ * Update extra information shown in @info for @proposal.
  * This function MUST be implemented when
  * #gtk_source_completion_provider_get_info_widget is implemented.
  */
