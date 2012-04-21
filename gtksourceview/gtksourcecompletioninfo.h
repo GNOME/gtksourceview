@@ -64,7 +64,7 @@ void		 gtk_source_completion_info_move_to_iter	(GtkSourceCompletionInfo *info,
 								 GtkTextView             *view,
 								 GtkTextIter             *iter);
 
-void		 gtk_source_completion_info_set_widget	(GtkSourceCompletionInfo *info,
+void		 gtk_source_completion_info_set_widget		(GtkSourceCompletionInfo *info,
 								 GtkWidget               *widget);
 
 GtkWidget	*gtk_source_completion_info_get_widget		(GtkSourceCompletionInfo *info);

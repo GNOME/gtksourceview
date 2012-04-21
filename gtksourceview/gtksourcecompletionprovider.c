@@ -117,8 +117,6 @@ gtk_source_completion_provider_get_priority_default (GtkSourceCompletionProvider
 static void
 gtk_source_completion_provider_default_init (GtkSourceCompletionProviderIface *iface)
 {
-	static gboolean initialized = FALSE;
-
 	iface->get_name = gtk_source_completion_provider_get_name_default;
 	iface->get_icon = gtk_source_completion_provider_get_icon_default;
 
@@ -135,11 +133,6 @@ gtk_source_completion_provider_default_init (GtkSourceCompletionProviderIface *i
 
 	iface->get_interactive_delay = gtk_source_completion_provider_get_interactive_delay_default;
 	iface->get_priority = gtk_source_completion_provider_get_priority_default;
-
-	if (!initialized)
-	{
-		initialized = TRUE;
-	}
 }
 
 /**

@@ -80,7 +80,7 @@ gtk_source_completion_context_dispose (GObject *object)
 	context = GTK_SOURCE_COMPLETION_CONTEXT (object);
 	buffer = get_buffer (context);
 
-	if (context->priv->mark_set_id)
+	if (context->priv->mark_set_id != 0)
 	{
 		g_signal_handler_disconnect (buffer, context->priv->mark_set_id);
 		context->priv->mark_set_id = 0;
@@ -88,7 +88,7 @@ gtk_source_completion_context_dispose (GObject *object)
 
 	g_clear_object (&context->priv->completion);
 
-	if (context->priv->mark)
+	if (context->priv->mark != NULL)
 	{
 		gtk_text_buffer_delete_mark (buffer, context->priv->mark);
 		context->priv->mark = NULL;

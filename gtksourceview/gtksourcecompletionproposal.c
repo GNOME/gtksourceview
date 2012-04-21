@@ -78,7 +78,7 @@ gtk_source_completion_proposal_get_info_default (GtkSourceCompletionProposal *pr
 }
 
 static guint
-gtk_source_completion_proposal_hash_default	(GtkSourceCompletionProposal *proposal)
+gtk_source_completion_proposal_hash_default (GtkSourceCompletionProposal *proposal)
 {
 	return g_direct_hash (proposal);
 }
