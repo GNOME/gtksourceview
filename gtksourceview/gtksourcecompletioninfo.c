@@ -26,7 +26,7 @@
  * @short_description: Calltips object
  *
  * This object can be used to show a calltip or help for the
-.* current completion proposal.
+ * current completion proposal.
  */
 
 #include <gtksourceview/gtksourcecompletioninfo.h>
@@ -109,13 +109,13 @@ gtk_source_completion_info_class_init (GtkSourceCompletionInfoClass *klass)
 	widget_class->draw = gtk_source_completion_info_draw;
 
 	/**
-	 * GtkSourceCompletionInfo::show-info:
-	 * @info: The #GscInf who emits the signal
+	 * GtkSourceCompletionInfo::before-show:
+	 * @info: The #GtkSourceCompletionInfo who emits the signal
 	 *
-	 * This signal is emited before any "show" management. You can connect
+	 * This signal is emitted before any "show" management. You can connect
 	 * to this signal if you want to change some properties or position
-	 * before to so the real "show".
-	 **/
+	 * before the real "show".
+	 */
 	signals[BEFORE_SHOW] =
 		g_signal_new ("before-show",
 		              G_TYPE_FROM_CLASS (klass),
