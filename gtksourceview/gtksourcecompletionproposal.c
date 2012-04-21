@@ -23,7 +23,7 @@
 /**
  * SECTION:completionproposal
  * @title: GtkSourceCompletionProposal
- * @short_description: Completion proposal object
+ * @short_description: Completion proposal interface
  *
  * The proposal interface represents a completion item in the completion window.
  * It provides information on how to display the completion item and what action
