@@ -2325,6 +2325,7 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 	 * GtkSourceCompletion:provider-page-size:
 	 *
 	 * The scroll page size of the provider pages in the completion window.
+	 * Not yet used.
 	 *
 	 */
 	g_object_class_install_property (object_class,
