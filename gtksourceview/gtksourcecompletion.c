@@ -2289,7 +2289,9 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 	/**
 	 * GtkSourceCompletion:accelerators:
 	 *
-	 * Number of accelerators to show for the first proposals.
+	 * Number of keyboard accelerators to show for the first proposals. For
+	 * example, to activate the first proposal, the user can press
+	 * <keycombo><keycap>Alt</keycap><keycap>1</keycap></keycombo>.
 	 *
 	 */
 	g_object_class_install_property (object_class,
@@ -2338,7 +2340,11 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 	/**
 	 * GtkSourceCompletion:proposal-page-size:
 	 *
-	 * The scroll page size of the proposals in the completion window.
+	 * The scroll page size of the proposals in the completion window. In
+	 * other words, when <keycap>PageDown</keycap> or
+	 * <keycap>PageUp</keycap> is pressed, the selected
+	 * proposal becomes the one which is located one page size backward or
+	 * forward.
 	 *
 	 */
 	g_object_class_install_property (object_class,
@@ -2422,6 +2428,13 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 	 * The ::move-cursor signal is a keybinding signal which gets emitted when
 	 * the user initiates a cursor movement.
 	 *
+	 * The <keycap>Up</keycap>, <keycap>Down</keycap>,
+	 * <keycap>PageUp</keycap>, <keycap>PageDown</keycap>,
+	 * <keycap>Home</keycap> and <keycap>End</keycap> keys are bound to the
+	 * normal behavior expected by those keys. The <keycap>PageDown</keycap>
+	 * and <keycap>PageUp</keycap> keys use the page size defined by the
+	 * #GtkSourceCompletion:proposal-page-size property.
+	 *
 	 * Applications should not connect to it, but may emit it with
 	 * #g_signal_emit_by_name if they need to control the cursor
 	 * programmatically.
@@ -2449,6 +2462,15 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 	 * The ::move-page signal is a keybinding signal which gets emitted when
 	 * the user initiates a page movement (i.e. switches between provider
 	 * pages).
+	 *
+	 * <keycombo><keycap>Control</keycap><keycap>Left</keycap></keycombo>
+	 * is for going to the previous provider.
+	 * <keycombo><keycap>Control</keycap><keycap>Right</keycap></keycombo>
+	 * is for going to the next provider.
+	 * <keycombo><keycap>Control</keycap><keycap>Home</keycap></keycombo>
+	 * is for displaying all the providers.
+	 * <keycombo><keycap>Control</keycap><keycap>End</keycap></keycombo>
+	 * is for going to the last provider.
 	 *
 	 * Applications should not connect to it, but may emit it with
 	 * #g_signal_emit_by_name if they need to control the page selection
