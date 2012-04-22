@@ -2260,7 +2260,7 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 	 * GtkSourceCompletion:show-headers:
 	 *
 	 * Determines whether provider headers should be shown in the proposal
-	 * list if there is more than one provider with proposals.
+	 * list. It can be useful to disable when there is only one provider.
 	 *
 	 */
 	g_object_class_install_property (object_class,
