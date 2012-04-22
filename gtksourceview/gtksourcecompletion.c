@@ -3558,10 +3558,9 @@ gtk_source_completion_get_view (GtkSourceCompletion *completion)
  * @completion: a #GtkSourceCompletion.
  * @position: (allow-none): a #GtkTextIter, or %NULL.
  *
- * Create a new #GtkSourceCompletionContext for @completion. The position at
- * which the completion using the new context will consider completion can
- * be provider by @position. If @position is %NULL, the current cursor
- * position will be used.
+ * Create a new #GtkSourceCompletionContext for @completion. The position where
+ * the completion occurs can be specified by @position. If @position is %NULL,
+ * the current cursor position will be used.
  *
  * Returns: (transfer full): a new #GtkSourceCompletionContext.
  * The reference being returned is a 'floating' reference,
