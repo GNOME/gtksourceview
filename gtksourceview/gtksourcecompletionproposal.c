@@ -174,7 +174,9 @@ gtk_source_completion_proposal_get_markup (GtkSourceCompletionProposal *proposal
  * Gets the text of @proposal. The text that is inserted into
  * the text buffer when the proposal is activated by the default activation.
  * You are free to implement a custom activation handler in the provider and
- * not implement this function. The returned string must be freed with g_free().
+ * not implement this function. For more information, see
+ * gtk_source_completion_provider_activate_proposal(). The returned string must
+ * be freed with g_free().
  *
  * Returns: a new string containing the text of @proposal.
  */

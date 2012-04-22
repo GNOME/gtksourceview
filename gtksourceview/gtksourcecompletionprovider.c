@@ -283,8 +283,12 @@ gtk_source_completion_provider_update_info (GtkSourceCompletionProvider *provide
  * completion window accordingly when a proposal is selected in the completion
  * window.
  *
+ * When the @proposal is activated, the default handler uses @iter as the start
+ * of the word to replace. See
+ * gtk_source_completion_provider_activate_proposal() for more information.
+ *
  * Returns: %TRUE if @iter was set for @proposal, %FALSE otherwise.
- **/
+ */
 gboolean
 gtk_source_completion_provider_get_start_iter (GtkSourceCompletionProvider *provider,
                                                GtkSourceCompletionContext  *context,
@@ -310,7 +314,14 @@ gtk_source_completion_provider_get_start_iter (GtkSourceCompletionProvider *prov
  *
  * Activate @proposal at @iter. When this functions returns %FALSE, the default
  * activation of @proposal will take place which replaces the word at @iter
- * with the label of @proposal.
+ * with the text of @proposal (see gtk_source_completion_proposal_get_text()).
+ *
+ * Here is how the default activation selects the boundaries of the word to
+ * replace. The end of the word is @iter. For the start of the word, it depends
+ * on wheter a start iter is defined for @proposal (see
+ * gtk_source_completion_provider_get_start_iter()). If a start iter is defined,
+ * the start of the word is the start iter. Else, the word (as long as possible)
+ * will contain only alphanumerical and the "_" characters.
  *
  * Returns: %TRUE to indicate that the proposal activation has been handled,
  *          %FALSE otherwise.
