@@ -30,7 +30,7 @@ LT_INIT([disable-static])
 AC_CHECK_HEADERS([unistd.h])
 
 # Dependencies
-GTK_REQUIRED_VERSION=3.3.8
+GTK_REQUIRED_VERSION=3.4.0
 LIBXML_REQUIRED_VERSION=2.6.0
 GLADE_UI_REQUIRED=3.9
 
@@ -41,6 +41,7 @@ AC_SUBST(LIBXML_REQUIRED_VERSION)
 # Pull glib-genmarshal & co.
 AC_PATH_PROG(GLIB_GENMARSHAL, glib-genmarshal)
 AC_PATH_PROG(GLIB_MKENUMS, glib-mkenums)
+AC_PATH_PROG(GLIB_COMPILE_RESOURCES, glib-compile-resources)
 
 # Compile warnings
 GNOME_COMPILE_WARNINGS([maximum])
@@ -69,7 +70,7 @@ if test "$enable_deprecations" = "yes"; then
 fi
 
 PKG_CHECK_MODULES(DEP, [
-	gio-2.0 >= 2.28.0
+	gio-2.0 >= 2.32.0
 	gtk+-3.0 >= $GTK_REQUIRED_VERSION
 	libxml-2.0 >= $LIBXML_REQUIRED_VERSION
 ])

@@ -37,7 +37,6 @@
 #include <gtksourceview/gtksourceview.h>
 #include "gtksourcecompletion-private.h"
 #include "gtksourcecompletioncontext.h"
-#include "gtksourcecompletionui.h"
 #include <stdarg.h>
 
 #define WINDOW_WIDTH 350
@@ -2942,10 +2941,9 @@ initialize_ui (GtkSourceCompletion *completion)
 
 	builder = gtk_builder_new ();
 
-	gtk_builder_add_from_string (builder,
-	                             gtk_source_completion_ui,
-	                             -1,
-	                             NULL);
+	gtk_builder_add_from_resource (builder,
+				       "/org/gnome/gtksourceview/ui/gtksourcecompletion.ui",
+				       NULL);
 
 	completion->priv->window =
 		GTK_WIDGET (gtk_builder_get_object (builder,

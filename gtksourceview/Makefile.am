@@ -14,6 +14,7 @@ INCLUDES = 				\
 BUILT_SOURCES = 			\
 	gtksourceview-marshal.c 	\
 	gtksourceview-marshal.h		\
+	gtksourceview-resources.c	\
 	gtksourceview-typebuiltins.c	\
 	gtksourceview-typebuiltins.h
 
@@ -47,7 +48,6 @@ libgtksourceview_headers =			\
 NOINST_H_FILES = \
 	gtksourcecompletionmodel.h		\
 	gtksourcecompletion-private.h		\
-	gtksourcecompletionui.h			\
 	gtksourcecompletionutils.h		\
 	gtksourcecontextengine.h		\
 	gtksourceengine.h			\
@@ -128,6 +128,9 @@ gtksourceview-marshal.c: gtksourceview-marshal.list $(GLIB_GENMARSHAL)
 	$(AM_V_GEN) echo "#include \"gtksourceview-marshal.h\"" > $@ && \
 	$(GLIB_GENMARSHAL) $< --body --prefix=_gtksourceview_marshal >> $@
 
+gtksourceview-resources.c: gtksourceview.gresource.xml $(shell $(GLIB_COMPILE_RESOURCES) --generate-dependencies $(srcdir)/gtksourceview.gresource.xml)
+	$(AM_V_GEN) $(GLIB_COMPILE_RESOURCES) --target=$@ --sourcedir=$(srcdir) --generate-source $(srcdir)/gtksourceview.gresource.xml
+
 gtksourceview-typebuiltins.c: stamp-gtksourceview-typebuiltins.c
 	@true
 stamp-gtksourceview-typebuiltins.c: Makefile.am $(libgtksourceview_headers)
@@ -170,7 +173,8 @@ stamp-gtksourceview-typebuiltins.h: Makefile.am $(libgtksourceview_headers)
 	&& rm -f xgen-gth && echo stamp > $(@F)
 
 EXTRA_DIST = 					\
-	gtksourceview-marshal.list
+	gtksourceview-marshal.list		\
+	gtksourceview.gresource.xml
 
 CLEANFILES = 					\
 	$(BUILT_SOURCES)			\
