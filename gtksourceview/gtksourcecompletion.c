@@ -1404,7 +1404,7 @@ view_key_press_event_cb (GtkSourceView       *view,
 
 	/* Handle info button mnemonic */
 	if (event->keyval == gtk_label_get_mnemonic_keyval (label_info) &&
-	    mod == GDK_MOD1_MASK)
+	    (mod & GDK_MOD1_MASK) != 0)
 	{
 		GtkToggleButton *button = GTK_TOGGLE_BUTTON (completion->priv->info_button);
 
@@ -1413,8 +1413,8 @@ view_key_press_event_cb (GtkSourceView       *view,
 		return TRUE;
 	}
 
-	if (mod == GDK_MOD1_MASK &&
-	    event->keyval >= GDK_KEY_0 && event->keyval <= GDK_KEY_9 &&
+	if ((mod & GDK_MOD1_MASK) != 0 &&
+	    GDK_KEY_0 <= event->keyval && event->keyval <= GDK_KEY_9 &&
 	    completion->priv->num_accelerators > 0)
 	{
 		if (activate_by_accelerator (completion, event->keyval - GDK_KEY_0))
