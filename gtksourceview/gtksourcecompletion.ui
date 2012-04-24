@@ -5,6 +5,7 @@ gtksourcecompletion.ui
 This file is part of GtkSourceView
 
 Copyright (C) 2009 - Jesse van den Kieboom <jessevdk@gnome.org>
+Copyright (C) 2012 - Sébastien Wilmet <swilmet@src.gnome.org>
 
 GtkSourceView is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -22,8 +23,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 -->
 
 <interface>
-  <requires lib="gtk+" version="2.16"/>
-  <!-- interface-naming-policy project-wide -->
+  <requires lib="gtk+" version="3.0"/>
   <object class="GtkWindow" id="window_completion">
     <property name="border_width">1</property>
     <property name="type">popup</property>
@@ -35,15 +35,13 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     <property name="focus_on_map">False</property>
     <property name="decorated">False</property>
     <child>
-      <object class="GtkBox" id="vbox_completion">
+      <object class="GtkGrid" id="vgrid_completion">
         <property name="visible">True</property>
         <property name="orientation">vertical</property>
         <child>
           <object class="GtkScrolledWindow" id="scrolled_window_completion">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="hscrollbar_policy">automatic</property>
-            <property name="vscrollbar_policy">automatic</property>
             <child>
               <object class="GtkTreeView" id="tree_view_completion">
                 <property name="visible">True</property>
@@ -77,13 +75,11 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
               </object>
             </child>
           </object>
-          <packing>
-            <property name="position">0</property>
-          </packing>
         </child>
         <child>
-          <object class="GtkBox" id="hbox_bottom_bar">
+          <object class="GtkGrid" id="hgrid_bottom_bar">
             <property name="visible">True</property>
+            <property name="orientation">horizontal</property>
             <child>
               <object class="GtkToggleButton" id="toggle_button_info">
                 <property name="visible">True</property>
@@ -93,17 +89,16 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
                 <property name="focus_on_click">False</property>
                 <property name="relief">GTK_RELIEF_NONE</property>
                 <child>
-                  <object class="GtkBox" id="hbox_info">
+                  <object class="GtkGrid" id="hgrid_info">
                     <property name="visible">True</property>
-                    <property name="spacing">2</property>
+                    <property name="orientation">horizontal</property>
+                    <property name="column_spacing">2</property>
+                    <property name="valign">center</property>
                     <child>
                       <object class="GtkImage" id="image_info">
                         <property name="visible">True</property>
                         <property name="stock">gtk-info</property>
                       </object>
-                      <packing>
-                        <property name="position">0</property>
-                      </packing>
                     </child>
                     <child>
                       <object class="GtkLabel" id="label_info">
@@ -112,42 +107,35 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
                         <property name="use_underline">True</property>
                       </object>
                       <packing>
-                        <property name="position">1</property>
+                        <property name="left_attach">1</property>
                       </packing>
                     </child>
                   </object>
                 </child>
               </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="position">0</property>
-              </packing>
             </child>
             <child>
               <object class="GtkImage" id="image_selection">
                 <property name="visible">True</property>
+                <property name="halign">end</property>
+                <property name="hexpand">True</property>
               </object>
               <packing>
-                <property name="expand">False</property>
-                <property name="pack_type">end</property>
-                <property name="position">2</property>
+                <property name="left_attach">1</property>
               </packing>
             </child>
             <child>
               <object class="GtkLabel" id="label_selection">
                 <property name="visible">True</property>
+                <property name="margin">6</property>
               </object>
               <packing>
-                <property name="expand">False</property>
-                <property name="padding">6</property>
-                <property name="pack_type">end</property>
-                <property name="position">1</property>
+                <property name="left_attach">2</property>
               </packing>
             </child>
           </object>
           <packing>
-            <property name="expand">False</property>
-            <property name="position">1</property>
+            <property name="top_attach">1</property>
           </packing>
         </child>
       </object>

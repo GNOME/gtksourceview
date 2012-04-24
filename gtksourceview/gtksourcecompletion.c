@@ -113,7 +113,7 @@ struct _GtkSourceCompletionPrivate
 	GtkWidget *selection_label;
 	GtkWidget *default_info;
 	GtkWidget *selection_image;
-	GtkWidget *hbox_info;
+	GtkWidget *hgrid_info;
 	GtkWidget *label_info;
 	GtkWidget *image_info;
 	GtkTreeViewColumn *tree_view_column_accelerator;
@@ -2884,7 +2884,7 @@ info_button_style_updated (GtkWidget           *button,
 	                             "image-spacing", &spacing,
 	                             NULL);
 
-	gtk_box_set_spacing (GTK_BOX (completion->priv->hbox_info), spacing);
+	gtk_grid_set_column_spacing (GTK_GRID (completion->priv->hgrid_info), spacing);
 
 	settings = gtk_widget_get_settings (button);
 	g_object_get (settings,
@@ -2966,9 +2966,9 @@ initialize_ui (GtkSourceCompletion *completion)
 	completion->priv->image_info =
 		GTK_WIDGET (gtk_builder_get_object (builder,
 		                                    "image_info"));
-	completion->priv->hbox_info =
+	completion->priv->hgrid_info =
 		GTK_WIDGET (gtk_builder_get_object (builder,
-		                                    "hbox_info"));
+		                                    "hgrid_info"));
 
 	gtk_window_set_attached_to (GTK_WINDOW (completion->priv->window),
 				    GTK_WIDGET (completion->priv->view));
