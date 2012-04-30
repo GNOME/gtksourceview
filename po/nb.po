@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gtksourceview 3.3.x\n"
+"Project-Id-Version: gtksourceview 3.5.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-01-28 16:41+0100\n"
-"PO-Revision-Date: 2012-01-28 16:42+0100\n"
+"POT-Creation-Date: 2012-04-30 13:27+0200\n"
+"PO-Revision-Date: 2012-04-30 13:39+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian bokmål <i18n-nb@lister.ping.uio.no>\n"
 "Language: \n"
@@ -170,6 +170,7 @@ msgstr "Kommentar"
 #: ../data/language-specs/prolog.lang.h:6
 #: ../data/language-specs/protobuf.lang.h:6
 #: ../data/language-specs/python.lang.h:6
+#: ../data/language-specs/python3.lang.h:6
 #: ../data/language-specs/ruby.lang.h:14
 #: ../data/language-specs/scheme.lang.h:5
 #: ../data/language-specs/scilab.lang.h:5 ../data/language-specs/sh.lang.h:5
@@ -211,7 +212,8 @@ msgstr "Streng"
 #: ../data/language-specs/php.lang.h:12 ../data/language-specs/po.lang.h:7
 #: ../data/language-specs/prolog.lang.h:5
 #: ../data/language-specs/protobuf.lang.h:4
-#: ../data/language-specs/python.lang.h:4 ../data/language-specs/R.lang.h:3
+#: ../data/language-specs/python.lang.h:4
+#: ../data/language-specs/python3.lang.h:4 ../data/language-specs/R.lang.h:3
 #: ../data/language-specs/ruby.lang.h:7 ../data/language-specs/scheme.lang.h:6
 #: ../data/language-specs/scilab.lang.h:6 ../data/language-specs/sh.lang.h:6
 #: ../data/language-specs/sml.lang.h:4 ../data/language-specs/sparql.lang.h:7
@@ -227,16 +229,17 @@ msgstr "Nøkkelord"
 #. A decimal number: 1234
 #: ../data/language-specs/ada.lang.h:6
 #: ../data/language-specs/bennugd.lang.h:10
-#: ../data/language-specs/cg.lang.h:13 ../data/language-specs/c.lang.h:15
+#: ../data/language-specs/cg.lang.h:13 ../data/language-specs/c.lang.h:16
 #: ../data/language-specs/csharp.lang.h:15
 #: ../data/language-specs/def.lang.h:26 ../data/language-specs/d.lang.h:12
 #: ../data/language-specs/eiffel.lang.h:15
-#: ../data/language-specs/erlang.lang.h:9
+#: ../data/language-specs/erlang.lang.h:10
 #: ../data/language-specs/fsharp.lang.h:6 ../data/language-specs/go.lang.h:13
 #: ../data/language-specs/nemerle.lang.h:13
 #: ../data/language-specs/ocaml.lang.h:7 ../data/language-specs/ooc.lang.h:15
 #: ../data/language-specs/opal.lang.h:10 ../data/language-specs/php.lang.h:19
 #: ../data/language-specs/python.lang.h:13
+#: ../data/language-specs/python3.lang.h:12
 #: ../data/language-specs/ruby.lang.h:11
 msgid "Decimal number"
 msgstr "Desimaltall"
@@ -244,7 +247,7 @@ msgstr "Desimaltall"
 #. A boolean constant: TRUE, false
 #: ../data/language-specs/ada.lang.h:7 ../data/language-specs/asp.lang.h:13
 #: ../data/language-specs/bennugd.lang.h:12
-#: ../data/language-specs/cg.lang.h:16 ../data/language-specs/c.lang.h:18
+#: ../data/language-specs/cg.lang.h:16 ../data/language-specs/c.lang.h:19
 #: ../data/language-specs/csharp.lang.h:14
 #: ../data/language-specs/def.lang.h:34
 #: ../data/language-specs/fsharp.lang.h:19 ../data/language-specs/go.lang.h:16
@@ -261,14 +264,14 @@ msgid "Boolean value"
 msgstr "Bolsk verdi"
 
 #: ../data/language-specs/ada.lang.h:8 ../data/language-specs/cg.lang.h:10
-#: ../data/language-specs/c.lang.h:11 ../data/language-specs/go.lang.h:10
+#: ../data/language-specs/c.lang.h:12 ../data/language-specs/go.lang.h:10
 #: ../data/language-specs/java.lang.h:10 ../data/language-specs/ooc.lang.h:9
 msgid "Storage Class"
 msgstr "Lagringsklasse"
 
 #: ../data/language-specs/ada.lang.h:9 ../data/language-specs/asp.lang.h:11
 #: ../data/language-specs/bennugd.lang.h:8 ../data/language-specs/boo.lang.h:8
-#: ../data/language-specs/cg.lang.h:9 ../data/language-specs/c.lang.h:10
+#: ../data/language-specs/cg.lang.h:9 ../data/language-specs/c.lang.h:11
 #: ../data/language-specs/cpp.lang.h:4 ../data/language-specs/csharp.lang.h:5
 #: ../data/language-specs/cuda.lang.h:4 ../data/language-specs/d.lang.h:7
 #: ../data/language-specs/eiffel.lang.h:8
@@ -319,7 +322,7 @@ msgstr "Reelt tall"
 
 #. map to nothing
 #: ../data/language-specs/ada.lang.h:13 ../data/language-specs/cg.lang.h:11
-#: ../data/language-specs/c.lang.h:13 ../data/language-specs/csharp.lang.h:8
+#: ../data/language-specs/c.lang.h:14 ../data/language-specs/csharp.lang.h:8
 #: ../data/language-specs/eiffel.lang.h:12
 #: ../data/language-specs/fsharp.lang.h:18 ../data/language-specs/go.lang.h:11
 #: ../data/language-specs/haskell.lang.h:11
@@ -328,8 +331,10 @@ msgstr "Reelt tall"
 #: ../data/language-specs/json.lang.h:3 ../data/language-specs/lua.lang.h:6
 #: ../data/language-specs/ocaml.lang.h:18 ../data/language-specs/ooc.lang.h:5
 #: ../data/language-specs/php.lang.h:8 ../data/language-specs/prolog.lang.h:10
-#: ../data/language-specs/python.lang.h:7 ../data/language-specs/ruby.lang.h:3
-#: ../data/language-specs/sml.lang.h:8 ../data/language-specs/texinfo.lang.h:4
+#: ../data/language-specs/python.lang.h:7
+#: ../data/language-specs/python3.lang.h:7
+#: ../data/language-specs/ruby.lang.h:3 ../data/language-specs/sml.lang.h:8
+#: ../data/language-specs/texinfo.lang.h:4
 #: ../data/language-specs/verilog.lang.h:5
 msgid "Escaped Character"
 msgstr "Escaped-tegn"
@@ -353,7 +358,7 @@ msgstr "Funksjon"
 
 #. Operators: "+", "*", etc.
 #: ../data/language-specs/asp.lang.h:8 ../data/language-specs/bennugd.lang.h:6
-#: ../data/language-specs/cmake.lang.h:6
+#: ../data/language-specs/c.lang.h:10 ../data/language-specs/cmake.lang.h:6
 #: ../data/language-specs/cobol.lang.h:10 ../data/language-specs/def.lang.h:45
 #: ../data/language-specs/erlang.lang.h:5
 #: ../data/language-specs/imagej.lang.h:9 ../data/language-specs/nsis.lang.h:3
@@ -429,8 +434,10 @@ msgstr "Erstatning"
 #: ../data/language-specs/javascript.lang.h:1
 #: ../data/language-specs/lua.lang.h:1 ../data/language-specs/m4.lang.h:1
 #: ../data/language-specs/perl.lang.h:1 ../data/language-specs/php.lang.h:1
-#: ../data/language-specs/python.lang.h:1 ../data/language-specs/ruby.lang.h:1
-#: ../data/language-specs/sh.lang.h:1 ../data/language-specs/tcl.lang.h:1
+#: ../data/language-specs/python.lang.h:1
+#: ../data/language-specs/python3.lang.h:1
+#: ../data/language-specs/ruby.lang.h:1 ../data/language-specs/sh.lang.h:1
+#: ../data/language-specs/tcl.lang.h:1
 msgid "Scripts"
 msgstr "Skript"
 
@@ -460,6 +467,7 @@ msgstr "Variabel"
 #: ../data/language-specs/awk.lang.h:6 ../data/language-specs/boo.lang.h:15
 #: ../data/language-specs/glsl.lang.h:6 ../data/language-specs/perl.lang.h:8
 #: ../data/language-specs/python.lang.h:18
+#: ../data/language-specs/python3.lang.h:17
 msgid "Builtin Function"
 msgstr "Innebygget funksjon"
 
@@ -475,18 +483,19 @@ msgstr "Identifikator"
 
 #. A floating point constant: 2.3e10
 #: ../data/language-specs/bennugd.lang.h:9 ../data/language-specs/cg.lang.h:12
-#: ../data/language-specs/c.lang.h:14 ../data/language-specs/def.lang.h:24
-#: ../data/language-specs/d.lang.h:11 ../data/language-specs/erlang.lang.h:8
+#: ../data/language-specs/c.lang.h:15 ../data/language-specs/def.lang.h:24
+#: ../data/language-specs/d.lang.h:11 ../data/language-specs/erlang.lang.h:9
 #: ../data/language-specs/go.lang.h:12 ../data/language-specs/json.lang.h:9
 #: ../data/language-specs/nemerle.lang.h:12
 #: ../data/language-specs/ooc.lang.h:14 ../data/language-specs/php.lang.h:18
-#: ../data/language-specs/python.lang.h:12 ../data/language-specs/R.lang.h:10
+#: ../data/language-specs/python.lang.h:12
+#: ../data/language-specs/python3.lang.h:11 ../data/language-specs/R.lang.h:10
 #: ../data/language-specs/ruby.lang.h:10
 msgid "Floating point number"
 msgstr "Flyttall"
 
 #: ../data/language-specs/bennugd.lang.h:11
-#: ../data/language-specs/cg.lang.h:15 ../data/language-specs/c.lang.h:17
+#: ../data/language-specs/cg.lang.h:15 ../data/language-specs/c.lang.h:18
 #: ../data/language-specs/csharp.lang.h:16 ../data/language-specs/d.lang.h:15
 #: ../data/language-specs/eiffel.lang.h:16 ../data/language-specs/go.lang.h:15
 #: ../data/language-specs/nemerle.lang.h:16
@@ -525,6 +534,7 @@ msgid "Boo"
 msgstr "Boo"
 
 #: ../data/language-specs/boo.lang.h:4 ../data/language-specs/python.lang.h:5
+#: ../data/language-specs/python3.lang.h:5
 msgid "Multiline string"
 msgstr "Flerlinjestreng"
 
@@ -545,6 +555,7 @@ msgstr "Definisjon"
 
 #: ../data/language-specs/boo.lang.h:11
 #: ../data/language-specs/python.lang.h:10
+#: ../data/language-specs/python3.lang.h:9
 #: ../data/language-specs/ruby.lang.h:19
 msgid "Special Variable"
 msgstr "Spesiell variabel"
@@ -567,6 +578,7 @@ msgstr "Null verdi"
 #: ../data/language-specs/libtool.lang.h:4
 #: ../data/language-specs/objj.lang.h:3 ../data/language-specs/octave.lang.h:8
 #: ../data/language-specs/python.lang.h:11
+#: ../data/language-specs/python3.lang.h:10
 #: ../data/language-specs/scheme.lang.h:4
 #: ../data/language-specs/scilab.lang.h:8
 #: ../data/language-specs/sparql.lang.h:9
@@ -602,7 +614,7 @@ msgstr "Bindinger"
 msgid "Included File"
 msgstr "Inkludert fil"
 
-#: ../data/language-specs/cg.lang.h:14 ../data/language-specs/c.lang.h:16
+#: ../data/language-specs/cg.lang.h:14 ../data/language-specs/c.lang.h:17
 #: ../data/language-specs/d.lang.h:14 ../data/language-specs/go.lang.h:14
 #: ../data/language-specs/nemerle.lang.h:15
 #: ../data/language-specs/ooc.lang.h:16 ../data/language-specs/php.lang.h:20
@@ -614,7 +626,7 @@ msgid "Swizzle operator"
 msgstr "Swizzle-operator"
 
 #. Translators: functions that are provided in the language
-#: ../data/language-specs/cg.lang.h:19 ../data/language-specs/erlang.lang.h:11
+#: ../data/language-specs/cg.lang.h:19 ../data/language-specs/erlang.lang.h:12
 #: ../data/language-specs/imagej.lang.h:3
 #: ../data/language-specs/matlab.lang.h:5
 #: ../data/language-specs/octave.lang.h:16
@@ -697,23 +709,24 @@ msgstr "Vanlige definerte verdier"
 
 #. A character constant: 'c'
 #: ../data/language-specs/c.lang.h:8 ../data/language-specs/csharp.lang.h:7
-#: ../data/language-specs/def.lang.h:15 ../data/language-specs/gap.lang.h:4
-#: ../data/language-specs/go.lang.h:7 ../data/language-specs/haskell.lang.h:10
+#: ../data/language-specs/def.lang.h:15 ../data/language-specs/erlang.lang.h:8
+#: ../data/language-specs/gap.lang.h:4 ../data/language-specs/go.lang.h:7
+#: ../data/language-specs/haskell.lang.h:10
 #: ../data/language-specs/java.lang.h:5
 #: ../data/language-specs/nemerle.lang.h:6 ../data/language-specs/sml.lang.h:6
 #: ../data/language-specs/vhdl.lang.h:5
 msgid "Character"
 msgstr "Tegn"
 
-#: ../data/language-specs/c.lang.h:12
+#: ../data/language-specs/c.lang.h:13
 msgid "printf Conversion"
 msgstr "printf-konvertering"
 
-#: ../data/language-specs/c.lang.h:19
+#: ../data/language-specs/c.lang.h:20
 msgid "Standard stream"
 msgstr "Standardstrøm"
 
-#: ../data/language-specs/c.lang.h:20
+#: ../data/language-specs/c.lang.h:21
 msgid "Signal name"
 msgstr "Navn på signal"
 
@@ -862,6 +875,7 @@ msgstr "Spesielt tegn (i en streng)"
 #. A base-N number: 0xFFFF
 #: ../data/language-specs/def.lang.h:28
 #: ../data/language-specs/python.lang.h:14
+#: ../data/language-specs/python3.lang.h:13
 #: ../data/language-specs/ruby.lang.h:12
 msgid "Base-N number"
 msgstr "Heltall i base-N"
@@ -869,6 +883,7 @@ msgstr "Heltall i base-N"
 #. A complex number
 #: ../data/language-specs/def.lang.h:30
 #: ../data/language-specs/python.lang.h:15
+#: ../data/language-specs/python3.lang.h:14
 msgid "Complex number"
 msgstr "Komplekst tall"
 
@@ -1095,7 +1110,7 @@ msgstr "Erlang"
 msgid "Atom"
 msgstr "Atom"
 
-#: ../data/language-specs/erlang.lang.h:10
+#: ../data/language-specs/erlang.lang.h:11
 #: ../data/language-specs/fsharp.lang.h:4
 #: ../data/language-specs/ocaml.lang.h:5
 #: ../data/language-specs/octave.lang.h:11 ../data/language-specs/sml.lang.h:9
@@ -1104,7 +1119,7 @@ msgstr "Atom"
 msgid "Base-N Integer"
 msgstr "Heltall i base-N"
 
-#: ../data/language-specs/erlang.lang.h:12
+#: ../data/language-specs/erlang.lang.h:13
 #: ../data/language-specs/forth.lang.h:11
 #: ../data/language-specs/systemverilog.lang.h:3
 #: ../data/language-specs/verilog.lang.h:7
@@ -1253,6 +1268,7 @@ msgstr "OpenGL Shading Language"
 
 #: ../data/language-specs/glsl.lang.h:7
 #: ../data/language-specs/python.lang.h:16
+#: ../data/language-specs/python3.lang.h:15
 msgid "Builtin Constant"
 msgstr "Innebygget konstant"
 
@@ -1405,7 +1421,7 @@ msgstr "Heksadesimal"
 
 #: ../data/language-specs/haskell-literate.lang.h:2
 msgid "Literate Haskell"
-msgstr ""
+msgstr "Litteral Haskell"
 
 #: ../data/language-specs/html.lang.h:2
 msgid "HTML"
@@ -1499,7 +1515,7 @@ msgstr "Mattemodus"
 
 #: ../data/language-specs/latex.lang.h:5
 msgid "Inline Math Mode"
-msgstr ""
+msgstr "Innebygget matematikkmodus"
 
 #: ../data/language-specs/latex.lang.h:6
 msgid "math-bound"
@@ -1512,7 +1528,7 @@ msgstr "Include"
 
 #: ../data/language-specs/latex.lang.h:9 ../data/language-specs/t2t.lang.h:16
 msgid "Verbatim"
-msgstr ""
+msgstr "Ordrett"
 
 #: ../data/language-specs/libtool.lang.h:2
 msgid "libtool"
@@ -1556,11 +1572,11 @@ msgstr "Makefil"
 
 #: ../data/language-specs/makefile.lang.h:4
 msgid "Assignment Right Hand Side"
-msgstr ""
+msgstr "Tildeling høyre side"
 
 #: ../data/language-specs/makefile.lang.h:5
 msgid "Assignment Left Hand Side"
-msgstr ""
+msgstr "Tildeling venstre side"
 
 #: ../data/language-specs/makefile.lang.h:6
 msgid "targets"
@@ -1568,7 +1584,7 @@ msgstr "mål"
 
 #: ../data/language-specs/makefile.lang.h:7
 msgid "prereq"
-msgstr ""
+msgstr "forhåndskrav"
 
 #: ../data/language-specs/makefile.lang.h:8
 msgid "command"
@@ -1625,7 +1641,7 @@ msgstr "Horisontal linjal"
 
 #: ../data/language-specs/markdown.lang.h:5
 msgid "List Marker"
-msgstr ""
+msgstr "Listemarkør"
 
 #: ../data/language-specs/markdown.lang.h:6
 msgid "Code"
@@ -1633,7 +1649,7 @@ msgstr "Kode"
 
 #: ../data/language-specs/markdown.lang.h:7
 msgid "Blockquote Marker"
-msgstr ""
+msgstr "Markør for blokksitat"
 
 #: ../data/language-specs/markdown.lang.h:9
 msgid "Link Text"
@@ -1721,6 +1737,7 @@ msgid "Opal"
 msgstr "Opal"
 
 #: ../data/language-specs/opal.lang.h:3 ../data/language-specs/python.lang.h:3
+#: ../data/language-specs/python3.lang.h:3
 msgid "Module Handler"
 msgstr "Modulhåndterer"
 
@@ -1839,6 +1856,7 @@ msgid "Python"
 msgstr "Python"
 
 #: ../data/language-specs/python.lang.h:8
+#: ../data/language-specs/python3.lang.h:8
 msgid "Format"
 msgstr "Format"
 
@@ -1847,8 +1865,13 @@ msgid "string-conversion"
 msgstr "strengkonvertering"
 
 #: ../data/language-specs/python.lang.h:17
+#: ../data/language-specs/python3.lang.h:16
 msgid "Builtin Object"
 msgstr "Innebygget objekt"
+
+#: ../data/language-specs/python3.lang.h:2
+msgid "Python 3"
+msgstr "Python 3"
 
 #: ../data/language-specs/R.lang.h:2
 msgid "R"
@@ -2099,7 +2122,7 @@ msgstr "IEEE systemoppgave"
 
 #: ../data/language-specs/verilog.lang.h:9
 msgid "LRM Additional System Task"
-msgstr ""
+msgstr "LRM ekstra systemoppgave"
 
 #: ../data/language-specs/verilog.lang.h:11
 msgid "Gate"
@@ -2244,7 +2267,7 @@ msgstr "Interaktiv pause"
 
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:502
 msgid "The delay before initiating interactive completion"
-msgstr ""
+msgstr "Pause før interaktiv fullføring startes"
 
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:511
 msgid "Priority"
@@ -2318,7 +2341,7 @@ msgstr "Håndtering av angring"
 
 #: ../gtksourceview/gtksourcebuffer.c:316
 msgid "The buffer undo manager"
-msgstr ""
+msgstr "Angrehåndtering for buffer"
 
 #: ../gtksourceview/gtksourcecompletion.c:935
 #: ../gtksourceview/gtksourcecompletion.c:958
@@ -2365,7 +2388,7 @@ msgstr "Vis ikoner"
 
 #: ../gtksourceview/gtksourcecompletion.c:2285
 msgid "Show provider and proposal icons in the completion popup"
-msgstr ""
+msgstr "Vis tilbyder og foreslåtte ikoner i fullføringsdialogen"
 
 #: ../gtksourceview/gtksourcecompletion.c:2298
 msgid "Accelerators"
@@ -2373,7 +2396,7 @@ msgstr "Akselleratorer"
 
 #: ../gtksourceview/gtksourcecompletion.c:2299
 msgid "Number of proposal accelerators to show"
-msgstr ""
+msgstr "Antall foreslåtte hurtigtaster som skal vises"
 
 #: ../gtksourceview/gtksourcecompletion.c:2315
 msgid "Auto Complete Delay"
@@ -2385,7 +2408,7 @@ msgstr ""
 
 #: ../gtksourceview/gtksourcecompletion.c:2331
 msgid "Provider Page Size"
-msgstr ""
+msgstr "Sidestørrelse for tilbyder"
 
 #: ../gtksourceview/gtksourcecompletion.c:2332
 msgid "Provider scrolling page size"
@@ -2393,7 +2416,7 @@ msgstr ""
 
 #: ../gtksourceview/gtksourcecompletion.c:2347
 msgid "Proposal Page Size"
-msgstr ""
+msgstr "Sidestørrelse for forslag"
 
 #: ../gtksourceview/gtksourcecompletion.c:2348
 msgid "Proposal scrolling page size"
@@ -2410,7 +2433,7 @@ msgstr "Fullføring"
 
 #: ../gtksourceview/gtksourcecompletioncontext.c:234
 msgid "The completion object to which the context belongs"
-msgstr ""
+msgstr "Fullføringsobjektet konteksten tilhører"
 
 #. Translators: The GtkTextIter at which the completion was invoked
 #: ../gtksourceview/gtksourcecompletioncontext.c:247
@@ -2462,7 +2485,7 @@ msgstr "Informasjon som skal vises for denne oppføringen"
 #. * named sub-patterns with the same name or if resulting regex is
 #. * too long. In this case fixing lang file helps (e.g. renaming
 #. * subpatterns, making huge keywords use bigger prefixes, etc.)
-#: ../gtksourceview/gtksourcecontextengine.c:3171
+#: ../gtksourceview/gtksourcecontextengine.c:3162
 #, c-format
 msgid ""
 "Cannot create a regex for all the transitions, the syntax highlighting "
@@ -2473,7 +2496,7 @@ msgstr ""
 "syntaks vil være tregere enn vanlig.\n"
 "Feilen var: %s"
 
-#: ../gtksourceview/gtksourcecontextengine.c:4509
+#: ../gtksourceview/gtksourcecontextengine.c:4500
 msgid ""
 "Highlighting a single line took too much time, syntax highlighting will be "
 "disabled"
@@ -2481,19 +2504,19 @@ msgstr ""
 "Utheving av en enkelt linje tok for lang tid. Syntaksutheving vil bli slått "
 "av"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5762
+#: ../gtksourceview/gtksourcecontextengine.c:5753
 #, c-format
 msgid "context '%s' cannot contain a \\%%{...@start} command"
 msgstr "kontekst «%s» kan ikke inneholde en \\%%{...@start}-kommando"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5923
-#: ../gtksourceview/gtksourcecontextengine.c:6012
+#: ../gtksourceview/gtksourcecontextengine.c:5914
+#: ../gtksourceview/gtksourcecontextengine.c:6003
 #, c-format
 msgid "duplicated context id '%s'"
 msgstr "duplisert kontekst-ID «%s»"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6127
-#: ../gtksourceview/gtksourcecontextengine.c:6187
+#: ../gtksourceview/gtksourcecontextengine.c:6118
+#: ../gtksourceview/gtksourcecontextengine.c:6178
 #, c-format
 msgid ""
 "style override used with wildcard context reference in language '%s' in ref "
@@ -2502,18 +2525,18 @@ msgstr ""
 "overstyring av stil brukt med «wildcard» kontekstreferanse i språk «%s» i "
 "ref «%s»"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6201
+#: ../gtksourceview/gtksourcecontextengine.c:6192
 #, c-format
 msgid "invalid context reference '%s'"
 msgstr "ugyldig kontekstreferanse «%s»"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6220
-#: ../gtksourceview/gtksourcecontextengine.c:6230
+#: ../gtksourceview/gtksourcecontextengine.c:6211
+#: ../gtksourceview/gtksourcecontextengine.c:6221
 #, c-format
 msgid "unknown context '%s'"
 msgstr "ukjent kontekst «%s»"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6330
+#: ../gtksourceview/gtksourcecontextengine.c:6321
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "Mangler hovedspråkdefinisjon (id = «%s».)"
@@ -2694,9 +2717,9 @@ msgid "Unknown id '%s' in regex '%s'"
 msgstr "Ukjent ID «%s» i vanlig uttrykk «%s»"
 
 #: ../gtksourceview/gtksourcelanguage-parser-2.c:1178
-#, c-format
+#, c-format, fuzzy
 msgid "in regex '%s': backreferences are not supported"
-msgstr ""
+msgstr "i regulært uttrykk «%s»: "
 
 #: ../gtksourceview/gtksourcemarkattributes.c:290
 #: ../gtksourceview/gtksourcestyle.c:88
