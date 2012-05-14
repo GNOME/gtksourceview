@@ -174,7 +174,8 @@ stamp-gtksourceview-typebuiltins.h: Makefile.am $(libgtksourceview_headers)
 
 EXTRA_DIST = 					\
 	gtksourceview-marshal.list		\
-	gtksourceview.gresource.xml
+	gtksourceview.gresource.xml		\
+	gtksourcecompletion.ui
 
 CLEANFILES = 					\
 	$(BUILT_SOURCES)			\
