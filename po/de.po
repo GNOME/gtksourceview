@@ -8,22 +8,21 @@
 # Andre Klapper <ak-47@gmx.net>, 2008.
 # Wolfgang Stöggl <c72578@yahoo.de>, 2009, 2011.
 # Mario Blättermann <mario.blaettermann@gmail.com>, 2010, 2011.
-# Christian Kirbach <Christian.Kirbach@googlemail.com>, 2010, 2011.
 # Paul Seyfert <pseyfert@mathphys.fsk.uni-heidelberg.de>, 2012.
+# Christian Kirbach <Christian.Kirbach@googlemail.com>, 2010, 2011, 2012.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: GtkSourceView master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=gtksourceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-03-03 23:51+0000\n"
-"PO-Revision-Date: 2012-03-04 15:58+0100\n"
-"Last-Translator: Paul Seyfert <pseyfert@mathphys.fsk.uni-heidelberg.de>\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-05-14 20:55+0200\n"
+"PO-Revision-Date: 2012-05-14 20:56+0200\n"
+"Last-Translator: Christian Kirbach <Christian.Kirbach@googlemail.com>\n"
 "Language-Team: Deutsch <gnome-de@gnome.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: \n"
 "X-Poedit-Language: German\n"
 "X-Poedit-Country: GERMANY\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -82,7 +81,7 @@ msgstr "Angehängt"
 #. Translators: "All" is used as a label in thestatus bar of the
 #. popup, telling that all completion pages are shown
 #: ../data/glade/gtksourceview.xml.in.h:14
-#: ../gtksourceview/gtksourcecompletion.c:648
+#: ../gtksourceview/gtksourcecompletion.c:647
 msgid "All"
 msgstr "Alle"
 
@@ -242,11 +241,11 @@ msgstr "Stichwort"
 #. A decimal number: 1234
 #: ../data/language-specs/ada.lang.h:6
 #: ../data/language-specs/bennugd.lang.h:10
-#: ../data/language-specs/cg.lang.h:13 ../data/language-specs/c.lang.h:15
+#: ../data/language-specs/cg.lang.h:13 ../data/language-specs/c.lang.h:16
 #: ../data/language-specs/csharp.lang.h:15
 #: ../data/language-specs/def.lang.h:26 ../data/language-specs/d.lang.h:12
 #: ../data/language-specs/eiffel.lang.h:15
-#: ../data/language-specs/erlang.lang.h:9
+#: ../data/language-specs/erlang.lang.h:10
 #: ../data/language-specs/fsharp.lang.h:6 ../data/language-specs/go.lang.h:13
 #: ../data/language-specs/nemerle.lang.h:13
 #: ../data/language-specs/ocaml.lang.h:7 ../data/language-specs/ooc.lang.h:15
@@ -260,7 +259,7 @@ msgstr "Dezimalzahl"
 #. A boolean constant: TRUE, false
 #: ../data/language-specs/ada.lang.h:7 ../data/language-specs/asp.lang.h:13
 #: ../data/language-specs/bennugd.lang.h:12
-#: ../data/language-specs/cg.lang.h:16 ../data/language-specs/c.lang.h:18
+#: ../data/language-specs/cg.lang.h:16 ../data/language-specs/c.lang.h:19
 #: ../data/language-specs/csharp.lang.h:14
 #: ../data/language-specs/def.lang.h:34
 #: ../data/language-specs/fsharp.lang.h:19 ../data/language-specs/go.lang.h:16
@@ -277,14 +276,14 @@ msgid "Boolean value"
 msgstr "Boolescher Wert"
 
 #: ../data/language-specs/ada.lang.h:8 ../data/language-specs/cg.lang.h:10
-#: ../data/language-specs/c.lang.h:11 ../data/language-specs/go.lang.h:10
+#: ../data/language-specs/c.lang.h:12 ../data/language-specs/go.lang.h:10
 #: ../data/language-specs/java.lang.h:10 ../data/language-specs/ooc.lang.h:9
 msgid "Storage Class"
 msgstr "Speicherklasse"
 
 #: ../data/language-specs/ada.lang.h:9 ../data/language-specs/asp.lang.h:11
 #: ../data/language-specs/bennugd.lang.h:8 ../data/language-specs/boo.lang.h:8
-#: ../data/language-specs/cg.lang.h:9 ../data/language-specs/c.lang.h:10
+#: ../data/language-specs/cg.lang.h:9 ../data/language-specs/c.lang.h:11
 #: ../data/language-specs/cpp.lang.h:4 ../data/language-specs/csharp.lang.h:5
 #: ../data/language-specs/cuda.lang.h:4 ../data/language-specs/d.lang.h:7
 #: ../data/language-specs/eiffel.lang.h:8
@@ -335,7 +334,7 @@ msgstr "Dezimalzahl"
 
 #. map to nothing
 #: ../data/language-specs/ada.lang.h:13 ../data/language-specs/cg.lang.h:11
-#: ../data/language-specs/c.lang.h:13 ../data/language-specs/csharp.lang.h:8
+#: ../data/language-specs/c.lang.h:14 ../data/language-specs/csharp.lang.h:8
 #: ../data/language-specs/eiffel.lang.h:12
 #: ../data/language-specs/fsharp.lang.h:18 ../data/language-specs/go.lang.h:11
 #: ../data/language-specs/haskell.lang.h:11
@@ -371,7 +370,7 @@ msgstr "Funktion"
 
 #. Operators: "+", "*", etc.
 #: ../data/language-specs/asp.lang.h:8 ../data/language-specs/bennugd.lang.h:6
-#: ../data/language-specs/cmake.lang.h:6
+#: ../data/language-specs/c.lang.h:10 ../data/language-specs/cmake.lang.h:6
 #: ../data/language-specs/cobol.lang.h:10 ../data/language-specs/def.lang.h:45
 #: ../data/language-specs/erlang.lang.h:5
 #: ../data/language-specs/imagej.lang.h:9 ../data/language-specs/nsis.lang.h:3
@@ -499,8 +498,8 @@ msgstr "Bezeichner"
 
 #. A floating point constant: 2.3e10
 #: ../data/language-specs/bennugd.lang.h:9 ../data/language-specs/cg.lang.h:12
-#: ../data/language-specs/c.lang.h:14 ../data/language-specs/def.lang.h:24
-#: ../data/language-specs/d.lang.h:11 ../data/language-specs/erlang.lang.h:8
+#: ../data/language-specs/c.lang.h:15 ../data/language-specs/def.lang.h:24
+#: ../data/language-specs/d.lang.h:11 ../data/language-specs/erlang.lang.h:9
 #: ../data/language-specs/go.lang.h:12 ../data/language-specs/json.lang.h:9
 #: ../data/language-specs/nemerle.lang.h:12
 #: ../data/language-specs/ooc.lang.h:14 ../data/language-specs/php.lang.h:18
@@ -511,7 +510,7 @@ msgid "Floating point number"
 msgstr "Fließkommazahl"
 
 #: ../data/language-specs/bennugd.lang.h:11
-#: ../data/language-specs/cg.lang.h:15 ../data/language-specs/c.lang.h:17
+#: ../data/language-specs/cg.lang.h:15 ../data/language-specs/c.lang.h:18
 #: ../data/language-specs/csharp.lang.h:16 ../data/language-specs/d.lang.h:15
 #: ../data/language-specs/eiffel.lang.h:16 ../data/language-specs/go.lang.h:15
 #: ../data/language-specs/nemerle.lang.h:16
@@ -633,7 +632,7 @@ msgstr "Bindungen"
 msgid "Included File"
 msgstr "Include-Datei"
 
-#: ../data/language-specs/cg.lang.h:14 ../data/language-specs/c.lang.h:16
+#: ../data/language-specs/cg.lang.h:14 ../data/language-specs/c.lang.h:17
 #: ../data/language-specs/d.lang.h:14 ../data/language-specs/go.lang.h:14
 #: ../data/language-specs/nemerle.lang.h:15
 #: ../data/language-specs/ooc.lang.h:16 ../data/language-specs/php.lang.h:20
@@ -646,7 +645,7 @@ msgstr "Swizzle-Operator"
 
 # CHECK
 #. Translators: functions that are provided in the language
-#: ../data/language-specs/cg.lang.h:19 ../data/language-specs/erlang.lang.h:11
+#: ../data/language-specs/cg.lang.h:19 ../data/language-specs/erlang.lang.h:12
 #: ../data/language-specs/imagej.lang.h:3
 #: ../data/language-specs/matlab.lang.h:5
 #: ../data/language-specs/octave.lang.h:16
@@ -730,24 +729,25 @@ msgstr "Übliche Definition"
 
 #. A character constant: 'c'
 #: ../data/language-specs/c.lang.h:8 ../data/language-specs/csharp.lang.h:7
-#: ../data/language-specs/def.lang.h:15 ../data/language-specs/gap.lang.h:4
-#: ../data/language-specs/go.lang.h:7 ../data/language-specs/haskell.lang.h:10
+#: ../data/language-specs/def.lang.h:15 ../data/language-specs/erlang.lang.h:8
+#: ../data/language-specs/gap.lang.h:4 ../data/language-specs/go.lang.h:7
+#: ../data/language-specs/haskell.lang.h:10
 #: ../data/language-specs/java.lang.h:5
 #: ../data/language-specs/nemerle.lang.h:6 ../data/language-specs/sml.lang.h:6
 #: ../data/language-specs/vhdl.lang.h:5
 msgid "Character"
 msgstr "Zeichen"
 
-#: ../data/language-specs/c.lang.h:12
+#: ../data/language-specs/c.lang.h:13
 msgid "printf Conversion"
 msgstr "printf-Konvertierung"
 
-#: ../data/language-specs/c.lang.h:19
+#: ../data/language-specs/c.lang.h:20
 msgid "Standard stream"
 msgstr "Standardstrom"
 
 # CHECK
-#: ../data/language-specs/c.lang.h:20
+#: ../data/language-specs/c.lang.h:21
 msgid "Signal name"
 msgstr "Signalname"
 
@@ -1138,7 +1138,7 @@ msgstr "Erlang"
 msgid "Atom"
 msgstr "Atom"
 
-#: ../data/language-specs/erlang.lang.h:10
+#: ../data/language-specs/erlang.lang.h:11
 #: ../data/language-specs/fsharp.lang.h:4
 #: ../data/language-specs/ocaml.lang.h:5
 #: ../data/language-specs/octave.lang.h:11 ../data/language-specs/sml.lang.h:9
@@ -1147,7 +1147,7 @@ msgstr "Atom"
 msgid "Base-N Integer"
 msgstr "Ganzzahl zur Basis N"
 
-#: ../data/language-specs/erlang.lang.h:12
+#: ../data/language-specs/erlang.lang.h:13
 #: ../data/language-specs/forth.lang.h:11
 #: ../data/language-specs/systemverilog.lang.h:3
 #: ../data/language-specs/verilog.lang.h:7
@@ -2394,94 +2394,102 @@ msgstr "Rückgängig-Verwaltung"
 msgid "The buffer undo manager"
 msgstr "Der Puffer der Rückgängig-Verwaltung"
 
-#: ../gtksourceview/gtksourcecompletion.c:935
-#: ../gtksourceview/gtksourcecompletion.c:958
+#: ../gtksourceview/gtksourcecompletion.c:934
+#: ../gtksourceview/gtksourcecompletion.c:957
 msgid "No extra information available"
 msgstr "Keine weiteren Informationen verfügbar"
 
-#: ../gtksourceview/gtksourcecompletion.c:2224
+#: ../gtksourceview/gtksourcecompletion.c:2223
 #: ../gtksourceview/gtksourcegutter.c:547
 msgid "View"
 msgstr "Ansicht"
 
-#: ../gtksourceview/gtksourcecompletion.c:2225
+#: ../gtksourceview/gtksourcecompletion.c:2224
 msgid "The GtkSourceView bound to the completion"
 msgstr "Die GtkSourceBuffer-Bindung zur Vervollständigung"
 
-#: ../gtksourceview/gtksourcecompletion.c:2240
+#: ../gtksourceview/gtksourcecompletion.c:2239
 msgid "Remember Info Visibility"
 msgstr "Infofenster-Sichtbarkeit speichern"
 
-#: ../gtksourceview/gtksourcecompletion.c:2241
+#: ../gtksourceview/gtksourcecompletion.c:2240
 msgid "Remember the last info window visibility state"
 msgstr "Den letzten Status der Sichtbarkeit des Infofensters speichern"
 
 # CHECK
-#: ../gtksourceview/gtksourcecompletion.c:2254
+#: ../gtksourceview/gtksourcecompletion.c:2253
 msgid "Select on Show"
 msgstr "Bei Anzeige wählen"
 
-#: ../gtksourceview/gtksourcecompletion.c:2255
+#: ../gtksourceview/gtksourcecompletion.c:2254
 msgid "Select first proposal when completion is shown"
 msgstr "Ersten Vorschlag wählen, wenn Vervollständigung angezeigt wird"
 
-#: ../gtksourceview/gtksourcecompletion.c:2269
+#: ../gtksourceview/gtksourcecompletion.c:2268
 msgid "Show Headers"
 msgstr "Kopfzeilen anzeigen"
 
-#: ../gtksourceview/gtksourcecompletion.c:2270
+#: ../gtksourceview/gtksourcecompletion.c:2269
 msgid ""
 "Show provider headers when proposals from multiple providers are available"
 msgstr ""
 "Kopfzeilen für Bereitsteller anzeigen, wenn Vorschläge mehrerer "
 "Bereitsteller verfügbar sind"
 
-#: ../gtksourceview/gtksourcecompletion.c:2284
+#: ../gtksourceview/gtksourcecompletion.c:2283
 msgid "Show Icons"
 msgstr "Symbole anzeigen"
 
-#: ../gtksourceview/gtksourcecompletion.c:2285
+#: ../gtksourceview/gtksourcecompletion.c:2284
 msgid "Show provider and proposal icons in the completion popup"
 msgstr ""
 "Symbole für Bereitsteller und Vorschläge im Vervollständigungs-Popup anzeigen"
 
 # CHECK: In diesem Kontext?
-#: ../gtksourceview/gtksourcecompletion.c:2298
+#: ../gtksourceview/gtksourcecompletion.c:2299
 msgid "Accelerators"
 msgstr "Tastenkombinationen"
 
-#: ../gtksourceview/gtksourcecompletion.c:2299
+#: ../gtksourceview/gtksourcecompletion.c:2300
 msgid "Number of proposal accelerators to show"
 msgstr "Anzahl der anzuzeigenden Tastenkombinationen für Vorschläge"
 
-#: ../gtksourceview/gtksourcecompletion.c:2315
+#: ../gtksourceview/gtksourcecompletion.c:2316
 msgid "Auto Complete Delay"
 msgstr "Verzögerung zur automatischen Vervollständigung"
 
-#: ../gtksourceview/gtksourcecompletion.c:2316
+#: ../gtksourceview/gtksourcecompletion.c:2317
 msgid "Completion popup delay for interactive completion"
 msgstr ""
 "Verzögerung bis zur Anzeige der Vervollständigung im interaktiven Modus"
 
-#: ../gtksourceview/gtksourcecompletion.c:2331
+#: ../gtksourceview/gtksourcecompletion.c:2333
 msgid "Provider Page Size"
 msgstr "Seitengröße des Bereitstellers"
 
-#: ../gtksourceview/gtksourcecompletion.c:2332
+#: ../gtksourceview/gtksourcecompletion.c:2334
 msgid "Provider scrolling page size"
 msgstr "Seitengröße des Bildlaufs des Bereitstellers "
 
-#: ../gtksourceview/gtksourcecompletion.c:2347
+#: ../gtksourceview/gtksourcecompletion.c:2353
 msgid "Proposal Page Size"
 msgstr "Seitengröße der Vorschläge"
 
-#: ../gtksourceview/gtksourcecompletion.c:2348
+#: ../gtksourceview/gtksourcecompletion.c:2354
 msgid "Proposal scrolling page size"
 msgstr "Seitengröße des Bildlaufs für Vorschläge"
 
-#: ../gtksourceview/gtksourcecompletion.c:2693
+#: ../gtksourceview/gtksourcecompletion.c:2715
 msgid "Provider"
 msgstr "Bereitsteller"
+
+#: ../gtksourceview/gtksourcecompletion.ui.h:1
+msgid "Show detailed proposal information"
+msgstr "Detaillierte Informationen zum Vorschlag anzeigen"
+
+#: ../gtksourceview/gtksourcecompletion.ui.h:2
+msgid "_Details..."
+msgstr "_Details …"
 
 #: ../gtksourceview/gtksourcecompletioncontext.c:233
 #: ../gtksourceview/gtksourceview.c:306
@@ -2544,7 +2552,7 @@ msgstr "Für dieses Objekt anzuzeigende Information"
 #. * named sub-patterns with the same name or if resulting regex is
 #. * too long. In this case fixing lang file helps (e.g. renaming
 #. * subpatterns, making huge keywords use bigger prefixes, etc.)
-#: ../gtksourceview/gtksourcecontextengine.c:3171
+#: ../gtksourceview/gtksourcecontextengine.c:3162
 #, c-format
 msgid ""
 "Cannot create a regex for all the transitions, the syntax highlighting "
@@ -2555,7 +2563,7 @@ msgstr ""
 "Syntax-Hervorhebung wird langsamer als gewohnt sein.\n"
 "Der Fehler war: %s"
 
-#: ../gtksourceview/gtksourcecontextengine.c:4509
+#: ../gtksourceview/gtksourcecontextengine.c:4500
 msgid ""
 "Highlighting a single line took too much time, syntax highlighting will be "
 "disabled"
@@ -2563,19 +2571,19 @@ msgstr ""
 "Das Hervorheben einer einzelnen Zeile benötigte zu viel Zeit, daher wird die "
 "Syntax-Hervorhebung ausgeschaltet"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5762
+#: ../gtksourceview/gtksourcecontextengine.c:5753
 #, c-format
 msgid "context '%s' cannot contain a \\%%{...@start} command"
 msgstr "Kontext »%s« kann keinen \\%%{...@start}-Befehl enthalten"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5923
-#: ../gtksourceview/gtksourcecontextengine.c:6012
+#: ../gtksourceview/gtksourcecontextengine.c:5914
+#: ../gtksourceview/gtksourcecontextengine.c:6003
 #, c-format
 msgid "duplicated context id '%s'"
 msgstr "Mehrfache Kontext-ID »%s«"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6127
-#: ../gtksourceview/gtksourcecontextengine.c:6187
+#: ../gtksourceview/gtksourcecontextengine.c:6118
+#: ../gtksourceview/gtksourcecontextengine.c:6178
 #, c-format
 msgid ""
 "style override used with wildcard context reference in language '%s' in ref "
@@ -2584,18 +2592,18 @@ msgstr ""
 "Stilüberschreibung durch Platzhalter-Kontext-Referenz in Sprache »%s« in "
 "Referenz »%s«"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6201
+#: ../gtksourceview/gtksourcecontextengine.c:6192
 #, c-format
 msgid "invalid context reference '%s'"
 msgstr "Ungültige Kontextreferenz »%s«"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6220
-#: ../gtksourceview/gtksourcecontextengine.c:6230
+#: ../gtksourceview/gtksourcecontextengine.c:6211
+#: ../gtksourceview/gtksourcecontextengine.c:6221
 #, c-format
 msgid "unknown context '%s'"
 msgstr "Unbekannter Kontext »%s«"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6330
+#: ../gtksourceview/gtksourcecontextengine.c:6321
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "Hauptsprachendefinition fehlt (id = »%s«)"
