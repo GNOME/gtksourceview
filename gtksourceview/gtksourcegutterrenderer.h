@@ -42,7 +42,6 @@ typedef struct _GtkSourceGutterRendererPrivate	GtkSourceGutterRendererPrivate;
 
 /**
  * GtkSourceGutterRendererState:
- *
  * @GTK_SOURCE_GUTTER_RENDERER_STATE_NORMAL: normal state
  * @GTK_SOURCE_GUTTER_RENDERER_STATE_CURSOR: area in the renderer represents the
  * line on which the insert cursor is currently positioned

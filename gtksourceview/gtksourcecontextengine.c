@@ -897,7 +897,6 @@ highlight_region (GtkSourceContextEngine *ce,
 
 /**
  * ensure_highlighted:
- *
  * @ce: a #GtkSourceContextEngine.
  * @start: the beginning of the region to highlight.
  * @end: the end of the region to highlight.
@@ -1193,7 +1192,6 @@ refresh_context_classes (GtkSourceContextEngine *ce,
 
 /*
  * refresh_range:
- *
  * @ce: a #GtkSourceContextEngine.
  * @start: the beginning of updated area.
  * @end: the end of updated area.
@@ -1235,7 +1233,6 @@ refresh_range (GtkSourceContextEngine *ce,
 
 /**
  * segment_cmp:
- *
  * @s1: first segment.
  * @s2: second segment.
  *
@@ -1264,7 +1261,6 @@ segment_cmp (Segment *s1,
 
 /**
  * add_invalid:
- *
  * @ce: the engine.
  * @segment: segment.
  *
@@ -1290,7 +1286,6 @@ add_invalid (GtkSourceContextEngine *ce,
 
 /**
  * remove_invalid:
- *
  * @ce: the engine.
  * @segment: segment.
  *
@@ -1310,7 +1305,6 @@ remove_invalid (GtkSourceContextEngine *ce,
 
 /**
  * fix_offsets_insert_:
- *
  * @segment: segment.
  * @start: start offset.
  * @delta: length of inserted text.
@@ -1346,8 +1340,7 @@ fix_offsets_insert_ (Segment *segment,
 
 /**
  * find_insertion_place_forward_:
- *
- * @segment: (grand)parent segment the new one should be inserted into.
+ * @segment: the (grand)parent segment the new one should be inserted into.
  * @offset: offset at which text is inserted.
  * @start: segment from which to start search (to avoid
  * walking whole tree).
@@ -1415,8 +1408,7 @@ find_insertion_place_forward_ (Segment  *segment,
 
 /**
  * find_insertion_place_backward_:
- *
- * @segment: (grand)parent segment the new one should be inserted into.
+ * @segment: the (grand)parent segment the new one should be inserted into.
  * @offset: offset at which text is inserted.
  * @start: segment from which to start search (to avoid
  * walking whole tree).
@@ -1485,8 +1477,7 @@ find_insertion_place_backward_ (Segment  *segment,
 
 /**
  * find_insertion_place:
- *
- * @segment: (grand)parent segment the new one should be inserted into.
+ * @segment: the (grand)parent segment the new one should be inserted into.
  * @offset: offset at which text is inserted.
  * @start: segment from which to start search (to avoid
  * walking whole tree).
@@ -1549,7 +1540,6 @@ find_insertion_place (Segment  *segment,
 
 /**
  * get_invalid_at:
- *
  * @ce: the engine.
  * @offset: the offset.
  *
@@ -1584,7 +1574,6 @@ get_invalid_at (GtkSourceContextEngine *ce,
 
 /**
  * segment_add_subpattern:
- *
  * @state: the segment.
  * @sp: subpattern.
  *
@@ -1600,7 +1589,6 @@ segment_add_subpattern (Segment    *state,
 
 /**
  * sub_pattern_new:
- *
  * @segment: the segment.
  * @start_at: start offset of the subpattern.
  * @end_at: end offset of the subpattern.
@@ -1631,7 +1619,6 @@ sub_pattern_new (Segment              *segment,
 
 /**
  * sub_pattern_free:
- *
  * @sp: subppatern.
  *
  * Calls g_free on subpattern, was useful for debugging.
@@ -1648,7 +1635,6 @@ sub_pattern_free (SubPattern *sp)
 
 /**
  * segment_make_invalid_:
- *
  * @ce: the engine.
  * @segment: segment to invalidate.
  *
@@ -1684,7 +1670,6 @@ segment_make_invalid_ (GtkSourceContextEngine *ce,
 
 /**
  * simple_segment_split_:
- *
  * @ce: the engine.
  * @segment: segment to split.
  * @offset: offset at which text insertion occurred.
@@ -1747,7 +1732,6 @@ simple_segment_split_ (GtkSourceContextEngine *ce,
 
 /**
  * invalidate_region:
- *
  * @ce: a #GtkSourceContextEngine.
  * @offset: the start of invalidated area.
  * @length: the length of the area.
@@ -1817,7 +1801,6 @@ invalidate_region (GtkSourceContextEngine *ce,
 
 /**
  * insert_range:
- *
  * @ce: a #GtkSourceContextEngine.
  * @offset: the start of new segment.
  * @length: the length of the segment.
@@ -1936,7 +1919,6 @@ insert_range (GtkSourceContextEngine *ce,
 
 /**
  * gtk_source_context_engine_text_inserted:
- *
  * @ce: a #GtkSourceContextEngine.
  * @start_offset: the start of inserted text.
  * @end_offset: the end of inserted text.
@@ -1973,7 +1955,6 @@ gtk_source_context_engine_text_inserted (GtkSourceEngine *engine,
 
 /**
  * fix_offset_delete_one_:
- *
  * @offset: segment.
  * @start: start of deleted text.
  * @length: length of deleted text.
@@ -2000,7 +1981,6 @@ fix_offset_delete_one_ (gint offset,
 
 /**
  * fix_offsets_delete_:
- *
  * @segment: segment.
  * @start: start offset.
  * @length: length of deleted text.
@@ -2053,7 +2033,6 @@ fix_offsets_delete_ (Segment *segment,
 
 /**
  * delete_range_:
- *
  * @ce: a #GtkSourceContextEngine.
  * @start: the start of deleted area.
  * @end: the end of deleted area.
@@ -2080,7 +2059,6 @@ delete_range_ (GtkSourceContextEngine *ce,
 
 /**
  * gtk_source_context_engine_text_deleted:
- *
  * @ce: a #GtkSourceContextEngine.
  * @offset: the start of deleted text.
  * @length: the length (in characters) of deleted text.
@@ -2104,7 +2082,6 @@ gtk_source_context_engine_text_deleted (GtkSourceEngine *engine,
 
 /**
  * get_invalid_segment:
- *
  * @ce: a #GtkSourceContextEngine.
  *
  * Returns: first invalid segment, or %NULL.
@@ -2118,7 +2095,6 @@ get_invalid_segment (GtkSourceContextEngine *ce)
 
 /**
  * get_invalid_line:
- *
  * @ce: a #GtkSourceContextEngine.
  *
  * Returns: first invalid line, or -1.
@@ -2154,7 +2130,6 @@ get_invalid_line (GtkSourceContextEngine *ce)
 
 /**
  * update_tree:
- *
  * @ce: a #GtkSourceContextEngine.
  *
  * Modifies syntax tree according to data in invalid_region.
@@ -2221,7 +2196,6 @@ update_tree (GtkSourceContextEngine *ce)
 
 /**
  * gtk_source_context_engine_update_highlight:
- *
  * @ce: a #GtkSourceContextEngine.
  * @start: start of area to update.
  * @end: start of area to update.
@@ -2278,7 +2252,6 @@ gtk_source_context_engine_update_highlight (GtkSourceEngine   *engine,
 
 /**
  * enable_highlight:
- *
  * @ce: a #GtkSourceContextEngine.
  * @enable: whether to enable highlighting.
  *
@@ -2325,7 +2298,6 @@ buffer_notify_highlight_syntax_cb (GtkSourceContextEngine *ce)
 
 /**
  * all_analyzed:
- *
  * @ce: a #GtkSourceContextEngine.
  *
  * Returns: whether everything is analyzed (but it doesn't care about the tags).
@@ -2338,7 +2310,6 @@ all_analyzed (GtkSourceContextEngine *ce)
 
 /**
  * idle_worker:
- *
  * @ce: #GtkSourceContextEngine.
  *
  * Analyzes a batch in idle. Stops when
@@ -2366,7 +2337,6 @@ idle_worker (GtkSourceContextEngine *ce)
 
 /**
  * first_update_callback:
- *
  * @ce: a #GtkSourceContextEngine.
  *
  * Same as idle_worker, except: it runs once, and install idle_worker
@@ -2391,7 +2361,6 @@ first_update_callback (GtkSourceContextEngine *ce)
 
 /**
  * install_idle_worker:
- *
  * @ce: #GtkSourceContextEngine.
  *
  * Schedules reanalyzing buffer in idle.
@@ -2408,7 +2377,6 @@ install_idle_worker (GtkSourceContextEngine *ce)
 
 /**
  * install_first_update:
- *
  * @ce: #GtkSourceContextEngine.
  *
  * Schedules first_update_callback call.
@@ -2472,7 +2440,6 @@ remove_context_classes_hash_cb (G_GNUC_UNUSED gpointer class,
 
 /**
  * destroy_tags_hash:
- *
  * @ce: #GtkSourceContextEngine.
  *
  * Destroys syntax tags cache.
@@ -2497,7 +2464,6 @@ destroy_context_classes_hash (GtkSourceContextEngine *ce)
 
 /**
  * gtk_source_context_engine_attach_buffer:
- *
  * @ce: #GtkSourceContextEngine.
  * @buffer: buffer.
  *
@@ -2614,7 +2580,6 @@ gtk_source_context_engine_attach_buffer (GtkSourceEngine *engine,
 
 /**
  * disable_syntax_analysis:
- *
  * @ce: #GtkSourceContextEngine.
  *
  * Dsiables highlighting in case of errors (currently if highlighting
@@ -2646,7 +2611,6 @@ set_tag_style_hash_cb (const char             *style,
 
 /**
  * gtk_source_context_engine_set_style_scheme:
- *
  * @engine: #GtkSourceContextEngine.
  * @scheme: #GtkSourceStyleScheme to set.
  *
@@ -2758,7 +2722,6 @@ _gtk_source_context_engine_new (GtkSourceContextData *ctx_data)
 
 /**
  * _gtk_source_context_data_new:
- *
  * @lang: #GtkSourceLanguage.
  *
  * Creates new context definition set. It does not set lang->priv->ctx_data,
@@ -2790,7 +2753,6 @@ _gtk_source_context_data_ref (GtkSourceContextData *ctx_data)
 
 /**
  * _gtk_source_context_data_unref:
- *
  * @ctx_data: #GtkSourceContextData.
  *
  * Decreases reference count in ctx_data. When reference count
@@ -2816,7 +2778,6 @@ _gtk_source_context_data_unref (GtkSourceContextData *ctx_data)
 
 /**
  * apply_sub_patterns:
- *
  * @contextstate: a #Context.
  * @line_starts_at: beginning offset of the line.
  * @line: the line to analyze.
@@ -2903,7 +2864,6 @@ apply_sub_patterns (Segment         *state,
 
 /**
  * can_apply_match:
- *
  * @state: the current state of the parser.
  * @line: the line to analyze.
  * @match_start: start position of match, bytes.
@@ -2987,7 +2947,6 @@ line_pos_to_offset (LineInfo *line,
 
 /**
  * apply_match:
- *
  * @state: the current state of the parser.
  * @line: the line to analyze.
  * @line_pos: position in the line, bytes.
@@ -3025,7 +2984,6 @@ apply_match (Segment         *state,
 
 /**
  * create_reg_all:
- *
  * @context: context.
  * @definition: context definition.
  *
@@ -3313,7 +3271,6 @@ context_remove_child (Context *parent,
 
 /**
  * context_unref:
- *
  * @context: the context.
  *
  * Decreases reference count and removes @context
@@ -3391,7 +3348,6 @@ context_freeze_hash_cb (G_GNUC_UNUSED gpointer text,
 
 /**
  * context_freeze:
- *
  * @context: the context.
  *
  * Recursively increments reference count in context and its children,
@@ -3442,7 +3398,6 @@ get_child_contexts_hash_cb (G_GNUC_UNUSED gpointer text,
 
 /**
  * context_thaw:
- *
  * @context: the context.
  *
  * Recursively decrements reference count in context and its children,
@@ -3552,7 +3507,6 @@ create_child_context (Context           *parent,
 
 /**
  * segment_new:
- *
  * @ce: the engine.
  * @parent: parent segment (%NULL for the root segment).
  * @context: context for this segment (%NULL for invalid segments).
@@ -3661,7 +3615,6 @@ find_segment_position_backward_ (Segment  *segment,
 
 /**
  * find_segment_position:
- *
  * @parent: parent segment (not %NULL).
  * @hint: segment somewhere near new segment position.
  * @start_at: start offset.
@@ -3714,7 +3667,6 @@ find_segment_position (Segment  *parent,
 
 /**
  * create_segment:
- *
  * @ce: the engine.
  * @parent: parent segment (%NULL for the root segment).
  * @context: context for this segment (%NULL for invalid segments).
@@ -3784,7 +3736,6 @@ create_segment (GtkSourceContextEngine *ce,
 
 /**
  * segment_extend:
- *
  * @state: the semgent.
  * @end_at: new end offset, characters.
  *
@@ -3835,7 +3786,6 @@ segment_destroy_children (GtkSourceContextEngine *ce,
 
 /**
  * segment_destroy:
- *
  * @ce: the engine.
  * @context: the segment to destroy.
  *
@@ -4035,7 +3985,6 @@ simple_context_starts_here (GtkSourceContextEngine *ce,
 
 /**
  * child_starts_here:
- *
  * @ce: the engine.
  * @state: current state.
  * @child_def: the child.
@@ -4082,7 +4031,6 @@ child_starts_here (GtkSourceContextEngine *ce,
 
 /**
  * segment_ends_here:
- *
  * @state: the segment.
  * @line: analyzed line.
  * @pos: the position inside @line, bytes.
@@ -4107,7 +4055,6 @@ segment_ends_here (Segment  *state,
 
 /**
  * ancestor_context_ends_here:
- *
  * @state: current context.
  * @line: the line to analyze.
  * @line_pos: the position inside @line, bytes.
@@ -4169,7 +4116,6 @@ ancestor_context_ends_here (Context                *state,
 
 /**
  * ancestor_ends_here:
- *
  * @state: current state.
  * @line: the line to analyze.
  * @line_pos: the position inside @line, bytes.
@@ -4211,7 +4157,6 @@ ancestor_ends_here (Segment                *state,
 
 /**
  * next_segment:
- *
  * @ce: #GtkSourceContextEngine.
  * @state: current state.
  * @line: analyzed line.
@@ -4351,7 +4296,6 @@ next_segment (GtkSourceContextEngine  *ce,
 
 /**
  * check_line_end:
- *
  * @state: current state.
  * @hint: child of @state used in analyze_line() and next_segment().
  *
@@ -4459,7 +4403,6 @@ delete_zero_length_segments (GtkSourceContextEngine *ce,
 
 /**
  * analyze_line:
- *
  * @ce: #GtkSourceContextEngine.
  * @state: the state at the beginning of line.
  * @line: the line.
@@ -4554,7 +4497,6 @@ analyze_line (GtkSourceContextEngine *ce,
 
 /**
  * get_line_info:
- *
  * @buffer: #GtkTextBuffer.
  * @line_start: iterator pointing to the beginning of line.
  * @line_end: iterator pointing to the beginning of next line or to the end
@@ -4602,7 +4544,6 @@ get_line_info (GtkTextBuffer     *buffer,
 
 /**
  * line_info_destroy:
- *
  * @line: #LineInfo.
  *
  * Destroys data allocated by get_line_info().
@@ -4615,7 +4556,6 @@ line_info_destroy (LineInfo *line)
 
 /**
  * segment_tree_zero_len:
- *
  * @ce: #GtkSoucreContextEngine.
  *
  * Erases syntax tree and sets root segment length to zero.
@@ -4845,7 +4785,6 @@ get_segment_ (Segment *segment,
 
 /**
  * get_segment_at_offset:
- *
  * @ce: #GtkSoucreContextEngine.
  * @hint: segment to start search from or %NULL.
  * @offset: the offset, characters.
@@ -4889,7 +4828,6 @@ get_segment_at_offset (GtkSourceContextEngine *ce,
 
 /**
  * segment_remove:
- *
  * @ce: #GtkSoucreContextEngine.
  * @segment: segment to remove.
  *
@@ -5036,7 +4974,6 @@ segment_erase_middle_ (GtkSourceContextEngine *ce,
 
 /**
  * segment_erase_range_:
- *
  * @ce: #GtkSourceContextEngine.
  * @segment: the segment.
  * @start: start offset of range to erase, characters.
@@ -5159,7 +5096,6 @@ segment_erase_range_ (GtkSourceContextEngine *ce,
 
 /**
  * segment_merge:
- *
  * @ce: #GtkSourceContextEngine.
  * @first: first segment.
  * @second: second segment.
@@ -5246,7 +5182,6 @@ segment_merge (GtkSourceContextEngine *ce,
 
 /**
  * erase_segments:
- *
  * @ce: #GtkSourceContextEngine.
  * @start: start offset of region to erase, characters.
  * @end: end offset of region to erase, characters.
@@ -5336,7 +5271,6 @@ erase_segments (GtkSourceContextEngine *ce,
 
 /**
  * update_syntax:
- *
  * @ce: #GtkSourceContextEngine.
  * @end: desired end of region to analyze or %NULL.
  * @time: maximal amount of time in milliseconds allowed to spend here
@@ -6062,7 +5996,6 @@ _gtk_source_context_data_add_sub_pattern (GtkSourceContextData *ctx_data,
 
 /**
  * context_is_pure_container:
- *
  * @def: context definition.
  *
  * Checks whether context is a container with no start regex.
@@ -6256,7 +6189,6 @@ _gtk_source_context_replace_free (GtkSourceContextReplace *repl)
 
 /**
  * _gtk_source_context_data_finish_parse:
- *
  * @ctx_data: #GtkSourceContextData.
  * @overrides: list of #GtkSourceContextOverride objects.
  * @error: error structure to be filled in when failed.

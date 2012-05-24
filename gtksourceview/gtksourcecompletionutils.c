@@ -45,7 +45,6 @@ gtk_source_completion_utils_is_separator (const gunichar ch)
 
 /**
  * gtk_source_completion_utils_get_word_iter:
- *
  * @source_buffer: a #GtkSourceBuffer.
  * @current: (allow-none): the iter of the position to consider, or %NULL to use the current insert position
  * @start_word: (allow-none): if not %NULL then assign it the start position of the word
