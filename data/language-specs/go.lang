@@ -33,17 +33,19 @@
     <style id="comment"           _name="Comment"             map-to="def:comment"/>
     <style id="error"             _name="Error"               map-to="def:error"/>
     <style id="string"            _name="String"              map-to="def:string"/>
-    <style id="included-file"     _name="Included File"       map-to="def:string"/>
     <style id="char"              _name="Character"           map-to="def:character"/>
     <style id="keyword"           _name="Keyword"             map-to="def:keyword"/>
     <style id="type"              _name="Data Type"           map-to="def:type"/>
-    <style id="storage-class"     _name="Storage Class"       map-to="def:type"/>
+    <style id="printf"            _name="printf Conversion"   map-to="def:special-char"/>
     <style id="escaped-character" _name="Escaped Character"   map-to="def:special-char"/>
     <style id="floating-point"    _name="Floating point number" map-to="def:floating-point"/>
+    <style id="imaginary"         _name="Imaginary number"    map-to="def:number"/>
     <style id="decimal"           _name="Decimal number"      map-to="def:decimal"/>
     <style id="octal"             _name="Octal number"        map-to="def:base-n-integer"/>
     <style id="hexadecimal"       _name="Hexadecimal number"  map-to="def:base-n-integer"/>
     <style id="boolean"           _name="Boolean value"       map-to="def:boolean"/>
+    <style id="builtin-constant"  _name="Builtin Constant"    map-to="def:special-constant"/>
+    <style id="builtin-function"  _name="Builtin Function"    map-to="def:builtin"/>
   </styles>
 
   <definitions>
@@ -55,6 +57,18 @@
       )
     </define-regex>
 
+    <!--contexts NOT used on the main context-->
+    <context id="printf" style-ref="printf" extend-parent="false">
+      <match extended="true">
+        \%\%|\%
+        [#0\-\ \+\*]*        # flags
+        (?:[1-9][0-9]*|\*)?  # width
+        (?:\.(?:[0-9]+|\*))? # precision
+        [vTtbcdoqxXUeEfgGsp] # conversion specifier
+      </match>
+    </context>
+
+    <!--contexts used on the main context-->
     <context id="comment" style-ref="comment" end-at-line-end="true" class-disabled="no-spell-check">
       <start>//</start>
       <include>
@@ -78,10 +92,11 @@
       <start>"</start>
       <end>"</end>
       <include>
+        <context ref="printf"/>
         <context id="escaped-character" style-ref="escaped-character">
           <match>\%{escaped-character}</match>
         </context>
-      <context ref="def:line-continue"/>
+        <context ref="def:line-continue"/>
       </include>
     </context>
 
@@ -89,7 +104,7 @@
       <start>`</start>
       <end>`</end>
       <include>
-        <context ref="escaped-character"/>
+        <context ref="printf"/>
         <context ref="def:line-continue"/>
       </include>
     </context>
@@ -98,20 +113,31 @@
       <match>'(\%{escaped-character}|.)'</match>
     </context>
 
+    <define-regex id="float" extended="true">
+      ((\.[0-9]+ | [0-9]+\.[0-9]*) ([Ee][+-]?[0-9]+)? |
+      ([0-9]+[Ee][+-]?[0-9]+))
+    </define-regex>
+
+    <context id="imaginary" style-ref="imaginary">
+      <match>(?&lt;![\w\.])(\%{float}|\[0-9]+)[i]\b</match>
+    </context>
+
     <context id="float" style-ref="floating-point">
-      <match extended="true">
-        (?&lt;![\w\.])
-        ((\.[0-9]+ | [0-9]+\.[0-9]*) ([Ee][+-]?[0-9]*)? |
-        ([0-9]+[Ee][+-]?[0-9]*))
-        [fFlL]?
-        (?![\w\.])
-      </match>
+      <match>(?&lt;![\w\.])\%{float}(?![\w\.])</match>
     </context>
 
     <context id="hexadecimal" style-ref="hexadecimal">
       <match extended="true">
         (?&lt;![\w\.])
         0[xX][a-fA-F0-9]+
+        (?![\w\.])
+      </match>
+    </context>
+
+    <context id="invalid-hexadecimal" style-ref="error">
+      <match extended="true">
+        (?&lt;![\w\.])
+        0[xX][a-fA-F0-9]*[g-zG-Z][a-zA-Z0-9]*
         (?![\w\.])
       </match>
     </context>
@@ -124,10 +150,18 @@
       </match>
     </context>
 
+    <context id="invalid-octal" style-ref="error">
+      <match extended="true">
+        (?&lt;![\w\.])
+        0[0-7]*[89][0-9]*
+        (?![\w\.])
+      </match>
+    </context>
+
     <context id="decimal" style-ref="decimal">
       <match extended="true">
         (?&lt;![\w\.])
-        [0-9]+
+        [1-9][0-9]*
         (?![\w\.])
       </match>
     </context>
@@ -143,7 +177,6 @@
     <context id="keywords" style-ref="keyword">
       <keyword>break</keyword>
       <keyword>case</keyword>
-      <keyword>chan</keyword>
       <keyword>const</keyword>
       <keyword>continue</keyword>
       <keyword>default</keyword>
@@ -157,40 +190,61 @@
       <keyword>if</keyword>
       <keyword>import</keyword>
       <keyword>interface</keyword>
-      <keyword>map</keyword>
       <keyword>package</keyword>
       <keyword>range</keyword>
       <keyword>return</keyword>
       <keyword>select</keyword>
       <keyword>struct</keyword>
       <keyword>switch</keyword>
-      <keyword>this</keyword>
       <keyword>type</keyword>
       <keyword>var</keyword>
     </context>
 
     <context id="types" style-ref="type">
-      <keyword>uint8</keyword>
-      <keyword>uint16</keyword>
-      <keyword>uint32</keyword>
-      <keyword>uint64</keyword>
+      <keyword>bool</keyword>
+      <keyword>byte</keyword>
+      <keyword>chan</keyword>
+      <keyword>complex</keyword>
+      <keyword>complex64</keyword>
+      <keyword>complex128</keyword>
+      <keyword>float</keyword>
+      <keyword>float32</keyword>
+      <keyword>float64</keyword>
+      <keyword>int</keyword>
       <keyword>int8</keyword>
       <keyword>int16</keyword>
       <keyword>int32</keyword>
       <keyword>int64</keyword>
-      <keyword>float32</keyword>
-      <keyword>float64</keyword>
-      <keyword>complex64</keyword>
-      <keyword>complex128</keyword>
-      <keyword>byte</keyword>
+      <keyword>map</keyword>
+      <keyword>rune</keyword>
       <keyword>uint</keyword>
-      <keyword>int</keyword>
-      <keyword>float</keyword>
-      <keyword>complex</keyword>
-      <keyword>uintptr</keyword>
+      <keyword>uint8</keyword>
       <keyword>string</keyword>
+      <keyword>uint16</keyword>
+      <keyword>uint32</keyword>
+      <keyword>uint64</keyword>
+      <keyword>uintptr</keyword>
+    </context>
+
+    <context id="builtin-constant" style-ref="builtin-constant">
+      <keyword>iota</keyword>
       <keyword>nil</keyword>
-      <keyword>bool</keyword>
+    </context>
+
+    <context id="builtin-function" style-ref="builtin-function">
+      <keyword>append</keyword>
+      <keyword>cap</keyword>
+      <keyword>close</keyword>
+      <keyword>complex</keyword>
+      <keyword>copy</keyword>
+      <keyword>delete</keyword>
+      <keyword>imag</keyword>
+      <keyword>len</keyword>
+      <keyword>make</keyword>
+      <keyword>new</keyword>
+      <keyword>panic</keyword>
+      <keyword>real</keyword>
+      <keyword>recover</keyword>
     </context>
 
     <context id="go" class="no-spell-check">
@@ -203,11 +257,15 @@
         <context ref="char"/>
         <context ref="float"/>
         <context ref="hexadecimal"/>
+        <context ref="invalid-hexadecimal"/>
         <context ref="octal"/>
+        <context ref="invalid-octal"/>
         <context ref="decimal"/>
         <context ref="boolean"/>
         <context ref="keywords"/>
         <context ref="types"/>
+        <context ref="builtin-constant"/>
+        <context ref="builtin-function"/>
       </include>
     </context>
 
