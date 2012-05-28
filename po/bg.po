@@ -8,10 +8,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gtksourceview master\n"
+"Project-Id-Version: gtksourceview gnome-3-4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-01 18:18+0300\n"
-"PO-Revision-Date: 2012-04-01 18:18+0300\n"
+"POT-Creation-Date: 2012-05-28 07:07+0300\n"
+"PO-Revision-Date: 2012-05-28 07:07+0300\n"
 "Last-Translator: Alexander Shopov <ash@kambanaria.org>\n"
 "Language-Team: Bulgarian <dict@fsa-bg.org>\n"
 "Language: bg\n"
@@ -74,7 +74,7 @@ msgstr "В края на реда"
 #. Translators: "All" is used as a label in thestatus bar of the
 #. popup, telling that all completion pages are shown
 #: ../data/glade/gtksourceview.xml.in.h:14
-#: ../gtksourceview/gtksourcecompletion.c:648
+#: ../gtksourceview/gtksourcecompletion.c:647
 msgid "All"
 msgstr "Всички"
 
@@ -238,7 +238,7 @@ msgstr "Ключова дума"
 #: ../data/language-specs/csharp.lang.h:15
 #: ../data/language-specs/def.lang.h:26 ../data/language-specs/d.lang.h:12
 #: ../data/language-specs/eiffel.lang.h:15
-#: ../data/language-specs/erlang.lang.h:9
+#: ../data/language-specs/erlang.lang.h:10
 #: ../data/language-specs/fsharp.lang.h:6 ../data/language-specs/go.lang.h:13
 #: ../data/language-specs/nemerle.lang.h:13
 #: ../data/language-specs/ocaml.lang.h:7 ../data/language-specs/ooc.lang.h:15
@@ -489,7 +489,7 @@ msgstr "Идентификатор"
 #. A floating point constant: 2.3e10
 #: ../data/language-specs/bennugd.lang.h:9 ../data/language-specs/cg.lang.h:12
 #: ../data/language-specs/c.lang.h:15 ../data/language-specs/def.lang.h:24
-#: ../data/language-specs/d.lang.h:11 ../data/language-specs/erlang.lang.h:8
+#: ../data/language-specs/d.lang.h:11 ../data/language-specs/erlang.lang.h:9
 #: ../data/language-specs/go.lang.h:12 ../data/language-specs/json.lang.h:9
 #: ../data/language-specs/nemerle.lang.h:12
 #: ../data/language-specs/ooc.lang.h:14 ../data/language-specs/php.lang.h:18
@@ -631,7 +631,7 @@ msgid "Swizzle operator"
 msgstr "Оператор за пренареждане"
 
 #. Translators: functions that are provided in the language
-#: ../data/language-specs/cg.lang.h:19 ../data/language-specs/erlang.lang.h:11
+#: ../data/language-specs/cg.lang.h:19 ../data/language-specs/erlang.lang.h:12
 #: ../data/language-specs/imagej.lang.h:3
 #: ../data/language-specs/matlab.lang.h:5
 #: ../data/language-specs/octave.lang.h:16
@@ -714,8 +714,9 @@ msgstr "Общи дефиниции"
 
 #. A character constant: 'c'
 #: ../data/language-specs/c.lang.h:8 ../data/language-specs/csharp.lang.h:7
-#: ../data/language-specs/def.lang.h:15 ../data/language-specs/gap.lang.h:4
-#: ../data/language-specs/go.lang.h:7 ../data/language-specs/haskell.lang.h:10
+#: ../data/language-specs/def.lang.h:15 ../data/language-specs/erlang.lang.h:8
+#: ../data/language-specs/gap.lang.h:4 ../data/language-specs/go.lang.h:7
+#: ../data/language-specs/haskell.lang.h:10
 #: ../data/language-specs/java.lang.h:5
 #: ../data/language-specs/nemerle.lang.h:6 ../data/language-specs/sml.lang.h:6
 #: ../data/language-specs/vhdl.lang.h:5
@@ -1114,7 +1115,7 @@ msgstr "Erlang"
 msgid "Atom"
 msgstr "Атом"
 
-#: ../data/language-specs/erlang.lang.h:10
+#: ../data/language-specs/erlang.lang.h:11
 #: ../data/language-specs/fsharp.lang.h:4
 #: ../data/language-specs/ocaml.lang.h:5
 #: ../data/language-specs/octave.lang.h:11 ../data/language-specs/sml.lang.h:9
@@ -1123,7 +1124,7 @@ msgstr "Атом"
 msgid "Base-N Integer"
 msgstr "Цяло число в основа N"
 
-#: ../data/language-specs/erlang.lang.h:12
+#: ../data/language-specs/erlang.lang.h:13
 #: ../data/language-specs/forth.lang.h:11
 #: ../data/language-specs/systemverilog.lang.h:3
 #: ../data/language-specs/verilog.lang.h:7
@@ -2347,93 +2348,101 @@ msgstr "Управление на отмяната"
 msgid "The buffer undo manager"
 msgstr "Управление на отмяната на редакциите на буфера"
 
-#: ../gtksourceview/gtksourcecompletion.c:935
-#: ../gtksourceview/gtksourcecompletion.c:958
+#: ../gtksourceview/gtksourcecompletion.c:934
+#: ../gtksourceview/gtksourcecompletion.c:957
 msgid "No extra information available"
 msgstr "Няма друга информация"
 
-#: ../gtksourceview/gtksourcecompletion.c:2224
+#: ../gtksourceview/gtksourcecompletion.c:2223
 #: ../gtksourceview/gtksourcegutter.c:547
 msgid "View"
 msgstr "Изглед"
 
-#: ../gtksourceview/gtksourcecompletion.c:2225
+#: ../gtksourceview/gtksourcecompletion.c:2224
 msgid "The GtkSourceView bound to the completion"
 msgstr "Обектът „GtkSourceView“ свързан с автоматичното дописване"
 
-#: ../gtksourceview/gtksourcecompletion.c:2240
+#: ../gtksourceview/gtksourcecompletion.c:2239
 msgid "Remember Info Visibility"
 msgstr "Запомняне на видимостта на информацията"
 
-#: ../gtksourceview/gtksourcecompletion.c:2241
+#: ../gtksourceview/gtksourcecompletion.c:2240
 msgid "Remember the last info window visibility state"
 msgstr ""
 "Запомняне на видимостта на информацията от последния прозорец за информация"
 
-#: ../gtksourceview/gtksourcecompletion.c:2254
+#: ../gtksourceview/gtksourcecompletion.c:2253
 msgid "Select on Show"
 msgstr "Избор при показване"
 
-#: ../gtksourceview/gtksourcecompletion.c:2255
+#: ../gtksourceview/gtksourcecompletion.c:2254
 msgid "Select first proposal when completion is shown"
 msgstr "Избиране на първото предложение при показване на дописванията"
 
-#: ../gtksourceview/gtksourcecompletion.c:2269
+#: ../gtksourceview/gtksourcecompletion.c:2268
 msgid "Show Headers"
 msgstr "Показване на заглавни части"
 
-#: ../gtksourceview/gtksourcecompletion.c:2270
+#: ../gtksourceview/gtksourcecompletion.c:2269
 msgid ""
 "Show provider headers when proposals from multiple providers are available"
 msgstr ""
 "Показване на заглавните части на предоставящите модули, когато са повече от "
 "един"
 
-#: ../gtksourceview/gtksourcecompletion.c:2284
+#: ../gtksourceview/gtksourcecompletion.c:2283
 msgid "Show Icons"
 msgstr "Показване на икони"
 
-#: ../gtksourceview/gtksourcecompletion.c:2285
+#: ../gtksourceview/gtksourcecompletion.c:2284
 msgid "Show provider and proposal icons in the completion popup"
 msgstr ""
 "Показване на икони на предоставящия модул и предложенията в прозореца за "
 "дописване"
 
-#: ../gtksourceview/gtksourcecompletion.c:2298
+#: ../gtksourceview/gtksourcecompletion.c:2299
 msgid "Accelerators"
 msgstr "Клавишни комбинации"
 
-#: ../gtksourceview/gtksourcecompletion.c:2299
+#: ../gtksourceview/gtksourcecompletion.c:2300
 msgid "Number of proposal accelerators to show"
 msgstr "Брой на показваните предложени клавишни комбинации"
 
-#: ../gtksourceview/gtksourcecompletion.c:2315
+#: ../gtksourceview/gtksourcecompletion.c:2316
 msgid "Auto Complete Delay"
 msgstr "Забавяне при дописване"
 
-#: ../gtksourceview/gtksourcecompletion.c:2316
+#: ../gtksourceview/gtksourcecompletion.c:2317
 msgid "Completion popup delay for interactive completion"
 msgstr "Забавяне преди изскачането на прозорец с дописвания"
 
-#: ../gtksourceview/gtksourcecompletion.c:2331
+#: ../gtksourceview/gtksourcecompletion.c:2333
 msgid "Provider Page Size"
 msgstr "Размер на страницата от предоставящия модул"
 
-#: ../gtksourceview/gtksourcecompletion.c:2332
+#: ../gtksourceview/gtksourcecompletion.c:2334
 msgid "Provider scrolling page size"
 msgstr "Размер на страницата за придвижване от предоставящия модул"
 
-#: ../gtksourceview/gtksourcecompletion.c:2347
+#: ../gtksourceview/gtksourcecompletion.c:2353
 msgid "Proposal Page Size"
 msgstr "Предложен размер на страницата"
 
-#: ../gtksourceview/gtksourcecompletion.c:2348
+#: ../gtksourceview/gtksourcecompletion.c:2354
 msgid "Proposal scrolling page size"
 msgstr "Предложен размер на страницата за придвижване"
 
-#: ../gtksourceview/gtksourcecompletion.c:2693
+#: ../gtksourceview/gtksourcecompletion.c:2715
 msgid "Provider"
 msgstr "Предоставящ модул"
+
+#: ../gtksourceview/gtksourcecompletion.ui.h:1
+msgid "Show detailed proposal information"
+msgstr "Подробна информация при дописване"
+
+#: ../gtksourceview/gtksourcecompletion.ui.h:2
+msgid "_Details..."
+msgstr "_Подробности…"
 
 #: ../gtksourceview/gtksourcecompletioncontext.c:233
 #: ../gtksourceview/gtksourceview.c:306
@@ -2494,7 +2503,7 @@ msgstr "Информация към този елемент"
 #. * named sub-patterns with the same name or if resulting regex is
 #. * too long. In this case fixing lang file helps (e.g. renaming
 #. * subpatterns, making huge keywords use bigger prefixes, etc.)
-#: ../gtksourceview/gtksourcecontextengine.c:3171
+#: ../gtksourceview/gtksourcecontextengine.c:3162
 #, c-format
 msgid ""
 "Cannot create a regex for all the transitions, the syntax highlighting "
@@ -2505,7 +2514,7 @@ msgstr ""
 "синтаксиса ще бъде по-бавно от обикновено.\n"
 "Грешката е: %s"
 
-#: ../gtksourceview/gtksourcecontextengine.c:4509
+#: ../gtksourceview/gtksourcecontextengine.c:4500
 msgid ""
 "Highlighting a single line took too much time, syntax highlighting will be "
 "disabled"
@@ -2513,19 +2522,19 @@ msgstr ""
 "Оцветяването на един ред отне твърде много време. Оцветяването на синтаксиса "
 "ще бъде изключено."
 
-#: ../gtksourceview/gtksourcecontextengine.c:5762
+#: ../gtksourceview/gtksourcecontextengine.c:5753
 #, c-format
 msgid "context '%s' cannot contain a \\%%{...@start} command"
 msgstr "контекстът „%s“ не може да съдържа команда „\\%%{…@start}“"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5923
-#: ../gtksourceview/gtksourcecontextengine.c:6012
+#: ../gtksourceview/gtksourcecontextengine.c:5914
+#: ../gtksourceview/gtksourcecontextengine.c:6003
 #, c-format
 msgid "duplicated context id '%s'"
 msgstr "идентификаторът на контекст „%s“ се повтаря"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6127
-#: ../gtksourceview/gtksourcecontextengine.c:6187
+#: ../gtksourceview/gtksourcecontextengine.c:6118
+#: ../gtksourceview/gtksourcecontextengine.c:6178
 #, c-format
 msgid ""
 "style override used with wildcard context reference in language '%s' in ref "
@@ -2534,18 +2543,18 @@ msgstr ""
 "налагане на стил, което е използвано с указател с маска към контексти в "
 "езика „%s“, указател „%s“ "
 
-#: ../gtksourceview/gtksourcecontextengine.c:6201
+#: ../gtksourceview/gtksourcecontextengine.c:6192
 #, c-format
 msgid "invalid context reference '%s'"
 msgstr "неправилен указател към контекст „%s“"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6220
-#: ../gtksourceview/gtksourcecontextengine.c:6230
+#: ../gtksourceview/gtksourcecontextengine.c:6211
+#: ../gtksourceview/gtksourcecontextengine.c:6221
 #, c-format
 msgid "unknown context '%s'"
 msgstr "непознат контекст „%s“"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6330
+#: ../gtksourceview/gtksourcecontextengine.c:6321
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "Основната дефиниция на език липсва (id = „%s“)."
