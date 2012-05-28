@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gtksourceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-05-16 10:33+0000\n"
-"PO-Revision-Date: 2012-05-16 20:25+0100\n"
+"POT-Creation-Date: 2012-05-28 04:09+0000\n"
+"PO-Revision-Date: 2012-05-28 14:42+0100\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: \n"
@@ -269,7 +269,7 @@ msgstr "Niz"
 #: ../data/language-specs/fsharp.lang.h:8
 #: ../data/language-specs/gap.lang.h:5
 #: ../data/language-specs/glsl.lang.h:5
-#: ../data/language-specs/go.lang.h:8
+#: ../data/language-specs/go.lang.h:7
 #: ../data/language-specs/gtkrc.lang.h:5
 #: ../data/language-specs/haskell.lang.h:7
 #: ../data/language-specs/idl.lang.h:6
@@ -368,7 +368,6 @@ msgstr "Boolova vrednost"
 #: ../data/language-specs/ada.lang.h:8
 #: ../data/language-specs/cg.lang.h:10
 #: ../data/language-specs/c.lang.h:12
-#: ../data/language-specs/go.lang.h:10
 #: ../data/language-specs/java.lang.h:10
 #: ../data/language-specs/ooc.lang.h:9
 msgid "Storage Class"
@@ -389,7 +388,7 @@ msgstr "Razred shranjevanja"
 #: ../data/language-specs/fortran.lang.h:9
 #: ../data/language-specs/fsharp.lang.h:11
 #: ../data/language-specs/glsl.lang.h:4
-#: ../data/language-specs/go.lang.h:9
+#: ../data/language-specs/go.lang.h:8
 #: ../data/language-specs/gtkrc.lang.h:7
 #: ../data/language-specs/haskell.lang.h:8
 #: ../data/language-specs/idl.lang.h:4
@@ -451,7 +450,7 @@ msgstr "Realno število"
 #: ../data/language-specs/csharp.lang.h:8
 #: ../data/language-specs/eiffel.lang.h:12
 #: ../data/language-specs/fsharp.lang.h:18
-#: ../data/language-specs/go.lang.h:11
+#: ../data/language-specs/go.lang.h:10
 #: ../data/language-specs/haskell.lang.h:11
 #: ../data/language-specs/java.lang.h:3
 #: ../data/language-specs/javascript.lang.h:3
@@ -623,6 +622,7 @@ msgstr "Spremenljivka"
 #: ../data/language-specs/awk.lang.h:6
 #: ../data/language-specs/boo.lang.h:15
 #: ../data/language-specs/glsl.lang.h:6
+#: ../data/language-specs/go.lang.h:18
 #: ../data/language-specs/perl.lang.h:8
 #: ../data/language-specs/python.lang.h:18
 #: ../data/language-specs/python3.lang.h:17
@@ -647,7 +647,7 @@ msgstr "Določilnik"
 #: ../data/language-specs/def.lang.h:24
 #: ../data/language-specs/d.lang.h:11
 #: ../data/language-specs/erlang.lang.h:9
-#: ../data/language-specs/go.lang.h:12
+#: ../data/language-specs/go.lang.h:11
 #: ../data/language-specs/json.lang.h:9
 #: ../data/language-specs/nemerle.lang.h:12
 #: ../data/language-specs/ooc.lang.h:14
@@ -774,6 +774,7 @@ msgstr "Jezik CG Shader"
 
 #. Any erroneous construct
 #: ../data/language-specs/cg.lang.h:4
+#: ../data/language-specs/c.lang.h:22
 #: ../data/language-specs/cobol.lang.h:11
 #: ../data/language-specs/csharp.lang.h:4
 #: ../data/language-specs/css.lang.h:3
@@ -802,7 +803,6 @@ msgstr "Tipkovne povezave"
 
 #: ../data/language-specs/cg.lang.h:7
 #: ../data/language-specs/c.lang.h:7
-#: ../data/language-specs/go.lang.h:6
 #: ../data/language-specs/objj.lang.h:7
 msgid "Included File"
 msgstr "Dodana datoteka"
@@ -918,7 +918,7 @@ msgstr "Običajna določila"
 #: ../data/language-specs/def.lang.h:15
 #: ../data/language-specs/erlang.lang.h:8
 #: ../data/language-specs/gap.lang.h:4
-#: ../data/language-specs/go.lang.h:7
+#: ../data/language-specs/go.lang.h:6
 #: ../data/language-specs/haskell.lang.h:10
 #: ../data/language-specs/java.lang.h:5
 #: ../data/language-specs/nemerle.lang.h:6
@@ -928,6 +928,7 @@ msgid "Character"
 msgstr "Znak"
 
 #: ../data/language-specs/c.lang.h:13
+#: ../data/language-specs/go.lang.h:9
 msgid "printf Conversion"
 msgstr "printf pretvorba"
 
@@ -1498,6 +1499,7 @@ msgid "OpenGL Shading Language"
 msgstr "OpenGL senčilni jezik"
 
 #: ../data/language-specs/glsl.lang.h:7
+#: ../data/language-specs/go.lang.h:17
 #: ../data/language-specs/python.lang.h:16
 #: ../data/language-specs/python3.lang.h:15
 msgid "Builtin Constant"
@@ -1510,6 +1512,10 @@ msgstr "Zadržane ključne besede"
 #: ../data/language-specs/go.lang.h:2
 msgid "Go"
 msgstr "Pojdi"
+
+#: ../data/language-specs/go.lang.h:12
+msgid "Imaginary number"
+msgstr "Imaginarno število"
 
 #: ../data/language-specs/gtk-doc.lang.h:2
 msgid "gtk-doc"
@@ -2739,7 +2745,7 @@ msgstr "Prikaz podrobnosti tega predmeta"
 #. * named sub-patterns with the same name or if resulting regex is
 #. * too long. In this case fixing lang file helps (e.g. renaming
 #. * subpatterns, making huge keywords use bigger prefixes, etc.)
-#: ../gtksourceview/gtksourcecontextengine.c:3162
+#: ../gtksourceview/gtksourcecontextengine.c:3120
 #, c-format
 msgid ""
 "Cannot create a regex for all the transitions, the syntax highlighting process will be slower than usual.\n"
@@ -2748,39 +2754,39 @@ msgstr ""
 "Ni mogoče ustvariti logičnega izraza za vse prehode; poudarjanje skladnje bo počasnejše kot običajno.\n"
 "Javljena napaka: %s"
 
-#: ../gtksourceview/gtksourcecontextengine.c:4500
+#: ../gtksourceview/gtksourcecontextengine.c:4443
 msgid "Highlighting a single line took too much time, syntax highlighting will be disabled"
 msgstr "Poudarjanje ene same vrstice je trajalo predolgo. Poudarjanje skladnje bo onemogočeno."
 
-#: ../gtksourceview/gtksourcecontextengine.c:5753
+#: ../gtksourceview/gtksourcecontextengine.c:5687
 #, c-format
 msgid "context '%s' cannot contain a \\%%{...@start} command"
 msgstr "vsebina '%s' ne sme vsebovati \\%%{...@start} ukaza"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5914
-#: ../gtksourceview/gtksourcecontextengine.c:6003
+#: ../gtksourceview/gtksourcecontextengine.c:5848
+#: ../gtksourceview/gtksourcecontextengine.c:5937
 #, c-format
 msgid "duplicated context id '%s'"
 msgstr "podvojen ID vsebine '%s'"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6118
-#: ../gtksourceview/gtksourcecontextengine.c:6178
+#: ../gtksourceview/gtksourcecontextengine.c:6051
+#: ../gtksourceview/gtksourcecontextengine.c:6111
 #, c-format
 msgid "style override used with wildcard context reference in language '%s' in ref '%s'"
 msgstr "prepis sloga uporabljen s posebnimi nadomestnimi znaki (wildcards) v jeziku '%s' sklica '%s'"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6192
+#: ../gtksourceview/gtksourcecontextengine.c:6125
 #, c-format
 msgid "invalid context reference '%s'"
 msgstr "neveljavna vsebinska povezava '%s'"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6211
-#: ../gtksourceview/gtksourcecontextengine.c:6221
+#: ../gtksourceview/gtksourcecontextengine.c:6144
+#: ../gtksourceview/gtksourcecontextengine.c:6154
 #, c-format
 msgid "unknown context '%s'"
 msgstr "neznana vsebina '%s'"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6321
+#: ../gtksourceview/gtksourcecontextengine.c:6253
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "Manjka določitev glavnega jezika (id = \"%s\".)"
