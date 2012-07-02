@@ -967,12 +967,6 @@ update_proposal_info_real (GtkSourceCompletion         *completion,
 		}
 		else
 		{
-			/* we need to ref the default info widget before removing it */
-			if (gtk_source_completion_info_get_widget (info_window) == completion->priv->default_info)
-			{
-				g_object_ref (completion->priv->default_info);
-			}
-
 			prov_update_info = TRUE;
 		}
 	}
@@ -1948,6 +1942,8 @@ gtk_source_completion_finalize (GObject *object)
 
 	g_list_free (completion->priv->providers);
 	g_list_free (completion->priv->active_providers);
+
+	g_clear_object (&completion->priv->default_info);
 
 	G_OBJECT_CLASS (gtk_source_completion_parent_class)->finalize (object);
 }
@@ -3090,6 +3086,7 @@ initialize_ui (GtkSourceCompletion *completion)
 
 	/* Default info widget */
 	completion->priv->default_info = gtk_label_new (NULL);
+	g_object_ref_sink (completion->priv->default_info);
 
 	gtk_misc_set_alignment (GTK_MISC (completion->priv->default_info), 0.5, 0.5);
 	gtk_label_set_selectable (GTK_LABEL (completion->priv->default_info), TRUE);
