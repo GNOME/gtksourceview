@@ -483,13 +483,16 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	 * GtkSourceView::show-completion:
 	 * @view: The #GtkSourceView who emits the signal
 	 *
-	 * The ::show-completion signal is a keybinding signal which gets
-	 * emitted when the user initiates a completion in default mode.
+	 * The ::show-completion signal is a key binding signal which gets
+	 * emitted when the user requests a completion, by pressing
+	 * <keycombo><keycap>Control</keycap><keycap>space</keycap></keycombo>.
+	 *
+	 * This will create a #GtkSourceCompletionContext with the activation
+	 * type as %GTK_SOURCE_COMPLETION_ACTIVATION_USER_REQUESTED.
 	 *
 	 * Applications should not connect to it, but may emit it with
-	 * #g_signal_emit_by_name if they need to control the default mode
-	 * completion activation.
-	 *
+	 * g_signal_emit_by_name() if they need to activate the completion by
+	 * another means, for example with another key binding or a menu entry.
 	 */
 	signals [SHOW_COMPLETION] =
 		g_signal_new ("show-completion",
