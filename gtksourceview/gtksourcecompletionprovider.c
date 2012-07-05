@@ -175,7 +175,8 @@ gtk_source_completion_provider_get_icon (GtkSourceCompletionProvider *provider)
  * @provider: a #GtkSourceCompletionProvider.
  * @context: a #GtkSourceCompletionContext.
  *
- * Populate @context with proposals from @provider.
+ * Populate @context with proposals from @provider added with the
+ * gtk_source_completion_context_add_proposals() function.
  */
 void
 gtk_source_completion_provider_populate (GtkSourceCompletionProvider *provider,

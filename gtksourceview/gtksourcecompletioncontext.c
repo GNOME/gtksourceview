@@ -305,6 +305,8 @@ gtk_source_completion_context_init (GtkSourceCompletionContext *context)
  * can do so asynchronously by means of the @finished argument. Providers must
  * ensure that they always call this function with @finished set to %TRUE
  * once each population (even if no proposals need to be added).
+ * Population occurs when the gtk_source_completion_provider_populate()
+ * function is called.
  **/
 void
 gtk_source_completion_context_add_proposals (GtkSourceCompletionContext  *context,
