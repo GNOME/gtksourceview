@@ -13,50 +13,46 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: el\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-02 14:16+0300\n"
-"PO-Revision-Date: 2012-04-24 20:56+0200\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gtksourceview&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2012-05-25 12:52+0000\n"
+"PO-Revision-Date: 2012-07-12 02:22+0200\n"
 "Last-Translator: Tom Tryfonidis <tomtryf@gmail.com>\n"
 "Language-Team: Greek <team@gnome.gr>\n"
-"Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: el\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Lokalize 0.2\n"
 
 #: ../data/glade/gtksourceview.xml.in.h:1
-msgid "After"
-msgstr "Μετά"
+msgid "GtkSourceView"
+msgstr "GtkSourceView"
 
-#. Translators: "All" is used as a label in thestatus bar of the
-#. popup, telling that all completion pages are shown
-#: ../data/glade/gtksourceview.xml.in.h:2
-#: ../gtksourceview/gtksourcecompletion.c:648
-msgid "All"
-msgstr "Όλα"
-
+#. Translators: It is related to an option of a set of values
 #: ../data/glade/gtksourceview.xml.in.h:3
-msgid "Always"
-msgstr "Πάντα"
+msgid "Disabled"
+msgstr "Απενεργοποιημένο"
 
 #: ../data/glade/gtksourceview.xml.in.h:4
 msgid "Before"
 msgstr "Πριν"
 
-#. Translators: It is related to an option of a set of values
+#: ../data/glade/gtksourceview.xml.in.h:5
+msgid "After"
+msgstr "Μετά"
+
 #: ../data/glade/gtksourceview.xml.in.h:6
-msgid "Disabled"
-msgstr "Απενεργοποιημένο"
+msgid "Always"
+msgstr "Πάντα"
 
 #: ../data/glade/gtksourceview.xml.in.h:7
-msgid "GtkSourceView"
-msgstr "GtkSourceView"
+msgid "Space"
+msgstr "Διάστημα"
 
 #: ../data/glade/gtksourceview.xml.in.h:8
-#, fuzzy
-msgid "Leading"
-msgstr "Κεφαλίδα POD"
+msgid "Tab"
+msgstr "Tab"
 
 #: ../data/glade/gtksourceview.xml.in.h:9
 msgid "Newline"
@@ -64,347 +60,486 @@ msgstr "Νέα γραμμή"
 
 #: ../data/glade/gtksourceview.xml.in.h:10
 msgid "Non Breaking Whitespace"
-msgstr ""
+msgstr "Non Breaking Whitespace"
 
 #: ../data/glade/gtksourceview.xml.in.h:11
-msgid "Space"
+msgid "Leading"
 msgstr "Διάστημα"
 
 #: ../data/glade/gtksourceview.xml.in.h:12
-msgid "Tab"
-msgstr "Tab"
-
-#: ../data/glade/gtksourceview.xml.in.h:13
 #: ../gtksourceview/gtksourcecompletionitem.c:255
 #: ../gtksourceview/gtksourcegutterrenderertext.c:403
 msgid "Text"
 msgstr "Κείμενο"
 
-#: ../data/glade/gtksourceview.xml.in.h:14
-#, fuzzy
+#: ../data/glade/gtksourceview.xml.in.h:13
 msgid "Trailing"
-msgstr "Στηλοθέτης στο τέλος"
+msgstr "Στηλοθέτης"
+
+#. Translators: "All" is used as a label in thestatus bar of the
+#. popup, telling that all completion pages are shown
+#: ../data/glade/gtksourceview.xml.in.h:14
+#: ../gtksourceview/gtksourcecompletion.c:647
+msgid "All"
+msgstr "Όλα"
 
 #: ../data/language-specs/ada.lang.h:1
+#: ../data/language-specs/asp.lang.h:1
+#: ../data/language-specs/bennugd.lang.h:1
+#: ../data/language-specs/boo.lang.h:1
+#: ../data/language-specs/cg.lang.h:1
+#: ../data/language-specs/chdr.lang.h:1
+#: ../data/language-specs/c.lang.h:1
+#: ../data/language-specs/cobol.lang.h:1
+#: ../data/language-specs/cpp.lang.h:1
+#: ../data/language-specs/csharp.lang.h:1
+#: ../data/language-specs/cuda.lang.h:1
+#: ../data/language-specs/d.lang.h:1
+#: ../data/language-specs/eiffel.lang.h:1
+#: ../data/language-specs/erlang.lang.h:1
+#: ../data/language-specs/forth.lang.h:1
+#: ../data/language-specs/fortran.lang.h:1
+#: ../data/language-specs/fsharp.lang.h:1
+#: ../data/language-specs/glsl.lang.h:1
+#: ../data/language-specs/go.lang.h:1
+#: ../data/language-specs/haskell.lang.h:1
+#: ../data/language-specs/haskell-literate.lang.h:1
+#: ../data/language-specs/idl.lang.h:1
+#: ../data/language-specs/java.lang.h:1
+#: ../data/language-specs/makefile.lang.h:1
+#: ../data/language-specs/nemerle.lang.h:1
+#: ../data/language-specs/objc.lang.h:1
+#: ../data/language-specs/objj.lang.h:1
+#: ../data/language-specs/ocaml.lang.h:1
+#: ../data/language-specs/ooc.lang.h:1
+#: ../data/language-specs/opal.lang.h:1
+#: ../data/language-specs/opencl.lang.h:1
+#: ../data/language-specs/pascal.lang.h:1
+#: ../data/language-specs/prolog.lang.h:1
+#: ../data/language-specs/scheme.lang.h:1
+#: ../data/language-specs/sml.lang.h:1
+#: ../data/language-specs/sparql.lang.h:1
+#: ../data/language-specs/sql.lang.h:1
+#: ../data/language-specs/systemverilog.lang.h:1
+#: ../data/language-specs/vala.lang.h:1
+#: ../data/language-specs/vbnet.lang.h:1
+#: ../data/language-specs/verilog.lang.h:1
+#: ../data/language-specs/vhdl.lang.h:1
+msgid "Sources"
+msgstr "Κώδικας"
+
+#: ../data/language-specs/ada.lang.h:2
 msgid "Ada"
 msgstr "Ada"
 
-#: ../data/language-specs/ada.lang.h:2
-msgid "Arbitrary base number"
-msgstr "Τυχαίος αριθμός βάσης"
-
-#. A boolean constant: TRUE, false
-#: ../data/language-specs/ada.lang.h:3 ../data/language-specs/asp.lang.h:3
-#: ../data/language-specs/bennugd.lang.h:2 ../data/language-specs/cg.lang.h:2
-#: ../data/language-specs/c.lang.h:1 ../data/language-specs/csharp.lang.h:1
-#: ../data/language-specs/def.lang.h:4 ../data/language-specs/fsharp.lang.h:2
-#: ../data/language-specs/go.lang.h:1 ../data/language-specs/gtkrc.lang.h:1
-#: ../data/language-specs/ini.lang.h:2 ../data/language-specs/java.lang.h:1
-#: ../data/language-specs/lua.lang.h:1 ../data/language-specs/nemerle.lang.h:2
-#: ../data/language-specs/ocaml.lang.h:2 ../data/language-specs/ooc.lang.h:1
-#: ../data/language-specs/opal.lang.h:1 ../data/language-specs/php.lang.h:1
-#: ../data/language-specs/protobuf.lang.h:1 ../data/language-specs/R.lang.h:2
-#: ../data/language-specs/ruby.lang.h:3 ../data/language-specs/sml.lang.h:2
-#: ../data/language-specs/vala.lang.h:1 ../data/language-specs/vbnet.lang.h:1
-#: ../data/language-specs/vhdl.lang.h:2
-msgid "Boolean value"
-msgstr "Τιμή Boolean "
-
 #. Any comment
-#: ../data/language-specs/ada.lang.h:4 ../data/language-specs/asp.lang.h:4
-#: ../data/language-specs/bennugd.lang.h:3 ../data/language-specs/boo.lang.h:4
-#: ../data/language-specs/cg.lang.h:5 ../data/language-specs/c.lang.h:4
-#: ../data/language-specs/cobol.lang.h:2
-#: ../data/language-specs/csharp.lang.h:4 ../data/language-specs/def.lang.h:11
-#: ../data/language-specs/d.lang.h:3 ../data/language-specs/dosbatch.lang.h:2
-#: ../data/language-specs/dot.lang.h:2 ../data/language-specs/eiffel.lang.h:3
-#: ../data/language-specs/erlang.lang.h:5 ../data/language-specs/fcl.lang.h:2
-#: ../data/language-specs/forth.lang.h:1
-#: ../data/language-specs/fortran.lang.h:2
-#: ../data/language-specs/fsharp.lang.h:4 ../data/language-specs/gap.lang.h:2
-#: ../data/language-specs/go.lang.h:3 ../data/language-specs/gtkrc.lang.h:2
-#: ../data/language-specs/haskell.lang.h:2
-#: ../data/language-specs/html.lang.h:3 ../data/language-specs/idl.lang.h:1
-#: ../data/language-specs/ini.lang.h:3 ../data/language-specs/latex.lang.h:2
-#: ../data/language-specs/lua.lang.h:2 ../data/language-specs/matlab.lang.h:2
-#: ../data/language-specs/nemerle.lang.h:4
-#: ../data/language-specs/nsis.lang.h:1 ../data/language-specs/ocaml.lang.h:4
-#: ../data/language-specs/ocl.lang.h:1 ../data/language-specs/octave.lang.h:4
-#: ../data/language-specs/ooc.lang.h:2 ../data/language-specs/opal.lang.h:2
-#: ../data/language-specs/pascal.lang.h:1 ../data/language-specs/perl.lang.h:2
-#: ../data/language-specs/php.lang.h:2 ../data/language-specs/po.lang.h:1
-#: ../data/language-specs/prolog.lang.h:1 ../data/language-specs/ruby.lang.h:6
-#: ../data/language-specs/scheme.lang.h:2
-#: ../data/language-specs/scilab.lang.h:2 ../data/language-specs/sh.lang.h:1
-#: ../data/language-specs/sml.lang.h:4 ../data/language-specs/sql.lang.h:1
-#: ../data/language-specs/t2t.lang.h:3 ../data/language-specs/texinfo.lang.h:1
-#: ../data/language-specs/vala.lang.h:2 ../data/language-specs/vbnet.lang.h:2
-#: ../data/language-specs/verilog.lang.h:2
-#: ../data/language-specs/vhdl.lang.h:4 ../data/language-specs/xml.lang.h:4
+#: ../data/language-specs/ada.lang.h:3
+#: ../data/language-specs/asp.lang.h:3
+#: ../data/language-specs/bennugd.lang.h:3
+#: ../data/language-specs/boo.lang.h:3
+#: ../data/language-specs/cg.lang.h:3
+#: ../data/language-specs/c.lang.h:3
+#: ../data/language-specs/cobol.lang.h:3
+#: ../data/language-specs/csharp.lang.h:3
+#: ../data/language-specs/def.lang.h:3
+#: ../data/language-specs/d.lang.h:3
+#: ../data/language-specs/dosbatch.lang.h:3
+#: ../data/language-specs/dot.lang.h:3
+#: ../data/language-specs/eiffel.lang.h:3
+#: ../data/language-specs/erlang.lang.h:3
+#: ../data/language-specs/fcl.lang.h:3
+#: ../data/language-specs/forth.lang.h:3
+#: ../data/language-specs/fortran.lang.h:3
+#: ../data/language-specs/fsharp.lang.h:3
+#: ../data/language-specs/gap.lang.h:3
+#: ../data/language-specs/go.lang.h:3
+#: ../data/language-specs/gtkrc.lang.h:3
+#: ../data/language-specs/haskell.lang.h:4
+#: ../data/language-specs/html.lang.h:3
+#: ../data/language-specs/idl.lang.h:3
+#: ../data/language-specs/ini.lang.h:3
+#: ../data/language-specs/latex.lang.h:3
+#: ../data/language-specs/lua.lang.h:3
+#: ../data/language-specs/matlab.lang.h:3
+#: ../data/language-specs/nemerle.lang.h:3
+#: ../data/language-specs/nsis.lang.h:4
+#: ../data/language-specs/ocaml.lang.h:3
+#: ../data/language-specs/ocl.lang.h:3
+#: ../data/language-specs/octave.lang.h:3
+#: ../data/language-specs/ooc.lang.h:3
+#: ../data/language-specs/opal.lang.h:4
+#: ../data/language-specs/pascal.lang.h:3
+#: ../data/language-specs/perl.lang.h:3
+#: ../data/language-specs/php.lang.h:3
+#: ../data/language-specs/po.lang.h:3
+#: ../data/language-specs/prolog.lang.h:3
+#: ../data/language-specs/ruby.lang.h:4
+#: ../data/language-specs/scheme.lang.h:3
+#: ../data/language-specs/scilab.lang.h:3
+#: ../data/language-specs/sh.lang.h:3
+#: ../data/language-specs/sml.lang.h:3
+#: ../data/language-specs/sql.lang.h:3
+#: ../data/language-specs/t2t.lang.h:3
+#: ../data/language-specs/texinfo.lang.h:3
+#: ../data/language-specs/vala.lang.h:3
+#: ../data/language-specs/vbnet.lang.h:3
+#: ../data/language-specs/verilog.lang.h:3
+#: ../data/language-specs/vhdl.lang.h:3
+#: ../data/language-specs/xml.lang.h:3
 msgid "Comment"
 msgstr "Σχόλιο"
 
-#: ../data/language-specs/ada.lang.h:5 ../data/language-specs/asp.lang.h:5
-#: ../data/language-specs/bennugd.lang.h:4 ../data/language-specs/boo.lang.h:5
-#: ../data/language-specs/cg.lang.h:6 ../data/language-specs/c.lang.h:6
-#: ../data/language-specs/cpp.lang.h:3 ../data/language-specs/csharp.lang.h:5
-#: ../data/language-specs/cuda.lang.h:2 ../data/language-specs/d.lang.h:5
+#. A string constant: "this is a string"
+#: ../data/language-specs/ada.lang.h:4
+#: ../data/language-specs/asp.lang.h:4
+#: ../data/language-specs/boo.lang.h:5
+#: ../data/language-specs/c.lang.h:4
+#: ../data/language-specs/cobol.lang.h:8
+#: ../data/language-specs/csharp.lang.h:6
+#: ../data/language-specs/css.lang.h:5
+#: ../data/language-specs/def.lang.h:17
+#: ../data/language-specs/d.lang.h:5
+#: ../data/language-specs/dosbatch.lang.h:4
 #: ../data/language-specs/eiffel.lang.h:4
-#: ../data/language-specs/forth.lang.h:3
-#: ../data/language-specs/fortran.lang.h:3
-#: ../data/language-specs/fsharp.lang.h:5 ../data/language-specs/glsl.lang.h:4
-#: ../data/language-specs/go.lang.h:4 ../data/language-specs/gtkrc.lang.h:3
-#: ../data/language-specs/haskell.lang.h:3 ../data/language-specs/idl.lang.h:2
-#: ../data/language-specs/ini.lang.h:4 ../data/language-specs/java.lang.h:3
-#: ../data/language-specs/javascript.lang.h:3
-#: ../data/language-specs/nemerle.lang.h:5
-#: ../data/language-specs/objc.lang.h:2 ../data/language-specs/objj.lang.h:2
-#: ../data/language-specs/ocaml.lang.h:5 ../data/language-specs/ocl.lang.h:2
-#: ../data/language-specs/ooc.lang.h:3 ../data/language-specs/opal.lang.h:4
-#: ../data/language-specs/opencl.lang.h:1
-#: ../data/language-specs/pascal.lang.h:2 ../data/language-specs/php.lang.h:4
-#: ../data/language-specs/protobuf.lang.h:2
-#: ../data/language-specs/sml.lang.h:5 ../data/language-specs/sparql.lang.h:3
-#: ../data/language-specs/sql.lang.h:2 ../data/language-specs/vala.lang.h:3
-#: ../data/language-specs/vbnet.lang.h:3
-msgid "Data Type"
-msgstr "Τύπος δεδομένων"
-
-#. A decimal number: 1234
-#: ../data/language-specs/ada.lang.h:6 ../data/language-specs/bennugd.lang.h:5
-#: ../data/language-specs/cg.lang.h:7 ../data/language-specs/c.lang.h:7
-#: ../data/language-specs/csharp.lang.h:6 ../data/language-specs/def.lang.h:19
-#: ../data/language-specs/d.lang.h:6 ../data/language-specs/eiffel.lang.h:6
 #: ../data/language-specs/erlang.lang.h:7
-#: ../data/language-specs/fsharp.lang.h:6 ../data/language-specs/go.lang.h:5
-#: ../data/language-specs/nemerle.lang.h:6
-#: ../data/language-specs/ocaml.lang.h:6 ../data/language-specs/ooc.lang.h:4
-#: ../data/language-specs/opal.lang.h:5 ../data/language-specs/php.lang.h:5
-#: ../data/language-specs/python.lang.h:7
-#: ../data/language-specs/python3.lang.h:7
-#: ../data/language-specs/ruby.lang.h:8
-msgid "Decimal number"
-msgstr "Δεκαδικός αριθμός"
-
-#. map to nothing
-#: ../data/language-specs/ada.lang.h:7 ../data/language-specs/cg.lang.h:9
-#: ../data/language-specs/c.lang.h:8 ../data/language-specs/csharp.lang.h:8
-#: ../data/language-specs/eiffel.lang.h:9
-#: ../data/language-specs/fsharp.lang.h:7 ../data/language-specs/go.lang.h:7
-#: ../data/language-specs/haskell.lang.h:5
-#: ../data/language-specs/java.lang.h:5
-#: ../data/language-specs/javascript.lang.h:4
-#: ../data/language-specs/json.lang.h:4 ../data/language-specs/lua.lang.h:3
-#: ../data/language-specs/ocaml.lang.h:8 ../data/language-specs/ooc.lang.h:7
-#: ../data/language-specs/php.lang.h:8 ../data/language-specs/prolog.lang.h:3
-#: ../data/language-specs/python.lang.h:8
-#: ../data/language-specs/python3.lang.h:8
-#: ../data/language-specs/ruby.lang.h:9 ../data/language-specs/sml.lang.h:7
-#: ../data/language-specs/texinfo.lang.h:2
-#: ../data/language-specs/verilog.lang.h:5
-msgid "Escaped Character"
-msgstr "Χαρακτήρας Escape"
+#: ../data/language-specs/forth.lang.h:4
+#: ../data/language-specs/fsharp.lang.h:7
+#: ../data/language-specs/gdb-log.lang.h:8
+#: ../data/language-specs/go.lang.h:5
+#: ../data/language-specs/gtkrc.lang.h:4
+#: ../data/language-specs/haskell.lang.h:9
+#: ../data/language-specs/idl.lang.h:7
+#: ../data/language-specs/imagej.lang.h:10
+#: ../data/language-specs/ini.lang.h:5
+#: ../data/language-specs/java.lang.h:4
+#: ../data/language-specs/javascript.lang.h:13
+#: ../data/language-specs/json.lang.h:4
+#: ../data/language-specs/lua.lang.h:4
+#: ../data/language-specs/matlab.lang.h:4
+#: ../data/language-specs/nemerle.lang.h:7
+#: ../data/language-specs/nsis.lang.h:5
+#: ../data/language-specs/objc.lang.h:6
+#: ../data/language-specs/objj.lang.h:8
+#: ../data/language-specs/ocaml.lang.h:8
+#: ../data/language-specs/ocl.lang.h:4
+#: ../data/language-specs/octave.lang.h:4
+#: ../data/language-specs/ooc.lang.h:6
+#: ../data/language-specs/opal.lang.h:7
+#: ../data/language-specs/pascal.lang.h:4
+#: ../data/language-specs/perl.lang.h:6
+#: ../data/language-specs/php.lang.h:9
+#: ../data/language-specs/po.lang.h:5
+#: ../data/language-specs/prolog.lang.h:6
+#: ../data/language-specs/protobuf.lang.h:6
+#: ../data/language-specs/python.lang.h:6
+#: ../data/language-specs/python3.lang.h:6
+#: ../data/language-specs/ruby.lang.h:14
+#: ../data/language-specs/scheme.lang.h:5
+#: ../data/language-specs/scilab.lang.h:5
+#: ../data/language-specs/sh.lang.h:5
+#: ../data/language-specs/sml.lang.h:7
+#: ../data/language-specs/sql.lang.h:5
+#: ../data/language-specs/texinfo.lang.h:6
+#: ../data/language-specs/vala.lang.h:6
+#: ../data/language-specs/vbnet.lang.h:4
+#: ../data/language-specs/verilog.lang.h:4
+#: ../data/language-specs/vhdl.lang.h:4
+msgid "String"
+msgstr "Αλφαριθμητικό"
 
 #. keywords: "if", "for", "while", etc.
-#: ../data/language-specs/ada.lang.h:8 ../data/language-specs/asp.lang.h:7
-#: ../data/language-specs/awk.lang.h:2 ../data/language-specs/bennugd.lang.h:9
-#: ../data/language-specs/boo.lang.h:7 ../data/language-specs/cg.lang.h:14
-#: ../data/language-specs/c.lang.h:12 ../data/language-specs/cobol.lang.h:5
-#: ../data/language-specs/cpp.lang.h:4 ../data/language-specs/csharp.lang.h:10
-#: ../data/language-specs/css.lang.h:10 ../data/language-specs/cuda.lang.h:6
-#: ../data/language-specs/def.lang.h:36 ../data/language-specs/d.lang.h:10
-#: ../data/language-specs/dosbatch.lang.h:4
-#: ../data/language-specs/dot.lang.h:5 ../data/language-specs/eiffel.lang.h:12
-#: ../data/language-specs/erlang.lang.h:10 ../data/language-specs/fcl.lang.h:6
-#: ../data/language-specs/forth.lang.h:7
-#: ../data/language-specs/fortran.lang.h:8
-#: ../data/language-specs/fsharp.lang.h:10 ../data/language-specs/gap.lang.h:6
-#: ../data/language-specs/glsl.lang.h:5 ../data/language-specs/go.lang.h:12
-#: ../data/language-specs/gtkrc.lang.h:7
-#: ../data/language-specs/haskell.lang.h:9 ../data/language-specs/idl.lang.h:4
-#: ../data/language-specs/imagej.lang.h:6 ../data/language-specs/ini.lang.h:7
-#: ../data/language-specs/java.lang.h:11
-#: ../data/language-specs/javascript.lang.h:8
+#: ../data/language-specs/ada.lang.h:5
+#: ../data/language-specs/asp.lang.h:6
+#: ../data/language-specs/awk.lang.h:3
+#: ../data/language-specs/bennugd.lang.h:7
+#: ../data/language-specs/boo.lang.h:10
+#: ../data/language-specs/cg.lang.h:8
+#: ../data/language-specs/c.lang.h:9
+#: ../data/language-specs/cobol.lang.h:6
+#: ../data/language-specs/cpp.lang.h:3
+#: ../data/language-specs/csharp.lang.h:11
+#: ../data/language-specs/css.lang.h:14
+#: ../data/language-specs/cuda.lang.h:3
+#: ../data/language-specs/def.lang.h:47
+#: ../data/language-specs/d.lang.h:6
+#: ../data/language-specs/dosbatch.lang.h:5
+#: ../data/language-specs/dot.lang.h:5
+#: ../data/language-specs/eiffel.lang.h:7
+#: ../data/language-specs/erlang.lang.h:4
+#: ../data/language-specs/fcl.lang.h:5
+#: ../data/language-specs/forth.lang.h:6
+#: ../data/language-specs/fortran.lang.h:5
+#: ../data/language-specs/fsharp.lang.h:8
+#: ../data/language-specs/gap.lang.h:5
+#: ../data/language-specs/glsl.lang.h:5
+#: ../data/language-specs/go.lang.h:7
+#: ../data/language-specs/gtkrc.lang.h:5
+#: ../data/language-specs/haskell.lang.h:7
+#: ../data/language-specs/idl.lang.h:6
+#: ../data/language-specs/imagej.lang.h:8
+#: ../data/language-specs/ini.lang.h:6
+#: ../data/language-specs/java.lang.h:12
+#: ../data/language-specs/javascript.lang.h:7
 #: ../data/language-specs/lua.lang.h:5
-#: ../data/language-specs/nemerle.lang.h:10
-#: ../data/language-specs/objc.lang.h:3 ../data/language-specs/objj.lang.h:4
-#: ../data/language-specs/ocaml.lang.h:10 ../data/language-specs/ocl.lang.h:3
-#: ../data/language-specs/octave.lang.h:8 ../data/language-specs/ooc.lang.h:12
-#: ../data/language-specs/opal.lang.h:8 ../data/language-specs/opencl.lang.h:6
-#: ../data/language-specs/pascal.lang.h:4 ../data/language-specs/perl.lang.h:9
-#: ../data/language-specs/php.lang.h:14 ../data/language-specs/po.lang.h:3
-#: ../data/language-specs/prolog.lang.h:4
-#: ../data/language-specs/protobuf.lang.h:3
-#: ../data/language-specs/python.lang.h:11
-#: ../data/language-specs/python3.lang.h:11 ../data/language-specs/R.lang.h:6
-#: ../data/language-specs/ruby.lang.h:13
-#: ../data/language-specs/scheme.lang.h:4
-#: ../data/language-specs/scilab.lang.h:5 ../data/language-specs/sh.lang.h:5
-#: ../data/language-specs/sml.lang.h:9 ../data/language-specs/sparql.lang.h:7
+#: ../data/language-specs/nemerle.lang.h:8
+#: ../data/language-specs/objc.lang.h:3
+#: ../data/language-specs/objj.lang.h:4
+#: ../data/language-specs/ocaml.lang.h:9
+#: ../data/language-specs/ocl.lang.h:5
+#: ../data/language-specs/octave.lang.h:13
+#: ../data/language-specs/ooc.lang.h:11
+#: ../data/language-specs/opal.lang.h:8
+#: ../data/language-specs/opencl.lang.h:3
+#: ../data/language-specs/pascal.lang.h:5
+#: ../data/language-specs/perl.lang.h:7
+#: ../data/language-specs/php.lang.h:12
+#: ../data/language-specs/po.lang.h:7
+#: ../data/language-specs/prolog.lang.h:5
+#: ../data/language-specs/protobuf.lang.h:4
+#: ../data/language-specs/python.lang.h:4
+#: ../data/language-specs/python3.lang.h:4
+#: ../data/language-specs/R.lang.h:3
+#: ../data/language-specs/ruby.lang.h:7
+#: ../data/language-specs/scheme.lang.h:6
+#: ../data/language-specs/scilab.lang.h:6
+#: ../data/language-specs/sh.lang.h:6
+#: ../data/language-specs/sml.lang.h:4
+#: ../data/language-specs/sparql.lang.h:7
 #: ../data/language-specs/sql.lang.h:6
-#: ../data/language-specs/systemverilog.lang.h:2
-#: ../data/language-specs/tcl.lang.h:1 ../data/language-specs/texinfo.lang.h:6
-#: ../data/language-specs/vala.lang.h:5 ../data/language-specs/vbnet.lang.h:4
-#: ../data/language-specs/verilog.lang.h:9
-#: ../data/language-specs/vhdl.lang.h:5
+#: ../data/language-specs/systemverilog.lang.h:5
+#: ../data/language-specs/tcl.lang.h:4
+#: ../data/language-specs/texinfo.lang.h:7
+#: ../data/language-specs/vala.lang.h:7
+#: ../data/language-specs/vbnet.lang.h:6
+#: ../data/language-specs/verilog.lang.h:10
+#: ../data/language-specs/vhdl.lang.h:6
 msgid "Keyword"
 msgstr "Λέξη κλειδί"
 
-#: ../data/language-specs/ada.lang.h:9 ../data/language-specs/asp.lang.h:10
-#: ../data/language-specs/bennugd.lang.h:11
-#: ../data/language-specs/cg.lang.h:16 ../data/language-specs/c.lang.h:15
+#. A decimal number: 1234
+#: ../data/language-specs/ada.lang.h:6
+#: ../data/language-specs/bennugd.lang.h:10
+#: ../data/language-specs/cg.lang.h:13
+#: ../data/language-specs/c.lang.h:16
+#: ../data/language-specs/csharp.lang.h:15
+#: ../data/language-specs/def.lang.h:26
+#: ../data/language-specs/d.lang.h:12
+#: ../data/language-specs/eiffel.lang.h:15
+#: ../data/language-specs/erlang.lang.h:10
+#: ../data/language-specs/fsharp.lang.h:6
+#: ../data/language-specs/go.lang.h:13
+#: ../data/language-specs/nemerle.lang.h:13
+#: ../data/language-specs/ocaml.lang.h:7
+#: ../data/language-specs/ooc.lang.h:15
+#: ../data/language-specs/opal.lang.h:10
+#: ../data/language-specs/php.lang.h:19
+#: ../data/language-specs/python.lang.h:13
+#: ../data/language-specs/python3.lang.h:12
+#: ../data/language-specs/ruby.lang.h:11
+msgid "Decimal number"
+msgstr "Δεκαδικός αριθμός"
+
+#. A boolean constant: TRUE, false
+#: ../data/language-specs/ada.lang.h:7
+#: ../data/language-specs/asp.lang.h:13
+#: ../data/language-specs/bennugd.lang.h:12
+#: ../data/language-specs/cg.lang.h:16
+#: ../data/language-specs/c.lang.h:19
+#: ../data/language-specs/csharp.lang.h:14
+#: ../data/language-specs/def.lang.h:34
+#: ../data/language-specs/fsharp.lang.h:19
+#: ../data/language-specs/go.lang.h:16
+#: ../data/language-specs/gtkrc.lang.h:10
+#: ../data/language-specs/ini.lang.h:10
+#: ../data/language-specs/java.lang.h:14
+#: ../data/language-specs/lua.lang.h:10
+#: ../data/language-specs/nemerle.lang.h:11
+#: ../data/language-specs/ocaml.lang.h:19
+#: ../data/language-specs/ooc.lang.h:13
+#: ../data/language-specs/opal.lang.h:9
+#: ../data/language-specs/php.lang.h:17
+#: ../data/language-specs/protobuf.lang.h:5
+#: ../data/language-specs/R.lang.h:8
+#: ../data/language-specs/ruby.lang.h:9
+#: ../data/language-specs/sml.lang.h:11
+#: ../data/language-specs/vala.lang.h:8
+#: ../data/language-specs/vbnet.lang.h:9
+#: ../data/language-specs/vhdl.lang.h:8
+msgid "Boolean value"
+msgstr "Τιμή Boolean "
+
+#: ../data/language-specs/ada.lang.h:8
+#: ../data/language-specs/cg.lang.h:10
+#: ../data/language-specs/c.lang.h:12
+#: ../data/language-specs/java.lang.h:10
+#: ../data/language-specs/ooc.lang.h:9
+msgid "Storage Class"
+msgstr "Storage Class"
+
+#: ../data/language-specs/ada.lang.h:9
+#: ../data/language-specs/asp.lang.h:11
+#: ../data/language-specs/bennugd.lang.h:8
+#: ../data/language-specs/boo.lang.h:8
+#: ../data/language-specs/cg.lang.h:9
+#: ../data/language-specs/c.lang.h:11
+#: ../data/language-specs/cpp.lang.h:4
+#: ../data/language-specs/csharp.lang.h:5
+#: ../data/language-specs/cuda.lang.h:4
+#: ../data/language-specs/d.lang.h:7
+#: ../data/language-specs/eiffel.lang.h:8
+#: ../data/language-specs/forth.lang.h:7
+#: ../data/language-specs/fortran.lang.h:9
+#: ../data/language-specs/fsharp.lang.h:11
+#: ../data/language-specs/glsl.lang.h:4
+#: ../data/language-specs/go.lang.h:8
+#: ../data/language-specs/gtkrc.lang.h:7
+#: ../data/language-specs/haskell.lang.h:8
+#: ../data/language-specs/idl.lang.h:4
+#: ../data/language-specs/ini.lang.h:9
+#: ../data/language-specs/java.lang.h:17
+#: ../data/language-specs/javascript.lang.h:8
+#: ../data/language-specs/nemerle.lang.h:9
+#: ../data/language-specs/objc.lang.h:4
+#: ../data/language-specs/objj.lang.h:5
+#: ../data/language-specs/ocaml.lang.h:12
+#: ../data/language-specs/ocl.lang.h:7
+#: ../data/language-specs/ooc.lang.h:19
+#: ../data/language-specs/opal.lang.h:11
+#: ../data/language-specs/opencl.lang.h:4
+#: ../data/language-specs/pascal.lang.h:7
+#: ../data/language-specs/php.lang.h:15
+#: ../data/language-specs/protobuf.lang.h:3
+#: ../data/language-specs/sml.lang.h:5
+#: ../data/language-specs/sparql.lang.h:4
+#: ../data/language-specs/sql.lang.h:9
+#: ../data/language-specs/vala.lang.h:5
+#: ../data/language-specs/vbnet.lang.h:7
+msgid "Data Type"
+msgstr "Τύπος δεδομένων"
+
+#: ../data/language-specs/ada.lang.h:10
+#: ../data/language-specs/asp.lang.h:5
+#: ../data/language-specs/bennugd.lang.h:4
+#: ../data/language-specs/cg.lang.h:5
+#: ../data/language-specs/c.lang.h:5
 #: ../data/language-specs/csharp.lang.h:12
-#: ../data/language-specs/forth.lang.h:9
-#: ../data/language-specs/fsharp.lang.h:15
-#: ../data/language-specs/glsl.lang.h:7
-#: ../data/language-specs/haskell.lang.h:11
+#: ../data/language-specs/forth.lang.h:5
+#: ../data/language-specs/fsharp.lang.h:20
+#: ../data/language-specs/glsl.lang.h:3
+#: ../data/language-specs/haskell.lang.h:3
 #: ../data/language-specs/idl.lang.h:5
-#: ../data/language-specs/nemerle.lang.h:14
-#: ../data/language-specs/objj.lang.h:7 ../data/language-specs/pascal.lang.h:6
+#: ../data/language-specs/nemerle.lang.h:5
+#: ../data/language-specs/objj.lang.h:6
+#: ../data/language-specs/pascal.lang.h:8
 #: ../data/language-specs/vbnet.lang.h:5
 msgid "Preprocessor"
 msgstr "Προεπεξεργαστής"
 
-#: ../data/language-specs/ada.lang.h:10
-#: ../data/language-specs/csharp.lang.h:13
-#: ../data/language-specs/verilog.lang.h:11
-#: ../data/language-specs/vhdl.lang.h:7
+#: ../data/language-specs/ada.lang.h:11
+msgid "Arbitrary base number"
+msgstr "Τυχαίος αριθμός βάσης"
+
+#: ../data/language-specs/ada.lang.h:12
+#: ../data/language-specs/csharp.lang.h:17
+#: ../data/language-specs/verilog.lang.h:14
+#: ../data/language-specs/vhdl.lang.h:10
 msgid "Real number"
 msgstr "Πραγματικός αριθμός"
 
-#: ../data/language-specs/ada.lang.h:11 ../data/language-specs/asp.lang.h:11
-#: ../data/language-specs/bennugd.lang.h:12
-#: ../data/language-specs/boo.lang.h:13 ../data/language-specs/cg.lang.h:17
-#: ../data/language-specs/chdr.lang.h:2 ../data/language-specs/c.lang.h:17
-#: ../data/language-specs/cobol.lang.h:8 ../data/language-specs/cpp.lang.h:5
-#: ../data/language-specs/csharp.lang.h:14
-#: ../data/language-specs/cuda.lang.h:7 ../data/language-specs/d.lang.h:13
-#: ../data/language-specs/eiffel.lang.h:14
-#: ../data/language-specs/erlang.lang.h:12
-#: ../data/language-specs/forth.lang.h:10
-#: ../data/language-specs/fortran.lang.h:9
-#: ../data/language-specs/fsharp.lang.h:16
-#: ../data/language-specs/glsl.lang.h:9 ../data/language-specs/go.lang.h:14
-#: ../data/language-specs/haskell.lang.h:12
-#: ../data/language-specs/haskell-literate.lang.h:2
-#: ../data/language-specs/idl.lang.h:6 ../data/language-specs/java.lang.h:15
-#: ../data/language-specs/makefile.lang.h:4
-#: ../data/language-specs/nemerle.lang.h:15
-#: ../data/language-specs/objc.lang.h:5 ../data/language-specs/objj.lang.h:8
-#: ../data/language-specs/ocaml.lang.h:16 ../data/language-specs/ooc.lang.h:17
-#: ../data/language-specs/opal.lang.h:11
-#: ../data/language-specs/opencl.lang.h:9
-#: ../data/language-specs/pascal.lang.h:7
-#: ../data/language-specs/prolog.lang.h:8
-#: ../data/language-specs/scheme.lang.h:6 ../data/language-specs/sml.lang.h:11
-#: ../data/language-specs/sparql.lang.h:14 ../data/language-specs/sql.lang.h:9
-#: ../data/language-specs/systemverilog.lang.h:3
-#: ../data/language-specs/vala.lang.h:7 ../data/language-specs/vbnet.lang.h:6
-#: ../data/language-specs/verilog.lang.h:12
-#: ../data/language-specs/vhdl.lang.h:8
-msgid "Sources"
-msgstr "Κώδικας"
+#. map to nothing
+#: ../data/language-specs/ada.lang.h:13
+#: ../data/language-specs/cg.lang.h:11
+#: ../data/language-specs/c.lang.h:14
+#: ../data/language-specs/csharp.lang.h:8
+#: ../data/language-specs/eiffel.lang.h:12
+#: ../data/language-specs/fsharp.lang.h:18
+#: ../data/language-specs/go.lang.h:10
+#: ../data/language-specs/haskell.lang.h:11
+#: ../data/language-specs/java.lang.h:3
+#: ../data/language-specs/javascript.lang.h:3
+#: ../data/language-specs/json.lang.h:3
+#: ../data/language-specs/lua.lang.h:6
+#: ../data/language-specs/ocaml.lang.h:18
+#: ../data/language-specs/ooc.lang.h:5
+#: ../data/language-specs/php.lang.h:8
+#: ../data/language-specs/prolog.lang.h:10
+#: ../data/language-specs/python.lang.h:7
+#: ../data/language-specs/python3.lang.h:7
+#: ../data/language-specs/ruby.lang.h:3
+#: ../data/language-specs/sml.lang.h:8
+#: ../data/language-specs/texinfo.lang.h:4
+#: ../data/language-specs/verilog.lang.h:5
+msgid "Escaped Character"
+msgstr "Χαρακτήρας Escape"
 
-#: ../data/language-specs/ada.lang.h:12 ../data/language-specs/cg.lang.h:18
-#: ../data/language-specs/c.lang.h:19 ../data/language-specs/go.lang.h:15
-#: ../data/language-specs/java.lang.h:16 ../data/language-specs/ooc.lang.h:18
-msgid "Storage Class"
-msgstr "Storage Class"
-
-#. A string constant: "this is a string"
-#: ../data/language-specs/ada.lang.h:13 ../data/language-specs/asp.lang.h:13
-#: ../data/language-specs/boo.lang.h:15 ../data/language-specs/c.lang.h:20
-#: ../data/language-specs/cobol.lang.h:10
-#: ../data/language-specs/csharp.lang.h:15
-#: ../data/language-specs/css.lang.h:15 ../data/language-specs/def.lang.h:57
-#: ../data/language-specs/d.lang.h:15 ../data/language-specs/dosbatch.lang.h:6
-#: ../data/language-specs/eiffel.lang.h:15
-#: ../data/language-specs/erlang.lang.h:13
-#: ../data/language-specs/forth.lang.h:11
-#: ../data/language-specs/fsharp.lang.h:17
-#: ../data/language-specs/gdb-log.lang.h:10
-#: ../data/language-specs/go.lang.h:16 ../data/language-specs/gtkrc.lang.h:9
-#: ../data/language-specs/haskell.lang.h:13
-#: ../data/language-specs/idl.lang.h:7 ../data/language-specs/imagej.lang.h:10
-#: ../data/language-specs/ini.lang.h:9 ../data/language-specs/java.lang.h:17
-#: ../data/language-specs/javascript.lang.h:13
-#: ../data/language-specs/json.lang.h:9 ../data/language-specs/lua.lang.h:10
-#: ../data/language-specs/matlab.lang.h:5
-#: ../data/language-specs/nemerle.lang.h:16
-#: ../data/language-specs/nsis.lang.h:5 ../data/language-specs/objc.lang.h:6
-#: ../data/language-specs/objj.lang.h:9 ../data/language-specs/ocaml.lang.h:18
-#: ../data/language-specs/ocl.lang.h:7 ../data/language-specs/octave.lang.h:15
-#: ../data/language-specs/ooc.lang.h:19 ../data/language-specs/opal.lang.h:12
-#: ../data/language-specs/pascal.lang.h:8
-#: ../data/language-specs/perl.lang.h:19 ../data/language-specs/php.lang.h:20
-#: ../data/language-specs/po.lang.h:6 ../data/language-specs/prolog.lang.h:9
-#: ../data/language-specs/protobuf.lang.h:5
-#: ../data/language-specs/python.lang.h:17
-#: ../data/language-specs/python3.lang.h:17
-#: ../data/language-specs/ruby.lang.h:22
-#: ../data/language-specs/scheme.lang.h:7
-#: ../data/language-specs/scilab.lang.h:9 ../data/language-specs/sh.lang.h:8
-#: ../data/language-specs/sml.lang.h:13 ../data/language-specs/sql.lang.h:10
-#: ../data/language-specs/texinfo.lang.h:10
-#: ../data/language-specs/vala.lang.h:8 ../data/language-specs/vbnet.lang.h:8
-#: ../data/language-specs/verilog.lang.h:13
-#: ../data/language-specs/vhdl.lang.h:9
-msgid "String"
-msgstr "Αλφαριθμητικό"
-
-#: ../data/language-specs/asp.lang.h:1
+#: ../data/language-specs/asp.lang.h:2
 msgid "ASP"
 msgstr "ASP"
 
-#: ../data/language-specs/asp.lang.h:2
-msgid "ASP Object"
-msgstr "Αντικείμενο ASP"
-
 #. A function name (also: methods for classes)
-#: ../data/language-specs/asp.lang.h:6 ../data/language-specs/cg.lang.h:11
-#: ../data/language-specs/changelog.lang.h:6
-#: ../data/language-specs/css.lang.h:8 ../data/language-specs/def.lang.h:32
-#: ../data/language-specs/gap.lang.h:4 ../data/language-specs/gdb-log.lang.h:4
-#: ../data/language-specs/gtk-doc.lang.h:3
-#: ../data/language-specs/javascript.lang.h:5
-#: ../data/language-specs/lua.lang.h:4 ../data/language-specs/scheme.lang.h:3
-#: ../data/language-specs/scilab.lang.h:4 ../data/language-specs/sh.lang.h:3
-#: ../data/language-specs/sparql.lang.h:4 ../data/language-specs/sql.lang.h:5
+#: ../data/language-specs/asp.lang.h:7
+#: ../data/language-specs/cg.lang.h:18
+#: ../data/language-specs/changelog.lang.h:8
+#: ../data/language-specs/css.lang.h:8
+#: ../data/language-specs/def.lang.h:38
+#: ../data/language-specs/gap.lang.h:6
+#: ../data/language-specs/gdb-log.lang.h:7
+#: ../data/language-specs/gtk-doc.lang.h:10
+#: ../data/language-specs/javascript.lang.h:9
+#: ../data/language-specs/lua.lang.h:8
+#: ../data/language-specs/scheme.lang.h:7
+#: ../data/language-specs/scilab.lang.h:7
+#: ../data/language-specs/sh.lang.h:4
+#: ../data/language-specs/sparql.lang.h:5
+#: ../data/language-specs/sql.lang.h:7
 msgid "Function"
 msgstr "Συνάρτηση"
 
-#. A generic number constant
-#: ../data/language-specs/asp.lang.h:8 ../data/language-specs/boo.lang.h:11
-#: ../data/language-specs/cobol.lang.h:6 ../data/language-specs/def.lang.h:40
-#: ../data/language-specs/desktop.lang.h:11
-#: ../data/language-specs/forth.lang.h:8 ../data/language-specs/java.lang.h:13
-#: ../data/language-specs/prolog.lang.h:5 ../data/language-specs/vhdl.lang.h:6
-msgid "Number"
-msgstr "Αριθμός"
-
 #. Operators: "+", "*", etc.
-#: ../data/language-specs/asp.lang.h:9
-#: ../data/language-specs/bennugd.lang.h:10 ../data/language-specs/c.lang.h:14
-#: ../data/language-specs/cmake.lang.h:6 ../data/language-specs/cobol.lang.h:7
-#: ../data/language-specs/def.lang.h:42
-#: ../data/language-specs/erlang.lang.h:11
-#: ../data/language-specs/imagej.lang.h:7 ../data/language-specs/nsis.lang.h:3
-#: ../data/language-specs/octave.lang.h:10
-#: ../data/language-specs/perl.lang.h:11 ../data/language-specs/php.lang.h:17
-#: ../data/language-specs/prolog.lang.h:6
-#: ../data/language-specs/sparql.lang.h:10
+#: ../data/language-specs/asp.lang.h:8
+#: ../data/language-specs/bennugd.lang.h:6
+#: ../data/language-specs/c.lang.h:10
+#: ../data/language-specs/cmake.lang.h:6
+#: ../data/language-specs/cobol.lang.h:10
+#: ../data/language-specs/def.lang.h:45
+#: ../data/language-specs/erlang.lang.h:5
+#: ../data/language-specs/imagej.lang.h:9
+#: ../data/language-specs/nsis.lang.h:3
+#: ../data/language-specs/octave.lang.h:5
+#: ../data/language-specs/perl.lang.h:12
+#: ../data/language-specs/php.lang.h:14
+#: ../data/language-specs/prolog.lang.h:8
+#: ../data/language-specs/sparql.lang.h:15
 msgid "Operator"
 msgstr "Τελεστής"
 
+#: ../data/language-specs/asp.lang.h:9
+msgid "ASP Object"
+msgstr "Αντικείμενο ASP"
+
+#: ../data/language-specs/asp.lang.h:10
+msgid "VBScript and ADO constants"
+msgstr "Σταθερές VBScript και ADO"
+
 #. A special constant like NULL in C or null in Java
-#: ../data/language-specs/asp.lang.h:12 ../data/language-specs/def.lang.h:53
-#: ../data/language-specs/vbnet.lang.h:7
+#: ../data/language-specs/asp.lang.h:12
+#: ../data/language-specs/def.lang.h:32
+#: ../data/language-specs/vbnet.lang.h:8
 msgid "Special constant"
 msgstr "Ειδική σταθερά"
 
+#. A generic number constant
 #: ../data/language-specs/asp.lang.h:14
-msgid "VBScript and ADO constants"
-msgstr "Σταθερές VBScript και ADO"
+#: ../data/language-specs/boo.lang.h:14
+#: ../data/language-specs/cobol.lang.h:9
+#: ../data/language-specs/def.lang.h:22
+#: ../data/language-specs/desktop.lang.h:8
+#: ../data/language-specs/forth.lang.h:8
+#: ../data/language-specs/java.lang.h:15
+#: ../data/language-specs/prolog.lang.h:7
+#: ../data/language-specs/vhdl.lang.h:11
+msgid "Number"
+msgstr "Αριθμός"
 
 #: ../data/language-specs/automake.lang.h:1
 msgid "Automake"
@@ -415,259 +550,286 @@ msgid "Automake Variable"
 msgstr "Μεταβλητή Automake"
 
 #: ../data/language-specs/automake.lang.h:3
-msgid "Built-in Target"
-msgstr "Ενσωματωμένος στόχος"
-
-#: ../data/language-specs/automake.lang.h:4
-msgid "Optional Target"
-msgstr "Προαιρετικός στόχος"
-
-#: ../data/language-specs/automake.lang.h:5
-msgid "Other Keyword"
-msgstr "Άλλη λέξη κλειδί"
-
-#: ../data/language-specs/automake.lang.h:6
-msgid "Prefix"
-msgstr "Πρόθεμα"
-
-#: ../data/language-specs/automake.lang.h:7
 msgid "Primary"
 msgstr "Πρωτεύον"
 
-#: ../data/language-specs/automake.lang.h:8
+#: ../data/language-specs/automake.lang.h:4
 msgid "Secondary"
 msgstr "Δευτερεύον"
+
+#: ../data/language-specs/automake.lang.h:5
+msgid "Prefix"
+msgstr "Πρόθεμα"
+
+#: ../data/language-specs/automake.lang.h:6
+msgid "Optional Target"
+msgstr "Προαιρετικός στόχος"
+
+#: ../data/language-specs/automake.lang.h:7
+msgid "Built-in Target"
+msgstr "Ενσωματωμένος στόχος"
+
+#: ../data/language-specs/automake.lang.h:8
+msgid "Other Keyword"
+msgstr "Άλλη λέξη κλειδί"
 
 #: ../data/language-specs/automake.lang.h:9
 msgid "Substitution"
 msgstr "Αντικατάσταση"
 
-#: ../data/language-specs/awk.lang.h:1 ../data/language-specs/boo.lang.h:3
-#: ../data/language-specs/glsl.lang.h:2 ../data/language-specs/perl.lang.h:1
-#: ../data/language-specs/python.lang.h:4
-#: ../data/language-specs/python3.lang.h:4
-msgid "Builtin Function"
-msgstr "Ενσωματωμένη συνάρτηση"
-
-#: ../data/language-specs/awk.lang.h:3
-msgid "Pattern"
-msgstr "Μοτίβο"
-
-#: ../data/language-specs/awk.lang.h:4
-#: ../data/language-specs/dosbatch.lang.h:5
-#: ../data/language-specs/javascript.lang.h:12
-#: ../data/language-specs/lua.lang.h:9 ../data/language-specs/m4.lang.h:3
-#: ../data/language-specs/perl.lang.h:18 ../data/language-specs/php.lang.h:19
-#: ../data/language-specs/python.lang.h:15
-#: ../data/language-specs/python3.lang.h:15
-#: ../data/language-specs/ruby.lang.h:20 ../data/language-specs/sh.lang.h:7
-#: ../data/language-specs/tcl.lang.h:2
+#: ../data/language-specs/awk.lang.h:1
+#: ../data/language-specs/dosbatch.lang.h:1
+#: ../data/language-specs/javascript.lang.h:1
+#: ../data/language-specs/lua.lang.h:1
+#: ../data/language-specs/m4.lang.h:1
+#: ../data/language-specs/perl.lang.h:1
+#: ../data/language-specs/php.lang.h:1
+#: ../data/language-specs/python.lang.h:1
+#: ../data/language-specs/python3.lang.h:1
+#: ../data/language-specs/ruby.lang.h:1
+#: ../data/language-specs/sh.lang.h:1
+#: ../data/language-specs/tcl.lang.h:1
 msgid "Scripts"
 msgstr "Σενάρια ενεργειών"
 
-#: ../data/language-specs/awk.lang.h:5 ../data/language-specs/cmake.lang.h:8
-#: ../data/language-specs/cobol.lang.h:11
-#: ../data/language-specs/haskell.lang.h:15
-#: ../data/language-specs/ini.lang.h:10
-#: ../data/language-specs/makefile.lang.h:8
+#: ../data/language-specs/awk.lang.h:2
+msgid "awk"
+msgstr "awk"
+
+#: ../data/language-specs/awk.lang.h:4
+msgid "Pattern"
+msgstr "Μοτίβο"
+
+#: ../data/language-specs/awk.lang.h:5
+#: ../data/language-specs/cmake.lang.h:8
+#: ../data/language-specs/cobol.lang.h:5
+#: ../data/language-specs/haskell.lang.h:5
+#: ../data/language-specs/ini.lang.h:8
+#: ../data/language-specs/makefile.lang.h:3
 #: ../data/language-specs/nsis.lang.h:6
-#: ../data/language-specs/octave.lang.h:16
-#: ../data/language-specs/perl.lang.h:21 ../data/language-specs/php.lang.h:21
+#: ../data/language-specs/octave.lang.h:14
+#: ../data/language-specs/perl.lang.h:13
+#: ../data/language-specs/php.lang.h:5
 #: ../data/language-specs/pkgconfig.lang.h:3
-#: ../data/language-specs/prolog.lang.h:10
-#: ../data/language-specs/protobuf.lang.h:6
-#: ../data/language-specs/ruby.lang.h:24 ../data/language-specs/sh.lang.h:10
-#: ../data/language-specs/sparql.lang.h:15 ../data/language-specs/tcl.lang.h:4
+#: ../data/language-specs/prolog.lang.h:4
+#: ../data/language-specs/protobuf.lang.h:2
+#: ../data/language-specs/ruby.lang.h:21
+#: ../data/language-specs/sh.lang.h:7
+#: ../data/language-specs/sparql.lang.h:14
+#: ../data/language-specs/tcl.lang.h:3
 msgid "Variable"
 msgstr "Μεταβλητή"
 
 #: ../data/language-specs/awk.lang.h:6
-msgid "awk"
-msgstr "awk"
+#: ../data/language-specs/boo.lang.h:15
+#: ../data/language-specs/glsl.lang.h:6
+#: ../data/language-specs/go.lang.h:18
+#: ../data/language-specs/perl.lang.h:8
+#: ../data/language-specs/python.lang.h:18
+#: ../data/language-specs/python3.lang.h:17
+msgid "Builtin Function"
+msgstr "Ενσωματωμένη συνάρτηση"
 
-#: ../data/language-specs/bennugd.lang.h:1
+#: ../data/language-specs/bennugd.lang.h:2
 msgid "BennuGD"
 msgstr "BennuGD"
 
+#. Any variable name
+#: ../data/language-specs/bennugd.lang.h:5
+#: ../data/language-specs/def.lang.h:36
+#: ../data/language-specs/php.lang.h:6
+msgid "Identifier"
+msgstr "Αναγνωριστικό"
+
 #. A floating point constant: 2.3e10
-#: ../data/language-specs/bennugd.lang.h:6 ../data/language-specs/cg.lang.h:10
-#: ../data/language-specs/c.lang.h:9 ../data/language-specs/def.lang.h:30
-#: ../data/language-specs/d.lang.h:8 ../data/language-specs/erlang.lang.h:9
-#: ../data/language-specs/go.lang.h:8 ../data/language-specs/json.lang.h:5
-#: ../data/language-specs/nemerle.lang.h:8 ../data/language-specs/ooc.lang.h:9
-#: ../data/language-specs/php.lang.h:9 ../data/language-specs/python.lang.h:9
-#: ../data/language-specs/python3.lang.h:9 ../data/language-specs/R.lang.h:4
+#: ../data/language-specs/bennugd.lang.h:9
+#: ../data/language-specs/cg.lang.h:12
+#: ../data/language-specs/c.lang.h:15
+#: ../data/language-specs/def.lang.h:24
+#: ../data/language-specs/d.lang.h:11
+#: ../data/language-specs/erlang.lang.h:9
+#: ../data/language-specs/go.lang.h:11
+#: ../data/language-specs/json.lang.h:9
+#: ../data/language-specs/nemerle.lang.h:12
+#: ../data/language-specs/ooc.lang.h:14
+#: ../data/language-specs/php.lang.h:18
+#: ../data/language-specs/python.lang.h:12
+#: ../data/language-specs/python3.lang.h:11
+#: ../data/language-specs/R.lang.h:10
 #: ../data/language-specs/ruby.lang.h:10
 msgid "Floating point number"
 msgstr "Αριθμός κινητής υποδιαστολής"
 
-#: ../data/language-specs/bennugd.lang.h:7 ../data/language-specs/cg.lang.h:12
-#: ../data/language-specs/c.lang.h:10 ../data/language-specs/csharp.lang.h:9
-#: ../data/language-specs/d.lang.h:9 ../data/language-specs/eiffel.lang.h:11
-#: ../data/language-specs/go.lang.h:10 ../data/language-specs/nemerle.lang.h:9
-#: ../data/language-specs/ooc.lang.h:11 ../data/language-specs/php.lang.h:12
+#: ../data/language-specs/bennugd.lang.h:11
+#: ../data/language-specs/cg.lang.h:15
+#: ../data/language-specs/c.lang.h:18
+#: ../data/language-specs/csharp.lang.h:16
+#: ../data/language-specs/d.lang.h:15
+#: ../data/language-specs/eiffel.lang.h:16
+#: ../data/language-specs/go.lang.h:15
+#: ../data/language-specs/nemerle.lang.h:16
+#: ../data/language-specs/ooc.lang.h:17
+#: ../data/language-specs/php.lang.h:21
 msgid "Hexadecimal number"
 msgstr "Δεκαεξαδικός αριθμός"
 
-#. Any variable name
-#: ../data/language-specs/bennugd.lang.h:8
-#: ../data/language-specs/def.lang.h:34 ../data/language-specs/php.lang.h:13
-msgid "Identifier"
-msgstr "Αναγνωριστικό"
-
 #: ../data/language-specs/bibtex.lang.h:1
-msgid "BibTeX"
-msgstr "BibTeX"
-
-#: ../data/language-specs/bibtex.lang.h:2
-msgid "Entries"
-msgstr "Εισαγωγές"
-
-#: ../data/language-specs/bibtex.lang.h:3
-msgid "Field"
-msgstr "Πεδίο"
-
-#: ../data/language-specs/bibtex.lang.h:4
-#: ../data/language-specs/docbook.lang.h:5 ../data/language-specs/dtd.lang.h:2
-#: ../data/language-specs/gtk-doc.lang.h:6
-#: ../data/language-specs/haddock.lang.h:14
-#: ../data/language-specs/html.lang.h:7 ../data/language-specs/latex.lang.h:6
-#: ../data/language-specs/mallard.lang.h:4
-#: ../data/language-specs/markdown.lang.h:14
-#: ../data/language-specs/t2t.lang.h:6 ../data/language-specs/texinfo.lang.h:8
-#: ../data/language-specs/xml.lang.h:9 ../data/language-specs/xslt.lang.h:2
+#: ../data/language-specs/docbook.lang.h:1
+#: ../data/language-specs/dtd.lang.h:1
+#: ../data/language-specs/gtk-doc.lang.h:1
+#: ../data/language-specs/haddock.lang.h:1
+#: ../data/language-specs/html.lang.h:1
+#: ../data/language-specs/latex.lang.h:1
+#: ../data/language-specs/mallard.lang.h:1
+#: ../data/language-specs/markdown.lang.h:1
+#: ../data/language-specs/t2t.lang.h:1
+#: ../data/language-specs/texinfo.lang.h:1
+#: ../data/language-specs/xml.lang.h:1
+#: ../data/language-specs/xslt.lang.h:1
 #: ../gtksourceview/gtksourcecompletionitem.c:242
 #: ../gtksourceview/gtksourcegutterrenderertext.c:395
 msgid "Markup"
 msgstr "Markup"
 
-#: ../data/language-specs/boo.lang.h:1
+#: ../data/language-specs/bibtex.lang.h:2
+msgid "BibTeX"
+msgstr "BibTeX"
+
+#: ../data/language-specs/bibtex.lang.h:3
+msgid "Entries"
+msgstr "Καταχωρήσεις"
+
+#: ../data/language-specs/bibtex.lang.h:4
+msgid "Field"
+msgstr "Πεδίο"
+
+#: ../data/language-specs/boo.lang.h:2
 msgid "Boo"
 msgstr "Boo"
 
-#: ../data/language-specs/boo.lang.h:2 ../data/language-specs/desktop.lang.h:3
-#: ../data/language-specs/d.lang.h:2 ../data/language-specs/imagej.lang.h:1
-#: ../data/language-specs/libtool.lang.h:1
-#: ../data/language-specs/objj.lang.h:1 ../data/language-specs/octave.lang.h:2
-#: ../data/language-specs/python.lang.h:2
-#: ../data/language-specs/python3.lang.h:2
-#: ../data/language-specs/scheme.lang.h:1
-#: ../data/language-specs/scilab.lang.h:1
-#: ../data/language-specs/sparql.lang.h:1
-msgid "Boolean"
-msgstr "Boolean"
-
-#: ../data/language-specs/boo.lang.h:6
-msgid "Definition"
-msgstr "Ορισμός"
-
-#: ../data/language-specs/boo.lang.h:8 ../data/language-specs/python.lang.h:13
-#: ../data/language-specs/python3.lang.h:13
+#: ../data/language-specs/boo.lang.h:4
+#: ../data/language-specs/python.lang.h:5
+#: ../data/language-specs/python3.lang.h:5
 msgid "Multiline string"
 msgstr "Αλφαριθμητικό πολλαπλών γραμμών"
 
-#: ../data/language-specs/boo.lang.h:9 ../data/language-specs/sparql.lang.h:9
-#: ../data/language-specs/xml.lang.h:10 ../data/language-specs/xslt.lang.h:3
-msgid "Namespace"
-msgstr "Namespace"
-
-#: ../data/language-specs/boo.lang.h:10
-#: ../data/language-specs/csharp.lang.h:11 ../data/language-specs/d.lang.h:11
-#: ../data/language-specs/fsharp.lang.h:13
-#: ../data/language-specs/java.lang.h:12
-#: ../data/language-specs/javascript.lang.h:9
-#: ../data/language-specs/json.lang.h:7
-#: ../data/language-specs/nemerle.lang.h:12
-#: ../data/language-specs/objj.lang.h:5 ../data/language-specs/ooc.lang.h:13
-#: ../data/language-specs/php.lang.h:15 ../data/language-specs/vala.lang.h:6
-msgid "Null Value"
-msgstr "Τιμή Null"
-
-#: ../data/language-specs/boo.lang.h:12
-#: ../data/language-specs/javascript.lang.h:11
-#: ../data/language-specs/perl.lang.h:17 ../data/language-specs/ruby.lang.h:18
+#: ../data/language-specs/boo.lang.h:6
+#: ../data/language-specs/javascript.lang.h:14
+#: ../data/language-specs/perl.lang.h:16
+#: ../data/language-specs/ruby.lang.h:24
 msgid "Regular Expression"
 msgstr "Κανονική έκφραση"
 
-#: ../data/language-specs/boo.lang.h:14
-#: ../data/language-specs/python.lang.h:16
-#: ../data/language-specs/python3.lang.h:16
-#: ../data/language-specs/ruby.lang.h:21
+#: ../data/language-specs/boo.lang.h:7
+#: ../data/language-specs/sparql.lang.h:8
+#: ../data/language-specs/xml.lang.h:12
+#: ../data/language-specs/xslt.lang.h:4
+msgid "Namespace"
+msgstr "Namespace"
+
+#: ../data/language-specs/boo.lang.h:9
+msgid "Definition"
+msgstr "Ορισμός"
+
+#: ../data/language-specs/boo.lang.h:11
+#: ../data/language-specs/python.lang.h:10
+#: ../data/language-specs/python3.lang.h:9
+#: ../data/language-specs/ruby.lang.h:19
 msgid "Special Variable"
 msgstr "Ειδική μεταβλητή"
 
-#: ../data/language-specs/cg.lang.h:1
-msgid "Bindings"
-msgstr "Συνδέσεις"
+#: ../data/language-specs/boo.lang.h:12
+#: ../data/language-specs/csharp.lang.h:13
+#: ../data/language-specs/d.lang.h:9
+#: ../data/language-specs/fsharp.lang.h:21
+#: ../data/language-specs/java.lang.h:13
+#: ../data/language-specs/javascript.lang.h:4
+#: ../data/language-specs/json.lang.h:5
+#: ../data/language-specs/nemerle.lang.h:10
+#: ../data/language-specs/objj.lang.h:9
+#: ../data/language-specs/ooc.lang.h:12
+#: ../data/language-specs/php.lang.h:16
+#: ../data/language-specs/vala.lang.h:9
+msgid "Null Value"
+msgstr "Τιμή Null"
 
-#. Translators: functions that are provided in the language
-#: ../data/language-specs/cg.lang.h:3 ../data/language-specs/erlang.lang.h:3
-#: ../data/language-specs/imagej.lang.h:2
-#: ../data/language-specs/matlab.lang.h:1
-#: ../data/language-specs/octave.lang.h:3 ../data/language-specs/ruby.lang.h:5
-msgid "Builtin"
-msgstr "Ενσωματωμένο"
+#: ../data/language-specs/boo.lang.h:13
+#: ../data/language-specs/desktop.lang.h:9
+#: ../data/language-specs/d.lang.h:10
+#: ../data/language-specs/imagej.lang.h:4
+#: ../data/language-specs/libtool.lang.h:4
+#: ../data/language-specs/objj.lang.h:3
+#: ../data/language-specs/octave.lang.h:8
+#: ../data/language-specs/python.lang.h:11
+#: ../data/language-specs/python3.lang.h:10
+#: ../data/language-specs/scheme.lang.h:4
+#: ../data/language-specs/scilab.lang.h:8
+#: ../data/language-specs/sparql.lang.h:9
+msgid "Boolean"
+msgstr "Boolean"
 
-#: ../data/language-specs/cg.lang.h:4
+#: ../data/language-specs/cg.lang.h:2
 msgid "CG Shader Language"
 msgstr "Γλώσσα CG Shader"
 
 #. Any erroneous construct
-#: ../data/language-specs/cg.lang.h:8 ../data/language-specs/cobol.lang.h:4
-#: ../data/language-specs/csharp.lang.h:7 ../data/language-specs/css.lang.h:7
-#: ../data/language-specs/def.lang.h:28 ../data/language-specs/d.lang.h:7
-#: ../data/language-specs/dot.lang.h:3 ../data/language-specs/go.lang.h:6
-#: ../data/language-specs/html.lang.h:5 ../data/language-specs/json.lang.h:3
-#: ../data/language-specs/nemerle.lang.h:7
-#: ../data/language-specs/ocaml.lang.h:7 ../data/language-specs/ooc.lang.h:6
-#: ../data/language-specs/opal.lang.h:6 ../data/language-specs/perl.lang.h:4
-#: ../data/language-specs/php.lang.h:6 ../data/language-specs/prolog.lang.h:2
+#: ../data/language-specs/cg.lang.h:4
+#: ../data/language-specs/c.lang.h:22
+#: ../data/language-specs/cobol.lang.h:11
+#: ../data/language-specs/csharp.lang.h:4
+#: ../data/language-specs/css.lang.h:3
+#: ../data/language-specs/def.lang.h:53
+#: ../data/language-specs/d.lang.h:4
+#: ../data/language-specs/dot.lang.h:4
+#: ../data/language-specs/go.lang.h:4
+#: ../data/language-specs/html.lang.h:8
+#: ../data/language-specs/json.lang.h:7
+#: ../data/language-specs/nemerle.lang.h:4
+#: ../data/language-specs/ocaml.lang.h:20
+#: ../data/language-specs/ooc.lang.h:4
+#: ../data/language-specs/opal.lang.h:6
+#: ../data/language-specs/perl.lang.h:17
+#: ../data/language-specs/php.lang.h:4
+#: ../data/language-specs/prolog.lang.h:9
 #: ../data/language-specs/vala.lang.h:4
-#: ../data/language-specs/verilog.lang.h:4 ../data/language-specs/xml.lang.h:8
+#: ../data/language-specs/verilog.lang.h:6
+#: ../data/language-specs/xml.lang.h:13
 msgid "Error"
 msgstr "Σφάλμα"
 
-#: ../data/language-specs/cg.lang.h:13 ../data/language-specs/c.lang.h:11
-#: ../data/language-specs/go.lang.h:11 ../data/language-specs/objj.lang.h:3
+#: ../data/language-specs/cg.lang.h:6
+msgid "Bindings"
+msgstr "Συνδέσεις"
+
+#: ../data/language-specs/cg.lang.h:7
+#: ../data/language-specs/c.lang.h:7
+#: ../data/language-specs/objj.lang.h:7
 msgid "Included File"
 msgstr "Included File"
 
-#: ../data/language-specs/cg.lang.h:15 ../data/language-specs/c.lang.h:13
-#: ../data/language-specs/d.lang.h:12 ../data/language-specs/go.lang.h:13
-#: ../data/language-specs/nemerle.lang.h:13
-#: ../data/language-specs/ooc.lang.h:15 ../data/language-specs/php.lang.h:16
+#: ../data/language-specs/cg.lang.h:14
+#: ../data/language-specs/c.lang.h:17
+#: ../data/language-specs/d.lang.h:14
+#: ../data/language-specs/go.lang.h:14
+#: ../data/language-specs/nemerle.lang.h:15
+#: ../data/language-specs/ooc.lang.h:16
+#: ../data/language-specs/php.lang.h:20
 msgid "Octal number"
 msgstr "Οκταδικός αριθμός"
 
-#: ../data/language-specs/cg.lang.h:19
+#: ../data/language-specs/cg.lang.h:17
 msgid "Swizzle operator"
 msgstr "Τελεστές Swizzle"
 
-#: ../data/language-specs/changelog.lang.h:1
-msgid "Bullet"
-msgstr "Κουκίδα"
-
-#: ../data/language-specs/changelog.lang.h:2
-msgid "ChangeLog"
-msgstr "ChangeLog"
-
-#: ../data/language-specs/changelog.lang.h:3
-#: ../data/language-specs/rpmspec.lang.h:3
-msgid "Date"
-msgstr "Ημερομηνία"
-
-#: ../data/language-specs/changelog.lang.h:4
-msgid "E-mail address"
-msgstr "Διεύθυνση E-Mail "
-
-#: ../data/language-specs/changelog.lang.h:5
-msgid "File"
-msgstr "Αρχείο"
-
-#: ../data/language-specs/changelog.lang.h:7
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:455
-msgid "Name"
-msgstr "Όνομα"
+#. Translators: functions that are provided in the language
+#: ../data/language-specs/cg.lang.h:19
+#: ../data/language-specs/erlang.lang.h:12
+#: ../data/language-specs/imagej.lang.h:3
+#: ../data/language-specs/matlab.lang.h:5
+#: ../data/language-specs/octave.lang.h:16
+#: ../data/language-specs/ruby.lang.h:16
+msgid "Builtin"
+msgstr "Ενσωματωμένες"
 
 #. *
 #. * SECTION:language
@@ -680,30 +842,62 @@ msgstr "Όνομα"
 #. * #GtkSourceLanguage instance, and gtk_source_buffer_set_language() to apply it
 #. * to a #GtkSourceBuffer.
 #.
-#: ../data/language-specs/changelog.lang.h:8
-#: ../data/language-specs/cmake.lang.h:7 ../data/language-specs/css.lang.h:12
-#: ../data/language-specs/desktop.lang.h:12
-#: ../data/language-specs/diff.lang.h:9 ../data/language-specs/dot.lang.h:6
-#: ../data/language-specs/dpatch.lang.h:2
-#: ../data/language-specs/gdb-log.lang.h:8
-#: ../data/language-specs/gtkrc.lang.h:8 ../data/language-specs/ini.lang.h:8
-#: ../data/language-specs/json.lang.h:8
-#: ../data/language-specs/libtool.lang.h:3
-#: ../data/language-specs/nsis.lang.h:4 ../data/language-specs/ocl.lang.h:6
+#: ../data/language-specs/changelog.lang.h:1
+#: ../data/language-specs/cmake.lang.h:1
+#: ../data/language-specs/css.lang.h:1
+#: ../data/language-specs/desktop.lang.h:1
+#: ../data/language-specs/diff.lang.h:1
+#: ../data/language-specs/dot.lang.h:1
+#: ../data/language-specs/dpatch.lang.h:1
+#: ../data/language-specs/gdb-log.lang.h:1
+#: ../data/language-specs/gtkrc.lang.h:1
+#: ../data/language-specs/ini.lang.h:1
+#: ../data/language-specs/json.lang.h:1
+#: ../data/language-specs/libtool.lang.h:1
+#: ../data/language-specs/nsis.lang.h:1
+#: ../data/language-specs/ocl.lang.h:1
 #: ../data/language-specs/pkgconfig.lang.h:1
-#: ../data/language-specs/po.lang.h:5 ../data/language-specs/protobuf.lang.h:4
-#: ../data/language-specs/rpmspec.lang.h:10 ../data/language-specs/sh.lang.h:6
-#: ../data/language-specs/texinfo.lang.h:9
+#: ../data/language-specs/po.lang.h:1
+#: ../data/language-specs/protobuf.lang.h:1
+#: ../data/language-specs/rpmspec.lang.h:1
+#: ../data/language-specs/sh.lang.h:10
+#: ../data/language-specs/texinfo.lang.h:5
 #: ../data/language-specs/yacc.lang.h:1
 #: ../gtksourceview/gtksourcelanguage.c:55
 msgid "Others"
 msgstr "Άλλα"
 
+#: ../data/language-specs/changelog.lang.h:2
+msgid "ChangeLog"
+msgstr "ChangeLog"
+
+#: ../data/language-specs/changelog.lang.h:3
+#: ../data/language-specs/rpmspec.lang.h:14
+msgid "Date"
+msgstr "Ημερομηνία"
+
+#: ../data/language-specs/changelog.lang.h:4
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:455
+msgid "Name"
+msgstr "Όνομα"
+
+#: ../data/language-specs/changelog.lang.h:5
+msgid "E-mail address"
+msgstr "Διεύθυνση E-Mail "
+
+#: ../data/language-specs/changelog.lang.h:6
+msgid "File"
+msgstr "Αρχείο"
+
+#: ../data/language-specs/changelog.lang.h:7
+msgid "Bullet"
+msgstr "Κουκίδα"
+
 #: ../data/language-specs/changelog.lang.h:9
 msgid "Release"
 msgstr "Κυκλοφορία"
 
-#: ../data/language-specs/chdr.lang.h:1
+#: ../data/language-specs/chdr.lang.h:2
 msgid "C/C++/ObjC Header"
 msgstr "Κεφαλίδα C/C++/ObjC"
 
@@ -711,69 +905,79 @@ msgstr "Κεφαλίδα C/C++/ObjC"
 msgid "C"
 msgstr "C"
 
-#. A character constant: 'c'
-#: ../data/language-specs/c.lang.h:3 ../data/language-specs/csharp.lang.h:3
-#: ../data/language-specs/def.lang.h:9 ../data/language-specs/erlang.lang.h:4
-#: ../data/language-specs/gap.lang.h:1 ../data/language-specs/go.lang.h:2
-#: ../data/language-specs/haskell.lang.h:1
-#: ../data/language-specs/java.lang.h:2
-#: ../data/language-specs/nemerle.lang.h:3 ../data/language-specs/sml.lang.h:3
-#: ../data/language-specs/vhdl.lang.h:3
-msgid "Character"
-msgstr "Χαρακτήρας"
-
-#: ../data/language-specs/c.lang.h:5 ../data/language-specs/cpp.lang.h:2
-#: ../data/language-specs/objc.lang.h:1 ../data/language-specs/opal.lang.h:3
+#: ../data/language-specs/c.lang.h:6
+#: ../data/language-specs/cpp.lang.h:5
+#: ../data/language-specs/objc.lang.h:5
+#: ../data/language-specs/opal.lang.h:5
 msgid "Common Defines"
 msgstr "Common Defines"
 
-#: ../data/language-specs/c.lang.h:16
-msgid "Signal name"
-msgstr ""
+#. A character constant: 'c'
+#: ../data/language-specs/c.lang.h:8
+#: ../data/language-specs/csharp.lang.h:7
+#: ../data/language-specs/def.lang.h:15
+#: ../data/language-specs/erlang.lang.h:8
+#: ../data/language-specs/gap.lang.h:4
+#: ../data/language-specs/go.lang.h:6
+#: ../data/language-specs/haskell.lang.h:10
+#: ../data/language-specs/java.lang.h:5
+#: ../data/language-specs/nemerle.lang.h:6
+#: ../data/language-specs/sml.lang.h:6
+#: ../data/language-specs/vhdl.lang.h:5
+msgid "Character"
+msgstr "Χαρακτήρας"
 
-#: ../data/language-specs/c.lang.h:18
+#: ../data/language-specs/c.lang.h:13
+#: ../data/language-specs/go.lang.h:9
+msgid "printf Conversion"
+msgstr "Μετατροπή printf"
+
+#: ../data/language-specs/c.lang.h:20
 msgid "Standard stream"
 msgstr "Πρότυπο ροής stream"
 
 #: ../data/language-specs/c.lang.h:21
-msgid "printf Conversion"
-msgstr "Μετατροπή printf"
+msgid "Signal name"
+msgstr "Όνομα signal"
 
-#: ../data/language-specs/cmake.lang.h:1
-msgid "Builtin Command"
-msgstr "Ενσωματωμένη εντολή"
-
-#: ../data/language-specs/cmake.lang.h:2 ../data/language-specs/glsl.lang.h:3
-msgid "Builtin Variable"
-msgstr "Ενσωματωμένη μεταβλητή"
-
-#: ../data/language-specs/cmake.lang.h:3
+#: ../data/language-specs/cmake.lang.h:2
 msgid "CMake"
 msgstr "CMake"
 
+#: ../data/language-specs/cmake.lang.h:3
+msgid "Builtin Command"
+msgstr "Ενσωματωμένη εντολή"
+
+#: ../data/language-specs/cmake.lang.h:4
+#: ../data/language-specs/glsl.lang.h:8
+msgid "Builtin Variable"
+msgstr "Ενσωματωμένη μεταβλητή"
+
 #. Any constant
-#: ../data/language-specs/cmake.lang.h:4 ../data/language-specs/cobol.lang.h:3
-#: ../data/language-specs/def.lang.h:15
-#: ../data/language-specs/gtk-doc.lang.h:1
-#: ../data/language-specs/libtool.lang.h:2
-#: ../data/language-specs/ruby.lang.h:7
+#: ../data/language-specs/cmake.lang.h:5
+#: ../data/language-specs/cobol.lang.h:7
+#: ../data/language-specs/def.lang.h:13
+#: ../data/language-specs/gtk-doc.lang.h:8
+#: ../data/language-specs/libtool.lang.h:3
+#: ../data/language-specs/ruby.lang.h:17
 msgid "Constant"
 msgstr "Σταθερά"
 
-#: ../data/language-specs/cmake.lang.h:5
+#: ../data/language-specs/cmake.lang.h:7
 msgid "Control Keyword"
 msgstr "Λέξη κλειδί Control"
 
-#: ../data/language-specs/cobol.lang.h:1
+#: ../data/language-specs/cobol.lang.h:2
 msgid "Cobol"
 msgstr "Cobol"
 
 #. Any statement
-#: ../data/language-specs/cobol.lang.h:9 ../data/language-specs/def.lang.h:55
+#: ../data/language-specs/cobol.lang.h:4
+#: ../data/language-specs/def.lang.h:43
 msgid "Statement"
-msgstr "Statement"
+msgstr "Δήλωση"
 
-#: ../data/language-specs/cpp.lang.h:1
+#: ../data/language-specs/cpp.lang.h:2
 msgid "C++"
 msgstr "C++"
 
@@ -782,270 +986,282 @@ msgid "C#"
 msgstr "C#"
 
 #. Translators: this is a format that appears in the strings
-#: ../data/language-specs/csharp.lang.h:17 ../data/language-specs/po.lang.h:7
+#: ../data/language-specs/csharp.lang.h:10
+#: ../data/language-specs/po.lang.h:8
 msgid "String Format"
 msgstr "Αλφαριθμητική μορφή"
 
-#: ../data/language-specs/css.lang.h:1
+#: ../data/language-specs/css.lang.h:2
 msgid "CSS"
 msgstr "CSS"
 
-#: ../data/language-specs/css.lang.h:2
-msgid "Class Selector"
-msgstr "Επιλογέας κλάσης"
+#: ../data/language-specs/css.lang.h:4
+msgid "Others 2"
+msgstr "Άλλα 2"
 
-#: ../data/language-specs/css.lang.h:3
+#: ../data/language-specs/css.lang.h:6
 msgid "Color"
 msgstr "Χρώμα"
 
+#: ../data/language-specs/css.lang.h:7
+msgid "Others 3"
+msgstr "Άλλα 3"
+
 #. Translator: it is a type of number
-#: ../data/language-specs/css.lang.h:5 ../data/language-specs/fcl.lang.h:3
-#: ../data/language-specs/fortran.lang.h:4 ../data/language-specs/gap.lang.h:3
-#: ../data/language-specs/gtkrc.lang.h:4
-#: ../data/language-specs/haskell.lang.h:4 ../data/language-specs/ini.lang.h:5
-#: ../data/language-specs/json.lang.h:2 ../data/language-specs/octave.lang.h:6
-#: ../data/language-specs/pascal.lang.h:3 ../data/language-specs/sml.lang.h:6
-#: ../data/language-specs/sql.lang.h:3
+#: ../data/language-specs/css.lang.h:10
+#: ../data/language-specs/fcl.lang.h:7
+#: ../data/language-specs/fortran.lang.h:8
+#: ../data/language-specs/gap.lang.h:7
+#: ../data/language-specs/gtkrc.lang.h:6
+#: ../data/language-specs/haskell.lang.h:13
+#: ../data/language-specs/ini.lang.h:7
+#: ../data/language-specs/json.lang.h:8
+#: ../data/language-specs/octave.lang.h:9
+#: ../data/language-specs/pascal.lang.h:6
+#: ../data/language-specs/sml.lang.h:10
+#: ../data/language-specs/sql.lang.h:8
 msgid "Decimal"
 msgstr "Δεκαδικό"
 
-#: ../data/language-specs/css.lang.h:6
+#: ../data/language-specs/css.lang.h:11
 msgid "Dimension"
 msgstr "Διάσταση"
 
-#: ../data/language-specs/css.lang.h:9
-msgid "ID Selector"
-msgstr "ID επιλογέα"
-
-#: ../data/language-specs/css.lang.h:11
+#: ../data/language-specs/css.lang.h:12
 msgid "Known Property Value"
 msgstr "Τιμή γνωστής ιδιότητας"
 
 #: ../data/language-specs/css.lang.h:13
-msgid "Others 2"
-msgstr "Άλλα 2"
-
-#: ../data/language-specs/css.lang.h:14
-msgid "Others 3"
-msgstr "Άλλα 3"
-
-#: ../data/language-specs/css.lang.h:16
-msgid "Tag Name Selector"
-msgstr "Όνομα ετικέτας του επιλογέα"
-
-#: ../data/language-specs/css.lang.h:17
 msgid "at-rules"
 msgstr "at-rules"
 
-#: ../data/language-specs/cuda.lang.h:1
+#: ../data/language-specs/css.lang.h:15
+msgid "ID Selector"
+msgstr "ID επιλογέα"
+
+#: ../data/language-specs/css.lang.h:16
+msgid "Class Selector"
+msgstr "Επιλογέας κλάσης"
+
+#: ../data/language-specs/css.lang.h:17
+msgid "Tag Name Selector"
+msgstr "Όνομα ετικέτας του επιλογέα"
+
+#: ../data/language-specs/cuda.lang.h:2
 msgid "CUDA"
 msgstr "CUDA"
 
-#: ../data/language-specs/cuda.lang.h:3
-msgid "Device Functions"
-msgstr "Λειτουργίες συσκευών"
-
-#: ../data/language-specs/cuda.lang.h:4
+#: ../data/language-specs/cuda.lang.h:5
 msgid "Global Functions"
 msgstr "Γενικές Λειτουργίες"
 
-#: ../data/language-specs/cuda.lang.h:5
+#: ../data/language-specs/cuda.lang.h:6
+msgid "Device Functions"
+msgstr "Λειτουργίες συσκευών"
+
+#: ../data/language-specs/cuda.lang.h:7
 msgid "Global Variables"
 msgstr "Γενικές Μεταβλητές"
 
-#. A base-N number: 0xFFFF
-#: ../data/language-specs/def.lang.h:2 ../data/language-specs/python.lang.h:1
-#: ../data/language-specs/python3.lang.h:1
-#: ../data/language-specs/ruby.lang.h:2
-msgid "Base-N number"
-msgstr "Αριθμός Base-N "
-
-#. A builtin name: like __import__, abs in Python
-#. (see http://docs.python.org/lib/built-in-funcs.html)
-#: ../data/language-specs/def.lang.h:7
-msgid "Built-in identifier"
-msgstr "Ενσωματωμένο αναγνωριστικό"
-
-#. A complex number
-#: ../data/language-specs/def.lang.h:13 ../data/language-specs/python.lang.h:6
-#: ../data/language-specs/python3.lang.h:6
-msgid "Complex number"
-msgstr "Μιγαδικός αριθμός"
-
-#. A primitive data type: int, long, char, etc.
-#: ../data/language-specs/def.lang.h:17 ../data/language-specs/octave.lang.h:5
-msgid "Data type"
-msgstr "Τύπος δεδομένων"
-
-#: ../data/language-specs/def.lang.h:20
+#: ../data/language-specs/def.lang.h:1
 msgid "Defaults"
 msgstr "Προεπιλογές"
 
+#. A shebang: #!/bin/sh
+#: ../data/language-specs/def.lang.h:5
+msgid "Shebang"
+msgstr "Shebang"
+
 #. A special comment containing documentation like in javadoc or
 #. gtk-doc
-#: ../data/language-specs/def.lang.h:23
+#: ../data/language-specs/def.lang.h:8
 msgid "Documentation comment"
 msgstr "Σχόλιο τεκμηρίωσης"
 
 #. This style doesn't map to anything since it must be used as an additional
 #. style for text which is already styled as a "doc-comment"
-#: ../data/language-specs/def.lang.h:26
+#: ../data/language-specs/def.lang.h:11
 msgid "Documentation comment element"
 msgstr "Στοιχείο σχολίου τεκμηρίωσης"
 
-#. Anything that needs extra attention; mostly the keywords TODO, FIXME and XXX
-#: ../data/language-specs/def.lang.h:38
-msgid "Note (FIXME, TODO, XXX, etc.)"
-msgstr "Note (FIXME, TODO, XXX, etc.)"
+#. This style doesn't map to anything since it must be used as an additional
+#. style for text which is already styled as a "string"
+#: ../data/language-specs/def.lang.h:20
+msgid "Special character (inside a string)"
+msgstr "Ειδικός χαρακτήρας (μέσα σε αλφαριθμητικό)"
+
+#. A base-N number: 0xFFFF
+#: ../data/language-specs/def.lang.h:28
+#: ../data/language-specs/python.lang.h:14
+#: ../data/language-specs/python3.lang.h:13
+#: ../data/language-specs/ruby.lang.h:12
+msgid "Base-N number"
+msgstr "Αριθμός Base-N "
+
+#. A complex number
+#: ../data/language-specs/def.lang.h:30
+#: ../data/language-specs/python.lang.h:15
+#: ../data/language-specs/python3.lang.h:14
+msgid "Complex number"
+msgstr "Μιγαδικός αριθμός"
+
+#. A builtin name: like __import__, abs in Python
+#. (see http://docs.python.org/lib/built-in-funcs.html)
+#: ../data/language-specs/def.lang.h:41
+msgid "Built-in identifier"
+msgstr "Ενσωματωμένο αναγνωριστικό"
+
+#. A primitive data type: int, long, char, etc.
+#: ../data/language-specs/def.lang.h:49
+#: ../data/language-specs/octave.lang.h:6
+msgid "Data type"
+msgstr "Τύπος δεδομένων"
 
 #. This one is for '#include <foo.h>' and "#pragma blah", or 'use foobar', etc..
-#: ../data/language-specs/def.lang.h:44
+#: ../data/language-specs/def.lang.h:51
 msgid "Preprocessor directive"
 msgstr "Directive προεπεξεργαστή"
 
 #. Reserved keywords: like "const" and "goto" in Java
-#: ../data/language-specs/def.lang.h:46
+#: ../data/language-specs/def.lang.h:55
 msgid "Reserved keyword"
 msgstr "Δεσμευμένη λέξη κλειδί"
 
-#. A shebang: #!/bin/sh
-#: ../data/language-specs/def.lang.h:48
-msgid "Shebang"
-msgstr "Shebang"
-
-#. This style doesn't map to anything since it must be used as an additional
-#. style for text which is already styled as a "string"
-#: ../data/language-specs/def.lang.h:51
-msgid "Special character (inside a string)"
-msgstr "Ειδικός χαρακτήρας (μέσα σε αλφαριθμητικό)"
+#. Anything that needs extra attention; mostly the keywords TODO, FIXME and XXX
+#: ../data/language-specs/def.lang.h:57
+msgid "Note (FIXME, TODO, XXX, etc.)"
+msgstr "Note (FIXME, TODO, XXX, etc.)"
 
 #. Text that stands out, HTML links, e-mail addresses, etc.
 #: ../data/language-specs/def.lang.h:59
 msgid "Underlined"
 msgstr "Υπογραμισμένα"
 
-#: ../data/language-specs/desktop.lang.h:1
+#: ../data/language-specs/desktop.lang.h:2
 msgid ".desktop"
 msgstr ".desktop"
 
-#: ../data/language-specs/desktop.lang.h:2
-msgid "Additional Category"
-msgstr "Πρόσθετη κατηγορία"
-
-#: ../data/language-specs/desktop.lang.h:4
-msgid "Encoding"
-msgstr "Κωδικοποίηση"
-
-#: ../data/language-specs/desktop.lang.h:5
-msgid "Exec parameter"
-msgstr "Παράμετρος Exec"
-
-#: ../data/language-specs/desktop.lang.h:6
+#: ../data/language-specs/desktop.lang.h:3
 msgid "Group"
 msgstr "Ομάδα"
 
 #. Translators: "Key" here means key value, that is the left hand
 #. side in a myoption=something line in a .desktop file
-#: ../data/language-specs/desktop.lang.h:9
-#: ../data/language-specs/json.lang.h:6
+#: ../data/language-specs/desktop.lang.h:6
+#: ../data/language-specs/json.lang.h:2
 msgid "Key"
 msgstr "Κλειδί"
 
+#: ../data/language-specs/desktop.lang.h:7
+msgid "Translation"
+msgstr "Μετάφραση"
+
 #: ../data/language-specs/desktop.lang.h:10
+msgid "Exec parameter"
+msgstr "Παράμετρος Exec"
+
+#: ../data/language-specs/desktop.lang.h:11
+msgid "Encoding"
+msgstr "Κωδικοποίηση"
+
+#: ../data/language-specs/desktop.lang.h:12
 msgid "Main Category"
 msgstr "Κύρια  κατηγορία"
 
 #: ../data/language-specs/desktop.lang.h:13
+msgid "Additional Category"
+msgstr "Πρόσθετη κατηγορία"
+
+#: ../data/language-specs/desktop.lang.h:14
 msgid "Reserved Category"
 msgstr "Δεσμευμένη κατηγορία"
 
-#: ../data/language-specs/desktop.lang.h:14
-msgid "Translation"
-msgstr "Μετάφραση"
-
-#: ../data/language-specs/diff.lang.h:1
-msgid "Added line"
-msgstr "Προστιθέμενη γραμμή"
-
-#. Others 3
-#: ../data/language-specs/diff.lang.h:3
-msgid "Changed line"
-msgstr "Αλλαγμένη γραμμή"
-
-#: ../data/language-specs/diff.lang.h:4
+#: ../data/language-specs/diff.lang.h:2
 msgid "Diff"
 msgstr "Diff"
 
-#. Keyword
-#: ../data/language-specs/diff.lang.h:6
-msgid "Ignore"
-msgstr "Αγνόηση"
-
-#. String
-#: ../data/language-specs/diff.lang.h:8 ../data/language-specs/po.lang.h:4
-msgid "Location"
-msgstr "Τοποθεσία"
+#: ../data/language-specs/diff.lang.h:3
+msgid "Added line"
+msgstr "Προστιθέμενη γραμμή"
 
 #. Others 2
-#: ../data/language-specs/diff.lang.h:11
+#: ../data/language-specs/diff.lang.h:5
 msgid "Removed line"
 msgstr "Διαγραμμένη γραμμή"
 
+#. Others 3
+#: ../data/language-specs/diff.lang.h:7
+msgid "Changed line"
+msgstr "Αλλαγμένη γραμμή"
+
 #. Preprocessor
-#: ../data/language-specs/diff.lang.h:13
+#: ../data/language-specs/diff.lang.h:9
 msgid "Special case"
 msgstr "Ειδικός χαρακτήρας"
 
-#: ../data/language-specs/d.lang.h:1 ../data/language-specs/nemerle.lang.h:1
-msgid "Binary number"
-msgstr "Δυαδικός αριθμός"
+#. String
+#: ../data/language-specs/diff.lang.h:11
+#: ../data/language-specs/po.lang.h:4
+msgid "Location"
+msgstr "Τοποθεσία"
 
-#: ../data/language-specs/d.lang.h:4
+#. Keyword
+#: ../data/language-specs/diff.lang.h:13
+msgid "Ignore"
+msgstr "Αγνόηση"
+
+#: ../data/language-specs/d.lang.h:2
 msgid "D"
 msgstr "D"
 
-#: ../data/language-specs/d.lang.h:14
+#: ../data/language-specs/d.lang.h:8
 msgid "Special Token"
 msgstr "Ειδικό tokens"
 
-#: ../data/language-specs/docbook.lang.h:1
+#: ../data/language-specs/d.lang.h:13
+#: ../data/language-specs/nemerle.lang.h:14
+msgid "Binary number"
+msgstr "Δυαδικός αριθμός"
+
+#: ../data/language-specs/docbook.lang.h:2
 msgid "DocBook"
 msgstr "DocBook"
 
-#: ../data/language-specs/docbook.lang.h:2
+#: ../data/language-specs/docbook.lang.h:3
+msgid "Header Elements"
+msgstr "Στοιχεία κεφαλίδας"
+
+#: ../data/language-specs/docbook.lang.h:4
 msgid "Formatting Elements"
 msgstr "Στοιχεία μορφοποίησης"
 
-#: ../data/language-specs/docbook.lang.h:3
+#: ../data/language-specs/docbook.lang.h:5
 msgid "GUI Elements"
 msgstr "Στοιχεία GUI"
-
-#: ../data/language-specs/docbook.lang.h:4
-msgid "Header Elements"
-msgstr "Header Elements"
 
 #: ../data/language-specs/docbook.lang.h:6
 msgid "Structural Elements"
 msgstr "Δομικά στοιχεία"
 
-#: ../data/language-specs/dosbatch.lang.h:1
-#: ../data/language-specs/latex.lang.h:1
-msgid "Command"
-msgstr "Εντολή"
-
-#: ../data/language-specs/dosbatch.lang.h:3
+#: ../data/language-specs/dosbatch.lang.h:2
 msgid "DOS Batch"
 msgstr "Δέσμη εντολών Dos"
 
-#: ../data/language-specs/dot.lang.h:1 ../data/language-specs/xml.lang.h:1
-msgid "Attribute name"
-msgstr "Όνομα γνωρίσματος"
+#: ../data/language-specs/dosbatch.lang.h:6
+#: ../data/language-specs/latex.lang.h:8
+msgid "Command"
+msgstr "Εντολή"
 
-#: ../data/language-specs/dot.lang.h:4
+#: ../data/language-specs/dot.lang.h:2
 msgid "Graphviz Dot"
 msgstr "Graphviz Dot"
 
-#: ../data/language-specs/dpatch.lang.h:1
+#: ../data/language-specs/dot.lang.h:6
+#: ../data/language-specs/xml.lang.h:8
+msgid "Attribute name"
+msgstr "Όνομα γνωρίσματος"
+
+#: ../data/language-specs/dpatch.lang.h:2
 msgid "DPatch"
 msgstr "DPatch"
 
@@ -1053,17 +1269,18 @@ msgstr "DPatch"
 msgid "patch-start"
 msgstr "patch-start"
 
-#: ../data/language-specs/dtd.lang.h:1 ../data/language-specs/html.lang.h:4
+#: ../data/language-specs/dtd.lang.h:2
+#: ../data/language-specs/html.lang.h:7
 msgid "DTD"
 msgstr "DTD"
 
 #: ../data/language-specs/dtd.lang.h:3
-msgid "decl"
-msgstr "decl"
-
-#: ../data/language-specs/dtd.lang.h:4
 msgid "entity"
 msgstr "οντότητα"
+
+#: ../data/language-specs/dtd.lang.h:4
+msgid "decl"
+msgstr "decl"
 
 #: ../data/language-specs/dtd.lang.h:5
 msgid "error"
@@ -1073,623 +1290,644 @@ msgstr "σφάλμα"
 msgid "quoted-value"
 msgstr "quoted-value"
 
-#: ../data/language-specs/eiffel.lang.h:1
-msgid "Assertion"
-msgstr "Assertion"
-
 #: ../data/language-specs/eiffel.lang.h:2
-#: ../data/language-specs/javascript.lang.h:1
-#: ../data/language-specs/json.lang.h:1
-msgid "Boolean Value"
-msgstr "Τιμή Boolean "
+msgid "Eiffel"
+msgstr "Eiffel"
 
 #: ../data/language-specs/eiffel.lang.h:5
 msgid "Debug"
 msgstr "Εκσφαλμάτωση"
 
-#: ../data/language-specs/eiffel.lang.h:7
+#: ../data/language-specs/eiffel.lang.h:6
+msgid "Assertion"
+msgstr "Assertion"
+
+#: ../data/language-specs/eiffel.lang.h:9
 msgid "Design by Contract"
 msgstr "Design by Contract"
-
-#: ../data/language-specs/eiffel.lang.h:8
-msgid "Eiffel"
-msgstr "Eiffel"
 
 #: ../data/language-specs/eiffel.lang.h:10
 msgid "Exception Handling"
 msgstr "Χειρισμός εξαίρεσης"
 
-#: ../data/language-specs/eiffel.lang.h:13
-#: ../data/language-specs/ruby.lang.h:17
+#: ../data/language-specs/eiffel.lang.h:11
+#: ../data/language-specs/ruby.lang.h:20
 msgid "Predefined Variable"
 msgstr "Προκαθορισμένη μεταβλητή"
 
-#: ../data/language-specs/eiffel.lang.h:16
+#: ../data/language-specs/eiffel.lang.h:13
 msgid "Void Value"
 msgstr "Τιμή Void"
 
-#: ../data/language-specs/erlang.lang.h:1
-msgid "Atom"
-msgstr "Atom"
+#: ../data/language-specs/eiffel.lang.h:14
+#: ../data/language-specs/javascript.lang.h:6
+#: ../data/language-specs/json.lang.h:6
+msgid "Boolean Value"
+msgstr "Τιμή Boolean "
 
 #: ../data/language-specs/erlang.lang.h:2
-#: ../data/language-specs/fsharp.lang.h:1
-#: ../data/language-specs/ocaml.lang.h:1
-#: ../data/language-specs/octave.lang.h:1 ../data/language-specs/sml.lang.h:1
-#: ../data/language-specs/verilog.lang.h:1
-#: ../data/language-specs/vhdl.lang.h:1
-msgid "Base-N Integer"
-msgstr "Base-N Integer"
-
-#: ../data/language-specs/erlang.lang.h:6
-#: ../data/language-specs/forth.lang.h:2
-#: ../data/language-specs/systemverilog.lang.h:1
-#: ../data/language-specs/verilog.lang.h:3
-msgid "Compiler Directive"
-msgstr "Compiler Directive"
-
-#: ../data/language-specs/erlang.lang.h:8
 msgid "Erlang"
 msgstr "Erlang"
 
+#: ../data/language-specs/erlang.lang.h:6
+msgid "Atom"
+msgstr "Atom"
+
+#: ../data/language-specs/erlang.lang.h:11
+#: ../data/language-specs/fsharp.lang.h:4
+#: ../data/language-specs/ocaml.lang.h:5
+#: ../data/language-specs/octave.lang.h:11
+#: ../data/language-specs/sml.lang.h:9
+#: ../data/language-specs/verilog.lang.h:13
+#: ../data/language-specs/vhdl.lang.h:9
+msgid "Base-N Integer"
+msgstr "Base-N Integer"
+
+#: ../data/language-specs/erlang.lang.h:13
+#: ../data/language-specs/forth.lang.h:11
+#: ../data/language-specs/systemverilog.lang.h:3
+#: ../data/language-specs/verilog.lang.h:7
+msgid "Compiler Directive"
+msgstr "Οδηγίες (Directive) μεταγλωττιστή"
+
 #: ../data/language-specs/fcl.lang.h:1
-msgid "Block"
-msgstr "Ομάδα"
-
-#: ../data/language-specs/fcl.lang.h:4
-msgid "FCL"
-msgstr "FCL"
-
-#: ../data/language-specs/fcl.lang.h:5 ../data/language-specs/fortran.lang.h:5
-#: ../data/language-specs/ini.lang.h:6 ../data/language-specs/octave.lang.h:7
-#: ../data/language-specs/scilab.lang.h:3 ../data/language-specs/sql.lang.h:4
-msgid "Floating Point"
-msgstr "Κινητό Σημείο"
-
-#: ../data/language-specs/fcl.lang.h:7 ../data/language-specs/octave.lang.h:12
-#: ../data/language-specs/scilab.lang.h:6
-msgid "Reserved Constant"
-msgstr "Reserved Constant"
-
-#: ../data/language-specs/fcl.lang.h:8 ../data/language-specs/gap.lang.h:7
-#: ../data/language-specs/imagej.lang.h:8
-#: ../data/language-specs/matlab.lang.h:4
-#: ../data/language-specs/octave.lang.h:13 ../data/language-specs/R.lang.h:9
-#: ../data/language-specs/scilab.lang.h:7
+#: ../data/language-specs/gap.lang.h:1
+#: ../data/language-specs/imagej.lang.h:1
+#: ../data/language-specs/matlab.lang.h:1
+#: ../data/language-specs/octave.lang.h:1
+#: ../data/language-specs/R.lang.h:1
+#: ../data/language-specs/scilab.lang.h:1
 msgid "Scientific"
 msgstr "Επιστημονική"
 
-#: ../data/language-specs/forth.lang.h:4
-msgid "Debug Code"
-msgstr "Κώδικας εκσφαλμάτωσης"
+#: ../data/language-specs/fcl.lang.h:2
+msgid "FCL"
+msgstr "FCL"
 
-#: ../data/language-specs/forth.lang.h:5
-msgid "Error Text"
-msgstr "Κείμενο σφάλματος"
+#: ../data/language-specs/fcl.lang.h:4
+#: ../data/language-specs/fortran.lang.h:4
+#: ../data/language-specs/ini.lang.h:4
+#: ../data/language-specs/octave.lang.h:10
+#: ../data/language-specs/scilab.lang.h:4
+#: ../data/language-specs/sql.lang.h:4
+msgid "Floating Point"
+msgstr "Κινητό Σημείο"
 
-#: ../data/language-specs/forth.lang.h:6
+#: ../data/language-specs/fcl.lang.h:6
+msgid "Block"
+msgstr "Ομάδα"
+
+#: ../data/language-specs/fcl.lang.h:8
+#: ../data/language-specs/octave.lang.h:15
+#: ../data/language-specs/scilab.lang.h:9
+msgid "Reserved Constant"
+msgstr "Δεσμευμένες σταθερές"
+
+#: ../data/language-specs/forth.lang.h:2
 msgid "Forth"
 msgstr "Forth"
 
-#: ../data/language-specs/fortran.lang.h:1
-msgid "BOZ Literal"
-msgstr "BOZ Literal"
+#: ../data/language-specs/forth.lang.h:9
+msgid "Debug Code"
+msgstr "Κώδικας εκσφαλμάτωσης"
 
-#: ../data/language-specs/fortran.lang.h:6
+#: ../data/language-specs/forth.lang.h:10
+msgid "Error Text"
+msgstr "Κείμενο σφάλματος"
+
+#: ../data/language-specs/fortran.lang.h:2
 msgid "Fortran 95"
 msgstr "Fortran 95"
 
-#: ../data/language-specs/fortran.lang.h:7
+#: ../data/language-specs/fortran.lang.h:6
 msgid "Intrinsic function"
 msgstr "Εγγενής συνάρτηση"
 
-#: ../data/language-specs/fsharp.lang.h:3
-#: ../data/language-specs/ocaml.lang.h:3
-msgid "Builtin-function keyword"
-msgstr "Λέξη κλειδί ενσωματωμένης συνάρτησης"
+#: ../data/language-specs/fortran.lang.h:7
+msgid "BOZ Literal"
+msgstr "BOZ Literal"
 
-#: ../data/language-specs/fsharp.lang.h:8
+#: ../data/language-specs/fsharp.lang.h:2
 msgid "F#"
 msgstr "F#"
 
-#: ../data/language-specs/fsharp.lang.h:9
-#: ../data/language-specs/ocaml.lang.h:9 ../data/language-specs/sml.lang.h:8
+#: ../data/language-specs/fsharp.lang.h:5
+#: ../data/language-specs/ocaml.lang.h:6
+#: ../data/language-specs/sml.lang.h:12
 msgid "Floating Point number"
 msgstr "Αριθμός κινητής υποδιαστολής"
 
-#: ../data/language-specs/fsharp.lang.h:11
+#: ../data/language-specs/fsharp.lang.h:9
+#: ../data/language-specs/ocaml.lang.h:10
+msgid "Type, module or object keyword"
+msgstr "Τύπος, λειτουργική μονάδα ή λέξη κλειδί αντικειμένου"
+
+#: ../data/language-specs/fsharp.lang.h:10
 #: ../data/language-specs/ocaml.lang.h:11
+msgid "Builtin-function keyword"
+msgstr "Λέξη κλειδί ενσωματωμένης συνάρτησης"
+
+#: ../data/language-specs/fsharp.lang.h:12
+#: ../data/language-specs/ocaml.lang.h:13
 msgid "Labeled argument"
 msgstr "Παράμετρος με ετικέτα"
 
-#: ../data/language-specs/fsharp.lang.h:12
-#: ../data/language-specs/ocaml.lang.h:12
-msgid "Module Path"
-msgstr "Διαδρομή λειτουργικής μονάδας"
-
-#: ../data/language-specs/fsharp.lang.h:14
-#: ../data/language-specs/ocaml.lang.h:15
+#: ../data/language-specs/fsharp.lang.h:13
+#: ../data/language-specs/ocaml.lang.h:14
 msgid "Polymorphic Variant"
 msgstr "Πολυμορφική μεταβλητή"
 
+#: ../data/language-specs/fsharp.lang.h:14
+#: ../data/language-specs/ocaml.lang.h:15
+msgid "Variant Constructor"
+msgstr "Κατασκευαστής Variant"
+
 #. Translators: this is a specific variable called Type
-#: ../data/language-specs/fsharp.lang.h:19
-#: ../data/language-specs/ocaml.lang.h:19
+#: ../data/language-specs/fsharp.lang.h:16
+#: ../data/language-specs/ocaml.lang.h:16
 msgid "Type Variable"
 msgstr "Τύπος μεταβλητής"
 
-#: ../data/language-specs/fsharp.lang.h:20
-#: ../data/language-specs/ocaml.lang.h:20
-msgid "Type, module or object keyword"
-msgstr "Type, module or object keyword"
+#: ../data/language-specs/fsharp.lang.h:17
+#: ../data/language-specs/ocaml.lang.h:17
+msgid "Module Path"
+msgstr "Διαδρομή λειτουργικής μονάδας"
 
-#: ../data/language-specs/fsharp.lang.h:21
-#: ../data/language-specs/ocaml.lang.h:21
-msgid "Variant Constructor"
-msgstr "Variant Constructor"
-
-#: ../data/language-specs/gap.lang.h:5
+#: ../data/language-specs/gap.lang.h:2
 msgid "GAP"
 msgstr "GAP"
 
-#: ../data/language-specs/gdb-log.lang.h:1
-msgid "Address"
-msgstr "Διεύθυνση"
-
 #: ../data/language-specs/gdb-log.lang.h:2
-msgid "Filename"
-msgstr "Όνομα αρχείου"
-
-#: ../data/language-specs/gdb-log.lang.h:3
-msgid "Frame Number"
-msgstr "Αριθμός πλαισίου"
-
-#: ../data/language-specs/gdb-log.lang.h:5
 msgid "GDB Log"
 msgstr "Καταγραφή GDB"
 
+#: ../data/language-specs/gdb-log.lang.h:3
+msgid "Thread Action"
+msgstr "Ενέργεια νήματος (thread)"
+
+#: ../data/language-specs/gdb-log.lang.h:4
+msgid "Thread Header"
+msgstr "Κεφαλίδα νήματος (thread)"
+
+#: ../data/language-specs/gdb-log.lang.h:5
+msgid "Frame Number"
+msgstr "Αριθμός πλαισίου"
+
 #: ../data/language-specs/gdb-log.lang.h:6
+msgid "Address"
+msgstr "Διεύθυνση"
+
+#: ../data/language-specs/gdb-log.lang.h:9
+msgid "Filename"
+msgstr "Όνομα αρχείου"
+
+#: ../data/language-specs/gdb-log.lang.h:10
+msgid "Optimized Out"
+msgstr "Βελτιστοποιημένο"
+
+#: ../data/language-specs/gdb-log.lang.h:11
 msgid "Incomplete Sequence"
 msgstr "Ελλιπής σειρά"
 
-#: ../data/language-specs/gdb-log.lang.h:7
-#, fuzzy
-msgid "Optimized Out"
-msgstr "Βελτιτοποιημένο"
-
-#: ../data/language-specs/gdb-log.lang.h:9
-#, fuzzy
-msgid "Prompt"
-msgstr "Ιδιότητες"
-
-#: ../data/language-specs/gdb-log.lang.h:11
-#, fuzzy
-msgid "Thread Action"
-msgstr "Ενότητα"
-
 #: ../data/language-specs/gdb-log.lang.h:12
-#, fuzzy
-msgid "Thread Header"
-msgstr "Προβολή κεφαλίδων"
+msgid "Prompt"
+msgstr "Προτροπή"
 
-#: ../data/language-specs/glsl.lang.h:1 ../data/language-specs/python.lang.h:3
-#: ../data/language-specs/python3.lang.h:3
-msgid "Builtin Constant"
-msgstr "Ενσωματωμένη σταθερά"
-
-#: ../data/language-specs/glsl.lang.h:6
+#: ../data/language-specs/glsl.lang.h:2
 msgid "OpenGL Shading Language"
 msgstr "Γλώσσα σκίασης OpenGL"
 
-#: ../data/language-specs/glsl.lang.h:8
+#: ../data/language-specs/glsl.lang.h:7
+#: ../data/language-specs/go.lang.h:17
+#: ../data/language-specs/python.lang.h:16
+#: ../data/language-specs/python3.lang.h:15
+msgid "Builtin Constant"
+msgstr "Ενσωματωμένη σταθερά"
+
+#: ../data/language-specs/glsl.lang.h:9
 msgid "Reserved Keywords"
 msgstr "Δεσμευμένες λέξεις κλειδιά"
 
-#: ../data/language-specs/go.lang.h:9
+#: ../data/language-specs/go.lang.h:2
 msgid "Go"
 msgstr "Μετάβαση"
 
+#: ../data/language-specs/go.lang.h:12
+#| msgid "Binary number"
+msgid "Imaginary number"
+msgstr "Φανταστικός αριθμός"
+
 #: ../data/language-specs/gtk-doc.lang.h:2
-msgid "Deprecated"
-msgstr "Υπό κατάργηση"
+msgid "gtk-doc"
+msgstr "gtk-doc"
+
+#: ../data/language-specs/gtk-doc.lang.h:3
+msgid "Inline Documentation Section"
+msgstr "Ενότητα Inline Documentation"
 
 #: ../data/language-specs/gtk-doc.lang.h:4
 msgid "Function Name"
 msgstr "Όνομα συνάρτησης"
 
 #: ../data/language-specs/gtk-doc.lang.h:5
-msgid "Inline Documentation Section"
-msgstr "Ενότητα Inline Documentation"
+msgid "Signal Name"
+msgstr "Signal Name"
+
+#: ../data/language-specs/gtk-doc.lang.h:6
+msgid "Property Name"
+msgstr "Όνομα ιδιότητας"
 
 #: ../data/language-specs/gtk-doc.lang.h:7
 msgid "Parameter"
 msgstr "Παράμετρος"
 
-#: ../data/language-specs/gtk-doc.lang.h:8
-msgid "Property Name"
-msgstr "Όνομα ιδιότητας"
-
 #: ../data/language-specs/gtk-doc.lang.h:9
-msgid "Return"
-msgstr "Return"
-
-#: ../data/language-specs/gtk-doc.lang.h:10
-msgid "Signal Name"
-msgstr "Signal Name"
-
-#: ../data/language-specs/gtk-doc.lang.h:11
-msgid "Since"
-msgstr "Since"
-
-#: ../data/language-specs/gtk-doc.lang.h:12
 #: ../data/language-specs/systemverilog.lang.h:6
-#: ../data/language-specs/verilog.lang.h:14
-#: ../data/language-specs/vhdl.lang.h:10
+#: ../data/language-specs/verilog.lang.h:12
+#: ../data/language-specs/vhdl.lang.h:7
 msgid "Type"
 msgstr "Τύπος"
 
-#: ../data/language-specs/gtk-doc.lang.h:13
-msgid "gtk-doc"
-msgstr "gtk-doc"
+#: ../data/language-specs/gtk-doc.lang.h:11
+msgid "Return"
+msgstr "Return"
 
-#: ../data/language-specs/gtkrc.lang.h:5
+#: ../data/language-specs/gtk-doc.lang.h:12
+msgid "Since"
+msgstr "Since"
+
+#: ../data/language-specs/gtk-doc.lang.h:13
+msgid "Deprecated"
+msgstr "Υπό κατάργηση"
+
+#: ../data/language-specs/gtkrc.lang.h:2
 msgid "GtkRC"
 msgstr "GtkRC"
 
-#: ../data/language-specs/gtkrc.lang.h:6
-msgid "Include directive"
-msgstr "Include directive"
-
-#: ../data/language-specs/gtkrc.lang.h:10
+#: ../data/language-specs/gtkrc.lang.h:8
 msgid "Widget State"
 msgstr "Κατάσταση γραφικού συστατικού"
 
-#: ../data/language-specs/haddock.lang.h:1 ../data/language-specs/t2t.lang.h:1
-msgid "Anchor"
-msgstr "Άγκυρα"
+#: ../data/language-specs/gtkrc.lang.h:9
+msgid "Include directive"
+msgstr "Include directive"
 
 #: ../data/language-specs/haddock.lang.h:2
-msgid "Code Block"
-msgstr "Μπλοκ κώδικα"
-
-#: ../data/language-specs/haddock.lang.h:3
-msgid "Definition list"
-msgstr "Λίστα ορισμών"
-
-#: ../data/language-specs/haddock.lang.h:4
-#: ../data/language-specs/markdown.lang.h:5
-msgid "Emphasis"
-msgstr "Έμφαση"
-
-#: ../data/language-specs/haddock.lang.h:5
-msgid "Enumerated list"
-msgstr "Αριθμημένη λίστα"
-
-#: ../data/language-specs/haddock.lang.h:6
-msgid "Escape"
-msgstr "Escape"
-
-#: ../data/language-specs/haddock.lang.h:7
 msgid "Haddock"
 msgstr "Haddock"
 
-#: ../data/language-specs/haddock.lang.h:8
-msgid "Haddock Directive"
-msgstr "Haddock Directive"
-
-#: ../data/language-specs/haddock.lang.h:9
-msgid "Header Property"
-msgstr "Ιδιότητα κεφαλίδας"
-
-#: ../data/language-specs/haddock.lang.h:10
-msgid "Hyperlinked Identifier"
-msgstr "Αναγνωριστικό με δεσμό"
-
-#: ../data/language-specs/haddock.lang.h:11
-msgid "Hyperlinked Module Name"
-msgstr "Όνομα module με δεσμό"
-
-#: ../data/language-specs/haddock.lang.h:12
+#: ../data/language-specs/haddock.lang.h:3
 msgid "Inline Haddock Section"
 msgstr "Ενότητα Inline Haddock"
 
-#: ../data/language-specs/haddock.lang.h:13
-msgid "Itemized list"
-msgstr "Λίστα"
+#: ../data/language-specs/haddock.lang.h:4
+msgid "Haddock Directive"
+msgstr "Haddock Directive"
 
-#: ../data/language-specs/haddock.lang.h:15
+#: ../data/language-specs/haddock.lang.h:5
+msgid "Hyperlinked Identifier"
+msgstr "Αναγνωριστικό με δεσμό"
+
+#: ../data/language-specs/haddock.lang.h:6
+msgid "Hyperlinked Module Name"
+msgstr "Όνομα λειτουργικής μονάδας με υπερσύνδεσμο"
+
+#: ../data/language-specs/haddock.lang.h:7
+msgid "Escape"
+msgstr "Escape"
+
+#: ../data/language-specs/haddock.lang.h:8
+#: ../data/language-specs/markdown.lang.h:13
+msgid "Emphasis"
+msgstr "Έμφαση"
+
+#: ../data/language-specs/haddock.lang.h:9
 msgid "Monospace"
 msgstr "Monospace"
 
-#: ../data/language-specs/haddock.lang.h:16
-#: ../data/language-specs/markdown.lang.h:16
+#: ../data/language-specs/haddock.lang.h:10
+msgid "Code Block"
+msgstr "Μπλοκ κώδικα"
+
+#: ../data/language-specs/haddock.lang.h:11
+msgid "Header Property"
+msgstr "Ιδιότητα κεφαλίδας"
+
+#: ../data/language-specs/haddock.lang.h:12
+msgid "Itemized list"
+msgstr "Λίστα"
+
+#: ../data/language-specs/haddock.lang.h:13
+msgid "Enumerated list"
+msgstr "Αριθμημένη λίστα"
+
+#: ../data/language-specs/haddock.lang.h:14
+msgid "Definition list"
+msgstr "Λίστα ορισμών"
+
+#: ../data/language-specs/haddock.lang.h:15
+#: ../data/language-specs/markdown.lang.h:8
 msgid "URL"
 msgstr "URL"
 
-#: ../data/language-specs/haskell.lang.h:6
-msgid "Float"
-msgstr "Κινητής υποδιαστολής"
+#: ../data/language-specs/haddock.lang.h:16
+#: ../data/language-specs/t2t.lang.h:13
+msgid "Anchor"
+msgstr "Άγκυρα"
 
-#: ../data/language-specs/haskell.lang.h:7
+#: ../data/language-specs/haskell.lang.h:2
 msgid "Haskell"
 msgstr "Haskell"
 
-#: ../data/language-specs/haskell.lang.h:8
-msgid "Hex"
-msgstr "Hex"
-
-#: ../data/language-specs/haskell.lang.h:10
-msgid "Octal"
-msgstr "Οκταδικό"
-
-#: ../data/language-specs/haskell.lang.h:14
-#: ../data/language-specs/ruby.lang.h:23
+#: ../data/language-specs/haskell.lang.h:6
+#: ../data/language-specs/ruby.lang.h:18
 msgid "Symbol"
 msgstr "Σύμβολο"
 
-#: ../data/language-specs/haskell-literate.lang.h:1
+#: ../data/language-specs/haskell.lang.h:12
+msgid "Float"
+msgstr "Κινητής υποδιαστολής"
+
+#: ../data/language-specs/haskell.lang.h:14
+msgid "Octal"
+msgstr "Οκταδικό"
+
+#: ../data/language-specs/haskell.lang.h:15
+msgid "Hex"
+msgstr "Hex"
+
+#: ../data/language-specs/haskell-literate.lang.h:2
 msgid "Literate Haskell"
 msgstr "Literate Haskell"
 
-#: ../data/language-specs/html.lang.h:1
-msgid "Attribute Name"
-msgstr "Όνομα γνωρίσματος"
-
 #: ../data/language-specs/html.lang.h:2
-#: ../data/language-specs/markdown.lang.h:1
-msgid "Attribute Value"
-msgstr "Τιμή γνωρίσματος"
-
-#: ../data/language-specs/html.lang.h:6
 msgid "HTML"
 msgstr "HTML"
 
-#: ../data/language-specs/html.lang.h:8 ../data/language-specs/xml.lang.h:12
+#: ../data/language-specs/html.lang.h:4
+#: ../data/language-specs/xml.lang.h:11
 msgid "Tag"
 msgstr "Tag"
 
-#: ../data/language-specs/idl.lang.h:3
+#: ../data/language-specs/html.lang.h:5
+msgid "Attribute Name"
+msgstr "Όνομα γνωρίσματος"
+
+#: ../data/language-specs/html.lang.h:6
+#: ../data/language-specs/markdown.lang.h:11
+msgid "Attribute Value"
+msgstr "Τιμή γνωρίσματος"
+
+#: ../data/language-specs/idl.lang.h:2
 msgid "IDL"
 msgstr "IDL"
 
-#: ../data/language-specs/imagej.lang.h:3
-msgid "Commands"
-msgstr "Εντολές"
-
-#: ../data/language-specs/imagej.lang.h:4
-#, fuzzy
-msgid "Escaped Characters"
-msgstr "Χαρακτήρας Escape"
-
-#: ../data/language-specs/imagej.lang.h:5
+#: ../data/language-specs/imagej.lang.h:2
 msgid "ImageJ"
 msgstr "ImageJ"
 
-#: ../data/language-specs/imagej.lang.h:9
-#: ../data/language-specs/octave.lang.h:14
+#: ../data/language-specs/imagej.lang.h:5
+msgid "Commands"
+msgstr "Εντολές"
+
+#: ../data/language-specs/imagej.lang.h:6
+#: ../data/language-specs/octave.lang.h:7
 msgid "Storage Type"
 msgstr "Τύπος αποθήκευσης"
 
-#: ../data/language-specs/ini.lang.h:1
+#: ../data/language-specs/imagej.lang.h:7
+msgid "Escaped Characters"
+msgstr "Χαρακτήρες διαφυγής"
+
+#: ../data/language-specs/ini.lang.h:2
 msgid ".ini"
 msgstr ".ini"
 
-#: ../data/language-specs/java.lang.h:4 ../data/language-specs/ooc.lang.h:5
-msgid "Declaration"
-msgstr "Declaration"
+#: ../data/language-specs/java.lang.h:2
+msgid "Java"
+msgstr "Java"
 
 #. Translators: refered to some specific keywords of the language that
 #. allow to get external functionalities
-#: ../data/language-specs/java.lang.h:8 ../data/language-specs/ooc.lang.h:8
+#: ../data/language-specs/java.lang.h:8
+#: ../data/language-specs/ooc.lang.h:7
 msgid "External"
 msgstr "Εξωτερική"
 
 #: ../data/language-specs/java.lang.h:9
-#: ../data/language-specs/javascript.lang.h:6
+#: ../data/language-specs/ooc.lang.h:8
+msgid "Declaration"
+msgstr "Δήλωση"
+
+#: ../data/language-specs/java.lang.h:11
 #: ../data/language-specs/ooc.lang.h:10
-msgid "Future Reserved Keywords"
-msgstr "Μελλοντικά δεσμευμένες λέξεις "
-
-#: ../data/language-specs/java.lang.h:10
-msgid "Java"
-msgstr "Java"
-
-#: ../data/language-specs/java.lang.h:14 ../data/language-specs/ooc.lang.h:16
 msgid "Scope Declaration"
 msgstr "Δήλωση σκοπού"
 
-#: ../data/language-specs/javascript.lang.h:2
-msgid "Constructors"
-msgstr "Constructors"
+#: ../data/language-specs/java.lang.h:16
+#: ../data/language-specs/javascript.lang.h:12
+#: ../data/language-specs/ooc.lang.h:18
+msgid "Future Reserved Keywords"
+msgstr "Μελλοντικά δεσμευμένες λέξεις "
 
-#: ../data/language-specs/javascript.lang.h:7
+#: ../data/language-specs/javascript.lang.h:2
 msgid "JavaScript"
 msgstr "JavaScript"
+
+#: ../data/language-specs/javascript.lang.h:5
+msgid "Undefined Value"
+msgstr "Απροσδιόριστη τιμή"
 
 #: ../data/language-specs/javascript.lang.h:10
 msgid "Properties"
 msgstr "Ιδιότητες"
 
-#: ../data/language-specs/javascript.lang.h:14
-msgid "Undefined Value"
-msgstr "Απροσδιόριστη τιμή"
+#: ../data/language-specs/javascript.lang.h:11
+msgid "Constructors"
+msgstr "Κατασκευαστές"
 
-#: ../data/language-specs/latex.lang.h:3
-#: ../data/language-specs/texinfo.lang.h:5
-msgid "Include"
-msgstr "Περιέχει"
-
-#: ../data/language-specs/latex.lang.h:4
-msgid "Inline Math Mode"
-msgstr "Inline Math Mode"
-
-#: ../data/language-specs/latex.lang.h:5
+#: ../data/language-specs/latex.lang.h:2
 msgid "LaTeX"
 msgstr "LaTeX"
 
-#: ../data/language-specs/latex.lang.h:7
+#: ../data/language-specs/latex.lang.h:4
 msgid "Math Mode"
 msgstr "Λειτουργία Math"
 
-#: ../data/language-specs/latex.lang.h:8 ../data/language-specs/t2t.lang.h:15
-msgid "Verbatim"
-msgstr "Verbatim"
+#: ../data/language-specs/latex.lang.h:5
+msgid "Inline Math Mode"
+msgstr "Inline Math Mode"
 
-#: ../data/language-specs/latex.lang.h:9
+#: ../data/language-specs/latex.lang.h:6
 msgid "math-bound"
 msgstr "math-bound"
 
-#: ../data/language-specs/libtool.lang.h:4
+#: ../data/language-specs/latex.lang.h:7
+#: ../data/language-specs/texinfo.lang.h:11
+msgid "Include"
+msgstr "Περιέχει"
+
+#: ../data/language-specs/latex.lang.h:9
+#: ../data/language-specs/t2t.lang.h:16
+msgid "Verbatim"
+msgstr "Verbatim"
+
+#: ../data/language-specs/libtool.lang.h:2
 msgid "libtool"
 msgstr "libtool"
 
-#: ../data/language-specs/lua.lang.h:6
+#: ../data/language-specs/lua.lang.h:2
 msgid "Lua"
 msgstr "Lua"
 
-#: ../data/language-specs/lua.lang.h:7 ../data/language-specs/ruby.lang.h:15
-msgid "Nil Constant"
-msgstr "Σταθερή Nil"
-
-#: ../data/language-specs/lua.lang.h:8
+#: ../data/language-specs/lua.lang.h:7
 msgid "Reserved Identifier"
 msgstr "Δεσμευμένο αναγνωριστικό"
 
-#: ../data/language-specs/m4.lang.h:1
-msgid "Autoconf Macro"
-msgstr "Μακροεντολή Autoconf"
+#: ../data/language-specs/lua.lang.h:9
+#: ../data/language-specs/ruby.lang.h:8
+msgid "Nil Constant"
+msgstr "Σταθερή Nil"
 
 #: ../data/language-specs/m4.lang.h:2
-msgid "Obsolete Autoconf Macro"
-msgstr "Παρωχημένη μακροεντολή Autoconf"
-
-#: ../data/language-specs/m4.lang.h:4
 msgid "m4"
 msgstr "m4"
 
-#: ../data/language-specs/m4.lang.h:5
-msgid "m4 Macro"
-msgstr "Μακροεντολή m4"
-
-#: ../data/language-specs/m4.lang.h:6
+#: ../data/language-specs/m4.lang.h:3
 msgid "m4-comment"
 msgstr "Σχόλιο m4"
 
-#: ../data/language-specs/makefile.lang.h:1
-msgid "Assignment Left Hand Side"
-msgstr "Αριστερό σκέλος Assignment"
+#: ../data/language-specs/m4.lang.h:4
+msgid "m4 Macro"
+msgstr "Μακροεντολή m4"
+
+#: ../data/language-specs/m4.lang.h:5
+msgid "Autoconf Macro"
+msgstr "Μακροεντολή Autoconf"
+
+#: ../data/language-specs/m4.lang.h:6
+msgid "Obsolete Autoconf Macro"
+msgstr "Παρωχημένη μακροεντολή Autoconf"
 
 #: ../data/language-specs/makefile.lang.h:2
-msgid "Assignment Right Hand Side"
-msgstr "Δεξί σκέλος Assignment"
-
-#: ../data/language-specs/makefile.lang.h:3
 msgid "Makefile"
 msgstr "Makefile"
 
-#. Translators: Trailing Tabs refers to tabulation characters present at
-#. the end of the line
-#: ../data/language-specs/makefile.lang.h:7
-msgid "Trailing Tab"
-msgstr "Στηλοθέτης στο τέλος"
+#: ../data/language-specs/makefile.lang.h:4
+msgid "Assignment Right Hand Side"
+msgstr "Δεξί σκέλος Assignment"
 
-#: ../data/language-specs/makefile.lang.h:9
+#: ../data/language-specs/makefile.lang.h:5
+msgid "Assignment Left Hand Side"
+msgstr "Αριστερό σκέλος Assignment"
+
+#: ../data/language-specs/makefile.lang.h:6
+msgid "targets"
+msgstr "προορισμός"
+
+#: ../data/language-specs/makefile.lang.h:7
+msgid "prereq"
+msgstr "prereq"
+
+#: ../data/language-specs/makefile.lang.h:8
 msgid "command"
 msgstr "εντολή"
 
-#: ../data/language-specs/makefile.lang.h:10
+#. Translators: Trailing Tabs refers to tabulation characters present at
+#. the end of the line
+#: ../data/language-specs/makefile.lang.h:11
+msgid "Trailing Tab"
+msgstr "Στηλοθέτης στο τέλος"
+
+#: ../data/language-specs/makefile.lang.h:12
 msgid "function"
 msgstr "συνάρτηση"
 
 #. FIXME make it better names, and make them translatable
-#: ../data/language-specs/makefile.lang.h:11
+#: ../data/language-specs/makefile.lang.h:13
 #: ../data/language-specs/yacc.lang.h:4
 msgid "keyword"
 msgstr "Λέξη κλειδί"
 
-#: ../data/language-specs/makefile.lang.h:12
-msgid "prereq"
-msgstr "prereq"
-
-#: ../data/language-specs/makefile.lang.h:13
-msgid "targets"
-msgstr "προορισμός"
-
-#: ../data/language-specs/mallard.lang.h:1
-msgid "Block Elements"
-msgstr "Στοιχεία ομάδας"
-
 #: ../data/language-specs/mallard.lang.h:2
-msgid "Inline Elements"
-msgstr "Εμβόλιμα στοιχεία"
-
-#: ../data/language-specs/mallard.lang.h:3
 msgid "Mallard"
 msgstr "Mallard"
 
-#: ../data/language-specs/mallard.lang.h:5
+#: ../data/language-specs/mallard.lang.h:3
 msgid "Page Elements"
 msgstr "Στοιχεία σελίδας"
 
-#: ../data/language-specs/mallard.lang.h:6
+#: ../data/language-specs/mallard.lang.h:4
 msgid "Section Elements"
 msgstr "Στοιχεία τμήματος"
 
+#: ../data/language-specs/mallard.lang.h:5
+msgid "Block Elements"
+msgstr "Στοιχεία ομάδας"
+
+#: ../data/language-specs/mallard.lang.h:6
+msgid "Inline Elements"
+msgstr "Εμβόλιμα στοιχεία"
+
 #: ../data/language-specs/markdown.lang.h:2
-msgid "Backslash Escape"
-msgstr ""
+msgid "Markdown"
+msgstr "Markdown"
 
 #: ../data/language-specs/markdown.lang.h:3
-msgid "Blockquote Marker"
-msgstr ""
-
-#: ../data/language-specs/markdown.lang.h:4
-msgid "Code"
-msgstr "Κώδικας"
-
-#: ../data/language-specs/markdown.lang.h:6
-#: ../data/language-specs/rpmspec.lang.h:8 ../data/language-specs/t2t.lang.h:4
+#: ../data/language-specs/rpmspec.lang.h:4
+#: ../data/language-specs/t2t.lang.h:6
 msgid "Header"
 msgstr "Κεφαλίδα"
 
-#: ../data/language-specs/markdown.lang.h:7
+#: ../data/language-specs/markdown.lang.h:4
 msgid "Horizontal Rule"
 msgstr "Οριζόντιος κανόνας"
 
-#: ../data/language-specs/markdown.lang.h:8
-msgid "Image Marker"
-msgstr ""
+#: ../data/language-specs/markdown.lang.h:5
+#, fuzzy
+msgid "List Marker"
+msgstr "Marker λίστας"
+
+#: ../data/language-specs/markdown.lang.h:6
+msgid "Code"
+msgstr "Κώδικας"
+
+#: ../data/language-specs/markdown.lang.h:7
+#, fuzzy
+msgid "Blockquote Marker"
+msgstr "Marker Blockquote"
 
 #: ../data/language-specs/markdown.lang.h:9
+msgid "Link Text"
+msgstr "Σύνδεση κειμένου"
+
+#: ../data/language-specs/markdown.lang.h:10
 #: ../gtksourceview/gtksourcecompletionitem.c:229
 msgid "Label"
 msgstr "Ετικέτα"
 
-#: ../data/language-specs/markdown.lang.h:10
-msgid "Line Break"
-msgstr ""
-
-#: ../data/language-specs/markdown.lang.h:11
-msgid "Link Text"
-msgstr "Σύνδεση κειμένου"
-
 #: ../data/language-specs/markdown.lang.h:12
-msgid "List Marker"
-msgstr ""
+#, fuzzy
+msgid "Image Marker"
+msgstr "Marker εικόνας"
 
-#: ../data/language-specs/markdown.lang.h:13
-msgid "Markdown"
-msgstr "Markdown"
-
-#: ../data/language-specs/markdown.lang.h:15
+#: ../data/language-specs/markdown.lang.h:14
 msgid "Strong Emphasis"
 msgstr "Ιδιαίτερη έμφαση"
 
-#: ../data/language-specs/matlab.lang.h:3
+#: ../data/language-specs/markdown.lang.h:15
+msgid "Backslash Escape"
+msgstr "Backslash Escape"
+
+#: ../data/language-specs/markdown.lang.h:16
+msgid "Line Break"
+msgstr "Aλλαγή γραμμής (Line Break)"
+
+#: ../data/language-specs/matlab.lang.h:2
 msgid "Matlab"
 msgstr "Matlab"
 
-#: ../data/language-specs/nemerle.lang.h:11
+#: ../data/language-specs/nemerle.lang.h:2
 msgid "Nemerle"
 msgstr "Nemerle"
 
@@ -1697,329 +1935,331 @@ msgstr "Nemerle"
 msgid "NSIS"
 msgstr "NSIS"
 
-#: ../data/language-specs/objc.lang.h:4
+#: ../data/language-specs/objc.lang.h:2
 msgid "Objective-C"
 msgstr "Objective-C"
 
-#: ../data/language-specs/objj.lang.h:6
+#: ../data/language-specs/objj.lang.h:2
 msgid "Objective-J"
 msgstr "Objective-J"
 
-#: ../data/language-specs/ocaml.lang.h:13
+#: ../data/language-specs/ocaml.lang.h:2
 msgid "Objective Caml"
 msgstr "Objective Caml"
 
-#: ../data/language-specs/ocaml.lang.h:14
+#: ../data/language-specs/ocaml.lang.h:4
 msgid "Ocamldoc Comments"
 msgstr "Σχόλια Ocamldoc "
 
-#: ../data/language-specs/ocaml.lang.h:17
-#, fuzzy
+#: ../data/language-specs/ocaml.lang.h:21
 msgid "Standard Modules"
-msgstr "Τυπικά αρθρώματα"
+msgstr "Πρότυπες λειτουργικές μονάδες"
 
-#: ../data/language-specs/ocl.lang.h:4
+#: ../data/language-specs/ocl.lang.h:2
 msgid "OCL"
 msgstr "OCL"
 
-#: ../data/language-specs/ocl.lang.h:5
-msgid "Operation operator"
-msgstr "Τελεστές Math"
-
-#: ../data/language-specs/ocl.lang.h:8
+#: ../data/language-specs/ocl.lang.h:6
 msgid "Type Operators"
 msgstr "Τελεστές τύπου"
 
-#: ../data/language-specs/octave.lang.h:9
+#: ../data/language-specs/ocl.lang.h:8
+msgid "Operation operator"
+msgstr "Τελεστές Math"
+
+#: ../data/language-specs/octave.lang.h:2
 msgid "Octave"
 msgstr "Οκτάβα"
 
-#: ../data/language-specs/octave.lang.h:11
+#: ../data/language-specs/octave.lang.h:12
 msgid "Package Manager"
 msgstr "Διαχειριστής πακέτου"
 
-#: ../data/language-specs/ooc.lang.h:14
+#: ../data/language-specs/ooc.lang.h:2
 msgid "OOC"
 msgstr "OOC"
 
-#: ../data/language-specs/opal.lang.h:7
+#: ../data/language-specs/opal.lang.h:2
+msgid "Opal"
+msgstr "Opal"
+
+#: ../data/language-specs/opal.lang.h:3
+#: ../data/language-specs/python.lang.h:3
+#: ../data/language-specs/python3.lang.h:3
+msgid "Module Handler"
+msgstr "Χειριστής λειτουργικής μονάδας"
+
+#: ../data/language-specs/opal.lang.h:12
 msgid "Keysymbol"
 msgstr "Keysymbol"
 
-#: ../data/language-specs/opal.lang.h:9
-#: ../data/language-specs/python.lang.h:12
-#: ../data/language-specs/python3.lang.h:12
-msgid "Module Handler"
-msgstr "Χειριστής Λειτουργικής Μονάδας"
-
-#: ../data/language-specs/opal.lang.h:10
-#, fuzzy
-msgid "Opal"
-msgstr "Οκταδικό"
-
 #: ../data/language-specs/opencl.lang.h:2
-msgid "Device Cast"
-msgstr ""
+msgid "OpenCL"
+msgstr "OpenCL"
 
-#: ../data/language-specs/opencl.lang.h:3
-msgid "Device Function"
-msgstr "Λειτουργία συσκευής"
-
-#: ../data/language-specs/opencl.lang.h:4
+#: ../data/language-specs/opencl.lang.h:5
 msgid "Global Function"
 msgstr "Καθολική συνάρτηση"
 
-#: ../data/language-specs/opencl.lang.h:5
-msgid "Global Variable"
-msgstr "Καθολική μεταβλητή"
+#: ../data/language-specs/opencl.lang.h:6
+msgid "Device Function"
+msgstr "Λειτουργία συσκευής"
 
 #: ../data/language-specs/opencl.lang.h:7
-msgid "OpenCL"
-msgstr "OpenCL"
+msgid "Device Cast"
+msgstr "Τύπος συσκευής"
 
 #: ../data/language-specs/opencl.lang.h:8
 msgid "OpenCL Constant"
 msgstr "Σταθερά OpenCL"
 
-#: ../data/language-specs/pascal.lang.h:5
+#: ../data/language-specs/opencl.lang.h:9
+msgid "Global Variable"
+msgstr "Καθολική μεταβλητή"
+
+#: ../data/language-specs/pascal.lang.h:2
 msgid "Pascal"
 msgstr "Pascal"
 
-#: ../data/language-specs/perl.lang.h:3
-msgid "Control"
-msgstr "Control"
-
-#: ../data/language-specs/perl.lang.h:5
-msgid "File Descriptor"
-msgstr "Περιγραφέας αρχείου"
-
-#: ../data/language-specs/perl.lang.h:6 ../data/language-specs/php.lang.h:10
-#: ../data/language-specs/ruby.lang.h:11
-msgid "Heredoc"
-msgstr "Heredoc"
-
-#: ../data/language-specs/perl.lang.h:7 ../data/language-specs/php.lang.h:11
-#: ../data/language-specs/ruby.lang.h:12 ../data/language-specs/sh.lang.h:4
-msgid "Heredoc Bound"
-msgstr "Heredoc Bound"
-
-#: ../data/language-specs/perl.lang.h:8
-msgid "Include Statement"
-msgstr "Include Statement"
-
-#: ../data/language-specs/perl.lang.h:10
-msgid "Line Directive"
-msgstr "Line Directive"
-
-#: ../data/language-specs/perl.lang.h:12
-msgid "POD"
-msgstr "POD"
-
-#: ../data/language-specs/perl.lang.h:13
-msgid "POD Escape"
-msgstr "POD Escape"
-
-#: ../data/language-specs/perl.lang.h:14
-msgid "POD heading"
-msgstr "Κεφαλίδα POD"
-
-#: ../data/language-specs/perl.lang.h:15
-msgid "POD keyword"
-msgstr "Λέξη κλειδίPOD"
-
-#: ../data/language-specs/perl.lang.h:16
+#: ../data/language-specs/perl.lang.h:2
 msgid "Perl"
 msgstr "Perl"
 
-#: ../data/language-specs/perl.lang.h:20
+#: ../data/language-specs/perl.lang.h:4
+msgid "Line Directive"
+msgstr "Line Directive"
+
+#: ../data/language-specs/perl.lang.h:5
+msgid "Include Statement"
+msgstr "Include Statement"
+
+#: ../data/language-specs/perl.lang.h:9
+#: ../data/language-specs/php.lang.h:10
+#: ../data/language-specs/ruby.lang.h:22
+msgid "Heredoc"
+msgstr "Heredoc"
+
+#: ../data/language-specs/perl.lang.h:10
+#: ../data/language-specs/php.lang.h:11
+#: ../data/language-specs/ruby.lang.h:23
+#: ../data/language-specs/sh.lang.h:12
+msgid "Heredoc Bound"
+msgstr "Heredoc Bound"
+
+#: ../data/language-specs/perl.lang.h:11
 msgid "System Command"
 msgstr "Εντολή συστήματος"
 
-#: ../data/language-specs/php.lang.h:3
-msgid "Common Function"
-msgstr "Κοινή λειτουργία"
+#: ../data/language-specs/perl.lang.h:14
+msgid "File Descriptor"
+msgstr "Περιγραφέας αρχείου"
 
-#: ../data/language-specs/php.lang.h:18
+#: ../data/language-specs/perl.lang.h:15
+msgid "Control"
+msgstr "Control"
+
+#: ../data/language-specs/perl.lang.h:18
+msgid "POD"
+msgstr "POD"
+
+#: ../data/language-specs/perl.lang.h:19
+msgid "POD Escape"
+msgstr "POD Escape"
+
+#: ../data/language-specs/perl.lang.h:20
+msgid "POD keyword"
+msgstr "Λέξη κλειδίPOD"
+
+#: ../data/language-specs/perl.lang.h:21
+msgid "POD heading"
+msgstr "Κεφαλίδα POD"
+
+#: ../data/language-specs/php.lang.h:2
 msgid "PHP"
 msgstr "PHP"
 
-#: ../data/language-specs/pkgconfig.lang.h:2
-msgid "Package Info"
-msgstr "Πληροφορίες πακέτου"
+#: ../data/language-specs/php.lang.h:13
+msgid "Common Function"
+msgstr "Κοινή λειτουργία"
 
-#: ../data/language-specs/pkgconfig.lang.h:4
+#: ../data/language-specs/pkgconfig.lang.h:2
 msgid "pkg-config"
 msgstr "pkg-config"
 
-#: ../data/language-specs/po.lang.h:2
-msgid "Fuzzy"
-msgstr "Ασαφές"
+#: ../data/language-specs/pkgconfig.lang.h:4
+msgid "Package Info"
+msgstr "Πληροφορίες πακέτου"
 
-#: ../data/language-specs/po.lang.h:8
+#: ../data/language-specs/po.lang.h:2
 msgid "gettext translation"
 msgstr "μετάφραση gettext"
 
-#: ../data/language-specs/prolog.lang.h:7
+#: ../data/language-specs/po.lang.h:6
+msgid "Fuzzy"
+msgstr "Ασαφές"
+
+#: ../data/language-specs/prolog.lang.h:2
 msgid "Prolog"
 msgstr "Prolog"
 
-#: ../data/language-specs/python.lang.h:5
-#: ../data/language-specs/python3.lang.h:5
-msgid "Builtin Object"
-msgstr "Ενσωματωμένο αντικείμενο"
-
-#: ../data/language-specs/python.lang.h:10
-#: ../data/language-specs/python3.lang.h:10
-msgid "Format"
-msgstr "Μορφή"
-
-#: ../data/language-specs/python.lang.h:14
+#: ../data/language-specs/python.lang.h:2
 msgid "Python"
 msgstr "Python"
 
-#: ../data/language-specs/python.lang.h:18
+#: ../data/language-specs/python.lang.h:8
+#: ../data/language-specs/python3.lang.h:8
+msgid "Format"
+msgstr "Μορφή"
+
+#: ../data/language-specs/python.lang.h:9
 msgid "string-conversion"
 msgstr "string-conversion"
 
-#: ../data/language-specs/python3.lang.h:14
+#: ../data/language-specs/python.lang.h:17
+#: ../data/language-specs/python3.lang.h:16
+msgid "Builtin Object"
+msgstr "Ενσωματωμένο αντικείμενο"
+
+#: ../data/language-specs/python3.lang.h:2
 msgid "Python 3"
 msgstr "Python 3"
 
-#: ../data/language-specs/R.lang.h:1
-msgid "Assignment Operator"
-msgstr "Assignment Operator"
-
-#: ../data/language-specs/R.lang.h:3
-msgid "Delimiter"
-msgstr "Delimiter"
-
-#: ../data/language-specs/R.lang.h:5 ../data/language-specs/verilog.lang.h:8
-msgid "Integer Number"
-msgstr "Integer Number"
-
-#: ../data/language-specs/R.lang.h:7
+#: ../data/language-specs/R.lang.h:2
 msgid "R"
 msgstr "R"
 
-#: ../data/language-specs/R.lang.h:8
+#: ../data/language-specs/R.lang.h:4
 msgid "Reserved Class"
 msgstr "Reserved Class"
 
-#: ../data/language-specs/R.lang.h:10
+#: ../data/language-specs/R.lang.h:5
+msgid "Assignment Operator"
+msgstr "Assignment Operator"
+
+#: ../data/language-specs/R.lang.h:6
+msgid "Delimiter"
+msgstr "Delimiter"
+
+#: ../data/language-specs/R.lang.h:7
 msgid "Special Constant"
 msgstr "Ειδική σταθερά"
 
-#: ../data/language-specs/rpmspec.lang.h:1
-msgid "Command Macro"
-msgstr "Εντολή μακροεντολής"
+#: ../data/language-specs/R.lang.h:9
+#: ../data/language-specs/verilog.lang.h:15
+msgid "Integer Number"
+msgstr "Ακέραιος αριθμός"
 
 #: ../data/language-specs/rpmspec.lang.h:2
-msgid "Conditional Macro"
-msgstr "Conditional Μακροεντολή"
+msgid "RPM spec"
+msgstr "RPM spec"
 
-#: ../data/language-specs/rpmspec.lang.h:4
+#: ../data/language-specs/rpmspec.lang.h:3
 msgid "Define"
 msgstr "Ορισμός"
 
 #: ../data/language-specs/rpmspec.lang.h:5
+#: ../data/language-specs/t2t.lang.h:7
+msgid "Section"
+msgstr "Ενότητα"
+
+#: ../data/language-specs/rpmspec.lang.h:6
+msgid "Spec Macro"
+msgstr "Μακροεντολή Spec"
+
+#: ../data/language-specs/rpmspec.lang.h:7
 msgid "Directory Macro"
 msgstr "Μακροεντολή καταλόγου"
 
-#: ../data/language-specs/rpmspec.lang.h:6
-msgid "Email"
-msgstr "Email"
-
-#: ../data/language-specs/rpmspec.lang.h:7
-msgid "Flow Conditional"
-msgstr "Flow Conditional"
+#: ../data/language-specs/rpmspec.lang.h:8
+msgid "Command Macro"
+msgstr "Εντολή μακροεντολής"
 
 #: ../data/language-specs/rpmspec.lang.h:9
+msgid "Conditional Macro"
+msgstr "Υποθετική μακροεντολή"
+
+#: ../data/language-specs/rpmspec.lang.h:10
 msgid "Other Macro"
 msgstr "Άλλες μακροεντολές"
 
 #: ../data/language-specs/rpmspec.lang.h:11
+msgid "Flow Conditional"
+msgstr "Flow Conditional"
+
+#: ../data/language-specs/rpmspec.lang.h:12
 msgid "RPM Variable"
 msgstr "Μεταβλητή RPM "
 
-#: ../data/language-specs/rpmspec.lang.h:12
-msgid "RPM spec"
-msgstr "RPM spec"
-
 #: ../data/language-specs/rpmspec.lang.h:13
-#: ../data/language-specs/t2t.lang.h:9
-msgid "Section"
-msgstr "Ενότητα"
-
-#: ../data/language-specs/rpmspec.lang.h:14
-msgid "Spec Macro"
-msgstr "Spec Macro"
-
-#: ../data/language-specs/rpmspec.lang.h:15
 msgid "Switch"
 msgstr "Switch"
 
-#: ../data/language-specs/ruby.lang.h:1
-msgid "Attribute Definition"
-msgstr "Ορισμός γνωρίσματος"
+#: ../data/language-specs/rpmspec.lang.h:15
+msgid "Email"
+msgstr "Email"
 
-#: ../data/language-specs/ruby.lang.h:14
-msgid "Module handler"
-msgstr "Χειριστής λειτουργικής μονάδας"
-
-#: ../data/language-specs/ruby.lang.h:16
-msgid "Numeric literal"
-msgstr "Numeric literal"
-
-#: ../data/language-specs/ruby.lang.h:19
+#: ../data/language-specs/ruby.lang.h:2
 msgid "Ruby"
 msgstr "Ruby"
 
-#: ../data/language-specs/scheme.lang.h:5
+#: ../data/language-specs/ruby.lang.h:5
+msgid "Attribute Definition"
+msgstr "Ορισμός γνωρίσματος"
+
+#: ../data/language-specs/ruby.lang.h:6
+msgid "Module handler"
+msgstr "Χειριστής λειτουργικής μονάδας"
+
+#: ../data/language-specs/ruby.lang.h:13
+msgid "Numeric literal"
+msgstr "Numeric literal"
+
+#: ../data/language-specs/scheme.lang.h:2
 msgid "Scheme"
 msgstr "Σχήμα"
 
-#: ../data/language-specs/scilab.lang.h:8
+#: ../data/language-specs/scilab.lang.h:2
 msgid "Scilab"
 msgstr "Scilab"
 
 #: ../data/language-specs/sh.lang.h:2
-msgid "Common Commands"
-msgstr "Κοινές εντολές"
-
-#: ../data/language-specs/sh.lang.h:9
-msgid "Subshell"
-msgstr "Subshell"
-
-#. FIXME: need to sort out proper styles for variables
-#: ../data/language-specs/sh.lang.h:12
-msgid "Variable Definition"
-msgstr "Ορισμός μεταβλητής"
-
-#: ../data/language-specs/sh.lang.h:13
 msgid "sh"
 msgstr "sh"
 
-#: ../data/language-specs/sml.lang.h:10
-msgid "Module name, Variant, etc"
-msgstr ""
+#. FIXME: need to sort out proper styles for variables
+#: ../data/language-specs/sh.lang.h:9
+msgid "Variable Definition"
+msgstr "Ορισμός μεταβλητής"
 
-#: ../data/language-specs/sml.lang.h:12
+#: ../data/language-specs/sh.lang.h:11
+msgid "Common Commands"
+msgstr "Κοινές εντολές"
+
+#: ../data/language-specs/sh.lang.h:13
+msgid "Subshell"
+msgstr "Subshell"
+
+#: ../data/language-specs/sml.lang.h:2
 msgid "Standard ML"
 msgstr "Πρότυπο ML"
 
+#: ../data/language-specs/sml.lang.h:13
+msgid "Module name, Variant, etc"
+msgstr "Όνομα λειτουργικής μονάδας, Variant, κλπ"
+
 #: ../data/language-specs/sparql.lang.h:2
+msgid "SPARQL"
+msgstr "SPARQL"
+
+#: ../data/language-specs/sparql.lang.h:3
 msgid "Class"
 msgstr "Κλάση"
-
-#: ../data/language-specs/sparql.lang.h:5
-msgid "IRI"
-msgstr "IRI"
 
 #: ../data/language-specs/sparql.lang.h:6
 msgid "Individual"
 msgstr "Μεμονωμένα"
 
-#: ../data/language-specs/sparql.lang.h:8
+#: ../data/language-specs/sparql.lang.h:10
 msgid "Literal"
 msgstr "Κυριολεκτική σταθερά"
 
@@ -2032,166 +2272,168 @@ msgid "QName"
 msgstr "QName"
 
 #: ../data/language-specs/sparql.lang.h:13
-msgid "SPARQL"
-msgstr "SPARQL"
+msgid "IRI"
+msgstr "IRI"
 
-#: ../data/language-specs/sql.lang.h:7
+#: ../data/language-specs/sql.lang.h:2
+msgid "SQL"
+msgstr "SQL"
+
+#: ../data/language-specs/sql.lang.h:10
 msgid "No idea what it is"
 msgstr "Δεν έχω ιδέα τι είναι"
 
-#: ../data/language-specs/sql.lang.h:8
-msgid "SQL"
-msgstr "SQL"
+#: ../data/language-specs/systemverilog.lang.h:2
+msgid "SystemVerilog"
+msgstr "SystemVerilog"
 
 #: ../data/language-specs/systemverilog.lang.h:4
 msgid "System Task"
 msgstr "Λίστα Εργασιών"
 
-#: ../data/language-specs/systemverilog.lang.h:5
-msgid "SystemVerilog"
-msgstr "SystemVerilog"
+#: ../data/language-specs/t2t.lang.h:2
+msgid "txt2tags"
+msgstr "txt2tags"
 
-#: ../data/language-specs/t2t.lang.h:2 ../gtksourceview/gtksourcestyle.c:104
-#: ../gtksourceview/gtksourcestyle.c:105
-msgid "Bold"
-msgstr "Έντονα"
+#: ../data/language-specs/t2t.lang.h:4
+msgid "Option"
+msgstr "Option"
 
-#: ../data/language-specs/t2t.lang.h:5 ../gtksourceview/gtksourcestyle.c:112
+#: ../data/language-specs/t2t.lang.h:5
+msgid "Option Name"
+msgstr "Όνομα Option"
+
+#: ../data/language-specs/t2t.lang.h:8
+msgid "Section 1"
+msgstr "Ενότητα 1"
+
+#: ../data/language-specs/t2t.lang.h:9
+msgid "Section 2"
+msgstr "Ενότητα 2"
+
+#: ../data/language-specs/t2t.lang.h:10
+msgid "Section 3"
+msgstr "Ενότητα 3"
+
+#: ../data/language-specs/t2t.lang.h:11
+msgid "Section 4"
+msgstr "Ενότητα 4"
+
+#: ../data/language-specs/t2t.lang.h:12
+msgid "Section 5"
+msgstr "Ενότητα 5"
+
+#: ../data/language-specs/t2t.lang.h:14
+#: ../gtksourceview/gtksourcestyle.c:112
 #: ../gtksourceview/gtksourcestyle.c:113
 msgid "Italic"
 msgstr "Πλάγια"
 
-#: ../data/language-specs/t2t.lang.h:7
-msgid "Option"
-msgstr "Option"
+#: ../data/language-specs/t2t.lang.h:15
+#: ../gtksourceview/gtksourcestyle.c:104
+#: ../gtksourceview/gtksourcestyle.c:105
+msgid "Bold"
+msgstr "Έντονα"
 
-#: ../data/language-specs/t2t.lang.h:8
-msgid "Option Name"
-msgstr "Όνομα Option"
-
-#: ../data/language-specs/t2t.lang.h:10
-msgid "Section 1"
-msgstr "Ενότητα 1"
-
-#: ../data/language-specs/t2t.lang.h:11
-msgid "Section 2"
-msgstr "Ενότητα 2"
-
-#: ../data/language-specs/t2t.lang.h:12
-msgid "Section 3"
-msgstr "Ενότητα 3"
-
-#: ../data/language-specs/t2t.lang.h:13
-msgid "Section 4"
-msgstr "Ενότητα 4"
-
-#: ../data/language-specs/t2t.lang.h:14
-msgid "Section 5"
-msgstr "Ενότητα 5"
-
-#: ../data/language-specs/t2t.lang.h:16
+#: ../data/language-specs/t2t.lang.h:17
 msgid "Verbatim Block"
 msgstr "Verbatim Block"
 
-#: ../data/language-specs/t2t.lang.h:17
-msgid "txt2tags"
-msgstr "txt2tags"
-
-#: ../data/language-specs/tcl.lang.h:3
+#: ../data/language-specs/tcl.lang.h:2
 msgid "Tcl"
 msgstr "Tcl"
 
-#: ../data/language-specs/texinfo.lang.h:3
-msgid "File Attributes"
-msgstr "Γνωρίσματα αρχείου"
-
-#: ../data/language-specs/texinfo.lang.h:4
-msgid "Generated Content"
-msgstr "Δημιουργηθέν Περιεχόμενο"
-
-#: ../data/language-specs/texinfo.lang.h:7
-msgid "Macros"
-msgstr "Μακροεντολές"
-
-#: ../data/language-specs/texinfo.lang.h:11
+#: ../data/language-specs/texinfo.lang.h:2
 msgid "Texinfo"
 msgstr "Texinfo"
 
-#: ../data/language-specs/vala.lang.h:9
+#: ../data/language-specs/texinfo.lang.h:8
+msgid "Macros"
+msgstr "Μακροεντολές"
+
+#: ../data/language-specs/texinfo.lang.h:9
+msgid "File Attributes"
+msgstr "Γνωρίσματα αρχείου"
+
+#: ../data/language-specs/texinfo.lang.h:10
+msgid "Generated Content"
+msgstr "Δημιουργηθέν Περιεχόμενο"
+
+#: ../data/language-specs/vala.lang.h:2
 msgid "Vala"
 msgstr "Vala"
 
-#: ../data/language-specs/vbnet.lang.h:9
+#: ../data/language-specs/vbnet.lang.h:2
 msgid "VB.NET"
 msgstr "VB.NET"
 
-#: ../data/language-specs/verilog.lang.h:6
-msgid "Gate"
-msgstr "Gate"
-
-#: ../data/language-specs/verilog.lang.h:7
-msgid "IEEE System Task"
-msgstr "Εργασία συστήματος IEEE"
-
-#: ../data/language-specs/verilog.lang.h:10
-msgid "LRM Additional System Task"
-msgstr "Επιπρόσθετη εργασία συστήματος LRM"
-
-#: ../data/language-specs/verilog.lang.h:15
+#: ../data/language-specs/verilog.lang.h:2
 msgid "Verilog"
 msgstr "Verilog"
 
-#: ../data/language-specs/vhdl.lang.h:11
+#: ../data/language-specs/verilog.lang.h:8
+msgid "IEEE System Task"
+msgstr "Εργασία συστήματος IEEE"
+
+#: ../data/language-specs/verilog.lang.h:9
+msgid "LRM Additional System Task"
+msgstr "Επιπρόσθετη εργασία συστήματος LRM"
+
+#: ../data/language-specs/verilog.lang.h:11
+msgid "Gate"
+msgstr "Gate"
+
+#: ../data/language-specs/vhdl.lang.h:2
 msgid "VHDL"
 msgstr "VHDL"
 
 #: ../data/language-specs/xml.lang.h:2
-msgid "Attribute value"
-msgstr "Τιμή γνωρίσματος"
-
-#: ../data/language-specs/xml.lang.h:3
-msgid "CDATA delimiter"
-msgstr "CDATA delimiter"
-
-#: ../data/language-specs/xml.lang.h:5
-msgid "DOCTYPE"
-msgstr "DOCTYPE"
-
-#: ../data/language-specs/xml.lang.h:6
-msgid "Element name"
-msgstr "Όνομα στοιχείου"
-
-#: ../data/language-specs/xml.lang.h:7
-msgid "Entity"
-msgstr "Οντότητα"
-
-#: ../data/language-specs/xml.lang.h:11
-msgid "Processing instruction"
-msgstr "Εντολή προεπεξεργαστή"
-
-#: ../data/language-specs/xml.lang.h:13
 msgid "XML"
 msgstr "XML"
 
-#: ../data/language-specs/xslt.lang.h:1
-msgid "Element"
-msgstr "Στοιχείο"
+#: ../data/language-specs/xml.lang.h:4
+msgid "DOCTYPE"
+msgstr "DOCTYPE"
 
-#: ../data/language-specs/xslt.lang.h:4
+#: ../data/language-specs/xml.lang.h:5
+msgid "CDATA delimiter"
+msgstr "CDATA delimiter"
+
+#: ../data/language-specs/xml.lang.h:6
+msgid "Processing instruction"
+msgstr "Εντολή προεπεξεργαστή"
+
+#: ../data/language-specs/xml.lang.h:7
+msgid "Element name"
+msgstr "Όνομα στοιχείου"
+
+#: ../data/language-specs/xml.lang.h:9
+msgid "Attribute value"
+msgstr "Τιμή γνωρίσματος"
+
+#: ../data/language-specs/xml.lang.h:10
+msgid "Entity"
+msgstr "Οντότητα"
+
+#: ../data/language-specs/xslt.lang.h:2
 msgid "XSLT"
 msgstr "XSLT"
+
+#: ../data/language-specs/xslt.lang.h:3
+msgid "Element"
+msgstr "Στοιχείο"
 
 #: ../data/language-specs/yacc.lang.h:2
 msgid "Yacc"
 msgstr "Yacc"
 
 #: ../data/language-specs/yacc.lang.h:5
-msgid "rule"
-msgstr "κανόνας"
-
-#: ../data/language-specs/yacc.lang.h:6
 msgid "token-type"
 msgstr "token-type"
+
+#: ../data/language-specs/yacc.lang.h:6
+msgid "rule"
+msgstr "κανόνας"
 
 #: ../data/styles/classic.xml.h:1
 msgid "Classic"
@@ -2202,36 +2444,36 @@ msgid "Classic color scheme"
 msgstr "Σχήμα κλασσικού χρώματος"
 
 #: ../data/styles/cobalt.xml.h:1
-msgid "Blue based color scheme"
-msgstr "Σχήμα χρωμάτων με βάση το μπλε"
-
-#: ../data/styles/cobalt.xml.h:2
 msgid "Cobalt"
 msgstr "Cobalt"
 
-#: ../data/styles/kate.xml.h:1
-msgid "Color scheme used in the Kate text editor"
-msgstr "Σχήμα χρώματος που χρησιμοποιείται στον επεξεργαστή κειμένου Kate"
+#: ../data/styles/cobalt.xml.h:2
+msgid "Blue based color scheme"
+msgstr "Σχήμα χρωμάτων με βάση το μπλε"
 
-#: ../data/styles/kate.xml.h:2
+#: ../data/styles/kate.xml.h:1
 msgid "Kate"
 msgstr "Kate"
 
-#: ../data/styles/oblivion.xml.h:1
-msgid "Dark color scheme using the Tango color palette"
-msgstr "Σκοτεινό σχήμα χρώματος με χρήση παλέτας χρώματος Tango"
+#: ../data/styles/kate.xml.h:2
+msgid "Color scheme used in the Kate text editor"
+msgstr "Σχήμα χρώματος που χρησιμοποιείται στον επεξεργαστή κειμένου Kate"
 
-#: ../data/styles/oblivion.xml.h:2
+#: ../data/styles/oblivion.xml.h:1
 msgid "Oblivion"
 msgstr "Oblivion"
 
-#: ../data/styles/tango.xml.h:1
-msgid "Color scheme using Tango color palette"
-msgstr "Σχήμα χρώματος με χρήση παλέτας χρώματος Tango"
+#: ../data/styles/oblivion.xml.h:2
+msgid "Dark color scheme using the Tango color palette"
+msgstr "Σκοτεινό σχήμα χρώματος με χρήση παλέτας χρώματος Tango"
 
-#: ../data/styles/tango.xml.h:2
+#: ../data/styles/tango.xml.h:1
 msgid "Tango"
 msgstr "Tango"
+
+#: ../data/styles/tango.xml.h:2
+msgid "Color scheme using Tango color palette"
+msgstr "Σχήμα χρώματος με χρήση παλέτας χρώματος Tango"
 
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:371
 msgid "Document Words"
@@ -2256,7 +2498,7 @@ msgstr "Μέγεθος δέσμης εισήγησης"
 
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:472
 msgid "Number of proposals added in one batch"
-msgstr "Ο αριθμός των προτάσεων που προστέθηκαν σε μία δέσμη"
+msgstr "Ο αριθμός των εισηγήσεων που προστέθηκαν σε μία δέσμη"
 
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:481
 msgid "Scan Batch Size"
@@ -2356,94 +2598,96 @@ msgstr "Αναίρεση διαχειριστή"
 msgid "The buffer undo manager"
 msgstr "Ο διαχειριστής μνήμης αναίρεσης"
 
-#: ../gtksourceview/gtksourcecompletion.c:935
-#: ../gtksourceview/gtksourcecompletion.c:958
+#: ../gtksourceview/gtksourcecompletion.c:934
+#: ../gtksourceview/gtksourcecompletion.c:957
 msgid "No extra information available"
 msgstr "Δεν υπάρχει διαθέσιμη καμία πρόσθετη πληροφορία"
 
-#: ../gtksourceview/gtksourcecompletion.c:2224
+#: ../gtksourceview/gtksourcecompletion.c:2223
 #: ../gtksourceview/gtksourcegutter.c:547
 msgid "View"
 msgstr "Προβολή"
 
-#: ../gtksourceview/gtksourcecompletion.c:2225
+#: ../gtksourceview/gtksourcecompletion.c:2224
 msgid "The GtkSourceView bound to the completion"
 msgstr "Το GtkSourceView που είναι συνδεδεμένο με την συμπλήρωση"
 
-#: ../gtksourceview/gtksourcecompletion.c:2240
+#: ../gtksourceview/gtksourcecompletion.c:2239
 msgid "Remember Info Visibility"
 msgstr "Απομνημόνευση πληροφοριών προβολής"
 
-#: ../gtksourceview/gtksourcecompletion.c:2241
+#: ../gtksourceview/gtksourcecompletion.c:2240
 msgid "Remember the last info window visibility state"
-msgstr ""
-"Απομνημόνευση της κατάστασης προβολής του τελευταίου παραθύρου πληροφοριών"
+msgstr "Απομνημόνευση της κατάστασης προβολής του τελευταίου παραθύρου πληροφοριών"
 
-#: ../gtksourceview/gtksourcecompletion.c:2254
+#: ../gtksourceview/gtksourcecompletion.c:2253
 msgid "Select on Show"
 msgstr "Επιλογή κατά την προβολή"
 
-#: ../gtksourceview/gtksourcecompletion.c:2255
+#: ../gtksourceview/gtksourcecompletion.c:2254
 msgid "Select first proposal when completion is shown"
-msgstr "Επιλογή της πρώτης πρότασης όταν εμφανίζεται η συμπλήρωση"
+msgstr "Επιλογή της πρώτης εισηγήσης όταν εμφανίζεται η συμπλήρωση"
 
-#: ../gtksourceview/gtksourcecompletion.c:2269
+#: ../gtksourceview/gtksourcecompletion.c:2268
 msgid "Show Headers"
 msgstr "Προβολή κεφαλίδων"
 
-#: ../gtksourceview/gtksourcecompletion.c:2270
-msgid ""
-"Show provider headers when proposals from multiple providers are available"
-msgstr ""
-"Εμφάνιση των κεφαλίδων των παρόχων όταν είναι διαθέσιμες  προτάσεις από "
-"πολλαπλούς παρόχους "
+#: ../gtksourceview/gtksourcecompletion.c:2269
+msgid "Show provider headers when proposals from multiple providers are available"
+msgstr "Εμφάνιση των κεφαλίδων των παρόχων όταν είναι διαθέσιμες εισηγήσεις από πολλαπλούς παρόχους "
 
-#: ../gtksourceview/gtksourcecompletion.c:2284
+#: ../gtksourceview/gtksourcecompletion.c:2283
 msgid "Show Icons"
 msgstr "Εμφάνιση εικονιδίων"
 
-#: ../gtksourceview/gtksourcecompletion.c:2285
+#: ../gtksourceview/gtksourcecompletion.c:2284
 msgid "Show provider and proposal icons in the completion popup"
-msgstr ""
-"Εμφάνιση εικονιδίων παρόχου και προτάσεων στο μενού συντόμευσης της "
-"συμπλήρωσης"
+msgstr "Εμφάνιση εικονιδίων παρόχου και εισηγήσεων στο μενού συντόμευσης της συμπλήρωσης"
 
-#: ../gtksourceview/gtksourcecompletion.c:2298
+#: ../gtksourceview/gtksourcecompletion.c:2299
 msgid "Accelerators"
 msgstr "Συντομεύσεις"
 
-#: ../gtksourceview/gtksourcecompletion.c:2299
+#: ../gtksourceview/gtksourcecompletion.c:2300
 msgid "Number of proposal accelerators to show"
-msgstr "Ο αριθμός επιταχυντών προτάσεων για εμφάνιση"
+msgstr "Ο αριθμός επιταχυντών εισηγήσεων για εμφάνιση"
 
-#: ../gtksourceview/gtksourcecompletion.c:2315
+#: ../gtksourceview/gtksourcecompletion.c:2316
 msgid "Auto Complete Delay"
 msgstr "Καθυστέρηση αυτόματης συμπλήρωσης"
 
-#: ../gtksourceview/gtksourcecompletion.c:2316
+#: ../gtksourceview/gtksourcecompletion.c:2317
 msgid "Completion popup delay for interactive completion"
-msgstr ""
-"Καθυστέρηση εμφάνισης του μενού συντόμευσης για την διαδραστική συμπλήρωσης"
+msgstr "Καθυστέρηση εμφάνισης του μενού συντόμευσης για την διαδραστική συμπλήρωσης"
 
-#: ../gtksourceview/gtksourcecompletion.c:2331
+#: ../gtksourceview/gtksourcecompletion.c:2333
 msgid "Provider Page Size"
 msgstr "Μέγεθος σελίδας παρόχου"
 
-#: ../gtksourceview/gtksourcecompletion.c:2332
+#: ../gtksourceview/gtksourcecompletion.c:2334
 msgid "Provider scrolling page size"
 msgstr "Μέγεθος κυλιόμενης σελίδας παρόχου"
 
-#: ../gtksourceview/gtksourcecompletion.c:2347
+#: ../gtksourceview/gtksourcecompletion.c:2353
 msgid "Proposal Page Size"
 msgstr "Μέγεθος σελίδας εισήγησης"
 
-#: ../gtksourceview/gtksourcecompletion.c:2348
+#: ../gtksourceview/gtksourcecompletion.c:2354
 msgid "Proposal scrolling page size"
 msgstr "Μέγεθος κυλιόμενης σελίδας εισήγησης"
 
-#: ../gtksourceview/gtksourcecompletion.c:2693
+#: ../gtksourceview/gtksourcecompletion.c:2715
 msgid "Provider"
 msgstr "Πάροχος"
+
+#: ../gtksourceview/gtksourcecompletion.ui.h:1
+#| msgid "Show provider and proposal icons in the completion popup"
+msgid "Show detailed proposal information"
+msgstr "Εμφάνιση λεπτομερών πληροφοριών των εισηγήσεων"
+
+#: ../gtksourceview/gtksourcecompletion.ui.h:2
+msgid "_Details..."
+msgstr "Λ_επτομέρειες..."
 
 #: ../gtksourceview/gtksourcecompletioncontext.c:233
 #: ../gtksourceview/gtksourceview.c:306
@@ -2504,59 +2748,48 @@ msgstr "Οι πληροφορίες που θα εμφανιστούν για α
 #. * named sub-patterns with the same name or if resulting regex is
 #. * too long. In this case fixing lang file helps (e.g. renaming
 #. * subpatterns, making huge keywords use bigger prefixes, etc.)
-#: ../gtksourceview/gtksourcecontextengine.c:3162
+#: ../gtksourceview/gtksourcecontextengine.c:3120
 #, c-format
 msgid ""
-"Cannot create a regex for all the transitions, the syntax highlighting "
-"process will be slower than usual.\n"
+"Cannot create a regex for all the transitions, the syntax highlighting process will be slower than usual.\n"
 "The error was: %s"
 msgstr ""
-"Αδυναμία δημιουργίας μιας regex για όλα τα transitions, η επισήμανση "
-"σύνταξης θα έχει αρκετή καθυστέρηση.\n"
+"Αδυναμία δημιουργίας μιας regex για όλα τα transitions, η επισήμανση σύνταξης θα έχει αρκετή καθυστέρηση.\n"
 "Το σφάλμα ήταν: %s"
 
-#: ../gtksourceview/gtksourcecontextengine.c:4500
-msgid ""
-"Highlighting a single line took too much time, syntax highlighting will be "
-"disabled"
-msgstr ""
-"Η επισήμανση μίας γραμμής διήρκεσε υπερβολικά. Η επισήμανση της σύνταξης θα "
-"απενεργοποιηθεί"
+#: ../gtksourceview/gtksourcecontextengine.c:4443
+msgid "Highlighting a single line took too much time, syntax highlighting will be disabled"
+msgstr "Η επισήμανση μίας γραμμής διήρκεσε υπερβολικά. Η επισήμανση της σύνταξης θα απενεργοποιηθεί"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5753
+#: ../gtksourceview/gtksourcecontextengine.c:5687
 #, c-format
 msgid "context '%s' cannot contain a \\%%{...@start} command"
-msgstr ""
-"Το πλαίσιο εφαρμογής '%s' δεν μπορεί να περιέχει μια εντολή \\%%{...@start}"
+msgstr "Το πλαίσιο εφαρμογής '%s' δεν μπορεί να περιέχει μια εντολή \\%%{...@start}"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5914
-#: ../gtksourceview/gtksourcecontextengine.c:6003
+#: ../gtksourceview/gtksourcecontextengine.c:5848
+#: ../gtksourceview/gtksourcecontextengine.c:5937
 #, c-format
 msgid "duplicated context id '%s'"
 msgstr "διπλότυπη context id '%s'"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6118
-#: ../gtksourceview/gtksourcecontextengine.c:6178
+#: ../gtksourceview/gtksourcecontextengine.c:6051
+#: ../gtksourceview/gtksourcecontextengine.c:6111
 #, c-format
-msgid ""
-"style override used with wildcard context reference in language '%s' in ref "
-"'%s'"
-msgstr ""
-"style override used with wildcard context reference in language '%s' in ref "
-"'%s'"
+msgid "style override used with wildcard context reference in language '%s' in ref '%s'"
+msgstr "style override used with wildcard context reference in language '%s' in ref '%s'"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6192
+#: ../gtksourceview/gtksourcecontextengine.c:6125
 #, c-format
 msgid "invalid context reference '%s'"
 msgstr "μη έγκυρη αναφορά περιεχομένου  '%s'"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6211
-#: ../gtksourceview/gtksourcecontextengine.c:6221
+#: ../gtksourceview/gtksourcecontextengine.c:6144
+#: ../gtksourceview/gtksourcecontextengine.c:6154
 #, c-format
 msgid "unknown context '%s'"
 msgstr "άγνωστο πλαίσιο εφαρμογής '%s'"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6321
+#: ../gtksourceview/gtksourcecontextengine.c:6253
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "Λείπει ο ορισμός κύριας γλώσσας (id = \"%s\".)"
@@ -2718,11 +2951,8 @@ msgid "Language specification directories"
 msgstr "Κατάλογοι ορισμάτων γλώσσας"
 
 #: ../gtksourceview/gtksourcelanguagemanager.c:151
-msgid ""
-"List of directories where the language specification files (.lang) are "
-"located"
-msgstr ""
-"Λίστα από καταλόγους όπου βρίσκονται τα αρχεία ορισμάτων γλώσσας (.lang)"
+msgid "List of directories where the language specification files (.lang) are located"
+msgstr "Λίστα από καταλόγους όπου βρίσκονται τα αρχεία ορισμάτων γλώσσας (.lang)"
 
 #: ../gtksourceview/gtksourcelanguagemanager.c:160
 msgid "Language ids"
@@ -2786,10 +3016,8 @@ msgid "Wrap Mode"
 msgstr "Λειτουργία αναδίπλωσης"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:482
-msgid ""
-"Whether to wrap lines never, at word boundaries, or at character boundaries."
-msgstr ""
-"Αν θα αναδιπλώνονται οι γραμμές: Ποτέ, στα όρια λέξεων ή στα όρια γραμμών"
+msgid "Whether to wrap lines never, at word boundaries, or at character boundaries."
+msgstr "Αν θα αναδιπλώνονται οι γραμμές: Ποτέ, στα όρια λέξεων ή στα όρια γραμμών"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:503
 msgid "Whether to print the document with highlighted syntax"
@@ -2825,8 +3053,7 @@ msgstr "Όνομα γραμματοσειράς σώματος κειμένου"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:594
 msgid "Name of the font to use for the text body (e.g. \"Monospace 10\")"
-msgstr ""
-"Όνομα γραμματοσειράς για χρήση στο κείμενο εγγράφου (π.χ. \"Monospace 10\")"
+msgstr "Όνομα γραμματοσειράς για χρήση στο κείμενο εγγράφου (π.χ. \"Monospace 10\")"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:617
 msgid "Line Numbers Font Name"
@@ -2834,8 +3061,7 @@ msgstr "Όνομα γραμματοσειρά αριθμού γραμμών"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:618
 msgid "Name of the font to use for the line numbers (e.g. \"Monospace 10\")"
-msgstr ""
-"Όνομα γραμματοσειράς για χρήση στους αριθμούς γραμμών (π.χ. \"Monospace 10\")"
+msgstr "Όνομα γραμματοσειράς για χρήση στους αριθμούς γραμμών (π.χ. \"Monospace 10\")"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:641
 msgid "Header Font Name"
@@ -2843,8 +3069,7 @@ msgstr "Όνομα γραμματοσειράς κεφαλίδας"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:642
 msgid "Name of the font to use for the page header (e.g. \"Monospace 10\")"
-msgstr ""
-"Όνομα γραμματοσειράς για χρήση στις κεφαλίδες σελίδας (π.χ. \"Monospace 10\")"
+msgstr "Όνομα γραμματοσειράς για χρήση στις κεφαλίδες σελίδας (π.χ. \"Monospace 10\")"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:665
 msgid "Footer Font Name"
@@ -2859,12 +3084,8 @@ msgid "Number of pages"
 msgstr "Αριθμός σελίδων"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:683
-msgid ""
-"The number of pages in the document (-1 means the document has not been "
-"completely paginated)."
-msgstr ""
-"Ο αριθμός των σελίδων στο έγγραφο (-1 σημαίνει ότι το έγγραφο δεν έχει "
-"σελιδοποιηθεί πλήρως)."
+msgid "The number of pages in the document (-1 means the document has not been completely paginated)."
+msgstr "Ο αριθμός των σελίδων στο έγγραφο (-1 σημαίνει ότι το έγγραφο δεν έχει σελιδοποιηθεί πλήρως)."
 
 #: ../gtksourceview/gtksourceregex.c:125
 msgid "using \\C is not supported in language definitions"
@@ -2890,11 +3111,13 @@ msgstr "Προσκήνιο"
 msgid "Foreground color"
 msgstr "Χρώμα προσκηνίου"
 
-#: ../gtksourceview/gtksourcestyle.c:120 ../gtksourceview/gtksourcestyle.c:121
+#: ../gtksourceview/gtksourcestyle.c:120
+#: ../gtksourceview/gtksourcestyle.c:121
 msgid "Underline"
 msgstr "Υπογράμμιση"
 
-#: ../gtksourceview/gtksourcestyle.c:128 ../gtksourceview/gtksourcestyle.c:129
+#: ../gtksourceview/gtksourcestyle.c:128
+#: ../gtksourceview/gtksourcestyle.c:129
 msgid "Strikethrough"
 msgstr "Διακριτή γραφή"
 
@@ -3063,12 +3286,8 @@ msgid "Smart Home/End"
 msgstr "Χρήση έξυπνου home/end"
 
 #: ../gtksourceview/gtksourceview.c:421
-msgid ""
-"HOME and END keys move to first/last non whitespace characters on line "
-"before going to the start/end of the line"
-msgstr ""
-"Τα πλήκτρα HOME και END μετακινούν πρώτα στον πρώτο/τελευταίο χαρακτήρα της "
-"γραμμής πριν να πάνε στην αρχή/τέλος της γραμμής"
+msgid "HOME and END keys move to first/last non whitespace characters on line before going to the start/end of the line"
+msgstr "Τα πλήκτρα HOME και END μετακινούν πρώτα στον πρώτο/τελευταίο χαρακτήρα της γραμμής πριν να πάνε στην αρχή/τέλος της γραμμής"
 
 #: ../gtksourceview/gtksourceview.c:431
 msgid "Highlight current line"
@@ -3084,8 +3303,7 @@ msgstr "Εσοχή στο πλήκτρο tab"
 
 #: ../gtksourceview/gtksourceview.c:440
 msgid "Whether to indent the selected text when the tab key is pressed"
-msgstr ""
-"Αν θα γίνεται εσοχή στο επιλεγμένο κείμενο, όταν πατηθεί το πλήκτρο tab"
+msgstr "Αν θα γίνεται εσοχή στο επιλεγμένο κείμενο, όταν πατηθεί το πλήκτρο tab"
 
 #: ../gtksourceview/gtksourceview.c:454
 msgid "Draw Spaces"
