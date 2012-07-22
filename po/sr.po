@@ -10,18 +10,18 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gtksou"
-"rceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-05-14 16:50+0000\n"
-"PO-Revision-Date: 2012-05-17 21:37+0200\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=gtksourceview&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2012-05-25 12:52+0000\n"
+"PO-Revision-Date: 2012-07-22 10:38+0200\n"
 "Last-Translator: Мирослав Николић <miroslavnikolic@rocketmail.com>\n"
 "Language-Team: Serbian <gnom@prevod.org>\n"
-"Language: sr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=n==1? 3 : n%10==1 && n%100!=11 ? 0 : "
-"n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Language: sr\n"
+"Plural-Forms: nplurals=4; plural=n==1? 3 : n%10==1 && n%100!=11 ? 0 : n%"
+"10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Project-Style: gnome\n"
 
 #: ../data/glade/gtksourceview.xml.in.h:1
@@ -205,7 +205,7 @@ msgstr "Ниска"
 #: ../data/language-specs/forth.lang.h:6
 #: ../data/language-specs/fortran.lang.h:5
 #: ../data/language-specs/fsharp.lang.h:8 ../data/language-specs/gap.lang.h:5
-#: ../data/language-specs/glsl.lang.h:5 ../data/language-specs/go.lang.h:8
+#: ../data/language-specs/glsl.lang.h:5 ../data/language-specs/go.lang.h:7
 #: ../data/language-specs/gtkrc.lang.h:5
 #: ../data/language-specs/haskell.lang.h:7 ../data/language-specs/idl.lang.h:6
 #: ../data/language-specs/imagej.lang.h:8 ../data/language-specs/ini.lang.h:6
@@ -251,7 +251,7 @@ msgstr "Кључна реч"
 #: ../data/language-specs/python3.lang.h:12
 #: ../data/language-specs/ruby.lang.h:11
 msgid "Decimal number"
-msgstr "Декадни број"
+msgstr "Децимални број"
 
 #. A boolean constant: TRUE, false
 #: ../data/language-specs/ada.lang.h:7 ../data/language-specs/asp.lang.h:13
@@ -270,11 +270,11 @@ msgstr "Декадни број"
 #: ../data/language-specs/vala.lang.h:8 ../data/language-specs/vbnet.lang.h:9
 #: ../data/language-specs/vhdl.lang.h:8
 msgid "Boolean value"
-msgstr "Истинитосна вредност"
+msgstr "Логичка вредност"
 
 #: ../data/language-specs/ada.lang.h:8 ../data/language-specs/cg.lang.h:10
-#: ../data/language-specs/c.lang.h:12 ../data/language-specs/go.lang.h:10
-#: ../data/language-specs/java.lang.h:10 ../data/language-specs/ooc.lang.h:9
+#: ../data/language-specs/c.lang.h:12 ../data/language-specs/java.lang.h:10
+#: ../data/language-specs/ooc.lang.h:9
 msgid "Storage Class"
 msgstr "Класа складишта"
 
@@ -287,7 +287,7 @@ msgstr "Класа складишта"
 #: ../data/language-specs/forth.lang.h:7
 #: ../data/language-specs/fortran.lang.h:9
 #: ../data/language-specs/fsharp.lang.h:11
-#: ../data/language-specs/glsl.lang.h:4 ../data/language-specs/go.lang.h:9
+#: ../data/language-specs/glsl.lang.h:4 ../data/language-specs/go.lang.h:8
 #: ../data/language-specs/gtkrc.lang.h:7
 #: ../data/language-specs/haskell.lang.h:8 ../data/language-specs/idl.lang.h:4
 #: ../data/language-specs/ini.lang.h:9 ../data/language-specs/java.lang.h:17
@@ -303,7 +303,7 @@ msgstr "Класа складишта"
 #: ../data/language-specs/sql.lang.h:9 ../data/language-specs/vala.lang.h:5
 #: ../data/language-specs/vbnet.lang.h:7
 msgid "Data Type"
-msgstr "Тип података"
+msgstr "Врста података"
 
 #: ../data/language-specs/ada.lang.h:10 ../data/language-specs/asp.lang.h:5
 #: ../data/language-specs/bennugd.lang.h:4 ../data/language-specs/cg.lang.h:5
@@ -320,7 +320,7 @@ msgstr "Претпроцесор"
 
 #: ../data/language-specs/ada.lang.h:11
 msgid "Arbitrary base number"
-msgstr "Број у произвољној основи"
+msgstr "Број произвољне основе"
 
 #: ../data/language-specs/ada.lang.h:12
 #: ../data/language-specs/csharp.lang.h:17
@@ -333,7 +333,7 @@ msgstr "Реалан број"
 #: ../data/language-specs/ada.lang.h:13 ../data/language-specs/cg.lang.h:11
 #: ../data/language-specs/c.lang.h:14 ../data/language-specs/csharp.lang.h:8
 #: ../data/language-specs/eiffel.lang.h:12
-#: ../data/language-specs/fsharp.lang.h:18 ../data/language-specs/go.lang.h:11
+#: ../data/language-specs/fsharp.lang.h:18 ../data/language-specs/go.lang.h:10
 #: ../data/language-specs/haskell.lang.h:11
 #: ../data/language-specs/java.lang.h:3
 #: ../data/language-specs/javascript.lang.h:3
@@ -346,7 +346,7 @@ msgstr "Реалан број"
 #: ../data/language-specs/texinfo.lang.h:4
 #: ../data/language-specs/verilog.lang.h:5
 msgid "Escaped Character"
-msgstr "Знак за избегавање"
+msgstr "Знак новог реда"
 
 #: ../data/language-specs/asp.lang.h:2
 msgid "ASP"
@@ -390,7 +390,7 @@ msgstr "ВБ скрипта и АДО константе"
 #: ../data/language-specs/asp.lang.h:12 ../data/language-specs/def.lang.h:32
 #: ../data/language-specs/vbnet.lang.h:8
 msgid "Special constant"
-msgstr "Специјална константа"
+msgstr "Посебна константа"
 
 #. A generic number constant
 #: ../data/language-specs/asp.lang.h:14 ../data/language-specs/boo.lang.h:14
@@ -474,11 +474,12 @@ msgid "Variable"
 msgstr "Променљива"
 
 #: ../data/language-specs/awk.lang.h:6 ../data/language-specs/boo.lang.h:15
-#: ../data/language-specs/glsl.lang.h:6 ../data/language-specs/perl.lang.h:8
+#: ../data/language-specs/glsl.lang.h:6 ../data/language-specs/go.lang.h:18
+#: ../data/language-specs/perl.lang.h:8
 #: ../data/language-specs/python.lang.h:18
 #: ../data/language-specs/python3.lang.h:17
 msgid "Builtin Function"
-msgstr "Уграђене функције"
+msgstr "Уграђена функција"
 
 #: ../data/language-specs/bennugd.lang.h:2
 msgid "BennuGD"
@@ -494,7 +495,7 @@ msgstr "Идентификатор"
 #: ../data/language-specs/bennugd.lang.h:9 ../data/language-specs/cg.lang.h:12
 #: ../data/language-specs/c.lang.h:15 ../data/language-specs/def.lang.h:24
 #: ../data/language-specs/d.lang.h:11 ../data/language-specs/erlang.lang.h:9
-#: ../data/language-specs/go.lang.h:12 ../data/language-specs/json.lang.h:9
+#: ../data/language-specs/go.lang.h:11 ../data/language-specs/json.lang.h:9
 #: ../data/language-specs/nemerle.lang.h:12
 #: ../data/language-specs/ooc.lang.h:14 ../data/language-specs/php.lang.h:18
 #: ../data/language-specs/python.lang.h:12
@@ -528,7 +529,7 @@ msgstr "Означавање"
 
 #: ../data/language-specs/bibtex.lang.h:2
 msgid "BibTeX"
-msgstr "БибТекс"
+msgstr "Биб ТеКс"
 
 #: ../data/language-specs/bibtex.lang.h:3
 msgid "Entries"
@@ -556,18 +557,18 @@ msgstr "Регуларни израз"
 #: ../data/language-specs/boo.lang.h:7 ../data/language-specs/sparql.lang.h:8
 #: ../data/language-specs/xml.lang.h:12 ../data/language-specs/xslt.lang.h:4
 msgid "Namespace"
-msgstr "Именски простор"
+msgstr "Називнски простор"
 
 #: ../data/language-specs/boo.lang.h:9
 msgid "Definition"
-msgstr "Дефиниција"
+msgstr "Одредница"
 
 #: ../data/language-specs/boo.lang.h:11
 #: ../data/language-specs/python.lang.h:10
 #: ../data/language-specs/python3.lang.h:9
 #: ../data/language-specs/ruby.lang.h:19
 msgid "Special Variable"
-msgstr "Специјална променљива"
+msgstr "Посебна променљива"
 
 #: ../data/language-specs/boo.lang.h:12
 #: ../data/language-specs/csharp.lang.h:13 ../data/language-specs/d.lang.h:9
@@ -592,14 +593,15 @@ msgstr "Без вредности"
 #: ../data/language-specs/scilab.lang.h:8
 #: ../data/language-specs/sparql.lang.h:9
 msgid "Boolean"
-msgstr "Истинитосна вредност"
+msgstr "Логичка вредност"
 
 #: ../data/language-specs/cg.lang.h:2
 msgid "CG Shader Language"
-msgstr "Језик CG нијансирања"
+msgstr "Језик ЦГ нијансера"
 
 #. Any erroneous construct
-#: ../data/language-specs/cg.lang.h:4 ../data/language-specs/cobol.lang.h:11
+#: ../data/language-specs/cg.lang.h:4 ../data/language-specs/c.lang.h:22
+#: ../data/language-specs/cobol.lang.h:11
 #: ../data/language-specs/csharp.lang.h:4 ../data/language-specs/css.lang.h:3
 #: ../data/language-specs/def.lang.h:53 ../data/language-specs/d.lang.h:4
 #: ../data/language-specs/dot.lang.h:4 ../data/language-specs/go.lang.h:4
@@ -619,7 +621,7 @@ msgid "Bindings"
 msgstr "Повезивања"
 
 #: ../data/language-specs/cg.lang.h:7 ../data/language-specs/c.lang.h:7
-#: ../data/language-specs/go.lang.h:6 ../data/language-specs/objj.lang.h:7
+#: ../data/language-specs/objj.lang.h:7
 msgid "Included File"
 msgstr "Укључена датотека"
 
@@ -632,7 +634,7 @@ msgstr "Октални број"
 
 #: ../data/language-specs/cg.lang.h:17
 msgid "Swizzle operator"
-msgstr "Swizzle оператор"
+msgstr "Свизл оператор"
 
 #. Translators: functions that are provided in the language
 #: ../data/language-specs/cg.lang.h:19 ../data/language-specs/erlang.lang.h:12
@@ -675,7 +677,7 @@ msgstr "Остали"
 
 #: ../data/language-specs/changelog.lang.h:2
 msgid "ChangeLog"
-msgstr "Дневник промена"
+msgstr "Дневник измена"
 
 #: ../data/language-specs/changelog.lang.h:3
 #: ../data/language-specs/rpmspec.lang.h:14
@@ -705,21 +707,21 @@ msgstr "Издање"
 
 #: ../data/language-specs/chdr.lang.h:2
 msgid "C/C++/ObjC Header"
-msgstr "C/C++/ObjC заглавље"
+msgstr "Ц/Ц++/ОбјЦ заглавље"
 
 #: ../data/language-specs/c.lang.h:2
 msgid "C"
-msgstr "C"
+msgstr "Ц"
 
 #: ../data/language-specs/c.lang.h:6 ../data/language-specs/cpp.lang.h:5
 #: ../data/language-specs/objc.lang.h:5 ../data/language-specs/opal.lang.h:5
 msgid "Common Defines"
-msgstr "Заједничке дефиниције"
+msgstr "Заједничке одреднице"
 
 #. A character constant: 'c'
 #: ../data/language-specs/c.lang.h:8 ../data/language-specs/csharp.lang.h:7
 #: ../data/language-specs/def.lang.h:15 ../data/language-specs/erlang.lang.h:8
-#: ../data/language-specs/gap.lang.h:4 ../data/language-specs/go.lang.h:7
+#: ../data/language-specs/gap.lang.h:4 ../data/language-specs/go.lang.h:6
 #: ../data/language-specs/haskell.lang.h:10
 #: ../data/language-specs/java.lang.h:5
 #: ../data/language-specs/nemerle.lang.h:6 ../data/language-specs/sml.lang.h:6
@@ -727,9 +729,9 @@ msgstr "Заједничке дефиниције"
 msgid "Character"
 msgstr "Знак"
 
-#: ../data/language-specs/c.lang.h:13
+#: ../data/language-specs/c.lang.h:13 ../data/language-specs/go.lang.h:9
 msgid "printf Conversion"
-msgstr "printf конверзија"
+msgstr "принтф претварање"
 
 #: ../data/language-specs/c.lang.h:20
 msgid "Standard stream"
@@ -741,7 +743,7 @@ msgstr "Назив сигнала"
 
 #: ../data/language-specs/cmake.lang.h:2
 msgid "CMake"
-msgstr "CMake"
+msgstr "Ц Направи"
 
 #: ../data/language-specs/cmake.lang.h:3
 msgid "Builtin Command"
@@ -775,11 +777,11 @@ msgstr "Изјава"
 
 #: ../data/language-specs/cpp.lang.h:2
 msgid "C++"
-msgstr "C++"
+msgstr "Ц++"
 
 #: ../data/language-specs/csharp.lang.h:2
 msgid "C#"
-msgstr "C#"
+msgstr "Ц#"
 
 #. Translators: this is a format that appears in the strings
 #: ../data/language-specs/csharp.lang.h:10 ../data/language-specs/po.lang.h:8
@@ -788,7 +790,7 @@ msgstr "Формат ниске"
 
 #: ../data/language-specs/css.lang.h:2
 msgid "CSS"
-msgstr "CSS"
+msgstr "ЦСС"
 
 #: ../data/language-specs/css.lang.h:4
 msgid "Others 2"
@@ -856,12 +858,12 @@ msgstr "Опште променљиве"
 
 #: ../data/language-specs/def.lang.h:1
 msgid "Defaults"
-msgstr "Подразумевано"
+msgstr "Основно"
 
 #. A shebang: #!/bin/sh
 #: ../data/language-specs/def.lang.h:5
 msgid "Shebang"
-msgstr "Shebang"
+msgstr "Шебанг"
 
 #. A special comment containing documentation like in javadoc or
 #. gtk-doc
@@ -887,7 +889,7 @@ msgstr "Специјални карактер (унутар ниске)"
 #: ../data/language-specs/python3.lang.h:13
 #: ../data/language-specs/ruby.lang.h:12
 msgid "Base-N number"
-msgstr "Цео број у основи N"
+msgstr "Цео природни број"
 
 #. A complex number
 #: ../data/language-specs/def.lang.h:30
@@ -905,7 +907,7 @@ msgstr "Уграђени идентификатор"
 #. A primitive data type: int, long, char, etc.
 #: ../data/language-specs/def.lang.h:49 ../data/language-specs/octave.lang.h:6
 msgid "Data type"
-msgstr "Тип податка"
+msgstr "Врста податка"
 
 #. This one is for '#include <foo.h>' and "#pragma blah", or 'use foobar', etc..
 #: ../data/language-specs/def.lang.h:51
@@ -948,7 +950,7 @@ msgstr "Превод"
 
 #: ../data/language-specs/desktop.lang.h:10
 msgid "Exec parameter"
-msgstr "Параметар Exec"
+msgstr "Параметар извршавања"
 
 #: ../data/language-specs/desktop.lang.h:11
 msgid "Encoding"
@@ -960,7 +962,7 @@ msgstr "Главна категорија"
 
 #: ../data/language-specs/desktop.lang.h:13
 msgid "Additional Category"
-msgstr "Додатне категорије"
+msgstr "Додатна категорија"
 
 #: ../data/language-specs/desktop.lang.h:14
 msgid "Reserved Category"
@@ -1005,7 +1007,7 @@ msgstr "Д"
 
 #: ../data/language-specs/d.lang.h:8
 msgid "Special Token"
-msgstr "Специјални симбол"
+msgstr "Посебни симбол"
 
 #: ../data/language-specs/d.lang.h:13 ../data/language-specs/nemerle.lang.h:14
 msgid "Binary number"
@@ -1013,7 +1015,7 @@ msgstr "Бинарни број"
 
 #: ../data/language-specs/docbook.lang.h:2
 msgid "DocBook"
-msgstr "ДокБук"
+msgstr "Док бук"
 
 #: ../data/language-specs/docbook.lang.h:3
 msgid "Header Elements"
@@ -1021,7 +1023,7 @@ msgstr "Елементи заглавља"
 
 #: ../data/language-specs/docbook.lang.h:4
 msgid "Formatting Elements"
-msgstr "Елементи за форматирање"
+msgstr "Елементи форматирања"
 
 #: ../data/language-specs/docbook.lang.h:5
 msgid "GUI Elements"
@@ -1042,11 +1044,11 @@ msgstr "Наредба"
 
 #: ../data/language-specs/dot.lang.h:2
 msgid "Graphviz Dot"
-msgstr "Graphviz тачкица"
+msgstr "Графвиз тачкица"
 
 #: ../data/language-specs/dot.lang.h:6 ../data/language-specs/xml.lang.h:8
 msgid "Attribute name"
-msgstr "Име особине"
+msgstr "Назив особине"
 
 #: ../data/language-specs/dpatch.lang.h:2
 msgid "DPatch"
@@ -1082,7 +1084,7 @@ msgstr "Ајфел"
 
 #: ../data/language-specs/eiffel.lang.h:5
 msgid "Debug"
-msgstr "Исправка грешака"
+msgstr "Уклањање грешака"
 
 #: ../data/language-specs/eiffel.lang.h:6
 msgid "Assertion"
@@ -1126,7 +1128,7 @@ msgstr "Атом"
 #: ../data/language-specs/verilog.lang.h:13
 #: ../data/language-specs/vhdl.lang.h:9
 msgid "Base-N Integer"
-msgstr "Цео број у основи N"
+msgstr "Цео природни број"
 
 #: ../data/language-specs/erlang.lang.h:13
 #: ../data/language-specs/forth.lang.h:11
@@ -1257,7 +1259,7 @@ msgstr "Адреса"
 
 #: ../data/language-specs/gdb-log.lang.h:9
 msgid "Filename"
-msgstr "Име датотеке"
+msgstr "Назив датотеке"
 
 #: ../data/language-specs/gdb-log.lang.h:10
 msgid "Optimized Out"
@@ -1275,7 +1277,7 @@ msgstr "Упит"
 msgid "OpenGL Shading Language"
 msgstr "Језик за ОпенГЛ сенчење"
 
-#: ../data/language-specs/glsl.lang.h:7
+#: ../data/language-specs/glsl.lang.h:7 ../data/language-specs/go.lang.h:17
 #: ../data/language-specs/python.lang.h:16
 #: ../data/language-specs/python3.lang.h:15
 msgid "Builtin Constant"
@@ -1289,6 +1291,10 @@ msgstr "Резервисане кључне речи"
 msgid "Go"
 msgstr "Иди"
 
+#: ../data/language-specs/go.lang.h:12
+msgid "Imaginary number"
+msgstr "Имагинарни број"
+
 #: ../data/language-specs/gtk-doc.lang.h:2
 msgid "gtk-doc"
 msgstr "гтк-док"
@@ -1299,15 +1305,15 @@ msgstr "Одељак унутрашње документације"
 
 #: ../data/language-specs/gtk-doc.lang.h:4
 msgid "Function Name"
-msgstr "Име функције"
+msgstr "Назив функције"
 
 #: ../data/language-specs/gtk-doc.lang.h:5
 msgid "Signal Name"
-msgstr "Име сигнала"
+msgstr "Назив сигнала"
 
 #: ../data/language-specs/gtk-doc.lang.h:6
 msgid "Property Name"
-msgstr "Име својства"
+msgstr "Назив својства"
 
 #: ../data/language-specs/gtk-doc.lang.h:7
 msgid "Parameter"
@@ -1318,7 +1324,7 @@ msgstr "Параметар"
 #: ../data/language-specs/verilog.lang.h:12
 #: ../data/language-specs/vhdl.lang.h:7
 msgid "Type"
-msgstr "Тип"
+msgstr "Врста"
 
 #: ../data/language-specs/gtk-doc.lang.h:11
 msgid "Return"
@@ -1387,7 +1393,7 @@ msgstr "Својство заглавља"
 
 #: ../data/language-specs/haddock.lang.h:12
 msgid "Itemized list"
-msgstr "Листа са ставкама"
+msgstr "Списак са ставкама"
 
 #: ../data/language-specs/haddock.lang.h:13
 msgid "Enumerated list"
@@ -1426,7 +1432,7 @@ msgstr "Октални"
 
 #: ../data/language-specs/haskell.lang.h:15
 msgid "Hex"
-msgstr "Хексадесимални"
+msgstr "Хексадецимални"
 
 #: ../data/language-specs/haskell-literate.lang.h:2
 msgid "Literate Haskell"
@@ -1486,7 +1492,7 @@ msgstr "Спољашњи"
 
 #: ../data/language-specs/java.lang.h:9 ../data/language-specs/ooc.lang.h:8
 msgid "Declaration"
-msgstr "Декларација"
+msgstr "Проглас"
 
 #: ../data/language-specs/java.lang.h:11 ../data/language-specs/ooc.lang.h:10
 msgid "Scope Declaration"
@@ -1508,7 +1514,7 @@ msgstr "Недефинисане вредности"
 
 #: ../data/language-specs/javascript.lang.h:10
 msgid "Properties"
-msgstr "Особине"
+msgstr "Својства"
 
 #: ../data/language-specs/javascript.lang.h:11
 msgid "Constructors"
@@ -1516,7 +1522,7 @@ msgstr "Конструктори"
 
 #: ../data/language-specs/latex.lang.h:2
 msgid "LaTeX"
-msgstr "Ла ТеКС"
+msgstr "Ла ТеКс"
 
 #: ../data/language-specs/latex.lang.h:4
 msgid "Math Mode"
@@ -1577,7 +1583,7 @@ msgstr "Застарели autoconf макро"
 
 #: ../data/language-specs/makefile.lang.h:2
 msgid "Makefile"
-msgstr "Makefile"
+msgstr "Производна датотека"
 
 #: ../data/language-specs/makefile.lang.h:4
 msgid "Assignment Right Hand Side"
@@ -1817,7 +1823,7 @@ msgstr "Дескриптор датотеке"
 
 #: ../data/language-specs/perl.lang.h:15
 msgid "Control"
-msgstr "Контрола"
+msgstr "Управљање"
 
 #: ../data/language-specs/perl.lang.h:18
 msgid "POD"
@@ -1957,7 +1963,7 @@ msgstr "Прекидач"
 
 #: ../data/language-specs/rpmspec.lang.h:15
 msgid "Email"
-msgstr "Е-пошта"
+msgstr "Ел. пошта"
 
 #: ../data/language-specs/ruby.lang.h:2
 msgid "Ruby"
@@ -2014,7 +2020,7 @@ msgstr "СПАРКуЛ"
 
 #: ../data/language-specs/sparql.lang.h:3
 msgid "Class"
-msgstr "Класа"
+msgstr "Разред"
 
 #: ../data/language-specs/sparql.lang.h:6
 msgid "Individual"
@@ -2140,7 +2146,7 @@ msgstr "ЛРМ додатни системски задатак"
 
 #: ../data/language-specs/verilog.lang.h:11
 msgid "Gate"
-msgstr "Улаз"
+msgstr "Пролаз"
 
 #: ../data/language-specs/vhdl.lang.h:2
 msgid "VHDL"
@@ -2164,11 +2170,11 @@ msgstr "Инструкција претпроцесора"
 
 #: ../data/language-specs/xml.lang.h:7
 msgid "Element name"
-msgstr "Име елемента"
+msgstr "Назив елемента"
 
 #: ../data/language-specs/xml.lang.h:9
 msgid "Attribute value"
-msgstr "Име особине"
+msgstr "Вредност особине"
 
 #: ../data/language-specs/xml.lang.h:10
 msgid "Entity"
@@ -2176,7 +2182,7 @@ msgstr "Ентитет"
 
 #: ../data/language-specs/xslt.lang.h:2
 msgid "XSLT"
-msgstr "ХСЛТ"
+msgstr "ИксСЛТ"
 
 #: ../data/language-specs/xslt.lang.h:3
 msgid "Element"
@@ -2216,7 +2222,7 @@ msgstr "Кејт"
 
 #: ../data/styles/kate.xml.h:2
 msgid "Color scheme used in the Kate text editor"
-msgstr "Шема боја коришћена у Кејту уређивачу текста"
+msgstr "Шема боја коришћена у уређивачу текста Кејт"
 
 #: ../data/styles/oblivion.xml.h:1
 msgid "Oblivion"
@@ -2224,7 +2230,7 @@ msgstr "Обливион"
 
 #: ../data/styles/oblivion.xml.h:2
 msgid "Dark color scheme using the Tango color palette"
-msgstr "Тамна шема боја користећи Танго палету боја"
+msgstr "Тамна шема боја која користи Танго палету боја"
 
 #: ../data/styles/tango.xml.h:1
 msgid "Tango"
@@ -2232,7 +2238,7 @@ msgstr "Танго"
 
 #: ../data/styles/tango.xml.h:2
 msgid "Color scheme using Tango color palette"
-msgstr "Шема боја користећи Танго палету боја"
+msgstr "Шема боја која користи Танго палету боја"
 
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:371
 msgid "Document Words"
@@ -2240,7 +2246,7 @@ msgstr "Речи документа"
 
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:456
 msgid "The provider name"
-msgstr "Име добављача"
+msgstr "Назив добављача"
 
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:463
 #: ../gtksourceview/gtksourcecompletionitem.c:268
@@ -2439,10 +2445,9 @@ msgstr "Величина странице за листање предлога"
 
 #: ../gtksourceview/gtksourcecompletion.c:2715
 msgid "Provider"
-msgstr "Добављачи"
+msgstr "Достављач"
 
 #: ../gtksourceview/gtksourcecompletion.ui.h:1
-#| msgid "Show provider and proposal icons in the completion popup"
 msgid "Show detailed proposal information"
 msgstr "Приказује опширне податке предлога"
 
@@ -2453,7 +2458,7 @@ msgstr "_Појединости..."
 #: ../gtksourceview/gtksourcecompletioncontext.c:233
 #: ../gtksourceview/gtksourceview.c:306
 msgid "Completion"
-msgstr "Допуњавање"
+msgstr "Довршавање"
 
 #: ../gtksourceview/gtksourcecompletioncontext.c:234
 msgid "The completion object to which the context belongs"
@@ -2470,7 +2475,7 @@ msgstr "ГткТекстИтер на који се позива допуњав�
 
 #: ../gtksourceview/gtksourcecompletioncontext.c:260
 msgid "Activation"
-msgstr "Активација"
+msgstr "Покретање"
 
 #: ../gtksourceview/gtksourcecompletioncontext.c:261
 msgid "The type of activation"
@@ -2509,7 +2514,7 @@ msgstr "Подаци који се приказују за ову ставку"
 #. * named sub-patterns with the same name or if resulting regex is
 #. * too long. In this case fixing lang file helps (e.g. renaming
 #. * subpatterns, making huge keywords use bigger prefixes, etc.)
-#: ../gtksourceview/gtksourcecontextengine.c:3162
+#: ../gtksourceview/gtksourcecontextengine.c:3120
 #, c-format
 msgid ""
 "Cannot create a regex for all the transitions, the syntax highlighting "
@@ -2520,7 +2525,7 @@ msgstr ""
 "ће бити спорији.\n"
 "Грешка: %s"
 
-#: ../gtksourceview/gtksourcecontextengine.c:4500
+#: ../gtksourceview/gtksourcecontextengine.c:4443
 msgid ""
 "Highlighting a single line took too much time, syntax highlighting will be "
 "disabled"
@@ -2528,19 +2533,19 @@ msgstr ""
 "Истицање једне линије је трајало предуго, истицање синтаксе ће бити "
 "онемогућено"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5753
+#: ../gtksourceview/gtksourcecontextengine.c:5687
 #, c-format
 msgid "context '%s' cannot contain a \\%%{...@start} command"
 msgstr "контекст „%s“ не може да садржи \\%%{...@start} наредбу"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5914
-#: ../gtksourceview/gtksourcecontextengine.c:6003
+#: ../gtksourceview/gtksourcecontextengine.c:5848
+#: ../gtksourceview/gtksourcecontextengine.c:5937
 #, c-format
 msgid "duplicated context id '%s'"
 msgstr "поновљени идентификатор контекста „%s“"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6118
-#: ../gtksourceview/gtksourcecontextengine.c:6178
+#: ../gtksourceview/gtksourcecontextengine.c:6051
+#: ../gtksourceview/gtksourcecontextengine.c:6111
 #, c-format
 msgid ""
 "style override used with wildcard context reference in language '%s' in ref "
@@ -2549,18 +2554,18 @@ msgstr ""
 "преклапање стила коришћено са џокер референцом контекста у језику „%s“ и "
 "референци „%s“"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6192
+#: ../gtksourceview/gtksourcecontextengine.c:6125
 #, c-format
 msgid "invalid context reference '%s'"
 msgstr "неисправна референца контекста „%s“"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6211
-#: ../gtksourceview/gtksourcecontextengine.c:6221
+#: ../gtksourceview/gtksourcecontextengine.c:6144
+#: ../gtksourceview/gtksourcecontextengine.c:6154
 #, c-format
 msgid "unknown context '%s'"
 msgstr "непознати контекст „%s“"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6321
+#: ../gtksourceview/gtksourcecontextengine.c:6253
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "Недостаје главна дефиниција језика (иб = „%s“.)"
@@ -2572,11 +2577,11 @@ msgstr "Дно прегледа Гтк извора"
 #: ../gtksourceview/gtksourcegutter.c:560
 #: ../gtksourceview/gtksourcegutterrenderer.c:703
 msgid "Window Type"
-msgstr "Тип прозора"
+msgstr "Врста прозора"
 
 #: ../gtksourceview/gtksourcegutter.c:561
 msgid "The gutters text window type"
-msgstr "Тип дна прозора текста"
+msgstr "Врста прозора дна текста"
 
 #: ../gtksourceview/gtksourcegutter.c:572
 #: ../gtksourceview/gtksourcegutterrenderer.c:479
@@ -2586,7 +2591,7 @@ msgstr "Х испуњавање"
 #: ../gtksourceview/gtksourcegutter.c:573
 #: ../gtksourceview/gtksourcegutterrenderer.c:480
 msgid "The x-padding"
-msgstr "х-испуњавање"
+msgstr "Водоравно испуњавање"
 
 #: ../gtksourceview/gtksourcegutter.c:583
 #: ../gtksourceview/gtksourcegutterrenderer.c:495
@@ -2596,7 +2601,7 @@ msgstr "Y испуњавање"
 #: ../gtksourceview/gtksourcegutter.c:584
 #: ../gtksourceview/gtksourcegutterrenderer.c:496
 msgid "The y-padding"
-msgstr "y-испуњавање"
+msgstr "Усправно испуњавање"
 
 #: ../gtksourceview/gtksourcegutterrenderer.c:465
 #: ../gtksourceview/gtksourcegutterrenderer.c:466
@@ -2609,7 +2614,7 @@ msgstr "Х поравнање"
 
 #: ../gtksourceview/gtksourcegutterrenderer.c:512
 msgid "The x-alignment"
-msgstr "х-поравнање"
+msgstr "Водоравно поравнање"
 
 #: ../gtksourceview/gtksourcegutterrenderer.c:527
 msgid "Y Alignment"
@@ -2617,7 +2622,7 @@ msgstr "Y поравнање"
 
 #: ../gtksourceview/gtksourcegutterrenderer.c:528
 msgid "The y-alignment"
-msgstr "y-поравнање"
+msgstr "Усправно поравнање"
 
 #: ../gtksourceview/gtksourcegutterrenderer.c:670
 msgid "The View"
@@ -2637,7 +2642,7 @@ msgstr "Режим поравнања"
 
 #: ../gtksourceview/gtksourcegutterrenderer.c:704
 msgid "The window type"
-msgstr "Тип прозора"
+msgstr "Врста прозора"
 
 #: ../gtksourceview/gtksourcegutterrenderer.c:712
 msgid "Size"
@@ -2670,12 +2675,12 @@ msgstr "Иб штока"
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:309
 #: ../gtksourceview/gtksourcemarkattributes.c:329
 msgid "Icon Name"
-msgstr "Име иконице"
+msgstr "Назив иконице"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:310
 #: ../gtksourceview/gtksourcemarkattributes.c:330
 msgid "The icon name"
-msgstr "Име иконице"
+msgstr "Назив иконице"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:317
 #: ../gtksourceview/gtksourcemarkattributes.c:342
@@ -2770,11 +2775,11 @@ msgstr "Категорија ознаке"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:442
 msgid "Source Buffer"
-msgstr "Бафер са изворним кодом"
+msgstr "Међумеморија извора"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:443
 msgid "The GtkSourceBuffer object to print"
-msgstr "Који GtkSourceBuffer објекат се штампа"
+msgstr "Објекат међумеморије Гтк извора за штампу"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:460
 #: ../gtksourceview/gtksourceview.c:344
@@ -2827,35 +2832,36 @@ msgstr "Одређује да ли да штампа подножје на св�
 
 #: ../gtksourceview/gtksourceprintcompositor.c:593
 msgid "Body Font Name"
-msgstr "Фонт за тело текста"
+msgstr "Словни лик за тело текста"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:594
 msgid "Name of the font to use for the text body (e.g. \"Monospace 10\")"
-msgstr "Име фонта који се користи за тело текста (нпр. „Monospace 10“)"
+msgstr "Назив словног лика који се користи за тело текста (нпр. „Monospace 10“)"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:617
 msgid "Line Numbers Font Name"
-msgstr "Фонт за бројеве линија"
+msgstr "Словни лик за бројеве линија"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:618
 msgid "Name of the font to use for the line numbers (e.g. \"Monospace 10\")"
-msgstr "Име фонта који се користи за бројеве линија (нпр. „Monospace 10“)"
+msgstr ""
+"Назив словног лика који се користи за бројеве линија (нпр. „Monospace 10“)"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:641
 msgid "Header Font Name"
-msgstr "Фонт за заглавље"
+msgstr "Словни лик за заглавље"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:642
 msgid "Name of the font to use for the page header (e.g. \"Monospace 10\")"
-msgstr "Име фонта који се користи за заглавље (нпр. „Monospace 10“)"
+msgstr "Назив словног лика који се користи за заглавље (нпр. „Monospace 10“)"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:665
 msgid "Footer Font Name"
-msgstr "Фонт за подножје"
+msgstr "Словни лик за подножје"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:666
 msgid "Name of the font to use for the page footer (e.g. \"Monospace 10\")"
-msgstr "Име фонта који се користи за подножје (нпр. „Monospace 10“)"
+msgstr "Назив словног лика који се користи за подножје (нпр. „Monospace 10“)"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:682
 msgid "Number of pages"
@@ -2866,7 +2872,8 @@ msgid ""
 "The number of pages in the document (-1 means the document has not been "
 "completely paginated)."
 msgstr ""
-"Број страница у документу (-1 значи да нису задате све странице документу)."
+"Број страница у документу (-1 значи да документ није у потпуности "
+"остраничен)."
 
 #: ../gtksourceview/gtksourceregex.c:125
 msgid "using \\C is not supported in language definitions"
@@ -2964,7 +2971,7 @@ msgstr "Идентификатор схеме стила"
 #: ../gtksourceview/gtksourcestylescheme.c:225
 #: ../gtksourceview/gtksourcestylescheme.c:226
 msgid "Style scheme name"
-msgstr "Име схеме стила"
+msgstr "Назив схеме стила"
 
 #: ../gtksourceview/gtksourcestylescheme.c:238
 #: ../gtksourceview/gtksourcestylescheme.c:239
@@ -2974,7 +2981,7 @@ msgstr "Опис схеме стила"
 #: ../gtksourceview/gtksourcestylescheme.c:251
 #: ../gtksourceview/gtksourcestylescheme.c:252
 msgid "Style scheme filename"
-msgstr "Име датотеке схеме стила"
+msgstr "Назив датотеке схеме стила"
 
 #: ../gtksourceview/gtksourcestyleschememanager.c:152
 msgid "Style scheme search path"
@@ -2994,7 +3001,7 @@ msgstr "Списак идентификатора доступних шема с
 
 #: ../gtksourceview/gtksourceundomanagerdefault.c:410
 msgid "Buffer"
-msgstr "Остава"
+msgstr "Приручна меморија"
 
 #: ../gtksourceview/gtksourceundomanagerdefault.c:411
 msgid "The text buffer to add undo support on"
@@ -3006,11 +3013,11 @@ msgstr "Објекат за допуњавање повезан са овим п
 
 #: ../gtksourceview/gtksourceview.c:319
 msgid "Show Line Numbers"
-msgstr "Прикажи бројеве линија"
+msgstr "Прикажи бројеве редова"
 
 #: ../gtksourceview/gtksourceview.c:320
 msgid "Whether to display line numbers"
-msgstr "Одређује да ли да се приказују бројеви линија"
+msgstr "Да ли да приказује бројеве редова"
 
 #: ../gtksourceview/gtksourceview.c:331
 msgid "Show Line Marks"
@@ -3054,7 +3061,7 @@ msgstr "Одређује да ли да се приказује десна ма�
 
 #: ../gtksourceview/gtksourceview.c:403
 msgid "Right Margin Position"
-msgstr "Позиција десне маргине"
+msgstr "Положај десне маргине"
 
 #: ../gtksourceview/gtksourceview.c:404
 msgid "Position of the right margin"
@@ -3074,7 +3081,7 @@ msgstr ""
 
 #: ../gtksourceview/gtksourceview.c:431
 msgid "Highlight current line"
-msgstr "Истичи текући ред"
+msgstr "Истакни текући ред"
 
 #: ../gtksourceview/gtksourceview.c:432
 msgid "Whether to highlight the current line"
@@ -3104,452 +3111,3 @@ msgstr ""
 "Бранко Кокановић <branko.kokanovic@gmail.com>\n"
 "\n"
 "http://prevod.org — превод на српски језик."
-
-#~ msgid "Object"
-#~ msgstr "Објекат"
-
-#~ msgid "Special"
-#~ msgstr "Специјално"
-
-#~ msgid "Maximum width"
-#~ msgstr "Највећа ширина"
-
-#~ msgid "The maximum allowed width"
-#~ msgstr "Највећа дозвољена ширина"
-
-#~ msgid "Maximum height"
-#~ msgstr "Највећа висина"
-
-#~ msgid "The maximum allowed height"
-#~ msgstr "Највећа дозвољена висина"
-
-#~ msgid "Shrink width"
-#~ msgstr "Сузи ширину"
-
-#~ msgid "Whether the window should shrink width to fit the contents"
-#~ msgstr "Да ли да сузим ширину прозора како би се уклопио садржај"
-
-#~ msgid "Shrink height"
-#~ msgstr "Сузи висину"
-
-#~ msgid "Whether the window should shrink height to fit the contents"
-#~ msgstr "Да ли да сузим висину прозора како би се уклопио садржај"
-
-#~ msgid "MSIL"
-#~ msgstr "MSIL"
-
-#~ msgid "Escaping character for syntax patterns"
-#~ msgstr "Знак којим се истичу шаблони синтаксе"
-
-#~ msgid "Check Brackets"
-#~ msgstr "Провери заграде"
-
-#~ msgid "Configuration"
-#~ msgstr "Подешавање"
-
-#~ msgid "Configuration options for the print job"
-#~ msgstr "Подешавање опција за штампу"
-
-#~ msgid "Width in equivalent space characters of tabs"
-#~ msgstr "Ширина табулатора као број обичних размака"
-
-#~ msgid "Word wrapping mode"
-#~ msgstr "Начин прелома речи"
-
-#~ msgid "Font"
-#~ msgstr "Словни лик"
-
-#~ msgid "GnomeFont name to use for the document text (deprecated)"
-#~ msgstr "Име словног лика који се користи за садржај документа (превазиђено)"
-
-#~ msgid "GnomeFont name to use for the line numbers (deprecated)"
-#~ msgstr "Име словног лика који се користи за бројеве редова (превазиђено)"
-
-#~ msgid "Font description to use for the line numbers"
-#~ msgstr "Опис словног лика који се користи за бројеве редова"
-
-#~ msgid "Header and Footer Font"
-#~ msgstr "Словни лик заглавља и подножја"
-
-#~ msgid "GnomeFont name to use for the header and footer (deprecated)"
-#~ msgstr ""
-#~ "Име словног лика који се користи за заглавље и подножје (превазиђено)"
-
-#~ msgid "Header and Footer Font Description"
-#~ msgstr "Опис словног лика заглавља и подножја"
-
-#~ msgid "Tag ID"
-#~ msgstr "ИБ ознаке"
-
-#~ msgid "ID used to refer to the source tag"
-#~ msgstr "ИБ којим се позива изворна ознака"
-
-#~ msgid "Tag style"
-#~ msgstr "Стил ознаке"
-
-#~ msgid "Margin Line Alpha"
-#~ msgstr "Алфа линије маргине"
-
-#~ msgid "Transparency of the margin line"
-#~ msgstr "Провидност линије маргине"
-
-#~ msgid "Margin Line Color"
-#~ msgstr "Боја линије маргине"
-
-#~ msgid "Color to use for the right margin line"
-#~ msgstr "Боја која се користи за линију десне маргине"
-
-#~ msgid "Margin Overlay Toggle"
-#~ msgstr "Прекидач пребачаја маргине"
-
-#~ msgid "Margin Overlay Alpha"
-#~ msgstr "Алфа пребалаја маргине"
-
-#~ msgid "Transparency of the margin overlay"
-#~ msgstr "Провидност пребачаја маргине"
-
-#~ msgid "Margin Overlay Color"
-#~ msgstr "Боја пребачаја маргине"
-
-#~ msgid "Color to use for drawing the margin overlay"
-#~ msgstr "Боја која се користи за исцртавање пребачаја маргине"
-
-#~ msgid "Character Constant"
-#~ msgstr "Знаковна константа"
-
-#~ msgid "Line Comment"
-#~ msgstr "Примедба од једног реда"
-
-#~ msgid "Preprocessor Keyword"
-#~ msgstr "Кључне речи препроцесора"
-
-#~ msgid "True And False"
-#~ msgstr "Тачно и нетачно"
-
-#~ msgid "'#if 0' Comment"
-#~ msgstr "„#if 0“ примедба"
-
-#~ msgid "Include/Pragma"
-#~ msgstr "Include/Pragma"
-
-#~ msgid "Keywords"
-#~ msgstr "Кључне речи"
-
-#~ msgid "Preprocessor Definitions"
-#~ msgstr "Дефиниције помоћу препроцесора"
-
-#~ msgid "Types"
-#~ msgstr "Типови"
-
-#~ msgid "Primitives"
-#~ msgstr "Примитиве"
-
-#~ msgid "Attribute Value Delimiters"
-#~ msgstr "Раздвајачи вредности атрибута"
-
-#~ msgid "Hexadecimal Color"
-#~ msgstr "Хексадекадна боја"
-
-#~ msgid "Importance Modifier"
-#~ msgstr "Измењивач важности"
-
-#~ msgid "Punctuators"
-#~ msgstr "Интерпункција"
-
-#~ msgid "Selector Grammar"
-#~ msgstr "Граматика избирача"
-
-#~ msgid "Unicode Character Reference"
-#~ msgstr "Позив на Уникод знак"
-
-#~ msgid "Diff file"
-#~ msgstr "Датотека са разликама"
-
-#~ msgid "Closing Bracket"
-#~ msgstr "Затворена заграда"
-
-#~ msgid "Input/Output"
-#~ msgstr "Улаз/излаз"
-
-#~ msgid "Intrinsics"
-#~ msgstr "Унутрашњи"
-
-#~ msgid "Read/Write"
-#~ msgstr "Читање/упис"
-
-#~ msgid "Double Quoted String"
-#~ msgstr "Ниска у двоструким наводницима"
-
-#~ msgid "Single Quoted String"
-#~ msgstr "Ниска у једноструким наводницима"
-
-#~ msgid "State"
-#~ msgstr "Стање"
-
-#~ msgid "Type or Constructor"
-#~ msgstr "Тип или конструктор"
-
-#~ msgid "Integer"
-#~ msgstr "Цео број"
-
-#~ msgid "Flow"
-#~ msgstr "Ток"
-
-#~ msgid "Memory"
-#~ msgstr "Меморија"
-
-#~ msgid "Numeric"
-#~ msgstr "Бројне вредности"
-
-#~ msgid "Array Operators"
-#~ msgstr "Оператори низова"
-
-#~ msgid "Floating-Point Number"
-#~ msgstr "Број у покретном зарезу"
-
-#~ msgid "Flow Keywords"
-#~ msgstr "Кључне речи за контролу ток"
-
-#~ msgid "Global Properties"
-#~ msgstr "Опште променљиве"
-
-# bug: s/Math/Mathematical/
-#~ msgid "Math Value Properties"
-#~ msgstr "Особине математичких вредности"
-
-#~ msgid "Object Functions"
-#~ msgstr "Функције за објекте"
-
-#~ msgid "Object Properties"
-#~ msgstr "Особине објеката"
-
-#~ msgid "Word Operators"
-#~ msgstr "Оператори за речи"
-
-# bug: s/Math/Mathematics/
-#~ msgid "Math"
-#~ msgstr "Математика"
-
-#~ msgid "Functions"
-#~ msgstr "Функције"
-
-#~ msgid "Line Comment 2"
-#~ msgstr "Примедба од једног реда 2"
-
-#~ msgid "Multiline String 2"
-#~ msgstr "Вишелинијска ниска 2"
-
-#~ msgid "Backtick String"
-#~ msgstr "Извршна ниска"
-
-#~ msgid "Variable1"
-#~ msgstr "Променљива1"
-
-#~ msgid "Variable2"
-#~ msgstr "Променљива2"
-
-#~ msgid "Keywords Defined by Macros"
-#~ msgstr "Кључне речи које дефинишу макрои"
-
-#~ msgid "Multiline Double Quoted String"
-#~ msgstr "Вишелинијска ниска у двоструким наводницима"
-
-#~ msgid "Multiline Single Quoted String"
-#~ msgstr "Вишелинијска ниска у једноструким наводницима"
-
-#~ msgid "Block Comment 1"
-#~ msgstr "Примедба у блоку 1"
-
-#~ msgid "Block Comment 2"
-#~ msgstr "Примедба у блоку 2"
-
-#~ msgid "Boolean Bitwise Operators"
-#~ msgstr "Истинитосни битовни оператори"
-
-#~ msgid "Functions and Function Modifiers"
-#~ msgstr "Функције и измењивачи функција"
-
-#~ msgid "General Format"
-#~ msgstr "Општи облик"
-
-#~ msgid "Loop, Flow, and Exceptions Keywords"
-#~ msgstr "Кључне речи за циклусе, ток и изузетке"
-
-#~ msgid "Method Call"
-#~ msgstr "Позив методе"
-
-#~ msgid "String2"
-#~ msgstr "Ниска2"
-
-#~ msgid "String3"
-#~ msgstr "Ниска3"
-
-#~ msgid "Variables"
-#~ msgstr "Променљиве"
-
-#~ msgid "Bash Line Comment"
-#~ msgstr "Примедба за Bash"
-
-#~ msgid "C Block Comment"
-#~ msgstr "Примедба C језика у блоку"
-
-#~ msgid "C++ Line Comment"
-#~ msgstr "C++ примедба од једног реда"
-
-#~ msgid "Case Insensitive Keyword"
-#~ msgstr "Кључна реч независна од величине слова"
-
-#~ msgid "Case Sensitive Keyword"
-#~ msgstr "Кључна реч зависна од величине слова"
-
-#~ msgid "First Open PHP Tag"
-#~ msgstr "Прва отворена ПХП ознака"
-
-#~ msgid "Class Variables"
-#~ msgstr "Променљиве класе"
-
-#~ msgid "Instance Variables"
-#~ msgstr "Променљиве инстанце"
-
-#~ msgid "Module Handlers"
-#~ msgstr "Руковаоци модулима"
-
-#~ msgid "Multiline Comment"
-#~ msgstr "Примедба од више редова"
-
-#~ msgid "RegExp Variables"
-#~ msgstr "Променљиве рег. из."
-
-#~ msgid "Punctuator"
-#~ msgstr "Интерпункција"
-
-#~ msgid "Self"
-#~ msgstr "Self"
-
-#~ msgid "ANSI Datatypes"
-#~ msgstr "АНСИ типови података"
-
-#~ msgid "Aggregate Functions"
-#~ msgstr "Допунске функције"
-
-#~ msgid "Character Functions Returning Character Values"
-#~ msgstr "Знаковне функције које враћају знаковне вредности"
-
-#~ msgid "Character Functions Returning Number Values"
-#~ msgstr "Знаковне функције које враћају бројевне вредности"
-
-# Мора мало зеза, не знам шта кажу наши „податковни рудари“ ;)
-#~ msgid "Data Mining Functions"
-#~ msgstr "Функције за бунарење података"
-
-#~ msgid "Encoding and Decoding Functions"
-#~ msgstr "Функције за кодирање и декодирање"
-
-#~ msgid "Environment and Identifier Functions"
-#~ msgstr "Функције за окружење и идентификаторе"
-
-#~ msgid "General Comparison Functions"
-#~ msgstr "Опште функције за поређење"
-
-#~ msgid "Hierarchical Function"
-#~ msgstr "Хијерархијске функције"
-
-#~ msgid "Integer Literals"
-#~ msgstr "Цели бројеви"
-
-#~ msgid "Large Object Functions"
-#~ msgstr "Функције за велике објекте"
-
-#~ msgid "Model Functions"
-#~ msgstr "Функције модела"
-
-# NLS = National Language System?
-#~ msgid "NLS Character Functions"
-#~ msgstr "Функције за језичке знаке"
-
-#~ msgid "NULL-Related Functions"
-#~ msgstr "Функције за NULL"
-
-#~ msgid "Numeric Functions"
-#~ msgstr "Бројевне функције"
-
-#~ msgid "Object Reference Functions"
-#~ msgstr "Функције за позивање објеката"
-
-#~ msgid "Oracle Built-in Datatypes"
-#~ msgstr "Уграђени Ораклови типови података"
-
-#~ msgid "Oracle Reserved Words"
-#~ msgstr "Резервисане речи Оракла"
-
-#~ msgid "Oracle-Supplied Types"
-#~ msgstr "Уграђени Ораклови типови података"
-
-#~ msgid "SQL*Plus At Sign"
-#~ msgstr "SQL*Plus „на“ знак"
-
-#~ msgid "SQL*Plus Commands"
-#~ msgstr "SQL*Plus наредбе"
-
-#~ msgid "SQL*Plus Double At Sign"
-#~ msgstr "SQL*Plus двоструки „на“ знак"
-
-#~ msgid "SQL*Plus Slash"
-#~ msgstr "SQL*Plus коса црта"
-
-#~ msgid "SQL/DS and DB2 Datatypes"
-#~ msgstr "SQL/DS и DB2 типови података"
-
-#~ msgid "Size Clause"
-#~ msgstr "Ознака величине"
-
-#~ msgid "Text Literals"
-#~ msgstr "Текст"
-
-#~ msgid "XML Functions"
-#~ msgstr "XML функције"
-
-#~ msgid "Characters"
-#~ msgstr "Знакови"
-
-#~ msgid "Indexing"
-#~ msgstr "Индексирање"
-
-#~ msgid "Macro Parameters"
-#~ msgstr "Параметри макроа"
-
-#~ msgid "Markup (block)"
-#~ msgstr "Ознаке (блокови)"
-
-#~ msgid "Markup (inline)"
-#~ msgstr "Ознаке (угњеждене)"
-
-#~ msgid "Sectioning"
-#~ msgstr "Одељци"
-
-#~ msgid "Old Style Comment"
-#~ msgstr "Примедба у старом стилу"
-
-#~ msgid "True and False"
-#~ msgstr "Тачно и нетачно"
-
-#~ msgid "Hexadecimal"
-#~ msgstr "Хексадекадни"
-
-#~ msgid "Double Quote String"
-#~ msgstr "Ниска у двоструким наводницима"
-
-#~ msgid "Single Quote String"
-#~ msgstr "Ниска у једноструким наводницима"
-
-#~ msgid "Regular Expression 2"
-#~ msgstr "Регуларни израз 2"
-
-#~ msgid "Miscellaneous Single-Row Functions"
-#~ msgstr "Разне једноредне функције"
-
-#~ msgid "Font description name to use for the document text"
-#~ msgstr "Опис имена фонта који се користи за садржај документа"
-
-#~ msgid "Font description name to use for the header and footer"
-#~ msgstr "Опис имена фонта који се користи за заглавље и подножје"
