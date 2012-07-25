@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview 3.5.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-07-10 08:30+0200\n"
-"PO-Revision-Date: 2012-07-10 08:31+0200\n"
+"POT-Creation-Date: 2012-07-25 13:17+0200\n"
+"PO-Revision-Date: 2012-07-25 13:18+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian bokmål <i18n-nb@lister.ping.uio.no>\n"
 "Language: \n"
@@ -2731,9 +2731,9 @@ msgid "Unknown id '%s' in regex '%s'"
 msgstr "Ukjent ID «%s» i vanlig uttrykk «%s»"
 
 #: ../gtksourceview/gtksourcelanguage-parser-2.c:1178
-#, fuzzy, c-format
+#, c-format
 msgid "in regex '%s': backreferences are not supported"
-msgstr "i regulært uttrykk «%s»: "
+msgstr "i regulært uttrykk «%s»: referanser bakover er ikke støttet"
 
 #: ../gtksourceview/gtksourcemarkattributes.c:290
 #: ../gtksourceview/gtksourcestyle.c:88
