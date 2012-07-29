@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gtksourceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-05-28 04:09+0000\n"
-"PO-Revision-Date: 2012-05-28 14:42+0100\n"
+"POT-Creation-Date: 2012-07-29 09:24+0000\n"
+"PO-Revision-Date: 2012-07-29 14:14+0100\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: \n"
@@ -859,6 +859,7 @@ msgstr "Vgrajeno"
 #: ../data/language-specs/pkgconfig.lang.h:1
 #: ../data/language-specs/po.lang.h:1
 #: ../data/language-specs/protobuf.lang.h:1
+#: ../data/language-specs/puppet.lang.h:1
 #: ../data/language-specs/rpmspec.lang.h:1
 #: ../data/language-specs/sh.lang.h:10
 #: ../data/language-specs/texinfo.lang.h:5
@@ -2099,6 +2100,38 @@ msgstr "Ohlapno"
 #: ../data/language-specs/prolog.lang.h:2
 msgid "Prolog"
 msgstr "Prolog"
+
+#: ../data/language-specs/puppet.lang.h:2
+msgid "Puppet"
+msgstr "Puppet"
+
+#: ../data/language-specs/puppet.lang.h:3
+msgid "Resources"
+msgstr "Viri"
+
+#: ../data/language-specs/puppet.lang.h:4
+msgid "Parameters"
+msgstr "Parametri"
+
+#: ../data/language-specs/puppet.lang.h:5
+msgid "Metaparameters"
+msgstr "Metaparametri"
+
+#: ../data/language-specs/puppet.lang.h:6
+msgid "Functions"
+msgstr "Funkcije"
+
+#: ../data/language-specs/puppet.lang.h:7
+msgid "Values"
+msgstr "Vrednosti"
+
+#: ../data/language-specs/puppet.lang.h:8
+msgid "Variables"
+msgstr "Spremenljivke"
+
+#: ../data/language-specs/puppet.lang.h:9
+msgid "Class names"
+msgstr "Imena razredov"
 
 #: ../data/language-specs/python.lang.h:2
 msgid "Python"
