@@ -76,6 +76,7 @@ LANGUAGES =			\
 	python3.lang		\
 	prolog.lang		\
 	protobuf.lang		\
+	puppet.lang		\
 	R.lang			\
 	rpmspec.lang		\
 	ruby.lang		\
