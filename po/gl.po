@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview-master-po-gl-28392.merged\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-03 03:18+0200\n"
-"PO-Revision-Date: 2012-06-03 03:19+0200\n"
+"POT-Creation-Date: 2012-07-30 02:33+0200\n"
+"PO-Revision-Date: 2012-07-30 02:34+0200\n"
 "Last-Translator: Fran Dieguez <frandieguez@gnome.org>\n"
 "Language-Team: Galician <gnome-l10n-gl@gnome.org>\n"
 "Language: gl\n"
@@ -23,7 +23,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Gtranslator 2.91.4\n"
+"X-Generator: Gtranslator 2.91.5\n"
 
 #: ../data/glade/gtksourceview.xml.in.h:1
 msgid "GtkSourceView"
@@ -669,6 +669,7 @@ msgstr "Incorporado"
 #: ../data/language-specs/nsis.lang.h:1 ../data/language-specs/ocl.lang.h:1
 #: ../data/language-specs/pkgconfig.lang.h:1
 #: ../data/language-specs/po.lang.h:1 ../data/language-specs/protobuf.lang.h:1
+#: ../data/language-specs/puppet.lang.h:1
 #: ../data/language-specs/rpmspec.lang.h:1 ../data/language-specs/sh.lang.h:10
 #: ../data/language-specs/texinfo.lang.h:5
 #: ../data/language-specs/yacc.lang.h:1
@@ -1868,6 +1869,38 @@ msgstr "Dubidoso"
 #: ../data/language-specs/prolog.lang.h:2
 msgid "Prolog"
 msgstr "Prolog"
+
+#: ../data/language-specs/puppet.lang.h:2
+msgid "Puppet"
+msgstr "Puppet"
+
+#: ../data/language-specs/puppet.lang.h:3
+msgid "Resources"
+msgstr "Recursos"
+
+#: ../data/language-specs/puppet.lang.h:4
+msgid "Parameters"
+msgstr "Parámetros"
+
+#: ../data/language-specs/puppet.lang.h:5
+msgid "Metaparameters"
+msgstr "Metaparámetros"
+
+#: ../data/language-specs/puppet.lang.h:6
+msgid "Functions"
+msgstr "Funcións"
+
+#: ../data/language-specs/puppet.lang.h:7
+msgid "Values"
+msgstr "Valores"
+
+#: ../data/language-specs/puppet.lang.h:8
+msgid "Variables"
+msgstr "Variábeis"
+
+#: ../data/language-specs/puppet.lang.h:9
+msgid "Class names"
+msgstr "Nomes de clase"
 
 #: ../data/language-specs/python.lang.h:2
 msgid "Python"
