@@ -9,14 +9,15 @@ msgstr ""
 "Project-Id-Version: gtksourceview.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-05-30 06:57+0000\n"
-"PO-Revision-Date: 2012-05-25 16:17+0200\n"
+"POT-Creation-Date: 2012-07-28 14:54+0000\n"
+"PO-Revision-Date: 2012-07-29 19:05+0200\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
+"X-Generator: Gtranslator 2.91.5\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../data/glade/gtksourceview.xml.in.h:1
@@ -663,6 +664,7 @@ msgstr "Integrado"
 #: ../data/language-specs/nsis.lang.h:1 ../data/language-specs/ocl.lang.h:1
 #: ../data/language-specs/pkgconfig.lang.h:1
 #: ../data/language-specs/po.lang.h:1 ../data/language-specs/protobuf.lang.h:1
+#: ../data/language-specs/puppet.lang.h:1
 #: ../data/language-specs/rpmspec.lang.h:1 ../data/language-specs/sh.lang.h:10
 #: ../data/language-specs/texinfo.lang.h:5
 #: ../data/language-specs/yacc.lang.h:1
@@ -1861,6 +1863,45 @@ msgstr "Difuso"
 msgid "Prolog"
 msgstr "Prolog"
 
+#: ../data/language-specs/puppet.lang.h:2
+msgid "Puppet"
+msgstr "Puppet"
+
+#: ../data/language-specs/puppet.lang.h:3
+#| msgid "Sources"
+msgid "Resources"
+msgstr "Recursos"
+
+#: ../data/language-specs/puppet.lang.h:4
+#| msgid "Parameter"
+msgid "Parameters"
+msgstr "Parámetros"
+
+#: ../data/language-specs/puppet.lang.h:5
+#| msgid "Exec parameter"
+msgid "Metaparameters"
+msgstr "Metaparámetros"
+
+#: ../data/language-specs/puppet.lang.h:6
+#| msgid "Function"
+msgid "Functions"
+msgstr "Funciones"
+
+#: ../data/language-specs/puppet.lang.h:7
+#| msgid "Null Value"
+msgid "Values"
+msgstr "Valores"
+
+#: ../data/language-specs/puppet.lang.h:8
+#| msgid "Variable"
+msgid "Variables"
+msgstr "Variables"
+
+#: ../data/language-specs/puppet.lang.h:9
+#| msgid "Class"
+msgid "Class names"
+msgstr "Nombres de clases"
+
 #: ../data/language-specs/python.lang.h:2
 msgid "Python"
 msgstr "Python"
@@ -2831,7 +2872,8 @@ msgstr "Nombre de la tipografía del cuerpo"
 #: ../gtksourceview/gtksourceprintcompositor.c:594
 msgid "Name of the font to use for the text body (e.g. \"Monospace 10\")"
 msgstr ""
-"Nombre de la tipografía que usar para el cuerpo del texto (ej. «Monospace 10»)"
+"Nombre de la tipografía que usar para el cuerpo del texto (ej. «Monospace "
+"10»)"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:617
 msgid "Line Numbers Font Name"
@@ -2860,7 +2902,8 @@ msgstr "Nombre de la tipografía del pie"
 #: ../gtksourceview/gtksourceprintcompositor.c:666
 msgid "Name of the font to use for the page footer (e.g. \"Monospace 10\")"
 msgstr ""
-"Nombre de la tipografía que usar para el pie de la página (ej. «Monospace 10»)"
+"Nombre de la tipografía que usar para el pie de la página (ej. «Monospace "
+"10»)"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:682
 msgid "Number of pages"
@@ -3076,8 +3119,8 @@ msgid ""
 "HOME and END keys move to first/last non whitespace characters on line "
 "before going to the start/end of the line"
 msgstr ""
-"Las teclas «Inicio» y «Fin» situarán el cursor en el primer/último carácter no "
-"blanco de la línea antes de ir al inicio/fin de la línea"
+"Las teclas «Inicio» y «Fin» situarán el cursor en el primer/último carácter "
+"no blanco de la línea antes de ir al inicio/fin de la línea"
 
 #: ../gtksourceview/gtksourceview.c:431
 msgid "Highlight current line"
