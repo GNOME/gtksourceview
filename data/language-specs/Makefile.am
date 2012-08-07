@@ -1,6 +1,7 @@
 TESTS = check-language.sh
 
 LANGUAGES =			\
+	actionscript.lang	\
 	ada.lang		\
 	asp.lang		\
 	automake.lang		\
@@ -57,6 +58,7 @@ LANGUAGES =			\
 	mallard.lang		\
 	markdown.lang		\
 	matlab.lang		\
+	mxml.lang		\
 	nemerle.lang		\
 	nsis.lang		\
 	objc.lang		\
