@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview.HEAD.he\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-26 07:22+0300\n"
-"PO-Revision-Date: 2012-05-26 07:22+0200\n"
+"POT-Creation-Date: 2012-08-10 15:41+0300\n"
+"PO-Revision-Date: 2012-08-10 15:43+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <he@li.org>\n"
 "Language: he\n"
@@ -76,6 +76,7 @@ msgstr "עוקב"
 msgid "All"
 msgstr "הכול"
 
+#: ../data/language-specs/actionscript.lang.h:1
 #: ../data/language-specs/ada.lang.h:1
 #: ../data/language-specs/asp.lang.h:1
 #: ../data/language-specs/bennugd.lang.h:1
@@ -121,11 +122,12 @@ msgstr "הכול"
 msgid "Sources"
 msgstr "מקורות"
 
-#: ../data/language-specs/ada.lang.h:2
-msgid "Ada"
-msgstr "Ada"
+#: ../data/language-specs/actionscript.lang.h:2
+msgid "ActionScript"
+msgstr "ActionScript"
 
 #. Any comment
+#: ../data/language-specs/actionscript.lang.h:3
 #: ../data/language-specs/ada.lang.h:3
 #: ../data/language-specs/asp.lang.h:3
 #: ../data/language-specs/bennugd.lang.h:3
@@ -182,7 +184,34 @@ msgstr "Ada"
 msgid "Comment"
 msgstr "הערה"
 
+#. Any erroneous construct
+#: ../data/language-specs/actionscript.lang.h:4
+#: ../data/language-specs/cg.lang.h:4
+#: ../data/language-specs/c.lang.h:22
+#: ../data/language-specs/cobol.lang.h:11
+#: ../data/language-specs/csharp.lang.h:4
+#: ../data/language-specs/css.lang.h:3
+#: ../data/language-specs/def.lang.h:53
+#: ../data/language-specs/d.lang.h:4
+#: ../data/language-specs/dot.lang.h:4
+#: ../data/language-specs/go.lang.h:4
+#: ../data/language-specs/html.lang.h:8
+#: ../data/language-specs/json.lang.h:7
+#: ../data/language-specs/nemerle.lang.h:4
+#: ../data/language-specs/ocaml.lang.h:20
+#: ../data/language-specs/ooc.lang.h:4
+#: ../data/language-specs/opal.lang.h:6
+#: ../data/language-specs/perl.lang.h:17
+#: ../data/language-specs/php.lang.h:4
+#: ../data/language-specs/prolog.lang.h:9
+#: ../data/language-specs/vala.lang.h:4
+#: ../data/language-specs/verilog.lang.h:6
+#: ../data/language-specs/xml.lang.h:13
+msgid "Error"
+msgstr "שגיאות"
+
 #. A string constant: "this is a string"
+#: ../data/language-specs/actionscript.lang.h:5
 #: ../data/language-specs/ada.lang.h:4
 #: ../data/language-specs/asp.lang.h:4
 #: ../data/language-specs/boo.lang.h:5
@@ -240,7 +269,37 @@ msgstr "הערה"
 msgid "String"
 msgstr "מחרוזת"
 
+#. Translators: refered to some specific keywords of the language that
+#. allow to get external functionalities
+#: ../data/language-specs/actionscript.lang.h:6
+#: ../data/language-specs/java.lang.h:8
+#: ../data/language-specs/ooc.lang.h:7
+msgid "External"
+msgstr "External"
+
+#: ../data/language-specs/actionscript.lang.h:7
+#: ../data/language-specs/java.lang.h:9
+#: ../data/language-specs/ooc.lang.h:8
+msgid "Declaration"
+msgstr "Declaration"
+
+#: ../data/language-specs/actionscript.lang.h:8
+#: ../data/language-specs/ada.lang.h:8
+#: ../data/language-specs/cg.lang.h:10
+#: ../data/language-specs/c.lang.h:12
+#: ../data/language-specs/java.lang.h:10
+#: ../data/language-specs/ooc.lang.h:9
+msgid "Storage Class"
+msgstr "Storage Class"
+
+#: ../data/language-specs/actionscript.lang.h:9
+#: ../data/language-specs/java.lang.h:11
+#: ../data/language-specs/ooc.lang.h:10
+msgid "Scope Declaration"
+msgstr "Scope Declaration"
+
 #. keywords: "if", "for", "while", etc.
+#: ../data/language-specs/actionscript.lang.h:10
 #: ../data/language-specs/ada.lang.h:5
 #: ../data/language-specs/asp.lang.h:6
 #: ../data/language-specs/awk.lang.h:3
@@ -309,30 +368,24 @@ msgstr "מחרוזת"
 msgid "Keyword"
 msgstr "מילת מפתח"
 
-#. A decimal number: 1234
-#: ../data/language-specs/ada.lang.h:6
-#: ../data/language-specs/bennugd.lang.h:10
-#: ../data/language-specs/cg.lang.h:13
-#: ../data/language-specs/c.lang.h:16
-#: ../data/language-specs/csharp.lang.h:15
-#: ../data/language-specs/def.lang.h:26
-#: ../data/language-specs/d.lang.h:12
-#: ../data/language-specs/eiffel.lang.h:15
-#: ../data/language-specs/erlang.lang.h:10
-#: ../data/language-specs/fsharp.lang.h:6
-#: ../data/language-specs/go.lang.h:13
-#: ../data/language-specs/nemerle.lang.h:13
-#: ../data/language-specs/ocaml.lang.h:7
-#: ../data/language-specs/ooc.lang.h:15
-#: ../data/language-specs/opal.lang.h:10
-#: ../data/language-specs/php.lang.h:19
-#: ../data/language-specs/python.lang.h:13
-#: ../data/language-specs/python3.lang.h:12
-#: ../data/language-specs/ruby.lang.h:11
-msgid "Decimal number"
-msgstr "מספר עשרוני"
+#: ../data/language-specs/actionscript.lang.h:11
+#: ../data/language-specs/boo.lang.h:12
+#: ../data/language-specs/csharp.lang.h:13
+#: ../data/language-specs/d.lang.h:9
+#: ../data/language-specs/fsharp.lang.h:21
+#: ../data/language-specs/java.lang.h:13
+#: ../data/language-specs/javascript.lang.h:4
+#: ../data/language-specs/json.lang.h:5
+#: ../data/language-specs/nemerle.lang.h:10
+#: ../data/language-specs/objj.lang.h:9
+#: ../data/language-specs/ooc.lang.h:12
+#: ../data/language-specs/php.lang.h:16
+#: ../data/language-specs/vala.lang.h:9
+msgid "Null Value"
+msgstr "ערך מאופס"
 
 #. A boolean constant: TRUE, false
+#: ../data/language-specs/actionscript.lang.h:12
 #: ../data/language-specs/ada.lang.h:7
 #: ../data/language-specs/asp.lang.h:13
 #: ../data/language-specs/bennugd.lang.h:12
@@ -361,14 +414,28 @@ msgstr "מספר עשרוני"
 msgid "Boolean value"
 msgstr "ערך בוליאני"
 
-#: ../data/language-specs/ada.lang.h:8
-#: ../data/language-specs/cg.lang.h:10
-#: ../data/language-specs/c.lang.h:12
-#: ../data/language-specs/java.lang.h:10
-#: ../data/language-specs/ooc.lang.h:9
-msgid "Storage Class"
-msgstr "Storage Class"
+#. A generic number constant
+#: ../data/language-specs/actionscript.lang.h:13
+#: ../data/language-specs/asp.lang.h:14
+#: ../data/language-specs/boo.lang.h:14
+#: ../data/language-specs/cobol.lang.h:9
+#: ../data/language-specs/def.lang.h:22
+#: ../data/language-specs/desktop.lang.h:8
+#: ../data/language-specs/forth.lang.h:8
+#: ../data/language-specs/java.lang.h:15
+#: ../data/language-specs/prolog.lang.h:7
+#: ../data/language-specs/vhdl.lang.h:11
+msgid "Number"
+msgstr "מספר"
 
+#: ../data/language-specs/actionscript.lang.h:14
+#: ../data/language-specs/java.lang.h:16
+#: ../data/language-specs/javascript.lang.h:12
+#: ../data/language-specs/ooc.lang.h:18
+msgid "Future Reserved Keywords"
+msgstr "Future Reserved Keywords"
+
+#: ../data/language-specs/actionscript.lang.h:15
 #: ../data/language-specs/ada.lang.h:9
 #: ../data/language-specs/asp.lang.h:11
 #: ../data/language-specs/bennugd.lang.h:8
@@ -409,6 +476,33 @@ msgstr "Storage Class"
 #: ../data/language-specs/vbnet.lang.h:7
 msgid "Data Type"
 msgstr "סוג הנתון"
+
+#: ../data/language-specs/ada.lang.h:2
+msgid "Ada"
+msgstr "Ada"
+
+#. A decimal number: 1234
+#: ../data/language-specs/ada.lang.h:6
+#: ../data/language-specs/bennugd.lang.h:10
+#: ../data/language-specs/cg.lang.h:13
+#: ../data/language-specs/c.lang.h:16
+#: ../data/language-specs/csharp.lang.h:15
+#: ../data/language-specs/def.lang.h:26
+#: ../data/language-specs/d.lang.h:12
+#: ../data/language-specs/eiffel.lang.h:15
+#: ../data/language-specs/erlang.lang.h:10
+#: ../data/language-specs/fsharp.lang.h:6
+#: ../data/language-specs/go.lang.h:13
+#: ../data/language-specs/nemerle.lang.h:13
+#: ../data/language-specs/ocaml.lang.h:7
+#: ../data/language-specs/ooc.lang.h:15
+#: ../data/language-specs/opal.lang.h:10
+#: ../data/language-specs/php.lang.h:19
+#: ../data/language-specs/python.lang.h:13
+#: ../data/language-specs/python3.lang.h:12
+#: ../data/language-specs/ruby.lang.h:11
+msgid "Decimal number"
+msgstr "מספר עשרוני"
 
 #: ../data/language-specs/ada.lang.h:10
 #: ../data/language-specs/asp.lang.h:5
@@ -520,19 +614,6 @@ msgstr "קבועים של VBScript ו־ADO"
 #: ../data/language-specs/vbnet.lang.h:8
 msgid "Special constant"
 msgstr "קבוע מיוחד"
-
-#. A generic number constant
-#: ../data/language-specs/asp.lang.h:14
-#: ../data/language-specs/boo.lang.h:14
-#: ../data/language-specs/cobol.lang.h:9
-#: ../data/language-specs/def.lang.h:22
-#: ../data/language-specs/desktop.lang.h:8
-#: ../data/language-specs/forth.lang.h:8
-#: ../data/language-specs/java.lang.h:15
-#: ../data/language-specs/prolog.lang.h:7
-#: ../data/language-specs/vhdl.lang.h:11
-msgid "Number"
-msgstr "מספר"
 
 #: ../data/language-specs/automake.lang.h:1
 msgid "Automake"
@@ -675,6 +756,7 @@ msgstr "מספר הקסדצימלי"
 #: ../data/language-specs/latex.lang.h:1
 #: ../data/language-specs/mallard.lang.h:1
 #: ../data/language-specs/markdown.lang.h:1
+#: ../data/language-specs/mxml.lang.h:1
 #: ../data/language-specs/t2t.lang.h:1
 #: ../data/language-specs/texinfo.lang.h:1
 #: ../data/language-specs/xml.lang.h:1
@@ -731,21 +813,6 @@ msgstr "הגדרה"
 msgid "Special Variable"
 msgstr "משתנה מיוחד"
 
-#: ../data/language-specs/boo.lang.h:12
-#: ../data/language-specs/csharp.lang.h:13
-#: ../data/language-specs/d.lang.h:9
-#: ../data/language-specs/fsharp.lang.h:21
-#: ../data/language-specs/java.lang.h:13
-#: ../data/language-specs/javascript.lang.h:4
-#: ../data/language-specs/json.lang.h:5
-#: ../data/language-specs/nemerle.lang.h:10
-#: ../data/language-specs/objj.lang.h:9
-#: ../data/language-specs/ooc.lang.h:12
-#: ../data/language-specs/php.lang.h:16
-#: ../data/language-specs/vala.lang.h:9
-msgid "Null Value"
-msgstr "ערך מאופס"
-
 #: ../data/language-specs/boo.lang.h:13
 #: ../data/language-specs/desktop.lang.h:9
 #: ../data/language-specs/d.lang.h:10
@@ -764,31 +831,6 @@ msgstr "בוליאני"
 #: ../data/language-specs/cg.lang.h:2
 msgid "CG Shader Language"
 msgstr "שפת העיבוד הגרפי של CG"
-
-#. Any erroneous construct
-#: ../data/language-specs/cg.lang.h:4
-#: ../data/language-specs/c.lang.h:22
-#: ../data/language-specs/cobol.lang.h:11
-#: ../data/language-specs/csharp.lang.h:4
-#: ../data/language-specs/css.lang.h:3
-#: ../data/language-specs/def.lang.h:53
-#: ../data/language-specs/d.lang.h:4
-#: ../data/language-specs/dot.lang.h:4
-#: ../data/language-specs/go.lang.h:4
-#: ../data/language-specs/html.lang.h:8
-#: ../data/language-specs/json.lang.h:7
-#: ../data/language-specs/nemerle.lang.h:4
-#: ../data/language-specs/ocaml.lang.h:20
-#: ../data/language-specs/ooc.lang.h:4
-#: ../data/language-specs/opal.lang.h:6
-#: ../data/language-specs/perl.lang.h:17
-#: ../data/language-specs/php.lang.h:4
-#: ../data/language-specs/prolog.lang.h:9
-#: ../data/language-specs/vala.lang.h:4
-#: ../data/language-specs/verilog.lang.h:6
-#: ../data/language-specs/xml.lang.h:13
-msgid "Error"
-msgstr "שגיאות"
 
 #: ../data/language-specs/cg.lang.h:6
 msgid "Bindings"
@@ -852,6 +894,7 @@ msgstr "מובנה"
 #: ../data/language-specs/pkgconfig.lang.h:1
 #: ../data/language-specs/po.lang.h:1
 #: ../data/language-specs/protobuf.lang.h:1
+#: ../data/language-specs/puppet.lang.h:1
 #: ../data/language-specs/rpmspec.lang.h:1
 #: ../data/language-specs/sh.lang.h:10
 #: ../data/language-specs/texinfo.lang.h:5
@@ -1699,29 +1742,6 @@ msgstr ".ini"
 msgid "Java"
 msgstr "Java"
 
-#. Translators: refered to some specific keywords of the language that
-#. allow to get external functionalities
-#: ../data/language-specs/java.lang.h:8
-#: ../data/language-specs/ooc.lang.h:7
-msgid "External"
-msgstr "External"
-
-#: ../data/language-specs/java.lang.h:9
-#: ../data/language-specs/ooc.lang.h:8
-msgid "Declaration"
-msgstr "Declaration"
-
-#: ../data/language-specs/java.lang.h:11
-#: ../data/language-specs/ooc.lang.h:10
-msgid "Scope Declaration"
-msgstr "Scope Declaration"
-
-#: ../data/language-specs/java.lang.h:16
-#: ../data/language-specs/javascript.lang.h:12
-#: ../data/language-specs/ooc.lang.h:18
-msgid "Future Reserved Keywords"
-msgstr "Future Reserved Keywords"
-
 #: ../data/language-specs/javascript.lang.h:2
 msgid "JavaScript"
 msgstr "JavaScript"
@@ -1916,6 +1936,20 @@ msgstr "מעבר שורה"
 msgid "Matlab"
 msgstr "Matlab"
 
+#: ../data/language-specs/mxml.lang.h:2
+msgid "MXML"
+msgstr "MXML"
+
+#: ../data/language-specs/mxml.lang.h:3
+#: ../data/language-specs/xml.lang.h:7
+msgid "Element name"
+msgstr "Element name"
+
+#: ../data/language-specs/mxml.lang.h:4
+#: ../data/language-specs/xml.lang.h:5
+msgid "CDATA delimiter"
+msgstr "CDATA delimiter"
+
 #: ../data/language-specs/nemerle.lang.h:2
 msgid "Nemerle"
 msgstr "Nemerle"
@@ -2090,6 +2124,38 @@ msgstr "מעורפל"
 #: ../data/language-specs/prolog.lang.h:2
 msgid "Prolog"
 msgstr "Prolog"
+
+#: ../data/language-specs/puppet.lang.h:2
+msgid "Puppet"
+msgstr "Puppet"
+
+#: ../data/language-specs/puppet.lang.h:3
+msgid "Resources"
+msgstr "משאבים"
+
+#: ../data/language-specs/puppet.lang.h:4
+msgid "Parameters"
+msgstr "פרמטרים"
+
+#: ../data/language-specs/puppet.lang.h:5
+msgid "Metaparameters"
+msgstr "פרמטרי על"
+
+#: ../data/language-specs/puppet.lang.h:6
+msgid "Functions"
+msgstr "פונקציות"
+
+#: ../data/language-specs/puppet.lang.h:7
+msgid "Values"
+msgstr "ערכים"
+
+#: ../data/language-specs/puppet.lang.h:8
+msgid "Variables"
+msgstr "משתנים"
+
+#: ../data/language-specs/puppet.lang.h:9
+msgid "Class names"
+msgstr "שמות מחלקות"
 
 #: ../data/language-specs/python.lang.h:2
 msgid "Python"
@@ -2384,17 +2450,9 @@ msgstr "XML"
 msgid "DOCTYPE"
 msgstr "DOCTYPE"
 
-#: ../data/language-specs/xml.lang.h:5
-msgid "CDATA delimiter"
-msgstr "CDATA delimiter"
-
 #: ../data/language-specs/xml.lang.h:6
 msgid "Processing instruction"
 msgstr "Processing instruction"
-
-#: ../data/language-specs/xml.lang.h:7
-msgid "Element name"
-msgstr "Element name"
 
 #: ../data/language-specs/xml.lang.h:9
 msgid "Attribute value"
