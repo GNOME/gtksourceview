@@ -26,6 +26,7 @@
 #include <gtk/gtk.h>
 #include <gtksourceview/gtksourceview.h>
 #include <gtksourceview/gtksourcecompletioninfo.h>
+#include <gtksourceview/gtksourcecompletioncontext.h>
 #include <gtksourceview/gtksourcecompletionprovider.h>
 #include <gtksourceview/gtksourcelanguage.h>
 #include "gtksourcecompletion-private.h"
