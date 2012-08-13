@@ -27,9 +27,9 @@
 #include <gtk/gtk.h>
 
 #include <gtksourceview/gtksourcebuffer.h>
-#include <gtksourceview/gtksourcecompletion.h>
 #include <gtksourceview/gtksourcegutter.h>
 #include <gtksourceview/gtksourcemarkattributes.h>
+#include "gtksourcecompletion-private.h"
 
 G_BEGIN_DECLS
 

@@ -23,7 +23,12 @@
 #define __GTK_SOURCE_COMPLETION_PIVATE_H__
 
 #include <gtk/gtk.h>
-#include <gtksourceview/gtksourcecompletion.h>
+
+/* Break the cycle between gtksourceview.h and gtksourcecompletion.h */
+typedef struct _GtkSourceCompletion GtkSourceCompletion;
+
+/* Forward declaration */
+struct _GtkSourceView;
 
 GtkSourceCompletion *gtk_source_completion_new (struct _GtkSourceView *source_view);
 

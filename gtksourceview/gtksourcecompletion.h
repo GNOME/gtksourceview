@@ -24,9 +24,11 @@
 #define __GTK_SOURCE_COMPLETION_H__
 
 #include <gtk/gtk.h>
+#include <gtksourceview/gtksourceview.h>
 #include <gtksourceview/gtksourcecompletioninfo.h>
 #include <gtksourceview/gtksourcecompletionprovider.h>
 #include <gtksourceview/gtksourcelanguage.h>
+#include "gtksourcecompletion-private.h"
 
 G_BEGIN_DECLS
 
@@ -43,7 +45,6 @@ G_BEGIN_DECLS
 #define GTK_SOURCE_COMPLETION_ERROR		(gtk_source_completion_error_quark ())
 
 typedef struct _GtkSourceCompletionPrivate GtkSourceCompletionPrivate;
-typedef struct _GtkSourceCompletion GtkSourceCompletion;
 typedef struct _GtkSourceCompletionClass GtkSourceCompletionClass;
 
 typedef enum
@@ -51,9 +52,6 @@ typedef enum
 	GTK_SOURCE_COMPLETION_ERROR_ALREADY_BOUND = 0,
 	GTK_SOURCE_COMPLETION_ERROR_NOT_BOUND
 } GtkSourceCompletionError;
-
-/* Forward declaration of GtkSourceView */
-struct _GtkSourceView;
 
 struct _GtkSourceCompletion
 {
@@ -107,8 +105,7 @@ void		 gtk_source_completion_hide			(GtkSourceCompletion           *completion);
 GtkSourceCompletionInfo *
 		 gtk_source_completion_get_info_window		(GtkSourceCompletion           *completion);
 
-struct _GtkSourceView *
-		 gtk_source_completion_get_view			(GtkSourceCompletion	       *completion);
+GtkSourceView	*gtk_source_completion_get_view			(GtkSourceCompletion	       *completion);
 
 GtkSourceCompletionContext *
 		 gtk_source_completion_create_context		(GtkSourceCompletion           *completion,
