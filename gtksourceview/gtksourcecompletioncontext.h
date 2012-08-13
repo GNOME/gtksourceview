@@ -73,22 +73,22 @@ struct _GtkSourceCompletionContextClass {
 
 GType gtk_source_completion_context_get_type (void) G_GNUC_CONST;
 
-void 		 gtk_source_completion_context_add_proposals 	(GtkSourceCompletionContext          *context,
-								 GtkSourceCompletionProvider         *provider,
-								 GList                               *proposals,
-								 gboolean                             finished);
+void 		 gtk_source_completion_context_add_proposals 	(GtkSourceCompletionContext   *context,
+								 GtkSourceCompletionProvider  *provider,
+								 GList                        *proposals,
+								 gboolean                      finished);
 
-void		 gtk_source_completion_context_get_iter		(GtkSourceCompletionContext          *context,
-								 GtkTextIter                         *iter);
+void		 gtk_source_completion_context_get_iter		(GtkSourceCompletionContext   *context,
+								 GtkTextIter                  *iter);
 
 GtkSourceCompletionActivation
-		 gtk_source_completion_context_get_activation	(GtkSourceCompletionContext          *context);
+		 gtk_source_completion_context_get_activation	(GtkSourceCompletionContext   *context);
 
 GtkSourceCompletionContext *
-		_gtk_source_completion_context_new		(GtkSourceCompletion                 *completion,
-								 GtkTextIter                         *position);
+		_gtk_source_completion_context_new		(GtkSourceCompletion          *completion,
+								 GtkTextIter                  *position);
 
-void		_gtk_source_completion_context_cancel		(GtkSourceCompletionContext          *context);
+void		_gtk_source_completion_context_cancel		(GtkSourceCompletionContext   *context);
 
 G_END_DECLS
 
