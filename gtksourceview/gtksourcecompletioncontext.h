@@ -24,6 +24,7 @@
 
 #include <glib-object.h>
 #include <gtk/gtk.h>
+#include "gtksourcecompletion-private.h"
 
 G_BEGIN_DECLS
 
@@ -55,7 +56,6 @@ typedef enum
 
 /* Forward declaration */
 struct _GtkSourceCompletionProvider;
-struct _GtkSourceCompletion;
 
 struct _GtkSourceCompletionContext {
 	GInitiallyUnowned parent;
@@ -88,7 +88,7 @@ GtkSourceCompletionActivation
 		 gtk_source_completion_context_get_activation	(GtkSourceCompletionContext          *context);
 
 GtkSourceCompletionContext *
-		_gtk_source_completion_context_new		(struct _GtkSourceCompletion         *completion,
+		_gtk_source_completion_context_new		(GtkSourceCompletion                 *completion,
 								 GtkTextIter                         *position);
 
 void		_gtk_source_completion_context_cancel		(GtkSourceCompletionContext          *context);
