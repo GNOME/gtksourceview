@@ -31,6 +31,7 @@
 #include <gtksourceview/gtksourcecompletioninfo.h>
 #include <gtksourceview/gtksourcelanguage.h>
 #include <gtksourceview/gtksourcecompletioncontext.h>
+#include "gtksourcecompletion-private.h"
 
 G_BEGIN_DECLS
 
@@ -42,7 +43,6 @@ G_BEGIN_DECLS
 #define GTK_SOURCE_COMPLETION_CAPABILITY_INTERACTIVE "standard::interactive"
 #define GTK_SOURCE_COMPLETION_CAPABILITY_AUTOMATIC "standard::automatic"
 
-typedef struct _GtkSourceCompletionProvider GtkSourceCompletionProvider;
 typedef struct _GtkSourceCompletionProviderIface GtkSourceCompletionProviderIface;
 
 struct _GtkSourceCompletionProviderIface

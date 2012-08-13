@@ -27,6 +27,9 @@
 /* Break the cycle between gtksourceview.h and gtksourcecompletion.h */
 typedef struct _GtkSourceCompletion GtkSourceCompletion;
 
+/* Break the cycle between completionprovider.h and completioncontext.h */
+typedef struct _GtkSourceCompletionProvider GtkSourceCompletionProvider;
+
 /* Forward declaration */
 struct _GtkSourceView;
 

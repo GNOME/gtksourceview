@@ -54,9 +54,6 @@ typedef enum
 	GTK_SOURCE_COMPLETION_ACTIVATION_USER_REQUESTED = 1 << 1
 } GtkSourceCompletionActivation;
 
-/* Forward declaration */
-struct _GtkSourceCompletionProvider;
-
 struct _GtkSourceCompletionContext {
 	GInitiallyUnowned parent;
 
@@ -77,7 +74,7 @@ struct _GtkSourceCompletionContextClass {
 GType gtk_source_completion_context_get_type (void) G_GNUC_CONST;
 
 void 		 gtk_source_completion_context_add_proposals 	(GtkSourceCompletionContext          *context,
-								 struct _GtkSourceCompletionProvider *provider,
+								 GtkSourceCompletionProvider         *provider,
 								 GList                               *proposals,
 								 gboolean                             finished);
 
