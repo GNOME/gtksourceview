@@ -3283,7 +3283,7 @@ _gtk_source_completion_add_proposals (GtkSourceCompletion         *completion,
  * @completion: a #GtkSourceCompletion.
  * @providers: (element-type GtkSource.CompletionProvider) (allow-none):
  * a list of #GtkSourceCompletionProvider, or %NULL.
- * @context: (transfer full): The #GtkSourceCompletionContext
+ * @context: (transfer floating): The #GtkSourceCompletionContext
  * with which to start the completion.
  *
  * Starts a new completion with the specified #GtkSourceCompletionContext and
@@ -3583,7 +3583,7 @@ gtk_source_completion_get_view (GtkSourceCompletion *completion)
  * the completion occurs can be specified by @position. If @position is %NULL,
  * the current cursor position will be used.
  *
- * Returns: (transfer full): a new #GtkSourceCompletionContext.
+ * Returns: (transfer floating): a new #GtkSourceCompletionContext.
  * The reference being returned is a 'floating' reference,
  * so if you invoke #gtk_source_completion_show with this context
  * you don't need to unref it.
