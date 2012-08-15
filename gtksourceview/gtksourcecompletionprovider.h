@@ -31,7 +31,7 @@
 #include <gtksourceview/gtksourcecompletioninfo.h>
 #include <gtksourceview/gtksourcelanguage.h>
 #include <gtksourceview/gtksourcecompletioncontext.h>
-#include "gtksourcecompletion-private.h"
+#include <gtksourceview/gtksourcetypes.h>
 
 G_BEGIN_DECLS
 

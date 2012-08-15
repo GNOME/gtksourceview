@@ -29,7 +29,7 @@
 #include <gtksourceview/gtksourcebuffer.h>
 #include <gtksourceview/gtksourcegutter.h>
 #include <gtksourceview/gtksourcemarkattributes.h>
-#include "gtksourcecompletion-private.h"
+#include <gtksourceview/gtksourcetypes.h>
 
 G_BEGIN_DECLS
 
@@ -53,7 +53,6 @@ typedef enum
 	GTK_SOURCE_VIEW_GUTTER_POSITION_MARKS = -20
 } GtkSourceViewGutterPosition;
 
-typedef struct _GtkSourceView GtkSourceView;
 typedef struct _GtkSourceViewClass GtkSourceViewClass;
 
 typedef struct _GtkSourceViewPrivate GtkSourceViewPrivate;

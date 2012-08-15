@@ -20,6 +20,7 @@
 #ifndef __GTK_SOURCE_H__
 #define __GTK_SOURCE_H__
 
+#include <gtksourceview/gtksourcetypes.h>
 #include <gtksourceview/gtksourcebuffer.h>
 #include <gtksourceview/gtksourcecompletioncontext.h>
 #include <gtksourceview/gtksourcecompletion.h>

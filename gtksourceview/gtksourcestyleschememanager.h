@@ -22,6 +22,7 @@
 #ifndef __GTK_SOURCE_STYLE_SCHEME_MANAGER_H__
 #define __GTK_SOURCE_STYLE_SCHEME_MANAGER_H__
 
+#include <gtksourceview/gtksourcetypes.h>
 #include <gtksourceview/gtksourcestylescheme.h>
 
 G_BEGIN_DECLS
@@ -34,7 +35,6 @@ G_BEGIN_DECLS
 #define GTK_SOURCE_STYLE_SCHEME_MANAGER_GET_CLASS(obj)	(G_TYPE_INSTANCE_GET_CLASS((obj), GTK_SOURCE_TYPE_STYLE_SCHEME_MANAGER, GtkSourceStyleSchemeManagerClass))
 
 
-typedef struct _GtkSourceStyleSchemeManager		GtkSourceStyleSchemeManager;
 typedef struct _GtkSourceStyleSchemeManagerClass	GtkSourceStyleSchemeManagerClass;
 typedef struct _GtkSourceStyleSchemeManagerPrivate	GtkSourceStyleSchemeManagerPrivate;
 

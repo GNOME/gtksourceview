@@ -22,6 +22,7 @@
 #ifndef __GTK_SOURCE_LANGUAGE_MANAGER_H__
 #define __GTK_SOURCE_LANGUAGE_MANAGER_H__
 
+#include <gtksourceview/gtksourcetypes.h>
 #include <gtksourceview/gtksourcelanguage.h>
 
 G_BEGIN_DECLS
@@ -34,7 +35,6 @@ G_BEGIN_DECLS
 #define GTK_SOURCE_LANGUAGE_MANAGER_GET_CLASS(obj)	(G_TYPE_INSTANCE_GET_CLASS((obj), GTK_SOURCE_TYPE_LANGUAGE_MANAGER, GtkSourceLanguageManagerClass))
 
 
-typedef struct _GtkSourceLanguageManager	GtkSourceLanguageManager;
 typedef struct _GtkSourceLanguageManagerClass	GtkSourceLanguageManagerClass;
 typedef struct _GtkSourceLanguageManagerPrivate GtkSourceLanguageManagerPrivate;
 

@@ -25,6 +25,7 @@
 
 #include <glib-object.h>
 #include <gtk/gtk.h>
+#include <gtksourceview/gtksourcetypes.h>
 
 G_BEGIN_DECLS
 
@@ -36,8 +37,6 @@ G_BEGIN_DECLS
 #define GTK_SOURCE_COMPLETION_INFO_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj), GTK_SOURCE_TYPE_COMPLETION_INFO, GtkSourceCompletionInfoClass))
 
 typedef struct _GtkSourceCompletionInfoPrivate GtkSourceCompletionInfoPrivate;
-
-typedef struct _GtkSourceCompletionInfo GtkSourceCompletionInfo;
 
 struct _GtkSourceCompletionInfo
 {

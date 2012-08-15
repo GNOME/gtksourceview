@@ -23,6 +23,7 @@
 #ifndef __GTK_SOURCE_CONTEXT_ENGINE_H__
 #define __GTK_SOURCE_CONTEXT_ENGINE_H__
 
+#include <gtksourceview/gtksourcetypes.h>
 #include <gtksourceview/gtksourceengine.h>
 #include <gtksourceview/gtksourcelanguage.h>
 
@@ -38,7 +39,6 @@ G_BEGIN_DECLS
 typedef struct _GtkSourceContextData          GtkSourceContextData;
 typedef struct _GtkSourceContextReplace       GtkSourceContextReplace;
 typedef struct _GtkSourceContextClass         GtkSourceContextClass;
-typedef struct _GtkSourceContextEngine        GtkSourceContextEngine;
 typedef struct _GtkSourceContextEngineClass   GtkSourceContextEngineClass;
 typedef struct _GtkSourceContextEnginePrivate GtkSourceContextEnginePrivate;
 

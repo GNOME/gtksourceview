@@ -25,6 +25,7 @@
 
 #include <glib-object.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
+#include <gtksourceview/gtksourcetypes.h>
 
 G_BEGIN_DECLS
 
@@ -33,7 +34,6 @@ G_BEGIN_DECLS
 #define GTK_SOURCE_IS_COMPLETION_PROPOSAL(obj)			(G_TYPE_CHECK_INSTANCE_TYPE ((obj), GTK_SOURCE_TYPE_COMPLETION_PROPOSAL))
 #define GTK_SOURCE_COMPLETION_PROPOSAL_GET_INTERFACE(obj)	(G_TYPE_INSTANCE_GET_INTERFACE ((obj), GTK_SOURCE_TYPE_COMPLETION_PROPOSAL, GtkSourceCompletionProposalIface))
 
-typedef struct _GtkSourceCompletionProposal		GtkSourceCompletionProposal;
 typedef struct _GtkSourceCompletionProposalIface	GtkSourceCompletionProposalIface;
 
 struct _GtkSourceCompletionProposalIface

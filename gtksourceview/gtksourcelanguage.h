@@ -25,6 +25,7 @@
 #include <glib.h>
 #include <glib-object.h>
 #include <gtk/gtk.h>
+#include <gtksourceview/gtksourcetypes.h>
 
 G_BEGIN_DECLS
 
@@ -36,7 +37,6 @@ G_BEGIN_DECLS
 #define GTK_SOURCE_LANGUAGE_GET_CLASS(obj)      (G_TYPE_INSTANCE_GET_CLASS ((obj), GTK_SOURCE_TYPE_LANGUAGE, GtkSourceLanguageClass))
 
 
-typedef struct _GtkSourceLanguage		GtkSourceLanguage;
 typedef struct _GtkSourceLanguageClass		GtkSourceLanguageClass;
 typedef struct _GtkSourceLanguagePrivate	GtkSourceLanguagePrivate;
 

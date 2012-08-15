@@ -25,6 +25,7 @@
 #include <glib-object.h>
 #include <gtk/gtk.h>
 #include <gdk/gdk.h>
+#include <gtksourceview/gtksourcetypes.h>
 
 G_BEGIN_DECLS
 
@@ -36,7 +37,6 @@ G_BEGIN_DECLS
 #define GTK_SOURCE_IS_GUTTER_RENDERER_CLASS(klass)	(G_TYPE_CHECK_CLASS_TYPE ((klass), GTK_SOURCE_TYPE_GUTTER_RENDERER))
 #define GTK_SOURCE_GUTTER_RENDERER_GET_CLASS(obj)	(G_TYPE_INSTANCE_GET_CLASS ((obj), GTK_SOURCE_TYPE_GUTTER_RENDERER, GtkSourceGutterRendererClass))
 
-typedef struct _GtkSourceGutterRenderer		GtkSourceGutterRenderer;
 typedef struct _GtkSourceGutterRendererClass	GtkSourceGutterRendererClass;
 typedef struct _GtkSourceGutterRendererPrivate	GtkSourceGutterRendererPrivate;
 

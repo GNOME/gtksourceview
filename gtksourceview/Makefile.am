@@ -42,6 +42,7 @@ libgtksourceview_headers =			\
 	gtksourcestyle.h			\
 	gtksourcestylescheme.h			\
 	gtksourcestyleschememanager.h		\
+	gtksourcetypes.h			\
 	gtksourceundomanager.h			\
 	gtksourceview.h
 

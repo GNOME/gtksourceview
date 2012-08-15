@@ -24,6 +24,7 @@
 #define __GTK_SOURCE_PRINT_COMPOSITOR_H__
 
 #include <gtk/gtk.h>
+#include <gtksourceview/gtksourcetypes.h>
 #include <gtksourceview/gtksourceview.h>
 
 G_BEGIN_DECLS
@@ -35,7 +36,6 @@ G_BEGIN_DECLS
 #define GTK_SOURCE_IS_PRINT_COMPOSITOR_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GTK_SOURCE_TYPE_PRINT_COMPOSITOR))
 #define GTK_SOURCE_PRINT_COMPOSITOR_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), GTK_SOURCE_TYPE_PRINT_COMPOSITOR, GtkSourcePrintCompositorClass))
 
-typedef struct _GtkSourcePrintCompositor         GtkSourcePrintCompositor;
 typedef struct _GtkSourcePrintCompositorClass    GtkSourcePrintCompositorClass;
 typedef struct _GtkSourcePrintCompositorPrivate  GtkSourcePrintCompositorPrivate;
 

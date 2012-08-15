@@ -23,6 +23,7 @@
 #define __GTK_SOURCE_COMPLETION_ITEM_H__
 
 #include <glib-object.h>
+#include <gtksourceview/gtksourcetypes.h>
 #include <gtksourceview/gtksourcecompletionproposal.h>
 
 G_BEGIN_DECLS
@@ -35,7 +36,6 @@ G_BEGIN_DECLS
 #define GTK_SOURCE_IS_COMPLETION_ITEM_CLASS(klass)	(G_TYPE_CHECK_CLASS_TYPE ((klass), GTK_SOURCE_TYPE_COMPLETION_ITEM))
 #define GTK_SOURCE_COMPLETION_ITEM_GET_CLASS(obj)	(G_TYPE_INSTANCE_GET_CLASS ((obj), GTK_SOURCE_TYPE_COMPLETION_ITEM, GtkSourceCompletionItemClass))
 
-typedef struct _GtkSourceCompletionItem		GtkSourceCompletionItem;
 typedef struct _GtkSourceCompletionItemClass	GtkSourceCompletionItemClass;
 typedef struct _GtkSourceCompletionItemPrivate	GtkSourceCompletionItemPrivate;
 

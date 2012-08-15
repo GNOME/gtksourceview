@@ -26,6 +26,7 @@
 #define __GTK_SOURCE_UNDO_MANAGER_DEFAULT_H__
 
 #include <glib-object.h>
+#include <gtksourceview/gtksourcetypes.h>
 
 G_BEGIN_DECLS
 
@@ -36,7 +37,6 @@ G_BEGIN_DECLS
 #define GTK_SOURCE_IS_UNDO_MANAGER_DEFAULT_CLASS(klass)	(G_TYPE_CHECK_CLASS_TYPE ((klass), GTK_SOURCE_TYPE_UNDO_MANAGER_DEFAULT))
 #define GTK_SOURCE_UNDO_MANAGER_DEFAULT_GET_CLASS(obj)	(G_TYPE_INSTANCE_GET_CLASS ((obj), GTK_SOURCE_TYPE_UNDO_MANAGER_DEFAULT, GtkSourceUndoManagerDefaultClass))
 
-typedef struct _GtkSourceUndoManagerDefault        	GtkSourceUndoManagerDefault;
 typedef struct _GtkSourceUndoManagerDefaultClass 	GtkSourceUndoManagerDefaultClass;
 typedef struct _GtkSourceUndoManagerDefaultPrivate 	GtkSourceUndoManagerDefaultPrivate;
 

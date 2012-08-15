@@ -26,6 +26,7 @@
 #define __GTK_SOURCE_BUFFER_H__
 
 #include <gtk/gtk.h>
+#include <gtksourceview/gtksourcetypes.h>
 #include <gtksourceview/gtksourcelanguage.h>
 #include <gtksourceview/gtksourcemark.h>
 #include <gtksourceview/gtksourcestylescheme.h>
@@ -40,7 +41,6 @@ G_BEGIN_DECLS
 #define GTK_SOURCE_IS_BUFFER_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GTK_SOURCE_TYPE_BUFFER))
 #define GTK_SOURCE_BUFFER_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), GTK_SOURCE_TYPE_BUFFER, GtkSourceBufferClass))
 
-typedef struct _GtkSourceBuffer			GtkSourceBuffer;
 typedef struct _GtkSourceBufferClass		GtkSourceBufferClass;
 typedef struct _GtkSourceBufferPrivate		GtkSourceBufferPrivate;
 

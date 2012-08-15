@@ -22,6 +22,7 @@
 #ifndef __GTK_SOURCE_GUTTER_RENDERER_LINES_H__
 #define __GTK_SOURCE_GUTTER_RENDERER_LINES_H__
 
+#include <gtksourceview/gtksourcetypes.h>
 #include <gtksourceview/gtksourcegutterrenderertext.h>
 #include <gtk/gtk.h>
 
@@ -35,7 +36,6 @@ G_BEGIN_DECLS
 #define GTK_SOURCE_IS_GUTTER_RENDERER_LINES_CLASS(klass)	(G_TYPE_CHECK_CLASS_TYPE ((klass), GTK_SOURCE_TYPE_GUTTER_RENDERER_LINES))
 #define GTK_SOURCE_GUTTER_RENDERER_LINES_GET_CLASS(obj)	(G_TYPE_INSTANCE_GET_CLASS ((obj), GTK_SOURCE_TYPE_GUTTER_RENDERER_LINES, GtkSourceGutterRendererLinesClass))
 
-typedef struct _GtkSourceGutterRendererLines		GtkSourceGutterRendererLines;
 typedef struct _GtkSourceGutterRendererLinesClass	GtkSourceGutterRendererLinesClass;
 typedef struct _GtkSourceGutterRendererLinesPrivate	GtkSourceGutterRendererLinesPrivate;
 

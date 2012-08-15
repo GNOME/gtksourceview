@@ -24,10 +24,9 @@
 #define __GTK_SOURCE_REGEX_H__
 
 #include <glib.h>
+#include <gtksourceview/gtksourcetypes.h>
 
 G_BEGIN_DECLS
-
-typedef struct _GtkSourceRegex GtkSourceRegex;
 
 GtkSourceRegex	*_gtk_source_regex_new		(const gchar         *pattern,
 						 GRegexCompileFlags   flags,

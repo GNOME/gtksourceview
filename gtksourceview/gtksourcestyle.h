@@ -23,14 +23,13 @@
 #define __GTK_SOURCE_STYLE_H__
 
 #include <glib-object.h>
+#include <gtksourceview/gtksourcetypes.h>
 
 G_BEGIN_DECLS
 
 #define GTK_SOURCE_TYPE_STYLE		(gtk_source_style_get_type ())
 #define GTK_SOURCE_STYLE(obj)		(G_TYPE_CHECK_INSTANCE_CAST ((obj), GTK_SOURCE_TYPE_STYLE, GtkSourceStyle))
 #define GTK_SOURCE_IS_STYLE(obj)	(G_TYPE_CHECK_INSTANCE_TYPE ((obj), GTK_SOURCE_TYPE_STYLE))
-
-typedef struct _GtkSourceStyle GtkSourceStyle;
 
 GType		 gtk_source_style_get_type	(void) G_GNUC_CONST;
 

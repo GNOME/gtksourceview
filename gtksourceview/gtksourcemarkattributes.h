@@ -24,6 +24,7 @@
 #define __GTK_SOURCE_MARK_ATTRIBUTES_H__
 
 #include <gtk/gtk.h>
+#include <gtksourceview/gtksourcetypes.h>
 #include <gtksourceview/gtksourcemark.h>
 
 G_BEGIN_DECLS
@@ -36,7 +37,6 @@ G_BEGIN_DECLS
 #define GTK_SOURCE_IS_MARK_ATTRIBUTES_CLASS(klass)	(G_TYPE_CHECK_CLASS_TYPE ((klass), GTK_SOURCE_TYPE_MARK_ATTRIBUTES))
 #define GTK_SOURCE_MARK_ATTRIBUTES_GET_CLASS(obj)	(G_TYPE_INSTANCE_GET_CLASS ((obj), GTK_SOURCE_TYPE_MARK_ATTRIBUTES, GtkSourceMarkAttributesClass))
 
-typedef struct _GtkSourceMarkAttributes		GtkSourceMarkAttributes;
 typedef struct _GtkSourceMarkAttributesClass	GtkSourceMarkAttributesClass;
 typedef struct _GtkSourceMarkAttributesPrivate	GtkSourceMarkAttributesPrivate;
 

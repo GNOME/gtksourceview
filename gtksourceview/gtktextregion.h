@@ -23,10 +23,10 @@
 #define __GTK_TEXT_REGION_H__
 
 #include <gtk/gtk.h>
+#include <gtksourceview/gtksourcetypes.h>
 
 G_BEGIN_DECLS
 
-typedef struct _GtkTextRegion		GtkTextRegion;
 typedef struct _GtkTextRegionIterator	GtkTextRegionIterator;
 
 struct _GtkTextRegionIterator {
