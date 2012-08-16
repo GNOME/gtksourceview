@@ -8,53 +8,47 @@ msgstr ""
 "Project-Id-Version: as\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug."
 "cgi?product=gtksourceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-02-04 13:59+0000\n"
-"PO-Revision-Date: 2012-03-16 20:40+0530\n"
+"POT-Creation-Date: 2012-08-14 22:08+0000\n"
+"PO-Revision-Date: 2012-08-16 18:32+0530\n"
 "Last-Translator: Nilamdyuti Goswami <ngoswami@redhat.com>\n"
 "Language-Team: as_IN <kde-i18n-doc@kde.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
 "X-Generator: Lokalize 1.0\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #: ../data/glade/gtksourceview.xml.in.h:1
-msgid "After"
-msgstr "পিছত"
+msgid "GtkSourceView"
+msgstr "GtkSourceView"
 
-#. Translators: "All" is used as a label in thestatus bar of the
-#. popup, telling that all completion pages are shown
-#: ../data/glade/gtksourceview.xml.in.h:2
-#: ../gtksourceview/gtksourcecompletion.c:648
-msgid "All"
-msgstr "সকলো"
-
+#. Translators: It is related to an option of a set of values
 #: ../data/glade/gtksourceview.xml.in.h:3
-msgid "Always"
-msgstr "সদায়"
+msgid "Disabled"
+msgstr "অসামৰ্থবান"
 
 #: ../data/glade/gtksourceview.xml.in.h:4
 msgid "Before"
 msgstr "আগত"
 
-#. Translators: It is related to an option of a set of values
+#: ../data/glade/gtksourceview.xml.in.h:5
+msgid "After"
+msgstr "পিছত"
+
 #: ../data/glade/gtksourceview.xml.in.h:6
-#| msgid "Variable"
-msgid "Disabled"
-msgstr "অসামৰ্থবান"
+msgid "Always"
+msgstr "সদায়"
 
 #: ../data/glade/gtksourceview.xml.in.h:7
-#| msgid "The gutters' GtkSourceView"
-msgid "GtkSourceView"
-msgstr "GtkSourceView"
+msgid "Space"
+msgstr "স্থান"
 
 #: ../data/glade/gtksourceview.xml.in.h:8
-#| msgid "POD heading"
-msgid "Leading"
-msgstr "আগবাঢ়ি থকা"
+msgid "Tab"
+msgstr "টেব"
 
 #: ../data/glade/gtksourceview.xml.in.h:9
-#| msgid "Underline"
 msgid "Newline"
 msgstr "নতুনশাৰী"
 
@@ -63,639 +57,641 @@ msgid "Non Breaking Whitespace"
 msgstr "ভাঙি নযোৱা Whitespace"
 
 #: ../data/glade/gtksourceview.xml.in.h:11
-#| msgid "Draw Spaces"
-msgid "Space"
-msgstr "স্থান"
+msgid "Leading"
+msgstr "আগবাঢ়ি থকা"
 
 #: ../data/glade/gtksourceview.xml.in.h:12
-#| msgid "Tag"
-msgid "Tab"
-msgstr "টেব"
-
-#: ../data/glade/gtksourceview.xml.in.h:13
 #: ../gtksourceview/gtksourcecompletionitem.c:255
 #: ../gtksourceview/gtksourcegutterrenderertext.c:403
-#| msgid "Text2Tags"
 msgid "Text"
 msgstr "লিখনী"
 
-#: ../data/glade/gtksourceview.xml.in.h:14
-#| msgid "Trailing Tab"
+#: ../data/glade/gtksourceview.xml.in.h:13
 msgid "Trailing"
 msgstr "অনুকৰণ কৰা"
 
-#
-#: ../data/language-specs/ada.lang.h:1
-msgid "Ada"
-msgstr "এডা"
-
-#: ../data/language-specs/ada.lang.h:2
-msgid "Arbitrary base number"
-msgstr "Base-N সংখ্যা"
+#. Translators: "All" is used as a label in thestatus bar of the
+#. popup, telling that all completion pages are shown
+#: ../data/glade/gtksourceview.xml.in.h:14
+#: ../gtksourceview/gtksourcecompletion.c:647
+msgid "All"
+msgstr "সকলো"
 
 #
-#. A boolean constant: TRUE, false
-#: ../data/language-specs/ada.lang.h:3 ../data/language-specs/asp.lang.h:3
-#: ../data/language-specs/bennugd.lang.h:2 ../data/language-specs/cg.lang.h:2
-#: ../data/language-specs/c.lang.h:1 ../data/language-specs/csharp.lang.h:1
-#: ../data/language-specs/def.lang.h:4 ../data/language-specs/fsharp.lang.h:2
-#: ../data/language-specs/go.lang.h:1 ../data/language-specs/gtkrc.lang.h:1
-#: ../data/language-specs/ini.lang.h:2 ../data/language-specs/java.lang.h:1
-#: ../data/language-specs/lua.lang.h:1 ../data/language-specs/nemerle.lang.h:2
-#: ../data/language-specs/ocaml.lang.h:2 ../data/language-specs/ooc.lang.h:1
-#: ../data/language-specs/opal.lang.h:1 ../data/language-specs/php.lang.h:1
-#: ../data/language-specs/protobuf.lang.h:1 ../data/language-specs/R.lang.h:2
-#: ../data/language-specs/ruby.lang.h:3 ../data/language-specs/sml.lang.h:2
-#: ../data/language-specs/vala.lang.h:1 ../data/language-specs/vbnet.lang.h:1
-#: ../data/language-specs/vhdl.lang.h:2
-msgid "Boolean value"
-msgstr "বুলিয়ান মান"
-
-#
-#. Any comment
-#: ../data/language-specs/ada.lang.h:4 ../data/language-specs/asp.lang.h:4
-#: ../data/language-specs/bennugd.lang.h:3 ../data/language-specs/boo.lang.h:4
-#: ../data/language-specs/cg.lang.h:5 ../data/language-specs/c.lang.h:4
-#: ../data/language-specs/cobol.lang.h:2
-#: ../data/language-specs/csharp.lang.h:4 ../data/language-specs/def.lang.h:11
-#: ../data/language-specs/d.lang.h:3 ../data/language-specs/dosbatch.lang.h:2
-#: ../data/language-specs/dot.lang.h:2 ../data/language-specs/eiffel.lang.h:3
-#: ../data/language-specs/erlang.lang.h:4 ../data/language-specs/fcl.lang.h:2
+#: ../data/language-specs/actionscript.lang.h:1
+#: ../data/language-specs/ada.lang.h:1 ../data/language-specs/asp.lang.h:1
+#: ../data/language-specs/bennugd.lang.h:1 ../data/language-specs/boo.lang.h:1
+#: ../data/language-specs/cg.lang.h:1 ../data/language-specs/chdr.lang.h:1
+#: ../data/language-specs/c.lang.h:1 ../data/language-specs/cobol.lang.h:1
+#: ../data/language-specs/cpp.lang.h:1 ../data/language-specs/csharp.lang.h:1
+#: ../data/language-specs/cuda.lang.h:1 ../data/language-specs/d.lang.h:1
+#: ../data/language-specs/eiffel.lang.h:1
+#: ../data/language-specs/erlang.lang.h:1
 #: ../data/language-specs/forth.lang.h:1
-#: ../data/language-specs/fortran.lang.h:2
-#: ../data/language-specs/fsharp.lang.h:4 ../data/language-specs/gap.lang.h:2
-#: ../data/language-specs/go.lang.h:3 ../data/language-specs/gtkrc.lang.h:2
-#: ../data/language-specs/haskell.lang.h:2
-#: ../data/language-specs/html.lang.h:3 ../data/language-specs/idl.lang.h:1
-#: ../data/language-specs/ini.lang.h:3 ../data/language-specs/latex.lang.h:2
-#: ../data/language-specs/lua.lang.h:2 ../data/language-specs/matlab.lang.h:2
-#: ../data/language-specs/nemerle.lang.h:4
-#: ../data/language-specs/nsis.lang.h:1 ../data/language-specs/ocaml.lang.h:4
-#: ../data/language-specs/ocl.lang.h:1 ../data/language-specs/octave.lang.h:4
-#: ../data/language-specs/ooc.lang.h:2 ../data/language-specs/opal.lang.h:2
-#: ../data/language-specs/pascal.lang.h:1 ../data/language-specs/perl.lang.h:2
-#: ../data/language-specs/php.lang.h:2 ../data/language-specs/po.lang.h:1
-#: ../data/language-specs/prolog.lang.h:1 ../data/language-specs/ruby.lang.h:6
-#: ../data/language-specs/scheme.lang.h:2
-#: ../data/language-specs/scilab.lang.h:2 ../data/language-specs/sh.lang.h:1
-#: ../data/language-specs/sml.lang.h:4 ../data/language-specs/sql.lang.h:1
-#: ../data/language-specs/t2t.lang.h:3 ../data/language-specs/texinfo.lang.h:1
-#: ../data/language-specs/vala.lang.h:2 ../data/language-specs/vbnet.lang.h:2
-#: ../data/language-specs/verilog.lang.h:2
-#: ../data/language-specs/vhdl.lang.h:4 ../data/language-specs/xml.lang.h:4
-msgid "Comment"
-msgstr "Comment"
-
-#: ../data/language-specs/ada.lang.h:5 ../data/language-specs/asp.lang.h:5
-#: ../data/language-specs/bennugd.lang.h:4 ../data/language-specs/boo.lang.h:5
-#: ../data/language-specs/cg.lang.h:6 ../data/language-specs/c.lang.h:6
-#: ../data/language-specs/cpp.lang.h:3 ../data/language-specs/csharp.lang.h:5
-#: ../data/language-specs/cuda.lang.h:2 ../data/language-specs/d.lang.h:5
-#: ../data/language-specs/eiffel.lang.h:4
-#: ../data/language-specs/forth.lang.h:3
-#: ../data/language-specs/fortran.lang.h:3
-#: ../data/language-specs/fsharp.lang.h:5 ../data/language-specs/glsl.lang.h:4
-#: ../data/language-specs/go.lang.h:4 ../data/language-specs/gtkrc.lang.h:3
-#: ../data/language-specs/haskell.lang.h:3 ../data/language-specs/idl.lang.h:2
-#: ../data/language-specs/ini.lang.h:4 ../data/language-specs/java.lang.h:3
-#: ../data/language-specs/javascript.lang.h:3
-#: ../data/language-specs/nemerle.lang.h:5
-#: ../data/language-specs/objc.lang.h:2 ../data/language-specs/objj.lang.h:2
-#: ../data/language-specs/ocaml.lang.h:5 ../data/language-specs/ocl.lang.h:2
-#: ../data/language-specs/ooc.lang.h:3 ../data/language-specs/opal.lang.h:4
-#: ../data/language-specs/opencl.lang.h:1
-#: ../data/language-specs/pascal.lang.h:2 ../data/language-specs/php.lang.h:4
-#: ../data/language-specs/protobuf.lang.h:2
-#: ../data/language-specs/sml.lang.h:5 ../data/language-specs/sparql.lang.h:3
-#: ../data/language-specs/sql.lang.h:2 ../data/language-specs/vala.lang.h:3
-#: ../data/language-specs/vbnet.lang.h:3
-msgid "Data Type"
-msgstr "ডাটা টাইপ"
-
-#. A decimal number: 1234
-#: ../data/language-specs/ada.lang.h:6 ../data/language-specs/bennugd.lang.h:5
-#: ../data/language-specs/cg.lang.h:7 ../data/language-specs/c.lang.h:7
-#: ../data/language-specs/csharp.lang.h:6 ../data/language-specs/def.lang.h:19
-#: ../data/language-specs/d.lang.h:6 ../data/language-specs/eiffel.lang.h:6
-#: ../data/language-specs/erlang.lang.h:6
-#: ../data/language-specs/fsharp.lang.h:6 ../data/language-specs/go.lang.h:5
-#: ../data/language-specs/nemerle.lang.h:6
-#: ../data/language-specs/ocaml.lang.h:6 ../data/language-specs/ooc.lang.h:4
-#: ../data/language-specs/opal.lang.h:5 ../data/language-specs/php.lang.h:5
-#: ../data/language-specs/python.lang.h:7
-#: ../data/language-specs/python3.lang.h:7
-#: ../data/language-specs/ruby.lang.h:8
-msgid "Decimal number"
-msgstr "দশমিক সংখ্যা"
-
-#. map to nothing
-#: ../data/language-specs/ada.lang.h:7 ../data/language-specs/cg.lang.h:9
-#: ../data/language-specs/c.lang.h:8 ../data/language-specs/csharp.lang.h:8
-#: ../data/language-specs/eiffel.lang.h:9
-#: ../data/language-specs/fsharp.lang.h:7 ../data/language-specs/go.lang.h:7
-#: ../data/language-specs/haskell.lang.h:5
-#: ../data/language-specs/java.lang.h:5
-#: ../data/language-specs/javascript.lang.h:4
-#: ../data/language-specs/json.lang.h:4 ../data/language-specs/lua.lang.h:3
-#: ../data/language-specs/ocaml.lang.h:8 ../data/language-specs/ooc.lang.h:7
-#: ../data/language-specs/php.lang.h:8 ../data/language-specs/prolog.lang.h:3
-#: ../data/language-specs/python.lang.h:8
-#: ../data/language-specs/python3.lang.h:8
-#: ../data/language-specs/ruby.lang.h:9 ../data/language-specs/sml.lang.h:7
-#: ../data/language-specs/texinfo.lang.h:2
-#: ../data/language-specs/verilog.lang.h:5
-msgid "Escaped Character"
-msgstr "এস্কেপ ক্যাৰেক্টাৰ"
-
-#
-#. keywords: "if", "for", "while", etc.
-#: ../data/language-specs/ada.lang.h:8 ../data/language-specs/asp.lang.h:7
-#: ../data/language-specs/awk.lang.h:2 ../data/language-specs/bennugd.lang.h:9
-#: ../data/language-specs/boo.lang.h:7 ../data/language-specs/cg.lang.h:14
-#: ../data/language-specs/c.lang.h:12 ../data/language-specs/cobol.lang.h:5
-#: ../data/language-specs/cpp.lang.h:4 ../data/language-specs/csharp.lang.h:10
-#: ../data/language-specs/css.lang.h:10 ../data/language-specs/cuda.lang.h:6
-#: ../data/language-specs/def.lang.h:36 ../data/language-specs/d.lang.h:10
-#: ../data/language-specs/dosbatch.lang.h:4
-#: ../data/language-specs/dot.lang.h:5 ../data/language-specs/eiffel.lang.h:12
-#: ../data/language-specs/erlang.lang.h:9 ../data/language-specs/fcl.lang.h:6
-#: ../data/language-specs/forth.lang.h:7
-#: ../data/language-specs/fortran.lang.h:8
-#: ../data/language-specs/fsharp.lang.h:10 ../data/language-specs/gap.lang.h:6
-#: ../data/language-specs/glsl.lang.h:5 ../data/language-specs/go.lang.h:12
-#: ../data/language-specs/gtkrc.lang.h:7
-#: ../data/language-specs/haskell.lang.h:9 ../data/language-specs/idl.lang.h:4
-#: ../data/language-specs/imagej.lang.h:6 ../data/language-specs/ini.lang.h:7
-#: ../data/language-specs/java.lang.h:11
-#: ../data/language-specs/javascript.lang.h:8
-#: ../data/language-specs/lua.lang.h:5
-#: ../data/language-specs/nemerle.lang.h:10
-#: ../data/language-specs/objc.lang.h:3 ../data/language-specs/objj.lang.h:4
-#: ../data/language-specs/ocaml.lang.h:10 ../data/language-specs/ocl.lang.h:3
-#: ../data/language-specs/octave.lang.h:8 ../data/language-specs/ooc.lang.h:12
-#: ../data/language-specs/opal.lang.h:8 ../data/language-specs/opencl.lang.h:6
-#: ../data/language-specs/pascal.lang.h:4 ../data/language-specs/perl.lang.h:9
-#: ../data/language-specs/php.lang.h:14 ../data/language-specs/po.lang.h:3
-#: ../data/language-specs/prolog.lang.h:4
-#: ../data/language-specs/protobuf.lang.h:3
-#: ../data/language-specs/python.lang.h:11
-#: ../data/language-specs/python3.lang.h:11 ../data/language-specs/R.lang.h:6
-#: ../data/language-specs/ruby.lang.h:13
-#: ../data/language-specs/scheme.lang.h:4
-#: ../data/language-specs/scilab.lang.h:5 ../data/language-specs/sh.lang.h:5
-#: ../data/language-specs/sml.lang.h:9 ../data/language-specs/sparql.lang.h:7
-#: ../data/language-specs/sql.lang.h:6
-#: ../data/language-specs/systemverilog.lang.h:2
-#: ../data/language-specs/tcl.lang.h:1 ../data/language-specs/texinfo.lang.h:6
-#: ../data/language-specs/vala.lang.h:5 ../data/language-specs/vbnet.lang.h:4
-#: ../data/language-specs/verilog.lang.h:9
-#: ../data/language-specs/vhdl.lang.h:5
-msgid "Keyword"
-msgstr "কীওয়াৰ্ড"
-
-#: ../data/language-specs/ada.lang.h:9 ../data/language-specs/asp.lang.h:10
-#: ../data/language-specs/bennugd.lang.h:11
-#: ../data/language-specs/cg.lang.h:16 ../data/language-specs/c.lang.h:14
-#: ../data/language-specs/csharp.lang.h:12
-#: ../data/language-specs/forth.lang.h:9
-#: ../data/language-specs/fsharp.lang.h:15
-#: ../data/language-specs/glsl.lang.h:7
-#: ../data/language-specs/haskell.lang.h:11
-#: ../data/language-specs/idl.lang.h:5
-#: ../data/language-specs/nemerle.lang.h:14
-#: ../data/language-specs/objj.lang.h:7 ../data/language-specs/pascal.lang.h:6
-#: ../data/language-specs/vbnet.lang.h:5
-msgid "Preprocessor"
-msgstr "প্ৰিপ্ৰসেসৰ"
-
-#: ../data/language-specs/ada.lang.h:10
-#: ../data/language-specs/csharp.lang.h:13
-#: ../data/language-specs/verilog.lang.h:11
-#: ../data/language-specs/vhdl.lang.h:7
-msgid "Real number"
-msgstr "Real number"
-
-#
-#: ../data/language-specs/ada.lang.h:11 ../data/language-specs/asp.lang.h:11
-#: ../data/language-specs/bennugd.lang.h:12
-#: ../data/language-specs/boo.lang.h:13 ../data/language-specs/cg.lang.h:17
-#: ../data/language-specs/chdr.lang.h:2 ../data/language-specs/c.lang.h:16
-#: ../data/language-specs/cobol.lang.h:8 ../data/language-specs/cpp.lang.h:5
-#: ../data/language-specs/csharp.lang.h:14
-#: ../data/language-specs/cuda.lang.h:7 ../data/language-specs/d.lang.h:13
-#: ../data/language-specs/eiffel.lang.h:14
-#: ../data/language-specs/erlang.lang.h:11
-#: ../data/language-specs/forth.lang.h:10
-#: ../data/language-specs/fortran.lang.h:9
-#: ../data/language-specs/fsharp.lang.h:16
-#: ../data/language-specs/glsl.lang.h:9 ../data/language-specs/go.lang.h:14
-#: ../data/language-specs/haskell.lang.h:12
-#: ../data/language-specs/haskell-literate.lang.h:2
-#: ../data/language-specs/idl.lang.h:6 ../data/language-specs/java.lang.h:15
-#: ../data/language-specs/makefile.lang.h:4
-#: ../data/language-specs/nemerle.lang.h:15
-#: ../data/language-specs/objc.lang.h:5 ../data/language-specs/objj.lang.h:8
-#: ../data/language-specs/ocaml.lang.h:16 ../data/language-specs/ooc.lang.h:17
-#: ../data/language-specs/opal.lang.h:11
-#: ../data/language-specs/opencl.lang.h:9
-#: ../data/language-specs/pascal.lang.h:7
-#: ../data/language-specs/prolog.lang.h:8
-#: ../data/language-specs/scheme.lang.h:6 ../data/language-specs/sml.lang.h:11
-#: ../data/language-specs/sparql.lang.h:14 ../data/language-specs/sql.lang.h:9
-#: ../data/language-specs/systemverilog.lang.h:3
-#: ../data/language-specs/vala.lang.h:7 ../data/language-specs/vbnet.lang.h:6
-#: ../data/language-specs/verilog.lang.h:12
-#: ../data/language-specs/vhdl.lang.h:8
+#: ../data/language-specs/fortran.lang.h:1
+#: ../data/language-specs/fsharp.lang.h:1 ../data/language-specs/glsl.lang.h:1
+#: ../data/language-specs/go.lang.h:1 ../data/language-specs/haskell.lang.h:1
+#: ../data/language-specs/haskell-literate.lang.h:1
+#: ../data/language-specs/idl.lang.h:1 ../data/language-specs/java.lang.h:1
+#: ../data/language-specs/makefile.lang.h:1
+#: ../data/language-specs/nemerle.lang.h:1
+#: ../data/language-specs/objc.lang.h:1 ../data/language-specs/objj.lang.h:1
+#: ../data/language-specs/ocaml.lang.h:1 ../data/language-specs/ooc.lang.h:1
+#: ../data/language-specs/opal.lang.h:1 ../data/language-specs/opencl.lang.h:1
+#: ../data/language-specs/pascal.lang.h:1
+#: ../data/language-specs/prolog.lang.h:1
+#: ../data/language-specs/scheme.lang.h:1 ../data/language-specs/sml.lang.h:1
+#: ../data/language-specs/sparql.lang.h:1 ../data/language-specs/sql.lang.h:1
+#: ../data/language-specs/systemverilog.lang.h:1
+#: ../data/language-specs/vala.lang.h:1 ../data/language-specs/vbnet.lang.h:1
+#: ../data/language-specs/verilog.lang.h:1
+#: ../data/language-specs/vhdl.lang.h:1
 msgid "Sources"
 msgstr "উৎস"
 
-#: ../data/language-specs/ada.lang.h:12 ../data/language-specs/cg.lang.h:18
-#: ../data/language-specs/c.lang.h:18 ../data/language-specs/go.lang.h:15
-#: ../data/language-specs/java.lang.h:16 ../data/language-specs/ooc.lang.h:18
-msgid "Storage Class"
-msgstr "Storage Class"
+#: ../data/language-specs/actionscript.lang.h:2
+msgid "ActionScript"
+msgstr "ActionScript"
+
+#
+#. Any comment
+#: ../data/language-specs/actionscript.lang.h:3
+#: ../data/language-specs/ada.lang.h:3 ../data/language-specs/asp.lang.h:3
+#: ../data/language-specs/bennugd.lang.h:3 ../data/language-specs/boo.lang.h:3
+#: ../data/language-specs/cg.lang.h:3 ../data/language-specs/c.lang.h:3
+#: ../data/language-specs/cobol.lang.h:3
+#: ../data/language-specs/csharp.lang.h:3 ../data/language-specs/def.lang.h:3
+#: ../data/language-specs/d.lang.h:3 ../data/language-specs/dosbatch.lang.h:3
+#: ../data/language-specs/dot.lang.h:3 ../data/language-specs/eiffel.lang.h:3
+#: ../data/language-specs/erlang.lang.h:3 ../data/language-specs/fcl.lang.h:3
+#: ../data/language-specs/forth.lang.h:3
+#: ../data/language-specs/fortran.lang.h:3
+#: ../data/language-specs/fsharp.lang.h:3 ../data/language-specs/gap.lang.h:3
+#: ../data/language-specs/go.lang.h:3 ../data/language-specs/gtkrc.lang.h:3
+#: ../data/language-specs/haskell.lang.h:4
+#: ../data/language-specs/html.lang.h:3 ../data/language-specs/idl.lang.h:3
+#: ../data/language-specs/ini.lang.h:3 ../data/language-specs/latex.lang.h:3
+#: ../data/language-specs/lua.lang.h:3 ../data/language-specs/matlab.lang.h:3
+#: ../data/language-specs/nemerle.lang.h:3
+#: ../data/language-specs/nsis.lang.h:4 ../data/language-specs/ocaml.lang.h:3
+#: ../data/language-specs/ocl.lang.h:3 ../data/language-specs/octave.lang.h:3
+#: ../data/language-specs/ooc.lang.h:3 ../data/language-specs/opal.lang.h:4
+#: ../data/language-specs/pascal.lang.h:3 ../data/language-specs/perl.lang.h:3
+#: ../data/language-specs/php.lang.h:3 ../data/language-specs/po.lang.h:3
+#: ../data/language-specs/prolog.lang.h:3 ../data/language-specs/ruby.lang.h:4
+#: ../data/language-specs/scheme.lang.h:3
+#: ../data/language-specs/scilab.lang.h:3 ../data/language-specs/sh.lang.h:3
+#: ../data/language-specs/sml.lang.h:3 ../data/language-specs/sql.lang.h:3
+#: ../data/language-specs/t2t.lang.h:3 ../data/language-specs/texinfo.lang.h:3
+#: ../data/language-specs/vala.lang.h:3 ../data/language-specs/vbnet.lang.h:3
+#: ../data/language-specs/verilog.lang.h:3
+#: ../data/language-specs/vhdl.lang.h:3 ../data/language-specs/xml.lang.h:3
+msgid "Comment"
+msgstr "মন্তব্য"
+
+#
+#. Any erroneous construct
+#: ../data/language-specs/actionscript.lang.h:4
+#: ../data/language-specs/cg.lang.h:4 ../data/language-specs/c.lang.h:22
+#: ../data/language-specs/cobol.lang.h:11
+#: ../data/language-specs/csharp.lang.h:4 ../data/language-specs/css.lang.h:3
+#: ../data/language-specs/def.lang.h:53 ../data/language-specs/d.lang.h:4
+#: ../data/language-specs/dot.lang.h:4 ../data/language-specs/go.lang.h:4
+#: ../data/language-specs/html.lang.h:8 ../data/language-specs/json.lang.h:7
+#: ../data/language-specs/nemerle.lang.h:4
+#: ../data/language-specs/ocaml.lang.h:20 ../data/language-specs/ooc.lang.h:4
+#: ../data/language-specs/opal.lang.h:6 ../data/language-specs/perl.lang.h:17
+#: ../data/language-specs/php.lang.h:4 ../data/language-specs/prolog.lang.h:9
+#: ../data/language-specs/vala.lang.h:4
+#: ../data/language-specs/verilog.lang.h:6
+#: ../data/language-specs/xml.lang.h:13
+msgid "Error"
+msgstr "ভুল"
 
 #
 #. A string constant: "this is a string"
-#: ../data/language-specs/ada.lang.h:13 ../data/language-specs/asp.lang.h:13
-#: ../data/language-specs/boo.lang.h:15 ../data/language-specs/c.lang.h:19
-#: ../data/language-specs/cobol.lang.h:10
-#: ../data/language-specs/csharp.lang.h:15
-#: ../data/language-specs/css.lang.h:15 ../data/language-specs/def.lang.h:57
-#: ../data/language-specs/d.lang.h:15 ../data/language-specs/dosbatch.lang.h:6
-#: ../data/language-specs/eiffel.lang.h:15
-#: ../data/language-specs/erlang.lang.h:12
-#: ../data/language-specs/forth.lang.h:11
-#: ../data/language-specs/fsharp.lang.h:17
-#: ../data/language-specs/gdb-log.lang.h:10
-#: ../data/language-specs/go.lang.h:16 ../data/language-specs/gtkrc.lang.h:9
-#: ../data/language-specs/haskell.lang.h:13
-#: ../data/language-specs/idl.lang.h:7 ../data/language-specs/imagej.lang.h:10
-#: ../data/language-specs/ini.lang.h:9 ../data/language-specs/java.lang.h:17
+#: ../data/language-specs/actionscript.lang.h:5
+#: ../data/language-specs/ada.lang.h:4 ../data/language-specs/asp.lang.h:4
+#: ../data/language-specs/boo.lang.h:5 ../data/language-specs/c.lang.h:4
+#: ../data/language-specs/cobol.lang.h:8
+#: ../data/language-specs/csharp.lang.h:6 ../data/language-specs/css.lang.h:5
+#: ../data/language-specs/def.lang.h:17 ../data/language-specs/d.lang.h:5
+#: ../data/language-specs/dosbatch.lang.h:4
+#: ../data/language-specs/eiffel.lang.h:4
+#: ../data/language-specs/erlang.lang.h:7
+#: ../data/language-specs/forth.lang.h:4
+#: ../data/language-specs/fsharp.lang.h:7
+#: ../data/language-specs/gdb-log.lang.h:8 ../data/language-specs/go.lang.h:5
+#: ../data/language-specs/gtkrc.lang.h:4
+#: ../data/language-specs/haskell.lang.h:9 ../data/language-specs/idl.lang.h:7
+#: ../data/language-specs/imagej.lang.h:10 ../data/language-specs/ini.lang.h:5
+#: ../data/language-specs/java.lang.h:4
 #: ../data/language-specs/javascript.lang.h:13
-#: ../data/language-specs/json.lang.h:9 ../data/language-specs/lua.lang.h:10
-#: ../data/language-specs/matlab.lang.h:5
-#: ../data/language-specs/nemerle.lang.h:16
+#: ../data/language-specs/json.lang.h:4 ../data/language-specs/lua.lang.h:4
+#: ../data/language-specs/matlab.lang.h:4
+#: ../data/language-specs/nemerle.lang.h:7
 #: ../data/language-specs/nsis.lang.h:5 ../data/language-specs/objc.lang.h:6
-#: ../data/language-specs/objj.lang.h:9 ../data/language-specs/ocaml.lang.h:18
-#: ../data/language-specs/ocl.lang.h:7 ../data/language-specs/octave.lang.h:15
-#: ../data/language-specs/ooc.lang.h:19 ../data/language-specs/opal.lang.h:12
-#: ../data/language-specs/pascal.lang.h:8
-#: ../data/language-specs/perl.lang.h:19 ../data/language-specs/php.lang.h:20
-#: ../data/language-specs/po.lang.h:6 ../data/language-specs/prolog.lang.h:9
-#: ../data/language-specs/protobuf.lang.h:5
-#: ../data/language-specs/python.lang.h:17
-#: ../data/language-specs/python3.lang.h:17
-#: ../data/language-specs/ruby.lang.h:22
-#: ../data/language-specs/scheme.lang.h:7
-#: ../data/language-specs/scilab.lang.h:9 ../data/language-specs/sh.lang.h:8
-#: ../data/language-specs/sml.lang.h:13 ../data/language-specs/sql.lang.h:10
-#: ../data/language-specs/texinfo.lang.h:10
-#: ../data/language-specs/vala.lang.h:8 ../data/language-specs/vbnet.lang.h:8
-#: ../data/language-specs/verilog.lang.h:13
-#: ../data/language-specs/vhdl.lang.h:9
+#: ../data/language-specs/objj.lang.h:8 ../data/language-specs/ocaml.lang.h:8
+#: ../data/language-specs/ocl.lang.h:4 ../data/language-specs/octave.lang.h:4
+#: ../data/language-specs/ooc.lang.h:6 ../data/language-specs/opal.lang.h:7
+#: ../data/language-specs/pascal.lang.h:4 ../data/language-specs/perl.lang.h:6
+#: ../data/language-specs/php.lang.h:9 ../data/language-specs/po.lang.h:5
+#: ../data/language-specs/prolog.lang.h:6
+#: ../data/language-specs/protobuf.lang.h:6
+#: ../data/language-specs/python.lang.h:6
+#: ../data/language-specs/python3.lang.h:6
+#: ../data/language-specs/ruby.lang.h:14
+#: ../data/language-specs/scheme.lang.h:5
+#: ../data/language-specs/scilab.lang.h:5 ../data/language-specs/sh.lang.h:5
+#: ../data/language-specs/sml.lang.h:7 ../data/language-specs/sql.lang.h:5
+#: ../data/language-specs/texinfo.lang.h:6
+#: ../data/language-specs/vala.lang.h:6 ../data/language-specs/vbnet.lang.h:4
+#: ../data/language-specs/verilog.lang.h:4
+#: ../data/language-specs/vhdl.lang.h:4
 msgid "String"
-msgstr "বাক্য"
+msgstr "স্ট্ৰিং"
 
-#: ../data/language-specs/asp.lang.h:1
-msgid "ASP"
-msgstr "ASP"
+#. Translators: refered to some specific keywords of the language that
+#. allow to get external functionalities
+#: ../data/language-specs/actionscript.lang.h:6
+#: ../data/language-specs/java.lang.h:8 ../data/language-specs/ooc.lang.h:7
+msgid "External"
+msgstr "বহিস্থিত"
 
-#: ../data/language-specs/asp.lang.h:2
-msgid "ASP Object"
-msgstr "ASP অবজেক্ট"
+#: ../data/language-specs/actionscript.lang.h:7
+#: ../data/language-specs/java.lang.h:9 ../data/language-specs/ooc.lang.h:8
+msgid "Declaration"
+msgstr "বাৰ্তা"
+
+#: ../data/language-specs/actionscript.lang.h:8
+#: ../data/language-specs/ada.lang.h:8 ../data/language-specs/cg.lang.h:10
+#: ../data/language-specs/c.lang.h:12 ../data/language-specs/java.lang.h:10
+#: ../data/language-specs/ooc.lang.h:9
+msgid "Storage Class"
+msgstr "সংৰক্ষণ শ্ৰেণী"
+
+#: ../data/language-specs/actionscript.lang.h:9
+#: ../data/language-specs/java.lang.h:11 ../data/language-specs/ooc.lang.h:10
+msgid "Scope Declaration"
+msgstr "স্কোপ বাৰ্তা"
 
 #
-#. A function name (also: methods for classes)
-#: ../data/language-specs/asp.lang.h:6 ../data/language-specs/cg.lang.h:11
-#: ../data/language-specs/changelog.lang.h:6
-#: ../data/language-specs/css.lang.h:8 ../data/language-specs/def.lang.h:32
-#: ../data/language-specs/gap.lang.h:4 ../data/language-specs/gdb-log.lang.h:4
-#: ../data/language-specs/gtk-doc.lang.h:3
-#: ../data/language-specs/javascript.lang.h:5
-#: ../data/language-specs/lua.lang.h:4 ../data/language-specs/scheme.lang.h:3
-#: ../data/language-specs/scilab.lang.h:4 ../data/language-specs/sh.lang.h:3
-#: ../data/language-specs/sparql.lang.h:4 ../data/language-specs/sql.lang.h:5
-msgid "Function"
-msgstr "ফাংশন"
+#. keywords: "if", "for", "while", etc.
+#: ../data/language-specs/actionscript.lang.h:10
+#: ../data/language-specs/ada.lang.h:5 ../data/language-specs/asp.lang.h:6
+#: ../data/language-specs/awk.lang.h:3 ../data/language-specs/bennugd.lang.h:7
+#: ../data/language-specs/boo.lang.h:10 ../data/language-specs/cg.lang.h:8
+#: ../data/language-specs/c.lang.h:9 ../data/language-specs/cobol.lang.h:6
+#: ../data/language-specs/cpp.lang.h:3 ../data/language-specs/csharp.lang.h:11
+#: ../data/language-specs/css.lang.h:14 ../data/language-specs/cuda.lang.h:3
+#: ../data/language-specs/def.lang.h:47 ../data/language-specs/d.lang.h:6
+#: ../data/language-specs/dosbatch.lang.h:5
+#: ../data/language-specs/dot.lang.h:5 ../data/language-specs/eiffel.lang.h:7
+#: ../data/language-specs/erlang.lang.h:4 ../data/language-specs/fcl.lang.h:5
+#: ../data/language-specs/forth.lang.h:6
+#: ../data/language-specs/fortran.lang.h:5
+#: ../data/language-specs/fsharp.lang.h:8 ../data/language-specs/gap.lang.h:5
+#: ../data/language-specs/glsl.lang.h:5 ../data/language-specs/go.lang.h:7
+#: ../data/language-specs/gtkrc.lang.h:5
+#: ../data/language-specs/haskell.lang.h:7 ../data/language-specs/idl.lang.h:6
+#: ../data/language-specs/imagej.lang.h:8 ../data/language-specs/ini.lang.h:6
+#: ../data/language-specs/java.lang.h:12
+#: ../data/language-specs/javascript.lang.h:7
+#: ../data/language-specs/lua.lang.h:5 ../data/language-specs/nemerle.lang.h:8
+#: ../data/language-specs/objc.lang.h:3 ../data/language-specs/objj.lang.h:4
+#: ../data/language-specs/ocaml.lang.h:9 ../data/language-specs/ocl.lang.h:5
+#: ../data/language-specs/octave.lang.h:13
+#: ../data/language-specs/ooc.lang.h:11 ../data/language-specs/opal.lang.h:8
+#: ../data/language-specs/opencl.lang.h:3
+#: ../data/language-specs/pascal.lang.h:5 ../data/language-specs/perl.lang.h:7
+#: ../data/language-specs/php.lang.h:12 ../data/language-specs/po.lang.h:7
+#: ../data/language-specs/prolog.lang.h:5
+#: ../data/language-specs/protobuf.lang.h:4
+#: ../data/language-specs/python.lang.h:4
+#: ../data/language-specs/python3.lang.h:4 ../data/language-specs/R.lang.h:3
+#: ../data/language-specs/ruby.lang.h:7 ../data/language-specs/scheme.lang.h:6
+#: ../data/language-specs/scilab.lang.h:6 ../data/language-specs/sh.lang.h:6
+#: ../data/language-specs/sml.lang.h:4 ../data/language-specs/sparql.lang.h:7
+#: ../data/language-specs/sql.lang.h:6
+#: ../data/language-specs/systemverilog.lang.h:5
+#: ../data/language-specs/tcl.lang.h:4 ../data/language-specs/texinfo.lang.h:7
+#: ../data/language-specs/vala.lang.h:7 ../data/language-specs/vbnet.lang.h:6
+#: ../data/language-specs/verilog.lang.h:10
+#: ../data/language-specs/vhdl.lang.h:6
+msgid "Keyword"
+msgstr "কিৱাৰ্ড"
+
+#: ../data/language-specs/actionscript.lang.h:11
+#: ../data/language-specs/boo.lang.h:12
+#: ../data/language-specs/csharp.lang.h:13 ../data/language-specs/d.lang.h:9
+#: ../data/language-specs/fsharp.lang.h:21
+#: ../data/language-specs/java.lang.h:13
+#: ../data/language-specs/javascript.lang.h:4
+#: ../data/language-specs/json.lang.h:5
+#: ../data/language-specs/nemerle.lang.h:10
+#: ../data/language-specs/objj.lang.h:9 ../data/language-specs/ooc.lang.h:12
+#: ../data/language-specs/php.lang.h:16 ../data/language-specs/vala.lang.h:9
+msgid "Null Value"
+msgstr "ৰিক্ত মান"
+
+#
+#. A boolean constant: TRUE, false
+#: ../data/language-specs/actionscript.lang.h:12
+#: ../data/language-specs/ada.lang.h:7 ../data/language-specs/asp.lang.h:13
+#: ../data/language-specs/bennugd.lang.h:12
+#: ../data/language-specs/cg.lang.h:16 ../data/language-specs/c.lang.h:19
+#: ../data/language-specs/csharp.lang.h:14
+#: ../data/language-specs/def.lang.h:34
+#: ../data/language-specs/fsharp.lang.h:19 ../data/language-specs/go.lang.h:16
+#: ../data/language-specs/gtkrc.lang.h:10 ../data/language-specs/ini.lang.h:10
+#: ../data/language-specs/java.lang.h:14 ../data/language-specs/lua.lang.h:10
+#: ../data/language-specs/nemerle.lang.h:11
+#: ../data/language-specs/ocaml.lang.h:19 ../data/language-specs/ooc.lang.h:13
+#: ../data/language-specs/opal.lang.h:9 ../data/language-specs/php.lang.h:17
+#: ../data/language-specs/protobuf.lang.h:5 ../data/language-specs/R.lang.h:8
+#: ../data/language-specs/ruby.lang.h:9 ../data/language-specs/sml.lang.h:11
+#: ../data/language-specs/vala.lang.h:8 ../data/language-specs/vbnet.lang.h:9
+#: ../data/language-specs/vhdl.lang.h:8
+msgid "Boolean value"
+msgstr "বুলিয়ান মান"
 
 #. A generic number constant
-#: ../data/language-specs/asp.lang.h:8 ../data/language-specs/boo.lang.h:11
-#: ../data/language-specs/cobol.lang.h:6 ../data/language-specs/def.lang.h:40
-#: ../data/language-specs/desktop.lang.h:11
-#: ../data/language-specs/forth.lang.h:8 ../data/language-specs/java.lang.h:13
-#: ../data/language-specs/prolog.lang.h:5 ../data/language-specs/vhdl.lang.h:6
+#: ../data/language-specs/actionscript.lang.h:13
+#: ../data/language-specs/asp.lang.h:14 ../data/language-specs/boo.lang.h:14
+#: ../data/language-specs/cobol.lang.h:9 ../data/language-specs/def.lang.h:22
+#: ../data/language-specs/desktop.lang.h:8
+#: ../data/language-specs/forth.lang.h:8 ../data/language-specs/java.lang.h:15
+#: ../data/language-specs/prolog.lang.h:7
+#: ../data/language-specs/vhdl.lang.h:11
 msgid "Number"
 msgstr "সংখ্যা"
 
+#: ../data/language-specs/actionscript.lang.h:14
+#: ../data/language-specs/java.lang.h:16
+#: ../data/language-specs/javascript.lang.h:12
+#: ../data/language-specs/ooc.lang.h:18
+msgid "Future Reserved Keywords"
+msgstr "ভবিষ্যতে সংৰক্ষিত কিৱাৰ্ডসমূহ"
+
+#: ../data/language-specs/actionscript.lang.h:15
+#: ../data/language-specs/ada.lang.h:9 ../data/language-specs/asp.lang.h:11
+#: ../data/language-specs/bennugd.lang.h:8 ../data/language-specs/boo.lang.h:8
+#: ../data/language-specs/cg.lang.h:9 ../data/language-specs/c.lang.h:11
+#: ../data/language-specs/cpp.lang.h:4 ../data/language-specs/csharp.lang.h:5
+#: ../data/language-specs/cuda.lang.h:4 ../data/language-specs/d.lang.h:7
+#: ../data/language-specs/eiffel.lang.h:8
+#: ../data/language-specs/forth.lang.h:7
+#: ../data/language-specs/fortran.lang.h:9
+#: ../data/language-specs/fsharp.lang.h:11
+#: ../data/language-specs/glsl.lang.h:4 ../data/language-specs/go.lang.h:8
+#: ../data/language-specs/gtkrc.lang.h:7
+#: ../data/language-specs/haskell.lang.h:8 ../data/language-specs/idl.lang.h:4
+#: ../data/language-specs/ini.lang.h:9 ../data/language-specs/java.lang.h:17
+#: ../data/language-specs/javascript.lang.h:8
+#: ../data/language-specs/nemerle.lang.h:9
+#: ../data/language-specs/objc.lang.h:4 ../data/language-specs/objj.lang.h:5
+#: ../data/language-specs/ocaml.lang.h:12 ../data/language-specs/ocl.lang.h:7
+#: ../data/language-specs/ooc.lang.h:19 ../data/language-specs/opal.lang.h:11
+#: ../data/language-specs/opencl.lang.h:4
+#: ../data/language-specs/pascal.lang.h:7 ../data/language-specs/php.lang.h:15
+#: ../data/language-specs/protobuf.lang.h:3
+#: ../data/language-specs/sml.lang.h:5 ../data/language-specs/sparql.lang.h:4
+#: ../data/language-specs/sql.lang.h:9 ../data/language-specs/vala.lang.h:5
+#: ../data/language-specs/vbnet.lang.h:7
+msgid "Data Type"
+msgstr "তথ্য ধৰণ"
+
+#
+#: ../data/language-specs/ada.lang.h:2
+msgid "Ada"
+msgstr "এডা"
+
+#. A decimal number: 1234
+#: ../data/language-specs/ada.lang.h:6
+#: ../data/language-specs/bennugd.lang.h:10
+#: ../data/language-specs/cg.lang.h:13 ../data/language-specs/c.lang.h:16
+#: ../data/language-specs/csharp.lang.h:15
+#: ../data/language-specs/def.lang.h:26 ../data/language-specs/d.lang.h:12
+#: ../data/language-specs/eiffel.lang.h:15
+#: ../data/language-specs/erlang.lang.h:10
+#: ../data/language-specs/fsharp.lang.h:6 ../data/language-specs/go.lang.h:13
+#: ../data/language-specs/nemerle.lang.h:13
+#: ../data/language-specs/ocaml.lang.h:7 ../data/language-specs/ooc.lang.h:15
+#: ../data/language-specs/opal.lang.h:10 ../data/language-specs/php.lang.h:19
+#: ../data/language-specs/python.lang.h:13
+#: ../data/language-specs/python3.lang.h:12
+#: ../data/language-specs/ruby.lang.h:11
+msgid "Decimal number"
+msgstr "দশমিক সংখ্যা"
+
+#: ../data/language-specs/ada.lang.h:10 ../data/language-specs/asp.lang.h:5
+#: ../data/language-specs/bennugd.lang.h:4 ../data/language-specs/cg.lang.h:5
+#: ../data/language-specs/c.lang.h:5 ../data/language-specs/csharp.lang.h:12
+#: ../data/language-specs/forth.lang.h:5
+#: ../data/language-specs/fsharp.lang.h:20
+#: ../data/language-specs/glsl.lang.h:3
+#: ../data/language-specs/haskell.lang.h:3 ../data/language-specs/idl.lang.h:5
+#: ../data/language-specs/nemerle.lang.h:5
+#: ../data/language-specs/objj.lang.h:6 ../data/language-specs/pascal.lang.h:8
+#: ../data/language-specs/vbnet.lang.h:5
+msgid "Preprocessor"
+msgstr "প্ৰিপ্ৰচেছৰ"
+
+#: ../data/language-specs/ada.lang.h:11
+msgid "Arbitrary base number"
+msgstr "যাদৃচ্ছিক ভিত্তি সংখ্যা"
+
+#: ../data/language-specs/ada.lang.h:12
+#: ../data/language-specs/csharp.lang.h:17
+#: ../data/language-specs/verilog.lang.h:14
+#: ../data/language-specs/vhdl.lang.h:10
+msgid "Real number"
+msgstr "প্ৰকৃত সংখ্যা"
+
+#. map to nothing
+#: ../data/language-specs/ada.lang.h:13 ../data/language-specs/cg.lang.h:11
+#: ../data/language-specs/c.lang.h:14 ../data/language-specs/csharp.lang.h:8
+#: ../data/language-specs/eiffel.lang.h:12
+#: ../data/language-specs/fsharp.lang.h:18 ../data/language-specs/go.lang.h:10
+#: ../data/language-specs/haskell.lang.h:11
+#: ../data/language-specs/java.lang.h:3
+#: ../data/language-specs/javascript.lang.h:3
+#: ../data/language-specs/json.lang.h:3 ../data/language-specs/lua.lang.h:6
+#: ../data/language-specs/ocaml.lang.h:18 ../data/language-specs/ooc.lang.h:5
+#: ../data/language-specs/php.lang.h:8 ../data/language-specs/prolog.lang.h:10
+#: ../data/language-specs/python.lang.h:7
+#: ../data/language-specs/python3.lang.h:7
+#: ../data/language-specs/ruby.lang.h:3 ../data/language-specs/sml.lang.h:8
+#: ../data/language-specs/texinfo.lang.h:4
+#: ../data/language-specs/verilog.lang.h:5
+msgid "Escaped Character"
+msgstr "এস্কেপ্ড আখৰ"
+
+#: ../data/language-specs/asp.lang.h:2
+msgid "ASP"
+msgstr "ASP"
+
+#
+#. A function name (also: methods for classes)
+#: ../data/language-specs/asp.lang.h:7 ../data/language-specs/cg.lang.h:18
+#: ../data/language-specs/changelog.lang.h:8
+#: ../data/language-specs/css.lang.h:8 ../data/language-specs/def.lang.h:38
+#: ../data/language-specs/gap.lang.h:6 ../data/language-specs/gdb-log.lang.h:7
+#: ../data/language-specs/gtk-doc.lang.h:10
+#: ../data/language-specs/javascript.lang.h:9
+#: ../data/language-specs/lua.lang.h:8 ../data/language-specs/scheme.lang.h:7
+#: ../data/language-specs/scilab.lang.h:7 ../data/language-specs/sh.lang.h:4
+#: ../data/language-specs/sparql.lang.h:5 ../data/language-specs/sql.lang.h:7
+msgid "Function"
+msgstr "ফলন"
+
 #
 #. Operators: "+", "*", etc.
-#: ../data/language-specs/asp.lang.h:9
-#: ../data/language-specs/bennugd.lang.h:10
-#: ../data/language-specs/cmake.lang.h:6 ../data/language-specs/cobol.lang.h:7
-#: ../data/language-specs/def.lang.h:42
-#: ../data/language-specs/erlang.lang.h:10
-#: ../data/language-specs/imagej.lang.h:7 ../data/language-specs/nsis.lang.h:3
-#: ../data/language-specs/octave.lang.h:10
-#: ../data/language-specs/perl.lang.h:11 ../data/language-specs/php.lang.h:17
-#: ../data/language-specs/prolog.lang.h:6
-#: ../data/language-specs/sparql.lang.h:10
+#: ../data/language-specs/asp.lang.h:8 ../data/language-specs/bennugd.lang.h:6
+#: ../data/language-specs/c.lang.h:10 ../data/language-specs/cmake.lang.h:6
+#: ../data/language-specs/cobol.lang.h:10 ../data/language-specs/def.lang.h:45
+#: ../data/language-specs/erlang.lang.h:5
+#: ../data/language-specs/imagej.lang.h:9 ../data/language-specs/nsis.lang.h:3
+#: ../data/language-specs/octave.lang.h:5
+#: ../data/language-specs/perl.lang.h:12 ../data/language-specs/php.lang.h:14
+#: ../data/language-specs/prolog.lang.h:8
+#: ../data/language-specs/sparql.lang.h:15
 msgid "Operator"
 msgstr "অপাৰেটৰ"
 
-#. A special constant like NULL in C or null in Java
-#: ../data/language-specs/asp.lang.h:12 ../data/language-specs/def.lang.h:53
-#: ../data/language-specs/vbnet.lang.h:7
-msgid "Special constant"
-msgstr "বিশেষ কনস্ট্যান্ট"
+#: ../data/language-specs/asp.lang.h:9
+msgid "ASP Object"
+msgstr "ASP অবজেক্ট"
 
-#: ../data/language-specs/asp.lang.h:14
+#: ../data/language-specs/asp.lang.h:10
 msgid "VBScript and ADO constants"
-msgstr "VBScript ও ADO কনস্ট্যান্ট"
+msgstr "VBScript আৰু ADO ধ্ৰুৱক"
+
+#. A special constant like NULL in C or null in Java
+#: ../data/language-specs/asp.lang.h:12 ../data/language-specs/def.lang.h:32
+#: ../data/language-specs/vbnet.lang.h:8
+msgid "Special constant"
+msgstr "বিশেষ ধ্ৰুৱক"
 
 #: ../data/language-specs/automake.lang.h:1
-#| msgid "Atom"
 msgid "Automake"
 msgstr "স্বনিৰ্মাণ"
 
 #: ../data/language-specs/automake.lang.h:2
-#| msgid "Builtin Variable"
 msgid "Automake Variable"
 msgstr "চলক স্বনিৰ্মাণ কৰক"
 
 #: ../data/language-specs/automake.lang.h:3
-#| msgid "Builtin Variable"
-msgid "Built-in Target"
-msgstr "বিল্ট-ইন লক্ষ্য"
-
-#: ../data/language-specs/automake.lang.h:4
-#| msgid "Option Name"
-msgid "Optional Target"
-msgstr "বৈকল্পিক লক্ষ্য"
-
-#: ../data/language-specs/automake.lang.h:5
-#| msgid "Control Keyword"
-msgid "Other Keyword"
-msgstr "অন্য কিৱাৰ্ড"
-
-#: ../data/language-specs/automake.lang.h:6
-msgid "Prefix"
-msgstr "উপসৰ্গ"
-
-#: ../data/language-specs/automake.lang.h:7
 msgid "Primary"
 msgstr "প্ৰাথমিক"
 
-#: ../data/language-specs/automake.lang.h:8
-#| msgid "Section"
+#: ../data/language-specs/automake.lang.h:4
 msgid "Secondary"
 msgstr "দ্বিতীয়"
+
+#: ../data/language-specs/automake.lang.h:5
+msgid "Prefix"
+msgstr "উপসৰ্গ"
+
+#: ../data/language-specs/automake.lang.h:6
+msgid "Optional Target"
+msgstr "বৈকল্পিক লক্ষ্য"
+
+#: ../data/language-specs/automake.lang.h:7
+msgid "Built-in Target"
+msgstr "বিল্ট-ইন লক্ষ্য"
+
+#: ../data/language-specs/automake.lang.h:8
+msgid "Other Keyword"
+msgstr "অন্য কিৱাৰ্ড"
 
 #: ../data/language-specs/automake.lang.h:9
 msgid "Substitution"
 msgstr "প্ৰতিস্থাপন"
 
-#: ../data/language-specs/awk.lang.h:1 ../data/language-specs/boo.lang.h:3
-#: ../data/language-specs/glsl.lang.h:2 ../data/language-specs/perl.lang.h:1
-#: ../data/language-specs/python.lang.h:4
-#: ../data/language-specs/python3.lang.h:4
-msgid "Builtin Function"
-msgstr "বিল্ট-ইন ফাংশান"
-
-#
-#: ../data/language-specs/awk.lang.h:3
-msgid "Pattern"
-msgstr "পেটাৰ্ন"
-
-#: ../data/language-specs/awk.lang.h:4
-#: ../data/language-specs/dosbatch.lang.h:5
-#: ../data/language-specs/javascript.lang.h:12
-#: ../data/language-specs/lua.lang.h:9 ../data/language-specs/m4.lang.h:3
-#: ../data/language-specs/perl.lang.h:18 ../data/language-specs/php.lang.h:19
-#: ../data/language-specs/python.lang.h:15
-#: ../data/language-specs/python3.lang.h:15
-#: ../data/language-specs/ruby.lang.h:20 ../data/language-specs/sh.lang.h:7
-#: ../data/language-specs/tcl.lang.h:2
+#: ../data/language-specs/awk.lang.h:1
+#: ../data/language-specs/dosbatch.lang.h:1
+#: ../data/language-specs/javascript.lang.h:1
+#: ../data/language-specs/lua.lang.h:1 ../data/language-specs/m4.lang.h:1
+#: ../data/language-specs/perl.lang.h:1 ../data/language-specs/php.lang.h:1
+#: ../data/language-specs/python.lang.h:1
+#: ../data/language-specs/python3.lang.h:1
+#: ../data/language-specs/ruby.lang.h:1 ../data/language-specs/sh.lang.h:1
+#: ../data/language-specs/tcl.lang.h:1
 msgid "Scripts"
-msgstr "স্ক্ৰিপ্ট"
+msgstr "স্ক্ৰিপ্টসমূহ"
 
-#
-#: ../data/language-specs/awk.lang.h:5 ../data/language-specs/cmake.lang.h:8
-#: ../data/language-specs/cobol.lang.h:11
-#: ../data/language-specs/haskell.lang.h:15
-#: ../data/language-specs/ini.lang.h:10
-#: ../data/language-specs/makefile.lang.h:8
-#: ../data/language-specs/nsis.lang.h:6
-#: ../data/language-specs/octave.lang.h:16
-#: ../data/language-specs/perl.lang.h:21 ../data/language-specs/php.lang.h:21
-#: ../data/language-specs/pkgconfig.lang.h:3
-#: ../data/language-specs/prolog.lang.h:10
-#: ../data/language-specs/protobuf.lang.h:6
-#: ../data/language-specs/ruby.lang.h:24 ../data/language-specs/sh.lang.h:10
-#: ../data/language-specs/sparql.lang.h:15 ../data/language-specs/tcl.lang.h:4
-msgid "Variable"
-msgstr "পৰিবৰ্তনশীল"
-
-#: ../data/language-specs/awk.lang.h:6
+#: ../data/language-specs/awk.lang.h:2
 msgid "awk"
 msgstr "awk"
 
-#: ../data/language-specs/bennugd.lang.h:1
+#
+#: ../data/language-specs/awk.lang.h:4
+msgid "Pattern"
+msgstr "আঁচনি"
+
+#
+#: ../data/language-specs/awk.lang.h:5 ../data/language-specs/cmake.lang.h:8
+#: ../data/language-specs/cobol.lang.h:5
+#: ../data/language-specs/haskell.lang.h:5 ../data/language-specs/ini.lang.h:8
+#: ../data/language-specs/makefile.lang.h:3
+#: ../data/language-specs/nsis.lang.h:6
+#: ../data/language-specs/octave.lang.h:14
+#: ../data/language-specs/perl.lang.h:13 ../data/language-specs/php.lang.h:5
+#: ../data/language-specs/pkgconfig.lang.h:3
+#: ../data/language-specs/prolog.lang.h:4
+#: ../data/language-specs/protobuf.lang.h:2
+#: ../data/language-specs/ruby.lang.h:21 ../data/language-specs/sh.lang.h:7
+#: ../data/language-specs/sparql.lang.h:14 ../data/language-specs/tcl.lang.h:3
+msgid "Variable"
+msgstr "চলক"
+
+#: ../data/language-specs/awk.lang.h:6 ../data/language-specs/boo.lang.h:15
+#: ../data/language-specs/glsl.lang.h:6 ../data/language-specs/go.lang.h:18
+#: ../data/language-specs/perl.lang.h:8
+#: ../data/language-specs/python.lang.h:18
+#: ../data/language-specs/python3.lang.h:17
+msgid "Builtin Function"
+msgstr "বিল্ট-ইন ফলন"
+
+#: ../data/language-specs/bennugd.lang.h:2
 msgid "BennuGD"
 msgstr "BennuGD"
 
+#. Any variable name
+#: ../data/language-specs/bennugd.lang.h:5
+#: ../data/language-specs/def.lang.h:36 ../data/language-specs/php.lang.h:6
+msgid "Identifier"
+msgstr "আইডেন্টিফায়াৰ:"
+
 #. A floating point constant: 2.3e10
-#: ../data/language-specs/bennugd.lang.h:6 ../data/language-specs/cg.lang.h:10
-#: ../data/language-specs/c.lang.h:9 ../data/language-specs/def.lang.h:30
-#: ../data/language-specs/d.lang.h:8 ../data/language-specs/erlang.lang.h:8
-#: ../data/language-specs/go.lang.h:8 ../data/language-specs/json.lang.h:5
-#: ../data/language-specs/nemerle.lang.h:8 ../data/language-specs/ooc.lang.h:9
-#: ../data/language-specs/php.lang.h:9 ../data/language-specs/python.lang.h:9
-#: ../data/language-specs/python3.lang.h:9 ../data/language-specs/R.lang.h:4
+#: ../data/language-specs/bennugd.lang.h:9 ../data/language-specs/cg.lang.h:12
+#: ../data/language-specs/c.lang.h:15 ../data/language-specs/def.lang.h:24
+#: ../data/language-specs/d.lang.h:11 ../data/language-specs/erlang.lang.h:9
+#: ../data/language-specs/go.lang.h:11 ../data/language-specs/json.lang.h:9
+#: ../data/language-specs/nemerle.lang.h:12
+#: ../data/language-specs/ooc.lang.h:14 ../data/language-specs/php.lang.h:18
+#: ../data/language-specs/python.lang.h:12
+#: ../data/language-specs/python3.lang.h:11 ../data/language-specs/R.lang.h:10
 #: ../data/language-specs/ruby.lang.h:10
 msgid "Floating point number"
-msgstr "ফ্লোটিং পয়েন্ট সংখ্যা"
+msgstr "দশমিক সংখ্যা"
 
-#: ../data/language-specs/bennugd.lang.h:7 ../data/language-specs/cg.lang.h:12
-#: ../data/language-specs/c.lang.h:10 ../data/language-specs/csharp.lang.h:9
-#: ../data/language-specs/d.lang.h:9 ../data/language-specs/eiffel.lang.h:11
-#: ../data/language-specs/go.lang.h:10 ../data/language-specs/nemerle.lang.h:9
-#: ../data/language-specs/ooc.lang.h:11 ../data/language-specs/php.lang.h:12
+#: ../data/language-specs/bennugd.lang.h:11
+#: ../data/language-specs/cg.lang.h:15 ../data/language-specs/c.lang.h:18
+#: ../data/language-specs/csharp.lang.h:16 ../data/language-specs/d.lang.h:15
+#: ../data/language-specs/eiffel.lang.h:16 ../data/language-specs/go.lang.h:15
+#: ../data/language-specs/nemerle.lang.h:16
+#: ../data/language-specs/ooc.lang.h:17 ../data/language-specs/php.lang.h:21
 msgid "Hexadecimal number"
-msgstr "হেক্সাডেসিমাল সংখ্যা"
-
-#. Any variable name
-#: ../data/language-specs/bennugd.lang.h:8
-#: ../data/language-specs/def.lang.h:34 ../data/language-specs/php.lang.h:13
-msgid "Identifier"
-msgstr "অনুক্ৰমণিকা চিনাক্তকৰ্তা:"
-
-#: ../data/language-specs/bibtex.lang.h:1
-msgid "BibTeX"
-msgstr "BibTeX"
-
-#: ../data/language-specs/bibtex.lang.h:2
-#| msgid "Entity"
-msgid "Entries"
-msgstr "প্ৰবিষ্টিসমূহ"
-
-#: ../data/language-specs/bibtex.lang.h:3
-#| msgid "File"
-msgid "Field"
-msgstr "ক্ষেত্ৰ"
+msgstr "হেক্সাডেচিমেল সংখ্যা"
 
 #
-#: ../data/language-specs/bibtex.lang.h:4
-#: ../data/language-specs/docbook.lang.h:5 ../data/language-specs/dtd.lang.h:2
-#: ../data/language-specs/gtk-doc.lang.h:6
-#: ../data/language-specs/haddock.lang.h:14
-#: ../data/language-specs/html.lang.h:7 ../data/language-specs/latex.lang.h:6
-#: ../data/language-specs/mallard.lang.h:4
-#: ../data/language-specs/markdown.lang.h:14
-#: ../data/language-specs/t2t.lang.h:6 ../data/language-specs/texinfo.lang.h:8
-#: ../data/language-specs/xml.lang.h:9 ../data/language-specs/xslt.lang.h:2
+#: ../data/language-specs/bibtex.lang.h:1
+#: ../data/language-specs/docbook.lang.h:1 ../data/language-specs/dtd.lang.h:1
+#: ../data/language-specs/gtk-doc.lang.h:1
+#: ../data/language-specs/haddock.lang.h:1
+#: ../data/language-specs/html.lang.h:1 ../data/language-specs/latex.lang.h:1
+#: ../data/language-specs/mallard.lang.h:1
+#: ../data/language-specs/markdown.lang.h:1
+#: ../data/language-specs/mxml.lang.h:1 ../data/language-specs/t2t.lang.h:1
+#: ../data/language-specs/texinfo.lang.h:1 ../data/language-specs/xml.lang.h:1
+#: ../data/language-specs/xslt.lang.h:1
 #: ../gtksourceview/gtksourcecompletionitem.c:242
 #: ../gtksourceview/gtksourcegutterrenderertext.c:395
 msgid "Markup"
 msgstr "মাৰ্কআপ"
 
-#: ../data/language-specs/boo.lang.h:1
+#: ../data/language-specs/bibtex.lang.h:2
+msgid "BibTeX"
+msgstr "BibTeX"
+
+#: ../data/language-specs/bibtex.lang.h:3
+msgid "Entries"
+msgstr "প্ৰবিষ্টিসমূহ"
+
+#: ../data/language-specs/bibtex.lang.h:4
+msgid "Field"
+msgstr "ক্ষেত্ৰ"
+
+#: ../data/language-specs/boo.lang.h:2
 msgid "Boo"
 msgstr "Boo"
 
-#
-#: ../data/language-specs/boo.lang.h:2 ../data/language-specs/desktop.lang.h:3
-#: ../data/language-specs/d.lang.h:2 ../data/language-specs/imagej.lang.h:1
-#: ../data/language-specs/libtool.lang.h:1
-#: ../data/language-specs/objj.lang.h:1 ../data/language-specs/octave.lang.h:2
-#: ../data/language-specs/python.lang.h:2
-#: ../data/language-specs/python3.lang.h:2
-#: ../data/language-specs/scheme.lang.h:1
-#: ../data/language-specs/scilab.lang.h:1
-#: ../data/language-specs/sparql.lang.h:1
-msgid "Boolean"
-msgstr "বুলিয়েন"
-
-#: ../data/language-specs/boo.lang.h:6
-msgid "Definition"
-msgstr "সংজ্ঞা"
-
-#: ../data/language-specs/boo.lang.h:8 ../data/language-specs/python.lang.h:13
-#: ../data/language-specs/python3.lang.h:13
+#: ../data/language-specs/boo.lang.h:4 ../data/language-specs/python.lang.h:5
+#: ../data/language-specs/python3.lang.h:5
 msgid "Multiline string"
 msgstr "মাল্টি-লাইন পংক্তি"
 
-#: ../data/language-specs/boo.lang.h:9 ../data/language-specs/sparql.lang.h:9
-#: ../data/language-specs/xml.lang.h:10 ../data/language-specs/xslt.lang.h:3
-msgid "Namespace"
-msgstr "নেম-স্পেস"
+#
+#: ../data/language-specs/boo.lang.h:6
+#: ../data/language-specs/javascript.lang.h:14
+#: ../data/language-specs/perl.lang.h:16 ../data/language-specs/ruby.lang.h:24
+msgid "Regular Expression"
+msgstr "সাধাৰণ অভিব্যক্তি"
 
-#: ../data/language-specs/boo.lang.h:10
-#: ../data/language-specs/csharp.lang.h:11 ../data/language-specs/d.lang.h:11
-#: ../data/language-specs/fsharp.lang.h:13
-#: ../data/language-specs/java.lang.h:12
-#: ../data/language-specs/javascript.lang.h:9
-#: ../data/language-specs/json.lang.h:7
-#: ../data/language-specs/nemerle.lang.h:12
-#: ../data/language-specs/objj.lang.h:5 ../data/language-specs/ooc.lang.h:13
-#: ../data/language-specs/php.lang.h:15 ../data/language-specs/vala.lang.h:6
-msgid "Null Value"
-msgstr "Null মান"
+#: ../data/language-specs/boo.lang.h:7 ../data/language-specs/sparql.lang.h:8
+#: ../data/language-specs/xml.lang.h:12 ../data/language-specs/xslt.lang.h:4
+msgid "Namespace"
+msgstr "নেমস্পেইচ"
+
+#: ../data/language-specs/boo.lang.h:9
+msgid "Definition"
+msgstr "সংজ্ঞা"
+
+#: ../data/language-specs/boo.lang.h:11
+#: ../data/language-specs/python.lang.h:10
+#: ../data/language-specs/python3.lang.h:9
+#: ../data/language-specs/ruby.lang.h:19
+msgid "Special Variable"
+msgstr "বিশেষ চলক"
 
 #
-#: ../data/language-specs/boo.lang.h:12
-#: ../data/language-specs/javascript.lang.h:11
-#: ../data/language-specs/perl.lang.h:17 ../data/language-specs/ruby.lang.h:18
-msgid "Regular Expression"
-msgstr "নিয়মিত অভিব্যক্তি"
+#: ../data/language-specs/boo.lang.h:13
+#: ../data/language-specs/desktop.lang.h:9 ../data/language-specs/d.lang.h:10
+#: ../data/language-specs/imagej.lang.h:4
+#: ../data/language-specs/libtool.lang.h:4
+#: ../data/language-specs/objj.lang.h:3 ../data/language-specs/octave.lang.h:8
+#: ../data/language-specs/python.lang.h:11
+#: ../data/language-specs/python3.lang.h:10
+#: ../data/language-specs/scheme.lang.h:4
+#: ../data/language-specs/scilab.lang.h:8
+#: ../data/language-specs/sparql.lang.h:9
+msgid "Boolean"
+msgstr "বুলিয়েন"
 
-#: ../data/language-specs/boo.lang.h:14
-#: ../data/language-specs/python.lang.h:16
-#: ../data/language-specs/python3.lang.h:16
-#: ../data/language-specs/ruby.lang.h:21
-msgid "Special Variable"
-msgstr "বিশেষ ভেৰিয়েবল"
-
-#: ../data/language-specs/cg.lang.h:1
-#| msgid "Encoding"
-msgid "Bindings"
-msgstr "বান্ধনীসমূহ"
-
-#. Translators: functions that are provided in the language
-#: ../data/language-specs/cg.lang.h:3 ../data/language-specs/erlang.lang.h:3
-#: ../data/language-specs/imagej.lang.h:2
-#: ../data/language-specs/matlab.lang.h:1
-#: ../data/language-specs/octave.lang.h:3 ../data/language-specs/ruby.lang.h:5
-msgid "Builtin"
-msgstr "বিল্ট-ইন"
-
-#: ../data/language-specs/cg.lang.h:4
-#| msgid "Language"
+#: ../data/language-specs/cg.lang.h:2
 msgid "CG Shader Language"
 msgstr "CG শেডাৰ ভাষা"
 
-#
-#. Any erroneous construct
-#: ../data/language-specs/cg.lang.h:8 ../data/language-specs/cobol.lang.h:4
-#: ../data/language-specs/csharp.lang.h:7 ../data/language-specs/css.lang.h:7
-#: ../data/language-specs/def.lang.h:28 ../data/language-specs/d.lang.h:7
-#: ../data/language-specs/dot.lang.h:3 ../data/language-specs/go.lang.h:6
-#: ../data/language-specs/html.lang.h:5 ../data/language-specs/json.lang.h:3
-#: ../data/language-specs/nemerle.lang.h:7
-#: ../data/language-specs/ocaml.lang.h:7 ../data/language-specs/ooc.lang.h:6
-#: ../data/language-specs/opal.lang.h:6 ../data/language-specs/perl.lang.h:4
-#: ../data/language-specs/php.lang.h:6 ../data/language-specs/prolog.lang.h:2
-#: ../data/language-specs/vala.lang.h:4
-#: ../data/language-specs/verilog.lang.h:4 ../data/language-specs/xml.lang.h:8
-msgid "Error"
-msgstr "ভুল"
+#: ../data/language-specs/cg.lang.h:6
+msgid "Bindings"
+msgstr "বান্ধনীসমূহ"
 
-#: ../data/language-specs/cg.lang.h:13 ../data/language-specs/c.lang.h:11
-#: ../data/language-specs/go.lang.h:11 ../data/language-specs/objj.lang.h:3
+#: ../data/language-specs/cg.lang.h:7 ../data/language-specs/c.lang.h:7
+#: ../data/language-specs/objj.lang.h:7
 msgid "Included File"
-msgstr "Included ফাইল"
+msgstr "অন্তৰ্ভুক্ত নথিপত্ৰ"
 
-#: ../data/language-specs/cg.lang.h:15 ../data/language-specs/c.lang.h:13
-#: ../data/language-specs/d.lang.h:12 ../data/language-specs/go.lang.h:13
-#: ../data/language-specs/nemerle.lang.h:13
-#: ../data/language-specs/ooc.lang.h:15 ../data/language-specs/php.lang.h:16
+#: ../data/language-specs/cg.lang.h:14 ../data/language-specs/c.lang.h:17
+#: ../data/language-specs/d.lang.h:14 ../data/language-specs/go.lang.h:14
+#: ../data/language-specs/nemerle.lang.h:15
+#: ../data/language-specs/ooc.lang.h:16 ../data/language-specs/php.lang.h:20
 msgid "Octal number"
 msgstr "অক্ট্যাল সংখ্যা"
 
-#: ../data/language-specs/cg.lang.h:19
-#| msgid "Type Operators"
+#: ../data/language-specs/cg.lang.h:17
 msgid "Swizzle operator"
 msgstr "চুইজ্ল অপাৰেটৰ"
 
-#: ../data/language-specs/changelog.lang.h:1
-msgid "Bullet"
-msgstr "বুলেট"
-
-#: ../data/language-specs/changelog.lang.h:2
-msgid "ChangeLog"
-msgstr "ChangeLog"
-
-#
-#: ../data/language-specs/changelog.lang.h:3
-#: ../data/language-specs/rpmspec.lang.h:3
-msgid "Date"
-msgstr "তাৰিখ"
-
-#
-#: ../data/language-specs/changelog.lang.h:4
-msgid "E-mail address"
-msgstr "ই-মেইল ঠিকানা"
-
-#
-#: ../data/language-specs/changelog.lang.h:5
-msgid "File"
-msgstr "ফাইল: [1]"
-
-#
-#: ../data/language-specs/changelog.lang.h:7
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:455
-msgid "Name"
-msgstr "নাম"
+#. Translators: functions that are provided in the language
+#: ../data/language-specs/cg.lang.h:19 ../data/language-specs/erlang.lang.h:12
+#: ../data/language-specs/imagej.lang.h:3
+#: ../data/language-specs/matlab.lang.h:5
+#: ../data/language-specs/octave.lang.h:16
+#: ../data/language-specs/ruby.lang.h:16
+msgid "Builtin"
+msgstr "বিল্ট-ইন"
 
 #
 #. *
@@ -709,31 +705,62 @@ msgstr "নাম"
 #. * #GtkSourceLanguage instance, and gtk_source_buffer_set_language() to apply it
 #. * to a #GtkSourceBuffer.
 #.
-#: ../data/language-specs/changelog.lang.h:8
-#: ../data/language-specs/cmake.lang.h:7 ../data/language-specs/css.lang.h:12
-#: ../data/language-specs/desktop.lang.h:12
-#: ../data/language-specs/diff.lang.h:9 ../data/language-specs/dot.lang.h:6
-#: ../data/language-specs/dpatch.lang.h:2
-#: ../data/language-specs/gdb-log.lang.h:8
-#: ../data/language-specs/gtkrc.lang.h:8 ../data/language-specs/ini.lang.h:8
-#: ../data/language-specs/json.lang.h:8
-#: ../data/language-specs/libtool.lang.h:3
-#: ../data/language-specs/nsis.lang.h:4 ../data/language-specs/ocl.lang.h:6
+#: ../data/language-specs/changelog.lang.h:1
+#: ../data/language-specs/cmake.lang.h:1 ../data/language-specs/css.lang.h:1
+#: ../data/language-specs/desktop.lang.h:1
+#: ../data/language-specs/diff.lang.h:1 ../data/language-specs/dot.lang.h:1
+#: ../data/language-specs/dpatch.lang.h:1
+#: ../data/language-specs/gdb-log.lang.h:1
+#: ../data/language-specs/gtkrc.lang.h:1 ../data/language-specs/ini.lang.h:1
+#: ../data/language-specs/json.lang.h:1
+#: ../data/language-specs/libtool.lang.h:1
+#: ../data/language-specs/nsis.lang.h:1 ../data/language-specs/ocl.lang.h:1
 #: ../data/language-specs/pkgconfig.lang.h:1
-#: ../data/language-specs/po.lang.h:5 ../data/language-specs/protobuf.lang.h:4
-#: ../data/language-specs/rpmspec.lang.h:10 ../data/language-specs/sh.lang.h:6
-#: ../data/language-specs/texinfo.lang.h:9
+#: ../data/language-specs/po.lang.h:1 ../data/language-specs/protobuf.lang.h:1
+#: ../data/language-specs/puppet.lang.h:1
+#: ../data/language-specs/rpmspec.lang.h:1 ../data/language-specs/sh.lang.h:10
+#: ../data/language-specs/texinfo.lang.h:5
 #: ../data/language-specs/yacc.lang.h:1
 #: ../gtksourceview/gtksourcelanguage.c:55
 msgid "Others"
-msgstr "অন্যান্য"
+msgstr "অন্য"
+
+#: ../data/language-specs/changelog.lang.h:2
+msgid "ChangeLog"
+msgstr "ChangeLog"
+
+#
+#: ../data/language-specs/changelog.lang.h:3
+#: ../data/language-specs/rpmspec.lang.h:14
+msgid "Date"
+msgstr "তাৰিখ"
+
+#
+#: ../data/language-specs/changelog.lang.h:4
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:455
+msgid "Name"
+msgstr "নাম"
+
+#
+#: ../data/language-specs/changelog.lang.h:5
+msgid "E-mail address"
+msgstr "ই-মেইল ঠিকনা"
+
+#
+#: ../data/language-specs/changelog.lang.h:6
+msgid "File"
+msgstr "নথিপত্ৰ"
+
+#: ../data/language-specs/changelog.lang.h:7
+msgid "Bullet"
+msgstr "বুলেট"
 
 #
 #: ../data/language-specs/changelog.lang.h:9
 msgid "Release"
-msgstr "Release"
+msgstr "উন্মোচন"
 
-#: ../data/language-specs/chdr.lang.h:1
+#: ../data/language-specs/chdr.lang.h:2
 msgid "C/C++/ObjC Header"
 msgstr "C/C++/ObjC হেডাৰ"
 
@@ -742,72 +769,71 @@ msgstr "C/C++/ObjC হেডাৰ"
 msgid "C"
 msgstr "C"
 
+#: ../data/language-specs/c.lang.h:6 ../data/language-specs/cpp.lang.h:5
+#: ../data/language-specs/objc.lang.h:5 ../data/language-specs/opal.lang.h:5
+msgid "Common Defines"
+msgstr "সাধাৰণ বিৱৰণ"
+
 #
 #. A character constant: 'c'
-#: ../data/language-specs/c.lang.h:3 ../data/language-specs/csharp.lang.h:3
-#: ../data/language-specs/def.lang.h:9 ../data/language-specs/gap.lang.h:1
-#: ../data/language-specs/go.lang.h:2 ../data/language-specs/haskell.lang.h:1
-#: ../data/language-specs/java.lang.h:2
-#: ../data/language-specs/nemerle.lang.h:3 ../data/language-specs/sml.lang.h:3
-#: ../data/language-specs/vhdl.lang.h:3
+#: ../data/language-specs/c.lang.h:8 ../data/language-specs/csharp.lang.h:7
+#: ../data/language-specs/def.lang.h:15 ../data/language-specs/erlang.lang.h:8
+#: ../data/language-specs/gap.lang.h:4 ../data/language-specs/go.lang.h:6
+#: ../data/language-specs/haskell.lang.h:10
+#: ../data/language-specs/java.lang.h:5
+#: ../data/language-specs/nemerle.lang.h:6 ../data/language-specs/sml.lang.h:6
+#: ../data/language-specs/vhdl.lang.h:5
 msgid "Character"
-msgstr "অক্ষৰ"
+msgstr "আখৰ"
 
-#: ../data/language-specs/c.lang.h:5 ../data/language-specs/cpp.lang.h:2
-#: ../data/language-specs/objc.lang.h:1 ../data/language-specs/opal.lang.h:3
-msgid "Common Defines"
-msgstr "কমন ডিফাইন"
-
-#: ../data/language-specs/c.lang.h:15
-#| msgid "Signal Name"
-msgid "Signal name"
-msgstr "সংকেতৰ নাম"
-
-#: ../data/language-specs/c.lang.h:17
-msgid "Standard stream"
-msgstr "প্ৰামাণিক স্ট্ৰিম"
-
-#: ../data/language-specs/c.lang.h:20
+#: ../data/language-specs/c.lang.h:13 ../data/language-specs/go.lang.h:9
 msgid "printf Conversion"
 msgstr "printf ৰূপান্তৰ"
 
-#: ../data/language-specs/cmake.lang.h:1
-msgid "Builtin Command"
-msgstr "বিল্ট-ইন কমান্ড"
+#: ../data/language-specs/c.lang.h:20
+msgid "Standard stream"
+msgstr "প্ৰামাণিক স্ট্ৰিম"
 
-#: ../data/language-specs/cmake.lang.h:2 ../data/language-specs/glsl.lang.h:3
-msgid "Builtin Variable"
-msgstr "বিল্ট-ইন ভেৰিয়েবল"
+#: ../data/language-specs/c.lang.h:21
+msgid "Signal name"
+msgstr "সংকেতৰ নাম"
 
-#: ../data/language-specs/cmake.lang.h:3
+#: ../data/language-specs/cmake.lang.h:2
 msgid "CMake"
 msgstr "CMake"
 
+#: ../data/language-specs/cmake.lang.h:3
+msgid "Builtin Command"
+msgstr "বিল্ট-ইন কমান্ড"
+
+#: ../data/language-specs/cmake.lang.h:4 ../data/language-specs/glsl.lang.h:8
+msgid "Builtin Variable"
+msgstr "বিল্ট-ইন চলক"
+
 #. Any constant
-#: ../data/language-specs/cmake.lang.h:4 ../data/language-specs/cobol.lang.h:3
-#: ../data/language-specs/def.lang.h:15
-#: ../data/language-specs/gtk-doc.lang.h:1
-#: ../data/language-specs/libtool.lang.h:2
-#: ../data/language-specs/ruby.lang.h:7
+#: ../data/language-specs/cmake.lang.h:5 ../data/language-specs/cobol.lang.h:7
+#: ../data/language-specs/def.lang.h:13
+#: ../data/language-specs/gtk-doc.lang.h:8
+#: ../data/language-specs/libtool.lang.h:3
+#: ../data/language-specs/ruby.lang.h:17
 msgid "Constant"
-msgstr "কনস্ট্যান্ট"
+msgstr "ধ্ৰুৱক"
 
-#: ../data/language-specs/cmake.lang.h:5
+#: ../data/language-specs/cmake.lang.h:7
 msgid "Control Keyword"
-msgstr "Control নিৰ্দেশক শব্দ"
+msgstr "Control কিৱাৰ্ড"
 
-#: ../data/language-specs/cobol.lang.h:1
-#| msgid "Cobalt"
+#: ../data/language-specs/cobol.lang.h:2
 msgid "Cobol"
 msgstr "Cobol"
 
 #. Any statement
-#: ../data/language-specs/cobol.lang.h:9 ../data/language-specs/def.lang.h:55
+#: ../data/language-specs/cobol.lang.h:4 ../data/language-specs/def.lang.h:43
 msgid "Statement"
-msgstr "স্টেটমেন্ট"
+msgstr "বিবৃতি"
 
 #
-#: ../data/language-specs/cpp.lang.h:1
+#: ../data/language-specs/cpp.lang.h:2
 msgid "C++"
 msgstr "C5"
 
@@ -817,287 +843,282 @@ msgid "C#"
 msgstr "C5"
 
 #. Translators: this is a format that appears in the strings
-#: ../data/language-specs/csharp.lang.h:17 ../data/language-specs/po.lang.h:7
+#: ../data/language-specs/csharp.lang.h:10 ../data/language-specs/po.lang.h:8
 msgid "String Format"
-msgstr "স্ট্ৰিং-য়েৰ বিন্যাস"
+msgstr "স্ট্ৰিংৰ আঁচনি"
 
-#: ../data/language-specs/css.lang.h:1
+#: ../data/language-specs/css.lang.h:2
 msgid "CSS"
 msgstr "CSS"
 
-#: ../data/language-specs/css.lang.h:2
-msgid "Class Selector"
-msgstr "শ্ৰেণী নিৰ্বাচক"
+#: ../data/language-specs/css.lang.h:4
+msgid "Others 2"
+msgstr "অন্য ২"
 
 #
-#: ../data/language-specs/css.lang.h:3
+#: ../data/language-specs/css.lang.h:6
 msgid "Color"
-msgstr "ৰং"
+msgstr "ৰঙ"
+
+#: ../data/language-specs/css.lang.h:7
+msgid "Others 3"
+msgstr "অন্য ৩"
 
 #. Translator: it is a type of number
-#: ../data/language-specs/css.lang.h:5 ../data/language-specs/fcl.lang.h:3
-#: ../data/language-specs/fortran.lang.h:4 ../data/language-specs/gap.lang.h:3
-#: ../data/language-specs/gtkrc.lang.h:4
-#: ../data/language-specs/haskell.lang.h:4 ../data/language-specs/ini.lang.h:5
-#: ../data/language-specs/json.lang.h:2 ../data/language-specs/octave.lang.h:6
-#: ../data/language-specs/pascal.lang.h:3 ../data/language-specs/sml.lang.h:6
-#: ../data/language-specs/sql.lang.h:3
+#: ../data/language-specs/css.lang.h:10 ../data/language-specs/fcl.lang.h:7
+#: ../data/language-specs/fortran.lang.h:8 ../data/language-specs/gap.lang.h:7
+#: ../data/language-specs/gtkrc.lang.h:6
+#: ../data/language-specs/haskell.lang.h:13
+#: ../data/language-specs/ini.lang.h:7 ../data/language-specs/json.lang.h:8
+#: ../data/language-specs/octave.lang.h:9
+#: ../data/language-specs/pascal.lang.h:6 ../data/language-specs/sml.lang.h:10
+#: ../data/language-specs/sql.lang.h:8
 msgid "Decimal"
 msgstr "দশমিক"
 
-#: ../data/language-specs/css.lang.h:6
-msgid "Dimension"
-msgstr "ডাইমেনশন"
-
-#: ../data/language-specs/css.lang.h:9
-msgid "ID Selector"
-msgstr "ID নিৰ্বাচক"
-
 #: ../data/language-specs/css.lang.h:11
+msgid "Dimension"
+msgstr "পৰিসৰ"
+
+#: ../data/language-specs/css.lang.h:12
 msgid "Known Property Value"
-msgstr "জ্ঞাত বৈশিষ্ট্যেৰ মান"
+msgstr "জ্ঞাত বৈশিষ্ট্যৰ মান"
 
 #: ../data/language-specs/css.lang.h:13
-msgid "Others 2"
-msgstr "অন্যান্য ২"
-
-#: ../data/language-specs/css.lang.h:14
-msgid "Others 3"
-msgstr "অন্যান্য ৩"
-
-#: ../data/language-specs/css.lang.h:16
-msgid "Tag Name Selector"
-msgstr "টেগ নাম নিৰ্বাচক"
-
-#: ../data/language-specs/css.lang.h:17
 msgid "at-rules"
 msgstr "at-rules"
 
-#: ../data/language-specs/cuda.lang.h:1
+#: ../data/language-specs/css.lang.h:15
+msgid "ID Selector"
+msgstr "ID নিৰ্বাচক"
+
+#: ../data/language-specs/css.lang.h:16
+msgid "Class Selector"
+msgstr "শ্ৰেণী নিৰ্বাচক"
+
+#: ../data/language-specs/css.lang.h:17
+msgid "Tag Name Selector"
+msgstr "টেগ নাম নিৰ্বাচক"
+
+#: ../data/language-specs/cuda.lang.h:2
 msgid "CUDA"
 msgstr "CUDA"
 
-#: ../data/language-specs/cuda.lang.h:3
-#| msgid "Function"
-msgid "Device Functions"
-msgstr "ডিভাইচ ফলনসমূহ"
-
-#: ../data/language-specs/cuda.lang.h:4
-#| msgid "Function"
+#: ../data/language-specs/cuda.lang.h:5
 msgid "Global Functions"
 msgstr "বিশ্বব্যাপী ফলনসমূহ"
 
-#: ../data/language-specs/cuda.lang.h:5
-#| msgid "Special Variable"
+#: ../data/language-specs/cuda.lang.h:6
+msgid "Device Functions"
+msgstr "ডিভাইচ ফলনসমূহ"
+
+#: ../data/language-specs/cuda.lang.h:7
 msgid "Global Variables"
 msgstr "বিশ্বব্যাপী চলকসমূহ"
 
-#. A base-N number: 0xFFFF
-#: ../data/language-specs/def.lang.h:2 ../data/language-specs/python.lang.h:1
-#: ../data/language-specs/python3.lang.h:1
-#: ../data/language-specs/ruby.lang.h:2
-msgid "Base-N number"
-msgstr "Base-N সংখ্যা"
-
-#. A builtin name: like __import__, abs in Python
-#. (see http://docs.python.org/lib/built-in-funcs.html)
-#: ../data/language-specs/def.lang.h:7
-msgid "Built-in identifier"
-msgstr "বিল্ট-ইন আইডেন্টিফায়াৰ"
-
-#. A complex number
-#: ../data/language-specs/def.lang.h:13 ../data/language-specs/python.lang.h:6
-#: ../data/language-specs/python3.lang.h:6
-msgid "Complex number"
-msgstr "জটিল সংখ্যা"
-
-#. A primitive data type: int, long, char, etc.
-#: ../data/language-specs/def.lang.h:17 ../data/language-specs/octave.lang.h:5
-msgid "Data type"
-msgstr "ডাটা প্ৰকাৰ"
-
-#: ../data/language-specs/def.lang.h:20
+#: ../data/language-specs/def.lang.h:1
 msgid "Defaults"
-msgstr "ডিফল্ট মান"
-
-#. A special comment containing documentation like in javadoc or
-#. gtk-doc
-#: ../data/language-specs/def.lang.h:23
-msgid "Documentation comment"
-msgstr "নথিপত্ৰ সংক্ৰান্ত মন্তব্য"
-
-#. This style doesn't map to anything since it must be used as an additional
-#. style for text which is already styled as a "doc-comment"
-#: ../data/language-specs/def.lang.h:26
-msgid "Documentation comment element"
-msgstr "Documentation comment element"
-
-#. Anything that needs extra attention; mostly the keywords TODO, FIXME and XXX
-#: ../data/language-specs/def.lang.h:38
-msgid "Note (FIXME, TODO, XXX, etc.)"
-msgstr "উল্লেখ্যবস্তু (FIXME, TODO, XXX, প্ৰভৃতি)"
-
-#. This one is for '#include <foo.h>' and "#pragma blah", or 'use foobar', etc..
-#: ../data/language-specs/def.lang.h:44
-msgid "Preprocessor directive"
-msgstr "প্ৰি-প্ৰোসেসৰ ডিৰেক্টিভ"
-
-#. Reserved keywords: like "const" and "goto" in Java
-#: ../data/language-specs/def.lang.h:46
-msgid "Reserved keyword"
-msgstr "সংৰক্ষিত শব্দ"
+msgstr "অবিকল্পিতসমূহ"
 
 #. A shebang: #!/bin/sh
-#: ../data/language-specs/def.lang.h:48
+#: ../data/language-specs/def.lang.h:5
 msgid "Shebang"
 msgstr "Shebang"
 
+#. A special comment containing documentation like in javadoc or
+#. gtk-doc
+#: ../data/language-specs/def.lang.h:8
+msgid "Documentation comment"
+msgstr "তথ্যচিত্ৰৰ মন্তব্য"
+
+#. This style doesn't map to anything since it must be used as an additional
+#. style for text which is already styled as a "doc-comment"
+#: ../data/language-specs/def.lang.h:11
+msgid "Documentation comment element"
+msgstr "তথ্যচিত্ৰ মন্তব্যৰ উপাদান"
+
 #. This style doesn't map to anything since it must be used as an additional
 #. style for text which is already styled as a "string"
-#: ../data/language-specs/def.lang.h:51
+#: ../data/language-specs/def.lang.h:20
 msgid "Special character (inside a string)"
-msgstr "বিশেষ অক্ষৰ (পংক্তিৰ মধ্যে অন্তৰ্ভুক্ত)"
+msgstr "বিশেষ আখৰ (পংক্তিৰ মাজত অন্তৰ্ভুক্ত)"
+
+#. A base-N number: 0xFFFF
+#: ../data/language-specs/def.lang.h:28
+#: ../data/language-specs/python.lang.h:14
+#: ../data/language-specs/python3.lang.h:13
+#: ../data/language-specs/ruby.lang.h:12
+msgid "Base-N number"
+msgstr "Base-N সংখ্যা"
+
+#. A complex number
+#: ../data/language-specs/def.lang.h:30
+#: ../data/language-specs/python.lang.h:15
+#: ../data/language-specs/python3.lang.h:14
+msgid "Complex number"
+msgstr "জটিল সংখ্যা"
+
+#. A builtin name: like __import__, abs in Python
+#. (see http://docs.python.org/lib/built-in-funcs.html)
+#: ../data/language-specs/def.lang.h:41
+msgid "Built-in identifier"
+msgstr "বিল্ট-ইন আইডেন্টিফায়াৰ"
+
+#. A primitive data type: int, long, char, etc.
+#: ../data/language-specs/def.lang.h:49 ../data/language-specs/octave.lang.h:6
+msgid "Data type"
+msgstr "তথ্য ধৰণ"
+
+#. This one is for '#include <foo.h>' and "#pragma blah", or 'use foobar', etc..
+#: ../data/language-specs/def.lang.h:51
+msgid "Preprocessor directive"
+msgstr "প্ৰিপ্ৰচেছৰ ডিৰেক্টিভ"
+
+#. Reserved keywords: like "const" and "goto" in Java
+#: ../data/language-specs/def.lang.h:55
+msgid "Reserved keyword"
+msgstr "সংৰক্ষিত কিৱাৰ্ড"
+
+#. Anything that needs extra attention; mostly the keywords TODO, FIXME and XXX
+#: ../data/language-specs/def.lang.h:57
+msgid "Note (FIXME, TODO, XXX, etc.)"
+msgstr "টোকা (FIXME, TODO, XXX, ইত্যাদি)"
 
 #. Text that stands out, HTML links, e-mail addresses, etc.
 #: ../data/language-specs/def.lang.h:59
 msgid "Underlined"
-msgstr "আণ্ডাৰলাইন কৰা হোৱা"
+msgstr "নিম্নৰেখিত"
 
 #
-#: ../data/language-specs/desktop.lang.h:1
-msgid ".desktop"
-msgstr "ডেস্কটপ"
-
 #: ../data/language-specs/desktop.lang.h:2
-#| msgid "Conditional Macro"
-msgid "Additional Category"
-msgstr "অতিৰিক্ত বিভাগ"
+msgid ".desktop"
+msgstr ".desktop"
 
 #
-#: ../data/language-specs/desktop.lang.h:4
-msgid "Encoding"
-msgstr "এনকোডিং"
-
-#: ../data/language-specs/desktop.lang.h:5
-msgid "Exec parameter"
-msgstr "Exec পৰামিতি"
-
-#
-#: ../data/language-specs/desktop.lang.h:6
+#: ../data/language-specs/desktop.lang.h:3
 msgid "Group"
 msgstr "দল"
 
 #
 #. Translators: "Key" here means key value, that is the left hand
 #. side in a myoption=something line in a .desktop file
-#: ../data/language-specs/desktop.lang.h:9
-#: ../data/language-specs/json.lang.h:6
+#: ../data/language-specs/desktop.lang.h:6
+#: ../data/language-specs/json.lang.h:2
 msgid "Key"
 msgstr "কি"
 
+#: ../data/language-specs/desktop.lang.h:7
+msgid "Translation"
+msgstr "অনুবাদ"
+
 #: ../data/language-specs/desktop.lang.h:10
-#| msgid "Category"
+msgid "Exec parameter"
+msgstr "Exec প্ৰাচল"
+
+#
+#: ../data/language-specs/desktop.lang.h:11
+msgid "Encoding"
+msgstr "এনক'ডিং"
+
+#: ../data/language-specs/desktop.lang.h:12
 msgid "Main Category"
 msgstr "মূখ্য বিভাগ"
 
 #: ../data/language-specs/desktop.lang.h:13
-#| msgid "Reserved keyword"
+msgid "Additional Category"
+msgstr "অতিৰিক্ত বিভাগ"
+
+#: ../data/language-specs/desktop.lang.h:14
 msgid "Reserved Category"
 msgstr "সংৰক্ষিত বিভাগ"
 
-#: ../data/language-specs/desktop.lang.h:14
-msgid "Translation"
-msgstr "অনুবাদ"
-
-#: ../data/language-specs/diff.lang.h:1
-msgid "Added line"
-msgstr "সংযোজিত পংক্তি"
-
-#. Others 3
-#: ../data/language-specs/diff.lang.h:3
-msgid "Changed line"
-msgstr "পৰিবৰ্তিত পংক্তি"
-
-#: ../data/language-specs/diff.lang.h:4
+#: ../data/language-specs/diff.lang.h:2
 msgid "Diff"
 msgstr "Diff"
 
-#
-#. Keyword
-#: ../data/language-specs/diff.lang.h:6
-msgid "Ignore"
-msgstr "উপেক্ষা কৰা হবে"
-
-#
-#. String
-#: ../data/language-specs/diff.lang.h:8 ../data/language-specs/po.lang.h:4
-msgid "Location"
-msgstr "অবস্থান"
+#: ../data/language-specs/diff.lang.h:3
+msgid "Added line"
+msgstr "সংযোজিত শাৰী"
 
 #. Others 2
-#: ../data/language-specs/diff.lang.h:11
+#: ../data/language-specs/diff.lang.h:5
 msgid "Removed line"
-msgstr "অপসাৰিত পংক্তি"
+msgstr "অপসাৰিত শাৰী"
+
+#. Others 3
+#: ../data/language-specs/diff.lang.h:7
+msgid "Changed line"
+msgstr "পৰিবৰ্তিত শাৰী"
 
 #. Preprocessor
-#: ../data/language-specs/diff.lang.h:13
+#: ../data/language-specs/diff.lang.h:9
 msgid "Special case"
 msgstr "বিশেষ পৰিস্থিতি"
 
-#: ../data/language-specs/d.lang.h:1 ../data/language-specs/nemerle.lang.h:1
-msgid "Binary number"
-msgstr "বাইনাৰি সংখ্যা"
+#
+#. String
+#: ../data/language-specs/diff.lang.h:11 ../data/language-specs/po.lang.h:4
+msgid "Location"
+msgstr "অবস্থান"
 
 #
-#: ../data/language-specs/d.lang.h:4
-msgid "D"
-msgstr " (%'d"
+#. Keyword
+#: ../data/language-specs/diff.lang.h:13
+msgid "Ignore"
+msgstr "উপেক্ষা কৰক"
 
-#: ../data/language-specs/d.lang.h:14
+#
+#: ../data/language-specs/d.lang.h:2
+msgid "D"
+msgstr "D"
+
+#: ../data/language-specs/d.lang.h:8
 msgid "Special Token"
 msgstr "বিশেষ টোকেন"
 
-#: ../data/language-specs/docbook.lang.h:1
-#| msgid "Docbook"
+#: ../data/language-specs/d.lang.h:13 ../data/language-specs/nemerle.lang.h:14
+msgid "Binary number"
+msgstr "বাইনাৰি সংখ্যা"
+
+#: ../data/language-specs/docbook.lang.h:2
 msgid "DocBook"
 msgstr "DocBook"
 
-#: ../data/language-specs/docbook.lang.h:2
-msgid "Formatting Elements"
-msgstr "বিন্যাসে ব্যবহৃত সামগ্ৰী"
-
 #: ../data/language-specs/docbook.lang.h:3
-msgid "GUI Elements"
-msgstr "GUI এলিমেন্ট"
+msgid "Header Elements"
+msgstr "Header উপাদান"
 
 #: ../data/language-specs/docbook.lang.h:4
-msgid "Header Elements"
-msgstr "Header এলিমেন্ট"
+msgid "Formatting Elements"
+msgstr "ফৰমেটিং উপাদানসমূহ"
+
+#: ../data/language-specs/docbook.lang.h:5
+msgid "GUI Elements"
+msgstr "GUI উপাদানসমূহ"
 
 #: ../data/language-specs/docbook.lang.h:6
 msgid "Structural Elements"
-msgstr "গঠন কৰতে ব্যবহৃত এলিমেন্ট"
+msgstr "গঠন কৰা উপাদানসমূহ"
 
-#
-#: ../data/language-specs/dosbatch.lang.h:1
-#: ../data/language-specs/latex.lang.h:1
-msgid "Command"
-msgstr "কমান্ড"
-
-#: ../data/language-specs/dosbatch.lang.h:3
-#| msgid "Dos Batch"
+#: ../data/language-specs/dosbatch.lang.h:2
 msgid "DOS Batch"
 msgstr "DOS চাম"
 
-#: ../data/language-specs/dot.lang.h:1 ../data/language-specs/xml.lang.h:1
-msgid "Attribute name"
-msgstr "অ্যাট্ৰিবিউটেৰ নাম"
+#
+#: ../data/language-specs/dosbatch.lang.h:6
+#: ../data/language-specs/latex.lang.h:8
+msgid "Command"
+msgstr "কমান্ড"
 
-#: ../data/language-specs/dot.lang.h:4
+#: ../data/language-specs/dot.lang.h:2
 msgid "Graphviz Dot"
 msgstr "Graphviz Dot"
 
-#: ../data/language-specs/dpatch.lang.h:1
+#: ../data/language-specs/dot.lang.h:6 ../data/language-specs/xml.lang.h:8
+msgid "Attribute name"
+msgstr "বৈশিষ্টৰ নাম"
+
+#: ../data/language-specs/dpatch.lang.h:2
 msgid "DPatch"
 msgstr "DPatch"
 
@@ -1105,18 +1126,18 @@ msgstr "DPatch"
 msgid "patch-start"
 msgstr "patch-start"
 
-#: ../data/language-specs/dtd.lang.h:1 ../data/language-specs/html.lang.h:4
+#: ../data/language-specs/dtd.lang.h:2 ../data/language-specs/html.lang.h:7
 msgid "DTD"
 msgstr "DTD"
 
-#: ../data/language-specs/dtd.lang.h:3
-msgid "decl"
-msgstr "decl"
-
 #
-#: ../data/language-specs/dtd.lang.h:4
+#: ../data/language-specs/dtd.lang.h:3
 msgid "entity"
 msgstr "Entity"
+
+#: ../data/language-specs/dtd.lang.h:4
+msgid "decl"
+msgstr "decl"
 
 #
 #: ../data/language-specs/dtd.lang.h:5
@@ -1127,656 +1148,637 @@ msgstr "ভুল"
 msgid "quoted-value"
 msgstr "উল্লিখিত-মান"
 
-#: ../data/language-specs/eiffel.lang.h:1
-msgid "Assertion"
-msgstr "অ্যাসাৰশন"
-
-#
 #: ../data/language-specs/eiffel.lang.h:2
-#: ../data/language-specs/javascript.lang.h:1
-#: ../data/language-specs/json.lang.h:1
-msgid "Boolean Value"
-msgstr "বুলিয়ান মান"
+msgid "Eiffel"
+msgstr "Eiffel"
 
 #
 #: ../data/language-specs/eiffel.lang.h:5
 msgid "Debug"
-msgstr "ডিবাগ কৰুন"
+msgstr "ডিবাগ কৰক"
 
-#: ../data/language-specs/eiffel.lang.h:7
+#: ../data/language-specs/eiffel.lang.h:6
+msgid "Assertion"
+msgstr "ধাৰণা"
+
+#: ../data/language-specs/eiffel.lang.h:9
 msgid "Design by Contract"
-msgstr "Design by Contract"
-
-#: ../data/language-specs/eiffel.lang.h:8
-msgid "Eiffel"
-msgstr "Eiffel"
+msgstr "চুক্তিৰে ৰূপাঙ্কণ কৰক"
 
 #: ../data/language-specs/eiffel.lang.h:10
 msgid "Exception Handling"
-msgstr "এক্সেপশন ব্যবস্থাপনা"
+msgstr "ব্যতিক্ৰম ব্যবস্থাপনা"
+
+#: ../data/language-specs/eiffel.lang.h:11
+#: ../data/language-specs/ruby.lang.h:20
+msgid "Predefined Variable"
+msgstr "পূৰ্ববিৱৰিত চলক"
 
 #: ../data/language-specs/eiffel.lang.h:13
-#: ../data/language-specs/ruby.lang.h:17
-msgid "Predefined Variable"
-msgstr "পূৰ্বনিৰ্ধাৰিত ভেৰিয়েবল"
-
-#: ../data/language-specs/eiffel.lang.h:16
 msgid "Void Value"
-msgstr "Void Value"
+msgstr "Void মান"
 
-#: ../data/language-specs/erlang.lang.h:1
-msgid "Atom"
-msgstr "অ্যাটম"
+#
+#: ../data/language-specs/eiffel.lang.h:14
+#: ../data/language-specs/javascript.lang.h:6
+#: ../data/language-specs/json.lang.h:6
+msgid "Boolean Value"
+msgstr "বুলিয়ান মান"
 
 #: ../data/language-specs/erlang.lang.h:2
-#: ../data/language-specs/fsharp.lang.h:1
-#: ../data/language-specs/ocaml.lang.h:1
-#: ../data/language-specs/octave.lang.h:1 ../data/language-specs/sml.lang.h:1
-#: ../data/language-specs/verilog.lang.h:1
-#: ../data/language-specs/vhdl.lang.h:1
-msgid "Base-N Integer"
-msgstr "বেস-ন ইন্টেজাৰ"
-
-#: ../data/language-specs/erlang.lang.h:5
-#: ../data/language-specs/forth.lang.h:2
-#: ../data/language-specs/systemverilog.lang.h:1
-#: ../data/language-specs/verilog.lang.h:3
-msgid "Compiler Directive"
-msgstr "কম্পাইলাৰ ডিৰেক্টিভ"
-
-#: ../data/language-specs/erlang.lang.h:7
 msgid "Erlang"
 msgstr "Erlang"
 
-#: ../data/language-specs/fcl.lang.h:1
-#| msgid "Code Block"
-msgid "Block"
-msgstr "খন্ড"
+#: ../data/language-specs/erlang.lang.h:6
+msgid "Atom"
+msgstr "এটম"
 
-#: ../data/language-specs/fcl.lang.h:4
-#| msgid "OCL"
-msgid "FCL"
-msgstr "FCL"
+#: ../data/language-specs/erlang.lang.h:11
+#: ../data/language-specs/fsharp.lang.h:4
+#: ../data/language-specs/ocaml.lang.h:5
+#: ../data/language-specs/octave.lang.h:11 ../data/language-specs/sml.lang.h:9
+#: ../data/language-specs/verilog.lang.h:13
+#: ../data/language-specs/vhdl.lang.h:9
+msgid "Base-N Integer"
+msgstr "ভিত্তি-N পূৰ্ণ সংখ্যা"
 
-#: ../data/language-specs/fcl.lang.h:5 ../data/language-specs/fortran.lang.h:5
-#: ../data/language-specs/ini.lang.h:6 ../data/language-specs/octave.lang.h:7
-#: ../data/language-specs/scilab.lang.h:3 ../data/language-specs/sql.lang.h:4
-msgid "Floating Point"
-msgstr "দশমিক চিহ্ন"
+#: ../data/language-specs/erlang.lang.h:13
+#: ../data/language-specs/forth.lang.h:11
+#: ../data/language-specs/systemverilog.lang.h:3
+#: ../data/language-specs/verilog.lang.h:7
+msgid "Compiler Directive"
+msgstr "কম্পাইলাৰ ডিৰেক্টিভ"
 
-#: ../data/language-specs/fcl.lang.h:7 ../data/language-specs/octave.lang.h:12
-#: ../data/language-specs/scilab.lang.h:6
-msgid "Reserved Constant"
-msgstr "সংৰক্ষিত কনস্ট্যান্স"
-
-#: ../data/language-specs/fcl.lang.h:8 ../data/language-specs/gap.lang.h:7
-#: ../data/language-specs/imagej.lang.h:8
-#: ../data/language-specs/matlab.lang.h:4
-#: ../data/language-specs/octave.lang.h:13 ../data/language-specs/R.lang.h:9
-#: ../data/language-specs/scilab.lang.h:7
+#: ../data/language-specs/fcl.lang.h:1 ../data/language-specs/gap.lang.h:1
+#: ../data/language-specs/imagej.lang.h:1
+#: ../data/language-specs/matlab.lang.h:1
+#: ../data/language-specs/octave.lang.h:1 ../data/language-specs/R.lang.h:1
+#: ../data/language-specs/scilab.lang.h:1
 msgid "Scientific"
 msgstr "বৈজ্ঞানিক"
 
-#: ../data/language-specs/forth.lang.h:4
-msgid "Debug Code"
-msgstr "কোড ডিবাগ কৰুন"
+#: ../data/language-specs/fcl.lang.h:2
+msgid "FCL"
+msgstr "FCL"
 
-#: ../data/language-specs/forth.lang.h:5
-msgid "Error Text"
-msgstr "ত্ৰুটিৰ লেখা"
+#: ../data/language-specs/fcl.lang.h:4 ../data/language-specs/fortran.lang.h:4
+#: ../data/language-specs/ini.lang.h:4 ../data/language-specs/octave.lang.h:10
+#: ../data/language-specs/scilab.lang.h:4 ../data/language-specs/sql.lang.h:4
+msgid "Floating Point"
+msgstr "দশমিক চিহ্ন"
 
-#: ../data/language-specs/forth.lang.h:6
+#: ../data/language-specs/fcl.lang.h:6
+msgid "Block"
+msgstr "ব্লক"
+
+#: ../data/language-specs/fcl.lang.h:8 ../data/language-specs/octave.lang.h:15
+#: ../data/language-specs/scilab.lang.h:9
+msgid "Reserved Constant"
+msgstr "সংৰক্ষিত ধ্ৰুৱক"
+
+#: ../data/language-specs/forth.lang.h:2
 msgid "Forth"
 msgstr "Forth"
 
-#: ../data/language-specs/fortran.lang.h:1
-msgid "BOZ Literal"
-msgstr "BOZ লিটাৰেল"
+#: ../data/language-specs/forth.lang.h:9
+msgid "Debug Code"
+msgstr "ক'ড ডিবাগ কৰক"
 
-#: ../data/language-specs/fortran.lang.h:6
+#: ../data/language-specs/forth.lang.h:10
+msgid "Error Text"
+msgstr "ত্ৰুটিৰ লেখা"
+
+#: ../data/language-specs/fortran.lang.h:2
 msgid "Fortran 95"
 msgstr "Fortran 95"
 
-#: ../data/language-specs/fortran.lang.h:7
-#| msgid "Builtin Function"
+#: ../data/language-specs/fortran.lang.h:6
 msgid "Intrinsic function"
 msgstr "অভ্যান্তৰীক ফলন"
 
-#: ../data/language-specs/fsharp.lang.h:3
-#: ../data/language-specs/ocaml.lang.h:3
-msgid "Builtin-function keyword"
-msgstr "বিল্ট-ইন ফাংশন কি-ওয়াৰ্ড"
+#: ../data/language-specs/fortran.lang.h:7
+msgid "BOZ Literal"
+msgstr "BOZ লিটাৰেল"
 
-#: ../data/language-specs/fsharp.lang.h:8
+#: ../data/language-specs/fsharp.lang.h:2
 msgid "F#"
 msgstr "F#"
 
-#: ../data/language-specs/fsharp.lang.h:9
-#: ../data/language-specs/ocaml.lang.h:9 ../data/language-specs/sml.lang.h:8
+#: ../data/language-specs/fsharp.lang.h:5
+#: ../data/language-specs/ocaml.lang.h:6 ../data/language-specs/sml.lang.h:12
 msgid "Floating Point number"
-msgstr "ফ্লোটিং পয়েন্ট সংখ্যা"
+msgstr "দশমিক সংখ্যা"
 
-#: ../data/language-specs/fsharp.lang.h:11
+#: ../data/language-specs/fsharp.lang.h:9
+#: ../data/language-specs/ocaml.lang.h:10
+msgid "Type, module or object keyword"
+msgstr "ধৰণ, মডিউল অথবা অবজেক্ট কিৱাৰ্ড"
+
+#: ../data/language-specs/fsharp.lang.h:10
 #: ../data/language-specs/ocaml.lang.h:11
-msgid "Labeled argument"
-msgstr "লেবেল কৰা আৰ্গুমেন্ট"
+msgid "Builtin-function keyword"
+msgstr "বিল্ট-ইন ফলন কিৱাৰ্ড"
 
 #: ../data/language-specs/fsharp.lang.h:12
-#: ../data/language-specs/ocaml.lang.h:12
-msgid "Module Path"
-msgstr "মডিউলেৰ পাথ"
+#: ../data/language-specs/ocaml.lang.h:13
+msgid "Labeled argument"
+msgstr "লেবেল কৰা তৰ্ক"
+
+#: ../data/language-specs/fsharp.lang.h:13
+#: ../data/language-specs/ocaml.lang.h:14
+msgid "Polymorphic Variant"
+msgstr "বহুৰূপক অপৰ"
 
 #: ../data/language-specs/fsharp.lang.h:14
 #: ../data/language-specs/ocaml.lang.h:15
-msgid "Polymorphic Variant"
-msgstr "পলিমৰ্ফিক ভেৰিয়েন্ট"
+msgid "Variant Constructor"
+msgstr "অপৰ কনস্ট্ৰাক্টৰ"
 
 #. Translators: this is a specific variable called Type
-#: ../data/language-specs/fsharp.lang.h:19
-#: ../data/language-specs/ocaml.lang.h:19
+#: ../data/language-specs/fsharp.lang.h:16
+#: ../data/language-specs/ocaml.lang.h:16
 msgid "Type Variable"
-msgstr "টাইপ ভেৰিয়েবল"
+msgstr "ধৰণ চলক"
 
-#: ../data/language-specs/fsharp.lang.h:20
-#: ../data/language-specs/ocaml.lang.h:20
-msgid "Type, module or object keyword"
-msgstr "ধৰন, ক্লাস ও অবজেক্ট নিৰ্দেশক শব্দ"
-
-#: ../data/language-specs/fsharp.lang.h:21
-#: ../data/language-specs/ocaml.lang.h:21
-msgid "Variant Constructor"
-msgstr "ভেৰিয়েন্ট কনস্ট্ৰাক্টৰ"
+#: ../data/language-specs/fsharp.lang.h:17
+#: ../data/language-specs/ocaml.lang.h:17
+msgid "Module Path"
+msgstr "মডিউলৰ পথ"
 
 #
-#: ../data/language-specs/gap.lang.h:5
+#: ../data/language-specs/gap.lang.h:2
 msgid "GAP"
-msgstr "ব্যৱধান"
-
-#: ../data/language-specs/gdb-log.lang.h:1
-msgid "Address"
-msgstr "ঠিকনা"
+msgstr "GAP"
 
 #: ../data/language-specs/gdb-log.lang.h:2
-#| msgid "File"
-msgid "Filename"
-msgstr "নথিপত্ৰনাম"
-
-#: ../data/language-specs/gdb-log.lang.h:3
-#| msgid "Number"
-msgid "Frame Number"
-msgstr "ফ্ৰেইম নম্বৰ"
-
-#: ../data/language-specs/gdb-log.lang.h:5
 msgid "GDB Log"
 msgstr "GDB লগ"
 
-#: ../data/language-specs/gdb-log.lang.h:6
-msgid "Incomplete Sequence"
-msgstr "অসম্পূৰ্ণ ক্ৰম"
-
-#: ../data/language-specs/gdb-log.lang.h:7
-#| msgid "Itemized list"
-msgid "Optimized Out"
-msgstr "অনুকলন কৰা হল"
-
-#: ../data/language-specs/gdb-log.lang.h:9
-#| msgid "Properties"
-msgid "Prompt"
-msgstr "প্ৰমপ্ট কৰক"
-
-#: ../data/language-specs/gdb-log.lang.h:11
-#| msgid "Section"
+#: ../data/language-specs/gdb-log.lang.h:3
 msgid "Thread Action"
 msgstr "থ্ৰেড কাৰ্য্য"
 
-#: ../data/language-specs/gdb-log.lang.h:12
-#| msgid "Print Header"
+#: ../data/language-specs/gdb-log.lang.h:4
 msgid "Thread Header"
 msgstr "থ্ৰেড হেডাৰ"
 
-#: ../data/language-specs/glsl.lang.h:1 ../data/language-specs/python.lang.h:3
-#: ../data/language-specs/python3.lang.h:3
-msgid "Builtin Constant"
-msgstr "বিল্ট-ইন কনস্ট্যান্ট"
+#: ../data/language-specs/gdb-log.lang.h:5
+msgid "Frame Number"
+msgstr "ফ্ৰেইম নম্বৰ"
 
-#: ../data/language-specs/glsl.lang.h:6
+#: ../data/language-specs/gdb-log.lang.h:6
+msgid "Address"
+msgstr "ঠিকনা"
+
+#: ../data/language-specs/gdb-log.lang.h:9
+msgid "Filename"
+msgstr "নথিপত্ৰনাম"
+
+#: ../data/language-specs/gdb-log.lang.h:10
+msgid "Optimized Out"
+msgstr "অনুকলন কৰা হল"
+
+#: ../data/language-specs/gdb-log.lang.h:11
+msgid "Incomplete Sequence"
+msgstr "অসম্পূৰ্ণ ক্ৰম"
+
+#: ../data/language-specs/gdb-log.lang.h:12
+msgid "Prompt"
+msgstr "প্ৰমপ্ট কৰক"
+
+#: ../data/language-specs/glsl.lang.h:2
 msgid "OpenGL Shading Language"
 msgstr "OpenGL শেডিং ভাষা"
 
-#: ../data/language-specs/glsl.lang.h:8
-#| msgid "Reserved keyword"
+#: ../data/language-specs/glsl.lang.h:7 ../data/language-specs/go.lang.h:17
+#: ../data/language-specs/python.lang.h:16
+#: ../data/language-specs/python3.lang.h:15
+msgid "Builtin Constant"
+msgstr "বিল্ট-ইন ধ্ৰুৱক"
+
+#: ../data/language-specs/glsl.lang.h:9
 msgid "Reserved Keywords"
 msgstr "সংৰক্ষিত কিৱাৰ্ডসমূহ"
 
-#: ../data/language-specs/go.lang.h:9
+#: ../data/language-specs/go.lang.h:2
 msgid "Go"
 msgstr "যাওক"
 
+#: ../data/language-specs/go.lang.h:12
+msgid "Imaginary number"
+msgstr "কাল্পনিক সংখ্যা"
+
 #: ../data/language-specs/gtk-doc.lang.h:2
-msgid "Deprecated"
-msgstr "অবচিত"
-
-#: ../data/language-specs/gtk-doc.lang.h:4
-msgid "Function Name"
-msgstr "ফাংশানেৰ নাম"
-
-#: ../data/language-specs/gtk-doc.lang.h:5
-msgid "Inline Documentation Section"
-msgstr "Inline Documentation Section"
-
-#: ../data/language-specs/gtk-doc.lang.h:7
-msgid "Parameter"
-msgstr "ভুল পেৰামিটাৰ"
-
-#: ../data/language-specs/gtk-doc.lang.h:8
-msgid "Property Name"
-msgstr "সম্পদ: [1], স্বাক্ষৰ: [2]"
-
-#
-#: ../data/language-specs/gtk-doc.lang.h:9
-msgid "Return"
-msgstr "Return"
-
-#: ../data/language-specs/gtk-doc.lang.h:10
-msgid "Signal Name"
-msgstr "সিগ্যালেৰ নাম"
-
-#
-#: ../data/language-specs/gtk-doc.lang.h:11
-msgid "Since"
-msgstr "...ৰ পৰা"
-
-#
-#: ../data/language-specs/gtk-doc.lang.h:12
-#: ../data/language-specs/systemverilog.lang.h:6
-#: ../data/language-specs/verilog.lang.h:14
-#: ../data/language-specs/vhdl.lang.h:10
-msgid "Type"
-msgstr "ধৰন"
-
-#: ../data/language-specs/gtk-doc.lang.h:13
 msgid "gtk-doc"
 msgstr "gtk-doc"
 
-#: ../data/language-specs/gtkrc.lang.h:5
+#: ../data/language-specs/gtk-doc.lang.h:3
+msgid "Inline Documentation Section"
+msgstr "ইনলাইন তথ্যচিত্ৰ বিভাগ"
+
+#: ../data/language-specs/gtk-doc.lang.h:4
+msgid "Function Name"
+msgstr "ফলনৰ নাম"
+
+#: ../data/language-specs/gtk-doc.lang.h:5
+msgid "Signal Name"
+msgstr "সংকেতৰ নাম"
+
+#: ../data/language-specs/gtk-doc.lang.h:6
+msgid "Property Name"
+msgstr "বৈশিষ্টৰ নাম"
+
+#: ../data/language-specs/gtk-doc.lang.h:7
+msgid "Parameter"
+msgstr "প্ৰাচল"
+
+#
+#: ../data/language-specs/gtk-doc.lang.h:9
+#: ../data/language-specs/systemverilog.lang.h:6
+#: ../data/language-specs/verilog.lang.h:12
+#: ../data/language-specs/vhdl.lang.h:7
+msgid "Type"
+msgstr "ধৰণ"
+
+#
+#: ../data/language-specs/gtk-doc.lang.h:11
+msgid "Return"
+msgstr "Return"
+
+#
+#: ../data/language-specs/gtk-doc.lang.h:12
+msgid "Since"
+msgstr "বিগত"
+
+#: ../data/language-specs/gtk-doc.lang.h:13
+msgid "Deprecated"
+msgstr "অবচিত"
+
+#: ../data/language-specs/gtkrc.lang.h:2
 msgid "GtkRC"
 msgstr "GtkRC"
 
-#: ../data/language-specs/gtkrc.lang.h:6
+#: ../data/language-specs/gtkrc.lang.h:8
+msgid "Widget State"
+msgstr "উইজেটৰ অবস্থা"
+
+#: ../data/language-specs/gtkrc.lang.h:9
 msgid "Include directive"
 msgstr "Include ডিৰেক্টিভ"
 
-#: ../data/language-specs/gtkrc.lang.h:10
-msgid "Widget State"
-msgstr "উইজেটেৰ অবস্থা"
-
-#
-#: ../data/language-specs/haddock.lang.h:1 ../data/language-specs/t2t.lang.h:1
-msgid "Anchor"
-msgstr "লঙ্গৰ"
-
 #: ../data/language-specs/haddock.lang.h:2
-msgid "Code Block"
-msgstr "কোড ব্লক"
-
-#
-#: ../data/language-specs/haddock.lang.h:3
-msgid "Definition list"
-msgstr "Definition list"
-
-#
-#: ../data/language-specs/haddock.lang.h:4
-#: ../data/language-specs/markdown.lang.h:5
-msgid "Emphasis"
-msgstr "Emphasis"
-
-#: ../data/language-specs/haddock.lang.h:5
-msgid "Enumerated list"
-msgstr "সংখ্যাবিশিষ্ট তালিকা"
-
-#: ../data/language-specs/haddock.lang.h:6
-msgid "Escape"
-msgstr "Escape"
-
-#: ../data/language-specs/haddock.lang.h:7
 msgid "Haddock"
 msgstr "Haddock"
 
-#: ../data/language-specs/haddock.lang.h:8
+#: ../data/language-specs/haddock.lang.h:3
+msgid "Inline Haddock Section"
+msgstr "Haddock ৰ ইন-লাইন বিভাগ"
+
+#: ../data/language-specs/haddock.lang.h:4
 msgid "Haddock Directive"
 msgstr "Haddock ডিৰেক্টিভ"
 
-#: ../data/language-specs/haddock.lang.h:9
-msgid "Header Property"
-msgstr "হেডাৰেৰ বৈশিষ্ট্য"
-
-#: ../data/language-specs/haddock.lang.h:10
+#: ../data/language-specs/haddock.lang.h:5
 msgid "Hyperlinked Identifier"
-msgstr "হাইপাৰ-লিংক কৰা আডেন্টিফায়াৰ"
+msgstr "হাইপাৰ-লিংক কৰা আইডেন্টিফায়াৰ"
 
-#: ../data/language-specs/haddock.lang.h:11
+#: ../data/language-specs/haddock.lang.h:6
 msgid "Hyperlinked Module Name"
-msgstr "হাইপাৰ-লিংক কৰা মডিউলেৰ নাম"
+msgstr "হাইপাৰ-লিংক কৰা মডিউলৰ নাম"
 
-#: ../data/language-specs/haddock.lang.h:12
-msgid "Inline Haddock Section"
-msgstr "Haddock-ৰ ইন-লাইন বিভাগ"
-
-#: ../data/language-specs/haddock.lang.h:13
-msgid "Itemized list"
-msgstr "Itemized list"
+#: ../data/language-specs/haddock.lang.h:7
+msgid "Escape"
+msgstr "এস্কেইপ"
 
 #
-#: ../data/language-specs/haddock.lang.h:15
+#: ../data/language-specs/haddock.lang.h:8
+#: ../data/language-specs/markdown.lang.h:13
+msgid "Emphasis"
+msgstr "গুৰুত্ব"
+
+#
+#: ../data/language-specs/haddock.lang.h:9
 msgid "Monospace"
 msgstr "Monospace 12"
 
-#: ../data/language-specs/haddock.lang.h:16
-#: ../data/language-specs/markdown.lang.h:16
+#: ../data/language-specs/haddock.lang.h:10
+msgid "Code Block"
+msgstr "ক'ড ব্লক"
+
+#: ../data/language-specs/haddock.lang.h:11
+msgid "Header Property"
+msgstr "হেডাৰৰ বৈশিষ্ট্য"
+
+#: ../data/language-specs/haddock.lang.h:12
+msgid "Itemized list"
+msgstr "বস্তু ভেদে তালিকা"
+
+#: ../data/language-specs/haddock.lang.h:13
+msgid "Enumerated list"
+msgstr "সংখ্যাবিশিষ্ট তালিকা"
+
+#
+#: ../data/language-specs/haddock.lang.h:14
+msgid "Definition list"
+msgstr "বিৱৰণ তালিকা"
+
+#: ../data/language-specs/haddock.lang.h:15
+#: ../data/language-specs/markdown.lang.h:8
 msgid "URL"
 msgstr "URL"
 
 #
-#: ../data/language-specs/haskell.lang.h:6
-msgid "Float"
-msgstr "দশমিক"
+#: ../data/language-specs/haddock.lang.h:16
+#: ../data/language-specs/t2t.lang.h:13
+msgid "Anchor"
+msgstr "লঙ্গৰ"
 
-#: ../data/language-specs/haskell.lang.h:7
+#: ../data/language-specs/haskell.lang.h:2
 msgid "Haskell"
 msgstr "Haskell"
 
-#: ../data/language-specs/haskell.lang.h:8
-msgid "Hex"
-msgstr "হেক্স"
+#: ../data/language-specs/haskell.lang.h:6
+#: ../data/language-specs/ruby.lang.h:18
+msgid "Symbol"
+msgstr "চিহ্ন"
 
-#: ../data/language-specs/haskell.lang.h:10
+#
+#: ../data/language-specs/haskell.lang.h:12
+msgid "Float"
+msgstr "দশমিক"
+
+#: ../data/language-specs/haskell.lang.h:14
 msgid "Octal"
 msgstr "অক্টাল"
 
-#: ../data/language-specs/haskell.lang.h:14
-#: ../data/language-specs/ruby.lang.h:23
-msgid "Symbol"
-msgstr "প্ৰতীকচিহ্ন"
+#: ../data/language-specs/haskell.lang.h:15
+msgid "Hex"
+msgstr "হেক্স"
 
-#: ../data/language-specs/haskell-literate.lang.h:1
+#: ../data/language-specs/haskell-literate.lang.h:2
 msgid "Literate Haskell"
 msgstr "লিটাৰেট Haskell"
 
-#: ../data/language-specs/html.lang.h:1
-msgid "Attribute Name"
-msgstr "অ্যঅট্ৰিবিউটেৰ নাম"
-
 #: ../data/language-specs/html.lang.h:2
-#: ../data/language-specs/markdown.lang.h:1
-msgid "Attribute Value"
-msgstr "অ্যাট্ৰিবিউটেৰ মান"
-
-#: ../data/language-specs/html.lang.h:6
 msgid "HTML"
 msgstr "HTML"
 
 #
-#: ../data/language-specs/html.lang.h:8 ../data/language-specs/xml.lang.h:12
+#: ../data/language-specs/html.lang.h:4 ../data/language-specs/xml.lang.h:11
 msgid "Tag"
 msgstr "ট্যাগ"
 
-#: ../data/language-specs/idl.lang.h:3
+#: ../data/language-specs/html.lang.h:5
+msgid "Attribute Name"
+msgstr "বৈশিষ্টৰ নাম"
+
+#: ../data/language-specs/html.lang.h:6
+#: ../data/language-specs/markdown.lang.h:11
+msgid "Attribute Value"
+msgstr "বৈশিষ্টৰ মান"
+
+#: ../data/language-specs/idl.lang.h:2
 msgid "IDL"
 msgstr "IDL"
 
-#: ../data/language-specs/imagej.lang.h:3
-#| msgid "Command"
-msgid "Commands"
-msgstr "কমান্ডসমূহ"
-
-#: ../data/language-specs/imagej.lang.h:4
-#| msgid "Escaped Character"
-msgid "Escaped Characters"
-msgstr "এস্কেপ্ড আখৰসমূহ"
-
-#: ../data/language-specs/imagej.lang.h:5
+#: ../data/language-specs/imagej.lang.h:2
 msgid "ImageJ"
 msgstr "ImageJ"
 
-#: ../data/language-specs/imagej.lang.h:9
-#: ../data/language-specs/octave.lang.h:14
-#| msgid "Data Type"
+#: ../data/language-specs/imagej.lang.h:5
+msgid "Commands"
+msgstr "কমান্ডসমূহ"
+
+#: ../data/language-specs/imagej.lang.h:6
+#: ../data/language-specs/octave.lang.h:7
 msgid "Storage Type"
 msgstr "সংৰক্ষণ ধৰণ"
 
-#: ../data/language-specs/ini.lang.h:1
+#: ../data/language-specs/imagej.lang.h:7
+msgid "Escaped Characters"
+msgstr "এস্কেপ্ড আখৰসমূহ"
+
+#: ../data/language-specs/ini.lang.h:2
 msgid ".ini"
 msgstr ".ini"
 
-#: ../data/language-specs/java.lang.h:4 ../data/language-specs/ooc.lang.h:5
-msgid "Declaration"
-msgstr "ডিক্লাৰেশন"
-
-#. Translators: refered to some specific keywords of the language that
-#. allow to get external functionalities
-#: ../data/language-specs/java.lang.h:8 ../data/language-specs/ooc.lang.h:8
-msgid "External"
-msgstr "বহিস্থিত"
-
-#: ../data/language-specs/java.lang.h:9
-#: ../data/language-specs/javascript.lang.h:6
-#: ../data/language-specs/ooc.lang.h:10
-msgid "Future Reserved Keywords"
-msgstr "ভবিষ্যতে সংৰক্ষিত শব্দ"
-
 #
-#: ../data/language-specs/java.lang.h:10
+#: ../data/language-specs/java.lang.h:2
 msgid "Java"
 msgstr "Java"
 
-#: ../data/language-specs/java.lang.h:14 ../data/language-specs/ooc.lang.h:16
-msgid "Scope Declaration"
-msgstr "স্কোপ ডিক্লাৰেশন"
-
 #: ../data/language-specs/javascript.lang.h:2
-msgid "Constructors"
-msgstr "কনস্ট্ৰাক্টৰ"
-
-#: ../data/language-specs/javascript.lang.h:7
-#| msgid "Javascript"
 msgid "JavaScript"
-msgstr "Javaস্ক্ৰিপ্ট "
+msgstr "JavaScript"
 
-#
-#: ../data/language-specs/javascript.lang.h:10
-msgid "Properties"
-msgstr "বৈশিষ্ট্যাবলী"
-
-#: ../data/language-specs/javascript.lang.h:14
-#| msgid "Predefined Variable"
+#: ../data/language-specs/javascript.lang.h:5
 msgid "Undefined Value"
 msgstr "অবিৱৰিত মান"
 
 #
-#: ../data/language-specs/latex.lang.h:3
-#: ../data/language-specs/texinfo.lang.h:5
-msgid "Include"
-msgstr "Include"
+#: ../data/language-specs/javascript.lang.h:10
+msgid "Properties"
+msgstr "বৈশিষ্টসমূহ"
 
-#: ../data/language-specs/latex.lang.h:4
-msgid "Inline Math Mode"
-msgstr "ইন-লাইন ম্যাথ মোড"
+#: ../data/language-specs/javascript.lang.h:11
+msgid "Constructors"
+msgstr "কনস্ট্ৰাক্টৰসমূহ"
 
-#: ../data/language-specs/latex.lang.h:5
+#: ../data/language-specs/latex.lang.h:2
 msgid "LaTeX"
 msgstr "LaTeX"
 
-#: ../data/language-specs/latex.lang.h:7
+#: ../data/language-specs/latex.lang.h:4
 msgid "Math Mode"
-msgstr "ম্যাথ মোড"
+msgstr "ম্যাথ অৱস্থা"
 
-#: ../data/language-specs/latex.lang.h:8 ../data/language-specs/t2t.lang.h:15
-msgid "Verbatim"
-msgstr "Verbatim"
+#: ../data/language-specs/latex.lang.h:5
+msgid "Inline Math Mode"
+msgstr "ইন-লাইন ম্যাথ অৱস্থা"
 
-#: ../data/language-specs/latex.lang.h:9
+#: ../data/language-specs/latex.lang.h:6
 msgid "math-bound"
 msgstr "math-bound"
 
-#: ../data/language-specs/libtool.lang.h:4
+#
+#: ../data/language-specs/latex.lang.h:7
+#: ../data/language-specs/texinfo.lang.h:11
+msgid "Include"
+msgstr "Include"
+
+#: ../data/language-specs/latex.lang.h:9 ../data/language-specs/t2t.lang.h:16
+msgid "Verbatim"
+msgstr "Verbatim"
+
+#: ../data/language-specs/libtool.lang.h:2
 msgid "libtool"
 msgstr "libtool"
 
-#: ../data/language-specs/lua.lang.h:6
+#: ../data/language-specs/lua.lang.h:2
 msgid "Lua"
 msgstr "Lua"
 
-#: ../data/language-specs/lua.lang.h:7 ../data/language-specs/ruby.lang.h:15
-msgid "Nil Constant"
-msgstr "Nil কনস্ট্যান্ট"
-
-#: ../data/language-specs/lua.lang.h:8
+#: ../data/language-specs/lua.lang.h:7
 msgid "Reserved Identifier"
 msgstr "সংৰক্ষিত আইডেন্টিফায়াৰ"
 
-#: ../data/language-specs/m4.lang.h:1
-msgid "Autoconf Macro"
-msgstr "Autoconf ম্যাক্ৰো"
-
-#: ../data/language-specs/m4.lang.h:2
-msgid "Obsolete Autoconf Macro"
-msgstr "অবচিত Autoconf ম্যাক্ৰো"
+#: ../data/language-specs/lua.lang.h:9 ../data/language-specs/ruby.lang.h:8
+msgid "Nil Constant"
+msgstr "Nil ধ্ৰুৱক"
 
 #
-#: ../data/language-specs/m4.lang.h:4
+#: ../data/language-specs/m4.lang.h:2
 msgid "m4"
 msgstr "m"
 
-#: ../data/language-specs/m4.lang.h:5
-msgid "m4 Macro"
-msgstr "m4 ম্যাক্ৰো"
-
-#: ../data/language-specs/m4.lang.h:6
+#: ../data/language-specs/m4.lang.h:3
 msgid "m4-comment"
 msgstr "m4-comment"
 
-#: ../data/language-specs/makefile.lang.h:1
-msgid "Assignment Left Hand Side"
-msgstr "বাঁদিকেৰ বৰাদ্দকৰণ"
+#: ../data/language-specs/m4.lang.h:4
+msgid "m4 Macro"
+msgstr "m4 মেক্ৰ"
+
+#: ../data/language-specs/m4.lang.h:5
+msgid "Autoconf Macro"
+msgstr "Autoconf মেক্ৰ"
+
+#: ../data/language-specs/m4.lang.h:6
+msgid "Obsolete Autoconf Macro"
+msgstr "অবচিত Autoconf মেক্ৰ"
 
 #: ../data/language-specs/makefile.lang.h:2
-msgid "Assignment Right Hand Side"
-msgstr "ডানদিকেৰ বৰাদ্দকৰণ"
-
-#: ../data/language-specs/makefile.lang.h:3
 msgid "Makefile"
 msgstr "Makefile"
 
-#. Translators: Trailing Tabs refers to tabulation characters present at
-#. the end of the line
+#: ../data/language-specs/makefile.lang.h:4
+msgid "Assignment Right Hand Side"
+msgstr "সোঁফালৰ ধাৰ্য্যকৰণ"
+
+#: ../data/language-specs/makefile.lang.h:5
+msgid "Assignment Left Hand Side"
+msgstr "বাঁওফালৰ ধাৰ্য্যকৰণ"
+
+#: ../data/language-specs/makefile.lang.h:6
+msgid "targets"
+msgstr "লক্ষ্য"
+
 #: ../data/language-specs/makefile.lang.h:7
-msgid "Trailing Tab"
-msgstr "Trailing Tab"
-
-#
-#: ../data/language-specs/makefile.lang.h:9
-msgid "command"
-msgstr "কমান্ড"
-
-#
-#: ../data/language-specs/makefile.lang.h:10
-msgid "function"
-msgstr "ফাংশন"
-
-#
-#. FIXME make it better names, and make them translatable
-#: ../data/language-specs/makefile.lang.h:11
-#: ../data/language-specs/yacc.lang.h:4
-msgid "keyword"
-msgstr "কীওয়াৰ্ড"
-
-#: ../data/language-specs/makefile.lang.h:12
 msgid "prereq"
 msgstr "prereq"
 
-#: ../data/language-specs/makefile.lang.h:13
-msgid "targets"
-msgstr "টাৰ্গেট"
+#
+#: ../data/language-specs/makefile.lang.h:8
+msgid "command"
+msgstr "কমান্ড"
 
-#: ../data/language-specs/mallard.lang.h:1
-msgid "Block Elements"
-msgstr "ব্লক এলিমেন্ট"
+#. Translators: Trailing Tabs refers to tabulation characters present at
+#. the end of the line
+#: ../data/language-specs/makefile.lang.h:11
+msgid "Trailing Tab"
+msgstr "ট্ৰেইলিং টেব"
+
+#
+#: ../data/language-specs/makefile.lang.h:12
+msgid "function"
+msgstr "ফলন"
+
+#
+#. FIXME make it better names, and make them translatable
+#: ../data/language-specs/makefile.lang.h:13
+#: ../data/language-specs/yacc.lang.h:4
+msgid "keyword"
+msgstr "কিৱাৰ্ড"
 
 #: ../data/language-specs/mallard.lang.h:2
-msgid "Inline Elements"
-msgstr "Inline এলিমেন্ট"
-
-#: ../data/language-specs/mallard.lang.h:3
 msgid "Mallard"
 msgstr "Mallard"
 
-#: ../data/language-specs/mallard.lang.h:5
+#: ../data/language-specs/mallard.lang.h:3
 msgid "Page Elements"
-msgstr "Page এলিমেন্ট"
+msgstr "পৃষ্ঠাৰ উপাদানসমূহ"
+
+#: ../data/language-specs/mallard.lang.h:4
+msgid "Section Elements"
+msgstr "বিভাগৰ উপাদানসমূহ"
+
+#: ../data/language-specs/mallard.lang.h:5
+msgid "Block Elements"
+msgstr "ব্লক উপাদানসমূহ"
 
 #: ../data/language-specs/mallard.lang.h:6
-msgid "Section Elements"
-msgstr "Section এলিমেন্ট"
+msgid "Inline Elements"
+msgstr "ইনলাইন উপাদানসমূহ"
 
 #: ../data/language-specs/markdown.lang.h:2
-msgid "Backslash Escape"
-msgstr "বেকলেশ এস্কেইপ"
-
-#: ../data/language-specs/markdown.lang.h:3
-msgid "Blockquote Marker"
-msgstr "Blockquote চিহ্নক"
-
-#: ../data/language-specs/markdown.lang.h:4
-msgid "Code"
-msgstr "ক'ড"
-
-#
-#: ../data/language-specs/markdown.lang.h:6
-#: ../data/language-specs/rpmspec.lang.h:8 ../data/language-specs/t2t.lang.h:4
-msgid "Header"
-msgstr "হেডাৰ"
-
-#: ../data/language-specs/markdown.lang.h:7
-msgid "Horizontal Rule"
-msgstr "আনুভুমিক নিয়ম"
-
-#: ../data/language-specs/markdown.lang.h:8
-msgid "Image Marker"
-msgstr "ছবি চিহ্নক"
-
-#: ../data/language-specs/markdown.lang.h:9
-#: ../gtksourceview/gtksourcecompletionitem.c:229
-#| msgid "LaTeX"
-msgid "Label"
-msgstr "লেবেল"
-
-#: ../data/language-specs/markdown.lang.h:10
-msgid "Line Break"
-msgstr "শাৰী ভাঙন"
-
-#: ../data/language-specs/markdown.lang.h:11
-msgid "Link Text"
-msgstr "শাৰী লিখনী"
-
-#: ../data/language-specs/markdown.lang.h:12
-msgid "List Marker"
-msgstr "তালিকা চিহ্নক"
-
-#: ../data/language-specs/markdown.lang.h:13
 msgid "Markdown"
 msgstr "চিহ্ন দিয়ক"
 
-#: ../data/language-specs/markdown.lang.h:15
-#| msgid "Emphasis"
+#
+#: ../data/language-specs/markdown.lang.h:3
+#: ../data/language-specs/rpmspec.lang.h:4 ../data/language-specs/t2t.lang.h:6
+msgid "Header"
+msgstr "হেডাৰ"
+
+#: ../data/language-specs/markdown.lang.h:4
+msgid "Horizontal Rule"
+msgstr "আনুভুমিক নিয়ম"
+
+#: ../data/language-specs/markdown.lang.h:5
+msgid "List Marker"
+msgstr "তালিকা চিহ্নক"
+
+#: ../data/language-specs/markdown.lang.h:6
+msgid "Code"
+msgstr "ক'ড"
+
+#: ../data/language-specs/markdown.lang.h:7
+msgid "Blockquote Marker"
+msgstr "Blockquote চিহ্নক"
+
+#: ../data/language-specs/markdown.lang.h:9
+msgid "Link Text"
+msgstr "শাৰী লিখনী"
+
+#: ../data/language-specs/markdown.lang.h:10
+#: ../gtksourceview/gtksourcecompletionitem.c:229
+msgid "Label"
+msgstr "লেবেল"
+
+#: ../data/language-specs/markdown.lang.h:12
+msgid "Image Marker"
+msgstr "ছবি চিহ্নক"
+
+#: ../data/language-specs/markdown.lang.h:14
 msgid "Strong Emphasis"
 msgstr "শক্তিশালী গুৰুত্ব"
 
-#: ../data/language-specs/matlab.lang.h:3
-#| msgid "Mallard"
+#: ../data/language-specs/markdown.lang.h:15
+msgid "Backslash Escape"
+msgstr "বেকস্লেশ এস্কেইপ"
+
+#: ../data/language-specs/markdown.lang.h:16
+msgid "Line Break"
+msgstr "শাৰী ভাঙন"
+
+#: ../data/language-specs/matlab.lang.h:2
 msgid "Matlab"
 msgstr "Matlab"
 
-#: ../data/language-specs/nemerle.lang.h:11
+#: ../data/language-specs/mxml.lang.h:2
+msgid "MXML"
+msgstr "MXML"
+
+#
+#: ../data/language-specs/mxml.lang.h:3 ../data/language-specs/xml.lang.h:7
+msgid "Element name"
+msgstr "উপাদানৰ নাম"
+
+#: ../data/language-specs/mxml.lang.h:4 ../data/language-specs/xml.lang.h:5
+msgid "CDATA delimiter"
+msgstr "CDATA ডিলিমিটাৰ"
+
+#: ../data/language-specs/nemerle.lang.h:2
 msgid "Nemerle"
 msgstr "Nemerle"
 
@@ -1784,538 +1786,538 @@ msgstr "Nemerle"
 msgid "NSIS"
 msgstr "NSIS"
 
-#: ../data/language-specs/objc.lang.h:4
+#: ../data/language-specs/objc.lang.h:2
 msgid "Objective-C"
 msgstr "Objective-C"
 
-#: ../data/language-specs/objj.lang.h:6
-#| msgid "Objective-C"
+#: ../data/language-specs/objj.lang.h:2
 msgid "Objective-J"
-msgstr "লক্ষ্য-J"
+msgstr "Objective-J"
 
-#: ../data/language-specs/ocaml.lang.h:13
+#: ../data/language-specs/ocaml.lang.h:2
 msgid "Objective Caml"
 msgstr "Objective Caml"
 
-#: ../data/language-specs/ocaml.lang.h:14
+#: ../data/language-specs/ocaml.lang.h:4
 msgid "Ocamldoc Comments"
-msgstr "Ocamldoc কমেন্ট"
+msgstr "Ocamldoc মন্তব্য"
 
-#: ../data/language-specs/ocaml.lang.h:17
+#: ../data/language-specs/ocaml.lang.h:21
 msgid "Standard Modules"
 msgstr "প্ৰামাণিক মডিউলসমূহ"
 
-#: ../data/language-specs/ocl.lang.h:4
+#: ../data/language-specs/ocl.lang.h:2
 msgid "OCL"
 msgstr "OCL"
 
-#: ../data/language-specs/ocl.lang.h:5
-msgid "Operation operator"
-msgstr "অপাৰেশন অপাৰেটৰ"
+#: ../data/language-specs/ocl.lang.h:6
+msgid "Type Operators"
+msgstr "ধৰণ অপাৰেটৰ"
 
 #: ../data/language-specs/ocl.lang.h:8
-msgid "Type Operators"
-msgstr "টাইপ অপাৰেটৰ"
+msgid "Operation operator"
+msgstr "কাৰ্য্য অপাৰেটৰ"
 
-#: ../data/language-specs/octave.lang.h:9
+#: ../data/language-specs/octave.lang.h:2
 msgid "Octave"
 msgstr "Octave"
 
-#: ../data/language-specs/octave.lang.h:11
-#| msgid "Package Info"
+#: ../data/language-specs/octave.lang.h:12
 msgid "Package Manager"
 msgstr "পেকেইজ ব্যৱস্থাপক"
 
-#: ../data/language-specs/ooc.lang.h:14
-#| msgid "OCL"
+#: ../data/language-specs/ooc.lang.h:2
 msgid "OOC"
 msgstr "OOC"
 
-#: ../data/language-specs/opal.lang.h:7
-#| msgid "Symbol"
-msgid "Keysymbol"
-msgstr "কিচিহ্ন"
-
-#: ../data/language-specs/opal.lang.h:9
-#: ../data/language-specs/python.lang.h:12
-#: ../data/language-specs/python3.lang.h:12
-msgid "Module Handler"
-msgstr "মডিউল হ্যান্ডলাৰ"
-
-#: ../data/language-specs/opal.lang.h:10
-#| msgid "Octal"
+#: ../data/language-specs/opal.lang.h:2
 msgid "Opal"
 msgstr "অপাল"
 
+#: ../data/language-specs/opal.lang.h:3 ../data/language-specs/python.lang.h:3
+#: ../data/language-specs/python3.lang.h:3
+msgid "Module Handler"
+msgstr "মডিউল হ্যান্ডলাৰ"
+
+#: ../data/language-specs/opal.lang.h:12
+msgid "Keysymbol"
+msgstr "কিচিহ্ন"
+
 #: ../data/language-specs/opencl.lang.h:2
-msgid "Device Cast"
-msgstr "ডিভাইচ কাস্ট"
-
-#: ../data/language-specs/opencl.lang.h:3
-#| msgid "Function"
-msgid "Device Function"
-msgstr "ডিভাইচ ফলন"
-
-#: ../data/language-specs/opencl.lang.h:4
-#| msgid "Function"
-msgid "Global Function"
-msgstr "বিশ্বব্যাপী ফলন"
-
-#: ../data/language-specs/opencl.lang.h:5
-#| msgid "Special Variable"
-msgid "Global Variable"
-msgstr "বিশ্বব্যাপী চলক"
-
-#: ../data/language-specs/opencl.lang.h:7
-#| msgid "OCL"
 msgid "OpenCL"
 msgstr "OpenCL"
 
-#: ../data/language-specs/opencl.lang.h:8
-#| msgid "Special Constant"
-msgid "OpenCL Constant"
-msgstr "OpenCL অটল"
+#: ../data/language-specs/opencl.lang.h:5
+msgid "Global Function"
+msgstr "বিশ্বব্যাপী ফলন"
 
-#: ../data/language-specs/pascal.lang.h:5
+#: ../data/language-specs/opencl.lang.h:6
+msgid "Device Function"
+msgstr "ডিভাইচ ফলন"
+
+#: ../data/language-specs/opencl.lang.h:7
+msgid "Device Cast"
+msgstr "ডিভাইচ কাস্ট"
+
+#: ../data/language-specs/opencl.lang.h:8
+msgid "OpenCL Constant"
+msgstr "OpenCL ধ্ৰুৱক"
+
+#: ../data/language-specs/opencl.lang.h:9
+msgid "Global Variable"
+msgstr "বিশ্বব্যাপী চলক"
+
+#: ../data/language-specs/pascal.lang.h:2
 msgid "Pascal"
 msgstr "Pascal"
 
 #
-#: ../data/language-specs/perl.lang.h:3
-msgid "Control"
-msgstr "নিয়ন্ত্ৰণ"
-
-#
-#: ../data/language-specs/perl.lang.h:5
-msgid "File Descriptor"
-msgstr "ফাইল ডেসক্ৰিপটৰ"
-
-#: ../data/language-specs/perl.lang.h:6 ../data/language-specs/php.lang.h:10
-#: ../data/language-specs/ruby.lang.h:11
-msgid "Heredoc"
-msgstr "Heredoc"
-
-#: ../data/language-specs/perl.lang.h:7 ../data/language-specs/php.lang.h:11
-#: ../data/language-specs/ruby.lang.h:12 ../data/language-specs/sh.lang.h:4
-msgid "Heredoc Bound"
-msgstr "Heredoc বাউন্ড"
-
-#: ../data/language-specs/perl.lang.h:8
-msgid "Include Statement"
-msgstr "Include স্টেটমেন্ট"
-
-#: ../data/language-specs/perl.lang.h:10
-msgid "Line Directive"
-msgstr "Line ডিৰেক্টিভ"
-
-#: ../data/language-specs/perl.lang.h:12
-msgid "POD"
-msgstr "POD"
-
-#: ../data/language-specs/perl.lang.h:13
-msgid "POD Escape"
-msgstr "POD এস্কেপ"
-
-#: ../data/language-specs/perl.lang.h:14
-msgid "POD heading"
-msgstr "POD হেডিং"
-
-#: ../data/language-specs/perl.lang.h:15
-msgid "POD keyword"
-msgstr "POD কি-ওয়াৰ্ড"
-
-#
-#: ../data/language-specs/perl.lang.h:16
+#: ../data/language-specs/perl.lang.h:2
 msgid "Perl"
 msgstr "Perl"
 
-#: ../data/language-specs/perl.lang.h:20
+#: ../data/language-specs/perl.lang.h:4
+msgid "Line Directive"
+msgstr "লাইন ডিৰেক্টিভ"
+
+#: ../data/language-specs/perl.lang.h:5
+msgid "Include Statement"
+msgstr "Include বিবৃতি"
+
+#: ../data/language-specs/perl.lang.h:9 ../data/language-specs/php.lang.h:10
+#: ../data/language-specs/ruby.lang.h:22
+msgid "Heredoc"
+msgstr "Heredoc"
+
+#: ../data/language-specs/perl.lang.h:10 ../data/language-specs/php.lang.h:11
+#: ../data/language-specs/ruby.lang.h:23 ../data/language-specs/sh.lang.h:12
+msgid "Heredoc Bound"
+msgstr "Heredoc বাউন্ড"
+
+#: ../data/language-specs/perl.lang.h:11
 msgid "System Command"
-msgstr "সিস্টেম কমান্ড"
+msgstr "চিস্টেম কমান্ড"
 
-#: ../data/language-specs/php.lang.h:3
-#| msgid "Function"
-msgid "Common Function"
-msgstr "সাধাৰণ ফলন"
+#
+#: ../data/language-specs/perl.lang.h:14
+msgid "File Descriptor"
+msgstr "নথিপত্ৰ বিৱৰক"
 
-#: ../data/language-specs/php.lang.h:18
+#
+#: ../data/language-specs/perl.lang.h:15
+msgid "Control"
+msgstr "নিয়ন্ত্ৰণ"
+
+#: ../data/language-specs/perl.lang.h:18
+msgid "POD"
+msgstr "POD"
+
+#: ../data/language-specs/perl.lang.h:19
+msgid "POD Escape"
+msgstr "POD এস্কেপ"
+
+#: ../data/language-specs/perl.lang.h:20
+msgid "POD keyword"
+msgstr "POD কিৱাৰ্ড"
+
+#: ../data/language-specs/perl.lang.h:21
+msgid "POD heading"
+msgstr "POD হেডিং"
+
+#: ../data/language-specs/php.lang.h:2
 msgid "PHP"
 msgstr "PHP"
 
-#: ../data/language-specs/pkgconfig.lang.h:2
-msgid "Package Info"
-msgstr "প্যাকেজ সংক্ৰান্ত তথ্য"
+#: ../data/language-specs/php.lang.h:13
+msgid "Common Function"
+msgstr "সাধাৰণ ফলন"
 
-#: ../data/language-specs/pkgconfig.lang.h:4
+#: ../data/language-specs/pkgconfig.lang.h:2
 msgid "pkg-config"
 msgstr "pkg-config"
 
-#: ../data/language-specs/po.lang.h:2
-msgid "Fuzzy"
-msgstr "ফাজি"
+#: ../data/language-specs/pkgconfig.lang.h:4
+msgid "Package Info"
+msgstr "পেকেইজ তথ্য"
 
-#: ../data/language-specs/po.lang.h:8
+#: ../data/language-specs/po.lang.h:2
 msgid "gettext translation"
 msgstr "gettext অনুবাদ"
 
-#: ../data/language-specs/prolog.lang.h:7
+#: ../data/language-specs/po.lang.h:6
+msgid "Fuzzy"
+msgstr "ফাজি"
+
+#: ../data/language-specs/prolog.lang.h:2
 msgid "Prolog"
 msgstr "Prolog"
 
-#: ../data/language-specs/python.lang.h:5
-#: ../data/language-specs/python3.lang.h:5
-msgid "Builtin Object"
-msgstr "বিল্ট-ইন অবজেক্ট"
+#: ../data/language-specs/puppet.lang.h:2
+msgid "Puppet"
+msgstr "Puppet"
 
-#
-#: ../data/language-specs/python.lang.h:10
-#: ../data/language-specs/python3.lang.h:10
-msgid "Format"
-msgstr "ফৰমা"
+#: ../data/language-specs/puppet.lang.h:3
+msgid "Resources"
+msgstr "সম্পদসমূহ"
 
-#: ../data/language-specs/python.lang.h:14
+#: ../data/language-specs/puppet.lang.h:4
+msgid "Parameters"
+msgstr "প্ৰাচলসমূহ"
+
+#: ../data/language-specs/puppet.lang.h:5
+msgid "Metaparameters"
+msgstr "মেটাপ্ৰাচলসমূহ"
+
+#: ../data/language-specs/puppet.lang.h:6
+msgid "Functions"
+msgstr "ফলনসমূহ"
+
+#: ../data/language-specs/puppet.lang.h:7
+msgid "Values"
+msgstr "মানসমূহ"
+
+#: ../data/language-specs/puppet.lang.h:8
+msgid "Variables"
+msgstr "চলকসমূহ"
+
+#: ../data/language-specs/puppet.lang.h:9
+msgid "Class names"
+msgstr "শ্ৰেণীৰ নামসমূহ"
+
+#: ../data/language-specs/python.lang.h:2
 msgid "Python"
 msgstr "Python"
 
-#: ../data/language-specs/python.lang.h:18
+#
+#: ../data/language-specs/python.lang.h:8
+#: ../data/language-specs/python3.lang.h:8
+msgid "Format"
+msgstr "আঁচনি"
+
+#: ../data/language-specs/python.lang.h:9
 msgid "string-conversion"
 msgstr "string-conversion"
 
-#: ../data/language-specs/python3.lang.h:14
-#| msgid "Python"
+#: ../data/language-specs/python.lang.h:17
+#: ../data/language-specs/python3.lang.h:16
+msgid "Builtin Object"
+msgstr "বিল্ট-ইন অবজেক্ট"
+
+#: ../data/language-specs/python3.lang.h:2
 msgid "Python 3"
 msgstr "Python 3"
 
-#: ../data/language-specs/R.lang.h:1
-msgid "Assignment Operator"
-msgstr "অ্যাসাইনমেন্ট অপাৰেটৰ"
-
-#: ../data/language-specs/R.lang.h:3
-msgid "Delimiter"
-msgstr "ডেলিমিটাৰ"
-
-#: ../data/language-specs/R.lang.h:5 ../data/language-specs/verilog.lang.h:8
-msgid "Integer Number"
-msgstr "পূৰ্ণ সংখ্যা"
-
-#: ../data/language-specs/R.lang.h:7
+#: ../data/language-specs/R.lang.h:2
 msgid "R"
 msgstr "R"
 
-#: ../data/language-specs/R.lang.h:8
+#: ../data/language-specs/R.lang.h:4
 msgid "Reserved Class"
-msgstr "সংৰক্ষিত ক্লাস"
+msgstr "সংৰক্ষিত শ্ৰেণী"
 
-#: ../data/language-specs/R.lang.h:10
+#: ../data/language-specs/R.lang.h:5
+msgid "Assignment Operator"
+msgstr "এসাইনমেন্ট অপাৰেটৰ"
+
+#: ../data/language-specs/R.lang.h:6
+msgid "Delimiter"
+msgstr "ডিলিমিটাৰ"
+
+#: ../data/language-specs/R.lang.h:7
 msgid "Special Constant"
-msgstr "বিশেষ কনস্ট্যান্ট"
+msgstr "বিশেষ ধ্ৰুৱক"
 
-#: ../data/language-specs/rpmspec.lang.h:1
-msgid "Command Macro"
-msgstr "কমান্ড ম্যাক্ৰো"
+#: ../data/language-specs/R.lang.h:9 ../data/language-specs/verilog.lang.h:15
+msgid "Integer Number"
+msgstr "পূৰ্ণ সংখ্যা"
 
 #: ../data/language-specs/rpmspec.lang.h:2
-msgid "Conditional Macro"
-msgstr "কন্ডিশনাল ম্যাক্ৰো"
-
-#
-#: ../data/language-specs/rpmspec.lang.h:4
-msgid "Define"
-msgstr "ব্যাখ্যা"
-
-#: ../data/language-specs/rpmspec.lang.h:5
-msgid "Directory Macro"
-msgstr "ডিৰেক্টৰি ম্যাক্ৰো"
-
-#: ../data/language-specs/rpmspec.lang.h:6
-msgid "Email"
-msgstr "ই-মেইল"
-
-#: ../data/language-specs/rpmspec.lang.h:7
-msgid "Flow Conditional"
-msgstr "ফ্লো কন্ডিশনাল"
-
-#: ../data/language-specs/rpmspec.lang.h:9
-msgid "Other Macro"
-msgstr "অন্যান্য ম্যাক্ৰো"
-
-#: ../data/language-specs/rpmspec.lang.h:11
-msgid "RPM Variable"
-msgstr "RPM ভেৰিয়েবল"
-
-#: ../data/language-specs/rpmspec.lang.h:12
 msgid "RPM spec"
 msgstr "RPM spec"
 
 #
-#: ../data/language-specs/rpmspec.lang.h:13
-#: ../data/language-specs/t2t.lang.h:9
-msgid "Section"
-msgstr "সেকশন"
-
-#: ../data/language-specs/rpmspec.lang.h:14
-msgid "Spec Macro"
-msgstr "Spec ম্যাক্ৰো"
-
-#: ../data/language-specs/rpmspec.lang.h:15
-msgid "Switch"
-msgstr "Switch"
-
-#: ../data/language-specs/ruby.lang.h:1
-msgid "Attribute Definition"
-msgstr "বৈশিষ্ট্যেৰ ব্যাখ্যা"
+#: ../data/language-specs/rpmspec.lang.h:3
+msgid "Define"
+msgstr "বিৱৰণ"
 
 #
-#: ../data/language-specs/ruby.lang.h:14
+#: ../data/language-specs/rpmspec.lang.h:5 ../data/language-specs/t2t.lang.h:7
+msgid "Section"
+msgstr "বিভাগ"
+
+#: ../data/language-specs/rpmspec.lang.h:6
+msgid "Spec Macro"
+msgstr "Spec মেক্ৰ"
+
+#: ../data/language-specs/rpmspec.lang.h:7
+msgid "Directory Macro"
+msgstr "ডাইৰেকটৰি মেক্ৰ"
+
+#: ../data/language-specs/rpmspec.lang.h:8
+msgid "Command Macro"
+msgstr "কমান্ড মেক্ৰ"
+
+#: ../data/language-specs/rpmspec.lang.h:9
+msgid "Conditional Macro"
+msgstr "চৰ্তসাপেক্ষ মেক্ৰ"
+
+#: ../data/language-specs/rpmspec.lang.h:10
+msgid "Other Macro"
+msgstr "অন্য মেক্ৰ"
+
+#: ../data/language-specs/rpmspec.lang.h:11
+msgid "Flow Conditional"
+msgstr "ফ্লো চৰ্তসাপেক্ষ"
+
+#: ../data/language-specs/rpmspec.lang.h:12
+msgid "RPM Variable"
+msgstr "RPM চলক"
+
+#: ../data/language-specs/rpmspec.lang.h:13
+msgid "Switch"
+msgstr "চুইচ"
+
+#: ../data/language-specs/rpmspec.lang.h:15
+msgid "Email"
+msgstr "ই-মেইল"
+
+#
+#: ../data/language-specs/ruby.lang.h:2
+msgid "Ruby"
+msgstr "Ruby"
+
+#: ../data/language-specs/ruby.lang.h:5
+msgid "Attribute Definition"
+msgstr "বৈশিষ্ট্যৰ বিৱৰণ"
+
+#
+#: ../data/language-specs/ruby.lang.h:6
 msgid "Module handler"
 msgstr "মডিউল হ্যান্ডলাৰ"
 
-#: ../data/language-specs/ruby.lang.h:16
+#: ../data/language-specs/ruby.lang.h:13
 msgid "Numeric literal"
 msgstr "নিউমেৰিক লিটাৰেল"
 
 #
-#: ../data/language-specs/ruby.lang.h:19
-msgid "Ruby"
-msgstr "চুনি"
-
-#
-#: ../data/language-specs/scheme.lang.h:5
+#: ../data/language-specs/scheme.lang.h:2
 msgid "Scheme"
 msgstr "স্কিম"
 
-#: ../data/language-specs/scilab.lang.h:8
-#| msgid "Special"
+#: ../data/language-specs/scilab.lang.h:2
 msgid "Scilab"
 msgstr "Scilab"
 
 #: ../data/language-specs/sh.lang.h:2
-msgid "Common Commands"
-msgstr "সাধাৰণ কমান্ড"
-
-#: ../data/language-specs/sh.lang.h:9
-msgid "Subshell"
-msgstr "Subshell"
-
-#. FIXME: need to sort out proper styles for variables
-#: ../data/language-specs/sh.lang.h:12
-msgid "Variable Definition"
-msgstr "ভেৰিয়েবল ব্যাখ্যা"
-
-#: ../data/language-specs/sh.lang.h:13
 msgid "sh"
 msgstr "sh"
 
-#: ../data/language-specs/sml.lang.h:10
-msgid "Module name, Variant, etc"
-msgstr "মডিউল নাম, অপৰ, ইত্যাদী"
+#. FIXME: need to sort out proper styles for variables
+#: ../data/language-specs/sh.lang.h:9
+msgid "Variable Definition"
+msgstr "চলক বিৱৰণ"
 
-#: ../data/language-specs/sml.lang.h:12
+#: ../data/language-specs/sh.lang.h:11
+msgid "Common Commands"
+msgstr "সাধাৰণ কমান্ডসমূহ"
+
+#: ../data/language-specs/sh.lang.h:13
+msgid "Subshell"
+msgstr "চাবশ্বেল"
+
+#: ../data/language-specs/sml.lang.h:2
 msgid "Standard ML"
 msgstr "প্ৰামাণিক ML"
 
+#: ../data/language-specs/sml.lang.h:13
+msgid "Module name, Variant, etc"
+msgstr "মডিউল নাম, অপৰ, ইত্যাদী"
+
 #: ../data/language-specs/sparql.lang.h:2
-#| msgid "Classic"
+msgid "SPARQL"
+msgstr "SPARQL"
+
+#: ../data/language-specs/sparql.lang.h:3
 msgid "Class"
 msgstr "শ্ৰেণী"
-
-#: ../data/language-specs/sparql.lang.h:5
-msgid "IRI"
-msgstr "IRI"
 
 #: ../data/language-specs/sparql.lang.h:6
 msgid "Individual"
 msgstr "সূকীয়া"
 
-#: ../data/language-specs/sparql.lang.h:8
-#| msgid "BOZ Literal"
+#: ../data/language-specs/sparql.lang.h:10
 msgid "Literal"
 msgstr "লিটাৰেল"
 
 #: ../data/language-specs/sparql.lang.h:11
-#| msgid "Deprecated"
 msgid "Predicate"
 msgstr "বিধেয়"
 
 #: ../data/language-specs/sparql.lang.h:12
-#| msgid "Name"
 msgid "QName"
 msgstr "QName"
 
 #: ../data/language-specs/sparql.lang.h:13
-#| msgid "SQL"
-msgid "SPARQL"
-msgstr "SPARQL"
+msgid "IRI"
+msgstr "IRI"
 
-#: ../data/language-specs/sql.lang.h:7
-msgid "No idea what it is"
-msgstr "No idea what it is"
-
-#: ../data/language-specs/sql.lang.h:8
+#: ../data/language-specs/sql.lang.h:2
 msgid "SQL"
 msgstr "SQL"
 
-#: ../data/language-specs/systemverilog.lang.h:4
-#| msgid "System Command"
-msgid "System Task"
-msgstr "চিস্টেম কাৰ্য্য"
+#: ../data/language-specs/sql.lang.h:10
+msgid "No idea what it is"
+msgstr "এইটো কি ক'ব নোৱাৰি"
 
-#: ../data/language-specs/systemverilog.lang.h:5
-#| msgid "Verilog"
+#: ../data/language-specs/systemverilog.lang.h:2
 msgid "SystemVerilog"
 msgstr "SystemVerilog"
 
-#
-#: ../data/language-specs/t2t.lang.h:2 ../gtksourceview/gtksourcestyle.c:104
-#: ../gtksourceview/gtksourcestyle.c:105
-msgid "Bold"
-msgstr "গাড়"
+#: ../data/language-specs/systemverilog.lang.h:4
+msgid "System Task"
+msgstr "চিস্টেম কাৰ্য্য"
+
+#: ../data/language-specs/t2t.lang.h:2
+msgid "txt2tags"
+msgstr "txt2tags"
 
 #
-#: ../data/language-specs/t2t.lang.h:5 ../gtksourceview/gtksourcestyle.c:112
-#: ../gtksourceview/gtksourcestyle.c:113
-msgid "Italic"
-msgstr "তেৰছা"
-
-#
-#: ../data/language-specs/t2t.lang.h:7
+#: ../data/language-specs/t2t.lang.h:4
 msgid "Option"
 msgstr "[OPTION...]"
 
-#: ../data/language-specs/t2t.lang.h:8
+#: ../data/language-specs/t2t.lang.h:5
 msgid "Option Name"
-msgstr "বিকল্পেৰ নাম"
+msgstr "বিকল্পৰ নাম"
 
 #
-#: ../data/language-specs/t2t.lang.h:10
+#: ../data/language-specs/t2t.lang.h:8
 msgid "Section 1"
 msgstr "বিভাগ 4"
 
-#: ../data/language-specs/t2t.lang.h:11
+#: ../data/language-specs/t2t.lang.h:9
 msgid "Section 2"
 msgstr "বিভাগ 2"
 
 #
-#: ../data/language-specs/t2t.lang.h:12
+#: ../data/language-specs/t2t.lang.h:10
 msgid "Section 3"
 msgstr "বিভাগ 4"
 
-#: ../data/language-specs/t2t.lang.h:13
+#: ../data/language-specs/t2t.lang.h:11
 msgid "Section 4"
 msgstr "বিভাগ 4"
 
-#: ../data/language-specs/t2t.lang.h:14
+#: ../data/language-specs/t2t.lang.h:12
 msgid "Section 5"
 msgstr "বিভাগ 5"
 
-#: ../data/language-specs/t2t.lang.h:16
+#
+#: ../data/language-specs/t2t.lang.h:14 ../gtksourceview/gtksourcestyle.c:112
+#: ../gtksourceview/gtksourcestyle.c:113
+msgid "Italic"
+msgstr "ইটালিক"
+
+#
+#: ../data/language-specs/t2t.lang.h:15 ../gtksourceview/gtksourcestyle.c:104
+#: ../gtksourceview/gtksourcestyle.c:105
+msgid "Bold"
+msgstr "ডাঠ"
+
+#: ../data/language-specs/t2t.lang.h:17
 msgid "Verbatim Block"
 msgstr "Verbatim ব্লক"
 
-#: ../data/language-specs/t2t.lang.h:17
-#| msgid "Text2Tags"
-msgid "txt2tags"
-msgstr "txt2tags"
-
-#: ../data/language-specs/tcl.lang.h:3
+#: ../data/language-specs/tcl.lang.h:2
 msgid "Tcl"
 msgstr "Tcl"
 
-#: ../data/language-specs/texinfo.lang.h:3
-msgid "File Attributes"
-msgstr "ফাইলেৰ বৈশিষ্ট্য"
-
-#: ../data/language-specs/texinfo.lang.h:4
-msgid "Generated Content"
-msgstr "গঠিত বিষয়বস্তু"
-
-#
-#: ../data/language-specs/texinfo.lang.h:7
-msgid "Macros"
-msgstr "ম্যাক্ৰো"
-
-#: ../data/language-specs/texinfo.lang.h:11
+#: ../data/language-specs/texinfo.lang.h:2
 msgid "Texinfo"
 msgstr "Texinfo"
 
-#: ../data/language-specs/vala.lang.h:9
+#
+#: ../data/language-specs/texinfo.lang.h:8
+msgid "Macros"
+msgstr "মেক্ৰ"
+
+#: ../data/language-specs/texinfo.lang.h:9
+msgid "File Attributes"
+msgstr "নথিপত্ৰৰ বৈশিষ্ট্য"
+
+#: ../data/language-specs/texinfo.lang.h:10
+msgid "Generated Content"
+msgstr "সৃজিত সমল"
+
+#: ../data/language-specs/vala.lang.h:2
 msgid "Vala"
 msgstr "Vala"
 
-#: ../data/language-specs/vbnet.lang.h:9
+#: ../data/language-specs/vbnet.lang.h:2
 msgid "VB.NET"
 msgstr "VB.NET"
 
-#: ../data/language-specs/verilog.lang.h:6
-msgid "Gate"
-msgstr "Gate"
-
-#: ../data/language-specs/verilog.lang.h:7
-msgid "IEEE System Task"
-msgstr "IEEE চিস্টেম কাৰ্য্য"
-
-#: ../data/language-specs/verilog.lang.h:10
-msgid "LRM Additional System Task"
-msgstr "LRM অতিৰিক্ত চিস্টেম কাৰ্য্য"
-
-#: ../data/language-specs/verilog.lang.h:15
+#: ../data/language-specs/verilog.lang.h:2
 msgid "Verilog"
 msgstr "Verilog"
 
-#: ../data/language-specs/vhdl.lang.h:11
+#: ../data/language-specs/verilog.lang.h:8
+msgid "IEEE System Task"
+msgstr "IEEE চিস্টেম কাৰ্য্য"
+
+#: ../data/language-specs/verilog.lang.h:9
+msgid "LRM Additional System Task"
+msgstr "LRM অতিৰিক্ত চিস্টেম কাৰ্য্য"
+
+#: ../data/language-specs/verilog.lang.h:11
+msgid "Gate"
+msgstr "Gate"
+
+#: ../data/language-specs/vhdl.lang.h:2
 msgid "VHDL"
 msgstr "VHDL"
 
 #: ../data/language-specs/xml.lang.h:2
-msgid "Attribute value"
-msgstr "বৈশিষ্ট্যেৰ মান"
-
-#: ../data/language-specs/xml.lang.h:3
-msgid "CDATA delimiter"
-msgstr "CDATA ডেলিমিটাৰ"
-
-#
-#: ../data/language-specs/xml.lang.h:5
-msgid "DOCTYPE"
-msgstr "ডকটাইপ"
-
-#
-#: ../data/language-specs/xml.lang.h:6
-msgid "Element name"
-msgstr "উপাদানৰ নাম"
-
-#: ../data/language-specs/xml.lang.h:7
-msgid "Entity"
-msgstr "Entity"
-
-#: ../data/language-specs/xml.lang.h:11
-msgid "Processing instruction"
-msgstr "নিৰ্দেশ প্ৰসেস কৰা হচ্ছে"
-
-#: ../data/language-specs/xml.lang.h:13
 msgid "XML"
 msgstr "XML"
 
-#: ../data/language-specs/xslt.lang.h:1
-msgid "Element"
-msgstr "উপাদান"
+#
+#: ../data/language-specs/xml.lang.h:4
+msgid "DOCTYPE"
+msgstr "DOCTYPE"
 
-#: ../data/language-specs/xslt.lang.h:4
+#: ../data/language-specs/xml.lang.h:6
+msgid "Processing instruction"
+msgstr "প্ৰক্ৰিয়াকৰণ নিৰ্দেশ"
+
+#: ../data/language-specs/xml.lang.h:9
+msgid "Attribute value"
+msgstr "বৈশিষ্ট্যৰ মান"
+
+#: ../data/language-specs/xml.lang.h:10
+msgid "Entity"
+msgstr "Entity"
+
+#: ../data/language-specs/xslt.lang.h:2
 msgid "XSLT"
 msgstr "XSLT"
+
+#: ../data/language-specs/xslt.lang.h:3
+msgid "Element"
+msgstr "উপাদান"
 
 #: ../data/language-specs/yacc.lang.h:2
 msgid "Yacc"
 msgstr "Yacc"
 
-#
 #: ../data/language-specs/yacc.lang.h:5
-msgid "rule"
-msgstr "নিয়ম"
-
-#: ../data/language-specs/yacc.lang.h:6
 msgid "token-type"
 msgstr "token-type"
+
+#
+#: ../data/language-specs/yacc.lang.h:6
+msgid "rule"
+msgstr "নিয়ম"
 
 #
 #: ../data/styles/classic.xml.h:1
@@ -2324,40 +2326,40 @@ msgstr "পাৰম্পৰিক"
 
 #: ../data/styles/classic.xml.h:2
 msgid "Classic color scheme"
-msgstr "পাৰম্পৰিক ৰঙেৰ বিন্যাস"
+msgstr "পাৰম্পৰিক ৰঙৰ আঁচনি"
 
 #: ../data/styles/cobalt.xml.h:1
-msgid "Blue based color scheme"
-msgstr "নীল ৰঙ ভিক্তিক ৰঙেৰ বিন্যাস"
-
-#: ../data/styles/cobalt.xml.h:2
 msgid "Cobalt"
 msgstr "কোবাল্ট"
 
-#: ../data/styles/kate.xml.h:1
-msgid "Color scheme used in the Kate text editor"
-msgstr "Kate টেক্সট এডিটৰে ব্যবহৃত ৰঙেৰ স্কিম"
+#: ../data/styles/cobalt.xml.h:2
+msgid "Blue based color scheme"
+msgstr "নীলা ৰঙ ভিক্তিক ৰঙৰ আঁচনি"
 
-#: ../data/styles/kate.xml.h:2
+#: ../data/styles/kate.xml.h:1
 msgid "Kate"
 msgstr "Kate"
 
-#: ../data/styles/oblivion.xml.h:1
-msgid "Dark color scheme using the Tango color palette"
-msgstr "Tango ৰঙেৰ প্যালেট ব্যবহাৰ কৰে নিৰ্মিত গাঢ় ৰঙেৰ বিন্যাস"
+#: ../data/styles/kate.xml.h:2
+msgid "Color scheme used in the Kate text editor"
+msgstr "Kate লিখনী সম্পাদক ব্যবহৃত ৰঙৰ আঁচনি"
 
-#: ../data/styles/oblivion.xml.h:2
+#: ../data/styles/oblivion.xml.h:1
 msgid "Oblivion"
 msgstr "অবলিভিয়ান"
 
-#: ../data/styles/tango.xml.h:1
-msgid "Color scheme using Tango color palette"
-msgstr "Tango ৰঙেৰ প্যালেট ব্যবহাৰ কৰে নিৰ্মিত ৰঙেৰ বিন্যাস"
+#: ../data/styles/oblivion.xml.h:2
+msgid "Dark color scheme using the Tango color palette"
+msgstr "Tango ৰঙৰ প্যালেট ব্যবহাৰ কৰি নিৰ্মিত ডাঠ ৰঙৰ আঁচনি"
 
 #
-#: ../data/styles/tango.xml.h:2
+#: ../data/styles/tango.xml.h:1
 msgid "Tango"
-msgstr "ট্যাঙ্গো"
+msgstr "Tango"
+
+#: ../data/styles/tango.xml.h:2
+msgid "Color scheme using Tango color palette"
+msgstr "Tango ৰঙৰ প্যালেট ব্যবহাৰ কৰি নিৰ্মিত ৰঙৰ আঁচনি"
 
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:371
 msgid "Document Words"
@@ -2419,29 +2421,29 @@ msgstr "প্ৰদানকাৰী প্ৰাথমিকতা"
 #: ../gtksourceview/gtksourcebuffer.c:234
 #: ../gtksourceview/gtksourceprintcompositor.c:502
 msgid "Highlight Syntax"
-msgstr "Highlight Syntax"
+msgstr "বাক্যবিন্যাস উজ্জ্বল কৰক"
 
 #: ../gtksourceview/gtksourcebuffer.c:235
 msgid "Whether to highlight syntax in the buffer"
-msgstr "বাফাৰে উপস্থিত সিন্টেক্স উজ্জ্বল কৰা হবে কি না"
+msgstr "বাফাৰত উপস্থিত বাক্যবিন্যাস উজ্জ্বল কৰা হব নে"
 
 #: ../gtksourceview/gtksourcebuffer.c:248
 msgid "Highlight Matching Brackets"
-msgstr "Highlight Matching Brackets"
+msgstr "মিল খোৱা ব্ৰেকেটসমূহ"
 
 #: ../gtksourceview/gtksourcebuffer.c:249
 msgid "Whether to highlight matching brackets"
-msgstr "Whether to highlight matching brackets"
+msgstr "মিল খোৱা ব্ৰেকেটসমূহ উজ্জ্বল কৰা হব নে"
 
 #: ../gtksourceview/gtksourcebuffer.c:262
 #: ../gtksourceview/gtksourceundomanagerdefault.c:418
 msgid "Maximum Undo Levels"
-msgstr "পূৰ্বাবস্থায় প্ৰত্যাবৰ্তনেৰ সৰ্বাধিক স্তৰ"
+msgstr "সৰ্বাধিক বাতিল কৰা স্তৰসমূহ"
 
 #: ../gtksourceview/gtksourcebuffer.c:263
 #: ../gtksourceview/gtksourceundomanagerdefault.c:419
 msgid "Number of undo levels for the buffer"
-msgstr "বাফাৰেৰ বাবে পূৰ্বাবস্থায় প্ৰত্যাবৰ্তনেৰ সৰ্বাধিক সংখ্যা"
+msgstr "বাফাৰৰ বাবে পূৰ্বাবস্থায় প্ৰত্যাবৰ্তনেৰ সৰ্বাধিক সংখ্যা"
 
 #. Translators: throughout GtkSourceView "language" stands
 #. * for "programming language", not "spoken language"
@@ -2451,29 +2453,29 @@ msgstr "ভাষা"
 
 #: ../gtksourceview/gtksourcebuffer.c:276
 msgid "Language object to get highlighting patterns from"
-msgstr "উজ্জ্বলতায় ব্যবহাৰেৰ বাবে বিন্যাস প্ৰাপ্ত কৰাৰ ভাষাৰ অবজেক্ট"
+msgstr "উজ্জ্বলতাৰ বিন্যাসসমূহ প্ৰাপ্ত কৰিবলে ভাষাৰ অবজেক্ট"
 
 #: ../gtksourceview/gtksourcebuffer.c:284
 msgid "Can undo"
-msgstr "পূৰ্ব নিৰ্দেশ বাতিল কৰিব নোৱাৰি"
+msgstr "বাতিল কৰিব পাৰি"
 
 #: ../gtksourceview/gtksourcebuffer.c:285
 msgid "Whether Undo operation is possible"
-msgstr "ক্ৰমবিন্যাস কৰ্ম পৰিবৰ্তন কৰা সম্ভব নয়"
+msgstr "বাতিল কৰা কাৰ্য্য সম্ভব হয় নে"
 
 #: ../gtksourceview/gtksourcebuffer.c:292
 msgid "Can redo"
-msgstr "পুনৰাবৃত্তি"
+msgstr "পুনৰাবৃত্তি কৰিব পাৰি"
 
 #: ../gtksourceview/gtksourcebuffer.c:293
 msgid "Whether Redo operation is possible"
-msgstr "সম্ভৱ নহয়"
+msgstr "পুনৰাবৃত্তি কাৰ্য্য সম্ভৱ হয় নে"
 
 #
 #: ../gtksourceview/gtksourcebuffer.c:307
 #: ../gtksourceview/gtksourcebuffer.c:308
 msgid "Style scheme"
-msgstr "বিন্যাসেৰ স্কিম"
+msgstr "শৈলীৰ আঁচনি"
 
 #: ../gtksourceview/gtksourcebuffer.c:315
 msgid "Undo manager"
@@ -2481,108 +2483,109 @@ msgstr "ব্যৱস্থাপক বাতিল কৰক"
 
 #: ../gtksourceview/gtksourcebuffer.c:316
 msgid "The buffer undo manager"
-msgstr "বাফাৰ বাতিল ব্যস্থাপক"
+msgstr "বাফাৰ বাতিল ব্যৱস্থাপক"
 
-#: ../gtksourceview/gtksourcecompletion.c:935
-#: ../gtksourceview/gtksourcecompletion.c:958
+#: ../gtksourceview/gtksourcecompletion.c:934
+#: ../gtksourceview/gtksourcecompletion.c:957
 msgid "No extra information available"
 msgstr "কোনো অতিৰিক্ত তথ্য উপলব্ধ নাই"
 
-#: ../gtksourceview/gtksourcecompletion.c:2224
+#: ../gtksourceview/gtksourcecompletion.c:2223
 #: ../gtksourceview/gtksourcegutter.c:547
 msgid "View"
-msgstr "প্ৰদৰ্শন"
+msgstr "দৰ্শন"
 
-#: ../gtksourceview/gtksourcecompletion.c:2225
-#| msgid "The GtkSourceBuffer object to print"
+#: ../gtksourceview/gtksourcecompletion.c:2224
 msgid "The GtkSourceView bound to the completion"
 msgstr "সম্পূৰ্ণ হবলে প্ৰস্তুত GtkSourceView"
 
-#: ../gtksourceview/gtksourcecompletion.c:2240
+#: ../gtksourceview/gtksourcecompletion.c:2239
 msgid "Remember Info Visibility"
 msgstr "তথ্য দৃশ্যমানতা মনত ৰাখক"
 
-#: ../gtksourceview/gtksourcecompletion.c:2241
+#: ../gtksourceview/gtksourcecompletion.c:2240
 msgid "Remember the last info window visibility state"
 msgstr "সৰ্বশেষ তথ্য উইন্ডো দৃশ্যমানতা অৱস্থা মনত ৰাখক"
 
-#: ../gtksourceview/gtksourcecompletion.c:2254
-#| msgid "Section 1"
+#: ../gtksourceview/gtksourcecompletion.c:2253
 msgid "Select on Show"
-msgstr "দৰ্শন বাছক"
+msgstr "প্ৰদৰ্শনত বাছক"
 
-#: ../gtksourceview/gtksourcecompletion.c:2255
+#: ../gtksourceview/gtksourcecompletion.c:2254
 msgid "Select first proposal when completion is shown"
 msgstr "যেতিয়া সম্পূৰ্ণ দেখুৱা হব প্ৰথম প্ৰস্তাৱ বাছক"
 
-#: ../gtksourceview/gtksourcecompletion.c:2269
-#| msgid "Show Line Marks"
+#: ../gtksourceview/gtksourcecompletion.c:2268
 msgid "Show Headers"
 msgstr "হেডাৰসমূহ দেখুৱাওক"
 
-#: ../gtksourceview/gtksourcecompletion.c:2270
+#: ../gtksourceview/gtksourcecompletion.c:2269
 msgid "Show provider headers when proposals from multiple providers are available"
 msgstr "প্ৰদানকাৰী হেডাৰসমূহ দেখুৱাওক যেতিয়া বহু প্ৰদানকাৰীৰ পৰা প্ৰস্তাৱসমূহ উপলব্ধ"
 
-#: ../gtksourceview/gtksourcecompletion.c:2284
+#: ../gtksourceview/gtksourcecompletion.c:2283
 msgid "Show Icons"
 msgstr "আইকনসমূহ দেখুৱাওক"
 
-#: ../gtksourceview/gtksourcecompletion.c:2285
+#: ../gtksourceview/gtksourcecompletion.c:2284
 msgid "Show provider and proposal icons in the completion popup"
 msgstr "সম্পূৰ্ণ দলত প্ৰদানকাৰী আৰু প্ৰস্তাৱ আইকনসমূহ দেখুৱাওক"
 
-#: ../gtksourceview/gtksourcecompletion.c:2298
-#| msgid "Type Operators"
+#: ../gtksourceview/gtksourcecompletion.c:2299
 msgid "Accelerators"
 msgstr "ত্বৰকসমূহ"
 
-#: ../gtksourceview/gtksourcecompletion.c:2299
+#: ../gtksourceview/gtksourcecompletion.c:2300
 msgid "Number of proposal accelerators to show"
 msgstr "দেখুৱাবলে প্ৰস্তাৱ ত্বৰকসমূহৰ সংখ্যা"
 
-#: ../gtksourceview/gtksourcecompletion.c:2315
-msgid "Auto Complete Delay"
-msgstr "স্ব সম্পূৰ্ণ বিলম্ব"
-
 #: ../gtksourceview/gtksourcecompletion.c:2316
+msgid "Auto Complete Delay"
+msgstr "স্বসম্পূৰ্ণ বিলম্ব"
+
+#: ../gtksourceview/gtksourcecompletion.c:2317
 msgid "Completion popup delay for interactive completion"
 msgstr "ভাৱবিনিময়ী সম্পূৰ্ণৰ বাবে সম্পূৰ্ণ পপআপ বিলম্ব"
 
-#: ../gtksourceview/gtksourcecompletion.c:2331
+#: ../gtksourceview/gtksourcecompletion.c:2333
 msgid "Provider Page Size"
-msgstr "প্ৰদানকাৰী পৃষ্ঠা আকাৰ"
+msgstr "প্ৰদানকাৰী পৃষ্ঠাৰ আকাৰ"
 
-#: ../gtksourceview/gtksourcecompletion.c:2332
+#: ../gtksourceview/gtksourcecompletion.c:2334
 msgid "Provider scrolling page size"
 msgstr "প্ৰদানকাৰী স্ক্ৰলিং পৃষ্ঠা আকাৰ"
 
-#: ../gtksourceview/gtksourcecompletion.c:2347
+#: ../gtksourceview/gtksourcecompletion.c:2353
 msgid "Proposal Page Size"
 msgstr "প্ৰস্তাৱ পৃষ্ঠা আকাৰ"
 
-#: ../gtksourceview/gtksourcecompletion.c:2348
+#: ../gtksourceview/gtksourcecompletion.c:2354
 msgid "Proposal scrolling page size"
 msgstr "প্ৰস্তাৱ স্ক্ৰলিং পৃষ্ঠা আকাৰ"
 
-#: ../gtksourceview/gtksourcecompletion.c:2693
-#| msgid "Print Header"
+#: ../gtksourceview/gtksourcecompletion.c:2715
 msgid "Provider"
 msgstr "প্ৰদানকাৰী"
 
+#: ../gtksourceview/gtksourcecompletion.ui.h:1
+msgid "Show detailed proposal information"
+msgstr "বিৱৰিত প্ৰস্তাৱ তথ্য দেখুৱাওক"
+
+#: ../gtksourceview/gtksourcecompletion.ui.h:2
+msgid "_Details..."
+msgstr "বিৱৰণসমূহ (_D)..."
+
 #: ../gtksourceview/gtksourcecompletioncontext.c:233
 #: ../gtksourceview/gtksourceview.c:306
-#| msgid "Option"
 msgid "Completion"
 msgstr "সমাপ্তি"
 
 #: ../gtksourceview/gtksourcecompletioncontext.c:234
 msgid "The completion object to which the context belongs"
-msgstr "সমাপ্তি দল যলে পৰিপ্ৰেক্ষতিত হয়"
+msgstr "সমাপ্তি দল যি পৰিপ্ৰেক্ষতিত অন্তৰ্ভুক্ত কৰে"
 
 #. Translators: The GtkTextIter at which the completion was invoked
 #: ../gtksourceview/gtksourcecompletioncontext.c:247
-#| msgid "Operator"
 msgid "Iterator"
 msgstr "ইটিৰেটৰ"
 
@@ -2591,7 +2594,6 @@ msgid "The GtkTextIter at which the completion was invoked"
 msgstr "GtkTextIter যত সমাপ্তি আৱাহন কৰা হৈছিল"
 
 #: ../gtksourceview/gtksourcecompletioncontext.c:260
-#| msgid "Location"
 msgid "Activation"
 msgstr "সক্ৰিয়কৰণ"
 
@@ -2614,14 +2616,13 @@ msgstr "এই বস্তুৰ বাবে দেখাব লগিয়া �
 
 #: ../gtksourceview/gtksourcecompletionitem.c:256
 msgid "Item text"
-msgstr "বস্তু লিখনী"
+msgstr "বস্তুৰ লিখনী"
 
 #: ../gtksourceview/gtksourcecompletionitem.c:269
 msgid "Icon to be shown for this item"
 msgstr "এই বস্তুৰ বাবে দেখাব লগিয়া আইকন"
 
 #: ../gtksourceview/gtksourcecompletionitem.c:281
-#| msgid "Ignore"
 msgid "Info"
 msgstr "তথ্য"
 
@@ -2633,78 +2634,74 @@ msgstr "এই বস্তুৰ বাবে দেখাব লগিয়া �
 #. * named sub-patterns with the same name or if resulting regex is
 #. * too long. In this case fixing lang file helps (e.g. renaming
 #. * subpatterns, making huge keywords use bigger prefixes, etc.)
-#: ../gtksourceview/gtksourcecontextengine.c:3171
+#: ../gtksourceview/gtksourcecontextengine.c:3120
 #, c-format
 msgid ""
 "Cannot create a regex for all the transitions, the syntax highlighting "
 "process will be slower than usual.\n"
 "The error was: %s"
 msgstr ""
-"Cannot create a regex for all the transitions, the syntax highlighting "
-"process will be slower than usual.\n"
-"The error was: %s"
+"সকলো পৰিবৰ্তনৰ বাবে এটা regex সৃষ্টি কৰিব নোৱাৰি, বাক্যবিন্যাস উজ্জ্বলকৰণ প্ৰক্ৰিয়া "
+"সাধাৰণ প্ৰক্ৰিয়াতকে লেহেম হ'ব।\n"
+"ত্ৰুটি আছিল: %s"
 
-#: ../gtksourceview/gtksourcecontextengine.c:4509
+#: ../gtksourceview/gtksourcecontextengine.c:4443
 msgid ""
 "Highlighting a single line took too much time, syntax highlighting will be "
 "disabled"
 msgstr ""
-"Highlighting a single line took too much time, syntax highlighting will be "
-"disabled"
+"এটা শাৰী উজ্জ্বল কৰোতে অত্যাধিক সময় লাগিল, বাক্যবিন্যাস উজ্জ্বলকৰণ অসামৰ্থবান কৰা হব"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5762
+#: ../gtksourceview/gtksourcecontextengine.c:5687
 #, c-format
 msgid "context '%s' cannot contain a \\%%{...@start} command"
-msgstr "context '%s' cannot contain a \\%%{...@start} command"
+msgstr "পৰিপ্ৰেক্ষতিত '%s' এ এটা \\%%{...@start} কমান্ড অন্তৰ্ভুক্ত কৰিব নোৱাৰে"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5923
-#: ../gtksourceview/gtksourcecontextengine.c:6012
+#: ../gtksourceview/gtksourcecontextengine.c:5848
+#: ../gtksourceview/gtksourcecontextengine.c:5937
 #, c-format
 msgid "duplicated context id '%s'"
-msgstr "duplicated context id '%s'"
+msgstr "প্ৰতিলিপিত পৰিপ্ৰেক্ষতিত আইডি '%s'"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6127
-#: ../gtksourceview/gtksourcecontextengine.c:6187
+#: ../gtksourceview/gtksourcecontextengine.c:6051
+#: ../gtksourceview/gtksourcecontextengine.c:6111
 #, c-format
 msgid ""
 "style override used with wildcard context reference in language '%s' in ref "
 "'%s'"
-msgstr ""
-"style override used with wildcard context reference in language '%s' in ref "
-"'%s'"
+msgstr "ৱাইল্ডকাৰ্ড পৰিপ্ৰেক্ষতিতৰ সৈতে শৈলী অভাৰৰাইড কৰা হৈছে '%s' ত প্ৰসংগ'%s' ত"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6201
+#: ../gtksourceview/gtksourcecontextengine.c:6125
 #, c-format
 msgid "invalid context reference '%s'"
-msgstr "অবৈধ কন্টেক্সট ৰেফাৰেন্স '%s'"
+msgstr "অবৈধ পৰিপ্ৰেক্ষতিত প্ৰসংগ '%s'"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6220
-#: ../gtksourceview/gtksourcecontextengine.c:6230
+#: ../gtksourceview/gtksourcecontextengine.c:6144
+#: ../gtksourceview/gtksourcecontextengine.c:6154
 #, c-format
 msgid "unknown context '%s'"
-msgstr "অজ্ঞাত কনটেক্সট '%s'"
+msgstr "অজ্ঞাত পৰিপ্ৰেক্ষতিত '%s'"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6330
+#: ../gtksourceview/gtksourcecontextengine.c:6253
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
-msgstr "ভাষাৰ প্ৰধান ব্যাখ্যা অনুপস্থিত (id = \"%s\".)"
+msgstr "ভাষাৰ প্ৰধান বিৱৰণ অনুপস্থিত (id = \"%s\".)"
 
 #: ../gtksourceview/gtksourcegutter.c:548
 msgid "The gutters' GtkSourceView"
-msgstr "gutters' GtkSourceView"
+msgstr "gutters ৰ GtkSourceView"
 
 #: ../gtksourceview/gtksourcegutter.c:560
 #: ../gtksourceview/gtksourcegutterrenderer.c:703
 msgid "Window Type"
-msgstr "উইন্ডোৰ ধৰন"
+msgstr "উইন্ডোৰ ধৰণ"
 
 #: ../gtksourceview/gtksourcegutter.c:561
 msgid "The gutters text window type"
-msgstr "gutters টেক্সটেৰ উইন্ডোৰ ধৰন"
+msgstr "gutters লিখনীৰ উইন্ডোৰ ধৰণ"
 
 #: ../gtksourceview/gtksourcegutter.c:572
 #: ../gtksourceview/gtksourcegutterrenderer.c:479
-#| msgid "POD heading"
 msgid "X Padding"
 msgstr "X পেডিং"
 
@@ -2715,7 +2712,6 @@ msgstr "x-পেডিং"
 
 #: ../gtksourceview/gtksourcegutter.c:583
 #: ../gtksourceview/gtksourcegutterrenderer.c:495
-#| msgid "POD heading"
 msgid "Y Padding"
 msgstr "Y পেডিং"
 
@@ -2726,7 +2722,6 @@ msgstr "y-পেডিং"
 
 #: ../gtksourceview/gtksourcegutterrenderer.c:465
 #: ../gtksourceview/gtksourcegutterrenderer.c:466
-#| msgid "Variable"
 msgid "Visible"
 msgstr "দৃশ্যমান"
 
@@ -2747,7 +2742,6 @@ msgid "The y-alignment"
 msgstr "y-সংৰেখন"
 
 #: ../gtksourceview/gtksourcegutterrenderer.c:670
-#| msgid "View"
 msgid "The View"
 msgstr "দৰ্শন"
 
@@ -2756,7 +2750,6 @@ msgid "The view"
 msgstr "দৰ্শন"
 
 #: ../gtksourceview/gtksourcegutterrenderer.c:687
-#| msgid "Inline Math Mode"
 msgid "Alignment Mode"
 msgstr "সংৰেখন অৱস্থা"
 
@@ -2765,12 +2758,10 @@ msgid "The alignment mode"
 msgstr "সংৰেখন অৱস্থা"
 
 #: ../gtksourceview/gtksourcegutterrenderer.c:704
-#| msgid "The gutters text window type"
 msgid "The window type"
-msgstr "উইন্ডো ধৰণ"
+msgstr "উইন্ডোৰ ধৰণ"
 
 #: ../gtksourceview/gtksourcegutterrenderer.c:712
-#| msgid "Since"
 msgid "Size"
 msgstr "আকাৰ"
 
@@ -2800,14 +2791,13 @@ msgstr "স্টক আইডি"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:309
 #: ../gtksourceview/gtksourcemarkattributes.c:329
-#| msgid "Function Name"
 msgid "Icon Name"
-msgstr "আইকন নাম"
+msgstr "আইকনৰ নাম"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:310
 #: ../gtksourceview/gtksourcemarkattributes.c:330
 msgid "The icon name"
-msgstr "আইকন নাম"
+msgstr "আইকনৰ নাম"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:317
 #: ../gtksourceview/gtksourcemarkattributes.c:342
@@ -2819,7 +2809,6 @@ msgid "The gicon"
 msgstr "gicon"
 
 #: ../gtksourceview/gtksourcegutterrenderertext.c:396
-#| msgid "Markup"
 msgid "The markup"
 msgstr "মাৰ্কআপ"
 
@@ -2845,39 +2834,39 @@ msgstr "ভাষাৰ বিভাগ"
 #
 #: ../gtksourceview/gtksourcelanguage.c:252
 msgid "Hidden"
-msgstr "আড়ালে"
+msgstr "লুকুৱা"
 
 #: ../gtksourceview/gtksourcelanguage.c:253
 msgid "Whether the language should be hidden from the user"
-msgstr "ব্যবহাৰকাৰী থেকে ভাষা আড়াল কৰা হবে কি না"
+msgstr "ব্যবহাৰকাৰী পৰা ভাষা লুকুৱা কৰা হব নে"
 
 #: ../gtksourceview/gtksourcelanguagemanager.c:150
 msgid "Language specification directories"
-msgstr "ভাষা নিৰ্ধাৰণে ব্যবহৃত ডিৰেক্টৰি"
+msgstr "ভাষা ধাৰ্য্যকৰণ ডাইৰেকটৰিসমূহ"
 
 #: ../gtksourceview/gtksourcelanguagemanager.c:151
 msgid ""
 "List of directories where the language specification files (.lang) are "
 "located"
-msgstr "ভাষা স্পেসিফিকেশন ফাইল (.lang) যে ডিৰেক্টৰী সমূহতে আছে - তাৰ তালিকা "
+msgstr "ভাষা ধাৰ্য্যকৰণ নথিপত্ৰ (.lang) যি ডাইৰেকৰিসমূহত আছে - তাৰ তালিকা "
 
 #: ../gtksourceview/gtksourcelanguagemanager.c:160
 msgid "Language ids"
-msgstr "ভাষাৰ id"
+msgstr "ভাষাৰ আইডিসমূহ"
 
 #: ../gtksourceview/gtksourcelanguagemanager.c:161
 msgid "List of the ids of the available languages"
-msgstr "উপলব্ধ ভাষাৰ id"
+msgstr "উপলব্ধ ভাষাসমূহৰ আইডিসমূহৰ তালিকা"
 
 #: ../gtksourceview/gtksourcelanguage-parser-2.c:950
 #, c-format
 msgid "Unknown id '%s' in regex '%s'"
-msgstr "অজ্ঞাত id '%s', '%s' ৰেগুলাৰ এক্সপ্ৰেশনেৰ মধ্যে উপস্থিত ৰয়েছে"
+msgstr "regex '%s' ত অজ্ঞাত আইডি '%s'"
 
 #: ../gtksourceview/gtksourcelanguage-parser-2.c:1178
 #, c-format
 msgid "in regex '%s': backreferences are not supported"
-msgstr "ৰেগুলাৰ এক্সপ্ৰেশন '%s'-ৰ মধ্যে: ব্যাক-ৰেফাৰেন্স সমৰ্থিত হবে না"
+msgstr "সাধাৰণ অভিব্যক্তি '%s' ৰ মাজত: পিছপ্ৰসংগ সমৰ্থিত নহয়"
 
 #
 #: ../gtksourceview/gtksourcemarkattributes.c:290
@@ -2886,9 +2875,8 @@ msgid "Background"
 msgstr "পটভূমি"
 
 #: ../gtksourceview/gtksourcemarkattributes.c:291
-#| msgid "Line background"
 msgid "The background"
-msgstr "পটভূমী"
+msgstr "পটভূমি"
 
 #: ../gtksourceview/gtksourcemarkattributes.c:343
 msgid "The GIcon"
@@ -2897,104 +2885,102 @@ msgstr "GIcon"
 #
 #: ../gtksourceview/gtksourcemark.c:140
 msgid "category"
-msgstr "<b>বিভাগ</b>"
+msgstr "বিভাগ"
 
 #: ../gtksourceview/gtksourcemark.c:141
 msgid "The mark category"
-msgstr "বৰ্গটো ডিলিট কৰক"
+msgstr "চিহ্ন বিভাগ"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:442
 msgid "Source Buffer"
-msgstr "সোৰ্স বাফাৰ"
+msgstr "উৎস বাফাৰ"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:443
 msgid "The GtkSourceBuffer object to print"
-msgstr "প্ৰিন্ট কৰাৰ জন্য চিহ্নিত GtkSourceBuffer অবজেক্ট"
+msgstr "প্ৰিন্ট কৰাৰ বাবে চিহ্নিত GtkSourceBuffer অবজেক্ট"
 
 #
 #: ../gtksourceview/gtksourceprintcompositor.c:460
 #: ../gtksourceview/gtksourceview.c:344
 msgid "Tab Width"
-msgstr "ট্যাবেৰ দৈৰ্ঘ্য"
+msgstr "টেবৰ দৈৰ্ঘ্য"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:461
 #: ../gtksourceview/gtksourceview.c:345
 msgid "Width of a tab character expressed in spaces"
-msgstr "শূণ্যস্থান দ্বাৰা চিহ্নিত ট্যাব অক্ষৰেৰ প্ৰস্থ"
+msgstr "স্পেইচ দ্বাৰা চিহ্নিত এটা টেব আখৰৰ প্ৰস্থ"
 
 #
 #: ../gtksourceview/gtksourceprintcompositor.c:481
 msgid "Wrap Mode"
-msgstr "জড়ানো (wrap) অবস্থা"
+msgstr "মেৰিওৱা অবস্থা"
 
 #
 #: ../gtksourceview/gtksourceprintcompositor.c:482
 msgid "Whether to wrap lines never, at word boundaries, or at character boundaries."
-msgstr ""
-"লাইন কখনোই গুটিয়ে নেয়া নহ'ব, শব্দ শেষ হলে গুটিয়ে নেয়া নহ'বকি অক্ষৰ শেষ হলে গুটিয়ে "
-"নেয়া হ'ব"
+msgstr "শাৰীসমূহ কেতিয়াও মেৰিওৱা নহব নে, শব্দৰ প্ৰান্তসমূহত, অথবা আখৰ প্ৰান্তসমূহত।"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:503
 msgid "Whether to print the document with highlighted syntax"
-msgstr "সিন্ট্যাক্স হাইলাইট কৰা অবস্থায় নথী মূদ্ৰণ কৰা হবে কিনা"
+msgstr "বাক্যবিন্যাস উজ্জ্বল কৰা অবস্থাত দস্তাবেজ প্ৰিন্ট কৰা হব নে"
 
 #
 #: ../gtksourceview/gtksourceprintcompositor.c:524
 msgid "Print Line Numbers"
-msgstr "লাইন নম্বৰ ছাপো"
+msgstr "শাৰীৰ সংখ্যা প্ৰিন্ট কৰক"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:525
 msgid "Interval of printed line numbers (0 means no numbers)"
-msgstr "ছাপা লাইন নম্বৰেৰ মধ্যে ফাঁক (০ মানে কোন লাইন নম্বৰ নেই)"
+msgstr "প্ৰিন্ট কৰা শাৰীৰ সংখ্যাৰ মাজৰ অন্তৰাল (০ মানে কোনো শাৰীৰ সংখ্যা নাই)"
 
 #
 #: ../gtksourceview/gtksourceprintcompositor.c:547
 msgid "Print Header"
-msgstr "হেডাৰ ছাপো"
+msgstr "হেডাৰ প্ৰিন্ট কৰক"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:548
 msgid "Whether to print a header in each page"
-msgstr "প্ৰত্যেক পৃষ্ঠাৰ বাবে হেডাৰ ছাপা হবে কিনা"
+msgstr "প্ৰত্যেক পৃষ্ঠাৰ বাবে হেডাৰ প্ৰিন্ট কৰা হব নে"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:570
 msgid "Print Footer"
-msgstr "ফুটাৰ ছাপো"
+msgstr "ফুটাৰ প্ৰিন্ট কৰক"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:571
 msgid "Whether to print a footer in each page"
-msgstr "প্ৰত্যেক পৃষ্ঠাৰ বাবে ফুটাৰ ছাপা হবে কিনা"
+msgstr "প্ৰত্যেক পৃষ্ঠাৰ বাবে ফুটাৰ প্ৰিন্ট কৰা হব নে"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:593
 msgid "Body Font Name"
-msgstr "মূল অংশে প্ৰয়োগ কৰা ফন্টেৰ নাম"
+msgstr "বডি ফন্টৰ নাম"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:594
 msgid "Name of the font to use for the text body (e.g. \"Monospace 10\")"
-msgstr "ডকুমেন্টেৰ মূল অংশেৰ টেক্সটেৰ জন্য যে ফন্ট ব্যবহৃত হবে (যেমন \"Monospace 10\")"
+msgstr "লিখনী অংশৰ বাবে ব্যৱহাৰ কৰিব লগিয়া ফন্টৰ নাম (যেনে \"Monospace 10\")"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:617
 msgid "Line Numbers Font Name"
-msgstr "পংক্তি সংখ্যা প্ৰদৰ্শনেৰ জন্য ফন্ট"
+msgstr "শাৰীৰ সংখ্যাসমূহৰ ফন্ট নাম"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:618
 msgid "Name of the font to use for the line numbers (e.g. \"Monospace 10\")"
-msgstr "পংক্তি সংখ্যা প্ৰদৰ্শনেৰ জন্য ব্যবহাৰযোগ্য ফন্টেৰ নাম (যেমন \"Monospace 10\")"
+msgstr "শাৰীৰ সংখ্যা প্ৰদৰ্শনেৰ বাবে ব্যবহাৰযোগ্য ফন্টৰ নাম (যেনে \"Monospace 10\")"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:641
 msgid "Header Font Name"
-msgstr "হেডাৰে ব্যবহৃত ফন্টেৰ নাম"
+msgstr "হেডাৰ ফন্টৰ নাম"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:642
 msgid "Name of the font to use for the page header (e.g. \"Monospace 10\")"
-msgstr "পৃষ্ঠাৰ হেডাৰেৰ জন্য যে নাম ব্যবহৃত হবে (যেমন \"Monospace 10\")"
+msgstr "পৃষ্ঠাৰ হেডাৰৰ বাবে যি নাম ব্যবহৃত হব (যেনে \"Monospace 10\")"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:665
 msgid "Footer Font Name"
-msgstr "ফুটাৰে ব্যবহৃত ফন্টেৰ নাম"
+msgstr "ফুটাৰ ফন্টৰ নাম"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:666
 msgid "Name of the font to use for the page footer (e.g. \"Monospace 10\")"
-msgstr "পৃষ্ঠাৰ ফুটাৰেৰ জন্য ব্যবহৃত ফন্ট (যেমন \"Monospace 10\")"
+msgstr "পৃষ্ঠাৰ ফুটাৰৰ বাবে ব্যবহৃত ফন্টৰ নাম (যেনে \"Monospace 10\")"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:682
 msgid "Number of pages"
@@ -3005,149 +2991,148 @@ msgid ""
 "The number of pages in the document (-1 means the document has not been "
 "completely paginated)."
 msgstr ""
-"ডকুমেন্টেৰ মধ্যে উপস্থিত পৃষ্ঠাৰ সংখ্যা (ডকুমেন্টেৰ পৃষ্ঠা সংখ্যা সঠিকৰূপে ধাৰ্য না কৰা "
-"হলে পৃষ্ঠা সংখ্যা -1 হলে প্ৰদৰ্শিত হবে)।"
+"দস্তাবেজৰ মাজত উপস্থিত পৃষ্ঠাৰ সংখ্যা (-1 এ বুজায় যে দস্তাবেজৰ পৃষ্ঠা সংখ্যা সঠিকৰূপে "
+"ধাৰ্য্যকৰা হোৱা নাই)।"
 
 #: ../gtksourceview/gtksourceregex.c:125
 msgid "using \\C is not supported in language definitions"
-msgstr "কাৰ্য অসমৰ্থিত"
+msgstr "ভাষাৰ বিৱৰণত \\C ব্যৱহাৰ কৰা সমৰ্থিত নহয়"
 
 #: ../gtksourceview/gtksourcestyle.c:80
 msgid "Line background"
-msgstr "ৰেখাৰ পটভূমি"
+msgstr "শাৰীৰ পটভূমি"
 
 #: ../gtksourceview/gtksourcestyle.c:81
 msgid "Line background color"
-msgstr "ৰেখাৰ পটভূমিৰ ৰং"
+msgstr "শাৰীৰ পটভূমিৰ ৰঙ"
 
 #
 #: ../gtksourceview/gtksourcestyle.c:89
 msgid "Background color"
-msgstr "Background color"
+msgstr "পটভূমিৰ ৰঙ"
 
 #: ../gtksourceview/gtksourcestyle.c:96
 msgid "Foreground"
-msgstr "অগ্ৰভূমি"
+msgstr "পুৰভূমি"
 
 #
 #: ../gtksourceview/gtksourcestyle.c:97
 msgid "Foreground color"
-msgstr "পুৰোভূমিৰ ৰং"
+msgstr "পুৰভূমিৰ ৰঙ"
 
 #
 #: ../gtksourceview/gtksourcestyle.c:120 ../gtksourceview/gtksourcestyle.c:121
 msgid "Underline"
-msgstr "নিম্নৰেখাঙ্কন"
+msgstr "নিম্নৰেখা"
 
 #
 #: ../gtksourceview/gtksourcestyle.c:128 ../gtksourceview/gtksourcestyle.c:129
 msgid "Strikethrough"
-msgstr "মাজত ৰেখাঙ্কণ"
+msgstr "মাজত শাৰীঙ্কণ"
 
 #: ../gtksourceview/gtksourcestyle.c:136
 msgid "Line background set"
-msgstr "ৰেখাৰ পটভূমি নিৰ্ধাৰিত"
+msgstr "শাৰীৰ পটভূমি সংহতি"
 
 #: ../gtksourceview/gtksourcestyle.c:137
 msgid "Whether line background color is set"
-msgstr "ৰেখাৰ পটভূমিৰ ৰং নিৰ্ধাৰিত হয়েছে কি না"
+msgstr "শাৰীৰ পটভূমিৰ ৰঙ নিৰ্ধাৰিত হৈছে নে"
 
 #
 #: ../gtksourceview/gtksourcestyle.c:144
 msgid "Foreground set"
-msgstr "পুৰোভূমিৰ সেট"
+msgstr "পুৰভূমিৰ সংহতি"
 
 #: ../gtksourceview/gtksourcestyle.c:145
 msgid "Whether foreground color is set"
-msgstr "অগ্ৰভূমিৰ ৰং নিৰ্ধাৰণ কৰা হয়েছে কি না"
+msgstr "পুৰভূমিৰ ৰঙ নিৰ্ধাৰণ কৰা হৈছে নে"
 
 #
 #: ../gtksourceview/gtksourcestyle.c:152
 msgid "Background set"
-msgstr "পটভূমিৰ সেট"
+msgstr "পটভূমিৰ সংহতি"
 
 #: ../gtksourceview/gtksourcestyle.c:153
 msgid "Whether background color is set"
-msgstr "পটভূমিৰ ৰং নিৰ্ধাৰিত হয়েছে কি না"
+msgstr "পটভূমিৰ ৰঙ নিৰ্ধাৰিত হৈছে নে"
 
 #: ../gtksourceview/gtksourcestyle.c:160
 msgid "Bold set"
-msgstr "গাঢ় মান নিৰ্ধাৰিত হয়েছে"
+msgstr "ডাঠ সংহতি"
 
 #: ../gtksourceview/gtksourcestyle.c:161
 msgid "Whether bold attribute is set"
-msgstr "গাঢ় ভাবেৰ মান নিৰ্ধাৰণ হয়েছে কিনা"
+msgstr "ডাঠ বৈশিষ্ট্য নিৰ্ধাৰণ হৈছে নে"
 
 #: ../gtksourceview/gtksourcestyle.c:168
 msgid "Italic set"
-msgstr "তেৰছা মান নিৰ্ধাৰিত হয়েছে"
+msgstr "ইটালিক সংহতি"
 
 #: ../gtksourceview/gtksourcestyle.c:169
 msgid "Whether italic attribute is set"
-msgstr "তেৰছা ভাবেৰ মান নিৰ্ধাৰণ হয়েছে কিনা"
+msgstr "ইটালিক বৈশিষ্ট্য নিৰ্ধাৰণ হৈছে নে"
 
 #
 #: ../gtksourceview/gtksourcestyle.c:176
 msgid "Underline set"
-msgstr "নিচ বৰাবৰ ৰেখাংকন কৰা সমষ্টি"
+msgstr "নিম্নৰেখা সংহতি"
 
 #: ../gtksourceview/gtksourcestyle.c:177
 msgid "Whether underline attribute is set"
-msgstr "নিম্নৰেখাঙ্কনেৰ মান নিৰ্ধাৰণ হয়েছে কিনা"
+msgstr "নিম্নৰেখাৰ বৈশিষ্ট্য নিৰ্ধাৰণ হৈছে নে"
 
 #
 #: ../gtksourceview/gtksourcestyle.c:184
 msgid "Strikethrough set"
-msgstr "মাঝ বৰাবৰ ৰেখাংকন কৰা সেট"
+msgstr "মাজত ৰেখাংকন কৰা সংহতি"
 
 #: ../gtksourceview/gtksourcestyle.c:185
 msgid "Whether strikethrough attribute is set"
-msgstr "গাঢ় ভাবেৰ মান নিৰ্ধাৰণ হয়েছে কিনা"
+msgstr "মাজত ৰেখাংকনৰ বৈশিষ্ট্য নিৰ্ধাৰণ হৈছে নে"
 
 #: ../gtksourceview/gtksourcestylescheme.c:212
 #: ../gtksourceview/gtksourcestylescheme.c:213
 msgid "Style scheme id"
-msgstr "বিন্যাসেৰ স্কিমেৰ id"
+msgstr "শৈলী আঁচনিৰ আইডি"
 
 #: ../gtksourceview/gtksourcestylescheme.c:225
 #: ../gtksourceview/gtksourcestylescheme.c:226
 msgid "Style scheme name"
-msgstr "বিন্যাসেৰ স্কিমেৰ nam"
+msgstr "শৈলী আঁচনিৰ নাম"
 
 #: ../gtksourceview/gtksourcestylescheme.c:238
 #: ../gtksourceview/gtksourcestylescheme.c:239
 msgid "Style scheme description"
-msgstr "বিন্যাসেৰ স্কিমেৰ বৰ্ণনা"
+msgstr "শৈলী আঁচনিৰ বিৱৰণ"
 
 #: ../gtksourceview/gtksourcestylescheme.c:251
 #: ../gtksourceview/gtksourcestylescheme.c:252
 msgid "Style scheme filename"
-msgstr "বিন্যাসেৰ স্কিমেৰ ফাইলেৰ-নাম"
+msgstr "শৈলী আঁচনিৰ নথিপত্ৰনাম"
 
 #: ../gtksourceview/gtksourcestyleschememanager.c:152
 msgid "Style scheme search path"
-msgstr "বিন্যাসেৰ স্কিমেৰ অনুসন্ধানেৰ পাথ"
+msgstr "শৈলী আঁচনিৰ সন্ধানৰ পথ"
 
 #: ../gtksourceview/gtksourcestyleschememanager.c:153
 msgid "List of directories and files where the style schemes are located"
-msgstr "বিন্যাসেৰ স্কিম ধাৰণকাৰী ডিৰেক্টৰি ও ফাইলেৰ তালিকা"
+msgstr "শৈলী আঁচনি ধাৰণকাৰী ডাইৰেকটৰি আৰু নথিপত্ৰৰ তালিকা"
 
 #: ../gtksourceview/gtksourcestyleschememanager.c:161
 msgid "Scheme ids"
-msgstr "স্কিমেৰ id"
+msgstr "আঁচনিৰ আইডিসমূহ"
 
 #: ../gtksourceview/gtksourcestyleschememanager.c:162
 msgid "List of the ids of the available style schemes"
-msgstr "উপলব্ধ বিন্যাসেৰ স্কিমেৰ id-ৰ তালিকা"
+msgstr "উপলব্ধ শৈলী আঁচনিৰ আইডিসমূহৰ তালিকা"
 
 #: ../gtksourceview/gtksourceundomanagerdefault.c:410
-#| msgid "Source Buffer"
 msgid "Buffer"
 msgstr "বাফাৰ"
 
 #: ../gtksourceview/gtksourceundomanagerdefault.c:411
 msgid "The text buffer to add undo support on"
-msgstr "সমৰ্থনৰ বাবে যোগ কৰিব লগিয়া লিখনী বাফাৰ"
+msgstr "বাতিল কৰাৰ সমৰ্থন যোগ কৰিবলে লিখনী বাফাৰ"
 
 #: ../gtksourceview/gtksourceview.c:307
 msgid "The completion object associated with the view"
@@ -3155,56 +3140,56 @@ msgstr "দৰ্শনৰ সৈতে জড়িত সমাপ্তি অ�
 
 #: ../gtksourceview/gtksourceview.c:319
 msgid "Show Line Numbers"
-msgstr "লাইন নম্বৰ দেখাও"
+msgstr "শাৰীৰ সংখ্যা দেখুৱাওক"
 
 #: ../gtksourceview/gtksourceview.c:320
 msgid "Whether to display line numbers"
-msgstr "লাইন নম্বৰ দেখানো হবে কিনা"
+msgstr "শাৰীৰ সংখ্যা দেখুৱা হব নে"
 
 #: ../gtksourceview/gtksourceview.c:331
 msgid "Show Line Marks"
-msgstr "ৰেখা চিহ্ন প্ৰদৰ্শন কৰা হবে"
+msgstr "শাৰী চিহ্নসমূহ দেখুৱাওক"
 
 #: ../gtksourceview/gtksourceview.c:332
 msgid "Whether to display line mark pixbufs"
-msgstr "ৰেখা চিহ্নেৰ পিক্সবাফ প্ৰদৰ্শিত হবে কি না"
+msgstr "শাৰী চিহ্নৰ পিক্সবাফ প্ৰদৰ্শিত হব নে"
 
 #: ../gtksourceview/gtksourceview.c:359
 msgid "Indent Width"
-msgstr "অবচ্ছেদেৰ প্ৰস্থ"
+msgstr "ইণ্ডেন্টৰ প্ৰস্থ"
 
 #: ../gtksourceview/gtksourceview.c:360
 msgid "Number of spaces to use for each step of indent"
-msgstr "অবচ্ছেদেৰ প্ৰি ধাপে ব্যবহাৰযোগ্য শূণ্যস্থানেৰ সংখ্যা"
+msgstr "ইণ্ডেন্টৰ প্ৰত্যাক স্তৰত ব্যৱহাৰ কৰিব লগিয়া স্পেইচৰ সংখ্যা"
 
 #: ../gtksourceview/gtksourceview.c:369
 msgid "Auto Indentation"
-msgstr "স্বয়ংক্ৰীয় অবচ্ছেদ (ইন্ডেন্টেশন)"
+msgstr "স্বচালিত ইণ্ডেন্টেষণ"
 
 #: ../gtksourceview/gtksourceview.c:370
 msgid "Whether to enable auto indentation"
-msgstr "স্বয়ংক্ৰীয় অবচ্ছেদ (ইন্ডেন্টেশন) চালু কৰা হবে কিনা"
+msgstr "স্বচালিত ইণ্ডেন্টেষণ সামৰ্থবান কৰা হব নে"
 
 #: ../gtksourceview/gtksourceview.c:377
 msgid "Insert Spaces Instead of Tabs"
-msgstr "ট্যাবেৰ বদলে স্পেস ব্যবহাৰ কৰো"
+msgstr "টেবৰ পৰিবৰ্তে স্পেইচ ব্যবহাৰ কৰো"
 
 #: ../gtksourceview/gtksourceview.c:378
 msgid "Whether to insert spaces instead of tabs"
-msgstr "ট্যাবেৰ বদলে স্পেস ব্যবহাৰ কৰা হবে কিনা"
+msgstr "টেবৰ পৰিবৰ্তে স্পেইচ ব্যবহাৰ কৰা হব নে"
 
 #: ../gtksourceview/gtksourceview.c:390
 msgid "Show Right Margin"
-msgstr "ডান দিকেৰ মাৰ্জিন দেখাও"
+msgstr "সোঁফালৰ মাৰ্জিন দেখুৱাওক"
 
 #: ../gtksourceview/gtksourceview.c:391
 msgid "Whether to display the right margin"
-msgstr "ডান দিকেৰ মাৰ্জিন দেখানো হবে কিনা"
+msgstr "সোঁফালৰ মাৰ্জিন দেখুৱা হব নে"
 
 #
 #: ../gtksourceview/gtksourceview.c:403
 msgid "Right Margin Position"
-msgstr "ডান প্ৰান্তেৰ অবস্থান"
+msgstr "সোঁ প্ৰান্তৰ অবস্থান"
 
 #: ../gtksourceview/gtksourceview.c:404
 msgid "Position of the right margin"
@@ -3213,44 +3198,46 @@ msgstr "মাৰ্জিনেৰ অবস্থান"
 #
 #: ../gtksourceview/gtksourceview.c:420
 msgid "Smart Home/End"
-msgstr "Home End-ৰ বিশেষ ব্যবহাৰ"
+msgstr "স্মাৰ্ট Home/End"
 
 #: ../gtksourceview/gtksourceview.c:421
 msgid ""
 "HOME and END keys move to first/last non whitespace characters on line "
 "before going to the start/end of the line"
 msgstr ""
-"HOME এবং END কী কাৰ্সাৰ-কে লাইনেৰ প্ৰথমে/শেষে নিয়ে যাওয়াৰ আগে প্ৰথম/শেষ অক্ষৰে "
-"নিয়ে যায়"
+"HOME আৰু END কি' শাৰীৰ আৰম্ভণি/অন্তত যোৱাৰ আগত শাৰীৰ প্ৰথম/শেষ বগাস্থান "
+"আখৰসমূহলেযায়"
 
 #: ../gtksourceview/gtksourceview.c:431
 msgid "Highlight current line"
-msgstr "বৰ্তমান লাইন চিহ্নিত কৰো"
+msgstr "বৰ্তমান শাৰী উজ্জ্বল কৰক"
 
 #: ../gtksourceview/gtksourceview.c:432
 msgid "Whether to highlight the current line"
-msgstr "বৰ্তমান লাইন হাইলাইট কৰা হবে কিনা"
+msgstr "বৰ্তমান শাৰী উজ্জ্বল কৰা হব নে"
 
 #: ../gtksourceview/gtksourceview.c:439
 msgid "Indent on tab"
-msgstr "ট্যাব দ্বাৰা ইন্ডেন্ট"
+msgstr "টেবত ইণ্ডেন্ট"
 
 #: ../gtksourceview/gtksourceview.c:440
 msgid "Whether to indent the selected text when the tab key is pressed"
-msgstr "ট্যাব-কি টেপা হলে নিৰ্বাচিত টেক্সট ইন্ডেন্ট কৰা হবে কি না"
+msgstr "টেব কি' টিপা হলে নিৰ্বাচিত লিখনী ইণ্ডেন্ট কৰা হব নে"
 
 #: ../gtksourceview/gtksourceview.c:454
 msgid "Draw Spaces"
-msgstr "শূণ্যস্থান আঁকা হবে"
+msgstr "স্পেইচ আঁকক"
 
 #: ../gtksourceview/gtksourceview.c:455
 msgid "Set if and how the spaces should be visualized"
-msgstr "শূণ্য স্থান আঁকা হবে কি না ও সেটি আঁকাৰ প্ৰদ্ধতি নিৰ্ধাৰণ কৰুন"
+msgstr "স্পেইসমূহ ভিছুৱেলাইজ কৰা হব নে আৰু কৰা হলে কিধৰণে কৰা হব নিৰ্ধাৰণ কৰক"
 
 #
 #: ../gtksourceview/gtksourceview-i18n.c:72
 msgid "translator-credits"
-msgstr "অমিতাক্ষ ফুকন (aphukan@fedoraproject.org)"
+msgstr ""
+"অমিতাক্ষ ফুকন (aphukan@fedoraproject.org), নীলমদ্যুতি গোস্বামী (ngoswami@redhat."
+"com)"
 
 #
 #~ msgid "Object"
