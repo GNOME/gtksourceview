@@ -47,6 +47,7 @@ LANGUAGES =			\
 	idl.lang		\
 	imagej.lang		\
 	ini.lang		\
+	j.lang			\
 	java.lang		\
 	javascript.lang		\
 	json.lang		\
