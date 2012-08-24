@@ -11,48 +11,45 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lt\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gtksourceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-02-04 13:59+0000\n"
-"PO-Revision-Date: 2012-03-26 22:56+0300\n"
+"POT-Creation-Date: 2012-08-20 20:49+0000\n"
+"PO-Revision-Date: 2012-08-24 21:08+0300\n"
 "Last-Translator: Aurimas Černius <aurisc4@gmail.com>\n"
 "Language-Team: Lithuanian <gnome-lt@lists.akl.lt>\n"
+"Language: lt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: lt\n"
 "X-Generator: KBabel 1.11.4\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: ../data/glade/gtksourceview.xml.in.h:1
-msgid "After"
-msgstr "Po"
+msgid "GtkSourceView"
+msgstr "GtkSourceView"
 
-#. Translators: "All" is used as a label in thestatus bar of the
-#. popup, telling that all completion pages are shown
-#: ../data/glade/gtksourceview.xml.in.h:2
-#: ../gtksourceview/gtksourcecompletion.c:648
-msgid "All"
-msgstr "Visi"
-
+#. Translators: It is related to an option of a set of values
 #: ../data/glade/gtksourceview.xml.in.h:3
-msgid "Always"
-msgstr "Visada"
+msgid "Disabled"
+msgstr "Išjungtas"
 
 #: ../data/glade/gtksourceview.xml.in.h:4
 msgid "Before"
 msgstr "Prieš"
 
-#. Translators: It is related to an option of a set of values
+#: ../data/glade/gtksourceview.xml.in.h:5
+msgid "After"
+msgstr "Po"
+
 #: ../data/glade/gtksourceview.xml.in.h:6
-msgid "Disabled"
-msgstr "Išjungtas"
+msgid "Always"
+msgstr "Visada"
 
 #: ../data/glade/gtksourceview.xml.in.h:7
-msgid "GtkSourceView"
-msgstr "GtkSourceView"
+msgid "Space"
+msgstr "Tarpas"
 
 #: ../data/glade/gtksourceview.xml.in.h:8
-msgid "Leading"
-msgstr "Priekinis"
+msgid "Tab"
+msgstr "Tab"
 
 #: ../data/glade/gtksourceview.xml.in.h:9
 msgid "Newline"
@@ -63,802 +60,821 @@ msgid "Non Breaking Whitespace"
 msgstr "Nepertraukiama tuščia vieta"
 
 #: ../data/glade/gtksourceview.xml.in.h:11
-msgid "Space"
-msgstr "Tarpas"
+msgid "Leading"
+msgstr "Priekinis"
 
 #: ../data/glade/gtksourceview.xml.in.h:12
-msgid "Tab"
-msgstr "Tab"
-
-#: ../data/glade/gtksourceview.xml.in.h:13
 #: ../gtksourceview/gtksourcecompletionitem.c:255
 #: ../gtksourceview/gtksourcegutterrenderertext.c:403
 msgid "Text"
 msgstr "Tekstas"
 
-#: ../data/glade/gtksourceview.xml.in.h:14
+#: ../data/glade/gtksourceview.xml.in.h:13
 msgid "Trailing"
 msgstr "Galinis"
 
+#. Translators: "All" is used as a label in thestatus bar of the
+#. popup, telling that all completion pages are shown
+#: ../data/glade/gtksourceview.xml.in.h:14
+#: ../gtksourceview/gtksourcecompletion.c:647
+msgid "All"
+msgstr "Visi"
+
+#: ../data/language-specs/actionscript.lang.h:1
 #: ../data/language-specs/ada.lang.h:1
-msgid "Ada"
-msgstr "Ada"
-
-#: ../data/language-specs/ada.lang.h:2
-msgid "Arbitrary base number"
-msgstr "Pasirinkto pagrindo sistemos skaičius"
-
-#. A boolean constant: TRUE, false
-#: ../data/language-specs/ada.lang.h:3
-#: ../data/language-specs/asp.lang.h:3
-#: ../data/language-specs/bennugd.lang.h:2
-#: ../data/language-specs/cg.lang.h:2
+#: ../data/language-specs/asp.lang.h:1
+#: ../data/language-specs/bennugd.lang.h:1
+#: ../data/language-specs/boo.lang.h:1
+#: ../data/language-specs/cg.lang.h:1
+#: ../data/language-specs/chdr.lang.h:1
 #: ../data/language-specs/c.lang.h:1
+#: ../data/language-specs/cobol.lang.h:1
+#: ../data/language-specs/cpp.lang.h:1
 #: ../data/language-specs/csharp.lang.h:1
-#: ../data/language-specs/def.lang.h:4
-#: ../data/language-specs/fsharp.lang.h:2
+#: ../data/language-specs/cuda.lang.h:1
+#: ../data/language-specs/d.lang.h:1
+#: ../data/language-specs/eiffel.lang.h:1
+#: ../data/language-specs/erlang.lang.h:1
+#: ../data/language-specs/forth.lang.h:1
+#: ../data/language-specs/fortran.lang.h:1
+#: ../data/language-specs/fsharp.lang.h:1
+#: ../data/language-specs/glsl.lang.h:1
 #: ../data/language-specs/go.lang.h:1
-#: ../data/language-specs/gtkrc.lang.h:1
-#: ../data/language-specs/ini.lang.h:2
+#: ../data/language-specs/haskell.lang.h:1
+#: ../data/language-specs/haskell-literate.lang.h:1
+#: ../data/language-specs/idl.lang.h:1
+#: ../data/language-specs/j.lang.h:1
 #: ../data/language-specs/java.lang.h:1
-#: ../data/language-specs/lua.lang.h:1
-#: ../data/language-specs/nemerle.lang.h:2
-#: ../data/language-specs/ocaml.lang.h:2
+#: ../data/language-specs/makefile.lang.h:1
+#: ../data/language-specs/nemerle.lang.h:1
+#: ../data/language-specs/objc.lang.h:1
+#: ../data/language-specs/objj.lang.h:1
+#: ../data/language-specs/ocaml.lang.h:1
 #: ../data/language-specs/ooc.lang.h:1
 #: ../data/language-specs/opal.lang.h:1
-#: ../data/language-specs/php.lang.h:1
-#: ../data/language-specs/protobuf.lang.h:1
-#: ../data/language-specs/R.lang.h:2
-#: ../data/language-specs/ruby.lang.h:3
-#: ../data/language-specs/sml.lang.h:2
+#: ../data/language-specs/opencl.lang.h:1
+#: ../data/language-specs/pascal.lang.h:1
+#: ../data/language-specs/prolog.lang.h:1
+#: ../data/language-specs/scheme.lang.h:1
+#: ../data/language-specs/sml.lang.h:1
+#: ../data/language-specs/sparql.lang.h:1
+#: ../data/language-specs/sql.lang.h:1
+#: ../data/language-specs/systemverilog.lang.h:1
 #: ../data/language-specs/vala.lang.h:1
 #: ../data/language-specs/vbnet.lang.h:1
-#: ../data/language-specs/vhdl.lang.h:2
-msgid "Boolean value"
-msgstr "Loginė reikšmė"
+#: ../data/language-specs/verilog.lang.h:1
+#: ../data/language-specs/vhdl.lang.h:1
+msgid "Sources"
+msgstr "Pradiniai tekstai"
+
+#: ../data/language-specs/actionscript.lang.h:2
+#| msgid "Scripts"
+msgid "ActionScript"
+msgstr "ActionScript"
 
 #. Any comment
-#: ../data/language-specs/ada.lang.h:4
-#: ../data/language-specs/asp.lang.h:4
+#: ../data/language-specs/actionscript.lang.h:3
+#: ../data/language-specs/ada.lang.h:3
+#: ../data/language-specs/asp.lang.h:3
 #: ../data/language-specs/bennugd.lang.h:3
-#: ../data/language-specs/boo.lang.h:4
-#: ../data/language-specs/cg.lang.h:5
-#: ../data/language-specs/c.lang.h:4
-#: ../data/language-specs/cobol.lang.h:2
-#: ../data/language-specs/csharp.lang.h:4
-#: ../data/language-specs/def.lang.h:11
+#: ../data/language-specs/boo.lang.h:3
+#: ../data/language-specs/cg.lang.h:3
+#: ../data/language-specs/c.lang.h:3
+#: ../data/language-specs/cobol.lang.h:3
+#: ../data/language-specs/csharp.lang.h:3
+#: ../data/language-specs/def.lang.h:3
 #: ../data/language-specs/d.lang.h:3
-#: ../data/language-specs/dosbatch.lang.h:2
-#: ../data/language-specs/dot.lang.h:2
+#: ../data/language-specs/dosbatch.lang.h:3
+#: ../data/language-specs/dot.lang.h:3
 #: ../data/language-specs/eiffel.lang.h:3
-#: ../data/language-specs/erlang.lang.h:4
-#: ../data/language-specs/fcl.lang.h:2
-#: ../data/language-specs/forth.lang.h:1
-#: ../data/language-specs/fortran.lang.h:2
-#: ../data/language-specs/fsharp.lang.h:4
-#: ../data/language-specs/gap.lang.h:2
+#: ../data/language-specs/erlang.lang.h:3
+#: ../data/language-specs/fcl.lang.h:3
+#: ../data/language-specs/forth.lang.h:3
+#: ../data/language-specs/fortran.lang.h:3
+#: ../data/language-specs/fsharp.lang.h:3
+#: ../data/language-specs/gap.lang.h:3
 #: ../data/language-specs/go.lang.h:3
-#: ../data/language-specs/gtkrc.lang.h:2
-#: ../data/language-specs/haskell.lang.h:2
+#: ../data/language-specs/gtkrc.lang.h:3
+#: ../data/language-specs/haskell.lang.h:4
 #: ../data/language-specs/html.lang.h:3
-#: ../data/language-specs/idl.lang.h:1
+#: ../data/language-specs/idl.lang.h:3
 #: ../data/language-specs/ini.lang.h:3
-#: ../data/language-specs/latex.lang.h:2
-#: ../data/language-specs/lua.lang.h:2
-#: ../data/language-specs/matlab.lang.h:2
-#: ../data/language-specs/nemerle.lang.h:4
-#: ../data/language-specs/nsis.lang.h:1
-#: ../data/language-specs/ocaml.lang.h:4
-#: ../data/language-specs/ocl.lang.h:1
-#: ../data/language-specs/octave.lang.h:4
-#: ../data/language-specs/ooc.lang.h:2
-#: ../data/language-specs/opal.lang.h:2
-#: ../data/language-specs/pascal.lang.h:1
-#: ../data/language-specs/perl.lang.h:2
-#: ../data/language-specs/php.lang.h:2
-#: ../data/language-specs/po.lang.h:1
-#: ../data/language-specs/prolog.lang.h:1
-#: ../data/language-specs/ruby.lang.h:6
-#: ../data/language-specs/scheme.lang.h:2
-#: ../data/language-specs/scilab.lang.h:2
-#: ../data/language-specs/sh.lang.h:1
-#: ../data/language-specs/sml.lang.h:4
-#: ../data/language-specs/sql.lang.h:1
+#: ../data/language-specs/j.lang.h:4
+#: ../data/language-specs/latex.lang.h:3
+#: ../data/language-specs/lua.lang.h:3
+#: ../data/language-specs/matlab.lang.h:3
+#: ../data/language-specs/nemerle.lang.h:3
+#: ../data/language-specs/nsis.lang.h:4
+#: ../data/language-specs/ocaml.lang.h:3
+#: ../data/language-specs/ocl.lang.h:3
+#: ../data/language-specs/octave.lang.h:3
+#: ../data/language-specs/ooc.lang.h:3
+#: ../data/language-specs/opal.lang.h:4
+#: ../data/language-specs/pascal.lang.h:3
+#: ../data/language-specs/perl.lang.h:3
+#: ../data/language-specs/php.lang.h:3
+#: ../data/language-specs/po.lang.h:3
+#: ../data/language-specs/prolog.lang.h:3
+#: ../data/language-specs/ruby.lang.h:4
+#: ../data/language-specs/scheme.lang.h:3
+#: ../data/language-specs/scilab.lang.h:3
+#: ../data/language-specs/sh.lang.h:3
+#: ../data/language-specs/sml.lang.h:3
+#: ../data/language-specs/sql.lang.h:3
 #: ../data/language-specs/t2t.lang.h:3
-#: ../data/language-specs/texinfo.lang.h:1
-#: ../data/language-specs/vala.lang.h:2
-#: ../data/language-specs/vbnet.lang.h:2
-#: ../data/language-specs/verilog.lang.h:2
-#: ../data/language-specs/vhdl.lang.h:4
-#: ../data/language-specs/xml.lang.h:4
+#: ../data/language-specs/texinfo.lang.h:3
+#: ../data/language-specs/vala.lang.h:3
+#: ../data/language-specs/vbnet.lang.h:3
+#: ../data/language-specs/verilog.lang.h:3
+#: ../data/language-specs/vhdl.lang.h:3
+#: ../data/language-specs/xml.lang.h:3
 msgid "Comment"
 msgstr "Komentaras"
 
-#: ../data/language-specs/ada.lang.h:5
-#: ../data/language-specs/asp.lang.h:5
-#: ../data/language-specs/bennugd.lang.h:4
-#: ../data/language-specs/boo.lang.h:5
-#: ../data/language-specs/cg.lang.h:6
-#: ../data/language-specs/c.lang.h:6
-#: ../data/language-specs/cpp.lang.h:3
-#: ../data/language-specs/csharp.lang.h:5
-#: ../data/language-specs/cuda.lang.h:2
-#: ../data/language-specs/d.lang.h:5
-#: ../data/language-specs/eiffel.lang.h:4
-#: ../data/language-specs/forth.lang.h:3
-#: ../data/language-specs/fortran.lang.h:3
-#: ../data/language-specs/fsharp.lang.h:5
-#: ../data/language-specs/glsl.lang.h:4
+#. Any erroneous construct
+#: ../data/language-specs/actionscript.lang.h:4
+#: ../data/language-specs/cg.lang.h:4
+#: ../data/language-specs/c.lang.h:22
+#: ../data/language-specs/cobol.lang.h:11
+#: ../data/language-specs/csharp.lang.h:4
+#: ../data/language-specs/css.lang.h:3
+#: ../data/language-specs/def.lang.h:53
+#: ../data/language-specs/d.lang.h:4
+#: ../data/language-specs/dot.lang.h:4
 #: ../data/language-specs/go.lang.h:4
-#: ../data/language-specs/gtkrc.lang.h:3
-#: ../data/language-specs/haskell.lang.h:3
-#: ../data/language-specs/idl.lang.h:2
-#: ../data/language-specs/ini.lang.h:4
-#: ../data/language-specs/java.lang.h:3
-#: ../data/language-specs/javascript.lang.h:3
-#: ../data/language-specs/nemerle.lang.h:5
-#: ../data/language-specs/objc.lang.h:2
-#: ../data/language-specs/objj.lang.h:2
-#: ../data/language-specs/ocaml.lang.h:5
-#: ../data/language-specs/ocl.lang.h:2
-#: ../data/language-specs/ooc.lang.h:3
-#: ../data/language-specs/opal.lang.h:4
-#: ../data/language-specs/opencl.lang.h:1
-#: ../data/language-specs/pascal.lang.h:2
-#: ../data/language-specs/php.lang.h:4
-#: ../data/language-specs/protobuf.lang.h:2
-#: ../data/language-specs/sml.lang.h:5
-#: ../data/language-specs/sparql.lang.h:3
-#: ../data/language-specs/sql.lang.h:2
-#: ../data/language-specs/vala.lang.h:3
-#: ../data/language-specs/vbnet.lang.h:3
-msgid "Data Type"
-msgstr "Duomenų tipas"
-
-#. A decimal number: 1234
-#: ../data/language-specs/ada.lang.h:6
-#: ../data/language-specs/bennugd.lang.h:5
-#: ../data/language-specs/cg.lang.h:7
-#: ../data/language-specs/c.lang.h:7
-#: ../data/language-specs/csharp.lang.h:6
-#: ../data/language-specs/def.lang.h:19
-#: ../data/language-specs/d.lang.h:6
-#: ../data/language-specs/eiffel.lang.h:6
-#: ../data/language-specs/erlang.lang.h:6
-#: ../data/language-specs/fsharp.lang.h:6
-#: ../data/language-specs/go.lang.h:5
-#: ../data/language-specs/nemerle.lang.h:6
-#: ../data/language-specs/ocaml.lang.h:6
+#: ../data/language-specs/html.lang.h:8
+#: ../data/language-specs/j.lang.h:7
+#: ../data/language-specs/json.lang.h:7
+#: ../data/language-specs/nemerle.lang.h:4
+#: ../data/language-specs/ocaml.lang.h:20
 #: ../data/language-specs/ooc.lang.h:4
-#: ../data/language-specs/opal.lang.h:5
-#: ../data/language-specs/php.lang.h:5
-#: ../data/language-specs/python.lang.h:7
-#: ../data/language-specs/python3.lang.h:7
-#: ../data/language-specs/ruby.lang.h:8
-msgid "Decimal number"
-msgstr "Dešimtainis skaičius"
+#: ../data/language-specs/opal.lang.h:6
+#: ../data/language-specs/perl.lang.h:17
+#: ../data/language-specs/php.lang.h:4
+#: ../data/language-specs/prolog.lang.h:9
+#: ../data/language-specs/vala.lang.h:4
+#: ../data/language-specs/verilog.lang.h:6
+#: ../data/language-specs/xml.lang.h:13
+msgid "Error"
+msgstr "Klaida"
 
-#. map to nothing
-#: ../data/language-specs/ada.lang.h:7
-#: ../data/language-specs/cg.lang.h:9
-#: ../data/language-specs/c.lang.h:8
-#: ../data/language-specs/csharp.lang.h:8
-#: ../data/language-specs/eiffel.lang.h:9
-#: ../data/language-specs/fsharp.lang.h:7
-#: ../data/language-specs/go.lang.h:7
-#: ../data/language-specs/haskell.lang.h:5
-#: ../data/language-specs/java.lang.h:5
-#: ../data/language-specs/javascript.lang.h:4
-#: ../data/language-specs/json.lang.h:4
-#: ../data/language-specs/lua.lang.h:3
-#: ../data/language-specs/ocaml.lang.h:8
-#: ../data/language-specs/ooc.lang.h:7
-#: ../data/language-specs/php.lang.h:8
-#: ../data/language-specs/prolog.lang.h:3
-#: ../data/language-specs/python.lang.h:8
-#: ../data/language-specs/python3.lang.h:8
-#: ../data/language-specs/ruby.lang.h:9
-#: ../data/language-specs/sml.lang.h:7
-#: ../data/language-specs/texinfo.lang.h:2
-#: ../data/language-specs/verilog.lang.h:5
-msgid "Escaped Character"
-msgstr "Simbolis kaitos sekoje"
-
-#. keywords: "if", "for", "while", etc.
-#: ../data/language-specs/ada.lang.h:8
-#: ../data/language-specs/asp.lang.h:7
-#: ../data/language-specs/awk.lang.h:2
-#: ../data/language-specs/bennugd.lang.h:9
-#: ../data/language-specs/boo.lang.h:7
-#: ../data/language-specs/cg.lang.h:14
-#: ../data/language-specs/c.lang.h:12
-#: ../data/language-specs/cobol.lang.h:5
-#: ../data/language-specs/cpp.lang.h:4
-#: ../data/language-specs/csharp.lang.h:10
-#: ../data/language-specs/css.lang.h:10
-#: ../data/language-specs/cuda.lang.h:6
-#: ../data/language-specs/def.lang.h:36
-#: ../data/language-specs/d.lang.h:10
+#. A string constant: "this is a string"
+#: ../data/language-specs/actionscript.lang.h:5
+#: ../data/language-specs/ada.lang.h:4
+#: ../data/language-specs/asp.lang.h:4
+#: ../data/language-specs/boo.lang.h:5
+#: ../data/language-specs/c.lang.h:4
+#: ../data/language-specs/cobol.lang.h:8
+#: ../data/language-specs/csharp.lang.h:6
+#: ../data/language-specs/css.lang.h:5
+#: ../data/language-specs/def.lang.h:17
+#: ../data/language-specs/d.lang.h:5
 #: ../data/language-specs/dosbatch.lang.h:4
-#: ../data/language-specs/dot.lang.h:5
-#: ../data/language-specs/eiffel.lang.h:12
-#: ../data/language-specs/erlang.lang.h:9
-#: ../data/language-specs/fcl.lang.h:6
-#: ../data/language-specs/forth.lang.h:7
-#: ../data/language-specs/fortran.lang.h:8
-#: ../data/language-specs/fsharp.lang.h:10
-#: ../data/language-specs/gap.lang.h:6
-#: ../data/language-specs/glsl.lang.h:5
-#: ../data/language-specs/go.lang.h:12
-#: ../data/language-specs/gtkrc.lang.h:7
+#: ../data/language-specs/eiffel.lang.h:4
+#: ../data/language-specs/erlang.lang.h:7
+#: ../data/language-specs/forth.lang.h:4
+#: ../data/language-specs/fsharp.lang.h:7
+#: ../data/language-specs/gdb-log.lang.h:8
+#: ../data/language-specs/go.lang.h:5
+#: ../data/language-specs/gtkrc.lang.h:4
 #: ../data/language-specs/haskell.lang.h:9
-#: ../data/language-specs/idl.lang.h:4
-#: ../data/language-specs/imagej.lang.h:6
-#: ../data/language-specs/ini.lang.h:7
-#: ../data/language-specs/java.lang.h:11
-#: ../data/language-specs/javascript.lang.h:8
-#: ../data/language-specs/lua.lang.h:5
-#: ../data/language-specs/nemerle.lang.h:10
-#: ../data/language-specs/objc.lang.h:3
-#: ../data/language-specs/objj.lang.h:4
-#: ../data/language-specs/ocaml.lang.h:10
-#: ../data/language-specs/ocl.lang.h:3
-#: ../data/language-specs/octave.lang.h:8
-#: ../data/language-specs/ooc.lang.h:12
-#: ../data/language-specs/opal.lang.h:8
-#: ../data/language-specs/opencl.lang.h:6
+#: ../data/language-specs/idl.lang.h:7
+#: ../data/language-specs/imagej.lang.h:10
+#: ../data/language-specs/ini.lang.h:5
+#: ../data/language-specs/j.lang.h:17
+#: ../data/language-specs/java.lang.h:4
+#: ../data/language-specs/javascript.lang.h:13
+#: ../data/language-specs/json.lang.h:4
+#: ../data/language-specs/lua.lang.h:4
+#: ../data/language-specs/matlab.lang.h:4
+#: ../data/language-specs/nemerle.lang.h:7
+#: ../data/language-specs/nsis.lang.h:5
+#: ../data/language-specs/objc.lang.h:6
+#: ../data/language-specs/objj.lang.h:8
+#: ../data/language-specs/ocaml.lang.h:8
+#: ../data/language-specs/ocl.lang.h:4
+#: ../data/language-specs/octave.lang.h:4
+#: ../data/language-specs/ooc.lang.h:6
+#: ../data/language-specs/opal.lang.h:7
 #: ../data/language-specs/pascal.lang.h:4
-#: ../data/language-specs/perl.lang.h:9
-#: ../data/language-specs/php.lang.h:14
-#: ../data/language-specs/po.lang.h:3
-#: ../data/language-specs/prolog.lang.h:4
-#: ../data/language-specs/protobuf.lang.h:3
-#: ../data/language-specs/python.lang.h:11
-#: ../data/language-specs/python3.lang.h:11
-#: ../data/language-specs/R.lang.h:6
-#: ../data/language-specs/ruby.lang.h:13
-#: ../data/language-specs/scheme.lang.h:4
+#: ../data/language-specs/perl.lang.h:6
+#: ../data/language-specs/php.lang.h:9
+#: ../data/language-specs/po.lang.h:5
+#: ../data/language-specs/prolog.lang.h:6
+#: ../data/language-specs/protobuf.lang.h:6
+#: ../data/language-specs/python.lang.h:6
+#: ../data/language-specs/python3.lang.h:6
+#: ../data/language-specs/ruby.lang.h:14
+#: ../data/language-specs/scheme.lang.h:5
 #: ../data/language-specs/scilab.lang.h:5
 #: ../data/language-specs/sh.lang.h:5
-#: ../data/language-specs/sml.lang.h:9
+#: ../data/language-specs/sml.lang.h:7
+#: ../data/language-specs/sql.lang.h:5
+#: ../data/language-specs/texinfo.lang.h:6
+#: ../data/language-specs/vala.lang.h:6
+#: ../data/language-specs/vbnet.lang.h:4
+#: ../data/language-specs/verilog.lang.h:4
+#: ../data/language-specs/vhdl.lang.h:4
+msgid "String"
+msgstr "Seka"
+
+#. Translators: refered to some specific keywords of the language that
+#. allow to get external functionalities
+#: ../data/language-specs/actionscript.lang.h:6
+#: ../data/language-specs/java.lang.h:8
+#: ../data/language-specs/ooc.lang.h:7
+msgid "External"
+msgstr "Išorinis"
+
+#: ../data/language-specs/actionscript.lang.h:7
+#: ../data/language-specs/java.lang.h:9
+#: ../data/language-specs/ooc.lang.h:8
+msgid "Declaration"
+msgstr "Deklaravimas"
+
+#: ../data/language-specs/actionscript.lang.h:8
+#: ../data/language-specs/ada.lang.h:8
+#: ../data/language-specs/cg.lang.h:10
+#: ../data/language-specs/c.lang.h:12
+#: ../data/language-specs/java.lang.h:10
+#: ../data/language-specs/ooc.lang.h:9
+msgid "Storage Class"
+msgstr "Saugojimo klasė"
+
+#: ../data/language-specs/actionscript.lang.h:9
+#: ../data/language-specs/java.lang.h:11
+#: ../data/language-specs/ooc.lang.h:10
+msgid "Scope Declaration"
+msgstr "Galiojimo srities apibrėžtis"
+
+#. keywords: "if", "for", "while", etc.
+#: ../data/language-specs/actionscript.lang.h:10
+#: ../data/language-specs/ada.lang.h:5
+#: ../data/language-specs/asp.lang.h:6
+#: ../data/language-specs/awk.lang.h:3
+#: ../data/language-specs/bennugd.lang.h:7
+#: ../data/language-specs/boo.lang.h:10
+#: ../data/language-specs/cg.lang.h:8
+#: ../data/language-specs/c.lang.h:9
+#: ../data/language-specs/cobol.lang.h:6
+#: ../data/language-specs/cpp.lang.h:3
+#: ../data/language-specs/csharp.lang.h:11
+#: ../data/language-specs/css.lang.h:14
+#: ../data/language-specs/cuda.lang.h:3
+#: ../data/language-specs/def.lang.h:47
+#: ../data/language-specs/d.lang.h:6
+#: ../data/language-specs/dosbatch.lang.h:5
+#: ../data/language-specs/dot.lang.h:5
+#: ../data/language-specs/eiffel.lang.h:7
+#: ../data/language-specs/erlang.lang.h:4
+#: ../data/language-specs/fcl.lang.h:5
+#: ../data/language-specs/forth.lang.h:6
+#: ../data/language-specs/fortran.lang.h:5
+#: ../data/language-specs/fsharp.lang.h:8
+#: ../data/language-specs/gap.lang.h:5
+#: ../data/language-specs/glsl.lang.h:5
+#: ../data/language-specs/go.lang.h:7
+#: ../data/language-specs/gtkrc.lang.h:5
+#: ../data/language-specs/haskell.lang.h:7
+#: ../data/language-specs/idl.lang.h:6
+#: ../data/language-specs/imagej.lang.h:8
+#: ../data/language-specs/ini.lang.h:6
+#: ../data/language-specs/java.lang.h:12
+#: ../data/language-specs/javascript.lang.h:7
+#: ../data/language-specs/lua.lang.h:5
+#: ../data/language-specs/nemerle.lang.h:8
+#: ../data/language-specs/objc.lang.h:3
+#: ../data/language-specs/objj.lang.h:4
+#: ../data/language-specs/ocaml.lang.h:9
+#: ../data/language-specs/ocl.lang.h:5
+#: ../data/language-specs/octave.lang.h:13
+#: ../data/language-specs/ooc.lang.h:11
+#: ../data/language-specs/opal.lang.h:8
+#: ../data/language-specs/opencl.lang.h:3
+#: ../data/language-specs/pascal.lang.h:5
+#: ../data/language-specs/perl.lang.h:7
+#: ../data/language-specs/php.lang.h:12
+#: ../data/language-specs/po.lang.h:7
+#: ../data/language-specs/prolog.lang.h:5
+#: ../data/language-specs/protobuf.lang.h:4
+#: ../data/language-specs/python.lang.h:4
+#: ../data/language-specs/python3.lang.h:4
+#: ../data/language-specs/R.lang.h:3
+#: ../data/language-specs/ruby.lang.h:7
+#: ../data/language-specs/scheme.lang.h:6
+#: ../data/language-specs/scilab.lang.h:6
+#: ../data/language-specs/sh.lang.h:6
+#: ../data/language-specs/sml.lang.h:4
 #: ../data/language-specs/sparql.lang.h:7
 #: ../data/language-specs/sql.lang.h:6
-#: ../data/language-specs/systemverilog.lang.h:2
-#: ../data/language-specs/tcl.lang.h:1
-#: ../data/language-specs/texinfo.lang.h:6
-#: ../data/language-specs/vala.lang.h:5
-#: ../data/language-specs/vbnet.lang.h:4
-#: ../data/language-specs/verilog.lang.h:9
-#: ../data/language-specs/vhdl.lang.h:5
+#: ../data/language-specs/systemverilog.lang.h:5
+#: ../data/language-specs/tcl.lang.h:4
+#: ../data/language-specs/texinfo.lang.h:7
+#: ../data/language-specs/vala.lang.h:7
+#: ../data/language-specs/vbnet.lang.h:6
+#: ../data/language-specs/verilog.lang.h:10
+#: ../data/language-specs/vhdl.lang.h:6
 msgid "Keyword"
 msgstr "Raktas"
 
-#: ../data/language-specs/ada.lang.h:9
-#: ../data/language-specs/asp.lang.h:10
-#: ../data/language-specs/bennugd.lang.h:11
+#: ../data/language-specs/actionscript.lang.h:11
+#: ../data/language-specs/boo.lang.h:12
+#: ../data/language-specs/csharp.lang.h:13
+#: ../data/language-specs/d.lang.h:9
+#: ../data/language-specs/fsharp.lang.h:21
+#: ../data/language-specs/java.lang.h:13
+#: ../data/language-specs/javascript.lang.h:4
+#: ../data/language-specs/json.lang.h:5
+#: ../data/language-specs/nemerle.lang.h:10
+#: ../data/language-specs/objj.lang.h:9
+#: ../data/language-specs/ooc.lang.h:12
+#: ../data/language-specs/php.lang.h:16
+#: ../data/language-specs/vala.lang.h:9
+msgid "Null Value"
+msgstr "Nulinė vertė"
+
+#. A boolean constant: TRUE, false
+#: ../data/language-specs/actionscript.lang.h:12
+#: ../data/language-specs/ada.lang.h:7
+#: ../data/language-specs/asp.lang.h:13
+#: ../data/language-specs/bennugd.lang.h:12
 #: ../data/language-specs/cg.lang.h:16
-#: ../data/language-specs/c.lang.h:14
+#: ../data/language-specs/c.lang.h:19
+#: ../data/language-specs/csharp.lang.h:14
+#: ../data/language-specs/def.lang.h:34
+#: ../data/language-specs/fsharp.lang.h:19
+#: ../data/language-specs/go.lang.h:16
+#: ../data/language-specs/gtkrc.lang.h:10
+#: ../data/language-specs/ini.lang.h:10
+#: ../data/language-specs/java.lang.h:14
+#: ../data/language-specs/lua.lang.h:10
+#: ../data/language-specs/nemerle.lang.h:11
+#: ../data/language-specs/ocaml.lang.h:19
+#: ../data/language-specs/ooc.lang.h:13
+#: ../data/language-specs/opal.lang.h:9
+#: ../data/language-specs/php.lang.h:17
+#: ../data/language-specs/protobuf.lang.h:5
+#: ../data/language-specs/R.lang.h:8
+#: ../data/language-specs/ruby.lang.h:9
+#: ../data/language-specs/sml.lang.h:11
+#: ../data/language-specs/vala.lang.h:8
+#: ../data/language-specs/vbnet.lang.h:9
+#: ../data/language-specs/vhdl.lang.h:8
+msgid "Boolean value"
+msgstr "Loginė reikšmė"
+
+#. A generic number constant
+#: ../data/language-specs/actionscript.lang.h:13
+#: ../data/language-specs/asp.lang.h:14
+#: ../data/language-specs/boo.lang.h:14
+#: ../data/language-specs/cobol.lang.h:9
+#: ../data/language-specs/def.lang.h:22
+#: ../data/language-specs/desktop.lang.h:8
+#: ../data/language-specs/forth.lang.h:8
+#: ../data/language-specs/j.lang.h:14
+#: ../data/language-specs/java.lang.h:15
+#: ../data/language-specs/prolog.lang.h:7
+#: ../data/language-specs/vhdl.lang.h:11
+msgid "Number"
+msgstr "Skaičius"
+
+#: ../data/language-specs/actionscript.lang.h:14
+#: ../data/language-specs/java.lang.h:16
+#: ../data/language-specs/javascript.lang.h:12
+#: ../data/language-specs/ooc.lang.h:18
+msgid "Future Reserved Keywords"
+msgstr "Ateičiai rezervuoti žodžiai"
+
+#: ../data/language-specs/actionscript.lang.h:15
+#: ../data/language-specs/ada.lang.h:9
+#: ../data/language-specs/asp.lang.h:11
+#: ../data/language-specs/bennugd.lang.h:8
+#: ../data/language-specs/boo.lang.h:8
+#: ../data/language-specs/cg.lang.h:9
+#: ../data/language-specs/c.lang.h:11
+#: ../data/language-specs/cpp.lang.h:4
+#: ../data/language-specs/csharp.lang.h:5
+#: ../data/language-specs/cuda.lang.h:4
+#: ../data/language-specs/d.lang.h:7
+#: ../data/language-specs/eiffel.lang.h:8
+#: ../data/language-specs/forth.lang.h:7
+#: ../data/language-specs/fortran.lang.h:9
+#: ../data/language-specs/fsharp.lang.h:11
+#: ../data/language-specs/glsl.lang.h:4
+#: ../data/language-specs/go.lang.h:8
+#: ../data/language-specs/gtkrc.lang.h:7
+#: ../data/language-specs/haskell.lang.h:8
+#: ../data/language-specs/idl.lang.h:4
+#: ../data/language-specs/ini.lang.h:9
+#: ../data/language-specs/java.lang.h:17
+#: ../data/language-specs/javascript.lang.h:8
+#: ../data/language-specs/nemerle.lang.h:9
+#: ../data/language-specs/objc.lang.h:4
+#: ../data/language-specs/objj.lang.h:5
+#: ../data/language-specs/ocaml.lang.h:12
+#: ../data/language-specs/ocl.lang.h:7
+#: ../data/language-specs/ooc.lang.h:19
+#: ../data/language-specs/opal.lang.h:11
+#: ../data/language-specs/opencl.lang.h:4
+#: ../data/language-specs/pascal.lang.h:7
+#: ../data/language-specs/php.lang.h:15
+#: ../data/language-specs/protobuf.lang.h:3
+#: ../data/language-specs/sml.lang.h:5
+#: ../data/language-specs/sparql.lang.h:4
+#: ../data/language-specs/sql.lang.h:9
+#: ../data/language-specs/vala.lang.h:5
+#: ../data/language-specs/vbnet.lang.h:7
+msgid "Data Type"
+msgstr "Duomenų tipas"
+
+#: ../data/language-specs/ada.lang.h:2
+msgid "Ada"
+msgstr "Ada"
+
+#. A decimal number: 1234
+#: ../data/language-specs/ada.lang.h:6
+#: ../data/language-specs/bennugd.lang.h:10
+#: ../data/language-specs/cg.lang.h:13
+#: ../data/language-specs/c.lang.h:16
+#: ../data/language-specs/csharp.lang.h:15
+#: ../data/language-specs/def.lang.h:26
+#: ../data/language-specs/d.lang.h:12
+#: ../data/language-specs/eiffel.lang.h:15
+#: ../data/language-specs/erlang.lang.h:10
+#: ../data/language-specs/fsharp.lang.h:6
+#: ../data/language-specs/go.lang.h:13
+#: ../data/language-specs/nemerle.lang.h:13
+#: ../data/language-specs/ocaml.lang.h:7
+#: ../data/language-specs/ooc.lang.h:15
+#: ../data/language-specs/opal.lang.h:10
+#: ../data/language-specs/php.lang.h:19
+#: ../data/language-specs/python.lang.h:13
+#: ../data/language-specs/python3.lang.h:12
+#: ../data/language-specs/ruby.lang.h:11
+msgid "Decimal number"
+msgstr "Dešimtainis skaičius"
+
+#: ../data/language-specs/ada.lang.h:10
+#: ../data/language-specs/asp.lang.h:5
+#: ../data/language-specs/bennugd.lang.h:4
+#: ../data/language-specs/cg.lang.h:5
+#: ../data/language-specs/c.lang.h:5
 #: ../data/language-specs/csharp.lang.h:12
-#: ../data/language-specs/forth.lang.h:9
-#: ../data/language-specs/fsharp.lang.h:15
-#: ../data/language-specs/glsl.lang.h:7
-#: ../data/language-specs/haskell.lang.h:11
+#: ../data/language-specs/forth.lang.h:5
+#: ../data/language-specs/fsharp.lang.h:20
+#: ../data/language-specs/glsl.lang.h:3
+#: ../data/language-specs/haskell.lang.h:3
 #: ../data/language-specs/idl.lang.h:5
-#: ../data/language-specs/nemerle.lang.h:14
-#: ../data/language-specs/objj.lang.h:7
-#: ../data/language-specs/pascal.lang.h:6
+#: ../data/language-specs/nemerle.lang.h:5
+#: ../data/language-specs/objj.lang.h:6
+#: ../data/language-specs/pascal.lang.h:8
 #: ../data/language-specs/vbnet.lang.h:5
 msgid "Preprocessor"
 msgstr "Apdorojanti programa"
 
-#: ../data/language-specs/ada.lang.h:10
-#: ../data/language-specs/csharp.lang.h:13
-#: ../data/language-specs/verilog.lang.h:11
-#: ../data/language-specs/vhdl.lang.h:7
+#: ../data/language-specs/ada.lang.h:11
+msgid "Arbitrary base number"
+msgstr "Pasirinkto pagrindo sistemos skaičius"
+
+#: ../data/language-specs/ada.lang.h:12
+#: ../data/language-specs/csharp.lang.h:17
+#: ../data/language-specs/verilog.lang.h:14
+#: ../data/language-specs/vhdl.lang.h:10
 msgid "Real number"
 msgstr "Realusis skaičius"
 
-#: ../data/language-specs/ada.lang.h:11
-#: ../data/language-specs/asp.lang.h:11
-#: ../data/language-specs/bennugd.lang.h:12
-#: ../data/language-specs/boo.lang.h:13
-#: ../data/language-specs/cg.lang.h:17
-#: ../data/language-specs/chdr.lang.h:2
-#: ../data/language-specs/c.lang.h:16
-#: ../data/language-specs/cobol.lang.h:8
-#: ../data/language-specs/cpp.lang.h:5
-#: ../data/language-specs/csharp.lang.h:14
-#: ../data/language-specs/cuda.lang.h:7
-#: ../data/language-specs/d.lang.h:13
-#: ../data/language-specs/eiffel.lang.h:14
-#: ../data/language-specs/erlang.lang.h:11
-#: ../data/language-specs/forth.lang.h:10
-#: ../data/language-specs/fortran.lang.h:9
-#: ../data/language-specs/fsharp.lang.h:16
-#: ../data/language-specs/glsl.lang.h:9
-#: ../data/language-specs/go.lang.h:14
-#: ../data/language-specs/haskell.lang.h:12
-#: ../data/language-specs/haskell-literate.lang.h:2
-#: ../data/language-specs/idl.lang.h:6
-#: ../data/language-specs/java.lang.h:15
-#: ../data/language-specs/makefile.lang.h:4
-#: ../data/language-specs/nemerle.lang.h:15
-#: ../data/language-specs/objc.lang.h:5
-#: ../data/language-specs/objj.lang.h:8
-#: ../data/language-specs/ocaml.lang.h:16
-#: ../data/language-specs/ooc.lang.h:17
-#: ../data/language-specs/opal.lang.h:11
-#: ../data/language-specs/opencl.lang.h:9
-#: ../data/language-specs/pascal.lang.h:7
-#: ../data/language-specs/prolog.lang.h:8
-#: ../data/language-specs/scheme.lang.h:6
-#: ../data/language-specs/sml.lang.h:11
-#: ../data/language-specs/sparql.lang.h:14
-#: ../data/language-specs/sql.lang.h:9
-#: ../data/language-specs/systemverilog.lang.h:3
-#: ../data/language-specs/vala.lang.h:7
-#: ../data/language-specs/vbnet.lang.h:6
-#: ../data/language-specs/verilog.lang.h:12
-#: ../data/language-specs/vhdl.lang.h:8
-msgid "Sources"
-msgstr "Pradiniai tekstai"
-
-#: ../data/language-specs/ada.lang.h:12
-#: ../data/language-specs/cg.lang.h:18
-#: ../data/language-specs/c.lang.h:18
-#: ../data/language-specs/go.lang.h:15
-#: ../data/language-specs/java.lang.h:16
-#: ../data/language-specs/ooc.lang.h:18
-msgid "Storage Class"
-msgstr "Saugojimo klasė"
-
-#. A string constant: "this is a string"
+#. map to nothing
 #: ../data/language-specs/ada.lang.h:13
-#: ../data/language-specs/asp.lang.h:13
-#: ../data/language-specs/boo.lang.h:15
-#: ../data/language-specs/c.lang.h:19
-#: ../data/language-specs/cobol.lang.h:10
-#: ../data/language-specs/csharp.lang.h:15
-#: ../data/language-specs/css.lang.h:15
-#: ../data/language-specs/def.lang.h:57
-#: ../data/language-specs/d.lang.h:15
-#: ../data/language-specs/dosbatch.lang.h:6
-#: ../data/language-specs/eiffel.lang.h:15
-#: ../data/language-specs/erlang.lang.h:12
-#: ../data/language-specs/forth.lang.h:11
-#: ../data/language-specs/fsharp.lang.h:17
-#: ../data/language-specs/gdb-log.lang.h:10
-#: ../data/language-specs/go.lang.h:16
-#: ../data/language-specs/gtkrc.lang.h:9
-#: ../data/language-specs/haskell.lang.h:13
-#: ../data/language-specs/idl.lang.h:7
-#: ../data/language-specs/imagej.lang.h:10
-#: ../data/language-specs/ini.lang.h:9
-#: ../data/language-specs/java.lang.h:17
-#: ../data/language-specs/javascript.lang.h:13
-#: ../data/language-specs/json.lang.h:9
-#: ../data/language-specs/lua.lang.h:10
-#: ../data/language-specs/matlab.lang.h:5
-#: ../data/language-specs/nemerle.lang.h:16
-#: ../data/language-specs/nsis.lang.h:5
-#: ../data/language-specs/objc.lang.h:6
-#: ../data/language-specs/objj.lang.h:9
+#: ../data/language-specs/cg.lang.h:11
+#: ../data/language-specs/c.lang.h:14
+#: ../data/language-specs/csharp.lang.h:8
+#: ../data/language-specs/eiffel.lang.h:12
+#: ../data/language-specs/fsharp.lang.h:18
+#: ../data/language-specs/go.lang.h:10
+#: ../data/language-specs/haskell.lang.h:11
+#: ../data/language-specs/java.lang.h:3
+#: ../data/language-specs/javascript.lang.h:3
+#: ../data/language-specs/json.lang.h:3
+#: ../data/language-specs/lua.lang.h:6
 #: ../data/language-specs/ocaml.lang.h:18
-#: ../data/language-specs/ocl.lang.h:7
-#: ../data/language-specs/octave.lang.h:15
-#: ../data/language-specs/ooc.lang.h:19
-#: ../data/language-specs/opal.lang.h:12
-#: ../data/language-specs/pascal.lang.h:8
-#: ../data/language-specs/perl.lang.h:19
-#: ../data/language-specs/php.lang.h:20
-#: ../data/language-specs/po.lang.h:6
-#: ../data/language-specs/prolog.lang.h:9
-#: ../data/language-specs/protobuf.lang.h:5
-#: ../data/language-specs/python.lang.h:17
-#: ../data/language-specs/python3.lang.h:17
-#: ../data/language-specs/ruby.lang.h:22
-#: ../data/language-specs/scheme.lang.h:7
-#: ../data/language-specs/scilab.lang.h:9
-#: ../data/language-specs/sh.lang.h:8
-#: ../data/language-specs/sml.lang.h:13
-#: ../data/language-specs/sql.lang.h:10
-#: ../data/language-specs/texinfo.lang.h:10
-#: ../data/language-specs/vala.lang.h:8
-#: ../data/language-specs/vbnet.lang.h:8
-#: ../data/language-specs/verilog.lang.h:13
-#: ../data/language-specs/vhdl.lang.h:9
-msgid "String"
-msgstr "Seka"
+#: ../data/language-specs/ooc.lang.h:5
+#: ../data/language-specs/php.lang.h:8
+#: ../data/language-specs/prolog.lang.h:10
+#: ../data/language-specs/python.lang.h:7
+#: ../data/language-specs/python3.lang.h:7
+#: ../data/language-specs/ruby.lang.h:3
+#: ../data/language-specs/sml.lang.h:8
+#: ../data/language-specs/texinfo.lang.h:4
+#: ../data/language-specs/verilog.lang.h:5
+msgid "Escaped Character"
+msgstr "Simbolis kaitos sekoje"
 
-#: ../data/language-specs/asp.lang.h:1
+#: ../data/language-specs/asp.lang.h:2
 msgid "ASP"
 msgstr "ASP"
 
-#: ../data/language-specs/asp.lang.h:2
-msgid "ASP Object"
-msgstr "ASP objektas"
-
 #. A function name (also: methods for classes)
-#: ../data/language-specs/asp.lang.h:6
-#: ../data/language-specs/cg.lang.h:11
-#: ../data/language-specs/changelog.lang.h:6
+#: ../data/language-specs/asp.lang.h:7
+#: ../data/language-specs/cg.lang.h:18
+#: ../data/language-specs/changelog.lang.h:8
 #: ../data/language-specs/css.lang.h:8
-#: ../data/language-specs/def.lang.h:32
-#: ../data/language-specs/gap.lang.h:4
-#: ../data/language-specs/gdb-log.lang.h:4
-#: ../data/language-specs/gtk-doc.lang.h:3
-#: ../data/language-specs/javascript.lang.h:5
-#: ../data/language-specs/lua.lang.h:4
-#: ../data/language-specs/scheme.lang.h:3
-#: ../data/language-specs/scilab.lang.h:4
-#: ../data/language-specs/sh.lang.h:3
-#: ../data/language-specs/sparql.lang.h:4
-#: ../data/language-specs/sql.lang.h:5
+#: ../data/language-specs/def.lang.h:38
+#: ../data/language-specs/gap.lang.h:6
+#: ../data/language-specs/gdb-log.lang.h:7
+#: ../data/language-specs/gtk-doc.lang.h:10
+#: ../data/language-specs/javascript.lang.h:9
+#: ../data/language-specs/lua.lang.h:8
+#: ../data/language-specs/scheme.lang.h:7
+#: ../data/language-specs/scilab.lang.h:7
+#: ../data/language-specs/sh.lang.h:4
+#: ../data/language-specs/sparql.lang.h:5
+#: ../data/language-specs/sql.lang.h:7
 msgid "Function"
 msgstr "Funkcija"
 
-#. A generic number constant
-#: ../data/language-specs/asp.lang.h:8
-#: ../data/language-specs/boo.lang.h:11
-#: ../data/language-specs/cobol.lang.h:6
-#: ../data/language-specs/def.lang.h:40
-#: ../data/language-specs/desktop.lang.h:11
-#: ../data/language-specs/forth.lang.h:8
-#: ../data/language-specs/java.lang.h:13
-#: ../data/language-specs/prolog.lang.h:5
-#: ../data/language-specs/vhdl.lang.h:6
-msgid "Number"
-msgstr "Skaičius"
-
 #. Operators: "+", "*", etc.
-#: ../data/language-specs/asp.lang.h:9
-#: ../data/language-specs/bennugd.lang.h:10
+#: ../data/language-specs/asp.lang.h:8
+#: ../data/language-specs/bennugd.lang.h:6
+#: ../data/language-specs/c.lang.h:10
 #: ../data/language-specs/cmake.lang.h:6
-#: ../data/language-specs/cobol.lang.h:7
-#: ../data/language-specs/def.lang.h:42
-#: ../data/language-specs/erlang.lang.h:10
-#: ../data/language-specs/imagej.lang.h:7
+#: ../data/language-specs/cobol.lang.h:10
+#: ../data/language-specs/def.lang.h:45
+#: ../data/language-specs/erlang.lang.h:5
+#: ../data/language-specs/imagej.lang.h:9
 #: ../data/language-specs/nsis.lang.h:3
-#: ../data/language-specs/octave.lang.h:10
-#: ../data/language-specs/perl.lang.h:11
-#: ../data/language-specs/php.lang.h:17
-#: ../data/language-specs/prolog.lang.h:6
-#: ../data/language-specs/sparql.lang.h:10
+#: ../data/language-specs/octave.lang.h:5
+#: ../data/language-specs/perl.lang.h:12
+#: ../data/language-specs/php.lang.h:14
+#: ../data/language-specs/prolog.lang.h:8
+#: ../data/language-specs/sparql.lang.h:15
 msgid "Operator"
 msgstr "Operatorius"
 
-#. A special constant like NULL in C or null in Java
-#: ../data/language-specs/asp.lang.h:12
-#: ../data/language-specs/def.lang.h:53
-#: ../data/language-specs/vbnet.lang.h:7
-msgid "Special constant"
-msgstr "Speciali konstanta"
+#: ../data/language-specs/asp.lang.h:9
+msgid "ASP Object"
+msgstr "ASP objektas"
 
-#: ../data/language-specs/asp.lang.h:14
+#: ../data/language-specs/asp.lang.h:10
 msgid "VBScript and ADO constants"
 msgstr "VBScript ir ADO konstantos"
 
+#. A special constant like NULL in C or null in Java
+#: ../data/language-specs/asp.lang.h:12
+#: ../data/language-specs/def.lang.h:32
+#: ../data/language-specs/vbnet.lang.h:8
+msgid "Special constant"
+msgstr "Speciali konstanta"
+
 #: ../data/language-specs/automake.lang.h:1
-#| msgid "Atom"
 msgid "Automake"
 msgstr "Automake"
 
 #: ../data/language-specs/automake.lang.h:2
-#| msgid "Global Variable"
 msgid "Automake Variable"
 msgstr "Automake kintamasis"
 
 #: ../data/language-specs/automake.lang.h:3
-#| msgid "Builtin Variable"
-msgid "Built-in Target"
-msgstr "Integruotas tikslas"
-
-#: ../data/language-specs/automake.lang.h:4
-#| msgid "Option Name"
-msgid "Optional Target"
-msgstr "Nebūtinas tikslas"
-
-#: ../data/language-specs/automake.lang.h:5
-#| msgid "Control Keyword"
-msgid "Other Keyword"
-msgstr "Kitas raktažodis"
-
-#: ../data/language-specs/automake.lang.h:6
-msgid "Prefix"
-msgstr "Priešdėlis"
-
-#: ../data/language-specs/automake.lang.h:7
-#| msgid "Priority"
 msgid "Primary"
 msgstr "Pirminis"
 
-#: ../data/language-specs/automake.lang.h:8
-#| msgid "Section"
+#: ../data/language-specs/automake.lang.h:4
 msgid "Secondary"
 msgstr "Antraeilis"
+
+#: ../data/language-specs/automake.lang.h:5
+msgid "Prefix"
+msgstr "Priešdėlis"
+
+#: ../data/language-specs/automake.lang.h:6
+msgid "Optional Target"
+msgstr "Nebūtinas tikslas"
+
+#: ../data/language-specs/automake.lang.h:7
+msgid "Built-in Target"
+msgstr "Integruotas tikslas"
+
+#: ../data/language-specs/automake.lang.h:8
+msgid "Other Keyword"
+msgstr "Kitas raktažodis"
 
 #: ../data/language-specs/automake.lang.h:9
 msgid "Substitution"
 msgstr "Pakeitimas"
 
 #: ../data/language-specs/awk.lang.h:1
-#: ../data/language-specs/boo.lang.h:3
-#: ../data/language-specs/glsl.lang.h:2
+#: ../data/language-specs/dosbatch.lang.h:1
+#: ../data/language-specs/javascript.lang.h:1
+#: ../data/language-specs/lua.lang.h:1
+#: ../data/language-specs/m4.lang.h:1
 #: ../data/language-specs/perl.lang.h:1
-#: ../data/language-specs/python.lang.h:4
-#: ../data/language-specs/python3.lang.h:4
-msgid "Builtin Function"
-msgstr "Integruota funkcija"
-
-#: ../data/language-specs/awk.lang.h:3
-msgid "Pattern"
-msgstr "Raštas"
-
-#: ../data/language-specs/awk.lang.h:4
-#: ../data/language-specs/dosbatch.lang.h:5
-#: ../data/language-specs/javascript.lang.h:12
-#: ../data/language-specs/lua.lang.h:9
-#: ../data/language-specs/m4.lang.h:3
-#: ../data/language-specs/perl.lang.h:18
-#: ../data/language-specs/php.lang.h:19
-#: ../data/language-specs/python.lang.h:15
-#: ../data/language-specs/python3.lang.h:15
-#: ../data/language-specs/ruby.lang.h:20
-#: ../data/language-specs/sh.lang.h:7
-#: ../data/language-specs/tcl.lang.h:2
+#: ../data/language-specs/php.lang.h:1
+#: ../data/language-specs/python.lang.h:1
+#: ../data/language-specs/python3.lang.h:1
+#: ../data/language-specs/ruby.lang.h:1
+#: ../data/language-specs/sh.lang.h:1
+#: ../data/language-specs/tcl.lang.h:1
 msgid "Scripts"
 msgstr "Scenarijai"
 
+#: ../data/language-specs/awk.lang.h:2
+msgid "awk"
+msgstr "awk"
+
+#: ../data/language-specs/awk.lang.h:4
+msgid "Pattern"
+msgstr "Raštas"
+
 #: ../data/language-specs/awk.lang.h:5
 #: ../data/language-specs/cmake.lang.h:8
-#: ../data/language-specs/cobol.lang.h:11
-#: ../data/language-specs/haskell.lang.h:15
-#: ../data/language-specs/ini.lang.h:10
-#: ../data/language-specs/makefile.lang.h:8
+#: ../data/language-specs/cobol.lang.h:5
+#: ../data/language-specs/haskell.lang.h:5
+#: ../data/language-specs/ini.lang.h:8
+#: ../data/language-specs/makefile.lang.h:3
 #: ../data/language-specs/nsis.lang.h:6
-#: ../data/language-specs/octave.lang.h:16
-#: ../data/language-specs/perl.lang.h:21
-#: ../data/language-specs/php.lang.h:21
+#: ../data/language-specs/octave.lang.h:14
+#: ../data/language-specs/perl.lang.h:13
+#: ../data/language-specs/php.lang.h:5
 #: ../data/language-specs/pkgconfig.lang.h:3
-#: ../data/language-specs/prolog.lang.h:10
-#: ../data/language-specs/protobuf.lang.h:6
-#: ../data/language-specs/ruby.lang.h:24
-#: ../data/language-specs/sh.lang.h:10
-#: ../data/language-specs/sparql.lang.h:15
-#: ../data/language-specs/tcl.lang.h:4
+#: ../data/language-specs/prolog.lang.h:4
+#: ../data/language-specs/protobuf.lang.h:2
+#: ../data/language-specs/ruby.lang.h:21
+#: ../data/language-specs/sh.lang.h:7
+#: ../data/language-specs/sparql.lang.h:14
+#: ../data/language-specs/tcl.lang.h:3
 msgid "Variable"
 msgstr "Kintamasis"
 
 #: ../data/language-specs/awk.lang.h:6
-msgid "awk"
-msgstr "awk"
+#: ../data/language-specs/boo.lang.h:15
+#: ../data/language-specs/glsl.lang.h:6
+#: ../data/language-specs/go.lang.h:18
+#: ../data/language-specs/perl.lang.h:8
+#: ../data/language-specs/python.lang.h:18
+#: ../data/language-specs/python3.lang.h:17
+msgid "Builtin Function"
+msgstr "Integruota funkcija"
 
-#: ../data/language-specs/bennugd.lang.h:1
+#: ../data/language-specs/bennugd.lang.h:2
 msgid "BennuGD"
 msgstr "BennuGD"
 
+#. Any variable name
+#: ../data/language-specs/bennugd.lang.h:5
+#: ../data/language-specs/def.lang.h:36
+#: ../data/language-specs/php.lang.h:6
+msgid "Identifier"
+msgstr "Identifikatorius"
+
 #. A floating point constant: 2.3e10
-#: ../data/language-specs/bennugd.lang.h:6
-#: ../data/language-specs/cg.lang.h:10
-#: ../data/language-specs/c.lang.h:9
-#: ../data/language-specs/def.lang.h:30
-#: ../data/language-specs/d.lang.h:8
-#: ../data/language-specs/erlang.lang.h:8
-#: ../data/language-specs/go.lang.h:8
-#: ../data/language-specs/json.lang.h:5
-#: ../data/language-specs/nemerle.lang.h:8
-#: ../data/language-specs/ooc.lang.h:9
-#: ../data/language-specs/php.lang.h:9
-#: ../data/language-specs/python.lang.h:9
-#: ../data/language-specs/python3.lang.h:9
-#: ../data/language-specs/R.lang.h:4
+#: ../data/language-specs/bennugd.lang.h:9
+#: ../data/language-specs/cg.lang.h:12
+#: ../data/language-specs/c.lang.h:15
+#: ../data/language-specs/def.lang.h:24
+#: ../data/language-specs/d.lang.h:11
+#: ../data/language-specs/erlang.lang.h:9
+#: ../data/language-specs/go.lang.h:11
+#: ../data/language-specs/json.lang.h:9
+#: ../data/language-specs/nemerle.lang.h:12
+#: ../data/language-specs/ooc.lang.h:14
+#: ../data/language-specs/php.lang.h:18
+#: ../data/language-specs/python.lang.h:12
+#: ../data/language-specs/python3.lang.h:11
+#: ../data/language-specs/R.lang.h:10
 #: ../data/language-specs/ruby.lang.h:10
 msgid "Floating point number"
 msgstr "Skaičius su slankiu kableliu"
 
-#: ../data/language-specs/bennugd.lang.h:7
-#: ../data/language-specs/cg.lang.h:12
-#: ../data/language-specs/c.lang.h:10
-#: ../data/language-specs/csharp.lang.h:9
-#: ../data/language-specs/d.lang.h:9
-#: ../data/language-specs/eiffel.lang.h:11
-#: ../data/language-specs/go.lang.h:10
-#: ../data/language-specs/nemerle.lang.h:9
-#: ../data/language-specs/ooc.lang.h:11
-#: ../data/language-specs/php.lang.h:12
+#: ../data/language-specs/bennugd.lang.h:11
+#: ../data/language-specs/cg.lang.h:15
+#: ../data/language-specs/c.lang.h:18
+#: ../data/language-specs/csharp.lang.h:16
+#: ../data/language-specs/d.lang.h:15
+#: ../data/language-specs/eiffel.lang.h:16
+#: ../data/language-specs/go.lang.h:15
+#: ../data/language-specs/nemerle.lang.h:16
+#: ../data/language-specs/ooc.lang.h:17
+#: ../data/language-specs/php.lang.h:21
 msgid "Hexadecimal number"
 msgstr "Šešioliktainis skaičius"
 
-#. Any variable name
-#: ../data/language-specs/bennugd.lang.h:8
-#: ../data/language-specs/def.lang.h:34
-#: ../data/language-specs/php.lang.h:13
-msgid "Identifier"
-msgstr "Identifikatorius"
-
 #: ../data/language-specs/bibtex.lang.h:1
-msgid "BibTeX"
-msgstr "BibTeX"
-
-#: ../data/language-specs/bibtex.lang.h:2
-msgid "Entries"
-msgstr "Įrašai"
-
-#: ../data/language-specs/bibtex.lang.h:3
-msgid "Field"
-msgstr "Laukas"
-
-#: ../data/language-specs/bibtex.lang.h:4
-#: ../data/language-specs/docbook.lang.h:5
-#: ../data/language-specs/dtd.lang.h:2
-#: ../data/language-specs/gtk-doc.lang.h:6
-#: ../data/language-specs/haddock.lang.h:14
-#: ../data/language-specs/html.lang.h:7
-#: ../data/language-specs/latex.lang.h:6
-#: ../data/language-specs/mallard.lang.h:4
-#: ../data/language-specs/markdown.lang.h:14
-#: ../data/language-specs/t2t.lang.h:6
-#: ../data/language-specs/texinfo.lang.h:8
-#: ../data/language-specs/xml.lang.h:9
-#: ../data/language-specs/xslt.lang.h:2
+#: ../data/language-specs/docbook.lang.h:1
+#: ../data/language-specs/dtd.lang.h:1
+#: ../data/language-specs/gtk-doc.lang.h:1
+#: ../data/language-specs/haddock.lang.h:1
+#: ../data/language-specs/html.lang.h:1
+#: ../data/language-specs/latex.lang.h:1
+#: ../data/language-specs/mallard.lang.h:1
+#: ../data/language-specs/markdown.lang.h:1
+#: ../data/language-specs/mxml.lang.h:1
+#: ../data/language-specs/t2t.lang.h:1
+#: ../data/language-specs/texinfo.lang.h:1
+#: ../data/language-specs/xml.lang.h:1
+#: ../data/language-specs/xslt.lang.h:1
 #: ../gtksourceview/gtksourcecompletionitem.c:242
 #: ../gtksourceview/gtksourcegutterrenderertext.c:395
 msgid "Markup"
 msgstr "Žymėjimas"
 
-#: ../data/language-specs/boo.lang.h:1
+#: ../data/language-specs/bibtex.lang.h:2
+msgid "BibTeX"
+msgstr "BibTeX"
+
+#: ../data/language-specs/bibtex.lang.h:3
+msgid "Entries"
+msgstr "Įrašai"
+
+#: ../data/language-specs/bibtex.lang.h:4
+msgid "Field"
+msgstr "Laukas"
+
+#: ../data/language-specs/boo.lang.h:2
 msgid "Boo"
 msgstr "Boo"
 
-#: ../data/language-specs/boo.lang.h:2
-#: ../data/language-specs/desktop.lang.h:3
-#: ../data/language-specs/d.lang.h:2
-#: ../data/language-specs/imagej.lang.h:1
-#: ../data/language-specs/libtool.lang.h:1
-#: ../data/language-specs/objj.lang.h:1
-#: ../data/language-specs/octave.lang.h:2
-#: ../data/language-specs/python.lang.h:2
-#: ../data/language-specs/python3.lang.h:2
-#: ../data/language-specs/scheme.lang.h:1
-#: ../data/language-specs/scilab.lang.h:1
-#: ../data/language-specs/sparql.lang.h:1
-msgid "Boolean"
-msgstr "Loginė reikšmė"
-
-#: ../data/language-specs/boo.lang.h:6
-msgid "Definition"
-msgstr "Apibrėžimas"
-
-#: ../data/language-specs/boo.lang.h:8
-#: ../data/language-specs/python.lang.h:13
-#: ../data/language-specs/python3.lang.h:13
+#: ../data/language-specs/boo.lang.h:4
+#: ../data/language-specs/python.lang.h:5
+#: ../data/language-specs/python3.lang.h:5
 msgid "Multiline string"
 msgstr "Suskaidyta eilutėmis seka"
 
-#: ../data/language-specs/boo.lang.h:9
-#: ../data/language-specs/sparql.lang.h:9
-#: ../data/language-specs/xml.lang.h:10
-#: ../data/language-specs/xslt.lang.h:3
-msgid "Namespace"
-msgstr "Vardų erdvė"
-
-#: ../data/language-specs/boo.lang.h:10
-#: ../data/language-specs/csharp.lang.h:11
-#: ../data/language-specs/d.lang.h:11
-#: ../data/language-specs/fsharp.lang.h:13
-#: ../data/language-specs/java.lang.h:12
-#: ../data/language-specs/javascript.lang.h:9
-#: ../data/language-specs/json.lang.h:7
-#: ../data/language-specs/nemerle.lang.h:12
-#: ../data/language-specs/objj.lang.h:5
-#: ../data/language-specs/ooc.lang.h:13
-#: ../data/language-specs/php.lang.h:15
-#: ../data/language-specs/vala.lang.h:6
-msgid "Null Value"
-msgstr "Nulinė vertė"
-
-#: ../data/language-specs/boo.lang.h:12
-#: ../data/language-specs/javascript.lang.h:11
-#: ../data/language-specs/perl.lang.h:17
-#: ../data/language-specs/ruby.lang.h:18
+#: ../data/language-specs/boo.lang.h:6
+#: ../data/language-specs/javascript.lang.h:14
+#: ../data/language-specs/perl.lang.h:16
+#: ../data/language-specs/ruby.lang.h:24
 msgid "Regular Expression"
 msgstr "Reguliarusis reiškinys"
 
-#: ../data/language-specs/boo.lang.h:14
-#: ../data/language-specs/python.lang.h:16
-#: ../data/language-specs/python3.lang.h:16
-#: ../data/language-specs/ruby.lang.h:21
+#: ../data/language-specs/boo.lang.h:7
+#: ../data/language-specs/sparql.lang.h:8
+#: ../data/language-specs/xml.lang.h:12
+#: ../data/language-specs/xslt.lang.h:4
+msgid "Namespace"
+msgstr "Vardų erdvė"
+
+#: ../data/language-specs/boo.lang.h:9
+msgid "Definition"
+msgstr "Apibrėžimas"
+
+#: ../data/language-specs/boo.lang.h:11
+#: ../data/language-specs/python.lang.h:10
+#: ../data/language-specs/python3.lang.h:9
+#: ../data/language-specs/ruby.lang.h:19
 msgid "Special Variable"
 msgstr "Specialus kintamasis"
 
-#: ../data/language-specs/cg.lang.h:1
-msgid "Bindings"
-msgstr "Saistymai"
+#: ../data/language-specs/boo.lang.h:13
+#: ../data/language-specs/desktop.lang.h:9
+#: ../data/language-specs/d.lang.h:10
+#: ../data/language-specs/imagej.lang.h:4
+#: ../data/language-specs/libtool.lang.h:4
+#: ../data/language-specs/objj.lang.h:3
+#: ../data/language-specs/octave.lang.h:8
+#: ../data/language-specs/python.lang.h:11
+#: ../data/language-specs/python3.lang.h:10
+#: ../data/language-specs/scheme.lang.h:4
+#: ../data/language-specs/scilab.lang.h:8
+#: ../data/language-specs/sparql.lang.h:9
+msgid "Boolean"
+msgstr "Loginė reikšmė"
 
-#. Translators: functions that are provided in the language
-#: ../data/language-specs/cg.lang.h:3
-#: ../data/language-specs/erlang.lang.h:3
-#: ../data/language-specs/imagej.lang.h:2
-#: ../data/language-specs/matlab.lang.h:1
-#: ../data/language-specs/octave.lang.h:3
-#: ../data/language-specs/ruby.lang.h:5
-msgid "Builtin"
-msgstr "Vidiniai"
-
-#: ../data/language-specs/cg.lang.h:4
+#: ../data/language-specs/cg.lang.h:2
 msgid "CG Shader Language"
 msgstr "CG šešėliavimo kalba"
 
-#. Any erroneous construct
-#: ../data/language-specs/cg.lang.h:8
-#: ../data/language-specs/cobol.lang.h:4
-#: ../data/language-specs/csharp.lang.h:7
-#: ../data/language-specs/css.lang.h:7
-#: ../data/language-specs/def.lang.h:28
-#: ../data/language-specs/d.lang.h:7
-#: ../data/language-specs/dot.lang.h:3
-#: ../data/language-specs/go.lang.h:6
-#: ../data/language-specs/html.lang.h:5
-#: ../data/language-specs/json.lang.h:3
-#: ../data/language-specs/nemerle.lang.h:7
-#: ../data/language-specs/ocaml.lang.h:7
-#: ../data/language-specs/ooc.lang.h:6
-#: ../data/language-specs/opal.lang.h:6
-#: ../data/language-specs/perl.lang.h:4
-#: ../data/language-specs/php.lang.h:6
-#: ../data/language-specs/prolog.lang.h:2
-#: ../data/language-specs/vala.lang.h:4
-#: ../data/language-specs/verilog.lang.h:4
-#: ../data/language-specs/xml.lang.h:8
-msgid "Error"
-msgstr "Klaida"
+#: ../data/language-specs/cg.lang.h:6
+msgid "Bindings"
+msgstr "Saistymai"
 
-#: ../data/language-specs/cg.lang.h:13
-#: ../data/language-specs/c.lang.h:11
-#: ../data/language-specs/go.lang.h:11
-#: ../data/language-specs/objj.lang.h:3
+#: ../data/language-specs/cg.lang.h:7
+#: ../data/language-specs/c.lang.h:7
+#: ../data/language-specs/objj.lang.h:7
 msgid "Included File"
 msgstr "Įterptas failas"
 
-#: ../data/language-specs/cg.lang.h:15
-#: ../data/language-specs/c.lang.h:13
-#: ../data/language-specs/d.lang.h:12
-#: ../data/language-specs/go.lang.h:13
-#: ../data/language-specs/nemerle.lang.h:13
-#: ../data/language-specs/ooc.lang.h:15
-#: ../data/language-specs/php.lang.h:16
+#: ../data/language-specs/cg.lang.h:14
+#: ../data/language-specs/c.lang.h:17
+#: ../data/language-specs/d.lang.h:14
+#: ../data/language-specs/go.lang.h:14
+#: ../data/language-specs/nemerle.lang.h:15
+#: ../data/language-specs/ooc.lang.h:16
+#: ../data/language-specs/php.lang.h:20
 msgid "Octal number"
 msgstr "Aštuntainis skaičius"
 
-#: ../data/language-specs/cg.lang.h:19
+#: ../data/language-specs/cg.lang.h:17
 msgid "Swizzle operator"
 msgstr "Posūkio operatorius"
 
-#: ../data/language-specs/changelog.lang.h:1
-msgid "Bullet"
-msgstr "Ženklelis"
-
-#: ../data/language-specs/changelog.lang.h:2
-msgid "ChangeLog"
-msgstr "ChangeLog"
-
-#: ../data/language-specs/changelog.lang.h:3
-#: ../data/language-specs/rpmspec.lang.h:3
-msgid "Date"
-msgstr "Data"
-
-#: ../data/language-specs/changelog.lang.h:4
-msgid "E-mail address"
-msgstr "El. pašto adresas"
-
-#: ../data/language-specs/changelog.lang.h:5
-msgid "File"
-msgstr "Failas"
-
-#: ../data/language-specs/changelog.lang.h:7
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:455
-msgid "Name"
-msgstr "Vardas"
+#. Translators: functions that are provided in the language
+#: ../data/language-specs/cg.lang.h:19
+#: ../data/language-specs/erlang.lang.h:12
+#: ../data/language-specs/imagej.lang.h:3
+#: ../data/language-specs/matlab.lang.h:5
+#: ../data/language-specs/octave.lang.h:16
+#: ../data/language-specs/ruby.lang.h:16
+msgid "Builtin"
+msgstr "Vidiniai"
 
 #. *
 #. * SECTION:language
@@ -871,36 +887,63 @@ msgstr "Vardas"
 #. * #GtkSourceLanguage instance, and gtk_source_buffer_set_language() to apply it
 #. * to a #GtkSourceBuffer.
 #.
-#: ../data/language-specs/changelog.lang.h:8
-#: ../data/language-specs/cmake.lang.h:7
-#: ../data/language-specs/css.lang.h:12
-#: ../data/language-specs/desktop.lang.h:12
-#: ../data/language-specs/diff.lang.h:9
-#: ../data/language-specs/dot.lang.h:6
-#: ../data/language-specs/dpatch.lang.h:2
-#: ../data/language-specs/gdb-log.lang.h:8
-#: ../data/language-specs/gtkrc.lang.h:8
-#: ../data/language-specs/ini.lang.h:8
-#: ../data/language-specs/json.lang.h:8
-#: ../data/language-specs/libtool.lang.h:3
-#: ../data/language-specs/nsis.lang.h:4
-#: ../data/language-specs/ocl.lang.h:6
+#: ../data/language-specs/changelog.lang.h:1
+#: ../data/language-specs/cmake.lang.h:1
+#: ../data/language-specs/css.lang.h:1
+#: ../data/language-specs/desktop.lang.h:1
+#: ../data/language-specs/diff.lang.h:1
+#: ../data/language-specs/dot.lang.h:1
+#: ../data/language-specs/dpatch.lang.h:1
+#: ../data/language-specs/gdb-log.lang.h:1
+#: ../data/language-specs/gtkrc.lang.h:1
+#: ../data/language-specs/ini.lang.h:1
+#: ../data/language-specs/json.lang.h:1
+#: ../data/language-specs/libtool.lang.h:1
+#: ../data/language-specs/nsis.lang.h:1
+#: ../data/language-specs/ocl.lang.h:1
 #: ../data/language-specs/pkgconfig.lang.h:1
-#: ../data/language-specs/po.lang.h:5
-#: ../data/language-specs/protobuf.lang.h:4
-#: ../data/language-specs/rpmspec.lang.h:10
-#: ../data/language-specs/sh.lang.h:6
-#: ../data/language-specs/texinfo.lang.h:9
+#: ../data/language-specs/po.lang.h:1
+#: ../data/language-specs/protobuf.lang.h:1
+#: ../data/language-specs/puppet.lang.h:1
+#: ../data/language-specs/rpmspec.lang.h:1
+#: ../data/language-specs/sh.lang.h:10
+#: ../data/language-specs/texinfo.lang.h:5
 #: ../data/language-specs/yacc.lang.h:1
 #: ../gtksourceview/gtksourcelanguage.c:55
 msgid "Others"
 msgstr "Kiti"
 
+#: ../data/language-specs/changelog.lang.h:2
+msgid "ChangeLog"
+msgstr "ChangeLog"
+
+#: ../data/language-specs/changelog.lang.h:3
+#: ../data/language-specs/rpmspec.lang.h:14
+msgid "Date"
+msgstr "Data"
+
+#: ../data/language-specs/changelog.lang.h:4
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:455
+msgid "Name"
+msgstr "Vardas"
+
+#: ../data/language-specs/changelog.lang.h:5
+msgid "E-mail address"
+msgstr "El. pašto adresas"
+
+#: ../data/language-specs/changelog.lang.h:6
+msgid "File"
+msgstr "Failas"
+
+#: ../data/language-specs/changelog.lang.h:7
+msgid "Bullet"
+msgstr "Ženklelis"
+
 #: ../data/language-specs/changelog.lang.h:9
 msgid "Release"
 msgstr "Laida"
 
-#: ../data/language-specs/chdr.lang.h:1
+#: ../data/language-specs/chdr.lang.h:2
 msgid "C/C++/ObjC Header"
 msgstr "C/C++/ObjC antraštė"
 
@@ -908,77 +951,79 @@ msgstr "C/C++/ObjC antraštė"
 msgid "C"
 msgstr "C"
 
-#. A character constant: 'c'
-#: ../data/language-specs/c.lang.h:3
-#: ../data/language-specs/csharp.lang.h:3
-#: ../data/language-specs/def.lang.h:9
-#: ../data/language-specs/gap.lang.h:1
-#: ../data/language-specs/go.lang.h:2
-#: ../data/language-specs/haskell.lang.h:1
-#: ../data/language-specs/java.lang.h:2
-#: ../data/language-specs/nemerle.lang.h:3
-#: ../data/language-specs/sml.lang.h:3
-#: ../data/language-specs/vhdl.lang.h:3
-msgid "Character"
-msgstr "Simbolis"
-
-#: ../data/language-specs/c.lang.h:5
-#: ../data/language-specs/cpp.lang.h:2
-#: ../data/language-specs/objc.lang.h:1
-#: ../data/language-specs/opal.lang.h:3
+#: ../data/language-specs/c.lang.h:6
+#: ../data/language-specs/cpp.lang.h:5
+#: ../data/language-specs/objc.lang.h:5
+#: ../data/language-specs/opal.lang.h:5
 msgid "Common Defines"
 msgstr "Įprastinės apibrėžtys"
 
-#: ../data/language-specs/c.lang.h:15
-msgid "Signal name"
-msgstr "Signalo pavadinimas"
+#. A character constant: 'c'
+#: ../data/language-specs/c.lang.h:8
+#: ../data/language-specs/csharp.lang.h:7
+#: ../data/language-specs/def.lang.h:15
+#: ../data/language-specs/erlang.lang.h:8
+#: ../data/language-specs/gap.lang.h:4
+#: ../data/language-specs/go.lang.h:6
+#: ../data/language-specs/haskell.lang.h:10
+#: ../data/language-specs/java.lang.h:5
+#: ../data/language-specs/nemerle.lang.h:6
+#: ../data/language-specs/sml.lang.h:6
+#: ../data/language-specs/vhdl.lang.h:5
+msgid "Character"
+msgstr "Simbolis"
 
-#: ../data/language-specs/c.lang.h:17
-msgid "Standard stream"
-msgstr "Standartinis srautas"
-
-#: ../data/language-specs/c.lang.h:20
+#: ../data/language-specs/c.lang.h:13
+#: ../data/language-specs/go.lang.h:9
 msgid "printf Conversion"
 msgstr "printf konvertavimas"
 
-#: ../data/language-specs/cmake.lang.h:1
-msgid "Builtin Command"
-msgstr "Integruota komanda"
+#: ../data/language-specs/c.lang.h:20
+msgid "Standard stream"
+msgstr "Standartinis srautas"
+
+#: ../data/language-specs/c.lang.h:21
+msgid "Signal name"
+msgstr "Signalo pavadinimas"
 
 #: ../data/language-specs/cmake.lang.h:2
-#: ../data/language-specs/glsl.lang.h:3
-msgid "Builtin Variable"
-msgstr "Integruotas kintamasis"
-
-#: ../data/language-specs/cmake.lang.h:3
 msgid "CMake"
 msgstr "CMake"
 
-#. Any constant
+#: ../data/language-specs/cmake.lang.h:3
+msgid "Builtin Command"
+msgstr "Integruota komanda"
+
 #: ../data/language-specs/cmake.lang.h:4
-#: ../data/language-specs/cobol.lang.h:3
-#: ../data/language-specs/def.lang.h:15
-#: ../data/language-specs/gtk-doc.lang.h:1
-#: ../data/language-specs/libtool.lang.h:2
-#: ../data/language-specs/ruby.lang.h:7
+#: ../data/language-specs/glsl.lang.h:8
+msgid "Builtin Variable"
+msgstr "Integruotas kintamasis"
+
+#. Any constant
+#: ../data/language-specs/cmake.lang.h:5
+#: ../data/language-specs/cobol.lang.h:7
+#: ../data/language-specs/def.lang.h:13
+#: ../data/language-specs/gtk-doc.lang.h:8
+#: ../data/language-specs/libtool.lang.h:3
+#: ../data/language-specs/ruby.lang.h:17
 msgid "Constant"
 msgstr "Konstanta"
 
-#: ../data/language-specs/cmake.lang.h:5
+#: ../data/language-specs/cmake.lang.h:7
 msgid "Control Keyword"
 msgstr "Rezervuotas raktažodis"
 
-#: ../data/language-specs/cobol.lang.h:1
+#: ../data/language-specs/cobol.lang.h:2
 msgid "Cobol"
 msgstr "Cobol"
 
 #. Any statement
-#: ../data/language-specs/cobol.lang.h:9
-#: ../data/language-specs/def.lang.h:55
+#: ../data/language-specs/cobol.lang.h:4
+#: ../data/language-specs/def.lang.h:43
 msgid "Statement"
 msgstr "Sakinys"
 
-#: ../data/language-specs/cpp.lang.h:1
+#: ../data/language-specs/cpp.lang.h:2
 msgid "C++"
 msgstr "C++"
 
@@ -987,282 +1032,282 @@ msgid "C#"
 msgstr "C#"
 
 #. Translators: this is a format that appears in the strings
-#: ../data/language-specs/csharp.lang.h:17
-#: ../data/language-specs/po.lang.h:7
+#: ../data/language-specs/csharp.lang.h:10
+#: ../data/language-specs/po.lang.h:8
 msgid "String Format"
 msgstr "Simbolių sekos formatas"
 
-#: ../data/language-specs/css.lang.h:1
+#: ../data/language-specs/css.lang.h:2
 msgid "CSS"
 msgstr "CSS"
 
-#: ../data/language-specs/css.lang.h:2
-msgid "Class Selector"
-msgstr "Klasės parinkėjas"
+#: ../data/language-specs/css.lang.h:4
+msgid "Others 2"
+msgstr "Kiti 2"
 
-#: ../data/language-specs/css.lang.h:3
+#: ../data/language-specs/css.lang.h:6
 msgid "Color"
 msgstr "Spalva"
 
+#: ../data/language-specs/css.lang.h:7
+msgid "Others 3"
+msgstr "Kiti 3"
+
 #. Translator: it is a type of number
-#: ../data/language-specs/css.lang.h:5
-#: ../data/language-specs/fcl.lang.h:3
-#: ../data/language-specs/fortran.lang.h:4
-#: ../data/language-specs/gap.lang.h:3
-#: ../data/language-specs/gtkrc.lang.h:4
-#: ../data/language-specs/haskell.lang.h:4
-#: ../data/language-specs/ini.lang.h:5
-#: ../data/language-specs/json.lang.h:2
-#: ../data/language-specs/octave.lang.h:6
-#: ../data/language-specs/pascal.lang.h:3
-#: ../data/language-specs/sml.lang.h:6
-#: ../data/language-specs/sql.lang.h:3
+#: ../data/language-specs/css.lang.h:10
+#: ../data/language-specs/fcl.lang.h:7
+#: ../data/language-specs/fortran.lang.h:8
+#: ../data/language-specs/gap.lang.h:7
+#: ../data/language-specs/gtkrc.lang.h:6
+#: ../data/language-specs/haskell.lang.h:13
+#: ../data/language-specs/ini.lang.h:7
+#: ../data/language-specs/json.lang.h:8
+#: ../data/language-specs/octave.lang.h:9
+#: ../data/language-specs/pascal.lang.h:6
+#: ../data/language-specs/sml.lang.h:10
+#: ../data/language-specs/sql.lang.h:8
 msgid "Decimal"
 msgstr "Dešimtainis"
 
-#: ../data/language-specs/css.lang.h:6
+#: ../data/language-specs/css.lang.h:11
 msgid "Dimension"
 msgstr "Išmatavimas"
 
-#: ../data/language-specs/css.lang.h:9
-msgid "ID Selector"
-msgstr "ID parinkėjas"
-
-#: ../data/language-specs/css.lang.h:11
+#: ../data/language-specs/css.lang.h:12
 msgid "Known Property Value"
 msgstr "Žinoma savybės reikšmė"
 
 #: ../data/language-specs/css.lang.h:13
-msgid "Others 2"
-msgstr "Kiti 2"
-
-#: ../data/language-specs/css.lang.h:14
-msgid "Others 3"
-msgstr "Kiti 3"
-
-#: ../data/language-specs/css.lang.h:16
-msgid "Tag Name Selector"
-msgstr "Žymos pavadinimo parinkėjas"
-
-#: ../data/language-specs/css.lang.h:17
 msgid "at-rules"
 msgstr "@ taisyklės"
 
-#: ../data/language-specs/cuda.lang.h:1
+#: ../data/language-specs/css.lang.h:15
+msgid "ID Selector"
+msgstr "ID parinkėjas"
+
+#: ../data/language-specs/css.lang.h:16
+msgid "Class Selector"
+msgstr "Klasės parinkėjas"
+
+#: ../data/language-specs/css.lang.h:17
+msgid "Tag Name Selector"
+msgstr "Žymos pavadinimo parinkėjas"
+
+#: ../data/language-specs/cuda.lang.h:2
 msgid "CUDA"
 msgstr "CUDA"
 
-#: ../data/language-specs/cuda.lang.h:3
-msgid "Device Functions"
-msgstr "Įrenginio funkcijos"
-
-#: ../data/language-specs/cuda.lang.h:4
+#: ../data/language-specs/cuda.lang.h:5
 msgid "Global Functions"
 msgstr "Visuotinės funkcijos"
 
-#: ../data/language-specs/cuda.lang.h:5
+#: ../data/language-specs/cuda.lang.h:6
+msgid "Device Functions"
+msgstr "Įrenginio funkcijos"
+
+#: ../data/language-specs/cuda.lang.h:7
 msgid "Global Variables"
 msgstr "Visuotiniai kintamasis"
 
-#. A base-N number: 0xFFFF
-#: ../data/language-specs/def.lang.h:2
-#: ../data/language-specs/python.lang.h:1
-#: ../data/language-specs/python3.lang.h:1
-#: ../data/language-specs/ruby.lang.h:2
-msgid "Base-N number"
-msgstr "N-tainis sveikasis skaičius"
-
-#. A builtin name: like __import__, abs in Python
-#. (see http://docs.python.org/lib/built-in-funcs.html)
-#: ../data/language-specs/def.lang.h:7
-msgid "Built-in identifier"
-msgstr "Integruotas identifikatorius"
-
-#. A complex number
-#: ../data/language-specs/def.lang.h:13
-#: ../data/language-specs/python.lang.h:6
-#: ../data/language-specs/python3.lang.h:6
-msgid "Complex number"
-msgstr "Kompleksinis skaičius"
-
-#. A primitive data type: int, long, char, etc.
-#: ../data/language-specs/def.lang.h:17
-#: ../data/language-specs/octave.lang.h:5
-msgid "Data type"
-msgstr "Duomenų tipas"
-
-#: ../data/language-specs/def.lang.h:20
+#: ../data/language-specs/def.lang.h:1
 msgid "Defaults"
 msgstr "Standartinis(ė)"
 
+#. A shebang: #!/bin/sh
+#: ../data/language-specs/def.lang.h:5
+msgid "Shebang"
+msgstr "Scenarijaus antraštė"
+
 #. A special comment containing documentation like in javadoc or
 #. gtk-doc
-#: ../data/language-specs/def.lang.h:23
+#: ../data/language-specs/def.lang.h:8
 msgid "Documentation comment"
 msgstr "Komentarai dokumentacijoje"
 
 #. This style doesn't map to anything since it must be used as an additional
 #. style for text which is already styled as a "doc-comment"
-#: ../data/language-specs/def.lang.h:26
+#: ../data/language-specs/def.lang.h:11
 msgid "Documentation comment element"
 msgstr "Komentarų dokumentacijoje elementas"
 
-#. Anything that needs extra attention; mostly the keywords TODO, FIXME and XXX
-#: ../data/language-specs/def.lang.h:38
-msgid "Note (FIXME, TODO, XXX, etc.)"
-msgstr "Pastaba (FIXME, TODO, XXX, ir t.t.)"
+#. This style doesn't map to anything since it must be used as an additional
+#. style for text which is already styled as a "string"
+#: ../data/language-specs/def.lang.h:20
+msgid "Special character (inside a string)"
+msgstr "Specialus simbolis (simbolių eilutėje)"
+
+#. A base-N number: 0xFFFF
+#: ../data/language-specs/def.lang.h:28
+#: ../data/language-specs/python.lang.h:14
+#: ../data/language-specs/python3.lang.h:13
+#: ../data/language-specs/ruby.lang.h:12
+msgid "Base-N number"
+msgstr "N-tainis sveikasis skaičius"
+
+#. A complex number
+#: ../data/language-specs/def.lang.h:30
+#: ../data/language-specs/python.lang.h:15
+#: ../data/language-specs/python3.lang.h:14
+msgid "Complex number"
+msgstr "Kompleksinis skaičius"
+
+#. A builtin name: like __import__, abs in Python
+#. (see http://docs.python.org/lib/built-in-funcs.html)
+#: ../data/language-specs/def.lang.h:41
+msgid "Built-in identifier"
+msgstr "Integruotas identifikatorius"
+
+#. A primitive data type: int, long, char, etc.
+#: ../data/language-specs/def.lang.h:49
+#: ../data/language-specs/octave.lang.h:6
+msgid "Data type"
+msgstr "Duomenų tipas"
 
 #. This one is for '#include <foo.h>' and "#pragma blah", or 'use foobar', etc..
-#: ../data/language-specs/def.lang.h:44
+#: ../data/language-specs/def.lang.h:51
 msgid "Preprocessor directive"
 msgstr "Apdorojančios programos direktyva"
 
 #. Reserved keywords: like "const" and "goto" in Java
-#: ../data/language-specs/def.lang.h:46
+#: ../data/language-specs/def.lang.h:55
 msgid "Reserved keyword"
 msgstr "Rezervuotas raktažodis"
 
-#. A shebang: #!/bin/sh
-#: ../data/language-specs/def.lang.h:48
-msgid "Shebang"
-msgstr "Scenarijaus antraštė"
-
-#. This style doesn't map to anything since it must be used as an additional
-#. style for text which is already styled as a "string"
-#: ../data/language-specs/def.lang.h:51
-msgid "Special character (inside a string)"
-msgstr "Specialus simbolis (simbolių eilutėje)"
+#. Anything that needs extra attention; mostly the keywords TODO, FIXME and XXX
+#: ../data/language-specs/def.lang.h:57
+msgid "Note (FIXME, TODO, XXX, etc.)"
+msgstr "Pastaba (FIXME, TODO, XXX, ir t.t.)"
 
 #. Text that stands out, HTML links, e-mail addresses, etc.
 #: ../data/language-specs/def.lang.h:59
 msgid "Underlined"
 msgstr "Pabrauktas"
 
-#: ../data/language-specs/desktop.lang.h:1
+#: ../data/language-specs/desktop.lang.h:2
 msgid ".desktop"
 msgstr ".desktop"
 
-#: ../data/language-specs/desktop.lang.h:2
-msgid "Additional Category"
-msgstr "Papildoma kategorija"
-
-#: ../data/language-specs/desktop.lang.h:4
-msgid "Encoding"
-msgstr "Koduotė"
-
-#: ../data/language-specs/desktop.lang.h:5
-msgid "Exec parameter"
-msgstr "Paleidimo parametras"
-
-#: ../data/language-specs/desktop.lang.h:6
+#: ../data/language-specs/desktop.lang.h:3
 msgid "Group"
 msgstr "Grupė"
 
 #. Translators: "Key" here means key value, that is the left hand
 #. side in a myoption=something line in a .desktop file
-#: ../data/language-specs/desktop.lang.h:9
-#: ../data/language-specs/json.lang.h:6
+#: ../data/language-specs/desktop.lang.h:6
+#: ../data/language-specs/json.lang.h:2
 msgid "Key"
 msgstr "Raktas"
 
+#: ../data/language-specs/desktop.lang.h:7
+msgid "Translation"
+msgstr "gettext vertimas"
+
 #: ../data/language-specs/desktop.lang.h:10
+msgid "Exec parameter"
+msgstr "Paleidimo parametras"
+
+#: ../data/language-specs/desktop.lang.h:11
+msgid "Encoding"
+msgstr "Koduotė"
+
+#: ../data/language-specs/desktop.lang.h:12
 msgid "Main Category"
 msgstr "Pagrindinę kategorija"
 
 #: ../data/language-specs/desktop.lang.h:13
+msgid "Additional Category"
+msgstr "Papildoma kategorija"
+
+#: ../data/language-specs/desktop.lang.h:14
 msgid "Reserved Category"
 msgstr "Rezervuota kategorija"
 
-#: ../data/language-specs/desktop.lang.h:14
-msgid "Translation"
-msgstr "gettext vertimas"
-
-#: ../data/language-specs/diff.lang.h:1
-msgid "Added line"
-msgstr "Pridėta eilutė"
-
-#. Others 3
-#: ../data/language-specs/diff.lang.h:3
-msgid "Changed line"
-msgstr "Pakeista eilutė"
-
-#: ../data/language-specs/diff.lang.h:4
+#: ../data/language-specs/diff.lang.h:2
 msgid "Diff"
 msgstr "Pasikeitimai"
 
-#. Keyword
-#: ../data/language-specs/diff.lang.h:6
-msgid "Ignore"
-msgstr "Ignoruoti"
+#: ../data/language-specs/diff.lang.h:3
+msgid "Added line"
+msgstr "Pridėta eilutė"
+
+#. Others 2
+#: ../data/language-specs/diff.lang.h:5
+msgid "Removed line"
+msgstr "Pašalinta eilutė"
+
+#. Others 3
+#: ../data/language-specs/diff.lang.h:7
+msgid "Changed line"
+msgstr "Pakeista eilutė"
+
+#. Preprocessor
+#: ../data/language-specs/diff.lang.h:9
+msgid "Special case"
+msgstr "Specialus atvejis"
 
 #. String
-#: ../data/language-specs/diff.lang.h:8
+#: ../data/language-specs/diff.lang.h:11
 #: ../data/language-specs/po.lang.h:4
 msgid "Location"
 msgstr "Vieta"
 
-#. Others 2
-#: ../data/language-specs/diff.lang.h:11
-msgid "Removed line"
-msgstr "Pašalinta eilutė"
-
-#. Preprocessor
+#. Keyword
 #: ../data/language-specs/diff.lang.h:13
-msgid "Special case"
-msgstr "Specialus atvejis"
+msgid "Ignore"
+msgstr "Ignoruoti"
 
-#: ../data/language-specs/d.lang.h:1
-#: ../data/language-specs/nemerle.lang.h:1
-msgid "Binary number"
-msgstr "Dvejetainis skaičius"
-
-#: ../data/language-specs/d.lang.h:4
+#: ../data/language-specs/d.lang.h:2
 msgid "D"
 msgstr "D"
 
-#: ../data/language-specs/d.lang.h:14
+#: ../data/language-specs/d.lang.h:8
 msgid "Special Token"
 msgstr "Speciali leksema"
 
-#: ../data/language-specs/docbook.lang.h:1
+#: ../data/language-specs/d.lang.h:13
+#: ../data/language-specs/nemerle.lang.h:14
+msgid "Binary number"
+msgstr "Dvejetainis skaičius"
+
+#: ../data/language-specs/docbook.lang.h:2
 msgid "DocBook"
 msgstr "DocBook"
 
-#: ../data/language-specs/docbook.lang.h:2
+#: ../data/language-specs/docbook.lang.h:3
+msgid "Header Elements"
+msgstr "Antraštės elementai"
+
+#: ../data/language-specs/docbook.lang.h:4
 msgid "Formatting Elements"
 msgstr "Formatavimo elementai"
 
-#: ../data/language-specs/docbook.lang.h:3
+#: ../data/language-specs/docbook.lang.h:5
 msgid "GUI Elements"
 msgstr "Grafinės sąsajos elementai"
-
-#: ../data/language-specs/docbook.lang.h:4
-msgid "Header Elements"
-msgstr "Antraštės elementai"
 
 #: ../data/language-specs/docbook.lang.h:6
 msgid "Structural Elements"
 msgstr "Struktūriniai elementai"
 
-#: ../data/language-specs/dosbatch.lang.h:1
-#: ../data/language-specs/latex.lang.h:1
-msgid "Command"
-msgstr "Komanda"
-
-#: ../data/language-specs/dosbatch.lang.h:3
+#: ../data/language-specs/dosbatch.lang.h:2
 msgid "DOS Batch"
 msgstr "DOS komandų failas"
 
-#: ../data/language-specs/dot.lang.h:1
-#: ../data/language-specs/xml.lang.h:1
-msgid "Attribute name"
-msgstr "Požymio pavadinimas"
+#: ../data/language-specs/dosbatch.lang.h:6
+#: ../data/language-specs/latex.lang.h:8
+msgid "Command"
+msgstr "Komanda"
 
-#: ../data/language-specs/dot.lang.h:4
+#: ../data/language-specs/dot.lang.h:2
 msgid "Graphviz Dot"
 msgstr "Graphviz Dot"
 
-#: ../data/language-specs/dpatch.lang.h:1
+#: ../data/language-specs/dot.lang.h:6
+#: ../data/language-specs/xml.lang.h:8
+msgid "Attribute name"
+msgstr "Požymio pavadinimas"
+
+#: ../data/language-specs/dpatch.lang.h:2
 msgid "DPatch"
 msgstr "DPatch"
 
@@ -1270,18 +1315,18 @@ msgstr "DPatch"
 msgid "patch-start"
 msgstr "patch-start"
 
-#: ../data/language-specs/dtd.lang.h:1
-#: ../data/language-specs/html.lang.h:4
+#: ../data/language-specs/dtd.lang.h:2
+#: ../data/language-specs/html.lang.h:7
 msgid "DTD"
 msgstr "DTD"
 
 #: ../data/language-specs/dtd.lang.h:3
-msgid "decl"
-msgstr "decl"
-
-#: ../data/language-specs/dtd.lang.h:4
 msgid "entity"
 msgstr "esybė"
+
+#: ../data/language-specs/dtd.lang.h:4
+msgid "decl"
+msgstr "decl"
 
 #: ../data/language-specs/dtd.lang.h:5
 msgid "error"
@@ -1291,636 +1336,691 @@ msgstr "klaida"
 msgid "quoted-value"
 msgstr "reikšmė tarp kabučių"
 
-#: ../data/language-specs/eiffel.lang.h:1
-msgid "Assertion"
-msgstr "Patikrinimas"
-
 #: ../data/language-specs/eiffel.lang.h:2
-#: ../data/language-specs/javascript.lang.h:1
-#: ../data/language-specs/json.lang.h:1
-msgid "Boolean Value"
-msgstr "Loginė reikšmė"
+msgid "Eiffel"
+msgstr "Eiffel"
 
 #: ../data/language-specs/eiffel.lang.h:5
 msgid "Debug"
 msgstr "Debug"
 
-#: ../data/language-specs/eiffel.lang.h:7
+#: ../data/language-specs/eiffel.lang.h:6
+msgid "Assertion"
+msgstr "Patikrinimas"
+
+#: ../data/language-specs/eiffel.lang.h:9
 msgid "Design by Contract"
 msgstr "Dizainas pagal kontraktą"
-
-#: ../data/language-specs/eiffel.lang.h:8
-msgid "Eiffel"
-msgstr "Eiffel"
 
 #: ../data/language-specs/eiffel.lang.h:10
 msgid "Exception Handling"
 msgstr "Išimtinių situacijų valdymas"
 
-#: ../data/language-specs/eiffel.lang.h:13
-#: ../data/language-specs/ruby.lang.h:17
+#: ../data/language-specs/eiffel.lang.h:11
+#: ../data/language-specs/ruby.lang.h:20
 msgid "Predefined Variable"
 msgstr "Iš anksto apibrėžtas kintamasis"
 
-#: ../data/language-specs/eiffel.lang.h:16
+#: ../data/language-specs/eiffel.lang.h:13
 msgid "Void Value"
 msgstr "Nulinė vertė"
 
-#: ../data/language-specs/erlang.lang.h:1
-msgid "Atom"
-msgstr "Skaitinis identifikatorius"
+#: ../data/language-specs/eiffel.lang.h:14
+#: ../data/language-specs/javascript.lang.h:6
+#: ../data/language-specs/json.lang.h:6
+msgid "Boolean Value"
+msgstr "Loginė reikšmė"
 
 #: ../data/language-specs/erlang.lang.h:2
-#: ../data/language-specs/fsharp.lang.h:1
-#: ../data/language-specs/ocaml.lang.h:1
-#: ../data/language-specs/octave.lang.h:1
-#: ../data/language-specs/sml.lang.h:1
-#: ../data/language-specs/verilog.lang.h:1
-#: ../data/language-specs/vhdl.lang.h:1
-msgid "Base-N Integer"
-msgstr "N_Pagrindo sveikasis"
-
-#: ../data/language-specs/erlang.lang.h:5
-#: ../data/language-specs/forth.lang.h:2
-#: ../data/language-specs/systemverilog.lang.h:1
-#: ../data/language-specs/verilog.lang.h:3
-msgid "Compiler Directive"
-msgstr "Kompiliatoriaus direktyva"
-
-#: ../data/language-specs/erlang.lang.h:7
 msgid "Erlang"
 msgstr "Erlang"
 
-#: ../data/language-specs/fcl.lang.h:1
-msgid "Block"
-msgstr "Blokas"
+#: ../data/language-specs/erlang.lang.h:6
+msgid "Atom"
+msgstr "Skaitinis identifikatorius"
 
-#: ../data/language-specs/fcl.lang.h:4
+#: ../data/language-specs/erlang.lang.h:11
+#: ../data/language-specs/fsharp.lang.h:4
+#: ../data/language-specs/ocaml.lang.h:5
+#: ../data/language-specs/octave.lang.h:11
+#: ../data/language-specs/sml.lang.h:9
+#: ../data/language-specs/verilog.lang.h:13
+#: ../data/language-specs/vhdl.lang.h:9
+msgid "Base-N Integer"
+msgstr "N_Pagrindo sveikasis"
+
+#: ../data/language-specs/erlang.lang.h:13
+#: ../data/language-specs/forth.lang.h:11
+#: ../data/language-specs/systemverilog.lang.h:3
+#: ../data/language-specs/verilog.lang.h:7
+msgid "Compiler Directive"
+msgstr "Kompiliatoriaus direktyva"
+
+#: ../data/language-specs/fcl.lang.h:1
+#: ../data/language-specs/gap.lang.h:1
+#: ../data/language-specs/imagej.lang.h:1
+#: ../data/language-specs/matlab.lang.h:1
+#: ../data/language-specs/octave.lang.h:1
+#: ../data/language-specs/R.lang.h:1
+#: ../data/language-specs/scilab.lang.h:1
+msgid "Scientific"
+msgstr "Mokslinis"
+
+#: ../data/language-specs/fcl.lang.h:2
 msgid "FCL"
 msgstr "FCL"
 
-#: ../data/language-specs/fcl.lang.h:5
-#: ../data/language-specs/fortran.lang.h:5
-#: ../data/language-specs/ini.lang.h:6
-#: ../data/language-specs/octave.lang.h:7
-#: ../data/language-specs/scilab.lang.h:3
+#: ../data/language-specs/fcl.lang.h:4
+#: ../data/language-specs/fortran.lang.h:4
+#: ../data/language-specs/ini.lang.h:4
+#: ../data/language-specs/octave.lang.h:10
+#: ../data/language-specs/scilab.lang.h:4
 #: ../data/language-specs/sql.lang.h:4
 msgid "Floating Point"
 msgstr "Slankus kablelis"
 
-#: ../data/language-specs/fcl.lang.h:7
-#: ../data/language-specs/octave.lang.h:12
-#: ../data/language-specs/scilab.lang.h:6
+#: ../data/language-specs/fcl.lang.h:6
+msgid "Block"
+msgstr "Blokas"
+
+#: ../data/language-specs/fcl.lang.h:8
+#: ../data/language-specs/octave.lang.h:15
+#: ../data/language-specs/scilab.lang.h:9
 msgid "Reserved Constant"
 msgstr "Rezervuota konstanta"
 
-#: ../data/language-specs/fcl.lang.h:8
-#: ../data/language-specs/gap.lang.h:7
-#: ../data/language-specs/imagej.lang.h:8
-#: ../data/language-specs/matlab.lang.h:4
-#: ../data/language-specs/octave.lang.h:13
-#: ../data/language-specs/R.lang.h:9
-#: ../data/language-specs/scilab.lang.h:7
-msgid "Scientific"
-msgstr "Mokslinis"
-
-#: ../data/language-specs/forth.lang.h:4
-msgid "Debug Code"
-msgstr "Debug kodas"
-
-#: ../data/language-specs/forth.lang.h:5
-msgid "Error Text"
-msgstr "Klaidos tekstas"
-
-#: ../data/language-specs/forth.lang.h:6
+#: ../data/language-specs/forth.lang.h:2
 msgid "Forth"
 msgstr "Forth"
 
-#: ../data/language-specs/fortran.lang.h:1
-msgid "BOZ Literal"
-msgstr "BOZ litera"
+#: ../data/language-specs/forth.lang.h:9
+msgid "Debug Code"
+msgstr "Debug kodas"
 
-#: ../data/language-specs/fortran.lang.h:6
+#: ../data/language-specs/forth.lang.h:10
+msgid "Error Text"
+msgstr "Klaidos tekstas"
+
+#: ../data/language-specs/fortran.lang.h:2
 msgid "Fortran 95"
 msgstr "Fortran 95"
 
-#: ../data/language-specs/fortran.lang.h:7
+#: ../data/language-specs/fortran.lang.h:6
 msgid "Intrinsic function"
 msgstr "Integruota funkcija"
 
-#: ../data/language-specs/fsharp.lang.h:3
-#: ../data/language-specs/ocaml.lang.h:3
-msgid "Builtin-function keyword"
-msgstr "Integruotos funkcijos raktinis žodis"
+#: ../data/language-specs/fortran.lang.h:7
+msgid "BOZ Literal"
+msgstr "BOZ litera"
 
-#: ../data/language-specs/fsharp.lang.h:8
+#: ../data/language-specs/fsharp.lang.h:2
 msgid "F#"
 msgstr "F#"
 
-#: ../data/language-specs/fsharp.lang.h:9
-#: ../data/language-specs/ocaml.lang.h:9
-#: ../data/language-specs/sml.lang.h:8
+#: ../data/language-specs/fsharp.lang.h:5
+#: ../data/language-specs/ocaml.lang.h:6
+#: ../data/language-specs/sml.lang.h:12
 msgid "Floating Point number"
 msgstr "Skaičius su slankiu kableliu"
 
-#: ../data/language-specs/fsharp.lang.h:11
-#: ../data/language-specs/ocaml.lang.h:11
-msgid "Labeled argument"
-msgstr "Žymėtas argumentas"
-
-#: ../data/language-specs/fsharp.lang.h:12
-#: ../data/language-specs/ocaml.lang.h:12
-msgid "Module Path"
-msgstr "Modulio vieta"
-
-#: ../data/language-specs/fsharp.lang.h:14
-#: ../data/language-specs/ocaml.lang.h:15
-msgid "Polymorphic Variant"
-msgstr "Polimorfinis variantas"
-
-#. Translators: this is a specific variable called Type
-#: ../data/language-specs/fsharp.lang.h:19
-#: ../data/language-specs/ocaml.lang.h:19
-msgid "Type Variable"
-msgstr "Tipo kintamasis"
-
-#: ../data/language-specs/fsharp.lang.h:20
-#: ../data/language-specs/ocaml.lang.h:20
+#: ../data/language-specs/fsharp.lang.h:9
+#: ../data/language-specs/ocaml.lang.h:10
 msgid "Type, module or object keyword"
 msgstr "Tipo, modulio ar objekto raktažodžiai"
 
-#: ../data/language-specs/fsharp.lang.h:21
-#: ../data/language-specs/ocaml.lang.h:21
+#: ../data/language-specs/fsharp.lang.h:10
+#: ../data/language-specs/ocaml.lang.h:11
+msgid "Builtin-function keyword"
+msgstr "Integruotos funkcijos raktinis žodis"
+
+#: ../data/language-specs/fsharp.lang.h:12
+#: ../data/language-specs/ocaml.lang.h:13
+msgid "Labeled argument"
+msgstr "Žymėtas argumentas"
+
+#: ../data/language-specs/fsharp.lang.h:13
+#: ../data/language-specs/ocaml.lang.h:14
+msgid "Polymorphic Variant"
+msgstr "Polimorfinis variantas"
+
+#: ../data/language-specs/fsharp.lang.h:14
+#: ../data/language-specs/ocaml.lang.h:15
 msgid "Variant Constructor"
 msgstr "Kintamas konstruktorius"
 
-#: ../data/language-specs/gap.lang.h:5
+#. Translators: this is a specific variable called Type
+#: ../data/language-specs/fsharp.lang.h:16
+#: ../data/language-specs/ocaml.lang.h:16
+msgid "Type Variable"
+msgstr "Tipo kintamasis"
+
+#: ../data/language-specs/fsharp.lang.h:17
+#: ../data/language-specs/ocaml.lang.h:17
+msgid "Module Path"
+msgstr "Modulio vieta"
+
+#: ../data/language-specs/gap.lang.h:2
 msgid "GAP"
 msgstr "GAP"
 
-#: ../data/language-specs/gdb-log.lang.h:1
-msgid "Address"
-msgstr "Adresas"
-
 #: ../data/language-specs/gdb-log.lang.h:2
-msgid "Filename"
-msgstr "Failo pavadinimas"
-
-#: ../data/language-specs/gdb-log.lang.h:3
-msgid "Frame Number"
-msgstr "Kadro numeris"
-
-#: ../data/language-specs/gdb-log.lang.h:5
 msgid "GDB Log"
 msgstr "GDB žurnalas"
 
-#: ../data/language-specs/gdb-log.lang.h:6
-msgid "Incomplete Sequence"
-msgstr "Nepilna seka"
-
-#: ../data/language-specs/gdb-log.lang.h:7
-msgid "Optimized Out"
-msgstr "Pašalintas optimizacijos"
-
-#: ../data/language-specs/gdb-log.lang.h:9
-msgid "Prompt"
-msgstr "Pranešimas"
-
-#: ../data/language-specs/gdb-log.lang.h:11
+#: ../data/language-specs/gdb-log.lang.h:3
 msgid "Thread Action"
 msgstr "Gijos veiksmas"
 
-#: ../data/language-specs/gdb-log.lang.h:12
+#: ../data/language-specs/gdb-log.lang.h:4
 msgid "Thread Header"
 msgstr "Gijos antraštė"
 
-#: ../data/language-specs/glsl.lang.h:1
-#: ../data/language-specs/python.lang.h:3
-#: ../data/language-specs/python3.lang.h:3
-msgid "Builtin Constant"
-msgstr "Įdėtoji konstanta"
+#: ../data/language-specs/gdb-log.lang.h:5
+msgid "Frame Number"
+msgstr "Kadro numeris"
 
-#: ../data/language-specs/glsl.lang.h:6
+#: ../data/language-specs/gdb-log.lang.h:6
+msgid "Address"
+msgstr "Adresas"
+
+#: ../data/language-specs/gdb-log.lang.h:9
+msgid "Filename"
+msgstr "Failo pavadinimas"
+
+#: ../data/language-specs/gdb-log.lang.h:10
+msgid "Optimized Out"
+msgstr "Pašalintas optimizacijos"
+
+#: ../data/language-specs/gdb-log.lang.h:11
+msgid "Incomplete Sequence"
+msgstr "Nepilna seka"
+
+#: ../data/language-specs/gdb-log.lang.h:12
+msgid "Prompt"
+msgstr "Pranešimas"
+
+#: ../data/language-specs/glsl.lang.h:2
 msgid "OpenGL Shading Language"
 msgstr "OpenGL šešėliavimo kalba"
 
-#: ../data/language-specs/glsl.lang.h:8
+#: ../data/language-specs/glsl.lang.h:7
+#: ../data/language-specs/go.lang.h:17
+#: ../data/language-specs/python.lang.h:16
+#: ../data/language-specs/python3.lang.h:15
+msgid "Builtin Constant"
+msgstr "Įdėtoji konstanta"
+
+#: ../data/language-specs/glsl.lang.h:9
 msgid "Reserved Keywords"
 msgstr "Rezervuoti raktažodžiai"
 
-#: ../data/language-specs/go.lang.h:9
+#: ../data/language-specs/go.lang.h:2
 msgid "Go"
 msgstr "Vykdyti"
 
+#: ../data/language-specs/go.lang.h:12
+#| msgid "Binary number"
+msgid "Imaginary number"
+msgstr "Menamasis skaičius"
+
 #: ../data/language-specs/gtk-doc.lang.h:2
-msgid "Deprecated"
-msgstr "Nebenaudojama"
+msgid "gtk-doc"
+msgstr "gtk-doc"
+
+#: ../data/language-specs/gtk-doc.lang.h:3
+msgid "Inline Documentation Section"
+msgstr "Įterptoji dokumentacijos skiltis"
 
 #: ../data/language-specs/gtk-doc.lang.h:4
 msgid "Function Name"
 msgstr "Funkcijos pavadinimas"
 
 #: ../data/language-specs/gtk-doc.lang.h:5
-msgid "Inline Documentation Section"
-msgstr "Įterptoji dokumentacijos skiltis"
+msgid "Signal Name"
+msgstr "Signalo pavadinimas"
+
+#: ../data/language-specs/gtk-doc.lang.h:6
+msgid "Property Name"
+msgstr "Savybės pavadinimas"
 
 #: ../data/language-specs/gtk-doc.lang.h:7
 msgid "Parameter"
 msgstr "Parametras"
 
-#: ../data/language-specs/gtk-doc.lang.h:8
-msgid "Property Name"
-msgstr "Savybės pavadinimas"
-
 #: ../data/language-specs/gtk-doc.lang.h:9
-msgid "Return"
-msgstr "Grąžinama reikšmė"
-
-#: ../data/language-specs/gtk-doc.lang.h:10
-msgid "Signal Name"
-msgstr "Signalo pavadinimas"
-
-#: ../data/language-specs/gtk-doc.lang.h:11
-msgid "Since"
-msgstr "Nuo"
-
-#: ../data/language-specs/gtk-doc.lang.h:12
 #: ../data/language-specs/systemverilog.lang.h:6
-#: ../data/language-specs/verilog.lang.h:14
-#: ../data/language-specs/vhdl.lang.h:10
+#: ../data/language-specs/verilog.lang.h:12
+#: ../data/language-specs/vhdl.lang.h:7
 msgid "Type"
 msgstr "Tipas"
 
-#: ../data/language-specs/gtk-doc.lang.h:13
-msgid "gtk-doc"
-msgstr "gtk-doc"
+#: ../data/language-specs/gtk-doc.lang.h:11
+msgid "Return"
+msgstr "Grąžinama reikšmė"
 
-#: ../data/language-specs/gtkrc.lang.h:5
+#: ../data/language-specs/gtk-doc.lang.h:12
+msgid "Since"
+msgstr "Nuo"
+
+#: ../data/language-specs/gtk-doc.lang.h:13
+msgid "Deprecated"
+msgstr "Nebenaudojama"
+
+#: ../data/language-specs/gtkrc.lang.h:2
 msgid "GtkRC"
 msgstr "GtkRC"
 
-#: ../data/language-specs/gtkrc.lang.h:6
-msgid "Include directive"
-msgstr "Intarpo direktyva"
-
-#: ../data/language-specs/gtkrc.lang.h:10
+#: ../data/language-specs/gtkrc.lang.h:8
 msgid "Widget State"
 msgstr "Valdymo elemento būsena"
 
-#: ../data/language-specs/haddock.lang.h:1
-#: ../data/language-specs/t2t.lang.h:1
-msgid "Anchor"
-msgstr "Inkaras"
+#: ../data/language-specs/gtkrc.lang.h:9
+msgid "Include directive"
+msgstr "Intarpo direktyva"
 
 #: ../data/language-specs/haddock.lang.h:2
-msgid "Code Block"
-msgstr "Programos teksto skiltis"
-
-#: ../data/language-specs/haddock.lang.h:3
-msgid "Definition list"
-msgstr "Apibrėžimai"
-
-#: ../data/language-specs/haddock.lang.h:4
-#: ../data/language-specs/markdown.lang.h:5
-msgid "Emphasis"
-msgstr "Akcentas"
-
-#: ../data/language-specs/haddock.lang.h:5
-msgid "Enumerated list"
-msgstr "Išvardintasis sąrašas"
-
-#: ../data/language-specs/haddock.lang.h:6
-msgid "Escape"
-msgstr "Kaitos ženklas"
-
-#: ../data/language-specs/haddock.lang.h:7
 msgid "Haddock"
 msgstr "Haddock"
 
-#: ../data/language-specs/haddock.lang.h:8
-msgid "Haddock Directive"
-msgstr "Haddock direktyva"
-
-#: ../data/language-specs/haddock.lang.h:9
-msgid "Header Property"
-msgstr "Antraštės savybė"
-
-#: ../data/language-specs/haddock.lang.h:10
-msgid "Hyperlinked Identifier"
-msgstr "Nuoroda į identifikatorių"
-
-#: ../data/language-specs/haddock.lang.h:11
-msgid "Hyperlinked Module Name"
-msgstr "Nuoroda į modulio vardą"
-
-#: ../data/language-specs/haddock.lang.h:12
+#: ../data/language-specs/haddock.lang.h:3
 msgid "Inline Haddock Section"
 msgstr "Įdėtoji Haddock skiltis"
 
-#: ../data/language-specs/haddock.lang.h:13
-msgid "Itemized list"
-msgstr "Elementų sąrašas"
+#: ../data/language-specs/haddock.lang.h:4
+msgid "Haddock Directive"
+msgstr "Haddock direktyva"
 
-#: ../data/language-specs/haddock.lang.h:15
+#: ../data/language-specs/haddock.lang.h:5
+msgid "Hyperlinked Identifier"
+msgstr "Nuoroda į identifikatorių"
+
+#: ../data/language-specs/haddock.lang.h:6
+msgid "Hyperlinked Module Name"
+msgstr "Nuoroda į modulio vardą"
+
+#: ../data/language-specs/haddock.lang.h:7
+msgid "Escape"
+msgstr "Kaitos ženklas"
+
+#: ../data/language-specs/haddock.lang.h:8
+#: ../data/language-specs/markdown.lang.h:13
+msgid "Emphasis"
+msgstr "Akcentas"
+
+#: ../data/language-specs/haddock.lang.h:9
 msgid "Monospace"
 msgstr "Lygiaplotis"
 
-#: ../data/language-specs/haddock.lang.h:16
-#: ../data/language-specs/markdown.lang.h:16
+#: ../data/language-specs/haddock.lang.h:10
+msgid "Code Block"
+msgstr "Programos teksto skiltis"
+
+#: ../data/language-specs/haddock.lang.h:11
+msgid "Header Property"
+msgstr "Antraštės savybė"
+
+#: ../data/language-specs/haddock.lang.h:12
+msgid "Itemized list"
+msgstr "Elementų sąrašas"
+
+#: ../data/language-specs/haddock.lang.h:13
+msgid "Enumerated list"
+msgstr "Išvardintasis sąrašas"
+
+#: ../data/language-specs/haddock.lang.h:14
+msgid "Definition list"
+msgstr "Apibrėžimai"
+
+#: ../data/language-specs/haddock.lang.h:15
+#: ../data/language-specs/markdown.lang.h:8
 msgid "URL"
 msgstr "Nuoroda"
 
-#: ../data/language-specs/haskell.lang.h:6
-msgid "Float"
-msgstr "Slankaus kablelio skaičius"
+#: ../data/language-specs/haddock.lang.h:16
+#: ../data/language-specs/t2t.lang.h:13
+msgid "Anchor"
+msgstr "Inkaras"
 
-#: ../data/language-specs/haskell.lang.h:7
+#: ../data/language-specs/haskell.lang.h:2
 msgid "Haskell"
 msgstr "Haskell"
 
-#: ../data/language-specs/haskell.lang.h:8
-msgid "Hex"
-msgstr "Šešioliktainis"
-
-#: ../data/language-specs/haskell.lang.h:10
-msgid "Octal"
-msgstr "Aštuntainis"
-
-#: ../data/language-specs/haskell.lang.h:14
-#: ../data/language-specs/ruby.lang.h:23
+#: ../data/language-specs/haskell.lang.h:6
+#: ../data/language-specs/ruby.lang.h:18
 msgid "Symbol"
 msgstr "Simbolis"
 
-#: ../data/language-specs/haskell-literate.lang.h:1
+#: ../data/language-specs/haskell.lang.h:12
+msgid "Float"
+msgstr "Slankaus kablelio skaičius"
+
+#: ../data/language-specs/haskell.lang.h:14
+msgid "Octal"
+msgstr "Aštuntainis"
+
+#: ../data/language-specs/haskell.lang.h:15
+msgid "Hex"
+msgstr "Šešioliktainis"
+
+#: ../data/language-specs/haskell-literate.lang.h:2
 msgid "Literate Haskell"
 msgstr "Literate Haskell"
 
-#: ../data/language-specs/html.lang.h:1
-msgid "Attribute Name"
-msgstr "Požymio pavadinimas"
-
 #: ../data/language-specs/html.lang.h:2
-#: ../data/language-specs/markdown.lang.h:1
-msgid "Attribute Value"
-msgstr "Požymio reikšmė"
-
-#: ../data/language-specs/html.lang.h:6
 msgid "HTML"
 msgstr "HTML"
 
-#: ../data/language-specs/html.lang.h:8
-#: ../data/language-specs/xml.lang.h:12
+#: ../data/language-specs/html.lang.h:4
+#: ../data/language-specs/xml.lang.h:11
 msgid "Tag"
 msgstr "Žymė"
 
-#: ../data/language-specs/idl.lang.h:3
+#: ../data/language-specs/html.lang.h:5
+msgid "Attribute Name"
+msgstr "Požymio pavadinimas"
+
+#: ../data/language-specs/html.lang.h:6
+#: ../data/language-specs/markdown.lang.h:11
+msgid "Attribute Value"
+msgstr "Požymio reikšmė"
+
+#: ../data/language-specs/idl.lang.h:2
 msgid "IDL"
 msgstr "IDL"
 
-#: ../data/language-specs/imagej.lang.h:3
-msgid "Commands"
-msgstr "Komandos"
-
-#: ../data/language-specs/imagej.lang.h:4
-msgid "Escaped Characters"
-msgstr "Kaitos simboliai"
-
-#: ../data/language-specs/imagej.lang.h:5
+#: ../data/language-specs/imagej.lang.h:2
 msgid "ImageJ"
 msgstr "ImageJ"
 
-#: ../data/language-specs/imagej.lang.h:9
-#: ../data/language-specs/octave.lang.h:14
+#: ../data/language-specs/imagej.lang.h:5
+msgid "Commands"
+msgstr "Komandos"
+
+#: ../data/language-specs/imagej.lang.h:6
+#: ../data/language-specs/octave.lang.h:7
 msgid "Storage Type"
 msgstr "Saugyklos tipas"
 
-#: ../data/language-specs/ini.lang.h:1
+#: ../data/language-specs/imagej.lang.h:7
+msgid "Escaped Characters"
+msgstr "Kaitos simboliai"
+
+#: ../data/language-specs/ini.lang.h:2
 msgid ".ini"
 msgstr ".ini"
 
-#: ../data/language-specs/java.lang.h:4
-#: ../data/language-specs/ooc.lang.h:5
-msgid "Declaration"
-msgstr "Deklaravimas"
+#: ../data/language-specs/j.lang.h:2
+msgid "J"
+msgstr "J"
 
-#. Translators: refered to some specific keywords of the language that
-#. allow to get external functionalities
-#: ../data/language-specs/java.lang.h:8
-#: ../data/language-specs/ooc.lang.h:8
-msgid "External"
-msgstr "Išorinis"
+#: ../data/language-specs/j.lang.h:3
+msgid "Adverb"
+msgstr "Prieveiksmis"
 
-#: ../data/language-specs/java.lang.h:9
-#: ../data/language-specs/javascript.lang.h:6
-#: ../data/language-specs/ooc.lang.h:10
-msgid "Future Reserved Keywords"
-msgstr "Ateičiai rezervuoti žodžiai"
+#: ../data/language-specs/j.lang.h:5
+#| msgid "Common Function"
+msgid "Conjunction"
+msgstr "Konjunkcija"
 
-#: ../data/language-specs/java.lang.h:10
+#: ../data/language-specs/j.lang.h:6
+#: ../data/language-specs/perl.lang.h:15
+msgid "Control"
+msgstr "Kontrolė"
+
+#: ../data/language-specs/j.lang.h:8
+msgid "Explicit Argument"
+msgstr "Išreikštinis argumentas"
+
+#: ../data/language-specs/j.lang.h:9
+#| msgid "Cobalt"
+msgid "Global"
+msgstr "Visuotinis"
+
+#: ../data/language-specs/j.lang.h:10
+#| msgid "Link Text"
+msgid "Lab Text"
+msgstr "Laboratorijos tekstas"
+
+#: ../data/language-specs/j.lang.h:11
+#| msgid "Location"
+msgid "Local"
+msgstr "Lokalus"
+
+#: ../data/language-specs/j.lang.h:12
+msgid "Noun"
+msgstr "Daiktavardis"
+
+#: ../data/language-specs/j.lang.h:13
+msgid "Explicit Noun Definition"
+msgstr "Išreikštinis daiktavardžio apibrėžimas"
+
+#: ../data/language-specs/j.lang.h:15
+msgid "Parens"
+msgstr "Tėvai"
+
+#: ../data/language-specs/j.lang.h:16
+msgid "Primitive"
+msgstr "Primityvas"
+
+#: ../data/language-specs/j.lang.h:18
+#| msgid "Verbatim"
+msgid "Verb"
+msgstr "Veiksmažodis"
+
+#: ../data/language-specs/java.lang.h:2
 msgid "Java"
 msgstr "Java"
 
-#: ../data/language-specs/java.lang.h:14
-#: ../data/language-specs/ooc.lang.h:16
-msgid "Scope Declaration"
-msgstr "Galiojimo srities apibrėžtis"
-
 #: ../data/language-specs/javascript.lang.h:2
-msgid "Constructors"
-msgstr "Konstruktoriai"
-
-#: ../data/language-specs/javascript.lang.h:7
 msgid "JavaScript"
 msgstr "JavaScript"
+
+#: ../data/language-specs/javascript.lang.h:5
+msgid "Undefined Value"
+msgstr "Neapibrėžta reikšmė"
 
 #: ../data/language-specs/javascript.lang.h:10
 msgid "Properties"
 msgstr "Savybės"
 
-#: ../data/language-specs/javascript.lang.h:14
-msgid "Undefined Value"
-msgstr "Neapibrėžta reikšmė"
+#: ../data/language-specs/javascript.lang.h:11
+msgid "Constructors"
+msgstr "Konstruktoriai"
 
-#: ../data/language-specs/latex.lang.h:3
-#: ../data/language-specs/texinfo.lang.h:5
-msgid "Include"
-msgstr "Intarpas"
-
-#: ../data/language-specs/latex.lang.h:4
-msgid "Inline Math Mode"
-msgstr "Įterptoji matematikos veiksena"
-
-#: ../data/language-specs/latex.lang.h:5
+#: ../data/language-specs/latex.lang.h:2
 msgid "LaTeX"
 msgstr "LaTeX"
 
-#: ../data/language-specs/latex.lang.h:7
+#: ../data/language-specs/latex.lang.h:4
 msgid "Math Mode"
 msgstr "Matematikos veiksena"
 
-#: ../data/language-specs/latex.lang.h:8
-#: ../data/language-specs/t2t.lang.h:15
-msgid "Verbatim"
-msgstr "Pažodžiui"
+#: ../data/language-specs/latex.lang.h:5
+msgid "Inline Math Mode"
+msgstr "Įterptoji matematikos veiksena"
 
-#: ../data/language-specs/latex.lang.h:9
+#: ../data/language-specs/latex.lang.h:6
 msgid "math-bound"
 msgstr "math-bound"
 
-#: ../data/language-specs/libtool.lang.h:4
+#: ../data/language-specs/latex.lang.h:7
+#: ../data/language-specs/texinfo.lang.h:11
+msgid "Include"
+msgstr "Intarpas"
+
+#: ../data/language-specs/latex.lang.h:9
+#: ../data/language-specs/t2t.lang.h:16
+msgid "Verbatim"
+msgstr "Pažodžiui"
+
+#: ../data/language-specs/libtool.lang.h:2
 msgid "libtool"
 msgstr "libtool"
 
-#: ../data/language-specs/lua.lang.h:6
+#: ../data/language-specs/lua.lang.h:2
 msgid "Lua"
 msgstr "Lua"
 
 #: ../data/language-specs/lua.lang.h:7
-#: ../data/language-specs/ruby.lang.h:15
-msgid "Nil Constant"
-msgstr "Nil konstanta"
-
-#: ../data/language-specs/lua.lang.h:8
 msgid "Reserved Identifier"
 msgstr "Rezervuotas identifikatorius"
 
-#: ../data/language-specs/m4.lang.h:1
-msgid "Autoconf Macro"
-msgstr "Autoconf makrokomanda"
+#: ../data/language-specs/lua.lang.h:9
+#: ../data/language-specs/ruby.lang.h:8
+msgid "Nil Constant"
+msgstr "Nil konstanta"
 
 #: ../data/language-specs/m4.lang.h:2
-msgid "Obsolete Autoconf Macro"
-msgstr "Nebenaudojama Autoconf makrokomanda"
-
-#: ../data/language-specs/m4.lang.h:4
 msgid "m4"
 msgstr "m4"
 
-#: ../data/language-specs/m4.lang.h:5
-msgid "m4 Macro"
-msgstr "m4 makrokomanda"
-
-#: ../data/language-specs/m4.lang.h:6
+#: ../data/language-specs/m4.lang.h:3
 msgid "m4-comment"
 msgstr "m4-komentaras"
 
-#: ../data/language-specs/makefile.lang.h:1
-msgid "Assignment Left Hand Side"
-msgstr "Priskyrimo kairė pusė"
+#: ../data/language-specs/m4.lang.h:4
+msgid "m4 Macro"
+msgstr "m4 makrokomanda"
+
+#: ../data/language-specs/m4.lang.h:5
+msgid "Autoconf Macro"
+msgstr "Autoconf makrokomanda"
+
+#: ../data/language-specs/m4.lang.h:6
+msgid "Obsolete Autoconf Macro"
+msgstr "Nebenaudojama Autoconf makrokomanda"
 
 #: ../data/language-specs/makefile.lang.h:2
-msgid "Assignment Right Hand Side"
-msgstr "Priskyrimo dešinė pusė"
-
-#: ../data/language-specs/makefile.lang.h:3
 msgid "Makefile"
 msgstr "Makefile"
 
-#. Translators: Trailing Tabs refers to tabulation characters present at
-#. the end of the line
-#: ../data/language-specs/makefile.lang.h:7
-msgid "Trailing Tab"
-msgstr "Galinė tabuliacija"
+#: ../data/language-specs/makefile.lang.h:4
+msgid "Assignment Right Hand Side"
+msgstr "Priskyrimo dešinė pusė"
 
-#: ../data/language-specs/makefile.lang.h:9
+#: ../data/language-specs/makefile.lang.h:5
+msgid "Assignment Left Hand Side"
+msgstr "Priskyrimo kairė pusė"
+
+#: ../data/language-specs/makefile.lang.h:6
+msgid "targets"
+msgstr "paskirtys"
+
+# prerequisites in makefile
+#: ../data/language-specs/makefile.lang.h:7
+msgid "prereq"
+msgstr "būtini"
+
+#: ../data/language-specs/makefile.lang.h:8
 msgid "command"
 msgstr "komanda"
 
-#: ../data/language-specs/makefile.lang.h:10
+#. Translators: Trailing Tabs refers to tabulation characters present at
+#. the end of the line
+#: ../data/language-specs/makefile.lang.h:11
+msgid "Trailing Tab"
+msgstr "Galinė tabuliacija"
+
+#: ../data/language-specs/makefile.lang.h:12
 msgid "function"
 msgstr "funkcija"
 
 #. FIXME make it better names, and make them translatable
-#: ../data/language-specs/makefile.lang.h:11
+#: ../data/language-specs/makefile.lang.h:13
 #: ../data/language-specs/yacc.lang.h:4
 msgid "keyword"
 msgstr "raktažodis"
 
-# prerequisites in makefile
-#: ../data/language-specs/makefile.lang.h:12
-msgid "prereq"
-msgstr "būtini"
-
-#: ../data/language-specs/makefile.lang.h:13
-msgid "targets"
-msgstr "paskirtys"
-
-#: ../data/language-specs/mallard.lang.h:1
-msgid "Block Elements"
-msgstr "Blokiniai elementai"
-
 #: ../data/language-specs/mallard.lang.h:2
-msgid "Inline Elements"
-msgstr "Vidiniai elementai"
-
-#: ../data/language-specs/mallard.lang.h:3
 msgid "Mallard"
 msgstr "Mallard"
 
-#: ../data/language-specs/mallard.lang.h:5
+#: ../data/language-specs/mallard.lang.h:3
 msgid "Page Elements"
 msgstr "Puslapiniai elementai"
 
-#: ../data/language-specs/mallard.lang.h:6
+#: ../data/language-specs/mallard.lang.h:4
 msgid "Section Elements"
 msgstr "Sekcijiniai elementai"
 
+#: ../data/language-specs/mallard.lang.h:5
+msgid "Block Elements"
+msgstr "Blokiniai elementai"
+
+#: ../data/language-specs/mallard.lang.h:6
+msgid "Inline Elements"
+msgstr "Vidiniai elementai"
+
 #: ../data/language-specs/markdown.lang.h:2
-msgid "Backslash Escape"
-msgstr "Pasvirusio brūkšnio kaita"
+msgid "Markdown"
+msgstr "Markdown"
 
 #: ../data/language-specs/markdown.lang.h:3
-msgid "Blockquote Marker"
-msgstr "Blockquote žymeklis"
-
-#: ../data/language-specs/markdown.lang.h:4
-msgid "Code"
-msgstr "Kodas"
-
-#: ../data/language-specs/markdown.lang.h:6
-#: ../data/language-specs/rpmspec.lang.h:8
-#: ../data/language-specs/t2t.lang.h:4
+#: ../data/language-specs/rpmspec.lang.h:4
+#: ../data/language-specs/t2t.lang.h:6
 msgid "Header"
 msgstr "Antraštė"
 
-#: ../data/language-specs/markdown.lang.h:7
+#: ../data/language-specs/markdown.lang.h:4
 msgid "Horizontal Rule"
 msgstr "Horizontali taisyklė"
 
-#: ../data/language-specs/markdown.lang.h:8
-msgid "Image Marker"
-msgstr "Paveikslėlio žymeklis"
+#: ../data/language-specs/markdown.lang.h:5
+msgid "List Marker"
+msgstr "Sąrašo žymeklis"
+
+#: ../data/language-specs/markdown.lang.h:6
+msgid "Code"
+msgstr "Kodas"
+
+#: ../data/language-specs/markdown.lang.h:7
+msgid "Blockquote Marker"
+msgstr "Blockquote žymeklis"
 
 #: ../data/language-specs/markdown.lang.h:9
+msgid "Link Text"
+msgstr "Saito tekstas"
+
+#: ../data/language-specs/markdown.lang.h:10
 #: ../gtksourceview/gtksourcecompletionitem.c:229
 msgid "Label"
 msgstr "Etiketė"
 
-#: ../data/language-specs/markdown.lang.h:10
-msgid "Line Break"
-msgstr "Eilutės pabaiga"
-
-#: ../data/language-specs/markdown.lang.h:11
-msgid "Link Text"
-msgstr "Saito tekstas"
-
 #: ../data/language-specs/markdown.lang.h:12
-msgid "List Marker"
-msgstr "Sąrašo žymeklis"
+msgid "Image Marker"
+msgstr "Paveikslėlio žymeklis"
 
-#: ../data/language-specs/markdown.lang.h:13
-msgid "Markdown"
-msgstr "Markdown"
-
-#: ../data/language-specs/markdown.lang.h:15
+#: ../data/language-specs/markdown.lang.h:14
 msgid "Strong Emphasis"
 msgstr "Stiprus akcentas"
 
-#: ../data/language-specs/matlab.lang.h:3
+#: ../data/language-specs/markdown.lang.h:15
+msgid "Backslash Escape"
+msgstr "Pasvirusio brūkšnio kaita"
+
+#: ../data/language-specs/markdown.lang.h:16
+msgid "Line Break"
+msgstr "Eilutės pabaiga"
+
+#: ../data/language-specs/matlab.lang.h:2
 msgid "Matlab"
 msgstr "Matlab"
 
-#: ../data/language-specs/nemerle.lang.h:11
+#: ../data/language-specs/mxml.lang.h:2
+msgid "MXML"
+msgstr "MXML"
+
+#: ../data/language-specs/mxml.lang.h:3
+#: ../data/language-specs/xml.lang.h:7
+msgid "Element name"
+msgstr "Elemento pavadinimas"
+
+#: ../data/language-specs/mxml.lang.h:4
+#: ../data/language-specs/xml.lang.h:5
+msgid "CDATA delimiter"
+msgstr "CDATA skirtukas"
+
+#: ../data/language-specs/nemerle.lang.h:2
 msgid "Nemerle"
 msgstr "Nemerle"
 
@@ -1928,333 +2028,366 @@ msgstr "Nemerle"
 msgid "NSIS"
 msgstr "NSIS"
 
-#: ../data/language-specs/objc.lang.h:4
+#: ../data/language-specs/objc.lang.h:2
 msgid "Objective-C"
 msgstr "Objective-C"
 
-#: ../data/language-specs/objj.lang.h:6
+#: ../data/language-specs/objj.lang.h:2
 msgid "Objective-J"
 msgstr "Objective-J"
 
-#: ../data/language-specs/ocaml.lang.h:13
+#: ../data/language-specs/ocaml.lang.h:2
 msgid "Objective Caml"
 msgstr "Objective Caml"
 
-#: ../data/language-specs/ocaml.lang.h:14
+#: ../data/language-specs/ocaml.lang.h:4
 msgid "Ocamldoc Comments"
 msgstr "Ocamldoc komentarai"
 
-#: ../data/language-specs/ocaml.lang.h:17
-#| msgid "Standart Modules"
+#: ../data/language-specs/ocaml.lang.h:21
 msgid "Standard Modules"
 msgstr "Standartiniai moduliai"
 
-#: ../data/language-specs/ocl.lang.h:4
+#: ../data/language-specs/ocl.lang.h:2
 msgid "OCL"
 msgstr "OCL"
 
-#: ../data/language-specs/ocl.lang.h:5
-msgid "Operation operator"
-msgstr "Matematiniai operatoriai"
-
-#: ../data/language-specs/ocl.lang.h:8
+#: ../data/language-specs/ocl.lang.h:6
 msgid "Type Operators"
 msgstr "Tipų operatoriai"
 
-#: ../data/language-specs/octave.lang.h:9
+#: ../data/language-specs/ocl.lang.h:8
+msgid "Operation operator"
+msgstr "Matematiniai operatoriai"
+
+#: ../data/language-specs/octave.lang.h:2
 msgid "Octave"
 msgstr "Octave"
 
-#: ../data/language-specs/octave.lang.h:11
+#: ../data/language-specs/octave.lang.h:12
 msgid "Package Manager"
 msgstr "Paketų tvarkyklė"
 
-#: ../data/language-specs/ooc.lang.h:14
+#: ../data/language-specs/ooc.lang.h:2
 msgid "OOC"
 msgstr "OOC"
 
-#: ../data/language-specs/opal.lang.h:7
-msgid "Keysymbol"
-msgstr "Rakto simbolis"
-
-#: ../data/language-specs/opal.lang.h:9
-#: ../data/language-specs/python.lang.h:12
-#: ../data/language-specs/python3.lang.h:12
-msgid "Module Handler"
-msgstr "Modulio rodyklė"
-
-#: ../data/language-specs/opal.lang.h:10
+#: ../data/language-specs/opal.lang.h:2
 msgid "Opal"
 msgstr "Opal"
 
+#: ../data/language-specs/opal.lang.h:3
+#: ../data/language-specs/python.lang.h:3
+#: ../data/language-specs/python3.lang.h:3
+msgid "Module Handler"
+msgstr "Modulio rodyklė"
+
+#: ../data/language-specs/opal.lang.h:12
+msgid "Keysymbol"
+msgstr "Rakto simbolis"
+
 #: ../data/language-specs/opencl.lang.h:2
-msgid "Device Cast"
-msgstr "Įrenginio išvertimas"
+msgid "OpenCL"
+msgstr "OpenCL"
 
-#: ../data/language-specs/opencl.lang.h:3
-msgid "Device Function"
-msgstr "Įrenginio funkcija"
-
-#: ../data/language-specs/opencl.lang.h:4
+#: ../data/language-specs/opencl.lang.h:5
 msgid "Global Function"
 msgstr "Visuotinė funkcija"
 
-#: ../data/language-specs/opencl.lang.h:5
-msgid "Global Variable"
-msgstr "Visuotinis kintamasis"
+#: ../data/language-specs/opencl.lang.h:6
+msgid "Device Function"
+msgstr "Įrenginio funkcija"
 
 #: ../data/language-specs/opencl.lang.h:7
-msgid "OpenCL"
-msgstr "OpenCL"
+msgid "Device Cast"
+msgstr "Įrenginio išvertimas"
 
 #: ../data/language-specs/opencl.lang.h:8
 msgid "OpenCL Constant"
 msgstr "OpenCL konstanta"
 
-#: ../data/language-specs/pascal.lang.h:5
+#: ../data/language-specs/opencl.lang.h:9
+msgid "Global Variable"
+msgstr "Visuotinis kintamasis"
+
+#: ../data/language-specs/pascal.lang.h:2
 msgid "Pascal"
 msgstr "Pascal"
 
-#: ../data/language-specs/perl.lang.h:3
-msgid "Control"
-msgstr "Kontrolė"
-
-#: ../data/language-specs/perl.lang.h:5
-msgid "File Descriptor"
-msgstr "Failo aprašas"
-
-#: ../data/language-specs/perl.lang.h:6
-#: ../data/language-specs/php.lang.h:10
-#: ../data/language-specs/ruby.lang.h:11
-msgid "Heredoc"
-msgstr "Heredoc"
-
-#: ../data/language-specs/perl.lang.h:7
-#: ../data/language-specs/php.lang.h:11
-#: ../data/language-specs/ruby.lang.h:12
-#: ../data/language-specs/sh.lang.h:4
-msgid "Heredoc Bound"
-msgstr "Heredoc Bound"
-
-#: ../data/language-specs/perl.lang.h:8
-msgid "Include Statement"
-msgstr "Įterpimo sakinys"
-
-#: ../data/language-specs/perl.lang.h:10
-msgid "Line Directive"
-msgstr "Eilutės direktyva"
-
-#: ../data/language-specs/perl.lang.h:12
-msgid "POD"
-msgstr "POD"
-
-#: ../data/language-specs/perl.lang.h:13
-msgid "POD Escape"
-msgstr "POD kaitos ženklas"
-
-#: ../data/language-specs/perl.lang.h:14
-msgid "POD heading"
-msgstr "POD antraštė"
-
-#: ../data/language-specs/perl.lang.h:15
-msgid "POD keyword"
-msgstr "POD raktas"
-
-#: ../data/language-specs/perl.lang.h:16
+#: ../data/language-specs/perl.lang.h:2
 msgid "Perl"
 msgstr "Perl"
 
-#: ../data/language-specs/perl.lang.h:20
+#: ../data/language-specs/perl.lang.h:4
+msgid "Line Directive"
+msgstr "Eilutės direktyva"
+
+#: ../data/language-specs/perl.lang.h:5
+msgid "Include Statement"
+msgstr "Įterpimo sakinys"
+
+#: ../data/language-specs/perl.lang.h:9
+#: ../data/language-specs/php.lang.h:10
+#: ../data/language-specs/ruby.lang.h:22
+msgid "Heredoc"
+msgstr "Heredoc"
+
+#: ../data/language-specs/perl.lang.h:10
+#: ../data/language-specs/php.lang.h:11
+#: ../data/language-specs/ruby.lang.h:23
+#: ../data/language-specs/sh.lang.h:12
+msgid "Heredoc Bound"
+msgstr "Heredoc Bound"
+
+#: ../data/language-specs/perl.lang.h:11
 msgid "System Command"
 msgstr "Sisteminė komanda"
 
-#: ../data/language-specs/php.lang.h:3
-msgid "Common Function"
-msgstr "Dažna funkcija"
+#: ../data/language-specs/perl.lang.h:14
+msgid "File Descriptor"
+msgstr "Failo aprašas"
 
-#: ../data/language-specs/php.lang.h:18
+#: ../data/language-specs/perl.lang.h:18
+msgid "POD"
+msgstr "POD"
+
+#: ../data/language-specs/perl.lang.h:19
+msgid "POD Escape"
+msgstr "POD kaitos ženklas"
+
+#: ../data/language-specs/perl.lang.h:20
+msgid "POD keyword"
+msgstr "POD raktas"
+
+#: ../data/language-specs/perl.lang.h:21
+msgid "POD heading"
+msgstr "POD antraštė"
+
+#: ../data/language-specs/php.lang.h:2
 msgid "PHP"
 msgstr "PHP"
 
-#: ../data/language-specs/pkgconfig.lang.h:2
-msgid "Package Info"
-msgstr "Informacija apie paketą"
+#: ../data/language-specs/php.lang.h:13
+msgid "Common Function"
+msgstr "Dažna funkcija"
 
-#: ../data/language-specs/pkgconfig.lang.h:4
+#: ../data/language-specs/pkgconfig.lang.h:2
 msgid "pkg-config"
 msgstr "pkg-config"
 
-#: ../data/language-specs/po.lang.h:2
-msgid "Fuzzy"
-msgstr "Fuzzy"
+#: ../data/language-specs/pkgconfig.lang.h:4
+msgid "Package Info"
+msgstr "Informacija apie paketą"
 
-#: ../data/language-specs/po.lang.h:8
+#: ../data/language-specs/po.lang.h:2
 msgid "gettext translation"
 msgstr "gettext vertimas"
 
-#: ../data/language-specs/prolog.lang.h:7
+#: ../data/language-specs/po.lang.h:6
+msgid "Fuzzy"
+msgstr "Fuzzy"
+
+#: ../data/language-specs/prolog.lang.h:2
 msgid "Prolog"
 msgstr "Prologas"
 
-#: ../data/language-specs/python.lang.h:5
-#: ../data/language-specs/python3.lang.h:5
-msgid "Builtin Object"
-msgstr "Integruotas objektas"
+#: ../data/language-specs/puppet.lang.h:2
+msgid "Puppet"
+msgstr "Marionetė"
 
-#: ../data/language-specs/python.lang.h:10
-#: ../data/language-specs/python3.lang.h:10
-msgid "Format"
-msgstr "Formatas"
+#: ../data/language-specs/puppet.lang.h:3
+#| msgid "Sources"
+msgid "Resources"
+msgstr "Resursai"
 
-#: ../data/language-specs/python.lang.h:14
+#: ../data/language-specs/puppet.lang.h:4
+#| msgid "Parameter"
+msgid "Parameters"
+msgstr "Parametrai"
+
+#: ../data/language-specs/puppet.lang.h:5
+#| msgid "Exec parameter"
+msgid "Metaparameters"
+msgstr "Metaparametrai"
+
+#: ../data/language-specs/puppet.lang.h:6
+#| msgid "Function"
+msgid "Functions"
+msgstr "Funkcijos"
+
+#: ../data/language-specs/puppet.lang.h:7
+#| msgid "Null Value"
+msgid "Values"
+msgstr "Vertės"
+
+#: ../data/language-specs/puppet.lang.h:8
+#| msgid "Variable"
+msgid "Variables"
+msgstr "Kintamieji"
+
+#: ../data/language-specs/puppet.lang.h:9
+#| msgid "Class"
+msgid "Class names"
+msgstr "Klasių pavadinimai"
+
+#: ../data/language-specs/python.lang.h:2
 msgid "Python"
 msgstr "Python"
 
-#: ../data/language-specs/python.lang.h:18
+#: ../data/language-specs/python.lang.h:8
+#: ../data/language-specs/python3.lang.h:8
+msgid "Format"
+msgstr "Formatas"
+
+#: ../data/language-specs/python.lang.h:9
 msgid "string-conversion"
 msgstr "string-conversion"
 
-#: ../data/language-specs/python3.lang.h:14
-#| msgid "Python"
+#: ../data/language-specs/python.lang.h:17
+#: ../data/language-specs/python3.lang.h:16
+msgid "Builtin Object"
+msgstr "Integruotas objektas"
+
+#: ../data/language-specs/python3.lang.h:2
 msgid "Python 3"
 msgstr "Python 3"
 
-#: ../data/language-specs/R.lang.h:1
-msgid "Assignment Operator"
-msgstr "Priskyrimo operatorius"
-
-#: ../data/language-specs/R.lang.h:3
-msgid "Delimiter"
-msgstr "Skirtukas"
-
-#: ../data/language-specs/R.lang.h:5
-#: ../data/language-specs/verilog.lang.h:8
-msgid "Integer Number"
-msgstr "Sveikasis skaičius"
-
-#: ../data/language-specs/R.lang.h:7
+#: ../data/language-specs/R.lang.h:2
 msgid "R"
 msgstr "R"
 
-#: ../data/language-specs/R.lang.h:8
+#: ../data/language-specs/R.lang.h:4
 msgid "Reserved Class"
 msgstr "Rezervuota klasė"
 
-#: ../data/language-specs/R.lang.h:10
+#: ../data/language-specs/R.lang.h:5
+msgid "Assignment Operator"
+msgstr "Priskyrimo operatorius"
+
+#: ../data/language-specs/R.lang.h:6
+msgid "Delimiter"
+msgstr "Skirtukas"
+
+#: ../data/language-specs/R.lang.h:7
 msgid "Special Constant"
 msgstr "Speciali konstanta"
 
-#: ../data/language-specs/rpmspec.lang.h:1
-msgid "Command Macro"
-msgstr "Komandos makrokomanda"
+#: ../data/language-specs/R.lang.h:9
+#: ../data/language-specs/verilog.lang.h:15
+msgid "Integer Number"
+msgstr "Sveikasis skaičius"
 
 #: ../data/language-specs/rpmspec.lang.h:2
-msgid "Conditional Macro"
-msgstr "Sąlyginė makrokomanda"
+msgid "RPM spec"
+msgstr "RPM specifikacija"
 
-#: ../data/language-specs/rpmspec.lang.h:4
+#: ../data/language-specs/rpmspec.lang.h:3
 msgid "Define"
 msgstr "Aprašas"
 
 #: ../data/language-specs/rpmspec.lang.h:5
+#: ../data/language-specs/t2t.lang.h:7
+msgid "Section"
+msgstr "Sekcija"
+
+#: ../data/language-specs/rpmspec.lang.h:6
+msgid "Spec Macro"
+msgstr "Speciali makrokomanda"
+
+#: ../data/language-specs/rpmspec.lang.h:7
 msgid "Directory Macro"
 msgstr "Aplanko makrokomanda"
 
-#: ../data/language-specs/rpmspec.lang.h:6
-msgid "Email"
-msgstr "El. paštas"
-
-#: ../data/language-specs/rpmspec.lang.h:7
-msgid "Flow Conditional"
-msgstr "Tėkmės sąlyga"
+#: ../data/language-specs/rpmspec.lang.h:8
+msgid "Command Macro"
+msgstr "Komandos makrokomanda"
 
 #: ../data/language-specs/rpmspec.lang.h:9
+msgid "Conditional Macro"
+msgstr "Sąlyginė makrokomanda"
+
+#: ../data/language-specs/rpmspec.lang.h:10
 msgid "Other Macro"
 msgstr "Kita makrokomanda"
 
 #: ../data/language-specs/rpmspec.lang.h:11
+msgid "Flow Conditional"
+msgstr "Tėkmės sąlyga"
+
+#: ../data/language-specs/rpmspec.lang.h:12
 msgid "RPM Variable"
 msgstr "RPM kintamasis"
 
-#: ../data/language-specs/rpmspec.lang.h:12
-msgid "RPM spec"
-msgstr "RPM specifikacija"
-
 #: ../data/language-specs/rpmspec.lang.h:13
-#: ../data/language-specs/t2t.lang.h:9
-msgid "Section"
-msgstr "Sekcija"
-
-#: ../data/language-specs/rpmspec.lang.h:14
-msgid "Spec Macro"
-msgstr "Speciali makrokomanda"
-
-#: ../data/language-specs/rpmspec.lang.h:15
 msgid "Switch"
 msgstr "Jungiklis"
 
-#: ../data/language-specs/ruby.lang.h:1
-msgid "Attribute Definition"
-msgstr "Atributų aprašymai"
+#: ../data/language-specs/rpmspec.lang.h:15
+msgid "Email"
+msgstr "El. paštas"
 
-#: ../data/language-specs/ruby.lang.h:14
-msgid "Module handler"
-msgstr "Modulio rodyklė"
-
-#: ../data/language-specs/ruby.lang.h:16
-msgid "Numeric literal"
-msgstr "Skaitinė litera"
-
-#: ../data/language-specs/ruby.lang.h:19
+#: ../data/language-specs/ruby.lang.h:2
 msgid "Ruby"
 msgstr "Ruby"
 
-#: ../data/language-specs/scheme.lang.h:5
+#: ../data/language-specs/ruby.lang.h:5
+msgid "Attribute Definition"
+msgstr "Atributų aprašymai"
+
+#: ../data/language-specs/ruby.lang.h:6
+msgid "Module handler"
+msgstr "Modulio rodyklė"
+
+#: ../data/language-specs/ruby.lang.h:13
+msgid "Numeric literal"
+msgstr "Skaitinė litera"
+
+#: ../data/language-specs/scheme.lang.h:2
 msgid "Scheme"
 msgstr "Scheme"
 
-#: ../data/language-specs/scilab.lang.h:8
+#: ../data/language-specs/scilab.lang.h:2
 msgid "Scilab"
 msgstr "Scilab"
 
 #: ../data/language-specs/sh.lang.h:2
-msgid "Common Commands"
-msgstr "Įprastos komandos"
-
-#: ../data/language-specs/sh.lang.h:9
-msgid "Subshell"
-msgstr "Vidinė terpė (subshell)"
-
-#. FIXME: need to sort out proper styles for variables
-#: ../data/language-specs/sh.lang.h:12
-msgid "Variable Definition"
-msgstr "Kintamojo aprašymas"
-
-#: ../data/language-specs/sh.lang.h:13
 msgid "sh"
 msgstr "sh"
 
-#: ../data/language-specs/sml.lang.h:10
-msgid "Module name, Variant, etc"
-msgstr "Modulio pavadinimas, variantas, ir t. t."
+#. FIXME: need to sort out proper styles for variables
+#: ../data/language-specs/sh.lang.h:9
+msgid "Variable Definition"
+msgstr "Kintamojo aprašymas"
 
-#: ../data/language-specs/sml.lang.h:12
+#: ../data/language-specs/sh.lang.h:11
+msgid "Common Commands"
+msgstr "Įprastos komandos"
+
+#: ../data/language-specs/sh.lang.h:13
+msgid "Subshell"
+msgstr "Vidinė terpė (subshell)"
+
+#: ../data/language-specs/sml.lang.h:2
 msgid "Standard ML"
 msgstr "Standartinis ML"
 
+#: ../data/language-specs/sml.lang.h:13
+msgid "Module name, Variant, etc"
+msgstr "Modulio pavadinimas, variantas, ir t. t."
+
 #: ../data/language-specs/sparql.lang.h:2
+msgid "SPARQL"
+msgstr "SPARQL"
+
+#: ../data/language-specs/sparql.lang.h:3
 msgid "Class"
 msgstr "Klasė"
-
-#: ../data/language-specs/sparql.lang.h:5
-msgid "IRI"
-msgstr "IRI"
 
 #: ../data/language-specs/sparql.lang.h:6
 msgid "Individual"
 msgstr "Asmeninis"
 
-#: ../data/language-specs/sparql.lang.h:8
+#: ../data/language-specs/sparql.lang.h:10
 msgid "Literal"
 msgstr "Raidinis"
 
@@ -2267,168 +2400,160 @@ msgid "QName"
 msgstr "QVardas"
 
 #: ../data/language-specs/sparql.lang.h:13
-msgid "SPARQL"
-msgstr "SPARQL"
+msgid "IRI"
+msgstr "IRI"
 
-#: ../data/language-specs/sql.lang.h:7
+#: ../data/language-specs/sql.lang.h:2
+msgid "SQL"
+msgstr "SQL"
+
+#: ../data/language-specs/sql.lang.h:10
 msgid "No idea what it is"
 msgstr "Neaišku, kas tai"
 
-#: ../data/language-specs/sql.lang.h:8
-msgid "SQL"
-msgstr "SQL"
+#: ../data/language-specs/systemverilog.lang.h:2
+msgid "SystemVerilog"
+msgstr "SystemVerilog"
 
 #: ../data/language-specs/systemverilog.lang.h:4
 msgid "System Task"
 msgstr "Sistemos užduotis"
 
-#: ../data/language-specs/systemverilog.lang.h:5
-msgid "SystemVerilog"
-msgstr "SystemVerilog"
-
 #: ../data/language-specs/t2t.lang.h:2
-#: ../gtksourceview/gtksourcestyle.c:104
-#: ../gtksourceview/gtksourcestyle.c:105
-msgid "Bold"
-msgstr "Pusjuodis"
+msgid "txt2tags"
+msgstr "txt2tags"
+
+#: ../data/language-specs/t2t.lang.h:4
+msgid "Option"
+msgstr "Parinktis"
 
 #: ../data/language-specs/t2t.lang.h:5
+msgid "Option Name"
+msgstr "Parinkties pavadinimas"
+
+#: ../data/language-specs/t2t.lang.h:8
+msgid "Section 1"
+msgstr "Sekcija 1"
+
+#: ../data/language-specs/t2t.lang.h:9
+msgid "Section 2"
+msgstr "Sekcija 2"
+
+#: ../data/language-specs/t2t.lang.h:10
+msgid "Section 3"
+msgstr "Sekcija 3"
+
+#: ../data/language-specs/t2t.lang.h:11
+msgid "Section 4"
+msgstr "Sekcija 4"
+
+#: ../data/language-specs/t2t.lang.h:12
+msgid "Section 5"
+msgstr "Sekcija 5"
+
+#: ../data/language-specs/t2t.lang.h:14
 #: ../gtksourceview/gtksourcestyle.c:112
 #: ../gtksourceview/gtksourcestyle.c:113
 msgid "Italic"
 msgstr "Kursyvas"
 
-#: ../data/language-specs/t2t.lang.h:7
-msgid "Option"
-msgstr "Parinktis"
+#: ../data/language-specs/t2t.lang.h:15
+#: ../gtksourceview/gtksourcestyle.c:104
+#: ../gtksourceview/gtksourcestyle.c:105
+msgid "Bold"
+msgstr "Pusjuodis"
 
-#: ../data/language-specs/t2t.lang.h:8
-msgid "Option Name"
-msgstr "Parinkties pavadinimas"
-
-#: ../data/language-specs/t2t.lang.h:10
-msgid "Section 1"
-msgstr "Sekcija 1"
-
-#: ../data/language-specs/t2t.lang.h:11
-msgid "Section 2"
-msgstr "Sekcija 2"
-
-#: ../data/language-specs/t2t.lang.h:12
-msgid "Section 3"
-msgstr "Sekcija 3"
-
-#: ../data/language-specs/t2t.lang.h:13
-msgid "Section 4"
-msgstr "Sekcija 4"
-
-#: ../data/language-specs/t2t.lang.h:14
-msgid "Section 5"
-msgstr "Sekcija 5"
-
-#: ../data/language-specs/t2t.lang.h:16
+#: ../data/language-specs/t2t.lang.h:17
 msgid "Verbatim Block"
 msgstr "Pažodinė skiltis"
 
-#: ../data/language-specs/t2t.lang.h:17
-msgid "txt2tags"
-msgstr "txt2tags"
-
-#: ../data/language-specs/tcl.lang.h:3
+#: ../data/language-specs/tcl.lang.h:2
 msgid "Tcl"
 msgstr "Tcl"
 
-#: ../data/language-specs/texinfo.lang.h:3
-msgid "File Attributes"
-msgstr "Failų požymiai"
-
-#: ../data/language-specs/texinfo.lang.h:4
-msgid "Generated Content"
-msgstr "Sugeneruotas turinys"
-
-#: ../data/language-specs/texinfo.lang.h:7
-msgid "Macros"
-msgstr "Makrokomandos"
-
-#: ../data/language-specs/texinfo.lang.h:11
+#: ../data/language-specs/texinfo.lang.h:2
 msgid "Texinfo"
 msgstr "Texinfo"
 
-#: ../data/language-specs/vala.lang.h:9
+#: ../data/language-specs/texinfo.lang.h:8
+msgid "Macros"
+msgstr "Makrokomandos"
+
+#: ../data/language-specs/texinfo.lang.h:9
+msgid "File Attributes"
+msgstr "Failų požymiai"
+
+#: ../data/language-specs/texinfo.lang.h:10
+msgid "Generated Content"
+msgstr "Sugeneruotas turinys"
+
+#: ../data/language-specs/vala.lang.h:2
 msgid "Vala"
 msgstr "Vala"
 
-#: ../data/language-specs/vbnet.lang.h:9
+#: ../data/language-specs/vbnet.lang.h:2
 msgid "VB.NET"
 msgstr "VB.NET"
 
-#: ../data/language-specs/verilog.lang.h:6
-msgid "Gate"
-msgstr "Gate"
-
-#: ../data/language-specs/verilog.lang.h:7
-msgid "IEEE System Task"
-msgstr "IEEE sistemos užduotis"
-
-#: ../data/language-specs/verilog.lang.h:10
-msgid "LRM Additional System Task"
-msgstr "LRM papildomos sistemos užduotis"
-
-#: ../data/language-specs/verilog.lang.h:15
+#: ../data/language-specs/verilog.lang.h:2
 msgid "Verilog"
 msgstr "Verilog"
 
-#: ../data/language-specs/vhdl.lang.h:11
+#: ../data/language-specs/verilog.lang.h:8
+msgid "IEEE System Task"
+msgstr "IEEE sistemos užduotis"
+
+#: ../data/language-specs/verilog.lang.h:9
+msgid "LRM Additional System Task"
+msgstr "LRM papildomos sistemos užduotis"
+
+#: ../data/language-specs/verilog.lang.h:11
+msgid "Gate"
+msgstr "Gate"
+
+#: ../data/language-specs/vhdl.lang.h:2
 msgid "VHDL"
 msgstr "VHDL"
 
 #: ../data/language-specs/xml.lang.h:2
-msgid "Attribute value"
-msgstr "Požymio reikšmė"
+msgid "XML"
+msgstr "XML"
 
-#: ../data/language-specs/xml.lang.h:3
-msgid "CDATA delimiter"
-msgstr "CDATA skirtukas"
-
-#: ../data/language-specs/xml.lang.h:5
+#: ../data/language-specs/xml.lang.h:4
 msgid "DOCTYPE"
 msgstr "DOCTYPE"
 
 #: ../data/language-specs/xml.lang.h:6
-msgid "Element name"
-msgstr "Elemento pavadinimas"
-
-#: ../data/language-specs/xml.lang.h:7
-msgid "Entity"
-msgstr "Esybė"
-
-#: ../data/language-specs/xml.lang.h:11
 msgid "Processing instruction"
 msgstr "Apdorojimo instrukcija"
 
-#: ../data/language-specs/xml.lang.h:13
-msgid "XML"
-msgstr "XML"
+#: ../data/language-specs/xml.lang.h:9
+msgid "Attribute value"
+msgstr "Požymio reikšmė"
 
-#: ../data/language-specs/xslt.lang.h:1
-msgid "Element"
-msgstr "Elementas"
+#: ../data/language-specs/xml.lang.h:10
+msgid "Entity"
+msgstr "Esybė"
 
-#: ../data/language-specs/xslt.lang.h:4
+#: ../data/language-specs/xslt.lang.h:2
 msgid "XSLT"
 msgstr "XSLT"
+
+#: ../data/language-specs/xslt.lang.h:3
+msgid "Element"
+msgstr "Elementas"
 
 #: ../data/language-specs/yacc.lang.h:2
 msgid "Yacc"
 msgstr "Yacc"
 
 #: ../data/language-specs/yacc.lang.h:5
-msgid "rule"
-msgstr "taisyklė"
-
-#: ../data/language-specs/yacc.lang.h:6
 msgid "token-type"
 msgstr "leksemos-tipas"
+
+#: ../data/language-specs/yacc.lang.h:6
+msgid "rule"
+msgstr "taisyklė"
 
 #: ../data/styles/classic.xml.h:1
 msgid "Classic"
@@ -2439,36 +2564,36 @@ msgid "Classic color scheme"
 msgstr "Klasikinė spalvų schema"
 
 #: ../data/styles/cobalt.xml.h:1
-msgid "Blue based color scheme"
-msgstr "Mėlynos pagrindo spalvų schema"
-
-#: ../data/styles/cobalt.xml.h:2
 msgid "Cobalt"
 msgstr "Cobalt"
 
-#: ../data/styles/kate.xml.h:1
-msgid "Color scheme used in the Kate text editor"
-msgstr "Kate redaktoriuje naudojama spalvų schema"
+#: ../data/styles/cobalt.xml.h:2
+msgid "Blue based color scheme"
+msgstr "Mėlynos pagrindo spalvų schema"
 
-#: ../data/styles/kate.xml.h:2
+#: ../data/styles/kate.xml.h:1
 msgid "Kate"
 msgstr "Kate"
 
-#: ../data/styles/oblivion.xml.h:1
-msgid "Dark color scheme using the Tango color palette"
-msgstr "Tamsi spalvų schema, naudojanti Tango paletę"
+#: ../data/styles/kate.xml.h:2
+msgid "Color scheme used in the Kate text editor"
+msgstr "Kate redaktoriuje naudojama spalvų schema"
 
-#: ../data/styles/oblivion.xml.h:2
+#: ../data/styles/oblivion.xml.h:1
 msgid "Oblivion"
 msgstr "Oblivion"
 
-#: ../data/styles/tango.xml.h:1
-msgid "Color scheme using Tango color palette"
-msgstr "Spalvų schema, naudojanti Tango paletę"
+#: ../data/styles/oblivion.xml.h:2
+msgid "Dark color scheme using the Tango color palette"
+msgstr "Tamsi spalvų schema, naudojanti Tango paletę"
 
-#: ../data/styles/tango.xml.h:2
+#: ../data/styles/tango.xml.h:1
 msgid "Tango"
 msgstr "Tango"
+
+#: ../data/styles/tango.xml.h:2
+msgid "Color scheme using Tango color palette"
+msgstr "Spalvų schema, naudojanti Tango paletę"
 
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:371
 msgid "Document Words"
@@ -2593,87 +2718,96 @@ msgstr "Atšaukimų tvarkytuvė"
 msgid "The buffer undo manager"
 msgstr "Buferio atšaukimų tvarkytuvė"
 
-#: ../gtksourceview/gtksourcecompletion.c:935
-#: ../gtksourceview/gtksourcecompletion.c:958
+#: ../gtksourceview/gtksourcecompletion.c:934
+#: ../gtksourceview/gtksourcecompletion.c:957
 msgid "No extra information available"
 msgstr "Nėra papildomos informacijos"
 
-#: ../gtksourceview/gtksourcecompletion.c:2224
+#: ../gtksourceview/gtksourcecompletion.c:2223
 #: ../gtksourceview/gtksourcegutter.c:547
 msgid "View"
 msgstr "Rodymas"
 
-#: ../gtksourceview/gtksourcecompletion.c:2225
+#: ../gtksourceview/gtksourcecompletion.c:2224
 msgid "The GtkSourceView bound to the completion"
 msgstr "GtkSourceView riba užbaigimui"
 
-#: ../gtksourceview/gtksourcecompletion.c:2240
+#: ../gtksourceview/gtksourcecompletion.c:2239
 msgid "Remember Info Visibility"
 msgstr "Įsiminti informacijos matomumą"
 
-#: ../gtksourceview/gtksourcecompletion.c:2241
+#: ../gtksourceview/gtksourcecompletion.c:2240
 msgid "Remember the last info window visibility state"
 msgstr "Atsiminti paskutinę informacijos lango matomumo būseną"
 
-#: ../gtksourceview/gtksourcecompletion.c:2254
+#: ../gtksourceview/gtksourcecompletion.c:2253
 msgid "Select on Show"
 msgstr "Pažymėti parodant"
 
-#: ../gtksourceview/gtksourcecompletion.c:2255
+#: ../gtksourceview/gtksourcecompletion.c:2254
 msgid "Select first proposal when completion is shown"
 msgstr "Pažymėti pirmą pasiūlymą, kai užbaigimas yra rodomas"
 
-#: ../gtksourceview/gtksourcecompletion.c:2269
+#: ../gtksourceview/gtksourcecompletion.c:2268
 msgid "Show Headers"
 msgstr "Rodyti antraštes"
 
-#: ../gtksourceview/gtksourcecompletion.c:2270
+#: ../gtksourceview/gtksourcecompletion.c:2269
 msgid "Show provider headers when proposals from multiple providers are available"
 msgstr "Rodyti tiekėjų antraštes, kai yra pasiūlymų iš daugelio tiekėjų"
 
-#: ../gtksourceview/gtksourcecompletion.c:2284
+#: ../gtksourceview/gtksourcecompletion.c:2283
 msgid "Show Icons"
 msgstr "Rodyti piktogramas"
 
-#: ../gtksourceview/gtksourcecompletion.c:2285
+#: ../gtksourceview/gtksourcecompletion.c:2284
 msgid "Show provider and proposal icons in the completion popup"
 msgstr "Rodyti tiekėjo ir pasiūlymo piktogramas iššokančiame užbaigimo lange"
 
-#: ../gtksourceview/gtksourcecompletion.c:2298
+#: ../gtksourceview/gtksourcecompletion.c:2299
 msgid "Accelerators"
 msgstr "Prieigos klavišai"
 
-#: ../gtksourceview/gtksourcecompletion.c:2299
+#: ../gtksourceview/gtksourcecompletion.c:2300
 msgid "Number of proposal accelerators to show"
 msgstr "Rodytinų pasiūlymų prieigos klavišų skaičius"
 
-#: ../gtksourceview/gtksourcecompletion.c:2315
+#: ../gtksourceview/gtksourcecompletion.c:2316
 msgid "Auto Complete Delay"
 msgstr "Automatinio užbaigimo uždelsimas"
 
-#: ../gtksourceview/gtksourcecompletion.c:2316
+#: ../gtksourceview/gtksourcecompletion.c:2317
 msgid "Completion popup delay for interactive completion"
 msgstr "Užbaigimo iššokančio lango uždelsimas interaktyviam užbaigimui"
 
-#: ../gtksourceview/gtksourcecompletion.c:2331
+#: ../gtksourceview/gtksourcecompletion.c:2333
 msgid "Provider Page Size"
 msgstr "Tiekėjo puslapio dydis"
 
-#: ../gtksourceview/gtksourcecompletion.c:2332
+#: ../gtksourceview/gtksourcecompletion.c:2334
 msgid "Provider scrolling page size"
 msgstr "Tiekėjo slenkamo puslapio dydis"
 
-#: ../gtksourceview/gtksourcecompletion.c:2347
+#: ../gtksourceview/gtksourcecompletion.c:2353
 msgid "Proposal Page Size"
 msgstr "Pasiūlymo puslapio dydis"
 
-#: ../gtksourceview/gtksourcecompletion.c:2348
+#: ../gtksourceview/gtksourcecompletion.c:2354
 msgid "Proposal scrolling page size"
 msgstr "Pasiūlymo slenkamo puslapio dydis"
 
-#: ../gtksourceview/gtksourcecompletion.c:2693
+#: ../gtksourceview/gtksourcecompletion.c:2715
 msgid "Provider"
 msgstr "Tiekėjas"
+
+#: ../gtksourceview/gtksourcecompletion.ui.h:1
+#| msgid "Show provider and proposal icons in the completion popup"
+msgid "Show detailed proposal information"
+msgstr "Rodyti detaqlią pasiūlymo informaciją"
+
+#: ../gtksourceview/gtksourcecompletion.ui.h:2
+msgid "_Details..."
+msgstr "_Detalės..."
 
 #: ../gtksourceview/gtksourcecompletioncontext.c:233
 #: ../gtksourceview/gtksourceview.c:306
@@ -2734,7 +2868,7 @@ msgstr "Informacija šiam elementui"
 #. * named sub-patterns with the same name or if resulting regex is
 #. * too long. In this case fixing lang file helps (e.g. renaming
 #. * subpatterns, making huge keywords use bigger prefixes, etc.)
-#: ../gtksourceview/gtksourcecontextengine.c:3171
+#: ../gtksourceview/gtksourcecontextengine.c:3120
 #, c-format
 msgid ""
 "Cannot create a regex for all the transitions, the syntax highlighting process will be slower than usual.\n"
@@ -2743,39 +2877,39 @@ msgstr ""
 "Nepavyko sukurti reguliariojo reiškinio perėjimams, sintaksės ryškinimas bus lėtesnis nei įprasta.\n"
 "Klaida buvo: %s"
 
-#: ../gtksourceview/gtksourcecontextengine.c:4509
+#: ../gtksourceview/gtksourcecontextengine.c:4443
 msgid "Highlighting a single line took too much time, syntax highlighting will be disabled"
 msgstr "Vienos eilutės ryškinimas užtruko per ilgai, sintaksės ryškinimas išjungiamas"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5762
+#: ../gtksourceview/gtksourcecontextengine.c:5687
 #, c-format
 msgid "context '%s' cannot contain a \\%%{...@start} command"
 msgstr "kontekstas „%s“ negali turėti komandos \\%%{...@start}"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5923
-#: ../gtksourceview/gtksourcecontextengine.c:6012
+#: ../gtksourceview/gtksourcecontextengine.c:5848
+#: ../gtksourceview/gtksourcecontextengine.c:5937
 #, c-format
 msgid "duplicated context id '%s'"
 msgstr "susidvejinęs konteksto identifikatorius „%s“"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6127
-#: ../gtksourceview/gtksourcecontextengine.c:6187
+#: ../gtksourceview/gtksourcecontextengine.c:6051
+#: ../gtksourceview/gtksourcecontextengine.c:6111
 #, c-format
 msgid "style override used with wildcard context reference in language '%s' in ref '%s'"
 msgstr "stiliaus nepaisymas naudojamas su pakaitinio konteksto nuoroda kalboje „%s“ nuorodoje „%s“"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6201
+#: ../gtksourceview/gtksourcecontextengine.c:6125
 #, c-format
 msgid "invalid context reference '%s'"
 msgstr "netaisyklinga konteksto nuoroda „%s“"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6220
-#: ../gtksourceview/gtksourcecontextengine.c:6230
+#: ../gtksourceview/gtksourcecontextengine.c:6144
+#: ../gtksourceview/gtksourcecontextengine.c:6154
 #, c-format
 msgid "unknown context '%s'"
 msgstr "nežinomas kontekstas „%s“"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6330
+#: ../gtksourceview/gtksourcecontextengine.c:6253
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "Trūksta kalbos apibrėžimo (id = \"%s\".)"
@@ -3301,34 +3435,7 @@ msgstr "Nurodo, kaip turėtų būti rodomi tarpai"
 
 #: ../gtksourceview/gtksourceview-i18n.c:72
 msgid "translator-credits"
-msgstr "Vytautas Liuolia <vytautas.liuolia@gmail.com>"
+msgstr ""
+"Vytautas Liuolia <vytautas.liuolia@gmail.com>\n"
+"Aurimas Černius <aurisc4@gmail.com>"
 
-#~ msgid "Object"
-#~ msgstr "Objektas"
-
-#~ msgid "Maximum width"
-#~ msgstr "Maksimalus plotis"
-
-#~ msgid "The maximum allowed width"
-#~ msgstr "Maksimalus leistinas plotis"
-
-#~ msgid "Maximum height"
-#~ msgstr "Maksimalus aukštis"
-
-#~ msgid "The maximum allowed height"
-#~ msgstr "Maksimalus leistinas aukštis"
-
-#~ msgid "Shrink width"
-#~ msgstr "Sumažinti plotį"
-
-#~ msgid "Whether the window should shrink width to fit the contents"
-#~ msgstr "Ar langui sumažinti plotį pritaikant prie turinio"
-
-#~ msgid "Shrink height"
-#~ msgstr "Sumažinti plotį"
-
-#~ msgid "Whether the window should shrink height to fit the contents"
-#~ msgstr "Ar langui sumažinti aukštį pritaikant prie turinio"
-
-#~ msgid "MSIL"
-#~ msgstr "MSIL"
