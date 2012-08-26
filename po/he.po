@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview.HEAD.he\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-10 15:41+0300\n"
-"PO-Revision-Date: 2012-08-10 15:43+0200\n"
+"POT-Creation-Date: 2012-08-26 10:22+0300\n"
+"PO-Revision-Date: 2012-08-26 10:25+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <he@li.org>\n"
 "Language: he\n"
@@ -99,6 +99,7 @@ msgstr "הכול"
 #: ../data/language-specs/haskell.lang.h:1
 #: ../data/language-specs/haskell-literate.lang.h:1
 #: ../data/language-specs/idl.lang.h:1
+#: ../data/language-specs/j.lang.h:1
 #: ../data/language-specs/java.lang.h:1
 #: ../data/language-specs/makefile.lang.h:1
 #: ../data/language-specs/nemerle.lang.h:1
@@ -153,6 +154,7 @@ msgstr "ActionScript"
 #: ../data/language-specs/html.lang.h:3
 #: ../data/language-specs/idl.lang.h:3
 #: ../data/language-specs/ini.lang.h:3
+#: ../data/language-specs/j.lang.h:4
 #: ../data/language-specs/latex.lang.h:3
 #: ../data/language-specs/lua.lang.h:3
 #: ../data/language-specs/matlab.lang.h:3
@@ -196,6 +198,7 @@ msgstr "הערה"
 #: ../data/language-specs/dot.lang.h:4
 #: ../data/language-specs/go.lang.h:4
 #: ../data/language-specs/html.lang.h:8
+#: ../data/language-specs/j.lang.h:7
 #: ../data/language-specs/json.lang.h:7
 #: ../data/language-specs/nemerle.lang.h:4
 #: ../data/language-specs/ocaml.lang.h:20
@@ -233,6 +236,7 @@ msgstr "שגיאות"
 #: ../data/language-specs/idl.lang.h:7
 #: ../data/language-specs/imagej.lang.h:10
 #: ../data/language-specs/ini.lang.h:5
+#: ../data/language-specs/j.lang.h:17
 #: ../data/language-specs/java.lang.h:4
 #: ../data/language-specs/javascript.lang.h:13
 #: ../data/language-specs/json.lang.h:4
@@ -422,6 +426,7 @@ msgstr "ערך בוליאני"
 #: ../data/language-specs/def.lang.h:22
 #: ../data/language-specs/desktop.lang.h:8
 #: ../data/language-specs/forth.lang.h:8
+#: ../data/language-specs/j.lang.h:14
 #: ../data/language-specs/java.lang.h:15
 #: ../data/language-specs/prolog.lang.h:7
 #: ../data/language-specs/vhdl.lang.h:11
@@ -1738,6 +1743,59 @@ msgstr "תווי סליקה"
 msgid ".ini"
 msgstr ".ini"
 
+#: ../data/language-specs/j.lang.h:2
+msgid "J"
+msgstr "J"
+
+#: ../data/language-specs/j.lang.h:3
+msgid "Adverb"
+msgstr "תואר הפועל"
+
+#: ../data/language-specs/j.lang.h:5
+msgid "Conjunction"
+msgstr "מילת קישור"
+
+#: ../data/language-specs/j.lang.h:6
+#: ../data/language-specs/perl.lang.h:15
+msgid "Control"
+msgstr "Control"
+
+#: ../data/language-specs/j.lang.h:8
+msgid "Explicit Argument"
+msgstr "ארגומנט מפורש"
+
+#: ../data/language-specs/j.lang.h:9
+msgid "Global"
+msgstr "גלובלי"
+
+#: ../data/language-specs/j.lang.h:10
+msgid "Lab Text"
+msgstr "טקסט מעבדה"
+
+#: ../data/language-specs/j.lang.h:11
+msgid "Local"
+msgstr "מקומי"
+
+#: ../data/language-specs/j.lang.h:12
+msgid "Noun"
+msgstr "שם עצם"
+
+#: ../data/language-specs/j.lang.h:13
+msgid "Explicit Noun Definition"
+msgstr "הגדרת שם עצם מפורשת"
+
+#: ../data/language-specs/j.lang.h:15
+msgid "Parens"
+msgstr "סוגריים"
+
+#: ../data/language-specs/j.lang.h:16
+msgid "Primitive"
+msgstr "קדום"
+
+#: ../data/language-specs/j.lang.h:18
+msgid "Verb"
+msgstr "פועל"
+
 #: ../data/language-specs/java.lang.h:2
 msgid "Java"
 msgstr "Java"
@@ -2076,10 +2134,6 @@ msgstr "System Command"
 #: ../data/language-specs/perl.lang.h:14
 msgid "File Descriptor"
 msgstr "File Descriptor"
-
-#: ../data/language-specs/perl.lang.h:15
-msgid "Control"
-msgstr "Control"
 
 #: ../data/language-specs/perl.lang.h:18
 msgid "POD"
