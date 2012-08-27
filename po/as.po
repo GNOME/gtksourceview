@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: as\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug."
 "cgi?product=gtksourceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-08-14 22:08+0000\n"
-"PO-Revision-Date: 2012-08-16 18:32+0530\n"
+"POT-Creation-Date: 2012-08-20 20:49+0000\n"
+"PO-Revision-Date: 2012-08-27 15:21+0530\n"
 "Last-Translator: Nilamdyuti Goswami <ngoswami@redhat.com>\n"
 "Language-Team: as_IN <kde-i18n-doc@kde.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: \n"
 "X-Generator: Lokalize 1.0\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
@@ -92,7 +92,8 @@ msgstr "সকলো"
 #: ../data/language-specs/fsharp.lang.h:1 ../data/language-specs/glsl.lang.h:1
 #: ../data/language-specs/go.lang.h:1 ../data/language-specs/haskell.lang.h:1
 #: ../data/language-specs/haskell-literate.lang.h:1
-#: ../data/language-specs/idl.lang.h:1 ../data/language-specs/java.lang.h:1
+#: ../data/language-specs/idl.lang.h:1 ../data/language-specs/j.lang.h:1
+#: ../data/language-specs/java.lang.h:1
 #: ../data/language-specs/makefile.lang.h:1
 #: ../data/language-specs/nemerle.lang.h:1
 #: ../data/language-specs/objc.lang.h:1 ../data/language-specs/objj.lang.h:1
@@ -130,8 +131,9 @@ msgstr "ActionScript"
 #: ../data/language-specs/go.lang.h:3 ../data/language-specs/gtkrc.lang.h:3
 #: ../data/language-specs/haskell.lang.h:4
 #: ../data/language-specs/html.lang.h:3 ../data/language-specs/idl.lang.h:3
-#: ../data/language-specs/ini.lang.h:3 ../data/language-specs/latex.lang.h:3
-#: ../data/language-specs/lua.lang.h:3 ../data/language-specs/matlab.lang.h:3
+#: ../data/language-specs/ini.lang.h:3 ../data/language-specs/j.lang.h:4
+#: ../data/language-specs/latex.lang.h:3 ../data/language-specs/lua.lang.h:3
+#: ../data/language-specs/matlab.lang.h:3
 #: ../data/language-specs/nemerle.lang.h:3
 #: ../data/language-specs/nsis.lang.h:4 ../data/language-specs/ocaml.lang.h:3
 #: ../data/language-specs/ocl.lang.h:3 ../data/language-specs/octave.lang.h:3
@@ -157,7 +159,8 @@ msgstr "মন্তব্য"
 #: ../data/language-specs/csharp.lang.h:4 ../data/language-specs/css.lang.h:3
 #: ../data/language-specs/def.lang.h:53 ../data/language-specs/d.lang.h:4
 #: ../data/language-specs/dot.lang.h:4 ../data/language-specs/go.lang.h:4
-#: ../data/language-specs/html.lang.h:8 ../data/language-specs/json.lang.h:7
+#: ../data/language-specs/html.lang.h:8 ../data/language-specs/j.lang.h:7
+#: ../data/language-specs/json.lang.h:7
 #: ../data/language-specs/nemerle.lang.h:4
 #: ../data/language-specs/ocaml.lang.h:20 ../data/language-specs/ooc.lang.h:4
 #: ../data/language-specs/opal.lang.h:6 ../data/language-specs/perl.lang.h:17
@@ -185,7 +188,7 @@ msgstr "ভুল"
 #: ../data/language-specs/gtkrc.lang.h:4
 #: ../data/language-specs/haskell.lang.h:9 ../data/language-specs/idl.lang.h:7
 #: ../data/language-specs/imagej.lang.h:10 ../data/language-specs/ini.lang.h:5
-#: ../data/language-specs/java.lang.h:4
+#: ../data/language-specs/j.lang.h:17 ../data/language-specs/java.lang.h:4
 #: ../data/language-specs/javascript.lang.h:13
 #: ../data/language-specs/json.lang.h:4 ../data/language-specs/lua.lang.h:4
 #: ../data/language-specs/matlab.lang.h:4
@@ -320,7 +323,8 @@ msgstr "বুলিয়ান মান"
 #: ../data/language-specs/asp.lang.h:14 ../data/language-specs/boo.lang.h:14
 #: ../data/language-specs/cobol.lang.h:9 ../data/language-specs/def.lang.h:22
 #: ../data/language-specs/desktop.lang.h:8
-#: ../data/language-specs/forth.lang.h:8 ../data/language-specs/java.lang.h:15
+#: ../data/language-specs/forth.lang.h:8 ../data/language-specs/j.lang.h:14
+#: ../data/language-specs/java.lang.h:15
 #: ../data/language-specs/prolog.lang.h:7
 #: ../data/language-specs/vhdl.lang.h:11
 msgid "Number"
@@ -1562,6 +1566,64 @@ msgstr "এস্কেপ্ড আখৰসমূহ"
 msgid ".ini"
 msgstr ".ini"
 
+#: ../data/language-specs/j.lang.h:2
+msgid "J"
+msgstr "J"
+
+#: ../data/language-specs/j.lang.h:3
+msgid "Adverb"
+msgstr "ক্ৰিয়া বিশেষণ"
+
+#: ../data/language-specs/j.lang.h:5
+#| msgid "Common Function"
+msgid "Conjunction"
+msgstr "সংযোজক অব্যয়"
+
+#
+#: ../data/language-specs/j.lang.h:6 ../data/language-specs/perl.lang.h:15
+msgid "Control"
+msgstr "নিয়ন্ত্ৰণ"
+
+#: ../data/language-specs/j.lang.h:8
+msgid "Explicit Argument"
+msgstr "বিশদ তৰ্ক"
+
+#: ../data/language-specs/j.lang.h:9
+#| msgid "Cobalt"
+msgid "Global"
+msgstr "বিশ্বব্যাপী"
+
+#: ../data/language-specs/j.lang.h:10
+#| msgid "Link Text"
+msgid "Lab Text"
+msgstr "লেব লিখনী"
+
+#: ../data/language-specs/j.lang.h:11
+#| msgid "Location"
+msgid "Local"
+msgstr "স্থানীয়"
+
+#: ../data/language-specs/j.lang.h:12
+msgid "Noun"
+msgstr "বিশেষ্য"
+
+#: ../data/language-specs/j.lang.h:13
+msgid "Explicit Noun Definition"
+msgstr "বিশদ বিশেষ্য বিৱৰণ"
+
+#: ../data/language-specs/j.lang.h:15
+msgid "Parens"
+msgstr "Parens"
+
+#: ../data/language-specs/j.lang.h:16
+msgid "Primitive"
+msgstr "আদিম"
+
+#: ../data/language-specs/j.lang.h:18
+#| msgid "Verbatim"
+msgid "Verb"
+msgstr "ক্ৰিয়া"
+
 #
 #: ../data/language-specs/java.lang.h:2
 msgid "Java"
@@ -1902,11 +1964,6 @@ msgstr "চিস্টেম কমান্ড"
 #: ../data/language-specs/perl.lang.h:14
 msgid "File Descriptor"
 msgstr "নথিপত্ৰ বিৱৰক"
-
-#
-#: ../data/language-specs/perl.lang.h:15
-msgid "Control"
-msgstr "নিয়ন্ত্ৰণ"
 
 #: ../data/language-specs/perl.lang.h:18
 msgid "POD"
