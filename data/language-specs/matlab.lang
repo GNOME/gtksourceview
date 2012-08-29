@@ -61,17 +61,6 @@
       </include>
     </context>
 
-    <!-- Different from the line continue in the defaults.-->
-    <!-- Continuation line can be ... or \ optionally followed by whitespace
-         and comments -->
-    <context id="line-continue" style-ref="comment" class="comment" class-disabled="no-spell-check">
-      <start>\.\.\.(\s)*$|\.\.\.(\s)*%+|\\(\s)*$|\\(\s)*%+</start>
-      <end>^</end>
-      <include>
-        <context ref="def:in-comment"/>
-      </include>
-    </context>
-
     <context id="keyword">
       <include>
         <context style-ref="keyword">
@@ -161,7 +150,6 @@
       <include>
         <context ref="block-comment"/>
         <context ref="line-comment"/>
-        <context ref="line-continue"/>
         <context ref="octave:single-quoted-string"/>
         <context ref="octave:operator"/>
         <context ref="octave:data-type"/>

@@ -57,8 +57,8 @@
   <definitions>
 
     <context id="block-comment" style-ref="comment" class="comment" class-disabled="no-spell-check">
-      <start>^\s*(#|%){\s*$</start>
-      <end>^\s*(#|%)}\s*$</end>
+      <start>^\s*[#%]{\s*$</start>
+      <end>^\s*[#%]}\s*$</end>
       <include>
         <context ref="block-comment"/>
         <context ref="def:in-comment"/>
@@ -72,11 +72,12 @@
       </include>
     </context>
 
-    <!-- Different from the line continue in the defaults.-->
-    <!-- Continuation line can be ... or \ optionally followed by whitespace
-         and comments -->
-    <context id="line-continue" style-ref="comment" class="comment" class-disabled="no-spell-check">
-      <start>\.\.\.(\s)*$|\.\.\.(\s)*(#|%)+|\\(\s)*$|\\(\s)*(#|%)+</start>
+    <!--
+      Line continue in Octave are different from the one in def.lang. They can
+      either be  ... or \ optionally followed by whitespace only.
+    -->
+    <context id="line-continue" style-ref="comment">
+      <start>(\.\.\.|\\)(\s)*?$</start>
       <end>^</end>
       <include>
         <context ref="def:in-comment"/>
@@ -94,10 +95,6 @@
       </include>
     </context>
 
-    <!--
-      Unlike double quoted string, single quote strings in octave do not allow
-      continuation lines.
-    -->
     <context id="single-quoted-string" style-ref="string" end-at-line-end="true" class="string" class-disabled="no-spell-check">
       <!--
          To do not misdetect the transpose operator ' as the start of a string
@@ -105,10 +102,16 @@
          or a closing bracket (round, square or curly) or a dot (to form the
          array transpose operator ".'" ).
       -->
-      <start>(?&lt;![0-9a-zA-Z_)\]}\.])'</start>
+      <start>(?&lt;![0-9a-zA-Z_\)\]}\.])'</start>
       <end>'</end>
       <include>
         <context style-ref="def:special-char">
+          <!--
+            Unlike double quoted string, single quote strings in octave do not
+            allow continuation lines or escaped characters. The only escape
+            necessary is the single quote itself which is escaped with two
+            single quotes.
+          -->
           <match>''</match>
         </context>
       </include>
@@ -132,7 +135,7 @@
     </context>
 
     <context id="data-type" style-ref="data-type">
-      <keyword>cell(str)?</keyword>
+      <keyword>cell</keyword>
       <keyword>char</keyword>
       <keyword>double</keyword>
       <keyword>(u)?int(8|16|32|64)</keyword>
@@ -142,13 +145,12 @@
     </context>
 
     <context id="function-handle" style-ref="data-type">
-      <match>@([A-Za-z_][A-Za-z1-9_]*)?</match>
+      <match case-sensitive="false">@([a-z_][a-z1-9_]*)?</match>
     </context>
 
     <context id="storage-type" style-ref="storage-type">
       <keyword>global</keyword>
       <keyword>persistent</keyword>
-      <keyword>static</keyword>
     </context>
 
     <context id="boolean" style-ref="boolean">
@@ -196,14 +198,17 @@
       <keyword>ones</keyword>
       <keyword>pi</keyword>
       <keyword>rand</keyword>
-      <keyword>randn</keyword>
       <keyword>zeros</keyword>
     </context>
 
     <context id="package-manager" style-ref="package-manager">
+      <!--
+        The list of pkg commands is optional to the match so that at least pkg
+        is highlighted when new commands get implemented.
+      -->
       <match extended="true">
-        (\b)pkg(?!(\s)*\()(\s)+
-        (((un)?install|(un)?load|list|(global|local)_list|describe|prefix|(re)?build)(\b))?
+        \bpkg(?!(\s)*\()(\s)+
+        ((un)?install|update|(un)?load|list|(global|local)_list|describe|prefix|(re)?build)?\b
       </match>
     </context>
 
@@ -247,21 +252,37 @@
     </context>
 
     <define-regex id="is-type-functions" extended="true">
-      a | method | object |
-      cell(str)? | char | field | float | integer | logical | numeric | real |
-      dir |
-      empty |
-      equal(withequalnans)? |
-      finite | inf | letter | member | na(n)? | prime | space |
-      global |
-      (hg)?handle |
-      hold |
-      keyword |
-      mac | pc | unix |
-      scalar | sparse | vector |
-      sorted |
-      str(prop|uct)? |
-      varname
+      _absolute_filename         | dir                        |numeric        |
+      _dq_string                 | empty                      | object        |
+      _function_handle           | equal                      | obsv          |
+      _leap_year                 | equalwithequalnans         |
+      _real_matrix               | field                      |
+      _real_scalar               | figure                     |
+      _real_square_matrix        | finite                     | pc            |
+      _real_vector               | float                      | pref          |
+      _rooted_relative_filename  | global                     | prime         |
+      _sq_string                 | graph                      | print         |
+      _valid_file_id             | gray                       | prop          |
+      a                          | handle                     | punct         |
+      alnum                      | hermitian                  | real          |
+      alpha                      | hghandle                   | rgb           |
+      appdata                    | hold                       | row           |
+      argout                     | ieee                       | sample        |
+      ascii                      | ind                        | scalar        |
+      bool                       | index                      | sorted        |
+      bw                         | inf                        | space         |
+      cell                       | integer                    | sparse        |
+      cellstr                    | keyword                    | square        |
+      char                       | letter                     | stabilizable  |
+      cntrl                      | logical                    | strprop       |
+      column                     | lower                      | struct        |
+      complex                    | mac                        | symmetric     |
+      ctrb                       | matrix                     | unix          |
+      debugmode                  | member                     | upper         |
+      definite                   | method                     | varname       |
+      deployed                   | na                         | vector        |
+      detectable                 | nan                        | xdigit        |
+      digit                      | null
     </define-regex>
 
     <!--
@@ -331,6 +352,7 @@
       <keyword>cell2(mat|struct)</keyword>
       <keyword>celldisp</keyword>
       <keyword>cellfun</keyword>
+      <keyword>cellstr</keyword>
       <keyword>cgs</keyword>
       <keyword>char</keyword>
       <keyword>chol</keyword>
