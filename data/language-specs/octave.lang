@@ -33,10 +33,8 @@
   </metadata>
 
   <!--
-    Note: matlab.lang and octave.lang used to be the same lang file since
-    octave syntax was originally a clone of matlab syntax. Over time the
-    two syntaxes diverged and grew different extensions. When making
-    modification check if they apply to both languages.
+    Note: Matlab language is a subset of the Octave language. When making
+    modification to this file check first if they apply to both languages.
   -->
 
   <styles>
@@ -50,7 +48,7 @@
     <style id="floating-point"    _name="Floating Point"    map-to="def:floating-point"/>
     <style id="base-n-integer"    _name="Base-N Integer"    map-to="def:base-n-integer"/>
     <style id="package-manager"   _name="Package Manager"   map-to="def:preprocessor"/>
-    <style id="keyword"           _name="Keyword"           map-to="def:keyword"/>
+    <style id="keywords"          _name="Keyword"           map-to="def:keyword"/>
     <style id="variable"          _name="Variable"          map-to="def:identifier"/>
     <style id="reserved-constant" _name="Reserved Constant" map-to="def:special-constant"/>
     <style id="builtin"           _name="Builtin"           map-to="def:builtin"/>
@@ -96,14 +94,17 @@
       </include>
     </context>
 
-    <!-- Unlike double quoted string, single quote strings in octave do not
-    allow continuation lines.-->
+    <!--
+      Unlike double quoted string, single quote strings in octave do not allow
+      continuation lines.
+    -->
     <context id="single-quoted-string" style-ref="string" end-at-line-end="true" class="string" class-disabled="no-spell-check">
       <!--
-       To do not misdetect the transpose operator ' as the start of a string
-       we assert to not follow a variable name (letters, digits and underscores)
-       or a closing bracket (round, square or curly) or a dot (to form the
-       array transpose operator ".'" ). -->
+         To do not misdetect the transpose operator ' as the start of a string
+         we assert to not follow a variable name (letters, digits and underscores)
+         or a closing bracket (round, square or curly) or a dot (to form the
+         array transpose operator ".'" ).
+      -->
       <start>(?&lt;![0-9a-zA-Z_)\]}\.])'</start>
       <end>'</end>
       <include>
@@ -151,8 +152,10 @@
     </context>
 
     <context id="boolean" style-ref="boolean">
-      <!-- falase and true can be used as functions too. Do not highlight as
-      boolean if followed by parentheses -->
+      <!--
+        false and true can be used as functions too. Do not highlight as boolean
+        if followed by parentheses.
+      -->
       <suffix>\b(?!(\s)*\()</suffix>
       <keyword>false</keyword>
       <keyword>true</keyword>
@@ -179,8 +182,10 @@
     </context>
 
     <context id="reserved-constant" style-ref="reserved-constant">
-      <!-- Most of the constants can be used as functions too. Do not highlight
-      as constants if followed by parentheses -->
+      <!--
+        Most of the constants can be used as functions too. Do not highlight as
+        constants if followed by parentheses.
+      -->
       <suffix>\b(?!(\s)*\()</suffix>
       <keyword>e</keyword>
       <keyword>eps</keyword>
@@ -202,26 +207,42 @@
       </match>
     </context>
 
-    <!--To see the list of keywords, use the function __keywords__-->
-    <context id="keyword" style-ref="keyword">
-      <keyword>break</keyword>
-      <keyword>case</keyword>
-      <keyword>catch</keyword>
-      <keyword>continue</keyword>
-      <keyword>do</keyword>
-      <keyword>else(if)?</keyword>
-      <keyword>end(_try_catch|_unwind_protect|for|function|if|switch|while)?</keyword>
-      <keyword>for</keyword>
-      <keyword>function</keyword>
-      <keyword>if</keyword>
-      <keyword>otherwise</keyword>
-      <keyword>return</keyword>
-      <keyword>switch</keyword>
-      <keyword>try</keyword>
-      <keyword>until</keyword>
-      <keyword>unwind_protect(_cleanup)?</keyword>
-      <keyword>vararg(in|out)</keyword>
-      <keyword>while</keyword>
+    <context id="keyword">
+      <include>
+        <context style-ref="keyword">
+          <!--
+            Only Octave specific keywords. To see a complete list of keywords in
+            Octave, use __keywords__ at the Octave prompt.
+          -->
+          <keyword>end(_try_catch|_unwind_protect|for|function|if|switch|while)</keyword>
+          <keyword>unwind_protect(_cleanup)?</keyword>
+        </context>
+        <context id="octave-matlab-keyword" style-ref="keyword">
+          <!--
+            Octave and Matlab have already implemented most of each others keywords
+            but not all. Both Octave and Matlab are still missing keywords from the
+            other. As such, this block only has the keywords already implemented in
+            both. When adding a new keyword, make sure you place it on the right
+            place.
+          -->
+          <keyword>case</keyword>
+          <keyword>catch</keyword>
+          <keyword>continue</keyword>
+          <keyword>do</keyword>
+          <keyword>else(if)?</keyword>
+          <keyword>end</keyword>
+          <keyword>for</keyword>
+          <keyword>function</keyword>
+          <keyword>if</keyword>
+          <keyword>otherwise</keyword>
+          <keyword>return</keyword>
+          <keyword>switch</keyword>
+          <keyword>try</keyword>
+          <keyword>until</keyword>
+          <keyword>vararg(in|out)</keyword>
+          <keyword>while</keyword>
+        </context>
+      </include>
     </context>
 
     <define-regex id="is-type-functions" extended="true">
@@ -242,10 +263,12 @@
       varname
     </define-regex>
 
-    <!--While there are many more builtin functions in octave, only some
-    are listed here. This is to avoid maintenance problems specially in the
-    case of functions that may later be removed. Extra functions can easily
-    be added manually. Function __list_functions__ lists them all -->
+    <!--
+      While there are many more builtin functions in octave, only some are listed
+      here. This is to avoid maintenance problems specially in the case of
+      functions that may later be removed. Extra functions can easily be added
+      manually. Function __list_functions__ lists them all.
+    -->
     <context id="builtin" style-ref="builtin">
       <prefix>(?&lt;!\.)\%[</prefix>
       <suffix>\%](?!\.)</suffix>
@@ -488,9 +511,11 @@
       <keyword>invhilb</keyword>
       <keyword>ipermute</keyword>
       <keyword>iqr</keyword>
-      <!-- rather than write here all the is(type) functions, a regex was
-      created named 'is-type-functions'. Add the type to that regex rather than
-      adding a new keyword here -->
+      <!--
+        rather than write here all the is(type) functions, a regex was created
+        named 'is-type-functions'. Add the type to that regex rather than adding
+        a new keyword here.
+      -->
       <keyword>is\%{is-type-functions}</keyword>
       <keyword>iso(colors|normals|surface)</keyword>
       <keyword>J</keyword>

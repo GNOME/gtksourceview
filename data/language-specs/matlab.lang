@@ -33,15 +33,13 @@
   </metadata>
 
   <!--
-    Note: matlab.lang and octave.lang used to be the same lang file since
-    octave syntax was originally a clone of matlab syntax. Over time the
-    two syntaxes diverged and grew different extensions. When making
-    modification check if they apply to both languages.
+    Note: Matlab language is a subset of the Octave language. When making
+    modification to this file check if they apply to both languages.
   -->
 
   <styles>
     <style id="comment" _name="Comment" map-to="def:comment"/>
-    <style id="string" _name="String" map-to="def:string"/>
+    <style id="keyword" _name="Keyword" map-to="def:keyword"/>
     <style id="builtin" _name="Builtin" map-to="def:builtin"/>
   </styles>
 
@@ -74,14 +72,24 @@
       </include>
     </context>
 
-    <context id="double-quoted-string" style-ref="string" end-at-line-end="true" class="string" class-disabled="no-spell-check">
-      <start>"</start>
-      <end>"</end>
+    <context id="keyword">
       <include>
-         <!-- octave uses the same printf format and escape chars as C -->
-        <context ref="c:printf"/>
-        <context ref="c:escaped-character"/>
-        <context ref="line-continue"/>
+        <context style-ref="keyword">
+          <!--Only Matlab specific keywords. -->
+          <keyword>classdef</keyword>
+          <keyword>enumeration</keyword>
+          <keyword>events</keyword>
+          <keyword>methods</keyword>
+          <keyword>properties</keyword>
+        </context>
+        <!--
+          Octave and Matlab have already implemented most of each others keywords
+          but not all. Both Octave and Matlab are still missing keywords from the
+          other. As such, this block only has the keywords already implemented in
+          both. When adding a new keyword, make sure you place it on the right
+          place.
+        -->
+        <context ref="octave:octave-matlab-keyword" style-ref="keyword"/>
       </include>
     </context>
 
@@ -95,7 +103,6 @@
       <keyword>atan2</keyword>
       <keyword>atan</keyword>
       <keyword>ceil</keyword>
-      <keyword>columns</keyword>
       <keyword>conv</keyword>
       <keyword>cosh</keyword>
       <keyword>cos</keyword>
@@ -126,7 +133,6 @@
       <keyword>log</keyword>
       <keyword>max</keyword>
       <keyword>min</keyword>
-      <keyword>ones</keyword>
       <keyword>printf</keyword>
       <keyword>prod</keyword>
       <keyword>real</keyword>
@@ -134,7 +140,6 @@
       <keyword>repmat</keyword>
       <keyword>reshape</keyword>
       <keyword>round</keyword>
-      <keyword>rows</keyword>
       <keyword>setstr</keyword>
       <keyword>sinh</keyword>
       <keyword>sin</keyword>
@@ -149,11 +154,7 @@
       <keyword>tanh</keyword>
       <keyword>tan</keyword>
       <keyword>unlink</keyword>
-      <keyword>usage</keyword>
-      <keyword>varargin</keyword>
-      <keyword>varargout</keyword>
       <keyword>warning</keyword>
-      <keyword>zeros</keyword>
     </context>
 
     <context id="matlab" class="no-spell-check">
@@ -161,7 +162,6 @@
         <context ref="block-comment"/>
         <context ref="line-comment"/>
         <context ref="line-continue"/>
-        <context ref="double-quoted-string"/>
         <context ref="octave:single-quoted-string"/>
         <context ref="octave:operator"/>
         <context ref="octave:data-type"/>
@@ -174,8 +174,7 @@
         <context ref="octave:hex-number"/>
         <context ref="octave:variables"/>
         <context ref="octave:reserved-constant"/>
-        <context ref="octave:package-manager"/>
-        <context ref="octave:keyword"/>
+        <context ref="keyword"/>
         <context ref="builtin"/>
       </include>
     </context>
