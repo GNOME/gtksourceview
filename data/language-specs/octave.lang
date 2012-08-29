@@ -214,7 +214,7 @@
             Only Octave specific keywords. To see a complete list of keywords in
             Octave, use __keywords__ at the Octave prompt.
           -->
-          <keyword>end(_try_catch|_unwind_protect|for|function|if|switch|while)</keyword>
+          <keyword>end(_try_catch|_unwind_protect|for|function|if|parfor|switch|while)</keyword>
           <keyword>unwind_protect(_cleanup)?</keyword>
         </context>
         <context id="octave-matlab-keyword" style-ref="keyword">
@@ -235,6 +235,7 @@
           <keyword>function</keyword>
           <keyword>if</keyword>
           <keyword>otherwise</keyword>
+          <keyword>parfor</keyword>
           <keyword>return</keyword>
           <keyword>switch</keyword>
           <keyword>try</keyword>
