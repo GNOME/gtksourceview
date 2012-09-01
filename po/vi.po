@@ -1,6 +1,6 @@
 # Vietnamese translation for GTK Source View.
 # Copyright © 2009 GNOME i18n Project for Vietnamese.
-# Nguyễn Thái Ngọc Duy <pclouds@gmail.com>, 2002,2007,2011.
+# Nguyễn Thái Ngọc Duy <pclouds@gmail.com>, 2002,2007,2011-2012.
 # Clytie Siddall <clytie@riverland.net.au>, 2005-2009.
 #
 msgid ""
@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&keywords=I18N+L10N&component=general\n"
 "POT-Creation-Date: 2012-08-20 20:49+0000\n"
-"PO-Revision-Date: 2012-09-01 14:30+0700\n"
+"PO-Revision-Date: 2012-09-01 14:35+0700\n"
 "Last-Translator: Nguyễn Thái Ngọc Duy <pclouds@gmail.com>\n"
 "Language-Team: Vietnamese <vi-VN@googlegroups.com>\n"
 "Language: vi\n"
@@ -110,10 +110,9 @@ msgid "Sources"
 msgstr "Nguồn"
 
 #: ../data/language-specs/actionscript.lang.h:2
-#, fuzzy
 #| msgid "Scripts"
 msgid "ActionScript"
-msgstr "Văn lệnh"
+msgstr "ActionScript"
 
 #. Any comment
 #: ../data/language-specs/actionscript.lang.h:3
@@ -472,47 +471,43 @@ msgstr "Hằng đặc biệt"
 
 #: ../data/language-specs/automake.lang.h:1
 msgid "Automake"
-msgstr ""
+msgstr "Automake"
 
 #: ../data/language-specs/automake.lang.h:2
-#, fuzzy
 #| msgid "Global Variable"
 msgid "Automake Variable"
-msgstr "Biến toàn cục"
+msgstr "Biến Automake"
 
 #: ../data/language-specs/automake.lang.h:3
 msgid "Primary"
-msgstr ""
+msgstr "Chính"
 
 #: ../data/language-specs/automake.lang.h:4
 msgid "Secondary"
-msgstr ""
+msgstr "Phụ"
 
 #: ../data/language-specs/automake.lang.h:5
 msgid "Prefix"
-msgstr ""
+msgstr "Tiền tố"
 
 #: ../data/language-specs/automake.lang.h:6
-#, fuzzy
 #| msgid "Option Name"
 msgid "Optional Target"
-msgstr "Tên tuỳ chọn"
+msgstr "Đích tuỳ chọn"
 
 #: ../data/language-specs/automake.lang.h:7
-#, fuzzy
 #| msgid "Builtin Variable"
 msgid "Built-in Target"
-msgstr "Biến dựng sẵn"
+msgstr "Đích dựng sẵn"
 
 #: ../data/language-specs/automake.lang.h:8
-#, fuzzy
 #| msgid "Control Keyword"
 msgid "Other Keyword"
-msgstr "Từ khóa Điều khiển"
+msgstr "Từ khóa khác"
 
 #: ../data/language-specs/automake.lang.h:9
 msgid "Substitution"
-msgstr ""
+msgstr "Thay thế"
 
 #: ../data/language-specs/awk.lang.h:1
 #: ../data/language-specs/dosbatch.lang.h:1
@@ -1343,10 +1338,9 @@ msgid "Go"
 msgstr "Go"
 
 #: ../data/language-specs/go.lang.h:12
-#, fuzzy
 #| msgid "Binary number"
 msgid "Imaginary number"
-msgstr "Số nhị phân"
+msgstr "Số ảo"
 
 #: ../data/language-specs/gtk-doc.lang.h:2
 msgid "gtk-doc"
@@ -1537,17 +1531,16 @@ msgstr ".ini"
 
 #: ../data/language-specs/j.lang.h:2
 msgid "J"
-msgstr ""
+msgstr "J"
 
 #: ../data/language-specs/j.lang.h:3
 msgid "Adverb"
-msgstr ""
+msgstr "Phó từ"
 
 #: ../data/language-specs/j.lang.h:5
-#, fuzzy
 #| msgid "Common Function"
 msgid "Conjunction"
-msgstr "Hàm chung"
+msgstr "Liên từ"
 
 #: ../data/language-specs/j.lang.h:6 ../data/language-specs/perl.lang.h:15
 msgid "Control"
@@ -1558,26 +1551,23 @@ msgid "Explicit Argument"
 msgstr ""
 
 #: ../data/language-specs/j.lang.h:9
-#, fuzzy
 #| msgid "Cobalt"
 msgid "Global"
-msgstr "Cobalt"
+msgstr "Toàn cục"
 
 #: ../data/language-specs/j.lang.h:10
-#, fuzzy
 #| msgid "Link Text"
 msgid "Lab Text"
-msgstr "Văn bản liên kết"
+msgstr ""
 
 #: ../data/language-specs/j.lang.h:11
-#, fuzzy
 #| msgid "Location"
 msgid "Local"
-msgstr "Vị trí"
+msgstr "Cục bộ"
 
 #: ../data/language-specs/j.lang.h:12
 msgid "Noun"
-msgstr ""
+msgstr "Danh từ"
 
 #: ../data/language-specs/j.lang.h:13
 msgid "Explicit Noun Definition"
@@ -1589,13 +1579,12 @@ msgstr ""
 
 #: ../data/language-specs/j.lang.h:16
 msgid "Primitive"
-msgstr ""
+msgstr "Nguyên thuỷ"
 
 #: ../data/language-specs/j.lang.h:18
-#, fuzzy
 #| msgid "Verbatim"
 msgid "Verb"
-msgstr "Đúng nguyên văn"
+msgstr "Động từ"
 
 # Name: don't translate / Tên: đừng dịch
 #: ../data/language-specs/java.lang.h:2
@@ -1767,7 +1756,7 @@ msgstr "Mã"
 
 #: ../data/language-specs/markdown.lang.h:7
 msgid "Blockquote Marker"
-msgstr ""
+msgstr "Đánh dấu trích dẫn khối"
 
 #: ../data/language-specs/markdown.lang.h:9
 msgid "Link Text"
@@ -1801,7 +1790,7 @@ msgstr "Matlab"
 
 #: ../data/language-specs/mxml.lang.h:2
 msgid "MXML"
-msgstr ""
+msgstr "MXML"
 
 #: ../data/language-specs/mxml.lang.h:3 ../data/language-specs/xml.lang.h:7
 msgid "Element name"
@@ -1837,7 +1826,6 @@ msgid "Ocamldoc Comments"
 msgstr "Chú thích Ocamldoc"
 
 #: ../data/language-specs/ocaml.lang.h:21
-#, fuzzy
 #| msgid "Standart Modules"
 msgid "Standard Modules"
 msgstr "Môđun chuẩn"
@@ -1868,7 +1856,7 @@ msgstr "OOC"
 
 #: ../data/language-specs/opal.lang.h:2
 msgid "Opal"
-msgstr ""
+msgstr "Opal"
 
 #: ../data/language-specs/opal.lang.h:3 ../data/language-specs/python.lang.h:3
 #: ../data/language-specs/python3.lang.h:3
@@ -1986,49 +1974,42 @@ msgstr "Prolog"
 
 #: ../data/language-specs/puppet.lang.h:2
 msgid "Puppet"
-msgstr ""
+msgstr "Puppet"
 
 #: ../data/language-specs/puppet.lang.h:3
-#, fuzzy
 #| msgid "Sources"
 msgid "Resources"
-msgstr "Nguồn"
+msgstr "Tài nguyên"
 
 #: ../data/language-specs/puppet.lang.h:4
-#, fuzzy
 #| msgid "Parameter"
 msgid "Parameters"
 msgstr "Tham số"
 
 #: ../data/language-specs/puppet.lang.h:5
-#, fuzzy
 #| msgid "Exec parameter"
 msgid "Metaparameters"
-msgstr "Tham số thực hiện"
+msgstr ""
 
 #: ../data/language-specs/puppet.lang.h:6
-#, fuzzy
 #| msgid "Function"
 msgid "Functions"
 msgstr "Hàm"
 
 #: ../data/language-specs/puppet.lang.h:7
-#, fuzzy
 #| msgid "Null Value"
 msgid "Values"
-msgstr "Vô giá trị"
+msgstr "Giá trị"
 
 #: ../data/language-specs/puppet.lang.h:8
-#, fuzzy
 #| msgid "Variable"
 msgid "Variables"
 msgstr "Biến"
 
 #: ../data/language-specs/puppet.lang.h:9
-#, fuzzy
 #| msgid "Class"
 msgid "Class names"
-msgstr "Lớp"
+msgstr "Tên lớp"
 
 # Name: don't translate / Tên: đừng dịch
 #: ../data/language-specs/python.lang.h:2
@@ -2051,10 +2032,9 @@ msgstr "Đối tượng dựng sẵn"
 
 # Name: don't translate / Tên: đừng dịch
 #: ../data/language-specs/python3.lang.h:2
-#, fuzzy
 #| msgid "Python"
 msgid "Python 3"
-msgstr "Python"
+msgstr "Python 3"
 
 #: ../data/language-specs/R.lang.h:2
 msgid "R"
@@ -2189,7 +2169,7 @@ msgstr "Lớp"
 
 #: ../data/language-specs/sparql.lang.h:6
 msgid "Individual"
-msgstr ""
+msgstr "Cá thể"
 
 #: ../data/language-specs/sparql.lang.h:10
 msgid "Literal"
@@ -2197,7 +2177,7 @@ msgstr "Nghĩa đen"
 
 #: ../data/language-specs/sparql.lang.h:11
 msgid "Predicate"
-msgstr ""
+msgstr "Vị từ"
 
 #: ../data/language-specs/sparql.lang.h:12
 msgid "QName"
@@ -2553,7 +2533,7 @@ msgstr ""
 
 #: ../gtksourceview/gtksourcecompletion.c:2253
 msgid "Select on Show"
-msgstr ""
+msgstr "Chọn để hiện"
 
 #: ../gtksourceview/gtksourcecompletion.c:2254
 msgid "Select first proposal when completion is shown"
@@ -2618,7 +2598,7 @@ msgstr ""
 
 #: ../gtksourceview/gtksourcecompletion.ui.h:2
 msgid "_Details..."
-msgstr ""
+msgstr "_Chi tiết..."
 
 #: ../gtksourceview/gtksourcecompletioncontext.c:233
 #: ../gtksourceview/gtksourceview.c:306
@@ -2644,7 +2624,7 @@ msgstr "Kích hoạt"
 
 #: ../gtksourceview/gtksourcecompletioncontext.c:261
 msgid "The type of activation"
-msgstr ""
+msgstr "Loại kích hoạt"
 
 #. Tooltip style
 #: ../gtksourceview/gtksourcecompletioninfo.c:61
@@ -2820,7 +2800,7 @@ msgstr "Kích thước"
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:293
 #: ../gtksourceview/gtksourcemarkattributes.c:316
 msgid "Pixbuf"
-msgstr ""
+msgstr "Pixbuf"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:294
 #: ../gtksourceview/gtksourcemarkattributes.c:317
@@ -2845,7 +2825,7 @@ msgstr "Tên biểu tượng"
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:310
 #: ../gtksourceview/gtksourcemarkattributes.c:330
 msgid "The icon name"
-msgstr ""
+msgstr "Tên biểu tượng"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:317
 #: ../gtksourceview/gtksourcemarkattributes.c:342
@@ -2862,7 +2842,7 @@ msgstr ""
 
 #: ../gtksourceview/gtksourcegutterrenderertext.c:404
 msgid "The text"
-msgstr ""
+msgstr "Văn bản"
 
 #: ../gtksourceview/gtksourcelanguage.c:228
 #: ../gtksourceview/gtksourcelanguage.c:229
