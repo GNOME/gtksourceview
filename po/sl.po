@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gtksourceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-07-29 09:24+0000\n"
-"PO-Revision-Date: 2012-07-29 14:14+0100\n"
+"POT-Creation-Date: 2012-09-06 07:20+0000\n"
+"PO-Revision-Date: 2012-09-06 19:51+0100\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: \n"
@@ -80,8 +80,10 @@ msgstr "Sledeče"
 msgid "All"
 msgstr "Vse"
 
+#: ../data/language-specs/actionscript.lang.h:1
 #: ../data/language-specs/ada.lang.h:1
 #: ../data/language-specs/asp.lang.h:1
+#: ../data/language-specs/automake.lang.h:1
 #: ../data/language-specs/bennugd.lang.h:1
 #: ../data/language-specs/boo.lang.h:1
 #: ../data/language-specs/cg.lang.h:1
@@ -102,6 +104,7 @@ msgstr "Vse"
 #: ../data/language-specs/haskell.lang.h:1
 #: ../data/language-specs/haskell-literate.lang.h:1
 #: ../data/language-specs/idl.lang.h:1
+#: ../data/language-specs/j.lang.h:1
 #: ../data/language-specs/java.lang.h:1
 #: ../data/language-specs/makefile.lang.h:1
 #: ../data/language-specs/nemerle.lang.h:1
@@ -125,11 +128,12 @@ msgstr "Vse"
 msgid "Sources"
 msgstr "Viri"
 
-#: ../data/language-specs/ada.lang.h:2
-msgid "Ada"
-msgstr "Ada"
+#: ../data/language-specs/actionscript.lang.h:2
+msgid "ActionScript"
+msgstr "Skript"
 
 #. Any comment
+#: ../data/language-specs/actionscript.lang.h:3
 #: ../data/language-specs/ada.lang.h:3
 #: ../data/language-specs/asp.lang.h:3
 #: ../data/language-specs/bennugd.lang.h:3
@@ -155,6 +159,7 @@ msgstr "Ada"
 #: ../data/language-specs/html.lang.h:3
 #: ../data/language-specs/idl.lang.h:3
 #: ../data/language-specs/ini.lang.h:3
+#: ../data/language-specs/j.lang.h:4
 #: ../data/language-specs/latex.lang.h:3
 #: ../data/language-specs/lua.lang.h:3
 #: ../data/language-specs/matlab.lang.h:3
@@ -186,7 +191,35 @@ msgstr "Ada"
 msgid "Comment"
 msgstr "Opomba"
 
+#. Any erroneous construct
+#: ../data/language-specs/actionscript.lang.h:4
+#: ../data/language-specs/cg.lang.h:4
+#: ../data/language-specs/c.lang.h:22
+#: ../data/language-specs/cobol.lang.h:11
+#: ../data/language-specs/csharp.lang.h:4
+#: ../data/language-specs/css.lang.h:3
+#: ../data/language-specs/def.lang.h:53
+#: ../data/language-specs/d.lang.h:4
+#: ../data/language-specs/dot.lang.h:4
+#: ../data/language-specs/go.lang.h:4
+#: ../data/language-specs/html.lang.h:8
+#: ../data/language-specs/j.lang.h:7
+#: ../data/language-specs/json.lang.h:7
+#: ../data/language-specs/nemerle.lang.h:4
+#: ../data/language-specs/ocaml.lang.h:20
+#: ../data/language-specs/ooc.lang.h:4
+#: ../data/language-specs/opal.lang.h:6
+#: ../data/language-specs/perl.lang.h:17
+#: ../data/language-specs/php.lang.h:4
+#: ../data/language-specs/prolog.lang.h:9
+#: ../data/language-specs/vala.lang.h:4
+#: ../data/language-specs/verilog.lang.h:6
+#: ../data/language-specs/xml.lang.h:13
+msgid "Error"
+msgstr "Napaka"
+
 #. A string constant: "this is a string"
+#: ../data/language-specs/actionscript.lang.h:5
 #: ../data/language-specs/ada.lang.h:4
 #: ../data/language-specs/asp.lang.h:4
 #: ../data/language-specs/boo.lang.h:5
@@ -208,11 +241,11 @@ msgstr "Opomba"
 #: ../data/language-specs/idl.lang.h:7
 #: ../data/language-specs/imagej.lang.h:10
 #: ../data/language-specs/ini.lang.h:5
+#: ../data/language-specs/j.lang.h:17
 #: ../data/language-specs/java.lang.h:4
 #: ../data/language-specs/javascript.lang.h:13
 #: ../data/language-specs/json.lang.h:4
 #: ../data/language-specs/lua.lang.h:4
-#: ../data/language-specs/matlab.lang.h:4
 #: ../data/language-specs/nemerle.lang.h:7
 #: ../data/language-specs/nsis.lang.h:5
 #: ../data/language-specs/objc.lang.h:6
@@ -244,7 +277,37 @@ msgstr "Opomba"
 msgid "String"
 msgstr "Niz"
 
+#. Translators: refered to some specific keywords of the language that
+#. allow to get external functionalities
+#: ../data/language-specs/actionscript.lang.h:6
+#: ../data/language-specs/java.lang.h:8
+#: ../data/language-specs/ooc.lang.h:7
+msgid "External"
+msgstr "Zunanje"
+
+#: ../data/language-specs/actionscript.lang.h:7
+#: ../data/language-specs/java.lang.h:9
+#: ../data/language-specs/ooc.lang.h:8
+msgid "Declaration"
+msgstr "Deklaracija"
+
+#: ../data/language-specs/actionscript.lang.h:8
+#: ../data/language-specs/ada.lang.h:8
+#: ../data/language-specs/cg.lang.h:10
+#: ../data/language-specs/c.lang.h:12
+#: ../data/language-specs/java.lang.h:10
+#: ../data/language-specs/ooc.lang.h:9
+msgid "Storage Class"
+msgstr "Razred shranjevanja"
+
+#: ../data/language-specs/actionscript.lang.h:9
+#: ../data/language-specs/java.lang.h:11
+#: ../data/language-specs/ooc.lang.h:10
+msgid "Scope Declaration"
+msgstr "Deklaracije obsega"
+
 #. keywords: "if", "for", "while", etc.
+#: ../data/language-specs/actionscript.lang.h:10
 #: ../data/language-specs/ada.lang.h:5
 #: ../data/language-specs/asp.lang.h:6
 #: ../data/language-specs/awk.lang.h:3
@@ -278,6 +341,7 @@ msgstr "Niz"
 #: ../data/language-specs/java.lang.h:12
 #: ../data/language-specs/javascript.lang.h:7
 #: ../data/language-specs/lua.lang.h:5
+#: ../data/language-specs/matlab.lang.h:4
 #: ../data/language-specs/nemerle.lang.h:8
 #: ../data/language-specs/objc.lang.h:3
 #: ../data/language-specs/objj.lang.h:4
@@ -313,30 +377,24 @@ msgstr "Niz"
 msgid "Keyword"
 msgstr "Ključna beseda"
 
-#. A decimal number: 1234
-#: ../data/language-specs/ada.lang.h:6
-#: ../data/language-specs/bennugd.lang.h:10
-#: ../data/language-specs/cg.lang.h:13
-#: ../data/language-specs/c.lang.h:16
-#: ../data/language-specs/csharp.lang.h:15
-#: ../data/language-specs/def.lang.h:26
-#: ../data/language-specs/d.lang.h:12
-#: ../data/language-specs/eiffel.lang.h:15
-#: ../data/language-specs/erlang.lang.h:10
-#: ../data/language-specs/fsharp.lang.h:6
-#: ../data/language-specs/go.lang.h:13
-#: ../data/language-specs/nemerle.lang.h:13
-#: ../data/language-specs/ocaml.lang.h:7
-#: ../data/language-specs/ooc.lang.h:15
-#: ../data/language-specs/opal.lang.h:10
-#: ../data/language-specs/php.lang.h:19
-#: ../data/language-specs/python.lang.h:13
-#: ../data/language-specs/python3.lang.h:12
-#: ../data/language-specs/ruby.lang.h:11
-msgid "Decimal number"
-msgstr "Decimalno število"
+#: ../data/language-specs/actionscript.lang.h:11
+#: ../data/language-specs/boo.lang.h:12
+#: ../data/language-specs/csharp.lang.h:13
+#: ../data/language-specs/d.lang.h:9
+#: ../data/language-specs/fsharp.lang.h:21
+#: ../data/language-specs/java.lang.h:13
+#: ../data/language-specs/javascript.lang.h:4
+#: ../data/language-specs/json.lang.h:5
+#: ../data/language-specs/nemerle.lang.h:10
+#: ../data/language-specs/objj.lang.h:9
+#: ../data/language-specs/ooc.lang.h:12
+#: ../data/language-specs/php.lang.h:16
+#: ../data/language-specs/vala.lang.h:9
+msgid "Null Value"
+msgstr "Nična vrednost"
 
 #. A boolean constant: TRUE, false
+#: ../data/language-specs/actionscript.lang.h:12
 #: ../data/language-specs/ada.lang.h:7
 #: ../data/language-specs/asp.lang.h:13
 #: ../data/language-specs/bennugd.lang.h:12
@@ -365,14 +423,29 @@ msgstr "Decimalno število"
 msgid "Boolean value"
 msgstr "Boolova vrednost"
 
-#: ../data/language-specs/ada.lang.h:8
-#: ../data/language-specs/cg.lang.h:10
-#: ../data/language-specs/c.lang.h:12
-#: ../data/language-specs/java.lang.h:10
-#: ../data/language-specs/ooc.lang.h:9
-msgid "Storage Class"
-msgstr "Razred shranjevanja"
+#. A generic number constant
+#: ../data/language-specs/actionscript.lang.h:13
+#: ../data/language-specs/asp.lang.h:14
+#: ../data/language-specs/boo.lang.h:14
+#: ../data/language-specs/cobol.lang.h:9
+#: ../data/language-specs/def.lang.h:22
+#: ../data/language-specs/desktop.lang.h:8
+#: ../data/language-specs/forth.lang.h:8
+#: ../data/language-specs/j.lang.h:14
+#: ../data/language-specs/java.lang.h:15
+#: ../data/language-specs/prolog.lang.h:7
+#: ../data/language-specs/vhdl.lang.h:11
+msgid "Number"
+msgstr "Številka"
 
+#: ../data/language-specs/actionscript.lang.h:14
+#: ../data/language-specs/java.lang.h:16
+#: ../data/language-specs/javascript.lang.h:12
+#: ../data/language-specs/ooc.lang.h:18
+msgid "Future Reserved Keywords"
+msgstr "Prihodnje zadržane besede"
+
+#: ../data/language-specs/actionscript.lang.h:15
 #: ../data/language-specs/ada.lang.h:9
 #: ../data/language-specs/asp.lang.h:11
 #: ../data/language-specs/bennugd.lang.h:8
@@ -413,6 +486,33 @@ msgstr "Razred shranjevanja"
 #: ../data/language-specs/vbnet.lang.h:7
 msgid "Data Type"
 msgstr "Podatkovna vrsta"
+
+#: ../data/language-specs/ada.lang.h:2
+msgid "Ada"
+msgstr "Ada"
+
+#. A decimal number: 1234
+#: ../data/language-specs/ada.lang.h:6
+#: ../data/language-specs/bennugd.lang.h:10
+#: ../data/language-specs/cg.lang.h:13
+#: ../data/language-specs/c.lang.h:16
+#: ../data/language-specs/csharp.lang.h:15
+#: ../data/language-specs/def.lang.h:26
+#: ../data/language-specs/d.lang.h:12
+#: ../data/language-specs/eiffel.lang.h:15
+#: ../data/language-specs/erlang.lang.h:10
+#: ../data/language-specs/fsharp.lang.h:6
+#: ../data/language-specs/go.lang.h:13
+#: ../data/language-specs/nemerle.lang.h:13
+#: ../data/language-specs/ocaml.lang.h:7
+#: ../data/language-specs/ooc.lang.h:15
+#: ../data/language-specs/opal.lang.h:10
+#: ../data/language-specs/php.lang.h:19
+#: ../data/language-specs/python.lang.h:13
+#: ../data/language-specs/python3.lang.h:12
+#: ../data/language-specs/ruby.lang.h:11
+msgid "Decimal number"
+msgstr "Decimalno število"
 
 #: ../data/language-specs/ada.lang.h:10
 #: ../data/language-specs/asp.lang.h:5
@@ -527,52 +627,39 @@ msgstr "VBScript in ADO konstante"
 msgid "Special constant"
 msgstr "Posebna konstanta"
 
-#. A generic number constant
-#: ../data/language-specs/asp.lang.h:14
-#: ../data/language-specs/boo.lang.h:14
-#: ../data/language-specs/cobol.lang.h:9
-#: ../data/language-specs/def.lang.h:22
-#: ../data/language-specs/desktop.lang.h:8
-#: ../data/language-specs/forth.lang.h:8
-#: ../data/language-specs/java.lang.h:15
-#: ../data/language-specs/prolog.lang.h:7
-#: ../data/language-specs/vhdl.lang.h:11
-msgid "Number"
-msgstr "Številka"
-
-#: ../data/language-specs/automake.lang.h:1
+#: ../data/language-specs/automake.lang.h:2
 msgid "Automake"
 msgstr "automake"
 
-#: ../data/language-specs/automake.lang.h:2
+#: ../data/language-specs/automake.lang.h:3
 msgid "Automake Variable"
 msgstr "Spremenljivka automake"
 
-#: ../data/language-specs/automake.lang.h:3
+#: ../data/language-specs/automake.lang.h:4
 msgid "Primary"
 msgstr "Osnovni"
 
-#: ../data/language-specs/automake.lang.h:4
+#: ../data/language-specs/automake.lang.h:5
 msgid "Secondary"
 msgstr "Drugotni"
 
-#: ../data/language-specs/automake.lang.h:5
+#: ../data/language-specs/automake.lang.h:6
 msgid "Prefix"
 msgstr "Predpona"
 
-#: ../data/language-specs/automake.lang.h:6
+#: ../data/language-specs/automake.lang.h:7
 msgid "Optional Target"
 msgstr "Izbirni cilj"
 
-#: ../data/language-specs/automake.lang.h:7
+#: ../data/language-specs/automake.lang.h:8
 msgid "Built-in Target"
 msgstr "Vgrajeni cilj"
 
-#: ../data/language-specs/automake.lang.h:8
+#: ../data/language-specs/automake.lang.h:9
 msgid "Other Keyword"
 msgstr "Druga ključna beseda"
 
-#: ../data/language-specs/automake.lang.h:9
+#: ../data/language-specs/automake.lang.h:10
 msgid "Substitution"
 msgstr "Zamenjava"
 
@@ -681,6 +768,7 @@ msgstr "Šestnajstiško število"
 #: ../data/language-specs/latex.lang.h:1
 #: ../data/language-specs/mallard.lang.h:1
 #: ../data/language-specs/markdown.lang.h:1
+#: ../data/language-specs/mxml.lang.h:1
 #: ../data/language-specs/t2t.lang.h:1
 #: ../data/language-specs/texinfo.lang.h:1
 #: ../data/language-specs/xml.lang.h:1
@@ -738,21 +826,6 @@ msgstr "Definicija"
 msgid "Special Variable"
 msgstr "Posebna spremenljivka"
 
-#: ../data/language-specs/boo.lang.h:12
-#: ../data/language-specs/csharp.lang.h:13
-#: ../data/language-specs/d.lang.h:9
-#: ../data/language-specs/fsharp.lang.h:21
-#: ../data/language-specs/java.lang.h:13
-#: ../data/language-specs/javascript.lang.h:4
-#: ../data/language-specs/json.lang.h:5
-#: ../data/language-specs/nemerle.lang.h:10
-#: ../data/language-specs/objj.lang.h:9
-#: ../data/language-specs/ooc.lang.h:12
-#: ../data/language-specs/php.lang.h:16
-#: ../data/language-specs/vala.lang.h:9
-msgid "Null Value"
-msgstr "Nična vrednost"
-
 #: ../data/language-specs/boo.lang.h:13
 #: ../data/language-specs/desktop.lang.h:9
 #: ../data/language-specs/d.lang.h:10
@@ -771,31 +844,6 @@ msgstr "Boolova vrednost"
 #: ../data/language-specs/cg.lang.h:2
 msgid "CG Shader Language"
 msgstr "Jezik CG Shader"
-
-#. Any erroneous construct
-#: ../data/language-specs/cg.lang.h:4
-#: ../data/language-specs/c.lang.h:22
-#: ../data/language-specs/cobol.lang.h:11
-#: ../data/language-specs/csharp.lang.h:4
-#: ../data/language-specs/css.lang.h:3
-#: ../data/language-specs/def.lang.h:53
-#: ../data/language-specs/d.lang.h:4
-#: ../data/language-specs/dot.lang.h:4
-#: ../data/language-specs/go.lang.h:4
-#: ../data/language-specs/html.lang.h:8
-#: ../data/language-specs/json.lang.h:7
-#: ../data/language-specs/nemerle.lang.h:4
-#: ../data/language-specs/ocaml.lang.h:20
-#: ../data/language-specs/ooc.lang.h:4
-#: ../data/language-specs/opal.lang.h:6
-#: ../data/language-specs/perl.lang.h:17
-#: ../data/language-specs/php.lang.h:4
-#: ../data/language-specs/prolog.lang.h:9
-#: ../data/language-specs/vala.lang.h:4
-#: ../data/language-specs/verilog.lang.h:6
-#: ../data/language-specs/xml.lang.h:13
-msgid "Error"
-msgstr "Napaka"
 
 #: ../data/language-specs/cg.lang.h:6
 msgid "Bindings"
@@ -1704,32 +1752,62 @@ msgstr "Ubežni znaki"
 msgid ".ini"
 msgstr ".ini"
 
+#: ../data/language-specs/j.lang.h:2
+msgid "J"
+msgstr "J"
+
+#: ../data/language-specs/j.lang.h:3
+msgid "Adverb"
+msgstr "Pridevnik"
+
+#: ../data/language-specs/j.lang.h:5
+msgid "Conjunction"
+msgstr "Konjunkcija"
+
+#: ../data/language-specs/j.lang.h:6
+#: ../data/language-specs/perl.lang.h:15
+msgid "Control"
+msgstr "Nadzor"
+
+#: ../data/language-specs/j.lang.h:8
+msgid "Explicit Argument"
+msgstr "Izrecni argument"
+
+#: ../data/language-specs/j.lang.h:9
+msgid "Global"
+msgstr "Splošno"
+
+#: ../data/language-specs/j.lang.h:10
+msgid "Lab Text"
+msgstr "Besedilo"
+
+#: ../data/language-specs/j.lang.h:11
+msgid "Local"
+msgstr "Krajevno"
+
+#: ../data/language-specs/j.lang.h:12
+msgid "Noun"
+msgstr "Samostalnik"
+
+#: ../data/language-specs/j.lang.h:13
+msgid "Explicit Noun Definition"
+msgstr "Izrecno določilo samostalnika"
+
+#: ../data/language-specs/j.lang.h:15
+msgid "Parens"
+msgstr "Parens"
+
+#: ../data/language-specs/j.lang.h:16
+msgid "Primitive"
+msgstr "Praštevilo"
+
+#: ../data/language-specs/j.lang.h:18
+msgid "Verb"
+msgstr "Glagol"
+
 #: ../data/language-specs/java.lang.h:2
 msgid "Java"
 msgstr "Java"
-
-#. Translators: refered to some specific keywords of the language that
-#. allow to get external functionalities
-#: ../data/language-specs/java.lang.h:8
-#: ../data/language-specs/ooc.lang.h:7
-msgid "External"
-msgstr "Zunanje"
-
-#: ../data/language-specs/java.lang.h:9
-#: ../data/language-specs/ooc.lang.h:8
-msgid "Declaration"
-msgstr "Deklaracija"
-
-#: ../data/language-specs/java.lang.h:11
-#: ../data/language-specs/ooc.lang.h:10
-msgid "Scope Declaration"
-msgstr "Deklaracije obsega"
-
-#: ../data/language-specs/java.lang.h:16
-#: ../data/language-specs/javascript.lang.h:12
-#: ../data/language-specs/ooc.lang.h:18
-msgid "Future Reserved Keywords"
-msgstr "Prihodnje zadržane besede"
 
 #: ../data/language-specs/javascript.lang.h:2
 msgid "JavaScript"
@@ -1925,6 +2003,20 @@ msgstr "Prelom vrstice"
 msgid "Matlab"
 msgstr "Matlab"
 
+#: ../data/language-specs/mxml.lang.h:2
+msgid "MXML"
+msgstr "MXML"
+
+#: ../data/language-specs/mxml.lang.h:3
+#: ../data/language-specs/xml.lang.h:7
+msgid "Element name"
+msgstr "Ime predmeta"
+
+#: ../data/language-specs/mxml.lang.h:4
+#: ../data/language-specs/xml.lang.h:5
+msgid "CDATA delimiter"
+msgstr "CDATA ločevalo"
+
 #: ../data/language-specs/nemerle.lang.h:2
 msgid "Nemerle"
 msgstr "Nemerle"
@@ -2051,10 +2143,6 @@ msgstr "Sistemski ukaz"
 #: ../data/language-specs/perl.lang.h:14
 msgid "File Descriptor"
 msgstr "Opisnik datoteke"
-
-#: ../data/language-specs/perl.lang.h:15
-msgid "Control"
-msgstr "Nadzor"
 
 #: ../data/language-specs/perl.lang.h:18
 msgid "POD"
@@ -2426,17 +2514,9 @@ msgstr "XML"
 msgid "DOCTYPE"
 msgstr "DOCTYPE"
 
-#: ../data/language-specs/xml.lang.h:5
-msgid "CDATA delimiter"
-msgstr "CDATA ločevalo"
-
 #: ../data/language-specs/xml.lang.h:6
 msgid "Processing instruction"
 msgstr "Navodila obdelave"
-
-#: ../data/language-specs/xml.lang.h:7
-msgid "Element name"
-msgstr "Ime predmeta"
 
 #: ../data/language-specs/xml.lang.h:9
 msgid "Attribute value"
