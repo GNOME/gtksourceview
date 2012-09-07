@@ -12,16 +12,17 @@ msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gtksou"
 "rceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-08-07 21:25+0000\n"
-"PO-Revision-Date: 2012-08-08 07:30+0200\n"
+"POT-Creation-Date: 2012-08-20 20:49+0000\n"
+"PO-Revision-Date: 2012-09-07 09:01+0200\n"
 "Last-Translator: Мирослав Николић <miroslavnikolic@rocketmail.com>\n"
 "Language-Team: Serbian <gnom@prevod.org>\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=n==1? 3 : n%10==1 && n%100!=11 ? 0 : "
-"n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Virtaal 0.7.1\n"
 "X-Project-Style: gnome\n"
 
 #: ../data/glade/gtksourceview.xml.in.h:1
@@ -96,7 +97,8 @@ msgstr "Све"
 #: ../data/language-specs/fsharp.lang.h:1 ../data/language-specs/glsl.lang.h:1
 #: ../data/language-specs/go.lang.h:1 ../data/language-specs/haskell.lang.h:1
 #: ../data/language-specs/haskell-literate.lang.h:1
-#: ../data/language-specs/idl.lang.h:1 ../data/language-specs/java.lang.h:1
+#: ../data/language-specs/idl.lang.h:1 ../data/language-specs/j.lang.h:1
+#: ../data/language-specs/java.lang.h:1
 #: ../data/language-specs/makefile.lang.h:1
 #: ../data/language-specs/nemerle.lang.h:1
 #: ../data/language-specs/objc.lang.h:1 ../data/language-specs/objj.lang.h:1
@@ -114,7 +116,6 @@ msgid "Sources"
 msgstr "Извори"
 
 #: ../data/language-specs/actionscript.lang.h:2
-#| msgid "Scripts"
 msgid "ActionScript"
 msgstr "Скрипта радње"
 
@@ -134,8 +135,9 @@ msgstr "Скрипта радње"
 #: ../data/language-specs/go.lang.h:3 ../data/language-specs/gtkrc.lang.h:3
 #: ../data/language-specs/haskell.lang.h:4
 #: ../data/language-specs/html.lang.h:3 ../data/language-specs/idl.lang.h:3
-#: ../data/language-specs/ini.lang.h:3 ../data/language-specs/latex.lang.h:3
-#: ../data/language-specs/lua.lang.h:3 ../data/language-specs/matlab.lang.h:3
+#: ../data/language-specs/ini.lang.h:3 ../data/language-specs/j.lang.h:4
+#: ../data/language-specs/latex.lang.h:3 ../data/language-specs/lua.lang.h:3
+#: ../data/language-specs/matlab.lang.h:3
 #: ../data/language-specs/nemerle.lang.h:3
 #: ../data/language-specs/nsis.lang.h:4 ../data/language-specs/ocaml.lang.h:3
 #: ../data/language-specs/ocl.lang.h:3 ../data/language-specs/octave.lang.h:3
@@ -160,7 +162,8 @@ msgstr "Примедба"
 #: ../data/language-specs/csharp.lang.h:4 ../data/language-specs/css.lang.h:3
 #: ../data/language-specs/def.lang.h:53 ../data/language-specs/d.lang.h:4
 #: ../data/language-specs/dot.lang.h:4 ../data/language-specs/go.lang.h:4
-#: ../data/language-specs/html.lang.h:8 ../data/language-specs/json.lang.h:7
+#: ../data/language-specs/html.lang.h:8 ../data/language-specs/j.lang.h:7
+#: ../data/language-specs/json.lang.h:7
 #: ../data/language-specs/nemerle.lang.h:4
 #: ../data/language-specs/ocaml.lang.h:20 ../data/language-specs/ooc.lang.h:4
 #: ../data/language-specs/opal.lang.h:6 ../data/language-specs/perl.lang.h:17
@@ -187,7 +190,7 @@ msgstr "Грешка"
 #: ../data/language-specs/gtkrc.lang.h:4
 #: ../data/language-specs/haskell.lang.h:9 ../data/language-specs/idl.lang.h:7
 #: ../data/language-specs/imagej.lang.h:10 ../data/language-specs/ini.lang.h:5
-#: ../data/language-specs/java.lang.h:4
+#: ../data/language-specs/j.lang.h:17 ../data/language-specs/java.lang.h:4
 #: ../data/language-specs/javascript.lang.h:13
 #: ../data/language-specs/json.lang.h:4 ../data/language-specs/lua.lang.h:4
 #: ../data/language-specs/matlab.lang.h:4
@@ -320,7 +323,8 @@ msgstr "Логичка вредност"
 #: ../data/language-specs/asp.lang.h:14 ../data/language-specs/boo.lang.h:14
 #: ../data/language-specs/cobol.lang.h:9 ../data/language-specs/def.lang.h:22
 #: ../data/language-specs/desktop.lang.h:8
-#: ../data/language-specs/forth.lang.h:8 ../data/language-specs/java.lang.h:15
+#: ../data/language-specs/forth.lang.h:8 ../data/language-specs/j.lang.h:14
+#: ../data/language-specs/java.lang.h:15
 #: ../data/language-specs/prolog.lang.h:7
 #: ../data/language-specs/vhdl.lang.h:11
 msgid "Number"
@@ -1521,6 +1525,63 @@ msgstr "Знаци завршетка реда"
 msgid ".ini"
 msgstr ".ini"
 
+#: ../data/language-specs/j.lang.h:2
+msgid "J"
+msgstr "J"
+
+#: ../data/language-specs/j.lang.h:3
+msgid "Adverb"
+msgstr "Придев"
+
+#: ../data/language-specs/j.lang.h:5
+#| msgid "Common Function"
+msgid "Conjunction"
+msgstr "Конјункција"
+
+#: ../data/language-specs/j.lang.h:6 ../data/language-specs/perl.lang.h:15
+msgid "Control"
+msgstr "Управљање"
+
+#: ../data/language-specs/j.lang.h:8
+msgid "Explicit Argument"
+msgstr "Изричит аргумент"
+
+#: ../data/language-specs/j.lang.h:9
+#| msgid "Cobalt"
+msgid "Global"
+msgstr "Опште"
+
+#: ../data/language-specs/j.lang.h:10
+#| msgid "Link Text"
+msgid "Lab Text"
+msgstr "Текст натписа"
+
+#: ../data/language-specs/j.lang.h:11
+#| msgid "Location"
+msgid "Local"
+msgstr "Месно"
+
+#: ../data/language-specs/j.lang.h:12
+msgid "Noun"
+msgstr "Именица"
+
+#: ../data/language-specs/j.lang.h:13
+msgid "Explicit Noun Definition"
+msgstr "Изричита одредница именице"
+
+#: ../data/language-specs/j.lang.h:15
+msgid "Parens"
+msgstr "Родитељи"
+
+#: ../data/language-specs/j.lang.h:16
+msgid "Primitive"
+msgstr "Основна реч"
+
+#: ../data/language-specs/j.lang.h:18
+#| msgid "Verbatim"
+msgid "Verb"
+msgstr "Глагол"
+
 #: ../data/language-specs/java.lang.h:2
 msgid "Java"
 msgstr "Јава"
@@ -1539,7 +1600,7 @@ msgstr "Својства"
 
 #: ../data/language-specs/javascript.lang.h:11
 msgid "Constructors"
-msgstr "Конструктори"
+msgstr "Изграђивачи"
 
 #: ../data/language-specs/latex.lang.h:2
 msgid "LaTeX"
@@ -1853,10 +1914,6 @@ msgstr "Системска наредба"
 #: ../data/language-specs/perl.lang.h:14
 msgid "File Descriptor"
 msgstr "Дескриптор датотеке"
-
-#: ../data/language-specs/perl.lang.h:15
-msgid "Control"
-msgstr "Управљање"
 
 #: ../data/language-specs/perl.lang.h:18
 msgid "POD"
