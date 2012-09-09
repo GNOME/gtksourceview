@@ -5,10 +5,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 3.4\n"
+"Project-Id-Version: 3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-16 00:59+0000\n"
-"PO-Revision-Date: 2012-03-16 01:05+0000\n"
+"POT-Creation-Date: 2012-09-09 12:06+0100\n"
+"PO-Revision-Date: 2012-09-09 12:10+0000\n"
 "Last-Translator: Duarte Loreto <happyguy_pt@hotmail.com>\n"
 "Language-Team: Portuguese <gnome_pt@yahoogroups.com>\n"
 "Language: pt\n"
@@ -70,11 +70,13 @@ msgstr "Subsequente"
 #. Translators: "All" is used as a label in thestatus bar of the
 #. popup, telling that all completion pages are shown
 #: ../data/glade/gtksourceview.xml.in.h:14
-#: ../gtksourceview/gtksourcecompletion.c:648
+#: ../gtksourceview/gtksourcecompletion.c:647
 msgid "All"
 msgstr "Todas"
 
+#: ../data/language-specs/actionscript.lang.h:1
 #: ../data/language-specs/ada.lang.h:1 ../data/language-specs/asp.lang.h:1
+#: ../data/language-specs/automake.lang.h:1
 #: ../data/language-specs/bennugd.lang.h:1 ../data/language-specs/boo.lang.h:1
 #: ../data/language-specs/cg.lang.h:1 ../data/language-specs/chdr.lang.h:1
 #: ../data/language-specs/c.lang.h:1 ../data/language-specs/cobol.lang.h:1
@@ -87,7 +89,8 @@ msgstr "Todas"
 #: ../data/language-specs/fsharp.lang.h:1 ../data/language-specs/glsl.lang.h:1
 #: ../data/language-specs/go.lang.h:1 ../data/language-specs/haskell.lang.h:1
 #: ../data/language-specs/haskell-literate.lang.h:1
-#: ../data/language-specs/idl.lang.h:1 ../data/language-specs/java.lang.h:1
+#: ../data/language-specs/idl.lang.h:1 ../data/language-specs/j.lang.h:1
+#: ../data/language-specs/java.lang.h:1
 #: ../data/language-specs/makefile.lang.h:1
 #: ../data/language-specs/nemerle.lang.h:1
 #: ../data/language-specs/objc.lang.h:1 ../data/language-specs/objj.lang.h:1
@@ -104,11 +107,12 @@ msgstr "Todas"
 msgid "Sources"
 msgstr "Código Fonte"
 
-#: ../data/language-specs/ada.lang.h:2
-msgid "Ada"
-msgstr "Ada"
+#: ../data/language-specs/actionscript.lang.h:2
+msgid "ActionScript"
+msgstr "ActionScript"
 
 #. Any comment
+#: ../data/language-specs/actionscript.lang.h:3
 #: ../data/language-specs/ada.lang.h:3 ../data/language-specs/asp.lang.h:3
 #: ../data/language-specs/bennugd.lang.h:3 ../data/language-specs/boo.lang.h:3
 #: ../data/language-specs/cg.lang.h:3 ../data/language-specs/c.lang.h:3
@@ -123,8 +127,9 @@ msgstr "Ada"
 #: ../data/language-specs/go.lang.h:3 ../data/language-specs/gtkrc.lang.h:3
 #: ../data/language-specs/haskell.lang.h:4
 #: ../data/language-specs/html.lang.h:3 ../data/language-specs/idl.lang.h:3
-#: ../data/language-specs/ini.lang.h:3 ../data/language-specs/latex.lang.h:3
-#: ../data/language-specs/lua.lang.h:3 ../data/language-specs/matlab.lang.h:3
+#: ../data/language-specs/ini.lang.h:3 ../data/language-specs/j.lang.h:4
+#: ../data/language-specs/latex.lang.h:3 ../data/language-specs/lua.lang.h:3
+#: ../data/language-specs/matlab.lang.h:3
 #: ../data/language-specs/nemerle.lang.h:3
 #: ../data/language-specs/nsis.lang.h:4 ../data/language-specs/ocaml.lang.h:3
 #: ../data/language-specs/ocl.lang.h:3 ../data/language-specs/octave.lang.h:3
@@ -142,7 +147,27 @@ msgstr "Ada"
 msgid "Comment"
 msgstr "Comentário"
 
+#. Any erroneous construct
+#: ../data/language-specs/actionscript.lang.h:4
+#: ../data/language-specs/cg.lang.h:4 ../data/language-specs/c.lang.h:22
+#: ../data/language-specs/cobol.lang.h:11
+#: ../data/language-specs/csharp.lang.h:4 ../data/language-specs/css.lang.h:3
+#: ../data/language-specs/def.lang.h:53 ../data/language-specs/d.lang.h:4
+#: ../data/language-specs/dot.lang.h:4 ../data/language-specs/go.lang.h:4
+#: ../data/language-specs/html.lang.h:8 ../data/language-specs/j.lang.h:7
+#: ../data/language-specs/json.lang.h:7
+#: ../data/language-specs/nemerle.lang.h:4
+#: ../data/language-specs/ocaml.lang.h:20 ../data/language-specs/ooc.lang.h:4
+#: ../data/language-specs/opal.lang.h:6 ../data/language-specs/perl.lang.h:17
+#: ../data/language-specs/php.lang.h:4 ../data/language-specs/prolog.lang.h:9
+#: ../data/language-specs/vala.lang.h:4
+#: ../data/language-specs/verilog.lang.h:6
+#: ../data/language-specs/xml.lang.h:13
+msgid "Error"
+msgstr "Erro"
+
 #. A string constant: "this is a string"
+#: ../data/language-specs/actionscript.lang.h:5
 #: ../data/language-specs/ada.lang.h:4 ../data/language-specs/asp.lang.h:4
 #: ../data/language-specs/boo.lang.h:5 ../data/language-specs/c.lang.h:4
 #: ../data/language-specs/cobol.lang.h:8
@@ -157,10 +182,9 @@ msgstr "Comentário"
 #: ../data/language-specs/gtkrc.lang.h:4
 #: ../data/language-specs/haskell.lang.h:9 ../data/language-specs/idl.lang.h:7
 #: ../data/language-specs/imagej.lang.h:10 ../data/language-specs/ini.lang.h:5
-#: ../data/language-specs/java.lang.h:4
+#: ../data/language-specs/j.lang.h:17 ../data/language-specs/java.lang.h:4
 #: ../data/language-specs/javascript.lang.h:13
 #: ../data/language-specs/json.lang.h:4 ../data/language-specs/lua.lang.h:4
-#: ../data/language-specs/matlab.lang.h:4
 #: ../data/language-specs/nemerle.lang.h:7
 #: ../data/language-specs/nsis.lang.h:5 ../data/language-specs/objc.lang.h:6
 #: ../data/language-specs/objj.lang.h:8 ../data/language-specs/ocaml.lang.h:8
@@ -183,7 +207,32 @@ msgstr "Comentário"
 msgid "String"
 msgstr "Expressão"
 
+#. Translators: refered to some specific keywords of the language that
+#. allow to get external functionalities
+#: ../data/language-specs/actionscript.lang.h:6
+#: ../data/language-specs/java.lang.h:8 ../data/language-specs/ooc.lang.h:7
+msgid "External"
+msgstr "Externo"
+
+#: ../data/language-specs/actionscript.lang.h:7
+#: ../data/language-specs/java.lang.h:9 ../data/language-specs/ooc.lang.h:8
+msgid "Declaration"
+msgstr "Declaração"
+
+#: ../data/language-specs/actionscript.lang.h:8
+#: ../data/language-specs/ada.lang.h:8 ../data/language-specs/cg.lang.h:10
+#: ../data/language-specs/c.lang.h:12 ../data/language-specs/java.lang.h:10
+#: ../data/language-specs/ooc.lang.h:9
+msgid "Storage Class"
+msgstr "Classe de Armazenamento"
+
+#: ../data/language-specs/actionscript.lang.h:9
+#: ../data/language-specs/java.lang.h:11 ../data/language-specs/ooc.lang.h:10
+msgid "Scope Declaration"
+msgstr "Declaração de Âmbito"
+
 #. keywords: "if", "for", "while", etc.
+#: ../data/language-specs/actionscript.lang.h:10
 #: ../data/language-specs/ada.lang.h:5 ../data/language-specs/asp.lang.h:6
 #: ../data/language-specs/awk.lang.h:3 ../data/language-specs/bennugd.lang.h:7
 #: ../data/language-specs/boo.lang.h:10 ../data/language-specs/cg.lang.h:8
@@ -197,13 +246,14 @@ msgstr "Expressão"
 #: ../data/language-specs/forth.lang.h:6
 #: ../data/language-specs/fortran.lang.h:5
 #: ../data/language-specs/fsharp.lang.h:8 ../data/language-specs/gap.lang.h:5
-#: ../data/language-specs/glsl.lang.h:5 ../data/language-specs/go.lang.h:8
+#: ../data/language-specs/glsl.lang.h:5 ../data/language-specs/go.lang.h:7
 #: ../data/language-specs/gtkrc.lang.h:5
 #: ../data/language-specs/haskell.lang.h:7 ../data/language-specs/idl.lang.h:6
 #: ../data/language-specs/imagej.lang.h:8 ../data/language-specs/ini.lang.h:6
 #: ../data/language-specs/java.lang.h:12
 #: ../data/language-specs/javascript.lang.h:7
-#: ../data/language-specs/lua.lang.h:5 ../data/language-specs/nemerle.lang.h:8
+#: ../data/language-specs/lua.lang.h:5 ../data/language-specs/matlab.lang.h:4
+#: ../data/language-specs/nemerle.lang.h:8
 #: ../data/language-specs/objc.lang.h:3 ../data/language-specs/objj.lang.h:4
 #: ../data/language-specs/ocaml.lang.h:9 ../data/language-specs/ocl.lang.h:5
 #: ../data/language-specs/octave.lang.h:13
@@ -227,28 +277,24 @@ msgstr "Expressão"
 msgid "Keyword"
 msgstr "Palavra-Chave"
 
-#. A decimal number: 1234
-#: ../data/language-specs/ada.lang.h:6
-#: ../data/language-specs/bennugd.lang.h:10
-#: ../data/language-specs/cg.lang.h:13 ../data/language-specs/c.lang.h:15
-#: ../data/language-specs/csharp.lang.h:15
-#: ../data/language-specs/def.lang.h:26 ../data/language-specs/d.lang.h:12
-#: ../data/language-specs/eiffel.lang.h:15
-#: ../data/language-specs/erlang.lang.h:9
-#: ../data/language-specs/fsharp.lang.h:6 ../data/language-specs/go.lang.h:13
-#: ../data/language-specs/nemerle.lang.h:13
-#: ../data/language-specs/ocaml.lang.h:7 ../data/language-specs/ooc.lang.h:15
-#: ../data/language-specs/opal.lang.h:10 ../data/language-specs/php.lang.h:19
-#: ../data/language-specs/python.lang.h:13
-#: ../data/language-specs/python3.lang.h:12
-#: ../data/language-specs/ruby.lang.h:11
-msgid "Decimal number"
-msgstr "Número decimal"
+#: ../data/language-specs/actionscript.lang.h:11
+#: ../data/language-specs/boo.lang.h:12
+#: ../data/language-specs/csharp.lang.h:13 ../data/language-specs/d.lang.h:9
+#: ../data/language-specs/fsharp.lang.h:21
+#: ../data/language-specs/java.lang.h:13
+#: ../data/language-specs/javascript.lang.h:4
+#: ../data/language-specs/json.lang.h:5
+#: ../data/language-specs/nemerle.lang.h:10
+#: ../data/language-specs/objj.lang.h:9 ../data/language-specs/ooc.lang.h:12
+#: ../data/language-specs/php.lang.h:16 ../data/language-specs/vala.lang.h:9
+msgid "Null Value"
+msgstr "Valor Nulo"
 
 #. A boolean constant: TRUE, false
+#: ../data/language-specs/actionscript.lang.h:12
 #: ../data/language-specs/ada.lang.h:7 ../data/language-specs/asp.lang.h:13
 #: ../data/language-specs/bennugd.lang.h:12
-#: ../data/language-specs/cg.lang.h:16 ../data/language-specs/c.lang.h:18
+#: ../data/language-specs/cg.lang.h:16 ../data/language-specs/c.lang.h:19
 #: ../data/language-specs/csharp.lang.h:14
 #: ../data/language-specs/def.lang.h:34
 #: ../data/language-specs/fsharp.lang.h:19 ../data/language-specs/go.lang.h:16
@@ -264,22 +310,36 @@ msgstr "Número decimal"
 msgid "Boolean value"
 msgstr "Valor boleano"
 
-#: ../data/language-specs/ada.lang.h:8 ../data/language-specs/cg.lang.h:10
-#: ../data/language-specs/c.lang.h:11 ../data/language-specs/go.lang.h:10
-#: ../data/language-specs/java.lang.h:10 ../data/language-specs/ooc.lang.h:9
-msgid "Storage Class"
-msgstr "Classe de Armazenamento"
+#. A generic number constant
+#: ../data/language-specs/actionscript.lang.h:13
+#: ../data/language-specs/asp.lang.h:14 ../data/language-specs/boo.lang.h:14
+#: ../data/language-specs/cobol.lang.h:9 ../data/language-specs/def.lang.h:22
+#: ../data/language-specs/desktop.lang.h:8
+#: ../data/language-specs/forth.lang.h:8 ../data/language-specs/j.lang.h:14
+#: ../data/language-specs/java.lang.h:15
+#: ../data/language-specs/prolog.lang.h:7
+#: ../data/language-specs/vhdl.lang.h:11
+msgid "Number"
+msgstr "Número"
 
+#: ../data/language-specs/actionscript.lang.h:14
+#: ../data/language-specs/java.lang.h:16
+#: ../data/language-specs/javascript.lang.h:12
+#: ../data/language-specs/ooc.lang.h:18
+msgid "Future Reserved Keywords"
+msgstr "Palavras-Chave Reservadas Futuras"
+
+#: ../data/language-specs/actionscript.lang.h:15
 #: ../data/language-specs/ada.lang.h:9 ../data/language-specs/asp.lang.h:11
 #: ../data/language-specs/bennugd.lang.h:8 ../data/language-specs/boo.lang.h:8
-#: ../data/language-specs/cg.lang.h:9 ../data/language-specs/c.lang.h:10
+#: ../data/language-specs/cg.lang.h:9 ../data/language-specs/c.lang.h:11
 #: ../data/language-specs/cpp.lang.h:4 ../data/language-specs/csharp.lang.h:5
 #: ../data/language-specs/cuda.lang.h:4 ../data/language-specs/d.lang.h:7
 #: ../data/language-specs/eiffel.lang.h:8
 #: ../data/language-specs/forth.lang.h:7
 #: ../data/language-specs/fortran.lang.h:9
 #: ../data/language-specs/fsharp.lang.h:11
-#: ../data/language-specs/glsl.lang.h:4 ../data/language-specs/go.lang.h:9
+#: ../data/language-specs/glsl.lang.h:4 ../data/language-specs/go.lang.h:8
 #: ../data/language-specs/gtkrc.lang.h:7
 #: ../data/language-specs/haskell.lang.h:8 ../data/language-specs/idl.lang.h:4
 #: ../data/language-specs/ini.lang.h:9 ../data/language-specs/java.lang.h:17
@@ -296,6 +356,28 @@ msgstr "Classe de Armazenamento"
 #: ../data/language-specs/vbnet.lang.h:7
 msgid "Data Type"
 msgstr "Tipo de Dados"
+
+#: ../data/language-specs/ada.lang.h:2
+msgid "Ada"
+msgstr "Ada"
+
+#. A decimal number: 1234
+#: ../data/language-specs/ada.lang.h:6
+#: ../data/language-specs/bennugd.lang.h:10
+#: ../data/language-specs/cg.lang.h:13 ../data/language-specs/c.lang.h:16
+#: ../data/language-specs/csharp.lang.h:15
+#: ../data/language-specs/def.lang.h:26 ../data/language-specs/d.lang.h:12
+#: ../data/language-specs/eiffel.lang.h:15
+#: ../data/language-specs/erlang.lang.h:10
+#: ../data/language-specs/fsharp.lang.h:6 ../data/language-specs/go.lang.h:13
+#: ../data/language-specs/nemerle.lang.h:13
+#: ../data/language-specs/ocaml.lang.h:7 ../data/language-specs/ooc.lang.h:15
+#: ../data/language-specs/opal.lang.h:10 ../data/language-specs/php.lang.h:19
+#: ../data/language-specs/python.lang.h:13
+#: ../data/language-specs/python3.lang.h:12
+#: ../data/language-specs/ruby.lang.h:11
+msgid "Decimal number"
+msgstr "Número decimal"
 
 #: ../data/language-specs/ada.lang.h:10 ../data/language-specs/asp.lang.h:5
 #: ../data/language-specs/bennugd.lang.h:4 ../data/language-specs/cg.lang.h:5
@@ -323,9 +405,9 @@ msgstr "Número real"
 
 #. map to nothing
 #: ../data/language-specs/ada.lang.h:13 ../data/language-specs/cg.lang.h:11
-#: ../data/language-specs/c.lang.h:13 ../data/language-specs/csharp.lang.h:8
+#: ../data/language-specs/c.lang.h:14 ../data/language-specs/csharp.lang.h:8
 #: ../data/language-specs/eiffel.lang.h:12
-#: ../data/language-specs/fsharp.lang.h:18 ../data/language-specs/go.lang.h:11
+#: ../data/language-specs/fsharp.lang.h:18 ../data/language-specs/go.lang.h:10
 #: ../data/language-specs/haskell.lang.h:11
 #: ../data/language-specs/java.lang.h:3
 #: ../data/language-specs/javascript.lang.h:3
@@ -359,7 +441,7 @@ msgstr "Função"
 
 #. Operators: "+", "*", etc.
 #: ../data/language-specs/asp.lang.h:8 ../data/language-specs/bennugd.lang.h:6
-#: ../data/language-specs/cmake.lang.h:6
+#: ../data/language-specs/c.lang.h:10 ../data/language-specs/cmake.lang.h:6
 #: ../data/language-specs/cobol.lang.h:10 ../data/language-specs/def.lang.h:45
 #: ../data/language-specs/erlang.lang.h:5
 #: ../data/language-specs/imagej.lang.h:9 ../data/language-specs/nsis.lang.h:3
@@ -384,49 +466,39 @@ msgstr "Constantes VBScript e ADO"
 msgid "Special constant"
 msgstr "Constante especial"
 
-#. A generic number constant
-#: ../data/language-specs/asp.lang.h:14 ../data/language-specs/boo.lang.h:14
-#: ../data/language-specs/cobol.lang.h:9 ../data/language-specs/def.lang.h:22
-#: ../data/language-specs/desktop.lang.h:8
-#: ../data/language-specs/forth.lang.h:8 ../data/language-specs/java.lang.h:15
-#: ../data/language-specs/prolog.lang.h:7
-#: ../data/language-specs/vhdl.lang.h:11
-msgid "Number"
-msgstr "Número"
-
-#: ../data/language-specs/automake.lang.h:1
+#: ../data/language-specs/automake.lang.h:2
 msgid "Automake"
 msgstr "Automake"
 
-#: ../data/language-specs/automake.lang.h:2
+#: ../data/language-specs/automake.lang.h:3
 msgid "Automake Variable"
 msgstr "Variável Automake"
 
-#: ../data/language-specs/automake.lang.h:3
+#: ../data/language-specs/automake.lang.h:4
 msgid "Primary"
 msgstr "Primária"
 
-#: ../data/language-specs/automake.lang.h:4
+#: ../data/language-specs/automake.lang.h:5
 msgid "Secondary"
 msgstr "Secundária"
 
-#: ../data/language-specs/automake.lang.h:5
+#: ../data/language-specs/automake.lang.h:6
 msgid "Prefix"
 msgstr "Prefixo"
 
-#: ../data/language-specs/automake.lang.h:6
+#: ../data/language-specs/automake.lang.h:7
 msgid "Optional Target"
 msgstr "Alvo Opcional"
 
-#: ../data/language-specs/automake.lang.h:7
+#: ../data/language-specs/automake.lang.h:8
 msgid "Built-in Target"
 msgstr "Alvo Embutido"
 
-#: ../data/language-specs/automake.lang.h:8
+#: ../data/language-specs/automake.lang.h:9
 msgid "Other Keyword"
 msgstr "Outra Palavra-Chave"
 
-#: ../data/language-specs/automake.lang.h:9
+#: ../data/language-specs/automake.lang.h:10
 msgid "Substitution"
 msgstr "Substituição"
 
@@ -466,7 +538,8 @@ msgid "Variable"
 msgstr "Variável"
 
 #: ../data/language-specs/awk.lang.h:6 ../data/language-specs/boo.lang.h:15
-#: ../data/language-specs/glsl.lang.h:6 ../data/language-specs/perl.lang.h:8
+#: ../data/language-specs/glsl.lang.h:6 ../data/language-specs/go.lang.h:18
+#: ../data/language-specs/perl.lang.h:8
 #: ../data/language-specs/python.lang.h:18
 #: ../data/language-specs/python3.lang.h:17
 msgid "Builtin Function"
@@ -484,9 +557,9 @@ msgstr "Identificador"
 
 #. A floating point constant: 2.3e10
 #: ../data/language-specs/bennugd.lang.h:9 ../data/language-specs/cg.lang.h:12
-#: ../data/language-specs/c.lang.h:14 ../data/language-specs/def.lang.h:24
-#: ../data/language-specs/d.lang.h:11 ../data/language-specs/erlang.lang.h:8
-#: ../data/language-specs/go.lang.h:12 ../data/language-specs/json.lang.h:9
+#: ../data/language-specs/c.lang.h:15 ../data/language-specs/def.lang.h:24
+#: ../data/language-specs/d.lang.h:11 ../data/language-specs/erlang.lang.h:9
+#: ../data/language-specs/go.lang.h:11 ../data/language-specs/json.lang.h:9
 #: ../data/language-specs/nemerle.lang.h:12
 #: ../data/language-specs/ooc.lang.h:14 ../data/language-specs/php.lang.h:18
 #: ../data/language-specs/python.lang.h:12
@@ -496,7 +569,7 @@ msgid "Floating point number"
 msgstr "Número de vírgula flutuante"
 
 #: ../data/language-specs/bennugd.lang.h:11
-#: ../data/language-specs/cg.lang.h:15 ../data/language-specs/c.lang.h:17
+#: ../data/language-specs/cg.lang.h:15 ../data/language-specs/c.lang.h:18
 #: ../data/language-specs/csharp.lang.h:16 ../data/language-specs/d.lang.h:15
 #: ../data/language-specs/eiffel.lang.h:16 ../data/language-specs/go.lang.h:15
 #: ../data/language-specs/nemerle.lang.h:16
@@ -511,8 +584,9 @@ msgstr "Número hexadecimal"
 #: ../data/language-specs/html.lang.h:1 ../data/language-specs/latex.lang.h:1
 #: ../data/language-specs/mallard.lang.h:1
 #: ../data/language-specs/markdown.lang.h:1
-#: ../data/language-specs/t2t.lang.h:1 ../data/language-specs/texinfo.lang.h:1
-#: ../data/language-specs/xml.lang.h:1 ../data/language-specs/xslt.lang.h:1
+#: ../data/language-specs/mxml.lang.h:1 ../data/language-specs/t2t.lang.h:1
+#: ../data/language-specs/texinfo.lang.h:1 ../data/language-specs/xml.lang.h:1
+#: ../data/language-specs/xslt.lang.h:1
 #: ../gtksourceview/gtksourcecompletionitem.c:242
 #: ../gtksourceview/gtksourcegutterrenderertext.c:395
 msgid "Markup"
@@ -561,18 +635,6 @@ msgstr "Definição"
 msgid "Special Variable"
 msgstr "Variável Especial"
 
-#: ../data/language-specs/boo.lang.h:12
-#: ../data/language-specs/csharp.lang.h:13 ../data/language-specs/d.lang.h:9
-#: ../data/language-specs/fsharp.lang.h:21
-#: ../data/language-specs/java.lang.h:13
-#: ../data/language-specs/javascript.lang.h:4
-#: ../data/language-specs/json.lang.h:5
-#: ../data/language-specs/nemerle.lang.h:10
-#: ../data/language-specs/objj.lang.h:9 ../data/language-specs/ooc.lang.h:12
-#: ../data/language-specs/php.lang.h:16 ../data/language-specs/vala.lang.h:9
-msgid "Null Value"
-msgstr "Valor Nulo"
-
 #: ../data/language-specs/boo.lang.h:13
 #: ../data/language-specs/desktop.lang.h:9 ../data/language-specs/d.lang.h:10
 #: ../data/language-specs/imagej.lang.h:4
@@ -590,32 +652,16 @@ msgstr "Boleano"
 msgid "CG Shader Language"
 msgstr "Linguagem de Sombreados CG"
 
-#. Any erroneous construct
-#: ../data/language-specs/cg.lang.h:4 ../data/language-specs/cobol.lang.h:11
-#: ../data/language-specs/csharp.lang.h:4 ../data/language-specs/css.lang.h:3
-#: ../data/language-specs/def.lang.h:53 ../data/language-specs/d.lang.h:4
-#: ../data/language-specs/dot.lang.h:4 ../data/language-specs/go.lang.h:4
-#: ../data/language-specs/html.lang.h:8 ../data/language-specs/json.lang.h:7
-#: ../data/language-specs/nemerle.lang.h:4
-#: ../data/language-specs/ocaml.lang.h:20 ../data/language-specs/ooc.lang.h:4
-#: ../data/language-specs/opal.lang.h:6 ../data/language-specs/perl.lang.h:17
-#: ../data/language-specs/php.lang.h:4 ../data/language-specs/prolog.lang.h:9
-#: ../data/language-specs/vala.lang.h:4
-#: ../data/language-specs/verilog.lang.h:6
-#: ../data/language-specs/xml.lang.h:13
-msgid "Error"
-msgstr "Erro"
-
 #: ../data/language-specs/cg.lang.h:6
 msgid "Bindings"
 msgstr "Ligações"
 
 #: ../data/language-specs/cg.lang.h:7 ../data/language-specs/c.lang.h:7
-#: ../data/language-specs/go.lang.h:6 ../data/language-specs/objj.lang.h:7
+#: ../data/language-specs/objj.lang.h:7
 msgid "Included File"
 msgstr "Ficheiro Incluído"
 
-#: ../data/language-specs/cg.lang.h:14 ../data/language-specs/c.lang.h:16
+#: ../data/language-specs/cg.lang.h:14 ../data/language-specs/c.lang.h:17
 #: ../data/language-specs/d.lang.h:14 ../data/language-specs/go.lang.h:14
 #: ../data/language-specs/nemerle.lang.h:15
 #: ../data/language-specs/ooc.lang.h:16 ../data/language-specs/php.lang.h:20
@@ -627,7 +673,7 @@ msgid "Swizzle operator"
 msgstr "Operador swizzle"
 
 #. Translators: functions that are provided in the language
-#: ../data/language-specs/cg.lang.h:19 ../data/language-specs/erlang.lang.h:11
+#: ../data/language-specs/cg.lang.h:19 ../data/language-specs/erlang.lang.h:12
 #: ../data/language-specs/imagej.lang.h:3
 #: ../data/language-specs/matlab.lang.h:5
 #: ../data/language-specs/octave.lang.h:16
@@ -658,6 +704,7 @@ msgstr "Embutido"
 #: ../data/language-specs/nsis.lang.h:1 ../data/language-specs/ocl.lang.h:1
 #: ../data/language-specs/pkgconfig.lang.h:1
 #: ../data/language-specs/po.lang.h:1 ../data/language-specs/protobuf.lang.h:1
+#: ../data/language-specs/puppet.lang.h:1
 #: ../data/language-specs/rpmspec.lang.h:1 ../data/language-specs/sh.lang.h:10
 #: ../data/language-specs/texinfo.lang.h:5
 #: ../data/language-specs/yacc.lang.h:1
@@ -710,23 +757,24 @@ msgstr "Definições Comuns"
 
 #. A character constant: 'c'
 #: ../data/language-specs/c.lang.h:8 ../data/language-specs/csharp.lang.h:7
-#: ../data/language-specs/def.lang.h:15 ../data/language-specs/gap.lang.h:4
-#: ../data/language-specs/go.lang.h:7 ../data/language-specs/haskell.lang.h:10
+#: ../data/language-specs/def.lang.h:15 ../data/language-specs/erlang.lang.h:8
+#: ../data/language-specs/gap.lang.h:4 ../data/language-specs/go.lang.h:6
+#: ../data/language-specs/haskell.lang.h:10
 #: ../data/language-specs/java.lang.h:5
 #: ../data/language-specs/nemerle.lang.h:6 ../data/language-specs/sml.lang.h:6
 #: ../data/language-specs/vhdl.lang.h:5
 msgid "Character"
 msgstr "Caracter"
 
-#: ../data/language-specs/c.lang.h:12
+#: ../data/language-specs/c.lang.h:13 ../data/language-specs/go.lang.h:9
 msgid "printf Conversion"
 msgstr "Conversão printf"
 
-#: ../data/language-specs/c.lang.h:19
+#: ../data/language-specs/c.lang.h:20
 msgid "Standard stream"
 msgstr "Fluxo padrão"
 
-#: ../data/language-specs/c.lang.h:20
+#: ../data/language-specs/c.lang.h:21
 msgid "Signal name"
 msgstr "Nome do sinal"
 
@@ -1110,7 +1158,7 @@ msgstr "Erlang"
 msgid "Atom"
 msgstr "Atom"
 
-#: ../data/language-specs/erlang.lang.h:10
+#: ../data/language-specs/erlang.lang.h:11
 #: ../data/language-specs/fsharp.lang.h:4
 #: ../data/language-specs/ocaml.lang.h:5
 #: ../data/language-specs/octave.lang.h:11 ../data/language-specs/sml.lang.h:9
@@ -1119,7 +1167,7 @@ msgstr "Atom"
 msgid "Base-N Integer"
 msgstr "Inteiro Base-N"
 
-#: ../data/language-specs/erlang.lang.h:12
+#: ../data/language-specs/erlang.lang.h:13
 #: ../data/language-specs/forth.lang.h:11
 #: ../data/language-specs/systemverilog.lang.h:3
 #: ../data/language-specs/verilog.lang.h:7
@@ -1266,7 +1314,7 @@ msgstr "Linha de Comando"
 msgid "OpenGL Shading Language"
 msgstr "Linguagem de Sombreados OpenGL"
 
-#: ../data/language-specs/glsl.lang.h:7
+#: ../data/language-specs/glsl.lang.h:7 ../data/language-specs/go.lang.h:17
 #: ../data/language-specs/python.lang.h:16
 #: ../data/language-specs/python3.lang.h:15
 msgid "Builtin Constant"
@@ -1279,6 +1327,10 @@ msgstr "Palavras Reservadas"
 #: ../data/language-specs/go.lang.h:2
 msgid "Go"
 msgstr "Ir"
+
+#: ../data/language-specs/go.lang.h:12
+msgid "Imaginary number"
+msgstr "Número imaginário"
 
 #: ../data/language-specs/gtk-doc.lang.h:2
 msgid "gtk-doc"
@@ -1465,29 +1517,61 @@ msgstr "Caracteres Escapados"
 msgid ".ini"
 msgstr ".ini"
 
+#: ../data/language-specs/j.lang.h:2
+msgid "J"
+msgstr "J"
+
+#: ../data/language-specs/j.lang.h:3
+msgid "Adverb"
+msgstr "Adverb"
+
+#: ../data/language-specs/j.lang.h:5
+msgid "Conjunction"
+msgstr "Conjunção"
+
+#: ../data/language-specs/j.lang.h:6 ../data/language-specs/perl.lang.h:15
+msgid "Control"
+msgstr "Controlo"
+
+#: ../data/language-specs/j.lang.h:8
+msgid "Explicit Argument"
+msgstr "Argumento Explícito"
+
+#: ../data/language-specs/j.lang.h:9
+msgid "Global"
+msgstr "Global"
+
+#: ../data/language-specs/j.lang.h:10
+msgid "Lab Text"
+msgstr "Texto de Lab"
+
+#: ../data/language-specs/j.lang.h:11
+msgid "Local"
+msgstr "Local"
+
+#: ../data/language-specs/j.lang.h:12
+msgid "Noun"
+msgstr "Nome"
+
+#: ../data/language-specs/j.lang.h:13
+msgid "Explicit Noun Definition"
+msgstr "Definição Explícita de Nome"
+
+#: ../data/language-specs/j.lang.h:15
+msgid "Parens"
+msgstr "Parens"
+
+#: ../data/language-specs/j.lang.h:16
+msgid "Primitive"
+msgstr "Primitiva"
+
+#: ../data/language-specs/j.lang.h:18
+msgid "Verb"
+msgstr "Verbo"
+
 #: ../data/language-specs/java.lang.h:2
 msgid "Java"
 msgstr "Java"
-
-#. Translators: refered to some specific keywords of the language that
-#. allow to get external functionalities
-#: ../data/language-specs/java.lang.h:8 ../data/language-specs/ooc.lang.h:7
-msgid "External"
-msgstr "Externo"
-
-#: ../data/language-specs/java.lang.h:9 ../data/language-specs/ooc.lang.h:8
-msgid "Declaration"
-msgstr "Declaração"
-
-#: ../data/language-specs/java.lang.h:11 ../data/language-specs/ooc.lang.h:10
-msgid "Scope Declaration"
-msgstr "Declaração de Âmbito"
-
-#: ../data/language-specs/java.lang.h:16
-#: ../data/language-specs/javascript.lang.h:12
-#: ../data/language-specs/ooc.lang.h:18
-msgid "Future Reserved Keywords"
-msgstr "Palavras-Chave Reservadas Futuras"
 
 #: ../data/language-specs/javascript.lang.h:2
 msgid "JavaScript"
@@ -1680,6 +1764,18 @@ msgstr "Quebra de Linha"
 msgid "Matlab"
 msgstr "Matlab"
 
+#: ../data/language-specs/mxml.lang.h:2
+msgid "MXML"
+msgstr "MXML"
+
+#: ../data/language-specs/mxml.lang.h:3 ../data/language-specs/xml.lang.h:7
+msgid "Element name"
+msgstr "Nome do elemento"
+
+#: ../data/language-specs/mxml.lang.h:4 ../data/language-specs/xml.lang.h:5
+msgid "CDATA delimiter"
+msgstr "Delimitador CDATA"
+
 #: ../data/language-specs/nemerle.lang.h:2
 msgid "Nemerle"
 msgstr "Nemerle"
@@ -1805,10 +1901,6 @@ msgstr "Comando de Sistema"
 msgid "File Descriptor"
 msgstr "Descritor de Ficheiro"
 
-#: ../data/language-specs/perl.lang.h:15
-msgid "Control"
-msgstr "Controlo"
-
 #: ../data/language-specs/perl.lang.h:18
 msgid "POD"
 msgstr "POD"
@@ -1854,6 +1946,38 @@ msgstr "Aproximada"
 #: ../data/language-specs/prolog.lang.h:2
 msgid "Prolog"
 msgstr "Prolog"
+
+#: ../data/language-specs/puppet.lang.h:2
+msgid "Puppet"
+msgstr "Puppet"
+
+#: ../data/language-specs/puppet.lang.h:3
+msgid "Resources"
+msgstr "Recursos"
+
+#: ../data/language-specs/puppet.lang.h:4
+msgid "Parameters"
+msgstr "Parâmetros"
+
+#: ../data/language-specs/puppet.lang.h:5
+msgid "Metaparameters"
+msgstr "Metaparâmetros"
+
+#: ../data/language-specs/puppet.lang.h:6
+msgid "Functions"
+msgstr "Funções"
+
+#: ../data/language-specs/puppet.lang.h:7
+msgid "Values"
+msgstr "Valores"
+
+#: ../data/language-specs/puppet.lang.h:8
+msgid "Variables"
+msgstr "Variáveis"
+
+#: ../data/language-specs/puppet.lang.h:9
+msgid "Class names"
+msgstr "Nomes de classes"
 
 #: ../data/language-specs/python.lang.h:2
 msgid "Python"
@@ -2144,17 +2268,9 @@ msgstr "XML"
 msgid "DOCTYPE"
 msgstr "DOCTYPE"
 
-#: ../data/language-specs/xml.lang.h:5
-msgid "CDATA delimiter"
-msgstr "Delimitador CDATA"
-
 #: ../data/language-specs/xml.lang.h:6
 msgid "Processing instruction"
 msgstr "Instrução de processamento"
-
-#: ../data/language-specs/xml.lang.h:7
-msgid "Element name"
-msgstr "Nome do elemento"
 
 #: ../data/language-specs/xml.lang.h:9
 msgid "Attribute value"
@@ -2347,91 +2463,99 @@ msgstr "Gestor de desfazer"
 msgid "The buffer undo manager"
 msgstr "O gestor do buffer de desfazer"
 
-#: ../gtksourceview/gtksourcecompletion.c:935
-#: ../gtksourceview/gtksourcecompletion.c:958
+#: ../gtksourceview/gtksourcecompletion.c:934
+#: ../gtksourceview/gtksourcecompletion.c:957
 msgid "No extra information available"
 msgstr "Nenhuma informação adicional disponível"
 
-#: ../gtksourceview/gtksourcecompletion.c:2224
+#: ../gtksourceview/gtksourcecompletion.c:2223
 #: ../gtksourceview/gtksourcegutter.c:547
 msgid "View"
 msgstr "Ver"
 
-#: ../gtksourceview/gtksourcecompletion.c:2225
+#: ../gtksourceview/gtksourcecompletion.c:2224
 msgid "The GtkSourceView bound to the completion"
 msgstr "O objecto GtkSourceView associado ao completar"
 
-#: ../gtksourceview/gtksourcecompletion.c:2240
+#: ../gtksourceview/gtksourcecompletion.c:2239
 msgid "Remember Info Visibility"
 msgstr "Recordar a Visibilidade da Informação"
 
-#: ../gtksourceview/gtksourcecompletion.c:2241
+#: ../gtksourceview/gtksourcecompletion.c:2240
 msgid "Remember the last info window visibility state"
 msgstr "Recordar o estado de visibilidade da última janela de informação"
 
-#: ../gtksourceview/gtksourcecompletion.c:2254
+#: ../gtksourceview/gtksourcecompletion.c:2253
 msgid "Select on Show"
 msgstr "Seleccionar ao Apresentar"
 
-#: ../gtksourceview/gtksourcecompletion.c:2255
+#: ../gtksourceview/gtksourcecompletion.c:2254
 msgid "Select first proposal when completion is shown"
 msgstr "Seleccionar a primeira proposta quando o completar é apresentado"
 
-#: ../gtksourceview/gtksourcecompletion.c:2269
+#: ../gtksourceview/gtksourcecompletion.c:2268
 msgid "Show Headers"
 msgstr "Apresentar os Cabeçalhos"
 
-#: ../gtksourceview/gtksourcecompletion.c:2270
+#: ../gtksourceview/gtksourcecompletion.c:2269
 msgid ""
 "Show provider headers when proposals from multiple providers are available"
 msgstr ""
 "Apresentar os cabeçalhos dos fornecedores quando estão disponíveis propostas "
 "de vários fornecedores"
 
-#: ../gtksourceview/gtksourcecompletion.c:2284
+#: ../gtksourceview/gtksourcecompletion.c:2283
 msgid "Show Icons"
 msgstr "Apresentar os Ícones"
 
-#: ../gtksourceview/gtksourcecompletion.c:2285
+#: ../gtksourceview/gtksourcecompletion.c:2284
 msgid "Show provider and proposal icons in the completion popup"
 msgstr ""
 "Apresentar os ícones dos fornecedores e propostas no popup de completar"
 
-#: ../gtksourceview/gtksourcecompletion.c:2298
+#: ../gtksourceview/gtksourcecompletion.c:2299
 msgid "Accelerators"
 msgstr "Aceleradores"
 
-#: ../gtksourceview/gtksourcecompletion.c:2299
+#: ../gtksourceview/gtksourcecompletion.c:2300
 msgid "Number of proposal accelerators to show"
 msgstr "Número de propostas de aceleração a apresentar"
 
-#: ../gtksourceview/gtksourcecompletion.c:2315
+#: ../gtksourceview/gtksourcecompletion.c:2316
 msgid "Auto Complete Delay"
 msgstr "Espera no Completar Automaticamente"
 
-#: ../gtksourceview/gtksourcecompletion.c:2316
+#: ../gtksourceview/gtksourcecompletion.c:2317
 msgid "Completion popup delay for interactive completion"
 msgstr "Espera no popup de completar para completar interactivo"
 
-#: ../gtksourceview/gtksourcecompletion.c:2331
+#: ../gtksourceview/gtksourcecompletion.c:2333
 msgid "Provider Page Size"
 msgstr "Tamanho da Página do Fornecedor"
 
-#: ../gtksourceview/gtksourcecompletion.c:2332
+#: ../gtksourceview/gtksourcecompletion.c:2334
 msgid "Provider scrolling page size"
 msgstr "Tamanho da página de rolamento do fornecedor"
 
-#: ../gtksourceview/gtksourcecompletion.c:2347
+#: ../gtksourceview/gtksourcecompletion.c:2353
 msgid "Proposal Page Size"
 msgstr "Tamanho da Página de Proposta"
 
-#: ../gtksourceview/gtksourcecompletion.c:2348
+#: ../gtksourceview/gtksourcecompletion.c:2354
 msgid "Proposal scrolling page size"
 msgstr "Tamanho da página de rolamento da proposta"
 
-#: ../gtksourceview/gtksourcecompletion.c:2693
+#: ../gtksourceview/gtksourcecompletion.c:2715
 msgid "Provider"
 msgstr "Fornecedor"
+
+#: ../gtksourceview/gtksourcecompletion.ui.h:1
+msgid "Show detailed proposal information"
+msgstr "Apresentar informação detalhada de propostas"
+
+#: ../gtksourceview/gtksourcecompletion.ui.h:2
+msgid "_Details..."
+msgstr "_Detalhes..."
 
 #: ../gtksourceview/gtksourcecompletioncontext.c:233
 #: ../gtksourceview/gtksourceview.c:306
@@ -2492,7 +2616,7 @@ msgstr "Informação a ser apresentada para este item"
 #. * named sub-patterns with the same name or if resulting regex is
 #. * too long. In this case fixing lang file helps (e.g. renaming
 #. * subpatterns, making huge keywords use bigger prefixes, etc.)
-#: ../gtksourceview/gtksourcecontextengine.c:3171
+#: ../gtksourceview/gtksourcecontextengine.c:3120
 #, c-format
 msgid ""
 "Cannot create a regex for all the transitions, the syntax highlighting "
@@ -2503,7 +2627,7 @@ msgstr ""
 "de realce de sintaxe será mais lento que o normal.\n"
 "O erro foi: %s"
 
-#: ../gtksourceview/gtksourcecontextengine.c:4509
+#: ../gtksourceview/gtksourcecontextengine.c:4443
 msgid ""
 "Highlighting a single line took too much time, syntax highlighting will be "
 "disabled"
@@ -2511,19 +2635,19 @@ msgstr ""
 "Realçar uma única linha demorou demasiado tempo, o realce de sintaxe irá ser "
 "desactivado"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5762
+#: ../gtksourceview/gtksourcecontextengine.c:5687
 #, c-format
 msgid "context '%s' cannot contain a \\%%{...@start} command"
 msgstr "contexto '%s' não pode conter um comando \\%%{...@start}"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5923
-#: ../gtksourceview/gtksourcecontextengine.c:6012
+#: ../gtksourceview/gtksourcecontextengine.c:5848
+#: ../gtksourceview/gtksourcecontextengine.c:5937
 #, c-format
 msgid "duplicated context id '%s'"
 msgstr "id '%s' de contexto duplicado"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6127
-#: ../gtksourceview/gtksourcecontextengine.c:6187
+#: ../gtksourceview/gtksourcecontextengine.c:6051
+#: ../gtksourceview/gtksourcecontextengine.c:6111
 #, c-format
 msgid ""
 "style override used with wildcard context reference in language '%s' in ref "
@@ -2532,18 +2656,18 @@ msgstr ""
 "sobreposição de estilo utilizada com caracteres globais de referência de "
 "contexto na linguagem '%s' na referência '%s'"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6201
+#: ../gtksourceview/gtksourcecontextengine.c:6125
 #, c-format
 msgid "invalid context reference '%s'"
 msgstr "referência de contexto '%s' inválida"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6220
-#: ../gtksourceview/gtksourcecontextengine.c:6230
+#: ../gtksourceview/gtksourcecontextengine.c:6144
+#: ../gtksourceview/gtksourcecontextengine.c:6154
 #, c-format
 msgid "unknown context '%s'"
 msgstr "contexto '%s' desconhecido"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6330
+#: ../gtksourceview/gtksourcecontextengine.c:6253
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "Definição principal de linguagem não encontrada (id = \"%s\".)"
@@ -3228,9 +3352,6 @@ msgstr "Duarte Loreto <happyguy_pt@hotmail.com>"
 #~ msgid "Keywords"
 #~ msgstr "Palavras Chave"
 
-#~ msgid "Primitive"
-#~ msgstr "Primitiva"
-
 #~ msgid "'#if 0' Comment"
 #~ msgstr "#if 0' Comentário"
 
@@ -3348,9 +3469,6 @@ msgstr "Duarte Loreto <happyguy_pt@hotmail.com>"
 #~ msgid "Math"
 #~ msgstr "Math"
 
-#~ msgid "Functions"
-#~ msgstr "Funções"
-
 #~ msgid "Line Comment 2"
 #~ msgstr "Comentário de Linha 2"
 
@@ -3402,9 +3520,6 @@ msgstr "Duarte Loreto <happyguy_pt@hotmail.com>"
 #~ msgid "String3"
 #~ msgstr "Expressão3"
 
-#~ msgid "Variables"
-#~ msgstr "Variáveis"
-
 #~ msgid "Bash Line Comment"
 #~ msgstr "Comentário de Linha em Bash"
 
@@ -3422,9 +3537,6 @@ msgstr "Duarte Loreto <happyguy_pt@hotmail.com>"
 
 #~ msgid "First Open PHP Tag"
 #~ msgstr "Etiqueta de Primeira Abertura PHP"
-
-#~ msgid "Class Variables"
-#~ msgstr "Variáveis de Classe"
 
 #~ msgid "Instance Variables"
 #~ msgstr "Variáveis da Instância"
@@ -3542,9 +3654,6 @@ msgstr "Duarte Loreto <happyguy_pt@hotmail.com>"
 
 #~ msgid "Indexing"
 #~ msgstr "Indexação"
-
-#~ msgid "Macro Parameters"
-#~ msgstr "Parâmetros de Macro"
 
 #~ msgid "Markup (block)"
 #~ msgstr "Markup (bloco)"
