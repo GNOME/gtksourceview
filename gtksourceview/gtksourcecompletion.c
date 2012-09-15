@@ -192,6 +192,11 @@ get_selected_proposal (GtkSourceCompletion          *completion,
 
 	if (gtk_tree_selection_get_selected (selection, NULL, &piter))
 	{
+		if (gtk_source_completion_model_iter_is_header (completion->priv->model_proposals, &piter))
+		{
+			return FALSE;
+		}
+
 		model = GTK_TREE_MODEL (completion->priv->model_proposals);
 
 		if (proposal)
