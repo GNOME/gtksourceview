@@ -64,27 +64,31 @@
     <context id="header" style-ref="header">
       <prefix>^</prefix>
       <suffix>:</suffix>
-      <keyword>Name</keyword>
-      <keyword>Version</keyword>
-      <keyword>Release</keyword>
-      <keyword>Epoch</keyword>
-      <keyword>Summary</keyword>
-      <keyword>Group</keyword>
-      <keyword>License</keyword>
-      <keyword>Packager</keyword>
-      <keyword>Vendor</keyword>
-      <keyword>Icon</keyword>
-      <keyword>URL</keyword>
-      <keyword>Patch[0-9]*</keyword>
-      <keyword>Source[0-9]*</keyword>
-      <keyword>Requires\(?[a-z]*\)?</keyword>
-      <keyword>[A-Za-z]+Req</keyword>
-      <keyword>Obsoletes</keyword>
-      <keyword>Provides</keyword>
-      <keyword>Conflicts</keyword>
-      <keyword>Build[A-Za-z]+</keyword>
-      <keyword>[A-Za-z]+Arch</keyword>
       <keyword>Auto[A-Za-z]+</keyword>
+      <keyword>[A-Za-z]+Arch</keyword>
+      <keyword>[A-Za-z]+Req</keyword>
+      <keyword>Build[A-Za-z]+</keyword>
+      <keyword>Conflicts</keyword>
+      <keyword>Epoch</keyword>
+      <keyword>Group</keyword>
+      <keyword>Icon</keyword>
+      <keyword>License</keyword>
+      <keyword>Name</keyword>
+      <keyword>Obsoletes</keyword>
+      <keyword>Packager</keyword>
+      <keyword>Patch[0-9]*</keyword>
+      <keyword>Provides</keyword>
+      <keyword>Recommends</keyword>
+      <keyword>Release</keyword>
+      <keyword>Requires\(?[a-z]*\)?</keyword>
+      <keyword>Source[0-9]*</keyword>
+      <keyword>Suggests</keyword>
+      <keyword>Summary</keyword>
+      <keyword>Supplements</keyword>
+      <keyword>Url</keyword>
+      <keyword>URL</keyword>
+      <keyword>Vendor</keyword>
+      <keyword>Version</keyword>
     </context>
 
     <context id="section" style-ref="section">
