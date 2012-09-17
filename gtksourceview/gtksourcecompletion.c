@@ -1924,28 +1924,22 @@ gtk_source_completion_dispose (GObject *object)
 		g_list_foreach (completion->priv->providers, (GFunc)g_object_unref, NULL);
 	}
 
-	g_list_free (completion->priv->active_providers);
-	g_list_free (completion->priv->interactive_providers);
-
-	G_OBJECT_CLASS (gtk_source_completion_parent_class)->dispose (object);
-}
-
-static void
-gtk_source_completion_finalize (GObject *object)
-{
-	GtkSourceCompletion *completion = GTK_SOURCE_COMPLETION (object);
-
 	if (completion->priv->show_timed_out_id != 0)
 	{
 		g_source_remove (completion->priv->show_timed_out_id);
+		completion->priv->show_timed_out_id = 0;
 	}
-
-	g_list_free (completion->priv->providers);
-	g_list_free (completion->priv->active_providers);
 
 	g_clear_object (&completion->priv->default_info);
 
-	G_OBJECT_CLASS (gtk_source_completion_parent_class)->finalize (object);
+	g_list_free (completion->priv->active_providers);
+	g_list_free (completion->priv->interactive_providers);
+	g_list_free (completion->priv->providers);
+	completion->priv->active_providers = NULL;
+	completion->priv->interactive_providers = NULL;
+	completion->priv->providers = NULL;
+
+	G_OBJECT_CLASS (gtk_source_completion_parent_class)->dispose (object);
 }
 
 static void
@@ -2197,7 +2191,6 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 
 	object_class->get_property = gtk_source_completion_get_property;
 	object_class->set_property = gtk_source_completion_set_property;
-	object_class->finalize = gtk_source_completion_finalize;
 	object_class->dispose = gtk_source_completion_dispose;
 
 	klass->show = gtk_source_completion_show_default;
