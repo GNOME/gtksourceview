@@ -61,6 +61,7 @@ LANGUAGES =			\
 	matlab.lang		\
 	mxml.lang		\
 	nemerle.lang		\
+	netrexx.lang		\
 	nsis.lang		\
 	objc.lang		\
 	objj.lang		\
