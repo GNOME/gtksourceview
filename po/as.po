@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: as\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug."
 "cgi?product=gtksourceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-08-20 20:49+0000\n"
-"PO-Revision-Date: 2012-08-27 15:21+0530\n"
+"POT-Creation-Date: 2012-09-18 14:01+0000\n"
+"PO-Revision-Date: 2012-09-18 21:17+0530\n"
 "Last-Translator: Nilamdyuti Goswami <ngoswami@redhat.com>\n"
 "Language-Team: as_IN <kde-i18n-doc@kde.org>\n"
 "Language: \n"
@@ -80,6 +80,7 @@ msgstr "সকলো"
 #
 #: ../data/language-specs/actionscript.lang.h:1
 #: ../data/language-specs/ada.lang.h:1 ../data/language-specs/asp.lang.h:1
+#: ../data/language-specs/automake.lang.h:1
 #: ../data/language-specs/bennugd.lang.h:1 ../data/language-specs/boo.lang.h:1
 #: ../data/language-specs/cg.lang.h:1 ../data/language-specs/chdr.lang.h:1
 #: ../data/language-specs/c.lang.h:1 ../data/language-specs/cobol.lang.h:1
@@ -96,6 +97,7 @@ msgstr "সকলো"
 #: ../data/language-specs/java.lang.h:1
 #: ../data/language-specs/makefile.lang.h:1
 #: ../data/language-specs/nemerle.lang.h:1
+#: ../data/language-specs/netrexx.lang.h:1
 #: ../data/language-specs/objc.lang.h:1 ../data/language-specs/objj.lang.h:1
 #: ../data/language-specs/ocaml.lang.h:1 ../data/language-specs/ooc.lang.h:1
 #: ../data/language-specs/opal.lang.h:1 ../data/language-specs/opencl.lang.h:1
@@ -135,6 +137,7 @@ msgstr "ActionScript"
 #: ../data/language-specs/latex.lang.h:3 ../data/language-specs/lua.lang.h:3
 #: ../data/language-specs/matlab.lang.h:3
 #: ../data/language-specs/nemerle.lang.h:3
+#: ../data/language-specs/netrexx.lang.h:6
 #: ../data/language-specs/nsis.lang.h:4 ../data/language-specs/ocaml.lang.h:3
 #: ../data/language-specs/ocl.lang.h:3 ../data/language-specs/octave.lang.h:3
 #: ../data/language-specs/ooc.lang.h:3 ../data/language-specs/opal.lang.h:4
@@ -191,8 +194,8 @@ msgstr "ভুল"
 #: ../data/language-specs/j.lang.h:17 ../data/language-specs/java.lang.h:4
 #: ../data/language-specs/javascript.lang.h:13
 #: ../data/language-specs/json.lang.h:4 ../data/language-specs/lua.lang.h:4
-#: ../data/language-specs/matlab.lang.h:4
 #: ../data/language-specs/nemerle.lang.h:7
+#: ../data/language-specs/netrexx.lang.h:4
 #: ../data/language-specs/nsis.lang.h:5 ../data/language-specs/objc.lang.h:6
 #: ../data/language-specs/objj.lang.h:8 ../data/language-specs/ocaml.lang.h:8
 #: ../data/language-specs/ocl.lang.h:4 ../data/language-specs/octave.lang.h:4
@@ -260,7 +263,8 @@ msgstr "স্কোপ বাৰ্তা"
 #: ../data/language-specs/imagej.lang.h:8 ../data/language-specs/ini.lang.h:6
 #: ../data/language-specs/java.lang.h:12
 #: ../data/language-specs/javascript.lang.h:7
-#: ../data/language-specs/lua.lang.h:5 ../data/language-specs/nemerle.lang.h:8
+#: ../data/language-specs/lua.lang.h:5 ../data/language-specs/matlab.lang.h:4
+#: ../data/language-specs/nemerle.lang.h:8
 #: ../data/language-specs/objc.lang.h:3 ../data/language-specs/objj.lang.h:4
 #: ../data/language-specs/ocaml.lang.h:9 ../data/language-specs/ocl.lang.h:5
 #: ../data/language-specs/octave.lang.h:13
@@ -325,6 +329,7 @@ msgstr "বুলিয়ান মান"
 #: ../data/language-specs/desktop.lang.h:8
 #: ../data/language-specs/forth.lang.h:8 ../data/language-specs/j.lang.h:14
 #: ../data/language-specs/java.lang.h:15
+#: ../data/language-specs/netrexx.lang.h:16
 #: ../data/language-specs/prolog.lang.h:7
 #: ../data/language-specs/vhdl.lang.h:11
 msgid "Number"
@@ -363,7 +368,7 @@ msgstr "ভবিষ্যতে সংৰক্ষিত কিৱাৰ্ড�
 #: ../data/language-specs/sql.lang.h:9 ../data/language-specs/vala.lang.h:5
 #: ../data/language-specs/vbnet.lang.h:7
 msgid "Data Type"
-msgstr "তথ্য ধৰণ"
+msgstr "ডাটা টাইপ"
 
 #
 #: ../data/language-specs/ada.lang.h:2
@@ -421,6 +426,7 @@ msgstr "প্ৰকৃত সংখ্যা"
 #: ../data/language-specs/java.lang.h:3
 #: ../data/language-specs/javascript.lang.h:3
 #: ../data/language-specs/json.lang.h:3 ../data/language-specs/lua.lang.h:6
+#: ../data/language-specs/netrexx.lang.h:3
 #: ../data/language-specs/ocaml.lang.h:18 ../data/language-specs/ooc.lang.h:5
 #: ../data/language-specs/php.lang.h:8 ../data/language-specs/prolog.lang.h:10
 #: ../data/language-specs/python.lang.h:7
@@ -477,39 +483,39 @@ msgstr "VBScript আৰু ADO ধ্ৰুৱক"
 msgid "Special constant"
 msgstr "বিশেষ ধ্ৰুৱক"
 
-#: ../data/language-specs/automake.lang.h:1
+#: ../data/language-specs/automake.lang.h:2
 msgid "Automake"
 msgstr "স্বনিৰ্মাণ"
 
-#: ../data/language-specs/automake.lang.h:2
+#: ../data/language-specs/automake.lang.h:3
 msgid "Automake Variable"
 msgstr "চলক স্বনিৰ্মাণ কৰক"
 
-#: ../data/language-specs/automake.lang.h:3
+#: ../data/language-specs/automake.lang.h:4
 msgid "Primary"
 msgstr "প্ৰাথমিক"
 
-#: ../data/language-specs/automake.lang.h:4
+#: ../data/language-specs/automake.lang.h:5
 msgid "Secondary"
 msgstr "দ্বিতীয়"
 
-#: ../data/language-specs/automake.lang.h:5
+#: ../data/language-specs/automake.lang.h:6
 msgid "Prefix"
 msgstr "উপসৰ্গ"
 
-#: ../data/language-specs/automake.lang.h:6
+#: ../data/language-specs/automake.lang.h:7
 msgid "Optional Target"
 msgstr "বৈকল্পিক লক্ষ্য"
 
-#: ../data/language-specs/automake.lang.h:7
+#: ../data/language-specs/automake.lang.h:8
 msgid "Built-in Target"
 msgstr "বিল্ট-ইন লক্ষ্য"
 
-#: ../data/language-specs/automake.lang.h:8
+#: ../data/language-specs/automake.lang.h:9
 msgid "Other Keyword"
 msgstr "অন্য কিৱাৰ্ড"
 
-#: ../data/language-specs/automake.lang.h:9
+#: ../data/language-specs/automake.lang.h:10
 msgid "Substitution"
 msgstr "প্ৰতিস্থাপন"
 
@@ -552,6 +558,7 @@ msgstr "চলক"
 
 #: ../data/language-specs/awk.lang.h:6 ../data/language-specs/boo.lang.h:15
 #: ../data/language-specs/glsl.lang.h:6 ../data/language-specs/go.lang.h:18
+#: ../data/language-specs/netrexx.lang.h:15
 #: ../data/language-specs/perl.lang.h:8
 #: ../data/language-specs/python.lang.h:18
 #: ../data/language-specs/python3.lang.h:17
@@ -785,7 +792,8 @@ msgstr "সাধাৰণ বিৱৰণ"
 #: ../data/language-specs/gap.lang.h:4 ../data/language-specs/go.lang.h:6
 #: ../data/language-specs/haskell.lang.h:10
 #: ../data/language-specs/java.lang.h:5
-#: ../data/language-specs/nemerle.lang.h:6 ../data/language-specs/sml.lang.h:6
+#: ../data/language-specs/nemerle.lang.h:6
+#: ../data/language-specs/netrexx.lang.h:5 ../data/language-specs/sml.lang.h:6
 #: ../data/language-specs/vhdl.lang.h:5
 msgid "Character"
 msgstr "আখৰ"
@@ -971,7 +979,7 @@ msgstr "বিল্ট-ইন আইডেন্টিফায়াৰ"
 #. A primitive data type: int, long, char, etc.
 #: ../data/language-specs/def.lang.h:49 ../data/language-specs/octave.lang.h:6
 msgid "Data type"
-msgstr "তথ্য ধৰণ"
+msgstr "ডাটা টাইপ"
 
 #. This one is for '#include <foo.h>' and "#pragma blah", or 'use foobar', etc..
 #: ../data/language-specs/def.lang.h:51
@@ -1575,7 +1583,6 @@ msgid "Adverb"
 msgstr "ক্ৰিয়া বিশেষণ"
 
 #: ../data/language-specs/j.lang.h:5
-#| msgid "Common Function"
 msgid "Conjunction"
 msgstr "সংযোজক অব্যয়"
 
@@ -1589,17 +1596,14 @@ msgid "Explicit Argument"
 msgstr "বিশদ তৰ্ক"
 
 #: ../data/language-specs/j.lang.h:9
-#| msgid "Cobalt"
 msgid "Global"
 msgstr "বিশ্বব্যাপী"
 
 #: ../data/language-specs/j.lang.h:10
-#| msgid "Link Text"
 msgid "Lab Text"
 msgstr "লেব লিখনী"
 
 #: ../data/language-specs/j.lang.h:11
-#| msgid "Location"
 msgid "Local"
 msgstr "স্থানীয়"
 
@@ -1620,7 +1624,6 @@ msgid "Primitive"
 msgstr "আদিম"
 
 #: ../data/language-specs/j.lang.h:18
-#| msgid "Verbatim"
 msgid "Verb"
 msgstr "ক্ৰিয়া"
 
@@ -1843,6 +1846,50 @@ msgstr "CDATA ডিলিমিটাৰ"
 #: ../data/language-specs/nemerle.lang.h:2
 msgid "Nemerle"
 msgstr "Nemerle"
+
+#: ../data/language-specs/netrexx.lang.h:2
+msgid "NetRexx"
+msgstr "NetRexx"
+
+#: ../data/language-specs/netrexx.lang.h:7
+#| msgid "External"
+msgid "Externals"
+msgstr "বহিস্থিত"
+
+#: ../data/language-specs/netrexx.lang.h:8
+#| msgid "Option"
+msgid "Options"
+msgstr "বিকল্পসমূহ"
+
+#: ../data/language-specs/netrexx.lang.h:9
+#| msgid "Data Type"
+msgid "Data Types"
+msgstr "ডাটা টাইপসমূহ"
+
+#: ../data/language-specs/netrexx.lang.h:10
+#| msgid "Special case"
+msgid "Special"
+msgstr "বিশেষ"
+
+#: ../data/language-specs/netrexx.lang.h:11
+#| msgid "Visible"
+msgid "Visibility"
+msgstr "দৃশ্যমানতা"
+
+#: ../data/language-specs/netrexx.lang.h:12
+#| msgid "Identifier"
+msgid "Modifiers"
+msgstr "মডিফায়াৰসমূহ"
+
+#: ../data/language-specs/netrexx.lang.h:13
+#| msgid "Keyword"
+msgid "Keywords"
+msgstr "কিৱাৰ্ডসমূহ"
+
+#: ../data/language-specs/netrexx.lang.h:14
+#| msgid "Keyword"
+msgid "Sub Keywords"
+msgstr "চাব কিৱাৰ্ডসমূহ"
 
 #: ../data/language-specs/nsis.lang.h:2
 msgid "NSIS"
@@ -2547,80 +2594,80 @@ msgstr "বাফাৰ বাতিল ব্যৱস্থাপক"
 msgid "No extra information available"
 msgstr "কোনো অতিৰিক্ত তথ্য উপলব্ধ নাই"
 
-#: ../gtksourceview/gtksourcecompletion.c:2223
+#: ../gtksourceview/gtksourcecompletion.c:2212
 #: ../gtksourceview/gtksourcegutter.c:547
 msgid "View"
 msgstr "দৰ্শন"
 
-#: ../gtksourceview/gtksourcecompletion.c:2224
+#: ../gtksourceview/gtksourcecompletion.c:2213
 msgid "The GtkSourceView bound to the completion"
 msgstr "সম্পূৰ্ণ হবলে প্ৰস্তুত GtkSourceView"
 
-#: ../gtksourceview/gtksourcecompletion.c:2239
+#: ../gtksourceview/gtksourcecompletion.c:2228
 msgid "Remember Info Visibility"
 msgstr "তথ্য দৃশ্যমানতা মনত ৰাখক"
 
-#: ../gtksourceview/gtksourcecompletion.c:2240
+#: ../gtksourceview/gtksourcecompletion.c:2229
 msgid "Remember the last info window visibility state"
 msgstr "সৰ্বশেষ তথ্য উইন্ডো দৃশ্যমানতা অৱস্থা মনত ৰাখক"
 
-#: ../gtksourceview/gtksourcecompletion.c:2253
+#: ../gtksourceview/gtksourcecompletion.c:2242
 msgid "Select on Show"
 msgstr "প্ৰদৰ্শনত বাছক"
 
-#: ../gtksourceview/gtksourcecompletion.c:2254
+#: ../gtksourceview/gtksourcecompletion.c:2243
 msgid "Select first proposal when completion is shown"
 msgstr "যেতিয়া সম্পূৰ্ণ দেখুৱা হব প্ৰথম প্ৰস্তাৱ বাছক"
 
-#: ../gtksourceview/gtksourcecompletion.c:2268
+#: ../gtksourceview/gtksourcecompletion.c:2257
 msgid "Show Headers"
 msgstr "হেডাৰসমূহ দেখুৱাওক"
 
-#: ../gtksourceview/gtksourcecompletion.c:2269
+#: ../gtksourceview/gtksourcecompletion.c:2258
 msgid "Show provider headers when proposals from multiple providers are available"
 msgstr "প্ৰদানকাৰী হেডাৰসমূহ দেখুৱাওক যেতিয়া বহু প্ৰদানকাৰীৰ পৰা প্ৰস্তাৱসমূহ উপলব্ধ"
 
-#: ../gtksourceview/gtksourcecompletion.c:2283
+#: ../gtksourceview/gtksourcecompletion.c:2272
 msgid "Show Icons"
 msgstr "আইকনসমূহ দেখুৱাওক"
 
-#: ../gtksourceview/gtksourcecompletion.c:2284
+#: ../gtksourceview/gtksourcecompletion.c:2273
 msgid "Show provider and proposal icons in the completion popup"
 msgstr "সম্পূৰ্ণ দলত প্ৰদানকাৰী আৰু প্ৰস্তাৱ আইকনসমূহ দেখুৱাওক"
 
-#: ../gtksourceview/gtksourcecompletion.c:2299
+#: ../gtksourceview/gtksourcecompletion.c:2288
 msgid "Accelerators"
 msgstr "ত্বৰকসমূহ"
 
-#: ../gtksourceview/gtksourcecompletion.c:2300
+#: ../gtksourceview/gtksourcecompletion.c:2289
 msgid "Number of proposal accelerators to show"
 msgstr "দেখুৱাবলে প্ৰস্তাৱ ত্বৰকসমূহৰ সংখ্যা"
 
-#: ../gtksourceview/gtksourcecompletion.c:2316
+#: ../gtksourceview/gtksourcecompletion.c:2305
 msgid "Auto Complete Delay"
 msgstr "স্বসম্পূৰ্ণ বিলম্ব"
 
-#: ../gtksourceview/gtksourcecompletion.c:2317
+#: ../gtksourceview/gtksourcecompletion.c:2306
 msgid "Completion popup delay for interactive completion"
 msgstr "ভাৱবিনিময়ী সম্পূৰ্ণৰ বাবে সম্পূৰ্ণ পপআপ বিলম্ব"
 
-#: ../gtksourceview/gtksourcecompletion.c:2333
+#: ../gtksourceview/gtksourcecompletion.c:2322
 msgid "Provider Page Size"
 msgstr "প্ৰদানকাৰী পৃষ্ঠাৰ আকাৰ"
 
-#: ../gtksourceview/gtksourcecompletion.c:2334
+#: ../gtksourceview/gtksourcecompletion.c:2323
 msgid "Provider scrolling page size"
 msgstr "প্ৰদানকাৰী স্ক্ৰলিং পৃষ্ঠা আকাৰ"
 
-#: ../gtksourceview/gtksourcecompletion.c:2353
+#: ../gtksourceview/gtksourcecompletion.c:2342
 msgid "Proposal Page Size"
 msgstr "প্ৰস্তাৱ পৃষ্ঠা আকাৰ"
 
-#: ../gtksourceview/gtksourcecompletion.c:2354
+#: ../gtksourceview/gtksourcecompletion.c:2343
 msgid "Proposal scrolling page size"
 msgstr "প্ৰস্তাৱ স্ক্ৰলিং পৃষ্ঠা আকাৰ"
 
-#: ../gtksourceview/gtksourcecompletion.c:2715
+#: ../gtksourceview/gtksourcecompletion.c:2704
 msgid "Provider"
 msgstr "প্ৰদানকাৰী"
 
@@ -2632,29 +2679,29 @@ msgstr "বিৱৰিত প্ৰস্তাৱ তথ্য দেখুৱ
 msgid "_Details..."
 msgstr "বিৱৰণসমূহ (_D)..."
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:233
+#: ../gtksourceview/gtksourcecompletioncontext.c:255
 #: ../gtksourceview/gtksourceview.c:306
 msgid "Completion"
 msgstr "সমাপ্তি"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:234
+#: ../gtksourceview/gtksourcecompletioncontext.c:256
 msgid "The completion object to which the context belongs"
 msgstr "সমাপ্তি দল যি পৰিপ্ৰেক্ষতিত অন্তৰ্ভুক্ত কৰে"
 
 #. Translators: The GtkTextIter at which the completion was invoked
-#: ../gtksourceview/gtksourcecompletioncontext.c:247
+#: ../gtksourceview/gtksourcecompletioncontext.c:269
 msgid "Iterator"
 msgstr "ইটিৰেটৰ"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:248
+#: ../gtksourceview/gtksourcecompletioncontext.c:270
 msgid "The GtkTextIter at which the completion was invoked"
 msgstr "GtkTextIter যত সমাপ্তি আৱাহন কৰা হৈছিল"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:260
+#: ../gtksourceview/gtksourcecompletioncontext.c:282
 msgid "Activation"
 msgstr "সক্ৰিয়কৰণ"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:261
+#: ../gtksourceview/gtksourcecompletioncontext.c:283
 msgid "The type of activation"
 msgstr "সক্ৰিয়কৰণৰ ধৰণ"
 
