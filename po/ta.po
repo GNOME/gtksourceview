@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview.master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-02 15:44+0530\n"
-"PO-Revision-Date: 2012-09-02 15:59+0530\n"
+"POT-Creation-Date: 2012-09-19 20:06+0530\n"
+"PO-Revision-Date: 2012-09-19 20:09+0530\n"
 "Last-Translator: Dr.T.Vasudevan <agnihot3@gmail.com>\n"
 "Language-Team: American English <kde-i18n-doc@kde.org>\n"
 "Language: ta\n"
@@ -133,6 +133,7 @@ msgstr "பூலியன் மதிப்பு"
 #: ../data/language-specs/latex.lang.h:2 ../data/language-specs/lua.lang.h:2
 #: ../data/language-specs/matlab.lang.h:2
 #: ../data/language-specs/nemerle.lang.h:4
+#: ../data/language-specs/netrexx.lang.h:3
 #: ../data/language-specs/nsis.lang.h:1 ../data/language-specs/ocaml.lang.h:4
 #: ../data/language-specs/ocl.lang.h:1 ../data/language-specs/octave.lang.h:4
 #: ../data/language-specs/ooc.lang.h:2 ../data/language-specs/opal.lang.h:2
@@ -279,6 +280,7 @@ msgstr "வெற்று மதிப்பு"
 #: ../data/language-specs/desktop.lang.h:11
 #: ../data/language-specs/forth.lang.h:8 ../data/language-specs/j.lang.h:13
 #: ../data/language-specs/java.lang.h:13
+#: ../data/language-specs/netrexx.lang.h:10
 #: ../data/language-specs/prolog.lang.h:5 ../data/language-specs/vhdl.lang.h:6
 msgid "Number"
 msgstr "எண்"
@@ -290,6 +292,7 @@ msgstr "வரையெல்லை அறிவிப்பு"
 
 #: ../data/language-specs/actionscript.lang.h:13
 #: ../data/language-specs/ada.lang.h:11 ../data/language-specs/asp.lang.h:11
+#: ../data/language-specs/automake.lang.h:9
 #: ../data/language-specs/bennugd.lang.h:12
 #: ../data/language-specs/boo.lang.h:13 ../data/language-specs/cg.lang.h:17
 #: ../data/language-specs/chdr.lang.h:2 ../data/language-specs/c.lang.h:18
@@ -308,6 +311,7 @@ msgstr "வரையெல்லை அறிவிப்பு"
 #: ../data/language-specs/java.lang.h:15
 #: ../data/language-specs/makefile.lang.h:4
 #: ../data/language-specs/nemerle.lang.h:15
+#: ../data/language-specs/netrexx.lang.h:12
 #: ../data/language-specs/objc.lang.h:5 ../data/language-specs/objj.lang.h:8
 #: ../data/language-specs/ocaml.lang.h:16 ../data/language-specs/ooc.lang.h:17
 #: ../data/language-specs/opal.lang.h:11
@@ -351,6 +355,7 @@ msgstr "சேமிப்பு வகுப்பு"
 #: ../data/language-specs/javascript.lang.h:13
 #: ../data/language-specs/json.lang.h:9 ../data/language-specs/lua.lang.h:10
 #: ../data/language-specs/nemerle.lang.h:16
+#: ../data/language-specs/netrexx.lang.h:14
 #: ../data/language-specs/nsis.lang.h:5 ../data/language-specs/objc.lang.h:6
 #: ../data/language-specs/objj.lang.h:9 ../data/language-specs/ocaml.lang.h:18
 #: ../data/language-specs/ocl.lang.h:7 ../data/language-specs/octave.lang.h:15
@@ -405,6 +410,7 @@ msgstr "பதின்ம எண்"
 #: ../data/language-specs/java.lang.h:5
 #: ../data/language-specs/javascript.lang.h:4
 #: ../data/language-specs/json.lang.h:4 ../data/language-specs/lua.lang.h:3
+#: ../data/language-specs/netrexx.lang.h:5
 #: ../data/language-specs/ocaml.lang.h:8 ../data/language-specs/ooc.lang.h:7
 #: ../data/language-specs/php.lang.h:8 ../data/language-specs/prolog.lang.h:3
 #: ../data/language-specs/python.lang.h:8
@@ -514,12 +520,13 @@ msgstr "முதன்மை"
 msgid "Secondary"
 msgstr "இரண்டாவது"
 
-#: ../data/language-specs/automake.lang.h:9
+#: ../data/language-specs/automake.lang.h:10
 msgid "Substitution"
 msgstr "மாற்று"
 
 #: ../data/language-specs/awk.lang.h:1 ../data/language-specs/boo.lang.h:3
 #: ../data/language-specs/glsl.lang.h:2 ../data/language-specs/go.lang.h:3
+#: ../data/language-specs/netrexx.lang.h:1
 #: ../data/language-specs/perl.lang.h:1 ../data/language-specs/python.lang.h:4
 #: ../data/language-specs/python3.lang.h:4
 msgid "Builtin Function"
@@ -768,7 +775,8 @@ msgstr "சி(C)"
 #: ../data/language-specs/gap.lang.h:1 ../data/language-specs/go.lang.h:4
 #: ../data/language-specs/haskell.lang.h:1
 #: ../data/language-specs/java.lang.h:2
-#: ../data/language-specs/nemerle.lang.h:3 ../data/language-specs/sml.lang.h:3
+#: ../data/language-specs/nemerle.lang.h:3
+#: ../data/language-specs/netrexx.lang.h:2 ../data/language-specs/sml.lang.h:3
 #: ../data/language-specs/vhdl.lang.h:3
 msgid "Character"
 msgstr "எழுத்து"
@@ -1788,6 +1796,42 @@ msgstr "MXML"
 msgid "Nemerle"
 msgstr "Nemerle"
 
+#: ../data/language-specs/netrexx.lang.h:4
+msgid "Data Types"
+msgstr "தகவல் வகைகள்"
+
+#: ../data/language-specs/netrexx.lang.h:6
+msgid "Externals"
+msgstr "வெளியமை"
+
+#: ../data/language-specs/netrexx.lang.h:7
+msgid "Keywords"
+msgstr "விசை சொற்கள்"
+
+#: ../data/language-specs/netrexx.lang.h:8
+msgid "Modifiers"
+msgstr "மாற்றிகள்"
+
+#: ../data/language-specs/netrexx.lang.h:9
+msgid "NetRexx"
+msgstr "NetRexx"
+
+#: ../data/language-specs/netrexx.lang.h:11
+msgid "Options"
+msgstr "தேர்வுகள்"
+
+#: ../data/language-specs/netrexx.lang.h:13
+msgid "Special"
+msgstr "சிறப்பு"
+
+#: ../data/language-specs/netrexx.lang.h:15
+msgid "Sub Keywords"
+msgstr "துணை விசை சொற்கள்"
+
+#: ../data/language-specs/netrexx.lang.h:16
+msgid "Visibility"
+msgstr "பார்வை தெளிவு"
+
 #: ../data/language-specs/nsis.lang.h:2
 msgid "NSIS"
 msgstr "NSIS"
@@ -2474,80 +2518,80 @@ msgstr "இடையக செயல் நீக்க மேலாளர்"
 msgid "No extra information available"
 msgstr "கூடுதல் தகவல் ஒன்றுமில்லை"
 
-#: ../gtksourceview/gtksourcecompletion.c:2223
+#: ../gtksourceview/gtksourcecompletion.c:2212
 #: ../gtksourceview/gtksourcegutter.c:547
 msgid "View"
 msgstr "பார்வை"
 
-#: ../gtksourceview/gtksourcecompletion.c:2224
+#: ../gtksourceview/gtksourcecompletion.c:2213
 msgid "The GtkSourceView bound to the completion"
 msgstr "முடித்தலுடன் பிணைத்த ஜிடிகே மூலப்பார்வை"
 
-#: ../gtksourceview/gtksourcecompletion.c:2239
+#: ../gtksourceview/gtksourcecompletion.c:2228
 msgid "Remember Info Visibility"
 msgstr "தகவல் காட்சிமையை நினைவில் கொள்க"
 
-#: ../gtksourceview/gtksourcecompletion.c:2240
+#: ../gtksourceview/gtksourcecompletion.c:2229
 msgid "Remember the last info window visibility state"
 msgstr "கடைசி சாளரத்தின் காட்சிமை நிலையை நினைவில் கொள்க"
 
-#: ../gtksourceview/gtksourcecompletion.c:2253
+#: ../gtksourceview/gtksourcecompletion.c:2242
 msgid "Select on Show"
 msgstr "காட்டும் போது தேர்வு செய்க"
 
-#: ../gtksourceview/gtksourcecompletion.c:2254
+#: ../gtksourceview/gtksourcecompletion.c:2243
 msgid "Select first proposal when completion is shown"
 msgstr "முழுமையாக்கம் முடிந்ததும் முதல் முன்மொழிவை தேர்ந்தெடுக்கவும்."
 
-#: ../gtksourceview/gtksourcecompletion.c:2268
+#: ../gtksourceview/gtksourcecompletion.c:2257
 msgid "Show Headers"
 msgstr "தலைப்புகளை காட்டு"
 
-#: ../gtksourceview/gtksourcecompletion.c:2269
+#: ../gtksourceview/gtksourcecompletion.c:2258
 msgid "Show provider headers when proposals from multiple providers are available"
 msgstr "பல தருவோரிடமிருந்து பல முன்மொழிவுகள் இருக்கையில் தருவோர் தலைப்புகளை காட்டு"
 
-#: ../gtksourceview/gtksourcecompletion.c:2283
+#: ../gtksourceview/gtksourcecompletion.c:2272
 msgid "Show Icons"
 msgstr "சின்னங்களை காட்டு"
 
-#: ../gtksourceview/gtksourcecompletion.c:2284
+#: ../gtksourceview/gtksourcecompletion.c:2273
 msgid "Show provider and proposal icons in the completion popup"
 msgstr "பூர்த்தி துள்ளளில் தருபவர்  மற்றும் கோரிக்கை சின்னங்களை காட்டு "
 
-#: ../gtksourceview/gtksourcecompletion.c:2299
+#: ../gtksourceview/gtksourcecompletion.c:2288
 msgid "Accelerators"
 msgstr "விரைவு விசை"
 
-#: ../gtksourceview/gtksourcecompletion.c:2300
+#: ../gtksourceview/gtksourcecompletion.c:2289
 msgid "Number of proposal accelerators to show"
 msgstr " காட்டப்படவேண்டிய விரைவு விசைகளின் எண்ணிக்கை"
 
-#: ../gtksourceview/gtksourcecompletion.c:2316
+#: ../gtksourceview/gtksourcecompletion.c:2305
 msgid "Auto Complete Delay"
 msgstr "தானியங்கி வார்த்தை முடிவுக்கு தாமதிக்க வேண்டிய நேரம்"
 
-#: ../gtksourceview/gtksourcecompletion.c:2317
+#: ../gtksourceview/gtksourcecompletion.c:2306
 msgid "Completion popup delay for interactive completion"
 msgstr "ஊடாடும் வார்த்தை முடிவுக்கு தாமதிக்க வேண்டிய நேரம்"
 
-#: ../gtksourceview/gtksourcecompletion.c:2333
+#: ../gtksourceview/gtksourcecompletion.c:2322
 msgid "Provider Page Size"
 msgstr "தருவோர் பக்க அளவு"
 
-#: ../gtksourceview/gtksourcecompletion.c:2334
+#: ../gtksourceview/gtksourcecompletion.c:2323
 msgid "Provider scrolling page size"
 msgstr "தருவோர் உருளும் பக்க அளவு"
 
-#: ../gtksourceview/gtksourcecompletion.c:2353
+#: ../gtksourceview/gtksourcecompletion.c:2342
 msgid "Proposal Page Size"
 msgstr "முன்மொழிவு பக்க அளவு"
 
-#: ../gtksourceview/gtksourcecompletion.c:2354
+#: ../gtksourceview/gtksourcecompletion.c:2343
 msgid "Proposal scrolling page size"
 msgstr "முன்மொழிவு உருளும் பக்க அளவு"
 
-#: ../gtksourceview/gtksourcecompletion.c:2715
+#: ../gtksourceview/gtksourcecompletion.c:2704
 msgid "Provider"
 msgstr "வழங்குபவர்"
 
@@ -2559,29 +2603,29 @@ msgstr "முழுமையான முன்மொழிவு தகவல�
 msgid "_Details..."
 msgstr "விவரங்கள் (_D)..."
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:233
+#: ../gtksourceview/gtksourcecompletioncontext.c:255
 #: ../gtksourceview/gtksourceview.c:306
 msgid "Completion"
 msgstr " முடிவு"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:234
+#: ../gtksourceview/gtksourcecompletioncontext.c:256
 msgid "The completion object to which the context belongs"
 msgstr "இந்த சூழல் சம்பந்தப்பட்ட முழுமையாக்கும் பொருள்"
 
 #. Translators: The GtkTextIter at which the completion was invoked
-#: ../gtksourceview/gtksourcecompletioncontext.c:247
+#: ../gtksourceview/gtksourcecompletioncontext.c:269
 msgid "Iterator"
 msgstr "குறியீடு"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:248
+#: ../gtksourceview/gtksourcecompletioncontext.c:270
 msgid "The GtkTextIter at which the completion was invoked"
 msgstr "வார்த்தை முடிவு கோரப்பட்ட ஜிடிகே டெக்ஸ்ட் நிகழ்வு"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:260
+#: ../gtksourceview/gtksourcecompletioncontext.c:282
 msgid "Activation"
 msgstr "செயல்படுத்தல்"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:261
+#: ../gtksourceview/gtksourcecompletioncontext.c:283
 msgid "The type of activation"
 msgstr "செயலாக்க வகை"
 
@@ -3207,9 +3251,6 @@ msgstr "I. Felix <ifelix@redhat.com>. Dr. T. Vasudevan <agnihot3@gmail.com>"
 
 #~ msgid "Object"
 #~ msgstr "பொருள்"
-
-#~ msgid "Special"
-#~ msgstr "சிறப்பு"
 
 #~ msgid "Text2Tags"
 #~ msgstr "Text2Tags"
