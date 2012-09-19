@@ -11,14 +11,16 @@ msgstr ""
 "Project-Id-Version: gtksourceview master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-08-20 20:49+0000\n"
-"PO-Revision-Date: 2012-09-03 17:36+0700\n"
+"POT-Creation-Date: 2012-09-18 14:01+0000\n"
+"PO-Revision-Date: 2012-09-19 10:37+0700\n"
 "Last-Translator: Andika Triwidada <andika@gmail.com>\n"
 "Language-Team: GNOME Indonesian Translation Team <gnome@i15n.org>\n"
 "Language: id_ID\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.3\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #: ../data/glade/gtksourceview.xml.in.h:1
 msgid "GtkSourceView"
@@ -80,6 +82,7 @@ msgstr "Semua"
 
 #: ../data/language-specs/actionscript.lang.h:1
 #: ../data/language-specs/ada.lang.h:1 ../data/language-specs/asp.lang.h:1
+#: ../data/language-specs/automake.lang.h:1
 #: ../data/language-specs/bennugd.lang.h:1 ../data/language-specs/boo.lang.h:1
 #: ../data/language-specs/cg.lang.h:1 ../data/language-specs/chdr.lang.h:1
 #: ../data/language-specs/c.lang.h:1 ../data/language-specs/cobol.lang.h:1
@@ -96,6 +99,7 @@ msgstr "Semua"
 #: ../data/language-specs/java.lang.h:1
 #: ../data/language-specs/makefile.lang.h:1
 #: ../data/language-specs/nemerle.lang.h:1
+#: ../data/language-specs/netrexx.lang.h:1
 #: ../data/language-specs/objc.lang.h:1 ../data/language-specs/objj.lang.h:1
 #: ../data/language-specs/ocaml.lang.h:1 ../data/language-specs/ooc.lang.h:1
 #: ../data/language-specs/opal.lang.h:1 ../data/language-specs/opencl.lang.h:1
@@ -111,7 +115,6 @@ msgid "Sources"
 msgstr "Sumber"
 
 #: ../data/language-specs/actionscript.lang.h:2
-#| msgid "Scripts"
 msgid "ActionScript"
 msgstr "ActionScript"
 
@@ -135,6 +138,7 @@ msgstr "ActionScript"
 #: ../data/language-specs/latex.lang.h:3 ../data/language-specs/lua.lang.h:3
 #: ../data/language-specs/matlab.lang.h:3
 #: ../data/language-specs/nemerle.lang.h:3
+#: ../data/language-specs/netrexx.lang.h:6
 #: ../data/language-specs/nsis.lang.h:4 ../data/language-specs/ocaml.lang.h:3
 #: ../data/language-specs/ocl.lang.h:3 ../data/language-specs/octave.lang.h:3
 #: ../data/language-specs/ooc.lang.h:3 ../data/language-specs/opal.lang.h:4
@@ -189,8 +193,8 @@ msgstr "Galat"
 #: ../data/language-specs/j.lang.h:17 ../data/language-specs/java.lang.h:4
 #: ../data/language-specs/javascript.lang.h:13
 #: ../data/language-specs/json.lang.h:4 ../data/language-specs/lua.lang.h:4
-#: ../data/language-specs/matlab.lang.h:4
 #: ../data/language-specs/nemerle.lang.h:7
+#: ../data/language-specs/netrexx.lang.h:4
 #: ../data/language-specs/nsis.lang.h:5 ../data/language-specs/objc.lang.h:6
 #: ../data/language-specs/objj.lang.h:8 ../data/language-specs/ocaml.lang.h:8
 #: ../data/language-specs/ocl.lang.h:4 ../data/language-specs/octave.lang.h:4
@@ -257,7 +261,8 @@ msgstr "Deklarasi Scope"
 #: ../data/language-specs/imagej.lang.h:8 ../data/language-specs/ini.lang.h:6
 #: ../data/language-specs/java.lang.h:12
 #: ../data/language-specs/javascript.lang.h:7
-#: ../data/language-specs/lua.lang.h:5 ../data/language-specs/nemerle.lang.h:8
+#: ../data/language-specs/lua.lang.h:5 ../data/language-specs/matlab.lang.h:4
+#: ../data/language-specs/nemerle.lang.h:8
 #: ../data/language-specs/objc.lang.h:3 ../data/language-specs/objj.lang.h:4
 #: ../data/language-specs/ocaml.lang.h:9 ../data/language-specs/ocl.lang.h:5
 #: ../data/language-specs/octave.lang.h:13
@@ -321,6 +326,7 @@ msgstr "Nilai boolean"
 #: ../data/language-specs/desktop.lang.h:8
 #: ../data/language-specs/forth.lang.h:8 ../data/language-specs/j.lang.h:14
 #: ../data/language-specs/java.lang.h:15
+#: ../data/language-specs/netrexx.lang.h:16
 #: ../data/language-specs/prolog.lang.h:7
 #: ../data/language-specs/vhdl.lang.h:11
 msgid "Number"
@@ -416,6 +422,7 @@ msgstr "Bilangan pecahan"
 #: ../data/language-specs/java.lang.h:3
 #: ../data/language-specs/javascript.lang.h:3
 #: ../data/language-specs/json.lang.h:3 ../data/language-specs/lua.lang.h:6
+#: ../data/language-specs/netrexx.lang.h:3
 #: ../data/language-specs/ocaml.lang.h:18 ../data/language-specs/ooc.lang.h:5
 #: ../data/language-specs/php.lang.h:8 ../data/language-specs/prolog.lang.h:10
 #: ../data/language-specs/python.lang.h:7
@@ -470,39 +477,39 @@ msgstr "Konstanta VBScript dan ADO"
 msgid "Special constant"
 msgstr "Konstanta khusus"
 
-#: ../data/language-specs/automake.lang.h:1
+#: ../data/language-specs/automake.lang.h:2
 msgid "Automake"
 msgstr "Automake"
 
-#: ../data/language-specs/automake.lang.h:2
+#: ../data/language-specs/automake.lang.h:3
 msgid "Automake Variable"
 msgstr "Variabel Automake"
 
-#: ../data/language-specs/automake.lang.h:3
+#: ../data/language-specs/automake.lang.h:4
 msgid "Primary"
 msgstr "Primer"
 
-#: ../data/language-specs/automake.lang.h:4
+#: ../data/language-specs/automake.lang.h:5
 msgid "Secondary"
 msgstr "Sekunder"
 
-#: ../data/language-specs/automake.lang.h:5
+#: ../data/language-specs/automake.lang.h:6
 msgid "Prefix"
 msgstr "Prefiks"
 
-#: ../data/language-specs/automake.lang.h:6
+#: ../data/language-specs/automake.lang.h:7
 msgid "Optional Target"
 msgstr "Target Opsional"
 
-#: ../data/language-specs/automake.lang.h:7
+#: ../data/language-specs/automake.lang.h:8
 msgid "Built-in Target"
 msgstr "Target Bawaan"
 
-#: ../data/language-specs/automake.lang.h:8
+#: ../data/language-specs/automake.lang.h:9
 msgid "Other Keyword"
 msgstr "Kata Kunci Lain"
 
-#: ../data/language-specs/automake.lang.h:9
+#: ../data/language-specs/automake.lang.h:10
 msgid "Substitution"
 msgstr "Substitusi"
 
@@ -543,6 +550,7 @@ msgstr "Variabel"
 
 #: ../data/language-specs/awk.lang.h:6 ../data/language-specs/boo.lang.h:15
 #: ../data/language-specs/glsl.lang.h:6 ../data/language-specs/go.lang.h:18
+#: ../data/language-specs/netrexx.lang.h:15
 #: ../data/language-specs/perl.lang.h:8
 #: ../data/language-specs/python.lang.h:18
 #: ../data/language-specs/python3.lang.h:17
@@ -765,7 +773,8 @@ msgstr "Definisi Umum"
 #: ../data/language-specs/gap.lang.h:4 ../data/language-specs/go.lang.h:6
 #: ../data/language-specs/haskell.lang.h:10
 #: ../data/language-specs/java.lang.h:5
-#: ../data/language-specs/nemerle.lang.h:6 ../data/language-specs/sml.lang.h:6
+#: ../data/language-specs/nemerle.lang.h:6
+#: ../data/language-specs/netrexx.lang.h:5 ../data/language-specs/sml.lang.h:6
 #: ../data/language-specs/vhdl.lang.h:5
 msgid "Character"
 msgstr "Karakter"
@@ -1333,7 +1342,6 @@ msgid "Go"
 msgstr "Go"
 
 #: ../data/language-specs/go.lang.h:12
-#| msgid "Binary number"
 msgid "Imaginary number"
 msgstr "Bilangan imajiner"
 
@@ -1531,7 +1539,6 @@ msgid "Adverb"
 msgstr "Kata Keterangan"
 
 #: ../data/language-specs/j.lang.h:5
-#| msgid "Common Function"
 msgid "Conjunction"
 msgstr "Kata Sambung"
 
@@ -1544,17 +1551,14 @@ msgid "Explicit Argument"
 msgstr "Argumen Eksplisit"
 
 #: ../data/language-specs/j.lang.h:9
-#| msgid "Cobalt"
 msgid "Global"
 msgstr "Global"
 
 #: ../data/language-specs/j.lang.h:10
-#| msgid "Link Text"
 msgid "Lab Text"
 msgstr "Teks Lab"
 
 #: ../data/language-specs/j.lang.h:11
-#| msgid "Location"
 msgid "Local"
 msgstr "Lokal"
 
@@ -1575,7 +1579,6 @@ msgid "Primitive"
 msgstr "Primitif"
 
 #: ../data/language-specs/j.lang.h:18
-#| msgid "Verbatim"
 msgid "Verb"
 msgstr "Kata Kerja"
 
@@ -1790,6 +1793,50 @@ msgstr "Pembatas CDATA"
 msgid "Nemerle"
 msgstr "Nemerle"
 
+#: ../data/language-specs/netrexx.lang.h:2
+msgid "NetRexx"
+msgstr "NetRexx"
+
+#: ../data/language-specs/netrexx.lang.h:7
+#| msgid "External"
+msgid "Externals"
+msgstr "Eksternal"
+
+#: ../data/language-specs/netrexx.lang.h:8
+#| msgid "Option"
+msgid "Options"
+msgstr "Opsi"
+
+#: ../data/language-specs/netrexx.lang.h:9
+#| msgid "Data Type"
+msgid "Data Types"
+msgstr "Tipe Data"
+
+#: ../data/language-specs/netrexx.lang.h:10
+#| msgid "Special case"
+msgid "Special"
+msgstr "Khusus"
+
+#: ../data/language-specs/netrexx.lang.h:11
+#| msgid "Visible"
+msgid "Visibility"
+msgstr "Kenampakan"
+
+#: ../data/language-specs/netrexx.lang.h:12
+#| msgid "Identifier"
+msgid "Modifiers"
+msgstr "Pengubah"
+
+#: ../data/language-specs/netrexx.lang.h:13
+#| msgid "Keyword"
+msgid "Keywords"
+msgstr "Kata-kunci"
+
+#: ../data/language-specs/netrexx.lang.h:14
+#| msgid "Keyword"
+msgid "Sub Keywords"
+msgstr "Sub Kata-kunci"
+
 #: ../data/language-specs/nsis.lang.h:2
 msgid "NSIS"
 msgstr "NSIS"
@@ -1958,37 +2005,30 @@ msgid "Puppet"
 msgstr "Puppet"
 
 #: ../data/language-specs/puppet.lang.h:3
-#| msgid "Sources"
 msgid "Resources"
 msgstr "Sumber daya"
 
 #: ../data/language-specs/puppet.lang.h:4
-#| msgid "Parameter"
 msgid "Parameters"
 msgstr "Parameter"
 
 #: ../data/language-specs/puppet.lang.h:5
-#| msgid "Exec parameter"
 msgid "Metaparameters"
 msgstr "Metaparameter"
 
 #: ../data/language-specs/puppet.lang.h:6
-#| msgid "Function"
 msgid "Functions"
 msgstr "Fungsi"
 
 #: ../data/language-specs/puppet.lang.h:7
-#| msgid "Null Value"
 msgid "Values"
 msgstr "Nilai"
 
 #: ../data/language-specs/puppet.lang.h:8
-#| msgid "Variable"
 msgid "Variables"
 msgstr "Variabel"
 
 #: ../data/language-specs/puppet.lang.h:9
-#| msgid "Class"
 msgid "Class names"
 msgstr "Nama kelas"
 
@@ -2481,82 +2521,82 @@ msgstr "Manajer undo penyangga"
 msgid "No extra information available"
 msgstr "Tak tersedia informasi ekstra"
 
-#: ../gtksourceview/gtksourcecompletion.c:2223
+#: ../gtksourceview/gtksourcecompletion.c:2212
 #: ../gtksourceview/gtksourcegutter.c:547
 msgid "View"
 msgstr "Tilikan"
 
-#: ../gtksourceview/gtksourcecompletion.c:2224
+#: ../gtksourceview/gtksourcecompletion.c:2213
 msgid "The GtkSourceView bound to the completion"
 msgstr "GtkSourceView mengikat ke pelengkapan"
 
-#: ../gtksourceview/gtksourcecompletion.c:2239
+#: ../gtksourceview/gtksourcecompletion.c:2228
 msgid "Remember Info Visibility"
 msgstr "Ingat Kenampakan Info"
 
-#: ../gtksourceview/gtksourcecompletion.c:2240
+#: ../gtksourceview/gtksourcecompletion.c:2229
 msgid "Remember the last info window visibility state"
 msgstr "Ingat info terakhir keadaan kenampakan jendela"
 
-#: ../gtksourceview/gtksourcecompletion.c:2253
+#: ../gtksourceview/gtksourcecompletion.c:2242
 msgid "Select on Show"
 msgstr "Pilih saat Ditampilkan"
 
-#: ../gtksourceview/gtksourcecompletion.c:2254
+#: ../gtksourceview/gtksourcecompletion.c:2243
 msgid "Select first proposal when completion is shown"
 msgstr "Pilih usulan pertama ketika pelengkapan ditampilkan"
 
-#: ../gtksourceview/gtksourcecompletion.c:2268
+#: ../gtksourceview/gtksourcecompletion.c:2257
 msgid "Show Headers"
 msgstr "Tampilkan Tajuk"
 
-#: ../gtksourceview/gtksourcecompletion.c:2269
+#: ../gtksourceview/gtksourcecompletion.c:2258
 msgid ""
 "Show provider headers when proposals from multiple providers are available"
 msgstr ""
 "Tampilkan header penyedia ketika usulan dari berbagai penyedia tersedia"
 
-#: ../gtksourceview/gtksourcecompletion.c:2283
+#: ../gtksourceview/gtksourcecompletion.c:2272
 msgid "Show Icons"
 msgstr "Tampilkan Ikon"
 
-#: ../gtksourceview/gtksourcecompletion.c:2284
+#: ../gtksourceview/gtksourcecompletion.c:2273
 msgid "Show provider and proposal icons in the completion popup"
 msgstr "Tampilkan ikon usulan dan penyedia pada popup pelengkapan"
 
-#: ../gtksourceview/gtksourcecompletion.c:2299
+#: ../gtksourceview/gtksourcecompletion.c:2288
 msgid "Accelerators"
 msgstr "Akselerator"
 
-#: ../gtksourceview/gtksourcecompletion.c:2300
+#: ../gtksourceview/gtksourcecompletion.c:2289
 msgid "Number of proposal accelerators to show"
 msgstr "Cacah akselerator usulan yang ditampilkan"
 
-#: ../gtksourceview/gtksourcecompletion.c:2316
+#: ../gtksourceview/gtksourcecompletion.c:2305
 msgid "Auto Complete Delay"
 msgstr "Tundaan Pelengkapan Otomatis"
 
-#: ../gtksourceview/gtksourcecompletion.c:2317
+#: ../gtksourceview/gtksourcecompletion.c:2306
 msgid "Completion popup delay for interactive completion"
 msgstr "Tundaan popup pelengkapan bagi pelengkapan interaktif"
 
-#: ../gtksourceview/gtksourcecompletion.c:2333
+#: ../gtksourceview/gtksourcecompletion.c:2322
 msgid "Provider Page Size"
 msgstr "Ukuran Halaman Penyedia"
 
-#: ../gtksourceview/gtksourcecompletion.c:2334
+#: ../gtksourceview/gtksourcecompletion.c:2323
 msgid "Provider scrolling page size"
 msgstr "Ukuran halaman gulir penyedia"
 
-#: ../gtksourceview/gtksourcecompletion.c:2353
+#: ../gtksourceview/gtksourcecompletion.c:2342
 msgid "Proposal Page Size"
 msgstr "Ukuran Halaman Usulan"
 
-#: ../gtksourceview/gtksourcecompletion.c:2354
+#: ../gtksourceview/gtksourcecompletion.c:2343
 msgid "Proposal scrolling page size"
 msgstr "Ukuran halaman gulir usulan"
 
-#: ../gtksourceview/gtksourcecompletion.c:2715
+#: ../gtksourceview/gtksourcecompletion.c:2704
 msgid "Provider"
 msgstr "Penyedia"
 
@@ -2568,29 +2608,29 @@ msgstr "Tampilkan informasi proposal terinci"
 msgid "_Details..."
 msgstr "_Rincian..."
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:233
+#: ../gtksourceview/gtksourcecompletioncontext.c:255
 #: ../gtksourceview/gtksourceview.c:306
 msgid "Completion"
 msgstr "Pelengkapan"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:234
+#: ../gtksourceview/gtksourcecompletioncontext.c:256
 msgid "The completion object to which the context belongs"
 msgstr "Objek pelengkapan yang dimiliki konteks"
 
 #. Translators: The GtkTextIter at which the completion was invoked
-#: ../gtksourceview/gtksourcecompletioncontext.c:247
+#: ../gtksourceview/gtksourcecompletioncontext.c:269
 msgid "Iterator"
 msgstr "Iterator"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:248
+#: ../gtksourceview/gtksourcecompletioncontext.c:270
 msgid "The GtkTextIter at which the completion was invoked"
 msgstr "GtkTextIter dimana pelengkapan dipanggil"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:260
+#: ../gtksourceview/gtksourcecompletioncontext.c:282
 msgid "Activation"
 msgstr "Aktivasi"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:261
+#: ../gtksourceview/gtksourcecompletioncontext.c:283
 msgid "The type of activation"
 msgstr "Jenis aktivasi"
 
