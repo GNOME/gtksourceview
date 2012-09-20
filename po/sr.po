@@ -12,17 +12,16 @@ msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gtksou"
 "rceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-08-20 20:49+0000\n"
-"PO-Revision-Date: 2012-09-07 09:01+0200\n"
+"POT-Creation-Date: 2012-09-18 14:01+0000\n"
+"PO-Revision-Date: 2012-09-20 20:26+0200\n"
 "Last-Translator: Мирослав Николић <miroslavnikolic@rocketmail.com>\n"
 "Language-Team: Serbian <gnom@prevod.org>\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
-"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Virtaal 0.7.1\n"
+"Plural-Forms: nplurals=4; plural=n==1? 3 : n%10==1 && n%100!=11 ? 0 : "
+"n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Project-Style: gnome\n"
 
 #: ../data/glade/gtksourceview.xml.in.h:1
@@ -85,6 +84,7 @@ msgstr "Све"
 
 #: ../data/language-specs/actionscript.lang.h:1
 #: ../data/language-specs/ada.lang.h:1 ../data/language-specs/asp.lang.h:1
+#: ../data/language-specs/automake.lang.h:1
 #: ../data/language-specs/bennugd.lang.h:1 ../data/language-specs/boo.lang.h:1
 #: ../data/language-specs/cg.lang.h:1 ../data/language-specs/chdr.lang.h:1
 #: ../data/language-specs/c.lang.h:1 ../data/language-specs/cobol.lang.h:1
@@ -101,6 +101,7 @@ msgstr "Све"
 #: ../data/language-specs/java.lang.h:1
 #: ../data/language-specs/makefile.lang.h:1
 #: ../data/language-specs/nemerle.lang.h:1
+#: ../data/language-specs/netrexx.lang.h:1
 #: ../data/language-specs/objc.lang.h:1 ../data/language-specs/objj.lang.h:1
 #: ../data/language-specs/ocaml.lang.h:1 ../data/language-specs/ooc.lang.h:1
 #: ../data/language-specs/opal.lang.h:1 ../data/language-specs/opencl.lang.h:1
@@ -139,6 +140,7 @@ msgstr "Скрипта радње"
 #: ../data/language-specs/latex.lang.h:3 ../data/language-specs/lua.lang.h:3
 #: ../data/language-specs/matlab.lang.h:3
 #: ../data/language-specs/nemerle.lang.h:3
+#: ../data/language-specs/netrexx.lang.h:6
 #: ../data/language-specs/nsis.lang.h:4 ../data/language-specs/ocaml.lang.h:3
 #: ../data/language-specs/ocl.lang.h:3 ../data/language-specs/octave.lang.h:3
 #: ../data/language-specs/ooc.lang.h:3 ../data/language-specs/opal.lang.h:4
@@ -193,8 +195,8 @@ msgstr "Грешка"
 #: ../data/language-specs/j.lang.h:17 ../data/language-specs/java.lang.h:4
 #: ../data/language-specs/javascript.lang.h:13
 #: ../data/language-specs/json.lang.h:4 ../data/language-specs/lua.lang.h:4
-#: ../data/language-specs/matlab.lang.h:4
 #: ../data/language-specs/nemerle.lang.h:7
+#: ../data/language-specs/netrexx.lang.h:4
 #: ../data/language-specs/nsis.lang.h:5 ../data/language-specs/objc.lang.h:6
 #: ../data/language-specs/objj.lang.h:8 ../data/language-specs/ocaml.lang.h:8
 #: ../data/language-specs/ocl.lang.h:4 ../data/language-specs/octave.lang.h:4
@@ -261,7 +263,8 @@ msgstr "Декларација опсега"
 #: ../data/language-specs/imagej.lang.h:8 ../data/language-specs/ini.lang.h:6
 #: ../data/language-specs/java.lang.h:12
 #: ../data/language-specs/javascript.lang.h:7
-#: ../data/language-specs/lua.lang.h:5 ../data/language-specs/nemerle.lang.h:8
+#: ../data/language-specs/lua.lang.h:5 ../data/language-specs/matlab.lang.h:4
+#: ../data/language-specs/nemerle.lang.h:8
 #: ../data/language-specs/objc.lang.h:3 ../data/language-specs/objj.lang.h:4
 #: ../data/language-specs/ocaml.lang.h:9 ../data/language-specs/ocl.lang.h:5
 #: ../data/language-specs/octave.lang.h:13
@@ -325,6 +328,7 @@ msgstr "Логичка вредност"
 #: ../data/language-specs/desktop.lang.h:8
 #: ../data/language-specs/forth.lang.h:8 ../data/language-specs/j.lang.h:14
 #: ../data/language-specs/java.lang.h:15
+#: ../data/language-specs/netrexx.lang.h:16
 #: ../data/language-specs/prolog.lang.h:7
 #: ../data/language-specs/vhdl.lang.h:11
 msgid "Number"
@@ -420,6 +424,7 @@ msgstr "Реалан број"
 #: ../data/language-specs/java.lang.h:3
 #: ../data/language-specs/javascript.lang.h:3
 #: ../data/language-specs/json.lang.h:3 ../data/language-specs/lua.lang.h:6
+#: ../data/language-specs/netrexx.lang.h:3
 #: ../data/language-specs/ocaml.lang.h:18 ../data/language-specs/ooc.lang.h:5
 #: ../data/language-specs/php.lang.h:8 ../data/language-specs/prolog.lang.h:10
 #: ../data/language-specs/python.lang.h:7
@@ -474,39 +479,39 @@ msgstr "ВБ скрипта и АДО константе"
 msgid "Special constant"
 msgstr "Посебна константа"
 
-#: ../data/language-specs/automake.lang.h:1
+#: ../data/language-specs/automake.lang.h:2
 msgid "Automake"
 msgstr "Самостварање"
 
-#: ../data/language-specs/automake.lang.h:2
+#: ../data/language-specs/automake.lang.h:3
 msgid "Automake Variable"
 msgstr "Променљива самостварања"
 
-#: ../data/language-specs/automake.lang.h:3
+#: ../data/language-specs/automake.lang.h:4
 msgid "Primary"
 msgstr "Примарна"
 
-#: ../data/language-specs/automake.lang.h:4
+#: ../data/language-specs/automake.lang.h:5
 msgid "Secondary"
 msgstr "Секундарна"
 
-#: ../data/language-specs/automake.lang.h:5
+#: ../data/language-specs/automake.lang.h:6
 msgid "Prefix"
 msgstr "Префикс"
 
-#: ../data/language-specs/automake.lang.h:6
+#: ../data/language-specs/automake.lang.h:7
 msgid "Optional Target"
 msgstr "Опционална мета"
 
-#: ../data/language-specs/automake.lang.h:7
+#: ../data/language-specs/automake.lang.h:8
 msgid "Built-in Target"
 msgstr "Мета уграђивања"
 
-#: ../data/language-specs/automake.lang.h:8
+#: ../data/language-specs/automake.lang.h:9
 msgid "Other Keyword"
 msgstr "Друга кључна реч"
 
-#: ../data/language-specs/automake.lang.h:9
+#: ../data/language-specs/automake.lang.h:10
 msgid "Substitution"
 msgstr "Замена"
 
@@ -547,6 +552,7 @@ msgstr "Променљива"
 
 #: ../data/language-specs/awk.lang.h:6 ../data/language-specs/boo.lang.h:15
 #: ../data/language-specs/glsl.lang.h:6 ../data/language-specs/go.lang.h:18
+#: ../data/language-specs/netrexx.lang.h:15
 #: ../data/language-specs/perl.lang.h:8
 #: ../data/language-specs/python.lang.h:18
 #: ../data/language-specs/python3.lang.h:17
@@ -769,7 +775,8 @@ msgstr "Заједничке одреднице"
 #: ../data/language-specs/gap.lang.h:4 ../data/language-specs/go.lang.h:6
 #: ../data/language-specs/haskell.lang.h:10
 #: ../data/language-specs/java.lang.h:5
-#: ../data/language-specs/nemerle.lang.h:6 ../data/language-specs/sml.lang.h:6
+#: ../data/language-specs/nemerle.lang.h:6
+#: ../data/language-specs/netrexx.lang.h:5 ../data/language-specs/sml.lang.h:6
 #: ../data/language-specs/vhdl.lang.h:5
 msgid "Character"
 msgstr "Знак"
@@ -1534,7 +1541,6 @@ msgid "Adverb"
 msgstr "Придев"
 
 #: ../data/language-specs/j.lang.h:5
-#| msgid "Common Function"
 msgid "Conjunction"
 msgstr "Конјункција"
 
@@ -1547,17 +1553,14 @@ msgid "Explicit Argument"
 msgstr "Изричит аргумент"
 
 #: ../data/language-specs/j.lang.h:9
-#| msgid "Cobalt"
 msgid "Global"
 msgstr "Опште"
 
 #: ../data/language-specs/j.lang.h:10
-#| msgid "Link Text"
 msgid "Lab Text"
 msgstr "Текст натписа"
 
 #: ../data/language-specs/j.lang.h:11
-#| msgid "Location"
 msgid "Local"
 msgstr "Месно"
 
@@ -1578,7 +1581,6 @@ msgid "Primitive"
 msgstr "Основна реч"
 
 #: ../data/language-specs/j.lang.h:18
-#| msgid "Verbatim"
 msgid "Verb"
 msgstr "Глагол"
 
@@ -1792,6 +1794,50 @@ msgstr "ЦДАТА граничник"
 #: ../data/language-specs/nemerle.lang.h:2
 msgid "Nemerle"
 msgstr "Немерле"
+
+#: ../data/language-specs/netrexx.lang.h:2
+msgid "NetRexx"
+msgstr "Нет Рексикс"
+
+#: ../data/language-specs/netrexx.lang.h:7
+#| msgid "External"
+msgid "Externals"
+msgstr "Спољашњи"
+
+#: ../data/language-specs/netrexx.lang.h:8
+#| msgid "Option"
+msgid "Options"
+msgstr "Могућности"
+
+#: ../data/language-specs/netrexx.lang.h:9
+#| msgid "Data Type"
+msgid "Data Types"
+msgstr "Врсте података"
+
+#: ../data/language-specs/netrexx.lang.h:10
+#| msgid "Special case"
+msgid "Special"
+msgstr "Посебно"
+
+#: ../data/language-specs/netrexx.lang.h:11
+#| msgid "Visible"
+msgid "Visibility"
+msgstr "Видљивост"
+
+#: ../data/language-specs/netrexx.lang.h:12
+#| msgid "Identifier"
+msgid "Modifiers"
+msgstr "Измењивачи"
+
+#: ../data/language-specs/netrexx.lang.h:13
+#| msgid "Keyword"
+msgid "Keywords"
+msgstr "Кључне речи"
+
+#: ../data/language-specs/netrexx.lang.h:14
+#| msgid "Keyword"
+msgid "Sub Keywords"
+msgstr "Поткључне речи"
 
 #: ../data/language-specs/nsis.lang.h:2
 msgid "NSIS"
@@ -2482,82 +2528,82 @@ msgstr "Уредник оставе за опозивања"
 msgid "No extra information available"
 msgstr "Нема додатних података"
 
-#: ../gtksourceview/gtksourcecompletion.c:2223
+#: ../gtksourceview/gtksourcecompletion.c:2212
 #: ../gtksourceview/gtksourcegutter.c:547
 msgid "View"
 msgstr "Преглед"
 
-#: ../gtksourceview/gtksourcecompletion.c:2224
+#: ../gtksourceview/gtksourcecompletion.c:2213
 msgid "The GtkSourceView bound to the completion"
 msgstr "Преглед Гтк извора привезан на ово допуњавање"
 
-#: ../gtksourceview/gtksourcecompletion.c:2239
+#: ../gtksourceview/gtksourcecompletion.c:2228
 msgid "Remember Info Visibility"
 msgstr "Запамти видљивост података"
 
-#: ../gtksourceview/gtksourcecompletion.c:2240
+#: ../gtksourceview/gtksourcecompletion.c:2229
 msgid "Remember the last info window visibility state"
 msgstr "Памти стање видљивости прозора са подацима"
 
-#: ../gtksourceview/gtksourcecompletion.c:2253
+#: ../gtksourceview/gtksourcecompletion.c:2242
 msgid "Select on Show"
 msgstr "Изабери кад је приказано"
 
-#: ../gtksourceview/gtksourcecompletion.c:2254
+#: ../gtksourceview/gtksourcecompletion.c:2243
 msgid "Select first proposal when completion is shown"
 msgstr "Бира први предлог када је приказано допуњавање"
 
-#: ../gtksourceview/gtksourcecompletion.c:2268
+#: ../gtksourceview/gtksourcecompletion.c:2257
 msgid "Show Headers"
 msgstr "Прикажи заглавља"
 
-#: ../gtksourceview/gtksourcecompletion.c:2269
+#: ../gtksourceview/gtksourcecompletion.c:2258
 msgid ""
 "Show provider headers when proposals from multiple providers are available"
 msgstr ""
 "Приказује заглавље добављача када су доступни предлози са више добављача"
 
-#: ../gtksourceview/gtksourcecompletion.c:2283
+#: ../gtksourceview/gtksourcecompletion.c:2272
 msgid "Show Icons"
 msgstr "Прикажи иконице"
 
-#: ../gtksourceview/gtksourcecompletion.c:2284
+#: ../gtksourceview/gtksourcecompletion.c:2273
 msgid "Show provider and proposal icons in the completion popup"
 msgstr "Приказује иконицу за добављача и предлог у прозорчету за допуњавање"
 
-#: ../gtksourceview/gtksourcecompletion.c:2299
+#: ../gtksourceview/gtksourcecompletion.c:2288
 msgid "Accelerators"
 msgstr "Пречице"
 
-#: ../gtksourceview/gtksourcecompletion.c:2300
+#: ../gtksourceview/gtksourcecompletion.c:2289
 msgid "Number of proposal accelerators to show"
 msgstr "Број предложених пречица за приказ"
 
-#: ../gtksourceview/gtksourcecompletion.c:2316
+#: ../gtksourceview/gtksourcecompletion.c:2305
 msgid "Auto Complete Delay"
 msgstr "Време самодопуњавања"
 
-#: ../gtksourceview/gtksourcecompletion.c:2317
+#: ../gtksourceview/gtksourcecompletion.c:2306
 msgid "Completion popup delay for interactive completion"
 msgstr "Време након кога се искаче прозорче при упитном допуњавању"
 
-#: ../gtksourceview/gtksourcecompletion.c:2333
+#: ../gtksourceview/gtksourcecompletion.c:2322
 msgid "Provider Page Size"
 msgstr "Величина странице добављача"
 
-#: ../gtksourceview/gtksourcecompletion.c:2334
+#: ../gtksourceview/gtksourcecompletion.c:2323
 msgid "Provider scrolling page size"
 msgstr "Величина странице за листање довављача"
 
-#: ../gtksourceview/gtksourcecompletion.c:2353
+#: ../gtksourceview/gtksourcecompletion.c:2342
 msgid "Proposal Page Size"
 msgstr "Величина странице предлога"
 
-#: ../gtksourceview/gtksourcecompletion.c:2354
+#: ../gtksourceview/gtksourcecompletion.c:2343
 msgid "Proposal scrolling page size"
 msgstr "Величина странице за листање предлога"
 
-#: ../gtksourceview/gtksourcecompletion.c:2715
+#: ../gtksourceview/gtksourcecompletion.c:2704
 msgid "Provider"
 msgstr "Достављач"
 
@@ -2569,29 +2615,29 @@ msgstr "Приказује опширне податке предлога"
 msgid "_Details..."
 msgstr "_Појединости..."
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:233
+#: ../gtksourceview/gtksourcecompletioncontext.c:255
 #: ../gtksourceview/gtksourceview.c:306
 msgid "Completion"
 msgstr "Довршавање"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:234
+#: ../gtksourceview/gtksourcecompletioncontext.c:256
 msgid "The completion object to which the context belongs"
 msgstr "Објекат довршавања коме припада контекст"
 
 #. Translators: The GtkTextIter at which the completion was invoked
-#: ../gtksourceview/gtksourcecompletioncontext.c:247
+#: ../gtksourceview/gtksourcecompletioncontext.c:269
 msgid "Iterator"
 msgstr "Оператор"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:248
+#: ../gtksourceview/gtksourcecompletioncontext.c:270
 msgid "The GtkTextIter at which the completion was invoked"
 msgstr "ГткТекстИтер на који се позива допуњавање"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:260
+#: ../gtksourceview/gtksourcecompletioncontext.c:282
 msgid "Activation"
 msgstr "Покретање"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:261
+#: ../gtksourceview/gtksourcecompletioncontext.c:283
 msgid "The type of activation"
 msgstr "Врста активације"
 
