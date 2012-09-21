@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lt\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gtksourceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-08-20 20:49+0000\n"
-"PO-Revision-Date: 2012-08-24 21:08+0300\n"
+"POT-Creation-Date: 2012-09-18 14:01+0000\n"
+"PO-Revision-Date: 2012-09-21 20:56+0300\n"
 "Last-Translator: Aurimas Černius <aurisc4@gmail.com>\n"
 "Language-Team: Lithuanian <gnome-lt@lists.akl.lt>\n"
 "Language: lt\n"
@@ -83,6 +83,7 @@ msgstr "Visi"
 #: ../data/language-specs/actionscript.lang.h:1
 #: ../data/language-specs/ada.lang.h:1
 #: ../data/language-specs/asp.lang.h:1
+#: ../data/language-specs/automake.lang.h:1
 #: ../data/language-specs/bennugd.lang.h:1
 #: ../data/language-specs/boo.lang.h:1
 #: ../data/language-specs/cg.lang.h:1
@@ -107,6 +108,7 @@ msgstr "Visi"
 #: ../data/language-specs/java.lang.h:1
 #: ../data/language-specs/makefile.lang.h:1
 #: ../data/language-specs/nemerle.lang.h:1
+#: ../data/language-specs/netrexx.lang.h:1
 #: ../data/language-specs/objc.lang.h:1
 #: ../data/language-specs/objj.lang.h:1
 #: ../data/language-specs/ocaml.lang.h:1
@@ -128,7 +130,6 @@ msgid "Sources"
 msgstr "Pradiniai tekstai"
 
 #: ../data/language-specs/actionscript.lang.h:2
-#| msgid "Scripts"
 msgid "ActionScript"
 msgstr "ActionScript"
 
@@ -164,6 +165,7 @@ msgstr "ActionScript"
 #: ../data/language-specs/lua.lang.h:3
 #: ../data/language-specs/matlab.lang.h:3
 #: ../data/language-specs/nemerle.lang.h:3
+#: ../data/language-specs/netrexx.lang.h:6
 #: ../data/language-specs/nsis.lang.h:4
 #: ../data/language-specs/ocaml.lang.h:3
 #: ../data/language-specs/ocl.lang.h:3
@@ -246,8 +248,8 @@ msgstr "Klaida"
 #: ../data/language-specs/javascript.lang.h:13
 #: ../data/language-specs/json.lang.h:4
 #: ../data/language-specs/lua.lang.h:4
-#: ../data/language-specs/matlab.lang.h:4
 #: ../data/language-specs/nemerle.lang.h:7
+#: ../data/language-specs/netrexx.lang.h:4
 #: ../data/language-specs/nsis.lang.h:5
 #: ../data/language-specs/objc.lang.h:6
 #: ../data/language-specs/objj.lang.h:8
@@ -342,6 +344,7 @@ msgstr "Galiojimo srities apibrėžtis"
 #: ../data/language-specs/java.lang.h:12
 #: ../data/language-specs/javascript.lang.h:7
 #: ../data/language-specs/lua.lang.h:5
+#: ../data/language-specs/matlab.lang.h:4
 #: ../data/language-specs/nemerle.lang.h:8
 #: ../data/language-specs/objc.lang.h:3
 #: ../data/language-specs/objj.lang.h:4
@@ -433,6 +436,7 @@ msgstr "Loginė reikšmė"
 #: ../data/language-specs/forth.lang.h:8
 #: ../data/language-specs/j.lang.h:14
 #: ../data/language-specs/java.lang.h:15
+#: ../data/language-specs/netrexx.lang.h:16
 #: ../data/language-specs/prolog.lang.h:7
 #: ../data/language-specs/vhdl.lang.h:11
 msgid "Number"
@@ -556,6 +560,7 @@ msgstr "Realusis skaičius"
 #: ../data/language-specs/javascript.lang.h:3
 #: ../data/language-specs/json.lang.h:3
 #: ../data/language-specs/lua.lang.h:6
+#: ../data/language-specs/netrexx.lang.h:3
 #: ../data/language-specs/ocaml.lang.h:18
 #: ../data/language-specs/ooc.lang.h:5
 #: ../data/language-specs/php.lang.h:8
@@ -625,39 +630,39 @@ msgstr "VBScript ir ADO konstantos"
 msgid "Special constant"
 msgstr "Speciali konstanta"
 
-#: ../data/language-specs/automake.lang.h:1
+#: ../data/language-specs/automake.lang.h:2
 msgid "Automake"
 msgstr "Automake"
 
-#: ../data/language-specs/automake.lang.h:2
+#: ../data/language-specs/automake.lang.h:3
 msgid "Automake Variable"
 msgstr "Automake kintamasis"
 
-#: ../data/language-specs/automake.lang.h:3
+#: ../data/language-specs/automake.lang.h:4
 msgid "Primary"
 msgstr "Pirminis"
 
-#: ../data/language-specs/automake.lang.h:4
+#: ../data/language-specs/automake.lang.h:5
 msgid "Secondary"
 msgstr "Antraeilis"
 
-#: ../data/language-specs/automake.lang.h:5
+#: ../data/language-specs/automake.lang.h:6
 msgid "Prefix"
 msgstr "Priešdėlis"
 
-#: ../data/language-specs/automake.lang.h:6
+#: ../data/language-specs/automake.lang.h:7
 msgid "Optional Target"
 msgstr "Nebūtinas tikslas"
 
-#: ../data/language-specs/automake.lang.h:7
+#: ../data/language-specs/automake.lang.h:8
 msgid "Built-in Target"
 msgstr "Integruotas tikslas"
 
-#: ../data/language-specs/automake.lang.h:8
+#: ../data/language-specs/automake.lang.h:9
 msgid "Other Keyword"
 msgstr "Kitas raktažodis"
 
-#: ../data/language-specs/automake.lang.h:9
+#: ../data/language-specs/automake.lang.h:10
 msgid "Substitution"
 msgstr "Pakeitimas"
 
@@ -708,6 +713,7 @@ msgstr "Kintamasis"
 #: ../data/language-specs/boo.lang.h:15
 #: ../data/language-specs/glsl.lang.h:6
 #: ../data/language-specs/go.lang.h:18
+#: ../data/language-specs/netrexx.lang.h:15
 #: ../data/language-specs/perl.lang.h:8
 #: ../data/language-specs/python.lang.h:18
 #: ../data/language-specs/python3.lang.h:17
@@ -968,6 +974,7 @@ msgstr "Įprastinės apibrėžtys"
 #: ../data/language-specs/haskell.lang.h:10
 #: ../data/language-specs/java.lang.h:5
 #: ../data/language-specs/nemerle.lang.h:6
+#: ../data/language-specs/netrexx.lang.h:5
 #: ../data/language-specs/sml.lang.h:6
 #: ../data/language-specs/vhdl.lang.h:5
 msgid "Character"
@@ -1559,7 +1566,6 @@ msgid "Go"
 msgstr "Vykdyti"
 
 #: ../data/language-specs/go.lang.h:12
-#| msgid "Binary number"
 msgid "Imaginary number"
 msgstr "Menamasis skaičius"
 
@@ -1758,7 +1764,6 @@ msgid "Adverb"
 msgstr "Prieveiksmis"
 
 #: ../data/language-specs/j.lang.h:5
-#| msgid "Common Function"
 msgid "Conjunction"
 msgstr "Konjunkcija"
 
@@ -1772,17 +1777,14 @@ msgid "Explicit Argument"
 msgstr "Išreikštinis argumentas"
 
 #: ../data/language-specs/j.lang.h:9
-#| msgid "Cobalt"
 msgid "Global"
 msgstr "Visuotinis"
 
 #: ../data/language-specs/j.lang.h:10
-#| msgid "Link Text"
 msgid "Lab Text"
 msgstr "Laboratorijos tekstas"
 
 #: ../data/language-specs/j.lang.h:11
-#| msgid "Location"
 msgid "Local"
 msgstr "Lokalus"
 
@@ -1803,7 +1805,6 @@ msgid "Primitive"
 msgstr "Primityvas"
 
 #: ../data/language-specs/j.lang.h:18
-#| msgid "Verbatim"
 msgid "Verb"
 msgstr "Veiksmažodis"
 
@@ -2024,6 +2025,50 @@ msgstr "CDATA skirtukas"
 msgid "Nemerle"
 msgstr "Nemerle"
 
+#: ../data/language-specs/netrexx.lang.h:2
+msgid "NetRexx"
+msgstr "NetRexx"
+
+#: ../data/language-specs/netrexx.lang.h:7
+#| msgid "External"
+msgid "Externals"
+msgstr "Išoriniai"
+
+#: ../data/language-specs/netrexx.lang.h:8
+#| msgid "Option"
+msgid "Options"
+msgstr "Parinktys"
+
+#: ../data/language-specs/netrexx.lang.h:9
+#| msgid "Data Type"
+msgid "Data Types"
+msgstr "Duomenų tipai"
+
+#: ../data/language-specs/netrexx.lang.h:10
+#| msgid "Special case"
+msgid "Special"
+msgstr "Specialus"
+
+#: ../data/language-specs/netrexx.lang.h:11
+#| msgid "Visible"
+msgid "Visibility"
+msgstr "Matomumas"
+
+#: ../data/language-specs/netrexx.lang.h:12
+#| msgid "Identifier"
+msgid "Modifiers"
+msgstr "Keitėjai"
+
+#: ../data/language-specs/netrexx.lang.h:13
+#| msgid "Keyword"
+msgid "Keywords"
+msgstr "Raktažodžiai"
+
+#: ../data/language-specs/netrexx.lang.h:14
+#| msgid "Keyword"
+msgid "Sub Keywords"
+msgstr "Antriniai raktažodžiai"
+
 #: ../data/language-specs/nsis.lang.h:2
 msgid "NSIS"
 msgstr "NSIS"
@@ -2196,37 +2241,30 @@ msgid "Puppet"
 msgstr "Marionetė"
 
 #: ../data/language-specs/puppet.lang.h:3
-#| msgid "Sources"
 msgid "Resources"
 msgstr "Resursai"
 
 #: ../data/language-specs/puppet.lang.h:4
-#| msgid "Parameter"
 msgid "Parameters"
 msgstr "Parametrai"
 
 #: ../data/language-specs/puppet.lang.h:5
-#| msgid "Exec parameter"
 msgid "Metaparameters"
 msgstr "Metaparametrai"
 
 #: ../data/language-specs/puppet.lang.h:6
-#| msgid "Function"
 msgid "Functions"
 msgstr "Funkcijos"
 
 #: ../data/language-specs/puppet.lang.h:7
-#| msgid "Null Value"
 msgid "Values"
 msgstr "Vertės"
 
 #: ../data/language-specs/puppet.lang.h:8
-#| msgid "Variable"
 msgid "Variables"
 msgstr "Kintamieji"
 
 #: ../data/language-specs/puppet.lang.h:9
-#| msgid "Class"
 msgid "Class names"
 msgstr "Klasių pavadinimai"
 
@@ -2723,85 +2761,84 @@ msgstr "Buferio atšaukimų tvarkytuvė"
 msgid "No extra information available"
 msgstr "Nėra papildomos informacijos"
 
-#: ../gtksourceview/gtksourcecompletion.c:2223
+#: ../gtksourceview/gtksourcecompletion.c:2212
 #: ../gtksourceview/gtksourcegutter.c:547
 msgid "View"
 msgstr "Rodymas"
 
-#: ../gtksourceview/gtksourcecompletion.c:2224
+#: ../gtksourceview/gtksourcecompletion.c:2213
 msgid "The GtkSourceView bound to the completion"
 msgstr "GtkSourceView riba užbaigimui"
 
-#: ../gtksourceview/gtksourcecompletion.c:2239
+#: ../gtksourceview/gtksourcecompletion.c:2228
 msgid "Remember Info Visibility"
 msgstr "Įsiminti informacijos matomumą"
 
-#: ../gtksourceview/gtksourcecompletion.c:2240
+#: ../gtksourceview/gtksourcecompletion.c:2229
 msgid "Remember the last info window visibility state"
 msgstr "Atsiminti paskutinę informacijos lango matomumo būseną"
 
-#: ../gtksourceview/gtksourcecompletion.c:2253
+#: ../gtksourceview/gtksourcecompletion.c:2242
 msgid "Select on Show"
 msgstr "Pažymėti parodant"
 
-#: ../gtksourceview/gtksourcecompletion.c:2254
+#: ../gtksourceview/gtksourcecompletion.c:2243
 msgid "Select first proposal when completion is shown"
 msgstr "Pažymėti pirmą pasiūlymą, kai užbaigimas yra rodomas"
 
-#: ../gtksourceview/gtksourcecompletion.c:2268
+#: ../gtksourceview/gtksourcecompletion.c:2257
 msgid "Show Headers"
 msgstr "Rodyti antraštes"
 
-#: ../gtksourceview/gtksourcecompletion.c:2269
+#: ../gtksourceview/gtksourcecompletion.c:2258
 msgid "Show provider headers when proposals from multiple providers are available"
 msgstr "Rodyti tiekėjų antraštes, kai yra pasiūlymų iš daugelio tiekėjų"
 
-#: ../gtksourceview/gtksourcecompletion.c:2283
+#: ../gtksourceview/gtksourcecompletion.c:2272
 msgid "Show Icons"
 msgstr "Rodyti piktogramas"
 
-#: ../gtksourceview/gtksourcecompletion.c:2284
+#: ../gtksourceview/gtksourcecompletion.c:2273
 msgid "Show provider and proposal icons in the completion popup"
 msgstr "Rodyti tiekėjo ir pasiūlymo piktogramas iššokančiame užbaigimo lange"
 
-#: ../gtksourceview/gtksourcecompletion.c:2299
+#: ../gtksourceview/gtksourcecompletion.c:2288
 msgid "Accelerators"
 msgstr "Prieigos klavišai"
 
-#: ../gtksourceview/gtksourcecompletion.c:2300
+#: ../gtksourceview/gtksourcecompletion.c:2289
 msgid "Number of proposal accelerators to show"
 msgstr "Rodytinų pasiūlymų prieigos klavišų skaičius"
 
-#: ../gtksourceview/gtksourcecompletion.c:2316
+#: ../gtksourceview/gtksourcecompletion.c:2305
 msgid "Auto Complete Delay"
 msgstr "Automatinio užbaigimo uždelsimas"
 
-#: ../gtksourceview/gtksourcecompletion.c:2317
+#: ../gtksourceview/gtksourcecompletion.c:2306
 msgid "Completion popup delay for interactive completion"
 msgstr "Užbaigimo iššokančio lango uždelsimas interaktyviam užbaigimui"
 
-#: ../gtksourceview/gtksourcecompletion.c:2333
+#: ../gtksourceview/gtksourcecompletion.c:2322
 msgid "Provider Page Size"
 msgstr "Tiekėjo puslapio dydis"
 
-#: ../gtksourceview/gtksourcecompletion.c:2334
+#: ../gtksourceview/gtksourcecompletion.c:2323
 msgid "Provider scrolling page size"
 msgstr "Tiekėjo slenkamo puslapio dydis"
 
-#: ../gtksourceview/gtksourcecompletion.c:2353
+#: ../gtksourceview/gtksourcecompletion.c:2342
 msgid "Proposal Page Size"
 msgstr "Pasiūlymo puslapio dydis"
 
-#: ../gtksourceview/gtksourcecompletion.c:2354
+#: ../gtksourceview/gtksourcecompletion.c:2343
 msgid "Proposal scrolling page size"
 msgstr "Pasiūlymo slenkamo puslapio dydis"
 
-#: ../gtksourceview/gtksourcecompletion.c:2715
+#: ../gtksourceview/gtksourcecompletion.c:2704
 msgid "Provider"
 msgstr "Tiekėjas"
 
 #: ../gtksourceview/gtksourcecompletion.ui.h:1
-#| msgid "Show provider and proposal icons in the completion popup"
 msgid "Show detailed proposal information"
 msgstr "Rodyti detaqlią pasiūlymo informaciją"
 
@@ -2809,29 +2846,29 @@ msgstr "Rodyti detaqlią pasiūlymo informaciją"
 msgid "_Details..."
 msgstr "_Detalės..."
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:233
+#: ../gtksourceview/gtksourcecompletioncontext.c:255
 #: ../gtksourceview/gtksourceview.c:306
 msgid "Completion"
 msgstr "Užbaigimas"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:234
+#: ../gtksourceview/gtksourcecompletioncontext.c:256
 msgid "The completion object to which the context belongs"
 msgstr "Konteksto užbaigimo objektas"
 
 #. Translators: The GtkTextIter at which the completion was invoked
-#: ../gtksourceview/gtksourcecompletioncontext.c:247
+#: ../gtksourceview/gtksourcecompletioncontext.c:269
 msgid "Iterator"
 msgstr "Iteratorius"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:248
+#: ../gtksourceview/gtksourcecompletioncontext.c:270
 msgid "The GtkTextIter at which the completion was invoked"
 msgstr "GtkTextIter, kuriame buvo iššauktas užbaigimas"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:260
+#: ../gtksourceview/gtksourcecompletioncontext.c:282
 msgid "Activation"
 msgstr "Aktyvavimas"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:261
+#: ../gtksourceview/gtksourcecompletioncontext.c:283
 msgid "The type of activation"
 msgstr "Aktyvavimo tipas"
 
