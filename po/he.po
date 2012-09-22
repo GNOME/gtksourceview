@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview.HEAD.he\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-26 10:22+0300\n"
-"PO-Revision-Date: 2012-08-26 10:25+0200\n"
+"POT-Creation-Date: 2012-09-22 15:03+0300\n"
+"PO-Revision-Date: 2012-09-22 15:04+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <he@li.org>\n"
 "Language: he\n"
@@ -79,6 +79,7 @@ msgstr "הכול"
 #: ../data/language-specs/actionscript.lang.h:1
 #: ../data/language-specs/ada.lang.h:1
 #: ../data/language-specs/asp.lang.h:1
+#: ../data/language-specs/automake.lang.h:1
 #: ../data/language-specs/bennugd.lang.h:1
 #: ../data/language-specs/boo.lang.h:1
 #: ../data/language-specs/cg.lang.h:1
@@ -103,6 +104,7 @@ msgstr "הכול"
 #: ../data/language-specs/java.lang.h:1
 #: ../data/language-specs/makefile.lang.h:1
 #: ../data/language-specs/nemerle.lang.h:1
+#: ../data/language-specs/netrexx.lang.h:1
 #: ../data/language-specs/objc.lang.h:1
 #: ../data/language-specs/objj.lang.h:1
 #: ../data/language-specs/ocaml.lang.h:1
@@ -159,6 +161,7 @@ msgstr "ActionScript"
 #: ../data/language-specs/lua.lang.h:3
 #: ../data/language-specs/matlab.lang.h:3
 #: ../data/language-specs/nemerle.lang.h:3
+#: ../data/language-specs/netrexx.lang.h:6
 #: ../data/language-specs/nsis.lang.h:4
 #: ../data/language-specs/ocaml.lang.h:3
 #: ../data/language-specs/ocl.lang.h:3
@@ -241,8 +244,8 @@ msgstr "שגיאות"
 #: ../data/language-specs/javascript.lang.h:13
 #: ../data/language-specs/json.lang.h:4
 #: ../data/language-specs/lua.lang.h:4
-#: ../data/language-specs/matlab.lang.h:4
 #: ../data/language-specs/nemerle.lang.h:7
+#: ../data/language-specs/netrexx.lang.h:4
 #: ../data/language-specs/nsis.lang.h:5
 #: ../data/language-specs/objc.lang.h:6
 #: ../data/language-specs/objj.lang.h:8
@@ -337,6 +340,7 @@ msgstr "Scope Declaration"
 #: ../data/language-specs/java.lang.h:12
 #: ../data/language-specs/javascript.lang.h:7
 #: ../data/language-specs/lua.lang.h:5
+#: ../data/language-specs/matlab.lang.h:4
 #: ../data/language-specs/nemerle.lang.h:8
 #: ../data/language-specs/objc.lang.h:3
 #: ../data/language-specs/objj.lang.h:4
@@ -428,6 +432,7 @@ msgstr "ערך בוליאני"
 #: ../data/language-specs/forth.lang.h:8
 #: ../data/language-specs/j.lang.h:14
 #: ../data/language-specs/java.lang.h:15
+#: ../data/language-specs/netrexx.lang.h:16
 #: ../data/language-specs/prolog.lang.h:7
 #: ../data/language-specs/vhdl.lang.h:11
 msgid "Number"
@@ -551,6 +556,7 @@ msgstr "מספר ממשי"
 #: ../data/language-specs/javascript.lang.h:3
 #: ../data/language-specs/json.lang.h:3
 #: ../data/language-specs/lua.lang.h:6
+#: ../data/language-specs/netrexx.lang.h:3
 #: ../data/language-specs/ocaml.lang.h:18
 #: ../data/language-specs/ooc.lang.h:5
 #: ../data/language-specs/php.lang.h:8
@@ -620,39 +626,39 @@ msgstr "קבועים של VBScript ו־ADO"
 msgid "Special constant"
 msgstr "קבוע מיוחד"
 
-#: ../data/language-specs/automake.lang.h:1
+#: ../data/language-specs/automake.lang.h:2
 msgid "Automake"
 msgstr "Automake"
 
-#: ../data/language-specs/automake.lang.h:2
+#: ../data/language-specs/automake.lang.h:3
 msgid "Automake Variable"
 msgstr "משתנה של Automake"
 
-#: ../data/language-specs/automake.lang.h:3
+#: ../data/language-specs/automake.lang.h:4
 msgid "Primary"
 msgstr "ראשי"
 
-#: ../data/language-specs/automake.lang.h:4
+#: ../data/language-specs/automake.lang.h:5
 msgid "Secondary"
 msgstr "משני"
 
-#: ../data/language-specs/automake.lang.h:5
+#: ../data/language-specs/automake.lang.h:6
 msgid "Prefix"
 msgstr "קידומת"
 
-#: ../data/language-specs/automake.lang.h:6
+#: ../data/language-specs/automake.lang.h:7
 msgid "Optional Target"
 msgstr "יעד אפשרי"
 
-#: ../data/language-specs/automake.lang.h:7
+#: ../data/language-specs/automake.lang.h:8
 msgid "Built-in Target"
 msgstr "יעד מובנה"
 
-#: ../data/language-specs/automake.lang.h:8
+#: ../data/language-specs/automake.lang.h:9
 msgid "Other Keyword"
 msgstr "מילת מפתח אחרת"
 
-#: ../data/language-specs/automake.lang.h:9
+#: ../data/language-specs/automake.lang.h:10
 msgid "Substitution"
 msgstr "החלפה"
 
@@ -703,6 +709,7 @@ msgstr "משתנה"
 #: ../data/language-specs/boo.lang.h:15
 #: ../data/language-specs/glsl.lang.h:6
 #: ../data/language-specs/go.lang.h:18
+#: ../data/language-specs/netrexx.lang.h:15
 #: ../data/language-specs/perl.lang.h:8
 #: ../data/language-specs/python.lang.h:18
 #: ../data/language-specs/python3.lang.h:17
@@ -963,6 +970,7 @@ msgstr "Define נפוצות"
 #: ../data/language-specs/haskell.lang.h:10
 #: ../data/language-specs/java.lang.h:5
 #: ../data/language-specs/nemerle.lang.h:6
+#: ../data/language-specs/netrexx.lang.h:5
 #: ../data/language-specs/sml.lang.h:6
 #: ../data/language-specs/vhdl.lang.h:5
 msgid "Character"
@@ -2012,6 +2020,42 @@ msgstr "CDATA delimiter"
 msgid "Nemerle"
 msgstr "Nemerle"
 
+#: ../data/language-specs/netrexx.lang.h:2
+msgid "NetRexx"
+msgstr "NetRexx"
+
+#: ../data/language-specs/netrexx.lang.h:7
+msgid "Externals"
+msgstr "חיצוניים"
+
+#: ../data/language-specs/netrexx.lang.h:8
+msgid "Options"
+msgstr "אפשרויות"
+
+#: ../data/language-specs/netrexx.lang.h:9
+msgid "Data Types"
+msgstr "טיפוסי נתונים"
+
+#: ../data/language-specs/netrexx.lang.h:10
+msgid "Special"
+msgstr "מיוחד"
+
+#: ../data/language-specs/netrexx.lang.h:11
+msgid "Visibility"
+msgstr "מצב הצגה"
+
+#: ../data/language-specs/netrexx.lang.h:12
+msgid "Modifiers"
+msgstr "מקשי החלפה"
+
+#: ../data/language-specs/netrexx.lang.h:13
+msgid "Keywords"
+msgstr "מילות מפתח"
+
+#: ../data/language-specs/netrexx.lang.h:14
+msgid "Sub Keywords"
+msgstr "תת מילות מפתח"
+
 #: ../data/language-specs/nsis.lang.h:2
 msgid "NSIS"
 msgstr "NSIS"
@@ -2704,80 +2748,80 @@ msgstr "מנהל חוצץ הביטולים"
 msgid "No extra information available"
 msgstr "אין מידע נוסף זמין"
 
-#: ../gtksourceview/gtksourcecompletion.c:2223
+#: ../gtksourceview/gtksourcecompletion.c:2212
 #: ../gtksourceview/gtksourcegutter.c:547
 msgid "View"
 msgstr "תצוגה"
 
-#: ../gtksourceview/gtksourcecompletion.c:2224
+#: ../gtksourceview/gtksourcecompletion.c:2213
 msgid "The GtkSourceView bound to the completion"
 msgstr "ה־GtkSourceView מחויב להשלמה"
 
-#: ../gtksourceview/gtksourcecompletion.c:2239
+#: ../gtksourceview/gtksourcecompletion.c:2228
 msgid "Remember Info Visibility"
 msgstr "שמירת חזות המידע"
 
-#: ../gtksourceview/gtksourcecompletion.c:2240
+#: ../gtksourceview/gtksourcecompletion.c:2229
 msgid "Remember the last info window visibility state"
 msgstr "שמירת מצב החזות האחרון של חלון המידע"
 
-#: ../gtksourceview/gtksourcecompletion.c:2253
+#: ../gtksourceview/gtksourcecompletion.c:2242
 msgid "Select on Show"
 msgstr "בחירה בעת ההצגה"
 
-#: ../gtksourceview/gtksourcecompletion.c:2254
+#: ../gtksourceview/gtksourcecompletion.c:2243
 msgid "Select first proposal when completion is shown"
 msgstr "בחירת ההצעה הראשונה כשההשלמה מופיעה"
 
-#: ../gtksourceview/gtksourcecompletion.c:2268
+#: ../gtksourceview/gtksourcecompletion.c:2257
 msgid "Show Headers"
 msgstr "הצגת Headers"
 
-#: ../gtksourceview/gtksourcecompletion.c:2269
+#: ../gtksourceview/gtksourcecompletion.c:2258
 msgid "Show provider headers when proposals from multiple providers are available"
 msgstr "הצגת כותרות הספק כאשר ישנן הצעות זמינות ממספר ספקים"
 
-#: ../gtksourceview/gtksourcecompletion.c:2283
+#: ../gtksourceview/gtksourcecompletion.c:2272
 msgid "Show Icons"
 msgstr "הצגת סמלים"
 
-#: ../gtksourceview/gtksourcecompletion.c:2284
+#: ../gtksourceview/gtksourcecompletion.c:2273
 msgid "Show provider and proposal icons in the completion popup"
 msgstr "הצגת סמלי ספק והצעה בחלונית ההשלמה"
 
-#: ../gtksourceview/gtksourcecompletion.c:2299
+#: ../gtksourceview/gtksourcecompletion.c:2288
 msgid "Accelerators"
 msgstr "מאיצים"
 
-#: ../gtksourceview/gtksourcecompletion.c:2300
+#: ../gtksourceview/gtksourcecompletion.c:2289
 msgid "Number of proposal accelerators to show"
 msgstr "מספק מאיצי ההצעות להצגה"
 
-#: ../gtksourceview/gtksourcecompletion.c:2316
+#: ../gtksourceview/gtksourcecompletion.c:2305
 msgid "Auto Complete Delay"
 msgstr "השהיית ההשלמה האוטומטית"
 
-#: ../gtksourceview/gtksourcecompletion.c:2317
+#: ../gtksourceview/gtksourcecompletion.c:2306
 msgid "Completion popup delay for interactive completion"
 msgstr "השהיית חלונית ההשלמה עבור השלמה אינטראקטביית"
 
-#: ../gtksourceview/gtksourcecompletion.c:2333
+#: ../gtksourceview/gtksourcecompletion.c:2322
 msgid "Provider Page Size"
 msgstr "גודל עמוד הספק"
 
-#: ../gtksourceview/gtksourcecompletion.c:2334
+#: ../gtksourceview/gtksourcecompletion.c:2323
 msgid "Provider scrolling page size"
 msgstr "גודל העמוד הנגלל של הספק"
 
-#: ../gtksourceview/gtksourcecompletion.c:2353
+#: ../gtksourceview/gtksourcecompletion.c:2342
 msgid "Proposal Page Size"
 msgstr "גודל עמוד ההצעה"
 
-#: ../gtksourceview/gtksourcecompletion.c:2354
+#: ../gtksourceview/gtksourcecompletion.c:2343
 msgid "Proposal scrolling page size"
 msgstr "גודל עמוד הנגלל של ההצעה"
 
-#: ../gtksourceview/gtksourcecompletion.c:2715
+#: ../gtksourceview/gtksourcecompletion.c:2704
 msgid "Provider"
 msgstr "ספק"
 
@@ -2789,29 +2833,29 @@ msgstr "הצגת פרטי ההצעה בפירוט"
 msgid "_Details..."
 msgstr "_פרטים..."
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:233
+#: ../gtksourceview/gtksourcecompletioncontext.c:255
 #: ../gtksourceview/gtksourceview.c:306
 msgid "Completion"
 msgstr "השלמה"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:234
+#: ../gtksourceview/gtksourcecompletioncontext.c:256
 msgid "The completion object to which the context belongs"
 msgstr "עצם ההשלמה אליו שייך ההקשר"
 
 #. Translators: The GtkTextIter at which the completion was invoked
-#: ../gtksourceview/gtksourcecompletioncontext.c:247
+#: ../gtksourceview/gtksourcecompletioncontext.c:269
 msgid "Iterator"
 msgstr "מונה"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:248
+#: ../gtksourceview/gtksourcecompletioncontext.c:270
 msgid "The GtkTextIter at which the completion was invoked"
 msgstr "ה־GtkTextIter שבו ההשלמה נקרא"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:260
+#: ../gtksourceview/gtksourcecompletioncontext.c:282
 msgid "Activation"
 msgstr "הפעלה"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:261
+#: ../gtksourceview/gtksourcecompletioncontext.c:283
 msgid "The type of activation"
 msgstr "סוג ההפעלה"
 
@@ -3425,9 +3469,6 @@ msgstr "ירון שהרבני <sh.yaron@gmail.com>"
 
 #~ msgid "Object"
 #~ msgstr "Object"
-
-#~ msgid "Special"
-#~ msgstr "מיוחד"
 
 #~ msgid "Id"
 #~ msgstr "מזהה"
