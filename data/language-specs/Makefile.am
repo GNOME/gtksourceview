@@ -62,6 +62,7 @@ LANGUAGES =			\
 	mallard.lang		\
 	markdown.lang		\
 	matlab.lang		\
+	mediawiki.lang		\
 	modelica.lang		\
 	mxml.lang		\
 	nemerle.lang		\
