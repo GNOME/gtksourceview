@@ -33,6 +33,7 @@
   <styles>
     <style id="comment" _name="Comment" map-to="def:comment"/>
     <style id="string" _name="String" map-to="def:string"/>
+    <style id="printf" _name="printf Conversion" map-to="def:special-char"/>
     <style id="escaped-character" _name="Escaped Character" map-to="def:special-char"/>
     <style id="error" _name="Error" map-to="def:error"/>
     <style id="compiler-directive" _name="Compiler Directive" map-to="def:preprocessor"/>
@@ -67,6 +68,16 @@
       <match>\*/(?!\*)</match>
     </context>
 
+    <context id="printf" style-ref="printf" extend-parent="false">
+      <match extended="true">
+        \%\%|\%
+        0?                      # truncation
+        (?:[1-9][0-9]*|\*)?     # width
+        (?:\.\-?(?:[0-9]+|\*))? # precision
+        [bBoOdDhHeEfFtTsSmMlL]  # format specifier
+      </match>
+    </context>
+
     <define-regex id="escaped-character" extended="true">
       \\(                   # leading backslash
       [\\\"\'nt]            # escaped character
@@ -77,6 +88,7 @@
       <start>"</start>
       <end>"</end>
       <include>
+        <context ref="printf"/>
         <context id="escaped-character" style-ref="escaped-character">
           <match>\%{escaped-character}</match>
         </context>

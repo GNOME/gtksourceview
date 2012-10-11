@@ -8,6 +8,7 @@ LANGUAGES =			\
 	awk.lang		\
 	bennugd.lang		\
 	bibtex.lang		\
+	bluespec.lang		\
 	boo.lang		\
 	changelog.lang		\
 	c.lang			\
