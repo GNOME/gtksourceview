@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gtksourceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-09-18 17:34+0000\n"
-"PO-Revision-Date: 2012-09-18 21:01+0100\n"
+"POT-Creation-Date: 2012-10-12 10:49+0000\n"
+"PO-Revision-Date: 2012-10-14 15:44+0100\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: \n"
@@ -85,6 +85,7 @@ msgstr "Vse"
 #: ../data/language-specs/asp.lang.h:1
 #: ../data/language-specs/automake.lang.h:1
 #: ../data/language-specs/bennugd.lang.h:1
+#: ../data/language-specs/bluespec.lang.h:1
 #: ../data/language-specs/boo.lang.h:1
 #: ../data/language-specs/cg.lang.h:1
 #: ../data/language-specs/chdr.lang.h:1
@@ -215,7 +216,7 @@ msgstr "Opomba"
 #: ../data/language-specs/php.lang.h:4
 #: ../data/language-specs/prolog.lang.h:9
 #: ../data/language-specs/vala.lang.h:4
-#: ../data/language-specs/verilog.lang.h:6
+#: ../data/language-specs/verilog.lang.h:7
 #: ../data/language-specs/xml.lang.h:13
 msgid "Error"
 msgstr "Napaka"
@@ -315,6 +316,7 @@ msgstr "Deklaracije obsega"
 #: ../data/language-specs/asp.lang.h:6
 #: ../data/language-specs/awk.lang.h:3
 #: ../data/language-specs/bennugd.lang.h:7
+#: ../data/language-specs/bluespec.lang.h:7
 #: ../data/language-specs/boo.lang.h:10
 #: ../data/language-specs/cg.lang.h:8
 #: ../data/language-specs/c.lang.h:9
@@ -375,7 +377,7 @@ msgstr "Deklaracije obsega"
 #: ../data/language-specs/texinfo.lang.h:7
 #: ../data/language-specs/vala.lang.h:7
 #: ../data/language-specs/vbnet.lang.h:6
-#: ../data/language-specs/verilog.lang.h:10
+#: ../data/language-specs/verilog.lang.h:11
 #: ../data/language-specs/vhdl.lang.h:6
 msgid "Keyword"
 msgstr "Ključna beseda"
@@ -542,7 +544,7 @@ msgstr "Privzeta številčna osnova"
 
 #: ../data/language-specs/ada.lang.h:12
 #: ../data/language-specs/csharp.lang.h:17
-#: ../data/language-specs/verilog.lang.h:14
+#: ../data/language-specs/verilog.lang.h:15
 #: ../data/language-specs/vhdl.lang.h:10
 msgid "Real number"
 msgstr "Realno število"
@@ -570,7 +572,7 @@ msgstr "Realno število"
 #: ../data/language-specs/ruby.lang.h:3
 #: ../data/language-specs/sml.lang.h:8
 #: ../data/language-specs/texinfo.lang.h:4
-#: ../data/language-specs/verilog.lang.h:5
+#: ../data/language-specs/verilog.lang.h:6
 msgid "Escaped Character"
 msgstr "Ubežni znak"
 
@@ -796,6 +798,35 @@ msgstr "Vnosi"
 msgid "Field"
 msgstr "Polje"
 
+#: ../data/language-specs/bluespec.lang.h:2
+msgid "Bluespec SystemVerilog"
+msgstr "Bluespec SystemVerilog"
+
+#: ../data/language-specs/bluespec.lang.h:3
+#: ../data/language-specs/systemverilog.lang.h:4
+msgid "System Task"
+msgstr "Sistemska naloga"
+
+#: ../data/language-specs/bluespec.lang.h:4
+msgid "Annotation"
+msgstr "Pripomba"
+
+#: ../data/language-specs/bluespec.lang.h:5
+msgid "Attribute"
+msgstr "Atribut"
+
+#: ../data/language-specs/bluespec.lang.h:6
+msgid "Import BVI"
+msgstr "Uvozi BVI"
+
+#: ../data/language-specs/bluespec.lang.h:8
+#: ../data/language-specs/gtk-doc.lang.h:9
+#: ../data/language-specs/systemverilog.lang.h:6
+#: ../data/language-specs/verilog.lang.h:13
+#: ../data/language-specs/vhdl.lang.h:7
+msgid "Type"
+msgstr "Vrsta"
+
 #: ../data/language-specs/boo.lang.h:2
 msgid "Boo"
 msgstr "Boo"
@@ -985,6 +1016,7 @@ msgstr "Znak"
 
 #: ../data/language-specs/c.lang.h:13
 #: ../data/language-specs/go.lang.h:9
+#: ../data/language-specs/verilog.lang.h:5
 msgid "printf Conversion"
 msgstr "printf pretvorba"
 
@@ -1395,7 +1427,7 @@ msgstr "Atom"
 #: ../data/language-specs/ocaml.lang.h:5
 #: ../data/language-specs/octave.lang.h:11
 #: ../data/language-specs/sml.lang.h:9
-#: ../data/language-specs/verilog.lang.h:13
+#: ../data/language-specs/verilog.lang.h:14
 #: ../data/language-specs/vhdl.lang.h:9
 msgid "Base-N Integer"
 msgstr "Številka Base-N"
@@ -1403,7 +1435,7 @@ msgstr "Številka Base-N"
 #: ../data/language-specs/erlang.lang.h:13
 #: ../data/language-specs/forth.lang.h:11
 #: ../data/language-specs/systemverilog.lang.h:3
-#: ../data/language-specs/verilog.lang.h:7
+#: ../data/language-specs/verilog.lang.h:8
 msgid "Compiler Directive"
 msgstr "Direktiva prevajalnika"
 
@@ -1596,13 +1628,6 @@ msgstr "Ime lastnosti"
 #: ../data/language-specs/gtk-doc.lang.h:7
 msgid "Parameter"
 msgstr "Parameter"
-
-#: ../data/language-specs/gtk-doc.lang.h:9
-#: ../data/language-specs/systemverilog.lang.h:6
-#: ../data/language-specs/verilog.lang.h:12
-#: ../data/language-specs/vhdl.lang.h:7
-msgid "Type"
-msgstr "Vrsta"
 
 #: ../data/language-specs/gtk-doc.lang.h:11
 msgid "Return"
@@ -2307,7 +2332,7 @@ msgid "Special Constant"
 msgstr "Posebna konstanta"
 
 #: ../data/language-specs/R.lang.h:9
-#: ../data/language-specs/verilog.lang.h:15
+#: ../data/language-specs/verilog.lang.h:16
 msgid "Integer Number"
 msgstr "Celo število"
 
@@ -2449,10 +2474,6 @@ msgstr "Neznan dogodek brez prave osnove"
 msgid "SystemVerilog"
 msgstr "Sistemski Verilog"
 
-#: ../data/language-specs/systemverilog.lang.h:4
-msgid "System Task"
-msgstr "Sistemska naloga"
-
 #: ../data/language-specs/t2t.lang.h:2
 msgid "txt2tags"
 msgstr "txt2tags"
@@ -2533,15 +2554,15 @@ msgstr "VB.NET"
 msgid "Verilog"
 msgstr "Verilog"
 
-#: ../data/language-specs/verilog.lang.h:8
+#: ../data/language-specs/verilog.lang.h:9
 msgid "IEEE System Task"
 msgstr "Sistemska naloga IEEE"
 
-#: ../data/language-specs/verilog.lang.h:9
+#: ../data/language-specs/verilog.lang.h:10
 msgid "LRM Additional System Task"
 msgstr "Dodatna sistemska naloga LRM"
 
-#: ../data/language-specs/verilog.lang.h:11
+#: ../data/language-specs/verilog.lang.h:12
 msgid "Gate"
 msgstr "Gate"
 
