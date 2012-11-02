@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gtksourceview 3.5.x\n"
+"Project-Id-Version: gtksourceview 3.6.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-22 12:43+0200\n"
-"PO-Revision-Date: 2012-08-22 12:46+0200\n"
+"POT-Creation-Date: 2012-11-02 08:11+0100\n"
+"PO-Revision-Date: 2012-11-02 08:12+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian bokmål <i18n-nb@lister.ping.uio.no>\n"
 "Language: \n"
@@ -75,6 +75,7 @@ msgstr "Alle"
 
 #: ../data/language-specs/actionscript.lang.h:1
 #: ../data/language-specs/ada.lang.h:1 ../data/language-specs/asp.lang.h:1
+#: ../data/language-specs/automake.lang.h:1
 #: ../data/language-specs/bennugd.lang.h:1 ../data/language-specs/boo.lang.h:1
 #: ../data/language-specs/cg.lang.h:1 ../data/language-specs/chdr.lang.h:1
 #: ../data/language-specs/c.lang.h:1 ../data/language-specs/cobol.lang.h:1
@@ -91,6 +92,7 @@ msgstr "Alle"
 #: ../data/language-specs/java.lang.h:1
 #: ../data/language-specs/makefile.lang.h:1
 #: ../data/language-specs/nemerle.lang.h:1
+#: ../data/language-specs/netrexx.lang.h:1
 #: ../data/language-specs/objc.lang.h:1 ../data/language-specs/objj.lang.h:1
 #: ../data/language-specs/ocaml.lang.h:1 ../data/language-specs/ooc.lang.h:1
 #: ../data/language-specs/opal.lang.h:1 ../data/language-specs/opencl.lang.h:1
@@ -129,6 +131,7 @@ msgstr "ActionScript"
 #: ../data/language-specs/latex.lang.h:3 ../data/language-specs/lua.lang.h:3
 #: ../data/language-specs/matlab.lang.h:3
 #: ../data/language-specs/nemerle.lang.h:3
+#: ../data/language-specs/netrexx.lang.h:6
 #: ../data/language-specs/nsis.lang.h:4 ../data/language-specs/ocaml.lang.h:3
 #: ../data/language-specs/ocl.lang.h:3 ../data/language-specs/octave.lang.h:3
 #: ../data/language-specs/ooc.lang.h:3 ../data/language-specs/opal.lang.h:4
@@ -183,8 +186,8 @@ msgstr "Feil"
 #: ../data/language-specs/j.lang.h:17 ../data/language-specs/java.lang.h:4
 #: ../data/language-specs/javascript.lang.h:13
 #: ../data/language-specs/json.lang.h:4 ../data/language-specs/lua.lang.h:4
-#: ../data/language-specs/matlab.lang.h:4
 #: ../data/language-specs/nemerle.lang.h:7
+#: ../data/language-specs/netrexx.lang.h:4
 #: ../data/language-specs/nsis.lang.h:5 ../data/language-specs/objc.lang.h:6
 #: ../data/language-specs/objj.lang.h:8 ../data/language-specs/ocaml.lang.h:8
 #: ../data/language-specs/ocl.lang.h:4 ../data/language-specs/octave.lang.h:4
@@ -251,7 +254,8 @@ msgstr "Deklarasjon av omfang"
 #: ../data/language-specs/imagej.lang.h:8 ../data/language-specs/ini.lang.h:6
 #: ../data/language-specs/java.lang.h:12
 #: ../data/language-specs/javascript.lang.h:7
-#: ../data/language-specs/lua.lang.h:5 ../data/language-specs/nemerle.lang.h:8
+#: ../data/language-specs/lua.lang.h:5 ../data/language-specs/matlab.lang.h:4
+#: ../data/language-specs/nemerle.lang.h:8
 #: ../data/language-specs/objc.lang.h:3 ../data/language-specs/objj.lang.h:4
 #: ../data/language-specs/ocaml.lang.h:9 ../data/language-specs/ocl.lang.h:5
 #: ../data/language-specs/octave.lang.h:13
@@ -315,6 +319,7 @@ msgstr "Bolsk verdi"
 #: ../data/language-specs/desktop.lang.h:8
 #: ../data/language-specs/forth.lang.h:8 ../data/language-specs/j.lang.h:14
 #: ../data/language-specs/java.lang.h:15
+#: ../data/language-specs/netrexx.lang.h:16
 #: ../data/language-specs/prolog.lang.h:7
 #: ../data/language-specs/vhdl.lang.h:11
 msgid "Number"
@@ -410,6 +415,7 @@ msgstr "Reelt tall"
 #: ../data/language-specs/java.lang.h:3
 #: ../data/language-specs/javascript.lang.h:3
 #: ../data/language-specs/json.lang.h:3 ../data/language-specs/lua.lang.h:6
+#: ../data/language-specs/netrexx.lang.h:3
 #: ../data/language-specs/ocaml.lang.h:18 ../data/language-specs/ooc.lang.h:5
 #: ../data/language-specs/php.lang.h:8 ../data/language-specs/prolog.lang.h:10
 #: ../data/language-specs/python.lang.h:7
@@ -464,39 +470,39 @@ msgstr "VBScript og ADO-konstanter"
 msgid "Special constant"
 msgstr "Spesiell konstant"
 
-#: ../data/language-specs/automake.lang.h:1
+#: ../data/language-specs/automake.lang.h:2
 msgid "Automake"
 msgstr "Automake"
 
-#: ../data/language-specs/automake.lang.h:2
+#: ../data/language-specs/automake.lang.h:3
 msgid "Automake Variable"
 msgstr "Automake-variabel"
 
-#: ../data/language-specs/automake.lang.h:3
+#: ../data/language-specs/automake.lang.h:4
 msgid "Primary"
 msgstr "Primær"
 
-#: ../data/language-specs/automake.lang.h:4
+#: ../data/language-specs/automake.lang.h:5
 msgid "Secondary"
 msgstr "Sekundær"
 
-#: ../data/language-specs/automake.lang.h:5
+#: ../data/language-specs/automake.lang.h:6
 msgid "Prefix"
 msgstr "Prefiks"
 
-#: ../data/language-specs/automake.lang.h:6
+#: ../data/language-specs/automake.lang.h:7
 msgid "Optional Target"
 msgstr "Valgfritt mål"
 
-#: ../data/language-specs/automake.lang.h:7
+#: ../data/language-specs/automake.lang.h:8
 msgid "Built-in Target"
 msgstr "Innebygget mål"
 
-#: ../data/language-specs/automake.lang.h:8
+#: ../data/language-specs/automake.lang.h:9
 msgid "Other Keyword"
 msgstr "Annet nøkkelord"
 
-#: ../data/language-specs/automake.lang.h:9
+#: ../data/language-specs/automake.lang.h:10
 msgid "Substitution"
 msgstr "Erstatning"
 
@@ -537,6 +543,7 @@ msgstr "Variabel"
 
 #: ../data/language-specs/awk.lang.h:6 ../data/language-specs/boo.lang.h:15
 #: ../data/language-specs/glsl.lang.h:6 ../data/language-specs/go.lang.h:18
+#: ../data/language-specs/netrexx.lang.h:15
 #: ../data/language-specs/perl.lang.h:8
 #: ../data/language-specs/python.lang.h:18
 #: ../data/language-specs/python3.lang.h:17
@@ -759,7 +766,8 @@ msgstr "Vanlige definerte verdier"
 #: ../data/language-specs/gap.lang.h:4 ../data/language-specs/go.lang.h:6
 #: ../data/language-specs/haskell.lang.h:10
 #: ../data/language-specs/java.lang.h:5
-#: ../data/language-specs/nemerle.lang.h:6 ../data/language-specs/sml.lang.h:6
+#: ../data/language-specs/nemerle.lang.h:6
+#: ../data/language-specs/netrexx.lang.h:5 ../data/language-specs/sml.lang.h:6
 #: ../data/language-specs/vhdl.lang.h:5
 msgid "Character"
 msgstr "Tegn"
@@ -1779,6 +1787,42 @@ msgstr "CDATA-skilletegn"
 msgid "Nemerle"
 msgstr "Nemerle"
 
+#: ../data/language-specs/netrexx.lang.h:2
+msgid "NetRexx"
+msgstr "NetRexx"
+
+#: ../data/language-specs/netrexx.lang.h:7
+msgid "Externals"
+msgstr "Eksterne"
+
+#: ../data/language-specs/netrexx.lang.h:8
+msgid "Options"
+msgstr "Alternativer"
+
+#: ../data/language-specs/netrexx.lang.h:9
+msgid "Data Types"
+msgstr "Datatyper"
+
+#: ../data/language-specs/netrexx.lang.h:10
+msgid "Special"
+msgstr "Spesiell"
+
+#: ../data/language-specs/netrexx.lang.h:11
+msgid "Visibility"
+msgstr "Synlighet"
+
+#: ../data/language-specs/netrexx.lang.h:12
+msgid "Modifiers"
+msgstr "Endringstaster"
+
+#: ../data/language-specs/netrexx.lang.h:13
+msgid "Keywords"
+msgstr "Nøkkelord"
+
+#: ../data/language-specs/netrexx.lang.h:14
+msgid "Sub Keywords"
+msgstr "Undernøkkelord"
+
 #: ../data/language-specs/nsis.lang.h:2
 msgid "NSIS"
 msgstr "NSIS"
@@ -2463,81 +2507,81 @@ msgstr "Angrehåndtering for buffer"
 msgid "No extra information available"
 msgstr "Ingen ekstra informasjon tilgjengelig"
 
-#: ../gtksourceview/gtksourcecompletion.c:2223
+#: ../gtksourceview/gtksourcecompletion.c:2212
 #: ../gtksourceview/gtksourcegutter.c:547
 msgid "View"
 msgstr "Vis"
 
-#: ../gtksourceview/gtksourcecompletion.c:2224
+#: ../gtksourceview/gtksourcecompletion.c:2213
 msgid "The GtkSourceView bound to the completion"
 msgstr "GtkSourceView-objekt som er bundet til fullføring"
 
-#: ../gtksourceview/gtksourcecompletion.c:2239
+#: ../gtksourceview/gtksourcecompletion.c:2228
 msgid "Remember Info Visibility"
 msgstr "Husk synlighet for informasjon"
 
-#: ../gtksourceview/gtksourcecompletion.c:2240
+#: ../gtksourceview/gtksourcecompletion.c:2229
 msgid "Remember the last info window visibility state"
 msgstr "Husk synlighetstilstand for siste informasjonsvindu"
 
-#: ../gtksourceview/gtksourcecompletion.c:2253
+#: ../gtksourceview/gtksourcecompletion.c:2242
 msgid "Select on Show"
 msgstr "Velg ved visning"
 
-#: ../gtksourceview/gtksourcecompletion.c:2254
+#: ../gtksourceview/gtksourcecompletion.c:2243
 msgid "Select first proposal when completion is shown"
 msgstr "Velg første forslag når fullføring vises"
 
-#: ../gtksourceview/gtksourcecompletion.c:2268
+#: ../gtksourceview/gtksourcecompletion.c:2257
 msgid "Show Headers"
 msgstr "Vis hoder"
 
-#: ../gtksourceview/gtksourcecompletion.c:2269
+#: ../gtksourceview/gtksourcecompletion.c:2258
 msgid ""
 "Show provider headers when proposals from multiple providers are available"
 msgstr ""
 
-#: ../gtksourceview/gtksourcecompletion.c:2283
+#: ../gtksourceview/gtksourcecompletion.c:2272
 msgid "Show Icons"
 msgstr "Vis ikoner"
 
-#: ../gtksourceview/gtksourcecompletion.c:2284
+#: ../gtksourceview/gtksourcecompletion.c:2273
 msgid "Show provider and proposal icons in the completion popup"
 msgstr "Vis tilbyder og foreslåtte ikoner i fullføringsdialogen"
 
-#: ../gtksourceview/gtksourcecompletion.c:2299
+#: ../gtksourceview/gtksourcecompletion.c:2288
 msgid "Accelerators"
 msgstr "Akselleratorer"
 
-#: ../gtksourceview/gtksourcecompletion.c:2300
+#: ../gtksourceview/gtksourcecompletion.c:2289
 msgid "Number of proposal accelerators to show"
 msgstr "Antall foreslåtte hurtigtaster som skal vises"
 
-#: ../gtksourceview/gtksourcecompletion.c:2316
+#: ../gtksourceview/gtksourcecompletion.c:2305
 msgid "Auto Complete Delay"
 msgstr "Pause før automatisk fullføring"
 
-#: ../gtksourceview/gtksourcecompletion.c:2317
+#: ../gtksourceview/gtksourcecompletion.c:2306
 msgid "Completion popup delay for interactive completion"
 msgstr ""
 
-#: ../gtksourceview/gtksourcecompletion.c:2333
+#: ../gtksourceview/gtksourcecompletion.c:2322
 msgid "Provider Page Size"
 msgstr "Sidestørrelse for tilbyder"
 
-#: ../gtksourceview/gtksourcecompletion.c:2334
+#: ../gtksourceview/gtksourcecompletion.c:2323
 msgid "Provider scrolling page size"
 msgstr ""
 
-#: ../gtksourceview/gtksourcecompletion.c:2353
+#: ../gtksourceview/gtksourcecompletion.c:2342
 msgid "Proposal Page Size"
 msgstr "Sidestørrelse for forslag"
 
-#: ../gtksourceview/gtksourcecompletion.c:2354
+#: ../gtksourceview/gtksourcecompletion.c:2343
 msgid "Proposal scrolling page size"
 msgstr ""
 
-#: ../gtksourceview/gtksourcecompletion.c:2715
+#: ../gtksourceview/gtksourcecompletion.c:2704
 msgid "Provider"
 msgstr "Tilbyder"
 
@@ -2549,29 +2593,29 @@ msgstr "Vis detaljert informasjon om forslag"
 msgid "_Details..."
 msgstr "_Detaljer …"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:233
+#: ../gtksourceview/gtksourcecompletioncontext.c:255
 #: ../gtksourceview/gtksourceview.c:306
 msgid "Completion"
 msgstr "Fullføring"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:234
+#: ../gtksourceview/gtksourcecompletioncontext.c:256
 msgid "The completion object to which the context belongs"
 msgstr "Fullføringsobjektet konteksten tilhører"
 
 #. Translators: The GtkTextIter at which the completion was invoked
-#: ../gtksourceview/gtksourcecompletioncontext.c:247
+#: ../gtksourceview/gtksourcecompletioncontext.c:269
 msgid "Iterator"
 msgstr "Iterator"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:248
+#: ../gtksourceview/gtksourcecompletioncontext.c:270
 msgid "The GtkTextIter at which the completion was invoked"
 msgstr ""
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:260
+#: ../gtksourceview/gtksourcecompletioncontext.c:282
 msgid "Activation"
 msgstr "Aktivering"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:261
+#: ../gtksourceview/gtksourcecompletioncontext.c:283
 msgid "The type of activation"
 msgstr "Type aktivering"
 
@@ -2586,7 +2630,7 @@ msgstr "Etikett som skal vises for denne oppføringen"
 
 #: ../gtksourceview/gtksourcecompletionitem.c:243
 msgid "Markup to be shown for this item"
-msgstr ""
+msgstr "Merking kan vises for denne oppføringen"
 
 #: ../gtksourceview/gtksourcecompletionitem.c:256
 msgid "Item text"
