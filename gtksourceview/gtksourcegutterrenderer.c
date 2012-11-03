@@ -82,25 +82,20 @@ enum
 	PROP_BACKGROUND_SET
 };
 
-/* we cannot simply use g_object_add_weak_pointer
- * because if the buffer is finalized after the renderer, glib
- * will try to nullify freed memory, so we need to unref first */
 static void
 set_buffer (GtkSourceGutterRenderer *renderer,
             GtkTextBuffer           *buffer)
 {
 	if (renderer->priv->buffer != NULL)
 	{
-		g_object_weak_unref (G_OBJECT (renderer->priv->buffer),
-		                     (GWeakNotify) g_nullify_pointer,
-		                     (gpointer)&renderer->priv->buffer);
+		g_object_remove_weak_pointer (G_OBJECT (renderer->priv->buffer),
+		                              &renderer->priv->buffer);
 	}
 
 	if (buffer != NULL)
 	{
-		g_object_weak_ref (G_OBJECT (buffer),
-			           (GWeakNotify) g_nullify_pointer,
-			           (gpointer)&renderer->priv->buffer);
+		g_object_add_weak_pointer (G_OBJECT (renderer->priv->buffer),
+		                           &renderer->priv->buffer);
 	}
 
 	renderer->priv->buffer = buffer;
