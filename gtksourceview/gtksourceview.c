@@ -931,55 +931,6 @@ notify_buffer (GtkSourceView *view)
 }
 
 static void
-gutter_renderer_marks_activate (GtkSourceGutterRenderer *renderer,
-                                GtkTextIter             *iter,
-                                const GdkRectangle      *area,
-                                GdkEvent                *event,
-                                GtkSourceView           *view)
-{
-	g_signal_emit (view,
-	               signals[LINE_MARK_ACTIVATED],
-	               0,
-	               iter,
-	               event);
-}
-
-static void
-init_left_gutter (GtkSourceView *view)
-{
-	GtkSourceGutter *gutter;
-
-	gutter = gtk_source_view_get_gutter (view, GTK_TEXT_WINDOW_LEFT);
-
-	view->priv->line_renderer = gtk_source_gutter_renderer_lines_new ();
-	g_object_set (view->priv->line_renderer,
-	              "alignment-mode", GTK_SOURCE_GUTTER_RENDERER_ALIGNMENT_MODE_FIRST,
-	              "yalign", 0.5,
-	              "xalign", 1.0,
-	              "xpad", 3,
-	              "visible", FALSE,
-	              NULL);
-
-	gtk_source_gutter_insert (gutter,
-	                          view->priv->line_renderer,
-	                          GTK_SOURCE_VIEW_GUTTER_POSITION_LINES);
-
-	view->priv->marks_renderer = gtk_source_gutter_renderer_marks_new ();
-	g_object_set (view->priv->marks_renderer,
-	              "visible", FALSE,
-	              NULL);
-
-	gtk_source_gutter_insert (gutter,
-	                          view->priv->marks_renderer,
-	                          GTK_SOURCE_VIEW_GUTTER_POSITION_MARKS);
-
-	g_signal_connect (view->priv->marks_renderer,
-	                  "activate",
-	                  G_CALLBACK (gutter_renderer_marks_activate),
-	                  view);
-}
-
-static void
 gtk_source_view_init (GtkSourceView *view)
 {
 	GtkTargetList *tl;
@@ -1006,8 +957,6 @@ gtk_source_view_init (GtkSourceView *view)
 	                                                     g_str_equal,
 	                                                     (GDestroyNotify) g_free,
 	                                                     (GDestroyNotify) mark_category_free);
-
-	init_left_gutter (view);
 
 	tl = gtk_drag_dest_get_target_list (GTK_WIDGET (view));
 	g_return_if_fail (tl != NULL);
@@ -2600,8 +2549,29 @@ gtk_source_view_set_show_line_numbers (GtkSourceView *view,
 		return;
 	}
 
-	gtk_source_gutter_renderer_set_visible (view->priv->line_renderer,
-	                                        show);
+	if (view->priv->line_renderer == NULL)
+	{
+		GtkSourceGutter *gutter;
+
+		gutter = gtk_source_view_get_gutter (view, GTK_TEXT_WINDOW_LEFT);
+
+		view->priv->line_renderer = gtk_source_gutter_renderer_lines_new ();
+		g_object_set (view->priv->line_renderer,
+		              "alignment-mode", GTK_SOURCE_GUTTER_RENDERER_ALIGNMENT_MODE_FIRST,
+		              "yalign", 0.5,
+		              "xalign", 1.0,
+		              "xpad", 3,
+		              "visible", show,
+		              NULL);
+
+		gtk_source_gutter_insert (gutter,
+		                          view->priv->line_renderer,
+		                          GTK_SOURCE_VIEW_GUTTER_POSITION_LINES);
+	}
+	else
+	{
+		gtk_source_gutter_renderer_set_visible (view->priv->line_renderer, show);
+	}
 
 	view->priv->show_line_numbers = show;
 
@@ -2626,6 +2596,20 @@ gtk_source_view_get_show_line_marks (GtkSourceView *view)
 	return (view->priv->show_line_marks != FALSE);
 }
 
+static void
+gutter_renderer_marks_activate (GtkSourceGutterRenderer *renderer,
+                                GtkTextIter             *iter,
+                                const GdkRectangle      *area,
+                                GdkEvent                *event,
+                                GtkSourceView           *view)
+{
+	g_signal_emit (view,
+	               signals[LINE_MARK_ACTIVATED],
+	               0,
+	               iter,
+	               event);
+}
+
 /**
  * gtk_source_view_set_show_line_marks:
  * @view: a #GtkSourceView.
@@ -2648,8 +2632,30 @@ gtk_source_view_set_show_line_marks (GtkSourceView *view,
 		return;
 	}
 
-	gtk_source_gutter_renderer_set_visible (view->priv->marks_renderer,
-	                                        show);
+	if (view->priv->marks_renderer == NULL)
+	{
+		GtkSourceGutter *gutter;
+
+		gutter = gtk_source_view_get_gutter (view, GTK_TEXT_WINDOW_LEFT);
+
+		view->priv->marks_renderer = gtk_source_gutter_renderer_marks_new ();
+		g_object_set (view->priv->marks_renderer,
+		              "visible", show,
+		              NULL);
+
+		gtk_source_gutter_insert (gutter,
+		                          view->priv->marks_renderer,
+		                          GTK_SOURCE_VIEW_GUTTER_POSITION_MARKS);
+
+		g_signal_connect (view->priv->marks_renderer,
+		                  "activate",
+		                  G_CALLBACK (gutter_renderer_marks_activate),
+		                  view);
+	}
+	else
+	{
+		gtk_source_gutter_renderer_set_visible (view->priv->marks_renderer, show);
+	}
 
 	view->priv->show_line_marks = show;
 
