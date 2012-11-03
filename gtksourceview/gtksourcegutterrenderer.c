@@ -41,6 +41,7 @@ enum
 struct _GtkSourceGutterRendererPrivate
 {
 	GtkTextView *view;
+	GtkTextBuffer *buffer;
 	GtkTextWindowType window_type;
 
 	gint xpad;
@@ -91,13 +92,20 @@ static void
 emit_buffer_changed (GtkTextView             *view,
                      GtkSourceGutterRenderer *renderer)
 {
-	GtkTextBuffer *buffer;
+	GtkTextBuffer* buffer;
 
 	buffer = gtk_text_view_get_buffer (view);
 
-	if (GTK_SOURCE_GUTTER_RENDERER_GET_CLASS (renderer)->change_buffer)
+	if (buffer != renderer->priv->buffer)
 	{
-		GTK_SOURCE_GUTTER_RENDERER_GET_CLASS (renderer)->change_buffer (renderer, buffer);
+		if (GTK_SOURCE_GUTTER_RENDERER_GET_CLASS (renderer)->change_buffer)
+		{
+			GTK_SOURCE_GUTTER_RENDERER_GET_CLASS (renderer)->change_buffer (renderer,
+			                                                                renderer->priv->buffer);
+		}
+
+		renderer->priv->buffer = buffer;
+		g_object_add_weak_pointer (G_OBJECT (buffer), (gpointer)&renderer->priv->buffer);
 	}
 }
 
