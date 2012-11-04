@@ -89,13 +89,13 @@ set_buffer (GtkSourceGutterRenderer *renderer,
 	if (renderer->priv->buffer != NULL)
 	{
 		g_object_remove_weak_pointer (G_OBJECT (renderer->priv->buffer),
-		                              &renderer->priv->buffer);
+		                              (gpointer) &renderer->priv->buffer);
 	}
 
 	if (buffer != NULL)
 	{
-		g_object_add_weak_pointer (G_OBJECT (renderer->priv->buffer),
-		                           &renderer->priv->buffer);
+		g_object_add_weak_pointer (G_OBJECT (buffer),
+		                           (gpointer) &renderer->priv->buffer);
 	}
 
 	renderer->priv->buffer = buffer;
