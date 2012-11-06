@@ -78,6 +78,7 @@ test_regex_SOURCES = test-regex.c
 test_regex_LDADD = 						\
 	$(top_builddir)/gtksourceview/libgtksourceview-private.la	\
 	$(DEP_LIBS)			\
+	$(GTK_MAC_LIBS)		\
 	$(TESTS_LIBS)
 
 UNIT_TEST_PROGS += test-completion-model
