@@ -45,9 +45,9 @@ get_locale_dir (void)
 
 	g_free (win32_dir);
 #elif defined (OS_OSX)
-	if (quartz_application_get_bundle_id () != NULL)
+	if (gtkosx_application_get_bundle_id () != NULL)
 	{
-		locale_dir = g_build_filename (quartz_application_get_resource_path (), "share", "locale", NULL);
+		locale_dir = g_build_filename (gtkosx_application_get_resource_path (), "share", "locale", NULL);
 	}
 	else
 	{
