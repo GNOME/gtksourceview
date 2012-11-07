@@ -96,6 +96,12 @@ test_guess_language (void)
 
 	l = gtk_source_language_manager_guess_language (lm, "foo.c", "text/x-csrc");
 	g_assert_cmpstr (gtk_source_language_get_id (l), ==, "c");
+	
+	l = gtk_source_language_manager_guess_language (lm, "foo.mo", "text/x-modelica");
+	g_assert_cmpstr (gtk_source_language_get_id (l), ==, "modelica");
+	
+	l = gtk_source_language_manager_guess_language (lm, "foo.mo", "");
+	g_assert_cmpstr (gtk_source_language_get_id (l), ==, "modelica");
 
 	/* when in disagreement, glob wins */
 	l = gtk_source_language_manager_guess_language (lm, "foo.c", "text/x-fortran");
