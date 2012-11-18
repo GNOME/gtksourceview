@@ -23,23 +23,31 @@ CFILE_GLOB = $(top_srcdir)/gtksourceview/*.c
 # Headers to ignore
 IGNORE_HFILES =					\
 	config.h				\
-	gtksourcelanguage-private.h		\
-	gtksourcetag-private.h			\
-	gtksourceview-i18n.h			\
 	gtksourceview-marshal.h			\
 	gtksourceview-typebuiltins.h		\
-	gtksourceview-utils.h			\
-	gtksourcecompletionutils.h		\
-	gtktextregion.h				\
-	gtksourceengine.h			\
-	gtksourcecontextengine.h		\
-	gtksourceprintjob.h			\
-	gtksourcegutter-private.h		\
 	gtksourcecompletionmodel.h		\
+	gtksourcecompletion-private.h		\
 	gtksourcecompletionutils.h		\
+	gtksourcecontextengine.h		\
+	gtksourceengine.h			\
+	gtksourcegutter-private.h		\
+	gtksourcelanguage-private.h		\
+	gtksourceregex.h			\
+	gtksourcestyle-private.h		\
 	gtksourceundomanagerdefault.h		\
+	gtksourceview-i18n.h			\
+	gtksourceview-utils.h			\
+	gtktextregion.h				\
+	gtksourcepixbufhelper.h			\
+	gtksourcegutterrendererlines.h		\
+	gtksourcegutterrenderermarks.h		\
+	gtksourcegutterrenderer-private.h	\
 	../tests/gsc-devhelp-provider.h		\
-	../tests/gsc-words-provider.h
+	../tests/gsc-words-provider.h		\
+	completion-providers/words/gtksourcecompletionwordsbuffer.h	\
+	completion-providers/words/gtksourcecompletionwordslibrary.h	\
+	completion-providers/words/gtksourcecompletionwordsproposal.h	\
+	completion-providers/words/gtksourcecompletionwordsutils.h
 
 update-sections: $(HFILE_GLOB)
 	@echo 'gtk-doc: Scanning header files'
