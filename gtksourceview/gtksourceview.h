@@ -129,13 +129,7 @@ typedef enum
 	GTK_SOURCE_DRAW_SPACES_LEADING    = 1 << 4,
 	GTK_SOURCE_DRAW_SPACES_TEXT       = 1 << 5,
 	GTK_SOURCE_DRAW_SPACES_TRAILING   = 1 << 6,
-	GTK_SOURCE_DRAW_SPACES_ALL        = (GTK_SOURCE_DRAW_SPACES_SPACE   | \
-	                                     GTK_SOURCE_DRAW_SPACES_TAB     | \
-	                                     GTK_SOURCE_DRAW_SPACES_NEWLINE | \
-	                                     GTK_SOURCE_DRAW_SPACES_NBSP | \
-	                                     GTK_SOURCE_DRAW_SPACES_LEADING | \
-	                                     GTK_SOURCE_DRAW_SPACES_TEXT | \
-	                                     GTK_SOURCE_DRAW_SPACES_TRAILING)
+	GTK_SOURCE_DRAW_SPACES_ALL        = 0x7f
 } GtkSourceDrawSpacesFlags;
 
 
