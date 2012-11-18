@@ -55,7 +55,6 @@ typedef struct _GtkSourceStyleSchemeManager	GtkSourceStyleSchemeManager;
 typedef struct _GtkSourceUndoManagerDefault	GtkSourceUndoManagerDefault;
 typedef struct _GtkSourceUndoManager		GtkSourceUndoManager;
 typedef struct _GtkSourceView			GtkSourceView;
-typedef struct _GtkTextRegion			GtkTextRegion;
 
 G_END_DECLS
 
