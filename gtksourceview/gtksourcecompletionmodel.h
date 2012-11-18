@@ -37,6 +37,7 @@ G_BEGIN_DECLS
 #define GTK_SOURCE_IS_COMPLETION_MODEL_CLASS(klass)	(G_TYPE_CHECK_CLASS_TYPE ((klass), GTK_SOURCE_TYPE_COMPLETION_MODEL))
 #define GTK_SOURCE_COMPLETION_MODEL_GET_CLASS(obj)	(G_TYPE_INSTANCE_GET_CLASS ((obj), GTK_SOURCE_TYPE_COMPLETION_MODEL, GtkSourceCompletionModelClass))
 
+typedef struct _GtkSourceCompletionModel	GtkSourceCompletionModel;
 typedef struct _GtkSourceCompletionModelClass	GtkSourceCompletionModelClass;
 typedef struct _GtkSourceCompletionModelPrivate	GtkSourceCompletionModelPrivate;
 

@@ -31,7 +31,6 @@ typedef struct _GtkSourceCompletionContext	GtkSourceCompletionContext;
 typedef struct _GtkSourceCompletion		GtkSourceCompletion;
 typedef struct _GtkSourceCompletionInfo		GtkSourceCompletionInfo;
 typedef struct _GtkSourceCompletionItem		GtkSourceCompletionItem;
-typedef struct _GtkSourceCompletionModel	GtkSourceCompletionModel;
 typedef struct _GtkSourceCompletionProposal	GtkSourceCompletionProposal;
 typedef struct _GtkSourceCompletionProvider	GtkSourceCompletionProvider;
 typedef struct _GtkSourceContextEngine		GtkSourceContextEngine;
