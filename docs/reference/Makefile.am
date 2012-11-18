@@ -68,7 +68,6 @@ FIXXREF_OPTIONS=
 # include common portion ...
 include $(top_srcdir)/gtk-doc.make
 
-# Other files to distribute
-EXTRA_DIST +=
+MAINTAINERCLEANFILES = gtksourceview-3.0-overrides.txt
 
 -include $(top_srcdir)/git.mk
