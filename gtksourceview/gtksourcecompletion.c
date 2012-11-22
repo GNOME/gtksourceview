@@ -2929,6 +2929,7 @@ initialize_ui (GtkSourceCompletion *completion)
 	GtkWidget *toggle_button_info;
 
 	builder = gtk_builder_new ();
+	gtk_builder_set_translation_domain (builder, GETTEXT_PACKAGE);
 
 	gtk_builder_add_from_resource (builder,
 				       "/org/gnome/gtksourceview/ui/gtksourcecompletion.ui",
