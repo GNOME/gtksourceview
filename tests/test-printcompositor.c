@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include <gtk/gtk.h>
-#include <gtksourceview/gtksourceprintcompositor.h>
+#include <gtksourceview/gtksource.h>
 
 static void
 test_buffer_ref (void)

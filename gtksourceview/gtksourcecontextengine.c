@@ -25,11 +25,13 @@
 #include "gtksourceview-i18n.h"
 #include "gtksourcecontextengine.h"
 #include "gtktextregion.h"
+#include "gtksourcelanguage.h"
 #include "gtksourcelanguage-private.h"
 #include "gtksourcebuffer.h"
 #include "gtksourceregex.h"
 #include "gtksourcestyle-private.h"
 #include "gtksourceview-utils.h"
+#include "gtksourcestylescheme.h"
 
 #undef ENABLE_DEBUG
 #undef ENABLE_PROFILE

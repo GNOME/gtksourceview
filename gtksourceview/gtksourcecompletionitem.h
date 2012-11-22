@@ -23,8 +23,8 @@
 #define __GTK_SOURCE_COMPLETION_ITEM_H__
 
 #include <glib-object.h>
+#include <gdk-pixbuf/gdk-pixbuf.h>
 #include <gtksourceview/gtksourcetypes.h>
-#include <gtksourceview/gtksourcecompletionproposal.h>
 
 G_BEGIN_DECLS
 

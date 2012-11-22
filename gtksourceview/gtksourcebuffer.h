@@ -27,10 +27,6 @@
 
 #include <gtk/gtk.h>
 #include <gtksourceview/gtksourcetypes.h>
-#include <gtksourceview/gtksourcelanguage.h>
-#include <gtksourceview/gtksourcemark.h>
-#include <gtksourceview/gtksourcestylescheme.h>
-#include <gtksourceview/gtksourceundomanager.h>
 
 G_BEGIN_DECLS
 

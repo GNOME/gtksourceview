@@ -22,6 +22,7 @@
 #include "gtksourcecompletionmodel.h"
 #include "gtksourceview-i18n.h"
 #include "gtksourcecompletionprovider.h"
+#include "gtksourcecompletionproposal.h"
 
 #define GTK_SOURCE_COMPLETION_MODEL_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE((object), GTK_SOURCE_TYPE_COMPLETION_MODEL, GtkSourceCompletionModelPrivate))
 

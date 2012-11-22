@@ -30,12 +30,8 @@
 #include <stdlib.h>
 #include <gtk/gtk.h>
 #include <gio/gio.h>
-#include <gtksourceview/gtksourceview.h>
-#include <gtksourceview/gtksourcelanguage.h>
-#include <gtksourceview/gtksourcelanguagemanager.h>
-#include <gtksourceview/gtksourcestyleschememanager.h>
-#include <gtksourceview/gtksourceprintcompositor.h>
-#include <gtksourceview/gtksourceview-typebuiltins.h>
+#include <gtksourceview/gtksource.h>
+
 #ifdef TEST_XML_MEM
 #include <libxml/xmlreader.h>
 #endif

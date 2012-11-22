@@ -25,10 +25,6 @@
 #define __GTK_SOURCE_VIEW_H__
 
 #include <gtk/gtk.h>
-
-#include <gtksourceview/gtksourcebuffer.h>
-#include <gtksourceview/gtksourcegutter.h>
-#include <gtksourceview/gtksourcemarkattributes.h>
 #include <gtksourceview/gtksourcetypes.h>
 
 G_BEGIN_DECLS

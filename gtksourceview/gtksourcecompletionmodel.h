@@ -24,8 +24,6 @@
 
 #include <gtk/gtk.h>
 #include <gtksourceview/gtksourcetypes.h>
-#include <gtksourceview/gtksourcecompletionprovider.h>
-#include <gtksourceview/gtksourcecompletionproposal.h>
 
 G_BEGIN_DECLS
 

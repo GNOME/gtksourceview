@@ -31,14 +31,17 @@
 #include <gtk/gtk.h>
 
 #include "gtksourceview-i18n.h"
+#include "gtksourcelanguage.h"
 #include "gtksourcelanguage-private.h"
 #include "gtksourcebuffer.h"
 #include "gtksourceundomanager.h"
 #include "gtksourceview-marshal.h"
+#include "gtksourcestylescheme.h"
 #include "gtksourcestyleschememanager.h"
 #include "gtksourcestyle-private.h"
 #include "gtksourceundomanagerdefault.h"
 #include "gtksourceview-typebuiltins.h"
+#include "gtksourcemark.h"
 
 /**
  * SECTION:buffer

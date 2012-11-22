@@ -23,7 +23,6 @@
 #define __GTK_SOURCE_LANGUAGE_MANAGER_H__
 
 #include <gtksourceview/gtksourcetypes.h>
-#include <gtksourceview/gtksourcelanguage.h>
 
 G_BEGIN_DECLS
 

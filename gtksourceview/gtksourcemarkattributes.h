@@ -25,7 +25,6 @@
 
 #include <gtk/gtk.h>
 #include <gtksourceview/gtksourcetypes.h>
-#include <gtksourceview/gtksourcemark.h>
 
 G_BEGIN_DECLS
 

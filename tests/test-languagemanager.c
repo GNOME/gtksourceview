@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include <gtk/gtk.h>
-#include <gtksourceview/gtksourcelanguagemanager.h>
+#include <gtksourceview/gtksource.h>
 
 static void
 test_get_default (void)

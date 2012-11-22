@@ -22,8 +22,6 @@
 #ifndef __GTK_SOURCE_LANGUAGE_H__
 #define __GTK_SOURCE_LANGUAGE_H__
 
-#include <glib.h>
-#include <glib-object.h>
 #include <gtk/gtk.h>
 #include <gtksourceview/gtksourcetypes.h>
 

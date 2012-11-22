@@ -23,13 +23,7 @@
 #ifndef __GTK_SOURCE_COMPLETION_PROVIDER_H__
 #define __GTK_SOURCE_COMPLETION_PROVIDER_H__
 
-#include <glib.h>
-#include <glib-object.h>
 #include <gtk/gtk.h>
-
-#include <gtksourceview/gtksourcecompletionproposal.h>
-#include <gtksourceview/gtksourcecompletioninfo.h>
-#include <gtksourceview/gtksourcelanguage.h>
 #include <gtksourceview/gtksourcecompletioncontext.h>
 #include <gtksourceview/gtksourcetypes.h>
 

@@ -19,8 +19,8 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include <gtksourceview/gtksourcecompletionitem.h>
-
+#include "gtksourcecompletionitem.h"
+#include "gtksourcecompletionproposal.h"
 #include "gtksourcecompletionutils.h"
 #include "gtksourceview-i18n.h"
 

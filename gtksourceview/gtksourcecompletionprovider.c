@@ -30,7 +30,9 @@
  *
  */
 
-#include <gtksourceview/gtksourcecompletionprovider.h>
+#include "gtksourcecompletionprovider.h"
+#include "gtksourcecompletionproposal.h"
+#include "gtksourcecompletioninfo.h"
 
 typedef GtkSourceCompletionProviderIface GtkSourceCompletionProviderInterface;
 

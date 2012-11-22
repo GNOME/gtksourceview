@@ -32,6 +32,8 @@
 
 #include "gtksourceview-i18n.h"
 #include "gtksourceprintcompositor.h"
+#include "gtksourceview.h"
+#include "gtksourcebuffer.h"
 
 /**
  * SECTION:printcompositor

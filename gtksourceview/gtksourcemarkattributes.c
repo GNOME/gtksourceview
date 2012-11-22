@@ -21,6 +21,7 @@
  */
 
 #include "gtksourcemarkattributes.h"
+#include "gtksourcemark.h"
 #include "gtksourceview-i18n.h"
 #include "gtksourcepixbufhelper.h"
 #include "gtksourceview-marshal.h"

@@ -22,6 +22,7 @@
 
 #include <string.h>
 #include "gtksourcecompletionutils.h"
+#include "gtksourcebuffer.h"
 
 /**
  * gtk_source_completion_utils_is_separator:

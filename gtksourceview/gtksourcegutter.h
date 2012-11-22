@@ -23,11 +23,8 @@
 #ifndef __GTK_SOURCE_GUTTER_H__
 #define __GTK_SOURCE_GUTTER_H__
 
-#include <glib-object.h>
 #include <gtk/gtk.h>
-#include <gdk/gdk.h>
 #include <gtksourceview/gtksourcetypes.h>
-#include <gtksourceview/gtksourcegutterrenderer.h>
 
 G_BEGIN_DECLS
 

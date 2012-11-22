@@ -21,7 +21,9 @@
 
 #include "gtksourcegutterrenderermarks.h"
 #include "gtksourceview.h"
+#include "gtksourcebuffer.h"
 #include "gtksourcemarkattributes.h"
+#include "gtksourcemark.h"
 
 #define COMPOSITE_ALPHA                 225
 

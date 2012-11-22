@@ -25,7 +25,7 @@
 
 #include "gtksourcebuffer.h"
 #include "gtksourceengine.h"
-
+#include "gtksourcestylescheme.h"
 
 G_DEFINE_TYPE (GtkSourceEngine, _gtk_source_engine, G_TYPE_OBJECT)
 
