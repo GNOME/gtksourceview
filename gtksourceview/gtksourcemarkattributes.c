@@ -32,8 +32,8 @@
  * @title: GtkSourceMarkAttributes
  * @see_also: #GtkSourceMark
  *
- * #GtkSourceMarkAttribute<!-- -->s is an object specifying attributes used by
- * a GtkSourceView to visually show lines marked with #GtkSourceMark<!-- -->s
+ * #GtkSourceMarkAttributes is an object specifying attributes used by
+ * a #GtkSourceView to visually show lines marked with #GtkSourceMark<!-- -->s
  * of a specific category. It allows you to define a background color of a line,
  * an icon shown in gutter and tooltips.
  *

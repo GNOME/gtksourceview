@@ -1359,9 +1359,7 @@ gtk_source_buffer_get_highlight_matching_brackets (GtkSourceBuffer *buffer)
  * Controls the bracket match highlighting function in the buffer.  If
  * activated, when you position your cursor over a bracket character
  * (a parenthesis, a square bracket, etc.) the matching opening or
- * closing bracket character will be highlighted.  You can specify the
- * style with the gtk_source_buffer_set_bracket_match_style()
- * function.
+ * closing bracket character will be highlighted.
  **/
 void
 gtk_source_buffer_set_highlight_matching_brackets (GtkSourceBuffer *buffer,

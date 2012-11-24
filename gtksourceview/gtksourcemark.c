@@ -38,7 +38,7 @@
  * associated using #gtk_source_view_set_mark_category_pixbuf and
  * #gtk_source_view_set_mark_category_priority. The pixbuf will be displayed in
  * the margin at the line where the mark residents if the
- * #GtkSourceView::show-line-marks property is set to TRUE. If there are
+ * #GtkSourceView:show-line-marks property is set to %TRUE. If there are
  * multiple marks in the same line, the pixbufs will be drawn on top of each
  * other. The mark with the highest priority will be drawn on top.
  */
@@ -164,7 +164,7 @@ gtk_source_mark_init (GtkSourceMark *mark)
  * If name is NULL, the mark is anonymous; otherwise, the mark can be retrieved
  * by name using gtk_text_buffer_get_mark().
  * Normally marks are created using the utility function
- * gtk_source_buffer_create_mark().
+ * gtk_source_buffer_create_source_mark().
  *
  * Returns: a new #GtkSourceMark that can be added using gtk_text_buffer_add_mark().
  *

@@ -3830,7 +3830,7 @@ gtk_source_view_set_smart_home_end (GtkSourceView             *view,
  * Returns a #GtkSourceSmartHomeEndType end value specifying
  * how the cursor will move when HOME and END keys are pressed.
  *
- * Return value: a #GtkSourceSmartHomeEndTypeend value.
+ * Return value: a #GtkSourceSmartHomeEndType value.
  **/
 GtkSourceSmartHomeEndType
 gtk_source_view_get_smart_home_end (GtkSourceView *view)

@@ -348,7 +348,7 @@ gtk_source_completion_provider_activate_proposal (GtkSourceCompletionProvider *p
  *
  * Get the delay in milliseconds before starting interactive completion for
  * this provider. A value of -1 indicates to use the default value as set
- * by #GtkSourceCompletion::auto-complete-delay.
+ * by the #GtkSourceCompletion:auto-complete-delay property.
  *
  * Returns: the interactive delay in milliseconds.
  **/

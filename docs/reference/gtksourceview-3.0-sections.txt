@@ -3,6 +3,7 @@
 <TITLE>GtkSourceBuffer</TITLE>
 <INCLUDE>gtksourceview/gtksourcebuffer.h</INCLUDE>
 GtkSourceBuffer
+GtkSourceBracketMatchType
 gtk_source_buffer_new
 gtk_source_buffer_new_with_language
 gtk_source_buffer_set_highlight_syntax
