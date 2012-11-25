@@ -1,7 +1,8 @@
+<INCLUDE>gtksourceview/gtksource.h</INCLUDE>
+
 <SECTION>
 <FILE>buffer</FILE>
 <TITLE>GtkSourceBuffer</TITLE>
-<INCLUDE>gtksourceview/gtksourcebuffer.h</INCLUDE>
 GtkSourceBuffer
 GtkSourceBracketMatchType
 gtk_source_buffer_new
@@ -50,7 +51,6 @@ gtk_source_buffer_get_type
 <SECTION>
 <FILE>view</FILE>
 <TITLE>GtkSourceView</TITLE>
-<INCLUDE>gtksourceview/gtksourceview.h</INCLUDE>
 GtkSourceView
 GtkSourceSmartHomeEndType
 GtkSourceDrawSpacesFlags
@@ -100,7 +100,6 @@ gtk_source_view_get_type
 <SECTION>
 <FILE>gutter</FILE>
 <TITLE>GtkSourceGutter</TITLE>
-<INCLUDE>gtksourceview/gtksourcegutter.h</INCLUDE>
 GtkSourceGutter
 gtk_source_gutter_get_window
 gtk_source_gutter_insert
@@ -122,7 +121,6 @@ gtk_source_gutter_get_type
 <SECTION>
 <FILE>gutterrenderer</FILE>
 <TITLE>GtkSourceGutterRenderer</TITLE>
-<INCLUDE>gtksourceview/gtksourcegutterrenderer.h</INCLUDE>
 GtkSourceGutterRenderer
 GtkSourceGutterRendererState
 GtkSourceGutterRendererAlignmentMode
@@ -164,7 +162,6 @@ gtk_source_gutter_renderer_get_type
 <SECTION>
 <FILE>gutterrenderertext</FILE>
 <TITLE>GtkSourceGutterRendererText</TITLE>
-<INCLUDE>gtksourceview/gtksourcegutterrenderertext.h</INCLUDE>
 GtkSourceGutterRendererText
 gtk_source_gutter_renderer_text_new
 gtk_source_gutter_renderer_text_set_markup
@@ -187,7 +184,6 @@ gtk_source_gutter_renderer_text_get_type
 <SECTION>
 <FILE>gutterrendererpixbuf</FILE>
 <TITLE>GtkSourceGutterRendererPixbuf</TITLE>
-<INCLUDE>gtksourceview/gtksourcegutterrendererpixbuf.h</INCLUDE>
 GtkSourceGutterRendererPixbuf
 gtk_source_gutter_renderer_pixbuf_new
 gtk_source_gutter_renderer_pixbuf_set_pixbuf
@@ -214,7 +210,6 @@ gtk_source_gutter_renderer_pixbuf_get_type
 <SECTION>
 <FILE>undomanager</FILE>
 <TITLE>GtkSourceUndoManager</TITLE>
-<INCLUDE>gtksourceview/gtksourceundomanager.h</INCLUDE>
 GtkSourceUndoManager
 gtk_source_undo_manager_can_undo
 gtk_source_undo_manager_can_redo
@@ -236,7 +231,6 @@ gtk_source_undo_manager_get_type
 <SECTION>
 <FILE>language</FILE>
 <TITLE>GtkSourceLanguage</TITLE>
-<INCLUDE>gtksourceview/gtksourcelanguage.h</INCLUDE>
 GtkSourceLanguage
 gtk_source_language_get_id
 gtk_source_language_get_name
@@ -263,7 +257,6 @@ gtk_source_language_get_type
 <SECTION>
 <FILE>languagemanager</FILE>
 <TITLE>GtkSourceLanguageManager</TITLE>
-<INCLUDE>gtksourceview/gtksourcelanguagemanager.h</INCLUDE>
 GtkSourceLanguageManager
 gtk_source_language_manager_new
 gtk_source_language_manager_get_default
@@ -287,7 +280,6 @@ gtk_source_language_manager_get_type
 <SECTION>
 <FILE>mark</FILE>
 <TITLE>GtkSourceMark</TITLE>
-<INCLUDE>gtksourceview/gtksourcemark.h</INCLUDE>
 GtkSourceMark
 gtk_source_mark_new
 gtk_source_mark_get_category
@@ -308,7 +300,6 @@ gtk_source_mark_get_type
 <SECTION>
 <FILE>markattributes</FILE>
 <TITLE>GtkSourceMarkAttributes</TITLE>
-<INCLUDE>gtksourceview/gtksourcemarkattributes.h</INCLUDE>
 GtkSourceMarkAttributes
 gtk_source_mark_attributes_new
 gtk_source_mark_attributes_set_background
@@ -339,7 +330,6 @@ gtk_source_mark_attributes_get_type
 <SECTION>
 <FILE>style</FILE>
 <TITLE>GtkSourceStyle</TITLE>
-<INCLUDE>gtksourceview/gtksourcestyle.h</INCLUDE>
 GtkSourceStyle
 gtk_source_style_copy
 <SUBSECTION Standard>
@@ -355,7 +345,6 @@ gtk_source_style_get_type
 <SECTION>
 <FILE>styleschememanager</FILE>
 <TITLE>GtkSourceStyleSchemeManager</TITLE>
-<INCLUDE>gtksourceview/gtksourcestyleschememanager.h</INCLUDE>
 GtkSourceStyleSchemeManager
 gtk_source_style_scheme_manager_new
 gtk_source_style_scheme_manager_get_default
@@ -381,7 +370,6 @@ GtkSourceStyleSchemeManagerPrivate
 <SECTION>
 <FILE>stylescheme</FILE>
 <TITLE>GtkSourceStyleScheme</TITLE>
-<INCLUDE>gtksourceview/gtksourcestylescheme.h</INCLUDE>
 GtkSourceStyleScheme
 gtk_source_style_scheme_get_id
 gtk_source_style_scheme_get_name
@@ -404,7 +392,6 @@ gtk_source_style_scheme_get_type
 <SECTION>
 <FILE>printcompositor</FILE>
 <TITLE>GtkSourcePrintCompositor</TITLE>
-<INCLUDE>gtksourceview/gtksourceprintcompositor.h</INCLUDE>
 GtkSourcePrintCompositor
 gtk_source_print_compositor_new
 gtk_source_print_compositor_new_from_view
@@ -458,7 +445,6 @@ GtkSourcePrintCompositorClass
 <SECTION>
 <FILE>completion</FILE>
 <TITLE>GtkSourceCompletion</TITLE>
-<INCLUDE>gtksourceview/gtksourcecompletion.h</INCLUDE>
 GtkSourceCompletion
 gtk_source_completion_add_provider
 gtk_source_completion_remove_provider
@@ -486,7 +472,6 @@ GtkSourceCompletionClass
 <SECTION>
 <FILE>completioninfo</FILE>
 <TITLE>GtkSourceCompletionInfo</TITLE>
-<INCLUDE>gtksourceview/gtksourcecompletioninfo.h</INCLUDE>
 GtkSourceCompletionInfo
 gtk_source_completion_info_new
 gtk_source_completion_info_move_to_iter
@@ -507,7 +492,6 @@ GtkSourceCompletionInfoClass
 <SECTION>
 <FILE>completionproposal</FILE>
 <TITLE>GtkSourceCompletionProposal</TITLE>
-<INCLUDE>gtksourceview/gtksourcecompletionproposal.h</INCLUDE>
 GtkSourceCompletionProposal
 gtk_source_completion_proposal_get_label
 gtk_source_completion_proposal_get_markup
@@ -529,7 +513,6 @@ GtkSourceCompletionProposalIface
 <SECTION>
 <FILE>completionitem</FILE>
 <TITLE>GtkSourceCompletionItem</TITLE>
-<INCLUDE>gtksourceview/gtksourcecompletionitem.h</INCLUDE>
 GtkSourceCompletionItem
 gtk_source_completion_item_new
 gtk_source_completion_item_new_with_markup
@@ -548,7 +531,6 @@ GtkSourceCompletionItemClass
 <SECTION>
 <FILE>completionprovider</FILE>
 <TITLE>GtkSourceCompletionProvider</TITLE>
-<INCLUDE>gtksourceview/gtksourcecompletionprovider.h</INCLUDE>
 GtkSourceCompletionProvider
 gtk_source_completion_provider_get_name
 gtk_source_completion_provider_get_icon
@@ -574,7 +556,6 @@ GtkSourceCompletionProviderIface
 <FILE>completioncontext</FILE>
 GtkSourceCompletionActivation
 <TITLE>GtkSourceCompletionContext</TITLE>
-<INCLUDE>gtksourceview/gtksourcecompletioncontext.h</INCLUDE>
 GtkSourceCompletionContext
 gtk_source_completion_context_add_proposals
 gtk_source_completion_context_get_iter
