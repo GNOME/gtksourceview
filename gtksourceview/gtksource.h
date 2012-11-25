@@ -42,6 +42,5 @@
 #include <gtksourceview/gtksourcestyleschememanager.h>
 #include <gtksourceview/gtksourceundomanager.h>
 #include <gtksourceview/gtksourceview.h>
-#include <gtksourceview/gtksourceview-typebuiltins.h>
 
 #endif /* __GTK_SOURCE_H__ */

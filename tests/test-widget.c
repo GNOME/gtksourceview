@@ -31,6 +31,7 @@
 #include <gtk/gtk.h>
 #include <gio/gio.h>
 #include <gtksourceview/gtksource.h>
+#include "gtksourceview/gtksourceview-typebuiltins.h"
 
 #ifdef TEST_XML_MEM
 #include <libxml/xmlreader.h>
