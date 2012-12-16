@@ -28,6 +28,24 @@
  *
  * This object can be used to show a calltip or help for the
  * current completion proposal.
+ *
+ * The info window has always the same size as the natural size of its child
+ * widget, added with gtk_source_completion_info_set_widget().  If you want a
+ * fixed size instead, a possibility is to use a scrolled window, as the
+ * following example demonstrates.
+ *
+ * <example>
+ *   <title>Fixed size with a scrolled window.</title>
+ *   <programlisting>
+ * GtkSourceCompletionInfo *info;
+ * GtkWidget *your_widget;
+ * GtkWidget *scrolled_window = gtk_scrolled_window_new (NULL, NULL);
+ *
+ * gtk_widget_set_size_request (scrolled_window, 300, 200);
+ * gtk_container_add (GTK_CONTAINER (scrolled_window), your_widget);
+ * gtk_source_completion_info_set_widget (info, scrolled_window);
+ *   </programlisting>
+ * </example>
  */
 
 #include <gtksourceview/gtksourcecompletioninfo.h>
@@ -308,11 +326,9 @@ gtk_source_completion_info_move_to_iter (GtkSourceCompletionInfo *info,
  * @info: a #GtkSourceCompletionInfo.
  * @widget: (allow-none): a #GtkWidget.
  *
- * Sets the content widget of the info window. If @widget does not fit within
- * the size requirements of the window, a #GtkScrolledWindow will automatically
- * be created and added to the window. See that the previous widget will lose
- * a reference and it can be destroyed, so if you do not want this to happen
- * you must g_object_ref() before calling this method.
+ * Sets the content widget of the info window. See that the previous widget will
+ * lose a reference and it can be destroyed, so if you do not want this to
+ * happen you must use g_object_ref() before calling this method.
  */
 void
 gtk_source_completion_info_set_widget (GtkSourceCompletionInfo *info,
