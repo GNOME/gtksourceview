@@ -7,8 +7,8 @@ AUTOMAKE_OPTIONS = 1.7
 # The name of the module.
 DOC_MODULE = gtksourceview-3.0
 
-# The top-level SGML file.
-DOC_MAIN_SGML_FILE = gtksourceview-docs.sgml
+# The top-level XML file (SGML in the past).
+DOC_MAIN_SGML_FILE = gtksourceview-docs.xml
 
 # Extra options to supply to gtkdoc-scan
 SCAN_OPTIONS = --deprecated-guards='GTKSOURCEVIEW_DISABLE_DEPRECATED'
@@ -57,7 +57,7 @@ update-sections: $(HFILE_GLOB)
 	mv $(DOC_MODULE)-sections.txt.old $(DOC_MODULE)-sections.txt
 
 # Extra options to supply to gtkdoc-mkdb
-MKDB_OPTIONS = --sgml-mode --output-format=xml --ignore-files=trio
+MKDB_OPTIONS = --xml-mode --output-format=xml
 
 # Images to copy into HTML directory
 HTML_IMAGES =
