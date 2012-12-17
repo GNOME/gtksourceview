@@ -20,7 +20,8 @@ DOC_SOURCE_DIR = ../..
 HFILE_GLOB = $(top_srcdir)/gtksourceview/*.h
 CFILE_GLOB = $(top_srcdir)/gtksourceview/*.c
 
-# Headers to ignore
+# Header files or dirs to ignore when scanning. Use base file/dir names
+# e.g. IGNORE_HFILES=gtkdebug.h gtkintl.h private_code
 IGNORE_HFILES =					\
 	config.h				\
 	gtksourceview-marshal.h			\
@@ -42,12 +43,10 @@ IGNORE_HFILES =					\
 	gtksourcegutterrendererlines.h		\
 	gtksourcegutterrenderermarks.h		\
 	gtksourcegutterrenderer-private.h	\
-	../tests/gsc-devhelp-provider.h		\
-	../tests/gsc-words-provider.h		\
-	completion-providers/words/gtksourcecompletionwordsbuffer.h	\
-	completion-providers/words/gtksourcecompletionwordslibrary.h	\
-	completion-providers/words/gtksourcecompletionwordsproposal.h	\
-	completion-providers/words/gtksourcecompletionwordsutils.h
+	gtksourcecompletionwordsbuffer.h	\
+	gtksourcecompletionwordslibrary.h	\
+	gtksourcecompletionwordsproposal.h	\
+	gtksourcecompletionwordsutils.h
 
 update-sections: $(HFILE_GLOB)
 	@echo 'gtk-doc: Scanning header files'
