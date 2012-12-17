@@ -1618,7 +1618,6 @@ init_mem_stuff (void)
 		};
 
 		g_mem_set_vtable (&mem_table);
-		g_slice_set_config (G_SLICE_CONFIG_ALWAYS_MALLOC, TRUE);
 	}
 }
 
