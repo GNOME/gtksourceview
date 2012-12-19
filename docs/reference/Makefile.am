@@ -62,12 +62,12 @@ MKDB_OPTIONS = --xml-mode --output-format=xml
 # Images to copy into HTML directory
 HTML_IMAGES =
 
-# Extra SGML files that are included by $(DOC_MAIN_SGML_FILE)
+# Extra XML files that are included by $(DOC_MAIN_SGML_FILE)
 content_files =			\
 	version.xml		\
-	lang-tutorial.sgml	\
-	lang-reference.sgml	\
-	style-reference.sgml
+	lang-tutorial.xml	\
+	lang-reference.xml	\
+	style-reference.xml
 
 # Extra options to supply to gtkdoc-fixref
 FIXXREF_OPTIONS=

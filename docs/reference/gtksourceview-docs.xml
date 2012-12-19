@@ -4,9 +4,9 @@
 [
   <!ENTITY % local.common.attrib "xmlns:xi  CDATA  #FIXED 'http://www.w3.org/2003/XInclude'">
   <!ENTITY version SYSTEM "version.xml">
-  <!ENTITY tutorial SYSTEM "lang-tutorial.sgml">
-  <!ENTITY reference SYSTEM "lang-reference.sgml">
-  <!ENTITY stylereference SYSTEM "style-reference.sgml">
+  <!ENTITY tutorial SYSTEM "lang-tutorial.xml">
+  <!ENTITY reference SYSTEM "lang-reference.xml">
+  <!ENTITY stylereference SYSTEM "style-reference.xml">
 ]>
 <book id="index">
   <bookinfo>
