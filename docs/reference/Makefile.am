@@ -67,7 +67,13 @@ content_files =			\
 	style-reference.xml
 
 # Extra options to supply to gtkdoc-fixref
-FIXXREF_OPTIONS=
+FIXXREF_OPTIONS =						\
+	--extra-dir=$(GLIB_PREFIX)/share/gtk-doc/html/gobject	\
+	--extra-dir=$(GLIB_PREFIX)/share/gtk-doc/html/glib	\
+	--extra-dir=$(GLIB_PREFIX)/share/gtk-doc/html/gio	\
+	--extra-dir=$(GTK_PREFIX)/share/gtk-doc/html/gtk3	\
+	--extra-dir=$(GTK_PREFIX)/share/gtk-doc/html/gdk3	\
+	--extra-dir=$(PANGO_PREFIX)/share/gtk-doc/html/pango
 
 # CFLAGS and LDFLAGS for compiling gtkdoc-scangobj with your library.
 # Only needed if you are using gtkdoc-scangobj to dynamically query widget
