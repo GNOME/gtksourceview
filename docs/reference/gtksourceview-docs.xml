@@ -1,18 +1,20 @@
 <?xml version="1.0"?>
-<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
-               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
-<!ENTITY version SYSTEM "version.xml">
-<!ENTITY tutorial SYSTEM "lang-tutorial.sgml">
-<!ENTITY reference SYSTEM "lang-reference.sgml">
-<!ENTITY stylereference SYSTEM "style-reference.sgml">
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN"
+               "http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd"
+[
+  <!ENTITY % local.common.attrib "xmlns:xi  CDATA  #FIXED 'http://www.w3.org/2003/XInclude'">
+  <!ENTITY version SYSTEM "version.xml">
+  <!ENTITY tutorial SYSTEM "lang-tutorial.sgml">
+  <!ENTITY reference SYSTEM "lang-reference.sgml">
+  <!ENTITY stylereference SYSTEM "style-reference.sgml">
 ]>
-<book id="index" xmlns:xi="http://www.w3.org/2001/XInclude">
+<book id="index">
   <bookinfo>
     <title>GtkSourceView 3 Reference Manual</title>
     <releaseinfo>for GtkSourceView &version;</releaseinfo>
   </bookinfo>
 
-  <reference>
+  <chapter>
     <title>API reference</title>
     <xi:include href="xml/buffer.xml"/>
     <xi:include href="xml/completion.xml"/>
@@ -35,15 +37,20 @@
     <xi:include href="xml/stylescheme.xml"/>
     <xi:include href="xml/styleschememanager.xml"/>
     <xi:include href="xml/undomanager.xml"/>
-  </reference>
+  </chapter>
 
-  <reference>
+  <chapter>
     <title>Syntax highlighting reference</title>
 
     &tutorial;
     &reference;
     &stylereference;
-  </reference>
+  </chapter>
+
+  <chapter id="object-tree">
+    <title>Object Hierarchy</title>
+     <xi:include href="xml/tree_index.sgml"/>
+  </chapter>
 
   <index id="api-index-full">
     <title>Index of all symbols</title>
