@@ -125,10 +125,12 @@ GTK_DOC_CHECK([1.11], [--flavour=no-tmpl])
 GLIB_PREFIX="`$PKG_CONFIG --variable=prefix glib-2.0`"
 GTK_PREFIX="`$PKG_CONFIG --variable=prefix gtk+-3.0`"
 PANGO_PREFIX="`$PKG_CONFIG --variable=prefix pango`"
+GDK_PIXBUF_PREFIX="`$PKG_CONFIG --variable=prefix gdk-pixbuf-2.0`"
 
 AC_SUBST(GLIB_PREFIX)
 AC_SUBST(GTK_PREFIX)
 AC_SUBST(PANGO_PREFIX)
+AC_SUBST(GDK_PIXBUF_PREFIX)
 
 # Introspection
 GOBJECT_INTROSPECTION_CHECK([0.9.0])
