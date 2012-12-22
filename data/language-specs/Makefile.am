@@ -46,6 +46,7 @@ LANGUAGES =			\
 	haskell-literate.lang	\
 	html.lang		\
 	idl.lang		\
+	idl-exelis.lang		\
 	imagej.lang		\
 	ini.lang		\
 	j.lang			\
