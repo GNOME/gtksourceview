@@ -43,6 +43,7 @@
 #include "gtksourcecompletionprovider.h"
 #include "gtksourcecompletion-private.h"
 #include "gtksourcecompletionutils.h"
+#include "gtksourcegutter.h"
 #include "gtksourcegutter-private.h"
 #include "gtksourcegutterrendererlines.h"
 #include "gtksourcegutterrenderermarks.h"

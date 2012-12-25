@@ -22,15 +22,14 @@
 #ifndef __GTK_SOURCE_GUTTER_PRIVATE_H__
 #define __GTK_SOURCE_GUTTER_PRIVATE_H__
 
-#include "gtksourcegutter.h"
+#include <gtk/gtk.h>
+#include "gtksourcetypes.h"
 
 G_BEGIN_DECLS
 
-struct _GtkSourceView;
-
 G_GNUC_INTERNAL
-GtkSourceGutter *gtk_source_gutter_new (struct _GtkSourceView *view,
-                                        GtkTextWindowType      type);
+GtkSourceGutter *gtk_source_gutter_new (GtkSourceView     *view,
+                                        GtkTextWindowType  type);
 
 G_END_DECLS
 

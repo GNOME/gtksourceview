@@ -25,11 +25,8 @@
 #include <gtk/gtk.h>
 #include <gtksourceview/gtksourcetypes.h>
 
-/* Forward declaration */
-struct _GtkSourceView;
-
 G_GNUC_INTERNAL
-GtkSourceCompletion *gtk_source_completion_new (struct _GtkSourceView *source_view);
+GtkSourceCompletion *gtk_source_completion_new (GtkSourceView *source_view);
 
 #endif /* __GTK_SOURCE_COMPLETION_PIVATE_H__ */
 
