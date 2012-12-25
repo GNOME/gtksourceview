@@ -57,6 +57,7 @@ struct _GtkSourceStyle
 	guint mask : 12;
 };
 
+G_GNUC_INTERNAL
 void		 _gtk_source_style_apply	(const GtkSourceStyle *style,
 						 GtkTextTag           *tag);
 

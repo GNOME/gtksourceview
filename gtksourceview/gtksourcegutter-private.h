@@ -28,6 +28,7 @@ G_BEGIN_DECLS
 
 struct _GtkSourceView;
 
+G_GNUC_INTERNAL
 GtkSourceGutter *gtk_source_gutter_new (struct _GtkSourceView *view,
                                         GtkTextWindowType      type);
 

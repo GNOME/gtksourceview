@@ -25,29 +25,41 @@
 #include <gtk/gtk.h>
 #include <gtksourceview/gtksourcetypes.h>
 
+G_GNUC_INTERNAL
 GtkSourcePixbufHelper *gtk_source_pixbuf_helper_new (void);
+
+G_GNUC_INTERNAL
 void gtk_source_pixbuf_helper_free (GtkSourcePixbufHelper *helper);
 
+G_GNUC_INTERNAL
 void gtk_source_pixbuf_helper_set_pixbuf (GtkSourcePixbufHelper *helper,
                                           const GdkPixbuf       *pixbuf);
 
+G_GNUC_INTERNAL
 GdkPixbuf *gtk_source_pixbuf_helper_get_pixbuf (GtkSourcePixbufHelper *helper);
 
+G_GNUC_INTERNAL
 void gtk_source_pixbuf_helper_set_stock_id (GtkSourcePixbufHelper *helper,
                                             const gchar           *stock_id);
 
+G_GNUC_INTERNAL
 const gchar *gtk_source_pixbuf_helper_get_stock_id (GtkSourcePixbufHelper *helper);
 
+G_GNUC_INTERNAL
 void gtk_source_pixbuf_helper_set_icon_name (GtkSourcePixbufHelper *helper,
                                              const gchar           *icon_name);
 
+G_GNUC_INTERNAL
 const gchar *gtk_source_pixbuf_helper_get_icon_name (GtkSourcePixbufHelper *helper);
 
+G_GNUC_INTERNAL
 void gtk_source_pixbuf_helper_set_gicon (GtkSourcePixbufHelper *helper,
                                          GIcon                 *gicon);
 
+G_GNUC_INTERNAL
 GIcon *gtk_source_pixbuf_helper_get_gicon (GtkSourcePixbufHelper *helper);
 
+G_GNUC_INTERNAL
 GdkPixbuf *gtk_source_pixbuf_helper_render (GtkSourcePixbufHelper *helper,
                                             GtkWidget             *widget,
                                             gint                   size);

@@ -69,20 +69,30 @@ typedef enum {
 	GTK_SOURCE_CONTEXT_REF_ORIGINAL		= 1 << 2
 } GtkSourceContextRefOptions;
 
+G_GNUC_INTERNAL
 GType		 _gtk_source_context_engine_get_type	(void) G_GNUC_CONST;
 
+G_GNUC_INTERNAL
 GtkSourceContextData *_gtk_source_context_data_new	(GtkSourceLanguage	*lang);
+
+G_GNUC_INTERNAL
 GtkSourceContextData *_gtk_source_context_data_ref	(GtkSourceContextData	*data);
+
+G_GNUC_INTERNAL
 void		 _gtk_source_context_data_unref		(GtkSourceContextData	*data);
 
+G_GNUC_INTERNAL
 GtkSourceContextClass *
 		gtk_source_context_class_new		(gchar const *name,
 							 gboolean     enabled);
 
+G_GNUC_INTERNAL
 void		gtk_source_context_class_free		(GtkSourceContextClass *cclass);
 
+G_GNUC_INTERNAL
 GtkSourceContextEngine *_gtk_source_context_engine_new  (GtkSourceContextData	*data);
 
+G_GNUC_INTERNAL
 gboolean	 _gtk_source_context_data_define_context
 							(GtkSourceContextData	 *data,
 							 const gchar		 *id,
@@ -95,6 +105,7 @@ gboolean	 _gtk_source_context_data_define_context
 							 GtkSourceContextFlags    flags,
 							 GError			**error);
 
+G_GNUC_INTERNAL
 gboolean	 _gtk_source_context_data_add_sub_pattern
 							(GtkSourceContextData	 *data,
 							 const gchar		 *id,
@@ -105,6 +116,7 @@ gboolean	 _gtk_source_context_data_add_sub_pattern
 							 GSList			 *context_classes,
 							 GError			**error);
 
+G_GNUC_INTERNAL
 gboolean	 _gtk_source_context_data_add_ref 	(GtkSourceContextData	 *data,
 							 const gchar		 *parent_id,
 							 const gchar		 *ref_id,
@@ -113,16 +125,21 @@ gboolean	 _gtk_source_context_data_add_ref 	(GtkSourceContextData	 *data,
 							 gboolean		  all,
 							 GError			**error);
 
+G_GNUC_INTERNAL
 GtkSourceContextReplace *
 		 _gtk_source_context_replace_new	(const gchar             *to_replace_id,
 							 const gchar             *replace_with_id);
+
+G_GNUC_INTERNAL
 void		 _gtk_source_context_replace_free	(GtkSourceContextReplace *repl);
 
+G_GNUC_INTERNAL
 gboolean	 _gtk_source_context_data_finish_parse	(GtkSourceContextData	 *data,
 							 GList                   *overrides,
 							 GError			**error);
 
 /* Only for lang files version 1, do not use it */
+G_GNUC_INTERNAL
 void		 _gtk_source_context_data_set_escape_char
 							(GtkSourceContextData	 *data,
 							 gunichar		  esc_char);

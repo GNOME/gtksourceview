@@ -57,8 +57,10 @@ struct _GtkSourceGutterRendererMarksClass
 	/*< public >*/
 };
 
+G_GNUC_INTERNAL
 GType gtk_source_gutter_renderer_marks_get_type (void) G_GNUC_CONST;
 
+G_GNUC_INTERNAL
 GtkSourceGutterRenderer *gtk_source_gutter_renderer_marks_new (void);
 
 G_END_DECLS

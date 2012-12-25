@@ -49,35 +49,50 @@ struct _GtkSourceCompletionWordsLibraryClass {
 	GObjectClass parent_class;
 };
 
+G_GNUC_INTERNAL
 GType gtk_source_completion_words_library_get_type (void) G_GNUC_CONST;
 
+G_GNUC_INTERNAL
 GtkSourceCompletionWordsLibrary *
 		gtk_source_completion_words_library_new			(void);
 
 /* Finding */
+G_GNUC_INTERNAL
 GSequenceIter	*gtk_source_completion_words_library_find 		(GtkSourceCompletionWordsLibrary  *library,
 									 GtkSourceCompletionWordsProposal *proposal);
+
+G_GNUC_INTERNAL
 GSequenceIter	*gtk_source_completion_words_library_find_first		(GtkSourceCompletionWordsLibrary  *library,
 									 const gchar                      *word,
 									 gint                              len);
 
+G_GNUC_INTERNAL
 GSequenceIter	*gtk_source_completion_words_library_find_next		(GSequenceIter                    *iter,
 									 const gchar                      *word,
 									 gint                              len);
 
 /* Getting */
+G_GNUC_INTERNAL
 GtkSourceCompletionWordsProposal *
 		 gtk_source_completion_words_library_get_proposal 	(GSequenceIter                    *iter);
 
 /* Adding/removing */
+G_GNUC_INTERNAL
 GtkSourceCompletionWordsProposal *
 		 gtk_source_completion_words_library_add_word 		(GtkSourceCompletionWordsLibrary  *library,
                                               				 const gchar                      *word);
+
+G_GNUC_INTERNAL
 void		 gtk_source_completion_words_library_remove_word 	(GtkSourceCompletionWordsLibrary  *library,
                                                  			 GtkSourceCompletionWordsProposal *proposal);
 
+G_GNUC_INTERNAL
 gboolean	 gtk_source_completion_words_library_is_locked 		(GtkSourceCompletionWordsLibrary *library);
+
+G_GNUC_INTERNAL
 void		 gtk_source_completion_words_library_lock 		(GtkSourceCompletionWordsLibrary *library);
+
+G_GNUC_INTERNAL
 void		 gtk_source_completion_words_library_unlock 		(GtkSourceCompletionWordsLibrary *library);
 
 G_END_DECLS

@@ -26,13 +26,16 @@
 
 G_BEGIN_DECLS
 
+G_GNUC_INTERNAL
 gchar 	**_gtk_source_view_get_default_dirs (const gchar  *basename,
 					     gboolean      compat);
 
+G_GNUC_INTERNAL
 GSList 	 *_gtk_source_view_get_file_list    (gchar       **path,
 					     const gchar  *suffix,
 					     gboolean      only_dirs);
 
+G_GNUC_INTERNAL
 gint	 _gtk_source_string_to_int	    (const gchar *str);
 
 G_END_DECLS

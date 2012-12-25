@@ -68,23 +68,34 @@ struct _GtkSourceEngineClass
 				       const gchar          *context_class);
 };
 
+G_GNUC_INTERNAL
 GType       _gtk_source_engine_get_type		(void) G_GNUC_CONST;
 
+G_GNUC_INTERNAL
 void        _gtk_source_engine_attach_buffer	(GtkSourceEngine      *engine,
 						 GtkTextBuffer        *buffer);
+
+G_GNUC_INTERNAL
 void        _gtk_source_engine_text_inserted	(GtkSourceEngine      *engine,
 						 gint                  start_offset,
 						 gint                  end_offset);
+
+G_GNUC_INTERNAL
 void        _gtk_source_engine_text_deleted	(GtkSourceEngine      *engine,
 						 gint                  offset,
 						 gint                  length);
+
+G_GNUC_INTERNAL
 void        _gtk_source_engine_update_highlight	(GtkSourceEngine      *engine,
 						 const GtkTextIter    *start,
 						 const GtkTextIter    *end,
 						 gboolean              synchronous);
+
+G_GNUC_INTERNAL
 void        _gtk_source_engine_set_style_scheme	(GtkSourceEngine      *engine,
 						 GtkSourceStyleScheme *scheme);
 
+G_GNUC_INTERNAL
 GtkTextTag *_gtk_source_engine_get_context_class_tag
 						 (GtkSourceEngine     *engine,
 						  const gchar         *context_class);

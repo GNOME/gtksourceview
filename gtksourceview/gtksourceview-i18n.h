@@ -68,8 +68,11 @@ G_BEGIN_DECLS
 #    define GD_(Domain,String) (g_strdup (String))
 #endif
 
+G_GNUC_INTERNAL
 const gchar *_gtksourceview_gettext (const char *msgid) G_GNUC_FORMAT(1);
+
 /* NOTE: it returns duplicated string */
+G_GNUC_INTERNAL
 gchar *_gtksourceview_dgettext (const char *domain, const char *msgid) G_GNUC_FORMAT(2);
 
 G_END_DECLS

@@ -40,44 +40,58 @@ struct _GtkTextRegionIterator {
 	gpointer dummy3;
 };
 
+G_GNUC_INTERNAL
 GtkTextRegion *gtk_text_region_new                          (GtkTextBuffer *buffer);
+
+G_GNUC_INTERNAL
 void           gtk_text_region_destroy                      (GtkTextRegion *region,
 							     gboolean       delete_marks);
 
+G_GNUC_INTERNAL
 GtkTextBuffer *gtk_text_region_get_buffer                   (GtkTextRegion *region);
 
+G_GNUC_INTERNAL
 void           gtk_text_region_add                          (GtkTextRegion     *region,
 							     const GtkTextIter *_start,
 							     const GtkTextIter *_end);
 
+G_GNUC_INTERNAL
 void           gtk_text_region_subtract                     (GtkTextRegion     *region,
 							     const GtkTextIter *_start,
 							     const GtkTextIter *_end);
 
+G_GNUC_INTERNAL
 gint           gtk_text_region_subregions                   (GtkTextRegion *region);
 
+G_GNUC_INTERNAL
 gboolean       gtk_text_region_nth_subregion                (GtkTextRegion *region,
 							     guint          subregion,
 							     GtkTextIter   *start,
 							     GtkTextIter   *end);
 
+G_GNUC_INTERNAL
 GtkTextRegion *gtk_text_region_intersect                    (GtkTextRegion     *region,
 							     const GtkTextIter *_start,
 							     const GtkTextIter *_end);
 
+G_GNUC_INTERNAL
 void           gtk_text_region_get_iterator                 (GtkTextRegion         *region,
                                                              GtkTextRegionIterator *iter,
                                                              guint                  start);
 
+G_GNUC_INTERNAL
 gboolean       gtk_text_region_iterator_is_end              (GtkTextRegionIterator *iter);
 
 /* Returns FALSE if iterator is the end iterator */
+G_GNUC_INTERNAL
 gboolean       gtk_text_region_iterator_next	            (GtkTextRegionIterator *iter);
 
+G_GNUC_INTERNAL
 void           gtk_text_region_iterator_get_subregion       (GtkTextRegionIterator *iter,
 							     GtkTextIter           *start,
 							     GtkTextIter           *end);
 
+G_GNUC_INTERNAL
 void           gtk_text_region_debug_print                  (GtkTextRegion *region);
 
 G_END_DECLS

@@ -52,13 +52,13 @@ struct _GtkSourceUndoManagerDefaultClass
 	GObjectClass parent_class;
 };
 
+G_GNUC_INTERNAL
 GType gtk_source_undo_manager_default_get_type (void) G_GNUC_CONST;
 
+G_GNUC_INTERNAL
 void gtk_source_undo_manager_default_set_max_undo_levels (GtkSourceUndoManagerDefault *manager,
                                                           gint                         max_undo_levels);
 
 G_END_DECLS
 
 #endif /* __GTK_SOURCE_UNDO_MANAGER_DEFAULT_H__ */
-
-

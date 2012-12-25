@@ -30,10 +30,12 @@
 
 G_BEGIN_DECLS
 
+G_GNUC_INTERNAL
 void _gtk_source_gutter_renderer_set_view         (GtkSourceGutterRenderer *renderer,
                                                    GtkTextView             *view,
                                                    GtkTextWindowType        window_type);
 
+G_GNUC_INTERNAL
 void _gtk_source_gutter_renderer_unset_view       (GtkSourceGutterRenderer *renderer);
 
 G_END_DECLS

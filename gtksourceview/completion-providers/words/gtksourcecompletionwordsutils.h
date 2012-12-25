@@ -25,10 +25,12 @@ G_BEGIN_DECLS
 
 typedef gboolean (*CharacterCheck)(gunichar ch, gpointer data);
 
+G_GNUC_INTERNAL
 gboolean	 gtk_source_completion_words_utils_forward_word_end 	(GtkTextIter    *iter,
 									 CharacterCheck  valid,
 									 gpointer        data);
 
+G_GNUC_INTERNAL
 gboolean	 gtk_source_completion_words_utils_backward_word_start 	(GtkTextIter    *iter,
 									 CharacterCheck  valid,
 									 CharacterCheck  valid_start,

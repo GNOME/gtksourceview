@@ -49,14 +49,20 @@ struct _GtkSourceCompletionWordsProposalClass {
 	GObjectClass parent_class;
 };
 
+G_GNUC_INTERNAL
 GType gtk_source_completion_words_proposal_get_type (void) G_GNUC_CONST;
 
+G_GNUC_INTERNAL
 GtkSourceCompletionWordsProposal *
 		 gtk_source_completion_words_proposal_new 	(const gchar                      *word);
 
+G_GNUC_INTERNAL
 const gchar 	*gtk_source_completion_words_proposal_get_word 	(GtkSourceCompletionWordsProposal *proposal);
 
+G_GNUC_INTERNAL
 void		 gtk_source_completion_words_proposal_use 	(GtkSourceCompletionWordsProposal *proposal);
+
+G_GNUC_INTERNAL
 void		 gtk_source_completion_words_proposal_unuse 	(GtkSourceCompletionWordsProposal *proposal);
 
 G_END_DECLS
