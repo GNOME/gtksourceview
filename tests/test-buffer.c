@@ -1,10 +1,6 @@
-#include "config.h"
-#include <string.h>
 #include <stdlib.h>
-
 #include <gtk/gtk.h>
-#include <gtksourceview/gtksourcebuffer.h>
-#include <gtksourceview/gtksourceview.h>
+#include <gtksourceview/gtksource.h>
 
 static void
 test_get_buffer (void)
