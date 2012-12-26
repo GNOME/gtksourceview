@@ -19,6 +19,9 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
+#ifndef __GTK_SOURCE_COMPLETION_WORDS_UTILS_H__
+#define __GTK_SOURCE_COMPLETION_WORDS_UTILS_H__
+
 #include <gtk/gtk.h>
 
 G_BEGIN_DECLS
@@ -37,3 +40,5 @@ gboolean	 gtk_source_completion_words_utils_backward_word_start 	(GtkTextIter   
 									 gpointer        data);
 
 G_END_DECLS
+
+#endif /* __GTK_SOURCE_COMPLETION_WORDS_UTILS_H__ */
