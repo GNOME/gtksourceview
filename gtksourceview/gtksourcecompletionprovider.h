@@ -34,9 +34,6 @@ G_BEGIN_DECLS
 #define GTK_SOURCE_IS_COMPLETION_PROVIDER(obj) 			(G_TYPE_CHECK_INSTANCE_TYPE ((obj), GTK_SOURCE_TYPE_COMPLETION_PROVIDER))
 #define GTK_SOURCE_COMPLETION_PROVIDER_GET_INTERFACE(obj) 	(G_TYPE_INSTANCE_GET_INTERFACE ((obj), GTK_SOURCE_TYPE_COMPLETION_PROVIDER, GtkSourceCompletionProviderIface))
 
-#define GTK_SOURCE_COMPLETION_CAPABILITY_INTERACTIVE "standard::interactive"
-#define GTK_SOURCE_COMPLETION_CAPABILITY_AUTOMATIC "standard::automatic"
-
 typedef struct _GtkSourceCompletionProviderIface GtkSourceCompletionProviderIface;
 
 struct _GtkSourceCompletionProviderIface
