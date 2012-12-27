@@ -85,6 +85,7 @@ gtk_source_view_set_draw_spaces
 gtk_source_view_get_draw_spaces
 gtk_source_view_get_completion
 gtk_source_view_get_gutter
+gtk_source_view_get_visual_column
 <SUBSECTION Standard>
 GtkSourceViewClass
 GTK_SOURCE_IS_VIEW
@@ -106,6 +107,9 @@ gtk_source_gutter_insert
 gtk_source_gutter_reorder
 gtk_source_gutter_remove
 gtk_source_gutter_queue_draw
+gtk_source_gutter_get_padding
+gtk_source_gutter_set_padding
+gtk_source_gutter_get_renderer_at_pos
 <SUBSECTION Standard>
 GtkSourceGutterClass
 GTK_SOURCE_IS_GUTTER
@@ -530,6 +534,7 @@ GTK_SOURCE_COMPLETION_ITEM_GET_CLASS
 GTK_SOURCE_TYPE_COMPLETION_ITEM
 gtk_source_completion_item_get_type
 GtkSourceCompletionItemClass
+GtkSourceCompletionItemPrivate
 </SECTION>
 
 <SECTION>
@@ -574,4 +579,23 @@ GTK_SOURCE_TYPE_COMPLETION_CONTEXT
 GtkSourceCompletionContextPrivate
 gtk_source_completion_context_get_type
 GtkSourceCompletionContextClass
+</SECTION>
+
+<SECTION>
+<FILE>completionwords</FILE>
+<TITLE>GtkSourceCompletionWords</TITLE>
+GtkSourceCompletionWords
+gtk_source_completion_words_new
+gtk_source_completion_words_register
+gtk_source_completion_words_unregister
+<SUBSECTION Standard>
+GTK_SOURCE_COMPLETION_WORDS
+GTK_SOURCE_COMPLETION_WORDS_CLASS
+GTK_SOURCE_COMPLETION_WORDS_GET_CLASS
+GTK_SOURCE_IS_COMPLETION_WORDS
+GTK_SOURCE_IS_COMPLETION_WORDS_CLASS
+GTK_SOURCE_TYPE_COMPLETION_WORDS
+GtkSourceCompletionWordsClass
+GtkSourceCompletionWordsPrivate
+gtk_source_completion_words_get_type
 </SECTION>
