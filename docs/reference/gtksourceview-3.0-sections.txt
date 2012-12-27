@@ -446,6 +446,9 @@ GtkSourcePrintCompositorClass
 <FILE>completion</FILE>
 <TITLE>GtkSourceCompletion</TITLE>
 GtkSourceCompletion
+GTK_SOURCE_COMPLETION_ERROR
+GtkSourceCompletionError
+<SUBSECTION>
 gtk_source_completion_add_provider
 gtk_source_completion_remove_provider
 gtk_source_completion_get_providers
@@ -465,8 +468,9 @@ GTK_SOURCE_COMPLETION_CLASS
 GTK_SOURCE_COMPLETION_GET_CLASS
 GTK_SOURCE_TYPE_COMPLETION
 GtkSourceCompletionPrivate
-gtk_source_completion_get_type
 GtkSourceCompletionClass
+gtk_source_completion_get_type
+gtk_source_completion_error_quark
 </SECTION>
 
 <SECTION>

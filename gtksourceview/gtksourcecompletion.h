@@ -38,11 +38,28 @@ G_BEGIN_DECLS
 #define GTK_SOURCE_IS_COMPLETION_CLASS(klass)   (G_TYPE_CHECK_CLASS_TYPE ((klass), GTK_SOURCE_TYPE_COMPLETION))
 #define GTK_SOURCE_COMPLETION_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS((obj), GTK_SOURCE_TYPE_COMPLETION, GtkSourceCompletionClass))
 
+/**
+ * GTK_SOURCE_COMPLETION_ERROR:
+ *
+ * Error domain for the completion. Errors in this domain will be from the
+ * #GtkSourceCompletionError enumeration. See #GError for more information on
+ * error domains.
+ */
 #define GTK_SOURCE_COMPLETION_ERROR		(gtk_source_completion_error_quark ())
 
 typedef struct _GtkSourceCompletionPrivate GtkSourceCompletionPrivate;
 typedef struct _GtkSourceCompletionClass GtkSourceCompletionClass;
 
+/**
+ * GtkSourceCompletionError:
+ * @GTK_SOURCE_COMPLETION_ERROR_ALREADY_BOUND: The #GtkSourceCompletionProvider
+ * is already bound to the #GtkSourceCompletion object.
+ * @GTK_SOURCE_COMPLETION_ERROR_NOT_BOUND: The #GtkSourceCompletionProvider is
+ * not bound to the #GtkSourceCompletion object.
+ *
+ * An error code used with %GTK_SOURCE_COMPLETION_ERROR in a #GError returned
+ * from a completion-related function.
+ */
 typedef enum
 {
 	GTK_SOURCE_COMPLETION_ERROR_ALREADY_BOUND = 0,
