@@ -23,8 +23,9 @@
 #ifndef __GTK_SOURCE_CONTEXT_ENGINE_H__
 #define __GTK_SOURCE_CONTEXT_ENGINE_H__
 
-#include <gtksourceview/gtksourcetypes.h>
-#include <gtksourceview/gtksourceengine.h>
+#include "gtksourceengine.h"
+#include "gtksourcetypes.h"
+#include "gtksourcetypes-private.h"
 
 G_BEGIN_DECLS
 

@@ -23,7 +23,7 @@
 #define __GTK_SOURCE_PIXBUF_HELPER_H__
 
 #include <gtk/gtk.h>
-#include <gtksourceview/gtksourcetypes.h>
+#include "gtksourcetypes-private.h"
 
 G_GNUC_INTERNAL
 GtkSourcePixbufHelper *gtk_source_pixbuf_helper_new (void);

@@ -22,9 +22,10 @@
 #ifndef __GTK_SOURCE_GUTTER_RENDERER_LINES_H__
 #define __GTK_SOURCE_GUTTER_RENDERER_LINES_H__
 
-#include <gtksourceview/gtksourcetypes.h>
-#include <gtksourceview/gtksourcegutterrenderertext.h>
 #include <gtk/gtk.h>
+#include "gtksourcetypes.h"
+#include "gtksourcetypes-private.h"
+#include "gtksourcegutterrenderertext.h"
 
 G_BEGIN_DECLS
 

@@ -21,29 +21,30 @@ CFILE_GLOB = $(top_srcdir)/gtksourceview/*.c
 # e.g. IGNORE_HFILES=gtkdebug.h gtkintl.h private_code
 IGNORE_HFILES =					\
 	config.h				\
-	gtksourceview-marshal.h			\
-	gtksourceview-typebuiltins.h		\
 	gtksourcecompletionmodel.h		\
 	gtksourcecompletion-private.h		\
 	gtksourcecompletionutils.h		\
-	gtksourcecontextengine.h		\
-	gtksourceengine.h			\
-	gtksourcegutter-private.h		\
-	gtksourcelanguage-private.h		\
-	gtksourceregex.h			\
-	gtksourcestyle-private.h		\
-	gtksourceundomanagerdefault.h		\
-	gtksourceview-i18n.h			\
-	gtksourceview-utils.h			\
-	gtktextregion.h				\
-	gtksourcepixbufhelper.h			\
-	gtksourcegutterrendererlines.h		\
-	gtksourcegutterrenderermarks.h		\
-	gtksourcegutterrenderer-private.h	\
 	gtksourcecompletionwordsbuffer.h	\
 	gtksourcecompletionwordslibrary.h	\
 	gtksourcecompletionwordsproposal.h	\
-	gtksourcecompletionwordsutils.h
+	gtksourcecompletionwordsutils.h		\
+	gtksourcecontextengine.h		\
+	gtksourceengine.h			\
+	gtksourcegutter-private.h		\
+	gtksourcegutterrendererlines.h		\
+	gtksourcegutterrenderermarks.h		\
+	gtksourcegutterrenderer-private.h	\
+	gtksourcelanguage-private.h		\
+	gtksourcepixbufhelper.h			\
+	gtksourceregex.h			\
+	gtksourcestyle-private.h		\
+	gtksourcetypes-private.h		\
+	gtksourceundomanagerdefault.h		\
+	gtksourceview-i18n.h			\
+	gtksourceview-marshal.h			\
+	gtksourceview-typebuiltins.h		\
+	gtksourceview-utils.h			\
+	gtktextregion.h
 
 update-sections: $(HFILE_GLOB)
 	@echo 'gtk-doc: Scanning header files'

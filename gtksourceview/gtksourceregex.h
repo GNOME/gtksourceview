@@ -24,7 +24,7 @@
 #define __GTK_SOURCE_REGEX_H__
 
 #include <glib.h>
-#include <gtksourceview/gtksourcetypes.h>
+#include "gtksourcetypes-private.h"
 
 G_BEGIN_DECLS
 

@@ -53,17 +53,18 @@ NOINST_H_FILES = \
 	gtksourcecontextengine.h		\
 	gtksourceengine.h			\
 	gtksourcegutter-private.h		\
+	gtksourcegutterrendererlines.h		\
+	gtksourcegutterrenderermarks.h		\
+	gtksourcegutterrenderer-private.h	\
 	gtksourcelanguage-private.h		\
+	gtksourcepixbufhelper.h			\
 	gtksourceregex.h			\
 	gtksourcestyle-private.h		\
+	gtksourcetypes-private.h		\
 	gtksourceundomanagerdefault.h		\
 	gtksourceview-i18n.h			\
 	gtksourceview-utils.h			\
-	gtktextregion.h				\
-	gtksourcepixbufhelper.h			\
-	gtksourcegutterrendererlines.h		\
-	gtksourcegutterrenderermarks.h		\
-	gtksourcegutterrenderer-private.h
+	gtktextregion.h
 
 libgtksourceview_c_files = \
 	gtksourcebuffer.c 		\

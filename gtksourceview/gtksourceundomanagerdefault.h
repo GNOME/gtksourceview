@@ -26,7 +26,7 @@
 #define __GTK_SOURCE_UNDO_MANAGER_DEFAULT_H__
 
 #include <glib-object.h>
-#include <gtksourceview/gtksourcetypes.h>
+#include "gtksourcetypes-private.h"
 
 G_BEGIN_DECLS
 
