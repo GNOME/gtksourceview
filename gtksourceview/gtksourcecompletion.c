@@ -3179,8 +3179,8 @@ update_completion (GtkSourceCompletion        *completion,
 		completion->priv->select_on_show &&
 		(!get_selected_proposal (completion, NULL, NULL, NULL) || completion->priv->select_first);
 
-	gtk_source_completion_model_begin (completion->priv->model_proposals,
-	                                   completion->priv->active_providers);
+	gtk_source_completion_model_begin_populate (completion->priv->model_proposals,
+						    completion->priv->active_providers);
 
 	for (item = providers; item != NULL; item = g_list_next (item))
 	{
@@ -3253,15 +3253,15 @@ _gtk_source_completion_add_proposals (GtkSourceCompletion         *completion,
 	item = g_list_find (completion->priv->running_providers, provider);
 	g_return_if_fail (item != NULL);
 
-	gtk_source_completion_model_append (completion->priv->model_proposals,
-	                                    provider,
-	                                    proposals);
+	gtk_source_completion_model_add_proposals (completion->priv->model_proposals,
+						   provider,
+						   proposals);
 
 	if (finished)
 	{
 		/* Let the model know this provider is done */
-		gtk_source_completion_model_end (completion->priv->model_proposals,
-		                                 provider);
+		gtk_source_completion_model_end_populate (completion->priv->model_proposals,
+							  provider);
 
 		/* Remove provider from list of running providers */
 		completion->priv->running_providers =

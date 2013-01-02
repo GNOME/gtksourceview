@@ -619,8 +619,8 @@ on_proposal_changed (GtkSourceCompletionProposal *proposal,
 }
 
 void
-gtk_source_completion_model_begin (GtkSourceCompletionModel *model,
-                                   GList                    *providers)
+gtk_source_completion_model_begin_populate (GtkSourceCompletionModel *model,
+					    GList                    *providers)
 {
 	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_MODEL (model));
 
@@ -1183,9 +1183,9 @@ add_provider_info (GtkSourceCompletionModel    *model,
 }
 
 void
-gtk_source_completion_model_append (GtkSourceCompletionModel    *model,
-                                    GtkSourceCompletionProvider *provider,
-                                    GList                       *proposals)
+gtk_source_completion_model_add_proposals (GtkSourceCompletionModel    *model,
+					   GtkSourceCompletionProvider *provider,
+					   GList                       *proposals)
 {
 	GList *item;
 	ProviderInfo *info;
@@ -1281,8 +1281,8 @@ gtk_source_completion_model_append (GtkSourceCompletionModel    *model,
 }
 
 void
-gtk_source_completion_model_end (GtkSourceCompletionModel    *model,
-                                 GtkSourceCompletionProvider *provider)
+gtk_source_completion_model_end_populate (GtkSourceCompletionModel    *model,
+					  GtkSourceCompletionProvider *provider)
 {
 	/* Remove unmarked proposals, returns TRUE if there are any proposals
 	 * left for 'provider'. If so, we add 'provider' to the list of
