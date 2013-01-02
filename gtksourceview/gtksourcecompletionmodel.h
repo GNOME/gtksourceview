@@ -64,69 +64,69 @@ enum
 };
 
 G_GNUC_INTERNAL
-GType gtk_source_completion_model_get_type (void) G_GNUC_CONST;
+GType    gtk_source_completion_model_get_type			(void) G_GNUC_CONST;
 
 G_GNUC_INTERNAL
 GtkSourceCompletionModel *
-		gtk_source_completion_model_new 	(void);
+         gtk_source_completion_model_new			(void);
 
 G_GNUC_INTERNAL
-void		gtk_source_completion_model_begin	(GtkSourceCompletionModel           *model,
-                                                         GList                              *providers);
+void     gtk_source_completion_model_begin                      (GtkSourceCompletionModel    *model,
+								 GList                       *providers);
 
 G_GNUC_INTERNAL
-void		gtk_source_completion_model_append 	(GtkSourceCompletionModel           *model,
-							 GtkSourceCompletionProvider        *provider,
-							 GList                              *proposals);
+void     gtk_source_completion_model_append                     (GtkSourceCompletionModel    *model,
+								 GtkSourceCompletionProvider *provider,
+								 GList                       *proposals);
 
 G_GNUC_INTERNAL
-void		gtk_source_completion_model_end		(GtkSourceCompletionModel           *model,
-							 GtkSourceCompletionProvider        *provider);
+void     gtk_source_completion_model_end                        (GtkSourceCompletionModel    *model,
+								 GtkSourceCompletionProvider *provider);
 
 G_GNUC_INTERNAL
-void		gtk_source_completion_model_cancel	(GtkSourceCompletionModel           *model);
+void     gtk_source_completion_model_cancel			(GtkSourceCompletionModel    *model);
 
 G_GNUC_INTERNAL
-gboolean	gtk_source_completion_model_is_empty 	(GtkSourceCompletionModel           *model,
-                                                         gboolean                            invisible);
+gboolean gtk_source_completion_model_is_empty			(GtkSourceCompletionModel    *model,
+								 gboolean                     invisible);
 
 G_GNUC_INTERNAL
-void            gtk_source_completion_model_set_visible_providers (GtkSourceCompletionModel *model,
-                                                                   GList                    *providers);
+void     gtk_source_completion_model_set_visible_providers	(GtkSourceCompletionModel    *model,
+								 GList                       *providers);
 
 G_GNUC_INTERNAL
-GList          *gtk_source_completion_model_get_visible_providers (GtkSourceCompletionModel *model);
+GList   *gtk_source_completion_model_get_visible_providers	(GtkSourceCompletionModel    *model);
 
 G_GNUC_INTERNAL
-GList          *gtk_source_completion_model_get_providers (GtkSourceCompletionModel         *model);
+GList   *gtk_source_completion_model_get_providers		(GtkSourceCompletionModel    *model);
 
 G_GNUC_INTERNAL
-guint		gtk_source_completion_model_n_proposals (GtkSourceCompletionModel           *model,
-                                                         GtkSourceCompletionProvider        *provider);
+guint    gtk_source_completion_model_n_proposals		(GtkSourceCompletionModel    *model,
+								 GtkSourceCompletionProvider *provider);
 
 G_GNUC_INTERNAL
-void 		gtk_source_completion_model_clear 	(GtkSourceCompletionModel           *model);
+void     gtk_source_completion_model_clear			(GtkSourceCompletionModel    *model);
 
 G_GNUC_INTERNAL
-void 		gtk_source_completion_model_set_show_headers (GtkSourceCompletionModel      *model,
-							      gboolean                       show_headers);
+void     gtk_source_completion_model_set_show_headers		(GtkSourceCompletionModel    *model,
+								 gboolean                     show_headers);
 
 G_GNUC_INTERNAL
-gboolean	gtk_source_completion_model_iter_is_header (GtkSourceCompletionModel        *model,
-                                                            GtkTreeIter                     *iter);
+gboolean gtk_source_completion_model_iter_is_header		(GtkSourceCompletionModel    *model,
+								 GtkTreeIter                 *iter);
 
 G_GNUC_INTERNAL
-gboolean 	gtk_source_completion_model_iter_previous (GtkSourceCompletionModel         *model,
-							   GtkTreeIter                      *iter);
+gboolean gtk_source_completion_model_iter_previous		(GtkSourceCompletionModel    *model,
+								 GtkTreeIter                 *iter);
 
 G_GNUC_INTERNAL
-gboolean 	gtk_source_completion_model_iter_last 	(GtkSourceCompletionModel           *model,
-							 GtkTreeIter                        *iter);
+gboolean gtk_source_completion_model_iter_last			(GtkSourceCompletionModel    *model,
+								 GtkTreeIter                 *iter);
 
 G_GNUC_INTERNAL
-gboolean	gtk_source_completion_model_iter_equal	(GtkSourceCompletionModel           *model,
-							 GtkTreeIter                        *iter1,
-							 GtkTreeIter                        *iter2);
+gboolean gtk_source_completion_model_iter_equal			(GtkSourceCompletionModel    *model,
+								 GtkTreeIter                 *iter1,
+								 GtkTreeIter                 *iter2);
 
 G_END_DECLS
 
