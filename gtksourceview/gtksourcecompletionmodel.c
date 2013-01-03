@@ -1365,15 +1365,16 @@ provider_has_proposals (GtkSourceCompletionProvider *provider,
 	}
 }
 
+/* If @only_visible is %TRUE, only the visible providers are taken into account. */
 gboolean
 gtk_source_completion_model_is_empty (GtkSourceCompletionModel *model,
-                                      gboolean                  invisible)
+                                      gboolean                  only_visible)
 {
 	gboolean isempty = TRUE;
 
 	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_MODEL (model), FALSE);
 
-	if (!invisible)
+	if (only_visible)
 	{
 		g_hash_table_foreach (model->priv->providers_info,
 		                      (GHFunc)provider_has_proposals,

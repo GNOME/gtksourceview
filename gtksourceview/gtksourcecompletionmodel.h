@@ -88,7 +88,7 @@ void     gtk_source_completion_model_cancel			(GtkSourceCompletionModel    *mode
 
 G_GNUC_INTERNAL
 gboolean gtk_source_completion_model_is_empty			(GtkSourceCompletionModel    *model,
-								 gboolean                     invisible);
+								 gboolean                     only_visible);
 
 G_GNUC_INTERNAL
 void     gtk_source_completion_model_set_visible_providers	(GtkSourceCompletionModel    *model,

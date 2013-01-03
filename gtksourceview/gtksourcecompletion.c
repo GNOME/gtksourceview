@@ -800,7 +800,7 @@ select_provider (GtkSourceCompletion *completion,
 					break;
 				}
 			}
-			else if (!gtk_source_completion_model_is_empty (completion->priv->model_proposals, TRUE))
+			else if (!gtk_source_completion_model_is_empty (completion->priv->model_proposals, FALSE))
 			{
 				break;
 			}
@@ -3207,7 +3207,7 @@ populating_done (GtkSourceCompletion        *completion,
                  GtkSourceCompletionContext *context)
 {
 	if (gtk_source_completion_model_is_empty (completion->priv->model_proposals,
-	                                          FALSE))
+	                                          TRUE))
 	{
 		DEBUG({
 			g_print ("Model is empty after populating\n");
