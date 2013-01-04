@@ -102,6 +102,178 @@ create_proposals (void)
 	return list;
 }
 
+/* Each returned provider is associated with a list of proposals.
+ * The providers are sorted in decreasing order of priority, i.e. the same order
+ * as in the CompletionModel.
+ */
+static void
+create_providers (GList **all_providers,
+		  GList **all_list_proposals)
+{
+	TestProvider *provider;
+
+	*all_providers = NULL;
+	*all_list_proposals = NULL;
+
+	provider = test_provider_new ();
+	provider->priority = 5;
+	*all_providers = g_list_append (*all_providers, provider);
+	*all_list_proposals = g_list_append (*all_list_proposals, create_proposals ());
+
+	provider = test_provider_new ();
+	provider->priority = 3;
+	*all_providers = g_list_append (*all_providers, provider);
+	*all_list_proposals = g_list_append (*all_list_proposals, create_proposals ());
+}
+
+static void
+populate_model (GtkSourceCompletionModel *model,
+		GList                    *all_providers,
+		GList                    *all_list_proposals)
+{
+	GList *cur_provider;
+	GList *cur_list_proposals;
+
+	gtk_source_completion_model_begin_populate (model, all_providers);
+
+	for (cur_provider = all_providers,
+	     cur_list_proposals = all_list_proposals;
+	     cur_provider != NULL;
+	     cur_provider = g_list_next (cur_provider),
+	     cur_list_proposals = g_list_next (cur_list_proposals))
+	{
+		gtk_source_completion_model_add_proposals (model,
+							   GTK_SOURCE_COMPLETION_PROVIDER (cur_provider->data),
+							   cur_list_proposals->data);
+
+		gtk_source_completion_model_end_populate (model,
+							  GTK_SOURCE_COMPLETION_PROVIDER (cur_provider->data));
+	}
+}
+
+static void
+free_providers (GList *all_providers,
+		GList *all_list_proposals)
+{
+	GList *cur_list_proposals = NULL;
+
+	g_list_free_full (all_providers, g_object_unref);
+
+	for (cur_list_proposals = all_list_proposals;
+	     cur_list_proposals != NULL;
+	     cur_list_proposals = g_list_next (cur_list_proposals))
+	{
+		g_list_free_full (cur_list_proposals->data, g_object_unref);
+	}
+
+	g_list_free (all_list_proposals);
+}
+
+/* Check whether the provider is correctly present in the CompletionModel, at
+ * the position specified by @iter.
+ */
+static void
+check_provider (GtkSourceCompletionModel    *model,
+		GtkSourceCompletionProvider *provider,
+		GList                       *list_proposals,
+		gboolean                     is_header_visible,
+		GtkTreeIter                 *iter)
+
+{
+	GtkSourceCompletionProposal *proposal_get = NULL;
+	GtkSourceCompletionProvider *provider_get = NULL;
+	GList *cur_proposal = NULL;
+
+	/* Check the header */
+
+	if (is_header_visible)
+	{
+		g_assert (gtk_source_completion_model_iter_is_header (model, iter));
+
+		gtk_tree_model_get (GTK_TREE_MODEL (model), iter,
+				    GTK_SOURCE_COMPLETION_MODEL_COLUMN_PROPOSAL, &proposal_get,
+				    GTK_SOURCE_COMPLETION_MODEL_COLUMN_PROVIDER, &provider_get,
+				    -1);
+
+		g_assert (proposal_get == NULL);
+		g_assert (provider_get == provider);
+		g_assert (gtk_tree_model_iter_next (GTK_TREE_MODEL (model), iter));
+	}
+
+	/* Check the proposals */
+
+	cur_proposal = list_proposals;
+	while (TRUE)
+	{
+		gtk_tree_model_get (GTK_TREE_MODEL (model), iter,
+				    GTK_SOURCE_COMPLETION_MODEL_COLUMN_PROPOSAL, &proposal_get,
+				    GTK_SOURCE_COMPLETION_MODEL_COLUMN_PROVIDER, &provider_get,
+				    -1);
+
+		g_assert (proposal_get == cur_proposal->data);
+		g_assert (provider_get == provider);
+
+		cur_proposal = g_list_next (cur_proposal);
+
+		if (cur_proposal == NULL)
+		{
+			break;
+		}
+
+		g_assert (gtk_tree_model_iter_next (GTK_TREE_MODEL (model), iter));
+	}
+}
+
+/* Check the full contents of a CompletionModel. */
+static void
+check_all_providers (GtkSourceCompletionModel *model,
+		     GList                    *all_providers,
+		     GList                    *all_list_proposals,
+		     gboolean                  is_header_visible)
+{
+	GtkTreeIter iter;
+	GList *cur_provider = NULL;
+	GList *cur_list_proposals = NULL;
+
+	g_assert (gtk_tree_model_get_iter_first (GTK_TREE_MODEL (model), &iter));
+
+	cur_provider = all_providers;
+	cur_list_proposals = all_list_proposals;
+	while (TRUE)
+	{
+		check_provider (model,
+				GTK_SOURCE_COMPLETION_PROVIDER (cur_provider->data),
+				cur_list_proposals->data,
+				is_header_visible,
+				&iter);
+
+		cur_provider = g_list_next (cur_provider);
+		cur_list_proposals = g_list_next (cur_list_proposals);
+
+		if (cur_provider == NULL)
+		{
+			g_assert (cur_list_proposals == NULL);
+			break;
+		}
+
+		g_assert(gtk_tree_model_iter_next (GTK_TREE_MODEL (model), &iter));
+	}
+
+	g_assert(!gtk_tree_model_iter_next (GTK_TREE_MODEL (model), &iter));
+}
+
+static void
+check_all_providers_with_and_without_headers (GtkSourceCompletionModel *model,
+					      GList                    *all_providers,
+					      GList                    *all_list_proposals)
+{
+	gtk_source_completion_model_set_show_headers (model, TRUE);
+	check_all_providers (model, all_providers, all_list_proposals, TRUE);
+
+	gtk_source_completion_model_set_show_headers (model, FALSE);
+	check_all_providers (model, all_providers, all_list_proposals, FALSE);
+}
+
 /* Tests */
 
 static void
@@ -184,6 +356,27 @@ test_get_visible_providers (void)
 	g_list_free_full (list_providers, g_object_unref);
 }
 
+/* Create several providers with associated proposals, populate them in a
+ * CompletionModel, and check whether the CompletionModel correctly contains the
+ * providers.
+ */
+static void
+test_simple_populate (void)
+{
+	GtkSourceCompletionModel *model;
+	GList *all_providers = NULL;
+	GList *all_list_proposals = NULL;
+
+	model = gtk_source_completion_model_new ();
+	create_providers (&all_providers, &all_list_proposals);
+	populate_model (model, all_providers, all_list_proposals);
+
+	check_all_providers_with_and_without_headers (model, all_providers, all_list_proposals);
+
+	g_object_unref (model);
+	free_providers (all_providers, all_list_proposals);
+}
+
 int
 main (int argc, char **argv)
 {
@@ -191,6 +384,7 @@ main (int argc, char **argv)
 
 	g_test_add_func ("/CompletionModel/is-empty", test_is_empty);
 	g_test_add_func ("/CompletionModel/get-visible-providers", test_get_visible_providers);
+	g_test_add_func ("/CompletionModel/simple-populate", test_simple_populate);
 
 	return g_test_run ();
 }
