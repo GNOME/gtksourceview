@@ -161,12 +161,36 @@ test_is_empty (void)
 #endif
 }
 
+static void
+test_get_visible_providers (void)
+{
+	GtkSourceCompletionModel *model;
+	TestProvider *provider;
+	GList *list_providers = NULL;
+	GList *visible_providers = NULL;
+
+	model = gtk_source_completion_model_new ();
+	g_assert (gtk_source_completion_model_get_visible_providers (model) == NULL);
+
+	provider = test_provider_new ();
+	list_providers = g_list_append (list_providers, provider);
+
+	gtk_source_completion_model_set_visible_providers (model, list_providers);
+	visible_providers = gtk_source_completion_model_get_visible_providers (model);
+
+	g_assert (visible_providers->data == provider);
+
+	g_object_unref (model);
+	g_list_free_full (list_providers, g_object_unref);
+}
+
 int
 main (int argc, char **argv)
 {
 	gtk_test_init (&argc, &argv);
 
 	g_test_add_func ("/CompletionModel/is-empty", test_is_empty);
+	g_test_add_func ("/CompletionModel/get-visible-providers", test_get_visible_providers);
 
 	return g_test_run ();
 }
