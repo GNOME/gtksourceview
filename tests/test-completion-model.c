@@ -256,10 +256,10 @@ check_all_providers (GtkSourceCompletionModel *model,
 			break;
 		}
 
-		g_assert(gtk_tree_model_iter_next (GTK_TREE_MODEL (model), &iter));
+		g_assert (gtk_tree_model_iter_next (GTK_TREE_MODEL (model), &iter));
 	}
 
-	g_assert(!gtk_tree_model_iter_next (GTK_TREE_MODEL (model), &iter));
+	g_assert (!gtk_tree_model_iter_next (GTK_TREE_MODEL (model), &iter));
 }
 
 static void
@@ -377,6 +377,65 @@ test_simple_populate (void)
 	free_providers (all_providers, all_list_proposals);
 }
 
+static void
+test_set_visible_providers (void)
+{
+	GtkSourceCompletionModel *model;
+	GList *all_providers = NULL;
+	GList *all_list_proposals = NULL;
+	GList *subset_providers = NULL;
+	GList *subset_list_proposals = NULL;
+	TestProvider *other_provider;
+
+	/* Populate the model with two providers */
+	model = gtk_source_completion_model_new ();
+	create_providers (&all_providers, &all_list_proposals);
+	populate_model (model, all_providers, all_list_proposals);
+
+	/* The two providers are initially visible */
+	check_all_providers_with_and_without_headers (model, all_providers, all_list_proposals);
+
+	gtk_source_completion_model_set_visible_providers (model, NULL);
+	check_all_providers_with_and_without_headers (model, all_providers, all_list_proposals);
+
+	gtk_source_completion_model_set_visible_providers (model, all_providers);
+	check_all_providers_with_and_without_headers (model, all_providers, all_list_proposals);
+
+	/* Only first provider visible */
+	subset_providers = g_list_append (subset_providers, all_providers->data);
+	subset_list_proposals = g_list_append (subset_list_proposals, all_list_proposals->data);
+
+#if 0
+	gtk_source_completion_model_set_visible_providers (model, subset_providers);
+	check_all_providers_with_and_without_headers (model, subset_providers, subset_list_proposals);
+
+	/* Only second provider visible */
+	subset_providers->data = all_providers->next->data;
+	subset_list_proposals->data = all_list_proposals->next->data;
+
+	gtk_source_completion_model_set_visible_providers (model, subset_providers);
+	check_all_providers_with_and_without_headers (model, subset_providers, subset_list_proposals);
+#endif
+
+	/* No visible providers */
+	other_provider = test_provider_new ();
+#if 0
+	subset_providers->data = other_provider;
+	gtk_source_completion_model_set_visible_providers (model, subset_providers);
+	g_assert (gtk_source_completion_model_is_empty (model, TRUE));
+
+	/* The two providers are visible again */
+	gtk_source_completion_model_set_visible_providers (model, NULL);
+	check_all_providers_with_and_without_headers (model, all_providers, all_list_proposals);
+#endif
+
+	g_object_unref (model);
+	g_object_unref (other_provider);
+	free_providers (all_providers, all_list_proposals);
+	g_list_free (subset_providers);
+	g_list_free (subset_list_proposals);
+}
+
 int
 main (int argc, char **argv)
 {
@@ -385,6 +444,7 @@ main (int argc, char **argv)
 	g_test_add_func ("/CompletionModel/is-empty", test_is_empty);
 	g_test_add_func ("/CompletionModel/get-visible-providers", test_get_visible_providers);
 	g_test_add_func ("/CompletionModel/simple-populate", test_simple_populate);
+	g_test_add_func ("/CompletionModel/set-visible-providers", test_set_visible_providers);
 
 	return g_test_run ();
 }
