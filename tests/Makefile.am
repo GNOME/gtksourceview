@@ -72,4 +72,18 @@ python_tests =			\
 EXTRA_DIST =				\
 	$(python_tests)
 
+test_sources =					\
+	$(test_buffer_SOURCES)			\
+	$(test_completion_model_SOURCES)	\
+	$(test_completion_SOURCES)		\
+	$(test_languagemanager_SOURCES)		\
+	$(test_printcompositor_SOURCES)		\
+	$(test_widget_SOURCES)			\
+	gtksourcecompletionmodel.c
+
+# Generated files for the code coverage
+CLEANFILES =				\
+	$(test_sources:.c=.gcda) 	\
+	$(test_sources:.c=.gcno)
+
 -include $(top_srcdir)/git.mk

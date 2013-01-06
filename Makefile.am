@@ -102,4 +102,6 @@ dist-hook:
 		echo A git clone is required to generate a ChangeLog >&2; \
 	fi
 
+@GNOME_CODE_COVERAGE_RULES@
+
 -include $(top_srcdir)/git.mk
