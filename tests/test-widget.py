@@ -95,7 +95,7 @@ class SearchDialog(Gtk.Dialog):
             self._search_widget.set_text(what)
         self._search_widget.set_activates_default(True)
         self._search_widget.show()
-        print self.get_content_area()
+        print(self.get_content_area())
         self.get_content_area().pack_start(self._search_widget, True, True, 0)
 
         if replace:
@@ -512,7 +512,7 @@ class Window(Gtk.Window):
             bracket = place.get_char()
             row = place.get_line() + 1
             col = place.get_line_offset() + 1
-            print "Matched bracket: '%c' at row: %i, col: %i" % (bracket, row, col)
+            print("Matched bracket: '%c' at row: %i, col: %i" % (bracket, row, col))
 
     def open_file(self, filename):
         if os.path.isabs(filename):
@@ -556,9 +556,9 @@ class Window(Gtk.Window):
         return True
 
     def paginate_cb(self, operation, context, compositor):
-        print "Pagination progress: %.2f %%\n" % (compositor.get_pagination_progress () * 100.0)
+        print("Pagination progress: %.2f %%\n" % (compositor.get_pagination_progress () * 100.0))
         if compositor.paginate (context):
-            print "Pagination progress: %.2f %%\n" % (compositor.get_pagination_progress () * 100.0)
+            print("Pagination progress: %.2f %%\n" % (compositor.get_pagination_progress () * 100.0))
             operation.set_n_pages (compositor.get_n_pages ())
             return True
         return False
