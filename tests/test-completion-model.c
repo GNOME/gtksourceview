@@ -378,6 +378,31 @@ test_simple_populate (void)
 }
 
 static void
+test_clear (void)
+{
+	GtkSourceCompletionModel *model;
+	GList *all_providers = NULL;
+	GList *all_list_proposals = NULL;
+
+	model = gtk_source_completion_model_new ();
+
+	/* Clear the model when it is already empty */
+	gtk_source_completion_model_clear (model);
+	g_assert (gtk_source_completion_model_is_empty (model, FALSE));
+
+	/* Add some proposals */
+	create_providers (&all_providers, &all_list_proposals);
+	populate_model (model, all_providers, all_list_proposals);
+
+	/* Clear the model when it is not empty */
+	gtk_source_completion_model_clear (model);
+	g_assert (gtk_source_completion_model_is_empty (model, FALSE));
+
+	g_object_unref (model);
+	free_providers (all_providers, all_list_proposals);
+}
+
+static void
 test_set_visible_providers (void)
 {
 	GtkSourceCompletionModel *model;
@@ -441,10 +466,20 @@ main (int argc, char **argv)
 {
 	gtk_test_init (&argc, &argv);
 
-	g_test_add_func ("/CompletionModel/is-empty", test_is_empty);
-	g_test_add_func ("/CompletionModel/get-visible-providers", test_get_visible_providers);
-	g_test_add_func ("/CompletionModel/simple-populate", test_simple_populate);
-	g_test_add_func ("/CompletionModel/set-visible-providers", test_set_visible_providers);
+	g_test_add_func ("/CompletionModel/is-empty",
+			 test_is_empty);
+
+	g_test_add_func ("/CompletionModel/get-visible-providers",
+			 test_get_visible_providers);
+
+	g_test_add_func ("/CompletionModel/simple-populate",
+			 test_simple_populate);
+
+	g_test_add_func ("/CompletionModel/clear",
+			 test_clear);
+
+	g_test_add_func ("/CompletionModel/set-visible-providers",
+			 test_set_visible_providers);
 
 	return g_test_run ();
 }
