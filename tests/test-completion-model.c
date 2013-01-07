@@ -541,6 +541,46 @@ test_second_populate_different_order (void)
 }
 #endif
 
+static void
+test_populate_several_batches (void)
+{
+	GtkSourceCompletionModel *model = gtk_source_completion_model_new ();
+	GtkSourceCompletionProvider *provider = GTK_SOURCE_COMPLETION_PROVIDER (test_provider_new ());
+	GList *list_providers = g_list_append (NULL, provider);
+	GList *first_proposals = create_proposals ();
+	GList *second_proposals = create_proposals ();
+	GList *all_proposals;
+	GtkTreeIter iter;
+
+	gtk_source_completion_model_set_show_headers (model, TRUE);
+	gtk_source_completion_model_begin_populate (model, list_providers);
+
+	/* First batch */
+	gtk_source_completion_model_add_proposals (model, provider, first_proposals);
+
+	g_assert (gtk_tree_model_get_iter_first (GTK_TREE_MODEL (model), &iter));
+	check_provider (model, provider, first_proposals, TRUE, &iter);
+	g_assert (!gtk_tree_model_iter_next (GTK_TREE_MODEL (model), &iter));
+
+	/* Second batch */
+	gtk_source_completion_model_add_proposals (model, provider, second_proposals);
+	gtk_source_completion_model_end_populate (model, provider);
+
+	all_proposals = g_list_copy (first_proposals);
+	all_proposals = g_list_concat (all_proposals, g_list_copy (second_proposals));
+
+	g_assert (gtk_tree_model_get_iter_first (GTK_TREE_MODEL (model), &iter));
+	check_provider (model, provider, all_proposals, TRUE, &iter);
+	g_assert (!gtk_tree_model_iter_next (GTK_TREE_MODEL (model), &iter));
+
+	g_object_unref (model);
+	g_object_unref (provider);
+	g_list_free (list_providers);
+	g_list_free (first_proposals);
+	g_list_free (second_proposals);
+	g_list_free_full (all_proposals, g_object_unref);
+}
+
 int
 main (int argc, char **argv)
 {
@@ -568,6 +608,9 @@ main (int argc, char **argv)
 	g_test_add_func ("/CompletionModel/second-populate-different-order",
 			 test_second_populate_different_order);
 #endif
+
+	g_test_add_func ("/CompletionModel/populate-several-batches",
+			 test_populate_several_batches);
 
 	return g_test_run ();
 }
