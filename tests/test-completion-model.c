@@ -670,6 +670,59 @@ test_n_proposals (void)
 	g_list_free_full (list_proposals, g_object_unref);
 }
 
+static void
+test_iters_impl (gboolean show_headers)
+{
+	GtkSourceCompletionModel *model = gtk_source_completion_model_new ();
+	GList *all_providers = NULL;
+	GList *all_list_proposals = NULL;
+	GtkTreeIter first_iter;
+	GtkTreeIter last_iter;
+	GtkTreeIter other_iter;
+	gint nb_items;
+
+	/* Test iter_last() */
+#if 0
+	/* segfault */
+	g_assert (!gtk_source_completion_model_iter_last (model, &last_iter));
+#endif
+
+	create_providers (&all_providers, &all_list_proposals);
+	populate_model (model, all_providers, all_list_proposals);
+
+	gtk_source_completion_model_set_show_headers (model, show_headers);
+
+	g_assert (gtk_source_completion_model_iter_last (model, &last_iter));
+
+	/* Get the last iter by another means, and compare it */
+	nb_items = gtk_tree_model_iter_n_children (GTK_TREE_MODEL (model), NULL);
+
+	g_assert (gtk_tree_model_iter_nth_child (GTK_TREE_MODEL (model),
+						 &other_iter,
+						 NULL,
+						 nb_items - 1));
+
+	g_assert (gtk_source_completion_model_iter_equal (model, &last_iter, &other_iter));
+
+	/* Test iter_previous() */
+	while (gtk_source_completion_model_iter_previous (model, &other_iter));
+
+	g_assert (gtk_tree_model_get_iter_first (GTK_TREE_MODEL (model), &first_iter));
+	g_assert (gtk_source_completion_model_iter_equal (model, &first_iter, &other_iter));
+
+	g_object_unref (model);
+	free_providers (all_providers, all_list_proposals);
+}
+
+static void
+test_iters (void)
+{
+	test_iters_impl (FALSE);
+#if 0
+	test_iters_impl (TRUE);
+#endif
+}
+
 int
 main (int argc, char **argv)
 {
@@ -706,6 +759,9 @@ main (int argc, char **argv)
 
 	g_test_add_func ("/CompletionModel/n-proposals",
 			 test_n_proposals);
+
+	g_test_add_func ("/CompletionModel/iters",
+			 test_iters);
 
 	return g_test_run ();
 }
