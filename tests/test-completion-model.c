@@ -628,6 +628,48 @@ test_get_providers (void)
 	free_providers (all_providers, all_list_proposals);
 }
 
+static void
+test_n_proposals (void)
+{
+	GtkSourceCompletionModel *model;
+	GtkSourceCompletionProvider *provider;
+	GtkSourceCompletionProvider *other_provider;
+	GList *list_providers = NULL;
+	GList *list_proposals = NULL;
+	guint nb_proposals_good = 0;
+	guint nb_proposals_get = 0;
+
+	model = gtk_source_completion_model_new ();
+	provider = GTK_SOURCE_COMPLETION_PROVIDER (test_provider_new ());
+	other_provider = GTK_SOURCE_COMPLETION_PROVIDER (test_provider_new ());
+	list_providers = g_list_append (NULL, provider);
+	list_proposals = create_proposals ();
+
+	gtk_source_completion_model_begin_populate (model, list_providers);
+	gtk_source_completion_model_add_proposals (model, provider, list_proposals);
+	gtk_source_completion_model_end_populate (model, provider);
+
+	g_assert (gtk_source_completion_model_n_proposals (model, other_provider) == 0);
+
+	/* With header */
+	gtk_source_completion_model_set_show_headers (model, TRUE);
+
+	nb_proposals_good = g_list_length (list_proposals);
+	nb_proposals_get = gtk_source_completion_model_n_proposals (model, provider);
+	g_assert (nb_proposals_good == nb_proposals_get);
+
+	/* Without header */
+	gtk_source_completion_model_set_show_headers (model, FALSE);
+
+	nb_proposals_get = gtk_source_completion_model_n_proposals (model, provider);
+	g_assert (nb_proposals_good == nb_proposals_get);
+
+	g_object_unref (model);
+	g_object_unref (other_provider);
+	g_list_free_full (list_providers, g_object_unref);
+	g_list_free_full (list_proposals, g_object_unref);
+}
+
 int
 main (int argc, char **argv)
 {
@@ -661,6 +703,9 @@ main (int argc, char **argv)
 
 	g_test_add_func ("/CompletionModel/get-providers",
 			 test_get_providers);
+
+	g_test_add_func ("/CompletionModel/n-proposals",
+			 test_n_proposals);
 
 	return g_test_run ();
 }
