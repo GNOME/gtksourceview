@@ -276,6 +276,31 @@ check_all_providers_with_and_without_headers (GtkSourceCompletionModel *model,
 	check_all_providers (model, all_providers, all_list_proposals, FALSE);
 }
 
+static gboolean
+same_list_contents (GList *list1, GList *list2)
+{
+	GList *cur_item1 = list1;
+	GList *cur_item2 = list2;
+
+	if (g_list_length (list1) != g_list_length (list2))
+	{
+		return FALSE;
+	}
+
+	while (cur_item1 != NULL)
+	{
+		if (cur_item1->data != cur_item2->data)
+		{
+			return FALSE;
+		}
+
+		cur_item1 = g_list_next (cur_item1);
+		cur_item2 = g_list_next (cur_item2);
+	}
+
+	return TRUE;
+}
+
 /* Tests */
 
 static void
@@ -581,6 +606,28 @@ test_populate_several_batches (void)
 	g_list_free_full (all_proposals, g_object_unref);
 }
 
+static void
+test_get_providers (void)
+{
+	GtkSourceCompletionModel *model = gtk_source_completion_model_new ();
+	GList *all_providers = NULL;
+	GList *all_list_proposals = NULL;
+	GList *providers_get = NULL;
+
+	/* Empty */
+	g_assert (gtk_source_completion_model_get_providers (model) == NULL);
+
+	/* Non-empty */
+	create_providers (&all_providers, &all_list_proposals);
+	populate_model (model, all_providers, all_list_proposals);
+
+	providers_get = gtk_source_completion_model_get_providers (model);
+	g_assert (same_list_contents (all_providers, providers_get));
+
+	g_object_unref (model);
+	free_providers (all_providers, all_list_proposals);
+}
+
 int
 main (int argc, char **argv)
 {
@@ -611,6 +658,9 @@ main (int argc, char **argv)
 
 	g_test_add_func ("/CompletionModel/populate-several-batches",
 			 test_populate_several_batches);
+
+	g_test_add_func ("/CompletionModel/get-providers",
+			 test_get_providers);
 
 	return g_test_run ();
 }
