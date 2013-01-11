@@ -2215,7 +2215,6 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 	 * GtkSourceCompletion:view:
 	 *
 	 * The #GtkSourceView bound to the completion object.
-	 *
 	 */
 	g_object_class_install_property (object_class,
 					 PROP_VIEW,
@@ -2231,7 +2230,6 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 	 * Determines whether the visibility of the info window should be
 	 * saved when the completion is hidden, and restored when the completion
 	 * is shown again.
-	 *
 	 */
 	g_object_class_install_property (object_class,
 					 PROP_REMEMBER_INFO_VISIBILITY,
@@ -2245,7 +2243,6 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 	 *
 	 * Determines whether the first proposal should be selected when the
 	 * completion is first shown.
-	 *
 	 */
 	g_object_class_install_property (object_class,
 					 PROP_SELECT_ON_SHOW,
@@ -2260,7 +2257,6 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 	 *
 	 * Determines whether provider headers should be shown in the proposal
 	 * list. It can be useful to disable when there is only one provider.
-	 *
 	 */
 	g_object_class_install_property (object_class,
 					 PROP_SHOW_HEADERS,
@@ -2275,7 +2271,6 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 	 *
 	 * Determines whether provider and proposal icons should be shown in
 	 * the completion popup.
-	 *
 	 */
 	g_object_class_install_property (object_class,
 					 PROP_SHOW_ICONS,
@@ -2291,7 +2286,6 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 	 * Number of keyboard accelerators to show for the first proposals. For
 	 * example, to activate the first proposal, the user can press
 	 * <keycombo><keycap>Alt</keycap><keycap>1</keycap></keycombo>.
-	 *
 	 */
 	g_object_class_install_property (object_class,
 	                                 PROP_ACCELERATORS,
@@ -2308,7 +2302,6 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 	 *
 	 * Determines the popup delay (in milliseconds) at which the completion
 	 * will be shown for interactive completion.
-	 *
 	 */
 	g_object_class_install_property (object_class,
 					 PROP_AUTO_COMPLETE_DELAY,
@@ -2325,7 +2318,6 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 	 *
 	 * The scroll page size of the provider pages in the completion window.
 	 * Not yet used.
-	 *
 	 */
 	g_object_class_install_property (object_class,
 	                                 PROP_PROVIDER_PAGE_SIZE,
@@ -2345,7 +2337,6 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 	 * <keycap>PageUp</keycap> is pressed, the selected
 	 * proposal becomes the one which is located one page size backward or
 	 * forward.
-	 *
 	 */
 	g_object_class_install_property (object_class,
 	                                 PROP_PROPOSAL_PAGE_SIZE,
@@ -2363,7 +2354,6 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 	 *
 	 * Emitted when the completion window is shown. The default handler
 	 * will actually show the window.
-	 *
 	 */
 	signals[SHOW] =
 		g_signal_new ("show",
@@ -2383,7 +2373,6 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 	 *
 	 * Emitted when the completion window is hidden. The default handler
 	 * will actually hide the window.
-	 *
 	 */
 	signals[HIDE] =
 		g_signal_new ("hide",
@@ -2403,7 +2392,6 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 	 *
 	 * Emitted just before starting to populate the completion with providers.
 	 * You can use this signal to add additional attributes in the context.
-	 *
 	 */
 	signals[POPULATE_CONTEXT] =
 		g_signal_new ("populate-context",
@@ -2425,8 +2413,9 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 	 * @step: The #GtkScrollStep by which to move the cursor
 	 * @num: The amount of steps to move the cursor
 	 *
-	 * The ::move-cursor signal is a keybinding signal which gets emitted when
-	 * the user initiates a cursor movement.
+	 * The #GtkSourceCompletion::move-cursor signal is a keybinding
+	 * signal which gets emitted when the user initiates a cursor
+	 * movement.
 	 *
 	 * The <keycap>Up</keycap>, <keycap>Down</keycap>,
 	 * <keycap>PageUp</keycap>, <keycap>PageDown</keycap>,
@@ -2436,9 +2425,8 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 	 * #GtkSourceCompletion:proposal-page-size property.
 	 *
 	 * Applications should not connect to it, but may emit it with
-	 * #g_signal_emit_by_name if they need to control the cursor
+	 * g_signal_emit_by_name() if they need to control the cursor
 	 * programmatically.
-	 *
 	 */
 	signals [MOVE_CURSOR] =
 		g_signal_new ("move-cursor",
@@ -2459,9 +2447,9 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 	 * @step: The #GtkScrollStep by which to move the page
 	 * @num: The amount of steps to move the page
 	 *
-	 * The ::move-page signal is a keybinding signal which gets emitted when
-	 * the user initiates a page movement (i.e. switches between provider
-	 * pages).
+	 * The #GtkSourceCompletion::move-page signal is a keybinding
+	 * signal which gets emitted when the user initiates a page
+	 * movement (i.e. switches between provider pages).
 	 *
 	 * <keycombo><keycap>Control</keycap><keycap>Left</keycap></keycombo>
 	 * is for going to the previous provider.
@@ -2473,9 +2461,8 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 	 * is for going to the last provider.
 	 *
 	 * Applications should not connect to it, but may emit it with
-	 * #g_signal_emit_by_name if they need to control the page selection
+	 * g_signal_emit_by_name() if they need to control the page selection
 	 * programmatically.
-	 *
 	 */
 	signals [MOVE_PAGE] =
 		g_signal_new ("move-page",
@@ -2494,13 +2481,13 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 	 * GtkSourceCompletion::activate-proposal:
 	 * @completion: The #GtkSourceCompletion who emits the signal
 	 *
-	 * The ::activate-proposal signal is a keybinding signal which gets
-	 * emitted when the user initiates a proposal activation.
+	 * The #GtkSourceCompletion::activate-proposal signal is a
+	 * keybinding signal which gets emitted when the user initiates
+	 * a proposal activation.
 	 *
 	 * Applications should not connect to it, but may emit it with
-	 * #g_signal_emit_by_name if they need to control the proposal activation
-	 * programmatically.
-	 *
+	 * g_signal_emit_by_name() if they need to control the proposal
+	 * activation programmatically.
 	 */
 	signals [ACTIVATE_PROPOSAL] =
 		g_signal_new ("activate-proposal",
