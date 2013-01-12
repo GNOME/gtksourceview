@@ -27,7 +27,6 @@
  * @short_description: Completion provider interface
  *
  * You must implement this interface to provide proposals to #GtkSourceCompletion
- *
  */
 
 #include "gtksourcecompletionprovider.h"
@@ -234,12 +233,17 @@ gtk_source_completion_provider_match (GtkSourceCompletionProvider *provider,
  * This allows for customized widgets on a proposal basis, although in general
  * providers will have the same custom widget for all their proposals and
  * @proposal can be ignored. The implementation of this function is optional.
- * If implemented, gtk_source_completion_provider_update_info() MUST also be
- * implemented.
  *
  * If this function is not implemented, the default widget is a #GtkLabel. The
  * return value of gtk_source_completion_proposal_get_info() is used as the
  * content of the #GtkLabel.
+ *
+ * <note>
+ *   <para>
+ *     If implemented, gtk_source_completion_provider_update_info()
+ *     <emphasis>must</emphasis> also be implemented.
+ *   </para>
+ * </note>
  *
  * Returns: (transfer none): a custom #GtkWidget to show extra
  * information about @proposal.
@@ -261,8 +265,13 @@ gtk_source_completion_provider_get_info_widget (GtkSourceCompletionProvider *pro
  * @info: a #GtkSourceCompletionInfo.
  *
  * Update extra information shown in @info for @proposal.
- * This function MUST be implemented when
- * #gtk_source_completion_provider_get_info_widget is implemented.
+ *
+ * <note>
+ *   <para>
+ *     This function <emphasis>must</emphasis> be implemented when
+ *     gtk_source_completion_provider_get_info_widget() is implemented.
+ *   </para>
+ * </note>
  */
 void
 gtk_source_completion_provider_update_info (GtkSourceCompletionProvider *provider,
