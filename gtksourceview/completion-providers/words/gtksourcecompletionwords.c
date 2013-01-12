@@ -19,6 +19,16 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
+/**
+ * SECTION:completionwords
+ * @title: GtkSourceCompletionWords
+ * @short_description: A #GtkSourceCompletionProvider for the completion of words
+ *
+ * The #GtkSourceCompletionWords is an example of an implementation of
+ * the #GtkSourceCompletionProvider interface. The proposals are words
+ * appearing in the registered #GtkTextBuffer<!-- -->s.
+ */
+
 #include "gtksourcecompletionwords.h"
 #include "gtksourcecompletionwordslibrary.h"
 #include "gtksourcecompletionwordsbuffer.h"
@@ -650,7 +660,7 @@ gtk_source_completion_words_register (GtkSourceCompletionWords *words,
  * @words: a #GtkSourceCompletionWords
  * @buffer: a #GtkTextBuffer
  *
- * Unregisters @buffer from teh @words provider.
+ * Unregisters @buffer from the @words provider.
  */
 void
 gtk_source_completion_words_unregister (GtkSourceCompletionWords *words,
