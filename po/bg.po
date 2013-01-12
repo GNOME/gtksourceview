@@ -1,17 +1,17 @@
 # Bulgarian translation of gtksourceview po-file.
 # Copyright (C) 2004, 2005, 2006, 2007, 2008 Free Software Foundation, Inc.
-# Copyright (C) 2009, 2010, 2011, 2012 Free Software Foundation, Inc.
+# Copyright (C) 2009, 2010, 2011, 2012, 2013 Free Software Foundation, Inc.
 # This file is distributed under the same license as the gtksourceview package.
 # Vladimir Petkov <kaladan@gmail.com>, 2004.
-# Alexander Shopov <ash@kambanaria.org>, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012.
+# Alexander Shopov <ash@kambanaria.org>, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013.
 # Yavor Doganov <yavor@gnu.org>, 2008.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-22 13:45+0300\n"
-"PO-Revision-Date: 2012-09-22 13:44+0300\n"
+"POT-Creation-Date: 2013-01-12 06:50+0200\n"
+"PO-Revision-Date: 2013-01-12 06:49+0200\n"
 "Last-Translator: Alexander Shopov <ash@kambanaria.org>\n"
 "Language-Team: Bulgarian <dict@fsa-bg.org>\n"
 "Language: bg\n"
@@ -74,19 +74,20 @@ msgstr "В края на реда"
 #. Translators: "All" is used as a label in thestatus bar of the
 #. popup, telling that all completion pages are shown
 #: ../data/glade/gtksourceview.xml.in.h:14
-#: ../gtksourceview/gtksourcecompletion.c:647
+#: ../gtksourceview/gtksourcecompletion.c:658
 msgid "All"
 msgstr "Всички"
 
 #: ../data/language-specs/actionscript.lang.h:1
 #: ../data/language-specs/ada.lang.h:1 ../data/language-specs/asp.lang.h:1
 #: ../data/language-specs/automake.lang.h:1
-#: ../data/language-specs/bennugd.lang.h:1 ../data/language-specs/boo.lang.h:1
-#: ../data/language-specs/cg.lang.h:1 ../data/language-specs/chdr.lang.h:1
-#: ../data/language-specs/c.lang.h:1 ../data/language-specs/cobol.lang.h:1
-#: ../data/language-specs/cpp.lang.h:1 ../data/language-specs/csharp.lang.h:1
-#: ../data/language-specs/cuda.lang.h:1 ../data/language-specs/d.lang.h:1
-#: ../data/language-specs/eiffel.lang.h:1
+#: ../data/language-specs/bennugd.lang.h:1
+#: ../data/language-specs/bluespec.lang.h:1
+#: ../data/language-specs/boo.lang.h:1 ../data/language-specs/cg.lang.h:1
+#: ../data/language-specs/chdr.lang.h:1 ../data/language-specs/c.lang.h:1
+#: ../data/language-specs/cobol.lang.h:1 ../data/language-specs/cpp.lang.h:1
+#: ../data/language-specs/csharp.lang.h:1 ../data/language-specs/cuda.lang.h:1
+#: ../data/language-specs/d.lang.h:1 ../data/language-specs/eiffel.lang.h:1
 #: ../data/language-specs/erlang.lang.h:1
 #: ../data/language-specs/forth.lang.h:1
 #: ../data/language-specs/fortran.lang.h:1
@@ -132,6 +133,7 @@ msgstr "ActionScript"
 #: ../data/language-specs/go.lang.h:3 ../data/language-specs/gtkrc.lang.h:3
 #: ../data/language-specs/haskell.lang.h:4
 #: ../data/language-specs/html.lang.h:3 ../data/language-specs/idl.lang.h:3
+#: ../data/language-specs/idl-exelis.lang.h:3
 #: ../data/language-specs/ini.lang.h:3 ../data/language-specs/j.lang.h:4
 #: ../data/language-specs/latex.lang.h:3 ../data/language-specs/lua.lang.h:3
 #: ../data/language-specs/matlab.lang.h:3
@@ -167,7 +169,7 @@ msgstr "Коментар"
 #: ../data/language-specs/opal.lang.h:6 ../data/language-specs/perl.lang.h:17
 #: ../data/language-specs/php.lang.h:4 ../data/language-specs/prolog.lang.h:9
 #: ../data/language-specs/vala.lang.h:4
-#: ../data/language-specs/verilog.lang.h:6
+#: ../data/language-specs/verilog.lang.h:7
 #: ../data/language-specs/xml.lang.h:13
 msgid "Error"
 msgstr "Грешка"
@@ -187,6 +189,7 @@ msgstr "Грешка"
 #: ../data/language-specs/gdb-log.lang.h:8 ../data/language-specs/go.lang.h:5
 #: ../data/language-specs/gtkrc.lang.h:4
 #: ../data/language-specs/haskell.lang.h:9 ../data/language-specs/idl.lang.h:7
+#: ../data/language-specs/idl-exelis.lang.h:7
 #: ../data/language-specs/imagej.lang.h:10 ../data/language-specs/ini.lang.h:5
 #: ../data/language-specs/j.lang.h:17 ../data/language-specs/java.lang.h:4
 #: ../data/language-specs/javascript.lang.h:13
@@ -242,6 +245,7 @@ msgstr "Декларация на обхват"
 #: ../data/language-specs/actionscript.lang.h:10
 #: ../data/language-specs/ada.lang.h:5 ../data/language-specs/asp.lang.h:6
 #: ../data/language-specs/awk.lang.h:3 ../data/language-specs/bennugd.lang.h:7
+#: ../data/language-specs/bluespec.lang.h:7
 #: ../data/language-specs/boo.lang.h:10 ../data/language-specs/cg.lang.h:8
 #: ../data/language-specs/c.lang.h:9 ../data/language-specs/cobol.lang.h:6
 #: ../data/language-specs/cpp.lang.h:3 ../data/language-specs/csharp.lang.h:11
@@ -256,6 +260,7 @@ msgstr "Декларация на обхват"
 #: ../data/language-specs/glsl.lang.h:5 ../data/language-specs/go.lang.h:7
 #: ../data/language-specs/gtkrc.lang.h:5
 #: ../data/language-specs/haskell.lang.h:7 ../data/language-specs/idl.lang.h:6
+#: ../data/language-specs/idl-exelis.lang.h:6
 #: ../data/language-specs/imagej.lang.h:8 ../data/language-specs/ini.lang.h:6
 #: ../data/language-specs/java.lang.h:12
 #: ../data/language-specs/javascript.lang.h:7
@@ -279,7 +284,7 @@ msgstr "Декларация на обхват"
 #: ../data/language-specs/systemverilog.lang.h:5
 #: ../data/language-specs/tcl.lang.h:4 ../data/language-specs/texinfo.lang.h:7
 #: ../data/language-specs/vala.lang.h:7 ../data/language-specs/vbnet.lang.h:6
-#: ../data/language-specs/verilog.lang.h:10
+#: ../data/language-specs/verilog.lang.h:11
 #: ../data/language-specs/vhdl.lang.h:6
 msgid "Keyword"
 msgstr "Ключова дума"
@@ -350,6 +355,7 @@ msgstr "Бъдещи запазени думи"
 #: ../data/language-specs/glsl.lang.h:4 ../data/language-specs/go.lang.h:8
 #: ../data/language-specs/gtkrc.lang.h:7
 #: ../data/language-specs/haskell.lang.h:8 ../data/language-specs/idl.lang.h:4
+#: ../data/language-specs/idl-exelis.lang.h:4
 #: ../data/language-specs/ini.lang.h:9 ../data/language-specs/java.lang.h:17
 #: ../data/language-specs/javascript.lang.h:8
 #: ../data/language-specs/nemerle.lang.h:9
@@ -378,6 +384,7 @@ msgstr "Ada"
 #: ../data/language-specs/eiffel.lang.h:15
 #: ../data/language-specs/erlang.lang.h:10
 #: ../data/language-specs/fsharp.lang.h:6 ../data/language-specs/go.lang.h:13
+#: ../data/language-specs/idl-exelis.lang.h:9
 #: ../data/language-specs/nemerle.lang.h:13
 #: ../data/language-specs/ocaml.lang.h:7 ../data/language-specs/ooc.lang.h:15
 #: ../data/language-specs/opal.lang.h:10 ../data/language-specs/php.lang.h:19
@@ -394,6 +401,7 @@ msgstr "Десетично число"
 #: ../data/language-specs/fsharp.lang.h:20
 #: ../data/language-specs/glsl.lang.h:3
 #: ../data/language-specs/haskell.lang.h:3 ../data/language-specs/idl.lang.h:5
+#: ../data/language-specs/idl-exelis.lang.h:5
 #: ../data/language-specs/nemerle.lang.h:5
 #: ../data/language-specs/objj.lang.h:6 ../data/language-specs/pascal.lang.h:8
 #: ../data/language-specs/vbnet.lang.h:5
@@ -406,7 +414,7 @@ msgstr "Число в някаква бройна система"
 
 #: ../data/language-specs/ada.lang.h:12
 #: ../data/language-specs/csharp.lang.h:17
-#: ../data/language-specs/verilog.lang.h:14
+#: ../data/language-specs/verilog.lang.h:15
 #: ../data/language-specs/vhdl.lang.h:10
 msgid "Real number"
 msgstr "Реално число"
@@ -427,7 +435,7 @@ msgstr "Реално число"
 #: ../data/language-specs/python3.lang.h:7
 #: ../data/language-specs/ruby.lang.h:3 ../data/language-specs/sml.lang.h:8
 #: ../data/language-specs/texinfo.lang.h:4
-#: ../data/language-specs/verilog.lang.h:5
+#: ../data/language-specs/verilog.lang.h:6
 msgid "Escaped Character"
 msgstr "Екраниран знак"
 
@@ -441,6 +449,7 @@ msgstr "ASP"
 #: ../data/language-specs/css.lang.h:8 ../data/language-specs/def.lang.h:38
 #: ../data/language-specs/gap.lang.h:6 ../data/language-specs/gdb-log.lang.h:7
 #: ../data/language-specs/gtk-doc.lang.h:10
+#: ../data/language-specs/idl-exelis.lang.h:10
 #: ../data/language-specs/javascript.lang.h:9
 #: ../data/language-specs/lua.lang.h:8 ../data/language-specs/scheme.lang.h:7
 #: ../data/language-specs/scilab.lang.h:7 ../data/language-specs/sh.lang.h:4
@@ -569,7 +578,9 @@ msgstr "Идентификатор"
 #: ../data/language-specs/bennugd.lang.h:9 ../data/language-specs/cg.lang.h:12
 #: ../data/language-specs/c.lang.h:15 ../data/language-specs/def.lang.h:24
 #: ../data/language-specs/d.lang.h:11 ../data/language-specs/erlang.lang.h:9
-#: ../data/language-specs/go.lang.h:11 ../data/language-specs/json.lang.h:9
+#: ../data/language-specs/go.lang.h:11
+#: ../data/language-specs/idl-exelis.lang.h:8
+#: ../data/language-specs/json.lang.h:9
 #: ../data/language-specs/nemerle.lang.h:12
 #: ../data/language-specs/ooc.lang.h:14 ../data/language-specs/php.lang.h:18
 #: ../data/language-specs/python.lang.h:12
@@ -613,6 +624,35 @@ msgstr "Заместващи последователности"
 #: ../data/language-specs/bibtex.lang.h:4
 msgid "Field"
 msgstr "Поле"
+
+#: ../data/language-specs/bluespec.lang.h:2
+msgid "Bluespec SystemVerilog"
+msgstr "Bluespec SystemVerilog"
+
+#: ../data/language-specs/bluespec.lang.h:3
+#: ../data/language-specs/systemverilog.lang.h:4
+msgid "System Task"
+msgstr "Системна задача"
+
+#: ../data/language-specs/bluespec.lang.h:4
+msgid "Annotation"
+msgstr "Анотация"
+
+#: ../data/language-specs/bluespec.lang.h:5
+msgid "Attribute"
+msgstr "Атрибут"
+
+#: ../data/language-specs/bluespec.lang.h:6
+msgid "Import BVI"
+msgstr "Import BVI"
+
+#: ../data/language-specs/bluespec.lang.h:8
+#: ../data/language-specs/gtk-doc.lang.h:9
+#: ../data/language-specs/systemverilog.lang.h:6
+#: ../data/language-specs/verilog.lang.h:13
+#: ../data/language-specs/vhdl.lang.h:7
+msgid "Type"
+msgstr "Тип"
 
 #: ../data/language-specs/boo.lang.h:2
 msgid "Boo"
@@ -778,6 +818,7 @@ msgid "Character"
 msgstr "Знак"
 
 #: ../data/language-specs/c.lang.h:13 ../data/language-specs/go.lang.h:9
+#: ../data/language-specs/verilog.lang.h:5
 msgid "printf Conversion"
 msgstr "Преобразуване на printf"
 
@@ -1173,7 +1214,7 @@ msgstr "Атом"
 #: ../data/language-specs/fsharp.lang.h:4
 #: ../data/language-specs/ocaml.lang.h:5
 #: ../data/language-specs/octave.lang.h:11 ../data/language-specs/sml.lang.h:9
-#: ../data/language-specs/verilog.lang.h:13
+#: ../data/language-specs/verilog.lang.h:14
 #: ../data/language-specs/vhdl.lang.h:9
 msgid "Base-N Integer"
 msgstr "Цяло число в основа N"
@@ -1181,11 +1222,12 @@ msgstr "Цяло число в основа N"
 #: ../data/language-specs/erlang.lang.h:13
 #: ../data/language-specs/forth.lang.h:11
 #: ../data/language-specs/systemverilog.lang.h:3
-#: ../data/language-specs/verilog.lang.h:7
+#: ../data/language-specs/verilog.lang.h:8
 msgid "Compiler Directive"
 msgstr "Директива към компилатора"
 
 #: ../data/language-specs/fcl.lang.h:1 ../data/language-specs/gap.lang.h:1
+#: ../data/language-specs/idl-exelis.lang.h:1
 #: ../data/language-specs/imagej.lang.h:1
 #: ../data/language-specs/matlab.lang.h:1
 #: ../data/language-specs/octave.lang.h:1 ../data/language-specs/R.lang.h:1
@@ -1367,13 +1409,6 @@ msgstr "Име на свойство"
 msgid "Parameter"
 msgstr "Параметър"
 
-#: ../data/language-specs/gtk-doc.lang.h:9
-#: ../data/language-specs/systemverilog.lang.h:6
-#: ../data/language-specs/verilog.lang.h:12
-#: ../data/language-specs/vhdl.lang.h:7
-msgid "Type"
-msgstr "Тип"
-
 #: ../data/language-specs/gtk-doc.lang.h:11
 msgid "Return"
 msgstr "Връщана стойност"
@@ -1506,6 +1541,10 @@ msgstr "Стойност на атрибут"
 #: ../data/language-specs/idl.lang.h:2
 msgid "IDL"
 msgstr "IDL"
+
+#: ../data/language-specs/idl-exelis.lang.h:2
+msgid "IDL-Exelis"
+msgstr "IDL-Exelis"
 
 #: ../data/language-specs/imagej.lang.h:2
 msgid "ImageJ"
@@ -2064,7 +2103,7 @@ msgstr "Разделител"
 msgid "Special Constant"
 msgstr "Специална константа"
 
-#: ../data/language-specs/R.lang.h:9 ../data/language-specs/verilog.lang.h:15
+#: ../data/language-specs/R.lang.h:9 ../data/language-specs/verilog.lang.h:16
 msgid "Integer Number"
 msgstr "Цяло число"
 
@@ -2205,10 +2244,6 @@ msgstr "Без идея какво е това"
 msgid "SystemVerilog"
 msgstr "SystemVerilog"
 
-#: ../data/language-specs/systemverilog.lang.h:4
-msgid "System Task"
-msgstr "Системна задача"
-
 #: ../data/language-specs/t2t.lang.h:2
 msgid "txt2tags"
 msgstr "txt2tags"
@@ -2287,15 +2322,15 @@ msgstr "VB.NET"
 msgid "Verilog"
 msgstr "Verilog"
 
-#: ../data/language-specs/verilog.lang.h:8
+#: ../data/language-specs/verilog.lang.h:9
 msgid "IEEE System Task"
 msgstr "Системна задача на IEEE"
 
-#: ../data/language-specs/verilog.lang.h:9
+#: ../data/language-specs/verilog.lang.h:10
 msgid "LRM Additional System Task"
 msgstr "Допълнителна системна задача по спецификация"
 
-#: ../data/language-specs/verilog.lang.h:11
+#: ../data/language-specs/verilog.lang.h:12
 msgid "Gate"
 msgstr "Логически елемент"
 
@@ -2440,157 +2475,157 @@ msgstr "Приоритет"
 msgid "Provider priority"
 msgstr "Приоритет на предоставящият модул"
 
-#: ../gtksourceview/gtksourcebuffer.c:234
-#: ../gtksourceview/gtksourceprintcompositor.c:502
+#: ../gtksourceview/gtksourcebuffer.c:237
+#: ../gtksourceview/gtksourceprintcompositor.c:504
 msgid "Highlight Syntax"
 msgstr "Оцветяване на синтаксиса"
 
-#: ../gtksourceview/gtksourcebuffer.c:235
+#: ../gtksourceview/gtksourcebuffer.c:238
 msgid "Whether to highlight syntax in the buffer"
 msgstr "Дали синтаксисът в буфера да се оцветява"
 
-#: ../gtksourceview/gtksourcebuffer.c:248
+#: ../gtksourceview/gtksourcebuffer.c:251
 msgid "Highlight Matching Brackets"
 msgstr "Оцветяване на съответстващите скоби"
 
-#: ../gtksourceview/gtksourcebuffer.c:249
+#: ../gtksourceview/gtksourcebuffer.c:252
 msgid "Whether to highlight matching brackets"
 msgstr "Дали съответстващите скоби да се оцветяват"
 
-#: ../gtksourceview/gtksourcebuffer.c:262
+#: ../gtksourceview/gtksourcebuffer.c:265
 #: ../gtksourceview/gtksourceundomanagerdefault.c:418
 msgid "Maximum Undo Levels"
 msgstr "Брой отмени"
 
-#: ../gtksourceview/gtksourcebuffer.c:263
+#: ../gtksourceview/gtksourcebuffer.c:266
 #: ../gtksourceview/gtksourceundomanagerdefault.c:419
 msgid "Number of undo levels for the buffer"
 msgstr "Колко отмени на действия в буфера да се помнят"
 
 #. Translators: throughout GtkSourceView "language" stands
 #. * for "programming language", not "spoken language"
-#: ../gtksourceview/gtksourcebuffer.c:275
+#: ../gtksourceview/gtksourcebuffer.c:278
 msgid "Language"
 msgstr "Език"
 
-#: ../gtksourceview/gtksourcebuffer.c:276
+#: ../gtksourceview/gtksourcebuffer.c:279
 msgid "Language object to get highlighting patterns from"
 msgstr "Правилата на кой език да се ползват за оцветяването"
 
-#: ../gtksourceview/gtksourcebuffer.c:284
+#: ../gtksourceview/gtksourcebuffer.c:287
 msgid "Can undo"
 msgstr "С отмяна"
 
-#: ../gtksourceview/gtksourcebuffer.c:285
+#: ../gtksourceview/gtksourcebuffer.c:288
 msgid "Whether Undo operation is possible"
 msgstr "Дали действията могат да бъдат отменяни"
 
-#: ../gtksourceview/gtksourcebuffer.c:292
+#: ../gtksourceview/gtksourcebuffer.c:295
 msgid "Can redo"
 msgstr "С повтаряне"
 
-#: ../gtksourceview/gtksourcebuffer.c:293
+#: ../gtksourceview/gtksourcebuffer.c:296
 msgid "Whether Redo operation is possible"
 msgstr "Дали отменените действия могат да бъдат повторени"
 
-#: ../gtksourceview/gtksourcebuffer.c:307
-#: ../gtksourceview/gtksourcebuffer.c:308
+#: ../gtksourceview/gtksourcebuffer.c:310
+#: ../gtksourceview/gtksourcebuffer.c:311
 msgid "Style scheme"
 msgstr "Стилова схема"
 
-#: ../gtksourceview/gtksourcebuffer.c:315
+#: ../gtksourceview/gtksourcebuffer.c:318
 msgid "Undo manager"
 msgstr "Управление на отмяната"
 
-#: ../gtksourceview/gtksourcebuffer.c:316
+#: ../gtksourceview/gtksourcebuffer.c:319
 msgid "The buffer undo manager"
 msgstr "Управление на отмяната на редакциите на буфера"
 
-#: ../gtksourceview/gtksourcecompletion.c:934
-#: ../gtksourceview/gtksourcecompletion.c:957
+#: ../gtksourceview/gtksourcecompletion.c:945
+#: ../gtksourceview/gtksourcecompletion.c:968
 msgid "No extra information available"
 msgstr "Няма друга информация"
 
-#: ../gtksourceview/gtksourcecompletion.c:2212
-#: ../gtksourceview/gtksourcegutter.c:547
+#: ../gtksourceview/gtksourcecompletion.c:2223
+#: ../gtksourceview/gtksourcegutter.c:548
 msgid "View"
 msgstr "Изглед"
 
-#: ../gtksourceview/gtksourcecompletion.c:2213
+#: ../gtksourceview/gtksourcecompletion.c:2224
 msgid "The GtkSourceView bound to the completion"
 msgstr "Обектът „GtkSourceView“ свързан с автоматичното дописване"
 
-#: ../gtksourceview/gtksourcecompletion.c:2228
+#: ../gtksourceview/gtksourcecompletion.c:2239
 msgid "Remember Info Visibility"
 msgstr "Запомняне на видимостта на информацията"
 
-#: ../gtksourceview/gtksourcecompletion.c:2229
+#: ../gtksourceview/gtksourcecompletion.c:2240
 msgid "Remember the last info window visibility state"
 msgstr ""
 "Запомняне на видимостта на информацията от последния прозорец за информация"
 
-#: ../gtksourceview/gtksourcecompletion.c:2242
+#: ../gtksourceview/gtksourcecompletion.c:2253
 msgid "Select on Show"
 msgstr "Избор при показване"
 
-#: ../gtksourceview/gtksourcecompletion.c:2243
+#: ../gtksourceview/gtksourcecompletion.c:2254
 msgid "Select first proposal when completion is shown"
 msgstr "Избиране на първото предложение при показване на дописванията"
 
-#: ../gtksourceview/gtksourcecompletion.c:2257
+#: ../gtksourceview/gtksourcecompletion.c:2268
 msgid "Show Headers"
 msgstr "Показване на заглавни части"
 
-#: ../gtksourceview/gtksourcecompletion.c:2258
+#: ../gtksourceview/gtksourcecompletion.c:2269
 msgid ""
 "Show provider headers when proposals from multiple providers are available"
 msgstr ""
 "Показване на заглавните части на предоставящите модули, когато са повече от "
 "един"
 
-#: ../gtksourceview/gtksourcecompletion.c:2272
+#: ../gtksourceview/gtksourcecompletion.c:2283
 msgid "Show Icons"
 msgstr "Показване на икони"
 
-#: ../gtksourceview/gtksourcecompletion.c:2273
+#: ../gtksourceview/gtksourcecompletion.c:2284
 msgid "Show provider and proposal icons in the completion popup"
 msgstr ""
 "Показване на икони на предоставящия модул и предложенията в прозореца за "
 "дописване"
 
-#: ../gtksourceview/gtksourcecompletion.c:2288
+#: ../gtksourceview/gtksourcecompletion.c:2299
 msgid "Accelerators"
 msgstr "Клавишни комбинации"
 
-#: ../gtksourceview/gtksourcecompletion.c:2289
+#: ../gtksourceview/gtksourcecompletion.c:2300
 msgid "Number of proposal accelerators to show"
 msgstr "Брой на показваните предложени клавишни комбинации"
 
-#: ../gtksourceview/gtksourcecompletion.c:2305
+#: ../gtksourceview/gtksourcecompletion.c:2316
 msgid "Auto Complete Delay"
 msgstr "Забавяне при дописване"
 
-#: ../gtksourceview/gtksourcecompletion.c:2306
+#: ../gtksourceview/gtksourcecompletion.c:2317
 msgid "Completion popup delay for interactive completion"
 msgstr "Забавяне преди изскачането на прозорец с дописвания"
 
-#: ../gtksourceview/gtksourcecompletion.c:2322
+#: ../gtksourceview/gtksourcecompletion.c:2333
 msgid "Provider Page Size"
 msgstr "Размер на страницата от предоставящия модул"
 
-#: ../gtksourceview/gtksourcecompletion.c:2323
+#: ../gtksourceview/gtksourcecompletion.c:2334
 msgid "Provider scrolling page size"
 msgstr "Размер на страницата за придвижване от предоставящия модул"
 
-#: ../gtksourceview/gtksourcecompletion.c:2342
+#: ../gtksourceview/gtksourcecompletion.c:2353
 msgid "Proposal Page Size"
 msgstr "Предложен размер на страницата"
 
-#: ../gtksourceview/gtksourcecompletion.c:2343
+#: ../gtksourceview/gtksourcecompletion.c:2354
 msgid "Proposal scrolling page size"
 msgstr "Предложен размер на страницата за придвижване"
 
-#: ../gtksourceview/gtksourcecompletion.c:2704
+#: ../gtksourceview/gtksourcecompletion.c:2715
 msgid "Provider"
 msgstr "Предоставящ модул"
 
@@ -2603,7 +2638,7 @@ msgid "_Details..."
 msgstr "_Подробности…"
 
 #: ../gtksourceview/gtksourcecompletioncontext.c:255
-#: ../gtksourceview/gtksourceview.c:306
+#: ../gtksourceview/gtksourceview.c:310
 msgid "Completion"
 msgstr "Дописване"
 
@@ -2661,7 +2696,7 @@ msgstr "Информация към този елемент"
 #. * named sub-patterns with the same name or if resulting regex is
 #. * too long. In this case fixing lang file helps (e.g. renaming
 #. * subpatterns, making huge keywords use bigger prefixes, etc.)
-#: ../gtksourceview/gtksourcecontextengine.c:3120
+#: ../gtksourceview/gtksourcecontextengine.c:3122
 #, c-format
 msgid ""
 "Cannot create a regex for all the transitions, the syntax highlighting "
@@ -2672,7 +2707,7 @@ msgstr ""
 "синтаксиса ще бъде по-бавно от обикновено.\n"
 "Грешката е: %s"
 
-#: ../gtksourceview/gtksourcecontextengine.c:4443
+#: ../gtksourceview/gtksourcecontextengine.c:4445
 msgid ""
 "Highlighting a single line took too much time, syntax highlighting will be "
 "disabled"
@@ -2680,19 +2715,19 @@ msgstr ""
 "Оцветяването на един ред отне твърде много време. Оцветяването на синтаксиса "
 "ще бъде изключено."
 
-#: ../gtksourceview/gtksourcecontextengine.c:5687
+#: ../gtksourceview/gtksourcecontextengine.c:5689
 #, c-format
 msgid "context '%s' cannot contain a \\%%{...@start} command"
 msgstr "контекстът „%s“ не може да съдържа команда „\\%%{…@start}“"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5848
-#: ../gtksourceview/gtksourcecontextengine.c:5937
+#: ../gtksourceview/gtksourcecontextengine.c:5850
+#: ../gtksourceview/gtksourcecontextengine.c:5939
 #, c-format
 msgid "duplicated context id '%s'"
 msgstr "идентификаторът на контекст „%s“ се повтаря"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6051
-#: ../gtksourceview/gtksourcecontextengine.c:6111
+#: ../gtksourceview/gtksourcecontextengine.c:6053
+#: ../gtksourceview/gtksourcecontextengine.c:6113
 #, c-format
 msgid ""
 "style override used with wildcard context reference in language '%s' in ref "
@@ -2701,136 +2736,136 @@ msgstr ""
 "налагане на стил, което е използвано с указател с маска към контексти в "
 "езика „%s“, указател „%s“ "
 
-#: ../gtksourceview/gtksourcecontextengine.c:6125
+#: ../gtksourceview/gtksourcecontextengine.c:6127
 #, c-format
 msgid "invalid context reference '%s'"
 msgstr "неправилен указател към контекст „%s“"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6144
-#: ../gtksourceview/gtksourcecontextengine.c:6154
+#: ../gtksourceview/gtksourcecontextengine.c:6146
+#: ../gtksourceview/gtksourcecontextengine.c:6156
 #, c-format
 msgid "unknown context '%s'"
 msgstr "непознат контекст „%s“"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6253
+#: ../gtksourceview/gtksourcecontextengine.c:6255
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "Основната дефиниция на език липсва (id = „%s“)."
 
-#: ../gtksourceview/gtksourcegutter.c:548
+#: ../gtksourceview/gtksourcegutter.c:549
 msgid "The gutters' GtkSourceView"
 msgstr "Поле за подвързване от GtkSourceView"
 
-#: ../gtksourceview/gtksourcegutter.c:560
-#: ../gtksourceview/gtksourcegutterrenderer.c:703
+#: ../gtksourceview/gtksourcegutter.c:561
+#: ../gtksourceview/gtksourcegutterrenderer.c:724
 msgid "Window Type"
 msgstr "Вид на прозореца"
 
-#: ../gtksourceview/gtksourcegutter.c:561
+#: ../gtksourceview/gtksourcegutter.c:562
 msgid "The gutters text window type"
 msgstr "Вид на прозореца на полето за подвързване"
 
-#: ../gtksourceview/gtksourcegutter.c:572
-#: ../gtksourceview/gtksourcegutterrenderer.c:479
+#: ../gtksourceview/gtksourcegutter.c:573
+#: ../gtksourceview/gtksourcegutterrenderer.c:500
 msgid "X Padding"
 msgstr "Отстъп по X"
 
-#: ../gtksourceview/gtksourcegutter.c:573
-#: ../gtksourceview/gtksourcegutterrenderer.c:480
+#: ../gtksourceview/gtksourcegutter.c:574
+#: ../gtksourceview/gtksourcegutterrenderer.c:501
 msgid "The x-padding"
 msgstr "Отстъпът по X"
 
-#: ../gtksourceview/gtksourcegutter.c:583
-#: ../gtksourceview/gtksourcegutterrenderer.c:495
+#: ../gtksourceview/gtksourcegutter.c:584
+#: ../gtksourceview/gtksourcegutterrenderer.c:516
 msgid "Y Padding"
 msgstr "Отстъп по Y"
 
-#: ../gtksourceview/gtksourcegutter.c:584
-#: ../gtksourceview/gtksourcegutterrenderer.c:496
+#: ../gtksourceview/gtksourcegutter.c:585
+#: ../gtksourceview/gtksourcegutterrenderer.c:517
 msgid "The y-padding"
 msgstr "Отстъпът по Y"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:465
-#: ../gtksourceview/gtksourcegutterrenderer.c:466
+#: ../gtksourceview/gtksourcegutterrenderer.c:486
+#: ../gtksourceview/gtksourcegutterrenderer.c:487
 msgid "Visible"
 msgstr "Видим"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:511
+#: ../gtksourceview/gtksourcegutterrenderer.c:532
 msgid "X Alignment"
 msgstr "Подравняване по X"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:512
+#: ../gtksourceview/gtksourcegutterrenderer.c:533
 msgid "The x-alignment"
 msgstr "Подравняването по X"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:527
+#: ../gtksourceview/gtksourcegutterrenderer.c:548
 msgid "Y Alignment"
 msgstr "Подравняване по Y"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:528
+#: ../gtksourceview/gtksourcegutterrenderer.c:549
 msgid "The y-alignment"
 msgstr "Подравняването по Y"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:670
+#: ../gtksourceview/gtksourcegutterrenderer.c:691
 msgid "The View"
 msgstr "Изгледът"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:671
+#: ../gtksourceview/gtksourcegutterrenderer.c:692
 msgid "The view"
 msgstr "Изгледът"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:687
+#: ../gtksourceview/gtksourcegutterrenderer.c:708
 msgid "Alignment Mode"
 msgstr "Подравняване"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:688
+#: ../gtksourceview/gtksourcegutterrenderer.c:709
 msgid "The alignment mode"
 msgstr "Режимът на подравняване"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:704
+#: ../gtksourceview/gtksourcegutterrenderer.c:725
 msgid "The window type"
 msgstr "Вид на прозореца"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:712
+#: ../gtksourceview/gtksourcegutterrenderer.c:733
 msgid "Size"
 msgstr "Размер"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:713
+#: ../gtksourceview/gtksourcegutterrenderer.c:734
 msgid "The size"
 msgstr "Размерът"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:293
-#: ../gtksourceview/gtksourcemarkattributes.c:316
+#: ../gtksourceview/gtksourcemarkattributes.c:317
 msgid "Pixbuf"
 msgstr "Буфер за пиксели"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:294
-#: ../gtksourceview/gtksourcemarkattributes.c:317
+#: ../gtksourceview/gtksourcemarkattributes.c:318
 msgid "The pixbuf"
 msgstr "Буферът за пиксели"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:301
-#: ../gtksourceview/gtksourcemarkattributes.c:303
+#: ../gtksourceview/gtksourcemarkattributes.c:304
 msgid "Stock Id"
 msgstr "Идентификатор"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:302
-#: ../gtksourceview/gtksourcemarkattributes.c:304
+#: ../gtksourceview/gtksourcemarkattributes.c:305
 msgid "The stock id"
 msgstr "Номенклатурен идентификатор на стандартна икона"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:309
-#: ../gtksourceview/gtksourcemarkattributes.c:329
+#: ../gtksourceview/gtksourcemarkattributes.c:330
 msgid "Icon Name"
 msgstr "Име на икона"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:310
-#: ../gtksourceview/gtksourcemarkattributes.c:330
+#: ../gtksourceview/gtksourcemarkattributes.c:331
 msgid "The icon name"
 msgstr "Името на иконата"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:317
-#: ../gtksourceview/gtksourcemarkattributes.c:342
+#: ../gtksourceview/gtksourcemarkattributes.c:343
 msgid "GIcon"
 msgstr "Икона GIcon"
 
@@ -2900,16 +2935,16 @@ msgstr ""
 "в регулярния израз „%s“: не се поддържат указатели към вече намерени групи "
 "знаци"
 
-#: ../gtksourceview/gtksourcemarkattributes.c:290
+#: ../gtksourceview/gtksourcemarkattributes.c:291
 #: ../gtksourceview/gtksourcestyle.c:88
 msgid "Background"
 msgstr "Фон"
 
-#: ../gtksourceview/gtksourcemarkattributes.c:291
+#: ../gtksourceview/gtksourcemarkattributes.c:292
 msgid "The background"
 msgstr "Фонът"
 
-#: ../gtksourceview/gtksourcemarkattributes.c:343
+#: ../gtksourceview/gtksourcemarkattributes.c:344
 msgid "The GIcon"
 msgstr "Иконата GIcon"
 
@@ -2921,98 +2956,98 @@ msgstr "категория"
 msgid "The mark category"
 msgstr "Категорията за маркиране"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:442
+#: ../gtksourceview/gtksourceprintcompositor.c:444
 msgid "Source Buffer"
 msgstr "Буфер с изходен код"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:443
+#: ../gtksourceview/gtksourceprintcompositor.c:445
 msgid "The GtkSourceBuffer object to print"
 msgstr "Обектът „GtkSourceBuffer“ за печат"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:460
-#: ../gtksourceview/gtksourceview.c:344
+#: ../gtksourceview/gtksourceprintcompositor.c:462
+#: ../gtksourceview/gtksourceview.c:348
 msgid "Tab Width"
 msgstr "Дължина на табулаторите"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:461
-#: ../gtksourceview/gtksourceview.c:345
+#: ../gtksourceview/gtksourceprintcompositor.c:463
+#: ../gtksourceview/gtksourceview.c:349
 msgid "Width of a tab character expressed in spaces"
 msgstr "Колко знака интервал е дълъг един табулатор"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:481
+#: ../gtksourceview/gtksourceprintcompositor.c:483
 msgid "Wrap Mode"
 msgstr "Режим с пренасяне"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:482
+#: ../gtksourceview/gtksourceprintcompositor.c:484
 msgid ""
 "Whether to wrap lines never, at word boundaries, or at character boundaries."
 msgstr "Дали редовете да се пренасят при граница между думи, знаци или никога."
 
-#: ../gtksourceview/gtksourceprintcompositor.c:503
+#: ../gtksourceview/gtksourceprintcompositor.c:505
 msgid "Whether to print the document with highlighted syntax"
 msgstr "Дали документът да се печата с оцветен синтаксис"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:524
+#: ../gtksourceview/gtksourceprintcompositor.c:526
 msgid "Print Line Numbers"
 msgstr "Разпечатване на номерата на редовете"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:525
+#: ../gtksourceview/gtksourceprintcompositor.c:527
 msgid "Interval of printed line numbers (0 means no numbers)"
 msgstr "Интервал на номера на редове за печат („0“ значи без номера)"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:547
+#: ../gtksourceview/gtksourceprintcompositor.c:549
 msgid "Print Header"
 msgstr "Разпечатване на горен колонтитул"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:548
+#: ../gtksourceview/gtksourceprintcompositor.c:550
 msgid "Whether to print a header in each page"
 msgstr "Дали да се печата горен колонтитул на всяка страница"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:570
+#: ../gtksourceview/gtksourceprintcompositor.c:572
 msgid "Print Footer"
 msgstr "Разпечатване на долен колонтитул"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:571
+#: ../gtksourceview/gtksourceprintcompositor.c:573
 msgid "Whether to print a footer in each page"
 msgstr "Дали да се печата долен колонтитул на всяка страница"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:593
+#: ../gtksourceview/gtksourceprintcompositor.c:595
 msgid "Body Font Name"
 msgstr "Шрифт за основния текст"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:594
+#: ../gtksourceview/gtksourceprintcompositor.c:596
 msgid "Name of the font to use for the text body (e.g. \"Monospace 10\")"
 msgstr "Име на шрифта за основния текст (напр. „Monospace 10“)"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:617
+#: ../gtksourceview/gtksourceprintcompositor.c:619
 msgid "Line Numbers Font Name"
 msgstr "Шрифт за номерата на редовете"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:618
+#: ../gtksourceview/gtksourceprintcompositor.c:620
 msgid "Name of the font to use for the line numbers (e.g. \"Monospace 10\")"
 msgstr "Име на шрифта за номерата на редовете (напр. „Monospace 10“)"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:641
+#: ../gtksourceview/gtksourceprintcompositor.c:643
 msgid "Header Font Name"
 msgstr "Шрифт за горния колонтитул"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:642
+#: ../gtksourceview/gtksourceprintcompositor.c:644
 msgid "Name of the font to use for the page header (e.g. \"Monospace 10\")"
 msgstr "Име на шрифта за горния колонтитул (напр. „Monospace 10“)"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:665
+#: ../gtksourceview/gtksourceprintcompositor.c:667
 msgid "Footer Font Name"
 msgstr "Шрифт за долния колонтитул"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:666
+#: ../gtksourceview/gtksourceprintcompositor.c:668
 msgid "Name of the font to use for the page footer (e.g. \"Monospace 10\")"
 msgstr "Име на шрифта за долния колонтитул (напр. „Monospace 10“)"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:682
+#: ../gtksourceview/gtksourceprintcompositor.c:684
 msgid "Number of pages"
 msgstr "Брой страници"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:683
+#: ../gtksourceview/gtksourceprintcompositor.c:685
 msgid ""
 "The number of pages in the document (-1 means the document has not been "
 "completely paginated)."
@@ -3153,71 +3188,71 @@ msgid "The text buffer to add undo support on"
 msgstr ""
 "Текстовият буфер, към който да се добави поддръжка на отмяна при редактиране"
 
-#: ../gtksourceview/gtksourceview.c:307
+#: ../gtksourceview/gtksourceview.c:311
 msgid "The completion object associated with the view"
 msgstr "Обектът за дописване свързан с изгледа"
 
-#: ../gtksourceview/gtksourceview.c:319
+#: ../gtksourceview/gtksourceview.c:323
 msgid "Show Line Numbers"
 msgstr "Номерация на редовете"
 
-#: ../gtksourceview/gtksourceview.c:320
+#: ../gtksourceview/gtksourceview.c:324
 msgid "Whether to display line numbers"
 msgstr "Дали редовете да се номерират"
 
-#: ../gtksourceview/gtksourceview.c:331
+#: ../gtksourceview/gtksourceview.c:335
 msgid "Show Line Marks"
 msgstr "Показване на маркери на редовете"
 
-#: ../gtksourceview/gtksourceview.c:332
+#: ../gtksourceview/gtksourceview.c:336
 msgid "Whether to display line mark pixbufs"
 msgstr "Дали да се показват маркери на редовете"
 
-#: ../gtksourceview/gtksourceview.c:359
+#: ../gtksourceview/gtksourceview.c:363
 msgid "Indent Width"
 msgstr "Размер на отстъпа"
 
-#: ../gtksourceview/gtksourceview.c:360
+#: ../gtksourceview/gtksourceview.c:364
 msgid "Number of spaces to use for each step of indent"
 msgstr "Брой интервали, които да се добавят за всяко ниво на отстъп"
 
-#: ../gtksourceview/gtksourceview.c:369
+#: ../gtksourceview/gtksourceview.c:373
 msgid "Auto Indentation"
 msgstr "Автоматичен отстъп"
 
-#: ../gtksourceview/gtksourceview.c:370
+#: ../gtksourceview/gtksourceview.c:374
 msgid "Whether to enable auto indentation"
 msgstr "Дали да автоматично да се вмъкват отстъпи"
 
-#: ../gtksourceview/gtksourceview.c:377
+#: ../gtksourceview/gtksourceview.c:381
 msgid "Insert Spaces Instead of Tabs"
 msgstr "Интервали вместо табулатори"
 
-#: ../gtksourceview/gtksourceview.c:378
+#: ../gtksourceview/gtksourceview.c:382
 msgid "Whether to insert spaces instead of tabs"
 msgstr "Дали новите табулатори да се заместват с интервали"
 
-#: ../gtksourceview/gtksourceview.c:390
+#: ../gtksourceview/gtksourceview.c:394
 msgid "Show Right Margin"
 msgstr "Поле отдясно"
 
-#: ../gtksourceview/gtksourceview.c:391
+#: ../gtksourceview/gtksourceview.c:395
 msgid "Whether to display the right margin"
 msgstr "Дали да се показва поле отдясно"
 
-#: ../gtksourceview/gtksourceview.c:403
+#: ../gtksourceview/gtksourceview.c:407
 msgid "Right Margin Position"
 msgstr "Позиция на дясното поле"
 
-#: ../gtksourceview/gtksourceview.c:404
+#: ../gtksourceview/gtksourceview.c:408
 msgid "Position of the right margin"
 msgstr "Позиция на дясното поле"
 
-#: ../gtksourceview/gtksourceview.c:420
+#: ../gtksourceview/gtksourceview.c:424
 msgid "Smart Home/End"
 msgstr "Умни „Home“/„End“"
 
-#: ../gtksourceview/gtksourceview.c:421
+#: ../gtksourceview/gtksourceview.c:425
 msgid ""
 "HOME and END keys move to first/last non whitespace characters on line "
 "before going to the start/end of the line"
@@ -3225,28 +3260,28 @@ msgstr ""
 "Клавишите „HOME“ и „END“ местят курсора първо при първия/последния значещ "
 "знак, преди да отиват в началото/края на реда"
 
-#: ../gtksourceview/gtksourceview.c:431
+#: ../gtksourceview/gtksourceview.c:435
 msgid "Highlight current line"
 msgstr "Оцветяване на текущия ред"
 
-#: ../gtksourceview/gtksourceview.c:432
+#: ../gtksourceview/gtksourceview.c:436
 msgid "Whether to highlight the current line"
 msgstr "Дали текущият ред да се оцветява"
 
-#: ../gtksourceview/gtksourceview.c:439
+#: ../gtksourceview/gtksourceview.c:443
 msgid "Indent on tab"
 msgstr "Отстъп при табулация"
 
-#: ../gtksourceview/gtksourceview.c:440
+#: ../gtksourceview/gtksourceview.c:444
 msgid "Whether to indent the selected text when the tab key is pressed"
 msgstr ""
 "Дали отстъпът на избрания текст да се увеличава при натискане на табулатора"
 
-#: ../gtksourceview/gtksourceview.c:454
+#: ../gtksourceview/gtksourceview.c:458
 msgid "Draw Spaces"
 msgstr "Показване на интервалите"
 
-#: ../gtksourceview/gtksourceview.c:455
+#: ../gtksourceview/gtksourceview.c:459
 msgid "Set if and how the spaces should be visualized"
 msgstr "Задаване кога и как да се визуализират интервалите"
 
