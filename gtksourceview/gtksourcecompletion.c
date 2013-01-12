@@ -25,6 +25,51 @@
  * @title: GtkSourceCompletion
  * @short_description: Main Completion Object
  *
+ * The completion system helps the user when he writes some text, such
+ * as words, command names, functions, and suchlike. Proposals can be
+ * shown, to complete the text the user is writing. Each proposal can
+ * contain an additional piece of information, that is displayed when
+ * the "Details" button is active.
+ *
+ * Proposals are created via a #GtkSourceCompletionProvider. There can
+ * be for example a provider to complete words (see
+ * #GtkSourceCompletionWords), another provider for the completion of
+ * function's names, etc. To add a provider, call
+ * gtk_source_completion_add_provider().
+ *
+ * When the completion is activated, a #GtkSourceCompletionContext object is
+ * created. The providers are asked whether they match the context, with
+ * gtk_source_completion_provider_match(). If a provider doesn't match the
+ * context, it will not be visible in the completion window. On the
+ * other hand, if the provider matches the context, its proposals will
+ * be displayed.
+ *
+ * When several providers match, they are all shown in the completion
+ * window, but one can switch between providers: see the
+ * #GtkSourceCompletion::move-page signal. It is also possible to
+ * activate the first proposals with key bindings, see the
+ * #GtkSourceCompletion:accelerators property.
+ *
+ * The #GtkSourceCompletionProposal interface represents a proposal.
+ * The #GtkSourceCompletionItem class is a simple implementation of this
+ * interface.
+ *
+ * If a proposal contains extra information (see
+ * gtk_source_completion_provider_get_info_widget()), it will be
+ * displayed in a #GtkSourceCompletionInfo window, which appears when
+ * the "Details" button is clicked.
+ *
+ * A #GtkSourceCompletionInfo window can also be used to display
+ * calltips. When no proposals are available, it can be useful to
+ * display extra information like a function's prototype (number of
+ * parameters, types of parameters, etc).
+ *
+ * Each #GtkSourceView object is associated with a #GtkSourceCompletion
+ * instance. This instance can be obtained with
+ * gtk_source_view_get_completion().
+ *
+ * A same #GtkSourceCompletionProvider object can be used for several
+ * #GtkSourceCompletion.
  */
 
 #include <stdarg.h>
