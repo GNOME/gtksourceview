@@ -19,6 +19,15 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
+/**
+ * SECTION:completionitem
+ * @title: GtkSourceCompletionItem
+ * @short_description: Simple implementation of #GtkSourceCompletionProposal
+ *
+ * The #GtkSourceCompletionItem class is a simple implementation of the
+ * #GtkSourceCompletionProposal interface.
+ */
+
 #include "gtksourcecompletionitem.h"
 #include "gtksourcecompletionproposal.h"
 #include "gtksourcecompletionutils.h"
