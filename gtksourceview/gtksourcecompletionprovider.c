@@ -234,10 +234,12 @@ gtk_source_completion_provider_match (GtkSourceCompletionProvider *provider,
  * This allows for customized widgets on a proposal basis, although in general
  * providers will have the same custom widget for all their proposals and
  * @proposal can be ignored. The implementation of this function is optional.
- * If implemented, #gtk_source_completion_provider_update_info MUST also be
- * implemented. If not implemented, the default
- * #gtk_source_completion_proposal_get_info will be used to display extra
- * information about a #GtkSourceCompletionProposal.
+ * If implemented, gtk_source_completion_provider_update_info() MUST also be
+ * implemented.
+ *
+ * If this function is not implemented, the default widget is a #GtkLabel. The
+ * return value of gtk_source_completion_proposal_get_info() is used as the
+ * content of the #GtkLabel.
  *
  * Returns: (transfer none): a custom #GtkWidget to show extra
  * information about @proposal.
