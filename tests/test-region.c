@@ -1,9 +1,8 @@
 #include <gtk/gtk.h>
 #include "gtksourceview/gtktextregion.h"
 
-
-int
-main (int argc, char **argv)
+static void
+test_region (void)
 {
 	GtkTextBuffer *buffer;
 	GtkTextRegion *region, *intersection;
@@ -68,8 +67,6 @@ main (int argc, char **argv)
 		{  3,  7 }
 	};
 
-	gtk_init (&argc, &argv);
-
 	buffer = gtk_text_buffer_new (NULL);
 	region = gtk_text_region_new (buffer);
 
@@ -79,7 +76,7 @@ main (int argc, char **argv)
 	gtk_text_region_get_iterator (region, &reg_iter, 0);
 	if (!gtk_text_region_iterator_is_end (&reg_iter)) {
 		g_print ("problem fetching iterator for an empty region\n");
-		return -1;
+		g_assert_not_reached ();
 	}
 
 	for (i = 0; i < NUM_OPS; i++) {
@@ -127,20 +124,33 @@ main (int argc, char **argv)
 
 		if (!gtk_text_iter_equal (&s, &s1) ||
 		    !gtk_text_iter_equal (&e, &e1))
+		{
 			g_print ("problem iterating\n");
+			g_assert_not_reached ();
+		}
 
 		++i;
 		gtk_text_region_iterator_next (&reg_iter);
 	}
 
 	if (i != gtk_text_region_subregions (region))
+	{
 		g_print ("problem iterating all subregions\n");
+		g_assert_not_reached ();
+	}
 
 	g_print ("iterated %d subregions\n", i);
 
 	gtk_text_region_destroy (region, TRUE);
 	g_object_unref (buffer);
-
-	return 0;
 }
 
+int
+main (int argc, char** argv)
+{
+	gtk_test_init (&argc, &argv);
+
+	g_test_add_func ("/Region/region", test_region);
+
+	return g_test_run();
+}

@@ -73,17 +73,16 @@ test_completion_model_LDADD =					\
 	$(DEP_LIBS)						\
 	$(TESTS_LIBS)
 
+UNIT_TEST_PROGS += test-region
+test_region_SOURCES = test-region.c
+test_region_LDADD = 						\
+	$(top_builddir)/gtksourceview/libgtksourceview-private.la	\
+	$(DEP_LIBS)			\
+	$(TESTS_LIBS)
+
 python_tests =			\
 	test-completion.py	\
 	test-widget.py
-
-# testregion need gtk_text_region_ api which is normally private
-# modify gtksourceview/Makefile.am to export gtk_text_* symbols
-# TEST_PROGS += testregion
-#testregion_SOURCES = testregion.c
-#testregion_LDADD = 			\
-#	$(top_builddir)/gtksourceview/libgtksourceview-3.0.la \
-#	$(DEP_LIBS)
 
 EXTRA_DIST =				\
 	language-specs/test-empty.lang	\
