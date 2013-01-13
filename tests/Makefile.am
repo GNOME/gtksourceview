@@ -59,17 +59,12 @@ test_buffer_LDADD = 		\
 	$(TESTS_LIBS)
 
 UNIT_TEST_PROGS += test-completion-model
-test_completion_model_SOURCES =					\
-	test-completion-model.c					\
-	$(top_srcdir)/gtksourceview/gtksourcecompletionmodel.c
+test_completion_model_SOURCES =	test-completion-model.c
 test_completion_model_LDADD =					\
-	$(top_builddir)/gtksourceview/libgtksourceview-3.0.la	\
+	$(top_builddir)/gtksourceview/libgtksourceview-3.0.la \
+	$(top_builddir)/gtksourceview/libgtksourceview-private.la	\
 	$(DEP_LIBS)						\
 	$(TESTS_LIBS)
-
-# Since gtksourcecompletionmodel.c is recompiled, add code coverage support.
-test_completion_model_CFLAGS = $(CODE_COVERAGE_CFLAGS)
-test_completion_model_LIBS = $(CODE_COVERAGE_LDFLAGS)
 
 python_tests =			\
 	test-completion.py	\
@@ -87,12 +82,5 @@ EXTRA_DIST =				\
 	language-specs/test-empty.lang	\
 	language-specs/test-full.lang	\
 	$(python_tests)
-
-# Generated files for the code coverage
-CLEANFILES =							\
-	test_completion_model-gtksourcecompletionmodel.gcda	\
-	test_completion_model-gtksourcecompletionmodel.gcno	\
-	test_completion_model-test-completion-model.gcda	\
-	test_completion_model-test-completion-model.gcno
 
 -include $(top_srcdir)/git.mk
