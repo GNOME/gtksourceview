@@ -1,3 +1,5 @@
+@GNOME_CODE_COVERAGE_RULES@
+
 INCLUDES = 				\
 	-DDATADIR=\""$(datadir)"\" 	\
 	-DG_LOG_DOMAIN=\"GtkSourceView\"\
@@ -56,6 +58,10 @@ test_completion_model_LDADD =					\
 	$(top_builddir)/gtksourceview/libgtksourceview-3.0.la	\
 	$(DEP_LIBS)						\
 	$(TESTS_LIBS)
+
+# Since gtksourcecompletionmodel.c is recompiled, add code coverage support.
+test_completion_model_CFLAGS = $(CODE_COVERAGE_CFLAGS)
+test_completion_model_LIBS = $(CODE_COVERAGE_LDFLAGS)
 
 python_tests =			\
 	test-completion.py	\
