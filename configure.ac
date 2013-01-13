@@ -137,8 +137,6 @@ GOBJECT_INTROSPECTION_CHECK([0.9.0])
 
 # Code coverage
 GNOME_CODE_COVERAGE
-CFLAGS="$CFLAGS $CODE_COVERAGE_CFLAGS"
-LDFLAGS="$LDFLAGS $CODE_COVERAGE_CFLAGS"
 
 # test-widget uses this to find lang files and gtksourcebuffer.c
 ABS_TOP_SRCDIR=`cd $srcdir && pwd`

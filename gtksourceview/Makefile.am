@@ -2,6 +2,8 @@ if ENABLE_PROVIDERS
 SUBDIRS = completion-providers
 endif
 
+@GNOME_CODE_COVERAGE_RULES@
+
 INCLUDES = 				\
 	-DDATADIR=\""$(datadir)"\" 	\
 	-DG_LOG_DOMAIN=\"GtkSourceView\"\
@@ -117,6 +119,8 @@ completion_providers = 							\
 
 libgtksourceview_3_0_la_LIBADD = $(DEP_LIBS) $(GTK_MAC_LIBS) $(completion_providers)
 libgtksourceview_3_0_la_LDFLAGS = -no-undefined -export-symbols-regex "^gtk_source_.*"
+libgtksourceview_3_0_la_CFLAGS = $(CODE_COVERAGE_CFLAGS)
+libgtksourceview_3_0_la_LIBS = $(CODE_COVERAGE_LDFLAGS)
 libgtksourceview_3_0_includedir = $(includedir)/gtksourceview-3.0/gtksourceview
 
 libgtksourceview_3_0_include_HEADERS =		\
