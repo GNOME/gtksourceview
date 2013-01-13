@@ -20,9 +20,6 @@ BUILT_SOURCES = 			\
 	gtksourceview-typebuiltins.c	\
 	gtksourceview-typebuiltins.h
 
-# libs
-lib_LTLIBRARIES = libgtksourceview-3.0.la
-
 libgtksourceview_headers =			\
 	gtksource.h				\
 	gtksourcebuffer.h			\
@@ -48,7 +45,7 @@ libgtksourceview_headers =			\
 	gtksourceundomanager.h			\
 	gtksourceview.h
 
-NOINST_H_FILES = \
+libgtksourceview_private_headers = \
 	gtksourcecompletionmodel.h		\
 	gtksourcecompletion-private.h		\
 	gtksourcecompletionutils.h		\
@@ -68,59 +65,83 @@ NOINST_H_FILES = \
 	gtksourceview-utils.h			\
 	gtktextregion.h
 
+libgtksourceview_private_c_files = \
+	gtksourcecompletionmodel.c	\
+	gtksourcecompletionutils.c	\
+	gtksourcecontextengine.c	\
+	gtksourceengine.c		\
+	gtksourcepixbufhelper.c		\
+	gtksourcelanguage-parser-1.c	\
+	gtksourcelanguage-parser-2.c	\
+	gtksourceregex.c		\
+	gtksourceundomanager.c 		\
+	gtksourceundomanagerdefault.c	\
+	gtksourceview-i18n.c		\
+	gtksourceview-utils.c 		\
+	gtktextregion.c
+
 libgtksourceview_c_files = \
 	gtksourcebuffer.c 		\
 	gtksourcecompletion.c		\
 	gtksourcecompletioncontext.c	\
 	gtksourcecompletioninfo.c	\
 	gtksourcecompletionitem.c	\
-	gtksourcecompletionmodel.c	\
 	gtksourcecompletionproposal.c	\
 	gtksourcecompletionprovider.c	\
-	gtksourcecompletionutils.c	\
-	gtksourcecontextengine.c	\
-	gtksourceengine.c		\
 	gtksourcegutter.c		\
 	gtksourcegutterrenderer.c	\
 	gtksourcegutterrenderertext.c	\
 	gtksourcegutterrendererpixbuf.c	\
 	gtksourcegutterrendererlines.c	\
 	gtksourcegutterrenderermarks.c	\
-	gtksourcepixbufhelper.c		\
 	gtksourcelanguage.c 		\
 	gtksourcelanguagemanager.c 	\
-	gtksourcelanguage-parser-1.c	\
-	gtksourcelanguage-parser-2.c	\
 	gtksourcemark.c			\
 	gtksourcemarkattributes.c	\
 	gtksourceprintcompositor.c	\
-	gtksourceregex.c		\
 	gtksourcestyle.c		\
 	gtksourcestylescheme.c		\
 	gtksourcestyleschememanager.c	\
-	gtksourceundomanager.c 		\
-	gtksourceundomanagerdefault.c	\
-	gtksourceview.c 		\
-	gtksourceview-i18n.c		\
-	gtksourceview-utils.c 		\
-	gtktextregion.c
+	gtksourceview.c
+
+# Split in a helper library for unit tests
+noinst_LTLIBRARIES = libgtksourceview-private.la
+
+libgtksourceview_private_la_SOURCES =		\
+	$(libgtksourceview_private_c_files)	\
+	$(libgtksourceview_private_headers)
+
+libgtksourceview_private_la_CFLAGS = 	\
+	$(CODE_COVERAGE_CFLAGS)
+
+libgtksourceview_private_la_LDFLAGS =		\
+	-no-undefined 				\
+	$(CODE_COVERAGE_LDFLAGS)
+
+# The real library
+lib_LTLIBRARIES = libgtksourceview-3.0.la
 
 libgtksourceview_3_0_la_SOURCES = 	\
 	$(libgtksourceview_c_files)	\
-	$(libgtksourceview_headers)	\
-	$(NOINST_H_FILES)
+	$(libgtksourceview_headers)
 
 # do not distribute generated files
 nodist_libgtksourceview_3_0_la_SOURCES =\
 	$(BUILT_SOURCES)
 
-completion_providers = 							\
-	completion-providers/words/libgtksourcecompletionwords.la
+libgtksourceview_3_0_la_LIBADD = 					\
+	libgtksourceview-private.la					\
+	completion-providers/words/libgtksourcecompletionwords.la	\
+	$(DEP_LIBS) $(GTK_MAC_LIBS)
 
-libgtksourceview_3_0_la_LIBADD = $(DEP_LIBS) $(GTK_MAC_LIBS) $(completion_providers)
-libgtksourceview_3_0_la_LDFLAGS = -no-undefined -export-symbols-regex "^gtk_source_.*"
-libgtksourceview_3_0_la_CFLAGS = $(CODE_COVERAGE_CFLAGS)
-libgtksourceview_3_0_la_LIBS = $(CODE_COVERAGE_LDFLAGS)
+libgtksourceview_3_0_la_CFLAGS = 	\
+	$(CODE_COVERAGE_CFLAGS)
+
+libgtksourceview_3_0_la_LDFLAGS =		\
+	-no-undefined 				\
+	-export-symbols-regex "^gtk_source_.*"	\
+	$(CODE_COVERAGE_LDFLAGS)
+
 libgtksourceview_3_0_includedir = $(includedir)/gtksourceview-3.0/gtksourceview
 
 libgtksourceview_3_0_include_HEADERS =		\
