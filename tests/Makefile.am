@@ -58,6 +58,13 @@ test_buffer_LDADD = 		\
 	$(DEP_LIBS)			\
 	$(TESTS_LIBS)
 
+UNIT_TEST_PROGS += test-regex
+test_regex_SOURCES = test-regex.c
+test_regex_LDADD = 						\
+	$(top_builddir)/gtksourceview/libgtksourceview-private.la	\
+	$(DEP_LIBS)			\
+	$(TESTS_LIBS)
+
 UNIT_TEST_PROGS += test-completion-model
 test_completion_model_SOURCES =	test-completion-model.c
 test_completion_model_LDADD =					\
