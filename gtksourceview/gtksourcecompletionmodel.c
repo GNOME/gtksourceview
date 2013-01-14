@@ -243,6 +243,12 @@ tree_model_iface_init (gpointer g_iface,
 
 /* Construction and destruction */
 
+GtkSourceCompletionModel*
+gtk_source_completion_model_new (void)
+{
+	return g_object_new (GTK_SOURCE_TYPE_COMPLETION_MODEL, NULL);
+}
+
 static void
 gtk_source_completion_model_dispose (GObject *object)
 {
@@ -311,13 +317,7 @@ gtk_source_completion_model_init (GtkSourceCompletionModel *self)
 	self->priv->column_types[GTK_SOURCE_COMPLETION_MODEL_COLUMN_ICON] = GDK_TYPE_PIXBUF;
 }
 
-/* Public functions */
-
-GtkSourceCompletionModel*
-gtk_source_completion_model_new (void)
-{
-	return g_object_new (GTK_SOURCE_TYPE_COMPLETION_MODEL, NULL);
-}
+/* Population: begin/end populate, add proposals, cancel */
 
 void
 gtk_source_completion_model_begin_populate (GtkSourceCompletionModel *model,
@@ -327,9 +327,11 @@ gtk_source_completion_model_begin_populate (GtkSourceCompletionModel *model,
 }
 
 void
-gtk_source_completion_model_cancel (GtkSourceCompletionModel *model)
+gtk_source_completion_model_end_populate (GtkSourceCompletionModel    *model,
+					  GtkSourceCompletionProvider *provider)
 {
 	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_MODEL (model));
+	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_PROVIDER (provider));
 }
 
 void
@@ -342,12 +344,29 @@ gtk_source_completion_model_add_proposals (GtkSourceCompletionModel    *model,
 }
 
 void
-gtk_source_completion_model_end_populate (GtkSourceCompletionModel    *model,
-					  GtkSourceCompletionProvider *provider)
+gtk_source_completion_model_cancel (GtkSourceCompletionModel *model)
 {
 	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_MODEL (model));
-	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_PROVIDER (provider));
 }
+
+/* Get/set visible providers */
+
+void
+gtk_source_completion_model_set_visible_providers (GtkSourceCompletionModel *model,
+                                                   GList                    *providers)
+{
+	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_MODEL (model));
+}
+
+GList *
+gtk_source_completion_model_get_visible_providers (GtkSourceCompletionModel *model)
+{
+	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_MODEL (model), NULL);
+
+	return NULL;
+}
+
+/* Other public functions */
 
 void
 gtk_source_completion_model_clear (GtkSourceCompletionModel *model)
@@ -419,21 +438,6 @@ gtk_source_completion_model_iter_last (GtkSourceCompletionModel *model,
  */
 GList *
 gtk_source_completion_model_get_providers (GtkSourceCompletionModel *model)
-{
-	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_MODEL (model), NULL);
-
-	return NULL;
-}
-
-void
-gtk_source_completion_model_set_visible_providers (GtkSourceCompletionModel *model,
-                                                   GList                    *providers)
-{
-	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_MODEL (model));
-}
-
-GList *
-gtk_source_completion_model_get_visible_providers (GtkSourceCompletionModel *model)
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_MODEL (model), NULL);
 
