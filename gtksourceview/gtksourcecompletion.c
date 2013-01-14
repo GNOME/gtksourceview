@@ -675,6 +675,8 @@ get_num_visible_providers (GtkSourceCompletion *completion,
 			}
 		}
 	}
+
+	g_list_free (providers);
 }
 
 static void
@@ -778,7 +780,6 @@ select_provider (GtkSourceCompletion *completion,
 	GtkSourceCompletionProvider *visible;
 	guint i;
 
-	providers = gtk_source_completion_model_get_providers (completion->priv->model_proposals);
 	visible = get_visible_provider (completion);
 
 	get_num_visible_providers (completion, &num, &pos);
@@ -797,6 +798,8 @@ select_provider (GtkSourceCompletion *completion,
 
 		return FALSE;
 	}
+
+	providers = gtk_source_completion_model_get_providers (completion->priv->model_proposals);
 
 	if (visible != NULL)
 	{
@@ -848,16 +851,17 @@ select_provider (GtkSourceCompletion *completion,
 
 	if (orig == current)
 	{
+		g_list_free (providers);
 		return FALSE;
 	}
 
 	if (current != NULL)
 	{
-		GList *providers = g_list_append (NULL, current->data);
+		GList *visible_providers = g_list_append (NULL, current->data);
 
 		gtk_source_completion_model_set_visible_providers (completion->priv->model_proposals,
-		                                                   providers);
-		g_list_free (providers);
+		                                                   visible_providers);
+		g_list_free (visible_providers);
 		visible_provider_changed (completion);
 	}
 	else
@@ -867,6 +871,7 @@ select_provider (GtkSourceCompletion *completion,
 		visible_provider_changed (completion);
 	}
 
+	g_list_free (providers);
 	return TRUE;
 }
 

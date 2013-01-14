@@ -626,6 +626,7 @@ test_get_providers (void)
 
 	g_object_unref (model);
 	free_providers (all_providers, all_list_proposals);
+	g_list_free (providers_get);
 }
 
 static void
