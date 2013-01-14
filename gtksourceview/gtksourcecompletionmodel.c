@@ -1489,6 +1489,9 @@ gtk_source_completion_model_iter_last (GtkSourceCompletionModel *model,
 	}
 }
 
+/* Get all the providers (visible and hidden), sorted by priority in descending
+ * order (the highest priority first).
+ */
 GList *
 gtk_source_completion_model_get_providers (GtkSourceCompletionModel *model)
 {
