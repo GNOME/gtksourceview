@@ -679,7 +679,9 @@ test_iters_impl (gboolean show_headers)
 	GtkTreeIter first_iter;
 	GtkTreeIter last_iter;
 	GtkTreeIter other_iter;
+	GtkTreePath *path = NULL;
 	gint nb_items;
+	gint *indices;
 
 	/* Test iter_last() */
 #if 0
@@ -704,14 +706,31 @@ test_iters_impl (gboolean show_headers)
 
 	g_assert (gtk_source_completion_model_iter_equal (model, &last_iter, &other_iter));
 
+	/* Test get_path() */
+	path = gtk_tree_model_get_path (GTK_TREE_MODEL (model), &last_iter);
+	indices = gtk_tree_path_get_indices (path);
+	g_assert (indices[0] == nb_items - 1);
+
 	/* Test iter_previous() */
 	while (gtk_source_completion_model_iter_previous (model, &other_iter));
 
 	g_assert (gtk_tree_model_get_iter_first (GTK_TREE_MODEL (model), &first_iter));
 	g_assert (gtk_source_completion_model_iter_equal (model, &first_iter, &other_iter));
 
+	/* Test iter_children() */
+	g_assert (gtk_tree_model_iter_children (GTK_TREE_MODEL (model), &other_iter, NULL));
+	g_assert (gtk_source_completion_model_iter_equal (model, &first_iter, &other_iter));
+	g_assert (!gtk_tree_model_iter_children (GTK_TREE_MODEL (model), &other_iter, &first_iter));
+
+	/* Test iter_has_child() */
+	g_assert (!gtk_tree_model_iter_has_child (GTK_TREE_MODEL (model), &first_iter));
+
+	/* Test iter_parent() */
+	g_assert (!gtk_tree_model_iter_parent (GTK_TREE_MODEL (model), &other_iter, &first_iter));
+
 	g_object_unref (model);
 	free_providers (all_providers, all_list_proposals);
+	gtk_tree_path_free (path);
 }
 
 static void
@@ -721,6 +740,47 @@ test_iters (void)
 #if 0
 	test_iters_impl (TRUE);
 #endif
+}
+
+static void
+test_cancel (void)
+{
+	GtkSourceCompletionModel *model = gtk_source_completion_model_new ();
+	GtkSourceCompletionProvider *provider;
+	GList *list_providers = NULL;
+	GList *proposals = NULL;
+	GList *all_providers = NULL;
+	GList *all_list_proposals = NULL;
+
+	/* Cancel out of a population, when the model is empty */
+	gtk_source_completion_model_cancel (model);
+	g_assert (gtk_source_completion_model_is_empty (model, FALSE));
+
+	/* Cancel during a population.
+	 * The contents of the model after the cancellation depends on the
+	 * implementation. Thus we don't check the contents.
+	 */
+	provider = GTK_SOURCE_COMPLETION_PROVIDER (test_provider_new ());
+	proposals = create_proposals ();
+	list_providers = g_list_append (NULL, provider);
+
+	gtk_source_completion_model_begin_populate (model, list_providers);
+	gtk_source_completion_model_add_proposals (model, provider, proposals);
+	gtk_source_completion_model_cancel (model);
+
+	/* Normal population */
+	create_providers (&all_providers, &all_list_proposals);
+	populate_model (model, all_providers, all_list_proposals);
+	check_all_providers_with_and_without_headers (model, all_providers, all_list_proposals);
+
+	/* Cancel out of a population, when the model is not empty */
+	gtk_source_completion_model_cancel (model);
+	check_all_providers_with_and_without_headers (model, all_providers, all_list_proposals);
+
+	g_object_unref (model);
+	g_list_free_full (list_providers, g_object_unref);
+	g_list_free_full (proposals, g_object_unref);
+	free_providers (all_providers, all_list_proposals);
 }
 
 int
@@ -762,6 +822,9 @@ main (int argc, char **argv)
 
 	g_test_add_func ("/CompletionModel/iters",
 			 test_iters);
+
+	g_test_add_func ("/CompletionModel/cancel",
+			 test_cancel);
 
 	return g_test_run ();
 }
