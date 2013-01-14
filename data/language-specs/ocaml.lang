@@ -24,7 +24,7 @@
  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 -->
-<language id="objective-caml" _name="Objective Caml" version="2.0" _section="Sources">
+<language id="ocaml" _name="OCaml" version="2.0" _section="Sources">
   <metadata>
     <property name="mimetypes">text/x-ocaml</property>
     <property name="globs">*.ml;*.mli;*.mll;*.mly</property>
@@ -64,7 +64,7 @@
     </context>
 
     <!-- here's the main context -->
-    <context id="objective-caml" class="no-spell-check">
+    <context id="ocaml" class="no-spell-check">
       <include>
 	<context id="ocamldoc" style-ref="ocamldoc">
 	  <start>\(\*\*</start>
@@ -137,7 +137,7 @@
 	  <start>\[\|</start>
 	  <end>\|\]</end>
 	  <include>
-	    <context ref="objective-caml"/>
+	    <context ref="ocaml"/>
 	  </include>
 	</context>
 	<context id="badarray" style-ref="error" extend-parent="false">
@@ -147,7 +147,7 @@
 	  <start>\[</start>
 	  <end>(?&lt;!\|)\]</end>
 	  <include>
-	    <context ref="objective-caml"/>
+	    <context ref="ocaml"/>
 	  </include>
 	</context>
 	<context id="badlist" style-ref="error" extend-parent="false">
