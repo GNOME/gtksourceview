@@ -1721,7 +1721,7 @@ update_interactive_completion (GtkSourceCompletion *completion,
 	{
 		update_completion (completion,
 				   completion->priv->active_providers,
-				   completion->priv->context);
+				   g_object_ref (completion->priv->context));
 	}
 }
 
@@ -1771,7 +1771,7 @@ buffer_mark_set_cb (GtkTextBuffer       *buffer,
 
 	update_completion (completion,
 	                   completion->priv->active_providers,
-	                   completion->priv->context);
+	                   g_object_ref (completion->priv->context));
 }
 
 static void
@@ -1918,8 +1918,7 @@ connect_view (GtkSourceCompletion *completion)
 }
 
 static void
-cancel_completion (GtkSourceCompletion        *completion,
-                   GtkSourceCompletionContext *context)
+cancel_completion (GtkSourceCompletion *completion)
 {
 	if (completion->priv->show_timed_out_id)
 	{
@@ -1927,14 +1926,7 @@ cancel_completion (GtkSourceCompletion        *completion,
 		completion->priv->show_timed_out_id = 0;
 	}
 
-	if (completion->priv->context == NULL)
-	{
-		if (context != NULL)
-		{
-			completion->priv->context = context;
-		}
-	}
-	else
+	if (completion->priv->context != NULL)
 	{
 		/* Inform providers of cancellation through the context */
 		_gtk_source_completion_context_cancel (completion->priv->context);
@@ -1942,15 +1934,8 @@ cancel_completion (GtkSourceCompletion        *completion,
 		/* Let the model know we are cancelling the population */
 		gtk_source_completion_model_cancel (completion->priv->model_proposals);
 
-		if (completion->priv->context != context)
-		{
-			g_object_unref (completion->priv->context);
-			completion->priv->context = NULL;
-		}
-		else if (context != NULL)
-		{
-			completion->priv->context = context;
-		}
+		g_object_unref (completion->priv->context);
+		completion->priv->context = NULL;
 
 		g_list_free (completion->priv->running_providers);
 		completion->priv->running_providers = NULL;
@@ -1963,7 +1948,7 @@ gtk_source_completion_dispose (GObject *object)
 	GtkSourceCompletion *completion = GTK_SOURCE_COMPLETION (object);
 
 	/* Cancel running completion */
-	cancel_completion (completion, NULL);
+	cancel_completion (completion);
 
 	if (completion->priv->view != NULL)
 	{
@@ -2196,7 +2181,7 @@ gtk_source_completion_hide_default (GtkSourceCompletion *completion)
 
 	gtk_source_completion_model_clear (completion->priv->model_proposals);
 
-	cancel_completion (completion, NULL);
+	cancel_completion (completion);
 
 	g_list_free (completion->priv->active_providers);
 	completion->priv->active_providers = NULL;
@@ -3196,8 +3181,9 @@ update_completion (GtkSourceCompletion        *completion,
 	}
 
 	/* Make sure to first cancel any running completion */
-	cancel_completion (completion, context);
+	cancel_completion (completion);
 
+	completion->priv->context = context;
 	completion->priv->running_providers = g_list_copy (providers);
 
 	if (completion->priv->active_providers != providers)
@@ -3244,7 +3230,7 @@ populating_done (GtkSourceCompletion        *completion,
 
 		/* If the window is not visible, the completion was not really
 		   cancelled */
-		cancel_completion (completion, NULL);
+		cancel_completion (completion);
 	}
 	else
 	{
