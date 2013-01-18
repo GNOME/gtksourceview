@@ -510,7 +510,10 @@ insert_text (GtkTextBuffer *buffer,
 	GtkTextIter iter;
 
 	gtk_text_buffer_get_iter_at_offset (buffer, &iter, pos);
+
+	gtk_text_buffer_begin_user_action (buffer);
 	gtk_text_buffer_insert (buffer, &iter, text, len);
+	gtk_text_buffer_end_user_action (buffer);
 }
 
 static void
@@ -528,7 +531,9 @@ delete_text (GtkTextBuffer *buffer,
 	else
 		gtk_text_buffer_get_iter_at_offset (buffer, &end_iter, end);
 
+	gtk_text_buffer_begin_user_action (buffer);
 	gtk_text_buffer_delete (buffer, &start_iter, &end_iter);
+	gtk_text_buffer_end_user_action (buffer);
 }
 
 static gchar *
