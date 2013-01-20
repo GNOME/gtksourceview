@@ -72,23 +72,17 @@
  * #GtkSourceCompletion.
  */
 
-#include <stdarg.h>
-#include <string.h>
-#include <gdk/gdkkeysyms.h>
-
-#include "gtksourceview-marshal.h"
-#include "gtksourceview-i18n.h"
-
-#include "gtksourceview.h"
-#include "gtksourcebuffer.h"
 #include "gtksourcecompletion.h"
+#include "gtksourcecompletion-private.h"
 #include "gtksourcecompletionutils.h"
 #include "gtksourcecompletionmodel.h"
 #include "gtksourcecompletioncontext.h"
 #include "gtksourcecompletioninfo.h"
 #include "gtksourcecompletionproposal.h"
 #include "gtksourcecompletionprovider.h"
-#include "gtksourcecompletion-private.h"
+#include "gtksourcebuffer.h"
+#include "gtksourceview-marshal.h"
+#include "gtksourceview-i18n.h"
 
 #define WINDOW_WIDTH 350
 #define WINDOW_HEIGHT 200
