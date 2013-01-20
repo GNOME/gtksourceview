@@ -259,9 +259,7 @@ check_all_providers (GtkSourceCompletionModel *model,
 		g_assert (gtk_tree_model_iter_next (GTK_TREE_MODEL (model), &iter));
 	}
 
-#if 0
 	g_assert (!gtk_tree_model_iter_next (GTK_TREE_MODEL (model), &iter));
-#endif
 }
 
 static void
@@ -310,9 +308,7 @@ test_is_empty (void)
 	TestProvider *provider;
 	GList *list_providers = NULL;
 	GList *list_proposals = NULL;
-#if 0
 	GList *visible_providers = NULL;
-#endif
 
 	/* Completely empty */
 	model = gtk_source_completion_model_new ();
@@ -338,26 +334,16 @@ test_is_empty (void)
 	g_assert (!gtk_source_completion_model_is_empty (model, TRUE));
 
 	/* One invisible provider */
-
-	/* FIXME The two following tests are broken with the current implementation, it
-	 * will be fixed with the new implementation.
-	 * However it seems that this situation never happen, because if there is only one
-	 * invisible provider, the completion window is hidden.
-	 */
-#if 0
 	visible_providers = g_list_append (visible_providers, test_provider_new ());
 	gtk_source_completion_model_set_visible_providers (model, visible_providers);
 
 	g_assert (!gtk_source_completion_model_is_empty (model, FALSE));
 	g_assert (gtk_source_completion_model_is_empty (model, TRUE));
-#endif
 
 	g_object_unref (model);
 	g_list_free_full (list_providers, g_object_unref);
 	g_list_free_full (list_proposals, g_object_unref);
-#if 0
 	g_list_free_full (visible_providers, g_object_unref);
-#endif
 }
 
 static void
@@ -457,7 +443,6 @@ test_set_visible_providers (void)
 	subset_providers = g_list_append (subset_providers, all_providers->data);
 	subset_list_proposals = g_list_append (subset_list_proposals, all_list_proposals->data);
 
-#if 0
 	gtk_source_completion_model_set_visible_providers (model, subset_providers);
 	check_all_providers_with_and_without_headers (model, subset_providers, subset_list_proposals);
 
@@ -467,11 +452,9 @@ test_set_visible_providers (void)
 
 	gtk_source_completion_model_set_visible_providers (model, subset_providers);
 	check_all_providers_with_and_without_headers (model, subset_providers, subset_list_proposals);
-#endif
 
 	/* No visible providers */
 	other_provider = test_provider_new ();
-#if 0
 	subset_providers->data = other_provider;
 	gtk_source_completion_model_set_visible_providers (model, subset_providers);
 	g_assert (gtk_source_completion_model_is_empty (model, TRUE));
@@ -479,7 +462,6 @@ test_set_visible_providers (void)
 	/* The two providers are visible again */
 	gtk_source_completion_model_set_visible_providers (model, NULL);
 	check_all_providers_with_and_without_headers (model, all_providers, all_list_proposals);
-#endif
 
 	g_object_unref (model);
 	g_object_unref (other_provider);
@@ -527,7 +509,6 @@ test_second_populate_same_order (void)
 	free_providers (all_providers, all_list_proposals);
 }
 
-#if 0
 /* Same as test_second_populate_same_order() but with a different insertion
  * order of the common proposals for the second populate.
  */
@@ -564,7 +545,6 @@ test_second_populate_different_order (void)
 	g_object_unref (model);
 	free_providers (all_providers, all_list_proposals);
 }
-#endif
 
 static void
 test_populate_several_batches (void)
@@ -685,10 +665,7 @@ test_iters_impl (gboolean show_headers)
 	gint *indices;
 
 	/* Test iter_last() */
-#if 0
-	/* segfault */
 	g_assert (!gtk_source_completion_model_iter_last (model, &last_iter));
-#endif
 
 	create_providers (&all_providers, &all_list_proposals);
 	populate_model (model, all_providers, all_list_proposals);
@@ -738,9 +715,7 @@ static void
 test_iters (void)
 {
 	test_iters_impl (FALSE);
-#if 0
 	test_iters_impl (TRUE);
-#endif
 }
 
 static void
@@ -807,10 +782,8 @@ main (int argc, char **argv)
 	g_test_add_func ("/CompletionModel/second-populate-same-order",
 			 test_second_populate_same_order);
 
-#if 0
 	g_test_add_func ("/CompletionModel/second-populate-different-order",
 			 test_second_populate_different_order);
-#endif
 
 	g_test_add_func ("/CompletionModel/populate-several-batches",
 			 test_populate_several_batches);
