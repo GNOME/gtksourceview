@@ -3154,6 +3154,14 @@ update_completion (GtkSourceCompletion        *completion,
 		completion->priv->select_on_show &&
 		(!get_selected_proposal (completion, NULL, NULL, NULL) || completion->priv->select_first);
 
+	/* Create a new CompletionModel */
+	gtk_tree_view_set_model (GTK_TREE_VIEW (completion->priv->tree_view_proposals), NULL);
+	g_object_unref (completion->priv->model_proposals);
+	completion->priv->model_proposals = gtk_source_completion_model_new ();
+
+	gtk_source_completion_model_set_show_headers (completion->priv->model_proposals,
+						      completion->priv->show_headers);
+
 	gtk_source_completion_model_begin_populate (completion->priv->model_proposals,
 						    completion->priv->active_providers);
 
@@ -3192,7 +3200,33 @@ populating_done (GtkSourceCompletion        *completion,
 	}
 	else
 	{
+		gtk_tree_view_set_model (GTK_TREE_VIEW (completion->priv->tree_view_proposals),
+					 GTK_TREE_MODEL (completion->priv->model_proposals));
+
 		update_selection_label (completion);
+
+		if (!gtk_widget_get_visible (completion->priv->window))
+		{
+			if (!completion->priv->remember_info_visibility)
+			{
+				completion->priv->info_visible = FALSE;
+			}
+
+			gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (completion->priv->info_button),
+						      completion->priv->info_visible);
+
+			DEBUG({
+				g_print ("Emitting show\n");
+			});
+
+			g_signal_emit (completion, signals[SHOW], 0);
+		}
+		else
+		{
+			DEBUG({
+				g_print ("Already visible\n");
+			});
+		}
 
 		if (completion->priv->select_on_show)
 		{
