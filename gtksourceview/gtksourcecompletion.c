@@ -2911,43 +2911,6 @@ info_button_style_updated (GtkWidget           *button,
 }
 
 static void
-on_begin_delete (GtkSourceCompletionModel *model,
-                 GtkSourceCompletion      *completion)
-{
-	GtkTreeSelection *selection;
-
-	selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (completion->priv->tree_view_proposals));
-
-	g_signal_handlers_block_by_func (completion->priv->model_proposals,
-	                                 G_CALLBACK (on_row_deleted_cb),
-	                                 completion);
-
-	g_signal_handlers_block_by_func (selection,
-	                                 G_CALLBACK (selection_changed_cb),
-	                                 completion);
-}
-
-static void
-on_end_delete (GtkSourceCompletionModel *model,
-                 GtkSourceCompletion      *completion)
-{
-	GtkTreeSelection *selection;
-
-	selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (completion->priv->tree_view_proposals));
-
-	g_signal_handlers_unblock_by_func (completion->priv->model_proposals,
-	                                   G_CALLBACK (on_row_deleted_cb),
-	                                   completion);
-
-	g_signal_handlers_unblock_by_func (selection,
-	                                   G_CALLBACK (selection_changed_cb),
-	                                   completion);
-
-	check_first_selected (completion);
-}
-
-
-static void
 initialize_ui (GtkSourceCompletion *completion)
 {
 	GtkBuilder *builder;
@@ -3051,16 +3014,6 @@ initialize_ui (GtkSourceCompletion *completion)
 	g_signal_connect_after (completion->priv->model_proposals,
 	                        "row-deleted",
 	                        G_CALLBACK (on_row_deleted_cb),
-	                        completion);
-
-	g_signal_connect_after (completion->priv->model_proposals,
-	                        "begin-delete",
-	                        G_CALLBACK (on_begin_delete),
-	                        completion);
-
-	g_signal_connect_after (completion->priv->model_proposals,
-	                        "end-delete",
-	                        G_CALLBACK (on_end_delete),
 	                        completion);
 
 	g_signal_connect (completion->priv->model_proposals,
