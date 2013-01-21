@@ -2906,6 +2906,35 @@ info_button_style_updated (GtkWidget           *button,
 }
 
 static void
+replace_model (GtkSourceCompletion *completion)
+{
+	if (completion->priv->model_proposals != NULL)
+	{
+		g_object_unref (completion->priv->model_proposals);
+	}
+
+	completion->priv->model_proposals = gtk_source_completion_model_new ();
+
+	gtk_source_completion_model_set_show_headers (completion->priv->model_proposals,
+				                      completion->priv->show_headers);
+
+	g_signal_connect_after (completion->priv->model_proposals,
+	                        "row-inserted",
+	                        G_CALLBACK (on_row_inserted_cb),
+	                        completion);
+
+	g_signal_connect_after (completion->priv->model_proposals,
+	                        "row-deleted",
+	                        G_CALLBACK (on_row_deleted_cb),
+	                        completion);
+
+	g_signal_connect (completion->priv->model_proposals,
+	                  "providers-changed",
+	                  G_CALLBACK (on_providers_changed),
+	                  completion);
+}
+
+static void
 initialize_ui (GtkSourceCompletion *completion)
 {
 	GtkBuilder *builder;
@@ -2950,15 +2979,7 @@ initialize_ui (GtkSourceCompletion *completion)
 
 	info_button_style_updated (completion->priv->info_button, completion);
 
-	/* Tree view and model */
-	completion->priv->model_proposals = gtk_source_completion_model_new ();
-	gtk_source_completion_model_set_show_headers (completion->priv->model_proposals,
-				                      completion->priv->show_headers);
-
-
-	gtk_tree_view_set_model (GTK_TREE_VIEW (completion->priv->tree_view_proposals),
-	                         GTK_TREE_MODEL (completion->priv->model_proposals));
-
+	/* Tree view */
 	selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (completion->priv->tree_view_proposals));
 	gtk_tree_selection_set_select_function (selection,
 	                                        (GtkTreeSelectionFunc)selection_func,
@@ -3000,21 +3021,6 @@ initialize_ui (GtkSourceCompletion *completion)
 	                                         (GtkTreeCellDataFunc)render_proposal_accelerator_func,
 	                                         completion,
 	                                         NULL);
-
-	g_signal_connect_after (completion->priv->model_proposals,
-	                        "row-inserted",
-	                        G_CALLBACK (on_row_inserted_cb),
-	                        completion);
-
-	g_signal_connect_after (completion->priv->model_proposals,
-	                        "row-deleted",
-	                        G_CALLBACK (on_row_deleted_cb),
-	                        completion);
-
-	g_signal_connect (completion->priv->model_proposals,
-	                  "providers-changed",
-	                  G_CALLBACK (on_providers_changed),
-	                  completion);
 
 	g_signal_connect (completion->priv->tree_view_proposals,
 			  "row-activated",
@@ -3151,11 +3157,7 @@ update_completion (GtkSourceCompletion        *completion,
 
 	/* Create a new CompletionModel */
 	gtk_tree_view_set_model (GTK_TREE_VIEW (completion->priv->tree_view_proposals), NULL);
-	g_object_unref (completion->priv->model_proposals);
-	completion->priv->model_proposals = gtk_source_completion_model_new ();
-
-	gtk_source_completion_model_set_show_headers (completion->priv->model_proposals,
-						      completion->priv->show_headers);
+	replace_model (completion);
 
 	for (item = providers; item != NULL; item = g_list_next (item))
 	{
