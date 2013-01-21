@@ -1936,9 +1936,6 @@ cancel_completion (GtkSourceCompletion *completion)
 		/* Inform providers of cancellation through the context */
 		_gtk_source_completion_context_cancel (completion->priv->context);
 
-		/* Let the model know we are cancelling the population */
-		gtk_source_completion_model_cancel (completion->priv->model_proposals);
-
 		g_object_unref (completion->priv->context);
 		completion->priv->context = NULL;
 

@@ -693,47 +693,6 @@ test_iters (void)
 	test_iters_impl (TRUE);
 }
 
-static void
-test_cancel (void)
-{
-	GtkSourceCompletionModel *model = gtk_source_completion_model_new ();
-	GtkSourceCompletionProvider *provider;
-	GList *list_providers = NULL;
-	GList *proposals = NULL;
-	GList *all_providers = NULL;
-	GList *all_list_proposals = NULL;
-
-	/* Cancel out of a population, when the model is empty */
-	gtk_source_completion_model_cancel (model);
-	g_assert (gtk_source_completion_model_is_empty (model, FALSE));
-
-	/* Cancel during a population.
-	 * The contents of the model after the cancellation depends on the
-	 * implementation. Thus we don't check the contents.
-	 */
-	provider = GTK_SOURCE_COMPLETION_PROVIDER (test_provider_new ());
-	proposals = create_proposals ();
-	list_providers = g_list_append (NULL, provider);
-
-	gtk_source_completion_model_begin_populate (model, list_providers);
-	gtk_source_completion_model_add_proposals (model, provider, proposals);
-	gtk_source_completion_model_cancel (model);
-
-	/* Normal population */
-	create_providers (&all_providers, &all_list_proposals);
-	populate_model (model, all_providers, all_list_proposals);
-	check_all_providers_with_and_without_headers (model, all_providers, all_list_proposals);
-
-	/* Cancel out of a population, when the model is not empty */
-	gtk_source_completion_model_cancel (model);
-	check_all_providers_with_and_without_headers (model, all_providers, all_list_proposals);
-
-	g_object_unref (model);
-	g_list_free_full (list_providers, g_object_unref);
-	g_list_free_full (proposals, g_object_unref);
-	free_providers (all_providers, all_list_proposals);
-}
-
 int
 main (int argc, char **argv)
 {
@@ -768,9 +727,6 @@ main (int argc, char **argv)
 
 	g_test_add_func ("/CompletionModel/iters",
 			 test_iters);
-
-	g_test_add_func ("/CompletionModel/cancel",
-			 test_cancel);
 
 	return g_test_run ();
 }

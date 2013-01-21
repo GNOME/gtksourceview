@@ -82,9 +82,6 @@ void     gtk_source_completion_model_end_populate               (GtkSourceComple
 								 GtkSourceCompletionProvider *provider);
 
 G_GNUC_INTERNAL
-void     gtk_source_completion_model_cancel			(GtkSourceCompletionModel    *model);
-
-G_GNUC_INTERNAL
 gboolean gtk_source_completion_model_is_empty			(GtkSourceCompletionModel    *model,
 								 gboolean                     only_visible);
 

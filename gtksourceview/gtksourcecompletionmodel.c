@@ -845,12 +845,6 @@ gtk_source_completion_model_add_proposals (GtkSourceCompletionModel    *model,
 	g_list_foreach (proposals, (GFunc)add_proposal, provider_node);
 }
 
-void
-gtk_source_completion_model_cancel (GtkSourceCompletionModel *model)
-{
-	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_MODEL (model));
-}
-
 /* Get/set visible providers */
 
 static void
