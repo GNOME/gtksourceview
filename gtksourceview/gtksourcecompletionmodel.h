@@ -69,17 +69,9 @@ GtkSourceCompletionModel *
          gtk_source_completion_model_new			(void);
 
 G_GNUC_INTERNAL
-void     gtk_source_completion_model_begin_populate             (GtkSourceCompletionModel    *model,
-								 GList                       *providers);
-
-G_GNUC_INTERNAL
 void     gtk_source_completion_model_add_proposals              (GtkSourceCompletionModel    *model,
 								 GtkSourceCompletionProvider *provider,
 								 GList                       *proposals);
-
-G_GNUC_INTERNAL
-void     gtk_source_completion_model_end_populate               (GtkSourceCompletionModel    *model,
-								 GtkSourceCompletionProvider *provider);
 
 G_GNUC_INTERNAL
 gboolean gtk_source_completion_model_is_empty			(GtkSourceCompletionModel    *model,

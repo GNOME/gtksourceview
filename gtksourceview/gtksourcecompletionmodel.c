@@ -713,22 +713,7 @@ gtk_source_completion_model_init (GtkSourceCompletionModel *self)
 	self->priv->visible_providers = NULL;
 }
 
-/* Population: begin/end populate, add proposals, cancel */
-
-void
-gtk_source_completion_model_begin_populate (GtkSourceCompletionModel *model,
-					    GList                    *providers)
-{
-	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_MODEL (model));
-}
-
-void
-gtk_source_completion_model_end_populate (GtkSourceCompletionModel    *model,
-					  GtkSourceCompletionProvider *provider)
-{
-	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_MODEL (model));
-	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_PROVIDER (provider));
-}
+/* Population: add proposals */
 
 /* Returns the newly-created provider node */
 static GList *

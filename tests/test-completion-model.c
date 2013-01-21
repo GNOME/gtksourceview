@@ -134,8 +134,6 @@ populate_model (GtkSourceCompletionModel *model,
 	GList *cur_provider;
 	GList *cur_list_proposals;
 
-	gtk_source_completion_model_begin_populate (model, all_providers);
-
 	for (cur_provider = all_providers,
 	     cur_list_proposals = all_list_proposals;
 	     cur_provider != NULL;
@@ -145,9 +143,6 @@ populate_model (GtkSourceCompletionModel *model,
 		gtk_source_completion_model_add_proposals (model,
 							   GTK_SOURCE_COMPLETION_PROVIDER (cur_provider->data),
 							   cur_list_proposals->data);
-
-		gtk_source_completion_model_end_populate (model,
-							  GTK_SOURCE_COMPLETION_PROVIDER (cur_provider->data));
 	}
 }
 
@@ -321,14 +316,9 @@ test_is_empty (void)
 	list_providers = g_list_append (list_providers, provider);
 	list_proposals = create_proposals ();
 
-	gtk_source_completion_model_begin_populate (model, list_providers);
-
 	gtk_source_completion_model_add_proposals (model,
 						   GTK_SOURCE_COMPLETION_PROVIDER (provider),
 						   list_proposals);
-
-	gtk_source_completion_model_end_populate (model,
-						  GTK_SOURCE_COMPLETION_PROVIDER (provider));
 
 	g_assert (!gtk_source_completion_model_is_empty (model, FALSE));
 	g_assert (!gtk_source_completion_model_is_empty (model, TRUE));
@@ -445,82 +435,6 @@ test_set_visible_providers (void)
 	g_list_free (subset_list_proposals);
 }
 
-/* Do a first populate, and then a second populate with another set of
- * proposals. The proposals in common between the two populates are inserted in
- * the same order.
- */
-static void
-test_second_populate_same_order (void)
-{
-	GtkSourceCompletionModel *model;
-	GList *all_providers = NULL;
-	GList *all_list_proposals = NULL;
-	GList *list_proposals = NULL;
-
-	/* First populate with two providers */
-	model = gtk_source_completion_model_new ();
-	create_providers (&all_providers, &all_list_proposals);
-	populate_model (model, all_providers, all_list_proposals);
-
-	/* Remove the second provider and its associated proposals */
-	g_object_unref (all_providers->next->data);
-	all_providers = g_list_delete_link (all_providers, all_providers->next);
-
-	g_list_free_full (all_list_proposals->next->data, g_object_unref);
-	all_list_proposals = g_list_delete_link (all_list_proposals, all_list_proposals->next);
-
-	/* Alter the proposals of the remaining provider */
-	list_proposals = all_list_proposals->data;
-	g_object_unref (list_proposals->data);
-	list_proposals = g_list_delete_link (list_proposals, list_proposals);
-	list_proposals = g_list_concat (list_proposals, create_proposals ());
-	all_list_proposals->data = list_proposals;
-
-	/* Second populate */
-	populate_model (model, all_providers, all_list_proposals);
-	check_all_providers_with_and_without_headers (model, all_providers, all_list_proposals);
-
-	g_object_unref (model);
-	free_providers (all_providers, all_list_proposals);
-}
-
-/* Same as test_second_populate_same_order() but with a different insertion
- * order of the common proposals for the second populate.
- */
-static void
-test_second_populate_different_order (void)
-{
-	GtkSourceCompletionModel *model;
-	GList *all_providers = NULL;
-	GList *all_list_proposals = NULL;
-	GList *list_proposals = NULL;
-
-	/* First populate with two providers */
-	model = gtk_source_completion_model_new ();
-	create_providers (&all_providers, &all_list_proposals);
-	populate_model (model, all_providers, all_list_proposals);
-
-	/* Remove the second provider and its associated proposals */
-	g_object_unref (all_providers->next->data);
-	all_providers = g_list_delete_link (all_providers, all_providers->next);
-
-	g_list_free_full (all_list_proposals->next->data, g_object_unref);
-	all_list_proposals = g_list_delete_link (all_list_proposals, all_list_proposals->next);
-
-	/* Alter the proposals of the remaining provider */
-	list_proposals = all_list_proposals->data;
-	list_proposals = g_list_reverse (list_proposals);
-	list_proposals = g_list_concat (list_proposals, create_proposals ());
-	all_list_proposals->data = list_proposals;
-
-	/* Second populate */
-	populate_model (model, all_providers, all_list_proposals);
-	check_all_providers_with_and_without_headers (model, all_providers, all_list_proposals);
-
-	g_object_unref (model);
-	free_providers (all_providers, all_list_proposals);
-}
-
 static void
 test_populate_several_batches (void)
 {
@@ -533,7 +447,6 @@ test_populate_several_batches (void)
 	GtkTreeIter iter;
 
 	gtk_source_completion_model_set_show_headers (model, TRUE);
-	gtk_source_completion_model_begin_populate (model, list_providers);
 
 	/* First batch */
 	gtk_source_completion_model_add_proposals (model, provider, first_proposals);
@@ -544,7 +457,6 @@ test_populate_several_batches (void)
 
 	/* Second batch */
 	gtk_source_completion_model_add_proposals (model, provider, second_proposals);
-	gtk_source_completion_model_end_populate (model, provider);
 
 	all_proposals = g_list_copy (first_proposals);
 	all_proposals = g_list_concat (all_proposals, g_list_copy (second_proposals));
@@ -601,9 +513,7 @@ test_n_proposals (void)
 	list_providers = g_list_append (NULL, provider);
 	list_proposals = create_proposals ();
 
-	gtk_source_completion_model_begin_populate (model, list_providers);
 	gtk_source_completion_model_add_proposals (model, provider, list_proposals);
-	gtk_source_completion_model_end_populate (model, provider);
 
 	g_assert (gtk_source_completion_model_n_proposals (model, other_provider) == 0);
 
@@ -709,12 +619,6 @@ main (int argc, char **argv)
 
 	g_test_add_func ("/CompletionModel/set-visible-providers",
 			 test_set_visible_providers);
-
-	g_test_add_func ("/CompletionModel/second-populate-same-order",
-			 test_second_populate_same_order);
-
-	g_test_add_func ("/CompletionModel/second-populate-different-order",
-			 test_second_populate_different_order);
 
 	g_test_add_func ("/CompletionModel/populate-several-batches",
 			 test_populate_several_batches);

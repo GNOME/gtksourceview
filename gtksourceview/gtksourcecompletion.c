@@ -3157,9 +3157,6 @@ update_completion (GtkSourceCompletion        *completion,
 	gtk_source_completion_model_set_show_headers (completion->priv->model_proposals,
 						      completion->priv->show_headers);
 
-	gtk_source_completion_model_begin_populate (completion->priv->model_proposals,
-						    completion->priv->active_providers);
-
 	for (item = providers; item != NULL; item = g_list_next (item))
 	{
 		GtkSourceCompletionProvider *provider =
@@ -3263,10 +3260,6 @@ _gtk_source_completion_add_proposals (GtkSourceCompletion         *completion,
 
 	if (finished)
 	{
-		/* Let the model know this provider is done */
-		gtk_source_completion_model_end_populate (completion->priv->model_proposals,
-							  provider);
-
 		/* Remove provider from list of running providers */
 		completion->priv->running_providers =
 			g_list_delete_link (completion->priv->running_providers,
