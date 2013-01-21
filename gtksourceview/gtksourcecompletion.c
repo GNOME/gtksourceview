@@ -2184,8 +2184,6 @@ gtk_source_completion_hide_default (GtkSourceCompletion *completion)
 	gtk_widget_hide (completion->priv->info_window);
 	gtk_widget_hide (completion->priv->window);
 
-	gtk_source_completion_model_clear (completion->priv->model_proposals);
-
 	cancel_completion (completion);
 
 	g_list_free (completion->priv->active_providers);

@@ -103,9 +103,6 @@ guint    gtk_source_completion_model_n_proposals		(GtkSourceCompletionModel    *
 								 GtkSourceCompletionProvider *provider);
 
 G_GNUC_INTERNAL
-void     gtk_source_completion_model_clear			(GtkSourceCompletionModel    *model);
-
-G_GNUC_INTERNAL
 void     gtk_source_completion_model_set_show_headers		(GtkSourceCompletionModel    *model,
 								 gboolean                     show_headers);
 

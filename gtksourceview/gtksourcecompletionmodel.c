@@ -720,8 +720,6 @@ gtk_source_completion_model_begin_populate (GtkSourceCompletionModel *model,
 					    GList                    *providers)
 {
 	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_MODEL (model));
-
-	gtk_source_completion_model_clear (model);
 }
 
 void
@@ -952,31 +950,6 @@ gtk_source_completion_model_get_visible_providers (GtkSourceCompletionModel *mod
 }
 
 /* Other public functions */
-
-void
-gtk_source_completion_model_clear (GtkSourceCompletionModel *model)
-{
-	GList *provider_node;
-
-	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_MODEL (model));
-
-	for (provider_node = model->priv->providers;
-	     provider_node != NULL;
-	     provider_node = g_list_next (provider_node))
-	{
-		ProviderInfo *provider_info = provider_node->data;
-
-		if (provider_info->visible)
-		{
-			hide_provider (model, provider_info);
-			provider_info->visible = FALSE;
-		}
-	}
-
-	g_list_free_full (model->priv->providers, (GDestroyNotify)provider_info_free);
-	model->priv->providers = NULL;
-
-}
 
 /* If @only_visible is %TRUE, only the visible providers are taken into account. */
 gboolean
