@@ -2138,23 +2138,6 @@ check_first_selected (GtkSourceCompletion *completion)
 }
 
 static void
-on_row_inserted_cb (GtkTreeModel        *tree_model,
-                    GtkTreePath         *path,
-                    GtkTreeIter         *iter,
-                    GtkSourceCompletion *completion)
-{
-	check_first_selected (completion);
-}
-
-static void
-on_row_deleted_cb (GtkTreeModel        *tree_model,
-                   GtkTreePath         *path,
-                   GtkSourceCompletion *completion)
-{
-	check_first_selected (completion);
-}
-
-static void
 gtk_source_completion_hide_default (GtkSourceCompletion *completion)
 {
 	gtk_label_set_markup (GTK_LABEL (completion->priv->default_info), "");
@@ -2898,16 +2881,6 @@ replace_model (GtkSourceCompletion *completion)
 
 	gtk_source_completion_model_set_show_headers (completion->priv->model_proposals,
 				                      completion->priv->show_headers);
-
-	g_signal_connect_after (completion->priv->model_proposals,
-	                        "row-inserted",
-	                        G_CALLBACK (on_row_inserted_cb),
-	                        completion);
-
-	g_signal_connect_after (completion->priv->model_proposals,
-	                        "row-deleted",
-	                        G_CALLBACK (on_row_deleted_cb),
-	                        completion);
 
 	g_signal_connect (completion->priv->model_proposals,
 	                  "providers-changed",
