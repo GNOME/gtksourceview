@@ -603,6 +603,46 @@ test_iters (void)
 	test_iters_impl (TRUE);
 }
 
+static void
+on_row_changed (GtkTreeModel                *model,
+		GtkTreePath                 *path,
+		GtkTreeIter                 *iter,
+		GtkSourceCompletionProposal *proposal)
+{
+	GtkSourceCompletionProposal *row_proposal = NULL;
+
+	gtk_tree_model_get (model, iter,
+			    GTK_SOURCE_COMPLETION_MODEL_COLUMN_PROPOSAL, &row_proposal,
+			    -1);
+
+	/* Make sure that the signal was emitted for the good row. */
+	g_assert (proposal == row_proposal);
+}
+
+static void
+test_row_changed (void)
+{
+	GtkSourceCompletionModel *model = gtk_source_completion_model_new ();
+	TestProvider *provider = test_provider_new ();
+	GList *proposals = create_proposals ();
+	GtkSourceCompletionProposal *proposal = proposals->data;
+
+	gtk_source_completion_model_add_proposals (model,
+						   GTK_SOURCE_COMPLETION_PROVIDER (provider),
+						   proposals);
+
+	g_signal_connect (model,
+			  "row-changed",
+			  G_CALLBACK (on_row_changed),
+			  proposal);
+
+	gtk_source_completion_proposal_changed (proposal);
+
+	g_object_unref (model);
+	g_object_unref (provider);
+	g_list_free_full (proposals, g_object_unref);
+}
+
 int
 main (int argc, char **argv)
 {
@@ -631,6 +671,9 @@ main (int argc, char **argv)
 
 	g_test_add_func ("/CompletionModel/iters",
 			 test_iters);
+
+	g_test_add_func ("/CompletionModel/row-changed",
+			 test_row_changed);
 
 	return g_test_run ();
 }
