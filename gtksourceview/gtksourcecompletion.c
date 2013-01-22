@@ -2139,29 +2139,6 @@ on_row_inserted_cb (GtkTreeModel        *tree_model,
                     GtkTreeIter         *iter,
                     GtkSourceCompletion *completion)
 {
-	if (!gtk_widget_get_visible (completion->priv->window))
-	{
-		if (!completion->priv->remember_info_visibility)
-		{
-			completion->priv->info_visible = FALSE;
-		}
-
-		gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (completion->priv->info_button),
-					      completion->priv->info_visible);
-
-		DEBUG({
-			g_print ("Emitting show\n");
-		});
-
-		g_signal_emit (completion, signals[SHOW], 0);
-	}
-	else
-	{
-		DEBUG({
-			g_print ("Already visible\n");
-		});
-	}
-
 	check_first_selected (completion);
 }
 
