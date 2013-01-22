@@ -3197,17 +3197,7 @@ populating_done (GtkSourceCompletion        *completion,
 
 		if (completion->priv->select_on_show)
 		{
-			/* CHECK: does this actually work? */
-			GtkTreeSelection *selection;
-
-			selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (completion->priv->tree_view_proposals));
-
-			if (gtk_tree_selection_count_selected_rows (selection) == 0)
-			{
-				GtkTreePath *path = gtk_tree_path_new_first ();
-				gtk_tree_selection_select_path (selection, path);
-				gtk_tree_path_free (path);
-			}
+			check_first_selected (completion);
 		}
 	}
 }
