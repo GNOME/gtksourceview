@@ -440,6 +440,14 @@ scroll_to_iter (GtkSourceCompletion *completion,
                 GtkTreeIter         *iter)
 {
 	GtkTreePath *path;
+	GtkTreeModel *model;
+
+	model = gtk_tree_view_get_model (GTK_TREE_VIEW (completion->priv->tree_view_proposals));
+
+	if (model == NULL)
+	{
+		return;
+	}
 
 	path = gtk_tree_model_get_path (GTK_TREE_MODEL (completion->priv->model_proposals),
 	                                iter);
