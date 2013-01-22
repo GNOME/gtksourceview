@@ -2126,11 +2126,7 @@ check_first_selected (GtkSourceCompletion *completion)
 	}
 
 	gtk_tree_selection_select_iter (selection, &piter);
-
-	gtk_tree_model_get_iter_first (model, &piter);
 	scroll_to_iter (completion, &first);
-
-	completion->priv->select_first = TRUE;
 }
 
 static void
