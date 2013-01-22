@@ -1376,6 +1376,41 @@ gtk_source_completion_move_cursor (GtkSourceCompletion *completion,
 }
 
 static void
+check_first_selected (GtkSourceCompletion *completion)
+{
+	GtkTreeSelection *selection;
+	GtkTreeIter piter;
+	GtkTreeIter first;
+	GtkTreeModel *model;
+
+	model = GTK_TREE_MODEL (completion->priv->model_proposals);
+	selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (completion->priv->tree_view_proposals));
+
+	if (!completion->priv->select_first)
+	{
+		return;
+	}
+
+	if (!gtk_tree_model_get_iter_first (model, &first))
+	{
+		return;
+	}
+
+	piter = first;
+
+	while (gtk_source_completion_model_iter_is_header (completion->priv->model_proposals, &piter))
+	{
+		if (!gtk_tree_model_iter_next (model, &piter))
+		{
+			return;
+		}
+	}
+
+	gtk_tree_selection_select_iter (selection, &piter);
+	scroll_to_iter (completion, &first);
+}
+
+static void
 gtk_source_completion_move_page (GtkSourceCompletion *completion,
                                  GtkScrollStep        step,
                                  gint                 num)
@@ -1407,6 +1442,8 @@ gtk_source_completion_move_page (GtkSourceCompletion *completion,
 			select_previous_provider (completion, -1 * num);
 		}
 	}
+
+	check_first_selected (completion);
 }
 
 static gboolean
@@ -2100,41 +2137,6 @@ gtk_source_completion_set_property (GObject      *object,
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
 			break;
 	}
-}
-
-static void
-check_first_selected (GtkSourceCompletion *completion)
-{
-	GtkTreeSelection *selection;
-	GtkTreeIter piter;
-	GtkTreeIter first;
-	GtkTreeModel *model;
-
-	model = GTK_TREE_MODEL (completion->priv->model_proposals);
-	selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (completion->priv->tree_view_proposals));
-
-	if (!completion->priv->select_first)
-	{
-		return;
-	}
-
-	if (!gtk_tree_model_get_iter_first (model, &first))
-	{
-		return;
-	}
-
-	piter = first;
-
-	while (gtk_source_completion_model_iter_is_header (completion->priv->model_proposals, &piter))
-	{
-		if (!gtk_tree_model_iter_next (model, &piter))
-		{
-			return;
-		}
-	}
-
-	gtk_tree_selection_select_iter (selection, &piter);
-	scroll_to_iter (completion, &first);
 }
 
 static void
