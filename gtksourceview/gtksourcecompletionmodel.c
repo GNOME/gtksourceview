@@ -67,14 +67,6 @@ struct _GtkSourceCompletionModelPrivate
 	guint show_headers : 1;
 };
 
-enum
-{
-	PROVIDERS_CHANGED,
-	NUM_SIGNALS
-};
-
-static guint signals[NUM_SIGNALS] = {0,};
-
 static void tree_model_iface_init (gpointer g_iface, gpointer iface_data);
 
 G_DEFINE_TYPE_WITH_CODE (GtkSourceCompletionModel,
@@ -683,17 +675,6 @@ gtk_source_completion_model_class_init (GtkSourceCompletionModelClass *klass)
 
 	object_class->dispose = gtk_source_completion_model_dispose;
 
-	signals[PROVIDERS_CHANGED] =
-		g_signal_new ("providers-changed",
-		              G_TYPE_FROM_CLASS (klass),
-		              G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
-		              G_STRUCT_OFFSET (GtkSourceCompletionModelClass, providers_changed),
-		              NULL,
-		              NULL,
-		              g_cclosure_marshal_VOID__VOID,
-		              G_TYPE_NONE,
-		              0);
-
 	g_type_class_add_private (object_class, sizeof(GtkSourceCompletionModelPrivate));
 }
 
@@ -758,8 +739,6 @@ create_provider_info (GtkSourceCompletionModel    *model,
 	{
 		add_header (provider_node);
 	}
-
-	g_signal_emit (model, signals[PROVIDERS_CHANGED], 0);
 
 	return provider_node;
 }

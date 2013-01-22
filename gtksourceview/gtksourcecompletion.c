@@ -2840,13 +2840,6 @@ selection_func (GtkTreeSelection    *selection,
 }
 
 static void
-on_providers_changed (GtkSourceCompletionModel *model,
-                      GtkSourceCompletion      *completion)
-{
-	update_selection_label (completion);
-}
-
-static void
 info_button_style_updated (GtkWidget           *button,
                            GtkSourceCompletion *completion)
 {
@@ -2883,11 +2876,6 @@ replace_model (GtkSourceCompletion *completion)
 
 	gtk_source_completion_model_set_show_headers (completion->priv->model_proposals,
 				                      completion->priv->show_headers);
-
-	g_signal_connect (completion->priv->model_proposals,
-	                  "providers-changed",
-	                  G_CALLBACK (on_providers_changed),
-	                  completion);
 }
 
 static void
