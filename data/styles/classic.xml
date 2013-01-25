@@ -40,9 +40,16 @@
   <color name="yellow"     value="#FFFF00"/>
   <color name="purple"     value="#A020F0"/>
 
+  <!-- Global Settings -->
+  <style name="current-line"                background="#eeeeec"/>
+  <style name="draw-spaces"                 foreground="#babdb6"/>
+
   <!-- Bracket Matching -->
   <style name="bracket-match"               foreground="#white" background="#grey" bold="true"/>
   <style name="bracket-mismatch"            foreground="#white" background="#red" bold="true"/>
+
+  <!-- Right Margin -->
+  <style name="right-margin"                foreground="#grey"/>
 
   <!-- Search Matching -->
   <style name="search-match"                background="yellow"/>  
