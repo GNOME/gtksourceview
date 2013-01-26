@@ -3544,6 +3544,8 @@ gtk_source_completion_create_context (GtkSourceCompletion *completion,
  * @iter: a #GtkTextIter.
  *
  * Move the completion window to a specific iter.
+ *
+ * Deprecated: 3.8: Use gtk_source_completion_provider_get_start_iter() instead.
  */
 void
 gtk_source_completion_move_window (GtkSourceCompletion *completion,
