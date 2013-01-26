@@ -54,7 +54,6 @@
 
 struct _GtkSourceCompletionInfoPrivate
 {
-	GtkWidget *widget;
 	guint idle_resize;
 };
 
@@ -76,14 +75,17 @@ G_DEFINE_TYPE(GtkSourceCompletionInfo, gtk_source_completion_info, GTK_TYPE_WIND
 static gboolean
 idle_resize (GtkSourceCompletionInfo *info)
 {
+	GtkWidget *child = gtk_bin_get_child (GTK_BIN (info));
 	GtkRequisition nat_size;
 	guint border_width;
 	gint window_width;
 	gint window_height;
 
+	g_assert (child != NULL);
+
 	info->priv->idle_resize = 0;
 
-	gtk_widget_get_preferred_size (info->priv->widget, NULL, &nat_size);
+	gtk_widget_get_preferred_size (child, NULL, &nat_size);
 
 	border_width = gtk_container_get_border_width (GTK_CONTAINER (info));
 
@@ -128,10 +130,10 @@ gtk_source_completion_info_get_preferred_width (GtkWidget *widget,
 						gint	  *min_width,
 						gint	  *nat_width)
 {
-	GtkSourceCompletionInfo *info = GTK_SOURCE_COMPLETION_INFO (widget);
+	GtkWidget *child = gtk_bin_get_child (GTK_BIN (widget));
 	GtkRequisition nat_size;
 
-	gtk_widget_get_preferred_size (info->priv->widget, NULL, &nat_size);
+	gtk_widget_get_preferred_size (child, NULL, &nat_size);
 
 	if (min_width != NULL)
 	{
@@ -149,10 +151,10 @@ gtk_source_completion_info_get_preferred_height (GtkWidget *widget,
 						 gint	   *min_height,
 						 gint	   *nat_height)
 {
-	GtkSourceCompletionInfo *info = GTK_SOURCE_COMPLETION_INFO (widget);
+	GtkWidget *child = gtk_bin_get_child (GTK_BIN (widget));
 	GtkRequisition nat_size;
 
-	gtk_widget_get_preferred_size (info->priv->widget, NULL, &nat_size);
+	gtk_widget_get_preferred_size (child, NULL, &nat_size);
 
 	if (min_height != NULL)
 	{
@@ -180,21 +182,6 @@ gtk_source_completion_info_init (GtkSourceCompletionInfo *info)
 	                          GDK_WINDOW_TYPE_HINT_COMBO);
 
 	gtk_container_set_border_width (GTK_CONTAINER (info), 1);
-}
-
-static void
-gtk_source_completion_info_dispose (GObject *object)
-{
-	GtkSourceCompletionInfo *info = GTK_SOURCE_COMPLETION_INFO (object);
-
-	/* Remove widget */
-	if (info->priv->widget != NULL)
-	{
-		gtk_container_remove (GTK_CONTAINER (info), info->priv->widget);
-		info->priv->widget = NULL;
-	}
-
-	G_OBJECT_CLASS (gtk_source_completion_info_parent_class)->dispose (object);
 }
 
 static void
@@ -241,7 +228,6 @@ gtk_source_completion_info_class_init (GtkSourceCompletionInfoClass *klass)
 	GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
 	GtkContainerClass *container_class = GTK_CONTAINER_CLASS (klass);
 
-	object_class->dispose = gtk_source_completion_info_dispose;
 	object_class->finalize = gtk_source_completion_info_finalize;
 
 	widget_class->show = gtk_source_completion_info_show;
@@ -334,20 +320,22 @@ void
 gtk_source_completion_info_set_widget (GtkSourceCompletionInfo *info,
                                        GtkWidget               *widget)
 {
+	GtkWidget *cur_child = NULL;
+
 	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_INFO (info));
 	g_return_if_fail (widget == NULL || GTK_IS_WIDGET (widget));
 
-	if (info->priv->widget == widget)
+	cur_child = gtk_bin_get_child (GTK_BIN (info));
+
+	if (cur_child == widget)
 	{
 		return;
 	}
 
-	if (info->priv->widget != NULL)
+	if (cur_child != NULL)
 	{
-		gtk_container_remove (GTK_CONTAINER (info), info->priv->widget);
+		gtk_container_remove (GTK_CONTAINER (info), cur_child);
 	}
-
-	info->priv->widget = widget;
 
 	if (widget != NULL)
 	{
@@ -368,6 +356,5 @@ gtk_source_completion_info_get_widget (GtkSourceCompletionInfo* info)
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_INFO (info), NULL);
 
-	return info->priv->widget;
+	return gtk_bin_get_child (GTK_BIN (info));
 }
-
