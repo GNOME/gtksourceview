@@ -582,10 +582,9 @@ gtk_source_gutter_renderer_class_init (GtkSourceGutterRendererClass *klass)
 	 * @renderer: the #GtkSourceGutterRenderer who emits the signal
 	 *
 	 * The ::queue-draw signal is emitted when the renderer needs
-	 * to be redrawn. Use #gtk_source_gutter_renderer_queue_draw
+	 * to be redrawn. Use gtk_source_gutter_renderer_queue_draw()
 	 * to emit this signal from an implementation of the
 	 * #GtkSourceGutterRenderer interface.
-	 *
 	 */
 	signals[QUEUE_DRAW] =
 		g_signal_new ("queue-draw",

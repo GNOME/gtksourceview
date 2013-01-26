@@ -41,11 +41,11 @@
  *
  * The #GtkSourceUndoManager interface can be implemented to provide custom
  * undo management to a #GtkSourceBuffer. Use
- * #gtk_source_buffer_set_undo_manager to install a custom undo manager for
+ * gtk_source_buffer_set_undo_manager() to install a custom undo manager for
  * a particular source buffer.
  *
- * Use #gtk_source_undo_manager_can_undo_changed and
- * #gtk_source_undo_manager_can_redo_changed when respectively the undo state
+ * Use gtk_source_undo_manager_can_undo_changed() and
+ * gtk_source_undo_manager_can_redo_changed() when respectively the undo state
  * or redo state of the undo stack has changed.
  *
  * Since: 2.10
@@ -198,7 +198,7 @@ gtk_source_undo_manager_can_redo (GtkSourceUndoManager *manager)
  * @manager: a #GtkSourceUndoManager.
  *
  * Perform a single undo. Calling this function when there are no undo operations
- * available is an error. Use #gtk_source_undo_manager_can_undo to find out
+ * available is an error. Use gtk_source_undo_manager_can_undo() to find out
  * if there are undo operations available.
  *
  * Since: 2.10
@@ -216,7 +216,7 @@ gtk_source_undo_manager_undo (GtkSourceUndoManager *manager)
  * @manager: a #GtkSourceUndoManager.
  *
  * Perform a single redo. Calling this function when there are no redo operations
- * available is an error. Use #gtk_source_undo_manager_can_redo to find out
+ * available is an error. Use gtk_source_undo_manager_can_redo() to find out
  * if there are redo operations available.
  *
  * Since: 2.10
@@ -234,7 +234,7 @@ gtk_source_undo_manager_redo (GtkSourceUndoManager *manager)
  * @manager: a #GtkSourceUndoManager.
  *
  * Begin a not undoable action on the buffer. All changes between this call
- * and the call to #gtk_source_undo_manager_end_not_undoable_action cannot
+ * and the call to gtk_source_undo_manager_end_not_undoable_action() cannot
  * be undone. This function should be re-entrant.
  *
  * Since: 2.10

@@ -3515,7 +3515,7 @@ gtk_source_completion_get_view (GtkSourceCompletion *completion)
  *
  * Returns: (transfer floating): a new #GtkSourceCompletionContext.
  * The reference being returned is a 'floating' reference,
- * so if you invoke #gtk_source_completion_show with this context
+ * so if you invoke gtk_source_completion_show() with this context
  * you don't need to unref it.
  */
 GtkSourceCompletionContext *
@@ -3568,9 +3568,9 @@ gtk_source_completion_move_window (GtkSourceCompletion *completion,
  *
  * Block interactive completion. This can be used to disable interactive
  * completion when inserting or deleting text from the buffer associated with
- * the completion. Use #gtk_source_completion_unblock_interactive to enable
+ * the completion. Use gtk_source_completion_unblock_interactive() to enable
  * interactive completion again.
- **/
+ */
 void
 gtk_source_completion_block_interactive (GtkSourceCompletion *completion)
 {
@@ -3587,9 +3587,9 @@ gtk_source_completion_block_interactive (GtkSourceCompletion *completion)
  * @completion: a #GtkSourceCompletion.
  *
  * Unblock interactive completion. This can be used after using
- * #gtk_source_completion_block_interactive to enable interactive completion
+ * gtk_source_completion_block_interactive() to enable interactive completion
  * again.
- **/
+ */
 void
 gtk_source_completion_unblock_interactive (GtkSourceCompletion *completion)
 {
