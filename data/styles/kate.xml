@@ -35,10 +35,15 @@
   <color name="white"                       value="#FFFFFF"/>
   <color name="brown"                       value="#B07E00"/>
 
+  <!-- Global Settings -->
+  <style name="text"                        foreground="#black" background="#white"/>
+  <style name="selection"                   foreground="#white" background="#43ace8"/>
   <style name="current-line"                background="#EEF6FF"/>
+  <style name="line-numbers"                foreground="#black" background="#d6d2d0"/>
   <style name="right-margin"                background="#ADD4FF"/>
   <style name="bracket-match"               bold="true"/>
   <style name="bracket-mismatch"            background="red" bold="true"/>
+  <style name="draw-spaces"                 foreground="#d3d7cf"/>
 
   <!-- Search Matching -->
   <style name="search-match"                background="yellow"/>
