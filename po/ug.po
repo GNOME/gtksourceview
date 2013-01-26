@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gtksourceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-12-22 10:22+0000\n"
-"PO-Revision-Date: 2011-08-09 10:48+0600\n"
-"Last-Translator: Sahran <sahran.ug@gmail.com>\n"
+"POT-Creation-Date: 2013-01-24 21:39+0000\n"
+"PO-Revision-Date: 2013-01-26 10:21+0900\n"
+"Last-Translator: Gheyret Kenji <gheyret@gmail.com>\n"
 "Language-Team: Uyghur Computer Science Association <UKIJ@yahoogroups.com>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -60,7 +60,7 @@ msgid "Leading"
 msgstr "قۇر ئارىلىقى"
 
 #: ../data/glade/gtksourceview.xml.in.h:12
-#: ../gtksourceview/gtksourcecompletionitem.c:255
+#: ../gtksourceview/gtksourcecompletionitem.c:264
 #: ../gtksourceview/gtksourcegutterrenderertext.c:403
 msgid "Text"
 msgstr "تېكىست"
@@ -72,7 +72,7 @@ msgstr "ئەگەشمە"
 #. Translators: "All" is used as a label in thestatus bar of the
 #. popup, telling that all completion pages are shown
 #: ../data/glade/gtksourceview.xml.in.h:14
-#: ../gtksourceview/gtksourcecompletion.c:653
+#: ../gtksourceview/gtksourcecompletion.c:697
 msgid "All"
 msgstr "ھەممىسى"
 
@@ -112,7 +112,6 @@ msgid "Sources"
 msgstr "مەنبەلەر"
 
 #: ../data/language-specs/actionscript.lang.h:2
-#| msgid "Scripts"
 msgid "ActionScript"
 msgstr "ActionScript"
 
@@ -488,7 +487,6 @@ msgid "Automake"
 msgstr "Automake"
 
 #: ../data/language-specs/automake.lang.h:3
-#| msgid "Global Variable"
 msgid "Automake Variable"
 msgstr "Automake ئۆزگەرگۈچى"
 
@@ -505,17 +503,14 @@ msgid "Prefix"
 msgstr "ئالدى قوشۇلغۇچى"
 
 #: ../data/language-specs/automake.lang.h:7
-#| msgid "Option Name"
 msgid "Optional Target"
 msgstr "تاللاشچان نىشان"
 
 #: ../data/language-specs/automake.lang.h:8
-#| msgid "Builtin Variable"
 msgid "Built-in Target"
 msgstr "نىشان قۇر"
 
 #: ../data/language-specs/automake.lang.h:9
-#| msgid "Control Keyword"
 msgid "Other Keyword"
 msgstr "باشقا ئاچقۇچ سۆزلەر"
 
@@ -611,7 +606,7 @@ msgstr "ئون ئالتىلىك سىستېمىدىكى سان"
 #: ../data/language-specs/mxml.lang.h:1 ../data/language-specs/t2t.lang.h:1
 #: ../data/language-specs/texinfo.lang.h:1 ../data/language-specs/xml.lang.h:1
 #: ../data/language-specs/xslt.lang.h:1
-#: ../gtksourceview/gtksourcecompletionitem.c:242
+#: ../gtksourceview/gtksourcecompletionitem.c:251
 #: ../gtksourceview/gtksourcegutterrenderertext.c:395
 msgid "Markup"
 msgstr "بەلگە"
@@ -629,7 +624,6 @@ msgid "Field"
 msgstr "سۆز بۆلىكى"
 
 #: ../data/language-specs/bluespec.lang.h:2
-#| msgid "SystemVerilog"
 msgid "Bluespec SystemVerilog"
 msgstr "Bluespec SystemVerilog"
 
@@ -639,12 +633,10 @@ msgid "System Task"
 msgstr "سىستېما ۋەزىپە"
 
 #: ../data/language-specs/bluespec.lang.h:4
-#| msgid "Activation"
 msgid "Annotation"
 msgstr "%1 ئىلاۋە"
 
 #: ../data/language-specs/bluespec.lang.h:5
-#| msgid "Attribute name"
 msgid "Attribute"
 msgstr "خاسلىق"
 
@@ -778,7 +770,7 @@ msgid "Date"
 msgstr "چېسلا"
 
 #: ../data/language-specs/changelog.lang.h:4
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:455
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:465
 msgid "Name"
 msgstr "ئاتى"
 
@@ -1388,7 +1380,6 @@ msgid "Go"
 msgstr "يۆتكەل"
 
 #: ../data/language-specs/go.lang.h:12
-#| msgid "Binary number"
 msgid "Imaginary number"
 msgstr "مەۋھۇم سان"
 
@@ -1583,7 +1574,6 @@ msgid "Adverb"
 msgstr "رەۋىش"
 
 #: ../data/language-specs/j.lang.h:5
-#| msgid "Common Function"
 msgid "Conjunction"
 msgstr "باغلىغۇچى"
 
@@ -1596,17 +1586,14 @@ msgid "Explicit Argument"
 msgstr "روشەن پارامېتىر"
 
 #: ../data/language-specs/j.lang.h:9
-#| msgid "Cobalt"
 msgid "Global"
 msgstr "ئومۇمىيەت"
 
 #: ../data/language-specs/j.lang.h:10
-#| msgid "Link Text"
 msgid "Lab Text"
 msgstr "ئەن تېكىستى"
 
 #: ../data/language-specs/j.lang.h:11
-#| msgid "Location"
 msgid "Local"
 msgstr "يەرلىك"
 
@@ -1627,7 +1614,6 @@ msgid "Primitive"
 msgstr "ئىپتىدائىي"
 
 #: ../data/language-specs/j.lang.h:18
-#| msgid "Verbatim"
 msgid "Verb"
 msgstr "پېئىل"
 
@@ -1802,7 +1788,7 @@ msgid "Link Text"
 msgstr "ئۇلانما تېكىستى"
 
 #: ../data/language-specs/markdown.lang.h:10
-#: ../gtksourceview/gtksourcecompletionitem.c:229
+#: ../gtksourceview/gtksourcecompletionitem.c:238
 msgid "Label"
 msgstr "ئەن"
 
@@ -1847,17 +1833,14 @@ msgid "NetRexx"
 msgstr "NetRexx"
 
 #: ../data/language-specs/netrexx.lang.h:7
-#| msgid "External"
 msgid "Externals"
 msgstr "ياتلار(Externals)"
 
 #: ../data/language-specs/netrexx.lang.h:8
-#| msgid "Option"
 msgid "Options"
 msgstr "تاللانما"
 
 #: ../data/language-specs/netrexx.lang.h:9
-#| msgid "Data Type"
 msgid "Data Types"
 msgstr "سانلىق-ئاساس تىپى"
 
@@ -1866,22 +1849,18 @@ msgid "Special"
 msgstr "ئالاھىدە"
 
 #: ../data/language-specs/netrexx.lang.h:11
-#| msgid "Visible"
 msgid "Visibility"
 msgstr "كۆرۈشچانلىقى"
 
 #: ../data/language-specs/netrexx.lang.h:12
-#| msgid "Identifier"
 msgid "Modifiers"
 msgstr "سۈپەتلىگۈچىلەر"
 
 #: ../data/language-specs/netrexx.lang.h:13
-#| msgid "Keyword"
 msgid "Keywords"
 msgstr "ھالقىلىق سۆزلەر"
 
 #: ../data/language-specs/netrexx.lang.h:14
-#| msgid "Keyword"
 msgid "Sub Keywords"
 msgstr "تارماق ھالقىلىق سۆزلەر"
 
@@ -1898,15 +1877,14 @@ msgid "Objective-J"
 msgstr "Objective-J"
 
 #: ../data/language-specs/ocaml.lang.h:2
-msgid "Objective Caml"
-msgstr "Objective Caml"
+msgid "OCaml"
+msgstr "OCaml"
 
 #: ../data/language-specs/ocaml.lang.h:4
 msgid "Ocamldoc Comments"
 msgstr "Ocamldoc ئىزاھات"
 
 #: ../data/language-specs/ocaml.lang.h:21
-#| msgid "Standart Modules"
 msgid "Standard Modules"
 msgstr "ئۆلچەملىك ھالەت"
 
@@ -2054,37 +2032,30 @@ msgid "Puppet"
 msgstr "Puppet"
 
 #: ../data/language-specs/puppet.lang.h:3
-#| msgid "Sources"
 msgid "Resources"
 msgstr "مەنبەلەر"
 
 #: ../data/language-specs/puppet.lang.h:4
-#| msgid "Parameter"
 msgid "Parameters"
 msgstr "پارامېتىرلار"
 
 #: ../data/language-specs/puppet.lang.h:5
-#| msgid "Exec parameter"
 msgid "Metaparameters"
 msgstr "مېتا پارامېتىرلار"
 
 #: ../data/language-specs/puppet.lang.h:6
-#| msgid "Function"
 msgid "Functions"
 msgstr "فۇنكسىيىلەر"
 
 #: ../data/language-specs/puppet.lang.h:7
-#| msgid "Null Value"
 msgid "Values"
 msgstr "قىممەتلەر"
 
 #: ../data/language-specs/puppet.lang.h:8
-#| msgid "Variable"
 msgid "Variables"
 msgstr "ئۆزگەرگۈچىلەر"
 
 #: ../data/language-specs/puppet.lang.h:9
-#| msgid "Class"
 msgid "Class names"
 msgstr "كىلاس ئاتلىرى"
 
@@ -2107,7 +2078,6 @@ msgid "Builtin Object"
 msgstr "ئىچكى نەڭ"
 
 #: ../data/language-specs/python3.lang.h:2
-#| msgid "Python"
 msgid "Python 3"
 msgstr "Python 3"
 
@@ -2332,7 +2302,7 @@ msgstr "ماكرولار"
 
 #: ../data/language-specs/texinfo.lang.h:9
 msgid "File Attributes"
-msgstr "ھۆججەت خاسلىقى"
+msgstr "ھۆججەت خاسلىقلىرى"
 
 #: ../data/language-specs/texinfo.lang.h:10
 msgid "Generated Content"
@@ -2446,60 +2416,60 @@ msgstr "Tango"
 msgid "Color scheme using Tango color palette"
 msgstr "Tango رەڭ تاختىسىدىكى رەڭ لايىھىسىنى ئىشلىتىدۇ"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:371
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:381
 msgid "Document Words"
 msgstr "پۈتۈكتىكى سۆزلەر"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:456
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:466
 msgid "The provider name"
 msgstr "تەمىنلىگۈچى ئاتى"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:463
-#: ../gtksourceview/gtksourcecompletionitem.c:268
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:473
+#: ../gtksourceview/gtksourcecompletionitem.c:277
 msgid "Icon"
 msgstr "سىنبەلگە"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:464
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:474
 msgid "The provider icon"
 msgstr "تەمىنلىگۈچى سىنبەلگىسى"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:471
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:481
 msgid "Proposals Batch Size"
 msgstr "تەكلىپ تۈركۈم چوڭلۇقى"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:472
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:482
 msgid "Number of proposals added in one batch"
 msgstr "بىر تۈركۈمدە قوشىدىغان تەكلىپ سانى"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:481
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:491
 msgid "Scan Batch Size"
 msgstr "تەكشۈرىدىغان تۈركۈم چوڭلۇقى"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:482
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:492
 msgid "Number of lines scanned in one batch"
 msgstr "بىر تۈركۈمدە تەكشۈرىدىغان قۇر سانى"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:491
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:501
 msgid "Minimum Word Size"
 msgstr "ئەڭ قىسقا سۆز چېكى"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:492
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:502
 msgid "The minimum word size to complete"
 msgstr "تاماملاشنىڭ ئەڭ قىسقا سۆز چېكى"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:501
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:511
 msgid "Interactive Delay"
 msgstr "تەسىرلىشىشتىكى كېچىكتۈرۈش"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:502
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:512
 msgid "The delay before initiating interactive completion"
 msgstr "تاماملاشتا تەسىرلىشىشتىن ئىلگىرىكى كېچىكتۈرۈش"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:511
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:521
 msgid "Priority"
 msgstr "مەرتىۋە"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:512
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:522
 msgid "Provider priority"
 msgstr "تەمىنلىگۈچىنىڭ مەرتىۋىسى"
 
@@ -2569,91 +2539,90 @@ msgstr "يېنىۋېلىش باشقۇرغۇچ"
 msgid "The buffer undo manager"
 msgstr "يىغلەك يېنىۋېلىشنى باشقۇرغۇچ"
 
-#: ../gtksourceview/gtksourcecompletion.c:940
-#: ../gtksourceview/gtksourcecompletion.c:963
+#: ../gtksourceview/gtksourcecompletion.c:984
+#: ../gtksourceview/gtksourcecompletion.c:1007
 msgid "No extra information available"
 msgstr "ئىشلەتكىلى بولىدىغان ئارتۇق ئۇچۇر يوق"
 
-#: ../gtksourceview/gtksourcecompletion.c:2218
-#: ../gtksourceview/gtksourcegutter.c:547
+#: ../gtksourceview/gtksourcecompletion.c:2246
+#: ../gtksourceview/gtksourcegutter.c:548
 msgid "View"
 msgstr "كۆرۈنۈش"
 
-#: ../gtksourceview/gtksourcecompletion.c:2219
+#: ../gtksourceview/gtksourcecompletion.c:2247
 msgid "The GtkSourceView bound to the completion"
 msgstr "GtkSourceView تاماملاش چېكى"
 
-#: ../gtksourceview/gtksourcecompletion.c:2234
+#: ../gtksourceview/gtksourcecompletion.c:2261
 msgid "Remember Info Visibility"
 msgstr "ئۇچۇرنىڭ كۆرۈنۈشچانلىقىنى ئەستە تۇت"
 
-#: ../gtksourceview/gtksourcecompletion.c:2235
+#: ../gtksourceview/gtksourcecompletion.c:2262
 msgid "Remember the last info window visibility state"
 msgstr "ئاخىرقى ئۇچۇر كۆزنىكىنىڭ كۆرۈنۈشچانلىقىنى ئەستە تۇت"
 
-#: ../gtksourceview/gtksourcecompletion.c:2248
+#: ../gtksourceview/gtksourcecompletion.c:2274
 msgid "Select on Show"
 msgstr "تاللاپ كۆرسەت"
 
-#: ../gtksourceview/gtksourcecompletion.c:2249
+#: ../gtksourceview/gtksourcecompletion.c:2275
 msgid "Select first proposal when completion is shown"
 msgstr "كۆرسىتىش تاماملانغاندا بىرىنچى لايىھىنى تاللا"
 
-#: ../gtksourceview/gtksourcecompletion.c:2263
+#: ../gtksourceview/gtksourcecompletion.c:2288
 msgid "Show Headers"
 msgstr "قاش ئۇچۇرىنى كۆرسەت"
 
-#: ../gtksourceview/gtksourcecompletion.c:2264
+#: ../gtksourceview/gtksourcecompletion.c:2289
 msgid ""
 "Show provider headers when proposals from multiple providers are available"
 msgstr "كۆپ تەمىنلىگۈچىنىڭ تەكلىپى بولسا تەمىنلىگۈچىنىڭ باش ئۇچۇرىنى كۆرسەت"
 
-#: ../gtksourceview/gtksourcecompletion.c:2278
+#: ../gtksourceview/gtksourcecompletion.c:2302
 msgid "Show Icons"
 msgstr "سىنبەلگە كۆرسەت"
 
-#: ../gtksourceview/gtksourcecompletion.c:2279
+#: ../gtksourceview/gtksourcecompletion.c:2303
 msgid "Show provider and proposal icons in the completion popup"
 msgstr "تاماملاش تىزىملىكىدە تەمىنلىگۈچى ۋە تەكلىپ سىنبەلگىسىنى كۆرسەت"
 
-#: ../gtksourceview/gtksourcecompletion.c:2294
+#: ../gtksourceview/gtksourcecompletion.c:2317
 msgid "Accelerators"
 msgstr "تېزلەتكۈچ"
 
-#: ../gtksourceview/gtksourcecompletion.c:2295
+#: ../gtksourceview/gtksourcecompletion.c:2318
 msgid "Number of proposal accelerators to show"
 msgstr "كۆرسىتىدىغان تەكلىپ تېزلەتكۈچنىڭ سانى"
 
-#: ../gtksourceview/gtksourcecompletion.c:2311
+#: ../gtksourceview/gtksourcecompletion.c:2333
 msgid "Auto Complete Delay"
 msgstr "ئۆزلۈكىدىن تاماملاشنى كېچىكتۈرۈش"
 
-#: ../gtksourceview/gtksourcecompletion.c:2312
+#: ../gtksourceview/gtksourcecompletion.c:2334
 msgid "Completion popup delay for interactive completion"
 msgstr "تەسىرلىشىشچان تاماملاشتىكى تولۇقلاش تىزىملىك كېچىكتۈرۈش"
 
-#: ../gtksourceview/gtksourcecompletion.c:2328
+#: ../gtksourceview/gtksourcecompletion.c:2349
 msgid "Provider Page Size"
 msgstr "تەمىنلىگۈچىنىڭ بەت چوڭلۇقى"
 
-#: ../gtksourceview/gtksourcecompletion.c:2329
+#: ../gtksourceview/gtksourcecompletion.c:2350
 msgid "Provider scrolling page size"
 msgstr "تەمىنلىگۈچىنىڭ دومىلىما بەت چوڭلۇقى"
 
-#: ../gtksourceview/gtksourcecompletion.c:2348
+#: ../gtksourceview/gtksourcecompletion.c:2368
 msgid "Proposal Page Size"
 msgstr "تەكلىپ بەت چوڭلۇقى"
 
-#: ../gtksourceview/gtksourcecompletion.c:2349
+#: ../gtksourceview/gtksourcecompletion.c:2369
 msgid "Proposal scrolling page size"
 msgstr "تەكلىپ دومىلىما بەت چوڭلۇقى"
 
-#: ../gtksourceview/gtksourcecompletion.c:2710
+#: ../gtksourceview/gtksourcecompletion.c:2726
 msgid "Provider"
 msgstr "تەمىنلىگۈچى"
 
 #: ../gtksourceview/gtksourcecompletion.ui.h:1
-#| msgid "Show provider and proposal icons in the completion popup"
 msgid "Show detailed proposal information"
 msgstr "تەۋسىيە قىلىنغان تەپسىلىي ئۇچۇرلارنى كۆرسىتىش"
 
@@ -2662,7 +2631,7 @@ msgid "_Details..."
 msgstr "تەپسىلاتلار(_D)…"
 
 #: ../gtksourceview/gtksourcecompletioncontext.c:255
-#: ../gtksourceview/gtksourceview.c:309
+#: ../gtksourceview/gtksourceview.c:310
 msgid "Completion"
 msgstr "تاماملاش"
 
@@ -2688,31 +2657,31 @@ msgid "The type of activation"
 msgstr "ئاكتىپلاش تىپى"
 
 #. Tooltip style
-#: ../gtksourceview/gtksourcecompletioninfo.c:61
+#: ../gtksourceview/gtksourcecompletioninfo.c:176
 msgid "Completion Info"
 msgstr "تاماملاش ئۇچۇرى"
 
-#: ../gtksourceview/gtksourcecompletionitem.c:230
+#: ../gtksourceview/gtksourcecompletionitem.c:239
 msgid "Label to be shown for this item"
 msgstr "بۇ تۈرگە كۆرسىتىدىغان ئەن"
 
-#: ../gtksourceview/gtksourcecompletionitem.c:243
+#: ../gtksourceview/gtksourcecompletionitem.c:252
 msgid "Markup to be shown for this item"
 msgstr "بۇ تۈرگە كۆرسىتىدىغان بەلگە"
 
-#: ../gtksourceview/gtksourcecompletionitem.c:256
+#: ../gtksourceview/gtksourcecompletionitem.c:265
 msgid "Item text"
 msgstr "تۈر تېكىستى"
 
-#: ../gtksourceview/gtksourcecompletionitem.c:269
+#: ../gtksourceview/gtksourcecompletionitem.c:278
 msgid "Icon to be shown for this item"
 msgstr "بۇ تۈرگە كۆرسىتىدىغان سىنبەلگە"
 
-#: ../gtksourceview/gtksourcecompletionitem.c:281
+#: ../gtksourceview/gtksourcecompletionitem.c:290
 msgid "Info"
 msgstr "ئۇچۇر"
 
-#: ../gtksourceview/gtksourcecompletionitem.c:282
+#: ../gtksourceview/gtksourcecompletionitem.c:291
 msgid "Info to be shown for this item"
 msgstr "بۇ تۈرگە كۆرسىتىدىغان ئۇچۇر"
 
@@ -2770,35 +2739,35 @@ msgstr "نامەلۇم تىل ئورامى ‹%s›"
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "ئاساسىي تىل ئېنىقلىمىسى كەم (id = «%s».)"
 
-#: ../gtksourceview/gtksourcegutter.c:548
+#: ../gtksourceview/gtksourcegutter.c:549
 msgid "The gutters' GtkSourceView"
 msgstr "gutters نىڭ GtkSourceView"
 
-#: ../gtksourceview/gtksourcegutter.c:560
+#: ../gtksourceview/gtksourcegutter.c:561
 #: ../gtksourceview/gtksourcegutterrenderer.c:724
 msgid "Window Type"
 msgstr "كۆزنەك تىپى"
 
-#: ../gtksourceview/gtksourcegutter.c:561
+#: ../gtksourceview/gtksourcegutter.c:562
 msgid "The gutters text window type"
 msgstr "gutters تېكىست كۆزنەك تىپى"
 
-#: ../gtksourceview/gtksourcegutter.c:572
+#: ../gtksourceview/gtksourcegutter.c:573
 #: ../gtksourceview/gtksourcegutterrenderer.c:500
 msgid "X Padding"
 msgstr "X تولدۇرۇش"
 
-#: ../gtksourceview/gtksourcegutter.c:573
+#: ../gtksourceview/gtksourcegutter.c:574
 #: ../gtksourceview/gtksourcegutterrenderer.c:501
 msgid "The x-padding"
 msgstr "X تولدۇرۇشتا"
 
-#: ../gtksourceview/gtksourcegutter.c:583
+#: ../gtksourceview/gtksourcegutter.c:584
 #: ../gtksourceview/gtksourcegutterrenderer.c:516
 msgid "Y Padding"
 msgstr "Y تولدۇرۇش"
 
-#: ../gtksourceview/gtksourcegutter.c:584
+#: ../gtksourceview/gtksourcegutter.c:585
 #: ../gtksourceview/gtksourcegutterrenderer.c:517
 msgid "The y-padding"
 msgstr "Y تولدۇرۇشتا"
@@ -2980,12 +2949,12 @@ msgid "The GtkSourceBuffer object to print"
 msgstr "باسىدىغان GtkSourceBuffer نەڭ"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:462
-#: ../gtksourceview/gtksourceview.c:347
+#: ../gtksourceview/gtksourceview.c:348
 msgid "Tab Width"
 msgstr "بەتكۈچ كەڭلىكى"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:463
-#: ../gtksourceview/gtksourceview.c:348
+#: ../gtksourceview/gtksourceview.c:349
 msgid "Width of a tab character expressed in spaces"
 msgstr "بوشلۇق بىلەن خاتىرىلىنىدىغان tab ھەرپىنىڭ كەڭلىكى"
 
@@ -3200,97 +3169,97 @@ msgstr "يىغلەك"
 msgid "The text buffer to add undo support on"
 msgstr "يېنىۋېلىش مەشغۇلاتىنى قوللاشقا ئىشلىتىدىغان تېكىست غەملەك"
 
-#: ../gtksourceview/gtksourceview.c:310
+#: ../gtksourceview/gtksourceview.c:311
 msgid "The completion object associated with the view"
 msgstr "بۇ كۆرگۈچكە مۇناسىۋەتلىك تاماملاش نەڭ"
 
-#: ../gtksourceview/gtksourceview.c:322
+#: ../gtksourceview/gtksourceview.c:323
 msgid "Show Line Numbers"
 msgstr "قۇر نومۇرىنى كۆرسەت"
 
-#: ../gtksourceview/gtksourceview.c:323
+#: ../gtksourceview/gtksourceview.c:324
 msgid "Whether to display line numbers"
 msgstr "قۇر نومۇرىنى كۆرسىتەمدۇ يوق"
 
-#: ../gtksourceview/gtksourceview.c:334
+#: ../gtksourceview/gtksourceview.c:335
 msgid "Show Line Marks"
 msgstr "قۇر بەلگىسىنى كۆرسەت"
 
-#: ../gtksourceview/gtksourceview.c:335
+#: ../gtksourceview/gtksourceview.c:336
 msgid "Whether to display line mark pixbufs"
 msgstr "قۇر بەلگىسى pixbufs نى كۆرسىتەمدۇ يوق"
 
-#: ../gtksourceview/gtksourceview.c:362
+#: ../gtksourceview/gtksourceview.c:363
 msgid "Indent Width"
 msgstr "تارايتىش كەڭلىكى"
 
-#: ../gtksourceview/gtksourceview.c:363
+#: ../gtksourceview/gtksourceview.c:364
 msgid "Number of spaces to use for each step of indent"
 msgstr "ھەر قېتىم تارايتىدىغان بوشلۇق سانى"
 
-#: ../gtksourceview/gtksourceview.c:372
+#: ../gtksourceview/gtksourceview.c:373
 msgid "Auto Indentation"
 msgstr "ئۆزلۈكىدىن تارايتىش"
 
-#: ../gtksourceview/gtksourceview.c:373
+#: ../gtksourceview/gtksourceview.c:374
 msgid "Whether to enable auto indentation"
 msgstr "ئۆزلۈكىدىن تارايتىشقا يول قويامدۇ يوق"
 
-#: ../gtksourceview/gtksourceview.c:380
+#: ../gtksourceview/gtksourceview.c:381
 msgid "Insert Spaces Instead of Tabs"
 msgstr "Tab ئورنىغا بوشلۇق قىستۇرۇش"
 
-#: ../gtksourceview/gtksourceview.c:381
+#: ../gtksourceview/gtksourceview.c:382
 msgid "Whether to insert spaces instead of tabs"
 msgstr "Tab ئورنىغا بوشلۇق قىستۇرامدۇ يوق"
 
-#: ../gtksourceview/gtksourceview.c:393
+#: ../gtksourceview/gtksourceview.c:394
 msgid "Show Right Margin"
 msgstr "ئوڭ گىرۋەكنى كۆرسەت"
 
-#: ../gtksourceview/gtksourceview.c:394
+#: ../gtksourceview/gtksourceview.c:395
 msgid "Whether to display the right margin"
 msgstr "ئوڭ گىرۋەكنى كۆرسىتەمدۇ يوق"
 
-#: ../gtksourceview/gtksourceview.c:406
+#: ../gtksourceview/gtksourceview.c:407
 msgid "Right Margin Position"
 msgstr "ئوڭ بوشلۇق ئورنى"
 
-#: ../gtksourceview/gtksourceview.c:407
+#: ../gtksourceview/gtksourceview.c:408
 msgid "Position of the right margin"
 msgstr "ئوڭ گىرۋەكنىڭ ئورنى"
 
-#: ../gtksourceview/gtksourceview.c:423
+#: ../gtksourceview/gtksourceview.c:424
 msgid "Smart Home/End"
 msgstr "ئىدراكلىق Home/End"
 
-#: ../gtksourceview/gtksourceview.c:424
+#: ../gtksourceview/gtksourceview.c:425
 msgid ""
 "HOME and END keys move to first/last non whitespace characters on line "
 "before going to the start/end of the line"
 msgstr "HOME ۋە END كۇنۇپكىسى قۇرنىڭ باش/ئاخىرىغا يۆتكىلىشتىن ئىلگىرى قۇر ئىچىدىكى بىرىنچى/ئاخىرقى ھەرپكە يۆتكىلىدۇ"
 
-#: ../gtksourceview/gtksourceview.c:434
+#: ../gtksourceview/gtksourceview.c:435
 msgid "Highlight current line"
 msgstr "ھازىرقى قۇرنى يورۇت"
 
-#: ../gtksourceview/gtksourceview.c:435
+#: ../gtksourceview/gtksourceview.c:436
 msgid "Whether to highlight the current line"
 msgstr "نۆۋەتتىكى قۇرنى يورۇتامدۇ يوق"
 
-#: ../gtksourceview/gtksourceview.c:442
+#: ../gtksourceview/gtksourceview.c:443
 msgid "Indent on tab"
 msgstr "tab دە تارايت"
 
-#: ../gtksourceview/gtksourceview.c:443
+#: ../gtksourceview/gtksourceview.c:444
 msgid "Whether to indent the selected text when the tab key is pressed"
 msgstr "tab كۇنۇپكىسىنى باسقاندا تاللانغان تېكىستنى تارايت"
 
-#: ../gtksourceview/gtksourceview.c:457
+#: ../gtksourceview/gtksourceview.c:458
 msgid "Draw Spaces"
 msgstr "بوشلۇق سىز"
 
-#: ../gtksourceview/gtksourceview.c:458
+#: ../gtksourceview/gtksourceview.c:459
 msgid "Set if and how the spaces should be visualized"
 msgstr "بوشلۇقنى كۆرۈنىدىغان قىلىپ تەڭشەمدۇ يوق"
 
@@ -3299,12 +3268,9 @@ msgid "translator-credits"
 msgstr "Gheyret Kenji <gheyret@gmail.com>\n"
 "Sahran<sahran@live.com>\n"
 "Muhemmed Erdem <misran_erdem@hotmail.com>\n"
-"\n"
-"Launchpad Contributions:\n"
-"  Abdumomin.Kadir https://launchpad.net/~abdumomin-kadir\n"
-"  Gheyret T.Kenji https://launchpad.net/~gheyret\n"
-"  Gheyret T.Kenji https://launchpad.net/~gheyretkenji\n"
-"  Sahran https://launchpad.net/~sahran"
+
+#~ msgid "Objective Caml"
+#~ msgstr "Objective Caml"
 
 #~ msgid "Object"
 #~ msgstr "نەڭ"
