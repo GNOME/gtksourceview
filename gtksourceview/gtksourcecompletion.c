@@ -2307,7 +2307,8 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 	 * GtkSourceCompletion:provider-page-size:
 	 *
 	 * The scroll page size of the provider pages in the completion window.
-	 * Not yet used.
+	 *
+	 * See the #GtkSourceCompletion::move-page signal.
 	 */
 	g_object_class_install_property (object_class,
 	                                 PROP_PROVIDER_PAGE_SIZE,
@@ -2327,6 +2328,8 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 	 * <keycap>PageUp</keycap> is pressed, the selected
 	 * proposal becomes the one which is located one page size backward or
 	 * forward.
+	 *
+	 * See also the #GtkSourceCompletion::move-cursor signal.
 	 */
 	g_object_class_install_property (object_class,
 	                                 PROP_PROPOSAL_PAGE_SIZE,
@@ -2410,9 +2413,11 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 	 * The <keycap>Up</keycap>, <keycap>Down</keycap>,
 	 * <keycap>PageUp</keycap>, <keycap>PageDown</keycap>,
 	 * <keycap>Home</keycap> and <keycap>End</keycap> keys are bound to the
-	 * normal behavior expected by those keys. The <keycap>PageDown</keycap>
-	 * and <keycap>PageUp</keycap> keys use the page size defined by the
-	 * #GtkSourceCompletion:proposal-page-size property.
+	 * normal behavior expected by those keys.
+	 *
+	 * When @step is equal to #GTK_SCROLL_PAGES, the page size is defined by
+	 * the #GtkSourceCompletion:proposal-page-size property. It is used for
+	 * the <keycap>PageDown</keycap> and <keycap>PageUp</keycap> keys.
 	 *
 	 * Applications should not connect to it, but may emit it with
 	 * g_signal_emit_by_name() if they need to control the cursor
@@ -2449,6 +2454,9 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 	 * is for displaying all the providers.
 	 * <keycombo><keycap>Control</keycap><keycap>End</keycap></keycombo>
 	 * is for going to the last provider.
+	 *
+	 * When @step is equal to #GTK_SCROLL_PAGES, the page size is defined by
+	 * the #GtkSourceCompletion:provider-page-size property.
 	 *
 	 * Applications should not connect to it, but may emit it with
 	 * g_signal_emit_by_name() if they need to control the page selection
