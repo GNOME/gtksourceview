@@ -30,9 +30,9 @@
  * current completion proposal.
  *
  * The info window has always the same size as the natural size of its child
- * widget, added with gtk_source_completion_info_set_widget().  If you want a
- * fixed size instead, a possibility is to use a scrolled window, as the
- * following example demonstrates.
+ * widget, added with gtk_container_add().  If you want a fixed size instead, a
+ * possibility is to use a scrolled window, as the following example
+ * demonstrates.
  *
  * <example>
  *   <title>Fixed size with a scrolled window.</title>
@@ -43,7 +43,7 @@
  *
  * gtk_widget_set_size_request (scrolled_window, 300, 200);
  * gtk_container_add (GTK_CONTAINER (scrolled_window), your_widget);
- * gtk_source_completion_info_set_widget (info, scrolled_window);
+ * gtk_container_add (GTK_CONTAINER (info), scrolled_window);
  *   </programlisting>
  * </example>
  */
@@ -315,6 +315,9 @@ gtk_source_completion_info_move_to_iter (GtkSourceCompletionInfo *info,
  * Sets the content widget of the info window. See that the previous widget will
  * lose a reference and it can be destroyed, so if you do not want this to
  * happen you must use g_object_ref() before calling this method.
+ *
+ * Deprecated: 3.8: Use gtk_container_add() instead. If there is already a child
+ * widget, remove it with gtk_container_remove().
  */
 void
 gtk_source_completion_info_set_widget (GtkSourceCompletionInfo *info,
@@ -350,6 +353,8 @@ gtk_source_completion_info_set_widget (GtkSourceCompletionInfo *info,
  * Get the current content widget.
  *
  * Returns: (transfer none): The current content widget.
+ *
+ * Deprecated: 3.8: Use gtk_bin_get_child() instead.
  */
 GtkWidget *
 gtk_source_completion_info_get_widget (GtkSourceCompletionInfo* info)

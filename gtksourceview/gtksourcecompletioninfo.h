@@ -62,9 +62,11 @@ void		 gtk_source_completion_info_move_to_iter	(GtkSourceCompletionInfo *info,
 								 GtkTextView             *view,
 								 GtkTextIter             *iter);
 
+G_DEPRECATED_FOR (gtk_container_add)
 void		 gtk_source_completion_info_set_widget		(GtkSourceCompletionInfo *info,
 								 GtkWidget               *widget);
 
+G_DEPRECATED_FOR (gtk_bin_get_child)
 GtkWidget	*gtk_source_completion_info_get_widget		(GtkSourceCompletionInfo *info);
 
 G_END_DECLS
