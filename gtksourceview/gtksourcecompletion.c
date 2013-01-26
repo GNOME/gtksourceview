@@ -980,6 +980,25 @@ row_activated_cb (GtkTreeView         *tree_view,
 }
 
 static void
+replace_info_widget (GtkSourceCompletionInfo *info,
+		     GtkWidget               *new_widget)
+{
+	GtkWidget *cur_widget = gtk_bin_get_child (GTK_BIN (info));
+
+	if (cur_widget == new_widget)
+	{
+		return;
+	}
+
+	if (cur_widget != NULL)
+	{
+		gtk_container_remove (GTK_CONTAINER (info), cur_widget);
+	}
+
+	gtk_container_add (GTK_CONTAINER (info), new_widget);
+}
+
+static void
 update_proposal_info_real (GtkSourceCompletion         *completion,
                            GtkSourceCompletionProvider *provider,
                            GtkSourceCompletionProposal *proposal)
@@ -996,8 +1015,7 @@ update_proposal_info_real (GtkSourceCompletion         *completion,
 		info_widget = completion->priv->default_info;
 		gtk_label_set_markup (GTK_LABEL (info_widget), _("No extra information available"));
 
-		gtk_source_completion_info_set_widget (info_window,
-		                                       info_widget);
+		replace_info_widget (info_window, info_widget);
 
 		gtk_widget_hide (GTK_WIDGET (info_window));
 		return;
@@ -1034,7 +1052,7 @@ update_proposal_info_real (GtkSourceCompletion         *completion,
 		}
 	}
 
-	gtk_source_completion_info_set_widget (info_window, info_widget);
+	replace_info_widget (info_window, info_widget);
 
 	if (prov_update_info)
 	{
@@ -3021,8 +3039,7 @@ initialize_ui (GtkSourceCompletion *completion)
 
 	gtk_widget_show (completion->priv->default_info);
 
-	gtk_source_completion_info_set_widget (GTK_SOURCE_COMPLETION_INFO (completion->priv->info_window),
-	                                       completion->priv->default_info);
+	gtk_container_add (GTK_CONTAINER (completion->priv->info_window), completion->priv->default_info);
 
 	/* Connect signals */
 	g_signal_connect_after (completion->priv->window,
