@@ -54,10 +54,10 @@
   <color name="aluminium5"                  value="#555753"/>
   <color name="aluminium6"                  value="#2e3436"/>
 
-  <!-- legacy styles for old lang files: do NOT use them in lang files -->
-  <style name="Others"                      foreground="chameleon3" bold="true"/>
-  <style name="Others 2"                    foreground="chameleon3"/>
-  <style name="Others 3"                    foreground="plum3"/>
+  <!-- Global Settings -->
+  <style name="cursor"                      foreground="aluminium4"/>
+  <style name="current-line"                background="aluminium1"/>
+  <style name="draw-spaces"                 foreground="aluminium3"/>
 
   <!-- Bracket Matching -->
   <style name="bracket-match"               foreground="aluminium1" background="aluminium3" bold="true"/>
