@@ -362,12 +362,11 @@ reload_if_needed (GtkSourceStyleSchemeManager *mgr)
 		if (scheme != NULL)
 		{
 			const gchar *id = gtk_source_style_scheme_get_id (scheme);
-			GtkSourceStyleScheme *old;
 
-			old = g_hash_table_lookup (schemes_hash, id);
-			if (old != NULL)
+			/* scheme with the same id already loaded from a path with higher prio: skip it */
+			if (g_hash_table_contains (schemes_hash, id))
 			{
-				schemes = g_slist_remove (schemes, old);
+				continue;
 			}
 
 			schemes = g_slist_prepend (schemes, scheme);

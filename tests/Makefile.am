@@ -35,6 +35,14 @@ test_languagemanager_LDADD = 		\
 	$(DEP_LIBS)			\
 	$(TESTS_LIBS)
 
+UNIT_TEST_PROGS = test-styleschememanager
+test_styleschememanager_SOURCES =		\
+	test-styleschememanager.c
+test_styleschememanager_LDADD = 		\
+	$(top_builddir)/gtksourceview/libgtksourceview-3.0.la \
+	$(DEP_LIBS)			\
+	$(TESTS_LIBS)
+
 UNIT_TEST_PROGS += test-language
 test_language_SOURCES =		\
 	test-language.c
