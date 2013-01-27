@@ -3,23 +3,22 @@
 # This file is distributed under the same license as the gtksourcereview package.
 #
 # Matjaž Horvat <m@owca.info>, 2006.
-# Matej Urbančič <mateju@svn.gnome.org>, 2007 - 2012.
+# Matej Urbančič <mateju@svn.gnome.org>, 2007 - 2013.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-12-22 10:22+0000\n"
-"PO-Revision-Date: 2012-12-22 15:15+0100\n"
+"POT-Creation-Date: 2013-01-27 17:39+0000\n"
+"PO-Revision-Date: 2013-01-27 21:57+0100\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: sl_SI\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
-"%100==4 ? 3 : 0);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n%100==4 ? 3 : 0);\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Generator: Poedit 1.5.4\n"
 
@@ -65,7 +64,7 @@ msgid "Leading"
 msgstr "Vodilno"
 
 #: ../data/glade/gtksourceview.xml.in.h:12
-#: ../gtksourceview/gtksourcecompletionitem.c:255
+#: ../gtksourceview/gtksourcecompletionitem.c:264
 #: ../gtksourceview/gtksourcegutterrenderertext.c:403
 msgid "Text"
 msgstr "Besedilo"
@@ -77,7 +76,7 @@ msgstr "Sledeče"
 #. Translators: "All" is used as a label in thestatus bar of the
 #. popup, telling that all completion pages are shown
 #: ../data/glade/gtksourceview.xml.in.h:14
-#: ../gtksourceview/gtksourcecompletion.c:653
+#: ../gtksourceview/gtksourcecompletion.c:707
 msgid "All"
 msgstr "Vse"
 
@@ -613,7 +612,7 @@ msgstr "Šestnajstiško število"
 #: ../data/language-specs/mxml.lang.h:1 ../data/language-specs/t2t.lang.h:1
 #: ../data/language-specs/texinfo.lang.h:1 ../data/language-specs/xml.lang.h:1
 #: ../data/language-specs/xslt.lang.h:1
-#: ../gtksourceview/gtksourcecompletionitem.c:242
+#: ../gtksourceview/gtksourcecompletionitem.c:251
 #: ../gtksourceview/gtksourcegutterrenderertext.c:395
 msgid "Markup"
 msgstr "Označevanje"
@@ -778,7 +777,7 @@ msgid "Date"
 msgstr "Datum"
 
 #: ../data/language-specs/changelog.lang.h:4
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:455
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:465
 msgid "Name"
 msgstr "Ime"
 
@@ -1797,7 +1796,7 @@ msgid "Link Text"
 msgstr "Besedilo povezave"
 
 #: ../data/language-specs/markdown.lang.h:10
-#: ../gtksourceview/gtksourcecompletionitem.c:229
+#: ../gtksourceview/gtksourcecompletionitem.c:238
 msgid "Label"
 msgstr "Oznaka"
 
@@ -1886,8 +1885,8 @@ msgid "Objective-J"
 msgstr "Predmetni-J"
 
 #: ../data/language-specs/ocaml.lang.h:2
-msgid "Objective Caml"
-msgstr "Predmetni Caml"
+msgid "OCaml"
+msgstr "OCaml"
 
 #: ../data/language-specs/ocaml.lang.h:4
 msgid "Ocamldoc Comments"
@@ -2426,60 +2425,60 @@ msgstr "Tango"
 msgid "Color scheme using Tango color palette"
 msgstr "Barvna shema z barvno paleto tango"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:371
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:381
 msgid "Document Words"
 msgstr "Besede dokumenta"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:456
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:466
 msgid "The provider name"
 msgstr "Ime ponudnika"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:463
-#: ../gtksourceview/gtksourcecompletionitem.c:268
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:473
+#: ../gtksourceview/gtksourcecompletionitem.c:277
 msgid "Icon"
 msgstr "Ikona"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:464
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:474
 msgid "The provider icon"
 msgstr "Ikona ponudnika"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:471
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:481
 msgid "Proposals Batch Size"
 msgstr "Paketna velikost ponudb"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:472
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:482
 msgid "Number of proposals added in one batch"
 msgstr "Število ponudb dodanih enemu paketu"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:481
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:491
 msgid "Scan Batch Size"
 msgstr "Proučena velikost paketa"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:482
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:492
 msgid "Number of lines scanned in one batch"
 msgstr "Število preučenih vrstic enega paketa"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:491
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:501
 msgid "Minimum Word Size"
 msgstr "Najmanjša velikost besede"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:492
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:502
 msgid "The minimum word size to complete"
 msgstr "Najmanjša velikost besede za dopolnjevanje"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:501
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:511
 msgid "Interactive Delay"
 msgstr "Časovni zamik dopolnjevanja"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:502
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:512
 msgid "The delay before initiating interactive completion"
 msgstr "Časovni zamik pred prikazom možnosti dopolnjevanja"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:511
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:521
 msgid "Priority"
 msgstr "Prednost"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:512
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:522
 msgid "Provider priority"
 msgstr "Prednost ponudnika"
 
@@ -2549,86 +2548,86 @@ msgstr "Upravljalnik razveljavitev"
 msgid "The buffer undo manager"
 msgstr "Upravljalnik medpomnilnika razveljavitev"
 
-#: ../gtksourceview/gtksourcecompletion.c:940
-#: ../gtksourceview/gtksourcecompletion.c:963
+#: ../gtksourceview/gtksourcecompletion.c:1016
+#: ../gtksourceview/gtksourcecompletion.c:1038
 msgid "No extra information available"
 msgstr "Na voljo ni dodatnih podrobnosti"
 
-#: ../gtksourceview/gtksourcecompletion.c:2218
-#: ../gtksourceview/gtksourcegutter.c:547
+#: ../gtksourceview/gtksourcecompletion.c:2230
+#: ../gtksourceview/gtksourcegutter.c:548
 msgid "View"
 msgstr "Pogled"
 
-#: ../gtksourceview/gtksourcecompletion.c:2219
+#: ../gtksourceview/gtksourcecompletion.c:2231
 msgid "The GtkSourceView bound to the completion"
 msgstr "Vez GtkSourceView z dopolnjevanjem"
 
-#: ../gtksourceview/gtksourcecompletion.c:2234
+#: ../gtksourceview/gtksourcecompletion.c:2245
 msgid "Remember Info Visibility"
 msgstr "Zapomni si podrobnosti vidnosti"
 
-#: ../gtksourceview/gtksourcecompletion.c:2235
+#: ../gtksourceview/gtksourcecompletion.c:2246
 msgid "Remember the last info window visibility state"
 msgstr "Zapomni si podrobnosti zadnjega stanja vidnosti okna"
 
-#: ../gtksourceview/gtksourcecompletion.c:2248
+#: ../gtksourceview/gtksourcecompletion.c:2258
 msgid "Select on Show"
 msgstr "Izbor ob prikazu"
 
-#: ../gtksourceview/gtksourcecompletion.c:2249
+#: ../gtksourceview/gtksourcecompletion.c:2259
 msgid "Select first proposal when completion is shown"
 msgstr "Izberi prvi predlog, ko se pokaže dopolnjevanje"
 
-#: ../gtksourceview/gtksourcecompletion.c:2263
+#: ../gtksourceview/gtksourcecompletion.c:2272
 msgid "Show Headers"
 msgstr "Pokaži glave"
 
-#: ../gtksourceview/gtksourcecompletion.c:2264
+#: ../gtksourceview/gtksourcecompletion.c:2273
 msgid ""
 "Show provider headers when proposals from multiple providers are available"
 msgstr "Pokaži glave ponudnikov, ko so na voljo različne ponudbe "
 
-#: ../gtksourceview/gtksourcecompletion.c:2278
+#: ../gtksourceview/gtksourcecompletion.c:2286
 msgid "Show Icons"
 msgstr "Pokaži ikone"
 
-#: ../gtksourceview/gtksourcecompletion.c:2279
+#: ../gtksourceview/gtksourcecompletion.c:2287
 msgid "Show provider and proposal icons in the completion popup"
 msgstr "Pokaži ikono ponudnika in ponudbe v pojavnem oknu dopolnjevanja"
 
-#: ../gtksourceview/gtksourcecompletion.c:2294
+#: ../gtksourceview/gtksourcecompletion.c:2301
 msgid "Accelerators"
 msgstr "Pospeševalniki"
 
-#: ../gtksourceview/gtksourcecompletion.c:2295
+#: ../gtksourceview/gtksourcecompletion.c:2302
 msgid "Number of proposal accelerators to show"
 msgstr "Število prikazanih pospeševalnikov ponudb"
 
-#: ../gtksourceview/gtksourcecompletion.c:2311
+#: ../gtksourceview/gtksourcecompletion.c:2317
 msgid "Auto Complete Delay"
 msgstr "Zamik samodejnega dopolnjevanja"
 
-#: ../gtksourceview/gtksourcecompletion.c:2312
+#: ../gtksourceview/gtksourcecompletion.c:2318
 msgid "Completion popup delay for interactive completion"
 msgstr "Zamik pojavnega okna dopolnjevanja"
 
-#: ../gtksourceview/gtksourcecompletion.c:2328
+#: ../gtksourceview/gtksourcecompletion.c:2334
 msgid "Provider Page Size"
 msgstr "Velikost strani ponudnika"
 
-#: ../gtksourceview/gtksourcecompletion.c:2329
+#: ../gtksourceview/gtksourcecompletion.c:2335
 msgid "Provider scrolling page size"
 msgstr "Velikost drsne strani ponudnikov"
 
-#: ../gtksourceview/gtksourcecompletion.c:2348
+#: ../gtksourceview/gtksourcecompletion.c:2355
 msgid "Proposal Page Size"
 msgstr "Velikost strani predloga"
 
-#: ../gtksourceview/gtksourcecompletion.c:2349
+#: ../gtksourceview/gtksourcecompletion.c:2356
 msgid "Proposal scrolling page size"
 msgstr "Velikost drsne strani predloga"
 
-#: ../gtksourceview/gtksourcecompletion.c:2710
+#: ../gtksourceview/gtksourcecompletion.c:2718
 msgid "Provider"
 msgstr "Ponudnik"
 
@@ -2641,7 +2640,7 @@ msgid "_Details..."
 msgstr "_Podrobnosti ..."
 
 #: ../gtksourceview/gtksourcecompletioncontext.c:255
-#: ../gtksourceview/gtksourceview.c:309
+#: ../gtksourceview/gtksourceview.c:310
 msgid "Completion"
 msgstr "Dopolnjevanje"
 
@@ -2667,31 +2666,31 @@ msgid "The type of activation"
 msgstr "Vrsta zagona"
 
 #. Tooltip style
-#: ../gtksourceview/gtksourcecompletioninfo.c:61
+#: ../gtksourceview/gtksourcecompletioninfo.c:178
 msgid "Completion Info"
 msgstr "Podrobnosti dopolnjevanja"
 
-#: ../gtksourceview/gtksourcecompletionitem.c:230
+#: ../gtksourceview/gtksourcecompletionitem.c:239
 msgid "Label to be shown for this item"
 msgstr "Oznaka tega predmeta"
 
-#: ../gtksourceview/gtksourcecompletionitem.c:243
+#: ../gtksourceview/gtksourcecompletionitem.c:252
 msgid "Markup to be shown for this item"
 msgstr "Kodni jezik tega predmeta"
 
-#: ../gtksourceview/gtksourcecompletionitem.c:256
+#: ../gtksourceview/gtksourcecompletionitem.c:265
 msgid "Item text"
 msgstr "Besedilo predmeta"
 
-#: ../gtksourceview/gtksourcecompletionitem.c:269
+#: ../gtksourceview/gtksourcecompletionitem.c:278
 msgid "Icon to be shown for this item"
 msgstr "Ikona tega predmeta"
 
-#: ../gtksourceview/gtksourcecompletionitem.c:281
+#: ../gtksourceview/gtksourcecompletionitem.c:290
 msgid "Info"
 msgstr "Podrobnosti"
 
-#: ../gtksourceview/gtksourcecompletionitem.c:282
+#: ../gtksourceview/gtksourcecompletionitem.c:291
 msgid "Info to be shown for this item"
 msgstr "Prikaz podrobnosti tega predmeta"
 
@@ -2755,35 +2754,35 @@ msgstr "neznana vsebina '%s'"
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "Manjka določitev glavnega jezika (id = \"%s\".)"
 
-#: ../gtksourceview/gtksourcegutter.c:548
+#: ../gtksourceview/gtksourcegutter.c:549
 msgid "The gutters' GtkSourceView"
 msgstr "GtkSourceView žlebov"
 
-#: ../gtksourceview/gtksourcegutter.c:560
-#: ../gtksourceview/gtksourcegutterrenderer.c:724
+#: ../gtksourceview/gtksourcegutter.c:561
+#: ../gtksourceview/gtksourcegutterrenderer.c:723
 msgid "Window Type"
 msgstr "Vrsta okna"
 
-#: ../gtksourceview/gtksourcegutter.c:561
+#: ../gtksourceview/gtksourcegutter.c:562
 msgid "The gutters text window type"
 msgstr "Vrsta besedilnega okna žleba"
 
-#: ../gtksourceview/gtksourcegutter.c:572
+#: ../gtksourceview/gtksourcegutter.c:573
 #: ../gtksourceview/gtksourcegutterrenderer.c:500
 msgid "X Padding"
 msgstr "Blazinjenje X"
 
-#: ../gtksourceview/gtksourcegutter.c:573
+#: ../gtksourceview/gtksourcegutter.c:574
 #: ../gtksourceview/gtksourcegutterrenderer.c:501
 msgid "The x-padding"
 msgstr "Blazinjenje X"
 
-#: ../gtksourceview/gtksourcegutter.c:583
+#: ../gtksourceview/gtksourcegutter.c:584
 #: ../gtksourceview/gtksourcegutterrenderer.c:516
 msgid "Y Padding"
 msgstr "Blazinjenje Y"
 
-#: ../gtksourceview/gtksourcegutter.c:584
+#: ../gtksourceview/gtksourcegutter.c:585
 #: ../gtksourceview/gtksourcegutterrenderer.c:517
 msgid "The y-padding"
 msgstr "Blazinjenje Y"
@@ -2809,66 +2808,66 @@ msgstr "Poravnava Y"
 msgid "The y-alignment"
 msgstr "Poravnava y"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:691
+#: ../gtksourceview/gtksourcegutterrenderer.c:690
 msgid "The View"
 msgstr "Pogled"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:692
+#: ../gtksourceview/gtksourcegutterrenderer.c:691
 msgid "The view"
 msgstr "Pogled"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:708
+#: ../gtksourceview/gtksourcegutterrenderer.c:707
 msgid "Alignment Mode"
 msgstr "Vrsta poravnave"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:709
+#: ../gtksourceview/gtksourcegutterrenderer.c:708
 msgid "The alignment mode"
 msgstr "Vrsta poravnave"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:725
+#: ../gtksourceview/gtksourcegutterrenderer.c:724
 msgid "The window type"
 msgstr "Vrsta okna"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:733
+#: ../gtksourceview/gtksourcegutterrenderer.c:732
 msgid "Size"
 msgstr "Velikost"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:734
+#: ../gtksourceview/gtksourcegutterrenderer.c:733
 msgid "The size"
 msgstr "Velikost"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:293
-#: ../gtksourceview/gtksourcemarkattributes.c:317
+#: ../gtksourceview/gtksourcemarkattributes.c:318
 msgid "Pixbuf"
 msgstr "Medpomnilnik sličic"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:294
-#: ../gtksourceview/gtksourcemarkattributes.c:318
+#: ../gtksourceview/gtksourcemarkattributes.c:319
 msgid "The pixbuf"
 msgstr "Medpomnilnik sličic"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:301
-#: ../gtksourceview/gtksourcemarkattributes.c:304
+#: ../gtksourceview/gtksourcemarkattributes.c:305
 msgid "Stock Id"
 msgstr "ID sklada"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:302
-#: ../gtksourceview/gtksourcemarkattributes.c:305
+#: ../gtksourceview/gtksourcemarkattributes.c:306
 msgid "The stock id"
 msgstr "ID sklada"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:309
-#: ../gtksourceview/gtksourcemarkattributes.c:330
+#: ../gtksourceview/gtksourcemarkattributes.c:331
 msgid "Icon Name"
 msgstr "Ime ikone"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:310
-#: ../gtksourceview/gtksourcemarkattributes.c:331
+#: ../gtksourceview/gtksourcemarkattributes.c:332
 msgid "The icon name"
 msgstr "Ime ikone"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:317
-#: ../gtksourceview/gtksourcemarkattributes.c:343
+#: ../gtksourceview/gtksourcemarkattributes.c:344
 msgid "GIcon"
 msgstr "GIcon"
 
@@ -2935,16 +2934,16 @@ msgstr "Naznan ID '%s' v logičnem izrazu '%s'"
 msgid "in regex '%s': backreferences are not supported"
 msgstr "logični izraz '%s': povratne naveze niso podprte"
 
-#: ../gtksourceview/gtksourcemarkattributes.c:291
+#: ../gtksourceview/gtksourcemarkattributes.c:292
 #: ../gtksourceview/gtksourcestyle.c:88
 msgid "Background"
 msgstr "Ozadje"
 
-#: ../gtksourceview/gtksourcemarkattributes.c:292
+#: ../gtksourceview/gtksourcemarkattributes.c:293
 msgid "The background"
 msgstr "Ozadje"
 
-#: ../gtksourceview/gtksourcemarkattributes.c:344
+#: ../gtksourceview/gtksourcemarkattributes.c:345
 msgid "The GIcon"
 msgstr "GIcon"
 
@@ -2965,12 +2964,12 @@ msgid "The GtkSourceBuffer object to print"
 msgstr "Predmet GtkSourceBuffer za tiskanje"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:462
-#: ../gtksourceview/gtksourceview.c:347
+#: ../gtksourceview/gtksourceview.c:348
 msgid "Tab Width"
 msgstr "Širina tabulatorja"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:463
-#: ../gtksourceview/gtksourceview.c:348
+#: ../gtksourceview/gtksourceview.c:349
 msgid "Width of a tab character expressed in spaces"
 msgstr "Širina tabulatorja določena v presledkih"
 
@@ -3193,71 +3192,71 @@ msgstr "Medpomnilnik"
 msgid "The text buffer to add undo support on"
 msgstr "Medpomnilnik besedila za podporo razveljavitvam"
 
-#: ../gtksourceview/gtksourceview.c:310
+#: ../gtksourceview/gtksourceview.c:311
 msgid "The completion object associated with the view"
 msgstr "Predmet dopolnjevanja povezan s pogledom"
 
-#: ../gtksourceview/gtksourceview.c:322
+#: ../gtksourceview/gtksourceview.c:323
 msgid "Show Line Numbers"
 msgstr "Pokaži številke vrstic"
 
-#: ../gtksourceview/gtksourceview.c:323
+#: ../gtksourceview/gtksourceview.c:324
 msgid "Whether to display line numbers"
 msgstr "Ali naj bodo prikazane številke vrstic"
 
-#: ../gtksourceview/gtksourceview.c:334
+#: ../gtksourceview/gtksourceview.c:335
 msgid "Show Line Marks"
 msgstr "Pokaži zaznamovalce vrstic"
 
-#: ../gtksourceview/gtksourceview.c:335
+#: ../gtksourceview/gtksourceview.c:336
 msgid "Whether to display line mark pixbufs"
 msgstr "Ali naj bodo prikazane sličice oznak vrsticah"
 
-#: ../gtksourceview/gtksourceview.c:362
+#: ../gtksourceview/gtksourceview.c:363
 msgid "Indent Width"
 msgstr "Širina zamika"
 
-#: ../gtksourceview/gtksourceview.c:363
+#: ../gtksourceview/gtksourceview.c:364
 msgid "Number of spaces to use for each step of indent"
 msgstr "Število presledkov za vsak korak zamika"
 
-#: ../gtksourceview/gtksourceview.c:372
+#: ../gtksourceview/gtksourceview.c:373
 msgid "Auto Indentation"
 msgstr "Samodejno zamikanje"
 
-#: ../gtksourceview/gtksourceview.c:373
+#: ../gtksourceview/gtksourceview.c:374
 msgid "Whether to enable auto indentation"
 msgstr "Ali naj bo omogočeno samodejno zamikanje"
 
-#: ../gtksourceview/gtksourceview.c:380
+#: ../gtksourceview/gtksourceview.c:381
 msgid "Insert Spaces Instead of Tabs"
 msgstr "Vstavi presledke namesto tabulatorjev"
 
-#: ../gtksourceview/gtksourceview.c:381
+#: ../gtksourceview/gtksourceview.c:382
 msgid "Whether to insert spaces instead of tabs"
 msgstr "Ali naj se namesto tabulatorjev vstavijo presledki"
 
-#: ../gtksourceview/gtksourceview.c:393
+#: ../gtksourceview/gtksourceview.c:394
 msgid "Show Right Margin"
 msgstr "Pokaži desni rob"
 
-#: ../gtksourceview/gtksourceview.c:394
+#: ../gtksourceview/gtksourceview.c:395
 msgid "Whether to display the right margin"
 msgstr "Ali naj se na desni prikaže rob"
 
-#: ../gtksourceview/gtksourceview.c:406
+#: ../gtksourceview/gtksourceview.c:407
 msgid "Right Margin Position"
 msgstr "Položaj desnega odmika"
 
-#: ../gtksourceview/gtksourceview.c:407
+#: ../gtksourceview/gtksourceview.c:408
 msgid "Position of the right margin"
 msgstr "Položaj desnega roba"
 
-#: ../gtksourceview/gtksourceview.c:423
+#: ../gtksourceview/gtksourceview.c:424
 msgid "Smart Home/End"
 msgstr "Pametni tipki Začetek in Konec"
 
-#: ../gtksourceview/gtksourceview.c:424
+#: ../gtksourceview/gtksourceview.c:425
 msgid ""
 "HOME and END keys move to first/last non whitespace characters on line "
 "before going to the start/end of the line"
@@ -3265,27 +3264,27 @@ msgstr ""
 "Tipki Začetek in Konec pomakneta kazalec na prvi/zadnji znak v vrstici, ki "
 "ni presledni znak, preden gresta na začetek/konec vrstice"
 
-#: ../gtksourceview/gtksourceview.c:434
+#: ../gtksourceview/gtksourceview.c:435
 msgid "Highlight current line"
 msgstr "Poudari trenutno vrstico"
 
-#: ../gtksourceview/gtksourceview.c:435
+#: ../gtksourceview/gtksourceview.c:436
 msgid "Whether to highlight the current line"
 msgstr "Ali naj bo trenutna vrstica poudarjena"
 
-#: ../gtksourceview/gtksourceview.c:442
+#: ../gtksourceview/gtksourceview.c:443
 msgid "Indent on tab"
 msgstr "Zamik ob tabulatorju"
 
-#: ../gtksourceview/gtksourceview.c:443
+#: ../gtksourceview/gtksourceview.c:444
 msgid "Whether to indent the selected text when the tab key is pressed"
 msgstr "Ali naj se izbrano besedilo zamakne ob pritisku na tabulator"
 
-#: ../gtksourceview/gtksourceview.c:457
+#: ../gtksourceview/gtksourceview.c:458
 msgid "Draw Spaces"
 msgstr "Izris presledkov"
 
-#: ../gtksourceview/gtksourceview.c:458
+#: ../gtksourceview/gtksourceview.c:459
 msgid "Set if and how the spaces should be visualized"
 msgstr "Določitev načina prikaza presledkov"
 
@@ -3294,6 +3293,9 @@ msgid "translator-credits"
 msgstr ""
 "Matej Urbančič <mateju@svn.gnome.org>\n"
 "Valentin Hegediš <valentin.hegedis@gmail.com>"
+
+#~ msgid "Objective Caml"
+#~ msgstr "Predmetni Caml"
 
 #~ msgid "Text2Tags"
 #~ msgstr "Text2Tags"
