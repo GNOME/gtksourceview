@@ -46,6 +46,13 @@
  * gtk_container_add (GTK_CONTAINER (info), scrolled_window);
  *   </programlisting>
  * </example>
+ *
+ * If the calltip is displayed on top of a certain widget, say a #GtkTextView,
+ * you should hide it when the #GtkWidget::focus-out-event signal is emitted by
+ * the #GtkTextView. You may also be interested by the
+ * #GtkTextBuffer:cursor-position property (when its value is modified). If you
+ * use the #GtkSourceCompletionInfo through the #GtkSourceCompletion machinery,
+ * you don't need to worry about this.
  */
 
 #include <gtksourceview/gtksourcecompletioninfo.h>
