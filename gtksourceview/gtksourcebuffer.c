@@ -1640,50 +1640,109 @@ source_mark_remove (GtkSourceBuffer *buffer, GtkSourceMark *mark)
 }
 
 /* Performs a binary search among the source marks in @buffer for the
- * position of the @iter.  Returns the nearest matching mark (its
- * index in the marks array) and optionally the value of the
- * comparision between the given iter and the iter at the returned mark.
+ * position of the @iter.  Returns the index of the mark at the specified
+ * position or nearest before or after depending on @before.
  *
  * Return value: an index in the source marks array or -1 if the array is
- * empty.
+ * empty or if there is no mark before/after the specified position
  */
 static gint
-source_mark_bsearch (GtkSourceBuffer *buffer, GtkTextIter *iter, gint *last_cmp)
+source_mark_bsearch (GtkSourceBuffer *buffer, GtkTextIter *iter, gboolean before)
 {
-	GtkTextIter check_iter;
-	GtkSourceMark **check, **p;
 	GArray *marks = buffer->priv->source_marks;
-	gint n_marks = marks->len;
-	gint cmp, i;
+	GtkSourceMark *check;
+	GtkTextIter check_iter, found_iter;
+	gint cmp, i, min, max;
 
-	if (n_marks == 0)
+	if (marks->len == 0)
 		return -1;
 
-	check = p = &g_array_index (marks, GtkSourceMark *, 0);
-	p--;
-	cmp = 0;
-	while (n_marks)
+	i = min = 0;
+	max = marks->len - 1;
+	while (max >= min)
 	{
-		i = (n_marks + 1) >> 1;
-		check = p + i;
+		i = (min + max) >> 1;
+		check = g_array_index (marks, GtkSourceMark *, i);
 		gtk_text_buffer_get_iter_at_mark (GTK_TEXT_BUFFER (buffer),
 						  &check_iter,
-						  GTK_TEXT_MARK (*check));
+						  GTK_TEXT_MARK (check));
 		cmp = gtk_text_iter_compare (iter, &check_iter);
-		if (cmp > 0)
+		if (cmp < 0)
 		{
-			n_marks -= i;
-			p = check;
+			max = i - 1;
 		}
-		else if (cmp < 0)
-			n_marks = i - 1;
-		else /* if (cmp == 0) */
+		else if (cmp > 0)
+		{
+			min = i + 1;
+		}
+		else
 			break;
 	}
 
-	i = check - &g_array_index (marks, GtkSourceMark *, 0);
-	if (last_cmp)
-		*last_cmp = cmp;
+	if (before)
+	{
+		/* if the binary search match is after the specified iter, go back */
+		while (cmp < 0 && i >= 0)
+		{
+			if (i == 0)
+				return -1;
+
+			i--;
+			check = g_array_index (marks, GtkSourceMark *, i);
+			gtk_text_buffer_get_iter_at_mark (GTK_TEXT_BUFFER (buffer),
+							  &check_iter,
+							  GTK_TEXT_MARK (check));
+			cmp = gtk_text_iter_compare (iter, &check_iter);
+		}
+
+		/* if there are many marks at the given iter, return the last */
+		found_iter = check_iter;
+		while (i < marks->len - 1)
+		{
+			check = g_array_index (marks, GtkSourceMark *, i + 1);
+			gtk_text_buffer_get_iter_at_mark (GTK_TEXT_BUFFER (buffer),
+							  &check_iter,
+							  GTK_TEXT_MARK (check));
+			cmp = gtk_text_iter_compare (&found_iter, &check_iter);
+			if (cmp != 0)
+			{
+				break;
+			}
+			i++;
+		}
+	}
+	else
+	{
+		/* if the binary search match is before the specified iter, go forward */
+		while (cmp > 0 && i < marks->len)
+		{
+			if (i == marks->len - 1)
+				return -1;
+
+			i++;
+			check = g_array_index (marks, GtkSourceMark *, i);
+			gtk_text_buffer_get_iter_at_mark (GTK_TEXT_BUFFER (buffer),
+							  &check_iter,
+							  GTK_TEXT_MARK (check));
+			cmp = gtk_text_iter_compare (iter, &check_iter);
+		}
+
+		/* if there are many marks at the given iter, return the first */
+		found_iter = check_iter;
+		while (i > 0)
+		{
+			check = g_array_index (marks, GtkSourceMark *, i - 1);
+			gtk_text_buffer_get_iter_at_mark (GTK_TEXT_BUFFER (buffer),
+							  &check_iter,
+							  GTK_TEXT_MARK (check));
+			cmp = gtk_text_iter_compare (&found_iter, &check_iter);
+			if (cmp != 0)
+			{
+				break;
+			}
+			i--;
+		}
+	}
 
 	return i;
 }
@@ -1692,19 +1751,18 @@ static void
 source_mark_insert (GtkSourceBuffer *buffer, GtkSourceMark *mark)
 {
 	GtkTextIter iter;
-	gint idx, cmp;
+	gint idx;
 
 	gtk_text_buffer_get_iter_at_mark (GTK_TEXT_BUFFER (buffer),
 					  &iter,
 					  GTK_TEXT_MARK (mark));
 
-	idx = source_mark_bsearch (buffer, &iter, &cmp);
+	idx = source_mark_bsearch (buffer, &iter, TRUE);
 	if (idx >= 0)
 	{
 		/* if the mark we found is at same iter or before
 		 * put our mark after that */
-		if (cmp >= 0)
-			idx++;
+		idx++;
 	}
 	else
 	{
@@ -1839,15 +1897,12 @@ gtk_source_buffer_create_source_mark (GtkSourceBuffer   *buffer,
 	return mark;
 }
 
-GtkSourceMark *
-_gtk_source_buffer_source_mark_next (GtkSourceBuffer *buffer,
-				     GtkSourceMark   *mark,
-				     const gchar     *category)
+static gint
+get_mark_index (GtkSourceBuffer *buffer,
+		GtkSourceMark   *mark)
 {
 	GtkTextIter iter;
-	gint idx, cmp;
-
-	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), NULL);
+	gint idx;
 
 	/* TODO: we could speed this up by caching the current
 	 * position in the mark and invalidating the cache when
@@ -1856,17 +1911,30 @@ _gtk_source_buffer_source_mark_next (GtkSourceBuffer *buffer,
 					  &iter,
 					  GTK_TEXT_MARK (mark));
 
-	idx = source_mark_bsearch (buffer, &iter, &cmp);
+	idx = source_mark_bsearch (buffer, &iter, FALSE);
 
 	/* the array should already contain @mark */
-	g_return_val_if_fail (idx >= 0, NULL);
-	g_return_val_if_fail (cmp == 0, NULL);
+	g_assert (idx >= 0);
 
 	/* move up to our mark among the ones at this position */
 	while (mark != g_array_index (buffer->priv->source_marks, GtkSourceMark *, idx))
 	{
 		++idx;
 	}
+
+	return idx;
+}
+
+GtkSourceMark *
+_gtk_source_buffer_source_mark_next (GtkSourceBuffer *buffer,
+				     GtkSourceMark   *mark,
+				     const gchar     *category)
+{
+	gint idx;
+
+	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), NULL);
+
+	idx = get_mark_index (buffer, mark);
 
 	while ((guint) ++idx < buffer->priv->source_marks->len)
 	{
@@ -1888,29 +1956,11 @@ _gtk_source_buffer_source_mark_prev (GtkSourceBuffer *buffer,
 				     GtkSourceMark   *mark,
 				     const gchar     *category)
 {
-	GtkTextIter iter;
-	gint idx, cmp;
+	gint idx;
 
 	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), NULL);
 
-	/* TODO: we could speed this up by caching the current
-	 * position in the mark and invalidating the cache when
-	 * the marks array changes. For now we always lookup. */
-	gtk_text_buffer_get_iter_at_mark (GTK_TEXT_BUFFER (buffer),
-					  &iter,
-					  GTK_TEXT_MARK (mark));
-
-	idx = source_mark_bsearch (buffer, &iter, &cmp);
-
-	/* the array should already contain @mark */
-	g_return_val_if_fail (idx >= 0, NULL);
-	g_return_val_if_fail (cmp == 0, NULL);
-
-	/* move up to our mark among the ones at this position */
-	while (mark != g_array_index (buffer->priv->source_marks, GtkSourceMark *, idx))
-	{
-		++idx;
-	}
+	idx = get_mark_index (buffer, mark);
 
 	while (--idx >= 0)
 	{
@@ -1947,19 +1997,16 @@ gtk_source_buffer_forward_iter_to_source_mark (GtkSourceBuffer *buffer,
 					       const gchar     *category)
 {
 	GtkTextIter i;
-	gint idx, cmp;
+	gint idx;
 
 	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), FALSE);
 	g_return_val_if_fail (iter != NULL, FALSE);
 
 	i = *iter;
 
-	idx = source_mark_bsearch (buffer, &i, &cmp);
+	idx = source_mark_bsearch (buffer, &i, FALSE);
 	if (idx < 0)
 		return FALSE;
-
-	if (cmp >= 0)
-		++idx;
 
 	while ((guint) idx < buffer->priv->source_marks->len)
 	{
@@ -1970,10 +2017,8 @@ gtk_source_buffer_forward_iter_to_source_mark (GtkSourceBuffer *buffer,
 		    0 == strcmp (category, gtk_source_mark_get_category (mark)))
 		{
 			/* update the iter */
-			gtk_text_buffer_get_iter_at_mark (GTK_TEXT_BUFFER (buffer),
-							  &i, GTK_TEXT_MARK (mark));
-
-			if (gtk_text_iter_compare (&i, iter) > 0 )
+			gtk_text_buffer_get_iter_at_mark (GTK_TEXT_BUFFER (buffer), &i, GTK_TEXT_MARK (mark));
+			if (gtk_text_iter_compare (&i, iter) > 0)
 			{
 				*iter = i;
 				return TRUE;
@@ -2006,19 +2051,16 @@ gtk_source_buffer_backward_iter_to_source_mark (GtkSourceBuffer *buffer,
 						const gchar     *category)
 {
 	GtkTextIter i;
-	gint idx, cmp;
+	gint idx;
 
 	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), FALSE);
 	g_return_val_if_fail (iter != NULL, FALSE);
 
 	i = *iter;
 
-	idx = source_mark_bsearch (buffer, &i, &cmp);
+	idx = source_mark_bsearch (buffer, &i, TRUE);
 	if (idx < 0)
 		return FALSE;
-
-	if (cmp <= 0)
-		--idx;
 
 	while (idx >= 0)
 	{
@@ -2028,10 +2070,9 @@ gtk_source_buffer_backward_iter_to_source_mark (GtkSourceBuffer *buffer,
 		if (category == NULL ||
 		    0 == strcmp (category, gtk_source_mark_get_category (mark)))
 		{
-			gtk_text_buffer_get_iter_at_mark (GTK_TEXT_BUFFER (buffer),
-							  &i, GTK_TEXT_MARK (mark));
-
-			if (gtk_text_iter_compare (&i, iter) < 0 )
+			/* update the iter */
+			gtk_text_buffer_get_iter_at_mark (GTK_TEXT_BUFFER (buffer), &i, GTK_TEXT_MARK (mark));
+			if (gtk_text_iter_compare (&i, iter) < 0)
 			{
 				*iter = i;
 				return TRUE;

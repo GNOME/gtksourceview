@@ -66,6 +66,13 @@ test_buffer_LDADD = 		\
 	$(DEP_LIBS)			\
 	$(TESTS_LIBS)
 
+UNIT_TEST_PROGS += test-mark
+test_mark_SOURCES = test-mark.c
+test_mark_LDADD = 		\
+	$(top_builddir)/gtksourceview/libgtksourceview-3.0.la \
+	$(DEP_LIBS)			\
+	$(TESTS_LIBS)
+
 UNIT_TEST_PROGS += test-regex
 test_regex_SOURCES = test-regex.c
 test_regex_LDADD = 						\
