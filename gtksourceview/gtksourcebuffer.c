@@ -2067,6 +2067,9 @@ gtk_source_buffer_get_source_marks_at_iter (GtkSourceBuffer *buffer,
 
 	g_return_val_if_fail (iter != NULL, NULL);
 
+	if (buffer->priv->source_marks->len == 0)
+		return NULL;
+
 	res = NULL;
 	marks = gtk_text_iter_get_marks (iter);
 
@@ -2113,6 +2116,9 @@ gtk_source_buffer_get_source_marks_at_line (GtkSourceBuffer *buffer,
 	GSList *res;
 
  	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), NULL);
+
+	if (buffer->priv->source_marks->len == 0)
+		return NULL;
 
 	gtk_text_buffer_get_iter_at_line (GTK_TEXT_BUFFER (buffer),
 					  &iter, line);
