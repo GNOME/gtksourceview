@@ -2008,6 +2008,22 @@ cancel_completion (GtkSourceCompletion *completion)
 }
 
 static void
+reset_completion (GtkSourceCompletion *completion)
+{
+	gtk_label_set_markup (GTK_LABEL (completion->priv->default_info), "");
+
+	cancel_completion (completion);
+
+	g_list_free (completion->priv->active_providers);
+	completion->priv->active_providers = NULL;
+
+	completion->priv->select_first = FALSE;
+
+	completion->priv->info_visible =
+		gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (completion->priv->info_button));
+}
+
+static void
 gtk_source_completion_dispose (GObject *object)
 {
 	GtkSourceCompletion *completion = GTK_SOURCE_COMPLETION (object);
@@ -2160,20 +2176,10 @@ gtk_source_completion_set_property (GObject      *object,
 static void
 gtk_source_completion_hide_default (GtkSourceCompletion *completion)
 {
-	gtk_label_set_markup (GTK_LABEL (completion->priv->default_info), "");
-
 	gtk_widget_hide (completion->priv->info_window);
 	gtk_widget_hide (completion->priv->window);
 
-	cancel_completion (completion);
-
-	g_list_free (completion->priv->active_providers);
-	completion->priv->active_providers = NULL;
-
-	completion->priv->select_first = FALSE;
-
-	completion->priv->info_visible =
-		gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (completion->priv->info_button));
+	reset_completion (completion);
 }
 
 static void
@@ -3257,11 +3263,7 @@ gtk_source_completion_show (GtkSourceCompletion        *completion,
 	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_CONTEXT (context), FALSE);
 
 	/* Make sure to clear any active completion */
-	DEBUG({
-		g_print ("Hiding completion before new one\n");
-	});
-
-	gtk_source_completion_hide (completion);
+	reset_completion (completion);
 
 	/* We need to take owenership of the context right before doing
 	   anything so we don't leak it or get a crash emitting the signal */
