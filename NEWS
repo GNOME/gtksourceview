@@ -1,3 +1,14 @@
+News in 3.7.3
+-------------
+* Deprecate gtk_source_completion_move_window()
+* Deprecate gtk_source_completion_info_get_widget()
+* Deprecate gtk_source_completion_info_set_widget()
+* CompletionInfo: always a natural size
+* Simplify internal code for the completion (new CompletionModel)
+* Fixes for the style schemes and GtkSourceMark
+* Other misc bugfixes
+* Updated translations
+
 News in 3.7.2
 -------------
 * Improved unit tests and code coverage support
