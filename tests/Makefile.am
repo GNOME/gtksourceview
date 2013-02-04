@@ -102,6 +102,7 @@ python_tests =			\
 EXTRA_DIST =				\
 	language-specs/test-empty.lang	\
 	language-specs/test-full.lang	\
+	styles/classic.xml		\
 	$(python_tests)
 
 -include $(top_srcdir)/git.mk
