@@ -3251,6 +3251,13 @@ _gtk_source_completion_add_proposals (GtkSourceCompletion         *completion,
  * Starts a new completion with the specified #GtkSourceCompletionContext and
  * a list of potential candidate providers for completion.
  *
+ * It can be convenient for showing a completion on-the-fly, without the need to
+ * add or remove providers to the #GtkSourceCompletion.
+ *
+ * Another solution is to add providers with
+ * gtk_source_completion_add_provider(), and implement
+ * gtk_source_completion_provider_match() for each provider.
+ *
  * Returns: %TRUE if it was possible to the show completion window.
  */
 gboolean
