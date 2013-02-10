@@ -66,7 +66,8 @@
  *
  * Each #GtkSourceView object is associated with a #GtkSourceCompletion
  * instance. This instance can be obtained with
- * gtk_source_view_get_completion().
+ * gtk_source_view_get_completion(). The #GtkSourceView class contains also the
+ * #GtkSourceView::show-completion signal.
  *
  * A same #GtkSourceCompletionProvider object can be used for several
  * #GtkSourceCompletion.
