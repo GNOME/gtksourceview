@@ -87,6 +87,8 @@ idle_resize (GtkSourceCompletionInfo *info)
 	guint border_width;
 	gint window_width;
 	gint window_height;
+	gint cur_window_width;
+	gint cur_window_height;
 
 	g_assert (child != NULL);
 
@@ -99,9 +101,15 @@ idle_resize (GtkSourceCompletionInfo *info)
 	window_width = nat_size.width + 2 * border_width;
 	window_height = nat_size.height + 2 * border_width;
 
-	gtk_window_resize (GTK_WINDOW (info),
-			   MAX (1, window_width),
-			   MAX (1, window_height));
+	gtk_window_get_size (GTK_WINDOW (info), &cur_window_width, &cur_window_height);
+
+	/* Avoid an infinite loop */
+	if (cur_window_width != window_width || cur_window_height != window_height)
+	{
+		gtk_window_resize (GTK_WINDOW (info),
+				   MAX (1, window_width),
+				   MAX (1, window_height));
+	}
 
 	return FALSE;
 }
