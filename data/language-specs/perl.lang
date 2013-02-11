@@ -995,7 +995,7 @@ FIXME: =pod should require an empty line before/after, as written in perlpod
       </include>
     </context>
 
-    <context id="pod" style-ref="pod">
+    <context id="pod" style-ref="pod" class-disabled="no-spell-check">
       <start>^(?=(=[a-z]))</start>
       <end>^=(cut)$</end>
       <include>
