@@ -3519,6 +3519,8 @@ gtk_source_completion_hide (GtkSourceCompletion *completion)
 GtkSourceCompletionInfo *
 gtk_source_completion_get_info_window (GtkSourceCompletion *completion)
 {
+	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION (completion), NULL);
+
 	return GTK_SOURCE_COMPLETION_INFO (completion->priv->info_window);
 }
 
