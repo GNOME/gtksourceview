@@ -23,6 +23,7 @@
 #include "gtksourcecompletionmodel.h"
 #include "gtksourcecompletionprovider.h"
 #include "gtksourcecompletionproposal.h"
+#include "gtksourceview-i18n.h"
 
 #define GTK_SOURCE_COMPLETION_MODEL_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE((object), GTK_SOURCE_TYPE_COMPLETION_MODEL, GtkSourceCompletionModelPrivate))
 
@@ -447,26 +448,41 @@ tree_model_get_value (GtkTreeModel *tree_model,
 			break;
 
 		case GTK_SOURCE_COMPLETION_MODEL_COLUMN_LABEL:
-			if (completion_proposal != NULL)
+			if (is_header (proposal_info))
+			{
+				g_value_take_string (value, NULL);
+			}
+			else
 			{
 				gchar *label = gtk_source_completion_proposal_get_label (completion_proposal);
 				g_value_take_string (value, label);
 			}
-			else
-			{
-				g_value_take_string (value, NULL);
-			}
 			break;
 
 		case GTK_SOURCE_COMPLETION_MODEL_COLUMN_MARKUP:
-			if (completion_proposal != NULL)
+			if (is_header (proposal_info))
 			{
-				gchar *markup = gtk_source_completion_proposal_get_markup (completion_proposal);
-				g_value_take_string (value, markup);
+				gchar *name = gtk_source_completion_provider_get_name (completion_provider);
+
+				if (name != NULL)
+				{
+					gchar *escaped = g_markup_escape_text (name, -1);
+					gchar *markup = g_strdup_printf ("<b>%s</b>", escaped);
+					g_value_take_string (value, markup);
+
+					g_free (name);
+					g_free (escaped);
+				}
+				else
+				{
+					gchar *markup = g_strdup_printf ("<b>%s</b>", _("Provider"));
+					g_value_take_string (value, markup);
+				}
 			}
 			else
 			{
-				g_value_take_string (value, NULL);
+				gchar *markup = gtk_source_completion_proposal_get_markup (completion_proposal);
+				g_value_take_string (value, markup);
 			}
 			break;
 

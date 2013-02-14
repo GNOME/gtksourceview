@@ -2672,13 +2672,9 @@ render_proposal_icon_func (GtkTreeViewColumn   *column,
                            GtkTreeIter         *iter,
                            GtkSourceCompletion *completion)
 {
-	gboolean isheader;
-	GdkPixbuf *icon;
+	GdkPixbuf *icon = NULL;
 
-	isheader = gtk_source_completion_model_iter_is_header (completion->priv->model_proposals,
-	                                                       iter);
-
-	if (isheader)
+	if (gtk_source_completion_model_iter_is_header (completion->priv->model_proposals, iter))
 	{
 		GtkStyleContext *context;
 		GdkRGBA color;
@@ -2699,15 +2695,13 @@ render_proposal_icon_func (GtkTreeViewColumn   *column,
 		              NULL);
 	}
 
-	gtk_tree_model_get (model,
-	                    iter,
-	                    GTK_SOURCE_COMPLETION_MODEL_COLUMN_ICON,
-	                    &icon,
+	gtk_tree_model_get (model, iter,
+	                    GTK_SOURCE_COMPLETION_MODEL_COLUMN_ICON, &icon,
 	                    -1);
 
 	g_object_set (cell, "pixbuf", icon, NULL);
 
-	if (icon)
+	if (icon != NULL)
 	{
 		g_object_unref (icon);
 	}
@@ -2722,38 +2716,31 @@ render_proposal_text_func (GtkTreeViewColumn   *column,
 {
 	gchar *label;
 	gchar *markup;
-	GtkSourceCompletionProvider *provider;
-	gboolean isheader;
 
-	isheader = gtk_source_completion_model_iter_is_header (completion->priv->model_proposals,
-		                                               iter);
+	/* Set text */
 
-	if (isheader)
+	gtk_tree_model_get (model, iter,
+			    GTK_SOURCE_COMPLETION_MODEL_COLUMN_LABEL, &label,
+			    GTK_SOURCE_COMPLETION_MODEL_COLUMN_MARKUP, &markup,
+			    -1);
+
+	if (markup == NULL)
 	{
-		gchar *name;
+		markup = g_markup_escape_text (label != NULL ? label : "", -1);
+	}
+
+	g_object_set (cell, "markup", markup, NULL);
+
+	g_free (label);
+	g_free (markup);
+
+	/* Set colors */
+
+	if (gtk_source_completion_model_iter_is_header (completion->priv->model_proposals, iter))
+	{
 		GtkStyleContext *context;
 		GdkRGBA color;
 		GdkRGBA bgcolor;
-
-		gtk_tree_model_get (model,
-		                    iter,
-		                    GTK_SOURCE_COMPLETION_MODEL_COLUMN_PROVIDER,
-		                    &provider,
-		                    -1);
-
-		name = gtk_source_completion_provider_get_name (provider);
-
-		if (name != NULL)
-		{
-			gchar *escaped = g_markup_escape_text (name, -1);
-			label = g_strdup_printf ("<b>%s</b>", escaped);
-			g_free (escaped);
-			g_free (name);
-		}
-		else
-		{
-			label = g_strdup_printf ("<b>%s</b>", _("Provider"));
-		}
 
 		context = gtk_widget_get_style_context (completion->priv->tree_view_proposals);
 		gtk_style_context_get_color (context,
@@ -2763,37 +2750,16 @@ render_proposal_text_func (GtkTreeViewColumn   *column,
 		                                        GTK_STATE_FLAG_INSENSITIVE,
 		                                        &bgcolor);
 		g_object_set (cell,
-		              "markup", label,
 		              "foreground-rgba", &color,
 		              "cell-background-rgba", &bgcolor,
 		              NULL);
-
-		g_free (label);
-		g_object_unref (provider);
 	}
 	else
 	{
-		gtk_tree_model_get (model,
-		                    iter,
-		                    GTK_SOURCE_COMPLETION_MODEL_COLUMN_LABEL,
-		                    &label,
-		                    GTK_SOURCE_COMPLETION_MODEL_COLUMN_MARKUP,
-		                    &markup,
-		                    -1);
-
-		if (!markup)
-		{
-			markup = g_markup_escape_text (label ? label : "", -1);
-		}
-
 		g_object_set (cell,
-		              "markup", markup,
 		              "cell-background-set", FALSE,
 		              "foreground-set", FALSE,
 		              NULL);
-
-		g_free (label);
-		g_free (markup);
 	}
 }
 
