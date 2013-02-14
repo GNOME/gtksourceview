@@ -169,11 +169,8 @@ struct _GtkSourceCompletionPrivate
 	/* The default widget (a GtkLabel) for the info window */
 	GtkWidget *default_info;
 
-	/* The "Details" button with its components, for showing the info window */
+	/* The "Details" button, for showing the info window */
 	GtkWidget *info_button;
-	GtkWidget *hgrid_info;
-	GtkWidget *image_info;
-	GtkWidget *label_info;
 
 	/* List of proposals */
 	GtkWidget *tree_view_proposals;
@@ -1531,9 +1528,22 @@ view_key_press_event_cb (GtkSourceView       *view,
 			 GdkEventKey         *event,
 			 GtkSourceCompletion *completion)
 {
+	static gboolean mnemonic_keyval_set = FALSE;
+	static guint mnemonic_keyval = GDK_KEY_VoidSymbol;
 	GdkModifierType mod;
-	GtkLabel *label_info;
 	GtkBindingSet *binding_set;
+
+	if (G_UNLIKELY (!mnemonic_keyval_set))
+	{
+		const gchar *label_text = gtk_button_get_label (GTK_BUTTON (completion->priv->info_button));
+		GtkWidget *label = gtk_label_new_with_mnemonic (label_text);
+		g_object_ref_sink (label);
+
+		mnemonic_keyval = gtk_label_get_mnemonic_keyval (GTK_LABEL (label));
+		mnemonic_keyval_set = TRUE;
+
+		g_object_unref (label);
+	}
 
 	mod = gtk_accelerator_get_default_mod_mask () & event->state;
 
@@ -1542,10 +1552,8 @@ view_key_press_event_cb (GtkSourceView       *view,
 		return FALSE;
 	}
 
-	label_info = GTK_LABEL (completion->priv->label_info);
-
 	/* Handle info button mnemonic */
-	if (event->keyval == gtk_label_get_mnemonic_keyval (label_info) &&
+	if (event->keyval == mnemonic_keyval &&
 	    (mod & GDK_MOD1_MASK) != 0)
 	{
 		GtkToggleButton *button = GTK_TOGGLE_BUTTON (completion->priv->info_button);
@@ -2895,31 +2903,6 @@ selection_func (GtkTreeSelection    *selection,
 }
 
 static void
-info_button_style_updated (GtkWidget           *button,
-                           GtkSourceCompletion *completion)
-{
-	GtkStyleContext *context;
-	gint spacing;
-	GtkSettings *settings;
-	gboolean show_image;
-
-	context = gtk_widget_get_style_context (button);
-
-	gtk_style_context_get_style (context,
-	                             "image-spacing", &spacing,
-	                             NULL);
-
-	gtk_grid_set_column_spacing (GTK_GRID (completion->priv->hgrid_info), spacing);
-
-	settings = gtk_widget_get_settings (button);
-	g_object_get (settings,
-	              "gtk-button-images", &show_image,
-	              NULL);
-
-	gtk_widget_set_visible (completion->priv->image_info, show_image);
-}
-
-static void
 replace_model (GtkSourceCompletion *completion)
 {
 	if (completion->priv->model_proposals != NULL)
@@ -2952,14 +2935,9 @@ initialize_ui (GtkSourceCompletion *completion)
 	completion->priv->selection_image = GTK_WIDGET (gtk_builder_get_object (builder, "selection_image"));
 	completion->priv->selection_label = GTK_WIDGET (gtk_builder_get_object (builder, "selection_label"));
 	completion->priv->info_button = GTK_WIDGET (gtk_builder_get_object (builder, "info_button"));
-	completion->priv->hgrid_info = GTK_WIDGET (gtk_builder_get_object (builder, "info_button_hgrid"));
-	completion->priv->image_info = GTK_WIDGET (gtk_builder_get_object (builder, "info_button_image"));
-	completion->priv->label_info = GTK_WIDGET (gtk_builder_get_object (builder, "info_button_label"));
 
 	gtk_window_set_attached_to (GTK_WINDOW (completion->priv->main_window),
 				    GTK_WIDGET (completion->priv->view));
-
-	info_button_style_updated (completion->priv->info_button, completion);
 
 	/* Tree view */
 	selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (completion->priv->tree_view_proposals));
@@ -3017,11 +2995,6 @@ initialize_ui (GtkSourceCompletion *completion)
 	g_signal_connect (completion->priv->info_button,
 			  "toggled",
 			  G_CALLBACK (info_toggled_cb),
-			  completion);
-
-	g_signal_connect (completion->priv->info_button,
-			  "style-updated",
-			  G_CALLBACK (info_button_style_updated),
 			  completion);
 
 	g_object_unref (builder);
