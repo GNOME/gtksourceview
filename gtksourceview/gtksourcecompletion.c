@@ -2665,62 +2665,6 @@ update_transient_for_info (GObject             *window,
 				      gtk_window_get_transient_for (GTK_WINDOW (completion->priv->main_window)));
 }
 
-static void
-render_proposal_text_func (GtkTreeViewColumn   *column,
-                           GtkCellRenderer     *cell,
-                           GtkTreeModel        *model,
-                           GtkTreeIter         *iter,
-                           GtkSourceCompletion *completion)
-{
-	gchar *label;
-	gchar *markup;
-
-	/* Set text */
-
-	gtk_tree_model_get (model, iter,
-			    GTK_SOURCE_COMPLETION_MODEL_COLUMN_LABEL, &label,
-			    GTK_SOURCE_COMPLETION_MODEL_COLUMN_MARKUP, &markup,
-			    -1);
-
-	if (markup == NULL)
-	{
-		markup = g_markup_escape_text (label != NULL ? label : "", -1);
-	}
-
-	g_object_set (cell, "markup", markup, NULL);
-
-	g_free (label);
-	g_free (markup);
-
-	/* Set colors */
-
-	if (gtk_source_completion_model_iter_is_header (completion->priv->model_proposals, iter))
-	{
-		GtkStyleContext *context;
-		GdkRGBA color;
-		GdkRGBA bgcolor;
-
-		context = gtk_widget_get_style_context (completion->priv->tree_view_proposals);
-		gtk_style_context_get_color (context,
-		                             GTK_STATE_FLAG_INSENSITIVE,
-		                             &color);
-		gtk_style_context_get_background_color (context,
-		                                        GTK_STATE_FLAG_INSENSITIVE,
-		                                        &bgcolor);
-		g_object_set (cell,
-		              "foreground-rgba", &color,
-		              "cell-background-rgba", &bgcolor,
-		              NULL);
-	}
-	else
-	{
-		g_object_set (cell,
-		              "cell-background-set", FALSE,
-		              "foreground-set", FALSE,
-		              NULL);
-	}
-}
-
 static gint
 iter_accelerator (GtkSourceCompletion *completion,
                   GtkTreeIter         *iter)
@@ -2848,8 +2792,10 @@ initialize_tree_view (GtkSourceCompletion *completion,
 {
 	GtkTreeSelection *selection;
 	GtkTreeViewColumn *column;
+	GtkCellRenderer *text_cell_renderer;
 	GtkStyleContext *style_context;
-	GdkRGBA color;
+	GdkRGBA background_color;
+	GdkRGBA foreground_color;
 
 	completion->priv->tree_view_proposals = GTK_WIDGET (gtk_builder_get_object (builder, "tree_view_proposals"));
 
@@ -2896,20 +2842,30 @@ initialize_tree_view (GtkSourceCompletion *completion,
 	style_context = gtk_widget_get_style_context (completion->priv->tree_view_proposals);
 	gtk_style_context_get_background_color (style_context,
 	                                        GTK_STATE_FLAG_INSENSITIVE,
-	                                        &color);
+	                                        &background_color);
 
 	g_object_set (completion->priv->cell_renderer_icon,
-	              "cell-background-rgba", &color,
+	              "cell-background-rgba", &background_color,
 	              NULL);
 
 	/* Text cell renderer */
 
-	gtk_tree_view_column_set_cell_data_func (column,
-	                                         GTK_CELL_RENDERER (gtk_builder_get_object (builder,
-	                                                                                    "cell_renderer_proposal")),
-	                                         (GtkTreeCellDataFunc)render_proposal_text_func,
-	                                         completion,
-	                                         NULL);
+	text_cell_renderer = GTK_CELL_RENDERER (gtk_builder_get_object (builder, "cell_renderer_proposal"));
+
+	gtk_tree_view_column_set_attributes (column, text_cell_renderer,
+					     "markup", GTK_SOURCE_COMPLETION_MODEL_COLUMN_MARKUP,
+					     "cell-background-set", GTK_SOURCE_COMPLETION_MODEL_COLUMN_IS_HEADER,
+					     "foreground-set", GTK_SOURCE_COMPLETION_MODEL_COLUMN_IS_HEADER,
+					     NULL);
+
+	gtk_style_context_get_color (style_context,
+	                             GTK_STATE_FLAG_INSENSITIVE,
+	                             &foreground_color);
+
+	g_object_set (text_cell_renderer,
+	              "foreground-rgba", &foreground_color,
+	              "cell-background-rgba", &background_color,
+	              NULL);
 
 	/* Accelerators cell renderer */
 

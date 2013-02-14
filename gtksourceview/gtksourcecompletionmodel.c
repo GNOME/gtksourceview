@@ -447,18 +447,6 @@ tree_model_get_value (GtkTreeModel *tree_model,
 			g_value_set_object (value, completion_proposal);
 			break;
 
-		case GTK_SOURCE_COMPLETION_MODEL_COLUMN_LABEL:
-			if (is_header (proposal_info))
-			{
-				g_value_take_string (value, NULL);
-			}
-			else
-			{
-				gchar *label = gtk_source_completion_proposal_get_label (completion_proposal);
-				g_value_take_string (value, label);
-			}
-			break;
-
 		case GTK_SOURCE_COMPLETION_MODEL_COLUMN_MARKUP:
 			if (is_header (proposal_info))
 			{
@@ -482,6 +470,14 @@ tree_model_get_value (GtkTreeModel *tree_model,
 			else
 			{
 				gchar *markup = gtk_source_completion_proposal_get_markup (completion_proposal);
+
+				if (markup == NULL)
+				{
+					gchar *label = gtk_source_completion_proposal_get_label (completion_proposal);
+					markup = g_markup_escape_text (label != NULL ? label : "", -1);
+					g_free (label);
+				}
+
 				g_value_take_string (value, markup);
 			}
 			break;
@@ -703,7 +699,6 @@ gtk_source_completion_model_init (GtkSourceCompletionModel *self)
 {
 	self->priv = GTK_SOURCE_COMPLETION_MODEL_GET_PRIVATE (self);
 
-	self->priv->column_types[GTK_SOURCE_COMPLETION_MODEL_COLUMN_LABEL] = G_TYPE_STRING;
 	self->priv->column_types[GTK_SOURCE_COMPLETION_MODEL_COLUMN_MARKUP] = G_TYPE_STRING;
 	self->priv->column_types[GTK_SOURCE_COMPLETION_MODEL_COLUMN_ICON] = GDK_TYPE_PIXBUF;
 	self->priv->column_types[GTK_SOURCE_COMPLETION_MODEL_COLUMN_PROPOSAL] = G_TYPE_OBJECT;
