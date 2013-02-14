@@ -24,7 +24,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 <interface>
   <requires lib="gtk+" version="3.0"/>
-  <object class="GtkWindow" id="window_completion">
+  <object class="GtkWindow" id="main_window">
     <property name="border_width">1</property>
     <property name="type">popup</property>
     <property name="type_hint">combo</property>
@@ -43,7 +43,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <child>
-              <object class="GtkTreeView" id="tree_view_completion">
+              <object class="GtkTreeView" id="tree_view_proposals">
                 <property name="visible">True</property>
                 <property name="headers_visible">False</property>
                 <property name="headers_clickable">False</property>
@@ -81,7 +81,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
             <property name="visible">True</property>
             <property name="orientation">horizontal</property>
             <child>
-              <object class="GtkToggleButton" id="toggle_button_info">
+              <object class="GtkToggleButton" id="info_button">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="receives_default">True</property>
@@ -89,19 +89,19 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
                 <property name="focus_on_click">False</property>
                 <property name="relief">GTK_RELIEF_NONE</property>
                 <child>
-                  <object class="GtkGrid" id="hgrid_info">
+                  <object class="GtkGrid" id="info_button_hgrid">
                     <property name="visible">True</property>
                     <property name="orientation">horizontal</property>
                     <property name="column_spacing">2</property>
                     <property name="valign">center</property>
                     <child>
-                      <object class="GtkImage" id="image_info">
+                      <object class="GtkImage" id="info_button_image">
                         <property name="visible">True</property>
                         <property name="stock">gtk-info</property>
                       </object>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="label_info">
+                      <object class="GtkLabel" id="info_button_label">
                         <property name="visible">True</property>
                         <property name="label" translatable="yes">_Details...</property>
                         <property name="use_underline">True</property>
@@ -115,7 +115,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
               </object>
             </child>
             <child>
-              <object class="GtkImage" id="image_selection">
+              <object class="GtkImage" id="selection_image">
                 <property name="visible">True</property>
                 <property name="halign">end</property>
                 <property name="hexpand">True</property>
@@ -125,7 +125,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
               </packing>
             </child>
             <child>
-              <object class="GtkLabel" id="label_selection">
+              <object class="GtkLabel" id="selection_label">
                 <property name="visible">True</property>
                 <property name="margin">6</property>
               </object>

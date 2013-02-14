@@ -152,31 +152,41 @@ enum
 
 struct _GtkSourceCompletionPrivate
 {
-	/* Widget and popup variables*/
+	/**********
+	 * Widgets
+	 **********/
+
+	/* The main window */
 	GtkWidget *window;
-	GtkWidget *info_window;
-	GtkWidget *info_button;
-	GtkWidget *selection_label;
-	GtkWidget *default_info;
+
+	/* Image and label in the bottom bar, on the right, for showing which
+	 * provider(s) are selected. */
 	GtkWidget *selection_image;
+	GtkWidget *selection_label;
+
+	/* The CompletionInfo window */
+	GtkWidget *info_window;
+
+	/* The default widget (a GtkLabel) for the info window */
+	GtkWidget *default_info;
+
+	/* The "Details" button with its components, for showing the info window */
+	GtkWidget *info_button;
 	GtkWidget *hgrid_info;
-	GtkWidget *label_info;
 	GtkWidget *image_info;
+	GtkWidget *label_info;
+
+	/* List of proposals */
+	GtkWidget *tree_view_proposals;
 	GtkTreeViewColumn *tree_view_column_accelerator;
 	GtkCellRenderer *cell_renderer_accelerator;
 	GtkCellRenderer *cell_renderer_icon;
 
-	GtkWidget *tree_view_proposals;
+	/************************
+	 * Completion management
+	 ************************/
+
 	GtkSourceCompletionModel *model_proposals;
-
-	guint num_accelerators;
-
-	/* Page size */
-	guint proposal_page_size;
-	guint provider_page_size;
-
-	/* Completion management */
-	GtkSourceView *view;
 
 	GList *providers;
 	GList *interactive_providers;
@@ -186,7 +196,6 @@ struct _GtkSourceCompletionPrivate
 	GList *running_providers;
 
 	guint show_timed_out_id;
-	guint auto_complete_delay;
 
 	gint typing_line;
 	gint typing_line_offset;
@@ -199,12 +208,27 @@ struct _GtkSourceCompletionPrivate
 
 	gint block_count;
 
+	/*************
+	 * Properties
+	 *************/
+
+	GtkSourceView *view;
+	guint num_accelerators;
+	guint auto_complete_delay;
+	guint proposal_page_size;
+	guint provider_page_size;
+
 	guint remember_info_visibility : 1;
-	guint info_visible : 1;
 	guint select_on_show : 1;
 	guint show_headers : 1;
-	guint select_first : 1;
 	guint show_icons : 1;
+
+	/*********
+	 * Others
+	 *********/
+
+	guint info_visible : 1;
+	guint select_first : 1;
 };
 
 static guint signals[LAST_SIGNAL] = { 0 };
@@ -2632,7 +2656,6 @@ update_transient_for_info (GObject             *window,
 {
 	gtk_window_set_transient_for (GTK_WINDOW (completion->priv->info_window),
 				      gtk_window_get_transient_for (GTK_WINDOW (completion->priv->window)));
-
 }
 
 static void
@@ -2917,7 +2940,6 @@ initialize_ui (GtkSourceCompletion *completion)
 	GtkBuilder *builder;
 	GtkTreeViewColumn *column;
 	GtkTreeSelection *selection;
-	GtkWidget *toggle_button_info;
 
 	builder = gtk_builder_new ();
 	gtk_builder_set_translation_domain (builder, GETTEXT_PACKAGE);
@@ -2926,30 +2948,14 @@ initialize_ui (GtkSourceCompletion *completion)
 				       "/org/gnome/gtksourceview/ui/gtksourcecompletion.ui",
 				       NULL);
 
-	completion->priv->window =
-		GTK_WIDGET (gtk_builder_get_object (builder,
-	                                            "window_completion"));
-	completion->priv->info_button =
-		GTK_WIDGET (gtk_builder_get_object (builder,
-	                                            "toggle_button_info"));
-	completion->priv->selection_label =
-		GTK_WIDGET (gtk_builder_get_object (builder,
-		                                    "label_selection"));
-	completion->priv->selection_image =
-		GTK_WIDGET (gtk_builder_get_object (builder,
-		                                    "image_selection"));
-	completion->priv->tree_view_proposals =
-		GTK_WIDGET (gtk_builder_get_object (builder,
-		                                    "tree_view_completion"));
-	completion->priv->label_info =
-		GTK_WIDGET (gtk_builder_get_object (builder,
-		                                    "label_info"));
-	completion->priv->image_info =
-		GTK_WIDGET (gtk_builder_get_object (builder,
-		                                    "image_info"));
-	completion->priv->hgrid_info =
-		GTK_WIDGET (gtk_builder_get_object (builder,
-		                                    "hgrid_info"));
+	completion->priv->window = GTK_WIDGET (gtk_builder_get_object (builder, "main_window"));
+	completion->priv->tree_view_proposals = GTK_WIDGET (gtk_builder_get_object (builder, "tree_view_proposals"));
+	completion->priv->selection_image = GTK_WIDGET (gtk_builder_get_object (builder, "selection_image"));
+	completion->priv->selection_label = GTK_WIDGET (gtk_builder_get_object (builder, "selection_label"));
+	completion->priv->info_button = GTK_WIDGET (gtk_builder_get_object (builder, "info_button"));
+	completion->priv->hgrid_info = GTK_WIDGET (gtk_builder_get_object (builder, "info_button_hgrid"));
+	completion->priv->image_info = GTK_WIDGET (gtk_builder_get_object (builder, "info_button_image"));
+	completion->priv->label_info = GTK_WIDGET (gtk_builder_get_object (builder, "info_button_label"));
 
 	gtk_window_set_attached_to (GTK_WINDOW (completion->priv->window),
 				    GTK_WIDGET (completion->priv->view));
@@ -3009,16 +3015,12 @@ initialize_ui (GtkSourceCompletion *completion)
 			  G_CALLBACK (selection_changed_cb),
 			  completion);
 
-	toggle_button_info =
-		GTK_WIDGET (gtk_builder_get_object (builder,
-		                                    "toggle_button_info"));
-
-	g_signal_connect (toggle_button_info,
+	g_signal_connect (completion->priv->info_button,
 			  "toggled",
 			  G_CALLBACK (info_toggled_cb),
 			  completion);
 
-	g_signal_connect (toggle_button_info,
+	g_signal_connect (completion->priv->info_button,
 			  "style-updated",
 			  G_CALLBACK (info_button_style_updated),
 			  completion);
@@ -3431,7 +3433,7 @@ gtk_source_completion_add_provider (GtkSourceCompletion          *completion,
  *
  * Returns: %TRUE if @provider was successfully removed, otherwise if @error
  *          is provided, it will be set with the error and %FALSE is returned.
- **/
+ */
 gboolean
 gtk_source_completion_remove_provider (GtkSourceCompletion          *completion,
 				       GtkSourceCompletionProvider  *provider,
