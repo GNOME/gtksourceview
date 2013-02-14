@@ -2894,7 +2894,9 @@ selection_func (GtkTreeSelection    *selection,
 	if (gtk_source_completion_model_iter_is_header (completion->priv->model_proposals,
 	                                                &iter))
 	{
-		return path_currently_selected;
+		/* A header must never be selected */
+		g_return_val_if_fail (!path_currently_selected, TRUE);
+		return FALSE;
 	}
 	else
 	{
