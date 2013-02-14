@@ -2666,48 +2666,6 @@ update_transient_for_info (GObject             *window,
 }
 
 static void
-render_proposal_icon_func (GtkTreeViewColumn   *column,
-                           GtkCellRenderer     *cell,
-                           GtkTreeModel        *model,
-                           GtkTreeIter         *iter,
-                           GtkSourceCompletion *completion)
-{
-	GdkPixbuf *icon = NULL;
-
-	if (gtk_source_completion_model_iter_is_header (completion->priv->model_proposals, iter))
-	{
-		GtkStyleContext *context;
-		GdkRGBA color;
-
-		context = gtk_widget_get_style_context (completion->priv->tree_view_proposals);
-		gtk_style_context_get_background_color (context,
-		                                        GTK_STATE_FLAG_INSENSITIVE,
-		                                        &color);
-
-		g_object_set (cell,
-		              "cell-background-rgba", &color,
-		              NULL);
-	}
-	else
-	{
-		g_object_set (cell,
-		              "cell-background-set", FALSE,
-		              NULL);
-	}
-
-	gtk_tree_model_get (model, iter,
-	                    GTK_SOURCE_COMPLETION_MODEL_COLUMN_ICON, &icon,
-	                    -1);
-
-	g_object_set (cell, "pixbuf", icon, NULL);
-
-	if (icon != NULL)
-	{
-		g_object_unref (icon);
-	}
-}
-
-static void
 render_proposal_text_func (GtkTreeViewColumn   *column,
                            GtkCellRenderer     *cell,
                            GtkTreeModel        *model,
@@ -2885,46 +2843,66 @@ replace_model (GtkSourceCompletion *completion)
 }
 
 static void
-initialize_ui (GtkSourceCompletion *completion)
+initialize_tree_view (GtkSourceCompletion *completion,
+		      GtkBuilder          *builder)
 {
-	GtkBuilder *builder;
-	GtkTreeViewColumn *column;
 	GtkTreeSelection *selection;
+	GtkTreeViewColumn *column;
+	GtkStyleContext *style_context;
+	GdkRGBA color;
 
-	builder = gtk_builder_new ();
-	gtk_builder_set_translation_domain (builder, GETTEXT_PACKAGE);
-
-	gtk_builder_add_from_resource (builder,
-				       "/org/gnome/gtksourceview/ui/gtksourcecompletion.ui",
-				       NULL);
-
-	completion->priv->main_window = GTK_WIDGET (gtk_builder_get_object (builder, "main_window"));
 	completion->priv->tree_view_proposals = GTK_WIDGET (gtk_builder_get_object (builder, "tree_view_proposals"));
-	completion->priv->selection_image = GTK_WIDGET (gtk_builder_get_object (builder, "selection_image"));
-	completion->priv->selection_label = GTK_WIDGET (gtk_builder_get_object (builder, "selection_label"));
-	completion->priv->info_button = GTK_WIDGET (gtk_builder_get_object (builder, "info_button"));
 
-	gtk_window_set_attached_to (GTK_WINDOW (completion->priv->main_window),
-				    GTK_WIDGET (completion->priv->view));
+	g_signal_connect (completion->priv->tree_view_proposals,
+			  "row-activated",
+			  G_CALLBACK (row_activated_cb),
+			  completion);
 
-	/* Tree view */
+	g_signal_connect_after (completion->priv->tree_view_proposals,
+				"size-allocate",
+				G_CALLBACK (gtk_source_completion_size_allocate),
+				completion);
+
+	g_signal_connect_after (completion->priv->tree_view_proposals,
+				"style-updated",
+				G_CALLBACK (gtk_source_completion_style_updated),
+				completion);
+
+	/* Selection */
+
 	selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (completion->priv->tree_view_proposals));
+
 	gtk_tree_selection_set_select_function (selection,
 	                                        (GtkTreeSelectionFunc)selection_func,
 	                                        completion,
 	                                        NULL);
 
-	column = GTK_TREE_VIEW_COLUMN (gtk_builder_get_object (builder,
-	                                                       "tree_view_column_proposal"));
+	g_signal_connect (selection,
+			  "changed",
+			  G_CALLBACK (selection_changed_cb),
+			  completion);
 
-	completion->priv->cell_renderer_icon = GTK_CELL_RENDERER (gtk_builder_get_object (builder,
-	                                                                                  "cell_renderer_icon"));
+	/* Icon cell renderer */
 
-	gtk_tree_view_column_set_cell_data_func (column,
-	                                         completion->priv->cell_renderer_icon,
-	                                         (GtkTreeCellDataFunc)render_proposal_icon_func,
-	                                         completion,
-	                                         NULL);
+	completion->priv->cell_renderer_icon = GTK_CELL_RENDERER (gtk_builder_get_object (builder, "cell_renderer_icon"));
+
+	column = GTK_TREE_VIEW_COLUMN (gtk_builder_get_object (builder, "tree_view_column_proposal"));
+
+	gtk_tree_view_column_set_attributes (column, completion->priv->cell_renderer_icon,
+					     "pixbuf", GTK_SOURCE_COMPLETION_MODEL_COLUMN_ICON,
+					     "cell-background-set", GTK_SOURCE_COMPLETION_MODEL_COLUMN_IS_HEADER,
+					     NULL);
+
+	style_context = gtk_widget_get_style_context (completion->priv->tree_view_proposals);
+	gtk_style_context_get_background_color (style_context,
+	                                        GTK_STATE_FLAG_INSENSITIVE,
+	                                        &color);
+
+	g_object_set (completion->priv->cell_renderer_icon,
+	              "cell-background-rgba", &color,
+	              NULL);
+
+	/* Text cell renderer */
 
 	gtk_tree_view_column_set_cell_data_func (column,
 	                                         GTK_CELL_RENDERER (gtk_builder_get_object (builder,
@@ -2933,13 +2911,13 @@ initialize_ui (GtkSourceCompletion *completion)
 	                                         completion,
 	                                         NULL);
 
+	/* Accelerators cell renderer */
+
 	completion->priv->tree_view_column_accelerator =
-		GTK_TREE_VIEW_COLUMN (gtk_builder_get_object (builder,
-	                                                      "tree_view_column_accelerator"));
+		GTK_TREE_VIEW_COLUMN (gtk_builder_get_object (builder, "tree_view_column_accelerator"));
 
 	completion->priv->cell_renderer_accelerator =
-		GTK_CELL_RENDERER (gtk_builder_get_object (builder,
-		                                           "cell_renderer_accelerator"));
+		GTK_CELL_RENDERER (gtk_builder_get_object (builder, "cell_renderer_accelerator"));
 
 	gtk_tree_view_column_set_visible (completion->priv->tree_view_column_accelerator,
 	                                  completion->priv->num_accelerators > 0);
@@ -2949,16 +2927,28 @@ initialize_ui (GtkSourceCompletion *completion)
 	                                         (GtkTreeCellDataFunc)render_proposal_accelerator_func,
 	                                         completion,
 	                                         NULL);
+}
 
-	g_signal_connect (completion->priv->tree_view_proposals,
-			  "row-activated",
-			  G_CALLBACK (row_activated_cb),
-			  completion);
+static void
+initialize_ui (GtkSourceCompletion *completion)
+{
+	GtkBuilder *builder = gtk_builder_new ();
 
-	g_signal_connect (selection,
-			  "changed",
-			  G_CALLBACK (selection_changed_cb),
-			  completion);
+	gtk_builder_set_translation_domain (builder, GETTEXT_PACKAGE);
+
+	gtk_builder_add_from_resource (builder,
+				       "/org/gnome/gtksourceview/ui/gtksourcecompletion.ui",
+				       NULL);
+
+	initialize_tree_view (completion, builder);
+
+	completion->priv->main_window = GTK_WIDGET (gtk_builder_get_object (builder, "main_window"));
+	completion->priv->selection_image = GTK_WIDGET (gtk_builder_get_object (builder, "selection_image"));
+	completion->priv->selection_label = GTK_WIDGET (gtk_builder_get_object (builder, "selection_label"));
+	completion->priv->info_button = GTK_WIDGET (gtk_builder_get_object (builder, "info_button"));
+
+	gtk_window_set_attached_to (GTK_WINDOW (completion->priv->main_window),
+				    GTK_WIDGET (completion->priv->view));
 
 	g_signal_connect (completion->priv->info_button,
 			  "toggled",
@@ -2994,16 +2984,6 @@ initialize_ui (GtkSourceCompletion *completion)
 	g_signal_connect_after (completion->priv->main_window,
 				"configure-event",
 				G_CALLBACK (gtk_source_completion_configure_event),
-				completion);
-
-	g_signal_connect_after (completion->priv->tree_view_proposals,
-				"size-allocate",
-				G_CALLBACK (gtk_source_completion_size_allocate),
-				completion);
-
-	g_signal_connect_after (completion->priv->tree_view_proposals,
-				"style-updated",
-				G_CALLBACK (gtk_source_completion_style_updated),
 				completion);
 
 	g_signal_connect (completion->priv->main_window,
