@@ -223,7 +223,6 @@ struct _GtkSourceCompletionPrivate
 	 * Others
 	 *********/
 
-	guint info_visible : 1;
 	guint select_first : 1;
 };
 
@@ -2050,9 +2049,6 @@ reset_completion (GtkSourceCompletion *completion)
 	completion->priv->active_providers = NULL;
 
 	completion->priv->select_first = FALSE;
-
-	completion->priv->info_visible =
-		gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (completion->priv->info_button));
 }
 
 static void
@@ -3057,11 +3053,8 @@ populating_done (GtkSourceCompletion        *completion,
 		{
 			if (!completion->priv->remember_info_visibility)
 			{
-				completion->priv->info_visible = FALSE;
+				gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (completion->priv->info_button), FALSE);
 			}
-
-			gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (completion->priv->info_button),
-						      completion->priv->info_visible);
 
 			DEBUG({
 				g_print ("Emitting show\n");
