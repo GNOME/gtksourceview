@@ -202,8 +202,6 @@ struct _GtkSourceCompletionPrivate
 	GList *auto_completion_selection;
 	GtkSourceCompletionContext *auto_completion_context;
 
-	gint block_count;
-
 	/*************
 	 * Properties
 	 *************/
@@ -290,33 +288,16 @@ static void
 completion_begin_block (GtkSourceCompletion *completion,
                         GtkSourceBuffer     *buffer)
 {
-	if (completion->priv->block_count == 0)
-	{
-		g_signal_handler_block (buffer,
-		                        completion->priv->signals_ids[TEXT_BUFFER_INSERT_TEXT]);
-		g_signal_handler_block (buffer,
-		                        completion->priv->signals_ids[TEXT_BUFFER_DELETE_RANGE]);
-	}
-
-	++completion->priv->block_count;
+	g_signal_handler_block (buffer, completion->priv->signals_ids[TEXT_BUFFER_INSERT_TEXT]);
+	g_signal_handler_block (buffer, completion->priv->signals_ids[TEXT_BUFFER_DELETE_RANGE]);
 }
 
 static void
 completion_end_block (GtkSourceCompletion *completion,
                       GtkSourceBuffer     *buffer)
 {
-	if (completion->priv->block_count == 0)
-	{
-		return;
-	}
-
-	if (--completion->priv->block_count == 0)
-	{
-		g_signal_handler_unblock (buffer,
-		                          completion->priv->signals_ids[TEXT_BUFFER_INSERT_TEXT]);
-		g_signal_handler_unblock (buffer,
-		                          completion->priv->signals_ids[TEXT_BUFFER_DELETE_RANGE]);
-	}
+	g_signal_handler_unblock (buffer, completion->priv->signals_ids[TEXT_BUFFER_INSERT_TEXT]);
+	g_signal_handler_unblock (buffer, completion->priv->signals_ids[TEXT_BUFFER_DELETE_RANGE]);
 }
 
 static gboolean
