@@ -218,12 +218,6 @@ struct _GtkSourceCompletionPrivate
 	guint select_on_show : 1;
 	guint show_headers : 1;
 	guint show_icons : 1;
-
-	/*********
-	 * Others
-	 *********/
-
-	guint select_first : 1;
 };
 
 static guint signals[LAST_SIGNAL] = { 0 };
@@ -1146,22 +1140,11 @@ selection_changed_cb (GtkTreeSelection    *selection,
 		return;
 	}
 
-	if (get_selected_proposal (completion, NULL, NULL, NULL))
-	{
-		completion->priv->select_first = FALSE;
-	}
-	else if (completion->priv->select_on_show)
-	{
-		completion->priv->select_first = TRUE;
-	}
-
-	/* Update the proposal info here */
 	if (gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (completion->priv->info_button)))
 	{
 		update_proposal_info (completion);
 	}
 
-	/* Update window position if needed */
 	update_window_position (completion);
 }
 
@@ -1421,7 +1404,8 @@ check_first_selected (GtkSourceCompletion *completion)
 	model = GTK_TREE_MODEL (completion->priv->model_proposals);
 	selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (completion->priv->tree_view_proposals));
 
-	if (!completion->priv->select_first)
+	if (get_selected_proposal (completion, NULL, NULL, NULL) ||
+	    !completion->priv->select_on_show)
 	{
 		return;
 	}
@@ -2044,8 +2028,6 @@ reset_completion (GtkSourceCompletion *completion)
 
 	g_list_free (completion->priv->active_providers);
 	completion->priv->active_providers = NULL;
-
-	completion->priv->select_first = FALSE;
 }
 
 static void
@@ -2997,10 +2979,6 @@ update_completion (GtkSourceCompletion        *completion,
 		g_list_free (completion->priv->active_providers);
 		completion->priv->active_providers = g_list_copy (providers);
 	}
-
-	completion->priv->select_first =
-		completion->priv->select_on_show &&
-		(!get_selected_proposal (completion, NULL, NULL, NULL) || completion->priv->select_first);
 
 	/* Create a new CompletionModel */
 	gtk_tree_view_set_model (GTK_TREE_VIEW (completion->priv->tree_view_proposals), NULL);
