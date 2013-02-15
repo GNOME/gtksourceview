@@ -244,43 +244,40 @@ get_selected_proposal (GtkSourceCompletion          *completion,
 		       GtkSourceCompletionProposal **proposal)
 {
 	GtkTreeIter piter;
-	GtkTreeModel *model;
 	GtkTreeSelection *selection;
 
 	selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (completion->priv->tree_view_proposals));
 
-	if (gtk_tree_selection_get_selected (selection, NULL, &piter))
+	if (!gtk_tree_selection_get_selected (selection, NULL, &piter))
 	{
-		if (gtk_source_completion_model_iter_is_header (completion->priv->model_proposals, &piter))
-		{
-			return FALSE;
-		}
-
-		model = GTK_TREE_MODEL (completion->priv->model_proposals);
-
-		if (proposal)
-		{
-			gtk_tree_model_get (model, &piter,
-					    GTK_SOURCE_COMPLETION_MODEL_COLUMN_PROPOSAL,
-					    proposal, -1);
-		}
-
-		if (provider)
-		{
-			gtk_tree_model_get (model, &piter,
-					    GTK_SOURCE_COMPLETION_MODEL_COLUMN_PROVIDER,
-					    provider, -1);
-		}
-
-		if (iter != NULL)
-		{
-			*iter = piter;
-		}
-
-		return TRUE;
+		return FALSE;
 	}
 
-	return FALSE;
+	if (gtk_source_completion_model_iter_is_header (completion->priv->model_proposals, &piter))
+	{
+		return FALSE;
+	}
+
+	if (iter != NULL)
+	{
+		*iter = piter;
+	}
+
+	if (provider != NULL)
+	{
+		gtk_tree_model_get (GTK_TREE_MODEL (completion->priv->model_proposals), &piter,
+				    GTK_SOURCE_COMPLETION_MODEL_COLUMN_PROVIDER, provider,
+				    -1);
+	}
+
+	if (proposal != NULL)
+	{
+		gtk_tree_model_get (GTK_TREE_MODEL (completion->priv->model_proposals), &piter,
+				    GTK_SOURCE_COMPLETION_MODEL_COLUMN_PROPOSAL, proposal,
+				    -1);
+	}
+
+	return TRUE;
 }
 
 static void
