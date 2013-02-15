@@ -229,6 +229,9 @@ static void update_completion (GtkSourceCompletion        *completion,
 static void show_info_cb (GtkWidget           *widget,
 	                  GtkSourceCompletion *completion);
 
+/* Returns %TRUE if a proposal is selected.
+ * Call g_object_unref() on @provider and @proposal when no longer needed.
+ */
 static gboolean
 get_selected_proposal (GtkSourceCompletion          *completion,
                        GtkTreeIter                  *iter,
@@ -300,35 +303,26 @@ completion_end_block (GtkSourceCompletion *completion,
 	g_signal_handler_unblock (buffer, completion->priv->signals_ids[TEXT_BUFFER_DELETE_RANGE]);
 }
 
-static gboolean
+static void
 activate_current_proposal (GtkSourceCompletion *completion)
 {
-	gboolean activated;
-	GtkTreeIter iter;
-	GtkTextIter titer;
-	GtkSourceCompletionProposal *proposal = NULL;
 	GtkSourceCompletionProvider *provider = NULL;
+	GtkSourceCompletionProposal *proposal = NULL;
 	GtkTextBuffer *buffer;
 	gboolean has_start;
-	GtkTextIter start;
+	GtkTextIter start_iter;
+	GtkTextIter insert_iter;
+	gboolean activated;
 
-	if (!get_selected_proposal (completion, &iter, &provider, &proposal))
+	if (!get_selected_proposal (completion, NULL, &provider, &proposal))
 	{
-		DEBUG({
-			g_print ("Hiding because activated without proposal\n");
-		});
-
-		gtk_source_completion_hide (completion);
-		return TRUE;
+		g_return_if_reached ();
 	}
-
-	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (completion->priv->view));
-	gtk_text_buffer_get_start_iter (buffer, &start);
 
 	has_start = gtk_source_completion_provider_get_start_iter (provider,
 	                                                           completion->priv->context,
 	                                                           proposal,
-	                                                           &start);
+	                                                           &start_iter);
 
 	/* First hide the completion because the activation might actually
 	   activate another one, which we don't want to hide */
@@ -338,13 +332,13 @@ activate_current_proposal (GtkSourceCompletion *completion)
 
 	gtk_source_completion_hide (completion);
 
-	/* Get insert iter */
+	get_iter_at_insert (completion, &insert_iter);
 
-	get_iter_at_insert (completion, &titer);
+	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (completion->priv->view));
 
 	completion_begin_block (completion, GTK_SOURCE_BUFFER (buffer));
 
-	activated = gtk_source_completion_provider_activate_proposal (provider, proposal, &titer);
+	activated = gtk_source_completion_provider_activate_proposal (provider, proposal, &insert_iter);
 
 	if (!activated)
 	{
@@ -352,10 +346,9 @@ activate_current_proposal (GtkSourceCompletion *completion)
 
 		if (has_start)
 		{
-			/* Replace from 'start' to 'titer' */
 			gtk_text_buffer_begin_user_action (buffer);
-			gtk_text_buffer_delete (buffer, &start, &titer);
-			gtk_text_buffer_insert (buffer, &start, text, -1);
+			gtk_text_buffer_delete (buffer, &start_iter, &insert_iter);
+			gtk_text_buffer_insert (buffer, &start_iter, text, -1);
 			gtk_text_buffer_end_user_action (buffer);
 		}
 		else
@@ -364,6 +357,7 @@ activate_current_proposal (GtkSourceCompletion *completion)
 					                                  text,
 					                                  -1);
 		}
+
 		g_free (text);
 	}
 
@@ -371,8 +365,6 @@ activate_current_proposal (GtkSourceCompletion *completion)
 
 	g_object_unref (provider);
 	g_object_unref (proposal);
-
-	return TRUE;
 }
 
 typedef gboolean (*ProposalSelector)(GtkSourceCompletion *completion,
