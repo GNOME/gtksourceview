@@ -32,7 +32,7 @@
  *
  * Returns: %TRUE if @ch is a separator.
  */
-gboolean
+static gboolean
 gtk_source_completion_utils_is_separator (const gunichar ch)
 {
 	if (g_unichar_isprint(ch) &&
@@ -100,21 +100,6 @@ gtk_source_completion_utils_get_word_iter (GtkSourceBuffer *source_buffer,
 	}
 }
 
-/**
- * gtk_source_completion_utils_get_word:
- * @source_buffer: a #GtkSourceBuffer.
- *
- * Returns: the current word.
- */
-gchar *
-gtk_source_completion_utils_get_word (GtkSourceBuffer *source_buffer)
-{
-	GtkTextIter start;
-	GtkTextIter end;
-
-	return gtk_source_completion_utils_get_word_iter (source_buffer, NULL, &start, &end);
-}
-
 static void
 get_iter_pos (GtkSourceView *source_view,
               GtkTextIter   *iter,
@@ -149,7 +134,7 @@ get_iter_pos (GtkSourceView *source_view,
 	*height = location.height;
 }
 
-void
+static void
 gtk_source_completion_utils_replace_word (GtkSourceBuffer *source_buffer,
 					  GtkTextIter     *iter,
 					  const gchar     *text,

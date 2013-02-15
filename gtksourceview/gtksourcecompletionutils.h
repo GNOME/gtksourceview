@@ -28,22 +28,10 @@
 G_BEGIN_DECLS
 
 G_GNUC_INTERNAL
-gboolean	 gtk_source_completion_utils_is_separator		(gunichar         ch);
-
-G_GNUC_INTERNAL
 gchar		*gtk_source_completion_utils_get_word_iter		(GtkSourceBuffer *source_buffer,
 									 GtkTextIter     *current,
 									 GtkTextIter     *start_word,
 									 GtkTextIter     *end_word);
-
-G_GNUC_INTERNAL
-gchar		*gtk_source_completion_utils_get_word			(GtkSourceBuffer *text_view);
-
-G_GNUC_INTERNAL
-void		 gtk_source_completion_utils_replace_word		(GtkSourceBuffer *source_buffer,
-									 GtkTextIter     *iter,
-									 const gchar     *text,
-									 gint             len);
 
 G_GNUC_INTERNAL
 void		 gtk_source_completion_utils_replace_current_word	(GtkSourceBuffer *source_buffer,
