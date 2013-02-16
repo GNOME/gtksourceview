@@ -292,8 +292,6 @@ gtk_source_completion_activate_proposal (GtkSourceCompletion *completion)
 {
 	GtkSourceCompletionProvider *provider = NULL;
 	GtkSourceCompletionProposal *proposal = NULL;
-	gboolean has_start;
-	GtkTextIter start_iter;
 	GtkTextIter insert_iter;
 	gboolean activated;
 
@@ -301,19 +299,6 @@ gtk_source_completion_activate_proposal (GtkSourceCompletion *completion)
 	{
 		g_return_if_reached ();
 	}
-
-	has_start = gtk_source_completion_provider_get_start_iter (provider,
-	                                                           completion->priv->context,
-	                                                           proposal,
-	                                                           &start_iter);
-
-	/* First hide the completion because the activation might actually
-	   activate another one, which we don't want to hide */
-	DEBUG({
-		g_print ("Hiding just before proposal activation\n");
-	});
-
-	gtk_source_completion_hide (completion);
 
 	get_iter_at_insert (completion, &insert_iter);
 
@@ -323,8 +308,14 @@ gtk_source_completion_activate_proposal (GtkSourceCompletion *completion)
 
 	if (!activated)
 	{
+		GtkTextIter start_iter;
 		GtkTextBuffer *buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (completion->priv->view));
 		gchar *text = gtk_source_completion_proposal_get_text (proposal);
+
+		gboolean has_start = gtk_source_completion_provider_get_start_iter (provider,
+										    completion->priv->context,
+										    proposal,
+										    &start_iter);
 
 		if (has_start)
 		{
@@ -342,6 +333,8 @@ gtk_source_completion_activate_proposal (GtkSourceCompletion *completion)
 	}
 
 	gtk_source_completion_unblock_interactive (completion);
+
+	gtk_source_completion_hide (completion);
 
 	g_object_unref (provider);
 	g_object_unref (proposal);
