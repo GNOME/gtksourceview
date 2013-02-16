@@ -1075,20 +1075,6 @@ selection_changed_cb (GtkTreeSelection    *selection,
 }
 
 static void
-info_toggled_cb (GtkToggleButton     *widget,
-		 GtkSourceCompletion *completion)
-{
-	if (gtk_toggle_button_get_active (widget))
-	{
-		gtk_widget_show (completion->priv->info_window);
-	}
-	else
-	{
-		gtk_widget_hide (completion->priv->info_window);
-	}
-}
-
-static void
 show_info_cb (GtkWidget           *widget,
 	      GtkSourceCompletion *completion)
 {
@@ -2768,11 +2754,6 @@ initialize_ui (GtkSourceCompletion *completion)
 	gtk_window_set_attached_to (GTK_WINDOW (completion->priv->main_window),
 				    GTK_WIDGET (completion->priv->view));
 
-	g_signal_connect (completion->priv->info_button,
-			  "toggled",
-			  G_CALLBACK (info_toggled_cb),
-			  completion);
-
 	g_object_unref (builder);
 
 	/* Info window */
@@ -2785,6 +2766,10 @@ initialize_ui (GtkSourceCompletion *completion)
 
 	gtk_window_set_attached_to (GTK_WINDOW (completion->priv->info_window),
 				    GTK_WIDGET (completion->priv->main_window));
+
+	g_object_bind_property (completion->priv->info_button, "active",
+				completion->priv->info_window, "visible",
+				G_BINDING_DEFAULT);
 
 	/* Default info widget */
 	completion->priv->default_info = gtk_label_new (NULL);
