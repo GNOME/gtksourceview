@@ -35,8 +35,7 @@ gchar		*gtk_source_completion_utils_get_word_iter		(GtkSourceBuffer *source_buff
 
 G_GNUC_INTERNAL
 void		 gtk_source_completion_utils_replace_current_word	(GtkSourceBuffer *source_buffer,
-									 const gchar     *text,
-									 gint             len);
+									 const gchar     *text);
 
 G_GNUC_INTERNAL
 void		 gtk_source_completion_utils_move_to_iter		(GtkWindow       *window,

@@ -137,8 +137,7 @@ get_iter_pos (GtkSourceView *source_view,
 static void
 gtk_source_completion_utils_replace_word (GtkSourceBuffer *source_buffer,
 					  GtkTextIter     *iter,
-					  const gchar     *text,
-					  gint             len)
+					  const gchar     *text)
 {
 	GtkTextBuffer *buffer;
 	gchar *word;
@@ -159,7 +158,7 @@ gtk_source_completion_utils_replace_word (GtkSourceBuffer *source_buffer,
 
 	if (text != NULL)
 	{
-		gtk_text_buffer_insert (buffer, &word_start, text, len);
+		gtk_text_buffer_insert (buffer, &word_start, text, -1);
 	}
 
 	/* Reinitialize iter */
@@ -177,8 +176,7 @@ gtk_source_completion_utils_replace_word (GtkSourceBuffer *source_buffer,
  */
 void
 gtk_source_completion_utils_replace_current_word (GtkSourceBuffer *source_buffer,
-						  const gchar     *text,
-						  gint             len)
+						  const gchar     *text)
 {
 	GtkTextIter iter;
 	GtkTextMark *mark;
@@ -190,10 +188,7 @@ gtk_source_completion_utils_replace_current_word (GtkSourceBuffer *source_buffer
 	                                  &iter,
 	                                  mark);
 
-	gtk_source_completion_utils_replace_word (source_buffer,
-	                                          &iter,
-	                                          text,
-	                                          len);
+	gtk_source_completion_utils_replace_word (source_buffer, &iter, text);
 }
 
 static void

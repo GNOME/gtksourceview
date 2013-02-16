@@ -336,8 +336,7 @@ activate_current_proposal (GtkSourceCompletion *completion)
 		else
 		{
 			gtk_source_completion_utils_replace_current_word (GTK_SOURCE_BUFFER (buffer),
-					                                  text,
-					                                  -1);
+					                                  text);
 		}
 
 		g_free (text);
