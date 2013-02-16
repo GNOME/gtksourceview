@@ -2509,34 +2509,44 @@ update_transient_for_info (GObject             *window,
 				      gtk_window_get_transient_for (GTK_WINDOW (completion->priv->main_window)));
 }
 
+/* Begins at 0. Returns -1 if no accelerators available for @iter. */
 static gint
-iter_accelerator (GtkSourceCompletion *completion,
-                  GtkTreeIter         *iter)
+get_accel_at_iter (GtkSourceCompletion *completion,
+                   GtkTreeIter         *iter)
 {
-	GtkTreeIter it;
+	GtkTreeIter cur_iter;
 	GtkTreeModel *model = GTK_TREE_MODEL (completion->priv->model_proposals);
 	gint ret = 0;
 
-	if (!gtk_tree_model_get_iter_first (model, &it))
+	if (gtk_source_completion_model_iter_is_header (completion->priv->model_proposals, iter))
 	{
 		return -1;
 	}
 
-	do
+	if (!gtk_tree_model_get_iter_first (model, &cur_iter))
 	{
-		if (!gtk_source_completion_model_iter_is_header (completion->priv->model_proposals,
-		                                                 &it))
+		g_return_val_if_reached (-1);
+	}
+
+	while (ret < completion->priv->num_accelerators)
+	{
+		if (!gtk_source_completion_model_iter_is_header (completion->priv->model_proposals, &cur_iter))
 		{
 			if (gtk_source_completion_model_iter_equal (completion->priv->model_proposals,
-			                                            iter,
-			                                            &it))
+								    iter,
+								    &cur_iter))
 			{
 				return ret;
 			}
 
-			++ret;
+			ret++;
 		}
-	} while (ret < completion->priv->num_accelerators && gtk_tree_model_iter_next (model, &it));
+
+		if (!gtk_tree_model_iter_next (model, &cur_iter))
+		{
+			break;
+		}
+	}
 
 	return -1;
 }
@@ -2548,48 +2558,16 @@ render_proposal_accelerator_func (GtkTreeViewColumn   *column,
                                   GtkTreeIter         *iter,
                                   GtkSourceCompletion *completion)
 {
-	gboolean isheader;
-	GtkStyleContext *context;
-	GdkRGBA color;
+	gint accel = get_accel_at_iter (completion, iter);
+	gchar *text = NULL;
 
-	isheader = gtk_source_completion_model_iter_is_header (completion->priv->model_proposals,
-	                                                       iter);
-
-	context = gtk_widget_get_style_context (completion->priv->tree_view_proposals);
-
-	if (isheader)
+	if (accel != -1)
 	{
-		gtk_style_context_get_background_color (context,
-		                                        GTK_STATE_FLAG_INSENSITIVE,
-		                                        &color);
-
-		g_object_set (cell,
-		              "cell-background-rgba", &color,
-		              "text", NULL,
-		              NULL);
+		text = g_strdup_printf ("<small><b>%d</b></small>", (accel + 1) % 10);
 	}
-	else
-	{
-		gtk_style_context_get_color (context,
-		                             GTK_STATE_FLAG_INSENSITIVE,
-		                             &color);
 
-		gint accel = iter_accelerator (completion, iter);
-		gchar *text = NULL;
-
-		if (accel != -1)
-		{
-			text = g_strdup_printf ("<small><b>%d</b></small>",
-						accel == 9 ? 0 : accel + 1);
-		}
-
-		g_object_set (cell,
-			      "foreground-rgba", &color,
-			      "cell-background-set", FALSE,
-			      "markup", text,
-			      NULL);
-		g_free (text);
-	}
+	g_object_set (cell, "markup", text, NULL);
+	g_free (text);
 }
 
 static gboolean
@@ -2723,8 +2701,15 @@ initialize_tree_view (GtkSourceCompletion *completion,
 	completion->priv->cell_renderer_accelerator =
 		GTK_CELL_RENDERER (gtk_builder_get_object (builder, "cell_renderer_accelerator"));
 
-	gtk_tree_view_column_set_visible (completion->priv->tree_view_column_accelerator,
-	                                  completion->priv->num_accelerators > 0);
+	gtk_tree_view_column_set_attributes (completion->priv->tree_view_column_accelerator,
+					     completion->priv->cell_renderer_accelerator,
+					     "cell-background-set", GTK_SOURCE_COMPLETION_MODEL_COLUMN_IS_HEADER,
+					     NULL);
+
+	g_object_set (completion->priv->cell_renderer_accelerator,
+	              "foreground-rgba", &foreground_color,
+	              "cell-background-rgba", &background_color,
+		      NULL);
 
 	gtk_tree_view_column_set_cell_data_func (completion->priv->tree_view_column_accelerator,
 	                                         completion->priv->cell_renderer_accelerator,
