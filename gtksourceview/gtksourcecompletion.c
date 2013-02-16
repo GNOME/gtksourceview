@@ -288,27 +288,10 @@ get_iter_at_insert (GtkSourceCompletion *completion,
 }
 
 static void
-completion_begin_block (GtkSourceCompletion *completion,
-                        GtkSourceBuffer     *buffer)
-{
-	g_signal_handler_block (buffer, completion->priv->signals_ids[TEXT_BUFFER_INSERT_TEXT]);
-	g_signal_handler_block (buffer, completion->priv->signals_ids[TEXT_BUFFER_DELETE_RANGE]);
-}
-
-static void
-completion_end_block (GtkSourceCompletion *completion,
-                      GtkSourceBuffer     *buffer)
-{
-	g_signal_handler_unblock (buffer, completion->priv->signals_ids[TEXT_BUFFER_INSERT_TEXT]);
-	g_signal_handler_unblock (buffer, completion->priv->signals_ids[TEXT_BUFFER_DELETE_RANGE]);
-}
-
-static void
 activate_current_proposal (GtkSourceCompletion *completion)
 {
 	GtkSourceCompletionProvider *provider = NULL;
 	GtkSourceCompletionProposal *proposal = NULL;
-	GtkTextBuffer *buffer;
 	gboolean has_start;
 	GtkTextIter start_iter;
 	GtkTextIter insert_iter;
@@ -334,14 +317,13 @@ activate_current_proposal (GtkSourceCompletion *completion)
 
 	get_iter_at_insert (completion, &insert_iter);
 
-	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (completion->priv->view));
-
-	completion_begin_block (completion, GTK_SOURCE_BUFFER (buffer));
+	gtk_source_completion_block_interactive (completion);
 
 	activated = gtk_source_completion_provider_activate_proposal (provider, proposal, &insert_iter);
 
 	if (!activated)
 	{
+		GtkTextBuffer *buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (completion->priv->view));
 		gchar *text = gtk_source_completion_proposal_get_text (proposal);
 
 		if (has_start)
@@ -361,7 +343,7 @@ activate_current_proposal (GtkSourceCompletion *completion)
 		g_free (text);
 	}
 
-	completion_end_block (completion, GTK_SOURCE_BUFFER (buffer));
+	gtk_source_completion_unblock_interactive (completion);
 
 	g_object_unref (provider);
 	g_object_unref (proposal);
@@ -1868,17 +1850,13 @@ text_view_editable_cb (GtkTextView         *view,
                        GParamSpec          *spec,
                        GtkSourceCompletion *completion)
 {
-	gboolean editable = gtk_text_view_get_editable (view);
-	GtkSourceBuffer *buffer = GTK_SOURCE_BUFFER (gtk_text_view_get_buffer (view));
-
-	/* Block when view is not editable, and unblock if it is */
-	if (!editable)
+	if (gtk_text_view_get_editable (view))
 	{
-		completion_begin_block (completion, buffer);
+		gtk_source_completion_unblock_interactive (completion);
 	}
 	else
 	{
-		completion_end_block (completion, buffer);
+		gtk_source_completion_block_interactive (completion);
 	}
 }
 
@@ -1934,7 +1912,7 @@ connect_view (GtkSourceCompletion *completion)
 	completion->priv->signals_ids[SOURCE_BUFFER_UNDO] =
 		g_signal_connect_data (buffer,
 		                       "undo",
-		                       G_CALLBACK (completion_begin_block),
+		                       G_CALLBACK (gtk_source_completion_block_interactive),
 		                       completion,
 		                       NULL,
 		                       G_CONNECT_SWAPPED);
@@ -1942,7 +1920,7 @@ connect_view (GtkSourceCompletion *completion)
 	completion->priv->signals_ids[SOURCE_BUFFER_UNDO_AFTER] =
 		g_signal_connect_data (buffer,
 		                       "undo",
-		                       G_CALLBACK (completion_end_block),
+		                       G_CALLBACK (gtk_source_completion_unblock_interactive),
 		                       completion,
 		                       NULL,
 		                       G_CONNECT_SWAPPED | G_CONNECT_AFTER);
@@ -1950,7 +1928,7 @@ connect_view (GtkSourceCompletion *completion)
 	completion->priv->signals_ids[SOURCE_BUFFER_REDO] =
 		g_signal_connect_data (buffer,
 		                       "redo",
-		                       G_CALLBACK (completion_begin_block),
+		                       G_CALLBACK (gtk_source_completion_block_interactive),
 		                       completion,
 		                       NULL,
 		                       G_CONNECT_SWAPPED);
@@ -1958,7 +1936,7 @@ connect_view (GtkSourceCompletion *completion)
 	completion->priv->signals_ids[SOURCE_BUFFER_REDO_AFTER] =
 		g_signal_connect_data (buffer,
 		                       "redo",
-		                       G_CALLBACK (completion_end_block),
+		                       G_CALLBACK (gtk_source_completion_unblock_interactive),
 		                       completion,
 		                       NULL,
 		                       G_CONNECT_SWAPPED | G_CONNECT_AFTER);
@@ -3432,12 +3410,14 @@ gtk_source_completion_move_window (GtkSourceCompletion *completion,
 void
 gtk_source_completion_block_interactive (GtkSourceCompletion *completion)
 {
-	GtkSourceBuffer *buffer;
+	GtkTextBuffer *buffer;
 
 	g_return_if_fail (GTK_SOURCE_IS_COMPLETION (completion));
 
-	buffer = GTK_SOURCE_BUFFER (gtk_text_view_get_buffer (GTK_TEXT_VIEW (completion->priv->view)));
-	completion_begin_block (completion, buffer);
+	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (completion->priv->view));
+
+	g_signal_handler_block (buffer, completion->priv->signals_ids[TEXT_BUFFER_INSERT_TEXT]);
+	g_signal_handler_block (buffer, completion->priv->signals_ids[TEXT_BUFFER_DELETE_RANGE]);
 }
 
 /**
@@ -3451,10 +3431,12 @@ gtk_source_completion_block_interactive (GtkSourceCompletion *completion)
 void
 gtk_source_completion_unblock_interactive (GtkSourceCompletion *completion)
 {
-	GtkSourceBuffer *buffer;
+	GtkTextBuffer *buffer;
 
 	g_return_if_fail (GTK_SOURCE_IS_COMPLETION (completion));
 
-	buffer = GTK_SOURCE_BUFFER (gtk_text_view_get_buffer (GTK_TEXT_VIEW (completion->priv->view)));
-	completion_end_block (completion, buffer);
+	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (completion->priv->view));
+
+	g_signal_handler_unblock (buffer, completion->priv->signals_ids[TEXT_BUFFER_INSERT_TEXT]);
+	g_signal_handler_unblock (buffer, completion->priv->signals_ids[TEXT_BUFFER_DELETE_RANGE]);
 }
