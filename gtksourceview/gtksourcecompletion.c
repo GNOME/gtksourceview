@@ -335,8 +335,7 @@ activate_current_proposal (GtkSourceCompletion *completion)
 		}
 		else
 		{
-			gtk_source_completion_utils_replace_current_word (GTK_SOURCE_BUFFER (buffer),
-					                                  text);
+			gtk_source_completion_utils_replace_current_word (buffer, text);
 		}
 
 		g_free (text);
@@ -1513,14 +1512,9 @@ update_typing_offsets (GtkSourceCompletion *completion)
 	GtkTextBuffer *buffer;
 	GtkTextIter start;
 	GtkTextIter end;
-	gchar *word;
 
 	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (completion->priv->view));
-	word = gtk_source_completion_utils_get_word_iter (GTK_SOURCE_BUFFER (buffer),
-							  NULL,
-							  &start,
-							  &end);
-	g_free (word);
+	gtk_source_completion_utils_get_word_iter (buffer, &start, &end);
 
 	completion->priv->typing_line = gtk_text_iter_get_line (&start);
 	completion->priv->typing_line_offset = gtk_text_iter_get_line_offset (&start);

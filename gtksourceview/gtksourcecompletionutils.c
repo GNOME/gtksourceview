@@ -46,57 +46,30 @@ gtk_source_completion_utils_is_separator (const gunichar ch)
 
 /**
  * gtk_source_completion_utils_get_word_iter:
- * @source_buffer: a #GtkSourceBuffer.
- * @current: (allow-none): the iter of the position to consider, or %NULL to use the current insert position
- * @start_word: (allow-none): if not %NULL then assign it the start position of the word
- * @end_word: (allow-none): if not %NULL then assing it the end position of the word
- *
- * Returns: the current word.
+ * @buffer: a #GtkTextBuffer.
+ * @start_word: assign it the start position of the word
+ * @end_word: assign it the end position of the word
  */
-gchar *
-gtk_source_completion_utils_get_word_iter (GtkSourceBuffer *source_buffer,
-					   GtkTextIter     *current,
-					   GtkTextIter     *start_word,
-					   GtkTextIter     *end_word)
+void
+gtk_source_completion_utils_get_word_iter (GtkTextBuffer *buffer,
+					   GtkTextIter   *start_word,
+					   GtkTextIter   *end_word)
 {
-	GtkTextBuffer *text_buffer;
-	gunichar ch;
-	gboolean no_doc_start;
+	gtk_text_buffer_get_iter_at_mark (buffer,
+	                                  end_word,
+	                                  gtk_text_buffer_get_insert (buffer));
 
-	text_buffer = GTK_TEXT_BUFFER (source_buffer);
+	*start_word = *end_word;
 
-	if (current == NULL)
+	while (gtk_text_iter_backward_char (start_word))
 	{
-		gtk_text_buffer_get_iter_at_mark (text_buffer,
-		                                  start_word,
-		                                  gtk_text_buffer_get_insert (text_buffer));
-	}
-	else
-	{
-		*start_word = *current;
-	}
-
-	*end_word = *start_word;
-
-	while ((no_doc_start = gtk_text_iter_backward_char (start_word)) == TRUE)
-	{
-		ch = gtk_text_iter_get_char (start_word);
+		gunichar ch = gtk_text_iter_get_char (start_word);
 
 		if (gtk_source_completion_utils_is_separator (ch))
 		{
-			break;
+			gtk_text_iter_forward_char (start_word);
+			return;
 		}
-	}
-
-	if (!no_doc_start)
-	{
-		gtk_text_buffer_get_start_iter (text_buffer, start_word);
-		return gtk_text_iter_get_text (start_word, end_word);
-	}
-	else
-	{
-		gtk_text_iter_forward_char (start_word);
-		return gtk_text_iter_get_text (start_word, end_word);
 	}
 }
 
@@ -134,25 +107,23 @@ get_iter_pos (GtkSourceView *source_view,
 	*height = location.height;
 }
 
-static void
-gtk_source_completion_utils_replace_word (GtkSourceBuffer *source_buffer,
-					  GtkTextIter     *iter,
-					  const gchar     *text)
+/**
+ * gtk_source_completion_utils_replace_current_word:
+ * @buffer: a #GtkTextBuffer.
+ * @text: (allow-none): The text to be inserted instead of the current word.
+ *
+ * Replaces the current word in the #GtkSourceBuffer with the new word.
+ */
+void
+gtk_source_completion_utils_replace_current_word (GtkTextBuffer *buffer,
+						  const gchar   *text)
 {
-	GtkTextBuffer *buffer;
-	gchar *word;
 	GtkTextIter word_start;
 	GtkTextIter word_end;
-	GtkTextMark *mark;
 
-	g_return_if_fail (GTK_SOURCE_IS_BUFFER (source_buffer));
+	gtk_source_completion_utils_get_word_iter (buffer, &word_start, &word_end);
 
-	buffer = GTK_TEXT_BUFFER (source_buffer);
 	gtk_text_buffer_begin_user_action (buffer);
-
-	mark = gtk_text_buffer_create_mark (buffer, NULL, iter, TRUE);
-	word = gtk_source_completion_utils_get_word_iter (source_buffer, iter, &word_start, &word_end);
-	g_free (word);
 
 	gtk_text_buffer_delete (buffer, &word_start, &word_end);
 
@@ -161,34 +132,7 @@ gtk_source_completion_utils_replace_word (GtkSourceBuffer *source_buffer,
 		gtk_text_buffer_insert (buffer, &word_start, text, -1);
 	}
 
-	/* Reinitialize iter */
-	gtk_text_buffer_get_iter_at_mark (buffer, iter, mark);
-	gtk_text_buffer_delete_mark (buffer, mark);
 	gtk_text_buffer_end_user_action (buffer);
-}
-
-/**
- * gtk_source_completion_utils_replace_current_word:
- * @source_buffer: a #GtkSourceBuffer.
- * @text: (allow-none): The text to be inserted instead of the current word.
- *
- * Replaces the current word in the #GtkSourceBuffer with the new word.
- */
-void
-gtk_source_completion_utils_replace_current_word (GtkSourceBuffer *source_buffer,
-						  const gchar     *text)
-{
-	GtkTextIter iter;
-	GtkTextMark *mark;
-
-	g_return_if_fail (GTK_SOURCE_IS_BUFFER (source_buffer));
-
-	mark = gtk_text_buffer_get_insert (GTK_TEXT_BUFFER (source_buffer));
-	gtk_text_buffer_get_iter_at_mark (GTK_TEXT_BUFFER (source_buffer),
-	                                  &iter,
-	                                  mark);
-
-	gtk_source_completion_utils_replace_word (source_buffer, &iter, text);
 }
 
 static void

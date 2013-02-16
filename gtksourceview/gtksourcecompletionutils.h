@@ -28,13 +28,12 @@
 G_BEGIN_DECLS
 
 G_GNUC_INTERNAL
-gchar		*gtk_source_completion_utils_get_word_iter		(GtkSourceBuffer *source_buffer,
-									 GtkTextIter     *current,
+void		 gtk_source_completion_utils_get_word_iter		(GtkTextBuffer   *buffer,
 									 GtkTextIter     *start_word,
 									 GtkTextIter     *end_word);
 
 G_GNUC_INTERNAL
-void		 gtk_source_completion_utils_replace_current_word	(GtkSourceBuffer *source_buffer,
+void		 gtk_source_completion_utils_replace_current_word	(GtkTextBuffer   *buffer,
 									 const gchar     *text);
 
 G_GNUC_INTERNAL
