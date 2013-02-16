@@ -234,40 +234,34 @@ static void show_info_cb (GtkWidget           *widget,
  */
 static gboolean
 get_selected_proposal (GtkSourceCompletion          *completion,
-                       GtkTreeIter                  *iter,
 		       GtkSourceCompletionProvider **provider,
 		       GtkSourceCompletionProposal **proposal)
 {
-	GtkTreeIter piter;
+	GtkTreeIter iter;
 	GtkTreeSelection *selection;
 
 	selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (completion->priv->tree_view_proposals));
 
-	if (!gtk_tree_selection_get_selected (selection, NULL, &piter))
+	if (!gtk_tree_selection_get_selected (selection, NULL, &iter))
 	{
 		return FALSE;
 	}
 
-	if (gtk_source_completion_model_iter_is_header (completion->priv->model_proposals, &piter))
+	if (gtk_source_completion_model_iter_is_header (completion->priv->model_proposals, &iter))
 	{
 		return FALSE;
-	}
-
-	if (iter != NULL)
-	{
-		*iter = piter;
 	}
 
 	if (provider != NULL)
 	{
-		gtk_tree_model_get (GTK_TREE_MODEL (completion->priv->model_proposals), &piter,
+		gtk_tree_model_get (GTK_TREE_MODEL (completion->priv->model_proposals), &iter,
 				    GTK_SOURCE_COMPLETION_MODEL_COLUMN_PROVIDER, provider,
 				    -1);
 	}
 
 	if (proposal != NULL)
 	{
-		gtk_tree_model_get (GTK_TREE_MODEL (completion->priv->model_proposals), &piter,
+		gtk_tree_model_get (GTK_TREE_MODEL (completion->priv->model_proposals), &iter,
 				    GTK_SOURCE_COMPLETION_MODEL_COLUMN_PROPOSAL, proposal,
 				    -1);
 	}
@@ -295,7 +289,7 @@ gtk_source_completion_activate_proposal (GtkSourceCompletion *completion)
 	GtkTextIter insert_iter;
 	gboolean activated;
 
-	if (!get_selected_proposal (completion, NULL, &provider, &proposal))
+	if (!get_selected_proposal (completion, &provider, &proposal))
 	{
 		g_return_if_reached ();
 	}
@@ -1021,9 +1015,8 @@ update_proposal_info (GtkSourceCompletion *completion)
 {
 	GtkSourceCompletionProposal *proposal = NULL;
 	GtkSourceCompletionProvider *provider;
-	GtkTreeIter iter;
 
-	if (get_selected_proposal (completion, &iter, &provider, &proposal))
+	if (get_selected_proposal (completion, &provider, &proposal))
 	{
 		update_proposal_info_real (completion, provider, proposal);
 
@@ -1042,7 +1035,7 @@ update_window_position (GtkSourceCompletion *completion)
 	GtkSourceCompletionProvider *provider;
 	GtkSourceCompletionProposal *proposal;
 
-	if (get_selected_proposal (completion, NULL, &provider, &proposal))
+	if (get_selected_proposal (completion, &provider, &proposal))
 	{
 		GtkTextIter iter;
 		GtkTextBuffer *buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (completion->priv->view));
@@ -1327,7 +1320,7 @@ check_first_selected (GtkSourceCompletion *completion)
 	model = GTK_TREE_MODEL (completion->priv->model_proposals);
 	selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (completion->priv->tree_view_proposals));
 
-	if (get_selected_proposal (completion, NULL, NULL, NULL) ||
+	if (get_selected_proposal (completion, NULL, NULL) ||
 	    !completion->priv->select_on_show)
 	{
 		return;
