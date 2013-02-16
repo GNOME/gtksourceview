@@ -933,19 +933,6 @@ update_info_position (GtkSourceCompletion *completion)
 }
 
 static void
-row_activated_cb (GtkTreeView         *tree_view,
-		  GtkTreePath         *path,
-		  GtkTreeViewColumn   *column,
-		  GtkSourceCompletion *completion)
-{
-	DEBUG({
-		g_print ("Activating current proposal from row-activated\n");
-	});
-
-	activate_current_proposal (completion);
-}
-
-static void
 replace_info_widget (GtkSourceCompletionInfo *info,
 		     GtkWidget               *new_widget)
 {
@@ -2725,10 +2712,10 @@ initialize_tree_view (GtkSourceCompletion *completion,
 
 	completion->priv->tree_view_proposals = GTK_WIDGET (gtk_builder_get_object (builder, "tree_view_proposals"));
 
-	g_signal_connect (completion->priv->tree_view_proposals,
-			  "row-activated",
-			  G_CALLBACK (row_activated_cb),
-			  completion);
+	g_signal_connect_swapped (completion->priv->tree_view_proposals,
+				  "row-activated",
+				  G_CALLBACK (activate_current_proposal),
+				  completion);
 
 	g_signal_connect_after (completion->priv->tree_view_proposals,
 				"size-allocate",
