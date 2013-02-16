@@ -288,7 +288,7 @@ get_iter_at_insert (GtkSourceCompletion *completion,
 }
 
 static void
-activate_current_proposal (GtkSourceCompletion *completion)
+gtk_source_completion_activate_proposal (GtkSourceCompletion *completion)
 {
 	GtkSourceCompletionProvider *provider = NULL;
 	GtkSourceCompletionProposal *proposal = NULL;
@@ -1290,16 +1290,6 @@ view_button_press_event_cb (GtkWidget      *widget,
 }
 
 static void
-gtk_source_completion_activate_proposal (GtkSourceCompletion *completion)
-{
-	DEBUG({
-		g_print ("Activating from default proposal activate handler\n");
-	});
-
-	activate_current_proposal (completion);
-}
-
-static void
 gtk_source_completion_move_cursor (GtkSourceCompletion *completion,
                                    GtkScrollStep        step,
                                    gint                 num)
@@ -1437,7 +1427,7 @@ activate_by_accelerator (GtkSourceCompletion *completion,
 				gtk_tree_view_get_selection (GTK_TREE_VIEW (completion->priv->tree_view_proposals)),
 				&iter);
 
-			activate_current_proposal (completion);
+			gtk_source_completion_activate_proposal (completion);
 		}
 	}
 	return TRUE;
@@ -2707,7 +2697,7 @@ initialize_tree_view (GtkSourceCompletion *completion,
 
 	g_signal_connect_swapped (completion->priv->tree_view_proposals,
 				  "row-activated",
-				  G_CALLBACK (activate_current_proposal),
+				  G_CALLBACK (gtk_source_completion_activate_proposal),
 				  completion);
 
 	g_signal_connect_after (completion->priv->tree_view_proposals,
