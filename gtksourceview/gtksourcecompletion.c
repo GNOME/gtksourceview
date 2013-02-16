@@ -1113,15 +1113,6 @@ show_info_after_cb (GtkWidget           *widget,
 	gtk_label_select_region (GTK_LABEL (completion->priv->default_info), 0, 0);
 }
 
-static void
-info_size_allocate_cb (GtkWidget           *widget,
-                       GtkAllocation       *allocation,
-                       GtkSourceCompletion *completion)
-{
-	/* Update window position */
-	update_info_position (completion);
-}
-
 static gint
 measure_accelerator_width (GtkWidget *widget)
 {
@@ -1219,21 +1210,6 @@ update_column_sizes (GtkSourceCompletion *completion)
 	gtk_cell_renderer_set_fixed_size (completion->priv->cell_renderer_icon,
 		                          icon_width,
 		                          icon_height);
-}
-
-static void
-gtk_source_completion_size_allocate (GtkWidget           *widget,
-                                     GtkAllocation       *allocation,
-                                     GtkSourceCompletion *completion)
-{
-	update_column_sizes (completion);
-}
-
-static void
-gtk_source_completion_style_updated (GtkWidget           *widget,
-                                     GtkSourceCompletion *completion)
-{
-	update_column_sizes (completion);
 }
 
 static gboolean
@@ -2686,15 +2662,19 @@ initialize_tree_view (GtkSourceCompletion *completion,
 				  G_CALLBACK (gtk_source_completion_activate_proposal),
 				  completion);
 
-	g_signal_connect_after (completion->priv->tree_view_proposals,
-				"size-allocate",
-				G_CALLBACK (gtk_source_completion_size_allocate),
-				completion);
+	g_signal_connect_data (completion->priv->tree_view_proposals,
+			       "size-allocate",
+			       G_CALLBACK (update_column_sizes),
+			       completion,
+			       NULL,
+			       G_CONNECT_AFTER | G_CONNECT_SWAPPED);
 
-	g_signal_connect_after (completion->priv->tree_view_proposals,
-				"style-updated",
-				G_CALLBACK (gtk_source_completion_style_updated),
-				completion);
+	g_signal_connect_data (completion->priv->tree_view_proposals,
+			       "style-updated",
+			       G_CALLBACK (update_column_sizes),
+			       completion,
+			       NULL,
+			       G_CONNECT_AFTER | G_CONNECT_SWAPPED);
 
 	/* Selection */
 
@@ -2839,10 +2819,10 @@ initialize_ui (GtkSourceCompletion *completion)
 			  G_CALLBACK (show_info_after_cb),
 			  completion);
 
-	g_signal_connect (completion->priv->info_window,
-	                  "size-allocate",
-	                  G_CALLBACK(info_size_allocate_cb),
-	                  completion);
+	g_signal_connect_swapped (completion->priv->info_window,
+				  "size-allocate",
+				  G_CALLBACK (update_info_position),
+				  completion);
 
 	gtk_widget_set_size_request (completion->priv->main_window,
 	                             WINDOW_WIDTH,
