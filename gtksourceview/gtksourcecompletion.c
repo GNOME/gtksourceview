@@ -1459,22 +1459,14 @@ update_typing_offsets (GtkSourceCompletion *completion)
 }
 
 static GList *
-select_providers (GtkSourceCompletion        *completion,
-                  GList                      *providers,
+select_providers (GList                      *providers,
                   GtkSourceCompletionContext *context)
 {
-	/* Select providers based on selection */
 	GList *selection = NULL;
 
-	if (providers == NULL)
+	while (providers != NULL)
 	{
-		providers = completion->priv->providers;
-	}
-
-	while (providers)
-	{
-		GtkSourceCompletionProvider *provider =
-			GTK_SOURCE_COMPLETION_PROVIDER (providers->data);
+		GtkSourceCompletionProvider *provider = providers->data;
 
 		if (gtk_source_completion_provider_match (provider, context))
 		{
@@ -1579,9 +1571,7 @@ auto_completion_prematch (GtkSourceCompletion *completion)
 
 	g_signal_emit (completion, signals[POPULATE_CONTEXT], 0, context);
 
-	selection = select_providers (completion,
-	                              completion->priv->interactive_providers,
-	                              context);
+	selection = select_providers (completion->priv->interactive_providers, context);
 
 	if (selection == NULL)
 	{
@@ -2986,7 +2976,7 @@ gtk_source_completion_show (GtkSourceCompletion        *completion,
 	g_signal_emit (completion, signals[POPULATE_CONTEXT], 0, context);
 
 	/* From the providers, select the ones that match the context */
-	selected_providers = select_providers (completion, providers, context);
+	selected_providers = select_providers (providers, context);
 
 	if (selected_providers == NULL)
 	{
