@@ -1526,17 +1526,12 @@ minimum_auto_complete_delay (GtkSourceCompletion *completion,
 {
 	gint min_delay = completion->priv->auto_complete_delay;
 
-	while (providers)
+	while (providers != NULL)
 	{
 		GtkSourceCompletionProvider *provider = providers->data;
 		gint delay = gtk_source_completion_provider_get_interactive_delay (provider);
 
-		if (delay < 0)
-		{
-			delay = completion->priv->auto_complete_delay;
-		}
-
-		if (delay < min_delay)
+		if (0 <= delay && delay < min_delay)
 		{
 			min_delay = delay;
 		}
@@ -3082,7 +3077,7 @@ gtk_source_completion_add_provider (GtkSourceCompletion          *completion,
 
 	if (g_list_find (completion->priv->providers, provider) != NULL)
 	{
-		if (error)
+		if (error != NULL)
 		{
 			g_set_error (error,
 			             GTK_SOURCE_COMPLETION_ERROR,
@@ -3099,24 +3094,14 @@ gtk_source_completion_add_provider (GtkSourceCompletion          *completion,
 	if (gtk_source_completion_provider_get_activation (provider) &
 	    GTK_SOURCE_COMPLETION_ACTIVATION_INTERACTIVE)
 	{
-		gint delay = gtk_source_completion_provider_get_interactive_delay (provider);
-
 		completion->priv->interactive_providers =
 				g_list_append (completion->priv->interactive_providers,
 		                               provider);
 
-		if (delay >= 0 && delay < completion->priv->min_auto_complete_delay)
-		{
-			completion->priv->min_auto_complete_delay = delay;
-		}
-		else if (delay < 0 && completion->priv->auto_complete_delay <
-		                      completion->priv->min_auto_complete_delay)
-		{
-			completion->priv->min_auto_complete_delay = completion->priv->auto_complete_delay;
-		}
+		update_min_auto_complete_delay (completion);
 	}
 
-	if (error)
+	if (error != NULL)
 	{
 		*error = NULL;
 	}
@@ -3147,39 +3132,9 @@ gtk_source_completion_remove_provider (GtkSourceCompletion          *completion,
 
 	item = g_list_find (completion->priv->providers, provider);
 
-	if (item != NULL)
+	if (item == NULL)
 	{
-		completion->priv->providers = g_list_remove_link (completion->priv->providers, item);
-
-		if (gtk_source_completion_provider_get_activation (provider) &
-		    GTK_SOURCE_COMPLETION_ACTIVATION_INTERACTIVE)
-		{
-			gint delay = gtk_source_completion_provider_get_interactive_delay (provider);
-
-			completion->priv->interactive_providers =
-					g_list_remove (completion->priv->interactive_providers,
-			                               provider);
-
-			if (delay == completion->priv->min_auto_complete_delay ||
-			    (delay == -1 && completion->priv->min_auto_complete_delay ==
-			                    completion->priv->auto_complete_delay))
-			{
-				update_min_auto_complete_delay (completion);
-			}
-		}
-
-		g_object_unref (provider);
-
-		if (error)
-		{
-			*error = NULL;
-		}
-
-		return TRUE;
-	}
-	else
-	{
-		if (error)
+		if (error != NULL)
 		{
 			g_set_error (error,
 			             GTK_SOURCE_COMPLETION_ERROR,
@@ -3189,6 +3144,27 @@ gtk_source_completion_remove_provider (GtkSourceCompletion          *completion,
 
 		return FALSE;
 	}
+
+	completion->priv->providers = g_list_remove_link (completion->priv->providers, item);
+
+	if (gtk_source_completion_provider_get_activation (provider) &
+	    GTK_SOURCE_COMPLETION_ACTIVATION_INTERACTIVE)
+	{
+		completion->priv->interactive_providers =
+				g_list_remove (completion->priv->interactive_providers,
+		                               provider);
+
+		update_min_auto_complete_delay (completion);
+	}
+
+	g_object_unref (provider);
+
+	if (error != NULL)
+	{
+		*error = NULL;
+	}
+
+	return TRUE;
 }
 
 /**
