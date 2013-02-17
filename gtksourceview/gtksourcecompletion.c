@@ -1876,12 +1876,15 @@ cancel_completion (GtkSourceCompletion *completion)
 static void
 reset_completion (GtkSourceCompletion *completion)
 {
-	gtk_label_set_markup (GTK_LABEL (completion->priv->default_info), "");
-
 	cancel_completion (completion);
 
 	g_list_free (completion->priv->active_providers);
 	completion->priv->active_providers = NULL;
+
+	if (!completion->priv->remember_info_visibility)
+	{
+		gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (completion->priv->info_button), FALSE);
+	}
 }
 
 static void
@@ -2047,7 +2050,7 @@ static void
 gtk_source_completion_show_default (GtkSourceCompletion *completion)
 {
 	/* Move completion window */
-	if (completion->priv->context)
+	if (completion->priv->context != NULL)
 	{
 		GtkTextIter location;
 		gtk_source_completion_context_get_iter (completion->priv->context,
@@ -2845,51 +2848,39 @@ static void
 populating_done (GtkSourceCompletion        *completion,
                  GtkSourceCompletionContext *context)
 {
-	if (gtk_source_completion_model_is_empty (completion->priv->model_proposals,
-	                                          TRUE))
+	if (gtk_source_completion_model_is_empty (completion->priv->model_proposals, TRUE))
 	{
 		DEBUG({
 			g_print ("Model is empty after populating\n");
 		});
 
-		/* No completion made, make sure to hide the window */
 		gtk_source_completion_hide (completion);
+		return;
+	}
 
-		/* If the window is not visible, the completion was not really
-		   cancelled */
-		cancel_completion (completion);
+	gtk_tree_view_set_model (GTK_TREE_VIEW (completion->priv->tree_view_proposals),
+				 GTK_TREE_MODEL (completion->priv->model_proposals));
+
+	update_selection_label (completion);
+
+	if (!gtk_widget_get_visible (completion->priv->main_window))
+	{
+		DEBUG({
+			g_print ("Emitting show\n");
+		});
+
+		g_signal_emit (completion, signals[SHOW], 0);
 	}
 	else
 	{
-		gtk_tree_view_set_model (GTK_TREE_VIEW (completion->priv->tree_view_proposals),
-					 GTK_TREE_MODEL (completion->priv->model_proposals));
+		DEBUG({
+			g_print ("Already visible\n");
+		});
+	}
 
-		update_selection_label (completion);
-
-		if (!gtk_widget_get_visible (completion->priv->main_window))
-		{
-			if (!completion->priv->remember_info_visibility)
-			{
-				gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (completion->priv->info_button), FALSE);
-			}
-
-			DEBUG({
-				g_print ("Emitting show\n");
-			});
-
-			g_signal_emit (completion, signals[SHOW], 0);
-		}
-		else
-		{
-			DEBUG({
-				g_print ("Already visible\n");
-			});
-		}
-
-		if (completion->priv->select_on_show)
-		{
-			check_first_selected (completion);
-		}
+	if (completion->priv->select_on_show)
+	{
+		check_first_selected (completion);
 	}
 }
 
