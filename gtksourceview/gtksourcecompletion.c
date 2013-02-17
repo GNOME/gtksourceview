@@ -1852,9 +1852,9 @@ connect_view (GtkSourceCompletion *completion)
 }
 
 static void
-cancel_completion (GtkSourceCompletion *completion)
+reset_completion (GtkSourceCompletion *completion)
 {
-	if (completion->priv->show_timed_out_id)
+	if (completion->priv->show_timed_out_id != 0)
 	{
 		g_source_remove (completion->priv->show_timed_out_id);
 		completion->priv->show_timed_out_id = 0;
@@ -1865,20 +1865,12 @@ cancel_completion (GtkSourceCompletion *completion)
 		/* Inform providers of cancellation through the context */
 		_gtk_source_completion_context_cancel (completion->priv->context);
 
-		g_object_unref (completion->priv->context);
-		completion->priv->context = NULL;
-
-		g_list_free (completion->priv->running_providers);
-		completion->priv->running_providers = NULL;
+		g_clear_object (&completion->priv->context);
 	}
-}
 
-static void
-reset_completion (GtkSourceCompletion *completion)
-{
-	cancel_completion (completion);
-
+	g_list_free (completion->priv->running_providers);
 	g_list_free (completion->priv->active_providers);
+	completion->priv->running_providers = NULL;
 	completion->priv->active_providers = NULL;
 
 	if (!completion->priv->remember_info_visibility)
@@ -1892,30 +1884,20 @@ gtk_source_completion_dispose (GObject *object)
 {
 	GtkSourceCompletion *completion = GTK_SOURCE_COMPLETION (object);
 
-	/* Cancel running completion */
-	cancel_completion (completion);
+	reset_completion (completion);
 
 	if (completion->priv->view != NULL)
 	{
 		disconnect_view (completion);
-
 		g_clear_object (&completion->priv->view);
-
-		g_list_foreach (completion->priv->providers, (GFunc)g_object_unref, NULL);
-	}
-
-	if (completion->priv->show_timed_out_id != 0)
-	{
-		g_source_remove (completion->priv->show_timed_out_id);
-		completion->priv->show_timed_out_id = 0;
 	}
 
 	g_clear_object (&completion->priv->default_info);
 
-	g_list_free (completion->priv->active_providers);
+	g_list_foreach (completion->priv->providers, (GFunc)g_object_unref, NULL);
+
 	g_list_free (completion->priv->interactive_providers);
 	g_list_free (completion->priv->providers);
-	completion->priv->active_providers = NULL;
 	completion->priv->interactive_providers = NULL;
 	completion->priv->providers = NULL;
 
@@ -2801,6 +2783,9 @@ update_completion (GtkSourceCompletion        *completion,
 {
 	GList *item;
 
+	/* Copy the providers, because they can be freed by reset_completion(). */
+	GList *providers_copy = g_list_copy (providers);
+
 	DEBUG({
 		g_print ("Update completion: %d\n", g_list_length (providers));
 	});
@@ -2814,22 +2799,17 @@ update_completion (GtkSourceCompletion        *completion,
 	}
 
 	/* Make sure to first cancel any running completion */
-	cancel_completion (completion);
+	reset_completion (completion);
 
 	completion->priv->context = context;
-	completion->priv->running_providers = g_list_copy (providers);
-
-	if (completion->priv->active_providers != providers)
-	{
-		g_list_free (completion->priv->active_providers);
-		completion->priv->active_providers = g_list_copy (providers);
-	}
+	completion->priv->running_providers = g_list_copy (providers_copy);
+	completion->priv->active_providers = g_list_copy (providers_copy);
 
 	/* Create a new CompletionModel */
 	gtk_tree_view_set_model (GTK_TREE_VIEW (completion->priv->tree_view_proposals), NULL);
 	replace_model (completion);
 
-	for (item = providers; item != NULL; item = g_list_next (item))
+	for (item = providers_copy; item != NULL; item = g_list_next (item))
 	{
 		GtkSourceCompletionProvider *provider =
 			GTK_SOURCE_COMPLETION_PROVIDER (item->data);
@@ -2842,6 +2822,8 @@ update_completion (GtkSourceCompletion        *completion,
 
 		gtk_source_completion_provider_populate (provider, context);
 	}
+
+	g_list_free (providers_copy);
 }
 
 static void
