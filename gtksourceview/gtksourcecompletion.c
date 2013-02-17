@@ -4,6 +4,7 @@
  *
  * Copyright (C) 2007 -2009 Jesús Barbero Rodríguez <chuchiperriman@gmail.com>
  * Copyright (C) 2009 - Jesse van den Kieboom <jessevdk@gnome.org>
+ * Copyright (C) 2013 - Sébastien Wilmet <swilmet@gnome.org>
  *
  * GtkSourceView is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -380,17 +381,8 @@ scroll_to_iter (GtkSourceCompletion *completion,
                 GtkTreeIter         *iter)
 {
 	GtkTreePath *path;
-	GtkTreeModel *model;
 
-	model = gtk_tree_view_get_model (GTK_TREE_VIEW (completion->priv->tree_view_proposals));
-
-	if (model == NULL)
-	{
-		return;
-	}
-
-	path = gtk_tree_model_get_path (GTK_TREE_MODEL (completion->priv->model_proposals),
-	                                iter);
+	path = gtk_tree_model_get_path (GTK_TREE_MODEL (completion->priv->model_proposals), iter);
 
 	gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (completion->priv->tree_view_proposals),
 				      path,
@@ -1264,7 +1256,7 @@ static void
 check_first_selected (GtkSourceCompletion *completion)
 {
 	GtkTreeSelection *selection;
-	GtkTreeIter piter;
+	GtkTreeIter iter;
 	GtkTreeIter first;
 	GtkTreeModel *model;
 
@@ -1282,17 +1274,17 @@ check_first_selected (GtkSourceCompletion *completion)
 		return;
 	}
 
-	piter = first;
+	iter = first;
 
-	while (gtk_source_completion_model_iter_is_header (completion->priv->model_proposals, &piter))
+	while (gtk_source_completion_model_iter_is_header (completion->priv->model_proposals, &iter))
 	{
-		if (!gtk_tree_model_iter_next (model, &piter))
+		if (!gtk_tree_model_iter_next (model, &iter))
 		{
 			return;
 		}
 	}
 
-	gtk_tree_selection_select_iter (selection, &piter);
+	gtk_tree_selection_select_iter (selection, &iter);
 	scroll_to_iter (completion, &first);
 }
 
@@ -1997,11 +1989,6 @@ gtk_source_completion_show_default (GtkSourceCompletion *completion)
 
 	gtk_widget_show (GTK_WIDGET (completion->priv->main_window));
 	gtk_widget_grab_focus (GTK_WIDGET (completion->priv->view));
-
-	if (completion->priv->select_on_show)
-	{
-		select_first_proposal (completion);
-	}
 }
 
 static void
