@@ -35,7 +35,7 @@ test_languagemanager_LDADD = 		\
 	$(DEP_LIBS)			\
 	$(TESTS_LIBS)
 
-UNIT_TEST_PROGS = test-styleschememanager
+UNIT_TEST_PROGS += test-styleschememanager
 test_styleschememanager_SOURCES =		\
 	test-styleschememanager.c
 test_styleschememanager_LDADD = 		\
