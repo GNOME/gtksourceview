@@ -2,6 +2,21 @@
 #include <gtksourceview/gtksource.h>
 
 static void
+init_default_manager (void)
+{
+	GtkSourceLanguageManager *lm;
+	gchar **lang_dirs;
+
+	lm = gtk_source_language_manager_get_default ();
+
+	lang_dirs = g_new0 (gchar *, 2);
+	lang_dirs[0] = g_build_filename (TOP_SRCDIR, "data", "language-specs", NULL);
+
+	gtk_source_language_manager_set_search_path (lm, lang_dirs);
+	g_strfreev (lang_dirs);
+}
+
+static void
 test_get_default (void)
 {
 	GtkSourceLanguageManager *lm1, *lm2;
@@ -116,6 +131,8 @@ int
 main (int argc, char** argv)
 {
 	gtk_test_init (&argc, &argv);
+
+	init_default_manager ();
 
 	g_test_add_func ("/LanguageManager/get-default", test_get_default);
 	g_test_add_func ("/LanguageManager/get-language", test_get_language);
