@@ -16,21 +16,13 @@ static void
 test_fixture_setup (TestFixture   *fixture,
                     gconstpointer  data)
 {
-	const gchar * const *orig_lang_dirs;
 	gchar **lang_dirs;
-	guint n, i;
 
 	fixture->manager = gtk_source_language_manager_get_default ();
 
-	orig_lang_dirs = gtk_source_language_manager_get_search_path (fixture->manager);
-	n = g_strv_length ((gchar **)orig_lang_dirs);
-
-	lang_dirs = g_new0 (gchar *, n + 2);
+	lang_dirs = g_new0 (gchar *, 3);
 	lang_dirs[0] = g_build_filename (TOP_SRCDIR, "tests", "language-specs", NULL);
-	for (i = 0; i < n; i++)
-	{
-		lang_dirs[i + 1] = g_strdup (orig_lang_dirs[i]);
-	}
+	lang_dirs[1] = g_build_filename (TOP_SRCDIR, "data", "language-specs", NULL);
 
 	gtk_source_language_manager_set_search_path (fixture->manager, lang_dirs);
 	g_strfreev (lang_dirs);
