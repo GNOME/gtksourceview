@@ -1210,6 +1210,12 @@ gtk_source_completion_move_page (GtkSourceCompletion *completion,
                                  GtkScrollStep        step,
                                  gint                 num)
 {
+	GtkTreeSelection *selection = gtk_tree_view_get_selection (completion->priv->tree_view_proposals);
+
+	/* Unselect all, so the first proposal is selected if needed, after the
+	 * page move. */
+	gtk_tree_selection_unselect_all (selection);
+
 	if (step == GTK_SCROLL_ENDS)
 	{
 		if (num > 0)
