@@ -8,8 +8,8 @@ STYLES =		\
 	tango.xml
 
 stylesdir = $(datadir)/gtksourceview-3.0/styles
-styles_DATA = $(STYLES) styles.rng check-style.sh
+styles_DATA = $(STYLES) styles.rng
 
-EXTRA_DIST = $(styles_DATA)
+EXTRA_DIST = $(styles_DATA) check-style.sh
 
 -include $(top_srcdir)/git.mk

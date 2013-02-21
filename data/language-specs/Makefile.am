@@ -106,9 +106,8 @@ LANGUAGES =			\
 	yacc.lang
 
 languagesdir = $(datadir)/gtksourceview-3.0/language-specs
-languages_DATA = $(LANGUAGES) language.rng language2.rng language.dtd \
-		 check-language.sh
+languages_DATA = $(LANGUAGES) language.rng language2.rng language.dtd
 
-EXTRA_DIST = $(languages_DATA)
+EXTRA_DIST = $(languages_DATA) check-language.sh
 
 -include $(top_srcdir)/git.mk
