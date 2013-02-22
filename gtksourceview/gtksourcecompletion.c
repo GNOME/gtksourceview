@@ -1060,18 +1060,6 @@ show_info_cb (GtkWidget           *widget,
 	gtk_toggle_button_set_active (completion->priv->info_button, TRUE);
 }
 
-static void
-show_info_after_cb (GtkWidget           *widget,
-	            GtkSourceCompletion *completion)
-{
-	g_return_if_fail (gtk_widget_get_visible (GTK_WIDGET (completion->priv->main_window)));
-
-	/* We do this here because GtkLabel does not properly handle
-	 * can-focus = FALSE and selects all the text when it gets focus from
-	 * showing the info window for the first time */
-	gtk_label_select_region (completion->priv->default_info, 0, 0);
-}
-
 static gboolean
 gtk_source_completion_configure_event (GtkWidget           *widget,
                                        GdkEventConfigure   *event,
@@ -2578,10 +2566,6 @@ initialize_ui (GtkSourceCompletion *completion)
 	completion->priv->default_info = GTK_LABEL (gtk_label_new (NULL));
 	g_object_ref_sink (completion->priv->default_info);
 
-	gtk_misc_set_alignment (GTK_MISC (completion->priv->default_info), 0.5, 0.5);
-	gtk_label_set_selectable (completion->priv->default_info, TRUE);
-	gtk_label_set_line_wrap (completion->priv->default_info, TRUE);
-
 	gtk_widget_show (GTK_WIDGET (completion->priv->default_info));
 
 	gtk_container_add (GTK_CONTAINER (completion->priv->info_window),
@@ -2601,11 +2585,6 @@ initialize_ui (GtkSourceCompletion *completion)
 	g_signal_connect (completion->priv->info_window,
 			  "before-show",
 			  G_CALLBACK (show_info_cb),
-			  completion);
-
-	g_signal_connect (completion->priv->info_window,
-			  "show",
-			  G_CALLBACK (show_info_after_cb),
 			  completion);
 
 	g_signal_connect_swapped (completion->priv->info_window,
