@@ -2427,8 +2427,8 @@ replace_model (GtkSourceCompletion *completion)
 }
 
 static void
-initialize_tree_view (GtkSourceCompletion *completion,
-		      GtkBuilder          *builder)
+init_tree_view (GtkSourceCompletion *completion,
+		GtkBuilder          *builder)
 {
 	GtkTreeSelection *selection;
 	GtkTreeViewColumn *column;
@@ -2525,53 +2525,21 @@ initialize_tree_view (GtkSourceCompletion *completion,
 }
 
 static void
-initialize_ui (GtkSourceCompletion *completion)
+init_main_window (GtkSourceCompletion *completion,
+		  GtkBuilder          *builder)
 {
-	GtkBuilder *builder = gtk_builder_new ();
-
-	gtk_builder_set_translation_domain (builder, GETTEXT_PACKAGE);
-
-	gtk_builder_add_from_resource (builder,
-				       "/org/gnome/gtksourceview/ui/gtksourcecompletion.ui",
-				       NULL);
-
-	initialize_tree_view (completion, builder);
-
 	completion->priv->main_window = GTK_WINDOW (gtk_builder_get_object (builder, "main_window"));
+	completion->priv->info_button = GTK_TOGGLE_BUTTON (gtk_builder_get_object (builder, "info_button"));
 	completion->priv->selection_image = GTK_IMAGE (gtk_builder_get_object (builder, "selection_image"));
 	completion->priv->selection_label = GTK_LABEL (gtk_builder_get_object (builder, "selection_label"));
-	completion->priv->info_button = GTK_TOGGLE_BUTTON (gtk_builder_get_object (builder, "info_button"));
 
 	gtk_window_set_attached_to (completion->priv->main_window,
 				    GTK_WIDGET (completion->priv->view));
 
-	g_object_unref (builder);
+	gtk_widget_set_size_request (GTK_WIDGET (completion->priv->main_window),
+	                             WINDOW_WIDTH,
+	                             WINDOW_HEIGHT);
 
-	/* Info window */
-	completion->priv->info_window = gtk_source_completion_info_new ();
-
-	g_signal_connect (completion->priv->main_window,
-	                  "notify::transient-for",
-	                  G_CALLBACK (update_transient_for_info),
-	                  completion);
-
-	gtk_window_set_attached_to (GTK_WINDOW (completion->priv->info_window),
-				    GTK_WIDGET (completion->priv->main_window));
-
-	g_object_bind_property (completion->priv->info_button, "active",
-				completion->priv->info_window, "visible",
-				G_BINDING_DEFAULT);
-
-	/* Default info widget */
-	completion->priv->default_info = GTK_LABEL (gtk_label_new (NULL));
-	g_object_ref_sink (completion->priv->default_info);
-
-	gtk_widget_show (GTK_WIDGET (completion->priv->default_info));
-
-	gtk_container_add (GTK_CONTAINER (completion->priv->info_window),
-			   GTK_WIDGET (completion->priv->default_info));
-
-	/* Connect signals */
 	g_signal_connect_after (completion->priv->main_window,
 				"configure-event",
 				G_CALLBACK (gtk_source_completion_configure_event),
@@ -2581,6 +2549,24 @@ initialize_ui (GtkSourceCompletion *completion)
 			  "delete-event",
 			  G_CALLBACK (gtk_widget_hide_on_delete),
 			  NULL);
+
+	g_signal_connect (completion->priv->main_window,
+	                  "notify::transient-for",
+	                  G_CALLBACK (update_transient_for_info),
+	                  completion);
+}
+
+static void
+init_info_window (GtkSourceCompletion *completion)
+{
+	completion->priv->info_window = gtk_source_completion_info_new ();
+
+	gtk_window_set_attached_to (GTK_WINDOW (completion->priv->info_window),
+				    GTK_WIDGET (completion->priv->main_window));
+
+	g_object_bind_property (completion->priv->info_button, "active",
+				completion->priv->info_window, "visible",
+				G_BINDING_DEFAULT);
 
 	g_signal_connect (completion->priv->info_window,
 			  "before-show",
@@ -2592,16 +2578,35 @@ initialize_ui (GtkSourceCompletion *completion)
 				  G_CALLBACK (update_info_position),
 				  completion);
 
-	gtk_widget_set_size_request (GTK_WIDGET (completion->priv->main_window),
-	                             WINDOW_WIDTH,
-	                             WINDOW_HEIGHT);
+	/* Default info widget */
+
+	completion->priv->default_info = GTK_LABEL (gtk_label_new (NULL));
+	g_object_ref_sink (completion->priv->default_info);
+
+	gtk_widget_show (GTK_WIDGET (completion->priv->default_info));
+
+	gtk_container_add (GTK_CONTAINER (completion->priv->info_window),
+			   GTK_WIDGET (completion->priv->default_info));
 }
 
 static void
 gtk_source_completion_init (GtkSourceCompletion *completion)
 {
+	GtkBuilder *builder = gtk_builder_new ();
+
 	completion->priv = GTK_SOURCE_COMPLETION_GET_PRIVATE (completion);
-	initialize_ui (completion);
+
+	gtk_builder_set_translation_domain (builder, GETTEXT_PACKAGE);
+
+	gtk_builder_add_from_resource (builder,
+				       "/org/gnome/gtksourceview/ui/gtksourcecompletion.ui",
+				       NULL);
+
+	init_tree_view (completion, builder);
+	init_main_window (completion, builder);
+	init_info_window (completion);
+
+	g_object_unref (builder);
 }
 
 static void
