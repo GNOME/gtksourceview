@@ -213,9 +213,6 @@ static void update_completion (GtkSourceCompletion        *completion,
                                GList                      *providers,
                                GtkSourceCompletionContext *context);
 
-static void show_info_cb (GtkWidget           *widget,
-	                  GtkSourceCompletion *completion);
-
 /* Returns %TRUE if a proposal is selected.
  * Call g_object_unref() on @provider and @proposal when no longer needed.
  */
@@ -893,10 +890,10 @@ update_info_position (GtkSourceCompletion *completion)
 }
 
 static void
-replace_info_widget (GtkSourceCompletionInfo *info,
-		     GtkWidget               *new_widget)
+set_info_widget (GtkSourceCompletion *completion,
+		 GtkWidget           *new_widget)
 {
-	GtkWidget *cur_widget = gtk_bin_get_child (GTK_BIN (info));
+	GtkWidget *cur_widget = gtk_bin_get_child (GTK_BIN (completion->priv->info_window));
 
 	if (cur_widget == new_widget)
 	{
@@ -905,102 +902,61 @@ replace_info_widget (GtkSourceCompletionInfo *info,
 
 	if (cur_widget != NULL)
 	{
-		gtk_container_remove (GTK_CONTAINER (info), cur_widget);
+		gtk_container_remove (GTK_CONTAINER (completion->priv->info_window), cur_widget);
 	}
 
-	gtk_container_add (GTK_CONTAINER (info), new_widget);
-}
-
-static void
-update_proposal_info_real (GtkSourceCompletion         *completion,
-                           GtkSourceCompletionProvider *provider,
-                           GtkSourceCompletionProposal *proposal)
-{
-	GtkWidget *info_widget;
-	gboolean prov_update_info = FALSE;
-
-	if (proposal == NULL)
-	{
-		/* Set to default widget */
-		info_widget = GTK_WIDGET (completion->priv->default_info);
-		gtk_label_set_markup (completion->priv->default_info,
-				      _("No extra information available"));
-
-		replace_info_widget (completion->priv->info_window, info_widget);
-
-		gtk_widget_hide (GTK_WIDGET (completion->priv->info_window));
-		return;
-	}
-	else
-	{
-		info_widget = gtk_source_completion_provider_get_info_widget (provider,
-		                                                              proposal);
-
-		/* If there is no special custom widget, use the default */
-		if (info_widget == NULL)
-		{
-			gint width;
-			gchar *text;
-
-			info_widget = GTK_WIDGET (completion->priv->default_info);
-			text = gtk_source_completion_proposal_get_info (proposal);
-			gtk_widget_set_size_request (info_widget, -1, -1);
-
-			gtk_label_set_markup (completion->priv->default_info,
-					      text != NULL ? text : _("No extra information available"));
-
-			g_free (text);
-
-			gtk_widget_get_size_request (info_widget, &width, NULL);
-
-			if (width > WINDOW_WIDTH)
-			{
-				gtk_widget_set_size_request (info_widget, width, -1);
-			}
-		}
-		else
-		{
-			prov_update_info = TRUE;
-		}
-	}
-
-	replace_info_widget (completion->priv->info_window, info_widget);
-
-	if (prov_update_info)
-	{
-		gtk_source_completion_provider_update_info (provider,
-			                                    proposal,
-			                                    completion->priv->info_window);
-	}
-
-	g_signal_handlers_block_by_func (completion->priv->info_window,
-	                                 G_CALLBACK (show_info_cb),
-	                                 completion);
-
-	gtk_widget_show (GTK_WIDGET (completion->priv->info_window));
-
-	g_signal_handlers_unblock_by_func (completion->priv->info_window,
-	                                   G_CALLBACK (show_info_cb),
-	                                   completion);
+	gtk_container_add (GTK_CONTAINER (completion->priv->info_window), new_widget);
 }
 
 static void
 update_proposal_info (GtkSourceCompletion *completion)
 {
-	GtkSourceCompletionProposal *proposal = NULL;
 	GtkSourceCompletionProvider *provider = NULL;
+	GtkSourceCompletionProposal *proposal = NULL;
+	GtkWidget *info_widget;
 
-	if (get_selected_proposal (completion, &provider, &proposal))
+	if (!get_selected_proposal (completion, &provider, &proposal))
 	{
-		update_proposal_info_real (completion, provider, proposal);
+		set_info_widget (completion, GTK_WIDGET (completion->priv->default_info));
 
-		g_object_unref (provider);
-		g_object_unref (proposal);
+		gtk_label_set_markup (completion->priv->default_info,
+				      _("No extra information available"));
+
+		return;
+	}
+
+	info_widget = gtk_source_completion_provider_get_info_widget (provider, proposal);
+
+	if (info_widget != NULL)
+	{
+		set_info_widget (completion, info_widget);
+
+		gtk_source_completion_provider_update_info (provider,
+			                                    proposal,
+			                                    completion->priv->info_window);
 	}
 	else
 	{
-		update_proposal_info_real (completion, NULL, NULL);
+		gchar *text;
+
+		set_info_widget (completion, GTK_WIDGET (completion->priv->default_info));
+
+		text = gtk_source_completion_proposal_get_info (proposal);
+
+		if (text != NULL)
+		{
+			gtk_label_set_markup (completion->priv->default_info, text);
+			g_free (text);
+		}
+		else
+		{
+			gtk_label_set_markup (completion->priv->default_info,
+					      _("No extra information available"));
+		}
 	}
+
+	g_object_unref (provider);
+	g_object_unref (proposal);
 }
 
 static void
@@ -1035,28 +991,8 @@ static void
 selection_changed_cb (GtkTreeSelection    *selection,
 		      GtkSourceCompletion *completion)
 {
-	if (!gtk_widget_get_visible (GTK_WIDGET (completion->priv->main_window)))
-	{
-		return;
-	}
-
-	if (gtk_toggle_button_get_active (completion->priv->info_button))
-	{
-		update_proposal_info (completion);
-	}
-
-	update_window_position (completion);
-}
-
-static void
-show_info_cb (GtkWidget           *widget,
-	      GtkSourceCompletion *completion)
-{
-	g_return_if_fail (gtk_widget_get_visible (GTK_WIDGET (completion->priv->main_window)));
-
 	update_proposal_info (completion);
-
-	gtk_toggle_button_set_active (completion->priv->info_button, TRUE);
+	update_window_position (completion);
 }
 
 static gboolean
@@ -2563,11 +2499,6 @@ init_info_window (GtkSourceCompletion *completion)
 				completion->priv->info_window, "visible",
 				G_BINDING_DEFAULT);
 
-	g_signal_connect (completion->priv->info_window,
-			  "before-show",
-			  G_CALLBACK (show_info_cb),
-			  completion);
-
 	g_signal_connect_swapped (completion->priv->info_window,
 				  "size-allocate",
 				  G_CALLBACK (update_info_position),
@@ -2579,9 +2510,6 @@ init_info_window (GtkSourceCompletion *completion)
 	g_object_ref_sink (completion->priv->default_info);
 
 	gtk_widget_show (GTK_WIDGET (completion->priv->default_info));
-
-	gtk_container_add (GTK_CONTAINER (completion->priv->info_window),
-			   GTK_WIDGET (completion->priv->default_info));
 }
 
 static void
