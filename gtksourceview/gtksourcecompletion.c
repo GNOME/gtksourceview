@@ -1016,41 +1016,9 @@ update_tree_view_visibility (GtkSourceCompletion *completion)
 }
 
 static gboolean
-view_focus_out_event_cb (GtkWidget     *widget,
-                         GdkEventFocus *event,
-                         gpointer       user_data)
+hide_completion_cb (GtkSourceCompletion *completion)
 {
-	GtkSourceCompletion *completion = GTK_SOURCE_COMPLETION (user_data);
-
-	if (gtk_widget_get_visible (GTK_WIDGET (completion->priv->main_window)) &&
-	    !gtk_widget_has_focus (GTK_WIDGET (completion->priv->main_window)))
-	{
-		DEBUG({
-			g_print ("Lost focus\n");
-		});
-
-		gtk_source_completion_hide (completion);
-	}
-
-	return FALSE;
-}
-
-static gboolean
-view_button_press_event_cb (GtkWidget      *widget,
-			    GdkEventButton *event,
-			    gpointer        user_data)
-{
-	GtkSourceCompletion *completion = GTK_SOURCE_COMPLETION (user_data);
-
-	if (gtk_widget_get_visible (GTK_WIDGET (completion->priv->main_window)))
-	{
-		DEBUG({
-			g_print ("Button press in the view\n");
-		});
-
-		gtk_source_completion_hide (completion);
-	}
-
+	gtk_source_completion_hide (completion);
 	return FALSE;
 }
 
@@ -1568,15 +1536,15 @@ connect_view (GtkSourceCompletion *completion)
 
 	g_signal_connect_object (completion->priv->view,
 				 "focus-out-event",
-				 G_CALLBACK (view_focus_out_event_cb),
+				 G_CALLBACK (hide_completion_cb),
 				 completion,
-				 0);
+				 G_CONNECT_SWAPPED);
 
 	g_signal_connect_object (completion->priv->view,
 				 "button-press-event",
-				 G_CALLBACK (view_button_press_event_cb),
+				 G_CALLBACK (hide_completion_cb),
 				 completion,
-				 0);
+				 G_CONNECT_SWAPPED);
 
 	g_signal_connect_object (completion->priv->view,
 				 "key-press-event",
@@ -2889,6 +2857,11 @@ void
 gtk_source_completion_hide (GtkSourceCompletion *completion)
 {
 	g_return_if_fail (GTK_SOURCE_IS_COMPLETION (completion));
+
+	if (!gtk_widget_is_visible (GTK_WIDGET (completion->priv->main_window)))
+	{
+		return;
+	}
 
 	DEBUG({
 			g_print ("Emitting hide\n");
