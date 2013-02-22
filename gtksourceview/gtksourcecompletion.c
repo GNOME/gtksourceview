@@ -869,7 +869,7 @@ update_info_position (GtkSourceCompletion *completion)
 	GdkScreen *screen;
 	gint x, y;
 	gint width, height;
-	gint sw;
+	gint screen_width;
 	gint info_width;
 
 	gtk_window_get_position (completion->priv->main_window, &x, &y);
@@ -877,10 +877,10 @@ update_info_position (GtkSourceCompletion *completion)
 	gtk_window_get_size (GTK_WINDOW (completion->priv->info_window), &info_width, NULL);
 
 	screen = gtk_window_get_screen (completion->priv->main_window);
-	sw = gdk_screen_get_width (screen);
+	screen_width = gdk_screen_get_width (screen);
 
 	/* Determine on which side to place it */
-	if (x + width + info_width >= sw)
+	if (x + width + info_width >= screen_width)
 	{
 		x -= info_width;
 	}
@@ -988,7 +988,7 @@ static void
 update_proposal_info (GtkSourceCompletion *completion)
 {
 	GtkSourceCompletionProposal *proposal = NULL;
-	GtkSourceCompletionProvider *provider;
+	GtkSourceCompletionProvider *provider = NULL;
 
 	if (get_selected_proposal (completion, &provider, &proposal))
 	{
@@ -1054,7 +1054,6 @@ show_info_cb (GtkWidget           *widget,
 {
 	g_return_if_fail (gtk_widget_get_visible (GTK_WIDGET (completion->priv->main_window)));
 
-	update_info_position (completion);
 	update_proposal_info (completion);
 
 	gtk_toggle_button_set_active (completion->priv->info_button, TRUE);
@@ -1065,11 +1064,7 @@ gtk_source_completion_configure_event (GtkWidget           *widget,
                                        GdkEventConfigure   *event,
                                        GtkSourceCompletion *completion)
 {
-	if (gtk_widget_get_visible (GTK_WIDGET (completion->priv->info_window)))
-	{
-		update_info_position (completion);
-	}
-
+	update_info_position (completion);
 	return FALSE;
 }
 
@@ -2625,12 +2620,6 @@ update_completion (GtkSourceCompletion        *completion,
 
 	update_typing_offsets (completion);
 
-	if (gtk_widget_get_visible (GTK_WIDGET (completion->priv->info_window)))
-	{
-		/* Move info window accordingly */
-		update_info_position (completion);
-	}
-
 	/* Make sure to first cancel any running completion */
 	reset_completion (completion);
 
@@ -2644,8 +2633,7 @@ update_completion (GtkSourceCompletion        *completion,
 
 	for (item = providers_copy; item != NULL; item = g_list_next (item))
 	{
-		GtkSourceCompletionProvider *provider =
-			GTK_SOURCE_COMPLETION_PROVIDER (item->data);
+		GtkSourceCompletionProvider *provider = item->data;
 
 		DEBUG({
 			gchar *temp_name = gtk_source_completion_provider_get_name (provider);
