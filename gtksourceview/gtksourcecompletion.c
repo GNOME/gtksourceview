@@ -1494,19 +1494,6 @@ buffer_mark_set_cb (GtkTextBuffer       *buffer,
 }
 
 static void
-buffer_paste_done_cb (GtkTextBuffer       *buffer,
-                      GtkClipboard        *clipboard,
-                      GtkSourceCompletion *completion)
-{
-	/* Cancel any interactive completion in progress after a paste */
-	if (completion->priv->show_timed_out_id)
-	{
-		g_source_remove (completion->priv->show_timed_out_id);
-		completion->priv->show_timed_out_id = 0;
-	}
-}
-
-static void
 connect_view (GtkSourceCompletion *completion)
 {
 	GtkTextBuffer *buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (completion->priv->view));
@@ -1528,6 +1515,18 @@ connect_view (GtkSourceCompletion *completion)
 				 G_CALLBACK (view_key_press_event_cb),
 				 completion,
 				 0);
+
+	g_signal_connect_object (completion->priv->view,
+				 "paste-clipboard",
+				 G_CALLBACK (gtk_source_completion_block_interactive),
+				 completion,
+				 G_CONNECT_SWAPPED);
+
+	g_signal_connect_object (completion->priv->view,
+				 "paste-clipboard",
+				 G_CALLBACK (gtk_source_completion_unblock_interactive),
+				 completion,
+				 G_CONNECT_SWAPPED | G_CONNECT_AFTER);
 
 	g_signal_connect_object (buffer,
 				 "mark-set",
@@ -1558,12 +1557,6 @@ connect_view (GtkSourceCompletion *completion)
 		                 G_CALLBACK (gtk_source_completion_unblock_interactive),
 		                 completion,
 		                 G_CONNECT_SWAPPED | G_CONNECT_AFTER);
-
-	g_signal_connect_object (buffer,
-		                 "paste-done",
-		                 G_CALLBACK (buffer_paste_done_cb),
-		                 completion,
-				 0);
 
 	completion->priv->signals_ids[TEXT_BUFFER_DELETE_RANGE] =
 		g_signal_connect_object (buffer,
