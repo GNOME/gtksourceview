@@ -1142,34 +1142,44 @@ activate_by_accelerator (GtkSourceCompletion *completion,
 	GtkTreeModel *model = GTK_TREE_MODEL (completion->priv->model_proposals);
 	gint i = -1;
 
-	num = num == 0 ? 9 : num - 1;
-
-	if (num < 0 || num > completion->priv->num_accelerators)
+	if (completion->priv->num_accelerators == 0)
 	{
 		return FALSE;
 	}
 
-	if (gtk_tree_model_get_iter_first (model, &iter))
+	num = num == 0 ? 9 : num - 1;
+
+	if (num < 0 || completion->priv->num_accelerators <= num)
 	{
-		do
-		{
-			if (!gtk_source_completion_model_iter_is_header (completion->priv->model_proposals,
-			                                                 &iter))
-			{
-				++i;
-			}
-		} while (i < num && gtk_tree_model_iter_next (model, &iter));
-
-		if (i == num)
-		{
-			gtk_tree_selection_select_iter (
-				gtk_tree_view_get_selection (completion->priv->tree_view_proposals),
-				&iter);
-
-			gtk_source_completion_activate_proposal (completion);
-		}
+		return FALSE;
 	}
-	return TRUE;
+
+	if (!gtk_tree_model_get_iter_first (model, &iter))
+	{
+		return FALSE;
+	}
+
+	do
+	{
+		if (!gtk_source_completion_model_iter_is_header (completion->priv->model_proposals,
+		                                                 &iter))
+		{
+			i++;
+		}
+	} while (i < num && gtk_tree_model_iter_next (model, &iter));
+
+	if (i == num)
+	{
+		GtkTreeSelection *selection = gtk_tree_view_get_selection (completion->priv->tree_view_proposals);
+
+		gtk_tree_selection_select_iter (selection, &iter);
+
+		gtk_source_completion_activate_proposal (completion);
+
+		return TRUE;
+	}
+
+	return FALSE;
 }
 
 static gboolean
@@ -1181,6 +1191,11 @@ view_key_press_event_cb (GtkSourceView       *view,
 	static guint mnemonic_keyval = GDK_KEY_VoidSymbol;
 	GdkModifierType mod;
 	GtkBindingSet *binding_set;
+
+	if (!gtk_widget_get_visible (GTK_WIDGET (completion->priv->main_window)))
+	{
+		return FALSE;
+	}
 
 	if (G_UNLIKELY (!mnemonic_keyval_set))
 	{
@@ -1196,14 +1211,9 @@ view_key_press_event_cb (GtkSourceView       *view,
 
 	mod = gtk_accelerator_get_default_mod_mask () & event->state;
 
-	if (!gtk_widget_get_visible (GTK_WIDGET (completion->priv->main_window)))
-	{
-		return FALSE;
-	}
-
 	/* Handle info button mnemonic */
-	if (event->keyval == mnemonic_keyval &&
-	    (mod & GDK_MOD1_MASK) != 0)
+	if ((mod & GDK_MOD1_MASK) != 0 &&
+	    event->keyval == mnemonic_keyval)
 	{
 		gtk_toggle_button_set_active (completion->priv->info_button,
 		                              !gtk_toggle_button_get_active (completion->priv->info_button));
@@ -1211,8 +1221,7 @@ view_key_press_event_cb (GtkSourceView       *view,
 	}
 
 	if ((mod & GDK_MOD1_MASK) != 0 &&
-	    GDK_KEY_0 <= event->keyval && event->keyval <= GDK_KEY_9 &&
-	    completion->priv->num_accelerators > 0)
+	    GDK_KEY_0 <= event->keyval && event->keyval <= GDK_KEY_9)
 	{
 		if (activate_by_accelerator (completion, event->keyval - GDK_KEY_0))
 		{
