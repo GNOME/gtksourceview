@@ -1487,27 +1487,10 @@ buffer_mark_set_cb (GtkTextBuffer       *buffer,
                     GtkTextMark         *mark,
                     GtkSourceCompletion *completion)
 {
-	GtkTextIter it;
-
-	if (mark != gtk_text_buffer_get_insert (buffer) ||
-	    !completion->priv->active_providers)
-	{
-		return;
-	}
-
-	/* Check if the cursor is still on the completion line */
-	gtk_source_completion_context_get_iter (completion->priv->context,
-	                                        &it);
-
-	if (!gtk_text_iter_equal (iter, &it))
+	if (mark == gtk_text_buffer_get_insert (buffer))
 	{
 		gtk_source_completion_hide (completion);
-		return;
 	}
-
-	update_completion (completion,
-	                   completion->priv->active_providers,
-	                   g_object_ref (completion->priv->context));
 }
 
 static void
