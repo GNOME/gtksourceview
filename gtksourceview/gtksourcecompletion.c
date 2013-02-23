@@ -1524,21 +1524,6 @@ buffer_paste_done_cb (GtkTextBuffer       *buffer,
 }
 
 static void
-text_view_editable_cb (GtkTextView         *view,
-                       GParamSpec          *spec,
-                       GtkSourceCompletion *completion)
-{
-	if (gtk_text_view_get_editable (view))
-	{
-		gtk_source_completion_unblock_interactive (completion);
-	}
-	else
-	{
-		gtk_source_completion_block_interactive (completion);
-	}
-}
-
-static void
 connect_view (GtkSourceCompletion *completion)
 {
 	GtkTextBuffer *buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (completion->priv->view));
@@ -1559,12 +1544,6 @@ connect_view (GtkSourceCompletion *completion)
 				 "key-press-event",
 				 G_CALLBACK (view_key_press_event_cb),
 				 completion,
-				 0);
-
-	g_signal_connect_object (completion->priv->view,
-		                 "notify::editable",
-		                 G_CALLBACK (text_view_editable_cb),
-		                 completion,
 				 0);
 
 	g_signal_connect_object (buffer,
