@@ -1594,11 +1594,6 @@ reset_completion (GtkSourceCompletion *completion)
 	g_list_free (completion->priv->active_providers);
 	completion->priv->running_providers = NULL;
 	completion->priv->active_providers = NULL;
-
-	if (!completion->priv->remember_info_visibility)
-	{
-		gtk_toggle_button_set_active (completion->priv->info_button, FALSE);
-	}
 }
 
 static void
@@ -1760,6 +1755,19 @@ gtk_source_completion_show_default (GtkSourceCompletion *completion)
 	}
 
 	gtk_widget_show (GTK_WIDGET (completion->priv->main_window));
+
+	if (completion->priv->remember_info_visibility)
+	{
+		if (gtk_toggle_button_get_active (completion->priv->info_button))
+		{
+			gtk_widget_show (GTK_WIDGET (completion->priv->info_window));
+		}
+	}
+	else
+	{
+		gtk_toggle_button_set_active (completion->priv->info_button, FALSE);
+	}
+
 	gtk_widget_grab_focus (GTK_WIDGET (completion->priv->view));
 }
 
