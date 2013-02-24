@@ -123,7 +123,9 @@ FIXME: =pod should require an empty line before/after, as written in perlpod
       \$^[ADEFHILMOPSTWX]? |                                  # ($^A, ...)
       \$[\\\&quot;\[\]'&amp;`+*.,;=%~?@$&gt;&lt;\(|/!-] |     # ($|, $', ...)
       \$:[^:] |            # avoid confusion with $::foo (equiv. to $main::foo)
-      \$(0|[1-9][0-9]*)    # numbered variables (regex matches)
+      \$(0|[1-9][0-9]*) |  # numbered variables (regex matches)
+      @[+-]  |             # special array variables
+      %[!+-] | %\^H        # special hash variables
     </define-regex>
 
     <define-regex id="plain-variable" extended="true">
