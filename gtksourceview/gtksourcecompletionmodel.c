@@ -1128,6 +1128,100 @@ gtk_source_completion_model_get_providers (GtkSourceCompletionModel *model)
 	return g_list_reverse (ret);
 }
 
+/* Get the first proposal. Headers are skipped.
+ * Returns TRUE on success.
+ */
+gboolean
+gtk_source_completion_model_first_proposal (GtkSourceCompletionModel *model,
+					    GtkTreeIter              *iter)
+{
+	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_MODEL (model), FALSE);
+	g_return_val_if_fail (iter != NULL, FALSE);
+
+	if (!gtk_tree_model_get_iter_first (GTK_TREE_MODEL (model), iter))
+	{
+		return FALSE;
+	}
+
+	while (gtk_source_completion_model_iter_is_header (model, iter))
+	{
+		if (!gtk_tree_model_iter_next (GTK_TREE_MODEL (model), iter))
+		{
+			return FALSE;
+		}
+	}
+
+	return TRUE;
+}
+
+/* Get the last proposal. Headers are skipped.
+ * Returns TRUE on success.
+ */
+gboolean
+gtk_source_completion_model_last_proposal (GtkSourceCompletionModel *model,
+					   GtkTreeIter              *iter)
+{
+	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_MODEL (model), FALSE);
+	g_return_val_if_fail (iter != NULL, FALSE);
+
+	if (!gtk_source_completion_model_iter_last (model, iter))
+	{
+		return FALSE;
+	}
+
+	while (gtk_source_completion_model_iter_is_header (model, iter))
+	{
+		if (!gtk_source_completion_model_iter_previous (model, iter))
+		{
+			return FALSE;
+		}
+	}
+
+	return TRUE;
+}
+
+/* Get the next proposal. Headers are skipped.
+ * Returns TRUE on success.
+ */
+gboolean
+gtk_source_completion_model_next_proposal (GtkSourceCompletionModel *model,
+					   GtkTreeIter              *iter)
+{
+	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_MODEL (model), FALSE);
+	g_return_val_if_fail (iter != NULL && iter->user_data != NULL, FALSE);
+
+	do
+	{
+		if (!gtk_tree_model_iter_next (GTK_TREE_MODEL (model), iter))
+		{
+			return FALSE;
+		}
+	} while (gtk_source_completion_model_iter_is_header (model, iter));
+
+	return TRUE;
+}
+
+/* Get the previous proposal. Headers are skipped.
+ * Returns TRUE on success.
+ */
+gboolean
+gtk_source_completion_model_previous_proposal (GtkSourceCompletionModel *model,
+					       GtkTreeIter              *iter)
+{
+	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_MODEL (model), FALSE);
+	g_return_val_if_fail (iter != NULL && iter->user_data != NULL, FALSE);
+
+	do
+	{
+		if (!gtk_source_completion_model_iter_previous (model, iter))
+		{
+			return FALSE;
+		}
+	} while (gtk_source_completion_model_iter_is_header (model, iter));
+
+	return TRUE;
+}
+
 gboolean
 gtk_source_completion_model_iter_equal (GtkSourceCompletionModel *model,
                                         GtkTreeIter              *iter1,

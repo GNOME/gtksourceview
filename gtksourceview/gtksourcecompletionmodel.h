@@ -108,6 +108,22 @@ gboolean gtk_source_completion_model_iter_last			(GtkSourceCompletionModel    *m
 								 GtkTreeIter                 *iter);
 
 G_GNUC_INTERNAL
+gboolean gtk_source_completion_model_first_proposal             (GtkSourceCompletionModel    *model,
+								 GtkTreeIter                 *iter);
+
+G_GNUC_INTERNAL
+gboolean gtk_source_completion_model_last_proposal              (GtkSourceCompletionModel    *model,
+								 GtkTreeIter                 *iter);
+
+G_GNUC_INTERNAL
+gboolean gtk_source_completion_model_next_proposal              (GtkSourceCompletionModel    *model,
+								 GtkTreeIter                 *iter);
+
+G_GNUC_INTERNAL
+gboolean gtk_source_completion_model_previous_proposal          (GtkSourceCompletionModel    *model,
+								 GtkTreeIter                 *iter);
+
+G_GNUC_INTERNAL
 gboolean gtk_source_completion_model_iter_equal			(GtkSourceCompletionModel    *model,
 								 GtkTreeIter                 *iter1,
 								 GtkTreeIter                 *iter2);

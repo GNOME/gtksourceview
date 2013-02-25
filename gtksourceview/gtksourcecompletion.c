@@ -390,65 +390,26 @@ gtk_source_completion_activate_proposal (GtkSourceCompletion *completion)
 	g_object_unref (proposal);
 }
 
-typedef gboolean (*ProposalSelector)(GtkSourceCompletion *completion,
-                                     GtkTreeModel        *model,
-                                     GtkTreeIter         *iter,
-                                     gboolean             hasselection,
-                                     gpointer             userdata);
-
-static gboolean
-select_proposal (GtkSourceCompletion *completion,
-                 ProposalSelector     selector,
-                 gpointer             userdata)
-{
-	GtkTreeSelection *selection;
-	GtkTreeIter iter;
-	GtkTreePath *path;
-	GtkTreeModel *model;
-	gboolean hasselection;
-
-	if (!gtk_widget_get_visible (GTK_WIDGET (completion->priv->tree_view_proposals)))
-	{
-		return FALSE;
-	}
-
-	selection = gtk_tree_view_get_selection (completion->priv->tree_view_proposals);
-
-	if (gtk_tree_selection_get_mode (selection) == GTK_SELECTION_NONE)
-	{
-		return FALSE;
-	}
-
-	model = GTK_TREE_MODEL (completion->priv->model_proposals);
-
-	hasselection = gtk_tree_selection_get_selected (selection, NULL, &iter);
-
-	if (selector (completion, model, &iter, hasselection, userdata))
-	{
-		gtk_tree_selection_select_iter (selection, &iter);
-
-		path = gtk_tree_model_get_path (model, &iter);
-		gtk_tree_view_scroll_to_cell (completion->priv->tree_view_proposals,
-					      path,
-					      NULL,
-					      FALSE,
-					      0,
-					      0);
-
-		gtk_tree_path_free (path);
-	}
-
-	/* Always return TRUE to consume the key press event */
-	return TRUE;
-}
-
 static void
 scroll_to_iter (GtkSourceCompletion *completion,
                 GtkTreeIter         *iter)
 {
 	GtkTreePath *path;
+	GtkTreeIter prev_iter = *iter;
 
-	path = gtk_tree_model_get_path (GTK_TREE_MODEL (completion->priv->model_proposals), iter);
+	/* If we want to scroll to the first proposal of a provider, it's better
+	 * to show the header too, if there is a header. */
+	if (gtk_source_completion_model_iter_previous (completion->priv->model_proposals, &prev_iter) &&
+	    gtk_source_completion_model_iter_is_header (completion->priv->model_proposals, &prev_iter))
+	{
+		path = gtk_tree_model_get_path (GTK_TREE_MODEL (completion->priv->model_proposals),
+						&prev_iter);
+	}
+	else
+	{
+		path = gtk_tree_model_get_path (GTK_TREE_MODEL (completion->priv->model_proposals),
+						iter);
+	}
 
 	gtk_tree_view_scroll_to_cell (completion->priv->tree_view_proposals,
 				      path,
@@ -460,173 +421,66 @@ scroll_to_iter (GtkSourceCompletion *completion,
 }
 
 static gboolean
-selector_first (GtkSourceCompletion *completion,
-                GtkTreeModel        *model,
-                GtkTreeIter         *iter,
-                gboolean             hasselection,
-                gpointer             userdata)
+get_previous_iter (GtkSourceCompletion *completion,
+		   gint                 num,
+		   GtkTreeIter         *iter)
 {
-	gboolean ret;
-	gboolean hasfirst;
-	GtkTreeIter first;
+	GtkTreeSelection *selection;
+	gboolean has_selection;
 
-	ret = gtk_tree_model_get_iter_first (model, iter);
-	hasfirst = ret;
-	first = *iter;
+	selection = gtk_tree_view_get_selection (completion->priv->tree_view_proposals);
+	has_selection = gtk_tree_selection_get_selected (selection, NULL, iter);
 
-	while (ret && gtk_source_completion_model_iter_is_header (
-			GTK_SOURCE_COMPLETION_MODEL (model), iter))
+	if (!has_selection)
 	{
-		ret = gtk_tree_model_iter_next (model, iter);
+		return gtk_source_completion_model_last_proposal (completion->priv->model_proposals,
+								  iter);
 	}
 
-	if (hasfirst && !ret)
+	while (num > 0)
 	{
-		scroll_to_iter (completion, &first);
-	}
-
-	return ret;
-}
-
-static gboolean
-selector_last (GtkSourceCompletion *completion,
-               GtkTreeModel        *model,
-               GtkTreeIter         *iter,
-               gboolean             hasselection,
-               gpointer             userdata)
-{
-	gboolean ret;
-	gboolean haslast;
-	GtkTreeIter last;
-
-	ret = gtk_source_completion_model_iter_last (GTK_SOURCE_COMPLETION_MODEL (model),
-	                                             iter);
-
-	haslast = ret;
-	last = *iter;
-
-	while (ret && gtk_source_completion_model_iter_is_header (
-			GTK_SOURCE_COMPLETION_MODEL (model), iter))
-	{
-		ret = gtk_source_completion_model_iter_previous (GTK_SOURCE_COMPLETION_MODEL (model),
-		                                                 iter);
-	}
-
-	if (haslast && !ret)
-	{
-		scroll_to_iter (completion, &last);
-	}
-
-	return ret;
-}
-
-static gboolean
-selector_previous (GtkSourceCompletion *completion,
-                   GtkTreeModel        *model,
-                   GtkTreeIter         *iter,
-                   gboolean             hasselection,
-                   gpointer             userdata)
-{
-	gint num = GPOINTER_TO_INT (userdata);
-	gboolean ret = FALSE;
-	GtkTreeIter next;
-	GtkTreeIter last;
-
-	if (!hasselection)
-	{
-		return selector_last (completion, model, iter, hasselection, userdata);
-	}
-
-	next = *iter;
-	last = *iter;
-
-	while (num > 0 && gtk_source_completion_model_iter_previous (
-				GTK_SOURCE_COMPLETION_MODEL (model), &next))
-	{
-		if (!gtk_source_completion_model_iter_is_header (GTK_SOURCE_COMPLETION_MODEL (model),
-		                                                 &next))
+		if (!gtk_source_completion_model_previous_proposal (completion->priv->model_proposals,
+								    iter))
 		{
-			ret = TRUE;
-			*iter = next;
-			--num;
+			return gtk_source_completion_model_first_proposal (completion->priv->model_proposals,
+									   iter);
 		}
 
-		last = next;
+		num--;
 	}
 
-	if (!ret)
-	{
-		scroll_to_iter (completion, &last);
-	}
-
-	return ret;
+	return TRUE;
 }
 
 static gboolean
-selector_next (GtkSourceCompletion *completion,
-               GtkTreeModel        *model,
-               GtkTreeIter         *iter,
-               gboolean             hasselection,
-               gpointer             userdata)
+get_next_iter (GtkSourceCompletion *completion,
+	       gint                 num,
+	       GtkTreeIter         *iter)
 {
-	gint num = GPOINTER_TO_INT (userdata);
-	gboolean ret = FALSE;
-	GtkTreeIter next;
-	GtkTreeIter last;
+	GtkTreeSelection *selection;
+	gboolean has_selection;
 
-	if (!hasselection)
+	selection = gtk_tree_view_get_selection (completion->priv->tree_view_proposals);
+	has_selection = gtk_tree_selection_get_selected (selection, NULL, iter);
+
+	if (!has_selection)
 	{
-		return selector_first (completion, model, iter, hasselection, userdata);
+		return gtk_source_completion_model_first_proposal (completion->priv->model_proposals,
+								   iter);
 	}
 
-	next = *iter;
-	last = *iter;
-
-	while (num > 0 && gtk_tree_model_iter_next (model, &next))
+	while (num > 0)
 	{
-		if (!gtk_source_completion_model_iter_is_header (GTK_SOURCE_COMPLETION_MODEL (model),
-		                                                 &next))
+		if (!gtk_source_completion_model_next_proposal (completion->priv->model_proposals, iter))
 		{
-			ret = TRUE;
-			*iter = next;
-			--num;
+			return gtk_source_completion_model_last_proposal (completion->priv->model_proposals,
+									  iter);
 		}
 
-		last = next;
+		num--;
 	}
 
-	if (!ret)
-	{
-		scroll_to_iter (completion, &last);
-	}
-
-	return ret;
-}
-
-static gboolean
-select_first_proposal (GtkSourceCompletion *completion)
-{
-	return select_proposal (completion, selector_first, NULL);
-}
-
-static gboolean
-select_last_proposal (GtkSourceCompletion *completion)
-{
-	return select_proposal (completion, selector_last, NULL);
-}
-
-static gboolean
-select_previous_proposal (GtkSourceCompletion *completion,
-			  gint                 rows)
-{
-	return select_proposal (completion, selector_previous, GINT_TO_POINTER (rows));
-}
-
-static gboolean
-select_next_proposal (GtkSourceCompletion *completion,
-		      gint                 rows)
-{
-	return select_proposal (completion, selector_next, GINT_TO_POINTER (rows));
+	return TRUE;
 }
 
 static GtkSourceCompletionProvider *
@@ -1099,15 +953,20 @@ gtk_source_completion_move_cursor (GtkSourceCompletion *completion,
                                    GtkScrollStep        step,
                                    gint                 num)
 {
+	GtkTreeIter iter;
+	gboolean ok;
+
 	if (step == GTK_SCROLL_ENDS)
 	{
 		if (num > 0)
 		{
-			select_last_proposal (completion);
+			ok = gtk_source_completion_model_last_proposal (completion->priv->model_proposals,
+									&iter);
 		}
 		else
 		{
-			select_first_proposal (completion);
+			ok = gtk_source_completion_model_first_proposal (completion->priv->model_proposals,
+									 &iter);
 		}
 	}
 	else
@@ -1119,12 +978,22 @@ gtk_source_completion_move_cursor (GtkSourceCompletion *completion,
 
 		if (num > 0)
 		{
-			select_next_proposal (completion, num);
+			ok = get_next_iter (completion, num, &iter);
 		}
 		else
 		{
-			select_previous_proposal (completion, -1 * num);
+			ok = get_previous_iter (completion, -1 * num, &iter);
 		}
+	}
+
+	if (ok)
+	{
+		GtkTreeSelection *selection;
+
+		selection = gtk_tree_view_get_selection (completion->priv->tree_view_proposals);
+		gtk_tree_selection_select_iter (selection, &iter);
+
+		scroll_to_iter (completion, &iter);
 	}
 }
 
