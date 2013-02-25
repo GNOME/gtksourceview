@@ -108,9 +108,6 @@ struct _GtkSourceUndoAction
 	guint modified  : 1;
 };
 
-/* INVALID is a pointer to an invalid action */
-#define INVALID ((void *) "IA")
-
 enum
 {
 	INSERT_TEXT,
@@ -141,9 +138,7 @@ struct _GtkSourceUndoManagerDefaultPrivate
 	guint modified_undoing_group : 1;
 
 	/* Pointer to the action (in the action list) marked as "modified".
-	 * It is NULL when no action is marked as "modified".
-	 * It is INVALID when the action marked as "modified" has been removed
-	 * from the action list (freeing the list or resizing it) */
+	 * It is NULL when no action is marked as "modified". */
 	GtkSourceUndoAction *modified_action;
 
 	guint buffer_signals[NUM_SIGNALS];
@@ -815,7 +810,7 @@ free_action_list (GtkSourceUndoManagerDefault *um)
 			--um->priv->num_of_groups;
 
 		if (action->modified)
-			um->priv->modified_action = INVALID;
+			um->priv->modified_action = NULL;
 
 		gtk_source_undo_action_free (action);
 	}
@@ -1001,7 +996,7 @@ free_first_n_actions (GtkSourceUndoManagerDefault *um,
 			--um->priv->num_of_groups;
 
 		if (action->modified)
-			um->priv->modified_action = INVALID;
+			um->priv->modified_action = NULL;
 
 		gtk_source_undo_action_free (action);
 
@@ -1034,7 +1029,7 @@ check_list_size (GtkSourceUndoManagerDefault *um)
 				--um->priv->num_of_groups;
 
 			if (undo_action->modified)
-				um->priv->modified_action = INVALID;
+				um->priv->modified_action = NULL;
 
 			gtk_source_undo_action_free (undo_action);
 
@@ -1194,9 +1189,7 @@ modified_changed_handler (GtkTextBuffer               *buffer,
 
 		if (manager->priv->modified_action != NULL)
 		{
-			if (manager->priv->modified_action != INVALID)
-				manager->priv->modified_action->modified = FALSE;
-
+			manager->priv->modified_action->modified = FALSE;
 			manager->priv->modified_action = NULL;
 		}
 
