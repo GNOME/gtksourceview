@@ -205,10 +205,6 @@ static guint signals[LAST_SIGNAL] = { 0 };
 
 G_DEFINE_TYPE(GtkSourceCompletion, gtk_source_completion, G_TYPE_OBJECT)
 
-static void update_completion (GtkSourceCompletion        *completion,
-                               GList                      *providers,
-                               GtkSourceCompletionContext *context);
-
 static void
 reset_completion (GtkSourceCompletion *completion)
 {
@@ -230,6 +226,63 @@ reset_completion (GtkSourceCompletion *completion)
 	g_list_free (completion->priv->active_providers);
 	completion->priv->running_providers = NULL;
 	completion->priv->active_providers = NULL;
+}
+
+static void
+replace_model (GtkSourceCompletion *completion)
+{
+	if (completion->priv->model_proposals != NULL)
+	{
+		g_object_unref (completion->priv->model_proposals);
+	}
+
+	completion->priv->model_proposals = gtk_source_completion_model_new ();
+
+	gtk_source_completion_model_set_show_headers (completion->priv->model_proposals,
+				                      completion->priv->show_headers);
+}
+
+/* Takes ownership of @providers and @context. */
+static void
+update_completion (GtkSourceCompletion        *completion,
+                   GList                      *providers,
+                   GtkSourceCompletionContext *context)
+{
+	GList *item;
+
+	/* Copy the parameters, because they can be freed by reset_completion(). */
+	GList *providers_copy = g_list_copy (providers);
+	GtkSourceCompletionContext *context_copy = g_object_ref_sink (context);
+
+	DEBUG({
+		g_print ("Update completion: %d\n", g_list_length (providers));
+	});
+
+	/* Make sure to first cancel any running completion */
+	reset_completion (completion);
+
+	completion->priv->context = context_copy;
+	completion->priv->running_providers = g_list_copy (providers_copy);
+	completion->priv->active_providers = g_list_copy (providers_copy);
+
+	/* Create a new CompletionModel */
+	gtk_tree_view_set_model (completion->priv->tree_view_proposals, NULL);
+	replace_model (completion);
+
+	for (item = providers_copy; item != NULL; item = g_list_next (item))
+	{
+		GtkSourceCompletionProvider *provider = item->data;
+
+		DEBUG({
+			gchar *temp_name = gtk_source_completion_provider_get_name (provider);
+			g_print ("Populating provider: %s\n", temp_name);
+			g_free (temp_name);
+		});
+
+		gtk_source_completion_provider_populate (provider, context_copy);
+	}
+
+	g_list_free (providers_copy);
 }
 
 /* Returns %TRUE if a proposal is selected.
@@ -1296,9 +1349,8 @@ auto_completion_final (GtkSourceCompletion *completion)
 
 	update_completion (completion, selection, context);
 
-	/* No need to free the context since it was a floating reference which
-	   has been taken over by update_completion */
 	g_list_free (selection);
+	g_object_unref (context);
 	return FALSE;
 }
 
@@ -1394,7 +1446,7 @@ buffer_delete_range_cb (GtkTextBuffer       *buffer,
 	{
 		update_completion (completion,
 				   completion->priv->active_providers,
-				   g_object_ref (completion->priv->context));
+				   completion->priv->context);
 	}
 
 	return FALSE;
@@ -1415,7 +1467,7 @@ buffer_insert_text_cb (GtkTextBuffer       *buffer,
 	{
 		update_completion (completion,
 				   completion->priv->active_providers,
-				   g_object_ref (completion->priv->context));
+				   completion->priv->context);
 	}
 }
 
@@ -2188,20 +2240,6 @@ selection_func (GtkTreeSelection    *selection,
 }
 
 static void
-replace_model (GtkSourceCompletion *completion)
-{
-	if (completion->priv->model_proposals != NULL)
-	{
-		g_object_unref (completion->priv->model_proposals);
-	}
-
-	completion->priv->model_proposals = gtk_source_completion_model_new ();
-
-	gtk_source_completion_model_set_show_headers (completion->priv->model_proposals,
-				                      completion->priv->show_headers);
-}
-
-static void
 init_tree_view (GtkSourceCompletion *completion,
 		GtkBuilder          *builder)
 {
@@ -2377,47 +2415,6 @@ gtk_source_completion_init (GtkSourceCompletion *completion)
 }
 
 static void
-update_completion (GtkSourceCompletion        *completion,
-                   GList                      *providers,
-                   GtkSourceCompletionContext *context)
-{
-	GList *item;
-
-	/* Copy the providers, because they can be freed by reset_completion(). */
-	GList *providers_copy = g_list_copy (providers);
-
-	DEBUG({
-		g_print ("Update completion: %d\n", g_list_length (providers));
-	});
-
-	/* Make sure to first cancel any running completion */
-	reset_completion (completion);
-
-	completion->priv->context = context;
-	completion->priv->running_providers = g_list_copy (providers_copy);
-	completion->priv->active_providers = g_list_copy (providers_copy);
-
-	/* Create a new CompletionModel */
-	gtk_tree_view_set_model (completion->priv->tree_view_proposals, NULL);
-	replace_model (completion);
-
-	for (item = providers_copy; item != NULL; item = g_list_next (item))
-	{
-		GtkSourceCompletionProvider *provider = item->data;
-
-		DEBUG({
-			gchar *temp_name = gtk_source_completion_provider_get_name (provider);
-			g_print ("Populating provider: %s\n", temp_name);
-			g_free (temp_name);
-		});
-
-		gtk_source_completion_provider_populate (provider, context);
-	}
-
-	g_list_free (providers_copy);
-}
-
-static void
 populating_done (GtkSourceCompletion        *completion,
                  GtkSourceCompletionContext *context)
 {
@@ -2556,6 +2553,7 @@ gtk_source_completion_show (GtkSourceCompletion        *completion,
 
 	update_completion (completion, selected_providers, context);
 	g_list_free (selected_providers);
+	g_object_unref (context);
 
 	return TRUE;
 }
