@@ -1002,11 +1002,6 @@ check_first_selected (GtkSourceCompletion *completion)
 {
 	GtkTreeSelection *selection;
 	GtkTreeIter iter;
-	GtkTreeIter first;
-	GtkTreeModel *model;
-
-	model = GTK_TREE_MODEL (completion->priv->model_proposals);
-	selection = gtk_tree_view_get_selection (completion->priv->tree_view_proposals);
 
 	if (get_selected_proposal (completion, NULL, NULL) ||
 	    !completion->priv->select_on_show)
@@ -1014,23 +1009,14 @@ check_first_selected (GtkSourceCompletion *completion)
 		return;
 	}
 
-	if (!gtk_tree_model_get_iter_first (model, &first))
+	if (!gtk_source_completion_model_first_proposal (completion->priv->model_proposals, &iter))
 	{
 		return;
 	}
 
-	iter = first;
-
-	while (gtk_source_completion_model_iter_is_header (completion->priv->model_proposals, &iter))
-	{
-		if (!gtk_tree_model_iter_next (model, &iter))
-		{
-			return;
-		}
-	}
-
+	selection = gtk_tree_view_get_selection (completion->priv->tree_view_proposals);
 	gtk_tree_selection_select_iter (selection, &iter);
-	scroll_to_iter (completion, &first);
+	scroll_to_iter (completion, &iter);
 }
 
 static void
@@ -1079,9 +1065,9 @@ static gboolean
 activate_by_accelerator (GtkSourceCompletion *completion,
                          gint                 num)
 {
+	GtkTreeSelection *selection;
 	GtkTreeIter iter;
-	GtkTreeModel *model = GTK_TREE_MODEL (completion->priv->model_proposals);
-	gint i = -1;
+	gint i;
 
 	if (completion->priv->num_accelerators == 0)
 	{
@@ -1095,32 +1081,24 @@ activate_by_accelerator (GtkSourceCompletion *completion,
 		return FALSE;
 	}
 
-	if (!gtk_tree_model_get_iter_first (model, &iter))
+	if (!gtk_source_completion_model_first_proposal (completion->priv->model_proposals, &iter))
 	{
 		return FALSE;
 	}
 
-	do
+	for (i = 0; i < num; i++)
 	{
-		if (!gtk_source_completion_model_iter_is_header (completion->priv->model_proposals,
-		                                                 &iter))
+		if (!gtk_source_completion_model_next_proposal (completion->priv->model_proposals, &iter))
 		{
-			i++;
+			return FALSE;
 		}
-	} while (i < num && gtk_tree_model_iter_next (model, &iter));
-
-	if (i == num)
-	{
-		GtkTreeSelection *selection = gtk_tree_view_get_selection (completion->priv->tree_view_proposals);
-
-		gtk_tree_selection_select_iter (selection, &iter);
-
-		gtk_source_completion_activate_proposal (completion);
-
-		return TRUE;
 	}
 
-	return FALSE;
+	selection = gtk_tree_view_get_selection (completion->priv->tree_view_proposals);
+	gtk_tree_selection_select_iter (selection, &iter);
+	gtk_source_completion_activate_proposal (completion);
+
+	return TRUE;
 }
 
 static gboolean
@@ -2028,37 +2006,31 @@ static gint
 get_accel_at_iter (GtkSourceCompletion *completion,
                    GtkTreeIter         *iter)
 {
-	GtkTreeIter cur_iter;
-	GtkTreeModel *model = GTK_TREE_MODEL (completion->priv->model_proposals);
-	gint ret = 0;
+	GtkTreeIter it;
+	gint accel;
 
 	if (gtk_source_completion_model_iter_is_header (completion->priv->model_proposals, iter))
 	{
 		return -1;
 	}
 
-	if (!gtk_tree_model_get_iter_first (model, &cur_iter))
+	if (!gtk_source_completion_model_first_proposal (completion->priv->model_proposals, &it))
 	{
 		g_return_val_if_reached (-1);
 	}
 
-	while (ret < completion->priv->num_accelerators)
+	for (accel = 0; accel < completion->priv->num_accelerators; accel++)
 	{
-		if (!gtk_source_completion_model_iter_is_header (completion->priv->model_proposals, &cur_iter))
+		if (gtk_source_completion_model_iter_equal (completion->priv->model_proposals,
+							    iter,
+							    &it))
 		{
-			if (gtk_source_completion_model_iter_equal (completion->priv->model_proposals,
-								    iter,
-								    &cur_iter))
-			{
-				return ret;
-			}
-
-			ret++;
+			return accel;
 		}
 
-		if (!gtk_tree_model_iter_next (model, &cur_iter))
+		if (!gtk_source_completion_model_next_proposal (completion->priv->model_proposals, &it))
 		{
-			break;
+			return -1;
 		}
 	}
 
