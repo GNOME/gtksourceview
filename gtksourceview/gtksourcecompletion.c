@@ -587,194 +587,6 @@ update_selection_label (GtkSourceCompletion *completion)
 }
 
 static void
-visible_provider_changed (GtkSourceCompletion *completion)
-{
-	GtkTreeSelection *selection;
-	GtkTreeIter iter;
-
-	update_selection_label (completion);
-
-	selection = gtk_tree_view_get_selection (completion->priv->tree_view_proposals);
-
-	if (gtk_tree_selection_get_selected (selection, NULL, &iter))
-	{
-		scroll_to_iter (completion, &iter);
-	}
-	else
-	{
-		gtk_tree_view_scroll_to_point (completion->priv->tree_view_proposals, 0, 0);
-	}
-}
-
-typedef GList * (*ListSelector)(GList *);
-
-static gboolean
-select_provider (GtkSourceCompletion *completion,
-                 ListSelector         advance,
-                 ListSelector         cycle_first,
-                 ListSelector         cycle_last,
-                 guint                num_advance)
-{
-	GList *first;
-	GList *last;
-	GList *orig;
-	GList *current;
-	GtkSourceCompletionProvider *provider;
-	guint num;
-	guint pos;
-	GList *providers;
-	GtkSourceCompletionProvider *visible;
-	guint i;
-
-	visible = get_visible_provider (completion);
-
-	get_num_visible_providers (completion, &num, &pos);
-
-	if (num <= 1)
-	{
-		if (visible != NULL)
-		{
-			gtk_source_completion_model_set_visible_providers (
-					completion->priv->model_proposals,
-			                NULL);
-
-			visible_provider_changed (completion);
-			return TRUE;
-		}
-
-		return FALSE;
-	}
-
-	providers = gtk_source_completion_model_get_providers (completion->priv->model_proposals);
-
-	if (visible != NULL)
-	{
-		orig = g_list_find (providers, visible);
-	}
-	else
-	{
-		orig = NULL;
-	}
-
-	first = cycle_first ? cycle_first (providers) : NULL;
-	last = cycle_last ? cycle_last (providers) : NULL;
-
-	current = orig;
-
-	for (i = 0; i < num_advance; ++i)
-	{
-		do
-		{
-			if (current == NULL)
-			{
-				current = first;
-			}
-			else if (current == last)
-			{
-				current = NULL;
-			}
-			else
-			{
-				current = advance (current);
-			}
-
-			if (current != NULL)
-			{
-				provider = GTK_SOURCE_COMPLETION_PROVIDER (current->data);
-
-				if (gtk_source_completion_model_n_proposals (completion->priv->model_proposals,
-					                                     provider) != 0)
-				{
-					break;
-				}
-			}
-			else if (!gtk_source_completion_model_is_empty (completion->priv->model_proposals, FALSE))
-			{
-				break;
-			}
-		} while (orig != current);
-	}
-
-	if (orig == current)
-	{
-		g_list_free (providers);
-		return FALSE;
-	}
-
-	if (current != NULL)
-	{
-		GList *visible_providers = g_list_append (NULL, current->data);
-
-		gtk_source_completion_model_set_visible_providers (completion->priv->model_proposals,
-		                                                   visible_providers);
-		g_list_free (visible_providers);
-		visible_provider_changed (completion);
-	}
-	else
-	{
-		gtk_source_completion_model_set_visible_providers (completion->priv->model_proposals,
-		                                                   NULL);
-		visible_provider_changed (completion);
-	}
-
-	g_list_free (providers);
-	return TRUE;
-}
-
-static GList *
-wrap_g_list_next (GList *list)
-{
-	return g_list_next (list);
-}
-
-static GList *
-wrap_g_list_previous (GList *list)
-{
-	return g_list_previous (list);
-}
-
-static gboolean
-select_next_provider (GtkSourceCompletion *completion,
-                      guint                num)
-{
-	return select_provider (completion,
-	                        wrap_g_list_next,
-	                        g_list_first,
-	                        g_list_last,
-	                        num);
-}
-
-static gboolean
-select_previous_provider (GtkSourceCompletion *completion,
-                          guint                num)
-{
-	return select_provider (completion,
-	                        wrap_g_list_previous,
-	                        g_list_last,
-	                        g_list_first,
-	                        num);
-}
-
-static gboolean
-select_last_provider (GtkSourceCompletion *completion)
-{
-	return select_provider (completion, g_list_last, g_list_last, NULL, 1);
-}
-
-static GList *
-select_first_provider_wrap (GList *list)
-{
-	/* Basicly, this means selecting 'All', which is just selection NULL */
-	return NULL;
-}
-
-static gboolean
-select_first_provider (GtkSourceCompletion *completion)
-{
-	return select_provider (completion, select_first_provider_wrap, NULL, NULL, 1);
-}
-
-static void
 update_info_position (GtkSourceCompletion *completion)
 {
 	GdkScreen *screen;
@@ -1007,26 +819,161 @@ check_first_selected (GtkSourceCompletion *completion)
 	scroll_to_iter (completion, &iter);
 }
 
+static GList *
+get_last_provider (GtkSourceCompletion *completion)
+{
+	GList *providers = gtk_source_completion_model_get_providers (completion->priv->model_proposals);
+	GList *ret;
+
+	g_return_val_if_fail (providers != NULL, NULL);
+
+	if (providers->next == NULL)
+	{
+		ret = NULL;
+	}
+	else
+	{
+		ret = g_list_copy (g_list_last (providers));
+	}
+
+	g_list_free (providers);
+	return ret;
+}
+
+static GList *
+providers_cycle_forward (GList *all_providers,
+			 GList *position,
+			 gint   num)
+{
+	GList *l = position;
+	gint i;
+
+	if (all_providers == NULL || all_providers->next == NULL)
+	{
+		return NULL;
+	}
+
+	for (i = 0; i < num; i++)
+	{
+		l = l == NULL ? all_providers : l->next;
+	}
+
+	return l;
+}
+
+static GList *
+providers_cycle_backward (GList *all_providers,
+			  GList *position,
+			  gint   num)
+{
+	gint i;
+	GList *l = position;
+	GList *end = g_list_last (all_providers);
+
+	if (all_providers == NULL || all_providers->next == NULL)
+	{
+		return NULL;
+	}
+
+	for (i = 0; i < num; i++)
+	{
+		l = l == NULL ? end : l->prev;
+	}
+
+	return l;
+}
+
+static GList *
+get_next_provider (GtkSourceCompletion *completion,
+		   gint                 num)
+{
+	GList *providers;
+	GList *visible_providers;
+	GList *position;
+	GList *ret;
+
+	providers = gtk_source_completion_model_get_providers (completion->priv->model_proposals);
+	visible_providers = gtk_source_completion_model_get_visible_providers (completion->priv->model_proposals);
+
+	if (visible_providers == NULL)
+	{
+		position = NULL;
+	}
+	else
+	{
+		position = g_list_find (providers, visible_providers->data);
+	}
+
+	position = providers_cycle_forward (providers, position, num);
+
+	if (position == NULL)
+	{
+		ret = NULL;
+	}
+	else
+	{
+		ret = g_list_append (NULL, position->data);
+	}
+
+	g_list_free (providers);
+
+	return ret;
+}
+
+static GList *
+get_previous_provider (GtkSourceCompletion *completion,
+		       gint                 num)
+{
+	GList *providers;
+	GList *visible_providers;
+	GList *position;
+	GList *ret;
+
+	providers = gtk_source_completion_model_get_providers (completion->priv->model_proposals);
+	visible_providers = gtk_source_completion_model_get_visible_providers (completion->priv->model_proposals);
+
+	if (visible_providers == NULL)
+	{
+		position = NULL;
+	}
+	else
+	{
+		position = g_list_find (providers, visible_providers->data);
+	}
+
+	position = providers_cycle_backward (providers, position, num);
+
+	if (position == NULL)
+	{
+		ret = NULL;
+	}
+	else
+	{
+		ret = g_list_append (NULL, position->data);
+	}
+
+	g_list_free (providers);
+
+	return ret;
+}
+
 static void
 gtk_source_completion_move_page (GtkSourceCompletion *completion,
                                  GtkScrollStep        step,
                                  gint                 num)
 {
-	GtkTreeSelection *selection = gtk_tree_view_get_selection (completion->priv->tree_view_proposals);
-
-	/* Unselect all, so the first proposal is selected if needed, after the
-	 * page move. */
-	gtk_tree_selection_unselect_all (selection);
+	GtkTreeSelection *selection;
+	GList *visible_providers = NULL;
 
 	if (step == GTK_SCROLL_ENDS)
 	{
 		if (num > 0)
 		{
-			select_last_provider (completion);
+			visible_providers = get_last_provider (completion);
 		}
 		else
 		{
-			select_first_provider (completion);
+			visible_providers = NULL;
 		}
 	}
 	else
@@ -1038,15 +985,27 @@ gtk_source_completion_move_page (GtkSourceCompletion *completion,
 
 		if (num > 0)
 		{
-			select_next_provider (completion, num);
+			visible_providers = get_next_provider (completion, num);
 		}
 		else
 		{
-			select_previous_provider (completion, -1 * num);
+			visible_providers = get_previous_provider (completion, -1 * num);
 		}
 	}
 
+	gtk_source_completion_model_set_visible_providers (completion->priv->model_proposals,
+							   visible_providers);
+
+	update_selection_label (completion);
+
+	selection = gtk_tree_view_get_selection (completion->priv->tree_view_proposals);
+
+	/* Unselect all, so the first proposal is selected if needed. */
+	gtk_tree_selection_unselect_all (selection);
+
 	check_first_selected (completion);
+
+	g_list_free (visible_providers);
 }
 
 static gboolean
