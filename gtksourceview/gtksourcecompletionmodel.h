@@ -104,10 +104,6 @@ gboolean gtk_source_completion_model_iter_previous		(GtkSourceCompletionModel   
 								 GtkTreeIter                 *iter);
 
 G_GNUC_INTERNAL
-gboolean gtk_source_completion_model_iter_last			(GtkSourceCompletionModel    *model,
-								 GtkTreeIter                 *iter);
-
-G_GNUC_INTERNAL
 gboolean gtk_source_completion_model_first_proposal             (GtkSourceCompletionModel    *model,
 								 GtkTreeIter                 *iter);
 

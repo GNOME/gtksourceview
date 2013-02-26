@@ -255,6 +255,36 @@ get_provider_node (GtkSourceCompletionModel    *model,
 	return NULL;
 }
 
+static gboolean
+get_last_iter (GtkSourceCompletionModel *model,
+	       GtkTreeIter              *iter)
+{
+	GList *last_provider;
+	ProviderInfo *provider_info;
+
+	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_MODEL (model), FALSE);
+	g_return_val_if_fail (iter != NULL, FALSE);
+
+	last_provider = g_list_last (model->priv->providers);
+
+	if (last_provider == NULL)
+	{
+		return FALSE;
+	}
+
+	provider_info = last_provider->data;
+
+	iter->user_data = provider_info->proposals->tail;
+	g_assert (iter->user_data != NULL);
+
+	if (!provider_info->visible)
+	{
+		return gtk_source_completion_model_iter_previous (model, iter);
+	}
+
+	return TRUE;
+}
+
 /* Remove providers or proposals */
 
 static void
@@ -1077,36 +1107,6 @@ gtk_source_completion_model_iter_previous (GtkSourceCompletionModel *model,
 	return TRUE;
 }
 
-gboolean
-gtk_source_completion_model_iter_last (GtkSourceCompletionModel *model,
-                                       GtkTreeIter              *iter)
-{
-	GList *last_provider;
-	ProviderInfo *provider_info;
-
-	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_MODEL (model), FALSE);
-	g_return_val_if_fail (iter != NULL, FALSE);
-
-	last_provider = g_list_last (model->priv->providers);
-
-	if (last_provider == NULL)
-	{
-		return FALSE;
-	}
-
-	provider_info = last_provider->data;
-
-	iter->user_data = provider_info->proposals->tail;
-	g_assert (iter->user_data != NULL);
-
-	if (!provider_info->visible)
-	{
-		return gtk_source_completion_model_iter_previous (model, iter);
-	}
-
-	return TRUE;
-}
-
 /* Get all the providers (visible and hidden), sorted by priority in descending
  * order (the highest priority first).
  * Free the return value with g_list_free().
@@ -1164,7 +1164,7 @@ gtk_source_completion_model_last_proposal (GtkSourceCompletionModel *model,
 	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_MODEL (model), FALSE);
 	g_return_val_if_fail (iter != NULL, FALSE);
 
-	if (!gtk_source_completion_model_iter_last (model, iter))
+	if (!get_last_iter (model, iter))
 	{
 		return FALSE;
 	}

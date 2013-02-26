@@ -549,17 +549,17 @@ test_iters_impl (gboolean show_headers)
 	gint nb_items;
 	gint *indices;
 
-	/* Test iter_last() */
-	g_assert (!gtk_source_completion_model_iter_last (model, &last_iter));
+	/* Test last_proposal() */
+	g_assert (!gtk_source_completion_model_last_proposal (model, &last_iter));
 
 	create_providers (&all_providers, &all_list_proposals);
 	populate_model (model, all_providers, all_list_proposals);
 
 	gtk_source_completion_model_set_show_headers (model, show_headers);
 
-	g_assert (gtk_source_completion_model_iter_last (model, &last_iter));
+	g_assert (gtk_source_completion_model_last_proposal (model, &last_iter));
 
-	/* Get the last iter by another means, and compare it */
+	/* Get the last proposal by another means, and compare it */
 	nb_items = gtk_tree_model_iter_n_children (GTK_TREE_MODEL (model), NULL);
 
 	g_assert (gtk_tree_model_iter_nth_child (GTK_TREE_MODEL (model),
