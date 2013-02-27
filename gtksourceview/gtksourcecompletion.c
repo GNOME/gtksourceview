@@ -503,34 +503,18 @@ get_num_visible_providers (GtkSourceCompletion *completion,
                            guint               *num,
                            guint               *current)
 {
-	GList *providers;
-	GList *item;
-	GtkSourceCompletionProvider *visible;
+	GList *providers = gtk_source_completion_model_get_providers (completion->priv->model_proposals);
+	GtkSourceCompletionProvider *visible = get_visible_provider (completion);
 
-	visible = get_visible_provider (completion);
-
-	*num = 0;
+	*num = g_list_length (providers);
 	*current = 0;
 
-	providers = gtk_source_completion_model_get_providers (completion->priv->model_proposals);
-
-	for (item = providers; item; item = g_list_next (item))
+	if (visible != NULL)
 	{
-		/* This works for now since we only show either all providers,
-		   or a single one */
-		if (item->data == visible)
-		{
-			*current = ++*num;
-		}
-		else
-		{
-			/* See if it has anything */
-			if (gtk_source_completion_model_n_proposals (completion->priv->model_proposals,
-			                                             GTK_SOURCE_COMPLETION_PROVIDER (item->data)))
-			{
-				++*num;
-			}
-		}
+		gint idx = g_list_index (providers, visible);
+		g_return_if_fail (idx != -1);
+
+		*current = idx + 1;
 	}
 
 	g_list_free (providers);
