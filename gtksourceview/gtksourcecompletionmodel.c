@@ -857,68 +857,6 @@ gtk_source_completion_model_add_proposals (GtkSourceCompletionModel    *model,
 
 /* Get/set visible providers */
 
-static void
-show_provider (GtkSourceCompletionModel *model,
-	       ProviderInfo             *provider_info)
-{
-	GtkTreePath *path;
-	GList *l;
-
-	path = get_proposal_path (model, provider_info->proposals->head);
-
-	for (l = provider_info->proposals->head; l != NULL; l = l->next)
-	{
-		GtkTreeIter iter;
-		iter.user_data = l;
-
-		gtk_tree_model_row_inserted (GTK_TREE_MODEL (model), path, &iter);
-
-		gtk_tree_path_next (path);
-	}
-
-	gtk_tree_path_free (path);
-}
-
-static void
-hide_provider (GtkSourceCompletionModel *model,
-	       ProviderInfo             *provider_info)
-{
-	GtkTreePath *path;
-	gint i;
-
-	path = get_proposal_path (model, provider_info->proposals->head);
-
-	for (i = 0; i < provider_info->proposals->length; i++)
-	{
-		gtk_tree_model_row_deleted (GTK_TREE_MODEL (model), path);
-	}
-
-	gtk_tree_path_free (path);
-}
-
-static void
-update_provider_visibility (GtkSourceCompletionModel *model,
-			    ProviderInfo             *provider_info)
-{
-	gboolean new_visible = is_provider_visible (model, provider_info->completion_provider);
-
-	if (new_visible == provider_info->visible)
-	{
-		return;
-	}
-
-	if (new_visible)
-	{
-		provider_info->visible = TRUE;
-		show_provider (model, provider_info);
-	}
-	else
-	{
-		hide_provider (model, provider_info);
-		provider_info->visible = FALSE;
-	}
-}
-
 void
 gtk_source_completion_model_set_visible_providers (GtkSourceCompletionModel *model,
                                                    GList                    *providers)
@@ -941,7 +879,7 @@ gtk_source_completion_model_set_visible_providers (GtkSourceCompletionModel *mod
 	for (l = model->priv->providers; l != NULL; l = l->next)
 	{
 		ProviderInfo *provider_info = l->data;
-		update_provider_visibility (model, provider_info);
+		provider_info->visible = is_provider_visible (model, provider_info->completion_provider);
 	}
 }
 
