@@ -285,8 +285,6 @@ get_last_iter (GtkSourceCompletionModel *model,
 	return TRUE;
 }
 
-/* Remove providers or proposals */
-
 static void
 proposal_info_free (gpointer data)
 {
@@ -325,8 +323,6 @@ provider_info_free (gpointer data)
 	g_queue_free_full (info->proposals, (GDestroyNotify)proposal_info_free);
 	g_slice_free (ProviderInfo, data);
 }
-
-/* Show/hide header */
 
 static void
 add_header (GList *provider_node)
@@ -855,7 +851,7 @@ gtk_source_completion_model_add_proposals (GtkSourceCompletionModel    *model,
 	g_list_foreach (proposals, (GFunc)add_proposal, provider_node);
 }
 
-/* Get/set visible providers */
+/* Other public functions */
 
 void
 gtk_source_completion_model_set_visible_providers (GtkSourceCompletionModel *model,
@@ -890,8 +886,6 @@ gtk_source_completion_model_get_visible_providers (GtkSourceCompletionModel *mod
 
 	return model->priv->visible_providers;
 }
-
-/* Other public functions */
 
 /* If @only_visible is %TRUE, only the visible providers are taken into account. */
 gboolean
