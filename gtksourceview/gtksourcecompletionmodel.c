@@ -918,38 +918,6 @@ gtk_source_completion_model_is_empty (GtkSourceCompletionModel *model,
 	return TRUE;
 }
 
-/* Returns the number of proposals. The header is not taken into account. */
-guint
-gtk_source_completion_model_n_proposals (GtkSourceCompletionModel    *model,
-                                         GtkSourceCompletionProvider *provider)
-{
-	GList *provider_node;
-	ProviderInfo *provider_info;
-	guint nb_items;
-
-	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_MODEL (model), 0);
-	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_PROVIDER (provider), 0);
-
-	provider_node = get_provider_node (model, provider);
-
-	if (provider_node == NULL)
-	{
-		return 0;
-	}
-
-	provider_info = provider_node->data;
-	nb_items = provider_info->proposals->length;
-
-	if (model->priv->show_headers)
-	{
-		return nb_items - 1;
-	}
-	else
-	{
-		return nb_items;
-	}
-}
-
 void
 gtk_source_completion_model_set_show_headers (GtkSourceCompletionModel *model,
                                               gboolean                  show_headers)
