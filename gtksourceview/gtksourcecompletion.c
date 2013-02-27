@@ -486,10 +486,7 @@ get_next_iter (GtkSourceCompletion *completion,
 static GtkSourceCompletionProvider *
 get_visible_provider (GtkSourceCompletion *completion)
 {
-	GtkSourceCompletionModel *model = completion->priv->model_proposals;
-	GList *visible;
-
-	visible = gtk_source_completion_model_get_visible_providers (model);
+	GList *visible = gtk_source_completion_model_get_visible_providers (completion->priv->model_proposals);
 
 	if (visible != NULL)
 	{
@@ -545,17 +542,14 @@ update_selection_label (GtkSourceCompletion *completion)
 	guint pos;
 	guint num;
 	gchar *name;
-	gchar *tmp;
-	GtkSourceCompletionProvider *visible;
-
-	visible = get_visible_provider (completion);
+	GtkSourceCompletionProvider *visible = get_visible_provider (completion);
 
 	get_num_visible_providers (completion, &num, &pos);
 
 	if (visible == NULL)
 	{
-		/* Translators: "All" is used as a label in thestatus bar of the
-		popup, telling that all completion pages are shown */
+		/* Translators: "All" is used as a label in the status bar of the
+		popup, telling that all completion pages are shown. */
 		name = g_strdup_printf("<b>%s</b>", _("All"));
 
 		gtk_image_clear (completion->priv->selection_image);
@@ -567,18 +561,18 @@ update_selection_label (GtkSourceCompletion *completion)
 		g_free (temp_name);
 
 		gtk_image_set_from_pixbuf (completion->priv->selection_image,
-                           (GdkPixbuf *)gtk_source_completion_provider_get_icon (visible));
+					   gtk_source_completion_provider_get_icon (visible));
 	}
 
 	if (num > 1)
 	{
-		tmp = g_strdup_printf ("<small>%s (%d/%d)</small>", name, pos + 1, num + 1);
+		gchar *tmp = g_strdup_printf ("<small>%s (%d/%d)</small>", name, pos + 1, num + 1);
 		gtk_label_set_markup (completion->priv->selection_label, tmp);
 		g_free (tmp);
 	}
 	else
 	{
-		tmp = g_strdup_printf ("<small>%s</small>", name);
+		gchar *tmp = g_strdup_printf ("<small>%s</small>", name);
 		gtk_label_set_markup (completion->priv->selection_label, tmp);
 		g_free (tmp);
 	}
@@ -2234,10 +2228,7 @@ populating_done (GtkSourceCompletion        *completion,
 		});
 	}
 
-	if (completion->priv->select_on_show)
-	{
-		check_first_selected (completion);
-	}
+	check_first_selected (completion);
 }
 
 void
