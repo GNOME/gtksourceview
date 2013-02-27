@@ -382,8 +382,8 @@
     <define-regex id="underscore_num">\d(_?\d)*</define-regex>
 
     <define-regex id="float" extended="true">
-      ( (\%{underscore_num})?\.\%{underscore_num} | \%{underscore_num}\. ) |
-      ( (\%{underscore_num}|(\%{underscore_num})?\.\%{underscore_num}|\%{underscore_num}\.)[eE][+-]?\%{underscore_num} )
+      ( \%{underscore_num}\.\%{underscore_num} ) |
+      ( (\%{underscore_num}(\.\%{underscore_num})?)[eE][+-]?\%{underscore_num} )
     </define-regex>
 
     <context id="float" style-ref="floating-point">
