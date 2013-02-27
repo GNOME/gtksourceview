@@ -7,6 +7,7 @@
  Copyright (C) 2004 Archit Baweja <bighead@users.sourceforge.net>
  Copyright (C) 2005 Michael Witrant <mike@lepton.fr>
  Copyright (C) 2006 Gabriel Bauman <gbauman@gmail.com>
+ Copyright (C) 2013 Jesse van den Kieboom <jessevdk@gnome.org>
 
  This library is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -43,6 +44,7 @@
     <style id="base-n-integer"       _name="Base-N number"         map-to="def:base-n-integer"/>
     <style id="numeric-literal"      _name="Numeric literal"       map-to="def:base-n-integer"/>
     <style id="string"               _name="String"                map-to="def:string"/>
+    <style id="literal"              _name="Literal"               map-to="def:special-char"/>
     <!-- Translators: functions that are provided in the language -->
     <style id="builtin"              _name="Builtin"               map-to="def:type"/>
     <style id="constant"             _name="Constant"              map-to="def:type"/>
@@ -430,6 +432,15 @@
       </include>
     </context>
 
+    <context id="inside-interpolated-string">
+      <include>
+        <context ref="escape"/>
+        <context ref="def:line-continue"/>
+        <context ref="complex-interpolation"/>
+        <context ref="simple-interpolation"/>
+      </include>
+    </context>
+
     <!-- ruby strings do not end at line end,
          so we cannot use def:string
          (parts lifted from perl.lang) -->
@@ -437,10 +448,7 @@
       <start>"</start>
       <end>"</end>
       <include>
-        <context ref="escape"/>
-        <context ref="def:line-continue"/>
-        <context ref="complex-interpolation"/>
-        <context ref="simple-interpolation"/>
+        <context ref="inside-interpolated-string"/>
       </include>
     </context>
 
@@ -458,10 +466,7 @@
       <start>`</start>
       <end>`</end>
       <include>
-        <context ref="escape"/>
-        <context ref="def:line-continue"/>
-        <context ref="complex-interpolation"/>
-        <context ref="simple-interpolation"/>
+        <context ref="inside-interpolated-string"/>
       </include>
     </context>
 
@@ -469,10 +474,7 @@
       <start>&lt;&lt;([a-zA-Z_]\w*)</start>
       <end>^\%{1@start}</end>
       <include>
-        <context ref="escape"/>
-        <context ref="def:line-continue"/>
-        <context ref="complex-interpolation"/>
-        <context ref="simple-interpolation"/>
+        <context ref="inside-interpolated-string"/>
       </include>
     </context>
 
@@ -480,10 +482,7 @@
       <start>&lt;&lt;-([a-zA-Z_]\w*)</start>
       <end>^\s*\%{1@start}</end>
       <include>
-        <context ref="escape"/>
-        <context ref="def:line-continue"/>
-        <context ref="complex-interpolation"/>
-        <context ref="simple-interpolation"/>
+        <context ref="inside-interpolated-string"/>
       </include>
     </context>
 
@@ -502,10 +501,168 @@
       <include>
         <context sub-pattern="0" where="start" style-ref="here-doc-bound"/>
         <context sub-pattern="0" where="end" style-ref="here-doc-bound"/>
-        <context ref="escape"/>
-        <context ref="def:line-continue"/>
-        <context ref="complex-interpolation"/>
-        <context ref="simple-interpolation"/>
+        <context ref="inside-interpolated-string"/>
+      </include>
+    </context>
+
+    <context id="interpolated-literal">
+      <include>
+        <context style-ref="string" style-inside="true">
+          <start>[%][QWx]?\(</start>
+          <end>\)</end>
+          <include>
+            <context where="start" sub-pattern="0" style-ref="literal"/>
+            <context where="end" sub-pattern="0" style-ref="literal"/>
+
+            <context ref="inside-interpolated-string"/>
+            <context>
+              <start>\(</start>
+              <end>\)</end>
+            </context>
+          </include>
+        </context>
+
+        <context style-ref="string" style-inside="true" >
+          <start>[%][QWx]?\[</start>
+          <end>]</end>
+          <include>
+            <context where="start" sub-pattern="0" style-ref="literal"/>
+            <context where="end" sub-pattern="0" style-ref="literal"/>
+
+            <context ref="inside-interpolated-string"/>
+            <context>
+              <start>\[</start>
+              <end>]</end>
+            </context>
+
+          </include>
+        </context>
+
+        <context style-ref="string" style-inside="true">
+          <start>[%][QWx]?{</start>
+          <end>}</end>
+          <include>
+            <context where="start" sub-pattern="0" style-ref="literal"/>
+            <context where="end" sub-pattern="0" style-ref="literal"/>
+
+            <context ref="inside-interpolated-string"/>
+            <context>
+              <start>{</start>
+              <end>}</end>
+            </context>
+          </include>
+        </context>
+
+        <context style-ref="string" style-inside="true">
+          <start>[%][QWx]?&lt;</start>
+          <end>&gt;</end>
+          <include>
+            <context where="start" sub-pattern="0" style-ref="literal"/>
+            <context where="end" sub-pattern="0" style-ref="literal"/>
+
+            <context ref="inside-interpolated-string"/>
+            <context>
+              <start>&lt;</start>
+              <end>&gt;</end>
+            </context>
+          </include>
+        </context>
+
+        <context style-ref="string" style-inside="true">
+          <start>[%][QWx]?([^[:alnum:]{&lt;[(])</start>
+          <end>\%{1@start}</end>
+          <include>
+            <context where="start" sub-pattern="0" style-ref="literal"/>
+            <context where="end" sub-pattern="0" style-ref="literal"/>
+
+            <context ref="inside-interpolated-string"/>
+          </include>
+        </context>
+      </include>
+    </context>
+
+    <context id="non-interpolated-literal">
+      <include>
+        <context style-ref="string" style-inside="true">
+          <start>[%][qsw]\(</start>
+          <end>\)</end>
+          <include>
+            <context where="start" sub-pattern="0" style-ref="literal"/>
+            <context where="end" sub-pattern="0" style-ref="literal"/>
+
+            <context style-ref="escape">
+              <match>\\['\\]</match>
+            </context>
+            <context>
+              <start>\(</start>
+              <end>\)</end>
+            </context>
+          </include>
+        </context>
+
+        <context style-ref="string" style-inside="true">
+          <start>[%][qsw]\[</start>
+          <end>]</end>
+          <include>
+            <context where="start" sub-pattern="0" style-ref="literal"/>
+            <context where="end" sub-pattern="0" style-ref="literal"/>
+
+            <context style-ref="escape">
+              <match>\\['\\]</match>
+            </context>
+            <context>
+              <start>\[</start>
+              <end>]</end>
+            </context>
+          </include>
+        </context>
+
+        <context style-ref="string" style-inside="true">
+          <start>[%][qsw]\{</start>
+          <end>\}</end>
+          <include>
+            <context where="start" sub-pattern="0" style-ref="literal"/>
+            <context where="end" sub-pattern="0" style-ref="literal"/>
+
+            <context style-ref="escape">
+              <match>\\['\\]</match>
+            </context>
+            <context>
+              <start>\{</start>
+              <end>\}</end>
+            </context>
+          </include>
+        </context>
+
+        <context style-ref="string" style-inside="true">
+          <start>[%][qsw]&lt;</start>
+          <end>&gt;</end>
+          <include>
+            <context where="start" sub-pattern="0" style-ref="literal"/>
+            <context where="end" sub-pattern="0" style-ref="literal"/>
+
+            <context style-ref="escape">
+              <match>\\['\\]</match>
+            </context>
+            <context>
+              <start>&lt;</start>
+              <end>&gt;</end>
+            </context>
+          </include>
+        </context>
+
+        <context style-ref="string" style-inside="true">
+          <start>[%][qsw]([^[:alnum:]{&lt;[(])</start>
+          <end>\%{1@start}</end>
+          <include>
+            <context where="start" sub-pattern="0" style-ref="literal"/>
+            <context where="end" sub-pattern="0" style-ref="literal"/>
+
+            <context style-ref="escape">
+              <match>\\['\\]</match>
+            </context>
+          </include>
+        </context>
       </include>
     </context>
 
@@ -584,6 +741,8 @@
         <context ref="numeric-literal"/>
         <context ref="regex-alt-form"/>
         <context ref="regex-simple"/>
+        <context ref="non-interpolated-literal"/>
+        <context ref="interpolated-literal"/>
       </include>
     </context>
 
