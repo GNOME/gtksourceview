@@ -542,7 +542,7 @@ FIXME: =pod should require an empty line before/after, as written in perlpod
           </include>
         </context>
         <context style-inside="true" style-ref="regex">
-          <start>\%{operator}\s*(/)</start>
+          <start>([!=]\~)\s*(/)</start>
           <end>/[cgimosx]*</end>
           <include>
             <context sub-pattern="1" where="start" style-ref="operator"/>
