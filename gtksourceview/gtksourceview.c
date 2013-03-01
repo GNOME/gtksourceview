@@ -1831,12 +1831,8 @@ gtk_source_view_paint_marks_background (GtkSourceView *view,
 			                                             gtk_source_mark_get_category (marks->data),
 			                                             &prio);
 
-			if (attrs == NULL)
-			{
-				continue;
-			}
-
-			if (prio > priority &&
+			if (attrs != NULL &&
+			    prio > priority &&
 			    gtk_source_mark_attributes_get_background (attrs, &bg))
 			{
 				priority = prio;
