@@ -3,56 +3,51 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER, 2003.
 #
 # Piarres Beobide <pi@beobide.net>, 2003.
-# Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012.
-# Iñaki Larrañaga Murgoitio <dooteo@zundan.com>, 2007.
+# Iñaki Larrañaga Murgoitio <dooteo@zundan.com>, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010.
+# Iñaki Larrañaga Murgoitio <dooteo@zundan.com>, 2011, 2012, 2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: eu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-05 19:00+0100\n"
-"PO-Revision-Date: 2012-03-05 19:01+0100\n"
-"Last-Translator: Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>\n"
-"Language-Team: American English <itzulpena@euskalgnu.org>\n"
-"Language: \n"
+"POT-Creation-Date: 2013-03-01 10:34+0100\n"
+"PO-Revision-Date: 2013-03-01 10:42+0100\n"
+"Last-Translator: Iñaki Larrañaga Murgoitio <dooteo@zundan.com>\n"
+"Language-Team: Basque <itzulpena@euskalgnu.org>\n"
+"Language: eu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 1.0\n"
+"X-Generator: Lokalize 1.4\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"\n"
-"\n"
 
 #: ../data/glade/gtksourceview.xml.in.h:1
-msgid "After"
-msgstr "Ondoren"
+msgid "GtkSourceView"
+msgstr "GtkSourceView"
 
-#. Translators: "All" is used as a label in thestatus bar of the
-#. popup, telling that all completion pages are shown
-#: ../data/glade/gtksourceview.xml.in.h:2
-#: ../gtksourceview/gtksourcecompletion.c:648
-msgid "All"
-msgstr "Denak"
-
+#. Translators: It is related to an option of a set of values
 #: ../data/glade/gtksourceview.xml.in.h:3
-msgid "Always"
-msgstr "Beti"
+msgid "Disabled"
+msgstr "Desgaituta"
 
 #: ../data/glade/gtksourceview.xml.in.h:4
 msgid "Before"
 msgstr "Aurretik"
 
-#. Translators: It is related to an option of a set of values
+#: ../data/glade/gtksourceview.xml.in.h:5
+msgid "After"
+msgstr "Ondoren"
+
 #: ../data/glade/gtksourceview.xml.in.h:6
-msgid "Disabled"
-msgstr "Desgaituta"
+msgid "Always"
+msgstr "Beti"
 
 #: ../data/glade/gtksourceview.xml.in.h:7
-msgid "GtkSourceView"
-msgstr "GtkSourceView"
+msgid "Space"
+msgstr "Zuriunea"
 
 #: ../data/glade/gtksourceview.xml.in.h:8
-msgid "Leading"
-msgstr "Lerro arteko tartea"
+msgid "Tab"
+msgstr "Tabulazioa"
 
 #: ../data/glade/gtksourceview.xml.in.h:9
 msgid "Newline"
@@ -63,606 +58,682 @@ msgid "Non Breaking Whitespace"
 msgstr "Zuriune etenkaitza"
 
 #: ../data/glade/gtksourceview.xml.in.h:11
-msgid "Space"
-msgstr "Zuriunea"
+msgid "Leading"
+msgstr "Lerro arteko tartea"
 
 #: ../data/glade/gtksourceview.xml.in.h:12
-msgid "Tab"
-msgstr "Tabulazioa"
-
-#: ../data/glade/gtksourceview.xml.in.h:13
-#: ../gtksourceview/gtksourcecompletionitem.c:255
+#: ../gtksourceview/gtksourcecompletionitem.c:264
 #: ../gtksourceview/gtksourcegutterrenderertext.c:403
 msgid "Text"
 msgstr "Testua"
 
-#: ../data/glade/gtksourceview.xml.in.h:14
+#: ../data/glade/gtksourceview.xml.in.h:13
 msgid "Trailing"
 msgstr "Lerroaren amaiera"
 
-#: ../data/language-specs/ada.lang.h:1
-msgid "Ada"
-msgstr "Ada"
+#. Translators: "All" is used as a label in thestatus bar of the
+#. popup, telling that all completion pages are shown
+#: ../data/glade/gtksourceview.xml.in.h:14
+#: ../gtksourceview/gtksourcecompletion.c:633
+msgid "All"
+msgstr "Denak"
 
-#: ../data/language-specs/ada.lang.h:2
-msgid "Arbitrary base number"
-msgstr "Hautazko oinarri zenbakia"
-
-#. A boolean constant: TRUE, false
-#: ../data/language-specs/ada.lang.h:3 ../data/language-specs/asp.lang.h:3
-#: ../data/language-specs/bennugd.lang.h:2 ../data/language-specs/cg.lang.h:2
-#: ../data/language-specs/c.lang.h:1 ../data/language-specs/csharp.lang.h:1
-#: ../data/language-specs/def.lang.h:4 ../data/language-specs/fsharp.lang.h:2
-#: ../data/language-specs/go.lang.h:1 ../data/language-specs/gtkrc.lang.h:1
-#: ../data/language-specs/ini.lang.h:2 ../data/language-specs/java.lang.h:1
-#: ../data/language-specs/lua.lang.h:1 ../data/language-specs/nemerle.lang.h:2
-#: ../data/language-specs/ocaml.lang.h:2 ../data/language-specs/ooc.lang.h:1
-#: ../data/language-specs/opal.lang.h:1 ../data/language-specs/php.lang.h:1
-#: ../data/language-specs/protobuf.lang.h:1 ../data/language-specs/R.lang.h:2
-#: ../data/language-specs/ruby.lang.h:3 ../data/language-specs/sml.lang.h:2
+#: ../data/language-specs/actionscript.lang.h:1
+#: ../data/language-specs/ada.lang.h:1 ../data/language-specs/asp.lang.h:1
+#: ../data/language-specs/automake.lang.h:1
+#: ../data/language-specs/bennugd.lang.h:1
+#: ../data/language-specs/bluespec.lang.h:1
+#: ../data/language-specs/boo.lang.h:1 ../data/language-specs/cg.lang.h:1
+#: ../data/language-specs/chdr.lang.h:1 ../data/language-specs/c.lang.h:1
+#: ../data/language-specs/cobol.lang.h:1 ../data/language-specs/cpp.lang.h:1
+#: ../data/language-specs/csharp.lang.h:1 ../data/language-specs/cuda.lang.h:1
+#: ../data/language-specs/d.lang.h:1 ../data/language-specs/eiffel.lang.h:1
+#: ../data/language-specs/erlang.lang.h:1
+#: ../data/language-specs/forth.lang.h:1
+#: ../data/language-specs/fortran.lang.h:1
+#: ../data/language-specs/fsharp.lang.h:1 ../data/language-specs/glsl.lang.h:1
+#: ../data/language-specs/go.lang.h:1 ../data/language-specs/haskell.lang.h:1
+#: ../data/language-specs/haskell-literate.lang.h:1
+#: ../data/language-specs/idl.lang.h:1 ../data/language-specs/java.lang.h:1
+#: ../data/language-specs/j.lang.h:1 ../data/language-specs/makefile.lang.h:1
+#: ../data/language-specs/nemerle.lang.h:1
+#: ../data/language-specs/netrexx.lang.h:1
+#: ../data/language-specs/objc.lang.h:1 ../data/language-specs/objj.lang.h:1
+#: ../data/language-specs/ocaml.lang.h:1 ../data/language-specs/ooc.lang.h:1
+#: ../data/language-specs/opal.lang.h:1 ../data/language-specs/opencl.lang.h:1
+#: ../data/language-specs/pascal.lang.h:1
+#: ../data/language-specs/prolog.lang.h:1
+#: ../data/language-specs/scheme.lang.h:1 ../data/language-specs/sml.lang.h:1
+#: ../data/language-specs/sparql.lang.h:1 ../data/language-specs/sql.lang.h:1
+#: ../data/language-specs/systemverilog.lang.h:1
 #: ../data/language-specs/vala.lang.h:1 ../data/language-specs/vbnet.lang.h:1
-#: ../data/language-specs/vhdl.lang.h:2
-msgid "Boolean value"
-msgstr "Balio boolearra"
+#: ../data/language-specs/verilog.lang.h:1
+#: ../data/language-specs/vhdl.lang.h:1
+msgid "Sources"
+msgstr "Iturburuak"
+
+#: ../data/language-specs/actionscript.lang.h:2
+msgid "ActionScript"
+msgstr "ActionSkript-ak"
 
 #. Any comment
-#: ../data/language-specs/ada.lang.h:4 ../data/language-specs/asp.lang.h:4
-#: ../data/language-specs/bennugd.lang.h:3 ../data/language-specs/boo.lang.h:4
-#: ../data/language-specs/cg.lang.h:5 ../data/language-specs/c.lang.h:4
-#: ../data/language-specs/cobol.lang.h:2
-#: ../data/language-specs/csharp.lang.h:4 ../data/language-specs/def.lang.h:11
-#: ../data/language-specs/d.lang.h:3 ../data/language-specs/dosbatch.lang.h:2
-#: ../data/language-specs/dot.lang.h:2 ../data/language-specs/eiffel.lang.h:3
-#: ../data/language-specs/erlang.lang.h:4 ../data/language-specs/fcl.lang.h:2
-#: ../data/language-specs/forth.lang.h:1
-#: ../data/language-specs/fortran.lang.h:2
-#: ../data/language-specs/fsharp.lang.h:4 ../data/language-specs/gap.lang.h:2
-#: ../data/language-specs/go.lang.h:3 ../data/language-specs/gtkrc.lang.h:2
-#: ../data/language-specs/haskell.lang.h:2
-#: ../data/language-specs/html.lang.h:3 ../data/language-specs/idl.lang.h:1
-#: ../data/language-specs/ini.lang.h:3 ../data/language-specs/latex.lang.h:2
-#: ../data/language-specs/lua.lang.h:2 ../data/language-specs/matlab.lang.h:2
-#: ../data/language-specs/nemerle.lang.h:4
-#: ../data/language-specs/nsis.lang.h:1 ../data/language-specs/ocaml.lang.h:4
-#: ../data/language-specs/ocl.lang.h:1 ../data/language-specs/octave.lang.h:4
-#: ../data/language-specs/ooc.lang.h:2 ../data/language-specs/opal.lang.h:2
-#: ../data/language-specs/pascal.lang.h:1 ../data/language-specs/perl.lang.h:2
-#: ../data/language-specs/php.lang.h:2 ../data/language-specs/po.lang.h:1
-#: ../data/language-specs/prolog.lang.h:1 ../data/language-specs/ruby.lang.h:6
-#: ../data/language-specs/scheme.lang.h:2
-#: ../data/language-specs/scilab.lang.h:2 ../data/language-specs/sh.lang.h:1
-#: ../data/language-specs/sml.lang.h:4 ../data/language-specs/sql.lang.h:1
-#: ../data/language-specs/t2t.lang.h:3 ../data/language-specs/texinfo.lang.h:1
-#: ../data/language-specs/vala.lang.h:2 ../data/language-specs/vbnet.lang.h:2
-#: ../data/language-specs/verilog.lang.h:2
-#: ../data/language-specs/vhdl.lang.h:4 ../data/language-specs/xml.lang.h:4
+#: ../data/language-specs/actionscript.lang.h:3
+#: ../data/language-specs/ada.lang.h:3 ../data/language-specs/asp.lang.h:3
+#: ../data/language-specs/bennugd.lang.h:3 ../data/language-specs/boo.lang.h:3
+#: ../data/language-specs/cg.lang.h:3 ../data/language-specs/c.lang.h:3
+#: ../data/language-specs/cobol.lang.h:3
+#: ../data/language-specs/csharp.lang.h:3 ../data/language-specs/def.lang.h:3
+#: ../data/language-specs/d.lang.h:3 ../data/language-specs/dosbatch.lang.h:3
+#: ../data/language-specs/dot.lang.h:3 ../data/language-specs/eiffel.lang.h:3
+#: ../data/language-specs/erlang.lang.h:3 ../data/language-specs/fcl.lang.h:3
+#: ../data/language-specs/forth.lang.h:3
+#: ../data/language-specs/fortran.lang.h:3
+#: ../data/language-specs/fsharp.lang.h:3 ../data/language-specs/gap.lang.h:3
+#: ../data/language-specs/go.lang.h:3 ../data/language-specs/gtkrc.lang.h:3
+#: ../data/language-specs/haskell.lang.h:4
+#: ../data/language-specs/html.lang.h:3
+#: ../data/language-specs/idl-exelis.lang.h:3
+#: ../data/language-specs/idl.lang.h:3 ../data/language-specs/ini.lang.h:3
+#: ../data/language-specs/j.lang.h:4 ../data/language-specs/latex.lang.h:3
+#: ../data/language-specs/lua.lang.h:3 ../data/language-specs/matlab.lang.h:3
+#: ../data/language-specs/modelica.lang.h:3
+#: ../data/language-specs/nemerle.lang.h:3
+#: ../data/language-specs/netrexx.lang.h:6
+#: ../data/language-specs/nsis.lang.h:4 ../data/language-specs/ocaml.lang.h:3
+#: ../data/language-specs/ocl.lang.h:3 ../data/language-specs/octave.lang.h:3
+#: ../data/language-specs/ooc.lang.h:3 ../data/language-specs/opal.lang.h:4
+#: ../data/language-specs/pascal.lang.h:3 ../data/language-specs/perl.lang.h:3
+#: ../data/language-specs/php.lang.h:3 ../data/language-specs/po.lang.h:3
+#: ../data/language-specs/prolog.lang.h:3 ../data/language-specs/ruby.lang.h:4
+#: ../data/language-specs/scheme.lang.h:3
+#: ../data/language-specs/scilab.lang.h:3 ../data/language-specs/sh.lang.h:3
+#: ../data/language-specs/sml.lang.h:3 ../data/language-specs/sql.lang.h:3
+#: ../data/language-specs/t2t.lang.h:3 ../data/language-specs/texinfo.lang.h:3
+#: ../data/language-specs/vala.lang.h:3 ../data/language-specs/vbnet.lang.h:3
+#: ../data/language-specs/verilog.lang.h:3
+#: ../data/language-specs/vhdl.lang.h:3 ../data/language-specs/xml.lang.h:3
 msgid "Comment"
 msgstr "Iruzkina"
 
-#: ../data/language-specs/ada.lang.h:5 ../data/language-specs/asp.lang.h:5
-#: ../data/language-specs/bennugd.lang.h:4 ../data/language-specs/boo.lang.h:5
-#: ../data/language-specs/cg.lang.h:6 ../data/language-specs/c.lang.h:6
-#: ../data/language-specs/cpp.lang.h:3 ../data/language-specs/csharp.lang.h:5
-#: ../data/language-specs/cuda.lang.h:2 ../data/language-specs/d.lang.h:5
+#. Any erroneous construct
+#: ../data/language-specs/actionscript.lang.h:4
+#: ../data/language-specs/cg.lang.h:4 ../data/language-specs/c.lang.h:22
+#: ../data/language-specs/cobol.lang.h:11
+#: ../data/language-specs/csharp.lang.h:4 ../data/language-specs/css.lang.h:3
+#: ../data/language-specs/def.lang.h:53 ../data/language-specs/d.lang.h:4
+#: ../data/language-specs/dot.lang.h:4 ../data/language-specs/go.lang.h:4
+#: ../data/language-specs/html.lang.h:8 ../data/language-specs/j.lang.h:7
+#: ../data/language-specs/json.lang.h:7
+#: ../data/language-specs/nemerle.lang.h:4
+#: ../data/language-specs/ocaml.lang.h:20 ../data/language-specs/ooc.lang.h:4
+#: ../data/language-specs/opal.lang.h:6 ../data/language-specs/perl.lang.h:17
+#: ../data/language-specs/php.lang.h:4 ../data/language-specs/prolog.lang.h:9
+#: ../data/language-specs/vala.lang.h:4
+#: ../data/language-specs/verilog.lang.h:7
+#: ../data/language-specs/xml.lang.h:13
+msgid "Error"
+msgstr "Errorea"
+
+#. A string constant: "this is a string"
+#: ../data/language-specs/actionscript.lang.h:5
+#: ../data/language-specs/ada.lang.h:4 ../data/language-specs/asp.lang.h:4
+#: ../data/language-specs/boo.lang.h:5 ../data/language-specs/c.lang.h:4
+#: ../data/language-specs/cobol.lang.h:8
+#: ../data/language-specs/csharp.lang.h:6 ../data/language-specs/css.lang.h:5
+#: ../data/language-specs/def.lang.h:17 ../data/language-specs/d.lang.h:5
+#: ../data/language-specs/dosbatch.lang.h:4
 #: ../data/language-specs/eiffel.lang.h:4
-#: ../data/language-specs/forth.lang.h:3
-#: ../data/language-specs/fortran.lang.h:3
-#: ../data/language-specs/fsharp.lang.h:5 ../data/language-specs/glsl.lang.h:4
-#: ../data/language-specs/go.lang.h:4 ../data/language-specs/gtkrc.lang.h:3
-#: ../data/language-specs/haskell.lang.h:3 ../data/language-specs/idl.lang.h:2
-#: ../data/language-specs/ini.lang.h:4 ../data/language-specs/java.lang.h:3
-#: ../data/language-specs/javascript.lang.h:3
-#: ../data/language-specs/nemerle.lang.h:5
-#: ../data/language-specs/objc.lang.h:2 ../data/language-specs/objj.lang.h:2
-#: ../data/language-specs/ocaml.lang.h:5 ../data/language-specs/ocl.lang.h:2
-#: ../data/language-specs/ooc.lang.h:3 ../data/language-specs/opal.lang.h:4
-#: ../data/language-specs/opencl.lang.h:1
-#: ../data/language-specs/pascal.lang.h:2 ../data/language-specs/php.lang.h:4
-#: ../data/language-specs/protobuf.lang.h:2
-#: ../data/language-specs/sml.lang.h:5 ../data/language-specs/sparql.lang.h:3
-#: ../data/language-specs/sql.lang.h:2 ../data/language-specs/vala.lang.h:3
-#: ../data/language-specs/vbnet.lang.h:3
-msgid "Data Type"
-msgstr "Datu mota"
+#: ../data/language-specs/erlang.lang.h:7
+#: ../data/language-specs/forth.lang.h:4
+#: ../data/language-specs/fsharp.lang.h:7
+#: ../data/language-specs/gdb-log.lang.h:8 ../data/language-specs/go.lang.h:5
+#: ../data/language-specs/gtkrc.lang.h:4
+#: ../data/language-specs/haskell.lang.h:9
+#: ../data/language-specs/idl-exelis.lang.h:7
+#: ../data/language-specs/idl.lang.h:7 ../data/language-specs/imagej.lang.h:10
+#: ../data/language-specs/ini.lang.h:5 ../data/language-specs/java.lang.h:4
+#: ../data/language-specs/javascript.lang.h:13
+#: ../data/language-specs/j.lang.h:17 ../data/language-specs/json.lang.h:4
+#: ../data/language-specs/lua.lang.h:4
+#: ../data/language-specs/modelica.lang.h:4
+#: ../data/language-specs/nemerle.lang.h:7
+#: ../data/language-specs/netrexx.lang.h:4
+#: ../data/language-specs/nsis.lang.h:5 ../data/language-specs/objc.lang.h:6
+#: ../data/language-specs/objj.lang.h:8 ../data/language-specs/ocaml.lang.h:8
+#: ../data/language-specs/ocl.lang.h:4 ../data/language-specs/octave.lang.h:4
+#: ../data/language-specs/ooc.lang.h:6 ../data/language-specs/opal.lang.h:7
+#: ../data/language-specs/pascal.lang.h:4 ../data/language-specs/perl.lang.h:6
+#: ../data/language-specs/php.lang.h:9 ../data/language-specs/po.lang.h:5
+#: ../data/language-specs/prolog.lang.h:6
+#: ../data/language-specs/protobuf.lang.h:6
+#: ../data/language-specs/python3.lang.h:6
+#: ../data/language-specs/python.lang.h:6
+#: ../data/language-specs/ruby.lang.h:14
+#: ../data/language-specs/scheme.lang.h:5
+#: ../data/language-specs/scilab.lang.h:5 ../data/language-specs/sh.lang.h:5
+#: ../data/language-specs/sml.lang.h:7 ../data/language-specs/sql.lang.h:5
+#: ../data/language-specs/texinfo.lang.h:6
+#: ../data/language-specs/vala.lang.h:6 ../data/language-specs/vbnet.lang.h:4
+#: ../data/language-specs/verilog.lang.h:4
+#: ../data/language-specs/vhdl.lang.h:4
+msgid "String"
+msgstr "Katea"
 
-#. A decimal number: 1234
-#: ../data/language-specs/ada.lang.h:6 ../data/language-specs/bennugd.lang.h:5
-#: ../data/language-specs/cg.lang.h:7 ../data/language-specs/c.lang.h:7
-#: ../data/language-specs/csharp.lang.h:6 ../data/language-specs/def.lang.h:19
-#: ../data/language-specs/d.lang.h:6 ../data/language-specs/eiffel.lang.h:6
-#: ../data/language-specs/erlang.lang.h:6
-#: ../data/language-specs/fsharp.lang.h:6 ../data/language-specs/go.lang.h:5
-#: ../data/language-specs/nemerle.lang.h:6
-#: ../data/language-specs/ocaml.lang.h:6 ../data/language-specs/ooc.lang.h:4
-#: ../data/language-specs/opal.lang.h:5 ../data/language-specs/php.lang.h:5
-#: ../data/language-specs/python.lang.h:7
-#: ../data/language-specs/python3.lang.h:7
-#: ../data/language-specs/ruby.lang.h:8
-msgid "Decimal number"
-msgstr "Zenbaki hamartarra"
+#. Translators: refered to some specific keywords of the language that
+#. allow to get external functionalities
+#: ../data/language-specs/actionscript.lang.h:6
+#: ../data/language-specs/java.lang.h:8 ../data/language-specs/ooc.lang.h:7
+msgid "External"
+msgstr "Kanpokoa"
 
-#. map to nothing
-#: ../data/language-specs/ada.lang.h:7 ../data/language-specs/cg.lang.h:9
-#: ../data/language-specs/c.lang.h:8 ../data/language-specs/csharp.lang.h:8
-#: ../data/language-specs/eiffel.lang.h:9
-#: ../data/language-specs/fsharp.lang.h:7 ../data/language-specs/go.lang.h:7
-#: ../data/language-specs/haskell.lang.h:5
-#: ../data/language-specs/java.lang.h:5
-#: ../data/language-specs/javascript.lang.h:4
-#: ../data/language-specs/json.lang.h:4 ../data/language-specs/lua.lang.h:3
-#: ../data/language-specs/ocaml.lang.h:8 ../data/language-specs/ooc.lang.h:7
-#: ../data/language-specs/php.lang.h:8 ../data/language-specs/prolog.lang.h:3
-#: ../data/language-specs/python.lang.h:8
-#: ../data/language-specs/python3.lang.h:8
-#: ../data/language-specs/ruby.lang.h:9 ../data/language-specs/sml.lang.h:7
-#: ../data/language-specs/texinfo.lang.h:2
-#: ../data/language-specs/verilog.lang.h:5
-msgid "Escaped Character"
-msgstr "Ihes karakterea"
+#: ../data/language-specs/actionscript.lang.h:7
+#: ../data/language-specs/java.lang.h:9 ../data/language-specs/ooc.lang.h:8
+msgid "Declaration"
+msgstr "Deklarazioa"
+
+#: ../data/language-specs/actionscript.lang.h:8
+#: ../data/language-specs/ada.lang.h:8 ../data/language-specs/cg.lang.h:10
+#: ../data/language-specs/c.lang.h:12 ../data/language-specs/java.lang.h:10
+#: ../data/language-specs/ooc.lang.h:9
+msgid "Storage Class"
+msgstr "Biltegi klasea"
+
+#: ../data/language-specs/actionscript.lang.h:9
+#: ../data/language-specs/java.lang.h:11 ../data/language-specs/ooc.lang.h:10
+msgid "Scope Declaration"
+msgstr "Deklarazioaren esparrua"
 
 #. keywords: "if", "for", "while", etc.
-#: ../data/language-specs/ada.lang.h:8 ../data/language-specs/asp.lang.h:7
-#: ../data/language-specs/awk.lang.h:2 ../data/language-specs/bennugd.lang.h:9
-#: ../data/language-specs/boo.lang.h:7 ../data/language-specs/cg.lang.h:14
-#: ../data/language-specs/c.lang.h:12 ../data/language-specs/cobol.lang.h:5
-#: ../data/language-specs/cpp.lang.h:4 ../data/language-specs/csharp.lang.h:10
-#: ../data/language-specs/css.lang.h:10 ../data/language-specs/cuda.lang.h:6
-#: ../data/language-specs/def.lang.h:36 ../data/language-specs/d.lang.h:10
-#: ../data/language-specs/dosbatch.lang.h:4
-#: ../data/language-specs/dot.lang.h:5 ../data/language-specs/eiffel.lang.h:12
-#: ../data/language-specs/erlang.lang.h:9 ../data/language-specs/fcl.lang.h:6
-#: ../data/language-specs/forth.lang.h:7
-#: ../data/language-specs/fortran.lang.h:8
-#: ../data/language-specs/fsharp.lang.h:10 ../data/language-specs/gap.lang.h:6
-#: ../data/language-specs/glsl.lang.h:5 ../data/language-specs/go.lang.h:12
-#: ../data/language-specs/gtkrc.lang.h:7
-#: ../data/language-specs/haskell.lang.h:9 ../data/language-specs/idl.lang.h:4
-#: ../data/language-specs/imagej.lang.h:6 ../data/language-specs/ini.lang.h:7
-#: ../data/language-specs/java.lang.h:11
-#: ../data/language-specs/javascript.lang.h:8
-#: ../data/language-specs/lua.lang.h:5
-#: ../data/language-specs/nemerle.lang.h:10
+#: ../data/language-specs/actionscript.lang.h:10
+#: ../data/language-specs/ada.lang.h:5 ../data/language-specs/asp.lang.h:6
+#: ../data/language-specs/awk.lang.h:3 ../data/language-specs/bennugd.lang.h:7
+#: ../data/language-specs/bluespec.lang.h:7
+#: ../data/language-specs/boo.lang.h:10 ../data/language-specs/cg.lang.h:8
+#: ../data/language-specs/c.lang.h:9 ../data/language-specs/cobol.lang.h:6
+#: ../data/language-specs/cpp.lang.h:3 ../data/language-specs/csharp.lang.h:11
+#: ../data/language-specs/css.lang.h:14 ../data/language-specs/cuda.lang.h:3
+#: ../data/language-specs/def.lang.h:47 ../data/language-specs/d.lang.h:6
+#: ../data/language-specs/dosbatch.lang.h:5
+#: ../data/language-specs/dot.lang.h:5 ../data/language-specs/eiffel.lang.h:7
+#: ../data/language-specs/erlang.lang.h:4 ../data/language-specs/fcl.lang.h:5
+#: ../data/language-specs/forth.lang.h:6
+#: ../data/language-specs/fortran.lang.h:5
+#: ../data/language-specs/fsharp.lang.h:8 ../data/language-specs/gap.lang.h:5
+#: ../data/language-specs/glsl.lang.h:5 ../data/language-specs/go.lang.h:7
+#: ../data/language-specs/gtkrc.lang.h:5
+#: ../data/language-specs/haskell.lang.h:7
+#: ../data/language-specs/idl-exelis.lang.h:6
+#: ../data/language-specs/idl.lang.h:6 ../data/language-specs/imagej.lang.h:8
+#: ../data/language-specs/ini.lang.h:6 ../data/language-specs/java.lang.h:12
+#: ../data/language-specs/javascript.lang.h:7
+#: ../data/language-specs/lua.lang.h:5 ../data/language-specs/matlab.lang.h:4
+#: ../data/language-specs/modelica.lang.h:13
+#: ../data/language-specs/nemerle.lang.h:8
 #: ../data/language-specs/objc.lang.h:3 ../data/language-specs/objj.lang.h:4
-#: ../data/language-specs/ocaml.lang.h:10 ../data/language-specs/ocl.lang.h:3
-#: ../data/language-specs/octave.lang.h:8 ../data/language-specs/ooc.lang.h:12
-#: ../data/language-specs/opal.lang.h:8 ../data/language-specs/opencl.lang.h:6
-#: ../data/language-specs/pascal.lang.h:4 ../data/language-specs/perl.lang.h:9
-#: ../data/language-specs/php.lang.h:14 ../data/language-specs/po.lang.h:3
-#: ../data/language-specs/prolog.lang.h:4
-#: ../data/language-specs/protobuf.lang.h:3
-#: ../data/language-specs/python.lang.h:11
-#: ../data/language-specs/python3.lang.h:11 ../data/language-specs/R.lang.h:6
-#: ../data/language-specs/ruby.lang.h:13
-#: ../data/language-specs/scheme.lang.h:4
-#: ../data/language-specs/scilab.lang.h:5 ../data/language-specs/sh.lang.h:5
-#: ../data/language-specs/sml.lang.h:9 ../data/language-specs/sparql.lang.h:7
+#: ../data/language-specs/ocaml.lang.h:9 ../data/language-specs/ocl.lang.h:5
+#: ../data/language-specs/octave.lang.h:13
+#: ../data/language-specs/ooc.lang.h:11 ../data/language-specs/opal.lang.h:8
+#: ../data/language-specs/opencl.lang.h:3
+#: ../data/language-specs/pascal.lang.h:5 ../data/language-specs/perl.lang.h:7
+#: ../data/language-specs/php.lang.h:12 ../data/language-specs/po.lang.h:7
+#: ../data/language-specs/prolog.lang.h:5
+#: ../data/language-specs/protobuf.lang.h:4
+#: ../data/language-specs/python3.lang.h:4
+#: ../data/language-specs/python.lang.h:4 ../data/language-specs/R.lang.h:3
+#: ../data/language-specs/ruby.lang.h:7 ../data/language-specs/scheme.lang.h:6
+#: ../data/language-specs/scilab.lang.h:6 ../data/language-specs/sh.lang.h:6
+#: ../data/language-specs/sml.lang.h:4 ../data/language-specs/sparql.lang.h:7
 #: ../data/language-specs/sql.lang.h:6
-#: ../data/language-specs/systemverilog.lang.h:2
-#: ../data/language-specs/tcl.lang.h:1 ../data/language-specs/texinfo.lang.h:6
-#: ../data/language-specs/vala.lang.h:5 ../data/language-specs/vbnet.lang.h:4
-#: ../data/language-specs/verilog.lang.h:9
-#: ../data/language-specs/vhdl.lang.h:5
+#: ../data/language-specs/systemverilog.lang.h:5
+#: ../data/language-specs/tcl.lang.h:4 ../data/language-specs/texinfo.lang.h:7
+#: ../data/language-specs/vala.lang.h:7 ../data/language-specs/vbnet.lang.h:6
+#: ../data/language-specs/verilog.lang.h:11
+#: ../data/language-specs/vhdl.lang.h:6
 msgid "Keyword"
 msgstr "Gako-hitza"
 
-#: ../data/language-specs/ada.lang.h:9 ../data/language-specs/asp.lang.h:10
-#: ../data/language-specs/bennugd.lang.h:11
-#: ../data/language-specs/cg.lang.h:16 ../data/language-specs/c.lang.h:14
-#: ../data/language-specs/csharp.lang.h:12
-#: ../data/language-specs/forth.lang.h:9
-#: ../data/language-specs/fsharp.lang.h:15
-#: ../data/language-specs/glsl.lang.h:7
-#: ../data/language-specs/haskell.lang.h:11
-#: ../data/language-specs/idl.lang.h:5
-#: ../data/language-specs/nemerle.lang.h:14
-#: ../data/language-specs/objj.lang.h:7 ../data/language-specs/pascal.lang.h:6
+#: ../data/language-specs/actionscript.lang.h:11
+#: ../data/language-specs/boo.lang.h:12
+#: ../data/language-specs/csharp.lang.h:13 ../data/language-specs/d.lang.h:9
+#: ../data/language-specs/fsharp.lang.h:21
+#: ../data/language-specs/java.lang.h:13
+#: ../data/language-specs/javascript.lang.h:4
+#: ../data/language-specs/json.lang.h:5
+#: ../data/language-specs/nemerle.lang.h:10
+#: ../data/language-specs/objj.lang.h:9 ../data/language-specs/ooc.lang.h:12
+#: ../data/language-specs/php.lang.h:16 ../data/language-specs/vala.lang.h:9
+msgid "Null Value"
+msgstr "NULUA balioa"
+
+#. A boolean constant: TRUE, false
+#: ../data/language-specs/actionscript.lang.h:12
+#: ../data/language-specs/ada.lang.h:7 ../data/language-specs/asp.lang.h:13
+#: ../data/language-specs/bennugd.lang.h:12
+#: ../data/language-specs/cg.lang.h:16 ../data/language-specs/c.lang.h:19
+#: ../data/language-specs/csharp.lang.h:14
+#: ../data/language-specs/def.lang.h:34
+#: ../data/language-specs/fsharp.lang.h:19 ../data/language-specs/go.lang.h:16
+#: ../data/language-specs/gtkrc.lang.h:10 ../data/language-specs/ini.lang.h:10
+#: ../data/language-specs/java.lang.h:14 ../data/language-specs/lua.lang.h:10
+#: ../data/language-specs/nemerle.lang.h:11
+#: ../data/language-specs/ocaml.lang.h:19 ../data/language-specs/ooc.lang.h:13
+#: ../data/language-specs/opal.lang.h:9 ../data/language-specs/php.lang.h:17
+#: ../data/language-specs/protobuf.lang.h:5 ../data/language-specs/R.lang.h:8
+#: ../data/language-specs/ruby.lang.h:9 ../data/language-specs/sml.lang.h:11
+#: ../data/language-specs/vala.lang.h:8 ../data/language-specs/vbnet.lang.h:9
+#: ../data/language-specs/vhdl.lang.h:8
+msgid "Boolean value"
+msgstr "Balio boolearra"
+
+#. A generic number constant
+#: ../data/language-specs/actionscript.lang.h:13
+#: ../data/language-specs/asp.lang.h:14 ../data/language-specs/boo.lang.h:14
+#: ../data/language-specs/cobol.lang.h:9 ../data/language-specs/def.lang.h:22
+#: ../data/language-specs/desktop.lang.h:8
+#: ../data/language-specs/forth.lang.h:8 ../data/language-specs/java.lang.h:15
+#: ../data/language-specs/j.lang.h:14 ../data/language-specs/netrexx.lang.h:16
+#: ../data/language-specs/prolog.lang.h:7
+#: ../data/language-specs/vhdl.lang.h:11
+msgid "Number"
+msgstr "Zenbakia"
+
+#: ../data/language-specs/actionscript.lang.h:14
+#: ../data/language-specs/java.lang.h:16
+#: ../data/language-specs/javascript.lang.h:12
+#: ../data/language-specs/ooc.lang.h:18
+msgid "Future Reserved Keywords"
+msgstr "Etorkizunerako gordetako gako-hitzak"
+
+#: ../data/language-specs/actionscript.lang.h:15
+#: ../data/language-specs/ada.lang.h:9 ../data/language-specs/asp.lang.h:11
+#: ../data/language-specs/bennugd.lang.h:8 ../data/language-specs/boo.lang.h:8
+#: ../data/language-specs/cg.lang.h:9 ../data/language-specs/c.lang.h:11
+#: ../data/language-specs/cpp.lang.h:4 ../data/language-specs/csharp.lang.h:5
+#: ../data/language-specs/cuda.lang.h:4 ../data/language-specs/d.lang.h:7
+#: ../data/language-specs/eiffel.lang.h:8
+#: ../data/language-specs/forth.lang.h:7
+#: ../data/language-specs/fortran.lang.h:9
+#: ../data/language-specs/fsharp.lang.h:11
+#: ../data/language-specs/glsl.lang.h:4 ../data/language-specs/go.lang.h:8
+#: ../data/language-specs/gtkrc.lang.h:7
+#: ../data/language-specs/haskell.lang.h:8
+#: ../data/language-specs/idl-exelis.lang.h:4
+#: ../data/language-specs/idl.lang.h:4 ../data/language-specs/ini.lang.h:9
+#: ../data/language-specs/java.lang.h:17
+#: ../data/language-specs/javascript.lang.h:8
+#: ../data/language-specs/nemerle.lang.h:9
+#: ../data/language-specs/objc.lang.h:4 ../data/language-specs/objj.lang.h:5
+#: ../data/language-specs/ocaml.lang.h:12 ../data/language-specs/ocl.lang.h:7
+#: ../data/language-specs/ooc.lang.h:19 ../data/language-specs/opal.lang.h:11
+#: ../data/language-specs/opencl.lang.h:4
+#: ../data/language-specs/pascal.lang.h:7 ../data/language-specs/php.lang.h:15
+#: ../data/language-specs/protobuf.lang.h:3
+#: ../data/language-specs/sml.lang.h:5 ../data/language-specs/sparql.lang.h:4
+#: ../data/language-specs/sql.lang.h:9 ../data/language-specs/vala.lang.h:5
+#: ../data/language-specs/vbnet.lang.h:7
+msgid "Data Type"
+msgstr "Datu mota"
+
+#: ../data/language-specs/ada.lang.h:2
+msgid "Ada"
+msgstr "Ada"
+
+#. A decimal number: 1234
+#: ../data/language-specs/ada.lang.h:6
+#: ../data/language-specs/bennugd.lang.h:10
+#: ../data/language-specs/cg.lang.h:13 ../data/language-specs/c.lang.h:16
+#: ../data/language-specs/csharp.lang.h:15
+#: ../data/language-specs/def.lang.h:26 ../data/language-specs/d.lang.h:12
+#: ../data/language-specs/eiffel.lang.h:15
+#: ../data/language-specs/erlang.lang.h:10
+#: ../data/language-specs/fsharp.lang.h:6 ../data/language-specs/go.lang.h:13
+#: ../data/language-specs/idl-exelis.lang.h:9
+#: ../data/language-specs/nemerle.lang.h:13
+#: ../data/language-specs/ocaml.lang.h:7 ../data/language-specs/ooc.lang.h:15
+#: ../data/language-specs/opal.lang.h:10 ../data/language-specs/php.lang.h:19
+#: ../data/language-specs/python3.lang.h:12
+#: ../data/language-specs/python.lang.h:13
+#: ../data/language-specs/ruby.lang.h:11
+msgid "Decimal number"
+msgstr "Zenbaki hamartarra"
+
+#: ../data/language-specs/ada.lang.h:10 ../data/language-specs/asp.lang.h:5
+#: ../data/language-specs/bennugd.lang.h:4 ../data/language-specs/cg.lang.h:5
+#: ../data/language-specs/c.lang.h:5 ../data/language-specs/csharp.lang.h:12
+#: ../data/language-specs/forth.lang.h:5
+#: ../data/language-specs/fsharp.lang.h:20
+#: ../data/language-specs/glsl.lang.h:3
+#: ../data/language-specs/haskell.lang.h:3
+#: ../data/language-specs/idl-exelis.lang.h:5
+#: ../data/language-specs/idl.lang.h:5 ../data/language-specs/nemerle.lang.h:5
+#: ../data/language-specs/objj.lang.h:6 ../data/language-specs/pascal.lang.h:8
 #: ../data/language-specs/vbnet.lang.h:5
 msgid "Preprocessor"
 msgstr "Preprozesadore"
 
-#: ../data/language-specs/ada.lang.h:10
-#: ../data/language-specs/csharp.lang.h:13
-#: ../data/language-specs/verilog.lang.h:11
-#: ../data/language-specs/vhdl.lang.h:7
+#: ../data/language-specs/ada.lang.h:11
+msgid "Arbitrary base number"
+msgstr "Hautazko oinarri zenbakia"
+
+#: ../data/language-specs/ada.lang.h:12
+#: ../data/language-specs/csharp.lang.h:17
+#: ../data/language-specs/verilog.lang.h:15
+#: ../data/language-specs/vhdl.lang.h:10
 msgid "Real number"
 msgstr "Zenbaki erreala"
 
-#: ../data/language-specs/ada.lang.h:11 ../data/language-specs/asp.lang.h:11
-#: ../data/language-specs/bennugd.lang.h:12
-#: ../data/language-specs/boo.lang.h:13 ../data/language-specs/cg.lang.h:17
-#: ../data/language-specs/chdr.lang.h:2 ../data/language-specs/c.lang.h:16
-#: ../data/language-specs/cobol.lang.h:8 ../data/language-specs/cpp.lang.h:5
-#: ../data/language-specs/csharp.lang.h:14
-#: ../data/language-specs/cuda.lang.h:7 ../data/language-specs/d.lang.h:13
-#: ../data/language-specs/eiffel.lang.h:14
-#: ../data/language-specs/erlang.lang.h:11
-#: ../data/language-specs/forth.lang.h:10
-#: ../data/language-specs/fortran.lang.h:9
-#: ../data/language-specs/fsharp.lang.h:16
-#: ../data/language-specs/glsl.lang.h:9 ../data/language-specs/go.lang.h:14
-#: ../data/language-specs/haskell.lang.h:12
-#: ../data/language-specs/haskell-literate.lang.h:2
-#: ../data/language-specs/idl.lang.h:6 ../data/language-specs/java.lang.h:15
-#: ../data/language-specs/makefile.lang.h:4
-#: ../data/language-specs/nemerle.lang.h:15
-#: ../data/language-specs/objc.lang.h:5 ../data/language-specs/objj.lang.h:8
-#: ../data/language-specs/ocaml.lang.h:16 ../data/language-specs/ooc.lang.h:17
-#: ../data/language-specs/opal.lang.h:11
-#: ../data/language-specs/opencl.lang.h:9
-#: ../data/language-specs/pascal.lang.h:7
-#: ../data/language-specs/prolog.lang.h:8
-#: ../data/language-specs/scheme.lang.h:6 ../data/language-specs/sml.lang.h:11
-#: ../data/language-specs/sparql.lang.h:14 ../data/language-specs/sql.lang.h:9
-#: ../data/language-specs/systemverilog.lang.h:3
-#: ../data/language-specs/vala.lang.h:7 ../data/language-specs/vbnet.lang.h:6
-#: ../data/language-specs/verilog.lang.h:12
-#: ../data/language-specs/vhdl.lang.h:8
-msgid "Sources"
-msgstr "Iturburuak"
+#. map to nothing
+#: ../data/language-specs/ada.lang.h:13 ../data/language-specs/cg.lang.h:11
+#: ../data/language-specs/c.lang.h:14 ../data/language-specs/csharp.lang.h:8
+#: ../data/language-specs/eiffel.lang.h:12
+#: ../data/language-specs/fsharp.lang.h:18 ../data/language-specs/go.lang.h:10
+#: ../data/language-specs/haskell.lang.h:11
+#: ../data/language-specs/java.lang.h:3
+#: ../data/language-specs/javascript.lang.h:3
+#: ../data/language-specs/json.lang.h:3 ../data/language-specs/lua.lang.h:6
+#: ../data/language-specs/netrexx.lang.h:3
+#: ../data/language-specs/ocaml.lang.h:18 ../data/language-specs/ooc.lang.h:5
+#: ../data/language-specs/php.lang.h:8 ../data/language-specs/prolog.lang.h:10
+#: ../data/language-specs/python3.lang.h:7
+#: ../data/language-specs/python.lang.h:7 ../data/language-specs/ruby.lang.h:3
+#: ../data/language-specs/sml.lang.h:8 ../data/language-specs/texinfo.lang.h:4
+#: ../data/language-specs/verilog.lang.h:6
+msgid "Escaped Character"
+msgstr "Ihes karakterea"
 
-#: ../data/language-specs/ada.lang.h:12 ../data/language-specs/cg.lang.h:18
-#: ../data/language-specs/c.lang.h:18 ../data/language-specs/go.lang.h:15
-#: ../data/language-specs/java.lang.h:16 ../data/language-specs/ooc.lang.h:18
-msgid "Storage Class"
-msgstr "Biltegi klasea"
-
-#. A string constant: "this is a string"
-#: ../data/language-specs/ada.lang.h:13 ../data/language-specs/asp.lang.h:13
-#: ../data/language-specs/boo.lang.h:15 ../data/language-specs/c.lang.h:19
-#: ../data/language-specs/cobol.lang.h:10
-#: ../data/language-specs/csharp.lang.h:15
-#: ../data/language-specs/css.lang.h:15 ../data/language-specs/def.lang.h:57
-#: ../data/language-specs/d.lang.h:15 ../data/language-specs/dosbatch.lang.h:6
-#: ../data/language-specs/eiffel.lang.h:15
-#: ../data/language-specs/erlang.lang.h:12
-#: ../data/language-specs/forth.lang.h:11
-#: ../data/language-specs/fsharp.lang.h:17
-#: ../data/language-specs/gdb-log.lang.h:10
-#: ../data/language-specs/go.lang.h:16 ../data/language-specs/gtkrc.lang.h:9
-#: ../data/language-specs/haskell.lang.h:13
-#: ../data/language-specs/idl.lang.h:7 ../data/language-specs/imagej.lang.h:10
-#: ../data/language-specs/ini.lang.h:9 ../data/language-specs/java.lang.h:17
-#: ../data/language-specs/javascript.lang.h:13
-#: ../data/language-specs/json.lang.h:9 ../data/language-specs/lua.lang.h:10
-#: ../data/language-specs/matlab.lang.h:5
-#: ../data/language-specs/nemerle.lang.h:16
-#: ../data/language-specs/nsis.lang.h:5 ../data/language-specs/objc.lang.h:6
-#: ../data/language-specs/objj.lang.h:9 ../data/language-specs/ocaml.lang.h:18
-#: ../data/language-specs/ocl.lang.h:7 ../data/language-specs/octave.lang.h:15
-#: ../data/language-specs/ooc.lang.h:19 ../data/language-specs/opal.lang.h:12
-#: ../data/language-specs/pascal.lang.h:8
-#: ../data/language-specs/perl.lang.h:19 ../data/language-specs/php.lang.h:20
-#: ../data/language-specs/po.lang.h:6 ../data/language-specs/prolog.lang.h:9
-#: ../data/language-specs/protobuf.lang.h:5
-#: ../data/language-specs/python.lang.h:17
-#: ../data/language-specs/python3.lang.h:17
-#: ../data/language-specs/ruby.lang.h:22
-#: ../data/language-specs/scheme.lang.h:7
-#: ../data/language-specs/scilab.lang.h:9 ../data/language-specs/sh.lang.h:8
-#: ../data/language-specs/sml.lang.h:13 ../data/language-specs/sql.lang.h:10
-#: ../data/language-specs/texinfo.lang.h:10
-#: ../data/language-specs/vala.lang.h:8 ../data/language-specs/vbnet.lang.h:8
-#: ../data/language-specs/verilog.lang.h:13
-#: ../data/language-specs/vhdl.lang.h:9
-msgid "String"
-msgstr "Katea"
-
-#: ../data/language-specs/asp.lang.h:1
+#: ../data/language-specs/asp.lang.h:2
 msgid "ASP"
 msgstr "ASP"
 
-#: ../data/language-specs/asp.lang.h:2
-msgid "ASP Object"
-msgstr "ASP objektua"
-
 #. A function name (also: methods for classes)
-#: ../data/language-specs/asp.lang.h:6 ../data/language-specs/cg.lang.h:11
-#: ../data/language-specs/changelog.lang.h:6
-#: ../data/language-specs/css.lang.h:8 ../data/language-specs/def.lang.h:32
-#: ../data/language-specs/gap.lang.h:4 ../data/language-specs/gdb-log.lang.h:4
-#: ../data/language-specs/gtk-doc.lang.h:3
-#: ../data/language-specs/javascript.lang.h:5
-#: ../data/language-specs/lua.lang.h:4 ../data/language-specs/scheme.lang.h:3
-#: ../data/language-specs/scilab.lang.h:4 ../data/language-specs/sh.lang.h:3
-#: ../data/language-specs/sparql.lang.h:4 ../data/language-specs/sql.lang.h:5
+#: ../data/language-specs/asp.lang.h:7 ../data/language-specs/cg.lang.h:18
+#: ../data/language-specs/changelog.lang.h:8
+#: ../data/language-specs/css.lang.h:8 ../data/language-specs/def.lang.h:38
+#: ../data/language-specs/gap.lang.h:6 ../data/language-specs/gdb-log.lang.h:7
+#: ../data/language-specs/gtk-doc.lang.h:10
+#: ../data/language-specs/idl-exelis.lang.h:10
+#: ../data/language-specs/javascript.lang.h:9
+#: ../data/language-specs/lua.lang.h:8 ../data/language-specs/scheme.lang.h:7
+#: ../data/language-specs/scilab.lang.h:7 ../data/language-specs/sh.lang.h:4
+#: ../data/language-specs/sparql.lang.h:5 ../data/language-specs/sql.lang.h:7
 msgid "Function"
 msgstr "Funtzioa"
 
-#. A generic number constant
-#: ../data/language-specs/asp.lang.h:8 ../data/language-specs/boo.lang.h:11
-#: ../data/language-specs/cobol.lang.h:6 ../data/language-specs/def.lang.h:40
-#: ../data/language-specs/desktop.lang.h:11
-#: ../data/language-specs/forth.lang.h:8 ../data/language-specs/java.lang.h:13
-#: ../data/language-specs/prolog.lang.h:5 ../data/language-specs/vhdl.lang.h:6
-msgid "Number"
-msgstr "Zenbakia"
-
 #. Operators: "+", "*", etc.
-#: ../data/language-specs/asp.lang.h:9
-#: ../data/language-specs/bennugd.lang.h:10
-#: ../data/language-specs/cmake.lang.h:6 ../data/language-specs/cobol.lang.h:7
-#: ../data/language-specs/def.lang.h:42
-#: ../data/language-specs/erlang.lang.h:10
-#: ../data/language-specs/imagej.lang.h:7 ../data/language-specs/nsis.lang.h:3
-#: ../data/language-specs/octave.lang.h:10
-#: ../data/language-specs/perl.lang.h:11 ../data/language-specs/php.lang.h:17
-#: ../data/language-specs/prolog.lang.h:6
-#: ../data/language-specs/sparql.lang.h:10
+#: ../data/language-specs/asp.lang.h:8 ../data/language-specs/bennugd.lang.h:6
+#: ../data/language-specs/c.lang.h:10 ../data/language-specs/cmake.lang.h:6
+#: ../data/language-specs/cobol.lang.h:10 ../data/language-specs/def.lang.h:45
+#: ../data/language-specs/erlang.lang.h:5
+#: ../data/language-specs/imagej.lang.h:9
+#: ../data/language-specs/modelica.lang.h:5
+#: ../data/language-specs/nsis.lang.h:3 ../data/language-specs/octave.lang.h:5
+#: ../data/language-specs/perl.lang.h:12 ../data/language-specs/php.lang.h:14
+#: ../data/language-specs/prolog.lang.h:8
+#: ../data/language-specs/sparql.lang.h:15
 msgid "Operator"
 msgstr "Eragilea"
 
-#. A special constant like NULL in C or null in Java
-#: ../data/language-specs/asp.lang.h:12 ../data/language-specs/def.lang.h:53
-#: ../data/language-specs/vbnet.lang.h:7
-msgid "Special constant"
-msgstr "Konstante berezia"
+#: ../data/language-specs/asp.lang.h:9
+msgid "ASP Object"
+msgstr "ASP objektua"
 
-#: ../data/language-specs/asp.lang.h:14
+#: ../data/language-specs/asp.lang.h:10
 msgid "VBScript and ADO constants"
 msgstr "VBScript eta ADO konstanteak"
 
-#: ../data/language-specs/automake.lang.h:1
+#. A special constant like NULL in C or null in Java
+#: ../data/language-specs/asp.lang.h:12 ../data/language-specs/def.lang.h:32
+#: ../data/language-specs/vbnet.lang.h:8
+msgid "Special constant"
+msgstr "Konstante berezia"
+
+#: ../data/language-specs/automake.lang.h:2
 msgid "Automake"
 msgstr "Automake"
 
-#: ../data/language-specs/automake.lang.h:2
+#: ../data/language-specs/automake.lang.h:3
 msgid "Automake Variable"
 msgstr "Automake aldagaia"
 
-#: ../data/language-specs/automake.lang.h:3
-msgid "Built-in Target"
-msgstr "Helburu barneratua"
-
 #: ../data/language-specs/automake.lang.h:4
-msgid "Optional Target"
-msgstr "Aukerako helburua"
+msgid "Primary"
+msgstr "Nagusia"
 
 #: ../data/language-specs/automake.lang.h:5
-msgid "Other Keyword"
-msgstr "Beste gako-hitza"
+msgid "Secondary"
+msgstr "Bigarren mailakoa"
 
 #: ../data/language-specs/automake.lang.h:6
 msgid "Prefix"
 msgstr "Aurrizkia"
 
 #: ../data/language-specs/automake.lang.h:7
-msgid "Primary"
-msgstr "Nagusia"
+msgid "Optional Target"
+msgstr "Aukerako helburua"
 
 #: ../data/language-specs/automake.lang.h:8
-msgid "Secondary"
-msgstr "Bigarren mailakoa"
+msgid "Built-in Target"
+msgstr "Helburu barneratua"
 
 #: ../data/language-specs/automake.lang.h:9
+msgid "Other Keyword"
+msgstr "Beste gako-hitza"
+
+#: ../data/language-specs/automake.lang.h:10
 msgid "Substitution"
 msgstr "Ordezpena"
 
-#: ../data/language-specs/awk.lang.h:1 ../data/language-specs/boo.lang.h:3
-#: ../data/language-specs/glsl.lang.h:2 ../data/language-specs/perl.lang.h:1
-#: ../data/language-specs/python.lang.h:4
-#: ../data/language-specs/python3.lang.h:4
-msgid "Builtin Function"
-msgstr "Funtzio barneratua"
-
-#: ../data/language-specs/awk.lang.h:3
-msgid "Pattern"
-msgstr "Eredua"
-
-#: ../data/language-specs/awk.lang.h:4
-#: ../data/language-specs/dosbatch.lang.h:5
-#: ../data/language-specs/javascript.lang.h:12
-#: ../data/language-specs/lua.lang.h:9 ../data/language-specs/m4.lang.h:3
-#: ../data/language-specs/perl.lang.h:18 ../data/language-specs/php.lang.h:19
-#: ../data/language-specs/python.lang.h:15
-#: ../data/language-specs/python3.lang.h:15
-#: ../data/language-specs/ruby.lang.h:20 ../data/language-specs/sh.lang.h:7
-#: ../data/language-specs/tcl.lang.h:2
+#: ../data/language-specs/awk.lang.h:1
+#: ../data/language-specs/dosbatch.lang.h:1
+#: ../data/language-specs/javascript.lang.h:1
+#: ../data/language-specs/lua.lang.h:1 ../data/language-specs/m4.lang.h:1
+#: ../data/language-specs/perl.lang.h:1 ../data/language-specs/php.lang.h:1
+#: ../data/language-specs/python3.lang.h:1
+#: ../data/language-specs/python.lang.h:1 ../data/language-specs/ruby.lang.h:1
+#: ../data/language-specs/sh.lang.h:1 ../data/language-specs/tcl.lang.h:1
 msgid "Scripts"
 msgstr "Skript-ak"
 
-#: ../data/language-specs/awk.lang.h:5 ../data/language-specs/cmake.lang.h:8
-#: ../data/language-specs/cobol.lang.h:11
-#: ../data/language-specs/haskell.lang.h:15
-#: ../data/language-specs/ini.lang.h:10
-#: ../data/language-specs/makefile.lang.h:8
-#: ../data/language-specs/nsis.lang.h:6
-#: ../data/language-specs/octave.lang.h:16
-#: ../data/language-specs/perl.lang.h:21 ../data/language-specs/php.lang.h:21
-#: ../data/language-specs/pkgconfig.lang.h:3
-#: ../data/language-specs/prolog.lang.h:10
-#: ../data/language-specs/protobuf.lang.h:6
-#: ../data/language-specs/ruby.lang.h:24 ../data/language-specs/sh.lang.h:10
-#: ../data/language-specs/sparql.lang.h:15 ../data/language-specs/tcl.lang.h:4
-msgid "Variable"
-msgstr "Aldagaia"
-
-#: ../data/language-specs/awk.lang.h:6
+#: ../data/language-specs/awk.lang.h:2
 msgid "awk"
 msgstr "Awk"
 
-#: ../data/language-specs/bennugd.lang.h:1
+#: ../data/language-specs/awk.lang.h:4
+msgid "Pattern"
+msgstr "Eredua"
+
+#: ../data/language-specs/awk.lang.h:5 ../data/language-specs/cmake.lang.h:8
+#: ../data/language-specs/cobol.lang.h:5
+#: ../data/language-specs/haskell.lang.h:5 ../data/language-specs/ini.lang.h:8
+#: ../data/language-specs/makefile.lang.h:3
+#: ../data/language-specs/nsis.lang.h:6
+#: ../data/language-specs/octave.lang.h:14
+#: ../data/language-specs/perl.lang.h:13 ../data/language-specs/php.lang.h:5
+#: ../data/language-specs/pkgconfig.lang.h:3
+#: ../data/language-specs/prolog.lang.h:4
+#: ../data/language-specs/protobuf.lang.h:2
+#: ../data/language-specs/ruby.lang.h:22 ../data/language-specs/sh.lang.h:7
+#: ../data/language-specs/sparql.lang.h:14 ../data/language-specs/tcl.lang.h:3
+msgid "Variable"
+msgstr "Aldagaia"
+
+#: ../data/language-specs/awk.lang.h:6 ../data/language-specs/boo.lang.h:15
+#: ../data/language-specs/glsl.lang.h:6 ../data/language-specs/go.lang.h:18
+#: ../data/language-specs/netrexx.lang.h:15
+#: ../data/language-specs/perl.lang.h:8
+#: ../data/language-specs/python3.lang.h:17
+#: ../data/language-specs/python.lang.h:18
+msgid "Builtin Function"
+msgstr "Funtzio barneratua"
+
+#: ../data/language-specs/bennugd.lang.h:2
 msgid "BennuGD"
 msgstr "BennuGD"
 
+#. Any variable name
+#: ../data/language-specs/bennugd.lang.h:5
+#: ../data/language-specs/def.lang.h:36 ../data/language-specs/php.lang.h:6
+msgid "Identifier"
+msgstr "Identifikatzailea"
+
 #. A floating point constant: 2.3e10
-#: ../data/language-specs/bennugd.lang.h:6 ../data/language-specs/cg.lang.h:10
-#: ../data/language-specs/c.lang.h:9 ../data/language-specs/def.lang.h:30
-#: ../data/language-specs/d.lang.h:8 ../data/language-specs/erlang.lang.h:8
-#: ../data/language-specs/go.lang.h:8 ../data/language-specs/json.lang.h:5
-#: ../data/language-specs/nemerle.lang.h:8 ../data/language-specs/ooc.lang.h:9
-#: ../data/language-specs/php.lang.h:9 ../data/language-specs/python.lang.h:9
-#: ../data/language-specs/python3.lang.h:9 ../data/language-specs/R.lang.h:4
+#: ../data/language-specs/bennugd.lang.h:9 ../data/language-specs/cg.lang.h:12
+#: ../data/language-specs/c.lang.h:15 ../data/language-specs/def.lang.h:24
+#: ../data/language-specs/d.lang.h:11 ../data/language-specs/erlang.lang.h:9
+#: ../data/language-specs/go.lang.h:11
+#: ../data/language-specs/idl-exelis.lang.h:8
+#: ../data/language-specs/json.lang.h:9
+#: ../data/language-specs/nemerle.lang.h:12
+#: ../data/language-specs/ooc.lang.h:14 ../data/language-specs/php.lang.h:18
+#: ../data/language-specs/python3.lang.h:11
+#: ../data/language-specs/python.lang.h:12 ../data/language-specs/R.lang.h:10
 #: ../data/language-specs/ruby.lang.h:10
 msgid "Floating point number"
 msgstr "Koma mugikorreko zenbakia"
 
-#: ../data/language-specs/bennugd.lang.h:7 ../data/language-specs/cg.lang.h:12
-#: ../data/language-specs/c.lang.h:10 ../data/language-specs/csharp.lang.h:9
-#: ../data/language-specs/d.lang.h:9 ../data/language-specs/eiffel.lang.h:11
-#: ../data/language-specs/go.lang.h:10 ../data/language-specs/nemerle.lang.h:9
-#: ../data/language-specs/ooc.lang.h:11 ../data/language-specs/php.lang.h:12
+#: ../data/language-specs/bennugd.lang.h:11
+#: ../data/language-specs/cg.lang.h:15 ../data/language-specs/c.lang.h:18
+#: ../data/language-specs/csharp.lang.h:16 ../data/language-specs/d.lang.h:15
+#: ../data/language-specs/eiffel.lang.h:16 ../data/language-specs/go.lang.h:15
+#: ../data/language-specs/nemerle.lang.h:16
+#: ../data/language-specs/ooc.lang.h:17 ../data/language-specs/php.lang.h:21
 msgid "Hexadecimal number"
 msgstr "Hamaseitar zenbakia"
 
-#. Any variable name
-#: ../data/language-specs/bennugd.lang.h:8
-#: ../data/language-specs/def.lang.h:34 ../data/language-specs/php.lang.h:13
-msgid "Identifier"
-msgstr "Identifikatzailea"
-
 #: ../data/language-specs/bibtex.lang.h:1
-msgid "BibTeX"
-msgstr "BibTeX"
-
-#: ../data/language-specs/bibtex.lang.h:2
-msgid "Entries"
-msgstr "Sarrerak"
-
-#: ../data/language-specs/bibtex.lang.h:3
-msgid "Field"
-msgstr "Eremua"
-
-#: ../data/language-specs/bibtex.lang.h:4
-#: ../data/language-specs/docbook.lang.h:5 ../data/language-specs/dtd.lang.h:2
-#: ../data/language-specs/gtk-doc.lang.h:6
-#: ../data/language-specs/haddock.lang.h:14
-#: ../data/language-specs/html.lang.h:7 ../data/language-specs/latex.lang.h:6
-#: ../data/language-specs/mallard.lang.h:4
-#: ../data/language-specs/markdown.lang.h:14
-#: ../data/language-specs/t2t.lang.h:6 ../data/language-specs/texinfo.lang.h:8
-#: ../data/language-specs/xml.lang.h:9 ../data/language-specs/xslt.lang.h:2
-#: ../gtksourceview/gtksourcecompletionitem.c:242
+#: ../data/language-specs/docbook.lang.h:1 ../data/language-specs/dtd.lang.h:1
+#: ../data/language-specs/gtk-doc.lang.h:1
+#: ../data/language-specs/haddock.lang.h:1
+#: ../data/language-specs/html.lang.h:1 ../data/language-specs/latex.lang.h:1
+#: ../data/language-specs/mallard.lang.h:1
+#: ../data/language-specs/markdown.lang.h:1
+#: ../data/language-specs/mxml.lang.h:1 ../data/language-specs/t2t.lang.h:1
+#: ../data/language-specs/texinfo.lang.h:1 ../data/language-specs/xml.lang.h:1
+#: ../data/language-specs/xslt.lang.h:1
+#: ../gtksourceview/gtksourcecompletionitem.c:251
 #: ../gtksourceview/gtksourcegutterrenderertext.c:395
 msgid "Markup"
 msgstr "Marka"
 
-#: ../data/language-specs/boo.lang.h:1
+#: ../data/language-specs/bibtex.lang.h:2
+msgid "BibTeX"
+msgstr "BibTeX"
+
+#: ../data/language-specs/bibtex.lang.h:3
+msgid "Entries"
+msgstr "Sarrerak"
+
+#: ../data/language-specs/bibtex.lang.h:4
+msgid "Field"
+msgstr "Eremua"
+
+#: ../data/language-specs/bluespec.lang.h:2
+msgid "Bluespec SystemVerilog"
+msgstr "Bluespec SystemVerilog"
+
+#: ../data/language-specs/bluespec.lang.h:3
+#: ../data/language-specs/systemverilog.lang.h:4
+msgid "System Task"
+msgstr "Sistemako ataza"
+
+#: ../data/language-specs/bluespec.lang.h:4
+msgid "Annotation"
+msgstr "Anotazioa"
+
+#: ../data/language-specs/bluespec.lang.h:5
+msgid "Attribute"
+msgstr "Atributua"
+
+#: ../data/language-specs/bluespec.lang.h:6
+msgid "Import BVI"
+msgstr "Inportatu BVI"
+
+#: ../data/language-specs/bluespec.lang.h:8
+#: ../data/language-specs/gtk-doc.lang.h:9
+#: ../data/language-specs/systemverilog.lang.h:6
+#: ../data/language-specs/verilog.lang.h:13
+#: ../data/language-specs/vhdl.lang.h:7
+msgid "Type"
+msgstr "Mota"
+
+#: ../data/language-specs/boo.lang.h:2
 msgid "Boo"
 msgstr "Boo"
 
-#: ../data/language-specs/boo.lang.h:2 ../data/language-specs/desktop.lang.h:3
-#: ../data/language-specs/d.lang.h:2 ../data/language-specs/imagej.lang.h:1
-#: ../data/language-specs/libtool.lang.h:1
-#: ../data/language-specs/objj.lang.h:1 ../data/language-specs/octave.lang.h:2
-#: ../data/language-specs/python.lang.h:2
-#: ../data/language-specs/python3.lang.h:2
-#: ../data/language-specs/scheme.lang.h:1
-#: ../data/language-specs/scilab.lang.h:1
-#: ../data/language-specs/sparql.lang.h:1
-msgid "Boolean"
-msgstr "Boolearra"
-
-#: ../data/language-specs/boo.lang.h:6
-msgid "Definition"
-msgstr "Definizioa"
-
-#: ../data/language-specs/boo.lang.h:8 ../data/language-specs/python.lang.h:13
-#: ../data/language-specs/python3.lang.h:13
+#: ../data/language-specs/boo.lang.h:4 ../data/language-specs/python3.lang.h:5
+#: ../data/language-specs/python.lang.h:5
 msgid "Multiline string"
 msgstr "Lerro anitzeko katea"
 
-#: ../data/language-specs/boo.lang.h:9 ../data/language-specs/sparql.lang.h:9
-#: ../data/language-specs/xml.lang.h:10 ../data/language-specs/xslt.lang.h:3
-msgid "Namespace"
-msgstr "Izen-lekua"
-
-#: ../data/language-specs/boo.lang.h:10
-#: ../data/language-specs/csharp.lang.h:11 ../data/language-specs/d.lang.h:11
-#: ../data/language-specs/fsharp.lang.h:13
-#: ../data/language-specs/java.lang.h:12
-#: ../data/language-specs/javascript.lang.h:9
-#: ../data/language-specs/json.lang.h:7
-#: ../data/language-specs/nemerle.lang.h:12
-#: ../data/language-specs/objj.lang.h:5 ../data/language-specs/ooc.lang.h:13
-#: ../data/language-specs/php.lang.h:15 ../data/language-specs/vala.lang.h:6
-msgid "Null Value"
-msgstr "NULUA balioa"
-
-#: ../data/language-specs/boo.lang.h:12
-#: ../data/language-specs/javascript.lang.h:11
-#: ../data/language-specs/perl.lang.h:17 ../data/language-specs/ruby.lang.h:18
+#: ../data/language-specs/boo.lang.h:6
+#: ../data/language-specs/javascript.lang.h:14
+#: ../data/language-specs/perl.lang.h:16 ../data/language-specs/ruby.lang.h:25
 msgid "Regular Expression"
 msgstr "Adierazpen erregularra"
 
-#: ../data/language-specs/boo.lang.h:14
-#: ../data/language-specs/python.lang.h:16
-#: ../data/language-specs/python3.lang.h:16
-#: ../data/language-specs/ruby.lang.h:21
+#: ../data/language-specs/boo.lang.h:7 ../data/language-specs/sparql.lang.h:8
+#: ../data/language-specs/xml.lang.h:12 ../data/language-specs/xslt.lang.h:4
+msgid "Namespace"
+msgstr "Izen-lekua"
+
+#: ../data/language-specs/boo.lang.h:9
+msgid "Definition"
+msgstr "Definizioa"
+
+#: ../data/language-specs/boo.lang.h:11
+#: ../data/language-specs/python3.lang.h:9
+#: ../data/language-specs/python.lang.h:10
+#: ../data/language-specs/ruby.lang.h:20
 msgid "Special Variable"
 msgstr "Aldagai berezia"
 
-#: ../data/language-specs/cg.lang.h:1
-msgid "Bindings"
-msgstr "Loturak"
+#: ../data/language-specs/boo.lang.h:13
+#: ../data/language-specs/desktop.lang.h:9 ../data/language-specs/d.lang.h:10
+#: ../data/language-specs/imagej.lang.h:4
+#: ../data/language-specs/libtool.lang.h:4
+#: ../data/language-specs/modelica.lang.h:9
+#: ../data/language-specs/objj.lang.h:3 ../data/language-specs/octave.lang.h:8
+#: ../data/language-specs/python3.lang.h:10
+#: ../data/language-specs/python.lang.h:11
+#: ../data/language-specs/scheme.lang.h:4
+#: ../data/language-specs/scilab.lang.h:8
+#: ../data/language-specs/sparql.lang.h:9
+msgid "Boolean"
+msgstr "Boolearra"
 
-#. Translators: functions that are provided in the language
-#: ../data/language-specs/cg.lang.h:3 ../data/language-specs/erlang.lang.h:3
-#: ../data/language-specs/imagej.lang.h:2
-#: ../data/language-specs/matlab.lang.h:1
-#: ../data/language-specs/octave.lang.h:3 ../data/language-specs/ruby.lang.h:5
-msgid "Builtin"
-msgstr "Barneratua"
-
-#: ../data/language-specs/cg.lang.h:4
+#: ../data/language-specs/cg.lang.h:2
 msgid "CG Shader Language"
 msgstr "CG itzalduren hizkuntza"
 
-#. Any erroneous construct
-#: ../data/language-specs/cg.lang.h:8 ../data/language-specs/cobol.lang.h:4
-#: ../data/language-specs/csharp.lang.h:7 ../data/language-specs/css.lang.h:7
-#: ../data/language-specs/def.lang.h:28 ../data/language-specs/d.lang.h:7
-#: ../data/language-specs/dot.lang.h:3 ../data/language-specs/go.lang.h:6
-#: ../data/language-specs/html.lang.h:5 ../data/language-specs/json.lang.h:3
-#: ../data/language-specs/nemerle.lang.h:7
-#: ../data/language-specs/ocaml.lang.h:7 ../data/language-specs/ooc.lang.h:6
-#: ../data/language-specs/opal.lang.h:6 ../data/language-specs/perl.lang.h:4
-#: ../data/language-specs/php.lang.h:6 ../data/language-specs/prolog.lang.h:2
-#: ../data/language-specs/vala.lang.h:4
-#: ../data/language-specs/verilog.lang.h:4 ../data/language-specs/xml.lang.h:8
-msgid "Error"
-msgstr "Errorea"
+#: ../data/language-specs/cg.lang.h:6
+msgid "Bindings"
+msgstr "Loturak"
 
-#: ../data/language-specs/cg.lang.h:13 ../data/language-specs/c.lang.h:11
-#: ../data/language-specs/go.lang.h:11 ../data/language-specs/objj.lang.h:3
+#: ../data/language-specs/cg.lang.h:7 ../data/language-specs/c.lang.h:7
+#: ../data/language-specs/objj.lang.h:7
 msgid "Included File"
 msgstr "Txertatutako fitxategia"
 
-#: ../data/language-specs/cg.lang.h:15 ../data/language-specs/c.lang.h:13
-#: ../data/language-specs/d.lang.h:12 ../data/language-specs/go.lang.h:13
-#: ../data/language-specs/nemerle.lang.h:13
-#: ../data/language-specs/ooc.lang.h:15 ../data/language-specs/php.lang.h:16
+#: ../data/language-specs/cg.lang.h:14 ../data/language-specs/c.lang.h:17
+#: ../data/language-specs/d.lang.h:14 ../data/language-specs/go.lang.h:14
+#: ../data/language-specs/nemerle.lang.h:15
+#: ../data/language-specs/ooc.lang.h:16 ../data/language-specs/php.lang.h:20
 msgid "Octal number"
 msgstr "Zenbaki zortzitarra"
 
-#: ../data/language-specs/cg.lang.h:19
+#: ../data/language-specs/cg.lang.h:17
 msgid "Swizzle operator"
 msgstr "Swizzle eragilea"
 
-#: ../data/language-specs/changelog.lang.h:1
-msgid "Bullet"
-msgstr "Buleta"
-
-#: ../data/language-specs/changelog.lang.h:2
-msgid "ChangeLog"
-msgstr "ChangeLog"
-
-#: ../data/language-specs/changelog.lang.h:3
-#: ../data/language-specs/rpmspec.lang.h:3
-msgid "Date"
-msgstr "Data"
-
-#: ../data/language-specs/changelog.lang.h:4
-msgid "E-mail address"
-msgstr "Helbide elektronikoa"
-
-#: ../data/language-specs/changelog.lang.h:5
-msgid "File"
-msgstr "Fitxategia"
-
-#: ../data/language-specs/changelog.lang.h:7
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:455
-msgid "Name"
-msgstr "Izena"
+#. Translators: functions that are provided in the language
+#: ../data/language-specs/cg.lang.h:19 ../data/language-specs/erlang.lang.h:12
+#: ../data/language-specs/imagej.lang.h:3
+#: ../data/language-specs/matlab.lang.h:5
+#: ../data/language-specs/modelica.lang.h:14
+#: ../data/language-specs/octave.lang.h:16
+#: ../data/language-specs/ruby.lang.h:17
+msgid "Builtin"
+msgstr "Barneratua"
 
 #. *
 #. * SECTION:language
@@ -675,30 +746,57 @@ msgstr "Izena"
 #. * #GtkSourceLanguage instance, and gtk_source_buffer_set_language() to apply it
 #. * to a #GtkSourceBuffer.
 #.
-#: ../data/language-specs/changelog.lang.h:8
-#: ../data/language-specs/cmake.lang.h:7 ../data/language-specs/css.lang.h:12
-#: ../data/language-specs/desktop.lang.h:12
-#: ../data/language-specs/diff.lang.h:9 ../data/language-specs/dot.lang.h:6
-#: ../data/language-specs/dpatch.lang.h:2
-#: ../data/language-specs/gdb-log.lang.h:8
-#: ../data/language-specs/gtkrc.lang.h:8 ../data/language-specs/ini.lang.h:8
-#: ../data/language-specs/json.lang.h:8
-#: ../data/language-specs/libtool.lang.h:3
-#: ../data/language-specs/nsis.lang.h:4 ../data/language-specs/ocl.lang.h:6
+#: ../data/language-specs/changelog.lang.h:1
+#: ../data/language-specs/cmake.lang.h:1 ../data/language-specs/css.lang.h:1
+#: ../data/language-specs/desktop.lang.h:1
+#: ../data/language-specs/diff.lang.h:1 ../data/language-specs/dot.lang.h:1
+#: ../data/language-specs/dpatch.lang.h:1
+#: ../data/language-specs/gdb-log.lang.h:1
+#: ../data/language-specs/gtkrc.lang.h:1 ../data/language-specs/ini.lang.h:1
+#: ../data/language-specs/json.lang.h:1
+#: ../data/language-specs/libtool.lang.h:1
+#: ../data/language-specs/nsis.lang.h:1 ../data/language-specs/ocl.lang.h:1
 #: ../data/language-specs/pkgconfig.lang.h:1
-#: ../data/language-specs/po.lang.h:5 ../data/language-specs/protobuf.lang.h:4
-#: ../data/language-specs/rpmspec.lang.h:10 ../data/language-specs/sh.lang.h:6
-#: ../data/language-specs/texinfo.lang.h:9
+#: ../data/language-specs/po.lang.h:1 ../data/language-specs/protobuf.lang.h:1
+#: ../data/language-specs/puppet.lang.h:1
+#: ../data/language-specs/rpmspec.lang.h:1 ../data/language-specs/sh.lang.h:10
+#: ../data/language-specs/texinfo.lang.h:5
 #: ../data/language-specs/yacc.lang.h:1
 #: ../gtksourceview/gtksourcelanguage.c:55
 msgid "Others"
 msgstr "Bestelakoak"
 
+#: ../data/language-specs/changelog.lang.h:2
+msgid "ChangeLog"
+msgstr "ChangeLog"
+
+#: ../data/language-specs/changelog.lang.h:3
+#: ../data/language-specs/rpmspec.lang.h:14
+msgid "Date"
+msgstr "Data"
+
+#: ../data/language-specs/changelog.lang.h:4
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:465
+msgid "Name"
+msgstr "Izena"
+
+#: ../data/language-specs/changelog.lang.h:5
+msgid "E-mail address"
+msgstr "Helbide elektronikoa"
+
+#: ../data/language-specs/changelog.lang.h:6
+msgid "File"
+msgstr "Fitxategia"
+
+#: ../data/language-specs/changelog.lang.h:7
+msgid "Bullet"
+msgstr "Buleta"
+
 #: ../data/language-specs/changelog.lang.h:9
 msgid "Release"
 msgstr "Argitalpena"
 
-#: ../data/language-specs/chdr.lang.h:1
+#: ../data/language-specs/chdr.lang.h:2
 msgid "C/C++/ObjC Header"
 msgstr "C/C++/ObjC goiburua"
 
@@ -706,68 +804,71 @@ msgstr "C/C++/ObjC goiburua"
 msgid "C"
 msgstr "C"
 
-#. A character constant: 'c'
-#: ../data/language-specs/c.lang.h:3 ../data/language-specs/csharp.lang.h:3
-#: ../data/language-specs/def.lang.h:9 ../data/language-specs/gap.lang.h:1
-#: ../data/language-specs/go.lang.h:2 ../data/language-specs/haskell.lang.h:1
-#: ../data/language-specs/java.lang.h:2
-#: ../data/language-specs/nemerle.lang.h:3 ../data/language-specs/sml.lang.h:3
-#: ../data/language-specs/vhdl.lang.h:3
-msgid "Character"
-msgstr "Karakterea"
-
-#: ../data/language-specs/c.lang.h:5 ../data/language-specs/cpp.lang.h:2
-#: ../data/language-specs/objc.lang.h:1 ../data/language-specs/opal.lang.h:3
+#: ../data/language-specs/c.lang.h:6 ../data/language-specs/cpp.lang.h:5
+#: ../data/language-specs/objc.lang.h:5 ../data/language-specs/opal.lang.h:5
 msgid "Common Defines"
 msgstr "Definizio komunak"
 
-#: ../data/language-specs/c.lang.h:15
-msgid "Signal name"
-msgstr "Seinalearen izena"
+#. A character constant: 'c'
+#: ../data/language-specs/c.lang.h:8 ../data/language-specs/csharp.lang.h:7
+#: ../data/language-specs/def.lang.h:15 ../data/language-specs/erlang.lang.h:8
+#: ../data/language-specs/gap.lang.h:4 ../data/language-specs/go.lang.h:6
+#: ../data/language-specs/haskell.lang.h:10
+#: ../data/language-specs/java.lang.h:5
+#: ../data/language-specs/nemerle.lang.h:6
+#: ../data/language-specs/netrexx.lang.h:5 ../data/language-specs/sml.lang.h:6
+#: ../data/language-specs/vhdl.lang.h:5
+msgid "Character"
+msgstr "Karakterea"
 
-#: ../data/language-specs/c.lang.h:17
-msgid "Standard stream"
-msgstr "Korronte arrunta"
-
-#: ../data/language-specs/c.lang.h:20
+#: ../data/language-specs/c.lang.h:13 ../data/language-specs/go.lang.h:9
+#: ../data/language-specs/verilog.lang.h:5
 msgid "printf Conversion"
 msgstr "printf bihurketa"
 
-#: ../data/language-specs/cmake.lang.h:1
-msgid "Builtin Command"
-msgstr "Komando integratua"
+#: ../data/language-specs/c.lang.h:20
+msgid "Standard stream"
+msgstr "Korronte arrunta"
 
-#: ../data/language-specs/cmake.lang.h:2 ../data/language-specs/glsl.lang.h:3
-msgid "Builtin Variable"
-msgstr "Aldagai barneratua"
+#: ../data/language-specs/c.lang.h:21
+msgid "Signal name"
+msgstr "Seinalearen izena"
 
-#: ../data/language-specs/cmake.lang.h:3
+#: ../data/language-specs/cmake.lang.h:2
 msgid "CMake"
 msgstr "CMake"
 
+#: ../data/language-specs/cmake.lang.h:3
+msgid "Builtin Command"
+msgstr "Komando integratua"
+
+#: ../data/language-specs/cmake.lang.h:4 ../data/language-specs/glsl.lang.h:8
+msgid "Builtin Variable"
+msgstr "Aldagai barneratua"
+
 #. Any constant
-#: ../data/language-specs/cmake.lang.h:4 ../data/language-specs/cobol.lang.h:3
-#: ../data/language-specs/def.lang.h:15
-#: ../data/language-specs/gtk-doc.lang.h:1
-#: ../data/language-specs/libtool.lang.h:2
-#: ../data/language-specs/ruby.lang.h:7
+#: ../data/language-specs/cmake.lang.h:5 ../data/language-specs/cobol.lang.h:7
+#: ../data/language-specs/def.lang.h:13
+#: ../data/language-specs/gtk-doc.lang.h:8
+#: ../data/language-specs/libtool.lang.h:3
+#: ../data/language-specs/ruby.lang.h:18
 msgid "Constant"
 msgstr "Konstantea"
 
-#: ../data/language-specs/cmake.lang.h:5
+#: ../data/language-specs/cmake.lang.h:7
 msgid "Control Keyword"
 msgstr "Kontroleko gako-hitza"
 
-#: ../data/language-specs/cobol.lang.h:1
+#: ../data/language-specs/cobol.lang.h:2
 msgid "Cobol"
 msgstr "Cobol"
 
 #. Any statement
-#: ../data/language-specs/cobol.lang.h:9 ../data/language-specs/def.lang.h:55
+#: ../data/language-specs/cobol.lang.h:4 ../data/language-specs/def.lang.h:43
 msgid "Statement"
 msgstr "Instrukzioa"
 
-#: ../data/language-specs/cpp.lang.h:1
+#: ../data/language-specs/cpp.lang.h:2
 msgid "C++"
 msgstr "C++"
 
@@ -776,270 +877,276 @@ msgid "C#"
 msgstr "C#"
 
 #. Translators: this is a format that appears in the strings
-#: ../data/language-specs/csharp.lang.h:17 ../data/language-specs/po.lang.h:7
+#: ../data/language-specs/csharp.lang.h:10 ../data/language-specs/po.lang.h:8
 msgid "String Format"
 msgstr "Katearen formatua"
 
-#: ../data/language-specs/css.lang.h:1
+#: ../data/language-specs/css.lang.h:2
 msgid "CSS"
 msgstr "CSS"
 
-#: ../data/language-specs/css.lang.h:2
-msgid "Class Selector"
-msgstr "Klase-hautatzailea"
+#: ../data/language-specs/css.lang.h:4
+msgid "Others 2"
+msgstr "Bestelakoak 2"
 
-#: ../data/language-specs/css.lang.h:3
+#: ../data/language-specs/css.lang.h:6
 msgid "Color"
 msgstr "Kolorea"
 
+#: ../data/language-specs/css.lang.h:7
+msgid "Others 3"
+msgstr "Bestelakoak 3"
+
 #. Translator: it is a type of number
-#: ../data/language-specs/css.lang.h:5 ../data/language-specs/fcl.lang.h:3
-#: ../data/language-specs/fortran.lang.h:4 ../data/language-specs/gap.lang.h:3
-#: ../data/language-specs/gtkrc.lang.h:4
-#: ../data/language-specs/haskell.lang.h:4 ../data/language-specs/ini.lang.h:5
-#: ../data/language-specs/json.lang.h:2 ../data/language-specs/octave.lang.h:6
-#: ../data/language-specs/pascal.lang.h:3 ../data/language-specs/sml.lang.h:6
-#: ../data/language-specs/sql.lang.h:3
+#: ../data/language-specs/css.lang.h:10 ../data/language-specs/fcl.lang.h:7
+#: ../data/language-specs/fortran.lang.h:8 ../data/language-specs/gap.lang.h:7
+#: ../data/language-specs/gtkrc.lang.h:6
+#: ../data/language-specs/haskell.lang.h:13
+#: ../data/language-specs/ini.lang.h:7 ../data/language-specs/json.lang.h:8
+#: ../data/language-specs/modelica.lang.h:10
+#: ../data/language-specs/octave.lang.h:9
+#: ../data/language-specs/pascal.lang.h:6 ../data/language-specs/sml.lang.h:10
+#: ../data/language-specs/sql.lang.h:8
 msgid "Decimal"
 msgstr "Hamartarra"
 
-#: ../data/language-specs/css.lang.h:6
+#: ../data/language-specs/css.lang.h:11
 msgid "Dimension"
 msgstr "Neurria"
 
-#: ../data/language-specs/css.lang.h:9
-msgid "ID Selector"
-msgstr "ID-hautatzailea"
-
-#: ../data/language-specs/css.lang.h:11
+#: ../data/language-specs/css.lang.h:12
 msgid "Known Property Value"
 msgstr "Propietatearen balio ezaguna"
 
 #: ../data/language-specs/css.lang.h:13
-msgid "Others 2"
-msgstr "Bestelakoak 2"
-
-#: ../data/language-specs/css.lang.h:14
-msgid "Others 3"
-msgstr "Bestelakoak 3"
-
-#: ../data/language-specs/css.lang.h:16
-msgid "Tag Name Selector"
-msgstr "Etiketa-izenaren hautatzailea"
-
-#: ../data/language-specs/css.lang.h:17
 msgid "at-rules"
 msgstr "at arauak"
 
-#: ../data/language-specs/cuda.lang.h:1
+#: ../data/language-specs/css.lang.h:15
+msgid "ID Selector"
+msgstr "ID-hautatzailea"
+
+#: ../data/language-specs/css.lang.h:16
+msgid "Class Selector"
+msgstr "Klase-hautatzailea"
+
+#: ../data/language-specs/css.lang.h:17
+msgid "Tag Name Selector"
+msgstr "Etiketa-izenaren hautatzailea"
+
+#: ../data/language-specs/cuda.lang.h:2
 msgid "CUDA"
 msgstr "CUDA"
 
-#: ../data/language-specs/cuda.lang.h:3
-msgid "Device Functions"
-msgstr "Gailuaren funtzioak"
-
-#: ../data/language-specs/cuda.lang.h:4
+#: ../data/language-specs/cuda.lang.h:5
 msgid "Global Functions"
 msgstr "Funtzio globalak"
 
-#: ../data/language-specs/cuda.lang.h:5
+#: ../data/language-specs/cuda.lang.h:6
+msgid "Device Functions"
+msgstr "Gailuaren funtzioak"
+
+#: ../data/language-specs/cuda.lang.h:7
 msgid "Global Variables"
 msgstr "Aldagai globalak"
 
-#. A base-N number: 0xFFFF
-#: ../data/language-specs/def.lang.h:2 ../data/language-specs/python.lang.h:1
-#: ../data/language-specs/python3.lang.h:1
-#: ../data/language-specs/ruby.lang.h:2
-msgid "Base-N number"
-msgstr "N-oinarriko osokoa"
-
-#. A builtin name: like __import__, abs in Python
-#. (see http://docs.python.org/lib/built-in-funcs.html)
-#: ../data/language-specs/def.lang.h:7
-msgid "Built-in identifier"
-msgstr "Identifikatzaile barneratua"
-
-#. A complex number
-#: ../data/language-specs/def.lang.h:13 ../data/language-specs/python.lang.h:6
-#: ../data/language-specs/python3.lang.h:6
-msgid "Complex number"
-msgstr "Zenbaki konplexua"
-
-#. A primitive data type: int, long, char, etc.
-#: ../data/language-specs/def.lang.h:17 ../data/language-specs/octave.lang.h:5
-msgid "Data type"
-msgstr "Datu mota"
-
-#: ../data/language-specs/def.lang.h:20
+#: ../data/language-specs/def.lang.h:1
 msgid "Defaults"
 msgstr "Lehenetsiak"
 
+#. A shebang: #!/bin/sh
+#: ../data/language-specs/def.lang.h:5
+msgid "Shebang"
+msgstr "Shebang (#!)"
+
 #. A special comment containing documentation like in javadoc or
 #. gtk-doc
-#: ../data/language-specs/def.lang.h:23
+#: ../data/language-specs/def.lang.h:8
 msgid "Documentation comment"
 msgstr "Dokumentazioaren iruzkina"
 
 #. This style doesn't map to anything since it must be used as an additional
 #. style for text which is already styled as a "doc-comment"
-#: ../data/language-specs/def.lang.h:26
+#: ../data/language-specs/def.lang.h:11
 msgid "Documentation comment element"
 msgstr "Dokumentazioaren iruzkinaren elementua"
 
-#. Anything that needs extra attention; mostly the keywords TODO, FIXME and XXX
-#: ../data/language-specs/def.lang.h:38
-msgid "Note (FIXME, TODO, XXX, etc.)"
-msgstr "Oharra (FINKATZEKO, EGITEKO, XXX, e.a.)"
+#. This style doesn't map to anything since it must be used as an additional
+#. style for text which is already styled as a "string"
+#: ../data/language-specs/def.lang.h:20
+msgid "Special character (inside a string)"
+msgstr "Karaktere berezia (katearen barnean)"
+
+#. A base-N number: 0xFFFF
+#: ../data/language-specs/def.lang.h:28
+#: ../data/language-specs/python3.lang.h:13
+#: ../data/language-specs/python.lang.h:14
+#: ../data/language-specs/ruby.lang.h:12
+msgid "Base-N number"
+msgstr "N-oinarriko osokoa"
+
+#. A complex number
+#: ../data/language-specs/def.lang.h:30
+#: ../data/language-specs/python3.lang.h:14
+#: ../data/language-specs/python.lang.h:15
+msgid "Complex number"
+msgstr "Zenbaki konplexua"
+
+#. A builtin name: like __import__, abs in Python
+#. (see http://docs.python.org/lib/built-in-funcs.html)
+#: ../data/language-specs/def.lang.h:41
+msgid "Built-in identifier"
+msgstr "Identifikatzaile barneratua"
+
+#. A primitive data type: int, long, char, etc.
+#: ../data/language-specs/def.lang.h:49
+#: ../data/language-specs/modelica.lang.h:7
+#: ../data/language-specs/octave.lang.h:6
+msgid "Data type"
+msgstr "Datu mota"
 
 #. This one is for '#include <foo.h>' and "#pragma blah", or 'use foobar', etc..
-#: ../data/language-specs/def.lang.h:44
+#: ../data/language-specs/def.lang.h:51
 msgid "Preprocessor directive"
 msgstr "Preprozesadorearen direktiba"
 
 #. Reserved keywords: like "const" and "goto" in Java
-#: ../data/language-specs/def.lang.h:46
+#: ../data/language-specs/def.lang.h:55
 msgid "Reserved keyword"
 msgstr "Gordetako gako-hitza"
 
-#. A shebang: #!/bin/sh
-#: ../data/language-specs/def.lang.h:48
-msgid "Shebang"
-msgstr "Shebang (#!)"
-
-#. This style doesn't map to anything since it must be used as an additional
-#. style for text which is already styled as a "string"
-#: ../data/language-specs/def.lang.h:51
-msgid "Special character (inside a string)"
-msgstr "Karaktere berezia (katearen barnean)"
+#. Anything that needs extra attention; mostly the keywords TODO, FIXME and XXX
+#: ../data/language-specs/def.lang.h:57
+msgid "Note (FIXME, TODO, XXX, etc.)"
+msgstr "Oharra (FINKATZEKO, EGITEKO, XXX, e.a.)"
 
 #. Text that stands out, HTML links, e-mail addresses, etc.
 #: ../data/language-specs/def.lang.h:59
 msgid "Underlined"
 msgstr "Azpimarratua"
 
-#: ../data/language-specs/desktop.lang.h:1
+#: ../data/language-specs/desktop.lang.h:2
 msgid ".desktop"
 msgstr ".desktop"
 
-#: ../data/language-specs/desktop.lang.h:2
-msgid "Additional Category"
-msgstr "Kategoria gehigarria"
-
-#: ../data/language-specs/desktop.lang.h:4
-msgid "Encoding"
-msgstr "Kodeketa"
-
-#: ../data/language-specs/desktop.lang.h:5
-msgid "Exec parameter"
-msgstr "Exekuzioaren parametroa"
-
-#: ../data/language-specs/desktop.lang.h:6
+#: ../data/language-specs/desktop.lang.h:3
 msgid "Group"
 msgstr "Taldea"
 
 #. Translators: "Key" here means key value, that is the left hand
 #. side in a myoption=something line in a .desktop file
-#: ../data/language-specs/desktop.lang.h:9
-#: ../data/language-specs/json.lang.h:6
+#: ../data/language-specs/desktop.lang.h:6
+#: ../data/language-specs/json.lang.h:2
 msgid "Key"
 msgstr "Gakoa"
 
+#: ../data/language-specs/desktop.lang.h:7
+msgid "Translation"
+msgstr "Itzulpena"
+
 #: ../data/language-specs/desktop.lang.h:10
+msgid "Exec parameter"
+msgstr "Exekuzioaren parametroa"
+
+#: ../data/language-specs/desktop.lang.h:11
+msgid "Encoding"
+msgstr "Kodeketa"
+
+#: ../data/language-specs/desktop.lang.h:12
 msgid "Main Category"
 msgstr "Kategoria nagusia"
 
 #: ../data/language-specs/desktop.lang.h:13
+msgid "Additional Category"
+msgstr "Kategoria gehigarria"
+
+#: ../data/language-specs/desktop.lang.h:14
 msgid "Reserved Category"
 msgstr "Gordetako kategoria"
 
-#: ../data/language-specs/desktop.lang.h:14
-msgid "Translation"
-msgstr "Itzulpena"
-
-#: ../data/language-specs/diff.lang.h:1
-msgid "Added line"
-msgstr "Lerroa gehituta"
-
-#. Others 3
-#: ../data/language-specs/diff.lang.h:3
-msgid "Changed line"
-msgstr "Lerroa aldatuta"
-
-#: ../data/language-specs/diff.lang.h:4
+#: ../data/language-specs/diff.lang.h:2
 msgid "Diff"
 msgstr "Diff"
 
-#. Keyword
-#: ../data/language-specs/diff.lang.h:6
-msgid "Ignore"
-msgstr "Ez ikusi egin"
-
-#. String
-#: ../data/language-specs/diff.lang.h:8 ../data/language-specs/po.lang.h:4
-msgid "Location"
-msgstr "Kokalekua"
+#: ../data/language-specs/diff.lang.h:3
+msgid "Added line"
+msgstr "Lerroa gehituta"
 
 #. Others 2
-#: ../data/language-specs/diff.lang.h:11
+#: ../data/language-specs/diff.lang.h:5
 msgid "Removed line"
 msgstr "Lerroa ezabatuta"
 
+#. Others 3
+#: ../data/language-specs/diff.lang.h:7
+msgid "Changed line"
+msgstr "Lerroa aldatuta"
+
 #. Preprocessor
-#: ../data/language-specs/diff.lang.h:13
+#: ../data/language-specs/diff.lang.h:9
 msgid "Special case"
 msgstr "Kasu berezia"
 
-#: ../data/language-specs/d.lang.h:1 ../data/language-specs/nemerle.lang.h:1
-msgid "Binary number"
-msgstr "Zenbaki bitarra"
+#. String
+#: ../data/language-specs/diff.lang.h:11 ../data/language-specs/po.lang.h:4
+msgid "Location"
+msgstr "Kokalekua"
 
-#: ../data/language-specs/d.lang.h:4
+#. Keyword
+#: ../data/language-specs/diff.lang.h:13
+msgid "Ignore"
+msgstr "Ez ikusi egin"
+
+#: ../data/language-specs/d.lang.h:2
 msgid "D"
 msgstr "D"
 
-#: ../data/language-specs/d.lang.h:14
+#: ../data/language-specs/d.lang.h:8
 msgid "Special Token"
 msgstr "Token berezia"
 
-#: ../data/language-specs/docbook.lang.h:1
+#: ../data/language-specs/d.lang.h:13 ../data/language-specs/nemerle.lang.h:14
+msgid "Binary number"
+msgstr "Zenbaki bitarra"
+
+#: ../data/language-specs/docbook.lang.h:2
 msgid "DocBook"
 msgstr "Docbook"
 
-#: ../data/language-specs/docbook.lang.h:2
+#: ../data/language-specs/docbook.lang.h:3
+msgid "Header Elements"
+msgstr "Goiburuko elementuak"
+
+#: ../data/language-specs/docbook.lang.h:4
 msgid "Formatting Elements"
 msgstr "Elementuei formatua ematen"
 
-#: ../data/language-specs/docbook.lang.h:3
+#: ../data/language-specs/docbook.lang.h:5
 msgid "GUI Elements"
 msgstr "GUI elementuak"
-
-#: ../data/language-specs/docbook.lang.h:4
-msgid "Header Elements"
-msgstr "Goiburuko elementuak"
 
 #: ../data/language-specs/docbook.lang.h:6
 msgid "Structural Elements"
 msgstr "Egiturako elementuak"
 
-#: ../data/language-specs/dosbatch.lang.h:1
-#: ../data/language-specs/latex.lang.h:1
-msgid "Command"
-msgstr "Komandoa"
-
-#: ../data/language-specs/dosbatch.lang.h:3
+#: ../data/language-specs/dosbatch.lang.h:2
 msgid "DOS Batch"
 msgstr "Dos-eko batch"
 
-#: ../data/language-specs/dot.lang.h:1 ../data/language-specs/xml.lang.h:1
-msgid "Attribute name"
-msgstr "Atributuaren izena"
+#: ../data/language-specs/dosbatch.lang.h:6
+#: ../data/language-specs/latex.lang.h:8
+msgid "Command"
+msgstr "Komandoa"
 
-#: ../data/language-specs/dot.lang.h:4
+#: ../data/language-specs/dot.lang.h:2
 msgid "Graphviz Dot"
 msgstr "Graphviz-eko Dot"
 
-#: ../data/language-specs/dpatch.lang.h:1
+#: ../data/language-specs/dot.lang.h:6 ../data/language-specs/xml.lang.h:8
+msgid "Attribute name"
+msgstr "Atributuaren izena"
+
+#: ../data/language-specs/dpatch.lang.h:2
 msgid "DPatch"
 msgstr "DPatch"
 
@@ -1047,17 +1154,17 @@ msgstr "DPatch"
 msgid "patch-start"
 msgstr "adabaki-hasiera"
 
-#: ../data/language-specs/dtd.lang.h:1 ../data/language-specs/html.lang.h:4
+#: ../data/language-specs/dtd.lang.h:2 ../data/language-specs/html.lang.h:7
 msgid "DTD"
 msgstr "DTD"
 
 #: ../data/language-specs/dtd.lang.h:3
-msgid "decl"
-msgstr "dekl"
-
-#: ../data/language-specs/dtd.lang.h:4
 msgid "entity"
 msgstr "entitatea"
+
+#: ../data/language-specs/dtd.lang.h:4
+msgid "decl"
+msgstr "dekl"
 
 #: ../data/language-specs/dtd.lang.h:5
 msgid "error"
@@ -1067,948 +1174,1076 @@ msgstr "errorea"
 msgid "quoted-value"
 msgstr "aipu-balioa"
 
-#: ../data/language-specs/eiffel.lang.h:1
-msgid "Assertion"
-msgstr "Asertzioa"
-
 #: ../data/language-specs/eiffel.lang.h:2
-#: ../data/language-specs/javascript.lang.h:1
-#: ../data/language-specs/json.lang.h:1
-msgid "Boolean Value"
-msgstr "Balio boolearra"
+msgid "Eiffel"
+msgstr "Eiffel"
 
 #: ../data/language-specs/eiffel.lang.h:5
 msgid "Debug"
 msgstr "Arazketa"
 
-#: ../data/language-specs/eiffel.lang.h:7
+#: ../data/language-specs/eiffel.lang.h:6
+msgid "Assertion"
+msgstr "Asertzioa"
+
+#: ../data/language-specs/eiffel.lang.h:9
 msgid "Design by Contract"
 msgstr "Diseinua kontratuaren arabera"
-
-#: ../data/language-specs/eiffel.lang.h:8
-msgid "Eiffel"
-msgstr "Eiffel"
 
 #: ../data/language-specs/eiffel.lang.h:10
 msgid "Exception Handling"
 msgstr "Salbuespenen kudeaketa"
 
-#: ../data/language-specs/eiffel.lang.h:13
-#: ../data/language-specs/ruby.lang.h:17
+#: ../data/language-specs/eiffel.lang.h:11
+#: ../data/language-specs/ruby.lang.h:21
 msgid "Predefined Variable"
 msgstr "Aurredefinitutako aldagaia"
 
-#: ../data/language-specs/eiffel.lang.h:16
+#: ../data/language-specs/eiffel.lang.h:13
 msgid "Void Value"
 msgstr "Balio hutsa (void)"
 
-#: ../data/language-specs/erlang.lang.h:1
-msgid "Atom"
-msgstr "Atom"
+#: ../data/language-specs/eiffel.lang.h:14
+#: ../data/language-specs/javascript.lang.h:6
+#: ../data/language-specs/json.lang.h:6
+msgid "Boolean Value"
+msgstr "Balio boolearra"
 
 #: ../data/language-specs/erlang.lang.h:2
-#: ../data/language-specs/fsharp.lang.h:1
-#: ../data/language-specs/ocaml.lang.h:1
-#: ../data/language-specs/octave.lang.h:1 ../data/language-specs/sml.lang.h:1
-#: ../data/language-specs/verilog.lang.h:1
-#: ../data/language-specs/vhdl.lang.h:1
-msgid "Base-N Integer"
-msgstr "N-oinarriko osokoa"
-
-#: ../data/language-specs/erlang.lang.h:5
-#: ../data/language-specs/forth.lang.h:2
-#: ../data/language-specs/systemverilog.lang.h:1
-#: ../data/language-specs/verilog.lang.h:3
-msgid "Compiler Directive"
-msgstr "Konpilatzailearen direktiba"
-
-#: ../data/language-specs/erlang.lang.h:7
 msgid "Erlang"
 msgstr "Erlang"
 
-#: ../data/language-specs/fcl.lang.h:1
-msgid "Block"
-msgstr "Blokea"
+#: ../data/language-specs/erlang.lang.h:6
+msgid "Atom"
+msgstr "Atom"
 
-#: ../data/language-specs/fcl.lang.h:4
-msgid "FCL"
-msgstr "FCL"
+#: ../data/language-specs/erlang.lang.h:11
+#: ../data/language-specs/fsharp.lang.h:4
+#: ../data/language-specs/modelica.lang.h:12
+#: ../data/language-specs/ocaml.lang.h:5
+#: ../data/language-specs/octave.lang.h:11 ../data/language-specs/sml.lang.h:9
+#: ../data/language-specs/verilog.lang.h:14
+#: ../data/language-specs/vhdl.lang.h:9
+msgid "Base-N Integer"
+msgstr "N-oinarriko osokoa"
 
-#: ../data/language-specs/fcl.lang.h:5 ../data/language-specs/fortran.lang.h:5
-#: ../data/language-specs/ini.lang.h:6 ../data/language-specs/octave.lang.h:7
-#: ../data/language-specs/scilab.lang.h:3 ../data/language-specs/sql.lang.h:4
-msgid "Floating Point"
-msgstr "Koma mugikorra"
+#: ../data/language-specs/erlang.lang.h:13
+#: ../data/language-specs/forth.lang.h:11
+#: ../data/language-specs/systemverilog.lang.h:3
+#: ../data/language-specs/verilog.lang.h:8
+msgid "Compiler Directive"
+msgstr "Konpilatzailearen direktiba"
 
-#: ../data/language-specs/fcl.lang.h:7 ../data/language-specs/octave.lang.h:12
-#: ../data/language-specs/scilab.lang.h:6
-msgid "Reserved Constant"
-msgstr "Konstante erreserbatua"
-
-#: ../data/language-specs/fcl.lang.h:8 ../data/language-specs/gap.lang.h:7
-#: ../data/language-specs/imagej.lang.h:8
-#: ../data/language-specs/matlab.lang.h:4
-#: ../data/language-specs/octave.lang.h:13 ../data/language-specs/R.lang.h:9
-#: ../data/language-specs/scilab.lang.h:7
+#: ../data/language-specs/fcl.lang.h:1 ../data/language-specs/gap.lang.h:1
+#: ../data/language-specs/idl-exelis.lang.h:1
+#: ../data/language-specs/imagej.lang.h:1
+#: ../data/language-specs/matlab.lang.h:1
+#: ../data/language-specs/modelica.lang.h:1
+#: ../data/language-specs/octave.lang.h:1 ../data/language-specs/R.lang.h:1
+#: ../data/language-specs/scilab.lang.h:1
 msgid "Scientific"
 msgstr "Zientifikoa"
 
-#: ../data/language-specs/forth.lang.h:4
-msgid "Debug Code"
-msgstr "Arazketa-kodea"
+#: ../data/language-specs/fcl.lang.h:2
+msgid "FCL"
+msgstr "FCL"
 
-#: ../data/language-specs/forth.lang.h:5
-msgid "Error Text"
-msgstr "Errorearen testua"
+#: ../data/language-specs/fcl.lang.h:4 ../data/language-specs/fortran.lang.h:4
+#: ../data/language-specs/ini.lang.h:4
+#: ../data/language-specs/modelica.lang.h:11
+#: ../data/language-specs/octave.lang.h:10
+#: ../data/language-specs/scilab.lang.h:4 ../data/language-specs/sql.lang.h:4
+msgid "Floating Point"
+msgstr "Koma mugikorra"
 
-#: ../data/language-specs/forth.lang.h:6
+#: ../data/language-specs/fcl.lang.h:6
+msgid "Block"
+msgstr "Blokea"
+
+#: ../data/language-specs/fcl.lang.h:8 ../data/language-specs/octave.lang.h:15
+#: ../data/language-specs/scilab.lang.h:9
+msgid "Reserved Constant"
+msgstr "Konstante erreserbatua"
+
+#: ../data/language-specs/forth.lang.h:2
 msgid "Forth"
 msgstr "Forth"
 
-#: ../data/language-specs/fortran.lang.h:1
-msgid "BOZ Literal"
-msgstr "BOZ literala"
+#: ../data/language-specs/forth.lang.h:9
+msgid "Debug Code"
+msgstr "Arazketa-kodea"
 
-#: ../data/language-specs/fortran.lang.h:6
+#: ../data/language-specs/forth.lang.h:10
+msgid "Error Text"
+msgstr "Errorearen testua"
+
+#: ../data/language-specs/fortran.lang.h:2
 msgid "Fortran 95"
 msgstr "Fortran 95"
 
-#: ../data/language-specs/fortran.lang.h:7
+#: ../data/language-specs/fortran.lang.h:6
 msgid "Intrinsic function"
 msgstr "Berezko funtzioa"
 
-#: ../data/language-specs/fsharp.lang.h:3
-#: ../data/language-specs/ocaml.lang.h:3
-msgid "Builtin-function keyword"
-msgstr "Funtzio barneratuen gako-hitzak"
+#: ../data/language-specs/fortran.lang.h:7
+msgid "BOZ Literal"
+msgstr "BOZ literala"
 
-#: ../data/language-specs/fsharp.lang.h:8
+#: ../data/language-specs/fsharp.lang.h:2
 msgid "F#"
 msgstr "F#"
 
-#: ../data/language-specs/fsharp.lang.h:9
-#: ../data/language-specs/ocaml.lang.h:9 ../data/language-specs/sml.lang.h:8
+#: ../data/language-specs/fsharp.lang.h:5
+#: ../data/language-specs/ocaml.lang.h:6 ../data/language-specs/sml.lang.h:12
 msgid "Floating Point number"
 msgstr "Koma mugikorreko zenbakia"
 
-#: ../data/language-specs/fsharp.lang.h:11
-#: ../data/language-specs/ocaml.lang.h:11
-msgid "Labeled argument"
-msgstr "Etiketatutako argumentua"
-
-#: ../data/language-specs/fsharp.lang.h:12
-#: ../data/language-specs/ocaml.lang.h:12
-msgid "Module Path"
-msgstr "Moduluaren bide-izena"
-
-#: ../data/language-specs/fsharp.lang.h:14
-#: ../data/language-specs/ocaml.lang.h:15
-msgid "Polymorphic Variant"
-msgstr "Aldagai polimorfikoa"
-
-#. Translators: this is a specific variable called Type
-#: ../data/language-specs/fsharp.lang.h:19
-#: ../data/language-specs/ocaml.lang.h:19
-msgid "Type Variable"
-msgstr "Aldagai mota"
-
-#: ../data/language-specs/fsharp.lang.h:20
-#: ../data/language-specs/ocaml.lang.h:20
+#: ../data/language-specs/fsharp.lang.h:9
+#: ../data/language-specs/ocaml.lang.h:10
 msgid "Type, module or object keyword"
 msgstr "Mota, modulua edo objektuaren gako-hitza"
 
-#: ../data/language-specs/fsharp.lang.h:21
-#: ../data/language-specs/ocaml.lang.h:21
+#: ../data/language-specs/fsharp.lang.h:10
+#: ../data/language-specs/ocaml.lang.h:11
+msgid "Builtin-function keyword"
+msgstr "Funtzio barneratuen gako-hitzak"
+
+#: ../data/language-specs/fsharp.lang.h:12
+#: ../data/language-specs/ocaml.lang.h:13
+msgid "Labeled argument"
+msgstr "Etiketatutako argumentua"
+
+#: ../data/language-specs/fsharp.lang.h:13
+#: ../data/language-specs/ocaml.lang.h:14
+msgid "Polymorphic Variant"
+msgstr "Aldagai polimorfikoa"
+
+#: ../data/language-specs/fsharp.lang.h:14
+#: ../data/language-specs/ocaml.lang.h:15
 msgid "Variant Constructor"
 msgstr "Aldagai-eraikitzailea"
 
-#: ../data/language-specs/gap.lang.h:5
+#. Translators: this is a specific variable called Type
+#: ../data/language-specs/fsharp.lang.h:16
+#: ../data/language-specs/ocaml.lang.h:16
+msgid "Type Variable"
+msgstr "Aldagai mota"
+
+#: ../data/language-specs/fsharp.lang.h:17
+#: ../data/language-specs/ocaml.lang.h:17
+msgid "Module Path"
+msgstr "Moduluaren bide-izena"
+
+#: ../data/language-specs/gap.lang.h:2
 msgid "GAP"
 msgstr "GAP"
 
-#: ../data/language-specs/gdb-log.lang.h:1
-msgid "Address"
-msgstr "Helbidea"
-
 #: ../data/language-specs/gdb-log.lang.h:2
-msgid "Filename"
-msgstr "Fitxategi-izena"
-
-#: ../data/language-specs/gdb-log.lang.h:3
-msgid "Frame Number"
-msgstr "Marko zenbakia"
-
-#: ../data/language-specs/gdb-log.lang.h:5
 msgid "GDB Log"
 msgstr "GDB egunkaria"
 
-#: ../data/language-specs/gdb-log.lang.h:6
-msgid "Incomplete Sequence"
-msgstr "Osatu gabeko sekuentzia"
-
-#: ../data/language-specs/gdb-log.lang.h:7
-msgid "Optimized Out"
-msgstr "Irteera optimizatuta"
-
-#: ../data/language-specs/gdb-log.lang.h:9
-msgid "Prompt"
-msgstr "Gonbitea"
-
-#: ../data/language-specs/gdb-log.lang.h:11
+#: ../data/language-specs/gdb-log.lang.h:3
 msgid "Thread Action"
 msgstr "Hariaren ekintza"
 
-#: ../data/language-specs/gdb-log.lang.h:12
+#: ../data/language-specs/gdb-log.lang.h:4
 msgid "Thread Header"
 msgstr "Hariaren goiburua"
 
-#: ../data/language-specs/glsl.lang.h:1 ../data/language-specs/python.lang.h:3
-#: ../data/language-specs/python3.lang.h:3
-msgid "Builtin Constant"
-msgstr "Konstante barneratua"
+#: ../data/language-specs/gdb-log.lang.h:5
+msgid "Frame Number"
+msgstr "Marko zenbakia"
 
-#: ../data/language-specs/glsl.lang.h:6
+#: ../data/language-specs/gdb-log.lang.h:6
+msgid "Address"
+msgstr "Helbidea"
+
+#: ../data/language-specs/gdb-log.lang.h:9
+msgid "Filename"
+msgstr "Fitxategi-izena"
+
+#: ../data/language-specs/gdb-log.lang.h:10
+msgid "Optimized Out"
+msgstr "Irteera optimizatuta"
+
+#: ../data/language-specs/gdb-log.lang.h:11
+msgid "Incomplete Sequence"
+msgstr "Osatu gabeko sekuentzia"
+
+#: ../data/language-specs/gdb-log.lang.h:12
+msgid "Prompt"
+msgstr "Gonbitea"
+
+#: ../data/language-specs/glsl.lang.h:2
 msgid "OpenGL Shading Language"
 msgstr "OpenGL itzalduraren hizkuntza"
 
-#: ../data/language-specs/glsl.lang.h:8
+#: ../data/language-specs/glsl.lang.h:7 ../data/language-specs/go.lang.h:17
+#: ../data/language-specs/python3.lang.h:15
+#: ../data/language-specs/python.lang.h:16
+msgid "Builtin Constant"
+msgstr "Konstante barneratua"
+
+#: ../data/language-specs/glsl.lang.h:9
 msgid "Reserved Keywords"
 msgstr "Gordetako gako-hitzak"
 
-#: ../data/language-specs/go.lang.h:9
+#: ../data/language-specs/go.lang.h:2
 msgid "Go"
 msgstr "Joan"
 
+#: ../data/language-specs/go.lang.h:12
+msgid "Imaginary number"
+msgstr "Zenbaki irudikaria"
+
 #: ../data/language-specs/gtk-doc.lang.h:2
-msgid "Deprecated"
-msgstr "Zaharkitua"
+msgid "gtk-doc"
+msgstr "gtk-doc"
+
+#: ../data/language-specs/gtk-doc.lang.h:3
+msgid "Inline Documentation Section"
+msgstr "Barneko dokumentazioaren atala"
 
 #: ../data/language-specs/gtk-doc.lang.h:4
 msgid "Function Name"
 msgstr "Funtzioaren izena"
 
 #: ../data/language-specs/gtk-doc.lang.h:5
-msgid "Inline Documentation Section"
-msgstr "Barneko dokumentazioaren atala"
+msgid "Signal Name"
+msgstr "Seinalearen izena"
+
+#: ../data/language-specs/gtk-doc.lang.h:6
+msgid "Property Name"
+msgstr "Propietatearen izena"
 
 #: ../data/language-specs/gtk-doc.lang.h:7
 msgid "Parameter"
 msgstr "Parametroa"
 
-#: ../data/language-specs/gtk-doc.lang.h:8
-msgid "Property Name"
-msgstr "Propietatearen izena"
-
-#: ../data/language-specs/gtk-doc.lang.h:9
+#: ../data/language-specs/gtk-doc.lang.h:11
 msgid "Return"
 msgstr "Itzuli"
 
-#: ../data/language-specs/gtk-doc.lang.h:10
-msgid "Signal Name"
-msgstr "Seinalearen izena"
-
-#: ../data/language-specs/gtk-doc.lang.h:11
+#: ../data/language-specs/gtk-doc.lang.h:12
 msgid "Since"
 msgstr "Noiztik"
 
-#: ../data/language-specs/gtk-doc.lang.h:12
-#: ../data/language-specs/systemverilog.lang.h:6
-#: ../data/language-specs/verilog.lang.h:14
-#: ../data/language-specs/vhdl.lang.h:10
-msgid "Type"
-msgstr "Mota"
-
 #: ../data/language-specs/gtk-doc.lang.h:13
-msgid "gtk-doc"
-msgstr "gtk-doc"
+msgid "Deprecated"
+msgstr "Zaharkitua"
 
-#: ../data/language-specs/gtkrc.lang.h:5
+#: ../data/language-specs/gtkrc.lang.h:2
 msgid "GtkRC"
 msgstr "GtkRC"
 
-#: ../data/language-specs/gtkrc.lang.h:6
-msgid "Include directive"
-msgstr "Txertatzeko direktiba"
-
-#: ../data/language-specs/gtkrc.lang.h:10
+#: ../data/language-specs/gtkrc.lang.h:8
 msgid "Widget State"
 msgstr "Trepetaren egoera"
 
-#: ../data/language-specs/haddock.lang.h:1 ../data/language-specs/t2t.lang.h:1
-msgid "Anchor"
-msgstr "Ainguratu"
+#: ../data/language-specs/gtkrc.lang.h:9
+msgid "Include directive"
+msgstr "Txertatzeko direktiba"
 
 #: ../data/language-specs/haddock.lang.h:2
-msgid "Code Block"
-msgstr "Kode blokea"
-
-#: ../data/language-specs/haddock.lang.h:3
-msgid "Definition list"
-msgstr "Definizioen zerrenda"
-
-#: ../data/language-specs/haddock.lang.h:4
-#: ../data/language-specs/markdown.lang.h:5
-msgid "Emphasis"
-msgstr "Enfasia"
-
-#: ../data/language-specs/haddock.lang.h:5
-msgid "Enumerated list"
-msgstr "Zenbatutako zerrenda"
-
-#: ../data/language-specs/haddock.lang.h:6
-msgid "Escape"
-msgstr "Ihes"
-
-#: ../data/language-specs/haddock.lang.h:7
 msgid "Haddock"
 msgstr "Haddock"
 
-#: ../data/language-specs/haddock.lang.h:8
-msgid "Haddock Directive"
-msgstr "Haddock direktiba"
-
-#: ../data/language-specs/haddock.lang.h:9
-msgid "Header Property"
-msgstr "Goiburuaren propietatea"
-
-#: ../data/language-specs/haddock.lang.h:10
-msgid "Hyperlinked Identifier"
-msgstr "Hiperestekaren identifikatzailea"
-
-#: ../data/language-specs/haddock.lang.h:11
-msgid "Hyperlinked Module Name"
-msgstr "Hiperestekaren modulu-izena"
-
-#: ../data/language-specs/haddock.lang.h:12
+#: ../data/language-specs/haddock.lang.h:3
 msgid "Inline Haddock Section"
 msgstr "Barneko Haddcok atala"
 
-#: ../data/language-specs/haddock.lang.h:13
-msgid "Itemized list"
-msgstr "Elementuen zerrenda"
+#: ../data/language-specs/haddock.lang.h:4
+msgid "Haddock Directive"
+msgstr "Haddock direktiba"
 
-#: ../data/language-specs/haddock.lang.h:15
+#: ../data/language-specs/haddock.lang.h:5
+msgid "Hyperlinked Identifier"
+msgstr "Hiperestekaren identifikatzailea"
+
+#: ../data/language-specs/haddock.lang.h:6
+msgid "Hyperlinked Module Name"
+msgstr "Hiperestekaren modulu-izena"
+
+#: ../data/language-specs/haddock.lang.h:7
+msgid "Escape"
+msgstr "Ihes"
+
+#: ../data/language-specs/haddock.lang.h:8
+#: ../data/language-specs/markdown.lang.h:13
+msgid "Emphasis"
+msgstr "Enfasia"
+
+#: ../data/language-specs/haddock.lang.h:9
 msgid "Monospace"
 msgstr "Tarte bakarrekoa"
 
-#: ../data/language-specs/haddock.lang.h:16
-#: ../data/language-specs/markdown.lang.h:16
+#: ../data/language-specs/haddock.lang.h:10
+msgid "Code Block"
+msgstr "Kode blokea"
+
+#: ../data/language-specs/haddock.lang.h:11
+msgid "Header Property"
+msgstr "Goiburuaren propietatea"
+
+#: ../data/language-specs/haddock.lang.h:12
+msgid "Itemized list"
+msgstr "Elementuen zerrenda"
+
+#: ../data/language-specs/haddock.lang.h:13
+msgid "Enumerated list"
+msgstr "Zenbatutako zerrenda"
+
+#: ../data/language-specs/haddock.lang.h:14
+msgid "Definition list"
+msgstr "Definizioen zerrenda"
+
+#: ../data/language-specs/haddock.lang.h:15
+#: ../data/language-specs/markdown.lang.h:8
 msgid "URL"
 msgstr "URLa"
 
-#: ../data/language-specs/haskell.lang.h:6
-msgid "Float"
-msgstr "Mugikorra"
+#: ../data/language-specs/haddock.lang.h:16
+#: ../data/language-specs/t2t.lang.h:13
+msgid "Anchor"
+msgstr "Ainguratu"
 
-#: ../data/language-specs/haskell.lang.h:7
+#: ../data/language-specs/haskell.lang.h:2
 msgid "Haskell"
 msgstr "Haskell"
 
-#: ../data/language-specs/haskell.lang.h:8
-msgid "Hex"
-msgstr "Hamaseitarra"
-
-#: ../data/language-specs/haskell.lang.h:10
-msgid "Octal"
-msgstr "Zortzitarra"
-
-#: ../data/language-specs/haskell.lang.h:14
-#: ../data/language-specs/ruby.lang.h:23
+#: ../data/language-specs/haskell.lang.h:6
+#: ../data/language-specs/ruby.lang.h:19
 msgid "Symbol"
 msgstr "Ikurra"
 
-#: ../data/language-specs/haskell-literate.lang.h:1
+#: ../data/language-specs/haskell.lang.h:12
+msgid "Float"
+msgstr "Mugikorra"
+
+#: ../data/language-specs/haskell.lang.h:14
+msgid "Octal"
+msgstr "Zortzitarra"
+
+#: ../data/language-specs/haskell.lang.h:15
+msgid "Hex"
+msgstr "Hamaseitarra"
+
+#: ../data/language-specs/haskell-literate.lang.h:2
 msgid "Literate Haskell"
 msgstr "Haskell literala"
 
-#: ../data/language-specs/html.lang.h:1
-msgid "Attribute Name"
-msgstr "Atributuaren izena"
-
 #: ../data/language-specs/html.lang.h:2
-#: ../data/language-specs/markdown.lang.h:1
-msgid "Attribute Value"
-msgstr "Atributuaren balioa"
-
-#: ../data/language-specs/html.lang.h:6
 msgid "HTML"
 msgstr "HTML"
 
-#: ../data/language-specs/html.lang.h:8 ../data/language-specs/xml.lang.h:12
+#: ../data/language-specs/html.lang.h:4 ../data/language-specs/xml.lang.h:11
 msgid "Tag"
 msgstr "Etiketa"
 
-#: ../data/language-specs/idl.lang.h:3
+#: ../data/language-specs/html.lang.h:5
+msgid "Attribute Name"
+msgstr "Atributuaren izena"
+
+#: ../data/language-specs/html.lang.h:6
+#: ../data/language-specs/markdown.lang.h:11
+msgid "Attribute Value"
+msgstr "Atributuaren balioa"
+
+#: ../data/language-specs/idl-exelis.lang.h:2
+msgid "IDL-Exelis"
+msgstr "IDL-Exelis"
+
+#: ../data/language-specs/idl.lang.h:2
 msgid "IDL"
 msgstr "IDL"
 
-#: ../data/language-specs/imagej.lang.h:3
-msgid "Commands"
-msgstr "Komandoak"
-
-#: ../data/language-specs/imagej.lang.h:4
-msgid "Escaped Characters"
-msgstr "Karaktere ihestuak"
-
-#: ../data/language-specs/imagej.lang.h:5
+#: ../data/language-specs/imagej.lang.h:2
 msgid "ImageJ"
 msgstr "ImageJ"
 
-#: ../data/language-specs/imagej.lang.h:9
-#: ../data/language-specs/octave.lang.h:14
+#: ../data/language-specs/imagej.lang.h:5
+msgid "Commands"
+msgstr "Komandoak"
+
+#: ../data/language-specs/imagej.lang.h:6
+#: ../data/language-specs/octave.lang.h:7
 msgid "Storage Type"
 msgstr "Biltegi-mota"
 
-#: ../data/language-specs/ini.lang.h:1
+#: ../data/language-specs/imagej.lang.h:7
+msgid "Escaped Characters"
+msgstr "Karaktere ihestuak"
+
+#: ../data/language-specs/ini.lang.h:2
 msgid ".ini"
 msgstr ".ini"
 
-#: ../data/language-specs/java.lang.h:4 ../data/language-specs/ooc.lang.h:5
-msgid "Declaration"
-msgstr "Deklarazioa"
-
-#. Translators: refered to some specific keywords of the language that
-#. allow to get external functionalities
-#: ../data/language-specs/java.lang.h:8 ../data/language-specs/ooc.lang.h:8
-msgid "External"
-msgstr "Kanpokoa"
-
-#: ../data/language-specs/java.lang.h:9
-#: ../data/language-specs/javascript.lang.h:6
-#: ../data/language-specs/ooc.lang.h:10
-msgid "Future Reserved Keywords"
-msgstr "Etorkizunerako gordetako gako-hitzak"
-
-#: ../data/language-specs/java.lang.h:10
+#: ../data/language-specs/java.lang.h:2
 msgid "Java"
 msgstr "Java"
 
-#: ../data/language-specs/java.lang.h:14 ../data/language-specs/ooc.lang.h:16
-msgid "Scope Declaration"
-msgstr "Deklarazioaren esparrua"
-
 #: ../data/language-specs/javascript.lang.h:2
-msgid "Constructors"
-msgstr "Eraikitzaileak"
-
-#: ../data/language-specs/javascript.lang.h:7
 msgid "JavaScript"
 msgstr "JavaScript"
+
+#: ../data/language-specs/javascript.lang.h:5
+msgid "Undefined Value"
+msgstr "Definitu gabeko balioa"
 
 #: ../data/language-specs/javascript.lang.h:10
 msgid "Properties"
 msgstr "Propietateak"
 
-#: ../data/language-specs/javascript.lang.h:14
-msgid "Undefined Value"
-msgstr "Definitu gabeko balioa"
+#: ../data/language-specs/javascript.lang.h:11
+msgid "Constructors"
+msgstr "Eraikitzaileak"
 
-#: ../data/language-specs/latex.lang.h:3
-#: ../data/language-specs/texinfo.lang.h:5
-msgid "Include"
-msgstr "Include"
+#: ../data/language-specs/j.lang.h:2
+msgid "J"
+msgstr "J"
 
-#: ../data/language-specs/latex.lang.h:4
-msgid "Inline Math Mode"
-msgstr "Barneko Matematika modua"
+#: ../data/language-specs/j.lang.h:3
+msgid "Adverb"
+msgstr "Aditzondoa"
 
-#: ../data/language-specs/latex.lang.h:5
+#: ../data/language-specs/j.lang.h:5
+msgid "Conjunction"
+msgstr "Juntagailua"
+
+#: ../data/language-specs/j.lang.h:6 ../data/language-specs/perl.lang.h:15
+msgid "Control"
+msgstr "Kontrola"
+
+#: ../data/language-specs/j.lang.h:8
+msgid "Explicit Argument"
+msgstr "Argumentu esplizitua"
+
+#: ../data/language-specs/j.lang.h:9
+msgid "Global"
+msgstr "Globala"
+
+#: ../data/language-specs/j.lang.h:10
+msgid "Lab Text"
+msgstr "Laborategiaren testua"
+
+#: ../data/language-specs/j.lang.h:11
+msgid "Local"
+msgstr "Lokala"
+
+#: ../data/language-specs/j.lang.h:12
+msgid "Noun"
+msgstr "Izena"
+
+#: ../data/language-specs/j.lang.h:13
+msgid "Explicit Noun Definition"
+msgstr "Izenaren definizio esplizitoa"
+
+#: ../data/language-specs/j.lang.h:15
+msgid "Parens"
+msgstr "Gurasoak"
+
+#: ../data/language-specs/j.lang.h:16
+msgid "Primitive"
+msgstr "Primitiba"
+
+#: ../data/language-specs/j.lang.h:18
+msgid "Verb"
+msgstr "Aditza"
+
+#: ../data/language-specs/latex.lang.h:2
 msgid "LaTeX"
 msgstr "LaTeX"
 
-#: ../data/language-specs/latex.lang.h:7
+#: ../data/language-specs/latex.lang.h:4
 msgid "Math Mode"
 msgstr "Matematika modua"
 
-#: ../data/language-specs/latex.lang.h:8 ../data/language-specs/t2t.lang.h:15
-msgid "Verbatim"
-msgstr "Hitzez hitz"
+#: ../data/language-specs/latex.lang.h:5
+msgid "Inline Math Mode"
+msgstr "Barneko Matematika modua"
 
-#: ../data/language-specs/latex.lang.h:9
+#: ../data/language-specs/latex.lang.h:6
 msgid "math-bound"
 msgstr "math-bound"
 
-#: ../data/language-specs/libtool.lang.h:4
+#: ../data/language-specs/latex.lang.h:7
+#: ../data/language-specs/texinfo.lang.h:11
+msgid "Include"
+msgstr "Include"
+
+#: ../data/language-specs/latex.lang.h:9 ../data/language-specs/t2t.lang.h:16
+msgid "Verbatim"
+msgstr "Hitzez hitz"
+
+#: ../data/language-specs/libtool.lang.h:2
 msgid "libtool"
 msgstr "libtool"
 
-#: ../data/language-specs/lua.lang.h:6
+#: ../data/language-specs/lua.lang.h:2
 msgid "Lua"
 msgstr "Lua"
 
-#: ../data/language-specs/lua.lang.h:7 ../data/language-specs/ruby.lang.h:15
-msgid "Nil Constant"
-msgstr "Konstante nulua"
-
-#: ../data/language-specs/lua.lang.h:8
+#: ../data/language-specs/lua.lang.h:7
 msgid "Reserved Identifier"
 msgstr "Identifikatzaile erreserbatua"
 
-#: ../data/language-specs/m4.lang.h:1
-msgid "Autoconf Macro"
-msgstr "Autoconf makroa"
+#: ../data/language-specs/lua.lang.h:9 ../data/language-specs/ruby.lang.h:8
+msgid "Nil Constant"
+msgstr "Konstante nulua"
 
 #: ../data/language-specs/m4.lang.h:2
-msgid "Obsolete Autoconf Macro"
-msgstr "Autoconf makro zaharkitua"
-
-#: ../data/language-specs/m4.lang.h:4
 msgid "m4"
 msgstr "m4"
 
-#: ../data/language-specs/m4.lang.h:5
-msgid "m4 Macro"
-msgstr "m4 makroa"
-
-#: ../data/language-specs/m4.lang.h:6
+#: ../data/language-specs/m4.lang.h:3
 msgid "m4-comment"
 msgstr "m4-iruzkina"
 
-#: ../data/language-specs/makefile.lang.h:1
-msgid "Assignment Left Hand Side"
-msgstr "Esku ezkertiarrentzako esleipena"
+#: ../data/language-specs/m4.lang.h:4
+msgid "m4 Macro"
+msgstr "m4 makroa"
+
+#: ../data/language-specs/m4.lang.h:5
+msgid "Autoconf Macro"
+msgstr "Autoconf makroa"
+
+#: ../data/language-specs/m4.lang.h:6
+msgid "Obsolete Autoconf Macro"
+msgstr "Autoconf makro zaharkitua"
 
 #: ../data/language-specs/makefile.lang.h:2
-msgid "Assignment Right Hand Side"
-msgstr "Esku eskuindarrentzako esleipena"
-
-#: ../data/language-specs/makefile.lang.h:3
 msgid "Makefile"
 msgstr "Makefile"
 
-#. Translators: Trailing Tabs refers to tabulation characters present at
-#. the end of the line
-#: ../data/language-specs/makefile.lang.h:7
-msgid "Trailing Tab"
-msgstr "Amaierako tabulazioak"
+#: ../data/language-specs/makefile.lang.h:4
+msgid "Assignment Right Hand Side"
+msgstr "Esku eskuindarrentzako esleipena"
 
-#: ../data/language-specs/makefile.lang.h:9
+#: ../data/language-specs/makefile.lang.h:5
+msgid "Assignment Left Hand Side"
+msgstr "Esku ezkertiarrentzako esleipena"
+
+#: ../data/language-specs/makefile.lang.h:6
+msgid "targets"
+msgstr "helburuak"
+
+#: ../data/language-specs/makefile.lang.h:7
+msgid "prereq"
+msgstr "aurre-eskakizunak"
+
+#: ../data/language-specs/makefile.lang.h:8
 msgid "command"
 msgstr "komandoa"
 
-#: ../data/language-specs/makefile.lang.h:10
+#. Translators: Trailing Tabs refers to tabulation characters present at
+#. the end of the line
+#: ../data/language-specs/makefile.lang.h:11
+msgid "Trailing Tab"
+msgstr "Amaierako tabulazioak"
+
+#: ../data/language-specs/makefile.lang.h:12
 msgid "function"
 msgstr "funtzioa"
 
 #. FIXME make it better names, and make them translatable
-#: ../data/language-specs/makefile.lang.h:11
+#: ../data/language-specs/makefile.lang.h:13
 #: ../data/language-specs/yacc.lang.h:4
 msgid "keyword"
 msgstr "gako-hitza"
 
-#: ../data/language-specs/makefile.lang.h:12
-msgid "prereq"
-msgstr "aurre-eskakizunak"
-
-#: ../data/language-specs/makefile.lang.h:13
-msgid "targets"
-msgstr "helburuak"
-
-#: ../data/language-specs/mallard.lang.h:1
-msgid "Block Elements"
-msgstr "Blokeko elementuak"
-
 #: ../data/language-specs/mallard.lang.h:2
-msgid "Inline Elements"
-msgstr "Barneko elementuak"
-
-#: ../data/language-specs/mallard.lang.h:3
 msgid "Mallard"
 msgstr "Mallard"
 
-#: ../data/language-specs/mallard.lang.h:5
+#: ../data/language-specs/mallard.lang.h:3
 msgid "Page Elements"
 msgstr "Orrialdeko elementuak"
 
-#: ../data/language-specs/mallard.lang.h:6
+#: ../data/language-specs/mallard.lang.h:4
 msgid "Section Elements"
 msgstr "Ataleko elementuak"
 
+#: ../data/language-specs/mallard.lang.h:5
+msgid "Block Elements"
+msgstr "Blokeko elementuak"
+
+#: ../data/language-specs/mallard.lang.h:6
+msgid "Inline Elements"
+msgstr "Barneko elementuak"
+
 #: ../data/language-specs/markdown.lang.h:2
-msgid "Backslash Escape"
-msgstr "Alderantzizko barradun ihesa"
-
-#: ../data/language-specs/markdown.lang.h:3
-msgid "Blockquote Marker"
-msgstr "Aipu-blokearen markatzailea"
-
-#: ../data/language-specs/markdown.lang.h:4
-msgid "Code"
-msgstr "Kodea"
-
-#: ../data/language-specs/markdown.lang.h:6
-#: ../data/language-specs/rpmspec.lang.h:8 ../data/language-specs/t2t.lang.h:4
-msgid "Header"
-msgstr "Goiburua"
-
-#: ../data/language-specs/markdown.lang.h:7
-msgid "Horizontal Rule"
-msgstr "Marra horizontala"
-
-#: ../data/language-specs/markdown.lang.h:8
-msgid "Image Marker"
-msgstr "Irudien markatzailea"
-
-#: ../data/language-specs/markdown.lang.h:9
-#: ../gtksourceview/gtksourcecompletionitem.c:229
-msgid "Label"
-msgstr "Etiketa"
-
-#: ../data/language-specs/markdown.lang.h:10
-msgid "Line Break"
-msgstr "Lerro-jauzia"
-
-#: ../data/language-specs/markdown.lang.h:11
-msgid "Link Text"
-msgstr "Estekaren testua"
-
-#: ../data/language-specs/markdown.lang.h:12
-msgid "List Marker"
-msgstr "Zerrendaren markatzailea"
-
-#: ../data/language-specs/markdown.lang.h:13
 msgid "Markdown"
 msgstr "Markdown"
 
-#: ../data/language-specs/markdown.lang.h:15
+#: ../data/language-specs/markdown.lang.h:3
+#: ../data/language-specs/rpmspec.lang.h:4 ../data/language-specs/t2t.lang.h:6
+msgid "Header"
+msgstr "Goiburua"
+
+#: ../data/language-specs/markdown.lang.h:4
+msgid "Horizontal Rule"
+msgstr "Marra horizontala"
+
+#: ../data/language-specs/markdown.lang.h:5
+msgid "List Marker"
+msgstr "Zerrendaren markatzailea"
+
+#: ../data/language-specs/markdown.lang.h:6
+msgid "Code"
+msgstr "Kodea"
+
+#: ../data/language-specs/markdown.lang.h:7
+msgid "Blockquote Marker"
+msgstr "Aipu-blokearen markatzailea"
+
+#: ../data/language-specs/markdown.lang.h:9
+msgid "Link Text"
+msgstr "Estekaren testua"
+
+#: ../data/language-specs/markdown.lang.h:10
+#: ../gtksourceview/gtksourcecompletionitem.c:238
+msgid "Label"
+msgstr "Etiketa"
+
+#: ../data/language-specs/markdown.lang.h:12
+msgid "Image Marker"
+msgstr "Irudien markatzailea"
+
+#: ../data/language-specs/markdown.lang.h:14
 msgid "Strong Emphasis"
 msgstr "Enfasi indartsua"
 
-#: ../data/language-specs/matlab.lang.h:3
+#: ../data/language-specs/markdown.lang.h:15
+msgid "Backslash Escape"
+msgstr "Alderantzizko barradun ihesa"
+
+#: ../data/language-specs/markdown.lang.h:16
+msgid "Line Break"
+msgstr "Lerro-jauzia"
+
+#: ../data/language-specs/matlab.lang.h:2
 msgid "Matlab"
 msgstr "Matlab"
 
-#: ../data/language-specs/nemerle.lang.h:11
+#: ../data/language-specs/modelica.lang.h:2
+msgid "Modelica"
+msgstr "Modelica"
+
+#: ../data/language-specs/modelica.lang.h:6
+msgid "Class type"
+msgstr "Klase mota"
+
+#: ../data/language-specs/modelica.lang.h:8
+msgid "Default Attribute"
+msgstr "Atributu lehenetsia"
+
+#: ../data/language-specs/mxml.lang.h:2
+msgid "MXML"
+msgstr "MXML"
+
+#: ../data/language-specs/mxml.lang.h:3 ../data/language-specs/xml.lang.h:7
+msgid "Element name"
+msgstr "Elementuaren izena"
+
+#: ../data/language-specs/mxml.lang.h:4 ../data/language-specs/xml.lang.h:5
+msgid "CDATA delimiter"
+msgstr "CDATA mugatzailea"
+
+#: ../data/language-specs/nemerle.lang.h:2
 msgid "Nemerle"
 msgstr "Nemerle"
+
+#: ../data/language-specs/netrexx.lang.h:2
+msgid "NetRexx"
+msgstr "NetRexx"
+
+#: ../data/language-specs/netrexx.lang.h:7
+msgid "Externals"
+msgstr "Kanpokoak"
+
+#: ../data/language-specs/netrexx.lang.h:8
+msgid "Options"
+msgstr "Aukerak"
+
+#: ../data/language-specs/netrexx.lang.h:9
+msgid "Data Types"
+msgstr "Datu motak"
+
+#: ../data/language-specs/netrexx.lang.h:10
+msgid "Special"
+msgstr "Berezia"
+
+#: ../data/language-specs/netrexx.lang.h:11
+msgid "Visibility"
+msgstr "Ikusgaitasuna"
+
+#: ../data/language-specs/netrexx.lang.h:12
+msgid "Modifiers"
+msgstr "Aldatzaileak"
+
+#: ../data/language-specs/netrexx.lang.h:13
+msgid "Keywords"
+msgstr "Gako-hitzak"
+
+#: ../data/language-specs/netrexx.lang.h:14
+msgid "Sub Keywords"
+msgstr "Azpigako-hitzak"
 
 #: ../data/language-specs/nsis.lang.h:2
 msgid "NSIS"
 msgstr "NSIS"
 
-#: ../data/language-specs/objc.lang.h:4
+#: ../data/language-specs/objc.lang.h:2
 msgid "Objective-C"
 msgstr "Objective-C"
 
-#: ../data/language-specs/objj.lang.h:6
+#: ../data/language-specs/objj.lang.h:2
 msgid "Objective-J"
 msgstr "Objective-J"
 
-#: ../data/language-specs/ocaml.lang.h:13
-msgid "Objective Caml"
-msgstr "Objective Caml"
+#: ../data/language-specs/ocaml.lang.h:2
+msgid "OCaml"
+msgstr "OCaml"
 
-#: ../data/language-specs/ocaml.lang.h:14
+#: ../data/language-specs/ocaml.lang.h:4
 msgid "Ocamldoc Comments"
 msgstr "Ocamldoc iruzkinak"
 
-#: ../data/language-specs/ocaml.lang.h:17
+#: ../data/language-specs/ocaml.lang.h:21
 msgid "Standard Modules"
 msgstr "Modulo estandarrak"
 
-#: ../data/language-specs/ocl.lang.h:4
+#: ../data/language-specs/ocl.lang.h:2
 msgid "OCL"
 msgstr "OCL"
 
-#: ../data/language-specs/ocl.lang.h:5
-msgid "Operation operator"
-msgstr "Eragiketaren eragilea"
-
-#: ../data/language-specs/ocl.lang.h:8
+#: ../data/language-specs/ocl.lang.h:6
 msgid "Type Operators"
 msgstr "Eragile motak"
 
-#: ../data/language-specs/octave.lang.h:9
+#: ../data/language-specs/ocl.lang.h:8
+msgid "Operation operator"
+msgstr "Eragiketaren eragilea"
+
+#: ../data/language-specs/octave.lang.h:2
 msgid "Octave"
 msgstr "Octave"
 
-#: ../data/language-specs/octave.lang.h:11
+#: ../data/language-specs/octave.lang.h:12
 msgid "Package Manager"
 msgstr "Pakete-kudeatzailea"
 
-#: ../data/language-specs/ooc.lang.h:14
+#: ../data/language-specs/ooc.lang.h:2
 msgid "OOC"
 msgstr "OOC"
 
-#: ../data/language-specs/opal.lang.h:7
-msgid "Keysymbol"
-msgstr "Teklaren ikurra"
-
-#: ../data/language-specs/opal.lang.h:9
-#: ../data/language-specs/python.lang.h:12
-#: ../data/language-specs/python3.lang.h:12
-msgid "Module Handler"
-msgstr "Moduluen kudeatzailea"
-
-#: ../data/language-specs/opal.lang.h:10
+#: ../data/language-specs/opal.lang.h:2
 msgid "Opal"
 msgstr "Opal"
 
+#: ../data/language-specs/opal.lang.h:3
+#: ../data/language-specs/python3.lang.h:3
+#: ../data/language-specs/python.lang.h:3
+msgid "Module Handler"
+msgstr "Moduluen kudeatzailea"
+
+#: ../data/language-specs/opal.lang.h:12
+msgid "Keysymbol"
+msgstr "Teklaren ikurra"
+
 #: ../data/language-specs/opencl.lang.h:2
-msgid "Device Cast"
-msgstr "Gailura derrigortzea"
+msgid "OpenCL"
+msgstr "OpenCL"
 
-#: ../data/language-specs/opencl.lang.h:3
-msgid "Device Function"
-msgstr "Gailuaren funtzioa"
-
-#: ../data/language-specs/opencl.lang.h:4
+#: ../data/language-specs/opencl.lang.h:5
 msgid "Global Function"
 msgstr "Funtzio globala"
 
-#: ../data/language-specs/opencl.lang.h:5
-msgid "Global Variable"
-msgstr "Aldagai globala"
+#: ../data/language-specs/opencl.lang.h:6
+msgid "Device Function"
+msgstr "Gailuaren funtzioa"
 
 #: ../data/language-specs/opencl.lang.h:7
-msgid "OpenCL"
-msgstr "OpenCL"
+msgid "Device Cast"
+msgstr "Gailura derrigortzea"
 
 #: ../data/language-specs/opencl.lang.h:8
 msgid "OpenCL Constant"
 msgstr "OpenCL-ren konstantea"
 
-#: ../data/language-specs/pascal.lang.h:5
+#: ../data/language-specs/opencl.lang.h:9
+msgid "Global Variable"
+msgstr "Aldagai globala"
+
+#: ../data/language-specs/pascal.lang.h:2
 msgid "Pascal"
 msgstr "Pascal"
 
-#: ../data/language-specs/perl.lang.h:3
-msgid "Control"
-msgstr "Kontrola"
-
-#: ../data/language-specs/perl.lang.h:5
-msgid "File Descriptor"
-msgstr "Fitxategi-deskriptorea"
-
-#: ../data/language-specs/perl.lang.h:6 ../data/language-specs/php.lang.h:10
-#: ../data/language-specs/ruby.lang.h:11
-msgid "Heredoc"
-msgstr "HemenDokumentua"
-
-#: ../data/language-specs/perl.lang.h:7 ../data/language-specs/php.lang.h:11
-#: ../data/language-specs/ruby.lang.h:12 ../data/language-specs/sh.lang.h:4
-msgid "Heredoc Bound"
-msgstr "HemenDokumentua lotuta"
-
-#: ../data/language-specs/perl.lang.h:8
-msgid "Include Statement"
-msgstr "Txertatzeko sententzia"
-
-#: ../data/language-specs/perl.lang.h:10
-msgid "Line Directive"
-msgstr "Lerroko direktiba"
-
-#: ../data/language-specs/perl.lang.h:12
-msgid "POD"
-msgstr "POD"
-
-#: ../data/language-specs/perl.lang.h:13
-msgid "POD Escape"
-msgstr "POD ihesa"
-
-#: ../data/language-specs/perl.lang.h:14
-msgid "POD heading"
-msgstr "POD goiburua"
-
-#: ../data/language-specs/perl.lang.h:15
-msgid "POD keyword"
-msgstr "POD gako-hitza"
-
-#: ../data/language-specs/perl.lang.h:16
+#: ../data/language-specs/perl.lang.h:2
 msgid "Perl"
 msgstr "Perl"
 
-#: ../data/language-specs/perl.lang.h:20
+#: ../data/language-specs/perl.lang.h:4
+msgid "Line Directive"
+msgstr "Lerroko direktiba"
+
+#: ../data/language-specs/perl.lang.h:5
+msgid "Include Statement"
+msgstr "Txertatzeko sententzia"
+
+#: ../data/language-specs/perl.lang.h:9 ../data/language-specs/php.lang.h:10
+#: ../data/language-specs/ruby.lang.h:23
+msgid "Heredoc"
+msgstr "HemenDokumentua"
+
+#: ../data/language-specs/perl.lang.h:10 ../data/language-specs/php.lang.h:11
+#: ../data/language-specs/ruby.lang.h:24 ../data/language-specs/sh.lang.h:12
+msgid "Heredoc Bound"
+msgstr "HemenDokumentua lotuta"
+
+#: ../data/language-specs/perl.lang.h:11
 msgid "System Command"
 msgstr "Sistemako komandoa"
 
-#: ../data/language-specs/php.lang.h:3
-msgid "Common Function"
-msgstr "Funtzio arrunta"
+#: ../data/language-specs/perl.lang.h:14
+msgid "File Descriptor"
+msgstr "Fitxategi-deskriptorea"
 
-#: ../data/language-specs/php.lang.h:18
+#: ../data/language-specs/perl.lang.h:18
+msgid "POD"
+msgstr "POD"
+
+#: ../data/language-specs/perl.lang.h:19
+msgid "POD Escape"
+msgstr "POD ihesa"
+
+#: ../data/language-specs/perl.lang.h:20
+msgid "POD keyword"
+msgstr "POD gako-hitza"
+
+#: ../data/language-specs/perl.lang.h:21
+msgid "POD heading"
+msgstr "POD goiburua"
+
+#: ../data/language-specs/php.lang.h:2
 msgid "PHP"
 msgstr "PHP"
 
-#: ../data/language-specs/pkgconfig.lang.h:2
-msgid "Package Info"
-msgstr "Paketearen informazioa"
+#: ../data/language-specs/php.lang.h:13
+msgid "Common Function"
+msgstr "Funtzio arrunta"
 
-#: ../data/language-specs/pkgconfig.lang.h:4
+#: ../data/language-specs/pkgconfig.lang.h:2
 msgid "pkg-config"
 msgstr "pkg-config"
 
-#: ../data/language-specs/po.lang.h:2
-msgid "Fuzzy"
-msgstr "Zalantzazkoa"
+#: ../data/language-specs/pkgconfig.lang.h:4
+msgid "Package Info"
+msgstr "Paketearen informazioa"
 
-#: ../data/language-specs/po.lang.h:8
+#: ../data/language-specs/po.lang.h:2
 msgid "gettext translation"
 msgstr "gettext itzulpena"
 
-#: ../data/language-specs/prolog.lang.h:7
+#: ../data/language-specs/po.lang.h:6
+msgid "Fuzzy"
+msgstr "Zalantzazkoa"
+
+#: ../data/language-specs/prolog.lang.h:2
 msgid "Prolog"
 msgstr "Prolog"
 
-#: ../data/language-specs/python.lang.h:5
-#: ../data/language-specs/python3.lang.h:5
-msgid "Builtin Object"
-msgstr "Objektu barneratua"
+#: ../data/language-specs/puppet.lang.h:2
+msgid "Puppet"
+msgstr "Puppet"
 
-#: ../data/language-specs/python.lang.h:10
-#: ../data/language-specs/python3.lang.h:10
-msgid "Format"
-msgstr "Formatua"
+#: ../data/language-specs/puppet.lang.h:3
+msgid "Resources"
+msgstr "Baliabideak"
 
-#: ../data/language-specs/python.lang.h:14
-msgid "Python"
-msgstr "Python"
+#: ../data/language-specs/puppet.lang.h:4
+msgid "Parameters"
+msgstr "Parametroak"
 
-#: ../data/language-specs/python.lang.h:18
-msgid "string-conversion"
-msgstr "kate bihurketa"
+#: ../data/language-specs/puppet.lang.h:5
+msgid "Metaparameters"
+msgstr "Metaparametroak"
 
-#: ../data/language-specs/python3.lang.h:14
+#: ../data/language-specs/puppet.lang.h:6 ../data/language-specs/R.lang.h:11
+msgid "Functions"
+msgstr "Funtzioak"
+
+#: ../data/language-specs/puppet.lang.h:7
+msgid "Values"
+msgstr "Balioak"
+
+#: ../data/language-specs/puppet.lang.h:8
+msgid "Variables"
+msgstr "Aldagaiak"
+
+#: ../data/language-specs/puppet.lang.h:9
+msgid "Class names"
+msgstr "Klaseen izenak"
+
+#: ../data/language-specs/python3.lang.h:2
 msgid "Python 3"
 msgstr "Python 3"
 
-#: ../data/language-specs/R.lang.h:1
-msgid "Assignment Operator"
-msgstr "Esleipen-eragilea"
+#: ../data/language-specs/python3.lang.h:8
+#: ../data/language-specs/python.lang.h:8
+msgid "Format"
+msgstr "Formatua"
 
-#: ../data/language-specs/R.lang.h:3
-msgid "Delimiter"
-msgstr "Mugatzailea"
+#: ../data/language-specs/python3.lang.h:16
+#: ../data/language-specs/python.lang.h:17
+msgid "Builtin Object"
+msgstr "Objektu barneratua"
 
-#: ../data/language-specs/R.lang.h:5 ../data/language-specs/verilog.lang.h:8
-msgid "Integer Number"
-msgstr "Zenbaki osokoa"
+#: ../data/language-specs/python.lang.h:2
+msgid "Python"
+msgstr "Python"
 
-#: ../data/language-specs/R.lang.h:7
+#: ../data/language-specs/python.lang.h:9
+msgid "string-conversion"
+msgstr "kate bihurketa"
+
+#: ../data/language-specs/R.lang.h:2
 msgid "R"
 msgstr "R"
 
-#: ../data/language-specs/R.lang.h:8
+#: ../data/language-specs/R.lang.h:4
 msgid "Reserved Class"
 msgstr "Klase erreserbatua"
 
-#: ../data/language-specs/R.lang.h:10
+#: ../data/language-specs/R.lang.h:5
+msgid "Assignment Operator"
+msgstr "Esleipen-eragilea"
+
+#: ../data/language-specs/R.lang.h:6
+msgid "Delimiter"
+msgstr "Mugatzailea"
+
+#: ../data/language-specs/R.lang.h:7
 msgid "Special Constant"
 msgstr "Konstante berezia"
 
-#: ../data/language-specs/rpmspec.lang.h:1
-msgid "Command Macro"
-msgstr "Komandoaren makroa"
+#: ../data/language-specs/R.lang.h:9 ../data/language-specs/verilog.lang.h:16
+msgid "Integer Number"
+msgstr "Zenbaki osokoa"
 
 #: ../data/language-specs/rpmspec.lang.h:2
-msgid "Conditional Macro"
-msgstr "Baldintzako makroa"
+msgid "RPM spec"
+msgstr "RPM zehaztapenak"
 
-#: ../data/language-specs/rpmspec.lang.h:4
+#: ../data/language-specs/rpmspec.lang.h:3
 msgid "Define"
 msgstr "Definizioa"
 
-#: ../data/language-specs/rpmspec.lang.h:5
+#: ../data/language-specs/rpmspec.lang.h:5 ../data/language-specs/t2t.lang.h:7
+msgid "Section"
+msgstr "Atala"
+
+#: ../data/language-specs/rpmspec.lang.h:6
+msgid "Spec Macro"
+msgstr "Zehaztapenaren makroa"
+
+#: ../data/language-specs/rpmspec.lang.h:7
 msgid "Directory Macro"
 msgstr "Direktorioaren makroa"
 
-#: ../data/language-specs/rpmspec.lang.h:6
-msgid "Email"
-msgstr "Helb.El."
-
-#: ../data/language-specs/rpmspec.lang.h:7
-msgid "Flow Conditional"
-msgstr "Fluxuaren baldintza"
+#: ../data/language-specs/rpmspec.lang.h:8
+msgid "Command Macro"
+msgstr "Komandoaren makroa"
 
 #: ../data/language-specs/rpmspec.lang.h:9
+msgid "Conditional Macro"
+msgstr "Baldintzako makroa"
+
+#: ../data/language-specs/rpmspec.lang.h:10
 msgid "Other Macro"
 msgstr "Bestelako makroa"
 
 #: ../data/language-specs/rpmspec.lang.h:11
+msgid "Flow Conditional"
+msgstr "Fluxuaren baldintza"
+
+#: ../data/language-specs/rpmspec.lang.h:12
 msgid "RPM Variable"
 msgstr "RPM aldagaia"
 
-#: ../data/language-specs/rpmspec.lang.h:12
-msgid "RPM spec"
-msgstr "RPM zehaztapenak"
-
 #: ../data/language-specs/rpmspec.lang.h:13
-#: ../data/language-specs/t2t.lang.h:9
-msgid "Section"
-msgstr "Atala"
-
-#: ../data/language-specs/rpmspec.lang.h:14
-msgid "Spec Macro"
-msgstr "Zehaztapenaren makroa"
-
-#: ../data/language-specs/rpmspec.lang.h:15
 msgid "Switch"
 msgstr "Kommutadorea"
 
-#: ../data/language-specs/ruby.lang.h:1
-msgid "Attribute Definition"
-msgstr "Atributuaren definizioa"
+#: ../data/language-specs/rpmspec.lang.h:15
+msgid "Email"
+msgstr "Helb.El."
 
-#: ../data/language-specs/ruby.lang.h:14
-msgid "Module handler"
-msgstr "Modulu-kudeatzailea"
-
-#: ../data/language-specs/ruby.lang.h:16
-msgid "Numeric literal"
-msgstr "Letrazko zenbakiak"
-
-#: ../data/language-specs/ruby.lang.h:19
+#: ../data/language-specs/ruby.lang.h:2
 msgid "Ruby"
 msgstr "Ruby"
 
-#: ../data/language-specs/scheme.lang.h:5
+#: ../data/language-specs/ruby.lang.h:5
+msgid "Attribute Definition"
+msgstr "Atributuaren definizioa"
+
+#: ../data/language-specs/ruby.lang.h:6
+msgid "Module handler"
+msgstr "Modulu-kudeatzailea"
+
+#: ../data/language-specs/ruby.lang.h:13
+msgid "Numeric literal"
+msgstr "Letrazko zenbakiak"
+
+#: ../data/language-specs/ruby.lang.h:15
+#: ../data/language-specs/sparql.lang.h:10
+msgid "Literal"
+msgstr "Literala"
+
+#: ../data/language-specs/scheme.lang.h:2
 msgid "Scheme"
 msgstr "Eskema"
 
-#: ../data/language-specs/scilab.lang.h:8
+#: ../data/language-specs/scilab.lang.h:2
 msgid "Scilab"
 msgstr "Scilab"
 
 #: ../data/language-specs/sh.lang.h:2
-msgid "Common Commands"
-msgstr "Komando arruntak"
-
-#: ../data/language-specs/sh.lang.h:9
-msgid "Subshell"
-msgstr "'Azpi-shell'a"
-
-#. FIXME: need to sort out proper styles for variables
-#: ../data/language-specs/sh.lang.h:12
-msgid "Variable Definition"
-msgstr "Aldagaiaren definizioa"
-
-#: ../data/language-specs/sh.lang.h:13
 msgid "sh"
 msgstr "sh"
 
-#: ../data/language-specs/sml.lang.h:10
-msgid "Module name, Variant, etc"
-msgstr "Moduluaren izena, aldagaia, e.a."
+#. FIXME: need to sort out proper styles for variables
+#: ../data/language-specs/sh.lang.h:9
+msgid "Variable Definition"
+msgstr "Aldagaiaren definizioa"
 
-#: ../data/language-specs/sml.lang.h:12
+#: ../data/language-specs/sh.lang.h:11
+msgid "Common Commands"
+msgstr "Komando arruntak"
+
+#: ../data/language-specs/sh.lang.h:13
+msgid "Subshell"
+msgstr "'Azpi-shell'a"
+
+#: ../data/language-specs/sml.lang.h:2
 msgid "Standard ML"
 msgstr "ML estandarra"
 
+#: ../data/language-specs/sml.lang.h:13
+msgid "Module name, Variant, etc"
+msgstr "Moduluaren izena, aldagaia, e.a."
+
 #: ../data/language-specs/sparql.lang.h:2
+msgid "SPARQL"
+msgstr "SPARQL"
+
+#: ../data/language-specs/sparql.lang.h:3
 msgid "Class"
 msgstr "Klasea"
-
-#: ../data/language-specs/sparql.lang.h:5
-msgid "IRI"
-msgstr "IRI"
 
 #: ../data/language-specs/sparql.lang.h:6
 msgid "Individual"
 msgstr "Banakakoa"
-
-#: ../data/language-specs/sparql.lang.h:8
-msgid "Literal"
-msgstr "Literala"
 
 #: ../data/language-specs/sparql.lang.h:11
 msgid "Predicate"
@@ -2019,104 +2254,100 @@ msgid "QName"
 msgstr "QName"
 
 #: ../data/language-specs/sparql.lang.h:13
-msgid "SPARQL"
-msgstr "SPARQL"
+msgid "IRI"
+msgstr "IRI"
 
-#: ../data/language-specs/sql.lang.h:7
-msgid "No idea what it is"
-msgstr "Hau zer den? Ideiarik ez!"
-
-#: ../data/language-specs/sql.lang.h:8
+#: ../data/language-specs/sql.lang.h:2
 msgid "SQL"
 msgstr "SQL"
 
-#: ../data/language-specs/systemverilog.lang.h:4
-msgid "System Task"
-msgstr "Sistemako ataza"
+#: ../data/language-specs/sql.lang.h:10
+msgid "No idea what it is"
+msgstr "Hau zer den? Ideiarik ez!"
 
-#: ../data/language-specs/systemverilog.lang.h:5
+#: ../data/language-specs/systemverilog.lang.h:2
 msgid "SystemVerilog"
 msgstr "SystemVerilog"
 
-#: ../data/language-specs/t2t.lang.h:2 ../gtksourceview/gtksourcestyle.c:104
-#: ../gtksourceview/gtksourcestyle.c:105
-msgid "Bold"
-msgstr "Lodia"
+#: ../data/language-specs/t2t.lang.h:2
+msgid "txt2tags"
+msgstr "txt2tags"
 
-#: ../data/language-specs/t2t.lang.h:5 ../gtksourceview/gtksourcestyle.c:112
+#: ../data/language-specs/t2t.lang.h:4
+msgid "Option"
+msgstr "Aukera"
+
+#: ../data/language-specs/t2t.lang.h:5
+msgid "Option Name"
+msgstr "Aukeraren izena"
+
+#: ../data/language-specs/t2t.lang.h:8
+msgid "Section 1"
+msgstr "1. atala"
+
+#: ../data/language-specs/t2t.lang.h:9
+msgid "Section 2"
+msgstr "2. atala"
+
+#: ../data/language-specs/t2t.lang.h:10
+msgid "Section 3"
+msgstr "3. atala"
+
+#: ../data/language-specs/t2t.lang.h:11
+msgid "Section 4"
+msgstr "4. atala"
+
+#: ../data/language-specs/t2t.lang.h:12
+msgid "Section 5"
+msgstr "5. atala"
+
+#: ../data/language-specs/t2t.lang.h:14 ../gtksourceview/gtksourcestyle.c:112
 #: ../gtksourceview/gtksourcestyle.c:113
 msgid "Italic"
 msgstr "Etzana"
 
-#: ../data/language-specs/t2t.lang.h:7
-msgid "Option"
-msgstr "Aukera"
+#: ../data/language-specs/t2t.lang.h:15 ../gtksourceview/gtksourcestyle.c:104
+#: ../gtksourceview/gtksourcestyle.c:105
+msgid "Bold"
+msgstr "Lodia"
 
-#: ../data/language-specs/t2t.lang.h:8
-msgid "Option Name"
-msgstr "Aukeraren izena"
-
-#: ../data/language-specs/t2t.lang.h:10
-msgid "Section 1"
-msgstr "1. atala"
-
-#: ../data/language-specs/t2t.lang.h:11
-msgid "Section 2"
-msgstr "2. atala"
-
-#: ../data/language-specs/t2t.lang.h:12
-msgid "Section 3"
-msgstr "3. atala"
-
-#: ../data/language-specs/t2t.lang.h:13
-msgid "Section 4"
-msgstr "4. atala"
-
-#: ../data/language-specs/t2t.lang.h:14
-msgid "Section 5"
-msgstr "5. atala"
-
-#: ../data/language-specs/t2t.lang.h:16
+#: ../data/language-specs/t2t.lang.h:17
 msgid "Verbatim Block"
 msgstr "Hitzez hitzeko blokea"
 
-#: ../data/language-specs/t2t.lang.h:17
-msgid "txt2tags"
-msgstr "txt2tags"
-
-#: ../data/language-specs/tcl.lang.h:3
+#: ../data/language-specs/tcl.lang.h:2
 msgid "Tcl"
 msgstr "Tcl"
 
-#: ../data/language-specs/texinfo.lang.h:3
-msgid "File Attributes"
-msgstr "Fitxategiaren atributuak"
-
-#: ../data/language-specs/texinfo.lang.h:4
-msgid "Generated Content"
-msgstr "Sortutako edukia"
-
-#: ../data/language-specs/texinfo.lang.h:7
-msgid "Macros"
-msgstr "Makroak"
-
-#: ../data/language-specs/texinfo.lang.h:11
+#: ../data/language-specs/texinfo.lang.h:2
 msgid "Texinfo"
 msgstr "Texinfo"
 
-#: ../data/language-specs/vala.lang.h:9
+#: ../data/language-specs/texinfo.lang.h:8
+msgid "Macros"
+msgstr "Makroak"
+
+#: ../data/language-specs/texinfo.lang.h:9
+msgid "File Attributes"
+msgstr "Fitxategiaren atributuak"
+
+#: ../data/language-specs/texinfo.lang.h:10
+msgid "Generated Content"
+msgstr "Sortutako edukia"
+
+#: ../data/language-specs/vala.lang.h:2
 msgid "Vala"
 msgstr "Vala"
 
-#: ../data/language-specs/vbnet.lang.h:9
+#: ../data/language-specs/vbnet.lang.h:2
 msgid "VB.NET"
 msgstr "VB.NET"
 
-#: ../data/language-specs/verilog.lang.h:6
-msgid "Gate"
-msgstr "Atea"
+#: ../data/language-specs/verilog.lang.h:2
+msgid "Verilog"
+msgstr "Verilog"
 
-#: ../data/language-specs/verilog.lang.h:7
+#: ../data/language-specs/verilog.lang.h:9
 msgid "IEEE System Task"
 msgstr "IEEE sistemaren ataza"
 
@@ -2124,61 +2355,53 @@ msgstr "IEEE sistemaren ataza"
 msgid "LRM Additional System Task"
 msgstr "LRM sistemaren ataza gehigarria"
 
-#: ../data/language-specs/verilog.lang.h:15
-msgid "Verilog"
-msgstr "Verilog"
+#: ../data/language-specs/verilog.lang.h:12
+msgid "Gate"
+msgstr "Atea"
 
-#: ../data/language-specs/vhdl.lang.h:11
+#: ../data/language-specs/vhdl.lang.h:2
 msgid "VHDL"
 msgstr "VHDL"
 
 #: ../data/language-specs/xml.lang.h:2
-msgid "Attribute value"
-msgstr "Atributuaren balioa"
+msgid "XML"
+msgstr "XML"
 
-#: ../data/language-specs/xml.lang.h:3
-msgid "CDATA delimiter"
-msgstr "CDATA mugatzailea"
-
-#: ../data/language-specs/xml.lang.h:5
+#: ../data/language-specs/xml.lang.h:4
 msgid "DOCTYPE"
 msgstr "DOKMOTA"
 
 #: ../data/language-specs/xml.lang.h:6
-msgid "Element name"
-msgstr "Elementuaren izena"
-
-#: ../data/language-specs/xml.lang.h:7
-msgid "Entity"
-msgstr "Entitatea"
-
-#: ../data/language-specs/xml.lang.h:11
 msgid "Processing instruction"
 msgstr "Prozesatzeko instrukzioa"
 
-#: ../data/language-specs/xml.lang.h:13
-msgid "XML"
-msgstr "XML"
+#: ../data/language-specs/xml.lang.h:9
+msgid "Attribute value"
+msgstr "Atributuaren balioa"
 
-#: ../data/language-specs/xslt.lang.h:1
-msgid "Element"
-msgstr "Elementua"
+#: ../data/language-specs/xml.lang.h:10
+msgid "Entity"
+msgstr "Entitatea"
 
-#: ../data/language-specs/xslt.lang.h:4
+#: ../data/language-specs/xslt.lang.h:2
 msgid "XSLT"
 msgstr "XSLT"
+
+#: ../data/language-specs/xslt.lang.h:3
+msgid "Element"
+msgstr "Elementua"
 
 #: ../data/language-specs/yacc.lang.h:2
 msgid "Yacc"
 msgstr "Yacc"
 
 #: ../data/language-specs/yacc.lang.h:5
-msgid "rule"
-msgstr "araua"
-
-#: ../data/language-specs/yacc.lang.h:6
 msgid "token-type"
 msgstr "token mota"
+
+#: ../data/language-specs/yacc.lang.h:6
+msgid "rule"
+msgstr "araua"
 
 #: ../data/styles/classic.xml.h:1
 msgid "Classic"
@@ -2189,305 +2412,313 @@ msgid "Classic color scheme"
 msgstr "Kolore-eskema klasikoa"
 
 #: ../data/styles/cobalt.xml.h:1
-msgid "Blue based color scheme"
-msgstr "Urdinean oinarritutako kolore-eskema"
-
-#: ../data/styles/cobalt.xml.h:2
 msgid "Cobalt"
 msgstr "Kobaltoa"
 
-#: ../data/styles/kate.xml.h:1
-msgid "Color scheme used in the Kate text editor"
-msgstr "Erabilitako kolore-eskema Kate testu-editorean"
+#: ../data/styles/cobalt.xml.h:2
+msgid "Blue based color scheme"
+msgstr "Urdinean oinarritutako kolore-eskema"
 
-#: ../data/styles/kate.xml.h:2
+#: ../data/styles/kate.xml.h:1
 msgid "Kate"
 msgstr "Kate"
 
-#: ../data/styles/oblivion.xml.h:1
-msgid "Dark color scheme using the Tango color palette"
-msgstr "Tango kolore-paleta darabilen kolore-eskema iluna"
+#: ../data/styles/kate.xml.h:2
+msgid "Color scheme used in the Kate text editor"
+msgstr "Erabilitako kolore-eskema Kate testu-editorean"
 
-#: ../data/styles/oblivion.xml.h:2
+#: ../data/styles/oblivion.xml.h:1
 msgid "Oblivion"
 msgstr "Oblivion"
 
-#: ../data/styles/tango.xml.h:1
-msgid "Color scheme using Tango color palette"
-msgstr "Tango kolore-paleta darabilen kolore-eskema"
+#: ../data/styles/oblivion.xml.h:2
+msgid "Dark color scheme using the Tango color palette"
+msgstr "Tango kolore-paleta darabilen kolore-eskema iluna"
 
-#: ../data/styles/tango.xml.h:2
+#: ../data/styles/tango.xml.h:1
 msgid "Tango"
 msgstr "Tango"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:371
+#: ../data/styles/tango.xml.h:2
+msgid "Color scheme using Tango color palette"
+msgstr "Tango kolore-paleta darabilen kolore-eskema"
+
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:381
 msgid "Document Words"
 msgstr "Dokumentuko hitzak"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:456
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:466
 msgid "The provider name"
 msgstr "Hornitzailearen izena"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:463
-#: ../gtksourceview/gtksourcecompletionitem.c:268
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:473
+#: ../gtksourceview/gtksourcecompletionitem.c:277
 msgid "Icon"
 msgstr "Ikonoa"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:464
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:474
 msgid "The provider icon"
 msgstr "Hornitzailearen ikonoa"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:471
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:481
 msgid "Proposals Batch Size"
 msgstr "Proposameneko batch-aren tamaina"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:472
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:482
 msgid "Number of proposals added in one batch"
 msgstr "Batch bati gehitutako proposamen kopurua"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:481
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:491
 msgid "Scan Batch Size"
 msgstr "Batch-a eskaneatzeko tamaina"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:482
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:492
 msgid "Number of lines scanned in one batch"
 msgstr "Batch batean eskaneatutako lerro kopurua"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:491
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:501
 msgid "Minimum Word Size"
 msgstr "Hitzaren gutxieneko tamaina"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:492
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:502
 msgid "The minimum word size to complete"
 msgstr "Hitzaren gutxieneko tamaina osaketarako"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:501
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:511
 msgid "Interactive Delay"
 msgstr "Atzerapen elkarreragilea"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:502
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:512
 msgid "The delay before initiating interactive completion"
 msgstr "Osaketa elkarreragilea hasi aurreko atzerapena"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:511
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:521
 msgid "Priority"
 msgstr "Lehentasuna"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:512
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:522
 msgid "Provider priority"
 msgstr "Hornitzailearen lehentasuna"
 
-#: ../gtksourceview/gtksourcebuffer.c:234
-#: ../gtksourceview/gtksourceprintcompositor.c:502
+#: ../gtksourceview/gtksourcebuffer.c:237
+#: ../gtksourceview/gtksourceprintcompositor.c:504
 msgid "Highlight Syntax"
 msgstr "Nabarmendu sintaxia"
 
-#: ../gtksourceview/gtksourcebuffer.c:235
+#: ../gtksourceview/gtksourcebuffer.c:238
 msgid "Whether to highlight syntax in the buffer"
 msgstr "Bufferreko sintaxia nabarmenduko den ala ez"
 
-#: ../gtksourceview/gtksourcebuffer.c:248
+#: ../gtksourceview/gtksourcebuffer.c:251
 msgid "Highlight Matching Brackets"
 msgstr "Nabarmendu kortxete bikoteak"
 
-#: ../gtksourceview/gtksourcebuffer.c:249
+#: ../gtksourceview/gtksourcebuffer.c:252
 msgid "Whether to highlight matching brackets"
 msgstr "Kortxete bikoteak nabarmenduko diren ala ez"
 
-#: ../gtksourceview/gtksourcebuffer.c:262
-#: ../gtksourceview/gtksourceundomanagerdefault.c:418
+#: ../gtksourceview/gtksourcebuffer.c:265
+#: ../gtksourceview/gtksourceundomanagerdefault.c:413
 msgid "Maximum Undo Levels"
 msgstr "Gehienezko desegite maila"
 
-#: ../gtksourceview/gtksourcebuffer.c:263
-#: ../gtksourceview/gtksourceundomanagerdefault.c:419
+#: ../gtksourceview/gtksourcebuffer.c:266
+#: ../gtksourceview/gtksourceundomanagerdefault.c:414
 msgid "Number of undo levels for the buffer"
 msgstr "Bufferrean egin daitezken desegite mailaren kopurua"
 
 #. Translators: throughout GtkSourceView "language" stands
 #. * for "programming language", not "spoken language"
-#: ../gtksourceview/gtksourcebuffer.c:275
+#: ../gtksourceview/gtksourcebuffer.c:278
 msgid "Language"
 msgstr "Hizkuntza"
 
-#: ../gtksourceview/gtksourcebuffer.c:276
+#: ../gtksourceview/gtksourcebuffer.c:279
 msgid "Language object to get highlighting patterns from"
 msgstr "Hizkuntz-objektuak, nabarmendutako ereduak lortzeko"
 
-#: ../gtksourceview/gtksourcebuffer.c:284
+#: ../gtksourceview/gtksourcebuffer.c:287
 msgid "Can undo"
 msgstr "Desegin daiteke"
 
-#: ../gtksourceview/gtksourcebuffer.c:285
+#: ../gtksourceview/gtksourcebuffer.c:288
 msgid "Whether Undo operation is possible"
 msgstr "Desegitea posible den ala ez"
 
-#: ../gtksourceview/gtksourcebuffer.c:292
+#: ../gtksourceview/gtksourcebuffer.c:295
 msgid "Can redo"
 msgstr "Berregin daiteke"
 
-#: ../gtksourceview/gtksourcebuffer.c:293
+#: ../gtksourceview/gtksourcebuffer.c:296
 msgid "Whether Redo operation is possible"
 msgstr "Berregitea posible den ala ez"
 
-#: ../gtksourceview/gtksourcebuffer.c:307
-#: ../gtksourceview/gtksourcebuffer.c:308
+#: ../gtksourceview/gtksourcebuffer.c:310
+#: ../gtksourceview/gtksourcebuffer.c:311
 msgid "Style scheme"
 msgstr "Estilo-eskema"
 
-#: ../gtksourceview/gtksourcebuffer.c:315
+#: ../gtksourceview/gtksourcebuffer.c:318
 msgid "Undo manager"
 msgstr "Desegite-kudeatzailea"
 
-#: ../gtksourceview/gtksourcebuffer.c:316
+#: ../gtksourceview/gtksourcebuffer.c:319
 msgid "The buffer undo manager"
 msgstr "Desegitearen bufferraren kudeatzailea"
 
-#: ../gtksourceview/gtksourcecompletion.c:935
-#: ../gtksourceview/gtksourcecompletion.c:958
+#: ../gtksourceview/gtksourcecompletion.c:923
+#: ../gtksourceview/gtksourcecompletion.c:954
 msgid "No extra information available"
 msgstr "Ez dago beste informaziorik erabilgarri"
 
-#: ../gtksourceview/gtksourcecompletion.c:2224
-#: ../gtksourceview/gtksourcegutter.c:547
+#: ../gtksourceview/gtksourcecompletion.c:1801
+#: ../gtksourceview/gtksourcegutter.c:548
 msgid "View"
 msgstr "Ikusi"
 
-#: ../gtksourceview/gtksourcecompletion.c:2225
+#: ../gtksourceview/gtksourcecompletion.c:1802
 msgid "The GtkSourceView bound to the completion"
 msgstr "GtkSourceView osaketara lotuta"
 
-#: ../gtksourceview/gtksourcecompletion.c:2240
+#: ../gtksourceview/gtksourcecompletion.c:1816
 msgid "Remember Info Visibility"
 msgstr "Gogoratu informazioaren ikusgaitasuna"
 
-#: ../gtksourceview/gtksourcecompletion.c:2241
+#: ../gtksourceview/gtksourcecompletion.c:1817
 msgid "Remember the last info window visibility state"
 msgstr "Gogoratu informazioaren leihoaren ikusgaitasunaren azken egoera"
 
-#: ../gtksourceview/gtksourcecompletion.c:2254
+#: ../gtksourceview/gtksourcecompletion.c:1829
 msgid "Select on Show"
 msgstr "Hautatu erakustean"
 
-#: ../gtksourceview/gtksourcecompletion.c:2255
+#: ../gtksourceview/gtksourcecompletion.c:1830
 msgid "Select first proposal when completion is shown"
 msgstr "Hautatu aurreneko proposamena osaketa erakustean"
 
-#: ../gtksourceview/gtksourcecompletion.c:2269
+#: ../gtksourceview/gtksourcecompletion.c:1843
 msgid "Show Headers"
 msgstr "Erakutsi goiburukoak"
 
-#: ../gtksourceview/gtksourcecompletion.c:2270
+#: ../gtksourceview/gtksourcecompletion.c:1844
 msgid ""
 "Show provider headers when proposals from multiple providers are available"
 msgstr ""
 "Erakutsi hornitzailearen goiburukoak hainbat hornitzailetik proposamenak "
 "erabilgarri daudenean"
 
-#: ../gtksourceview/gtksourcecompletion.c:2284
+#: ../gtksourceview/gtksourcecompletion.c:1857
 msgid "Show Icons"
 msgstr "Erakutsi ikonoak"
 
-#: ../gtksourceview/gtksourcecompletion.c:2285
+#: ../gtksourceview/gtksourcecompletion.c:1858
 msgid "Show provider and proposal icons in the completion popup"
 msgstr "Erakutsi hornitzaile eta proposamenen ikonoak osaketako laster-menuan"
 
-#: ../gtksourceview/gtksourcecompletion.c:2298
+#: ../gtksourceview/gtksourcecompletion.c:1872
 msgid "Accelerators"
 msgstr "Bizkortzaileak"
 
-#: ../gtksourceview/gtksourcecompletion.c:2299
+#: ../gtksourceview/gtksourcecompletion.c:1873
 msgid "Number of proposal accelerators to show"
 msgstr "Proposamenen bizkortzaile kopurua erakusteko"
 
-#: ../gtksourceview/gtksourcecompletion.c:2315
+#: ../gtksourceview/gtksourcecompletion.c:1888
 msgid "Auto Complete Delay"
 msgstr "Auto-osaketaren atzerapena"
 
-#: ../gtksourceview/gtksourcecompletion.c:2316
+#: ../gtksourceview/gtksourcecompletion.c:1889
 msgid "Completion popup delay for interactive completion"
 msgstr "Osaketaren laster-menuaren atzerapena osaketa elkarreragilean"
 
-#: ../gtksourceview/gtksourcecompletion.c:2331
+#: ../gtksourceview/gtksourcecompletion.c:1905
 msgid "Provider Page Size"
 msgstr "Hornitzailearen orrialde-tamaina"
 
-#: ../gtksourceview/gtksourcecompletion.c:2332
+#: ../gtksourceview/gtksourcecompletion.c:1906
 msgid "Provider scrolling page size"
 msgstr "Hornitzailearen orrialdearen korritze-tamaina"
 
-#: ../gtksourceview/gtksourcecompletion.c:2347
+#: ../gtksourceview/gtksourcecompletion.c:1926
 msgid "Proposal Page Size"
 msgstr "Proposamenaren orrialde-tamaina"
 
-#: ../gtksourceview/gtksourcecompletion.c:2348
+#: ../gtksourceview/gtksourcecompletion.c:1927
 msgid "Proposal scrolling page size"
 msgstr "Proposamenaren orrialdearen korritze-tamaina"
 
-#: ../gtksourceview/gtksourcecompletion.c:2693
-msgid "Provider"
-msgstr "Hornitzailea"
-
-#: ../gtksourceview/gtksourcecompletioncontext.c:233
-#: ../gtksourceview/gtksourceview.c:306
+#: ../gtksourceview/gtksourcecompletioncontext.c:255
+#: ../gtksourceview/gtksourceview.c:310
 msgid "Completion"
 msgstr "Osaketa"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:234
+#: ../gtksourceview/gtksourcecompletioncontext.c:256
 msgid "The completion object to which the context belongs"
 msgstr "Testuingurua dagokion osaketaren objektua"
 
 #. Translators: The GtkTextIter at which the completion was invoked
-#: ../gtksourceview/gtksourcecompletioncontext.c:247
+#: ../gtksourceview/gtksourcecompletioncontext.c:269
 msgid "Iterator"
 msgstr "Iteratzailea"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:248
+#: ../gtksourceview/gtksourcecompletioncontext.c:270
 msgid "The GtkTextIter at which the completion was invoked"
 msgstr "Osaketa deitu den GtkTextIter objektua"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:260
+#: ../gtksourceview/gtksourcecompletioncontext.c:282
 msgid "Activation"
 msgstr "Aktibazioa"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:261
+#: ../gtksourceview/gtksourcecompletioncontext.c:283
 msgid "The type of activation"
 msgstr "Aktibazio mota"
 
 #. Tooltip style
-#: ../gtksourceview/gtksourcecompletioninfo.c:61
+#: ../gtksourceview/gtksourcecompletioninfo.c:193
 msgid "Completion Info"
 msgstr "Osaketaren informazioa"
 
-#: ../gtksourceview/gtksourcecompletionitem.c:230
+#: ../gtksourceview/gtksourcecompletionitem.c:239
 msgid "Label to be shown for this item"
 msgstr "Etiketa elementu honetan erakusteko"
 
-#: ../gtksourceview/gtksourcecompletionitem.c:243
+#: ../gtksourceview/gtksourcecompletionitem.c:252
 msgid "Markup to be shown for this item"
 msgstr "Marka elementu honetan erakusteko"
 
-#: ../gtksourceview/gtksourcecompletionitem.c:256
+#: ../gtksourceview/gtksourcecompletionitem.c:265
 msgid "Item text"
 msgstr "Elementuaren testua"
 
-#: ../gtksourceview/gtksourcecompletionitem.c:269
+#: ../gtksourceview/gtksourcecompletionitem.c:278
 msgid "Icon to be shown for this item"
 msgstr "Ikonoa elementu honetan erakusteko"
 
-#: ../gtksourceview/gtksourcecompletionitem.c:281
+#: ../gtksourceview/gtksourcecompletionitem.c:290
 msgid "Info"
 msgstr "Informazioa"
 
-#: ../gtksourceview/gtksourcecompletionitem.c:282
+#: ../gtksourceview/gtksourcecompletionitem.c:291
 msgid "Info to be shown for this item"
 msgstr "Informazioa elementu honetan erakusteko"
+
+#: ../gtksourceview/gtksourcecompletionmodel.c:466
+msgid "Provider"
+msgstr "Hornitzailea"
+
+#: ../gtksourceview/gtksourcecompletion.ui.h:1
+msgid "Show detailed proposal information"
+msgstr "Erakutsi proposamenen informazio xehea"
+
+#: ../gtksourceview/gtksourcecompletion.ui.h:2
+msgid "_Details..."
+msgstr "_Xehetasunak..."
 
 #. regex_new could fail, for instance if there are different
 #. * named sub-patterns with the same name or if resulting regex is
 #. * too long. In this case fixing lang file helps (e.g. renaming
 #. * subpatterns, making huge keywords use bigger prefixes, etc.)
-#: ../gtksourceview/gtksourcecontextengine.c:3171
+#: ../gtksourceview/gtksourcecontextengine.c:3122
 #, c-format
 msgid ""
 "Cannot create a regex for all the transitions, the syntax highlighting "
@@ -2498,7 +2729,7 @@ msgstr ""
 "nabarmentzeko prozesua ohizkoa baino motelagoa izango da.\n"
 "Errorea: %s"
 
-#: ../gtksourceview/gtksourcecontextengine.c:4509
+#: ../gtksourceview/gtksourcecontextengine.c:4445
 msgid ""
 "Highlighting a single line took too much time, syntax highlighting will be "
 "disabled"
@@ -2506,19 +2737,19 @@ msgstr ""
 "Lerro bakarra nabarmentzeak denbora asko hartu du, sintaxia nabarmentzea "
 "desgaitu egingo da"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5762
+#: ../gtksourceview/gtksourcecontextengine.c:5689
 #, c-format
 msgid "context '%s' cannot contain a \\%%{...@start} command"
 msgstr "'%s' testuinguruak ezin du \\%%{...@start} komandorik eduki"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5923
-#: ../gtksourceview/gtksourcecontextengine.c:6012
+#: ../gtksourceview/gtksourcecontextengine.c:5850
+#: ../gtksourceview/gtksourcecontextengine.c:5939
 #, c-format
 msgid "duplicated context id '%s'"
 msgstr "testuinguruko '%s' id-a bikoiztuta"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6127
-#: ../gtksourceview/gtksourcecontextengine.c:6187
+#: ../gtksourceview/gtksourcecontextengine.c:6053
+#: ../gtksourceview/gtksourcecontextengine.c:6113
 #, c-format
 msgid ""
 "style override used with wildcard context reference in language '%s' in ref "
@@ -2527,136 +2758,136 @@ msgstr ""
 "estiloa gainjartzea testuinguruko erreferentziako komodinarekin erabilita "
 "'%s' hizkuntzako '%s' erreferentzian"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6201
+#: ../gtksourceview/gtksourcecontextengine.c:6127
 #, c-format
 msgid "invalid context reference '%s'"
 msgstr "baliogabeko testuinguruko '%s' erreferentzia"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6220
-#: ../gtksourceview/gtksourcecontextengine.c:6230
+#: ../gtksourceview/gtksourcecontextengine.c:6146
+#: ../gtksourceview/gtksourcecontextengine.c:6156
 #, c-format
 msgid "unknown context '%s'"
 msgstr "'%s' testuinguru ezezaguna"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6330
+#: ../gtksourceview/gtksourcecontextengine.c:6255
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "Hizkuntza nagusiaren definizioa falta da (id=\"%s\")"
 
-#: ../gtksourceview/gtksourcegutter.c:548
+#: ../gtksourceview/gtksourcegutter.c:549
 msgid "The gutters' GtkSourceView"
 msgstr "Erretenaren GtkSourceView"
 
-#: ../gtksourceview/gtksourcegutter.c:560
-#: ../gtksourceview/gtksourcegutterrenderer.c:703
+#: ../gtksourceview/gtksourcegutter.c:561
+#: ../gtksourceview/gtksourcegutterrenderer.c:723
 msgid "Window Type"
 msgstr "Leiho mota"
 
-#: ../gtksourceview/gtksourcegutter.c:561
+#: ../gtksourceview/gtksourcegutter.c:562
 msgid "The gutters text window type"
 msgstr "Erreteneko testuaren leiho mota"
 
-#: ../gtksourceview/gtksourcegutter.c:572
-#: ../gtksourceview/gtksourcegutterrenderer.c:479
+#: ../gtksourceview/gtksourcegutter.c:573
+#: ../gtksourceview/gtksourcegutterrenderer.c:500
 msgid "X Padding"
 msgstr "X betegarria"
 
-#: ../gtksourceview/gtksourcegutter.c:573
-#: ../gtksourceview/gtksourcegutterrenderer.c:480
+#: ../gtksourceview/gtksourcegutter.c:574
+#: ../gtksourceview/gtksourcegutterrenderer.c:501
 msgid "The x-padding"
 msgstr "X ardatzeko betegarria"
 
-#: ../gtksourceview/gtksourcegutter.c:583
-#: ../gtksourceview/gtksourcegutterrenderer.c:495
+#: ../gtksourceview/gtksourcegutter.c:584
+#: ../gtksourceview/gtksourcegutterrenderer.c:516
 msgid "Y Padding"
 msgstr "Y betegarria"
 
-#: ../gtksourceview/gtksourcegutter.c:584
-#: ../gtksourceview/gtksourcegutterrenderer.c:496
+#: ../gtksourceview/gtksourcegutter.c:585
+#: ../gtksourceview/gtksourcegutterrenderer.c:517
 msgid "The y-padding"
 msgstr "Y ardatzeko betegarria"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:465
-#: ../gtksourceview/gtksourcegutterrenderer.c:466
+#: ../gtksourceview/gtksourcegutterrenderer.c:486
+#: ../gtksourceview/gtksourcegutterrenderer.c:487
 msgid "Visible"
 msgstr "Ikusgai"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:511
+#: ../gtksourceview/gtksourcegutterrenderer.c:532
 msgid "X Alignment"
 msgstr "X lerrokadura"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:512
+#: ../gtksourceview/gtksourcegutterrenderer.c:533
 msgid "The x-alignment"
 msgstr "X ardatzean lerrokatzea"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:527
+#: ../gtksourceview/gtksourcegutterrenderer.c:548
 msgid "Y Alignment"
 msgstr "Y lerrokadura"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:528
+#: ../gtksourceview/gtksourcegutterrenderer.c:549
 msgid "The y-alignment"
 msgstr "Y ardatzean lerrokatzea"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:670
+#: ../gtksourceview/gtksourcegutterrenderer.c:690
 msgid "The View"
 msgstr "Ikuspegia"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:671
+#: ../gtksourceview/gtksourcegutterrenderer.c:691
 msgid "The view"
 msgstr "Ikuspegia"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:687
+#: ../gtksourceview/gtksourcegutterrenderer.c:707
 msgid "Alignment Mode"
 msgstr "Lerrokatze modua"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:688
+#: ../gtksourceview/gtksourcegutterrenderer.c:708
 msgid "The alignment mode"
 msgstr "Lerrokatze modua"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:704
+#: ../gtksourceview/gtksourcegutterrenderer.c:724
 msgid "The window type"
 msgstr "Leiho mota"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:712
+#: ../gtksourceview/gtksourcegutterrenderer.c:732
 msgid "Size"
 msgstr "Tamaina"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:713
+#: ../gtksourceview/gtksourcegutterrenderer.c:733
 msgid "The size"
 msgstr "Tamaina"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:293
-#: ../gtksourceview/gtksourcemarkattributes.c:316
+#: ../gtksourceview/gtksourcemarkattributes.c:318
 msgid "Pixbuf"
 msgstr "Pixbuf"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:294
-#: ../gtksourceview/gtksourcemarkattributes.c:317
+#: ../gtksourceview/gtksourcemarkattributes.c:319
 msgid "The pixbuf"
 msgstr "Pixelen bufferra"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:301
-#: ../gtksourceview/gtksourcemarkattributes.c:303
+#: ../gtksourceview/gtksourcemarkattributes.c:305
 msgid "Stock Id"
 msgstr "Bildumaren IDa"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:302
-#: ../gtksourceview/gtksourcemarkattributes.c:304
+#: ../gtksourceview/gtksourcemarkattributes.c:306
 msgid "The stock id"
 msgstr "Bildumaren identifikatzailea"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:309
-#: ../gtksourceview/gtksourcemarkattributes.c:329
+#: ../gtksourceview/gtksourcemarkattributes.c:331
 msgid "Icon Name"
 msgstr "Ikonoaren izena"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:310
-#: ../gtksourceview/gtksourcemarkattributes.c:330
+#: ../gtksourceview/gtksourcemarkattributes.c:332
 msgid "The icon name"
 msgstr "Ikonoaren izena"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:317
-#: ../gtksourceview/gtksourcemarkattributes.c:342
+#: ../gtksourceview/gtksourcemarkattributes.c:344
 msgid "GIcon"
 msgstr "GIcon"
 
@@ -2725,16 +2956,16 @@ msgstr "'%s' ID ezezaguna '%s' adi. erregularrean"
 msgid "in regex '%s': backreferences are not supported"
 msgstr "'%s' adi. erregularrean: atzerako erreferentziak ez daude onartuta"
 
-#: ../gtksourceview/gtksourcemarkattributes.c:290
+#: ../gtksourceview/gtksourcemarkattributes.c:292
 #: ../gtksourceview/gtksourcestyle.c:88
 msgid "Background"
 msgstr "Atzeko planoa"
 
-#: ../gtksourceview/gtksourcemarkattributes.c:291
+#: ../gtksourceview/gtksourcemarkattributes.c:293
 msgid "The background"
 msgstr "Atzeko planoa"
 
-#: ../gtksourceview/gtksourcemarkattributes.c:343
+#: ../gtksourceview/gtksourcemarkattributes.c:345
 msgid "The GIcon"
 msgstr "GIcon"
 
@@ -2746,102 +2977,102 @@ msgstr "kategoria"
 msgid "The mark category"
 msgstr "Kategoriaren marka"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:442
+#: ../gtksourceview/gtksourceprintcompositor.c:444
 msgid "Source Buffer"
 msgstr "Iturburuko bufferra"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:443
+#: ../gtksourceview/gtksourceprintcompositor.c:445
 msgid "The GtkSourceBuffer object to print"
 msgstr "GtkSourceBuffer objektua inprimatzeko"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:460
-#: ../gtksourceview/gtksourceview.c:344
+#: ../gtksourceview/gtksourceprintcompositor.c:462
+#: ../gtksourceview/gtksourceview.c:348
 msgid "Tab Width"
 msgstr "Tabuladorearen zabalera"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:461
-#: ../gtksourceview/gtksourceview.c:345
+#: ../gtksourceview/gtksourceprintcompositor.c:463
+#: ../gtksourceview/gtksourceview.c:349
 msgid "Width of a tab character expressed in spaces"
 msgstr "Tabuladorearen karaktereen zabalera (zuriunetan)"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:481
+#: ../gtksourceview/gtksourceprintcompositor.c:483
 msgid "Wrap Mode"
 msgstr "Itzulbiratze-modua"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:482
+#: ../gtksourceview/gtksourceprintcompositor.c:484
 msgid ""
 "Whether to wrap lines never, at word boundaries, or at character boundaries."
 msgstr ""
 "Lerroak inoiz ez itzulbiratu, hitzen mugei edo karaktereen mugei itzulbiratu "
 "behar den adierazten du."
 
-#: ../gtksourceview/gtksourceprintcompositor.c:503
+#: ../gtksourceview/gtksourceprintcompositor.c:505
 msgid "Whether to print the document with highlighted syntax"
 msgstr "Nabarmendutako sintaxiarekin dokumentua inprimatuko den ala ez"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:524
+#: ../gtksourceview/gtksourceprintcompositor.c:526
 msgid "Print Line Numbers"
 msgstr "Inprimatu lerro-zenbakiak"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:525
+#: ../gtksourceview/gtksourceprintcompositor.c:527
 msgid "Interval of printed line numbers (0 means no numbers)"
 msgstr "Lerro-zenbakiak inprimatzeko bitartea (0 zenbakirik ez)"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:547
+#: ../gtksourceview/gtksourceprintcompositor.c:549
 msgid "Print Header"
 msgstr "Inprimatu goiburua"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:548
+#: ../gtksourceview/gtksourceprintcompositor.c:550
 msgid "Whether to print a header in each page"
 msgstr "Orrialde bakoitzean goiburua inprimatuko den ala ez"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:570
+#: ../gtksourceview/gtksourceprintcompositor.c:572
 msgid "Print Footer"
 msgstr "Inprimatu orri-oina"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:571
+#: ../gtksourceview/gtksourceprintcompositor.c:573
 msgid "Whether to print a footer in each page"
 msgstr "Orrialde bakoitzean orri-oina inprimatuko den ala ez"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:593
+#: ../gtksourceview/gtksourceprintcompositor.c:595
 msgid "Body Font Name"
 msgstr "Gorputzaren letra-tipoa"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:594
+#: ../gtksourceview/gtksourceprintcompositor.c:596
 msgid "Name of the font to use for the text body (e.g. \"Monospace 10\")"
 msgstr "Gorputzaren testuan erabiliko den letra-tipoa (adib: \"Monospace 10\")"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:617
+#: ../gtksourceview/gtksourceprintcompositor.c:619
 msgid "Line Numbers Font Name"
 msgstr "Lerro-zenbakien letra-tipoa"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:618
+#: ../gtksourceview/gtksourceprintcompositor.c:620
 msgid "Name of the font to use for the line numbers (e.g. \"Monospace 10\")"
 msgstr "Lerro-zenbakietan erabiliko den letra-tipoa (adib: \"Monospace 10\")"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:641
+#: ../gtksourceview/gtksourceprintcompositor.c:643
 msgid "Header Font Name"
 msgstr "Goiburuaren letra-tipoa"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:642
+#: ../gtksourceview/gtksourceprintcompositor.c:644
 msgid "Name of the font to use for the page header (e.g. \"Monospace 10\")"
 msgstr ""
 "Orrialdeko goiburuan erabiliko den letra-tipoa (adib: \"Monospace 10\")"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:665
+#: ../gtksourceview/gtksourceprintcompositor.c:667
 msgid "Footer Font Name"
 msgstr "Orri-oinaren letra-tipoa"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:666
+#: ../gtksourceview/gtksourceprintcompositor.c:668
 msgid "Name of the font to use for the page footer (e.g. \"Monospace 10\")"
 msgstr ""
 "Orrialdeko orri-oinean erabiliko den letra-tipoa (adib: \"Monospace 10\")"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:682
+#: ../gtksourceview/gtksourceprintcompositor.c:684
 msgid "Number of pages"
 msgstr "Orrialde-kopurua"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:683
+#: ../gtksourceview/gtksourceprintcompositor.c:685
 msgid ""
 "The number of pages in the document (-1 means the document has not been "
 "completely paginated)."
@@ -2973,79 +3204,79 @@ msgstr "Eskemen IDak"
 msgid "List of the ids of the available style schemes"
 msgstr "Estilo-eskema erabilgarrien IDen zerrenda"
 
-#: ../gtksourceview/gtksourceundomanagerdefault.c:410
+#: ../gtksourceview/gtksourceundomanagerdefault.c:405
 msgid "Buffer"
 msgstr "Bufferra"
 
-#: ../gtksourceview/gtksourceundomanagerdefault.c:411
+#: ../gtksourceview/gtksourceundomanagerdefault.c:406
 msgid "The text buffer to add undo support on"
 msgstr "Testuaren bufferra 'desegin' euskarria gehitzeko"
 
-#: ../gtksourceview/gtksourceview.c:307
+#: ../gtksourceview/gtksourceview.c:311
 msgid "The completion object associated with the view"
 msgstr "Ikuspegiarekin esleitutako osaketaren objektua"
 
-#: ../gtksourceview/gtksourceview.c:319
+#: ../gtksourceview/gtksourceview.c:323
 msgid "Show Line Numbers"
 msgstr "Erakutsi lerro-zenbakiak"
 
-#: ../gtksourceview/gtksourceview.c:320
+#: ../gtksourceview/gtksourceview.c:324
 msgid "Whether to display line numbers"
 msgstr "Lerro-zenbakiak bistaratuko diren ala ez"
 
-#: ../gtksourceview/gtksourceview.c:331
+#: ../gtksourceview/gtksourceview.c:335
 msgid "Show Line Marks"
 msgstr "Erakutsi lerro-markak"
 
-#: ../gtksourceview/gtksourceview.c:332
+#: ../gtksourceview/gtksourceview.c:336
 msgid "Whether to display line mark pixbufs"
 msgstr "Lerroen pixel-bufferren markak erakutsiko diren ala ez"
 
-#: ../gtksourceview/gtksourceview.c:359
+#: ../gtksourceview/gtksourceview.c:363
 msgid "Indent Width"
 msgstr "Koskaren zabalera"
 
-#: ../gtksourceview/gtksourceview.c:360
+#: ../gtksourceview/gtksourceview.c:364
 msgid "Number of spaces to use for each step of indent"
 msgstr "Koska bakoitzak erabiliko duen zuriune-kopurua"
 
-#: ../gtksourceview/gtksourceview.c:369
+#: ../gtksourceview/gtksourceview.c:373
 msgid "Auto Indentation"
 msgstr "Auto-koskatzea"
 
-#: ../gtksourceview/gtksourceview.c:370
+#: ../gtksourceview/gtksourceview.c:374
 msgid "Whether to enable auto indentation"
 msgstr "Automatikoki koskatzea gaituko den ala ez"
 
-#: ../gtksourceview/gtksourceview.c:377
+#: ../gtksourceview/gtksourceview.c:381
 msgid "Insert Spaces Instead of Tabs"
 msgstr "Txertatu zuriuneak tabuladoreen ordez"
 
-#: ../gtksourceview/gtksourceview.c:378
+#: ../gtksourceview/gtksourceview.c:382
 msgid "Whether to insert spaces instead of tabs"
 msgstr "Tabuladoreen ordez zuriuneak txertatuko diren ala ez"
 
-#: ../gtksourceview/gtksourceview.c:390
+#: ../gtksourceview/gtksourceview.c:394
 msgid "Show Right Margin"
 msgstr "Erakutsi eskuineko marjina"
 
-#: ../gtksourceview/gtksourceview.c:391
+#: ../gtksourceview/gtksourceview.c:395
 msgid "Whether to display the right margin"
 msgstr "Eskuineko marjina erakutsiko den ala ez"
 
-#: ../gtksourceview/gtksourceview.c:403
+#: ../gtksourceview/gtksourceview.c:407
 msgid "Right Margin Position"
 msgstr "Eskuineko marjinaren posizioa"
 
-#: ../gtksourceview/gtksourceview.c:404
+#: ../gtksourceview/gtksourceview.c:408
 msgid "Position of the right margin"
 msgstr "Eskuineko marjinaren posizioa"
 
-#: ../gtksourceview/gtksourceview.c:420
+#: ../gtksourceview/gtksourceview.c:424
 msgid "Smart Home/End"
 msgstr "Hasiera/Amaiera azkarra"
 
-#: ../gtksourceview/gtksourceview.c:421
+#: ../gtksourceview/gtksourceview.c:425
 msgid ""
 "HOME and END keys move to first/last non whitespace characters on line "
 "before going to the start/end of the line"
@@ -3054,27 +3285,27 @@ msgstr ""
 "ez diren karakterera mugituko dute, lerroaren hasiera/amaierara joan baino "
 "lehen."
 
-#: ../gtksourceview/gtksourceview.c:431
+#: ../gtksourceview/gtksourceview.c:435
 msgid "Highlight current line"
 msgstr "Nabarmendu uneko lerroa"
 
-#: ../gtksourceview/gtksourceview.c:432
+#: ../gtksourceview/gtksourceview.c:436
 msgid "Whether to highlight the current line"
 msgstr "Uneko lerroa nabarmenduko den ala ez"
 
-#: ../gtksourceview/gtksourceview.c:439
+#: ../gtksourceview/gtksourceview.c:443
 msgid "Indent on tab"
 msgstr "Koskatu tabuladorearekin"
 
-#: ../gtksourceview/gtksourceview.c:440
+#: ../gtksourceview/gtksourceview.c:444
 msgid "Whether to indent the selected text when the tab key is pressed"
 msgstr "Tabuladorea sakatzean hautatutako testua koskatuko den ala ez"
 
-#: ../gtksourceview/gtksourceview.c:454
+#: ../gtksourceview/gtksourceview.c:458
 msgid "Draw Spaces"
 msgstr "Marraztu tarteak"
 
-#: ../gtksourceview/gtksourceview.c:455
+#: ../gtksourceview/gtksourceview.c:459
 msgid "Set if and how the spaces should be visualized"
 msgstr "Ezarri tarteak erakutsiko eta nola bistaratuko diren"
 
@@ -3084,8 +3315,8 @@ msgstr ""
 "Piarres Beobide <pi@beobide.net>\n"
 "Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.com>"
 
+#~ msgid "Objective Caml"
+#~ msgstr "Objective Caml"
+
 #~ msgid "Object"
 #~ msgstr "Objektua"
-
-#~ msgid "Special"
-#~ msgstr "Berezia"
