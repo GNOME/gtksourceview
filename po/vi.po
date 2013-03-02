@@ -1,6 +1,6 @@
 # Vietnamese translation for GTK Source View.
 # Copyright © 2009 GNOME i18n Project for Vietnamese.
-# Nguyễn Thái Ngọc Duy <pclouds@gmail.com>, 2002,2007,2011-2012.
+# Nguyễn Thái Ngọc Duy <pclouds@gmail.com>, 2002,2007,2011-2013.
 # Clytie Siddall <clytie@riverland.net.au>, 2005-2009.
 #
 msgid ""
@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&keywords=I18N+L10N&component=general\n"
 "POT-Creation-Date: 2013-02-15 13:41+0000\n"
-"PO-Revision-Date: 2013-03-02 20:58+0700\n"
+"PO-Revision-Date: 2013-03-02 21:02+0700\n"
 "Last-Translator: Nguyễn Thái Ngọc Duy <pclouds@gmail.com>\n"
 "Language-Team: Vietnamese <vi-VN@googlegroups.com>\n"
 "Language: vi\n"
@@ -628,10 +628,8 @@ msgstr "Trường"
 
 # Name: don't translate / Tên: đừng dịch
 #: ../data/language-specs/bluespec.lang.h:2
-#, fuzzy
-#| msgid "SystemVerilog"
 msgid "Bluespec SystemVerilog"
-msgstr "SystemVerilog"
+msgstr "Bluespec SystemVerilog"
 
 #: ../data/language-specs/bluespec.lang.h:3
 #: ../data/language-specs/systemverilog.lang.h:4
@@ -639,20 +637,16 @@ msgid "System Task"
 msgstr "Tác vụ hệ thống"
 
 #: ../data/language-specs/bluespec.lang.h:4
-#, fuzzy
-#| msgid "Activation"
 msgid "Annotation"
-msgstr "Kích hoạt"
+msgstr "Chú thích"
 
 #: ../data/language-specs/bluespec.lang.h:5
-#, fuzzy
-#| msgid "Attribute name"
 msgid "Attribute"
-msgstr "Tên thuộc tính"
+msgstr "Thuộc tính"
 
 #: ../data/language-specs/bluespec.lang.h:6
 msgid "Import BVI"
-msgstr ""
+msgstr "Nhập BVI"
 
 #: ../data/language-specs/bluespec.lang.h:8
 #: ../data/language-specs/gtk-doc.lang.h:9
@@ -1561,7 +1555,7 @@ msgstr "Giá trị thuộc tính"
 
 #: ../data/language-specs/idl-exelis.lang.h:2
 msgid "IDL-Exelis"
-msgstr ""
+msgstr "IDL-Exelis"
 
 #: ../data/language-specs/idl.lang.h:2
 msgid "IDL"
@@ -1628,7 +1622,7 @@ msgstr "Điều khiển"
 
 #: ../data/language-specs/j.lang.h:8
 msgid "Explicit Argument"
-msgstr ""
+msgstr "Đối số tường minh"
 
 #: ../data/language-specs/j.lang.h:9
 msgid "Global"
@@ -1844,19 +1838,15 @@ msgstr "Matlab"
 
 #: ../data/language-specs/modelica.lang.h:2
 msgid "Modelica"
-msgstr ""
+msgstr "Modelica"
 
 #: ../data/language-specs/modelica.lang.h:6
-#, fuzzy
-#| msgid "Class names"
 msgid "Class type"
-msgstr "Tên lớp"
+msgstr "Loại lớp"
 
 #: ../data/language-specs/modelica.lang.h:8
-#, fuzzy
-#| msgid "File Attributes"
 msgid "Default Attribute"
-msgstr "Thuộc tính tập tin"
+msgstr "Thuộc tính mặc định"
 
 #: ../data/language-specs/mxml.lang.h:2
 msgid "MXML"
@@ -1877,23 +1867,17 @@ msgstr "Nemerle"
 
 #: ../data/language-specs/netrexx.lang.h:2
 msgid "NetRexx"
-msgstr ""
+msgstr "NetRexx"
 
 #: ../data/language-specs/netrexx.lang.h:7
-#, fuzzy
-#| msgid "External"
 msgid "Externals"
-msgstr "Bên ngoài"
+msgstr "Ngoại"
 
 #: ../data/language-specs/netrexx.lang.h:8
-#, fuzzy
-#| msgid "Option"
 msgid "Options"
 msgstr "Tuỳ chọn"
 
 #: ../data/language-specs/netrexx.lang.h:9
-#, fuzzy
-#| msgid "Data Type"
 msgid "Data Types"
 msgstr "Kiểu dữ liệu"
 
@@ -1902,28 +1886,20 @@ msgid "Special"
 msgstr "Đặc biệt"
 
 #: ../data/language-specs/netrexx.lang.h:11
-#, fuzzy
-#| msgid "Visible"
 msgid "Visibility"
 msgstr "Thấy"
 
 #: ../data/language-specs/netrexx.lang.h:12
-#, fuzzy
-#| msgid "Identifier"
 msgid "Modifiers"
-msgstr "Bộ nhận diện"
+msgstr "Bổ từ"
 
 #: ../data/language-specs/netrexx.lang.h:13
-#, fuzzy
-#| msgid "Keyword"
 msgid "Keywords"
 msgstr "Từ khóa"
 
 #: ../data/language-specs/netrexx.lang.h:14
-#, fuzzy
-#| msgid "Keyword"
 msgid "Sub Keywords"
-msgstr "Từ khóa"
+msgstr "Từ khóa con"
 
 #: ../data/language-specs/nsis.lang.h:2
 msgid "NSIS"
@@ -1939,7 +1915,7 @@ msgstr "Objective-J"
 
 #: ../data/language-specs/ocaml.lang.h:2
 msgid "OCaml"
-msgstr ""
+msgstr "OCaml"
 
 #: ../data/language-specs/ocaml.lang.h:4
 msgid "Ocamldoc Comments"
@@ -2529,19 +2505,19 @@ msgstr ""
 
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:501
 msgid "Minimum Word Size"
-msgstr ""
+msgstr "Kích thước từ tối thiểu"
 
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:502
 msgid "The minimum word size to complete"
-msgstr ""
+msgstr "Kích thước từ tối thiểu để hoàn thành"
 
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:511
 msgid "Interactive Delay"
-msgstr ""
+msgstr "Khoảng chờ tương tác"
 
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:512
 msgid "The delay before initiating interactive completion"
-msgstr ""
+msgstr "Khoảng chờ trước khi khởi động hoàn thành tương tác"
 
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:521
 msgid "Priority"
