@@ -100,6 +100,8 @@
     <style id="preprocessor"        _name="Preprocessor directive"/>
     <!-- Any erroneous construct -->
     <style id="error"               _name="Error"/>
+    <!-- to mark possibily errors or unrecommended syntax  -->
+    <style id="warning"             _name="Warning"/>
     <!--Reserved keywords: like "const" and "goto" in Java -->
     <style id="reserved"            _name="Reserved keyword" map-to="def:error" />
     <!-- Anything that needs extra attention; mostly the keywords TODO, FIXME and XXX -->
