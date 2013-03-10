@@ -1354,6 +1354,19 @@ gtk_source_completion_dispose (GObject *object)
 
 	g_clear_object (&completion->priv->view);
 	g_clear_object (&completion->priv->default_info);
+	g_clear_object (&completion->priv->model_proposals);
+
+	if (completion->priv->info_window != NULL)
+	{
+		gtk_widget_destroy (GTK_WIDGET (completion->priv->info_window));
+		completion->priv->info_window = NULL;
+	}
+
+	if (completion->priv->main_window != NULL)
+	{
+		gtk_widget_destroy (GTK_WIDGET (completion->priv->main_window));
+		completion->priv->main_window = NULL;
+	}
 
 	g_list_free (completion->priv->interactive_providers);
 	completion->priv->interactive_providers = NULL;
@@ -2126,6 +2139,7 @@ static void
 init_info_window (GtkSourceCompletion *completion)
 {
 	completion->priv->info_window = gtk_source_completion_info_new ();
+	g_object_ref_sink (completion->priv->info_window);
 
 	gtk_window_set_attached_to (GTK_WINDOW (completion->priv->info_window),
 				    GTK_WIDGET (completion->priv->main_window));

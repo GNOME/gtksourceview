@@ -3,6 +3,7 @@
  * This file is part of GtkSourceView
  *
  * Copyright (C) 2007 - Jesús Barbero Rodríguez <chuchiperriman@gmail.com>
+ * Copyright (C) 2013 - Sébastien Wilmet <swilmet@gnome.org>
  *
  * GtkSourceView is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -145,8 +146,36 @@ test_provider_iface_init (GtkSourceCompletionProviderIface *iface)
 }
 
 static void
+test_provider_dispose (GObject *gobject)
+{
+	TestProvider *self = (TestProvider *)gobject;
+
+	g_list_free_full (self->proposals, g_object_unref);
+	self->proposals = NULL;
+
+	g_clear_object (&self->icon);
+
+	G_OBJECT_CLASS (test_provider_parent_class)->dispose (gobject);
+}
+
+static void
+test_provider_finalize (GObject *gobject)
+{
+	TestProvider *self = (TestProvider *)gobject;
+
+	g_free (self->name);
+	self->name = NULL;
+
+	G_OBJECT_CLASS (test_provider_parent_class)->finalize (gobject);
+}
+
+static void
 test_provider_class_init (TestProviderClass *klass)
 {
+	GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
+
+	gobject_class->dispose = test_provider_dispose;
+	gobject_class->finalize = test_provider_finalize;
 }
 
 static void
@@ -210,13 +239,6 @@ test_provider_set_random (TestProvider *provider)
 }
 
 static void
-destroy_cb (GtkWidget *object,
-	    gpointer   user_data)
-{
-	gtk_main_quit ();
-}
-
-static void
 remember_toggled_cb (GtkToggleButton *button,
 		     gpointer user_data)
 {
@@ -263,8 +285,7 @@ show_icons_toggled_cb (GtkToggleButton *button,
 		      NULL);
 }
 
-
-static GtkWidget*
+static GtkWidget *
 create_window (void)
 {
 	GtkWidget *window;
@@ -309,7 +330,7 @@ create_window (void)
 	gtk_container_add (GTK_CONTAINER (window), vbox);
 
 	g_signal_connect (window, "destroy",
-			  G_CALLBACK (destroy_cb),
+			  G_CALLBACK (gtk_main_quit),
 			   NULL);
 	g_signal_connect (remember, "toggled",
 			  G_CALLBACK (remember_toggled_cb),
@@ -328,7 +349,7 @@ create_window (void)
 }
 
 static void
-create_completion(void)
+create_completion (void)
 {
 	GtkSourceCompletionWords *prov_words;
 
@@ -345,26 +366,29 @@ create_completion(void)
 	                                    NULL);
 
 	g_object_set (prov_words, "priority", 10, NULL);
+	g_object_unref (prov_words);
 
 	/* Fixed provider: the proposals don't change */
 	TestProvider *tp = g_object_new (test_provider_get_type (), NULL);
 	test_provider_set_fixed (tp);
 	tp->priority = 5;
-	tp->name = "Fixed Provider";
+	tp->name = g_strdup ("Fixed Provider");
 
 	gtk_source_completion_add_provider (comp,
 	                                    GTK_SOURCE_COMPLETION_PROVIDER (tp),
 	                                    NULL);
+	g_object_unref (tp);
 
 	/* Random provider: the proposals vary on each populate */
 	tp = g_object_new (test_provider_get_type (), NULL);
 	test_provider_set_random (tp);
 	tp->priority = 1;
-	tp->name = "Random Provider";
+	tp->name = g_strdup ("Random Provider");
 
 	gtk_source_completion_add_provider (comp,
 	                                    GTK_SOURCE_COMPLETION_PROVIDER (tp),
 	                                    NULL);
+	g_object_unref (tp);
 }
 
 int
