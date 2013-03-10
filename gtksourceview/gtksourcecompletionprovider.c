@@ -332,7 +332,7 @@ gtk_source_completion_provider_get_start_iter (GtkSourceCompletionProvider *prov
  *
  * Here is how the default activation selects the boundaries of the word to
  * replace. The end of the word is @iter. For the start of the word, it depends
- * on wheter a start iter is defined for @proposal (see
+ * on whether a start iter is defined for @proposal (see
  * gtk_source_completion_provider_get_start_iter()). If a start iter is defined,
  * the start of the word is the start iter. Else, the word (as long as possible)
  * will contain only alphanumerical and the "_" characters.
