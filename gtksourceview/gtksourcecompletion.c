@@ -93,15 +93,6 @@
 						  GTK_SOURCE_TYPE_COMPLETION,           \
 						  GtkSourceCompletionPrivate))
 
-/*#define ENABLE_DEBUG*/
-#undef ENABLE_DEBUG
-
-#ifdef ENABLE_DEBUG
-#define DEBUG(x) (x)
-#else
-#define DEBUG(x)
-#endif
-
 /* Signals */
 enum
 {
@@ -1201,10 +1192,6 @@ update_completion (GtkSourceCompletion        *completion,
 	GList *providers_copy = g_list_copy (providers);
 	GtkSourceCompletionContext *context_copy = g_object_ref_sink (context);
 
-	DEBUG({
-		g_print ("Update completion: %d\n", g_list_length (providers));
-	});
-
 	/* Make sure to first cancel any running completion */
 	reset_completion (completion);
 
@@ -1219,13 +1206,6 @@ update_completion (GtkSourceCompletion        *completion,
 	for (item = providers_copy; item != NULL; item = g_list_next (item))
 	{
 		GtkSourceCompletionProvider *provider = item->data;
-
-		DEBUG({
-			gchar *temp_name = gtk_source_completion_provider_get_name (provider);
-			g_print ("Populating provider: %s\n", temp_name);
-			g_free (temp_name);
-		});
-
 		gtk_source_completion_provider_populate (provider, context_copy);
 	}
 
@@ -1352,10 +1332,6 @@ populating_done (GtkSourceCompletion        *completion,
 {
 	if (gtk_source_completion_model_is_empty (completion->priv->model_proposals, TRUE))
 	{
-		DEBUG({
-			g_print ("Model is empty after populating\n");
-		});
-
 		gtk_source_completion_hide (completion);
 		return;
 	}
@@ -1367,17 +1343,7 @@ populating_done (GtkSourceCompletion        *completion,
 
 	if (!gtk_widget_get_visible (GTK_WIDGET (completion->priv->main_window)))
 	{
-		DEBUG({
-			g_print ("Emitting show\n");
-		});
-
 		g_signal_emit (completion, signals[SHOW], 0);
-	}
-	else
-	{
-		DEBUG({
-			g_print ("Already visible\n");
-		});
 	}
 
 	check_first_selected (completion);
@@ -2293,11 +2259,6 @@ gtk_source_completion_show (GtkSourceCompletion        *completion,
 	if (selected_providers == NULL)
 	{
 		g_object_unref (context);
-
-		DEBUG({
-			g_print ("No providers for completion\n");
-		});
-
 		gtk_source_completion_hide (completion);
 		return FALSE;
 	}
