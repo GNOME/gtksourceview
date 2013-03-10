@@ -361,27 +361,34 @@ update_window_position (GtkSourceCompletion *completion)
 {
 	GtkSourceCompletionProvider *provider;
 	GtkSourceCompletionProposal *proposal;
+	GtkTextIter iter;
+	gboolean iter_set = FALSE;
 
 	if (get_selected_proposal (completion, &provider, &proposal))
 	{
-		GtkTextIter iter;
-		GtkTextBuffer *buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (completion->priv->view));
-
-		gtk_text_buffer_get_start_iter (buffer, &iter);
-
 		if (gtk_source_completion_provider_get_start_iter (provider,
 		                                                   completion->priv->context,
 		                                                   proposal,
 		                                                   &iter))
 		{
-			gtk_source_completion_utils_move_to_iter (completion->priv->main_window,
-			                                          GTK_SOURCE_VIEW (completion->priv->view),
-			                                          &iter);
+			iter_set = TRUE;
 		}
 
 		g_object_unref (provider);
 		g_object_unref (proposal);
 	}
+
+	if (!iter_set)
+	{
+		GtkTextIter end_word;
+		GtkTextBuffer *buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (completion->priv->view));
+
+		gtk_source_completion_utils_get_word_iter (buffer, &iter, &end_word);
+	}
+
+	gtk_source_completion_utils_move_to_iter (completion->priv->main_window,
+	                                          completion->priv->view,
+	                                          &iter);
 }
 
 static void
@@ -398,18 +405,6 @@ update_tree_view_visibility (GtkSourceCompletion *completion)
 static void
 gtk_source_completion_show_default (GtkSourceCompletion *completion)
 {
-	/* Move completion window */
-	if (completion->priv->context != NULL)
-	{
-		GtkTextIter location;
-		gtk_source_completion_context_get_iter (completion->priv->context,
-		                                        &location);
-
-		gtk_source_completion_utils_move_to_iter (completion->priv->main_window,
-		                                          GTK_SOURCE_VIEW (completion->priv->view),
-		                                          &location);
-	}
-
 	gtk_widget_show (GTK_WIDGET (completion->priv->main_window));
 
 	if (completion->priv->remember_info_visibility)
@@ -1347,6 +1342,7 @@ populating_done (GtkSourceCompletion        *completion,
 	}
 
 	check_first_selected (completion);
+	update_window_position (completion);
 }
 
 static void
@@ -2537,7 +2533,7 @@ gtk_source_completion_move_window (GtkSourceCompletion *completion,
 	}
 
 	gtk_source_completion_utils_move_to_iter (completion->priv->main_window,
-	                                          GTK_SOURCE_VIEW (completion->priv->view),
+	                                          completion->priv->view,
 	                                          iter);
 }
 
