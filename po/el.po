@@ -16,8 +16,8 @@ msgstr ""
 "Project-Id-Version: el\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gtksou"
 "rceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-02-15 13:41+0000\n"
-"PO-Revision-Date: 2013-02-28 10:38+0300\n"
+"POT-Creation-Date: 2013-03-09 20:56+0000\n"
+"PO-Revision-Date: 2013-03-11 17:30+0300\n"
 "Last-Translator: Dimitris Spingos (Δημήτρης Σπίγγος) <dmtrs32@gmail.com>\n"
 "Language-Team: team@gnome.gr\n"
 "Language: el\n"
@@ -79,10 +79,10 @@ msgstr "Κείμενο"
 msgid "Trailing"
 msgstr "Στηλοθέτης"
 
-#. Translators: "All" is used as a label in thestatus bar of the
-#. popup, telling that all completion pages are shown
+#. Translators: "All" is used as a label in the status bar of the
+#. popup, telling that all completion pages are shown.
 #: ../data/glade/gtksourceview.xml.in.h:14
-#: ../gtksourceview/gtksourcecompletion.c:728
+#: ../gtksourceview/gtksourcecompletion.c:537
 msgid "All"
 msgstr "Όλα"
 
@@ -560,7 +560,7 @@ msgstr "Μοτίβο"
 #: ../data/language-specs/pkgconfig.lang.h:3
 #: ../data/language-specs/prolog.lang.h:4
 #: ../data/language-specs/protobuf.lang.h:2
-#: ../data/language-specs/ruby.lang.h:21 ../data/language-specs/sh.lang.h:7
+#: ../data/language-specs/ruby.lang.h:22 ../data/language-specs/sh.lang.h:7
 #: ../data/language-specs/sparql.lang.h:14 ../data/language-specs/tcl.lang.h:3
 msgid "Variable"
 msgstr "Μεταβλητή"
@@ -636,7 +636,6 @@ msgid "Field"
 msgstr "Πεδίο"
 
 #: ../data/language-specs/bluespec.lang.h:2
-#| msgid "SystemVerilog"
 msgid "Bluespec SystemVerilog"
 msgstr "Bluespec SystemVerilog"
 
@@ -646,12 +645,10 @@ msgid "System Task"
 msgstr "Λίστα Εργασιών"
 
 #: ../data/language-specs/bluespec.lang.h:4
-#| msgid "Activation"
 msgid "Annotation"
 msgstr "Σχολιασμός"
 
 #: ../data/language-specs/bluespec.lang.h:5
-#| msgid "Attribute name"
 msgid "Attribute"
 msgstr "Γνώρισμα"
 
@@ -678,7 +675,7 @@ msgstr "Αλφαριθμητικό πολλαπλών γραμμών"
 
 #: ../data/language-specs/boo.lang.h:6
 #: ../data/language-specs/javascript.lang.h:14
-#: ../data/language-specs/perl.lang.h:16 ../data/language-specs/ruby.lang.h:24
+#: ../data/language-specs/perl.lang.h:16 ../data/language-specs/ruby.lang.h:25
 msgid "Regular Expression"
 msgstr "Κανονική έκφραση"
 
@@ -694,7 +691,7 @@ msgstr "Ορισμός"
 #: ../data/language-specs/boo.lang.h:11
 #: ../data/language-specs/python3.lang.h:9
 #: ../data/language-specs/python.lang.h:10
-#: ../data/language-specs/ruby.lang.h:19
+#: ../data/language-specs/ruby.lang.h:20
 msgid "Special Variable"
 msgstr "Ειδική μεταβλητή"
 
@@ -742,7 +739,7 @@ msgstr "Τελεστές Swizzle"
 #: ../data/language-specs/matlab.lang.h:5
 #: ../data/language-specs/modelica.lang.h:14
 #: ../data/language-specs/octave.lang.h:16
-#: ../data/language-specs/ruby.lang.h:16
+#: ../data/language-specs/ruby.lang.h:17
 msgid "Builtin"
 msgstr "Ενσωματωμένες"
 
@@ -862,7 +859,7 @@ msgstr "Ενσωματωμένη μεταβλητή"
 #: ../data/language-specs/def.lang.h:13
 #: ../data/language-specs/gtk-doc.lang.h:8
 #: ../data/language-specs/libtool.lang.h:3
-#: ../data/language-specs/ruby.lang.h:17
+#: ../data/language-specs/ruby.lang.h:18
 msgid "Constant"
 msgstr "Σταθερά"
 
@@ -1021,18 +1018,23 @@ msgstr "Τύπος δεδομένων"
 msgid "Preprocessor directive"
 msgstr "Οδηγίες προεπεξεργαστή"
 
-#. Reserved keywords: like "const" and "goto" in Java
+#. to mark possibily errors or unrecommended syntax
 #: ../data/language-specs/def.lang.h:55
+msgid "Warning"
+msgstr "Προειδοποίηση"
+
+#. Reserved keywords: like "const" and "goto" in Java
+#: ../data/language-specs/def.lang.h:57
 msgid "Reserved keyword"
 msgstr "Δεσμευμένη λέξη κλειδί"
 
 #. Anything that needs extra attention; mostly the keywords TODO, FIXME and XXX
-#: ../data/language-specs/def.lang.h:57
+#: ../data/language-specs/def.lang.h:59
 msgid "Note (FIXME, TODO, XXX, etc.)"
 msgstr "Σημείωση (FIXME, TODO, XXX, κλπ.)"
 
 #. Text that stands out, HTML links, e-mail addresses, etc.
-#: ../data/language-specs/def.lang.h:59
+#: ../data/language-specs/def.lang.h:61
 msgid "Underlined"
 msgstr "Υπογραμμισμένα"
 
@@ -1206,7 +1208,7 @@ msgid "Exception Handling"
 msgstr "Χειρισμός εξαίρεσης"
 
 #: ../data/language-specs/eiffel.lang.h:11
-#: ../data/language-specs/ruby.lang.h:20
+#: ../data/language-specs/ruby.lang.h:21
 msgid "Predefined Variable"
 msgstr "Προκαθορισμένη μεταβλητή"
 
@@ -1523,7 +1525,7 @@ msgid "Haskell"
 msgstr "Haskell"
 
 #: ../data/language-specs/haskell.lang.h:6
-#: ../data/language-specs/ruby.lang.h:18
+#: ../data/language-specs/ruby.lang.h:19
 msgid "Symbol"
 msgstr "Σύμβολο"
 
@@ -1841,12 +1843,10 @@ msgid "Modelica"
 msgstr "Modelica"
 
 #: ../data/language-specs/modelica.lang.h:6
-#| msgid "Class names"
 msgid "Class type"
 msgstr "Τύπος κλάσης"
 
 #: ../data/language-specs/modelica.lang.h:8
-#| msgid "File Attributes"
 msgid "Default Attribute"
 msgstr "Προεπιλεγμένο γνώρισμα"
 
@@ -2005,12 +2005,12 @@ msgid "Include Statement"
 msgstr "Include Statement"
 
 #: ../data/language-specs/perl.lang.h:9 ../data/language-specs/php.lang.h:10
-#: ../data/language-specs/ruby.lang.h:22
+#: ../data/language-specs/ruby.lang.h:23
 msgid "Heredoc"
 msgstr "Heredoc"
 
 #: ../data/language-specs/perl.lang.h:10 ../data/language-specs/php.lang.h:11
-#: ../data/language-specs/ruby.lang.h:23 ../data/language-specs/sh.lang.h:12
+#: ../data/language-specs/ruby.lang.h:24 ../data/language-specs/sh.lang.h:12
 msgid "Heredoc Bound"
 msgstr "Heredoc Bound"
 
@@ -2082,7 +2082,7 @@ msgstr "Παράμετροι"
 msgid "Metaparameters"
 msgstr "Μεταπαράμετροι"
 
-#: ../data/language-specs/puppet.lang.h:6
+#: ../data/language-specs/puppet.lang.h:6 ../data/language-specs/R.lang.h:11
 msgid "Functions"
 msgstr "Λειτουργίες"
 
@@ -2208,6 +2208,11 @@ msgstr "Χειριστής λειτουργικής μονάδας"
 msgid "Numeric literal"
 msgstr "Numeric literal"
 
+#: ../data/language-specs/ruby.lang.h:15
+#: ../data/language-specs/sparql.lang.h:10
+msgid "Literal"
+msgstr "Κυριολεκτική σταθερά"
+
 #: ../data/language-specs/scheme.lang.h:2
 msgid "Scheme"
 msgstr "Σχήμα"
@@ -2252,10 +2257,6 @@ msgstr "Κλάση"
 #: ../data/language-specs/sparql.lang.h:6
 msgid "Individual"
 msgstr "Μεμονωμένα"
-
-#: ../data/language-specs/sparql.lang.h:10
-msgid "Literal"
-msgstr "Κυριολεκτική σταθερά"
 
 #: ../data/language-specs/sparql.lang.h:11
 msgid "Predicate"
@@ -2530,12 +2531,12 @@ msgid "Whether to highlight matching brackets"
 msgstr "Αν θα γίνεται επισήμανση αγκυλών που ταιριάζουν"
 
 #: ../gtksourceview/gtksourcebuffer.c:265
-#: ../gtksourceview/gtksourceundomanagerdefault.c:418
+#: ../gtksourceview/gtksourceundomanagerdefault.c:413
 msgid "Maximum Undo Levels"
 msgstr "Μέγιστο επίπεδο αναιρέσεων"
 
 #: ../gtksourceview/gtksourcebuffer.c:266
-#: ../gtksourceview/gtksourceundomanagerdefault.c:419
+#: ../gtksourceview/gtksourceundomanagerdefault.c:414
 msgid "Number of undo levels for the buffer"
 msgstr "Αριθμός των επιπέδων αναίρεσης για το buffer"
 
@@ -2578,88 +2579,88 @@ msgstr "Αναίρεση διαχειριστή"
 msgid "The buffer undo manager"
 msgstr "Ο διαχειριστής μνήμης αναίρεσης"
 
-#: ../gtksourceview/gtksourcecompletion.c:1037
-#: ../gtksourceview/gtksourcecompletion.c:1059
+#: ../gtksourceview/gtksourcecompletion.c:627
+#: ../gtksourceview/gtksourcecompletion.c:658
 msgid "No extra information available"
 msgstr "Δεν υπάρχει διαθέσιμη καμία πρόσθετη πληροφορία"
 
-#: ../gtksourceview/gtksourcecompletion.c:2268
+#: ../gtksourceview/gtksourcecompletion.c:1527
 #: ../gtksourceview/gtksourcegutter.c:548
 msgid "View"
 msgstr "Προβολή"
 
-#: ../gtksourceview/gtksourcecompletion.c:2269
+#: ../gtksourceview/gtksourcecompletion.c:1528
 msgid "The GtkSourceView bound to the completion"
 msgstr "Το GtkSourceView που είναι συνδεδεμένο με την συμπλήρωση"
 
-#: ../gtksourceview/gtksourcecompletion.c:2283
+#: ../gtksourceview/gtksourcecompletion.c:1542
 msgid "Remember Info Visibility"
 msgstr "Απομνημόνευση πληροφοριών προβολής"
 
-#: ../gtksourceview/gtksourcecompletion.c:2284
+#: ../gtksourceview/gtksourcecompletion.c:1543
 msgid "Remember the last info window visibility state"
 msgstr ""
 "Απομνημόνευση της κατάστασης προβολής του τελευταίου παραθύρου πληροφοριών"
 
-#: ../gtksourceview/gtksourcecompletion.c:2296
+#: ../gtksourceview/gtksourcecompletion.c:1555
 msgid "Select on Show"
 msgstr "Επιλογή κατά την προβολή"
 
-#: ../gtksourceview/gtksourcecompletion.c:2297
+#: ../gtksourceview/gtksourcecompletion.c:1556
 msgid "Select first proposal when completion is shown"
 msgstr "Επιλογή της πρώτης εισηγήσης όταν εμφανίζεται η συμπλήρωση"
 
-#: ../gtksourceview/gtksourcecompletion.c:2310
+#: ../gtksourceview/gtksourcecompletion.c:1569
 msgid "Show Headers"
 msgstr "Προβολή κεφαλίδων"
 
-#: ../gtksourceview/gtksourcecompletion.c:2311
+#: ../gtksourceview/gtksourcecompletion.c:1570
 msgid ""
 "Show provider headers when proposals from multiple providers are available"
 msgstr ""
 "Εμφάνιση των κεφαλίδων των παρόχων όταν είναι διαθέσιμες εισηγήσεις από "
 "πολλαπλούς παρόχους"
 
-#: ../gtksourceview/gtksourcecompletion.c:2324
+#: ../gtksourceview/gtksourcecompletion.c:1583
 msgid "Show Icons"
 msgstr "Εμφάνιση εικονιδίων"
 
-#: ../gtksourceview/gtksourcecompletion.c:2325
+#: ../gtksourceview/gtksourcecompletion.c:1584
 msgid "Show provider and proposal icons in the completion popup"
 msgstr ""
 "Εμφάνιση εικονιδίων παρόχου και εισηγήσεων στο μενού συντόμευσης της "
 "συμπλήρωσης"
 
-#: ../gtksourceview/gtksourcecompletion.c:2339
+#: ../gtksourceview/gtksourcecompletion.c:1598
 msgid "Accelerators"
 msgstr "Συντομεύσεις"
 
-#: ../gtksourceview/gtksourcecompletion.c:2340
+#: ../gtksourceview/gtksourcecompletion.c:1599
 msgid "Number of proposal accelerators to show"
 msgstr "Ο αριθμός επιταχυντών εισηγήσεων για εμφάνιση"
 
-#: ../gtksourceview/gtksourcecompletion.c:2355
+#: ../gtksourceview/gtksourcecompletion.c:1614
 msgid "Auto Complete Delay"
 msgstr "Καθυστέρηση αυτόματης συμπλήρωσης"
 
-#: ../gtksourceview/gtksourcecompletion.c:2356
+#: ../gtksourceview/gtksourcecompletion.c:1615
 msgid "Completion popup delay for interactive completion"
 msgstr ""
 "Καθυστέρηση εμφάνισης του μενού συντόμευσης για την διαδραστική συμπλήρωσης"
 
-#: ../gtksourceview/gtksourcecompletion.c:2372
+#: ../gtksourceview/gtksourcecompletion.c:1631
 msgid "Provider Page Size"
 msgstr "Μέγεθος σελίδας παρόχου"
 
-#: ../gtksourceview/gtksourcecompletion.c:2373
+#: ../gtksourceview/gtksourcecompletion.c:1632
 msgid "Provider scrolling page size"
 msgstr "Μέγεθος κυλιόμενης σελίδας παρόχου"
 
-#: ../gtksourceview/gtksourcecompletion.c:2393
+#: ../gtksourceview/gtksourcecompletion.c:1652
 msgid "Proposal Page Size"
 msgstr "Μέγεθος σελίδας εισήγησης"
 
-#: ../gtksourceview/gtksourcecompletion.c:2394
+#: ../gtksourceview/gtksourcecompletion.c:1653
 msgid "Proposal scrolling page size"
 msgstr "Μέγεθος κυλιόμενης σελίδας εισήγησης"
 
@@ -2718,7 +2719,7 @@ msgstr "Πληροφορίες"
 msgid "Info to be shown for this item"
 msgstr "Οι πληροφορίες που θα εμφανιστούν για αυτό το στοιχείο"
 
-#: ../gtksourceview/gtksourcecompletionmodel.c:466
+#: ../gtksourceview/gtksourcecompletionmodel.c:492
 msgid "Provider"
 msgstr "Πάροχος"
 
@@ -3220,11 +3221,11 @@ msgstr "ids σχήματος"
 msgid "List of the ids of the available style schemes"
 msgstr "Μια λίστα από αναγνωριστικά των διαθέσιμων στυλ σχήματος"
 
-#: ../gtksourceview/gtksourceundomanagerdefault.c:410
+#: ../gtksourceview/gtksourceundomanagerdefault.c:405
 msgid "Buffer"
 msgstr "Ενδιάμεση μνήμη"
 
-#: ../gtksourceview/gtksourceundomanagerdefault.c:411
+#: ../gtksourceview/gtksourceundomanagerdefault.c:406
 msgid "The text buffer to add undo support on"
 msgstr "Η μνήμη κειμένου που θα προστεθεί η δυνατότητα αναίρεσης"
 
