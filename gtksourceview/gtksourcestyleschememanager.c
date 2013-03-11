@@ -366,6 +366,7 @@ reload_if_needed (GtkSourceStyleSchemeManager *mgr)
 			/* scheme with the same id already loaded from a path with higher prio: skip it */
 			if (g_hash_table_contains (schemes_hash, id))
 			{
+				g_object_unref (scheme);
 				continue;
 			}
 
