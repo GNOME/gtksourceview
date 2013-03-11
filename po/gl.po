@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview-master-po-gl-28392.merged\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-17 12:53+0100\n"
-"PO-Revision-Date: 2013-02-17 12:53+0200\n"
+"POT-Creation-Date: 2013-03-11 21:53+0100\n"
+"PO-Revision-Date: 2013-03-11 21:53+0200\n"
 "Last-Translator: Fran Dieguez <frandieguez@gnome.org>\n"
 "Language-Team: gnome-l10n-gl@gnome.org\n"
 "Language: gl\n"
@@ -77,10 +77,10 @@ msgstr "Texto"
 msgid "Trailing"
 msgstr "Sobrantes"
 
-#. Translators: "All" is used as a label in thestatus bar of the
-#. popup, telling that all completion pages are shown
+#. Translators: "All" is used as a label in the status bar of the
+#. popup, telling that all completion pages are shown.
 #: ../data/glade/gtksourceview.xml.in.h:14
-#: ../gtksourceview/gtksourcecompletion.c:658
+#: ../gtksourceview/gtksourcecompletion.c:635
 msgid "All"
 msgstr "Todos"
 
@@ -558,7 +558,7 @@ msgstr "Patrón"
 #: ../data/language-specs/pkgconfig.lang.h:3
 #: ../data/language-specs/prolog.lang.h:4
 #: ../data/language-specs/protobuf.lang.h:2
-#: ../data/language-specs/ruby.lang.h:21 ../data/language-specs/sh.lang.h:7
+#: ../data/language-specs/ruby.lang.h:22 ../data/language-specs/sh.lang.h:7
 #: ../data/language-specs/sparql.lang.h:14 ../data/language-specs/tcl.lang.h:3
 msgid "Variable"
 msgstr "Variábel"
@@ -673,7 +673,7 @@ msgstr "Cadea multiliña"
 
 #: ../data/language-specs/boo.lang.h:6
 #: ../data/language-specs/javascript.lang.h:14
-#: ../data/language-specs/perl.lang.h:16 ../data/language-specs/ruby.lang.h:24
+#: ../data/language-specs/perl.lang.h:16 ../data/language-specs/ruby.lang.h:25
 msgid "Regular Expression"
 msgstr "Expresión regular"
 
@@ -689,7 +689,7 @@ msgstr "Definición"
 #: ../data/language-specs/boo.lang.h:11
 #: ../data/language-specs/python3.lang.h:9
 #: ../data/language-specs/python.lang.h:10
-#: ../data/language-specs/ruby.lang.h:19
+#: ../data/language-specs/ruby.lang.h:20
 msgid "Special Variable"
 msgstr "Variábel especial"
 
@@ -737,7 +737,7 @@ msgstr "Operador Swizzle"
 #: ../data/language-specs/matlab.lang.h:5
 #: ../data/language-specs/modelica.lang.h:14
 #: ../data/language-specs/octave.lang.h:16
-#: ../data/language-specs/ruby.lang.h:16
+#: ../data/language-specs/ruby.lang.h:17
 msgid "Builtin"
 msgstr "Incorporado"
 
@@ -857,7 +857,7 @@ msgstr "Variábel incorporada"
 #: ../data/language-specs/def.lang.h:13
 #: ../data/language-specs/gtk-doc.lang.h:8
 #: ../data/language-specs/libtool.lang.h:3
-#: ../data/language-specs/ruby.lang.h:17
+#: ../data/language-specs/ruby.lang.h:18
 msgid "Constant"
 msgstr "Constante"
 
@@ -1016,18 +1016,23 @@ msgstr "Tipo de datos"
 msgid "Preprocessor directive"
 msgstr "Directiva do preprocesador"
 
-#. Reserved keywords: like "const" and "goto" in Java
+#. to mark possibily errors or unrecommended syntax
 #: ../data/language-specs/def.lang.h:55
+msgid "Warning"
+msgstr "Aviso"
+
+#. Reserved keywords: like "const" and "goto" in Java
+#: ../data/language-specs/def.lang.h:57
 msgid "Reserved keyword"
 msgstr "Palabra chave reservada"
 
 #. Anything that needs extra attention; mostly the keywords TODO, FIXME and XXX
-#: ../data/language-specs/def.lang.h:57
+#: ../data/language-specs/def.lang.h:59
 msgid "Note (FIXME, TODO, XXX, etc.)"
 msgstr "Nota (FIXME, TODO, XXX etc.)"
 
 #. Text that stands out, HTML links, e-mail addresses, etc.
-#: ../data/language-specs/def.lang.h:59
+#: ../data/language-specs/def.lang.h:61
 msgid "Underlined"
 msgstr "Subliñado"
 
@@ -1203,7 +1208,7 @@ msgid "Exception Handling"
 msgstr "Manipulación de excepcións"
 
 #: ../data/language-specs/eiffel.lang.h:11
-#: ../data/language-specs/ruby.lang.h:20
+#: ../data/language-specs/ruby.lang.h:21
 msgid "Predefined Variable"
 msgstr "Variábel predeterminada"
 
@@ -1520,7 +1525,7 @@ msgid "Haskell"
 msgstr "Haskell"
 
 #: ../data/language-specs/haskell.lang.h:6
-#: ../data/language-specs/ruby.lang.h:18
+#: ../data/language-specs/ruby.lang.h:19
 msgid "Symbol"
 msgstr "Símbolo"
 
@@ -2000,12 +2005,12 @@ msgid "Include Statement"
 msgstr "Instrución include"
 
 #: ../data/language-specs/perl.lang.h:9 ../data/language-specs/php.lang.h:10
-#: ../data/language-specs/ruby.lang.h:22
+#: ../data/language-specs/ruby.lang.h:23
 msgid "Heredoc"
 msgstr "Heredoc"
 
 #: ../data/language-specs/perl.lang.h:10 ../data/language-specs/php.lang.h:11
-#: ../data/language-specs/ruby.lang.h:23 ../data/language-specs/sh.lang.h:12
+#: ../data/language-specs/ruby.lang.h:24 ../data/language-specs/sh.lang.h:12
 msgid "Heredoc Bound"
 msgstr "Límite Heredoc"
 
@@ -2077,7 +2082,7 @@ msgstr "Parámetros"
 msgid "Metaparameters"
 msgstr "Metaparámetros"
 
-#: ../data/language-specs/puppet.lang.h:6
+#: ../data/language-specs/puppet.lang.h:6 ../data/language-specs/R.lang.h:11
 msgid "Functions"
 msgstr "Funcións"
 
@@ -2203,6 +2208,11 @@ msgstr "Manipulador de módulo"
 msgid "Numeric literal"
 msgstr "Literal numérico"
 
+#: ../data/language-specs/ruby.lang.h:15
+#: ../data/language-specs/sparql.lang.h:10
+msgid "Literal"
+msgstr "Literal"
+
 #: ../data/language-specs/scheme.lang.h:2
 msgid "Scheme"
 msgstr "Scheme"
@@ -2247,10 +2257,6 @@ msgstr "Clase"
 #: ../data/language-specs/sparql.lang.h:6
 msgid "Individual"
 msgstr "Individual"
-
-#: ../data/language-specs/sparql.lang.h:10
-msgid "Literal"
-msgstr "Literal"
 
 #: ../data/language-specs/sparql.lang.h:11
 msgid "Predicate"
@@ -2525,12 +2531,12 @@ msgid "Whether to highlight matching brackets"
 msgstr "Indica se hai que realzar as parénteses de peche"
 
 #: ../gtksourceview/gtksourcebuffer.c:265
-#: ../gtksourceview/gtksourceundomanagerdefault.c:418
+#: ../gtksourceview/gtksourceundomanagerdefault.c:413
 msgid "Maximum Undo Levels"
 msgstr "Número máximo de accións de desfacer"
 
 #: ../gtksourceview/gtksourcebuffer.c:266
-#: ../gtksourceview/gtksourceundomanagerdefault.c:419
+#: ../gtksourceview/gtksourceundomanagerdefault.c:414
 msgid "Number of undo levels for the buffer"
 msgstr "Número de accións de desfacer para o búfer"
 
@@ -2573,85 +2579,85 @@ msgstr "Xestor de acción desfacer"
 msgid "The buffer undo manager"
 msgstr "O xestor do búfer de desfacer"
 
-#: ../gtksourceview/gtksourcecompletion.c:954
-#: ../gtksourceview/gtksourcecompletion.c:976
+#: ../gtksourceview/gtksourcecompletion.c:545
+#: ../gtksourceview/gtksourcecompletion.c:576
 msgid "No extra information available"
 msgstr "Non hai información adicional dispoñíbel"
 
-#: ../gtksourceview/gtksourcecompletion.c:2112
+#: ../gtksourceview/gtksourcecompletion.c:1593
 #: ../gtksourceview/gtksourcegutter.c:548
 msgid "View"
 msgstr "Ver"
 
-#: ../gtksourceview/gtksourcecompletion.c:2113
+#: ../gtksourceview/gtksourcecompletion.c:1594
 msgid "The GtkSourceView bound to the completion"
 msgstr "O obxecto GtkSourceView ligado ao completado"
 
-#: ../gtksourceview/gtksourcecompletion.c:2127
+#: ../gtksourceview/gtksourcecompletion.c:1608
 msgid "Remember Info Visibility"
 msgstr "Lembrar información de visibilidade"
 
-#: ../gtksourceview/gtksourcecompletion.c:2128
+#: ../gtksourceview/gtksourcecompletion.c:1609
 msgid "Remember the last info window visibility state"
 msgstr "Lembrar o último estado de visibilidade da xanela"
 
-#: ../gtksourceview/gtksourcecompletion.c:2140
+#: ../gtksourceview/gtksourcecompletion.c:1621
 msgid "Select on Show"
 msgstr "Seleccionar ao Mostrar"
 
-#: ../gtksourceview/gtksourcecompletion.c:2141
+#: ../gtksourceview/gtksourcecompletion.c:1622
 msgid "Select first proposal when completion is shown"
 msgstr "Seleccionar a primeira proposta cando se mostre o completado"
 
-#: ../gtksourceview/gtksourcecompletion.c:2154
+#: ../gtksourceview/gtksourcecompletion.c:1635
 msgid "Show Headers"
 msgstr "Mostrar cabeceiras"
 
-#: ../gtksourceview/gtksourcecompletion.c:2155
+#: ../gtksourceview/gtksourcecompletion.c:1636
 msgid ""
 "Show provider headers when proposals from multiple providers are available"
 msgstr ""
 "Mostrar as cabeceiras do fornecedor cando estean dispoñíbeis múltiples "
 "fornecedores"
 
-#: ../gtksourceview/gtksourcecompletion.c:2168
+#: ../gtksourceview/gtksourcecompletion.c:1649
 msgid "Show Icons"
 msgstr "Mostrar iconas"
 
-#: ../gtksourceview/gtksourcecompletion.c:2169
+#: ../gtksourceview/gtksourcecompletion.c:1650
 msgid "Show provider and proposal icons in the completion popup"
 msgstr ""
 "Mostrar o fornecedor e as iconas propostas na xanela emerxente de completado"
 
-#: ../gtksourceview/gtksourcecompletion.c:2183
+#: ../gtksourceview/gtksourcecompletion.c:1664
 msgid "Accelerators"
 msgstr "Atallos"
 
-#: ../gtksourceview/gtksourcecompletion.c:2184
+#: ../gtksourceview/gtksourcecompletion.c:1665
 msgid "Number of proposal accelerators to show"
 msgstr "Número de atallos de proposicións a mostrar"
 
-#: ../gtksourceview/gtksourcecompletion.c:2199
+#: ../gtksourceview/gtksourcecompletion.c:1680
 msgid "Auto Complete Delay"
 msgstr "Atraso no autocompletado"
 
-#: ../gtksourceview/gtksourcecompletion.c:2200
+#: ../gtksourceview/gtksourcecompletion.c:1681
 msgid "Completion popup delay for interactive completion"
 msgstr "Atraso na xanela emerxente de completado para o completado interactivo"
 
-#: ../gtksourceview/gtksourcecompletion.c:2216
+#: ../gtksourceview/gtksourcecompletion.c:1697
 msgid "Provider Page Size"
 msgstr "Tamaño da páxina do fornecedor"
 
-#: ../gtksourceview/gtksourcecompletion.c:2217
+#: ../gtksourceview/gtksourcecompletion.c:1698
 msgid "Provider scrolling page size"
 msgstr "Tamaño do fornecedor do deprazamento da páxina"
 
-#: ../gtksourceview/gtksourcecompletion.c:2237
+#: ../gtksourceview/gtksourcecompletion.c:1718
 msgid "Proposal Page Size"
 msgstr "Tamaño da páxina da proposición"
 
-#: ../gtksourceview/gtksourcecompletion.c:2238
+#: ../gtksourceview/gtksourcecompletion.c:1719
 msgid "Proposal scrolling page size"
 msgstr "Tamaño da proposición do deprazamento da páxina"
 
@@ -2710,7 +2716,7 @@ msgstr "Información"
 msgid "Info to be shown for this item"
 msgstr "Información a mostrar para este elemento"
 
-#: ../gtksourceview/gtksourcecompletionmodel.c:466
+#: ../gtksourceview/gtksourcecompletionmodel.c:492
 msgid "Provider"
 msgstr "Fornecedor"
 
@@ -3219,11 +3225,11 @@ msgstr "Id de esquemas"
 msgid "List of the ids of the available style schemes"
 msgstr "Lista dos id dos esquemas de estilo dispoñíbeis"
 
-#: ../gtksourceview/gtksourceundomanagerdefault.c:410
+#: ../gtksourceview/gtksourceundomanagerdefault.c:405
 msgid "Buffer"
 msgstr "Búfer"
 
-#: ../gtksourceview/gtksourceundomanagerdefault.c:411
+#: ../gtksourceview/gtksourceundomanagerdefault.c:406
 msgid "The text buffer to add undo support on"
 msgstr "O búfer de texto que permite a acción de desfacer"
 
