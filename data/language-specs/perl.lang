@@ -26,7 +26,7 @@ FIXME: =pod should require an empty line before/after, as written in perlpod
 <language id="perl" _name="Perl" version="2.0" _section="Scripts">
   <metadata>
     <property name="mimetypes">text/x-perl;application/x-perl</property>
-    <property name="globs">*.pl;*.pm;*.al;*.perl</property>
+    <property name="globs">*.pl;*.pm;*.al;*.perl;*.t</property>
     <property name="line-comment-start">#</property>
   </metadata>
 
