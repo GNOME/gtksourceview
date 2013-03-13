@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gtksourceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-02-15 13:41+0000\n"
-"PO-Revision-Date: 2013-02-22 21:51+0900\n"
+"POT-Creation-Date: 2013-03-09 20:56+0000\n"
+"PO-Revision-Date: 2013-03-13 20:47+0900\n"
 "Last-Translator: Gheyret Kenji <gheyret@gmail.com>\n"
 "Language-Team: Uyghur Computer Science Association <UKIJ@yahoogroups.com>\n"
 "Language: \n"
@@ -69,10 +69,10 @@ msgstr "تېكىست"
 msgid "Trailing"
 msgstr "ئەگەشمە"
 
-#. Translators: "All" is used as a label in thestatus bar of the
-#. popup, telling that all completion pages are shown
+#. Translators: "All" is used as a label in the status bar of the
+#. popup, telling that all completion pages are shown.
 #: ../data/glade/gtksourceview.xml.in.h:14
-#: ../gtksourceview/gtksourcecompletion.c:728
+#: ../gtksourceview/gtksourcecompletion.c:537
 msgid "All"
 msgstr "ھەممىسى"
 
@@ -511,7 +511,7 @@ msgstr "تاللاشچان نىشان"
 
 #: ../data/language-specs/automake.lang.h:8
 msgid "Built-in Target"
-msgstr "نىشان قۇر"
+msgstr "ئۆزىدىكى نىشان"
 
 #: ../data/language-specs/automake.lang.h:9
 msgid "Other Keyword"
@@ -550,7 +550,7 @@ msgstr "Pattern"
 #: ../data/language-specs/pkgconfig.lang.h:3
 #: ../data/language-specs/prolog.lang.h:4
 #: ../data/language-specs/protobuf.lang.h:2
-#: ../data/language-specs/ruby.lang.h:21 ../data/language-specs/sh.lang.h:7
+#: ../data/language-specs/ruby.lang.h:22 ../data/language-specs/sh.lang.h:7
 #: ../data/language-specs/sparql.lang.h:14 ../data/language-specs/tcl.lang.h:3
 msgid "Variable"
 msgstr "ئۆزگىرىشچان"
@@ -665,7 +665,7 @@ msgstr "كۆپ قۇرلۇق تېكىست"
 
 #: ../data/language-specs/boo.lang.h:6
 #: ../data/language-specs/javascript.lang.h:14
-#: ../data/language-specs/perl.lang.h:16 ../data/language-specs/ruby.lang.h:24
+#: ../data/language-specs/perl.lang.h:16 ../data/language-specs/ruby.lang.h:25
 msgid "Regular Expression"
 msgstr "مۇنتىزىم ئىپادە"
 
@@ -681,7 +681,7 @@ msgstr "ئېنىقلىما"
 #: ../data/language-specs/boo.lang.h:11
 #: ../data/language-specs/python3.lang.h:9
 #: ../data/language-specs/python.lang.h:10
-#: ../data/language-specs/ruby.lang.h:19
+#: ../data/language-specs/ruby.lang.h:20
 msgid "Special Variable"
 msgstr "ئالاھىدە ئۆزگەرگۈچى"
 
@@ -729,7 +729,7 @@ msgstr "Swizzle ئەمەل بەلگىسى"
 #: ../data/language-specs/matlab.lang.h:5
 #: ../data/language-specs/modelica.lang.h:14
 #: ../data/language-specs/octave.lang.h:16
-#: ../data/language-specs/ruby.lang.h:16
+#: ../data/language-specs/ruby.lang.h:17
 msgid "Builtin"
 msgstr "ئىچكى"
 
@@ -849,7 +849,7 @@ msgstr "ئىچكى ئۆزگەرگۈچى"
 #: ../data/language-specs/def.lang.h:13
 #: ../data/language-specs/gtk-doc.lang.h:8
 #: ../data/language-specs/libtool.lang.h:3
-#: ../data/language-specs/ruby.lang.h:17
+#: ../data/language-specs/ruby.lang.h:18
 msgid "Constant"
 msgstr "تۇراقلىق سان"
 
@@ -1008,18 +1008,23 @@ msgstr "سانلىق-مەلۇمات تىپى"
 msgid "Preprocessor directive"
 msgstr "ئالدىن بىر تەرەپ قىلىش بۇيرۇقى"
 
-#. Reserved keywords: like "const" and "goto" in Java
+#. to mark possibily errors or unrecommended syntax
 #: ../data/language-specs/def.lang.h:55
+msgid "Warning"
+msgstr "ئاگاھلاندۇرۇش"
+
+#. Reserved keywords: like "const" and "goto" in Java
+#: ../data/language-specs/def.lang.h:57
 msgid "Reserved keyword"
 msgstr "قالدۇرۇلغان ئاچقۇچلۇق سۆز"
 
 #. Anything that needs extra attention; mostly the keywords TODO, FIXME and XXX
-#: ../data/language-specs/def.lang.h:57
+#: ../data/language-specs/def.lang.h:59
 msgid "Note (FIXME, TODO, XXX, etc.)"
 msgstr "ئىزاھات (FIXME، TODO، XXX قاتارلىق)"
 
 #. Text that stands out, HTML links, e-mail addresses, etc.
-#: ../data/language-specs/def.lang.h:59
+#: ../data/language-specs/def.lang.h:61
 msgid "Underlined"
 msgstr "ئاستى سىزىق"
 
@@ -1193,7 +1198,7 @@ msgid "Exception Handling"
 msgstr "مۇستەسنا بىر تەرەپ قىلىش"
 
 #: ../data/language-specs/eiffel.lang.h:11
-#: ../data/language-specs/ruby.lang.h:20
+#: ../data/language-specs/ruby.lang.h:21
 msgid "Predefined Variable"
 msgstr "ئالدىن ئېنىقلانغان ئۆزگەرگۈچى"
 
@@ -1510,7 +1515,7 @@ msgid "Haskell"
 msgstr "Haskell"
 
 #: ../data/language-specs/haskell.lang.h:6
-#: ../data/language-specs/ruby.lang.h:18
+#: ../data/language-specs/ruby.lang.h:19
 msgid "Symbol"
 msgstr "بەلگە"
 
@@ -1828,12 +1833,10 @@ msgid "Modelica"
 msgstr "Modelica"
 
 #: ../data/language-specs/modelica.lang.h:6
-#| msgid "Class names"
 msgid "Class type"
 msgstr "تىپ ئاتى"
 
 #: ../data/language-specs/modelica.lang.h:8
-#| msgid "Attribute"
 msgid "Default Attribute"
 msgstr "كۆڭۈلدىكى خاسلىق"
 
@@ -1992,12 +1995,12 @@ msgid "Include Statement"
 msgstr "ئىچىدىكى جۈملە"
 
 #: ../data/language-specs/perl.lang.h:9 ../data/language-specs/php.lang.h:10
-#: ../data/language-specs/ruby.lang.h:22
+#: ../data/language-specs/ruby.lang.h:23
 msgid "Heredoc"
 msgstr "Heredoc"
 
 #: ../data/language-specs/perl.lang.h:10 ../data/language-specs/php.lang.h:11
-#: ../data/language-specs/ruby.lang.h:23 ../data/language-specs/sh.lang.h:12
+#: ../data/language-specs/ruby.lang.h:24 ../data/language-specs/sh.lang.h:12
 msgid "Heredoc Bound"
 msgstr "Heredoc باغلامى"
 
@@ -2069,7 +2072,7 @@ msgstr "پارامېتىرلار"
 msgid "Metaparameters"
 msgstr "مېتا پارامېتىرلار"
 
-#: ../data/language-specs/puppet.lang.h:6
+#: ../data/language-specs/puppet.lang.h:6 ../data/language-specs/R.lang.h:11
 msgid "Functions"
 msgstr "فۇنكسىيىلەر"
 
@@ -2195,6 +2198,11 @@ msgstr "بۆلەك بىر تەرەپ قىلغۇچ"
 msgid "Numeric literal"
 msgstr "ھەرپلىك سان"
 
+#: ../data/language-specs/ruby.lang.h:15
+#: ../data/language-specs/sparql.lang.h:10
+msgid "Literal"
+msgstr "يېزىق"
+
 #: ../data/language-specs/scheme.lang.h:2
 msgid "Scheme"
 msgstr "نۇسخا"
@@ -2239,10 +2247,6 @@ msgstr "تىپ"
 #: ../data/language-specs/sparql.lang.h:6
 msgid "Individual"
 msgstr "ئۆزگىچە"
-
-#: ../data/language-specs/sparql.lang.h:10
-msgid "Literal"
-msgstr "يېزىق"
 
 #: ../data/language-specs/sparql.lang.h:11
 msgid "Predicate"
@@ -2517,12 +2521,12 @@ msgid "Whether to highlight matching brackets"
 msgstr "ماس كەلگەن تىرناقنى يورۇتۇپ كۆرسىتەمدۇ يوق"
 
 #: ../gtksourceview/gtksourcebuffer.c:265
-#: ../gtksourceview/gtksourceundomanagerdefault.c:418
+#: ../gtksourceview/gtksourceundomanagerdefault.c:413
 msgid "Maximum Undo Levels"
 msgstr "ئەڭ يۇقىرى يېنىۋېلىش دەرىجىسى"
 
 #: ../gtksourceview/gtksourcebuffer.c:266
-#: ../gtksourceview/gtksourceundomanagerdefault.c:419
+#: ../gtksourceview/gtksourceundomanagerdefault.c:414
 msgid "Number of undo levels for the buffer"
 msgstr "يىغلەكتىكى يېنىۋېلىش دەرىجىسى"
 
@@ -2565,82 +2569,82 @@ msgstr "يېنىۋېلىش باشقۇرغۇچ"
 msgid "The buffer undo manager"
 msgstr "يىغلەك يېنىۋېلىشنى باشقۇرغۇچ"
 
-#: ../gtksourceview/gtksourcecompletion.c:1037
-#: ../gtksourceview/gtksourcecompletion.c:1059
+#: ../gtksourceview/gtksourcecompletion.c:627
+#: ../gtksourceview/gtksourcecompletion.c:658
 msgid "No extra information available"
 msgstr "ئىشلەتكىلى بولىدىغان ئارتۇق ئۇچۇر يوق"
 
-#: ../gtksourceview/gtksourcecompletion.c:2268
+#: ../gtksourceview/gtksourcecompletion.c:1527
 #: ../gtksourceview/gtksourcegutter.c:548
 msgid "View"
 msgstr "كۆرۈنۈش"
 
-#: ../gtksourceview/gtksourcecompletion.c:2269
+#: ../gtksourceview/gtksourcecompletion.c:1528
 msgid "The GtkSourceView bound to the completion"
 msgstr "GtkSourceView تاماملاش چېكى"
 
-#: ../gtksourceview/gtksourcecompletion.c:2283
+#: ../gtksourceview/gtksourcecompletion.c:1542
 msgid "Remember Info Visibility"
 msgstr "ئۇچۇرنىڭ كۆرۈنۈشچانلىقىنى ئەستە تۇت"
 
-#: ../gtksourceview/gtksourcecompletion.c:2284
+#: ../gtksourceview/gtksourcecompletion.c:1543
 msgid "Remember the last info window visibility state"
 msgstr "ئاخىرقى ئۇچۇر كۆزنىكىنىڭ كۆرۈنۈشچانلىقىنى ئەستە تۇت"
 
-#: ../gtksourceview/gtksourcecompletion.c:2296
+#: ../gtksourceview/gtksourcecompletion.c:1555
 msgid "Select on Show"
 msgstr "تاللاپ كۆرسەت"
 
-#: ../gtksourceview/gtksourcecompletion.c:2297
+#: ../gtksourceview/gtksourcecompletion.c:1556
 msgid "Select first proposal when completion is shown"
 msgstr "كۆرسىتىش تاماملانغاندا بىرىنچى لايىھىنى تاللا"
 
-#: ../gtksourceview/gtksourcecompletion.c:2310
+#: ../gtksourceview/gtksourcecompletion.c:1569
 msgid "Show Headers"
 msgstr "قاش ئۇچۇرىنى كۆرسەت"
 
-#: ../gtksourceview/gtksourcecompletion.c:2311
+#: ../gtksourceview/gtksourcecompletion.c:1570
 msgid ""
 "Show provider headers when proposals from multiple providers are available"
 msgstr "كۆپ تەمىنلىگۈچىنىڭ تەكلىپى بولسا تەمىنلىگۈچىنىڭ باش ئۇچۇرىنى كۆرسەت"
 
-#: ../gtksourceview/gtksourcecompletion.c:2324
+#: ../gtksourceview/gtksourcecompletion.c:1583
 msgid "Show Icons"
 msgstr "سىنبەلگە كۆرسەت"
 
-#: ../gtksourceview/gtksourcecompletion.c:2325
+#: ../gtksourceview/gtksourcecompletion.c:1584
 msgid "Show provider and proposal icons in the completion popup"
 msgstr "تاماملاش تىزىملىكىدە تەمىنلىگۈچى ۋە تەكلىپ سىنبەلگىسىنى كۆرسەت"
 
-#: ../gtksourceview/gtksourcecompletion.c:2339
+#: ../gtksourceview/gtksourcecompletion.c:1598
 msgid "Accelerators"
 msgstr "تېزلەتكۈچ"
 
-#: ../gtksourceview/gtksourcecompletion.c:2340
+#: ../gtksourceview/gtksourcecompletion.c:1599
 msgid "Number of proposal accelerators to show"
 msgstr "كۆرسىتىدىغان تەكلىپ تېزلەتكۈچنىڭ سانى"
 
-#: ../gtksourceview/gtksourcecompletion.c:2355
+#: ../gtksourceview/gtksourcecompletion.c:1614
 msgid "Auto Complete Delay"
 msgstr "ئۆزلۈكىدىن تاماملاشنى كېچىكتۈرۈش"
 
-#: ../gtksourceview/gtksourcecompletion.c:2356
+#: ../gtksourceview/gtksourcecompletion.c:1615
 msgid "Completion popup delay for interactive completion"
 msgstr "تەسىرلىشىشچان تاماملاشتىكى تولۇقلاش تىزىملىك كېچىكتۈرۈش"
 
-#: ../gtksourceview/gtksourcecompletion.c:2372
+#: ../gtksourceview/gtksourcecompletion.c:1631
 msgid "Provider Page Size"
 msgstr "تەمىنلىگۈچىنىڭ بەت چوڭلۇقى"
 
-#: ../gtksourceview/gtksourcecompletion.c:2373
+#: ../gtksourceview/gtksourcecompletion.c:1632
 msgid "Provider scrolling page size"
 msgstr "تەمىنلىگۈچىنىڭ دومىلىما بەت چوڭلۇقى"
 
-#: ../gtksourceview/gtksourcecompletion.c:2393
+#: ../gtksourceview/gtksourcecompletion.c:1652
 msgid "Proposal Page Size"
 msgstr "تەكلىپ بەت چوڭلۇقى"
 
-#: ../gtksourceview/gtksourcecompletion.c:2394
+#: ../gtksourceview/gtksourcecompletion.c:1653
 msgid "Proposal scrolling page size"
 msgstr "تەكلىپ دومىلىما بەت چوڭلۇقى"
 
@@ -2699,7 +2703,7 @@ msgstr "ئۇچۇر"
 msgid "Info to be shown for this item"
 msgstr "بۇ تۈرگە كۆرسىتىدىغان ئۇچۇر"
 
-#: ../gtksourceview/gtksourcecompletionmodel.c:466
+#: ../gtksourceview/gtksourcecompletionmodel.c:492
 msgid "Provider"
 msgstr "تەمىنلىگۈچى"
 
@@ -3187,11 +3191,11 @@ msgstr "لايىھە كىملىكلىرى"
 msgid "List of the ids of the available style schemes"
 msgstr "مەۋجۇت ئۇسلۇب لايىھە كىملىكىنىڭ تىزىملىكى"
 
-#: ../gtksourceview/gtksourceundomanagerdefault.c:410
+#: ../gtksourceview/gtksourceundomanagerdefault.c:405
 msgid "Buffer"
 msgstr "يىغلەك"
 
-#: ../gtksourceview/gtksourceundomanagerdefault.c:411
+#: ../gtksourceview/gtksourceundomanagerdefault.c:406
 msgid "The text buffer to add undo support on"
 msgstr "يېنىۋېلىش مەشغۇلاتىنى قوللاشقا ئىشلىتىدىغان تېكىست غەملەك"
 
