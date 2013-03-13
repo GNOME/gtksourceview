@@ -16,8 +16,8 @@ msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-02-15 13:41+0000\n"
-"PO-Revision-Date: 2013-02-22 22:28+0100\n"
+"POT-Creation-Date: 2013-03-09 20:56+0000\n"
+"PO-Revision-Date: 2013-03-13 22:22+0100\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -78,10 +78,10 @@ msgstr "Text"
 msgid "Trailing"
 msgstr "Koncové"
 
-#. Translators: "All" is used as a label in thestatus bar of the
-#. popup, telling that all completion pages are shown
+#. Translators: "All" is used as a label in the status bar of the
+#. popup, telling that all completion pages are shown.
 #: ../data/glade/gtksourceview.xml.in.h:14
-#: ../gtksourceview/gtksourcecompletion.c:728
+#: ../gtksourceview/gtksourcecompletion.c:537
 msgid "All"
 msgstr "Vše"
 
@@ -559,7 +559,7 @@ msgstr "Vzor"
 #: ../data/language-specs/pkgconfig.lang.h:3
 #: ../data/language-specs/prolog.lang.h:4
 #: ../data/language-specs/protobuf.lang.h:2
-#: ../data/language-specs/ruby.lang.h:21 ../data/language-specs/sh.lang.h:7
+#: ../data/language-specs/ruby.lang.h:22 ../data/language-specs/sh.lang.h:7
 #: ../data/language-specs/sparql.lang.h:14 ../data/language-specs/tcl.lang.h:3
 msgid "Variable"
 msgstr "Proměnná"
@@ -644,7 +644,6 @@ msgid "System Task"
 msgstr "Systémová úloha"
 
 #: ../data/language-specs/bluespec.lang.h:4
-#| msgid "Activation"
 msgid "Annotation"
 msgstr "Vysvětlivka"
 
@@ -675,7 +674,7 @@ msgstr "Víceřádkový řetězec"
 
 #: ../data/language-specs/boo.lang.h:6
 #: ../data/language-specs/javascript.lang.h:14
-#: ../data/language-specs/perl.lang.h:16 ../data/language-specs/ruby.lang.h:24
+#: ../data/language-specs/perl.lang.h:16 ../data/language-specs/ruby.lang.h:25
 msgid "Regular Expression"
 msgstr "Regulární výraz"
 
@@ -691,7 +690,7 @@ msgstr "Definice"
 #: ../data/language-specs/boo.lang.h:11
 #: ../data/language-specs/python3.lang.h:9
 #: ../data/language-specs/python.lang.h:10
-#: ../data/language-specs/ruby.lang.h:19
+#: ../data/language-specs/ruby.lang.h:20
 msgid "Special Variable"
 msgstr "Speciální proměnná"
 
@@ -739,7 +738,7 @@ msgstr "Operátor swizzle"
 #: ../data/language-specs/matlab.lang.h:5
 #: ../data/language-specs/modelica.lang.h:14
 #: ../data/language-specs/octave.lang.h:16
-#: ../data/language-specs/ruby.lang.h:16
+#: ../data/language-specs/ruby.lang.h:17
 msgid "Builtin"
 msgstr "Vestavěné"
 
@@ -859,7 +858,7 @@ msgstr "Vestavěná proměnná"
 #: ../data/language-specs/def.lang.h:13
 #: ../data/language-specs/gtk-doc.lang.h:8
 #: ../data/language-specs/libtool.lang.h:3
-#: ../data/language-specs/ruby.lang.h:17
+#: ../data/language-specs/ruby.lang.h:18
 msgid "Constant"
 msgstr "Konstanta"
 
@@ -1018,18 +1017,23 @@ msgstr "Datový typ"
 msgid "Preprocessor directive"
 msgstr "Direktiva preprocesoru"
 
-#. Reserved keywords: like "const" and "goto" in Java
+#. to mark possibily errors or unrecommended syntax
 #: ../data/language-specs/def.lang.h:55
+msgid "Warning"
+msgstr "Varování"
+
+#. Reserved keywords: like "const" and "goto" in Java
+#: ../data/language-specs/def.lang.h:57
 msgid "Reserved keyword"
 msgstr "Rezervované klíčové slovo"
 
 #. Anything that needs extra attention; mostly the keywords TODO, FIXME and XXX
-#: ../data/language-specs/def.lang.h:57
+#: ../data/language-specs/def.lang.h:59
 msgid "Note (FIXME, TODO, XXX, etc.)"
 msgstr "Poznámka (FIXME, TODO, XXX, atd.)"
 
 #. Text that stands out, HTML links, e-mail addresses, etc.
-#: ../data/language-specs/def.lang.h:59
+#: ../data/language-specs/def.lang.h:61
 msgid "Underlined"
 msgstr "Podtrženo"
 
@@ -1203,7 +1207,7 @@ msgid "Exception Handling"
 msgstr "Obsluha výjimek"
 
 #: ../data/language-specs/eiffel.lang.h:11
-#: ../data/language-specs/ruby.lang.h:20
+#: ../data/language-specs/ruby.lang.h:21
 msgid "Predefined Variable"
 msgstr "Předdefinovaná proměnná"
 
@@ -1520,7 +1524,7 @@ msgid "Haskell"
 msgstr "Haskell"
 
 #: ../data/language-specs/haskell.lang.h:6
-#: ../data/language-specs/ruby.lang.h:18
+#: ../data/language-specs/ruby.lang.h:19
 msgid "Symbol"
 msgstr "Symbol"
 
@@ -2000,12 +2004,12 @@ msgid "Include Statement"
 msgstr "Příkaz include"
 
 #: ../data/language-specs/perl.lang.h:9 ../data/language-specs/php.lang.h:10
-#: ../data/language-specs/ruby.lang.h:22
+#: ../data/language-specs/ruby.lang.h:23
 msgid "Heredoc"
 msgstr "Dokumentace přímo v kódu"
 
 #: ../data/language-specs/perl.lang.h:10 ../data/language-specs/php.lang.h:11
-#: ../data/language-specs/ruby.lang.h:23 ../data/language-specs/sh.lang.h:12
+#: ../data/language-specs/ruby.lang.h:24 ../data/language-specs/sh.lang.h:12
 msgid "Heredoc Bound"
 msgstr "Napojení dokumentace přímo v kódu"
 
@@ -2077,7 +2081,7 @@ msgstr "Parametry"
 msgid "Metaparameters"
 msgstr "Metaparametry"
 
-#: ../data/language-specs/puppet.lang.h:6
+#: ../data/language-specs/puppet.lang.h:6 ../data/language-specs/R.lang.h:11
 msgid "Functions"
 msgstr "Funkce"
 
@@ -2203,6 +2207,11 @@ msgstr "Obsluha modulu"
 msgid "Numeric literal"
 msgstr "Číselný literál"
 
+#: ../data/language-specs/ruby.lang.h:15
+#: ../data/language-specs/sparql.lang.h:10
+msgid "Literal"
+msgstr "Literál"
+
 #: ../data/language-specs/scheme.lang.h:2
 msgid "Scheme"
 msgstr "Scheme"
@@ -2247,10 +2256,6 @@ msgstr "Třída"
 #: ../data/language-specs/sparql.lang.h:6
 msgid "Individual"
 msgstr "Individualita"
-
-#: ../data/language-specs/sparql.lang.h:10
-msgid "Literal"
-msgstr "Literál"
 
 #: ../data/language-specs/sparql.lang.h:11
 msgid "Predicate"
@@ -2525,12 +2530,12 @@ msgid "Whether to highlight matching brackets"
 msgstr "Zda zvýrazňovat závorky, které si odpovídají"
 
 #: ../gtksourceview/gtksourcebuffer.c:265
-#: ../gtksourceview/gtksourceundomanagerdefault.c:418
+#: ../gtksourceview/gtksourceundomanagerdefault.c:413
 msgid "Maximum Undo Levels"
 msgstr "Maximum úrovní vracení zpět"
 
 #: ../gtksourceview/gtksourcebuffer.c:266
-#: ../gtksourceview/gtksourceundomanagerdefault.c:419
+#: ../gtksourceview/gtksourceundomanagerdefault.c:414
 msgid "Number of undo levels for the buffer"
 msgstr "Počet kroků, o které se lze ve vyrovnávací paměti vrátit zpět"
 
@@ -2573,85 +2578,85 @@ msgstr "Správce vracení akcí"
 msgid "The buffer undo manager"
 msgstr "Správce vyrovnávací paměti pro vracení akcí"
 
-#: ../gtksourceview/gtksourcecompletion.c:1037
-#: ../gtksourceview/gtksourcecompletion.c:1059
+#: ../gtksourceview/gtksourcecompletion.c:627
+#: ../gtksourceview/gtksourcecompletion.c:658
 msgid "No extra information available"
 msgstr "Nejsou dostupné žádné doplňující informace"
 
-#: ../gtksourceview/gtksourcecompletion.c:2268
+#: ../gtksourceview/gtksourcecompletion.c:1527
 #: ../gtksourceview/gtksourcegutter.c:548
 msgid "View"
 msgstr "Zobrazení"
 
-#: ../gtksourceview/gtksourcecompletion.c:2269
+#: ../gtksourceview/gtksourcecompletion.c:1528
 msgid "The GtkSourceView bound to the completion"
 msgstr "Objekt GtkSourceView vázající se k dokončování"
 
-#: ../gtksourceview/gtksourcecompletion.c:2283
+#: ../gtksourceview/gtksourcecompletion.c:1542
 msgid "Remember Info Visibility"
 msgstr "Zapamatovat viditelnost informací"
 
-#: ../gtksourceview/gtksourcecompletion.c:2284
+#: ../gtksourceview/gtksourcecompletion.c:1543
 msgid "Remember the last info window visibility state"
 msgstr "Zapamatovat poslední stav viditelnosti okna s informacemi"
 
-#: ../gtksourceview/gtksourcecompletion.c:2296
+#: ../gtksourceview/gtksourcecompletion.c:1555
 msgid "Select on Show"
 msgstr "Vybrat po zobrazení"
 
-#: ../gtksourceview/gtksourcecompletion.c:2297
+#: ../gtksourceview/gtksourcecompletion.c:1556
 msgid "Select first proposal when completion is shown"
 msgstr "Po zobrazení dokončování označit první návrh jako vybraný"
 
-#: ../gtksourceview/gtksourcecompletion.c:2310
+#: ../gtksourceview/gtksourcecompletion.c:1569
 msgid "Show Headers"
 msgstr "Zobrazovat hlavičky"
 
-#: ../gtksourceview/gtksourcecompletion.c:2311
+#: ../gtksourceview/gtksourcecompletion.c:1570
 msgid ""
 "Show provider headers when proposals from multiple providers are available"
 msgstr ""
 "Zobrazovat hlavičky poskytovatele, když jsou dostupné návrhy od více "
 "poskytovatelů"
 
-#: ../gtksourceview/gtksourcecompletion.c:2324
+#: ../gtksourceview/gtksourcecompletion.c:1583
 msgid "Show Icons"
 msgstr "Zobrazovat ikony"
 
-#: ../gtksourceview/gtksourcecompletion.c:2325
+#: ../gtksourceview/gtksourcecompletion.c:1584
 msgid "Show provider and proposal icons in the completion popup"
 msgstr ""
 "Zobrazovat ikony návrhu a poskytovatele ve vyskakovací nabídce dokončování"
 
-#: ../gtksourceview/gtksourcecompletion.c:2339
+#: ../gtksourceview/gtksourcecompletion.c:1598
 msgid "Accelerators"
 msgstr "Klávesové zkratky"
 
-#: ../gtksourceview/gtksourcecompletion.c:2340
+#: ../gtksourceview/gtksourcecompletion.c:1599
 msgid "Number of proposal accelerators to show"
 msgstr "Počet klávesových zkratek návrhů, které se mají zobrazit"
 
-#: ../gtksourceview/gtksourcecompletion.c:2355
+#: ../gtksourceview/gtksourcecompletion.c:1614
 msgid "Auto Complete Delay"
 msgstr "Zpoždění automatického dokončování"
 
-#: ../gtksourceview/gtksourcecompletion.c:2356
+#: ../gtksourceview/gtksourcecompletion.c:1615
 msgid "Completion popup delay for interactive completion"
 msgstr "Prodleva než vyskočí nabídka interaktivního dokončování slov"
 
-#: ../gtksourceview/gtksourcecompletion.c:2372
+#: ../gtksourceview/gtksourcecompletion.c:1631
 msgid "Provider Page Size"
 msgstr "Délka stránky poskytovatelů"
 
-#: ../gtksourceview/gtksourcecompletion.c:2373
+#: ../gtksourceview/gtksourcecompletion.c:1632
 msgid "Provider scrolling page size"
 msgstr "Délka posuvné stránky s poskytovateli"
 
-#: ../gtksourceview/gtksourcecompletion.c:2393
+#: ../gtksourceview/gtksourcecompletion.c:1652
 msgid "Proposal Page Size"
 msgstr "Délka stránky návrhů"
 
-#: ../gtksourceview/gtksourcecompletion.c:2394
+#: ../gtksourceview/gtksourcecompletion.c:1653
 msgid "Proposal scrolling page size"
 msgstr "Délka posuvné stránky s návrhy"
 
@@ -2710,7 +2715,7 @@ msgstr "Informace"
 msgid "Info to be shown for this item"
 msgstr "Informace, která má být zobrazená pro tuto položku"
 
-#: ../gtksourceview/gtksourcecompletionmodel.c:466
+#: ../gtksourceview/gtksourcecompletionmodel.c:492
 msgid "Provider"
 msgstr "Poskytovatel"
 
@@ -3206,11 +3211,11 @@ msgstr "ID schémat"
 msgid "List of the ids of the available style schemes"
 msgstr "Seznam ID dostupných schémat stylů"
 
-#: ../gtksourceview/gtksourceundomanagerdefault.c:410
+#: ../gtksourceview/gtksourceundomanagerdefault.c:405
 msgid "Buffer"
 msgstr "Vyrovnávací paměť"
 
-#: ../gtksourceview/gtksourceundomanagerdefault.c:411
+#: ../gtksourceview/gtksourceundomanagerdefault.c:406
 msgid "The text buffer to add undo support on"
 msgstr "Textová vyrovnávací paměť přidávající podporu vracení akcí"
 
