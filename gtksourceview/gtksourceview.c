@@ -206,7 +206,7 @@ static void	gtk_source_view_show_completion_real	(GtkSourceView      *view);
 static void 	set_source_buffer 			(GtkSourceView      *view,
 								 GtkTextBuffer      *buffer);
 static void	gtk_source_view_populate_popup 		(GtkTextView        *view,
-								 GtkMenu            *menu);
+							 GtkWidget          *popup);
 static void	gtk_source_view_move_cursor		(GtkTextView        *text_view,
 								 GtkMovementStep     step,
 								 gint                count,
@@ -1313,18 +1313,28 @@ gtk_source_view_show_completion_real (GtkSourceView *view)
 
 static void
 gtk_source_view_populate_popup (GtkTextView *text_view,
-				GtkMenu     *menu)
+				GtkWidget   *popup)
 {
 	GtkTextBuffer *buffer;
+	GtkMenuShell *menu;
 	GtkWidget *menu_item;
 
 	buffer = gtk_text_view_get_buffer (text_view);
 	if (!GTK_SOURCE_IS_BUFFER (buffer))
+	{
 		return;
+	}
+
+	if (!GTK_IS_MENU_SHELL (popup))
+	{
+		return;
+	}
+
+	menu = GTK_MENU_SHELL (popup);
 
 	/* separator */
 	menu_item = gtk_separator_menu_item_new ();
-	gtk_menu_shell_prepend (GTK_MENU_SHELL (menu), menu_item);
+	gtk_menu_shell_prepend (menu, menu_item);
 	gtk_widget_show (menu_item);
 
 	/* create redo menu_item. */
@@ -1332,7 +1342,7 @@ gtk_source_view_populate_popup (GtkTextView *text_view,
 	g_object_set_data (G_OBJECT (menu_item), "gtk-signal", "redo");
 	g_signal_connect (G_OBJECT (menu_item), "activate",
 			  G_CALLBACK (menu_item_activate_cb), text_view);
-	gtk_menu_shell_prepend (GTK_MENU_SHELL (menu), menu_item);
+	gtk_menu_shell_prepend (menu, menu_item);
 	gtk_widget_set_sensitive (menu_item,
 				  (gtk_text_view_get_editable (text_view) &&
 				   gtk_source_buffer_can_redo (GTK_SOURCE_BUFFER (buffer))));
@@ -1343,7 +1353,7 @@ gtk_source_view_populate_popup (GtkTextView *text_view,
 	g_object_set_data (G_OBJECT (menu_item), "gtk-signal", "undo");
 	g_signal_connect (G_OBJECT (menu_item), "activate",
 			  G_CALLBACK (menu_item_activate_cb), text_view);
-	gtk_menu_shell_prepend (GTK_MENU_SHELL (menu), menu_item);
+	gtk_menu_shell_prepend (menu, menu_item);
 	gtk_widget_set_sensitive (menu_item,
 				  (gtk_text_view_get_editable (text_view) &&
 				   gtk_source_buffer_can_undo (GTK_SOURCE_BUFFER (buffer))));
