@@ -39,6 +39,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     <property name="accept_focus">False</property>
     <property name="focus_on_map">False</property>
     <property name="decorated">False</property>
+    <property name="mnemonics-visible">True</property>
     <child>
       <object class="GtkGrid" id="vgrid_completion">
         <property name="visible">True</property>
