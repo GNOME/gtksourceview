@@ -1282,24 +1282,46 @@ start_interactive_completion (GtkSourceCompletion *completion,
 		                    (GDestroyNotify)auto_completion_destroy);
 }
 
-static gboolean
+static void
+update_active_completion (GtkSourceCompletion *completion,
+			  GtkTextIter         *new_iter)
+{
+	GList *selected_providers;
+
+	g_assert (completion->priv->context != NULL);
+	g_assert (gtk_widget_get_visible (GTK_WIDGET (completion->priv->main_window)));
+
+	g_object_set (completion->priv->context,
+		      "iter", new_iter,
+		      NULL);
+
+	selected_providers = select_providers (completion->priv->providers,
+					       completion->priv->context);
+
+	if (selected_providers != NULL)
+	{
+		update_completion (completion,
+				   selected_providers,
+				   completion->priv->context);
+
+		g_list_free (selected_providers);
+	}
+	else
+	{
+		gtk_source_completion_hide (completion);
+	}
+}
+
+static void
 buffer_delete_range_cb (GtkTextBuffer       *buffer,
                         GtkTextIter         *start,
                         GtkTextIter         *end,
                         GtkSourceCompletion *completion)
 {
-	if (completion->priv->context == NULL)
+	if (completion->priv->context != NULL)
 	{
-		gtk_source_completion_hide (completion);
+		update_active_completion (completion, start);
 	}
-	else
-	{
-		update_completion (completion,
-				   completion->priv->active_providers,
-				   completion->priv->context);
-	}
-
-	return FALSE;
 }
 
 static void
@@ -1309,15 +1331,13 @@ buffer_insert_text_cb (GtkTextBuffer       *buffer,
                        gint                 len,
                        GtkSourceCompletion *completion)
 {
-	if (completion->priv->context == NULL)
+	if (completion->priv->context != NULL)
 	{
-		start_interactive_completion (completion, location);
+		update_active_completion (completion, location);
 	}
 	else
 	{
-		update_completion (completion,
-				   completion->priv->active_providers,
-				   completion->priv->context);
+		start_interactive_completion (completion, location);
 	}
 }
 
