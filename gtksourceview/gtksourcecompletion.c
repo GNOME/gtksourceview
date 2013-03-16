@@ -155,7 +155,6 @@ struct _GtkSourceCompletionPrivate
 	GtkSourceCompletionModel *model_proposals;
 
 	GList *providers;
-	GList *interactive_providers;
 
 	GtkSourceCompletionContext *context;
 	GList *active_providers;
@@ -295,17 +294,20 @@ select_providers (GList                      *providers,
                   GtkSourceCompletionContext *context)
 {
 	GList *selection = NULL;
+	GList *l;
 
-	while (providers != NULL)
+	for (l = providers; l != NULL; l = l->next)
 	{
-		GtkSourceCompletionProvider *provider = providers->data;
+		GtkSourceCompletionProvider *provider = l->data;
 
-		if (gtk_source_completion_provider_match (provider, context))
+		gboolean good_activation = (gtk_source_completion_provider_get_activation (provider) &
+					    gtk_source_completion_context_get_activation (context)) != 0;
+
+		if (good_activation &&
+		    gtk_source_completion_provider_match (provider, context))
 		{
 			selection = g_list_prepend (selection, provider);
 		}
-
-		providers = g_list_next (providers);
 	}
 
 	return g_list_reverse (selection);
@@ -1261,7 +1263,7 @@ start_interactive_completion (GtkSourceCompletion *completion,
 	g_signal_emit (completion, signals[POPULATE_CONTEXT], 0, context);
 
 	/* Select providers */
-	providers = select_providers (completion->priv->interactive_providers, context);
+	providers = select_providers (completion->priv->providers, context);
 
 	if (providers == NULL)
 	{
@@ -1387,9 +1389,6 @@ gtk_source_completion_dispose (GObject *object)
 		gtk_widget_destroy (GTK_WIDGET (completion->priv->main_window));
 		completion->priv->main_window = NULL;
 	}
-
-	g_list_free (completion->priv->interactive_providers);
-	completion->priv->interactive_providers = NULL;
 
 	g_list_free_full (completion->priv->providers, g_object_unref);
 	completion->priv->providers = NULL;
@@ -2385,14 +2384,6 @@ gtk_source_completion_add_provider (GtkSourceCompletion          *completion,
 	completion->priv->providers = g_list_append (completion->priv->providers,
 	                                             g_object_ref (provider));
 
-	if (gtk_source_completion_provider_get_activation (provider) &
-	    GTK_SOURCE_COMPLETION_ACTIVATION_INTERACTIVE)
-	{
-		completion->priv->interactive_providers =
-				g_list_append (completion->priv->interactive_providers,
-		                               provider);
-	}
-
 	if (error != NULL)
 	{
 		*error = NULL;
@@ -2438,14 +2429,6 @@ gtk_source_completion_remove_provider (GtkSourceCompletion          *completion,
 	}
 
 	completion->priv->providers = g_list_remove_link (completion->priv->providers, item);
-
-	if (gtk_source_completion_provider_get_activation (provider) &
-	    GTK_SOURCE_COMPLETION_ACTIVATION_INTERACTIVE)
-	{
-		completion->priv->interactive_providers =
-				g_list_remove (completion->priv->interactive_providers,
-		                               provider);
-	}
 
 	g_object_unref (provider);
 
