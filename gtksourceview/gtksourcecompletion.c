@@ -255,7 +255,8 @@ get_selected_proposal (GtkSourceCompletion          *completion,
 	return TRUE;
 }
 
-static void
+/* Returns %TRUE if the first proposal is selected. */
+static gboolean
 check_first_selected (GtkSourceCompletion *completion)
 {
 	GtkTreeSelection *selection;
@@ -264,17 +265,19 @@ check_first_selected (GtkSourceCompletion *completion)
 	if (get_selected_proposal (completion, NULL, NULL) ||
 	    !completion->priv->select_on_show)
 	{
-		return;
+		return FALSE;
 	}
 
 	if (!gtk_source_completion_model_first_proposal (completion->priv->model_proposals, &iter))
 	{
-		return;
+		return FALSE;
 	}
 
 	selection = gtk_tree_view_get_selection (completion->priv->tree_view_proposals);
 	gtk_tree_selection_select_iter (selection, &iter);
 	scroll_to_iter (completion, &iter);
+
+	return TRUE;
 }
 
 static void
@@ -1063,7 +1066,11 @@ selection_changed_cb (GtkTreeSelection    *selection,
 		      GtkSourceCompletion *completion)
 {
 	update_proposal_info (completion);
-	update_window_position (completion);
+
+	if (get_selected_proposal (completion, NULL, NULL))
+	{
+		update_window_position (completion);
+	}
 }
 
 static gboolean
@@ -1363,8 +1370,10 @@ populating_done (GtkSourceCompletion        *completion,
 		g_signal_emit (completion, signals[SHOW], 0);
 	}
 
-	check_first_selected (completion);
-	update_window_position (completion);
+	if (!check_first_selected (completion))
+	{
+		update_window_position (completion);
+	}
 }
 
 static void
