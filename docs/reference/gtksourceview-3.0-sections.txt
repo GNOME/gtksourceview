@@ -501,6 +501,7 @@ GtkSourceCompletionInfoClass
 <FILE>completionproposal</FILE>
 <TITLE>GtkSourceCompletionProposal</TITLE>
 GtkSourceCompletionProposal
+GtkSourceCompletionProposalIface
 gtk_source_completion_proposal_get_label
 gtk_source_completion_proposal_get_markup
 gtk_source_completion_proposal_get_text
@@ -515,7 +516,6 @@ GTK_SOURCE_COMPLETION_PROPOSAL
 GTK_SOURCE_COMPLETION_PROPOSAL_GET_INTERFACE
 GTK_SOURCE_TYPE_COMPLETION_PROPOSAL
 gtk_source_completion_proposal_get_type
-GtkSourceCompletionProposalIface
 </SECTION>
 
 <SECTION>

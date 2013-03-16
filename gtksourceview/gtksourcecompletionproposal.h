@@ -36,6 +36,27 @@ G_BEGIN_DECLS
 
 typedef struct _GtkSourceCompletionProposalIface	GtkSourceCompletionProposalIface;
 
+/**
+ * GtkSourceCompletionProposalIface:
+ * @parent: The parent interface.
+ * @get_label: The virtual function pointer for gtk_source_completion_proposal_get_label().
+ * By default, %NULL is returned.
+ * @get_markup: The virtual function pointer for gtk_source_completion_proposal_get_markup().
+ * By default, %NULL is returned.
+ * @get_text: The virtual function pointer for gtk_source_completion_proposal_get_text().
+ * By default, %NULL is returned.
+ * @get_icon: The virtual function pointer for gtk_source_completion_proposal_get_icon().
+ * By default, %NULL is returned.
+ * @get_info: The virtual function pointer for gtk_source_completion_proposal_get_info().
+ * By default, %NULL is returned.
+ * @hash: The virtual function pointer for gtk_source_completion_proposal_hash().
+ * By default, it uses a direct hash (g_direct_hash()).
+ * @equal: The virtual function pointer for gtk_source_completion_proposal_equal().
+ * By default, it uses direct equality (g_direct_equal()).
+ * @changed: The function pointer for the #GtkSourceCompletionProposal::changed signal.
+ *
+ * The virtual function table for #GtkSourceCompletionProposal.
+ */
 struct _GtkSourceCompletionProposalIface
 {
 	GTypeInterface parent;
