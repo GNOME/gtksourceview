@@ -39,11 +39,14 @@ typedef struct _GtkSourceCompletionContextPrivate	GtkSourceCompletionContextPriv
 
 /**
  * GtkSourceCompletionActivation:
- * @GTK_SOURCE_COMPLETION_ACTIVATION_NONE: none.
- * @GTK_SOURCE_COMPLETION_ACTIVATION_INTERACTIVE: interactive activation
- * @GTK_SOURCE_COMPLETION_ACTIVATION_USER_REQUESTED: user requested activation
- * (e.g. through a keyboard accelerator from the view)
- **/
+ * @GTK_SOURCE_COMPLETION_ACTIVATION_NONE: None.
+ * @GTK_SOURCE_COMPLETION_ACTIVATION_INTERACTIVE: Interactive activation. By
+ * default, it occurs on each insertion in the #GtkTextBuffer. This can be
+ * blocked temporarily with gtk_source_completion_block_interactive().
+ * @GTK_SOURCE_COMPLETION_ACTIVATION_USER_REQUESTED: User requested activation.
+ * By default, it occurs when the user presses
+ * <keycombo><keycap>Control</keycap><keycap>space</keycap></keycombo>.
+ */
 typedef enum
 {
 	GTK_SOURCE_COMPLETION_ACTIVATION_NONE = 0,
