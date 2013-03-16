@@ -36,6 +36,34 @@ G_BEGIN_DECLS
 
 typedef struct _GtkSourceCompletionProviderIface GtkSourceCompletionProviderIface;
 
+/**
+ * GtkSourceCompletionProviderIface:
+ * @g_iface: The parent interface.
+ * @get_name: The virtual function pointer for gtk_source_completion_provider_get_name().
+ * Must be implemented.
+ * @get_icon: The virtual function pointer for gtk_source_completion_provider_get_icon().
+ * By default, %NULL is returned.
+ * @populate: The virtual function pointer for gtk_source_completion_provider_populate().
+ * Add no proposals by default.
+ * @match: The virtual function pointer for gtk_source_completion_provider_match().
+ * By default, %TRUE is returned.
+ * @get_activation: The virtual function pointer for gtk_source_completion_provider_get_activation().
+ * The combination of all #GtkSourceCompletionActivation is returned by default.
+ * @get_info_widget: The virtual function pointer for gtk_source_completion_provider_get_info_widget().
+ * By default, %NULL is returned.
+ * @update_info: The virtual function pointer for gtk_source_completion_provider_update_info().
+ * Does nothing by default.
+ * @get_start_iter: The virtual function pointer for gtk_source_completion_provider_get_start_iter().
+ * By default, %FALSE is returned.
+ * @activate_proposal: The virtual function pointer for gtk_source_completion_provider_activate_proposal().
+ * By default, %FALSE is returned.
+ * @get_interactive_delay: The virtual function pointer for gtk_source_completion_provider_get_interactive_delay().
+ * By default, -1 is returned.
+ * @get_priority: The virtual function pointer for gtk_source_completion_provider_get_priority().
+ * By default, 0 is returned.
+ *
+ * The virtual function table for #GtkSourceCompletionProvider.
+ */
 struct _GtkSourceCompletionProviderIface
 {
 	GTypeInterface g_iface;

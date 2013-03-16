@@ -541,6 +541,7 @@ GtkSourceCompletionItemPrivate
 <FILE>completionprovider</FILE>
 <TITLE>GtkSourceCompletionProvider</TITLE>
 GtkSourceCompletionProvider
+GtkSourceCompletionProviderIface
 gtk_source_completion_provider_get_name
 gtk_source_completion_provider_get_icon
 gtk_source_completion_provider_populate
@@ -558,7 +559,6 @@ GTK_SOURCE_COMPLETION_PROVIDER
 GTK_SOURCE_COMPLETION_PROVIDER_GET_INTERFACE
 GTK_SOURCE_TYPE_COMPLETION_PROVIDER
 gtk_source_completion_provider_get_type
-GtkSourceCompletionProviderIface
 </SECTION>
 
 <SECTION>
