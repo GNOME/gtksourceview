@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: gtksourceview.HEAD\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-02-15 13:41+0000\n"
-"PO-Revision-Date: 2013-02-26 07:26+0530\n"
+"POT-Creation-Date: 2013-03-09 20:56+0000\n"
+"PO-Revision-Date: 2013-03-17 19:38+0530\n"
 "Last-Translator: A S Alam <aalam@users.sf.net>\n"
 "Language-Team: Punjabi/Panjabi <kde-i18n-doc@kde.org>\n"
 "Language: pa\n"
@@ -75,10 +75,10 @@ msgstr "ਟੈਕਸਟ"
 msgid "Trailing"
 msgstr "ਟਰੇਲਿੰਗ"
 
-#. Translators: "All" is used as a label in thestatus bar of the
-#. popup, telling that all completion pages are shown
+#. Translators: "All" is used as a label in the status bar of the
+#. popup, telling that all completion pages are shown.
 #: ../data/glade/gtksourceview.xml.in.h:14
-#: ../gtksourceview/gtksourcecompletion.c:728
+#: ../gtksourceview/gtksourcecompletion.c:537
 msgid "All"
 msgstr "ਸਭ"
 
@@ -556,7 +556,7 @@ msgstr "ਪੈਟਰਨ"
 #: ../data/language-specs/pkgconfig.lang.h:3
 #: ../data/language-specs/prolog.lang.h:4
 #: ../data/language-specs/protobuf.lang.h:2
-#: ../data/language-specs/ruby.lang.h:21 ../data/language-specs/sh.lang.h:7
+#: ../data/language-specs/ruby.lang.h:22 ../data/language-specs/sh.lang.h:7
 #: ../data/language-specs/sparql.lang.h:14 ../data/language-specs/tcl.lang.h:3
 msgid "Variable"
 msgstr "ਵੇਰੀਬਲ"
@@ -632,7 +632,6 @@ msgid "Field"
 msgstr "ਖੇਤਰ"
 
 #: ../data/language-specs/bluespec.lang.h:2
-#| msgid "SystemVerilog"
 msgid "Bluespec SystemVerilog"
 msgstr "Bluespec SystemVerilog"
 
@@ -642,12 +641,10 @@ msgid "System Task"
 msgstr "ਸਿਸਟਮ ਟਾਸਕ"
 
 #: ../data/language-specs/bluespec.lang.h:4
-#| msgid "Activation"
 msgid "Annotation"
 msgstr "ਵਿਆਖਿਆ"
 
 #: ../data/language-specs/bluespec.lang.h:5
-#| msgid "Attribute name"
 msgid "Attribute"
 msgstr "ਗੁਣ"
 
@@ -674,7 +671,7 @@ msgstr "ਮਲਟੀ-ਲਾਈਨ ਸਤਰ"
 
 #: ../data/language-specs/boo.lang.h:6
 #: ../data/language-specs/javascript.lang.h:14
-#: ../data/language-specs/perl.lang.h:16 ../data/language-specs/ruby.lang.h:24
+#: ../data/language-specs/perl.lang.h:16 ../data/language-specs/ruby.lang.h:25
 msgid "Regular Expression"
 msgstr "ਰੈਗੂਲਰ ਐਕਸਪਰੈਸ਼ਨ"
 
@@ -690,7 +687,7 @@ msgstr "ਪ੍ਰਭਾਸ਼ਾ"
 #: ../data/language-specs/boo.lang.h:11
 #: ../data/language-specs/python3.lang.h:9
 #: ../data/language-specs/python.lang.h:10
-#: ../data/language-specs/ruby.lang.h:19
+#: ../data/language-specs/ruby.lang.h:20
 msgid "Special Variable"
 msgstr "ਖਾਸ ਵੇਰੀਬਲ"
 
@@ -738,7 +735,7 @@ msgstr "ਸਵਿੱਜਲੀ ਓਪਰੇਟਰ"
 #: ../data/language-specs/matlab.lang.h:5
 #: ../data/language-specs/modelica.lang.h:14
 #: ../data/language-specs/octave.lang.h:16
-#: ../data/language-specs/ruby.lang.h:16
+#: ../data/language-specs/ruby.lang.h:17
 msgid "Builtin"
 msgstr "Builtin"
 
@@ -858,7 +855,7 @@ msgstr "ਬਿਲਟ-ਇਨ ਵੇਰੀਬਲ"
 #: ../data/language-specs/def.lang.h:13
 #: ../data/language-specs/gtk-doc.lang.h:8
 #: ../data/language-specs/libtool.lang.h:3
-#: ../data/language-specs/ruby.lang.h:17
+#: ../data/language-specs/ruby.lang.h:18
 msgid "Constant"
 msgstr "ਸਥਿਰ"
 
@@ -1017,18 +1014,23 @@ msgstr "ਮਿਤੀ ਟਾਈਪ"
 msgid "Preprocessor directive"
 msgstr "ਪ੍ਰੀਪ੍ਰੋਸੈਸਰ ਡਾਇਰੈਕਟਿਵ"
 
-#. Reserved keywords: like "const" and "goto" in Java
+#. to mark possibily errors or unrecommended syntax
 #: ../data/language-specs/def.lang.h:55
+msgid "Warning"
+msgstr "ਚੇਤਾਵਨੀ"
+
+#. Reserved keywords: like "const" and "goto" in Java
+#: ../data/language-specs/def.lang.h:57
 msgid "Reserved keyword"
 msgstr "ਰਾਖਵੇਂ ਸ਼ਬਦ"
 
 #. Anything that needs extra attention; mostly the keywords TODO, FIXME and XXX
-#: ../data/language-specs/def.lang.h:57
+#: ../data/language-specs/def.lang.h:59
 msgid "Note (FIXME, TODO, XXX, etc.)"
 msgstr "ਨੋਟ (FIXME, TODO, XXX, ਆਦਿ)"
 
 #. Text that stands out, HTML links, e-mail addresses, etc.
-#: ../data/language-specs/def.lang.h:59
+#: ../data/language-specs/def.lang.h:61
 msgid "Underlined"
 msgstr "ਹੇਠ-ਲਾਈਨ"
 
@@ -1202,7 +1204,7 @@ msgid "Exception Handling"
 msgstr "ਛੋਟ ਹੈਂਡਲਿੰਗ"
 
 #: ../data/language-specs/eiffel.lang.h:11
-#: ../data/language-specs/ruby.lang.h:20
+#: ../data/language-specs/ruby.lang.h:21
 msgid "Predefined Variable"
 msgstr "ਪ੍ਰੀ-ਡਿਫਾਇਨ ਵੇਰੀਬਲ"
 
@@ -1519,7 +1521,7 @@ msgid "Haskell"
 msgstr "Haskell"
 
 #: ../data/language-specs/haskell.lang.h:6
-#: ../data/language-specs/ruby.lang.h:18
+#: ../data/language-specs/ruby.lang.h:19
 msgid "Symbol"
 msgstr "ਸਿੰਬਲ"
 
@@ -1837,12 +1839,10 @@ msgid "Modelica"
 msgstr "Modelica"
 
 #: ../data/language-specs/modelica.lang.h:6
-#| msgid "Class names"
 msgid "Class type"
 msgstr "ਕਲਾਸ ਕਿਸਮ"
 
 #: ../data/language-specs/modelica.lang.h:8
-#| msgid "File Attributes"
 msgid "Default Attribute"
 msgstr "ਮੂਲ ਗੁਣ"
 
@@ -2001,12 +2001,12 @@ msgid "Include Statement"
 msgstr "ਸਟੇਟਮੈਂਟ ਸ਼ਾਮਲ"
 
 #: ../data/language-specs/perl.lang.h:9 ../data/language-specs/php.lang.h:10
-#: ../data/language-specs/ruby.lang.h:22
+#: ../data/language-specs/ruby.lang.h:23
 msgid "Heredoc"
 msgstr "Heredoc"
 
 #: ../data/language-specs/perl.lang.h:10 ../data/language-specs/php.lang.h:11
-#: ../data/language-specs/ruby.lang.h:23 ../data/language-specs/sh.lang.h:12
+#: ../data/language-specs/ruby.lang.h:24 ../data/language-specs/sh.lang.h:12
 msgid "Heredoc Bound"
 msgstr "Heredoc ਬਾਊਂਡ"
 
@@ -2078,7 +2078,7 @@ msgstr "ਪੈਰਾਮੀਟਰ"
 msgid "Metaparameters"
 msgstr "ਮੇਟਾ-ਪੈਰਾਮੀਟਰ"
 
-#: ../data/language-specs/puppet.lang.h:6
+#: ../data/language-specs/puppet.lang.h:6 ../data/language-specs/R.lang.h:11
 msgid "Functions"
 msgstr "ਫੰਕਸ਼ਨ"
 
@@ -2204,6 +2204,11 @@ msgstr "ਮੋਡੀਊਲ ਹੈਡਲਰ"
 msgid "Numeric literal"
 msgstr "ਨੰਬਰ ਲਿਟਰਲ"
 
+#: ../data/language-specs/ruby.lang.h:15
+#: ../data/language-specs/sparql.lang.h:10
+msgid "Literal"
+msgstr "ਲਿਟਰਲ"
+
 #: ../data/language-specs/scheme.lang.h:2
 msgid "Scheme"
 msgstr "ਸਕੀਮ"
@@ -2248,10 +2253,6 @@ msgstr "ਕਲਾਸ"
 #: ../data/language-specs/sparql.lang.h:6
 msgid "Individual"
 msgstr "ਇੱਕਲਾ"
-
-#: ../data/language-specs/sparql.lang.h:10
-msgid "Literal"
-msgstr "ਲਿਟਰਲ"
 
 #: ../data/language-specs/sparql.lang.h:11
 msgid "Predicate"
@@ -2526,12 +2527,12 @@ msgid "Whether to highlight matching brackets"
 msgstr "ਕੀ ਮਿਲਦੀਆਂ ਬਰੈਕਟਾਂ ਹਾਈਲਾਈਟ ਕਰਨੀਆਂ ਹਨ"
 
 #: ../gtksourceview/gtksourcebuffer.c:265
-#: ../gtksourceview/gtksourceundomanagerdefault.c:418
+#: ../gtksourceview/gtksourceundomanagerdefault.c:413
 msgid "Maximum Undo Levels"
 msgstr "ਵੱਧ ਤੋਂ ਵੱਧ ਮੁੜ ਕਰਨ ਯੋਗ ਪਗ"
 
 #: ../gtksourceview/gtksourcebuffer.c:266
-#: ../gtksourceview/gtksourceundomanagerdefault.c:419
+#: ../gtksourceview/gtksourceundomanagerdefault.c:414
 msgid "Number of undo levels for the buffer"
 msgstr "ਬਫ਼ਰ ਵਿੱਚੋ ਮੁੜ ਕਰਨ ਯੋਗ ਪਗਾਂ ਦੀ ਗਿਣਤੀ"
 
@@ -2574,82 +2575,82 @@ msgstr "ਵਾਪਸੀ ਮੈਨੇਜਰ"
 msgid "The buffer undo manager"
 msgstr "ਬਫ਼ਰ ਵਾਪਸੀ ਮੈਨੇਜਰ"
 
-#: ../gtksourceview/gtksourcecompletion.c:1037
-#: ../gtksourceview/gtksourcecompletion.c:1059
+#: ../gtksourceview/gtksourcecompletion.c:627
+#: ../gtksourceview/gtksourcecompletion.c:658
 msgid "No extra information available"
 msgstr "ਕੋਈ ਵਾਧੂ ਜਾਣਕਾਰੀ ਉਪਲੱਬਧ ਨਹੀਂ"
 
-#: ../gtksourceview/gtksourcecompletion.c:2268
+#: ../gtksourceview/gtksourcecompletion.c:1527
 #: ../gtksourceview/gtksourcegutter.c:548
 msgid "View"
 msgstr "ਵੇਖੋ"
 
-#: ../gtksourceview/gtksourcecompletion.c:2269
+#: ../gtksourceview/gtksourcecompletion.c:1528
 msgid "The GtkSourceView bound to the completion"
 msgstr "ਪੂਰਾ ਕਰਨ ਲਈ GtkSourceView ਆਬਜੈਕਟ"
 
-#: ../gtksourceview/gtksourcecompletion.c:2283
+#: ../gtksourceview/gtksourcecompletion.c:1542
 msgid "Remember Info Visibility"
 msgstr "ਜਾਣਾਕਰੀ ਦਿੱਖ ਯਾਦ ਰੱਖੋ"
 
-#: ../gtksourceview/gtksourcecompletion.c:2284
+#: ../gtksourceview/gtksourcecompletion.c:1543
 msgid "Remember the last info window visibility state"
 msgstr "ਆਖਰੀ ਜਾਣਕਾਰੀ ਵਿੰਡੋ ਦਿੱਖ ਹਾਲਤ ਯਾਦ ਰੱਖੋ"
 
-#: ../gtksourceview/gtksourcecompletion.c:2296
+#: ../gtksourceview/gtksourcecompletion.c:1555
 msgid "Select on Show"
 msgstr "ਵੇਖਾਉਣ ਉੱਤੇ ਚੁਣੋ"
 
-#: ../gtksourceview/gtksourcecompletion.c:2297
+#: ../gtksourceview/gtksourcecompletion.c:1556
 msgid "Select first proposal when completion is shown"
 msgstr "ਜਦੋਂ ਪੂਰਨਤਾ ਵੇਖਾਇਆ ਜਾਵੇ ਤਾਂ ਪਹਿਲਾਂ ਚੁਣੋ"
 
-#: ../gtksourceview/gtksourcecompletion.c:2310
+#: ../gtksourceview/gtksourcecompletion.c:1569
 msgid "Show Headers"
 msgstr "ਹੈੱਡਰ ਵੇਖੋ"
 
-#: ../gtksourceview/gtksourcecompletion.c:2311
+#: ../gtksourceview/gtksourcecompletion.c:1570
 msgid ""
 "Show provider headers when proposals from multiple providers are available"
 msgstr "ਪਰੋਵਾਇਡਰ ਹੈੱਡਰ ਵੇਖੋ, ਜਦੋਂ ਕੋਈ ਪਰੋਵਾਇਡਰਾਂ ਵਲੋਂ ਸੁਝਾਅ ਉਪਲੱਬਧ ਹੋਣ"
 
-#: ../gtksourceview/gtksourcecompletion.c:2324
+#: ../gtksourceview/gtksourcecompletion.c:1583
 msgid "Show Icons"
 msgstr "ਆਈਕਾਨ ਵੇਖੋ"
 
-#: ../gtksourceview/gtksourcecompletion.c:2325
+#: ../gtksourceview/gtksourcecompletion.c:1584
 msgid "Show provider and proposal icons in the completion popup"
 msgstr "ਪੂਰਨ ਪੋਪਅੱਪ ਵਿੱਚ ਪਰੋਵਾਇਡਰ ਅਤੇ ਸੁਝਾਅ ਆਈਕਾਨ ਵੇਖੋ"
 
-#: ../gtksourceview/gtksourcecompletion.c:2339
+#: ../gtksourceview/gtksourcecompletion.c:1598
 msgid "Accelerators"
 msgstr "ਐਕਸਰਲੇਟਰ"
 
-#: ../gtksourceview/gtksourcecompletion.c:2340
+#: ../gtksourceview/gtksourcecompletion.c:1599
 msgid "Number of proposal accelerators to show"
 msgstr "ਵੇਖਾਉਣ ਨੂੰ ਤੇਜ਼ ਕਰਨ ਸੁਝਾਆਵਾਂ ਦੀ ਗਿਣਤੀ"
 
-#: ../gtksourceview/gtksourcecompletion.c:2355
+#: ../gtksourceview/gtksourcecompletion.c:1614
 msgid "Auto Complete Delay"
 msgstr "ਆਟੋ ਪੂਰਨ ਦੇਰੀ"
 
-#: ../gtksourceview/gtksourcecompletion.c:2356
+#: ../gtksourceview/gtksourcecompletion.c:1615
 msgid "Completion popup delay for interactive completion"
 msgstr "ਇੰਟਰਐਕਟਿਵ ਪੂਰਨਤਾ ਲਈ ਪੂਰਨਤਾ ਪੋਪਅੱਪ ਦੇਰੀ"
 
-#: ../gtksourceview/gtksourcecompletion.c:2372
+#: ../gtksourceview/gtksourcecompletion.c:1631
 msgid "Provider Page Size"
 msgstr "ਪਰੋਵਾਇਡਰ ਪੇਜ਼ ਆਕਾਰ"
 
-#: ../gtksourceview/gtksourcecompletion.c:2373
+#: ../gtksourceview/gtksourcecompletion.c:1632
 msgid "Provider scrolling page size"
 msgstr "ਪਰੋਵਾਇਡਰ ਸਕਰੋਲਿੰਗ ਪੇਪਰ ਆਕਾਰ"
 
-#: ../gtksourceview/gtksourcecompletion.c:2393
+#: ../gtksourceview/gtksourcecompletion.c:1652
 msgid "Proposal Page Size"
 msgstr "ਸੁਝਾਅ ਪੇਜ਼ ਆਕਾਰ"
 
-#: ../gtksourceview/gtksourcecompletion.c:2394
+#: ../gtksourceview/gtksourcecompletion.c:1653
 msgid "Proposal scrolling page size"
 msgstr "ਸੁਝਾਅ ਸਕਰੋਲਿੰਗ ਪੇਜ਼ ਆਕਾਰ"
 
@@ -2708,7 +2709,7 @@ msgstr "ਜਾਣਕਾਰੀ"
 msgid "Info to be shown for this item"
 msgstr "ਇਹ ਆਈਟਮ ਲਈ ਵੇਖਾਉਣ ਲਈ ਜਾਣਕਾਰੀ"
 
-#: ../gtksourceview/gtksourcecompletionmodel.c:466
+#: ../gtksourceview/gtksourcecompletionmodel.c:492
 msgid "Provider"
 msgstr "ਪਰੋਵਾਇਡਰ"
 
@@ -3204,11 +3205,11 @@ msgstr "ਸਕੀਮ id"
 msgid "List of the ids of the available style schemes"
 msgstr "ਉਪਲੱਬਧ ਸਟਾਇਲ ਸਕੀਮਾਂ ਲਈ id ਦੀ ਲਿਸਟ"
 
-#: ../gtksourceview/gtksourceundomanagerdefault.c:410
+#: ../gtksourceview/gtksourceundomanagerdefault.c:405
 msgid "Buffer"
 msgstr "ਬਫ਼ਰ"
 
-#: ../gtksourceview/gtksourceundomanagerdefault.c:411
+#: ../gtksourceview/gtksourceundomanagerdefault.c:406
 msgid "The text buffer to add undo support on"
 msgstr "ਸਹਿਯੋਗ ਵਾਪਸੀ ਲਈ ਸ਼ਾਮਲ ਕਰਨ ਲਈ ਟੈਕਸਟ ਬਫ਼ਰ"
 
