@@ -96,6 +96,13 @@ test_region_LDADD = 						\
 	$(DEP_LIBS)			\
 	$(TESTS_LIBS)
 
+UNIT_TEST_PROGS += test-undo-manager
+test_undo_manager_SOURCES = test-undo-manager.c
+test_undo_manager_LDADD =					\
+	$(top_builddir)/gtksourceview/libgtksourceview-3.0.la	\
+	$(DEP_LIBS)						\
+	$(TESTS_LIBS)
+
 python_tests =			\
 	test-completion.py	\
 	test-widget.py
