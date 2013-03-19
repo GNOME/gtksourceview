@@ -273,14 +273,46 @@
                     </include>
                 </context>
 
-                <context id="verbatim-inline" style-ref="verbatim" class-disabled="no-spell-check">
-                    <start>\\(verb\*?|lstinline)(\S)</start>
+                <!--using brackets is an experimental feature from the listings package. The
+                    following must support these cases:
+
+                      \lstinline[]{code in here}
+                      \lstinline[key=val, key=val]{code in here}
+                      \lstinline[key=val, key=val]!code in here!
+                      \lstinline[]!code in here!
+                      \lstinline{code in here}
+                      \lstinline{code in {here} but not in here}  % brackets do not nest
+                      \lstinline!code in here!
+                      \lstinline=code in here=
+
+                      If using \verb instead of \lstinline, the brackets annot be used
+                    -->
+                <context id="lstinline-brackets" style-ref="verbatim" class-disabled="no-spell-check">
+                    <start>\\lstinline(\[.*?\])?{</start>
+                    <end>}</end>
+                    <include>
+                      <context sub-pattern="0" where="start" class="no-spell-check"/>
+                      <context sub-pattern="0" where="end" class="no-spell-check"/>
+                    </include>
+                </context>
+                <context id="lstinline" style-ref="verbatim" class-disabled="no-spell-check">
+                    <start>\\lstinline(\[.*?\])?(\S)</start>
                     <end>\%{2@start}</end>
                     <include>
                       <context sub-pattern="0" where="start" class="no-spell-check"/>
                       <context sub-pattern="0" where="end" class="no-spell-check"/>
                     </include>
                 </context>
+                <!-- If using \verb instead of \lstinline, the brackets cannot be used -->
+                <context id="verbatim-inline" style-ref="verbatim" class-disabled="no-spell-check">
+                    <start>\\verb\*?(\S)</start>
+                    <end>\%{1@start}</end>
+                    <include>
+                      <context sub-pattern="0" where="start" class="no-spell-check"/>
+                      <context sub-pattern="0" where="end" class="no-spell-check"/>
+                    </include>
+                </context>
+
 
                 <context id="include" style-ref="include" class="no-spell-check">
                     <prefix>\\</prefix>
