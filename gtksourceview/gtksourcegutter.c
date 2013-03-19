@@ -1028,7 +1028,7 @@ on_view_draw (GtkSourceView   *view,
 	style_context = gtk_widget_get_style_context (GTK_WIDGET (view));
 
 	gtk_style_context_get_color (style_context,
-	                             gtk_widget_get_state (GTK_WIDGET (view)),
+	                             gtk_widget_get_state_flags (GTK_WIDGET (view)),
 	                             &fg_color);
 
 	gdk_cairo_set_source_rgba (cr, &fg_color);
