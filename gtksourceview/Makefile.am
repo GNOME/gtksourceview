@@ -138,6 +138,7 @@ libgtksourceview_3_0_la_CFLAGS = 	\
 	$(CODE_COVERAGE_CFLAGS)
 
 libgtksourceview_3_0_la_LDFLAGS =		\
+	-version-info $(GSV_LT_VERSION)		\
 	-no-undefined 				\
 	-export-symbols-regex "^gtk_source_.*"	\
 	$(CODE_COVERAGE_LDFLAGS)

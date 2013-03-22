@@ -7,7 +7,34 @@ m4_define(gtksourceview_minor_version, 7)
 m4_define(gtksourceview_micro_version, 93)
 m4_define(gtksourceview_version, gtksourceview_major_version.gtksourceview_minor_version.gtksourceview_micro_version)
 
-AC_INIT([gtksourceview],[gtksourceview_version],[http://bugzilla.gnome.org/enter_bug.cgi?product=gtksourceview],[gtksourceview],[http://projects.gnome.org/gtksourceview/])
+AC_INIT([gtksourceview],
+        [gtksourceview_version],
+	[http://bugzilla.gnome.org/enter_bug.cgi?product=gtksourceview],
+	[gtksourceview],
+	[http://projects.gnome.org/gtksourceview/])
+
+# Libtool versioning
+#
+# For development releases, keep the same numbers.
+#
+# For stable releases, apply the following algorithm step by step:
+# 1. If the library source code has changed at all since the last
+#    update, then increment REVISION.
+# 2. If any exported functions or data have been added, removed, or
+#    changed since the last update, increment CURRENT and set REVISION
+#    to 0.
+# 3. If any exported functions or data have been added since the last
+#    public release, increment AGE.
+# 4. If any exported functions or data have been removed since the last
+#    public release, set AGE to 0.
+#
+# (From the book Autotools, by John Calcote)
+
+GSV_LT_CURRENT=1
+GSV_LT_REVISION=0
+GSV_LT_AGE=0
+GSV_LT_VERSION="$GSV_LT_CURRENT:$GSV_LT_REVISION:$GSV_LT_AGE"
+AC_SUBST(GSV_LT_VERSION)
 
 AC_CONFIG_SRCDIR([gtksourceview/gtksourcebuffer.h])
 AC_CONFIG_HEADER([config.h])
