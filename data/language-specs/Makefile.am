@@ -56,6 +56,7 @@ LANGUAGES =			\
 	json.lang		\
 	julia.lang		\
 	latex.lang		\
+	lex.lang		\
 	libtool.lang		\
 	lua.lang		\
 	m4.lang			\
