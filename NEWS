@@ -1,3 +1,11 @@
+News in 3.8.0
+-------------
+* Add Libtool versioning. There was an ABI break during this development
+  cycle, because some private functions were accidentally exported. So
+  the Libtool's -version-info is bumped from 0:0:0 to 1:0:0. On
+  GNU/Linux, this results in a version bump of the soname.
+* Updated translations
+
 News in 3.7.92
 --------------
 * New style id for warnings
