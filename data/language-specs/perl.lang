@@ -559,7 +559,13 @@ FIXME: =pod should require an empty line before/after, as written in perlpod
     <define-regex id="here-doc-bound-char">[^\s'"=;)]</define-regex>
 
     <context id="here-doc-no-ve">
-      <start>&lt;&lt;\'(?P&lt;HDB&gt;\%{here-doc-bound-char}*)\'</start>
+      <start extended="true" dupnames="true">
+        &lt;&lt;
+        (
+          \'(?P&lt;HDB&gt;\%{here-doc-bound-char}*)\'|  # 'EOF'
+          \\(?P&lt;HDB&gt;\%{here-doc-bound-char}*)     # \EOF
+        )
+      </start>
       <end>^\%{HDB@start}$</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="here-doc-bound"/>
@@ -576,7 +582,7 @@ FIXME: =pod should require an empty line before/after, as written in perlpod
         &lt;&lt;
         (
           \"(?P&lt;HDB&gt;\%{here-doc-bound-char}*)\"|   # "EOF"
-          (?P&lt;HDB&gt;\%{here-doc-bound-char}*)        # EOF
+            (?P&lt;HDB&gt;\%{here-doc-bound-char}*)      # EOF
         )
       </start>
       <end>^\%{HDB@start}$</end>
