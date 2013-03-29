@@ -93,6 +93,7 @@ FIXME: =pod should require an empty line before/after, as written in perlpod
     </context>
 
     <define-regex id="operator" extended="true">
+      \-[rwxoRWXOezsfdlpSbctugkTBMAC](?=\s) |
       \-&gt; |
       \+\+ | \-\- |
       \*\* |
