@@ -557,7 +557,7 @@ FIXME: =pod should require an empty line before/after, as written in perlpod
 
     <!-- #### HEREDOC STRINGS ############################################# -->
     <!-- There may not be a space between the << and the identifier, unless the
-          identifier is explicitly quoted (hence the \s* when using quotes -->
+          identifier is explicitly quoted (hence the \s* when using quotes. -->
 
     <define-regex id="here-doc-bound-char">[^\s'"=;)]</define-regex>
 
@@ -565,8 +565,8 @@ FIXME: =pod should require an empty line before/after, as written in perlpod
       <start extended="true" dupnames="true">
         &lt;&lt;
         (
-          \s*\'(?P&lt;HDB&gt;\%{here-doc-bound-char}*)\'|  # 'EOF'
-          \s*\\(?P&lt;HDB&gt;\%{here-doc-bound-char}*)     # \EOF
+          \s*\'(?P&lt;HDB&gt;\%{here-doc-bound-char}+)\'|  # 'EOF'
+             \\(?P&lt;HDB&gt;\%{here-doc-bound-char}+)     # \EOF
         )
       </start>
       <end>^\%{HDB@start}$</end>
@@ -584,8 +584,8 @@ FIXME: =pod should require an empty line before/after, as written in perlpod
       <start extended="true" dupnames="true">
         &lt;&lt;
         (
-          \s*\"(?P&lt;HDB&gt;\%{here-doc-bound-char}*)\"|   # "EOF"
-               (?P&lt;HDB&gt;\%{here-doc-bound-char}*)      # EOF
+          \s*\"(?P&lt;HDB&gt;\%{here-doc-bound-char}+)\"|   # "EOF"
+             (?P&lt;HDB&gt;\%{here-doc-bound-char}+)        # EOF
         )
       </start>
       <end>^\%{HDB@start}$</end>
