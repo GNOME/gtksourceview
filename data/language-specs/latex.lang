@@ -269,22 +269,33 @@
           \lstinline[key=val, key=val]{code in here}
           \lstinline[key=val, key=val]!code in here!
           \lstinline[]!code in here!
+          \lstinline[][code in here]
+          \lstinline[NOT code in here, must specify empty optional argument to use square brackets]
           \lstinline{code in here}
-          \lstinline{code in {here} but not in here}  % brackets do not nest
+          \lstinline{code in {here} but NOT in here}  % brackets do not nest
           \lstinline!code in here!
           \lstinline=code in here=
+          \lstinline{this needs to fail{
+          \lstinline[this also needs to fail[
 
-          If using \verb instead of \lstinline, the brackets annot be used
+          If using \verb instead of \lstinline, the brackets cannot be used
         -->
-    <context id="lstinline-brackets" style-inside="true" style-ref="verbatim" class-disabled="no-spell-check">
+    <context id="lstinline-curly-brackets" style-inside="true" style-ref="verbatim" class-disabled="no-spell-check">
       <start>(\\lstinline)(\[.*?\])?{</start>
       <end>}</end>
       <include>
         <context sub-pattern="1" where="start" style-ref="command" class="no-spell-check"/>
       </include>
     </context>
+    <context id="lstinline-square-brackets" style-inside="true" style-ref="verbatim" class-disabled="no-spell-check">
+      <start>(\\lstinline)(\[.*?\])\[</start>
+      <end>\]</end>
+      <include>
+        <context sub-pattern="1" where="start" style-ref="command" class="no-spell-check"/>
+      </include>
+    </context>
     <context id="lstinline" style-inside="true" style-ref="verbatim" class-disabled="no-spell-check">
-      <start>(\\lstinline)(\[.*?\])?(\S)</start>
+      <start>(\\lstinline)(\[.*?\])?((?!\[)\S)</start>  <!-- ignore when starting with [ -->
       <end>\%{3@start}</end>
       <include>
         <context sub-pattern="1" where="start" style-ref="command" class="no-spell-check"/>
@@ -318,7 +329,8 @@
         <context ref="inline-math-1"/>
         <context ref="inline-math-2"/>
         <context ref="verbatim-env"/>
-        <context ref="lstinline-brackets"/>
+        <context ref="lstinline-curly-brackets"/>
+        <context ref="lstinline-square-brackets"/>
         <context ref="lstinline"/>
         <context ref="verbatim-inline"/>
         <context ref="include"/>
