@@ -785,14 +785,23 @@ static void
 gtk_source_undo_action_free (GtkSourceUndoAction *action)
 {
 	if (action == NULL)
+	{
 		return;
+	}
 
 	if (action->action_type == GTK_SOURCE_UNDO_ACTION_INSERT)
+	{
 		g_free (action->action.insert.text);
+	}
 	else if (action->action_type == GTK_SOURCE_UNDO_ACTION_DELETE)
+	{
 		g_free (action->action.delete.text);
+	}
 	else
+	{
+		g_free (action);
 		g_return_if_reached ();
+	}
 
 	g_free (action);
 }
