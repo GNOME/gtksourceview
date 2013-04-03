@@ -1298,7 +1298,6 @@ update_active_completion (GtkSourceCompletion *completion,
 	GList *selected_providers;
 
 	g_assert (completion->priv->context != NULL);
-	g_assert (gtk_widget_get_visible (GTK_WIDGET (completion->priv->main_window)));
 
 	g_object_set (completion->priv->context,
 		      "iter", new_iter,
