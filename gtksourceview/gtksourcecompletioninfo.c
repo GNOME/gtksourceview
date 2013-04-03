@@ -48,11 +48,12 @@
  * </example>
  *
  * If the calltip is displayed on top of a certain widget, say a #GtkTextView,
- * you should hide it when the #GtkWidget::focus-out-event signal is emitted by
- * the #GtkTextView. You may also be interested by the
- * #GtkTextBuffer:cursor-position property (when its value is modified). If you
- * use the #GtkSourceCompletionInfo through the #GtkSourceCompletion machinery,
- * you don't need to worry about this.
+ * you should attach the calltip window to the #GtkTextView with
+ * gtk_window_set_attached_to().  By doing this, the calltip will be hidden when
+ * the #GtkWidget::focus-out-event signal is emitted by the #GtkTextView. You
+ * may also be interested by the #GtkTextBuffer:cursor-position property (when
+ * its value is modified). If you use the #GtkSourceCompletionInfo through the
+ * #GtkSourceCompletion machinery, you don't need to worry about this.
  */
 
 #include <gtksourceview/gtksourcecompletioninfo.h>
@@ -62,6 +63,9 @@
 struct _GtkSourceCompletionInfoPrivate
 {
 	guint idle_resize;
+
+	GtkWidget *attached_to;
+	gulong focus_out_event_handler;
 };
 
 /* Signals */
@@ -184,10 +188,54 @@ gtk_source_completion_info_get_preferred_height (GtkWidget *widget,
 
 /* Init, dispose, finalize, ... */
 
+static gboolean
+focus_out_event_cb (GtkSourceCompletionInfo *info)
+{
+	gtk_widget_hide (GTK_WIDGET (info));
+	return FALSE;
+}
+
+static void
+update_attached_to (GtkSourceCompletionInfo *info)
+{
+	GtkWidget *attached_to = gtk_window_get_attached_to (GTK_WINDOW (info));
+
+	if (info->priv->focus_out_event_handler != 0 &&
+	    info->priv->attached_to != NULL)
+	{
+		g_signal_handler_disconnect (info->priv->attached_to,
+					     info->priv->focus_out_event_handler);
+
+		info->priv->focus_out_event_handler = 0;
+	}
+
+	info->priv->attached_to = attached_to;
+
+	if (attached_to == NULL)
+	{
+		return;
+	}
+
+	g_object_add_weak_pointer (G_OBJECT (attached_to),
+				   (gpointer) &info->priv->attached_to);
+
+	info->priv->focus_out_event_handler = g_signal_connect_swapped (attached_to,
+									"focus-out-event",
+									G_CALLBACK (focus_out_event_cb),
+									info);
+}
+
 static void
 gtk_source_completion_info_init (GtkSourceCompletionInfo *info)
 {
 	info->priv = GTK_SOURCE_COMPLETION_INFO_GET_PRIVATE (info);
+
+	g_signal_connect (info,
+			  "notify::attached-to",
+			  G_CALLBACK (update_attached_to),
+			  NULL);
+
+	update_attached_to (info);
 
 	/* Tooltip style */
 	gtk_window_set_title (GTK_WINDOW (info), _("Completion Info"));
@@ -207,6 +255,13 @@ gtk_source_completion_info_finalize (GObject *object)
 	if (info->priv->idle_resize != 0)
 	{
 		g_source_remove (info->priv->idle_resize);
+	}
+
+	if (info->priv->focus_out_event_handler != 0 &&
+	    info->priv->attached_to != NULL)
+	{
+		g_signal_handler_disconnect (info->priv->attached_to,
+					     info->priv->focus_out_event_handler);
 	}
 
 	G_OBJECT_CLASS (gtk_source_completion_info_parent_class)->finalize (object);
