@@ -260,11 +260,13 @@ gtk_source_completion_info_class_init (GtkSourceCompletionInfoClass *klass)
 	 * This signal is emitted before any "show" management. You can connect
 	 * to this signal if you want to change some properties or position
 	 * before the real "show".
+	 *
+	 * Deprecated: 3.10: This signal should not be used.
 	 */
 	signals[BEFORE_SHOW] =
 		g_signal_new ("before-show",
 		              G_TYPE_FROM_CLASS (klass),
-		              G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
+		              G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION | G_SIGNAL_DEPRECATED,
 		              0,
 		              NULL,
 		              NULL,
