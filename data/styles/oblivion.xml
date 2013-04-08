@@ -55,6 +55,7 @@
   <color name="aluminium4"                  value="#888a85"/>
   <color name="aluminium5"                  value="#555753"/>
   <color name="aluminium6"                  value="#2e3436"/>
+  <color name="white"                       value="#ffffff"/>
 
   <!-- Global Settings -->
   <style name="text"                        foreground="aluminium2" background="aluminium6"/>
@@ -90,7 +91,7 @@
   <style name="def:identifier"              foreground="skyblue1"/>
 
   <!-- Statements -->
-  <style name="def:statement"               foreground="#white" bold="true"/>
+  <style name="def:statement"               foreground="white" bold="true"/>
 
   <!-- Types -->
   <style name="def:type"                    foreground="chameleon1" bold="true"/> 
@@ -108,7 +109,7 @@
   <style name="diff:changed-line"           foreground="plum1"/>
   <style name="diff:diff-file"              foreground="chameleon1" bold="true"/> 
   <style name="diff:location"               foreground="chameleon1"/> 
-  <style name="diff:special-case"           foreground="#white" bold="true"/>
+  <style name="diff:special-case"           foreground="white" bold="true"/>
 
   <style name="latex:display-math"          foreground="plum3"/>
   <style name="latex:command"               foreground="chameleon1" bold="true"/>

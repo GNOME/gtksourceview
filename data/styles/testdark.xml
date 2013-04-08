@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <style-scheme id="dark" _name="dark" parent-scheme="classic" version="1.0">
-  <style name="text"                foreground="#white" background="#black"/>
-  <style name="selection"           foreground="#magenta" background="#grey"/>
-  <style name="selection-unfocused" foreground="#magenta" background="#grey"/>
-  <style name="cursor"              foreground="#white"/>
-  <style name="secondary-cursor"    foreground="#grey"/>
-  <style name="current-line"        background="#grey"/>
-  <style name="line-numbers"        foreground="#yellow" background="#darkgreen"/>
-  <style name="current-line"        background="#lightgreen"/>
+  <style name="text"                foreground="white" background="#000000"/>
+  <style name="selection"           foreground="magenta" background="gray"/>
+  <style name="selection-unfocused" foreground="magenta" background="gray"/>
+  <style name="cursor"              foreground="white"/>
+  <style name="secondary-cursor"    foreground="gray"/>
+  <style name="current-line"        background="gray"/>
+  <style name="line-numbers"        foreground="#FFFF00" background="#006400"/>
+  <style name="current-line"        background="#90EE90"/>
 </style-scheme>
