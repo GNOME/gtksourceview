@@ -30,10 +30,12 @@
        scheme did -->
 
   <!-- Palette -->
+  <color name="white"      value="#FFFFFF"/>
   <color name="blue"       value="#0000FF"/>
   <color name="magenta"    value="#FF00FF"/>
   <color name="violet"     value="#6A5ACD"/>
   <color name="cyan"       value="#008A8C"/>
+  <color name="gray"       value="#BEBEBE"/>
   <color name="green"      value="#2E8B57"/>
   <color name="bordeaux"   value="#A52A2A"/>
   <color name="red"        value="#FF0000"/>
@@ -45,11 +47,11 @@
   <style name="draw-spaces"                 foreground="#babdb6"/>
 
   <!-- Bracket Matching -->
-  <style name="bracket-match"               foreground="#white" background="#grey" bold="true"/>
-  <style name="bracket-mismatch"            foreground="#white" background="#red" bold="true"/>
+  <style name="bracket-match"               foreground="white" background="gray" bold="true"/>
+  <style name="bracket-mismatch"            foreground="white" background="red" bold="true"/>
 
   <!-- Right Margin -->
-  <style name="right-margin"                foreground="#grey"/>
+  <style name="right-margin"                foreground="gray"/>
 
   <!-- Search Matching -->
   <style name="search-match"                background="yellow"/>  
