@@ -25,18 +25,18 @@
 #include "gtksourcebuffer.h"
 
 /**
- * gtk_source_completion_utils_is_separator:
+ * is_separator:
  * @ch: the character to check.
  *
- * A separator is a character like (, an space etc. An _ is not a separator
+ * A separator is a character like (, a space etc. An _ is not a separator.
  *
  * Returns: %TRUE if @ch is a separator.
  */
 static gboolean
-gtk_source_completion_utils_is_separator (const gunichar ch)
+is_separator (const gunichar ch)
 {
-	if (g_unichar_isprint(ch) &&
-	    (g_unichar_isalnum(ch) || ch == g_utf8_get_char("_")))
+	if (g_unichar_isprint (ch) &&
+	    (g_unichar_isalnum (ch) || ch == g_utf8_get_char ("_")))
 	{
 		return FALSE;
 	}
@@ -65,7 +65,7 @@ gtk_source_completion_utils_get_word_iter (GtkTextBuffer *buffer,
 	{
 		gunichar ch = gtk_text_iter_get_char (start_word);
 
-		if (gtk_source_completion_utils_is_separator (ch))
+		if (is_separator (ch))
 		{
 			gtk_text_iter_forward_char (start_word);
 			return;
@@ -112,7 +112,7 @@ get_iter_pos (GtkSourceView *source_view,
  * @buffer: a #GtkTextBuffer.
  * @text: (allow-none): The text to be inserted instead of the current word.
  *
- * Replaces the current word in the #GtkSourceBuffer with the new word.
+ * Replaces the current word in the @buffer with the new word.
  */
 void
 gtk_source_completion_utils_replace_current_word (GtkTextBuffer *buffer,
@@ -139,12 +139,10 @@ static void
 compensate_for_gravity (GtkWindow *window,
                         gint      *x,
                         gint      *y,
-                        gint      w,
-                        gint      h)
+                        gint       w,
+                        gint       h)
 {
-	GdkGravity gravity;
-
-	gravity = gtk_window_get_gravity (window);
+	GdkGravity gravity = gtk_window_get_gravity (window);
 
 	/* Horizontal */
 	switch (gravity)
@@ -184,12 +182,9 @@ compensate_for_gravity (GtkWindow *window,
 }
 
 static void
-move_overlap (gint     *x,
-              gint     *y,
-              gint      w,
+move_overlap (gint     *y,
               gint      h,
               gint      oy,
-              gint      cx,
               gint      cy,
               gint      line_height,
               gboolean  move_up)
@@ -213,7 +208,6 @@ move_overlap (gint     *x,
  * @window: (allow-none): the #GtkWindow to move.
  * @view: the #GtkSourceView.
  * @iter: the iter to move @window to.
- *
  */
 void
 gtk_source_completion_utils_move_to_iter (GtkWindow     *window,
@@ -273,16 +267,15 @@ gtk_source_completion_utils_move_to_iter (GtkWindow     *window,
 	}
 
 	/* Make sure that text is still readable */
-	move_overlap (&x, &y, w, h, oy, cx, cy, height, overlapup);
+	move_overlap (&y, h, oy, cy, height, overlapup);
 
 	gtk_window_move (window, x, y);
 }
 
 /**
- * gtk_source_completion_utils_get_pos_at_cursor:
+ * gtk_source_completion_utils_move_to_cursor:
  * @window: the #GtkWindow to move.
  * @view: the #GtkSoureView.
- *
  */
 void
 gtk_source_completion_utils_move_to_cursor (GtkWindow     *window,
@@ -294,7 +287,5 @@ gtk_source_completion_utils_move_to_cursor (GtkWindow     *window,
 	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
 	gtk_text_buffer_get_iter_at_mark (buffer, &insert, gtk_text_buffer_get_insert (buffer));
 
-	gtk_source_completion_utils_move_to_iter (window,
-	                                          view,
-	                                          &insert);
+	gtk_source_completion_utils_move_to_iter (window, view, &insert);
 }
