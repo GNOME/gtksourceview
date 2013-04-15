@@ -56,6 +56,15 @@ typedef enum
 	GTK_SOURCE_GUTTER_RENDERER_STATE_SELECTED = 1 << 2
 } GtkSourceGutterRendererState;
 
+/**
+ * GtkSourceGutterRendererAlignmentMode:
+ * @GTK_SOURCE_GUTTER_RENDERER_ALIGNMENT_MODE_CELL: The full cell.
+ * @GTK_SOURCE_GUTTER_RENDERER_ALIGNMENT_MODE_FIRST: The first line.
+ * @GTK_SOURCE_GUTTER_RENDERER_ALIGNMENT_MODE_LAST: The last line.
+ *
+ * The alignment mode of the renderer, when a cell spans multiple lines (due to
+ * text wrapping).
+ **/
 typedef enum
 {
 	GTK_SOURCE_GUTTER_RENDERER_ALIGNMENT_MODE_CELL,
