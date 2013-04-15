@@ -47,7 +47,7 @@
  * SECTION:buffer
  * @Short_description: Buffer object for #GtkSourceView
  * @Title: GtkSourceBuffer
- * @See_also: #GtkTextBuffer,#GtkSourceView
+ * @See_also: #GtkTextBuffer, #GtkSourceView
  *
  * The #GtkSourceBuffer object is the model for #GtkSourceView widgets.
  * It extends the #GtkTextBuffer object by adding features useful to display
@@ -60,6 +60,21 @@
  *
  * By default highlighting is enabled, but you can disable it with
  * gtk_source_buffer_set_highlight_syntax().
+ *
+ * A custom #GtkSourceUndoManager can be implemented and set with
+ * gtk_source_buffer_set_undo_manager(). However the default implementation
+ * should be suitable for most uses. By default, actions that can be undone or
+ * redone are defined as groups of operations between a call to
+ * gtk_text_buffer_begin_user_action() and gtk_text_buffer_end_user_action(). In
+ * general, this happens whenever the user presses any key which modifies the
+ * buffer. But the default undo manager will try to merge similar consecutive
+ * actions, such as multiple character insertions on the same line, into one
+ * action. But, inserting a newline starts a new action.
+ *
+ * The default undo manager remembers the "modified" state of the buffer, and
+ * restore it when an action is undone or redone. It can be useful in a text
+ * editor to know whether the file is saved. See gtk_text_buffer_get_modified()
+ * and gtk_text_buffer_set_modified().
  */
 
 /*
@@ -1210,11 +1225,6 @@ gtk_source_buffer_can_redo (GtkSourceBuffer *buffer)
  * Undoes the last user action which modified the buffer.  Use
  * gtk_source_buffer_can_undo() to check whether a call to this
  * function will have any effect.
- *
- * Actions are defined as groups of operations between a call to
- * gtk_text_buffer_begin_user_action() and
- * gtk_text_buffer_end_user_action(), or sequences of similar edits
- * (inserts or deletes) on the same line.
  **/
 void
 gtk_source_buffer_undo (GtkSourceBuffer *buffer)
@@ -1267,13 +1277,6 @@ gtk_source_buffer_get_max_undo_levels (GtkSourceBuffer *buffer)
  * function, older actions will be discarded.
  *
  * If @max_undo_levels is -1, no limit is set.
- *
- * A new action is started whenever the function
- * gtk_text_buffer_begin_user_action() is called.  In general, this
- * happens whenever the user presses any key which modifies the
- * buffer, but the undo manager will try to merge similar consecutive
- * actions, such as multiple character insertions into one action.
- * But, inserting a newline does start a new action.
  **/
 void
 gtk_source_buffer_set_max_undo_levels (GtkSourceBuffer *buffer,
