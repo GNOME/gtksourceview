@@ -29,7 +29,7 @@
 
 /**
  * SECTION:stylescheme
- * @Short_description: Object controlling apperance of #GtkSourceView
+ * @Short_description: Object controlling the appearance of #GtkSourceView
  * @Title: GtkSourceStyleScheme
  * @See_also: #GtkSourceStyle, #GtkSourceStyleSchemeManager
  *
@@ -39,7 +39,7 @@
  * non-highlighted text, color for the line numbers, etc.
  *
  * Style schemes are stored in XML files. The format of a scheme file is
- * the documented in the
+ * documented in the
  * <link linkend="style-reference">style scheme reference</link>.
  */
 
